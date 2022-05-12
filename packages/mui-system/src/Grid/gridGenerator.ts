@@ -11,7 +11,6 @@ interface Iterator<T> {
   (appendStyle: (responsizeStyles: Record<string, any>, style: object) => void, value: T): void;
 }
 
-// eslint-disable-next-line import/prefer-default-export
 export const traverseBreakpoints = <T = unknown>(
   breakpoints: Breakpoints,
   responsize: T | T[] | Record<string, any> | undefined,
