@@ -1,12 +1,18 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { OverridableComponent } from '@mui/types';
 import composeClasses from '../composeClasses';
 import appendOwnerState from '../utils/appendOwnerState';
 import useBadge from './useBadge';
 import { getBadgeUnstyledUtilityClass } from './badgeUnstyledClasses';
+import {
+  BadgeUnstyledProps,
+  BadgeUnstyledOwnerState,
+  BadgeUnstyledTypeMap,
+} from './BadgeUnstyled.types';
 
-const useUtilityClasses = (ownerState) => {
+const useUtilityClasses = (ownerState: BadgeUnstyledOwnerState) => {
   const { invisible } = ownerState;
 
   const slots = {
@@ -17,7 +23,10 @@ const useUtilityClasses = (ownerState) => {
   return composeClasses(slots, getBadgeUnstyledUtilityClass, undefined);
 };
 
-const BadgeUnstyled = React.forwardRef(function BadgeUnstyled(props, ref) {
+const BadgeUnstyled = React.forwardRef(function BadgeUnstyled(
+  props: BadgeUnstyledProps & { component?: React.ElementType },
+  ref,
+) {
   const {
     badgeContent: badgeContentProp,
     component,
@@ -36,7 +45,7 @@ const BadgeUnstyled = React.forwardRef(function BadgeUnstyled(props, ref) {
     max: maxProp,
   });
 
-  const ownerState = {
+  const ownerState: BadgeUnstyledOwnerState = {
     ...props,
     badgeContent,
     invisible,
@@ -65,12 +74,12 @@ const BadgeUnstyled = React.forwardRef(function BadgeUnstyled(props, ref) {
       </Badge>
     </Root>
   );
-});
+}) as OverridableComponent<BadgeUnstyledTypeMap>;
 
 BadgeUnstyled.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // |     To update them edit TypeScript types and run "yarn proptypes"  |
   // ----------------------------------------------------------------------
   /**
    * The content rendered within the badge.
@@ -121,6 +130,6 @@ BadgeUnstyled.propTypes /* remove-proptypes */ = {
    * @default false
    */
   showZero: PropTypes.bool,
-};
+} as any;
 
 export default BadgeUnstyled;
