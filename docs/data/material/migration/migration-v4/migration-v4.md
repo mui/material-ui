@@ -28,7 +28,7 @@ To learn more, check out [the blog post about the release of Material UI v5](/bl
 :::info
 💡 Create small commits as you go to ensure a smooth migration.
 
-If you encounter any issues along the way, check the [Troubleshooting](/material-ui/migration/troubleshooting/) doc. 
+If you encounter any issues along the way, check the [Troubleshooting](/material-ui/migration/troubleshooting/) doc.
 
 For problems not addressed there, please [create an issue](https://github.com/mui/material-ui/issues/new?assignees=&labels=status%3A+needs+triage&template=1.bug.yml) with this title format: `[Migration] Summary of your issue`.
 :::
@@ -39,13 +39,13 @@ The minimum supported version of React has been increased from v16.8.0 to v17.0.
 
 The minimum supported version of TypeScript has been increased from v3.2 to v3.5.
 
-  :::warning
-  We try to align with types released by [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped) (i.e. packages published on npm under the `@types` namespace).
+:::warning
+We try to align with types released by [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped) (i.e. packages published on npm under the `@types` namespace).
 
-  We will not change the minimum supported version in a major version of Material UI.
+We will not change the minimum supported version in a major version of Material UI.
 
-  However, we generally recommend not to use a TypeScript version older than the lowest supported version of DefinitelyTyped.
-  :::
+However, we generally recommend not to use a TypeScript version older than the lowest supported version of DefinitelyTyped.
+:::
 
 If your project includes these packages, you'll need to update them to the `latest` version:
 
@@ -61,7 +61,7 @@ If your project includes these packages, you'll need to update them to the `late
 
 Before upgrading to v5, please make sure that `ThemeProvider` is defined at the root of your application and in tests—even if you are using the default theme—and `useStyles` is _not_ called before `ThemeProvider`.
 
-Eventually you will want to [migrate from JSS to Emotion](/material-ui/migration/migrating-from-jss), but in the meantime you can continue to use JSS with the `@mui/styles` package. 
+Eventually you will want to [migrate from JSS to Emotion](/material-ui/migration/migrating-from-jss), but in the meantime you can continue to use JSS with the `@mui/styles` package.
 This package requires `ThemeProvider`.
 
 The root of your application should look something like this:
@@ -157,6 +157,7 @@ With the release of v5, the names of all related packages were changed from `@ma
 @material-ui/docs -> @mui/docs
 @material-ui/envinfo -> @mui/envinfo
 ```
+
 </details>
 :::
 
