@@ -7,7 +7,7 @@ import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import PropTypes from 'prop-types';
 import * as React from 'react';
-import { useThemeProps } from '../styles';
+import { Theme, useThemeProps } from '../styles';
 import styled from '../styles/styled';
 import shouldSpreadAdditionalProps from '../utils/shouldSpreadAdditionalProps';
 import sliderClasses, { getSliderUtilityClass } from './sliderClasses';
@@ -43,14 +43,76 @@ const useUtilityClasses = (ownerState: SliderProps) => {
   return composeClasses(slots, getSliderUtilityClass, {});
 };
 
+const sliderColorVariables =
+  ({ theme, ownerState }: { theme: Theme; ownerState: SliderProps }) =>
+  (data: { state?: 'Hover' | 'Disabled' } = {}) => {
+    const variant = ownerState.variant;
+    const color = ownerState.color;
+    return {
+      '--Slider-track-background': theme.vars.palette[color!]?.[`${variant!}${data.state || ''}Bg`],
+      '--Slider-track-color':
+        ownerState.variant === 'solid' ? '#fff' : theme.vars.palette[color!]?.plainColor,
+      '--Slider-track-borderColor':
+        variant === 'outlined'
+          ? theme.vars.palette[color!]?.[`${variant!}${data.state || ''}Border`]
+          : 'currentColor',
+      '--Slider-thumb-background':
+        theme.vars.palette[color!]?.[`${variant!}${data.state || ''}Color`],
+      '--Slider-thumb-color':
+        ownerState.variant === 'solid' ? theme.vars.palette[color!]?.plainColor : '#fff',
+    };
+  };
+
 const SliderRoot = styled('span', {
   name: 'MuiSlider',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: SliderProps }>(({ ownerState }) => {
+})<{ ownerState: SliderProps }>(({ theme, ownerState }) => {
+  const getColorVariables = sliderColorVariables({ theme, ownerState });
+  const isOrientedVertical = ownerState.orientation === 'vertical';
   return [
     {
-      borderRadius: 12,
+      ...(ownerState.variant === 'outlined' && {
+        ...theme.variants.outlined[ownerState.color!],
+        border: 'none',
+      }),
+      // Variables used for `track` are used for `rail` the same way
+      '--Slider-track-radius': theme.vars.radius.lg,
+      '--Slider-thumb-shadow':
+        ownerState.variant === 'soft' ? 'none' : '0 0 0 1px var(--Slider-track-background)', // create border-like if the thumb is bigger than the track
+      ...(ownerState.size === 'sm' && {
+        '--Slider-track-width': isOrientedVertical ? '4px' : '40px',
+        '--Slider-track-height': isOrientedVertical ? '40px' : '4px',
+        '--Slider-thumb-size': '12px',
+        fontSize: theme.vars.fontSize.sm,
+      }),
+      ...(ownerState.size === 'md' && {
+        '--Slider-track-width': isOrientedVertical ? '6px' : '48px',
+        '--Slider-track-height': isOrientedVertical ? '48px' : '6px',
+        '--Slider-thumb-size': '16px',
+        fontSize: theme.vars.fontSize.md,
+      }),
+      ...(ownerState.size === 'lg' && {
+        '--Slider-track-width': isOrientedVertical ? '8px' : '64px',
+        '--Slider-track-height': isOrientedVertical ? '64px' : '8px',
+        '--Slider-thumb-size': '24px',
+        fontSize: theme.vars.fontSize.lg,
+      }),
+      '--Slider-thumb-radius': 'calc(var(--Slider-track-radius) - 2px)',
+      '--Slider-thumb-width': 'var(--Slider-thumb-size)',
+      '--Slider-thumb-offset':
+        'max((var(--Slider-track-height) - var(--Slider-thumb-size)) / 2, 0px)',
+      ...getColorVariables(),
+      '&:hover': {
+        ...getColorVariables({ state: 'Hover' }),
+      },
+      [`&.${sliderClasses.disabled}`]: {
+        pointerEvents: 'none',
+        color: theme.vars.palette.text.tertiary,
+        ...getColorVariables({ state: 'Disabled' }),
+      },
+      padding:
+        'calc((var(--Slider-thumb-size) / 2) - (var(--Slider-track-height) / 2)) calc(-1 * var(--Slider-thumb-offset))',
       boxSizing: 'content-box',
       display: 'inline-block',
       position: 'relative',
@@ -58,15 +120,6 @@ const SliderRoot = styled('span', {
       touchAction: 'none',
       WebkitTapHighlightColor: 'transparent',
       ...(ownerState.orientation === 'horizontal' && {
-        ...(ownerState.size === 'sm' && {
-          height: 4,
-        }),
-        ...(ownerState.size === 'md' && {
-          height: 6,
-        }),
-        ...(ownerState.size === 'lg' && {
-          height: 8,
-        }),
         minWidth: '5rem',
         padding: '13px 0',
         // The primary input mechanism of the device includes a pointing device of limited accuracy.
@@ -76,15 +129,6 @@ const SliderRoot = styled('span', {
         },
       }),
       ...(ownerState.orientation === 'vertical' && {
-        ...(ownerState.size === 'sm' && {
-          width: 4,
-        }),
-        ...(ownerState.size === 'md' && {
-          width: 6,
-        }),
-        ...(ownerState.size === 'lg' && {
-          width: 8,
-        }),
         minHeight: '5rem',
         padding: '0 13px',
         // The primary input mechanism of the device includes a pointing device of limited accuracy.
@@ -92,16 +136,9 @@ const SliderRoot = styled('span', {
           // Reach 42px touch target, about ~8mm on screen.
           padding: '0 20px',
         },
-        ...(ownerState.size === 'sm' && {
-          width: 2,
-        }),
       }),
       '@media print': {
         colorAdjust: 'exact',
-      },
-      [`&.${sliderClasses.disabled}`]: {
-        pointerEvents: 'none',
-        cursor: 'default',
       },
     },
   ];
@@ -115,18 +152,20 @@ const SliderRail = styled('span', {
   {
     display: 'block',
     position: 'absolute',
-    borderRadius: 'inherit',
-    backgroundColor: 'currentColor',
+    border: 'var(--variant-outlinedBorderWidth, 0px) solid',
+    borderColor: 'var(--Slider-track-borderColor)',
+    backgroundColor: 'var(--Slider-track-background)',
+    borderRadius: 'var(--Slider-track-radius)',
     opacity: 0.38,
     ...(ownerState.orientation === 'horizontal' && {
       width: '100%',
-      height: 'inherit',
+      height: 'var(--Slider-track-height)',
       top: '50%',
       transform: 'translateY(-50%)',
     }),
     ...(ownerState.orientation === 'vertical' && {
       height: '100%',
-      width: 'inherit',
+      width: 'var(--Slider-track-width)',
       left: '50%',
       transform: 'translateX(-50%)',
     }),
@@ -140,22 +179,23 @@ const SliderTrack = styled('span', {
   name: 'MuiSlider',
   slot: 'Track',
   overridesResolver: (props, styles) => styles.track,
-})<{ ownerState: SliderProps }>(({ theme, ownerState }) => {
-  const invertedColor =
-    theme.palette[ownerState.color!][theme.palette.mode === 'light' ? '200' : '700'];
+})<{ ownerState: SliderProps }>(({ ownerState }) => {
   return [
     {
       display: 'block',
       position: 'absolute',
-      borderRadius: 'inherit',
-      border: '1px solid currentColor',
+      color: 'var(--Slider-track-color)',
+      border: 'var(--variant-outlinedBorderWidth, 0px) solid',
+      borderColor: 'var(--Slider-track-borderColor)',
+      backgroundColor: 'var(--Slider-track-background)',
+      borderRadius: 'var(--Slider-track-radius)',
       ...(ownerState.orientation === 'horizontal' && {
-        height: 'inherit',
+        height: 'var(--Slider-track-height)',
         top: '50%',
         transform: 'translateY(-50%)',
       }),
       ...(ownerState.orientation === 'vertical' && {
-        width: 'inherit',
+        width: 'var(--Slider-track-width)',
         left: '50%',
         transform: 'translateX(-50%)',
       }),
@@ -163,12 +203,10 @@ const SliderTrack = styled('span', {
         display: 'none',
       }),
       ...(ownerState.track === 'inverted' && {
-        backgroundColor: invertedColor,
-        borderColor: invertedColor,
+        backgroundColor: 'var(--Slider-track-borderColor)',
+        opacity: 0.38,
       }),
     },
-    theme.variants[ownerState.variant!]?.[ownerState.color!],
-    theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
   ];
 });
 
@@ -176,28 +214,21 @@ const SliderThumb = styled('span', {
   name: 'MuiSlider',
   slot: 'Thumb',
   overridesResolver: (props, styles) => styles.thumb,
-})<{ ownerState: SliderProps }>(({ theme, ownerState }) => {
+})<{ ownerState: SliderProps }>(({ ownerState }) => {
   return [
     {
-      ...(ownerState.size === 'sm' && {
-        '--Slider-thumb-size': '0.5rem',
-      }),
-      ...(ownerState.size === 'md' && {
-        '--Slider-thumb-size': '0.75rem',
-      }),
-      ...(ownerState.size === 'lg' && {
-        '--Slider-thumb-size': '1rem',
-      }),
       position: 'absolute',
-      width: 'var(--Slider-thumb-size)',
-      height: 'var(--Slider-thumb-size)',
       boxSizing: 'border-box',
-      borderRadius: '50%',
       outline: 0,
-      backgroundColor: 'currentColor',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
+      width: 'var(--Slider-thumb-width)',
+      height: 'var(--Slider-thumb-size)',
+      borderRadius: 'var(--Slider-thumb-radius)',
+      boxShadow: 'var(--Slider-thumb-shadow)',
+      color: 'var(--Slider-thumb-color)',
+      backgroundColor: 'var(--Slider-thumb-background)',
       ...(ownerState.orientation === 'horizontal' && {
         top: '50%',
         transform: 'translate(-50%, -50%)',
@@ -212,9 +243,6 @@ const SliderThumb = styled('span', {
         borderRadius: 'inherit',
         width: '100%',
         height: '100%',
-        ...(ownerState.size === 'sm' && {
-          boxShadow: 'none',
-        }),
       },
       '&::after': {
         position: 'absolute',
@@ -227,14 +255,7 @@ const SliderThumb = styled('span', {
         left: '50%',
         transform: 'translate(-50%, -50%)',
       },
-      [`&.${sliderClasses.disabled}`]: {
-        '&:hover': {
-          boxShadow: 'none',
-        },
-      },
     },
-    theme.variants[ownerState.variant!]?.[ownerState.color!],
-    theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
   ];
 });
 

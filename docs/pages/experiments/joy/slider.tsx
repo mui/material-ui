@@ -40,6 +40,7 @@ const props = {
   variant: ['solid', 'outlined', 'soft'],
   disabled: [true, false],
   orientation: ['horizontal', 'vertical'],
+  track: ['inverted'],
 } as const;
 
 export default function JoySlider() {
