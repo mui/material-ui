@@ -18,18 +18,19 @@ const planInfo = {
   community: {
     color: 'green',
     title: 'Community',
-    description:
-      'Get started with the industry-standard UI library for building React user interfaces (open-source, MIT licensed).',
+    description: 'Get all the MUI component libraries, MIT-licensed, open source, and open core.',
   },
   pro: {
     color: 'blue',
     title: 'Pro',
-    description: 'Best for professional developers building enterprise or data-rich applications.',
+    description:
+      'Unlock essential features for building data-rich applications with complex use cases.',
   },
   premium: {
     color: 'gold',
     title: 'Premium',
-    description: 'Unlock all the most advanced features and professional support.',
+    description:
+      'Access the most advanced features necessary for data-rich applications, as well as the highest priority for support.',
   },
 } as const;
 
@@ -63,7 +64,7 @@ export function PlanName({
         </Typography>
       )}
       {!disableDescription && (
-        <Typography variant="body2" color="text.secondary" sx={{ mt: 1, minHeight: { md: 63 } }}>
+        <Typography variant="body2" color="text.secondary" sx={{ mt: 0.5, minHeight: { md: 63 } }}>
           {description}
         </Typography>
       )}
@@ -80,7 +81,7 @@ export function PlanPrice(props: PlanPriceProps) {
 
   if (plan === 'community') {
     return (
-      <Box sx={{ display: 'flex', alignItems: 'center', mt: 1, mb: 2 }}>
+      <Box sx={{ display: 'flex', alignItems: 'center', mt: 1 }}>
         <Typography variant="h4" component="div" fontWeight="bold" color="success.600">
           $0
         </Typography>
@@ -95,40 +96,18 @@ export function PlanPrice(props: PlanPriceProps) {
     return (
       <div>
         <Box sx={{ display: 'flex', alignItems: 'center', mt: 1, mb: 2 }}>
-          <Typography
-            variant="body2"
-            fontWeight="bold"
-            color="error.500"
-            sx={{
-              borderRadius: 0.5,
-              bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'error.900' : 'error.100'),
-              textDecoration: 'line-through',
-              p: '4px',
-            }}
-          >
-            $249
-          </Typography>
-          <Box sx={{ width: 10 }} />
           <Typography variant="h4" component="div" fontWeight="bold" color="primary.main">
-            $186
-          </Typography>
-          <Typography
-            variant="subtitle1"
-            component="div"
-            fontWeight="bold"
-            color="primary.main"
-            sx={{ mb: 1 }}
-          >
-            *
+            $15
           </Typography>
           <Box sx={{ width: 5 }} />
           <Typography variant="body2" color="text.secondary">
-            / developer.
+            / dev / month.
           </Typography>
         </Box>
-        <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-          <Link href="#early-bird">* Early bird special.</Link>
-          <br />
+        <Typography variant="body2" color="text.secondary" sx={{ mt: 2 }}>
+          Billed annually at $180.
+        </Typography>
+        <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
           Price capped at 10 developers.
         </Typography>
       </div>
@@ -137,17 +116,43 @@ export function PlanPrice(props: PlanPriceProps) {
   return (
     <div>
       <Box sx={{ display: 'flex', alignItems: 'center', mt: 1 }}>
-        <Typography variant="h4" component="div" fontWeight="bold" color="grey.600">
-          $599
+        <Typography
+          variant="body2"
+          fontWeight="bold"
+          color="error.500"
+          sx={{
+            borderRadius: 0.5,
+            bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'error.900' : 'error.100'),
+            textDecoration: 'line-through',
+            p: '4px',
+          }}
+        >
+          $49
+        </Typography>
+        <Box sx={{ width: 10 }} />
+        <Typography variant="h4" component="div" fontWeight="bold" color="primary.main">
+          $37
+        </Typography>
+        <Typography
+          variant="subtitle1"
+          component="div"
+          fontWeight="bold"
+          color="primary.main"
+          sx={{ mb: 1 }}
+        >
+          *
         </Typography>
         <Box sx={{ width: 5 }} />
         <Typography variant="body2" color="text.secondary">
-          / developer.
+          / dev / month.
         </Typography>
       </Box>
       <Typography variant="body2" color="text.secondary" sx={{ mt: 2 }}>
-        Price capped at 10 developers per application
+        Billed annually at $444.
       </Typography>
+      <Link variant="body2" href="#early-bird" sx={{ mb: 2 }}>
+        * Early bird special.
+      </Link>
     </div>
   );
 }
@@ -240,11 +245,13 @@ const ColumnHeadHighlight = (props: BoxProps) => (
     {...props}
     sx={{
       p: 2,
+      display: 'flex',
+      flexDirection: 'column',
       position: 'relative',
       borderRadius: '10px 10px 0 0',
       borderWidth: '1px 1px 0 1px',
       borderStyle: 'solid',
-      borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.200'),
+      borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.100'),
       bgcolor: (theme) =>
         theme.palette.mode === 'dark'
           ? alpha(theme.palette.primaryDark[900], 0.5)
@@ -263,8 +270,8 @@ const Recommended = (props: BoxProps) => (
       p: '2px 8px',
       border: '1px solid',
       borderRadius: 2,
-      borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primary.700' : 'primary.200'),
-      bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.800' : 'grey.50'),
+      borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.500' : 'primary.100'),
+      bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.800' : 'primary.50'),
       position: 'absolute',
       top: 0,
       left: 20,
@@ -289,7 +296,7 @@ const Cell = ({ highlighted = false, ...props }: BoxProps & { highlighted?: bool
       ...(highlighted && {
         borderWidth: '0 1px 0 1px',
         borderStyle: 'solid',
-        borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.200'),
+        borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.100'),
         bgcolor: (theme) =>
           theme.palette.mode === 'dark'
             ? alpha(theme.palette.primaryDark[900], 0.5)
@@ -558,7 +565,7 @@ const communityData: Record<string, React.ReactNode> = {
   'data-grid/row-selection': yes,
   'data-grid/row-multiselection': no,
   'data-grid/row-rangeselection': no,
-  'data-grid/filter-quick': pending,
+  'data-grid/filter-quick': yes,
   'data-grid/filter-column': yes,
   'data-grid/filter-multicolumn': no,
   'data-grid/column-sorting': yes,
@@ -612,7 +619,7 @@ const proData: Record<string, React.ReactNode> = {
   'data-grid/row-selection': yes,
   'data-grid/row-multiselection': yes,
   'data-grid/row-rangeselection': no,
-  'data-grid/filter-quick': pending,
+  'data-grid/filter-quick': yes,
   'data-grid/filter-column': yes,
   'data-grid/filter-multicolumn': yes,
   'data-grid/column-sorting': yes,
@@ -666,7 +673,7 @@ const premiumData: Record<string, React.ReactNode> = {
   'data-grid/row-selection': yes,
   'data-grid/row-multiselection': yes,
   'data-grid/row-rangeselection': pending,
-  'data-grid/filter-quick': pending,
+  'data-grid/filter-quick': yes,
   'data-grid/filter-column': yes,
   'data-grid/filter-multicolumn': yes,
   'data-grid/column-sorting': yes,
@@ -678,7 +685,7 @@ const premiumData: Record<string, React.ReactNode> = {
   'data-grid/file-csv': yes,
   'data-grid/file-print': yes,
   'data-grid/file-clipboard': pending,
-  'data-grid/file-excel': pending,
+  'data-grid/file-excel': yes,
   'data-grid/customizable-components': yes,
   'data-grid/virtualize-column': yes,
   'data-grid/virtualize-row': yes,
@@ -698,9 +705,9 @@ const premiumData: Record<string, React.ReactNode> = {
   'bugs/features': <Info value={yes} metadata="Priority over Pro" />,
   'tech-advisory': pending,
   'support-duration': <Info value="1 year" />,
-  'response-time': <Info value="2 business days" metadata="1 business day (priority only)" />,
-  'pre-screening': <Info value="4 hours" metadata="priority only" />,
-  'issue-escalation': <Info value={pending} metadata="priority only" />,
+  'response-time': <Info value={pending} metadata="Available later on" />,
+  'pre-screening': <Info value="4 hours" metadata="priority only, add-on not available yet" />,
+  'issue-escalation': <Info value={pending} metadata="priority only, add-on not available yet" />,
 };
 
 const RowCategory = (props: BoxProps) => (
@@ -853,9 +860,6 @@ export default function PricingTable({
         width: '100%',
         overflow: 'auto',
         py: { xs: 2, md: 4 },
-        '&::-webkit-scrollbar': {
-          display: 'none',
-        },
         ...props.sx,
       }}
     >
@@ -882,12 +886,14 @@ export default function PricingTable({
           </Box>
           <ColumnHeadHighlight>
             <Recommended />
-            <PlanName plan="pro" />
-            <PlanPrice plan="pro" />
+            <Box>
+              <PlanName plan="pro" />
+              <PlanPrice plan="pro" />
+            </Box>
             <Button
               component={Link}
               noLinkStyle
-              href="https://mui.com/store/items/material-ui-pro/"
+              href="https://mui.com/store/items/mui-x-pro/"
               variant="contained"
               fullWidth
               endIcon={<KeyboardArrowRightRounded />}
@@ -897,17 +903,18 @@ export default function PricingTable({
             </Button>
           </ColumnHeadHighlight>
           <Box sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
-            <Box sx={{ opacity: 0.5 }}>
-              <PlanName plan="premium" />
-              <PlanPrice plan="premium" />
-            </Box>
+            <PlanName plan="premium" />
+            <PlanPrice plan="premium" />
             <Button
-              variant="outlined"
-              disabled
+              component={Link}
+              noLinkStyle
+              href="https://mui.com/store/items/mui-x-premium/"
+              variant="contained"
               fullWidth
-              sx={{ py: 1, mt: 'auto', '&.Mui-disabled': { color: 'text.disabled' } }}
+              endIcon={<KeyboardArrowRightRounded />}
+              sx={{ py: 1, mt: 'auto' }}
             >
-              In progress!
+              Buy now
             </Button>
           </Box>
         </Box>
@@ -1005,9 +1012,9 @@ export default function PricingTable({
         <RowCategory>Row features</RowCategory>
         {renderRow('data-grid/row-height')}
         {nestedDivider}
-        {renderRow('data-grid/row-spanning')}
-        {nestedDivider}
         {renderRow('data-grid/row-reordering')}
+        {nestedDivider}
+        {renderRow('data-grid/row-spanning')}
         {nestedDivider}
         <RowCategory>Selection features</RowCategory>
         {renderRow('data-grid/row-selection')}
@@ -1043,9 +1050,9 @@ export default function PricingTable({
         {nestedDivider}
         {renderRow('data-grid/file-print')}
         {nestedDivider}
-        {renderRow('data-grid/file-clipboard')}
-        {nestedDivider}
         {renderRow('data-grid/file-excel')}
+        {nestedDivider}
+        {renderRow('data-grid/file-clipboard')}
         {nestedDivider}
         <RowCategory>Rendering features</RowCategory>
         {renderRow('data-grid/customizable-components')}
@@ -1082,8 +1089,6 @@ export default function PricingTable({
       {renderRow('community')}
       {divider}
       {renderRow('bugs/features')}
-      {divider}
-      {renderRow('tech-advisory')}
       {divider}
       {renderRow('support-duration')}
       {divider}
