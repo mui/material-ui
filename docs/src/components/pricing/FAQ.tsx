@@ -41,14 +41,12 @@ const faqData = [
     ),
   },
   {
-    summary: 'How many licenses do I need?',
+    summary: 'How many developer seats do I need?',
     detail: (
       <React.Fragment>
-        The number of licenses purchased must correspond to the number of concurrent developers
-        contributing changes to the front-end code of a project that uses MUI X Pro. However, the
-        number of developer licenses required is capped at 10 developers for the <b>Pro plan</b> and
-        10 developers/project for the <b>Premium plan</b>, developers above this cap don't need to
-        be licensed.
+        The number of seats purchased on your license must correspond to the number of concurrent
+        developers contributing changes to the front-end code of a project that uses MUI X Pro or
+        Premium.
         <br />
         <br />
         <b>Example 1.</b> Company 'A' is developing an application named 'AppA'. The app needs to
@@ -92,15 +90,12 @@ const faqData = [
     summary: 'Am I allowed to use the product after the update entitlement expires?',
     detail: (
       <React.Fragment>
-        Yes. The license is perpetual, so you are allowed to continue using the product even after
-        the entitlement expires. However, you will be using the last product version released before
-        this time. You will lose access to subsequently released functionality and updates, as well
-        as technical support.
+        Yes. You can continue to use the product in production environments after the entitlement
+        expires. But you will need to keep your subscription active to continue development, update
+        for new features, or gain access to technical support.
         <br />
         <br />
-        If you wish to preserve your access to product updates (new features and fixes) and
-        dedicated support, you need to renew your license, please{' '}
-        <Link href="mailto:sales@mui.com">contact sales</Link>.
+        To renew your license, please <Link href="mailto:sales@mui.com">contact sales</Link>.
       </React.Fragment>
     ),
   },
