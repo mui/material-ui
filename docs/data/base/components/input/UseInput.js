@@ -47,7 +47,7 @@ const StyledInputElement = styled('input')(
 );
 
 const CustomInput = React.forwardRef(function CustomInput(props, ref) {
-  const { getRootProps, getInputProps } = useInput(props, ref);
+  const { getRootProps, getInputProps } = useInput({ ...props, inputRef: ref });
 
   return (
     <div {...getRootProps()}>

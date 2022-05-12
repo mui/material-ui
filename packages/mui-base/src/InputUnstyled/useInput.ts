@@ -1,11 +1,15 @@
 import * as React from 'react';
 import MuiError from '@mui/utils/macros/MuiError.macro';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
-import { useFormControlUnstyledContext } from '../FormControlUnstyled';
+import { FormControlUnstyledState, useFormControlUnstyledContext } from '../FormControlUnstyled';
 import extractEventHandlers from '../utils/extractEventHandlers';
-import { UseInputProps } from './InputUnstyledProps';
+import {
+  UseInputInputSlotProps,
+  UseInputParameters,
+  UseInputRootSlotProps,
+} from './useInput.types';
 
-export default function useInput(props: UseInputProps, inputRef?: React.Ref<HTMLInputElement>) {
+export default function useInput(parameters: UseInputParameters) {
   const {
     defaultValue: defaultValueProp,
     disabled: disabledProp = false,
@@ -13,11 +17,12 @@ export default function useInput(props: UseInputProps, inputRef?: React.Ref<HTML
     onBlur,
     onChange,
     onFocus,
+    inputRef,
     required: requiredProp = false,
     value: valueProp,
-  } = props;
+  } = parameters;
 
-  const formControlContext = useFormControlUnstyledContext();
+  const formControlContext: FormControlUnstyledState | undefined = useFormControlUnstyledContext();
 
   let defaultValue: unknown;
   let disabled: boolean;
@@ -35,7 +40,7 @@ export default function useInput(props: UseInputProps, inputRef?: React.Ref<HTML
     if (process.env.NODE_ENV !== 'production') {
       const definedLocalProps = (
         ['defaultValue', 'disabled', 'error', 'required', 'value'] as const
-      ).filter((prop) => props[prop] !== undefined);
+      ).filter((prop) => parameters[prop] !== undefined);
 
       if (definedLocalProps.length > 0) {
         console.warn(
@@ -149,9 +154,11 @@ export default function useInput(props: UseInputProps, inputRef?: React.Ref<HTML
       otherHandlers.onClick?.(event);
     };
 
-  const getRootProps = (externalProps?: Record<string, unknown>) => {
+  const getRootProps = <TOther extends Record<string, any> = {}>(
+    externalProps: TOther = {} as TOther,
+  ): UseInputRootSlotProps<TOther> => {
     // onBlur, onChange and onFocus are forwarded to the input slot.
-    const propsEventHandlers = extractEventHandlers(props, ['onBlur', 'onChange', 'onFocus']);
+    const propsEventHandlers = extractEventHandlers(parameters, ['onBlur', 'onChange', 'onFocus']);
     const externalEventHandlers = { ...propsEventHandlers, ...extractEventHandlers(externalProps) };
 
     return {
@@ -161,7 +168,9 @@ export default function useInput(props: UseInputProps, inputRef?: React.Ref<HTML
     };
   };
 
-  const getInputProps = (externalProps?: Record<string, unknown>) => {
+  const getInputProps = <TOther extends Record<string, any> = {}>(
+    externalProps: TOther = {} as TOther,
+  ): UseInputInputSlotProps<TOther> => {
     const propsEventHandlers: Record<string, React.EventHandler<any> | undefined> = {
       onBlur,
       onChange,
@@ -170,7 +179,7 @@ export default function useInput(props: UseInputProps, inputRef?: React.Ref<HTML
 
     const externalEventHandlers = { ...propsEventHandlers, ...extractEventHandlers(externalProps) };
 
-    const mergedEventHandlers: Record<string, React.EventHandler<any>> = {
+    const mergedEventHandlers = {
       ...externalProps,
       ...externalEventHandlers,
       onBlur: handleBlur(externalEventHandlers),
