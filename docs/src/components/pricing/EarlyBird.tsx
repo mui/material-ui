@@ -6,7 +6,7 @@ import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import Link from 'docs/src/modules/components/Link';
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
-import styled from '@emotion/styled';
+import { styled } from '@mui/material/styles';
 
 const AnchorableContainer = styled(Container)`
   &::before {

@@ -57,7 +57,7 @@ export default function WhatToExpect() {
               <Typography variant="body2" color="text.secondary">
                 With your purchase, you receive support and maintenance for one year. After this
                 time, you can continue to use your licensed versions in production, but will no
-                longer be licensed to update to newer versions.
+                longer be licensed to use the product in development, for instance, to release bug fixes.
               </Typography>
             </Paper>
           </Stack>

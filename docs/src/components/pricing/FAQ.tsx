@@ -91,7 +91,7 @@ const faqData = [
     detail: (
       <React.Fragment>
         Yes. You can continue to use the product in production environments after the entitlement
-        expires. But you will need to renew your license to continue development, update for new
+        expires. But you will need to keep your subscription active to continue development, update for new
         features, or gain access to technical support.
         <br />
         <br />
