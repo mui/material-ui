@@ -81,20 +81,20 @@ const SliderRoot = styled('span', {
       '--Slider-thumb-shadow':
         ownerState.variant === 'soft' ? 'none' : '0 0 0 1px var(--Slider-track-background)', // create border-like if the thumb is bigger than the track
       ...(ownerState.size === 'sm' && {
-        '--Slider-track-width': isOrientedVertical ? '4px' : '40px',
-        '--Slider-track-height': isOrientedVertical ? '40px' : '4px',
+        '--Slider-track-width': isOrientedVertical ? '6px' : '40px',
+        '--Slider-track-height': isOrientedVertical ? '40px' : '6px',
         '--Slider-thumb-size': '12px',
         fontSize: theme.vars.fontSize.sm,
       }),
       ...(ownerState.size === 'md' && {
-        '--Slider-track-width': isOrientedVertical ? '6px' : '48px',
-        '--Slider-track-height': isOrientedVertical ? '48px' : '6px',
+        '--Slider-track-width': isOrientedVertical ? '12px' : '48px',
+        '--Slider-track-height': isOrientedVertical ? '48px' : '12px',
         '--Slider-thumb-size': '16px',
         fontSize: theme.vars.fontSize.md,
       }),
       ...(ownerState.size === 'lg' && {
-        '--Slider-track-width': isOrientedVertical ? '8px' : '64px',
-        '--Slider-track-height': isOrientedVertical ? '64px' : '8px',
+        '--Slider-track-width': isOrientedVertical ? '18px' : '64px',
+        '--Slider-track-height': isOrientedVertical ? '64px' : '18px',
         '--Slider-thumb-size': '24px',
         fontSize: theme.vars.fontSize.lg,
       }),
