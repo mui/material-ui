@@ -83,7 +83,7 @@ Here is a list of everything that has changed:
 
 Please, feel free to read the new [license agreement](https://mui.com/store/legal/mui-x-eula/) in detail.
 
-# What can you expect next?
+## What can you expect next?
 
 We mentioned the aggregation functions already,
 but there’s a [lot more coming](https://github.com/mui/mui-x/projects/1), and certainly not only for Premium users.
@@ -94,9 +94,9 @@ while working on bringing the best UX and DX in the market.
 
 We’re very excited about the possibilities the new Premium features will enable, and we hope you’re excited too!
 
-# FAQ 🔧
+## FAQ 🔧
 
-## How to migrate?
+### How to migrate?
 
 To migrate to the premium version in your codebase, install the dedicated package `@mui/x-data-grid-premium` as follows:
 
@@ -116,35 +116,31 @@ All the features from Community and Pro plan are available in the Premium packag
 
 The new package exports the component `<DataGridPremium />` which has basically the same API as `<DataGridPro />`. To use this package for development of a production product, and to remove the watermark, you must acquire a Premium license. If you wish to upgrade your existing Pro license, please [contact sales](mailto:sales@mui.com).
 
-## Should I update my code?
+### Should I update my code?
 
 Unless you want to upgrade to Premium, or if you’re already using row-grouping in your project, you don’t have to do anything.
 
-If you're using row-grouping, it has been removed from the experimental features of the Pro Plan to be a Premium feature, [as planned](https://mui.com/blog/introducing-the-row-grouping-feature/#how-to-unlock-this-feature). To continue using it, please upgrade to the Premium plan.
+If you're using Row grouping with the Pro plan, it's now officially deprecated and will be removed from the experimental features [as planned](https://mui.com/blog/introducing-the-row-grouping-feature/#how-to-unlock-this-feature). To continue using it, please upgrade to the Premium plan.
 
-## Excel export features
+### What are the initial Excel export features?
 
 To export data, the free version of the data grid implements both a print export which provides a printable visualization for users, and a CSV export allowing data migration to another application. However CSV exports are basic and limited when the exported file is consumed by users instead of other applications. The Excel format provides more room for flexibility and customization.
 
-### Cell constraints
+#### Cell constraints
 
 By setting a column type you prevent users from making errors, such as entering an invalid date, or using letters in a number column. The exported file will reflect those type constraints.
 
 A special case is the ‘singleSelect’ column type which provides an array of options. This constraint is also reflected in the exported file, meaning the singleSelect options will be available as field value options in the Excel spreadsheet.
 
-### Hierarchical structure
+#### Hierarchical structure
 
 With tree data and row grouping, users can create a hierarchical structure between rows. This structure is also available in the exported file, and in Excel you can toggle a row’s children visibility.
 
-### Brand customization
+#### Brand customization
 
 If you want to generate spreadsheets to share, you may be interested in adding some headers, using brand colors, or adding instructions to the document. For this purpose, we allow developers to access the Excel file's content before and after the data is added. This allows you to fully customize the content of the file.
 
-### Ongoing development
-
-This feature will continue to be enhanced. We would love to hear your feedback, and to learn what you would like to see in future releases.
-
-# Share your feedback 🗣
+## Share your feedback 🗣
 
 We hope you find the new features useful and pleasant to use, both as a developer and user.
 Please don't hesitate to [open an issue](https://github.com/mui/mui-x/issues/new/choose) to share feedback, report bugs, or propose enhancements.
