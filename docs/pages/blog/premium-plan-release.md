@@ -57,15 +57,10 @@ Here is a list of everything that has changed:
 
 - **Price point per developer seat**
 
-  Balancing our goals and pricing structural changes, we’re lowering our base price points.
+  We’re lowering our base price points, particularly for Pro users. Fees are billed annually.
 
-  - Pro: $249 → $180/year
-  - Premium: $599 → $588/year ($444 - early bird)
-
-  The prices are billed annually but we'll experiment displaying them per month.
-
-  - Pro: $15/dev/month ($180/year)
-  - Premium early bird: $37/dev/month ($444/year)
+  - Pro: $249 → $180/year or $15/month
+  - Premium: $599 → ~~$588/year or $49/month~~ **($444/year - early bird)**
 
 - **Removing volume and renewal discounts**
 
