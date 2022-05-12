@@ -21,10 +21,10 @@ export default function SpacingGrid() {
 
   return (
     <Grid sx={{ flexGrow: 1 }} container spacing={2}>
-      <Grid item xs={12}>
+      <Grid xs={12}>
         <Grid container justifyContent="center" spacing={spacing}>
           {[0, 1, 2].map((value) => (
-            <Grid key={value} item>
+            <Grid key={value}>
               <Paper
                 sx={{
                   height: 140,
@@ -37,10 +37,10 @@ export default function SpacingGrid() {
           ))}
         </Grid>
       </Grid>
-      <Grid item xs={12}>
+      <Grid xs={12}>
         <Paper sx={{ p: 2 }}>
           <Grid container>
-            <Grid item>
+            <Grid>
               <FormControl component="fieldset">
                 <FormLabel component="legend">spacing</FormLabel>
                 <RadioGroup

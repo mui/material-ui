@@ -63,11 +63,11 @@ const Grid = React.forwardRef<HTMLDivElement, GridProps>(function Grid(inProps, 
     xl,
     ...other
   } = props;
-  const columns = inProps.columns || (nested ? undefined : columnsProp);
-  const spacing = inProps.spacing || (nested ? undefined : spacingProp);
-  const rowSpacing = inProps.rowSpacing || inProps.spacing || (nested ? undefined : rowSpacingProp);
+  const columns = inProps.columns ?? (nested ? undefined : columnsProp);
+  const spacing = inProps.spacing ?? (nested ? undefined : spacingProp);
+  const rowSpacing = inProps.rowSpacing ?? inProps.spacing ?? (nested ? undefined : rowSpacingProp);
   const columnSpacing =
-    inProps.columnSpacing || inProps.spacing || (nested ? undefined : columnSpacingProp);
+    inProps.columnSpacing ?? inProps.spacing ?? (nested ? undefined : columnSpacingProp);
   const ownerState = {
     ...props,
     item, // item is not used anymore, declare here to prevent spreading to DOM.

@@ -45,7 +45,16 @@ export default function AutoGridNoWrap() {
             <Avatar>W</Avatar>
           </Grid>
           <Grid xs>
-            <Typography>{message}</Typography>
+            <Typography
+              sx={{
+                display: '-webkit-box',
+                '-webkit-line-clamp': '3',
+                '-webkit-box-orient': 'vertical',
+                overflow: 'hidden',
+              }}
+            >
+              {message}
+            </Typography>
           </Grid>
         </Grid>
       </Item>
