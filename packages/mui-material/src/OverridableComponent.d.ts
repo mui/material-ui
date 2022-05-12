@@ -29,16 +29,17 @@ export type OverrideProps<
   C extends React.ElementType
 > = (
   & BaseProps<M>
-  & DistributiveOmit<React.ComponentPropsWithRef<C>, keyof BaseProps<M>>
+  & Omit<React.ComponentProps<C>, keyof BaseProps<M>>
 );
 
 /**
  * Props if `component={Component}` is NOT used.
  */
 // prettier-ignore
-export type DefaultComponentProps<M extends OverridableTypeMap> =
+export type DefaultComponentProps<M extends OverridableTypeMap> = (
   & BaseProps<M>
-  & DistributiveOmit<React.ComponentPropsWithRef<M['defaultComponent']>, keyof BaseProps<M>>;
+  & Omit<React.ComponentProps<M['defaultComponent']>, keyof BaseProps<M>>
+);
 
 /**
  * Props defined on the component (+ common material-ui props).
