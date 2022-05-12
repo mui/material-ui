@@ -34,6 +34,7 @@
     "@mui/base": "5.0.0-alpha.80",
     "@mui/docs": "^5.7.0",
     "@mui/icons-material": "^5.6.2",
+    "@mui/joy": "5.0.0-alpha.27",
     "@mui/lab": "5.0.0-alpha.81",
     "@mui/material": "^5.7.0",
     "@mui/material-next": "6.0.0-alpha.35",
