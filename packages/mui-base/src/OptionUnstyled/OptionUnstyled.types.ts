@@ -1,9 +1,11 @@
 import React from 'react';
+import { Simplify } from '@mui/types';
 import { OptionState } from '../ListboxUnstyled';
+import { UseSelectOptionSlotProps } from '../SelectUnstyled/useSelect.types';
 
 export interface OptionUnstyledComponentsPropsOverrides {}
 
-export default interface OptionUnstyledProps<TValue> {
+export interface OptionUnstyledProps<TValue> {
   /**
    * The value of the option.
    */
@@ -44,4 +46,13 @@ export default interface OptionUnstyledProps<TValue> {
   label?: string;
 }
 
-export type OptionUnstyledOwnerState<TValue> = OptionUnstyledProps<TValue> & OptionState;
+export type OptionUnstyledOwnerState<TValue> = Simplify<OptionUnstyledProps<TValue> & OptionState>;
+
+export type OptionUnstyledRootSlotProps<TValue> = Simplify<
+  UseSelectOptionSlotProps & {
+    children?: React.ReactNode;
+    className: string;
+    ref: React.Ref<HTMLLIElement>;
+    ownerState: OptionUnstyledOwnerState<TValue>;
+  }
+>;

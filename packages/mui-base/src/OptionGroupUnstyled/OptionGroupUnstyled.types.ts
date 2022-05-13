@@ -2,7 +2,7 @@ import React from 'react';
 
 export interface OptionGroupUnstyledComponentsPropsOverrides {}
 
-export default interface OptionGroupUnstyledProps {
+export interface OptionGroupUnstyledProps {
   /**
    * The human-readable description of the group.
    */
@@ -41,3 +41,19 @@ export default interface OptionGroupUnstyledProps {
     list?: React.ComponentPropsWithRef<'ul'> & OptionGroupUnstyledComponentsPropsOverrides;
   };
 }
+
+export type OptionGroupUnstyledRootSlotProps = {
+  children?: React.ReactNode;
+  className: string;
+  ref: React.Ref<HTMLLIElement>;
+};
+
+export type OptionGroupUnstyledLabelSlotProps = {
+  children?: React.ReactNode;
+  className: string;
+};
+
+export type OptionGroupUnstyledListSlotProps = {
+  children?: React.ReactNode;
+  className: string;
+};
