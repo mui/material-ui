@@ -60,7 +60,7 @@ Here is a list of everything that has changed:
   We’re lowering our base price points, particularly for Pro users. Fees are billed annually.
 
   - Pro: $249 → $180/year or $15/month
-  - Premium: $599 → ~~$588/year or $49/month~~ **($444/year - early bird)**
+  - Premium: $599 → $588/year or $49/month **($444/year - early bird)**
 
 - **Removing volume and renewal discounts**
 
