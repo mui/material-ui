@@ -18,6 +18,11 @@ const pages = [
         subheader: 'inputs',
         children: [{ pathname: '/joy-ui/react-button' }],
       },
+      {
+        pathname: '/joy-ui/components/data-display',
+        subheader: 'data-display',
+        children: [{ pathname: '/joy-ui/react-avatar' }],
+      },
     ],
   },
 ];
