@@ -17,24 +17,29 @@ If you have already followed the instructions in the main migration guide and ru
 All other changes must be handled manually.
 :::
 
-## Core components
-
 As the core components use emotion as their style engine, the props used by emotion are not intercepted. The prop `as` in the following code snippet will not be propagated to `SomeOtherComponent`.
 
 ```jsx
 <MuiComponent component={SomeOtherComponent} as="button" />
 ```
 
-### AppBar
+## AppBar
+
+### Fix `z-index` issues
 
 - Remove z-index when position static and relative. This avoids the creation of a stacking context and rendering issues.
+
+### Replace `color` prop for dark mode
+
 - The `color` prop has no longer any effect in dark mode. The app bar uses the background color required by the elevation to follow the [Material Design guidelines](https://material.io/design/color/dark-theme.html). Use `enableColorOnDark` to restore the behavior of v4.
 
   ```jsx
   <AppBar enableColorOnDark />
   ```
 
-### Alert
+## Alert
+
+### ✅ Update import
 
 - Move the component from the lab to the core. The component is now stable.
 
@@ -49,7 +54,9 @@ As the core components use emotion as their style engine, the props used by emot
   +import AlertTitle from '@mui/material/AlertTitle';
   ```
 
-### Autocomplete
+## Autocomplete
+
+### ✅ Update import
 
 - Move the component from the lab to the core. The component is now stable.
 
@@ -64,7 +71,12 @@ As the core components use emotion as their style engine, the props used by emot
   +import useAutoComplete from '@mui/material/useAutocomplete';
   ```
 
+### Remove `debug` prop
+
 - Remove `debug` prop. There are a couple of simpler alternatives: `open={true}`, Chrome devtools ["Emulate focused"](https://twitter.com/sulco/status/1305841873945272321), or React devtools prop setter.
+
+### Update `renderOption`
+
 - `renderOption` should now return the full DOM structure of the option.
   It makes customizations easier. You can recover from the change with:
 
@@ -87,6 +99,8 @@ As the core components use emotion as their style engine, the props used by emot
    />
   ```
 
+### ✅ Rename `closeIcon` to `clearIcon`
+
 - Rename `closeIcon` prop to `clearIcon` to avoid confusion.
 
   :::success
@@ -97,6 +111,8 @@ As the core components use emotion as their style engine, the props used by emot
   -<Autocomplete closeIcon={defaultClearIcon} />
   +<Autocomplete clearIcon={defaultClearIcon} />
   ```
+
+### Rename reason arguments
 
 - The following values of the reason argument in `onChange` and `onClose` were renamed for consistency:
 
@@ -111,6 +127,8 @@ As the core components use emotion as their style engine, the props used by emot
   +'.MuiAutocomplete-option.Mui-focused': {
   ```
 
+### ✅ Rename `getOptionSelected`
+
 - Rename `getOptionSelected` to `isOptionEqualToValue` to better describe its purpose.
 
   :::success
@@ -123,7 +141,9 @@ As the core components use emotion as their style engine, the props used by emot
   +  isOptionEqualToValue={(option, value) => option.title === value.title}
   ```
 
-### Avatar
+## Avatar
+
+### ✅ Rename `circle`
 
 - Rename `circle` to `circular` for consistency:
 
@@ -145,6 +165,8 @@ As the core components use emotion as their style engine, the props used by emot
   +<Avatar>
   ```
 
+### ✅ Update `AvatarGroup` import
+
 - Move the AvatarGroup from the lab to the core.
 
   :::success
@@ -156,7 +178,9 @@ As the core components use emotion as their style engine, the props used by emot
   +import AvatarGroup from '@mui/material/AvatarGroup';
   ```
 
-### Badge
+## Badge
+
+### ✅ Rename `circle` and `rectangle`
 
 - Rename `circle` to `circular` and `rectangle` to `rectangular` for consistency.
 
@@ -190,7 +214,9 @@ As the core components use emotion as their style engine, the props used by emot
    }}>
   ```
 
-### BottomNavigation
+## BottomNavigation
+
+### Update `event` type (TypeScript)
 
 - TypeScript: The `event` in `onChange` is no longer typed as a `React.ChangeEvent` but `React.SyntheticEvent`.
 
@@ -199,7 +225,9 @@ As the core components use emotion as their style engine, the props used by emot
   +<BottomNavigation onChange={(event: React.SyntheticEvent) => {}} />
   ```
 
-### BottomNavigationAction
+## BottomNavigationAction
+
+### Remove `span` and `wrapper`
 
 - Remove the `span` element that wraps the children.
   Remove the `wrapper` classKey too.
@@ -216,7 +244,9 @@ As the core components use emotion as their style engine, the props used by emot
    </button>
   ```
 
-### Box
+## Box
+
+### ✅ Update `borderRadius` prop value
 
 - The `borderRadius` system prop value transformation has been changed.
   If it receives a number, it multiplies this value with the `theme.shape.borderRadius` value.
@@ -236,6 +266,8 @@ As the core components use emotion as their style engine, the props used by emot
   +<Box borderRadius="16px">
   ```
 
+### ✅ Apply `sx` API
+
 - The Box system props have an optional alternative API in v5, using the `sx` prop. You can [read this section](/system/basics/#api-tradeoff) for the "why" behind this new API.
 
   :::success
@@ -246,6 +278,8 @@ As the core components use emotion as their style engine, the props used by emot
   <Box border="1px dashed grey" p={[2, 3, 4]} m={2}>
   <Box sx={{ border: "1px dashed grey", p: [2, 3, 4], m: 2 }}>
   ```
+
+### ✅ Rename CSS properties
 
 - The following properties have been renamed because they are considered deprecated CSS properties by the CSS specification:
 
@@ -268,6 +302,8 @@ As the core components use emotion as their style engine, the props used by emot
 
   (Note that the system grid function wasn't documented in v4.)
 
+### Remove `clone` prop
+
 - The `clone` prop was removed because its behavior can be obtained by applying the `sx` prop directly to the child if it is a MUI component.
 
   ```diff
@@ -276,6 +312,8 @@ As the core components use emotion as their style engine, the props used by emot
   -</Box>
   +<Button sx={{ border: '1px dashed grey' }}>Save</Button>
   ```
+
+### Replace render prop with `sx`
 
 - The ability to pass a render prop was removed because its behavior can be obtained by applying the `sx` prop directly to the child if it is a MUI component.
 
@@ -295,7 +333,9 @@ As the core components use emotion as their style engine, the props used by emot
   +<Box component="button" sx={{ border: '1px dashed grey' }}>Save</Box>
   ```
 
-### Button
+## Button
+
+### ✅ Remove default `color` prop
 
 - The button `color` prop is now "primary" by default, and "default" has been removed.
   This makes the button closer to the Material Design guidelines and simplifies the API.
@@ -311,6 +351,8 @@ As the core components use emotion as their style engine, the props used by emot
 
   If you prefer to use the `default` color in v4, take a look at this [CodeSandbox](https://codesandbox.io/s/mimic-v4-button-default-color-bklx8?file=/src/Demo.tsx)
 
+### Remove `span` and `label`
+
 - The `span` element that wraps children has been removed.
   The `label` classKey is also removed.
   More details about [this change](https://github.com/mui/material-ui/pull/26666).
@@ -323,7 +365,9 @@ As the core components use emotion as their style engine, the props used by emot
    </button>
   ```
 
-### Chip
+## Chip
+
+### ✅ Rename `default` to `filled`
 
 - Rename `default` variant to `filled` for consistency.
 
@@ -338,7 +382,9 @@ As the core components use emotion as their style engine, the props used by emot
   +<Chip>
   ```
 
-### Checkbox
+## Checkbox
+
+### Set to "primary" by default
 
 - The checkbox color prop is now "primary" by default.
   To continue using the "secondary" color, you must explicitly indicate `secondary`.
@@ -348,6 +394,8 @@ As the core components use emotion as their style engine, the props used by emot
   -<Checkbox />
   +<Checkbox color="secondary" />
   ```
+
+### Update CSS class names
 
 - The component doesn't have `.MuiIconButton-root` and `.MuiIconButton-label` class names anymore, target `.MuiButtonBase-root` instead.
 
@@ -359,7 +407,9 @@ As the core components use emotion as their style engine, the props used by emot
   +  <span class="PrivateSwitchBase-input">
   ```
 
-### CircularProgress
+## CircularProgress
+
+### ✅ Rename `static` to `determinate`
 
 - The `static` variant has been renamed to `determinate`, and the previous appearance of `determinate` has been replaced by that of `static`.
   It was an exception to Material Design, and was removed from the specification.
@@ -377,7 +427,9 @@ As the core components use emotion as their style engine, the props used by emot
 NB: If you had previously customized determinate, your customizations are probably no longer valid. Please remove them.
 :::
 
-### Collapse
+## Collapse
+
+### ✅ Rename `collapsedHeight` prop
 
 - The `collapsedHeight` prop was renamed `collapsedSize` to support the horizontal direction.
 
@@ -397,7 +449,9 @@ NB: If you had previously customized determinate, your customizations are probab
   +<Collapse classes={{ root: 'collapse' }}>
   ```
 
-### CssBaseline
+## CssBaseline
+
+### Update styled-engine
 
 - The component was migrated to use the `@mui/styled-engine` (`emotion` or `styled-components`) instead of `jss`.
   You should remove the `@global` key when defining the style overrides for it.
@@ -424,6 +478,8 @@ NB: If you had previously customized determinate, your customizations are probab
   });
   ```
 
+### Update `body` font size
+
 - The `body` font size has changed from `theme.typography.body2` (`0.875rem`) to `theme.typography.body1` (`1rem`).
   To return to the previous size, you can override it in the theme:
 
@@ -443,10 +499,12 @@ NB: If you had previously customized determinate, your customizations are probab
   });
   ```
 
-### Dialog
+## Dialog
 
-- The onE\* transition props were removed.
-  Use TransitionProps instead.
+### ✅ Update transition props
+
+- The `on*` transition props were removed.
+  Use `TransitionProps` instead.
 
   :::success
   ✅ This is handled in the [preset-safe codemod](#preset-safe).
@@ -471,6 +529,8 @@ NB: If you had previously customized determinate, your customizations are probab
    >
   ```
 
+### ✅ Remove `disableBackdropClick` prop
+
 - Remove the `disableBackdropClick` prop because it is redundant.
   Ignore close events from `onClose` when `reason === 'backdropClick'` instead.
 
@@ -489,6 +549,8 @@ NB: If you had previously customized determinate, your customizations are probab
   +  }}
    />
   ```
+
+### ✅ Remove `withMobileDialog` component
 
 - Remove the `withMobileDialog` higher-order component.
   The hook API allows a simpler and more flexible solution:
@@ -513,6 +575,8 @@ NB: If you had previously customized determinate, your customizations are probab
   +export default ResponsiveDialog;
   ```
 
+### ✅ Remove `disableTypography` prop
+
 - Flatten DialogTitle DOM structure, remove `disableTypography` prop
 
   :::success
@@ -528,7 +592,9 @@ NB: If you had previously customized determinate, your customizations are probab
      </Typography>
   ```
 
-### Divider
+## Divider
+
+### Replace `background-color` with `border-color`
 
 - Use border instead of background color.
   It prevents inconsistent height on scaled screens.
@@ -541,7 +607,9 @@ NB: If you had previously customized determinate, your customizations are probab
   }
   ```
 
-### ExpansionPanel
+## ExpansionPanel
+
+### ✅ Rename components
 
 - Rename the `ExpansionPanel` components to `Accordion` to use a more common naming convention:
 
@@ -584,6 +652,8 @@ NB: If you had previously customized determinate, your customizations are probab
   +</Accordion>
   ```
 
+### Update `event` type (TypeScript)
+
 - TypeScript: The `event` in `onChange` is no longer typed as a `React.ChangeEvent` but `React.SyntheticEvent`.
 
   ```diff
@@ -591,12 +661,16 @@ NB: If you had previously customized determinate, your customizations are probab
   +<Accordion onChange={(event: React.SyntheticEvent, expanded: boolean) => {}} />
   ```
 
-### ExpansionPanelDetails
+## ExpansionPanelDetails
+
+### Remove `display: flex`
 
 - Remove `display: flex` from `AccordionDetails` (formerly `ExpansionPanelDetails`) as its too opinionated.
   Most developers expect a display block.
 
-### ExpansionPanelSummary
+## ExpansionPanelSummary
+
+### Rename `focused` to `focusVisible`
 
 - Rename `focused` to `focusVisible` for consistency:
 
@@ -609,13 +683,15 @@ NB: If you had previously customized determinate, your customizations are probab
     />
   ```
 
+### Remove `IconButtonProps` prop
+
 - Remove `IconButtonProps` prop from `AccordionSummary` (formerly `ExpansionPanelSummary`).
   The component renders a `<div>` element instead of an `IconButton`.
   The prop is no longer necessary.
 
-### Fab
+## Fab
 
-- Rename `round` to `circular` for consistency:
+### ✅ Rename `round` to `circular`
 
   :::success
   ✅ This is handled in the [preset-safe codemod](#preset-safe).
@@ -625,6 +701,8 @@ NB: If you had previously customized determinate, your customizations are probab
   -<Fab variant="round">
   +<Fab variant="circular">
   ```
+
+### Remove `span` and `label`
 
 - The `span` element that wraps children has been removed.
   The `label` classKey is also removed.
@@ -638,7 +716,9 @@ NB: If you had previously customized determinate, your customizations are probab
    </button>
   ```
 
-### FormControl
+## FormControl
+
+### ✅ Update default variant
 
 - Change the default variant from `standard` to `outlined`.
   Standard has been removed from the Material Design guidelines.
@@ -654,7 +734,9 @@ NB: If you had previously customized determinate, your customizations are probab
   +<FormControl value="Outlined" />
   ```
 
-### FormControlLabel
+## FormControlLabel
+
+### Add required `label` prop
 
 - The `label` prop is now required.
   If you were using a `FormControlLabel` without a `label`, you can replace it with just the value of the `control` prop.
@@ -664,7 +746,9 @@ NB: If you had previously customized determinate, your customizations are probab
 +<Checkbox />
 ```
 
-### Grid
+## Grid
+
+### ✅ Rename `justify` prop
 
 - Rename `justify` prop to `justifyContent` to align with the CSS property name.
 
@@ -677,7 +761,9 @@ NB: If you had previously customized determinate, your customizations are probab
   +<Grid justifyContent="center">
   ```
 
-- The props: `alignItems` `alignContent` and `justifyContent` and their `classes` and style overrides keys were removed: "align-items-xs-center", "align-items-xs-flex-start", "align-items-xs-flex-end", "align-items-xs-baseline", "align-content-xs-center", "align-content-xs-flex-start", "align-content-xs-flex-end", "align-content-xs-space-between", "align-content-xs-space-around", "justify-content-xs-center", "justify-content-xs-flex-end", "justify-content-xs-space-between", "justify-content-xs-space-around" and "justify-content-xs-space-evenly".
+### ✅ Remove `align` and `justify` props and classes
+
+- The props: `alignItems` `alignContent` and `justifyContent` and their classes and style overrides keys were removed: "align-items-xs-center", "align-items-xs-flex-start", "align-items-xs-flex-end", "align-items-xs-baseline", "align-content-xs-center", "align-content-xs-flex-start", "align-content-xs-flex-end", "align-content-xs-space-between", "align-content-xs-space-around", "justify-content-xs-center", "justify-content-xs-flex-end", "justify-content-xs-space-between", "justify-content-xs-space-around" and "justify-content-xs-space-evenly".
   These props are now considered part of the system, not on the `Grid` component itself.
   If you still wish to add overrides for them, you can use the [callback as a value in `styleOverrides`](/material-ui/customization/theme-components/#overrides-based-on-props).
 
@@ -704,7 +790,9 @@ NB: If you had previously customized determinate, your customizations are probab
   });
   ```
 
-### GridList
+## GridList
+
+### ✅ Rename `GridList` component
 
 - Rename the `GridList` components to `ImageList` to align with the current Material Design naming.
 
@@ -712,10 +800,15 @@ NB: If you had previously customized determinate, your customizations are probab
   ✅ This is handled in the [preset-safe codemod](#preset-safe).
   :::
 
+### Rename `GridList` props
+
 - Rename the GridList `spacing` prop to `gap` to align with the CSS attribute.
 - Rename the GridList `cellHeight` prop to `rowHeight`.
 - Add the `variant` prop to GridList.
 - Rename the GridListItemBar `actionPosition` prop to `position`. (Note also the related classname changes.)
+
+### Use CSS `object-fit`
+
 - Use CSS object-fit. For IE11 support either use a polyfill such as
   https://www.npmjs.com/package/object-fit-images, or continue to use the v4 component.
 
@@ -743,7 +836,9 @@ NB: If you had previously customized determinate, your customizations are probab
   +</ImageList>
   ```
 
-### Hidden
+## Hidden
+
+### ✅ Replace deprecated component
 
 - This component is deprecated because its functionality can be created with the [`sx`](/system/basics/#the-sx-prop) prop or the [`useMediaQuery`](/material-ui/react-use-media-query/) hook.
 
@@ -775,7 +870,9 @@ NB: If you had previously customized determinate, your customizations are probab
   +return hidden ? null : <Paper />;
   ```
 
-### Icon
+## Icon
+
+### Remove `fontSize="default"`
 
 - The default value of `fontSize` was changed from `default` to `medium` for consistency.
   In the unlikely event that you were using the value `default`, the prop can be removed:
@@ -785,7 +882,9 @@ NB: If you had previously customized determinate, your customizations are probab
   +<Icon>icon-name</Icon>
   ```
 
-### IconButton
+## IconButton
+
+### ✅ Update `size` prop
 
 - The default size's padding is reduced to `8px` which makes the default IconButton size of `40px`.
   To get the old default size (`48px`), use `size="large"`.
@@ -800,6 +899,8 @@ NB: If you had previously customized determinate, your customizations are probab
   + <IconButton size="large">
   ```
 
+### Remove `span` and `label`
+
 - The `span` element that wraps children has been removed.
   The `label` classKey is also removed.
   More details about [this change](https://github.com/mui/material-ui/pull/26666).
@@ -812,7 +913,9 @@ NB: If you had previously customized determinate, your customizations are probab
    </button>
   ```
 
-### Link
+## Link
+
+### ✅ Update default `underline` prop
 
 - The default `underline` prop is changed from `"hover"` to `"always"`.
   To get the same behavior as in v4, apply `defaultProps` in theme
@@ -833,10 +936,12 @@ NB: If you had previously customized determinate, your customizations are probab
   });
   ```
 
-### Menu
+## Menu
 
-- The onE\* transition props were removed.
-  Use TransitionProps instead.
+### ✅ Update transition props
+
+- The `on*` transition props were removed.
+  Use `TransitionProps` instead.
 
   :::success
   ✅ This is handled in the [preset-safe codemod](#preset-safe).
@@ -865,6 +970,8 @@ NB: If you had previously customized determinate, your customizations are probab
   Note: The `selectedMenu` variant will no longer vertically align the selected item with the anchor.
   :::
 
+### Change default `anchorOrigin.vertical` value
+
 - Change the default value of `anchorOrigin.vertical` to follow the Material Design guidelines. The menu now displays below the anchor instead of on top of it.
   You can restore the previous behavior with:
 
@@ -876,15 +983,19 @@ NB: If you had previously customized determinate, your customizations are probab
   +  }}
   ```
 
-### MenuItem
+## MenuItem
 
-- The `MenuItem` component inherits the `ButtonBase` component instead of `ListItem`
+### Update CSS class names
+
+- The `MenuItem` component inherits the `ButtonBase` component instead of `ListItem`. 
   The class names related to "MuiListItem-\*" are removed and theming `ListItem` is no longer affecting `MenuItem`.
 
   ```diff
   -<li className="MuiButtonBase-root MuiMenuItem-root MuiListItem-root">
   +<li className="MuiButtonBase-root MuiMenuItem-root">
   ```
+
+### Replace `listItemClasses` prop
 
 - prop `listItemClasses` is removed, use `classes` instead.
 
@@ -895,7 +1006,9 @@ NB: If you had previously customized determinate, your customizations are probab
 
   Read more about [MenuItem CSS API](/material-ui/api/menu-item/#css)
 
-### Modal
+## Modal
+
+### ✅ Remove `disableBackdropClick` prop
 
 - Remove the `disableBackdropClick` prop because it is redundant.
   Use `onClose` with `reason === 'backdropClick'` instead.
@@ -916,6 +1029,8 @@ NB: If you had previously customized determinate, your customizations are probab
    />
   ```
 
+### ✅ Remove `onEscapeKeyDown` prop
+
 - Remove the `onEscapeKeyDown` prop because it is redundant.
   Use `onClose` with `reason === "escapeKeyDown"` instead.
 
@@ -934,10 +1049,14 @@ NB: If you had previously customized determinate, your customizations are probab
    />
   ```
 
+### Remove `onRendered` prop
+
 - Remove `onRendered` prop.
   Depending on your use case either use a [callback ref](https://reactjs.org/docs/refs-and-the-dom.html#callback-refs) on the child element or an effect hook in the child component.
 
-### NativeSelect
+## NativeSelect
+
+### Remove `selectMenu` slot
 
 - Merge the `selectMenu` slot into `select`. Slot `selectMenu` was redundant.
   The `root` slot is no longer applied to the select, but to the root.
@@ -947,7 +1066,9 @@ NB: If you had previously customized determinate, your customizations are probab
   +<NativeSelect classes={{ select: 'class1 class2 class3' }} />
   ```
 
-### OutlinedInput
+## OutlinedInput
+
+### Replace `labelWidth` prop
 
 - Remove the `labelWidth` prop. The `label` prop now fulfills the same purpose, using CSS layout instead of JavaScript measurement to render the gap in the outlined.
 
@@ -956,7 +1077,9 @@ NB: If you had previously customized determinate, your customizations are probab
   +<OutlinedInput label="First Name" />
   ```
 
-### Paper
+## Paper
+
+### Change dark mode background opacity
 
 - Change the background opacity based on the elevation in dark mode.
   This change was done to follow the Material Design guidelines.
@@ -972,7 +1095,9 @@ NB: If you had previously customized determinate, your customizations are probab
   });
   ```
 
-### Pagination
+## Pagination
+
+### ✅ Update import
 
 - Move the component from the lab to the core.
   The component is now stable.
@@ -990,7 +1115,7 @@ NB: If you had previously customized determinate, your customizations are probab
   +import usePagination from '@mui/material/usePagination';
   ```
 
-- Rename `round` to `circular` for consistency:
+### ✅ Rename `round` to `circular`
 
   :::success
   ✅ This is handled in the [preset-safe codemod](#preset-safe).
@@ -1003,10 +1128,12 @@ NB: If you had previously customized determinate, your customizations are probab
   +<PaginationItem shape="circular">
   ```
 
-### Popover
+## Popover
 
-- The onE\* transition props were removed.
-  Use TransitionProps instead.
+### ✅ Update transition props
+
+- The `on*` transition props were removed.
+  Use `TransitionProps` instead.
 
   :::success
   ✅ This is handled in the [preset-safe codemod](#preset-safe).
@@ -1031,9 +1158,13 @@ NB: If you had previously customized determinate, your customizations are probab
    >
   ```
 
+### Remove `getContentAnchorEl` prop
+
 - The `getContentAnchorEl` prop was removed to simplify the positioning logic.
 
-### Popper
+## Popper
+
+### Upgrade from v1 to v2
 
 - Upgrade [Popper.js](https://popper.js.org/) from v1 to v2.
   This third-party library has introduced a lot of changes.<br />
@@ -1062,12 +1193,16 @@ NB: If you had previously customized determinate, your customizations are probab
 
   - Modifiers' API has changed a lot. There are too many changes to be covered here.
 
-### Portal
+## Portal
+
+### Remove `onRendered` prop
 
 - Remove `onRendered` prop.
   Depending on your use case either use a [callback ref](https://reactjs.org/docs/refs-and-the-dom.html#callback-refs) on the child element or an effect hook in the child component.
 
-### Radio
+## Radio
+
+### Update default `color` prop
 
 - The radio color prop is now "primary" by default.
   To continue using the "secondary" color, you must explicitly indicate `secondary`.
@@ -1077,6 +1212,8 @@ NB: If you had previously customized determinate, your customizations are probab
   -<Radio />
   +<Radio color="secondary" />
   ```
+
+### Update CSS classes
 
 - The component doesn't have `.MuiIconButton-root` and `.MuiIconButton-label` class names anymore, target `.MuiButtonBase-root` instead.
 
@@ -1088,7 +1225,9 @@ NB: If you had previously customized determinate, your customizations are probab
   +   <span class="PrivateSwitchBase-input">
   ```
 
-### Rating
+## Rating
+
+### ✅ Update imports
 
 - Move the component from the lab to the core.
   The component is now stable.
@@ -1102,6 +1241,8 @@ NB: If you had previously customized determinate, your customizations are probab
   +import Rating from '@mui/material/Rating';
   ```
 
+### Change default empty icon
+
 - Change the default empty icon to improve accessibility.
   If you have a custom `icon` prop but no `emptyIcon` prop, you can restore the previous behavior with:
 
@@ -1111,6 +1252,8 @@ NB: If you had previously customized determinate, your customizations are probab
   +  emptyIcon={null}
    />
   ```
+
+### Rename `visuallyhidden`
 
 - Rename `visuallyhidden` to `visuallyHidden` for consistency:
 
@@ -1123,7 +1266,9 @@ NB: If you had previously customized determinate, your customizations are probab
    />
   ```
 
-### RootRef
+## RootRef
+
+### ✅ Remove component
 
 - This component was removed.
   You can get a reference to the underlying DOM node of our components via `ref` prop.
@@ -1140,7 +1285,9 @@ NB: If you had previously customized determinate, your customizations are probab
   +<Button ref={ref} />
   ```
 
-### Select
+## Select
+
+### ✅ Update default variant
 
 - Change the default variant from `standard` to `outlined`.
   Standard has been removed from the Material Design guidelines.
@@ -1157,6 +1304,8 @@ NB: If you had previously customized determinate, your customizations are probab
   +<Select value="Outlined" />
   ```
 
+### Replace `labelWidth` prop
+
 - Remove the `labelWidth` prop.
   The `label` prop now fulfills the same purpose, using CSS layout instead of JavaScript measurement to render the gap in the outlined.
   The TextField already handles it by default.
@@ -1166,6 +1315,8 @@ NB: If you had previously customized determinate, your customizations are probab
   +<Select variant="outlined" label="Gender" />
   ```
 
+### Remove `selectMenu` slot
+
 - Merge the `selectMenu` slot into `select`. Slot `selectMenu` was redundant.
   The `root` slot is no longer applied to the select, but to the root.
 
@@ -1173,6 +1324,8 @@ NB: If you had previously customized determinate, your customizations are probab
   -<Select classes={{ root: 'class1', select: 'class2', selectMenu: 'class3' }} />
   +<Select classes={{ select: 'class1 class2 class3' }} />
   ```
+
+### Update `event` type (TypeScript)
 
 - The `event` in `onChange` is now a synthetic, native `Event` not a React event.
 
@@ -1183,7 +1336,9 @@ NB: If you had previously customized determinate, your customizations are probab
 
   This was necessary to prevent overriding of `event.target` of the events that caused the change.
 
-### Skeleton
+## Skeleton
+
+### ✅ Update import
 
 - Move the component from the lab to the core.
   The component is now stable.
@@ -1196,6 +1351,8 @@ NB: If you had previously customized determinate, your customizations are probab
   -import Skeleton from '@mui/lab/Skeleton';
   +import Skeleton from '@mui/material/Skeleton';
   ```
+
+### ✅ Rename `circle` and `rect`
 
 - Rename `circle` to `circular` and `rect` to `rectangular` for consistency:
 
@@ -1212,7 +1369,9 @@ NB: If you had previously customized determinate, your customizations are probab
   +<Skeleton classes={{ circular: 'custom-circle-classname', rectangular: 'custom-rect-classname',  }} />
   ```
 
-### Slider
+## Slider
+
+### Update `event` type (TypeScript)
 
 - The `event` in `onChange` is now a synthetic, native `Event`, not a React event.
 
@@ -1222,6 +1381,8 @@ NB: If you had previously customized determinate, your customizations are probab
   ```
 
   This was necessary to prevent overriding of `event.target` of the events that caused the change.
+
+### Replace `ValueLabelComponent` and `ThumbComponent` props
 
 - The `ValueLabelComponent` and `ThumbComponent` prop is now part of the `components` prop.
 
@@ -1236,6 +1397,8 @@ NB: If you had previously customized determinate, your customizations are probab
    />
   ```
 
+### Refactor CSS
+
 - Rework the CSS to match the latest [Material Design guidelines](https://material.io/components/sliders) and make custom styles more intuitive.
   [See documentation](/material-ui/react-slider/).
 
@@ -1243,7 +1406,9 @@ NB: If you had previously customized determinate, your customizations are probab
 
   You can reduce the density of the slider, closer to v4 with the [`size="small"` prop](/material-ui/react-slider/#sizes).
 
-### Snackbar
+## Snackbar
+
+### Update default positioning
 
 - The notification now displays at the bottom left on large screens.
   This better matches the behavior of Gmail, Google Keep, material.io, etc.
@@ -1254,8 +1419,10 @@ NB: If you had previously customized determinate, your customizations are probab
   +<Snackbar anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }} />
   ```
 
-- The onE\* transition props were removed.
-  Use TransitionProps instead.
+### ✅ Update transition props
+
+- The `on` transition props were removed.
+  Use `TransitionProps` instead.
 
   :::success
   ✅ This is handled in the [preset-safe codemod](#preset-safe).
@@ -1280,7 +1447,9 @@ NB: If you had previously customized determinate, your customizations are probab
    >
   ```
 
-### SpeedDial
+## SpeedDial
+
+### ✅ Update import
 
 - Move the component from the lab to the core.
   The component is now stable.
@@ -1298,7 +1467,9 @@ NB: If you had previously customized determinate, your customizations are probab
   +import SpeedDialIcon from '@mui/material/SpeedDialIcon';
   ```
 
-### Stepper
+## Stepper
+
+### Update component structure
 
 - The root component (Paper) was replaced with a div.
   Stepper no longer has elevation, nor inherits Paper's props.
@@ -1315,6 +1486,8 @@ NB: If you had previously customized determinate, your customizations are probab
   +<Paper>
   ```
 
+### Remove built-in padding
+
 - Remove the built-in 24px padding.
 
   ```diff
@@ -1326,10 +1499,12 @@ NB: If you had previously customized determinate, your customizations are probab
    </Stepper>
   ```
 
-### SvgIcon
+## SvgIcon
+
+### Remove `fontSize="default"`
 
 - The default value of `fontSize` was changed from `default` to `medium` for consistency.
-  In the unlikey event that you were using the value `default`, the prop can be removed:
+  In the unlikely event that you were using the value `default`, the prop can be removed:
 
   ```diff
   -<SvgIcon fontSize="default">
@@ -1338,7 +1513,9 @@ NB: If you had previously customized determinate, your customizations are probab
    </SvgIcon>
   ```
 
-### Switch
+## Switch
+
+### Remove second `onChange` argument
 
 - Deprecate the second argument from `onChange`.
   You can pull out the checked state by accessing `event.target.checked`.
@@ -1354,6 +1531,8 @@ NB: If you had previously customized determinate, your customizations are probab
   }
   ```
 
+### Update default `color` prop
+
 - The switch color prop is now "primary" by default.
   To continue using the "secondary" color, you must explicitly indicate `secondary`.
   This brings the switch closer to the Material Design guidelines.
@@ -1362,6 +1541,8 @@ NB: If you had previously customized determinate, your customizations are probab
   -<Switch />
   +<Switch color="secondary" />
   ```
+
+### Update CSS classes
 
 - The component doesn't have `.MuiIconButton-root` and `.MuiIconButton-label` class names anymore, target `.MuiButtonBase-root` instead.
 
@@ -1374,7 +1555,9 @@ NB: If you had previously customized determinate, your customizations are probab
   +    <span class="MuiSwitch-input PrivateSwitchBase-input">
   ```
 
-### Table
+## Table
+
+### Rename default `padding` prop value
 
 - Rename the `default` value of the `padding` prop to `normal`.
 
@@ -1385,7 +1568,9 @@ NB: If you had previously customized determinate, your customizations are probab
   +<TableCell padding="normal" />
   ```
 
-### TablePagination
+## TablePagination
+
+### Customize labels with `getItemAriaLabel` prop
 
 - The customization of the table pagination's actions labels must be done with the `getItemAriaLabel` prop.
   This increases consistency with the `Pagination` component.
@@ -1396,6 +1581,8 @@ NB: If you had previously customized determinate, your customizations are probab
   -  nextIconButtonText="Après"
   +  getItemAriaLabel={…}
   ```
+
+### ✅ Rename `onChangeRowsPerPage` and `onChangePage`
 
 - Rename `onChangeRowsPerPage` to `onRowsPerPageChange` and `onChangePage` to `onPageChange` due to API consistency.
 
@@ -1411,6 +1598,8 @@ NB: If you had previously customized determinate, your customizations are probab
   +  onPageChange={()=>{}}
   ```
 
+### Separate label classes
+
 - Separate classes for different table pagination labels.
   This allows simpler customizations.
 
@@ -1420,6 +1609,8 @@ NB: If you had previously customized determinate, your customizations are probab
   +  classes={{ selectLabel: 'foo', displayedRows: 'foo' }}
    />
   ```
+
+### Move custom class on `input` to `select`
 
 - Move the custom class on `input` to `select`.
   The `input` key is being applied on another element.
@@ -1431,7 +1622,9 @@ NB: If you had previously customized determinate, your customizations are probab
    />
   ```
 
-### Tabs
+## Tabs
+
+### Update default `indicatorColor` and `textColor` prop values
 
 - Change the default `indicatorColor` and `textColor` prop values to "primary".
   This is done to match the most common use cases with Material Design.
@@ -1441,12 +1634,16 @@ NB: If you had previously customized determinate, your customizations are probab
   +<Tabs indicatorColor="primary" textColor="inherit" />
   ```
 
+### Update `event` type (TypeScript)
+
 - TypeScript: The `event` in `onChange` is no longer typed as a `React.ChangeEvent` but `React.SyntheticEvent`.
 
   ```diff
   -<Tabs onChange={(event: React.ChangeEvent<{}>, value: unknown) => {}} />
   +<Tabs onChange={(event: React.SyntheticEvent, value: unknown) => {}} />
   ```
+
+### ✅ Add new scroll button props
 
 - The API that controls the scroll buttons has been split it in two props.
 
@@ -1466,10 +1663,15 @@ NB: If you had previously customized determinate, your customizations are probab
   +<Tabs scrollButtons={false} />
   ```
 
-### Tab
+## Tab
+
+### Update default `minWidth` and `maxWidth`
 
 - Tab `minWidth` changed from `72px` => `90px` (without media-query) according to [material-design spec](https://material.io/components/tabs#specs)
 - Tab `maxWidth` changed from `264px` => `360px` according to [material-design spec](https://material.io/components/tabs#specs)
+
+### Remove `span` and `wrapper`
+
 - `span` element that wraps children has been removed. `wrapper` classKey is also removed. More details about [this change](https://github.com/mui/material-ui/pull/26926).
 
   ```diff
@@ -1481,7 +1683,9 @@ NB: If you had previously customized determinate, your customizations are probab
    </button>
   ```
 
-### TextField
+## TextField
+
+### ✅ Update default variant
 
 - Change the default variant from `standard` to `outlined`.
   Standard has been removed from the Material Design guidelines.
@@ -1497,6 +1701,8 @@ NB: If you had previously customized determinate, your customizations are probab
   +<TextField value="Outlined" />
   ```
 
+### ✅ Rename `rowsMax`
+
 - Rename `rowsMax` prop with `maxRows` for consistency with HTML attributes.
 
   :::success
@@ -1507,6 +1713,8 @@ NB: If you had previously customized determinate, your customizations are probab
   -<TextField rowsMax={6}>
   +<TextField maxRows={6}>
   ```
+
+### ✅ Replace `rows` with `minRows`
 
 - Better isolate the fixed textarea height behavior to the dynamic one.
   You need to use the `minRows` prop in the following case:
@@ -1519,6 +1727,8 @@ NB: If you had previously customized determinate, your customizations are probab
   -<TextField rows={2} maxRows={5} />
   +<TextField minRows={2} maxRows={5} />
   ```
+
+### Forward `ref` instead of `inputRef` prop
 
 - Change ref forwarding expectations on custom `inputComponent`.
   The component should forward the `ref` prop instead of the `inputRef` prop.
@@ -1539,12 +1749,16 @@ NB: If you had previously customized determinate, your customizations are probab
   +     getInputRef={ref}
   ```
 
+### Rename `marginDense` and `inputMarginDense` classes
+
 - Rename `marginDense` and `inputMarginDense` classes to `sizeSmall` and `inputSizeSmall` to match the prop.
 
   ```diff
   -<Input margin="dense" />
   +<Input size="small" />
   ```
+
+### Update InputAdornment `position` prop
 
 - Set the InputAdornment `position` prop to `start` or `end`.
   Use `start` if used as the value of the `startAdornment` prop.
@@ -1557,7 +1771,9 @@ NB: If you had previously customized determinate, your customizations are probab
   +<TextField endAdornment={<InputAdornment position="end">kg</InputAdornment>} />
   ```
 
-### TextareaAutosize
+## TextareaAutosize
+
+### ✅ Replace `rows` with `minRows`
 
 - Remove the `rows` prop, use the `minRows` prop instead.
   This change aims to clarify the behavior of the prop.
@@ -1571,6 +1787,8 @@ NB: If you had previously customized determinate, your customizations are probab
   +<TextareaAutosize minRows={2} />
   ```
 
+### ✅ Rename `rowsMax`
+
 - Rename `rowsMax` prop with `maxRows` for consistency with HTML attributes.
 
   :::success
@@ -1581,6 +1799,8 @@ NB: If you had previously customized determinate, your customizations are probab
   -<TextareaAutosize rowsMax={6}>
   +<TextareaAutosize maxRows={6}>
   ```
+
+### ✅ Rename `rowsMin`
 
 - Rename `rowsMin` prop with `minRows` for consistency with HTML attributes.
 
@@ -1593,7 +1813,9 @@ NB: If you had previously customized determinate, your customizations are probab
   +<TextareaAutosize minRows={1}>
   ```
 
-### ToggleButton
+## ToggleButton
+
+### ✅ Update import
 
 - Move the component from the lab to the core.
   The component is now stable.
@@ -1609,6 +1831,8 @@ NB: If you had previously customized determinate, your customizations are probab
   +import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
   ```
 
+### Remove `span` and `label`
+
 - The `span` element that wraps children has been removed.
   The `label` classKey is also removed.
   More details about [this change](https://github.com/mui/material-ui/pull/27111).
@@ -1621,7 +1845,9 @@ NB: If you had previously customized determinate, your customizations are probab
    </button>
   ```
 
-### Tooltip
+## Tooltip
+
+### Interactive by default
 
 - Tooltips are now interactive by default.
 
@@ -1638,7 +1864,9 @@ NB: If you had previously customized determinate, your customizations are probab
   +<Tooltip>
   ```
 
-### Typography
+## Typography
+
+### Remove `srOnly` variant
 
 - Remove the `srOnly` variant.
   You can use the `visuallyHidden` utility in conjunction with the `sx` prop instead.
@@ -1649,6 +1877,8 @@ NB: If you had previously customized determinate, your customizations are probab
   -<Typography variant="srOnly">Create a user</Typography>
   +<span style={visuallyHidden}>Create a user</span>
   ```
+
+### Remove color and style override keys
 
 - The following `classes` and style overrides keys were removed: "colorInherit", "colorPrimary", "colorSecondary", "colorTextPrimary", "colorTextSecondary", "colorError", "displayInline" and "displayBlock".
   These props are now considered part of the system, not on the `Typography` component itself.
@@ -1674,10 +1904,15 @@ NB: If you had previously customized determinate, your customizations are probab
   });
   ```
 
-### Theme
+## Theme
+
+### Default background colors
 
 - The default background color is now `#fff` in light mode and `#121212` in dark mode.
   This matches the Material Design guidelines.
+
+### ✅ Breakpoint behavior
+
 - Breakpoints are now treated as values instead of [ranges](https://v4.mui.com/customization/breakpoints/#default-breakpoints).
   The behavior of `down(key)` was changed to define a media query below the value defined by the corresponding breakpoint (exclusive), rather than the breakpoint above.
   `between(start, end)` was also updated to define a media query for the values between the actual values of start (inclusive) and end (exclusive).
@@ -1711,6 +1946,8 @@ NB: If you had previously customized determinate, your customizations are probab
   -<Hidden smDown>{...}</Hidden> // '@media (min-width:600px)'
   +<Hidden mdDown>{...}</Hidden> // '@media (min-width:600px)'
   ```
+
+### Breakpoint sizes
 
 - The default breakpoints were changed to better match the common use cases.
   They also better match the Material Design guidelines.
@@ -1747,6 +1984,8 @@ NB: If you had previously customized determinate, your customizations are probab
   });
   ```
 
+### ✅ Replace `theme.breakpoints.width`
+
 - The `theme.breakpoints.width` utility was removed because it's redundant.
   Use `theme.breakpoints.values` to get the same values.
 
@@ -1759,12 +1998,16 @@ NB: If you had previously customized determinate, your customizations are probab
   +theme.breakpoints.values.md
   ```
 
+### Update `theme.palette.augmentColor` helper
+
 - The signature of `theme.palette.augmentColor` helper has changed:
 
   ```diff
   -theme.palette.augmentColor(red);
   +theme.palette.augmentColor({ color: red, name: 'brand' });
   ```
+
+### Remove `theme.typography.round` helper
 
 - The `theme.typography.round` helper was removed because it was no longer used. If you need it, use the function below:
 
@@ -1778,9 +2021,10 @@ NB: If you had previously customized determinate, your customizations are probab
   }
   ```
 
-### `@mui/types`
+## `@mui/types`
 
-- Rename the exported `Omit` type in `@mui/types`.
+### Rename the exported `Omit` type in `@mui/types`
+
   The module is now called `DistributiveOmit`.
   The change removes the confusion with the built-in `Omit` helper introduced in TypeScript v3.5.
   The built-in `Omit`, while similar, is non-distributive.
