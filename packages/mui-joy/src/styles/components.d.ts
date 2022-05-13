@@ -28,6 +28,7 @@ import { ChipProps, ChipSlot } from '../Chip/ChipProps';
 import { ChipDeleteProps, ChipDeleteSlot } from '../ChipDelete/ChipDeleteProps';
 import { RadioProps, RadioSlot } from '../Radio/RadioProps';
 import { RadioGroupProps, RadioGroupSlot } from '../RadioGroup/RadioGroupProps';
+import { GridProps, GridSlot } from '../Grid/GridProps';
 
 export type OverridesStyleRules<
   ClassKey extends string = string,
@@ -148,5 +149,9 @@ export interface Components<Theme = unknown> {
   MuiRadioGroup?: {
     defaultProps?: Partial<RadioGroupProps>;
     styleOverrides?: OverridesStyleRules<RadioGroupSlot, RadioGroupProps, Theme>;
+  };
+  MuiGrid?: {
+    defaultProps?: Partial<GridProps>;
+    styleOverrides?: OverridesStyleRules<GridSlot, GridProps, Theme>;
   };
 }
