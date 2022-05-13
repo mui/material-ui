@@ -1,6 +1,8 @@
 # Migrating from JSS
 
-<p class="description">Migrating from JSS</p>
+<p class="description">This guide explains how to migrate from JSS to Emotion when updating from Material UI v4 to v5.</p>
+
+
 
 ## Migrate theme's `styleOverrides` to emotion
 
