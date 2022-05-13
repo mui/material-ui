@@ -7,6 +7,10 @@ import { getLineFeed } from 'docs/scripts/helpers';
 import { pageToTitle } from 'docs/src/modules/utils/helpers';
 import { replaceComponentLinks } from 'docs/src/modules/utils/replaceUrl';
 
+const systemComponents = fs
+  .readdirSync(path.resolve('packages', 'mui-system', 'src'))
+  .filter((pathname) => pathname.match(/^[A-Z][a-zA-Z]+$/));
+
 function findComponentDemos(
   componentName: string,
   pagesMarkdown: ReadonlyArray<{ pathname: string; components: readonly string[] }>,
@@ -99,6 +103,10 @@ export type ComponentInfo = {
   getDemos: () => Array<{ name: string; demoPathname: string }>;
   apiPagesDirectory: string;
   skipApiGeneration?: boolean;
+  /**
+   * If `true`, the component's name match one of the system components.
+   */
+  isSystemComponent?: boolean;
 };
 
 const migratedBaseComponents = [
@@ -193,6 +201,7 @@ export const getMaterialComponentInfo = (filename: string): ComponentInfo => {
     muiName: getMuiName(name),
     apiPathname: `/material-ui/api/${kebabCase(name)}/`,
     apiPagesDirectory: path.join(process.cwd(), `docs/pages/material-ui/api`),
+    isSystemComponent: systemComponents.includes(name),
     readFile() {
       srcInfo = parseFile(filename);
       return srcInfo;
@@ -283,6 +292,7 @@ export const getBaseComponentInfo = (filename: string): ComponentInfo => {
     muiName: getMuiName(name),
     apiPathname: `/base/api/${kebabCase(name)}/`,
     apiPagesDirectory: path.join(process.cwd(), `docs/pages/base/api`),
+    isSystemComponent: systemComponents.includes(name),
     readFile() {
       srcInfo = parseFile(filename);
       return srcInfo;
@@ -329,6 +339,7 @@ export const getSystemComponentInfo = (filename: string): ComponentInfo => {
     muiName: getMuiName(name),
     apiPathname: `/system/api/${kebabCase(name)}/`,
     apiPagesDirectory: path.join(process.cwd(), `docs/pages/system/api`),
+    isSystemComponent: true,
     readFile() {
       srcInfo = parseFile(filename);
       return srcInfo;
