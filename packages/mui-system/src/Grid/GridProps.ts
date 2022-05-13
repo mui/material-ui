@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { OverrideProps } from '@mui/types';
 import { SxProps } from '../styleFunctionSx';
-import { Theme as DefaultTheme } from '../createTheme';
+import { Theme } from '../createTheme';
 import { SystemProps } from '../Box';
 
 type ResponsiveStyleValue<T> = T | Array<T | null> | { [key: string]: T | null };
@@ -111,7 +111,7 @@ export interface GridBaseProps {
 }
 
 export interface GridTypeMap<P = {}, D extends React.ElementType = 'div'> {
-  props: P & GridBaseProps & { sx?: SxProps<DefaultTheme> } & SystemProps<DefaultTheme>;
+  props: P & GridBaseProps & { sx?: SxProps<Theme> } & SystemProps<Theme>;
   defaultComponent: D;
 }
 
