@@ -1,4 +1,4 @@
-# Breaking changes in v5, part 1: Styles and themes
+# Breaking changes in v5, part 1: styles and themes
 
 <p class="description">This is a reference guide to all of the breaking changes introduced in Material v5, and how to handle them when migrating from v4.</p>
 

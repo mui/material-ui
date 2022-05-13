@@ -1,15 +1,16 @@
-# Migration from v4 to v5
+# Migrating to v5: first steps
 
 <p class="description">This guide explains how and why to migrate from Material UI v4 to v5.</p>
 
 ## Introduction
 
-This guide will walk you through the steps to upgrade your site from Material UI v4 to v5.
+This is the first document in a four-part series to walk you through upgrading your site from Material UI v4 to v5.
 
 We highly recommend running our [codemods](#run-codemods) for efficiency—these will automatically address many of the [breaking changes](#address-breaking-changes) introduced in v5.
 
 One of the biggest changes in v5 is the swapping of JSS for [Emotion](https://emotion.sh/docs/introduction).
 Note that you may continue to use JSS after migrating to v5, and when you're ready to move over to the new styling engine, you can refactor your components progressively.
+This process is covered in the final document in this series: [Migrating from JSS]().
 
 :::info
 Need to refer back to an older version of the docs? Check out [the v4 documentation here](https://v4.mui.com/).
@@ -316,4 +317,4 @@ For more details, check out the [link-underline-hover codemod README](https://gi
 
 The codemods handle many of the breaking changes, but others must be addressed manually.
 
-Whether or not you choose to use the codemods, you are now ready to move on to the [Breaking changes in v5](/material-ui/migration/v5-breaking-changes/) document, which will walk you through the process of handling all remaining breaking changes.
+Whether or not you choose to use the codemods, you are now ready to move on to the first of two [breaking changes](/material-ui/migration/v5-style-changes/) documents, which will walk you through the process of handling all remaining breaking changes.
