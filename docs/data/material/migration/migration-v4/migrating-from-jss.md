@@ -2,8 +2,6 @@
 
 <p class="description">This guide explains how to migrate from JSS to Emotion when updating from Material UI v4 to v5.</p>
 
-
-
 ## Migrate theme's `styleOverrides` to emotion
 
 Although your style overrides defined in the theme may partially work, there is an important difference on how the nested elements are styled.

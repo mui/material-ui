@@ -201,54 +201,54 @@ The following changes are supported by the adapter:
 ### ✅ Remove `px` suffix
 
 `theme.spacing` now returns single values with px units by default.
-  This change improves the integration with styled-components & emotion.
+This change improves the integration with styled-components & emotion.
 
-  :::success
-  ✅ This is handled in the [preset-safe codemod](#preset-safe) by removing any 'px' suffix from `theme.spacing` calls in a template string.
-  :::
+:::success
+✅ This is handled in the [preset-safe codemod](#preset-safe) by removing any 'px' suffix from `theme.spacing` calls in a template string.
+:::
 
-  Before:
+Before:
 
-  ```js
-  theme.spacing(2) => 16
-  ```
+```js
+theme.spacing(2) => 16
+```
 
-  After:
+After:
 
-  ```js
-  theme.spacing(2) => '16px'
-  ```
+```js
+theme.spacing(2) => '16px'
+```
 
 ### ✅ Rename `theme.palette.type`
 
 The `theme.palette.type` key was renamed to `theme.palette.mode`, to better follow the "dark mode" term that is usually used for describing this feature.
 
-  :::success
-  ✅ This is handled in the [preset-safe codemod](#preset-safe).
-  :::
+:::success
+✅ This is handled in the [preset-safe codemod](#preset-safe).
+:::
 
-  ```diff
-   import { createTheme } from '@mui/material/styles';
-  -const theme = createTheme({palette: { type: 'dark' }}),
-  +const theme = createTheme({palette: { mode: 'dark' }}),
-  ```
+```diff
+ import { createTheme } from '@mui/material/styles';
+-const theme = createTheme({palette: { type: 'dark' }}),
++const theme = createTheme({palette: { mode: 'dark' }}),
+```
 
 ### Change default `theme.palette.info` colors
 
 The default `theme.palette.info` colors were changed to pass AA standard contrast ratio in both light & dark mode.
 
-  ```diff
-   info = {
-  -  main: cyan[500],
-  +  main: lightBlue[700], // lightBlue[400] in "dark" mode
+```diff
+ info = {
+-  main: cyan[500],
++  main: lightBlue[700], // lightBlue[400] in "dark" mode
 
-  -  light: cyan[300],
-  +  light: lightBlue[500], // lightBlue[300] in "dark" mode
+-  light: cyan[300],
++  light: lightBlue[500], // lightBlue[300] in "dark" mode
 
-  -  dark: cyan[700],
-  +  dark: lightBlue[900], // lightBlue[700] in "dark" mode
-   }
-  ```
+-  dark: cyan[700],
++  dark: lightBlue[900], // lightBlue[700] in "dark" mode
+ }
+```
 
 ### Change default `theme.palette.success` colors
 
@@ -709,4 +709,3 @@ We have a [dedicated page](/material-ui/guides/pickers-migration/) for migrating
   :::warning
   Note that the system grid function wasn't documented in v4.
   :::
-

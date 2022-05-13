@@ -189,7 +189,10 @@ const pages = [
         pathname: '/material-ui/migration',
         subheader: 'Upgrade to v5',
         children: [
-          { pathname: '/material-ui/migration/migration-v4', title: 'Migrating to v5: getting started' },
+          {
+            pathname: '/material-ui/migration/migration-v4',
+            title: 'Migrating to v5: getting started',
+          },
           {
             pathname: '/material-ui/migration/v5-style-changes',
             title: 'Breaking changes: style and theme',
