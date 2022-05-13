@@ -16,6 +16,7 @@ import {
   generateGridColumnsStyles,
   generateGridColumnSpacingStyles,
   generateGridRowSpacingStyles,
+  generateGridDirectionStyles,
 } from './gridGenerator';
 import { CreateMUIStyled } from '../createStyled';
 import { GridBaseProps, GridTypeMap } from './GridProps';
@@ -66,8 +67,6 @@ function resolveSpacingClasses(
   ];
 }
 
-type RequiredThemeStructure = Pick<DefaultTheme, 'breakpoints' | 'spacing'>;
-
 export default function createGrid(
   options: {
     createStyledComponent?: typeof defaultCreateStyledComponent;
@@ -114,6 +113,7 @@ export default function createGrid(
     generateGridColumnSpacingStyles,
     generateGridRowSpacingStyles,
     generateGridSizeStyles,
+    generateGridDirectionStyles,
     generateGridStyles,
   );
 
@@ -125,6 +125,7 @@ export default function createGrid(
       className,
       columns: columnsProp = 12,
       container = false,
+      component = 'div',
       direction = 'row',
       wrap = 'wrap',
       spacing: spacingProp = 0,
@@ -167,6 +168,7 @@ export default function createGrid(
       return (
         <GridRoot
           ref={ref}
+          as={component}
           ownerState={ownerState}
           className={clsx(classes.root, className)}
           {...other}
@@ -177,6 +179,7 @@ export default function createGrid(
       <NestedContext.Provider value>
         <GridRoot
           ref={ref}
+          as={component}
           ownerState={ownerState}
           className={clsx(classes.root, className)}
           {...other}

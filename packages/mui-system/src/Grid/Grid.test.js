@@ -19,63 +19,13 @@ describe('<Grid />', () => {
     muiName: 'MuiGrid',
     testVariantProps: { container: true, spacing: 5 },
     testStateOverrides: { prop: 'container', value: true, styleKey: 'container' },
-    skip: ['componentsProp'],
+    skip: ['componentsProp', 'classesRoot'],
   }));
 
   describe('prop: container', () => {
     it('should apply the container class', () => {
       const { container } = render(<Grid container />);
       expect(container.firstChild).to.have.class(classes.container);
-    });
-
-    it('should apply the correct number of columns for nested containers', () => {
-      const { getByTestId } = render(
-        <Grid container columns={16}>
-          <Grid xs={8}>
-            <Grid container columns={8} data-testid="nested-container-in-item">
-              <Grid xs={8} />
-            </Grid>
-          </Grid>
-        </Grid>,
-      );
-      const container = getByTestId('nested-container-in-item');
-
-      // test whether the class of the child of the container is correct or not
-      expect(container.firstChild).to.have.class(classes.item);
-
-      // `columns` of nested container should have a higher priority than that of root container
-      // otherwise, max-width would be 50% in this test
-      expect(container.firstChild).toHaveComputedStyle({ maxWidth: '100%' });
-    });
-
-    it('should apply the correct number of columns for nested containers with undefined prop columns', () => {
-      const { getByTestId } = render(
-        <Grid container columns={16}>
-          <Grid xs={8}>
-            <Grid container data-testid="nested-container-in-item">
-              <Grid xs={12} />
-            </Grid>
-          </Grid>
-        </Grid>,
-      );
-
-      const container = getByTestId('nested-container-in-item');
-      expect(container.firstChild).toHaveComputedStyle({ maxWidth: '100%' });
-    });
-
-    it('should apply the correct number of columns for nested containers with columns=12 (default)', () => {
-      const { getByTestId } = render(
-        <Grid container columns={16}>
-          <Grid xs={8}>
-            <Grid container columns={12} data-testid="nested-container-in-item">
-              <Grid xs={12} />
-            </Grid>
-          </Grid>
-        </Grid>,
-      );
-
-      const container = getByTestId('nested-container-in-item');
-      expect(container.firstChild).toHaveComputedStyle({ maxWidth: '100%' });
     });
   });
 
@@ -123,19 +73,6 @@ describe('<Grid />', () => {
     it('should have a spacing', () => {
       const { container } = render(<Grid container spacing={1} />);
       expect(container.firstChild).to.have.class(classes['spacing-xs-1']);
-    });
-
-    it('should support decimal values', () => {
-      const { container } = render(
-        <Grid container spacing={1.5}>
-          <Grid item data-testid="child" />
-        </Grid>,
-      );
-      expect(container.firstChild).to.have.class('MuiGrid-spacing-xs-1.5');
-      expect(screen.getByTestId('child')).toHaveComputedStyle({
-        paddingTop: '12px',
-        paddingLeft: '12px',
-      });
     });
 
     it('should not support undefined values', () => {

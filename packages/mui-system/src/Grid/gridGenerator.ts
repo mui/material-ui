@@ -141,6 +141,21 @@ export const generateGridColumnSpacingStyles = ({ theme, ownerState }: Props) =>
   return styles;
 };
 
+export const generateGridDirectionStyles = ({ theme, ownerState }: Props) => {
+  if (!ownerState.container) {
+    return {};
+  }
+  const styles = {};
+  traverseBreakpoints<number | string>(
+    theme.breakpoints,
+    ownerState.direction,
+    (appendStyle, value) => {
+      appendStyle(styles, { flexDirection: value });
+    },
+  );
+  return styles;
+};
+
 export const generateGridStyles = ({ ownerState }: Props): {} => {
   return {
     minWidth: 0,
@@ -162,5 +177,8 @@ export const generateGridStyles = ({ ownerState }: Props): {} => {
       : {
           padding: `calc(var(--Grid-rowSpacing) / 2) calc(var(--Grid-columnSpacing) / 2)`,
         }),
+    ...(ownerState.wrap !== 'wrap' && {
+      flexWrap: ownerState.wrap,
+    }),
   };
 };
