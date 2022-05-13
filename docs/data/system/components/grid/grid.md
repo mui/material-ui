@@ -44,7 +44,7 @@ A value given to a breakpoint applies to all the other breakpoints wider than it
 
 {{"demo": "BasicGrid.js", "bg": true}}
 
-### Grid with multiple breakpoints
+### Multiple breakpoints
 
 Components may have multiple widths defined, causing the layout to change at the defined breakpoint. Width values given to larger breakpoints override those given to smaller breakpoints.
 
