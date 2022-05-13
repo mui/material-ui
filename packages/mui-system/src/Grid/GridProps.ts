@@ -42,10 +42,6 @@ export interface GridBaseProps {
    */
   direction?: ResponsiveStyleValue<GridDirection>;
   /**
-   * @deprecated This prop has no effect anymore. It is safe to be removed.
-   */
-  item?: boolean;
-  /**
    * If a number, it sets the number of columns the grid item uses.
    * It can't be greater than the total number of columns of the container (12 by default).
    * If 'auto', the grid item's width matches its content.
@@ -112,10 +108,6 @@ export interface GridBaseProps {
    * @default false
    */
   xs?: boolean | GridSize;
-  /**
-   * @deprecated This prop is not needed anymore. It is safe to be removed.
-   */
-  zeroMinWidth?: boolean;
 }
 
 export interface GridTypeMap<P = {}, D extends React.ElementType = 'div'> {

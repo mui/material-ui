@@ -87,15 +87,12 @@ export default function createGrid(
   };
 
   const useUtilityClasses = (ownerState: GridBaseProps & { classes?: Record<string, string> }) => {
-    const { classes, container, direction, item, lg, md, sm, spacing, wrap, xl, xs, zeroMinWidth } =
-      ownerState;
+    const { classes, container, direction, lg, md, sm, spacing, wrap, xl, xs } = ownerState;
 
     const slots = {
       root: [
         'root',
         container && 'container',
-        item && 'item',
-        zeroMinWidth && 'zeroMinWidth',
         ...resolveSpacingClasses(spacing, container),
         direction !== 'row' && `direction-xs-${String(direction)}`,
         wrap !== 'wrap' && `wrap-xs-${String(wrap)}`,
@@ -123,8 +120,6 @@ export default function createGrid(
     const props = extendSxProp(themeProps) as Omit<typeof themeProps, 'color'>; // `color` type conflicts with html color attribute.
     const nested = React.useContext(NestedContext);
     const {
-      item = false,
-      zeroMinWidth = false,
       className,
       columns: columnsProp = 12,
       container = false,
@@ -148,8 +143,6 @@ export default function createGrid(
       inProps.columnSpacing ?? inProps.spacing ?? (nested ? undefined : columnSpacingProp);
     const ownerState = {
       ...props,
-      item, // item is not used anymore, declare here to prevent spreading to DOM.
-      zeroMinWidth, // item is not used anymore, declare here to prevent spreading to DOM.
       nested,
       columns,
       container,
@@ -212,7 +205,6 @@ export default function createGrid(
       PropTypes.arrayOf(PropTypes.oneOf(['column-reverse', 'column', 'row-reverse', 'row'])),
       PropTypes.object,
     ]),
-    item: PropTypes.bool,
     lg: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number, PropTypes.bool]),
     md: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number, PropTypes.bool]),
     rowSpacing: PropTypes.oneOfType([
@@ -236,7 +228,6 @@ export default function createGrid(
     wrap: PropTypes.oneOf(['nowrap', 'wrap-reverse', 'wrap']),
     xl: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number, PropTypes.bool]),
     xs: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number, PropTypes.bool]),
-    zeroMinWidth: PropTypes.bool,
   };
 
   return Grid;
