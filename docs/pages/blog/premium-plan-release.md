@@ -114,13 +114,13 @@ The new package exports the component `<DataGridPremium />` which has basically 
 
 You don't have to take any action here as a Community or Pro user, unless you’re already using row grouping in your project.
 
-Row grouping is now officially deprecated in the Pro package and will be removed from the experimental features [as planned](https://mui.com/blog/introducing-the-row-grouping-feature/#how-to-unlock-this-feature). 
+Row grouping is now officially deprecated in the Pro package and will be removed from the experimental features [as planned](https://mui.com/blog/introducing-the-row-grouping-feature/#how-to-unlock-this-feature).
 
 You must upgrade to the Premium plan to continue to use the row grouping feature.
 
 ### What can I do with the Excel export feature?
 
-The free version of the data grid features a print export to give users a printable visualization, as well as a CSV export for migrating data to another application. 
+The free version of the data grid features a print export to give users a printable visualization, as well as a CSV export for migrating data to another application.
 But CSV exports are basic and limited when the exported file is consumed by users instead of other applications. The Excel format provides more room for flexibility and customization.
 
 #### Cell constraints
@@ -135,7 +135,7 @@ With tree data and row grouping, users can create a hierarchical structure betwe
 
 #### Brand customization
 
-If you plan to generate spreadsheets to share, you may want to add headers, apply brand colors, or add extra details to the document. 
+If you plan to generate spreadsheets to share, you may want to add headers, apply brand colors, or add extra details to the document.
 To fully customize your Excel files, you can access their content before _and_ after the data is inserted.
 
 ## Share your feedback 🗣
