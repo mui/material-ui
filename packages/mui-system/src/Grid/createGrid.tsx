@@ -153,6 +153,7 @@ export default function createGrid(
       nested,
       columns,
       container,
+      direction,
       wrap,
       spacing,
       rowSpacing,

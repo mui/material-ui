@@ -111,10 +111,6 @@ You can change the default number of columns (12) with the `columns` prop.
 
 {{"demo": "ColumnsGrid.js", "bg": true}}
 
-## With `nowrap` typography
-
-{{"demo": "AutoGridNoWrap.js", "bg": true}}
-
 ## Limitations
 
 ### Negative margin
