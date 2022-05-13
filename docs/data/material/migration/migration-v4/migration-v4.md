@@ -10,7 +10,7 @@ We highly recommend running our [codemods](#run-codemods) for efficiency—these
 
 One of the biggest changes in v5 is the swapping of JSS for [Emotion](https://emotion.sh/docs/introduction).
 Note that you may continue to use JSS after migrating to v5, and when you're ready to move over to the new styling engine, you can refactor your components progressively.
-This process is covered in the final document in this series: [Migrating from JSS]().
+This process is covered in the final document in this series: [Migrating from JSS](/material-ui/migration/migrating-from-jss/).
 
 :::info
 Need to refer back to an older version of the docs? Check out [the v4 documentation here](https://v4.mui.com/).

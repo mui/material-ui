@@ -693,14 +693,14 @@ NB: If you had previously customized determinate, your customizations are probab
 
 ### ✅ Rename `round` to `circular`
 
-  :::success
-  ✅ This is handled in the [preset-safe codemod](#preset-safe).
-  :::
+:::success
+✅ This is handled in the [preset-safe codemod](#preset-safe).
+:::
 
-  ```diff
-  -<Fab variant="round">
-  +<Fab variant="circular">
-  ```
+```diff
+-<Fab variant="round">
++<Fab variant="circular">
+```
 
 ### Remove `span` and `label`
 
@@ -987,7 +987,7 @@ NB: If you had previously customized determinate, your customizations are probab
 
 ### Update CSS class names
 
-- The `MenuItem` component inherits the `ButtonBase` component instead of `ListItem`. 
+- The `MenuItem` component inherits the `ButtonBase` component instead of `ListItem`.
   The class names related to "MuiListItem-\*" are removed and theming `ListItem` is no longer affecting `MenuItem`.
 
   ```diff
@@ -1117,16 +1117,16 @@ NB: If you had previously customized determinate, your customizations are probab
 
 ### ✅ Rename `round` to `circular`
 
-  :::success
-  ✅ This is handled in the [preset-safe codemod](#preset-safe).
-  :::
+:::success
+✅ This is handled in the [preset-safe codemod](#preset-safe).
+:::
 
-  ```diff
-  -<Pagination shape="round">
-  -<PaginationItem shape="round">
-  +<Pagination shape="circular">
-  +<PaginationItem shape="circular">
-  ```
+```diff
+-<Pagination shape="round">
+-<PaginationItem shape="round">
++<Pagination shape="circular">
++<PaginationItem shape="circular">
+```
 
 ## Popover
 
@@ -2025,13 +2025,13 @@ NB: If you had previously customized determinate, your customizations are probab
 
 ### Rename the exported `Omit` type in `@mui/types`
 
-  The module is now called `DistributiveOmit`.
-  The change removes the confusion with the built-in `Omit` helper introduced in TypeScript v3.5.
-  The built-in `Omit`, while similar, is non-distributive.
-  This leads to differences when applied to union types.
-  [See this StackOverflow answer for further details](https://stackoverflow.com/a/57103940/1009797).
+The module is now called `DistributiveOmit`.
+The change removes the confusion with the built-in `Omit` helper introduced in TypeScript v3.5.
+The built-in `Omit`, while similar, is non-distributive.
+This leads to differences when applied to union types.
+[See this StackOverflow answer for further details](https://stackoverflow.com/a/57103940/1009797).
 
-  ```diff
-  -import { Omit } from '@mui/types';
-  +import { DistributiveOmit } from '@mui/types';
-  ```
+```diff
+-import { Omit } from '@mui/types';
++import { DistributiveOmit } from '@mui/types';
+```
