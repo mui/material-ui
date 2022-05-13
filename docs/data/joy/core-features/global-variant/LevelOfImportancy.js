@@ -23,14 +23,13 @@ export default function LevelOfImportancy() {
     >
       <Box
         sx={{
-          bgcolor: 'background.level1',
           border: '1px solid',
           borderColor: 'background.level2',
           alignSelf: 'center',
           maxWidth: '100%',
-          minWidth: 380,
+          minWidth: { xs: 220, sm: 360 },
           mx: 'auto',
-          boxShadow: 'md',
+          boxShadow: 'sm',
           borderRadius: 'md',
           overflow: 'auto',
         }}
@@ -41,9 +40,11 @@ export default function LevelOfImportancy() {
             display: 'flex',
             alignItems: 'center',
             p: 2,
+            borderBottom: '1px solid',
+            borderColor: 'background.level2',
           }}
         >
-          <Typography level="h2" fontSize="lg">
+          <Typography level="h2" fontSize="md">
             Photo upload
           </Typography>
           <IconButton size="sm" variant="plain" color="neutral" sx={{ ml: 'auto' }}>
@@ -56,7 +57,7 @@ export default function LevelOfImportancy() {
             sx={{
               borderRadius: 'md',
               overflow: 'auto',
-              borderColor: 'background.level3',
+              borderColor: 'background.level2',
             }}
           >
             <AspectRatio>
@@ -87,6 +88,8 @@ export default function LevelOfImportancy() {
           sx={{
             display: 'flex',
             p: 2,
+            borderTop: '1px solid',
+            borderColor: 'background.level2',
             gap: 1,
           }}
         >
