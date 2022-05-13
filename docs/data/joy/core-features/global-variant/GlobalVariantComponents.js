@@ -1,34 +1,31 @@
 import * as React from 'react';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
-import Sheet from '@mui/joy/Sheet';
 
 export default function GlobalVariantComponents() {
   return (
-    <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 2 }}>
-      <Button variant="plain" color="primary">
-        Plain
-      </Button>
-      <Button variant="outlined" color="primary">
-        Outlined
+    <Box
+      sx={{
+        display: 'grid',
+        gridTemplateColumns: {
+          xs: 'repeat(1, minmax(0, 1fr))',
+          sm: 'repeat(4, minmax(0, 1fr))',
+        },
+        gap: 2,
+      }}
+    >
+      <Button variant="solid" color="primary">
+        Solid
       </Button>
       <Button variant="soft" color="primary">
         Soft
       </Button>
-      <Button variant="solid" color="primary">
-        Solid
+      <Button variant="outlined" color="primary">
+        Outlined
       </Button>
-      <Sheet
-        variant="text"
-        sx={{
-          gridColumn: 'span 4',
-          fontSize: 'sm',
-          color: 'text.tertiary',
-          textAlign: 'center',
-        }}
-      >
-        Example of Joy buttons applying the global variants.
-      </Sheet>
+      <Button variant="plain" color="primary">
+        Plain
+      </Button>
     </Box>
   );
 }
