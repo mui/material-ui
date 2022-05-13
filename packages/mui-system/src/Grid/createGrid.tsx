@@ -17,11 +17,13 @@ import {
   generateGridColumnSpacingStyles,
   generateGridRowSpacingStyles,
 } from './gridGenerator';
+import { CreateMUIStyled } from '../createStyled';
 import { GridBaseProps, GridTypeMap } from './GridProps';
 
 const defaultTheme = createTheme();
 
-const defaultCreateStyledComponent = systemStyled('div', {
+// widening Theme to any so that the consumer can own the theme structure.
+const defaultCreateStyledComponent = (systemStyled as CreateMUIStyled<any>)('div', {
   name: 'MuiGrid',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
