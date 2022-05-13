@@ -1,8 +1,8 @@
 import { expect } from 'chai';
 import {
-  generateUtilityClass,
+  unstable_generateUtilityClass as generateUtilityClass,
   unstable_ClassNameGenerator as ClassNameGenerator,
-} from '@mui/private-classnames';
+} from '@mui/utils';
 
 describe('generateUtilityClass', () => {
   it('should generate the class correctly', () => {

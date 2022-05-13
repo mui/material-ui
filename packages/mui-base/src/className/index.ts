@@ -1,2 +1,2 @@
 // eslint-disable-next-line import/prefer-default-export
-export { unstable_ClassNameGenerator } from '@mui/private-classnames';
+export { unstable_ClassNameGenerator } from '@mui/utils';
