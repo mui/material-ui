@@ -21,6 +21,10 @@ function resolveType(type: NonNullable<doctrine.Tag['type']>): string {
     return 'null';
   }
 
+  if (type.type === 'UndefinedLiteral') {
+    return 'undefined';
+  }
+
   if (type.type === 'TypeApplication') {
     return `${resolveType(type.expression)}<${type.applications
       .map((typeApplication) => {
