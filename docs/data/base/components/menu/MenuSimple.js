@@ -51,6 +51,7 @@ const StyledMenuItem = styled(MenuItemUnstyled)(
   padding: 8px;
   border-radius: 0.45em;
   cursor: default;
+  user-select: none;
 
   &:last-of-type {
     border-bottom: none;
@@ -79,13 +80,11 @@ const TriggerButton = styled('button')(
   font-size: 0.875rem;
   box-sizing: border-box;
   min-height: calc(1.5em + 22px);
-  min-width: 200px;
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[300]};
   border-radius: 0.75em;
   margin: 0.5em;
-  padding: 10px;
-  text-align: left;
+  padding: 10px 20px;
   line-height: 1.5;
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
 
@@ -96,11 +95,6 @@ const TriggerButton = styled('button')(
 
   &.${buttonUnstyledClasses.focusVisible} {
     outline: 3px solid ${theme.palette.mode === 'dark' ? blue[600] : blue[100]};
-  }
-
-  &::after {
-    content: '▾';
-    float: right;
   }
   `,
 );
@@ -156,7 +150,7 @@ export default function UnstyledMenuSimple() {
         aria-expanded={isOpen || undefined}
         aria-haspopup="menu"
       >
-        Language
+        Dashboard
       </TriggerButton>
 
       <MenuUnstyled
@@ -167,12 +161,14 @@ export default function UnstyledMenuSimple() {
         components={{ Root: Popper, Listbox: StyledListbox }}
         componentsProps={{ listbox: { id: 'simple-menu' } }}
       >
-        <StyledMenuItem onClick={createHandleMenuClick('English')}>
-          English
+        <StyledMenuItem onClick={createHandleMenuClick('Profile')}>
+          Profile
         </StyledMenuItem>
-        <StyledMenuItem onClick={createHandleMenuClick('中文')}>中文</StyledMenuItem>
-        <StyledMenuItem onClick={createHandleMenuClick('Português')}>
-          Português
+        <StyledMenuItem onClick={createHandleMenuClick('My account')}>
+          My account
+        </StyledMenuItem>
+        <StyledMenuItem onClick={createHandleMenuClick('Log out')}>
+          Log out
         </StyledMenuItem>
       </MenuUnstyled>
     </div>

@@ -47,19 +47,20 @@ const styles = `
     padding: 8px;
     border-radius: 0.45em;
     cursor: default;
+    user-select: none;
   }
 
   .menu-item:last-of-type {
     border-bottom: none;
   }
 
-  .menu-item:focus {
+  .menu-item.focus-visible {
     background-color: ${grey[100]};
     color: ${grey[900]};
     outline: 0;
   }
 
-  .mode-dark .menu-item:focus {
+  .mode-dark .menu-item.focus-visible {
     background-color: ${grey[800]};
     color: ${grey[300]};
   }
@@ -78,8 +79,8 @@ const styles = `
   }
 
   .mode-dark .menu-item:hover:not(.disabled){
-    background-color: ${grey[100]};
-    color: ${grey[900]};
+    background-color: ${grey[800]};
+    color: ${grey[300]};
   }
 `;
 
@@ -122,11 +123,12 @@ const MenuItem = React.forwardRef(function MenuItem(
 ) {
   const { children, ...other } = props;
 
-  const { getRootProps, itemState } = useMenuItem({ ref });
+  const { getRootProps, disabled, focusVisible } = useMenuItem({ ref });
 
   const classes = {
+    'focus-visible': focusVisible,
     'menu-item': true,
-    disabled: itemState?.disabled,
+    disabled,
   };
 
   return (
