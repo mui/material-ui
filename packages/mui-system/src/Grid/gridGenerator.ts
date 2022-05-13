@@ -1,10 +1,10 @@
 import { Breakpoints, Breakpoint } from '../createTheme/createBreakpoints';
 import { Spacing } from '../createTheme/createSpacing';
-import { GridProps } from './GridProps';
+import { GridBaseProps } from './GridProps';
 
 interface Props {
   theme: { breakpoints: Breakpoints; spacing?: Spacing };
-  ownerState: GridProps & { nested: boolean };
+  ownerState: GridBaseProps & { nested: boolean };
 }
 
 interface Iterator<T> {
@@ -139,4 +139,28 @@ export const generateGridColumnSpacingStyles = ({ theme, ownerState }: Props) =>
     },
   );
   return styles;
+};
+
+export const generateGridStyles = ({ ownerState }: Props): {} => {
+  return {
+    minWidth: 0,
+    boxSizing: 'border-box',
+    ...(ownerState.container
+      ? {
+          display: 'flex',
+          flexWrap: 'wrap',
+          margin: `calc(var(--Grid-rowSpacing) / -2) calc(var(--Grid-columnSpacing) / -2)`,
+          ...(ownerState.nested
+            ? {
+                padding: `calc(var(--Grid-nested-rowSpacing) / 2) calc(var(--Grid-nested-columnSpacing) / 2)`,
+              }
+            : {
+                '--Grid-nested-rowSpacing': 'var(--Grid-rowSpacing)',
+                '--Grid-nested-columnSpacing': 'var(--Grid-columnSpacing)',
+              }),
+        }
+      : {
+          padding: `calc(var(--Grid-rowSpacing) / 2) calc(var(--Grid-columnSpacing) / 2)`,
+        }),
+  };
 };

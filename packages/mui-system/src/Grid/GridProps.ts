@@ -1,6 +1,8 @@
 import * as React from 'react';
+import { OverrideProps } from '@mui/types';
 import { SxProps } from '../styleFunctionSx';
-import { Theme as SystemTheme } from '../createTheme';
+import { Theme as DefaultTheme } from '../createTheme';
+import { SystemProps } from '../Box';
 
 type ResponsiveStyleValue<T> = T | Array<T | null> | { [key: string]: T | null };
 
@@ -12,7 +14,7 @@ export type GridWrap = 'nowrap' | 'wrap' | 'wrap-reverse';
 
 export type GridSize = 'auto' | number;
 
-export interface GridProps<Theme extends object = SystemTheme> {
+export interface GridBaseProps {
   /**
    * The content of the component.
    */
@@ -114,8 +116,16 @@ export interface GridProps<Theme extends object = SystemTheme> {
    * @deprecated This prop is not needed anymore. It is safe to be removed.
    */
   zeroMinWidth?: boolean;
-  /**
-   * The system prop that allows defining system overrides as well as additional CSS styles.
-   */
-  sx?: SxProps<Theme>;
 }
+
+export interface GridTypeMap<P = {}, D extends React.ElementType = 'div'> {
+  props: P & GridBaseProps & { sx?: SxProps<DefaultTheme> } & SystemProps<DefaultTheme>;
+  defaultComponent: D;
+}
+
+export type GridProps<
+  D extends React.ElementType = GridTypeMap['defaultComponent'],
+  P = {
+    component?: React.ElementType;
+  },
+> = OverrideProps<GridTypeMap<P, D>, D>;
