@@ -1286,17 +1286,17 @@
   resolved "https://registry.yarnpkg.com/@colors/colors/-/colors-1.5.0.tgz#bb504579c1cae923e6576a4f5da43d25f97bdbd9"
   integrity sha512-ooWCrlZP11i8GImSjTHYHLkvFDP48nS4+204nGb1RiX/WXYHmJA2III9/e2DWVabCESdW7hBAEzHRqUn9OUVvQ==
 
-"@date-io/core@^2.13.1":
-  version "2.13.1"
-  resolved "https://registry.yarnpkg.com/@date-io/core/-/core-2.13.1.tgz#f041765aff5c55fbc7e37fdd75fc1792733426d6"
-  integrity sha512-pVI9nfkf2qClb2Cxdq0Q4zJhdawMG4ybWZUVGifT78FDwzRMX2SwXBb55s5NRJk0HcIicDuxktmCtemZqMH1Zg==
+"@date-io/core@^2.13.1", "@date-io/core@^2.14.0":
+  version "2.14.0"
+  resolved "https://registry.yarnpkg.com/@date-io/core/-/core-2.14.0.tgz#03e9b9b9fc8e4d561c32dd324df0f3ccd967ef14"
+  integrity sha512-qFN64hiFjmlDHJhu+9xMkdfDG2jLsggNxKXglnekUpXSq8faiqZgtHm2lsHCUuaPDTV6wuXHcCl8J1GQ5wLmPw==
 
-"@date-io/date-fns-jalali@^2.13.1":
-  version "2.13.1"
-  resolved "https://registry.yarnpkg.com/@date-io/date-fns-jalali/-/date-fns-jalali-2.13.1.tgz#bdedc5dbf4604eea5e15ab3affee6090a4060df7"
-  integrity sha512-OCf90JJi3GTfd7rAC34wYATm2Vep7wgUni4pK9rVZEI7st/9CFWyGzOQ3xfTq49dym/nbysU8ajOeVOe395GWw==
+"@date-io/date-fns-jalali@^2.14.0":
+  version "2.14.0"
+  resolved "https://registry.yarnpkg.com/@date-io/date-fns-jalali/-/date-fns-jalali-2.14.0.tgz#a3b6933e03cc3f063945a44899db5429224a1e05"
+  integrity sha512-uQFI6s63NqtTg6xfBlgb7Lk/QTqw35BY8RHfD4eXYs4wl13YlJAG9INAqnMlE4AbXmwSOaDxNHoTA/FL0apkiw==
   dependencies:
-    "@date-io/core" "^2.13.1"
+    "@date-io/core" "^2.14.0"
 
 "@date-io/date-fns@^2.11.0":
   version "2.13.1"
