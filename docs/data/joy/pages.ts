@@ -9,6 +9,11 @@ const pages = [
     ],
   },
   {
+    pathname: '/joy-ui/core-features',
+    icon: 'ReaderIcon',
+    children: [{ pathname: '/joy-ui/core-features/global-variant' }],
+  },
+  {
     pathname: '/joy-ui/react-',
     title: 'Components',
     icon: 'ToggleOnIcon',
