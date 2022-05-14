@@ -5,9 +5,6 @@ import { unstable_composeClasses as composeClasses } from '@mui/base';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import { getCardContentUtilityClass } from './cardContentClasses';
-import createTheme from '../styles/createTheme';
-
-//const theme = createTheme();
 
 const useUtilityClasses = (ownerState) => {
   const { classes } = ownerState;
