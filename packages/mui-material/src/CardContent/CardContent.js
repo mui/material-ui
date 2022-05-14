@@ -7,7 +7,7 @@ import useThemeProps from '../styles/useThemeProps';
 import { getCardContentUtilityClass } from './cardContentClasses';
 import createTheme from '../styles/createTheme';
 
-const theme = createTheme();
+//const theme = createTheme();
 
 const useUtilityClasses = (ownerState) => {
   const { classes } = ownerState;
@@ -25,9 +25,9 @@ const CardContentRoot = styled('div', {
   overridesResolver: (props, styles) => styles.root,
 })(() => {
   return {
-    padding: theme.spacing(2),
+    padding: styled.theme.spacing(2),
     '&:last-child': {
-      paddingBottom: theme.spacing(3),
+      paddingBottom: styled.theme.spacing(3),
     },
   };
 });
