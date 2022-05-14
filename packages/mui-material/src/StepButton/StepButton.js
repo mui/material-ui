@@ -37,7 +37,7 @@ const StepButtonRoot = styled(ButtonBase, {
 })(({ ownerState }) => ({
   width: '100%',
   padding: '24px 16px',
-  margin: '-24px -16px',
+  margin: '-14px -16px',
   boxSizing: 'content-box',
   ...(ownerState.orientation === 'vertical' && {
     justifyContent: 'flex-start',
