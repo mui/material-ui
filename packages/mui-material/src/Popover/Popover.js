@@ -99,7 +99,7 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
     action,
     anchorEl,
     anchorOrigin = {
-      vertical: 'top',
+      vertical: 'bottom',
       horizontal: 'left',
     },
     anchorPosition,
