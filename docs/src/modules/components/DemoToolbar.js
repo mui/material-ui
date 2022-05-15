@@ -308,7 +308,6 @@ export default function DemoToolbar(props) {
   const handleStackBlitzClick = () => {
     const demoConfig = getDemoConfig(demoData, {
       indexPath: 'index.html',
-      previewPackage: false,
     });
     const form = document.createElement('form');
     form.method = 'POST';
