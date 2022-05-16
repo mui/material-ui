@@ -27,6 +27,18 @@ const styles = {
   },
 };
 
+const isNeedUpdateState = (heightStateRef, { overflow, outerHeightStyle }) => {
+  if (
+    heightStateRef.current.overflow !== overflow ||
+    heightStateRef.current.outerHeightStyle !== outerHeightStyle
+  ) {
+    heightStateRef.current = { overflow, outerHeightStyle };
+    return true;
+  }
+
+  return false;
+};
+
 const TextareaAutosize = React.forwardRef(function TextareaAutosize(props, ref) {
   const { onChange, maxRows, minRows = 1, style, value, ...other } = props;
 
@@ -36,6 +48,7 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(props, ref) 
   const shadowRef = React.useRef(null);
   const renders = React.useRef(0);
   const [state, setState] = React.useState({});
+  const heightStateRef = React.useRef({});
 
   const syncHeight = React.useCallback(() => {
     const input = inputRef.current;
@@ -85,6 +98,10 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(props, ref) 
     // Take the box sizing into account for applying this value as a style.
     const outerHeightStyle = outerHeight + (boxSizing === 'border-box' ? padding + border : 0);
     const overflow = Math.abs(outerHeight - innerHeight) <= 1;
+
+    if (!isNeedUpdateState(heightStateRef, { overflow, outerHeightStyle })) {
+      return;
+    }
 
     setState((prevState) => {
       // Need a large enough difference to update the height.
