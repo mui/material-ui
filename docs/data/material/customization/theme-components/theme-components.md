@@ -58,11 +58,13 @@ const theme = createTheme({
   components: {
     MuiButton: {
       styleOverrides: ({ ownerState }) => ({
-        ...(ownerState.variant === 'contained' &&
-          ownerState.color === 'primary' && {
-            backgroundColor: '#202020',
-            color: '#fff',
-          }),
+        root: ({ ownerState }) => ({
+          ...(ownerState.variant === 'contained' &&
+            ownerState.color === 'primary' && {
+              backgroundColor: '#202020',
+              color: '#fff',
+            }),
+        }),
       }),
     },
   },
