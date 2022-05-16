@@ -217,7 +217,7 @@ export default function Hero() {
         p: 3,
         minWidth: 2000,
         flexDirection: 'column',
-        overflow: 'scroll',
+        overflow: 'hidden', // the components on the Hero section are mostly illustrative, even though they're interactive. That's why scrolling is disabled.
       }}
       right={
         <ThemeProvider
