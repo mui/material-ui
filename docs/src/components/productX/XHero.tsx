@@ -68,7 +68,7 @@ export default function XHero() {
       }
       rightSx={{
         p: { md: 2, lg: 3, xl: 4 },
-        overflow: 'scroll',
+        overflow: 'hidden',
       }}
       right={
         <React.Fragment>
