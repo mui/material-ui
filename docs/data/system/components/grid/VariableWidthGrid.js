@@ -16,13 +16,13 @@ export default function VariableWidthGrid() {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={3}>
-        <Grid item xs="auto">
+        <Grid xs="auto">
           <Item>variable width content</Item>
         </Grid>
-        <Grid item xs={6}>
+        <Grid xs={6}>
           <Item>xs=6</Item>
         </Grid>
-        <Grid item xs>
+        <Grid xs>
           <Item>xs</Item>
         </Grid>
       </Grid>

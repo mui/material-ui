@@ -4,8 +4,8 @@ import clsx from 'clsx';
 import { OverridableComponent } from '@mui/types';
 import {
   unstable_composeClasses as composeClasses,
-  generateUtilityClass,
-} from '@mui/private-classnames';
+  unstable_generateUtilityClass as generateUtilityClass,
+} from '@mui/utils';
 import systemStyled from '../styled';
 import useThemePropsSystem from '../useThemeProps';
 import { extendSxProp } from '../styleFunctionSx';

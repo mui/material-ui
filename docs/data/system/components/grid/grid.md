@@ -58,7 +58,7 @@ To control space between children, use the `spacing` prop.
 The spacing value can be any positive number, including decimals and any string.
 The prop is converted into a CSS property using the [`theme.spacing()`](/customization/spacing/) helper.
 
-{{"demo": "SpacingGrid.js", "bg": true}}
+{{"demo": "SpacingGrid.js", "bg": true, "hideToolbar": true}}
 
 ### Row & column spacing
 
@@ -117,7 +117,7 @@ You can change the default number of columns (12) with the `columns` prop.
 
 The spacing between items is implemented with a negative margin. This might lead to unexpected behaviors. For instance, it can cause an overflow on mobile viewport (horizontal scroll), you need to apply `overflow: hidden;` to the parent of the grid container.
 
-### direction: column | column-reverse
+### `direction: column | column-reverse`
 
 The `xs`, `sm`, `md`, `lg`, and `xl` props are **not supported** within `direction="column"` and `direction="column-reverse"` containers.
 

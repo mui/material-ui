@@ -16,13 +16,13 @@ export default function AutoGrid() {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Grid container spacing={3}>
-        <Grid item xs>
+        <Grid xs>
           <Item>xs</Item>
         </Grid>
-        <Grid item xs={6}>
+        <Grid xs={6}>
           <Item>xs=6</Item>
         </Grid>
-        <Grid item xs>
+        <Grid xs>
           <Item>xs</Item>
         </Grid>
       </Grid>
