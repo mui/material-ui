@@ -18,7 +18,7 @@ The `Grid` component works well for a layout with known columns. The columns can
 The grid system is implemented with the `Grid` component:
 
 - It uses [CSS's Flexible Box module](https://www.w3.org/TR/css-flexbox-1/) for high flexibility.
-- There are two types of layout: _containers_ and _items_.
+- The grid is a flex item by default which can enable container capability by using the `container` prop.
 - Item widths are set in percentages, so they're always fluid and sized relative to their parent element.
 - There are five grid breakpoints: xs, sm, md, lg, and xl.
 - Integer values can be given to each breakpoint, indicating how many of the 12 available columns are occupied by the component when the viewport width satisfies the [breakpoint constraints](/material-ui/customization/breakpoints/#default-breakpoints).
