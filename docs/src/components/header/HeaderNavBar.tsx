@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { useRouter } from 'next/router';
 import { styled, alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Popper from '@mui/material/Popper';
@@ -10,6 +9,7 @@ import IconImage from 'docs/src/components/icon/IconImage';
 import ROUTES from 'docs/src/route';
 import FEATURE_TOGGLE from 'docs/src/featureToggle';
 import Link from 'docs/src/modules/components/Link';
+import MuiProductSelector from 'docs/src/modules/components/MuiProductSelector';
 
 const Navigation = styled('nav')(({ theme }) => ({
   '& ul': {
@@ -114,12 +114,12 @@ function getNextIndex(eventKey: KeyboardEvent['key'], currentIndex: number, leng
 }
 
 export default function HeaderNavBar() {
-  const router = useRouter();
-  const asPathWithoutLang = router.asPath.replace(/^\/[a-zA-Z]{2}\//, '/');
   const [subMenuOpen, setSubMenuOpen] = React.useState(false);
   const [subMenuIndex, setSubMenuIndex] = React.useState<number | null>(null);
+  const [docsMenuOpen, setDocsMenuOpen] = React.useState(false);
   const navRef = React.useRef<HTMLUListElement | null>(null);
   const productsMenuRef = React.useRef<HTMLDivElement | null>(null);
+  const docsMenuRef = React.useRef<HTMLDivElement | null>(null);
   React.useEffect(() => {
     if (typeof subMenuIndex === 'number') {
       document.getElementById(PRODUCT_IDS[subMenuIndex])?.focus();
@@ -307,15 +307,61 @@ export default function HeaderNavBar() {
             </Popper>
           </li>
         )}
-        <li role="none">
-          <Link
+        <li
+          role="none"
+          onMouseOver={() => setDocsMenuOpen(true)}
+          onFocus={() => setDocsMenuOpen(true)}
+          onMouseOut={() => setDocsMenuOpen(false)}
+          onBlur={() => setDocsMenuOpen(false)}
+        >
+          <div
             role="menuitem"
-            href={
-              asPathWithoutLang.startsWith('/x') ? ROUTES.advancedComponents : ROUTES.documentation
-            }
+            tabIndex={0}
+            id="products-menu"
+            ref={docsMenuRef}
+            aria-haspopup
+            aria-expanded={docsMenuOpen ? 'true' : 'false'}
           >
             Docs
-          </Link>
+          </div>
+          <Popper
+            open={docsMenuOpen}
+            anchorEl={docsMenuRef.current}
+            transition
+            placement="bottom-start"
+            style={{ zIndex: 1200 }}
+          >
+            {({ TransitionProps }) => (
+              <Fade {...TransitionProps} timeout={350}>
+                <Paper
+                  variant="outlined"
+                  sx={{
+                    minWidth: 498,
+                    overflow: 'hidden',
+                    borderColor: (theme) =>
+                      theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.200',
+                    bgcolor: (theme) =>
+                      theme.palette.mode === 'dark' ? 'primaryDark.900' : 'background.paper',
+                    boxShadow: (theme) =>
+                      `0px 4px 20px ${
+                        theme.palette.mode === 'dark'
+                          ? alpha(theme.palette.background.paper, 0.72)
+                          : 'rgba(170, 180, 190, 0.3)'
+                      }`,
+                    '& ul': {
+                      margin: 0,
+                      padding: 0,
+                      listStyle: 'none',
+                    },
+                  }}
+                >
+                  <ul role="menu">
+                    <MuiProductSelector />
+                  </ul>
+                </Paper>
+              </Fade>
+            )}
+          </Popper>
         </li>
         <li role="none">
           <Link role="menuitem" href={ROUTES.pricing}>

@@ -67,8 +67,8 @@ const Description = styled('span')(({ theme }) => ({
   fontWeight: 'normal',
   color: theme.palette.text.secondary,
   position: 'absolute',
-  left: 0,
-  bottom: 0,
+  left: '0.5rem',
+  bottom: '-0.375rem',
   pointerEvents: 'none',
   opacity: 0,
   transition: '0.2s',
@@ -79,7 +79,18 @@ export default function MuiProductSelector() {
 
   return (
     <React.Fragment>
-      <li role="none">
+      <Box
+        component="li"
+        role="none"
+        sx={{
+          p: 2,
+          borderBottom: '1px solid',
+          borderColor: (theme) =>
+            theme.palette.mode === 'dark'
+              ? alpha(theme.palette.primary[100], 0.08)
+              : theme.palette.grey[100],
+        }}
+      >
         <ProductSubMenu
           role="menuitem"
           icon={<IconImage name="product-core" />}
@@ -88,9 +99,8 @@ export default function MuiProductSelector() {
         />
         <Box
           sx={{
-            ml: 6.5,
-            pt: 2.5,
-            height: 68,
+            ml: 5.5,
+            py: 2,
             position: 'relative',
           }}
         >
@@ -176,7 +186,7 @@ export default function MuiProductSelector() {
             />
           </Stack>
         </Box>
-      </li>
+      </Box>
       <li role="none">
         <Link
           href={ROUTES.advancedComponents}
