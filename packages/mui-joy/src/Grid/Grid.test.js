@@ -3,7 +3,7 @@ import { describeConformance, createRenderer } from 'test/utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import Grid, { gridClasses as classes } from '@mui/joy/Grid';
 
-describe('<Grid />', () => {
+describe('Joy UI <Grid />', () => {
   const { render } = createRenderer();
 
   const defaultProps = {
@@ -18,7 +18,6 @@ describe('<Grid />', () => {
     refInstanceof: window.HTMLElement,
     muiName: 'MuiGrid',
     testVariantProps: { container: true, spacing: 5 },
-    testStateOverrides: { prop: 'container', value: true, styleKey: 'container' },
     skip: ['componentsProp', 'classesRoot'],
   }));
 });

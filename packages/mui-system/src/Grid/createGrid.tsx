@@ -9,7 +9,7 @@ import {
 import systemStyled from '../styled';
 import useThemePropsSystem from '../useThemeProps';
 import { extendSxProp } from '../styleFunctionSx';
-import createTheme, { Theme as DefaultTheme } from '../createTheme';
+import createTheme from '../createTheme';
 import {
   generateGridStyles,
   generateGridSizeStyles,

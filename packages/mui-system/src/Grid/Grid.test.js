@@ -4,7 +4,7 @@ import { describeConformance, createRenderer, screen } from 'test/utils';
 import { ThemeProvider, createTheme } from '@mui/system';
 import Grid, { gridClasses as classes } from '@mui/system/Grid';
 
-describe('<Grid />', () => {
+describe('System <Grid />', () => {
   const { render } = createRenderer();
 
   const defaultProps = {
@@ -15,10 +15,10 @@ describe('<Grid />', () => {
     classes,
     inheritComponent: 'div',
     render,
+    ThemeProvider,
     refInstanceof: window.HTMLElement,
     muiName: 'MuiGrid',
     testVariantProps: { container: true, spacing: 5 },
-    testStateOverrides: { prop: 'container', value: true, styleKey: 'container' },
     skip: ['componentsProp', 'classesRoot'],
   }));
 
@@ -31,17 +31,17 @@ describe('<Grid />', () => {
 
   describe('prop: xs', () => {
     it('should apply the flex-grow class', () => {
-      const { container } = render(<Grid item xs />);
+      const { container } = render(<Grid xs />);
       expect(container.firstChild).to.have.class(classes['grid-xs-true']);
     });
 
     it('should apply the flex size class', () => {
-      const { container } = render(<Grid item xs={3} />);
+      const { container } = render(<Grid xs={3} />);
       expect(container.firstChild).to.have.class(classes['grid-xs-3']);
     });
 
     it('should apply the flex auto class', () => {
-      const { container } = render(<Grid item xs="auto" />);
+      const { container } = render(<Grid xs="auto" />);
       expect(container.firstChild).to.have.class(classes['grid-xs-auto']);
     });
 
@@ -53,10 +53,10 @@ describe('<Grid />', () => {
 
       render(
         <Grid container>
-          <Grid container item xs="auto" data-testid="auto">
+          <Grid container xs="auto" data-testid="auto">
             <div style={{ width: '300px' }} />
           </Grid>
-          <Grid item xs={11} />
+          <Grid xs={11} />
         </Grid>,
       );
       expect(screen.getByTestId('auto')).toHaveComputedStyle({
@@ -78,7 +78,7 @@ describe('<Grid />', () => {
     it('should not support undefined values', () => {
       const { container } = render(
         <Grid container>
-          <Grid item data-testid="child" />
+          <Grid data-testid="child" />
         </Grid>,
       );
       expect(container.firstChild).not.to.have.class('MuiGrid-spacing-xs-undefined');
@@ -87,7 +87,7 @@ describe('<Grid />', () => {
     it('should not support zero values', () => {
       const { container } = render(
         <Grid container spacing={0}>
-          <Grid item data-testid="child" />
+          <Grid data-testid="child" />
         </Grid>,
       );
       expect(container.firstChild).not.to.have.class('MuiGrid-spacing-xs-0');
@@ -96,7 +96,7 @@ describe('<Grid />', () => {
     it('should support object values', () => {
       const { container } = render(
         <Grid container spacing={{ sm: 1.5, md: 2 }}>
-          <Grid item data-testid="child" />
+          <Grid data-testid="child" />
         </Grid>,
       );
       expect(container.firstChild).to.have.class('MuiGrid-spacing-sm-1.5');
@@ -106,7 +106,7 @@ describe('<Grid />', () => {
     it('should ignore object values of zero', () => {
       const { container } = render(
         <Grid container spacing={{ sm: 0, md: 2 }}>
-          <Grid item data-testid="child" />
+          <Grid data-testid="child" />
         </Grid>,
       );
       expect(container.firstChild).not.to.have.class('MuiGrid-spacing-sm-0');
@@ -130,42 +130,48 @@ describe('<Grid />', () => {
         <div style={{ width: parentWidth }}>
           <ThemeProvider theme={remTheme}>
             <Grid data-testid="grid" container spacing={2}>
-              <Grid item data-testid="first-custom-theme" />
-              <Grid item />
+              <Grid data-testid="first-custom-theme" />
+              <Grid />
             </Grid>
           </ThemeProvider>
         </div>,
       );
 
       expect(screen.getByTestId('grid')).toHaveComputedStyle({
-        marginTop: `${-1 * remValue * 0.5}px`, // '-0.5rem'
-        marginLeft: `${-1 * remValue * 0.5}px`, // '-0.5rem'
-        width: `${parentWidth + remValue * 0.5}px`, // 'calc(100% + 0.5rem)'
+        marginTop: `${-1 * remValue * 0.25}px`, // '-0.25rem'
+        marginBottom: `${-1 * remValue * 0.25}px`, // '-0.25rem'
+        marginLeft: `${-1 * remValue * 0.25}px`, // '-0.25rem'
+        marginRight: `${-1 * remValue * 0.25}px`, // '-0.25rem'
       });
 
       expect(screen.getByTestId('first-custom-theme')).toHaveComputedStyle({
-        paddingTop: `${0.5 * remValue}px`, // 0.5rem
-        paddingLeft: `${0.5 * remValue}px`, // 0.5rem
+        paddingTop: `${0.25 * remValue}px`, // 0.25rem
+        paddingBottom: `${0.25 * remValue}px`, // 0.25rem
+        paddingLeft: `${0.25 * remValue}px`, // 0.25rem
+        paddingRight: `${0.25 * remValue}px`, // 0.25rem
       });
 
       rerender(
         <div style={{ width: parentWidth }}>
           <Grid data-testid="grid" container spacing={2}>
-            <Grid item data-testid="first-default-theme" />
-            <Grid item />
+            <Grid data-testid="first-default-theme" />
+            <Grid />
           </Grid>
         </div>,
       );
 
       expect(screen.getByTestId('grid')).toHaveComputedStyle({
-        marginTop: '-16px',
-        marginLeft: '-16px',
-        width: `${parentWidth + 16}px`, // 'calc(100% + 16px)'
+        marginTop: '-8px',
+        marginBottom: '-8px',
+        marginLeft: '-8px',
+        marginRight: '-8px',
       });
 
       expect(screen.getByTestId('first-default-theme')).toHaveComputedStyle({
-        paddingTop: '16px',
-        paddingLeft: '16px',
+        paddingTop: '8px',
+        paddingBottom: '8px',
+        paddingLeft: '8px',
+        paddingRight: '8px',
       });
     });
   });
