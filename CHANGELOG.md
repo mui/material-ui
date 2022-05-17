@@ -1,6 +1,6 @@
 # [Versions](https://mui.com/versions/)
 
-## 5.7.1
+## 5.8.0
 
 <!-- generated comparing v5.7.0..master -->
 
@@ -8,17 +8,18 @@ _May 17, 2022_
 
 A big thanks to the 14 contributors who made this release possible. Here are some highlights ✨:
 
-- 🚀 Blog post for announcing the release of the Premium plan of MUI X is out @joserodolfofreitas.
+- 🚀 [Blog post](https://mui.com/blog/premium-plan-release/) for announcing the release of the Premium plan of MUI X is out @joserodolfofreitas.
+- Codemod for `jss` to `tss-react` migration @ryancogswell
 - And more 🐛 bug fixes and 📚 documentation improvements.
 
-### `@mui/material@5.7.1`
+### `@mui/material@5.8.0`
 
 - &#8203;<!-- 37 -->[Autocomplete] Fix `getInputProps` TypeScript return type (#32730) @ZeeshanTamboli
 - &#8203;<!-- 36 -->[Autocomplete] Forward props to renderTags() (#32637) @emlai
 - &#8203;<!-- 35 -->[Badge] Fix TypeScript error when adding style overrides for Badge (#32745) @ZeeshanTamboli
 - &#8203;<!-- 09 -->[Menu] Fix context menu open position (#32661) @oliviertassinari
 
-### `@mui/system@5.7.1`
+### `@mui/system@5.8.0`
 
 - &#8203;<!-- 05 -->[system] Add `Container` component and `createContainer` factory (#32263) @mnajdova
 
@@ -35,7 +36,7 @@ A big thanks to the 14 contributors who made this release possible. Here are som
 - &#8203;<!-- 12 -->[Joy] Add global variant feature page (#32695) @siriwatknp
 - &#8203;<!-- 11 -->[Joy] Add avatar page (#32711) @siriwatknp
 
-### `@mui/codemod@5.7.1`
+### `@mui/codemod@5.8.0`
 
 - &#8203;<!-- 33 -->[codemod] Add jss to tss-react codemod (#31802) @ryancogswell
 
