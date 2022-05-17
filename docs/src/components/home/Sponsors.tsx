@@ -7,7 +7,7 @@ import GoldSponsors from 'docs/src/components/home/GoldSponsors';
 import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 import GradientText from 'docs/src/components/typography/GradientText';
 
-const Sponsors = () => {
+export default function Sponsors() {
   return (
     <Container sx={{ py: { xs: 4, md: 8 } }}>
       <SectionHeadline
@@ -24,6 +24,4 @@ const Sponsors = () => {
       <GoldSponsors />
     </Container>
   );
-};
-
-export default Sponsors;
+}

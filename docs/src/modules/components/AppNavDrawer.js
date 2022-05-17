@@ -657,7 +657,7 @@ export default function AppNavDrawer(props) {
                 : theme.palette.grey[100],
           }}
         />
-        <DiamondSponsors spot="drawer" />
+        <DiamondSponsors />
         {navItems}
       </React.Fragment>
     );

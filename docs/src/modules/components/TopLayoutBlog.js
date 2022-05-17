@@ -78,6 +78,11 @@ export const authors = {
     avatar: 'https://avatars.githubusercontent.com/u/71297412',
     github: 'samuelsycamore',
   },
+  josefreitas: {
+    name: 'José Freitas',
+    avatar: 'https://avatars.githubusercontent.com/u/550141',
+    github: 'joserodolfofreitas',
+  },
 };
 
 const classes = {
@@ -199,10 +204,12 @@ function TopLayoutBlog(props) {
       <Head
         title={`${finalTitle} - MUI`}
         description={description}
-        largeCard={headers.card === 'true' ? true : undefined}
+        largeCard={headers.card === 'true'}
         disableAlternateLocale
         card={
-          headers.card === 'true' ? `https://mui.com/static${router.pathname}/card.png` : undefined
+          headers.card === 'true'
+            ? `https://mui.com/static${router.pathname}/card.png`
+            : 'https://mui.com/static/logo.png'
         }
       />
       <div className={className}>
