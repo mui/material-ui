@@ -208,7 +208,6 @@ export default function MuiProductSelector() {
             role="menuitem"
             icon={<IconImage name="product-advanced" />}
             name={
-              // eslint-disable-next-line material-ui/no-hardcoded-labels
               <Box component="span" display="inline-flex" alignItems="center">
                 MUI&nbsp;X
               </Box>
