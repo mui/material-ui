@@ -7,8 +7,6 @@ import Divider from '@mui/material/Divider';
 import { styled, alpha } from '@mui/material/styles';
 import List from '@mui/material/List';
 import Drawer from '@mui/material/Drawer';
-import Chip from '@mui/material/Chip';
-import Stack from '@mui/material/Stack';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Typography from '@mui/material/Typography';
@@ -25,68 +23,14 @@ import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
 import ArrowDropDownRoundedIcon from '@mui/icons-material/ArrowDropDownRounded';
 import DoneRounded from '@mui/icons-material/DoneRounded';
 import FEATURE_TOGGLE from 'docs/src/featureToggle';
-import IconImage from 'docs/src/components/icon/IconImage';
-import Link from 'docs/src/modules/components/Link';
-import ROUTES from 'docs/src/route';
 import { isNewLocation } from 'docs/src/modules/utils/replaceUrl';
+import MuiProductSelector from 'docs/src/modules/components/MuiProductSelector';
 import materialPkgJson from '../../../../packages/mui-material/package.json';
 import joyPkgJson from '../../../../packages/mui-joy/package.json';
 import basePkgJson from '../../../../packages/mui-base/package.json';
 import systemPkgJson from '../../../../packages/mui-system/package.json';
 
 const savedScrollTop = {};
-
-const shouldShowJoy =
-  process.env.NODE_ENV === 'development' ||
-  process.env.PULL_REQUEST ||
-  FEATURE_TOGGLE.enable_joy_scope;
-
-const LinksWrapper = styled('div')(({ theme }) => {
-  return {
-    paddingLeft: theme.spacing(6.5),
-    paddingTop: theme.spacing(1.5),
-    height: shouldShowJoy ? 68 : 60,
-  };
-});
-
-function ProductSubMenu(props) {
-  return (
-    <Box
-      sx={{
-        display: 'flex',
-        alignItems: 'flex-start',
-        gap: 2,
-      }}
-    >
-      <Box
-        sx={{
-          '& circle': {
-            fill: (theme) =>
-              theme.palette.mode === 'dark'
-                ? theme.palette.primaryDark[700]
-                : theme.palette.grey[100],
-          },
-        }}
-      >
-        {props.icon}
-      </Box>
-      <div>
-        <Typography color="text.primary" variant="body2" fontWeight="700">
-          {props.name}
-        </Typography>
-        <Typography color="text.secondary" variant="body2">
-          {props.description}
-        </Typography>
-      </div>
-    </Box>
-  );
-}
-
-ProductSubMenu.propTypes = {
-  description: PropTypes.string,
-  icon: PropTypes.element,
-  name: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
-};
 
 function ProductDrawerButton(props) {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -98,7 +42,6 @@ function ProductDrawerButton(props) {
     setAnchorEl(null);
   };
 
-  /* eslint-disable material-ui/no-hardcoded-labels */
   return (
     <React.Fragment>
       <Button
@@ -159,82 +102,10 @@ function ProductDrawerButton(props) {
           },
         }}
       >
-        <li role="none">
-          <ProductSubMenu
-            role="menuitem"
-            icon={<IconImage name="product-core" />}
-            name="MUI Core"
-            description="Ready-to-use foundational components, free forever."
-          />
-          <LinksWrapper>
-            <Stack direction="row" spacing={1}>
-              <Chip
-                href={ROUTES.materialDocs}
-                label="Material UI"
-                variant="outlined"
-                clickable="true"
-                component="a"
-                size="small"
-              />
-              {shouldShowJoy && (
-                <Chip
-                  href={ROUTES.joyDocs}
-                  label="Joy UI"
-                  variant="outlined"
-                  clickable="true"
-                  component="a"
-                  size="small"
-                />
-              )}
-              <Chip
-                href={ROUTES.baseDocs}
-                label="MUI Base"
-                variant="outlined"
-                clickable="true"
-                component="a"
-                size="small"
-              />
-              <Chip
-                href={ROUTES.systemDocs}
-                label="MUI System"
-                variant="outlined"
-                clickable="true"
-                component="a"
-                size="small"
-              />
-            </Stack>
-          </LinksWrapper>
-        </li>
-        <li role="none">
-          <Link
-            href={ROUTES.advancedComponents}
-            sx={{
-              p: 2,
-              width: '100%',
-              '&:hover': {
-                backgroundColor: (theme) =>
-                  theme.palette.mode === 'dark'
-                    ? alpha(theme.palette.primaryDark[700], 0.4)
-                    : theme.palette.grey[50],
-              },
-            }}
-          >
-            <ProductSubMenu
-              role="menuitem"
-              icon={<IconImage name="product-advanced" />}
-              name={
-                <Box component="span" display="inline-flex" alignItems="center">
-                  MUI&nbsp;X
-                </Box>
-              }
-              description="Advanced and powerful components for complex use cases."
-            />
-          </Link>
-        </li>
+        <MuiProductSelector />
       </Menu>
     </React.Fragment>
   );
-  /* eslint-enable material-ui/no-hardcoded-labels */
 }
 
 ProductDrawerButton.propTypes = {

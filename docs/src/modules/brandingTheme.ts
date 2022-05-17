@@ -516,6 +516,18 @@ export function getThemedComponents(theme: Theme): { components: Theme['componen
                   theme.palette.mode === 'dark'
                     ? alpha(theme.palette.grey[100], 0.1)
                     : theme.palette.grey[200],
+                '&:hover': {
+                  color:
+                    theme.palette.mode === 'dark'
+                      ? theme.palette.grey[300]
+                      : theme.palette.grey[900],
+                },
+              }),
+            ...(variant === 'outlined' &&
+              color === 'primary' && {
+                '&:hover': {
+                  color: theme.palette.primary[500],
+                },
               }),
             ...(variant === 'filled' &&
               color === 'default' && {
