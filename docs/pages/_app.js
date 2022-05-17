@@ -34,6 +34,7 @@ import DocsStyledEngineProvider from 'docs/src/modules/utils/StyledEngineProvide
 import createEmotionCache from 'docs/src/createEmotionCache';
 import findActivePage from 'docs/src/modules/utils/findActivePage';
 import FEATURE_TOGGLE from 'docs/src/featureToggle';
+import useRouterExtra from 'docs/src/modules/utils/useRouterExtra';
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
@@ -172,7 +173,8 @@ Tip: you can access the documentation \`theme\` object directly in the console.
 function AppWrapper(props) {
   const { children, emotionCache, pageProps } = props;
 
-  const router = useRouter();
+  const { asPathWithoutLang, isMuiBase, isMaterialUI, isJoyUI, isMuiSystem, ...router } =
+    useRouterExtra();
 
   React.useEffect(() => {
     loadDependencies();
@@ -185,18 +187,17 @@ function AppWrapper(props) {
     }
   }, []);
 
-  const asPathWithoutLang = router.asPath.replace(/^\/[a-zA-Z]{2}\//, '/');
   let productPages = pages;
-  if (asPathWithoutLang.startsWith('/base')) {
+  if (isMuiBase) {
     productPages = basePages;
   }
-  if (asPathWithoutLang.startsWith('/material-ui')) {
+  if (isMaterialUI) {
     productPages = materialPages;
   }
-  if (asPathWithoutLang.startsWith('/joy-ui')) {
+  if (isJoyUI) {
     productPages = joyPages;
   }
-  if (asPathWithoutLang.startsWith('/system') && FEATURE_TOGGLE.enable_system_scope) {
+  if (isMuiSystem && FEATURE_TOGGLE.enable_system_scope) {
     productPages = systemPages;
   }
 
