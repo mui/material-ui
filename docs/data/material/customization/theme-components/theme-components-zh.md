@@ -53,13 +53,15 @@ Each component is composed of several different parts. These parts correspond to
 const theme = createTheme({
   components: {
     MuiButton: {
-      styleOverrides: ({ ownerState }) => ({
-        ...(ownerState.variant === 'contained' &&
-          ownerState.color === 'primary' && {
-            backgroundColor: '#202020',
-            color: '#fff',
-          }),
-      }),
+      styleOverrides: {
+        root: ({ ownerState }) => ({
+          ...(ownerState.variant === 'contained' &&
+            ownerState.color === 'primary' && {
+              backgroundColor: '#202020',
+              color: '#fff',
+            }),
+        }),
+      },
     },
   },
 });
