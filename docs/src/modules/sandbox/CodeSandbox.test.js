@@ -17,7 +17,7 @@ export default function BasicButtons() {
 `;
 
 describe('CodeSandbox', () => {
-  it('generate the correct javascript result', () => {
+  it('generate the correct JavaScript result', () => {
     const result = CodeSandbox.createReactApp({
       title: 'BasicButtons Material Demo',
       githubLocation:
@@ -59,7 +59,7 @@ describe('CodeSandbox', () => {
     });
   });
 
-  it('generate the correct typescript result', () => {
+  it('generate the correct TypeScript result', () => {
     const result = CodeSandbox.createReactApp({
       title: 'BasicButtons Material Demo',
       githubLocation:

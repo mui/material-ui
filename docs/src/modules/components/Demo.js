@@ -42,11 +42,11 @@ function useDemoData(codeVariant, demo, githubLocation) {
   const asPathWithoutLang = router.asPath.replace(/^\/[a-zA-Z]{2}\//, '/');
   let product;
   let name = 'Material UI';
-  if (asPathWithoutLang.startsWith('/joy-ui')) {
+  if (asPathWithoutLang.startsWith('/joy-ui/')) {
     product = 'joy-ui';
     name = 'Joy UI';
   }
-  if (asPathWithoutLang.startsWith('/base')) {
+  if (asPathWithoutLang.startsWith('/base/')) {
     product = 'base';
     name = 'MUI Base';
   }
