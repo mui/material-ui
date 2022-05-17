@@ -60,6 +60,9 @@ Two additional variants are available – outlined, and filled:
 
 {{"demo": "OutlinedAlerts.js"}}
 
+When using the outlined Alert with the [Snackbar component](/material-ui/react-snackbar/#customization), background content will be visible and bleed through the Alert.
+In this case add `sx={{ bgcolor: 'background.paper' }}` to the Alert component.
+
 ### Filled
 
 {{"demo": "FilledAlerts.js"}}
