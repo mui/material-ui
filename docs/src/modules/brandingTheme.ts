@@ -532,7 +532,7 @@ export function getThemedComponents(theme: Theme): { components: Theme['componen
             ...(variant === 'filled' &&
               color === 'default' && {
                 border: '1px solid transparent',
-                color: theme.palette.mode === 'dark' ? '#fff' : theme.palette.primary[800],
+                color: theme.palette.mode === 'dark' ? '#fff' : theme.palette.primary[700],
                 backgroundColor:
                   theme.palette.mode === 'dark'
                     ? theme.palette.primaryDark[500]

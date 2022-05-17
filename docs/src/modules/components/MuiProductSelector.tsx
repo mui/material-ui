@@ -63,12 +63,12 @@ function ProductSubMenu({
 }
 
 const Description = styled('span')(({ theme }) => ({
-  fontSize: '0.75rem',
-  fontWeight: 'normal',
+  fontSize: '0.8rem',
+  fontWeight: theme.typography.fontWeightRegular,
   color: theme.palette.text.secondary,
   position: 'absolute',
   left: '0.5rem',
-  bottom: '-0.375rem',
+  bottom: '-0.675rem',
   pointerEvents: 'none',
   opacity: 0,
   transition: '0.2s',
@@ -84,6 +84,7 @@ export default function MuiProductSelector() {
         role="none"
         sx={{
           p: 2,
+          pb: 3,
           borderBottom: '1px solid',
           borderColor: (theme) =>
             theme.palette.mode === 'dark'
@@ -100,7 +101,8 @@ export default function MuiProductSelector() {
         <Box
           sx={{
             ml: 5.5,
-            py: 2,
+            pt: 1,
+            pb: 2,
             position: 'relative',
           }}
         >
@@ -108,6 +110,7 @@ export default function MuiProductSelector() {
             direction="row"
             spacing={1}
             sx={{
+              ml: 1,
               '& > .MuiChip-root': {
                 position: 'initial',
                 '&:hover': {
@@ -119,7 +122,8 @@ export default function MuiProductSelector() {
             }}
           >
             <Chip
-              color={router.isMaterialUI ? 'primary' : undefined}
+              color={router.isMaterialUI ? 'default' : undefined}
+              variant={router.isMaterialUI ? 'filled' : 'outlined'}
               component={Link}
               href={ROUTES.materialDocs}
               label={
@@ -130,13 +134,13 @@ export default function MuiProductSelector() {
                   </Description>
                 </React.Fragment>
               }
-              variant="outlined"
               clickable
               size="small"
             />
             {shouldShowJoy && (
               <Chip
-                color={router.isJoyUI ? 'primary' : undefined}
+                color={router.isJoyUI ? 'default' : undefined}
+                variant={router.isJoyUI ? 'filled' : 'outlined'}
                 component={Link}
                 href={ROUTES.joyDocs}
                 label={
@@ -147,13 +151,13 @@ export default function MuiProductSelector() {
                     </Description>
                   </React.Fragment>
                 }
-                variant="outlined"
                 clickable
                 size="small"
               />
             )}
             <Chip
-              color={router.isMuiBase ? 'primary' : undefined}
+              color={router.isMuiBase ? 'default' : undefined}
+              variant={router.isMuiBase ? 'filled' : 'outlined'}
               component={Link}
               href={ROUTES.baseDocs}
               label={
@@ -164,12 +168,12 @@ export default function MuiProductSelector() {
                   </Description>
                 </React.Fragment>
               }
-              variant="outlined"
               clickable
               size="small"
             />
             <Chip
-              color={router.isMuiSystem ? 'primary' : undefined}
+              color={router.isMuiSystem ? 'default' : undefined}
+              variant={router.isMuiSystem ? 'filled' : 'outlined'}
               component={Link}
               href={ROUTES.systemDocs}
               label={
@@ -180,7 +184,6 @@ export default function MuiProductSelector() {
                   </Description>
                 </React.Fragment>
               }
-              variant="outlined"
               clickable
               size="small"
             />
