@@ -46,14 +46,10 @@ Here are some configuration examples:
 ### Change class name prefix
 
 ```js
+// MuiClassNamesSetup.js
 import { unstable_ClassNameGenerator as ClassNameGenerator } from '@mui/material/className';
 
-// call this function at the root of the application and before any Material UI components import
 ClassNameGenerator.configure((componentName) => `foo-bar-${componentName}`);
-
-function App() {
-  return <Button>Button</Button>;
-}
 ```
 
 As a result, the HTML result changes to the following:
@@ -71,16 +67,10 @@ As a result, the HTML result changes to the following:
 Every Material UI component has `${componentName}-${slot}` classname format. For example, the component name of [`Chip`](/material-ui/react-chip/) is `MuiChip`, which is used as a global class name for every `<Chip />` element. You can remove/change the `Mui` prefix as follows:
 
 ```js
-import { unstable_ClassNameGenerator } from '@mui/material/className';
+// MuiClassNamesSetup.js
+import { unstable_ClassNameGenerator as ClassNameGenerator } from '@mui/material/className';
 
-// call this function at the root of the application
-unstable_ClassNameGenerator.configure((componentName) =>
-  componentName.replace('Mui', ''),
-);
-
-function App() {
-  return <Button>Button</Button>;
-}
+ClassNameGenerator.configure((componentName) => componentName.replace('Mui', ''));
 ```
 
 Now, the `Mui` class is gone.
