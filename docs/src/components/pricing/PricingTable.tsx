@@ -19,7 +19,7 @@ const planInfo = {
     color: 'green',
     title: 'Community',
     description:
-      'Get all the MIT-licensed MUI component libraries. It includes open source and open core code.',
+      'Get all the MIT-licensed MUI component libraries. It includes open-source and open-core code.',
   },
   pro: {
     color: 'blue',
