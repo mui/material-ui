@@ -223,6 +223,15 @@ module.exports = {
       },
     },
     {
+      files: ['docs/**/*.*'],
+      extends: ['plugin:@next/next/recommended'],
+      rules: {
+        '@next/next/no-html-link-for-pages': ['error', 'docs/pages/'],
+
+        '@next/next/no-img-element': ['off'],
+      },
+    },
+    {
       files: ['docs/src/modules/components/**/*.js'],
       rules: {
         'material-ui/no-hardcoded-labels': [

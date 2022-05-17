@@ -82,6 +82,7 @@
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
     "@eps1lon/enzyme-adapter-react-17": "^0.1.0",
+    "@next/eslint-plugin-next": "^12.1.6",
     "@octokit/rest": "^18.12.0",
     "@playwright/test": "1.17.1",
     "@rollup/plugin-replace": "^4.0.0",

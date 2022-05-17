@@ -13,6 +13,7 @@ import Moon from '@mui/icons-material/DarkMode';
 import Sun from '@mui/icons-material/LightMode';
 import Close from '@mui/icons-material/Close';
 import Done from '@mui/icons-material/Done';
+import Script from 'next/script';
 
 const ColorSchemePicker = () => {
   const { mode, setMode } = useColorScheme();
@@ -160,13 +161,9 @@ const Pattern = () => {
 export default function JoyCheckbox() {
   return (
     <CssVarsProvider>
-      <Head>
-        <script
-          type="module"
-          src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
-        />
-        <script noModule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js" />
-      </Head>
+      <Script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js" />
+      <Script noModule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js" />
+
       <Box sx={{ py: 5, maxWidth: { md: 1152, xl: 1536 }, mx: 'auto' }}>
         <Box sx={{ px: 3 }}>
           <ColorSchemePicker />
