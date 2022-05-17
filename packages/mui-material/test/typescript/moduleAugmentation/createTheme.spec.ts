@@ -1,0 +1,13 @@
+import { createTheme, CSSProperties, styled } from '@mui/material/styles';
+
+declare module '@mui/material/styles' {
+  interface Mixins {
+    customMixin: CSSProperties;
+  }
+}
+
+// ensure MixinsOptions work
+const theme = createTheme({ mixins: { customMixin: { paddingLeft: 2 } } });
+
+// ensure Mixins work
+const Example = styled('div')(({ theme: t }) => t.mixins.myCustomGuttersMixin);
