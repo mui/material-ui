@@ -18,5 +18,10 @@
     "id": 63,
     "title": "📄 <b>Our docs just got a major upgrade!</b>",
     "text": "Each of MUI's products now has its own dedicated documentation, making it easier than ever to find exactly what you need. <a style=\"color: inherit;\" data-ga-event-category=\"Blog\" data-ga-event-action=\"notification\" data-ga-event-label=\"docs-restructure-2022/\" href=\"/blog/docs-restructure-2022/\">Check out the blog post</a> for more details."
+  },
+  {
+    "id": 64,
+    "title": "<b>Premium passengers, please proceed to the boarding gate</b> 🚀",
+    "text": "<a style=\"color: inherit;\" data-ga-event-category=\"Blog\" data-ga-event-action=\"notification\" data-ga-event-label=\"lab-date-pickers-to-mui-x/\" href=\"/blog/premium-plan-release/\">Checkout our blog post</a> introducing the MUI X Premium plan, and the new licensing model."
   }
 ]

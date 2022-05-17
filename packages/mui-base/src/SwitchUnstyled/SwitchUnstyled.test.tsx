@@ -30,6 +30,7 @@ describe('<SwitchUnstyled />', () => {
         isOptional: true,
       },
     },
+    skip: ['componentsPropsCallbacks'], // not implemented yet
   }));
 
   describe('componentState', () => {

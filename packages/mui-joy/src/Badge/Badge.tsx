@@ -34,7 +34,33 @@ const BadgeRoot = styled('span', {
   name: 'MuiBadge',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: BadgeProps }>(() => ({
+})<{ ownerState: BadgeProps }>(({ theme, ownerState }) => ({
+  ...(ownerState.size === 'sm' && {
+    '--Badge-minHeight': '0.5rem',
+    ...(ownerState.badgeContent && {
+      '--Badge-minHeight': '1rem',
+    }),
+    '--Badge-paddingX': '0.25rem',
+    fontSize: theme.vars.fontSize.xs,
+  }),
+  ...(ownerState.size === 'md' && {
+    '--Badge-minHeight': '0.75rem',
+    ...(ownerState.badgeContent && {
+      '--Badge-minHeight': '1.25rem',
+    }),
+    '--Badge-paddingX': '0.375rem',
+    fontSize: theme.vars.fontSize.sm,
+  }),
+  ...(ownerState.size === 'lg' && {
+    '--Badge-minHeight': '1rem',
+    ...(ownerState.badgeContent && {
+      '--Badge-minHeight': '1.5rem',
+    }),
+    '--Badge-paddingX': '0.5rem',
+    fontSize: theme.vars.fontSize.md,
+  }),
+  '--Badge-ringSize': '2px',
+  '--Badge-ring': `0 0 0 var(--Badge-ringSize) var(--Badge-ringColor, ${theme.vars.palette.background.body})`,
   position: 'relative',
   display: 'inline-flex',
   // For correct alignment with the text.
@@ -81,32 +107,6 @@ const BadgeBadge = styled('span', {
   const transformOriginX = ownerState.anchorOrigin?.horizontal === 'left' ? '0%' : '100%';
   return [
     {
-      ...(ownerState.size === 'sm' && {
-        '--Badge-minHeight': '0.5rem',
-        ...(ownerState.badgeContent && {
-          '--Badge-minHeight': '1rem',
-        }),
-        '--Badge-paddingX': '0.25rem',
-        fontSize: theme.vars.fontSize.xs,
-      }),
-      ...(ownerState.size === 'md' && {
-        '--Badge-minHeight': '0.75rem',
-        ...(ownerState.badgeContent && {
-          '--Badge-minHeight': '1.25rem',
-        }),
-        '--Badge-paddingX': '0.375rem',
-        fontSize: theme.vars.fontSize.sm,
-      }),
-      ...(ownerState.size === 'lg' && {
-        '--Badge-minHeight': '1rem',
-        ...(ownerState.badgeContent && {
-          '--Badge-minHeight': '1.5rem',
-        }),
-        '--Badge-paddingX': '0.5rem',
-        fontSize: theme.vars.fontSize.md,
-      }),
-      '--Badge-ringSize': '2px',
-      '--Badge-ring': `0 0 0 var(--Badge-ringSize) var(--Badge-ringColor, ${theme.vars.palette.background.body})`,
       display: 'inline-flex',
       flexWrap: 'wrap',
       justifyContent: 'center',
