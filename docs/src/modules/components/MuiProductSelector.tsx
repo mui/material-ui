@@ -65,7 +65,8 @@ function ProductSubMenu({
 const Description = styled('span')(({ theme }) => ({
   fontSize: '0.8rem',
   fontWeight: theme.typography.fontWeightRegular,
-  color: theme.palette.text.secondary,
+  color:
+    theme.palette.mode === 'dark' ? theme.palette.primaryDark[100] : theme.palette.primaryDark[800],
   position: 'absolute',
   left: '0.5rem',
   bottom: '-0.675rem',
