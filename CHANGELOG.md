@@ -8,8 +8,8 @@ _May 17, 2022_
 
 A big thanks to the 14 contributors who made this release possible. Here are some highlights ✨:
 
-- 🚀 [Blog post](https://mui.com/blog/premium-plan-release/) for announcing the release of the Premium plan of MUI X is out @joserodolfofreitas.
-- Codemod for `jss` to `tss-react` migration @ryancogswell
+- 🚀 [Blog post](https://mui.com/blog/premium-plan-release/) for announcing the release of the Premium plan of MUI X is out thanks to @joserodolfofreitas.
+- Codemod for `jss` to `tss-react` migration is out thanks to @ryancogswell
 - And more 🐛 bug fixes and 📚 documentation improvements.
 
 ### `@mui/material@5.8.0`
