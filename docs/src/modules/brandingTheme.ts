@@ -535,13 +535,13 @@ export function getThemedComponents(theme: Theme): { components: Theme['componen
                 color: theme.palette.mode === 'dark' ? '#fff' : theme.palette.primary[700],
                 backgroundColor:
                   theme.palette.mode === 'dark'
-                    ? theme.palette.primaryDark[500]
-                    : theme.palette.primary[100],
+                    ? alpha(theme.palette.primaryDark[500], 0.8)
+                    : alpha(theme.palette.primary[100], 0.5),
                 '&:hover': {
                   backgroundColor:
                     theme.palette.mode === 'dark'
                       ? theme.palette.primaryDark[600]
-                      : theme.palette.primary[200],
+                      : theme.palette.primary[100],
                 },
               }),
             // for labelling product in the search
