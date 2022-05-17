@@ -59,7 +59,9 @@ We’d also like to keep it within reach of individuals and small teams, while s
 
 Here is a list of everything that has changed:
 
-> ⚠️ Please note: The following changes apply only to **new customers**. Existing customers are not impacted, and their license agreement remains valid.
+:::warning
+⚠️ Please note: The following changes apply only to **new customers**. Existing customers are not impacted, and their license agreement remains valid.
+:::
 
 - **Price point per developer seat**
 
