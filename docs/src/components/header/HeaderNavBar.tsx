@@ -225,19 +225,17 @@ export default function HeaderNavBar() {
                 <Fade {...TransitionProps} timeout={350}>
                   <Paper
                     variant="outlined"
-                    sx={{
+                    sx={(theme) => ({
                       minWidth: 498,
                       overflow: 'hidden',
-                      borderColor: (theme) =>
-                        theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.200',
-                      bgcolor: (theme) =>
+                      borderColor: theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.200',
+                      bgcolor:
                         theme.palette.mode === 'dark' ? 'primaryDark.900' : 'background.paper',
-                      boxShadow: (theme) =>
-                        `0px 4px 20px ${
-                          theme.palette.mode === 'dark'
-                            ? alpha(theme.palette.background.paper, 0.72)
-                            : 'rgba(170, 180, 190, 0.3)'
-                        }`,
+                      boxShadow: `0px 4px 20px ${
+                        theme.palette.mode === 'dark'
+                          ? alpha(theme.palette.background.paper, 0.72)
+                          : 'rgba(170, 180, 190, 0.3)'
+                      }`,
                       '& ul': {
                         margin: 0,
                         padding: 0,
@@ -245,11 +243,10 @@ export default function HeaderNavBar() {
                       },
                       '& li:not(:last-of-type)': {
                         borderBottom: '1px solid',
-                        borderColor: (theme) =>
-                          theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.100',
+                        borderColor: theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.100',
                       },
                       '& a': { textDecoration: 'none' },
-                    }}
+                    })}
                   >
                     <ul role="menu">
                       <li role="none">
@@ -335,25 +332,22 @@ export default function HeaderNavBar() {
               <Fade {...TransitionProps} timeout={350}>
                 <Paper
                   variant="outlined"
-                  sx={{
+                  sx={(theme) => ({
                     minWidth: 498,
                     overflow: 'hidden',
-                    borderColor: (theme) =>
-                      theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.200',
-                    bgcolor: (theme) =>
-                      theme.palette.mode === 'dark' ? 'primaryDark.900' : 'background.paper',
-                    boxShadow: (theme) =>
-                      `0px 4px 20px ${
-                        theme.palette.mode === 'dark'
-                          ? alpha(theme.palette.background.paper, 0.72)
-                          : 'rgba(170, 180, 190, 0.3)'
-                      }`,
+                    borderColor: theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.200',
+                    bgcolor: theme.palette.mode === 'dark' ? 'primaryDark.900' : 'background.paper',
+                    boxShadow: `0px 4px 20px ${
+                      theme.palette.mode === 'dark'
+                        ? alpha(theme.palette.background.paper, 0.72)
+                        : 'rgba(170, 180, 190, 0.3)'
+                    }`,
                     '& ul': {
                       margin: 0,
                       padding: 0,
                       listStyle: 'none',
                     },
-                  }}
+                  })}
                 >
                   <ul role="menu">
                     <MuiProductSelector />

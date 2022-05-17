@@ -110,7 +110,6 @@ export default function MuiProductSelector() {
             direction="row"
             spacing={1}
             sx={{
-              ml: 1,
               '& > .MuiChip-root': {
                 position: 'initial',
                 '&:hover': {
