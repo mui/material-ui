@@ -1733,7 +1733,12 @@ export default function DataTable() {
             },
           }}
         >
-          <HighlightedCode component={MarkdownElement} code={code} language="jsx" />
+          <HighlightedCode
+            copyButtonHidden
+            component={MarkdownElement}
+            code={code}
+            language="jsx"
+          />
         </Box>
       }
     />

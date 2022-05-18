@@ -27,7 +27,7 @@ const useUtilityClasses = (ownerState: ChipDeleteProps & { focusVisible: boolean
 };
 
 const ChipDeleteRoot = styled('button', {
-  name: 'MuiChipDelete',
+  name: 'JoyChipDelete',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: ChipDeleteProps }>(({ theme, ownerState }) => [
@@ -52,16 +52,16 @@ const ChipDeleteRoot = styled('button', {
 ]);
 
 const chipVariantMapping = {
-  text: 'outlined',
-  outlined: 'light',
-  light: 'contained',
-  contained: 'contained',
+  plain: 'outlined',
+  outlined: 'soft',
+  soft: 'solid',
+  solid: 'solid',
 } as const;
 
 const ChipDelete = React.forwardRef(function ChipDelete(inProps, ref) {
   const props = useThemeProps<typeof inProps & ChipDeleteProps>({
     props: inProps,
-    name: 'MuiChipDelete',
+    name: 'JoyChipDelete',
   });
 
   const {
@@ -84,7 +84,6 @@ const ChipDelete = React.forwardRef(function ChipDelete(inProps, ref) {
   const { focusVisible, getRootProps } = useButton({
     ...props,
     disabled,
-    component,
     ref: handleRef,
   });
 
@@ -148,9 +147,9 @@ ChipDelete.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * The variant to use.
-   * @default 'contained'
+   * @default 'solid'
    */
-  variant: PropTypes.oneOf(['contained', 'light', 'outlined', 'text']),
+  variant: PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
 } as any;
 
 export default ChipDelete;

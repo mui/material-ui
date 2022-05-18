@@ -11,9 +11,9 @@ describe('<Radio />', () => {
     classes,
     render,
     ThemeProvider,
-    muiName: 'MuiRadio',
+    muiName: 'JoyRadio',
     testDeepOverrides: [{ slotName: 'input', slotClassName: classes.input }],
-    testVariantProps: { variant: 'light' },
+    testVariantProps: { variant: 'soft' },
     refInstanceof: window.HTMLSpanElement,
     skip: ['componentProp', 'componentsProp', 'classesRoot', 'propsSpread'],
   }));
@@ -78,8 +78,8 @@ describe('<Radio />', () => {
 
     expect(container.firstChild).to.have.class(classes.variantOutlined); // default
 
-    rerender(<Radio variant="light" />);
-    expect(container.firstChild).to.have.class(classes.variantLight);
+    rerender(<Radio variant="soft" />);
+    expect(container.firstChild).to.have.class(classes.variantSoft);
   });
 
   it('should have configurable size', () => {

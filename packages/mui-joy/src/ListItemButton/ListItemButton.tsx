@@ -38,7 +38,7 @@ const useUtilityClasses = (ownerState: ListItemButtonProps & { focusVisible: boo
 };
 
 const ListItemButtonRoot = styled('div', {
-  name: 'MuiListItemButton',
+  name: 'JoyListItemButton',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: ListItemButtonProps & { row: boolean } }>(({ theme, ownerState }) => [
@@ -104,7 +104,7 @@ const ListItemButtonRoot = styled('div', {
 const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
-    name: 'MuiListItemButton',
+    name: 'JoyListItemButton',
   });
 
   const row = React.useContext(RowListContext);
@@ -117,18 +117,15 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
     component = 'div',
     selected = false,
     color = selected ? 'primary' : 'neutral',
-    variant = 'text',
+    variant = 'plain',
     ...other
   } = props;
 
   const buttonRef = React.useRef<HTMLElement | null>(null);
   const handleRef = useForkRef(buttonRef, ref);
 
-  const ComponentProp = component;
-
   const { focusVisible, setFocusVisible, getRootProps } = useButton({
     ...props,
-    component: ComponentProp,
     ref: handleRef,
   });
 
@@ -259,10 +256,10 @@ ListItemButton.propTypes /* remove-proptypes */ = {
   tabIndex: PropTypes.number,
   /**
    * The variant to use.
-   * @default 'text'
+   * @default 'plain'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['contained', 'light', 'outlined', 'text']),
+    PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
     PropTypes.string,
   ]),
 } as any;

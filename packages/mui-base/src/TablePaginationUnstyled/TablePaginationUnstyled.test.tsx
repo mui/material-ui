@@ -62,6 +62,7 @@ describe('<TablePaginationUnstyled />', () => {
           testWithElement: 'th',
         },
       },
+      skip: ['componentsPropsCallbacks'], // not implemented yet
     }),
   );
 

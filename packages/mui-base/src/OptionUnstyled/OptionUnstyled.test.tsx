@@ -9,7 +9,14 @@ const dummyGetOptionState = () => ({
   selected: false,
 });
 
-const dummyGetOptionProps = () => ({});
+const dummyGetOptionProps = () => ({
+  'aria-disabled': false,
+  'aria-selected': false,
+  label: '',
+  onClick: () => {},
+  role: 'option',
+  value: '',
+});
 
 describe('OptionUnstyled', () => {
   const mount = createMount();
@@ -52,6 +59,9 @@ describe('OptionUnstyled', () => {
         expectedClassName: optionUnstyledClasses.root,
       },
     },
-    skip: ['reactTestRenderer'], // Need to be wrapped in SelectUnstyledContext
+    skip: [
+      'reactTestRenderer', // Need to be wrapped in SelectUnstyledContext
+      'componentsPropsCallbacks', // not implemented yet
+    ],
   }));
 });

@@ -3,6 +3,7 @@
 /benchmark/**/dist
 /coverage
 /docs/export
+/docs/pages/playground.tsx
 /examples/create-react-app*/src/serviceWorker.js
 /examples/gatsby/public/
 /examples/preact/config

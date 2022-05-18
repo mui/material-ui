@@ -12,24 +12,24 @@ describe('Joy <IconButton />', () => {
     classes,
     ThemeProvider,
     refInstanceof: window.HTMLButtonElement,
-    muiName: 'MuiIconButton',
-    testVariantProps: { variant: 'contained', color: 'success' },
+    muiName: 'JoyIconButton',
+    testVariantProps: { variant: 'solid', color: 'success' },
     skip: ['propsSpread', 'componentsProp', 'classesRoot'],
   }));
 
-  it('by default, should render with the root, variantContained, sizeMd and colorPrimary classes', () => {
+  it('by default, should render with the root, variantSolid, sizeMd and colorPrimary classes', () => {
     const { getByRole } = render(<IconButton>Hello World</IconButton>);
     const button = getByRole('button');
 
     expect(button).to.have.class(classes.root);
-    expect(button).to.have.class(classes.variantLight);
+    expect(button).to.have.class(classes.variantSoft);
     expect(button).to.have.class(classes.sizeMd);
     expect(button).to.have.class(classes.colorPrimary);
 
     // should not have other variant classes
     expect(button).not.to.have.class(classes.variantOutlined);
-    expect(button).not.to.have.class(classes.variantText);
-    expect(button).not.to.have.class(classes.variantContained);
+    expect(button).not.to.have.class(classes.variantPlain);
+    expect(button).not.to.have.class(classes.variantSolid);
   });
 
   it('should render an outlined button', () => {
@@ -40,17 +40,17 @@ describe('Joy <IconButton />', () => {
   });
 
   it('should render a text button', () => {
-    const { getByRole } = render(<IconButton variant="text">Hello World</IconButton>);
+    const { getByRole } = render(<IconButton variant="plain">Hello World</IconButton>);
     const button = getByRole('button');
 
-    expect(button).to.have.class(classes.variantText);
+    expect(button).to.have.class(classes.variantPlain);
   });
 
   it('should render a contained button', () => {
-    const { getByRole } = render(<IconButton variant="contained">Hello World</IconButton>);
+    const { getByRole } = render(<IconButton variant="solid">Hello World</IconButton>);
     const button = getByRole('button');
 
-    expect(button).to.have.class(classes.variantContained);
+    expect(button).to.have.class(classes.variantSolid);
   });
 
   it('should render a small button', () => {

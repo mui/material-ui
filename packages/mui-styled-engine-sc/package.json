@@ -1,6 +1,6 @@
 {
   "name": "@mui/styled-engine-sc",
-  "version": "5.6.1",
+  "version": "5.8.0",
   "private": false,
   "author": "MUI Team",
   "description": "styled() API wrapper package for styled-components.",
@@ -20,7 +20,7 @@
   "bugs": {
     "url": "https://github.com/mui/material-ui/issues"
   },
-  "homepage": "https://mui.com/guides/styled-engine/",
+  "homepage": "https://mui.com/material-ui/guides/styled-engine/",
   "funding": {
     "type": "opencollective",
     "url": "https://opencollective.com/mui"
@@ -38,7 +38,7 @@
     "typescript": "tslint -p tsconfig.json \"{src,test}/**/*.{spec,d}.{ts,tsx}\" && tsc -p tsconfig.json"
   },
   "dependencies": {
-    "prop-types": "^15.7.2"
+    "prop-types": "^15.8.1"
   },
   "peerDependencies": {
     "@types/styled-components": "^5.1.14",

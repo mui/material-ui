@@ -5,5 +5,3 @@ export interface Radius {
   lg: string;
   xl: string;
 }
-
-export type RadiusProp = keyof Radius;

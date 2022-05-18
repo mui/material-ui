@@ -4,9 +4,11 @@
 
 Looking for the v3 docs? You can [find the latest version here](https://mui.com/versions/).
 
-> This document is a work in progress.
-> Have you upgraded your site and run into something that's not covered here?
-> [Add your changes on GitHub](https://github.com/mui/material-ui/blob/master/docs/data/material/guides/migration-v3/migration-v3.md).
+:::info
+This document is a work in progress.
+Have you upgraded your site and run into something that's not covered here?
+[Add your changes on GitHub](https://github.com/mui/material-ui/blob/master/docs/data/material/guides/migration-v3/migration-v3.md).
+:::
 
 ## Introduction
 

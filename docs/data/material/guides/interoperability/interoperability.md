@@ -370,11 +370,13 @@ export default function StyledComponentsDeep2() {
 By using the MUI theme provider, the theme will be available in the theme context
 of the styled engine too (emotion or styled-components, depending on your configuration).
 
-> ⚠️ If you are **already** using a custom theme with styled-components or emotion,
-> it might not be compatible with MUI's theme specification. If it's not
-> compatible, you need to render MUI's ThemeProvider <b>first</b>. This will
-> ensure the theme structures are isolated. This is ideal for the progressive adoption
-> of MUI's components in the codebase.
+:::warning
+⚠️ If you are **already** using a custom theme with styled-components or emotion,
+it might not be compatible with MUI's theme specification. If it's not
+compatible, you need to render MUI's ThemeProvider <b>first</b>. This will
+ensure the theme structures are isolated. This is ideal for the progressive adoption
+of MUI's components in the codebase.
+:::
 
 You are encouraged to share the same theme object between MUI and the rest of your project.
 
@@ -761,8 +763,10 @@ if you like the hook-based API (`makeStyles` → `useStyles`) that [`react-jss`]
 [TSS](https://docs.tss-react.dev) integrates well with MUI and provide a better
 TypeScript support than JSS.
 
-> If you are updating from `@material-ui/core` (v4) to `@mui/material` (v5) checkout
-> [migration guide](/material-ui/guides/migration-v4/#2-use-tss-react).
+:::info
+If you are updating from `@material-ui/core` (v4) to `@mui/material` (v5) checkout
+[migration guide](/material-ui/guides/migration-v4/#2-use-tss-react).
+:::
 
 ```tsx
 import { render } from 'react-dom';
@@ -840,9 +844,13 @@ const useStyles = makeStyles<{ color: 'red' | 'blue' }>()((theme, { color }) => 
 
 For info on how to setup SSR or anything else, please refer to [the TSS documentation](https://github.com/garronej/tss-react).
 
-> ⚠️ **Keep `@emotion/styled` as a dependency of your project**. Even if you never use it explicitly,
-> it's a peer dependency of `@mui/material`.
+:::warning
+⚠️ **Keep `@emotion/styled` as a dependency of your project**. Even if you never use it explicitly,
+it's a peer dependency of `@mui/material`.
+:::
 
-> ⚠️ For [Storybook](https://storybook.js.org): As of writing this lines storybook still uses by default emotion 10.  
-> Material UI and TSS runs emotion 11 so there is [some changes](https://github.com/InseeFrLab/onyxia-ui/blob/324de62248074582b227e584c53fb2e123f5325f/.storybook/main.js#L31-L32)
-> to be made to your `.storybook/main.js` to make it uses emotion 11.
+:::warning
+⚠️ For [Storybook](https://storybook.js.org): As of writing this lines storybook still uses by default emotion 10.  
+Material UI and TSS runs emotion 11 so there is [some changes](https://github.com/InseeFrLab/onyxia-ui/blob/324de62248074582b227e584c53fb2e123f5325f/.storybook/main.js#L31-L32)
+to be made to your `.storybook/main.js` to make it uses emotion 11.
+:::

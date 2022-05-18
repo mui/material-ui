@@ -130,14 +130,13 @@ function renderInline(markdown) {
   return marked.parseInline(markdown);
 }
 
-const externs = [
+const noSEOadvantage = [
   'https://material.io/',
   'https://getbootstrap.com/',
   'https://www.amazon.com/',
   'https://materialdesignicons.com/',
   'https://www.w3.org/',
-  'https://devexpress.github.io/',
-  'https://ui-kit.co/',
+  'https://tailwindcss.com/',
 ];
 
 /**
@@ -237,7 +236,7 @@ function createRender(context) {
     renderer.link = (href, linkTitle, linkText) => {
       let more = '';
 
-      if (externs.some((domain) => href.indexOf(domain) !== -1)) {
+      if (noSEOadvantage.some((domain) => href.indexOf(domain) !== -1)) {
         more = ' target="_blank" rel="noopener nofollow"';
       }
 

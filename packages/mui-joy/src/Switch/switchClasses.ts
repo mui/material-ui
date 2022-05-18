@@ -37,19 +37,19 @@ export interface SwitchClasses {
   sizeLg: string;
   /** Styles applied to the root element if `variant="outlined"`. */
   variantOutlined: string;
-  /** Styles applied to the root element if `variant="light"`. */
-  variantLight: string;
-  /** Styles applied to the root element if `variant="contained"`. */
-  variantContained: string;
+  /** Styles applied to the root element if `variant="soft"`. */
+  variantSoft: string;
+  /** Styles applied to the root element if `variant="solid"`. */
+  variantSolid: string;
 }
 
 export type SwitchClassKey = keyof SwitchClasses;
 
 export function getSwitchUtilityClass(slot: string): string {
-  return generateUtilityClass('MuiSwitch', slot);
+  return generateUtilityClass('JoySwitch', slot);
 }
 
-const switchClasses: SwitchClasses = generateUtilityClasses('MuiSwitch', [
+const switchClasses: SwitchClasses = generateUtilityClasses('JoySwitch', [
   'root',
   'checked',
   'disabled',
@@ -68,8 +68,8 @@ const switchClasses: SwitchClasses = generateUtilityClasses('MuiSwitch', [
   'sizeMd',
   'sizeLg',
   'variantOutlined',
-  'variantLight',
-  'variantContained',
+  'variantSoft',
+  'variantSolid',
 ]);
 
 export default switchClasses;

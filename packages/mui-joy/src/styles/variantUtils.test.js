@@ -15,20 +15,20 @@ describe('variant utils', () => {
         200: '',
       }),
     ).to.equal(false);
-    expect(isVariantPalette({ text: '' })).to.equal(false);
+    expect(isVariantPalette({ plain: '' })).to.equal(false);
 
-    expect(isVariantPalette({ textColor: '' })).to.equal(true);
-    expect(isVariantPalette({ textHoverColor: '' })).to.equal(true);
-    expect(isVariantPalette({ textActiveColor: '' })).to.equal(true);
-    expect(isVariantPalette({ textDisabledColor: '' })).to.equal(true);
-    expect(isVariantPalette({ lightBg: '' })).to.equal(true);
-    expect(isVariantPalette({ lightHoverBg: '' })).to.equal(true);
-    expect(isVariantPalette({ lightActiveBg: '' })).to.equal(true);
-    expect(isVariantPalette({ lightDisabledBg: '' })).to.equal(true);
-    expect(isVariantPalette({ containedBg: '' })).to.equal(true);
-    expect(isVariantPalette({ containedHoverBg: '' })).to.equal(true);
-    expect(isVariantPalette({ containedActiveBg: '' })).to.equal(true);
-    expect(isVariantPalette({ containedDisabledBg: '' })).to.equal(true);
+    expect(isVariantPalette({ plainColor: '' })).to.equal(true);
+    expect(isVariantPalette({ plainHoverColor: '' })).to.equal(true);
+    expect(isVariantPalette({ plainActiveColor: '' })).to.equal(true);
+    expect(isVariantPalette({ plainDisabledColor: '' })).to.equal(true);
+    expect(isVariantPalette({ softBg: '' })).to.equal(true);
+    expect(isVariantPalette({ softHoverBg: '' })).to.equal(true);
+    expect(isVariantPalette({ softActiveBg: '' })).to.equal(true);
+    expect(isVariantPalette({ softDisabledBg: '' })).to.equal(true);
+    expect(isVariantPalette({ solidBg: '' })).to.equal(true);
+    expect(isVariantPalette({ solidHoverBg: '' })).to.equal(true);
+    expect(isVariantPalette({ solidActiveBg: '' })).to.equal(true);
+    expect(isVariantPalette({ solidDisabledBg: '' })).to.equal(true);
     expect(isVariantPalette({ outlinedBorder: '' })).to.equal(true);
     expect(isVariantPalette({ outlinedHoverBorder: '' })).to.equal(true);
     expect(isVariantPalette({ outlinedActiveBorder: '' })).to.equal(true);
@@ -38,8 +38,8 @@ describe('variant utils', () => {
   describe('initial state', () => {
     it('[color] should create a variant', () => {
       expect(
-        createVariantStyle('text', {
-          textColor: 'var(--any-token)',
+        createVariantStyle('plain', {
+          plainColor: 'var(--any-token)',
         }),
       ).to.deep.equal({
         color: 'var(--any-token)',
@@ -48,8 +48,8 @@ describe('variant utils', () => {
 
     it('[bg] should create a variant', () => {
       expect(
-        createVariantStyle('light', {
-          lightBg: 'var(--any-token)',
+        createVariantStyle('soft', {
+          softBg: 'var(--any-token)',
         }),
       ).to.deep.equal({
         backgroundColor: 'var(--any-token)',
@@ -72,8 +72,8 @@ describe('variant utils', () => {
   describe('hover state', () => {
     it('[color] should create a variant', () => {
       expect(
-        createVariantStyle('textHover', {
-          textHoverColor: 'var(--any-token)',
+        createVariantStyle('plainHover', {
+          plainHoverColor: 'var(--any-token)',
         }),
       ).to.deep.equal({
         cursor: 'pointer',
@@ -85,8 +85,8 @@ describe('variant utils', () => {
 
     it('[bg] should create a variant', () => {
       expect(
-        createVariantStyle('lightHover', {
-          lightHoverBg: 'var(--any-token)',
+        createVariantStyle('softHover', {
+          softHoverBg: 'var(--any-token)',
         }),
       ).to.deep.equal({
         cursor: 'pointer',
@@ -113,8 +113,8 @@ describe('variant utils', () => {
   describe('active state', () => {
     it('[color] should create a variant', () => {
       expect(
-        createVariantStyle('textActive', {
-          textActiveColor: 'var(--any-token)',
+        createVariantStyle('plainActive', {
+          plainActiveColor: 'var(--any-token)',
         }),
       ).to.deep.equal({
         '&:active': {
@@ -125,8 +125,8 @@ describe('variant utils', () => {
 
     it('[bg] should create a variant', () => {
       expect(
-        createVariantStyle('lightActive', {
-          lightActiveBg: 'var(--any-token)',
+        createVariantStyle('softActive', {
+          softActiveBg: 'var(--any-token)',
         }),
       ).to.deep.equal({
         '&:active': {
@@ -151,8 +151,8 @@ describe('variant utils', () => {
   describe('disabled state', () => {
     it('[color] should create a variant', () => {
       expect(
-        createVariantStyle('textDisabled', {
-          textDisabledColor: 'var(--any-token)',
+        createVariantStyle('plainDisabled', {
+          plainDisabledColor: 'var(--any-token)',
         }),
       ).to.deep.equal({
         '&.Mui-disabled': {
@@ -165,8 +165,8 @@ describe('variant utils', () => {
 
     it('[bg] should create a variant', () => {
       expect(
-        createVariantStyle('lightDisabled', {
-          lightDisabledBg: 'var(--any-token)',
+        createVariantStyle('softDisabled', {
+          softDisabledBg: 'var(--any-token)',
         }),
       ).to.deep.equal({
         '&.Mui-disabled': {
@@ -265,45 +265,45 @@ describe('variant utils', () => {
 
   it('should not include invalid value to variant', () => {
     expect(
-      createVariantStyle('text', {
-        textColor: 'var(--any-token)',
-        textHoverColor: '',
-        textActiveColor: null,
-        textDisabledColor: undefined,
+      createVariantStyle('plain', {
+        plainColor: 'var(--any-token)',
+        plainHoverColor: '',
+        plainActiveColor: null,
+        plainDisabledColor: undefined,
       }),
     ).to.deep.equal({
       color: 'var(--any-token)',
     });
   });
 
-  it('create correct context color for text variant', () => {
+  it('create correct context color for plain variant', () => {
     const vars = {
-      textColor: 'var(--joy-variant-textColor)',
-      textHoverColor: `var(--joy-variant-textHoverColor, var(--joy-variant-textColor))`,
-      textHoverBg: 'var(--joy-variant-textHoverBg)',
-      textActiveColor: 'var(--joy-variant-textActiveColor, var(--joy-variant-textHoverColor))',
-      textDisabledColor: 'var(--joy-variant-textDisabledColor)',
+      plainColor: 'var(--joy-variant-plainColor)',
+      plainHoverColor: `var(--joy-variant-plainHoverColor, var(--joy-variant-plainColor))`,
+      plainHoverBg: 'var(--joy-variant-plainHoverBg)',
+      plainActiveColor: 'var(--joy-variant-plainActiveColor, var(--joy-variant-plainHoverColor))',
+      plainDisabledColor: 'var(--joy-variant-plainDisabledColor)',
     };
-    expect(createVariantStyle('text', vars)).to.deep.equal({
-      color: 'var(--joy-variant-textColor)',
+    expect(createVariantStyle('plain', vars)).to.deep.equal({
+      color: 'var(--joy-variant-plainColor)',
     });
-    expect(createVariantStyle('textHover', vars)).to.deep.equal({
+    expect(createVariantStyle('plainHover', vars)).to.deep.equal({
       cursor: 'pointer',
       '&:hover': {
-        color: 'var(--joy-variant-textHoverColor, var(--joy-variant-textColor))',
-        backgroundColor: 'var(--joy-variant-textHoverBg)',
+        color: 'var(--joy-variant-plainHoverColor, var(--joy-variant-plainColor))',
+        backgroundColor: 'var(--joy-variant-plainHoverBg)',
       },
     });
-    expect(createVariantStyle('textActive', vars)).to.deep.equal({
+    expect(createVariantStyle('plainActive', vars)).to.deep.equal({
       '&:active': {
-        color: 'var(--joy-variant-textActiveColor, var(--joy-variant-textHoverColor))',
+        color: 'var(--joy-variant-plainActiveColor, var(--joy-variant-plainHoverColor))',
       },
     });
-    expect(createVariantStyle('textDisabled', vars)).to.deep.equal({
+    expect(createVariantStyle('plainDisabled', vars)).to.deep.equal({
       '&.Mui-disabled': {
         pointerEvents: 'none',
         cursor: 'default',
-        color: 'var(--joy-variant-textDisabledColor)',
+        color: 'var(--joy-variant-plainDisabledColor)',
       },
     });
   });
@@ -337,29 +337,29 @@ describe('variant utils', () => {
       const theme = {
         palette: {
           customColor: {
-            lightColor: 'some-color',
-            lightBg: 'some-color',
-            lightHoverColor: 'some-color',
+            softColor: 'some-color',
+            softBg: 'some-color',
+            softHoverColor: 'some-color',
           },
         },
         vars: {
           palette: {
             customColor: {
-              lightColor: 'var(--any-token)',
-              lightBg: 'var(--any-token)',
-              lightHoverColor: 'var(--any-token)',
+              softColor: 'var(--any-token)',
+              softBg: 'var(--any-token)',
+              softHoverColor: 'var(--any-token)',
             },
           },
         },
       };
-      const lightResult = createVariant('light', theme);
-      expect(lightResult.customColor).to.deep.equal({
+      const softResult = createVariant('soft', theme);
+      expect(softResult.customColor).to.deep.equal({
         color: 'var(--any-token)',
         backgroundColor: 'var(--any-token)',
       });
 
-      const lightHoverResult = createVariant('lightHover', theme);
-      expect(lightHoverResult.customColor).to.deep.equal({
+      const softHoverResult = createVariant('softHover', theme);
+      expect(softHoverResult.customColor).to.deep.equal({
         cursor: 'pointer',
         '&:hover': {
           color: 'var(--any-token)',
@@ -368,8 +368,8 @@ describe('variant utils', () => {
     });
 
     it('auto generate "context"', () => {
-      expect(createVariant('text').context).to.deep.equal({
-        color: 'var(--variant-textColor)',
+      expect(createVariant('plain').context).to.deep.equal({
+        color: 'var(--variant-plainColor)',
       });
       expect(createVariant('outlined').context).to.deep.equal({
         color: 'var(--variant-outlinedColor)',
@@ -377,29 +377,29 @@ describe('variant utils', () => {
         border: 'var(--variant-outlinedBorderWidth) solid',
         borderColor: 'var(--variant-outlinedBorder)',
       });
-      expect(createVariant('light').context).to.deep.equal({
-        color: 'var(--variant-lightColor)',
-        backgroundColor: 'var(--variant-lightBg)',
+      expect(createVariant('soft').context).to.deep.equal({
+        color: 'var(--variant-softColor)',
+        backgroundColor: 'var(--variant-softBg)',
       });
-      expect(createVariant('contained').context).to.deep.equal({
-        backgroundColor: 'var(--variant-containedBg)',
+      expect(createVariant('solid').context).to.deep.equal({
+        backgroundColor: 'var(--variant-solidBg)',
       });
     });
   });
 
   describe('createContainedOverrides', () => {
-    it('automatically create contained overrides if the variable is in the correct format', () => {
+    it('automatically create solid overrides if the variable is in the correct format', () => {
       const result = createContainedOverrides({
         prefix: 'foo',
         palette: {
           primary: {
-            textColor: '',
+            plainColor: '',
           },
           secondary: {
-            lightBg: '',
+            softBg: '',
           },
           alternate: {
-            containedBg: '',
+            solidBg: '',
           },
         },
       });
@@ -407,15 +407,15 @@ describe('variant utils', () => {
       sinon.assert.match(result, {
         primary: {
           '--foo-palette-text-primary': '#fff',
-          '--variant-textColor': 'var(--foo-palette-primary-100)',
+          '--variant-plainColor': 'var(--foo-palette-primary-100)',
         },
         secondary: {
           '--foo-palette-text-secondary': 'var(--foo-palette-secondary-100)',
-          '--variant-lightBg': 'rgba(255 255 255 / 0.12)',
+          '--variant-softBg': 'rgba(255 255 255 / 0.12)',
         },
         alternate: {
           '--foo-palette-text-tertiary': 'var(--foo-palette-alternate-200)',
-          '--variant-containedBg': 'var(--foo-palette-alternate-700, rgba(0 0 0 / 0.16))',
+          '--variant-solidBg': 'var(--foo-palette-alternate-700, rgba(0 0 0 / 0.16))',
         },
       });
     });

@@ -24,13 +24,15 @@ You can [search the full list of these icons](/material-ui/material-icons/).
 
 ### Installation
 
-Install the package in your project directory with:
+To install and save in your `package.json` dependencies, run the command below using **npm**:
 
 ```sh
-// with npm
 npm install @mui/icons-material
+```
 
-// with yarn
+Or **yarn**:
+
+```sh
 yarn add @mui/icons-material
 ```
 
@@ -66,7 +68,9 @@ Each Material icon also has a "theme": Filled (default), Outlined, Rounded, Two-
 - Twotone theme is exported as `@mui/icons-material/DeleteTwoTone`,
 - Sharp theme is exported as `@mui/icons-material/DeleteSharp`.
 
-> Note: The Material Design guidelines name the icons using "snake_case" naming (for example `delete_forever`, `add_a_photo`), while `@mui/icons-material` exports the respective icons using "PascalCase" naming (for example `DeleteForever`, `AddAPhoto`). There are three exceptions to this naming rule: `3d_rotation` exported as `ThreeDRotation`, `4k` exported as `FourK`, and `360` exported as `ThreeSixty`.
+:::info
+Note: The Material Design guidelines name the icons using "snake_case" naming (for example `delete_forever`, `add_a_photo`), while `@mui/icons-material` exports the respective icons using "PascalCase" naming (for example `DeleteForever`, `AddAPhoto`). There are three exceptions to this naming rule: `3d_rotation` exported as `ThreeDRotation`, `4k` exported as `FourK`, and `360` exported as `ThreeSixty`.
+:::
 
 {{"demo": "SvgMaterialIcons.js"}}
 

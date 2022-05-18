@@ -12,7 +12,7 @@ describe('Joy <FormLabel />', () => {
     inheritComponent: 'label',
     render,
     ThemeProvider,
-    muiName: 'MuiFormLabel',
+    muiName: 'JoyFormLabel',
     refInstanceof: window.HTMLLabelElement,
     skip: ['componentsProp', 'classesRoot', 'themeVariants'],
   }));

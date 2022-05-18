@@ -23,7 +23,7 @@ const useUtilityClasses = (ownerState: CardOverflowProps) => {
 };
 
 const CardOverflowRoot = styled('div', {
-  name: 'MuiCardOverflow',
+  name: 'JoyCardOverflow',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: CardOverflowProps }>(({ theme, ownerState }) => {
@@ -57,7 +57,7 @@ const CardOverflowRoot = styled('div', {
 const CardOverflow = React.forwardRef(function CardOverflow(inProps, ref) {
   const props = useThemeProps<typeof inProps & CardOverflowProps>({
     props: inProps,
-    name: 'MuiCardOverflow',
+    name: 'JoyCardOverflow',
   });
 
   const {
@@ -65,7 +65,7 @@ const CardOverflow = React.forwardRef(function CardOverflow(inProps, ref) {
     component = 'div',
     children,
     color = 'neutral',
-    variant = 'text',
+    variant = 'plain',
     ...other
   } = props;
 
@@ -125,9 +125,9 @@ CardOverflow.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * The variant to use.
-   * @default 'text'
+   * @default 'plain'
    */
-  variant: PropTypes.oneOf(['contained', 'light', 'outlined', 'text']),
+  variant: PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
 } as any;
 
 export default CardOverflow;

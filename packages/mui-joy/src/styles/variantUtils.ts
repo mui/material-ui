@@ -7,7 +7,7 @@ export const isVariantPalette = (colorPalette: string | number | Record<string, 
   typeof colorPalette === 'object' &&
   Object.keys(colorPalette).some((value) =>
     value.match?.(
-      /^(text(Hover|Active|Disabled)?(Color|Bg)|outlined(Hover|Active|Disabled)?(Color|Border|Bg)|light(Hover|Active|Disabled)?(Color|Bg)|contained(Hover|Active|Disabled)?(Color|Bg))$/,
+      /^(plain(Hover|Active|Disabled)?(Color|Bg)|outlined(Hover|Active|Disabled)?(Color|Border|Bg)|soft(Hover|Active|Disabled)?(Color|Bg)|solid(Hover|Active|Disabled)?(Color|Bg))$/,
     ),
   );
 
@@ -30,10 +30,10 @@ const createPrefixVar = (prefix: string | undefined | null) => {
 /**
  *
  * @param name variant name
- * @example 'text'
+ * @example 'plain'
  *
  * @param palette object that contains palette tokens
- * @example { primary: { textColor: '', textHoverColor: '', ...tokens }, ...other palete }
+ * @example { primary: { plainColor: '', plainHoverColor: '', ...tokens }, ...other palete }
  *
  * @param getCssVar a function that receive variant token and return a CSS variable
  *
@@ -106,8 +106,8 @@ export const createVariantStyle = (
 
 interface Theme {
   prefix?: string;
-  palette: Record<Exclude<DefaultColorPalette, 'context'>, PaletteRange>;
-  vars: { palette: Record<Exclude<DefaultColorPalette, 'context'>, PaletteRange> };
+  palette: Record<DefaultColorPalette, PaletteRange>;
+  vars: { palette: Record<DefaultColorPalette, PaletteRange> };
 }
 
 export const createTextOverrides = (theme: Theme) => {
@@ -155,11 +155,11 @@ export const createContainedOverrides = (theme: Theme) => {
           [prefixVar('--palette-text-tertiary')]: getCssVar(`palette-${color}-200`),
           '--variant-focusVisible': `rgba(255 255 255 / 0.32)`,
 
-          '--variant-textColor': getCssVar(`palette-${color}-100`),
-          '--variant-textHoverColor': `#fff`,
-          '--variant-textHoverBg': `rgba(255 255 255 / 0.12)`,
-          '--variant-textActiveBg': `rgba(255 255 255 / 0.2)`,
-          '--variant-textDisabledColor': getCssVar(`palette-${color}-300`),
+          '--variant-plainColor': getCssVar(`palette-${color}-100`),
+          '--variant-plainHoverColor': `#fff`,
+          '--variant-plainHoverBg': `rgba(255 255 255 / 0.12)`,
+          '--variant-plainActiveBg': `rgba(255 255 255 / 0.2)`,
+          '--variant-plainDisabledColor': getCssVar(`palette-${color}-300`),
 
           '--variant-outlinedColor': getCssVar(`palette-${color}-100`),
           '--variant-outlinedBorder': getCssVar(`palette-${color}-300`),
@@ -170,18 +170,18 @@ export const createContainedOverrides = (theme: Theme) => {
           '--variant-outlinedDisabledColor': getCssVar(`palette-${color}-300`),
           '--variant-outlinedDisabledBorder': `rgba(255 255 255 / 0.2)`,
 
-          '--variant-lightColor': '#fff',
-          '--variant-lightBg': `rgba(255 255 255 / 0.12)`,
-          '--variant-lightHoverBg': `rgba(255 255 255 / 0.2)`,
-          '--variant-lightActiveBg': `rgba(255 255 255 / 0.08)`,
-          '--variant-lightDisabledColor': getCssVar(`palette-${color}-300`),
-          '--variant-lightDisabledBg': `rgba(255 255 255 / 0.08)`,
+          '--variant-softColor': '#fff',
+          '--variant-softBg': `rgba(255 255 255 / 0.12)`,
+          '--variant-softHoverBg': `rgba(255 255 255 / 0.2)`,
+          '--variant-softActiveBg': `rgba(255 255 255 / 0.08)`,
+          '--variant-softDisabledColor': getCssVar(`palette-${color}-300`),
+          '--variant-softDisabledBg': `rgba(255 255 255 / 0.08)`,
 
-          '--variant-containedBg': getCssVar(`palette-${color}-700`, 'rgba(0 0 0 / 0.16)'),
-          '--variant-containedHoverBg': 'rgba(0 0 0 / 0.32)',
-          '--variant-containedActiveBg': 'rgba(0 0 0 / 0.48)',
-          '--variant-containedDisabledColor': getCssVar(`palette-${color}-300`),
-          '--variant-containedDisabledBg': `rgba(255 255 255 / 0.08)`,
+          '--variant-solidBg': getCssVar(`palette-${color}-700`, 'rgba(0 0 0 / 0.16)'),
+          '--variant-solidHoverBg': 'rgba(0 0 0 / 0.32)',
+          '--variant-solidActiveBg': 'rgba(0 0 0 / 0.48)',
+          '--variant-solidDisabledColor': getCssVar(`palette-${color}-300`),
+          '--variant-solidDisabledBg': `rgba(255 255 255 / 0.08)`,
         },
       };
     }
@@ -215,11 +215,11 @@ export const createVariant = (variant: VariantKey, theme?: Theme) => {
   }
 
   result.context = createVariantStyle(variant, {
-    textColor: 'var(--variant-textColor)',
-    textHoverColor: `var(--variant-textHoverColor)`,
-    textHoverBg: 'var(--variant-textHoverBg)',
-    textActiveBg: 'var(--variant-textActiveBg)',
-    textDisabledColor: 'var(--variant-textDisabledColor)',
+    plainColor: 'var(--variant-plainColor)',
+    plainHoverColor: `var(--variant-plainHoverColor)`,
+    plainHoverBg: 'var(--variant-plainHoverBg)',
+    plainActiveBg: 'var(--variant-plainActiveBg)',
+    plainDisabledColor: 'var(--variant-plainDisabledColor)',
 
     outlinedColor: 'var(--variant-outlinedColor)',
     outlinedBorder: 'var(--variant-outlinedBorder)',
@@ -230,18 +230,18 @@ export const createVariant = (variant: VariantKey, theme?: Theme) => {
     outlinedDisabledColor: `var(--variant-outlinedDisabledColor)`,
     outlinedDisabledBorder: `var(--variant-outlinedDisabledBorder)`,
 
-    lightColor: 'var(--variant-lightColor)',
-    lightBg: 'var(--variant-lightBg)',
-    lightHoverBg: 'var(--variant-lightHoverBg)',
-    lightActiveBg: 'var(--variant-lightActiveBg)',
-    lightDisabledColor: 'var(--variant-lightDisabledColor)',
-    lightDisabledBg: 'var(--variant-lightDisabledBg)',
+    softColor: 'var(--variant-softColor)',
+    softBg: 'var(--variant-softBg)',
+    softHoverBg: 'var(--variant-softHoverBg)',
+    softActiveBg: 'var(--variant-softActiveBg)',
+    softDisabledColor: 'var(--variant-softDisabledColor)',
+    softDisabledBg: 'var(--variant-softDisabledBg)',
 
-    containedBg: 'var(--variant-containedBg)',
-    containedHoverBg: 'var(--variant-containedHoverBg)',
-    containedActiveBg: 'var(--variant-containedActiveBg)',
-    containedDisabledColor: 'var(--variant-containedDisabledColor)',
-    containedDisabledBg: 'var(--variant-containedDisabledBg)',
+    solidBg: 'var(--variant-solidBg)',
+    solidHoverBg: 'var(--variant-solidHoverBg)',
+    solidActiveBg: 'var(--variant-solidActiveBg)',
+    solidDisabledColor: 'var(--variant-solidDisabledColor)',
+    solidDisabledBg: 'var(--variant-solidDisabledBg)',
   });
   return result;
 };

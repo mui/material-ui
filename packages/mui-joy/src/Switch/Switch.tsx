@@ -38,7 +38,7 @@ const switchColorVariables =
     return {
       '--Switch-track-background': theme.vars.palette[color!]?.[`${variant!}${data.state || ''}Bg`],
       '--Switch-track-color':
-        ownerState.variant === 'contained' ? '#fff' : theme.vars.palette[color!]?.textColor,
+        ownerState.variant === 'solid' ? '#fff' : theme.vars.palette[color!]?.plainColor,
       '--Switch-track-borderColor':
         variant === 'outlined'
           ? theme.vars.palette[color!]?.[`${variant!}${data.state || ''}Border`]
@@ -46,12 +46,12 @@ const switchColorVariables =
       '--Switch-thumb-background':
         theme.vars.palette[color!]?.[`${variant!}${data.state || ''}Color`],
       '--Switch-thumb-color':
-        ownerState.variant === 'contained' ? theme.vars.palette[color!]?.textColor : '#fff',
+        ownerState.variant === 'solid' ? theme.vars.palette[color!]?.plainColor : '#fff',
     };
   };
 
 const SwitchRoot = styled('span', {
-  name: 'MuiSwitch',
+  name: 'JoySwitch',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: SwitchProps }>(({ theme, ownerState }) => {
@@ -60,7 +60,7 @@ const SwitchRoot = styled('span', {
     ...(ownerState.variant === 'outlined' && theme.variants.outlined[ownerState.color!]),
     '--Switch-track-radius': theme.vars.radius.lg,
     '--Switch-thumb-shadow':
-      ownerState.variant === 'light' ? 'none' : '0 0 0 1px var(--Switch-track-background)', // create border-like if the thumb is bigger than the track
+      ownerState.variant === 'soft' ? 'none' : '0 0 0 1px var(--Switch-track-background)', // create border-like if the thumb is bigger than the track
     ...(ownerState.size === 'sm' && {
       '--Switch-track-width': '40px',
       '--Switch-track-height': '20px',
@@ -113,7 +113,7 @@ const SwitchRoot = styled('span', {
 });
 
 const SwitchAction = styled('div', {
-  name: 'MuiSwitch',
+  name: 'JoySwitch',
   slot: 'Action',
   overridesResolver: (props, styles) => styles.action,
 })<{ ownerState: SwitchProps }>(({ theme }) => ({
@@ -127,7 +127,7 @@ const SwitchAction = styled('div', {
 }));
 
 const SwitchInput = styled('input', {
-  name: 'MuiSwitch',
+  name: 'JoySwitch',
   slot: 'Input',
   overridesResolver: (props, styles) => styles.input,
 })<{ ownerState: SwitchProps }>({
@@ -140,7 +140,7 @@ const SwitchInput = styled('input', {
 });
 
 const SwitchTrack = styled('span', {
-  name: 'MuiSwitch',
+  name: 'JoySwitch',
   slot: 'Track',
   overridesResolver: (props, styles) => styles.track,
 })<{ ownerState: SwitchProps & { focusVisible: boolean } }>(({ theme, ownerState }) => ({
@@ -169,7 +169,7 @@ const SwitchTrack = styled('span', {
 }));
 
 const SwitchThumb = styled('span', {
-  name: 'MuiSwitch',
+  name: 'JoySwitch',
   slot: 'Thumb',
   overridesResolver: (props, styles) => styles.thumb,
 })<{ ownerState: SwitchProps }>({
@@ -194,7 +194,7 @@ const SwitchThumb = styled('span', {
 });
 
 const SwitchStartDecorator = styled('span', {
-  name: 'MuiSwitch',
+  name: 'JoySwitch',
   slot: 'StartDecorator',
   overridesResolver: (props, styles) => styles.startDecorator,
 })<{ ownerState: SwitchProps }>({
@@ -203,7 +203,7 @@ const SwitchStartDecorator = styled('span', {
 });
 
 const SwitchEndDecorator = styled('span', {
-  name: 'MuiSwitch',
+  name: 'JoySwitch',
   slot: 'EndDecorator',
   overridesResolver: (props, styles) => styles.endDecorator,
 })<{ ownerState: SwitchProps }>({
@@ -227,7 +227,7 @@ const Switch = React.forwardRef<HTMLSpanElement, SwitchProps>(function Switch(in
     readOnly: readOnlyProp,
     required,
     color,
-    variant = 'contained',
+    variant = 'solid',
     size = 'md',
     startDecorator,
     endDecorator,
@@ -431,10 +431,10 @@ Switch.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * The variant to use.
-   * @default 'contained'
+   * @default 'solid'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['contained', 'light', 'outlined']),
+    PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
     PropTypes.string,
   ]),
 } as any;
