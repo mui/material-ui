@@ -12,10 +12,17 @@ import ListDivider from '@mui/joy/ListDivider';
 import ListItemButton from '@mui/joy/ListItemButton';
 import ListItemDecorator from '@mui/joy/ListItemDecorator';
 import ListItemContent from '@mui/joy/ListItemContent';
+
+// Icons import
 import InboxRoundedIcon from '@mui/icons-material/InboxRounded';
 import OutboxRoundedIcon from '@mui/icons-material/OutboxRounded';
-import FolderOpenRoundedIcon from '@mui/icons-material/FolderOpenRounded';
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
+import DarkModeRoundedIcon from '@mui/icons-material/DarkModeRounded';
+import GridViewRoundedIcon from '@mui/icons-material/GridViewRounded';
+import FolderRoundedIcon from '@mui/icons-material/FolderRounded';
+import AssistantPhotoRoundedIcon from '@mui/icons-material/AssistantPhotoRounded';
+import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
+import AttachEmailRoundedIcon from '@mui/icons-material/AttachEmailRounded';
 
 export default function EmailExample() {
   return (
@@ -34,7 +41,7 @@ export default function EmailExample() {
           gridTemplateColumns: {
             xs: '0px 0px 1fr',
             sm: '64px minmax(200px, 1fr) minmax(500px, 1fr)',
-            md: 'minmax(160px, 220px) minmax(200px, 400px) minmax(700px, 1fr)',
+            md: 'minmax(160px, 230px) minmax(200px, 400px) minmax(700px, 1fr)',
           },
           gridTemplateRows: '64px 1fr',
           minHeight: '100vh',
@@ -55,7 +62,7 @@ export default function EmailExample() {
         >
           <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
             <IconButton size="sm">
-              <OutboxRoundedIcon />
+              <AttachEmailRoundedIcon />
             </IconButton>
             <Typography fontWeight={700} sx={{ ml: 2 }}>
               Email
@@ -82,13 +89,10 @@ export default function EmailExample() {
           />
           <Box sx={{ display: 'flex', flexDirection: 'row', gap: 1.5 }}>
             <IconButton size="sm" variant="outlined" color="neutral">
-              <OutboxRoundedIcon color="primary" />
+              <GridViewRoundedIcon color="primary" />
             </IconButton>
             <IconButton size="sm" variant="outlined" color="neutral">
-              <OutboxRoundedIcon color="primary" />
-            </IconButton>
-            <IconButton size="sm" variant="outlined" color="neutral">
-              <OutboxRoundedIcon color="primary" />
+              <DarkModeRoundedIcon color="primary" />
             </IconButton>
           </Box>
         </Box>
@@ -113,7 +117,6 @@ export default function EmailExample() {
             size="sm"
             sx={{
               '--List-item-radius': '8px',
-              '--List-decorator-width': '32px',
               '& .MuiListItemButton-root': { p: '8px' },
             }}
           >
@@ -130,15 +133,31 @@ export default function EmailExample() {
                 <ListItemDecorator sx={{ color: 'inherit' }}>
                   <OutboxRoundedIcon fontSize="small" />
                 </ListItemDecorator>
-                <ListItemContent>Inbox</ListItemContent>
+                <ListItemContent>Sent</ListItemContent>
               </ListItemButton>
             </ListItem>
             <ListItem>
               <ListItemButton>
                 <ListItemDecorator sx={{ color: 'inherit' }}>
-                  <FolderOpenRoundedIcon fontSize="small" />
+                  <FolderRoundedIcon fontSize="small" />
                 </ListItemDecorator>
-                <ListItemContent>Inbox</ListItemContent>
+                <ListItemContent>Draft</ListItemContent>
+              </ListItemButton>
+            </ListItem>
+            <ListItem>
+              <ListItemButton>
+                <ListItemDecorator sx={{ color: 'inherit' }}>
+                  <AssistantPhotoRoundedIcon fontSize="small" />
+                </ListItemDecorator>
+                <ListItemContent>Flagged</ListItemContent>
+              </ListItemButton>
+            </ListItem>
+            <ListItem>
+              <ListItemButton>
+                <ListItemDecorator sx={{ color: 'inherit' }}>
+                  <DeleteRoundedIcon fontSize="small" />
+                </ListItemDecorator>
+                <ListItemContent>Trash</ListItemContent>
               </ListItemButton>
             </ListItem>
           </List>
