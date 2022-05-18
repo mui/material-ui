@@ -394,8 +394,8 @@ export default function EmailExample() {
                   <Typography level="body3">14 Oct 2016</Typography>
                 </Box>
               </Box>
-              <Box sx={{ display: 'flex', flexDirection: 'row', gap: 1.5 }}>
-                <Button variant="outlined" color="neutral">
+              <Box sx={{ display: 'flex', height: '32px', flexDirection: 'row', gap: 1.5 }}>
+                <Button variant="outlined" color="neutral" size="sm">
                   <Typography level="body1" color="primary.600">
                     Reply
                   </Typography>
