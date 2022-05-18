@@ -201,8 +201,8 @@ export default function BadgeUsage() {
                         disableIcon
                         overlay
                         sx={{
-                          '& .MuiRadio-action': { bgcolor: `${value}.500` },
-                          '& .MuiRadio-label': {
+                          '& .JoyRadio-action': { bgcolor: `${value}.500` },
+                          '& .JoyRadio-label': {
                             fontSize: '10px',
                             color: 'text.secondary',
                             position: 'absolute',
@@ -212,8 +212,8 @@ export default function BadgeUsage() {
                             opacity: 0,
                             transition: '0.2s',
                           },
-                          '&:hover, &.Mui-focusVisible': {
-                            '& .MuiRadio-label': {
+                          '&:hover, &.Joy-focusVisible': {
+                            '& .JoyRadio-label': {
                               opacity: 1,
                               bottom: '-1.25rem',
                             },
