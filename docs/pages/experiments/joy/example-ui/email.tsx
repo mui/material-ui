@@ -4,6 +4,8 @@ import { CssVarsProvider, Theme } from '@mui/joy/styles';
 import Box from '@mui/joy/Box';
 import Sheet from '@mui/joy/Sheet';
 import Typography from '@mui/joy/Typography';
+import TextField from '@mui/joy/TextField';
+import IconButton from '@mui/joy/IconButton';
 import List from '@mui/joy/List';
 import ListItem from '@mui/joy/ListItem';
 import ListDivider from '@mui/joy/ListDivider';
@@ -13,6 +15,7 @@ import ListItemContent from '@mui/joy/ListItemContent';
 import InboxRoundedIcon from '@mui/icons-material/InboxRounded';
 import OutboxRoundedIcon from '@mui/icons-material/OutboxRounded';
 import FolderOpenRoundedIcon from '@mui/icons-material/FolderOpenRounded';
+import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
 
 export default function EmailExample() {
   return (
@@ -42,13 +45,54 @@ export default function EmailExample() {
           sx={{
             p: 2,
             display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'space-between',
             alignItems: 'center',
             gridColumn: '1 / -1',
             borderBottom: '1px solid',
             borderColor: 'divider',
           }}
         >
-          Header
+          <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+            <IconButton size="sm">
+              <OutboxRoundedIcon />
+            </IconButton>
+            <Typography fontWeight={700} sx={{ ml: 2 }}>
+              Email
+            </Typography>
+          </Box>
+          <TextField
+            size="sm"
+            placeholder="Search anything..."
+            startDecorator={<SearchRoundedIcon />}
+            endDecorator={
+              <IconButton
+                variant="outlined"
+                size="sm"
+                color="neutral"
+                sx={{ width: '24px', height: '24px' }}
+              >
+                <Typography fontWeight={700}>/</Typography>
+              </IconButton>
+            }
+            sx={{
+              minWidth: {
+                xs: '100%',
+                sm: '500px',
+              },
+            }}
+          />
+          <Box sx={{ display: 'flex', flexDirection: 'row', gap: 2 }}>
+            <IconButton size="sm" variant="outlined" color="neutral">
+              <OutboxRoundedIcon color="primary" />
+            </IconButton>
+            <IconButton size="sm" variant="outlined" color="neutral">
+              <OutboxRoundedIcon color="primary" />
+            </IconButton>
+            <IconButton size="sm" variant="outlined" color="neutral">
+              <OutboxRoundedIcon color="primary" />
+            </IconButton>
+          </Box>
         </Box>
         <Box
           className="Navigation"
