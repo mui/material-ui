@@ -188,7 +188,7 @@ RadioGroup.propTypes /* remove-proptypes */ = {
    * The variant to use.
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['contained', 'light', 'outlined']),
+    PropTypes.oneOf(['outlined', 'soft', 'solid']),
     PropTypes.string,
   ]),
 } as any;

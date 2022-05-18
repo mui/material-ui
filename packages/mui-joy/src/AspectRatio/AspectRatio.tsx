@@ -180,7 +180,10 @@ AspectRatio.propTypes /* remove-proptypes */ = {
    * The variant to use.
    * @default 'soft'
    */
-  variant: PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
+  variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
+    PropTypes.string,
+  ]),
 } as any;
 
 export default AspectRatio;

@@ -434,7 +434,7 @@ Switch.propTypes /* remove-proptypes */ = {
    * @default 'solid'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['contained', 'light', 'outlined']),
+    PropTypes.oneOf(['outlined', 'soft', 'solid']),
     PropTypes.string,
   ]),
 } as any;
