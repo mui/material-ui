@@ -85,6 +85,11 @@ export default function extendTheme(options = {}, ...args) {
       if (colors.secondary) {
         palette[color].secondaryChannel = colorChannel(colors.secondary);
       }
+
+      // Action colors: action.activeChannel
+      if (colors.active) {
+        palette[color].activeChannel = colorChannel(colors.active);
+      }
     });
   });
 
