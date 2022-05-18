@@ -298,7 +298,7 @@ export default function EmailExample() {
                   </Box>
                   <Box>
                     <Typography sx={{ mb: 0.5 }}>Blank slates for new website</Typography>
-                    <Typography level="body2">Hi, Thomas, You don't have...</Typography>
+                    <Typography level="body2">Hi, Thomas, You don&apos;t have...</Typography>
                   </Box>
                 </Box>
               </ListItemButton>
@@ -330,7 +330,7 @@ export default function EmailExample() {
                   </Box>
                   <Box>
                     <Typography sx={{ mb: 0.5 }}>Blank slates for new website</Typography>
-                    <Typography level="body2">Hi, Thomas, You don't have...</Typography>
+                    <Typography level="body2">Hi, Thomas, You don&apos;t have...</Typography>
                   </Box>
                 </Box>
               </ListItemButton>
@@ -362,7 +362,7 @@ export default function EmailExample() {
                   </Box>
                   <Box>
                     <Typography sx={{ mb: 0.5 }}>Blank slates for new website</Typography>
-                    <Typography level="body2">Hi, Thomas, You don't have...</Typography>
+                    <Typography level="body2">Hi, Thomas, You don&apos;t have...</Typography>
                   </Box>
                 </Box>
               </ListItemButton>
