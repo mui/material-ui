@@ -330,7 +330,7 @@ describe('ModalManager', () => {
       inputHiddenSibling.setAttribute('type', 'hidden');
       container2.appendChild(inputHiddenSibling);
 
-      const numberOfChildren = 16
+      const numberOfChildren = 16;
       expect(container2.children.length).equal(numberOfChildren);
 
       modalManager.add({}, container2);
