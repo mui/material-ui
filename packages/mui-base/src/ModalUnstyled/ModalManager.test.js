@@ -329,25 +329,15 @@ describe('ModalManager', () => {
       const inputHiddenSibling = document.createElement('input');
       inputHiddenSibling.setAttribute('type', 'hidden');
       container2.appendChild(inputHiddenSibling);
-      expect(container2.children.length).equal(16);
+
+      const numberOfChildren = 16
+      expect(container2.children.length).equal(numberOfChildren);
 
       modalManager.add({}, container2);
       expect(container2.children[0]).toBeAriaHidden();
-      expect(container2.children[1]).not.toBeAriaHidden();
-      expect(container2.children[2]).not.toBeAriaHidden();
-      expect(container2.children[3]).not.toBeAriaHidden();
-      expect(container2.children[4]).not.toBeAriaHidden();
-      expect(container2.children[5]).not.toBeAriaHidden();
-      expect(container2.children[6]).not.toBeAriaHidden();
-      expect(container2.children[7]).not.toBeAriaHidden();
-      expect(container2.children[8]).not.toBeAriaHidden();
-      expect(container2.children[9]).not.toBeAriaHidden();
-      expect(container2.children[10]).not.toBeAriaHidden();
-      expect(container2.children[11]).not.toBeAriaHidden();
-      expect(container2.children[12]).not.toBeAriaHidden();
-      expect(container2.children[13]).not.toBeAriaHidden();
-      expect(container2.children[14]).not.toBeAriaHidden();
-      expect(container2.children[15]).not.toBeAriaHidden();
+      for (let i = 1; i < numberOfChildren; i += 1) {
+        expect(container2.children[i]).not.toBeAriaHidden();
+      }
     });
 
     it('should add aria-hidden to previous modals', () => {

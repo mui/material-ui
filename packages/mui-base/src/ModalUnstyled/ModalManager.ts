@@ -31,7 +31,7 @@ function getPaddingRight(element: Element): number {
   return parseInt(ownerWindow(element).getComputedStyle(element).paddingRight, 10) || 0;
 }
 
-function isAriaHiddenForbiddenOnSibling(sibling: Element): boolean {
+function isAriaHiddenForbiddenOnElement(element: Element): boolean {
   // The forbidden HTML tags are the ones from ARIA specification that
   // can be children of body and can't have aria-hidden attribute.
   // cf. https://www.w3.org/TR/html-aria/#docconformance
@@ -51,8 +51,8 @@ function isAriaHiddenForbiddenOnSibling(sibling: Element): boolean {
     'SOURCE',
     'TRACK',
   ];
-  const isForbiddenTagName = forbiddenTagNames.indexOf(sibling.tagName) !== -1;
-  const isInputHidden = sibling.tagName === 'INPUT' && sibling.getAttribute('type') === 'hidden';
+  const isForbiddenTagName = forbiddenTagNames.indexOf(element.tagName) !== -1;
+  const isInputHidden = element.tagName === 'INPUT' && element.getAttribute('type') === 'hidden';
   return isForbiddenTagName || isInputHidden;
 }
 
@@ -67,7 +67,7 @@ function ariaHiddenSiblings(
 
   [].forEach.call(container.children, (element: Element) => {
     const isNotExcludedElement = blacklist.indexOf(element) === -1;
-    const isNotForbiddenElement = !isAriaHiddenForbiddenOnSibling(element);
+    const isNotForbiddenElement = !isAriaHiddenForbiddenOnElement(element);
     if (isNotExcludedElement && isNotForbiddenElement) {
       ariaHidden(element, show);
     }
