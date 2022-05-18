@@ -61,10 +61,10 @@ export default function EmailExample() {
           }}
         >
           <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-            <IconButton size="sm">
+            <IconButton size="sm" sx={{ bgcolor: 'primary.100' }}>
               <AttachEmailRoundedIcon />
             </IconButton>
-            <Typography fontWeight={700} sx={{ ml: 2 }}>
+            <Typography fontWeight={700} sx={{ ml: 1 }}>
               Email
             </Typography>
           </Box>
@@ -370,7 +370,29 @@ export default function EmailExample() {
           </List>
         </Box>
         <Box component="main" className="Main" sx={{ p: 2, bgcolor: 'background.level1' }}>
-          <Sheet variant="outlined" sx={{ minHeight: 500, borderRadius: 'sm' }} />
+          <Sheet variant="outlined" sx={{ minHeight: 500, borderRadius: 'sm', p: 2 }}>
+            <Box sx={{ display: 'flex', alignSelf: 'flex-start' }}>
+              <Box
+                component="img"
+                src="/static/images/avatar/1.jpg"
+                sx={{
+                  width: 40,
+                  height: 40,
+                  borderRadius: '8px',
+                }}
+              />
+              <Box
+                sx={{
+                  ml: 2,
+                }}
+              >
+                <Typography level="body2" color="neutral.800">
+                  Janet Erickson
+                </Typography>
+                <Typography level="body3">14 Oct 2016</Typography>
+              </Box>
+            </Box>
+          </Sheet>
         </Box>
       </Box>
     </CssVarsProvider>
