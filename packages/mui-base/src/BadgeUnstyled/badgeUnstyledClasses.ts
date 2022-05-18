@@ -6,37 +6,19 @@ export interface BadgeUnstyledClasses {
   root: string;
   /** Class name applied to the badge `span` element. */
   badge: string;
-  /** Class name applied to the badge `span` element if `variant="dot"`. */
-  dot: string;
-  /** Class name applied to the badge `span` element if `variant="standard"`. */
-  standard: string;
-  /** Class name applied to the badge `span` element if `anchorOrigin={{ 'top', 'right' }}`. */
-  anchorOriginTopRight: string;
-  /** Class name applied to the badge `span` element if `anchorOrigin={{ 'bottom', 'right' }}`. */
-  anchorOriginBottomRight: string;
-  /** Class name applied to the badge `span` element if `anchorOrigin={{ 'top', 'left' }}`. */
-  anchorOriginTopLeft: string;
-  /** Class name applied to the badge `span` element if `anchorOrigin={{ 'bottom', 'left' }}`. */
-  anchorOriginBottomLeft: string;
   /** State class applied to the badge `span` element if `invisible={true}`. */
   invisible: string;
 }
 
 export type BadgeUnstyledClassKey = keyof BadgeUnstyledClasses;
 
-export function getBadgeUtilityClass(slot: string): string {
-  return generateUtilityClass('MuiBadge', slot);
+export function getBadgeUnstyledUtilityClass(slot: string): string {
+  return generateUtilityClass('BaseBadge', slot);
 }
 
-const badgeUnstyledClasses: BadgeUnstyledClasses = generateUtilityClasses('MuiBadge', [
+const badgeUnstyledClasses: BadgeUnstyledClasses = generateUtilityClasses('BaseBadge', [
   'root',
   'badge',
-  'dot',
-  'standard',
-  'anchorOriginTopLeft',
-  'anchorOriginTopRight',
-  'anchorOriginBottomLeft',
-  'anchorOriginBottomRight',
   'invisible',
 ]);
 

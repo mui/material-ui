@@ -508,6 +508,9 @@ export default function useSlider(props: UseSliderProps) {
   });
 
   const handleTouchStart = useEventCallback((nativeEvent: TouchEvent) => {
+    if (disabled) {
+      return;
+    }
     // If touch-action: none; is not supported we need to prevent the scroll manually.
     if (!doesSupportTouchActionNone()) {
       nativeEvent.preventDefault();
@@ -570,6 +573,10 @@ export default function useSlider(props: UseSliderProps) {
     (otherHandlers: Record<string, React.EventHandler<any>>) =>
     (event: React.MouseEvent<HTMLSpanElement, MouseEvent>) => {
       otherHandlers.onMouseDown?.(event);
+      if (disabled) {
+        return;
+      }
+
       if (event.defaultPrevented) {
         return;
       }

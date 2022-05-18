@@ -28,7 +28,6 @@ export function isOptionGroup<TValue>(
 }
 
 interface UseSelectCommonProps<TValue> {
-  buttonComponent?: React.ElementType;
   buttonRef?: React.Ref<Element>;
   disabled?: boolean;
   listboxId?: string;
@@ -36,6 +35,7 @@ interface UseSelectCommonProps<TValue> {
   onOpenChange?: (open: boolean) => void;
   open?: boolean;
   options: SelectOption<TValue>[];
+  optionStringifier?: (option: SelectOption<TValue>) => string;
 }
 
 export interface UseSelectSingleParameters<TValue> extends UseSelectCommonProps<TValue> {

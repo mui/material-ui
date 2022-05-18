@@ -1,11 +1,11 @@
 ---
 product: material-ui
 title: React Backdrop（蒙版）组件
-components: Backdrop, BackdropUnstyled
+components: Backdrop
 githubLabel: 'component: backdrop'
 ---
 
-# 蒙版
+# Backdrop
 
 <p class="description">蒙版组件用于特定元素或其部分的强调。</p>
 
@@ -16,11 +16,3 @@ githubLabel: 'component: backdrop'
 ## 示例
 
 {{"demo": "SimpleBackdrop.js"}}
-
-## 素颜模式
-
-蒙版组件同样来自基础包。 当你有大量的自定义样式需求时，使用它可以更好的帮助你控制住包的大小。
-
-```js
-import BackdropUnstyled from '@mui/base/BackdropUnstyled';
-```

@@ -1,14 +1,15 @@
+import * as React from 'react';
+import clsx from 'clsx';
+import PropTypes from 'prop-types';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
-import clsx from 'clsx';
-import PropTypes from 'prop-types';
-import * as React from 'react';
-import Person from '../internal/svg-icons/Person';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
+import Person from '../internal/svg-icons/Person';
 import { getAvatarUtilityClass } from './avatarClasses';
 import { AvatarProps, AvatarTypeMap } from './AvatarProps';
+import { AvatarGroupContext } from '../AvatarGroup/AvatarGroup';
 
 const useUtilityClasses = (ownerState: AvatarProps) => {
   const { size, variant, color, src, srcSet } = ownerState;
@@ -35,24 +36,31 @@ const AvatarRoot = styled('div', {
   return [
     {
       ...(ownerState.size === 'sm' && {
-        '--Avatar-size': '2rem',
+        width: `var(--Avatar-size, 2rem)`,
+        height: `var(--Avatar-size, 2rem)`,
+        fontSize: theme.vars.fontSize.sm,
       }),
       ...(ownerState.size === 'md' && {
-        '--Avatar-size': '2.5rem',
+        width: `var(--Avatar-size, 2.5rem)`,
+        height: `var(--Avatar-size, 2.5rem)`,
+        fontSize: theme.vars.fontSize.md,
       }),
       ...(ownerState.size === 'lg' && {
-        '--Avatar-size': '3rem',
+        width: `var(--Avatar-size, 3rem)`,
+        height: `var(--Avatar-size, 3rem)`,
+        fontSize: theme.vars.fontSize.lg,
       }),
+      marginInlineStart: 'var(--Avatar-marginInlineStart)',
+      boxShadow: `var(--Avatar-ring)`,
+      fontFamily: theme.vars.fontFamily.body,
+      fontWeight: theme.vars.fontWeight.md,
       position: 'relative',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
       flexShrink: 0,
-      width: 'var(--Avatar-size)',
-      height: 'var(--Avatar-size)',
       lineHeight: 1,
-      borderRadius: '50%',
-      overflow: 'hidden',
+      borderRadius: 'var(--Avatar-radius, 50%)',
       userSelect: 'none',
     },
     theme.variants[ownerState.variant!]?.[ownerState.color!],
@@ -63,29 +71,29 @@ const AvatarImg = styled('img', {
   name: 'MuiAvatar',
   slot: 'Img',
   overridesResolver: (props, styles) => styles.img,
-})(() => {
-  return [
-    {
-      width: '100%',
-      height: '100%',
-      textAlign: 'center',
-      // Handle non-square image. The property isn't supported by IE11.
-      objectFit: 'cover',
-      // Hide alt text.
-      color: 'transparent',
-      // Hide the image broken icon, only works on Chrome.
-      textIndent: 10000,
-    },
-  ];
-});
+})<{ ownerState: AvatarProps }>(({ ownerState }) => ({
+  width: '100%',
+  height: '100%',
+  textAlign: 'center',
+  // Handle non-square image. The property isn't supported by IE11.
+  objectFit: 'cover',
+  // Hide alt text.
+  color: 'transparent',
+  // Hide the image broken icon, only works on Chrome.
+  textIndent: 10000,
+  borderRadius:
+    ownerState.variant === 'outlined'
+      ? `calc(var(--Avatar-radius, 50%) - var(--variant-outlinedBorderWidth, 0px))`
+      : 'var(--Avatar-radius, 50%)',
+}));
 
 const AvatarFallback = styled(Person, {
   name: 'MuiAvatar',
   slot: 'Fallback',
   overridesResolver: (props, styles) => styles.fallback,
-})({
-  width: '75%',
-  height: '75%',
+})<{ ownerState: AvatarProps }>({
+  width: '64%',
+  height: '64%',
 });
 
 type UseLoadedProps = { src?: string; srcSet?: string; crossOrigin?: any; referrerPolicy?: any };
@@ -137,19 +145,24 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
     name: 'MuiAvatar',
   });
 
+  const groupContext = React.useContext(AvatarGroupContext);
+
   const {
     alt,
     className,
-    color = 'neutral',
+    color: colorProp = 'neutral',
     component = 'div',
-    size = 'md',
-    variant = 'contained',
+    size: sizeProp = 'md',
+    variant: variantProp = 'soft',
     imgProps,
     src,
     srcSet,
     children: childrenProp,
     ...other
   } = props;
+  const color = inProps.color || groupContext?.color || colorProp;
+  const variant = inProps.variant || groupContext?.variant || variantProp;
+  const size = inProps.size || groupContext?.size || sizeProp;
 
   let children = null;
 
@@ -164,20 +177,28 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
     component,
     size,
     variant,
+    grouped: !!groupContext,
   };
 
   const classes = useUtilityClasses(ownerState);
 
   if (hasImgNotFailing) {
     children = (
-      <AvatarImg alt={alt} src={src} srcSet={srcSet} className={classes.img} {...imgProps} />
+      <AvatarImg
+        alt={alt}
+        src={src}
+        srcSet={srcSet}
+        className={classes.img}
+        ownerState={ownerState}
+        {...imgProps}
+      />
     );
   } else if (childrenProp != null) {
     children = childrenProp;
   } else if (hasImg && alt) {
     children = alt[0];
   } else {
-    children = <AvatarFallback className={classes.fallback} />;
+    children = <AvatarFallback className={classes.fallback} ownerState={ownerState} />;
   }
 
   return (
@@ -232,7 +253,7 @@ Avatar.propTypes /* remove-proptypes */ = {
   imgProps: PropTypes.object,
   /**
    * The size of the component.
-   * It accepts theme values between 'xs' and 'xl'.
+   * It accepts theme values between 'sm' and 'lg'.
    * @default 'md'
    */
   size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
@@ -249,8 +270,16 @@ Avatar.propTypes /* remove-proptypes */ = {
    */
   srcSet: PropTypes.string,
   /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
+  /**
    * The variant to use.
-   * @default 'contained'
+   * @default 'soft'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['contained', 'light', 'outlined', 'text']),

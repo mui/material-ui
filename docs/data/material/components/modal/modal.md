@@ -1,9 +1,10 @@
 ---
 product: material-ui
 title: React Modal component
-components: Modal, ModalUnstyled
+components: Modal
 githubLabel: 'component: modal'
 waiAria: https://www.w3.org/TR/wai-aria-practices/#dialog_modal
+unstyled: /base/react-modal/
 ---
 
 # Modal
@@ -22,36 +23,27 @@ The `Modal` offers important features:
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
-> **Terminology note**. The term "modal" is sometimes used to mean "dialog", but this is a misnomer.
-> A modal window describes parts of a UI.
-> An element is considered modal if [it blocks interaction with the rest of the application](https://en.wikipedia.org/wiki/Modal_window).
+:::info
+**Terminology note**.
 
-If you are creating a modal dialog, you probably want to use the [Dialog](/components/dialogs/) component rather than directly using Modal.
+The term "modal" is sometimes used to mean "dialog", but this is a misnomer.
+A modal window describes parts of a UI.
+An element is considered modal if [it blocks interaction with the rest of the application](https://en.wikipedia.org/wiki/Modal_window).
+:::
+
+If you are creating a modal dialog, you probably want to use the [Dialog](/material-ui/react-dialog/) component rather than directly using Modal.
 Modal is a lower-level construct that is leveraged by the following components:
 
-- [Dialog](/components/dialogs/)
-- [Drawer](/components/drawers/)
-- [Menu](/components/menus/)
-- [Popover](/components/popover/)
+- [Dialog](/material-ui/react-dialog/)
+- [Drawer](/material-ui/react-drawer/)
+- [Menu](/material-ui/react-menu/)
+- [Popover](/material-ui/react-popover/)
 
 ## Basic modal
 
 {{"demo": "BasicModal.js"}}
 
 Notice that you can disable the outline (often blue or gold) with the `outline: 0` CSS property.
-
-## Unstyled
-
-- 📦 [4.7 kB gzipped](https://bundlephobia.com/package/@mui/base@latest)
-
-The modal also comes with an unstyled version.
-It's ideal for doing heavy customizations and minimizing bundle size.
-
-```js
-import ModalUnstyled from '@mui/base/ModalUnstyled';
-```
-
-{{"demo": "ModalUnstyled.js"}}
 
 ## Nested modal
 

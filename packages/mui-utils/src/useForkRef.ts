@@ -1,10 +1,10 @@
 import * as React from 'react';
 import setRef from './setRef';
 
-export default function useForkRef<Instance>(
-  refA: React.Ref<Instance> | null | undefined,
-  refB: React.Ref<Instance> | null | undefined,
-): React.Ref<Instance> | null {
+export default function useForkRef<InstanceA, InstanceB>(
+  refA: React.Ref<InstanceA> | null | undefined,
+  refB: React.Ref<InstanceB> | null | undefined,
+): React.Ref<InstanceA & InstanceB> | null {
   /**
    * This will create a new function if the ref props change and are defined.
    * This means react will call the old forkRef with `null` and the new forkRef

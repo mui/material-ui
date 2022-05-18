@@ -38,7 +38,7 @@ Nos exemplos a seguir, nós estamos usando dois separadores de string e um ícon
 
 ## Navegação estrutural customizada
 
-Aqui está um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/how-to-customize/).
+Aqui está um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/material-ui/customization/how-to-customize/).
 
 {{"demo": "CustomizedBreadcrumbs.js"}}
 

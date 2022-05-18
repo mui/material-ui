@@ -1,13 +1,6 @@
 {
   "props": {
     "control": { "type": { "name": "element" }, "required": true },
-    "label": {
-      "type": {
-        "name": "union",
-        "description": "element<br>&#124;&nbsp;number<br>&#124;&nbsp;string"
-      },
-      "required": true
-    },
     "checked": { "type": { "name": "bool" } },
     "classes": { "type": { "name": "object" } },
     "componentsProps": {
@@ -17,6 +10,7 @@
     "disabled": { "type": { "name": "bool" } },
     "disableTypography": { "type": { "name": "bool" } },
     "inputRef": { "type": { "name": "custom", "description": "ref" } },
+    "label": { "type": { "name": "node" } },
     "labelPlacement": {
       "type": {
         "name": "enum",
@@ -51,6 +45,6 @@
   "forwardsRefTo": "HTMLLabelElement",
   "filename": "/packages/mui-material/src/FormControlLabel/FormControlLabel.js",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/material-ui/react-checkbox/\">Checkboxes</a></li>\n<li><a href=\"/material-ui/react-radio-button/\">Radio Buttons</a></li>\n<li><a href=\"/material-ui/react-switch/\">Switches</a></li></ul>",
+  "demos": "<ul><li><a href=\"/material-ui/react-checkbox/\">Checkboxes</a></li>\n<li><a href=\"/material-ui/react-radio-button/\">Radio buttons</a></li>\n<li><a href=\"/material-ui/react-switch/\">Switches</a></li></ul>",
   "cssComponent": false
 }

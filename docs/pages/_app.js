@@ -16,9 +16,11 @@ import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/utils';
 import pages from 'docs/src/pages';
 import basePages from 'docs/data/base/pages';
 import materialPages from 'docs/data/material/pages';
+import joyPages from 'docs/data/joy/pages';
 import systemPages from 'docs/data/system/pages';
 import PageContext from 'docs/src/modules/components/PageContext';
 import GoogleAnalytics from 'docs/src/modules/components/GoogleAnalytics';
+import { CodeCopyProvider } from 'docs/src/modules/utils/CodeCopy';
 import { ThemeProvider } from 'docs/src/modules/components/ThemeContext';
 import { pathnameToLanguage, getCookie } from 'docs/src/modules/utils/helpers';
 import { LANGUAGES } from 'docs/src/modules/constants';
@@ -54,7 +56,7 @@ function LanguageNegotiation() {
         acceptLanguage.get(navigator.language) ||
         userLanguage;
 
-      if (userLanguage !== preferedLanguage) {
+      if (userLanguage !== preferedLanguage && !process.env.BUILD_ONLY_ENGLISH_LOCALE) {
         window.location =
           preferedLanguage === 'en' ? canonicalAs : `/${preferedLanguage}${canonicalAs}`;
       }
@@ -191,6 +193,9 @@ function AppWrapper(props) {
   if (asPathWithoutLang.startsWith('/material-ui')) {
     productPages = materialPages;
   }
+  if (asPathWithoutLang.startsWith('/joy-ui')) {
+    productPages = joyPages;
+  }
   if (asPathWithoutLang.startsWith('/system') && FEATURE_TOGGLE.enable_system_scope) {
     productPages = systemPages;
   }
@@ -214,16 +219,18 @@ function AppWrapper(props) {
       </NextHead>
       <UserLanguageProvider defaultUserLanguage={pageProps.userLanguage}>
         <LanguageNegotiation />
-        <CodeVariantProvider>
-          <PageContext.Provider value={{ activePage, pages: productPages }}>
-            <ThemeProvider>
-              <DocsStyledEngineProvider cacheLtr={emotionCache}>
-                {children}
-                <GoogleAnalytics />
-              </DocsStyledEngineProvider>
-            </ThemeProvider>
-          </PageContext.Provider>
-        </CodeVariantProvider>
+        <CodeCopyProvider>
+          <CodeVariantProvider>
+            <PageContext.Provider value={{ activePage, pages: productPages }}>
+              <ThemeProvider>
+                <DocsStyledEngineProvider cacheLtr={emotionCache}>
+                  {children}
+                  <GoogleAnalytics />
+                </DocsStyledEngineProvider>
+              </ThemeProvider>
+            </PageContext.Provider>
+          </CodeVariantProvider>
+        </CodeCopyProvider>
       </UserLanguageProvider>
     </React.Fragment>
   );

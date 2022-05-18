@@ -289,22 +289,6 @@ export default function App() {
 }
 ```
 
-### `fill` callback gives theme type as `any`
-
-Since `sx` can be an array type, there is a conflict in type of `Array.fill` and CSS's `fill` property when define value as a callback. As a workaround, you can explicitly define the theme like this:
-
-```tsx
-import { Theme } from '@mui/material/styles';
-
-<Box
-  sx={{
-    fill: (theme: Theme) => theme.palette.primary.main,
-  }}
-/>;
-```
-
-> Let us know or [submit a PR](https://github.com/mui/material-ui/pulls) if you have a proper way to fix this issue. 🙏
-
 ## Performance
 
 If you are interested in the performance tradeoff, you can find more details [here](/system/basics/#performance-tradeoff).

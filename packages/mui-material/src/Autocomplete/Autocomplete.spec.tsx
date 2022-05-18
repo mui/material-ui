@@ -60,6 +60,12 @@ function MyAutocomplete<
   freeSolo
 />;
 
+// Test for getInputProps return type
+<MyAutocomplete
+  options={[{ label: '1' }, { label: '2' }]}
+  renderInput={(params) => <TextField {...params} value={params.inputProps.value} />}
+/>;
+
 interface Tag {
   color: string;
   label: string;

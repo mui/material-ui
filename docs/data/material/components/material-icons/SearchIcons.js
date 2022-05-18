@@ -297,6 +297,7 @@ const DialogDetails = React.memo(function DialogDetails(props) {
             TransitionProps={{ onExited: () => setCopied2(false) }}
           >
             <Markdown
+              copyButtonHidden
               onClick={handleClick(2)}
               code={`import ${selectedIcon.importName}Icon from '@mui/icons-material/${selectedIcon.importName}';`}
               language="js"
@@ -304,7 +305,7 @@ const DialogDetails = React.memo(function DialogDetails(props) {
           </Tooltip>
           <ImportLink
             color="text.secondary"
-            href="/components/icons/"
+            href="/material-ui/icons/"
             variant="caption"
           >
             {t('searchIcons.learnMore')}
@@ -403,6 +404,10 @@ const Paper = styled(MuiPaper)(({ theme }) => ({
   marginBottom: theme.spacing(2),
   width: '100%',
 }));
+
+function formatNumber(value) {
+  return new Intl.NumberFormat('en-US').format(value);
+}
 
 const Input = styled(InputBase)({
   marginLeft: 8,
@@ -558,7 +563,9 @@ export default function SearchIcons() {
             inputProps={{ 'aria-label': 'search icons' }}
           />
         </Paper>
-        <Typography sx={{ mb: 1 }}>{`${icons.length} matching results`}</Typography>
+        <Typography sx={{ mb: 1 }}>{`${formatNumber(
+          icons.length,
+        )} matching results`}</Typography>
         <Icons icons={icons} handleOpenClick={handleOpenClick} />
       </Grid>
       <DialogDetails

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
 import { OptionState } from '../ListboxUnstyled';
 import composeClasses from '../composeClasses';
-import OptionUnstyledProps, { OptionUnstyledOwnerState } from './OptionUnstyledProps';
+import { OptionUnstyledProps, OptionUnstyledOwnerState } from './OptionUnstyled.types';
 import { SelectUnstyledContext } from '../SelectUnstyled/SelectUnstyledContext';
 import { getOptionUnstyledUtilityClass } from './optionUnstyledClasses';
 import appendOwnerState from '../utils/appendOwnerState';
@@ -34,6 +34,7 @@ const OptionUnstyled = React.forwardRef(function OptionUnstyled<TValue>(
     componentsProps = {},
     disabled,
     value,
+    label,
     ...other
   } = props;
 
@@ -46,7 +47,7 @@ const OptionUnstyled = React.forwardRef(function OptionUnstyled<TValue>(
 
   const selectOption = {
     value,
-    label: children,
+    label: label || children,
     disabled,
   };
 
@@ -137,6 +138,11 @@ OptionUnstyled.propTypes /* remove-proptypes */ = {
    */
   disabled: PropTypes.bool,
   /**
+   * A text representation of the option's content.
+   * Used for keyboard text navigation matching.
+   */
+  label: PropTypes.string,
+  /**
    * The value of the option.
    */
   value: PropTypes.any.isRequired,
@@ -147,11 +153,11 @@ OptionUnstyled.propTypes /* remove-proptypes */ = {
  *
  * Demos:
  *
- * - [Selects](https://mui.com/components/selects/)
+ * - [Select](https://mui.com/base/react-select/)
  *
  * API:
  *
- * - [OptionUnstyled API](https://mui.com/api/option-unstyled/)
+ * - [OptionUnstyled API](https://mui.com/base/api/option-unstyled/)
  */
 export default React.memo(OptionUnstyled) as <TValue>(
   props: OptionUnstyledProps<TValue> & React.RefAttributes<HTMLElement>,

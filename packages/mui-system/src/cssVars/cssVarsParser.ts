@@ -23,16 +23,19 @@ export const assignNestedKeys = <Object = NestedRecord, Value = any>(
   obj: Object,
   keys: Array<string>,
   value: Value,
+  arrayKeys: Array<string> = [],
 ) => {
   let temp: Record<string, any> = obj;
   keys.forEach((k, index) => {
     if (index === keys.length - 1) {
-      if (temp && typeof temp === 'object') {
+      if (Array.isArray(temp)) {
+        temp[Number(k)] = value;
+      } else if (temp && typeof temp === 'object') {
         temp[k] = value;
       }
     } else if (temp && typeof temp === 'object') {
       if (!temp[k]) {
-        temp[k] = {};
+        temp[k] = arrayKeys.includes(k) ? [] : {};
       }
       temp = temp[k];
     }
@@ -52,17 +55,21 @@ export const assignNestedKeys = <Object = NestedRecord, Value = any>(
  */
 export const walkObjectDeep = <Value, T = Record<string, any>>(
   obj: T,
-  callback: (keys: Array<string>, value: Value, scope: Record<string, string | number>) => void,
+  callback: (keys: Array<string>, value: Value, arrayKeys: Array<string>) => void,
   shouldSkipPaths?: (keys: Array<string>) => boolean,
 ) => {
-  function recurse(object: any, parentKeys: Array<string> = []) {
+  function recurse(object: any, parentKeys: Array<string> = [], arrayKeys: Array<string> = []) {
     Object.entries(object).forEach(([key, value]: [string, any]) => {
       if (!shouldSkipPaths || (shouldSkipPaths && !shouldSkipPaths([...parentKeys, key]))) {
         if (value !== undefined && value !== null) {
           if (typeof value === 'object' && Object.keys(value).length > 0) {
-            recurse(value, [...parentKeys, key]);
+            recurse(
+              value,
+              [...parentKeys, key],
+              Array.isArray(value) ? [...arrayKeys, key] : arrayKeys,
+            );
           } else {
-            callback([...parentKeys, key], value, object);
+            callback([...parentKeys, key], value, arrayKeys);
           }
         }
       }
@@ -75,6 +82,11 @@ const getCssValue = (keys: string[], value: string | number) => {
   if (typeof value === 'number') {
     if (['lineHeight', 'fontWeight', 'opacity', 'zIndex'].some((prop) => keys.includes(prop))) {
       // CSS property that are unitless
+      return value;
+    }
+    const lastKey = keys[keys.length - 1];
+    if (lastKey.toLowerCase().indexOf('opacity') >= 0) {
+      // opacity values are unitless
       return value;
     }
     return `${value}px`;
@@ -124,7 +136,7 @@ export default function cssVarsParser<T extends Record<string, any>>(
 
   walkObjectDeep(
     theme,
-    (keys, value: string | number | object) => {
+    (keys, value: string | number | object, arrayKeys) => {
       if (typeof value === 'string' || typeof value === 'number') {
         if (typeof value === 'string' && value.match(/var\(\s*--/)) {
           // for CSS variable, apply prefix or remove basePrefix from the variable
@@ -145,10 +157,10 @@ export default function cssVarsParser<T extends Record<string, any>>(
           const cssVar = `--${prefix ? `${prefix}-` : ''}${keys.join('-')}`;
           Object.assign(css, { [cssVar]: getCssValue(keys, value) });
 
-          assignNestedKeys(vars, keys, `var(${cssVar})`);
+          assignNestedKeys(vars, keys, `var(${cssVar})`, arrayKeys);
         }
       }
-      assignNestedKeys(parsedTheme, keys, value);
+      assignNestedKeys(parsedTheme, keys, value, arrayKeys);
     },
     (keys) => keys[0] === 'vars', // skip 'vars/*' paths
   );

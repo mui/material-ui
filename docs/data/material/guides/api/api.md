@@ -1,8 +1,10 @@
-# API Design Approach
+# API design approach
 
 <p class="description">We have learned a great deal regarding how MUI is used, and the v1 rewrite allowed us to completely rethink the component API.</p>
 
-> API design is hard because you can make it seem simple but it's actually deceptively complex, or make it actually simple but seem complex.
+:::info
+API design is hard because you can make it seem simple but it's actually deceptively complex, or make it actually simple but seem complex.
+:::
 
 [@sebmarkbage](https://twitter.com/sebmarkbage/status/728433349337841665)
 
@@ -35,15 +37,15 @@ You can take advantage of the spread behavior:
 <MenuItem disableRipple />
 ```
 
-The `disableRipple` prop will flow this way: [`MenuItem`](/api/menu-item/) > [`ListItem`](/api/list-item/) > [`ButtonBase`](/api/button-base/).
+The `disableRipple` prop will flow this way: [`MenuItem`](/material-ui/api/menu-item/) > [`ListItem`](/material-ui/api/list-item/) > [`ButtonBase`](/material-ui/api/button-base/).
 
 ### Native properties
 
-We avoid documenting native properties supported by the DOM like [`className`](/customization/how-to-customize/#overriding-styles-with-class-names).
+We avoid documenting native properties supported by the DOM like [`className`](/material-ui/customization/how-to-customize/#overriding-styles-with-class-names).
 
 ### CSS Classes
 
-All components accept a [`classes`](/customization/how-to-customize/#overriding-styles-with-class-names) prop to customize the styles.
+All components accept a [`classes`](/material-ui/customization/how-to-customize/#overriding-styles-with-class-names) prop to customize the styles.
 The classes design answers two constraints:
 to make the classes structure as simple as possible, while sufficient to implement the Material Design guidelines.
 
@@ -85,7 +87,7 @@ Nested components inside a component have:
 - their own `xxxComponent` prop for performing component injection.
 - their own `xxxRef` prop when you might need to perform imperative actions,
   for instance, exposing an `inputRef` prop to access the native `input` on the `Input` component.
-  This helps answer the question ["How can I access the DOM element?"](/getting-started/faq/#how-can-i-access-the-dom-element)
+  This helps answer the question ["How can I access the DOM element?"](/material-ui/getting-started/faq/#how-can-i-access-the-dom-element)
 
 ### Prop naming
 
