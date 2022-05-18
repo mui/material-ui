@@ -247,7 +247,7 @@ describe('styleFunctionSx', () => {
           mixins: createMixins(breakpoints),
           breakpoints,
         },
-        sx: (themeParams) => themeParams.mixins.toolbar,
+        sx: (themeParam) => themeParam.mixins.toolbar,
       });
 
       // Test the order
