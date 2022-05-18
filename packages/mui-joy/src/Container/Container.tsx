@@ -1,4 +1,3 @@
-/* eslint-disable material-ui/mui-name-matches-component-name */
 import { createContainer } from '@mui/system';
 import PropTypes from 'prop-types';
 import { OverridableComponent } from '@mui/types';
@@ -8,6 +7,7 @@ import styled from '../styles/styled';
 import { useThemeProps } from '../styles';
 
 const Container = createContainer<Theme>({
+  componentName: 'JoyContainer',
   createStyledComponent: styled('div', {
     name: 'JoyContainer',
     slot: 'Root',

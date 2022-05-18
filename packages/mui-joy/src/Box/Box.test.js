@@ -5,7 +5,7 @@ import { ThemeProvider } from '@mui/joy/styles';
 import { unstable_ClassNameGenerator as ClassNameGenerator } from '@mui/joy/className';
 import Box from '@mui/joy/Box';
 
-describe('<Box />', () => {
+describe('Joy <Box />', () => {
   const { render } = createRenderer();
 
   describeConformance(<Box />, () => ({
@@ -58,7 +58,7 @@ describe('<Box />', () => {
       const { container, rerender } = render(<Box />);
       expect(container.firstChild).to.have.class('JoyBox-root');
 
-      ClassNameGenerator.configure((name) => name.replace('Mui', 'Company'));
+      ClassNameGenerator.configure((name) => name.replace('Joy', 'Company'));
 
       rerender(<Box />);
 
