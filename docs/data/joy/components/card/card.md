@@ -54,14 +54,34 @@ Create a gradient overlay on top of the back cover to emphasize the content for 
 
 Users are able to click or tap on any area of the card to navigate to another page.
 
-For accessibility purpose, it is recommended that the `Link` component is used inside the card's title and then pass the `overlay` prop to expand the interactive area to fill the whole card.
+For accessibility purpose, it is recommended that the `Link` component is used inside the card's title and then pass the `overlay` prop to expand the interactive area to fill the whole card. The keyboard focus appearance also covers the entire card.
 
-<!-- {{"demo": "InteractiveCard.js", "bg": true}} -->
+{{"demo": "InteractiveCard.js", "bg": true}}
 
 ### Multiple interaction
 
-## Container responsive
+By default, other action elements such as links and buttons will stay on top of the interactive area but in some cases you might have to manually control the `z-index` of each element.
 
-## Component variables
+:::info
+💡 **Tip**: use CSS pseudo-class [`:focus-within`](https://developer.mozilla.org/en-US/docs/Web/CSS/:focus-within) to style the card when any of its child is focused.
+:::
 
-## Real-world examples
+{{"demo": "MultipleInteractionCard.js", "bg": true}}
+
+## More examples
+
+The demos below show the power of Joy composition by replicating some of the real-world examples.
+
+### Container responsive
+
+This demo uses the similar technique like [the flexbox holy albatross](https://heydonworks.com/article/the-flexbox-holy-albatross/) to stack the elements when the container's width is below a specified number.
+
+{{"demo": "ContainerResponsive.js", "bg": true}}
+
+### Dribbble shot
+
+{{"demo": "DribbbleShot.js", "bg": true}}
+
+### Instagram post
+
+{{"demo": "InstagramPost.js", "bg": true}}

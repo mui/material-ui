@@ -673,7 +673,7 @@ export default function JoySvgIcon() {
             })}
           >
             <AspectRatio
-              variant="outlined"
+              variant="soft"
               sx={{
                 flexGrow: 1,
                 pb: 'clamp(0px, (100% - 360px) * 999, min(calc(100% / (16 / 9)), 300px))',
