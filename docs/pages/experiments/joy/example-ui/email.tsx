@@ -81,7 +81,10 @@ export default function EmailExample() {
               </IconButton>
             }
             sx={{
-              '--Input-gutter': '-0.5rem',
+              '& .JoyInput-root': {
+                '--Input-gutter': '-0.5rem',
+                paddingLeft: '4px',
+              },
               minWidth: {
                 xs: '100%',
                 sm: '500px',
