@@ -5,6 +5,7 @@ export type GlobalStateSlot =
   | 'checked'
   | 'completed'
   | 'disabled'
+  | 'readOnly'
   | 'error'
   | 'expanded'
   | 'focused'
@@ -17,6 +18,7 @@ const globalStateClassesMapping: Record<GlobalStateSlot, string> = {
   checked: 'Mui-checked',
   completed: 'Mui-completed',
   disabled: 'Mui-disabled',
+  readOnly: 'Mui-readOnly',
   error: 'Mui-error',
   expanded: 'Mui-expanded',
   focused: 'Mui-focused',

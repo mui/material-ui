@@ -56,6 +56,7 @@ const useUtilityClasses = (ownerState) => {
     classes,
     color,
     disabled,
+    readOnly,
     error,
     endAdornment,
     focused,
@@ -72,6 +73,7 @@ const useUtilityClasses = (ownerState) => {
       'root',
       `color${capitalize(color)}`,
       disabled && 'disabled',
+      readOnly && 'readOnly',
       error && 'error',
       fullWidth && 'fullWidth',
       focused && 'focused',
@@ -85,6 +87,7 @@ const useUtilityClasses = (ownerState) => {
     input: [
       'input',
       disabled && 'disabled',
+      readOnly && 'readOnly',
       type === 'search' && 'inputTypeSearch',
       multiline && 'inputMultiline',
       size === 'small' && 'inputSizeSmall',

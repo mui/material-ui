@@ -694,4 +694,12 @@ describe('<InputBase />', () => {
       });
     });
   });
+
+  describe('prop: readOnly', () => {
+    it('should apply readOnly class to root and input elements', () => {
+      const { container, getByTestId } = render(<InputBase readOnly data-testid="root" />);
+      expect(getByTestId('root')).to.have.class(classes.readOnly);
+      expect(container.querySelector('input')).to.have.class(classes.readOnly);
+    });
+  });
 });

@@ -51,6 +51,11 @@
       "nodeName": "the root element",
       "conditions": "<code>disabled={true}</code>"
     },
+    "readOnly": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>readOnly={true}</code>"
+    },
     "adornedStart": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
