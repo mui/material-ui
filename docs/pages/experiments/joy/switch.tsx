@@ -39,7 +39,7 @@ const ColorSchemePicker = () => {
 const props = {
   size: ['sm', 'md', 'lg'],
   color: ['primary', 'danger', 'info', 'success', 'warning'],
-  variant: ['outlined', 'soft', 'solid'],
+  variant: ['plain', 'outlined', 'soft', 'solid'],
 } as const;
 
 export default function JoySwitch() {
