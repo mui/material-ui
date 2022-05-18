@@ -8,11 +8,11 @@ export interface ListItemContentClasses {
 export type ListItemContentClassKey = keyof ListItemContentClasses;
 
 export function getListItemContentUtilityClass(slot: string): string {
-  return generateUtilityClass('MuiListItemContent', slot);
+  return generateUtilityClass('JoyListItemContent', slot);
 }
 
 const listItemContentClasses: ListItemContentClasses = generateUtilityClasses(
-  'MuiListItemContent',
+  'JoyListItemContent',
   ['root'],
 );
 

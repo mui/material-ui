@@ -26,10 +26,10 @@ export interface ChipDeleteClasses {
 }
 
 export function getChipDeleteUtilityClass(slot: string): string {
-  return generateUtilityClass('MuiChipDelete', slot);
+  return generateUtilityClass('JoyChipDelete', slot);
 }
 
-const chipDeleteClasses: ChipDeleteClasses = generateUtilityClasses('MuiChipDelete', [
+const chipDeleteClasses: ChipDeleteClasses = generateUtilityClasses('JoyChipDelete', [
   'root',
   'colorPrimary',
   'colorNeutral',

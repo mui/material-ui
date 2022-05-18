@@ -20,7 +20,7 @@ const useUtilityClasses = (ownerState: RadioGroupProps) => {
 };
 
 const RadioGroupRoot = styled('div', {
-  name: 'MuiRadioGroup',
+  name: 'JoyRadioGroup',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: RadioGroupProps }>(({ ownerState }) => ({
@@ -49,7 +49,7 @@ const RadioGroupRoot = styled('div', {
 const RadioGroup = React.forwardRef(function RadioGroup(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
-    name: 'MuiRadioGroup',
+    name: 'JoyRadioGroup',
   });
 
   const {
@@ -188,7 +188,7 @@ RadioGroup.propTypes /* remove-proptypes */ = {
    * The variant to use.
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['contained', 'light', 'outlined']),
+    PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
     PropTypes.string,
   ]),
 } as any;
