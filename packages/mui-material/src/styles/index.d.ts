@@ -12,6 +12,9 @@ export {
   PaletteColorOptions,
   PaletteOptions,
   SimplePaletteColorOptions,
+  TypeText,
+  TypeAction,
+  TypeBackground,
 } from './createPalette';
 export { default as createStyles } from './createStyles';
 export {
@@ -86,3 +89,8 @@ export interface StyledComponentProps<ClassKey extends string = string> {
 export { default as makeStyles } from './makeStyles';
 export { default as withStyles } from './withStyles';
 export { default as withTheme } from './withTheme';
+
+export * from './CssVarsProvider';
+
+export { default as experimental_extendTheme } from './experimental_extendTheme';
+export * from './experimental_extendTheme';

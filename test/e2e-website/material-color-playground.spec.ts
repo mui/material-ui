@@ -7,7 +7,7 @@ const test = base.extend<TestFixture>({});
 test('should be able to change color without crash', async ({ page }) => {
   await page.goto(
     FEATURE_TOGGLE.enable_redirects
-      ? '/material/customization/color/#playground'
+      ? '/material-ui/customization/color/#playground'
       : '/customization/color/#playground',
     { waitUntil: 'networkidle' },
   );

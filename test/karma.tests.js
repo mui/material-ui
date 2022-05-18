@@ -1,19 +1,26 @@
 import './utils/init';
 import './utils/setupKarma';
 
-const integrationContext = require.context(
+const materialIntegrationContext = require.context(
   '../packages/mui-material/test/integration',
   true,
   /\.test\.(js|ts|tsx)$/,
 );
-integrationContext.keys().forEach(integrationContext);
+materialIntegrationContext.keys().forEach(materialIntegrationContext);
 
-const coreUnitContext = require.context(
+const baseIntegrationContext = require.context(
+  '../packages/mui-base/test/integration',
+  true,
+  /\.test\.(js|ts|tsx)$/,
+);
+baseIntegrationContext.keys().forEach(baseIntegrationContext);
+
+const materialUnitContext = require.context(
   '../packages/mui-material/src/',
   true,
   /\.test\.(js|ts|tsx)$/,
 );
-coreUnitContext.keys().forEach(coreUnitContext);
+materialUnitContext.keys().forEach(materialUnitContext);
 
 const labUnitContext = require.context('../packages/mui-lab/src/', true, /\.test\.(js|ts|tsx)$/);
 labUnitContext.keys().forEach(labUnitContext);
@@ -35,8 +42,8 @@ styledEngineSCContext.keys().forEach(styledEngineSCContext);
 const systemContext = require.context('../packages/mui-system/src/', true, /\.test\.(js|ts|tsx)$/);
 systemContext.keys().forEach(systemContext);
 
-const coreContext = require.context('../packages/mui-base/src/', true, /\.test\.(js|ts|tsx)$/);
-coreContext.keys().forEach(coreContext);
+const baseUnitContext = require.context('../packages/mui-base/src/', true, /\.test\.(js|ts|tsx)$/);
+baseUnitContext.keys().forEach(baseUnitContext);
 
 const utilsContext = require.context('../packages/mui-utils/src/', true, /\.test\.(js|ts|tsx)$/);
 utilsContext.keys().forEach(utilsContext);

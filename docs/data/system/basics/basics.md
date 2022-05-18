@@ -17,11 +17,15 @@ _(Resize the window to see the responsive breakpoints)_
 
 <!-- #default-branch-switch -->
 
-```jsx
-// with npm
-npm install @mui/system @emotion/react @emotion/styled
+To install and save in your `package.json` dependencies, run the command below using **npm**:
 
-// with yarn
+```sh
+npm install @mui/system @emotion/react @emotion/styled
+```
+
+Or **yarn**:
+
+```sh
 yarn add @mui/system @emotion/react @emotion/styled
 ```
 
@@ -30,14 +34,14 @@ Or if you want to use `styled-components` as a styling engine:
 <!-- #default-branch-switch -->
 
 ```sh
-// with npm
 npm install @mui/system @mui/styled-engine-sc styled-components
+```
 
-// with yarn
+```sh
 yarn add @mui/system @mui/styled-engine-sc styled-components
 ```
 
-Take a look at the [Styled Engine guide](/guides/styled-engine/) for more information about how to configure `styled-components` as the style engine.
+Take a look at the [Styled Engine guide](/material-ui/guides/styled-engine/) for more information about how to configure `styled-components` as the style engine.
 
 ## Why use the system?
 
@@ -202,7 +206,7 @@ Cons:
 
 <!-- #default-branch-switch -->
 
-_Head to the [benchmark folder](https://github.com/mui-org/material-ui/tree/master/benchmark/browser) for a reproduction of these metrics._
+_Head to the [benchmark folder](https://github.com/mui/material-ui/tree/master/benchmark/browser) for a reproduction of these metrics._
 
 We believe that for most uses it's **fast enough**, but there are simple workarounds when performance becomes critical. For instance, when rendering a list with many items, you can use a CSS child selector to have a single "style injection" point (using d. for the wrapper and a. for each item).
 
@@ -353,7 +357,7 @@ export default function CustomBreakpoints() {
 }
 ```
 
-If you are using TypeScript, you will also need to use [module augmentation](/guides/typescript/#customization-of-theme) for the theme to accept the above values.
+If you are using TypeScript, you will also need to use [module augmentation](/material-ui/guides/typescript/#customization-of-theme) for the theme to accept the above values.
 
 ```ts
 declare module '@mui/material/styles' {
@@ -386,7 +390,7 @@ All core MUI components will support the `sx` prop.
 
 ### 2. Box
 
-[`Box`](/components/box/) is a lightweight component that gives access to the `sx` prop, and can be used as a utility component, and as a wrapper for other components.
+[`Box`](/material-ui/react-box/) is a lightweight component that gives access to the `sx` prop, and can be used as a utility component, and as a wrapper for other components.
 It renders a `<div>` element by default.
 
 ### 3. Custom components
@@ -401,4 +405,4 @@ const Div = styled('div')``;
 
 ### 4. Any element with the babel plugin
 
-TODO [#23220](https://github.com/mui-org/material-ui/issues/23220).
+TODO [#23220](https://github.com/mui/material-ui/issues/23220).

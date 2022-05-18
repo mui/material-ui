@@ -1,5 +1,5 @@
 ---
-product: material
+product: material-ui
 title: Componente Barra de Aplicativos para React
 components: AppBar, Toolbar, Menu
 githubLabel: 'component: app bar'
@@ -66,7 +66,7 @@ function App() {
   return (
     <React.Fragment>
       <AppBar position="fixed">
-        <Toolbar>{/* conteúdo */}</Toolbar>
+        <Toolbar>{/* content */}</Toolbar>
       </AppBar>
       <Toolbar />
     </React.Fragment>
@@ -81,12 +81,14 @@ const Offset = styled('div')(({ theme }) => theme.mixins.toolbar);
 
 function App() {
   return (
-    <React. Fragment>
+    <React.Fragment>
       <AppBar position="fixed">
         <Toolbar>{/* content */}</Toolbar>
       </AppBar>
       <Offset />
-    </React.
+    </React.Fragment>
+  );
+}
 ```
 
 ## Scrolling

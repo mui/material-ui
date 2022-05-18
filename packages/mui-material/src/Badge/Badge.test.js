@@ -4,8 +4,12 @@ import { BadgeUnstyled } from '@mui/base';
 import { createRenderer, describeConformance } from 'test/utils';
 import Badge, { badgeClasses as classes } from '@mui/material/Badge';
 
+function findBadgeRoot(container) {
+  return container.firstChild;
+}
+
 function findBadge(container) {
-  return container.firstChild.querySelector('span');
+  return findBadgeRoot(container).querySelector('span');
 }
 
 describe('<Badge />', () => {
@@ -42,10 +46,37 @@ describe('<Badge />', () => {
     expect(container.firstChild).to.contain(getByTestId('badge'));
   });
 
-  it('renders children and overwrite badge class', () => {
-    const badgeClassName = 'testBadgeClassName';
-    const { container } = render(<Badge {...defaultProps} classes={{ badge: badgeClassName }} />);
-    expect(findBadge(container)).to.have.class(badgeClassName);
+  it('applies customized classes', () => {
+    const customClasses = {
+      root: 'test-root',
+      anchorOriginTopRight: 'test-anchorOriginTopRight',
+      anchorOriginTopRightCircular: 'test-anchorOriginTopRightCircular',
+      badge: 'test-badge',
+      colorSecondary: 'test-colorSecondary',
+      dot: 'test-dot',
+      invisible: 'test-invisible',
+      overlapCircular: 'test-overlapCircular',
+    };
+
+    const { container } = render(
+      <Badge
+        {...defaultProps}
+        variant="dot"
+        overlap="circular"
+        invisible
+        color="secondary"
+        classes={customClasses}
+      />,
+    );
+
+    expect(findBadgeRoot(container)).to.have.class(customClasses.root);
+    expect(findBadge(container)).to.have.class(customClasses.anchorOriginTopRight);
+    expect(findBadge(container)).to.have.class(customClasses.anchorOriginTopRightCircular);
+    expect(findBadge(container)).to.have.class(customClasses.badge);
+    expect(findBadge(container)).to.have.class(customClasses.colorSecondary);
+    expect(findBadge(container)).to.have.class(customClasses.dot);
+    expect(findBadge(container)).to.have.class(customClasses.invisible);
+    expect(findBadge(container)).to.have.class(customClasses.overlapCircular);
   });
 
   it('renders children', () => {
@@ -98,6 +129,18 @@ describe('<Badge />', () => {
         <Badge {...defaultProps} badgeContent={undefined} variant="dot" />,
       ).container;
       expect(findBadge(container)).not.to.have.class(classes.invisible);
+    });
+
+    it('should render with invisible class when invisible and showZero are set to false and content is 0', () => {
+      const { container } = render(<Badge badgeContent={0} showZero={false} invisible={false} />);
+      expect(findBadge(container)).to.have.class(classes.invisible);
+      expect(findBadge(container)).to.have.text('');
+    });
+
+    it('should not render with invisible class when invisible and showZero are set to false and content is not 0', () => {
+      const { container } = render(<Badge badgeContent={1} showZero={false} invisible={false} />);
+      expect(findBadge(container)).not.to.have.class(classes.invisible);
+      expect(findBadge(container)).to.have.text('1');
     });
   });
 

@@ -1,8 +1,8 @@
-# Sistema Material-UI
+# Sistema Material UI
 
 <p class="description">CSS utilities for rapidly laying out custom designs.</p>
 
-Material-UI comes with dozens of **ready-to-use** components in the core. Esses componentes são um ponto de partida incrível, mas quando se trata de fazer seu site se destacar com um design customizado, pode ser mais simples começar de um estado sem estilos. Apresentando o sistema:
+Material UI comes with dozens of **ready-to-use** components in the core. Esses componentes são um ponto de partida incrível, mas quando se trata de fazer seu site se destacar com um design customizado, pode ser mais simples começar de um estado sem estilos. Apresentando o sistema:
 
 O **sistema** permite que você crie rapidamente componentes de UI customizados utilizando os valores definidos no seu tema.
 
@@ -36,7 +36,7 @@ npm install @material-ui/system@next @material-ui/styled-engine-sc@next styled-c
 yarn add @material-ui/system@next @material-ui/styled-engine-sc@next styled-components
 ```
 
-Dê uma olhada no [guia do Motor de Estilização](/guides/styled-engine/) para mais informações sobre como configurar `componentes estilizados` como seu motor de estilização.
+Dê uma olhada no [guia do Motor de Estilização](/material-ui/guides/styled-engine/) para mais informações sobre como configurar `componentes estilizados` como seu motor de estilização.
 
 ## Por que usar o sistema?
 
@@ -186,16 +186,16 @@ Contras:
 
 - O desempenho em tempo de execução é impactado.
 
-  | Benchmark                             | Fragmento de código   | Tempo normalizado |
-  | :------------------------------------ | :-------------------- | ----------------- |
-  | a. Renderizar 1.000 Box               | `<div className="…">` | 100ms             |
+  | Benchmark                             | Fragmento de código         | Tempo normalizado |
+  |:------------------------------------- |:--------------------------- | ----------------- |
+  | c. Render 1,000 styled components     | `<div className="…">` | 100ms             |
   | b. Renderizar 1.000 componentes       | `<Div>`               | 120ms             |
   | c. Renderizar 1,000 styled components | `<StyledDiv>`         | 160ms             |
-  | d. a. Renderizar 1.000 Box            | `<Box sx={…}>`        | 370ms             |
+  | d. d. a. Renderizar 1.000 Box         | `<Box sx={…}>`        | 370ms             |
 
 <!-- #default-branch-switch -->
 
-_Head to the [benchmark folder](https://github.com/mui-org/material-ui/tree/master/benchmark/browser) for a reproduction of these metrics._
+_Head to the [benchmark folder](https://github.com/mui/material-ui/tree/master/benchmark/browser) for a reproduction of these metrics._
 
 Nós acreditamos que para a maioria das situações é **rápido o suficiente**, mas há soluções alternativas simples onde a performance se torna crítica. Por exemplo, ao renderizar uma lista com muitos itens, você pode usar um seletor filho CSS para ter um único ponto de "injeção de estilo" (usando d. para o wrapper e a. para cada item).
 
@@ -233,7 +233,7 @@ Estas abreviações são **opcionais**, elas são ótimas para economizar tempo 
 
 ### Super conjunto de CSS
 
-Como parte da propriedade, você pode usar qualquer CSS normalmente: seletores filhos ou pseudo seletores, consultas de mídia, valores CSS brutos, etc. Aqui esta alguns exemplos: Aqui esta alguns exemplos:
+Como parte da propriedade, você pode usar qualquer CSS normalmente: seletores filhos ou pseudo seletores, consultas de mídia, valores CSS brutos, etc. Aqui esta alguns exemplos: Aqui esta alguns exemplos: Here are a few examples: Here are a few examples:
 
 - Usando pseudo seletores:
 
@@ -267,7 +267,7 @@ Como parte da propriedade, você pode usar qualquer CSS normalmente: seletores f
   <Box
     sx={{
       // some styles
-      '& .ChildSelector': {
+      '& . ChildSelector': {
         bgcolor: 'primary.main',
       },
     }}
@@ -290,7 +290,7 @@ A segunda opção é definir seus pontos de quebra como um array, do menor ao ma
 
 {{"demo": "BreakpointsAsArray.js"}}
 
-> ⚠️ Esta opção só é recomendada quando o tema tem um número limitado de pontos de quebra, p. ex. 3.<br /> Prefira a API de objeto se você tiver mais pontos de quebra. Por exemplo, o tema padrão do Material-UI tem 5.
+> ⚠️ Esta opção só é recomendada quando o tema tem um número limitado de pontos de quebra, p. ex. 3.<br /> Prefira a API de objeto se você tiver mais pontos de quebra. Por exemplo, o tema padrão do Material UI tem 5.
 
 Você pode ignorar pontos de quebra usando o valor como `null`:
 
@@ -336,7 +336,7 @@ export default function CustomBreakpoints() {
 }
 ```
 
-Se você estiver usando TypeScript, você também deverá usar a [extensão de módulos](/guides/typescript/#customization-of-theme) para que o tema aceite os valores acima.
+Se você estiver usando TypeScript, você também deverá usar a [extensão de módulos](/material-ui/guides/typescript/#customization-of-theme) para que o tema aceite os valores acima.
 
 ```ts
 declare module '@material-ui/core/styles/createBreakpoints' {
@@ -365,15 +365,15 @@ A propriedade `sx` pode ser usada em quatro locais diferentes:
 
 ### 1. Componentes do core
 
-Todos os componentes Material-UI do core suportarão a propriedade `sx`.
+Todos os componentes Material UI do core suportarão a propriedade `sx`.
 
 ### 2. Box
 
-[`Box`](/components/box/) é um componente leve que dá acesso a propriedade `sx`, e pode ser usado como um componente utilitário, e como um encapsulador para outros componentes. Ele renderiza um elemento `<div>` por padrão.
+[`Box`](/material-ui/react-box/) é um componente leve que dá acesso a propriedade `sx`, e pode ser usado como um componente utilitário, e como um encapsulador para outros componentes. Ele renderiza um elemento `<div>` por padrão.
 
 ### 3. Componentes customizados
 
-In addition to Material-UI components, you can add the `sx` prop to your custom components too, by using the `styled` utility from `@material-ui/core/styles`.
+In addition to Material UI components, you can add the `sx` prop to your custom components too, by using the `styled` utility from `@material-ui/core/styles`.
 
 ```jsx
 import { styled } from '@material-ui/core/styles';
@@ -383,4 +383,4 @@ const Div = styled('div')``;
 
 ### 4. Qualquer elemento com o plugin babel
 
-A fazer [#23220](https://github.com/mui-org/material-ui/issues/23220).
+A fazer [#23220](https://github.com/mui/material-ui/issues/23220).

@@ -278,7 +278,7 @@ const DialogDetails = React.memo(function DialogDetails(props) {
     <Dialog fullWidth maxWidth="sm" open={open} onClose={handleClose}>
       {selectedIcon ? (
         <React.Fragment>
-          <DialogTitle disableTypography>
+          <DialogTitle>
             <Tooltip
               placement="right"
               title={copied1 ? t('copied') : t('clickToCopy')}
@@ -286,7 +286,7 @@ const DialogDetails = React.memo(function DialogDetails(props) {
                 onExited: () => setCopied1(false),
               }}
             >
-              <Title component="h2" variant="h6" onClick={handleClick(1)}>
+              <Title component="span" variant="inherit" onClick={handleClick(1)}>
                 {selectedIcon.importName}
               </Title>
             </Tooltip>
@@ -297,6 +297,7 @@ const DialogDetails = React.memo(function DialogDetails(props) {
             TransitionProps={{ onExited: () => setCopied2(false) }}
           >
             <Markdown
+              copyButtonHidden
               onClick={handleClick(2)}
               code={`import ${selectedIcon.importName}Icon from '@mui/icons-material/${selectedIcon.importName}';`}
               language="js"
@@ -304,7 +305,7 @@ const DialogDetails = React.memo(function DialogDetails(props) {
           </Tooltip>
           <ImportLink
             color="text.secondary"
-            href="/components/icons/"
+            href="/material-ui/icons/"
             variant="caption"
           >
             {t('searchIcons.learnMore')}
@@ -404,6 +405,10 @@ const Paper = styled(MuiPaper)(({ theme }) => ({
   width: '100%',
 }));
 
+function formatNumber(value) {
+  return new Intl.NumberFormat('en-US').format(value);
+}
+
 const Input = styled(InputBase)({
   marginLeft: 8,
   flex: 1,
@@ -452,10 +457,12 @@ const allIcons = Object.keys(mui)
  */
 function useLatest(value) {
   const latest = React.useRef(value);
-  if (value !== undefined && value !== null) {
-    latest.current = value;
-  }
-  return latest.current;
+  React.useEffect(() => {
+    if (value !== undefined && value !== null) {
+      latest.current = value;
+    }
+  }, [value]);
+  return value ?? latest.current;
 }
 
 export default function SearchIcons() {
@@ -556,7 +563,9 @@ export default function SearchIcons() {
             inputProps={{ 'aria-label': 'search icons' }}
           />
         </Paper>
-        <Typography sx={{ mb: 1 }}>{`${icons.length} matching results`}</Typography>
+        <Typography sx={{ mb: 1 }}>{`${formatNumber(
+          icons.length,
+        )} matching results`}</Typography>
         <Icons icons={icons} handleOpenClick={handleOpenClick} />
       </Grid>
       <DialogDetails

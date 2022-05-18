@@ -12,12 +12,15 @@ import NextHead from 'next/head';
 import PropTypes from 'prop-types';
 import acceptLanguage from 'accept-language';
 import { useRouter } from 'next/router';
+import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/utils';
 import pages from 'docs/src/pages';
 import basePages from 'docs/data/base/pages';
 import materialPages from 'docs/data/material/pages';
+import joyPages from 'docs/data/joy/pages';
 import systemPages from 'docs/data/system/pages';
 import PageContext from 'docs/src/modules/components/PageContext';
 import GoogleAnalytics from 'docs/src/modules/components/GoogleAnalytics';
+import { CodeCopyProvider } from 'docs/src/modules/utils/CodeCopy';
 import { ThemeProvider } from 'docs/src/modules/components/ThemeContext';
 import { pathnameToLanguage, getCookie } from 'docs/src/modules/utils/helpers';
 import { LANGUAGES } from 'docs/src/modules/constants';
@@ -43,17 +46,23 @@ function LanguageNegotiation() {
   const router = useRouter();
   const userLanguage = useUserLanguage();
 
-  React.useEffect(() => {
+  useEnhancedEffect(() => {
     const { userLanguage: userLanguageUrl, canonicalAs } = pathnameToLanguage(router.asPath);
-    const preferedLanguage =
-      LANGUAGES.find((lang) => lang === getCookie('userLanguage')) ||
-      acceptLanguage.get(navigator.language) ||
-      userLanguage;
 
-    if (userLanguageUrl === 'en' && userLanguage !== preferedLanguage) {
-      window.location =
-        preferedLanguage === 'en' ? canonicalAs : `/${preferedLanguage}${canonicalAs}`;
-    } else if (userLanguage !== userLanguageUrl) {
+    // Only consider a redirection if coming to the naked folder.
+    if (userLanguageUrl === 'en') {
+      const preferedLanguage =
+        LANGUAGES.find((lang) => lang === getCookie('userLanguage')) ||
+        acceptLanguage.get(navigator.language) ||
+        userLanguage;
+
+      if (userLanguage !== preferedLanguage && !process.env.BUILD_ONLY_ENGLISH_LOCALE) {
+        window.location =
+          preferedLanguage === 'en' ? canonicalAs : `/${preferedLanguage}${canonicalAs}`;
+      }
+    }
+
+    if (userLanguage !== userLanguageUrl) {
       setUserLanguage(userLanguageUrl);
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
@@ -181,8 +190,11 @@ function AppWrapper(props) {
   if (asPathWithoutLang.startsWith('/base')) {
     productPages = basePages;
   }
-  if (asPathWithoutLang.startsWith('/material')) {
+  if (asPathWithoutLang.startsWith('/material-ui')) {
     productPages = materialPages;
+  }
+  if (asPathWithoutLang.startsWith('/joy-ui')) {
+    productPages = joyPages;
   }
   if (asPathWithoutLang.startsWith('/system') && FEATURE_TOGGLE.enable_system_scope) {
     productPages = systemPages;
@@ -206,17 +218,19 @@ function AppWrapper(props) {
         ))}
       </NextHead>
       <UserLanguageProvider defaultUserLanguage={pageProps.userLanguage}>
-        <CodeVariantProvider>
-          <PageContext.Provider value={{ activePage, pages: productPages }}>
-            <ThemeProvider>
-              <DocsStyledEngineProvider cacheLtr={emotionCache}>
-                {children}
-                <GoogleAnalytics />
-              </DocsStyledEngineProvider>
-            </ThemeProvider>
-          </PageContext.Provider>
-          <LanguageNegotiation />
-        </CodeVariantProvider>
+        <LanguageNegotiation />
+        <CodeCopyProvider>
+          <CodeVariantProvider>
+            <PageContext.Provider value={{ activePage, pages: productPages }}>
+              <ThemeProvider>
+                <DocsStyledEngineProvider cacheLtr={emotionCache}>
+                  {children}
+                  <GoogleAnalytics />
+                </DocsStyledEngineProvider>
+              </ThemeProvider>
+            </PageContext.Provider>
+          </CodeVariantProvider>
+        </CodeCopyProvider>
       </UserLanguageProvider>
     </React.Fragment>
   );

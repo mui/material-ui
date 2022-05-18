@@ -437,15 +437,16 @@ export function parseFromProgram(
       declaration &&
       ts.isPropertySignature(declaration)
     ) {
-      parsedType = declaration.questionToken
-        ? t.createUnionType({
-            jsDoc: getDocumentation(symbol),
-            types: [
-              t.createUndefinedType({ jsDoc: undefined }),
-              t.createAnyType({ jsDoc: undefined }),
-            ],
-          })
-        : t.createAnyType({ jsDoc: getDocumentation(symbol) });
+      parsedType =
+        symbol.flags & ts.SymbolFlags.Optional
+          ? t.createUnionType({
+              jsDoc: getDocumentation(symbol),
+              types: [
+                t.createUndefinedType({ jsDoc: undefined }),
+                t.createAnyType({ jsDoc: undefined }),
+              ],
+            })
+          : t.createAnyType({ jsDoc: getDocumentation(symbol) });
     } else {
       parsedType = checkType(type, location, typeStack, symbol.getName());
     }

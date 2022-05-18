@@ -1,6 +1,6 @@
 <Masonry
   columns={4}
-  spacing={1}
+  spacing={2}
   defaultHeight={450}
   defaultColumns={4}
   defaultSpacing={1}

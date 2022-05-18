@@ -67,7 +67,7 @@ export const FormControlLabelRoot = styled('label', {
   }),
   [`& .${formControlLabelClasses.label}`]: {
     [`&.${formControlLabelClasses.disabled}`]: {
-      color: theme.palette.text.disabled,
+      color: (theme.vars || theme).palette.text.disabled,
     },
   },
 }));
@@ -86,7 +86,7 @@ const FormControlLabel = React.forwardRef(function FormControlLabel(inProps, ref
     disabled: disabledProp,
     disableTypography,
     inputRef,
-    label,
+    label: labelProp,
     labelPlacement = 'end',
     name,
     onChange,
@@ -123,12 +123,20 @@ const FormControlLabel = React.forwardRef(function FormControlLabel(inProps, ref
   const ownerState = {
     ...props,
     disabled,
-    label,
     labelPlacement,
     error: fcs.error,
   };
 
   const classes = useUtilityClasses(ownerState);
+
+  let label = labelProp;
+  if (label != null && label.type !== Typography && !disableTypography) {
+    label = (
+      <Typography component="span" className={classes.label} {...componentsProps.typography}>
+        {label}
+      </Typography>
+    );
+  }
 
   return (
     <FormControlLabelRoot
@@ -138,13 +146,7 @@ const FormControlLabel = React.forwardRef(function FormControlLabel(inProps, ref
       {...other}
     >
       {React.cloneElement(control, controlProps)}
-      {label.type === Typography || disableTypography ? (
-        label
-      ) : (
-        <Typography component="span" className={classes.label} {...componentsProps.typography}>
-          {label}
-        </Typography>
-      )}
+      {label}
     </FormControlLabelRoot>
   );
 });
@@ -192,7 +194,7 @@ FormControlLabel.propTypes /* remove-proptypes */ = {
   /**
    * A text or an element to be used in an enclosing label element.
    */
-  label: PropTypes.oneOfType([PropTypes.element, PropTypes.number, PropTypes.string]).isRequired,
+  label: PropTypes.node,
   /**
    * The position of the label.
    * @default 'end'

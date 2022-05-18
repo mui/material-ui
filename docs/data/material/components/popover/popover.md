@@ -1,5 +1,5 @@
 ---
-product: material
+product: material-ui
 title: React Popover component
 components: Grow, Popover
 githubLabel: 'component: Popover'
@@ -11,8 +11,8 @@ githubLabel: 'component: Popover'
 
 Things to know when using the `Popover` component:
 
-- The component is built on top of the [`Modal`](/components/modal/) component.
-- The scroll and click away are blocked unlike with the [`Popper`](/components/popper/) component.
+- The component is built on top of the [`Modal`](/material-ui/react-modal/) component.
+- The scroll and click away are blocked unlike with the [`Popper`](/material-ui/react-popper/) component.
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 

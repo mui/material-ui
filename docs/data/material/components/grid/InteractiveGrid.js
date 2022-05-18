@@ -38,6 +38,8 @@ export default function InteractiveGrid() {
               <Paper
                 sx={{
                   p: 2,
+                  backgroundColor: (theme) =>
+                    theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
                   height: '100%',
                   color: 'text.secondary',
                   pt: `${(value + 1) * 10}px`,

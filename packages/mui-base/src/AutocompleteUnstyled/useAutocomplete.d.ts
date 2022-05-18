@@ -108,7 +108,7 @@ export interface UseAutocompleteProps<
    */
   disableListWrap?: boolean;
   /**
-   * A filter function that determines the options that are eligible.
+   * A function that determines the filtered options to be rendered on search.
    *
    * @param {T[]} options The options to render.
    * @param {object} state The state of the component.
@@ -136,11 +136,13 @@ export interface UseAutocompleteProps<
    * Used to determine the string value for a given option.
    * It's used to fill the input (and the list box options if `renderOption` is not provided).
    *
+   * If used in free solo mode, it must accept both the type of the options and a string.
+   *
    * @param {T} option
    * @returns {string}
    * @default (option) => option.label ?? option
    */
-  getOptionLabel?: (option: T) => string;
+  getOptionLabel?: (option: T | AutocompleteFreeSoloValueMapping<FreeSolo>) => string;
   /**
    * Used to determine if the option represents the given value.
    * Uses strict equality by default.
@@ -306,7 +308,7 @@ export default function useAutocomplete<
   props: UseAutocompleteProps<T, Multiple, DisableClearable, FreeSolo>,
 ): {
   getRootProps: () => React.HTMLAttributes<HTMLDivElement>;
-  getInputProps: () => React.HTMLAttributes<HTMLInputElement>;
+  getInputProps: () => React.InputHTMLAttributes<HTMLInputElement>;
   // We pass `getInputLabelProps()` to `@mui/material/InputLabel` which does not implement HTMLLabelElement#color.
   getInputLabelProps: () => Omit<React.HTMLAttributes<HTMLLabelElement>, 'color'>;
   getClearProps: () => React.HTMLAttributes<HTMLDivElement>;

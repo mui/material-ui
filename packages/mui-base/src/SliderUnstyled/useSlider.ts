@@ -237,7 +237,7 @@ export default function useSlider(props: UseSliderProps) {
     ((event: Event | React.SyntheticEvent, value: number | number[], thumbIndex: number) => {
       // Redefine target to allow name and value to be read.
       // This allows seamless integration with the most popular form libraries.
-      // https://github.com/mui-org/material-ui/issues/13485#issuecomment-676048492
+      // https://github.com/mui/material-ui/issues/13485#issuecomment-676048492
       // Clone the event to not override `target` of the original event.
       const nativeEvent = (event as React.SyntheticEvent).nativeEvent || event;
       // @ts-ignore The nativeEvent is function, not object
@@ -285,7 +285,7 @@ export default function useSlider(props: UseSliderProps) {
       setOpen(index);
       otherHandlers?.onFocus?.(event);
     };
-  const createHandleHidenInputBlur =
+  const createHandleHiddenInputBlur =
     (otherHandlers: Record<string, React.EventHandler<any>>) => (event: React.FocusEvent) => {
       handleBlurVisible(event);
       if (isFocusVisibleRef.current === false) {
@@ -508,6 +508,9 @@ export default function useSlider(props: UseSliderProps) {
   });
 
   const handleTouchStart = useEventCallback((nativeEvent: TouchEvent) => {
+    if (disabled) {
+      return;
+    }
     // If touch-action: none; is not supported we need to prevent the scroll manually.
     if (!doesSupportTouchActionNone()) {
       nativeEvent.preventDefault();
@@ -570,6 +573,10 @@ export default function useSlider(props: UseSliderProps) {
     (otherHandlers: Record<string, React.EventHandler<any>>) =>
     (event: React.MouseEvent<HTMLSpanElement, MouseEvent>) => {
       otherHandlers.onMouseDown?.(event);
+      if (disabled) {
+        return;
+      }
+
       if (event.defaultPrevented) {
         return;
       }
@@ -653,7 +660,7 @@ export default function useSlider(props: UseSliderProps) {
     const ownEventHandlers = {
       onChange: createHandleHiddenInputChange(otherHandlers || {}),
       onFocus: createHandleHiddenInputFocus(otherHandlers || {}),
-      onBlur: createHandleHidenInputBlur(otherHandlers || {}),
+      onBlur: createHandleHiddenInputBlur(otherHandlers || {}),
     };
 
     const mergedEventHandlers: Record<string, React.EventHandler<any>> = {

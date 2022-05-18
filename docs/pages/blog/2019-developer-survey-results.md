@@ -1,6 +1,6 @@
 ---
-title: 2019 MUI Developer Survey results
-description: Results for the first yearly developer survey, 2019 edition.
+title: 'The 2019 MUI developer survey: here's what we discovered'
+description: Your feedback helps us to build better products. Here's what we learned about your needs in our annual survey.
 date: 2019-03-16T00:00:00.000Z
 authors: ['oliviertassinari', 'mbrookes']
 tags: ['Developer survey']
@@ -260,9 +260,9 @@ Multiple options were allowed.
 - Blog: 8%
 
 Dashboards are at the top of the heap, and we've long known that many of you are building internal
-systems that can't feature in [the showcase](/discover-more/showcase/). Let us know by opening a PR
+systems that can't feature in [the showcase](/material-ui/discover-more/showcase/). Let us know by opening a PR
 if you're bucking that trend, and have something sparkly to share! And if you're in the 40% building UI
-components, we'd be happy to give you a shout out in the [related projects](/discover-more/related-projects/)
+components, we'd be happy to give you a shout out in the [related projects](/material-ui/discover-more/related-projects/)
 section.
 
 ### 15. What "delivery mechanism" are you using?
@@ -321,7 +321,7 @@ We want to work on the problems that resonate the most with our users.
 4. Improve the static typings
 5. Reduce the overhead of the library
 
-**We will update [our ROADMAP](/discover-more/roadmap/) in the coming days**.
+**We will update [our ROADMAP](/material-ui/discover-more/roadmap/) in the coming days**.
 We will run a similar survey next year to keep track of our progress.
 
 If you want to continue to influence our roadmap, please upvote 👍 the issues you are the most interested in on GitHub.

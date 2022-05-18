@@ -25,15 +25,19 @@ export interface TypographyClasses {
   noWrap: string;
   /** Styles applied to the root element if `gutterBottom={true}`. */
   gutterBottom: string;
+  /** Styles applied to the startDecorator element */
+  startDecorator: string;
+  /** Styles applied to the endDecorator element */
+  endDecorator: string;
 }
 
 export type TypographyClassKey = keyof TypographyClasses;
 
 export function getTypographyUtilityClass(slot: string): string {
-  return generateUtilityClass('MuiTypography', slot);
+  return generateUtilityClass('JoyTypography', slot);
 }
 
-const typographyClasses: TypographyClasses = generateUtilityClasses('MuiTypography', [
+const typographyClasses: TypographyClasses = generateUtilityClasses('JoyTypography', [
   'root',
   'h1',
   'h2',
@@ -46,6 +50,8 @@ const typographyClasses: TypographyClasses = generateUtilityClasses('MuiTypograp
   'body3',
   'noWrap',
   'gutterBottom',
+  'startDecorator',
+  'endDecorator',
 ]);
 
 export default typographyClasses;

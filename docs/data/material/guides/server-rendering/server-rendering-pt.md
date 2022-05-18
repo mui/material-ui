@@ -4,9 +4,9 @@
 
 Quando o servidor recebe a solicitação, ele renderiza o(s) componente(s) requerido(s) em uma cadeia HTML e o envia como uma resposta ao cliente. A partir desse momento, o cliente assume as funções de renderização.
 
-## Material-UI no servidor
+## Material UI no servidor
 
-O Material-UI foi projetado em base com garantias de renderização no servidor, mas cabe a você certificar-se de que ele será integrado corretamente. É importante fornecer a página com o CSS necessário, caso contrário a página irá renderizar somente o HTML até o CSS ser injetado pelo cliente, causando uma tremulação (FOUC). Para injetar o estilo no cliente, precisamos:
+O Material UI foi projetado em base com garantias de renderização no servidor, mas cabe a você certificar-se de que ele será integrado corretamente. É importante fornecer a página com o CSS necessário, caso contrário a página irá renderizar somente o HTML até o CSS ser injetado pelo cliente, causando uma tremulação (FOUC). Para injetar o estilo no cliente, precisamos:
 
 1. Create a fresh, new [`emotion cache`](https://emotion.sh/docs/@emotion/cache) instance on every request.
 2. Renderize a árvore React com o coletor do lado do servidor.
@@ -39,7 +39,7 @@ const theme = createTheme({
       main: '#19857b',
     },
     error: {
-      main: red.A400,
+      main: red. A400,
     },
   },
 });
@@ -78,11 +78,11 @@ app.listen(port);
 
 A primeira coisa que nós precisamos fazer em cada request é criar um novo `emotion cache`.
 
-When rendering, we will wrap `App`, the root component, inside a [`CacheProvider`](https://emotion.sh/docs/cache-provider) and [`ThemeProvider`](/styles/api/#themeprovider) to make the style configuration and the `theme` available to all components in the component tree.
+When rendering, we will wrap `App`, the root component, inside a [`CacheProvider`](https://emotion.sh/docs/cache-provider) and [`ThemeProvider`](/system/styles/api/#themeprovider) to make the style configuration and the `theme` available to all components in the component tree.
 
 The key step in server-side rendering is to render the initial HTML of the component **before** we send it to the client-side. Para fazer isso, usamos [ReactDOMServer.renderToString()](https://reactjs.org/docs/react-dom-server.html).
 
-Material-UI is using emotion as its default styled engine. We need to extract the styles from the emotion instance. For this, we need to share the same cache configuration for both the client and server:
+Material UI is using emotion as its default styled engine. We need to extract the styles from the emotion instance. For this, we need to share the same cache configuration for both the client and server:
 
 `getCache.js`
 
@@ -101,10 +101,26 @@ With this we are creating new emotion cache instance and using this to extract t
 Vamos ver como isso é passado na função `renderFullPage`.
 
 ```jsx
-app.use(handleRender);
+import express from 'express';
+import * as React from 'react';
+import ReactDOMServer from 'react-dom/server';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import { ThemeProvider } from '@material-ui/core/styles';
+import createEmotionServer from '@emotion/server/create-instance';
+import App from './App';
+import theme from './theme';
+import getCache from './getCache';
 
-const port = 3000;
-app.listen(port);
+function handleRender(req, res) {
+  const cache = getCache();
+  const { extractCriticalToChunks, constructStyleTagsFromChunks } =
+    createEmotionServer(cache);
+
+  // Render the component to a string.
+  app.use(handleRender);
+
+  const port = 3000;
+  app.listen(port);
   const html = ReactDOMServer.renderToString(
     <CacheProvider value={cache}>
       <ThemeProvider theme={theme}>
@@ -128,22 +144,10 @@ const app = express();
 app.use('/build', express.static('build'));
 
 // This is fired every time the server-side receives a request.
-import express from 'express';
-import * as React from 'react';
-import ReactDOMServer from 'react-dom/server';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import { ThemeProvider } from '@material-ui/core/styles';
-import createEmotionServer from '@emotion/server/create-instance';
-import App from './App';
-import theme from './theme';
-import getCache from './getCache';
+app.use(handleRender);
 
-function handleRender(req, res) {
-  const cache = getCache();
-  const { extractCriticalToChunks, constructStyleTagsFromChunks } =
-    createEmotionServer(cache);
-
-  // Render the component to a string.
+const port = 3000;
+app.listen(port);
 ```
 
 ### Inject initial component HTML and CSS
@@ -195,18 +199,17 @@ function Main() {
       </ThemeProvider>
     </CacheProvider>
   );
-}
-ReactDOM.hydrate(<Main />, document.querySelector('#root'));
+} ReactDOM.hydrate(<Main />, document.querySelector('#root'));
 ```
 
 ## Implementações de referência
 
-We host different reference implementations which you can find in the [GitHub repository](https://github.com/mui-org/material-ui) under the [`/examples`](https://github.com/mui-org/material-ui/tree/HEAD/examples) folder:
+We host different reference implementations which you can find in the [GitHub repository](https://github.com/mui/material-ui) under the [`/examples`](https://github.com/mui/material-ui/tree/HEAD/examples) folder:
 
-- [A implementação de referência deste tutorial](https://github.com/mui-org/material-ui/tree/HEAD/examples/ssr)
-- [Gatsby](https://github.com/mui-org/material-ui/tree/HEAD/examples/gatsby)
-- [Next.js](https://github.com/mui-org/material-ui/tree/HEAD/examples/nextjs) ([TypeScript version](https://github.com/mui-org/material-ui/tree/HEAD/examples/nextjs-with-typescript))
+- [A implementação de referência deste tutorial](https://github.com/mui/material-ui/tree/HEAD/examples/ssr)
+- [Gatsby](https://github.com/mui/material-ui/tree/HEAD/examples/gatsby)
+- [Next.js](https://github.com/mui/material-ui/tree/HEAD/examples/nextjs) ([TypeScript version](https://github.com/mui/material-ui/tree/HEAD/examples/nextjs-with-typescript))
 
 ## Resolução de problemas
 
-Confira a resposta no FAQ: [Minha aplicação não é renderizada corretamente no servidor](/getting-started/faq/#my-app-doesnt-render-correctly-on-the-server).
+Confira a resposta no FAQ: [Minha aplicação não é renderizada corretamente no servidor](/material-ui/getting-started/faq/#my-app-doesnt-render-correctly-on-the-server).

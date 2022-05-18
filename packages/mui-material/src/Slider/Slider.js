@@ -33,22 +33,11 @@ const SliderRoot = styled('span', {
   overridesResolver: (props, styles) => {
     const { ownerState } = props;
 
-    const marks =
-      ownerState.marksProp === true && ownerState.step !== null
-        ? [...Array(Math.floor((ownerState.max - ownerState.min) / ownerState.step) + 1)].map(
-            (_, index) => ({
-              value: ownerState.min + ownerState.step * index,
-            }),
-          )
-        : ownerState.marksProp || [];
-
-    const marked = marks.length > 0 && marks.some((mark) => mark.label);
-
     return [
       styles.root,
       styles[`color${capitalize(ownerState.color)}`],
       ownerState.size !== 'medium' && styles[`size${capitalize(ownerState.size)}`],
-      marked && styles.marked,
+      ownerState.marked && styles.marked,
       ownerState.orientation === 'vertical' && styles.vertical,
       ownerState.track === 'inverted' && styles.trackInverted,
       ownerState.track === false && styles.trackFalse,
@@ -576,7 +565,9 @@ Slider.propTypes /* remove-proptypes */ = {
    */
   classes: PropTypes.object,
   /**
-   * The color of the component. It supports those theme colors that make sense for this component.
+   * The color of the component.
+   * It supports both default and custom theme colors, which can be added as shown in the
+   * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
    * @default 'primary'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([

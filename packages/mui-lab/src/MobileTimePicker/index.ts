@@ -1,2 +1,2 @@
-export * from './MobileTimePicker';
-export { default } from './MobileTimePicker';
+export { MobileTimePicker as default } from '@mui/x-date-pickers/MobileTimePicker';
+export type { MobileTimePickerProps } from '@mui/x-date-pickers/MobileTimePicker';

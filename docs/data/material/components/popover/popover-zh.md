@@ -1,5 +1,5 @@
 ---
-product: material
+product: material-ui
 title: React Popover（弹出框）组件
 components: Grow, Popover
 githubLabel: 'component: Popover'
@@ -11,8 +11,8 @@ githubLabel: 'component: Popover'
 
 使用`弹出框`组件时，你需要了解的事项：
 
-- 该组件构建在 [`Modal`](/components/modal/) 组件之上。
-- 不同于 [`Popper`](/components/popper/) 组件，滚动（scroll）和 click away 行为是被阻止的。
+- 该组件构建在 [`Modal`](/material-ui/react-modal/) 组件之上。
+- 不同于 [`Popper`](/material-ui/react-popper/) 组件，滚动（scroll）和 click away 行为是被阻止的。
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 

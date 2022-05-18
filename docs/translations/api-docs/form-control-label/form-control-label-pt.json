@@ -41,6 +41,11 @@
     "label": {
       "description": "Estilos aplicados a {{nodeName}}.",
       "nodeName": "the label's Typography component"
+    },
+    "error": {
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>error={true}</code>"
     }
   }
 }

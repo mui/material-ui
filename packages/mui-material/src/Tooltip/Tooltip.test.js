@@ -761,6 +761,7 @@ describe('<Tooltip />', () => {
                   name: 'foo',
                   enabled: true,
                   phase: 'main',
+                  fn: () => {},
                 },
               ],
             },
@@ -869,7 +870,7 @@ describe('<Tooltip />', () => {
       expect(eventLog).to.deep.equal(['blur', 'close']);
     });
 
-    // https://github.com/mui-org/material-ui/issues/19883
+    // https://github.com/mui/material-ui/issues/19883
     it('should not prevent event handlers of children', () => {
       const handleFocus = spy((event) => event.currentTarget);
       // Tooltip should not assume that event handlers of children are attached to the

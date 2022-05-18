@@ -1,5 +1,5 @@
 ---
-product: material
+product: material-ui
 title: React Textarea Autosize（自适应文本框）组件
 components: TextareaAutosize
 githubLabel: 'component: TextareaAutosize'
@@ -29,9 +29,7 @@ githubLabel: 'component: TextareaAutosize'
 
 ## Unstyled
 
-- 📦 [784 B gzipped](https://bundlephobia.com/package/@mui/base@latest)
-
-As the component does not have any styles, it also comes with the Base package.
+The [TextareaAutosize](/base/react-textarea-autosize/) component is defined in the @mui/base package. It is reexported from @mui/material for convenience. In your application you may import it from either package.
 
 ```js
 import TextareaAutosize from '@mui/base/TextareaAutosize';

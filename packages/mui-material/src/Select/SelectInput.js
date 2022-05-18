@@ -187,6 +187,9 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
   }, [autoFocus]);
 
   React.useEffect(() => {
+    if (!labelId) {
+      return undefined;
+    }
     const label = ownerDocument(displayRef.current).getElementById(labelId);
     if (label) {
       const handler = () => {
@@ -281,7 +284,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
       if (onChange) {
         // Redefine target to allow name and value to be read.
         // This allows seamless integration with the most popular form libraries.
-        // https://github.com/mui-org/material-ui/issues/13485#issuecomment-676048492
+        // https://github.com/mui/material-ui/issues/13485#issuecomment-676048492
         // Clone the event to not override `target` of the original event.
         const nativeEvent = event.nativeEvent || event;
         const clonedEvent = new nativeEvent.constructor(nativeEvent.type, nativeEvent);
@@ -345,7 +348,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     }
   }
 
-  const items = childrenArray.map((child) => {
+  const items = childrenArray.map((child, index, arr) => {
     if (!React.isValidElement(child)) {
       return null;
     }
@@ -386,6 +389,26 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
       foundMatch = true;
     }
 
+    if (child.props.value === undefined) {
+      return React.cloneElement(child, {
+        'aria-readonly': true,
+        role: 'option',
+      });
+    }
+
+    const isFirstSelectableElement = () => {
+      if (value) {
+        return selected;
+      }
+      const firstSelectableElement = arr.find(
+        (item) => item.props.value !== undefined && item.props.disabled !== true,
+      );
+      if (child === firstSelectableElement) {
+        return true;
+      }
+      return selected;
+    };
+
     return React.cloneElement(child, {
       'aria-selected': selected ? 'true' : 'false',
       onClick: handleItemClick(child),
@@ -402,7 +425,10 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         }
       },
       role: 'option',
-      selected,
+      selected:
+        arr[0].props.value === undefined || arr[0].props.disabled === true
+          ? isFirstSelectableElement()
+          : selected,
       value: undefined, // The value is most likely not a valid HTML attribute.
       'data-value': child.props.value, // Instead, we provide it as a data attribute.
     });
@@ -616,7 +642,7 @@ SelectInput.propTypes = {
    */
   labelId: PropTypes.string,
   /**
-   * Props applied to the [`Menu`](/api/menu/) element.
+   * Props applied to the [`Menu`](/material-ui/api/menu/) element.
    */
   MenuProps: PropTypes.object,
   /**

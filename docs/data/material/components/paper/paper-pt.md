@@ -1,5 +1,5 @@
 ---
-product: material
+product: material-ui
 title: Componente React Paper
 components: Paper
 githubLabel: 'component: Paper'

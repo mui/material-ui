@@ -4,11 +4,13 @@
 
 > **Note**: `@mui/styles` is the _**legacy**_ styling solution for MUI. It is deprecated in v5. It depends on [JSS](https://cssinjs.org/) as a styling solution, which is not used in the `@mui/material` anymore. If you don't want to have both emotion & JSS in your bundle, please refer to the [`@mui/system`](/system/basics/) documentation which is the recommended alternative.
 
+> ⚠️ `@mui/styles` is not compatible with [React.StrictMode](https://reactjs.org/docs/strict-mode.html) or React 18.
+
 ## Temas
 
 Adicione um `ThemeProvider` para o nível superior de sua aplicação para passar um tema pela árvore de componentes do React. Dessa maneira, você poderá acessar o objeto de tema em funções de estilo.
 
-> Este exemplo cria um objeto de tema para componentes customizados. If you intend to use some of the Material-UI's components you need to provide a richer theme structure using the `createTheme()` method. Vá até a [seção de temas](/customization/theming/) para aprender como construir seu tema customizado do Material-UI.
+> Este exemplo cria um objeto de tema para componentes customizados. If you intend to use some of the Material UI's components you need to provide a richer theme structure using the `createTheme()` method. Vá até a [seção de temas](/material-ui/customization/theming/) para aprender como construir seu tema customizado do Material UI.
 
 ```jsx
 import { ThemeProvider } from '@material-ui/core/styles';
@@ -82,7 +84,7 @@ Você pode aninhar vários provedores de tema. Isso pode ser muito útil ao lida
 O tema interno **sobrescreverá** o tema externo. Você pode estender o tema externo fornecendo uma função:
 
 ```jsx
-<ThemeProvider theme={…} >
+<ThemeProvider theme={…} <ThemeProvider theme={…} <ThemeProvider theme={…} >
   <Child1 />
   <ThemeProvider theme={outerTheme => ({ darkMode: true, ...outerTheme })}>
     <Child2 />
@@ -166,7 +168,7 @@ function Parent() {
 
 JSS usa plugins para estender sua essência, permitindo que você escolha os recursos que você precisa, e somente pague pela sobrecarga de desempenho para o que você está usando.
 
-Nem todos os plugins estão disponíveis por padrão no Material-UI. Os seguintes (que são um subconjunto de [jss-preset-default](https://cssinjs.org/jss-preset-default/)) estão incluídos:
+Nem todos os plugins estão disponíveis por padrão no Material UI. Os seguintes (que são um subconjunto de [jss-preset-default](https://cssinjs.org/jss-preset-default/)) estão incluídos:
 
 - [jss-plugin-rule-value-function](https://cssinjs.org/jss-plugin-rule-value-function/)
 - [jss-plugin-global](https://cssinjs.org/jss-plugin-global/)
@@ -230,7 +232,7 @@ import { StylesProvider } from '@material-ui/styles';
 
 <StylesProvider injectFirst>
   {/* Sua árvore de componentes.
-      Componentes com estilo podem sobrescrever os estilos de Material-UI. */}
+      Componentes com estilo podem sobrescrever os estilos de Material UI. */}
 </StylesProvider>;
 ```
 
@@ -285,7 +287,13 @@ A abordagem mais simples é adicionar um comentário HTML no `<head>` que determ
 ```
 
 ```jsx
-insertionPoint: 'jss-insertion-point',
+import { create } from 'jss';
+import { StylesProvider, jssPreset } from '@mui/styles';
+
+const jss = create({
+  ...jssPreset(),
+  // Define a custom insertion point that JSS will look for when injecting the styles into the DOM.
+  insertionPoint: 'jss-insertion-point',
 });
 
 export default function App() {
@@ -311,7 +319,13 @@ export default function App() {
 ```
 
 ```jsx
-insertionPoint: 'jss-insertion-point',
+import { create } from 'jss';
+import { StylesProvider, jssPreset } from '@mui/styles';
+
+const jss = create({
+  ...jssPreset(),
+  // Define a custom insertion point that JSS will look for when injecting the styles into the DOM.
+  insertionPoint: 'jss-insertion-point',
 });
 
 export default function App() {
@@ -342,6 +356,12 @@ import { StylesProvider, jssPreset } from '@material-ui/styles';
 const jss = create({
   ...jssPreset(),
   // Defina um ponto de inserção customizado que o JSS irá procurar para injetar os estilos no DOM.
+  insertionPoint: 'jss-insertion-point',
+});
+
+export default function App() {
+  return <StylesProvider jss={jss}>...</StylesProvider>;
+}
 ```
 
 ## Renderização do lado servidor
@@ -372,7 +392,7 @@ function render() {
 }
 ```
 
-Você pode [seguir o guia de renderização no servidor](/guides/server-rendering/) para um exemplo mais detalhado, ou leia o [`ServerStyleSheets` na documentação da API](/styles/api/#serverstylesheets).
+Você pode [seguir o guia de renderização no servidor](/material-ui/guides/server-rendering/) para um exemplo mais detalhado, ou leia o [`ServerStyleSheets` na documentação da API](/system/styles/api/#serverstylesheets).
 
 ### Gatsby
 
@@ -380,19 +400,19 @@ Existe [um plugin oficial Gatsby](https://github.com/hupe1980/gatsby-plugin-mate
 
 <!-- #default-branch-switch -->
 
-Refer to [this example Gatsby project](https://github.com/mui-org/material-ui/tree/master/examples/gatsby) for an up-to-date usage example.
+Refer to [this example Gatsby project](https://github.com/mui/material-ui/tree/master/examples/gatsby) for an up-to-date usage example.
 
 ### Next.js
 
-Você precisa ter um `pages/_document.js` customizado, então copie [esta lógica](https://github.com/mui-org/material-ui/blob/814fb60bbd8e500517b2307b6a297a638838ca89/examples/nextjs/pages/_document.js#L52-L59) para injetar os estilos renderizados no lado do servidor no elemento `<head>`.
+Você precisa ter um `pages/_document.js` customizado, então copie [esta lógica](https://github.com/mui/material-ui/blob/814fb60bbd8e500517b2307b6a297a638838ca89/examples/nextjs/pages/_document.js#L52-L59) para injetar os estilos renderizados no lado do servidor no elemento `<head>`.
 
 <!-- #default-branch-switch -->
 
-Refer to [this example project](https://github.com/mui-org/material-ui/tree/master/examples/nextjs) for an up-to-date usage example.
+Refer to [this example project](https://github.com/mui/material-ui/tree/master/examples/nextjs) for an up-to-date usage example.
 
 ## Nomes de classes
 
-Os nomes de classes são gerados pelo [gerador de nome de classe](/styles/api/#creategenerateclassname-options-class-name-generator).
+Os nomes de classes são gerados pelo [gerador de nome de classe](/system/styles/api/#creategenerateclassname-options-class-name-generator).
 
 ### Padrão
 
@@ -432,8 +452,8 @@ const className = `${productionPrefix}-${identifier}`;
 Quando as seguintes condições são atendidas, os nomes das classes são **determinísticos**:
 
 - Apenas um provedor de tema é usado (**Sem aninhamento de tema **)
-- A folha de estilo tem um nome que começa com `Mui` (todos os componentes do Material-UI).
-- A opção `disableGlobal` do [gerador de nome de classe](/styles/api/#creategenerateclassname-options-class-name-generator) é `false` (o padrão).
+- A folha de estilo tem um nome que começa com `Mui` (todos os componentes do Material UI).
+- A opção `disableGlobal` do [gerador de nome de classe](/system/styles/api/#creategenerateclassname-options-class-name-generator) é `false` (o padrão).
 
 ## CSS global
 
@@ -451,7 +471,7 @@ Você também pode combinar nomes de classe gerados pelo JSS com nomes globais.
 
 ## Prefixos CSS
 
-O JSS usa recursos de detecção para aplicar os prefixos corretos. [Não fique surpreso](https://github.com/mui-org/material-ui/issues/9293) se você não conseguir ver um prefixo específico na versão mais recente do Chrome. Seu navegador provavelmente não precisa disso.
+O JSS usa recursos de detecção para aplicar os prefixos corretos. [Não fique surpreso](https://github.com/mui/material-ui/issues/9293) se você não conseguir ver um prefixo específico na versão mais recente do Chrome. Seu navegador provavelmente não precisa disso.
 
 ## TypeScript usage
 
@@ -608,25 +628,25 @@ interface Props {
 No entanto isto não é muito elegante de acordo com o princípio de software [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself), porque requer que você mantenha os nomes das classes (`'root'`, `'paper'`, `'button'`, ...) em dois locais diferentes. Nós fornecemos um operador de tipo `WithStyles` para ajudar com isso, assim você pode apenas escrever:
 
 ```ts
-import styled from 'styled-components';
-import { TextField } from '@material-ui/core';
+import { createStyles, WithStyles } from '@mui/styles';
 
-const StyledTextField = styled(TextField)`
-  label.focused {
-    color: green; 💚
-  }
-  . MuiOutlinedInput-root {
-    fieldset {
-      border-color: red; 💔
-    }
-    &:hover fieldset {
-      border-color: yellow; 💛
-    }
-    &. Mui-focused fieldset {
-      border-color: green; 💚
-    }
-  }
-`;
+const styles = (theme: Theme) =>
+  createStyles({
+    root: {
+      /* ... */
+    },
+    paper: {
+      /* ... */
+    },
+    button: {
+      /* ... */
+    },
+  });
+
+interface Props extends WithStyles<typeof styles> {
+  foo: number;
+  bar: boolean;
+}
 ```
 
 ### Decorando componentes
@@ -641,7 +661,7 @@ const DecoratedSFC = withStyles(styles)(({ text, type, color, classes }: Props) 
 ));
 
 const DecoratedClass = withStyles(styles)(
-  class extends React.Component<Props> {
+  class extends React. Component<Props> {
     render() {
       const { text, type, color, classes } = this.props;
       return (

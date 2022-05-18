@@ -25,7 +25,14 @@ export default function SpacingGrid() {
         <Grid container justifyContent="center" spacing={spacing}>
           {[0, 1, 2].map((value) => (
             <Grid key={value} item>
-              <Paper sx={{ height: 140, width: 100 }} />
+              <Paper
+                sx={{
+                  height: 140,
+                  width: 100,
+                  backgroundColor: (theme) =>
+                    theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+                }}
+              />
             </Grid>
           ))}
         </Grid>

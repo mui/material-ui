@@ -14,6 +14,7 @@ export default function LimitTags() {
       renderInput={(params) => (
         <TextField {...params} label="limitTags" placeholder="Favorites" />
       )}
+      sx={{ width: '500px' }}
     />
   );
 }

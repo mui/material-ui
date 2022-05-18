@@ -13,7 +13,7 @@ describe('<Typography />', () => {
     ThemeProvider,
     render,
     refInstanceof: window.HTMLParagraphElement,
-    muiName: 'MuiTypography',
+    muiName: 'JoyTypography',
     skip: ['componentsProp', 'classesRoot', 'themeVariants'],
   }));
 
@@ -82,6 +82,29 @@ describe('<Typography />', () => {
       marginTop: '16px',
       marginRight: '40px',
       marginBottom: '16px',
+    });
+  });
+
+  describe('nested typography', () => {
+    it('nested Typography should be span unless `component` is specified', () => {
+      const { container } = render(
+        <Typography>
+          <Typography>Foo</Typography> - <Typography component="b">Bar</Typography>
+        </Typography>,
+      );
+      expect(container.firstChild.firstChild.tagName).to.equal('SPAN');
+      expect(container.firstChild.lastChild.tagName).to.equal('B');
+    });
+
+    it('Typography inside start/end icon should be span', () => {
+      const { getByText } = render(
+        <Typography
+          startDecorator={<Typography>Foo</Typography>}
+          endDecorator={<Typography>Bar</Typography>}
+        />,
+      );
+      expect(getByText('Foo').tagName).to.equal('SPAN');
+      expect(getByText('Bar').tagName).to.equal('SPAN');
     });
   });
 });

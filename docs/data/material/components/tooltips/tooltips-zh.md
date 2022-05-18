@@ -1,5 +1,5 @@
 ---
-product: material
+product: material-ui
 title: React Tooltip（工具提示）组件
 components: Tooltip
 githubLabel: 'component: tooltip'
@@ -7,7 +7,7 @@ materialDesign: https://material.io/components/tooltips
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#tooltip'
 ---
 
-# Tooltip 工具提示
+# Tooltip
 
 <p class="description">当用户鼠标悬停，聚焦或者轻触一个元素时，工具提示组件会显示一段有意义的文本。</p>
 
@@ -27,7 +27,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#tooltip'
 
 ## 自定义文字提示
 
-你可以参考以下一些例子来自定义组件。 您可以在 [重写文档页面](/customization/how-to-customize/) 中了解更多有关此内容的信息。
+你可以参考以下一些例子来自定义组件。 您可以在 [重写文档页面](/material-ui/customization/how-to-customize/) 中了解更多有关此内容的信息。
 
 {{"demo": "CustomizedTooltips.js"}}
 
@@ -58,7 +58,7 @@ const MyComponent = React.forwardRef(function MyComponent(props, ref) {
 </Tooltip>
 ```
 
-您可以在[包装的组件](/guides/composition/#wrapping-components)指南中找到类似的概念。
+您可以在[包装的组件](/material-ui/guides/composition/#wrapping-components)指南中找到类似的概念。
 
 ## 触发器
 
@@ -82,7 +82,7 @@ You can use the `open`, `onOpen` and `onClose` props to control the behavior of 
 
 ## 交互式
 
-Tooltips are interactive by default (to pass [WCAG 2.1 success criterion 1.4.13](https://www.w3.org/TR/WCAG21/#content-on-hover-or-focus)). 若用户在 `leaveDelay` 过期之前将鼠标悬停在工具提示上时，它则不会被关闭。 You can disable this behavior (thus failing the success criterion which is required to reach level AA) by passing `disableInteractive`.
+Tooltips are interactive by default (to pass [WCAG 2.1 success criterion 1.4.13](https://www.w3.org/TR/WCAG21/#content-on-hover-or-focus)). 若用户在 `leaveDelay` 过期之前将鼠标悬停在工具提示上时，它则不会被关闭。 It won't close when the user hovers over the tooltip before the `leaveDelay` is expired. You can disable this behavior (thus failing the success criterion which is required to reach level AA) by passing `disableInteractive`. You can disable this behavior (thus failing the success criterion which is required to reach level AA) by passing `disableInteractive`.
 
 {{"demo": "NonInteractiveTooltips.js"}}
 
@@ -94,13 +94,17 @@ Tooltips are interactive by default (to pass [WCAG 2.1 success criterion 1.4.13]
 
 {{"demo": "DisabledTooltips.js"}}
 
-> 如果你没有包装从 `ButtonBase` 继承的 Material-UI 组件，譬如一个原生的 `<button>` 元素，当禁用元素的时候，你应该将 _pointer-events: none;_ 这个 CSS 属性添加到您的元素中：
+> 如果你没有包装从 `ButtonBase` 继承的 Material UI 组件，譬如一个原生的 `<button>` 元素，当禁用元素的时候，你应该将 _pointer-events: none;_ 这个 CSS 属性添加到您的元素中：
 
 ```jsx
 <Tooltip title="您没有足够的操作权限">
   <span>
     <button disabled={disabled} style={disabled ? { pointerEvents: 'none' } : {}}>
-      一个禁用的按钮
+      A disabled button
+    </button>
+  </span>
+</Tooltip> { pointerEvents: 'none' } : {}}>
+      A disabled button
     </button>
   </span>
 </Tooltip>
@@ -120,7 +124,7 @@ You can enable the tooltip to follow the cursor by setting `followCursor={true}`
 
 ## 虚拟元素
 
-In the event you need to implement a custom placement, you can use the `anchorEl` prop: The value of the `anchorEl` prop can be a reference to a fake DOM element. You need to create an object shaped like the [`VirtualElement`](https://popper.js.org/docs/v2/virtual-elements/).
+In the event you need to implement a custom placement, you can use the `anchorEl` prop: The value of the `anchorEl` prop can be a reference to a fake DOM element. You need to create an object shaped like the [`VirtualElement`](https://popper.js.org/docs/v2/virtual-elements/). You need to create an object shaped like the [`VirtualElement`](https://popper.js.org/docs/v2/virtual-elements/).
 
 {{"demo": "AnchorElTooltips.js"}}
 
@@ -136,12 +140,12 @@ In the event you need to implement a custom placement, you can use the `anchorEl
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#tooltip)
 
-By default, the tooltip only labels its child element. This is notably different from `title` which can either label **or** describe its child depending on whether the child already has a label. For example, in:
+By default, the tooltip only labels its child element. By default, the tooltip only labels its child element. This is notably different from `title` which can either label **or** describe its child depending on whether the child already has a label. For example, in: For example, in:
 
 ```html
 <button title="some more information">一个按钮</button>
 ```
 
-the `title` acts as an accessible description. If you want the tooltip to act as an accessible description you can pass `describeChild`. Note that you shouldn't use `describeChild` if the tooltip provides the only visual label. Otherwise, the child would have no accessible name and the tooltip would violate [success criterion 2.5.3 in WCAG 2.1](https://www.w3.org/WAI/WCAG21/Understanding/label-in-name.html).
+the `title` acts as an accessible description. the `title` acts as an accessible description. If you want the tooltip to act as an accessible description you can pass `describeChild`. Note that you shouldn't use `describeChild` if the tooltip provides the only visual label. Otherwise, the child would have no accessible name and the tooltip would violate [success criterion 2.5.3 in WCAG 2.1](https://www.w3.org/WAI/WCAG21/Understanding/label-in-name.html). Note that you shouldn't use `describeChild` if the tooltip provides the only visual label. Otherwise, the child would have no accessible name and the tooltip would violate [success criterion 2.5.3 in WCAG 2.1](https://www.w3.org/WAI/WCAG21/Understanding/label-in-name.html).
 
 {{"demo": "AccessibilityTooltips.js"}}

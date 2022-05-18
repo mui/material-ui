@@ -25,8 +25,11 @@ import Switch from '@mui/joy/Switch';
 <Switch color="info" />;
 <Switch color="success" />;
 <Switch color="warning" />;
-// @ts-expect-error there is no neutral switch
 <Switch color="neutral" />;
+
+<Switch variant="outlined" />;
+<Switch variant="soft" />;
+<Switch variant="solid" />;
 
 <Switch size="sm" />;
 <Switch size="md" />;

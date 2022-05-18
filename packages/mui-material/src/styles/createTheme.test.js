@@ -2,6 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer } from 'test/utils';
 import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { deepOrange, green } from '@mui/material/colors';
 
@@ -22,9 +23,70 @@ describe('createTheme', () => {
     expect(theme.palette.secondary.main).to.equal(green.A400);
   });
 
-  it('should allow providing a partial structure', () => {
-    const theme = createTheme({ transitions: { duration: { shortest: 150 } } });
-    expect(theme.transitions.duration.shorter).not.to.equal(undefined);
+  describe('transitions', () => {
+    it('[`easing`]: should provide the default values', () => {
+      const theme = createTheme();
+      expect(theme.transitions.easing.easeInOut).to.equal('cubic-bezier(0.4, 0, 0.2, 1)');
+      expect(theme.transitions.easing.easeOut).to.equal('cubic-bezier(0.0, 0, 0.2, 1)');
+      expect(theme.transitions.easing.easeIn).to.equal('cubic-bezier(0.4, 0, 1, 1)');
+      expect(theme.transitions.easing.sharp).to.equal('cubic-bezier(0.4, 0, 0.6, 1)');
+    });
+
+    it('[`duration`]: should provide the default values', () => {
+      const theme = createTheme();
+      expect(theme.transitions.duration.shortest).to.equal(150);
+      expect(theme.transitions.duration.shorter).to.equal(200);
+      expect(theme.transitions.duration.short).to.equal(250);
+      expect(theme.transitions.duration.standard).to.equal(300);
+      expect(theme.transitions.duration.complex).to.equal(375);
+      expect(theme.transitions.duration.enteringScreen).to.equal(225);
+      expect(theme.transitions.duration.leavingScreen).to.equal(195);
+    });
+
+    it('[`easing`]: should provide the custom values', () => {
+      const theme = createTheme({
+        transitions: {
+          easing: {
+            easeInOut: 'cubic-bezier(1, 1, 1, 1)',
+            easeOut: 'cubic-bezier(1, 1, 1, 1)',
+            easeIn: 'cubic-bezier(1, 1, 1, 1)',
+            sharp: 'cubic-bezier(1, 1, 1, 1)',
+          },
+        },
+      });
+      expect(theme.transitions.easing.easeInOut).to.equal('cubic-bezier(1, 1, 1, 1)');
+      expect(theme.transitions.easing.easeOut).to.equal('cubic-bezier(1, 1, 1, 1)');
+      expect(theme.transitions.easing.easeIn).to.equal('cubic-bezier(1, 1, 1, 1)');
+      expect(theme.transitions.easing.sharp).to.equal('cubic-bezier(1, 1, 1, 1)');
+    });
+
+    it('[`duration`]: should provide the custom values', () => {
+      const theme = createTheme({
+        transitions: {
+          duration: {
+            shortest: 1,
+            shorter: 1,
+            short: 1,
+            standard: 1,
+            complex: 1,
+            enteringScreen: 1,
+            leavingScreen: 1,
+          },
+        },
+      });
+      expect(theme.transitions.duration.shortest).to.equal(1);
+      expect(theme.transitions.duration.shorter).to.equal(1);
+      expect(theme.transitions.duration.short).to.equal(1);
+      expect(theme.transitions.duration.standard).to.equal(1);
+      expect(theme.transitions.duration.complex).to.equal(1);
+      expect(theme.transitions.duration.enteringScreen).to.equal(1);
+      expect(theme.transitions.duration.leavingScreen).to.equal(1);
+    });
+
+    it('should allow providing a partial structure', () => {
+      const theme = createTheme({ transitions: { duration: { shortest: 150 } } });
+      expect(theme.transitions.duration.shorter).not.to.equal(undefined);
+    });
   });
 
   describe('shadows', () => {
@@ -160,5 +222,32 @@ describe('createTheme', () => {
       </ThemeProvider>,
     );
     expect(container.firstChild).toHaveComputedStyle({ fontFamily: 'cursive' });
+  });
+
+  it('should apply the correct borderRadius styles via sx prop if theme values are 0', function test() {
+    const isJSDOM = /jsdom/.test(window.navigator.userAgent);
+
+    if (isJSDOM) {
+      this.skip();
+    }
+
+    const theme = createTheme({
+      shape: {
+        borderRadius: 0,
+      },
+    });
+
+    const { container } = render(
+      <ThemeProvider theme={theme}>
+        <Box sx={{ width: '2rem', height: '2rem', borderRadius: 4 }} />
+      </ThemeProvider>,
+    );
+
+    expect(container.firstChild).toHaveComputedStyle({
+      borderTopLeftRadius: '0px',
+      borderBottomLeftRadius: '0px',
+      borderTopRightRadius: '0px',
+      borderBottomRightRadius: '0px',
+    });
   });
 });

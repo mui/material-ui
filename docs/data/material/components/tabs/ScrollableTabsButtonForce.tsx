@@ -11,7 +11,7 @@ export default function ScrollableTabsButtonForce() {
   };
 
   return (
-    <Box sx={{ maxWidth: 480, bgcolor: 'background.paper' }}>
+    <Box sx={{ maxWidth: { xs: 320, sm: 480 }, bgcolor: 'background.paper' }}>
       <Tabs
         value={value}
         onChange={handleChange}

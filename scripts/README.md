@@ -12,7 +12,7 @@ The following steps must be proposed as a pull request.
    The output must be prepended to the top level `CHANGELOG.md`
    `yarn release:changelog --help` for more information.
 
-1. Clean the generated changelog, to match the format of https://github.com/mui-org/material-ui/releases.
+1. Clean the generated changelog, to match the format of https://github.com/mui/material-ui/releases.
 1. Update the root `/package.json`'s version
 1. `yarn release:version` (🔔 manually remove `^` from packages with prerelease version, eg. `-alpha`)
 1. Open PR with changes and wait for review and green CI
@@ -34,7 +34,7 @@ Push the next branch on the release branch to deploy the documentation with the 
 Note: if you don't have the `material-ui-docs` remote already, you should add it with
 
 ```sh
-git remote add material-ui-docs https://github.com/mui-org/material-ui-docs.git
+git remote add material-ui-docs https://github.com/mui/material-ui-docs.git
 ```
 
 ```sh

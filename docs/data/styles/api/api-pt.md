@@ -1,12 +1,14 @@
 ---
-
-A referência da API do @material-ui/core/styles.
-
+title: A referência da API do @material-ui/core/styles.
 ---
 
 # API
 
 <p class="description">Uma função que retorna <a href="https://cssinjs.org/jss-api/#generate-your-class-names">uma função geradora de nome de classe</a>.</p>
+
+> ⚠️ `@mui/styles` is the _**legacy**_ styling solution for MUI. It depends on [JSS](https://cssinjs.org/) as a styling solution, which is not used in the `@mui/material` anymore, deprecated in v5. If you don't want to have both emotion & JSS in your bundle, please refer to the [`@mui/system`](/system/basics/) documentation which is the recommended alternative.
+
+> ⚠️ `@mui/styles` is not compatible with [React.StrictMode](https://reactjs.org/docs/strict-mode.html) or React 18.
 
 ## `createGenerateClassName([options]) => class name generator`
 
@@ -110,7 +112,7 @@ export default function MyComponent(props) {
 
 ## `ServerStyleSheets`
 
-Esta é uma classe auxiliar para manipular a renderização do lado do servidor. [Você pode seguir este guia para uma abordagem prática](/guides/server-rendering/).
+Esta é uma classe auxiliar para manipular a renderização do lado do servidor. [Você pode seguir este guia para uma abordagem prática](/material-ui/guides/server-rendering/).
 
 ```jsx
 import ReactDOMServer from 'react-dom/server';
@@ -209,13 +211,13 @@ It should preferably be used at **the root of your component tree**.
 
 ### Propriedades
 
-| Nome              | Tipo   | Padrão | Descrição                                                                                                                                                                                                                                                                                                                                               |
-| :---------------- | :----- | :----- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| children&nbsp;\*  | node   |        | Sua árvore de componentes.                                                                                                                                                                                                                                                                                                                              |
-| disableGeneration | bool   | false  | Você pode desabilitar a geração dos estilos com esta opção. Pode ser útil ao percorrer a árvore React fora da etapa de renderização de HTML no servidor. Digamos que você esteja usando react-apollo para extrair todas as consultas feitas pela interface do lado do servidor. Você pode acelerar significativamente a varredura com essa propriedade. |
-| generateClassName | func   |        | Gerador de nome de classes do JSS.                                                                                                                                                                                                                                                                                                                      |
-| injectFirst       | bool   | false  | Por padrão, os estilos são injetados por último no elemento `<head>` da página. Como resultado, eles ganham mais especificidade do que qualquer outra folha de estilo. Se você quiser sobrescrever estilos do Material-UI, defina esta propriedade.                                                                                                     |
-| jss               | object |        | Instância do JSS.                                                                                                                                                                                                                                                                                                                                       |
+| Nome               | Tipo   | Padrão | Descrição                                                                                                                                                                                                                                                                                                                                               |
+|:------------------ |:------ |:------ |:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| children&nbsp;\* | node   |        | Sua árvore de componentes.                                                                                                                                                                                                                                                                                                                              |
+| disableGeneration  | bool   | false  | Você pode desabilitar a geração dos estilos com esta opção. Pode ser útil ao percorrer a árvore React fora da etapa de renderização de HTML no servidor. Digamos que você esteja usando react-apollo para extrair todas as consultas feitas pela interface do lado do servidor. Você pode acelerar significativamente a varredura com essa propriedade. |
+| generateClassName  | func   |        | Gerador de nome de classes do JSS.                                                                                                                                                                                                                                                                                                                      |
+| injectFirst        | bool   | false  | Por padrão, os estilos são injetados por último no elemento `<head>` da página. Como resultado, eles ganham mais especificidade do que qualquer outra folha de estilo. Se você quiser sobrescrever estilos do Material UI, defina esta propriedade.                                                                                               |
+| jss                | object |        | Instância do JSS.                                                                                                                                                                                                                                                                                                                                       |
 
 ### Exemplos
 
@@ -227,7 +229,6 @@ import { StylesProvider } from '@material-ui/styles';
 function App() {
   return <StylesProvider jss={jss}>...</StylesProvider>;
 }
-ReactDOM.render(<App />, document.querySelector('#app'));
 ```
 
 ## `ThemeProvider`
@@ -236,8 +237,8 @@ Este componente tem uma propriedade `theme`, e se torna disponível pela árvore
 
 ### Propriedades
 
-| Nome             | Tipo                                     | Padrão | Descrição                                                                     |
-| :--------------- | :--------------------------------------- | :----- | :---------------------------------------------------------------------------- |
+| Nome               | Tipo                                     | Padrão | Descrição                                                                     |
+|:------------------ |:---------------------------------------- |:------ |:----------------------------------------------------------------------------- |
 | children&nbsp;\* | node                                     |        | Sua árvore de componentes.                                                    |
 | theme&nbsp;\*    | union:&nbsp;object&nbsp;&#124;&nbsp;func |        | Um objeto de tema. Você pode utilizar uma função para receber o tema externo. |
 
@@ -253,7 +254,6 @@ const theme = {};
 function App() {
   return <ThemeProvider theme={theme}>...</ThemeProvider>;
 }
-ReactDOM.render(<App />, document.querySelector('#app'));
 ```
 
 ## `useTheme() => theme`

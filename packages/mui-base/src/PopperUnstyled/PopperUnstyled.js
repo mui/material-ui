@@ -351,7 +351,7 @@ PopperUnstyled.propTypes /* remove-proptypes */ = {
       effect: PropTypes.func,
       enabled: PropTypes.bool,
       fn: PropTypes.func,
-      name: PropTypes.any.isRequired,
+      name: PropTypes.any,
       options: PropTypes.object,
       phase: PropTypes.oneOf([
         'afterMain',

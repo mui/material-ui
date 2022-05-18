@@ -1,5 +1,5 @@
 ---
-product: material
+product: material-ui
 title: React Divider component
 components: Divider
 githubLabel: 'component: divider'
@@ -50,7 +50,9 @@ You can also render a divider vertically using the `orientation` prop.
 
 {{"demo": "VerticalDividers.js", "bg": true}}
 
-> Note the use of the `flexItem` prop to accommodate for the flex container.
+:::info
+Note the use of the `flexItem` prop to accommodate for the flex container.
+:::
 
 ### Vertical with variant middle
 

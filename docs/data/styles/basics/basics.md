@@ -1,17 +1,16 @@
-# @mui/styles
+# @mui/styles (LEGACY)
 
 <p class="description">The legacy styling solution of MUI.</p>
 
 > ⚠️ `@mui/styles` is the _**legacy**_ styling solution for MUI.
-> It is deprecated in v5.
-> It depends on [JSS](https://cssinjs.org/) as a styling solution, which is not used in the `@mui/material` anymore.
+> It depends on [JSS](https://cssinjs.org/) as a styling solution, which is not used in the `@mui/material` anymore, deprecated in v5.
 > If you don't want to have both emotion & JSS in your bundle, please refer to the [`@mui/system`](/system/basics/) documentation which is the recommended alternative.
->
+
 > ⚠️ `@mui/styles` is not compatible with [React.StrictMode](https://reactjs.org/docs/strict-mode.html) or React 18.
 
 MUI aims to provide a strong foundation for building dynamic UIs.
 For the sake of simplicity, **we expose the styling solution used in MUI components** as the `@mui/styles` package.
-You can use it, but you don't have to, since MUI is also [interoperable with](/guides/interoperability/) all the other major styling solutions.
+You can use it, but you don't have to, since MUI is also [interoperable with](/material-ui/guides/interoperability/) all the other major styling solutions.
 
 ## Why use MUI's styling solution?
 
@@ -25,7 +24,7 @@ MUI's styling solution is inspired by many other styling libraries such as [styl
 
 <!-- #default-branch-switch -->
 
-- 🚀 It's [blazing fast](https://github.com/mui-org/material-ui/tree/master/benchmark/server#material-uistyles).
+- 🚀 It's [blazing fast](https://github.com/mui/material-ui/tree/master/benchmark/server#material-uistyles).
 - 🧩 It's extensible via a [plugin](https://github.com/cssinjs/jss/blob/master/docs/plugins.md) API.
 - ⚡️ It uses [JSS](https://github.com/cssinjs/jss) at its core – a [high performance](https://github.com/cssinjs/jss/blob/master/docs/performance.md) JavaScript to CSS compiler which works at runtime and server-side.
 - 📦 Less than [15 KB gzipped](https://bundlephobia.com/package/@mui/styles); and no bundle size increase if used alongside MUI.
@@ -78,7 +77,7 @@ export default function Hook() {
 ### Styled components API
 
 Note: this only applies to the calling syntax – style definitions still use a JSS object.
-You can also [change this behavior](/styles/advanced/#string-templates), with some limitations.
+You can also [change this behavior](/system/styles/advanced/#string-templates), with some limitations.
 
 ```jsx
 import * as React from 'react';

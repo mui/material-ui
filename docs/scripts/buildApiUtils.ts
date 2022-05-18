@@ -98,7 +98,33 @@ export type ComponentInfo = {
   };
   getDemos: () => Array<{ name: string; demoPathname: string }>;
   apiPagesDirectory: string;
+  skipApiGeneration?: boolean;
 };
+
+const migratedBaseComponents = [
+  'BadgeUnstyled',
+  'ButtonUnstyled',
+  'ClickAwayListener',
+  'InputUnstyled',
+  'MenuItemUnstyled',
+  'MenuUnstyled',
+  'ModalUnstyled',
+  'MultiSelectUnstyled',
+  'NoSsr',
+  'OptionGroupUnstyled',
+  'OptionUnstyled',
+  'PopperUnstyled',
+  'Portal',
+  'SelectUnstyled',
+  'SliderUnstyled',
+  'SwitchUnstyled',
+  'TablePaginationUnstyled',
+  'TabPanelUnstyled',
+  'TabsListUnstyled',
+  'TabsUnstyled',
+  'TabUnstyled',
+  'TrapFocus',
+];
 
 export const getGenericComponentInfo = (filename: string): ComponentInfo => {
   const { name } = extractPackageFile(filename);
@@ -112,6 +138,7 @@ export const getGenericComponentInfo = (filename: string): ComponentInfo => {
     muiName: getMuiName(name),
     apiPathname: `/api/${kebabCase(name)}/`,
     apiPagesDirectory: path.join(process.cwd(), 'docs/pages/api-docs'),
+    skipApiGeneration: migratedBaseComponents.includes(name),
     readFile() {
       srcInfo = parseFile(filename);
       return srcInfo;
@@ -131,14 +158,15 @@ export const getGenericComponentInfo = (filename: string): ComponentInfo => {
     getDemos: () => {
       const allMarkdowns = findPagesMarkdown().map((markdown) => ({
         ...markdown,
-        components: getHeaders(fs.readFileSync(markdown.filename, 'utf8')).components as string[],
+        components: (getHeaders(fs.readFileSync(markdown.filename, 'utf8')) as any)
+          .components as string[],
       }));
       return findComponentDemos(name, allMarkdowns);
     },
   };
 };
 
-function findNewComponentDemos(
+function findMaterialUIDemos(
   componentName: string,
   pagesMarkdown: ReadonlyArray<{ pathname: string; components: readonly string[] }>,
 ) {
@@ -146,6 +174,7 @@ function findNewComponentDemos(
     .filter((page) => page.components.includes(componentName))
     .map((page) => page.pathname);
   return Array.from(new Set(filteredMarkdowns)) // get unique filenames
+    .filter((pathname) => pathname.indexOf('material') >= 0)
     .map((pathname) => ({
       name: pageToTitle({ pathname }) || '',
       demoPathname: replaceComponentLinks(`${pathname.replace(/^\/material/, '')}/`),
@@ -162,8 +191,8 @@ export const getMaterialComponentInfo = (filename: string): ComponentInfo => {
     filename,
     name,
     muiName: getMuiName(name),
-    apiPathname: `/material/api/${kebabCase(name)}/`,
-    apiPagesDirectory: path.join(process.cwd(), `docs/pages/material/api`),
+    apiPathname: `/material-ui/api/${kebabCase(name)}/`,
+    apiPagesDirectory: path.join(process.cwd(), `docs/pages/material-ui/api`),
     readFile() {
       srcInfo = parseFile(filename);
       return srcInfo;
@@ -177,7 +206,7 @@ export const getMaterialComponentInfo = (filename: string): ComponentInfo => {
         apiPathname:
           inheritedComponent === 'Transition'
             ? 'http://reactcommunity.org/react-transition-group/transition/#Transition-props'
-            : `/${inheritedComponent.match(/unstyled/i) ? 'base' : 'material'}/api/${kebabCase(
+            : `/${inheritedComponent.match(/unstyled/i) ? 'base' : 'material-ui'}/api/${kebabCase(
                 inheritedComponent,
               )}/`,
       };
@@ -185,12 +214,62 @@ export const getMaterialComponentInfo = (filename: string): ComponentInfo => {
     getDemos: () => {
       const allMarkdowns = findPagesMarkdownNew().map((markdown) => ({
         ...markdown,
-        components: getHeaders(fs.readFileSync(markdown.filename, 'utf8')).components as string[],
+        components: (getHeaders(fs.readFileSync(markdown.filename, 'utf8')) as any)
+          .components as string[],
       }));
-      return findNewComponentDemos(name, allMarkdowns);
+      return findMaterialUIDemos(name, allMarkdowns).map((info) => ({
+        ...info,
+        demoPathname: info.demoPathname,
+      }));
     },
   };
 };
+
+function findBaseDemos(
+  componentName: string,
+  pagesMarkdown: ReadonlyArray<{ pathname: string; components: readonly string[] }>,
+) {
+  const filteredMarkdowns = pagesMarkdown
+    .filter((page) => page.components.includes(componentName))
+    .map((page) => page.pathname);
+  return Array.from(new Set(filteredMarkdowns)) // get unique filenames
+    .map((pathname) => ({
+      name: pageToTitle({ pathname }) || '',
+      demoPathname: pathname.match(/material\//)
+        ? replaceComponentLinks(`${pathname.replace(/^\/material/, '')}/`)
+        : `${pathname.replace('/components/', '/react-')}/`,
+    }));
+}
+
+const pathToSystemTitle = (pathname: string) => {
+  const defaultTitle = pageToTitle({ pathname });
+  if (pathname.match(/material\//)) {
+    return `${defaultTitle} (Material UI)`;
+  }
+  if (pathname.match(/system\//)) {
+    return `${defaultTitle} (MUI System)`;
+  }
+  if (pathname.match(/joy\//)) {
+    return `${defaultTitle} (Joy UI)`;
+  }
+  return defaultTitle;
+};
+
+function findSystemDemos(
+  componentName: string,
+  pagesMarkdown: ReadonlyArray<{ pathname: string; components: readonly string[] }>,
+) {
+  const filteredMarkdowns = pagesMarkdown
+    .filter((page) => page.components.includes(componentName))
+    .map((page) => page.pathname);
+  return Array.from(new Set(filteredMarkdowns)) // get unique filenames
+    .map((pathname) => ({
+      name: pathToSystemTitle(pathname) || '',
+      demoPathname: pathname.match(/material\//)
+        ? replaceComponentLinks(`${pathname.replace(/^\/material/, '')}/`)
+        : `${pathname.replace('/components/', '/react-')}/`,
+    }));
+}
 
 export const getBaseComponentInfo = (filename: string): ComponentInfo => {
   const { name } = extractPackageFile(filename);
@@ -221,11 +300,56 @@ export const getBaseComponentInfo = (filename: string): ComponentInfo => {
       };
     },
     getDemos: () => {
-      const allMarkdowns = findPagesMarkdownNew().map((markdown) => ({
-        ...markdown,
-        components: getHeaders(fs.readFileSync(markdown.filename, 'utf8')).components as string[],
-      }));
-      return findNewComponentDemos(name, allMarkdowns);
+      const allMarkdowns = findPagesMarkdownNew()
+        .filter((markdown) => {
+          if (migratedBaseComponents.some((component) => filename.includes(component))) {
+            return markdown.filename.match(/[\\/]data[\\/]base[\\/]/);
+          }
+          return true;
+        })
+        .map((markdown) => ({
+          ...markdown,
+          components: (getHeaders(fs.readFileSync(markdown.filename, 'utf8')) as any)
+            .components as string[],
+        }));
+      return findBaseDemos(name, allMarkdowns);
+    },
+  };
+};
+
+export const getSystemComponentInfo = (filename: string): ComponentInfo => {
+  const { name } = extractPackageFile(filename);
+  let srcInfo: null | ReturnType<ComponentInfo['readFile']> = null;
+  if (!name) {
+    throw new Error(`Could not find the component name from: ${filename}`);
+  }
+  return {
+    filename,
+    name,
+    muiName: getMuiName(name),
+    apiPathname: `/system/api/${kebabCase(name)}/`,
+    apiPagesDirectory: path.join(process.cwd(), `docs/pages/system/api`),
+    readFile() {
+      srcInfo = parseFile(filename);
+      return srcInfo;
+    },
+    getInheritance() {
+      return null;
+    },
+    getDemos: () => {
+      const allMarkdowns = findPagesMarkdownNew()
+        .filter((markdown) => {
+          if (migratedBaseComponents.some((component) => filename.includes(component))) {
+            return markdown.filename.match(/[\\/]data[\\/]system[\\/]/);
+          }
+          return true;
+        })
+        .map((markdown) => ({
+          ...markdown,
+          components: (getHeaders(fs.readFileSync(markdown.filename, 'utf8')) as any)
+            .components as string[],
+        }));
+      return findSystemDemos(name, allMarkdowns);
     },
   };
 };

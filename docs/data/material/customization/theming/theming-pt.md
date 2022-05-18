@@ -1,6 +1,6 @@
 # Temas
 
-<p class="description">Customize Material-UI com seu tema. Você pode mudar as cores, a tipografia e muito mais.</p>
+<p class="description">Customize Material UI com seu tema. Você pode mudar as cores, a tipografia e muito mais.</p>
 
 O tema especifica a cor dos componentes, o escurecimento das superfícies, o nível de sombra, a opacidade apropriada dos elementos de tinta, etc.
 
@@ -10,27 +10,27 @@ Para promover uma maior consistência entre os aplicativos, os temas claro e esc
 
 ## Provedor de Temas
 
-Se você deseja personalizar o tema, você precisa usar o `ThemeProvider` componente para injetar um tema em sua aplicação. No entanto, isso é opcional; Material-UI componentes vêm com um tema padrão.
+Se você deseja personalizar o tema, você precisa usar o `ThemeProvider` componente para injetar um tema em sua aplicação. No entanto, isso é opcional; Material UI componentes vêm com um tema padrão.
 
 O `ThemeProvider` depende do [ recurso de contexto do React](https://pt-br.reactjs.org/docs/context.html) afim de passar o tema para baixo na árvore de componentes, então você precisa ter certeza de que o `ThemeProvider` é um pai dos componentes que você está tentando customizar. Você pode aprender mais sobre isso lendo a [sessão da API](#themeprovider).
 
 ## Variáveis de configuração do tema
 
-Alterar as variáveis de configuração do tema é a maneira mais eficaz de combinar o Material-UI às suas necessidades. As seções a seguir abordam as variáveis mais importantes do tema:
+Alterar as variáveis de configuração do tema é a maneira mais eficaz de combinar o Material UI às suas necessidades. As seções a seguir abordam as variáveis mais importantes do tema:
 
-- [`.paleta`](/customization/palette/)
-- [`.typography`](/customization/typography/)
-- [`.espaçamento`](/customization/spacing/)
-- [`.pontos de quebra`](/customization/breakpoints/)
-- [`.zIndex`](/customization/z-index/)
-- [`.transições`](/customization/transitions/)
-- [`.componentes`](/customization/theme-components/)
+- [`.paleta`](/material-ui/customization/palette/)
+- [`.typography`](/material-ui/customization/typography/)
+- [`.espaçamento`](/material-ui/customization/spacing/)
+- [`.pontos de quebra`](/material-ui/customization/breakpoints/)
+- [`.zIndex`](/material-ui/customization/z-index/)
+- [`.transições`](/material-ui/customization/transitions/)
+- [`.componentes`](/material-ui/customization/theme-components/)
 
-Você pode conferir a [seção de tema padrão](/customization/default-theme/) para visualizar o tema padrão na íntegra.
+Você pode conferir a [seção de tema padrão](/material-ui/customization/default-theme/) para visualizar o tema padrão na íntegra.
 
 ### Variáveis customizáveis
 
-When using MUI's theme with [MUI System](/system/basics/) or [any other styling solution](/guides/interoperability/#themeprovider), it can be convenient to add additional variables to the theme so you can use them everywhere. Por exemplo:
+When using MUI's theme with [MUI System](/system/basics/) or [any other styling solution](/material-ui/guides/interoperability/#themeprovider), it can be convenient to add additional variables to the theme so you can use them everywhere. Por exemplo:
 
 ```jsx
 const theme = createTheme({
@@ -66,18 +66,18 @@ declare module '@material-ui/core/styles' {
   <source src="/static/studies.mp4" type="video/mp4" >
 </video>
 
-Você [pode acessar](/styles/advanced/#accessing-the-theme-in-a-component) as variáveis do tema dentro de seus componentes React.
+Você [pode acessar](/system/styles/advanced/#accessing-the-theme-in-a-component) as variáveis do tema dentro de seus componentes React.
 
 - [mui-theme-creator](https://bareynol.github.io/mui-theme-creator/): A tool to help design and customize themes for the MUI component library. Inclui modelos de site básicos para mostrar vários componentes e como eles são afetados pelo tema
-- [create-mui-theme](https://react-theming.github.io/create-mui-theme/): É uma ferramenta online para criar temas de Material-UI por meio da ferramenta de cor do Material Design.
+- [create-mui-theme](https://react-theming.github.io/create-mui-theme/): É uma ferramenta online para criar temas de Material UI por meio da ferramenta de cor do Material Design.
 
 ## Acessando o tema em um componente
 
-Você [pode acessar](/styles/advanced/#accessing-the-theme-in-a-component) as variáveis do tema dentro de seus componentes React.
+Você [pode acessar](/system/styles/advanced/#accessing-the-theme-in-a-component) as variáveis do tema dentro de seus componentes React.
 
 ## Aninhando o tema
 
-[Você pode aninhar](/styles/advanced/#theme-nesting) vários provedores de tema.
+[Você pode aninhar](/system/styles/advanced/#theme-nesting) vários provedores de tema.
 
 {{"demo": "ThemeNesting.js"}}
 
@@ -119,7 +119,7 @@ const theme = createTheme({
 
 `theme` (_object_): A complete, ready-to-use theme object.
 
-#### Exemplos
+#### Examples
 
 ```js
 import { createTheme, responsiveFontSizes } from '@material-ui/core/styles';
@@ -146,6 +146,54 @@ function Tabs() {
 
 Think of creating a theme as a two-step composition process: first, you define the basic design options; then, you'll use these design options to compose other options (example above) or to override the design of specific components (example below).
 
+### `responsiveFontSizes(theme, options) => theme`
+
+Gera configurações de tipografia responsivas com base nas opções recebidas.
+
+#### Retornos
+
+1. `theme` (_object_): The theme object to enhance.
+2. `options` (_object_ [optional]):
+
+- `breakpoints` (_array\<string\>_ [optional]): Default to `['sm', 'md', 'lg']`. Array de [pontos de quebra](/material-ui/customization/breakpoints/) (identificadores).
+- `disableAlign` (_bool_ [optional]): Default to `false`. Se os tamanhos de fonte mudam pouco, as alturas da linha são preservadas e alinhadas à altura da linha da grade em 4px do Material Design. Isso requer uma altura de linha sem unidade nos estilos do tema.
+- `factor` (_number_ [optional]): Default to `2`. Este valor determina o fator de redimensionamento do tamanho da fonte. Quanto maior o valor, menor a diferença entre tamanhos de fonte em telas pequenas. Quanto menor o valor, maiores os tamanhos de fonte para telas pequenas. O valor deve ser maior que 1.
+- `variants` (_array\<string\>_ [optional]): Default to all. As variantes de tipografia para manipular.
+
+#### Exemplos
+
+`theme` (_object_): The new theme with a responsive typography.
+
+#### Examples
+
+```js
+import { createTheme, responsiveFontSizes } from '@mui/material/styles';
+
+let theme = createTheme();
+theme = responsiveFontSizes(theme);
+```
+
+### `unstable_createMuiStrictModeTheme(options, ...args) => theme`
+
+Usando `unstable_createMuiStrictModeTheme` restringe o uso de alguns de nossos componentes.
+
+Gera um tema que reduz a quantidade de avisos dentro de [`React. StrictMode`](https://pt-br.reactjs.org/docs/strict-mode.html) como por exemplo, `Warning: findDOMNode is deprecated in StrictMode`.
+
+#### Argumentos
+
+Atualmente `unstable_createMuiStrictModeTheme` não adiciona requisitos adicionais.
+
+#### Retornos
+
+1. `options` (_object_): Takes an incomplete theme object and adds the missing parts.
+2. `...args` (_object[]_): Deep merge the arguments with the about to be returned theme.
+
+#### Exemplos
+
+`theme` (_object_): A complete, ready-to-use theme object.
+
+#### Examples
+
 ```js
 import { createTheme } from '@mui/material/styles';
 
@@ -169,81 +217,16 @@ theme = createTheme(theme, {
 });
 ```
 
-### `responsiveFontSizes(theme, options) => theme`
-
-Gera configurações de tipografia responsivas com base nas opções recebidas.
-
-#### Retornos
-
-1. `theme` (_object_): The theme object to enhance.
-2. `options` (_object_ [optional]):
-
-- `breakpoints` (_array\<string\>_ [optional]): Default to `['sm', 'md', 'lg']`. Array de [pontos de quebra](/customization/breakpoints/) (identificadores).
-- `disableAlign` (_bool_ [optional]): Default to `false`. Se os tamanhos de fonte mudam pouco, as alturas da linha são preservadas e alinhadas à altura da linha da grade em 4px do Material Design. Isso requer uma altura de linha sem unidade nos estilos do tema.
-- `factor` (_number_ [optional]): Default to `2`. Este valor determina o fator de redimensionamento do tamanho da fonte. Quanto maior o valor, menor a diferença entre tamanhos de fonte em telas pequenas. Quanto menor o valor, maiores os tamanhos de fonte para telas pequenas. O valor deve ser maior que 1.
-- `variants` (_array\<string\>_ [optional]): Default to all. As variantes de tipografia para manipular.
-
-#### Exemplos
-
-`theme` (_object_): The new theme with a responsive typography.
-
-#### Requisitos
-
-```js
-import { createTheme, responsiveFontSizes } from '@mui/material/styles';
-
-let theme = createTheme();
-theme = responsiveFontSizes(theme);
-```
-
-### `unstable_createMuiStrictModeTheme(options, ...args) => theme`
-
-Usando `unstable_createMuiStrictModeTheme` restringe o uso de alguns de nossos componentes.
-
-Gera um tema que reduz a quantidade de avisos dentro de [`React.StrictMode`](https://pt-br.reactjs.org/docs/strict-mode.html) como por exemplo, `Warning: findDOMNode is deprecated in StrictMode`.
-
-#### Argumentos
-
-Atualmente `unstable_createMuiStrictModeTheme` não adiciona requisitos adicionais.
-
-#### Retornos
-
-1. `options` (_object_): Takes an incomplete theme object and adds the missing parts.
-2. `...args` (_object[]_): Deep merge the arguments with the about to be returned theme.
-
-#### Exemplos
-
-`theme` (_object_): A complete, ready-to-use theme object.
-
-#### Examples
-
-```js
-import { unstable_createMuiStrictModeTheme } from '@mui/material/styles';
-
-const theme = unstable_createMuiStrictModeTheme();
-
-function App() {
-  return (
-    <React.StrictMode>
-      <ThemeProvider theme={theme}>
-        <LandingPage />
-      </ThemeProvider>
-    </React.StrictMode>
-  );
-}
-```
-
 ### `ThemeProvider`
 
 This component takes a `theme` prop and applies it to the entire React tree that it is wrapping around. Deve preferencialmente ser usado na **raiz da sua árvore de componentes**.
 
 #### Props
 
-| Name | Type | Description |
-|:---
-product: material--------------- |:---------------------------------------- |:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| children&nbsp;\* | node | Your component tree. |
-| theme&nbsp;\* | union:&nbsp;object&nbsp;&#124;&nbsp;func | A theme object, usually the result of [`createTheme()`](#createtheme-options-args-theme). The provided theme will be merged with the default theme. You can provide a function to extend the outer theme. |
+| Name               | Type                                     | Description                                                                                                                                                                                               |
+|:------------------ |:---------------------------------------- |:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| children&nbsp;\* | node                                     | Your component tree.                                                                                                                                                                                      |
+| theme&nbsp;\*    | union:&nbsp;object&nbsp;&#124;&nbsp;func | A theme object, usually the result of [`createTheme()`](#createtheme-options-args-theme). The provided theme will be merged with the default theme. You can provide a function to extend the outer theme. |
 
 #### Examples
 
@@ -264,6 +247,4 @@ const theme = createTheme({
 function App() {
   return <ThemeProvider theme={theme}>...</ThemeProvider>;
 }
-
-ReactDOM.render(<App />, document.querySelector('#app'));
 ```

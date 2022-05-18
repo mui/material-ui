@@ -13,15 +13,20 @@ StackOverflow is also visited from time to time by the maintainers of MUI.
 
 [Post a question](https://stackoverflow.com/questions/tagged/mui)
 
-> 💡 **Tip**: If you're using an older version and use external resources (such as StackOverflow) for help with it, you may find answers with links that direct you to content that no longer exists in the latest version of the documentation. To easily access any previous version of the docs, simply add `v[number]` at the beginning of the URL, like so: [v4.mui.com](https://v4.mui.com/).
+:::info
+💡 **Tip**:
+
+If you're using an older version and use external resources (such as StackOverflow) for help with it, you may find answers with links that direct you to content that no longer exists in the latest version of the documentation. To easily access any previous version of the docs, simply add `v[number]` at the beginning of the URL, like so: [v4.mui.com](https://v4.mui.com/).
+
+:::
 
 ### GitHub
 
 MUI uses GitHub issues as a bug and feature request tracker.
-If you think you have found a bug, or have a new feature idea, please start by making sure it hasn't already been [reported or fixed](https://github.com/mui-org/material-ui/issues?utf8=%E2%9C%93&q=is%3Aopen+is%3Aclosed). You can search through existing issues and pull requests to see if someone has reported one similar to yours.
+If you think you have found a bug, or have a new feature idea, please start by making sure it hasn't already been [reported or fixed](https://github.com/mui/material-ui/issues?utf8=%E2%9C%93&q=is%3Aopen+is%3Aclosed). You can search through existing issues and pull requests to see if someone has reported one similar to yours.
 
-- [Open an issue on MUI Core](https://github.com/mui-org/material-ui/issues/new/choose)
-- [Open an issue on MUI X](https://github.com/mui-org/material-ui-x/issues/new/choose)
+- [Open an issue on MUI Core](https://github.com/mui/material-ui/issues/new/choose)
+- [Open an issue on MUI X](https://github.com/mui/mui-x/issues/new/choose)
 
 #### New issue guidelines
 
@@ -42,7 +47,7 @@ Stay up to date with the development of the library by following the blog.
 
 New to MUI? It's easy to learn if you know where to start!
 
-[Learn MUI](/getting-started/learn/)
+[Learn MUI](/material-ui/getting-started/learn/)
 
 ### Twitter
 
@@ -52,29 +57,13 @@ Receive the latest news on MUI.
 
 ### Supported versions
 
-MUI Core has been open-source ([MIT](https://tldrlegal.com/license/mit-license)) since the very beginning, and always will be.
-Developers can ensure MUI is the right choice for their React applications through MUI's community maintenance strategy.
-The MUI team regularly ships new releases, bug fixes, and is very welcoming to community pull requests.
-
-Given the reality of time and resource constraints, as well as the desire to keep innovating, over time it becomes necessary to shift focus to newer versions of the framework ([our release schedule](https://mui.com/versions/#release-frequency)), while making the transition to newer versions as smooth as possible, including publishing migration guides such as [this one for v5](/guides/migration-v4/).
-The open-source community is always welcome to submit new features and bug fixes as well.
-
-The current status of each MUI version is as follows:
-
-- MUI Core v5 (emotion): ✅ In active development.
-- MUI Core v4 (hooks): ⚠️ Only handle security fixes.
-- MUI Core v3 (change supported browsers): ❌ Inactive.
-- ~MUI Core v2 (never existed)~.
-- MUI Core v1 (rewrite): ❌ Inactive.
-- MUI Core v0.x: ❌ Inactive.
-
-For teams and organizations that require additional support for older versions, MUI has [options available](#professional-support-premium).
+Find details on the [supported versions](/versions/#supported-versions).
 
 ## Professional support (premium)
 
 ### Pro/Premium plans
 
-MUI comes in [three plans](/pricing/).
+MUI X comes in [three plans](https://mui.com/pricing/).
 The support available on the Community plan is mostly made possible thanks to people like you: the community. It's described in more detail in the above section. The maintainers of MUI focuses on solving the root issues, not direct support.
 
 The Pro plan allows developers to license extra features that are challenging to find in the OSS space.

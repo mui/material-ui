@@ -14,27 +14,27 @@ import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 const content = [
   {
     icon: <InvertColorsRoundedIcon fontSize="small" color="primary" />,
-    title: 'Beautifully designed',
+    title: 'Timeless aesthetics',
     description:
-      "You can start your projects with Google's Material Design or build your own designs using the sophisticated theming features.",
+      "Build beautiful UIs with ease. Start with Google's Material Design, or create your own sophisticated theme.",
   },
   {
     icon: <HandymanRoundedIcon fontSize="small" color="primary" />,
-    title: 'Easily customized',
+    title: 'Intuitive customization',
     description:
-      'Enjoy the power of our components without sacrificing the styles you want. Tweak how your components render down to the very last class.',
+      'Our components are as flexible as they are powerful. You always have full control over how they look and behave.',
   },
   {
     icon: <ArticleRoundedIcon fontSize="small" color="primary" />,
-    title: 'Superb documentation',
+    title: 'Unrivaled documentation',
     description:
-      "Our docs were shaped throughout the years with the help and experience of our trusted 2,000+ open-source contributors. It's all there!",
+      'The answer to your problem can be found in our documentation. How can we be so sure? Because our docs boast over 2,000 contributors.',
   },
   {
     icon: <AccessibilityNewRounded fontSize="small" color="primary" />,
-    title: 'Accessible in mind',
+    title: 'Dedicated to accessibility',
     description:
-      'We care about making it great for everyone. We improve accessibility for all of our components constantly, helping you to reach the largest audience possible!',
+      "We believe in building for everyone. That's why accessibility is one of our highest priorities with every new feature we ship.",
   },
 ];
 
@@ -42,11 +42,10 @@ const ValueProposition = () => {
   return (
     <Container sx={{ py: { xs: 4, sm: 6, md: 8 } }}>
       <SectionHeadline
-        overline="Developer experience"
+        overline="Why build with MUI?"
         title={
           <Typography variant="h2" sx={{ mt: 1, mb: { xs: 2, sm: 4 }, maxWidth: 500 }}>
-            Powerful tools to help you build <GradientText>all types</GradientText> of user
-            interfaces
+            A <GradientText>delightful</GradientText> experience for you and your users
           </Typography>
         }
       />

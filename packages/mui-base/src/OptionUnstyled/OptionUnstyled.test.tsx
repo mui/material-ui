@@ -7,10 +7,16 @@ const dummyGetOptionState = () => ({
   disabled: false,
   highlighted: false,
   selected: false,
-  index: 0,
 });
 
-const dummyGetOptionProps = () => ({});
+const dummyGetOptionProps = () => ({
+  'aria-disabled': false,
+  'aria-selected': false,
+  label: '',
+  onClick: () => {},
+  role: 'option',
+  value: '',
+});
 
 describe('OptionUnstyled', () => {
   const mount = createMount();
@@ -21,7 +27,11 @@ describe('OptionUnstyled', () => {
     render: (node) => {
       return render(
         <SelectUnstyledContext.Provider
-          value={{ getOptionState: dummyGetOptionState, getOptionProps: dummyGetOptionProps }}
+          value={{
+            getOptionState: dummyGetOptionState,
+            getOptionProps: dummyGetOptionProps,
+            listboxRef: React.createRef(),
+          }}
         >
           {node}
         </SelectUnstyledContext.Provider>,
@@ -30,7 +40,11 @@ describe('OptionUnstyled', () => {
     mount: (node: React.ReactNode) => {
       const wrapper = mount(
         <SelectUnstyledContext.Provider
-          value={{ getOptionState: dummyGetOptionState, getOptionProps: dummyGetOptionProps }}
+          value={{
+            getOptionState: dummyGetOptionState,
+            getOptionProps: dummyGetOptionProps,
+            listboxRef: React.createRef(),
+          }}
         >
           {node}
         </SelectUnstyledContext.Provider>,
@@ -45,6 +59,9 @@ describe('OptionUnstyled', () => {
         expectedClassName: optionUnstyledClasses.root,
       },
     },
-    skip: ['reactTestRenderer'], // Need to be wrapped in SelectUnstyledContext
+    skip: [
+      'reactTestRenderer', // Need to be wrapped in SelectUnstyledContext
+      'componentsPropsCallbacks', // not implemented yet
+    ],
   }));
 });

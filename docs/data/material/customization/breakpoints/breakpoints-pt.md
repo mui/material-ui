@@ -2,9 +2,9 @@
 
 <p class="description">API que permite o uso de pontos de quebra em uma ampla variedade de contextos.</p>
 
-Para uma experiência de usuário ideal, as interfaces do material design precisam adaptar seu leiaute em vários pontos de quebra. Material-UI usa uma implementação **simplificada** da [especificação](https://material.io/design/layout/responsive-layout-grid.html#breakpoints) original.
+Para uma experiência de usuário ideal, as interfaces do material design precisam adaptar seu leiaute em vários pontos de quebra. Material UI usa uma implementação **simplificada** da [especificação](https://material.io/design/layout/responsive-layout-grid.html#breakpoints) original.
 
-The breakpoints are used internally in various components to make them responsive, but you can also take advantage of them for controlling the layout of your application through the [Grid](/components/grid/) component.
+The breakpoints are used internally in various components to make them responsive, but you can also take advantage of them for controlling the layout of your application through the [Grid](/material-ui/react-grid/) component.
 
 ## Pontos de quebra padrão
 
@@ -33,11 +33,20 @@ Consultas de mídia CSS são a abordagem idiomática para tornar sua interface d
 Na demonstração a seguir, alteramos a cor do plano de fundo (vermelho, azul & verde) com base na largura da tela.
 
 ```jsx
-value         |0px     600px    960px    1280px   1920px
-key           |xs      sm       md       lg       xl
-screen width  |---
-product: material-----|--------|--------|--------|-------->
-range         |   xs   |   sm   |   md   |   lg   |   xl
+const styles = (theme) => ({
+  root: {
+    padding: theme.spacing(1),
+    [theme.breakpoints.down('md')]: {
+      backgroundColor: theme.palette.secondary.main,
+    },
+    [theme.breakpoints.up('md')]: {
+      backgroundColor: theme.palette.primary.main,
+    },
+    [theme.breakpoints.up('lg')]: {
+      backgroundColor: green[500],
+    },
+  },
+});
 ```
 
 {{"demo": "MediaQuery.js"}}
@@ -48,7 +57,7 @@ range         |   xs   |   sm   |   md   |   lg   |   xl
 
 ### useMediaQuery hook
 
-Você pode aprender mais na página [useMediaQuery](/components/use-media-query/).
+Você pode aprender mais na página [useMediaQuery](/material-ui/react-use-media-query/).
 
 ## Pontos de quebra customizados
 
@@ -56,7 +65,7 @@ Você define os pontos de quebra do seu projeto na seção `theme.breakpoints` d
 
 <!-- Keep in sync with packages/mui-system/src/createTheme/createBreakpoints.d.ts -->
 
-- [`theme.breakpoints.values`](/customization/default-theme/?expand-path=$.breakpoints.values): Padrão são [os valores acima](#default-breakpoints). As chaves são seus nomes de tela e os valores são a largura mínima onde esse ponto de quebra deve iniciar.
+- [`theme.breakpoints.values`](/material-ui/customization/default-theme/?expand-path=$.breakpoints.values): Padrão são [os valores acima](#default-breakpoints). As chaves são seus nomes de tela e os valores são a largura mínima onde esse ponto de quebra deve iniciar.
 - `theme.breakpoints.unit`: Padrão é `px`. A unidade usada para os valores do ponto de quebra.
 - `theme.breakpoints.step`: Padrão é 5 (`0.05px`). O incremento usado para implementar os pontos de quebra exclusivos. For example, `{ step: 5 }` means that `down(500)` will result in `'(max-width: 499.95px)'`.
 
@@ -91,14 +100,14 @@ const theme = createTheme({
 });
 ```
 
-Se você estiver usando TypeScript, você também deverá usar a [extensão de módulos](/guides/typescript/#customization-of-theme) para que o tema aceite os valores acima.
+Se você estiver usando TypeScript, você também deverá usar a [extensão de módulos](/material-ui/guides/typescript/#customization-of-theme) para que o tema aceite os valores acima.
 
 <!-- Tested with packages/mui-material/test/typescript/breakpointsOverrides.augmentation.tsconfig.json -->
 
 ```ts
-declare module '@material-ui/core/styles' {
+declare module '@mui/material/styles' {
   interface BreakpointOverrides {
-    xs: false; // remove o ponto de quebra `xs`
+    xs: false; // removes the `xs` breakpoint
     sm: false;
     md: false;
     lg: false;
@@ -117,15 +126,15 @@ declare module '@material-ui/core/styles' {
 
 <!-- Keep in sync with packages/mui-system/src/createTheme/createBreakpoints.d.ts -->
 
-#### Argumentos
+#### Arguments
 
 1. `key` (_string_ | _number_): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in px.
 
-#### Retornos
+#### Returns
 
 `media query`: Uma string de consulta de mídia pronta para ser usada com a maioria das soluções de estilo, na qual corresponde à largura da tela maior que, e incluindo o tamanho de tela fornecido pela chave do ponto de quebra.
 
-#### Exemplos
+#### Examples
 
 ```js
 const styles = (theme) => ({
@@ -144,15 +153,15 @@ const styles = (theme) => ({
 
 <!-- Keep in sync with packages/mui-system/src/createTheme/createBreakpoints.d.ts -->
 
-#### Argumentos
+#### Arguments
 
 1. `key` (_string_ | _number_): A breakpoint key (`xs`, `sm`, etc.) or a screen width number in px.
 
-#### Retornos
+#### Returns
 
 `media query`: Uma string de consulta de mídia pronta para ser usada com a maioria das soluções de estilo, na qual corresponde à largura da tela menor que, e incluindo o tamanho de tela fornecido pela chave do ponto de quebra.
 
-#### Exemplos
+#### Examples
 
 ```js
 const styles = (theme) => ({
@@ -171,15 +180,15 @@ const styles = (theme) => ({
 
 <!-- Keep in sync with packages/mui-system/src/createTheme/createBreakpoints.d.ts -->
 
-#### Argumentos
+#### Arguments
 
 1. `key` (_string_): A breakpoint key (`xs`, `sm`, etc.).
 
-#### Retornos
+#### Returns
 
 `media query`: Uma string de consulta de mídia pronta para ser usada com a maioria das soluções de estilo, na qual corresponde à largura da tela incluindo o tamanho de tela fornecido pela chave do ponto de quebra.
 
-#### Exemplos
+#### Examples
 
 ```js
 const styles = (theme) => ({
@@ -199,15 +208,15 @@ const styles = (theme) => ({
 
 <!-- Keep in sync with packages/mui-system/src/createTheme/createBreakpoints.d.ts -->
 
-#### Argumentos
+#### Arguments
 
 1. `key` (_string_): A breakpoint key (`xs`, `sm`, etc.).
 
-#### Retornos
+#### Returns
 
 `media query`: A media query string ready to be used with most styling solutions, which matches screen widths stopping at the screen size given by the breakpoint key (exclusive) and starting at the screen size given by the next breakpoint key (inclusive).
 
-#### Exemplos
+#### Examples
 
 ```js
 const styles = (theme) => ({
@@ -253,4 +262,4 @@ const styles = (theme) => ({
 
 ## Valores padrão
 
-You can explore the default values of the breakpoints using [the theme explorer](/customization/default-theme/?expand-path=$.breakpoints) or by opening the dev tools console on this page (`window.theme.breakpoints`).
+You can explore the default values of the breakpoints using [the theme explorer](/material-ui/customization/default-theme/?expand-path=$.breakpoints) or by opening the dev tools console on this page (`window.theme.breakpoints`).

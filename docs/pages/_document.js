@@ -3,11 +3,12 @@ import { ServerStyleSheets as JSSServerStyleSheets } from '@mui/styles';
 import { ServerStyleSheet } from 'styled-components';
 import createEmotionServer from '@emotion/server/create-instance';
 import Document, { Html, Head, Main, NextScript } from 'next/document';
-import { LANGUAGES_SSR } from 'docs/src/modules/constants';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import createEmotionCache from 'docs/src/createEmotionCache';
 import { getMetaThemeColor } from 'docs/src/modules/brandingTheme';
 import GlobalStyles from '@mui/material/GlobalStyles';
+import FEATURE_TOGGLE from 'docs/src/featureToggle';
+import { getInitColorSchemeScript } from '@mui/joy/styles';
 
 // You can find a benchmark of the available CSS minifiers under
 // https://github.com/GoalSmashers/css-minification-benchmark
@@ -29,7 +30,9 @@ if (process.env.NODE_ENV === 'production') {
   cleanCSS = new CleanCSS();
 }
 
-const GOOGLE_ID = process.env.NODE_ENV === 'production' ? 'UA-106598593-2' : 'UA-106598593-3';
+const PRODUCTION_DEPLOYEMENT = !process.env.PULL_REQUEST && process.env.NODE_ENV === 'production';
+
+const GOOGLE_ANALYTICS_ID = PRODUCTION_DEPLOYEMENT ? 'UA-106598593-2' : 'UA-106598593-3';
 
 export default class MyDocument extends Document {
   render() {
@@ -62,17 +65,11 @@ export default class MyDocument extends Document {
             rel="canonical"
             href={`https://mui.com${userLanguage === 'en' ? '' : `/${userLanguage}`}${canonicalAs}`}
           />
+          {/* TODO remove post migration */}
+          {!FEATURE_TOGGLE.enable_redirects && canonicalAs.startsWith('/material-ui/') ? (
+            <meta name="robots" content="noindex,nofollow" />
+          ) : null}
           <link rel="alternate" href={`https://mui.com${canonicalAs}`} hrefLang="x-default" />
-          {LANGUAGES_SSR.map((userLanguage2) => (
-            <link
-              key={userLanguage2}
-              rel="alternate"
-              href={`https://mui.com${
-                userLanguage2 === 'en' ? '' : `/${userLanguage2}`
-              }${canonicalAs}`}
-              hrefLang={userLanguage2}
-            />
-          ))}
           {/*
             Preconnect allows the browser to setup early connections before an HTTP request
             is actually sent to the server.
@@ -130,17 +127,36 @@ export default class MyDocument extends Document {
               '.mode-dark .only-dark-mode': {
                 display: 'block',
               },
+              '.plan-pro, .plan-premium': {
+                display: 'inline-block',
+                height: '1em',
+                width: '1em',
+                verticalAlign: 'middle',
+                marginLeft: '0.3em',
+                marginBottom: '0.08em',
+                backgroundSize: 'contain',
+                backgroundRepeat: 'no-repeat',
+              },
+              '.plan-pro': {
+                backgroundImage: 'url(/static/x/pro.svg)',
+              },
+              '.plan-premium': {
+                backgroundImage: 'url(/static/x/premium.svg)',
+              },
             }}
           />
         </Head>
         <body>
+          {getInitColorSchemeScript({ enableSystem: true })}
           <Main />
           <script
             // eslint-disable-next-line react/no-danger
             dangerouslySetInnerHTML={{
               __html: `
                 window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-                window.ga('create','${GOOGLE_ID}','auto');
+                window.ga('create','${GOOGLE_ANALYTICS_ID}',{
+                  sampleRate: ${PRODUCTION_DEPLOYEMENT ? 80 : 100},
+                });
               `,
             }}
           />

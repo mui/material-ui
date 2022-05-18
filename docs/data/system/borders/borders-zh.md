@@ -12,28 +12,8 @@ Use border utilities to add or remove an element's borders. 选择所有边框�
 
 ```jsx
 <Box sx={{ border: 1 }}>…
-<Box border={0}>…
-<Box sx={{ borderTop: 1 }}>…
-<Box borderRight={0}>…
-<Box borderBottom={0}>…
-<Box borderLeft={0}>…
-<Box sx={{ borderRight: 1 }}>…
-<Box sx={{ borderBottom: 1 }}>…
-<Box sx={{ borderLeft: 1 }}>…
 <Box sx={{ borderTop: 1 }}>…
 <Box sx={{ borderRight: 1 }}>…
-<Box sx={{ borderBottom: 1 }}>…
-<Box sx={{ borderLeft: 1 }}>…
-```
-
-### 相减
-
-{{"demo": "BorderSubtractive.js", "defaultCodeOpen": false, "bg": true}}
-
-```jsx
-<Box sx={{ border: 0 }}>…
-<Box sx={{ borderTop: 0 }}>…
-<Box sx={{ borderRight: 0 }}>…
 <Box sx={{ border: 1 }}>…
 <Box border={0}>…
 <Box sx={{ borderTop: 1 }}>…
@@ -43,14 +23,26 @@ Use border utilities to add or remove an element's borders. 选择所有边框�
 <Box sx={{ borderRight: 1 }}>…
 <Box sx={{ borderBottom: 1 }}>…
 <Box sx={{ borderLeft: 1 }}>…
-<Box border={0}>…
 <Box sx={{ borderTop: 1 }}>…
-<Box borderRight={0}>…
-<Box borderBottom={0}>…
-<Box borderLeft={0}>…
 <Box sx={{ borderRight: 1 }}>…
 <Box sx={{ borderBottom: 1 }}>…
 <Box sx={{ borderLeft: 1 }}>…
+<Box sx={{ borderLeft: 1 }}>…
+```
+
+### 相减
+
+{{"demo": "BorderSubtractive.js", "defaultCodeOpen": false, "bg": true}}
+
+```jsx
+<Box sx={{ border: 0 }}>…
+<Box sx={{ border: 0 }}>…
+<Box sx={{ borderTop: 0 }}>…
+<Box sx={{ borderRight: 0 }}>…
+<Box sx={{ borderBottom: 0 }}>…
+<Box sx={{ borderLeft: 0 }}>…
+<Box sx={{ borderRight: 0 }}>…
+<Box sx={{ borderBottom: 0 }}>…
 <Box sx={{ borderLeft: 0 }}>…
 ```
 
@@ -60,54 +52,14 @@ Use border utilities to add or remove an element's borders. 选择所有边框�
 
 ```jsx
 <Box sx={{ borderColor: 'primary.main' }}>…
-<Box borderColor="secondary.main">…
-<Box borderColor="error.main">…
-<Box borderColor="grey.500">…
-<Box borderColor="text.primary">…
 <Box sx={{ borderColor: 'secondary.main' }}>…
-<Box borderColor="secondary.main">…
-<Box borderColor="error.main">…
-<Box borderColor="grey.500">…
-<Box borderColor="text.primary">…
 <Box sx={{ borderColor: 'error.main' }}>…
-<Box borderColor="secondary.main">…
-<Box borderColor="error.main">…
-<Box borderColor="grey.500">…
-<Box borderColor="text.primary">…
 <Box sx={{ borderColor: 'grey.500' }}>…
-<Box borderColor="secondary.main">…
-<Box borderColor="error.main">…
-<Box borderColor="grey.500">…
-<Box borderColor="text.primary">…
-<Box sx={{ borderColor: 'primary.main' }}>…
-<Box borderColor="secondary.main">…
-<Box borderColor="error.main">…
-<Box borderColor="grey.500">…
-<Box borderColor="text.primary">…
-<Box sx={{ borderColor: 'secondary.main' }}>…
-<Box borderColor="secondary.main">…
-<Box borderColor="error.main">…
-<Box borderColor="grey.500">…
-<Box borderColor="text.primary">…
-<Box sx={{ borderColor: 'error.main' }}>…
-<Box borderColor="secondary.main">…
-<Box borderColor="error.main">…
-<Box borderColor="grey.500">…
-<Box borderColor="text.primary">…
-<Box sx={{ borderColor: 'grey.500' }}>…
-<Box borderColor="secondary.main">…
-<Box borderColor="error.main">…
-<Box borderColor="grey.500">…
-<Box borderColor="text.primary">…
-<Box borderColor="primary.main">…
-<Box borderColor="secondary.main">…
-<Box borderColor="error.main">…
-<Box borderColor="grey.500">…
 <Box sx={{ borderColor: 'text.primary' }}>…
-<Box borderColor="secondary.main">…
-<Box borderColor="error.main">…
-<Box borderColor="grey.500">…
-<Box borderColor="text.primary">…
+<Box sx={{ borderColor: 'secondary.main' }}>…
+<Box sx={{ borderColor: 'error.main' }}>…
+<Box sx={{ borderColor: 'grey.500' }}>…
+<Box sx={{ borderColor: 'text.primary' }}>…
 ```
 
 ## Border-radius
@@ -116,6 +68,14 @@ Use border utilities to add or remove an element's borders. 选择所有边框�
 
 ```jsx
 <Box sx={{ borderRadius: '50%' }}>…
+<Box sx={{ borderRadius: 1 }}>… <Box sx={{ borderRadius: '50%' }}>…
+<Box borderRadius="borderRadius">…
+<Box borderRadius={16}>…
+<Box borderRadius="borderRadius">…
+<Box borderRadius={16}>…
+<Box sx={{ borderRadius: 1 }}>… // theme.shape.borderRadius * 1
+<Box sx={{ borderRadius: 16 }}>…
+<Box sx={{ borderRadius: 1 }}>… <Box sx={{ borderRadius: '50%' }}>…
 <Box borderRadius="borderRadius">…
 <Box borderRadius={16}>…
 <Box borderRadius="borderRadius">…
@@ -130,16 +90,16 @@ Use border utilities to add or remove an element's borders. 选择所有边框�
 import { borders } from '@material-ui/system';
 ```
 
-| 导入名称            | 属性                | CSS 属性              | Theme key                                                        |
-| :------------------ | :------------------ | :-------------------- | :--------------------------------------------------------------- |
-| `border`            | `border`            | `border`              | `borders`                                                        |
-| `borderTop`         | `borderTop`         | `border-top`          | `borders`                                                        |
-| `borderLeft`        | `borderLeft`        | `border-left`         | `borders`                                                        |
-| `borderRight`       | `borderRight`       | `border-right`        | `borders`                                                        |
-| `borderBottom`      | `borderBottom`      | `border-bottom`       | `borders`                                                        |
-| `borderColor`       | `borderColor`       | `border-color`        | [`palette`](/customization/default-theme/?expand-path=$.palette) |
-| `borderTopColor`    | `borderTopColor`    | `border-top-color`    | [`palette`](/customization/default-theme/?expand-path=$.palette) |
-| `borderRightColor`  | `borderRightColor`  | `border-right-color`  | [`palette`](/customization/default-theme/?expand-path=$.palette) |
-| `borderBottomColor` | `borderBottomColor` | `border-bottom-color` | [`palette`](/customization/default-theme/?expand-path=$.palette) |
-| `borderLeftColor`   | `borderLeftColor`   | `border-left-color`   | [`palette`](/customization/default-theme/?expand-path=$.palette) |
-| `borderRadius`      | `borderRadius`      | `border-radius`       | [`shape`](/customization/default-theme/?expand-path=$.shape)     |
+| 导入名称                | 属性                  | CSS 属性                | Theme key                                                                    |
+|:------------------- |:------------------- |:--------------------- |:---------------------------------------------------------------------------- |
+| `border`            | `border`            | `border`              | `borders`                                                                    |
+| `borderTop`         | `borderTop`         | `border-top`          | `borders`                                                                    |
+| `borderLeft`        | `borderLeft`        | `border-left`         | `borders`                                                                    |
+| `borderRight`       | `borderRight`       | `border-right`        | `borders`                                                                    |
+| `borderBottom`      | `borderBottom`      | `border-bottom`       | `borders`                                                                    |
+| `borderColor`       | `borderColor`       | `border-color`        | [`palette`](/material-ui/customization/default-theme/?expand-path=$.palette) |
+| `borderTopColor`    | `borderTopColor`    | `border-top-color`    | [`palette`](/material-ui/customization/default-theme/?expand-path=$.palette) |
+| `borderRightColor`  | `borderRightColor`  | `border-right-color`  | [`palette`](/material-ui/customization/default-theme/?expand-path=$.palette) |
+| `borderBottomColor` | `borderBottomColor` | `border-bottom-color` | [`palette`](/material-ui/customization/default-theme/?expand-path=$.palette) |
+| `borderLeftColor`   | `borderLeftColor`   | `border-left-color`   | [`palette`](/material-ui/customization/default-theme/?expand-path=$.palette) |
+| `borderRadius`      | `borderRadius`      | `border-radius`       | [`shape`](/material-ui/customization/default-theme/?expand-path=$.shape)     |

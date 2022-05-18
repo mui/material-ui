@@ -1,72 +1,50 @@
-import {
-  unstable_createCssVarsProvider as createCssVarsProvider,
-  BreakpointsOptions,
-  SpacingOptions,
-} from '@mui/system';
-import defaultTheme, {
-  lightColorSystem,
-  darkColorSystem,
-  Focus,
-  ThemeScales,
-  JoyTheme,
-} from './defaultTheme';
-import { DefaultColorScheme, ExtendedColorScheme } from './types/colorScheme';
-import { Variants } from './types/variants';
-import { ColorSystem } from './types/colorSystem';
-import { TypographySystem } from './types/typography';
-import { Components } from './components';
-
-type PartialDeep<T> = {
-  [K in keyof T]?: PartialDeep<T[K]>;
-};
-
-type PartialNested<T> = {
-  [K in keyof T]?: {
-    [J in keyof T[K]]?: T[K][J];
-  };
-};
-
-// Use PartialNested instead of PartialDeep because nested value type is CSSObject which does not work with PartialDeep.
-type ThemeInput = PartialNested<
-  ThemeScales & {
-    focus: Focus;
-    typography: TypographySystem;
-    variants: Variants;
-  }
-> & {
-  breakpoints?: BreakpointsOptions;
-  spacing?: SpacingOptions;
-  components?: Components<JoyTheme>;
-};
-
-type JoyThemeInput = ThemeInput & {
-  colorSchemes: Record<DefaultColorScheme, PartialDeep<ColorSystem>>;
-};
-
-type ApplicationThemeInput = ThemeInput & {
-  colorSchemes: Record<ExtendedColorScheme, PartialDeep<ColorSystem>>;
-};
-
-const { palette, ...rest } = defaultTheme;
+import { deepmerge } from '@mui/utils';
+import { unstable_createCssVarsProvider as createCssVarsProvider } from '@mui/system';
+import extendTheme from './extendTheme';
+import { createVariant, createTextOverrides, createContainedOverrides } from './variantUtils';
+import type { Theme, DefaultColorScheme, ExtendedColorScheme } from './types';
 
 const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssVarsProvider<
-  JoyThemeInput,
-  DefaultColorScheme,
-  ApplicationThemeInput,
-  ExtendedColorScheme
+  DefaultColorScheme | ExtendedColorScheme,
+  Theme
 >({
-  theme: {
-    ...rest,
-    colorSchemes: {
-      light: lightColorSystem,
-      dark: darkColorSystem,
-    },
-  },
+  theme: extendTheme(),
   defaultColorScheme: {
     light: 'light',
     dark: 'dark',
   },
   prefix: 'joy',
+  resolveTheme: (mergedTheme: Theme) => {
+    mergedTheme.variants = deepmerge(
+      {
+        plain: createVariant('plain', mergedTheme),
+        plainHover: createVariant('plainHover', mergedTheme),
+        plainActive: createVariant('plainActive', mergedTheme),
+        plainDisabled: createVariant('plainDisabled', mergedTheme),
+        outlined: createVariant('outlined', mergedTheme),
+        outlinedHover: createVariant('outlinedHover', mergedTheme),
+        outlinedActive: createVariant('outlinedActive', mergedTheme),
+        outlinedDisabled: createVariant('outlinedDisabled', mergedTheme),
+        soft: createVariant('soft', mergedTheme),
+        softHover: createVariant('softHover', mergedTheme),
+        softActive: createVariant('softActive', mergedTheme),
+        softDisabled: createVariant('softDisabled', mergedTheme),
+        solid: createVariant('solid', mergedTheme),
+        solidHover: createVariant('solidHover', mergedTheme),
+        solidActive: createVariant('solidActive', mergedTheme),
+        solidDisabled: createVariant('solidDisabled', mergedTheme),
+
+        // variant overrides
+        plainOverrides: createTextOverrides(mergedTheme),
+        outlinedOverrides: createTextOverrides(mergedTheme),
+        softOverrides: createTextOverrides(mergedTheme),
+        solidOverrides: createContainedOverrides(mergedTheme),
+      } as typeof mergedTheme.variants,
+      mergedTheme.variants,
+      { clone: false },
+    );
+    return mergedTheme;
+  },
   shouldSkipGeneratingVar: (keys) =>
     keys[0] === 'typography' ||
     keys[0] === 'variants' ||

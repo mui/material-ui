@@ -1,5 +1,5 @@
 ---
-product: material
+product: material-ui
 title: Componente Drawer para React
 components: Drawer, SwipeableDrawer
 githubLabel: 'component: drawer'
@@ -65,7 +65,7 @@ Para garantir que um drawer temporário não seja desmontado, especifique a prop
 />
 ```
 
-Mais detalhes na [seção de desempenho Modal](/components/modal/#performance).
+Mais detalhes na [seção de desempenho Modal](/material-ui/react-modal/#performance).
 
 ## Drawer responsivo
 

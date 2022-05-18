@@ -1,9 +1,10 @@
 ---
-product: material
+product: material-ui
 title: React Text Field（文本框）组件
 components: FilledInput, FormControl, FormControlUnstyled, FormHelperText, Input, InputAdornment, InputBase, InputLabel, OutlinedInput, TextField, InputUnstyled
 githubLabel: 'component: text field'
 materialDesign: https://material.io/components/text-fields
+unstyled: /base/react-input/
 ---
 
 # TextField 文本框
@@ -16,11 +17,11 @@ materialDesign: https://material.io/components/text-fields
 
 ## 基础文本框
 
-The `TextField` wrapper component is a complete form control including a label, input, and help text. It comes with three variants: outlined (default), filled, and standard. It comes with three variants: outlined (default), filled, and standard.
+`TextField` 包装器组件是一个完整的表单控件，它包括了标签、输入和帮助文本。 It comes with three variants: outlined (default), filled, and standard.
 
 {{"demo": "BasicTextFields.js"}}
 
-**友情提示：** [Material 设计指南](https://material.io/)不再记录 `TextField` 的 standard 布局，（[原因见此](https://medium.com/google-design/the-evolution-of-material-designs-text-fields-603688b3fe03)），但是 Material-UI 会继续支持此布局。
+**友情提示：** [Material 设计指南](https://material.io/)不再记录 `TextField` 的 standard 布局，（[原因见此](https://medium.com/google-design/the-evolution-of-material-designs-text-fields-603688b3fe03)），但是 Material UI 会继续支持此布局。
 
 ## Form props 表单的属性
 
@@ -36,13 +37,13 @@ The `error` prop toggles the error state. The `error` prop toggles the error sta
 
 ## 多行属性
 
-`multiline` 属性将文本框转换为 [`<textarea>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea) 元素。 除非设置了 `rows` 属性，否则文本框的高度会动态匹配其内容（当你使用 [TextareaAutosize](/components/textarea-autosize/) 属性时）。 You can use the `minRows` and `maxRows` props to bound it.
+The `multiline` prop transforms the text field into a [TextareaAutosize](/material-ui/react-textarea-autosize/) element. 除非设置了 `rows` 属性，否则文本框的高度会动态匹配其内容（当你使用 [TextareaAutosize](/material-ui/react-textarea-autosize/) 属性时）。 You can use the `minRows` and `maxRows` props to bound it.
 
 {{"demo": "MultilineTextFields.js"}}
 
 ## Select 选择属性
 
-使用 `select` 属性的时候，您可以在文本框内插入一个 [Select](/components/selects/) 组件。
+使用 `select` 属性的时候，您可以在文本框内插入一个 [Select](/material-ui/react-select/) 组件。
 
 {{"demo": "SelectTextFields.js"}}
 
@@ -88,9 +89,9 @@ The `margin` prop can be used to alter the vertical spacing of the text field. T
 
 ## Components 组件
 
-`TextField` 是由一些较小的组件组成的 ( [`FormControl`](/api/form-control/)， [`Input`](/api/input/)， [`FilledInput`](/api/filled-input/)， [`InputLabel`](/api/input-label/)， [`OutlinedInput`](/api/outlined-input/)， and [`FormHelperText`](/api/form-helper-text/) ) ，而你可以直接使用这些小的组件，来自定制你的表单域输入框。
+`TextField` 是由一些较小的组件组成的 ( [`FormControl`](/material-ui/api/form-control/)， [`Input`](/material-ui/api/input/)， [`FilledInput`](/material-ui/api/filled-input/)， [`InputLabel`](/material-ui/api/input-label/)， [`OutlinedInput`](/material-ui/api/outlined-input/)， and [`FormHelperText`](/material-ui/api/form-helper-text/) ) ，而你可以直接使用这些小的组件，来自定制你的表单域输入框。
 
-您可能注意到了， 和原生的 HTML input 组件相比，`TextField` 组件缺失了一些属性。 这是故意为之的。 The component takes care of the most used properties. Then, it's up to the user to use the underlying component shown in the following demo. 但是同时, 为了避免过于模版化，您仍然可以使用 `inputProps` (和 `inputProps`, `InputLabelProps` 属性) 来控制原生组件的属性。
+您可能注意到了， 和原生的 HTML input 组件相比，`TextField` 组件缺失了一些属性。 这是故意为之的。 The component takes care of the most used properties. Then, it's up to the user to use the underlying component shown in the following demo. The component takes care of the most used properties. Then, it's up to the user to use the underlying component shown in the following demo. Still, you can use `inputProps` (and `InputProps`, `InputLabelProps` properties) if you want to avoid some boilerplate.
 
 {{"demo": "ComposedTextField.js"}}
 
@@ -106,11 +107,11 @@ The `margin` prop can be used to alter the vertical spacing of the text field. T
 
 ## 自定义输入
 
-你可以参考以下一些例子来自定义组件。 您可以在 [重写文档页面](/customization/how-to-customize/) 中了解更多有关此内容的信息。
+你可以参考以下一些例子来自定义组件。 您可以在 [重写文档页面](/material-ui/customization/how-to-customize/) 中了解更多有关此内容的信息。
 
 {{"demo": "CustomizedInputs.js"}}
 
-Customization does not stop at CSS. You can use composition to build custom components and give your app a unique feel. 接下来的这个示例受到了 Google 地图的启发，它使用了 [`InputBase`](/api/input-base/) 组件。
+Customization does not stop at CSS. You can use composition to build custom components and give your app a unique feel. Customization does not stop at CSS. You can use composition to build custom components and give your app a unique feel. Below is an example using the [`InputBase`](/material-ui/api/input-base/) component, inspired by Google Maps.
 
 {{"demo": "CustomizedInputBase.js", "bg": true}}
 
@@ -123,7 +124,7 @@ For advanced customization use cases, a `useFormControl()` hook is exposed. For 
 **API**
 
 ```jsx
-import { useFormControl } from '@material-ui/core/FormControl';
+import { useFormControl } from '@mui/material/FormControl';
 ```
 
 **返回结果**
@@ -179,7 +180,7 @@ The floating label is absolutely positioned. It won't impact the layout of the p
 
 type="number" 的输入存在潜在的可用性问题。
 
-- 这将允许某些非数字字符（'e', '+', '-', '.'） 并且丢失其他字符 并且丢失其他字符 并且丢失其他字符
+- Allowing certain non-numeric characters ('e', '+', '-', '.') and silently discarding others and silently discarding others
 - 滚动增加/减少数字的功能可能会导致意外和难以察觉的变化。
 
 有关该话题的更多信息 - 请参阅 GOV.UK 设计系统团队的 [这篇文章](https://technology.blog.gov.uk/2020/02/24/why-the-gov-uk-design-system-team-changed-the-input-type-for-numbers/)，来了解更详细的解释。
@@ -190,7 +191,7 @@ type="number" 的输入存在潜在的可用性问题。
 <TextField inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }} />
 ```
 
-以后我们可能会提供 [数字（number）输入组件](https://github.com/mui-org/material-ui/issues/19154)。
+以后我们可能会提供 [数字（number）输入组件](https://github.com/mui/material-ui/issues/19154)。
 
 ### 辅助文本
 
@@ -206,7 +207,7 @@ This can be fixed by passing a space character to the `helperText` prop:
 
 您可以使用第三方库来格式化您的输入框。 只要确保在整合的时候，您提供了一个带有 `inputComponent` 属性的自定义 `<input>` 元素。
 
-下面的演示使用 [react-text-mask](https://github.com/text-mask/text-mask) 和 [react-number-format](https://github.com/s-yadav/react-number-format) 这两个基本库。 同样的概念可以适用于 [这个例子：react-stripe-element](https://github.com/mui-org/material-ui/issues/16037)。
+下面的演示使用 [react-text-mask](https://github.com/text-mask/text-mask) 和 [react-number-format](https://github.com/s-yadav/react-number-format) 这两个基本库。 同样的概念可以适用于 [这个例子：react-stripe-element](https://github.com/mui/material-ui/issues/16037)。
 
 {{"demo": "FormattedInputs.js"}}
 
@@ -258,14 +259,14 @@ const MyInputComponent = React.forwardRef((props, ref) => {
 </div>
 ```
 
-- If you are using the `TextField` component, you just have to provide a unique `id` unless you're using the `TextField` only client side. Until the UI is hydrated `TextField` without an explicit `id` will not have associated labels.
+- If you are using the `TextField` component, you just have to provide a unique `id` unless you're using the `TextField` only client side. Until the UI is hydrated `TextField` without an explicit `id` will not have associated labels. Until the UI is hydrated `TextField` without an explicit `id` will not have associated labels.
 - If you are composing the component:
 
 ```jsx
 <FormControl>
   <InputLabel htmlFor="my-input">电子邮件</InputLabel>
   <Input id="my-input" aria-describedby="my-helper-text" />
-  <FormHelperText id="my-helper-text">我们绝不会分享您的邮件地址。</FormHelperText>
+  <FormHelperText id="my-helper-text">我们绝不会分享您的邮件地址。 </FormHelperText>
 </FormControl>
 ```
 
@@ -274,24 +275,7 @@ const MyInputComponent = React.forwardRef((props, ref) => {
 For more advanced use cases, you might be able to take advantage of:
 
 - [react-hook-form](https://react-hook-form.com/)：用于表单验证的 React 钩子。
+- [react-hook-form-mui](https://github.com/dohomi/react-hook-form-mui): MUI and react-hook-form combined.
 - [formik-material-ui](https://github.com/stackworx/formik-mui): Bindings for using MUI with [formik](https://formik.org/).
-- [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui)：用于 [Redux Form](https://redux-form.com/) 和 Material-UI 捆绑使用。
-- [mui-rff](https://github.com/lookfirst/mui-rff)：用于 [React Final Form](https://final-form.org/react) 和 Material-UI 捆绑使用。
-
-## Unstyled
-
-For advanced customization scenarios, you can use the unstyled primitives.
-
-The basic building blocks are the `InputUnstyled` component and the `useInput` hook.
-
-### Unstyled component
-
-The `InputUnstyled` component wraps the native `input` or `textarea` element. You can, optionally, provide a custom component to be rendered instead.
-
-{{"demo": "UnstyledInput.js"}}
-
-### Hook
-
-The `useInput` hook is the headless version of the `InputUnstyled` component. Use it for even greater control over the rendered output.
-
-{{"demo": "UseInput.js"}}
+- [mui-rff](https://github.com/lookfirst/mui-rff)：用于 [React Final Form](https://final-form.org/react) 和 Material UI 捆绑使用。
+- [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui)：用于 [Redux Form](https://redux-form.com/) 和 Material UI 捆绑使用。

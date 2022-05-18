@@ -11,7 +11,13 @@ export default function ScrollableTabsButtonVisible() {
   };
 
   return (
-    <Box sx={{ flexGrow: 1, maxWidth: 480, bgcolor: 'background.paper' }}>
+    <Box
+      sx={{
+        flexGrow: 1,
+        maxWidth: { xs: 320, sm: 480 },
+        bgcolor: 'background.paper',
+      }}
+    >
       <Tabs
         value={value}
         onChange={handleChange}

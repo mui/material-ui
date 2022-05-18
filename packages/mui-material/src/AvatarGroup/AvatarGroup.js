@@ -34,7 +34,7 @@ const AvatarGroupRoot = styled('div', {
   }),
 })(({ theme }) => ({
   [`& .${avatarClasses.root}`]: {
-    border: `2px solid ${theme.palette.background.default}`,
+    border: `2px solid ${(theme.vars || theme).palette.background.default}`,
     boxSizing: 'content-box',
     marginLeft: -8,
     '&:last-child': {
@@ -50,7 +50,7 @@ const AvatarGroupAvatar = styled(Avatar, {
   slot: 'Avatar',
   overridesResolver: (props, styles) => styles.avatar,
 })(({ theme }) => ({
-  border: `2px solid ${theme.palette.background.default}`,
+  border: `2px solid ${(theme.vars || theme).palette.background.default}`,
   boxSizing: 'content-box',
   marginLeft: -8,
   '&:last-child': {
@@ -134,11 +134,13 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
       {children
         .slice(0, maxAvatars)
         .reverse()
-        .map((child) => {
+        .map((child, index) => {
           return React.cloneElement(child, {
             className: clsx(child.props.className, classes.avatar),
             style: {
-              marginLeft,
+              // Consistent with "&:last-child" styling for the default spacing,
+              // we do not apply custom marginLeft spacing on the last child
+              marginLeft: index === maxAvatars - 1 ? undefined : marginLeft,
               ...child.props.style,
             },
             variant: child.props.variant || variant,

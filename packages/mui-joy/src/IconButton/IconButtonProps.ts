@@ -5,8 +5,7 @@ import {
   OverridableTypeMap,
   OverrideProps,
 } from '@mui/types';
-import { SxProps } from '../styles/defaultTheme';
-import { ColorPaletteProp, VariantProp } from '../styles/types';
+import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
 
 export type IconButtonSlot = 'root';
 
@@ -57,7 +56,7 @@ export interface IconButtonTypeMap<P = {}, D extends React.ElementType = 'button
     tabIndex?: NonNullable<React.HTMLAttributes<any>['tabIndex']>;
     /**
      * The variant to use.
-     * @default 'light'
+     * @default 'soft'
      */
     variant?: OverridableStringUnion<VariantProp, IconButtonPropsVariantOverrides>;
   };

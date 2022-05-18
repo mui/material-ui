@@ -93,7 +93,7 @@ export default function CoreTheming() {
                   Build <GradientText>your design system</GradientText> just as you want it to be
                 </Typography>
               }
-              description="Use the advanced theming feature to easily tailor the components to your needs. You can also quick start with Material Design."
+              description="Use the advanced theming feature to easily tailor the components to your needs. You can also quickly start with Material Design."
             />
           </Box>
           <Group sx={{ mt: 4, pb: { xs: 0, md: 2 } }}>
@@ -131,7 +131,12 @@ export default function CoreTheming() {
               />
             </Frame.Demo>
             <Frame.Info sx={{ maxHeight: 300, overflow: 'auto' }}>
-              <HighlightedCode component={MarkdownElement} code={code} language="jsx" />
+              <HighlightedCode
+                copyButtonHidden
+                component={MarkdownElement}
+                code={code}
+                language="jsx"
+              />
             </Frame.Info>
           </Frame>
         </Grid>

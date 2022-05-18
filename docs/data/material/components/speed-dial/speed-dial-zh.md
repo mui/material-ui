@@ -1,5 +1,5 @@
 ---
-product: material
+product: material-ui
 title: React Speed Dial（快速拨号）组件
 components: SpeedDial, SpeedDialAction, SpeedDialIcon
 githubLabel: 'component: speed dial'

@@ -1,5 +1,5 @@
 ---
-product: material
+product: material-ui
 title: React Portal component
 components: Portal
 githubLabel: 'component: Portal'
@@ -10,7 +10,7 @@ githubLabel: 'component: Portal'
 <p class="description">The portal component renders its children into a new "subtree" outside of current DOM hierarchy.</p>
 
 The children of the portal component will be appended to the `container` specified.
-The component is used internally by the [`Modal`](/components/modal/) and [`Popper`](/components/popper/) components.
+The component is used internally by the [`Modal`](/material-ui/react-modal/) and [`Popper`](/material-ui/react-popper/) components.
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 

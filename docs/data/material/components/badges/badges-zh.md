@@ -1,8 +1,9 @@
 ---
-product: material
+product: material-ui
 title: React Badge（徽章）组件
 components: Badge, BadgeUnstyled
 githubLabel: 'component: badge'
+unstyled: /base/react-badge/
 ---
 
 # Badge 徽章
@@ -25,7 +26,7 @@ Use `color` prop to apply theme palette to component.
 
 ## 徽章组件的可见性
 
-以下是自定义组件的一个示例。 您可以在 [重写文档页面](/customization/how-to-customize/) 中了解更多有关此内容的信息。
+以下是自定义组件的一个示例。 您可以在 [重写文档页面](/material-ui/customization/how-to-customize/) 中了解更多有关此内容的信息。
 
 {{"demo": "CustomizedBadges.js"}}
 
@@ -35,7 +36,7 @@ Use `color` prop to apply theme palette to component.
 
 {{"demo": "BadgeVisibility.js"}}
 
-当 badgeContent 为零时，徽章组件将会自动隐藏。 您可以使用 `showZero` 属性覆盖它。
+The badge hides automatically when `badgeContent` is zero. 您可以使用 `showZero` 属性覆盖它。
 
 {{"demo": "ShowZeroBadge.js"}}
 
@@ -63,18 +64,8 @@ Use `color` prop to apply theme palette to component.
 
 {{"demo": "BadgeAlignment.js", "hideToolbar": true}}
 
-## Unstyled
-
-Badge 组件还有一个无样式的版本。 It's ideal for doing heavy customizations and minimizing bundle size.
-
-```js
-import BadgeUnstyled from '@mui/base/BadgeUnstyled';
-```
-
-{{"demo": "UnstyledBadge.js"}}
-
 ## Accessibility
 
-You can't rely on the content of the badge to be announced correctly. You should provide a full description, for instance, with `aria-label`: 那您应该提供一个完整的描述，例如， 使用 `aria-label`：
+您不能指望徽章的内容被正确的读出。 您应该提供一个完整的描述，例如， 使用 `aria-label`：
 
 {{"demo": "AccessibleBadges.js"}}

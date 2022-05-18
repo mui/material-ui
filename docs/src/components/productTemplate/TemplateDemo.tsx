@@ -13,7 +13,6 @@ import Highlighter from 'docs/src/components/action/Highlighter';
 import Frame from 'docs/src/components/action/Frame';
 import LaunchRounded from '@mui/icons-material/LaunchRounded';
 import Link from 'docs/src/modules/components/Link';
-import ROUTES from 'docs/src/route';
 import DashboardRounded from '@mui/icons-material/DashboardRounded';
 import Layers from '@mui/icons-material/Layers';
 import ShoppingBag from '@mui/icons-material/ShoppingBag';
@@ -65,36 +64,36 @@ export default function TemplateDemo() {
   const TEMPLATES = {
     [DEMOS[0]]: [
       {
-        name: 'Flexy - React Admin Dashboard Template',
+        name: 'Flexy - React Material Dashboard (CRA + Next.js)',
         src: `/static/branding/store-templates/template-${mode}4.jpeg`,
-        href: ROUTES.storeFlexy,
+        href: 'https://mui.com/store/items/flexy-react-admin-dashboard/',
       },
       {
-        name: 'Minimal – Client & Admin Dashboard',
+        name: 'Minimal - Client & Admin Dashboard',
         src: `/static/branding/store-templates/template-${mode}1.jpeg`,
-        href: ROUTES.storeTemplateMinimalDashboard,
+        href: 'https://mui.com/store/items/minimal-dashboard/',
       },
       {
         name: 'Berry - React Material Admin Dashboard Template',
         src: `/static/branding/store-templates/template-${mode}5.jpeg`,
-        href: ROUTES.storeTemplateBerry,
+        href: 'https://mui.com/store/items/berry-react-material-admin/',
       },
       {
-        name: 'Material App Pro - React Admin Dashboard',
+        name: 'Mira Pro - React Material Admin Dashboard',
         src: `/static/branding/store-templates/template-${mode}3.jpeg`,
-        href: ROUTES.storeTemplateMaterialApp,
+        href: 'https://mui.com/store/items/mira-pro-react-material-admin-dashboard/',
       },
     ],
     [DEMOS[1]]: [
       {
         name: 'theFront - Multipurpose Template + UI Kit',
         src: `/static/branding/store-templates/template-${mode}2.jpeg`,
-        href: ROUTES.storeTheFront,
+        href: 'https://mui.com/store/items/the-front-landing-page/',
       },
       {
         name: 'Webbee - Multipurpose landing page UI Kit',
         src: `/static/branding/store-templates/template-${mode}6.jpeg`,
-        href: ROUTES.storeTemplateWebbee,
+        href: 'https://mui.com/store/items/webbee-landing-page/',
       },
     ],
     [DEMOS[2]]: [
@@ -137,7 +136,11 @@ export default function TemplateDemo() {
                 />
               </Highlighter>
             ))}
-            <More component={Link} href={ROUTES.storePopular} noLinkStyle />
+            <More
+              component={Link}
+              href="https://mui.com/store/?utm_source=marketing&utm_medium=referral&utm_campaign=templates-cta2#populars"
+              noLinkStyle
+            />
           </Group>
         </Grid>
         <Grid item xs={12} md={6}>
@@ -188,7 +191,7 @@ export default function TemplateDemo() {
                       }}
                     >
                       <Link
-                        href={item.href}
+                        href={`${item.href}?utm_source=marketing&utm_medium=referral&utm_campaign=templates-cta2`}
                         noLinkStyle
                         target="_blank"
                         sx={{

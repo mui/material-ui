@@ -295,7 +295,7 @@ describe('useAutocomplete', () => {
         return <input {...getInputProps()} />;
       };
       render(<Test options={['foo', 'bar']} />);
-      const input = screen.getByRole('textbox');
+      const input = screen.getByRole('combobox');
 
       act(() => {
         fireEvent.change(input, { target: { value: 'free' } });
@@ -304,5 +304,40 @@ describe('useAutocomplete', () => {
 
       expect(input.value).to.equal('free');
     });
+  });
+
+  it('should allow tuples or arrays as value when multiple=false', () => {
+    const Test = () => {
+      const defaultValue = ['bar'];
+
+      const { getClearProps, getInputProps } = useAutocomplete({
+        defaultValue,
+        disableClearable: false,
+        getOptionLabel: ([val]) => val,
+        isOptionEqualToValue: (option, value) => {
+          if (option === value) {
+            return true;
+          }
+          return option[0] === value[0];
+        },
+        multiple: false,
+        options: [['foo'], defaultValue, ['baz']],
+      });
+
+      return (
+        <div>
+          <input {...getInputProps()} />
+          <button data-testid="button" {...getClearProps()} />;
+        </div>
+      );
+    };
+
+    const { getByTestId } = render(<Test />);
+
+    const button = getByTestId('button');
+
+    expect(() => {
+      fireEvent.click(button);
+    }).not.to.throw();
   });
 });

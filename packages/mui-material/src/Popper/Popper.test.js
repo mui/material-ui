@@ -160,7 +160,7 @@ describe('<Popper />', () => {
     });
 
     describe('by default', () => {
-      // Test case for https://github.com/mui-org/material-ui/issues/15180
+      // Test case for https://github.com/mui/material-ui/issues/15180
       it('should remove the transition children in the DOM when closed whilst transition status is entering', () => {
         const children = <p>Hello World</p>;
 
@@ -282,6 +282,22 @@ describe('<Popper />', () => {
       setProps({ open: false });
       clock.tick(0);
       expect(getByRole('tooltip', { hidden: true }).style.display).to.equal('none');
+    });
+  });
+
+  describe('default props', () => {
+    it('should consume theme default props', () => {
+      const container = document.createElement('div');
+      const theme = createTheme({ components: { MuiPopper: { defaultProps: { container } } } });
+      render(
+        <ThemeProvider theme={theme}>
+          <Popper {...defaultProps} open>
+            <p id="content">Hello World</p>
+          </Popper>
+        </ThemeProvider>,
+      );
+
+      expect(container).to.have.text('Hello World');
     });
   });
 });

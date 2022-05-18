@@ -2,9 +2,15 @@
 title: Styles API
 ---
 
-# API
+# API (LEGACY)
 
 <p class="description">The API reference of @mui/styles.</p>
+
+> ⚠️ `@mui/styles` is the _**legacy**_ styling solution for MUI.
+> It depends on [JSS](https://cssinjs.org/) as a styling solution, which is not used in the `@mui/material` anymore, deprecated in v5.
+> If you don't want to have both emotion & JSS in your bundle, please refer to the [`@mui/system`](/system/basics/) documentation which is the recommended alternative.
+
+> ⚠️ `@mui/styles` is not compatible with [React.StrictMode](https://reactjs.org/docs/strict-mode.html) or React 18.
 
 ## `createGenerateClassName([options]) => class name generator`
 
@@ -120,7 +126,7 @@ export default function MyComponent(props) {
 
 ## `ServerStyleSheets`
 
-This is a class helper to handle server-side rendering. [You can follow this guide for a practical approach](/guides/server-rendering/).
+This is a class helper to handle server-side rendering. [You can follow this guide for a practical approach](/material-ui/guides/server-rendering/).
 
 ```jsx
 import ReactDOMServer from 'react-dom/server';
@@ -241,8 +247,6 @@ import { StylesProvider } from '@mui/styles';
 function App() {
   return <StylesProvider jss={jss}>...</StylesProvider>;
 }
-
-ReactDOM.render(<App />, document.querySelector('#app'));
 ```
 
 ## `ThemeProvider`
@@ -269,8 +273,6 @@ const theme = {};
 function App() {
   return <ThemeProvider theme={theme}>...</ThemeProvider>;
 }
-
-ReactDOM.render(<App />, document.querySelector('#app'));
 ```
 
 ## `useTheme() => theme`

@@ -24,6 +24,7 @@ import { useTranslate } from 'docs/src/modules/utils/i18n';
 import { debounce } from '@mui/material/utils';
 import NextLink from 'next/link';
 import SvgMuiLogo from 'docs/src/icons/SvgMuiLogo';
+import AppFrameBanner from 'docs/src/components/banner/AppFrameBanner';
 
 const nProgressStart = debounce(() => {
   NProgress.start();
@@ -73,10 +74,12 @@ export function DeferredAppSearch() {
     <React.Fragment>
       {/* Suspense isn't supported for SSR yet */}
       {mounted ? (
-        <React.Suspense fallback={null}>
+        <React.Suspense fallback={<Box sx={{ minWidth: { sm: 200 } }} />}>
           <AppSearch />
         </React.Suspense>
-      ) : null}
+      ) : (
+        <Box sx={{ minWidth: { sm: 200 } }} />
+      )}
     </React.Fragment>
   );
 }
@@ -128,7 +131,7 @@ const StyledAppBar = styled(AppBar, {
     }),
     ...(!disablePermanent && {
       [theme.breakpoints.up('lg')]: {
-        width: 'calc(100% - 240px)',
+        width: 'calc(100% - var(--MuiDocs-navDrawer-width))',
       },
     }),
     boxShadow: 'none',
@@ -172,13 +175,13 @@ const StyledAppNavDrawer = styled(AppNavDrawer)(({ disablePermanent, theme }) =>
   return {
     [theme.breakpoints.up('lg')]: {
       flexShrink: 0,
-      width: 280,
+      width: 'var(--MuiDocs-navDrawer-width)',
     },
   };
 });
 
 function AppFrame(props) {
-  const { children, disableDrawer = false } = props;
+  const { children, disableDrawer = false, className } = props;
   const t = useTranslate();
 
   const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -189,7 +192,7 @@ function AppFrame(props) {
   const disablePermanent = activePage?.disableDrawer === true || disableDrawer === true;
 
   return (
-    <RootDiv>
+    <RootDiv className={className}>
       <NextNProgressBar />
       <CssBaseline />
       <SkipLink color="secondary" href="#main-content">
@@ -219,6 +222,7 @@ function AppFrame(props) {
           </NextLink>
           <GrowingDiv />
           <Stack direction="row" spacing={1.3}>
+            <AppFrameBanner />
             <DeferredAppSearch />
             <Tooltip title={t('appFrame.github')} enterDelay={300}>
               <IconButton
@@ -254,6 +258,7 @@ function AppFrame(props) {
 
 AppFrame.propTypes = {
   children: PropTypes.node.isRequired,
+  className: PropTypes.string,
   disableDrawer: PropTypes.bool,
 };
 

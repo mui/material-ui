@@ -1,5 +1,5 @@
 ---
-product: material
+product: material-ui
 title: Componente React para Dicas
 components: Tooltip
 githubLabel: 'component: tooltip'
@@ -7,7 +7,7 @@ materialDesign: https://material.io/components/tooltips
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#tooltip'
 ---
 
-# Dicas
+# Tooltip
 
 <p class="description">Dicas exibem texto informativo quando os usuários passam o mouse, focalizam ou tocam em um elemento.</p>
 
@@ -27,7 +27,7 @@ O `Tooltip` tem 12 **posicionamentos** para ser escolhido. They don't have direc
 
 ## Dicas customizadas
 
-Aqui estão alguns exemplos de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/how-to-customize/).
+Aqui estão alguns exemplos de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/material-ui/customization/how-to-customize/).
 
 {{"demo": "CustomizedTooltips.js"}}
 
@@ -39,7 +39,7 @@ Você pode usar a propriedade `arrow` para dar à sua dica uma seta indicando a 
 
 ## Elemento filho customizado
 
-A dica precisa aplicar eventos DOM ao seu elemento filho. A dica precisa aplicar eventos DOM ao seu elemento filho.
+The tooltip needs to apply DOM event listeners to its child element. If the child is a custom React element, you need to make sure that it spreads its props to the underlying DOM element.
 
 ```jsx
 const MyComponent = React.forwardRef(function MyComponent(props, ref) {
@@ -54,7 +54,7 @@ const MyComponent = React.forwardRef(function MyComponent(props, ref) {
 </Tooltip>
 ```
 
-Você pode encontrar um conceito similar no guia [encapaulando componentes](/guides/composition/#wrapping-components).
+Você pode encontrar um conceito similar no guia [encapaulando componentes](/material-ui/guides/composition/#wrapping-components).
 
 ## Gatilhos
 
@@ -90,14 +90,16 @@ Por padrão os elementos desativados como `<button>` não disparam interações 
 
 {{"demo": "DisabledTooltips.js"}}
 
-> Se você não estiver manipulando com um componente Material-UI que herde de `ButtonBase`, por exemplo, um elemento `<button>` nativo, você também deve adicionar a propriedade CSS _pointer-events: none;_ ao seu elemento quando desabilitado:
+> Se você não estiver manipulando com um componente Material UI que herde de `ButtonBase`, por exemplo, um elemento `<button>` nativo, você também deve adicionar a propriedade CSS _pointer-events: none;_ ao seu elemento quando desabilitado:
 
 ```jsx
-<Tooltip title="Você não tem permissão para esta tarefa">
+<Tooltip title="You don't have permission to do this">
   <span>
-    <button disabled={disabled} style={disabled ? <Tooltip title="Você não tem permissão para esta tarefa">
-  <span>
-    <button disabled={disabled} style={disabled ?
+    <button disabled={disabled} style={disabled ? { pointerEvents: 'none' } : {}}>
+      A disabled button
+    </button>
+  </span>
+</Tooltip>
 ```
 
 ## Transições

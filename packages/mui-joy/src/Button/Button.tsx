@@ -6,7 +6,7 @@ import { useButton } from '@mui/base/ButtonUnstyled';
 import composeClasses from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
 import { ExtendButton, ButtonTypeMap, ButtonProps } from './ButtonProps';
-import buttonClasses, { getButtonUtilityClass } from './buttonClasses';
+import { getButtonUtilityClass } from './buttonClasses';
 
 const useUtilityClasses = (ownerState: ButtonProps & { focusVisible: boolean }) => {
   const { color, disabled, focusVisible, focusVisibleClassName, fullWidth, size, variant } =
@@ -36,7 +36,7 @@ const useUtilityClasses = (ownerState: ButtonProps & { focusVisible: boolean }) 
 };
 
 const ButtonStartIcon = styled('span', {
-  name: 'MuiButton',
+  name: 'JoyButton',
   slot: 'StartIcon',
   overridesResolver: (props, styles) => styles.startIcon,
 })<{ ownerState: ButtonProps }>({
@@ -46,7 +46,7 @@ const ButtonStartIcon = styled('span', {
 });
 
 const ButtonEndIcon = styled('span', {
-  name: 'MuiButton',
+  name: 'JoyButton',
   slot: 'EndIcon',
   overridesResolver: (props, styles) => styles.endIcon,
 })<{ ownerState: ButtonProps }>({
@@ -56,32 +56,42 @@ const ButtonEndIcon = styled('span', {
 });
 
 const ButtonRoot = styled('button', {
-  name: 'MuiButton',
+  name: 'JoyButton',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: ButtonProps }>(({ theme, ownerState }) => {
   return [
     {
-      '--Button-minHeight': '2.5rem', // use min-height instead of height to make the button resilient to its content
-      '--Button-gutter': '1.5rem', // gutter is the padding-x
-      '--Button-iconOffsetStep': 2, // negative margin of the start/end icon
-      '--Button-gap': 'clamp(0.25rem, var(--Button-gutter) * 0.5, 0.5rem)', // gap between start/end icon and content [0.25rem, x, 0.5rem]
       ...(ownerState.size === 'sm' && {
-        '--Button-minHeight': '2rem',
         '--Button-gutter': '1rem',
+        '--Icon-fontSize': '1.25rem',
+      }),
+      ...(ownerState.size === 'md' && {
+        '--Button-gutter': '1.5rem', // gutter is the padding-x
+        '--Icon-fontSize': '1.5rem', // control the SvgIcon font-size
       }),
       ...(ownerState.size === 'lg' && {
-        '--Button-minHeight': '3rem',
         '--Button-gutter': '2rem',
+        '--Icon-fontSize': '1.75rem',
       }),
+      '--Button-iconOffsetStep': 2, // negative margin of the start/end icon
+      '--Button-gap': 'clamp(0.25rem, var(--Button-gutter) * 0.5, 0.5rem)', // gap between start/end icon and content [0.25rem, x, 0.5rem]
     },
     {
       padding: '0.25rem var(--Button-gutter)', // the padding-top, bottom act as a minimum spacing between content and root element
       ...(ownerState.variant === 'outlined' && {
         padding:
-          'calc(0.25rem - var(--variant-outlined-borderWidth)) calc(var(--Button-gutter) - var(--variant-outlined-borderWidth))', // account for the border width
+          'calc(0.25rem - var(--variant-outlinedBorderWidth)) calc(var(--Button-gutter) - var(--variant-outlinedBorderWidth))', // account for the border width
       }),
-      minHeight: 'var(--Button-minHeight)',
+      ...(ownerState.size === 'sm' && {
+        minHeight: '2rem',
+      }),
+      ...(ownerState.size === 'md' && {
+        minHeight: '2.5rem', // use min-height instead of height to make the button resilient to its content
+      }),
+      ...(ownerState.size === 'lg' && {
+        minHeight: '3rem',
+      }),
       borderRadius: theme.vars.radius.sm,
       border: 'none',
       backgroundColor: 'transparent',
@@ -93,16 +103,17 @@ const ButtonRoot = styled('button', {
       // TODO: discuss the transition approach in a separate PR. This value is copied from mui-material Button.
       transition:
         'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
-      ...theme.typography.body1,
+      fontFamily: theme.vars.fontFamily.body,
+      fontSize: theme.vars.fontSize.md,
+      lineHeight: 1,
       ...(ownerState.size === 'sm' && {
-        ...theme.typography.body2,
-        lineHeight: '1.25rem',
+        fontSize: theme.vars.fontSize.sm,
       }),
       ...(ownerState.size === 'lg' && theme.typography.h6),
-      [`&.${buttonClasses.focusVisible}`]: theme.focus.default,
-    },
-    ownerState.fullWidth && {
-      width: '100%',
+      ...(ownerState.fullWidth && {
+        width: '100%',
+      }),
+      [theme.focus.selector]: theme.focus.default,
     },
     theme.variants[ownerState.variant!]?.[ownerState.color!],
     theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
@@ -114,7 +125,7 @@ const ButtonRoot = styled('button', {
 const Button = React.forwardRef(function Button(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
-    name: 'MuiButton',
+    name: 'JoyButton',
   });
 
   const {
@@ -123,7 +134,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     action,
     component = 'button',
     color = 'primary',
-    variant = 'contained',
+    variant = 'solid',
     size = 'md',
     fullWidth = false,
     startIcon: startIconProp,
@@ -138,7 +149,6 @@ const Button = React.forwardRef(function Button(inProps, ref) {
 
   const { focusVisible, setFocusVisible, getRootProps } = useButton({
     ...props,
-    component: ComponentProp,
     ref: handleRef,
   });
 
@@ -230,9 +240,18 @@ Button.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
+   * If `true`, the component is disabled.
+   * @default false
+   */
+  disabled: PropTypes.bool,
+  /**
    * Element placed after the children.
    */
   endIcon: PropTypes.node,
+  /**
+   * @ignore
+   */
+  focusVisibleClassName: PropTypes.string,
   /**
    * If `true`, the button will take up the full width of its container.
    * @default false
@@ -250,11 +269,23 @@ Button.propTypes /* remove-proptypes */ = {
    */
   startIcon: PropTypes.node,
   /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
+  /**
+   * @default 0
+   */
+  tabIndex: PropTypes.number,
+  /**
    * The variant to use.
-   * @default 'contained'
+   * @default 'solid'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['contained', 'light', 'outlined', 'text']),
+    PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
     PropTypes.string,
   ]),
 } as any;

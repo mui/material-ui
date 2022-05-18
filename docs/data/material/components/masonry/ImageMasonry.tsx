@@ -1,36 +1,39 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import Stack from '@mui/material/Stack';
 import Paper from '@mui/material/Paper';
 import Masonry from '@mui/lab/Masonry';
 import { styled } from '@mui/material/styles';
 
 const Label = styled(Paper)(({ theme }) => ({
+  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
   ...theme.typography.body2,
+  padding: theme.spacing(0.5),
+  textAlign: 'center',
   color: theme.palette.text.secondary,
-  border: '1px solid black',
   borderBottomLeftRadius: 0,
   borderBottomRightRadius: 0,
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
 }));
 
 export default function ImageMasonry() {
   return (
     <Box sx={{ width: 500, minHeight: 829 }}>
-      <Masonry columns={3} spacing={1}>
+      <Masonry columns={3} spacing={2}>
         {itemData.map((item, index) => (
-          <Stack key={index}>
+          <div key={index}>
             <Label>{index + 1}</Label>
             <img
               src={`${item.img}?w=162&auto=format`}
               srcSet={`${item.img}?w=162&auto=format&dpr=2 2x`}
               alt={item.title}
               loading="lazy"
-              style={{ borderBottomLeftRadius: 4, borderBottomRightRadius: 4 }}
+              style={{
+                borderBottomLeftRadius: 4,
+                borderBottomRightRadius: 4,
+                display: 'block',
+                width: '100%',
+              }}
             />
-          </Stack>
+          </div>
         ))}
       </Masonry>
     </Box>

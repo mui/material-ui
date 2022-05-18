@@ -5,7 +5,7 @@ import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } 
 import { useButton } from '@mui/base/ButtonUnstyled';
 import composeClasses from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
-import iconButtonClasses, { getIconButtonUtilityClass } from './iconButtonClasses';
+import { getIconButtonUtilityClass } from './iconButtonClasses';
 import { IconButtonProps, IconButtonTypeMap, ExtendIconButton } from './IconButtonProps';
 
 const useUtilityClasses = (ownerState: IconButtonProps & { focusVisible: boolean }) => {
@@ -32,24 +32,30 @@ const useUtilityClasses = (ownerState: IconButtonProps & { focusVisible: boolean
 };
 
 const IconButtonRoot = styled('button', {
-  name: 'MuiIconButton',
+  name: 'JoyIconButton',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: IconButtonProps }>(({ theme, ownerState }) => [
   {
-    '--IconButton-size': '2.5rem', // for defining width x height
-    '--IconButton-padding': '0.25rem',
     ...(ownerState.size === 'sm' && {
       '--IconButton-size': '2rem',
+      '--Icon-fontSize': '1.25rem',
+    }),
+    ...(ownerState.size === 'md' && {
+      '--IconButton-size': '2.5rem', // for defining width x height
+      '--IconButton-padding': '0.25rem',
+      '--Icon-fontSize': '1.5rem', // control the SvgIcon font-size
     }),
     ...(ownerState.size === 'lg' && {
       '--IconButton-size': '3rem',
       '--IconButton-padding': '0.5rem',
+      '--Icon-fontSize': '1.75rem',
     }),
     padding: 'var(--IconButton-padding)',
     ...(ownerState.variant === 'outlined' && {
-      padding: 'calc(var(--IconButton-padding) - var(--variant-outlined-borderWidth))', // account for the border width
+      padding: 'calc(var(--IconButton-padding) - var(--variant-outlinedBorderWidth))', // account for the border width
     }),
+    fontFamily: theme.vars.fontFamily.body,
     minWidth: 'var(--IconButton-size)', // use min-width instead of height to make the button resilient to its content
     minHeight: 'var(--IconButton-size)', // use min-height instead of height to make the button resilient to its content
     borderRadius: theme.vars.radius.sm,
@@ -62,7 +68,7 @@ const IconButtonRoot = styled('button', {
     // TODO: discuss the transition approach in a separate PR. This value is copied from mui-material Button.
     transition:
       'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
-    [`&.${iconButtonClasses.focusVisible}`]: theme.focus.default,
+    [theme.focus.selector]: theme.focus.default,
   },
   theme.variants[ownerState.variant!]?.[ownerState.color!],
   theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
@@ -73,7 +79,7 @@ const IconButtonRoot = styled('button', {
 const IconButton = React.forwardRef(function IconButton(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
-    name: 'MuiIconButton',
+    name: 'JoyIconButton',
   });
 
   const {
@@ -82,7 +88,7 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
     action,
     component = 'button',
     color = 'primary',
-    variant = 'light',
+    variant = 'soft',
     size = 'md',
     ...other
   } = props;
@@ -94,7 +100,6 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
 
   const { focusVisible, setFocusVisible, getRootProps } = useButton({
     ...props,
-    component: ComponentProp,
     ref: handleRef,
   });
 
@@ -171,6 +176,20 @@ IconButton.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
+   * If `true`, the component is disabled.
+   * @default false
+   */
+  disabled: PropTypes.bool,
+  /**
+   * This prop can help identify which element has keyboard focus.
+   * The class name will be applied when the element gains the focus through keyboard interaction.
+   * It's a polyfill for the [CSS :focus-visible selector](https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo).
+   * The rationale for using this feature [is explained here](https://github.com/WICG/focus-visible/blob/HEAD/explainer.md).
+   * A [polyfill can be used](https://github.com/WICG/focus-visible) to apply a `focus-visible` class to other components
+   * if needed.
+   */
+  focusVisibleClassName: PropTypes.string,
+  /**
    * The size of the component.
    */
   size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
@@ -178,11 +197,23 @@ IconButton.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
+  /**
+   * @default 0
+   */
+  tabIndex: PropTypes.number,
+  /**
    * The variant to use.
-   * @default 'light'
+   * @default 'soft'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['contained', 'light', 'outlined', 'text']),
+    PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
     PropTypes.string,
   ]),
 } as any;

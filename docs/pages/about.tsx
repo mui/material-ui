@@ -279,7 +279,7 @@ const teamMembers: Array<Profile> = [
     title: 'Lead designer',
     location: 'São Paulo, Brazil',
     locationCountry: 'br',
-    about: 'Music production, hiking and traveling!',
+    about: 'Music production, hiking, and traveling!',
     github: 'danilo-leal',
     twitter: 'danilobleal',
   },
@@ -314,7 +314,7 @@ const teamMembers: Array<Profile> = [
   {
     src: '/static/branding/about/bharat.png',
     name: 'Bharat Kashyap',
-    title: 'MUI Studio engineer',
+    title: 'MUI Toolpad engineer',
     location: 'New Delhi, India',
     locationCountry: 'in',
     about: 'Trains 🚅 , architecture 🏛️ , and psychology 🧠 ',
@@ -324,16 +324,16 @@ const teamMembers: Array<Profile> = [
   {
     src: '/static/branding/about/jan.png',
     name: 'Jan Potoms',
-    title: 'MUI Studio engineer',
+    title: 'MUI Toolpad engineer',
     location: 'Brussels, Belgium',
     locationCountry: 'be',
-    about: 'Always curious, I enjoy cinema, and hiking',
+    about: 'Always curious, I enjoy cinema and hiking',
     github: 'janpot',
   },
   {
     src: '/static/branding/about/prakhar.png',
     name: 'Prakhar Gupta',
-    title: 'MUI Studio PM',
+    title: 'MUI Toolpad PM',
     location: 'New Delhi, India',
     locationCountry: 'in',
     about: 'Into sports and hiking!',
@@ -346,7 +346,7 @@ const teamMembers: Array<Profile> = [
     title: 'MUI X PM',
     location: 'Augsburg, Germany',
     locationCountry: 'de',
-    about: 'Art, fiction and bar philosophy',
+    about: 'Art, fiction, and bar philosophy',
     twitter: 'zehdefreitas',
     github: 'joserodolfofreitas',
   },
@@ -359,6 +359,25 @@ const teamMembers: Array<Profile> = [
     about: 'Love playing music - electric and bass guitar 🎸',
     twitter: 'iamcherniavskii',
     github: 'cherniavskii',
+  },
+  {
+    src: '/static/branding/about/sycamore.png',
+    name: 'Sam Sycamore',
+    title: 'Developer Advocate',
+    location: 'Saint Paul, Minnesota, USA',
+    locationCountry: 'us',
+    about: 'Musician and edible wild plant enthusiast 🌱',
+    twitter: 'tanoaksam',
+    github: 'samuelsycamore',
+  },
+  {
+    src: '/static/branding/about/pedro.png',
+    name: 'Pedro Ferreira',
+    title: 'MUI Toolpad engineer',
+    location: 'Porto, Portugal',
+    locationCountry: 'pt',
+    about: 'Passionate about videogames and football',
+    github: 'apedroferreira',
   },
 ];
 
@@ -480,7 +499,7 @@ const emeriti = [
   {
     name: 'Dmitriy Kovalenko',
     github: 'dmtrKovalenko',
-    twitter: 'dmtrKovalenko',
+    twitter: 'goose_plus_plus',
     title: 'MUI X, date pickers',
     location: 'Kharkiv, Ukraine',
     locationCountry: 'ua',
@@ -689,7 +708,7 @@ function AboutContent() {
                 // @ts-expect-error
                 variant="link"
                 size="small"
-                href="https://github.com/mui-org/material-ui/issues?q=is%3Aissue+is%3Aopen+sort%3Areactions-%2B1-desc"
+                href="https://github.com/mui/material-ui/issues?q=is%3Aissue+is%3Aopen+sort%3Areactions-%2B1-desc"
                 endIcon={<KeyboardArrowRightRounded />}
               >
                 Leave your feedback{' '}
@@ -714,22 +733,22 @@ function AboutContent() {
               >
                 <li>
                   Add new features by{' '}
-                  <Link href="https://github.com/mui-org/material-ui/blob/HEAD/CONTRIBUTING.md#your-first-pull-request">
+                  <Link href="https://github.com/mui/material-ui/blob/HEAD/CONTRIBUTING.md#your-first-pull-request">
                     submitting a pull request
                   </Link>
                   .
                 </li>
                 <li>
                   Fix bugs or{' '}
-                  <Link href="https://github.com/mui-org/material-ui/tree/HEAD/docs">
+                  <Link href="https://github.com/mui/material-ui/tree/HEAD/docs">
                     improve our documentation
                   </Link>
                   .
                 </li>
                 <li>
                   Help others by reviewing and commenting on existing{' '}
-                  <Link href="https://github.com/mui-org/material-ui/pulls">PRs</Link> and{' '}
-                  <Link href="https://github.com/mui-org/material-ui/issues">issues</Link>.
+                  <Link href="https://github.com/mui/material-ui/pulls">PRs</Link> and{' '}
+                  <Link href="https://github.com/mui/material-ui/issues">issues</Link>.
                 </li>
                 <li>
                   Help <Link href="https://translate.mui.com/">translate</Link> the documentation.
@@ -744,7 +763,7 @@ function AboutContent() {
                 // @ts-expect-error
                 variant="link"
                 size="small"
-                href="https://github.com/mui-org/material-ui"
+                href="https://github.com/mui/material-ui"
                 endIcon={<KeyboardArrowRightRounded />}
               >
                 See the repository
@@ -790,7 +809,7 @@ export default function About() {
     <BrandingProvider>
       <Head
         title="About us - MUI"
-        description="MUI (formerly Material-UI) started back in 2014 to unify React and Material Design. Today, MUI has grown to become one of the world's most popular React libraries – used by a vibrant community of more than 2M developers in over 180 countries."
+        description="MUI (formerly Material UI) started back in 2014 to unify React and Material Design. Today, MUI has grown to become one of the world's most popular React libraries – used by a vibrant community of more than 2M developers in over 180 countries."
       />
       <AppHeaderBanner />
       <AppHeader />

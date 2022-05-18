@@ -1,11 +1,11 @@
 ---
-product: material
-title: React Backdrop（背景暗化）组件
-components: Backdrop, BackdropUnstyled
-githubLabel: '组件：背景暗化'
+product: material-ui
+title: React Backdrop（蒙版）组件
+components: Backdrop
+githubLabel: 'component: backdrop'
 ---
 
-# 蒙版
+# Backdrop
 
 <p class="description">蒙版组件用于特定元素或其部分的强调。</p>
 
@@ -16,11 +16,3 @@ githubLabel: '组件：背景暗化'
 ## 示例
 
 {{"demo": "SimpleBackdrop.js"}}
-
-## 素颜模式
-
-The backdrop also comes with the Base package. The backdrop also comes with the unstyled package. It's ideal for doing heavy customizations and minimizing bundle size.
-
-```js
-import BackdropUnstyled from '@mui/base/BackdropUnstyled';
-```

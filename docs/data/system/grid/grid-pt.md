@@ -326,7 +326,7 @@ import { flexbox } from '@material-ui/system';
 ```
 
 | Nome da importação    | Propriedade           | Propriedade CSS         | Chave do tema |
-| :-------------------- | :-------------------- | :---------------------- | :------------ |
+|:--------------------- |:--------------------- |:----------------------- |:------------- |
 | `gap`                 | `gap`                 | `gap`                   | none          |
 | `columnGap`           | `columnGap`           | `column-gap`            | none          |
 | `rowGap`              | `rowGap`              | `row-gap`               | none          |

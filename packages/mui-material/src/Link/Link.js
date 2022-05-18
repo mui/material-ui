@@ -112,6 +112,7 @@ const Link = React.forwardRef(function Link(inProps, ref) {
     TypographyClasses,
     underline = 'always',
     variant = 'inherit',
+    sx,
     ...other
   } = props;
 
@@ -155,15 +156,19 @@ const Link = React.forwardRef(function Link(inProps, ref) {
 
   return (
     <LinkRoot
+      color={color}
       className={clsx(classes.root, className)}
       classes={TypographyClasses}
-      color={color}
       component={component}
       onBlur={handleBlur}
       onFocus={handleFocus}
       ref={handlerRef}
       ownerState={ownerState}
       variant={variant}
+      sx={[
+        ...(!Object.keys(colorTransformations).includes(color) ? [{ color }] : []),
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
       {...other}
     />
   );
@@ -213,7 +218,7 @@ Link.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
-   * `classes` prop applied to the [`Typography`](/api/typography/) element.
+   * `classes` prop applied to the [`Typography`](/material-ui/api/typography/) element.
    */
   TypographyClasses: PropTypes.object,
   /**
