@@ -259,7 +259,7 @@ export default function EmailExample() {
           </Box>
           <Box sx={{ py: 10 }}>
             <Typography color="neutral.500" level="body2" sx={{ textAlign: 'center' }}>
-              You've read all messages in your inbox.
+              You&apos;ve read all messages in your inbox.
             </Typography>
           </Box>
           <Box sx={{ p: 2 }}>
