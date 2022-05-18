@@ -29,7 +29,7 @@ const useUtilityClasses = (ownerState: TextFieldProps) => {
 };
 
 const TextFieldRoot = styled('div', {
-  name: 'MuiTextField',
+  name: 'JoyTextField',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: TextFieldProps }>(({ theme, ownerState }) => ({
@@ -58,7 +58,7 @@ const TextFieldRoot = styled('div', {
 const TextField = React.forwardRef(function TextField(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
-    name: 'MuiTextField',
+    name: 'JoyTextField',
   });
 
   const {

@@ -32,7 +32,7 @@ const useUtilityClasses = (ownerState: IconButtonProps & { focusVisible: boolean
 };
 
 const IconButtonRoot = styled('button', {
-  name: 'MuiIconButton',
+  name: 'JoyIconButton',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: IconButtonProps }>(({ theme, ownerState }) => [
@@ -79,7 +79,7 @@ const IconButtonRoot = styled('button', {
 const IconButton = React.forwardRef(function IconButton(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
-    name: 'MuiIconButton',
+    name: 'JoyIconButton',
   });
 
   const {

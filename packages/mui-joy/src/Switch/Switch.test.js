@@ -11,7 +11,7 @@ describe('<Switch />', () => {
     classes,
     render,
     ThemeProvider,
-    muiName: 'MuiSwitch',
+    muiName: 'JoySwitch',
     testDeepOverrides: [
       { slotName: 'track', slotClassName: classes.track },
       { slotName: 'input', slotClassName: classes.input },

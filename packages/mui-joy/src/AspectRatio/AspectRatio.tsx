@@ -23,7 +23,7 @@ const useUtilityClasses = (ownerState: AspectRatioProps) => {
 };
 
 const AspectRatioRoot = styled('div', {
-  name: 'MuiAspectRatio',
+  name: 'JoyAspectRatio',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: AspectRatioProps }>(({ theme, ownerState }) => {
@@ -69,7 +69,7 @@ const AspectRatioRoot = styled('div', {
 const AspectRatio = React.forwardRef(function AspectRatio(inProps, ref) {
   const props = useThemeProps<typeof inProps & AspectRatioProps>({
     props: inProps,
-    name: 'MuiAspectRatio',
+    name: 'JoyAspectRatio',
   });
 
   const {

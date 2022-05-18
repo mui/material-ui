@@ -16,7 +16,7 @@ const useUtilityClasses = () => {
 };
 
 const ListItemDecoratorRoot = styled('span', {
-  name: 'MuiListItemDecorator',
+  name: 'JoyListItemDecorator',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: ListItemDecoratorProps }>({
@@ -30,7 +30,7 @@ const ListItemDecoratorRoot = styled('span', {
 const ListItemDecorator = React.forwardRef(function ListItemDecorator(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
-    name: 'MuiListItemDecorator',
+    name: 'JoyListItemDecorator',
   });
 
   const { component, className, children, ...other } = props;

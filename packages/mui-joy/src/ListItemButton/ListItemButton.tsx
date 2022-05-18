@@ -38,7 +38,7 @@ const useUtilityClasses = (ownerState: ListItemButtonProps & { focusVisible: boo
 };
 
 const ListItemButtonRoot = styled('div', {
-  name: 'MuiListItemButton',
+  name: 'JoyListItemButton',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: ListItemButtonProps & { row: boolean } }>(({ theme, ownerState }) => [
@@ -104,7 +104,7 @@ const ListItemButtonRoot = styled('div', {
 const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
-    name: 'MuiListItemButton',
+    name: 'JoyListItemButton',
   });
 
   const row = React.useContext(RowListContext);

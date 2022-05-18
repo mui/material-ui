@@ -15,7 +15,7 @@ describe('<Container />', () => {
     inheritComponent: 'div',
     render,
     refInstanceof: window.HTMLElement,
-    muiName: 'MuiContainer',
+    muiName: 'JoyContainer',
     skip: ['componentsProp'],
     testVariantProps: { fixed: true },
   }));
