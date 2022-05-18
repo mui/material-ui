@@ -14,7 +14,14 @@ describe('<Slider />', () => {
     muiName: 'MuiSlider',
     refInstanceof: window.HTMLSpanElement,
     testVariantProps: { variant: 'solid' },
-    skip: ['rootClass', 'propsSpread'],
+    skip: [
+      'componentProp',
+      'componentsProp',
+      'classesRoot',
+      'propsSpread',
+      'themeDefaultProps',
+      'themeVariants',
+    ],
   }));
 
   it('should render the rail as the first child of the Slider', () => {
