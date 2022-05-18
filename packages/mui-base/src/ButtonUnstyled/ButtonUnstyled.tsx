@@ -134,9 +134,9 @@ ButtonUnstyled.propTypes /* remove-proptypes */ = {
   /**
    * The component used for the Root slot.
    * Either a string to use a HTML element or a component.
-   * @default 'button'
+   * This is equivalent to `components.Root`. If both are provided, the `component` is used.
    */
-  component: PropTypes.elementType,
+  component: PropTypes /* @typescript-to-proptypes-ignore */.elementType,
   /**
    * The components used for each slot inside the Button.
    * Either a string to use a HTML element or a component.

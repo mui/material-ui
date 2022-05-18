@@ -550,6 +550,28 @@ describe('createCssVarsProvider', () => {
 
       expect(document.documentElement.getAttribute('data-foo-bar')).to.equal('light');
     });
+
+    it('does not crash if documentNode is null', () => {
+      const { CssVarsProvider } = createCssVarsProvider({
+        theme: {
+          colorSchemes: { light: {} },
+        },
+        defaultColorScheme: 'light',
+      });
+
+      expect(() => render(<CssVarsProvider documentNode={null} />)).not.to.throw();
+    });
+
+    it('does not crash if colorSchemeNode is null', () => {
+      const { CssVarsProvider } = createCssVarsProvider({
+        theme: {
+          colorSchemes: { light: {} },
+        },
+        defaultColorScheme: 'light',
+      });
+
+      expect(() => render(<CssVarsProvider colorSchemeNode={null} />)).not.to.throw();
+    });
   });
 
   describe('Storage', () => {
@@ -610,6 +632,24 @@ describe('createCssVarsProvider', () => {
 
       expect(screen.getByTestId('current-mode').textContent).to.equal('dark');
       expect(global.localStorage.setItem.calledWith(customModeStorageKey, 'dark')).to.equal(true);
+    });
+
+    it('support custom storage window', () => {
+      const storageWindow = {
+        addEventListener: (key, handler) => {
+          if (key === 'storage') {
+            handler({ key: DEFAULT_MODE_STORAGE_KEY, newValue: 'dark' });
+          }
+        },
+        removeEventListener: () => {},
+      };
+      render(
+        <CssVarsProvider storageWindow={storageWindow}>
+          <Consumer />
+        </CssVarsProvider>,
+      );
+
+      expect(screen.getByTestId('current-mode')).to.have.text('dark');
     });
   });
 

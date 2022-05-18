@@ -582,7 +582,7 @@ export default function useAutocomplete(props) {
   };
 
   const handleValue = (event, newValue, reason, details) => {
-    if (Array.isArray(value)) {
+    if (multiple) {
       if (value.length === newValue.length && value.every((val, i) => val === newValue[i])) {
         return;
       }
@@ -682,7 +682,9 @@ export default function useAutocomplete(props) {
       return;
     }
 
-    handleClose(event, 'toggleInput');
+    if (inputValue === '') {
+      handleClose(event, 'toggleInput');
+    }
 
     let nextTag = focusedTag;
 

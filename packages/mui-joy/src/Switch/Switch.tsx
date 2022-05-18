@@ -51,7 +51,7 @@ const switchColorVariables =
   };
 
 const SwitchRoot = styled('span', {
-  name: 'MuiSwitch',
+  name: 'JoySwitch',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: SwitchProps }>(({ theme, ownerState }) => {
@@ -113,7 +113,7 @@ const SwitchRoot = styled('span', {
 });
 
 const SwitchAction = styled('div', {
-  name: 'MuiSwitch',
+  name: 'JoySwitch',
   slot: 'Action',
   overridesResolver: (props, styles) => styles.action,
 })<{ ownerState: SwitchProps }>(({ theme }) => ({
@@ -127,7 +127,7 @@ const SwitchAction = styled('div', {
 }));
 
 const SwitchInput = styled('input', {
-  name: 'MuiSwitch',
+  name: 'JoySwitch',
   slot: 'Input',
   overridesResolver: (props, styles) => styles.input,
 })<{ ownerState: SwitchProps }>({
@@ -140,7 +140,7 @@ const SwitchInput = styled('input', {
 });
 
 const SwitchTrack = styled('span', {
-  name: 'MuiSwitch',
+  name: 'JoySwitch',
   slot: 'Track',
   overridesResolver: (props, styles) => styles.track,
 })<{ ownerState: SwitchProps & { focusVisible: boolean } }>(({ theme, ownerState }) => ({
@@ -169,7 +169,7 @@ const SwitchTrack = styled('span', {
 }));
 
 const SwitchThumb = styled('span', {
-  name: 'MuiSwitch',
+  name: 'JoySwitch',
   slot: 'Thumb',
   overridesResolver: (props, styles) => styles.thumb,
 })<{ ownerState: SwitchProps }>({
@@ -194,7 +194,7 @@ const SwitchThumb = styled('span', {
 });
 
 const SwitchStartDecorator = styled('span', {
-  name: 'MuiSwitch',
+  name: 'JoySwitch',
   slot: 'StartDecorator',
   overridesResolver: (props, styles) => styles.startDecorator,
 })<{ ownerState: SwitchProps }>({
@@ -203,7 +203,7 @@ const SwitchStartDecorator = styled('span', {
 });
 
 const SwitchEndDecorator = styled('span', {
-  name: 'MuiSwitch',
+  name: 'JoySwitch',
   slot: 'EndDecorator',
   overridesResolver: (props, styles) => styles.endDecorator,
 })<{ ownerState: SwitchProps }>({
@@ -434,7 +434,7 @@ Switch.propTypes /* remove-proptypes */ = {
    * @default 'solid'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['contained', 'light', 'outlined']),
+    PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
     PropTypes.string,
   ]),
 } as any;

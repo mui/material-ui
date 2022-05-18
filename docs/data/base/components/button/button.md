@@ -49,7 +49,7 @@ Instead, `aria-disabled` is used, which makes the button focusable.
 
 This should be used whenever the disabled button needs to be read by screen readers.
 
-MUI Base uses this prop internally in [menu items](/base/react-menu), making it possible to use the keyboard to navigate to disabled items (in compliance with [ARIA guidelines](https://www.w3.org/TR/wai-aria-practices-1.2/#h-note-17)).
+MUI Base uses this prop internally in [menu items](/base/react-menu/), making it possible to use the keyboard to navigate to disabled items (in compliance with [ARIA guidelines](https://www.w3.org/TR/wai-aria-practices-1.2/#h-note-17)).
 
 {{"demo": "UnstyledButtonsDisabledFocus.js"}}
 
@@ -71,3 +71,8 @@ The `useButton` hook requires the `ref` of the element it's used on.
 Additionally, you need to provide the `component` prop (unless you intend to use the native HTML `<button>`).
 
 {{"demo": "UseButton.js", "defaultCodeOpen": true}}
+
+## Limitations
+
+If a `ButtonUnstyled` is customized with a non-button element (i.e. `<ButtonUnstyled component="span" />`), it will not submit the form it's in when clicked.
+Similarly, `<ButtonUnstyled component="span" type="reset">` will not reset its parent form.

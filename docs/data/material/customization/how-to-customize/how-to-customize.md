@@ -40,12 +40,14 @@ In this case, the styles are applied with `.css-ae2u5c-MuiSlider-thumb` but you 
 
 {{"demo": "DevTools.js"}}
 
-> ⚠️ Note that these class names can't be used as CSS selectors because they are unstable.
+:::warning
+⚠️ Note that these class names can't be used as CSS selectors because they are unstable.
+:::
 
 ### Overriding styles with class names
 
 If you want to override a component's styles using custom classes, you can use the `className` prop, available on each component.
-To override the styles of a specific part of the component, use the global classes provided by Material UI, as described in the previous section—[Overriding nested component styles](#overriding-nested-component-styles).
+To override the styles of a specific part of the component, use the global classes provided by Material UI, as described in the previous section **"Overriding nested component styles"** under the [`sx` prop section](#the-sx-prop).
 
 Visit the [Style library interoperability](/material-ui/guides/interoperability/) guide to find examples of this approach using different styling libraries.
 
@@ -114,7 +116,9 @@ You can rely on the following [global class names](/system/styles/advanced/#clas
 | required      | `.Mui-required`     |
 | selected      | `.Mui-selected`     |
 
-> ⚠️ Never apply styles directly to state class names. This will impact all components with unclear side-effects. Always target a state class together with a component.
+:::error
+⚠️ Never apply styles directly to state class names. This will impact all components with unclear side-effects. Always target a state class together with a component.
+:::
 
 ```css
 /* ❌ NOT OK */
@@ -141,7 +145,9 @@ You can do this with **dynamic CSS** or **CSS variables**.
 
 #### Dynamic CSS
 
-> ⚠️ Note that if you are using TypeScript you will need to update the prop's types of the new component.
+:::warning
+⚠️ Note that if you are using TypeScript you will need to update the prop's types of the new component.
+:::
 
 {{"demo": "DynamicCSS.js", "defaultCodeOpen": false}}
 
@@ -184,7 +190,9 @@ If you are already using the [CssBaseline](/material-ui/react-css-baseline/) com
 
 {{"demo": "OverrideCssBaseline.js", "iframe": true, "height": 100}}
 
-> Note: It is a good practice to hoist the `<GlobalStyles />` to a static constant, to avoid rerendering. This will ensure that the `<style>` tag generated would not recalculate on each render.
+:::info
+Note: It is a good practice to hoist the `<GlobalStyles />` to a static constant, to avoid rerendering. This will ensure that the `<style>` tag generated would not recalculate on each render.
+:::
 
 ```diff
  import * as React from 'react';

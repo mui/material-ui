@@ -89,7 +89,7 @@ export interface CheckboxTypeMap<P = {}, D extends React.ElementType = 'span'> {
        * The variant to use.
        * @default 'solid'
        */
-      variant?: OverridableStringUnion<Exclude<VariantProp, 'text'>, CheckboxPropsVariantOverrides>;
+      variant?: OverridableStringUnion<VariantProp, CheckboxPropsVariantOverrides>;
       /**
        * The icon when `checked` is false.
        */

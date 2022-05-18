@@ -43,7 +43,7 @@ function areEqualValues(a: unknown, b: unknown) {
 }
 
 const RadioRoot = styled('span', {
-  name: 'MuiRadio',
+  name: 'JoyRadio',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: RadioProps }>(({ ownerState, theme }) => {
@@ -90,7 +90,7 @@ const RadioRoot = styled('span', {
 });
 
 const RadioRadio = styled('span', {
-  name: 'MuiRadio',
+  name: 'JoyRadio',
   slot: 'Radio',
   overridesResolver: (props, styles) => styles.radio,
 })<{ ownerState: RadioProps }>(({ ownerState, theme }) => [
@@ -122,7 +122,7 @@ const RadioRadio = styled('span', {
 ]);
 
 const RadioAction = styled('span', {
-  name: 'MuiRadio',
+  name: 'JoyRadio',
   slot: 'Action',
   overridesResolver: (props, styles) => styles.action,
 })<{ ownerState: RadioProps }>(({ theme, ownerState }) => [
@@ -153,7 +153,7 @@ const RadioAction = styled('span', {
 ]);
 
 const RadioInput = styled('input', {
-  name: 'MuiRadio',
+  name: 'JoyRadio',
   slot: 'Input',
   overridesResolver: (props, styles) => styles.input,
 })<{ ownerState: RadioProps }>(() => ({
@@ -166,7 +166,7 @@ const RadioInput = styled('input', {
 }));
 
 const RadioLabel = styled('label', {
-  name: 'MuiRadio',
+  name: 'JoyRadio',
   slot: 'Label',
   overridesResolver: (props, styles) => styles.label,
 })<{ ownerState: RadioProps }>(({ ownerState }) => ({
@@ -186,7 +186,7 @@ const RadioLabel = styled('label', {
  * internal component
  */
 const RadioIcon = styled('span', {
-  name: 'MuiRadio',
+  name: 'JoyRadio',
   slot: 'Icon',
   overridesResolver: (props, styles) => styles.icon,
 })<{ ownerState: RadioProps }>(({ ownerState }) => ({
@@ -203,7 +203,7 @@ const RadioIcon = styled('span', {
 const Radio = React.forwardRef(function Radio(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
-    name: 'MuiRadio',
+    name: 'JoyRadio',
   });
 
   const {
@@ -448,7 +448,7 @@ Radio.propTypes /* remove-proptypes */ = {
    * @default 'outlined'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['contained', 'light', 'outlined']),
+    PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
     PropTypes.string,
   ]),
 } as any;
