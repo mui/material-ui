@@ -6,6 +6,7 @@ import Sheet from '@mui/joy/Sheet';
 import Typography from '@mui/joy/Typography';
 import List from '@mui/joy/List';
 import ListItem from '@mui/joy/ListItem';
+import ListDivider from '@mui/joy/ListDivider';
 import ListItemButton from '@mui/joy/ListItemButton';
 import ListItemDecorator from '@mui/joy/ListItemDecorator';
 import ListItemContent from '@mui/joy/ListItemContent';
@@ -30,7 +31,7 @@ export default function EmailExample() {
           gridTemplateColumns: {
             xs: '0px 0px 1fr',
             sm: '64px minmax(200px, 1fr) minmax(500px, 1fr)',
-            md: 'minmax(160px, 260px) minmax(200px, 480px) minmax(700px, 1fr)',
+            md: 'minmax(160px, 260px) minmax(200px, 400px) minmax(700px, 1fr)',
           },
           gridTemplateRows: '64px 1fr',
           minHeight: '100vh',
@@ -181,10 +182,9 @@ export default function EmailExample() {
           sx={{
             borderRight: '1px solid',
             borderColor: 'divider',
-            px: 2,
           }}
         >
-          <Box sx={{ mt: 2, mb: 1 }}>
+          <Box sx={{ p: 2, mb: 1 }}>
             <Typography
               color="neutral.500"
               fontWeight={700}
@@ -193,6 +193,118 @@ export default function EmailExample() {
               Unread
             </Typography>
           </Box>
+          <Box sx={{ py: 10 }}>
+            <Typography color="neutral.500" level="body2" sx={{ textAlign: 'center' }}>
+              You've read all messages in your inbox.
+            </Typography>
+          </Box>
+          <Box sx={{ p: 2 }}>
+            <Typography
+              color="neutral.500"
+              fontWeight={700}
+              sx={{ fontSize: '10px', textTransform: 'uppercase', letterSpacing: '.1rem' }}
+            >
+              Everything else
+            </Typography>
+          </Box>
+          <List>
+            <ListItem variant="soft" color="primary">
+              <ListItemButton sx={{ p: 2 }}>
+                <ListItemDecorator sx={{ alignSelf: 'flex-start' }}>
+                  <Box
+                    component="img"
+                    src="/static/images/avatar/1.jpg"
+                    sx={{
+                      width: 40,
+                      height: 40,
+                      borderRadius: '8px',
+                    }}
+                  />
+                </ListItemDecorator>
+                <Box sx={{ pl: 2, width: '100%' }}>
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                      mb: 0.5,
+                    }}
+                  >
+                    <Typography level="body3">Janet Erickson</Typography>
+                    <Typography level="body3">14 Oct 2016</Typography>
+                  </Box>
+                  <Box>
+                    <Typography sx={{ mb: 0.5 }}>Blank slates for new website</Typography>
+                    <Typography level="body2">Hi, Thomas, You don't have...</Typography>
+                  </Box>
+                </Box>
+              </ListItemButton>
+            </ListItem>
+            <ListDivider sx={{ m: 0 }} />
+            <ListItem>
+              <ListItemButton sx={{ p: 2 }}>
+                <ListItemDecorator sx={{ alignSelf: 'flex-start' }}>
+                  <Box
+                    component="img"
+                    src="/static/images/avatar/1.jpg"
+                    sx={{
+                      width: 40,
+                      height: 40,
+                      borderRadius: '8px',
+                    }}
+                  />
+                </ListItemDecorator>
+                <Box sx={{ pl: 2, width: '100%' }}>
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                      mb: 0.5,
+                    }}
+                  >
+                    <Typography level="body3">Janet Erickson</Typography>
+                    <Typography level="body3">14 Oct 2016</Typography>
+                  </Box>
+                  <Box>
+                    <Typography sx={{ mb: 0.5 }}>Blank slates for new website</Typography>
+                    <Typography level="body2">Hi, Thomas, You don't have...</Typography>
+                  </Box>
+                </Box>
+              </ListItemButton>
+            </ListItem>
+            <ListDivider sx={{ m: 0 }} />
+            <ListItem>
+              <ListItemButton sx={{ p: 2 }}>
+                <ListItemDecorator sx={{ alignSelf: 'flex-start' }}>
+                  <Box
+                    component="img"
+                    src="/static/images/avatar/1.jpg"
+                    sx={{
+                      width: 40,
+                      height: 40,
+                      borderRadius: '8px',
+                    }}
+                  />
+                </ListItemDecorator>
+                <Box sx={{ pl: 2, width: '100%' }}>
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                      mb: 0.5,
+                    }}
+                  >
+                    <Typography level="body3">Janet Erickson</Typography>
+                    <Typography level="body3">14 Oct 2016</Typography>
+                  </Box>
+                  <Box>
+                    <Typography sx={{ mb: 0.5 }}>Blank slates for new website</Typography>
+                    <Typography level="body2">Hi, Thomas, You don't have...</Typography>
+                  </Box>
+                </Box>
+              </ListItemButton>
+            </ListItem>
+            <ListDivider sx={{ m: 0 }} />
+          </List>
         </Box>
         <Box component="main" className="Main" sx={{ p: 2, bgcolor: 'background.level1' }}>
           <Sheet variant="outlined" sx={{ minHeight: 500, borderRadius: 'sm' }} />
