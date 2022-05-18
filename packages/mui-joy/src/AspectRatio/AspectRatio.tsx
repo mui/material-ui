@@ -31,15 +31,21 @@ const AspectRatioRoot = styled('div', {
   const max = typeof ownerState.max === 'number' ? `${ownerState.max}px` : ownerState.max;
   return [
     {
+      // a context variable for any child component
+      '--AspectRatio-childRadius':
+        ownerState.variant === 'outlined'
+          ? `calc(var(--AspectRatio-radius) - var(--variant-outlinedBorderWidth))`
+          : 'var(--AspectRatio-radius)',
       position: 'relative',
       borderRadius: 'var(--AspectRatio-radius)',
       height: 0,
-      paddingBottom: `clamp(${min || '0px'}, calc(100% / (${ownerState.ratio})), ${
-        max || '9999px'
-      })`,
+      paddingBottom:
+        min || max
+          ? `clamp(${min || '0px'}, calc(100% / (${ownerState.ratio})), ${max || '9999px'})`
+          : `calc(100% / (${ownerState.ratio}))`,
       // use data-attribute instead of :first-child to support zero config SSR (emotion)
       '& > [data-first-child]': {
-        borderRadius: 'var(--AspectRatio-radius)',
+        borderRadius: 'var(--AspectRatio-childRadius)',
         boxSizing: 'border-box',
         position: 'absolute',
         width: '100%',

@@ -31,6 +31,14 @@ const CardRoot = styled('div', {
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: CardProps }>(({ theme, ownerState }) => [
   {
+    // a context variable for any child component
+    '--Card-childRadius':
+      ownerState.variant === 'outlined'
+        ? `calc(max(var(--Card-radius) - var(--Card-padding), min(var(--Card-padding) / 2, var(--Card-radius) / 2)) - var(--variant-outlinedBorderWidth))`
+        : 'max(var(--Card-radius) - var(--Card-padding), min(var(--Card-padding) / 2, var(--Card-radius) / 2))',
+    // AspectRatio integration
+    '--AspectRatio-radius': 'var(--Card-childRadius)',
+    // Link integration
     '--Link-overlayMargin':
       ownerState.variant === 'outlined'
         ? 'calc(-1 * var(--variant-outlinedBorderWidth))'
@@ -40,12 +48,11 @@ const CardRoot = styled('div', {
       'borderRadius',
       'var(--Card-radius)',
     ),
+    // CardOverflow integration
     '--CardOverflow-offset':
       ownerState.variant === 'outlined'
         ? `calc(-1 * var(--Card-padding) - var(--variant-outlinedBorderWidth))`
         : `calc(-1 * var(--Card-padding))`,
-    '--AspectRatio-radius':
-      'max(var(--Card-radius) - var(--Card-padding), min(var(--Card-padding) / 2, var(--Card-radius) / 2))',
     ...(ownerState.size === 'sm' && {
       '--Card-radius': theme.vars.radius.sm,
       '--Card-padding': '0.5rem',
