@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useRouter } from 'next/router';
 import { styled, alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Popper from '@mui/material/Popper';
@@ -18,7 +19,7 @@ const Navigation = styled('nav')(({ theme }) => ({
     display: 'flex',
   },
   '& li': {
-    color: theme.palette.text.secondary,
+    color: theme.palette.text.primary,
     ...theme.typography.body2,
     fontWeight: 700,
     '& > a, & > div': {
@@ -30,6 +31,8 @@ const Navigation = styled('nav')(({ theme }) => ({
       '&:hover, &:focus': {
         backgroundColor:
           theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : theme.palette.grey[50],
+        color:
+          theme.palette.mode === 'dark' ? theme.palette.primaryDark[200] : theme.palette.grey[700],
         // Reset on touch devices, it doesn't add specificity
         '@media (hover: none)': {
           backgroundColor: 'initial',
@@ -111,6 +114,8 @@ function getNextIndex(eventKey: KeyboardEvent['key'], currentIndex: number, leng
 }
 
 export default function HeaderNavBar() {
+  const router = useRouter();
+  const asPathWithoutLang = router.asPath.replace(/^\/[a-zA-Z]{2}\//, '/');
   const [subMenuOpen, setSubMenuOpen] = React.useState(false);
   const [subMenuIndex, setSubMenuIndex] = React.useState<number | null>(null);
   const navRef = React.useRef<HTMLUListElement | null>(null);
@@ -303,7 +308,12 @@ export default function HeaderNavBar() {
           </li>
         )}
         <li role="none">
-          <Link role="menuitem" href={ROUTES.documentation}>
+          <Link
+            role="menuitem"
+            href={
+              asPathWithoutLang.startsWith('/x') ? ROUTES.advancedComponents : ROUTES.documentation
+            }
+          >
             Docs
           </Link>
         </li>
@@ -315,6 +325,11 @@ export default function HeaderNavBar() {
         <li role="none">
           <Link role="menuitem" href={ROUTES.about}>
             About us
+          </Link>
+        </li>
+        <li role="none">
+          <Link role="menuitem" href={ROUTES.blog}>
+            Blog
           </Link>
         </li>
       </ul>

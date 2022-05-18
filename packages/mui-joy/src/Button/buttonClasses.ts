@@ -15,14 +15,14 @@ export interface ButtonClasses {
   colorSuccess: string;
   /** Styles applied to the root element if `color="warning"`. */
   colorWarning: string;
-  /** Styles applied to the root element if `variant="text"`. */
-  variantText: string;
+  /** Styles applied to the root element if `variant="plain"`. */
+  variantPlain: string;
   /** Styles applied to the root element if `variant="outlined"`. */
   variantOutlined: string;
-  /** Styles applied to the root element if `variant="light"`. */
-  variantLight: string;
-  /** Styles applied to the root element if `variant="contained"`. */
-  variantContained: string;
+  /** Styles applied to the root element if `variant="soft"`. */
+  variantSoft: string;
+  /** Styles applied to the root element if `variant="solid"`. */
+  variantSolid: string;
   /** State class applied to the ButtonBase root element if the button is keyboard focused. */
   focusVisible: string;
   /** State class applied to the root element if `disabled={true}`. */
@@ -35,6 +35,10 @@ export interface ButtonClasses {
   sizeLg: string;
   /** Styles applied to the root element if `fullWidth={true}`. */
   fullWidth: string;
+  /** Styles applied to the startIcon element if supplied. */
+  startIcon: string;
+  /** Styles applied to the endIcon element if supplied. */
+  endIcon: string;
 }
 
 export type ButtonClassKey = keyof ButtonClasses;
@@ -51,16 +55,18 @@ const buttonClasses: ButtonClasses = generateUtilityClasses('MuiButton', [
   'colorInfo',
   'colorSuccess',
   'colorWarning',
-  'variantText',
+  'variantPlain',
   'variantOutlined',
-  'variantLight',
-  'variantContained',
+  'variantSoft',
+  'variantSolid',
   'focusVisible',
   'disabled',
   'sizeSm',
   'sizeMd',
   'sizeLg',
   'fullWidth',
+  'startIcon',
+  'endIcon',
 ]);
 
 export default buttonClasses;

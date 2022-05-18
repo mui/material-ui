@@ -76,6 +76,7 @@ const ChipRoot = styled('div', {
     const deleteIconColor = alpha(theme.palette.text.primary, 0.26);
 
     return {
+      maxWidth: '100%',
       fontFamily: theme.typography.fontFamily,
       fontSize: theme.typography.pxToRem(13),
       display: 'inline-flex',
@@ -481,7 +482,9 @@ Chip.propTypes /* remove-proptypes */ = {
    */
   clickable: PropTypes.bool,
   /**
-   * The color of the component. It supports those theme colors that make sense for this component.
+   * The color of the component.
+   * It supports both default and custom theme colors, which can be added as shown in the
+   * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
    * @default 'default'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([

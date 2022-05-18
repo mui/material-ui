@@ -9,7 +9,7 @@
  * List of demos to ignore when transpiling
  * Example: "app-bar/BottomAppBar.tsx"
  */
-const ignoreList = [];
+const ignoreList = ['/pages.ts'];
 
 const fse = require('fs-extra');
 const path = require('path');

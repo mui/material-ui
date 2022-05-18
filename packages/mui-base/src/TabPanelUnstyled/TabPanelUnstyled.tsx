@@ -21,11 +21,11 @@ const useUtilityClasses = (ownerState: { hidden: boolean }) => {
  *
  * Demos:
  *
- * - [Tabs](https://mui.com/components/tabs/)
+ * - [Tabs](https://mui.com/base/react-tabs/)
  *
  * API:
  *
- * - [TabPanelUnstyled API](https://mui.com/api/tab-panel-unstyled/)
+ * - [TabPanelUnstyled API](https://mui.com/base/api/tab-panel-unstyled/)
  */
 const TabPanelUnstyled = React.forwardRef<unknown, TabPanelUnstyledProps>(function TabPanelUnstyled(
   props,
@@ -100,7 +100,9 @@ TabPanelUnstyled.propTypes /* remove-proptypes */ = {
    * The props used for each slot inside the TabPanel.
    * @default {}
    */
-  componentsProps: PropTypes.object,
+  componentsProps: PropTypes.shape({
+    root: PropTypes.object,
+  }),
   /**
    * The value of the TabPanel. It will be shown when the Tab with the corresponding value is selected.
    */

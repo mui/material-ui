@@ -20,7 +20,9 @@ export interface SvgIconTypeMap<P = {}, D extends React.ElementType = 'svg'> {
      */
     classes?: Partial<SvgIconClasses>;
     /**
-     * The color of the component. It supports those theme colors that make sense for this component.
+     * The color of the component.
+     * It supports both default and custom theme colors, which can be added as shown in the
+     * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
      * You can use the `htmlColor` prop to apply a color attribute to the SVG element.
      * @default 'inherit'
      */
@@ -48,6 +50,14 @@ export interface SvgIconTypeMap<P = {}, D extends React.ElementType = 'svg'> {
      * Applies a color attribute to the SVG element.
      */
     htmlColor?: string;
+    /**
+     * If `true`, the root node will inherit the custom `component`'s viewBox and the `viewBox`
+     * prop will be ignored.
+     * Useful when you want to reference a custom `component` and have `SvgIcon` pass that
+     * `component`'s viewBox to the root node.
+     * @default false
+     */
+    inheritViewBox?: boolean;
     /**
      * The shape-rendering attribute. The behavior of the different options is described on the
      * [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/shape-rendering).
@@ -79,12 +89,12 @@ export interface SvgIconTypeMap<P = {}, D extends React.ElementType = 'svg'> {
  *
  * Demos:
  *
- * - [Icons](https://mui.com/components/icons/)
- * - [Material Icons](https://mui.com/components/material-icons/)
+ * - [Icons](https://mui.com/material-ui/icons/)
+ * - [Material icons](https://mui.com/material-ui/material-icons/)
  *
  * API:
  *
- * - [SvgIcon API](https://mui.com/api/svg-icon/)
+ * - [SvgIcon API](https://mui.com/material-ui/api/svg-icon/)
  */
 declare const SvgIcon: OverridableComponent<SvgIconTypeMap> & { muiName: string };
 

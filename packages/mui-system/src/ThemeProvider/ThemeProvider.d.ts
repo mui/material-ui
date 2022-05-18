@@ -1,7 +1,13 @@
 import { DefaultTheme } from '@mui/private-theming';
 
 export interface ThemeProviderProps<Theme = DefaultTheme> {
+  /**
+   * Your component tree.
+   */
   children?: React.ReactNode;
+  /**
+   * A theme object. You can provide a function to extend the outer theme.
+   */
   theme: Partial<Theme> | ((outerTheme: Theme) => Theme);
 }
 
@@ -10,7 +16,7 @@ export interface ThemeProviderProps<Theme = DefaultTheme> {
  * It should preferably be used at **the root of your component tree**.
  * API:
  *
- * - [ThemeProvider API](https://mui.com/api/theme-provider/)
+ * - [ThemeProvider API](https://mui.com/material-ui/customization/theming/#themeprovider)
  */
 export default function ThemeProvider<T = DefaultTheme>(
   props: ThemeProviderProps<T>,

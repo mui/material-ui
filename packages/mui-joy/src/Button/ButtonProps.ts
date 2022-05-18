@@ -5,8 +5,9 @@ import {
   OverridableTypeMap,
   OverrideProps,
 } from '@mui/types';
-import { SxProps } from '../styles/defaultTheme';
-import { ColorPaletteProp, VariantProp } from '../styles/types';
+import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
+
+export type ButtonSlot = 'root' | 'startIcon' | 'endIcon';
 
 export interface ButtonPropsVariantOverrides {}
 
@@ -33,6 +34,10 @@ export interface ButtonTypeMap<P = {}, D extends React.ElementType = 'button'> {
      */
     disabled?: boolean;
     /**
+     * Element placed after the children.
+     */
+    endIcon?: React.ReactNode;
+    /**
      * This prop can help identify which element has keyboard focus.
      * The class name will be applied when the element gains the focus through keyboard interaction.
      * It's a polyfill for the [CSS :focus-visible selector](https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo).
@@ -51,6 +56,10 @@ export interface ButtonTypeMap<P = {}, D extends React.ElementType = 'button'> {
      */
     size?: OverridableStringUnion<'sm' | 'md' | 'lg', ButtonPropsSizeOverrides>;
     /**
+     * Element placed before the children.
+     */
+    startIcon?: React.ReactNode;
+    /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */
     sx?: SxProps;
@@ -60,7 +69,7 @@ export interface ButtonTypeMap<P = {}, D extends React.ElementType = 'button'> {
     tabIndex?: NonNullable<React.HTMLAttributes<any>['tabIndex']>;
     /**
      * The variant to use.
-     * @default 'contained'
+     * @default 'solid'
      */
     variant?: OverridableStringUnion<VariantProp, ButtonPropsVariantOverrides>;
   };

@@ -22,11 +22,11 @@ const useUtilityClasses = (ownerState: { selected: boolean; disabled: boolean })
  *
  * Demos:
  *
- * - [Tabs](https://mui.com/components/tabs/)
+ * - [Tabs](https://mui.com/base/react-tabs/)
  *
  * API:
  *
- * - [TabUnstyled API](https://mui.com/api/tab-unstyled/)
+ * - [TabUnstyled API](https://mui.com/base/api/tab-unstyled/)
  */
 const TabUnstyled = React.forwardRef<unknown, TabUnstyledProps>(function TabUnstyled(props, ref) {
   const {
@@ -129,7 +129,9 @@ TabUnstyled.propTypes /* remove-proptypes */ = {
    * The props used for each slot inside the Tab.
    * @default {}
    */
-  componentsProps: PropTypes.object,
+  componentsProps: PropTypes.shape({
+    root: PropTypes.object,
+  }),
   /**
    * If `true`, the component is disabled.
    * @default false

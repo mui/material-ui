@@ -1,0 +1,22 @@
+{
+  "props": {
+    "actions": { "type": { "name": "custom", "description": "ref" } },
+    "anchorEl": {
+      "type": {
+        "name": "union",
+        "description": "HTML element<br>&#124;&nbsp;object<br>&#124;&nbsp;func"
+      }
+    },
+    "keepMounted": { "type": { "name": "bool" } },
+    "onClose": { "type": { "name": "func" } },
+    "open": { "type": { "name": "bool" } }
+  },
+  "name": "MenuUnstyled",
+  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "spread": false,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/mui-base/src/MenuUnstyled/MenuUnstyled.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/base/react-menu/\">Menu</a></li></ul>",
+  "cssComponent": false
+}

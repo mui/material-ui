@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { createRenderer, describeConformance } from 'test/utils';
 import Box from '@mui/material/Box';
-import { unstable_ClassNameGenerator as ClassNameGenerator } from '@mui/material/utils';
+import { unstable_ClassNameGenerator as ClassNameGenerator } from '@mui/material/className';
 
 describe('<Box />', () => {
   const { render } = createRenderer();

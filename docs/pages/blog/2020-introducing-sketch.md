@@ -1,10 +1,10 @@
 ---
+title: Introducing MUI for Sketch
 description: Today, we're excited to announce the introduction of official Sketch symbols for MUI.
+date: 2020-03-30T00:00:00.000Z
+authors: ['oliviertassinari']
+tags: ['News']
 ---
-
-# Introducing MUI for Sketch
-
-Olivier Tassinari. March 30, 2020.
 
 Today, we're excited to introduce the Sketch symbols 💎 for MUI.
 

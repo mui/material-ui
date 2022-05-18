@@ -4,7 +4,7 @@ module.exports = {
   trailingComma: 'all',
   overrides: [
     {
-      files: ['docs/**/*.md', 'docs/src/pages/**/*.{js,tsx}'],
+      files: ['docs/**/*.md', 'docs/src/pages/**/*.{js,tsx}', 'docs/data/**/*.{js,tsx}'],
       options: {
         // otherwise code blocks overflow on the docs website
         printWidth: 85,

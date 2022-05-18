@@ -250,11 +250,8 @@ const GridRoot = styled('div', {
     ...(ownerState.zeroMinWidth && {
       minWidth: 0,
     }),
-    ...(ownerState.wrap === 'nowrap' && {
-      flexWrap: 'nowrap',
-    }),
-    ...(ownerState.wrap === 'reverse' && {
-      flexWrap: 'wrap-reverse',
+    ...(ownerState.wrap !== 'wrap' && {
+      flexWrap: ownerState.wrap,
     }),
   }),
   generateDirection,
@@ -315,9 +312,8 @@ const Grid = React.forwardRef(function Grid(inProps, ref) {
 
   const columnsContext = React.useContext(GridContext);
 
-  // setting prop before context to accomodate nesting
-  // colums set with default breakpoint unit of 12
-  const columns = columnsProp || columnsContext || 12;
+  // columns set with default breakpoint unit of 12
+  const columns = container ? columnsProp || 12 : columnsContext;
 
   const ownerState = {
     ...props,
@@ -338,21 +334,16 @@ const Grid = React.forwardRef(function Grid(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  const wrapChild = (element) =>
-    columns !== 12 ? (
-      <GridContext.Provider value={columns}>{element}</GridContext.Provider>
-    ) : (
-      element
-    );
-
-  return wrapChild(
-    <GridRoot
-      ownerState={ownerState}
-      className={clsx(classes.root, className)}
-      as={component}
-      ref={ref}
-      {...other}
-    />,
+  return (
+    <GridContext.Provider value={columns}>
+      <GridRoot
+        ownerState={ownerState}
+        className={clsx(classes.root, className)}
+        as={component}
+        ref={ref}
+        {...other}
+      />
+    </GridContext.Provider>
   );
 });
 

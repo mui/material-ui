@@ -389,5 +389,14 @@ describe('styleFunctionSx', () => {
         },
       ]);
     });
+
+    it('does not crash if the result is undefined', () => {
+      expect(() =>
+        styleFunctionSx({
+          theme,
+          sx: [(t) => t.typography.unknown],
+        }),
+      ).not.to.throw();
+    });
   });
 });

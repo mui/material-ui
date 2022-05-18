@@ -300,9 +300,14 @@ export default function CoreStyling() {
             >
               <Box sx={{ position: 'relative', '&& pre': { bgcolor: 'transparent' } }}>
                 <Box sx={{ position: 'relative', zIndex: 1 }}>
-                  <HighlightedCode component={MarkdownElement} code={code} language="jsx" />
+                  <HighlightedCode
+                    copyButtonHidden
+                    component={MarkdownElement}
+                    code={code}
+                    language="jsx"
+                  />
                 </Box>
-                <FlashCode startLine={startLine[index]} endLine={endLine[index]} sx={{ mx: -2 }} />
+                <FlashCode startLine={startLine[index]} endLine={endLine[index]} sx={{ mx: -1 }} />
               </Box>
             </Frame.Info>
           </Frame>

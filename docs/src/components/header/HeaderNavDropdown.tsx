@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useRouter } from 'next/router';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Collapse from '@mui/material/Collapse';
@@ -67,32 +68,21 @@ const PRODUCTS = [
 ];
 
 export default function HeaderNavDropdown() {
+  const router = useRouter();
+  const asPathWithoutLang = router.asPath.replace(/^\/[a-zA-Z]{2}\//, '/');
   const [open, setOpen] = React.useState(false);
   const [productsOpen, setProductsOpen] = React.useState(true);
   const hambugerRef = React.useRef<HTMLButtonElement | null>(null);
   return (
     <React.Fragment>
       <IconButton
+        color="primary"
         aria-label="Menu"
         ref={hambugerRef}
         disableRipple
         onClick={() => setOpen((value) => !value)}
         sx={{
           position: 'relative',
-          p: '6.5px',
-          borderRadius: 1,
-          border: '1px solid',
-          bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.900' : 'transparent'),
-          borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.200'),
-          '& svg': { width: 20, height: 20 },
-          '&:focus': {
-            boxShadow: (theme) =>
-              `0 0 0 1px ${
-                theme.palette.mode === 'dark'
-                  ? theme.palette.primaryDark[600]
-                  : theme.palette.grey[200]
-              }`,
-          },
           '& rect': {
             transformOrigin: 'center',
             transition: '0.2s',
@@ -123,13 +113,16 @@ export default function HeaderNavDropdown() {
             top: 56,
             left: 0,
             right: 0,
-            boxShadow: '0 15px 10px -5px rgb(90 105 120 / 10%)',
+            boxShadow: (theme) =>
+              `0px 4px 20px ${
+                theme.palette.mode === 'dark' ? 'rgba(0, 0, 0, 0.5)' : 'rgba(170, 180, 190, 0.3)'
+              }`,
             bgcolor: 'background.paper',
           }}
         >
           <Box
             sx={{
-              p: 2.5,
+              p: 2,
               bgcolor: 'background.paper',
               maxHeight: 'calc(100vh - 56px)',
               overflow: 'auto',
@@ -183,7 +176,15 @@ export default function HeaderNavDropdown() {
                 </li>
               )}
               <li>
-                <Anchor href={ROUTES.documentation} as={Link} noLinkStyle>
+                <Anchor
+                  href={
+                    asPathWithoutLang.startsWith('/x')
+                      ? ROUTES.advancedComponents
+                      : ROUTES.documentation
+                  }
+                  as={Link}
+                  noLinkStyle
+                >
                   Docs
                 </Anchor>
               </li>
@@ -195,6 +196,11 @@ export default function HeaderNavDropdown() {
               <li>
                 <Anchor href={ROUTES.about} as={Link} noLinkStyle>
                   About us
+                </Anchor>
+              </li>
+              <li>
+                <Anchor href={ROUTES.blog} as={Link} noLinkStyle>
+                  Blog
                 </Anchor>
               </li>
             </UList>

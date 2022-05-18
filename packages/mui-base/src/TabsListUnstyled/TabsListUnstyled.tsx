@@ -22,11 +22,11 @@ const useUtilityClasses = (ownerState: { orientation: 'horizontal' | 'vertical' 
  *
  * Demos:
  *
- * - [Tabs](https://mui.com/components/tabs/)
+ * - [Tabs](https://mui.com/base/react-tabs/)
  *
  * API:
  *
- * - [TabsListUnstyled API](https://mui.com/api/tabs-list-unstyled/)
+ * - [TabsListUnstyled API](https://mui.com/base/api/tabs-list-unstyled/)
  */
 const TabsListUnstyled = React.forwardRef<unknown, TabsListUnstyledProps>((props, ref) => {
   const { className, children, component, components = {}, componentsProps = {}, ...other } = props;
@@ -91,7 +91,9 @@ TabsListUnstyled.propTypes /* remove-proptypes */ = {
    * The props used for each slot inside the TabsList.
    * @default {}
    */
-  componentsProps: PropTypes.object,
+  componentsProps: PropTypes.shape({
+    root: PropTypes.object,
+  }),
 } as any;
 
 export default TabsListUnstyled;

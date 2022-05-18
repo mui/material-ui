@@ -77,10 +77,10 @@ export default function XRoadmap() {
   return (
     <ThemeProvider theme={brandingDarkTheme}>
       <Section bg="dim">
-        <Box sx={{ py: 4 }}>
+        <Box>
           <Grid container spacing={2} alignItems="center" justifyContent="space-between">
             <Grid item xs={12} md={5}>
-              <Box maxWidth={500}>
+              <Box maxWidth={500} sx={{ mb: { xs: 2, sm: 0 } }}>
                 <SectionHeadline
                   overline="Roadmap"
                   title="Follow the MUI X roadmap for future updates"
@@ -93,6 +93,7 @@ export default function XRoadmap() {
                   size="large"
                   variant="contained"
                   endIcon={<KeyboardArrowRightRounded />}
+                  sx={{ width: { xs: '100%', sm: 'auto' } }}
                 >
                   See the roadmap
                 </Button>
@@ -123,11 +124,11 @@ export default function XRoadmap() {
                   {renderList(
                     <React.Fragment>
                       <TableChartRounded fontSize="small" />
-                      <b>Data Grid</b>
+                      <b>Data grid</b>
                       <DateRangeRounded fontSize="small" />
-                      <b>Date Picker</b>
+                      <b>Date picker</b>
                       <AccountTreeRounded fontSize="small" />
-                      <b>Tree View</b>
+                      <b>Tree view</b>
                     </React.Fragment>,
                   )}
                 </Paper>
@@ -164,7 +165,7 @@ export default function XRoadmap() {
               <Grid item xs={12} sm={4} lg="auto">
                 <Paper variant="outlined" sx={{ minWidth: { lg: 180 } }}>
                   <Box sx={{ fontWeight: 'bold' }}>On the list</Box>
-                  <Box sx={{ color: 'text.secondary' }}>Starting some time soon…</Box>
+                  <Box sx={{ color: 'text.secondary' }}>Starting sometime soon…</Box>
                   {renderList(
                     <React.Fragment>
                       <ShowChartRounded fontSize="small" />

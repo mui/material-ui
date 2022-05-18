@@ -3,7 +3,7 @@ import {
   CreateMUIStyled as CreateMUIStyledStyledEngine,
   CSSInterpolation,
 } from '@mui/styled-engine';
-import { SxProps } from './styleFunctionSx';
+import styleFunctionSx, { SxProps } from './styleFunctionSx';
 import { Theme as DefaultTheme } from './createTheme';
 
 export function shouldForwardProp(propName: PropertyKey): boolean;
@@ -34,4 +34,5 @@ export default function createStyled<T extends object = DefaultTheme>(options?: 
   defaultTheme?: T;
   rootShouldForwardProp?: (prop: PropertyKey) => boolean;
   slotShouldForwardProp?: (prop: PropertyKey) => boolean;
+  styleFunctionSx?: typeof styleFunctionSx;
 }): CreateMUIStyled<T>;

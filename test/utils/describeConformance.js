@@ -166,7 +166,7 @@ export function testRootClass(element, getOptions) {
     // we established that the root component renders the outermost host previously. We immediately
     // jump to the host component because some components pass the `root` class
     // to the `classes` prop of the root component.
-    // https://github.com/mui-org/material-ui/blob/f9896bcd129a1209153106296b3d2487547ba205/packages/material-ui/src/OutlinedInput/OutlinedInput.js#L101
+    // https://github.com/mui/material-ui/blob/f9896bcd129a1209153106296b3d2487547ba205/packages/material-ui/src/OutlinedInput/OutlinedInput.js#L101
     expect(container.firstChild).to.have.class(className);
     expect(container.firstChild).to.have.class(classes.root);
     expect(document.querySelectorAll(`.${classes.root}`).length).to.equal(1);
@@ -208,7 +208,7 @@ export function testReactTestRenderer(element) {
  * @property {(node: React.ReactElement) => import('./createRenderer').MuiRenderResult} [render] - Should be a return value from createRenderer
  * @property {Array<keyof typeof fullSuite>} [only] - If specified only run the tests listed
  * @property {any} refInstanceof - `ref` will be an instanceof this constructor.
- * @property {Array<keyof typeof fullSuite>} [skip] - Skip the specified tests
+ * @property {Array<keyof typeof fullSuite | 'classesRoot'>} [skip] - Skip the specified tests
  * @property {string} [testComponentsRootPropWith] - The host component that should be rendered instead.
  * @property {{ slotName: string, slotClassName: string } | Array<{ slotName: string, slotClassName: string }>} [testDeepOverrides]
  * @property {{ prop?: string, value?: any, styleKey: string }} [testStateOverrides]

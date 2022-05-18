@@ -60,6 +60,16 @@ describe('<Fab />', () => {
     expect(button).not.to.have.class(classes.primary);
     expect(button).to.have.class(classes.secondary);
   });
+  ['info', 'error', 'warning', 'success'].forEach((color) => {
+    it(`should render a ${color} floating action button`, () => {
+      const { getByRole } = render(<Fab color={color}>Fab</Fab>);
+      const button = getByRole('button');
+
+      expect(button).to.have.class(classes.root);
+      expect(button).not.to.have.class(classes.primary);
+      expect(button).to.have.class(classes[color]);
+    });
+  });
 
   it('should render a small floating action button', () => {
     const { getByRole } = render(<Fab size="small">Fab</Fab>);

@@ -21,7 +21,7 @@ const useUtilityClasses = (ownerState) => {
   return composeClasses(slots, getSwitchBaseUtilityClass, classes);
 };
 
-const SwitchBaseRoot = styled(ButtonBase, { skipSx: true })(({ ownerState }) => ({
+const SwitchBaseRoot = styled(ButtonBase)(({ ownerState }) => ({
   padding: 9,
   borderRadius: '50%',
   ...(ownerState.edge === 'start' && {
@@ -32,7 +32,7 @@ const SwitchBaseRoot = styled(ButtonBase, { skipSx: true })(({ ownerState }) => 
   }),
 }));
 
-const SwitchBaseInput = styled('input', { skipSx: true })({
+const SwitchBaseInput = styled('input')({
   cursor: 'inherit',
   position: 'absolute',
   opacity: 0,

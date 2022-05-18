@@ -15,6 +15,7 @@ export type SelectChangeEvent<T = string> =
 export interface SelectInputProps<T = unknown> {
   autoFocus?: boolean;
   autoWidth: boolean;
+  defaultOpen?: boolean;
   disabled?: boolean;
   IconComponent?: React.ElementType;
   inputRef?: (

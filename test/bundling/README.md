@@ -32,7 +32,7 @@ PR #24289:
 
 ```bash
 curl --request POST \
-  --url https://circleci.com/api/v2/project/gh/mui-org/material-ui/pipeline \
+  --url https://circleci.com/api/v2/project/gh/mui/material-ui/pipeline \
   --header 'content-type: application/json' \
   --header 'Circle-Token: $CIRCLE_TOKEN' \
   --data-raw '{"branch":"pull/24289/head","parameters":{"workflow":"bundling"}}'

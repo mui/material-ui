@@ -41,6 +41,10 @@ const fabClasses: FabClasses = generateUtilityClasses('MuiFab', [
   'sizeSmall',
   'sizeMedium',
   'sizeLarge',
+  'info',
+  'error',
+  'warning',
+  'success',
 ]);
 
 export default fabClasses;

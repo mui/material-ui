@@ -30,7 +30,7 @@ export default function XPlans() {
     <Section>
       <Grid container spacing={2} alignItems="center">
         <Grid item md={6} sx={{ minWidth: 0 }}>
-          <Box maxWidth={500}>
+          <Box maxWidth={500} sx={{ mb: { xs: 2, sm: 0 } }}>
             <SectionHeadline
               overline="Plans"
               title={
@@ -38,7 +38,7 @@ export default function XPlans() {
                   Available with <GradientText>MIT and commercial licenses</GradientText>
                 </Typography>
               }
-              description="The advanced components are available under two licenses: MUI X, the MIT licensed, free to use version; and MUI X Pro, the commercially license version with the most advanced features."
+              description="MUI X components are available under two licenses: MIT for the free community version, and commercial for Pro and Premium plans."
             />
             <Button
               component={Link}
@@ -47,6 +47,7 @@ export default function XPlans() {
               size="large"
               variant="contained"
               endIcon={<KeyboardArrowRightRounded />}
+              sx={{ width: { xs: '100%', sm: 'auto' } }}
             >
               Compare plans
             </Button>

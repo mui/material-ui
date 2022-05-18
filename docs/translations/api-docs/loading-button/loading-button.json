@@ -130,7 +130,7 @@
     "containedSizeMedium": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
-      "conditions": "<code>size=\"small\"</code> and <code>variant=\"contained\"</code>"
+      "conditions": "<code>size=\"medium\"</code> and <code>variant=\"contained\"</code>"
     },
     "containedSizeLarge": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",

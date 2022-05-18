@@ -4,14 +4,13 @@
 
 > **Public components** are considered all components exported from `@mui/material` or `@mui/lab`.
 >
-> **Internal components** are considered all components that are not exported from the packages, but only used in some public component. There is no need to have `sx` prop on these components
+> **Internal components** are considered all components that are not exported from the packages, but only used in some public component.
 
 ### `Props Interface`
 
 - export interface `{ComponentName}classes` from `{component}Classes.ts` and add comment for generating api docs (for internal components, may or may not expose classes but don't need comment)
 - export interface `{ComponentName}Props`
 - always export props interface (use `interface` over `type`) from the component file
-- provide `sx` only for public component
 
 <details>
   <summary>Public component</summary>
@@ -64,6 +63,7 @@ export interface BarClasses {
 
 export interface BarProps {
   classes?: Partial<BarClasses>;
+  sx?: SxProps<Theme>;
 }
 ```
 
@@ -127,7 +127,6 @@ const classes = generateUtilityClasses('PrivateBar', ['root', 'bar']);
 ### `StyledComponent`
 
 - naming using slot `{ComponentName}{Slot}`
-- use `skipSx` for internal component without specifying `name`, `slot` and `overridesResolver`
 - to extend interface of the styled component, pass argument to generic
 
 <details>
@@ -148,7 +147,7 @@ const FooRoot = styled(Typography, {
   <summary>internal component</summary>
 
 ```ts
-const BarRoot = styled(Typography, { skipSx: true })({
+const BarRoot = styled(Typography)({
   // styling
 });
 ```
@@ -158,7 +157,7 @@ const BarRoot = styled(Typography, { skipSx: true })({
   <summary>extends interface</summary>
 
 ```ts
-const BarRoot = styled(Typography, { skipSx: true })<{
+const BarRoot = styled(Typography)<{
   component?: React.ElementType;
   ownerState: BarProps;
 }>(({ theme, ownerState }) => ({
@@ -215,7 +214,7 @@ const Foo = React.forwardRef<HTMLSpanElement, FooProps>(function Foo(inProps, re
 ```ts
 const classes = generateUtilityClasses('PrivateBar', ['selected']);
 
-const BarRoot = styled('div', { skipSx: true })(({ theme }) => ({
+const BarRoot = styled('div')(({ theme }) => ({
   [`&.${classes.selected}`]: {
     color: theme.palette.text.primary,
   },

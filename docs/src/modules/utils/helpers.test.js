@@ -1,13 +1,27 @@
 import { expect } from 'chai';
-import { getDependencies } from './helpers';
+import { getDependencies, pageToTitle } from './helpers';
 
 describe('docs getDependencies helpers', () => {
   before(() => {
-    process.env.SOURCE_CODE_REPO = 'https://github.com/mui-org/material-ui';
+    process.env.SOURCE_CODE_REPO = 'https://github.com/mui/material-ui';
   });
 
   after(() => {
     delete process.env.SOURCE_CODE_REPO;
+  });
+
+  it('should return correct title', () => {
+    expect(pageToTitle({ pathname: '/docs/src/pages/components/button/button.md' })).to.equal(
+      'Button',
+    );
+    expect(pageToTitle({ pathname: '/components' })).to.equal('Components');
+    expect(pageToTitle({ pathname: '/customization/how-to-customize' })).to.equal(
+      'How to customize',
+    );
+  });
+
+  it('should remove `react-` prefix', () => {
+    expect(pageToTitle({ pathname: '/docs/pages/material/react-buttons.js' })).to.equal('Buttons');
   });
 
   const s1 = `
@@ -30,7 +44,7 @@ const styles = theme => ({
 `;
 
   it('should handle @ dependencies', () => {
-    expect(getDependencies(s1)).to.deep.equal({
+    expect(getDependencies(s1, { codeLanguage: 'JS' })).to.deep.equal({
       react: 'latest',
       'react-dom': 'latest',
       '@emotion/react': 'latest',
@@ -57,7 +71,7 @@ import { withStyles } from '@mui/material/styles';
 const suggestions = [
 `;
 
-    expect(getDependencies(source)).to.deep.equal({
+    expect(getDependencies(source, { codeLanguage: 'JS' })).to.deep.equal({
       react: 'latest',
       'react-dom': 'latest',
       '@emotion/react': 'latest',
@@ -80,7 +94,7 @@ import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import { LocalizationProvider as MuiPickersLocalizationProvider, KeyboardTimePicker, KeyboardDatePicker } from '@mui/lab';
 `;
 
-    expect(getDependencies(source)).to.deep.equal({
+    expect(getDependencies(source, { codeLanguage: 'JS' })).to.deep.equal({
       react: 'latest',
       'react-dom': 'latest',
       'prop-types': 'latest',
@@ -89,6 +103,30 @@ import { LocalizationProvider as MuiPickersLocalizationProvider, KeyboardTimePic
       '@mui/material': 'latest',
       '@mui/lab': 'latest',
       'date-fns': 'latest',
+    });
+  });
+
+  it('should support import for side effect', () => {
+    const source = `
+import * as React from 'react';
+import PropTypes from 'prop-types';
+import '@mui/material/Grid';
+import '@mui/material/styles';
+import '@mui/lab/AdapterDateFns';
+import '@mui/lab';
+import 'exceljs';
+`;
+
+    expect(getDependencies(source, { codeLanguage: 'JS' })).to.deep.equal({
+      react: 'latest',
+      'react-dom': 'latest',
+      'prop-types': 'latest',
+      '@emotion/react': 'latest',
+      '@emotion/styled': 'latest',
+      '@mui/material': 'latest',
+      '@mui/lab': 'latest',
+      'date-fns': 'latest',
+      exceljs: 'latest',
     });
   });
 
@@ -121,7 +159,7 @@ import {
 } from '@mui/lab';
     `;
 
-    expect(getDependencies(source)).to.deep.equal({
+    expect(getDependencies(source, { codeLanguage: 'JS' })).to.deep.equal({
       react: 'latest',
       'react-dom': 'latest',
       '@emotion/react': 'latest',
@@ -137,7 +175,7 @@ import {
 import lab from '@mui/lab';
     `;
 
-    expect(getDependencies(source)).to.deep.equal({
+    expect(getDependencies(source, { codeLanguage: 'JS' })).to.deep.equal({
       react: 'latest',
       'react-dom': 'latest',
       '@emotion/react': 'latest',
@@ -159,20 +197,23 @@ import * as Utils from '@mui/utils';
     `;
 
     expect(
-      getDependencies(source, { muiCommitRef: '2d0e8b4daf20b7494c818b6f8c4cc8423bc99d6f' }),
+      getDependencies(source, {
+        codeLanguage: 'JS',
+        muiCommitRef: '2d0e8b4daf20b7494c818b6f8c4cc8423bc99d6f',
+      }),
     ).to.deep.equal({
       react: 'latest',
       'react-dom': 'latest',
       '@emotion/react': 'latest',
       '@emotion/styled': 'latest',
-      '@mui/material': 'https://pkg.csb.dev/mui-org/material-ui/commit/2d0e8b4d/@mui/material',
+      '@mui/material': 'https://pkg.csb.dev/mui/material-ui/commit/2d0e8b4d/@mui/material',
       '@mui/icons-material':
-        'https://pkg.csb.dev/mui-org/material-ui/commit/2d0e8b4d/@mui/icons-material',
-      '@mui/lab': 'https://pkg.csb.dev/mui-org/material-ui/commit/2d0e8b4d/@mui/lab',
-      '@mui/styles': 'https://pkg.csb.dev/mui-org/material-ui/commit/2d0e8b4d/@mui/styles',
-      '@mui/system': 'https://pkg.csb.dev/mui-org/material-ui/commit/2d0e8b4d/@mui/system',
-      '@mui/utils': 'https://pkg.csb.dev/mui-org/material-ui/commit/2d0e8b4d/@mui/utils',
-      '@mui/base': 'https://pkg.csb.dev/mui-org/material-ui/commit/2d0e8b4d/@mui/base',
+        'https://pkg.csb.dev/mui/material-ui/commit/2d0e8b4d/@mui/icons-material',
+      '@mui/lab': 'https://pkg.csb.dev/mui/material-ui/commit/2d0e8b4d/@mui/lab',
+      '@mui/styles': 'https://pkg.csb.dev/mui/material-ui/commit/2d0e8b4d/@mui/styles',
+      '@mui/system': 'https://pkg.csb.dev/mui/material-ui/commit/2d0e8b4d/@mui/system',
+      '@mui/utils': 'https://pkg.csb.dev/mui/material-ui/commit/2d0e8b4d/@mui/utils',
+      '@mui/base': 'https://pkg.csb.dev/mui/material-ui/commit/2d0e8b4d/@mui/base',
     });
   });
 
@@ -185,7 +226,7 @@ import AdapterLuxon from '@mui/lab/AdapterLuxon';
 import AdapterMoment from '@mui/lab/AdapterMoment';
     `;
 
-    expect(getDependencies(source)).to.deep.equal({
+    expect(getDependencies(source, { codeLanguage: 'JS' })).to.deep.equal({
       react: 'latest',
       'react-dom': 'latest',
       '@emotion/react': 'latest',

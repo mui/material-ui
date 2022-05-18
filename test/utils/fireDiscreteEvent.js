@@ -67,6 +67,17 @@ export function keyDown(element, options) {
  * @param {{}} [options]
  * @returns {void}
  */
+export function keyUp(element, options) {
+  return withMissingActWarningsIgnored(() => {
+    fireEvent.keyUp(element, options);
+  });
+}
+
+/**
+ * @param {Element} element
+ * @param {{}} [options]
+ * @returns {void}
+ */
 export function mouseDown(element, options) {
   return withMissingActWarningsIgnored(() => {
     fireEvent.mouseDown(element, options);

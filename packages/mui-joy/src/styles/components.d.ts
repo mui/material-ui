@@ -1,20 +1,152 @@
-import { CSSInterpolation } from '@mui/system';
 import { GlobalStateSlot } from '@mui/base';
-import { ButtonProps } from '../Button/ButtonProps';
-import { ButtonClassKey } from '../Button/buttonClasses';
+import { CSSInterpolation } from '@mui/system';
+import { AvatarProps, AvatarSlot } from '../Avatar/AvatarProps';
+import { AvatarGroupProps, AvatarGroupSlot } from '../AvatarGroup/AvatarGroupProps';
+import { BadgeProps, BadgeSlot } from '../Badge/BadgeProps';
+import { ButtonProps, ButtonSlot } from '../Button/ButtonProps';
+import { CheckboxProps, CheckboxSlot } from '../Checkbox/CheckboxProps';
+import { FormHelperTextProps, FormHelperTextSlot } from '../FormHelperText/FormHelperTextProps';
+import { FormLabelProps, FormLabelSlot } from '../FormLabel/FormLabelProps';
+import { IconButtonProps, IconButtonSlot } from '../IconButton/IconButtonProps';
+import { InputProps, InputSlot } from '../Input/InputProps';
+import { LinkProps, LinkSlot } from '../Link/LinkProps';
+import { ListProps, ListSlot } from '../List/ListProps';
+import { ListDividerProps, ListDividerSlot } from '../ListDivider/ListDividerProps';
+import { ListItemProps, ListItemSlot } from '../ListItem/ListItemProps';
+import { ListItemButtonProps, ListItemButtonSlot } from '../ListItemButton/ListItemButtonProps';
+import { ListItemContentProps, ListItemContentSlot } from '../ListItemContent/ListItemContentProps';
+import {
+  ListItemDecoratorProps,
+  ListItemDecoratorSlot,
+} from '../ListItemDecorator/ListItemDecoratorProps';
+import { SheetProps, SheetSlot } from '../Sheet/SheetProps';
+import { SvgIconProps, SvgIconSlot } from '../SvgIcon/SvgIconProps';
+import { SwitchProps, SwitchSlot } from '../Switch/SwitchProps';
+import { TextFieldProps, TextFieldSlot } from '../TextField/TextFieldProps';
+import { TypographyProps, TypographySlot } from '../Typography/TypographyProps';
+import { ChipProps, ChipSlot } from '../Chip/ChipProps';
+import { ChipDeleteProps, ChipDeleteSlot } from '../ChipDelete/ChipDeleteProps';
+import { RadioProps, RadioSlot } from '../Radio/RadioProps';
+import { RadioGroupProps, RadioGroupSlot } from '../RadioGroup/RadioGroupProps';
 
-export type OverridesStyleRules<ClassKey extends string = string> = Record<
-  ClassKey,
-  CSSInterpolation
+export type OverridesStyleRules<
+  ClassKey extends string = string,
+  ComponentProps = Record<string, unknown>,
+  Theme = unknown,
+> = Partial<
+  Record<
+    Exclude<ClassKey, GlobalStateSlot>,
+    | CSSInterpolation
+    | ((
+        // Record<string, unknown> is for other props that the slot receive internally
+        // Documenting all ownerStates could be a huge work, let's wait until we have a real needs from developers.
+        props: {
+          ownerState: ComponentProps & Record<string, unknown>;
+          theme: Theme;
+        } & Record<string, unknown>,
+      ) => CSSInterpolation)
+  >
 >;
 
-export interface Components {
+export interface Components<Theme = unknown> {
+  MuiAvatar?: {
+    defaultProps?: Partial<AvatarProps>;
+    styleOverrides?: OverridesStyleRules<AvatarSlot, AvatarProps, Theme>;
+  };
+  MuiAvatarGroup?: {
+    defaultProps?: Partial<AvatarGroupProps>;
+    styleOverrides?: OverridesStyleRules<AvatarGroupSlot, AvatarGroupProps, Theme>;
+  };
+  MuiBadge?: {
+    defaultProps?: Partial<BadgeProps>;
+    styleOverrides?: OverridesStyleRules<BadgeSlot, BadgeProps, Theme>;
+  };
   MuiButton?: {
     defaultProps?: Partial<ButtonProps>;
-    styleOverrides?: Partial<OverridesStyleRules<Exclude<ButtonClassKey, GlobalStateSlot>>>;
-    variants?: Array<{
-      props: Partial<ButtonProps>;
-      style: CSSInterpolation;
-    }>;
+    styleOverrides?: OverridesStyleRules<ButtonSlot, ButtonProps, Theme>;
+  };
+  MuiIconButton?: {
+    defaultProps?: Partial<IconButtonProps>;
+    styleOverrides?: OverridesStyleRules<IconButtonSlot, IconButtonProps, Theme>;
+  };
+  MuiSwitch?: {
+    defaultProps?: Partial<SwitchProps>;
+    styleOverrides?: OverridesStyleRules<SwitchSlot, SwitchProps, Theme>;
+  };
+  MuiTypography?: {
+    defaultProps?: Partial<TypographyProps>;
+    styleOverrides?: OverridesStyleRules<TypographySlot, TypographyProps, Theme>;
+  };
+  MuiSvgIcon?: {
+    defaultProps?: Partial<SvgIconProps>;
+    styleOverrides?: OverridesStyleRules<SvgIconSlot, SvgIconProps, Theme>;
+  };
+  MuiList?: {
+    defaultProps: Partial<ListProps>;
+    styleOverrides?: OverridesStyleRules<ListSlot, ListProps, Theme>;
+  };
+  MuiListDivider?: {
+    defaultProps: Partial<ListDividerProps>;
+    styleOverrides?: OverridesStyleRules<ListDividerSlot, ListDividerProps, Theme>;
+  };
+  MuiListItem?: {
+    defaultProps: Partial<ListItemProps>;
+    styleOverrides?: OverridesStyleRules<ListItemSlot, ListItemProps, Theme>;
+  };
+  MuiListItemContent?: {
+    defaultProps: Partial<ListItemContentProps>;
+    styleOverrides?: OverridesStyleRules<ListItemContentSlot, ListItemContentProps, Theme>;
+  };
+  MuiListItemDecorator?: {
+    defaultProps: Partial<ListItemDecoratorProps>;
+    styleOverrides?: OverridesStyleRules<ListItemDecoratorSlot, ListItemDecoratorProps, Theme>;
+  };
+  MuiListItemButton?: {
+    defaultProps: Partial<ListItemButtonProps>;
+    styleOverrides?: OverridesStyleRules<ListItemButtonSlot, ListItemButtonProps, Theme>;
+  };
+  MuiInput?: {
+    defaultProps?: Partial<InputProps>;
+    styleOverrides?: OverridesStyleRules<InputSlot, InputProps, Theme>;
+  };
+  MuiSheet?: {
+    defaultProps?: Partial<SheetProps>;
+    styleOverrides?: OverridesStyleRules<SheetSlot, SheetProps, Theme>;
+  };
+  MuiLink?: {
+    defaultProps?: Partial<LinkProps>;
+    styleOverrides?: OverridesStyleRules<LinkSlot, LinkProps, Theme>;
+  };
+  MuiCheckbox?: {
+    defaultProps?: Partial<CheckboxProps>;
+    styleOverrides?: OverridesStyleRules<CheckboxSlot, CheckboxProps, Theme>;
+  };
+  MuiChip?: {
+    defaultProps?: Partial<ChipProps>;
+    styleOverrides?: OverridesStyleRules<ChipSlot, ChipProps, Theme>;
+  };
+  MuiChipDelete?: {
+    defaultProps?: Partial<ChipDeleteProps>;
+    styleOverrides?: OverridesStyleRules<ChipDeleteSlot, ChipDeleteProps, Theme>;
+  };
+  MuiFormLabel?: {
+    defaultProps?: Partial<FormLabelProps>;
+    styleOverrides?: OverridesStyleRules<FormLabelSlot, FormLabelProps, Theme>;
+  };
+  MuiFormHelperText?: {
+    defaultProps?: Partial<FormHelperTextProps>;
+    styleOverrides?: OverridesStyleRules<FormHelperTextSlot, FormHelperTextProps, Theme>;
+  };
+  MuiTextField?: {
+    defaultProps?: Partial<TextFieldProps>;
+    styleOverrides?: OverridesStyleRules<TextFieldSlot, TextFieldProps, Theme>;
+  };
+  MuiRadio?: {
+    defaultProps?: Partial<RadioProps>;
+    styleOverrides?: OverridesStyleRules<RadioSlot, RadioProps, Theme>;
+  };
+  MuiRadioGroup?: {
+    defaultProps?: Partial<RadioGroupProps>;
+    styleOverrides?: OverridesStyleRules<RadioGroupSlot, RadioGroupProps, Theme>;
   };
 }

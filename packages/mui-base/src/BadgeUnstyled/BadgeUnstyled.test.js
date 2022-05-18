@@ -19,7 +19,7 @@ describe('<BadgeUnstyled />', () => {
       mount,
       refInstanceof: window.HTMLSpanElement,
       testComponentPropWith: 'div',
-      muiName: 'MuiBadge',
+      muiName: 'BaseBadge',
       slots: {
         root: {
           expectedClassName: classes.root,
@@ -28,6 +28,7 @@ describe('<BadgeUnstyled />', () => {
           expectedClassName: classes.badge,
         },
       },
+      skip: ['componentsPropsCallbacks'], // not implemented yet
     }),
   );
 

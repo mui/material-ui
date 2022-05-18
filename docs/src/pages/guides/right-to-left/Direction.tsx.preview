@@ -1,6 +1,0 @@
-<ThemeProvider theme={theme}>
-  <div dir="rtl">
-    <TextField placeholder="Name" variant="standard" />
-    <input type="text" placeholder="Name" />
-  </div>
-</ThemeProvider>

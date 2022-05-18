@@ -5,7 +5,7 @@ import styled from '../styles/styled';
 import capitalize from '../utils/capitalize';
 import { isHorizontal } from '../Drawer/Drawer';
 
-const SwipeAreaRoot = styled('div', { skipSx: true })(({ theme, ownerState }) => ({
+const SwipeAreaRoot = styled('div')(({ theme, ownerState }) => ({
   position: 'fixed',
   top: 0,
   left: 0,

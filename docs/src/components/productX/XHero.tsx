@@ -7,16 +7,17 @@ import Divider from '@mui/material/Divider';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
-import { DateRange } from '@mui/lab/DateRangePicker';
-import StaticDateRangePicker from '@mui/lab/StaticDateRangePicker';
-import AdapterDateFns from '@mui/lab/AdapterDateFns';
-import LocalizationProvider from '@mui/lab/LocalizationProvider';
+import { DateRange } from '@mui/x-date-pickers-pro/DateRangePicker';
+import { StaticDateRangePicker } from '@mui/x-date-pickers-pro/StaticDateRangePicker';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import GradientText from 'docs/src/components/typography/GradientText';
 import GetStartedButtons from 'docs/src/components/home/GetStartedButtons';
 import HeroContainer from 'docs/src/layouts/HeroContainer';
 import IconImage from 'docs/src/components/icon/IconImage';
 import FolderTreeView from 'docs/src/components/showcase/FolderTreeView';
 import ROUTES from 'docs/src/route';
+import { alpha } from '@mui/material/styles';
 
 const startDate = new Date();
 startDate.setDate(10);
@@ -67,36 +68,67 @@ export default function XHero() {
       }
       rightSx={{
         p: { md: 2, lg: 3, xl: 4 },
+        overflow: 'hidden', // the components on the Hero section are mostly illustrative, even though they're interactive. That's why scrolling is disabled.
       }}
       right={
         <React.Fragment>
-          <Paper sx={{ mb: { md: 2, lg: 3, xl: 4 } }}>
+          <Paper
+            sx={{
+              backgroundColor: (theme) =>
+                theme.palette.mode === 'dark' ? 'primaryDark.800' : '#fff',
+              border: (theme) =>
+                `1px solid ${
+                  theme.palette.mode === 'dark'
+                    ? theme.palette.primaryDark[600]
+                    : theme.palette.grey[200]
+                }`,
+              boxShadow: (theme) =>
+                `0px 4px 20px ${
+                  theme.palette.mode === 'dark' ? 'rgba(0, 0, 0, 0.3)' : 'rgba(170, 180, 190, 0.3)'
+                }`,
+              mb: { md: 2, lg: 3, xl: 4 },
+            }}
+          >
             <Box
               sx={{
                 textAlign: 'center',
-                py: 1,
+                py: 1.5,
                 position: 'relative',
-                borderBottom: '1px solid',
-                borderColor: (theme) =>
-                  theme.palette.mode === 'dark' ? 'primaryDark.600' : 'grey.100',
+                borderRadius: 0,
+                borderBottom: (theme) =>
+                  `1px solid ${
+                    theme.palette.mode === 'dark'
+                      ? theme.palette.primaryDark[600]
+                      : theme.palette.grey[200]
+                  }`,
               }}
             >
-              <Typography color="primary.main" fontWeight={700}>
-                Trades, October 2020
-              </Typography>
+              <Typography fontWeight={500}>Trades, October 2020</Typography>
             </Box>
             <Box
               sx={{
                 height: { md: 300, xl: 370 },
                 '& .MuiDataGrid-root': {
+                  borderRadius: 1,
+                  border: 0,
+                  color: 'text.secondary',
                   '& .MuiCheckbox-root': {
                     p: 0.5,
                     '& > svg': {
                       fontSize: '1.25rem',
                     },
                   },
+                  '& .MuiDataGrid-columnHeaders': {
+                    borderBottom: (theme) =>
+                      `1px solid ${
+                        theme.palette.mode === 'dark'
+                          ? theme.palette.primaryDark[600]
+                          : theme.palette.grey[200]
+                      }`,
+                  },
                   '& .MuiDataGrid-columnHeaderTitleContainer': {
                     padding: 0,
+                    color: 'text.primary',
                   },
                   '& .MuiDataGrid-columnHeaderTitle': {
                     flexGrow: 1,
@@ -104,6 +136,16 @@ export default function XHero() {
                   },
                   '& button, & button > svg': {
                     fontSize: 16,
+                  },
+                  '& .MuiDataGrid-cell': {
+                    fontSize: '0.875rem',
+                    color: 'text.secondary',
+                    borderBottom: (theme) =>
+                      `1px solid ${
+                        theme.palette.mode === 'dark'
+                          ? alpha(theme.palette.primaryDark[600], 0.5)
+                          : theme.palette.grey[200]
+                      }`,
                   },
                   '& .MuiDataGrid-viewport': {
                     '& .MuiDataGrid-cell': {
@@ -141,7 +183,27 @@ export default function XHero() {
               p: { md: 2, lg: 3, xl: 0 },
             }}
           >
-            <Paper sx={{ minWidth: 300, mr: { md: 2, lg: 3, xl: 4 }, flexGrow: 1 }}>
+            <Paper
+              sx={{
+                backgroundColor: (theme) =>
+                  theme.palette.mode === 'dark' ? 'primaryDark.800' : '#fff',
+                border: (theme) =>
+                  `1px solid ${
+                    theme.palette.mode === 'dark'
+                      ? theme.palette.primaryDark[600]
+                      : theme.palette.grey[200]
+                  }`,
+                boxShadow: (theme) =>
+                  `0px 4px 20px ${
+                    theme.palette.mode === 'dark'
+                      ? 'rgba(0, 0, 0, 0.3)'
+                      : 'rgba(170, 180, 190, 0.3)'
+                  }`,
+                minWidth: 300,
+                mr: { md: 2, lg: 3, xl: 4 },
+                flexGrow: 1,
+              }}
+            >
               <Box sx={{ p: 2 }}>
                 <Typography fontWeight={500}>Cool Project</Typography>
               </Box>
@@ -150,7 +212,24 @@ export default function XHero() {
             </Paper>
             <Paper
               sx={{
-                '& > div': { borderRadius: 1, overflow: 'auto', bgcolor: 'transparent' },
+                border: (theme) =>
+                  `1px solid ${
+                    theme.palette.mode === 'dark'
+                      ? theme.palette.primaryDark[600]
+                      : theme.palette.grey[200]
+                  }`,
+                boxShadow: (theme) =>
+                  `0px 4px 20px ${
+                    theme.palette.mode === 'dark'
+                      ? 'rgba(0, 0, 0, 0.3)'
+                      : 'rgba(170, 180, 190, 0.3)'
+                  }`,
+                '& > div': {
+                  borderRadius: 1,
+                  overflow: 'auto',
+                  backgroundColor: (theme) =>
+                    theme.palette.mode === 'dark' ? 'primaryDark.800' : 'initial',
+                },
                 '& .MuiTypography-subtitle1': {
                   fontSize: '0.875rem',
                 },

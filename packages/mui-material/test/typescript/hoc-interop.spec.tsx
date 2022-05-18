@@ -28,6 +28,7 @@ const filledProps = {
 {
   const StyledTextField = styled(TextField)``;
   <StyledTextField variant="filled" {...filledProps} />; // desired to pass
+  // @ts-expect-error
   <StyledTextField {...filledProps} />; // undesired, should throw
 }
 
@@ -39,7 +40,7 @@ const filledProps = {
   <StyledTextField {...filledProps} />; // desired to throw
 }
 
-// https://github.com/mui-org/material-ui/issues/14586
+// https://github.com/mui/material-ui/issues/14586
 {
   const styles = createStyles({
     root: {

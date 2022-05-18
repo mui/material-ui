@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useTheme } from '@mui/material/styles';
+import { useTheme, alpha } from '@mui/material/styles';
 import GlobalStyles from '@mui/material/GlobalStyles';
 
 export default function XGridGlobalStyles({
@@ -42,11 +42,11 @@ export default function XGridGlobalStyles({
             '& .MuiCheckbox-root': {
               color:
                 theme.palette.mode === 'dark'
-                  ? theme.palette.primary[300]
+                  ? theme.palette.primary[400]
                   : theme.palette.grey[600],
               padding: theme.spacing(0.5),
               '& > svg': {
-                fontSize: '1.25rem',
+                fontSize: '1.2rem',
               },
             },
             '& .MuiIconButton-root:not(.Mui-disabled)': {
@@ -60,11 +60,14 @@ export default function XGridGlobalStyles({
             '& .MuiDataGrid-menuIcon svg': {
               fontSize: '1rem',
             },
-            '& .MuiDataGrid-columnsContainer': {
-              borderColor:
+            '& .MuiDataGrid-columnHeaders': {
+              borderBottom: `1px solid ${
                 theme.palette.mode === 'dark'
                   ? theme.palette.primaryDark[500]
-                  : theme.palette.grey[200],
+                  : theme.palette.grey[200]
+              }`,
+            },
+            '& .MuiDataGrid-columnsContainer': {
               bgcolor: theme.palette.mode === 'dark' ? theme.palette.primaryDark[800] : '#fff',
             },
             '& .MuiDataGrid-columnHeaderTitleContainer': {
@@ -93,12 +96,13 @@ export default function XGridGlobalStyles({
                 theme.palette.mode === 'dark'
                   ? theme.palette.primaryDark[900]
                   : theme.palette.grey[50],
-              '& .MuiDataGrid-cell': {
-                borderColor:
-                  theme.palette.mode === 'dark'
-                    ? theme.palette.primaryDark[700]
-                    : theme.palette.grey[200],
-              },
+            },
+            '& .MuiDataGrid-cell': {
+              borderBottom: `1px solid ${
+                theme.palette.mode === 'dark'
+                  ? alpha(theme.palette.primaryDark[500], 0.5)
+                  : theme.palette.grey[200]
+              }`,
             },
             '& .MuiDataGrid-editInputCell': {
               fontSize: '0.75rem',
@@ -120,7 +124,14 @@ export default function XGridGlobalStyles({
               marginRight: theme.spacing(1),
               '& .MuiIconButton-root': {
                 '&:not([disabled])': {
-                  color: theme.palette.mode === 'dark' ? '#fff' : theme.palette.primary.main,
+                  color:
+                    theme.palette.mode === 'dark'
+                      ? theme.palette.primaryDark[100]
+                      : theme.palette.primary.main,
+                  borderColor:
+                    theme.palette.mode === 'dark'
+                      ? theme.palette.primaryDark[300]
+                      : theme.palette.grey[400],
                 },
                 borderRadius: theme.shape.borderRadius,
                 padding: theme.spacing(0.5),
@@ -129,13 +140,13 @@ export default function XGridGlobalStyles({
                   theme.palette.mode === 'dark' ? theme.palette.primaryDark[600] : 'transparent',
                 borderColor:
                   theme.palette.mode === 'dark'
-                    ? theme.palette.primaryDark[600]
+                    ? theme.palette.primaryDark[500]
                     : theme.palette.grey[200],
                 '&:last-of-type': {
                   marginLeft: theme.spacing(1),
                 },
                 '& > svg': {
-                  fontSize: '1.25rem',
+                  fontSize: '1rem',
                 },
               },
             },

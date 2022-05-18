@@ -47,11 +47,11 @@ export interface SwitchUnstyledProps extends UseSwitchProps {
  *
  * Demos:
  *
- * - [Switches](https://mui.com/components/switches/)
+ * - [Switch](https://mui.com/base/react-switch/)
  *
  * API:
  *
- * - [SwitchUnstyled API](https://mui.com/api/switch-unstyled/)
+ * - [SwitchUnstyled API](https://mui.com/base/api/switch-unstyled/)
  */
 const SwitchUnstyled = React.forwardRef(function SwitchUnstyled(
   props: SwitchUnstyledProps,
@@ -165,7 +165,12 @@ SwitchUnstyled.propTypes /* remove-proptypes */ = {
    * The props used for each slot inside the Switch.
    * @default {}
    */
-  componentsProps: PropTypes.object,
+  componentsProps: PropTypes.shape({
+    input: PropTypes.object,
+    root: PropTypes.object,
+    thumb: PropTypes.object,
+    track: PropTypes.object,
+  }),
   /**
    * The default checked state. Use when the component is not controlled.
    */

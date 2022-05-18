@@ -118,6 +118,15 @@ export default function EmailSubscribe({ sx }: { sx?: SxProps<Theme> }) {
             typography: 'body2',
             flexGrow: 1,
             minWidth: 200,
+            '&:focus': {
+              outline: (theme) =>
+                `2px solid ${
+                  theme.palette.mode === 'dark'
+                    ? theme.palette.primary[400]
+                    : theme.palette.primary[200]
+                }`,
+              outlineOffset: '2px',
+            },
           }}
         />
         <Button

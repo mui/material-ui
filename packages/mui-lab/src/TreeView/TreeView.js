@@ -681,6 +681,10 @@ const TreeView = React.forwardRef(function TreeView(inProps, ref) {
           if (isExpandable(focusedNodeId)) {
             toggleExpansion(event);
             flag = true;
+          } else if (multiSelect) {
+            flag = selectNode(event, focusedNodeId, true);
+          } else {
+            flag = selectNode(event, focusedNodeId);
           }
         }
         event.stopPropagation();

@@ -13,6 +13,8 @@ export interface FormControlLabelClasses {
   disabled: string;
   /** Styles applied to the label's Typography component. */
   label: string;
+  /** State class applied to the root element if `error={true}`. */
+  error: string;
 }
 
 export type FormControlLabelClassKey = keyof FormControlLabelClasses;
@@ -23,7 +25,15 @@ export function getFormControlLabelUtilityClasses(slot: string): string {
 
 const formControlLabelClasses: FormControlLabelClasses = generateUtilityClasses(
   'MuiFormControlLabel',
-  ['root', 'labelPlacementStart', 'labelPlacementTop', 'labelPlacementBottom', 'disabled', 'label'],
+  [
+    'root',
+    'labelPlacementStart',
+    'labelPlacementTop',
+    'labelPlacementBottom',
+    'disabled',
+    'label',
+    'error',
+  ],
 );
 
 export default formControlLabelClasses;
