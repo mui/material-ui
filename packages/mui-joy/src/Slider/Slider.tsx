@@ -5,6 +5,7 @@ import {
 } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
+import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import * as React from 'react';
 import { Theme, useThemeProps } from '../styles';
@@ -396,6 +397,7 @@ const Slider = React.forwardRef(function Slider(inProps, ref) {
           ...(shouldSpreadAdditionalProps(components.Root) && {
             as: component,
             ownerState: { variant, size, color },
+            className: clsx(classes.root, className),
           }),
         },
         thumb: {
