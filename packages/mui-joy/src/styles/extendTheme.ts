@@ -67,8 +67,8 @@ const createLightModeVariantVariables = (color: ColorPaletteProp) => ({
   outlinedDisabledBorder: `var(--joy-palette-${color}-100)`,
 
   softColor: `var(--joy-palette-${color}-700)`,
-  softBg: `var(--joy-palette-${color}-100)`,
-  softHoverBg: `var(--joy-palette-${color}-200)`,
+  softBg: `var(--joy-palette-${color}-50)`,
+  softHoverBg: `var(--joy-palette-${color}-100)`,
   softActiveBg: `var(--joy-palette-${color}-300)`,
   softDisabledColor: `var(--joy-palette-${color}-300)`,
   softDisabledBg: `var(--joy-palette-${color}-50)`,
