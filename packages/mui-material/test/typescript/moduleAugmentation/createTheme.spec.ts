@@ -2,7 +2,7 @@ import { createTheme, CSSProperties, styled } from '@mui/material/styles';
 
 declare module '@mui/material/styles' {
   interface Mixins {
-    customMixin: CSSProperties;
+    customMixin: Interpolation<{}>;
   }
 }
 
