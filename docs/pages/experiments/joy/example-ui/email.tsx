@@ -9,7 +9,9 @@ import ListItem from '@mui/joy/ListItem';
 import ListItemButton from '@mui/joy/ListItemButton';
 import ListItemDecorator from '@mui/joy/ListItemDecorator';
 import ListItemContent from '@mui/joy/ListItemContent';
-import InboxIcon from '@mui/icons-material/Inbox';
+import InboxRoundedIcon from '@mui/icons-material/InboxRounded';
+import OutboxRoundedIcon from '@mui/icons-material/OutboxRounded';
+import FolderOpenRoundedIcon from '@mui/icons-material/FolderOpenRounded';
 
 export default function EmailExample() {
   return (
@@ -55,7 +57,7 @@ export default function EmailExample() {
             p: 2,
           }}
         >
-          <Box sx={{ mb: 2 }}>
+          <Box sx={{ mb: 1 }}>
             <Typography
               color="neutral.500"
               fontWeight={700}
@@ -64,7 +66,6 @@ export default function EmailExample() {
               Browse
             </Typography>
           </Box>
-
           <List
             sx={{
               '--List-item-radius': '8px',
@@ -75,7 +76,7 @@ export default function EmailExample() {
             <ListItem>
               <ListItemButton variant="soft" color="primary">
                 <ListItemDecorator sx={{ color: 'inherit' }}>
-                  <InboxIcon fontSize="small" />
+                  <InboxRoundedIcon fontSize="small" />
                 </ListItemDecorator>
                 <ListItemContent>Inbox</ListItemContent>
               </ListItemButton>
@@ -83,7 +84,7 @@ export default function EmailExample() {
             <ListItem>
               <ListItemButton>
                 <ListItemDecorator sx={{ color: 'inherit' }}>
-                  <InboxIcon fontSize="small" />
+                  <OutboxRoundedIcon fontSize="small" />
                 </ListItemDecorator>
                 <ListItemContent>Inbox</ListItemContent>
               </ListItemButton>
@@ -91,7 +92,84 @@ export default function EmailExample() {
             <ListItem>
               <ListItemButton>
                 <ListItemDecorator sx={{ color: 'inherit' }}>
-                  <InboxIcon fontSize="small" />
+                  <FolderOpenRoundedIcon fontSize="small" />
+                </ListItemDecorator>
+                <ListItemContent>Inbox</ListItemContent>
+              </ListItemButton>
+            </ListItem>
+          </List>
+          <Box sx={{ mt: 2, mb: 1 }}>
+            <Typography
+              color="neutral.500"
+              fontWeight={700}
+              sx={{ fontSize: '10px', textTransform: 'uppercase', letterSpacing: '.1rem' }}
+            >
+              Browse
+            </Typography>
+          </Box>
+          <List
+            sx={{
+              '--List-item-radius': '8px',
+              '--List-decorator-width': '32px',
+              '& .MuiListItemButton-root': { p: '8px' },
+            }}
+          >
+            <ListItem>
+              <ListItemButton>
+                <ListItemDecorator>
+                  <Box
+                    sx={{
+                      width: '10px',
+                      height: '10px',
+                      borderRadius: '99px',
+                      bgcolor: 'primary.300',
+                    }}
+                  />
+                </ListItemDecorator>
+                <ListItemContent>Inbox</ListItemContent>
+              </ListItemButton>
+            </ListItem>
+            <ListItem>
+              <ListItemButton>
+                <ListItemDecorator>
+                  <Box
+                    sx={{
+                      width: '10px',
+                      height: '10px',
+                      borderRadius: '99px',
+                      bgcolor: 'danger.300',
+                    }}
+                  />
+                </ListItemDecorator>
+                <ListItemContent>Inbox</ListItemContent>
+              </ListItemButton>
+            </ListItem>
+            <ListItem>
+              <ListItemButton>
+                <ListItemDecorator>
+                  <Box
+                    sx={{
+                      width: '10px',
+                      height: '10px',
+                      borderRadius: '99px',
+                      bgcolor: 'warning.200',
+                    }}
+                  />
+                </ListItemDecorator>
+                <ListItemContent>Inbox</ListItemContent>
+              </ListItemButton>
+            </ListItem>
+            <ListItem>
+              <ListItemButton>
+                <ListItemDecorator>
+                  <Box
+                    sx={{
+                      width: '10px',
+                      height: '10px',
+                      borderRadius: '99px',
+                      bgcolor: 'success.300',
+                    }}
+                  />
                 </ListItemDecorator>
                 <ListItemContent>Inbox</ListItemContent>
               </ListItemButton>
