@@ -34,7 +34,7 @@ export default function EmailExample() {
           gridTemplateColumns: {
             xs: '0px 0px 1fr',
             sm: '64px minmax(200px, 1fr) minmax(500px, 1fr)',
-            md: 'minmax(160px, 260px) minmax(200px, 400px) minmax(700px, 1fr)',
+            md: 'minmax(160px, 220px) minmax(200px, 400px) minmax(700px, 1fr)',
           },
           gridTemplateRows: '64px 1fr',
           minHeight: '100vh',
@@ -66,23 +66,21 @@ export default function EmailExample() {
             placeholder="Search anything..."
             startDecorator={<SearchRoundedIcon />}
             endDecorator={
-              <IconButton
-                variant="outlined"
-                size="sm"
-                color="neutral"
-                sx={{ width: '24px', height: '24px' }}
-              >
-                <Typography fontWeight={700}>/</Typography>
+              <IconButton variant="outlined" size="sm" color="neutral">
+                <Typography fontWeight={700} fontSize="sm">
+                  /
+                </Typography>
               </IconButton>
             }
             sx={{
+              '--Input-gutter': '-0.5rem',
               minWidth: {
                 xs: '100%',
                 sm: '500px',
               },
             }}
           />
-          <Box sx={{ display: 'flex', flexDirection: 'row', gap: 2 }}>
+          <Box sx={{ display: 'flex', flexDirection: 'row', gap: 1.5 }}>
             <IconButton size="sm" variant="outlined" color="neutral">
               <OutboxRoundedIcon color="primary" />
             </IconButton>
@@ -112,6 +110,7 @@ export default function EmailExample() {
             </Typography>
           </Box>
           <List
+            size="sm"
             sx={{
               '--List-item-radius': '8px',
               '--List-decorator-width': '32px',
@@ -153,6 +152,7 @@ export default function EmailExample() {
             </Typography>
           </Box>
           <List
+            size="sm"
             sx={{
               '--List-item-radius': '8px',
               '--List-decorator-width': '32px',
