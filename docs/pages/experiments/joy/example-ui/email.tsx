@@ -5,6 +5,7 @@ import Box from '@mui/joy/Box';
 import Sheet from '@mui/joy/Sheet';
 import Typography from '@mui/joy/Typography';
 import TextField from '@mui/joy/TextField';
+import Button from '@mui/joy/Button';
 import IconButton from '@mui/joy/IconButton';
 import List from '@mui/joy/List';
 import ListItem from '@mui/joy/ListItem';
@@ -371,25 +372,40 @@ export default function EmailExample() {
         </Box>
         <Box component="main" className="Main" sx={{ p: 2, bgcolor: 'background.level1' }}>
           <Sheet variant="outlined" sx={{ minHeight: 500, borderRadius: 'sm', p: 2 }}>
-            <Box sx={{ display: 'flex', alignSelf: 'flex-start' }}>
-              <Box
-                component="img"
-                src="/static/images/avatar/1.jpg"
-                sx={{
-                  width: 40,
-                  height: 40,
-                  borderRadius: '8px',
-                }}
-              />
-              <Box
-                sx={{
-                  ml: 2,
-                }}
-              >
-                <Typography level="body2" color="neutral.800">
-                  Janet Erickson
-                </Typography>
-                <Typography level="body3">14 Oct 2016</Typography>
+            <Box sx={{ display: 'flex', alignSelf: 'flex-start', justifyContent: 'space-between' }}>
+              <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                <Box
+                  component="img"
+                  src="/static/images/avatar/1.jpg"
+                  sx={{
+                    width: 40,
+                    height: 40,
+                    borderRadius: '8px',
+                  }}
+                />
+                <Box
+                  sx={{
+                    ml: 2,
+                  }}
+                >
+                  <Typography level="body2" color="neutral.800">
+                    Janet Erickson
+                  </Typography>
+                  <Typography level="body3">14 Oct 2016</Typography>
+                </Box>
+              </Box>
+              <Box sx={{ display: 'flex', flexDirection: 'row', gap: 1.5 }}>
+                <Button variant="outlined" color="neutral">
+                  <Typography level="body1" color="primary.600">
+                    Reply
+                  </Typography>
+                </Button>
+                <IconButton size="sm" variant="outlined" color="neutral">
+                  <GridViewRoundedIcon color="primary" />
+                </IconButton>
+                <IconButton size="sm" variant="outlined" color="neutral">
+                  <DarkModeRoundedIcon color="primary" />
+                </IconButton>
               </Box>
             </Box>
           </Sheet>
