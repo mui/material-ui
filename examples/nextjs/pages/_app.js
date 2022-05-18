@@ -12,7 +12,7 @@ import { darkTheme, lightTheme } from '../src/theme';
 const clientSideEmotionCache = createEmotionCache();
 
 export default function MyApp(props) {
-  const { value: isDark } = useDarkMode(true);
+  const { value: isDark } = useDarkMode(false);
   const { Component, emotionCache = clientSideEmotionCache, pageProps } = props;
 
   const theme = isDark ? darkTheme : lightTheme;
