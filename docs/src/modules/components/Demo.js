@@ -339,7 +339,7 @@ export default function Demo(props) {
               variant="outlined"
               error
               component="pre"
-              sx={{ whiteSpace: 'pre-wrap' }}
+              sx={{ whiteSpace: 'pre-wrap', mb: 1 }}
             >
               {debouncedError}
             </FormHelperText>
