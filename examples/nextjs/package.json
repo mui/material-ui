@@ -20,7 +20,7 @@
     "prop-types": "latest",
     "react": "latest",
     "react-dom": "latest",
-    "use-dark-mode": "^2.3.1"
+    "use-dark-mode": "latest"
   },
   "devDependencies": {
     "eslint": "latest",
