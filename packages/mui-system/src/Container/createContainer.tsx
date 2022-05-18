@@ -2,12 +2,12 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { Interpolation, StyledComponent } from '@mui/styled-engine';
-import { unstable_capitalize as capitalize } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
 import {
+  unstable_capitalize as capitalize,
   unstable_composeClasses as composeClasses,
-  generateUtilityClass,
-} from '@mui/private-classnames';
+  unstable_generateUtilityClass as generateUtilityClass,
+} from '@mui/utils';
 import { ContainerProps, ContainerTypeMap } from './ContainerProps';
 import useThemePropsSystem from '../useThemeProps';
 import systemStyled from '../styled';

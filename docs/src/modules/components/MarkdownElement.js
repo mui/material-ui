@@ -246,11 +246,10 @@ const Root = styled('div')(({ theme }) => ({
           ? // Support Material Design theme
             alpha(theme.palette.error[900] ?? theme.palette.error.dark, 0.35)
           : theme.palette.error[50] ?? theme.palette.error.light,
-      borderLeft: '6px solid',
       borderColor:
         theme.palette.mode === 'dark' // Support Material Design theme
-          ? theme.palette.error[700] ?? theme.palette.error.dark
-          : theme.palette.error[400] ?? theme.palette.error.light,
+          ? theme.palette.error[800] ?? theme.palette.error.dark
+          : theme.palette.error[200] ?? theme.palette.error.light,
       '& strong': {
         color:
           theme.palette.mode === 'dark'
@@ -266,13 +265,12 @@ const Root = styled('div')(({ theme }) => ({
       backgroundColor:
         theme.palette.mode === 'dark'
           ? // Support Material Design theme
-            alpha(theme.palette.primary[900] ?? theme.palette.primary.dark, 0.3)
+            alpha(theme.palette.primary[900] ?? theme.palette.primary.dark, 0.2)
           : alpha(theme.palette.primary[50] ?? theme.palette.primary.dark, 0.8),
-      borderLeft: '6px solid',
       borderColor:
         theme.palette.mode === 'dark' // Support Material Design theme
-          ? theme.palette.primary[700] ?? theme.palette.primary.dark
-          : theme.palette.primary[300] ?? theme.palette.primary.light,
+          ? theme.palette.primary[800] ?? theme.palette.primary.dark
+          : theme.palette.primary[100] ?? theme.palette.primary.light,
       '& strong': {
         color:
           theme.palette.mode === 'dark'
@@ -290,11 +288,10 @@ const Root = styled('div')(({ theme }) => ({
           ? // Support Material Design theme
             alpha(theme.palette.success[900] ?? theme.palette.success.dark, 0.35)
           : theme.palette.success[50] ?? theme.palette.success.light,
-      borderLeft: '6px solid',
       borderColor:
         theme.palette.mode === 'dark' // Support Material Design theme
-          ? theme.palette.success[600] ?? theme.palette.success.dark
-          : theme.palette.success[600] ?? theme.palette.success.light,
+          ? theme.palette.success[800] ?? theme.palette.success.dark
+          : theme.palette.success[200] ?? theme.palette.success.light,
       '& strong': {
         color:
           theme.palette.mode === 'dark'
@@ -312,11 +309,10 @@ const Root = styled('div')(({ theme }) => ({
           ? // Support Material Design theme
             alpha(theme.palette.warning[900] ?? theme.palette.warning.dark, 0.35)
           : alpha(theme.palette.warning[50] ?? theme.palette.warning.light, 0.6),
-      borderLeft: '6px solid',
       borderColor:
         theme.palette.mode === 'dark' // Support Material Design theme
-          ? theme.palette.warning[600] ?? theme.palette.warning.dark
-          : theme.palette.warning[400] ?? theme.palette.warning.light,
+          ? theme.palette.warning[800] ?? theme.palette.warning.dark
+          : theme.palette.warning[300] ?? theme.palette.warning.light,
       '& strong': {
         color:
           theme.palette.mode === 'dark'

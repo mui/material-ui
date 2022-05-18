@@ -1,1 +1,1 @@
-export { unstable_composeClasses as default } from '@mui/private-classnames';
+export { unstable_composeClasses as default } from '@mui/utils';

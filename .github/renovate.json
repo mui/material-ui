@@ -8,6 +8,10 @@
   "rebaseWhen": "conflicted",
   "ignoreDeps": [],
   "labels": ["dependencies"],
+  "lockFileMaintenance": {
+    "enabled": true,
+    "schedule": "before 6:00am on the first day of the month"
+  },
   "packageRules": [
     {
       "matchDepTypes": ["peerDependencies"],

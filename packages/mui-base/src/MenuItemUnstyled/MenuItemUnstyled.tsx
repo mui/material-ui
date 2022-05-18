@@ -34,7 +34,7 @@ const MenuItemUnstyled = React.forwardRef(function MenuItemUnstyled(
   const {
     children,
     className,
-    disabled = false,
+    disabled: disabledProp = false,
     component,
     components = {},
     componentsProps = {},
@@ -44,17 +44,13 @@ const MenuItemUnstyled = React.forwardRef(function MenuItemUnstyled(
 
   const Root = component ?? components.Root ?? 'li';
 
-  const { getRootProps, itemState, focusVisible } = useMenuItem({
-    disabled,
+  const { getRootProps, disabled, focusVisible } = useMenuItem({
+    disabled: disabledProp,
     ref,
     label,
   });
 
-  if (itemState == null) {
-    return null;
-  }
-
-  const ownerState: MenuItemOwnerState = { ...props, ...itemState, focusVisible };
+  const ownerState: MenuItemOwnerState = { ...props, disabled, focusVisible };
 
   const classes = getUtilityClasses(ownerState);
 
