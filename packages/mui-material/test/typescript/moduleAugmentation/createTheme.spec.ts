@@ -1,4 +1,5 @@
-import { createTheme, CSSProperties, styled } from '@mui/material/styles';
+import { Interpolation } from '@mui/system';
+import { createTheme, styled } from '@mui/material/styles';
 
 declare module '@mui/material/styles' {
   interface Mixins {
