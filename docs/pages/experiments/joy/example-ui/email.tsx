@@ -104,7 +104,7 @@ export default function EmailExample() {
               fontWeight={700}
               sx={{ fontSize: '10px', textTransform: 'uppercase', letterSpacing: '.1rem' }}
             >
-              Browse
+              Tags
             </Typography>
           </Box>
           <List
@@ -126,7 +126,7 @@ export default function EmailExample() {
                     }}
                   />
                 </ListItemDecorator>
-                <ListItemContent>Inbox</ListItemContent>
+                <ListItemContent>Personal</ListItemContent>
               </ListItemButton>
             </ListItem>
             <ListItem>
@@ -141,7 +141,7 @@ export default function EmailExample() {
                     }}
                   />
                 </ListItemDecorator>
-                <ListItemContent>Inbox</ListItemContent>
+                <ListItemContent>Work</ListItemContent>
               </ListItemButton>
             </ListItem>
             <ListItem>
@@ -156,7 +156,7 @@ export default function EmailExample() {
                     }}
                   />
                 </ListItemDecorator>
-                <ListItemContent>Inbox</ListItemContent>
+                <ListItemContent>Travels</ListItemContent>
               </ListItemButton>
             </ListItem>
             <ListItem>
@@ -171,7 +171,7 @@ export default function EmailExample() {
                     }}
                   />
                 </ListItemDecorator>
-                <ListItemContent>Inbox</ListItemContent>
+                <ListItemContent>Concert tickets</ListItemContent>
               </ListItemButton>
             </ListItem>
           </List>
@@ -181,10 +181,18 @@ export default function EmailExample() {
           sx={{
             borderRight: '1px solid',
             borderColor: 'divider',
-            p: 2,
+            px: 2,
           }}
         >
-          Inbox
+          <Box sx={{ mt: 2, mb: 1 }}>
+            <Typography
+              color="neutral.500"
+              fontWeight={700}
+              sx={{ fontSize: '10px', textTransform: 'uppercase', letterSpacing: '.1rem' }}
+            >
+              Unread
+            </Typography>
+          </Box>
         </Box>
         <Box component="main" className="Main" sx={{ p: 2, bgcolor: 'background.level1' }}>
           <Sheet variant="outlined" sx={{ minHeight: 500, borderRadius: 'sm' }} />
