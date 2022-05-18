@@ -248,6 +248,7 @@ export default function Demo(props) {
 
   const [showAd, setShowAd] = React.useState(false);
 
+  const isJoy = asPathWithoutLang.startsWith('/joy-ui');
   const DemoRoot = asPathWithoutLang.startsWith('/joy-ui') ? DemoRootJoy : DemoRootMaterial;
   const Wrapper = asPathWithoutLang.startsWith('/joy-ui') ? BrandingProvider : React.Fragment;
 
@@ -261,7 +262,7 @@ export default function Demo(props) {
         onMouseEnter={handleDemoHover}
         onMouseLeave={handleDemoHover}
       >
-        <Wrapper mode={mode}>
+        <Wrapper {...(isJoy && { mode })}>
           <InitialFocus
             aria-label={t('initialFocusLabel')}
             action={initialFocusRef}
@@ -279,7 +280,7 @@ export default function Demo(props) {
       </DemoRoot>
       <AnchorLink id={`${demoName}.js`} />
       <AnchorLink id={`${demoName}.tsx`} />
-      <Wrapper mode={mode}>
+      <Wrapper {...(isJoy && { mode })}>
         {demoOptions.hideToolbar ? null : (
           <NoSsr defer fallback={<DemoToolbarFallback />}>
             <React.Suspense fallback={<DemoToolbarFallback />}>

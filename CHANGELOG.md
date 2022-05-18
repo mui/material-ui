@@ -1,5 +1,77 @@
 # [Versions](https://mui.com/versions/)
 
+## 5.8.0
+
+<!-- generated comparing v5.7.0..master -->
+
+_May 17, 2022_
+
+A big thanks to the 14 contributors who made this release possible. Here are some highlights ✨:
+
+- 🚀 [Blog post](https://mui.com/blog/premium-plan-release/) for announcing the release of the Premium plan of MUI X is out thanks to @joserodolfofreitas.
+- Codemod for `jss` to `tss-react` migration is out thanks to @ryancogswell
+- And more 🐛 bug fixes and 📚 documentation improvements.
+
+### `@mui/material@5.8.0`
+
+- &#8203;<!-- 37 -->[Autocomplete] Fix `getInputProps` TypeScript return type (#32730) @ZeeshanTamboli
+- &#8203;<!-- 36 -->[Autocomplete] Forward props to renderTags() (#32637) @emlai
+- &#8203;<!-- 35 -->[Badge] Fix TypeScript error when adding style overrides for Badge (#32745) @ZeeshanTamboli
+- &#8203;<!-- 09 -->[Menu] Fix context menu open position (#32661) @oliviertassinari
+
+### `@mui/system@5.8.0`
+
+- &#8203;<!-- 05 -->[system] Add `Container` component and `createContainer` factory (#32263) @mnajdova
+
+### `@mui/base@5.0.0-alpha.81`
+
+- &#8203;<!-- 15 -->[InputUnstyled] Support callbacks in componentsProps (#32271) @michaldudak
+- &#8203;<!-- 14 -->[InputUnstyled] Define ownerState and slot props' types (#32491) @michaldudak
+- &#8203;<!-- 08 -->[MenuUnstyled] Demos improvements (#32714) @michaldudak
+- &#8203;<!-- 07 -->[OptionUnstyled] Define ownerState and slot props' types (#32717) @michaldudak
+
+### `@mui/joy@5.0.0-alpha.28`
+
+- &#8203;<!-- 13 -->[Joy] Add Badge doc (#32790) @siriwatknp
+- &#8203;<!-- 12 -->[Joy] Add global variant feature page (#32695) @siriwatknp
+- &#8203;<!-- 11 -->[Joy] Add avatar page (#32711) @siriwatknp
+
+### `@mui/codemod@5.8.0`
+
+- &#8203;<!-- 33 -->[codemod] Add jss to tss-react codemod (#31802) @ryancogswell
+
+### Docs
+
+- &#8203;<!-- 34 -->[blog] Add release post for MUI X Premium (#32720) @joserodolfofreitas
+- &#8203;<!-- 29 -->[docs] Fix wrong code snippet for overriding styles in theme with a callback value (#32781) @ZeeshanTamboli
+- &#8203;<!-- 28 -->[docs] Update Crowdin logo (#32782) @andrii-bodnar
+- &#8203;<!-- 27 -->[docs] Improve callouts design (#32709) @danilo-leal
+- &#8203;<!-- 26 -->[docs] Revise the "Understanding MUI packages" article (#32382) @danilo-leal
+- &#8203;<!-- 25 -->[docs] Fix link to the material icons (#32771) @oliviertassinari
+- &#8203;<!-- 24 -->[docs] Add notification for Premium release blog post (#32728) @joserodolfofreitas
+- &#8203;<!-- 23 -->[docs] Base Portal style revisions and final review (#32157) @samuelsycamore
+- &#8203;<!-- 22 -->[docs] Add joy to docs package.json (#32744) @siriwatknp
+- &#8203;<!-- 21 -->[docs] Fix TOC-related styles not being applied when disableAd=true (#32733) @cherniavskii
+- &#8203;<!-- 20 -->[docs] Add TypeScript guide on the polymorphic components (#32168) @mnajdova
+- &#8203;<!-- 19 -->[docs] Fix warning mode pass to React.Fragment (#32729) @siriwatknp
+- &#8203;<!-- 18 -->[docs] Revise Showcase copy for clarity + audit appList (#31946) @samuelsycamore
+- &#8203;<!-- 17 -->[examples] Update remix example's tsconfig with required values (#32723) @michaldudak
+- &#8203;<!-- 16 -->[examples] Update to use React 18's createRoot (#32506) @mnajdova
+- &#8203;<!-- 10 -->[l10n] Fix typos and translations on arSD and arEG locales (#31848) @shadigaafar
+- &#8203;<!-- 04 -->[website] Improve communication about MUI X components that are still wip (#32708) @danilo-leal
+- &#8203;<!-- 03 -->[website] Remove scrollbar on x-axis (#32291) @MrHBS
+- &#8203;<!-- 02 -->[website] Update the pricing page for the MUI X premium plan release (#32458) @joserodolfofreitas
+- &#8203;<!-- 01 -->[website] Update sponsors (#32725) @oliviertassinari
+
+### Core
+
+- &#8203;<!-- 32 -->[core] Enabled Renovate's lockfile maintenance (#32635) @michaldudak
+- &#8203;<!-- 31 -->[core] Extract `MuiPage` interface to separate file (#32715) @cherniavskii
+- &#8203;<!-- 30 -->[core] Remove unnecessary `spacing` parameter from `createMixins` method (#32690) @ZeeshanTamboli
+- &#8203;<!-- 06 -->[private-classnames] Remove package and move everything to utils (#32758) @mnajdova
+
+All contributors of this release in alphabetical order: @andrii-bodnar, @cherniavskii, @danilo-leal, @emlai, @joserodolfofreitas, @michaldudak, @mnajdova, @MrHBS, @oliviertassinari, @ryancogswell, @samuelsycamore, @shadigaafar, @siriwatknp, @ZeeshanTamboli
+
 ## 5.7.0
 
 <!-- generated comparing v5.6.4..master -->

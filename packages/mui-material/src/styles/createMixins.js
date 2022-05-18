@@ -1,4 +1,4 @@
-export default function createMixins(breakpoints, spacing, mixins) {
+export default function createMixins(breakpoints, mixins) {
   return {
     toolbar: {
       minHeight: 56,

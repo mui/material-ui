@@ -66,7 +66,7 @@ export default function useMenuItem(props: UseMenuItemParameters) {
         ...getButtonProps(other),
         role: 'menuitem',
       }),
-      itemState: null,
+      disabled: false,
       focusVisible,
     };
   }
@@ -83,7 +83,7 @@ export default function useMenuItem(props: UseMenuItemParameters) {
         role: 'menuitem',
       };
     },
-    itemState,
+    disabled: itemState?.disabled ?? false,
     focusVisible,
   };
 }

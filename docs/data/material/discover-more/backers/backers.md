@@ -8,15 +8,17 @@ The core of MUI is a crowd-funded open-source project, licensed under the permis
 
 ### Diamond 💎
 
-<p style="display: flex; justify-content: center;">
+<p style="display: flex; justify-content: center; align-items: center;">
   <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="octopus" href="https://octopus.com/?utm_source=MUI&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img height="128" width="128" src="https://avatars3.githubusercontent.com/u/1287123?s=128" srcset="https://avatars3.githubusercontent.com/u/1287123?s=256 2x" alt="octopus" title="Repeatable, reliable deployments" loading="lazy" /></a>
-  <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="doit-intl" href="https://www.doit-intl.com/flexsave/?utm_source=MUI&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img height="128" width="128" src="https://avatars3.githubusercontent.com/u/8424863?s=128" srcset="https://avatars3.githubusercontent.com/u/8424863?s=256 2x" alt="doit-intl" title="Management Platform for Google Cloud and AWS" loading="lazy" /></a>
+  <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="doit-intl" href="https://www.doit-intl.com/flexsave/?utm_source=MUI&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" style="margin-right: 24px;"><img height="128" width="128" src="https://avatars3.githubusercontent.com/u/8424863?s=128" srcset="https://avatars3.githubusercontent.com/u/8424863?s=256 2x" alt="doit-intl" title="Management Platform for Google Cloud and AWS" loading="lazy" /></a>
+  <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="zesty.io" href="https://www.zesty.io/integrations/nextjs-cms/?utm_source=mui&utm_medium=referral&utm_campaign=sponsor" rel="noopener sponsored" target="_blank"><img height="90" width="90" src="https://brand.zesty.io/zesty-io-logo.svg" alt="zesty.io" title="The only Next.js CMS you need" loading="lazy" /></a>
 </p>
 
-_1/3 slots available_
+_0/3 slots available_
 
 Diamond Sponsors are those who have pledged \$1,500/month or more to MUI.
 Please contact us at diamond@mui.com to subscribe to this tier.
+Even when there are no more slots available, we accept higher bids.
 
 ### Gold 🏆
 
@@ -99,9 +101,9 @@ GitHub allows us to host the Git repository.
 
 Netlify allows us to distribute the documentation.
 
-[<img loading="lazy" alt="CrowdIn" src="https://support.crowdin.com/assets/logos/crowdin-logo1-small.png" height="30">](https://crowdin.com/)
+[<img loading="lazy" alt="Crowdin" src="https://support.crowdin.com/assets/logos/crowdin-logo-small-black.svg" height="30">](https://crowdin.com/)
 
-CrowdIn allows us to translate the documentation.
+Crowdin allows us to translate the documentation.
 
 [<img loading="lazy" alt="BrowserStack" src="https://www.browserstack.com/images/mail/browserstack-logo-footer.png" height="30">](https://www.browserstack.com/)
 
