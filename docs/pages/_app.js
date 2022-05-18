@@ -27,7 +27,7 @@ import {
 } from 'docs/src/modules/utils/i18n';
 import DocsStyledEngineProvider from 'docs/src/modules/utils/StyledEngineProvider';
 import createEmotionCache from 'docs/src/createEmotionCache';
-import ScrollToTop from './ScrollToTop';
+import BackToTop from 'docs/src/modules/components/BackToTop';
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
@@ -248,7 +248,7 @@ export default function MyApp(props) {
 
   return (
     <AppWrapper emotionCache={emotionCache} pageProps={pageProps}>
-      <ScrollToTop />
+      <BackToTop />
       <Component {...pageProps} />
     </AppWrapper>
   );
