@@ -1182,7 +1182,7 @@ describe('<Slider />', () => {
       );
       fireEvent.touchMove(
         document.body,
-        createTouches([{ identifier: 1, clientX: 31, clientY: 0 }]),
+        createTouches([{ identifier: 1, clientX: 40, clientY: 0 }]),
       );
       expect(handleChange.args[0][1]).to.deep.equal([15, 30]);
       expect(handleChange.args[1][1]).to.deep.equal([30, 30]);
