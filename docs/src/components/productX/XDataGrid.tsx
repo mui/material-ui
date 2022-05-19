@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { DataGridPro, GridApi } from '@mui/x-data-grid-pro';
+import { DataGridPro, useGridApiRef } from '@mui/x-data-grid-pro';
 import { useDemoData } from '@mui/x-data-grid-generator';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
@@ -54,7 +54,7 @@ const dataGridStyleOverrides = <XGridGlobalStyles selector="#data-grid-demo" pro
 
 export default function XDataGrid() {
   const [demo, setDemo] = React.useState<typeof DEMOS[number] | null>(null);
-  const gridApiRef = React.useRef<GridApi>();
+  const gridApiRef = useGridApiRef();
   const icons = {
     [DEMOS[0]]: <EditRoundedIcon fontSize="small" />,
     [DEMOS[1]]: <LibraryAddCheckRounded fontSize="small" />,
@@ -116,7 +116,7 @@ export default function XDataGrid() {
         gridApiRef.current.showFilterPanel('name');
       }
     }
-  }, [demo, loading, firstRowId]);
+  }, [demo, loading, firstRowId, gridApiRef]);
   return (
     <Section>
       <Grid container spacing={2}>
@@ -181,7 +181,7 @@ export default function XDataGrid() {
             {dataGridStyleOverrides}
             <DataGridPro
               {...data}
-              apiRef={gridApiRef as React.MutableRefObject<GridApi>}
+              apiRef={gridApiRef}
               loading={loading}
               density="compact"
               checkboxSelection
