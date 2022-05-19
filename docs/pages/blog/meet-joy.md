@@ -1,5 +1,5 @@
 ---
-title: Meet Joy UI－a new starting point to your design system.
+title: Meet Joy UI－a new starting point to your design system
 description: Wip description.
 date: 2022-05-12T00:00:00.000Z
 authors: ['danilo-leal', 'siriwatknp']
@@ -41,12 +41,13 @@ tbw
 
 tbw
 
-### Global variants
-
-tbw
-
-### Component integration
-
-tbw
-
 ### Unlimited color schemes
+
+Joy will not only allow for simple toggling between dark and light mode but also provide the right tooling so you can provide your users with multiple color scheme
+options. Within each mode, you'll be able to have as many as you want－powered by CSS variables.
+
+## When will I be able to use it?
+
+A significant part of the core infrastructure for Joy has been made and we've been working in these last couple of months on adding more and more structural components. Once we get to a reasonable amount, and with considerable documentation in place, we plan to release an alpha version, which most likely will happen somewhere around the second semester of 2022.
+
+However! We have developed a couple of mock UIs that showcase what Joy looks like by default. These are meant not only for that but to allow you to play around with it a little bit. Get access to them by visiting their CodeSandbox link and just experiment with Joy UI for yourself.
