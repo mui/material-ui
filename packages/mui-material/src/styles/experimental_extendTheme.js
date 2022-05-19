@@ -11,6 +11,18 @@ const defaultDarkOverlays = [...Array(25)].map((_, index) => {
   return `linear-gradient(rgba(255 255 255 / ${overlay}), rgba(255 255 255 / ${overlay}))`;
 });
 
+function assignNode(obj, keys) {
+  keys.forEach((k) => {
+    if (!obj[k]) {
+      obj[k] = {};
+    }
+  });
+}
+
+function setColor(obj, key, defaultValue) {
+  obj[key] = obj[key] || defaultValue;
+}
+
 export default function extendTheme(options = {}, ...args) {
   const { colorSchemes: colorSchemesInput = {}, ...input } = options;
 
@@ -54,28 +66,27 @@ export default function extendTheme(options = {}, ...args) {
 
     // attach black & white channels to common node
     if (key === 'dark') {
-      palette.common.background = palette.common.background || '#000';
-      palette.common.onBackground = palette.common.onBackground || '#fff';
+      setColor(palette.common, 'background', '#000');
+      setColor(palette.common, 'onBackground', '#fff');
     } else {
-      palette.common.background = palette.common.background || '#fff';
-      palette.common.onBackground = palette.common.onBackground || '#000';
+      setColor(palette.common, 'background', '#fff');
+      setColor(palette.common, 'onBackground', '#000');
     }
 
     // assign component variables
-    if (!palette.AppBar) {
-      palette.AppBar = {};
-    }
-    if (!palette.Chip) {
-      palette.Chip = {};
-    }
+    assignNode(palette, ['AppBar', 'Chip', 'FilledInput']);
     if (key === 'dark') {
-      palette.AppBar.defaultBgColor = palette.AppBar.defaultBgColor || 'var(--md-palette-grey-900)';
-      palette.Chip.defaultBorderColor =
-        palette.Chip.defaultBorderColor || 'var(--md-palette-grey-700)';
+      setColor(palette.AppBar, 'defaultBgColor', 'var(--md-palette-grey-900)');
+      setColor(palette.Chip, 'defaultBorderColor', 'var(--md-palette-grey-700)');
+      setColor(palette.FilledInput, 'bgColor', 'rgba(255, 255, 255, 0.09)');
+      setColor(palette.FilledInput, 'hoverBgColor', 'rgba(255, 255, 255, 0.13)');
+      setColor(palette.FilledInput, 'disabledBgColor', 'rgba(255, 255, 255, 0.12)');
     } else {
-      palette.AppBar.defaultBgColor = palette.AppBar.defaultBgColor || 'var(--md-palette-grey-100)';
-      palette.Chip.defaultBorderColor =
-        palette.Chip.defaultBorderColor || 'var(--md-palette-grey-400)';
+      setColor(palette.AppBar, 'defaultBgColor', 'var(--md-palette-grey-100)');
+      setColor(palette.Chip, 'defaultBorderColor', 'var(--md-palette-grey-400)');
+      setColor(palette.FilledInput, 'bgColor', 'rgba(0, 0, 0, 0.06)');
+      setColor(palette.FilledInput, 'hoverBgColor', 'rgba(0, 0, 0, 0.09)');
+      setColor(palette.FilledInput, 'disabledBgColor', 'rgba(0, 0, 0, 0.12)');
     }
 
     palette.common.backgroundChannel = colorChannel(palette.common.background);
