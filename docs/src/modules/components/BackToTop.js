@@ -3,6 +3,7 @@ import * as PropTypes from 'prop-types';
 import useScrollTrigger from '@mui/material/useScrollTrigger';
 import Box from '@mui/material/Box';
 import Fab from '@mui/material/Fab';
+import Tooltip from '@mui/material/Tooltip';
 import KeyboardArrowUpRoundedIcon from '@mui/icons-material/KeyboardArrowUpRounded';
 import Zoom from '@mui/material/Zoom';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
@@ -33,19 +34,21 @@ function BackToTop(props) {
           ...(Array.isArray(sx) ? sx : [sx]),
         ]}
       >
-        <Fab
-          color="primary"
-          size="small"
-          aria-label={t('backToTop')}
-          sx={{
-            boxShadow: (theme) =>
-              `0px 4px 20px ${
-                theme.palette.mode === 'dark' ? 'rgba(0, 0, 0, 0.5)' : 'rgba(170, 180, 190, 0.3)'
-              }`,
-          }}
-        >
-          <KeyboardArrowUpRoundedIcon />
-        </Fab>
+        <Tooltip title="Scroll to top">
+          <Fab
+            color="primary"
+            size="small"
+            aria-label={t('backToTop')}
+            sx={{
+              boxShadow: (theme) =>
+                `0px 4px 20px ${
+                  theme.palette.mode === 'dark' ? 'rgba(0, 0, 0, 0.5)' : 'rgba(170, 180, 190, 0.3)'
+                }`,
+            }}
+          >
+            <KeyboardArrowUpRoundedIcon />
+          </Fab>
+        </Tooltip>
       </Box>
     </Zoom>
   );
