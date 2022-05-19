@@ -1162,6 +1162,32 @@ describe('<Slider />', () => {
       expect(handleChange.args[1][1]).to.deep.equal([20, 20]);
       expect(document.activeElement).to.have.attribute('data-index', '1');
     });
+
+    it('should bound the value when moving the first behind the second', () => {
+      const handleChange = spy();
+      const { container } = render(
+        <Slider defaultValue={[20, 30]} disableSwap onChange={handleChange} />,
+      );
+
+      stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
+        width: 100,
+        height: 10,
+        bottom: 10,
+        left: 0,
+      }));
+
+      fireEvent.touchStart(
+        container.firstChild,
+        createTouches([{ identifier: 1, clientX: 15, clientY: 0 }]),
+      );
+      fireEvent.touchMove(
+        document.body,
+        createTouches([{ identifier: 1, clientX: 40, clientY: 0 }]),
+      );
+      expect(handleChange.args[0][1]).to.deep.equal([15, 30]);
+      expect(handleChange.args[1][1]).to.deep.equal([30, 30]);
+      expect(document.activeElement).to.have.attribute('data-index', '0');
+    });
   });
 
   describe('prop: size', () => {

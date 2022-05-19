@@ -32,6 +32,7 @@ import {
 } from 'docs/src/modules/utils/i18n';
 import DocsStyledEngineProvider from 'docs/src/modules/utils/StyledEngineProvider';
 import createEmotionCache from 'docs/src/createEmotionCache';
+import BackToTop from 'docs/src/modules/components/BackToTop';
 import findActivePage from 'docs/src/modules/utils/findActivePage';
 import FEATURE_TOGGLE from 'docs/src/featureToggle';
 
@@ -247,11 +248,11 @@ export default function MyApp(props) {
 
   return (
     <AppWrapper emotionCache={emotionCache} pageProps={pageProps}>
+      <BackToTop />
       <Component {...pageProps} />
     </AppWrapper>
   );
 }
-
 MyApp.propTypes = {
   Component: PropTypes.elementType.isRequired,
   emotionCache: PropTypes.object,
