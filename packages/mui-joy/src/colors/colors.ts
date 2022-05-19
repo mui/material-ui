@@ -1,4 +1,8 @@
 const colors = {
+  common: {
+    white: '#FFF',
+    black: '0F0F0F',
+  },
   blue: {
     50: '#F6F9FE',
     100: '#D5ECFC',
