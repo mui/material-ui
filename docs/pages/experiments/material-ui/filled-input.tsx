@@ -8,6 +8,7 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import FilledInput from '@mui/material/FilledInput';
+import OutlinedInput from '@mui/material/OutlinedInput';
 import Moon from '@mui/icons-material/DarkMode';
 import Sun from '@mui/icons-material/LightMode';
 
@@ -60,6 +61,10 @@ export default function CssVarsTemplate() {
           <FilledInput placeholder="Placeholder" color="secondary" />
           <FilledInput placeholder="Placeholder" disabled />
           <FilledInput placeholder="Placeholder" error />
+          <OutlinedInput placeholder="Placeholder" />
+          <OutlinedInput placeholder="Placeholder" color="secondary" />
+          <OutlinedInput placeholder="Placeholder" disabled />
+          <OutlinedInput placeholder="Placeholder" error />
         </Box>
       </Container>
     </CssVarsProvider>
