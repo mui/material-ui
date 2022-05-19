@@ -1,5 +1,5 @@
 import { deepmerge } from '@mui/utils';
-import { colorChannel, darken, lighten } from '@mui/system';
+import { colorChannel, darken, lighten, emphasize } from '@mui/system';
 import createThemeWithoutVars from './createTheme';
 import { getOverlayAlpha } from '../Paper/Paper';
 
@@ -76,7 +76,14 @@ export default function extendTheme(options = {}, ...args) {
     }
 
     // assign component variables
-    assignNode(palette, ['AppBar', 'Chip', 'FilledInput', 'LinearProgress', 'Slider']);
+    assignNode(palette, [
+      'AppBar',
+      'Chip',
+      'FilledInput',
+      'LinearProgress',
+      'Slider',
+      'SnackbarContent',
+    ]);
     if (key === 'dark') {
       setColor(palette.AppBar, 'defaultBgColor', 'var(--md-palette-grey-900)');
       setColor(palette.Chip, 'defaultBorderColor', 'var(--md-palette-grey-700)');
@@ -95,6 +102,7 @@ export default function extendTheme(options = {}, ...args) {
       setColor(palette.Slider, 'infoTrack', darken(palette.info.main, 0.5));
       setColor(palette.Slider, 'successTrack', darken(palette.success.main, 0.5));
       setColor(palette.Slider, 'warningTrack', darken(palette.warning.main, 0.5));
+      setColor(palette.SnackbarContent, 'bgColor', emphasize(palette.background.default, 0.98));
     } else {
       setColor(palette.AppBar, 'defaultBgColor', 'var(--md-palette-grey-100)');
       setColor(palette.Chip, 'defaultBorderColor', 'var(--md-palette-grey-400)');
@@ -113,6 +121,7 @@ export default function extendTheme(options = {}, ...args) {
       setColor(palette.Slider, 'infoTrack', lighten(palette.info.main, 0.62));
       setColor(palette.Slider, 'successTrack', lighten(palette.success.main, 0.62));
       setColor(palette.Slider, 'warningTrack', lighten(palette.warning.main, 0.62));
+      setColor(palette.SnackbarContent, 'bgColor', emphasize(palette.background.default, 0.8));
     }
 
     palette.common.backgroundChannel = colorChannel(palette.common.background);
