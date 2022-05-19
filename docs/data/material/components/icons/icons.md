@@ -12,7 +12,7 @@ materialDesign: https://material.io/design/iconography/system-icons.html
 
 MUI provides icons support in three ways:
 
-1. Standardized [Material Design icons](#material-icons) exported as React components (SVG icons).
+1. Standardized [Material Design icons](#material-svg-icons) exported as React components (SVG icons).
 1. With the [SvgIcon](#svgicon) component, a React wrapper for custom SVG icons.
 1. With the [Icon](#icon-font-icons) component, a React wrapper for custom font icons.
 
