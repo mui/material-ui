@@ -24,6 +24,7 @@ import FolderRoundedIcon from '@mui/icons-material/FolderRounded';
 import AssistantPhotoRoundedIcon from '@mui/icons-material/AssistantPhotoRounded';
 import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
 import AttachEmailRoundedIcon from '@mui/icons-material/AttachEmailRounded';
+import Chip from '@mui/joy/Chip';
 
 export default function EmailExample() {
   return (
@@ -375,7 +376,9 @@ export default function EmailExample() {
         </Box>
         <Box component="main" className="Main" sx={{ p: 2, bgcolor: 'background.level1' }}>
           <Sheet variant="outlined" sx={{ minHeight: 500, borderRadius: 'sm', p: 2 }}>
-            <Box sx={{ display: 'flex', alignSelf: 'flex-start', justifyContent: 'space-between' }}>
+            <ListItem
+              sx={{ display: 'flex', alignSelf: 'flex-start', justifyContent: 'space-between' }}
+            >
               <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                 <Box
                   component="img"
@@ -410,7 +413,43 @@ export default function EmailExample() {
                   <DarkModeRoundedIcon color="primary" />
                 </IconButton>
               </Box>
-            </Box>
+            </ListItem>
+            <ListItem sx={{ py: 4, display: 'flex', flexDirection: 'column', textAlign: 'left' }}>
+              <Typography level="h5" color="neutral.800">
+                Blank slates for new website
+              </Typography>
+              <Box sx={{ mt: 1, display: 'flex', alignItems: 'center', gap: 1 }}>
+                <Typography level="body2" color="neutral.600">
+                  From
+                </Typography>
+                <Chip size="sm" variant="outlined">
+                  janet@mail.com
+                </Chip>
+                <Typography level="body2" color="neutral.600">
+                  to
+                </Typography>
+                <Chip size="sm" variant="outlined">
+                  janet@mail.com
+                </Chip>
+              </Box>
+            </ListItem>
+            <Typography level="body2" color="neutral.800">
+              Hi, Thomas,
+              <br />
+              <br />
+              You don&apos;t have to be a designer to appreciate good typography – just check out
+              this student-made device that can detect and name fonts just by looking at it.
+              <br />
+              <br />
+              While the pop culture world obsesses over the latest Snapchat filter fads and
+              Instagram friending, skilled photographers are taking the shots that transcend social
+              media Share Quote. Take advantage of an incredible offer to become a skilled and
+              certified photographer, taking frame-worthy shots every time with The Hollywood Art
+              Institute Photography Course and Certification.
+              <br />
+              <br />
+              Regards, Janet Erickson
+            </Typography>
           </Sheet>
         </Box>
       </Box>
