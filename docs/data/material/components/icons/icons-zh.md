@@ -12,7 +12,7 @@ materialDesign: https://material.io/design/iconography/system-icons.html
 
 MUI通过以下三种方式来支持图标的使用：
 
-1. 您可以将标准的 [Material Design 图标](#material-icons) 导出为 React 组件 (SVG icons)。
+1. Standardized [Material Design icons](#material-svg-icons) exported as React components (SVG icons).
 1. 或者可以将自定义的 SVG 图标通过 [SvgIcon](#svgicon) 组件来包装成一个 React 组件。
 1. 或者可以将自定义的 font 图标通过 [ Icon ](#icon-font-icons) 组件来包装成一个 React 组件。
 
