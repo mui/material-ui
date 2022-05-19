@@ -42,6 +42,8 @@
   },
   "peerDependencies": {
     "@mui/material": "^5.0.0",
+    "@emotion/react": "^11.5.0",
+    "@emotion/styled": "^11.3.0",
     "@types/react": "^17.0.0 || ^18.0.0",
     "date-fns": "^2.25.0",
     "dayjs": "^1.10.7",
@@ -52,6 +54,12 @@
   },
   "peerDependenciesMeta": {
     "@types/react": {
+      "optional": true
+    },
+    "@emotion/react": {
+      "optional": true
+    },
+    "@emotion/styled": {
       "optional": true
     },
     "date-fns": {
