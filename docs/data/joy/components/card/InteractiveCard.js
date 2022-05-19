@@ -5,7 +5,6 @@ import Link from '@mui/joy/Link';
 import Card from '@mui/joy/Card';
 import Chip from '@mui/joy/Chip';
 import Typography from '@mui/joy/Typography';
-import Info from '@mui/icons-material/Info';
 
 export default function InteractiveCard() {
   return (
