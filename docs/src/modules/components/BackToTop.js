@@ -30,7 +30,7 @@ function BackToTop(props) {
         {...other}
         onClick={handleClick}
         sx={[
-          { position: 'fixed', bottom: 16, right: 16, zIndex: 10 },
+          { position: 'fixed', bottom: 24, right: 24, zIndex: 10 },
           ...(Array.isArray(sx) ? sx : [sx]),
         ]}
       >
