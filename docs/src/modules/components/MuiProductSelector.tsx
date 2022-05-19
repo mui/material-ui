@@ -62,18 +62,18 @@ function ProductSubMenu({
   );
 }
 
-const Description = styled('span')(({ theme }) => ({
-  fontSize: '0.8rem',
-  fontWeight: theme.typography.fontWeightRegular,
-  color:
-    theme.palette.mode === 'dark' ? theme.palette.primaryDark[100] : theme.palette.primaryDark[800],
-  position: 'absolute',
-  left: '0.5rem',
-  bottom: '-0.675rem',
-  pointerEvents: 'none',
-  opacity: 0,
-  transition: '0.2s',
-}));
+// const Description = styled('span')(({ theme }) => ({
+//   fontSize: '0.8rem',
+//   fontWeight: theme.typography.fontWeightRegular,
+//   color:
+//     theme.palette.mode === 'dark' ? theme.palette.primaryDark[100] : theme.palette.primaryDark[800],
+//   position: 'absolute',
+//   left: '0.5rem',
+//   bottom: '-0.675rem',
+//   pointerEvents: 'none',
+//   opacity: 0,
+//   transition: '0.2s',
+// }));
 
 export default function MuiProductSelector() {
   const router = useRouterExtra();
@@ -85,7 +85,6 @@ export default function MuiProductSelector() {
         role="none"
         sx={{
           p: 2,
-          pb: 3,
           borderBottom: '1px solid',
           borderColor: (theme) =>
             theme.palette.mode === 'dark'
@@ -102,8 +101,7 @@ export default function MuiProductSelector() {
         <Box
           sx={{
             ml: 5.5,
-            pt: 1,
-            pb: 2,
+            pt: 1.5,
             position: 'relative',
           }}
         >
@@ -129,9 +127,9 @@ export default function MuiProductSelector() {
               label={
                 <React.Fragment>
                   Material UI{' '}
-                  <Description className="product-description">
+                  {/* <Description className="product-description">
                     React components that implement Google&apos;s Material Design.
-                  </Description>
+                  </Description> */}
                 </React.Fragment>
               }
               clickable
@@ -146,9 +144,9 @@ export default function MuiProductSelector() {
                 label={
                   <React.Fragment>
                     Joy UI{' '}
-                    <Description className="product-description">
+                    {/* <Description className="product-description">
                       React components for building your design system.
-                    </Description>
+                    </Description> */}
                   </React.Fragment>
                 }
                 clickable
@@ -163,9 +161,9 @@ export default function MuiProductSelector() {
               label={
                 <React.Fragment>
                   MUI Base{' '}
-                  <Description className="product-description">
+                  {/* <Description className="product-description">
                     Unstyled React components and low-level hooks.
-                  </Description>
+                  </Description> */}
                 </React.Fragment>
               }
               clickable
@@ -179,9 +177,9 @@ export default function MuiProductSelector() {
               label={
                 <React.Fragment>
                   MUI System{' '}
-                  <Description className="product-description">
+                  {/* <Description className="product-description">
                     CSS utilities for rapidly laying out custom designs.
-                  </Description>
+                  </Description> */}
                 </React.Fragment>
               }
               clickable
