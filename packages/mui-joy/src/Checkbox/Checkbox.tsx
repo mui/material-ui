@@ -35,7 +35,7 @@ const useUtilityClasses = (ownerState: CheckboxProps & { focusVisible: boolean }
 };
 
 const CheckboxRoot = styled('span', {
-  name: 'MuiCheckbox',
+  name: 'JoyCheckbox',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: CheckboxProps }>(({ ownerState, theme }) => ({
@@ -76,7 +76,7 @@ const CheckboxRoot = styled('span', {
 }));
 
 const CheckboxCheckbox = styled('span', {
-  name: 'MuiCheckbox',
+  name: 'JoyCheckbox',
   slot: 'Checkbox',
   overridesResolver: (props, styles) => styles.checkbox,
 })<{ ownerState: CheckboxProps }>(({ theme, ownerState }) => [
@@ -107,7 +107,7 @@ const CheckboxCheckbox = styled('span', {
 ]);
 
 const CheckboxAction = styled('span', {
-  name: 'MuiCheckbox',
+  name: 'JoyCheckbox',
   slot: 'Action',
   overridesResolver: (props, styles) => styles.action,
 })<{ ownerState: CheckboxProps }>(({ theme, ownerState }) => [
@@ -137,7 +137,7 @@ const CheckboxAction = styled('span', {
 ]);
 
 const CheckboxInput = styled('input', {
-  name: 'MuiCheckbox',
+  name: 'JoyCheckbox',
   slot: 'Input',
   overridesResolver: (props, styles) => styles.input,
 })<{ ownerState: CheckboxProps }>(() => ({
@@ -150,7 +150,7 @@ const CheckboxInput = styled('input', {
 }));
 
 const CheckboxLabel = styled('label', {
-  name: 'MuiCheckbox',
+  name: 'JoyCheckbox',
   slot: 'Label',
   overridesResolver: (props, styles) => styles.label,
 })<{ ownerState: CheckboxProps }>(({ ownerState }) => ({
@@ -172,7 +172,7 @@ const defaultIndeterminateIcon = <IndeterminateIcon />;
 const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
-    name: 'MuiCheckbox',
+    name: 'JoyCheckbox',
   });
 
   const {
@@ -421,7 +421,7 @@ Checkbox.propTypes /* remove-proptypes */ = {
    * @default 'solid'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['contained', 'light', 'outlined']),
+    PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
     PropTypes.string,
   ]),
 } as any;

@@ -15,7 +15,7 @@ describe('Joy <TextField />', () => {
     inheritComponent: 'div',
     render,
     ThemeProvider,
-    muiName: 'MuiTextField',
+    muiName: 'JoyTextField',
     refInstanceof: window.HTMLDivElement,
     skip: ['componentsProp', 'classesRoot', 'themeVariants'],
   }));

@@ -26,7 +26,7 @@ interface SwitchOwnerState extends UseSwitchProps {
    * The variant to use.
    * @default 'solid'
    */
-  variant?: OverridableStringUnion<Exclude<VariantProp, 'text'>, SwitchPropsVariantOverrides>;
+  variant?: OverridableStringUnion<VariantProp, SwitchPropsVariantOverrides>;
 }
 
 export interface SwitchProps
