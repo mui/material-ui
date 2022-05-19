@@ -697,7 +697,7 @@ Apply `underline="hover"` to `<Link />` that does not define `underline` prop (t
 ```
 
 ```sh
-npx @mui/codemod v5.0.0/icon-button-size <path>
+npx @mui/codemod v5.0.0/link-underline-hover <path>
 ```
 
 You can find more details about this breaking change in [the migration guide](https://mui.com/material-ui/guides/migration-v4/#link).
