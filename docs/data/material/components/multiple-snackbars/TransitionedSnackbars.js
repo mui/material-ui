@@ -6,7 +6,7 @@ import Slide from '@mui/material/Slide';
 import Button from '@mui/material/Button';
 
 function SlideTransition(props) {
-  return <Slide {...props} direction="up" />;
+  return <Slide {...props} direction="right" />;
 }
 
 function MyApp() {
