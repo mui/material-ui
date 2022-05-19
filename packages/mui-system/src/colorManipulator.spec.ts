@@ -47,3 +47,16 @@ expectType<(color: string, value: number) => string, typeof alpha>(alpha);
 expectType<(color: string, coefficient: number) => string, typeof darken>(darken);
 
 expectType<(color: string, coefficient: number) => string, typeof lighten>(lighten);
+
+recomposeColor({
+  type: 'color',
+  colorSpace: 'display-p3',
+  values: [0.5, 0.3, 0.2],
+});
+
+const color = decomposeColor('color(display-p3 0 1 0)');
+
+type Color = 'color' extends typeof color.type ? true : false;
+
+expectType<Color, true>(true);
+expectType<ColorFormat, typeof color.type>(color.type);
