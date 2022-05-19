@@ -1,5 +1,5 @@
 import { deepmerge } from '@mui/utils';
-import { colorChannel } from '@mui/system';
+import { colorChannel, darken, lighten } from '@mui/system';
 import createThemeWithoutVars from './createTheme';
 import { getOverlayAlpha } from '../Paper/Paper';
 
@@ -74,19 +74,31 @@ export default function extendTheme(options = {}, ...args) {
     }
 
     // assign component variables
-    assignNode(palette, ['AppBar', 'Chip', 'FilledInput']);
+    assignNode(palette, ['AppBar', 'Chip', 'FilledInput', 'LinearProgress']);
     if (key === 'dark') {
       setColor(palette.AppBar, 'defaultBgColor', 'var(--md-palette-grey-900)');
       setColor(palette.Chip, 'defaultBorderColor', 'var(--md-palette-grey-700)');
       setColor(palette.FilledInput, 'bgColor', 'rgba(255, 255, 255, 0.09)');
       setColor(palette.FilledInput, 'hoverBgColor', 'rgba(255, 255, 255, 0.13)');
       setColor(palette.FilledInput, 'disabledBgColor', 'rgba(255, 255, 255, 0.12)');
+      setColor(palette.LinearProgress, 'primaryBgColor', darken(palette.primary.main, 0.5));
+      setColor(palette.LinearProgress, 'secondaryBgColor', darken(palette.secondary.main, 0.5));
+      setColor(palette.LinearProgress, 'errorBgColor', darken(palette.error.main, 0.5));
+      setColor(palette.LinearProgress, 'infoBgColor', darken(palette.info.main, 0.5));
+      setColor(palette.LinearProgress, 'successBgColor', darken(palette.success.main, 0.5));
+      setColor(palette.LinearProgress, 'warningBgColor', darken(palette.warning.main, 0.5));
     } else {
       setColor(palette.AppBar, 'defaultBgColor', 'var(--md-palette-grey-100)');
       setColor(palette.Chip, 'defaultBorderColor', 'var(--md-palette-grey-400)');
       setColor(palette.FilledInput, 'bgColor', 'rgba(0, 0, 0, 0.06)');
       setColor(palette.FilledInput, 'hoverBgColor', 'rgba(0, 0, 0, 0.09)');
       setColor(palette.FilledInput, 'disabledBgColor', 'rgba(0, 0, 0, 0.12)');
+      setColor(palette.LinearProgress, 'primaryBgColor', lighten(palette.primary.main, 0.62));
+      setColor(palette.LinearProgress, 'secondaryBgColor', lighten(palette.secondary.main, 0.62));
+      setColor(palette.LinearProgress, 'errorBgColor', lighten(palette.error.main, 0.62));
+      setColor(palette.LinearProgress, 'infoBgColor', lighten(palette.info.main, 0.62));
+      setColor(palette.LinearProgress, 'successBgColor', lighten(palette.success.main, 0.62));
+      setColor(palette.LinearProgress, 'warningBgColor', lighten(palette.warning.main, 0.62));
     }
 
     palette.common.backgroundChannel = colorChannel(palette.common.background);
