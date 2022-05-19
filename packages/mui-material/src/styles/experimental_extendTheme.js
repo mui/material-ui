@@ -83,27 +83,9 @@ export default function extendTheme(options = {}, ...args) {
       'LinearProgress',
       'Slider',
       'SnackbarContent',
+      'StepConnector',
     ]);
-    if (key === 'dark') {
-      setColor(palette.AppBar, 'defaultBgColor', 'var(--md-palette-grey-900)');
-      setColor(palette.Chip, 'defaultBorderColor', 'var(--md-palette-grey-700)');
-      setColor(palette.FilledInput, 'bgColor', 'rgba(255, 255, 255, 0.09)');
-      setColor(palette.FilledInput, 'hoverBgColor', 'rgba(255, 255, 255, 0.13)');
-      setColor(palette.FilledInput, 'disabledBgColor', 'rgba(255, 255, 255, 0.12)');
-      setColor(palette.LinearProgress, 'primaryBgColor', darken(palette.primary.main, 0.5));
-      setColor(palette.LinearProgress, 'secondaryBgColor', darken(palette.secondary.main, 0.5));
-      setColor(palette.LinearProgress, 'errorBgColor', darken(palette.error.main, 0.5));
-      setColor(palette.LinearProgress, 'infoBgColor', darken(palette.info.main, 0.5));
-      setColor(palette.LinearProgress, 'successBgColor', darken(palette.success.main, 0.5));
-      setColor(palette.LinearProgress, 'warningBgColor', darken(palette.warning.main, 0.5));
-      setColor(palette.Slider, 'primaryTrack', darken(palette.primary.main, 0.5));
-      setColor(palette.Slider, 'secondaryTrack', darken(palette.secondary.main, 0.5));
-      setColor(palette.Slider, 'errorTrack', darken(palette.error.main, 0.5));
-      setColor(palette.Slider, 'infoTrack', darken(palette.info.main, 0.5));
-      setColor(palette.Slider, 'successTrack', darken(palette.success.main, 0.5));
-      setColor(palette.Slider, 'warningTrack', darken(palette.warning.main, 0.5));
-      setColor(palette.SnackbarContent, 'bgColor', emphasize(palette.background.default, 0.98));
-    } else {
+    if (key === 'light') {
       setColor(palette.AppBar, 'defaultBgColor', 'var(--md-palette-grey-100)');
       setColor(palette.Chip, 'defaultBorderColor', 'var(--md-palette-grey-400)');
       setColor(palette.FilledInput, 'bgColor', 'rgba(0, 0, 0, 0.06)');
@@ -122,6 +104,28 @@ export default function extendTheme(options = {}, ...args) {
       setColor(palette.Slider, 'successTrack', lighten(palette.success.main, 0.62));
       setColor(palette.Slider, 'warningTrack', lighten(palette.warning.main, 0.62));
       setColor(palette.SnackbarContent, 'bgColor', emphasize(palette.background.default, 0.8));
+      setColor(palette.StepConnector, 'borderColor', 'var(--md-palette-grey-400)');
+    } else {
+      setColor(palette.AppBar, 'defaultBgColor', 'var(--md-palette-grey-900)');
+      setColor(palette.Chip, 'defaultBorderColor', 'var(--md-palette-grey-700)');
+      setColor(palette.FilledInput, 'bgColor', 'rgba(255, 255, 255, 0.09)');
+      setColor(palette.FilledInput, 'hoverBgColor', 'rgba(255, 255, 255, 0.13)');
+      setColor(palette.FilledInput, 'disabledBgColor', 'rgba(255, 255, 255, 0.12)');
+      setColor(palette.LinearProgress, 'primaryBgColor', darken(palette.primary.main, 0.5));
+      setColor(palette.LinearProgress, 'secondaryBgColor', darken(palette.secondary.main, 0.5));
+      setColor(palette.LinearProgress, 'errorBgColor', darken(palette.error.main, 0.5));
+      setColor(palette.LinearProgress, 'infoBgColor', darken(palette.info.main, 0.5));
+      setColor(palette.LinearProgress, 'successBgColor', darken(palette.success.main, 0.5));
+      setColor(palette.LinearProgress, 'warningBgColor', darken(palette.warning.main, 0.5));
+      setColor(palette.Slider, 'primaryTrack', darken(palette.primary.main, 0.5));
+      setColor(palette.Slider, 'secondaryTrack', darken(palette.secondary.main, 0.5));
+      setColor(palette.Slider, 'errorTrack', darken(palette.error.main, 0.5));
+      setColor(palette.Slider, 'infoTrack', darken(palette.info.main, 0.5));
+      setColor(palette.Slider, 'successTrack', darken(palette.success.main, 0.5));
+      setColor(palette.Slider, 'warningTrack', darken(palette.warning.main, 0.5));
+      setColor(palette.SnackbarContent, 'bgColor', emphasize(palette.background.default, 0.98));
+      setColor(palette.AppBar, 'defaultBgColor', 'var(--md-palette-grey-900)');
+      setColor(palette.StepConnector, 'borderColor', 'var(--md-palette-grey-600)');
     }
 
     palette.common.backgroundChannel = colorChannel(palette.common.background);
