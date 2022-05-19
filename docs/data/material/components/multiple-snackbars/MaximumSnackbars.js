@@ -14,7 +14,6 @@ function MyApp({ snackbarLimit, setSnackbarLimit }) {
       <ButtonGroup sx={{ justifyContent: 'center' }}>
         <Button
           disabled={snackbarLimit === 1}
-          variant="contained"
           onClick={() => setSnackbarLimit((prevState) => prevState - 1)}
         >
           -
@@ -22,7 +21,6 @@ function MyApp({ snackbarLimit, setSnackbarLimit }) {
         <Button disableRipple>{snackbarLimit}</Button>
         <Button
           disabled={snackbarLimit === 10}
-          variant="contained"
           onClick={() => setSnackbarLimit((prevState) => prevState + 1)}
         >
           +
