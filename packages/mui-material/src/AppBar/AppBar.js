@@ -42,7 +42,7 @@ const AppBarRoot = styled(Paper, {
     flexShrink: 0,
     ...(ownerState.position === 'fixed' && {
       position: 'fixed',
-      zIndex: theme.zIndex.appBar,
+      zIndex: (theme.vars || theme).zIndex.appBar,
       top: 0,
       left: 'auto',
       right: 0,
@@ -53,7 +53,7 @@ const AppBarRoot = styled(Paper, {
     }),
     ...(ownerState.position === 'absolute' && {
       position: 'absolute',
-      zIndex: theme.zIndex.appBar,
+      zIndex: (theme.vars || theme).zIndex.appBar,
       top: 0,
       left: 'auto',
       right: 0,
@@ -61,7 +61,7 @@ const AppBarRoot = styled(Paper, {
     ...(ownerState.position === 'sticky' && {
       // ⚠️ sticky is not supported by IE11.
       position: 'sticky',
-      zIndex: theme.zIndex.appBar,
+      zIndex: (theme.vars || theme).zIndex.appBar,
       top: 0,
       left: 'auto',
       right: 0,
@@ -73,15 +73,19 @@ const AppBarRoot = styled(Paper, {
       position: 'relative',
     }),
     ...(ownerState.color === 'default' && {
-      backgroundColor: backgroundColorDefault,
-      color: theme.palette.getContrastText(backgroundColorDefault),
+      backgroundColor: theme.vars
+        ? theme.vars.palette.AppBar?.defaultBgColor
+        : backgroundColorDefault,
+      color: theme.vars
+        ? theme.vars.palette.text.primary
+        : theme.palette.getContrastText(backgroundColorDefault),
     }),
     ...(ownerState.color &&
       ownerState.color !== 'default' &&
       ownerState.color !== 'inherit' &&
       ownerState.color !== 'transparent' && {
-        backgroundColor: theme.palette[ownerState.color].main,
-        color: theme.palette[ownerState.color].contrastText,
+        backgroundColor: (theme.vars || theme).palette[ownerState.color].main,
+        color: (theme.vars || theme).palette[ownerState.color].contrastText,
       }),
     ...(ownerState.color === 'inherit' && {
       color: 'inherit',

@@ -61,6 +61,23 @@ export default function extendTheme(options = {}, ...args) {
       palette.common.onBackground = palette.common.onBackground || '#000';
     }
 
+    // assign component variables
+    if (!palette.AppBar) {
+      palette.AppBar = {};
+    }
+    if (!palette.Chip) {
+      palette.Chip = {};
+    }
+    if (key === 'dark') {
+      palette.AppBar.defaultBgColor = palette.AppBar.defaultBgColor || 'var(--md-palette-grey-900)';
+      palette.Chip.defaultBorderColor =
+        palette.Chip.defaultBorderColor || 'var(--md-palette-grey-700)';
+    } else {
+      palette.AppBar.defaultBgColor = palette.AppBar.defaultBgColor || 'var(--md-palette-grey-100)';
+      palette.Chip.defaultBorderColor =
+        palette.Chip.defaultBorderColor || 'var(--md-palette-grey-400)';
+    }
+
     palette.common.backgroundChannel = colorChannel(palette.common.background);
     palette.common.onBackgroundChannel = colorChannel(palette.common.onBackground);
 
