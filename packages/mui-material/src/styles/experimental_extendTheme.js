@@ -76,7 +76,7 @@ export default function extendTheme(options = {}, ...args) {
     }
 
     // assign component variables
-    assignNode(palette, ['AppBar', 'Chip', 'FilledInput', 'LinearProgress']);
+    assignNode(palette, ['AppBar', 'Chip', 'FilledInput', 'LinearProgress', 'Slider']);
     if (key === 'dark') {
       setColor(palette.AppBar, 'defaultBgColor', 'var(--md-palette-grey-900)');
       setColor(palette.Chip, 'defaultBorderColor', 'var(--md-palette-grey-700)');
@@ -89,6 +89,12 @@ export default function extendTheme(options = {}, ...args) {
       setColor(palette.LinearProgress, 'infoBgColor', darken(palette.info.main, 0.5));
       setColor(palette.LinearProgress, 'successBgColor', darken(palette.success.main, 0.5));
       setColor(palette.LinearProgress, 'warningBgColor', darken(palette.warning.main, 0.5));
+      setColor(palette.Slider, 'primaryTrack', darken(palette.primary.main, 0.5));
+      setColor(palette.Slider, 'secondaryTrack', darken(palette.secondary.main, 0.5));
+      setColor(palette.Slider, 'errorTrack', darken(palette.error.main, 0.5));
+      setColor(palette.Slider, 'infoTrack', darken(palette.info.main, 0.5));
+      setColor(palette.Slider, 'successTrack', darken(palette.success.main, 0.5));
+      setColor(palette.Slider, 'warningTrack', darken(palette.warning.main, 0.5));
     } else {
       setColor(palette.AppBar, 'defaultBgColor', 'var(--md-palette-grey-100)');
       setColor(palette.Chip, 'defaultBorderColor', 'var(--md-palette-grey-400)');
@@ -101,6 +107,12 @@ export default function extendTheme(options = {}, ...args) {
       setColor(palette.LinearProgress, 'infoBgColor', lighten(palette.info.main, 0.62));
       setColor(palette.LinearProgress, 'successBgColor', lighten(palette.success.main, 0.62));
       setColor(palette.LinearProgress, 'warningBgColor', lighten(palette.warning.main, 0.62));
+      setColor(palette.Slider, 'primaryTrack', lighten(palette.primary.main, 0.62));
+      setColor(palette.Slider, 'secondaryTrack', lighten(palette.secondary.main, 0.62));
+      setColor(palette.Slider, 'errorTrack', lighten(palette.error.main, 0.62));
+      setColor(palette.Slider, 'infoTrack', lighten(palette.info.main, 0.62));
+      setColor(palette.Slider, 'successTrack', lighten(palette.success.main, 0.62));
+      setColor(palette.Slider, 'warningTrack', lighten(palette.warning.main, 0.62));
     }
 
     palette.common.backgroundChannel = colorChannel(palette.common.background);
