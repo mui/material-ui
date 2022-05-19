@@ -2387,7 +2387,7 @@
     prop-types "^15.8.1"
     reselect "^4.1.5"
 
-"@mui/x-date-pickers-pro@^5.0.0-alpha.1":
+"@mui/x-date-pickers-pro@^5.0.0-alpha.3":
   version "5.0.0-alpha.3"
   resolved "https://registry.yarnpkg.com/@mui/x-date-pickers-pro/-/x-date-pickers-pro-5.0.0-alpha.3.tgz#84b735410af6f2ac42bf6f4ee452ffa30bfd609f"
   integrity sha512-Z7lBU2LWiyX159u+LD1NjWv4Oz67VeffaauuWIz/sXvRqIx6nt/8cI/cs1XFNkHOUqe02qEfjssgKMy4TsHU2w==
@@ -2419,7 +2419,7 @@
     react-transition-group "^4.4.2"
     rifm "^0.12.1"
 
-"@mui/x-date-pickers@5.0.0-alpha.3", "@mui/x-date-pickers@^5.0.0-alpha.1":
+"@mui/x-date-pickers@5.0.0-alpha.3", "@mui/x-date-pickers@^5.0.0-alpha.3":
   version "5.0.0-alpha.3"
   resolved "https://registry.yarnpkg.com/@mui/x-date-pickers/-/x-date-pickers-5.0.0-alpha.3.tgz#29902967aba5b2126ca58d7493bd923f329a289e"
   integrity sha512-K22W5M+24p0hPQwbBKX+TKyPre18yQC2wFo7M2GI0ivzlTBQyOj7+M/3HULl1DgQvhvJe18xJB5cIi8X3TTVRw==
