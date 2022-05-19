@@ -44,6 +44,7 @@ export default function extendTheme(options = {}, ...args) {
         opacity: {
           placeholder: 0.42,
           inputTouchBottomLine: 0.42,
+          skeletonBg: 0.11,
           ...colorSchemesInput.light?.opacity,
         },
         overlays: colorSchemesInput.light?.overlays || [],
@@ -54,6 +55,7 @@ export default function extendTheme(options = {}, ...args) {
         opacity: {
           placeholder: 0.5,
           inputTouchBottomLine: 0.7,
+          skeletonBg: 0.13,
           ...colorSchemesInput.dark?.opacity,
         },
         overlays: colorSchemesInput.dark?.overlays || defaultDarkOverlays,
