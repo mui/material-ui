@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer, screen } from 'test/utils';
+import Box from '@mui/material/Box';
 import { Experimental_CssVarsProvider as CssVarsProvider, useTheme } from '@mui/material/styles';
 
 describe('[Material UI] CssVarsProvider', () => {
@@ -327,6 +328,42 @@ describe('[Material UI] CssVarsProvider', () => {
       );
 
       expect(container.firstChild?.textContent).not.to.equal('focus');
+    });
+  });
+
+  it("should use numeric values in system's spacing", function test() {
+    if (/jsdom/.test(window.navigator.userAgent) || !/WebKit/.test(window.navigator.userAgent)) {
+      this.skip();
+    }
+
+    const { getByTestId } = render(
+      <CssVarsProvider enableColorScheme enableSystem>
+        <Box
+          data-testid="box-1"
+          sx={{
+            borderRadius: '50%',
+          }}
+        />
+        <Box
+          data-testid="box-2"
+          sx={{
+            borderRadius: 4,
+          }}
+        />
+      </CssVarsProvider>,
+    );
+
+    expect(getByTestId('box-1')).toHaveComputedStyle({
+      borderTopLeftRadius: '50%',
+      borderTopRightRadius: '50%',
+      borderBottomLeftRadius: '50%',
+      borderBottomRightRadius: '50%',
+    });
+    expect(getByTestId('box-2')).toHaveComputedStyle({
+      borderTopLeftRadius: '16px',
+      borderTopRightRadius: '16px',
+      borderBottomLeftRadius: '16px',
+      borderBottomRightRadius: '16px',
     });
   });
 });
