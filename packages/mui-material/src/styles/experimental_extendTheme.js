@@ -84,6 +84,7 @@ export default function extendTheme(options = {}, ...args) {
       'Slider',
       'SnackbarContent',
       'StepConnector',
+      'StepContent',
     ]);
     if (key === 'light') {
       setColor(palette.AppBar, 'defaultBgColor', 'var(--md-palette-grey-100)');
@@ -105,6 +106,7 @@ export default function extendTheme(options = {}, ...args) {
       setColor(palette.Slider, 'warningTrack', lighten(palette.warning.main, 0.62));
       setColor(palette.SnackbarContent, 'bgColor', emphasize(palette.background.default, 0.8));
       setColor(palette.StepConnector, 'borderColor', 'var(--md-palette-grey-400)');
+      setColor(palette.StepContent, 'borderColor', 'var(--md-palette-grey-400)');
     } else {
       setColor(palette.AppBar, 'defaultBgColor', 'var(--md-palette-grey-900)');
       setColor(palette.Chip, 'defaultBorderColor', 'var(--md-palette-grey-700)');
@@ -126,6 +128,7 @@ export default function extendTheme(options = {}, ...args) {
       setColor(palette.SnackbarContent, 'bgColor', emphasize(palette.background.default, 0.98));
       setColor(palette.AppBar, 'defaultBgColor', 'var(--md-palette-grey-900)');
       setColor(palette.StepConnector, 'borderColor', 'var(--md-palette-grey-600)');
+      setColor(palette.StepContent, 'borderColor', 'var(--md-palette-grey-600)');
     }
 
     palette.common.backgroundChannel = colorChannel(palette.common.background);
