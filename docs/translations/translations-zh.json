@@ -38,6 +38,7 @@
     "skipToContent": "跳转到内容",
     "toggleSettings": "切换侧边导航设置"
   },
+  "backToTop": "Scroll back to top",
   "blogDescr": "这是一个精致的博客页面布局。这个 Markdown 由 markdown-to-jsx 提供支持，但是这也不难替换。",
   "blogTitle": "博客",
   "bundleSize": "捆绑包的大小",
