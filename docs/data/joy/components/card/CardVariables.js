@@ -66,41 +66,48 @@ export default function GroupedAvatars() {
           flexWrap: 'wrap',
         }}
       >
-        <Card sx={{ maxWidth: 160, boxShadow: 'md', ...sx }}>
+        <Card variant="outlined" sx={{ maxWidth: 200, boxShadow: 'none', ...sx }}>
           <CardOverflow>
             <AspectRatio>
-              <img alt="" src="/static/images/cards/paella.jpg" />
+              <img
+                alt=""
+                src="https://images.unsplash.com/photo-1523404343994-489a5eefd760?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2148"
+              />
             </AspectRatio>
           </CardOverflow>
-          <Box sx={{ py: 1.5 }}>
-            <Typography fontWeight="lg">
+          <Box>
+            <Typography fontWeight="lg" mt={1.5}>
               <Link href="#card-variables" overlay color="neutral">
                 Card title
               </Link>
             </Typography>
             <Typography level="body2">A very very long description.</Typography>
           </Box>
-          <CardOverflow sx={{ py: 1, bgcolor: 'neutral.softBg' }}>
-            <Typography level="body2" color="neutral.plainColor">
-              Metadata
-            </Typography>
-          </CardOverflow>
         </Card>
         <Card
           variant="outlined"
-          color="warning"
-          sx={{ maxWidth: 160, boxShadow: 'md', ...sx }}
+          color="neutral"
+          sx={{ maxWidth: 200, boxShadow: 'none', ...sx }}
         >
-          <CardCover sx={{ opacity: 0.4 }}>
+          <CardCover>
             <img
+              src="https://images.unsplash.com/photo-1523404343994-489a5eefd760?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2148"
               alt=""
-              src="https://images.unsplash.com/photo-1620987278429-ab178d6eb547?ixlib=rb-1.2.1&amp;ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;auto=format&amp;fit=crop&amp;w=1450&amp;q=80"
-              data-first-child=""
             />
           </CardCover>
+          <CardCover
+            sx={{
+              background:
+                'linear-gradient(to top, rgba(0,0,0,0.4), rgba(0,0,0,0) 200px), linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0) 300px)',
+            }}
+          />
           <CardContent sx={{ mt: 'auto', flexGrow: 0 }}>
-            <Typography fontWeight="lg">Card title</Typography>
-            <Typography level="body2">A very very long description.</Typography>
+            <Typography fontWeight="lg" color="#fff">
+              Card title
+            </Typography>
+            <Typography level="body2" color="neutral.400">
+              A very very long description.
+            </Typography>
           </CardContent>
         </Card>
       </Box>
@@ -111,8 +118,9 @@ export default function GroupedAvatars() {
           flexWrap: 'wrap',
           gap: 2,
           p: 2,
-          bgcolor: 'background.level1',
-          borderRadius: 'xs',
+          border: '1px solid',
+          borderColor: 'background.level3',
+          borderRadius: 'sm',
         }}
       >
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
@@ -122,7 +130,7 @@ export default function GroupedAvatars() {
               key={data.var}
               label={data.var}
               size="sm"
-              variant="soft"
+              variant="outlined"
               defaultValue={Number(data.defaultValue.replace('px', '')) || undefined}
               endDecorator={<Typography level="body3">px</Typography>}
               type={data.type}
@@ -146,7 +154,7 @@ export default function GroupedAvatars() {
               }}
               sx={{
                 maxWidth: 160,
-                '& .JoyInput-root': { '--Input-gutter': '1rem' },
+                '& .JoyInput-root': { '--Input-gutter': '0.5rem' },
               }}
             />
           ))}
