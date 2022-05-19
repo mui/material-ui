@@ -3043,10 +3043,10 @@
   dependencies:
     "@babel/types" "^7.3.0"
 
-"@types/chai-dom@^0.0.12":
-  version "0.0.12"
-  resolved "https://registry.yarnpkg.com/@types/chai-dom/-/chai-dom-0.0.12.tgz#fdd7a52bed4dd235ed1c94d3d2d31d4e7db1d03a"
-  integrity sha512-4rE7sDw713cV61TYzQbMrPjC4DjNk3x4vk9nAVRNXcSD4p0/5lEEfm0OgoCz5eNuWUXNKA0YiKiH/JDTuKivkA==
+"@types/chai-dom@^0.0.13":
+  version "0.0.13"
+  resolved "https://registry.yarnpkg.com/@types/chai-dom/-/chai-dom-0.0.13.tgz#a8727ba180a7146eb14e548ad22d33ab1adf6d8c"
+  integrity sha512-A0DqBgZIExkhlH15chRY4qSIBWtl2/ZEvyNjBo+Xp0gZRexz3qjFNHh1mUhhD3TFVacCz1PC8FAPMpUqzSR1AQ==
   dependencies:
     "@types/chai" "*"
 
