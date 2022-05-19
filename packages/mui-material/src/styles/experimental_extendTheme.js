@@ -1,6 +1,15 @@
 import { deepmerge } from '@mui/utils';
 import { colorChannel } from '@mui/system';
 import createThemeWithoutVars from './createTheme';
+import { getOverlayAlpha } from '../Paper/Paper';
+
+const defaultDarkOverlays = [...Array(25)].map((_, index) => {
+  if (index === 0) {
+    return undefined;
+  }
+  const overlay = getOverlayAlpha(index);
+  return `linear-gradient(rgba(255 255 255 / ${overlay}), rgba(255 255 255 / ${overlay}))`;
+});
 
 export default function extendTheme(options = {}, ...args) {
   const { colorSchemes: colorSchemesInput = {}, ...input } = options;
@@ -25,6 +34,7 @@ export default function extendTheme(options = {}, ...args) {
           inputTouchBottomLine: 0.42,
           ...colorSchemesInput.light?.opacity,
         },
+        overlays: colorSchemesInput.light?.overlays || [],
       },
       dark: {
         ...colorSchemesInput.dark,
@@ -34,6 +44,7 @@ export default function extendTheme(options = {}, ...args) {
           inputTouchBottomLine: 0.7,
           ...colorSchemesInput.dark?.opacity,
         },
+        overlays: colorSchemesInput.dark?.overlays || defaultDarkOverlays,
       },
     },
   };

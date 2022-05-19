@@ -260,6 +260,24 @@ describe('experimental_extendTheme', () => {
     });
   });
 
+  describe('overlays', () => {
+    it('should provide the default array', () => {
+      const theme = extendTheme();
+      expect(theme.colorSchemes.light.overlays).to.have.length(0);
+      expect(theme.colorSchemes.dark.overlays).to.have.length(25);
+
+      expect(theme.colorSchemes.dark.overlays[24]).to.equal(
+        'linear-gradient(rgba(255 255 255 / 0.16), rgba(255 255 255 / 0.16))',
+      );
+    });
+
+    it('should override the array as expected', () => {
+      const overlays = Array(24).fill('none');
+      const theme = extendTheme({ colorSchemes: { dark: { overlays } } });
+      expect(theme.colorSchemes.dark.overlays).to.equal(overlays);
+    });
+  });
+
   describe('shadows', () => {
     it('should provide the default array', () => {
       const theme = extendTheme();
