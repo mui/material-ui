@@ -599,14 +599,16 @@ It works exactly like styled components. You can [use the same guide](/material-
 If you are used to Tailwind CSS and want to use it together with the MUI components, you can start by cloning the [Tailwind CSS](https://github.com/mui/material-ui/tree/master/examples/tailwind-css) example project. If you use a different framework, or already have set up your project, follow these steps:
 
 1. Add Tailwind CSS to your project, following the instructions in https://tailwindcss.com/docs/installation.
-2. Remove Tailwind's `base` directive in favor of the `CssBaseline` component provided by `@mui/material`, as it plays nicer with the MUI components.
+2. Remove [Tailwind CSS's preflight](https://tailwindcss.com/docs/preflight) style so it can use the MUI's preflight instead ([CssBaseline](/material-ui/react-css-baseline/)).
 
-**index.css**
+**tailwind.config.js**
 
 ```diff
--@tailwind base;
- @tailwind components;
- @tailwind utilities;
+ module.exports = {
++  corePlugins: {
++    preflight: false,
++  },
+ };
 ```
 
 3. Add the `important` option, using the id of your app wrapper. For example, `#__next` for Next.js and `"#root"` for CRA:
@@ -767,10 +769,7 @@ render(
 );
 ```
 
-Now you can simply  
-`import { makeStyles, withStyles } from 'tss-react/mui'`.  
-The theme object that will be passed to your callbacks functions will be the one you get with  
-`import { useTheme } from '@mui/material/styles'`.
+Now you can simply `import { makeStyles, withStyles } from 'tss-react/mui'`. The theme object that will be passed to your callbacks functions will be the one you get with `import { useTheme } from '@mui/material/styles'`.
 
 If you want to take controls over what the `theme` object should be, you can re-export `makeStyles` and `withStyles` from a file called, for example, `makesStyles.ts`:
 
@@ -783,8 +782,8 @@ import { createMakeAndWithStyles } from 'tss-react';
 export const { makeStyles, withStyles } = createMakeAndWithStyles({
   useTheme,
   /*
-    OR, if you have extended the default mui theme adding your own custom properties: 
-    Let's assume the myTheme object that you provide to the <ThemeProvider /> is of 
+    OR, if you have extended the default mui theme adding your own custom properties:
+    Let's assume the myTheme object that you provide to the <ThemeProvider /> is of
     type MyTheme then you'll write:
     */
   //"useTheme": useTheme as (()=> MyTheme)
@@ -818,6 +817,8 @@ const useStyles = makeStyles<{ color: 'red' | 'blue' }>()((theme, { color }) => 
 ```
 
 For info on how to setup SSR or anything else, please refer to [the TSS documentation](https://github.com/garronej/tss-react).
+
+:::info There is [an ESLint plugin](https://docs.tss-react.dev/detecting-unused-classes) for detecting unused classes. :::
 
 :::warning ⚠️ **Keep `@emotion/styled` as a dependency of your project**. Even if you never use it explicitly, it's a peer dependency of `@mui/material`. :::
 
