@@ -119,7 +119,7 @@ export default function InstagramPost() {
         2 DAYS AGO
       </Link>
       <CardOverflow sx={{ p: 'var(--Card-padding)', display: 'flex' }}>
-        <IconButton size="sm" variant="plain" color="neutral">
+        <IconButton size="sm" variant="plain" color="neutral" sx={{ ml: -1 }}>
           <Face />
         </IconButton>
         <Input

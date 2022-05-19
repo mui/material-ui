@@ -14,7 +14,7 @@ They should be easy to scan for relevant and actionable information. Elements, l
 
 ## Basic
 
-The `Card` is a surface component that group multiple components to form a meaningful interface. The default card comes with padding and a subtle shadow.
+The `Card` is a surface component that group multiple components to form a meaningful interface. The default card comes with a padding and a subtle shadow.
 
 In Joy, we recommend to use these components to compose different kind of information into a single card.
 
@@ -26,27 +26,25 @@ In Joy, we recommend to use these components to compose different kind of inform
 
 ## Overflow
 
-If you want to create an overflow content that fill from edge to edge of the card, wrap the content with `CardOverflow` component.
-
-To achieve a consistent spacing, you can use the CSS variable `--Card-padding` provided by the card (take a look at the code of the demo below).
+If you want to create an overflow content that fill from edge to edge of the card, wrap the content with `CardOverflow` component. It automatically takes care of the top and the bottom edge if it renders as the first or the last child of the card.
 
 {{"demo": "OverflowCard.js", "bg": true}}
 
 ## Back cover
 
-The `CardCover` is responsible for creating content that fills the whole card. You can think of card covers as a layers that stay behind the `CardContent`.
+The `CardCover` is responsible for creating the content that covers the whole card. You can think of card covers as a background layers that stay behind the `CardContent`.
 
 {{"demo": "CardCovers.js", "bg": true}}
 
 ### Media
 
-You can place a plain image or video inside the `CardCover` and it will cover the whole area of the card.
+You can place a plain image or a video element inside the `CardCover`. It uses [`object-fit: cover`](https://developer.mozilla.org/en-US/docs/Web/CSS/object-fit) on the image as a default value.
 
 {{"demo": "MediaCover.js", "bg": true}}
 
 ### Gradient overlay
 
-Create a gradient overlay on top of the back cover to emphasize the content for readability.
+You should make sure that there is enough constrast between the background cover and the content. One way to enhance the readability is to insert another `CardCover` to create a gradient overlay between the cover and the content.
 
 {{"demo": "GradientCover.js", "bg": true}}
 
@@ -58,15 +56,25 @@ For accessibility purpose, it is recommended that the `Link` component is used i
 
 {{"demo": "InteractiveCard.js", "bg": true}}
 
+:::info
+For more details about the card accessilibity, we recommend reading the [inclusive cards](https://inclusive-components.design/cards/).
+:::
+
 ### Multiple interaction
 
 By default, other action elements such as links and buttons will stay on top of the interactive area but in some cases you might have to manually control the `z-index` of each element.
 
-:::info
+:::success
 💡 **Tip**: use CSS pseudo-class [`:focus-within`](https://developer.mozilla.org/en-US/docs/Web/CSS/:focus-within) to style the card when any of its child is focused.
 :::
 
 {{"demo": "MultipleInteractionCard.js", "bg": true}}
+
+## Component variables
+
+The `Card` exposes 2 important CSS variables to communicate with other Joy components. If you want to adjust the padding or the border radius of the card, we recommend to do it via these variables instead of the direct properties because both of the variables will be used to calculate the proper border radius of the children.
+
+{{"demo": "CardVariables.js", "bg": true, "hideToolbar": true}}
 
 ## More examples
 

@@ -8,13 +8,13 @@ import Link from '@mui/joy/Link';
 import Typography from '@mui/joy/Typography';
 import Favorite from '@mui/icons-material/Favorite';
 
-export default function OverflowCard() {
+export default function MultipleInteractionCard() {
   return (
     <Card
       variant="outlined"
       sx={{ minWidth: 240, '&:hover, &:focus-within': { boxShadow: 'lg' } }}
     >
-      <CardOverflow variant="outlined">
+      <CardOverflow>
         <AspectRatio ratio="4/3">
           <img
             src="https://images.unsplash.com/photo-1627483262268-9c2b5b2834b5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
@@ -42,7 +42,7 @@ export default function OverflowCard() {
         aria-describedby="multiple-interaction-description"
         sx={{ fontSize: 'lg', mt: 3 }}
       >
-        <Link href="#multiple-interaction" overlay>
+        <Link href="#multiple-interaction" overlay color="text.primary">
           Minimal photography
         </Link>
       </Typography>
@@ -54,7 +54,7 @@ export default function OverflowCard() {
         By <Link href="#sukjit">Sujith</Link>
       </Typography>
       <CardOverflow
-        variant="outlined"
+        variant="soft"
         sx={{
           display: 'flex',
           gap: 1,

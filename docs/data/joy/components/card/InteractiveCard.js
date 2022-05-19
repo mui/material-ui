@@ -7,7 +7,7 @@ import Chip from '@mui/joy/Chip';
 import Typography from '@mui/joy/Typography';
 import Info from '@mui/icons-material/Info';
 
-export default function BasicCard() {
+export default function InteractiveCard() {
   return (
     <Card
       variant="outlined"

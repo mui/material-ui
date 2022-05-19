@@ -9,7 +9,7 @@ import Link from '@mui/joy/Link';
 export default function OverflowCard() {
   return (
     <Card variant="outlined" sx={{ minWidth: 240 }}>
-      <CardOverflow variant="outlined">
+      <CardOverflow>
         <AspectRatio ratio="1">
           <img
             src="https://images.unsplash.com/photo-1627483262268-9c2b5b2834b5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
@@ -24,12 +24,14 @@ export default function OverflowCard() {
         By <Link href="#sukjit">Sujith</Link>
       </Typography>
       <CardOverflow
-        variant="outlined"
+        variant="soft"
         sx={{
           display: 'flex',
           gap: 1,
           py: 1.5,
           px: 'var(--Card-padding)',
+          borderTop: '1px solid',
+          borderColor: 'neutral.outlinedBorder',
           bgcolor: 'background.level1',
         }}
       >

@@ -29,13 +29,15 @@ const CardOverflowRoot = styled('div', {
 })<{ ownerState: CardOverflowProps }>(({ theme, ownerState }) => {
   const childRadius =
     ownerState.variant === 'outlined'
-      ? `calc(var(--Card-radius) - var(--variant-outlinedBorderWidth))`
-      : 'var(--Card-radius)';
+      ? `calc(var(--CardOverflow-radius) - var(--variant-outlinedBorderWidth))`
+      : 'var(--CardOverflow-radius)';
   return [
     {
+      '--AspectRatio-margin': '0px calc(-1 * var(--Card-padding))',
       marginLeft: 'var(--CardOverflow-offset)',
       marginRight: 'var(--CardOverflow-offset)',
-      borderRadius: 'var(--Card-radius)',
+      padding: '0px var(--Card-padding)',
+      borderRadius: 'var(--CardOverflow-radius)',
       // use data-attribute instead of :first-child, :last-child to support zero config SSR (emotion)
       '&[data-first-child]': {
         '--AspectRatio-radius': `${childRadius} ${childRadius} 0 0`,

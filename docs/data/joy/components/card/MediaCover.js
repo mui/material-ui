@@ -32,12 +32,16 @@ export default function BasicCard() {
       <Card component="li" sx={{ minWidth: 200, flexGrow: 1 }}>
         <CardCover>
           <video
-            src="https://css-tricks-post-videos.s3.us-east-1.amazonaws.com/blurry-trees.mov"
             autoPlay
             loop
-            playsInline
             muted
-          />
+            poster="https://assets.codepen.io/6093409/river.jpg"
+          >
+            <source
+              src="https://assets.codepen.io/6093409/river.mp4"
+              type="video/mp4"
+            />
+          </video>
         </CardCover>
         <CardContent sx={{ justifyContent: 'center', gap: 1 }}>
           <Typography
