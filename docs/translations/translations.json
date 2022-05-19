@@ -38,6 +38,7 @@
     "skipToContent": "Skip to content",
     "toggleSettings": "Toggle settings drawer"
   },
+  "backToTop": "Scroll back to top",
   "blogDescr": "A sophisticated blog page layout. Markdown support is courtesy of markdown-to-jsx but is easily replaced.",
   "blogTitle": "Blog",
   "bundleSize": "Bundle size",
