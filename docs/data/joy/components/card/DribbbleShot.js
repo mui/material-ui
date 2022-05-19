@@ -38,25 +38,17 @@ export default function DribbbleShot() {
       >
         <figure>
           <img
-            alt="Ooki Crypto Trade Platform 3d animation branding crypto cryptocurrency design illustration motion motion design trading ui web design zajno"
+            alt="Yosemite by Casey Horner"
             width="330"
             height="247"
-            data-srcset="https://cdn.dribbble.com/users/1468665/screenshots/17864400/shot_cut_2.png?compress=1&amp;resize=320x240&amp;vertical=top 320w, https://cdn.dribbble.com/users/1468665/screenshots/17864400/shot_cut_2.png?compress=1&amp;resize=400x300&amp;vertical=top 400w, https://cdn.dribbble.com/users/1468665/screenshots/17864400/shot_cut_2.png?compress=1&amp;resize=450x338&amp;vertical=top 450w, https://cdn.dribbble.com/users/1468665/screenshots/17864400/shot_cut_2.png?compress=1&amp;resize=640x480&amp;vertical=top 640w, https://cdn.dribbble.com/users/1468665/screenshots/17864400/shot_cut_2.png?compress=1&amp;resize=700x525&amp;vertical=top 700w, https://cdn.dribbble.com/users/1468665/screenshots/17864400/shot_cut_2.png?compress=1&amp;resize=800x600&amp;vertical=top 800w, https://cdn.dribbble.com/users/1468665/screenshots/17864400/shot_cut_2.png?compress=1&amp;resize=840x630&amp;vertical=top 840w, https://cdn.dribbble.com/users/1468665/screenshots/17864400/shot_cut_2.png?compress=1&amp;resize=1000x750&amp;vertical=top 1000w, https://cdn.dribbble.com/users/1468665/screenshots/17864400/shot_cut_2.png?compress=1&amp;resize=1200x900&amp;vertical=top 1200w"
-            data-src="https://cdn.dribbble.com/users/1468665/screenshots/17864400/shot_cut_2.png?compress=1&amp;resize=400x300&amp;vertical=top"
-            data-sizes="auto"
-            src="https://cdn.dribbble.com/users/1468665/screenshots/17864400/shot_cut_2.png?compress=1&amp;resize=400x300&amp;vertical=top"
             sizes="338px"
-            srcSet="https://cdn.dribbble.com/users/1468665/screenshots/17864400/shot_cut_2.png?compress=1&amp;resize=320x240&amp;vertical=top 320w, https://cdn.dribbble.com/users/1468665/screenshots/17864400/shot_cut_2.png?compress=1&amp;resize=400x300&amp;vertical=top 400w, https://cdn.dribbble.com/users/1468665/screenshots/17864400/shot_cut_2.png?compress=1&amp;resize=450x338&amp;vertical=top 450w, https://cdn.dribbble.com/users/1468665/screenshots/17864400/shot_cut_2.png?compress=1&amp;resize=640x480&amp;vertical=top 640w, https://cdn.dribbble.com/users/1468665/screenshots/17864400/shot_cut_2.png?compress=1&amp;resize=700x525&amp;vertical=top 700w, https://cdn.dribbble.com/users/1468665/screenshots/17864400/shot_cut_2.png?compress=1&amp;resize=800x600&amp;vertical=top 800w, https://cdn.dribbble.com/users/1468665/screenshots/17864400/shot_cut_2.png?compress=1&amp;resize=840x630&amp;vertical=top 840w, https://cdn.dribbble.com/users/1468665/screenshots/17864400/shot_cut_2.png?compress=1&amp;resize=1000x750&amp;vertical=top 1000w, https://cdn.dribbble.com/users/1468665/screenshots/17864400/shot_cut_2.png?compress=1&amp;resize=1200x900&amp;vertical=top 1200w"
+            data-sizes="auto"
+            data-srcset="https://images.unsplash.com/photo-1515825838458-f2a94b20105a?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=988"
+            data-src="https://images.unsplash.com/photo-1515825838458-f2a94b20105a?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=988"
+            src="https://images.unsplash.com/photo-1515825838458-f2a94b20105a?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=988"
+            srcSet="https://images.unsplash.com/photo-1515825838458-f2a94b20105a?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=988"
           />
         </figure>
-        <CardCover className="video-cover" sx={{ display: 'none' }}>
-          <video
-            autoPlay
-            loop
-            muted
-            src="https://cdn.dribbble.com/users/1468665/screenshots/17864400/media/9e31a0251ab269d4d0785fbfbe0a782b.mp4"
-          />
-        </CardCover>
         <CardCover
           className="gradient-cover"
           sx={{
@@ -87,7 +79,7 @@ export default function DribbbleShot() {
                     display: 'block',
                   }}
                 >
-                  Ooki Crypto Trade Platform
+                  Yosemite
                 </Link>
               </Typography>
               <IconButton size="sm" color="neutral" sx={{ ml: 'auto' }}>
@@ -100,30 +92,33 @@ export default function DribbbleShot() {
           </Box>
         </CardCover>
       </AspectRatio>
-      <Box sx={{ display: 'flex', gap: 1, mt: 1, alignItems: 'center' }}>
+      <Box sx={{ display: 'flex', gap: 1, mt: 1.5, alignItems: 'center' }}>
         <Avatar
-          src="https://cdn.dribbble.com/users/845499/avatars/mini/466762084bf3466293fba47c63ba55f7.jpg?1452183579"
+          src="https://images.unsplash.com/profile-1502669002421-a8d274ad2897?dpr=2&auto=format&fit=crop&w=32&h=32&q=60&crop=faces&bg=fff"
           size="sm"
           sx={{ '--Avatar-size': '1.5rem' }}
         />
-        <Typography sx={{ fontSize: 'sm' }}>Zajno Crew</Typography>
+        <Typography sx={{ fontSize: 'sm', fontWeight: 'md' }}>
+          National Park
+        </Typography>
         <Chip
-          variant="soft"
+          variant="outlined"
           color="neutral"
           size="sm"
           sx={{
-            borderRadius: 'xs',
+            borderRadius: 'sm',
             py: 0.25,
             px: 0.5,
           }}
         >
-          TEAM
+          Featured
         </Chip>
         <Link
-          level="body2"
+          level="body3"
           underline="none"
           startDecorator={<Favorite />}
           sx={{
+            fontWeight: 'md',
             ml: 'auto',
             color: 'text.secondary',
             '&:hover': { color: 'danger.plainColor' },
@@ -132,10 +127,11 @@ export default function DribbbleShot() {
           117
         </Link>
         <Link
-          level="body2"
+          level="body3"
           underline="none"
           startDecorator={<Visibility />}
           sx={{
+            fontWeight: 'md',
             color: 'text.secondary',
             '&:hover': { color: 'primary.plainColor' },
           }}

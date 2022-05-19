@@ -6,11 +6,11 @@ import Card from '@mui/joy/Card';
 import IconButton from '@mui/joy/IconButton';
 import Typography from '@mui/joy/Typography';
 import Link from '@mui/joy/Link';
-import ThumbUpOutlined from '@mui/icons-material/ThumbUpOutlined';
+import FavoriteBorderRoundedIcon from '@mui/icons-material/FavoriteBorderRounded';
 
 export default function ContainerResponsive() {
   return (
-    <Box sx={{ minHeight: 353 }}>
+    <Box sx={{ minHeight: 350 }}>
       <Card
         variant="outlined"
         sx={(theme) => ({
@@ -23,7 +23,7 @@ export default function ContainerResponsive() {
           gap: 'clamp(0px, (100% - 360px) * 999, 16px)',
           transition: 'transform 0.3s, border 0.3s',
           '&:hover': {
-            borderColor: theme.vars.palette.warning.outlinedHoverBorder,
+            borderColor: theme.vars.palette.primary.outlinedHoverBorder,
             transform: 'translateY(-2px)',
           },
           '& > *': { minWidth: 'clamp(0px, (360px - 100%) * 999,100%)' },
@@ -38,7 +38,7 @@ export default function ContainerResponsive() {
         >
           <img
             alt=""
-            src="https://images.unsplash.com/photo-1620987278429-ab178d6eb547?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1450&q=80"
+            src="https://images.unsplash.com/photo-1492305175278-3b3afaa2f31f?ixlib=rb-1.2.1&raw_url=true&q=80&fm=jpg&crop=entropy&cs=tinysrgb&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2262"
           />
         </AspectRatio>
         <Box
@@ -51,7 +51,7 @@ export default function ContainerResponsive() {
         >
           <Box sx={{ display: 'flex' }}>
             <div>
-              <Typography level="h2" sx={{ fontSize: 'lg' }}>
+              <Typography level="h2" sx={{ fontSize: 'md' }} mb={0.5}>
                 <Link
                   href="#container-responsive"
                   overlay
@@ -61,10 +61,10 @@ export default function ContainerResponsive() {
                     '&.Mui-focusVisible:after': { outlineOffset: '-4px' },
                   }}
                 >
-                  Showcase
+                  Yosemite National Park
                 </Link>
               </Typography>
-              <Typography level="body3">A description of this widget.</Typography>
+              <Typography level="body2">California, USA</Typography>
             </div>
             <IconButton
               size="sm"
@@ -72,7 +72,7 @@ export default function ContainerResponsive() {
               color="neutral"
               sx={{ ml: 'auto', alignSelf: 'flex-start' }}
             >
-              <ThumbUpOutlined color="warning" />
+              <FavoriteBorderRoundedIcon color="danger" />
             </IconButton>
           </Box>
           <AspectRatio
@@ -84,16 +84,18 @@ export default function ContainerResponsive() {
           >
             <img
               alt=""
-              src="https://images.unsplash.com/photo-1620987278429-ab178d6eb547?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1450&q=80"
+              src="https://images.unsplash.com/photo-1492305175278-3b3afaa2f31f?ixlib=rb-1.2.1&raw_url=true&q=80&fm=jpg&crop=entropy&cs=tinysrgb&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2262"
             />
           </AspectRatio>
           <Box sx={{ display: 'flex', gap: 1.5, mt: 'auto' }}>
-            <Avatar variant="solid" color="neutral">
-              S
+            <Avatar variant="soft" color="neutral">
+              Y
             </Avatar>
             <div>
-              <Typography level="body3">creator</Typography>
-              <Typography>siriwatknp</Typography>
+              <Typography level="body2">Designed by</Typography>
+              <Typography fontWeight="lg" level="body2">
+                Nature itself
+              </Typography>
             </div>
           </Box>
         </Box>
