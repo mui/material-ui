@@ -1216,4 +1216,40 @@ describe('<Slider />', () => {
       expect(getByTestId(dataTestId).id).to.equal(id);
     });
   });
+
+  it('marked slider should be customizable in the theme', function test() {
+    if (/jsdom/.test(window.navigator.userAgent)) {
+      this.skip();
+    }
+
+    const theme = createTheme({
+      components: {
+        MuiSlider: {
+          styleOverrides: {
+            marked: {
+              marginTop: 40,
+              marginBottom: 0,
+            },
+          },
+        },
+      },
+    });
+
+    const { container } = render(
+      <ThemeProvider theme={theme}>
+        <Slider
+          marks={[
+            { label: '1', value: 1 },
+            { label: '2', value: 2 },
+          ]}
+          step={null}
+        />
+      </ThemeProvider>,
+    );
+
+    expect(container.querySelector(`.${classes.marked}`)).toHaveComputedStyle({
+      marginTop: '40px',
+      marginBottom: '0px',
+    });
+  });
 });

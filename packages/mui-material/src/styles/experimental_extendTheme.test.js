@@ -85,6 +85,9 @@ describe('experimental_extendTheme', () => {
 
     expect(theme.colorSchemes.light.palette.grey.darkChannel).to.equal('97 97 97');
     expect(theme.colorSchemes.dark.palette.grey.darkChannel).to.equal('97 97 97');
+
+    expect(theme.colorSchemes.dark.palette.action.activeChannel).to.equal('255 255 255');
+    expect(theme.colorSchemes.light.palette.action.activeChannel).to.equal('0 0 0');
   });
 
   it('should change grey darkChannel', () => {
@@ -254,6 +257,24 @@ describe('experimental_extendTheme', () => {
         placeholder: 0.2,
         inputTouchBottomLine: 0.7,
       });
+    });
+  });
+
+  describe('overlays', () => {
+    it('should provide the default array', () => {
+      const theme = extendTheme();
+      expect(theme.colorSchemes.light.overlays).to.have.length(0);
+      expect(theme.colorSchemes.dark.overlays).to.have.length(25);
+
+      expect(theme.colorSchemes.dark.overlays[24]).to.equal(
+        'linear-gradient(rgba(255 255 255 / 0.16), rgba(255 255 255 / 0.16))',
+      );
+    });
+
+    it('should override the array as expected', () => {
+      const overlays = Array(24).fill('none');
+      const theme = extendTheme({ colorSchemes: { dark: { overlays } } });
+      expect(theme.colorSchemes.dark.overlays).to.equal(overlays);
     });
   });
 
