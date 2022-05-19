@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import composeClasses from '../composeClasses';
 import { getOptionGroupUnstyledUtilityClass } from './optionGroupUnstyledClasses';
-import OptionGroupUnstyledProps from './OptionGroupUnstyledProps';
+import { OptionGroupUnstyledProps } from './OptionGroupUnstyled.types';
 
 function useUtilityClasses(disabled: boolean) {
   const slots = {

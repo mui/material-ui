@@ -113,7 +113,7 @@ declare module '@mui/joy/styles' {
       },
     },
     components: {
-      MuiButton: {
+      JoyButton: {
         styleOverrides: {
           root: ({ ownerState, theme }) => {
             const { color, variant } = ownerState;
@@ -131,7 +131,7 @@ declare module '@mui/joy/styles' {
           },
         },
       },
-      MuiSwitch: {
+      JoySwitch: {
         styleOverrides: {
           thumb: ({ ownerState, theme }) => [
             ownerState.color === 'primary' && {

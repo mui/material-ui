@@ -23,7 +23,7 @@ const useUtilityClasses = (ownerState: CardOverflowProps) => {
 };
 
 const CardOverflowRoot = styled('div', {
-  name: 'MuiCardOverflow',
+  name: 'JoyCardOverflow',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: CardOverflowProps }>(({ theme, ownerState }) => {
@@ -57,7 +57,7 @@ const CardOverflowRoot = styled('div', {
 const CardOverflow = React.forwardRef(function CardOverflow(inProps, ref) {
   const props = useThemeProps<typeof inProps & CardOverflowProps>({
     props: inProps,
-    name: 'MuiCardOverflow',
+    name: 'JoyCardOverflow',
   });
 
   const {

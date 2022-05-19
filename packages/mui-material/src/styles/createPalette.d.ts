@@ -121,11 +121,11 @@ export interface PaletteWithChannels {
   warning: PaletteColor & Channels;
   info: PaletteColor & Channels;
   success: PaletteColor & Channels;
-  grey: Color;
+  grey: Color & { darkChannel: string };
   text: TypeText & { primaryChannel: string; secondaryChannel: string; disabledChannel: string };
   divider: TypeDivider;
   dividerChannel: TypeDivider;
-  action: TypeAction & { disabledChannel: string };
+  action: TypeAction & { disabledChannel: string; activeChannel: string };
   background: TypeBackground;
   getContrastText: (background: string) => string;
   augmentColor: (options: PaletteAugmentColorOptions) => PaletteColor;

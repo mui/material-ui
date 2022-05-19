@@ -38,6 +38,7 @@
     "skipToContent": "Skip to content",
     "toggleSettings": "Toggle settings drawer"
   },
+  "backToTop": "Scroll back to top",
   "blogDescr": "A sophisticated blog page layout. Markdown support is courtesy of markdown-to-jsx but is easily replaced.",
   "blogTitle": "Blog",
   "bundleSize": "Bundle size",
@@ -178,12 +179,15 @@
     "/system/styled": "styled",
     "/system/react-": "Components",
     "/system/react-box": "Box",
+    "/system/react-container": "Container",
     "/system/styles": "Styles",
     "/system/styles/basics": "Basics",
     "/system/styles/advanced": "Advanced",
     "/base/getting-started": "Getting started",
     "/base/getting-started/overview": "Overview",
     "/base/getting-started/installation": "Installation",
+    "/base/getting-started/usage": "Usage",
+    "/base/getting-started/customization": "Customization",
     "/base/react-": "Components",
     "inputs": "Inputs",
     "/base/react-badge": "Badge",
@@ -301,7 +305,6 @@
     "/material-ui/customization/default-theme": "Default Theme",
     "/material-ui/customization/how-to-customize": "How to customize",
     "/material-ui/customization/color": "Color",
-    "/material-ui/customization/unstyled-components": "Unstyled components",
     "/material-ui/guides": "How To Guides",
     "/material-ui/guides/understand-mui-packages": "Understand MUI packages",
     "/material-ui/guides/typescript": "TypeScript",
@@ -332,6 +335,7 @@
     "/material-ui/discover-more/backers": "Sponsors & Backers",
     "/material-ui/discover-more/vision": "Vision",
     "/material-ui/discover-more/changelog": "Changelog",
-    "/material-ui/discover-more/languages": "Languages"
+    "/material-ui/discover-more/languages": "Languages",
+    "https://mui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=sidenav": "Templates"
   }
 }

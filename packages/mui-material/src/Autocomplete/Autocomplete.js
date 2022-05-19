@@ -449,6 +449,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
   const hasClearIcon = !disableClearable && !disabled && dirty && !readOnly;
   const hasPopupIcon = (!freeSolo || forcePopupIcon === true) && forcePopupIcon !== false;
 
+  // If you modify this, make sure to keep the `AutocompleteOwnerState` type in sync.
   const ownerState = {
     ...props,
     disablePortal,
@@ -473,7 +474,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     });
 
     if (renderTags) {
-      startAdornment = renderTags(value, getCustomizedTagProps);
+      startAdornment = renderTags(value, getCustomizedTagProps, ownerState);
     } else {
       startAdornment = value.map((option, index) => (
         <Chip
@@ -1024,6 +1025,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    *
    * @param {T[]} value The `value` provided to the component.
    * @param {function} getTagProps A tag props getter.
+   * @param {object} ownerState The state of the Autocomplete component.
    * @returns {ReactNode}
    */
   renderTags: PropTypes.func,

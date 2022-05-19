@@ -69,7 +69,9 @@ The component has two states that can be controlled:
 1. the "value" state with the `value`/`onChange` props combination. This state represents the value selected by the user, for instance when pressing <kbd class="key">Enter</kbd>.
 2. the "input value" state with the `inputValue`/`onInputChange` props combination. This state represents the value displayed in the textbox.
 
-> ⚠️ These two states are isolated, they should be controlled independently.
+:::warning
+⚠️ These two states are isolated, they should be controlled independently.
+:::
 
 {{"demo": "ControllableStates.js"}}
 
@@ -83,8 +85,11 @@ The prop is designed to cover the primary use case of a **search input** with su
 
 {{"demo": "FreeSolo.js"}}
 
-> ⚠️ Be careful when using the free solo mode with non-string options, as it may cause type mismatch.  
-> The value created by typing into the textbox is always a string, regardless of the type of the options.
+:::warning
+⚠️ Be careful when using the free solo mode with non-string options, as it may cause type mismatch.
+
+The value created by typing into the textbox is always a string, regardless of the type of the options.
+:::
 
 ### Creatable
 
@@ -172,7 +177,9 @@ For this demo, we need to load the [Google Maps JavaScript](https://developers.g
 
 {{"demo": "GoogleMaps.js"}}
 
-> ⚠️ Before you can start using the Google Maps JavaScript API and Places API, you must sign up and create a billing account.
+:::warning
+⚠️ Before you can start using the Google Maps JavaScript API and Places API, you must sign up and create a billing account.
+:::
 
 ## Multiple values
 
