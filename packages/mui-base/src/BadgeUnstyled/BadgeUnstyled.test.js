@@ -28,6 +28,7 @@ describe('<BadgeUnstyled />', () => {
           expectedClassName: classes.badge,
         },
       },
+      skip: ['componentsPropsCallbacks'], // not implemented yet
     }),
   );
 

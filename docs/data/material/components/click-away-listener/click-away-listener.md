@@ -36,7 +36,9 @@ However, you can configure it to respond to the leading events (mouse down + tou
 
 {{"demo": "LeadingClickAway.js"}}
 
-> ⚠️ In this mode, only interactions on the scrollbar of the document is ignored.
+:::warning
+⚠️ In this mode, only interactions on the scrollbar of the document is ignored.
+:::
 
 ## Accessibility
 

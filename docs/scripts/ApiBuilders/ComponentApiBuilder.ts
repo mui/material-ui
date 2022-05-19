@@ -498,7 +498,7 @@ const attachPropsTable = (reactApi: ReactApi) => {
   reactApi.propsTable = componentProps;
 };
 
-const systemComponents = ['Box'];
+const systemComponents = ['Container', 'Box'];
 
 /**
  * - Build react component (specified filename) api by lookup at its definition (.d.ts or ts)

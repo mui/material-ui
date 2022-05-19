@@ -13,7 +13,7 @@ describe('Joy <ListDivider />', () => {
     inheritComponent: 'li',
     render,
     ThemeProvider,
-    muiName: 'MuiListDivider',
+    muiName: 'JoyListDivider',
     refInstanceof: window.HTMLLIElement,
     testVariantProps: { inset: 'gutter' },
     skip: ['componentsProp', 'classesRoot'],
