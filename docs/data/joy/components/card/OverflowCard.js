@@ -4,30 +4,29 @@ import Box from '@mui/joy/Box';
 import Card from '@mui/joy/Card';
 import CardOverflow from '@mui/joy/CardOverflow';
 import Typography from '@mui/joy/Typography';
-import Link from '@mui/joy/Link';
 
 export default function OverflowCard() {
   return (
-    <Card variant="outlined" sx={{ minWidth: 240 }}>
+    <Card variant="outlined" sx={{ minWidth: 320 }}>
       <CardOverflow>
-        <AspectRatio ratio="1">
+        <AspectRatio ratio="2">
           <img
-            src="https://images.unsplash.com/photo-1627483262268-9c2b5b2834b5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
+            src="https://images.unsplash.com/photo-1532614338840-ab30cf10ed36?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3270"
             alt=""
           />
         </AspectRatio>
       </CardOverflow>
-      <Typography level="h2" sx={{ fontSize: 'lg', mt: 3 }}>
-        <Link href="#minimal-photo">Minimal photography</Link>
+      <Typography level="h2" sx={{ fontSize: 'md', mt: 2 }}>
+        Yosemite National Park
       </Typography>
       <Typography level="body2" sx={{ mt: 0.5, mb: 2 }}>
-        By <Link href="#sukjit">Sujith</Link>
+        California
       </Typography>
       <CardOverflow
         variant="soft"
         sx={{
           display: 'flex',
-          gap: 1,
+          gap: 1.5,
           py: 1.5,
           px: 'var(--Card-padding)',
           borderTop: '1px solid',
@@ -35,11 +34,11 @@ export default function OverflowCard() {
           bgcolor: 'background.level1',
         }}
       >
-        <Typography level="body2" sx={{ fontWeight: 'md', color: 'text.primary' }}>
+        <Typography level="body3" sx={{ fontWeight: 'md', color: 'text.secondary' }}>
           6.3k views
         </Typography>
         <Box sx={{ width: 2, bgcolor: 'divider' }} />
-        <Typography level="body2" sx={{ fontWeight: 'md', color: 'text.primary' }}>
+        <Typography level="body3" sx={{ fontWeight: 'md', color: 'text.secondary' }}>
           1 hour ago
         </Typography>
       </CardOverflow>
