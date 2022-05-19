@@ -1,5 +1,5 @@
 import { deepmerge } from '@mui/utils';
-import { colorChannel, darken, lighten, emphasize } from '@mui/system';
+import { colorChannel, alpha, darken, lighten, emphasize } from '@mui/system';
 import createThemeWithoutVars from './createTheme';
 import { getOverlayAlpha } from '../Paper/Paper';
 
@@ -90,6 +90,7 @@ export default function extendTheme(options = {}, ...args) {
       'StepConnector',
       'StepContent',
       'Switch',
+      'TableCell',
     ]);
     if (key === 'light') {
       setColor(palette.AppBar, 'defaultBgColor', 'var(--md-palette-grey-100)');
@@ -120,6 +121,7 @@ export default function extendTheme(options = {}, ...args) {
       setColor(palette.Switch, 'infoDisabledColor', lighten(palette.info.main, 0.62));
       setColor(palette.Switch, 'successDisabledColor', lighten(palette.success.main, 0.62));
       setColor(palette.Switch, 'warningDisabledColor', lighten(palette.warning.main, 0.62));
+      setColor(palette.TableCell, 'borderColor', lighten(alpha(palette.divider, 1), 0.88));
     } else {
       setColor(palette.AppBar, 'defaultBgColor', 'var(--md-palette-grey-900)');
       setColor(palette.Chip, 'defaultBorderColor', 'var(--md-palette-grey-700)');
@@ -150,6 +152,7 @@ export default function extendTheme(options = {}, ...args) {
       setColor(palette.Switch, 'infoDisabledColor', darken(palette.info.main, 0.55));
       setColor(palette.Switch, 'successDisabledColor', darken(palette.success.main, 0.55));
       setColor(palette.Switch, 'warningDisabledColor', darken(palette.warning.main, 0.55));
+      setColor(palette.TableCell, 'borderColor', darken(alpha(palette.divider, 1), 0.68));
     }
 
     palette.common.backgroundChannel = colorChannel(palette.common.background);
