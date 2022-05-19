@@ -38,6 +38,7 @@
     "skipToContent": "Pular para o conteúdo",
     "toggleSettings": "Alternar drawer de configurações"
   },
+  "backToTop": "Scroll back to top",
   "blogDescr": "Um leiaute de página de blog sofisticado. O suporte do markdown é cortesia do markdown-to-jsx, mas pode ser facilmente substituído.",
   "blogTitle": "Blog",
   "bundleSize": "Tamanho do pacote",
