@@ -12,45 +12,42 @@ export default function InteractiveCard() {
     <Card
       variant="outlined"
       sx={{
-        minWidth: '300px',
+        minWidth: '320px',
         flexDirection: 'row',
         gap: 2,
-        '&:hover': { boxShadow: 'md', borderColor: 'primary.outlinedHoverBorder' },
+        '&:hover': { boxShadow: 'md', borderColor: 'neutral.outlinedHoverBorder' },
       }}
     >
-      <AspectRatio ratio="1" max={100} sx={{ width: 100 }}>
-        <img src="/static/images/cards/real-estate.png" alt="" />
+      <AspectRatio ratio="1" max={90} sx={{ width: 90 }}>
+        <img
+          src="https://images.unsplash.com/photo-1507833423370-a126b89d394b?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3387"
+          alt=""
+        />
       </AspectRatio>
       <Box>
-        <Box sx={{ ml: 0.5, mb: 1 }}>
-          <Typography
-            level="h2"
-            fontSize="sm"
-            aria-describedby="card-description"
-            mt={0.5}
-            mb={1}
-          >
+        <Box sx={{ ml: 0.5 }}>
+          <Typography level="h2" fontSize="lg" id="card-description" mb={0.5}>
+            Yosemite Park
+          </Typography>
+          <Typography fontSize="sm" aria-describedby="card-description" mb={1}>
             <Link
               overlay
               underline="none"
               href="#interactive-card"
               sx={{ color: 'text.tertiary' }}
             >
-              123 Main St, Phoenix, AZ
+              California, USA
             </Link>
           </Typography>
-          <Typography fontSize="md" fontWeight="lg" id="card-description">
-            $280k - $310k
-          </Typography>
+          <Chip
+            variant="outlined"
+            color="primary"
+            size="sm"
+            sx={{ pointerEvents: 'none' }}
+          >
+            Cool weather all day long
+          </Chip>
         </Box>
-        <Chip
-          variant="soft"
-          startDecorator={<Info fontSize="md" />}
-          size="sm"
-          sx={{ pointerEvents: 'none' }}
-        >
-          Confidence score of 85%
-        </Chip>
       </Box>
     </Card>
   );
