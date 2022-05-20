@@ -23,10 +23,11 @@ import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
 import DarkModeRoundedIcon from '@mui/icons-material/DarkModeRounded';
 import LightModeRoundedIcon from '@mui/icons-material/LightModeRounded';
 import GridViewRoundedIcon from '@mui/icons-material/GridViewRounded';
-import FolderRoundedIcon from '@mui/icons-material/FolderRounded';
+import DraftsRoundedIcon from '@mui/icons-material/DraftsRounded';
 import AssistantPhotoRoundedIcon from '@mui/icons-material/AssistantPhotoRounded';
 import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
-import AttachEmailRoundedIcon from '@mui/icons-material/AttachEmailRounded';
+import MailRoundedIcon from '@mui/icons-material/MailRounded';
+import ForwardToInboxRoundedIcon from '@mui/icons-material/ForwardToInboxRounded';
 
 // custom
 import exampleUITheme, { LoadFont } from 'docs/src/_experiments/JoyExampleUIs/exampleUITheme';
@@ -38,13 +39,13 @@ const ColorSchemeToggle = () => {
     setMounted(true);
   }, []);
   if (!mounted) {
-    return <IconButton size="sm" variant="outlined" color="neutral" />;
+    return <IconButton size="sm" variant="outlined" color="primary" />;
   }
   return (
     <IconButton
       size="sm"
       variant="outlined"
-      color="neutral"
+      color="primary"
       onClick={() => {
         if (mode === 'light') {
           setMode('dark');
@@ -72,6 +73,8 @@ export default function EmailExample() {
       />
       <Box
         sx={{
+          bgcolor: (theme) =>
+            theme.palette.mode === 'dark' ? 'background.body' : 'background.level1',
           display: 'grid',
           gridTemplateColumns: {
             xs: '0px 0px 1fr',
@@ -86,6 +89,8 @@ export default function EmailExample() {
           className="Header"
           sx={{
             p: 2,
+            bgcolor: (theme) =>
+              theme.palette.mode === 'dark' ? 'background.level1' : 'common.white',
             display: 'flex',
             flexDirection: 'row',
             justifyContent: 'space-between',
@@ -95,26 +100,24 @@ export default function EmailExample() {
             borderColor: 'divider',
           }}
         >
-          <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
-            <IconButton size="sm" sx={{ bgcolor: 'primary.100' }}>
-              <AttachEmailRoundedIcon />
+          <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 1.5 }}>
+            <IconButton size="sm" variant="solid">
+              <MailRoundedIcon />
             </IconButton>
-            <Typography fontWeight={700} sx={{ ml: 1 }}>
-              Email
-            </Typography>
+            <Typography fontWeight={700}>Email</Typography>
           </Box>
           <TextField
             size="sm"
             placeholder="Search anything..."
-            startDecorator={<SearchRoundedIcon />}
+            startDecorator={<SearchRoundedIcon color="primary" />}
             endDecorator={
               <IconButton
                 variant="outlined"
                 size="sm"
                 color="neutral"
-                sx={{ '--IconButton-size': '24px', borderRadius: '4px' }}
+                sx={{ '--IconButton-size': '24px', borderRadius: '4px', mr: -0.3 }}
               >
-                <Typography fontWeight={700} fontSize="sm">
+                <Typography fontWeight={700} fontSize="sm" color="text.tertiary">
                   /
                 </Typography>
               </IconButton>
@@ -127,8 +130,8 @@ export default function EmailExample() {
             }}
           />
           <Box sx={{ display: 'flex', flexDirection: 'row', gap: 1.5 }}>
-            <IconButton size="sm" variant="outlined" color="neutral">
-              <GridViewRoundedIcon color="primary" />
+            <IconButton size="sm" variant="outlined" color="primary">
+              <GridViewRoundedIcon />
             </IconButton>
             <ColorSchemeToggle />
           </Box>
@@ -136,6 +139,8 @@ export default function EmailExample() {
         <Box
           className="Navigation"
           sx={{
+            bgcolor: (theme) =>
+              theme.palette.mode === 'dark' ? 'background.level1' : 'common.white',
             borderRight: '1px solid',
             borderColor: 'divider',
             p: 2,
@@ -167,7 +172,7 @@ export default function EmailExample() {
             </ListItem>
             <ListItem>
               <ListItemButton>
-                <ListItemDecorator sx={{ color: 'inherit' }}>
+                <ListItemDecorator sx={{ color: 'neutral.500' }}>
                   <OutboxRoundedIcon fontSize="small" />
                 </ListItemDecorator>
                 <ListItemContent>Sent</ListItemContent>
@@ -175,15 +180,15 @@ export default function EmailExample() {
             </ListItem>
             <ListItem>
               <ListItemButton>
-                <ListItemDecorator sx={{ color: 'inherit' }}>
-                  <FolderRoundedIcon fontSize="small" />
+                <ListItemDecorator sx={{ color: 'neutral.500' }}>
+                  <DraftsRoundedIcon fontSize="small" />
                 </ListItemDecorator>
                 <ListItemContent>Draft</ListItemContent>
               </ListItemButton>
             </ListItem>
             <ListItem>
               <ListItemButton>
-                <ListItemDecorator sx={{ color: 'inherit' }}>
+                <ListItemDecorator sx={{ color: 'neutral.500' }}>
                   <AssistantPhotoRoundedIcon fontSize="small" />
                 </ListItemDecorator>
                 <ListItemContent>Flagged</ListItemContent>
@@ -191,7 +196,7 @@ export default function EmailExample() {
             </ListItem>
             <ListItem>
               <ListItemButton>
-                <ListItemDecorator sx={{ color: 'inherit' }}>
+                <ListItemDecorator sx={{ color: 'neutral.500' }}>
                   <DeleteRoundedIcon fontSize="small" />
                 </ListItemDecorator>
                 <ListItemContent>Trash</ListItemContent>
@@ -280,6 +285,8 @@ export default function EmailExample() {
         <Box
           className="Inbox"
           sx={{
+            bgcolor: (theme) =>
+              theme.palette.mode === 'dark' ? 'background.level1' : 'common.white',
             borderRight: '1px solid',
             borderColor: 'divider',
           }}
@@ -294,7 +301,7 @@ export default function EmailExample() {
             </Typography>
           </Box>
           <Box sx={{ py: 10 }}>
-            <Typography color="neutral.500" level="body2" sx={{ textAlign: 'center' }}>
+            <Typography color="text.tertiary" level="body2" sx={{ textAlign: 'center' }}>
               You&apos;ve read all messages in your inbox.
             </Typography>
           </Box>
@@ -330,11 +337,15 @@ export default function EmailExample() {
                     }}
                   >
                     <Typography level="body3">Janet Erickson</Typography>
-                    <Typography level="body3">14 Oct 2016</Typography>
+                    <Typography level="body3" color="text.tertiary">
+                      14 Oct 2016
+                    </Typography>
                   </Box>
                   <Box>
                     <Typography sx={{ mb: 0.5 }}>Blank slates for new website</Typography>
-                    <Typography level="body2">Hi, Thomas, You don&apos;t have...</Typography>
+                    <Typography level="body2" color="text.tertiary">
+                      Hi, Thomas, You don&apos;t have...
+                    </Typography>
                   </Box>
                 </Box>
               </ListItemButton>
@@ -362,11 +373,15 @@ export default function EmailExample() {
                     }}
                   >
                     <Typography level="body3">Janet Erickson</Typography>
-                    <Typography level="body3">14 Oct 2016</Typography>
+                    <Typography level="body3" color="text.tertiary">
+                      14 Oct 2016
+                    </Typography>
                   </Box>
                   <Box>
                     <Typography sx={{ mb: 0.5 }}>Blank slates for new website</Typography>
-                    <Typography level="body2">Hi, Thomas, You don&apos;t have...</Typography>
+                    <Typography level="body2" color="text.tertiary">
+                      Hi, Thomas, You don&apos;t have...
+                    </Typography>
                   </Box>
                 </Box>
               </ListItemButton>
@@ -394,11 +409,15 @@ export default function EmailExample() {
                     }}
                   >
                     <Typography level="body3">Janet Erickson</Typography>
-                    <Typography level="body3">14 Oct 2016</Typography>
+                    <Typography level="body3" color="text.tertiary">
+                      14 Oct 2016
+                    </Typography>
                   </Box>
                   <Box>
                     <Typography sx={{ mb: 0.5 }}>Blank slates for new website</Typography>
-                    <Typography level="body2">Hi, Thomas, You don&apos;t have...</Typography>
+                    <Typography level="body2" color="text.tertiary">
+                      Hi, Thomas, You don&apos;t have...
+                    </Typography>
                   </Box>
                 </Box>
               </ListItemButton>
@@ -406,8 +425,16 @@ export default function EmailExample() {
             <ListDivider sx={{ m: 0 }} />
           </List>
         </Box>
-        <Box component="main" className="Main" sx={{ p: 2, bgcolor: 'background.level1' }}>
-          <Sheet variant="outlined" sx={{ minHeight: 500, borderRadius: 'sm', p: 2 }}>
+        <Box component="main" className="Main" sx={{ p: 2 }}>
+          <Sheet
+            variant="outlined"
+            sx={{
+              minHeight: 500,
+              borderRadius: 'sm',
+              p: 2,
+              bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'neutral.900' : 'common.white'),
+            }}
+          >
             <ListItem
               sx={{ display: 'flex', alignSelf: 'flex-start', justifyContent: 'space-between' }}
             >
@@ -426,29 +453,29 @@ export default function EmailExample() {
                     ml: 2,
                   }}
                 >
-                  <Typography level="body2" color="neutral.800">
+                  <Typography level="body2" color="text.primary">
                     Janet Erickson
                   </Typography>
-                  <Typography level="body3">14 Oct 2016</Typography>
+                  <Typography level="body3" color="text.tertiary">
+                    14 Oct 2016
+                  </Typography>
                 </Box>
               </Box>
               <Box sx={{ display: 'flex', height: '32px', flexDirection: 'row', gap: 1.5 }}>
                 <Button variant="outlined" color="neutral" size="sm">
-                  <Typography level="body1" color="primary.600">
-                    Reply
-                  </Typography>
+                  Reply
                 </Button>
                 <IconButton size="sm" variant="outlined" color="neutral">
-                  <GridViewRoundedIcon color="primary" />
+                  <ForwardToInboxRoundedIcon />
                 </IconButton>
                 <IconButton size="sm" variant="outlined" color="neutral">
-                  <DarkModeRoundedIcon color="primary" />
+                  <DeleteRoundedIcon />
                 </IconButton>
               </Box>
             </ListItem>
             <ListDivider sx={{ mt: 2 }} />
             <ListItem sx={{ py: 2, display: 'flex', flexDirection: 'column', alignItems: 'start' }}>
-              <Typography level="h5" color="neutral.800">
+              <Typography level="h5" color="text.primary">
                 Blank slates for new website
               </Typography>
               <Box sx={{ mt: 1, display: 'flex', alignItems: 'center', gap: 1 }}>
@@ -467,7 +494,7 @@ export default function EmailExample() {
               </Box>
             </ListItem>
             <ListDivider />
-            <Typography level="body2" color="neutral.800" mt={2}>
+            <Typography level="body2" color="text.secondary" mt={2}>
               Hi, Thomas,
               <br />
               <br />
