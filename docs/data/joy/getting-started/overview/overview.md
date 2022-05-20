@@ -17,7 +17,7 @@ We're adding new components and features regularly, and you're welcome to contri
 
 - **Ship faster:** Joy UI gives you a significant amount of prebuilt components you need to develop web apps, with a sleek and carefully designed look and feel, allowing it to achieve a good-looking result without a dedicated designer.
 - **Extensive customization:** you're encouraged to customize each and every tiny piece of the Joy UI components so they match your desired design.
-- **Accessibility:** Joy UI components are built on top of [MUI Base unstyled components and low-level hooks](/base/getting-started/overview/), giving you support for several accessibility features out of the box. We do our best to make all components screen reader-friendly, and offer suggestions for optimizing accessibility throughout our documentation.
+- **Accessibility in mind:** Joy UI components are built on top of [MUI Base unstyled components and low-level hooks](/base/getting-started/overview/), giving you support for several accessibility features out of the box. We do our best to make all components screen reader-friendly, and offer suggestions for optimizing accessibility throughout our documentation.
 
 ## Principles
 
