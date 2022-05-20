@@ -76,7 +76,7 @@ export default function EmailExample() {
           gridTemplateColumns: {
             xs: '0px 0px 1fr',
             sm: '64px minmax(200px, 1fr) minmax(500px, 1fr)',
-            md: 'minmax(160px, 230px) minmax(200px, 400px) minmax(700px, 1fr)',
+            md: 'minmax(160px, 260px) minmax(200px, 480px) minmax(700px, 1fr)',
           },
           gridTemplateRows: '64px 1fr',
           minHeight: '100vh',
@@ -446,7 +446,8 @@ export default function EmailExample() {
                 </IconButton>
               </Box>
             </ListItem>
-            <ListItem sx={{ py: 4, display: 'flex', flexDirection: 'column', textAlign: 'left' }}>
+            <ListDivider sx={{ mt: 2 }} />
+            <ListItem sx={{ py: 2, display: 'flex', flexDirection: 'column', alignItems: 'start' }}>
               <Typography level="h5" color="neutral.800">
                 Blank slates for new website
               </Typography>
@@ -465,7 +466,8 @@ export default function EmailExample() {
                 </Chip>
               </Box>
             </ListItem>
-            <Typography level="body2" color="neutral.800">
+            <ListDivider />
+            <Typography level="body2" color="neutral.800" mt={2}>
               Hi, Thomas,
               <br />
               <br />
