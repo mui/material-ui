@@ -6,8 +6,10 @@ import { visuallyHidden } from '@mui/utils';
 import { styled } from '@mui/material/styles';
 import prism from '@mui/markdown/prism';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
+import { useTranslate } from 'docs/src/modules/utils/i18n';
 
 const Wrapper = styled(MarkdownElement)(({ theme }) => ({
+  position: 'relative',
   padding: 0,
   marginBottom: theme.spacing(1),
   marginTop: theme.spacing(2),
@@ -60,6 +62,7 @@ const StyledEditor = styled(Editor)(({ theme }) => ({
 }));
 
 const CodeEditor = ({ language = 'jsx', onChange, ...rest }) => {
+  const t = useTranslate();
   const wrapperRef = React.useRef(null);
 
   React.useEffect(() => {
@@ -76,7 +79,7 @@ const CodeEditor = ({ language = 'jsx', onChange, ...rest }) => {
         }
 
         if (event.key === 'Escape') {
-          wrapperRef.current.querySelector('input').focus();
+          wrapperRef.current.lastElementChild.focus();
           return;
         }
 
@@ -98,7 +101,21 @@ const CodeEditor = ({ language = 'jsx', onChange, ...rest }) => {
           onValueChange={onChange}
         />
       </pre>
-      <Box as="input" sx={visuallyHidden} />
+      <Box
+        tabIndex={0}
+        sx={{
+          color: 'white',
+          position: 'absolute',
+          top: '4px',
+          right: '20px',
+          fontSize: '12px',
+          outline: 'none',
+          '&:not(:focus)': visuallyHidden,
+        }}
+        dangerouslySetInnerHTML={{
+          __html: t('editorHint'),
+        }}
+      />
     </Wrapper>
   );
 };
