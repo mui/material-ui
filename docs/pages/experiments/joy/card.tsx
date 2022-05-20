@@ -6,6 +6,7 @@ import AvatarGroup from '@mui/joy/AvatarGroup';
 import Avatar from '@mui/joy/Avatar';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
+import Chip from '@mui/joy/Chip';
 import Card from '@mui/joy/Card';
 import CardCover from '@mui/joy/CardCover';
 import CardContent from '@mui/joy/CardContent';
@@ -32,6 +33,7 @@ import LocationOn from '@mui/icons-material/LocationOnOutlined';
 import Visibility from '@mui/icons-material/Visibility';
 import CallMade from '@mui/icons-material/CallMade';
 import CreateNewFolder from '@mui/icons-material/CreateNewFolder';
+import Info from '@mui/icons-material/Info';
 
 const ColorSchemePicker = () => {
   const { mode, setMode } = useColorScheme();
@@ -673,7 +675,7 @@ export default function JoySvgIcon() {
             })}
           >
             <AspectRatio
-              variant="outlined"
+              variant="soft"
               sx={{
                 flexGrow: 1,
                 pb: 'clamp(0px, (100% - 360px) * 999, min(calc(100% / (16 / 9)), 300px))',
@@ -740,6 +742,52 @@ export default function JoySvgIcon() {
                 src="https://images.unsplash.com/photo-1620987278429-ab178d6eb547?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1450&q=80"
               />
             </AspectRatio>
+          </Card>
+          <Card
+            component="li"
+            variant="outlined"
+            sx={{
+              placeSelf: 'flex-start',
+              minWidth: '300px',
+              flexDirection: 'row',
+              gap: 2,
+              '&:hover': { boxShadow: 'md', borderColor: 'primary.outlinedHoverBorder' },
+            }}
+          >
+            <AspectRatio ratio="1" max={100}>
+              <img src="/static/images/cards/real-estate.png" alt="" />
+            </AspectRatio>
+            <Box>
+              <Box sx={{ ml: 0.5, mb: 1 }}>
+                <Typography
+                  level="h2"
+                  fontSize="sm"
+                  aria-describedby="card-description"
+                  mt={0.5}
+                  mb={1}
+                >
+                  <Link
+                    overlay
+                    underline="none"
+                    href="#interactive-card"
+                    sx={{ color: 'text.tertiary' }}
+                  >
+                    123 Main St, Phoenix, AZ
+                  </Link>
+                </Typography>
+                <Typography fontSize="md" fontWeight="lg" id="card-description">
+                  $280k - $310k
+                </Typography>
+              </Box>
+              <Chip
+                variant="soft"
+                startDecorator={<Info fontSize="md" />}
+                size="sm"
+                sx={{ pointerEvents: 'none' }}
+              >
+                Confidence score of 85%
+              </Chip>
+            </Box>
           </Card>
         </Box>
       </Box>
