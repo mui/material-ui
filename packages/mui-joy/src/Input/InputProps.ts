@@ -1,6 +1,6 @@
 import React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
-import { UseInputProps } from '@mui/base/InputUnstyled';
+import { UseInputParameters } from '@mui/base/InputUnstyled';
 import { InputClasses } from './inputClasses';
 import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
 
@@ -14,7 +14,7 @@ export interface InputPropsSizeOverrides {}
 
 export interface InputTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P &
-    UseInputProps & {
+    Omit<UseInputParameters, 'inputRef'> & {
       'aria-describedby'?: string;
       'aria-label'?: string;
       'aria-labelledby'?: string;
@@ -70,10 +70,6 @@ export interface InputTypeMap<P = {}, D extends React.ElementType = 'div'> {
        * The id of the `input` element.
        */
       id?: string;
-      /**
-       * Pass a ref to the `input` element.
-       */
-      inputRef?: React.Ref<any>;
       /**
        * Name attribute of the `input` element.
        */

@@ -30,7 +30,9 @@ Adding `mode: 'dark'` to the `createTheme` helper modifies several palette value
 
 {{"demo": "DarkTheme.js", "bg": "inline", "hideToolbar": true}}
 
-> Note: setting the dark mode this way only works if you are using [the default palette](/material-ui/customization/default-theme/). If you have a custom palette, you need to make sure that you have the correct values based on the `mode`. The next section explain how to do this.
+:::info
+Note: setting the dark mode this way only works if you are using [the default palette](/material-ui/customization/default-theme/). If you have a custom palette, you need to make sure that you have the correct values based on the `mode`. The next section explain how to do this.
+:::
 
 ## Dark mode with a custom palette
 

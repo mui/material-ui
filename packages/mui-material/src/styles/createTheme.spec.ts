@@ -78,6 +78,13 @@ const theme = createTheme();
           },
         },
       },
+      MuiBadge: {
+        styleOverrides: {
+          colorInfo: {
+            backgroundColor: '#232323',
+          },
+        },
+      },
     },
   });
 }

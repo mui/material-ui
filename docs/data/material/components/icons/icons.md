@@ -12,7 +12,7 @@ materialDesign: https://material.io/design/iconography/system-icons.html
 
 MUI provides icons support in three ways:
 
-1. Standardized [Material Design icons](#material-icons) exported as React components (SVG icons).
+1. Standardized [Material Design icons](#material-svg-icons) exported as React components (SVG icons).
 1. With the [SvgIcon](#svgicon) component, a React wrapper for custom SVG icons.
 1. With the [Icon](#icon-font-icons) component, a React wrapper for custom font icons.
 
@@ -68,7 +68,9 @@ Each Material icon also has a "theme": Filled (default), Outlined, Rounded, Two-
 - Twotone theme is exported as `@mui/icons-material/DeleteTwoTone`,
 - Sharp theme is exported as `@mui/icons-material/DeleteSharp`.
 
-> Note: The Material Design guidelines name the icons using "snake_case" naming (for example `delete_forever`, `add_a_photo`), while `@mui/icons-material` exports the respective icons using "PascalCase" naming (for example `DeleteForever`, `AddAPhoto`). There are three exceptions to this naming rule: `3d_rotation` exported as `ThreeDRotation`, `4k` exported as `FourK`, and `360` exported as `ThreeSixty`.
+:::info
+Note: The Material Design guidelines name the icons using "snake_case" naming (for example `delete_forever`, `add_a_photo`), while `@mui/icons-material` exports the respective icons using "PascalCase" naming (for example `DeleteForever`, `AddAPhoto`). There are three exceptions to this naming rule: `3d_rotation` exported as `ThreeDRotation`, `4k` exported as `FourK`, and `360` exported as `ThreeSixty`.
+:::
 
 {{"demo": "SvgMaterialIcons.js"}}
 

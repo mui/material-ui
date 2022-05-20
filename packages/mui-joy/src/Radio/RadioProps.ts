@@ -79,7 +79,7 @@ export interface RadioTypeMap<P = {}, D extends React.ElementType = 'span'> {
        * The variant to use.
        * @default 'outlined'
        */
-      variant?: OverridableStringUnion<Exclude<VariantProp, 'text'>, RadioPropsVariantOverrides>;
+      variant?: OverridableStringUnion<VariantProp, RadioPropsVariantOverrides>;
       /**
        * The value of the component. The DOM API casts this to a string.
        */

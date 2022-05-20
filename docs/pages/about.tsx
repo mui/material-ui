@@ -370,6 +370,15 @@ const teamMembers: Array<Profile> = [
     twitter: 'tanoaksam',
     github: 'samuelsycamore',
   },
+  {
+    src: '/static/branding/about/pedro.png',
+    name: 'Pedro Ferreira',
+    title: 'MUI Toolpad engineer',
+    location: 'Porto, Portugal',
+    locationCountry: 'pt',
+    about: 'Passionate about videogames and football',
+    github: 'apedroferreira',
+  },
 ];
 
 const contributors = [
