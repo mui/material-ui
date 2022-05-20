@@ -52,4 +52,15 @@ Here is a [more detailed guide](/material-ui/guides/routing/#link).
 - For the best user experience, links should stand out from the text on the page. For instance, you can keep the default `underline="always"` behavior.
 - If a link doesn't have a meaningful href, [it should be rendered using a `<button>` element](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/HEAD/docs/rules/anchor-is-valid.md).
 
+Keyboard Accessibility:
+Make sure interactive (active) elements receives keyboard tab focus
+Make sure user can open the link / Activate the link using keyboard Enter key
+
+Screen reader
+Make sure the screen reader announce the descriptive link name when user tab to it
+If the link opens in new window or new browser tab, add the the help text in the code for SR users (Example "To know more about <org name> offers link opnes in new window)
+
+Others:
+ 
+
 {{"demo": "ButtonLink.js"}}
