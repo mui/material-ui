@@ -8,7 +8,7 @@ import Slide from '@mui/material/Slide';
 import { snackbarClasses } from '@mui/material/Snackbar';
 import { ShowSnackbarProps } from './SnackbarsContext';
 
-describe('MultipleSnackbars', () => {
+describe('StackedSnackbars', () => {
   const { render, clock } = createRenderer({ clock: 'fake' });
 
   const MyApp = (snackbarOptions: ShowSnackbarProps) => {
