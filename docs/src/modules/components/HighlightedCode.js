@@ -79,6 +79,7 @@ HighlightedCode.propTypes = {
   copyButtonHidden: PropTypes.bool,
   copyButtonProps: PropTypes.object,
   language: PropTypes.string.isRequired,
+  sx: PropTypes.object,
 };
 
 export default HighlightedCode;

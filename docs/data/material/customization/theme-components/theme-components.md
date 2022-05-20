@@ -57,13 +57,15 @@ You can use these classes inside the `styleOverrides` key to modify the correspo
 const theme = createTheme({
   components: {
     MuiButton: {
-      styleOverrides: ({ ownerState }) => ({
-        ...(ownerState.variant === 'contained' &&
-          ownerState.color === 'primary' && {
-            backgroundColor: '#202020',
-            color: '#fff',
-          }),
-      }),
+      styleOverrides: {
+        root: ({ ownerState }) => ({
+          ...(ownerState.variant === 'contained' &&
+            ownerState.color === 'primary' && {
+              backgroundColor: '#202020',
+              color: '#fff',
+            }),
+        }),
+      },
     },
   },
 });

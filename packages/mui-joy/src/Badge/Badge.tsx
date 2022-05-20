@@ -31,7 +31,7 @@ const useUtilityClasses = (ownerState: BadgeProps) => {
 };
 
 const BadgeRoot = styled('span', {
-  name: 'MuiBadge',
+  name: 'JoyBadge',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: BadgeProps }>(({ theme, ownerState }) => ({
@@ -69,7 +69,7 @@ const BadgeRoot = styled('span', {
 }));
 
 const BadgeBadge = styled('span', {
-  name: 'MuiBadge',
+  name: 'JoyBadge',
   slot: 'Badge',
   overridesResolver: (props, styles) => styles.badge,
 })<{ ownerState: BadgeProps }>(({ theme, ownerState }) => {
@@ -144,7 +144,7 @@ const BadgeBadge = styled('span', {
 });
 
 const Badge = React.forwardRef(function Badge(inProps, ref) {
-  const props = useThemeProps<typeof inProps & BadgeProps>({ props: inProps, name: 'MuiBadge' });
+  const props = useThemeProps<typeof inProps & BadgeProps>({ props: inProps, name: 'JoyBadge' });
   const {
     anchorOrigin: anchorOriginProp = {
       vertical: 'top',
@@ -345,7 +345,7 @@ Badge.propTypes /* remove-proptypes */ = {
    * @default 'solid'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['contained', 'light', 'outlined', 'text']),
+    PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
     PropTypes.string,
   ]),
 } as any;

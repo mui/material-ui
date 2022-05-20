@@ -38,7 +38,7 @@ const useUtilityClasses = (
 };
 
 const ChipRoot = styled('div', {
-  name: 'MuiChip',
+  name: 'JoyChip',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: ChipProps & { clickable: boolean } }>(({ theme, ownerState }) => {
@@ -106,7 +106,7 @@ const ChipRoot = styled('div', {
 });
 
 const ChipLabel = styled('span', {
-  name: 'MuiChip',
+  name: 'JoyChip',
   slot: 'Label',
   overridesResolver: (props, styles) => styles.label,
 })<{ ownerState: ChipProps & { clickable: boolean } }>(({ ownerState }) => ({
@@ -120,7 +120,7 @@ const ChipLabel = styled('span', {
 }));
 
 const ChipAction = styled('button', {
-  name: 'MuiChip',
+  name: 'JoyChip',
   slot: 'Action',
   overridesResolver: (props, styles) => styles.action,
 })<{ ownerState: ChipProps }>(({ theme, ownerState }) => [
@@ -148,7 +148,7 @@ const ChipAction = styled('button', {
 ]);
 
 const ChipStartDecorator = styled('span', {
-  name: 'MuiChip',
+  name: 'JoyChip',
   slot: 'StartDecorator',
   overridesResolver: (props, styles) => styles.startDecorator,
 })<{ ownerState: ChipProps & { clickable: boolean } }>({
@@ -162,7 +162,7 @@ const ChipStartDecorator = styled('span', {
 });
 
 const ChipEndDecorator = styled('span', {
-  name: 'MuiChip',
+  name: 'JoyChip',
   slot: 'EndDecorator',
   overridesResolver: (props, styles) => styles.endDecorator,
 })<{ ownerState: ChipProps & { clickable: boolean } }>({
@@ -179,7 +179,7 @@ const ChipEndDecorator = styled('span', {
  * Chips represent complex entities in small blocks, such as a contact.
  */
 const Chip = React.forwardRef(function Chip(inProps, ref) {
-  const props = useThemeProps<typeof inProps & ChipProps>({ props: inProps, name: 'MuiChip' });
+  const props = useThemeProps<typeof inProps & ChipProps>({ props: inProps, name: 'JoyChip' });
   const {
     children,
     className,
@@ -350,7 +350,7 @@ Chip.propTypes /* remove-proptypes */ = {
    * @default 'solid'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['contained', 'light', 'outlined', 'text']),
+    PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
     PropTypes.string,
   ]),
 } as any;

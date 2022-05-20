@@ -1,8 +1,8 @@
 import { expect } from 'chai';
 import {
-  generateUtilityClass,
+  unstable_generateUtilityClass as generateUtilityClass,
   unstable_ClassNameGenerator as ClassNameGenerator,
-} from '@mui/private-classnames';
+} from '@mui/utils';
 
 describe('generateUtilityClass', () => {
   it('should generate the class correctly', () => {
@@ -27,14 +27,14 @@ describe('generateUtilityClass', () => {
     });
 
     it('able to set custom generator', () => {
-      const generator = (name) => `foo-bar-${name}`;
+      const generator = (name: string) => `foo-bar-${name}`;
       ClassNameGenerator.configure(generator);
 
       expect(generateUtilityClass('MuiTest', 'slot')).to.equal('foo-bar-MuiTest-slot');
     });
 
     it('does not affect state class', () => {
-      const generator = (name) => `foo-bar-${name}`;
+      const generator = (name: string) => `foo-bar-${name}`;
       ClassNameGenerator.configure(generator);
 
       expect(generateUtilityClass('MuiTest', 'active')).to.equal('Mui-active');

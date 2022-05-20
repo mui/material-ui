@@ -34,10 +34,10 @@ export interface CardClasses {
 export type CardClassKey = keyof CardClasses;
 
 export function getCardUtilityClass(slot: string): string {
-  return generateUtilityClass('MuiCard', slot);
+  return generateUtilityClass('JoyCard', slot);
 }
 
-const cardClasses: CardClasses = generateUtilityClasses('MuiCard', [
+const cardClasses: CardClasses = generateUtilityClasses('JoyCard', [
   'root',
   'colorPrimary',
   'colorNeutral',

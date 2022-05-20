@@ -36,7 +36,7 @@ const useUtilityClasses = (ownerState: ButtonProps & { focusVisible: boolean }) 
 };
 
 const ButtonStartIcon = styled('span', {
-  name: 'MuiButton',
+  name: 'JoyButton',
   slot: 'StartIcon',
   overridesResolver: (props, styles) => styles.startIcon,
 })<{ ownerState: ButtonProps }>({
@@ -46,7 +46,7 @@ const ButtonStartIcon = styled('span', {
 });
 
 const ButtonEndIcon = styled('span', {
-  name: 'MuiButton',
+  name: 'JoyButton',
   slot: 'EndIcon',
   overridesResolver: (props, styles) => styles.endIcon,
 })<{ ownerState: ButtonProps }>({
@@ -56,7 +56,7 @@ const ButtonEndIcon = styled('span', {
 });
 
 const ButtonRoot = styled('button', {
-  name: 'MuiButton',
+  name: 'JoyButton',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: ButtonProps }>(({ theme, ownerState }) => {
@@ -125,7 +125,7 @@ const ButtonRoot = styled('button', {
 const Button = React.forwardRef(function Button(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
-    name: 'MuiButton',
+    name: 'JoyButton',
   });
 
   const {
@@ -285,7 +285,7 @@ Button.propTypes /* remove-proptypes */ = {
    * @default 'solid'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['contained', 'light', 'outlined', 'text']),
+    PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
     PropTypes.string,
   ]),
 } as any;

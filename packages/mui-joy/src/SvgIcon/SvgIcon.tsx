@@ -24,7 +24,7 @@ const useUtilityClasses = (ownerState: SvgIconProps) => {
 };
 
 const SvgIconRoot = styled('svg', {
-  name: 'MuiSvgIcon',
+  name: 'JoySvgIcon',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: SvgIconProps & { instanceFontSize: SvgIconProps['fontSize'] } }>(
@@ -56,7 +56,7 @@ const SvgIconRoot = styled('svg', {
 const SvgIcon = React.forwardRef(function SvgIcon(inProps, ref) {
   const props = useThemeProps<typeof inProps & SvgIconProps>({
     props: inProps,
-    name: 'MuiSvgIcon',
+    name: 'JoySvgIcon',
   });
 
   const {
