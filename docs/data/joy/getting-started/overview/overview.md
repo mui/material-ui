@@ -9,7 +9,8 @@ You should see Joy UI as your starting point.
 It includes a lot of customization features and the capability for you to match it to your desired look and feel.
 
 :::warning
-**Note:** as of Q2 2022, Joy UI is currently in active development, with an alpha version soon to be released. We're adding new components and features regularly, and you're welcome to contribute! Look for the joy-ui label on open issues and pull requests in the @mui/material-ui repository on GitHub to see what other community members are working on, and feel free to submit your own.
+**Note:** as of Q2 2022, Joy UI is currently in active development, with an alpha version soon to be released.
+We're adding new components and features regularly, and you're welcome to contribute! Look for the [`joy` label](https://github.com/mui/material-ui/pulls?q=is%3Aopen+is%3Apr+label%3Ajoy) on open [issues](https://github.com/mui/material-ui/issues) and [pull requests](https://github.com/mui/material-ui/pulls) in the `@mui/material-ui` repository on GitHub to see what other community members are working on, and feel free to submit your own.
 :::
 
 ## Advantages of Joy UI
