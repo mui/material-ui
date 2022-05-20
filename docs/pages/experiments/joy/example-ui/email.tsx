@@ -75,17 +75,18 @@ export default function EmailExample() {
             placeholder="Search anything..."
             startDecorator={<SearchRoundedIcon />}
             endDecorator={
-              <IconButton variant="outlined" size="sm" color="neutral">
+              <IconButton
+                variant="outlined"
+                size="sm"
+                color="neutral"
+                sx={{ '--IconButton-size': '24px', borderRadius: '4px' }}
+              >
                 <Typography fontWeight={700} fontSize="sm">
                   /
                 </Typography>
               </IconButton>
             }
             sx={{
-              '& .JoyInput-root': {
-                '--Input-gutter': '-0.5rem',
-                paddingLeft: '4px',
-              },
               minWidth: {
                 xs: '100%',
                 sm: '500px',
