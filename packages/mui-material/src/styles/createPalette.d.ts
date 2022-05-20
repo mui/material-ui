@@ -129,6 +129,56 @@ export interface PaletteWithChannels {
   background: TypeBackground;
   getContrastText: (background: string) => string;
   augmentColor: (options: PaletteAugmentColorOptions) => PaletteColor;
+  // component tokens
+  AppBar: {
+    defaultBgColor: string;
+  };
+  Chip: {
+    defaultBorderColor: string;
+  };
+  FilledInput: {
+    bgColor: string;
+    hoverBgColor: string;
+    disabledBgColor: string;
+  };
+  LinearProgress: {
+    primaryBgColor: string;
+    secondaryBgColor: string;
+    errorBgColor: string;
+    infoBgColor: string;
+    successBgColor: string;
+    warningBgColor: string;
+  };
+  Slider: {
+    primaryTrack: string;
+    secondaryTrack: string;
+    errorTrack: string;
+    infoTrack: string;
+    successTrack: string;
+    warningTrack: string;
+  };
+  SnackbarContent: {
+    bgColor: string;
+  };
+  StepConnector: {
+    borderColor: string;
+  };
+  StepContent: {
+    borderColor: string;
+  };
+  Switch: {
+    defaultColor: string;
+    defaultDisabledColor: string;
+    primaryDisabledColor: string;
+    secondaryDisabledColor: string;
+    errorDisabledColor: string;
+    infoDisabledColor: string;
+    successDisabledColor: string;
+    warningDisabledColor: string;
+  };
+  TableCell: {
+    borderColor: string;
+  };
 }
 
 export type PartialTypeObject = { [P in keyof TypeObject]?: Partial<TypeObject[P]> };
