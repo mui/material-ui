@@ -16,18 +16,18 @@ Elements, like text and images, should be placed on them in a way that clearly i
 ## Basic
 
 The `Card` is a surface-level component that can house multiple others to form a meaningful interface.
-For example, here are a few components you could use for common card designs:
+For example, here are a few components you would use for common card designs:
 
-- `Typography` for creating titles, descriptions, or plain texts.
+- `Typography` for creating titles, descriptions, and plain texts.
 - `AspectRatio` for controlling images and video sizes.
-- `Button` and/or `IconButton` for building call to action elements.
+- `Button` and/or `IconButton` for call to action elements.
 
 {{"demo": "BasicCard.js", "bg": true}}
 
 ## Overflow
 
 To have content spanning from edge to edge of the card, wrap it with the `CardOverflow` component.
-It will automatically take care of the top and bottom edges if it is being rendered as the first or last child of the parent card.
+It will automatically take care of the top and bottom edges if rendered as the first or last child of the parent card.
 
 {{"demo": "OverflowCard.js", "bg": true}}
 
@@ -40,7 +40,7 @@ You can think of card covers as a background layer that stay behind the `CardCon
 
 ### Media
 
-You can place a plain image or a video element inside the `CardCover`.
+You can use a plain image or a video element inside the `CardCover`.
 It uses [`object-fit: cover`](https://developer.mozilla.org/en-US/docs/Web/CSS/object-fit) on the image as a default value.
 
 {{"demo": "MediaCover.js", "bg": true}}
@@ -50,7 +50,7 @@ It uses [`object-fit: cover`](https://developer.mozilla.org/en-US/docs/Web/CSS/o
 Insert an additional `CardCover` component to create gradient overlays between the cover and the content.
 
 :::info
-💡 Make sure to darken the gradient overlay a bit to have enough contrast between the background image and the content.
+💡 Make sure to darken up the gradient overlay to have enough contrast between the background image and the content.
 :::
 
 {{"demo": "GradientCover.js", "bg": true}}
@@ -59,9 +59,10 @@ Insert an additional `CardCover` component to create gradient overlays between t
 
 ### Whole card area
 
-To have the whole card area clickable, use the `Link` component to wrap the card's title and then pass the `overlay` prop to expand the interactive area to fill the card entirely.
+To have the whole card area clickable, use the `Link` component to wrap the card's title and then pass the `overlay` prop to expand the interactive area to fill the whole card.
 
-Note that the keyboard focus appearance will also cover the entire card. For more details about cards accessibility, read [Inclusive Component's documentation](https://inclusive-components.design/cards/).
+Note that the keyboard focus appearance will also cover the entire card.
+For more details about cards accessibility, read [Inclusive Component's documentation](https://inclusive-components.design/cards/).
 
 {{"demo": "InteractiveCard.js", "bg": true}}
 
@@ -71,7 +72,7 @@ By default, whenever you have additional action elements such as links and butto
 However, in some cases, you might have to manually control each element's `z-index`.
 
 :::success
-💡 **Tip**: use CSS pseudo-class [`:focus-within`](https://developer.mozilla.org/en-US/docs/Web/CSS/:focus-within) to style the card when any of its child is focused.
+💡 **Tip**: use CSS's pseudo-class [`:focus-within`](https://developer.mozilla.org/en-US/docs/Web/CSS/:focus-within) to style the card when any of its children is focused.
 :::
 
 {{"demo": "MultipleInteractionCard.js", "bg": true}}
@@ -79,12 +80,12 @@ However, in some cases, you might have to manually control each element's `z-ind
 ## Component variables
 
 The `Card` component exposes two important CSS variables that communicate with other Joy components.
-If you want to adjust a card's padding or border-radius, it's better if you do it using the variables below instead of using these properties directly.
+If you want to adjust a card's padding or border-radius, it's preferable to do it using the variables below instead of using these properties directly.
 That's mainly because the variables will also be used to calculate a proper radius for the card's children.
 
 {{"demo": "CardVariables.js", "bg": true, "hideToolbar": true}}
 
-## Design examples
+## Common examples
 
 Here's how you could replicate a few real-world card designs using several Joy components together with it.
 
