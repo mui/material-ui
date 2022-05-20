@@ -271,15 +271,15 @@ const ChipRoot = styled('div', {
         }`,
         [`&.${chipClasses.clickable}:hover`]: {
           backgroundColor: theme.vars
-            ? `rgba(${theme.palette[ownerState.color].mainChannel} / ${
-                theme.palette.action.hoverOpacity
+            ? `rgba(${theme.vars.palette[ownerState.color].mainChannel} / ${
+                theme.vars.palette.action.hoverOpacity
               })`
             : alpha(theme.palette[ownerState.color].main, theme.palette.action.hoverOpacity),
         },
         [`&.${chipClasses.focusVisible}`]: {
           backgroundColor: theme.vars
-            ? `rgba(${theme.palette[ownerState.color].mainChannel} / ${
-                theme.palette.action.focusOpacity
+            ? `rgba(${theme.vars.palette[ownerState.color].mainChannel} / ${
+                theme.vars.palette.action.focusOpacity
               })`
             : alpha(theme.palette[ownerState.color].main, theme.palette.action.focusOpacity),
         },
