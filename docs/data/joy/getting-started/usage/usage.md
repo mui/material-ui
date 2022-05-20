@@ -57,7 +57,8 @@ function App() {
 export default App;
 ```
 
-Make sure that your development server is running, save your file and that's it! It's that fast.
+Make sure that your development server is running, save your file, and that's it!
+It's that fast.
 You're now ready to go on exploring Joy and build amazing UIs.
 
 ## Next steps
