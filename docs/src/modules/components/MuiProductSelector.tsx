@@ -100,7 +100,8 @@ export default function MuiProductSelector() {
         />
         <Box
           sx={{
-            ml: 5.5,
+            ml: '36px',
+            pl: 2,
             pt: 1.5,
             position: 'relative',
           }}
