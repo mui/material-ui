@@ -20,9 +20,9 @@ import ButtonUnstyled from '@mui/base/ButtonUnstyled';
 
 {{"demo": "UnstyledButtonsSimple.js", "defaultCodeOpen": true}}
 
-## Customizing the root element
+## Customizando o elemento raiz
 
-By default, the `ButtonUnstyled` component renders a native `button` HTML element. You can override this by setting the `component` or `components.Root` prop.
+Por padrão, o componente `ButtonUnstyled` renderiza um elemento HTML `button` nativo. You can override this by setting the `component` or `components.Root` prop.
 
 If you provide a non-interactive element such as a `<span>`, the `ButtonUnstyled` component will automatically add the necessary accessibility attributes.
 
