@@ -80,7 +80,7 @@
     "@mui/base": "5.0.0-alpha.81",
     "@mui/system": "^5.8.0",
     "@mui/utils": "^5.8.0",
-    "@mui/x-date-pickers": "5.0.0-alpha.0",
+    "@mui/x-date-pickers": "5.0.0-alpha.1",
     "clsx": "^1.1.1",
     "prop-types": "^15.8.1",
     "react-is": "^17.0.2",
