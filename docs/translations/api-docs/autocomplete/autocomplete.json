@@ -100,7 +100,7 @@
     "inputFocused": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the input element",
-      "conditions": "tag focused"
+      "conditions": "tab focused"
     },
     "endAdornment": {
       "description": "Styles applied to {{nodeName}}.",
