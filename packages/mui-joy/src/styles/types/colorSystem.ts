@@ -110,7 +110,14 @@ export interface PaletteBackground {
 
 export interface ColorPalettePropOverrides {}
 
-export type DefaultColorPalette = 'primary' | 'neutral' | 'danger' | 'info' | 'success' | 'warning';
+export type DefaultColorPalette =
+  | 'primary'
+  | 'neutral'
+  | 'danger'
+  | 'info'
+  | 'success'
+  | 'warning'
+  | 'common';
 
 export type ColorPaletteProp = OverridableStringUnion<
   DefaultColorPalette,
@@ -125,6 +132,7 @@ export interface PaletteDanger extends PaletteRange {}
 export interface PaletteInfo extends PaletteRange {}
 export interface PaletteSuccess extends PaletteRange {}
 export interface PaletteWarning extends PaletteRange {}
+export interface PaletteCommon extends PaletteRange {}
 
 export interface Palette {
   primary: PalettePrimary;
@@ -133,6 +141,7 @@ export interface Palette {
   info: PaletteInfo;
   success: PaletteSuccess;
   warning: PaletteWarning;
+  common: PaletteCommon;
   text: PaletteText;
   background: PaletteBackground;
   divider: string;
