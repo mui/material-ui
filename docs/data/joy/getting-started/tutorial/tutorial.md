@@ -221,9 +221,3 @@ export default function App() {
 > 💡 By using the `useColorScheme` hook, Joy ensures that the user selected mode (stored in localStorage by default) is in-sync across browser tabs.
 
 Congratulations 🎉! You have seamlessly built a simple yet good looking UI!
-
-## Where to go from here?
-
-- 💎 Learn about Joy's main features
-- 💅 Learn about how to customize Joy components
-- 📖 Learn about Joy's guiding principles and core concepts.
