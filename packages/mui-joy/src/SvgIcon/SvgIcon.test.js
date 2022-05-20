@@ -23,7 +23,7 @@ describe('<SvgIcon />', () => {
       inheritComponent: 'svg',
       ThemeProvider,
       render,
-      muiName: 'MuiSvgIcon',
+      muiName: 'JoySvgIcon',
       refInstanceof: window.SVGSVGElement,
       testComponentPropWith: (props) => (
         <svg {...props}>

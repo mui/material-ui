@@ -13,7 +13,7 @@ describe('<Typography />', () => {
     ThemeProvider,
     render,
     refInstanceof: window.HTMLParagraphElement,
-    muiName: 'MuiTypography',
+    muiName: 'JoyTypography',
     skip: ['componentsProp', 'classesRoot', 'themeVariants'],
   }));
 

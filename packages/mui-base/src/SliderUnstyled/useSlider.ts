@@ -490,7 +490,7 @@ export default function useSlider(props: UseSliderProps) {
       return;
     }
 
-    const { newValue } = getFingerNewValue({ finger, values });
+    const { newValue } = getFingerNewValue({ finger, move: true, values });
 
     setActive(-1);
     if (nativeEvent.type === 'touchend') {

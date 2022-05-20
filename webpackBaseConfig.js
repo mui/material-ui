@@ -18,7 +18,6 @@ module.exports = {
       '@mui/styles': path.resolve(__dirname, './packages/mui-styles/src'),
       '@mui/system': path.resolve(__dirname, './packages/mui-system/src'),
       '@mui/private-theming': path.resolve(__dirname, './packages/mui-private-theming/src'),
-      '@mui/private-classnames': path.resolve(__dirname, './packages/mui-private-classnames/src'),
       '@mui/base': path.resolve(__dirname, './packages/mui-base/src'),
       '@mui/utils': path.resolve(__dirname, './packages/mui-utils/src'),
       '@mui/material-next': path.resolve(__dirname, './packages/mui-material-next/src'),
