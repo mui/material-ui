@@ -73,8 +73,7 @@ export default function EmailExample() {
       />
       <Box
         sx={{
-          bgcolor: (theme) =>
-            theme.palette.mode === 'dark' ? 'background.body' : 'background.level1',
+          bgcolor: 'background.bodyEmail',
           display: 'grid',
           gridTemplateColumns: {
             xs: '0px 0px 1fr',
@@ -315,8 +314,8 @@ export default function EmailExample() {
             </Typography>
           </Box>
           <List>
-            <ListItem variant="soft" color="primary">
-              <ListItemButton sx={{ p: 2 }}>
+            <ListItem>
+              <ListItemButton variant="soft" color="primary" sx={{ p: 2 }}>
                 <ListItemDecorator sx={{ alignSelf: 'flex-start' }}>
                   <Box
                     component="img"

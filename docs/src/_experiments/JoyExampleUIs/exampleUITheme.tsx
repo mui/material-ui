@@ -16,6 +16,22 @@ export const LoadFont = () => {
 };
 
 export default extendTheme({
+  colorSchemes: {
+    light: {
+      palette: {
+        background: {
+          bodyEmail: 'var(--joy-palette-neutral-50)',
+        },
+      },
+    },
+    dark: {
+      palette: {
+        background: {
+          bodyEmail: 'var(--joy-palette-common-black)',
+        },
+      },
+    },
+  },
   fontFamily: {
     // display: "'Roboto Flex', var(--joy-fontFamily-fallback)",
     // body: "'Roboto Flex', var(--joy-fontFamily-fallback)",
