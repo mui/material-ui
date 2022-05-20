@@ -40,4 +40,5 @@ A great developer experience is not only the quality of the code we ship but als
 ## Joy UI vs. Material UI
 
 Joy UI is meant to feature the same list of components you'd find in Material UI, with similar philosophy around component API and customization extensibility, but without the Material Design implementation.
+
 If you ever wanted to use Material UI for the breadth of supported components, carefully written component API, and reliability of a tried and tested library but hesitated because of Material Design, Joy UI is here to solve that for you and act as the best alternative for that.
