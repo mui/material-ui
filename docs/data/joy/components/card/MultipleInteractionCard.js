@@ -35,7 +35,7 @@ export default function MultipleInteractionCard() {
         </AspectRatio>
       </CardOverflow>
       <Typography level="h2" sx={{ fontSize: 'md', mt: 2 }}>
-        <Link href="#multiple-actions" overlay color="text.primary">
+        <Link href="#multiple-actions" overlay underline="none">
           Yosemite National Park
         </Link>
       </Typography>

@@ -72,12 +72,13 @@ export default function InstagramPost() {
           </IconButton>
         </Box>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5, mx: 'auto' }}>
-          {[...Array(4)].map((_, index) => (
+          {[...Array(5)].map((_, index) => (
             <Box
+              key={index}
               sx={{
                 borderRadius: '50%',
-                width: index === 0 ? 6 : 4,
-                height: index === 0 ? 6 : 4,
+                width: `max(${6 - index}px, 3px)`,
+                height: `max(${6 - index}px, 3px)`,
                 bgcolor: index === 0 ? 'primary.solidBg' : 'neutral.softBg',
               }}
             />
@@ -92,14 +93,10 @@ export default function InstagramPost() {
       <Link component="button" color="neutral" fontSize="sm" fontWeight="lg">
         8.1M Likes
       </Link>
-      <Typography
-        fontSize="sm"
-        startDecorator={
-          <Link component="button" color="neutral" fontWeight="lg">
-            MUI
-          </Link>
-        }
-      >
+      <Typography fontSize="sm">
+        <Link component="button" color="neutral" fontWeight="lg">
+          MUI
+        </Link>{' '}
         The React component library you always wanted
       </Typography>
       <Link
