@@ -273,7 +273,7 @@ export default function HeaderNavBar() {
                               MUI&nbsp;X
                             </Box>
                           }
-                          description="Advanced and powerful components for complex use-cases."
+                          description="Advanced and powerful components for complex use cases."
                           onKeyDown={handleKeyDown}
                         />
                       </li>
