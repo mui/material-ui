@@ -106,7 +106,8 @@ export default function MuiProductSelector() {
           }}
         >
           <Stack
-            direction="row"
+            direction={{ xs: 'column', sm: 'row' }}
+            alignItems="flex-start"
             spacing={1}
             sx={{
               '& > .MuiChip-root': {
