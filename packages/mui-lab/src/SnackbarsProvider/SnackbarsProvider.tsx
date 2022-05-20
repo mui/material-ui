@@ -127,7 +127,6 @@ const SnackbarsProvider = React.forwardRef<
 
   const ownerState = {
     anchorOrigin: { vertical, horizontal },
-    isRtl: theme.direction === 'rtl',
   };
 
   const groupSnackbarsByAnchorOrigin = snackbars.reduce<SnackbarsByAnchorOrigin>((acc, current) => {
