@@ -1,14 +1,14 @@
 ---
 product: material-ui
-title: Multiple Snackbars React component
+title: Stacked snackbars React component
 components: SnackbarsProvider
 materialDesign: https://material.io/components/snackbars
 waiAria: https://www.w3.org/TR/wai-aria-1.1/#alert
 ---
 
-# Multiple Snackbars
+# Stacked snackbars
 
-<p class="description">Display multiple snackbars on the page.</p>
+<p class="description">The <code>SnackbarsProvider</code> component and <code>useSnackbars</code> hook allow you to display multiple stacked snackbars.</p>
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
