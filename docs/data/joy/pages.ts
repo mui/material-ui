@@ -4,7 +4,7 @@ const pages = [
     icon: 'DescriptionIcon',
     children: [
       { pathname: '/joy-ui/getting-started/overview' },
-      { pathname: '/joy-ui/getting-started/quick-start' },
+      { pathname: '/joy-ui/getting-started/usage' },
       { pathname: '/joy-ui/getting-started/tutorial' },
     ],
   },
