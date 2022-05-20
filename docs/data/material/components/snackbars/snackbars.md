@@ -45,7 +45,7 @@ However, there are currently two complementary alternatives to do that:
 
 ### Lab's stacked snackbars
 
-We have been developing a native component to support this use case and we've made it available in the lab to gather feedback for its first versions and general API design.
+We have been developing a native component to support this use case and [we've made it available in the lab](/material-ui/react-stacked-snackbars/) to gather feedback for its first versions and general API design.
 
 ### notistack
 
