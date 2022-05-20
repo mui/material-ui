@@ -65,7 +65,7 @@ Similarly to positioning, use the`TransitionComponent` prop in an individual sna
 
 ## Props priority
 
-For the mutual properties between `showSnackbar` options and `SnackbarsProvider` props, the options in `showSnackbar` method of `useSnackbars` hook for individual snackbars take more preference over props passed in `SnackbarsProvider` if both are supplied.
+When the same props are supplied for both `showSnackbar` and `SnackbarsProvider`, the ones added in the `showSnackbar` method will have priority over those in `SnackbarsProvider`.
 
 {{"demo": "PropsPriority.js"}}
 
