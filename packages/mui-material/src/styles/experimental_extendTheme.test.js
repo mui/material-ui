@@ -227,10 +227,16 @@ describe('experimental_extendTheme', () => {
       expect(theme.colorSchemes.light.opacity).to.deep.equal({
         placeholder: 0.42,
         inputTouchBottomLine: 0.42,
+        skeletonBg: 0.11,
+        switchTrackDisabled: 0.12,
+        switchTrack: 0.38,
       });
       expect(theme.colorSchemes.dark.opacity).to.deep.equal({
         placeholder: 0.5,
         inputTouchBottomLine: 0.7,
+        skeletonBg: 0.13,
+        switchTrackDisabled: 0.2,
+        switchTrack: 0.3,
       });
     });
 
@@ -249,11 +255,11 @@ describe('experimental_extendTheme', () => {
           },
         },
       });
-      expect(theme.colorSchemes.light.opacity).to.deep.equal({
+      expect(theme.colorSchemes.light.opacity).to.deep.include({
         placeholder: 1,
         inputTouchBottomLine: 0.42,
       });
-      expect(theme.colorSchemes.dark.opacity).to.deep.equal({
+      expect(theme.colorSchemes.dark.opacity).to.deep.include({
         placeholder: 0.2,
         inputTouchBottomLine: 0.7,
       });
