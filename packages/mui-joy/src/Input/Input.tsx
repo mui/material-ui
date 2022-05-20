@@ -31,7 +31,7 @@ const useUtilityClasses = (ownerState: InputProps) => {
 };
 
 const InputRoot = styled('div', {
-  name: 'MuiInput',
+  name: 'JoyInput',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: InputProps & InputUnstyledOwnerState }>(({ theme, ownerState }) => [
@@ -111,7 +111,7 @@ const InputRoot = styled('div', {
 ]);
 
 const InputInput = styled('input', {
-  name: 'MuiInput',
+  name: 'JoyInput',
   slot: 'Input',
   overridesResolver: (props, styles) => styles.input,
 })<{ ownerState: InputProps & InputUnstyledOwnerState }>(({ theme, ownerState }) => ({
@@ -136,7 +136,7 @@ const InputInput = styled('input', {
 }));
 
 const InputStartDecorator = styled('span', {
-  name: 'MuiInput',
+  name: 'JoyInput',
   slot: 'StartDecorator',
   overridesResolver: (props, styles) => styles.startDecorator,
 })<{ ownerState: InputProps & InputUnstyledOwnerState }>(({ theme, ownerState }) => ({
@@ -151,7 +151,7 @@ const InputStartDecorator = styled('span', {
 }));
 
 const InputEndDecorator = styled('span', {
-  name: 'MuiInput',
+  name: 'JoyInput',
   slot: 'EndDecorator',
   overridesResolver: (props, styles) => styles.endDecorator,
 })<{ ownerState: InputProps & InputUnstyledOwnerState }>(({ theme, ownerState }) => ({
@@ -164,7 +164,7 @@ const InputEndDecorator = styled('span', {
 const Input = React.forwardRef(function Input(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
-    name: 'MuiInput',
+    name: 'JoyInput',
   });
 
   const {
@@ -475,7 +475,7 @@ Input.propTypes /* remove-proptypes */ = {
    * @default 'outlined'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['contained', 'light', 'outlined', 'text']),
+    PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
     PropTypes.string,
   ]),
 } as any;

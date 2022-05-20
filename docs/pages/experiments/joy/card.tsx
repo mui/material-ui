@@ -673,7 +673,7 @@ export default function JoySvgIcon() {
             })}
           >
             <AspectRatio
-              variant="soft"
+              variant="outlined"
               sx={{
                 flexGrow: 1,
                 pb: 'clamp(0px, (100% - 360px) * 999, min(calc(100% / (16 / 9)), 300px))',
@@ -726,6 +726,20 @@ export default function JoySvgIcon() {
                 </div>
               </Box>
             </Box>
+          </Card>
+          <Card component="li" variant="outlined" sx={{ '--Card-padding': '0px' }}>
+            <AspectRatio
+              variant="outlined"
+              sx={{
+                flexGrow: 1,
+                pb: 'clamp(0px, (100% - 360px) * 999, min(calc(100% / (16 / 9)), 300px))',
+              }}
+            >
+              <img
+                alt=""
+                src="https://images.unsplash.com/photo-1620987278429-ab178d6eb547?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1450&q=80"
+              />
+            </AspectRatio>
           </Card>
         </Box>
       </Box>

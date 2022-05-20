@@ -42,10 +42,10 @@ export interface CheckboxClasses {
 export type CheckboxClassKey = keyof CheckboxClasses;
 
 export function getCheckboxUtilityClass(slot: string): string {
-  return generateUtilityClass('MuiCheckbox', slot);
+  return generateUtilityClass('JoyCheckbox', slot);
 }
 
-const checkboxClasses: CheckboxClasses = generateUtilityClasses('MuiCheckbox', [
+const checkboxClasses: CheckboxClasses = generateUtilityClasses('JoyCheckbox', [
   'root',
   'input',
   'checked',

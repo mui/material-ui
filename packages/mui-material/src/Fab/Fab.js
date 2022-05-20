@@ -194,15 +194,18 @@ Fab.propTypes /* remove-proptypes */ = {
    * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
    * @default 'default'
    */
-  color: PropTypes.oneOf([
-    'default',
-    'error',
-    'info',
-    'inherit',
-    'primary',
-    'secondary',
-    'success',
-    'warning',
+  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf([
+      'default',
+      'error',
+      'info',
+      'inherit',
+      'primary',
+      'secondary',
+      'success',
+      'warning',
+    ]),
+    PropTypes.string,
   ]),
   /**
    * The component used for the root node.

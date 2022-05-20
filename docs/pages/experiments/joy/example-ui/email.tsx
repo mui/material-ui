@@ -1,7 +1,9 @@
 import * as React from 'react';
 import { GlobalStyles } from '@mui/system';
-import { CssVarsProvider, Theme } from '@mui/joy/styles';
+import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
+import type { Theme } from '@mui/joy/styles';
 import Box from '@mui/joy/Box';
+import Chip from '@mui/joy/Chip';
 import Sheet from '@mui/joy/Sheet';
 import Typography from '@mui/joy/Typography';
 import TextField from '@mui/joy/TextField';
@@ -19,16 +21,47 @@ import InboxRoundedIcon from '@mui/icons-material/InboxRounded';
 import OutboxRoundedIcon from '@mui/icons-material/OutboxRounded';
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
 import DarkModeRoundedIcon from '@mui/icons-material/DarkModeRounded';
+import LightModeRoundedIcon from '@mui/icons-material/LightModeRounded';
 import GridViewRoundedIcon from '@mui/icons-material/GridViewRounded';
 import FolderRoundedIcon from '@mui/icons-material/FolderRounded';
 import AssistantPhotoRoundedIcon from '@mui/icons-material/AssistantPhotoRounded';
 import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
 import AttachEmailRoundedIcon from '@mui/icons-material/AttachEmailRounded';
-import Chip from '@mui/joy/Chip';
+
+// custom
+import exampleUITheme, { LoadFont } from 'docs/src/_experiments/JoyExampleUIs/exampleUITheme';
+
+const ColorSchemeToggle = () => {
+  const { mode, setMode } = useColorScheme();
+  const [mounted, setMounted] = React.useState(false);
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
+  if (!mounted) {
+    return <IconButton size="sm" variant="outlined" color="neutral" />;
+  }
+  return (
+    <IconButton
+      size="sm"
+      variant="outlined"
+      color="neutral"
+      onClick={() => {
+        if (mode === 'light') {
+          setMode('dark');
+        } else {
+          setMode('light');
+        }
+      }}
+    >
+      {mode === 'light' ? <DarkModeRoundedIcon color="primary" /> : <LightModeRoundedIcon />}
+    </IconButton>
+  );
+};
 
 export default function EmailExample() {
   return (
-    <CssVarsProvider>
+    <CssVarsProvider disableTransitionOnChange theme={exampleUITheme}>
+      <LoadFont />
       <GlobalStyles<Theme>
         styles={(theme) => ({
           body: {
@@ -75,17 +108,18 @@ export default function EmailExample() {
             placeholder="Search anything..."
             startDecorator={<SearchRoundedIcon />}
             endDecorator={
-              <IconButton variant="outlined" size="sm" color="neutral">
+              <IconButton
+                variant="outlined"
+                size="sm"
+                color="neutral"
+                sx={{ '--IconButton-size': '24px', borderRadius: '4px' }}
+              >
                 <Typography fontWeight={700} fontSize="sm">
                   /
                 </Typography>
               </IconButton>
             }
             sx={{
-              '& .JoyInput-root': {
-                '--Input-gutter': '-0.5rem',
-                paddingLeft: '4px',
-              },
               minWidth: {
                 xs: '100%',
                 sm: '500px',
@@ -96,9 +130,7 @@ export default function EmailExample() {
             <IconButton size="sm" variant="outlined" color="neutral">
               <GridViewRoundedIcon color="primary" />
             </IconButton>
-            <IconButton size="sm" variant="outlined" color="neutral">
-              <DarkModeRoundedIcon color="primary" />
-            </IconButton>
+            <ColorSchemeToggle />
           </Box>
         </Box>
         <Box
@@ -437,8 +469,8 @@ export default function EmailExample() {
               Hi, Thomas,
               <br />
               <br />
-              You don&apos;t have to be a designer to appreciate good typography – just check out
-              this student-made device that can detect and name fonts just by looking at it.
+              You don&apos;t have to be a designer to appreciate good typography – just check out
+              this student-made device that can detect and name fonts just by looking at it.
               <br />
               <br />
               While the pop culture world obsesses over the latest Snapchat filter fads and

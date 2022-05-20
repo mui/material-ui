@@ -26,7 +26,7 @@ const pages = [
       {
         pathname: '/joy-ui/components/data-display',
         subheader: 'data-display',
-        children: [{ pathname: '/joy-ui/react-avatar' }],
+        children: [{ pathname: '/joy-ui/react-avatar' }, { pathname: '/joy-ui/react-badge' }],
       },
     ],
   },

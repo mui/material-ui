@@ -456,7 +456,7 @@ export default function extendTheme(themeInput?: ThemeInput): Theme {
                   }),
                 ...(ownerState.color &&
                   ownerState.color !== 'inherit' && {
-                    color: themeProp.vars.palette[ownerState.color].plainColor,
+                    color: themeProp.vars.palette[ownerState.color]?.plainColor,
                   }),
                 ...(instanceFontSize &&
                   instanceFontSize !== 'inherit' && {

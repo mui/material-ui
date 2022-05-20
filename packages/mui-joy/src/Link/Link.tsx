@@ -36,7 +36,7 @@ const useUtilityClasses = (ownerState: LinkProps) => {
 };
 
 const StartDecorator = styled('span', {
-  name: 'MuiLink',
+  name: 'JoyLink',
   slot: 'StartDecorator',
   overridesResolver: (props, styles) => styles.startDecorator,
 })<{ ownerState: LinkProps }>({
@@ -45,7 +45,7 @@ const StartDecorator = styled('span', {
 });
 
 const EndDecorator = styled('span', {
-  name: 'MuiLink',
+  name: 'JoyLink',
   slot: 'endDecorator',
   overridesResolver: (props, styles) => styles.endDecorator,
 })<{ ownerState: LinkProps }>({
@@ -54,7 +54,7 @@ const EndDecorator = styled('span', {
 });
 
 const LinkRoot = styled('a', {
-  name: 'MuiLink',
+  name: 'JoyLink',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: LinkProps }>(({ theme, ownerState }) => {
@@ -142,7 +142,7 @@ const LinkRoot = styled('a', {
 const Link = React.forwardRef(function Link(inProps, ref) {
   const { color = 'primary', ...themeProps } = useThemeProps<typeof inProps & LinkProps>({
     props: inProps,
-    name: 'MuiLink',
+    name: 'JoyLink',
   });
 
   const nested = React.useContext(TypographyContext);
@@ -314,7 +314,7 @@ Link.propTypes /* remove-proptypes */ = {
    * @default 'plain'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['contained', 'light', 'outlined', 'text']),
+    PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
     PropTypes.string,
   ]),
 } as any;
