@@ -13,7 +13,7 @@ describe('<AvatarGroup />', () => {
     inheritComponent: 'div',
     render,
     ThemeProvider,
-    muiName: 'MuiAvatarGroup',
+    muiName: 'JoyAvatarGroup',
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'span',
     testVariantProps: { variant: 'solid' },
