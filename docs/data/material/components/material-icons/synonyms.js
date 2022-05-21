@@ -1867,7 +1867,6 @@ const synonyms = {
     'analytics bars data diagram infographic measure metrics statistics tracking',
   PieChartOutline:
     'analytics bars data diagram infographic measure metrics statistics tracking',
-  PieChartOutlined: 'graph',
   Pin: '1 2 3 digit key login logout number password pattern security star symbol unlock',
   Pinch: 'arrows compress direction finger grasp hand navigation nip squeeze tweak',
   PinDrop: 'destination direction gps location maps navigation place stop',
