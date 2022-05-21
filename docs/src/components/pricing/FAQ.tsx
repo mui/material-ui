@@ -229,7 +229,7 @@ export default function FAQ() {
   }
   return (
     <Container sx={{ py: { xs: 4, sm: 6, md: 8 } }}>
-      <Typography variant="h2" sx={{ mb: { xs: 2, sm: 4 } }}>
+      <Typography variant="h2" sx={{ mb: { xs: 2, sm: 4 }, scrollMarginTop: 80 }} id="faq">
         Frequently asked questions
       </Typography>
       <Grid container spacing={2}>
