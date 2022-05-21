@@ -11,9 +11,8 @@ const Root = styled('div')(({ theme }) => ({
     color: theme.palette.mode === 'dark' ? theme.palette.grey[200] : theme.palette.text.primary,
   },
   wordBreak: 'break-word',
-  '& .anchor-link': {
-    marginTop: -96,
-    position: 'absolute',
+  '& h2, & h3': {
+    scrollMarginTop: 'calc(var(--MuiDocs-header-height) + 32px)',
   },
   '& pre': {
     margin: theme.spacing(2, 'auto'),

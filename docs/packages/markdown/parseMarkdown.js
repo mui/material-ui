@@ -221,13 +221,11 @@ function createRender(context) {
           hash,
         });
       }
-      const headingId = `heading-${hash}`;
 
       return [
-        `<h${level} id="${headingId}">`,
-        `<span class="anchor-link" id="${hash}"></span>`,
+        `<h${level} id="${hash}">`,
         headingHtml,
-        `<a aria-labelledby="${headingId}" class="anchor-link-style" href="#${hash}" tabindex="-1">`,
+        `<a aria-labelledby="${hash}" class="anchor-link-style" href="#${hash}" tabindex="-1">`,
         '<svg><use xlink:href="#anchor-link-icon" /></svg>',
         '</a>',
         `</h${level}>`,
