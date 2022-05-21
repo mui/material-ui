@@ -11,9 +11,6 @@ const Root = styled('div')(({ theme }) => ({
     color: theme.palette.mode === 'dark' ? theme.palette.grey[200] : theme.palette.text.primary,
   },
   wordBreak: 'break-word',
-  '& h2, & h3': {
-    scrollMarginTop: 'calc(var(--MuiDocs-header-height) + 32px)',
-  },
   '& pre': {
     margin: theme.spacing(2, 'auto'),
     padding: theme.spacing(2),
@@ -105,6 +102,7 @@ const Root = styled('div')(({ theme }) => ({
     }),
   },
   '& h1, & h2, & h3, & h4': {
+    scrollMarginTop: 'calc(var(--MuiDocs-header-height) + 32px)',
     '& code': {
       fontSize: 'inherit',
       lineHeight: 'inherit',
