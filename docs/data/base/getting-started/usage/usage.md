@@ -4,7 +4,7 @@
 
 ## Getting started
 
-The following code snippet demonstrates a simple app that uses the MUI Base [`ButtonUnstyled`](/base/react-button) component:
+The following code snippet demonstrates a simple app that uses the MUI Base [`ButtonUnstyled`](/base/react-button/) component:
 
 ```jsx
 import * as React from 'react';
@@ -36,12 +36,12 @@ Each component has its own unique API, but all components accept the following s
 The `components` prop is an object that lets you override any interior subcomponents ("slots") of the base component itself.
 
 :::info
-Each component contains a `Root` slot, and many complex components (such as [`BadgeUnstyled`](/base/react-badge)) are composed of additional subcomponents that can be customized.
+Each component contains a `Root` slot, and many complex components (such as [`BadgeUnstyled`](/base/react-badge/)) are composed of additional subcomponents that can be customized.
 :::
 
 You can use the `components` prop to replace subcomponents with either custom components or HTML elements.
 
-For example, the [`BadgeUnstyled`](/base/react-badge) component renders a `<span>` by default.
+For example, the [`BadgeUnstyled`](/base/react-badge/) component renders a `<span>` by default.
 The code snippet below shows how to override this by assigning a `<div>` to the `Root` element:
 
 ```jsx
@@ -53,7 +53,7 @@ The code snippet below shows how to override this by assigning a `<div>` to the 
 The (singular) `component` prop provides a shortcut to `components.Root`.
 This is useful if you are only overriding the `Root` element of the component.
 
-The code snippet below shows how to override the `Root` element of the [`BadgeUnstyled`](/base/react-badge) component using the `component` prop:
+The code snippet below shows how to override the `Root` element of the [`BadgeUnstyled`](/base/react-badge/) component using the `component` prop:
 
 ```jsx
 <BadgeUnstyled component="div" />
