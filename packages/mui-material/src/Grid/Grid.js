@@ -347,19 +347,14 @@ const Grid = React.forwardRef(function Grid(inProps, ref) {
 
   const breakpointsDefaultValues = {};
   const breakpointsProps = {};
-  const propsRestFiltered = {};
+  const propsRestFiltered = { ...propsRest };
 
   breakpoints.keys.forEach((key) => {
-    breakpointsDefaultValues[key] = false;
-  });
-
-  Object.keys(propsRest).forEach((key) => {
-    const value = propsRest[key];
-
-    if (key in breakpoints.values) {
-      breakpointsProps[key] = value;
+    if (key in propsRest) {
+      breakpointsDefaultValues[key] = propsRest[key];
+      delete propsRestFiltered[key];
     } else {
-      propsRestFiltered[key] = value;
+      breakpointsDefaultValues[key] = false;
     }
   });
 
