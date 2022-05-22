@@ -12,12 +12,12 @@ import { AspectRatioProps, AspectRatioTypeMap } from './AspectRatioProps';
 const useUtilityClasses = (ownerState: AspectRatioProps) => {
   const { variant, color } = ownerState;
   const slots = {
-    root: ['root'],
-    content: [
-      'content',
+    root: [
+      'root',
       variant && `variant${capitalize(variant)}`,
       color && `color${capitalize(color)}`,
     ],
+    content: ['content'],
   };
 
   return composeClasses(slots, getAspectRatioUtilityClass, {});
@@ -28,7 +28,7 @@ const AspectRatioRoot = styled('div', {
   name: 'JoyAspectRatio',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: AspectRatioProps }>(({ ownerState }) => {
+})<{ ownerState: AspectRatioProps }>(({ theme, ownerState }) => {
   const minHeight =
     typeof ownerState.minHeight === 'number' ? `${ownerState.minHeight}px` : ownerState.minHeight;
   const maxHeight =
@@ -50,6 +50,7 @@ const AspectRatioRoot = styled('div', {
       borderRadius: 'var(--AspectRatio-radius)',
       margin: 'var(--AspectRatio-margin)',
     },
+    theme.variants[ownerState.variant!]?.[ownerState.color!],
   ];
 });
 
@@ -57,36 +58,31 @@ const AspectRatioContent = styled('div', {
   name: 'JoyAspectRatio',
   slot: 'Content',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: AspectRatioProps }>(({ theme, ownerState }) => {
-  return [
-    {
-      flex: 1,
-      position: 'relative',
-      borderRadius: 'var(--AspectRatio-radius)',
-      height: 0,
-      paddingBottom: 'var(--AspectRatio-paddingBottom)',
-      // use data-attribute instead of :first-child to support zero config SSR (emotion)
-      '& > [data-first-child]': {
-        borderRadius: 'var(--AspectRatio-childRadius)',
-        boxSizing: 'border-box',
-        position: 'absolute',
-        width: '100%',
-        height: '100%',
-        objectFit: ownerState.objectFit,
-        overflow: 'hidden',
-        margin: 0,
-        padding: 0,
-        '& > img': {
-          // support art-direction that uses <picture><img /></picture>
-          width: '100%',
-          height: '100%',
-          objectFit: ownerState.objectFit,
-        },
-      },
+})<{ ownerState: AspectRatioProps }>(({ ownerState }) => ({
+  flex: 1,
+  position: 'relative',
+  borderRadius: 'var(--AspectRatio-radius)',
+  height: 0,
+  paddingBottom: 'var(--AspectRatio-paddingBottom)',
+  // use data-attribute instead of :first-child to support zero config SSR (emotion)
+  '& > [data-first-child]': {
+    borderRadius: 'var(--AspectRatio-childRadius)',
+    boxSizing: 'border-box',
+    position: 'absolute',
+    width: '100%',
+    height: '100%',
+    objectFit: ownerState.objectFit,
+    overflow: 'hidden',
+    margin: 0,
+    padding: 0,
+    '& > img': {
+      // support art-direction that uses <picture><img /></picture>
+      width: '100%',
+      height: '100%',
+      objectFit: ownerState.objectFit,
     },
-    theme.variants[ownerState.variant!]?.[ownerState.color!],
-  ];
-});
+  },
+}));
 
 const AspectRatio = React.forwardRef(function AspectRatio(inProps, ref) {
   const props = useThemeProps<typeof inProps & AspectRatioProps>({
@@ -98,6 +94,7 @@ const AspectRatio = React.forwardRef(function AspectRatio(inProps, ref) {
     className,
     component = 'div',
     children,
+    componentsProps,
     ratio = '16 / 9',
     minHeight,
     maxHeight,
@@ -128,7 +125,11 @@ const AspectRatio = React.forwardRef(function AspectRatio(inProps, ref) {
       ref={ref}
       {...other}
     >
-      <AspectRatioContent ownerState={ownerState} className={clsx(classes.content, className)}>
+      <AspectRatioContent
+        ownerState={ownerState}
+        {...componentsProps?.content}
+        className={clsx(classes.content, componentsProps?.content?.className, className)}
+      >
         {React.Children.map(children, (child, index) =>
           index === 0 && React.isValidElement(child)
             ? React.cloneElement(child, { 'data-first-child': '' })
@@ -164,13 +165,20 @@ AspectRatio.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
+   * The props used for each slot inside the AspectRatio.
+   * @default {}
+   */
+  componentsProps: PropTypes.shape({
+    content: PropTypes.object.isRequired,
+  }),
+  /**
    * The maximum calculated height of the element (not the CSS height).
    */
-  max: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  maxHeight: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
    * The minimum calculated height of the element (not the CSS height).
    */
-  min: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  minHeight: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
    * The CSS object-fit value of the first-child.
    */
