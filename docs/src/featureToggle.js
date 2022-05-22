@@ -10,8 +10,5 @@ module.exports = {
   enable_mui_base_scope: true, // will be enabled after the migration
   enable_system_scope: true, // will be enabled after the migration
   enable_joy_scope:
-    process.env.NODE_ENV === 'development' ||
-    // material-ui site, works for all branches and pull requests
-    // ref: https://app.netlify.com/sites/material-ui/settings/general
-    process.env.SITE_ID === '64f32322-7c26-4008-b886-60800cd747b0',
+    process.env.NODE_ENV === 'development' || process.env.SITE_NAME === 'material-ui', // staging site
 };
