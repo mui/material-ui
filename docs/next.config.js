@@ -190,11 +190,7 @@ module.exports = {
         if (process.env.PULL_REQUEST !== 'true' && page.pathname.startsWith('/experiments')) {
           return;
         }
-        if (
-          page.pathname.startsWith('/joy-ui') &&
-          process.env.PULL_REQUEST !== 'true' &&
-          !FEATURE_TOGGLE.enable_joy_scope
-        ) {
+        if (page.pathname.startsWith('/joy-ui') && !FEATURE_TOGGLE.enable_joy_scope) {
           return;
         }
         // The blog is not translated
