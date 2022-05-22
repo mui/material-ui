@@ -198,13 +198,18 @@ export function resolveSpacingClasses(spacing, breakpoints, styles = {}) {
     return [styles[`spacing-xs-${String(spacing)}`] || `spacing-xs-${String(spacing)}`];
   }
   // in case of object `spacing`
-  const classes = breakpoints.map((breakpoint) => {
+  const classes = [];
+
+  breakpoints.forEach((breakpoint) => {
     const value = spacing[breakpoint];
 
-    return (
-      Number(value) > 0 &&
-      (styles[`spacing-${breakpoint}-${String(value)}`] || `spacing-${breakpoint}-${String(value)}`)
-    );
+    if (Number(value) > 0) {
+      const className =
+        styles[`spacing-${breakpoint}-${String(value)}`] ||
+        `spacing-${breakpoint}-${String(value)}`;
+
+      classes.push(className);
+    }
   });
 
   return classes;
@@ -230,10 +235,14 @@ const GridRoot = styled('div', {
       spacingClasses = resolveSpacingClasses(spacing, breakpoints, styles);
     }
 
-    const breakpointsStyles = breakpoints.map((breakpoint) => {
+    const breakpointsStyles = [];
+
+    breakpoints.forEach((breakpoint) => {
       const value = ownerState[breakpoint];
 
-      return value !== false && styles[`grid-${breakpoint}-${String(value)}`];
+      if (value !== false) {
+        breakpointsStyles.push(styles[`grid-${breakpoint}-${String(value)}`]);
+      }
     });
 
     return [
@@ -282,10 +291,14 @@ const useUtilityClasses = (ownerState) => {
     spacingClasses = resolveSpacingClasses(spacing, breakpoints);
   }
 
-  const breakpointsClasses = breakpoints.map((breakpoint) => {
+  const breakpointsClasses = [];
+
+  breakpoints.forEach((breakpoint) => {
     const value = ownerState[breakpoint];
 
-    return value !== false && `grid-${breakpoint}-${String(value)}`;
+    if (value !== false) {
+      breakpointsClasses.push(`grid-${breakpoint}-${String(value)}`);
+    }
   });
 
   const slots = {
