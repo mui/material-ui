@@ -20,6 +20,13 @@ export interface AspectRatioTypeMap<P = {}, D extends React.ElementType = 'div'>
      */
     children?: React.ReactNode;
     /**
+     * The props used for each slot inside the AspectRatio.
+     * @default {}
+     */
+    componentsProps?: {
+      content: React.HTMLAttributes<HTMLDivElement> & { sx: SxProps };
+    };
+    /**
      * The minimum calculated height of the element (not the CSS height).
      */
     minHeight?: number | string;
