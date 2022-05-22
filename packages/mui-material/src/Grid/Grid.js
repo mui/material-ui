@@ -220,8 +220,8 @@ const GridRoot = styled('div', {
   name: 'MuiGrid',
   slot: 'Root',
   overridesResolver: (props, styles) => {
-    const { breakpoints, ownerState } = props;
-    const { container, direction, item, spacing, wrap, zeroMinWidth } = ownerState;
+    const { container, direction, item, spacing, wrap, zeroMinWidth, breakpoints } =
+      props.ownerState;
 
     let spacingClasses = [];
 
@@ -271,8 +271,9 @@ const GridRoot = styled('div', {
   generateGrid,
 );
 
-const useUtilityClasses = (ownerState, breakpoints) => {
-  const { classes, container, direction, item, spacing, wrap, zeroMinWidth } = ownerState;
+const useUtilityClasses = (ownerState) => {
+  const { classes, container, direction, item, spacing, wrap, zeroMinWidth, breakpoints } =
+    ownerState;
 
   let spacingClasses = [];
 
@@ -366,9 +367,10 @@ const Grid = React.forwardRef(function Grid(inProps, ref) {
     zeroMinWidth,
     spacing,
     ...breakpointsValues,
+    breakpoints: breakpoints.keys,
   };
 
-  const classes = useUtilityClasses(ownerState, breakpoints.keys);
+  const classes = useUtilityClasses(ownerState);
 
   return (
     <GridContext.Provider value={columns}>
@@ -377,7 +379,6 @@ const Grid = React.forwardRef(function Grid(inProps, ref) {
         className={clsx(classes.root, className)}
         as={component}
         ref={ref}
-        breakpoints={breakpoints.keys}
         {...propsRestFiltered}
       />
     </GridContext.Provider>
