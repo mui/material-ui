@@ -225,8 +225,9 @@ const GridRoot = styled('div', {
   name: 'MuiGrid',
   slot: 'Root',
   overridesResolver: (props, styles) => {
+    const { ownerState } = props;
     const { container, direction, item, spacing, wrap, zeroMinWidth, breakpoints } =
-      props.ownerState;
+      ownerState;
 
     let spacingClasses = [];
 
