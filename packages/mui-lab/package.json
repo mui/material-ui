@@ -77,7 +77,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.17.2",
-    "@mui/base": "^5.0.0-alpha.82",
+    "@mui/base": "5.0.0-alpha.82",
     "@mui/system": "^5.8.1",
     "@mui/utils": "^5.8.0",
     "@mui/x-date-pickers": "5.0.0-alpha.1",
