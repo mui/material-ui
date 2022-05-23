@@ -171,7 +171,6 @@ module.exports = {
     PULL_REQUEST: process.env.PULL_REQUEST === 'true',
     REACT_STRICT_MODE: reactStrictMode,
     FEEDBACK_URL: process.env.FEEDBACK_URL,
-    SITE_NAME: process.env.SITE_NAME,
     // #default-branch-switch
     SOURCE_CODE_ROOT_URL: 'https://github.com/mui/material-ui/blob/master',
     SOURCE_CODE_REPO: 'https://github.com/mui/material-ui',

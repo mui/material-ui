@@ -9,6 +9,5 @@ module.exports = {
   enable_redirects: true, // related to new structure change
   enable_mui_base_scope: true, // will be enabled after the migration
   enable_system_scope: true, // will be enabled after the migration
-  enable_joy_scope:
-    process.env.NODE_ENV === 'development' || process.env.SITE_NAME === 'material-ui', // staging site
+  enable_joy_scope: process.env.NODE_ENV === 'development' || process.env.STAGING === true,
 };
