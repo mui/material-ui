@@ -122,19 +122,20 @@ describe('createCssVarsProvider', () => {
           colorSchemes: { light: { palette: { primary: { 500: '#ff5252' } } } },
         },
         defaultColorScheme: 'light',
-        prefix: 'mui',
       });
       const Text = () => {
         const theme = useTheme();
         return <div data-testid={`text`}>{theme.getColorSchemeSelector('light')}</div>;
       };
       render(
-        <CssVarsProvider>
+        <CssVarsProvider attribute="data-custom-color-scheme">
           <Text />
         </CssVarsProvider>,
       );
 
-      expect(screen.getByTestId('text').textContent).to.equal('[data-mui-color-scheme="light"] &');
+      expect(screen.getByTestId('text').textContent).to.equal(
+        '[data-custom-color-scheme="light"] &',
+      );
     });
 
     it('can access to allColorSchemes', () => {
