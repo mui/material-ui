@@ -20,9 +20,13 @@ const buildOnlyEnglishLocale = isDeployPreview && !l10nPRInNetlify && !vercelDep
 
 const staging =
   process.env.REPOSITORY_URL === undefined || /mui\/material-ui$/.test(process.env.REPOSITORY_URL);
+
 if (staging) {
   // eslint-disable-next-line no-console
   console.log(`Staging deploy of ${process.env.REPOSITORY_URL || 'local repository'}`);
+} else {
+  // eslint-disable-next-line no-console
+  console.log('process.env.REPOSITORY_URL', process.env.REPOSITORY_URL);
 }
 
 module.exports = {
