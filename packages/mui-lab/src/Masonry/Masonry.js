@@ -16,6 +16,13 @@ export const parseToNumber = (val) => {
   return Number(val.replace('px', ''));
 };
 
+const lineBreakStyle = {
+  flexBasis: '100%',
+  width: 0,
+  margin: 0,
+  padding: 0,
+};
+
 const useUtilityClasses = (ownerState) => {
   const { classes } = ownerState;
 
@@ -39,6 +46,7 @@ export const getStyle = ({ ownerState, theme }) => {
   };
 
   const stylesSSR = {};
+  // Only applicable for Server-Side Rendering
   if (ownerState.isSSR) {
     const orderStyleSSR = {};
     const defaultSpacing = Number(theme.spacing(ownerState.defaultSpacing).replace('px', ''));
@@ -263,12 +271,6 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
   }, [columns, spacing, children]);
 
   const handleRef = useForkRef(ref, masonryRef);
-  const lineBreakStyle = {
-    flexBasis: '100%',
-    width: 0,
-    margin: 0,
-    padding: 0,
-  };
 
   //  columns are likely to have different heights and hence can start to merge;
   //  a line break at the end of each column prevents columns from merging
