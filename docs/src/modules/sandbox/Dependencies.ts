@@ -1,5 +1,12 @@
 import { CODE_VARIANTS } from '../constants';
 
+type RegExpMatchArrayWithGroupsOnly<T> = {
+  groups?: {
+    [key in keyof T]: string;
+  };
+};
+type RegExpMatchArrayWithGroups<T> = (RegExpMatchArray & RegExpMatchArrayWithGroupsOnly<T>) | null;
+
 export default function SandboxDependencies(
   demo: {
     raw: string;
@@ -121,18 +128,22 @@ export default function SandboxDependencies(
       }
 
       // e.g date-fns
-      const dateAdapterMatch = fullName.match(/^@mui\/lab\/(Adapter.*)/);
+      const dateAdapterMatch = fullName.match(
+        /^@mui\/(lab|x-date-pickers)\/(?<adapterName>Adapter.*)/,
+      ) as RegExpMatchArrayWithGroups<{ adapterName: string }>;
       if (dateAdapterMatch !== null) {
         /**
          * Mapping from the date adapter sub-packages to the npm packages they require.
          * @example `@mui/lab/AdapterDateFns` has a peer dependency on `date-fns`.
          */
-        const packageName = {
-          AdapterDateFns: 'date-fns',
-          AdapterDayjs: 'dayjs',
-          AdapterLuxon: 'luxon',
-          AdapterMoment: 'moment',
-        }[dateAdapterMatch[1]];
+        const packageName = (
+          {
+            AdapterDateFns: 'date-fns',
+            AdapterDayjs: 'dayjs',
+            AdapterLuxon: 'luxon',
+            AdapterMoment: 'moment',
+          } as Record<string, string>
+        )[dateAdapterMatch.groups?.adapterName || ''];
         if (packageName === undefined) {
           throw new TypeError(
             `Can't determine required npm package for adapter '${dateAdapterMatch[1]}'`,

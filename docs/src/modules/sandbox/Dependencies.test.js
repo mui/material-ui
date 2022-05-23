@@ -267,4 +267,34 @@ import AdapterMoment from '@mui/lab/AdapterMoment';
       moment: 'latest',
     });
   });
+
+  it('should handle dependencies for @mui/x-date-pickers', () => {
+    const source = `
+import * as React from 'react';
+import TextField from '@mui/material/TextField';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { AdapterLuxon } from '@mui/x-date-pickers/AdapterLuxon';
+import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';`;
+
+    const { dependencies } = SandboxDependencies({
+      raw: source,
+      codeVariant: 'JS',
+    });
+
+    expect(dependencies).to.deep.equal({
+      react: 'latest',
+      'react-dom': 'latest',
+      '@emotion/react': 'latest',
+      '@emotion/styled': 'latest',
+      '@mui/material': 'latest',
+      '@mui/x-date-pickers': 'latest',
+      'date-fns': 'latest',
+      dayjs: 'latest',
+      luxon: 'latest',
+      moment: 'latest',
+    });
+  });
 });
