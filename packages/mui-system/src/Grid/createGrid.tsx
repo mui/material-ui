@@ -18,6 +18,7 @@ import {
   generateGridColumnSpacingStyles,
   generateGridRowSpacingStyles,
   generateGridDirectionStyles,
+  generateGridOffsetStyles,
 } from './gridGenerator';
 import { CreateMUIStyled } from '../createStyled';
 import { GridBaseProps, GridTypeMap } from './GridProps';
@@ -89,7 +90,23 @@ export default function createGrid(
   };
 
   const useUtilityClasses = (ownerState: GridBaseProps & { classes?: Record<string, string> }) => {
-    const { classes, container, direction, lg, md, sm, spacing, wrap, xl, xs } = ownerState;
+    const {
+      classes,
+      container,
+      direction,
+      lg,
+      md,
+      sm,
+      spacing,
+      wrap,
+      xl,
+      xs,
+      lgOffset,
+      mdOffset,
+      smOffset,
+      xlOffset,
+      xsOffset,
+    } = ownerState;
 
     const slots = {
       root: [
@@ -103,6 +120,11 @@ export default function createGrid(
         md !== false && `grid-md-${String(md)}`,
         lg !== false && `grid-lg-${String(lg)}`,
         xl !== false && `grid-xl-${String(xl)}`,
+        !!xsOffset && `grid-xs-offset-${String(xsOffset)}`,
+        !!smOffset && `grid-sm-offset-${String(smOffset)}`,
+        !!mdOffset && `grid-md-offset-${String(mdOffset)}`,
+        !!lgOffset && `grid-lg-offset-${String(lgOffset)}`,
+        !!xlOffset && `grid-xl-offset-${String(xlOffset)}`,
       ],
     };
 
@@ -116,6 +138,7 @@ export default function createGrid(
     generateGridSizeStyles,
     generateGridDirectionStyles,
     generateGridStyles,
+    generateGridOffsetStyles,
   );
 
   const Grid = React.forwardRef(function Grid(inProps, ref) {
@@ -166,7 +189,7 @@ export default function createGrid(
     const otherWithoutCustomBreakpoints: Record<string, any> = {};
 
     Object.entries(other).forEach(([key, val]) => {
-      if (!(theme.breakpoints.keys as string[]).includes(key)) {
+      if (!(theme.breakpoints.keys as string[]).includes(key) && !key.endsWith('Offset')) {
         otherWithoutCustomBreakpoints[key] = val;
       }
     });

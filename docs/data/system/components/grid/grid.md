@@ -117,6 +117,15 @@ If you specify custom breakpoints to the theme, you can use those names as grid 
 
 {{"demo": "CustomBreakpointsGrid.js", "bg": true}}
 
+## Offset
+
+Move the item to the right by using offset props which can be a number or `"auto"`.
+
+- a number, for example, `mdOffset={2}` moves the item to the right by 2 columns starts from `md` breakpoint and up.
+- The `"auto"` value moves the item to the right edge of the grid container.
+
+{{"demo": "OffsetGrid.js", "bg": true}}
+
 ## Limitations
 
 ### Negative margin

@@ -222,6 +222,8 @@ describe('grid generator', () => {
         maxWidth: 'none',
         width: 'auto',
         '@media (min-width:600px)': {
+          flexBasis: 'auto',
+          flexGrow: 0,
           width: `calc(100% * 6 / var(--Grid-columns))`,
         },
         '@media (min-width:900px)': {
@@ -230,6 +232,8 @@ describe('grid generator', () => {
           maxWidth: '100%',
         },
         '@media (min-width:1200px)': {
+          flexBasis: 'auto',
+          flexGrow: 0,
           width: `calc(100% * 4 / var(--Grid-columns))`,
         },
         '@media (min-width:1536px)': {
@@ -377,10 +381,10 @@ describe('grid generator', () => {
       expect(
         generateGridOffsetStyles({
           theme: { breakpoints, spacing },
-          ownerState: { xsOffset: 3, mdOffset: 5, lgOffset: 'auto' },
+          ownerState: { xsOffset: 0, mdOffset: 5, lgOffset: 'auto' },
         }),
       ).to.deep.equal({
-        marginLeft: `calc(100% * 3 / var(--Grid-columns))`,
+        marginLeft: '0px',
         '@media (min-width:900px)': {
           marginLeft: `calc(100% * 5 / var(--Grid-columns))`,
         },

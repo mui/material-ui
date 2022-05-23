@@ -85,6 +85,8 @@ export const generateGridSizeStyles = ({ theme, ownerState }: Props) => {
       }
       if (typeof value === 'number') {
         style = {
+          flexGrow: 0,
+          flexBasis: 'auto',
           width: `calc(100% * ${value} / var(--Grid-columns)${
             ownerState.nested && ownerState.container ? ` + var(--Grid-columnSpacing)` : ''
           })`,
@@ -113,7 +115,7 @@ export const generateGridOffsetStyles = ({ theme, ownerState }: Props) => {
     }
     if (typeof value === 'number') {
       style = {
-        marginLeft: `calc(100% * ${value} / var(--Grid-columns))`,
+        marginLeft: value === 0 ? '0px' : `calc(100% * ${value} / var(--Grid-columns))`,
       };
     }
     appendStyle(styles, style);
