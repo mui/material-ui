@@ -41,22 +41,9 @@ You can control the position of the snackbar by specifying the `anchorOrigin` pr
 ## Stacked snackbars
 
 The `Snackbar` component doesn't yet support displaying multiple stacked snackbars out of the box.
-However, there are currently two complementary alternatives to do that:
+However, we have recently released `SnackbarsProvider` and `useSnackbars`, a brand new component and hook, respectively, for that [in the lab](/material-ui/react-stacked-snackbars/) to support this behavior.
 
-### Lab's stacked snackbars
-
-We have been developing a native component to support this use case and [we've made it available in the lab](/material-ui/react-stacked-snackbars/) to gather feedback for its first versions and general API design.
-
-### notistack
-
-![stars](https://img.shields.io/github/stars/iamhosseindhv/notistack.svg?style=social&label=Stars)
-![npm downloads](https://img.shields.io/npm/dm/notistack.svg)
-
-This example demonstrates how to use [notistack](https://github.com/iamhosseindhv/notistack).
-notistack has an **imperative API** that makes it easy to display snackbars, without having to handle their open/close state.
-It also enables you to **stack** them on top of one another (although this is discouraged by the Material Design guidelines).
-
-{{"demo": "IntegrationNotistack.js", "defaultCodeOpen": false}}
+{{"demo": "StackedSnackbars.js", "defaultCodeOpen": false}}
 
 ## Message Length
 
