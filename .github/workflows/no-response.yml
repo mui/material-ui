@@ -17,7 +17,7 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           # Number of days of inactivity before an Issue is closed for lack of response
-          daysUntilClose: 7
+          daysUntilClose: 0.05
           # Label requiring a response
           responseRequiredLabel: needs more information
           # Comment to post when closing an Issue for lack of response. Set to `false` to disable
