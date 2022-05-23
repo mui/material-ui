@@ -261,7 +261,7 @@ describe('<Grid />', () => {
     it('should not support undefined values', () => {
       const { container } = render(
         <Grid container>
-          <Grid item data-testid="child" />
+          <Grid item />
         </Grid>,
       );
       expect(container.firstChild).not.to.have.class('MuiGrid-spacing-xs-undefined');
@@ -270,7 +270,7 @@ describe('<Grid />', () => {
     it('should not support zero values', () => {
       const { container } = render(
         <Grid container spacing={0}>
-          <Grid item data-testid="child" />
+          <Grid item />
         </Grid>,
       );
       expect(container.firstChild).not.to.have.class('MuiGrid-spacing-xs-0');
@@ -279,7 +279,7 @@ describe('<Grid />', () => {
     it('should support object values', () => {
       const { container } = render(
         <Grid container spacing={{ sm: 1.5, md: 2 }}>
-          <Grid item data-testid="child" />
+          <Grid item />
         </Grid>,
       );
       expect(container.firstChild).to.have.class('MuiGrid-spacing-sm-1.5');
@@ -289,7 +289,7 @@ describe('<Grid />', () => {
     it('should ignore object values of zero', () => {
       const { container } = render(
         <Grid container spacing={{ sm: 0, md: 2 }}>
-          <Grid item data-testid="child" />
+          <Grid item />
         </Grid>,
       );
       expect(container.firstChild).not.to.have.class('MuiGrid-spacing-sm-0');
@@ -310,7 +310,7 @@ describe('<Grid />', () => {
       const { container } = render(
         <ThemeProvider theme={theme}>
           <Grid container spacing={{ mobile: 1.5, desktop: 3 }}>
-            <Grid item data-testid="child" />
+            <Grid item />
           </Grid>
         </ThemeProvider>,
       );
@@ -332,11 +332,11 @@ describe('<Grid />', () => {
       const { container } = render(
         <ThemeProvider theme={theme}>
           <Grid container spacing={{ mobile: 0, desktop: 3 }}>
-            <Grid item data-testid="child" />
+            <Grid item />
           </Grid>
         </ThemeProvider>,
       );
-      expect(container.firstChild).to.not.have.class('MuiGrid-spacing-mobile-1.5');
+      expect(container.firstChild).to.not.have.class('MuiGrid-spacing-mobile-0');
       expect(container.firstChild).to.have.class('MuiGrid-spacing-desktop-3');
     });
 
@@ -354,7 +354,7 @@ describe('<Grid />', () => {
       const { container } = render(
         <ThemeProvider theme={theme}>
           <Grid container spacing={{ desktop: 3 }}>
-            <Grid item data-testid="child" />
+            <Grid item />
           </Grid>
         </ThemeProvider>,
       );
@@ -376,7 +376,7 @@ describe('<Grid />', () => {
       const { container } = render(
         <ThemeProvider theme={theme}>
           <Grid container spacing={{ md: 1.5, desktop: 3 }}>
-            <Grid item data-testid="child" />
+            <Grid item />
           </Grid>
         </ThemeProvider>,
       );
@@ -399,7 +399,7 @@ describe('<Grid />', () => {
       const { container } = render(
         <ThemeProvider theme={theme}>
           <Grid container spacing={{ mobile: -1.5, desktop: -3 }}>
-            <Grid item data-testid="child" />
+            <Grid item />
           </Grid>
         </ThemeProvider>,
       );
