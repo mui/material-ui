@@ -19,7 +19,7 @@ jobs:
           # Number of days of inactivity before an Issue is closed for lack of response
           daysUntilClose: 0.005
           # Label requiring a response
-          responseRequiredLabel: needs more information
+          responseRequiredLabel: 'status: needs more information'
           # Comment to post when closing an Issue for lack of response. Set to `false` to disable
           closeComment: >
             Since the issue is missing key information, and has been inactive for 7 days, it has been automatically closed.
