@@ -7,6 +7,7 @@ import {
   generateGridColumnsStyles,
   generateGridRowSpacingStyles,
   generateGridColumnSpacingStyles,
+  generateGridOffsetStyles,
 } from './gridGenerator';
 
 const spacing = createSpacing();
@@ -366,6 +367,25 @@ describe('grid generator', () => {
         },
         '@media (min-width:1536px)': {
           '--Grid-columnSpacing': '0px',
+        },
+      });
+    });
+  });
+
+  describe('generateGridOffsetStyles', () => {
+    it('supports responsive object', () => {
+      expect(
+        generateGridOffsetStyles({
+          theme: { breakpoints, spacing },
+          ownerState: { xsOffset: 3, mdOffset: 5, lgOffset: 'auto' },
+        }),
+      ).to.deep.equal({
+        marginLeft: `calc(100% * 3 / var(--Grid-columns))`,
+        '@media (min-width:900px)': {
+          marginLeft: `calc(100% * 5 / var(--Grid-columns))`,
+        },
+        '@media (min-width:1200px)': {
+          marginLeft: `auto`,
         },
       });
     });
