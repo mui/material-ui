@@ -39,7 +39,6 @@ describe('StackBlitz', () => {
           "import * as React from 'react';\nimport ReactDOM from 'react-dom/client';\nimport { StyledEngineProvider } from '@mui/material/styles';\nimport Demo from './demo';\n\nReactDOM.createRoot(document.querySelector(\"#root\")).render(\n  <React.StrictMode>\n    <StyledEngineProvider injectFirst>\n      <Demo />\n    </StyledEngineProvider>\n  </React.StrictMode>\n);",
       },
       dependencies: {
-        '@babel/runtime': 'latest',
         react: 'latest',
         '@mui/material': 'latest',
         'react-dom': 'latest',
@@ -73,7 +72,6 @@ describe('StackBlitz', () => {
           '{\n  "compilerOptions": {\n    "target": "es5",\n    "lib": [\n      "dom",\n      "dom.iterable",\n      "esnext"\n    ],\n    "allowJs": true,\n    "skipLibCheck": true,\n    "esModuleInterop": true,\n    "allowSyntheticDefaultImports": true,\n    "strict": true,\n    "forceConsistentCasingInFileNames": true,\n    "module": "esnext",\n    "moduleResolution": "node",\n    "resolveJsonModule": true,\n    "isolatedModules": true,\n    "noEmit": true,\n    "jsx": "react"\n  },\n  "include": [\n    "src"\n  ]\n}\n',
       },
       dependencies: {
-        '@babel/runtime': 'latest',
         react: 'latest',
         '@mui/material': 'latest',
         'react-dom': 'latest',
