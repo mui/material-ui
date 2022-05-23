@@ -14,9 +14,7 @@ describe('StackedSnackbars', () => {
   const MyApp = (snackbarOptions: ShowSnackbarProps) => {
     const snackbars = useSnackbars();
     return (
-      <Button
-        onClick={() => snackbars.showSnackbar({ message: 'Note Archived', ...snackbarOptions })}
-      >
+      <Button onClick={() => snackbars.show({ message: 'Note Archived', ...snackbarOptions })}>
         Show Snackbar
       </Button>
     );
@@ -95,10 +93,10 @@ describe('StackedSnackbars', () => {
       return (
         <Button
           onClick={() =>
-            snackbars.showSnackbar({
+            snackbars.show({
               message: 'Note Archived',
               action: (key: string) => (
-                <Button color="secondary" size="small" onClick={snackbars.closeSnackbar(key)}>
+                <Button color="secondary" size="small" onClick={snackbars.close(key)}>
                   Close
                 </Button>
               ),

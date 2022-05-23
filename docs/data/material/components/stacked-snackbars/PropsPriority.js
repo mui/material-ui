@@ -10,7 +10,7 @@ function MyApp() {
   return (
     <Button
       onClick={() =>
-        snackbars.showSnackbar({
+        snackbars.show({
           message: 'Note archived',
           autoHideDuration: 3000,
           TransitionComponent: Collapse,

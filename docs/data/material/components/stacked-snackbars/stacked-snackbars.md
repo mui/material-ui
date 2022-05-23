@@ -40,7 +40,7 @@ The `message` prop is used to show the snackbar message.
 The `action` prop can be used to show content on the right side of the snackbar.
 It can simply be a React Node or a callback function with a key parameter returning a React Node.
 
-Use the `snackbars.closeSnackbar` method to dismiss a specific snackbar by providing the `key` from the `action` callback argument.
+Use the `close` method to dismiss a specific snackbar by providing the `key` from the `action` callback argument.
 
 {{"demo": "SimpleSnackbars.js", "defaultCodeOpen": false}}
 
@@ -65,17 +65,17 @@ Similarly to positioning, use the`TransitionComponent` prop in an individual sna
 
 ## Props priority
 
-When the same props are supplied for both `showSnackbar` and `SnackbarsProvider`, the ones added in the `showSnackbar` method will have priority over those in `SnackbarsProvider`.
+When the same props are supplied for both `show` method of `useSnackbars` and `SnackbarsProvider`, the ones added in the `show` method will have priority over those in `SnackbarsProvider`.
 
 {{"demo": "PropsPriority.js"}}
 
-In the above example, the `anchorOrigin`, `autoHideDuration` and `TransitionComponent` props in `showSnackbar` are applied taking preference over the `props` supplied on `SnackbarsProvider`.
+In the above example, the `anchorOrigin`, `autoHideDuration` and `TransitionComponent` props in `show` method are applied taking preference over the `props` supplied on `SnackbarsProvider`.
 
 ## Global content and action props
 
 To have global consistency of the types of `action` and `content` every instance of snackbar has across your application, use the `ref` prop in the `SnackbarsProvider` component to apply the desired values to the aforementioned props.
 
-This will save you from a lot of inefficient repetition if you'd to in each instance individually using `showSnackbar`.
+This will save you from a lot of inefficient repetition if you'd to in each instance individually using the `show` method.
 
 ### Global action prop
 

@@ -10,10 +10,10 @@ function MyApp() {
 
   return (
     <React.Fragment>
-      <Button onClick={() => snackbars.showSnackbar({ message: 'Note Archived' })}>
+      <Button onClick={() => snackbars.show({ message: 'Note Archived' })}>
         Show Snackbar 1 with same action
       </Button>
-      <Button onClick={() => snackbars.showSnackbar({ message: 'I love snacks' })}>
+      <Button onClick={() => snackbars.show({ message: 'I love snacks' })}>
         Show Snackbar 2 with same action
       </Button>
     </React.Fragment>
@@ -32,7 +32,7 @@ export default function GlobalActionSnackbars() {
           <Button
             color="secondary"
             size="small"
-            onClick={snackbarRef.current.closeSnackbar(key)}
+            onClick={snackbarRef.current.close(key)}
           >
             UNDO
           </Button>
@@ -40,7 +40,7 @@ export default function GlobalActionSnackbars() {
             size="small"
             aria-label="close"
             color="inherit"
-            onClick={snackbarRef.current.closeSnackbar(key)}
+            onClick={snackbarRef.current.close(key)}
           >
             <CloseIcon fontSize="small" />
           </IconButton>

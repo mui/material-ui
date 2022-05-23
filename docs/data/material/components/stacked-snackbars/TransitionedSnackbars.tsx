@@ -14,12 +14,12 @@ function MyApp() {
 
   return (
     <React.Fragment>
-      <Button onClick={() => snackbars.showSnackbar({ message: 'I love snacks' })}>
+      <Button onClick={() => snackbars.show({ message: 'I love snacks' })}>
         Grow Transition
       </Button>
       <Button
         onClick={() =>
-          snackbars.showSnackbar({
+          snackbars.show({
             message: 'I love snacks',
             TransitionComponent: Fade,
           })
@@ -29,7 +29,7 @@ function MyApp() {
       </Button>
       <Button
         onClick={() =>
-          snackbars.showSnackbar({
+          snackbars.show({
             message: 'I love snacks',
             TransitionComponent: SlideTransition,
           })

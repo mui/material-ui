@@ -47,7 +47,7 @@ export interface SnackbarsProviderProps
 
 type SnackbarsByAnchorOrigin = { [key: string]: ShowSnackbarProps[] };
 
-export type CloseSnackbarRef = { closeSnackbar: (key: string) => () => void };
+export type CloseSnackbarRef = { close: (key: string) => () => void };
 /**
  *
  * Demos:
@@ -119,7 +119,7 @@ const SnackbarsProvider = React.forwardRef<
   };
 
   React.useImperativeHandle(ref, () => ({
-    closeSnackbar: (key: string) => handleClose(key),
+    close: (key: string) => handleClose(key),
   }));
 
   const handleExited = (key: string) => () => {
@@ -189,7 +189,7 @@ const SnackbarsProvider = React.forwardRef<
   });
 
   return (
-    <SnackbarsContext.Provider value={{ showSnackbar, closeSnackbar: handleClose }}>
+    <SnackbarsContext.Provider value={{ show: showSnackbar, close: handleClose }}>
       {snackbarsContainer}
       {children}
     </SnackbarsContext.Provider>

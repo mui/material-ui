@@ -13,10 +13,10 @@ function MyApp() {
 
   return (
     <React.Fragment>
-      <Button onClick={() => snackbars.showSnackbar()}>
+      <Button onClick={() => snackbars.show()}>
         Show Snackbar 1 with same content
       </Button>
-      <Button onClick={() => snackbars.showSnackbar()}>
+      <Button onClick={() => snackbars.show()}>
         Show Snackbar 2 with same content
       </Button>
     </React.Fragment>
@@ -33,7 +33,7 @@ export default function GlobalContentSnackbars() {
       anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
       content={(key) => (
         <Alert
-          onClose={snackbarRef.current.closeSnackbar(key)}
+          onClose={snackbarRef.current.close(key)}
           severity="warning"
           sx={{ width: '100%' }}
         >

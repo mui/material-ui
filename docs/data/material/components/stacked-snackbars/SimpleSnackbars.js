@@ -11,22 +11,18 @@ function MyApp() {
   return (
     <Button
       onClick={() =>
-        snackbars.showSnackbar({
+        snackbars.show({
           message: 'Note archived',
           action: (key) => (
             <React.Fragment>
-              <Button
-                color="secondary"
-                size="small"
-                onClick={snackbars.closeSnackbar(key)}
-              >
+              <Button color="secondary" size="small" onClick={snackbars.close(key)}>
                 UNDO
               </Button>
               <IconButton
                 size="small"
                 aria-label="close"
                 color="inherit"
-                onClick={snackbars.closeSnackbar(key)}
+                onClick={snackbars.close(key)}
               >
                 <CloseIcon fontSize="small" />
               </IconButton>

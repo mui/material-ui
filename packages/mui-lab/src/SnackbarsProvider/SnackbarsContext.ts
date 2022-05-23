@@ -13,8 +13,8 @@ export interface ShowSnackbarProps extends Omit<SnackbarProps, 'open' | 'childre
 }
 
 export interface SnackbarsContextProps {
-  showSnackbar(props?: ShowSnackbarProps): void;
-  closeSnackbar(key: string): () => void;
+  show(props?: ShowSnackbarProps): void;
+  close(key: string): () => void;
 }
 
 const SnackbarsContext = React.createContext<SnackbarsContextProps | undefined>(undefined);

@@ -10,7 +10,7 @@ function MyApp() {
     <React.Fragment>
       <Button
         onClick={() =>
-          snackbars.showSnackbar({
+          snackbars.show({
             message: 'Note archived',
             anchorOrigin: { vertical: 'top', horizontal: 'center' },
           })
@@ -20,7 +20,7 @@ function MyApp() {
       </Button>
       <Button
         onClick={() =>
-          snackbars.showSnackbar({
+          snackbars.show({
             message: 'Note archived',
             anchorOrigin: {
               vertical: 'top',
@@ -33,7 +33,7 @@ function MyApp() {
       </Button>
       <Button
         onClick={() =>
-          snackbars.showSnackbar({
+          snackbars.show({
             message: 'Note archived',
             anchorOrigin: {
               vertical: 'bottom',
@@ -46,7 +46,7 @@ function MyApp() {
       </Button>
       <Button
         onClick={() =>
-          snackbars.showSnackbar({
+          snackbars.show({
             message: 'Note archived',
             anchorOrigin: {
               vertical: 'bottom',
@@ -59,7 +59,7 @@ function MyApp() {
       </Button>
       <Button
         onClick={() =>
-          snackbars.showSnackbar({
+          snackbars.show({
             message: 'Note archived',
             anchorOrigin: {
               vertical: 'bottom',
@@ -72,7 +72,7 @@ function MyApp() {
       </Button>
       <Button
         onClick={() =>
-          snackbars.showSnackbar({
+          snackbars.show({
             message: 'Note archived',
             anchorOrigin: {
               vertical: 'top',

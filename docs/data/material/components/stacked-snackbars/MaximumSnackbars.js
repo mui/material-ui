@@ -28,7 +28,7 @@ function MyApp({ snackbarLimit, setSnackbarLimit }) {
       </ButtonGroup>
       <Button
         onClick={() =>
-          snackbars.showSnackbar({
+          snackbars.show({
             message: 'Note archived',
             autoHideDuration: 4000,
           })

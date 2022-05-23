@@ -20,10 +20,10 @@ function MyApp() {
       <Button
         variant="outlined"
         onClick={() =>
-          snackbars.showSnackbar({
+          snackbars.show({
             content: (key: string) => (
               <Alert
-                onClose={snackbars.closeSnackbar(key)}
+                onClose={snackbars.close(key)}
                 severity="success"
                 sx={{ width: '100%' }}
               >
