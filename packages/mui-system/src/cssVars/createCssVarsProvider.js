@@ -159,7 +159,7 @@ export default function createCssVarsProvider(options) {
         styleSheet[colorSchemeSelector] = css;
       } else {
         styleSheet[
-          `${colorSchemeSelector === ':root' ? '' : colorSchemeSelector}[${attribute}="${key}"]`
+          `${colorSchemeSelector === ':root' ? 'html' : colorSchemeSelector}[${attribute}="${key}"]`
         ] = css;
       }
     });

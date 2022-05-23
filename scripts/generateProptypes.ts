@@ -73,6 +73,7 @@ const useExternalDocumentation: Record<string, '*' | readonly string[]> = {
   OutlinedInput: useExternalPropsFromInputBase,
   Radio: ['disableRipple', 'id', 'inputProps', 'inputRef', 'required'],
   Checkbox: ['defaultChecked'],
+  Container: ['component'],
   Switch: [
     'checked',
     'defaultChecked',
