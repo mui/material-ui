@@ -24,8 +24,8 @@ import { CODE_VARIANTS } from 'docs/src/modules/constants';
 import { useSetCodeVariant } from 'docs/src/modules/utils/codeVariant';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 import { useRouter } from 'next/router';
-import CodeSandbox from '../sandbox/CodeSandbox';
-import StackBlitz from '../sandbox/StackBlitz';
+import codeSandbox from '../sandbox/CodeSandbox';
+import stackBlitz from '../sandbox/StackBlitz';
 
 function compress(object) {
   return LZString.compressToBase64(JSON.stringify(object))
@@ -265,7 +265,7 @@ export default function DemoToolbar(props) {
   };
 
   const handleCodeSandboxClick = () => {
-    const { files } = CodeSandbox.createReactApp(demoData);
+    const { files } = codeSandbox.createReactApp(demoData);
     const parameters = compress({ files });
 
     // ref: https://codesandbox.io/docs/api/#define-api
@@ -285,7 +285,7 @@ export default function DemoToolbar(props) {
   };
 
   const handleStackBlitzClick = () => {
-    const demoConfig = StackBlitz.createReactApp(demoData);
+    const demoConfig = stackBlitz.createReactApp(demoData);
 
     // ref: https://developer.stackblitz.com/docs/platform/post-api/
     const form = document.createElement('form');
