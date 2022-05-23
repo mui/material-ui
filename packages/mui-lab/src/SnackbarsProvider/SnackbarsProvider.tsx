@@ -34,7 +34,8 @@ const StyledSnackbar = styled(Snackbar)<{ ownerState: ShowSnackbarProps }>(
 
 export interface SnackbarsProviderProps
   extends Omit<SnackbarProps, 'children' | 'classes' | 'key' | 'message' | 'onClose' | 'open'> {
-  /** The maximum number of snackbars to display at a time.
+  /**
+   * The maximum number of snackbars to display at a time.
    * @default 3
    */
   limit?: number;
