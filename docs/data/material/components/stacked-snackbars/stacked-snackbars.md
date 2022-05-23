@@ -38,7 +38,7 @@ The `limit` prop can be passed to `SnackbarsProvider` to limit the maximum numbe
 
 {{"demo": "MaximumSnackbars.js", "defaultCodeOpen": false}}
 
-## Simple snackbars
+## Basic stacked snackbars
 
 The `message` prop is used to show the snackbar message.
 
