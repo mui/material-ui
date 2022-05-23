@@ -8,6 +8,7 @@ import {
 } from '@mui/utils';
 import systemStyled from '../styled';
 import useThemePropsSystem from '../useThemeProps';
+import useTheme from '../useTheme';
 import { extendSxProp } from '../styleFunctionSx';
 import createTheme from '../createTheme';
 import {
@@ -118,6 +119,7 @@ export default function createGrid(
   );
 
   const Grid = React.forwardRef(function Grid(inProps, ref) {
+    const theme = useTheme();
     const themeProps = useThemeProps<typeof inProps & { component?: React.ElementType }>(inProps);
     const props = extendSxProp(themeProps) as Omit<typeof themeProps, 'color'>; // `color` type conflicts with html color attribute.
     const nested = React.useContext(NestedContext);
@@ -161,6 +163,13 @@ export default function createGrid(
       xl,
     };
 
+    const otherWithoutCustomBreakpoints: Record<string, any> = {};
+
+    Object.entries(other).forEach(([key, val]) => {
+      if (!(theme.breakpoints.keys as string[]).includes(key)) {
+        otherWithoutCustomBreakpoints[key] = val;
+      }
+    });
     const classes = useUtilityClasses(ownerState);
 
     if (nested) {
@@ -171,7 +180,7 @@ export default function createGrid(
           as={component}
           ownerState={ownerState}
           className={clsx(classes.root, className)}
-          {...other}
+          {...otherWithoutCustomBreakpoints}
         />
       );
     }
@@ -182,7 +191,7 @@ export default function createGrid(
           as={component}
           ownerState={ownerState}
           className={clsx(classes.root, className)}
-          {...other}
+          {...otherWithoutCustomBreakpoints}
         />
       </NestedContext.Provider>
     );
