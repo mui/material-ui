@@ -122,7 +122,8 @@ export default function createCssVarsProvider(options) {
       getCssVar: createGetCssVar(prefix),
     };
 
-    const styleSheet = {};
+    const defaultColorSchemeStyleSheet = {};
+    const otherColorSchemesStyleSheet = {};
 
     Object.entries(colorSchemes).forEach(([key, scheme]) => {
       const {
@@ -156,10 +157,10 @@ export default function createCssVarsProvider(options) {
         return defaultColorScheme.light;
       })();
       if (key === resolvedDefaultColorScheme) {
-        styleSheet[colorSchemeSelector] = css;
+        defaultColorSchemeStyleSheet[colorSchemeSelector] = css;
       } else {
-        styleSheet[
-          `${colorSchemeSelector === ':root' ? 'html' : colorSchemeSelector}[${attribute}="${key}"]`
+        otherColorSchemesStyleSheet[
+          `${colorSchemeSelector === ':root' ? '' : colorSchemeSelector}[${attribute}="${key}"]`
         ] = css;
       }
     });
@@ -228,7 +229,8 @@ export default function createCssVarsProvider(options) {
         }}
       >
         <GlobalStyles styles={{ [colorSchemeSelector]: rootCss }} />
-        <GlobalStyles styles={styleSheet} />
+        <GlobalStyles styles={defaultColorSchemeStyleSheet} />
+        <GlobalStyles styles={otherColorSchemesStyleSheet} />
         <ThemeProvider theme={resolveTheme ? resolveTheme(theme) : theme}>{children}</ThemeProvider>
       </ColorSchemeContext.Provider>
     );
