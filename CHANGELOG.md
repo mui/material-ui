@@ -55,6 +55,7 @@ A big thanks to the 21 contributors who made this release possible. Here are som
 - &#8203;<!-- 26 -->[docs] Fixed broken link on the icons page (#32780) @SamuelMaddox
 - &#8203;<!-- 25 -->[docs] Add "back to top" button (#30441) @VibhorJaiswal
 - &#8203;<!-- 24 -->[docs] Fix typo in notifications @mbrookes
+- &#8203;<!-- 32 -->[docs] New WAI-ARIA guidelines location (#32865) @oliviertassinari
 - &#8203;<!-- 23 -->[docs] Mention the ESLint plugin for detecting unused classes in tss-react (#32666) @garronej
 - &#8203;<!-- 22 -->[docs] Update `useAutocomplete` demos to use `Mui-focused` class (#32757) @ZeeshanTamboli
 - &#8203;<!-- 21 -->[examples] Fix `NextLinkComposedProps` gives a TypeScript error (#32655) @ZeeshanTamboli
