@@ -38,7 +38,7 @@ export const getStyle = ({ ownerState, theme }) => {
     width: '100%',
     display: 'flex',
     flexFlow: 'column wrap',
-    alignContent: 'space-between',
+    alignContent: 'flex-start',
     boxSizing: 'border-box',
     '& > *': {
       boxSizing: 'border-box',
