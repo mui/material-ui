@@ -16,7 +16,7 @@ export const traverseBreakpoints = <T = unknown>(
   responsize: T | T[] | Record<string, any> | undefined,
   iterator: Iterator<T>,
 ) => {
-  const smallestBreakpoint = breakpoints.keys[0];
+  const smallestBreakpoint = breakpoints.keys[0]; // the keys is sorted from smallest to largest by `createBreakpoints`.
 
   if (Array.isArray(responsize)) {
     responsize.forEach((breakpointValue, index) => {
