@@ -116,6 +116,27 @@ describe('createCssVarsProvider', () => {
       expect(screen.getByTestId('text').textContent).to.equal('var(--mui-palette-primary-500)');
     });
 
+    it('provide getColorSchemeSelector util', () => {
+      const { CssVarsProvider } = createCssVarsProvider({
+        theme: {
+          colorSchemes: { light: { palette: { primary: { 500: '#ff5252' } } } },
+        },
+        defaultColorScheme: 'light',
+        prefix: 'mui',
+      });
+      const Text = () => {
+        const theme = useTheme();
+        return <div data-testid={`text`}>{theme.getColorSchemeSelector('light')}</div>;
+      };
+      render(
+        <CssVarsProvider>
+          <Text />
+        </CssVarsProvider>,
+      );
+
+      expect(screen.getByTestId('text').textContent).to.equal('[data-mui-color-scheme="light"] &');
+    });
+
     it('can access to allColorSchemes', () => {
       const { CssVarsProvider, useColorScheme } = createCssVarsProvider({
         theme: {
