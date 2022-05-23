@@ -44,10 +44,10 @@ export interface ButtonClasses {
 export type ButtonClassKey = keyof ButtonClasses;
 
 export function getButtonUtilityClass(slot: string): string {
-  return generateUtilityClass('MuiButton', slot);
+  return generateUtilityClass('JoyButton', slot);
 }
 
-const buttonClasses: ButtonClasses = generateUtilityClasses('MuiButton', [
+const buttonClasses: ButtonClasses = generateUtilityClasses('JoyButton', [
   'root',
   'colorPrimary',
   'colorNeutral',

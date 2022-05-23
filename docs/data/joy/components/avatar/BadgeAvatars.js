@@ -11,7 +11,7 @@ export default function BadgeAvatars() {
         badgeInset="14%"
         color="success"
         sx={{
-          '& .MuiBadge-badge': {
+          '& .JoyBadge-badge': {
             '&::after': {
               position: 'absolute',
               top: 0,

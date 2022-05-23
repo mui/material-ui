@@ -371,7 +371,12 @@ module.exports = {
             ],
           },
         ],
-
+      },
+    },
+    {
+      files: ['packages/*/src/**/*{.ts,.tsx,.js}'],
+      excludedFiles: ['*.d.ts', '*.spec.ts', '*.spec.tsx', 'packages/mui-joy/**/*{.ts,.tsx,.js}'],
+      rules: {
         'material-ui/mui-name-matches-component-name': [
           'error',
           {

@@ -26,7 +26,7 @@ const useUtilityClasses = (ownerState: SheetProps) => {
 };
 
 const SheetRoot = styled('div', {
-  name: 'MuiSheet',
+  name: 'JoySheet',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: SheetProps }>(({ theme, ownerState }) => {
@@ -52,7 +52,7 @@ const SheetRoot = styled('div', {
 const Sheet = React.forwardRef(function Sheet(inProps, ref) {
   const props = useThemeProps<typeof inProps & SheetProps>({
     props: inProps,
-    name: 'MuiSheet',
+    name: 'JoySheet',
   });
 
   const {
@@ -132,7 +132,7 @@ Sheet.propTypes /* remove-proptypes */ = {
    * @default 'plain'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['contained', 'light', 'outlined', 'text']),
+    PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
     PropTypes.string,
   ]),
 } as any;

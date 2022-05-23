@@ -3,6 +3,8 @@ import { OverrideProps } from '@mui/types';
 import { Breakpoint } from '@mui/system';
 import { SxProps } from '../styles/types';
 
+export type ContainerSlot = 'root';
+
 export interface ContainerTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P & {
     children?: React.ReactNode;
