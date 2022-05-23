@@ -187,10 +187,10 @@ module.exports = {
       const prefix = userLanguage === 'en' ? '' : `/${userLanguage}`;
 
       pages2.forEach((page) => {
-        if (process.env.PULL_REQUEST !== 'true' && page.pathname.startsWith('/experiments')) {
+        if (page.pathname.startsWith('/experiments') && !staging) {
           return;
         }
-        if (page.pathname.startsWith('/joy-ui') && !FEATURE_TOGGLE.enable_joy_scope) {
+        if (page.pathname.startsWith('/joy-ui') && !staging) {
           return;
         }
         // The blog is not translated
