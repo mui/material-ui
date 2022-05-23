@@ -1,6 +1,6 @@
 {
   "name": "@mui/base",
-  "version": "5.0.0-alpha.81",
+  "version": "5.0.0-alpha.82",
   "private": false,
   "author": "MUI Team",
   "description": "Unstyled React components and low-level hooks.",
