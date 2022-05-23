@@ -7,11 +7,10 @@ import { blue, blueDark } from 'docs/src/modules/brandingTheme';
 const Root = styled('div')(({ theme }) => ({
   ...theme.typography.body1,
   color: theme.palette.text.primary,
-  wordBreak: 'break-word',
-  '& .anchor-link': {
-    marginTop: -96,
-    position: 'absolute',
+  '& strong': {
+    color: theme.palette.mode === 'dark' ? theme.palette.grey[200] : theme.palette.text.primary,
   },
+  wordBreak: 'break-word',
   '& pre': {
     margin: theme.spacing(2, 'auto'),
     padding: theme.spacing(2),
@@ -103,6 +102,7 @@ const Root = styled('div')(({ theme }) => ({
     }),
   },
   '& h1, & h2, & h3, & h4': {
+    scrollMarginTop: 'calc(var(--MuiDocs-header-height) + 32px)',
     '& code': {
       fontSize: 'inherit',
       lineHeight: 'inherit',

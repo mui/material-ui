@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 const ApiBuilder = require('claudia-api-builder');
 const AWS = require('aws-sdk');
-const uuid = require('uuid/v4');
+const { v4: uuid } = require('uuid');
 
 const api = new ApiBuilder();
 const dynamoDb = new AWS.DynamoDB.DocumentClient();

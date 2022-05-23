@@ -27,7 +27,7 @@ const Main = styled('main', {
     },
   }),
   [theme.breakpoints.up('lg')]: {
-    width: `calc(100% - var(--MuiDocs-navDrawer-width))`,
+    width: 'calc(100% - var(--MuiDocs-navDrawer-width))',
   },
 }));
 
@@ -46,7 +46,7 @@ const StyledAppContainer = styled(AppContainer, {
     }),
     ...(!disableToc && {
       [theme.breakpoints.up('sm')]: {
-        width: `calc(100% - var(--MuiDocs-toc-width))`,
+        width: 'calc(100% - var(--MuiDocs-toc-width))',
       },
       [theme.breakpoints.up('lg')]: {
         paddingLeft: '60px',
