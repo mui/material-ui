@@ -12,6 +12,11 @@ waiAria: https://www.w3.org/TR/wai-aria-1.1/#alert
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
+:::info
+ℹ️ Note that Material Design doesn't advocate for this behavior, as seen in [their snackbar documentation](https://material.io/components/snackbars#usage).
+However, given this is a common pattern seen in multiple webapps, Material UI allows deisgners and developers to break away from that guideline.
+:::
+
 ## Usage
 
 To display multiple snackbars, wrap your application with the `SnackbarsProvider` component.
