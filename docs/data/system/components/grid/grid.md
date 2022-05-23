@@ -111,11 +111,25 @@ You can change the default number of columns (12) with the `columns` prop.
 
 {{"demo": "ColumnsGrid.js", "bg": true}}
 
+## Custom breakpoints
+
+If you specify custom breakpoints to the theme, you can use those names as grid item props and in responsive values. For **Typescript**, you have to set module augmentation on theme breakpoints and the grid breakpoints interfaces.
+
+{{"demo": "CustomBreakpointsGrid.js", "bg": true}}
+
 ## Limitations
 
 ### Negative margin
 
 The spacing between items is implemented with a negative margin. This might lead to unexpected behaviors. For instance, it can cause an overflow on mobile viewport (horizontal scroll), you need to apply `overflow: hidden;` to the parent of the grid container.
+
+```js
+<Box sx={{ maxWidth: '100vw', overflow: 'hidden' }}>
+  <Grid container spacing={4}>
+    ...grid items
+  </Grid>
+</Box>
+```
 
 ### `direction: column | column-reverse`
 
