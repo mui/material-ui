@@ -724,7 +724,7 @@ To continue improving the customization experience, we are doubling down on the 
 These components and hooks contain the main functionalities and accessibility, without being opinionated about how styles are applied nor what styles.
 We still have work to do to have a full set of unstyled components.
 
-You can read more about them in [the docs](/material-ui/customization/unstyled-components/) and keep track of our progress in [#27170](https://github.com/mui/material-ui/issues/27170).
+You can read more about them in [the docs](/base/getting-started/overview/) and keep track of our progress in [#27170](https://github.com/mui/material-ui/issues/27170).
 
 Our high-level plan is to use the unstyled components and hooks as the basis of the Material components and second design system.
 We are aiming to complete this work with the next major release (v6).

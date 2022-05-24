@@ -317,6 +317,7 @@ https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 /pt/api/* /pt/material-ui/api/:splat 301
 /company/about/ /about/ 301
 /company/jobs/ /careers/ 301
+/material-ui/customization/unstyled-components/ /base/getting-started/overview/ 301
 # 2023
 
 # Proxies

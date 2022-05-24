@@ -27,14 +27,14 @@ const CardCoverRoot = styled('div', {
   left: 0,
   width: '100%',
   height: '100%',
-  borderRadius: 'var(--Card-radius)',
+  borderRadius: 'var(--CardCover-radius)',
   // use data-attribute instead of :first-child to support zero config SSR (emotion)
   '& > [data-first-child]': {
     width: '100%',
     height: '100%',
     objectFit: 'cover',
     boxSizing: 'border-box',
-    borderRadius: 'var(--Card-radius)',
+    borderRadius: 'var(--CardCover-radius)',
   },
 });
 
