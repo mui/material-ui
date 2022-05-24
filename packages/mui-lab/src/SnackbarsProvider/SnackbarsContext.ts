@@ -5,11 +5,17 @@ export type SnackbarContentType =
   | React.ReactElement<any, any>
   | ((key: string) => React.ReactElement<any, any>);
 
-export interface ShowSnackbarProps extends Omit<SnackbarProps, 'open' | 'children'> {
+export type SnackbarActionType = React.ReactNode | ((key: string) => React.ReactNode);
+
+export interface ShowSnackbarProps extends Omit<SnackbarProps, 'open' | 'children' | 'action'> {
   /**
    * Replace the `SnackbarContent` component.
    */
   content?: SnackbarContentType;
+  /**
+   * The action to display. It renders after the message, at the end of the snackbar.
+   */
+  action?: SnackbarActionType;
 }
 
 export interface SnackbarsContextProps {

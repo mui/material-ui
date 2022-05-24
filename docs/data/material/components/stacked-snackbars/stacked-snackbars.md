@@ -47,9 +47,7 @@ It can be a React Node, or a callback function with a key parameter that returns
 
 Use the `close` method to dismiss a specific snackbar by providing the `key` from the `action` callback argument.
 
-The following demo shows how to work with these basic features:
-
-{{"demo": "SimpleSnackbars.js", "defaultCodeOpen": false}}
+{{"demo": "BasicStackedSnackbars.js", "defaultCodeOpen": false}}
 
 ## Customization
 

@@ -1,6 +1,6 @@
 {
   "props": {
-    "action": { "type": { "name": "union", "description": "func<br>&#124;&nbsp;node" } },
+    "action": { "type": { "name": "node" } },
     "anchorOrigin": {
       "type": {
         "name": "shape",
