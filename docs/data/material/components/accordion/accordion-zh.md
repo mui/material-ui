@@ -4,7 +4,7 @@ title: React Accordion （扩展面板）组件
 components: Accordion, AccordionActions, AccordionDetails, AccordionSummary
 githubLabel: 'component: accordion'
 materialDesign: https://material.io/archive/guidelines/components/expansion-panels.html
-waiAria: 'https://www.w3.org/TR/wai-aria-practices/#accordion'
+waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/accordion/
 ---
 
 # Accordion 扩展面板
@@ -45,6 +45,6 @@ As with any performance optimization this is not a silver bullet. Be sure to ide
 
 ## 无障碍设计
 
-(WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#accordion)
+(WAI-ARIA: https://www.w3.org/WAI/ARIA/apg/patterns/accordion/)
 
 For optimal accessibility we recommend setting `id` and `aria-controls` on the `AccordionSummary`. The `Accordion` will derive the necessary `aria-labelledby` and `id` for the content region of the accordion.
