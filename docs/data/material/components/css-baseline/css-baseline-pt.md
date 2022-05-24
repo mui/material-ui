@@ -82,7 +82,7 @@ const theme = createTheme({
 });
 ```
 
-Be aware, however, that using this utility (and customizing `-webkit-scrollbar`) forces MacOS to always show the scrollbar.
+Be aware, however, that using this utility (and customizing `-webkit-scrollbar`) forces macOS to always show the scrollbar.
 
 ### Tipografia
 
