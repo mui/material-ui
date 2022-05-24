@@ -16,7 +16,7 @@
 
 ## Prerequisites
 
-- An app that has Joy UI installed. Follow the [quick start](/joy-ui/getting-started/quick-start/) to learn how to quickly install it.
+- An app that has Joy UI installed. Follow the [usage](/joy-ui/getting-started/usage/) to learn how to quickly install it.
 
 ## Building the login page
 
