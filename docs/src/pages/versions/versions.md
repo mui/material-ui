@@ -27,11 +27,28 @@ MUI version numbers have three parts: `major.minor.patch`.
 The version number is incremented based on the level of change included in the release.
 
 - **Major releases** contain significant new features, some but minimal developer assistance is expected during the update.
+  These releases include [breaking changes](#what-doesnt-count-as-a-breaking-change).
   When updating to a new major release, you may need to run update scripts, refactor code, run additional tests, and learn new APIs.
 - **Minor releases** contain important new features.
   Minor releases are fully backward-compatible; no developer assistance is expected during the update, but you can optionally modify your apps and libraries to begin using new APIs, features, and capabilities that were added in the release.
 - **Patch releases** are low risk, contain bug fixes and small new features.
   No developer assistance is expected during the update.
+
+## What doesn't count as a breaking change?
+
+We call "breaking changes" those that require updating your codebase when upgrading to a new version, to the exception of:
+
+- **APIs starting with "unstable\_"**. These are provided as experimental features whose APIs we are not yet confident in.
+  By releasing these with an `unstable_` prefix, we can iterate faster and get to a stable API sooner, or simply learn that we don't need the API/feature in the first place.
+- **APIs documented as experimental**. Same as the above.
+- **Undocumented APIs and internal data structures**. If you access internal properties, there is no warranty. You are on your own.
+- **Development warnings**. Since these don't affect production behavior, we may add new warnings or modify existing warnings in between major versions.
+  In fact, this is what allows us to reliably warn about upcoming breaking changes.
+- **Pre-releases versions**. We provide pre-releases versions as a way to test new features early, but we need the flexibility to make changes based on what we learn in the pre-release period.
+  If you use these versions, note that APIs may change before the stable release.
+- **Small CSS changes**. Visual design changes that have a very low probability to negatively impact your UI are not considered breaking.
+
+In general, we don't release the above changes in patch releases.
 
 ## Release frequency
 
@@ -83,7 +100,7 @@ MUI will continue to give security updates and regressions support (for example,
 
 ## Deprecation practices
 
-Sometimes **"breaking changes"**, such as the removal of support for select APIs and features, are necessary.
+Sometimes "breaking changes", such as the removal of support for select APIs and features, are necessary.
 To make these transitions as easy as possible:
 
 - The number of breaking changes is minimized, and migration tools are provided when possible (codemods).
@@ -94,18 +111,3 @@ To make these transitions as easy as possible:
 - Deprecated features are announced in the changelog, and when possible, with warnings at runtime.
 - When a deprecation is announced, recommended update path is provided.
 - Existing use of a stable API during the deprecation period is supported, so your code will keep working during that period.
-- Peer dependency updates (React) that require changes to your apps are only made in a major release.
-
-### What doesn't count as a breaking change?
-
-In general, we don’t bump the major version number for changes to:
-
-- **APIs starting with unstable\_**. These are provided as experimental features whose APIs we are not yet confident in.
-  By releasing these with an `unstable_` prefix, we can iterate faster and get to a stable API sooner, or simply learn that we don't need the API/feature in the first place.
-- **APIs documented as experimental**. Same as the above.
-- **Undocumented APIs and internal data structures**. If you access internal properties, there is no warranty. You are on your own.
-- **Development warnings**. Since these don’t affect production behavior, we may add new warnings or modify existing warnings in between major versions.
-  In fact, this is what allows us to reliably warn about upcoming breaking changes.
-- **Pre-releases versions**. We provide pre-releases versions as a way to test new features early, but we need the flexibility to make changes based on what we learn in the pre-release period.
-  If you use these versions, note that APIs may change before the stable release.
-- **Small CSS changes**. Visual design changes that have a very low probability to negatively impact your UI are not considered breaking, we release them in minor releases.
