@@ -20,7 +20,7 @@ export default function ContainerResponsive() {
           flexWrap: 'wrap',
           resize: 'horizontal',
           overflow: 'hidden',
-          gap: 'clamp(0px, (100% - 360px) * 999, 16px)',
+          gap: 'clamp(0px, (100% - 360px + 32px) * 999, 16px)',
           transition: 'transform 0.3s, border 0.3s',
           '&:hover': {
             borderColor: theme.vars.palette.primary.outlinedHoverBorder,
@@ -33,7 +33,9 @@ export default function ContainerResponsive() {
           variant="soft"
           sx={{
             flexGrow: 1,
-            pb: 'clamp(0px, (100% - 360px) * 999, min(calc(100% / (16 / 9)), 300px))',
+            display: 'contents',
+            '--AspectRatio-paddingBottom':
+              'clamp(0px, (100% - 360px) * 999, min(calc(100% / (16 / 9)), 300px))',
           }}
         >
           <img
@@ -46,7 +48,7 @@ export default function ContainerResponsive() {
             display: 'flex',
             flexDirection: 'column',
             gap: 2,
-            maxWidth: '199px',
+            maxWidth: '200px',
           }}
         >
           <Box sx={{ display: 'flex' }}>
@@ -78,7 +80,8 @@ export default function ContainerResponsive() {
           <AspectRatio
             variant="soft"
             sx={{
-              pb: 'clamp(0px, (100% - 200px) * 999, 200px)',
+              '--AspectRatio-paddingBottom':
+                'clamp(0px, (100% - 200px) * 999, 200px)',
               pointerEvents: 'none',
             }}
           >
