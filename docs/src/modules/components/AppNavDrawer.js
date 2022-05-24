@@ -34,16 +34,11 @@ import systemPkgJson from '../../../../packages/mui-system/package.json';
 
 const savedScrollTop = {};
 
-const shouldShowJoy =
-  process.env.NODE_ENV === 'development' ||
-  process.env.PULL_REQUEST ||
-  FEATURE_TOGGLE.enable_joy_scope;
-
 const LinksWrapper = styled('div')(({ theme }) => {
   return {
     paddingLeft: theme.spacing(5.5),
     paddingTop: theme.spacing(1.5),
-    height: shouldShowJoy ? 162 : 124,
+    height: FEATURE_TOGGLE.enable_joy_scope ? 162 : 124,
     '& > a': {
       position: 'relative',
       display: 'flex',
@@ -218,7 +213,7 @@ function ProductDrawerButton(props) {
                 {"React components that implement Google's Material Design."}
               </Typography>
             </Link>
-            {shouldShowJoy && (
+            {FEATURE_TOGGLE.enable_joy_scope && (
               <Link href={ROUTES.joyDocs} sx={{ my: -0.5 }}>
                 <ProductLabel>Joy UI</ProductLabel>
                 <Typography color="text.secondary" variant="body2">

@@ -354,19 +354,23 @@ const rowHeaders: Record<string, React.ReactNode> = {
   ),
   // Advanced
   'data-grid/column-groups': (
-    <ColumnHead label="Column groups" nested href="/x/react-data-grid/columns/#column-groups" />
+    <ColumnHead label="Column groups" nested href="/x/react-data-grid/column-groups/" />
   ),
   'data-grid/column-spanning': (
-    <ColumnHead label="Column spanning" nested href="/x/react-data-grid/columns/#column-spanning" />
+    <ColumnHead label="Column spanning" nested href="/x/react-data-grid/column-spanning/" />
   ),
   'data-grid/column-resizing': (
-    <ColumnHead label="Column resizing" nested href="/x/react-data-grid/columns/#resizing" />
+    <ColumnHead
+      label="Column resizing"
+      nested
+      href="/x/react-data-grid/column-dimensions/#resizing"
+    />
   ),
   'data-grid/column-reorder': (
-    <ColumnHead label="Column reorder" nested href="/x/react-data-grid/columns/#column-reorder" />
+    <ColumnHead label="Column reorder" nested href="/x/react-data-grid/column-ordering/" />
   ),
   'data-grid/column-pinning': (
-    <ColumnHead label="Column pinning" nested href="/x/react-data-grid/columns/#column-pinning" />
+    <ColumnHead label="Column pinning" nested href="/x/react-data-grid/column-pinning/" />
   ),
   'data-grid/column-sorting': (
     <ColumnHead label="Column sorting" nested href="/x/react-data-grid/sorting/" />

@@ -48,11 +48,17 @@ const CardRoot = styled('div', {
       'borderRadius',
       'var(--Card-radius)',
     ),
-    // CardOverflow integration
-    '--CardOverflow-offset':
+    // CardCover integration
+    '--CardCover-radius':
       ownerState.variant === 'outlined'
-        ? `calc(-1 * var(--Card-padding) - var(--variant-outlinedBorderWidth))`
-        : `calc(-1 * var(--Card-padding))`,
+        ? `calc(var(--Card-radius) - var(--variant-outlinedBorderWidth, 0px))`
+        : 'var(--Card-radius)',
+    // CardOverflow integration
+    '--CardOverflow-offset': `calc(-1 * var(--Card-padding))`,
+    '--CardOverflow-radius':
+      ownerState.variant === 'outlined'
+        ? `calc(var(--Card-radius) - var(--variant-outlinedBorderWidth, 0px))`
+        : 'var(--Card-radius)',
     ...(ownerState.size === 'sm' && {
       '--Card-radius': theme.vars.radius.sm,
       '--Card-padding': '0.5rem',

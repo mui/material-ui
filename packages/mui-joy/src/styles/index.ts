@@ -59,3 +59,4 @@ export { default as useThemeProps } from './useThemeProps';
 export { sx as experimental_sx } from './styleFunctionSx';
 export { default as extendTheme, createGetCssVar } from './extendTheme';
 export type { ThemeInput } from './extendTheme';
+export { default as StyledEngineProvider } from './StyledEngineProvider';

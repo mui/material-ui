@@ -3,9 +3,9 @@ const pages = [
     pathname: '/joy-ui/getting-started',
     icon: 'DescriptionIcon',
     children: [
-      { pathname: '/joy-ui/getting-started/quick-start' },
+      { pathname: '/joy-ui/getting-started/overview' },
+      { pathname: '/joy-ui/getting-started/usage' },
       { pathname: '/joy-ui/getting-started/tutorial' },
-      { pathname: '/joy-ui/getting-started/principles' },
     ],
   },
   {
@@ -27,6 +27,11 @@ const pages = [
         pathname: '/joy-ui/components/data-display',
         subheader: 'data-display',
         children: [{ pathname: '/joy-ui/react-avatar' }, { pathname: '/joy-ui/react-badge' }],
+      },
+      {
+        pathname: '/joy-ui/components/surfaces',
+        subheader: 'surfaces',
+        children: [{ pathname: '/joy-ui/react-card' }],
       },
     ],
   },
