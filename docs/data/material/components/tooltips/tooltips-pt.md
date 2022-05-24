@@ -4,7 +4,7 @@ title: Componente React para Dicas
 components: Tooltip
 githubLabel: 'component: tooltip'
 materialDesign: https://material.io/components/tooltips
-waiAria: 'https://www.w3.org/TR/wai-aria-practices/#tooltip'
+waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/
 ---
 
 # Tooltip
@@ -132,7 +132,7 @@ On mobile, the tooltip is displayed when the user longpresses the element and hi
 
 ## Acessibilidade
 
-(WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#tooltip)
+(WAI-ARIA: https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/)
 
 By default, the tooltip only labels its child element. This is notably different from `title` which can either label **or** describe its child depending on whether the child already has a label. For example, in:
 
