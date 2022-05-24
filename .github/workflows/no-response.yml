@@ -22,5 +22,5 @@ jobs:
           responseRequiredLabel: 'status: needs more information'
           # Comment to post when closing an Issue for lack of response. Set to `false` to disable
           closeComment: >
-            Since the issue is missing key information, and has been inactive for 7 days, it has been automatically closed.
+            Since the issue is missing key information and has been inactive for 7 days, it has been automatically closed.
             If you wish to see the issue reopened, please provide the missing information.
