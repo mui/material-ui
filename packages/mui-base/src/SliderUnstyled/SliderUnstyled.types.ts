@@ -237,7 +237,7 @@ export type SliderUnstyledRootSlotProps = UseSliderRootSlotProps & {
   ownerState: SliderUnstyledOwnerState;
 };
 
-export type SliderUnstyledTrackSlotProps = UseSliderRootSlotProps & {
+export type SliderUnstyledTrackSlotProps = {
   className?: string;
   ownerState: SliderUnstyledOwnerState;
   style: React.CSSProperties;
