@@ -361,6 +361,8 @@ describe('[Joy] CssVarsProvider', () => {
 
       expect(screen.getByTestId('font-size').textContent).to.equal(
         JSON.stringify({
+          xs3: 'var(--joy-fontSize-xs3)',
+          xs2: 'var(--joy-fontSize-xs2)',
           xs: 'var(--joy-fontSize-xs)',
           sm: 'var(--joy-fontSize-sm)',
           md: 'var(--joy-fontSize-md)',
@@ -371,6 +373,7 @@ describe('[Joy] CssVarsProvider', () => {
           xl4: 'var(--joy-fontSize-xl4)',
           xl5: 'var(--joy-fontSize-xl5)',
           xl6: 'var(--joy-fontSize-xl6)',
+          xl7: 'var(--joy-fontSize-xl7)',
         }),
       );
       expect(screen.getByTestId('font-family').textContent).to.equal(
@@ -485,7 +488,9 @@ describe('[Joy] CssVarsProvider', () => {
         </CssVarsProvider>,
       );
 
-      expect(container.firstChild?.textContent).to.equal('h1,h2,h3,h4,h5,h6,body1,body2,body3');
+      expect(container.firstChild?.textContent).to.equal(
+        'display1,display2,h1,h2,h3,h4,h5,h6,body1,body2,body3,body4,body5',
+      );
     });
   });
 

@@ -179,8 +179,8 @@ export default function extendTheme(themeInput?: ThemeInput): Theme {
         ...createLightModeVariantVariables('warning'),
       },
       common: {
-        ...colors.common,
-        ...createLightModeVariantVariables('common'),
+        white: '#FFF',
+        black: '#0F0F0F',
       },
       text: {
         primary: 'var(--joy-palette-neutral-800)',
@@ -258,8 +258,8 @@ export default function extendTheme(themeInput?: ThemeInput): Theme {
         ...createDarkModeVariantVariables('warning'),
       },
       common: {
-        ...colors.common,
-        ...createDarkModeVariantVariables('common'),
+        white: '#FFF',
+        black: '#0F0F0F',
       },
       text: {
         primary: 'var(--joy-palette-neutral-100)',

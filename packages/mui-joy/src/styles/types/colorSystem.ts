@@ -96,6 +96,11 @@ export type ExtendedPaletteRange = OverridableStringUnion<
 
 export interface PaletteRange extends Record<ExtendedPaletteRange, string>, PaletteVariant {}
 
+export interface PaletteCommon {
+  white: string;
+  black: string;
+}
+
 export interface PaletteText {
   primary: string;
   secondary: string;
@@ -110,14 +115,7 @@ export interface PaletteBackground {
 
 export interface ColorPalettePropOverrides {}
 
-export type DefaultColorPalette =
-  | 'primary'
-  | 'neutral'
-  | 'danger'
-  | 'info'
-  | 'success'
-  | 'warning'
-  | 'common';
+export type DefaultColorPalette = 'primary' | 'neutral' | 'danger' | 'info' | 'success' | 'warning';
 
 export type ColorPaletteProp = OverridableStringUnion<
   DefaultColorPalette,
@@ -132,7 +130,6 @@ export interface PaletteDanger extends PaletteRange {}
 export interface PaletteInfo extends PaletteRange {}
 export interface PaletteSuccess extends PaletteRange {}
 export interface PaletteWarning extends PaletteRange {}
-export interface PaletteCommon extends PaletteRange {}
 
 export interface Palette {
   primary: PalettePrimary;
