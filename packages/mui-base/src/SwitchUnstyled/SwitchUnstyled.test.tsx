@@ -1,6 +1,9 @@
 import * as React from 'react';
 import { createMount, createRenderer, describeConformanceUnstyled } from 'test/utils';
-import SwitchUnstyled, { SwitchState, switchUnstyledClasses } from '@mui/base/SwitchUnstyled';
+import SwitchUnstyled, {
+  SwitchUnstyledOwnerState,
+  switchUnstyledClasses,
+} from '@mui/base/SwitchUnstyled';
 import { expect } from 'chai';
 
 describe('<SwitchUnstyled />', () => {
@@ -36,7 +39,7 @@ describe('<SwitchUnstyled />', () => {
   describe('componentState', () => {
     it('passes the ownerState prop to all the slots', () => {
       interface CustomSlotProps {
-        ownerState: SwitchState;
+        ownerState: SwitchUnstyledOwnerState;
         children?: React.ReactNode;
       }
 
