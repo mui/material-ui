@@ -36,7 +36,7 @@ The version number is incremented based on the level of change included in the r
 
 ## What doesn't count as a breaking change?
 
-We call "breaking changes" those that require updating your codebase when upgrading to a new version, to the exception of:
+We call "breaking changes" those that require updating your codebase when upgrading to a new version, with the exception of:
 
 - **APIs starting with "unstable\_"**. These are provided as experimental features whose APIs we are not yet confident in.
   By releasing these with an `unstable_` prefix, we can iterate faster and get to a stable API sooner, or simply learn that we don't need the API/feature in the first place.
@@ -44,9 +44,9 @@ We call "breaking changes" those that require updating your codebase when upgrad
 - **Undocumented APIs and internal data structures**. If you access internal properties, there is no warranty. You are on your own.
 - **Development warnings**. Since these don't affect production behavior, we may add new warnings or modify existing warnings in between major versions.
   In fact, this is what allows us to reliably warn about upcoming breaking changes.
-- **Pre-releases versions**. We provide pre-releases versions as a way to test new features early, but we need the flexibility to make changes based on what we learn in the pre-release period.
+- **Pre-releases versions**. We provide pre-release versions as a way to test new features early, but we need the flexibility to make changes based on what we learn in the pre-release period.
   If you use these versions, note that APIs may change before the stable release.
-- **Small CSS changes**. Visual design changes that have a very low probability to negatively impact your UI are not considered breaking.
+- **Small CSS changes**. Visual design changes that have a very low probability of negatively impacting your UI are not considered breaking.
 
 In general, we don't release the above changes in patch releases.
 
@@ -58,7 +58,7 @@ In general, you can expect the following release cycle:
 
 - A **major** release every 12 months.
 - 1-3 **minor** releases for each major release.
-- A **patch** release every week (anytime for urgent bug fix).
+- A **patch** release every week (anytime for an urgent bug fix).
 
 ## Release schedule
 
