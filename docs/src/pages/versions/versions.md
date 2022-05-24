@@ -96,7 +96,7 @@ To make these transitions as easy as possible:
 - Existing use of a stable API during the deprecation period is supported, so your code will keep working during that period.
 - Peer dependency updates (React) that require changes to your apps are only made in a major release.
 
-### What counts as a breaking change?
+### What doesn't count as a breaking change?
 
 In general, we don’t bump the major version number for changes to:
 
