@@ -3,7 +3,7 @@ product: material-ui
 title: Tree view React component
 components: TreeView, TreeItem
 githubLabel: 'component: tree view'
-waiAria: 'https://www.w3.org/TR/wai-aria-practices/#TreeView'
+waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/treeview/
 packageName: '@material-ui/lab'
 ---
 
@@ -101,7 +101,7 @@ Se é verdadeira:
 
 ## Acessibilidade
 
-(WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#TreeView)
+(WAI-ARIA: https://www.w3.org/WAI/ARIA/apg/patterns/treeview/)
 
 O componente segue as práticas de autoria da WAI-ARIA.
 
