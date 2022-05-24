@@ -157,9 +157,13 @@ const SnackbarsProvider = React.forwardRef<
     return (
       <SnackbarsContainer key={origin} ownerState={newOwnerState}>
         {snackbarsByCategory.map((snackbar) => {
-          const { content: contentSnackbarProp, ...snackbarOtherProps } = snackbar;
+          const {
+            content: contentSnackbarProp,
+            action: actionSnackbarProp,
+            ...snackbarOtherProps
+          } = snackbar;
 
-          let snackbarAction = snackbar.action || action;
+          let snackbarAction = actionSnackbarProp || action;
           if (typeof snackbarAction === 'function') {
             snackbarAction = snackbarAction(snackbar.key);
           }
