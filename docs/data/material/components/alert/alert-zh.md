@@ -3,7 +3,7 @@ product: material-ui
 title: React Alert （警告提示）组件
 components: Alert, AlertTitle
 githubLabel: 'component: alert'
-waiAria: 'https://www.w3.org/TR/wai-aria-practices/#alert'
+waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/alert/
 ---
 
 # Alert 警告提示
@@ -74,7 +74,7 @@ You can use the Snackbar to [display a toast](/material-ui/react-snackbar/#custo
 
 ## 无障碍设计
 
-(WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#alert)
+(WAI-ARIA: https://www.w3.org/WAI/ARIA/apg/patterns/alert/)
 
 当动态地显示组件时，大部分屏幕都会自动朗读其内容。 此时，屏幕阅读不会将页面加载时出现的提醒通知给用户。
 
