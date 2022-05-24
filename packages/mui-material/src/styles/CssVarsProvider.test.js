@@ -200,7 +200,6 @@ describe('[Material UI] CssVarsProvider', () => {
         JSON.stringify({
           placeholder: 'var(--md-opacity-placeholder)',
           inputTouchBottomLine: 'var(--md-opacity-inputTouchBottomLine)',
-          skeletonBg: 'var(--md-opacity-skeletonBg)',
           switchTrackDisabled: 'var(--md-opacity-switchTrackDisabled)',
           switchTrack: 'var(--md-opacity-switchTrack)',
         }),

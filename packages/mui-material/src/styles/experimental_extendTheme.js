@@ -44,7 +44,6 @@ export default function extendTheme(options = {}, ...args) {
         opacity: {
           placeholder: 0.42,
           inputTouchBottomLine: 0.42,
-          skeletonBg: 0.11,
           switchTrackDisabled: 0.12,
           switchTrack: 0.38,
           ...colorSchemesInput.light?.opacity,
@@ -57,7 +56,6 @@ export default function extendTheme(options = {}, ...args) {
         opacity: {
           placeholder: 0.5,
           inputTouchBottomLine: 0.7,
-          skeletonBg: 0.13,
           switchTrackDisabled: 0.2,
           switchTrack: 0.3,
           ...colorSchemesInput.dark?.opacity,
@@ -85,6 +83,7 @@ export default function extendTheme(options = {}, ...args) {
       'Chip',
       'FilledInput',
       'LinearProgress',
+      'Skeleton',
       'Slider',
       'SnackbarContent',
       'StepConnector',
@@ -106,6 +105,7 @@ export default function extendTheme(options = {}, ...args) {
       setColor(palette.LinearProgress, 'infoBgColor', lighten(palette.info.main, 0.62));
       setColor(palette.LinearProgress, 'successBgColor', lighten(palette.success.main, 0.62));
       setColor(palette.LinearProgress, 'warningBgColor', lighten(palette.warning.main, 0.62));
+      setColor(palette.Skeleton, 'bgColor', 'rgba(var(--md-palette-text-primary) / 0.11)');
       setColor(palette.Slider, 'primaryTrack', lighten(palette.primary.main, 0.62));
       setColor(palette.Slider, 'secondaryTrack', lighten(palette.secondary.main, 0.62));
       setColor(palette.Slider, 'errorTrack', lighten(palette.error.main, 0.62));
@@ -138,6 +138,7 @@ export default function extendTheme(options = {}, ...args) {
       setColor(palette.LinearProgress, 'infoBgColor', darken(palette.info.main, 0.5));
       setColor(palette.LinearProgress, 'successBgColor', darken(palette.success.main, 0.5));
       setColor(palette.LinearProgress, 'warningBgColor', darken(palette.warning.main, 0.5));
+      setColor(palette.Skeleton, 'bgColor', 'rgba(var(--md-palette-text-primary) / 0.13)');
       setColor(palette.Slider, 'primaryTrack', darken(palette.primary.main, 0.5));
       setColor(palette.Slider, 'secondaryTrack', darken(palette.secondary.main, 0.5));
       setColor(palette.Slider, 'errorTrack', darken(palette.error.main, 0.5));

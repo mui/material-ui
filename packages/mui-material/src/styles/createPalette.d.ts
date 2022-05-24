@@ -135,6 +135,8 @@ export interface PaletteWithChannels {
   };
   Chip: {
     defaultBorderColor: string;
+    defaultAvatarColor: string;
+    defaultIconColor: string;
   };
   FilledInput: {
     bgColor: string;
