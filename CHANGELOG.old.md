@@ -3518,7 +3518,7 @@ Here are some highlights ✨:
 - [Buttons] Consolidate ripple props type declarations (#15843) @lychyi
 - [IconButton] Add disable ripple props (#15864) @lychyi
 - [ListItemText] Update classes type definitions (#15822) @davjo664
-- [Tabs] Hide scrollbar on MacOS (#15762) @Umerbhat
+- [Tabs] Hide scrollbar on macOS (#15762) @Umerbhat
 - [Tooltip] Fix alignment issues (#15811) @pkmnct
 - [styles] Add MuiLink to ComponentsPropsList (#15814) @stuartgrigg
 

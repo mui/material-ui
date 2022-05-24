@@ -1,6 +1,6 @@
 {
   "name": "@mui/lab",
-  "version": "5.0.0-alpha.82",
+  "version": "5.0.0-alpha.83",
   "private": false,
   "author": "MUI Team",
   "description": "Laboratory for new MUI modules.",
@@ -77,8 +77,8 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.17.2",
-    "@mui/base": "5.0.0-alpha.81",
-    "@mui/system": "^5.8.0",
+    "@mui/base": "5.0.0-alpha.82",
+    "@mui/system": "^5.8.1",
     "@mui/utils": "^5.8.0",
     "@mui/x-date-pickers": "5.0.0-alpha.1",
     "clsx": "^1.1.1",

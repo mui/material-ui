@@ -1,5 +1,73 @@
 # [Versions](https://mui.com/versions/)
 
+## 5.8.1
+
+<!-- generated comparing v5.8.0..master -->
+
+_May 23, 2022_
+
+A big thanks to the 21 contributors who made this release possible. Here are some highlights ✨:
+
+- 💅 Added CSS variables support for two more Material UI components by @diggis00 and @alisasanib
+- And more 🐛 bug fixes and 📚 documentation improvements.
+
+### `@mui/material@5.8.1`
+
+- &#8203;<!-- 33 -->[Alert] Fix missing `ownerState` on the `action` slot (#32801) @mnajdova
+- &#8203;<!-- 20 -->[Fab] Make the `color` prop type extendable (#31830) @paales
+- &#8203;<!-- 14 -->[ListItemButton] Render as link if href specified (#32403) @o-dubrovskyi
+- &#8203;<!-- 13 -->[Paper] Add support for CSS variables (#32570) @diggis00
+- &#8203;<!-- 11 -->[Radio] Add support for CSS variables (#32599) @alisasanib
+- &#8203;<!-- 10 -->[Slider] Prevent rendering for marks that are out of the min & max bounds (#32436) @abriginets
+- &#8203;<!-- 09 -->[Slider] Slider having marks should be customizable in theme (#32816) @ZeeshanTamboli
+- &#8203;<!-- 03 -->[TouchRipple] Allows call imperative methods without event (#31955) @alexfauquette
+
+### `@mui/system@5.8.1`
+
+- &#8203;<!-- 07 -->[system] Simplify stylesheet injection logic (#32869) @siriwatknp
+- &#8203;<!-- 06 -->[system] Fix color scheme specificity (#32628) @siriwatknp
+- &#8203;<!-- 05 -->[system] Fix `borderRadius` errors when used inside `CssVarsProvider` (#32817) @mnajdova
+- &#8203;<!-- 04 -->[system] Fix toolbar media query mixin getting merged in wrong order (#32713) @ZeeshanTamboli
+
+### `@mui/lab@5.0.0-alpha.83`
+
+- &#8203;<!-- 15 -->[lab] Add missing `peerDependencies` (#32623) @nate-summercook
+- &#8203;<!-- 12 -->[pickers] Update @mui/x-date-pickers to be usable with React 18 (#32828) @flaviendelangle
+
+### `@mui/base@5.0.0-alpha.82`
+
+- &#8203;<!-- 08 -->[SliderUnstyled] Fix `disabledSwap` not being respected in `onChangeCommitted` (#32647) @JeanPetrov
+
+### `@mui/joy@5.0.0-alpha.29`
+
+- &#8203;<!-- 19 -->[Joy] Show Joy pages on master (#32866) @siriwatknp
+- &#8203;<!-- 18 -->[Joy] Add an overview page (#32836) @danilo-leal
+- &#8203;<!-- 17 -->[Joy] Add doc for the card components (#32825) @siriwatknp
+- &#8203;<!-- 16 -->[Joy] Miscellaneous fixes (#32815) @siriwatknp
+
+### Docs
+
+- &#8203;<!-- 31 -->[docs] Simplify header DOM structure (#32844) @oliviertassinari
+- &#8203;<!-- 30 -->[docs] Fix CodeSandbox & StackBlitz generation (#32726) @siriwatknp
+- &#8203;<!-- 29 -->[docs] Fix urls to columns pages in pricing table (#32842) @alexfauquette
+- &#8203;<!-- 28 -->[docs] Fix Tailwind CSS integration docs (#32512) @robertwt7
+- &#8203;<!-- 27 -->[docs] Fixed wrong command for the `link-underline-hover` codemod (#32793) @veronikaslc
+- &#8203;<!-- 26 -->[docs] Fixed broken link on the icons page (#32780) @SamuelMaddox
+- &#8203;<!-- 25 -->[docs] Add "back to top" button (#30441) @VibhorJaiswal
+- &#8203;<!-- 24 -->[docs] Fix typo in notifications @mbrookes
+- &#8203;<!-- 32 -->[docs] New WAI-ARIA guidelines location (#32865) @oliviertassinari
+- &#8203;<!-- 23 -->[docs] Mention the ESLint plugin for detecting unused classes in tss-react (#32666) @garronej
+- &#8203;<!-- 22 -->[docs] Update `useAutocomplete` demos to use `Mui-focused` class (#32757) @ZeeshanTamboli
+- &#8203;<!-- 21 -->[examples] Fix `NextLinkComposedProps` gives a TypeScript error (#32655) @ZeeshanTamboli
+- &#8203;<!-- 01 -->[website] Add Pedro to About Us page (#32803) @apedroferreira
+
+### Core
+
+- &#8203;<!-- 32 -->[core] Upgrade MUI X dependency (#32824) @oliviertassinari
+- &#8203;<!-- 02 -->[typescript] Allow module augmentation for `Mixins` (#32798) @mnajdova
+
+All contributors of this release in alphabetical order: @abriginets, @alexfauquette, @alisasanib, @apedroferreira, @danilo-leal, @diggis00, @flaviendelangle, @garronej, @JeanPetrov, @mbrookes, @mnajdova, @nate-summercook, @o-dubrovskyi, @oliviertassinari, @paales, @robertwt7, @SamuelMaddox, @siriwatknp, @veronikaslc, @VibhorJaiswal, @ZeeshanTamboli
+
 ## 5.8.0
 
 <!-- generated comparing v5.7.0..master -->
@@ -923,7 +991,7 @@ A big thanks to the 16 contributors who made this release possible. Here are som
 - [docs] Fix force redirection to a different locale (#30967) @oliviertassinari
 - [docs] Add live Tailwind CSS demo (#30966) @oliviertassinari
 - [website] Add banner for promoting priority open roles (#31076) @danilo-leal
-- [website] Open Full-stack Engineer role for studio (#31038) @newguy-123
+- [website] Open Full-stack Engineer role for studio (#31038) @prakhargupta1
 - [website] Minor security improvements (#31062) @oliviertassinari
 - [website] Improve title of open roles (#30963) @DanailH
 - [website] Add BIMI avatar (#30444) @oliviertassinari
@@ -938,7 +1006,7 @@ A big thanks to the 16 contributors who made this release possible. Here are som
 - [test] Test if certain Base members are exported from Material UI (#31067) @michaldudak
 - [core] Remove dead code (#31064) @oliviertassinari
 
-All contributors of this release in alphabetical order: @agauravdev, @alisasanib, @DanailH, @danilo-leal, @huyenltnguyen, @l10nbot, @liradb2000, @mbrookes, @michaldudak, @mnajdova, @newguy-123, @oliviertassinari, @ryohey, @samuelsycamore, @siriwatknp, @sydneyjodon-wk
+All contributors of this release in alphabetical order: @agauravdev, @alisasanib, @DanailH, @danilo-leal, @huyenltnguyen, @l10nbot, @liradb2000, @mbrookes, @michaldudak, @mnajdova, @prakhargupta1, @oliviertassinari, @ryohey, @samuelsycamore, @siriwatknp, @sydneyjodon-wk
 
 ## 5.4.1
 
@@ -1648,14 +1716,14 @@ This is an early release to fix `export 'useId' (imported as 'React') was not fo
 - &#8203;<!-- 9 -->[core] Fix PR run detection in test_bundle_size_monitor (#29879) @eps1lon
 - &#8203;<!-- 8 -->[core] Move bundle size monitoring to CircleCI (#29876) @eps1lon
 - &#8203;<!-- 7 -->[docs] Add keys to Responsive AppBar demo (#29884) @mbrookes
-- &#8203;<!-- 6 -->[docs] MUI's 2021 Developer survey (#29765) @newguy-123
+- &#8203;<!-- 6 -->[docs] MUI's 2021 Developer survey (#29765) @prakhargupta1
 - &#8203;<!-- 5 -->[docs] Smoother image loading UX (#29858) @oliviertassinari
 - &#8203;<!-- 4 -->[Select] Fix select display value with React Nodes (#29836) @kegi
 - &#8203;<!-- 3 -->[system] Add `experimental_sx` utility (#29833) @mnajdova
 - &#8203;<!-- 2 -->[test] Ignore "detected multiple renderers" warning for now (#29854) @eps1lon
 - &#8203;<!-- 1 -->[useMediaQuery][utils] Remove usage of React 18 APIs (#29870) @eps1lon
 
-All contributors of this release in alphabetical order: @eps1lon, @karakib2k18, @kegi, @mbrookes, @mnajdova, @newguy-123, @oliviertassinari
+All contributors of this release in alphabetical order: @eps1lon, @karakib2k18, @kegi, @mbrookes, @mnajdova, @prakhargupta1, @oliviertassinari
 
 ## 5.2.0
 
