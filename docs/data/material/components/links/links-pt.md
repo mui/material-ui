@@ -2,7 +2,7 @@
 product: material-ui
 components: Link
 githubLabel: 'component: link'
-waiAria: 'https://www.w3.org/TR/wai-aria-practices/#link'
+waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/link/
 ---
 
 # Links
@@ -41,7 +41,7 @@ One frequent use case is to perform navigation on the client only, without an HT
 
 ## Acessibilidade
 
-(WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#link)
+(WAI-ARIA: https://www.w3.org/WAI/ARIA/apg/patterns/link/)
 
 - Ao fornecer o conteúdo para o link, evite descrições genéricas como "clique aqui" ou "vá para". Em vez disso, use [descrições específicas](https://developers.google.com/web/tools/lighthouse/audits/descriptive-link-text).
 - Para a melhor experiência do usuário, os links devem se destacar do texto na página. For instance, you can keep the default `underline="always"` behavior.
