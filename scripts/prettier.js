@@ -52,8 +52,8 @@ function runPrettier(options) {
       cwd: workspaceRoot,
       gitignore: true,
       ignore: [
-        // these are auto-generated
-        'docs/pages/api-docs/**/*.md',
+        'docs/pages/api-docs/**/*.md', // these are auto-generated
+        'docs/public/static/error-codes.json',
         ...ignoredFiles,
       ],
       dot: true,
