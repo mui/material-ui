@@ -1,11 +1,14 @@
 import * as React from 'react';
 import AspectRatio from '@mui/joy/AspectRatio';
-import Box from '@mui/joy/Box';
+import Sheet from '@mui/joy/Sheet';
 import Typography from '@mui/joy/Typography';
 
 export default function CustomRatio() {
   return (
-    <Box sx={{ width: 300 }}>
+    <Sheet
+      variant="outlined"
+      sx={{ width: 300, borderRadius: 'md', overflow: 'auto' }}
+    >
       <AspectRatio ratio="4/3">
         <Typography
           level="h2"
@@ -14,6 +17,6 @@ export default function CustomRatio() {
           4 : 3
         </Typography>
       </AspectRatio>
-    </Box>
+    </Sheet>
   );
 }

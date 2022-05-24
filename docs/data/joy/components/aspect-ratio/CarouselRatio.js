@@ -42,12 +42,17 @@ export default function FlexRowRatio() {
           key={item.title}
           variant="outlined"
           sx={{
-            display: 'flex',
             gap: 2,
             p: 2,
+            display: 'flex',
+            alignItems: 'center',
+            borderRadius: 'sm',
           }}
         >
-          <AspectRatio ratio="1" sx={{ minWidth: 80 }}>
+          <AspectRatio
+            ratio="1"
+            sx={{ minWidth: 60, borderRadius: 'sm', overflow: 'auto' }}
+          >
             <img src={item.src} alt={item.title} />
           </AspectRatio>
           <Box sx={{ whiteSpace: 'nowrap' }}>

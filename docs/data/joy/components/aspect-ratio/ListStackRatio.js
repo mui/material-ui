@@ -30,11 +30,13 @@ const data = [
 export default function FlexRowRatio() {
   return (
     <Sheet
+      variant="outlined"
       sx={{
         display: 'flex',
         flexDirection: 'column',
         gap: 1,
         width: 300,
+        borderRadius: 'sm',
       }}
     >
       <List
@@ -48,7 +50,9 @@ export default function FlexRowRatio() {
             <ListItem>
               <ListItemButton sx={{ gap: 2 }}>
                 <ListItemDecorator>
-                  <AspectRatio sx={{ flexBasis: 200 }}>
+                  <AspectRatio
+                    sx={{ flexBasis: 200, borderRadius: 'sm', overflow: 'auto' }}
+                  >
                     <img src={item.src} alt={item.title} />
                   </AspectRatio>
                 </ListItemDecorator>

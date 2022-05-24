@@ -8,12 +8,24 @@ import Sheet from '@mui/joy/Sheet';
 export default function FlexRowRatio() {
   const [flexBasis, setFlexBasis] = React.useState(200);
   return (
-    <Box>
+    <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
       <Sheet
         variant="outlined"
-        sx={{ display: 'flex', gap: 2, p: 2, minWidth: 300 }}
+        sx={{
+          display: 'flex',
+          gap: 2,
+          p: 2,
+          minWidth: 300,
+          borderRadius: 'sm',
+        }}
       >
-        <AspectRatio sx={{ flexBasis: flexBasis ? `${flexBasis}px` : undefined }}>
+        <AspectRatio
+          sx={{
+            flexBasis: flexBasis ? `${flexBasis}px` : undefined,
+            borderRadius: 'sm',
+            overflow: 'auto',
+          }}
+        >
           <img
             src="https://images.unsplash.com/photo-1502657877623-f66bf489d236?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2369"
             alt=""
@@ -28,7 +40,7 @@ export default function FlexRowRatio() {
       </Sheet>
       <br />
       <TextField
-        variant="soft"
+        variant="outlined"
         label="flexBasis"
         placeholder="number"
         endDecorator="px"
