@@ -3,7 +3,7 @@ product: material-ui
 title: Componente React para Alertas
 components: Alert, AlertTitle
 githubLabel: 'component: Alert'
-waiAria: 'https://www.w3.org/TR/wai-aria-practices/#alert'
+waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/alert/
 ---
 
 # Alerta
@@ -74,7 +74,7 @@ A propriedade `color` irá sobrescrever a cor padrão para a severidade especifi
 
 ## Acessibilidade
 
-(WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#alert)
+(WAI-ARIA: https://www.w3.org/WAI/ARIA/apg/patterns/alert/)
 
 Quando o componente é exibido de forma dinâmica, o conteúdo é automaticamente anunciado pela maioria dos leitores de tela. No momento, os leitores de tela não informam aos usuários sobre alertas que estão presentes quando a página carrega.
 
