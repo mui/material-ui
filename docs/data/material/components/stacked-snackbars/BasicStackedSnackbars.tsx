@@ -36,7 +36,7 @@ function MyApp() {
   );
 }
 
-export default function SimpleSnackbars() {
+export default function BasicStackedSnackbars() {
   return (
     <SnackbarsProvider autoHideDuration={4000}>
       <MyApp />
