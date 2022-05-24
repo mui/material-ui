@@ -3,38 +3,25 @@ import { GlobalStyles } from '@mui/system';
 import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
 import type { Theme } from '@mui/joy/styles';
 import Box from '@mui/joy/Box';
-import Chip from '@mui/joy/Chip';
-import Card from '@mui/joy/Card';
-import Sheet from '@mui/joy/Sheet';
 import Typography from '@mui/joy/Typography';
 import TextField from '@mui/joy/TextField';
-import Button from '@mui/joy/Button';
 import IconButton from '@mui/joy/IconButton';
-import AspectRatio from '@mui/joy/AspectRatio';
-import List from '@mui/joy/List';
-import ListItem from '@mui/joy/ListItem';
-import ListDivider from '@mui/joy/ListDivider';
-import ListItemButton from '@mui/joy/ListItemButton';
-import ListItemDecorator from '@mui/joy/ListItemDecorator';
-import ListItemContent from '@mui/joy/ListItemContent';
+import Sheet from '@mui/joy/Sheet';
 
 // Icons import
-import InboxRoundedIcon from '@mui/icons-material/InboxRounded';
-import OutboxRoundedIcon from '@mui/icons-material/OutboxRounded';
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
 import DarkModeRoundedIcon from '@mui/icons-material/DarkModeRounded';
 import LightModeRoundedIcon from '@mui/icons-material/LightModeRounded';
 import GridViewRoundedIcon from '@mui/icons-material/GridViewRounded';
-import DraftsRoundedIcon from '@mui/icons-material/DraftsRounded';
-import AssistantPhotoRoundedIcon from '@mui/icons-material/AssistantPhotoRounded';
-import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
 import MailRoundedIcon from '@mui/icons-material/MailRounded';
-import ForwardToInboxRoundedIcon from '@mui/icons-material/ForwardToInboxRounded';
-import FolderIcon from '@mui/icons-material/Folder';
 import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
+import MenuIcon from '@mui/icons-material/Menu';
 
 // custom
 import exampleUITheme, { LoadFont } from 'docs/src/_experiments/JoyExampleUIs/exampleUITheme';
+import EmailNav from 'docs/src/_experiments/JoyExampleUIs/EmailNav';
+import EmailList from 'docs/src/_experiments/JoyExampleUIs/EmailList';
+import EmailContent from 'docs/src/_experiments/JoyExampleUIs/EmailContent';
 
 const ColorSchemeToggle = () => {
   const { mode, setMode } = useColorScheme();
@@ -64,6 +51,7 @@ const ColorSchemeToggle = () => {
 };
 
 export default function EmailExample() {
+  const [drawerOpen, setDrawerOpen] = React.useState(false);
   return (
     <CssVarsProvider disableTransitionOnChange theme={exampleUITheme}>
       <LoadFont />
@@ -75,23 +63,47 @@ export default function EmailExample() {
           },
         })}
       />
+      {drawerOpen && (
+        <Box sx={{ position: 'fixed', zIndex: 1200, width: '100%', height: '100%' }}>
+          <Box
+            role="button"
+            onClick={() => setDrawerOpen(false)}
+            sx={{
+              position: 'absolute',
+              inset: 0,
+              bgcolor: (theme) => `rgba(${theme.vars.palette.neutral.darkChannel} / 0.2)`,
+            }}
+          />
+          <Sheet
+            sx={{ minWidth: 256, width: 'max-content', height: '100%', p: 2, boxShadow: 'md' }}
+          >
+            <EmailNav />
+          </Sheet>
+        </Box>
+      )}
       <Box
         sx={{
           bgcolor: 'background.bodyEmail',
           display: 'grid',
           gridTemplateColumns: {
-            xs: '0px 0px 1fr',
-            sm: '64px minmax(200px, 1fr) minmax(500px, 1fr)',
-            md: 'minmax(160px, 260px) minmax(200px, 480px) minmax(700px, 1fr)',
+            xs: '1fr',
+            sm: 'minmax(64px, 200px) minmax(450px, 1fr)',
+            md: 'minmax(160px, 260px) minmax(300px, 360px) minmax(500px, 1fr)',
           },
           gridTemplateRows: '64px 1fr',
           minHeight: '100vh',
+          ...(drawerOpen && {
+            height: '100vh',
+            overflow: 'hidden',
+          }),
         }}
       >
         <Box
+          component="header"
           className="Header"
           sx={{
             p: 2,
+            gap: 2,
             bgcolor: 'background.componentBg',
             display: 'flex',
             flexDirection: 'row',
@@ -102,10 +114,18 @@ export default function EmailExample() {
             borderColor: 'divider',
             position: 'sticky',
             top: 0,
-            zIndex: 2000,
+            zIndex: 1100,
           }}
         >
           <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 1.5 }}>
+            <IconButton
+              variant="soft"
+              size="sm"
+              onClick={() => setDrawerOpen(true)}
+              sx={{ display: { sm: 'none' } }}
+            >
+              <MenuIcon />
+            </IconButton>
             <IconButton size="sm" variant="solid">
               <MailRoundedIcon />
             </IconButton>
@@ -128,13 +148,22 @@ export default function EmailExample() {
               </IconButton>
             }
             sx={{
-              minWidth: {
-                xs: '100%',
-                sm: '500px',
+              flexBasis: '500px',
+              display: {
+                xs: 'none',
+                sm: 'flex',
               },
             }}
           />
           <Box sx={{ display: 'flex', flexDirection: 'row', gap: 1.5 }}>
+            <IconButton
+              size="sm"
+              variant="outlined"
+              color="primary"
+              sx={{ display: { xs: 'inline-flex', sm: 'none' } }}
+            >
+              <SearchRoundedIcon />
+            </IconButton>
             <IconButton size="sm" variant="outlined" color="primary">
               <GridViewRoundedIcon />
             </IconButton>
@@ -142,175 +171,20 @@ export default function EmailExample() {
           </Box>
         </Box>
         <Box
+          component="nav"
           className="Navigation"
           sx={{
             p: 2,
             bgcolor: 'background.componentBg',
             borderRight: '1px solid',
             borderColor: 'divider',
+            display: {
+              xs: 'none',
+              sm: 'initial',
+            },
           }}
         >
-          <Box
-            sx={{ mb: 1, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}
-          >
-            <Typography
-              color="neutral.500"
-              fontWeight={700}
-              sx={{ fontSize: '10px', textTransform: 'uppercase', letterSpacing: '.1rem' }}
-            >
-              Browse
-            </Typography>
-            <IconButton
-              size="sm"
-              variant="plain"
-              color="primary"
-              sx={{ '--IconButton-size': '24px' }}
-            >
-              <KeyboardArrowDownRoundedIcon fontSize="small" color="primary" />
-            </IconButton>
-          </Box>
-          <List
-            size="sm"
-            sx={{
-              '--List-item-radius': '8px',
-              '& .MuiListItemButton-root': { p: '8px' },
-            }}
-          >
-            <ListItem>
-              <ListItemButton variant="soft" color="primary">
-                <ListItemDecorator sx={{ color: 'inherit' }}>
-                  <InboxRoundedIcon fontSize="small" />
-                </ListItemDecorator>
-                <ListItemContent>Inbox</ListItemContent>
-              </ListItemButton>
-            </ListItem>
-            <ListItem>
-              <ListItemButton>
-                <ListItemDecorator sx={{ color: 'neutral.500' }}>
-                  <OutboxRoundedIcon fontSize="small" />
-                </ListItemDecorator>
-                <ListItemContent>Sent</ListItemContent>
-              </ListItemButton>
-            </ListItem>
-            <ListItem>
-              <ListItemButton>
-                <ListItemDecorator sx={{ color: 'neutral.500' }}>
-                  <DraftsRoundedIcon fontSize="small" />
-                </ListItemDecorator>
-                <ListItemContent>Draft</ListItemContent>
-              </ListItemButton>
-            </ListItem>
-            <ListItem>
-              <ListItemButton>
-                <ListItemDecorator sx={{ color: 'neutral.500' }}>
-                  <AssistantPhotoRoundedIcon fontSize="small" />
-                </ListItemDecorator>
-                <ListItemContent>Flagged</ListItemContent>
-              </ListItemButton>
-            </ListItem>
-            <ListItem>
-              <ListItemButton>
-                <ListItemDecorator sx={{ color: 'neutral.500' }}>
-                  <DeleteRoundedIcon fontSize="small" />
-                </ListItemDecorator>
-                <ListItemContent>Trash</ListItemContent>
-              </ListItemButton>
-            </ListItem>
-          </List>
-          <Box
-            sx={{
-              mt: 2,
-              mb: 1,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-            }}
-          >
-            <Typography
-              color="neutral.500"
-              fontWeight={700}
-              sx={{ fontSize: '10px', textTransform: 'uppercase', letterSpacing: '.1rem' }}
-            >
-              Tags
-            </Typography>
-            <IconButton
-              size="sm"
-              variant="plain"
-              color="primary"
-              sx={{ '--IconButton-size': '24px' }}
-            >
-              <KeyboardArrowDownRoundedIcon fontSize="small" color="primary" />
-            </IconButton>
-          </Box>
-          <List
-            size="sm"
-            sx={{
-              '--List-item-radius': '8px',
-              '--List-decorator-width': '32px',
-              '& .MuiListItemButton-root': { p: '8px' },
-            }}
-          >
-            <ListItem>
-              <ListItemButton>
-                <ListItemDecorator>
-                  <Box
-                    sx={{
-                      width: '10px',
-                      height: '10px',
-                      borderRadius: '99px',
-                      bgcolor: 'primary.300',
-                    }}
-                  />
-                </ListItemDecorator>
-                <ListItemContent>Personal</ListItemContent>
-              </ListItemButton>
-            </ListItem>
-            <ListItem>
-              <ListItemButton>
-                <ListItemDecorator>
-                  <Box
-                    sx={{
-                      width: '10px',
-                      height: '10px',
-                      borderRadius: '99px',
-                      bgcolor: 'danger.400',
-                    }}
-                  />
-                </ListItemDecorator>
-                <ListItemContent>Work</ListItemContent>
-              </ListItemButton>
-            </ListItem>
-            <ListItem>
-              <ListItemButton>
-                <ListItemDecorator>
-                  <Box
-                    sx={{
-                      width: '10px',
-                      height: '10px',
-                      borderRadius: '99px',
-                      bgcolor: 'warning.500',
-                    }}
-                  />
-                </ListItemDecorator>
-                <ListItemContent>Travels</ListItemContent>
-              </ListItemButton>
-            </ListItem>
-            <ListItem>
-              <ListItemButton>
-                <ListItemDecorator>
-                  <Box
-                    sx={{
-                      width: '10px',
-                      height: '10px',
-                      borderRadius: '99px',
-                      bgcolor: 'success.400',
-                    }}
-                  />
-                </ListItemDecorator>
-                <ListItemContent>Concert tickets</ListItemContent>
-              </ListItemButton>
-            </ListItem>
-          </List>
+          <EmailNav />
         </Box>
         <Box
           className="Inbox"
@@ -318,6 +192,10 @@ export default function EmailExample() {
             bgcolor: 'background.componentBg',
             borderRight: '1px solid',
             borderColor: 'divider',
+            display: {
+              xs: 'none',
+              md: 'initial',
+            },
           }}
         >
           <Box
@@ -374,257 +252,10 @@ export default function EmailExample() {
               <KeyboardArrowDownRoundedIcon fontSize="small" color="primary" />
             </IconButton>
           </Box>
-          <List>
-            <ListItem>
-              <ListItemButton variant="soft" color="primary" sx={{ p: 2 }}>
-                <ListItemDecorator sx={{ alignSelf: 'flex-start' }}>
-                  <Box
-                    component="img"
-                    src="/static/images/avatar/1.jpg"
-                    sx={{
-                      width: 40,
-                      height: 40,
-                      borderRadius: '8px',
-                    }}
-                  />
-                </ListItemDecorator>
-                <Box sx={{ pl: 2, width: '100%' }}>
-                  <Box
-                    sx={{
-                      display: 'flex',
-                      justifyContent: 'space-between',
-                      mb: 0.5,
-                    }}
-                  >
-                    <Typography level="body3">Janet Erickson</Typography>
-                    <Typography level="body3" color="text.tertiary">
-                      14 Oct 2016
-                    </Typography>
-                  </Box>
-                  <Box>
-                    <Typography sx={{ mb: 0.5 }}>Blank slates for new website</Typography>
-                    <Typography level="body2">Hi, Thomas, You don&apos;t have...</Typography>
-                  </Box>
-                </Box>
-              </ListItemButton>
-            </ListItem>
-            <ListDivider sx={{ m: 0 }} />
-            <ListItem>
-              <ListItemButton sx={{ p: 2 }}>
-                <ListItemDecorator sx={{ alignSelf: 'flex-start' }}>
-                  <Box
-                    component="img"
-                    src="/static/images/avatar/1.jpg"
-                    sx={{
-                      width: 40,
-                      height: 40,
-                      borderRadius: '8px',
-                    }}
-                  />
-                </ListItemDecorator>
-                <Box sx={{ pl: 2, width: '100%' }}>
-                  <Box
-                    sx={{
-                      display: 'flex',
-                      justifyContent: 'space-between',
-                      mb: 0.5,
-                    }}
-                  >
-                    <Typography level="body3">Janet Erickson</Typography>
-                    <Typography level="body3" color="text.tertiary">
-                      14 Oct 2016
-                    </Typography>
-                  </Box>
-                  <Box>
-                    <Typography sx={{ mb: 0.5 }}>Blank slates for new website</Typography>
-                    <Typography level="body2" color="text.tertiary">
-                      Hi, Thomas, You don&apos;t have...
-                    </Typography>
-                  </Box>
-                </Box>
-              </ListItemButton>
-            </ListItem>
-            <ListDivider sx={{ m: 0 }} />
-            <ListItem>
-              <ListItemButton sx={{ p: 2 }}>
-                <ListItemDecorator sx={{ alignSelf: 'flex-start' }}>
-                  <Box
-                    component="img"
-                    src="/static/images/avatar/1.jpg"
-                    sx={{
-                      width: 40,
-                      height: 40,
-                      borderRadius: '8px',
-                    }}
-                  />
-                </ListItemDecorator>
-                <Box sx={{ pl: 2, width: '100%' }}>
-                  <Box
-                    sx={{
-                      display: 'flex',
-                      justifyContent: 'space-between',
-                      mb: 0.5,
-                    }}
-                  >
-                    <Typography level="body3">Janet Erickson</Typography>
-                    <Typography level="body3" color="text.tertiary">
-                      14 Oct 2016
-                    </Typography>
-                  </Box>
-                  <Box>
-                    <Typography sx={{ mb: 0.5 }}>Blank slates for new website</Typography>
-                    <Typography level="body2" color="text.tertiary">
-                      Hi, Thomas, You don&apos;t have...
-                    </Typography>
-                  </Box>
-                </Box>
-              </ListItemButton>
-            </ListItem>
-            <ListDivider sx={{ m: 0 }} />
-          </List>
+          <EmailList />
         </Box>
         <Box component="main" className="Main" sx={{ p: 2 }}>
-          <Sheet
-            variant="outlined"
-            sx={{
-              minHeight: 500,
-              borderRadius: 'sm',
-              p: 2,
-              mb: 3,
-              bgcolor: 'background.componentBg',
-            }}
-          >
-            <ListItem
-              sx={{ display: 'flex', alignSelf: 'flex-start', justifyContent: 'space-between' }}
-            >
-              <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                <Box
-                  component="img"
-                  src="/static/images/avatar/1.jpg"
-                  sx={{
-                    width: 40,
-                    height: 40,
-                    borderRadius: '8px',
-                  }}
-                />
-                <Box
-                  sx={{
-                    ml: 2,
-                  }}
-                >
-                  <Typography level="body2" color="text.primary" mb={0.5}>
-                    Janet Erickson
-                  </Typography>
-                  <Typography level="body3" color="text.tertiary">
-                    14 Oct 2016
-                  </Typography>
-                </Box>
-              </Box>
-              <Box sx={{ display: 'flex', height: '32px', flexDirection: 'row', gap: 1.5 }}>
-                <Button variant="outlined" color="neutral" size="sm">
-                  Reply
-                </Button>
-                <IconButton size="sm" variant="outlined" color="neutral">
-                  <ForwardToInboxRoundedIcon />
-                </IconButton>
-                <IconButton size="sm" variant="outlined" color="neutral">
-                  <DeleteRoundedIcon />
-                </IconButton>
-              </Box>
-            </ListItem>
-            <ListDivider sx={{ mt: 2 }} />
-            <ListItem sx={{ py: 2, display: 'flex', flexDirection: 'column', alignItems: 'start' }}>
-              <Typography level="h5" color="text.primary">
-                Blank slates for new website
-              </Typography>
-              <Box sx={{ mt: 1, display: 'flex', alignItems: 'center', gap: 1 }}>
-                <Typography level="body2" color="neutral.600">
-                  From
-                </Typography>
-                <Chip size="sm" variant="outlined">
-                  janet@mail.com
-                </Chip>
-                <Typography level="body2" color="neutral.600">
-                  to
-                </Typography>
-                <Chip size="sm" variant="outlined">
-                  janet@mail.com
-                </Chip>
-              </Box>
-            </ListItem>
-            <ListDivider />
-            <Typography level="body1" color="text.secondary" mt={2} mb={2}>
-              Hi, Thomas,
-              <br />
-              <br />
-              You don&apos;t have to be a designer to appreciate good typography – just check out
-              this student-made device that can detect and name fonts just by looking at it.
-              <br />
-              <br />
-              While the pop culture world obsesses over the latest Snapchat filter fads and
-              Instagram friending, skilled photographers are taking the shots that transcend social
-              media Share Quote. Take advantage of an incredible offer to become a skilled and
-              certified photographer, taking frame-worthy shots every time with The Hollywood Art
-              Institute Photography Course and Certification.
-              <br />
-              <br />
-              Regards, Janet Erickson
-            </Typography>
-            <ListDivider />
-            <Typography level="body2" fontWeight="md" color="text.primary" mt={2} mb={2}>
-              Attachments
-            </Typography>
-            <Box
-              sx={(theme) => ({
-                display: 'flex',
-                gap: 2,
-                '& > div': {
-                  boxShadow: 'none',
-                  '--Card-padding': '0px',
-                  '--Card-radius': theme.vars.radius.sm,
-                },
-              })}
-            >
-              <Card variant="outlined">
-                <AspectRatio ratio="1" sx={{ minWidth: '80px' }}>
-                  <img
-                    src="https://images.unsplash.com/photo-1527549993586-dff825b37782?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2370"
-                    alt="Yosemite National Park"
-                  />
-                </AspectRatio>
-              </Card>
-              <Card variant="outlined">
-                <AspectRatio ratio="1" sx={{ minWidth: '80px' }}>
-                  <img
-                    src="https://images.unsplash.com/photo-1532614338840-ab30cf10ed36?ixlib=rb-1.2.1&raw_url=true&q=80&fm=jpg&crop=entropy&cs=tinysrgb&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2370"
-                    alt="Yosemite National Park"
-                  />
-                </AspectRatio>
-              </Card>
-              <Card variant="outlined" sx={{ flexDirection: 'row' }}>
-                <AspectRatio
-                  ratio="1"
-                  sx={{
-                    minWidth: '80px',
-                    borderRight: '1px solid',
-                    borderColor: 'neutral.outlinedBorder',
-                    borderTopRightRadius: 0,
-                    borderBottomRightRadius: 0,
-                  }}
-                >
-                  <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <FolderIcon />
-                  </Box>
-                </AspectRatio>
-                <Box sx={{ p: 2 }}>
-                  <Typography level="body2" color="primary.plainColor">
-                    blank_slates.doc
-                  </Typography>
-                  <Typography level="body3">345 Kb</Typography>
-                </Box>
-              </Card>
-            </Box>
-          </Sheet>
+          <EmailContent />
         </Box>
       </Box>
     </CssVarsProvider>
