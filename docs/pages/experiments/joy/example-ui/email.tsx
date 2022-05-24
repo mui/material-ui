@@ -54,7 +54,7 @@ const ColorSchemeToggle = () => {
         }
       }}
     >
-      {mode === 'light' ? <DarkModeRoundedIcon color="primary" /> : <LightModeRoundedIcon />}
+      {mode === 'light' ? <DarkModeRoundedIcon /> : <LightModeRoundedIcon />}
     </IconButton>
   );
 };
@@ -242,7 +242,7 @@ export default function EmailExample() {
                       width: '10px',
                       height: '10px',
                       borderRadius: '99px',
-                      bgcolor: 'danger.300',
+                      bgcolor: 'danger.400',
                     }}
                   />
                 </ListItemDecorator>
@@ -257,7 +257,7 @@ export default function EmailExample() {
                       width: '10px',
                       height: '10px',
                       borderRadius: '99px',
-                      bgcolor: 'warning.200',
+                      bgcolor: 'warning.500',
                     }}
                   />
                 </ListItemDecorator>
@@ -272,7 +272,7 @@ export default function EmailExample() {
                       width: '10px',
                       height: '10px',
                       borderRadius: '99px',
-                      bgcolor: 'success.300',
+                      bgcolor: 'success.400',
                     }}
                   />
                 </ListItemDecorator>
@@ -342,9 +342,7 @@ export default function EmailExample() {
                   </Box>
                   <Box>
                     <Typography sx={{ mb: 0.5 }}>Blank slates for new website</Typography>
-                    <Typography level="body2" color="text.tertiary">
-                      Hi, Thomas, You don&apos;t have...
-                    </Typography>
+                    <Typography level="body2">Hi, Thomas, You don&apos;t have...</Typography>
                   </Box>
                 </Box>
               </ListItemButton>
@@ -493,7 +491,7 @@ export default function EmailExample() {
               </Box>
             </ListItem>
             <ListDivider />
-            <Typography level="body2" color="text.secondary" mt={2}>
+            <Typography level="body1" color="text.primary" mt={2}>
               Hi, Thomas,
               <br />
               <br />
