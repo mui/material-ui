@@ -4,6 +4,7 @@ import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
 import type { Theme } from '@mui/joy/styles';
 import Box from '@mui/joy/Box';
 import Chip from '@mui/joy/Chip';
+import Card from '@mui/joy/Card';
 import Sheet from '@mui/joy/Sheet';
 import Typography from '@mui/joy/Typography';
 import TextField from '@mui/joy/TextField';
@@ -573,197 +574,55 @@ export default function EmailExample() {
             <Typography level="body2" fontWeight="md" color="text.primary" mt={2} mb={2}>
               Attachments
             </Typography>
-            <Box sx={{ display: 'flex', gap: 2 }}>
-              <Box
-                sx={{
-                  width: '80px',
-                  height: '80px',
-                  borderRadius: 'sm',
-                  overflow: 'auto',
-                }}
-              >
-                <AspectRatio ratio="1">
-                  <img
-                    src="https://images.unsplash.com/photo-1527549993586-dff825b37782?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2370"
-                    alt="Yosemite National Park"
-                  />
-                </AspectRatio>
-              </Box>
-              <Box
-                sx={{
-                  width: '80px',
-                  height: '80px',
-                  borderRadius: 'sm',
-                  overflow: 'auto',
-                }}
-              >
-                <AspectRatio ratio="1">
-                  <img
-                    src="https://images.unsplash.com/photo-1532614338840-ab30cf10ed36?ixlib=rb-1.2.1&raw_url=true&q=80&fm=jpg&crop=entropy&cs=tinysrgb&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2370"
-                    alt="Yosemite National Park"
-                  />
-                </AspectRatio>
-              </Box>
-              <Box sx={{ display: 'flex' }}>
-                <Sheet
-                  variant="outlined"
-                  sx={{
-                    width: '80px',
-                    height: '80px',
-                    borderRadius: 'sm',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                  }}
-                >
-                  <FolderIcon />
-                </Sheet>
-                <Sheet variant="outlined" sx={{ p: 2, backgroundColor: 'transparent' }}>
-                  <Typography level="body2">blank_slates.doc</Typography>
-                  <Typography level="body3">345 Kb</Typography>
-                </Sheet>
-              </Box>
-            </Box>
-          </Sheet>
-          <Sheet
-            variant="outlined"
-            sx={{
-              minHeight: 500,
-              borderRadius: 'sm',
-              p: 2,
-              bgcolor: 'background.componentBg',
-            }}
-          >
-            <ListItem
-              sx={{ display: 'flex', alignSelf: 'flex-start', justifyContent: 'space-between' }}
+            <Box
+              sx={(theme) => ({
+                display: 'flex',
+                gap: 2,
+                '& > div': {
+                  boxShadow: 'none',
+                  '--Card-padding': '0px',
+                  '--Card-radius': theme.vars.radius.sm,
+                },
+              })}
             >
-              <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                <Box
-                  component="img"
-                  src="/static/images/avatar/1.jpg"
-                  sx={{
-                    width: 40,
-                    height: 40,
-                    borderRadius: '8px',
-                  }}
-                />
-                <Box
-                  sx={{
-                    ml: 2,
-                  }}
-                >
-                  <Typography level="body2" color="text.primary" mb={0.5}>
-                    Janet Erickson
-                  </Typography>
-                  <Typography level="body3" color="text.tertiary">
-                    14 Oct 2016
-                  </Typography>
-                </Box>
-              </Box>
-              <Box sx={{ display: 'flex', height: '32px', flexDirection: 'row', gap: 1.5 }}>
-                <Button variant="outlined" color="neutral" size="sm">
-                  Reply
-                </Button>
-                <IconButton size="sm" variant="outlined" color="neutral">
-                  <ForwardToInboxRoundedIcon />
-                </IconButton>
-                <IconButton size="sm" variant="outlined" color="neutral">
-                  <DeleteRoundedIcon />
-                </IconButton>
-              </Box>
-            </ListItem>
-            <ListDivider sx={{ mt: 2 }} />
-            <ListItem sx={{ py: 2, display: 'flex', flexDirection: 'column', alignItems: 'start' }}>
-              <Typography level="h5" color="text.primary">
-                Blank slates for new website
-              </Typography>
-              <Box sx={{ mt: 1, display: 'flex', alignItems: 'center', gap: 1 }}>
-                <Typography level="body2" color="neutral.600">
-                  From
-                </Typography>
-                <Chip size="sm" variant="outlined">
-                  janet@mail.com
-                </Chip>
-                <Typography level="body2" color="neutral.600">
-                  to
-                </Typography>
-                <Chip size="sm" variant="outlined">
-                  janet@mail.com
-                </Chip>
-              </Box>
-            </ListItem>
-            <ListDivider />
-            <Typography level="body1" color="text.secondary" mt={2} mb={2}>
-              Hi, Thomas,
-              <br />
-              <br />
-              You don&apos;t have to be a designer to appreciate good typography – just check out
-              this student-made device that can detect and name fonts just by looking at it.
-              <br />
-              <br />
-              While the pop culture world obsesses over the latest Snapchat filter fads and
-              Instagram friending, skilled photographers are taking the shots that transcend social
-              media Share Quote. Take advantage of an incredible offer to become a skilled and
-              certified photographer, taking frame-worthy shots every time with The Hollywood Art
-              Institute Photography Course and Certification.
-              <br />
-              <br />
-              Regards, Janet Erickson
-            </Typography>
-            <ListDivider />
-            <Typography level="body2" fontWeight="md" color="text.primary" mt={2} mb={2}>
-              Attachments
-            </Typography>
-            <Box sx={{ display: 'flex', gap: 2 }}>
-              <Box
-                sx={{
-                  width: '80px',
-                  height: '80px',
-                  borderRadius: 'sm',
-                  overflow: 'auto',
-                }}
-              >
-                <AspectRatio ratio="1">
+              <Card variant="outlined">
+                <AspectRatio ratio="1" sx={{ minWidth: '80px' }}>
                   <img
                     src="https://images.unsplash.com/photo-1527549993586-dff825b37782?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2370"
                     alt="Yosemite National Park"
                   />
                 </AspectRatio>
-              </Box>
-              <Box
-                sx={{
-                  width: '80px',
-                  height: '80px',
-                  borderRadius: 'sm',
-                  overflow: 'auto',
-                }}
-              >
-                <AspectRatio ratio="1">
+              </Card>
+              <Card variant="outlined">
+                <AspectRatio ratio="1" sx={{ minWidth: '80px' }}>
                   <img
                     src="https://images.unsplash.com/photo-1532614338840-ab30cf10ed36?ixlib=rb-1.2.1&raw_url=true&q=80&fm=jpg&crop=entropy&cs=tinysrgb&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2370"
                     alt="Yosemite National Park"
                   />
                 </AspectRatio>
-              </Box>
-              <Box sx={{ display: 'flex' }}>
-                <Sheet
-                  variant="outlined"
+              </Card>
+              <Card variant="outlined" sx={{ flexDirection: 'row' }}>
+                <AspectRatio
+                  ratio="1"
                   sx={{
-                    width: '80px',
-                    height: '80px',
-                    borderRadius: 'sm',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
+                    minWidth: '80px',
+                    borderRight: '1px solid',
+                    borderColor: 'neutral.outlinedBorder',
+                    borderTopRightRadius: 0,
+                    borderBottomRightRadius: 0,
                   }}
                 >
-                  <FolderIcon />
-                </Sheet>
-                <Sheet variant="outlined" sx={{ p: 2, backgroundColor: 'transparent' }}>
-                  <Typography level="body2">blank_slates.doc</Typography>
+                  <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <FolderIcon />
+                  </Box>
+                </AspectRatio>
+                <Box sx={{ p: 2 }}>
+                  <Typography level="body2" color="primary.plainColor">
+                    blank_slates.doc
+                  </Typography>
                   <Typography level="body3">345 Kb</Typography>
-                </Sheet>
-              </Box>
+                </Box>
+              </Card>
             </Box>
           </Sheet>
         </Box>
