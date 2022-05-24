@@ -35,6 +35,11 @@ const pages = [
       },
     ],
   },
+  {
+    pathname: '/joy-ui/customization',
+    icon: 'StyleIcon',
+    children: [{ pathname: '/joy-ui/customization/introduction' }],
+  },
 ];
 
 export default pages;
