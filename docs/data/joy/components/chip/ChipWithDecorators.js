@@ -18,13 +18,11 @@ export default function ChipWithDecorators() {
       <Chip
         variant="outlined"
         color="danger"
-        size="sm"
         endDecorator={
           <ChipDelete color="danger" variant="plain">
             <DeleteForever />
           </ChipDelete>
         }
-        sx={{ '--Chip-radius': '12px' }}
       >
         Clear
       </Chip>

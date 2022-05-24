@@ -8,7 +8,7 @@ import * as React from 'react';
 export default function ClickableChip() {
   return (
     <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
-      <Chip disabled onClick={() => {}} endDecorator={<ChipDelete />}>
+      <Chip onClick={() => {}} endDecorator={<ChipDelete />}>
         Sam
       </Chip>
       <Chip variant="soft" onClick={() => alert('hey')}>

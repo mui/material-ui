@@ -41,10 +41,10 @@ Specify the `onClick` prop in order to enable the clickability of the `Chip` com
 
 You can wrap the Joy `Checkbox` component with the Joy `Chip` component.
 
-{{"demo": "CheckboxChip.js"}}
+{{"demo": "CheckboxChip.js", "hideToolbar": true}}
 
 ## With Radio
 
 You can wrap the Joy `Radio` component with the Joy `Chip` component.
 
-{{"demo": "RadioChip.js"}}
+{{"demo": "RadioChip.js", "hideToolbar": true}}

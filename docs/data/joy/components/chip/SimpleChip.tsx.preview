@@ -1,3 +1,1 @@
-<Chip>
-  <Typography fontSize="md">Chip</Typography>
-</Chip>
+<Chip>Chip</Chip>
