@@ -2,6 +2,13 @@ import * as React from 'react';
 import Head from 'next/head';
 import { extendTheme } from '@mui/joy/styles';
 
+declare module '@mui/joy/styles' {
+  interface PaletteBackground {
+    bodyEmail: string;
+    componentBg: string;
+  }
+}
+
 export const LoadFont = () => {
   return (
     <Head>
