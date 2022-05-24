@@ -102,6 +102,7 @@ In general, we don’t bump the major version number for changes to:
 
 - **APIs starting with unstable\_**. These are provided as experimental features whose APIs we are not yet confident in.
   By releasing these with an `unstable_` prefix, we can iterate faster and get to a stable API sooner, or simply learn that we don't need the API/feature in the first place.
+- **APIs documented as experimental**. Same as the above.
 - **Undocumented APIs and internal data structures**. If you access internal properties, there is no warranty. You are on your own.
 - **Development warnings**. Since these don’t affect production behavior, we may add new warnings or modify existing warnings in between major versions.
   In fact, this is what allows us to reliably warn about upcoming breaking changes.
