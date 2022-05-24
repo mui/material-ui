@@ -216,9 +216,9 @@ export default function extendTheme(themeInput?: ThemeInput): Theme {
         outlinedColor: `var(--joy-palette-neutral-200)`,
         outlinedBorder: `var(--joy-palette-neutral-800)`,
         outlinedHoverColor: `var(--joy-palette-neutral-50)`,
-        outlinedHoverBg: `var(--joy-palette-neutral-900)`,
-        outlinedHoverBorder: `var(--joy-palette-neutral-600)`,
-        outlinedActiveBg: `var(--joy-palette-neutral-900)`,
+        outlinedHoverBg: `var(--joy-palette-neutral-800)`,
+        outlinedHoverBorder: `var(--joy-palette-neutral-700)`,
+        outlinedActiveBg: `var(--joy-palette-neutral-800)`,
         outlinedDisabledColor: `var(--joy-palette-neutral-600)`,
         outlinedDisabledBorder: `var(--joy-palette-neutral-800)`,
 

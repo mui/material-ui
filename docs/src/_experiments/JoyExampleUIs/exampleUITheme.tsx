@@ -21,6 +21,7 @@ export default extendTheme({
       palette: {
         background: {
           bodyEmail: 'var(--joy-palette-neutral-50)',
+          componentBg: 'var(--joy-palette-common-white)',
         },
       },
     },
@@ -28,6 +29,7 @@ export default extendTheme({
       palette: {
         background: {
           bodyEmail: 'var(--joy-palette-common-black)',
+          componentBg: 'var(--joy-palette-background-level1)',
         },
       },
     },
