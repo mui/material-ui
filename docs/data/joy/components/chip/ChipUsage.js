@@ -98,9 +98,7 @@ export default function ChipUsage() {
             p: 2,
           }}
         >
-          <Chip {...props}>
-            <Typography fontSize="md">MUI Joy Chip</Typography>
-          </Chip>
+          <Chip {...props}>MUI Joy Chip</Chip>
         </Box>
         <BrandingProvider mode="dark">
           <HighlightedCode
