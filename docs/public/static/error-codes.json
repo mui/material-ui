@@ -1,3 +1,4 @@
+// prettier-ignore
 {
   "1": "MUI: Expected valid input target. Did you use a custom `inputComponent` and forget to forward refs? See https://mui.com/r/input-component-ref-interface for more info.",
   "2": "MUI: The `value` prop must be an array when using the `Select` component with `multiple`.",
