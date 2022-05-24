@@ -3,7 +3,7 @@ product: material-ui
 title: Tree view React component
 components: TreeView, TreeItem
 githubLabel: 'component: tree view'
-waiAria: 'https://www.w3.org/TR/wai-aria-practices/#TreeView'
+waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/treeview/
 packageName: '@mui/lab'
 ---
 
@@ -101,7 +101,7 @@ const data = {
 
 ## 无障碍设计
 
-(WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#TreeView)
+(WAI-ARIA: https://www.w3.org/WAI/ARIA/apg/patterns/treeview/)
 
 组件遵循了 WAI-ARIA 授权的一些标准。
 
