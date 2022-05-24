@@ -1,6 +1,6 @@
-# Full-stack Engineer
+# Full-stack Engineer - Toolpad
 
-<p class="description">We are looking for a full-stack engineer to pioneer the development of a new product vertical.</p>
+<p class="description">You will join the MUI Toolpad team, to explore the role of MUI in the low code space and help bring the early prototype to a usable product.</p>
 
 ## Details of the Role
 
@@ -97,7 +97,7 @@ We're looking for someone with both strong front-end and back-end skills. More i
 ## Benefits & Compensation
 
 Competitive compensation depending on the profile and location.
-We are ready to pay top market rates for a person that can significantly push the mission forward.
+We are ready to pay top market rates for a person that can clearly exceed the role's expectations.
 You can find the other perks & benefits on the [careers](/careers/#perks-amp-benefits) page.
 
 ## How to apply?

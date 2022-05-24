@@ -1,6 +1,6 @@
 # Engineering Manager - Toolpad
 
-<p class="description">You will grow the engineering team working on MUI Toolpad, from a small team to multiple.</p>
+<p class="description">You will grow the small engineering team currently working on MUI Toolpad.</p>
 
 ## Details of the Role
 
@@ -42,9 +42,11 @@ We need help to structure & grow the engineering team.
 ### Why this is interesting
 
 Our solution empowers React developers to build awesome applications faster – we see over a million developers on MUI's docs every month.
+Hundreds of thousands of developers use MUI every month.
 
-Toolpad targets ~1/2 of this audience. While the team is still very small (5), we believe that the headcount on this product has the potential to grow +14% MoM until the end of 2023 (>70 people).
-Growing the engineering side will be full of challenges.
+Toolpad targets around half of this audience.
+While the team is still very small (5), we believe that the headcount on this product has needs to grow +14% MoM until the end of 2023 (>70 people).
+Growing the Toolpad engineering team will be full of challenges.
 
 ## About the role
 
@@ -58,6 +60,10 @@ Depending on the day, you'll:
 - Develop a great work environment.
 - Work directly with users and the engineering team to improve the product.
 - Improve our processes, e.g. the lifecycle of feature development from design through testing and release.
+
+For the right candidate:
+
+- Working with the Leadership to construct and execute a hiring plan to grow the engineering team on toolpad from one to multiple
 
 ## About you
 
@@ -76,7 +82,7 @@ Depending on the day, you'll:
 ## Benefits & Compensation
 
 Competitive compensation depending on the profile and location.
-We are ready to pay top market rates for a person that can significantly push the mission forward.
+We are ready to pay top market rates for a person that can clearly exceed the role's expectations.
 You can find the other perks & benefits on the [careers](https://mui.com/careers/#perks-amp-benefits) page.
 
 ## How to apply?

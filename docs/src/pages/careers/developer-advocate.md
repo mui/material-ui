@@ -48,7 +48,8 @@ We are looking for someone that can contribute to the following outcomes:
 You will be the first person focusing full-time on developer relations at MUI.
 You will lay the foundations for a team that could grow over time.
 
-Our solution empowers React developers to build awesome applications faster – we see over a million developers on MUI's docs every month.. It should be easy, it shouldn't require any advanced technical skills. Hundreds of thousands of developers use MUI every month.
+Our solution empowers React developers to build awesome applications faster – we see over a million developers on MUI's docs every month.
+Hundreds of thousands of developers use MUI every month.
 
 ### What you'll do on a day-to-day basis
 
@@ -102,7 +103,7 @@ For the right candidate:
 ## Benefits & Compensation
 
 Competitive compensation depending on the profile and location.
-We are ready to pay top market rates for a person that can significantly push the mission forward.
+We are ready to pay top market rates for a person that can clearly exceed the role's expectations.
 You can find the other perks & benefits on the [careers](/careers/#perks-amp-benefits) page.
 
 ## How to apply?

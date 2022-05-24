@@ -37,7 +37,8 @@ The development and operations of the store are currently almost exclusively run
 
 You will get the opportunity to run MUI Store as a small start-up inside the company.
 
-Our solution empowers React developers to build awesome applications faster – we see over a million developers on MUI's docs every month. – hundreds of thousands of developers use MUI every month.
+Our solution empowers React developers to build awesome applications faster – we see over a million developers on MUI's docs every month.
+Hundreds of thousands of developers use MUI every month.
 
 ## About the role
 
@@ -87,7 +88,7 @@ More important than specific technical skills though is that you're a strong pro
 ## Benefits & Compensation
 
 Competitive compensation depending on the profile and location.
-We are ready to pay top market rates for a person that can significantly push the mission forward.
+We are ready to pay top market rates for a person that can clearly exceed the role's expectations.
 You can find the other perks & benefits on the [careers](/careers/#perks-amp-benefits) page.
 
 ## How to apply?

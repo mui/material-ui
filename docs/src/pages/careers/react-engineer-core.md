@@ -40,9 +40,11 @@ We also need help to continue to improve the health of the open-source product: 
 
 ### Why this is interesting
 
-Our solution empowers React developers to build awesome applications faster – we see over a million developers on MUI's docs every month. – hundreds of thousands of developers use MUI every month.
+Our solution empowers React developers to build awesome applications faster – we see over a million developers on MUI's docs every month.
+Hundreds of thousands of developers use MUI every month.
 
-The core components are massively used, you will receive a lot of feedback from your work. The community has high expectations, they will push you to do better, every day.
+The core components are widely used, you will receive a lot of feedback on your work.
+The community has high expectations, they will push you to do better, every day.
 
 ### What you'll do on a day-to-day basis
 
@@ -52,7 +54,7 @@ Depending on the day, you'll:
   The future of MUI is discussed and planned in our public RFCs and issues.
   You'll be helping drive these conversations and guiding MUI toward the best possible solutions.
 - **Contribute to deep, meaningful refactors and feature releases**.
-  MUI is a complex codebase. Components we've shipped recently, such as the data grid have required months of dedicated, careful work.
+  MUI is a complex codebase. Components we've shipped recently, such as the unstyled components have required months of dedicated, careful work.
 - **Reduce friction**.
   A large amount of the work on MUI is reducing friction and making it easier to use.
   This might involve careful API design, identifying and fixing top bugs, creating easier to understand error messages, and writing documentation and blog posts about features you ship.
@@ -118,7 +120,7 @@ We're looking for someone with strong front-end skills. More important than spec
 ## Benefits & Compensation
 
 Competitive compensation depending on the profile and location.
-We are ready to pay top market rates for a person that can significantly push the mission forward.
+We are ready to pay top market rates for a person that can clearly exceed the role's expectations.
 You can find the other perks & benefits on the [careers](/careers/#perks-amp-benefits) page.
 
 ## How to apply?

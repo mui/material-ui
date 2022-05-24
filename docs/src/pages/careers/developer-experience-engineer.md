@@ -45,7 +45,8 @@ We are looking for someone that can contribute to the following outcomes:
 
 You have a lot of feedback, more than we can process. It's an opportunity to challenge the state of the art in the React component dev tool space.
 
-Our solution empowers React developers to build awesome applications faster – we see over a million developers on MUI's docs every month. – hundreds of thousands of developers use MUI every month.
+Our solution empowers React developers to build awesome applications faster – we see over a million developers on MUI's docs every month.
+Hundreds of thousands of developers use MUI every month.
 
 ## About the role
 
@@ -94,7 +95,7 @@ For the right candidate:
 ## Benefits & Compensation
 
 Competitive compensation depending on the profile and location.
-We are ready to pay top market rates for a person that can significantly push the mission forward.
+We are ready to pay top market rates for a person that can clearly exceed the role's expectations.
 You can find the other perks & benefits on the [careers](/careers/#perks-amp-benefits) page.
 
 ## How to apply?

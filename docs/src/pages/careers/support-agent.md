@@ -38,7 +38,8 @@ The support on the store is currently almost exclusively done by the executive t
 
 You will be in the tech industry. We offer flexibility in your work day.
 
-Our solution empowers React developers to build awesome applications faster – we see over a million developers on MUI's docs every month. – hundreds of thousands of developers use MUI every month.
+Our solution empowers React developers to build awesome applications faster – we see over a million developers on MUI's docs every month.
+Hundreds of thousands of developers use MUI every month.
 
 ### What you'll do on a day-to-day basis
 

@@ -202,14 +202,13 @@ const nextRolesData = [
     roles: [
       {
         title: 'Engineering Manager - Toolpad',
-        description:
-          'You will grow the engineering team working on MUI Toolpad, from a small team to multiple.',
+        description: 'You will grow the small engineering team currently working on MUI Toolpad.',
         url: '/careers/engineering-manager/',
       },
       {
         title: 'Full-stack Engineer - Toolpad',
         description:
-          'You will join the MUI Toolpad team, to explore the role of MUI in the low code space and help bring the early prototypes to a usable product.',
+          'You will join the MUI Toolpad team, to explore the role of MUI in the low code space and help bring the early prototype to a usable product.',
         url: '/careers/fullstack-engineer/',
       },
     ],

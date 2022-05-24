@@ -38,10 +38,10 @@ Our users are continuously providing feedback on the most important [pains they 
 
 ### Why this is interesting
 
-Our solution empowers React developers to build awesome applications faster – we see over a million developers on MUI's docs every month. – hundreds of thousands of developers use MUI every month.
-We are the second most used UI library in the world, after Bootstrap.
-
 Our enterprise components portfolio is still small, with a million interesting and challenging problems to solve.
+
+Our solution empowers React developers to build awesome applications faster – we see over a million developers on MUI's docs every month.
+Hundreds of thousands of developers use MUI every month.
 
 ### What you'll do on a day-to-day basis
 
@@ -72,7 +72,7 @@ Depending on the day, you'll:
 ## Benefits & Compensation
 
 Competitive compensation depending on the profile and location.
-We are ready to pay top market rates for a person that can significantly push the mission forward.
+We are ready to pay top market rates for a person that can clearly exceed the role's expectations.
 You can find the other perks & benefits on the [careers](/careers/#perks-amp-benefits) page.
 
 ## How to apply?
