@@ -16,5 +16,5 @@
   "15": "MUI: withStyles is no longer exported from @mui/material/styles.\nYou have to import it from @mui/styles.\nSee https://mui.com/r/migration-v4/#mui-material-styles for more details.",
   "16": "MUI: withTheme is no longer exported from @mui/material/styles.\nYou have to import it from @mui/styles.\nSee https://mui.com/r/migration-v4/#mui-material-styles for more details.",
   "17": "MUI: Expected valid input target. Did you use a custom `components.Input` and forget to forward refs? See https://mui.com/r/input-component-ref-interface for more info.",
-  "19": "MUI: `useColorScheme` must be called under <CssVarsProvider />"
+  "19": "MUI: useSnackbars must be within a SnackbarsProvider. Make sure the component where you are using the useSnackbars hook is rendered within the SnackbarsProvider context. See https://mui.com/material-ui/react-stacked-snackbars/#usage for more info."
 }
