@@ -1,9 +1,6 @@
 name: Check if PR has label
 
 on:
-  push:
-    branches-ignore:
-      - 'renovate/**'
   pull_request:
     types: [opened, reopened, labeled, unlabeled]
 
