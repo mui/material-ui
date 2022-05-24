@@ -41,7 +41,7 @@ You can control the position of the snackbar by specifying the `anchorOrigin` pr
 ## Stacked snackbars
 
 The `Snackbar` component doesn't yet support displaying multiple stacked snackbars out of the box.
-However, we have recently released `SnackbarsProvider` and `useSnackbars`, a brand new component and hook, respectively, for that [in the lab](/material-ui/react-stacked-snackbars/) to support this behavior.
+To solve this problem, you can use the [`SnackbarsProvider` component and `useSnackbars` hook](/material-ui/react-stacked-snackbars/).
 
 {{"demo": "StackedSnackbars.js", "defaultCodeOpen": false}}
 
