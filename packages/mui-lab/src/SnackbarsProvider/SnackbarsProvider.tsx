@@ -4,7 +4,11 @@ import Snackbar, { SnackbarProps } from '@mui/material/Snackbar';
 import Grow from '@mui/material/Grow';
 import SnackbarContent from '@mui/material/SnackbarContent';
 import { styled, useTheme } from '@mui/material/styles';
-import SnackbarsContext, { ShowSnackbarProps, SnackbarContentType } from './SnackbarsContext';
+import SnackbarsContext, {
+  ShowSnackbarProps,
+  SnackbarContentType,
+  SnackbarActionType,
+} from './SnackbarsContext';
 import SnackbarsContainer from './SnackbarsContainer';
 
 const randomId = () => `mui-${Math.round(Math.random() * 1e5)}`;
@@ -33,7 +37,10 @@ const StyledSnackbar = styled(Snackbar)<{ ownerState: ShowSnackbarProps }>(
 );
 
 export interface SnackbarsProviderProps
-  extends Omit<SnackbarProps, 'children' | 'classes' | 'key' | 'message' | 'onClose' | 'open'> {
+  extends Omit<
+    SnackbarProps,
+    'children' | 'classes' | 'key' | 'message' | 'onClose' | 'open' | 'action'
+  > {
   /**
    * The maximum number of snackbars to display at a time.
    * @default 3
@@ -43,6 +50,10 @@ export interface SnackbarsProviderProps
    * Replace the `SnackbarContent` component.
    */
   content?: SnackbarContentType;
+  /**
+   * The action to display. It renders after the message, at the end of the snackbar.
+   */
+  action?: SnackbarActionType;
 }
 
 type SnackbarsByAnchorOrigin = { [key: string]: ShowSnackbarProps[] };

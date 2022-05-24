@@ -1,6 +1,6 @@
 {
   "props": {
-    "action": { "type": { "name": "union", "description": "func<br>&#124;&nbsp;node" } },
+    "action": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
     "message": { "type": { "name": "node" } },
     "role": { "type": { "name": "string" }, "default": "'alert'" },
