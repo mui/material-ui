@@ -11,7 +11,7 @@ export default function ClickableChip() {
       <Chip onClick={() => {}} endDecorator={<ChipDelete />}>
         Sam
       </Chip>
-      <Chip variant="soft" onClick={() => alert('hey')}>
+      <Chip variant="soft" onClick={() => alert('You clicked the Joy Chip!')}>
         Daisy
       </Chip>
       <Chip
@@ -20,7 +20,7 @@ export default function ClickableChip() {
         size="lg"
         startDecorator={<Avatar size="sm" src={`/static/images/avatar/1.jpg`} />}
         endDecorator={<CheckIcon fontSize="md" sx={{ mr: 0.25 }} />}
-        onClick={() => alert('hey')}
+        onClick={() => alert('You clicked the Joy Chip!')}
         sx={{ '--Chip-radius': '8px' }}
       >
         Mark
