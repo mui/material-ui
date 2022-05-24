@@ -107,3 +107,4 @@ In general, we don’t bump the major version number for changes to:
   In fact, this is what allows us to reliably warn about upcoming breaking changes.
 - **Pre-releases versions**. We provide pre-releases versions as a way to test new features early, but we need the flexibility to make changes based on what we learn in the pre-release period.
   If you use these versions, note that APIs may change before the stable release.
+- **Small CSS changes**. Visual design changes that have a very low probability to negatively impact your UI are not considered breaking, we release them in minor releases.
