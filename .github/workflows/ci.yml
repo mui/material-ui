@@ -9,6 +9,15 @@ on:
   pull_request:
 
 jobs:
+  test-label-applied:
+  # Tests that label is added on the PR
+    runs-on: ubuntu-latest
+      steps:
+        - uses: mnajdova/github-action-required-labels@v2.0
+          with:
+            mode: minimum
+            count: 1
+            labels: ""
   # Tests dev-only scripts across all supported dev environments
   test-dev:
     # l10nbot does not affect dev scripts.
@@ -23,11 +32,6 @@ jobs:
         with:
           # fetch all tags which are required for `yarn release:changelog`
           fetch-depth: 0
-      - uses: mnajdova/github-action-required-labels@v2.0
-        with:
-          mode: minimum
-          count: 1
-          labels: ""
       - name: Use Node.js 14.x
         uses: actions/setup-node@v3
         with:
