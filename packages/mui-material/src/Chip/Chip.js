@@ -74,7 +74,7 @@ const ChipRoot = styled('div', {
 })(
   ({ theme, ownerState }) => {
     const deleteIconColor = alpha(theme.palette.text.primary, 0.26);
-    const contrast4 =
+    const textColor =
       theme.palette.mode === 'light' ? theme.palette.grey[700] : theme.palette.grey[300];
     return {
       maxWidth: '100%',
@@ -107,7 +107,7 @@ const ChipRoot = styled('div', {
         marginRight: -6,
         width: 24,
         height: 24,
-        color: theme.vars ? theme.vars.palette.grey.contrast4 : contrast4,
+        color: theme.vars ? theme.vars.palette.Chip.defaultAvatarColor : textColor,
         fontSize: theme.typography.pxToRem(12),
       },
       [`& .${chipClasses.avatarColorPrimary}`]: {
@@ -126,7 +126,7 @@ const ChipRoot = styled('div', {
         fontSize: theme.typography.pxToRem(10),
       },
       [`& .${chipClasses.icon}`]: {
-        color: theme.vars ? theme.vars.palette.grey.contrast4 : contrast4,
+        color: theme.vars ? theme.vars.palette.Chip.defaultIconColor : textColor,
         marginLeft: 5,
         marginRight: -6,
         ...(ownerState.size === 'small' && {
@@ -175,7 +175,7 @@ const ChipRoot = styled('div', {
       ...(ownerState.onDelete && {
         [`&.${chipClasses.focusVisible}`]: {
           backgroundColor: theme.vars
-            ? `rgba(${theme.vars.palette.action.selected} / calc(${
+            ? `rgba(${theme.vars.palette.action.selectedChannel} / calc(${
                 theme.vars.palette.action.selectedOpacity + theme.vars.palette.action.focusOpacity
               }))`
             : alpha(
@@ -199,7 +199,7 @@ const ChipRoot = styled('div', {
       cursor: 'pointer',
       '&:hover': {
         backgroundColor: theme.vars
-          ? `rgba(${theme.vars.palette.action.selected} / calc(${
+          ? `rgba(${theme.vars.palette.action.selectedChannel} / calc(${
               theme.vars.palette.action.selectedOpacity + theme.vars.palette.action.hoverOpacity
             }))`
           : alpha(
@@ -209,7 +209,7 @@ const ChipRoot = styled('div', {
       },
       [`&.${chipClasses.focusVisible}`]: {
         backgroundColor: theme.vars
-          ? `rgba(${theme.vars.palette.action.selected} / calc(${
+          ? `rgba(${theme.vars.palette.action.selectedChannel} / calc(${
               theme.vars.palette.action.selectedOpacity + theme.vars.palette.action.focusOpacity
             }))`
           : alpha(

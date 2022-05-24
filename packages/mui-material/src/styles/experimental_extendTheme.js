@@ -95,6 +95,8 @@ export default function extendTheme(options = {}, ...args) {
     if (key === 'light') {
       setColor(palette.AppBar, 'defaultBgColor', 'var(--md-palette-grey-100)');
       setColor(palette.Chip, 'defaultBorderColor', 'var(--md-palette-grey-400)');
+      setColor(palette.Chip, 'defaultAvatarColor', 'var(--md-palette-grey-700)');
+      setColor(palette.Chip, 'defaultIconColor', 'var(--md-palette-grey-700)');
       setColor(palette.FilledInput, 'bgColor', 'rgba(0, 0, 0, 0.06)');
       setColor(palette.FilledInput, 'hoverBgColor', 'rgba(0, 0, 0, 0.09)');
       setColor(palette.FilledInput, 'disabledBgColor', 'rgba(0, 0, 0, 0.12)');
@@ -125,6 +127,8 @@ export default function extendTheme(options = {}, ...args) {
     } else {
       setColor(palette.AppBar, 'defaultBgColor', 'var(--md-palette-grey-900)');
       setColor(palette.Chip, 'defaultBorderColor', 'var(--md-palette-grey-700)');
+      setColor(palette.Chip, 'defaultAvatarColor', 'var(--md-palette-grey-300)');
+      setColor(palette.Chip, 'defaultIconColor', 'var(--md-palette-grey-300)');
       setColor(palette.FilledInput, 'bgColor', 'rgba(255, 255, 255, 0.09)');
       setColor(palette.FilledInput, 'hoverBgColor', 'rgba(255, 255, 255, 0.13)');
       setColor(palette.FilledInput, 'disabledBgColor', 'rgba(255, 255, 255, 0.12)');
