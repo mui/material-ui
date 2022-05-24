@@ -1,13 +1,15 @@
 ---
 title: Meet Joy UI－a new starting point to your design system
 description: Wip description.
-date: 2022-05-12T00:00:00.000Z
+date: 2022-06-01T00:00:00.000Z
 authors: ['danilo-leal', 'siriwatknp']
 tags: ['News']
 card: true
 ---
 
+:::warning
 **work in progress**
+:::
 
 If you're a close follower of everything MUI, you might be aware that we've been working on a new design system product. If not, we're writing this piece to give you a first look at Joy－MUI's new starting point for your design system!
 
