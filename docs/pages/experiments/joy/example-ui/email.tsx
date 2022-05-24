@@ -490,7 +490,7 @@ export default function EmailExample() {
               borderRadius: 'sm',
               p: 2,
               mb: 3,
-              bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'neutral.900' : 'common.white'),
+              bgcolor: 'background.componentBg',
             }}
           >
             <ListItem
@@ -631,7 +631,7 @@ export default function EmailExample() {
               minHeight: 500,
               borderRadius: 'sm',
               p: 2,
-              bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'neutral.900' : 'common.white'),
+              bgcolor: 'background.componentBg',
             }}
           >
             <ListItem
