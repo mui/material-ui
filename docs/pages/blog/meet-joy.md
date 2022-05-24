@@ -35,11 +35,16 @@ Instead of defining variants at the component level, Joy defines variants at the
 
 ### Component integration
 
-tbw
+We put a lot of effort into designing CSS variables for each component so that they can be seamlessly composed with the least customization.
+One good example is the card component, where the border radius of the card’s children automatically adapts to the card.
+These small details make the component resilient to different scenarios which saves tons of time for manual adjustments.
+Joy does not sacrifice the customization experience in order to have the automatic adjustment.
+You are able to override the style completely via the usual CSS or even adjust the predefined CSS variables from the `sx` prop.
 
 ### Perfect dark mode for server-side rendering
 
-tbw
+Joy provides a simple and effective way to prevent UI flickering when users refresh or re-enter the page after they have toggled dark mode on.
+Moreover, it takes care of the synchronization between browser tabs with a single line of code which allows developers to configure attributes and settings as required.
 
 ### Unlimited color schemes
 

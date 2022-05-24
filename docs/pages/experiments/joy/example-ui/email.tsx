@@ -143,10 +143,10 @@ export default function EmailExample() {
         <Box
           className="Navigation"
           sx={{
+            p: 2,
             bgcolor: 'background.componentBg',
             borderRight: '1px solid',
             borderColor: 'divider',
-            p: 2,
           }}
         >
           <Box
