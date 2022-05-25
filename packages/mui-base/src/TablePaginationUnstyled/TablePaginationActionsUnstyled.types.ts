@@ -81,3 +81,20 @@ export interface TablePaginationActionsUnstyledTypeMap<
   props: P & TablePaginationActionsUnstyledOwnProps;
   defaultComponent: D;
 }
+
+export type TablePaginationActionsUnstyledOwnerState = TablePaginationActionsUnstyledProps;
+
+export type TablePaginationActionsUnstyledRootSlotProps = {
+  children?: React.ReactNode;
+  ownerState: TablePaginationActionsUnstyledOwnerState;
+  ref: React.Ref<any>;
+};
+
+export type TablePaginationActionsUnstyledButtonSlotProps = {
+  'aria-label': string;
+  children?: React.ReactNode;
+  disabled: boolean;
+  onClick: React.MouseEventHandler<HTMLButtonElement>;
+  ownerState: TablePaginationActionsUnstyledOwnerState;
+  title: string;
+};
