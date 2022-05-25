@@ -1,10 +1,10 @@
-# Developer Experience Engineer
+# Developer Experience Engineer - Core
 
 <p class="description">You will focus on providing experiences that delight developers using MUI. This role is mostly about MUI Core.</p>
 
 ## Details of the Role
 
-- Location: Remote (preference for UTC-7 to UTC+2).
+- Location: Remote (preference for UTC-6 to UTC+2).
 - Type of work: Full-time (contractor or employee [depending on circumstances](https://mui-org.notion.site/Hiring-FAQ-64763b756ae44c37b47b081f98915501))
 - Start date: Immediately.
 - Level: [4 or above](https://docs.google.com/spreadsheets/d/1dDdPD-flNXlgZ0E3ZxVvCDx27RFuhVWJrcfcjNu_I8k/edit#gid=0).
