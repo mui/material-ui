@@ -103,7 +103,7 @@ MUI will continue to give security updates and regressions support (for example,
 Sometimes "breaking changes", such as the removal of support for select APIs and features, are necessary.
 To make these transitions as easy as possible:
 
-- The number of breaking changes is minimized, and migration tools are provided when possible (codemods).
+- The number of breaking changes is minimized, and migration tools are provided when possible (e.g. codemods).
 - The deprecation policy described below is followed so that you have time to update your apps to the latest APIs and best practices.
 
 ### Deprecation policy
