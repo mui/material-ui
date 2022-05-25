@@ -12,7 +12,7 @@ materialDesign: https://material.io/design/iconography/system-icons.html
 
 Material-UI fornece suporte de ícones de três maneiras:
 
-1. Standardized [Material Design icons](#material-svg-icons) exported as React components (SVG icons).
+1. Standardized [Material Icons](#material-svg-icons) exported as React components (SVG icons).
 1. Com o componente [SvgIcon](#svgicon), um wrapper React para ícones SVG customizados.
 1. Com o componente [Icon](#icon-font-icons), um wrapper React para ícones de fonte customizados.
 
@@ -143,7 +143,7 @@ import { ReactComponent as StarIcon } from './star.svg';
 
 ### createSvgIcon
 
-The `createSvgIcon` utility component is used to create the [Material icons](#material-icons). It can be used to wrap an SVG path with an SvgIcon component.
+The `createSvgIcon` utility component is used to create the [Material Icons](#material-icons). It can be used to wrap an SVG path with an SvgIcon component.
 
 ```jsx
 const HomeIcon = createSvgIcon(
@@ -174,7 +174,7 @@ Note: [mdi-material-ui](https://github.com/TeamWertarbyte/mdi-material-ui) has a
 
 ## Ícone (ícones de fonte)
 
-The `Icon` component will display an icon from any icon font that supports ligatures. As a prerequisite, you must include one, such as the [Material icon font](https://google.github.io/material-design-icons/#icon-font-for-the-web) in your project. To use an icon simply wrap the icon name (font ligature) with the `Icon` component, for example:
+The `Icon` component will display an icon from any icon font that supports ligatures. As a prerequisite, you must include one, such as the [Material Icons font](https://google.github.io/material-design-icons/#icon-font-for-the-web) in your project. To use an icon simply wrap the icon name (font ligature) with the `Icon` component, for example:
 
 ```jsx
 import Icon from '@mui/material/Icon';
@@ -184,7 +184,7 @@ import Icon from '@mui/material/Icon';
 
 By default, an Icon will inherit the current text color. Optionally, you can set the icon color using one of the theme color properties: `primary`, `secondary`, `action`, `error` & `disabled`.
 
-### Fonte Material icons
+### Font Material Icons
 
 `Icon` will by default set the correct base class name for the Material Icons font (filled variant). All you need to do is load the font, for instance, via Google Web Fonts:
 
@@ -242,7 +242,7 @@ Then, you can use the two-tone font directly:
 
 {{"demo": "FontAwesomeIcon.js"}}
 
-Note that the Font Awesome icons weren't designed like the Material Design icons (compare the two previous demos). The fa icons are cropped to use all the space available. You can adjust for this with a global override:
+Note that the Font Awesome icons weren't designed like the Material Icons (compare the two previous demos). The fa icons are cropped to use all the space available. You can adjust for this with a global override:
 
 ```js
 const theme = createTheme({
