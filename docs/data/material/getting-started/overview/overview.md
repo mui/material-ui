@@ -11,8 +11,9 @@ It includes a comprehensive collection of prebuilt components that are ready for
 Material UI is beautiful by design, and features a suite of customization options that make it easy to implement your own custom design system on top of our components.
 
 :::info
-Material UI supports Material Design v2.
-While v3 adoption is not currently on our roadmap, you can follow [this GitHub issue](https://github.com/mui/material-ui/issues/29345) for future updates.
+Material UI currently supports Material Design v2.
+Adoption of v3 is tentatively planned for Material UI v6.
+You can follow [this GitHub issue](https://github.com/mui/material-ui/issues/29345) for future updates.
 :::
 
 ## Advantages of Material UI
