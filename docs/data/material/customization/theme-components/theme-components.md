@@ -173,7 +173,7 @@ If you're using TypeScript, you'll need to specify your new variants/colors, usi
 <!-- Tested with packages/mui-material/test/typescript/augmentation/themeComponents.spec.ts -->
 
 ```tsx
-import { ButtonPropsColorOverrides } from "@mui/material";
+import { ButtonPropsVariantOverrides } from "@mui/material";
 
 declare module '@mui/material/Button' {
   interface ButtonPropsVariantOverrides {
