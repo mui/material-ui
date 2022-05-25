@@ -869,6 +869,16 @@ export default function useAutocomplete(props) {
       return;
     }
 
+    // Ignore the even when using Firefox + VoiceOver
+    if (
+      listboxRef.current !== null &&
+      event.relatedTarget &&
+      listboxRef.current.contains(event.relatedTarget)
+    ) {
+      setTimeout(() => inputRef.current.focus(), 0);
+      return;
+    }
+
     setFocused(false);
     firstFocus.current = true;
     ignoreFocus.current = false;
