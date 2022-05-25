@@ -17,7 +17,7 @@ export default function WhatToExpect() {
         variant="h2"
         sx={{ maxWidth: { xs: 280, sm: 320, md: 400 }, mb: { xs: 2, sm: 4 } }}
       >
-        Key information about our available plans
+        Key information about the paid plans
       </Typography>
       <Grid container spacing={{ xs: 2, sm: 4 }}>
         <Grid item xs={12} sm={6}>
@@ -74,17 +74,15 @@ export default function WhatToExpect() {
                 variant="body2"
                 sx={{ ml: 1 }}
               >
-                Support and maintenance
+                Maintenance and support
               </Typography>
             </Box>
             <Typography variant="body2" color="text.secondary">
               With your purchase, you receive support and access to new versions for the duration of
               your subscription. You can learn more about{' '}
               <Link href="https://mui.com/x/advanced-components/#support">support in our docs</Link>
-              .
-              <br />
-              Note that we roll bug fixes, performance enhancements, and other improvements into new
-              releases, on the latest release line.
+              . Note that we roll bug fixes, performance enhancements, and other improvements into
+              new release, instead of patching older versions.
             </Typography>
           </Paper>
         </Grid>
