@@ -43,10 +43,6 @@ As the core components use emotion as their style engine, the props used by emot
 
 - Move the component from the lab to the core. The component is now stable.
 
-  :::success
-  ✅ This is handled in the [preset-safe codemod](#preset-safe).
-  :::
-
   ```diff
   -import Alert from '@mui/lab/Alert';
   -import AlertTitle from '@mui/lab/AlertTitle';
@@ -59,10 +55,6 @@ As the core components use emotion as their style engine, the props used by emot
 ### ✅ Update import
 
 - Move the component from the lab to the core. The component is now stable.
-
-  :::success
-  ✅ This is handled in the [preset-safe codemod](#preset-safe).
-  :::
 
   ```diff
   -import Autocomplete from '@mui/lab/Autocomplete';
@@ -103,10 +95,6 @@ As the core components use emotion as their style engine, the props used by emot
 
 - Rename `closeIcon` prop to `clearIcon` to avoid confusion.
 
-  :::success
-  ✅ This is handled in the [preset-safe codemod](#preset-safe).
-  :::
-
   ```diff
   -<Autocomplete closeIcon={defaultClearIcon} />
   +<Autocomplete clearIcon={defaultClearIcon} />
@@ -131,10 +119,6 @@ As the core components use emotion as their style engine, the props used by emot
 
 - Rename `getOptionSelected` to `isOptionEqualToValue` to better describe its purpose.
 
-  :::success
-  ✅ This is handled in the [preset-safe codemod](#preset-safe).
-  :::
-
   ```diff
    <Autocomplete
   -  getOptionSelected={(option, value) => option.title === value.title}
@@ -146,10 +130,6 @@ As the core components use emotion as their style engine, the props used by emot
 ### ✅ Rename `circle`
 
 - Rename `circle` to `circular` for consistency:
-
-  :::success
-  ✅ This is handled in the [preset-safe codemod](#preset-safe).
-  :::
 
   ```diff
   -<Avatar variant="circle">
@@ -169,10 +149,6 @@ As the core components use emotion as their style engine, the props used by emot
 
 - Move the AvatarGroup from the lab to the core.
 
-  :::success
-  ✅ This is handled in the [preset-safe codemod](#preset-safe).
-  :::
-
   ```diff
   -import AvatarGroup from '@mui/lab/AvatarGroup';
   +import AvatarGroup from '@mui/material/AvatarGroup';
@@ -183,10 +159,6 @@ As the core components use emotion as their style engine, the props used by emot
 ### ✅ Rename `circle` and `rectangle`
 
 - Rename `circle` to `circular` and `rectangle` to `rectangular` for consistency.
-
-  :::success
-  ✅ This is handled in the [preset-safe codemod](#preset-safe).
-  :::
 
   ```diff
   -<Badge overlap="circle">
@@ -252,10 +224,6 @@ As the core components use emotion as their style engine, the props used by emot
   If it receives a number, it multiplies this value with the `theme.shape.borderRadius` value.
   Use a string to provide an explicit `px` value.
 
-  :::success
-  ✅ This is handled in the [preset-safe codemod](#preset-safe).
-  :::
-
   ```diff
   -<Box borderRadius="borderRadius">
   +<Box borderRadius={1}>
@@ -270,10 +238,6 @@ As the core components use emotion as their style engine, the props used by emot
 
 - The Box system props have an optional alternative API in v5, using the `sx` prop. You can [read this section](/system/basics/#api-tradeoff) for the "why" behind this new API.
 
-  :::success
-  ✅ This is handled in the [preset-safe codemod](#preset-safe).
-  :::
-
   ```jsx
   <Box border="1px dashed grey" p={[2, 3, 4]} m={2}>
   <Box sx={{ border: "1px dashed grey", p: [2, 3, 4], m: 2 }}>
@@ -282,10 +246,6 @@ As the core components use emotion as their style engine, the props used by emot
 ### ✅ Rename CSS properties
 
 - The following properties have been renamed because they are considered deprecated CSS properties by the CSS specification:
-
-  :::success
-  ✅ This is handled in the [preset-safe codemod](#preset-safe).
-  :::
 
   1. `gridGap` to `gap`
   2. `gridColumnGap` to `columnGap`
@@ -340,10 +300,6 @@ As the core components use emotion as their style engine, the props used by emot
 - The button `color` prop is now "primary" by default, and "default" has been removed.
   This makes the button closer to the Material Design guidelines and simplifies the API.
 
-  :::success
-  ✅ This is handled in the [preset-safe codemod](#preset-safe).
-  :::
-
   ```diff
   -<Button color="default">
   +<Button>
@@ -370,10 +326,6 @@ As the core components use emotion as their style engine, the props used by emot
 ### ✅ Rename `default` to `filled`
 
 - Rename `default` variant to `filled` for consistency.
-
-  :::success
-  ✅ This is handled in the [preset-safe codemod](#preset-safe).
-  :::
 
   Since `filled` is the default value, the variant prop can be deleted:
 
@@ -414,10 +366,6 @@ As the core components use emotion as their style engine, the props used by emot
 - The `static` variant has been renamed to `determinate`, and the previous appearance of `determinate` has been replaced by that of `static`.
   It was an exception to Material Design, and was removed from the specification.
 
-  :::success
-  ✅ This is handled in the [preset-safe codemod](#preset-safe).
-  :::
-
   ```diff
   -<CircularProgress variant="static" classes={{ static: 'className' }} />
   +<CircularProgress variant="determinate" classes={{ determinate: 'className' }} />
@@ -432,10 +380,6 @@ NB: If you had previously customized determinate, your customizations are probab
 ### ✅ Rename `collapsedHeight` prop
 
 - The `collapsedHeight` prop was renamed `collapsedSize` to support the horizontal direction.
-
-  :::success
-  ✅ This is handled in the [preset-safe codemod](#preset-safe).
-  :::
 
   ```diff
   -<Collapse collapsedHeight={40}>
@@ -506,10 +450,6 @@ NB: If you had previously customized determinate, your customizations are probab
 - The `on*` transition props were removed.
   Use `TransitionProps` instead.
 
-  :::success
-  ✅ This is handled in the [preset-safe codemod](#preset-safe).
-  :::
-
   ```diff
    <Dialog
   -  onEnter={onEnter}
@@ -533,10 +473,6 @@ NB: If you had previously customized determinate, your customizations are probab
 
 - Remove the `disableBackdropClick` prop because it is redundant.
   Ignore close events from `onClose` when `reason === 'backdropClick'` instead.
-
-  :::success
-  ✅ This is handled in the [preset-safe codemod](#preset-safe).
-  :::
 
   ```diff
    <Dialog
@@ -579,10 +515,6 @@ NB: If you had previously customized determinate, your customizations are probab
 
 - Flatten DialogTitle DOM structure, remove `disableTypography` prop
 
-  :::success
-  ✅ This is handled in the [preset-safe codemod](#preset-safe).
-  :::
-
   ```diff
   -<DialogTitle disableTypography>
   -  <Typography variant="h4" component="h2">
@@ -612,10 +544,6 @@ NB: If you had previously customized determinate, your customizations are probab
 ### ✅ Rename components
 
 - Rename the `ExpansionPanel` components to `Accordion` to use a more common naming convention:
-
-  :::success
-  ✅ This is handled in the [preset-safe codemod](#preset-safe).
-  :::
 
   ```diff
   -import ExpansionPanel from '@mui/material/ExpansionPanel';
@@ -752,10 +680,6 @@ NB: If you had previously customized determinate, your customizations are probab
 
 - Rename `justify` prop to `justifyContent` to align with the CSS property name.
 
-  :::success
-  ✅ This is handled in the [preset-safe codemod](#preset-safe).
-  :::
-
   ```diff
   -<Grid justify="center">
   +<Grid justifyContent="center">
@@ -766,10 +690,6 @@ NB: If you had previously customized determinate, your customizations are probab
 - The props: `alignItems` `alignContent` and `justifyContent` and their classes and style overrides keys were removed: "align-items-xs-center", "align-items-xs-flex-start", "align-items-xs-flex-end", "align-items-xs-baseline", "align-content-xs-center", "align-content-xs-flex-start", "align-content-xs-flex-end", "align-content-xs-space-between", "align-content-xs-space-around", "justify-content-xs-center", "justify-content-xs-flex-end", "justify-content-xs-space-between", "justify-content-xs-space-around" and "justify-content-xs-space-evenly".
   These props are now considered part of the system, not on the `Grid` component itself.
   If you still wish to add overrides for them, you can use the [callback as a value in `styleOverrides`](/material-ui/customization/theme-components/#overrides-based-on-props).
-
-  :::success
-  ✅ This is handled in the [preset-safe codemod](#preset-safe).
-  :::
 
   ```diff
   const theme = createTheme({
@@ -795,10 +715,6 @@ NB: If you had previously customized determinate, your customizations are probab
 ### ✅ Rename `GridList` component
 
 - Rename the `GridList` components to `ImageList` to align with the current Material Design naming.
-
-  :::success
-  ✅ This is handled in the [preset-safe codemod](#preset-safe).
-  :::
 
 ### Rename `GridList` props
 
@@ -890,10 +806,6 @@ NB: If you had previously customized determinate, your customizations are probab
   To get the old default size (`48px`), use `size="large"`.
   The change was done to better match Google's products when Material Design stopped documenting the icon button pattern.
 
-  :::success
-  ✅ This is handled in the [preset-safe codemod](#preset-safe).
-  :::
-
   ```diff
   - <IconButton>
   + <IconButton size="large">
@@ -942,10 +854,6 @@ NB: If you had previously customized determinate, your customizations are probab
 
 - The `on*` transition props were removed.
   Use `TransitionProps` instead.
-
-  :::success
-  ✅ This is handled in the [preset-safe codemod](#preset-safe).
-  :::
 
   ```diff
    <Menu
@@ -1013,10 +921,6 @@ NB: If you had previously customized determinate, your customizations are probab
 - Remove the `disableBackdropClick` prop because it is redundant.
   Use `onClose` with `reason === 'backdropClick'` instead.
 
-  :::success
-  ✅ This is handled in the [preset-safe codemod](#preset-safe).
-  :::
-
   ```diff
    <Modal
   -  disableBackdropClick
@@ -1033,10 +937,6 @@ NB: If you had previously customized determinate, your customizations are probab
 
 - Remove the `onEscapeKeyDown` prop because it is redundant.
   Use `onClose` with `reason === "escapeKeyDown"` instead.
-
-  :::success
-  ✅ This is handled in the [preset-safe codemod](#preset-safe).
-  :::
 
   ```diff
    <Modal
@@ -1102,10 +1002,6 @@ NB: If you had previously customized determinate, your customizations are probab
 - Move the component from the lab to the core.
   The component is now stable.
 
-  :::success
-  ✅ This is handled in the [preset-safe codemod](#preset-safe).
-  :::
-
   ```diff
   -import Pagination from '@mui/lab/Pagination';
   -import PaginationItem from '@mui/lab/PaginationItem';
@@ -1134,10 +1030,6 @@ NB: If you had previously customized determinate, your customizations are probab
 
 - The `on*` transition props were removed.
   Use `TransitionProps` instead.
-
-  :::success
-  ✅ This is handled in the [preset-safe codemod](#preset-safe).
-  :::
 
   ```diff
    <Popover
@@ -1231,10 +1123,6 @@ NB: If you had previously customized determinate, your customizations are probab
 
 - Move the component from the lab to the core.
   The component is now stable.
-
-  :::success
-  ✅ This is handled in the [preset-safe codemod](#preset-safe).
-  :::
 
   ```diff
   -import Rating from '@mui/lab/Rating';
@@ -1343,10 +1231,6 @@ NB: If you had previously customized determinate, your customizations are probab
 - Move the component from the lab to the core.
   The component is now stable.
 
-  :::success
-  ✅ This is handled in the [preset-safe codemod](#preset-safe).
-  :::
-
   ```diff
   -import Skeleton from '@mui/lab/Skeleton';
   +import Skeleton from '@mui/material/Skeleton';
@@ -1355,10 +1239,6 @@ NB: If you had previously customized determinate, your customizations are probab
 ### ✅ Rename `circle` and `rect`
 
 - Rename `circle` to `circular` and `rect` to `rectangular` for consistency:
-
-  :::success
-  ✅ This is handled in the [preset-safe codemod](#preset-safe).
-  :::
 
   ```diff
   -<Skeleton variant="circle" />
@@ -1424,10 +1304,6 @@ NB: If you had previously customized determinate, your customizations are probab
 - The `on` transition props were removed.
   Use `TransitionProps` instead.
 
-  :::success
-  ✅ This is handled in the [preset-safe codemod](#preset-safe).
-  :::
-
   ```diff
    <Snackbar
   -  onEnter={onEnter}
@@ -1453,10 +1329,6 @@ NB: If you had previously customized determinate, your customizations are probab
 
 - Move the component from the lab to the core.
   The component is now stable.
-
-  :::success
-  ✅ This is handled in the [preset-safe codemod](#preset-safe).
-  :::
 
   ```diff
   -import SpeedDial from '@mui/lab/SpeedDial';
@@ -1586,10 +1458,6 @@ NB: If you had previously customized determinate, your customizations are probab
 
 - Rename `onChangeRowsPerPage` to `onRowsPerPageChange` and `onChangePage` to `onPageChange` due to API consistency.
 
-  :::success
-  ✅ This is handled in the [preset-safe codemod](#preset-safe).
-  :::
-
   ```diff
    <TablePagination
   -  onChangeRowsPerPage={()=>{}}
@@ -1650,10 +1518,6 @@ NB: If you had previously customized determinate, your customizations are probab
   - The `scrollButtons` prop controls when the scroll buttons are displayed depending on the space available.
   - The `allowScrollButtonsMobile` prop removes the CSS media query that systematically hide the scroll buttons on mobile.
 
-  :::success
-  ✅ This is handled in the [preset-safe codemod](#preset-safe).
-  :::
-
   ```diff
   -<Tabs scrollButtons="on" />
   -<Tabs scrollButtons="desktop" />
@@ -1705,10 +1569,6 @@ NB: If you had previously customized determinate, your customizations are probab
 
 - Rename `rowsMax` prop with `maxRows` for consistency with HTML attributes.
 
-  :::success
-  ✅ This is handled in the [preset-safe codemod](#preset-safe).
-  :::
-
   ```diff
   -<TextField rowsMax={6}>
   +<TextField maxRows={6}>
@@ -1718,10 +1578,6 @@ NB: If you had previously customized determinate, your customizations are probab
 
 - Better isolate the fixed textarea height behavior to the dynamic one.
   You need to use the `minRows` prop in the following case:
-
-  :::success
-  ✅ This is handled in the [preset-safe codemod](#preset-safe).
-  :::
 
   ```diff
   -<TextField rows={2} maxRows={5} />
@@ -1778,10 +1634,6 @@ NB: If you had previously customized determinate, your customizations are probab
 - Remove the `rows` prop, use the `minRows` prop instead.
   This change aims to clarify the behavior of the prop.
 
-  :::success
-  ✅ This is handled in the [preset-safe codemod](#preset-safe).
-  :::
-
   ```diff
   -<TextareaAutosize rows={2} />
   +<TextareaAutosize minRows={2} />
@@ -1791,10 +1643,6 @@ NB: If you had previously customized determinate, your customizations are probab
 
 - Rename `rowsMax` prop with `maxRows` for consistency with HTML attributes.
 
-  :::success
-  ✅ This is handled in the [preset-safe codemod](#preset-safe).
-  :::
-
   ```diff
   -<TextareaAutosize rowsMax={6}>
   +<TextareaAutosize maxRows={6}>
@@ -1803,10 +1651,6 @@ NB: If you had previously customized determinate, your customizations are probab
 ### ✅ Rename `rowsMin`
 
 - Rename `rowsMin` prop with `minRows` for consistency with HTML attributes.
-
-  :::success
-  ✅ This is handled in the [preset-safe codemod](#preset-safe).
-  :::
 
   ```diff
   -<TextareaAutosize rowsMin={1}>
@@ -1819,10 +1663,6 @@ NB: If you had previously customized determinate, your customizations are probab
 
 - Move the component from the lab to the core.
   The component is now stable.
-
-  :::success
-  ✅ This is handled in the [preset-safe codemod](#preset-safe).
-  :::
 
   ```diff
   -import ToggleButton from '@mui/lab/ToggleButton';
@@ -1919,10 +1759,6 @@ NB: If you had previously customized determinate, your customizations are probab
   When using the `down()` breakpoints utility you need to update the breakpoint key by one step up.
   When using the `between(start, end)` the end breakpoint should also be updated by one step up.
 
-  :::success
-  ✅ This is handled in the [preset-safe codemod](#preset-safe).
-  :::
-
   Here are some examples of the changes required:
 
   ```diff
@@ -1989,10 +1825,6 @@ NB: If you had previously customized determinate, your customizations are probab
 - The `theme.breakpoints.width` utility was removed because it's redundant.
   Use `theme.breakpoints.values` to get the same values.
 
-  :::success
-  ✅ This is handled in the [preset-safe codemod](#preset-safe).
-  :::
-
   ```diff
   -theme.breakpoints.width('md')
   +theme.breakpoints.values.md
@@ -2010,10 +1842,6 @@ NB: If you had previously customized determinate, your customizations are probab
 ### Remove `theme.typography.round` helper
 
 - The `theme.typography.round` helper was removed because it was no longer used. If you need it, use the function below:
-
-  :::success
-  ✅ This is handled in the [preset-safe codemod](#preset-safe).
-  :::
 
   ```js
   function round(value) {
