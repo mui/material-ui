@@ -154,6 +154,12 @@ const openRolesData = [
         url: '/careers/react-support-engineer/',
       },
       {
+        title: 'React Engineer - Core',
+        description:
+        'You will strengthen the core components team, e.g. collaborate with the community to land contributions.',
+        url: '/careers/react-engineer-core/',
+      },
+      {
         title: 'React Engineer - X',
         description:
           'You will strengthen the advanced components team, build new ambitious complex features, work on strategic problems, and help grow the adoption.',
@@ -163,12 +169,6 @@ const openRolesData = [
         title: 'Product Engineer - Store',
         description: 'You will lead the technical and operational development of MUI Store.',
         url: '/careers/product-engineer/',
-      },
-      {
-        title: 'React Engineer - Core',
-        description:
-          'You will strengthen the core components team, e.g. collaborate with the community to land contributions.',
-        url: '/careers/react-engineer-core/',
       },
     ],
   },
