@@ -1,16 +1,18 @@
-# Breaking changes in v5, part 1: styles and themes
+# Breaking changes in v5, part one: styles and themes
 
 <p class="description">This is a reference guide to all of the breaking changes introduced in Material v5, and how to handle them when migrating from v4.</p>
 
-## Introduction
+## Breaking changes, part one
 
 Material UI v5 introduces a number of breaking changes from v4.
 Many of these changes can be resolved automatically using [the codemods](/material-ui/migration/migration-v4/#run-codemods) described in the [main migration guide](/material-ui/migration/migration-v4/).
 
-The following document lists all breaking changes in v5 and how to address them.
+The following document lists all breaking changes related to styles and themes in v5 and how to address them.
+
+After you're finished here, please move on to [Breaking changes in v5 part two: components](/material-ui/migration/v5-component-changes/) to continue the migration process.
 
 :::warning
-Breaking changes that are handled by codemods are denoted with a ✅ emoji in the table of contents on the right side of the screen.
+Breaking changes that are handled by codemods are denoted by a ✅ emoji in the table of contents on the right side of the screen.
 
 If you have already followed the instructions in the main migration guide and run the codemods, then you should not need to take any further action on these items.
 
