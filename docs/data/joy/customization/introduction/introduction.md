@@ -2,6 +2,9 @@
 
 <p class="description">Learn the ways to customize Joy UI.</p>
 
+<!-- The purpose of this page is to give the overall customization alternatives to developers without providing too much details -->
+<!-- Some examples and demos are provided to give the sense of what it looks like and then lead each part to another page for more technical details and more examples -->
+
 The customization can be categorized in 2 buckets:
 
 - Global customization (theming)
@@ -69,7 +72,7 @@ function App() {
 
 You can also provide your own design tokens. Joy will convert them to CSS variables which are attached to the global stylesheet. It is very convenient because you can use any styling solution to read those CSS variables.
 
-If you want to see all of the tokens, check out the [customizing theme tokens](/joy-ui/customization/customizing-theme-tokens/) page.
+If you want to see all of the default tokens and more realistic examples, check out the [theme tokens](/joy-ui/customization/theme-tokens/) page.
 
 ### Components theming
 
