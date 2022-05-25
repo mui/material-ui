@@ -30,7 +30,7 @@ const planInfo = {
     color: 'gold',
     title: 'Premium',
     description:
-      'Access advanced features for handling data-rich applications, as well as the highest priority for support.',
+      'The most advanced features for handling data-rich applications, as well as the highest priority for support.',
   },
 } as const;
 
