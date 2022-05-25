@@ -27,7 +27,7 @@ const Main = styled('main', {
     },
   }),
   [theme.breakpoints.up('lg')]: {
-    width: `calc(100% - var(--MuiDocs-navDrawer-width))`,
+    width: 'calc(100% - var(--MuiDocs-navDrawer-width))',
   },
 }));
 
@@ -43,17 +43,15 @@ const StyledAppContainer = styled(AppContainer, {
       '&& .description.ad': {
         marginBottom: 40,
       },
-      ...(!disableToc && {
-        [theme.breakpoints.up('sm')]: {
-          width: `calc(100% - var(--MuiDocs-toc-width))`,
-        },
-      }),
-      ...(!disableToc && {
-        [theme.breakpoints.up('lg')]: {
-          paddingLeft: '60px',
-          paddingRight: '60px',
-        },
-      }),
+    }),
+    ...(!disableToc && {
+      [theme.breakpoints.up('sm')]: {
+        width: 'calc(100% - var(--MuiDocs-toc-width))',
+      },
+      [theme.breakpoints.up('lg')]: {
+        paddingLeft: '60px',
+        paddingRight: '60px',
+      },
     }),
   };
 });

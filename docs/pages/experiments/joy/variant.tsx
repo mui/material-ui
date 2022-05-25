@@ -272,7 +272,7 @@ export default function JoyVariant() {
             },
           },
           components: {
-            MuiButton: {
+            JoyButton: {
               styleOverrides: {
                 root: ({ ownerState }) => ({
                   '--Button-gutter': '1rem',

@@ -13,7 +13,7 @@ describe('<AspectRatio />', () => {
     inheritComponent: 'div',
     render,
     ThemeProvider,
-    muiName: 'MuiAspectRatio',
+    muiName: 'JoyAspectRatio',
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'span',
     testVariantProps: { variant: 'solid' },

@@ -34,16 +34,11 @@ import systemPkgJson from '../../../../packages/mui-system/package.json';
 
 const savedScrollTop = {};
 
-const shouldShowJoy =
-  process.env.NODE_ENV === 'development' ||
-  process.env.PULL_REQUEST ||
-  FEATURE_TOGGLE.enable_joy_scope;
-
 const LinksWrapper = styled('div')(({ theme }) => {
   return {
     paddingLeft: theme.spacing(5.5),
     paddingTop: theme.spacing(1.5),
-    height: shouldShowJoy ? 162 : 124,
+    height: FEATURE_TOGGLE.enable_joy_scope ? 162 : 124,
     '& > a': {
       position: 'relative',
       display: 'flex',
@@ -218,7 +213,7 @@ function ProductDrawerButton(props) {
                 {"React components that implement Google's Material Design."}
               </Typography>
             </Link>
-            {shouldShowJoy && (
+            {FEATURE_TOGGLE.enable_joy_scope && (
               <Link href={ROUTES.joyDocs} sx={{ my: -0.5 }}>
                 <ProductLabel>Joy UI</ProductLabel>
                 <Typography color="text.secondary" variant="body2">
@@ -653,9 +648,13 @@ export default function AppNavDrawer(props) {
               ])}
             />
           )}
-          {asPathWithoutLang.startsWith('/x/advanced-components') && (
-            <ProductIdentifier name="Advanced components" metadata="MUI X" />
-          )}
+          {
+            // TODO: remove first condition when https://github.com/mui/mui-x/pull/4692 is released
+            (asPathWithoutLang.startsWith('/x/advanced-components') ||
+              asPathWithoutLang.startsWith('/x/getting-started')) && (
+              <ProductIdentifier name="Advanced components" metadata="MUI X" />
+            )
+          }
           {(asPathWithoutLang.startsWith('/x/react-data-grid') ||
             asPathWithoutLang.startsWith('/x/api/data-grid')) && (
             <ProductIdentifier
@@ -688,7 +687,7 @@ export default function AppNavDrawer(props) {
                 : theme.palette.grey[100],
           }}
         />
-        <DiamondSponsors spot="drawer" />
+        <DiamondSponsors />
         {navItems}
       </React.Fragment>
     );

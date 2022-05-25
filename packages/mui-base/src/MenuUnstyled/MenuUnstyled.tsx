@@ -47,6 +47,7 @@ const MenuUnstyled = React.forwardRef(function MenuUnstyled(
     component,
     components = {},
     componentsProps = {},
+    keepMounted = false,
     onClose,
     open = false,
     ...other
@@ -90,7 +91,7 @@ const MenuUnstyled = React.forwardRef(function MenuUnstyled(
       ...other,
       anchorEl,
       open,
-      keepMounted: true,
+      keepMounted,
       role: undefined,
       ...componentsProps.root,
       className: clsx(classes.root, className, componentsProps.root?.className),
@@ -172,6 +173,13 @@ MenuUnstyled.propTypes /* remove-proptypes */ = {
     listbox: PropTypes.object,
     root: PropTypes.object,
   }),
+  /**
+   * Always keep the menu in the DOM.
+   * This prop can be useful in SEO situation or when you want to maximize the responsiveness of the Menu.
+   *
+   * @default false
+   */
+  keepMounted: PropTypes.bool,
   /**
    * Triggered when focus leaves the menu and the menu should close.
    */

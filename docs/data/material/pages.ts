@@ -179,7 +179,6 @@ const pages = [
       },
       { pathname: '/material-ui/customization/how-to-customize' },
       { pathname: '/material-ui/customization/color' },
-      { pathname: '/material-ui/customization/unstyled-components' },
     ],
   },
   {
@@ -236,6 +235,11 @@ const pages = [
       { pathname: '/material-ui/discover-more/changelog' },
       { pathname: '/material-ui/discover-more/languages' },
     ],
+  },
+  {
+    pathname: 'https://mui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=sidenav',
+    title: 'Templates',
+    icon: 'ReaderIcon',
   },
 ];
 
