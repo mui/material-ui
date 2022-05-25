@@ -105,7 +105,7 @@ function App() {
 }
 ```
 
-For more details and examples, check out [theming components](/joy-ui/customization/theming-components/).
+For more details and examples, check out the [theme components](/joy-ui/customization/theme-components/) page.
 
 ## One-off customization
 

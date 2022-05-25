@@ -41,6 +41,7 @@ const pages = [
     children: [
       { pathname: '/joy-ui/customization/introduction' },
       { pathname: '/joy-ui/customization/theme-tokens' },
+      { pathname: '/joy-ui/customization/theme-components' },
     ],
   },
 ];
