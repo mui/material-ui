@@ -24,8 +24,7 @@ const planInfo = {
   pro: {
     color: 'blue',
     title: 'Pro',
-    description:
-      'Best for professional developers building enterprise or data-rich applications.',
+    description: 'Best for professional developers building enterprise or data-rich applications.',
   },
   premium: {
     color: 'gold',

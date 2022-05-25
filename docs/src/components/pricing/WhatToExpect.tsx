@@ -23,6 +23,27 @@ export default function WhatToExpect() {
         <Grid item xs={12} sm={6}>
           <Paper variant="outlined" sx={{ p: 2, height: '100%' }}>
             <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
+              <AllInclusiveOutlinedIcon fontSize="small" color="primary" />
+              <Typography
+                fontWeight="bold"
+                component="h3"
+                color="text.primary"
+                variant="body2"
+                sx={{ ml: 1 }}
+              >
+                Perpetual license in production
+              </Typography>
+            </Box>
+            <Typography variant="body2" color="text.secondary">
+              With your purchase, you are granted a license to use a version of the product forever
+              in a production environment. There are no further charges unless you choose to
+              continue development.
+            </Typography>
+          </Paper>
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <Paper variant="outlined" sx={{ p: 2, height: '100%' }}>
+            <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
               <LocalOfferOutlinedIcon fontSize="small" color="primary" />
               <Typography
                 fontWeight="bold"
@@ -39,27 +60,6 @@ export default function WhatToExpect() {
               developers, extra developers do not need to be licensed. You can contact{' '}
               <Link href="mailto:sales@mui.com">sales</Link> for a volume discount when licensing
               over 50 developers under the Premium plan.
-            </Typography>
-          </Paper>
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <Paper variant="outlined" sx={{ p: 2, height: '100%' }}>
-            <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
-              <AllInclusiveOutlinedIcon fontSize="small" color="primary" />
-              <Typography
-                fontWeight="bold"
-                component="h3"
-                color="text.primary"
-                variant="body2"
-                sx={{ ml: 1 }}
-              >
-                Perpetual license in production
-              </Typography>
-            </Box>
-            <Typography variant="body2" color="text.secondary">
-              With your purchase, you are granted a license to use a version of the product forever
-              in a production environment. There are no further charges unless you choose to
-              continue development.
             </Typography>
           </Paper>
         </Grid>
