@@ -51,7 +51,8 @@ Use the `close` method to dismiss a specific snackbar by providing the `key` fro
 
 ## Customization
 
-Use the `content` prop to customize the individual snackbars.
+Use the `content` prop to customize the individual snackbars. You can build your own custom component and render it by passing it to the `content` prop. 
+The following demo shows how to render the `Alert` component in the snackbar by passing it to the `content` prop:
 
 {{"demo": "CustomizedSnackbars.js", "defaultCodeOpen": false}}
 
