@@ -156,7 +156,7 @@ const openRolesData = [
       {
         title: 'React Engineer - Core',
         description:
-        'You will strengthen the core components team, e.g. collaborate with the community to land contributions.',
+          'You will strengthen the core components team, e.g. collaborate with the community to land contributions.',
         url: '/careers/react-engineer-core/',
       },
       {
@@ -174,6 +174,11 @@ const openRolesData = [
         title: 'Developer Experience Engineer - Core',
         description: 'You will lead the technical and operational development of MUI Store.',
         url: '/careers/developer-experience-engineer/',
+      },
+      {
+        title: 'Engineering Manager - Toolpad',
+        description: 'You will grow the small engineering team currently working on MUI Toolpad.',
+        url: '/careers/engineering-manager/',
       },
     ],
   },
@@ -205,11 +210,6 @@ const nextRolesData = [
   {
     title: 'Engineering',
     roles: [
-      {
-        title: 'Engineering Manager - Toolpad',
-        description: 'You will grow the small engineering team currently working on MUI Toolpad.',
-        url: '/careers/engineering-manager/',
-      },
       {
         title: 'Full-stack Engineer - Toolpad',
         description:
