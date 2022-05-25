@@ -36,8 +36,9 @@ export default function WhatToExpect() {
             </Box>
             <Typography variant="body2" color="text.secondary">
               The licenses are sold on a per-developer basis. The Pro plan includes a cap at 10
-              developers, extra developers do not need to be licensed. You can contact <Link href="mailto:sales@mui.com">sales</Link> for
-              a volume discount when licensing over 50 developers under the Premium plan.
+              developers, extra developers do not need to be licensed. You can contact{' '}
+              <Link href="mailto:sales@mui.com">sales</Link> for a volume discount when licensing
+              over 50 developers under the Premium plan.
             </Typography>
           </Paper>
         </Grid>

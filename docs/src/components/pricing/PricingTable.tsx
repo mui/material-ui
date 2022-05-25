@@ -25,7 +25,7 @@ const planInfo = {
     color: 'blue',
     title: 'Pro',
     description:
-      'The last React component library you will need. Replace your third party dependencies with MUI.',
+      'Best for professional developers building enterprise or data-rich applications.',
   },
   premium: {
     color: 'gold',
