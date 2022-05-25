@@ -1,11 +1,13 @@
 {
   "props": {
     "children": { "type": { "name": "custom", "description": "element" }, "required": true },
+    "open": { "type": { "name": "bool" }, "required": true },
     "BackdropComponent": {
       "type": { "name": "elementType" },
       "default": "styled(Backdrop, {\n  name: 'MuiModal',\n  slot: 'Backdrop',\n  overridesResolver: (props, styles) => {\n    return styles.backdrop;\n  },\n})({\n  zIndex: -1,\n})"
     },
     "BackdropProps": { "type": { "name": "object" } },
+    "classes": { "type": { "name": "object" } },
     "closeAfterTransition": { "type": { "name": "bool" } },
     "component": { "type": { "name": "elementType" } },
     "components": {
@@ -16,6 +18,7 @@
       "type": { "name": "shape", "description": "{ backdrop?: object, root?: object }" },
       "default": "{}"
     },
+    "container": { "type": { "name": "union", "description": "HTML element<br>&#124;&nbsp;func" } },
     "disableAutoFocus": { "type": { "name": "bool" } },
     "disableEnforceFocus": { "type": { "name": "bool" } },
     "disableEscapeKeyDown": { "type": { "name": "bool" } },
@@ -24,6 +27,12 @@
     "disableScrollLock": { "type": { "name": "bool" } },
     "hideBackdrop": { "type": { "name": "bool" } },
     "keepMounted": { "type": { "name": "bool" } },
+    "onBackdropClick": {
+      "type": { "name": "func" },
+      "deprecated": true,
+      "deprecationInfo": "Use the <code>onClose</code> prop with the <code>reason</code> argument to handle the <code>backdropClick</code> events."
+    },
+    "onClose": { "type": { "name": "func" } },
     "sx": {
       "type": {
         "name": "union",
@@ -32,7 +41,7 @@
     }
   },
   "name": "Modal",
-  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "styles": { "classes": ["root", "hidden"], "globalClasses": {}, "name": "MuiModal" },
   "spread": true,
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/Modal/Modal.js",
