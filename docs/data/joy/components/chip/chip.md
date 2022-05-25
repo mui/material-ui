@@ -13,12 +13,6 @@ unstyled: /base/react-chip/
 
 {{"demo": "ChipUsage.js", "hideToolbar": true}}
 
-## Basic
-
-The `Chip` comes with four global variants: `plain`, `outlined`, `soft` and `solid` (default).
-
-{{"demo": "SimpleChip.js"}}
-
 ## Decorators
 
 Specify the `startDecorator` prop or `endDecorator` prop as a `ReactNode` to the `Chip` to display the decorators.
@@ -28,6 +22,7 @@ Specify the `startDecorator` prop or `endDecorator` prop as a `ReactNode` to the
 ## Delete button
 
 The `Chip` has a complementary component called `ChipDelete`. Use it for the purpose of deletable `Chip` components.
+The variant of the `ChipDelete` changes based on the parent `Chip` unless you specify a specific variant to it.
 
 {{"demo": "DeleteButtonChip.js"}}
 
@@ -37,14 +32,20 @@ Specify the `onClick` prop in order to enable the clickability of the `Chip` com
 
 {{"demo": "ClickableChip.js"}}
 
+## Clickable and Deletable
+
+Specify the `onClick` prop on the `ChipDelete` to trigger some action.
+
+{{"demo": "ClickableAndDeletableChip.js"}}
+
 ## With checkbox
 
 You can wrap the Joy `Checkbox` component with the Joy `Chip` component.
 
-{{"demo": "CheckboxChip.js", "hideToolbar": true}}
+{{"demo": "CheckboxChip.js"}}
 
 ## With Radio
 
 You can wrap the Joy `Radio` component with the Joy `Chip` component.
 
-{{"demo": "RadioChip.js", "hideToolbar": true}}
+{{"demo": "RadioChip.js"}}

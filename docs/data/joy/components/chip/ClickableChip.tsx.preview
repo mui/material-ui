@@ -1,0 +1,11 @@
+<Chip
+  variant="outlined"
+  color="neutral"
+  size="lg"
+  startDecorator={<Avatar size="sm" src={`/static/images/avatar/1.jpg`} />}
+  endDecorator={<CheckIcon fontSize="md" sx={{ mr: 0.25 }} />}
+  onClick={() => alert('You clicked the Joy Chip!')}
+  sx={{ '--Chip-radius': '8px' }}
+>
+  Mark
+</Chip>
