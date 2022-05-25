@@ -486,13 +486,13 @@ NB: If you had previously customized determinate, your customizations are probab
    />
   ```
 
-### ✅ Remove `withMobileDialog` component
+### Remove `withMobileDialog` component
 
 - Remove the `withMobileDialog` higher-order component.
   The hook API allows a simpler and more flexible solution:
 
-  :::success
-  ✅ This is handled in the [preset-safe codemod](#preset-safe) by applying hard-coded function to prevent application crash, further fixes are required.
+  :::warning
+  This is handled in the [preset-safe codemod](#preset-safe) by applying hard-coded function to prevent application crash, but further fixes are required.
   :::
 
   ```diff
@@ -652,7 +652,7 @@ NB: If you had previously customized determinate, your customizations are probab
   Standard has been removed from the Material Design guidelines.
 
   :::success
-  ✅ This is handled in [variant-prop codemod](#variant-prop), read the details before running this codemod.
+  ✅ This is handled in [variant-prop codemod](#variant-prop)—read the details before running this codemod.
   :::
 
   ```diff
@@ -754,12 +754,12 @@ NB: If you had previously customized determinate, your customizations are probab
 
 ## Hidden
 
-### ✅ Replace deprecated component
+### Replace deprecated component
 
 - This component is deprecated because its functionality can be created with the [`sx`](/system/basics/#the-sx-prop) prop or the [`useMediaQuery`](/material-ui/react-use-media-query/) hook.
 
-  :::success
-  ✅ This is handled in the [preset-safe codemod](#preset-safe) by applying fake `Hidden` component to prevent application crash, further fixes are required.
+  :::warning
+  This is handled in the [preset-safe codemod](#preset-safe) by applying fake `Hidden` component to prevent application crash, but further fixes are required.
   :::
 
   Use the `sx` prop to replace `implementation="css"`:
@@ -833,7 +833,7 @@ NB: If you had previously customized determinate, your customizations are probab
   To get the same behavior as in v4, apply `defaultProps` in theme
 
   :::success
-  ✅ This is handled in [link-underline-hover codemod](#link-underline-hover), read the details before running this codemod.
+  ✅ This is handled in [link-underline-hover codemod](#link-underline-hover)—read the details before running this codemod.
   :::
 
   ```js
@@ -1156,14 +1156,14 @@ NB: If you had previously customized determinate, your customizations are probab
 
 ## RootRef
 
-### ✅ Remove component
+### Remove component
 
 - This component was removed.
   You can get a reference to the underlying DOM node of our components via `ref` prop.
   The component relied on [`ReactDOM.findDOMNode`](https://reactjs.org/docs/react-dom.html#finddomnode) which is [deprecated in `React.StrictMode`](https://reactjs.org/docs/strict-mode.html#warning-about-deprecated-finddomnode-usage).
 
-  :::success
-  ✅ This is handled in the [preset-safe codemod](#preset-safe) by applying fake `RootRef` component to prevent application crash, further fixes are required.
+  :::warning
+  This is handled in the [preset-safe codemod](#preset-safe) by applying fake `RootRef` component to prevent application crash, but further fixes are required.
   :::
 
   ```diff
@@ -1182,7 +1182,7 @@ NB: If you had previously customized determinate, your customizations are probab
   If you are composing the Select with a form control component, you only need to update `FormControl`, the select inherits the variant from its context.
 
   :::success
-  ✅ This is handled in [variant-prop codemod](#variant-prop), read the details before running this codemod.
+  ✅ This is handled in [variant-prop codemod](#variant-prop)—read the details before running this codemod.
   :::
 
   ```diff
@@ -1555,7 +1555,7 @@ NB: If you had previously customized determinate, your customizations are probab
   Standard has been removed from the Material Design guidelines.
 
   :::success
-  ✅ This is handled in [variant-prop codemod](#variant-prop), read the details before running this codemod.
+  ✅ This is handled in [variant-prop codemod](#variant-prop)—read the details before running this codemod.
   :::
 
   ```diff

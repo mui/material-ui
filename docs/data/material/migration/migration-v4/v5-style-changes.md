@@ -101,10 +101,6 @@ The list of components that expect a specific element type is as follows:
 The style library used by default in v5 is [Emotion](https://emotion.sh/docs/introduction). While migrating from JSS to Emotion, and if you are using JSS style overrides for your components (for example overrides created by `makeStyles`), you will need to take care of the CSS injection order.
 To do so, you need to have the `StyledEngineProvider` with the `injectFirst` option at the **top of your component tree**.
 
-:::success
-✅ This is handled in the [preset-safe codemod](#preset-safe).
-:::
-
 Here is an example:
 
 ```jsx
@@ -125,10 +121,6 @@ export default function GlobalCssPriority() {
 
 :::warning
 **Note:** If you are using emotion to style your app, and have a custom cache, it will override the one provided by MUI. In order for the injection order to still be correct, you need to add the `prepend` option to `createCache`.
-:::
-
-:::success
-✅ This is handled in the [preset-safe codemod](#preset-safe).
 :::
 
 Here is an example:
@@ -163,10 +155,6 @@ Here is an example:
 The structure of the theme has changed in v5. You need to update its shape.
 For a smoother transition, the `adaptV4Theme` helper allows you to iteratively upgrade some of the theme changes to the new theme structure.
 
-:::success
-✅ This is handled in the [preset-safe codemod](#preset-safe).
-:::
-
 ```diff
 -import { createMuiTheme } from '@mui/material/styles';
 +import { createTheme, adaptV4Theme } from '@mui/material/styles';
@@ -179,7 +167,8 @@ For a smoother transition, the `adaptV4Theme` helper allows you to iteratively u
 ```
 
 :::warning
-⚠️ This adapter only handles the input arguments of `createTheme`, if you modify the shape of the theme after its creation, you need to migrate the structure manually.
+This adapter only handles the input arguments of `createTheme`.
+If you modify the shape of the theme after its creation, you need to migrate the structure manually.
 :::
 
 The following changes are supported by the adapter:
@@ -203,10 +192,6 @@ The following changes are supported by the adapter:
 `theme.spacing` now returns single values with px units by default.
 This change improves the integration with styled-components & emotion.
 
-:::success
-✅ This is handled in the [preset-safe codemod](#preset-safe) by removing any 'px' suffix from `theme.spacing` calls in a template string.
-:::
-
 Before:
 
 ```js
@@ -222,10 +207,6 @@ theme.spacing(2) => '16px'
 ### ✅ Rename `theme.palette.type`
 
 The `theme.palette.type` key was renamed to `theme.palette.mode`, to better follow the "dark mode" term that is usually used for describing this feature.
-
-:::success
-✅ This is handled in the [preset-safe codemod](#preset-safe).
-:::
 
 ```diff
  import { createTheme } from '@mui/material/styles';
@@ -362,10 +343,6 @@ Make sure to add a `ThemeProvider` at the root of your application, as the `defa
 
 The `@mui/styles` package is no longer part of `@mui/material/styles`. If you are using `@mui/styles` together with `@mui/material` you need to add a module augmentation for the `DefaultTheme`.
 
-:::success
-✅ This is handled in the [preset-safe codemod](#preset-safe).
-:::
-
 ```ts
 // in the file where you are creating the theme (invoking the function `createTheme()`)
 import { Theme } from '@mui/material/styles';
@@ -381,10 +358,6 @@ declare module '@mui/styles' {
 
 - Nested imports of more than 1 level are private. You can no longer import `red` from `@mui/material/colors/red`.
 
-  :::success
-  ✅ This is handled in the [preset-safe codemod](#preset-safe).
-  :::
-
   ```diff
   -import red from '@mui/material/colors/red';
   +import { red } from '@mui/material/colors';
@@ -396,10 +369,6 @@ declare module '@mui/styles' {
 
 - Renamed `fade` to `alpha` to better describe its functionality.
   The previous name was leading to confusion when the input color already had an alpha value. The helper **overrides** the alpha value of the color.
-
-  :::success
-  ✅ This is handled in the [preset-safe codemod](#preset-safe).
-  :::
 
   ```diff
   -import { fade } from '@mui/material/styles';
@@ -415,10 +384,6 @@ declare module '@mui/styles' {
 
 - The `createStyles` function from `@mui/material/styles` was moved to the one exported from `@mui/styles`. It is necessary for removing the dependency to `@mui/styles` in the core package.
 
-  :::success
-  ✅ This is handled in the [preset-safe codemod](#preset-safe).
-  :::
-
   ```diff
   -import { createStyles } from '@mui/material/styles';
   +import { createStyles } from '@mui/styles';
@@ -427,10 +392,6 @@ declare module '@mui/styles' {
 ### ✅ Update `createGenerateClassName` import
 
 - The `createGenerateClassName` function is no longer exported from `@mui/material/styles`. You should import it directly from `@mui/styles`.
-
-  :::success
-  ✅ This is handled in the [preset-safe codemod](#preset-safe).
-  :::
 
   ```diff
   -import { createGenerateClassName } from '@mui/material/styles';
@@ -442,10 +403,6 @@ declare module '@mui/styles' {
 ### ✅ Rename `createMuiTheme`
 
 - The function `createMuiTheme` was renamed to `createTheme` to make it more intuitive to use with `ThemeProvider`.
-
-  :::success
-  ✅ This is handled in the [preset-safe codemod](#preset-safe).
-  :::
 
   ```diff
   -import { createMuiTheme } from '@mui/material/styles';
@@ -459,10 +416,6 @@ declare module '@mui/styles' {
 
 - The `jssPreset` object is no longer exported from `@mui/material/styles`. You should import it directly from `@mui/styles`.
 
-  :::success
-  ✅ This is handled in the [preset-safe codemod](#preset-safe).
-  :::
-
   ```diff
   -import { jssPreset } from '@mui/material/styles';
   +import { jssPreset } from '@mui/styles';
@@ -474,10 +427,6 @@ declare module '@mui/styles' {
   You can use `@mui/styles/makeStyles` instead.
   Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available.
   If you are using this utility together with `@mui/material`, it's recommended that you use the `ThemeProvider` component from `@mui/material/styles` instead.
-
-  :::success
-  ✅ This is handled in the [preset-safe codemod](#preset-safe).
-  :::
 
   ```diff
   -import { makeStyles } from '@mui/material/styles';
@@ -505,10 +454,6 @@ declare module '@mui/styles' {
 - The `MuiThemeProvider` component is no longer exported from `@mui/material/styles`.
   Use `ThemeProvider` instead.
 
-  :::success
-  ✅ This is handled in the [preset-safe codemod](#preset-safe).
-  :::
-
   ```diff
   -import { MuiThemeProvider } from '@mui/material/styles';
   +import { ThemeProvider } from '@mui/material/styles';
@@ -517,10 +462,6 @@ declare module '@mui/styles' {
 ### ✅ Update `ServerStyleSheets` import
 
 - The `ServerStyleSheets` component is no longer exported from `@mui/material/styles`. You should import it directly from `@mui/styles`.
-
-  :::success
-  ✅ This is handled in the [preset-safe codemod](#preset-safe).
-  :::
 
   ```diff
   -import { ServerStyleSheets } from '@mui/material/styles';
@@ -551,10 +492,6 @@ declare module '@mui/styles' {
 
 - The `StylesProvider` component is no longer exported from `@mui/material/styles`. You should import it directly from `@mui/styles`.
 
-  :::success
-  ✅ This is handled in the [preset-safe codemod](#preset-safe).
-  :::
-
   ```diff
   -import { StylesProvider } from '@mui/material/styles';
   +import { StylesProvider } from '@mui/styles';
@@ -564,10 +501,6 @@ declare module '@mui/styles' {
 
 - The `useThemeVariants` hook is no longer exported from `@mui/material/styles`.
   You should import it directly from `@mui/styles`.
-
-  :::success
-  ✅ This is handled in the [preset-safe codemod](#preset-safe).
-  :::
 
   ```diff
   -import { useThemeVariants } from '@mui/material/styles';
@@ -579,10 +512,6 @@ declare module '@mui/styles' {
 - The `withStyles` JSS utility is no longer exported from `@mui/material/styles`.
   You can use `@mui/styles/withStyles` instead. Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available.
   If you are using this utility together with `@mui/material`, you should use the `ThemeProvider` component from `@mui/material/styles` instead.
-
-  :::success
-  ✅ This is handled in the [preset-safe codemod](#preset-safe).
-  :::
 
   ```diff
   -import { withStyles } from '@mui/material/styles';
@@ -605,10 +534,6 @@ declare module '@mui/styles' {
 
 - Replace the `innerRef` prop with the `ref` prop. Refs are now automatically forwarded to the inner component.
 
-  :::success
-  ✅ This is handled in the [preset-safe codemod](#preset-safe).
-  :::
-
   ```diff
    import * as React from 'react';
    import { withStyles } from '@mui/styles';
@@ -630,10 +555,6 @@ declare module '@mui/styles' {
 
 - The `withTheme` HOC utility has been removed from the `@mui/material/styles` package. You can use `@mui/styles/withTheme` instead. Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available. If you are using this utility together with `@mui/material`, it's recommended you use the `ThemeProvider` component from `@mui/material/styles` instead.
 
-  :::success
-  ✅ This is handled in the [preset-safe codemod](#preset-safe).
-  :::
-
   ```diff
   -import { withTheme } from '@mui/material/styles';
   +import { withTheme } from '@mui/styles';
@@ -651,10 +572,6 @@ declare module '@mui/styles' {
 ### ✅ Remove `withWidth`
 
 - This HOC was removed. There's an alternative using the [`useMediaQuery` hook](/material-ui/react-use-media-query/#migrating-from-withwidth).
-
-  :::success
-  ✅ This is handled in the [preset-safe codemod](#preset-safe) by applying hard-coded function to prevent the application from crashing.
-  :::
 
 ## @mui/icons-material
 
@@ -676,17 +593,9 @@ We have a [dedicated page](/material-ui/guides/pickers-migration/) for migrating
   - `gridRowGap` to `rowGap`
   - `gridColumnGap` to `columnGap`
 
-  :::success
-  ✅ This is handled in the [preset-safe codemod](#preset-safe).
-  :::
-
 ### ✅ Add spacing units to `gap` props
 
 - Use spacing unit in `gap`, `rowGap`, and `columnGap`. If you were using a number previously, you need to mention the px to bypass the new transformation with `theme.spacing`.
-
-  :::success
-  ✅ This is handled in the [preset-safe codemod](#preset-safe).
-  :::
 
   ```diff
    <Box
@@ -696,10 +605,6 @@ We have a [dedicated page](/material-ui/guides/pickers-migration/) for migrating
   ```
 
 - Replace `css` prop with `sx` to avoid collision with styled-components & emotion `css` prop.
-
-  :::success
-  ✅ This is handled in the [preset-safe codemod](#preset-safe).
-  :::
 
   ```diff
   -<Box css={{ color: 'primary.main' }} />
