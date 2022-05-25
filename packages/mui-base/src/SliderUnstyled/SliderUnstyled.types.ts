@@ -1,13 +1,27 @@
 import { OverridableComponent, OverridableTypeMap, OverrideProps } from '@mui/types';
+import React from 'react';
 import { SliderUnstyledClasses } from './sliderUnstyledClasses';
 import SliderValueLabelUnstyled from './SliderValueLabelUnstyled';
+import {
+  UseSliderHiddenInputProps,
+  UseSliderRootSlotProps,
+  UseSliderThumbSlotProps,
+  Mark,
+} from './useSlider.types';
 
-export interface SliderOwnerStateOverrides {}
-
-export interface Mark {
-  value: number;
-  label?: React.ReactNode;
-}
+export type SliderUnstyledOwnerState = SliderUnstyledProps & {
+  disabled: boolean;
+  isRtl: boolean;
+  mark: boolean | Mark[];
+  max: number;
+  min: number;
+  orientation: 'horizontal' | 'vertical';
+  scale: (value: number) => number;
+  step: number | null;
+  track: 'normal' | false | 'inverted';
+  valueLabelDisplay: 'on' | 'auto' | 'off';
+  valueLabelFormat: string | ((value: number, index: number) => React.ReactNode);
+};
 
 export interface ValueLabelProps extends React.HTMLAttributes<HTMLSpanElement> {
   children: React.ReactElement;
@@ -212,9 +226,71 @@ export type ExtendSliderUnstyled<M extends OverridableTypeMap> = OverridableComp
   ExtendSliderUnstyledTypeMap<M>
 >;
 
-type SliderUnstyledProps<
+export type SliderUnstyledProps<
   D extends React.ElementType = SliderUnstyledTypeMap['defaultComponent'],
   P = {},
 > = OverrideProps<SliderUnstyledTypeMap<P, D>, D>;
 
-export default SliderUnstyledProps;
+export type SliderUnstyledRootSlotProps = UseSliderRootSlotProps & {
+  children: React.ReactNode;
+  className: string;
+  ownerState: SliderUnstyledOwnerState;
+};
+
+export type SliderUnstyledTrackSlotProps = {
+  className?: string;
+  ownerState: SliderUnstyledOwnerState;
+  style: React.CSSProperties;
+};
+
+export type SliderUnstyledRailSlotProps = {
+  className?: string;
+  ownerState: SliderUnstyledOwnerState;
+};
+
+export type SliderUnstyledThumbSlotProps = UseSliderThumbSlotProps & {
+  'data-index': number;
+  children: React.ReactNode;
+  className?: string;
+  ownerState: SliderUnstyledOwnerState;
+  style: React.CSSProperties;
+};
+
+export type SliderUnstyledMarkSlotProps = {
+  'data-index': number;
+  className?: string;
+  markActive?: boolean;
+  ownerState: SliderUnstyledOwnerState;
+  style: React.CSSProperties;
+};
+
+export type SliderUnstyledMarkLabelSlotProps = {
+  'aria-hidden': boolean;
+  'data-index': number;
+  className?: string;
+  markLabelActive?: boolean;
+  ownerState: SliderUnstyledOwnerState;
+  style: React.CSSProperties;
+};
+
+export type SliderUnstyledValueLabelSlotProps = {
+  children: React.ReactNode;
+  className?: string;
+  disabled?: boolean;
+  index?: number;
+  open?: boolean;
+  ownerState: SliderUnstyledOwnerState;
+  valueLabel?: string | React.ReactNode;
+  valueLabelDisplay?: 'on' | 'auto' | 'off';
+  valueLabelFormat?: string | ((value: number, index: number) => React.ReactNode);
+};
+
+export type SliderUnstyledInputSlotProps = UseSliderHiddenInputProps & {
+  'aria-label': React.AriaAttributes['aria-label'];
+  'aria-valuenow': React.AriaAttributes['aria-valuenow'];
+  'aria-valuetext': React.AriaAttributes['aria-valuetext'];
+  'data-index': number;
+  ownerState: SliderUnstyledOwnerState;
+  style: React.CSSProperties;
+  value: number;
+};
