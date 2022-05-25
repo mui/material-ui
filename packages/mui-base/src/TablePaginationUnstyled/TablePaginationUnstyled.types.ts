@@ -142,7 +142,7 @@ export type TablePaginationUnstyledProps<
 export type TablePaginationUnstyledOwnerState = TablePaginationUnstyledProps;
 
 export type TablePaginationUnstyledRootSlotProps = {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   className?: string;
   colSpan?: number;
   ownerState: TablePaginationUnstyledOwnerState;
@@ -152,46 +152,46 @@ export type TablePaginationUnstyledRootSlotProps = {
 export type TablePaginationUnstyledSelectSlotProps = {
   ['aria-label']: string;
   ['aria-labelledby']?: string;
-  children: React.ReactNode;
+  children?: React.ReactNode;
   className?: string;
   id?: string;
   onChange: (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => void;
   ownerState: TablePaginationUnstyledOwnerState;
-  value: number;
+  value: React.SelectHTMLAttributes<HTMLSelectElement>['value'];
 };
 
 export type TablePaginationUnstyledActionsSlotProps = {
   className?: string;
   count: number;
   getItemAriaLabel: (type: ItemAriaLabelType) => string;
-  onChangePage: (event: React.MouseEvent<HTMLButtonElement> | null, page: number) => void;
+  onPageChange: (event: React.MouseEvent<HTMLButtonElement> | null, page: number) => void;
   ownerState: TablePaginationUnstyledOwnerState;
   page: number;
   rowsPerPage: number;
 };
 
 export type TablePaginationUnstyledMenuItemSlotProps = {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   className?: string;
   ownerState: TablePaginationUnstyledOwnerState;
-  value: number;
+  value: React.SelectHTMLAttributes<HTMLSelectElement>['value'];
 };
 
 export type TablePaginationUnstyledSelectLabelSlotProps = {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   className?: string;
   id?: string;
   ownerState: TablePaginationUnstyledOwnerState;
 };
 
 export type TablePaginationUnstyledDisplayedRowsSlotProps = {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   className?: string;
   ownerState: TablePaginationUnstyledOwnerState;
 };
 
 export type TablePaginationUnstyledToolbarSlotProps = {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   className?: string;
   ownerState: TablePaginationUnstyledOwnerState;
 };
