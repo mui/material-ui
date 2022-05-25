@@ -226,8 +226,7 @@ const GridRoot = styled('div', {
   slot: 'Root',
   overridesResolver: (props, styles) => {
     const { ownerState } = props;
-    const { container, direction, item, spacing, wrap, zeroMinWidth, breakpoints } =
-      ownerState;
+    const { container, direction, item, spacing, wrap, zeroMinWidth, breakpoints } = ownerState;
 
     let spacingClasses = [];
 
@@ -346,23 +345,17 @@ const Grid = React.forwardRef(function Grid(inProps, ref) {
   // columns set with default breakpoint unit of 12
   const columns = container ? columnsProp || 12 : columnsContext;
 
-  const breakpointsDefaultValues = {};
-  const breakpointsProps = {};
+  const breakpointsValues = {};
   const propsRestFiltered = { ...propsRest };
 
   breakpoints.keys.forEach((key) => {
     if (key in propsRest) {
-      breakpointsDefaultValues[key] = propsRest[key];
+      breakpointsValues[key] = propsRest[key];
       delete propsRestFiltered[key];
     } else {
-      breakpointsDefaultValues[key] = false;
+      breakpointsValues[key] = false;
     }
   });
-
-  const breakpointsValues = {
-    ...breakpointsDefaultValues,
-    ...breakpointsProps,
-  };
 
   const ownerState = {
     ...props,
