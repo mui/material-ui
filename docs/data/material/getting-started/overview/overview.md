@@ -10,12 +10,18 @@ It includes a comprehensive collection of prebuilt components that are ready for
 
 Material UI is beautiful by design, and features a suite of customization options that make it easy to implement your own custom design system on top of our components.
 
+:::info
+Material UI supports Material Design v2.
+While v3 adoption is not currently on our roadmap, you can follow [this GitHub issue](https://github.com/mui/material-ui/issues/29345) for future updates.
+:::
+
 ## Advantages of Material UI
 
 - **Ship faster:** thousands of open-source contributors have poured countless hours into these components. Focus on your core business logic—we've got your UI covered.
 - **Beautiful by default:** we're meticulous about our implementation of Material Design, ensuring that every Material UI component meets the highest standards of form and function.
 - **Cross-team collaboration:** Material UI's intuitive developer experience reduces the barrier to entry for back-end devs and less technical designers, empowering teams to collaborate more effectively.
 - **Reliability:** Material UI is almost as old as React itself—its history stretches back to 2014—and we're in this for the long haul. When you build with Material UI, you can count on our community's support for years to come.
+- **Design kits:** streamline your workflow and boost consistency between designers and developers by using our [design kits](https://mui.com/design-kits/) in your favorite design tool.
 
 ## Material UI vs. MUI Base
 
