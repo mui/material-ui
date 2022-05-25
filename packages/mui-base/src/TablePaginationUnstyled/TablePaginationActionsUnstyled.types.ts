@@ -62,7 +62,7 @@ interface TablePaginationActionsUnstyledOwnProps extends React.HTMLAttributes<HT
   showLastButton: boolean;
 }
 
-type TablePaginationActionsUnstyledProps<
+export type TablePaginationActionsUnstyledProps<
   D extends React.ElementType = TablePaginationActionsUnstyledTypeMap['defaultComponent'],
   P = {},
 > = OverrideProps<TablePaginationActionsUnstyledTypeMap<P, D>, D> & {
@@ -81,5 +81,3 @@ export interface TablePaginationActionsUnstyledTypeMap<
   props: P & TablePaginationActionsUnstyledOwnProps;
   defaultComponent: D;
 }
-
-export default TablePaginationActionsUnstyledProps;

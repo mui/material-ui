@@ -8,11 +8,12 @@ import composeClasses from '../composeClasses';
 import isHostComponent from '../utils/isHostComponent';
 import TablePaginationActionsUnstyled from './TablePaginationActionsUnstyled';
 import { getTablePaginationUnstyledUtilityClass } from './tablePaginationUnstyledClasses';
-import TablePaginationUnstyledProps, {
+import {
+  TablePaginationUnstyledProps,
   LabelDisplayedRowsArgs,
   TablePaginationUnstyledTypeMap,
   ItemAriaLabelType,
-} from './TablePaginationUnstyledProps';
+} from './TablePaginationUnstyled.types';
 
 function defaultLabelDisplayedRows({ from, to, count }: LabelDisplayedRowsArgs) {
   return `${from}–${to} of ${count !== -1 ? count : `more than ${to}`}`;
@@ -163,26 +164,28 @@ const TablePaginationUnstyled = React.forwardRef<unknown, TablePaginationUnstyle
               aria-labelledby={[labelId, selectId].filter(Boolean).join(' ') || undefined}
               className={clsx(classes.select, selectProps?.className)}
             >
-              {rowsPerPageOptions.map((rowsPerPageOption) => (
-                <MenuItem
-                  {...menuItemProps}
-                  className={clsx(classes.menuItem, menuItemProps?.className)}
-                  key={
-                    typeof rowsPerPageOption !== 'number' && rowsPerPageOption.label
+              {rowsPerPageOptions.map(
+                (rowsPerPageOption: number | { label: string; value: number }) => (
+                  <MenuItem
+                    {...menuItemProps}
+                    className={clsx(classes.menuItem, menuItemProps?.className)}
+                    key={
+                      typeof rowsPerPageOption !== 'number' && rowsPerPageOption.label
+                        ? rowsPerPageOption.label
+                        : rowsPerPageOption
+                    }
+                    value={
+                      typeof rowsPerPageOption !== 'number' && rowsPerPageOption.value
+                        ? rowsPerPageOption.value
+                        : rowsPerPageOption
+                    }
+                  >
+                    {typeof rowsPerPageOption !== 'number' && rowsPerPageOption.label
                       ? rowsPerPageOption.label
-                      : rowsPerPageOption
-                  }
-                  value={
-                    typeof rowsPerPageOption !== 'number' && rowsPerPageOption.value
-                      ? rowsPerPageOption.value
-                      : rowsPerPageOption
-                  }
-                >
-                  {typeof rowsPerPageOption !== 'number' && rowsPerPageOption.label
-                    ? rowsPerPageOption.label
-                    : rowsPerPageOption}
-                </MenuItem>
-              ))}
+                      : rowsPerPageOption}
+                  </MenuItem>
+                ),
+              )}
             </Select>
           )}
 

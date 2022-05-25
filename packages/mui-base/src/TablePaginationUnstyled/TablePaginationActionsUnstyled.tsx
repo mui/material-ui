@@ -1,10 +1,11 @@
 import * as React from 'react';
 import { OverridableComponent } from '@mui/types';
 import { appendOwnerState } from '../utils';
-import { ItemAriaLabelType } from './TablePaginationUnstyledProps';
-import TablePaginationActionsUnstyledProps, {
+import { ItemAriaLabelType } from './TablePaginationUnstyled.types';
+import {
+  TablePaginationActionsUnstyledProps,
   TablePaginationActionsUnstyledTypeMap,
-} from './TablePaginationActionsUnstyledProps';
+} from './TablePaginationActionsUnstyled.types';
 
 const LastPageIconDefault = () => <span>{'⇾|'}</span>;
 const FirstPageIconDefault = () => <span>{'|⇽'}</span>;
