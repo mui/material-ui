@@ -103,7 +103,7 @@ export default function SpringModal() {
         open={open}
         onClose={handleClose}
         closeAfterTransition
-        BackdropComponent={Backdrop}
+        components={{ Backdrop }}
       >
         <Fade in={open}>
           <Box sx={style}>

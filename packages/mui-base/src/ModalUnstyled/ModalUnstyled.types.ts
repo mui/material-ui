@@ -7,14 +7,6 @@ export interface ModalUnstyledComponentsPropsOverrides {}
 export interface ModalUnstyledTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P & {
     /**
-     * A backdrop component. This prop enables custom backdrop rendering.
-     */
-    BackdropComponent?: React.ElementType;
-    /**
-     * Props applied to the backdrop element.
-     */
-    BackdropProps?: React.ComponentPropsWithRef<'div'>;
-    /**
      * A single child content element.
      */
     children: React.ReactElement;
@@ -34,6 +26,7 @@ export interface ModalUnstyledTypeMap<P = {}, D extends React.ElementType = 'div
      */
     components?: {
       Root?: React.ElementType;
+      Backdrop?: React.ElementType;
     };
     /**
      * The props used for each slot inside the Modal.
@@ -41,6 +34,7 @@ export interface ModalUnstyledTypeMap<P = {}, D extends React.ElementType = 'div
      */
     componentsProps?: {
       root?: React.HTMLAttributes<HTMLDivElement> & ModalUnstyledComponentsPropsOverrides;
+      backdrop?: React.HTMLAttributes<HTMLDivElement> & ModalUnstyledComponentsPropsOverrides;
     };
     /**
      * An HTML element or function that returns one.

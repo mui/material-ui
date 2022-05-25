@@ -68,7 +68,7 @@ export default function TransitionsModal() {
         open={open}
         onClose={handleClose}
         closeAfterTransition
-        BackdropComponent={Backdrop}
+        components={{ Backdrop }}
       >
         <Fade in={open} timeout={300}>
           <Box sx={style}>

@@ -61,6 +61,7 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
   const props = useThemeProps({ name: 'MuiModal', props: inProps });
   const {
     BackdropComponent = ModalBackdrop,
+    BackdropProps,
     closeAfterTransition = false,
     children,
     components = {},
@@ -102,6 +103,7 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
     <ModalUnstyled
       components={{
         Root: ModalRoot,
+        Backdrop: BackdropComponent,
         ...components,
       }}
       componentsProps={{
@@ -111,8 +113,8 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
             ownerState: { ...componentsProps.root?.ownerState },
           }),
         },
+        backdrop: BackdropProps ?? componentsProps.backdrop,
       }}
-      BackdropComponent={BackdropComponent}
       onTransitionEnter={() => setExited(false)}
       onTransitionExited={() => setExited(true)}
       ref={ref}
@@ -152,10 +154,6 @@ Modal.propTypes /* remove-proptypes */ = {
    */
   children: elementAcceptingRef.isRequired,
   /**
-   * Override or extend the styles applied to the component.
-   */
-  classes: PropTypes.object,
-  /**
    * When set to true the Modal waits until a nested Transition is completed before closing.
    * @default false
    */
@@ -166,6 +164,7 @@ Modal.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   components: PropTypes.shape({
+    Backdrop: PropTypes.elementType,
     Root: PropTypes.elementType,
   }),
   /**
@@ -173,19 +172,9 @@ Modal.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   componentsProps: PropTypes.shape({
+    backdrop: PropTypes.object,
     root: PropTypes.object,
   }),
-  /**
-   * An HTML element or function that returns one.
-   * The `container` will have the portal children appended to it.
-   *
-   * By default, it uses the body of the top-level document object,
-   * so it's simply `document.body` most of the time.
-   */
-  container: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    HTMLElementType,
-    PropTypes.func,
-  ]),
   /**
    * If `true`, the modal will not automatically shift focus to itself when it opens, and
    * replace it to the last focused element when it closes.
@@ -237,23 +226,6 @@ Modal.propTypes /* remove-proptypes */ = {
    * @default false
    */
   keepMounted: PropTypes.bool,
-  /**
-   * Callback fired when the backdrop is clicked.
-   * @deprecated Use the `onClose` prop with the `reason` argument to handle the `backdropClick` events.
-   */
-  onBackdropClick: PropTypes.func,
-  /**
-   * Callback fired when the component requests to be closed.
-   * The `reason` parameter can optionally be used to control the response to `onClose`.
-   *
-   * @param {object} event The event source of the callback.
-   * @param {string} reason Can be: `"escapeKeyDown"`, `"backdropClick"`.
-   */
-  onClose: PropTypes.func,
-  /**
-   * If `true`, the component is shown.
-   */
-  open: PropTypes.bool.isRequired,
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

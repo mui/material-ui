@@ -53,8 +53,6 @@ const defaultManager = new ModalManager();
  */
 const ModalUnstyled = React.forwardRef(function ModalUnstyled(props, ref) {
   const {
-    BackdropComponent,
-    BackdropProps,
     children,
     classes: classesProp,
     className,
@@ -245,6 +243,9 @@ const ModalUnstyled = React.forwardRef(function ModalUnstyled(props, ref) {
   const Root = components.Root || component;
   const rootProps = componentsProps.root || {};
 
+  const BackdropComponent = components.Backdrop;
+  const backdropProps = componentsProps.backdrop;
+
   return (
     <Portal ref={handlePortalRef} container={container} disablePortal={disablePortal}>
       {/*
@@ -271,7 +272,7 @@ const ModalUnstyled = React.forwardRef(function ModalUnstyled(props, ref) {
             aria-hidden
             open={open}
             onClick={handleBackdropClick}
-            {...BackdropProps}
+            {...backdropProps}
           />
         ) : null}
         <TrapFocus
@@ -293,14 +294,6 @@ ModalUnstyled.propTypes /* remove-proptypes */ = {
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
   // ----------------------------------------------------------------------
-  /**
-   * A backdrop component. This prop enables custom backdrop rendering.
-   */
-  BackdropComponent: PropTypes.elementType,
-  /**
-   * Props applied to the backdrop element.
-   */
-  BackdropProps: PropTypes.object,
   /**
    * A single child content element.
    */
@@ -329,6 +322,7 @@ ModalUnstyled.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   components: PropTypes.shape({
+    Backdrop: PropTypes.elementType,
     Root: PropTypes.elementType,
   }),
   /**
@@ -336,6 +330,7 @@ ModalUnstyled.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   componentsProps: PropTypes.shape({
+    backdrop: PropTypes.object,
     root: PropTypes.object,
   }),
   /**
