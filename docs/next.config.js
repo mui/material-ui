@@ -19,7 +19,10 @@ const isDeployPreview = process.env.PULL_REQUEST === 'true';
 const buildOnlyEnglishLocale = isDeployPreview && !l10nPRInNetlify && !vercelDeploy;
 
 const staging =
-  process.env.REPOSITORY_URL === undefined || /mui\/material-ui$/.test(process.env.REPOSITORY_URL);
+  process.env.REPOSITORY_URL === undefined ||
+  // The linked repository url comes from https://app.netlify.com/sites/material-ui/settings/deploys
+  /mui-org\/material-ui$/.test(process.env.REPOSITORY_URL);
+
 if (staging) {
   // eslint-disable-next-line no-console
   console.log(`Staging deploy of ${process.env.REPOSITORY_URL || 'local repository'}`);
@@ -137,7 +140,6 @@ module.exports = {
                         '@mui/styles': '../packages/mui-styles/src',
                         '@mui/system': '../packages/mui-system/src',
                         '@mui/private-theming': '../packages/mui-private-theming/src',
-                        '@mui/private-classnames': '../packages/mui-private-classnames/src',
                         '@mui/utils': '../packages/mui-utils/src',
                         '@mui/base': '../packages/mui-base/src',
                         '@mui/material-next': '../packages/mui-material-next/src',
@@ -188,14 +190,10 @@ module.exports = {
       const prefix = userLanguage === 'en' ? '' : `/${userLanguage}`;
 
       pages2.forEach((page) => {
-        if (process.env.PULL_REQUEST !== 'true' && page.pathname.startsWith('/experiments')) {
+        if (page.pathname.startsWith('/experiments') && !staging) {
           return;
         }
-        if (
-          page.pathname.startsWith('/joy-ui') &&
-          process.env.PULL_REQUEST !== 'true' &&
-          !FEATURE_TOGGLE.enable_joy_scope
-        ) {
+        if (page.pathname.startsWith('/joy-ui') && !staging) {
           return;
         }
         // The blog is not translated

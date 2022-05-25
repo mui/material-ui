@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useAutocomplete } from '@mui/base/AutocompleteUnstyled';
 import { styled } from '@mui/material/styles';
+import { autocompleteClasses } from '@mui/material/Autocomplete';
 
 const Label = styled('label')({
   display: 'block',
@@ -23,7 +24,7 @@ const Listbox = styled('ul')(({ theme }) => ({
   overflow: 'auto',
   maxHeight: 200,
   border: '1px solid rgba(0,0,0,.25)',
-  '& li[data-focus="true"]': {
+  [`& li.${autocompleteClasses.focused}`]: {
     backgroundColor: '#4a8df6',
     color: 'white',
     cursor: 'pointer',

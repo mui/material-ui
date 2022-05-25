@@ -3,6 +3,7 @@ product: material-ui
 title: React Select component
 components: Select, NativeSelect
 githubLabel: 'component: select'
+waiAria: https://www.w3.org/WAI/ARIA/apg/example-index/combobox/combobox-select-only.html
 unstyled: /base/react-select/
 ---
 

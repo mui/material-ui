@@ -328,6 +328,7 @@ export default function AppSearch() {
 
                 let hash = parseUrl.hash;
 
+                // TODO: Remove after the next Algolia crawl
                 if (['lvl2', 'lvl3'].includes(item.type)) {
                   // remove '#heading-' from `href` url so that the link targets <span class="anchor-link"> inside <h2> or <h3>
                   // this will make the title appear under the Header

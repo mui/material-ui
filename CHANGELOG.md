@@ -1,5 +1,145 @@
 # [Versions](https://mui.com/versions/)
 
+## 5.8.1
+
+<!-- generated comparing v5.8.0..master -->
+
+_May 23, 2022_
+
+A big thanks to the 21 contributors who made this release possible. Here are some highlights ✨:
+
+- 💅 Added CSS variables support for two more Material UI components by @diggis00 and @alisasanib
+- And more 🐛 bug fixes and 📚 documentation improvements.
+
+### `@mui/material@5.8.1`
+
+- &#8203;<!-- 33 -->[Alert] Fix missing `ownerState` on the `action` slot (#32801) @mnajdova
+- &#8203;<!-- 20 -->[Fab] Make the `color` prop type extendable (#31830) @paales
+- &#8203;<!-- 14 -->[ListItemButton] Render as link if href specified (#32403) @o-dubrovskyi
+- &#8203;<!-- 13 -->[Paper] Add support for CSS variables (#32570) @diggis00
+- &#8203;<!-- 11 -->[Radio] Add support for CSS variables (#32599) @alisasanib
+- &#8203;<!-- 10 -->[Slider] Prevent rendering for marks that are out of the min & max bounds (#32436) @abriginets
+- &#8203;<!-- 09 -->[Slider] Slider having marks should be customizable in theme (#32816) @ZeeshanTamboli
+- &#8203;<!-- 03 -->[TouchRipple] Allows call imperative methods without event (#31955) @alexfauquette
+
+### `@mui/system@5.8.1`
+
+- &#8203;<!-- 07 -->[system] Simplify stylesheet injection logic (#32869) @siriwatknp
+- &#8203;<!-- 06 -->[system] Fix color scheme specificity (#32628) @siriwatknp
+- &#8203;<!-- 05 -->[system] Fix `borderRadius` errors when used inside `CssVarsProvider` (#32817) @mnajdova
+- &#8203;<!-- 04 -->[system] Fix toolbar media query mixin getting merged in wrong order (#32713) @ZeeshanTamboli
+
+### `@mui/lab@5.0.0-alpha.83`
+
+- &#8203;<!-- 15 -->[lab] Add missing `peerDependencies` (#32623) @nate-summercook
+- &#8203;<!-- 12 -->[pickers] Update @mui/x-date-pickers to be usable with React 18 (#32828) @flaviendelangle
+
+### `@mui/base@5.0.0-alpha.82`
+
+- &#8203;<!-- 08 -->[SliderUnstyled] Fix `disabledSwap` not being respected in `onChangeCommitted` (#32647) @JeanPetrov
+
+### `@mui/joy@5.0.0-alpha.29`
+
+- &#8203;<!-- 19 -->[Joy] Show Joy pages on master (#32866) @siriwatknp
+- &#8203;<!-- 18 -->[Joy] Add an overview page (#32836) @danilo-leal
+- &#8203;<!-- 17 -->[Joy] Add doc for the card components (#32825) @siriwatknp
+- &#8203;<!-- 16 -->[Joy] Miscellaneous fixes (#32815) @siriwatknp
+
+### Docs
+
+- &#8203;<!-- 31 -->[docs] Simplify header DOM structure (#32844) @oliviertassinari
+- &#8203;<!-- 30 -->[docs] Fix CodeSandbox & StackBlitz generation (#32726) @siriwatknp
+- &#8203;<!-- 29 -->[docs] Fix urls to columns pages in pricing table (#32842) @alexfauquette
+- &#8203;<!-- 28 -->[docs] Fix Tailwind CSS integration docs (#32512) @robertwt7
+- &#8203;<!-- 27 -->[docs] Fixed wrong command for the `link-underline-hover` codemod (#32793) @veronikaslc
+- &#8203;<!-- 26 -->[docs] Fixed broken link on the icons page (#32780) @SamuelMaddox
+- &#8203;<!-- 25 -->[docs] Add "back to top" button (#30441) @VibhorJaiswal
+- &#8203;<!-- 24 -->[docs] Fix typo in notifications @mbrookes
+- &#8203;<!-- 32 -->[docs] New WAI-ARIA guidelines location (#32865) @oliviertassinari
+- &#8203;<!-- 23 -->[docs] Mention the ESLint plugin for detecting unused classes in tss-react (#32666) @garronej
+- &#8203;<!-- 22 -->[docs] Update `useAutocomplete` demos to use `Mui-focused` class (#32757) @ZeeshanTamboli
+- &#8203;<!-- 21 -->[examples] Fix `NextLinkComposedProps` gives a TypeScript error (#32655) @ZeeshanTamboli
+- &#8203;<!-- 01 -->[website] Add Pedro to About Us page (#32803) @apedroferreira
+
+### Core
+
+- &#8203;<!-- 32 -->[core] Upgrade MUI X dependency (#32824) @oliviertassinari
+- &#8203;<!-- 02 -->[typescript] Allow module augmentation for `Mixins` (#32798) @mnajdova
+
+All contributors of this release in alphabetical order: @abriginets, @alexfauquette, @alisasanib, @apedroferreira, @danilo-leal, @diggis00, @flaviendelangle, @garronej, @JeanPetrov, @mbrookes, @mnajdova, @nate-summercook, @o-dubrovskyi, @oliviertassinari, @paales, @robertwt7, @SamuelMaddox, @siriwatknp, @veronikaslc, @VibhorJaiswal, @ZeeshanTamboli
+
+## 5.8.0
+
+<!-- generated comparing v5.7.0..master -->
+
+_May 17, 2022_
+
+A big thanks to the 14 contributors who made this release possible. Here are some highlights ✨:
+
+- 🚀 [Blog post](https://mui.com/blog/premium-plan-release/) for announcing the release of the Premium plan of MUI X is out thanks to @joserodolfofreitas.
+- Codemod for `jss` to `tss-react` migration is out thanks to @ryancogswell
+- And more 🐛 bug fixes and 📚 documentation improvements.
+
+### `@mui/material@5.8.0`
+
+- &#8203;<!-- 37 -->[Autocomplete] Fix `getInputProps` TypeScript return type (#32730) @ZeeshanTamboli
+- &#8203;<!-- 36 -->[Autocomplete] Forward props to renderTags() (#32637) @emlai
+- &#8203;<!-- 35 -->[Badge] Fix TypeScript error when adding style overrides for Badge (#32745) @ZeeshanTamboli
+- &#8203;<!-- 09 -->[Menu] Fix context menu open position (#32661) @oliviertassinari
+
+### `@mui/system@5.8.0`
+
+- &#8203;<!-- 05 -->[system] Add `Container` component and `createContainer` factory (#32263) @mnajdova
+
+### `@mui/base@5.0.0-alpha.81`
+
+- &#8203;<!-- 15 -->[InputUnstyled] Support callbacks in componentsProps (#32271) @michaldudak
+- &#8203;<!-- 14 -->[InputUnstyled] Define ownerState and slot props' types (#32491) @michaldudak
+- &#8203;<!-- 08 -->[MenuUnstyled] Demos improvements (#32714) @michaldudak
+- &#8203;<!-- 07 -->[OptionUnstyled] Define ownerState and slot props' types (#32717) @michaldudak
+
+### `@mui/joy@5.0.0-alpha.28`
+
+- &#8203;<!-- 13 -->[Joy] Add Badge doc (#32790) @siriwatknp
+- &#8203;<!-- 12 -->[Joy] Add global variant feature page (#32695) @siriwatknp
+- &#8203;<!-- 11 -->[Joy] Add avatar page (#32711) @siriwatknp
+
+### `@mui/codemod@5.8.0`
+
+- &#8203;<!-- 33 -->[codemod] Add jss to tss-react codemod (#31802) @ryancogswell
+
+### Docs
+
+- &#8203;<!-- 34 -->[blog] Add release post for MUI X Premium (#32720) @joserodolfofreitas
+- &#8203;<!-- 29 -->[docs] Fix wrong code snippet for overriding styles in theme with a callback value (#32781) @ZeeshanTamboli
+- &#8203;<!-- 28 -->[docs] Update Crowdin logo (#32782) @andrii-bodnar
+- &#8203;<!-- 27 -->[docs] Improve callouts design (#32709) @danilo-leal
+- &#8203;<!-- 26 -->[docs] Revise the "Understanding MUI packages" article (#32382) @danilo-leal
+- &#8203;<!-- 25 -->[docs] Fix link to the material icons (#32771) @oliviertassinari
+- &#8203;<!-- 24 -->[docs] Add notification for Premium release blog post (#32728) @joserodolfofreitas
+- &#8203;<!-- 23 -->[docs] Base Portal style revisions and final review (#32157) @samuelsycamore
+- &#8203;<!-- 22 -->[docs] Add joy to docs package.json (#32744) @siriwatknp
+- &#8203;<!-- 21 -->[docs] Fix TOC-related styles not being applied when disableAd=true (#32733) @cherniavskii
+- &#8203;<!-- 20 -->[docs] Add TypeScript guide on the polymorphic components (#32168) @mnajdova
+- &#8203;<!-- 19 -->[docs] Fix warning mode pass to React.Fragment (#32729) @siriwatknp
+- &#8203;<!-- 18 -->[docs] Revise Showcase copy for clarity + audit appList (#31946) @samuelsycamore
+- &#8203;<!-- 17 -->[examples] Update remix example's tsconfig with required values (#32723) @michaldudak
+- &#8203;<!-- 16 -->[examples] Update to use React 18's createRoot (#32506) @mnajdova
+- &#8203;<!-- 10 -->[l10n] Fix typos and translations on arSD and arEG locales (#31848) @shadigaafar
+- &#8203;<!-- 04 -->[website] Improve communication about MUI X components that are still wip (#32708) @danilo-leal
+- &#8203;<!-- 03 -->[website] Remove scrollbar on x-axis (#32291) @MrHBS
+- &#8203;<!-- 02 -->[website] Update the pricing page for the MUI X premium plan release (#32458) @joserodolfofreitas
+- &#8203;<!-- 01 -->[website] Update sponsors (#32725) @oliviertassinari
+
+### Core
+
+- &#8203;<!-- 32 -->[core] Enabled Renovate's lockfile maintenance (#32635) @michaldudak
+- &#8203;<!-- 31 -->[core] Extract `MuiPage` interface to separate file (#32715) @cherniavskii
+- &#8203;<!-- 30 -->[core] Remove unnecessary `spacing` parameter from `createMixins` method (#32690) @ZeeshanTamboli
+- &#8203;<!-- 06 -->[private-classnames] Remove package and move everything to utils (#32758) @mnajdova
+
+All contributors of this release in alphabetical order: @andrii-bodnar, @cherniavskii, @danilo-leal, @emlai, @joserodolfofreitas, @michaldudak, @mnajdova, @MrHBS, @oliviertassinari, @ryancogswell, @samuelsycamore, @shadigaafar, @siriwatknp, @ZeeshanTamboli
+
 ## 5.7.0
 
 <!-- generated comparing v5.6.4..master -->
@@ -851,7 +991,7 @@ A big thanks to the 16 contributors who made this release possible. Here are som
 - [docs] Fix force redirection to a different locale (#30967) @oliviertassinari
 - [docs] Add live Tailwind CSS demo (#30966) @oliviertassinari
 - [website] Add banner for promoting priority open roles (#31076) @danilo-leal
-- [website] Open Full-stack Engineer role for studio (#31038) @newguy-123
+- [website] Open Full-stack Engineer role for studio (#31038) @prakhargupta1
 - [website] Minor security improvements (#31062) @oliviertassinari
 - [website] Improve title of open roles (#30963) @DanailH
 - [website] Add BIMI avatar (#30444) @oliviertassinari
@@ -866,7 +1006,7 @@ A big thanks to the 16 contributors who made this release possible. Here are som
 - [test] Test if certain Base members are exported from Material UI (#31067) @michaldudak
 - [core] Remove dead code (#31064) @oliviertassinari
 
-All contributors of this release in alphabetical order: @agauravdev, @alisasanib, @DanailH, @danilo-leal, @huyenltnguyen, @l10nbot, @liradb2000, @mbrookes, @michaldudak, @mnajdova, @newguy-123, @oliviertassinari, @ryohey, @samuelsycamore, @siriwatknp, @sydneyjodon-wk
+All contributors of this release in alphabetical order: @agauravdev, @alisasanib, @DanailH, @danilo-leal, @huyenltnguyen, @l10nbot, @liradb2000, @mbrookes, @michaldudak, @mnajdova, @prakhargupta1, @oliviertassinari, @ryohey, @samuelsycamore, @siriwatknp, @sydneyjodon-wk
 
 ## 5.4.1
 
@@ -1576,14 +1716,14 @@ This is an early release to fix `export 'useId' (imported as 'React') was not fo
 - &#8203;<!-- 9 -->[core] Fix PR run detection in test_bundle_size_monitor (#29879) @eps1lon
 - &#8203;<!-- 8 -->[core] Move bundle size monitoring to CircleCI (#29876) @eps1lon
 - &#8203;<!-- 7 -->[docs] Add keys to Responsive AppBar demo (#29884) @mbrookes
-- &#8203;<!-- 6 -->[docs] MUI's 2021 Developer survey (#29765) @newguy-123
+- &#8203;<!-- 6 -->[docs] MUI's 2021 Developer survey (#29765) @prakhargupta1
 - &#8203;<!-- 5 -->[docs] Smoother image loading UX (#29858) @oliviertassinari
 - &#8203;<!-- 4 -->[Select] Fix select display value with React Nodes (#29836) @kegi
 - &#8203;<!-- 3 -->[system] Add `experimental_sx` utility (#29833) @mnajdova
 - &#8203;<!-- 2 -->[test] Ignore "detected multiple renderers" warning for now (#29854) @eps1lon
 - &#8203;<!-- 1 -->[useMediaQuery][utils] Remove usage of React 18 APIs (#29870) @eps1lon
 
-All contributors of this release in alphabetical order: @eps1lon, @karakib2k18, @kegi, @mbrookes, @mnajdova, @newguy-123, @oliviertassinari
+All contributors of this release in alphabetical order: @eps1lon, @karakib2k18, @kegi, @mbrookes, @mnajdova, @prakhargupta1, @oliviertassinari
 
 ## 5.2.0
 

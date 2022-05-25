@@ -1,23 +1,22 @@
 import * as React from 'react';
 import { usePreviousProps } from '@mui/utils';
-import BadgeUnstyledProps from './BadgeUnstyledProps';
 
-export interface UseBadgeProps {
-  badgeContent: BadgeUnstyledProps['badgeContent'];
-  invisible: BadgeUnstyledProps['invisible'];
-  max: BadgeUnstyledProps['max'];
-  showZero: BadgeUnstyledProps['showZero'];
+export interface UseBadgeParameters {
+  badgeContent?: React.ReactNode;
+  invisible?: boolean;
+  max?: number;
+  showZero?: boolean;
 }
 
-export default function useBadge(props: UseBadgeProps) {
+export default function useBadge(parameters: UseBadgeParameters) {
   const {
     badgeContent: badgeContentProp,
     invisible: invisibleProp = false,
     max: maxProp = 99,
     showZero = false,
-  } = props;
+  } = parameters;
 
-  const prevProps: Partial<BadgeUnstyledProps> = usePreviousProps({
+  const prevProps: Partial<UseBadgeParameters> = usePreviousProps({
     badgeContent: badgeContentProp,
     max: maxProp,
   });
@@ -28,7 +27,7 @@ export default function useBadge(props: UseBadgeProps) {
     invisible = true;
   }
 
-  const { badgeContent, max = maxProp } = invisible ? prevProps : props;
+  const { badgeContent, max = maxProp } = invisible ? prevProps : parameters;
 
   const displayValue: React.ReactNode =
     badgeContent && Number(badgeContent) > max ? `${max}+` : badgeContent;

@@ -18,7 +18,7 @@ const useUtilityClasses = (ownerState: ListDividerProps) => {
 };
 
 const ListDividerRoot = styled('li', {
-  name: 'MuiListDivider',
+  name: 'JoyListDivider',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: ListDividerProps & { row: boolean } }>(({ theme, ownerState }) => ({
@@ -53,7 +53,7 @@ const ListDividerRoot = styled('li', {
 const ListDivider = React.forwardRef(function ListDivider(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
-    name: 'MuiListDivider',
+    name: 'JoyListDivider',
   });
 
   const row = React.useContext(RowListContext);
