@@ -35,9 +35,9 @@ export default function WhatToExpect() {
               </Typography>
             </Box>
             <Typography variant="body2" color="text.secondary">
-              With your purchase, you are granted a license to use a version of the product forever
-              in a production environment. There are no further charges unless you choose to
-              continue development.
+              You can use the software in a production environment forever. All the versions of the
+              software released until the end of your subscription are available. There are no
+              further charges unless you choose to continue development.
             </Typography>
           </Paper>
         </Grid>
@@ -66,29 +66,6 @@ export default function WhatToExpect() {
         <Grid item xs={12} sm={6}>
           <Paper variant="outlined" sx={{ p: 2, height: '100%' }}>
             <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
-              <ReplayRoundedIcon fontSize="small" color="primary" />
-              <Typography
-                fontWeight="bold"
-                component="h3"
-                color="text.primary"
-                variant="body2"
-                sx={{ ml: 1 }}
-              >
-                Development license
-              </Typography>
-            </Box>
-            <Typography variant="body2" color="text.secondary">
-              Developers contributing changes to the front-end code of a project that include the
-              software always need an active license. So if you wish to continue
-              active development using the software after the end of your subscription, you will
-              need to renew your subscription. You can learn more about it in{' '}
-              <Link href="https://mui.com/store/legal/mui-x-eula/">the EULA</Link>.
-            </Typography>
-          </Paper>
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <Paper variant="outlined" sx={{ p: 2, height: '100%' }}>
-            <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
               <HelpOutlineOutlinedIcon fontSize="small" color="primary" />
               <Typography
                 fontWeight="bold"
@@ -108,6 +85,28 @@ export default function WhatToExpect() {
               <br />
               Note that we roll bug fixes, performance enhancements, and other improvements into new
               releases, on the latest release line.
+            </Typography>
+          </Paper>
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <Paper variant="outlined" sx={{ p: 2, height: '100%' }}>
+            <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
+              <ReplayRoundedIcon fontSize="small" color="primary" />
+              <Typography
+                fontWeight="bold"
+                component="h3"
+                color="text.primary"
+                variant="body2"
+                sx={{ ml: 1 }}
+              >
+                Development license
+              </Typography>
+            </Box>
+            <Typography variant="body2" color="text.secondary">
+              Developers contributing changes to the front-end code of a project that include the
+              software need an active license. You will need to renew your subscription if you wish
+              to continue active development after the end of your subscription. You can learn more
+              about it in <Link href="https://mui.com/store/legal/mui-x-eula/">the EULA</Link>.
             </Typography>
           </Paper>
         </Grid>
