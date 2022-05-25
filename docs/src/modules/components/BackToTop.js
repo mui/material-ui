@@ -1,67 +1,58 @@
 import * as React from 'react';
-import * as PropTypes from 'prop-types';
 import useScrollTrigger from '@mui/material/useScrollTrigger';
-import Box from '@mui/material/Box';
 import Fab from '@mui/material/Fab';
 import Tooltip from '@mui/material/Tooltip';
 import KeyboardArrowUpRoundedIcon from '@mui/icons-material/KeyboardArrowUpRounded';
-import Zoom from '@mui/material/Zoom';
+import Fade from '@mui/material/Fade';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 
-function BackToTop(props) {
+export default function BackToTop() {
   const t = useTranslate();
-  const { window: windowProp, onClick, sx, ...other } = props;
 
   const trigger = useScrollTrigger({
-    target: windowProp ? windowProp() : undefined,
     disableHysteresis: true,
-    threshold: 100,
+    threshold: 200,
   });
 
-  const handleClick = (event) => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    onClick?.(event);
+  const handleClick = () => {
+    window.scrollTo({ top: 0 });
   };
 
   return (
-    <Zoom in={trigger}>
-      <Box
-        role="presentation"
-        {...other}
-        onClick={handleClick}
-        sx={[
-          { position: 'fixed', bottom: 24, right: 24, zIndex: 10 },
-          ...(Array.isArray(sx) ? sx : [sx]),
-        ]}
-      >
-        <Tooltip title="Scroll to top">
-          <Fab
-            color="primary"
-            size="small"
-            aria-label={t('backToTop')}
-            sx={{
+    <Fade in={trigger}>
+      <Tooltip title="Scroll to top">
+        <Fab
+          sx={{
+            position: 'fixed',
+            bottom: 24,
+            right: 24,
+            zIndex: 10,
+            backgroundColor: (theme) =>
+              theme.palette.mode === 'dark' ? theme.palette.grey[400] : theme.palette.grey[300],
+            boxShadow: (theme) =>
+              `0px 4px 20px ${
+                theme.palette.mode === 'dark' ? 'rgba(0, 0, 0, 0.5)' : 'rgba(170, 180, 190, 0.3)'
+              }`,
+            '&:hover': {
+              backgroundColor: (theme) =>
+                theme.palette.mode === 'dark' ? theme.palette.grey[300] : theme.palette.grey[400],
+            },
+            '&:active': {
               boxShadow: (theme) =>
                 `0px 4px 20px ${
-                  theme.palette.mode === 'dark' ? 'rgba(0, 0, 0, 0.5)' : 'rgba(170, 180, 190, 0.3)'
+                  theme.palette.mode === 'dark' ? 'rgba(0, 0, 0, 0.7)' : 'rgba(170, 180, 190, 0.6)'
                 }`,
-            }}
-          >
-            <KeyboardArrowUpRoundedIcon />
-          </Fab>
-        </Tooltip>
-      </Box>
-    </Zoom>
+            },
+          }}
+          size="small"
+          aria-label={t('backToTop')}
+          onClick={handleClick}
+          data-ga-event-category="docs"
+          data-ga-event-action="click-back-to-top"
+        >
+          <KeyboardArrowUpRoundedIcon />
+        </Fab>
+      </Tooltip>
+    </Fade>
   );
 }
-
-BackToTop.propTypes = {
-  onClick: PropTypes.func,
-  sx: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
-    PropTypes.func,
-    PropTypes.object,
-  ]),
-  window: PropTypes.func,
-};
-
-export default BackToTop;

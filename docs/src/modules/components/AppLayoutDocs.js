@@ -14,6 +14,7 @@ import Ad from 'docs/src/modules/components/Ad';
 import AdManager from 'docs/src/modules/components/AdManager';
 import AdGuest from 'docs/src/modules/components/AdGuest';
 import AppLayoutDocsFooter from 'docs/src/modules/components/AppLayoutDocsFooter';
+import BackToTop from 'docs/src/modules/components/BackToTop';
 import { isNewLocation } from 'docs/src/modules/utils/replaceUrl';
 
 const Main = styled('main', {
@@ -134,6 +135,7 @@ function AppLayoutDocs(props) {
           </StyledAppContainer>
         </Main>
       </AdManager>
+      <BackToTop />
     </AppFrame>
   );
 }
