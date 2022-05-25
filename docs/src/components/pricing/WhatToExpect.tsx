@@ -17,7 +17,7 @@ export default function WhatToExpect() {
         variant="h2"
         sx={{ maxWidth: { xs: 280, sm: 320, md: 400 }, mb: { xs: 2, sm: 4 } }}
       >
-        What to expect from our available plans
+        Key information about our available plans
       </Typography>
       <Grid container spacing={{ xs: 2, sm: 4 }}>
         <Grid item xs={12} sm={6}>
