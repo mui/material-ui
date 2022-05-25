@@ -59,11 +59,15 @@ Depending on the day, you'll:
   A large amount of the work on MUI is reducing friction and making it easier to use.
   This might involve careful API design, identifying and fixing top bugs, creating easier to understand error messages, and writing documentation and blog posts about features you ship.
 - **Collaborate with the community**.
-  Many small as well as meaningful fixes and features have been contributed by the community. Your role is to draw the best out of the community — to inspire those across the world to create and contribute through your reviews of their issues and pull requests.
-- **Experiment and play**. Great, unexpected features and heisenbug fixes have come from a number of sources — relentlessly methodical processes of elimination, free-flowing team collaboration, inspiration by adjacent libraries and projects, and difficult-to-explain individual strokes of brilliance. Whatever your preferred style is for creating new things that others might not have thought of, you'll find a welcome home on the team.
+  Many small as well as meaningful fixes and features have been contributed by the community.
+  Your role is to draw the best out of the community — to inspire those across the world to create and contribute through your reviews of their issues and pull requests.
+- **Experiment and play**.
+  Great, unexpected features and heisenbug fixes have come from a number of sources — relentlessly methodical processes of elimination, free-flowing team collaboration, inspiration by adjacent libraries and projects, and difficult-to-explain individual strokes of brilliance.
+  Whatever your preferred style is for creating new things that others might not have thought of, you'll find a welcome home on the team.
 - **Take ownership of features from idea/mockup to live deployment**.
   You'll shape and guide the direction of crucial new features, including new components.
-- **Ship. Early and often**. You'll iterate and ship frequently.
+- **Ship. Early and often**.
+  You'll iterate and ship frequently.
   You'll have a real impact on the end-user experience and you'll love working on a team that builds stunning UIs and prioritizes delivering real user value as often as possible.
 - **You'll be interacting with the users** on a regular basis, handling inbound support and feature requests (every developer helps with developer requests).
 
@@ -80,27 +84,39 @@ Depending on the day, you'll:
   It may even be in an area of the codebase you're unfamiliar with or don't have a ton of understanding about.
   It's fun, rewarding work, but it can be very challenging.
 - **We move quickly, but don't sacrifice quality**.
-  We ship early, often, and quickly. You may not be initially comfortable with the cadence with which we ship high-quality features and improvements to end-users. By doing so, we sacrifice on solving each problem 100% in exchange for fast feedback. Solving 50-70% of the issue with quality should be enough for any given iteration. Our users quickly tell us when we haven't pushed a solution far enough.
-- **MUI is a large codebase**. You may bang your head against the wall at times, and then write tests to assist future you 😌.
+  We ship early, often, and quickly.
+  You may not be initially comfortable with the cadence with which we ship high-quality features and improvements to end-users.
+  By doing so, we sacrifice on solving each problem 100% in exchange for fast feedback.
+  Solving 50-70% of the issue with quality should be enough for any given iteration.
+  Our users quickly tell us when we haven't pushed a solution far enough.
+- **MUI is a large codebase**.
+  You may bang your head against the wall at times, and then write tests to assist future you 😌.
   The work you will be doing is somewhat unique and idiosyncratic. You probably have not had a similar role before.
-- **In open-source, you're faced with a nonstop stream of bug reports and support requests**. That means you need to develop an intuition for when to ignore something, and when to dig in further.
+- **In open-source, you're faced with a nonstop stream of bug reports and support requests**.
+  That means you need to develop an intuition for when to ignore something, and when to dig in further.
 
 ## About you
 
-We're looking for someone with strong front-end skills. More important than specific technical skills though is that you're a strong problem solver who loves to learn. Details matter to you.
+We're looking for someone with strong front-end skills.
+More important than specific technical skills though is that you're a strong problem solver who loves to learn.
+Details matter to you.
 
 ### Skills you should have
 
 - **Expertise in the modern JavaScript ecosystem**.
   MUI is built on the shoulders of giants, making use of technologies such as ES2021, TypeScript, Node.js, React, Next.js, webpack, and Babel.
-- **A track record of demonstrating an eye for product and solving real-world user problems**. If you have a knack for solving problems at the root cause, shipping beautiful user interfaces and intuitive APIs, we want you on our team.
+- **A track record of demonstrating an eye for product and solving real-world user problems**.
+  If you have a knack for solving problems at the root cause, shipping beautiful user interfaces and intuitive APIs, we want you on our team.
 - **Experience building and shipping production code in a team setting** with a passion for writing tested, performant, and high-quality code.
 - **Strong written and verbal communication skills**.
-  As part of the team, you'll interface both directly and indirectly with community members and enterprise customers, and contribute to user documentation. Clear communication is fundamental in creating intuitive and compelling resources.
+  As part of the team, you'll interface both directly and indirectly with community members and enterprise customers, and contribute to user documentation.
+  Clear communication is fundamental in creating intuitive and compelling resources.
 - **Ability to dive into complex problems**.
   You should be able to quickly assess, understand, and iterate upon aspects of our codebase.
 - **Ready and willing to ask and answer questions**.
-  If you're comfortable saying you're unsure, asking for help; but equally reaching out to assist others, you'll be an incredible addition to our team. We thrive because of continuous learning. First-time mistakes should be celebrated, not blamed.
+  If you're comfortable saying you're unsure, asking for help; but equally reaching out to assist others, you'll be an incredible addition to our team.
+  We thrive because of continuous learning.
+  First-time mistakes should be celebrated, not blamed.
 - **Avoid monolithic deliverables**.
   You scope and stage your work into well-defined milestones to ship.
 - **Past work with front-end infrastructure**.
@@ -115,7 +131,10 @@ We're looking for someone with strong front-end skills. More important than spec
 - **You've maintained an active repository before**.
   Maybe you've helped maintain a popular open-source repository, or perhaps you've worked on internal repositories that saw contributions from multiple teams.
   Previous experience with highly active repository workflows is a definite plus for this role.
-- **You have contributed code to MUI before**. A history of contributing to MUI would be a definite plus.
+- **You have contributed code to MUI before**.
+  A history of contributing to MUI would be a definite plus.
+- **You have experience with accessibility**.
+  Maybe you were responsible or contributed to making sure that the design system/application at your company is a11y compliant.
 
 ## Benefits & Compensation
 
