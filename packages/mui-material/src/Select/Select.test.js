@@ -499,7 +499,7 @@ describe('<Select />', () => {
         );
 
         const options = getAllByRole('option');
-        expect(options[1]).to.have.attribute('tabindex', '0');
+        expect(options[1]).to.have.attribute('tabIndex', '0');
 
         act(() => {
           fireEvent.keyDown(options[1], { key: 'ArrowDown' });
@@ -525,7 +525,7 @@ describe('<Select />', () => {
           );
 
           const options = getAllByRole('option');
-          expect(options[2]).to.have.attribute('tabindex', '0');
+          expect(options[2]).to.have.attribute('tabIndex', '0');
 
           act(() => {
             fireEvent.keyDown(options[2], { key: 'ArrowDown' });
@@ -555,7 +555,7 @@ describe('<Select />', () => {
         );
 
         const options = getAllByRole('option');
-        expect(options[2]).to.have.attribute('tabindex', '0');
+        expect(options[2]).to.have.attribute('tabIndex', '0');
 
         act(() => {
           fireEvent.keyDown(options[2], { key: 'ArrowDown' });

@@ -115,7 +115,7 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(inProps, ref) {
       // Let's keep the focus in the component after expanding.
       // Moving it to the <ol> or <nav> does not cause any announcement in NVDA.
       // By moving it to some link/button at least we have some announcement.
-      const focusable = listRef.current.querySelector('a[href],button,[tabindex]');
+      const focusable = listRef.current.querySelector('a[href],button,[tabIndex]');
       if (focusable) {
         focusable.focus();
       }

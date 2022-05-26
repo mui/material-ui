@@ -13,7 +13,7 @@ describe('replaceHtmlLinks', () => {
       <ul>
       <a href="/guides/minimizing-bundle-size/">reading this guide on minimizing bundle size</a>
       <a href="/customization/theme-components/#default-props">default props</a>
-      <a data-no-markdown-link="true" tabindex="0" href="/getting-started/usage/">Get started</a>
+      <a data-no-markdown-link="true" tabIndex="0" href="/getting-started/usage/">Get started</a>
       <li><a href="/discover-more/related-projects/">Tree view</a></li>
       </ul>
     `),
@@ -21,7 +21,7 @@ describe('replaceHtmlLinks', () => {
       <ul>
       <a href="/material-ui/guides/minimizing-bundle-size/">reading this guide on minimizing bundle size</a>
       <a href="/material-ui/customization/theme-components/#default-props">default props</a>
-      <a data-no-markdown-link="true" tabindex="0" href="/material-ui/getting-started/usage/">Get started</a>
+      <a data-no-markdown-link="true" tabIndex="0" href="/material-ui/getting-started/usage/">Get started</a>
       <li><a href="/material-ui/discover-more/related-projects/">Tree view</a></li>
       </ul>
     `);
@@ -33,7 +33,7 @@ describe('replaceHtmlLinks', () => {
       <ul>
       <a href="/material-ui/guides/minimizing-bundle-size/">reading this guide on minimizing bundle size</a>
       <a href="/material-ui/customization/theme-components/#default-props">default props</a>
-      <a data-no-markdown-link="true" tabindex="0" href="/material-ui/getting-started/usage/">Get started</a>
+      <a data-no-markdown-link="true" tabIndex="0" href="/material-ui/getting-started/usage/">Get started</a>
       <li><a href="/material-ui/discover-more/related-projects/">Tree view</a></li>
       </ul>
     `),
@@ -41,7 +41,7 @@ describe('replaceHtmlLinks', () => {
       <ul>
       <a href="/material-ui/guides/minimizing-bundle-size/">reading this guide on minimizing bundle size</a>
       <a href="/material-ui/customization/theme-components/#default-props">default props</a>
-      <a data-no-markdown-link="true" tabindex="0" href="/material-ui/getting-started/usage/">Get started</a>
+      <a data-no-markdown-link="true" tabIndex="0" href="/material-ui/getting-started/usage/">Get started</a>
       <li><a href="/material-ui/discover-more/related-projects/">Tree view</a></li>
       </ul>
     `);
@@ -196,7 +196,7 @@ describe('replaceHtmlLinks', () => {
   it('replace correct API links', () => {
     expect(
       replaceAPILinks(`
-    <h2 id="heading-api"><span class="anchor-link" id="api"></span>API<a aria-labelledby="heading-api" class="anchor-link-style" href="#api" tabindex="-1"><svg><use xlink:href="#anchor-link-icon" /></svg></a></h2><ul>
+    <h2 id="heading-api"><span class="anchor-link" id="api"></span>API<a aria-labelledby="heading-api" class="anchor-link-style" href="#api" tabIndex="-1"><svg><use xlink:href="#anchor-link-icon" /></svg></a></h2><ul>
 <li><a href="/api/button/"><code>&lt;Button /&gt;</code></a></li>
 <li><a href="/api/no-ssr/"><code>&lt;Text /&gt;</code></a></li>
 <li><a href="/api/portal/"><code>&lt;Text /&gt;</code></a></li>
@@ -215,7 +215,7 @@ describe('replaceHtmlLinks', () => {
 </ul>
     `),
     ).to.equal(`
-    <h2 id="heading-api"><span class="anchor-link" id="api"></span>API<a aria-labelledby="heading-api" class="anchor-link-style" href="#api" tabindex="-1"><svg><use xlink:href="#anchor-link-icon" /></svg></a></h2><ul>
+    <h2 id="heading-api"><span class="anchor-link" id="api"></span>API<a aria-labelledby="heading-api" class="anchor-link-style" href="#api" tabIndex="-1"><svg><use xlink:href="#anchor-link-icon" /></svg></a></h2><ul>
 <li><a href="/material-ui/api/button/"><code>&lt;Button /&gt;</code></a></li>
 <li><a href="/base/api/no-ssr/"><code>&lt;Text /&gt;</code></a></li>
 <li><a href="/base/api/portal/"><code>&lt;Text /&gt;</code></a></li>
@@ -238,7 +238,7 @@ describe('replaceHtmlLinks', () => {
   it('should do nothing if the APIs have updated', () => {
     expect(
       replaceAPILinks(`
-      <h2 id="heading-api"><span class="anchor-link" id="api"></span>API<a aria-labelledby="heading-api" class="anchor-link-style" href="#api" tabindex="-1"><svg><use xlink:href="#anchor-link-icon" /></svg></a></h2><ul>
+      <h2 id="heading-api"><span class="anchor-link" id="api"></span>API<a aria-labelledby="heading-api" class="anchor-link-style" href="#api" tabIndex="-1"><svg><use xlink:href="#anchor-link-icon" /></svg></a></h2><ul>
   <li><a href="/material-ui/api/button/"><code>&lt;Button /&gt;</code></a></li>
   <li><a href="/material-ui/api/button-base/"><code>&lt;ButtonBase /&gt;</code></a></li>
   <li><a href="/base/api/button-unstyled/"><code>&lt;ButtonUnstyled /&gt;</code></a></li>
@@ -247,7 +247,7 @@ describe('replaceHtmlLinks', () => {
   </ul>
       `),
     ).to.equal(`
-      <h2 id="heading-api"><span class="anchor-link" id="api"></span>API<a aria-labelledby="heading-api" class="anchor-link-style" href="#api" tabindex="-1"><svg><use xlink:href="#anchor-link-icon" /></svg></a></h2><ul>
+      <h2 id="heading-api"><span class="anchor-link" id="api"></span>API<a aria-labelledby="heading-api" class="anchor-link-style" href="#api" tabIndex="-1"><svg><use xlink:href="#anchor-link-icon" /></svg></a></h2><ul>
   <li><a href="/material-ui/api/button/"><code>&lt;Button /&gt;</code></a></li>
   <li><a href="/material-ui/api/button-base/"><code>&lt;ButtonBase /&gt;</code></a></li>
   <li><a href="/base/api/button-unstyled/"><code>&lt;ButtonUnstyled /&gt;</code></a></li>
@@ -279,7 +279,7 @@ describe('replaceHtmlLinks', () => {
     <li><a href="/system/basics/">System</a></li>
     <a href="/guides/minimizing-bundle-size/">reading this guide on minimizing bundle size</a>
     <a href="/customization/theme-components/#default-props">default props</a>
-    <a data-no-markdown-link="true" tabindex="0" href="/getting-started/usage/">Get started</a>
+    <a data-no-markdown-link="true" tabIndex="0" href="/getting-started/usage/">Get started</a>
     <li><a href="/discover-more/related-projects/">Tree view</a></li>
     </ul>
     `,
@@ -304,7 +304,7 @@ describe('replaceHtmlLinks', () => {
     <li><a href="/system/basics/">System</a></li>
     <a href="/material-ui/guides/minimizing-bundle-size/">reading this guide on minimizing bundle size</a>
     <a href="/material-ui/customization/theme-components/#default-props">default props</a>
-    <a data-no-markdown-link="true" tabindex="0" href="/material-ui/getting-started/usage/">Get started</a>
+    <a data-no-markdown-link="true" tabIndex="0" href="/material-ui/getting-started/usage/">Get started</a>
     <li><a href="/material-ui/discover-more/related-projects/">Tree view</a></li>
     </ul>
     `);
@@ -338,7 +338,7 @@ describe('replaceHtmlLinks', () => {
     <li><a href="/zh/system/basics/">System</a></li>
     <a href="/zh/guides/minimizing-bundle-size/">reading this guide on minimizing bundle size</a>
     <a href="/zh/customization/theme-components/#default-props">default props</a>
-    <a data-no-markdown-link="true" tabindex="0" href="/zh/getting-started/usage/">Get started</a>
+    <a data-no-markdown-link="true" tabIndex="0" href="/zh/getting-started/usage/">Get started</a>
     <li><a href="/zh/discover-more/related-projects/">Tree view</a></li>
     </ul>
     `,
@@ -360,7 +360,7 @@ describe('replaceHtmlLinks', () => {
     <li><a href="/zh/system/basics/">System</a></li>
     <a href="/zh/material-ui/guides/minimizing-bundle-size/">reading this guide on minimizing bundle size</a>
     <a href="/zh/material-ui/customization/theme-components/#default-props">default props</a>
-    <a data-no-markdown-link="true" tabindex="0" href="/zh/material-ui/getting-started/usage/">Get started</a>
+    <a data-no-markdown-link="true" tabIndex="0" href="/zh/material-ui/getting-started/usage/">Get started</a>
     <li><a href="/zh/material-ui/discover-more/related-projects/">Tree view</a></li>
     </ul>
     `);
@@ -403,7 +403,7 @@ describe('replaceHtmlLinks', () => {
       <li><a href="/components/data-grid/demo/">Demo</a></li>
       <a href="/guides/minimizing-bundle-size/">reading this guide on minimizing bundle size</a>
       <a href="/customization/theme-components/#default-props">default props</a>
-      <a data-no-markdown-link="true" tabindex="0" href="/getting-started/usage/">Get started</a>
+      <a data-no-markdown-link="true" tabIndex="0" href="/getting-started/usage/">Get started</a>
       <li><a href="/discover-more/related-projects/">Tree view</a></li>
       </ul>
     `,
@@ -417,7 +417,7 @@ describe('replaceHtmlLinks', () => {
       <li><a href="/components/data-grid/demo/">Demo</a></li>
       <a href="/guides/minimizing-bundle-size/">reading this guide on minimizing bundle size</a>
       <a href="/customization/theme-components/#default-props">default props</a>
-      <a data-no-markdown-link="true" tabindex="0" href="/getting-started/usage/">Get started</a>
+      <a data-no-markdown-link="true" tabIndex="0" href="/getting-started/usage/">Get started</a>
       <li><a href="/discover-more/related-projects/">Tree view</a></li>
       </ul>
     `);

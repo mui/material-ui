@@ -35,7 +35,7 @@ describe('<Chip />', () => {
     it('is not in tab order', () => {
       const { container } = render(<Chip label="My text Chip" />);
 
-      expect(container.querySelectorAll('[tabindex]')).to.have.length(0);
+      expect(container.querySelectorAll('[tabIndex]')).to.have.length(0);
     });
 
     it('should renders certain classes and contains a label', () => {

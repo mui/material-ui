@@ -72,7 +72,7 @@ function moveFocus(
       : nextFocus.disabled || nextFocus.getAttribute('aria-disabled') === 'true';
 
     if (
-      !nextFocus.hasAttribute('tabindex') ||
+      !nextFocus.hasAttribute('tabIndex') ||
       !textCriteriaMatches(nextFocus, textCriteria) ||
       nextFocusDisabled
     ) {

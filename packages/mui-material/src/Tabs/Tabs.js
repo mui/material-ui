@@ -54,7 +54,7 @@ const moveFocus = (list, currentFocus, traversalFunction) => {
     const nextFocusDisabled =
       nextFocus.disabled || nextFocus.getAttribute('aria-disabled') === 'true';
 
-    if (!nextFocus.hasAttribute('tabindex') || nextFocusDisabled) {
+    if (!nextFocus.hasAttribute('tabIndex') || nextFocusDisabled) {
       // Move to the next element.
       nextFocus = traversalFunction(list, nextFocus);
     } else {
