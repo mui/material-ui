@@ -14,7 +14,7 @@
 
 There are two reasons why component styles may be broken after you've completed all steps in the migration process.
 
-First, check if you have configured the `StyledEngineProvider` correctly, as shown in the [Style library](/material-ui/migration/v5-style-changes#style-library) section.
+First, check if you have configured the `StyledEngineProvider` correctly, as shown in the [Style library](/material-ui/migration/v5-style-changes/#style-library) section.
 
 If the `StyledEngineProvider` is already used at the top of your application and the styles are still broken, it may be the case that you still have `@material-ui/core` in your application.
 
