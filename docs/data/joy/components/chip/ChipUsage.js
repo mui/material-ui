@@ -9,6 +9,7 @@ import RadioGroup from '@mui/joy/RadioGroup';
 import Radio from '@mui/joy/Radio';
 import Sheet from '@mui/joy/Sheet';
 import Check from '@mui/icons-material/Check';
+import TextField from '@mui/joy/TextField';
 
 const Select = styled('select')(({ theme }) => ({
   padding: '0.25rem',
@@ -26,6 +27,7 @@ const Select = styled('select')(({ theme }) => ({
 }));
 
 const defaultProps = {
+  children: 'MUI Joy Chip',
   variant: 'solid',
   color: 'primary',
   size: 'md',
@@ -68,6 +70,7 @@ function createCode(name, inProps) {
 export default function ChipUsage() {
   const [props, setProps] = React.useState({});
   const {
+    children = defaultProps.children,
     variant = defaultProps.variant,
     color = defaultProps.color,
     size = defaultProps.size,
@@ -98,7 +101,7 @@ export default function ChipUsage() {
             p: 2,
           }}
         >
-          <Chip {...props}>MUI Joy Chip</Chip>
+          <Chip {...props}>{children}</Chip>
         </Box>
         <BrandingProvider mode="dark">
           <HighlightedCode
@@ -333,6 +336,27 @@ export default function ChipUsage() {
                 );
               })}
             </RadioGroup>
+          </Box>
+          <Box>
+            <Typography
+              id="chip-children-textfield"
+              level="body2"
+              fontWeight="lg"
+              mb={1}
+            >
+              children
+            </Typography>
+            <TextField
+              id="children-textfield"
+              value={children}
+              size="sm"
+              onChange={(event) => {
+                return setProps((latestProps) => ({
+                  ...latestProps,
+                  children: event.target.value,
+                }));
+              }}
+            />
           </Box>
         </Box>
       </Box>
