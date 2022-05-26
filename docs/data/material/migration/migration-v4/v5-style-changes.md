@@ -82,7 +82,7 @@ Here are the specific element types that each component expects:
 
 ### ✅ Adjust CSS injection order
 
-The style library used by default in v5 is [Emotion](https://emotion.sh/docs/introduction). 
+The style library used by default in v5 is [Emotion](https://emotion.sh/docs/introduction).
 
 If you are migrating from JSS to Emotion, and you're currently using JSS style overrides for your components—for example, those created by `makeStyles`—you will need to take care of the CSS injection order.
 
@@ -128,7 +128,7 @@ To correct the injection order, add the `prepend` option to `createCache`, as sh
 ```
 
 :::info
-If you are using styled-components and have a `StyleSheetManager` with a custom `target`, make sure that the target is the first element in the HTML `<head>`. 
+If you are using styled-components and have a `StyleSheetManager` with a custom `target`, make sure that the target is the first element in the HTML `<head>`.
 
 To see how it can be done, take a look at the [`StyledEngineProvider` implementation](https://github.com/mui/material-ui/blob/master/packages/mui-styled-engine-sc/src/StyledEngineProvider/StyledEngineProvider.js) in the `@mui/styled-engine-sc` package.
 :::
@@ -327,7 +327,7 @@ Make sure to add a `ThemeProvider` at the root of your application, as the `defa
 
 ### ✅ Add module augmentation for DefaultTheme (TypeScript)
 
-The `@mui/styles` package is no longer part of `@mui/material/styles`. 
+The `@mui/styles` package is no longer part of `@mui/material/styles`.
 
 If you are using `@mui/styles` together with `@mui/material` you need to add a module augmentation for the `DefaultTheme`.
 
@@ -502,7 +502,7 @@ You should import it directly from `@mui/styles`.
 ### ✅ Update withStyles import
 
 The `withStyles` JSS utility is no longer exported from `@mui/material/styles`.
-You can use `@mui/styles/withStyles` instead. 
+You can use `@mui/styles/withStyles` instead.
 
 Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available.
 
@@ -548,9 +548,9 @@ Replace the `innerRef` prop with the `ref` prop. Refs are now automatically forw
 
 ### Update withTheme import
 
-The `withTheme` HOC utility has been removed from the `@mui/material/styles` package. You can use `@mui/styles/withTheme` instead. 
+The `withTheme` HOC utility has been removed from the `@mui/material/styles` package. You can use `@mui/styles/withTheme` instead.
 
-Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available. 
+Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available.
 
 If you are using this utility together with `@mui/material`, it's recommended you use the `ThemeProvider` component from `@mui/material/styles` instead.
 
