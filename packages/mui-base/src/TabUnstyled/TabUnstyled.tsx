@@ -1,15 +1,18 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { OverridableComponent } from '@mui/types';
 import clsx from 'clsx';
+import { OverridableComponent } from '@mui/types';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
 import composeClasses from '../composeClasses';
 import appendOwnerState from '../utils/appendOwnerState';
 import { getTabUnstyledUtilityClass } from './tabUnstyledClasses';
-import { TabUnstyledProps, TabUnstyledTypeMap } from './TabUnstyled.types';
+import {
+  TabUnstyledProps,
+  TabUnstyledTypeMap,
+  TabUnstyledRootSlotProps,
+} from './TabUnstyled.types';
 import useTab from './useTab';
 import { WithOptionalOwnerState } from '../utils';
-import { TabUnstyledRootSlotProps } from '..';
 
 const useUtilityClasses = (ownerState: { selected: boolean; disabled: boolean }) => {
   const { selected, disabled } = ownerState;
