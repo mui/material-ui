@@ -2,6 +2,14 @@
 
 <p class="description">This guide explains how to migrate from JSS to Emotion when updating from Material UI v4 to v5.</p>
 
+## Material UI v5 migration
+
+1. [Getting started](/material-ui/migration/migration-v4/)
+2. [Breaking changes part one: style and theme](/material-ui/migration/v5-style-changes/)
+3. [Breaking changes part two: components](/material-ui/migration/v5-component-changes/)
+4. Migrating from JSS <— _you are here_
+5. [Troubleshooting](/material-ui/migration/troubleshooting/)
+
 ## Migrating from JSS to Emotion
 
 One of the biggest changes in v5 is the swapping of JSS for [Emotion](https://emotion.sh/docs/introduction) (or styled-components as an alternative).

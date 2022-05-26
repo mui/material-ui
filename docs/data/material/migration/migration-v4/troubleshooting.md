@@ -2,6 +2,14 @@
 
 <p class="description">This document covers known issues and common problems encountered when migrating from Material UI v4 to v5.</p>
 
+## Material UI v5 migration
+
+1. [Getting started](/material-ui/migration/migration-v4/)
+2. [Breaking changes part one: style and theme](/material-ui/migration/v5-style-changes/)
+3. [Breaking changes part two: components](/material-ui/migration/v5-component-changes/)
+4. [Migrating from JSS](/material-ui/migration/migrating-from-jss/)
+5. Troubleshooting <— _you are here_
+
 ## Styles broken after migrating to v5
 
 There are two reasons why component styles may be broken after you've completed all steps in the migration process.

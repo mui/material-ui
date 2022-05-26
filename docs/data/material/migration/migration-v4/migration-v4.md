@@ -2,9 +2,17 @@
 
 <p class="description">This guide explains how and why to migrate from Material UI v4 to v5.</p>
 
+## Material UI v5 migration
+
+1. Getting started <— _you are here_
+2. [Breaking changes part one: style and theme](/material-ui/migration/v5-style-changes/)
+3. [Breaking changes part two: components](/material-ui/migration/v5-component-changes/)
+4. [Migrating from JSS](/material-ui/migration/migrating-from-jss/)
+5. [Troubleshooting](/material-ui/migration/troubleshooting/)
+
 ## Introduction
 
-This is the first document in a multi-part series to walk you through upgrading your site from Material UI v4 to v5.
+This is the first document in a multi-part series to walk you through upgrading your app from Material UI v4 to v5.
 
 We highly recommend running our [codemods](#run-codemods) for efficiency—these will automatically address many of the [breaking changes](#address-breaking-changes) introduced in v5.
 

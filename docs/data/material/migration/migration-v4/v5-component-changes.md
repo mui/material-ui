@@ -2,6 +2,14 @@
 
 <p class="description">This is a reference guide to all of the breaking changes introduced in Material v5, and how to handle them when migrating from v4. This part covers changes to components.</p>
 
+## Material UI v5 migration
+
+1. [Getting started](/material-ui/migration/migration-v4/)
+2. [Breaking changes part one: style and theme](/material-ui/migration/v5-style-changes/)
+3. Breaking changes part two: components <— _you are here_
+4. [Migrating from JSS](/material-ui/migration/migrating-from-jss/)
+5. [Troubleshooting](/material-ui/migration/troubleshooting/)
+
 ## Breaking changes, part two
 
 Material UI v5 introduces a number of breaking changes from v4.
