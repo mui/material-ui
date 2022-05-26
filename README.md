@@ -48,9 +48,9 @@ yarn add @mui/material @emotion/react @emotion/styled
 <details>
   <summary>Older versions</summary>
 
-- **[v4.x](https://v4.mui.com/)** ([Migration from v4 to v5](https://mui.com/material-ui/guides/migration-v4/))
-- **[v3.x](https://v3.mui.com/)** ([Migration from v3 to v4](https://mui.com/material-ui/guides/migration-v3/))
-- **[v0.x](https://v0.mui.com/)** ([Migration to v1](https://mui.com/material-ui/guides/migration-v0x/))
+- **[v4.x](https://v4.mui.com/)** ([Migration from v4 to v5](https://mui.com/material-ui/migration/migration-v4/))
+- **[v3.x](https://v3.mui.com/)** ([Migration from v3 to v4](https://mui.com/material-ui/migration/migration-v3/))
+- **[v0.x](https://v0.mui.com/)** ([Migration to v1](https://mui.com/material-ui/migration/migration-v0x/))
 
 </details>
 
