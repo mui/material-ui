@@ -113,7 +113,7 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
             ownerState: { ...componentsProps.root?.ownerState },
           }),
         },
-        backdrop: BackdropProps ?? componentsProps.backdrop,
+        backdrop: { ...BackdropProps, ...componentsProps.backdrop },
       }}
       onTransitionEnter={() => setExited(false)}
       onTransitionExited={() => setExited(true)}
