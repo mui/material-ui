@@ -6,7 +6,7 @@
 <!-- How to customize a component -->
 <!-- How to target specific prop -->
 
-## Target a component
+## Component identifier
 
 To theme a specific component, specify the component identifier (`Joy{ComponentImportName}`) inside the `components` node.
 
@@ -35,6 +35,8 @@ function App() {
   return <CssVarsProvider theme={theme}>...</CssVarsProvider>;
 }
 ```
+
+You can check all of component identifiers from [here](https://github.com/mui/material-ui/blob/master/packages/mui-joy/src/styles/components.d.ts#L57).
 
 ## Access theme and props
 
@@ -66,7 +68,7 @@ extendTheme({
 
 We recommend to use CSS variables from `theme.vars.*` because it has better debugging experience and more performant in some cases.
 
-The style can contain any CSS selectors (support nested selectors) like:
+The style can contain any CSS selectors (support nested selectors) like this:
 
 ```js
 extendTheme({
@@ -91,11 +93,11 @@ extendTheme({
 });
 ```
 
-## Color scheme override
+## Target specific color scheme
 
 If you want to switch the values between color schemes, the way to do it without creating new tokens is to use CSS attribute selector.
 
-By default, Joy attach an attribute selector with the current color scheme to the html. For example, the html will be `<html data-joy-color-scheme="dark">` when the user switches to dark mode. You can use this data attribute (or via `theme.getColorSchemeSelector`) to style the component like:
+Joy attaches a `data-*` attribute with the current color scheme to the DOM (html by default). You can use `theme.getColorSchemeSelector` utility to style the component like this:
 
 ```js
 extendTheme({
@@ -106,7 +108,7 @@ extendTheme({
           // for the default color scheme (light)
           boxShadow: theme.vars.shadow.sm,
 
-          // same as `[data-joy-color-scheme="dark"] &`
+          // the result is `[data-joy-color-scheme="dark"] &`
           [theme.getColorSchemeSelector('dark')]: {
             boxShadow: 'none',
           },
@@ -119,7 +121,8 @@ extendTheme({
 
 This approach lets you apply a style for custom color schemes as well. However, note that it creates CSS specificity which might be cumbersome when a parent component wants to override the style.
 
-We don't recommend to use conditional operator to switch between values because it is not performant and it creates nested conditional operators if you have more than light and dark color schemes.
+:::error
+🚨 We don't recommend to use conditional operator to switch between values because it is not performant and it creates nested conditional operators if you have more than light and dark color schemes.
 
 ```js
 // 🚫 Don't do this
@@ -136,3 +139,7 @@ extendTheme({
   },
 });
 ```
+
+:::
+
+<!-- ## Examples -->
