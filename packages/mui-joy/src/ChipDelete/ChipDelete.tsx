@@ -33,12 +33,13 @@ const ChipDeleteRoot = styled('button', {
 })<{ ownerState: ChipDeleteProps }>(({ theme, ownerState }) => [
   {
     pointerEvents: 'visible', // force the ChipDelete to be hoverable because the decorator can have pointerEvents 'none'
-    width: 'var(--Chip-delete-size, 1.5rem)',
-    height: 'var(--Chip-delete-size, 1.5rem)',
+    width: 'var(--Chip-delete-size, 2rem)',
+    height: 'var(--Chip-delete-size, 2rem)',
+    borderRadius: 'var(--Chip-delete-radius, 50%)',
+    margin: 'var(--Chip-delete-margin)',
     display: 'inline-flex',
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: 'var(--Chip-delete-radius)',
     zIndex: 1, // overflow above sibling button or anchor
     border: 'none', // reset user agent stylesheet
     background: 'none', // reset user agent stylesheet
@@ -75,7 +76,7 @@ const ChipDelete = React.forwardRef(function ChipDelete(inProps, ref) {
   } = props;
   const chipContext = React.useContext(ChipContext);
   const color = colorProp || chipContext.color || 'primary';
-  const variant = variantProp || chipVariantMapping[chipContext.variant!] || 'contained';
+  const variant = variantProp || chipVariantMapping[chipContext.variant!] || 'solid';
   const disabled = disabledProp ?? chipContext.disabled;
 
   const buttonRef = React.useRef<HTMLElement | null>(null);

@@ -171,6 +171,8 @@ export default function JoyChip() {
         </Box>
         {/* Examples */}
         <Box sx={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap', gap: 5, mt: 5 }}>
+          <ChipDelete />
+          <ChipDelete variant="soft" />
           <Chip variant="plain" endDecorator={<ChipDelete />}>
             Benny
           </Chip>
@@ -203,13 +205,7 @@ export default function JoyChip() {
             variant="solid"
             color="success"
             size="sm"
-            startDecorator={
-              <Avatar
-                size="sm"
-                src={`/static/images/avatar/1.jpg`}
-                sx={{ m: 'calc(-1 * var(--Chip-paddingBlock))', mr: 0, '--Avatar-size': '28px' }}
-              />
-            }
+            startDecorator={<Avatar src={`/static/images/avatar/1.jpg`} />}
             endDecorator={<CheckIcon />}
           >
             Benny
