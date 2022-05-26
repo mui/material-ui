@@ -47,7 +47,7 @@ describe('<Masonry />', () => {
         display: 'flex',
         flexDirection: 'column',
         flexWrap: 'wrap',
-        alignContent: 'space-between',
+        alignContent: 'flex-start',
         boxSizing: 'border-box',
         marginTop: `${-(parseToNumber(theme.spacing(spacing)) / 2)}px`,
         marginRight: `${-(parseToNumber(theme.spacing(spacing)) / 2)}px`,
@@ -132,7 +132,7 @@ describe('<Masonry />', () => {
         width: '100%',
         display: 'flex',
         flexFlow: 'column wrap',
-        alignContent: 'space-between',
+        alignContent: 'flex-start',
         boxSizing: 'border-box',
         '& > *': {
           boxSizing: 'border-box',
@@ -160,7 +160,7 @@ describe('<Masonry />', () => {
         width: '100%',
         display: 'flex',
         flexFlow: 'column wrap',
-        alignContent: 'space-between',
+        alignContent: 'flex-start',
         boxSizing: 'border-box',
         '& > *': {
           boxSizing: 'border-box',
@@ -209,7 +209,7 @@ describe('<Masonry />', () => {
         width: '100%',
         display: 'flex',
         flexFlow: 'column wrap',
-        alignContent: 'space-between',
+        alignContent: 'flex-start',
         boxSizing: 'border-box',
         '& > *': {
           boxSizing: 'border-box',
@@ -255,7 +255,7 @@ describe('<Masonry />', () => {
         width: '100%',
         display: 'flex',
         flexFlow: 'column wrap',
-        alignContent: 'space-between',
+        alignContent: 'flex-start',
         boxSizing: 'border-box',
         '& > *': {
           boxSizing: 'border-box',
@@ -289,7 +289,7 @@ describe('<Masonry />', () => {
         width: '100%',
         display: 'flex',
         flexFlow: 'column wrap',
-        alignContent: 'space-between',
+        alignContent: 'flex-start',
         boxSizing: 'border-box',
         '& > *': {
           boxSizing: 'border-box',
@@ -333,7 +333,7 @@ describe('<Masonry />', () => {
         width: '100%',
         display: 'flex',
         flexFlow: 'column wrap',
-        alignContent: 'space-between',
+        alignContent: 'flex-start',
         boxSizing: 'border-box',
         '& > *': {
           boxSizing: 'border-box',
