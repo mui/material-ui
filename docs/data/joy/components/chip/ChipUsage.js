@@ -339,7 +339,7 @@ export default function ChipUsage() {
           </Box>
           <Box>
             <Typography
-              id="chip-children-textfield"
+              id="chip-children-text-field"
               level="body2"
               fontWeight="lg"
               mb={1}
@@ -347,7 +347,7 @@ export default function ChipUsage() {
               children
             </Typography>
             <TextField
-              id="children-textfield"
+              id="children-text-field"
               value={children}
               sx={{ bgcolor: 'background.body' }}
               size="sm"
