@@ -19,8 +19,8 @@ const useTab = (parameters: UseTabParameters) => {
 
   const a11yAttributes = {
     role: 'tab',
-    'aria-controls': getPanelId(context, value),
-    id: getTabId(context, value),
+    'aria-controls': getPanelId(context, value) ?? undefined,
+    id: getTabId(context, value) ?? undefined,
     'aria-selected': selected,
     disabled: otherButtonProps.disabled,
   };

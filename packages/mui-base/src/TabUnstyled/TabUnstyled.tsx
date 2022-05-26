@@ -6,8 +6,10 @@ import { unstable_useForkRef as useForkRef } from '@mui/utils';
 import composeClasses from '../composeClasses';
 import appendOwnerState from '../utils/appendOwnerState';
 import { getTabUnstyledUtilityClass } from './tabUnstyledClasses';
-import TabUnstyledProps, { TabUnstyledTypeMap } from './TabUnstyledProps';
+import { TabUnstyledProps, TabUnstyledTypeMap } from './TabUnstyled.types';
 import useTab from './useTab';
+import { WithOptionalOwnerState } from '../utils';
+import { TabUnstyledRootSlotProps } from '..';
 
 const useUtilityClasses = (ownerState: { selected: boolean; disabled: boolean }) => {
   const { selected, disabled } = ownerState;
@@ -74,18 +76,19 @@ const TabUnstyled = React.forwardRef<unknown, TabUnstyledProps>(function TabUnst
   const classes = useUtilityClasses(ownerState);
 
   const TabRoot: React.ElementType = component ?? components.Root ?? 'button';
-  const tabRootProps = appendOwnerState(TabRoot, { ...other, ...componentsProps.root }, ownerState);
-
-  return (
-    <TabRoot
-      {...getRootProps()}
-      {...tabRootProps}
-      className={clsx(classes.root, componentsProps.root?.className, className)}
-      ref={ref}
-    >
-      {children}
-    </TabRoot>
+  const tabRootProps: WithOptionalOwnerState<TabUnstyledRootSlotProps> = appendOwnerState(
+    TabRoot,
+    {
+      ...getRootProps(),
+      ...other,
+      ...componentsProps.root,
+      className: clsx(classes.root, componentsProps.root?.className, className),
+      ref,
+    },
+    ownerState,
   );
+
+  return <TabRoot {...tabRootProps}>{children}</TabRoot>;
 }) as OverridableComponent<TabUnstyledTypeMap>;
 
 TabUnstyled.propTypes /* remove-proptypes */ = {

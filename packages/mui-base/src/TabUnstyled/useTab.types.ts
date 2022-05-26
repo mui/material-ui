@@ -17,16 +17,16 @@ export interface UseTabParameters {
 }
 
 interface UseTabRootSlotEventHandlers {
-  onClick: React.MouseEventHandler;
-  onFocus: React.FocusEventHandler;
+  onClick?: React.MouseEventHandler;
+  onFocus?: React.FocusEventHandler;
 }
 
 export type UseTabRootSlotProps<TOther = {}> = UseButtonRootSlotProps<
   UseTabRootSlotEventHandlers & TOther
 > & {
-  'aria-controls': string | null;
-  'aria-selected': boolean;
+  'aria-controls': React.AriaAttributes['aria-controls'];
+  'aria-selected': React.AriaAttributes['aria-selected'];
   disabled: boolean;
-  id: string | null;
+  id: string | undefined;
   role: React.AriaRole;
 };
