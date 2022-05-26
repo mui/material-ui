@@ -344,3 +344,8 @@ declare module '@mui/joy/styles' {
   }
 }
 ```
+
+## Next steps
+
+- Learn how to customize the [theme global variants](/joy-ui/customization/theme-global-variants/).
+- Learn how to [theme a component](/joy-ui/customization/theme-components/).

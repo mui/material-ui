@@ -477,7 +477,7 @@ export default function ButtonThemes() {
   // the `node` is used for attaching CSS variables to this demo, you might not need it in your application.
   const [node, setNode] = React.useState(null);
   useEnhancedEffect(() => {
-    setNode(document.getElementById('button-themes'));
+    setNode(document.getElementById('button-themes-demo'));
   }, []);
 
   const [design, setDesign] = React.useState('github');
@@ -486,10 +486,12 @@ export default function ButtonThemes() {
       prefix={prefixes[design] || design}
       theme={themes[design]}
       colorSchemeNode={node || null}
-      colorSchemeSelector="#button-themes"
+      colorSchemeSelector="#button-themes-demo"
+      modeStorageKey="button-themes-demo"
+      colorSchemeStorageKey="button-themes-demo"
     >
       <Box
-        id="button-themes"
+        id="button-themes-demo"
         sx={{
           m: -1.5,
           mt: 0.5,
