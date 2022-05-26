@@ -1,6 +1,6 @@
 # Breaking changes in v5, part one: styles and themes
 
-<p class="description">This is a reference guide to all of the breaking changes introduced in Material v5, and how to handle them when migrating from v4.</p>
+<p class="description">This is a reference guide to all of the breaking changes introduced in Material v5, and how to handle them when migrating from v4. This part covers changes to styling and theming.</p>
 
 ## Breaking changes, part one
 
@@ -19,36 +19,18 @@ If you have already followed the instructions in the main migration guide and ru
 All other changes must be handled manually.
 :::
 
-### Supported browsers and Node versions
+## ref
 
-The targets of the default bundle have changed in v5.
-
-The exact versions will be pinned on release from the browserslist query `"> 0.5%, last 2 versions, Firefox ESR, not dead, not IE 11, maintained node versions"`.
-
-The default bundle supports the following minimum versions:
-
-<!-- #stable-snapshot -->
-
-- Node 12 (up from 8)
-- Chrome 90 (up from 49)
-- Edge 91 (up from 14)
-- Firefox 78 (up from 52)
-- Safari 14 (macOS) and 12.5 (iOS) (up from 10)
-- and more (see [.browserslistrc (`stable` entry)](https://github.com/mui/material-ui/blob/HEAD/.browserslistrc#L11))
-
-It no longer supports IE 11.
-If you need to support IE 11, check out our [legacy bundle](/material-ui/guides/minimizing-bundle-size/#legacy-bundle).
-
-## `ref`
-
-### Refactor non-`ref`-forwarding class components
+### Refactor non-ref-forwarding class components
 
 Support for non-ref-forwarding class components in the `component` prop or as immediate `children` has been dropped.
-If you were using `unstable_createStrictModeTheme` or didn't see any warnings related to `findDOMNode` in `React.StrictMode` then you don't need to do anything.
-Otherwise check out the [Caveat with refs](/material-ui/guides/composition/#caveat-with-refs) section in the composition guide to find out how to migrate.
-This change affects almost all components where you're using the `component` prop or passing `children` to components that require `children` to be elements (e.g. `<MenuList><CustomMenuItem /></MenuList>`)
 
-### Fix `ref` type specificity
+If you were using `unstable_createStrictModeTheme` or didn't see any warnings related to `findDOMNode` in `React.StrictMode` then you don't need to take any further action.
+
+Otherwise check out the [Caveat with refs](/material-ui/guides/composition/#caveat-with-refs) section in the Composition guide to find out how to migrate.
+This change affects almost all components where you're using the `component` prop or passing `children` to components that require `children` to be elements (e.g. `<MenuList><CustomMenuItem /></MenuList>`).
+
+### Fix ref type specificity
 
 For some components, you may get a type error when passing `ref`.
 To avoid the error, you should use a specific element type.
@@ -76,9 +58,9 @@ Here is an example:
  }
 ```
 
-The list of components that expect a specific element type is as follows:
+Here are the specific element types that each component expects:
 
-#### `@mui/material`
+#### @mui/material
 
 - [Accordion](/material-ui/api/accordion/) - `HTMLDivElement`
 - [Alert](/material-ui/api/alert/) - `HTMLDivElement`
@@ -92,7 +74,7 @@ The list of components that expect a specific element type is as follows:
 - [Tabs](/material-ui/api/tabs/) - `HTMLDivElement`
 - [ToggleButton](/material-ui/api/toggle-button/) - `HTMLButtonElement`
 
-#### `@mui/lab`
+#### @mui/lab
 
 - [Timeline](/material-ui/api/timeline/) - `HTMLUListElement`
 
@@ -100,10 +82,11 @@ The list of components that expect a specific element type is as follows:
 
 ### ✅ Adjust CSS injection order
 
-The style library used by default in v5 is [Emotion](https://emotion.sh/docs/introduction). While migrating from JSS to Emotion, and if you are using JSS style overrides for your components (for example overrides created by `makeStyles`), you will need to take care of the CSS injection order.
-To do so, you need to have the `StyledEngineProvider` with the `injectFirst` option at the **top of your component tree**.
+The style library used by default in v5 is [Emotion](https://emotion.sh/docs/introduction). 
 
-Here is an example:
+If you are migrating from JSS to Emotion, and you're currently using JSS style overrides for your components—for example, those created by `makeStyles`—you will need to take care of the CSS injection order.
+
+To do so, you need to have the `StyledEngineProvider` with the `injectFirst` option at the top of your component tree, as shown here:
 
 ```jsx
 import * as React from 'react';
@@ -119,13 +102,11 @@ export default function GlobalCssPriority() {
 }
 ```
 
-### ✅ Add `prepend` to `createCache`
+### ✅ Add prepend to createCache
 
-:::warning
-**Note:** If you are using emotion to style your app, and have a custom cache, it will override the one provided by MUI. In order for the injection order to still be correct, you need to add the `prepend` option to `createCache`.
-:::
+If you have a custom cache and are using Emotion to style your app, it will override the cache provided by Material UI.
 
-Here is an example:
+To correct the injection order, add the `prepend` option to `createCache`, as shown below:
 
 ```diff
  import * as React from 'react';
@@ -140,19 +121,21 @@ Here is an example:
  export default function PlainCssPriority() {
    return (
      <CacheProvider value={cache}>
-       {/* Your component tree. Now you can override MUI's styles. */}
+       {/* Your component tree. Now you can override Material UI's styles. */}
      </CacheProvider>
    );
  }
 ```
 
 :::info
-**Note:** If you are using styled-components and have `StyleSheetManager` with a custom `target`, make sure that the target is the first element in the HTML `<head>`. To see how it can be done, take a look at the [`StyledEngineProvider` implementation](https://github.com/mui/material-ui/blob/master/packages/mui-styled-engine-sc/src/StyledEngineProvider/StyledEngineProvider.js) in the `@mui/styled-engine-sc` package.
+If you are using styled-components and have a `StyleSheetManager` with a custom `target`, make sure that the target is the first element in the HTML `<head>`. 
+
+To see how it can be done, take a look at the [`StyledEngineProvider` implementation](https://github.com/mui/material-ui/blob/master/packages/mui-styled-engine-sc/src/StyledEngineProvider/StyledEngineProvider.js) in the `@mui/styled-engine-sc` package.
 :::
 
 ## Theme structure
 
-### ✅ Add `adaptV4Theme` helper
+### ✅ Add adaptV4Theme helper
 
 The structure of the theme has changed in v5. You need to update its shape.
 For a smoother transition, the `adaptV4Theme` helper allows you to iteratively upgrade some of the theme changes to the new theme structure.
@@ -177,22 +160,22 @@ The following changes are supported by the adapter:
 
 ### Remove gutters
 
-- The "gutters" abstraction hasn't proven to be used frequently enough to be valuable.
+The "gutters" abstraction hasn't proven to be used frequently enough to be valuable.
 
-  ```diff
-  -theme.mixins.gutters(),
-  +paddingLeft: theme.spacing(2),
-  +paddingRight: theme.spacing(2),
-  +[theme.breakpoints.up('sm')]: {
-  +  paddingLeft: theme.spacing(3),
-  +  paddingRight: theme.spacing(3),
-  +},
-  ```
+```diff
+-theme.mixins.gutters(),
++paddingLeft: theme.spacing(2),
++paddingRight: theme.spacing(2),
++[theme.breakpoints.up('sm')]: {
++  paddingLeft: theme.spacing(3),
++  paddingRight: theme.spacing(3),
++},
+```
 
-### ✅ Remove `px` suffix
+### ✅ Remove px suffix
 
 `theme.spacing` now returns single values with px units by default.
-This change improves the integration with styled-components & emotion.
+This change improves the integration with styled-components & Emotion.
 
 Before:
 
@@ -206,9 +189,9 @@ After:
 theme.spacing(2) => '16px'
 ```
 
-### ✅ Rename `theme.palette.type`
+### ✅ Rename theme.palette.type
 
-The `theme.palette.type` key was renamed to `theme.palette.mode`, to better follow the "dark mode" term that is usually used for describing this feature.
+The `theme.palette.type` key was renamed to `theme.palette.mode`, to better follow the "dark mode" terminology that is usually used for describing this feature.
 
 ```diff
  import { createTheme } from '@mui/material/styles';
@@ -216,12 +199,12 @@ The `theme.palette.type` key was renamed to `theme.palette.mode`, to better foll
 +const theme = createTheme({palette: { mode: 'dark' }}),
 ```
 
-### Change default `theme.palette.info` colors
+### Change default theme.palette.info colors
 
-The default `theme.palette.info` colors were changed to pass AA standard contrast ratio in both light & dark mode.
+The default `theme.palette.info` colors were changed to pass the AA standard contrast ratio in both light and dark modes.
 
 ```diff
- info = {
+  info = {
 -  main: cyan[500],
 +  main: lightBlue[700], // lightBlue[400] in "dark" mode
 
@@ -230,109 +213,110 @@ The default `theme.palette.info` colors were changed to pass AA standard contras
 
 -  dark: cyan[700],
 +  dark: lightBlue[900], // lightBlue[700] in "dark" mode
- }
+  }
 ```
 
-### Change default `theme.palette.success` colors
+### Change default theme.palette.success colors
 
-- The default `theme.palette.success` colors were changed to pass AA standard contrast ratio in both light & dark mode.
+The default `theme.palette.success` colors were changed to pass the AA standard contrast ratio in both light and dark modes.
 
-  ```diff
-   success = {
-  -  main: green[500],
-  +  main: green[800], // green[400] in "dark" mode
+```diff
+  success = {
+-  main: green[500],
++  main: green[800], // green[400] in "dark" mode
 
-  -  light: green[300],
-  +  light: green[500], // green[300] in "dark" mode
+-  light: green[300],
++  light: green[500], // green[300] in "dark" mode
 
-  -  dark: green[700],
-  +  dark: green[900], // green[700] in "dark" mode
-   }
-  ```
+-  dark: green[700],
++  dark: green[900], // green[700] in "dark" mode
+  }
+```
 
-### Change default `theme.palette.warning` colors
+### Change default theme.palette.warning colors
 
-- The default `theme.palette.warning` colors were changed to pass AA standard contrast ratio in both light & dark mode.
+The default `theme.palette.warning` colors were changed to pass the AA standard contrast ratio in both light and dark modes.
 
-  ```diff
-   warning = {
-  -  main: orange[500],
-  +  main: '#ED6C02', // orange[400] in "dark" mode
+```diff
+  warning = {
+-  main: orange[500],
++  main: '#ED6C02', // orange[400] in "dark" mode
 
-  -  light: orange[300],
-  +  light: orange[500], // orange[300] in "dark" mode
+-  light: orange[300],
++  light: orange[500], // orange[300] in "dark" mode
 
-  -  dark: orange[700],
-  +  dark: orange[900], // orange[700] in "dark" mode
-   }
-  ```
+-  dark: orange[700],
++  dark: orange[900], // orange[700] in "dark" mode
+  }
+```
 
-### Restore `theme.palette.text.hint` key (if needed)
+### Restore theme.palette.text.hint key (if needed)
 
-- The `theme.palette.text.hint` key was unused in Material UI components, and has been removed.
-  If you depend on it, you can add it back:
+The `theme.palette.text.hint` key was unused in Material UI components, and has been removed.
+If you depend on it, you can add it back:
 
-  ```diff
-   import { createTheme } from '@mui/material/styles';
+```diff
+  import { createTheme } from '@mui/material/styles';
 
-  -const theme = createTheme(),
-  +const theme = createTheme({
-  +  palette: { text: { hint: 'rgba(0, 0, 0, 0.38)' } },
-  +});
-  ```
+-const theme = createTheme(),
++const theme = createTheme({
++  palette: { text: { hint: 'rgba(0, 0, 0, 0.38)' } },
++});
+```
 
 ### Restructure component definitions
 
-- The components' definitions in the theme were restructured under the `components` key, to allow for easier discoverability of the definitions related to any one component.
+The component definitions in the theme were restructured under the `components` key to make them easier to find.
 
-  1. `props`
+#### 1. props
 
-  ```diff
-   import { createTheme } from '@mui/material/styles';
+```diff
+  import { createTheme } from '@mui/material/styles';
 
-   const theme = createTheme({
-  -  props: {
-  -    MuiButton: {
-  -      disableRipple: true,
-  -    },
-  -  },
-  +  components: {
-  +    MuiButton: {
-  +      defaultProps: {
-  +        disableRipple: true,
-  +      },
-  +    },
-  +  },
-   });
-  ```
+  const theme = createTheme({
+-  props: {
+-    MuiButton: {
+-      disableRipple: true,
+-    },
+-  },
++  components: {
++    MuiButton: {
++      defaultProps: {
++        disableRipple: true,
++      },
++    },
++  },
+  });
+```
 
-  2. `overrides`
+#### 2. overrides
 
-  ```diff
-   import { createTheme } from '@mui/material/styles';
+```diff
+  import { createTheme } from '@mui/material/styles';
 
-   const theme = createTheme({
-  -  overrides: {
-  -    MuiButton: {
-  -      root: { padding: 0 },
-  -    },
-  -  },
-  +  components: {
-  +    MuiButton: {
-  +      styleOverrides: {
-  +        root: { padding: 0 },
-  +      },
-  +    },
-  +  },
-   });
-  ```
+  const theme = createTheme({
+-  overrides: {
+-    MuiButton: {
+-      root: { padding: 0 },
+-    },
+-  },
++  components: {
++    MuiButton: {
++      styleOverrides: {
++        root: { padding: 0 },
++      },
++    },
++  },
+  });
+```
 
 ## @mui/styles
 
-### Update `ThemeProvider` import
+### Update ThemeProvider import
 
 If you are using the utilities from `@mui/styles` together with the `@mui/material`, you should replace the use of `ThemeProvider` from `@mui/styles` with the one exported from `@mui/material/styles`.
-This way, the `theme` provided in the context will be available in both the styling utilities exported from `@mui/styles`, like `makeStyles`, `withStyles` etc. and the MUI components.
+
+This way, the `theme` provided in the context will be available in both the styling utilities exported from `@mui/styles`, like `makeStyles`, `withStyles`, etc., along with the Material UI components.
 
 ```diff
 -import { ThemeProvider } from '@mui/styles';
@@ -341,9 +325,11 @@ This way, the `theme` provided in the context will be available in both the styl
 
 Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available in the utilities coming from `@mui/styles`.
 
-### ✅ Add module augmentation for `DefaultTheme` (TypeScript)
+### ✅ Add module augmentation for DefaultTheme (TypeScript)
 
-The `@mui/styles` package is no longer part of `@mui/material/styles`. If you are using `@mui/styles` together with `@mui/material` you need to add a module augmentation for the `DefaultTheme`.
+The `@mui/styles` package is no longer part of `@mui/material/styles`. 
+
+If you are using `@mui/styles` together with `@mui/material` you need to add a module augmentation for the `DefaultTheme`.
 
 ```ts
 // in the file where you are creating the theme (invoking the function `createTheme()`)
@@ -358,228 +344,239 @@ declare module '@mui/styles' {
 
 ### ✅ Change color imports
 
-- Nested imports of more than 1 level are private. You can no longer import `red` from `@mui/material/colors/red`.
+Nested imports of more than one level are private. For example, you can no longer import `red` from `@mui/material/colors/red`.
 
-  ```diff
-  -import red from '@mui/material/colors/red';
-  +import { red } from '@mui/material/colors';
-  ```
+```diff
+-import red from '@mui/material/colors/red';
++import { red } from '@mui/material/colors';
+```
 
 ## @mui/material/styles
 
-### ✅ Rename `fade` to `alpha`
+### ✅ Rename fade to alpha
 
-- Renamed `fade` to `alpha` to better describe its functionality.
-  The previous name was leading to confusion when the input color already had an alpha value. The helper **overrides** the alpha value of the color.
+`fade` was renamed to `alpha` to better describe its functionality.
 
-  ```diff
-  -import { fade } from '@mui/material/styles';
-  +import { alpha } from '@mui/material/styles';
+The previous name caused confusion when the input color already had an alpha value. The helper overrides the alpha value of the color.
 
-   const classes = makeStyles(theme => ({
-  -  backgroundColor: fade(theme.palette.primary.main, theme.palette.action.selectedOpacity),
-  +  backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
-   }));
-  ```
+```diff
+-import { fade } from '@mui/material/styles';
++import { alpha } from '@mui/material/styles';
 
-### ✅ Update `createStyles` import
+  const classes = makeStyles(theme => ({
+-  backgroundColor: fade(theme.palette.primary.main, theme.palette.action.selectedOpacity),
++  backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+  }));
+```
 
-- The `createStyles` function from `@mui/material/styles` was moved to the one exported from `@mui/styles`. It is necessary for removing the dependency to `@mui/styles` in the core package.
+### ✅ Update createStyles import
 
-  ```diff
-  -import { createStyles } from '@mui/material/styles';
-  +import { createStyles } from '@mui/styles';
-  ```
+The `createStyles` function from `@mui/material/styles` was moved to the one exported from `@mui/styles`. It is necessary for removing the dependency to `@mui/styles` in the core package.
 
-### ✅ Update `createGenerateClassName` import
+```diff
+-import { createStyles } from '@mui/material/styles';
++import { createStyles } from '@mui/styles';
+```
 
-- The `createGenerateClassName` function is no longer exported from `@mui/material/styles`. You should import it directly from `@mui/styles`.
+### ✅ Update createGenerateClassName import
 
-  ```diff
-  -import { createGenerateClassName } from '@mui/material/styles';
-  +import { createGenerateClassName } from '@mui/styles';
-  ```
+The `createGenerateClassName` function is no longer exported from `@mui/material/styles`. You should import it directly from `@mui/styles`.
 
-  To generate custom class names **without** using `@mui/styles`, check out [ClassNameGenerator](/material-ui/experimental-api/classname-generator/) for more details.
+```diff
+-import { createGenerateClassName } from '@mui/material/styles';
++import { createGenerateClassName } from '@mui/styles';
+```
 
-### ✅ Rename `createMuiTheme`
+To generate custom class names without using `@mui/styles`, check out [ClassName Generator](/material-ui/experimental-api/classname-generator/) for more details.
 
-- The function `createMuiTheme` was renamed to `createTheme` to make it more intuitive to use with `ThemeProvider`.
+### ✅ Rename createMuiTheme
 
-  ```diff
-  -import { createMuiTheme } from '@mui/material/styles';
-  +import { createTheme } from '@mui/material/styles';
+The function `createMuiTheme` was renamed to `createTheme` to make it more intuitive to use with `ThemeProvider`.
 
-  -const theme = createMuiTheme({
-  +const theme = createTheme({
-  ```
+```diff
+-import { createMuiTheme } from '@mui/material/styles';
++import { createTheme } from '@mui/material/styles';
 
-### ✅ Update `jssPreset` import
+-const theme = createMuiTheme({
++const theme = createTheme({
+```
 
-- The `jssPreset` object is no longer exported from `@mui/material/styles`. You should import it directly from `@mui/styles`.
+### ✅ Update jssPreset import
 
-  ```diff
-  -import { jssPreset } from '@mui/material/styles';
-  +import { jssPreset } from '@mui/styles';
-  ```
+The `jssPreset` object is no longer exported from `@mui/material/styles`. You should import it directly from `@mui/styles`.
+
+```diff
+-import { jssPreset } from '@mui/material/styles';
++import { jssPreset } from '@mui/styles';
+```
 
 ### ✅ Update `makeStyles` import
 
-- The `makeStyles` JSS utility is no longer exported from `@mui/material/styles`.
-  You can use `@mui/styles/makeStyles` instead.
-  Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available.
-  If you are using this utility together with `@mui/material`, it's recommended that you use the `ThemeProvider` component from `@mui/material/styles` instead.
+The `makeStyles` JSS utility is no longer exported from `@mui/material/styles`.
+You can use `@mui/styles/makeStyles` instead.
 
-  ```diff
-  -import { makeStyles } from '@mui/material/styles';
-  +import { makeStyles } from '@mui/styles';
-  +import { createTheme, ThemeProvider } from '@mui/material/styles';
+Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available.
 
-  +const theme = createTheme();
-   const useStyles = makeStyles((theme) => ({
-     background: theme.palette.primary.main,
-   }));
-   function Component() {
-     const classes = useStyles();
-     return <div className={classes.root} />
-   }
+If you are using this utility together with `@mui/material`, it's recommended that you use the `ThemeProvider` component from `@mui/material/styles` instead.
 
-   // In the root of your app
-   function App(props) {
-  -  return <Component />;
-  +  return <ThemeProvider theme={theme}><Component {...props} /></ThemeProvider>;
-   }
-  ```
+```diff
+-import { makeStyles } from '@mui/material/styles';
++import { makeStyles } from '@mui/styles';
++import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-### ✅ Update `MuiThemeProvider` import
++const theme = createTheme();
+  const useStyles = makeStyles((theme) => ({
+    background: theme.palette.primary.main,
+  }));
+  function Component() {
+    const classes = useStyles();
+    return <div className={classes.root} />
+  }
 
-- The `MuiThemeProvider` component is no longer exported from `@mui/material/styles`.
-  Use `ThemeProvider` instead.
+  // In the root of your app
+  function App(props) {
+-  return <Component />;
++  return <ThemeProvider theme={theme}><Component {...props} /></ThemeProvider>;
+  }
+```
 
-  ```diff
-  -import { MuiThemeProvider } from '@mui/material/styles';
-  +import { ThemeProvider } from '@mui/material/styles';
-  ```
+### ✅ Update MuiThemeProvider import
 
-### ✅ Update `ServerStyleSheets` import
+The `MuiThemeProvider` component is no longer exported from `@mui/material/styles`. Use `ThemeProvider` instead.
 
-- The `ServerStyleSheets` component is no longer exported from `@mui/material/styles`. You should import it directly from `@mui/styles`.
+```diff
+-import { MuiThemeProvider } from '@mui/material/styles';
++import { ThemeProvider } from '@mui/material/styles';
+```
 
-  ```diff
-  -import { ServerStyleSheets } from '@mui/material/styles';
-  +import { ServerStyleSheets } from '@mui/styles';
-  ```
+### ✅ Update ServerStyleSheets import
 
-### `styled`
+The `ServerStyleSheets` component is no longer exported from `@mui/material/styles`. You should import it directly from `@mui/styles`.
 
-- The `styled` JSS utility is no longer exported from `@mui/material/styles`. You can use the one exported from `@mui/styles` instead.
-  Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available.
-  If you are using this utility together with `@mui/material`, it's recommended you use the `ThemeProvider` component from `@mui/material/styles` instead.
+```diff
+-import { ServerStyleSheets } from '@mui/material/styles';
++import { ServerStyleSheets } from '@mui/styles';
+```
 
-  ```diff
-  -import { styled } from '@mui/material/styles';
-  +import { styled } from '@mui/styles';
-  +import { createTheme, ThemeProvider } from '@mui/material/styles';
+### styled
 
-  +const theme = createTheme();
-   const MyComponent = styled('div')(({ theme }) => ({ background: theme.palette.primary.main }));
+The `styled` JSS utility is no longer exported from `@mui/material/styles`. You can use the one exported from `@mui/styles` instead.
 
-   function App(props) {
-  -  return <MyComponent />;
-  +  return <ThemeProvider theme={theme}><MyComponent {...props} /></ThemeProvider>;
-   }
-  ```
+Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available.
 
-### ✅ Update `StylesProvider` import
+If you are using this utility together with `@mui/material`, it's recommended you use the `ThemeProvider` component from `@mui/material/styles` instead.
 
-- The `StylesProvider` component is no longer exported from `@mui/material/styles`. You should import it directly from `@mui/styles`.
+```diff
+-import { styled } from '@mui/material/styles';
++import { styled } from '@mui/styles';
++import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-  ```diff
-  -import { StylesProvider } from '@mui/material/styles';
-  +import { StylesProvider } from '@mui/styles';
-  ```
++const theme = createTheme();
+  const MyComponent = styled('div')(({ theme }) => ({ background: theme.palette.primary.main }));
 
-### ✅ Update `useThemeVariants` import
+  function App(props) {
+-  return <MyComponent />;
++  return <ThemeProvider theme={theme}><MyComponent {...props} /></ThemeProvider>;
+  }
+```
 
-- The `useThemeVariants` hook is no longer exported from `@mui/material/styles`.
-  You should import it directly from `@mui/styles`.
+### ✅ Update StylesProvider import
 
-  ```diff
-  -import { useThemeVariants } from '@mui/material/styles';
-  +import { useThemeVariants } from '@mui/styles';
-  ```
+The `StylesProvider` component is no longer exported from `@mui/material/styles`. You should import it directly from `@mui/styles`.
 
-### ✅ Update `withStyles` import
+```diff
+-import { StylesProvider } from '@mui/material/styles';
++import { StylesProvider } from '@mui/styles';
+```
 
-- The `withStyles` JSS utility is no longer exported from `@mui/material/styles`.
-  You can use `@mui/styles/withStyles` instead. Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available.
-  If you are using this utility together with `@mui/material`, you should use the `ThemeProvider` component from `@mui/material/styles` instead.
+### ✅ Update useThemeVariants import
 
-  ```diff
-  -import { withStyles } from '@mui/material/styles';
-  +import { withStyles } from '@mui/styles';
-  +import { createTheme, ThemeProvider } from '@mui/material/styles';
+The `useThemeVariants` hook is no longer exported from `@mui/material/styles`.
+You should import it directly from `@mui/styles`.
 
-  +const defaultTheme = createTheme();
-   const MyComponent = withStyles((props) => {
-     const { classes, className, ...other } = props;
-     return <div className={clsx(className, classes.root)} {...other} />
-   })(({ theme }) => ({ root: { background: theme.palette.primary.main }}));
+```diff
+-import { useThemeVariants } from '@mui/material/styles';
++import { useThemeVariants } from '@mui/styles';
+```
 
-   function App() {
-  -  return <MyComponent />;
-  +  return <ThemeProvider theme={defaultTheme}><MyComponent /></ThemeProvider>;
-   }
-  ```
+### ✅ Update withStyles import
 
-### ✅ Replace `innerRef` with `ref`
+The `withStyles` JSS utility is no longer exported from `@mui/material/styles`.
+You can use `@mui/styles/withStyles` instead. 
 
-- Replace the `innerRef` prop with the `ref` prop. Refs are now automatically forwarded to the inner component.
+Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available.
 
-  ```diff
-   import * as React from 'react';
-   import { withStyles } from '@mui/styles';
+If you are using this utility together with `@mui/material`, you should use the `ThemeProvider` component from `@mui/material/styles` instead.
 
-   const MyComponent = withStyles({
-     root: {
-       backgroundColor: 'red',
-     },
-   })(({ classes }) => <div className={classes.root} />);
+```diff
+-import { withStyles } from '@mui/material/styles';
++import { withStyles } from '@mui/styles';
++import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-   function MyOtherComponent(props) {
-     const ref = React.useRef();
-  -  return <MyComponent innerRef={ref} />;
-  +  return <MyComponent ref={ref} />;
-   }
-  ```
++const defaultTheme = createTheme();
+  const MyComponent = withStyles((props) => {
+    const { classes, className, ...other } = props;
+    return <div className={clsx(className, classes.root)} {...other} />
+  })(({ theme }) => ({ root: { background: theme.palette.primary.main }}));
 
-### Update `withTheme` import
+  function App() {
+-  return <MyComponent />;
++  return <ThemeProvider theme={defaultTheme}><MyComponent /></ThemeProvider>;
+  }
+```
 
-- The `withTheme` HOC utility has been removed from the `@mui/material/styles` package. You can use `@mui/styles/withTheme` instead. Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available. If you are using this utility together with `@mui/material`, it's recommended you use the `ThemeProvider` component from `@mui/material/styles` instead.
+### ✅ Replace innerRef with ref
 
-  ```diff
-  -import { withTheme } from '@mui/material/styles';
-  +import { withTheme } from '@mui/styles';
-  +import { createTheme, ThemeProvider } from '@mui/material/styles';
+Replace the `innerRef` prop with the `ref` prop. Refs are now automatically forwarded to the inner component.
 
-  +const theme = createTheme();
-   const MyComponent = withTheme(({ theme }) => <div>{props.theme.direction}</div>);
+```diff
+  import * as React from 'react';
+  import { withStyles } from '@mui/styles';
 
-   function App(props) {
-  -  return <MyComponent />;
-  +  return <ThemeProvider theme={theme}><MyComponent {...props} /></ThemeProvider>;
-   }
-  ```
+  const MyComponent = withStyles({
+    root: {
+      backgroundColor: 'red',
+    },
+  })(({ classes }) => <div className={classes.root} />);
 
-### ✅ Remove `withWidth`
+  function MyOtherComponent(props) {
+    const ref = React.useRef();
+-  return <MyComponent innerRef={ref} />;
++  return <MyComponent ref={ref} />;
+  }
+```
 
-- This HOC was removed. There's an alternative using the [`useMediaQuery` hook](/material-ui/react-use-media-query/#migrating-from-withwidth).
+### Update withTheme import
+
+The `withTheme` HOC utility has been removed from the `@mui/material/styles` package. You can use `@mui/styles/withTheme` instead. 
+
+Make sure to add a `ThemeProvider` at the root of your application, as the `defaultTheme` is no longer available. 
+
+If you are using this utility together with `@mui/material`, it's recommended you use the `ThemeProvider` component from `@mui/material/styles` instead.
+
+```diff
+-import { withTheme } from '@mui/material/styles';
++import { withTheme } from '@mui/styles';
++import { createTheme, ThemeProvider } from '@mui/material/styles';
+
++const theme = createTheme();
+  const MyComponent = withTheme(({ theme }) => <div>{props.theme.direction}</div>);
+
+  function App(props) {
+-  return <MyComponent />;
++  return <ThemeProvider theme={theme}><MyComponent {...props} /></ThemeProvider>;
+  }
+```
+
+### ✅ Remove withWidth
+
+This HOC was removed. If you need this feature, you can try [the alternative that uses the `useMediaQuery` hook](/material-ui/react-use-media-query/#migrating-from-withwidth).
 
 ## @mui/icons-material
 
 ### Reduce GitHub icon size
 
-The `GitHub` icon was reduced in size from 24px to 22px wide to match the other icons size.
+The GitHub icon was reduced in size from 24px to 22px wide to match the size of the other icons.
 
 ## @material-ui/pickers
 
@@ -587,32 +584,32 @@ We have a [dedicated page](/material-ui/guides/pickers-migration/) for migrating
 
 ## System
 
-### ✅ Rename `gap` props
+### ✅ Rename gap props
 
-- The following system functions (and properties) were renamed because they are considered deprecated CSS:
+The following system functions and properties were renamed because they are considered deprecated CSS:
 
-  - `gridGap` to `gap`
-  - `gridRowGap` to `rowGap`
-  - `gridColumnGap` to `columnGap`
+- `gridGap` becomes `gap`
+- `gridRowGap` becomes `rowGap`
+- `gridColumnGap` becomes `columnGap`
 
-### ✅ Add spacing units to `gap` props
+### ✅ Add spacing units to gap props
 
-- Use spacing unit in `gap`, `rowGap`, and `columnGap`. If you were using a number previously, you need to mention the px to bypass the new transformation with `theme.spacing`.
+Use a spacing unit in `gap`, `rowGap`, and `columnGap`. If you were using a number previously, you need to mention the px to bypass the new transformation with `theme.spacing`.
 
-  ```diff
-   <Box
-  -  gap={2}
-  +  gap="2px"
-   >
-  ```
+```diff
+  <Box
+-  gap={2}
++  gap="2px"
+  >
+```
 
-- Replace `css` prop with `sx` to avoid collision with styled-components & emotion `css` prop.
+Replace `css` prop with `sx` to avoid collision with styled-components and Emotion's `css` prop.
 
-  ```diff
-  -<Box css={{ color: 'primary.main' }} />
-  +<Box sx={{ color: 'primary.main' }} />
-  ```
+```diff
+-<Box css={{ color: 'primary.main' }} />
++<Box sx={{ color: 'primary.main' }} />
+```
 
-  :::warning
-  Note that the system grid function wasn't documented in v4.
-  :::
+:::warning
+The system grid function was not documented in v4.
+:::

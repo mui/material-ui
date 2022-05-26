@@ -1,6 +1,6 @@
 # Breaking changes in v5, part two: core components
 
-<p class="description">This is a reference guide to all of the breaking changes introduced in Material v5, and how to handle them when migrating from v4.</p>
+<p class="description">This is a reference guide to all of the breaking changes introduced in Material v5, and how to handle them when migrating from v4. This part covers changes to components.</p>
 
 ## Breaking changes, part two
 
@@ -19,7 +19,7 @@ If you have already followed the instructions in the main migration guide and ru
 All other changes must be handled manually.
 :::
 
-As the core components use emotion as their style engine, the props used by emotion are not intercepted. The prop `as` in the following code snippet will not be propagated to `SomeOtherComponent`.
+As the core components use Emotion as their style engine, the props used by Emotion are not intercepted. The prop `as` in the following code snippet will not be propagated to `SomeOtherComponent`.
 
 ```jsx
 <MuiComponent component={SomeOtherComponent} as="button" />

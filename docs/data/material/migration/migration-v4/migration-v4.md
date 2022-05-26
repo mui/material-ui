@@ -1,16 +1,16 @@
-# Migrating to v5: first steps
+# Migrating to v5: getting started
 
 <p class="description">This guide explains how and why to migrate from Material UI v4 to v5.</p>
 
 ## Introduction
 
-This is the first document in a four-part series to walk you through upgrading your site from Material UI v4 to v5.
+This is the first document in a multi-part series to walk you through upgrading your site from Material UI v4 to v5.
 
 We highly recommend running our [codemods](#run-codemods) for efficiency—these will automatically address many of the [breaking changes](#address-breaking-changes) introduced in v5.
 
 One of the biggest changes in v5 is the swapping of JSS for [Emotion](https://emotion.sh/docs/introduction).
 Note that you may continue to use JSS after migrating to v5, and when you're ready to move over to the new styling engine, you can refactor your components progressively.
-This process is covered in the final document in this series: [Migrating from JSS](/material-ui/migration/migrating-from-jss/).
+This process is covered in [Migrating from JSS](/material-ui/migration/migrating-from-jss/).
 
 :::info
 Need to refer back to an older version of the docs? Check out [the v4 documentation here](https://v4.mui.com/).
@@ -31,8 +31,28 @@ To learn more, check out [the blog post about the release of Material UI v5](/bl
 
 If you encounter any issues along the way, check the [Troubleshooting](/material-ui/migration/troubleshooting/) doc.
 
-For problems not addressed there, please [create an issue](https://github.com/mui/material-ui/issues/new?assignees=&labels=status%3A+needs+triage&template=1.bug.yml) with this title format: `[Migration] Summary of your issue`.
+For problems not addressed there, please [create an issue](https://github.com/mui/material-ui/issues/new?assignees=&labels=status%3A+needs+triage&template=1.bug.yml) with this title format: **[Migration] Summary of your issue**.
 :::
+
+## Supported browsers and Node versions
+
+The targets of the default bundle have changed in v5.
+
+The exact versions will be pinned on release from the browserslist query `"> 0.5%, last 2 versions, Firefox ESR, not dead, not IE 11, maintained node versions"`.
+
+The default bundle supports the following minimum versions:
+
+<!-- #stable-snapshot -->
+
+- Node 12 (up from 8)
+- Chrome 90 (up from 49)
+- Edge 91 (up from 14)
+- Firefox 78 (up from 52)
+- Safari 14 (macOS) and 12.5 (iOS) (up from 10)
+- and more (see [.browserslistrc (`stable` entry)](https://github.com/mui/material-ui/blob/HEAD/.browserslistrc#L11))
+
+Material UI no longer supports IE 11.
+If you need to support IE 11, check out our [legacy bundle](/material-ui/guides/minimizing-bundle-size/#legacy-bundle).
 
 ## Update React & TypeScript version
 
@@ -317,4 +337,4 @@ For more details, check out the [link-underline-hover codemod README](https://gi
 
 The codemods handle many of the breaking changes, but others must be addressed manually.
 
-Whether or not you choose to use the codemods, you are now ready to move on to the first of two [breaking changes](/material-ui/migration/v5-style-changes/) documents, which will walk you through the process of handling all remaining breaking changes.
+Whether or not you choose to use the codemods, you are now ready to move on to the first of two [breaking changes](/material-ui/migration/v5-style-changes/) documents.
