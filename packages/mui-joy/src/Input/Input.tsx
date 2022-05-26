@@ -39,22 +39,22 @@ const InputRoot = styled('div', {
     '--Input-radius': theme.vars.radius.sm, // radius is used by
     '--Input-gap': '0.5rem',
     '--Input-placeholderOpacity': 0.5,
-    '--Input-decorator-offset': 'calc(var(--Input-gutter) / 4)', // negative margin of the start/end adornment
+    '--Input-decorator-offset': 'calc(var(--Input-paddingInline) / 4)', // negative margin of the start/end adornment
     '--Input-focusedThickness': 'calc(var(--variant-outlinedBorderWidth, 1px) + 1px)',
     '--Input-focusedHighlight':
       theme.vars.palette[ownerState.color === 'neutral' ? 'primary' : ownerState.color!]?.[500],
     ...(ownerState.size === 'sm' && {
-      '--Input-gutter': '0.5rem',
+      '--Input-paddingInline': '0.5rem',
       '--Icon-fontSize': '1.25rem',
       minHeight: '32px',
     }),
     ...(ownerState.size === 'md' && {
-      '--Input-gutter': '0.75rem', // gutter is the padding-x
+      '--Input-paddingInline': '0.75rem', // gutter is the padding-x
       '--Icon-fontSize': '1.5rem',
       minHeight: '40px',
     }),
     ...(ownerState.size === 'lg' && {
-      '--Input-gutter': '1rem',
+      '--Input-paddingInline': '1rem',
       '--Input-gap': '0.75rem',
       '--Icon-fontSize': '1.75rem',
       minHeight: '48px',
@@ -68,7 +68,7 @@ const InputRoot = styled('div', {
     position: 'relative',
     display: 'flex',
     alignItems: 'center',
-    padding: `0.25rem var(--Input-gutter)`,
+    padding: `0.25rem var(--Input-paddingInline)`,
     borderRadius: 'var(--Input-radius)',
     fontFamily: theme.vars.fontFamily.body,
     fontSize: theme.vars.fontSize.md,
