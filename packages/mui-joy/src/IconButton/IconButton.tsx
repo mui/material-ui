@@ -37,6 +37,7 @@ const IconButtonRoot = styled('button', {
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: IconButtonProps }>(({ theme, ownerState }) => [
   {
+    '--Icon-margin': 'initial', // reset the icon's margin.
     ...(ownerState.size === 'sm' && {
       '--IconButton-size': '2rem',
       '--Icon-fontSize': '1.25rem',
@@ -58,7 +59,8 @@ const IconButtonRoot = styled('button', {
     fontFamily: theme.vars.fontFamily.body,
     minWidth: 'var(--IconButton-size)', // use min-width instead of height to make the button resilient to its content
     minHeight: 'var(--IconButton-size)', // use min-height instead of height to make the button resilient to its content
-    borderRadius: theme.vars.radius.sm,
+    margin: `var(--Button-margin)`, // to be controlled by other components, eg. Input
+    borderRadius: `var(--IconButton-radius, ${theme.vars.radius.sm})`, // to be controlled by other components, eg. Input
     border: 'none',
     backgroundColor: 'transparent',
     display: 'inline-flex',

@@ -36,7 +36,7 @@ const InputRoot = styled('div', {
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: InputProps & InputUnstyledOwnerState }>(({ theme, ownerState }) => [
   {
-    '--Input-radius': theme.vars.radius.sm, // radius is used by
+    '--Input-radius': theme.vars.radius.sm, // radius is used by the decorator children
     '--Input-gap': '0.5rem',
     '--Input-placeholderOpacity': 0.5,
     '--Input-decorator-offset': 'calc(var(--Input-paddingInline) / 4)', // negative margin of the start/end adornment
@@ -46,21 +46,32 @@ const InputRoot = styled('div', {
     ...(ownerState.size === 'sm' && {
       '--Input-paddingInline': '0.5rem',
       '--Icon-fontSize': '1.25rem',
-      minHeight: '32px',
+      '--Input-decorator-childHeight': '24px',
+      '--Input-minHeight': '32px',
     }),
     ...(ownerState.size === 'md' && {
       '--Input-paddingInline': '0.75rem', // gutter is the padding-x
       '--Icon-fontSize': '1.5rem',
-      minHeight: '40px',
+      '--Input-decorator-childHeight': '32px',
+      '--Input-minHeight': '40px',
     }),
     ...(ownerState.size === 'lg' && {
       '--Input-paddingInline': '1rem',
       '--Input-gap': '0.75rem',
       '--Icon-fontSize': '1.75rem',
-      minHeight: '48px',
+      '--Input-decorator-childHeight': '40px',
+      '--Input-minHeight': '48px',
     }),
+    // variables for controlling child components
+    '--Input-decorator-childOffset':
+      'calc(var(--Input-paddingInline) - var(--Input-decorator-offset) - (var(--Input-minHeight) - 2 * var(--variant-outlinedBorderWidth, 0px) - var(--Input-decorator-childHeight)) / 2)',
+    '--Input-decorator-childRadius':
+      'max(var(--Input-radius) - var(--Input-decorator-offset), min(var(--Input-decorator-offset) / 2, var(--Input-radius) / 2))',
+    '--Button-radius': 'var(--Input-decorator-childRadius)',
+    '--IconButton-radius': 'var(--Input-decorator-childRadius)',
     boxSizing: 'border-box',
     minWidth: 0, // forces the Input to stay inside a container by default
+    minHeight: 'var(--Input-minHeight)',
     ...(ownerState.fullWidth && {
       width: '100%',
     }),
@@ -68,7 +79,7 @@ const InputRoot = styled('div', {
     position: 'relative',
     display: 'flex',
     alignItems: 'center',
-    padding: `0.25rem var(--Input-paddingInline)`,
+    paddingInline: `var(--Input-paddingInline)`,
     borderRadius: 'var(--Input-radius)',
     fontFamily: theme.vars.fontFamily.body,
     fontSize: theme.vars.fontSize.md,
@@ -140,6 +151,8 @@ const InputStartDecorator = styled('span', {
   slot: 'StartDecorator',
   overridesResolver: (props, styles) => styles.startDecorator,
 })<{ ownerState: InputProps & InputUnstyledOwnerState }>(({ theme, ownerState }) => ({
+  '--Button-margin': '0 0 0 calc(var(--Input-decorator-childOffset) * -1)',
+  '--IconButton-margin': '0 0 0 calc(var(--Input-decorator-childOffset) * -1)',
   pointerEvents: 'none', // to make the input focused when click on the element because start element usually is an icon
   display: 'inherit',
   marginLeft: 'calc(var(--Input-decorator-offset) * -1)',
@@ -155,6 +168,8 @@ const InputEndDecorator = styled('span', {
   slot: 'EndDecorator',
   overridesResolver: (props, styles) => styles.endDecorator,
 })<{ ownerState: InputProps & InputUnstyledOwnerState }>(({ theme, ownerState }) => ({
+  '--Button-margin': '0 calc(var(--Input-decorator-childOffset) * -1) 0 0',
+  '--IconButton-margin': '0 calc(var(--Input-decorator-childOffset) * -1) 0 0',
   display: 'inherit',
   marginLeft: 'var(--Input-gap)',
   marginRight: 'calc(var(--Input-decorator-offset) * -1)',

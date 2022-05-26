@@ -92,7 +92,8 @@ const ButtonRoot = styled('button', {
       ...(ownerState.size === 'lg' && {
         minHeight: '3rem',
       }),
-      borderRadius: theme.vars.radius.sm,
+      borderRadius: `var(--Button-radius, ${theme.vars.radius.sm})`, // to be controlled by other components, eg. Input
+      margin: `var(--Button-margin)`, // to be controlled by other components, eg. Input
       border: 'none',
       backgroundColor: 'transparent',
       cursor: 'pointer',

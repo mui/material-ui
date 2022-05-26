@@ -3,6 +3,7 @@ import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
 import { GlobalStyles } from '@mui/system';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
+import Chip from '@mui/joy/Chip';
 import Input from '@mui/joy/Input';
 import IconButton from '@mui/joy/IconButton';
 import Typography from '@mui/joy/Typography';
@@ -13,6 +14,7 @@ import Visibility from '@mui/icons-material/VisibilityOutlined';
 import Key from '@mui/icons-material/Key';
 import Info from '@mui/icons-material/InfoRounded';
 import Check from '@mui/icons-material/CheckRounded';
+import Search from '@mui/icons-material/SearchRounded';
 
 const ColorSchemePicker = () => {
   const { mode, setMode } = useColorScheme();
@@ -68,7 +70,7 @@ export default function JoyTypography() {
             type="password"
             startDecorator={<Key />}
             endDecorator={
-              <IconButton size="sm" sx={{ mr: '-6px' }}>
+              <IconButton size="sm">
                 <Visibility />
               </IconButton>
             }
@@ -77,7 +79,7 @@ export default function JoyTypography() {
             placeholder="Placeholder"
             color="danger"
             endDecorator={
-              <Button color="danger" size="sm" sx={{ mr: '-6px' }}>
+              <Button color="danger" size="sm">
                 Delete
               </Button>
             }
@@ -87,7 +89,7 @@ export default function JoyTypography() {
             placeholder="Placeholder"
             color="info"
             endDecorator={
-              <Button variant="soft" size="sm" sx={{ mr: '-6px' }}>
+              <Button variant="soft" size="sm">
                 Search
               </Button>
             }
@@ -130,6 +132,32 @@ export default function JoyTypography() {
           <Input variant="solid" placeholder="Contained variant" />
           <Input variant="solid" placeholder="Contained variant" disabled />
           <Input variant="solid" placeholder="Contained variant" color="primary" />
+          <Input
+            size="sm"
+            startDecorator={<Search />}
+            placeholder="Search anything"
+            endDecorator={
+              <IconButton variant="outlined" color="neutral" sx={{ '--IconButton-size': '24px' }}>
+                /
+              </IconButton>
+            }
+          />
+          <Input
+            size="lg"
+            startDecorator={<Search />}
+            placeholder="Search anything"
+            endDecorator={
+              <IconButton variant="outlined" color="neutral" size="sm">
+                /
+              </IconButton>
+            }
+            sx={{ '--Input-decorator-childHeight': '32px' }}
+          />
+          <Input
+            startDecorator={<Search />}
+            placeholder="Search anything"
+            endDecorator={<Chip size="sm">New</Chip>}
+          />
         </Box>
       </Box>
     </CssVarsProvider>
