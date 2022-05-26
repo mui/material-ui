@@ -2,9 +2,18 @@
 
 <p class="description">This guide explains how to migrate from JSS to Emotion when updating from Material UI v4 to v5.</p>
 
-## Migrate theme's `styleOverrides` to emotion
+## Migrating from JSS to Emotion
 
-Although your style overrides defined in the theme may partially work, there is an important difference on how the nested elements are styled.
+One of the biggest changes in v5 is the swapping of JSS for [Emotion](https://emotion.sh/docs/introduction) (or styled-components as an alternative).
+
+Note that you may continue to use JSS after migrating to v5, and when you're ready to move over to the new styling engine, you can refactor your components progressively.
+
+This document reviews all the steps necessary to migrate away from JSS.
+
+## Migrate theme styleOverrides to Emotion
+
+Although your style overrides defined in the theme may partially work, there is an important difference regarding how the nested elements are styled.
+
 The `$` syntax used with JSS will not work with Emotion.
 You need to replace those selectors with a valid class selector.
 
@@ -46,8 +55,11 @@ const theme = createTheme({
 });
 ```
 
-> Note: For each component we export a `[component]Classes` constant that contains all nested classes for that component.
-> You can rely on this instead of hardcoding the classes.
+:::info
+For each component, we export a `[component]Classes` constant that contains all nested classes for that component.
+
+You can rely on this instead of hardcoding the classes.
+:::
 
 ```diff
 +import { outlinedInputClasses } from '@mui/material/OutlinedInput';
@@ -68,29 +80,32 @@ const theme = createTheme({
  });
 ```
 
-Take a look at the whole [list of global state classnames](/material-ui/customization/how-to-customize/#state-classes) available.
+Take a look at the complete [list of global state classnames](/material-ui/customization/how-to-customize/#state-classes) available.
 
 ## Migrate from JSS
 
-This is the last step in the migration process to remove `@mui/styles` package from your codebase.
-You can use one of these two options, by order of preference:
+This is the last step in the migration process to remove the `@mui/styles` package from your codebase.
 
-### 1. Use `styled` or `sx` API
+While you can use either of the following two options, the first is considered preferable:
+
+### 1. Use styled or sx API
 
 #### Codemod
 
-We provide [a codemod](https://github.com/mui/material-ui/blob/master/packages/mui-codemod/README.md#jss-to-styled) to help migrate JSS styles to `styled` API, but this approach **increases the CSS specificity**.
+We provide [a codemod](https://github.com/mui/material-ui/blob/master/packages/mui-codemod/README.md#jss-to-styled) to help migrate JSS styles to `styled` API, but this approach increases the CSS specificity.
 
 :::info
-Note: Usually, you wouldn't write the styles like this if you were to write them manually. However, this is the best transformation that can be created via codemod we could come up with.
-So, if you want to refine them later, you can refer to the examples shown in the sections below.
+Normally you wouldn't write styles like this.
+But this is the best transformation that we could create with a codemod.
+
+If you want to refine them later, you can refer to the examples shown in the sections below.
 :::
 
 ```sh
 npx @mui/codemod v5.0.0/jss-to-styled <path>
 ```
 
-**Example transformation**:
+Example transformation:
 
 ```diff
  import Typography from '@mui/material/Typography';
@@ -149,13 +164,13 @@ npx @mui/codemod v5.0.0/jss-to-styled <path>
 ```
 
 :::warning
-💡 You should run this codemod per small chunk of files and then check the changes because in some cases you might need to adjust the code after the transformation (this codemod won't cover all of the cases).
+You should run this codemod on a small chunk of files and then check the changes before continuing, because in some cases you might need to adjust the code after the transformation—this codemod won't cover all cases.
 :::
 
 #### Manual
 
 We recommend `sx` API over `styled` for creating responsive styles or overriding minor CSS.
-[Read more about `sx`](/system/the-sx-prop/#main-content).
+[Read more about `sx` here](/system/the-sx-prop/#main-content).
 
 ```diff
  import Chip from '@mui/material/Chip';
@@ -186,7 +201,9 @@ We recommend `sx` API over `styled` for creating responsive styles or overriding
  }
 ```
 
-In some cases, you might want to create multiple styled components in a file instead of increasing CSS specificity. for example:
+In some cases, you might want to create multiple styled components in a file instead of increasing CSS specificity.
+
+For example:
 
 ```diff
 -import makeStyles from '@mui/styles/makeStyles';
@@ -230,28 +247,35 @@ In some cases, you might want to create multiple styled components in a file ins
 ```
 
 :::warning
-**Note:** [https://siriwatk.dev/tool/jss-to-styled](https://siriwatk.dev/tool/jss-to-styled) is a tool that helps converting JSS to multiple styled components without increasing CSS specificity. (This tool is **not maintained** by MUI)
+[This jss-to-styled tool](https://siriwatk.dev/tool/jss-to-styled) helps convert JSS to multiple styled components without increasing CSS specificity.
+
+This tool is _not_ maintained by MUI.
 :::
 
 ### 2. Use [tss-react](https://github.com/garronej/tss-react)
 
 :::error
-Note: This API will not work if you are [using `styled-components` as underlying styling engine in place of `@emotion`](/material-ui/guides/interoperability/#styled-components).
+This API will not work if you are [using `styled-components` as the underlying styling engine in place of `@emotion`](/material-ui/guides/interoperability/#styled-components).
 :::
 
-The API is similar to JSS `makeStyles` but, under the hood, it uses `@emotion/react`.
+The API is similar to JSS `makeStyles`, but under the hood, it uses `@emotion/react`.
 It also features much better TypeScript support than v4's `makeStyles`.
 
 In order to use it, you'll need to add it to your project's dependencies:
 
+With npm:
+
 ```sh
 npm install tss-react
+```
 
-// or with `yarn`
+With yarn:
+
+```sh
 yarn add tss-react
 ```
 
-...and to edit your providers:
+You will also need to edit your providers:
 
 ```diff
  import { render } from 'react-dom';
@@ -282,7 +306,7 @@ We provide [a codemod](https://github.com/mui/material-ui/blob/master/packages/m
 npx @mui/codemod v5.0.0/jss-to-tss-react <path>
 ```
 
-**Example transformation**:
+Example transformation:
 
 ```diff
  import React from 'react';
@@ -370,12 +394,10 @@ the transformation would look like this:
 ```
 
 :::warning
-**Note:** In plain JS projects (not using TypeScript), remove `<void, 'child' | 'small'>`.
+When using JavaScript (rather than TypeScript), remove `<void, 'child' | 'small'>`.
 :::
 
-Now, a comprehensive example using the `$` syntax, `useStyles()` parameters,
-merging in classes from a `classes` prop ([see doc](https://docs.tss-react.dev/your-own-classes-prop)),
-and [an explicit name for the stylesheet](https://docs.tss-react.dev/page-1/makestyles-usestyles#naming-the-stylesheets-useful-for-debugging-and-theme-style-overrides).
+The following is a comprehensive example using the `$` syntax, `useStyles()` parameters, merging in classes from a `classes` prop ([see doc](https://docs.tss-react.dev/your-own-classes-prop)) and [an explicit name for the stylesheet](https://docs.tss-react.dev/page-1/makestyles-usestyles#naming-the-stylesheets-useful-for-debugging-and-theme-style-overrides).
 
 ```diff
 -import clsx from 'clsx';
@@ -436,32 +458,35 @@ and [an explicit name for the stylesheet](https://docs.tss-react.dev/page-1/make
 export default App;
 ```
 
-After running the codemod, search your code for "TODO jss-to-tss-react codemod" to find cases that
-the codemod could not handle reliably; though there may be cases beyond those with TODO comments that
-are not handled fully by the codemod particularly if parts of the styles are returned by functions.
-If the styles buried within a function use the `$` syntax or `useStyles` params, then those styles won't
-be migrated appropriately.
+After running the codemod, search your code for "TODO jss-to-tss-react codemod" to find cases that the codemod could not handle reliably.
+
+There may be other cases beyond those with TODO comments that are not handled fully by the codemod—particularly if parts of the styles are returned by functions.
+
+If the styles buried within a function use the `$` syntax or `useStyles` params, then those styles won't be migrated appropriately.
 
 :::error
-**WARNING**: You should drop [`clsx`](https://www.npmjs.com/package/clsx) in favor of [`cx`](https://emotion.sh/docs/@emotion/css#cx).
-The key advantage of `cx` is that it detects emotion generated class names ensuring styles are overwritten in the correct order.
+You should drop [`clsx`](https://www.npmjs.com/package/clsx) in favor of [`cx`](https://emotion.sh/docs/@emotion/css#cx).
+
+The key advantage of `cx` is that it detects Emotion-generated class names to ensure that styles are overwritten in the correct order.
+
 The default precedence of styles from multiple CSS classes is different between JSS and tss-react and some manual re-ordering of `cx` parameters
-may be necessary (see [this issue comment](https://github.com/mui/material-ui/pull/31802#issuecomment-1093478971) for more details).
+may be necessary—see [this issue comment](https://github.com/mui/material-ui/pull/31802#issuecomment-1093478971) for more details.
 :::
 
-:::warning
-**Note**: To ensure that your class names always includes the actual name of your components, you can provide the `name` as an implicitly named key (`name: { App }`).
-[See doc](https://docs.tss-react.dev/page-1/makestyles-usestyles#naming-the-stylesheets-useful-for-debugging-and-theme-style-overrides).
-You may end up with eslint warnings [like this one](https://user-images.githubusercontent.com/6702424/148657837-eae48942-fb86-4516-abe4-5dc10f44f0be.png) if you deconstruct more than one item.  
+To ensure that your class names always includes the actual name of your components, you can provide the `name` as an implicitly named key (`name: { App }`).
+
+See [this tss-react doc](https://docs.tss-react.dev/page-1/makestyles-usestyles#naming-the-stylesheets-useful-for-debugging-and-theme-style-overrides) for details.
+
+You may end up with eslint warnings [like this one](https://user-images.githubusercontent.com/6702424/148657837-eae48942-fb86-4516-abe4-5dc10f44f0be.png) if you deconstruct more than one item.
+
 Don't hesitate to disable `eslint(prefer-const)`, [like this](https://github.com/thieryw/gitlanding/blob/b2b0c71d95cfd353979c86dfcfa1646ef1665043/.eslintrc.js#L17) in a regular project, or [like this](https://github.com/InseeFrLab/onyxia-web/blob/a264ec6a6a7110cb1a17b2e22cc0605901db6793/package.json#L133) in a CRA.
-:::
 
-#### `withStyles()`
+#### withStyles()
 
 `tss-react` also features a [type-safe implementation](https://docs.tss-react.dev/page-1/withstyles) of [v4's `withStyles()`](https://v4.mui.com/styles/api/#withstyles-styles-options-higher-order-component).
 
 :::info
-**Note:** The equivalent of the `$` syntax is also supported in tss's `withStyles()`.
+The equivalent of the `$` syntax is also supported in tss's `withStyles()`.
 [See doc](https://docs.tss-react.dev/nested-selectors#withstyles).
 :::
 
@@ -494,30 +519,41 @@ Don't hesitate to disable `eslint(prefer-const)`, [like this](https://github.com
 
 #### Theme style overrides
 
-[Global theme overrides](https://v4.mui.com/customization/components/#global-theme-override) is supported out of the box by TSS.
-You just need to follow [the related section of the migration guide](https://github.com/mui/material-ui/blob/bbdf5080fc9bd9d979d657a3cb237d88b27035d9/docs/data/material/guides/migration-v4/migration-v4.md?plain=1#L481-L500) and [provide a `name` to `makeStyles`](https://docs.tss-react.dev/page-1/makestyles-usestyles#naming-the-stylesheets-useful-for-debugging-and-theme-style-overrides).
+[Global theme overrides](https://v4.mui.com/customization/components/#global-theme-override) are supported out of the box by TSS.
 
-In MUI v5 however, [style overrides also accept callbacks](https://mui.com/material-ui/customization/theme-components/).
-By default TSS is only able to provide
-the theme. If you want to provide the props and the `ownerState` [please refer to this documentation](https://docs.tss-react.dev/mui-theme-styleoverrides).
+Follow the instructions in the relevant section of the [Breaking changes](/material-ui/migration/v5-style-changes#restructure-component-definitions) doc, and [provide a `name` to `makeStyles`](https://docs.tss-react.dev/page-1/makestyles-usestyles#naming-the-stylesheets-useful-for-debugging-and-theme-style-overrides).
 
-**Note:** `tss-react` is **not maintained** by MUI.
-If you have any question about how to setup SSR (Next.js) or if you are wondering
-how to customize the `theme` object please refer to `tss-react`'s documentation,
-the [Mui integration section](https://github.com/garronej/tss-react#mui-integration) in particular.
-You can also [submit an issue](https://github.com/garronej/tss-react/issues/new) for any bug or
-feature request and [start a discussion](https://github.com/garronej/tss-react/discussions) if you need help.
+In Material UI v5, [style overrides also accept callbacks](https://mui.com/material-ui/customization/theme-components/).
 
-💡 Once you migrate all of the styling, remove unnecessary `@mui/styles` by:
+By default, TSS is only able to provide the theme.
+If you want to provide the props and the `ownerState`, [please refer to this documentation](https://docs.tss-react.dev/mui-theme-styleoverrides).
+
+:::warning
+tss-react is _not_ maintained by MUI.
+
+If you have any question about how to setup SSR (Next.js), or if you are wondering
+how to customize the `theme` object, please refer to the tss-react documentation—particularly the [MUI integration section](https://github.com/garronej/tss-react#mui-integration).
+
+You can also [submit an issue](https://github.com/garronej/tss-react/issues/new) for any bug or feature request, and [start a discussion](https://github.com/garronej/tss-react/discussions) if you need help.
+:::
+
+## Complete the migration
+
+Once you migrate all of the styling, remove unnecessary `@mui/styles` by uninstalling the package.
+
+With npm:
 
 ```sh
 npm uninstall @mui/styles
+```
 
-// or with `yarn`
+With yarn:
+
+```sh
 yarn remove @mui/styles
 ```
 
 :::warning
-**Warning:** Keep `@emotion/styled` as a dependency of your project,
-even if you never use it explicitly, it's a peer dependency of `@mui/material`.
+`@emotion/styled` is a peer dependency of `@mui/material`.
+You must keep it in your dependencies even if you never explicitly use it.
 :::
