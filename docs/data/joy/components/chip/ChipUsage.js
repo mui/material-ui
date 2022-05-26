@@ -349,6 +349,7 @@ export default function ChipUsage() {
             <TextField
               id="children-textfield"
               value={children}
+              sx={{ bgcolor: 'background.body' }}
               size="sm"
               onChange={(event) => {
                 return setProps((latestProps) => ({
