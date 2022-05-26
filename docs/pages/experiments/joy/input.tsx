@@ -70,7 +70,7 @@ export default function JoyTypography() {
             type="password"
             startDecorator={<Key />}
             endDecorator={
-              <IconButton size="sm">
+              <IconButton>
                 <Visibility />
               </IconButton>
             }
@@ -78,8 +78,9 @@ export default function JoyTypography() {
           <Input
             placeholder="Placeholder"
             color="danger"
+            size="lg"
             endDecorator={
-              <Button color="danger" size="sm">
+              <Button color="danger" size="sm" startIcon={<Info />}>
                 Delete
               </Button>
             }
@@ -137,7 +138,7 @@ export default function JoyTypography() {
             startDecorator={<Search />}
             placeholder="Search anything"
             endDecorator={
-              <IconButton variant="outlined" color="neutral" sx={{ '--IconButton-size': '24px' }}>
+              <IconButton variant="outlined" color="neutral">
                 /
               </IconButton>
             }
@@ -147,11 +148,10 @@ export default function JoyTypography() {
             startDecorator={<Search />}
             placeholder="Search anything"
             endDecorator={
-              <IconButton variant="outlined" color="neutral" size="sm">
+              <IconButton variant="outlined" color="neutral">
                 /
               </IconButton>
             }
-            sx={{ '--Input-decorator-childHeight': '32px' }}
           />
           <Input
             startDecorator={<Search />}

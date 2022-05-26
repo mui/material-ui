@@ -64,33 +64,25 @@ const ButtonRoot = styled('button', {
     {
       '--Icon-margin': 'initial', // reset the icon's margin.
       ...(ownerState.size === 'sm' && {
-        '--Button-paddingInline': '1rem',
         '--Icon-fontSize': '1.25rem',
+        '--Button-paddingInline': '1rem',
+        minHeight: 'var(--Button-minHeight, 2rem)',
       }),
       ...(ownerState.size === 'md' && {
-        '--Button-paddingInline': '1.5rem', // gutter is the padding-x
         '--Icon-fontSize': '1.5rem', // control the SvgIcon font-size
+        '--Button-paddingInline': '1.5rem', // gutter is the padding-x
+        minHeight: 'var(--Button-minHeight, 2.5rem)', // use min-height instead of height to make the button resilient to its content
       }),
       ...(ownerState.size === 'lg' && {
-        '--Button-paddingInline': '2rem',
         '--Icon-fontSize': '1.75rem',
+        '--Button-paddingInline': '2rem',
+        minHeight: 'var(--Button-minHeight, 3rem)',
       }),
       '--Button-gap': 'clamp(0.25rem, var(--Button-paddingInline) * 0.5, 0.5rem)', // gap between start/end icon and content [0.25rem, x, 0.5rem]
-    },
-    {
       padding: '0.25rem var(--Button-paddingInline)', // the padding-top, bottom act as a minimum spacing between content and root element
       ...(ownerState.variant === 'outlined' && {
         padding:
           'calc(0.25rem - var(--variant-outlinedBorderWidth)) calc(var(--Button-paddingInline) - var(--variant-outlinedBorderWidth))', // account for the border width
-      }),
-      ...(ownerState.size === 'sm' && {
-        minHeight: '2rem',
-      }),
-      ...(ownerState.size === 'md' && {
-        minHeight: '2.5rem', // use min-height instead of height to make the button resilient to its content
-      }),
-      ...(ownerState.size === 'lg' && {
-        minHeight: '3rem',
       }),
       borderRadius: `var(--Button-radius, ${theme.vars.radius.sm})`, // to be controlled by other components, eg. Input
       margin: `var(--Button-margin)`, // to be controlled by other components, eg. Input

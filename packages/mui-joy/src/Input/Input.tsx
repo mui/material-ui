@@ -44,29 +44,31 @@ const InputRoot = styled('div', {
     '--Input-focusedHighlight':
       theme.vars.palette[ownerState.color === 'neutral' ? 'primary' : ownerState.color!]?.[500],
     ...(ownerState.size === 'sm' && {
+      '--Input-minHeight': '2rem',
       '--Input-paddingInline': '0.5rem',
+      '--Input-decorator-childHeight': '1.5rem',
       '--Icon-fontSize': '1.25rem',
-      '--Input-decorator-childHeight': '24px',
-      '--Input-minHeight': '32px',
     }),
     ...(ownerState.size === 'md' && {
+      '--Input-minHeight': '2.5rem',
       '--Input-paddingInline': '0.75rem', // gutter is the padding-x
+      '--Input-decorator-childHeight': '2rem',
       '--Icon-fontSize': '1.5rem',
-      '--Input-decorator-childHeight': '32px',
-      '--Input-minHeight': '40px',
     }),
     ...(ownerState.size === 'lg' && {
+      '--Input-minHeight': '3rem',
       '--Input-paddingInline': '1rem',
       '--Input-gap': '0.75rem',
+      '--Input-decorator-childHeight': '2.25rem',
       '--Icon-fontSize': '1.75rem',
-      '--Input-decorator-childHeight': '40px',
-      '--Input-minHeight': '48px',
     }),
     // variables for controlling child components
     '--Input-decorator-childOffset':
       'calc(var(--Input-paddingInline) - var(--Input-decorator-offset) - (var(--Input-minHeight) - 2 * var(--variant-outlinedBorderWidth, 0px) - var(--Input-decorator-childHeight)) / 2)',
     '--Input-decorator-childRadius':
       'max(var(--Input-radius) - var(--Input-decorator-offset), min(var(--Input-decorator-offset) / 2, var(--Input-radius) / 2))',
+    '--Button-minHeight': 'var(--Input-decorator-childHeight)',
+    '--IconButton-size': 'var(--Input-decorator-childHeight)',
     '--Button-radius': 'var(--Input-decorator-childRadius)',
     '--IconButton-radius': 'var(--Input-decorator-childRadius)',
     boxSizing: 'border-box',
