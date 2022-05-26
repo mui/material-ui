@@ -157,8 +157,8 @@ const InputStartDecorator = styled('span', {
   '--IconButton-margin': '0 0 0 calc(var(--Input-decorator-childOffset) * -1)',
   pointerEvents: 'none', // to make the input focused when click on the element because start element usually is an icon
   display: 'inherit',
-  marginLeft: 'calc(var(--Input-decorator-offset) * -1)',
-  marginRight: 'var(--Input-gap)',
+  marginInlineStart: 'calc(var(--Input-decorator-offset) * -1)',
+  marginInlineEnd: 'var(--Input-gap)',
   color: theme.vars.palette.text.tertiary,
   ...(ownerState.focused && {
     color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Color`],
@@ -173,8 +173,8 @@ const InputEndDecorator = styled('span', {
   '--Button-margin': '0 calc(var(--Input-decorator-childOffset) * -1) 0 0',
   '--IconButton-margin': '0 calc(var(--Input-decorator-childOffset) * -1) 0 0',
   display: 'inherit',
-  marginLeft: 'var(--Input-gap)',
-  marginRight: 'calc(var(--Input-decorator-offset) * -1)',
+  marginInlineStart: 'var(--Input-gap)',
+  marginInlineEnd: 'calc(var(--Input-decorator-offset) * -1)',
   color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Color`],
 }));
 
