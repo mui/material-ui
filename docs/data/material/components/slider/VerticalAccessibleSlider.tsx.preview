@@ -5,7 +5,7 @@
     },
   }}
   orientation="vertical"
-  defaultValue={30}
+  defaultValue={20}
   aria-label="Temperature"
   valueLabelDisplay="auto"
   onKeyDown={preventHorizontalKeyboardNavigation}
