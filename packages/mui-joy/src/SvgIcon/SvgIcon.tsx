@@ -35,6 +35,7 @@ const SvgIconRoot = styled('svg', {
           '--Icon-fontSize': theme.vars.fontSize[ownerState.instanceFontSize],
         }),
       userSelect: 'none',
+      margin: 'var(--Icon-margin)',
       width: '1em',
       height: '1em',
       display: 'inline-block',

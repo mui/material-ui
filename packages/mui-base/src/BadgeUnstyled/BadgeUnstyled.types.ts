@@ -1,7 +1,14 @@
 import * as React from 'react';
-import { OverrideProps, OverridableTypeMap } from '@mui/types';
+import { OverrideProps, OverridableTypeMap, OverridableComponent } from '@mui/types';
 
 export interface BadgeUnstyledComponentsPropsOverrides {}
+
+export type BadgeUnstyledOwnerState = BadgeUnstyledProps & {
+  badgeContent: React.ReactNode;
+  invisible: boolean;
+  max: number;
+  showZero: boolean;
+};
 
 export interface BadgeUnstyledTypeMap<P = {}, D extends React.ElementType = 'span'> {
   props: P & {
@@ -57,9 +64,24 @@ export interface ExtendBadgeUnstyledTypeMap<M extends OverridableTypeMap> {
   defaultComponent: M['defaultComponent'];
 }
 
-type BadgeUnstyledProps<
+export type ExtendBadgeUnstyled<M extends OverridableTypeMap> = OverridableComponent<
+  ExtendBadgeUnstyledTypeMap<M>
+>;
+
+export type BadgeUnstyledProps<
   D extends React.ElementType = BadgeUnstyledTypeMap['defaultComponent'],
   P = {},
 > = OverrideProps<BadgeUnstyledTypeMap<P, D>, D>;
 
-export default BadgeUnstyledProps;
+export type BadgeUnstyledRootSlotProps = {
+  children?: React.ReactNode;
+  className?: string;
+  ownerState: BadgeUnstyledOwnerState;
+  ref: React.Ref<HTMLSpanElement>;
+};
+
+export type BadgeUnstyledBadgeSlotProps = {
+  className?: string;
+  children?: React.ReactNode;
+  ownerState: BadgeUnstyledOwnerState;
+};

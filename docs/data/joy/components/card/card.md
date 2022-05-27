@@ -55,6 +55,12 @@ Insert an additional `CardCover` component to create gradient overlays between t
 
 {{"demo": "GradientCover.js", "bg": true}}
 
+## Row
+
+To show a horizontal card, use `row` prop. The `CardOverflow` will adapt based on its position.
+
+{{"demo": "RowCard.js", "bg": true}}
+
 ## Actions
 
 ### Whole card area

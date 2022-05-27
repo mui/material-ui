@@ -149,8 +149,7 @@ const components: {
       </React.Fragment>
     ),
     cssVars: [
-      { id: '--Button-gutter', type: 'number', unit: 'px', defaultValue: 24 },
-      { id: '--Button-iconOffsetStep', type: 'number', defaultValue: 2 },
+      { id: '--Button-paddingInline', type: 'number', unit: 'px', defaultValue: 24 },
       { id: '--Button-gap', type: 'number', unit: 'px' },
     ],
   },
@@ -342,7 +341,7 @@ const components: {
     ),
     cssVars: [
       { id: '--Input-radius', type: 'number', unit: 'px', defaultValue: 8 },
-      { id: '--Input-gutter', type: 'number', unit: 'px', defaultValue: 12 },
+      { id: '--Input-paddingInline', type: 'number', unit: 'px', defaultValue: 12 },
       { id: '--Input-gap', type: 'number', unit: 'px', defaultValue: 8 },
       {
         id: '--Input-placeholderOpacity',

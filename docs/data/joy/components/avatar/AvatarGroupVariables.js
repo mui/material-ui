@@ -113,7 +113,7 @@ export default function GroupedAvatars() {
               }}
               sx={{
                 maxWidth: 160,
-                '& .JoyInput-root': { '--Input-gutter': '1rem' },
+                '& .JoyInput-root': { '--Input-paddingInline': '1rem' },
               }}
             />
           ))}
