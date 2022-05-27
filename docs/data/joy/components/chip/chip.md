@@ -38,6 +38,12 @@ Specify the `onClick` prop on the `ChipDelete` to trigger some action.
 
 {{"demo": "ClickableAndDeletableChip.js"}}
 
+## Component variables
+
+The `Chip` component contains these CSS variables to communicate with `ChipDelete` and `Avatar` components. The demo below demonstrates the customization of a chip using the variables through the `sx` prop.
+
+{{"demo": "ChipVariables.js"}}
+
 ## With checkbox
 
 You can wrap the Joy `Checkbox` component with the Joy `Chip` component.
