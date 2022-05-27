@@ -85,7 +85,7 @@ Depending on the day, you'll:
   It's fun and rewarding work, but it can be very challenging.
 - **We move quickly, but don't sacrifice quality**.
   We ship early, often, and quickly.
-  You may not be initially comfortable with the cadence with which we ship high-quality features and improvements to end-users.
+  You may not be initially comfortable with the cadence with which we ship high-quality features and improvements to end users.
   By doing so, we sacrifice on solving each problem 100% in exchange for fast feedback.
   Solving 50-70% of the issue with quality should be enough for any given iteration.
   Our users quickly tell us when we haven't pushed a solution far enough.
