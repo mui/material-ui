@@ -80,12 +80,7 @@ describe('<ModalUnstyled />', () => {
     // by default, aria-hidden == (open ? null : true)
     // so test that
     render(
-      <ModalUnstyled
-        open
-        ref={elementRef}
-        keepMounted
-        data-testid="modal"
-      >
+      <ModalUnstyled open ref={elementRef} keepMounted data-testid="modal">
         <div />
       </ModalUnstyled>,
     );
@@ -99,12 +94,7 @@ describe('<ModalUnstyled />', () => {
     // by default, aria-hidden == (open ? null : true)
     // so test that
     render(
-      <ModalUnstyled
-        open={false}
-        ref={elementRef}
-        keepMounted
-        data-testid="modal"
-      >
+      <ModalUnstyled open={false} ref={elementRef} keepMounted data-testid="modal">
         <div />
       </ModalUnstyled>,
     );
@@ -118,13 +108,7 @@ describe('<ModalUnstyled />', () => {
     // by default, aria-hidden == (open ? null : true)
     // so test the inverses of that
     render(
-      <ModalUnstyled
-        open
-        aria-hidden
-        ref={elementRef}
-        keepMounted
-        data-testid="modal"
-      >
+      <ModalUnstyled open aria-hidden ref={elementRef} keepMounted data-testid="modal">
         <div />
       </ModalUnstyled>,
     );
