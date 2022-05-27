@@ -86,11 +86,11 @@ Depending on the day, you'll:
 - **We move quickly, but don't sacrifice quality**.
   We ship early, often, and quickly.
   You may not be initially comfortable with the cadence with which we ship high-quality features and improvements to end users.
-  By doing so, we sacrifice on solving each problem 100% in exchange for fast feedback.
+  By doing so, we compromise on solving each problem 100% in favor of a shorter feedback loop.
   Solving 50-70% of the issue with quality should be enough for any given iteration.
   Our users quickly tell us when we haven't pushed a solution far enough.
 - **MUI is a large codebase**.
-  You may bang your head against the wall at times, and then write tests to assist future you 😌.
+  You may bang your head against the wall at times, and then write tests to assist your future self. 😌
   The work you will be doing is somewhat unique and idiosyncratic. You probably have not had a similar role before.
 - **In open-source, you're faced with a nonstop stream of bug reports and support requests**.
   That means you need to develop an intuition for when to ignore something, and when to dig in further.
@@ -98,7 +98,7 @@ Depending on the day, you'll:
 ## About you
 
 We're looking for someone with strong front-end skills.
-More important than specific technical skills though is that you're a strong problem solver who loves to learn.
+More important than specific technical skills, though, is that you're a strong problem solver who loves to learn.
 Details matter to you.
 
 ### Skills you should have
@@ -106,15 +106,15 @@ Details matter to you.
 - **Expertise in the modern JavaScript ecosystem**.
   MUI is built on the shoulders of giants, making use of technologies such as ES2021, TypeScript, Node.js, React, Next.js, webpack, and Babel.
 - **A track record of demonstrating an eye for product and solving real-world user problems**.
-  If you have a knack for solving problems at the root cause, shipping beautiful user interfaces and intuitive APIs, we want you on our team.
+  If you have a knack for getting to the root of a problem while shipping beautiful user interfaces and intuitive APIs, we want you on our team.
 - **Experience building and shipping production code in a team setting** with a passion for writing tested, performant, and high-quality code.
 - **Strong written and verbal communication skills**.
   As part of the team, you'll interface both directly and indirectly with community members and enterprise customers, and contribute to user documentation.
-  Clear communication is fundamental in creating intuitive and compelling resources.
+  Clear communication is fundamental for creating intuitive and compelling resources.
 - **Ability to dive into complex problems**.
   You should be able to quickly assess, understand, and iterate upon aspects of our codebase.
 - **Ready and willing to ask and answer questions**.
-  If you're comfortable saying you're unsure, asking for help; but equally reaching out to assist others, you'll be an incredible addition to our team.
+  You should be equally comfortable asking for _and_ offering help when needed.
   We thrive because of continuous learning.
   First-time mistakes should be celebrated, not blamed.
 - **Avoid monolithic deliverables**.
@@ -132,9 +132,10 @@ Details matter to you.
   Maybe you've helped maintain a popular open-source repository, or perhaps you've worked on internal repositories that saw contributions from multiple teams.
   Previous experience with highly active repository workflows is a definite plus for this role.
 - **You have contributed code to MUI before**.
-  A history of contributing to MUI would be a definite plus.
+  We would be thrilled to hire directly from our community contributors.
 - **You have experience with accessibility**.
-  Maybe you were responsible or contributed to making sure that the design system/application at your company is a11y compliant.
+  Maybe you've been involved in bringing a11y compliance to your company's design system or application.
+  We would greatly benefit from having someone on the team who could take ownership of this.
 
 ## Benefits & Compensation
 
