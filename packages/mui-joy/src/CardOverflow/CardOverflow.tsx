@@ -83,6 +83,7 @@ const CardOverflow = React.forwardRef(function CardOverflow(inProps, ref) {
     props: inProps,
     name: 'JoyCardOverflow',
   });
+
   const row = React.useContext(CardRowContext);
 
   const {

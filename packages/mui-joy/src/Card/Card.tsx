@@ -169,6 +169,11 @@ Card.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
+   * If `true`, flex direction is set to 'row'.
+   * @default false
+   */
+  row: PropTypes.bool,
+  /**
    * The size of the component.
    * It accepts theme values between 'xs' and 'xl'.
    * @default 'md'
