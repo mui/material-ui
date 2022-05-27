@@ -38,7 +38,7 @@ const useUtilityClasses = (ownerState: ListItemButtonProps & { focusVisible: boo
 };
 
 const ListItemButtonRoot = styled('div', {
-  name: 'MuiListItemButton',
+  name: 'JoyListItemButton',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: ListItemButtonProps & { row: boolean } }>(({ theme, ownerState }) => [
@@ -93,8 +93,8 @@ const ListItemButtonRoot = styled('div', {
       paddingRight:
         'calc(var(--List-item-paddingRight) + var(--List-item-endActionWidth, var(--internal-endActionWidth, 0px)) - var(--variant-outlinedBorderWidth))', // --internal variable makes it possible to customize the actionWidth from the top List
     }),
+    [theme.focus.selector]: theme.focus.default,
   },
-  theme.focus.default,
   theme.variants[ownerState.variant!]?.[ownerState.color!],
   theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
   theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
@@ -104,7 +104,7 @@ const ListItemButtonRoot = styled('div', {
 const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
-    name: 'MuiListItemButton',
+    name: 'JoyListItemButton',
   });
 
   const row = React.useContext(RowListContext);
@@ -117,18 +117,15 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
     component = 'div',
     selected = false,
     color = selected ? 'primary' : 'neutral',
-    variant = 'text',
+    variant = 'plain',
     ...other
   } = props;
 
   const buttonRef = React.useRef<HTMLElement | null>(null);
   const handleRef = useForkRef(buttonRef, ref);
 
-  const ComponentProp = component;
-
   const { focusVisible, setFocusVisible, getRootProps } = useButton({
     ...props,
-    component: ComponentProp,
     ref: handleRef,
   });
 
@@ -188,9 +185,19 @@ ListItemButton.propTypes /* remove-proptypes */ = {
     }),
   ]),
   /**
+   * If `true`, the list item is focused during the first mount.
+   * Focus will also be triggered if the value changes from false to true.
+   * @default false
+   */
+  autoFocus: PropTypes.bool,
+  /**
    * The content of the component.
    */
   children: PropTypes.node,
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes: PropTypes.object,
   /**
    * @ignore
    */
@@ -209,6 +216,24 @@ ListItemButton.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
+   * If `true`, the component is disabled.
+   * @default false
+   */
+  disabled: PropTypes.bool,
+  /**
+   * This prop can help identify which element has keyboard focus.
+   * The class name will be applied when the element gains the focus through keyboard interaction.
+   * It's a polyfill for the [CSS :focus-visible selector](https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo).
+   * The rationale for using this feature [is explained here](https://github.com/WICG/focus-visible/blob/HEAD/explainer.md).
+   * A [polyfill can be used](https://github.com/WICG/focus-visible) to apply a `focus-visible` class to other components
+   * if needed.
+   */
+  focusVisibleClassName: PropTypes.string,
+  /**
+   * The empty space on the side(s) of the separator.
+   */
+  inset: PropTypes.oneOf(['gutter', 'leftGutter', 'startAdornment']),
+  /**
    * @ignore
    */
   role: PropTypes /* @typescript-to-proptypes-ignore */.string,
@@ -218,11 +243,23 @@ ListItemButton.propTypes /* remove-proptypes */ = {
    */
   selected: PropTypes.bool,
   /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
+  /**
+   * @default 0
+   */
+  tabIndex: PropTypes.number,
+  /**
    * The variant to use.
-   * @default 'text'
+   * @default 'plain'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['contained', 'light', 'outlined', 'text']),
+    PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
     PropTypes.string,
   ]),
 } as any;

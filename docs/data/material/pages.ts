@@ -178,7 +178,6 @@ const pages = [
       },
       { pathname: '/material-ui/customization/how-to-customize' },
       { pathname: '/material-ui/customization/color' },
-      { pathname: '/material-ui/customization/unstyled-components' },
     ],
   },
   {
@@ -228,12 +227,18 @@ const pages = [
     children: [
       { pathname: '/material-ui/discover-more/showcase' },
       { pathname: '/material-ui/discover-more/related-projects' },
+      { pathname: '/material-ui/discover-more/design-kits' },
       { pathname: '/material-ui/discover-more/roadmap' },
       { pathname: '/material-ui/discover-more/backers', title: 'Sponsors & Backers' },
       { pathname: '/material-ui/discover-more/vision' },
       { pathname: '/material-ui/discover-more/changelog' },
       { pathname: '/material-ui/discover-more/languages' },
     ],
+  },
+  {
+    pathname: 'https://mui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=sidenav',
+    title: 'Templates',
+    icon: 'ReaderIcon',
   },
 ];
 

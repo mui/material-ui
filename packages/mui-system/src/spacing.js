@@ -93,7 +93,7 @@ const paddingKeys = [
 const spacingKeys = [...marginKeys, ...paddingKeys];
 
 export function createUnaryUnit(theme, themeKey, defaultValue, propName) {
-  const themeSpacing = getPath(theme, themeKey) || defaultValue;
+  const themeSpacing = getPath(theme, themeKey, false) ?? defaultValue;
 
   if (typeof themeSpacing === 'number') {
     return (abs) => {

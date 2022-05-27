@@ -4,7 +4,7 @@
 
 ## Details of the Role
 
-- Location: Remote (preference for UTC-6 to UTC+3).
+- Location: Remote (preference for UTC-6 to UTC+5).
 - Type of work: Full-time (contractor or employee [depending on circumstances](https://mui-org.notion.site/Hiring-FAQ-64763b756ae44c37b47b081f98915501))
 - Start date: Immediately.
 - We're a remote company, we prefer asynchronous communication over meetings.
@@ -38,7 +38,8 @@ The support on the store is currently almost exclusively done by the executive t
 
 You will be in the tech industry. We offer flexibility in your work day.
 
-Our solution empowers React developers to build awesome applications – hundreds of thousands of developers use MUI every month.
+Our solution empowers React developers to build awesome applications faster – we see over a million developers on MUI's docs every month.
+Hundreds of thousands of developers use MUI every month.
 
 ### What you'll do on a day-to-day basis
 

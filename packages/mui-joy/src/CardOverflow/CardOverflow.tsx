@@ -8,6 +8,7 @@ import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
 import { getCardOverflowUtilityClass } from './cardOverflowClasses';
 import { CardOverflowProps, CardOverflowTypeMap } from './CardOverflowProps';
+import { CardRowContext } from '../Card/CardContext';
 
 const useUtilityClasses = (ownerState: CardOverflowProps) => {
   const { variant, color } = ownerState;
@@ -23,33 +24,56 @@ const useUtilityClasses = (ownerState: CardOverflowProps) => {
 };
 
 const CardOverflowRoot = styled('div', {
-  name: 'MuiCardOverflow',
+  name: 'JoyCardOverflow',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: CardOverflowProps }>(({ theme, ownerState }) => {
+})<{ ownerState: CardOverflowProps & { row: boolean } }>(({ theme, ownerState }) => {
   const childRadius =
     ownerState.variant === 'outlined'
-      ? `calc(var(--Card-radius) - var(--variant-outlinedBorderWidth))`
-      : 'var(--Card-radius)';
+      ? `calc(var(--CardOverflow-radius) - var(--variant-outlinedBorderWidth))`
+      : 'var(--CardOverflow-radius)';
   return [
-    {
-      marginLeft: 'var(--CardOverflow-offset)',
-      marginRight: 'var(--CardOverflow-offset)',
-      borderRadius: 'var(--Card-radius)',
-      // use data-attribute instead of :first-child, :last-child to support zero config SSR (emotion)
-      '&[data-first-child]': {
-        '--AspectRatio-radius': `${childRadius} ${childRadius} 0 0`,
-        borderBottomLeftRadius: 0,
-        borderBottomRightRadius: 0,
-        marginTop: 'var(--CardOverflow-offset)',
-      },
-      '&[data-last-child]': {
-        '--AspectRatio-radius': `0 0 ${childRadius} ${childRadius}`,
-        borderTopLeftRadius: 0,
-        borderTopRightRadius: 0,
-        marginBottom: 'var(--CardOverflow-offset)',
-      },
-    },
+    ownerState.row
+      ? {
+          '--AspectRatio-margin': 'calc(-1 * var(--Card-padding)) 0px',
+          marginTop: 'var(--CardOverflow-offset)',
+          marginBottom: 'var(--CardOverflow-offset)',
+          padding: 'var(--Card-padding) 0px',
+          borderRadius: 'var(--CardOverflow-radius)',
+          // use data-attribute instead of :first-child, :last-child to support zero config SSR (emotion)
+          '&[data-first-child]': {
+            '--AspectRatio-radius': `${childRadius} 0 0 ${childRadius}`,
+            borderTopRightRadius: 0,
+            borderBottomRightRadius: 0,
+            marginLeft: 'var(--CardOverflow-offset)',
+          },
+          '&[data-last-child]': {
+            '--AspectRatio-radius': `0 ${childRadius} ${childRadius} 0`,
+            borderTopLeftRadius: 0,
+            borderBottomLeftRadius: 0,
+            marginRight: 'var(--CardOverflow-offset)',
+          },
+        }
+      : {
+          '--AspectRatio-margin': '0px calc(-1 * var(--Card-padding))',
+          marginLeft: 'var(--CardOverflow-offset)',
+          marginRight: 'var(--CardOverflow-offset)',
+          padding: '0px var(--Card-padding)',
+          borderRadius: 'var(--CardOverflow-radius)',
+          // use data-attribute instead of :first-child, :last-child to support zero config SSR (emotion)
+          '&[data-first-child]': {
+            '--AspectRatio-radius': `${childRadius} ${childRadius} 0 0`,
+            borderBottomLeftRadius: 0,
+            borderBottomRightRadius: 0,
+            marginTop: 'var(--CardOverflow-offset)',
+          },
+          '&[data-last-child]': {
+            '--AspectRatio-radius': `0 0 ${childRadius} ${childRadius}`,
+            borderTopLeftRadius: 0,
+            borderTopRightRadius: 0,
+            marginBottom: 'var(--CardOverflow-offset)',
+          },
+        },
     theme.variants[ownerState.variant!]?.[ownerState.color!],
   ];
 });
@@ -57,15 +81,17 @@ const CardOverflowRoot = styled('div', {
 const CardOverflow = React.forwardRef(function CardOverflow(inProps, ref) {
   const props = useThemeProps<typeof inProps & CardOverflowProps>({
     props: inProps,
-    name: 'MuiCardOverflow',
+    name: 'JoyCardOverflow',
   });
+
+  const row = React.useContext(CardRowContext);
 
   const {
     className,
     component = 'div',
     children,
     color = 'neutral',
-    variant = 'text',
+    variant = 'plain',
     ...other
   } = props;
 
@@ -74,6 +100,7 @@ const CardOverflow = React.forwardRef(function CardOverflow(inProps, ref) {
     component,
     color,
     variant,
+    row,
   };
 
   const classes = useUtilityClasses(ownerState);
@@ -116,10 +143,18 @@ CardOverflow.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
-   * The variant to use.
-   * @default 'text'
+   * The system prop that allows defining system overrides as well as additional CSS styles.
    */
-  variant: PropTypes.oneOf(['contained', 'light', 'outlined', 'text']),
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
+  /**
+   * The variant to use.
+   * @default 'plain'
+   */
+  variant: PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
 } as any;
 
 export default CardOverflow;

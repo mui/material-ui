@@ -14,9 +14,15 @@ if (reactStrictMode) {
 }
 const l10nPRInNetlify = /^l10n_/.test(process.env.HEAD) && process.env.NETLIFY === 'true';
 const vercelDeploy = Boolean(process.env.VERCEL);
+const isDeployPreview = process.env.PULL_REQUEST === 'true';
+// For crowdin PRs we want to build all locales for testing.
+const buildOnlyEnglishLocale = isDeployPreview && !l10nPRInNetlify && !vercelDeploy;
 
 const staging =
-  process.env.REPOSITORY_URL === undefined || /mui\/material-ui$/.test(process.env.REPOSITORY_URL);
+  process.env.REPOSITORY_URL === undefined ||
+  // The linked repository url comes from https://app.netlify.com/sites/material-ui/settings/deploys
+  /mui-org\/material-ui$/.test(process.env.REPOSITORY_URL);
+
 if (staging) {
   // eslint-disable-next-line no-console
   console.log(`Staging deploy of ${process.env.REPOSITORY_URL || 'local repository'}`);
@@ -172,6 +178,7 @@ module.exports = {
     SOURCE_CODE_ROOT_URL: 'https://github.com/mui/material-ui/blob/master',
     SOURCE_CODE_REPO: 'https://github.com/mui/material-ui',
     STAGING: staging,
+    BUILD_ONLY_ENGLISH_LOCALE: buildOnlyEnglishLocale,
   },
   // Next.js provides a `defaultPathMap` argument, we could simplify the logic.
   // However, we don't in order to prevent any regression in the `findPages()` method.
@@ -183,7 +190,10 @@ module.exports = {
       const prefix = userLanguage === 'en' ? '' : `/${userLanguage}`;
 
       pages2.forEach((page) => {
-        if (process.env.PULL_REQUEST !== 'true' && page.pathname.startsWith('/experiments')) {
+        if (page.pathname.startsWith('/experiments') && !staging) {
+          return;
+        }
+        if (page.pathname.startsWith('/joy-ui') && !staging) {
           return;
         }
         // The blog is not translated
@@ -211,8 +221,8 @@ module.exports = {
     }
 
     // We want to speed-up the build of pull requests.
-    // For crowdin PRs we want to build all locales for testing.
-    if (process.env.PULL_REQUEST === 'true' && !l10nPRInNetlify && !vercelDeploy) {
+    // For this, consider only English language on deploy previews, except for crowdin PRs.
+    if (buildOnlyEnglishLocale) {
       // eslint-disable-next-line no-console
       console.log('Considering only English for SSR');
       traverse(pages, 'en');
@@ -234,6 +244,7 @@ module.exports = {
       { source: `/:lang(${LANGUAGES.join('|')})?/:rest*`, destination: '/:rest*' },
       // Make sure to include the trailing slash if `trailingSlash` option is set
       { source: '/api/:rest*/', destination: '/api-docs/:rest*/' },
+      { source: `/static/x/:rest*`, destination: 'http://0.0.0.0:3001/static/x/:rest*' },
     ];
   },
   // For developement, adjust the redirects here (no effect on production because of `next export`)

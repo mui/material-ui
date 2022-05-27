@@ -480,7 +480,7 @@ MUI Core has a positive cash flow thanks to its paid templates, design assets, a
 
 However, none of these revenue sources would scale with the outcome and amount of work required for MUI X.
 It's why we are using an [open core license model](https://en.m.wikipedia.org/wiki/Open-core_model) for this new product.
-The X components come in [three different plans](/pricing/):
+The X components come in [three different plans](https://mui.com/pricing/):
 
 - **Community.** This plan contains the MIT components that are sustainable by the contributions of the open-source community. Free forever.
 - **Pro.** This plan contains the features that are at the limit of what the open-source model can sustain. For instance, providing a very comprehensive set of components. From a price perspective, the plan is designed to be accessible to most professionals.
@@ -724,7 +724,7 @@ To continue improving the customization experience, we are doubling down on the 
 These components and hooks contain the main functionalities and accessibility, without being opinionated about how styles are applied nor what styles.
 We still have work to do to have a full set of unstyled components.
 
-You can read more about them in [the docs](/material-ui/customization/unstyled-components/) and keep track of our progress in [#27170](https://github.com/mui/material-ui/issues/27170).
+You can read more about them in [the docs](/base/getting-started/overview/) and keep track of our progress in [#27170](https://github.com/mui/material-ui/issues/27170).
 
 Our high-level plan is to use the unstyled components and hooks as the basis of the Material components and second design system.
 We are aiming to complete this work with the next major release (v6).

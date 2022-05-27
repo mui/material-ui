@@ -86,6 +86,7 @@ export default function AppFooter() {
               Explore
             </Typography>
             <Link href={ROUTES.documentation}>Documentation</Link>
+            <Link href={ROUTES.store}>Store</Link>
             <Link href={ROUTES.blog}>Blog</Link>
             <Link href={ROUTES.showcase}>Showcase</Link>
             <Link href={ROUTES.roadmap}>Roadmap</Link>
@@ -110,16 +111,18 @@ export default function AppFooter() {
                   fontWeight: 700,
                   textTransform: 'uppercase',
                   color: '#fff',
+                  letterSpacing: '0.1rem',
                   backgroundColor: (theme) =>
                     theme.palette.mode === 'dark'
-                      ? theme.palette.error[800]
-                      : theme.palette.error.main,
+                      ? theme.palette.success[900]
+                      : theme.palette.success.main,
                 }}
               >
                 Hiring
               </Box>
             </Box>
             <Link href={ROUTES.support}>Support</Link>
+            <Link href={ROUTES.privacyPolicy}>Privacy policy</Link>
             <Link target="_blank" rel="noopener noreferrer" href="mailto:contact@mui.com">
               Contact us
             </Link>
