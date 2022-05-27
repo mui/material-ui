@@ -42,11 +42,11 @@ export interface ContainerTypeMap<P = {}, D extends React.ElementType = 'div'> {
  *
  * Demos:
  *
- * - [Container](https://mui.com/components/container/)
+ * - [Container](https://mui.com/material-ui/react-container/)
  *
  * API:
  *
- * - [Container API](https://mui.com/api/container/)
+ * - [Container API](https://mui.com/material-ui/api/container/)
  */
 declare const Container: OverridableComponent<ContainerTypeMap>;
 

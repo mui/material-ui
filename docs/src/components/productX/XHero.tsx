@@ -7,10 +7,10 @@ import Divider from '@mui/material/Divider';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
-import { DateRange } from '@mui/lab/DateRangePicker';
-import StaticDateRangePicker from '@mui/lab/StaticDateRangePicker';
-import AdapterDateFns from '@mui/lab/AdapterDateFns';
-import LocalizationProvider from '@mui/lab/LocalizationProvider';
+import { DateRange } from '@mui/x-date-pickers-pro/DateRangePicker';
+import { StaticDateRangePicker } from '@mui/x-date-pickers-pro/StaticDateRangePicker';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import GradientText from 'docs/src/components/typography/GradientText';
 import GetStartedButtons from 'docs/src/components/home/GetStartedButtons';
 import HeroContainer from 'docs/src/layouts/HeroContainer';
@@ -68,7 +68,7 @@ export default function XHero() {
       }
       rightSx={{
         p: { md: 2, lg: 3, xl: 4 },
-        overflow: 'scroll',
+        overflow: 'hidden', // the components on the Hero section are mostly illustrative, even though they're interactive. That's why scrolling is disabled.
       }}
       right={
         <React.Fragment>

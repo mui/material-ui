@@ -29,7 +29,7 @@ A basic snackbar that aims to reproduce Google Keep's snackbar behavior.
 ## Customization
 
 Here are some examples of customizing the component.
-You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
+You can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/).
 
 {{"demo": "CustomizedSnackbars.js"}}
 
@@ -62,18 +62,18 @@ Snackbars should appear above FABs (on mobile).
 
 ### Change transition
 
-[Grow](/components/transitions/#grow) is the default transition but you can use a different one.
+[Grow](/material-ui/transitions/#grow) is the default transition but you can use a different one.
 
 {{"demo": "TransitionsSnackbar.js"}}
 
 ### Control Slide direction
 
-You can change the direction of the [Slide](/components/transitions/#slide) transition.
+You can change the direction of the [Slide](/material-ui/transitions/#slide) transition.
 
 Example of making the slide transition to the left:
 
 ```jsx
-import Slide from '@material-ui/core/Slide';
+import Slide from '@mui/material/Slide';
 
 function TransitionLeft(props) {
   return <Slide {...props} direction="left" />;

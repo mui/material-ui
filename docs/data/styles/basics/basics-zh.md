@@ -1,16 +1,16 @@
 # @material-ui/styles
 
-<p class="description">无论您是否使用了 Material-UI 组件，都可以在应用中使用 Material-UI 的样式方案。</p>
+<p class="description">无论您是否使用了 Material UI 组件，都可以在应用中使用 Material UI 的样式方案。</p>
 
-> ⚠️ `@mui/styles` is the _**legacy**_ styling solution for MUI. It is deprecated in v5. It depends on [JSS](https://cssinjs.org/) as a styling solution, which is not used in the `@mui/material` anymore. ⚠️ `@mui/styles` is the _**legacy**_ styling solution for MUI. It is deprecated in v5. It depends on [JSS](https://cssinjs.org/) as a styling solution, which is not used in the `@mui/material` anymore. If you don't want to have both emotion & JSS in your bundle, please refer to the [`@mui/system`](/system/basics/) documentation which is the recommended alternative.
-> 
+> ⚠️ `@mui/styles` is the _**legacy**_ styling solution for MUI. ⚠️ `@mui/styles` is the _**legacy**_ styling solution for MUI. It is deprecated in v5. It depends on [JSS](https://cssinjs.org/) as a styling solution, which is not used in the `@mui/material` anymore. ⚠️ `@mui/styles` is the _**legacy**_ styling solution for MUI. It is deprecated in v5. It depends on [JSS](https://cssinjs.org/) as a styling solution, which is not used in the `@mui/material` anymore. If you don't want to have both emotion & JSS in your bundle, please refer to the [`@mui/system`](/system/basics/) documentation which is the recommended alternative. If you don't want to have both emotion & JSS in your bundle, please refer to the [`@mui/system`](/system/basics/) documentation which is the recommended alternative.
+
 > ⚠️ `@mui/styles` is not compatible with [React.StrictMode](https://reactjs.org/docs/strict-mode.html) or React 18.
 
-Material-UI 旨在为构建动态的 UI 提供扎实的基础。 为了构造更加清晰的结构，**我们单独发布了 Material-UI 组件中使用的样式方案**，它将作为一个 `@material-ui/styles` 的依赖包存在。 @material-ui/styles 并不是你唯一的选择，Material-UI 也可以与其他主流样式方案[彼此协作](/guides/interoperability/)。
+Material UI 旨在为构建动态的 UI 提供扎实的基础。 为了构造更加清晰的结构，**我们单独发布了 Material UI 组件中使用的样式方案**，它将作为一个 `@material-ui/styles` 的依赖包存在。 @material-ui/styles 并不是你唯一的选择，Material UI 也可以与其他主流样式方案[彼此协作](/material-ui/guides/interoperability/)。
 
-## 为什么要使用 Material-UI 的样式方案呢？
+## 为什么要使用 Material UI 的样式方案呢？
 
-In previous versions, MUI has used [Less](https://lesscss.org/), and then a custom inline-style solution to write the component styles, but these approaches proved to be limited. In previous versions, MUI has used [Less](https://lesscss.org/), and then a custom inline-style solution to write the component styles, but these approaches proved to be limited. [_CSS-in-JS_ 方案](https://github.com/oliviertassinari/a-journey-toward-better-style) 突破了这些限制，并**提供了很多强大的功能**（主题嵌套、动态样式、自我支持等等）。
+In previous versions, MUI has used [Less](https://lesscss.org/), and then a custom inline-style solution to write the component styles, but these approaches proved to be limited. In previous versions, MUI has used [Less](https://lesscss.org/), and then a custom inline-style solution to write the component styles, but these approaches proved to be limited. [_CSS-in-JS_ 方案](https://github.com/oliviertassinari/a-journey-toward-better-style) 突破了这些限制，并**提供了很多强大的功能**（主题嵌套、动态样式、自我支持等等）。 In previous versions, MUI has used [Less](https://lesscss.org/), and then a custom inline-style solution to write the component styles, but these approaches proved to be limited. [_CSS-in-JS_ 方案](https://github.com/oliviertassinari/a-journey-toward-better-style) 突破了这些限制，并**提供了很多强大的功能**（主题嵌套、动态样式、自我支持等等）。
 
 MUI's styling solution is inspired by many other styling libraries such as [styled-components](https://styled-components.com/) and [emotion](https://emotion.sh/).
 
@@ -70,7 +70,7 @@ export default function Hook() {
 
 ### Styled components API
 
-注意：在只是用调用语法—— 您仍需使用一个 JSS 对象来定义你的样式。 你可以[改变这样的行为](/styles/advanced/#string-templates)，但还是存在一些限制。
+注意：在只是用调用语法—— 您仍需使用一个 JSS 对象来定义你的样式。 你可以[改变这样的行为](/system/styles/advanced/#string-templates)，但还是存在一些限制。
 
 ```jsx
 import * as React from 'react';
@@ -208,7 +208,7 @@ const useStyles = makeStyles((theme) => ({
 
 ## Using the theme context
 
-Starting from v5, MUI no longer uses JSS as its default styling solution. If you still want to use the utilities exported by `@mui/styles` and they depend on the `theme`, you will need to provide the `theme` as part of the context. Starting from v5, Material-UI no longer uses JSS as its default styling solution. If you still want to use the utilities exported by `@material-ui/styles`, you will need to provide the `theme` as part of the context. For this, you can use the `ThemeProvider` component available in `@material-ui/styles`, or, if you are already using `@material-ui/core`, you should use the one exported from `@material-ui/core/styles` so that the same `theme` is available for components from '@material-ui/core'. If you still want to use the utilities exported by `@mui/styles` and they depend on the `theme`, you will need to provide the `theme` as part of the context. For this, you can use the `ThemeProvider` component available in `@mui/styles`, or, if you are already using `@mui/material`, you should use the one exported from `@mui/material/styles` so that the same `theme` is available for components from '@mui/material'.
+Starting from v5, MUI no longer uses JSS as its default styling solution. If you still want to use the utilities exported by `@mui/styles` and they depend on the `theme`, you will need to provide the `theme` as part of the context. Starting from v5, Material UI no longer uses JSS as its default styling solution. If you still want to use the utilities exported by `@material-ui/styles`, you will need to provide the `theme` as part of the context. For this, you can use the `ThemeProvider` component available in `@material-ui/styles`, or, if you are already using `@material-ui/core`, you should use the one exported from `@material-ui/core/styles` so that the same `theme` is available for components from '@material-ui/core'. If you still want to use the utilities exported by `@mui/styles` and they depend on the `theme`, you will need to provide the `theme` as part of the context. For this, you can use the `ThemeProvider` component available in `@mui/styles`, or, if you are already using `@mui/material`, you should use the one exported from `@mui/material/styles` so that the same `theme` is available for components from '@mui/material'. If you still want to use the utilities exported by `@mui/styles` and they depend on the `theme`, you will need to provide the `theme` as part of the context. Starting from v5, Material UI no longer uses JSS as its default styling solution. If you still want to use the utilities exported by `@mui/styles`, you will need to provide the `theme` as part of the context. For this, you can use the `ThemeProvider` component available in `@mui/styles`, or, if you are already using `@mui/core`, you should use the one exported from `@mui/core/styles` so that the same `theme` is available for components from '@mui/core'. If you still want to use the utilities exported by `@mui/styles` and they depend on the `theme`, you will need to provide the `theme` as part of the context. For this, you can use the `ThemeProvider` component available in `@mui/styles`, or, if you are already using `@mui/material`, you should use the one exported from `@mui/material/styles` so that the same `theme` is available for components from '@mui/material'.
 
 ```jsx
 import { makeStyles } from '@material-ui/styles';

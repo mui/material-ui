@@ -27,7 +27,6 @@ export interface PortalProps {
  * Demos:
  *
  * - [Portal](https://mui.com/base/react-portal/)
- * - [Portal](https://mui.com/material/react-portal/)
  *
  * API:
  *

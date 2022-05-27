@@ -124,11 +124,11 @@ export default function XRoadmap() {
                   {renderList(
                     <React.Fragment>
                       <TableChartRounded fontSize="small" />
-                      <b>Data Grid</b>
+                      <b>Data grid</b>
                       <DateRangeRounded fontSize="small" />
-                      <b>Date Picker</b>
+                      <b>Date picker</b>
                       <AccountTreeRounded fontSize="small" />
-                      <b>Tree View</b>
+                      <b>Tree view</b>
                     </React.Fragment>,
                   )}
                 </Paper>

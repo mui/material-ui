@@ -27,7 +27,7 @@ export interface LinkTypeMap<P = {}, D extends React.ElementType = 'a'> {
        */
       sx?: SxProps<Theme>;
       /**
-       * `classes` prop applied to the [`Typography`](/api/typography/) element.
+       * `classes` prop applied to the [`Typography`](/material-ui/api/typography/) element.
        */
       TypographyClasses?: TypographyProps['classes'];
       /**
@@ -48,13 +48,13 @@ export interface LinkTypeMap<P = {}, D extends React.ElementType = 'a'> {
  *
  * Demos:
  *
- * - [Breadcrumbs](https://mui.com/components/breadcrumbs/)
- * - [Links](https://mui.com/components/links/)
+ * - [Breadcrumbs](https://mui.com/material-ui/react-breadcrumbs/)
+ * - [Links](https://mui.com/material-ui/react-link/)
  *
  * API:
  *
- * - [Link API](https://mui.com/api/link/)
- * - inherits [Typography API](https://mui.com/api/typography/)
+ * - [Link API](https://mui.com/material-ui/api/link/)
+ * - inherits [Typography API](https://mui.com/material-ui/api/typography/)
  */
 declare const Link: OverridableComponent<LinkTypeMap>;
 

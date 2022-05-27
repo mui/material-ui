@@ -27,9 +27,9 @@ The following is an up-to-date list of `@mui` public packages.
 - `@mui/styled-engine-sc`
 - `@mui/styles`
 
-**Why does MUI have multiple packages? Why not just one? Why not just one?**
+**Why does MUI have multiple packages? Why not just one? Why not just one? Why not just one?**
 
-MUI started as a single package that provided React Material Design components. However, as the library grew and more people started to use it, we saw an opportunity to break the main package down into smaller parts. For example, there was rising interest in specific use cases, such as using a version of the components without styles so as to use a preferred styling method, or using the MUI styling API to build a design system. However, as the library grew and more people started to use it, we saw an opportunity to break the main package down into smaller parts. For example, there was rising interest in specific use cases, such as using a version of the components without styles so as to use a preferred styling method, or using the MUI styling API to build a design system.
+MUI started as a single package that provided React Material Design components. However, as the library grew and more people started to use it, we saw an opportunity to break the main package down into smaller parts. For example, there was rising interest in specific use cases, such as using a version of the components without styles so as to use a preferred styling method, or using the MUI styling API to build a design system. However, as the library grew and more people started to use it, we saw an opportunity to break the main package down into smaller parts. For example, there was rising interest in specific use cases, such as using a version of the components without styles so as to use a preferred styling method, or using the MUI styling API to build a design system. However, as the library grew and more people started to use it, we saw an opportunity to break the main package down into smaller parts. For example, there was rising interest in specific use cases, such as using a version of the components without styles so as to use a preferred styling method, or using the MUI styling API to build a design system.
 
 For this reason, abstracting into smaller packages not only allows MUI to grow out of Material Design, but also extends how the library can be used, providing more flexibility and customizability.
 
@@ -63,9 +63,9 @@ The previous style library `@mui/styles` (JSS wrapper) is deprecated and will be
 
 There is only one package in this layer - `@mui/system`.
 
-It uses the emotion adapter (`@mui/styled-engine`) as the default styled-engine to create APIs for building a design system from scratch. For example, [`styled`](/system/styled/#main-content) from the styled-engine is enhanced to provide more theming capabilities. For example, [`styled`](/system/styled/#main-content) from the styled-engine is enhanced to provide more theming capabilities.
+It uses the emotion adapter (`@mui/styled-engine`) as the default styled-engine to create APIs for building a design system from scratch. For example, [`styled`](/system/styled/#main-content) from the styled-engine is enhanced to provide more theming capabilities. For example, [`styled`](/system/styled/#main-content) from the styled-engine is enhanced to provide more theming capabilities. For example, [`styled`](/system/styled/#main-content) from the styled-engine is enhanced to provide more theming capabilities.
 
-If you want to switch the styled-engine to use styled-components, [follow this guide](/guides/styled-engine/#how-to-switch-to-styled-components).
+If you want to switch the styled-engine to use styled-components, [follow this guide](/material-ui/guides/styled-engine/#how-to-switch-to-styled-components).
 
 <img src="/static/images/packages/mui-system.png" style="display: block; width: 720px; margin: 40px auto;" />
 
@@ -81,11 +81,11 @@ Here are some benefits:
 
 The base layer, `@mui/base`, is also known as unstyled components.
 
-It provides only React component functionality and accessibility features without any styles. It provides only React component functionality and accessibility features without any styles. It's very useful if you want to take full control of the styling, but don't want to spend time building components from scratch.
+It provides only React component functionality and accessibility features without any styles. It provides only React component functionality and accessibility features without any styles. It's very useful if you want to take full control of the styling, but don't want to spend time building components from scratch. It provides only React component functionality and accessibility features without any styles. It's very useful if you want to take full control of the styling, but don't want to spend time building components from scratch.
 
 Since it doesn't rely on any specific styling solution, you can pick a method that best fits your needs, from pure CSS to CSS-in-JS.
 
-For more details, check out the [unstyled components page](/customization/unstyled-components/)
+For more details, check out the [unstyled components page](/base/getting-started/overview/)
 
 ## Design system
 
@@ -95,9 +95,9 @@ This is the most used layer (based on npm downloads) because it comes with every
 - Accessible components, and utility hooks (has `@mui/base` as dependency).
 - Default styles based on the design language being followed.
 
-Currently, MUI has one package in the design system layer, `@mui/material`, but we plan to add more in the future. This package provides components that follow the Material Design guidelines and also re-exports necessary APIs from its dependencies. Since it has `@mui/system` and `@mui/base` as dependencies, you don't need to install or import them separately. Instead, you should import any modules you need from `@mui/material` directly. This package provides components that follow the Material Design guidelines and also re-exports necessary APIs from its dependencies. Since it has `@mui/system` and `@mui/base` as dependencies, you don't need to install or import them separately. Instead, you should import any modules you need from `@mui/material` directly.
+Currently, MUI has one package in the design system layer, `@mui/material`, but we plan to add more in the future. This package provides components that follow the Material Design guidelines and also re-exports necessary APIs from its dependencies. Since it has `@mui/system` and `@mui/base` as dependencies, you don't need to install or import them separately. Instead, you should import any modules you need from `@mui/material` directly. This package provides components that follow the Material Design guidelines and also re-exports necessary APIs from its dependencies. Since it has `@mui/system` and `@mui/base` as dependencies, you don't need to install or import them separately. Instead, you should import any modules you need from `@mui/material` directly. This package provides components that follow the Material Design guidelines and also re-exports necessary APIs from its dependencies. Since it has `@mui/system` and `@mui/base` as dependencies, you don't need to install or import them separately. Instead, you should import any modules you need from `@mui/material` directly.
 
-There are, however, some cases where you might want to use building blocks from `@mui/base` instead. Let's imagine we're working on an application that mainly uses `@mui/material` with a custom theme and we've been given a Switch component design to develop that is very different from the one found in Material Design. There are, however, some cases where you might want to use building blocks from `@mui/base` instead. Let's imagine we're working on an application that mainly uses `@mui/material` with a custom theme and we've been given a Switch component design to develop that is very different from the one found in Material Design. In this case, instead of overriding the `Switch` from `@mui/material` we could use the `styled` API to customize the unstyled version of the Switch, available in `@mui/base`, from scratch:
+There are, however, some cases where you might want to use building blocks from `@mui/base` instead. Let's imagine we're working on an application that mainly uses `@mui/material` with a custom theme and we've been given a Switch component design to develop that is very different from the one found in Material Design. There are, however, some cases where you might want to use building blocks from `@mui/base` instead. Let's imagine we're working on an application that mainly uses `@mui/material` with a custom theme and we've been given a Switch component design to develop that is very different from the one found in Material Design. There are, however, some cases where you might want to use building blocks from `@mui/base` instead. Let's imagine we're working on an application that mainly uses `@mui/material` with a custom theme and we've been given a Switch component design to develop that is very different from the one found in Material Design. In this case, instead of overriding the `Switch` from `@mui/material` we could use the `styled` API to customize the unstyled version of the Switch, available in `@mui/base`, from scratch:
 
 ```js
 import { styled } from '@mui/material/styles';

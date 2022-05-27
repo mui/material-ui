@@ -38,19 +38,19 @@ export const FormLabelRoot = styled('label', {
     };
   },
 })(({ theme, ownerState }) => ({
-  color: theme.palette.text.secondary,
+  color: (theme.vars || theme).palette.text.secondary,
   ...theme.typography.body1,
   lineHeight: '1.4375em',
   padding: 0,
   position: 'relative',
   [`&.${formLabelClasses.focused}`]: {
-    color: theme.palette[ownerState.color].main,
+    color: (theme.vars || theme).palette[ownerState.color].main,
   },
   [`&.${formLabelClasses.disabled}`]: {
-    color: theme.palette.text.disabled,
+    color: (theme.vars || theme).palette.text.disabled,
   },
   [`&.${formLabelClasses.error}`]: {
-    color: theme.palette.error.main,
+    color: (theme.vars || theme).palette.error.main,
   },
 }));
 
@@ -60,7 +60,7 @@ const AsteriskComponent = styled('span', {
   overridesResolver: (props, styles) => styles.asterisk,
 })(({ theme }) => ({
   [`&.${formLabelClasses.error}`]: {
-    color: theme.palette.error.main,
+    color: (theme.vars || theme).palette.error.main,
   },
 }));
 
@@ -137,7 +137,7 @@ FormLabel.propTypes /* remove-proptypes */ = {
   /**
    * The color of the component.
    * It supports both default and custom theme colors, which can be added as shown in the
-   * [palette customization guide](https://mui.com/customization/palette/#adding-new-colors).
+   * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['error', 'info', 'primary', 'secondary', 'success', 'warning']),

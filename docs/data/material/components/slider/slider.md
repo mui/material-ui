@@ -4,7 +4,7 @@ title: React Slider component
 components: Slider
 githubLabel: 'component: slider'
 materialDesign: https://material.io/components/sliders
-waiAria: https://www.w3.org/TR/wai-aria-practices/#slider
+waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/slidertwothumb/
 unstyled: /base/react-slider/
 ---
 
@@ -86,7 +86,7 @@ In this example, an input allows a discrete value to be set.
 ## Customization
 
 Here are some examples of customizing the component.
-You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
+You can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/).
 
 {{"demo": "CustomizedSlider.js"}}
 
@@ -135,7 +135,7 @@ Increasing _x_ by one increases the represented value by factor _2_.
 
 ## Accessibility
 
-(WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#slider)
+(WAI-ARIA: https://www.w3.org/WAI/ARIA/apg/patterns/slidertwothumb/)
 
 The component handles most of the work necessary to make it accessible.
 However, you need to make sure that:

@@ -18,18 +18,19 @@ const planInfo = {
   community: {
     color: 'green',
     title: 'Community',
-    description:
-      'Get started with the industry-standard UI library for building React user interfaces (open-source, MIT licensed).',
+    description: 'Get all the MUI component libraries, MIT-licensed, open source, and open core.',
   },
   pro: {
     color: 'blue',
     title: 'Pro',
-    description: 'Best for professional developers building enterprise or data-rich applications.',
+    description:
+      'Unlock essential features for building data-rich applications with complex use cases.',
   },
   premium: {
     color: 'gold',
     title: 'Premium',
-    description: 'Unlock all the most advanced features and professional support.',
+    description:
+      'Access the most advanced features necessary for data-rich applications, as well as the highest priority for support.',
   },
 } as const;
 
@@ -63,7 +64,7 @@ export function PlanName({
         </Typography>
       )}
       {!disableDescription && (
-        <Typography variant="body2" color="text.secondary" sx={{ mt: 1, minHeight: { md: 63 } }}>
+        <Typography variant="body2" color="text.secondary" sx={{ mt: 0.5, minHeight: { md: 63 } }}>
           {description}
         </Typography>
       )}
@@ -80,7 +81,7 @@ export function PlanPrice(props: PlanPriceProps) {
 
   if (plan === 'community') {
     return (
-      <Box sx={{ display: 'flex', alignItems: 'center', mt: 1, mb: 2 }}>
+      <Box sx={{ display: 'flex', alignItems: 'center', mt: 1 }}>
         <Typography variant="h4" component="div" fontWeight="bold" color="success.600">
           $0
         </Typography>
@@ -95,40 +96,18 @@ export function PlanPrice(props: PlanPriceProps) {
     return (
       <div>
         <Box sx={{ display: 'flex', alignItems: 'center', mt: 1, mb: 2 }}>
-          <Typography
-            variant="body2"
-            fontWeight="bold"
-            color="error.500"
-            sx={{
-              borderRadius: 0.5,
-              bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'error.900' : 'error.100'),
-              textDecoration: 'line-through',
-              p: '4px',
-            }}
-          >
-            $249
-          </Typography>
-          <Box sx={{ width: 10 }} />
           <Typography variant="h4" component="div" fontWeight="bold" color="primary.main">
-            $186
-          </Typography>
-          <Typography
-            variant="subtitle1"
-            component="div"
-            fontWeight="bold"
-            color="primary.main"
-            sx={{ mb: 1 }}
-          >
-            *
+            $15
           </Typography>
           <Box sx={{ width: 5 }} />
           <Typography variant="body2" color="text.secondary">
-            / developer.
+            / dev / month.
           </Typography>
         </Box>
-        <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-          <Link href="#early-bird">* Early bird special.</Link>
-          <br />
+        <Typography variant="body2" color="text.secondary" sx={{ mt: 2 }}>
+          Billed annually at $180.
+        </Typography>
+        <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
           Price capped at 10 developers.
         </Typography>
       </div>
@@ -137,17 +116,43 @@ export function PlanPrice(props: PlanPriceProps) {
   return (
     <div>
       <Box sx={{ display: 'flex', alignItems: 'center', mt: 1 }}>
-        <Typography variant="h4" component="div" fontWeight="bold" color="grey.600">
-          $599
+        <Typography
+          variant="body2"
+          fontWeight="bold"
+          color="error.500"
+          sx={{
+            borderRadius: 0.5,
+            bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'error.900' : 'error.100'),
+            textDecoration: 'line-through',
+            p: '4px',
+          }}
+        >
+          $49
+        </Typography>
+        <Box sx={{ width: 10 }} />
+        <Typography variant="h4" component="div" fontWeight="bold" color="primary.main">
+          $37
+        </Typography>
+        <Typography
+          variant="subtitle1"
+          component="div"
+          fontWeight="bold"
+          color="primary.main"
+          sx={{ mb: 1 }}
+        >
+          *
         </Typography>
         <Box sx={{ width: 5 }} />
         <Typography variant="body2" color="text.secondary">
-          / developer.
+          / dev / month.
         </Typography>
       </Box>
       <Typography variant="body2" color="text.secondary" sx={{ mt: 2 }}>
-        Price capped at 10 developers per application
+        Billed annually at $444.
       </Typography>
+      <Link variant="body2" href="#early-bird" sx={{ mb: 2 }}>
+        * Early bird special.
+      </Link>
     </div>
   );
 }
@@ -240,11 +245,13 @@ const ColumnHeadHighlight = (props: BoxProps) => (
     {...props}
     sx={{
       p: 2,
+      display: 'flex',
+      flexDirection: 'column',
       position: 'relative',
       borderRadius: '10px 10px 0 0',
       borderWidth: '1px 1px 0 1px',
       borderStyle: 'solid',
-      borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.200'),
+      borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.100'),
       bgcolor: (theme) =>
         theme.palette.mode === 'dark'
           ? alpha(theme.palette.primaryDark[900], 0.5)
@@ -263,8 +270,8 @@ const Recommended = (props: BoxProps) => (
       p: '2px 8px',
       border: '1px solid',
       borderRadius: 2,
-      borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primary.700' : 'primary.200'),
-      bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.800' : 'grey.50'),
+      borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.500' : 'primary.100'),
+      bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.800' : 'primary.50'),
       position: 'absolute',
       top: 0,
       left: 20,
@@ -289,7 +296,7 @@ const Cell = ({ highlighted = false, ...props }: BoxProps & { highlighted?: bool
       ...(highlighted && {
         borderWidth: '0 1px 0 1px',
         borderStyle: 'solid',
-        borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.200'),
+        borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.100'),
         bgcolor: (theme) =>
           theme.palette.mode === 'dark'
             ? alpha(theme.palette.primaryDark[900], 0.5)
@@ -347,161 +354,147 @@ const rowHeaders: Record<string, React.ReactNode> = {
   ),
   // Advanced
   'data-grid/column-groups': (
-    <ColumnHead label="Column groups" nested href="/components/data-grid/columns/#column-groups" />
+    <ColumnHead label="Column groups" nested href="/x/react-data-grid/column-groups/" />
   ),
   'data-grid/column-spanning': (
-    <ColumnHead
-      label="Column spanning"
-      nested
-      href="/components/data-grid/columns/#column-spanning"
-    />
+    <ColumnHead label="Column spanning" nested href="/x/react-data-grid/column-spanning/" />
   ),
   'data-grid/column-resizing': (
-    <ColumnHead label="Column resizing" nested href="/components/data-grid/columns/#resizing" />
+    <ColumnHead
+      label="Column resizing"
+      nested
+      href="/x/react-data-grid/column-dimensions/#resizing"
+    />
   ),
   'data-grid/column-reorder': (
-    <ColumnHead
-      label="Column reorder"
-      nested
-      href="/components/data-grid/columns/#column-reorder"
-    />
+    <ColumnHead label="Column reorder" nested href="/x/react-data-grid/column-ordering/" />
   ),
   'data-grid/column-pinning': (
-    <ColumnHead
-      label="Column pinning"
-      nested
-      href="/components/data-grid/columns/#column-pinning"
-    />
+    <ColumnHead label="Column pinning" nested href="/x/react-data-grid/column-pinning/" />
   ),
   'data-grid/column-sorting': (
-    <ColumnHead label="Column sorting" nested href="/components/data-grid/sorting/" />
+    <ColumnHead label="Column sorting" nested href="/x/react-data-grid/sorting/" />
   ),
   'data-grid/multi-column-sorting': (
     <ColumnHead
       label="Multi-column sorting"
       nested
-      href="/components/data-grid/sorting/#multi-sorting"
+      href="/x/react-data-grid/sorting/#multi-sorting"
     />
   ),
   'data-grid/row-height': (
-    <ColumnHead label="Row height" nested href="/components/data-grid/rows/#row-height" />
+    <ColumnHead label="Row height" nested href="/x/react-data-grid/rows/#row-height" />
   ),
   'data-grid/row-spanning': (
-    <ColumnHead label="Row spanning" nested href="/components/data-grid/rows/#row-spanning" />
+    <ColumnHead label="Row spanning" nested href="/x/react-data-grid/rows/#row-spanning" />
   ),
   'data-grid/row-reordering': (
-    <ColumnHead label="Row reordering" nested href="/components/data-grid/rows/#row-reorder" />
+    <ColumnHead label="Row reordering" nested href="/x/react-data-grid/rows/#row-reorder" />
   ),
   'data-grid/row-selection': (
-    <ColumnHead
-      label="Row selection"
-      nested
-      href="/components/data-grid/selection/#row-selection"
-    />
+    <ColumnHead label="Row selection" nested href="/x/react-data-grid/selection/#row-selection" />
   ),
   'data-grid/row-multiselection': (
     <ColumnHead
       label="Multi-row selection"
       nested
-      href="/components/data-grid/selection/#multiple-row-selection"
+      href="/x/react-data-grid/selection/#multiple-row-selection"
     />
   ),
   'data-grid/row-rangeselection': (
     <ColumnHead
       label="Range selection"
       nested
-      href="/components/data-grid/selection/#range-selection"
+      href="/x/react-data-grid/selection/#range-selection"
     />
   ),
   'data-grid/filter-quick': (
-    <ColumnHead label="Quick filter" nested href="/components/data-grid/filtering/#quick-filter" />
+    <ColumnHead label="Quick filter" nested href="/x/react-data-grid/filtering/#quick-filter" />
   ),
   'data-grid/filter-column': (
-    <ColumnHead label="Column filters" nested href="/components/data-grid/filtering/" />
+    <ColumnHead label="Column filters" nested href="/x/react-data-grid/filtering/" />
   ),
   'data-grid/filter-multicolumn': (
     <ColumnHead
       label="Multi-column filtering"
       nested
-      href="/components/data-grid/filtering/#single-and-multi-filtering"
+      href="/x/react-data-grid/filtering/#single-and-multi-filtering"
     />
   ),
   'data-grid/pagination': (
-    <ColumnHead label="Pagination" nested href="/components/data-grid/pagination/" />
+    <ColumnHead label="Pagination" nested href="/x/react-data-grid/pagination/" />
   ),
   'data-grid/pagination-large': (
     <ColumnHead
       label="Pagination > 100 rows per page"
       nested
-      href="/components/data-grid/pagination/#size-of-the-page"
+      href="/x/react-data-grid/pagination/#size-of-the-page"
     />
   ),
   'data-grid/edit-row': (
-    <ColumnHead label="Row editing" nested href="/components/data-grid/editing/#row-editing" />
+    <ColumnHead label="Row editing" nested href="/x/react-data-grid/editing/#row-editing" />
   ),
   'data-grid/edit-cell': (
-    <ColumnHead label="Cell editing" nested href="/components/data-grid/editing/#cell-editing" />
+    <ColumnHead label="Cell editing" nested href="/x/react-data-grid/editing/#cell-editing" />
   ),
   'data-grid/file-csv': (
-    <ColumnHead label="CSV export" nested href="/components/data-grid/export/#csv-export" />
+    <ColumnHead label="CSV export" nested href="/x/react-data-grid/export/#csv-export" />
   ),
   'data-grid/file-print': (
-    <ColumnHead label="Print" nested href="/components/data-grid/export/#print-export" />
+    <ColumnHead label="Print" nested href="/x/react-data-grid/export/#print-export" />
   ),
   'data-grid/file-clipboard': (
-    <ColumnHead label="Clipboard" nested href="/components/data-grid/export/#clipboard" />
+    <ColumnHead label="Clipboard" nested href="/x/react-data-grid/export/#clipboard" />
   ),
   'data-grid/file-excel': (
-    <ColumnHead label="Excel export" nested href="/components/data-grid/export/#excel-export" />
+    <ColumnHead label="Excel export" nested href="/x/react-data-grid/export/#excel-export" />
   ),
   'data-grid/customizable-components': (
-    <ColumnHead label="Customizable components" nested href="/components/data-grid/components/" />
+    <ColumnHead label="Customizable components" nested href="/x/react-data-grid/components/" />
   ),
   'data-grid/virtualize-column': (
     <ColumnHead
       label="Column virtualization"
       nested
-      href="/components/data-grid/virtualization/#column-virtualization"
+      href="/x/react-data-grid/virtualization/#column-virtualization"
     />
   ),
   'data-grid/virtualize-row': (
     <ColumnHead
       label="Row virtualization > 100 rows"
       nested
-      href="/components/data-grid/virtualization/#row-virtualization"
+      href="/x/react-data-grid/virtualization/#row-virtualization"
     />
   ),
   'data-grid/tree-data': (
-    <ColumnHead label="Tree data" nested href="/components/data-grid/group-pivot/#tree-data" />
+    <ColumnHead label="Tree data" nested href="/x/react-data-grid/tree-data/" />
   ),
   'data-grid/master-detail': (
-    <ColumnHead
-      label="Master detail"
-      nested
-      href="/components/data-grid/group-pivot/#master-detail"
-    />
+    <ColumnHead label="Master detail" nested href="/x/react-data-grid/master-detail/" />
   ),
   'data-grid/grouping': (
-    <ColumnHead label="Grouping" nested href="/components/data-grid/group-pivot/#grouping" />
+    <ColumnHead
+      label="Row grouping"
+      nested
+      href="https://mui.com/x/react-data-grid/row-grouping/"
+    />
   ),
   'data-grid/aggregation': (
-    <ColumnHead label="Aggregation" nested href="/components/data-grid/group-pivot/#aggregation" />
+    <ColumnHead label="Aggregation" nested href="/x/react-data-grid/aggregation/" />
   ),
-  'data-grid/pivoting': (
-    <ColumnHead label="Pivoting" nested href="/components/data-grid/group-pivot/#pivoting" />
-  ),
+  'data-grid/pivoting': <ColumnHead label="Pivoting" nested href="/x/react-data-grid/pivoting/" />,
   'data-grid/accessibility': (
-    <ColumnHead label="Accessibility" nested href="/components/data-grid/accessibility/" />
+    <ColumnHead label="Accessibility" nested href="/x/react-data-grid/accessibility/" />
   ),
   'data-grid/keyboard-nav': (
     <ColumnHead
       label="Keyboard navigation"
       nested
-      href="/components/data-grid/accessibility/#keyboard-navigation"
+      href="/x/react-data-grid/accessibility/#keyboard-navigation"
     />
   ),
   'data-grid/localization': (
-    <ColumnHead label="Localization" nested href="/components/data-grid/localization/" />
+    <ColumnHead label="Localization" nested href="/x/react-data-grid/localization/" />
   ),
   'date-picker/simple': <ColumnHead label="Date picker" />,
   'date-picker/range': <ColumnHead label="Date range picker" />,
@@ -566,7 +559,7 @@ const communityData: Record<string, React.ReactNode> = {
   'Material UI': yes,
   // MUI X
   'data-grid/column-groups': pending,
-  'data-grid/column-spanning': pending,
+  'data-grid/column-spanning': yes,
   'data-grid/column-resizing': no,
   'data-grid/column-reorder': no,
   'data-grid/column-pinning': no,
@@ -576,7 +569,7 @@ const communityData: Record<string, React.ReactNode> = {
   'data-grid/row-selection': yes,
   'data-grid/row-multiselection': no,
   'data-grid/row-rangeselection': no,
-  'data-grid/filter-quick': pending,
+  'data-grid/filter-quick': yes,
   'data-grid/filter-column': yes,
   'data-grid/filter-multicolumn': no,
   'data-grid/column-sorting': yes,
@@ -620,17 +613,17 @@ const proData: Record<string, React.ReactNode> = {
   'Material UI': yes,
   // MUI X
   'data-grid/column-groups': pending,
-  'data-grid/column-spanning': pending,
+  'data-grid/column-spanning': yes,
   'data-grid/column-resizing': yes,
   'data-grid/column-reorder': yes,
   'data-grid/column-pinning': yes,
   'data-grid/row-height': yes,
   'data-grid/row-spanning': pending,
-  'data-grid/row-reordering': pending,
+  'data-grid/row-reordering': yes,
   'data-grid/row-selection': yes,
   'data-grid/row-multiselection': yes,
   'data-grid/row-rangeselection': no,
-  'data-grid/filter-quick': pending,
+  'data-grid/filter-quick': yes,
   'data-grid/filter-column': yes,
   'data-grid/filter-multicolumn': yes,
   'data-grid/column-sorting': yes,
@@ -674,17 +667,17 @@ const premiumData: Record<string, React.ReactNode> = {
   'Material UI': yes,
   // MUI X
   'data-grid/column-groups': pending,
-  'data-grid/column-spanning': pending,
+  'data-grid/column-spanning': yes,
   'data-grid/column-resizing': yes,
   'data-grid/column-reorder': yes,
   'data-grid/column-pinning': yes,
   'data-grid/row-height': yes,
   'data-grid/row-spanning': pending,
-  'data-grid/row-reordering': pending,
+  'data-grid/row-reordering': yes,
   'data-grid/row-selection': yes,
   'data-grid/row-multiselection': yes,
   'data-grid/row-rangeselection': pending,
-  'data-grid/filter-quick': pending,
+  'data-grid/filter-quick': yes,
   'data-grid/filter-column': yes,
   'data-grid/filter-multicolumn': yes,
   'data-grid/column-sorting': yes,
@@ -696,7 +689,7 @@ const premiumData: Record<string, React.ReactNode> = {
   'data-grid/file-csv': yes,
   'data-grid/file-print': yes,
   'data-grid/file-clipboard': pending,
-  'data-grid/file-excel': pending,
+  'data-grid/file-excel': yes,
   'data-grid/customizable-components': yes,
   'data-grid/virtualize-column': yes,
   'data-grid/virtualize-row': yes,
@@ -716,9 +709,9 @@ const premiumData: Record<string, React.ReactNode> = {
   'bugs/features': <Info value={yes} metadata="Priority over Pro" />,
   'tech-advisory': pending,
   'support-duration': <Info value="1 year" />,
-  'response-time': <Info value="2 business days" metadata="1 business day (priority only)" />,
-  'pre-screening': <Info value="4 hours" metadata="priority only" />,
-  'issue-escalation': <Info value={pending} metadata="priority only" />,
+  'response-time': <Info value={pending} metadata="Available later on" />,
+  'pre-screening': <Info value="4 hours" metadata="priority only, add-on not available yet" />,
+  'issue-escalation': <Info value={pending} metadata="priority only, add-on not available yet" />,
 };
 
 const RowCategory = (props: BoxProps) => (
@@ -871,9 +864,6 @@ export default function PricingTable({
         width: '100%',
         overflow: 'auto',
         py: { xs: 2, md: 4 },
-        '&::-webkit-scrollbar': {
-          display: 'none',
-        },
         ...props.sx,
       }}
     >
@@ -889,7 +879,7 @@ export default function PricingTable({
             <Button
               component={Link}
               noLinkStyle
-              href="/getting-started/usage/"
+              href="/material-ui/getting-started/usage/"
               variant="outlined"
               fullWidth
               endIcon={<KeyboardArrowRightRounded />}
@@ -900,12 +890,14 @@ export default function PricingTable({
           </Box>
           <ColumnHeadHighlight>
             <Recommended />
-            <PlanName plan="pro" />
-            <PlanPrice plan="pro" />
+            <Box>
+              <PlanName plan="pro" />
+              <PlanPrice plan="pro" />
+            </Box>
             <Button
               component={Link}
               noLinkStyle
-              href="https://mui.com/store/items/material-ui-pro/"
+              href="https://mui.com/store/items/mui-x-pro/"
               variant="contained"
               fullWidth
               endIcon={<KeyboardArrowRightRounded />}
@@ -915,17 +907,18 @@ export default function PricingTable({
             </Button>
           </ColumnHeadHighlight>
           <Box sx={{ p: 2, display: 'flex', flexDirection: 'column' }}>
-            <Box sx={{ opacity: 0.5 }}>
-              <PlanName plan="premium" />
-              <PlanPrice plan="premium" />
-            </Box>
+            <PlanName plan="premium" />
+            <PlanPrice plan="premium" />
             <Button
-              variant="outlined"
-              disabled
+              component={Link}
+              noLinkStyle
+              href="https://mui.com/store/items/mui-x-premium/"
+              variant="contained"
               fullWidth
-              sx={{ py: 1, mt: 'auto', '&.Mui-disabled': { color: 'text.disabled' } }}
+              endIcon={<KeyboardArrowRightRounded />}
+              sx={{ py: 1, mt: 'auto' }}
             >
-              In progress!
+              Buy now
             </Button>
           </Box>
         </Box>
@@ -1023,9 +1016,9 @@ export default function PricingTable({
         <RowCategory>Row features</RowCategory>
         {renderRow('data-grid/row-height')}
         {nestedDivider}
-        {renderRow('data-grid/row-spanning')}
-        {nestedDivider}
         {renderRow('data-grid/row-reordering')}
+        {nestedDivider}
+        {renderRow('data-grid/row-spanning')}
         {nestedDivider}
         <RowCategory>Selection features</RowCategory>
         {renderRow('data-grid/row-selection')}
@@ -1061,9 +1054,9 @@ export default function PricingTable({
         {nestedDivider}
         {renderRow('data-grid/file-print')}
         {nestedDivider}
-        {renderRow('data-grid/file-clipboard')}
-        {nestedDivider}
         {renderRow('data-grid/file-excel')}
+        {nestedDivider}
+        {renderRow('data-grid/file-clipboard')}
         {nestedDivider}
         <RowCategory>Rendering features</RowCategory>
         {renderRow('data-grid/customizable-components')}
@@ -1100,8 +1093,6 @@ export default function PricingTable({
       {renderRow('community')}
       {divider}
       {renderRow('bugs/features')}
-      {divider}
-      {renderRow('tech-advisory')}
       {divider}
       {renderRow('support-duration')}
       {divider}

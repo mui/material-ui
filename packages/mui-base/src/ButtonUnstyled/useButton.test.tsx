@@ -47,7 +47,7 @@ describe('useButton', () => {
       it('is set when triggered by mouse', () => {
         const TestComponent = () => {
           const buttonRef = React.useRef(null);
-          const { active, getRootProps } = useButton({ ref: buttonRef, component: 'span' });
+          const { active, getRootProps } = useButton({ ref: buttonRef });
 
           return <span {...getRootProps()} className={active ? 'active' : ''} />;
         };
@@ -63,7 +63,7 @@ describe('useButton', () => {
       it('is set when triggered by keyboard', () => {
         const TestComponent = () => {
           const buttonRef = React.useRef(null);
-          const { active, getRootProps } = useButton({ ref: buttonRef, component: 'span' });
+          const { active, getRootProps } = useButton({ ref: buttonRef });
 
           return <span {...getRootProps()} className={active ? 'active' : ''} />;
         };

@@ -26,8 +26,8 @@ import Frame from 'docs/src/components/action/Frame';
 import IconImage from 'docs/src/components/icon/IconImage';
 import { brandingDarkTheme } from 'docs/src/modules/brandingTheme';
 
-const DEMOS = ['Data Grid', 'Date Range Picker', 'Tree View', 'Sparkline', 'Charts'];
-const WIP = DEMOS.slice(3);
+const DEMOS = ['Data grid', 'Date range picker', 'Tree view', 'Sparkline', 'Charts'];
+const WIP = DEMOS.slice(1);
 
 const AspectRatioImage = styled('div', {
   shouldForwardProp: (prop) => shouldForwardProp(prop) && prop !== 'src' && prop !== 'ratio',
@@ -106,7 +106,9 @@ export default function XComponents() {
             {DEMOS.map((name) => (
               <Highlighter key={name} selected={name === demo} onClick={() => setDemo(name)}>
                 <Item icon={React.cloneElement(icons[name])} title={name} />
-                {WIP.includes(name) && <IconImage name="time" sx={{ ml: 'auto', mr: 2 }} />}
+                {WIP.includes(name) && (
+                  <IconImage name="time" title="Work in progress" sx={{ ml: 'auto', mr: 2 }} />
+                )}
               </Highlighter>
             ))}
             <More href={ROUTES.roadmap} />

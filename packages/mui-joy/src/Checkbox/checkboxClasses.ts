@@ -33,19 +33,19 @@ export interface CheckboxClasses {
   sizeLg: string;
   /** Styles applied to the root element if `variant="outlined"`. */
   variantOutlined: string;
-  /** Styles applied to the root element if `variant="light"`. */
-  variantLight: string;
-  /** Styles applied to the root element if `variant="contained"`. */
-  variantContained: string;
+  /** Styles applied to the root element if `variant="soft"`. */
+  variantSoft: string;
+  /** Styles applied to the root element if `variant="solid"`. */
+  variantSolid: string;
 }
 
 export type CheckboxClassKey = keyof CheckboxClasses;
 
 export function getCheckboxUtilityClass(slot: string): string {
-  return generateUtilityClass('MuiCheckbox', slot);
+  return generateUtilityClass('JoyCheckbox', slot);
 }
 
-const checkboxClasses: CheckboxClasses = generateUtilityClasses('MuiCheckbox', [
+const checkboxClasses: CheckboxClasses = generateUtilityClasses('JoyCheckbox', [
   'root',
   'input',
   'checked',
@@ -62,8 +62,8 @@ const checkboxClasses: CheckboxClasses = generateUtilityClasses('MuiCheckbox', [
   'sizeMd',
   'sizeLg',
   'variantOutlined',
-  'variantLight',
-  'variantContained',
+  'variantSoft',
+  'variantSolid',
 ]);
 
 export default checkboxClasses;
