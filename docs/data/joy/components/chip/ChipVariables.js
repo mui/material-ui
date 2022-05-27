@@ -1,11 +1,8 @@
 import * as React from 'react';
-import AspectRatio from '@mui/joy/AspectRatio';
+import Avatar from '@mui/joy/Avatar';
 import Box from '@mui/joy/Box';
-import Card from '@mui/joy/Card';
-import CardCover from '@mui/joy/CardCover';
-import CardContent from '@mui/joy/CardContent';
-import CardOverflow from '@mui/joy/CardOverflow';
-import Link from '@mui/joy/Link';
+import Chip from '@mui/joy/Chip';
+import ChipDelete from '@mui/joy/ChipDelete';
 import TextField from '@mui/joy/TextField';
 import Typography from '@mui/joy/Typography';
 import BrandingProvider from 'docs/src/BrandingProvider';
@@ -17,23 +14,38 @@ function formatSx(sx) {
     return '';
   }
   if (lines.length === 1) {
-    return ` sx={${JSON.stringify(sx)
+    return `  sx={${JSON.stringify(sx)
       .replace('{', '{ ')
       .replace('}', ' }')
       .replace(':', ': ')}}`;
   }
-  return ` sx={${JSON.stringify(sx, null, 2)}}`;
+  return `  sx={${JSON.stringify(sx, null, 2)}}`;
 }
 
 const vars = [
   {
-    var: '--Card-padding',
-    defaultValue: '16px',
+    var: '--Chip-minHeight',
+    defaultValue: '32px',
     type: 'number',
   },
   {
-    var: '--Card-radius',
+    var: '--Chip-radius',
+    defaultValue: '24px',
+    type: 'number',
+  },
+  {
+    var: '--Chip-gap',
+    defaultValue: '6px',
+    type: 'number',
+  },
+  {
+    var: '--Chip-paddingInline',
     defaultValue: '12px',
+    type: 'number',
+  },
+  {
+    var: '--Chip-decorator-childHeight',
+    defaultValue: '',
     type: 'number',
   },
 ];
@@ -48,7 +60,6 @@ export default function GroupedAvatars() {
         gridTemplateColumns: { xs: '1fr', md: '1fr auto' },
         gridTemplateRows: '1fr auto',
         gap: 2,
-        mt: 2,
         '& .markdown-body pre': {
           margin: 0,
           borderRadius: 'xs',
@@ -61,63 +72,28 @@ export default function GroupedAvatars() {
           justifyContent: 'center',
           mx: 'auto',
           display: 'flex',
+          flexDirection: 'column',
           placeSelf: 'center',
-          gap: 2,
+          gap: 1,
           flexWrap: 'wrap',
         }}
       >
-        <Card variant="outlined" sx={{ maxWidth: 200, boxShadow: 'none', ...sx }}>
-          <CardOverflow>
-            <AspectRatio>
-              <img
-                alt=""
-                src="https://images.unsplash.com/photo-1523404343994-489a5eefd760?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2148"
-              />
-            </AspectRatio>
-          </CardOverflow>
-          <Box sx={{ mt: -3, width: 48 }}>
-            <AspectRatio ratio="1">
-              <img
-                alt=""
-                src="https://images.unsplash.com/photo-1507833423370-a126b89d394b?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3387"
-              />
-            </AspectRatio>
-          </Box>
-          <Box>
-            <Typography fontWeight="lg" mt={1.5}>
-              <Link href="#card-variables" overlay color="neutral">
-                Card title
-              </Link>
-            </Typography>
-            <Typography level="body2">A very very long description.</Typography>
-          </Box>
-        </Card>
-        <Card
+        <Chip
+          startDecorator={<Avatar src="/static/images/avatar/1.jpg" />}
+          endDecorator={<ChipDelete />}
+          sx={sx}
+        >
+          Person name
+        </Chip>
+        <Chip
           variant="outlined"
           color="neutral"
-          sx={{ maxWidth: 200, boxShadow: 'none', ...sx }}
+          startDecorator={<Avatar src="/static/images/avatar/1.jpg" />}
+          endDecorator={<ChipDelete />}
+          sx={sx}
         >
-          <CardCover>
-            <img
-              src="https://images.unsplash.com/photo-1523404343994-489a5eefd760?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2148"
-              alt=""
-            />
-          </CardCover>
-          <CardCover
-            sx={{
-              background:
-                'linear-gradient(to top, rgba(0,0,0,0.4), rgba(0,0,0,0) 200px), linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0) 300px)',
-            }}
-          />
-          <CardContent sx={{ mt: 'auto', flexGrow: 0 }}>
-            <Typography fontWeight="lg" color="#fff">
-              Card title
-            </Typography>
-            <Typography level="body2" color="neutral.400">
-              A very very long description.
-            </Typography>
-          </CardContent>
-        </Card>
+          Person name
+        </Chip>
       </Box>
       <Box
         sx={{
@@ -161,7 +137,7 @@ export default function GroupedAvatars() {
                 });
               }}
               sx={{
-                maxWidth: 160,
+                maxWidth: 180,
                 '& .JoyInput-root': { '--Input-paddingInline': '0.5rem' },
               }}
             />
@@ -170,7 +146,10 @@ export default function GroupedAvatars() {
       </Box>
       <BrandingProvider mode="dark">
         <HighlighedCode
-          code={`<Card${formatSx(sx)}>`}
+          code={`<Chip
+  startDecorator={<Avatar />}
+  endDecorator={<ChipDelete />}
+${formatSx(sx)}>`}
           language="jsx"
           sx={{ display: { xs: 'none', md: 'initial' } }}
         />

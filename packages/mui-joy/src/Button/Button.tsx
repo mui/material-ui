@@ -40,8 +40,8 @@ const ButtonStartIcon = styled('span', {
   slot: 'StartIcon',
   overridesResolver: (props, styles) => styles.startIcon,
 })<{ ownerState: ButtonProps }>({
+  '--Icon-margin': '0 0 0 calc(var(--Button-paddingInline) / -3)',
   display: 'inherit',
-  marginLeft: 'calc(var(--Button-gutter) * var(--Button-iconOffsetStep) * -0.25)',
   marginRight: 'var(--Button-gap)',
 });
 
@@ -50,9 +50,9 @@ const ButtonEndIcon = styled('span', {
   slot: 'EndIcon',
   overridesResolver: (props, styles) => styles.endIcon,
 })<{ ownerState: ButtonProps }>({
+  '--Icon-margin': '0 calc(var(--Button-paddingInline) / -3) 0 0',
   display: 'inherit',
   marginLeft: 'var(--Button-gap)',
-  marginRight: 'calc(var(--Button-gutter) * var(--Button-iconOffsetStep) * -0.25)',
 });
 
 const ButtonRoot = styled('button', {
@@ -62,37 +62,30 @@ const ButtonRoot = styled('button', {
 })<{ ownerState: ButtonProps }>(({ theme, ownerState }) => {
   return [
     {
+      '--Icon-margin': 'initial', // reset the icon's margin.
       ...(ownerState.size === 'sm' && {
-        '--Button-gutter': '1rem',
         '--Icon-fontSize': '1.25rem',
+        '--Button-paddingInline': '1rem',
+        minHeight: 'var(--Button-minHeight, 2rem)',
       }),
       ...(ownerState.size === 'md' && {
-        '--Button-gutter': '1.5rem', // gutter is the padding-x
         '--Icon-fontSize': '1.5rem', // control the SvgIcon font-size
+        '--Button-paddingInline': '1.5rem', // gutter is the padding-x
+        minHeight: 'var(--Button-minHeight, 2.5rem)', // use min-height instead of height to make the button resilient to its content
       }),
       ...(ownerState.size === 'lg' && {
-        '--Button-gutter': '2rem',
         '--Icon-fontSize': '1.75rem',
+        '--Button-paddingInline': '2rem',
+        minHeight: 'var(--Button-minHeight, 3rem)',
       }),
-      '--Button-iconOffsetStep': 2, // negative margin of the start/end icon
-      '--Button-gap': 'clamp(0.25rem, var(--Button-gutter) * 0.5, 0.5rem)', // gap between start/end icon and content [0.25rem, x, 0.5rem]
-    },
-    {
-      padding: '0.25rem var(--Button-gutter)', // the padding-top, bottom act as a minimum spacing between content and root element
+      '--Button-gap': 'clamp(0.25rem, var(--Button-paddingInline) * 0.5, 0.5rem)', // gap between start/end icon and content [0.25rem, x, 0.5rem]
+      padding: '0.25rem var(--Button-paddingInline)', // the padding-top, bottom act as a minimum spacing between content and root element
       ...(ownerState.variant === 'outlined' && {
         padding:
-          'calc(0.25rem - var(--variant-outlinedBorderWidth)) calc(var(--Button-gutter) - var(--variant-outlinedBorderWidth))', // account for the border width
+          'calc(0.25rem - var(--variant-outlinedBorderWidth)) calc(var(--Button-paddingInline) - var(--variant-outlinedBorderWidth))', // account for the border width
       }),
-      ...(ownerState.size === 'sm' && {
-        minHeight: '2rem',
-      }),
-      ...(ownerState.size === 'md' && {
-        minHeight: '2.5rem', // use min-height instead of height to make the button resilient to its content
-      }),
-      ...(ownerState.size === 'lg' && {
-        minHeight: '3rem',
-      }),
-      borderRadius: theme.vars.radius.sm,
+      borderRadius: `var(--Button-radius, ${theme.vars.radius.sm})`, // to be controlled by other components, eg. Input
+      margin: `var(--Button-margin)`, // to be controlled by other components, eg. Input
       border: 'none',
       backgroundColor: 'transparent',
       cursor: 'pointer',
