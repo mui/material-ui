@@ -67,16 +67,19 @@ const ButtonRoot = styled('button', {
         '--Icon-fontSize': '1.25rem',
         '--Button-paddingInline': '1rem',
         minHeight: 'var(--Button-minHeight, 2rem)',
+        fontSize: theme.vars.fontSize.sm,
       }),
       ...(ownerState.size === 'md' && {
         '--Icon-fontSize': '1.5rem', // control the SvgIcon font-size
         '--Button-paddingInline': '1.5rem', // gutter is the padding-x
         minHeight: 'var(--Button-minHeight, 2.5rem)', // use min-height instead of height to make the button resilient to its content
+        fontSize: theme.vars.fontSize.md,
       }),
       ...(ownerState.size === 'lg' && {
         '--Icon-fontSize': '1.75rem',
         '--Button-paddingInline': '2rem',
         minHeight: 'var(--Button-minHeight, 3rem)',
+        fontSize: theme.vars.fontSize.lg,
       }),
       '--Button-gap': 'clamp(0.25rem, var(--Button-paddingInline) * 0.5, 0.5rem)', // gap between start/end icon and content [0.25rem, x, 0.5rem]
       padding: '0.25rem var(--Button-paddingInline)', // the padding-top, bottom act as a minimum spacing between content and root element
@@ -97,12 +100,7 @@ const ButtonRoot = styled('button', {
       transition:
         'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
       fontFamily: theme.vars.fontFamily.body,
-      fontSize: theme.vars.fontSize.md,
       lineHeight: 1,
-      ...(ownerState.size === 'sm' && {
-        fontSize: theme.vars.fontSize.sm,
-      }),
-      ...(ownerState.size === 'lg' && theme.typography.h6),
       ...(ownerState.fullWidth && {
         width: '100%',
       }),

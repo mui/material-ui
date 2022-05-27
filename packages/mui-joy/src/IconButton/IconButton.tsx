@@ -44,18 +44,21 @@ const IconButtonRoot = styled('button', {
         '--IconButton-padding': '0px',
         minWidth: 'var(--IconButton-size, 2rem)', // use min-width instead of height to make the button resilient to its content
         minHeight: 'var(--IconButton-size, 2rem)', // use min-height instead of height to make the button resilient to its content
+        fontSize: theme.vars.fontSize.sm,
       }),
       ...(ownerState.size === 'md' && {
         '--Icon-fontSize': '1.5rem', // control the SvgIcon font-size
         '--IconButton-padding': '0.25rem',
         minWidth: 'var(--IconButton-size, 2.5rem)',
         minHeight: 'var(--IconButton-size, 2.5rem)',
+        fontSize: theme.vars.fontSize.md,
       }),
       ...(ownerState.size === 'lg' && {
         '--Icon-fontSize': '1.75rem',
         '--IconButton-padding': '0.5rem',
         minWidth: 'var(--IconButton-size, 3rem)',
         minHeight: 'var(--IconButton-size, 3rem)',
+        fontSize: theme.vars.fontSize.lg,
       }),
       padding: 'var(--IconButton-padding)',
       ...(ownerState.variant === 'outlined' && {
