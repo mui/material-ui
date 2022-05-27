@@ -1,6 +1,5 @@
 import * as React from 'react';
-import TabPanelUnstyled from '@mui/base/TabPanelUnstyled';
-import { TabPanelUnstyledRootSlotProps } from './TabPanelUnstyled.types';
+import TabPanelUnstyled, { TabPanelUnstyledRootSlotProps } from '@mui/base/TabPanelUnstyled';
 
 function Root(props: TabPanelUnstyledRootSlotProps) {
   const { ownerState, ...other } = props;
