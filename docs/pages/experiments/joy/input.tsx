@@ -3,6 +3,7 @@ import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
 import { GlobalStyles } from '@mui/system';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
+import Chip from '@mui/joy/Chip';
 import Input from '@mui/joy/Input';
 import IconButton from '@mui/joy/IconButton';
 import Typography from '@mui/joy/Typography';
@@ -13,6 +14,7 @@ import Visibility from '@mui/icons-material/VisibilityOutlined';
 import Key from '@mui/icons-material/Key';
 import Info from '@mui/icons-material/InfoRounded';
 import Check from '@mui/icons-material/CheckRounded';
+import Search from '@mui/icons-material/SearchRounded';
 
 const ColorSchemePicker = () => {
   const { mode, setMode } = useColorScheme();
@@ -68,7 +70,7 @@ export default function JoyTypography() {
             type="password"
             startDecorator={<Key />}
             endDecorator={
-              <IconButton size="sm" sx={{ mr: '-6px' }}>
+              <IconButton>
                 <Visibility />
               </IconButton>
             }
@@ -76,8 +78,9 @@ export default function JoyTypography() {
           <Input
             placeholder="Placeholder"
             color="danger"
+            size="lg"
             endDecorator={
-              <Button color="danger" size="sm" sx={{ mr: '-6px' }}>
+              <Button color="danger" size="sm" startIcon={<Info />}>
                 Delete
               </Button>
             }
@@ -87,7 +90,7 @@ export default function JoyTypography() {
             placeholder="Placeholder"
             color="info"
             endDecorator={
-              <Button variant="light" size="sm" sx={{ mr: '-6px' }}>
+              <Button variant="soft" size="sm">
                 Search
               </Button>
             }
@@ -118,18 +121,43 @@ export default function JoyTypography() {
           />
           <Input placeholder="Placeholder" disabled />
           <Input placeholder="Placeholder" disabled defaultValue="I am in disabled state" />
-          <Input variant="text" placeholder="Text variant" defaultValue="Default Value" />
-          <Input variant="text" placeholder="Text variant" />
-          <Input variant="text" placeholder="Text variant" disabled />
-          <Input variant="text" placeholder="Text variant" color="primary" />
-          <Input variant="light" placeholder="Light variant" defaultValue="Default Value" />
-          <Input variant="light" placeholder="Light variant" />
-          <Input variant="light" placeholder="Light variant" disabled />
-          <Input variant="light" placeholder="Light variant" color="primary" />
-          <Input variant="contained" placeholder="Contained variant" defaultValue="Default Value" />
-          <Input variant="contained" placeholder="Contained variant" />
-          <Input variant="contained" placeholder="Contained variant" disabled />
-          <Input variant="contained" placeholder="Contained variant" color="primary" />
+          <Input variant="plain" placeholder="Text variant" defaultValue="Default Value" />
+          <Input variant="plain" placeholder="Text variant" />
+          <Input variant="plain" placeholder="Text variant" disabled />
+          <Input variant="plain" placeholder="Text variant" color="primary" />
+          <Input variant="soft" placeholder="Light variant" defaultValue="Default Value" />
+          <Input variant="soft" placeholder="Light variant" />
+          <Input variant="soft" placeholder="Light variant" disabled />
+          <Input variant="soft" placeholder="Light variant" color="primary" />
+          <Input variant="solid" placeholder="Contained variant" defaultValue="Default Value" />
+          <Input variant="solid" placeholder="Contained variant" />
+          <Input variant="solid" placeholder="Contained variant" disabled />
+          <Input variant="solid" placeholder="Contained variant" color="primary" />
+          <Input
+            size="sm"
+            startDecorator={<Search />}
+            placeholder="Search anything"
+            endDecorator={
+              <IconButton variant="outlined" color="neutral">
+                /
+              </IconButton>
+            }
+          />
+          <Input
+            size="lg"
+            startDecorator={<Search />}
+            placeholder="Search anything"
+            endDecorator={
+              <IconButton variant="outlined" color="neutral">
+                /
+              </IconButton>
+            }
+          />
+          <Input
+            startDecorator={<Search />}
+            placeholder="Search anything"
+            endDecorator={<Chip size="sm">New</Chip>}
+          />
         </Box>
       </Box>
     </CssVarsProvider>

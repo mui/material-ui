@@ -47,10 +47,10 @@ const ColorSchemePicker = () => {
 const props = {
   size: ['sm', 'md', 'lg'],
   color: ['primary', 'danger', 'info', 'success', 'warning', 'neutral'],
-  variant: ['contained', 'outlined', 'light'],
+  variant: ['solid', 'outlined', 'soft'],
 } as const;
 
-export default function JoySvgIcon() {
+export default function JoyAvatar() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   return (
     <CssVarsProvider>
@@ -107,7 +107,7 @@ export default function JoySvgIcon() {
             <Avatar src="/static/images/avatar/3.jpg" />
             <Avatar sx={{ bgcolor: 'background.level1' }}>+3</Avatar>
           </AvatarGroup>
-          <AvatarGroup variant="contained">
+          <AvatarGroup variant="solid">
             <Avatar src="/static/images/avatar/1.jpg" />
             <Avatar src="/static/images/avatar/2.jpg" />
             <Avatar src="/static/images/avatar/3.jpg" />
@@ -131,7 +131,7 @@ export default function JoySvgIcon() {
               <MoreVert />
             </IconButton>
           </AvatarGroup>
-          <AvatarGroup variant="contained">
+          <AvatarGroup variant="solid">
             <Avatar src="/static/images/avatar/1.jpg" />
             <Avatar src="/static/images/avatar/2.jpg" />
             <Avatar src="/static/images/avatar/3.jpg" />
@@ -168,7 +168,7 @@ export default function JoySvgIcon() {
           </AvatarGroup>
         </Box>
         <Box sx={{ my: 2, display: 'flex', gap: 3 }}>
-          <Sheet variant="light" sx={{ p: 2 }}>
+          <Sheet variant="soft" sx={{ p: 2 }}>
             <AvatarGroup>
               <Avatar src="/static/images/avatar/1.jpg" />
               <Avatar src="/static/images/avatar/2.jpg" />
@@ -186,7 +186,7 @@ export default function JoySvgIcon() {
               </IconButton>
             </AvatarGroup>
           </Sheet>
-          <Sheet variant="contained" color="danger" sx={{ p: 2 }}>
+          <Sheet variant="solid" color="danger" sx={{ p: 2 }}>
             <AvatarGroup>
               <Avatar src="/static/images/avatar/1.jpg" />
               <Avatar src="/static/images/avatar/2.jpg" />
@@ -194,7 +194,7 @@ export default function JoySvgIcon() {
               <Avatar>+99</Avatar>
             </AvatarGroup>
           </Sheet>
-          <Sheet variant="contained" color="primary" sx={{ p: 2 }}>
+          <Sheet variant="solid" color="primary" sx={{ p: 2 }}>
             <AvatarGroup
               size="sm"
               sx={{ '--Avatar-ringColor': 'var(--joy-palette-primary-outlinedBorder)' }}

@@ -160,7 +160,11 @@ const Alert = React.forwardRef(function Alert(inProps, ref) {
       <AlertMessage ownerState={ownerState} className={classes.message}>
         {children}
       </AlertMessage>
-      {action != null ? <AlertAction className={classes.action}>{action}</AlertAction> : null}
+      {action != null ? (
+        <AlertAction ownerState={ownerState} className={classes.action}>
+          {action}
+        </AlertAction>
+      ) : null}
       {action == null && onClose ? (
         <AlertAction ownerState={ownerState} className={classes.action}>
           <IconButton

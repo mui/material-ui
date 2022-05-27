@@ -29,22 +29,25 @@ const useUtilityClasses = (ownerState: AvatarProps) => {
 };
 
 const AvatarRoot = styled('div', {
-  name: 'MuiAvatar',
+  name: 'JoyAvatar',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: AvatarProps }>(({ theme, ownerState }) => {
   return [
     {
       ...(ownerState.size === 'sm' && {
-        '--Avatar-size': '2rem',
+        width: `var(--Avatar-size, 2rem)`,
+        height: `var(--Avatar-size, 2rem)`,
         fontSize: theme.vars.fontSize.sm,
       }),
       ...(ownerState.size === 'md' && {
-        '--Avatar-size': '2.5rem',
+        width: `var(--Avatar-size, 2.5rem)`,
+        height: `var(--Avatar-size, 2.5rem)`,
         fontSize: theme.vars.fontSize.md,
       }),
       ...(ownerState.size === 'lg' && {
-        '--Avatar-size': '3rem',
+        width: `var(--Avatar-size, 3rem)`,
+        height: `var(--Avatar-size, 3rem)`,
         fontSize: theme.vars.fontSize.lg,
       }),
       marginInlineStart: 'var(--Avatar-marginInlineStart)',
@@ -56,10 +59,9 @@ const AvatarRoot = styled('div', {
       alignItems: 'center',
       justifyContent: 'center',
       flexShrink: 0,
-      width: 'var(--Avatar-size)',
-      height: 'var(--Avatar-size)',
       lineHeight: 1,
-      borderRadius: '50%',
+      overflow: 'hidden',
+      borderRadius: 'var(--Avatar-radius, 50%)',
       userSelect: 'none',
     },
     theme.variants[ownerState.variant!]?.[ownerState.color!],
@@ -67,7 +69,7 @@ const AvatarRoot = styled('div', {
 });
 
 const AvatarImg = styled('img', {
-  name: 'MuiAvatar',
+  name: 'JoyAvatar',
   slot: 'Img',
   overridesResolver: (props, styles) => styles.img,
 })<{ ownerState: AvatarProps }>({
@@ -80,11 +82,10 @@ const AvatarImg = styled('img', {
   color: 'transparent',
   // Hide the image broken icon, only works on Chrome.
   textIndent: 10000,
-  borderRadius: '50%',
 });
 
 const AvatarFallback = styled(Person, {
-  name: 'MuiAvatar',
+  name: 'JoyAvatar',
   slot: 'Fallback',
   overridesResolver: (props, styles) => styles.fallback,
 })<{ ownerState: AvatarProps }>({
@@ -138,7 +139,7 @@ function useLoaded({ crossOrigin, referrerPolicy, src, srcSet }: UseLoadedProps)
 const Avatar = React.forwardRef(function Avatar(inProps, ref) {
   const props = useThemeProps<typeof inProps & AvatarProps>({
     props: inProps,
-    name: 'MuiAvatar',
+    name: 'JoyAvatar',
   });
 
   const groupContext = React.useContext(AvatarGroupContext);
@@ -149,7 +150,7 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
     color: colorProp = 'neutral',
     component = 'div',
     size: sizeProp = 'md',
-    variant: variantProp = 'light',
+    variant: variantProp = 'soft',
     imgProps,
     src,
     srcSet,
@@ -173,6 +174,7 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
     component,
     size,
     variant,
+    grouped: !!groupContext,
   };
 
   const classes = useUtilityClasses(ownerState);
@@ -248,7 +250,7 @@ Avatar.propTypes /* remove-proptypes */ = {
   imgProps: PropTypes.object,
   /**
    * The size of the component.
-   * It accepts theme values between 'xs' and 'xl'.
+   * It accepts theme values between 'sm' and 'lg'.
    * @default 'md'
    */
   size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
@@ -265,11 +267,19 @@ Avatar.propTypes /* remove-proptypes */ = {
    */
   srcSet: PropTypes.string,
   /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
+  /**
    * The variant to use.
-   * @default 'light'
+   * @default 'soft'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['contained', 'light', 'outlined', 'text']),
+    PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
     PropTypes.string,
   ]),
 } as any;

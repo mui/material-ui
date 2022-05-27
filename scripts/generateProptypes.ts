@@ -12,11 +12,6 @@ import {
   getUnstyledFilename,
 } from '../docs/scripts/helpers';
 
-/**
- * Includes component names for which we can't generate .propTypes from the TypeScript types.
- */
-const todoComponents: readonly string[] = [];
-
 const useExternalPropsFromInputBase = [
   'autoComplete',
   'autoFocus',
@@ -78,6 +73,7 @@ const useExternalDocumentation: Record<string, '*' | readonly string[]> = {
   OutlinedInput: useExternalPropsFromInputBase,
   Radio: ['disableRipple', 'id', 'inputProps', 'inputRef', 'required'],
   Checkbox: ['defaultChecked'],
+  Container: ['component'],
   Switch: [
     'checked',
     'defaultChecked',
@@ -224,8 +220,9 @@ async function generateProptypes(
   const isTsFile = /(\.(ts|tsx))/.test(sourceFile);
 
   const unstyledFile = getUnstyledFilename(tsFile, true);
-  const unstyledPropsFile = unstyledFile.replace('.d.ts', 'Props.ts');
+  const unstyledPropsFile = unstyledFile.replace('.d.ts', '.types.ts');
 
+  const propsFile = tsFile.replace(/(\.d\.ts|\.tsx|\.ts)/g, 'Props.ts');
   const generatedForTypeScriptFile = sourceFile === tsFile;
   const result = ttp.inject(proptypes, sourceContent, {
     disablePropTypesTypeChecking: generatedForTypeScriptFile,
@@ -272,17 +269,18 @@ async function generateProptypes(
         return true;
       }
       let shouldDocument;
+      const { name: componentName } = component;
 
       prop.filenames.forEach((filename) => {
         const isExternal = filename !== tsFile;
         const implementedByUnstyledVariant =
           filename === unstyledFile || filename === unstyledPropsFile;
-        if (!isExternal || implementedByUnstyledVariant) {
+        const implementedBySelfPropsFile = filename === propsFile;
+        if (!isExternal || implementedByUnstyledVariant || implementedBySelfPropsFile) {
           shouldDocument = true;
         }
       });
 
-      const { name: componentName } = component;
       if (
         useExternalDocumentation[componentName] &&
         (useExternalDocumentation[componentName] === '*' ||
@@ -322,6 +320,7 @@ async function run(argv: HandlerArgv) {
 
   const allFiles = await Promise.all(
     [
+      path.resolve(__dirname, '../packages/mui-system/src'),
       path.resolve(__dirname, '../packages/mui-base/src'),
       path.resolve(__dirname, '../packages/mui-material/src'),
       path.resolve(__dirname, '../packages/mui-lab/src'),
@@ -343,7 +342,7 @@ async function run(argv: HandlerArgv) {
       return (
         // Filter out files where the directory name and filename doesn't match
         // Example: Modal/ModalManager.d.ts
-        fileName === folderName && !todoComponents.includes(fileName)
+        fileName === folderName
       );
     })
     .filter((filePath) => {

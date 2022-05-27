@@ -5,9 +5,17 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { getDesignTokens, getThemedComponents } from 'docs/src/modules/brandingTheme';
 import { NextNProgressBar } from 'docs/src/modules/components/AppFrame';
 
-export default function BrandingProvider({ children }: { children: React.ReactNode }) {
+interface BrandingProviderProps {
+  children: React.ReactNode;
+  /**
+   * If not `undefined`, the provider is considered nesting and does not render NextNProgressBar & CssBaseline
+   */
+  mode?: 'light' | 'dark';
+}
+
+export default function BrandingProvider({ children, mode: modeProp }: BrandingProviderProps) {
   const upperTheme = useTheme();
-  const mode = upperTheme.palette.mode;
+  const mode = modeProp || upperTheme.palette.mode;
   const theme = React.useMemo(() => {
     const designTokens = getDesignTokens(mode);
     let newTheme = createTheme(designTokens);
@@ -15,9 +23,9 @@ export default function BrandingProvider({ children }: { children: React.ReactNo
     return newTheme;
   }, [mode]);
   return (
-    <ThemeProvider theme={theme}>
-      <NextNProgressBar />
-      <CssBaseline />
+    <ThemeProvider theme={modeProp ? () => theme : theme}>
+      {!modeProp && <NextNProgressBar />}
+      {!modeProp && <CssBaseline />}
       {children}
     </ThemeProvider>
   );
