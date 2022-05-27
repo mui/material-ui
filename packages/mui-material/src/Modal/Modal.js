@@ -1,6 +1,5 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { isHostComponent } from '@mui/base';
 import { elementAcceptingRef, HTMLElementType } from '@mui/utils';
 import ModalUnstyled, { modalUnstyledClasses } from '@mui/base/ModalUnstyled';
 import styled from '../styles/styled';
