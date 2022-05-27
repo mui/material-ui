@@ -51,7 +51,7 @@ MUI 遵循[语义化版本 2.0.0](https://semver.org/)。 MUI 的版本号由三
 
 ## 支持的版本
 
-MUI Core has been open-source ([MIT](https://tldrlegal.com/license/mit-license)) since the very beginning, and always will be. Developers can ensure MUI is the right choice for their React applications through MUI's community maintenance strategy. The MUI team regularly ships new releases, bug fixes, and is very welcoming to community pull requests.
+MUI 核心从一开始就一直是开源([MIT](https://tldrlegal.com/license/mit-license)) ，并且总是如此。 开发者可以通过MUI的社区维护策略确保MUI是他们React应用的正确选择。 MUI 团队定期发送新版本，错误修复，非常欢迎社区提取请求。
 
 Given the reality of time and resource constraints, as well as the desire to keep innovating, over time it becomes necessary to shift focus to newer versions of the framework ([our release schedule](#release-frequency)), while making the transition to newer versions as smooth as possible, including publishing migration guides such as [this one for v5](/material-ui/guides/migration-v4/). The open-source community is always welcome to submit new features and bug fixes as well.
 
