@@ -9,6 +9,7 @@ import styled from '../styles/styled';
 import { getCardUtilityClass } from './cardClasses';
 import { CardProps, CardTypeMap } from './CardProps';
 import { resolveSxValue } from '../styles/styleUtils';
+import { CardRowContext } from './CardContext';
 
 const useUtilityClasses = (ownerState: CardProps) => {
   const { size, variant, color, row } = ownerState;
@@ -117,26 +118,28 @@ const Card = React.forwardRef(function Card(inProps, ref) {
   const classes = useUtilityClasses(ownerState);
 
   return (
-    <CardRoot
-      as={component}
-      ownerState={ownerState}
-      className={clsx(classes.root, className)}
-      ref={ref}
-      {...other}
-    >
-      {React.Children.map(children, (child, index) => {
-        if (!React.isValidElement(child)) {
+    <CardRowContext.Provider value={row}>
+      <CardRoot
+        as={component}
+        ownerState={ownerState}
+        className={clsx(classes.root, className)}
+        ref={ref}
+        {...other}
+      >
+        {React.Children.map(children, (child, index) => {
+          if (!React.isValidElement(child)) {
+            return child;
+          }
+          if (index === 0) {
+            return React.cloneElement(child, { 'data-first-child': '' });
+          }
+          if (index === React.Children.count(children) - 1) {
+            return React.cloneElement(child, { 'data-last-child': '' });
+          }
           return child;
-        }
-        if (index === 0) {
-          return React.cloneElement(child, { 'data-first-child': '' });
-        }
-        if (index === React.Children.count(children) - 1) {
-          return React.cloneElement(child, { 'data-last-child': '' });
-        }
-        return child;
-      })}
-    </CardRoot>
+        })}
+      </CardRoot>
+    </CardRowContext.Provider>
   );
 }) as OverridableComponent<CardTypeMap>;
 
