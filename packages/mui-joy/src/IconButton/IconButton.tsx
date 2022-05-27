@@ -65,6 +65,7 @@ const IconButtonRoot = styled('button', {
         padding: 'calc(var(--IconButton-padding) - var(--variant-outlinedBorderWidth))', // account for the border width
       }),
       fontFamily: theme.vars.fontFamily.body,
+      fontWeight: theme.vars.fontWeight.md,
       margin: `var(--Button-margin)`, // to be controlled by other components, eg. Input
       borderRadius: `var(--IconButton-radius, ${theme.vars.radius.sm})`, // to be controlled by other components, eg. Input
       border: 'none',
