@@ -315,7 +315,7 @@ export default function JoyChip() {
                   variant={variant}
                   size="sm"
                   endDecorator={<ChipDelete />}
-                  sx={{ '--Chip-delete-size': '16px' }}
+                  sx={{ '--Chip-decorator-childHeight': '16px' }}
                 >
                   <LocationOn sx={{ mr: 0.5 }} /> Portland
                 </Chip>
@@ -324,7 +324,7 @@ export default function JoyChip() {
                   variant={variant}
                   size="sm"
                   endDecorator={<ChipDelete />}
-                  sx={{ '--Chip-delete-size': '16px' }}
+                  sx={{ '--Chip-decorator-childHeight': '16px' }}
                 >
                   <DirectionsBike sx={{ mr: 0.5 }} /> Biking
                 </Chip>

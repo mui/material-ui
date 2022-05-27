@@ -44,18 +44,18 @@ const ChipRoot = styled('div', {
 })<{ ownerState: ChipProps & { clickable: boolean } }>(({ theme, ownerState }) => {
   return [
     {
-      '--Chip-paddingBlock':
-        ownerState.clickable || ownerState.variant !== 'outlined'
-          ? '0.25rem'
-          : 'calc(0.25rem - var(--variant-outlinedBorderWidth, 0px))',
       '--Chip-radius': '1.5rem',
       '--Chip-decorator-offset': 'calc(var(--Chip-paddingInline) / 4)', // negative margin of the start/end adornment
       // for controlling chip delete margin offset
       '--Chip-decorator-childOffset':
-        'calc(var(--Chip-paddingInline) - var(--Chip-decorator-offset) - (var(--Chip-minHeight) - 2 * var(--variant-outlinedBorderWidth, 0px) - var(--Chip-decorator-childHeight)) / 2)',
-      '--Chip-delete-radius': `max(var(--Chip-radius) - var(--Chip-paddingBlock), min(var(--Chip-paddingBlock) / 2, var(--Chip-radius) / 2))`,
+        'min(calc(var(--Chip-paddingInline) - var(--Chip-decorator-offset) - (var(--Chip-minHeight) - 2 * var(--variant-outlinedBorderWidth, 0px) - var(--Chip-decorator-childHeight)) / 2), var(--Chip-paddingInline) - var(--Chip-decorator-offset))',
+      '--internal-paddingBlock':
+        'max((var(--Chip-minHeight) - 2 * var(--variant-outlinedBorderWidth, 0px) - var(--Chip-decorator-childHeight)) / 2, 0px)',
+      '--Chip-decorator-childRadius':
+        'max((var(--Chip-radius) - var(--variant-outlinedBorderWidth, 0px)) - var(--internal-paddingBlock), min(var(--internal-paddingBlock) / 2, (var(--Chip-radius) - var(--variant-outlinedBorderWidth, 0px)) / 2))',
+      '--Chip-delete-radius': 'var(--Chip-decorator-childRadius)',
       '--Chip-delete-size': 'var(--Chip-decorator-childHeight)',
-      '--Avatar-radius': `max(var(--Chip-radius) - var(--Chip-paddingBlock), min(var(--Chip-paddingBlock) / 2, var(--Chip-radius) / 2))`,
+      '--Avatar-radius': 'var(--Chip-decorator-childRadius)',
       '--Avatar-size': 'var(--Chip-decorator-childHeight)',
       '--Icon-margin': 'initial', // reset the icon's margin.
       '--internal-action-radius': 'var(--Chip-radius)', // to be used with Radio or Checkbox
@@ -63,16 +63,15 @@ const ChipRoot = styled('div', {
         '--Chip-gap': '0.25rem',
         '--Chip-paddingInline': '0.5rem',
         '--Chip-decorator-childHeight':
-          'calc(1.5rem - 2 * var(--variant-outlinedBorderWidth, 0px))',
+          'calc(min(1.5rem, var(--Chip-minHeight)) - 2 * var(--variant-outlinedBorderWidth, 0px))',
         '--Icon-fontSize': '0.875rem',
-        '--Chip-paddingBlock': '0px',
         '--Chip-minHeight': '1.5rem',
         fontSize: theme.vars.fontSize.xs,
       }),
       ...(ownerState.size === 'md' && {
         '--Chip-gap': '0.375rem',
         '--Chip-paddingInline': '0.75rem',
-        '--Chip-decorator-childHeight': '1.5rem',
+        '--Chip-decorator-childHeight': 'min(1.5rem, var(--Chip-minHeight))',
         '--Icon-fontSize': '1.125rem',
         '--Chip-minHeight': '2rem',
         fontSize: theme.vars.fontSize.sm,
@@ -80,13 +79,12 @@ const ChipRoot = styled('div', {
       ...(ownerState.size === 'lg' && {
         '--Chip-gap': '0.5rem',
         '--Chip-paddingInline': '1rem',
-        '--Chip-decorator-childHeight': '2rem',
+        '--Chip-decorator-childHeight': 'min(2rem, var(--Chip-minHeight))',
         '--Icon-fontSize': '1.25rem',
         '--Chip-minHeight': '2.5rem',
         fontSize: theme.vars.fontSize.md,
       }),
       minHeight: 'var(--Chip-minHeight)',
-      paddingBlock: 'var(--Chip-paddingBlock)',
       paddingInline: 'var(--Chip-paddingInline)',
       borderRadius: 'var(--Chip-radius)',
       position: 'relative',
