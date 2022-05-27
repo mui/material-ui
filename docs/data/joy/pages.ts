@@ -30,6 +30,7 @@ const pages = [
           { pathname: '/joy-ui/react-aspect-ratio' },
           { pathname: '/joy-ui/react-avatar' },
           { pathname: '/joy-ui/react-badge' },
+          { pathname: '/joy-ui/react-chip' },
         ],
       },
       {
