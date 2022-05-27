@@ -35,9 +35,7 @@ const CardRoot = styled('div', {
   {
     // a context variable for any child component
     '--Card-childRadius':
-      ownerState.variant === 'outlined'
-        ? `calc(max(var(--Card-radius) - var(--Card-padding), min(var(--Card-padding) / 2, var(--Card-radius) / 2)) - var(--variant-outlinedBorderWidth))`
-        : 'max(var(--Card-radius) - var(--Card-padding), min(var(--Card-padding) / 2, var(--Card-radius) / 2))',
+      'max((var(--Card-radius) - var(--variant-outlinedBorderWidth, 0px)) - var(--Card-padding), min(var(--Card-padding) / 2, (var(--Card-radius) - var(--variant-outlinedBorderWidth, 0px)) / 2))',
     // AspectRatio integration
     '--AspectRatio-radius': 'var(--Card-childRadius)',
     // Link integration
