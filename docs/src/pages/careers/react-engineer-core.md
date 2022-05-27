@@ -82,7 +82,7 @@ Depending on the day, you'll:
 - **Shifting context.**
   You will necessarily have to shift context and dive into a different feature before the current one is done.
   It may even be in an area of the codebase you're unfamiliar with or don't have a ton of understanding about.
-  It's fun, rewarding work, but it can be very challenging.
+  It's fun and rewarding work, but it can be very challenging.
 - **We move quickly, but don't sacrifice quality**.
   We ship early, often, and quickly.
   You may not be initially comfortable with the cadence with which we ship high-quality features and improvements to end-users.
