@@ -46,27 +46,29 @@ const InputRoot = styled('div', {
     ...(ownerState.size === 'sm' && {
       '--Input-minHeight': '2rem',
       '--Input-paddingInline': '0.5rem',
-      '--Input-decorator-childHeight': '1.5rem',
+      '--Input-decorator-childHeight': 'min(1.5rem, var(--Input-minHeight))',
       '--Icon-fontSize': '1.25rem',
     }),
     ...(ownerState.size === 'md' && {
       '--Input-minHeight': '2.5rem',
       '--Input-paddingInline': '0.75rem', // gutter is the padding-x
-      '--Input-decorator-childHeight': '2rem',
+      '--Input-decorator-childHeight': 'min(2rem, var(--Input-minHeight))',
       '--Icon-fontSize': '1.5rem',
     }),
     ...(ownerState.size === 'lg' && {
       '--Input-minHeight': '3rem',
       '--Input-paddingInline': '1rem',
       '--Input-gap': '0.75rem',
-      '--Input-decorator-childHeight': '2.25rem',
+      '--Input-decorator-childHeight': 'min(2.25rem, var(--Input-minHeight))',
       '--Icon-fontSize': '1.75rem',
     }),
     // variables for controlling child components
     '--Input-decorator-childOffset':
-      'calc(var(--Input-paddingInline) - var(--Input-decorator-offset) - (var(--Input-minHeight) - 2 * var(--variant-outlinedBorderWidth, 0px) - var(--Input-decorator-childHeight)) / 2)',
+      'min(calc(var(--Input-paddingInline) - var(--Input-decorator-offset) - (var(--Input-minHeight) - 2 * var(--variant-outlinedBorderWidth, 0px) - var(--Input-decorator-childHeight)) / 2), var(--Input-paddingInline) - var(--Input-decorator-offset))',
+    '--internal-paddingBlock':
+      'max((var(--Input-minHeight) - 2 * var(--variant-outlinedBorderWidth, 0px) - var(--Input-decorator-childHeight)) / 2, 0px)',
     '--Input-decorator-childRadius':
-      'max(var(--Input-radius) - var(--Input-decorator-offset), min(var(--Input-decorator-offset) / 2, var(--Input-radius) / 2))',
+      'max((var(--Input-radius) - var(--variant-outlinedBorderWidth, 0px)) - var(--internal-paddingBlock), min(var(--internal-paddingBlock) / 2, (var(--Input-radius) - var(--variant-outlinedBorderWidth, 0px)) / 2))',
     '--Button-minHeight': 'var(--Input-decorator-childHeight)',
     '--IconButton-size': 'var(--Input-decorator-childHeight)',
     '--Button-radius': 'var(--Input-decorator-childRadius)',
