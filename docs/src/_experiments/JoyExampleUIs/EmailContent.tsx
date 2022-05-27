@@ -2,6 +2,7 @@ import * as React from 'react';
 import Box from '@mui/joy/Box';
 import Chip from '@mui/joy/Chip';
 import Card from '@mui/joy/Card';
+import CardOverflow from '@mui/joy/CardOverflow';
 import Sheet from '@mui/joy/Sheet';
 import Typography from '@mui/joy/Typography';
 import Button from '@mui/joy/Button';
@@ -85,7 +86,7 @@ export default function EmailContent() {
             >
               From
             </Typography>
-            <Chip size="sm" variant="outlined">
+            <Chip size="sm" variant="outlined" onClick={() => {}}>
               janet@mail.com
             </Chip>
           </Box>
@@ -98,7 +99,7 @@ export default function EmailContent() {
             >
               to
             </Typography>
-            <Chip size="sm" variant="outlined">
+            <Chip size="sm" variant="outlined" onClick={() => {}}>
               janet@mail.com
             </Chip>
           </Box>
@@ -153,21 +154,19 @@ export default function EmailContent() {
             />
           </AspectRatio>
         </Card>
-        <Card variant="outlined" sx={{ flexDirection: 'row' }}>
-          <AspectRatio
-            ratio="1"
-            sx={{
-              minWidth: '80px',
-              borderRight: '1px solid',
-              borderColor: 'neutral.outlinedBorder',
-              borderTopRightRadius: 0,
-              borderBottomRightRadius: 0,
-            }}
-          >
-            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-              <FolderIcon />
-            </Box>
-          </AspectRatio>
+        <Card variant="outlined" row>
+          <CardOverflow>
+            <AspectRatio
+              ratio="1"
+              sx={{
+                minWidth: '80px',
+              }}
+            >
+              <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <FolderIcon />
+              </Box>
+            </AspectRatio>
+          </CardOverflow>
           <Box sx={{ p: 2 }}>
             <Typography level="body2" color="primary.plainColor">
               blank_slates.doc

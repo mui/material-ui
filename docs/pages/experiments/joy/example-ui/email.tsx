@@ -136,13 +136,8 @@ export default function EmailExample() {
             placeholder="Search anything..."
             startDecorator={<SearchRoundedIcon color="primary" />}
             endDecorator={
-              <IconButton
-                variant="outlined"
-                size="sm"
-                color="neutral"
-                sx={{ '--IconButton-size': '24px', borderRadius: '4px', mr: -0.3 }}
-              >
-                <Typography fontWeight={700} fontSize="sm" color="text.tertiary">
+              <IconButton variant="outlined" size="sm" color="neutral">
+                <Typography fontWeight="lg" fontSize="sm" color="text.tertiary">
                   /
                 </Typography>
               </IconButton>
