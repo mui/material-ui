@@ -5,7 +5,7 @@ import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } 
 import { useButton } from '@mui/base/ButtonUnstyled';
 import composeClasses from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
-import { getIconButtonUtilityClass } from './iconButtonClasses';
+import iconButtonClasses, { getIconButtonUtilityClass } from './iconButtonClasses';
 import { IconButtonProps, IconButtonTypeMap, ExtendIconButton } from './IconButtonProps';
 
 const useUtilityClasses = (ownerState: IconButtonProps & { focusVisible: boolean }) => {
@@ -77,9 +77,12 @@ const IconButtonRoot = styled('button', {
       [theme.focus.selector]: theme.focus.default,
     },
     theme.variants[ownerState.variant!]?.[ownerState.color!],
-    theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
-    theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
-    theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
+    { '&:hover': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!] },
+    { '&:active': theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!] },
+    {
+      [iconButtonClasses.disabled]:
+        theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
+    },
   ],
 );
 

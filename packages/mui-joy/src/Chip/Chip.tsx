@@ -10,7 +10,7 @@ import {
 } from '@mui/utils';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
-import { getChipUtilityClass } from './chipClasses';
+import chipClasses, { getChipUtilityClass } from './chipClasses';
 import { ChipProps, ChipTypeMap } from './ChipProps';
 import ChipContext from './ChipContext';
 
@@ -103,7 +103,10 @@ const ChipRoot = styled('div', {
     ...(!ownerState.clickable
       ? [
           theme.variants[ownerState.variant!]?.[ownerState.color!],
-          theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
+          {
+            [chipClasses.disabled]:
+              theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
+          },
         ]
       : [
           {
@@ -150,9 +153,9 @@ const ChipAction = styled('button', {
     [theme.focus.selector]: theme.focus.default,
   },
   theme.variants[ownerState.variant!]?.[ownerState.color!],
-  theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
-  theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
-  theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
+  { '&:hover': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!] },
+  { '&:active': theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!] },
+  { [chipClasses.disabled]: theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!] },
 ]);
 
 const ChipStartDecorator = styled('span', {

@@ -87,9 +87,12 @@ const ListItemButtonRoot = styled('div', {
         },
   },
   theme.variants[ownerState.variant!]?.[ownerState.color!],
-  theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
-  theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
-  theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
+  { '&:hover': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!] },
+  { '&:active': theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!] },
+  {
+    [listItemButtonClasses.disabled]:
+      theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
+  },
 ]);
 
 const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
