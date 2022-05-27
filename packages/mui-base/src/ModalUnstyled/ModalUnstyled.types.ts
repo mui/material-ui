@@ -1,4 +1,5 @@
 import { OverridableComponent, OverridableTypeMap, OverrideProps } from '@mui/types';
+import React from 'react';
 import { PortalProps } from '../Portal';
 import { ModalUnstyledClasses } from './modalUnstyledClasses';
 
@@ -149,11 +150,18 @@ export type ModalUnstyledOwnerState = ModalUnstyledProps & {
 };
 
 export type ModalUnstyledRootSlotProps = {
-  as?: React.ElementType;
   children: React.ReactNode;
   className?: string;
   onKeyDown: React.KeyboardEventHandler;
   ownerState: ModalUnstyledOwnerState;
   ref: React.Ref<any>;
   role: React.AriaRole;
+};
+
+export type ModalUnstyledBackdropSlotProps = {
+  'aria-hidden': React.AriaAttributes['aria-hidden'];
+  children?: React.ReactNode;
+  onClick: React.MouseEventHandler;
+  open: boolean;
+  ownerState: ModalUnstyledOwnerState;
 };

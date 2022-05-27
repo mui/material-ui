@@ -10,7 +10,7 @@ import {
   unstable_useEventCallback as useEventCallback,
 } from '@mui/utils';
 import composeClasses from '../composeClasses';
-import isHostComponent from '../utils/isHostComponent';
+import appendOwnerState from '../utils/appendOwnerState';
 import Portal from '../Portal';
 import ModalManager, { ariaHidden } from './ModalManager';
 import TrapFocus from '../TrapFocus';
@@ -241,10 +241,30 @@ const ModalUnstyled = React.forwardRef(function ModalUnstyled(props, ref) {
   }
 
   const Root = components.Root || component;
-  const rootProps = componentsProps.root || {};
+  const rootProps = appendOwnerState(
+    Root,
+    {
+      role: 'presentation',
+      ...other,
+      ...componentsProps.root,
+      ref: handleRef,
+      onKeyDown: handleKeyDown,
+      className: clsx(classes.root, componentsProps.root?.className, className),
+    },
+    ownerState,
+  );
 
   const BackdropComponent = components.Backdrop;
-  const backdropProps = componentsProps.backdrop;
+  const backdropProps = appendOwnerState(
+    BackdropComponent,
+    {
+      'aria-hidden': true,
+      open,
+      onClick: handleBackdropClick,
+      ...componentsProps.backdrop,
+    },
+    ownerState,
+  );
 
   return (
     <Portal ref={handlePortalRef} container={container} disablePortal={disablePortal}>
@@ -254,27 +274,8 @@ const ModalUnstyled = React.forwardRef(function ModalUnstyled(props, ref) {
        * is not meant for humans to interact with directly.
        * https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/no-static-element-interactions.md
        */}
-      <Root
-        role="presentation"
-        {...rootProps}
-        {...(!isHostComponent(Root) && {
-          as: component,
-          ownerState: { ...ownerState, ...rootProps.ownerState },
-          theme,
-        })}
-        {...other}
-        ref={handleRef}
-        onKeyDown={handleKeyDown}
-        className={clsx(classes.root, rootProps.className, className)}
-      >
-        {!hideBackdrop && BackdropComponent ? (
-          <BackdropComponent
-            aria-hidden
-            open={open}
-            onClick={handleBackdropClick}
-            {...backdropProps}
-          />
-        ) : null}
+      <Root {...rootProps}>
+        {!hideBackdrop && BackdropComponent ? <BackdropComponent {...backdropProps} /> : null}
         <TrapFocus
           disableEnforceFocus={disableEnforceFocus}
           disableAutoFocus={disableAutoFocus}

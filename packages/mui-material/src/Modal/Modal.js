@@ -64,6 +64,7 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
     BackdropProps,
     closeAfterTransition = false,
     children,
+    component,
     components = {},
     componentsProps = {},
     disableAutoFocus = false,
@@ -102,17 +103,12 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
   return (
     <ModalUnstyled
       components={{
-        Root: ModalRoot,
+        Root: component ?? ModalRoot,
         Backdrop: BackdropComponent,
         ...components,
       }}
       componentsProps={{
-        root: {
-          ...componentsProps.root,
-          ...((!components.Root || !isHostComponent(components.Root)) && {
-            ownerState: { ...componentsProps.root?.ownerState },
-          }),
-        },
+        root: componentsProps.root,
         backdrop: { ...BackdropProps, ...componentsProps.backdrop },
       }}
       onTransitionEnter={() => setExited(false)}
@@ -164,6 +160,11 @@ Modal.propTypes /* remove-proptypes */ = {
    * @default false
    */
   closeAfterTransition: PropTypes.bool,
+  /**
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   */
+  component: PropTypes.elementType,
   /**
    * The components used for each slot inside the Modal.
    * Either a string to use a HTML element or a component.

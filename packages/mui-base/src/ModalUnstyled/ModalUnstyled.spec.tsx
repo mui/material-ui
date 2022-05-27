@@ -1,13 +1,18 @@
 import * as React from 'react';
-import ModalUnstyled, { ModalUnstyledRootSlotProps } from '@mui/base/ModalUnstyled';
+import ModalUnstyled, {
+  ModalUnstyledRootSlotProps,
+  ModalUnstyledBackdropSlotProps,
+} from '@mui/base/ModalUnstyled';
 
-const Root = React.forwardRef(function Root(
-  props: ModalUnstyledRootSlotProps,
-  ref: React.ForwardedRef<HTMLDivElement>,
-) {
+function Root(props: ModalUnstyledRootSlotProps) {
   const { ownerState, ...other } = props;
-  return <div data-keepmounted={ownerState.keepMounted} {...other} ref={ref} />;
-});
+  return <div data-keepmounted={ownerState.keepMounted} {...other} />;
+}
+
+function Backdrop(props: ModalUnstyledBackdropSlotProps) {
+  const { ownerState, ...other } = props;
+  return <div data-keepmounted={ownerState.keepMounted} {...other} />;
+}
 
 const styledModal = (
   <ModalUnstyled open components={{ Root }}>
