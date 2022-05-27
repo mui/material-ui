@@ -156,13 +156,16 @@ const blacklist = [
   'docs-system-typography', // Unit tests are enough
   'docs-versions', // No public components
   /^docs-guides-.*/, // No public components
-  /^docs-joy-.*Variables\.png$/, // Exclude Joy CSS variables playground
 ];
 
 const unusedBlacklistPatterns = new Set(blacklist);
 
 function excludeDemoFixture(suite, name) {
   if (/^docs-premium-themes(.*)/.test(suite)) {
+    return true;
+  }
+
+  if (suite.includes('docs-joy') && name.endsWith('Variables')) {
     return true;
   }
 
