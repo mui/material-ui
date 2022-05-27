@@ -30,7 +30,7 @@ const CardOverflowRoot = styled('div', {
 })<{ ownerState: CardOverflowProps & { row: boolean } }>(({ theme, ownerState }) => {
   const childRadius =
     ownerState.variant === 'outlined'
-      ? `calc(var(--CardOverflow-radius) - var(--variant-outlinedBorderWidth))`
+      ? `calc(var(--CardOverflow-radius) - var(--variant-borderWidth))`
       : 'var(--CardOverflow-radius)';
   return [
     ownerState.row

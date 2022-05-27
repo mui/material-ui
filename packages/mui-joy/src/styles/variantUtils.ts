@@ -92,8 +92,8 @@ export const createVariantStyle = (
           assignCss(result['&.Mui-disabled'] as any, variantVar, cssVar);
         } else {
           if (variantVar.includes('Border')) {
-            result['--variant-outlinedBorderWidth'] = '1px';
-            result.border = 'var(--variant-outlinedBorderWidth) solid';
+            result['--variant-borderWidth'] = '1px';
+            result.border = 'var(--variant-borderWidth) solid';
           }
           // border color should come later
           assignCss(result as any, variantVar, cssVar);

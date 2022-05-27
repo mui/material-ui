@@ -85,7 +85,7 @@ const ButtonRoot = styled('button', {
       padding: '0.25rem var(--Button-paddingInline)', // the padding-top, bottom act as a minimum spacing between content and root element
       ...(ownerState.variant === 'outlined' && {
         padding:
-          'calc(0.25rem - var(--variant-outlinedBorderWidth)) calc(var(--Button-paddingInline) - var(--variant-outlinedBorderWidth))', // account for the border width
+          'calc(0.25rem - var(--variant-borderWidth)) calc(var(--Button-paddingInline) - var(--variant-borderWidth))', // account for the border width
       }),
       borderRadius: `var(--Button-radius, ${theme.vars.radius.sm})`, // to be controlled by other components, eg. Input
       margin: `var(--Button-margin)`, // to be controlled by other components, eg. Input

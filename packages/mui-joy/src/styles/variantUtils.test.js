@@ -62,8 +62,8 @@ describe('variant utils', () => {
           outlinedBorder: 'var(--any-token)',
         }),
       ).to.deep.equal({
-        '--variant-outlinedBorderWidth': '1px',
-        border: 'var(--variant-outlinedBorderWidth) solid',
+        '--variant-borderWidth': '1px',
+        border: 'var(--variant-borderWidth) solid',
         borderColor: 'var(--any-token)',
       });
     });
@@ -224,8 +224,8 @@ describe('variant utils', () => {
       outlined: {
         primary: {
           color: 'var(--any-token)',
-          '--variant-outlinedBorderWidth': '1px',
-          border: 'var(--variant-outlinedBorderWidth) solid',
+          '--variant-borderWidth': '1px',
+          border: 'var(--variant-borderWidth) solid',
           borderColor: 'var(--any-token)',
           backgroundColor: 'var(--any-token)',
         },
@@ -373,8 +373,8 @@ describe('variant utils', () => {
       });
       expect(createVariant('outlined').context).to.deep.equal({
         color: 'var(--variant-outlinedColor)',
-        '--variant-outlinedBorderWidth': '1px',
-        border: 'var(--variant-outlinedBorderWidth) solid',
+        '--variant-borderWidth': '1px',
+        border: 'var(--variant-borderWidth) solid',
         borderColor: 'var(--variant-outlinedBorder)',
       });
       expect(createVariant('soft').context).to.deep.equal({

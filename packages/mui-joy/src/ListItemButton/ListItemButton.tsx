@@ -87,11 +87,11 @@ const ListItemButtonRoot = styled('div', {
   {
     ...(ownerState.variant === 'outlined' && {
       // account for the border width
-      padding: 'calc(var(--List-item-paddingY) - var(--variant-outlinedBorderWidth))',
+      padding: 'calc(var(--List-item-paddingY) - var(--variant-borderWidth))',
       paddingLeft:
-        'calc(var(--List-item-paddingLeft) + var(--List-item-startActionWidth, var(--internal-startActionWidth, 0px)) - var(--variant-outlinedBorderWidth))', // --internal variable makes it possible to customize the actionWidth from the top List
+        'calc(var(--List-item-paddingLeft) + var(--List-item-startActionWidth, var(--internal-startActionWidth, 0px)) - var(--variant-borderWidth))', // --internal variable makes it possible to customize the actionWidth from the top List
       paddingRight:
-        'calc(var(--List-item-paddingRight) + var(--List-item-endActionWidth, var(--internal-endActionWidth, 0px)) - var(--variant-outlinedBorderWidth))', // --internal variable makes it possible to customize the actionWidth from the top List
+        'calc(var(--List-item-paddingRight) + var(--List-item-endActionWidth, var(--internal-endActionWidth, 0px)) - var(--variant-borderWidth))', // --internal variable makes it possible to customize the actionWidth from the top List
     }),
     [theme.focus.selector]: theme.focus.default,
   },

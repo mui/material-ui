@@ -38,7 +38,7 @@ const AspectRatioRoot = styled('div', {
       // a context variable for any child component
       '--AspectRatio-childRadius':
         ownerState.variant === 'outlined'
-          ? `calc(var(--AspectRatio-radius) - var(--variant-outlinedBorderWidth))`
+          ? `calc(var(--AspectRatio-radius) - var(--variant-borderWidth))`
           : 'var(--AspectRatio-radius)',
       '--AspectRatio-paddingBottom':
         minHeight || maxHeight

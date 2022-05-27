@@ -62,7 +62,7 @@ const IconButtonRoot = styled('button', {
       }),
       padding: 'var(--IconButton-padding)',
       ...(ownerState.variant === 'outlined' && {
-        padding: 'calc(var(--IconButton-padding) - var(--variant-outlinedBorderWidth))', // account for the border width
+        padding: 'calc(var(--IconButton-padding) - var(--variant-borderWidth))', // account for the border width
       }),
       fontFamily: theme.vars.fontFamily.body,
       fontWeight: theme.vars.fontWeight.md,

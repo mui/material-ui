@@ -35,14 +35,12 @@ const CardRoot = styled('div', {
   {
     // a context variable for any child component
     '--Card-childRadius':
-      'max((var(--Card-radius) - var(--variant-outlinedBorderWidth, 0px)) - var(--Card-padding), min(var(--Card-padding) / 2, (var(--Card-radius) - var(--variant-outlinedBorderWidth, 0px)) / 2))',
+      'max((var(--Card-radius) - var(--variant-borderWidth, 0px)) - var(--Card-padding), min(var(--Card-padding) / 2, (var(--Card-radius) - var(--variant-borderWidth, 0px)) / 2))',
     // AspectRatio integration
     '--AspectRatio-radius': 'var(--Card-childRadius)',
     // Link integration
     '--Link-overlayMargin':
-      ownerState.variant === 'outlined'
-        ? 'calc(-1 * var(--variant-outlinedBorderWidth))'
-        : undefined,
+      ownerState.variant === 'outlined' ? 'calc(-1 * var(--variant-borderWidth))' : undefined,
     '--Link-overlayRadius': resolveSxValue(
       { theme, ownerState },
       'borderRadius',
@@ -51,13 +49,13 @@ const CardRoot = styled('div', {
     // CardCover integration
     '--CardCover-radius':
       ownerState.variant === 'outlined'
-        ? `calc(var(--Card-radius) - var(--variant-outlinedBorderWidth, 0px))`
+        ? `calc(var(--Card-radius) - var(--variant-borderWidth, 0px))`
         : 'var(--Card-radius)',
     // CardOverflow integration
     '--CardOverflow-offset': `calc(-1 * var(--Card-padding))`,
     '--CardOverflow-radius':
       ownerState.variant === 'outlined'
-        ? `calc(var(--Card-radius) - var(--variant-outlinedBorderWidth, 0px))`
+        ? `calc(var(--Card-radius) - var(--variant-borderWidth, 0px))`
         : 'var(--Card-radius)',
     ...(ownerState.size === 'sm' && {
       '--Card-radius': theme.vars.radius.sm,

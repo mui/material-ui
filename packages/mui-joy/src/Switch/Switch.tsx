@@ -152,7 +152,7 @@ const SwitchTrack = styled('span', {
   justifyContent: 'space-between',
   alignItems: 'center',
   boxSizing: 'border-box',
-  border: 'var(--variant-outlinedBorderWidth, 0px) solid',
+  border: 'var(--variant-borderWidth, 0px) solid',
   borderColor: 'var(--Switch-track-borderColor)',
   backgroundColor: 'var(--Switch-track-background)',
   borderRadius: 'var(--Switch-track-radius)',
