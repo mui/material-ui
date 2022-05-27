@@ -72,25 +72,16 @@ export const createVariantStyle = (
       if (variantVar.match(new RegExp(`${name}(color|bg|border)`, 'i')) && !!value) {
         const cssVar = getCssVar ? getCssVar(variantVar) : value;
         if (variantVar.includes('Hover')) {
-          if (!result['&:hover']) {
-            result.cursor = 'pointer';
-            result['&:hover'] = {};
-          }
-          assignCss(result['&:hover'] as any, variantVar, cssVar);
-        } else if (variantVar.includes('Active')) {
-          if (!result['&:active']) {
-            result['&:active'] = {};
-          }
-          assignCss(result['&:active'] as any, variantVar, cssVar);
-        } else if (variantVar.includes('Disabled')) {
-          if (!result['&.Mui-disabled']) {
-            result['&.Mui-disabled'] = {
-              pointerEvents: 'none',
-              cursor: 'default',
-            };
-          }
-          assignCss(result['&.Mui-disabled'] as any, variantVar, cssVar);
+          result.cursor = 'pointer';
+        }
+        if (variantVar.includes('Disabled')) {
+          result.pointerEvents = 'none';
+          result.cursor = 'default';
+        }
+        if (variantVar.match(/(Hover|Active|Disabled)/)) {
+          assignCss(result as any, variantVar, cssVar);
         } else {
+          // initial state
           if (!result['--variant-borderWidth']) {
             result['--variant-borderWidth'] = '0px';
           }

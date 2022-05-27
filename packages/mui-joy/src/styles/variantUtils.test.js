@@ -79,9 +79,7 @@ describe('variant utils', () => {
         }),
       ).to.deep.include({
         cursor: 'pointer',
-        '&:hover': {
-          color: 'var(--any-token)',
-        },
+        color: 'var(--any-token)',
       });
     });
 
@@ -92,9 +90,7 @@ describe('variant utils', () => {
         }),
       ).to.deep.include({
         cursor: 'pointer',
-        '&:hover': {
-          backgroundColor: 'var(--any-token)',
-        },
+        backgroundColor: 'var(--any-token)',
       });
     });
 
@@ -105,9 +101,7 @@ describe('variant utils', () => {
         }),
       ).to.deep.include({
         cursor: 'pointer',
-        '&:hover': {
-          borderColor: 'var(--any-token)',
-        },
+        borderColor: 'var(--any-token)',
       });
     });
   });
@@ -119,9 +113,7 @@ describe('variant utils', () => {
           anyActiveColor: 'var(--any-token)',
         }),
       ).to.deep.include({
-        '&:active': {
-          color: 'var(--any-token)',
-        },
+        color: 'var(--any-token)',
       });
     });
 
@@ -131,9 +123,7 @@ describe('variant utils', () => {
           anyActiveBg: 'var(--any-token)',
         }),
       ).to.deep.include({
-        '&:active': {
-          backgroundColor: 'var(--any-token)',
-        },
+        backgroundColor: 'var(--any-token)',
       });
     });
 
@@ -143,9 +133,7 @@ describe('variant utils', () => {
           anyActiveBorder: 'var(--any-token)',
         }),
       ).to.deep.include({
-        '&:active': {
-          borderColor: 'var(--any-token)',
-        },
+        borderColor: 'var(--any-token)',
       });
     });
   });
@@ -157,11 +145,9 @@ describe('variant utils', () => {
           anyDisabledColor: 'var(--any-token)',
         }),
       ).to.deep.include({
-        '&.Mui-disabled': {
-          color: 'var(--any-token)',
-          pointerEvents: 'none',
-          cursor: 'default',
-        },
+        color: 'var(--any-token)',
+        pointerEvents: 'none',
+        cursor: 'default',
       });
     });
 
@@ -171,11 +157,9 @@ describe('variant utils', () => {
           anyDisabledBg: 'var(--any-token)',
         }),
       ).to.deep.include({
-        '&.Mui-disabled': {
-          backgroundColor: 'var(--any-token)',
-          pointerEvents: 'none',
-          cursor: 'default',
-        },
+        backgroundColor: 'var(--any-token)',
+        pointerEvents: 'none',
+        cursor: 'default',
       });
     });
 
@@ -185,11 +169,9 @@ describe('variant utils', () => {
           anyDisabledBorder: 'var(--any-token)',
         }),
       ).to.deep.include({
-        '&.Mui-disabled': {
-          borderColor: 'var(--any-token)',
-          pointerEvents: 'none',
-          cursor: 'default',
-        },
+        borderColor: 'var(--any-token)',
+        pointerEvents: 'none',
+        cursor: 'default',
       });
     });
   });
@@ -253,31 +235,25 @@ describe('variant utils', () => {
       outlinedHover: {
         primary: {
           cursor: 'pointer',
-          '&:hover': {
-            color: 'var(--any-token)',
-            borderColor: 'var(--any-token)',
-            backgroundColor: 'var(--any-token)',
-          },
+          color: 'var(--any-token)',
+          borderColor: 'var(--any-token)',
+          backgroundColor: 'var(--any-token)',
         },
       },
       outlinedActive: {
         primary: {
-          '&:active': {
-            color: 'var(--any-token)',
-            borderColor: 'var(--any-token)',
-            backgroundColor: 'var(--any-token)',
-          },
+          color: 'var(--any-token)',
+          borderColor: 'var(--any-token)',
+          backgroundColor: 'var(--any-token)',
         },
       },
       outlinedDisabled: {
         primary: {
-          '&.Mui-disabled': {
-            color: 'var(--any-token)',
-            borderColor: 'var(--any-token)',
-            backgroundColor: 'var(--any-token)',
-            pointerEvents: 'none',
-            cursor: 'default',
-          },
+          color: 'var(--any-token)',
+          borderColor: 'var(--any-token)',
+          backgroundColor: 'var(--any-token)',
+          pointerEvents: 'none',
+          cursor: 'default',
         },
       },
     });
@@ -310,22 +286,16 @@ describe('variant utils', () => {
     });
     expect(createVariantStyle('plainHover', vars)).to.deep.include({
       cursor: 'pointer',
-      '&:hover': {
-        color: 'var(--joy-variant-plainHoverColor, var(--joy-variant-plainColor))',
-        backgroundColor: 'var(--joy-variant-plainHoverBg)',
-      },
+      color: 'var(--joy-variant-plainHoverColor, var(--joy-variant-plainColor))',
+      backgroundColor: 'var(--joy-variant-plainHoverBg)',
     });
     expect(createVariantStyle('plainActive', vars)).to.deep.include({
-      '&:active': {
-        color: 'var(--joy-variant-plainActiveColor, var(--joy-variant-plainHoverColor))',
-      },
+      color: 'var(--joy-variant-plainActiveColor, var(--joy-variant-plainHoverColor))',
     });
     expect(createVariantStyle('plainDisabled', vars)).to.deep.include({
-      '&.Mui-disabled': {
-        pointerEvents: 'none',
-        cursor: 'default',
-        color: 'var(--joy-variant-plainDisabledColor)',
-      },
+      pointerEvents: 'none',
+      cursor: 'default',
+      color: 'var(--joy-variant-plainDisabledColor)',
     });
   });
 
@@ -348,9 +318,7 @@ describe('variant utils', () => {
         },
       });
       expect(result.primary).to.deep.include({
-        '&:active': {
-          borderColor: 'var(--any-token)',
-        },
+        borderColor: 'var(--any-token)',
       });
     });
 
@@ -382,9 +350,7 @@ describe('variant utils', () => {
       const softHoverResult = createVariant('softHover', theme);
       expect(softHoverResult.customColor).to.deep.include({
         cursor: 'pointer',
-        '&:hover': {
-          color: 'var(--any-token)',
-        },
+        color: 'var(--any-token)',
       });
     });
 
