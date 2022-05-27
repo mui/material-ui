@@ -15,6 +15,6 @@ export type UseTabsListRootSlotProps<TOther = {}> = TOther & {
   'aria-labelledby'?: React.AriaAttributes['aria-labelledby'];
   'aria-orientation'?: React.AriaAttributes['aria-orientation'];
   role: React.AriaRole;
-  ref: React.Ref<unknown>;
+  ref: React.Ref<any>;
   onKeyDown?: React.KeyboardEventHandler<HTMLElement>;
 };

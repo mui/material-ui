@@ -1,5 +1,5 @@
 export { default } from './TabsListUnstyled';
-export type { default as TabsListUnstyledProps } from './TabsListUnstyledProps';
+export * from './TabsListUnstyled.types';
 
 export { default as tabsListUnstyledClasses } from './tabsListUnstyledClasses';
 export * from './tabsListUnstyledClasses';
