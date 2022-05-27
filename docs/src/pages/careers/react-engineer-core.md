@@ -57,7 +57,7 @@ Depending on the day, you'll:
   MUI is a complex codebase. Components we've shipped recently, such as the unstyled components have required months of dedicated, careful work.
 - **Reduce friction**.
   A large amount of the work at MUI is about reducing friction and making our products easier to use.
-  This might involve careful API design, identifying and fixing top bugs, creating easier to understand error messages, and writing documentation and blog posts about features you ship.
+  This might involve careful API design, identifying and fixing top bugs, creating error messages that are easier to understand, and writing documentation and blog posts about features you ship.
 - **Collaborate with the community**.
   Many small as well as meaningful fixes and features have been contributed by the community.
   Your role is to draw the best out of the community — to inspire those across the world to create and contribute through your reviews of their issues and pull requests.
