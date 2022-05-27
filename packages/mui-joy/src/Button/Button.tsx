@@ -82,11 +82,8 @@ const ButtonRoot = styled('button', {
         fontSize: theme.vars.fontSize.lg,
       }),
       '--Button-gap': 'clamp(0.25rem, var(--Button-paddingInline) * 0.5, 0.5rem)', // gap between start/end icon and content [0.25rem, x, 0.5rem]
-      padding: '0.25rem var(--Button-paddingInline)', // the padding-top, bottom act as a minimum spacing between content and root element
-      ...(ownerState.variant === 'outlined' && {
-        padding:
-          'calc(0.25rem - var(--variant-borderWidth)) calc(var(--Button-paddingInline) - var(--variant-borderWidth))', // account for the border width
-      }),
+      paddingBlock: 'calc(0.25rem - var(--variant-borderWidth))', // the padding-block act as a minimum spacing between content and root element
+      paddingInline: 'calc(var(--Button-paddingInline) - var(--variant-borderWidth))',
       borderRadius: `var(--Button-radius, ${theme.vars.radius.sm})`, // to be controlled by other components, eg. Input
       margin: `var(--Button-margin)`, // to be controlled by other components, eg. Input
       border: 'none',

@@ -60,10 +60,7 @@ const IconButtonRoot = styled('button', {
         minHeight: 'var(--IconButton-size, 3rem)',
         fontSize: theme.vars.fontSize.lg,
       }),
-      padding: 'var(--IconButton-padding)',
-      ...(ownerState.variant === 'outlined' && {
-        padding: 'calc(var(--IconButton-padding) - var(--variant-borderWidth))', // account for the border width
-      }),
+      padding: 'calc(var(--IconButton-padding) - var(--variant-borderWidth))', // account for the border width
       fontFamily: theme.vars.fontFamily.body,
       fontWeight: theme.vars.fontWeight.md,
       margin: `var(--Button-margin)`, // to be controlled by other components, eg. Input

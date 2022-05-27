@@ -48,11 +48,11 @@ const ChipRoot = styled('div', {
       '--Chip-decorator-offset': 'calc(var(--Chip-paddingInline) / 4)', // negative margin of the start/end adornment
       // for controlling chip delete margin offset
       '--Chip-decorator-childOffset':
-        'min(calc(var(--Chip-paddingInline) - var(--Chip-decorator-offset) - (var(--Chip-minHeight) - 2 * var(--variant-borderWidth, 0px) - var(--Chip-decorator-childHeight)) / 2), var(--Chip-paddingInline) - var(--Chip-decorator-offset))',
+        'min(calc(var(--Chip-paddingInline) - var(--Chip-decorator-offset) - (var(--Chip-minHeight) - 2 * var(--variant-borderWidth) - var(--Chip-decorator-childHeight)) / 2), var(--Chip-paddingInline) - var(--Chip-decorator-offset))',
       '--internal-paddingBlock':
-        'max((var(--Chip-minHeight) - 2 * var(--variant-borderWidth, 0px) - var(--Chip-decorator-childHeight)) / 2, 0px)',
+        'max((var(--Chip-minHeight) - 2 * var(--variant-borderWidth) - var(--Chip-decorator-childHeight)) / 2)',
       '--Chip-decorator-childRadius':
-        'max((var(--Chip-radius) - var(--variant-borderWidth, 0px)) - var(--internal-paddingBlock), min(var(--internal-paddingBlock) / 2, (var(--Chip-radius) - var(--variant-borderWidth, 0px)) / 2))',
+        'max((var(--Chip-radius) - var(--variant-borderWidth)) - var(--internal-paddingBlock), min(var(--internal-paddingBlock) / 2, (var(--Chip-radius) - var(--variant-borderWidth)) / 2))',
       '--Chip-delete-radius': 'var(--Chip-decorator-childRadius)',
       '--Chip-delete-size': 'var(--Chip-decorator-childHeight)',
       '--Avatar-radius': 'var(--Chip-decorator-childRadius)',
@@ -63,7 +63,7 @@ const ChipRoot = styled('div', {
         '--Chip-gap': '0.25rem',
         '--Chip-paddingInline': '0.5rem',
         '--Chip-decorator-childHeight':
-          'calc(min(1.5rem, var(--Chip-minHeight)) - 2 * var(--variant-borderWidth, 0px))',
+          'calc(min(1.5rem, var(--Chip-minHeight)) - 2 * var(--variant-borderWidth))',
         '--Icon-fontSize': '0.875rem',
         '--Chip-minHeight': '1.5rem',
         fontSize: theme.vars.fontSize.xs,
