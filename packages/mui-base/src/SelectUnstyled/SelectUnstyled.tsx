@@ -124,7 +124,6 @@ const SelectUnstyled = React.forwardRef(function SelectUnstyled<TValue>(
     getOptionState,
     value,
   } = useSelect({
-    buttonComponent: Button,
     buttonRef: handleButtonRef,
     defaultValue,
     disabled: disabledProp,

@@ -1,10 +1,10 @@
-# Developer Experience Engineer
+# Developer Experience Engineer - Core
 
 <p class="description">You will focus on providing experiences that delight developers using MUI. This role is mostly about MUI Core.</p>
 
 ## Details of the Role
 
-- Location: Remote (preference for UTC-7 to UTC+2).
+- Location: Remote (preference for UTC-6 to UTC+2).
 - Type of work: Full-time (contractor or employee [depending on circumstances](https://mui-org.notion.site/Hiring-FAQ-64763b756ae44c37b47b081f98915501))
 - Start date: Immediately.
 - Level: [4 or above](https://docs.google.com/spreadsheets/d/1dDdPD-flNXlgZ0E3ZxVvCDx27RFuhVWJrcfcjNu_I8k/edit#gid=0).
@@ -45,7 +45,8 @@ We are looking for someone that can contribute to the following outcomes:
 
 You have a lot of feedback, more than we can process. It's an opportunity to challenge the state of the art in the React component dev tool space.
 
-Our solution empowers React developers to build awesome applications – hundreds of thousands of developers use MUI every month.
+Our solution empowers React developers to build awesome applications faster – we see over a million developers on MUI's docs every month.
+Hundreds of thousands of developers use MUI every month.
 
 ## About the role
 
@@ -94,7 +95,7 @@ For the right candidate:
 ## Benefits & Compensation
 
 Competitive compensation depending on the profile and location.
-We are ready to pay top market rates for a person that can significantly push the mission forward.
+We are ready to pay top market rates for a person that can clearly exceed the role's expectations.
 You can find the other perks & benefits on the [careers](/careers/#perks-amp-benefits) page.
 
 ## How to apply?

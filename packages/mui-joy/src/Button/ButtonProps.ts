@@ -5,8 +5,7 @@ import {
   OverridableTypeMap,
   OverrideProps,
 } from '@mui/types';
-import { SxProps } from '../styles/defaultTheme';
-import { ColorPaletteProp, VariantProp } from '../styles/types';
+import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
 
 export type ButtonSlot = 'root' | 'startIcon' | 'endIcon';
 
@@ -70,7 +69,7 @@ export interface ButtonTypeMap<P = {}, D extends React.ElementType = 'button'> {
     tabIndex?: NonNullable<React.HTMLAttributes<any>['tabIndex']>;
     /**
      * The variant to use.
-     * @default 'contained'
+     * @default 'solid'
      */
     variant?: OverridableStringUnion<VariantProp, ButtonPropsVariantOverrides>;
   };

@@ -68,7 +68,7 @@ export default function XHero() {
       }
       rightSx={{
         p: { md: 2, lg: 3, xl: 4 },
-        overflow: 'scroll',
+        overflow: 'hidden', // the components on the Hero section are mostly illustrative, even though they're interactive. That's why scrolling is disabled.
       }}
       right={
         <React.Fragment>

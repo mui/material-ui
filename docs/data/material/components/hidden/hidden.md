@@ -8,7 +8,9 @@ githubLabel: 'component: Hidden'
 
 # Hidden
 
-> `Hidden` is deprecated, checkout [migration docs](/material-ui/guides/migration-v4/#hidden)
+:::error
+`Hidden` is deprecated, checkout [migration docs](/material-ui/guides/migration-v4/#hidden)
+:::
 
 <p class="description"></p>
 

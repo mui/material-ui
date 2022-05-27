@@ -24,7 +24,7 @@ const useUtilityClasses = (ownerState: TypographyProps) => {
 };
 
 const StartDecorator = styled('span', {
-  name: 'MuiTypography',
+  name: 'JoyTypography',
   slot: 'StartDecorator',
   overridesResolver: (props, styles) => styles.startDecorator,
 })<{ ownerState: TypographyProps & { nested: boolean } }>(({ ownerState }) => ({
@@ -36,7 +36,7 @@ const StartDecorator = styled('span', {
 }));
 
 const EndDecorator = styled('span', {
-  name: 'MuiTypography',
+  name: 'JoyTypography',
   slot: 'endDecorator',
   overridesResolver: (props, styles) => styles.endDecorator,
 })<{ ownerState: TypographyProps & { nested: boolean } }>(({ ownerState }) => ({
@@ -48,7 +48,7 @@ const EndDecorator = styled('span', {
 }));
 
 const TypographyRoot = styled('span', {
-  name: 'MuiTypography',
+  name: 'JoyTypography',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: TypographyProps & { nested: boolean } }>(({ theme, ownerState }) => ({
@@ -99,7 +99,7 @@ const defaultVariantMapping: Record<string, string> = {
 const Typography = React.forwardRef(function Typography(inProps, ref) {
   const themeProps = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
-    name: 'MuiTypography',
+    name: 'JoyTypography',
   });
 
   const nested = React.useContext(TypographyContext);
@@ -173,6 +173,10 @@ Typography.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
+   * Override or extend the styles applied to the component.
+   */
+  classes: PropTypes.object,
+  /**
    * @ignore
    */
   className: PropTypes.string,
@@ -233,6 +237,14 @@ Typography.propTypes /* remove-proptypes */ = {
    * Element placed before the children.
    */
   startDecorator: PropTypes.node,
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
 } as any;
 
 export default Typography;

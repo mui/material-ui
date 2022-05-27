@@ -3,7 +3,7 @@ product: material-ui
 title: React Alert component
 components: Alert, AlertTitle
 githubLabel: 'component: alert'
-waiAria: https://www.w3.org/TR/wai-aria-practices/#alert
+waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/alert/
 ---
 
 # Alert
@@ -76,7 +76,7 @@ The `color` prop will override the default color for the specified severity.
 
 ## Accessibility
 
-(WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#alert)
+(WAI-ARIA: https://www.w3.org/WAI/ARIA/apg/patterns/alert/)
 
 When the component is dynamically displayed, the content is automatically announced by most screen readers. At this time, screen readers do not inform users of alerts that are present when the page loads.
 
