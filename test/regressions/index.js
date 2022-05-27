@@ -28,7 +28,6 @@ importRegressionFixtures.keys().forEach((path) => {
 }, []);
 
 const blacklist = [
-  'docs-joy-components-avatar/AvatarGroupVariables.png', // Redundant
   'docs-components-alert/TransitionAlerts.png', // Needs interaction
   'docs-components-app-bar/BackToTop.png', // Needs interaction
   'docs-components-app-bar/ElevateAppBar.png', // Needs interaction
@@ -157,6 +156,7 @@ const blacklist = [
   'docs-system-typography', // Unit tests are enough
   'docs-versions', // No public components
   /^docs-guides-.*/, // No public components
+  /^docs-joy-.*Variables\.png$/, // Exclude Joy CSS variables playground
 ];
 
 const unusedBlacklistPatterns = new Set(blacklist);
