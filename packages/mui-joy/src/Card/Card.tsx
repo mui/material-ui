@@ -11,7 +11,7 @@ import { CardProps, CardTypeMap } from './CardProps';
 import { resolveSxValue } from '../styles/styleUtils';
 
 const useUtilityClasses = (ownerState: CardProps) => {
-  const { size, variant, color } = ownerState;
+  const { size, variant, color, row } = ownerState;
 
   const slots = {
     root: [
@@ -19,6 +19,7 @@ const useUtilityClasses = (ownerState: CardProps) => {
       variant && `variant${capitalize(variant)}`,
       color && `color${capitalize(color)}`,
       size && `size${capitalize(size)}`,
+      row && 'row',
     ],
   };
 
@@ -82,7 +83,7 @@ const CardRoot = styled('div', {
     transition: 'box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
     position: 'relative',
     display: 'flex',
-    flexDirection: 'column',
+    flexDirection: ownerState.row ? 'row' : 'column',
   },
   theme.variants[ownerState.variant!]?.[ownerState.color!],
 ]);
@@ -100,6 +101,7 @@ const Card = React.forwardRef(function Card(inProps, ref) {
     size = 'md',
     variant = 'plain',
     children,
+    row = false,
     ...other
   } = props;
 
@@ -107,6 +109,7 @@ const Card = React.forwardRef(function Card(inProps, ref) {
     ...props,
     color,
     component,
+    row,
     size,
     variant,
   };
