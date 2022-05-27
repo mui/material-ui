@@ -13,7 +13,7 @@ export interface SwipeableDrawerProps extends Omit<DrawerProps, 'onClose' | 'ope
    *
    * @default false
    */
-  AllowSwipeInChildren?:
+  allowSwipeInChildren?:
     | boolean
     | ((e: TouchEvent, swipeArea: HTMLDivElement, paper: HTMLDivElement) => boolean);
   /**

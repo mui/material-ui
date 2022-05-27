@@ -145,7 +145,7 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
     disableSwipeToOpen = iOS,
     hideBackdrop,
     hysteresis = 0.52,
-    AllowSwipeInChildren = false,
+    allowSwipeInChildren = false,
     minFlingVelocity = 450,
     ModalProps: { BackdropProps, ...ModalPropsProp } = {},
     onClose,
@@ -301,7 +301,7 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
       // on Safari Mobile, if you want to be able to have the 'click' event fired on child elements, nothing in the DOM can be changed.
       // this is because Safari Mobile will not fire any mouse events (still fires touch though) if the DOM changes during mousemove.
       // so do this change on first touchmove instead of touchstart
-      if (force || !(disableDiscovery && AllowSwipeInChildren)) {
+      if (force || !(disableDiscovery && allowSwipeInChildren)) {
         setMaybeSwiping(true);
       }
 
@@ -508,15 +508,15 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
       // logic for if swipe should be ignored:
       // if disableSwipeToOpen
       // if target != swipeArea, and target is not a child of paper ref
-      // if is a child of paper ref, but `AllowSwipeInChildren` disallows it
+      // if is a child of paper ref, but `allowSwipeInChildren` disallows it
       if (
         disableSwipeToOpen ||
         !(
           nativeEvent.target === swipeAreaRef.current ||
           (paperRef.current?.contains(nativeEvent.target) &&
-            (typeof AllowSwipeInChildren === 'function'
-              ? AllowSwipeInChildren(nativeEvent, swipeAreaRef.current, paperRef.current)
-              : AllowSwipeInChildren))
+            (typeof allowSwipeInChildren === 'function'
+              ? allowSwipeInChildren(nativeEvent, swipeAreaRef.current, paperRef.current)
+              : allowSwipeInChildren))
         )
       ) {
         return;
@@ -590,7 +590,7 @@ const SwipeableDrawer = React.forwardRef(function SwipeableDrawer(inProps, ref) 
         PaperProps={{
           ...PaperProps,
           style: {
-            pointerEvents: variant === 'temporary' && !open && !AllowSwipeInChildren ? 'none' : '',
+            pointerEvents: variant === 'temporary' && !open && !allowSwipeInChildren ? 'none' : '',
             ...PaperProps.style,
           },
           ref: paperRef,
@@ -631,7 +631,7 @@ SwipeableDrawer.propTypes /* remove-proptypes */ = {
    *
    * @default false
    */
-  AllowSwipeInChildren: PropTypes.oneOfType([PropTypes.bool, PropTypes.func]),
+  allowSwipeInChildren: PropTypes.oneOfType([PropTypes.bool, PropTypes.func]),
   /**
    * @ignore
    */

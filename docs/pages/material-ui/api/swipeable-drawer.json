@@ -3,7 +3,7 @@
     "onClose": { "type": { "name": "func" }, "required": true },
     "onOpen": { "type": { "name": "func" }, "required": true },
     "open": { "type": { "name": "bool" }, "required": true },
-    "AllowSwipeInChildren": {
+    "allowSwipeInChildren": {
       "type": { "name": "union", "description": "bool<br>&#124;&nbsp;func" },
       "default": "false"
     },
