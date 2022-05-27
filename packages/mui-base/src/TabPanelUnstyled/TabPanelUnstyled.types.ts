@@ -1,5 +1,6 @@
-import React from 'react';
+import * as React from 'react';
 import { OverrideProps } from '@mui/types';
+import { UseTabPanelRootSlotProps } from './useTabPanel.types';
 
 interface TabPanelUnstyledComponentsPropsOverrides {}
 
@@ -36,7 +37,7 @@ export interface TabPanelUnstyledTypeMap<P = {}, D extends React.ElementType = '
   defaultComponent: D;
 }
 
-type TabPanelUnstyledProps<
+export type TabPanelUnstyledProps<
   D extends React.ElementType = TabPanelUnstyledTypeMap['defaultComponent'],
   P = {},
 > = OverrideProps<TabPanelUnstyledTypeMap<P, D>, D> & {
@@ -48,4 +49,14 @@ type TabPanelUnstyledProps<
   component?: D;
 };
 
-export default TabPanelUnstyledProps;
+export type TabPanelUnstyledOwnerState = TabPanelUnstyledProps & {
+  hidden: boolean;
+};
+
+export type TabPanelUnstyledRootSlotProps = UseTabPanelRootSlotProps & {
+  children?: React.ReactNode;
+  className?: string;
+  ownerState: TabPanelUnstyledOwnerState;
+  ref: React.Ref<any>;
+  role: React.AriaRole;
+};
