@@ -39,7 +39,7 @@ v6 will completely remove the support of IE 11.
 
 <!-- #stable-snapshot -->
 
-MUI supports [Node.js](https://github.com/nodejs/node) starting with version 12.17 (or 12.0 with `--experimental-modules` enabled) for server-side rendering.
+MUI supports [Node.js](https://github.com/nodejs/node) starting with version 12.0 for server-side rendering.
 This aims to match the [LTS versions that are in maintenance](https://github.com/nodejs/Release#release-schedule) mode.
 
 ### CSS prefixing
