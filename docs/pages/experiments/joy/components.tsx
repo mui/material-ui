@@ -521,7 +521,7 @@ const components: {
               <Avatar
                 src="/static/images/avatar/3.jpg"
                 variant="outlined"
-                sx={{ borderColor: 'background.body', '--variant-outlinedBorderWidth': '2px' }}
+                sx={{ borderColor: 'background.body', '--variant-borderWidth': '2px' }}
               />
             }
             {...props}
