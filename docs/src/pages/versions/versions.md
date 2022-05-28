@@ -26,7 +26,7 @@ MUI follows [Semantic Versioning 2.0.0](https://semver.org/).
 MUI version numbers have three parts: `major.minor.patch`.
 The version number is incremented based on the level of change included in the release.
 
-- **Major releases** contain significant new features, some but minimal developer assistance is expected during the update.
+- **Major releases** contain significant new features, some developer assistance is expected during the update.
   These releases include [breaking changes](#what-doesnt-count-as-a-breaking-change).
   When updating to a new major release, you may need to run update scripts, refactor code, run additional tests, and learn new APIs.
 - **Minor releases** contain important new features.
@@ -48,7 +48,6 @@ We call "breaking changes" those that require updating your codebase when upgrad
   If you use these versions, note that APIs may change before the stable release.
 - **Small CSS changes**. Visual design changes that have a very low probability of negatively impacting your UI are not considered breaking.
 
-In general, we don't release the above changes in patch releases.
 
 ## Release frequency
 
