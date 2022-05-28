@@ -40,7 +40,7 @@ const InputRoot = styled('div', {
     '--Input-gap': '0.5rem',
     '--Input-placeholderOpacity': 0.5,
     '--Input-decorator-offset': 'calc(var(--Input-paddingInline) / 4)', // negative margin of the start/end adornment
-    '--Input-focusedThickness': 'calc(var(--variant-outlinedBorderWidth, 1px) + 1px)',
+    '--Input-focusedThickness': 'calc(var(--variant-borderWidth, 1px) + 1px)',
     '--Input-focusedHighlight':
       theme.vars.palette[ownerState.color === 'neutral' ? 'primary' : ownerState.color!]?.[500],
     ...(ownerState.size === 'sm' && {
@@ -64,11 +64,11 @@ const InputRoot = styled('div', {
     }),
     // variables for controlling child components
     '--Input-decorator-childOffset':
-      'min(calc(var(--Input-paddingInline) - var(--Input-decorator-offset) - (var(--Input-minHeight) - 2 * var(--variant-outlinedBorderWidth, 0px) - var(--Input-decorator-childHeight)) / 2), var(--Input-paddingInline) - var(--Input-decorator-offset))',
+      'min(calc(var(--Input-paddingInline) - var(--Input-decorator-offset) - (var(--Input-minHeight) - 2 * var(--variant-borderWidth) - var(--Input-decorator-childHeight)) / 2), var(--Input-paddingInline) - var(--Input-decorator-offset))',
     '--internal-paddingBlock':
-      'max((var(--Input-minHeight) - 2 * var(--variant-outlinedBorderWidth, 0px) - var(--Input-decorator-childHeight)) / 2, 0px)',
+      'max((var(--Input-minHeight) - 2 * var(--variant-borderWidth) - var(--Input-decorator-childHeight)) / 2)',
     '--Input-decorator-childRadius':
-      'max((var(--Input-radius) - var(--variant-outlinedBorderWidth, 0px)) - var(--internal-paddingBlock), min(var(--internal-paddingBlock) / 2, (var(--Input-radius) - var(--variant-outlinedBorderWidth, 0px)) / 2))',
+      'max((var(--Input-radius) - var(--variant-borderWidth)) - var(--internal-paddingBlock), min(var(--internal-paddingBlock) / 2, (var(--Input-radius) - var(--variant-borderWidth)) / 2))',
     '--Button-minHeight': 'var(--Input-decorator-childHeight)',
     '--IconButton-size': 'var(--Input-decorator-childHeight)',
     '--Button-radius': 'var(--Input-decorator-childRadius)',
@@ -105,12 +105,14 @@ const InputRoot = styled('div', {
       bottom: 0,
       zIndex: 1,
       borderRadius: 'inherit',
-      margin: 'calc(var(--variant-outlinedBorderWidth) * -1)', // for outlined variant
+      margin: 'calc(var(--variant-borderWidth) * -1)', // for outlined variant
     },
   },
   theme.variants[`${ownerState.variant!}`]?.[ownerState.color!],
-  theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
-  theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
+  { '&:hover': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!] },
+  {
+    [inputClasses.disabled]: theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
+  },
   ownerState.variant !== 'solid' && {
     [`&.${inputClasses.focused}`]: {
       backgroundColor: 'initial',

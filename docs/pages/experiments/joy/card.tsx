@@ -323,7 +323,7 @@ export default function JoySvgIcon() {
             </Box>
           </Card>
           <Card component="li" variant="outlined" sx={{ '&:focus-within': { boxShadow: 'lg' } }}>
-            <CardOverflow variant="outlined">
+            <CardOverflow>
               <AspectRatio ratio="1">
                 <img
                   src="https://images.unsplash.com/photo-1627483262268-9c2b5b2834b5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
@@ -343,20 +343,21 @@ export default function JoySvgIcon() {
                 >
                   04:26
                 </Box>
-                <IconButton
-                  size="lg"
-                  variant="solid"
-                  sx={{
-                    position: 'absolute',
-                    zIndex: 2,
-                    borderRadius: '50%',
-                    right: '1rem',
-                    bottom: 'calc(-1/2 * var(--IconButton-size))',
-                  }}
-                >
-                  <PlayArrow />
-                </IconButton>
               </AspectRatio>
+              <IconButton
+                size="lg"
+                variant="solid"
+                sx={{
+                  position: 'absolute',
+                  zIndex: 2,
+                  borderRadius: '50%',
+                  right: '1rem',
+                  bottom: '0px',
+                  transform: 'translateY(50%)',
+                }}
+              >
+                <PlayArrow />
+              </IconButton>
             </CardOverflow>
             <Typography level="h2" sx={{ fontSize: 'lg', mt: 3 }}>
               <Link href="#minimal-photo" overlay>
@@ -367,7 +368,6 @@ export default function JoySvgIcon() {
               By <Link href="#sukjit">Sujith</Link>
             </Typography>
             <CardOverflow
-              variant="outlined"
               sx={{
                 display: 'flex',
                 gap: 1,
@@ -753,7 +753,7 @@ export default function JoySvgIcon() {
               '&:hover': { boxShadow: 'md', borderColor: 'primary.outlinedHoverBorder' },
             }}
           >
-            <AspectRatio ratio="1" maxHeight={100}>
+            <AspectRatio ratio="1" maxHeight={100} sx={{ minWidth: 80 }}>
               <img src="/static/images/cards/real-estate.png" alt="" />
             </AspectRatio>
             <Box>
