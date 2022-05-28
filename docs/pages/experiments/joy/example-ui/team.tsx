@@ -1,6 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import * as React from 'react';
 import { GlobalStyles } from '@mui/system';
+import { sliderUnstyledClasses } from '@mui/base/SliderUnstyled';
 import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
 import type { Theme } from '@mui/joy/styles';
 import Avatar from '@mui/joy/Avatar';
@@ -38,6 +39,7 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 // custom
 import exampleUITheme, { LoadFont } from 'docs/src/_experiments/JoyExampleUIs/exampleUITheme';
 import Layout from 'docs/src/_experiments/JoyExampleUIs/Layout';
+import JoySlider from 'docs/src/_experiments/JoyExampleUIs/JoySlider';
 
 const ColorSchemeToggle = () => {
   const { mode, setMode } = useColorScheme();
@@ -245,14 +247,21 @@ export default function TeamExample() {
             <Box sx={{ mt: 2 }}>
               <TextField placeholder="Search for a city" />
               <Box sx={{ mt: 2, display: 'flex', gap: 1 }}>
-                <Chip
-                  variant="soft"
-                  size="sm"
-                  endDecorator={<ChipDelete variant="soft" />}
-                  sx={{ '--Chip-radius': (theme) => theme.vars.radius.sm }}
-                >
-                  ui designer
-                </Chip>
+                <JoySlider
+                  valueLabelFormat={(value) => `${value} km`}
+                  step={1}
+                  min={0}
+                  max={20}
+                  valueLabelDisplay="auto"
+                  sx={{
+                    [`& input[value="0"] + .${sliderUnstyledClasses.valueLabel}`]: {
+                      justifyContent: 'flex-start',
+                    },
+                    [`& input[value="20"] + .${sliderUnstyledClasses.valueLabel}`]: {
+                      justifyContent: 'flex-end',
+                    },
+                  }}
+                />
               </Box>
             </Box>
           </Box>
