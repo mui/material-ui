@@ -111,8 +111,7 @@ const OutlinedInputInput = styled(InputBaseInput, {
     '&:-webkit-autofill': {
       borderRadius: 'inherit',
     },
-    // TODO: the attribute should come from theme utilities
-    '[data-mui-color-scheme="light"] &': {
+    [theme.getColorSchemeSelector('dark')]: {
       '&:-webkit-autofill': {
         WebkitBoxShadow: '0 0 0 100px #266798 inset',
         WebkitTextFillColor: '#fff',
