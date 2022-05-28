@@ -48,7 +48,6 @@ We call "breaking changes" those that require updating your codebase when upgrad
   If you use these versions, note that APIs may change before the stable release.
 - **Small CSS changes**. Visual design changes that have a very low probability of negatively impacting your UI are not considered breaking.
 
-
 ## Release frequency
 
 A regular schedule of releases helps you plan and coordinate your updates with the continuing evolution of MUI.
