@@ -2,6 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { OverridableComponent } from '@mui/types';
+import { unstable_capitalize as capitalize } from '@mui/utils';
 import { unstable_extendSxProp as extendSxProp } from '@mui/system';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { TypographyTypeMap, TypographyProps } from './TypographyProps';
@@ -12,10 +13,17 @@ import { getTypographyUtilityClass } from './typographyClasses';
 export const TypographyContext = React.createContext(false);
 
 const useUtilityClasses = (ownerState: TypographyProps) => {
-  const { gutterBottom, noWrap, level } = ownerState;
+  const { gutterBottom, noWrap, level, color, variant } = ownerState;
 
   const slots = {
-    root: ['root', level, gutterBottom && 'gutterBottom', noWrap && 'noWrap'],
+    root: [
+      'root',
+      level,
+      gutterBottom && 'gutterBottom',
+      noWrap && 'noWrap',
+      color && `color${capitalize(color)}`,
+      variant && `variant${capitalize(variant)}`,
+    ],
     startDecorator: ['startDecorator'],
     endDecorator: ['endDecorator'],
   };
@@ -81,6 +89,11 @@ const TypographyRoot = styled('span', {
   ...(ownerState.gutterBottom && {
     marginBottom: '0.35em',
   }),
+  ...(ownerState.variant && {
+    paddingInline: '0.25em', // better than left, right because it also works with writing mode.
+    marginInline: '-0.25em',
+    ...theme.variants[ownerState.variant]?.[ownerState.color!],
+  }),
 }));
 
 const defaultVariantMapping: Record<string, string> = {
@@ -97,19 +110,22 @@ const defaultVariantMapping: Record<string, string> = {
 };
 
 const Typography = React.forwardRef(function Typography(inProps, ref) {
-  const themeProps = useThemeProps<typeof inProps & { component?: React.ElementType }>({
+  const {
+    color: colorThemeProp,
+    textColor,
+    ...themeProps
+  } = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
     name: 'JoyTypography',
   });
 
   const nested = React.useContext(TypographyContext);
 
-  const props = extendSxProp(themeProps);
+  const props = extendSxProp({ ...themeProps, color: textColor });
 
   const {
     className,
     component,
-    color, // declare to prevent type error spread to TypographyRoot
     gutterBottom = false,
     noWrap = false,
     level: levelProp = 'body1',
@@ -117,8 +133,11 @@ const Typography = React.forwardRef(function Typography(inProps, ref) {
     children,
     endDecorator,
     startDecorator,
+    variant = colorThemeProp ? 'plain' : undefined,
     ...other
   } = props;
+
+  const color = colorThemeProp || (variant ? 'neutral' : undefined);
 
   const level = nested ? inProps.level || 'inherit' : levelProp;
 
@@ -127,9 +146,11 @@ const Typography = React.forwardRef(function Typography(inProps, ref) {
     level,
     className,
     component,
+    color,
     gutterBottom,
     noWrap,
     nested,
+    variant,
   };
 
   const Component =
@@ -144,7 +165,7 @@ const Typography = React.forwardRef(function Typography(inProps, ref) {
         ref={ref}
         ownerState={ownerState}
         className={clsx(classes.root, className)}
-        {...other}
+        {...(other as TypographyProps)}
       >
         {startDecorator && (
           <StartDecorator ownerState={ownerState} className={classes.startDecorator}>
