@@ -3,11 +3,11 @@ import * as React from 'react';
 import { GlobalStyles } from '@mui/system';
 import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
 import type { Theme } from '@mui/joy/styles';
+import AspectRatio from '@mui/joy/AspectRatio';
 import Avatar from '@mui/joy/Avatar';
 import AvatarGroup from '@mui/joy/AvatarGroup';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
-import Chip from '@mui/joy/Chip';
 import Card from '@mui/joy/Card';
 import CardOverflow from '@mui/joy/CardOverflow';
 import CardCover from '@mui/joy/CardCover';
@@ -16,12 +16,7 @@ import Typography from '@mui/joy/Typography';
 import TextField from '@mui/joy/TextField';
 import IconButton from '@mui/joy/IconButton';
 import Link from '@mui/joy/Link';
-import List from '@mui/joy/List';
 import ListDivider from '@mui/joy/ListDivider';
-import ListItem from '@mui/joy/ListItem';
-import ListItemButton from '@mui/joy/ListItemButton';
-import ListItemDecorator from '@mui/joy/ListItemDecorator';
-import ListItemContent from '@mui/joy/ListItemContent';
 import Sheet from '@mui/joy/Sheet';
 
 // Icons import
@@ -30,18 +25,15 @@ import DarkModeRoundedIcon from '@mui/icons-material/DarkModeRounded';
 import LightModeRoundedIcon from '@mui/icons-material/LightModeRounded';
 import GridViewRoundedIcon from '@mui/icons-material/GridViewRounded';
 import MailRoundedIcon from '@mui/icons-material/MailRounded';
-import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
 import MenuIcon from '@mui/icons-material/Menu';
 import FolderOpenIcon from '@mui/icons-material/FolderOpen';
-import FolderOutlinedIcon from '@mui/icons-material/FolderOutlined';
-import ShareOutlinedIcon from '@mui/icons-material/ShareOutlined';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import CloseIcon from '@mui/icons-material/Close';
 
 // custom
 import exampleUITheme, { LoadFont } from 'docs/src/_experiments/JoyExampleUIs/exampleUITheme';
 import Layout from 'docs/src/_experiments/JoyExampleUIs/Layout';
-import AspectRatio from '@mui/joy/AspectRatio';
+import FilesNav from 'docs/src/_experiments/JoyExampleUIs/FilesNav';
 
 const ColorSchemeToggle = () => {
   const { mode, setMode } = useColorScheme();
@@ -69,56 +61,6 @@ const ColorSchemeToggle = () => {
     </IconButton>
   );
 };
-
-const FilesNav = () => (
-  <List sx={{ '--List-item-radius': '8px', '--List-decorator-width': '24px' }}>
-    <ListItem nested>
-      <ListItem component="div" id="nav-list-team">
-        <ListItemContent
-          sx={{
-            fontWeight: 'lg',
-            fontSize: 'xs2',
-            textTransform: 'uppercase',
-            letterSpacing: '.1rem',
-            color: 'text.tertiary',
-          }}
-        >
-          Team
-        </ListItemContent>
-        <KeyboardArrowDownRoundedIcon color="primary" />
-      </ListItem>
-      <List aria-labelledby="nav-list-team">
-        <ListItem>
-          <ListItemButton selected variant="soft">
-            <ListItemDecorator>
-              <FolderOpenIcon fontSize="md" />
-            </ListItemDecorator>
-            <ListItemContent>People</ListItemContent>
-          </ListItemButton>
-        </ListItem>
-        <ListItem>
-          <ListItemButton>
-            <ListItemDecorator>
-              <ShareOutlinedIcon fontSize="md" />
-            </ListItemDecorator>
-            <ListItemContent>Managing accounts</ListItemContent>
-          </ListItemButton>
-        </ListItem>
-        <ListItem>
-          <ListItemButton>
-            <ListItemDecorator>
-              <FolderOutlinedIcon fontSize="md" />
-            </ListItemDecorator>
-            <ListItemContent>Policies</ListItemContent>
-            <Chip variant="soft" size="sm" sx={{ borderRadius: 'sm' }}>
-              Beta
-            </Chip>
-          </ListItemButton>
-        </ListItem>
-      </List>
-    </ListItem>
-  </List>
-);
 
 export default function FilesExample() {
   const [drawerOpen, setDrawerOpen] = React.useState(false);
@@ -359,7 +301,7 @@ export default function FilesExample() {
             </Card>
           </Box>
         </Layout.Main>
-        <Box sx={{ borderLeft: '1px solid', borderColor: 'neutral.outlinedBorder' }}>
+        <Sheet sx={{ borderLeft: '1px solid', borderColor: 'neutral.outlinedBorder' }}>
           <Box sx={{ p: 2, display: 'flex', alignItems: 'center' }}>
             <Typography sx={{ flex: 1 }}>torres_del_paine.png</Typography>
             <IconButton variant="plain" size="sm">
@@ -384,7 +326,6 @@ export default function FilesExample() {
               Activity
             </Button>
           </Box>
-          <ListDivider component="hr" />
           <AspectRatio ratio="21/9">
             <img
               alt=""
@@ -438,7 +379,7 @@ export default function FilesExample() {
             </Link>
           </Box>
           <ListDivider component="hr" />
-        </Box>
+        </Sheet>
       </Layout.Root>
     </CssVarsProvider>
   );

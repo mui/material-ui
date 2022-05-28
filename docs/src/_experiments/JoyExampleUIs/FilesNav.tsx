@@ -9,82 +9,28 @@ import ListItemDecorator from '@mui/joy/ListItemDecorator';
 import ListItemContent from '@mui/joy/ListItemContent';
 
 // Icons import
-import InboxRoundedIcon from '@mui/icons-material/InboxRounded';
-import OutboxRoundedIcon from '@mui/icons-material/OutboxRounded';
-import DraftsRoundedIcon from '@mui/icons-material/DraftsRounded';
-import AssistantPhotoRoundedIcon from '@mui/icons-material/AssistantPhotoRounded';
-import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
+import FolderOpenIcon from '@mui/icons-material/FolderOpen';
+import ShareOutlinedIcon from '@mui/icons-material/ShareOutlined';
 import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
 
-export default function EmailNav() {
+export default function FilesNav() {
   return (
     <List size="sm" sx={{ '--List-item-radius': '8px' }}>
-      <ListItem nested>
-        <Box sx={{ mb: 1, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-          <Typography
-            id="nav-list-browse"
-            color="neutral.500"
-            fontWeight={700}
-            sx={{ fontSize: '10px', textTransform: 'uppercase', letterSpacing: '.1rem' }}
-          >
-            Browse
-          </Typography>
-          <IconButton
-            size="sm"
-            variant="plain"
-            color="primary"
-            sx={{ '--IconButton-size': '24px' }}
-          >
-            <KeyboardArrowDownRoundedIcon fontSize="small" color="primary" />
-          </IconButton>
-        </Box>
-        <List
-          aria-labelledby="nav-list-browse"
-          sx={{
-            '& .JoyListItemButton-root': { p: '8px' },
-          }}
-        >
-          <ListItem>
-            <ListItemButton variant="soft" color="primary">
-              <ListItemDecorator sx={{ color: 'inherit' }}>
-                <InboxRoundedIcon fontSize="small" />
-              </ListItemDecorator>
-              <ListItemContent>Inbox</ListItemContent>
-            </ListItemButton>
-          </ListItem>
-          <ListItem>
-            <ListItemButton>
-              <ListItemDecorator sx={{ color: 'neutral.500' }}>
-                <OutboxRoundedIcon fontSize="small" />
-              </ListItemDecorator>
-              <ListItemContent>Sent</ListItemContent>
-            </ListItemButton>
-          </ListItem>
-          <ListItem>
-            <ListItemButton>
-              <ListItemDecorator sx={{ color: 'neutral.500' }}>
-                <DraftsRoundedIcon fontSize="small" />
-              </ListItemDecorator>
-              <ListItemContent>Draft</ListItemContent>
-            </ListItemButton>
-          </ListItem>
-          <ListItem>
-            <ListItemButton>
-              <ListItemDecorator sx={{ color: 'neutral.500' }}>
-                <AssistantPhotoRoundedIcon fontSize="small" />
-              </ListItemDecorator>
-              <ListItemContent>Flagged</ListItemContent>
-            </ListItemButton>
-          </ListItem>
-          <ListItem>
-            <ListItemButton>
-              <ListItemDecorator sx={{ color: 'neutral.500' }}>
-                <DeleteRoundedIcon fontSize="small" />
-              </ListItemDecorator>
-              <ListItemContent>Trash</ListItemContent>
-            </ListItemButton>
-          </ListItem>
-        </List>
+      <ListItem>
+        <ListItemButton variant="soft" color="primary">
+          <ListItemDecorator sx={{ color: 'inherit' }}>
+            <FolderOpenIcon fontSize="small" />
+          </ListItemDecorator>
+          <ListItemContent>My files</ListItemContent>
+        </ListItemButton>
+      </ListItem>
+      <ListItem>
+        <ListItemButton>
+          <ListItemDecorator sx={{ color: 'neutral.500' }}>
+            <ShareOutlinedIcon fontSize="small" />
+          </ListItemDecorator>
+          <ListItemContent>Team files</ListItemContent>
+        </ListItemButton>
       </ListItem>
       <ListItem nested>
         <Box
