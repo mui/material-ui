@@ -121,7 +121,7 @@ const Typography = React.forwardRef(function Typography(inProps, ref) {
 
   const nested = React.useContext(TypographyContext);
 
-  const props = extendSxProp({ ...themeProps, color: textColor });
+  const props = extendSxProp({ ...themeProps, color: textColor }) as TypographyProps;
 
   const {
     className,
@@ -165,7 +165,7 @@ const Typography = React.forwardRef(function Typography(inProps, ref) {
         ref={ref}
         ownerState={ownerState}
         className={clsx(classes.root, className)}
-        {...(other as TypographyProps)}
+        {...other}
       >
         {startDecorator && (
           <StartDecorator ownerState={ownerState} className={classes.startDecorator}>

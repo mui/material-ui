@@ -145,14 +145,18 @@ const LinkRoot = styled('a', {
 });
 
 const Link = React.forwardRef(function Link(inProps, ref) {
-  const { color = 'primary', ...themeProps } = useThemeProps<typeof inProps & LinkProps>({
+  const {
+    color = 'primary',
+    textColor,
+    ...themeProps
+  } = useThemeProps<typeof inProps & LinkProps>({
     props: inProps,
     name: 'JoyLink',
   });
 
   const nested = React.useContext(TypographyContext);
 
-  const props = extendSxProp(themeProps) as LinkProps;
+  const props = extendSxProp({ ...themeProps, color: textColor }) as LinkProps;
 
   const {
     className,

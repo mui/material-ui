@@ -47,6 +47,10 @@ export interface LinkTypeMap<P = {}, D extends React.ElementType = 'a'> {
        */
       overlay?: boolean;
       /**
+       * The system color.
+       */
+      textColor?: SystemProps['color'];
+      /**
        * Element placed before the children.
        */
       startDecorator?: React.ReactNode;
