@@ -63,4 +63,4 @@ This is also required to fix a known issue in NVDA when using Firefox that preve
 
 ## Bundle size
 
-📦 [981 B gzipped](/size-snapshot).
+📦 [981 B gzipped](/size-snapshot/).
