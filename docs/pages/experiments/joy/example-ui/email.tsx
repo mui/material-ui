@@ -6,7 +6,6 @@ import Box from '@mui/joy/Box';
 import Typography from '@mui/joy/Typography';
 import TextField from '@mui/joy/TextField';
 import IconButton from '@mui/joy/IconButton';
-import Sheet from '@mui/joy/Sheet';
 
 // Icons import
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
@@ -22,6 +21,7 @@ import exampleUITheme, { LoadFont } from 'docs/src/_experiments/JoyExampleUIs/ex
 import EmailNav from 'docs/src/_experiments/JoyExampleUIs/EmailNav';
 import EmailList from 'docs/src/_experiments/JoyExampleUIs/EmailList';
 import EmailContent from 'docs/src/_experiments/JoyExampleUIs/EmailContent';
+import Layout from 'docs/src/_experiments/JoyExampleUIs/Layout';
 
 const ColorSchemeToggle = () => {
   const { mode, setMode } = useColorScheme();
@@ -64,59 +64,19 @@ export default function EmailExample() {
         })}
       />
       {drawerOpen && (
-        <Box sx={{ position: 'fixed', zIndex: 1200, width: '100%', height: '100%' }}>
-          <Box
-            role="button"
-            onClick={() => setDrawerOpen(false)}
-            sx={{
-              position: 'absolute',
-              inset: 0,
-              bgcolor: (theme) => `rgba(${theme.vars.palette.neutral.darkChannel} / 0.2)`,
-            }}
-          />
-          <Sheet
-            sx={{ minWidth: 256, width: 'max-content', height: '100%', p: 2, boxShadow: 'md' }}
-          >
-            <EmailNav />
-          </Sheet>
-        </Box>
+        <Layout.SideDrawer onClose={() => setDrawerOpen(false)}>
+          <EmailNav />
+        </Layout.SideDrawer>
       )}
-      <Box
+      <Layout.Root
         sx={{
-          bgcolor: 'background.bodyEmail',
-          display: 'grid',
-          gridTemplateColumns: {
-            xs: '1fr',
-            sm: 'minmax(64px, 200px) minmax(450px, 1fr)',
-            md: 'minmax(160px, 260px) minmax(300px, 360px) minmax(500px, 1fr)',
-          },
-          gridTemplateRows: '64px 1fr',
-          minHeight: '100vh',
           ...(drawerOpen && {
             height: '100vh',
             overflow: 'hidden',
           }),
         }}
       >
-        <Box
-          component="header"
-          className="Header"
-          sx={{
-            p: 2,
-            gap: 2,
-            bgcolor: 'background.componentBg',
-            display: 'flex',
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            gridColumn: '1 / -1',
-            borderBottom: '1px solid',
-            borderColor: 'divider',
-            position: 'sticky',
-            top: 0,
-            zIndex: 1100,
-          }}
-        >
+        <Layout.Header>
           <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 1.5 }}>
             <IconButton
               variant="soft"
@@ -164,35 +124,11 @@ export default function EmailExample() {
             </IconButton>
             <ColorSchemeToggle />
           </Box>
-        </Box>
-        <Box
-          component="nav"
-          className="Navigation"
-          sx={{
-            p: 2,
-            bgcolor: 'background.componentBg',
-            borderRight: '1px solid',
-            borderColor: 'divider',
-            display: {
-              xs: 'none',
-              sm: 'initial',
-            },
-          }}
-        >
+        </Layout.Header>
+        <Layout.SideNav>
           <EmailNav />
-        </Box>
-        <Box
-          className="Inbox"
-          sx={{
-            bgcolor: 'background.componentBg',
-            borderRight: '1px solid',
-            borderColor: 'divider',
-            display: {
-              xs: 'none',
-              md: 'initial',
-            },
-          }}
-        >
+        </Layout.SideNav>
+        <Layout.SidePane>
           <Box
             sx={{
               p: 2,
@@ -248,11 +184,11 @@ export default function EmailExample() {
             </IconButton>
           </Box>
           <EmailList />
-        </Box>
-        <Box component="main" className="Main" sx={{ p: 2 }}>
+        </Layout.SidePane>
+        <Layout.Main>
           <EmailContent />
-        </Box>
-      </Box>
+        </Layout.Main>
+      </Layout.Root>
     </CssVarsProvider>
   );
 }
