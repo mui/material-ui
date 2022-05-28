@@ -4,7 +4,7 @@
 
 ## Details of the Role
 
-- Location: Remote (preference for UTC-6 to UTC+3).
+- Location: Remote (preference for UTC-6 to UTC+5).
 - Type of work: Full-time (contractor or employee [depending on circumstances](https://mui-org.notion.site/Hiring-FAQ-64763b756ae44c37b47b081f98915501))
 - Start date: Immediately.
 - We're a remote company, we prefer asynchronous communication over meetings.
@@ -36,7 +36,8 @@ We believe that the best way to improve on these dimensions is to eliminate [80%
 
 ### Why this is interesting
 
-Our solution empowers React developers to build awesome applications – hundreds of thousands of developers use MUI every month.
+Our solution empowers React developers to build awesome applications faster – we see over a million developers on MUI's docs every month.
+Hundreds of thousands of developers use MUI every month.
 
 But providing React components isn't enough.
 In our [last developer survey](/blog/2021-developer-survey-results/), we learned that the majority of our audience are full-stack developers.
@@ -74,7 +75,7 @@ Depending on the day, you'll:
 ## Benefits & Compensation
 
 Competitive compensation depending on the profile and location.
-We are ready to pay top market rates for a person that can significantly push the mission forward.
+We are ready to pay top market rates for a person that can clearly exceed the role's expectations.
 You can find the other perks & benefits on the [careers](/careers/#perks-amp-benefits) page.
 
 ## How to apply?

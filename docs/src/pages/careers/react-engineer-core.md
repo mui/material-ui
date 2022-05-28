@@ -1,10 +1,10 @@
-# React Engineer - X
+# React Engineer - Core
 
-<p class="description">You will strengthen the advanced components team, build new ambitious complex features, work on strategic problems, and help grow the adoption.</p>
+<p class="description">You will strengthen the core components team, e.g. collaborate with the community to land contributions.</p>
 
 ## Details of the Role
 
-- Location: Remote (preference for UTC-6 to UTC+3).
+- Location: Remote (preference for UTC-6 to UTC+5).
 - Type of work: Full-time (contractor or employee [depending on circumstances](https://mui-org.notion.site/Hiring-FAQ-64763b756ae44c37b47b081f98915501))
 - Start date: Immediately.
 - Level: [4 or above](https://docs.google.com/spreadsheets/d/1dDdPD-flNXlgZ0E3ZxVvCDx27RFuhVWJrcfcjNu_I8k/edit#gid=0).
@@ -31,20 +31,20 @@ For additional details about the MUI team and culture, you can check our [career
 Both our open-source community and our premium products are growing fast (x2-3 YoY).
 We need talented people to keep that going!
 
-The advanced components team (MUI X) needs help.
-We have started with the [data grid](/x/react-data-grid/#commercial-version) component.
-We need to build new features on it and introduce new components.
-The enterprise version is built on the open-source version of the components.
+The core components team (MUI Core) needs help.
+They are working on 4 products (Material UI, MUI Base, Joy UI, and MUI System) with a tiny team.
 
-We also need help to continue to improve the health of the open-source product: make the advanced components easier to use, make it support more use cases, improve performance, make it more accessible, keeping up with the community, guiding developers to answers, and just generally being a positive presence in the open-source community.
+We also need help to continue to improve the health of the open-source product: make the core components easier to use, engage more with the community, polish all the details, make the components more accessible, guiding developers to answers, and just generally being a positive presence in the open-source community.
 
 ## About the role
 
 ### Why this is interesting
 
-The advanced components portfolio is still small, with a million interesting and challenging problems to solve.
+Our solution empowers React developers to build awesome applications faster – we see over a million developers on MUI's docs every month.
+Hundreds of thousands of developers use MUI every month.
 
-Our solution empowers React developers to build awesome applications – hundreds of thousands of developers use MUI every month.
+The core components are widely used, you will receive a lot of feedback on your work.
+The community has high expectations, they will push you to do better, every day.
 
 ### What you'll do on a day-to-day basis
 
@@ -54,7 +54,7 @@ Depending on the day, you'll:
   The future of MUI is discussed and planned in our public RFCs and issues.
   You'll be helping drive these conversations and guiding MUI toward the best possible solutions.
 - **Contribute to deep, meaningful refactors and feature releases**.
-  MUI is a complex codebase. Components we've shipped recently, such as the data grid have required months of dedicated, careful work.
+  MUI is a complex codebase. Components we've shipped recently, such as the unstyled components have required months of dedicated, careful work.
 - **Reduce friction**.
   A large amount of the work on MUI is reducing friction and making it easier to use.
   This might involve careful API design, identifying and fixing top bugs, creating easier to understand error messages, and writing documentation and blog posts about features you ship.
@@ -120,9 +120,9 @@ We're looking for someone with strong front-end skills. More important than spec
 ## Benefits & Compensation
 
 Competitive compensation depending on the profile and location.
-We are ready to pay top market rates for a person that can significantly push the mission forward.
+We are ready to pay top market rates for a person that can clearly exceed the role's expectations.
 You can find the other perks & benefits on the [careers](/careers/#perks-amp-benefits) page.
 
 ## How to apply?
 
-[Apply now for this position 📮](https://airtable.com/shrdqo1Z6srZXGcvh?prefill_Applying+for=React%20Engineer%20-%20X&prefill_source=mui.com)
+[Apply now for this position 📮](https://airtable.com/shrdqo1Z6srZXGcvh?prefill_Applying+for=React%20Engineer%20-%20Core&prefill_source=mui.com)

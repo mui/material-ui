@@ -81,7 +81,7 @@ export default function SandboxDependencies(
         newDeps['@mui/material'] = versions['@mui/material'];
       }
 
-      // TODO: Where is this coming from and why does it need to be injected this way.
+      // TODO: consider if this configuration could be injected in a "cleaner" way.
       if ((window as any).muiDocConfig) {
         newDeps = (window as any).muiDocConfig.csbIncludePeerDependencies(newDeps, { versions });
       }
@@ -108,7 +108,7 @@ export default function SandboxDependencies(
       '@mui/joy': getMuiPackageVersion('joy'),
     };
 
-    // TODO: Where is this coming from and why does it need to be injected this way.
+    // TODO: consider if this configuration could be injected in a "cleaner" way.
     if ((window as any).muiDocConfig) {
       const muiCommitRef = process.env.PULL_REQUEST ? process.env.COMMIT_REF : undefined;
       versions = (window as any).muiDocConfig.csbGetVersions(versions, { muiCommitRef });

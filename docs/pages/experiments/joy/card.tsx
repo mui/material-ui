@@ -196,7 +196,7 @@ export default function JoySvgIcon() {
               >
                 +18°C
               </Typography>
-              <AspectRatio min="120px" max="200px" sx={{ my: 2 }}>
+              <AspectRatio minHeight="120px" maxHeight="200px" sx={{ my: 2 }}>
                 <img
                   src="https://images.unsplash.com/photo-1501698335706-90b736210a61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1674&q=80"
                   alt=""
@@ -665,7 +665,7 @@ export default function JoySvgIcon() {
               flexWrap: 'wrap',
               resize: 'horizontal',
               overflow: 'hidden',
-              gap: 'clamp(0px, (100% - 360px) * 999, 16px)',
+              gap: 'clamp(0px, (100% - 360px + 32px) * 999, 16px)',
               transition: 'transform 0.3s, border 0.3s',
               '&:hover': {
                 borderColor: theme.vars.palette.text.primary,
@@ -678,7 +678,9 @@ export default function JoySvgIcon() {
               variant="soft"
               sx={{
                 flexGrow: 1,
-                pb: 'clamp(0px, (100% - 360px) * 999, min(calc(100% / (16 / 9)), 300px))',
+                display: 'contents',
+                '--AspectRatio-paddingBottom':
+                  'clamp(0px, (100% - 360px) * 999, min(calc(100% / (16 / 9)), 300px))',
               }}
             >
               <img
@@ -686,7 +688,7 @@ export default function JoySvgIcon() {
                 src="https://images.unsplash.com/photo-1620987278429-ab178d6eb547?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1450&q=80"
               />
             </AspectRatio>
-            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, maxWidth: '199px' }}>
+            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, maxWidth: '200px' }}>
               <Box sx={{ display: 'flex' }}>
                 <div>
                   <Typography level="h2" sx={{ fontSize: 'lg' }}>
@@ -710,7 +712,10 @@ export default function JoySvgIcon() {
                   <CallMade />
                 </IconButton>
               </Box>
-              <AspectRatio variant="soft" sx={{ pb: 'clamp(0px, (100% - 200px) * 999, 200px)' }}>
+              <AspectRatio
+                variant="soft"
+                sx={{ '--AspectRatio-paddingBottom': 'clamp(0px, (100% - 200px) * 999, 200px)' }}
+              >
                 <img
                   alt=""
                   src="https://images.unsplash.com/photo-1620987278429-ab178d6eb547?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1450&q=80"
@@ -730,13 +735,7 @@ export default function JoySvgIcon() {
             </Box>
           </Card>
           <Card component="li" variant="outlined" sx={{ '--Card-padding': '0px' }}>
-            <AspectRatio
-              variant="outlined"
-              sx={{
-                flexGrow: 1,
-                pb: 'clamp(0px, (100% - 360px) * 999, min(calc(100% / (16 / 9)), 300px))',
-              }}
-            >
+            <AspectRatio variant="outlined" sx={{ display: 'flex' }}>
               <img
                 alt=""
                 src="https://images.unsplash.com/photo-1620987278429-ab178d6eb547?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1450&q=80"
@@ -754,7 +753,7 @@ export default function JoySvgIcon() {
               '&:hover': { boxShadow: 'md', borderColor: 'primary.outlinedHoverBorder' },
             }}
           >
-            <AspectRatio ratio="1" max={100}>
+            <AspectRatio ratio="1" maxHeight={100}>
               <img src="/static/images/cards/real-estate.png" alt="" />
             </AspectRatio>
             <Box>
