@@ -27,8 +27,6 @@ const createReactApp = (demo: {
     // commitRef: process.env.PULL_REQUEST ? process.env.COMMIT_REF : undefined,
   });
 
-  dependencies['@babel/runtime'] = 'latest';
-
   return {
     title,
     description,

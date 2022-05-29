@@ -1,12 +1,21 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { OverridableComponent } from '@mui/types';
 import composeClasses from '../composeClasses';
 import appendOwnerState from '../utils/appendOwnerState';
 import useBadge from './useBadge';
 import { getBadgeUnstyledUtilityClass } from './badgeUnstyledClasses';
+import {
+  BadgeUnstyledProps,
+  BadgeUnstyledOwnerState,
+  BadgeUnstyledTypeMap,
+  BadgeUnstyledRootSlotProps,
+  BadgeUnstyledBadgeSlotProps,
+} from './BadgeUnstyled.types';
+import { WithOptionalOwnerState } from '../utils';
 
-const useUtilityClasses = (ownerState) => {
+const useUtilityClasses = (ownerState: BadgeUnstyledOwnerState) => {
   const { invisible } = ownerState;
 
   const slots = {
@@ -16,8 +25,20 @@ const useUtilityClasses = (ownerState) => {
 
   return composeClasses(slots, getBadgeUnstyledUtilityClass, undefined);
 };
-
-const BadgeUnstyled = React.forwardRef(function BadgeUnstyled(props, ref) {
+/**
+ *
+ * Demos:
+ *
+ * - [Badge](https://mui.com/base/react-badge/)
+ *
+ * API:
+ *
+ * - [BadgeUnstyled API](https://mui.com/base/api/badge-unstyled/)
+ */
+const BadgeUnstyled = React.forwardRef(function BadgeUnstyled(
+  props: BadgeUnstyledProps & { component?: React.ElementType },
+  ref,
+) {
   const {
     badgeContent: badgeContentProp,
     component,
@@ -36,7 +57,7 @@ const BadgeUnstyled = React.forwardRef(function BadgeUnstyled(props, ref) {
     max: maxProp,
   });
 
-  const ownerState = {
+  const ownerState: BadgeUnstyledOwnerState = {
     ...props,
     badgeContent,
     invisible,
@@ -47,30 +68,36 @@ const BadgeUnstyled = React.forwardRef(function BadgeUnstyled(props, ref) {
   const classes = useUtilityClasses(ownerState);
 
   const Root = component || components.Root || 'span';
-  const rootProps = appendOwnerState(Root, { ...other, ...componentsProps.root }, ownerState);
+  const rootProps: WithOptionalOwnerState<BadgeUnstyledRootSlotProps> = appendOwnerState(
+    Root,
+    {
+      ...other,
+      ...componentsProps.root,
+      ref,
+      className: clsx(classes.root, componentsProps.root?.className, className),
+    },
+    ownerState,
+  );
 
   const Badge = components.Badge || 'span';
-  const badgeProps = appendOwnerState(Badge, componentsProps.badge, ownerState);
+  const badgeProps: WithOptionalOwnerState<BadgeUnstyledBadgeSlotProps> = appendOwnerState(
+    Badge,
+    { ...componentsProps.badge, className: clsx(classes.badge, componentsProps.badge?.className) },
+    ownerState,
+  );
 
   return (
-    <Root
-      {...rootProps}
-      ref={ref}
-      {...other}
-      className={clsx(classes.root, rootProps.className, className)}
-    >
+    <Root {...rootProps}>
       {children}
-      <Badge {...badgeProps} className={clsx(classes.badge, badgeProps.className)}>
-        {displayValue}
-      </Badge>
+      <Badge {...badgeProps}>{displayValue}</Badge>
     </Root>
   );
-});
+}) as OverridableComponent<BadgeUnstyledTypeMap>;
 
 BadgeUnstyled.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // |     To update them edit TypeScript types and run "yarn proptypes"  |
   // ----------------------------------------------------------------------
   /**
    * The content rendered within the badge.
@@ -121,6 +148,6 @@ BadgeUnstyled.propTypes /* remove-proptypes */ = {
    * @default false
    */
   showZero: PropTypes.bool,
-};
+} as any;
 
 export default BadgeUnstyled;
