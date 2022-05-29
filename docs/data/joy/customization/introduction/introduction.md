@@ -5,10 +5,11 @@
 <!-- The purpose of this page is to give the overall customization alternatives to developers without providing too much details -->
 <!-- Some examples and demos are provided to give the sense of what it looks like and then lead each part to another page for more technical details and more examples -->
 
-The customization can be categorized in 2 buckets:
+There are mainly 3 customization alternatives:
 
 - Global customization (theming)
 - One-off customization (per instance)
+- Reusable component (custom component)
 
 ## Theming
 
@@ -116,3 +117,11 @@ To change the styles of _one single instance_ of a component, you can use one of
 The [`sx` prop](/system/basics/#the-sx-prop) is the best option for adding style overrides to a single instance of a component in most cases. It can be used with all Joy UI components.
 
 {{"demo": "SxProp.js" }}
+
+## Reusable component
+
+### The `styled` function
+
+Best for creating your own reusable component. It can access to the theme and the output component automatically accepts the `sx` prop.
+
+{{"demo": "StyledComponent.js"}}
