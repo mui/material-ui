@@ -11,7 +11,7 @@ describe('<Radio />', () => {
     classes,
     render,
     ThemeProvider,
-    muiName: 'MuiRadio',
+    muiName: 'JoyRadio',
     testDeepOverrides: [{ slotName: 'input', slotClassName: classes.input }],
     testVariantProps: { variant: 'soft' },
     refInstanceof: window.HTMLSpanElement,

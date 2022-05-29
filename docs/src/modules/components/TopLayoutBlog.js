@@ -78,6 +78,11 @@ export const authors = {
     avatar: 'https://avatars.githubusercontent.com/u/71297412',
     github: 'samuelsycamore',
   },
+  josefreitas: {
+    name: 'José Freitas',
+    avatar: 'https://avatars.githubusercontent.com/u/550141',
+    github: 'joserodolfofreitas',
+  },
 };
 
 const classes = {
@@ -199,10 +204,12 @@ function TopLayoutBlog(props) {
       <Head
         title={`${finalTitle} - MUI`}
         description={description}
-        largeCard={headers.card === 'true' ? true : undefined}
+        largeCard={headers.card === 'true'}
         disableAlternateLocale
         card={
-          headers.card === 'true' ? `https://mui.com/static${router.pathname}/card.png` : undefined
+          headers.card === 'true'
+            ? `https://mui.com/static${router.pathname}/card.png`
+            : 'https://mui.com/static/logo.png'
         }
       />
       <div className={className}>
@@ -239,8 +246,8 @@ function TopLayoutBlog(props) {
                     <Avatar
                       sx={{ width: 36, height: 36 }}
                       alt=""
-                      src={`${authors[author].avatar}?s=${32}`}
-                      srcSet={`${authors[author].avatar}?s=${32 * 2} 2x`}
+                      src={`${authors[author].avatar}?s=${36}`}
+                      srcSet={`${authors[author].avatar}?s=${36 * 2} 2x`}
                     />
                     <div>
                       <Typography variant="body2" fontWeight="500">

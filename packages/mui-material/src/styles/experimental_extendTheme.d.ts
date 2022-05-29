@@ -34,41 +34,68 @@ export type ExtendedColorScheme = OverridableStringUnion<never, ColorSchemeOverr
  */
 export type SupportedColorScheme = DefaultColorScheme | ExtendedColorScheme;
 
+export interface Opacity {
+  placeholder: number;
+  inputTouchBottomLine: number;
+}
+
+export type Overlays = [
+  string | undefined,
+  string | undefined,
+  string | undefined,
+  string | undefined,
+  string | undefined,
+  string | undefined,
+  string | undefined,
+  string | undefined,
+  string | undefined,
+  string | undefined,
+  string | undefined,
+  string | undefined,
+  string | undefined,
+  string | undefined,
+  string | undefined,
+  string | undefined,
+  string | undefined,
+  string | undefined,
+  string | undefined,
+  string | undefined,
+  string | undefined,
+  string | undefined,
+  string | undefined,
+  string | undefined,
+  string | undefined,
+];
+
 export interface ThemeOptions extends Omit<SystemThemeOptions, 'zIndex'> {
   mixins?: MixinsOptions;
   components?: Components<BaseTheme>;
-  // palette?: PaletteOptions;
-  colorSchemes?: Record<SupportedColorScheme, { palette: PaletteOptions }>;
+  colorSchemes?: Record<
+    SupportedColorScheme,
+    {
+      palette?: PaletteOptions;
+      opacity?: Partial<Opacity>;
+      overlays?: Overlays;
+    }
+  >;
   shadows?: Shadows;
   transitions?: TransitionsOptions;
   typography?: TypographyOptions | ((palette: Palette) => TypographyOptions);
   zIndex?: ZIndexOptions;
   unstable_strictMode?: boolean;
-  opacity?: {
-    active?: number;
-    hover?: number;
-    selected?: number;
-    disabled?: number;
-    focus?: number;
-  };
 }
 
 interface BaseTheme extends SystemTheme {
   mixins: Mixins;
   palette: Palette;
+  opacity: Opacity;
+  overlays: Overlays;
   shadows: Shadows;
   transitions: Transitions;
   typography: Typography;
   zIndex: ZIndex;
   unstable_strictMode?: boolean;
   colorSchemes: Record<string, { palette: Palette }>;
-  opacity: {
-    active: number;
-    hover: number;
-    selected: number;
-    disabled: number;
-    focus: number;
-  };
 }
 
 // shut off automatic exporting for the `BaseTheme` above

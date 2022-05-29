@@ -29,7 +29,7 @@ const useUtilityClasses = (ownerState: TextFieldProps) => {
 };
 
 const TextFieldRoot = styled('div', {
-  name: 'MuiTextField',
+  name: 'JoyTextField',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: TextFieldProps }>(({ theme, ownerState }) => ({
@@ -58,7 +58,7 @@ const TextFieldRoot = styled('div', {
 const TextField = React.forwardRef(function TextField(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
-    name: 'MuiTextField',
+    name: 'JoyTextField',
   });
 
   const {
@@ -79,7 +79,6 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
     onBlur,
     onChange,
     onFocus,
-    inputRef,
     color,
     disabled = false,
     error = false,
@@ -143,7 +142,6 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
         id={id}
         name={name}
         type={type}
-        inputRef={inputRef}
         aria-describedby={helperTextId}
         autoComplete={autoComplete}
         autoFocus={autoFocus}
@@ -265,15 +263,6 @@ TextField.propTypes /* remove-proptypes */ = {
    */
   id: PropTypes.string,
   /**
-   * Pass a ref to the `input` element.
-   */
-  inputRef: PropTypes.oneOfType([
-    PropTypes.func,
-    PropTypes.shape({
-      current: PropTypes.any.isRequired,
-    }),
-  ]),
-  /**
    * The label content.
    */
   label: PropTypes.node,
@@ -328,7 +317,7 @@ TextField.propTypes /* remove-proptypes */ = {
    * @default 'outlined'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['contained', 'light', 'outlined', 'text']),
+    PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
     PropTypes.string,
   ]),
 } as any;

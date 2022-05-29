@@ -12,7 +12,7 @@ const ROUTES = {
   handbook: 'https://mui-org.notion.site/Handbook-f086d47e10794d5e839aef9dc67f324b',
   baseDocs: '/base/getting-started/installation/',
   materialDocs: '/material-ui/getting-started/installation/',
-  joyDocs: '/joy-ui/getting-started/quick-start/',
+  joyDocs: '/joy-ui/getting-started/usage/',
   systemDocs: '/system/basics/',
   materialIcons: FEATURE_TOGGLE.enable_redirects
     ? '/material-ui/material-icons/'
@@ -65,19 +65,6 @@ const ROUTES = {
   dataGridFeaturesComparison: FEATURE_TOGGLE.enable_redirects
     ? '/x/react-data-grid/getting-started/#feature-comparison'
     : '/components/data-grid/getting-started/#feature-comparison',
-  storePopular: 'https://mui.com/store/#populars',
-  storeDesign: 'https://mui.com/store/#design',
-  storeFigma: 'https://mui.com/store/items/figma-react/',
-  storeSketch: 'https://mui.com/store/items/sketch-react/',
-  storeXD: 'https://mui.com/store/items/adobe-xd-react/',
-  storeTemplateMaterialApp: 'https://mui.com/store/items/material-app/',
-  storeTemplateBarza: 'https://mui.com/store/items/bazar-pro-react-ecommerce-template/',
-  storeTemplateMinimalFree: 'https://mui.com/store/items/minimal-dashboard-free/',
-  storeTemplateMinimalDashboard: 'https://mui.com/store/items/minimal-dashboard/',
-  storeTemplateBerry: 'https://mui.com/store/items/berry-react-material-admin/',
-  storeTemplateWebbee: 'https://mui.com/store/items/webbee-landing-page/',
-  storeTheFront: 'https://mui.com/store/items/the-front-landing-page/',
-  storeFlexy: 'https://mui.com/store/items/flexy-react-admin-dashboard/',
 };
 
 export default ROUTES;

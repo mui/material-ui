@@ -44,7 +44,7 @@ const ColorSchemePicker = () => {
 const props = {
   size: ['sm', 'md', 'lg'],
   color: ['primary', 'danger', 'info', 'success', 'warning'],
-  variant: ['outlined', 'soft', 'solid'],
+  variant: ['plain', 'outlined', 'soft', 'solid'],
 } as const;
 
 const Rank = () => {
@@ -279,13 +279,13 @@ export default function JoyCheckbox() {
               >
                 <ListItem variant="soft" color="danger">
                   <Checkbox label="Declined Payment" color="danger" checked overlay />
-                  <Typography color="inherit" sx={{ ml: 'auto' }}>
+                  <Typography textColor="inherit" sx={{ ml: 'auto' }}>
                     8
                   </Typography>
                 </ListItem>
                 <ListItem variant="soft" color="warning">
                   <Checkbox label="Delivery Error" color="warning" checked overlay />
-                  <Typography color="inherit" sx={{ ml: 'auto' }}>
+                  <Typography textColor="inherit" sx={{ ml: 'auto' }}>
                     24
                   </Typography>
                 </ListItem>

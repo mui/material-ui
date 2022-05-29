@@ -9,6 +9,7 @@ import { getMetaThemeColor } from 'docs/src/modules/brandingTheme';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import { getInitColorSchemeScript } from '@mui/joy/styles';
 import FEATURE_TOGGLE from 'docs/src/featureToggle';
+import { getInitColorSchemeScript } from '@mui/joy/styles';
 
 // You can find a benchmark of the available CSS minifiers under
 // https://github.com/GoalSmashers/css-minification-benchmark

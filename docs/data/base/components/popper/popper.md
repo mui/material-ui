@@ -3,7 +3,7 @@ product: base
 title: Unstyled React Popper component
 components: PopperUnstyled
 githubLabel: 'component: Popper'
-waiAria: https://www.w3.org/TR/wai-aria-practices/#tooltip
+waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/
 packageName: '@mui/base'
 ---
 

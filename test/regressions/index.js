@@ -165,6 +165,10 @@ function excludeDemoFixture(suite, name) {
     return true;
   }
 
+  if (suite.includes('docs-joy') && name.endsWith('Variables')) {
+    return true;
+  }
+
   return blacklist.some((pattern) => {
     if (typeof pattern === 'string') {
       if (pattern === suite) {
