@@ -78,11 +78,13 @@ export default function WhatToExpect() {
               </Typography>
             </Box>
             <Typography variant="body2" color="text.secondary">
-              With your purchase you receive support, and access to new versions, for the duration of
-              your subscription. You can learn more about{' '}
-              <Link href="https://mui.com/x/advanced-components/#support">support in the docs</Link>
-              . Note that we roll bug fixes, performance enhancements, and other improvements into
-              new release, instead of patching older versions.
+              With your purchase you receive support, and access to new versions, for the duration
+              of your subscription. You can{' '}
+              <Link href="https://mui.com/x/advanced-components/#support">
+                learn more about support
+              </Link>{' '}
+              in the docs. Note that we roll bug fixes, performance enhancements, and other
+              improvements into new release, instead of patching older versions.
             </Typography>
           </Paper>
         </Grid>
