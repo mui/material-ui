@@ -18,6 +18,8 @@ import * as React from 'react';
 <Link color="warning" />;
 <Link color="neutral" />;
 
+<Link textColor="neutral.500" />;
+
 // `level`
 <Link level="h2" />;
 <Link level="h3" />;

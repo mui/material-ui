@@ -22,7 +22,7 @@ export default function BasicCard() {
           <Typography
             level="h6"
             fontWeight="lg"
-            color="#fff"
+            textColor="#fff"
             mt={{ xs: 12, sm: 18 }}
           >
             Image
@@ -47,7 +47,7 @@ export default function BasicCard() {
           <Typography
             level="h6"
             fontWeight="lg"
-            color="#fff"
+            textColor="#fff"
             mt={{ xs: 12, sm: 18 }}
           >
             Video

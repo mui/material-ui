@@ -25,7 +25,7 @@ export default function InteractiveCard() {
         </AspectRatio>
       </CardOverflow>
       <CardContent>
-        <Typography fontWeight="md" color="success.plainColor" mb={0.5}>
+        <Typography fontWeight="md" textColor="success.plainColor" mb={0.5}>
           Yosemite Park
         </Typography>
         <Typography level="body2">California, USA</Typography>
