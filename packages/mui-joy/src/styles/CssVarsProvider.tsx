@@ -39,7 +39,7 @@ const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssV
         outlinedOverrides: createTextOverrides(mergedTheme),
         softOverrides: createTextOverrides(mergedTheme),
         solidOverrides: createContainedOverrides(mergedTheme),
-      } as typeof mergedTheme.variants,
+      } as unknown as typeof mergedTheme.variants, // cast the type to prevent module augmentation in the repo
       mergedTheme.variants,
       { clone: false },
     );

@@ -12,16 +12,16 @@ declare module '@mui/joy/styles' {
   }
 
   interface TypographySystem {
-    header1: React.CSSProperties;
-    header2: React.CSSProperties;
-    header3: React.CSSProperties;
-    subtitle: React.CSSProperties;
-    body: React.CSSProperties;
-    bodyHighlight: React.CSSProperties;
-    buttonText: React.CSSProperties;
-    smallText: React.CSSProperties;
-    smallButtonText: React.CSSProperties;
-    tableLabel: React.CSSProperties;
+    header1: CSSObject;
+    header2: CSSObject;
+    header3: CSSObject;
+    subtitle: CSSObject;
+    body: CSSObject;
+    bodyHighlight: CSSObject;
+    buttonText: CSSObject;
+    smallText: CSSObject;
+    smallButtonText: CSSObject;
+    tableLabel: CSSObject;
   }
 
   interface VariantSoft {

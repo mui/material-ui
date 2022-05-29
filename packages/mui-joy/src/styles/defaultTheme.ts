@@ -74,7 +74,7 @@ export const getThemeWithVars = (
       outlinedOverrides: createTextOverrides(defaultTheme),
       softOverrides: createTextOverrides(defaultTheme),
       solidOverrides: createContainedOverrides(defaultTheme),
-    },
+    } as unknown as typeof defaultTheme.variants, // cast the type to prevent module augmentation in the repo
     defaultTheme.variants,
   );
   return defaultTheme;

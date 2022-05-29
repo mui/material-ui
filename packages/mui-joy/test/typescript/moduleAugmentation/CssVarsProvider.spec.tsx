@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { CSSObject } from '@mui/system';
 import { CssVarsProvider, extendTheme } from '@mui/joy/styles';
 
 // override theme
@@ -71,7 +72,7 @@ declare module '@mui/joy/styles' {
 // extends TypographySystems
 declare module '@mui/joy/styles' {
   interface TypographySystem {
-    ads: React.CSSProperties;
+    ads: CSSObject;
   }
 }
 

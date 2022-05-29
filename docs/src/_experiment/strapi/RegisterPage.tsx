@@ -48,7 +48,7 @@ export default function RegisterPage() {
           <Typography level="h3" fontWeight="bold" sx={{ mt: '1.5rem', mb: '0.375rem' }}>
             Welcome back!
           </Typography>
-          <Typography color="text.tertiary" sx={{ mx: -2 }}>
+          <Typography textColor="text.tertiary" sx={{ mx: -2 }}>
             Your credentials are only used to authenticate yourself on the admin panel. All saved
             data will be stored in your own database.
           </Typography>
