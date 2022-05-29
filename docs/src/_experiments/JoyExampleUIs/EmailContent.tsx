@@ -51,10 +51,10 @@ export default function EmailContent() {
               ml: 2,
             }}
           >
-            <Typography level="body2" color="text.primary" mb={0.5}>
+            <Typography level="body2" textColor="text.primary" mb={0.5}>
               Janet Erickson
             </Typography>
-            <Typography level="body3" color="text.tertiary">
+            <Typography level="body3" textColor="text.tertiary">
               14 Oct 2016
             </Typography>
           </Box>
@@ -73,7 +73,7 @@ export default function EmailContent() {
       </Box>
       <ListDivider component="hr" sx={{ mt: 2 }} />
       <Box sx={{ py: 2, display: 'flex', flexDirection: 'column', alignItems: 'start' }}>
-        <Typography level="h5" color="text.primary">
+        <Typography level="h5" textColor="text.primary">
           Blank slates for new website
         </Typography>
         <Box sx={{ mt: 1, display: 'flex', alignItems: 'center', gap: 1, flexWrap: 'wrap' }}>
@@ -81,7 +81,7 @@ export default function EmailContent() {
             <Typography
               component="span"
               level="body2"
-              color="neutral.600"
+              textColor="neutral.600"
               sx={{ mr: 1, display: 'inline-block' }}
             >
               From
@@ -94,7 +94,7 @@ export default function EmailContent() {
             <Typography
               component="span"
               level="body2"
-              color="neutral.600"
+              textColor="neutral.600"
               sx={{ mr: 1, display: 'inline-block' }}
             >
               to
@@ -106,7 +106,7 @@ export default function EmailContent() {
         </Box>
       </Box>
       <ListDivider component="hr" />
-      <Typography level="body1" color="text.secondary" mt={2} mb={2}>
+      <Typography level="body1" textColor="text.secondary" mt={2} mb={2}>
         Hi, Thomas,
         <br />
         <br />
@@ -124,7 +124,7 @@ export default function EmailContent() {
         Regards, Janet Erickson
       </Typography>
       <ListDivider component="hr" />
-      <Typography level="body2" fontWeight="md" color="text.primary" mt={2} mb={2}>
+      <Typography level="body2" fontWeight="md" textColor="text.primary" mt={2} mb={2}>
         Attachments
       </Typography>
       <Box
@@ -168,7 +168,7 @@ export default function EmailContent() {
             </AspectRatio>
           </CardOverflow>
           <Box sx={{ p: 2 }}>
-            <Typography level="body2" color="primary.plainColor">
+            <Typography level="body2" color="primary">
               blank_slates.doc
             </Typography>
             <Typography level="body3">345 Kb</Typography>

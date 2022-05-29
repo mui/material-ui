@@ -165,7 +165,7 @@ export default function TeamExample() {
             startDecorator={<SearchRoundedIcon color="primary" />}
             endDecorator={
               <IconButton variant="outlined" size="sm" color="neutral">
-                <Typography fontWeight="lg" fontSize="sm" color="text.tertiary">
+                <Typography fontWeight="lg" fontSize="sm" textColor="text.tertiary">
                   /
                 </Typography>
               </IconButton>
@@ -208,7 +208,7 @@ export default function TeamExample() {
           >
             <Typography
               fontSize="xs2"
-              color="text.tertiary"
+              textColor="text.tertiary"
               textTransform="uppercase"
               letterSpacing="md"
               fontWeight="lg"

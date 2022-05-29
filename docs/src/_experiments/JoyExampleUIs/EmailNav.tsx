@@ -23,7 +23,7 @@ export default function EmailNav() {
         <Box sx={{ mb: 1, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           <Typography
             id="nav-list-browse"
-            color="neutral.500"
+            textColor="neutral.500"
             fontWeight={700}
             sx={{ fontSize: '10px', textTransform: 'uppercase', letterSpacing: '.1rem' }}
           >
@@ -98,7 +98,7 @@ export default function EmailNav() {
         >
           <Typography
             id="nav-list-tags"
-            color="neutral.500"
+            textColor="neutral.500"
             fontWeight={700}
             sx={{ fontSize: '10px', textTransform: 'uppercase', letterSpacing: '.1rem' }}
           >

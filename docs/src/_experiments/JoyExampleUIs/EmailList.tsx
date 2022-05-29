@@ -34,7 +34,7 @@ export default function EmailList() {
               }}
             >
               <Typography level="body3">Janet Erickson</Typography>
-              <Typography level="body3" color="text.tertiary">
+              <Typography level="body3" textColor="text.tertiary">
                 14 Oct 2016
               </Typography>
             </Box>
@@ -68,13 +68,13 @@ export default function EmailList() {
               }}
             >
               <Typography level="body3">Janet Erickson</Typography>
-              <Typography level="body3" color="text.tertiary">
+              <Typography level="body3" textColor="text.tertiary">
                 14 Oct 2016
               </Typography>
             </Box>
             <Box>
               <Typography sx={{ mb: 0.5 }}>Blank slates for new website</Typography>
-              <Typography level="body2" color="text.tertiary">
+              <Typography level="body2" textColor="text.tertiary">
                 Hi, Thomas, You don&apos;t have...
               </Typography>
             </Box>
@@ -104,13 +104,13 @@ export default function EmailList() {
               }}
             >
               <Typography level="body3">Janet Erickson</Typography>
-              <Typography level="body3" color="text.tertiary">
+              <Typography level="body3" textColor="text.tertiary">
                 14 Oct 2016
               </Typography>
             </Box>
             <Box>
               <Typography sx={{ mb: 0.5 }}>Blank slates for new website</Typography>
-              <Typography level="body2" color="text.tertiary">
+              <Typography level="body2" textColor="text.tertiary">
                 Hi, Thomas, You don&apos;t have...
               </Typography>
             </Box>

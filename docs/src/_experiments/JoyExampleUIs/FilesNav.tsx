@@ -44,7 +44,7 @@ export default function FilesNav() {
         >
           <Typography
             id="nav-list-tags"
-            color="neutral.500"
+            textColor="neutral.500"
             fontWeight={700}
             sx={{ fontSize: '10px', textTransform: 'uppercase', letterSpacing: '.1rem' }}
           >

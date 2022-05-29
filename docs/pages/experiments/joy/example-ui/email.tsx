@@ -97,7 +97,7 @@ export default function EmailExample() {
             startDecorator={<SearchRoundedIcon color="primary" />}
             endDecorator={
               <IconButton variant="outlined" size="sm" color="neutral">
-                <Typography fontWeight="lg" fontSize="sm" color="text.tertiary">
+                <Typography fontWeight="lg" fontSize="sm" textColor="text.tertiary">
                   /
                 </Typography>
               </IconButton>
@@ -139,7 +139,7 @@ export default function EmailExample() {
             }}
           >
             <Typography
-              color="neutral.500"
+              textColor="neutral.500"
               fontWeight={700}
               sx={{ fontSize: '10px', textTransform: 'uppercase', letterSpacing: '.1rem' }}
             >
@@ -155,7 +155,7 @@ export default function EmailExample() {
             </IconButton>
           </Box>
           <Box sx={{ py: 10 }}>
-            <Typography color="text.tertiary" level="body2" sx={{ textAlign: 'center' }}>
+            <Typography textColor="text.tertiary" level="body2" sx={{ textAlign: 'center' }}>
               You&apos;ve read all messages in your inbox.
             </Typography>
           </Box>
@@ -168,7 +168,7 @@ export default function EmailExample() {
             }}
           >
             <Typography
-              color="neutral.500"
+              textColor="neutral.500"
               fontWeight={700}
               sx={{ fontSize: '10px', textTransform: 'uppercase', letterSpacing: '.1rem' }}
             >
