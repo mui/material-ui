@@ -318,7 +318,7 @@ const components: {
         <Input
           color="primary"
           placeholder="Placeholder"
-          startDecorator={<Typography color="inherit">$</Typography>}
+          startDecorator={<Typography textColor="inherit">$</Typography>}
           endDecorator={<Typography textColor="text.tertiary">USD</Typography>}
           {...props}
         />

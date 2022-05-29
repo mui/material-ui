@@ -21,10 +21,13 @@ export default function GradientCover() {
         }}
       />
       <CardContent sx={{ justifyContent: 'flex-end' }}>
-        <Typography level="h2" fontSize="lg" color="#fff" mb={1}>
+        <Typography level="h2" fontSize="lg" textColor="#fff" mb={1}>
           Yosemite National Park
         </Typography>
-        <Typography startDecorator={<LocationOnRoundedIcon />} color="neutral.300">
+        <Typography
+          startDecorator={<LocationOnRoundedIcon />}
+          textColor="neutral.300"
+        >
           California, USA
         </Typography>
       </CardContent>
