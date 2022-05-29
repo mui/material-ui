@@ -172,7 +172,7 @@ const fluentTheme = extendTheme({
     },
   },
   components: {
-    MuiButton: {
+    JoyButton: {
       styleOverrides: {
         root: ({ ownerState, theme }) => ({
           '--Button-iconOffsetStep': 0,
@@ -256,7 +256,7 @@ const fluentTheme = extendTheme({
         }),
       },
     },
-    MuiIconButton: {
+    JoyIconButton: {
       defaultProps: {
         variant: 'soft',
         color: 'primary',
@@ -282,7 +282,7 @@ const fluentTheme = extendTheme({
         }),
       },
     },
-    MuiLink: {
+    JoyLink: {
       styleOverrides: {
         root: {
           borderRadius: 0,
@@ -292,7 +292,7 @@ const fluentTheme = extendTheme({
         },
       },
     },
-    MuiInput: {
+    JoyInput: {
       styleOverrides: {
         root: ({ ownerState, theme }) => ({
           borderRadius: 2,
@@ -335,7 +335,7 @@ const fluentTheme = extendTheme({
         }),
       },
     },
-    MuiTextField: {
+    JoyTextField: {
       styleOverrides: {
         root: () => ({
           '& .Mui-focused': {
@@ -344,14 +344,14 @@ const fluentTheme = extendTheme({
         }),
       },
     },
-    MuiFormLabel: {
+    JoyFormLabel: {
       styleOverrides: {
         root: {
           fontWeight: 600,
         },
       },
     },
-    MuiSwitch: {
+    JoySwitch: {
       defaultProps: {
         variant: 'outlined',
         color: 'neutral',
@@ -394,7 +394,7 @@ const fluentTheme = extendTheme({
         }),
       },
     },
-    MuiCheckbox: {
+    JoyCheckbox: {
       defaultProps: {
         uncheckedIcon: <Done />,
         indeterminateIcon: (

@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { OverrideProps } from '@mui/types';
+import { SxProps } from '../styles/types';
 import { FormHelperTextProps } from '../FormHelperText/FormHelperTextProps';
 import { FormLabelProps } from '../FormLabel/FormLabelProps';
 import { InputProps } from '../Input/InputProps';
@@ -38,9 +39,9 @@ export interface TextFieldTypeMap<P = {}, D extends React.ElementType = 'div'> {
       };
       componentsProps?: {
         root?: React.ComponentPropsWithRef<'div'>;
-        label?: FormLabelProps;
-        input?: Omit<InputProps, InputRootKeys>;
-        helperText?: FormHelperTextProps;
+        label?: FormLabelProps & { sx?: SxProps };
+        input?: Omit<InputProps, InputRootKeys> & { sx?: SxProps };
+        helperText?: FormHelperTextProps & { sx?: SxProps };
       };
       /**
        * The id of the `input` element.

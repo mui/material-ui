@@ -55,7 +55,7 @@ export interface InputTypeMap<P = {}, D extends React.ElementType = 'div'> {
        */
       componentsProps?: {
         root?: React.ComponentPropsWithRef<'div'>;
-        input?: React.ComponentPropsWithRef<'input'>;
+        input?: React.ComponentPropsWithRef<'input'> & { sx?: SxProps };
       };
       /**
        * Trailing adornment for this input.
