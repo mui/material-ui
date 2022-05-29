@@ -30,7 +30,7 @@ Customizing the theme tokens affects all of the components that consume them. If
 
 Joy has 8 independent categories:
 
-- palette (related to colors)
+- palette
 - fontSize
 - fontFamily
 - fontWeight
