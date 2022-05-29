@@ -29,6 +29,8 @@ and are then able to export these new views to Excel, with the next Premium feat
 
 <img src="/static/blog/premium-plan-release/row-grouping-example.gif" alt="grouping by company and then by director" style="width: 100%; margin-bottom: 16px;" />
 
+<p class="blog-description">The feature in action, from the docs page.</p>
+
 ### Excel export
 
 [Excel export](https://mui.com/x/react-data-grid/export/#excel-export) enables users to save the data from the grid as an Excel spreadsheet that mirrors the existing visualization in the data grid based on filters, sorting, and row grouping.
@@ -38,6 +40,8 @@ This is one of the most requested features to date, so we're excited to finally 
 In the future we intend to support all of the features impacting visualization of the data grid, but we’d love to hear from you if there’s anything in particular you’d like to see in future releases.
 
 <img src="/static/blog/premium-plan-release/excel-export-example.gif" alt="Use export button to save excel file" style="width: 100%; margin-bottom: 16px;" />
+
+<p class="blog-description">The feature in action, from the docs page.</p>
 
 ### Aggregation (coming in late Q2)
 
@@ -49,6 +53,8 @@ Expanding on the use cases in the previous examples, users will be able to dynam
 Aggregation functions open up an exponential number of new possibilities for organizing data—all with just a few clicks.
 
 <img src="/static/blog/premium-plan-release/aggregation-example.gif" alt="Aggregation example" style="width: 100%; margin-bottom: 16px;" />
+
+<p class="blog-description">The feature in action, from the docs page.</p>
 
 ## The new licensing model
 
