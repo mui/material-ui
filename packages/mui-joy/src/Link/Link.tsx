@@ -314,6 +314,14 @@ Link.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
+   * The system color.
+   */
+  textColor: /* @typescript-to-proptypes-ignore */ PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.func,
+    PropTypes.object,
+  ]),
+  /**
    * Controls when the link should have an underline.
    * @default 'hover'
    */

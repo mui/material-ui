@@ -202,9 +202,12 @@ Typography.propTypes /* remove-proptypes */ = {
    */
   className: PropTypes.string,
   /**
-   * @ignore
+   * The color of the component. It supports those theme colors that make sense for this component.
    */
-  color: PropTypes /* @typescript-to-proptypes-ignore */.any,
+  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['context', 'danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.string,
+  ]),
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
@@ -266,6 +269,18 @@ Typography.propTypes /* remove-proptypes */ = {
     PropTypes.func,
     PropTypes.object,
   ]),
+  /**
+   * The system color.
+   */
+  textColor: /* @typescript-to-proptypes-ignore */ PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.func,
+    PropTypes.object,
+  ]),
+  /**
+   * The variant to use.
+   */
+  variant: PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
 } as any;
 
 export default Typography;
