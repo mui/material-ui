@@ -78,9 +78,9 @@ export default function WhatToExpect() {
               </Typography>
             </Box>
             <Typography variant="body2" color="text.secondary">
-              With your purchase, you receive support and access to new versions for the duration of
+              With your purchase you receive support, and access to new versions, for the duration of
               your subscription. You can learn more about{' '}
-              <Link href="https://mui.com/x/advanced-components/#support">support in our docs</Link>
+              <Link href="https://mui.com/x/advanced-components/#support">support in the docs</Link>
               . Note that we roll bug fixes, performance enhancements, and other improvements into
               new release, instead of patching older versions.
             </Typography>
