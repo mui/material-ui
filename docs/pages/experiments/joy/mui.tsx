@@ -66,7 +66,7 @@ const TaskCard = () => (
     })}
   >
     <Typography
-      color="text.secondary"
+      textColor="text.secondary"
       level="body3"
       fontWeight="md"
       startDecorator={<ScheduleRounded sx={{ color: '#fff' }} />}
@@ -130,7 +130,7 @@ const TaskCard = () => (
           }}
         />
       </Sheet>
-      <Typography color="#00C8FF" level="body2" sx={{ ml: 2 }}>
+      <Typography textColor="#00C8FF" level="body2" sx={{ ml: 2 }}>
         <b>60%</b>
       </Typography>
     </Box>
@@ -155,7 +155,7 @@ const PlayerCard = () => (
     <Box sx={{ alignSelf: 'center', px: { xs: 0, sm: 2 } }}>
       <Typography
         level="body1"
-        color="text.primary"
+        textColor="text.primary"
         fontWeight={600}
         sx={{ textAlign: { xs: 'center', sm: 'start' }, mt: { xs: 1.5, sm: 0 } }}
       >
@@ -164,7 +164,7 @@ const PlayerCard = () => (
       <Typography
         component="div"
         level="body3"
-        color="text.secondary"
+        textColor="text.secondary"
         fontWeight={500}
         sx={{ textAlign: { xm: 'center', sm: 'start' } }}
       >
@@ -273,7 +273,12 @@ const DatePicker = () => (
         );
       }
       return (
-        <Typography level="body3" color="text.secondary" key={index} sx={{ justifySelf: 'center' }}>
+        <Typography
+          level="body3"
+          textColor="text.secondary"
+          key={index}
+          sx={{ justifySelf: 'center' }}
+        >
           {index + 1}
         </Typography>
       );
@@ -403,7 +408,7 @@ const ThemeSlider = () => (
         <Typography
           level="body2"
           fontWeight="md"
-          color="text.tertiary"
+          textColor="text.tertiary"
           sx={{ transform: 'translate(16px, -7px)' }}
         >
           50°C
@@ -432,7 +437,7 @@ const ThemeSlider = () => (
         <Typography
           level="body2"
           fontWeight="md"
-          color="text.tertiary"
+          textColor="text.tertiary"
           sx={{ transform: 'translate(16px, -7px)' }}
         >
           25°C
@@ -679,7 +684,7 @@ const themePalette: ThemeInput = {
 
 const themeComponents: ThemeInput = {
   components: {
-    MuiButton: {
+    JoyButton: {
       styleOverrides: {
         root: ({ ownerState, theme }) => ({
           ...(ownerState.variant === 'outlined' &&
@@ -694,7 +699,7 @@ const themeComponents: ThemeInput = {
         }),
       },
     },
-    MuiIconButton: {
+    JoyIconButton: {
       styleOverrides: {
         root: ({ ownerState, theme }) => ({
           ...(ownerState.variant === 'outlined' &&
@@ -707,7 +712,7 @@ const themeComponents: ThemeInput = {
         }),
       },
     },
-    MuiTypography: {
+    JoyTypography: {
       styleOverrides: {
         root: ({ ownerState, theme }) => ({
           ...((ownerState.level === 'h1' || ownerState.level === 'h2') && {
@@ -846,7 +851,7 @@ export default function MUI() {
           ...theme.variants.solidOverrides.primary,
         })}
       >
-        <Typography level="body3" color="text.primary">
+        <Typography level="body3" textColor="text.primary">
           🚀 We&apos;re hiring a Designer, Full-stack Engineer, React Support Engineer, and more!
           &nbsp;
           <Link
@@ -1207,7 +1212,7 @@ export default function MUI() {
         >
           <div>
             <SvgMuiLogo width={32} />
-            <Typography level="body2" fontWeight="bold" color="text.primary" sx={{ pt: 2 }}>
+            <Typography level="body2" fontWeight="bold" textColor="text.primary" sx={{ pt: 2 }}>
               Join our newsletter!
             </Typography>
             <Typography level="body2" sx={{ mb: 2 }}>
@@ -1263,7 +1268,7 @@ export default function MUI() {
           >
             {FEATURE_TOGGLE.nav_products ? (
               <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-                <Typography fontWeight="bold" level="body2" color="text.primary">
+                <Typography fontWeight="bold" level="body2" textColor="text.primary">
                   Products
                 </Typography>
                 <Link>MUI Core</Link>
@@ -1275,7 +1280,7 @@ export default function MUI() {
               <Box sx={{ display: { xs: 'none', md: 'block' } }} />
             )}
             <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-              <Typography fontWeight="bold" level="body2" color="text.primary">
+              <Typography fontWeight="bold" level="body2" textColor="text.primary">
                 Resources
               </Typography>
               <Link>Material Icons</Link>
@@ -1285,7 +1290,7 @@ export default function MUI() {
               <Link>Theming</Link>
             </Box>
             <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-              <Typography fontWeight="bold" level="body2" color="text.primary">
+              <Typography fontWeight="bold" level="body2" textColor="text.primary">
                 Explore
               </Typography>
               <Link>Documentation</Link>
@@ -1295,7 +1300,7 @@ export default function MUI() {
               <Link>Languages</Link>
             </Box>
             <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-              <Typography fontWeight="bold" level="body2" color="text.primary">
+              <Typography fontWeight="bold" level="body2" textColor="text.primary">
                 Company
               </Typography>
               <Link>About</Link>
@@ -1337,7 +1342,7 @@ export default function MUI() {
             justifyContent: { sm: 'space-between' },
           }}
         >
-          <Typography color="text.secondary" level="body2">
+          <Typography textColor="text.secondary" level="body2">
             Copyright © {new Date().getFullYear()} Material-UI SAS.
           </Typography>
           <Box sx={{ py: { xs: 2, sm: 0 } }}>
