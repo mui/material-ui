@@ -272,11 +272,7 @@ Typography.propTypes /* remove-proptypes */ = {
   /**
    * The system color.
    */
-  textColor: /* @typescript-to-proptypes-ignore */ PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.func,
-    PropTypes.object,
-  ]),
+  textColor: PropTypes /* @typescript-to-proptypes-ignore */.any,
   /**
    * The variant to use.
    */
