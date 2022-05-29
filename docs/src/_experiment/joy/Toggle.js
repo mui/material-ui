@@ -10,42 +10,22 @@ const ToggleButtonRoot = styled('button')(({ theme, ownerState }) => [
     justifyContent: 'center',
     textTransform: 'uppercase',
     cursor: 'pointer',
-    border: '1px solid',
+    borderRadius: '2px',
     position: 'relative',
-    '&:first-of-type': {
-      borderTopLeftRadius: theme.vars.radius.xs,
-      borderBottomLeftRadius: theme.vars.radius.xs,
-    },
-    '&:last-of-type': {
-      borderTopRightRadius: theme.vars.radius.xs,
-      borderBottomRightRadius: theme.vars.radius.xs,
-    },
     '&:not(:first-of-type)': {
-      marginLeft: -1,
+      marginLeft: 2,
     },
-    borderColor: theme.vars.palette.neutral.outlinedBorder,
     ...theme.typography.smallButtonText,
-    ...(!ownerState.pressed && {
-      color: theme.vars.palette.neutral.plainColor,
-      backgroundColor: theme.vars.palette.background.body,
-      ...theme.variants.softHover.neutral,
-    }),
+    border: '1px solid transparent',
+    backgroundColor: 'initial',
+    ...theme.variants.plain.neutral,
   },
+  ownerState.pressed && theme.variants.outlined[ownerState.color],
+  ownerState.pressed && theme.variants.outlinedHover[ownerState.color],
   ownerState.pressed && {
     zIndex: 1,
-    '&:first-of-type': {
-      borderRightColor: theme.vars.palette[ownerState.color].outlinedBorder,
-    },
-    '&:last-of-type': {
-      borderLeftColor: theme.vars.palette[ownerState.color].outlinedBorder,
-    },
-    '&:not(:first-of-type):not(:last-of-type)': {
-      borderRightColor: theme.vars.palette[ownerState.color].outlinedBorder,
-      borderLeftColor: theme.vars.palette[ownerState.color].outlinedBorder,
-    },
+    borderColor: theme.vars.palette.neutral.outlinedActiveBg,
   },
-  ownerState.pressed && theme.variants.soft[ownerState.color],
-  ownerState.pressed && theme.variants.softHover[ownerState.color],
 ]);
 
 export const ToggleButton = ({ color = 'primary', pressed = false, ...props }) => {
@@ -57,13 +37,15 @@ export const ToggleButton = ({ color = 'primary', pressed = false, ...props }) =
   return <ToggleButtonRoot ownerState={ownerState} aria-pressed={pressed} {...props} />;
 };
 
-export const ToggleButtonGroup = styled('div')(() => [
-  {
-    // use CSS grid to make children width's equally, flex can't do this (not sure).
-    display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fit, minmax(0px, 1fr))',
-    minHeight: '2.5rem',
-    width: '180px',
-    maxWidth: '100%',
-  },
-]);
+export const ToggleButtonGroup = styled('div')(({ theme }) => ({
+  // use CSS grid to make children width's equally, flex can't do this (not sure).
+  display: 'grid',
+  gridTemplateColumns: 'repeat(auto-fit, minmax(0px, 1fr))',
+  minHeight: '2.5rem',
+  width: '180px',
+  maxWidth: '100%',
+  borderRadius: '4px',
+  padding: '3px',
+  ...theme.variants.outlined.neutral,
+  backgroundColor: theme.vars.palette.neutral.softBg,
+}));

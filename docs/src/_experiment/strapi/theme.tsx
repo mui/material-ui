@@ -296,7 +296,7 @@ const strapiTheme = extendTheme({
     },
   },
   components: {
-    MuiCheckbox: {
+    JoyCheckbox: {
       styleOverrides: {
         checkbox: {
           borderColor: getCssVar('palette-neutral-300'),
@@ -319,7 +319,7 @@ const strapiTheme = extendTheme({
         },
       },
     },
-    MuiButton: {
+    JoyButton: {
       styleOverrides: {
         root: ({ ownerState, theme }) => ({
           borderRadius: '4px',
@@ -351,10 +351,15 @@ const strapiTheme = extendTheme({
         }),
       },
     },
-    MuiIconButton: {
+    JoyIconButton: {
       styleOverrides: {
         root: ({ ownerState, theme }) => ({
-          borderRadius: theme.vars.radius.xs,
+          borderRadius: `var(--IconButton-radius, ${theme.vars.radius.xs})`,
+          ...(ownerState.size === 'md' && {
+            '--Icon-fontSize': '1rem',
+            minWidth: 'var(--IconButton-size, 2rem)',
+            minHeight: 'var(--IconButton-size, 2rem)',
+          }),
           ...(ownerState.variant === 'outlined' &&
             ownerState.color === 'neutral' && {
               backgroundColor: getCssVar('palette-background-body'),
@@ -362,7 +367,7 @@ const strapiTheme = extendTheme({
         }),
       },
     },
-    MuiTypography: {
+    JoyTypography: {
       defaultProps: {
         levelMapping: {
           header1: 'h1',
@@ -378,9 +383,10 @@ const strapiTheme = extendTheme({
         },
       },
     },
-    MuiInput: {
+    JoyInput: {
       styleOverrides: {
         root: ({ ownerState, theme }) => ({
+          '--Input-radius': '4px',
           ...(ownerState.size === 'md' && {
             '--Input-gutter': '1rem',
           }),
@@ -388,7 +394,6 @@ const strapiTheme = extendTheme({
             theme.vars.palette[
               ownerState.color === 'neutral' ? 'primary' : ownerState.color || 'primary'
             ]?.[600],
-          borderRadius: getCssVar('radius-xs'),
           color: theme.vars.palette.text.primary,
           backgroundColor: theme.vars.palette.background.body,
           ...(ownerState.color === 'danger' && {
@@ -405,13 +410,14 @@ const strapiTheme = extendTheme({
           },
         }),
         endDecorator: ({ ownerState }) => ({
-          ...(ownerState.size === 'md' && {
-            marginRight: '-0.75rem',
-          }),
+          ...(ownerState.size === 'md' &&
+            {
+              // marginRight: '-0.75rem',
+            }),
         }),
       },
     },
-    MuiFormLabel: {
+    JoyFormLabel: {
       styleOverrides: {
         root: {
           gap: '0.25rem',
@@ -420,14 +426,14 @@ const strapiTheme = extendTheme({
         },
       },
     },
-    MuiLink: {
+    JoyLink: {
       styleOverrides: {
         root: {
           borderRadius: getCssVar('radius-xs'),
         },
       },
     },
-    MuiTextField: {
+    JoyTextField: {
       styleOverrides: {
         root: ({ theme }) => ({
           [`&.Mui-error`]: {
@@ -440,7 +446,7 @@ const strapiTheme = extendTheme({
         }),
       },
     },
-    MuiSwitch: {
+    JoySwitch: {
       defaultProps: {
         color: 'danger',
       },
@@ -449,10 +455,13 @@ const strapiTheme = extendTheme({
           '--Switch-track-width': '40px',
           '--Switch-track-thumb': '16px',
           '--Switch-track-background': theme.vars.palette.danger[500],
+          '&:hover': {
+            '--Switch-track-background': theme.vars.palette.danger[600],
+          },
           [`&.Mui-checked`]: {
             '--Switch-track-background': theme.vars.palette.success[500],
             '&:hover': {
-              '--Switch-track-background': theme.vars.palette.success[500],
+              '--Switch-track-background': theme.vars.palette.success[600],
             },
           },
         }),

@@ -52,7 +52,7 @@ export default function ContentListView() {
         >
           <div>
             <Typography level="header1">Restaurants</Typography>
-            <Typography color="text.tertiary">0 entries found</Typography>
+            <Typography textColor="text.tertiary">0 entries found</Typography>
           </div>
           <Button startIcon={<Add />} sx={{ alignSelf: 'center' }}>
             Add new entry

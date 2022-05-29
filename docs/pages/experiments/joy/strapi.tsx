@@ -19,6 +19,7 @@ import Info from '@mui/icons-material/InfoOutlined';
 import Code from '@mui/icons-material/Code';
 import PlayArrow from '@mui/icons-material/PlayArrowRounded';
 import HistoryEdu from '@mui/icons-material/HistoryEdu';
+import Edit from '@mui/icons-material/Edit';
 // experiment components
 import { IconFrame } from 'docs/src/_experiment/joy/Sheet';
 import { ToggleButton, ToggleButtonGroup } from 'docs/src/_experiment/joy/Toggle';
@@ -178,12 +179,26 @@ export default function Strapi() {
             </Button>
           </div>
         </Box>
+        <Typography level="header2">IconButton</Typography>
+        <Box sx={{ '& > div': { display: 'flex', alignItems: 'center', gap: 2 } }}>
+          <div>
+            <IconButton>
+              <Edit />
+            </IconButton>
+            <IconButton variant="outlined">
+              <Edit />
+            </IconButton>
+            <IconButton variant="outlined" color="neutral">
+              <Edit />
+            </IconButton>
+          </div>
+        </Box>
         <Typography level="header2">Switch</Typography>
         <Box>
           <Switch defaultChecked />
           <Switch />
         </Box>
-        <Typography level="header2">Chip (custom)</Typography>
+        <Typography level="header2">Chip</Typography>
         <Box>
           <Chip variant="soft" color="neutral" size="sm">
             Text

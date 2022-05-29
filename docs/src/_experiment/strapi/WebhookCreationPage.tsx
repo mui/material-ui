@@ -118,7 +118,7 @@ export default function WebhookCreationPage() {
                 <Box key={label}>
                   <Typography
                     level="tableLabel"
-                    color="text.tertiary"
+                    textColor="text.tertiary"
                     display="inline-block"
                     sx={{ mb: 1, transform: 'translateX(calc(-50% + 10px))' }}
                   >

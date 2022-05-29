@@ -66,7 +66,7 @@ export default function MainNav({ activeIndex }: { activeIndex?: number }) {
           '--List-radius': '8px',
           '--List-gap': '8px',
           '--List-divider-gap': '8px',
-          '& .MuiListItemDecorator-root': {
+          '& .JoyListItemDecorator-root': {
             justifyContent: 'center',
           },
         }}

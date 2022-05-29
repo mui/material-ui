@@ -40,7 +40,7 @@ export default function WebhookPage() {
         >
           <div>
             <Typography level="header1">Webhooks</Typography>
-            <Typography color="text.tertiary">Get POST changes notifications</Typography>
+            <Typography textColor="text.tertiary">Get POST changes notifications</Typography>
           </div>
           <Button startIcon={<Add />} sx={{ alignSelf: 'center' }}>
             Add new webhook
@@ -116,7 +116,7 @@ export default function WebhookPage() {
             </Box>
             <Box>
               <Switch checked />{' '}
-              <Typography level="smallText" color="success.textColor">
+              <Typography level="smallText" textColor="success.textColor">
                 Enabled
               </Typography>
             </Box>
@@ -148,7 +148,7 @@ export default function WebhookPage() {
             </Box>
             <Box>
               <Switch />{' '}
-              <Typography level="smallText" color="danger.textColor">
+              <Typography level="smallText" textColor="danger.textColor">
                 Disabled
               </Typography>
             </Box>
@@ -180,7 +180,7 @@ export default function WebhookPage() {
             </Box>
             <Box>
               <Switch />{' '}
-              <Typography level="smallText" color="danger.textColor">
+              <Typography level="smallText" textColor="danger.textColor">
                 Disabled
               </Typography>
             </Box>

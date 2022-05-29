@@ -173,7 +173,7 @@ function Gmail() {
         '--List-item-minHeight': '32px',
         '--List-gap': '0px',
         '--List-nestedInsetStart': '13px',
-        '& .MuiListItemDecorator-root': { justifyContent: 'flex-end', pr: '18px' },
+        '& .JoyListItemDecorator-root': { justifyContent: 'flex-end', pr: '18px' },
       }}
     >
       <ListItem>
@@ -459,7 +459,7 @@ const Firebash = () => {
           '--List-divider-gap': '0px',
           '--List-decorator-width': '36px',
           '--List-decorator-color': 'rgba(255, 255, 255, 0.8)',
-          '& .MuiListItemButton-root, & .MuiListItemContent-root': {
+          '& .JoyListItemButton-root, & .JoyListItemContent-root': {
             fontWeight: 500,
             letterSpacing: '0.00938em',
           },
@@ -608,14 +608,14 @@ const Gatsby = () => {
           '--List-item-startActionWidth': '0px',
           '--List-item-startActionTranslateX': '-50%',
 
-          '& .MuiListItemButton-root': {
+          '& .JoyListItemButton-root': {
             borderLeft: '1px solid',
             borderColor: 'divider',
           },
-          '& .MuiListItemButton-root.Mui-selected': {
+          '& .JoyListItemButton-root.Mui-selected': {
             borderColor: 'currentColor',
           },
-          '& .MuiListItem-nested > .MuiListItemButton-root': {
+          '& .JoyListItem-nested > .JoyListItemButton-root': {
             border: 'none',
           },
           '& [class*="startAction"]': {

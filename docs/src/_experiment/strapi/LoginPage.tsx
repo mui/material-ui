@@ -47,7 +47,7 @@ export default function LoginPage() {
           <Typography level="h3" fontWeight="bold" sx={{ mt: '1.5rem', mb: '0.375rem' }}>
             Welcome back!
           </Typography>
-          <Typography color="text.tertiary">Log in to your Strapi account</Typography>
+          <Typography textColor="text.tertiary">Log in to your Strapi account</Typography>
         </Box>
         <TextField label="Email" id="email" placeholder="kaidoe@gmail.com" fullWidth />
         <TextField

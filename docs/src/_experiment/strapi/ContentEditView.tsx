@@ -51,7 +51,7 @@ export default function ContentEditView() {
               BACK
             </Link>
             <Typography level="header1">Create an Entry</Typography>
-            <Typography color="text.tertiary">API ID: Restaurants</Typography>
+            <Typography textColor="text.tertiary">API ID: Restaurants</Typography>
           </div>
           <Button startIcon={<Check fontSize="md" />} sx={{ alignSelf: 'center' }}>
             Save
@@ -130,7 +130,7 @@ export default function ContentEditView() {
               }}
             >
               <Box>
-                <Typography level="tableLabel" color="text.secondary" sx={{ my: 1 }}>
+                <Typography level="tableLabel" textColor="text.secondary" sx={{ my: 1 }}>
                   Information
                 </Typography>
                 <ListDivider component="hr" />
@@ -150,7 +150,7 @@ export default function ContentEditView() {
                 </Box>
               </div>
               <Box>
-                <Typography level="tableLabel" color="text.secondary" sx={{ my: 1 }}>
+                <Typography level="tableLabel" textColor="text.secondary" sx={{ my: 1 }}>
                   Internationalization
                 </Typography>
                 <ListDivider component="hr" />
@@ -175,7 +175,7 @@ export default function ContentEditView() {
               }}
             >
               <Box>
-                <Typography level="tableLabel" color="text.secondary" sx={{ my: 1 }}>
+                <Typography level="tableLabel" textColor="text.secondary" sx={{ my: 1 }}>
                   Relations
                 </Typography>
                 <ListDivider component="hr" />

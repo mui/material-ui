@@ -75,11 +75,11 @@ export default function ContentNav({ activeIndex }: { activeIndex?: number }) {
             '--List-nestedInsetStart': '0px',
             '--List-gap': '16px',
             '--List-decorator-width': '26px',
-            '& .MuiListItemButton-root.Mui-selected': {
+            '& .JoyListItemButton-root.Mui-selected': {
               borderRight: '2px solid',
               borderColor: 'currentColor',
             },
-            '& .MuiListItemDecorator-root': {
+            '& .JoyListItemDecorator-root': {
               justifyContent: 'center',
             },
           }}

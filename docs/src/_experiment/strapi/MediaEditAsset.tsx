@@ -44,7 +44,7 @@ export default function MediaEditAsset() {
             borderRadius: '4px 4px 0 0',
           }}
         >
-          <Typography component="h2" level="subtitle" color="text.secondary">
+          <Typography component="h2" level="subtitle" textColor="text.secondary">
             <b>Details</b>
           </Typography>
           <IconButton
@@ -99,25 +99,25 @@ export default function MediaEditAsset() {
               sx={{ py: 2, px: 3, display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 2 }}
             >
               <div>
-                <Typography level="tableLabel" color="text.tertiary" sx={{ mb: 0.5 }}>
+                <Typography level="tableLabel" textColor="text.tertiary" sx={{ mb: 0.5 }}>
                   Size
                 </Typography>
                 <Typography level="smallText">2.3MB</Typography>
               </div>
               <div>
-                <Typography level="tableLabel" color="text.tertiary" sx={{ mb: 0.5 }}>
+                <Typography level="tableLabel" textColor="text.tertiary" sx={{ mb: 0.5 }}>
                   Date
                 </Typography>
                 <Typography level="smallText">Wed, March 13th 2019</Typography>
               </div>
               <div>
-                <Typography level="tableLabel" color="text.tertiary" sx={{ mb: 0.5 }}>
+                <Typography level="tableLabel" textColor="text.tertiary" sx={{ mb: 0.5 }}>
                   Dimensions
                 </Typography>
                 <Typography level="smallText">2500x3209</Typography>
               </div>
               <div>
-                <Typography level="tableLabel" color="text.tertiary" sx={{ mb: 0.5 }}>
+                <Typography level="tableLabel" textColor="text.tertiary" sx={{ mb: 0.5 }}>
                   Extension
                 </Typography>
                 <Typography level="smallText">PNG</Typography>
