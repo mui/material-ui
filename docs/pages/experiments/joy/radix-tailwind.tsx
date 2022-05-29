@@ -69,10 +69,10 @@ const Menu = () => (
         '--List-item-paddingY': '4px',
         '--List-decorator-width': '1.75rem',
         '--Icon-fontSize': '1.125rem',
-        '& > .MuiListItemButton-root': {
+        '& > .JoyListItemButton-root': {
           border: '1px solid transparent',
-          ...theme.variants.outlinedHover.neutral,
-          ...theme.variants.outlinedActive.neutral,
+          '&:hover': theme.variants.outlinedHover.neutral,
+          '&:active': theme.variants.outlinedActive.neutral,
         },
       })}
     >
@@ -254,7 +254,7 @@ export default function RadixTailwind() {
           },
         },
         components: {
-          MuiButton: {
+          JoyButton: {
             styleOverrides: {
               root: ({ ownerState }) => ({
                 ...(ownerState.size === 'md' && {
@@ -269,7 +269,7 @@ export default function RadixTailwind() {
               }),
             },
           },
-          MuiSwitch: {
+          JoySwitch: {
             styleOverrides: {
               root: {
                 '--Switch-track-width': '44px',
