@@ -9,7 +9,8 @@
 
 ## Override default tokens
 
-To customize the default theme tokens, you have to use `extendTheme` API to create a theme and then pass it to `CssVarsProvider`. The specified tokens will be deeply merged with the default values. The value can also be a CSS variable that reference to another one:
+To customize the default theme tokens, you have to use `extendTheme` API to create a theme and then pass it to `CssVarsProvider`.
+The specified tokens will be deeply merged with the default values.
 
 ```js
 import { CssVarsProvider, extendTheme } from '@mui/joy/styles';

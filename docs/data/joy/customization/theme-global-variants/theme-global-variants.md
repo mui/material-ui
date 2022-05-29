@@ -77,9 +77,9 @@ Since the values of these tokens are related to colors, they live inside the pal
 
 ## Override default tokens
 
-We recommend to use button as a starting point to customize the global variants because it tends to have the most variants with interaction compare to other components.
+We recommend to use button as a starting point to customize the global variants because it tends to have the most variants with interaction compared to other components.
 
-Let's theme Joy buttons to look like [twitter bootstrap](https://getbootstrap.com/docs/5.2/components/buttons/#examples):
+Let's style the Joy buttons to look like [twitter bootstrap](https://getbootstrap.com/docs/5.2/components/buttons/#examples):
 
 - The default bootstrap button is comparable to Joy `solid` variant.
 - Bootstrap use `secondary` color (grey) which is similar to `neutral` color in Joy.
