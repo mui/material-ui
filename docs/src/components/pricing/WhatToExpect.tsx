@@ -83,8 +83,9 @@ export default function WhatToExpect() {
               <Link href="https://mui.com/x/advanced-components/#support">
                 learn more about support
               </Link>{' '}
-              in the docs. Note that we roll bug fixes, performance enhancements, and other
-              improvements into new release, instead of patching older versions.
+              in the docs. Note that, except for critical issues, e.g. security, we release bug
+              fixes, and other improvements on top of the latest version, instead of patching older
+              versions.
             </Typography>
           </Paper>
         </Grid>
