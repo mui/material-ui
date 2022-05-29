@@ -519,7 +519,7 @@ const iosMinimalTheme = extendTheme({
     },
   },
   components: {
-    MuiButton: {
+    JoyButton: {
       styleOverrides: {
         root: ({ ownerState }) => ({
           fontWeight: 500,
@@ -537,7 +537,7 @@ const iosMinimalTheme = extendTheme({
         }),
       },
     },
-    MuiCheckbox: {
+    JoyCheckbox: {
       styleOverrides: {
         root: ({ ownerState }) => ({
           borderRadius: '24px',
@@ -554,12 +554,12 @@ const iosMinimalTheme = extendTheme({
         },
       },
     },
-    MuiLink: {
+    JoyLink: {
       defaultProps: {
         underline: 'none',
       },
     },
-    MuiAvatar: {
+    JoyAvatar: {
       styleOverrides: {
         root: ({ ownerState }) => ({
           ...(ownerState.size === 'lg' && {
@@ -771,7 +771,7 @@ export default function IosMinimalPage() {
               borderTop: '1px solid',
               borderBottom: '1px solid',
               borderColor: 'separator.opaque',
-              '& .MuiListItemButton-root': {
+              '& .JoyListItemButton-root': {
                 backgroundColor: 'initial !important',
               },
             }}
