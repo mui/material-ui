@@ -1,4 +1,5 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import { PickersDay as XPickersDay, PickersDayProps } from '@mui/x-date-pickers/PickersDay';
 
 let warnedOnce = false;
@@ -35,5 +36,16 @@ const PickersDay = React.forwardRef(function DeprecatedPickersDay<TDate>(
 
   return <XPickersDay {...props} />;
 }) as PickersDayComponent;
+
+PickersDay.propTypes /* remove-proptypes */ = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit TypeScript types and run "yarn proptypes"  |
+  // ----------------------------------------------------------------------
+  /**
+   * The content of the component.
+   */
+  children: PropTypes.node,
+} as any;
 
 export default PickersDay;

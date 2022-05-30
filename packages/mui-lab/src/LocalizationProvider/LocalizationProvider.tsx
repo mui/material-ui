@@ -1,4 +1,5 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import {
   LocalizationProvider as XLocalizationProvider,
   LocalizationProviderProps,
@@ -38,5 +39,16 @@ const LocalizationProvider = React.forwardRef(function DeprecatedLocalizationPro
 
   return <XLocalizationProvider {...props} />;
 }) as LocalizationProviderComponent;
+
+LocalizationProvider.propTypes /* remove-proptypes */ = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit TypeScript types and run "yarn proptypes"  |
+  // ----------------------------------------------------------------------
+  /**
+   * @ignore
+   */
+  children: PropTypes.node,
+} as any;
 
 export default LocalizationProvider;
