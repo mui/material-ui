@@ -7,6 +7,8 @@ tags: ['News', 'MUI Core']
 card: true
 ---
 
+<img src="/static/blog/first-look-at-joy/card.png" style="width: 796px;" alt="First look at Joy UI: a new starting point for your design system." />
+
 ## Introducing Joy UI
 
 If you're a close follower of everything MUI, you might be aware that we've been working on a new design system product.
@@ -62,3 +64,15 @@ Within each mode, you'll be able to have as many as you want－powered by CSS va
 A significant part of the core infrastructure for Joy has already been developed, and we've been working for the last couple of months on adding more structural components. Once we get to a reasonable number, and with sufficient documentation, we plan to release an alpha version, most likely during the second half of 2022.
 
 Meanwhile, we've developed a couple of mock UIs that showcase what Joy looks like out of the box, and to allow you to explore it further. Follow the CodeSandbox links from the demos to experiment with Joy UI for yourself.
+
+**Email UI－CodeSanbox**
+
+<img src="/static/blog/first-look-at-joy/email.png" style="width: 796px; margin-top: 8px; margin-bottom: 16px;" alt="Screenshot of an email mock up application built with Joy UI" />
+
+**People management UI－CodeSanbox**
+
+<img src="/static/blog/first-look-at-joy/people.png" style="width: 796px; margin-top: 8px; margin-bottom: 16px;" alt="Screenshot of a people management mock up application built with Joy UI" />
+
+**File management UI－CodeSanbox**
+
+<img src="/static/blog/first-look-at-joy/files.png" style="width: 796px; margin-top: 8px; margin-bottom: 16px;" alt="Screenshot of file management mock up application built with Joy UI" />
