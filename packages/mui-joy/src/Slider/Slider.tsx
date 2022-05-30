@@ -73,9 +73,10 @@ const SliderRoot = styled('span', {
   const isOrientedVertical = ownerState.orientation === 'vertical';
   return [
     {
+      '--variant-borderWidth':
+        theme.variants[ownerState.variant!]?.[ownerState.color!]?.['--variant-borderWidth'],
       ...(ownerState.variant === 'outlined' && {
-        ...theme.variants.outlined[ownerState.color!],
-        border: 'none',
+        border: 'var(--variant-borderWidth) none',
       }),
       // Variables used for `track` are used for `rail` the same way
       '--Slider-track-radius': theme.vars.radius.lg,
@@ -153,7 +154,7 @@ const SliderRail = styled('span', {
   {
     display: 'block',
     position: 'absolute',
-    border: 'var(--variant-outlinedBorderWidth, 0px) solid',
+    border: 'var(--variant-borderWidth) solid',
     borderColor: 'var(--Slider-track-borderColor)',
     backgroundColor: 'var(--Slider-track-background)',
     borderRadius: 'var(--Slider-track-radius)',
@@ -186,7 +187,7 @@ const SliderTrack = styled('span', {
       display: 'block',
       position: 'absolute',
       color: 'var(--Slider-track-color)',
-      border: 'var(--variant-outlinedBorderWidth, 0px) solid',
+      border: 'var(--variant-borderWidth) solid',
       borderColor: 'var(--Slider-track-borderColor)',
       backgroundColor: 'var(--Slider-track-background)',
       borderRadius: 'var(--Slider-track-radius)',
