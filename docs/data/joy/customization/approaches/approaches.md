@@ -7,7 +7,7 @@
 
 There are 3 main approaches for customizing Joy UI components:
 
-1. Global customization (theming)
+1. Theming (global customization)
 2. One-off customization (per instance)
 3. Reusable component (custom component)
 
@@ -23,18 +23,12 @@ Here are some examples that reproduce popular designs out there (only the light 
 
 ### Customizing theme tokens
 
-To print your own design language into Joy UI components in a scalable way, override the default theme tokens.
+Joy UI's theme consists of two categories of tokens: low-level and global variant. Check the [theme tokens](/joy-ui/customization/theme-tokens/) article for detailed information about both.
+
+Every component rely on them to define their look and feel. Therefore, if you want to print your own design language into Joy UI components in a scallable way, you should customize them.
+
 To do that, always use the `extendTheme` function as the customized tokens will be deeply merged into the default theme.
-
 Under the hood, Joy will convert the tokens to CSS variables, enabling you to get them through `theme.vars.*`, which is very convenient as you can use any styling solution to read those CSS vars.
-
-:::info
-Fore more in-depth about low-level and global variant tokens, check the [Theme tokens](<(/joy-ui/customization/theme-tokens/)>) article.
-:::
-
-:::warning
-Keep in mind that customizing the design tokens will affect all components. If you want to apply a specific style to a component, you should use [**themed components**](#themed-components) instead.
-:::
 
 ```js
 import { CssVarsProvider, extendTheme } from '@mui/joy/styles';
@@ -65,12 +59,13 @@ function App() {
 }
 ```
 
-### Components theming
+### Themed components
 
-Customizing components through the theme assures that every instance of that component has the same style.
+Customizing the theme tokens, as described above, will affect every Joy UI component.
+However, if you want to customize a specific component and want every instance of it to be consistent, you can target it directly within the theme.
 
 :::info
-Check the [specific themed components article](/joy-ui/customization/themed-tokens/) for more in-depth instructions.
+Check the specific [themed components article](/joy-ui/customization/themed-tokens/) for more in-depth instructions.
 :::
 
 Here is an example of customizing the Button's default `fontWeight` and `boxShadow`:

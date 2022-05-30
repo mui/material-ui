@@ -50,6 +50,8 @@ colorSchemes: {
 }
 ```
 
+You can check the [ColorSystem interface](https://github.com/mui/material-ui/blob/master/packages/mui-joy/src/styles/types/colorSystem.ts#L142) to see all of the available interfaces.
+
 #### Channel tokens
 
 The tokens ended with `Channel` are automatically generated from the provided theme unless you explicitly specify them.
