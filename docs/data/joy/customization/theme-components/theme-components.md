@@ -10,8 +10,10 @@
 
 To theme a specific component, specify the component identifier (`Joy{ComponentImportName}`) inside the `components` node.
 
-- `defaultProps`: to change the default props of the component.
-- `styleOverrides`: to apply style to the component slots. Every Joy component always contains `root` slot.
+- Use `defaultProps` to change the default props of the component.
+- Use `styleOverrides` to apply styles to each component slots. All Joy UI component contains the `root` slot.
+
+Check the [`components.d.ts`](https://github.com/mui/material-ui/blob/master/packages/mui-joy/src/styles/components.d.ts#L57) file to see every component identifier.
 
 ```js
 import { CssVarsProvider, extendTheme } from '@mui/joy/styles';
@@ -36,11 +38,10 @@ function App() {
 }
 ```
 
-You can check all of component identifiers from [here](https://github.com/mui/material-ui/blob/master/packages/mui-joy/src/styles/components.d.ts#L57).
+## Using design tokens per props
 
-## Access theme and props
-
-To apply a style based on props, provide a callback as a value to the style overrides. The argument contains `theme` and `ownerState` (props).
+To change the styles of a given prop using design tokens values from the theme, use a callback as value to the style overrides.
+The argument contains `theme` and `ownerState` (props).
 
 ```js
 extendTheme({
@@ -53,8 +54,6 @@ extendTheme({
           }),
           ...(ownerState.size === 'md' && {
             borderRadius: theme.vars.radius.sm,
-          }),
-          ...(ownerState.variant === 'solid' && {
             background: `linear(to top, ${
               theme.vars.palette[ownerState.color][700]
             }, ${theme.vars.palette[ownerState.color][500]})`,
@@ -66,9 +65,9 @@ extendTheme({
 });
 ```
 
-We recommend to use CSS variables from `theme.vars.*` because it has better debugging experience and more performant in some cases.
+We recommend to use CSS variables from `theme.vars.*` because it has a better debugging experience and also is more performant in some cases.
 
-The style can contain any CSS selectors (support nested selectors) like this:
+However, the new styles can also contain any CSS selectors (support nested selectors), as such:
 
 ```js
 extendTheme({
@@ -93,11 +92,14 @@ extendTheme({
 });
 ```
 
-## Target specific color scheme
+## Different styles per mode
 
-If you want to switch the values between color schemes, the way to do it without creating new tokens is to use CSS attribute selector.
+To specify different values than the ones defined in the default theme for each mode (light and dark), use the CSS attribute selector.
 
-Joy attaches a `data-*` attribute with the current color scheme to the DOM (html by default). You can use `theme.getColorSchemeSelector` utility to style the component like this:
+Joy UI attaches a `data-*` attribute with the current color scheme to the DOM (HTML by default).
+You can use the `theme.getColorSchemeSelector` utility to change the component styles.
+
+The example below illustrate how you'd change the intensity of the `boxShadow` token in the light mode while removing it completely in the dark mode:
 
 ```js
 extendTheme({
@@ -119,10 +121,11 @@ extendTheme({
 });
 ```
 
-This approach lets you apply a style for custom color schemes as well. However, note that it creates CSS specificity which might be cumbersome when a parent component wants to override the style.
+If you have custom color schemes defined, this approach also works.
+However, note that it creates additional CSS specificity which might be cumbersome when the parent component wants to override their children styles.
 
 :::error
-🚨 We don't recommend to use conditional operator to switch between values because it is not performant and it creates nested conditional operators if you have more than light and dark color schemes.
+🚨 We don't recommend using the conditional operator to switch between values as it is not performant and if you have more color schemes than light and dark, it creates nested conditional operators.
 
 ```js
 // 🚫 Don't do this
