@@ -1,5 +1,5 @@
 ---
-title: Meet Joy UI－a new starting point to your design system
+title: First look at Joy UI－a new starting point for your design system
 description: Wip description.
 date: 2022-06-01T00:00:00.000Z
 authors: ['danilo-leal', 'siriwatknp']
