@@ -124,4 +124,4 @@ To create a custom and reusable component, the `styled` function is the recommen
 You can access the theme and use its design tokens, maintaining consistency.
 Additionally, the created component also accepts the `sx` prop if you ever want to do one-off customizations to it.
 
-{{"demo": "StyledComponent.js", "bg": true}}
+{{"demo": "StyledComponent.js"}}

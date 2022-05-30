@@ -7,11 +7,12 @@ import Button from '@mui/joy/Button';
 import FormLabel from '@mui/joy/FormLabel';
 
 const Select = styled('select')(({ theme }) => ({
-  padding: '0.25rem',
+  padding: '0.35rem',
   fontFamily: theme.vars.fontFamily.body,
-  fontSize: theme.vars.fontSize.md,
-  borderRadius: theme.vars.radius.xs,
-  border: 'none',
+  fontSize: theme.vars.fontSize.sm,
+  borderRadius: theme.vars.radius.sm,
+  border: '1px solid',
+  borderColor: theme.vars.palette.neutral[300],
   ...theme.variants.soft.neutral,
 }));
 
@@ -497,6 +498,7 @@ export default function ButtonThemes() {
           flexGrow: 1,
           maxWidth: 'calc(100% + 24px)',
           bgcolor: 'background.body',
+          borderRadius: '8px',
           '& .markdown-body pre': {
             margin: 0,
             borderRadius: 'xs',
@@ -511,7 +513,7 @@ export default function ButtonThemes() {
               display: 'flex',
               alignItems: 'center',
               p: 2,
-              minHeight: 120,
+              minHeight: 100,
             }}
           >
             {design === 'github' && (
@@ -544,8 +546,20 @@ export default function ButtonThemes() {
               </Box>
             )}
           </Box>
-          <Box sx={{ mx: 'auto', display: 'flex', gap: 1, alignItems: 'center' }}>
-            <FormLabel htmlFor="button-theme">Theme:</FormLabel>
+          <Box
+            sx={{
+              mx: 'auto',
+              pt: 3,
+              width: '100%',
+              display: 'flex',
+              gap: 1,
+              alignItems: 'center',
+              justifyContent: 'center',
+              borderTop: '1px solid',
+              borderColor: 'neutral.200',
+            }}
+          >
+            <FormLabel htmlFor="button-theme">Change the theme:</FormLabel>
             <Select
               id="button-theme"
               value={design}
@@ -582,6 +596,7 @@ function App() {
                 display: { xs: 'none', md: 'block' },
                 maxHeight: '40vh',
                 overflow: 'auto',
+                borderRadius: '7px',
               }}
             />
           </BrandingProvider>

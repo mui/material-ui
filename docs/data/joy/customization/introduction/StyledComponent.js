@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { styled } from '@mui/joy/styles';
-import VolumeUp from '@mui/icons-material/VolumeUp';
-import VolumeOff from '@mui/icons-material/VolumeOff';
+import VolumeUpRoundedIcon from '@mui/icons-material/VolumeUpRounded';
+import VolumeOffRoundedIcon from '@mui/icons-material/VolumeOffRounded';
 
 const ToggleButton = styled('button')(
   ({ theme, 'aria-pressed': pressed = 'false' }) => ({
     padding: '0.5rem 1rem',
-    borderRadius: theme.vars.radius.xs,
+    borderRadius: theme.vars.radius.sm,
     display: 'inline-flex',
     justifyContent: 'center',
     gap: '8px',
@@ -15,9 +15,10 @@ const ToggleButton = styled('button')(
     fontSize: theme.vars.fontSize.md,
     fontWeight: theme.vars.fontWeight.md,
     alignItems: 'center',
-    border: '1px solid transparent',
+    border: '1px solid',
+    borderColor: theme.vars.palette.neutral.outlinedBorder,
     backgroundColor: theme.vars.palette.background.body,
-    boxShadow: theme.vars.shadow.sm,
+    boxShadow: theme.vars.shadow.md,
     [theme.focus.selector]: theme.focus.default,
     ...theme.variants.plain.neutral,
     ...(pressed === 'false' && {
@@ -25,9 +26,7 @@ const ToggleButton = styled('button')(
       '&:active': theme.variants.plainActive.neutral,
     }),
     ...(pressed === 'true' && {
-      border: '1px solid',
-      borderColor: theme.vars.palette.neutral.outlinedBorder,
-      color: theme.vars.palette.primary.plainColor,
+      color: theme.vars.palette.danger.plainColor,
       backgroundColor: theme.vars.palette.background.body,
       boxShadow: theme.shadow.sm.replace(/,/g, ', inset'),
     }),
@@ -42,7 +41,7 @@ export default function StyledComponent() {
       onClick={() => setMuted((bool) => !bool)}
       sx={{ minWidth: 120 }}
     >
-      Mute {muted ? <VolumeOff /> : <VolumeUp />}
+      Mute {muted ? <VolumeOffRoundedIcon /> : <VolumeUpRoundedIcon />}
     </ToggleButton>
   );
 }
