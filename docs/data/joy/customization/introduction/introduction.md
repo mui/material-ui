@@ -1,46 +1,50 @@
 # Introduction
 
-<p class="description">Learn the ways to customize Joy UI.</p>
+<p class="description">Learn which approach is recommended, depending on the situation, to customize Joy UI components.</p>
 
 <!-- The purpose of this page is to give the overall customization alternatives to developers without providing too much details -->
 <!-- Some examples and demos are provided to give the sense of what it looks like and then lead each part to another page for more technical details and more examples -->
 
-There are mainly 3 customization alternatives:
+There are 3 main approaches for customizing Joy UI components:
 
-- Global customization (theming)
-- One-off customization (per instance)
-- Reusable component (custom component)
+1. Global customization (theming)
+2. One-off customization (per instance)
+3. Reusable component (custom component)
 
 ## Theming
 
-If you want to apply the style to every instances of the components, theming is the right choice. You can think of theming as wrapping components with a mask and put some paint on it. So, you should be able to switch between themes without changing your application's logic.
+If you want every instance of a given component to be styled consistently, theming is the way to go.
+You can think of it as a mask that wraps them and adds custom styles.
+That way, you should be able to switch between themes without changing your app's logic.
 
-Here are some examples that replicate the popular designs (only the light mode):
+Here are some examples that reproduce popular designs out there (only the light mode, though):
 
 {{"demo": "ButtonThemes.js", "hideToolbar": true}}
 
-Theming can be categorized into 2 parts, **tokens** and **components**.
+### Customizing tokens
 
-### Tokens theming
+Arguably the most important part of the theme is the design tokens.
+As the [W3C Community Group](https://github.com/design-tokens/community-group) defines it: _"Design tokens are indivisible pieces of a design system such as colors, spacing, typography scale."_
 
-The tokens (design tokens) are meaningful variables that create consistent design for the application.
+Joy UI has design tokens defined for 8 CSS properties:
+
+- `palette`
+- `fontSize`
+- `fontFamily`
+- `fontWeight`
+- `lineHeight`
+- `letterSpacing`
+- `radius`
+- `shadow`
+
+To print your own design language into Joy UI components in a scalable way, override the default design tokens.
+To do that, always use the `extendTheme` function as the customized tokens will be deeply merged into the default theme.
+
+Under the hood, Joy will convert the tokens to CSS variables, enabling you to get them through `theme.vars.*`, which is very convenient as you can use any styling solution to read those CSS vars.
 
 :::warning
-Customizing the theme tokens affects all of the components that consume them. If you want to apply a style to a specific component, you should use [**Components theming**](#components-theming) instead.
+Keep in mind that customizing the design tokens will affect all components. If you want to apply a specific style to a component, you should use [**Components theming**](#components-theming) instead.
 :::
-
-Joy has 8 buckets that store the default tokens:
-
-- palette
-- fontSize
-- fontFamily
-- fontWeight
-- lineHeight
-- letterSpacing
-- radius
-- shadow
-
-To **override the default tokens**, always use the `extendTheme` function. The specified tokens will be deeply merged to the default theme.
 
 ```js
 import { CssVarsProvider, extendTheme } from '@mui/joy/styles';
@@ -71,15 +75,11 @@ function App() {
 }
 ```
 
-You can also provide your own design tokens. Joy will convert them to CSS variables and you will be able to get them from `theme.vars.*`. It is very convenient because you can use any styling solution to read those CSS variables.
-
-If you want to see all of the default tokens and more realistic examples, check out the [theme tokens](/joy-ui/customization/theme-tokens/) page.
-
 ### Components theming
 
-This approach ensures that the style is applied to every instances of a specific component.
+Customizing components through the theme assures that every instance of that component has the same style.
 
-Here is an example of theming the button:
+Here is an example of customizing the Button's default `fontWeight` and `boxShadow`:
 
 ```js
 import { CssVarsProvider, extendTheme } from '@mui/joy/styles';
@@ -107,15 +107,12 @@ function App() {
 }
 ```
 
-For more details and examples, check out the [theme components](/joy-ui/customization/theme-components/) page. If you need more details about using CSS variables in Joy, check out the [using CSS variables](/joy-ui/customization/using-css-variables/) page.
-
 ## One-off customization
-
-To change the style of _one single instance_ of a component.
 
 ### sx prop
 
-The [`sx` prop](/system/basics/#the-sx-prop) is the best option for adding style overrides to a single instance of a component in most cases. It can be used with all Joy UI components.
+To change the style of _one single instance_ of a component, the [`sx` prop](/system/basics/#the-sx-prop) is the recommended option.
+It can be used with all Joy UI components.
 
 {{"demo": "SxProp.js" }}
 
@@ -123,6 +120,8 @@ The [`sx` prop](/system/basics/#the-sx-prop) is the best option for adding style
 
 ### styled function
 
-Best for creating your own reusable component. It can access to the theme and the output component automatically accepts the `sx` prop.
+To create a custom and reusable component, the `styled` function is the recommended option.
+You can access the theme and use its design tokens, maintaining consistency.
+Additionally, the created component also accepts the `sx` prop if you ever want to do one-off customizations to it.
 
 {{"demo": "StyledComponent.js", "bg": true}}
