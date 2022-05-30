@@ -1,9 +1,9 @@
 ---
-title: First look at Joy UI－a new starting point for your design system
-description: Wip description.
+title: First look at Joy UI
+description: A new starting point for your design system.
 date: 2022-06-01T00:00:00.000Z
 authors: ['danilo-leal', 'siriwatknp']
-tags: ['News']
+tags: ['News', 'MUI Core']
 card: true
 ---
 
@@ -11,21 +11,29 @@ card: true
 **work in progress**
 :::
 
-If you're a close follower of everything MUI, you might be aware that we've been working on a new design system product. If not, we're writing this piece to give you a first look at Joy－MUI's new starting point for your design system!
+## Introducing Joy UI
 
-## How this is relevant to you?
+If you're a close follower of everything MUI, you might be aware that we've been working on a new design system product.
+If not, we're writing this piece to give you a first look at Joy－MUI's new starting point for your design system!
 
-You might intuitively associate MUI with Material UI, which despite the indeed potentially confusing names, are separate entities. Material UI is MUI's React implementation of Google's Material Design and over the years has established itself as a go-to library for quickly breathing life into products, mostly due to the number of components you get out of the box. However, the components do come with that default 2014 Google look and feel that a good portion of you grew to dislike. And, as we've reconfirmed with our latest developer survey, the design aspect of UI libraries is one of the most important ones whenever evaluating which to go for.
+If you ever considered going with Material UI because of the thought through developer experience, reliability, and completeness but ended up hesitating because of the design, this is great news for you. Joy UI is meant to offer you all of that with a modern look and feel, ease of customization, and lower overhead by not carrying unused Material Design specific code and styling.
 
-So, if you ever considered going with Material UI because of the thought through developer experience, reliability, and completeness but ended up hesitating because of the design, this is great news for you. Joy is meant to offer you all of that with a simpler and more modern look and feel.
+## Why work on it?
+
+You might intuitively associate MUI with Material UI, which despite the indeed potentially confusing names, are separate things.
+Material UI is MUI's React implementation of Google's Material Design.
+Over the years Material UI has established itself as the go-to library for quickly breathing life into products, mostly thanks to its design, customizability, and documentation.
+
+However, the components do come with the default 2018 Google look and feel that is no longer as popular as it was.
+And, as we've reconfirmed with [our latest developer survey](/blog/2021-developer-survey-results/#what-are-your-most-important-criteria-for-choosing-a-ui-library/), the design aspect of UI libraries is one of the most important ones whenever evaluating which to choose.
 
 ## Why not just build a different theme?
 
-One of the things we're optimizing for with this new product is to break away from Material Design. A different theme would still require you and your team to have at least some sense of how Material Design is structured and how that is expressed into Material UI in order to reach a fresher look. We wanted to provide an alternative to that. With Joy, we want you to be able to start, by default, with a fresher design.
+One of the main objectives with this new product is to break away from Material Design. A different theme would still require you and your team to have at least some sense of how Material Design is structured, and how that is expressed in Material UI. We wanted to provide an alternative to that. With Joy, we want you to be able to start with a fresh design by default.
 
-Additionally, we had many ideas for improving the experience of developing design systems and a separate package is an opportunity to prototype and test some of these new features without running the risk of potentially making any mistakes and causing inconveniences to hundreds of teams that use Material UI today.
+We also had many ideas for improving the experience of developing design systems, so a separate package is an opportunity to prototype and test some of these new features without running the risk of compromising the experience of the thousands of teams that use Material UI today.
 
-Material UI and Joy UI will definitely share most of the conventions, features, and overall philosophy. This will not only decrease the learning curve for any of you who are willing to try but also because we think of the two containing our take on the ideal developer experience for developing design systems. So, if at any time, Joy UI has something that Material UI doesn't, the catch-up will at some point happen, and the same goes for the other way around.
+Material UI and Joy UI will still share many conventions and features, and overall philosophy. This will not only decrease the learning curve for adopting Joy, but also because we think of them both representing the ideal developer experience for developing design systems. So if at any time Joy UI has a feature that Material UI doesn't, it will catch-up at some point, and vice versa.
 
 ## What are the new things we're introducing in Joy UI?
 
@@ -33,28 +41,28 @@ Aside from a fresher look and feel for your upcoming project, here are a few fea
 
 ### Global variants
 
-Instead of defining variants at the component level, Joy defines variants at the global level. This sounds bold at first, but the more we experiment the more it starts to make sense. Global variants mostly affect three CSS properties: color, background, and border. What this means is that you'll be able to toggle between the same set of variants in any component, allowing for easier consistency across your app. The four variants are text, outlined, soft, and solid.
+Instead of defining variants at the component level, Joy defines variants at the global level. This sounds bold at first, but the more we experiment the more it starts to make sense. Global variants mostly affect three CSS properties: color, background, and border. What this means is that you'll be able to switch between the same set of variants in any component, more easily maintaining consistency across your app. The four variants are text, outlined, soft, and solid.
 
 ### Component integration
 
-We put a lot of effort into designing CSS variables for each component so that they can be seamlessly composed with the least customization.
-One good example is the card component, where the border radius of the card’s children automatically adapts to the card.
-These small details make the component resilient to different scenarios which saves tons of time for manual adjustments.
-Joy does not sacrifice the customization experience in order to have the automatic adjustment.
-You are able to override the style completely via the usual CSS or even adjust the predefined CSS variables from the `sx` prop.
+We put considerable effort into constructing the CSS variables for each component such that they can be seamlessly composed with the least customization.
+One good example is the card component, where the border radius of the card’s children automatically adapts to that of the card.
+These small details mean the components adapt to different scenarios, which saves considerable time by avoiding manual adjustments.
+Joy doesn't sacrifice the customization experience in order to have these automatic adjustments.
+You're still able to override the style completely via the usual CSS overrides, or even adjust the predefined CSS variables with the `sx` prop.
 
-### Perfect dark mode for server-side rendering
+### Perfect dark mode, for server-side rendering
 
-Joy provides a simple and effective way to prevent UI flickering when users refresh or re-enter the page after they have toggled dark mode on.
-Moreover, it takes care of the synchronization between browser tabs with a single line of code which allows developers to configure attributes and settings as required.
+Joy provides a simple and effective way to prevent UI flicker when users refresh or re-enter the page when dark mode is ebabled.
+What's more, it takes care of the synchronization between browser tabs with a single line of code, which allows developers to configure attributes and settings as required.
 
 ### Unlimited color schemes
 
-Joy will not only allow for simple toggling between dark and light mode but also provide the right tooling so you can provide your users with multiple color scheme
-options. Within each mode, you'll be able to have as many as you want－powered by CSS variables.
+Joy not only allows for simple toggling between dark and light mode but also provide the right tooling so you can provide your users with multiple color schemes.
+Within each mode, you'll be able to have as many as you want－powered by CSS variables.
 
 ## When will I be able to use it?
 
-A significant part of the core infrastructure for Joy has been made and we've been working in these last couple of months on adding more and more structural components. Once we get to a reasonable amount, and with considerable documentation in place, we plan to release an alpha version, which most likely will happen somewhere around the second semester of 2022.
+A significant part of the core infrastructure for Joy has already been developed, and we've been working for the last couple of months on adding more structural components. Once we get to a reasonable number, and with sufficient documentation, we plan to release an alpha version, most likely during the second half of 2022.
 
-However! We have developed a couple of mock UIs that showcase what Joy looks like by default. These are meant not only for that but to allow you to play around with it a little bit. Get access to them by visiting their CodeSandbox link and just experiment with Joy UI for yourself.
+Meanwhile, we've developed a couple of mock UIs that showcase what Joy looks like out of the box, and to allow you to explore it further. Follow the CodeSandbox links from the demos to experiment with Joy UI for yourself.
