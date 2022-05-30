@@ -76,3 +76,7 @@ Meanwhile, we've developed a couple of mock UIs that showcase what Joy looks lik
 **File management UI－CodeSanbox**
 
 <img src="/static/blog/first-look-at-joy/files.png" style="width: 796px; margin-top: 8px; margin-bottom: 16px;" alt="Screenshot of file management mock up application built with Joy UI" />
+
+We hope will get as excited as we are. Joy UI is just getting started, so stay tuned for more news about it in the near future!
+
+Happy developing! 👩‍💻
