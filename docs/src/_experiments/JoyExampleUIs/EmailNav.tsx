@@ -19,7 +19,7 @@ import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownR
 export default function EmailNav() {
   return (
     <List size="sm" sx={{ '--List-item-radius': '8px' }}>
-      <ListItem nested>
+      <ListItem nested sx={{ p: 0 }}>
         <Box sx={{ mb: 1, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           <Typography
             id="nav-list-browse"

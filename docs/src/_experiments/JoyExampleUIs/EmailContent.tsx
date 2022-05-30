@@ -106,7 +106,7 @@ export default function EmailContent() {
         </Box>
       </Box>
       <ListDivider component="hr" />
-      <Typography level="body1" textColor="text.secondary" mt={2} mb={2}>
+      <Typography level="body2" textColor="text.secondary" mt={2} mb={2}>
         Hi, Thomas,
         <br />
         <br />

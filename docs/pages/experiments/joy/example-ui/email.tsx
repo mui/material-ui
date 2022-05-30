@@ -79,14 +79,14 @@ export default function EmailExample() {
         <Layout.Header>
           <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 1.5 }}>
             <IconButton
-              variant="soft"
+              variant="outlined"
               size="sm"
               onClick={() => setDrawerOpen(true)}
               sx={{ display: { sm: 'none' } }}
             >
               <MenuIcon />
             </IconButton>
-            <IconButton size="sm" variant="solid">
+            <IconButton size="sm" variant="solid" sx={{ display: { xs: 'none', sm: 'inherit' } }}>
               <MailRoundedIcon />
             </IconButton>
             <Typography fontWeight={700}>Email</Typography>

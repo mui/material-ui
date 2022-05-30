@@ -12,7 +12,7 @@ const Root = (props: BoxProps) => (
         gridTemplateColumns: {
           xs: '1fr',
           sm: 'minmax(64px, 200px) minmax(450px, 1fr)',
-          md: 'minmax(160px, 260px) minmax(300px, 360px) minmax(500px, 1fr)',
+          md: 'minmax(160px, 300px) minmax(300px, 500px) minmax(500px, 1fr)',
         },
         gridTemplateRows: '64px 1fr',
         minHeight: '100vh',
@@ -114,10 +114,19 @@ const SideDrawer = ({
       sx={{
         position: 'absolute',
         inset: 0,
-        bgcolor: (theme) => `rgba(${theme.vars.palette.neutral.darkChannel} / 0.2)`,
+        bgcolor: (theme) => `rgba(${theme.vars.palette.neutral.darkChannel} / 0.8)`,
       }}
     />
-    <Sheet sx={{ minWidth: 256, width: 'max-content', height: '100%', p: 2, boxShadow: 'md' }}>
+    <Sheet
+      sx={{
+        minWidth: 256,
+        width: 'max-content',
+        height: '100%',
+        p: 2,
+        boxShadow: 'lg',
+        bgcolor: 'background.componentBg',
+      }}
+    >
       {props.children}
     </Sheet>
   </Box>

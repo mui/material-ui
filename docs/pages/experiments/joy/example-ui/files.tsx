@@ -85,7 +85,7 @@ export default function FilesExample() {
           gridTemplateColumns: {
             xs: '1fr',
             sm: 'minmax(64px, 200px) minmax(450px, 1fr)',
-            md: 'minmax(160px, 260px) minmax(600px, 1fr) minmax(300px, 360px)',
+            md: 'minmax(160px, 300px) minmax(600px, 1fr) minmax(300px, 420px)',
           },
           ...(drawerOpen && {
             height: '100vh',
@@ -158,8 +158,9 @@ export default function FilesExample() {
               sx={{
                 borderRadius: 'sm',
                 gridColumn: '1/-1',
+                bgcolor: 'background.componentBg',
                 display: 'grid',
-                gridTemplateColumns: '1fr 2fr 1fr 1fr',
+                gridTemplateColumns: '1fr 1fr 1fr 1fr',
                 '& > *': {
                   p: 2,
                   '&:nth-child(n):not(:nth-last-child(-n+4))': {
@@ -169,29 +170,35 @@ export default function FilesExample() {
                 },
               }}
             >
-              <Typography level="body2" noWrap>
+              <Typography level="body3" fontWeight="md" noWrap>
                 Folder name
               </Typography>
-              <Typography level="body2" noWrap>
+              <Typography level="body3" fontWeight="md" noWrap>
                 Date modified
               </Typography>
-              <Typography level="body2" noWrap>
+              <Typography level="body3" fontWeight="md" noWrap>
                 Size
               </Typography>
-              <Typography level="body2" noWrap>
+              <Typography level="body3" fontWeight="md" noWrap>
                 Users
               </Typography>
 
               <Typography
+                level="body2"
                 startDecorator={<FolderOpenIcon color="primary" />}
                 sx={{ alignItems: 'flex-start' }}
               >
-                Videos
+                Travel pictures
               </Typography>
-              <Typography>Modified 26 May 2016, 7PM</Typography>
-              <Typography sx={{ color: 'success.600' }}>123.3KB</Typography>
+              <Typography level="body2">21 October 2011, 3PM</Typography>
+              <Typography level="body2" sx={{ color: 'success.600' }}>
+                987.5MB
+              </Typography>
               <Box>
-                <AvatarGroup size="sm" sx={{ '--AvatarGroup-gap': '-12px' }}>
+                <AvatarGroup
+                  size="sm"
+                  sx={{ '--AvatarGroup-gap': '-8px', '--Avatar-size': '24px' }}
+                >
                   <Avatar src="/static/images/avatar/1.jpg" />
                   <Avatar src="/static/images/avatar/2.jpg" />
                   <Avatar src="/static/images/avatar/3.jpg" />
@@ -200,15 +207,21 @@ export default function FilesExample() {
               </Box>
 
               <Typography
+                level="body2"
                 startDecorator={<FolderOpenIcon color="primary" />}
                 sx={{ alignItems: 'flex-start' }}
               >
-                Videos
+                Important documents
               </Typography>
-              <Typography>Modified 26 May 2016, 7PM</Typography>
-              <Typography sx={{ color: 'success.600' }}>123.3KB</Typography>
+              <Typography level="body2">26 May 2010, 7PM</Typography>
+              <Typography level="body2" sx={{ color: 'success.600' }}>
+                123.3KB
+              </Typography>
               <Box>
-                <AvatarGroup size="sm" sx={{ '--AvatarGroup-gap': '-12px' }}>
+                <AvatarGroup
+                  size="sm"
+                  sx={{ '--AvatarGroup-gap': '-8px', '--Avatar-size': '24px' }}
+                >
                   <Avatar src="/static/images/avatar/1.jpg" />
                   <Avatar src="/static/images/avatar/2.jpg" />
                   <Avatar src="/static/images/avatar/3.jpg" />
@@ -216,7 +229,13 @@ export default function FilesExample() {
                 </AvatarGroup>
               </Box>
             </Sheet>
-            <Card variant="outlined" sx={{ '--Card-radius': (theme) => theme.vars.radius.sm }}>
+            <Card
+              variant="outlined"
+              sx={{
+                '--Card-radius': (theme) => theme.vars.radius.sm,
+                bgcolor: 'background.componentBg',
+              }}
+            >
               <CardOverflow
                 sx={{ borderBottom: '1px solid', borderColor: 'neutral.outlinedBorder' }}
               >
@@ -235,8 +254,10 @@ export default function FilesExample() {
               </CardOverflow>
               <Box sx={{ pt: 2, display: 'flex', alignItems: 'center' }}>
                 <Box sx={{ flex: 1 }}>
-                  <Typography>platform_ios.zip</Typography>
-                  <Typography level="body2">Added 5 Aug 2016</Typography>
+                  <Typography>photos-travel.zip</Typography>
+                  <Typography level="body3" mt={0.5}>
+                    Added 25 May 2011
+                  </Typography>
                 </Box>
                 <IconButton variant="plain" color="neutral">
                   <EditOutlinedIcon />
@@ -262,8 +283,8 @@ export default function FilesExample() {
                 }}
               >
                 <Box sx={{ flex: 1 }}>
-                  <Typography textColor="#fff">platform_ios.zip</Typography>
-                  <Typography textColor="rgba(255,255,255,0.72)" level="body2">
+                  <Typography textColor="#fff">torres-del-paine.png</Typography>
+                  <Typography level="body3" mt={0.5} textColor="rgba(255,255,255,0.72)">
                     Added 5 Aug 2016
                   </Typography>
                 </Box>
@@ -272,7 +293,13 @@ export default function FilesExample() {
                 </IconButton>
               </CardContent>
             </Card>
-            <Card variant="outlined" sx={{ '--Card-radius': (theme) => theme.vars.radius.sm }}>
+            <Card
+              variant="outlined"
+              sx={{
+                '--Card-radius': (theme) => theme.vars.radius.sm,
+                bgcolor: 'background.componentBg',
+              }}
+            >
               <CardOverflow
                 sx={{ borderBottom: '1px solid', borderColor: 'neutral.outlinedBorder' }}
               >
@@ -292,7 +319,9 @@ export default function FilesExample() {
               <Box sx={{ pt: 2, display: 'flex', alignItems: 'center' }}>
                 <Box sx={{ flex: 1 }}>
                   <Typography>platform_ios.zip</Typography>
-                  <Typography level="body2">Added 5 Aug 2016</Typography>
+                  <Typography level="body3" mt={0.5}>
+                    Added 26 May 2011
+                  </Typography>
                 </Box>
                 <IconButton variant="plain" color="neutral">
                   <EditOutlinedIcon />
@@ -301,10 +330,16 @@ export default function FilesExample() {
             </Card>
           </Box>
         </Layout.Main>
-        <Sheet sx={{ borderLeft: '1px solid', borderColor: 'neutral.outlinedBorder' }}>
+        <Sheet
+          sx={{
+            borderLeft: '1px solid',
+            borderColor: 'neutral.outlinedBorder',
+            bgcolor: 'background.componentBg',
+          }}
+        >
           <Box sx={{ p: 2, display: 'flex', alignItems: 'center' }}>
-            <Typography sx={{ flex: 1 }}>torres_del_paine.png</Typography>
-            <IconButton variant="plain" size="sm">
+            <Typography sx={{ flex: 1 }}>torres-del-paine.png</Typography>
+            <IconButton variant="outlined" color="neutral" size="sm">
               <CloseIcon />
             </IconButton>
           </Box>
