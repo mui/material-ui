@@ -23,7 +23,7 @@ const palette = {
     solidActiveBorder: '#51585e',
     solidDisabledBg: '#6c757d',
     solidDisabledBorder: '#6c757d',
-    // light
+    // btn-light
     softColor: '#000',
     softBg: '#f8f9fa',
     softBorder: '#f8f9fa',

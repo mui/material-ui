@@ -3,6 +3,7 @@ import { CssVarsProvider, extendTheme } from '@mui/joy/styles';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 
+// ⚠️ If the value is `undefined`, it should be `undefined` for other color schemes as well.
 const theme = extendTheme({
   colorSchemes: {
     light: {

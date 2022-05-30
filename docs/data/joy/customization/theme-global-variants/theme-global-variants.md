@@ -10,13 +10,7 @@
 
 ## How it works
 
-Joy has four built-in global variants, `plain` `outlined` `soft` and `solid`. The styles generated for each variant comes from the global variant tokens inside the theme palette.
-
-The tokens are composed of three things:
-
-- variant name
-- state
-- CSS property (`border`, `background` or `color`)
+Joy has four built-in global variants, `plain` `outlined` `soft` and `solid`. The styles generated for each variant comes from the global variant tokens inside the theme palette. The tokens are composed of three parts in the format of `[variant][state][CSS property]`.
 
 For example, the `solidBg` refers to the **background** when the variant is **solid** at **initial** state.
 
@@ -77,9 +71,9 @@ Since the values of these tokens are related to colors, they live inside the pal
 
 ## Override default tokens
 
-We recommend to use button as a starting point to customize the global variants because it tends to have the most variants with interaction compared to other components.
+We recommend to use **button** as a starting point to customize the global variants because it tends to have the most variants with interaction compared to other components.
 
-Let's style the Joy buttons to look like [twitter bootstrap](https://getbootstrap.com/docs/5.2/components/buttons/#examples):
+Let's style the Joy button to look like [twitter bootstrap](https://getbootstrap.com/docs/5.2/components/buttons/#examples):
 
 - The default bootstrap button is comparable to Joy `solid` variant.
 - Bootstrap use `secondary` color (grey) which is similar to `neutral` color in Joy.
@@ -97,8 +91,14 @@ extendTheme({
     light: {
       palette: {
         primary: {
-          // this token must be defined for other color schemes as well.
           solidBorder: '#0d6efd',
+        },
+      },
+    },
+    dark: {
+      palette: {
+        primary: {
+          solidBorder: '#111',
         },
       },
     },
@@ -118,8 +118,8 @@ If you want to remove a global variant token, use `undefined` as a value. For ex
 
 Joy lets you apply custom styles to each variant via the `variants` node. The custom style can also be applied to a specific palette which will be merged to the style generated from the global variant tokens.
 
+{{"demo": "CustomVariantStyle.js"}}
+
 :::warning
 The custom style will be applied to all components with the specific variant and color. If you want to apply the style for a set of components, you should look at [theme components](/joy-ui/customization/theme-components/) instead.
 :::
-
-{{"demo": "CustomVariantStyle.js"}}

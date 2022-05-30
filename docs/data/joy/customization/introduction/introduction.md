@@ -13,7 +13,7 @@ There are mainly 3 customization alternatives:
 
 ## Theming
 
-If you want to apply the style to every instance of the components, theming is the right choice. The benefit of theming is that your implementation does not change when you switch between themes.
+If you want to apply the style to every instances of the components, theming is the right choice. You can think of theming as wrapping components with a mask and put some paint on it. So, you should be able to switch between themes without changing your application's logic.
 
 Here are some examples that replicate the popular designs (only the light mode):
 
@@ -23,13 +23,13 @@ Theming can be categorized into 2 parts, **tokens** and **components**.
 
 ### Tokens theming
 
-The tokens (design tokens) are meaningful variables that refer to the generic usage of the application. The idea of the tokens is to create consistency for the application.
+The tokens (design tokens) are meaningful variables that create consistent design for the application.
 
 :::warning
-Customizing the theme tokens affects all of the components that consume them. If you want to apply a style to a specific component, take a look at [**Components theming**](#components-theming) instead.
+Customizing the theme tokens affects all of the components that consume them. If you want to apply a style to a specific component, you should use [**Components theming**](#components-theming) instead.
 :::
 
-Joy has 8 independent categories:
+Joy has 8 buckets that store the default tokens:
 
 - palette
 - fontSize
@@ -71,15 +71,15 @@ function App() {
 }
 ```
 
-You can also provide your own design tokens. Joy will convert them to CSS variables which are attached to the global stylesheet. It is very convenient because you can use any styling solution to read those CSS variables.
+You can also provide your own design tokens. Joy will convert them to CSS variables and you will be able to get them from `theme.vars.*`. It is very convenient because you can use any styling solution to read those CSS variables.
 
 If you want to see all of the default tokens and more realistic examples, check out the [theme tokens](/joy-ui/customization/theme-tokens/) page.
 
 ### Components theming
 
-This approach ensures that the style will applied only to a specific component.
+This approach ensures that the style is applied to every instances of a specific component.
 
-For example, target the button inside the `components` node via the `extendTheme`:
+Here is an example of theming the button:
 
 ```js
 import { CssVarsProvider, extendTheme } from '@mui/joy/styles';
@@ -90,8 +90,9 @@ const theme = extendTheme({
     // The identifier always start with `Joy${ComponentName}`.
     JoyButton: {
       styleOverrides: ({ theme }) => ({
-        fontWeight: theme.vars.fontWeight.lg,
-        boxShadow: theme.vars.shadow.xs,
+        // theme.vars.* return the CSS variables.
+        fontWeight: theme.vars.fontWeight.lg, // 'var(--joy-fontWeight-lg)'
+        boxShadow: theme.vars.shadow.xs, // 'var(--joy-shadow-xs)'
       }),
     },
   },
@@ -106,13 +107,13 @@ function App() {
 }
 ```
 
-For more details and examples, check out the [theme components](/joy-ui/customization/theme-components/) page.
+For more details and examples, check out the [theme components](/joy-ui/customization/theme-components/) page. If you need more details about using CSS variables in Joy, check out the [CSS variables](/joy-ui/customization/css-variables/) page.
 
 ## One-off customization
 
-To change the styles of _one single instance_ of a component, you can use one of the following options:
+To change the style of _one single instance_ of a component.
 
-### The `sx` prop
+### sx prop
 
 The [`sx` prop](/system/basics/#the-sx-prop) is the best option for adding style overrides to a single instance of a component in most cases. It can be used with all Joy UI components.
 
@@ -120,8 +121,8 @@ The [`sx` prop](/system/basics/#the-sx-prop) is the best option for adding style
 
 ## Reusable component
 
-### The `styled` function
+### styled function
 
 Best for creating your own reusable component. It can access to the theme and the output component automatically accepts the `sx` prop.
 
-{{"demo": "StyledComponent.js"}}
+{{"demo": "StyledComponent.js", "bg": true}}

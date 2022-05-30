@@ -13,7 +13,6 @@ const Select = styled('select')(({ theme }) => ({
   borderRadius: theme.vars.radius.xs,
   border: 'none',
   ...theme.variants.soft.neutral,
-  [theme.focus.selector]: theme.focus.default,
 }));
 
 const githubTheme = extendTheme({
@@ -55,7 +54,7 @@ const githubTheme = extendTheme({
             fontWeight: 600,
             minHeight: '32px',
             fontSize: '14px',
-            '--Button-gutter': '1rem',
+            '--Button-paddingInline': '1rem',
           }),
           ...(ownerState.color === 'success' &&
             ownerState.variant === 'solid' && {
@@ -115,7 +114,7 @@ const githubCode = `const githubTheme = extendTheme({
             fontWeight: 600,
             minHeight: '32px',
             fontSize: '14px',
-            '--Button-gutter': '1rem',
+            '--Button-paddingInline': '1rem',
           }),
           ...(ownerState.color === 'success' &&
             ownerState.variant === 'solid' && {

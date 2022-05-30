@@ -9,7 +9,7 @@
 
 ## Override default tokens
 
-To customize the default theme tokens, you have to use `extendTheme` API to create a theme and then pass it to `CssVarsProvider`.
+To customize the default theme tokens, you have to use `extendTheme` API to create a theme and then pass it to the `CssVarsProvider`.
 The specified tokens will be deeply merged with the default values.
 
 ```js
@@ -33,14 +33,14 @@ function App() {
 }
 ```
 
-Take a look at all of the default nodes in the [structure](#structure) section below.
+To see all of the default nodes, check out the [structure](#structure) section below.
 
 :::info
 **Note**: Joy will add the prefix (default as `joy`) to all CSS variables. If you want to change the prefix, simply do `<CssVarsProvider prefix="brand">`. The generated CSS variables will be:
 
-```css
---brand-palette-primary-50: /* color */ ;
---brand-palette-primary-100: /* color */ ;
+```diff
+- --joy-palette-primary-50: /* color */ ;
++ --brand-palette-primary-50: /* color */ ;
 ...
 ```
 
@@ -51,12 +51,12 @@ Take a look at all of the default nodes in the [structure](#structure) section b
 You can add any custom tokens to the theme and you will be able to use those tokens in APIs like `styled` and `sx` prop.
 
 ```ts
-// The values are valid CSS colors. https://www.w3.org/wiki/CSS/Properties/color/keywords
 extendTheme({
   colorSchemes: {
     light: {
       palette: {
-        // This is the new node. We recommend to limit to 3 levels deep, in this case `palette.brand.primary`.
+        // Example of new tokens.
+        // We recommend to limit to 3 levels deep, in this case `palette.brand.primary`.
         brand: {
           primary: 'green',
           secondary: 'red',
@@ -67,7 +67,8 @@ extendTheme({
 });
 ```
 
-For typescript user, you need to augment the theme structure to include the new tokens.
+:::info
+For **TypeScript**, you need to augment the theme structure to include the new tokens.
 
 ```ts
 import { CssVarsProvider, extendTheme } from '@mui/joy/styles';
@@ -82,11 +83,23 @@ declare module '@mui/joy/styles' {
 }
 ```
 
-For more details about the interfaces, take a look at the specific structure below.
+:::
+
+After that, you can use those tokens in the `styled` or `sx` prop:
+
+```jsx
+// The `sx` prop.
+<Button sx={{ color: 'brand.primary' }} />;
+
+// The styled function.
+const Text = styled('p')(({ theme }) => ({
+  color: theme.vars.palette.brand.primary,
+}));
+```
 
 ## Structure
 
-If you want to have different values for light and dark mode, specify the tokens in the `colorSchemes` node. The rest does not change between modes.
+If you want to have different values for light and dark modes, specify the tokens in the `colorSchemes` node. The rest does not change between modes.
 
 ### Color schemes
 
@@ -112,15 +125,15 @@ extendTheme({
           700: '#b91c1c',
           800: '#991b1b',
           900: '#7f1d1d',
-          // new tokens
+          // new token example
           gradient: 'linear-gradient(45deg, var(--joy-palette-primary-800), var(--joy-palette-primary-500))',
         },
         background: {
-          // new tokens
+          // new token example
           header: 'var(--joy-palette-neutral-100)',
         }
       },
-      // new tokens
+      // new token example
       opacity: {
         placeholder: '0.5',
       }
@@ -178,10 +191,21 @@ All the font sizes are listed [here](https://github.com/mui/material-ui/blob/mas
 ```js
 extendTheme({
   fontSize: {
-    // default token
-    md: '14px', // `rem` also work
+    // default tokens
+    // the value can be any valid CSS unit for the font-size.
+    // https://developer.mozilla.org/en-US/docs/Web/CSS/font-size#values
+    xs: '0.75rem',
+    sm: '0.875rem',
+    md: '1rem',
+    lg: '1.25rem',
+    xl: '1.5rem',
+    xl2: '1.875rem',
+    xl3: '2.25rem',
+    xl4: '3rem',
+    xl5: '3.75rem',
+    xl6: '4.5rem',
 
-    // new token
+    // new token example
     label: '0.75rem',
   },
 });
@@ -203,10 +227,14 @@ All the font family values are listed [here](https://github.com/mui/material-ui/
 ```js
 extendTheme({
   fontFamily: {
-    // default token
-    body: 'Inter, var(--joy-fontFamily-fallback)', // we recommend to append the fallback font.
+    // default tokens
+    body: '"Public Sans", var(--joy-fontFamily-fallback)',
+    display: '"Public Sans", var(--joy-fontFamily-fallback)',
+    code: 'Source Code Pro,ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace',
+    fallback:
+      '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
 
-    // new token
+    // new token example
     writing: "'Satisfy', cursive",
   },
 });
@@ -228,18 +256,22 @@ All the font weights are listed [here](https://github.com/mui/material-ui/blob/m
 ```js
 extendTheme({
   fontWeight: {
-    // default token
-    md: '600',
+    // default tokens
+    xs: 200,
+    sm: 300,
+    md: 500,
+    lg: 700,
+    xl: 800,
 
-    // new token
-    xl2: "900",
+    // new token example
+    black: 900,
   },
 });
 
 // For typescript, you need module augmentation to add the new tokens to the theme interface.
 declare module '@mui/joy/styles' {
   interface FontFamily {
-    xl2: string;
+    black: string;
   }
 }
 ```
@@ -253,11 +285,13 @@ All the line heights are listed [here](https://github.com/mui/material-ui/blob/m
 ```js
 extendTheme({
   lineHeight: {
-    // default token
-    md: '1.5',
+    // default tokens
+    sm: 1.25,
+    md: 1.5,
+    lg: 1.7,
 
-    // new token
-    xl: '2',
+    // new token example
+    xl: 2,
   },
 });
 
@@ -277,11 +311,13 @@ All the letter spacings are listed [here](https://github.com/mui/material-ui/blo
 
 ```js
 extendTheme({
-  lineHeight: {
-    // default token
-    lg: '0.15em',
+  letterSpacing: {
+    // default tokens
+    sm: '-0.01em',
+    md: '0.083em',
+    lg: '0.125em',
 
-    // new token
+    // new token example
     xl: '0.2em',
   },
 });
@@ -305,10 +341,12 @@ extendTheme({
   radius: {
     // default tokens
     xs: '4px',
-    sm: '6px',
+    sm: '8px',
     md: '12px',
+    lg: '16px',
+    xl: '20px',
 
-    // new token
+    // new token example
     xl2: '24px',
   },
 });
@@ -323,7 +361,7 @@ declare module '@mui/joy/styles' {
 
 ### Shadow
 
-All the shadows are listed [here](https://github.com/mui/material-ui/blob/master/packages/mui-joy/src/styles/types/shadow.ts). We recommend to use `var(--joy-shadowRing)` and `var(--joy-shadowChannel)` for creating shadows because it lets the shadow color to be customized on the component.
+All the shadows are listed [here](https://github.com/mui/material-ui/blob/master/packages/mui-joy/src/styles/types/shadow.ts). We recommend to use `var(--joy-shadowRing)` and `var(--joy-shadowChannel)` for creating the shadows because you can customize the shadow color on the component.
 
 **Example**:
 
@@ -331,7 +369,11 @@ All the shadows are listed [here](https://github.com/mui/material-ui/blob/master
 extendTheme({
   radius: {
     // default tokens
-    xs: 'var(--joy-shadowRing), 0 1px 2px 0 rgba(var(--joy-shadowChannel) / 0.12), 0 1px 4px 0 rgba(var(--joy-shadowChannel) / 0.08)',
+    xs: 'var(--joy-shadowRing), 0 1px 2px 0 rgba(var(--joy-shadowChannel) / 0.12)',
+    sm: '...',
+    md: '...',
+    lg: '...',
+    xl: '...',
 
     // new token
     xl2: 'var(--joy-shadowRing), 0 1px 4px 0 rgba(var(--joy-shadowChannel) / 0.2), 0 1px 6px 0 rgba(var(--joy-shadowChannel) / 0.12), 0 4px 20px 0 rgba(var(--joy-shadowChannel) / 0.1)',
