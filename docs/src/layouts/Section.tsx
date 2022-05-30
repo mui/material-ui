@@ -9,7 +9,7 @@ export default function Section({
   const map = {
     white: {
       light: 'common.white',
-      dark: 'primaryDark.800',
+      dark: 'primaryDark.900',
     },
     comfort: {
       light: 'grey.50',
