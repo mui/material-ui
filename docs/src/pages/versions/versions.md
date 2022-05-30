@@ -94,7 +94,7 @@ For teams and organizations that require additional support for older versions, 
 
 ### Long-term support (LTS)
 
-MUI will continue to give security updates and regressions support (for example, if there's any regression caused by Chrome, React, etc.) to the version prior to the current major until the next one is released.
+MUI will continue to provide security updates and regression support (for example, if there are any regressions caused by Chrome, React, etc.) to the version prior to the current major version.
 
 ## Deprecation practices
 
