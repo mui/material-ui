@@ -8,6 +8,7 @@
 
 ## Component identifier
 
+If you've used [Material UI](/material-ui/customization/theme-components/), you are probably familiar with this technique.
 To theme a specific component, specify the component identifier (`Joy{ComponentImportName}`) inside the `components` node.
 
 - Use `defaultProps` to change the default props of the component.
