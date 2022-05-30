@@ -152,7 +152,11 @@ const ChipRoot = styled('div', {
           marginLeft: -4,
         }),
         ...(ownerState.color !== 'default' && {
-          color: alpha(theme.palette[ownerState.color].contrastText, 0.7),
+          color: alpha(
+            theme.palette[ownerState.color].contrastText ||
+              theme.palette.getContrastText(theme.palette[ownerState.color].main),
+            0.7,
+          ),
           '&:hover, &:active': {
             color: theme.palette[ownerState.color].contrastText,
           },
