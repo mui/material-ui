@@ -1,12 +1,13 @@
 # Using CSS variables
 
-<p class="description">Learn how to use CSS variables to customize your application.</p>
+<p class="description">Learn how to use CSS variables to customize Joy UI's components.</p>
 
 ## Theme object
 
-The `CssVarsProvider` reads the theme input (or the default theme) and create the CSS variables according the theme structure. It also creates an object that refers to the generated CSS variables under `theme.vars` so that you can use the CSS variable from the javascript theme.
+The `CssVarsProvider` reads the theme input (or the default theme) and create the CSS variables according to the theme structure.
+It also creates an object that refers to the generated CSS variables under `theme.vars` so that you can use them from the JavaScript theme object.
 
-The `theme.vars` is available in all styling APIs that Joy offers:
+The `theme.vars` is available in all styling APIs that Joy UI offers:
 
 - `styled` function
   ```js
@@ -20,7 +21,7 @@ The `theme.vars` is available in all styling APIs that Joy offers:
   // The result is 'var(--joy-shadow-sm)'
   <Chip sx={(theme) => ({ boxShadow: theme.vars.shadow.sm })} />
   ```
-- style overrides (component theming)
+- style overrides (themed components)
   ```jsx
   extendTheme({
     components: {
@@ -37,7 +38,8 @@ The `theme.vars` is available in all styling APIs that Joy offers:
 
 ### Alpha channel colors
 
-Joy automatically generates the channel tokens (`mainChannel`, `lightChannel` and `darkChannel`) to be used with an opacity. You will find theme in these palettes:
+Joy UI automatically generates the channel tokens (`mainChannel`, `lightChannel` and `darkChannel`) to be used with an opacity.
+You will find them in these palettes:
 
 - primary
 - neutral
@@ -46,7 +48,7 @@ Joy automatically generates the channel tokens (`mainChannel`, `lightChannel` an
 - success
 - warning
 
-You can combine the channel tokens with an opacity like this:
+You can combine the channel tokens with an opacity value like this:
 
 ```js
 const Div = styled('div')(({ theme }) => ({
@@ -55,7 +57,7 @@ const Div = styled('div')(({ theme }) => ({
 ```
 
 :::warning
-⚠️ The format of the channel tokens is using empty space as a separator, eg `61 131 246`, which means you have to use `/` to combine the channel token with an opacity.
+⚠️ The format of the channel tokens is using empty space as a separator, e.g. `61 131 246`, which means you have to use `/` to combine the channel token with an opacity value.
 
 ```js
 `rgba(${theme.vars.palette.primary.mainChannel} / 0.12)`, ✅ correct format
@@ -66,7 +68,8 @@ const Div = styled('div')(({ theme }) => ({
 
 ### Raw value
 
-In some cases, you might want to use the raw value to create a new one. For example, you can create the `inset` shadow from the theme like this:
+In some cases, you might want to use the raw value to create a new one.
+For example, you can create the `inset` shadow from the theme like this:
 
 ```js
 const Div = styled('div')(({ theme }) => ({
@@ -85,7 +88,8 @@ You can't use `theme.vars` to create an inset shadow because the value refers to
 
 ## sx prop
 
-When you use the short-hand syntax inside the `sx` prop, Joy will try to resolve the value from `theme.vars.*`. You can use `.` notation to get the value of an object.
+When using the short-hand syntax inside the `sx` prop, Joy UI will try to resolve the value from `theme.vars.*`.
+You can use the `.` notation to get the value of an object.
 
 ```js
 <Chip
@@ -107,7 +111,8 @@ When you use the short-hand syntax inside the `sx` prop, Joy will try to resolve
 
 ## Custom prefix
 
-By default, the generated CSS variables are prefixed with `joy`. If you want to change the prefix to something else, provide the `prefix` prop to the `CssVarsProvider`:
+By default, the generated CSS variables are prefixed with `joy`.
+If you want to change the prefix to something else, provide the `prefix` prop to the `CssVarsProvider`:
 
 ```jsx
 import { CssVarsProvider } from '@mui/joy/styles';
