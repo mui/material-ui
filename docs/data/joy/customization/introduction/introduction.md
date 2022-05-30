@@ -1,4 +1,4 @@
-# Introduction
+# Approaches
 
 <p class="description">Learn which approach is recommended, depending on the situation, to customize Joy UI components.</p>
 
@@ -21,7 +21,7 @@ Here are some examples that reproduce popular designs out there (only the light 
 
 {{"demo": "ButtonThemes.js", "hideToolbar": true}}
 
-### Customizing tokens
+### Customizing design tokens
 
 Arguably the most important part of the theme is the design tokens.
 As the [W3C Community Group](https://github.com/design-tokens/community-group) defines it: _"Design tokens are indivisible pieces of a design system such as colors, spacing, typography scale."_

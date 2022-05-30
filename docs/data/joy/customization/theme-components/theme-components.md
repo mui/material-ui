@@ -1,6 +1,6 @@
 # Theme components
 
-<p class="description">Learn how to apply custom style to the components at the theme level.</p>
+<p class="description">Learn how to apply custom styles to components at the theme level.</p>
 
 <!-- This page should answer: -->
 <!-- How to customize a component -->
