@@ -107,7 +107,7 @@ function App() {
 }
 ```
 
-For more details and examples, check out the [theme components](/joy-ui/customization/theme-components/) page. If you need more details about using CSS variables in Joy, check out the [CSS variables](/joy-ui/customization/css-variables/) page.
+For more details and examples, check out the [theme components](/joy-ui/customization/theme-components/) page. If you need more details about using CSS variables in Joy, check out the [using CSS variables](/joy-ui/customization/using-css-variables/) page.
 
 ## One-off customization
 
