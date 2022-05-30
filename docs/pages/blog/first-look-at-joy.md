@@ -7,10 +7,6 @@ tags: ['News', 'MUI Core']
 card: true
 ---
 
-:::warning
-**work in progress**
-:::
-
 ## Introducing Joy UI
 
 If you're a close follower of everything MUI, you might be aware that we've been working on a new design system product.
