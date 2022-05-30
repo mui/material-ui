@@ -8,7 +8,7 @@ Joy UI builds up on this concept to develop its theme, consisting of two categor
 ## Low-level tokens
 
 Low-level tokens refer to the smallest units of style that defines the look and feel Joy UI has out-of-the-box.
-They're labeled as "low-level" given they're used to compose larger-order tokens, such as the global variant ones described below.
+They're labeled as _low-level_ because they can be used to compose larger tokens, such as the typography scale.
 
 ### Structure
 
@@ -21,7 +21,7 @@ Joy UI's default theme has three main categories of low-level design tokens:
 #### Color
 
 The first theme node within the color category is `colorSchemes`.
-It houses by default the `light` and `dark` nodes, and inside each one of them, there is the `palette` node, containing the [global variant values](/joy-ui/customization/global-variants) adjusted for both modes.
+It houses the `light` and `dark` nodes, and inside each one of them, there is a `palette` node, containing the [global variant tokens](#global-variant-tokens) adjusted for both modes.
 
 ```js
 colorSchemes: {
@@ -79,7 +79,7 @@ lineHeight: {...},
 letterSpacing: {...},
 ```
 
-They're then used to build up the Joy UI's typographic scale:
+They're then used to build up Joy UI's typographic scale:
 
 ```js
 typography: {
@@ -199,17 +199,17 @@ To style components without introducing new tokens, check out the [one-off styli
 ## Global variant tokens
 
 By default, Joy UI has four built-in global variants tokens: `plain`, `outlined`, `soft`, and `solid`.
-Check the [Global variants](/joy-ui/core-features/global-variant/) page within the Core features folder to learn more about it.
+To learn more about it, check the dedicated [global variants](/joy-ui/core-features/global-variant/) page.
 
 ### Structure
 
 The colors for each variant are defined inside the `palette` node.
-The variant's color token name is composed of three parts, in the format of **variant | state | CSS property**.
+The variant name is composed of three parts, in the format of **variant type | state | CSS property**.
 
 For example:
 
 - `solidBg` refers to the solid variant initial state (as there is none specified) background color.
-- `outlinedHoverBorder` refers to the outlined variant border color when hovered.
+- `outlinedHoverBorder` refers to the outlined variant hovered border color.
 
 ```js
 // theme
