@@ -10,7 +10,7 @@ A big thanks to the 8 contributors who made this release possible. Here are some
 
 - 🐛 bug fixes and 📚 documentation improvements.
 
-### `@mui/material@5.8.2`
+### `@mui/system@5.8.2`
 
 - &#8203;<!-- 04 -->[system] Add `getColorSchemeSelector` util (#32868) @siriwatknp
 
