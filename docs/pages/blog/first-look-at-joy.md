@@ -78,9 +78,9 @@ Follow the CodeSandbox links from the demos to experiment with Joy UI for yourse
 
 <img src="/static/blog/first-look-at-joy/email.png" style="width: 796px; margin-top: 8px; margin-bottom: 16px;" alt="Screenshot of an email mock up application built with Joy UI" />
 
-**People management UI－CodeSanbox**
+**Team management UI－CodeSanbox**
 
-<img src="/static/blog/first-look-at-joy/people.png" style="width: 796px; margin-top: 8px; margin-bottom: 16px;" alt="Screenshot of a people management mock up application built with Joy UI" />
+<img src="/static/blog/first-look-at-joy/people.png" style="width: 796px; margin-top: 8px; margin-bottom: 16px;" alt="Screenshot of a team management mock up application built with Joy UI" />
 
 **File management UI－CodeSanbox**
 
