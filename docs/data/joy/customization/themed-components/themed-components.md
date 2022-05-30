@@ -1,4 +1,4 @@
-# Theme components
+# Themed components
 
 <p class="description">Learn how to apply custom styles to components at the theme level.</p>
 

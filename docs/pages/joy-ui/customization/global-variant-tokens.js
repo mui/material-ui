@@ -4,7 +4,7 @@ import {
   demos,
   docs,
   demoComponents,
-} from 'docs/data/joy/customization/theme-components/theme-components.md?@mui/markdown';
+} from 'docs/data/joy/customization/global-variants-tokens/global-variants-tokens.md?@mui/markdown';
 
 export default function Page() {
   return <MarkdownDocs demos={demos} docs={docs} demoComponents={demoComponents} />;

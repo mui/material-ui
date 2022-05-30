@@ -51,8 +51,8 @@ const pages = [
         children: [
           { pathname: '/joy-ui/customization/default-theme' },
           { pathname: '/joy-ui/customization/design-tokens' },
-          { pathname: '/joy-ui/customization/theme-global-variants' },
-          { pathname: '/joy-ui/customization/theme-components' },
+          { pathname: '/joy-ui/customization/global-variant-tokens' },
+          { pathname: '/joy-ui/customization/themed-components' },
           { pathname: '/joy-ui/customization/using-css-variables', title: 'Using CSS variables' },
         ],
       },

@@ -21,27 +21,33 @@ Joy UI's default theme has three main categories of design tokens that defines t
 ### Color
 
 The first theme node within the color category is `colorSchemes`.
-It houses by default the `light` and `dark` nodes, and inside each one of them, there is the `palette` node, containing values adjusted for both modes.
+It houses by default the `light` and `dark` nodes, and inside each one of them, there is the `palette` node, containing the [global variant values](/joy-ui/customization/global-variants) adjusted for both modes.
 
 ```js
-extendTheme({
-  colorSchemes: {
-    light: {
-      palette: {
-        primary: {...},
-        neutral: {...},
-        ...
+colorSchemes: {
+  light: {
+    palette: {
+      primary: {
+        plainColor: 'valid CSS color',
+        plainHoverBg: 'valid CSS color',
+        plainActiveBg: 'valid CSS color',
       },
+      neutral: {...},
+      ...
     },
-    dark: {
-      palette: {
-        primary: {...},
-        neutral: {...},
-        ...
+  },
+  dark: {
+    palette: {
+      primary: {
+        plainColor: 'valid CSS color',
+        plainHoverBg: 'valid CSS color',
+        plainActiveBg: 'valid CSS color',
       },
+      neutral: {...},
+      ...
     },
-  }
-})
+  },
+}
 ```
 
 #### Channel tokens
@@ -68,13 +74,11 @@ There are two levels for typography-related nodes:
 These map out to common CSS typography properties.
 
 ```js
-extendTheme({
-  fontSize: {...},
-  fontFamily: {...},
-  fontWeight: {...},
-  lineHeight: {...},
-  letterSpacing: {...},
-})
+fontSize: {...},
+fontFamily: {...},
+fontWeight: {...},
+lineHeight: {...},
+letterSpacing: {...},
 ```
 
 #### Typographic scale
@@ -82,7 +86,7 @@ extendTheme({
 It refers to the opinionated typographic scale using the low-level tokens defined above.
 
 ```js
-extendTheme({
+typography: {
   h1: {
     fontFamily: 'var(--joy-fontFamily-display)',
     fontWeight: 'var(--joy-fontWeight-lg)' as CSSProperties['fontWeight'],
@@ -94,7 +98,7 @@ extendTheme({
   h2: {...},
   h3: {...},
   ...
-})
+}
 ```
 
 ### Shape
@@ -102,10 +106,8 @@ extendTheme({
 The two main theme nodes related to shape elements are:
 
 ```js
-extendTheme({
-  radius: {...},
-  shadow: {...},
-})
+radius: {...},
+shadow: {...},
 ```
 
 ## Overriding the default design tokens
