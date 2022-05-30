@@ -234,6 +234,7 @@ export default function FilesExample() {
               sx={{
                 '--Card-radius': (theme) => theme.vars.radius.sm,
                 bgcolor: 'background.componentBg',
+                boxShadow: 'none',
               }}
             >
               <CardOverflow
@@ -264,7 +265,7 @@ export default function FilesExample() {
                 </IconButton>
               </Box>
             </Card>
-            <Card sx={{ '--Card-radius': (theme) => theme.vars.radius.sm }}>
+            <Card sx={{ '--Card-radius': (theme) => theme.vars.radius.sm, boxShadow: 'none' }}>
               <CardCover>
                 <img
                   alt=""
@@ -298,6 +299,7 @@ export default function FilesExample() {
               sx={{
                 '--Card-radius': (theme) => theme.vars.radius.sm,
                 bgcolor: 'background.componentBg',
+                boxShadow: 'none',
               }}
             >
               <CardOverflow
@@ -367,8 +369,10 @@ export default function FilesExample() {
               src="https://images.unsplash.com/photo-1534067783941-51c9c23ecefd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80"
             />
           </AspectRatio>
-          <Box sx={{ p: 2, display: 'flex', gap: 1 }}>
-            <Typography>Shared with</Typography>
+          <Box sx={{ p: 2, display: 'flex', gap: 1, alignItems: 'center' }}>
+            <Typography level="body2" mr={1}>
+              Shared with
+            </Typography>
             <AvatarGroup size="sm" sx={{ '--Avatar-size': '24px' }}>
               <Avatar src="/static/images/avatar/1.jpg" />
               <Avatar src="/static/images/avatar/2.jpg" />
@@ -386,34 +390,33 @@ export default function FilesExample() {
               '& > *:nth-child(odd)': { color: 'text.secondary' },
             }}
           >
-            <Typography>Type</Typography>
-            <Typography>Image</Typography>
+            <Typography level="body2">Type</Typography>
+            <Typography level="body2">Image</Typography>
 
-            <Typography>Size</Typography>
-            <Typography>3,6 MB (3,258,385 bytes)</Typography>
+            <Typography level="body2">Size</Typography>
+            <Typography level="body2">3,6 MB (3,258,385 bytes)</Typography>
 
-            <Typography>Storage used</Typography>
-            <Typography>3,6 MB (3,258,385 bytes)</Typography>
+            <Typography level="body2">Storage used</Typography>
+            <Typography level="body2">3,6 MB (3,258,385 bytes)</Typography>
 
-            <Typography>Location</Typography>
-            <Typography>Photos</Typography>
+            <Typography level="body2">Location</Typography>
+            <Typography level="body2">Travel pictures</Typography>
 
-            <Typography>Owner</Typography>
-            <Typography>Andrew Smith</Typography>
+            <Typography level="body2">Owner</Typography>
+            <Typography level="body2">Michael Scott</Typography>
 
-            <Typography>Modified</Typography>
-            <Typography>26 May 2016</Typography>
+            <Typography level="body2">Modified</Typography>
+            <Typography level="body2">26 October 2016</Typography>
 
-            <Typography>Created</Typography>
-            <Typography>18 Mar 2015</Typography>
+            <Typography level="body2">Created</Typography>
+            <Typography level="body2">5 August 2016</Typography>
           </Box>
           <ListDivider component="hr" />
           <Box sx={{ p: 2 }}>
-            <Link component="button" endDecorator={<EditOutlinedIcon />}>
+            <Button variant="plain" size="sm" endIcon={<EditOutlinedIcon />} sx={{ pl: 1 }}>
               Add a description
-            </Link>
+            </Button>
           </Box>
-          <ListDivider component="hr" />
         </Sheet>
       </Layout.Root>
     </CssVarsProvider>
