@@ -8,7 +8,7 @@ _May 30, 2022_
 
 A big thanks to the 8 contributors who made this release possible. Here are some highlights ✨:
 
-TODO INSERT HIGHLIGHTS
+- 🐛 bug fixes and 📚 documentation improvements.
 
 ### `@mui/material@5.8.2`
 
