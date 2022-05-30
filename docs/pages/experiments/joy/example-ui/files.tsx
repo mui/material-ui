@@ -107,7 +107,7 @@ export default function FilesExample() {
             >
               <MenuIcon />
             </IconButton>
-            <IconButton size="sm" variant="solid" sx={{ display: { xs: 'none', sm: 'inherit' } }}>
+            <IconButton size="sm" variant="solid" sx={{ display: { xs: 'none', sm: 'initial' } }}>
               <FindInPageRoundedIcon />
             </IconButton>
             <Typography fontWeight={700}>Files</Typography>

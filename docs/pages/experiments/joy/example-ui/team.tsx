@@ -11,7 +11,7 @@ import ChipDelete from '@mui/joy/ChipDelete';
 import Typography from '@mui/joy/Typography';
 import TextField from '@mui/joy/TextField';
 import IconButton from '@mui/joy/IconButton';
-import Link from '@mui/joy/Link';
+import Button from '@mui/joy/Button';
 import List from '@mui/joy/List';
 import ListDivider from '@mui/joy/ListDivider';
 import ListItem from '@mui/joy/ListItem';
@@ -23,6 +23,9 @@ import Radio from '@mui/joy/Radio';
 import Sheet from '@mui/joy/Sheet';
 
 // Icons import
+import PeopleRoundedIcon from '@mui/icons-material/PeopleRounded';
+import AssignmentIndRoundedIcon from '@mui/icons-material/AssignmentIndRounded';
+import ArticleRoundedIcon from '@mui/icons-material/ArticleRounded';
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
 import DarkModeRoundedIcon from '@mui/icons-material/DarkModeRounded';
 import LightModeRoundedIcon from '@mui/icons-material/LightModeRounded';
@@ -31,10 +34,8 @@ import MailRoundedIcon from '@mui/icons-material/MailRounded';
 import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
 import KeyboardArrowUpRoundedIcon from '@mui/icons-material/KeyboardArrowUpRounded';
 import MenuIcon from '@mui/icons-material/Menu';
-import FolderOpenIcon from '@mui/icons-material/FolderOpen';
-import FolderOutlinedIcon from '@mui/icons-material/FolderOutlined';
-import ShareOutlinedIcon from '@mui/icons-material/ShareOutlined';
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import KeyboardArrowRightRoundedIcon from '@mui/icons-material/KeyboardArrowRightRounded';
+import GroupRoundedIcon from '@mui/icons-material/GroupRounded';
 
 // custom
 import exampleUITheme, { LoadFont } from 'docs/src/_experiments/JoyExampleUIs/exampleUITheme';
@@ -93,7 +94,7 @@ const TeamNav = () => (
         <ListItem>
           <ListItemButton variant="soft" color="primary">
             <ListItemDecorator sx={{ color: 'inherit' }}>
-              <FolderOpenIcon fontSize="small" />
+              <PeopleRoundedIcon fontSize="small" />
             </ListItemDecorator>
             <ListItemContent>People</ListItemContent>
           </ListItemButton>
@@ -101,7 +102,7 @@ const TeamNav = () => (
         <ListItem>
           <ListItemButton>
             <ListItemDecorator sx={{ color: 'neutral.500' }}>
-              <FolderOutlinedIcon fontSize="small" />
+              <AssignmentIndRoundedIcon fontSize="small" />
             </ListItemDecorator>
             <ListItemContent>Managing accounts</ListItemContent>
           </ListItemButton>
@@ -109,7 +110,7 @@ const TeamNav = () => (
         <ListItem>
           <ListItemButton>
             <ListItemDecorator sx={{ color: 'neutral.500' }}>
-              <ShareOutlinedIcon fontSize="small" />
+              <ArticleRoundedIcon fontSize="small" />
             </ListItemDecorator>
             <ListItemContent>Policies</ListItemContent>
             <Chip variant="soft" size="sm" sx={{ borderRadius: 'sm' }}>
@@ -151,15 +152,15 @@ export default function TeamExample() {
         <Layout.Header>
           <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 1.5 }}>
             <IconButton
-              variant="soft"
+              variant="outlined"
               size="sm"
               onClick={() => setDrawerOpen(true)}
               sx={{ display: { sm: 'none' } }}
             >
               <MenuIcon />
             </IconButton>
-            <IconButton size="sm" variant="solid">
-              <MailRoundedIcon />
+            <IconButton size="sm" variant="solid" sx={{ display: { xs: 'none', sm: 'initial' } }}>
+              <GroupRoundedIcon />
             </IconButton>
             <Typography fontWeight={700}>Team</Typography>
           </Box>
@@ -217,16 +218,25 @@ export default function TeamExample() {
               letterSpacing="md"
               fontWeight="lg"
             >
-              Filters
+              Filter by
             </Typography>
-            <Link fontSize="sm" component="button">
+            <Button size="sm" variant="plain" sx={{ fontSize: 'xs', px: 1 }}>
               Clear filters
-            </Link>
+            </Button>
           </Box>
           <Box sx={{ p: 2 }}>
-            <Box sx={{ display: 'flex', alignItems: 'center' }}>
-              <Typography>By keywords</Typography>
-              <KeyboardArrowUpRoundedIcon sx={{ ml: 'auto' }} />
+            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+              <Typography level="body2" textColor="text.primary">
+                By keywords
+              </Typography>
+              <IconButton
+                size="sm"
+                variant="plain"
+                color="primary"
+                sx={{ '--IconButton-size': '24px' }}
+              >
+                <KeyboardArrowUpRoundedIcon fontSize="small" color="primary" />
+              </IconButton>
             </Box>
             <Box sx={{ mt: 2 }}>
               <TextField placeholder="Position, skills, etc..." />
@@ -237,16 +247,25 @@ export default function TeamExample() {
                   endDecorator={<ChipDelete variant="soft" />}
                   sx={{ '--Chip-radius': (theme) => theme.vars.radius.sm }}
                 >
-                  ui designer
+                  UI designer
                 </Chip>
               </Box>
             </Box>
           </Box>
           <ListDivider component="hr" />
           <Box sx={{ p: 2 }}>
-            <Box sx={{ display: 'flex', alignItems: 'center' }}>
-              <Typography>By location</Typography>
-              <KeyboardArrowUpRoundedIcon sx={{ ml: 'auto' }} />
+            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+              <Typography level="body2" textColor="text.primary">
+                Location
+              </Typography>
+              <IconButton
+                size="sm"
+                variant="plain"
+                color="primary"
+                sx={{ '--IconButton-size': '24px' }}
+              >
+                <KeyboardArrowUpRoundedIcon fontSize="small" color="primary" />
+              </IconButton>
             </Box>
             <Box sx={{ mt: 2 }}>
               <TextField placeholder="Search for a city" />
@@ -271,40 +290,50 @@ export default function TeamExample() {
           </Box>
           <ListDivider component="hr" />
           <Box sx={{ p: 2 }}>
-            <Box sx={{ display: 'flex', alignItems: 'center' }}>
-              <Typography>By education</Typography>
-              <KeyboardArrowUpRoundedIcon sx={{ ml: 'auto' }} />
+            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+              <Typography level="body2" textColor="text.primary">
+                Education
+              </Typography>
+              <IconButton
+                size="sm"
+                variant="plain"
+                color="primary"
+                sx={{ '--IconButton-size': '24px' }}
+              >
+                <KeyboardArrowUpRoundedIcon fontSize="small" color="primary" />
+              </IconButton>
             </Box>
             <Box sx={{ mt: 2 }}>
               <RadioGroup name="education" defaultValue="any">
-                <Radio label="Any" value="any" />
-                <Radio label="High School" value="high-school" />
-                <Radio label="College" value="college" />
-                <Radio label="Post-graduate" value="post-graduate" />
+                <Radio label="Any" value="any" size="sm" />
+                <Radio label="High School" value="high-school" size="sm" />
+                <Radio label="College" value="college" size="sm" />
+                <Radio label="Post-graduate" value="post-graduate" size="sm" />
               </RadioGroup>
             </Box>
           </Box>
           <ListDivider component="hr" />
           <Box sx={{ p: 2 }}>
-            <Box sx={{ display: 'flex', alignItems: 'center' }}>
-              <Typography>By previous experience</Typography>
-              <KeyboardArrowDownRoundedIcon sx={{ ml: 'auto' }} />
+            <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+              <Typography level="body2" textColor="text.primary">
+                Previous experience
+              </Typography>
+              <IconButton
+                size="sm"
+                variant="plain"
+                color="primary"
+                sx={{ '--IconButton-size': '24px' }}
+              >
+                <KeyboardArrowDownRoundedIcon fontSize="small" color="primary" />
+              </IconButton>
             </Box>
           </Box>
-          <ListDivider component="hr" />
-          <Box sx={{ p: 2 }}>
-            <Box sx={{ display: 'flex', alignItems: 'center' }}>
-              <Typography>By personal characteristics</Typography>
-              <KeyboardArrowDownRoundedIcon sx={{ ml: 'auto' }} />
-            </Box>
-          </Box>
-          <ListDivider component="hr" />
         </Layout.SidePane>
         <Layout.Main>
           <List
             sx={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))',
+              gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
               gap: 2,
             }}
           >
@@ -313,17 +342,22 @@ export default function TeamExample() {
                 key={index}
                 component="li"
                 variant="outlined"
-                sx={{ borderRadius: 'sm', p: 2, listStyle: 'none' }}
+                sx={{
+                  bgcolor: 'background.componentBg',
+                  borderRadius: 'sm',
+                  p: 2,
+                  listStyle: 'none',
+                }}
               >
                 <Box sx={{ display: 'flex', gap: 2 }}>
                   <Avatar src="/static/images/avatar/1.jpg" sx={{ borderRadius: 'sm' }} />
                   <Box>
                     <Typography>Andrew Smith</Typography>
-                    <Typography level="body2">UI Designer</Typography>
+                    <Typography level="body3">UI Designer</Typography>
                   </Box>
                 </Box>
                 <ListDivider component="div" sx={{ my: 2 }} />
-                <List sx={{ '--List-decorator-width': '52px' }}>
+                <List sx={{ '--List-decorator-width': '48px' }}>
                   <ListItem sx={{ alignItems: 'flex-start' }}>
                     <ListItemDecorator
                       sx={{
@@ -344,8 +378,8 @@ export default function TeamExample() {
                       />
                     </ListItemDecorator>
                     <ListItemContent>
-                      <Typography>Senior designer</Typography>
-                      <Typography level="body2">Dribbble</Typography>
+                      <Typography level="body2">Senior designer</Typography>
+                      <Typography level="body3">Dribbble</Typography>
                     </ListItemContent>
                     <Typography level="body2">2015-now</Typography>
                   </ListItem>
@@ -357,15 +391,20 @@ export default function TeamExample() {
                       />
                     </ListItemDecorator>
                     <ListItemContent>
-                      <Typography>Desinger</Typography>
-                      <Typography level="body2">Pinterest</Typography>
+                      <Typography level="body2">Desinger</Typography>
+                      <Typography level="body3">Pinterest</Typography>
                     </ListItemContent>
                     <Typography level="body2">2012-2015</Typography>
                   </ListItem>
                 </List>
-                <Link endDecorator={<ArrowForwardIcon />} sx={{ mt: 2 }}>
+                <Button
+                  size="sm"
+                  variant="plain"
+                  endIcon={<KeyboardArrowRightRoundedIcon fontSize="small" />}
+                  sx={{ px: 1, mt: 1 }}
+                >
                   Expand
-                </Link>
+                </Button>
                 <ListDivider component="div" sx={{ my: 2 }} />
                 <Typography fontSize="sm">Skills tags:</Typography>
                 <Box sx={{ mt: 1.5, display: 'flex', gap: 1 }}>
