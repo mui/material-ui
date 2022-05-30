@@ -21,29 +21,19 @@ Here are some examples that reproduce popular designs out there (only the light 
 
 {{"demo": "ButtonThemes.js", "hideToolbar": true}}
 
-### Customizing design tokens
+### Customizing theme tokens
 
-Arguably the most important part of the theme is the design tokens.
-As the [W3C Community Group](https://github.com/design-tokens/community-group) defines it: _"Design tokens are indivisible pieces of a design system such as colors, spacing, typography scale."_
-
-Joy UI has design tokens defined for 8 CSS properties:
-
-- `palette`
-- `fontSize`
-- `fontFamily`
-- `fontWeight`
-- `lineHeight`
-- `letterSpacing`
-- `radius`
-- `shadow`
-
-To print your own design language into Joy UI components in a scalable way, override the default design tokens.
+To print your own design language into Joy UI components in a scalable way, override the default theme tokens.
 To do that, always use the `extendTheme` function as the customized tokens will be deeply merged into the default theme.
 
 Under the hood, Joy will convert the tokens to CSS variables, enabling you to get them through `theme.vars.*`, which is very convenient as you can use any styling solution to read those CSS vars.
 
+:::info
+Fore more in-depth about low-level and global variant tokens, check the [Theme tokens](<(/joy-ui/customization/theme-tokens/)>) article.
+:::
+
 :::warning
-Keep in mind that customizing the design tokens will affect all components. If you want to apply a specific style to a component, you should use [**Components theming**](#components-theming) instead.
+Keep in mind that customizing the design tokens will affect all components. If you want to apply a specific style to a component, you should use [**themed components**](#themed-components) instead.
 :::
 
 ```js
@@ -78,6 +68,10 @@ function App() {
 ### Components theming
 
 Customizing components through the theme assures that every instance of that component has the same style.
+
+:::info
+Check the [specific themed components article](/joy-ui/customization/themed-tokens/) for more in-depth instructions.
+:::
 
 Here is an example of customizing the Button's default `fontWeight` and `boxShadow`:
 

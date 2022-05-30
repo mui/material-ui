@@ -44,18 +44,11 @@ const pages = [
     pathname: '/joy-ui/customization',
     icon: 'CreateIcon',
     children: [
-      { pathname: '/joy-ui/customization/introduction' },
-      {
-        pathname: '/joy-ui/customization/default-theme',
-        subheader: 'Theme',
-        children: [
-          { pathname: '/joy-ui/customization/default-theme' },
-          { pathname: '/joy-ui/customization/design-tokens' },
-          { pathname: '/joy-ui/customization/global-variant-tokens' },
-          { pathname: '/joy-ui/customization/themed-components' },
-          { pathname: '/joy-ui/customization/using-css-variables', title: 'Using CSS variables' },
-        ],
-      },
+      { pathname: '/joy-ui/customization/approaches' },
+      { pathname: '/joy-ui/customization/default-theme' },
+      { pathname: '/joy-ui/customization/theme-tokens' },
+      { pathname: '/joy-ui/customization/themed-components' },
+      { pathname: '/joy-ui/customization/using-css-variables', title: 'Using CSS variables' },
     ],
   },
 ];
