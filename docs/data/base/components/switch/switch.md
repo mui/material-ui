@@ -1,18 +1,17 @@
 ---
 product: base
-title: React Switch component
+title: Unstyled React Switch component and hook
 components: SwitchUnstyled
 githubLabel: 'component: switch'
-waiAria: https://www.w3.org/TR/wai-aria-practices/#switch
+waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/switch/
 packageName: '@mui/base'
 ---
 
-# Switch
+# Unstyled switch
 
-<p class="description">The Switch component lets you toggle the state of a single setting on or off.</p>
+<p class="description">The <code>SwitchUnstyled</code> component provides users with a switch for toggling between two mutually exclusive states.</p>
 
-Switches can be used on either desktop or mobile but it has been the preferred way for toggling settings in the latter.
-To make the switch accessible, you should ensure the corresponding label reflects the current state of the switch.
+Switches are UI elements that let users choose between two states—most commonly on/off.
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
@@ -22,22 +21,39 @@ To make the switch accessible, you should ensure the corresponding label reflect
 import SwitchUnstyled from '@mui/base/SwitchUnstyled';
 ```
 
-The `SwitchUnstyled` component provides default components and assigns CSS classes you can style entirely on your own.
-You are free to choose any styling solution - plain CSS classes, a CSS framework, Emotion, etc.
-It is also possible to replace these default components by other HTML elements or custom components.
+## Basic switch
 
-There are three components you can override by the `components` prop: `Root`, `Thumb` and `Input`. Each one's props can be set using the `componentsProps` object.
+The `SwitchUnstyled` component is composed of a root `<span>` that houses three interior elements—a track, a thumb, and an input—and it assigns CSS classes for styling each piece:
+
+```html
+<span class="MuiSwitch-root Mui-checked">
+  <span class="MuiSwitch-track"></span>
+  <span class="MuiSwitch-thumb"></span>
+  <input type="checkbox" aria-label="Demo switch" class="MuiSwitch-input" checked />
+</span>
+```
+
+You can set the props for these interior components using the `componentsProps` object.
+
+You can also override them entirely with the `components` prop, to replace them with other HTML elements or custom components.
+
+The following demo shows how to assign styles and props to the interior elements of the `SwitchUnstyled` component:
 
 {{"demo": "UnstyledSwitches.js"}}
 
-## useSwitch
+## Accessibility
 
-For the ultimate customizability, a `useSwitch` hook is available.
-It accepts almost the same options as the SwitchUnstyled component minus the `component`, `components`, and `componentsProps` props.
+To make the `SwitchUnstyled` component accessible, you should ensure that the corresponding labels reflect the current state of the switch.
 
-```jsx
+## The useSwitch hook
+
+```js
 import { useSwitch } from '@mui/base/SwitchUnstyled';
 ```
+
+The `useSwitch` hook lets you use the functionality of `SwitchUnstyled` in other components.
+
+It accepts the same options as the `SwitchUnstyled` component, aside from the `component`, `components`, and `componentsProps` props.
 
 ### Basic example
 

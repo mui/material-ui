@@ -17,7 +17,7 @@ const useUtilityClasses = () => {
 };
 
 const CardContentRoot = styled('div', {
-  name: 'MuiCardContent',
+  name: 'JoyCardContent',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: CardContentProps }>({
@@ -30,7 +30,7 @@ const CardContentRoot = styled('div', {
 const CardContent = React.forwardRef(function CardContent(inProps, ref) {
   const props = useThemeProps<typeof inProps & CardContentProps>({
     props: inProps,
-    name: 'MuiCardContent',
+    name: 'JoyCardContent',
   });
 
   const { className, component = 'div', children, ...other } = props;
@@ -74,6 +74,14 @@ CardContent.propTypes /* remove-proptypes */ = {
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
 } as any;
 
 export default CardContent;

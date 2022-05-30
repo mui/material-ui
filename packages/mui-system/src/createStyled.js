@@ -140,7 +140,7 @@ export default function createStyled(input = {}) {
             const resolvedStyleOverrides = {};
             Object.entries(styleOverrides).forEach(([slotKey, slotStyle]) => {
               resolvedStyleOverrides[slotKey] =
-                typeof slotStyle === 'function' ? slotStyle(props) : slotStyle;
+                typeof slotStyle === 'function' ? slotStyle({ ...props, theme }) : slotStyle;
             });
             return overridesResolver(props, resolvedStyleOverrides);
           }

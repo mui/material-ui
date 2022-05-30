@@ -20,7 +20,7 @@ export interface CssBaselineProps extends StyledComponentProps<never> {
  *
  * Demos:
  *
- * - [Css Baseline](https://mui.com/material-ui/react-css-baseline/)
+ * - [Css baseline](https://mui.com/material-ui/react-css-baseline/)
  *
  * API:
  *

@@ -12,7 +12,7 @@ export interface GlobalStylesProps {
  *
  * Demos:
  *
- * - [How To Customize](https://mui.com/material-ui/customization/how-to-customize/)
+ * - [How to customize](https://mui.com/material-ui/customization/how-to-customize/)
  *
  * API:
  *

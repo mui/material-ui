@@ -31,7 +31,7 @@ Box 组件能够封装您的组件。 它创建了一个新的 DOM 元素，默�
 
 当所需的更改与新的 DOM 元素分开时比较有效。 例如，您可以使用这个方法来更改边距。
 
-但是，有时您的目标是下层的 DOM 元素。 例如，您想更改按钮的边线， 但是按钮组件已经定义自己的样式， 此时您无法使用CSS继承来解决这个问题。 为了回避这个CSS继承无效的问题， 如该组件的子组件是一个 Material-UI 组件，您可直接在该组件上定义 [`sx`](/system/basics/#the-sx-prop) 属性。
+但是，有时您的目标是下层的 DOM 元素。 例如，您想更改按钮的边线， 但是按钮组件已经定义自己的样式， 此时您无法使用 CSS 继承来解决这个问题。 为了回避这个 CSS 继承无效的问题， 如该组件的子组件是一个 Material-UI 组件，您可直接在该组件上定义 [`sx`](/system/basics/#the-sx-prop) 属性。
 
 ```diff
 -<Box sx={{ border: '1px dashed grey' }}>
@@ -51,7 +51,7 @@ Box 组件能够封装您的组件。 它创建了一个新的 DOM 元素，默�
 
 ## System props
 
-作为一个CSS通用组件，`Box` 组件同时支持所有的 [`system`](/system/properties/) 属性。 与定义属性一样，您可在组件中直接定义它们。 例如您想定义 margin-top 时
+作为一个 CSS 通用组件，`Box` 组件同时支持所有的 [`system`](/system/properties/) 属性。 与定义属性一样，您可在组件中直接定义它们。 例如您想定义 margin-top 时
 
 ```jsx
 <Box mt={2}>

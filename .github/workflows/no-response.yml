@@ -1,0 +1,26 @@
+name: No Response
+
+# Both `issue_comment` and `scheduled` event types are required for this Action
+# to work properly.
+on:
+  issue_comment:
+    types: [created]
+  schedule:
+    # Schedule for five minutes after the hour, every hour
+    - cron: '5 * * * *'
+
+jobs:
+  noResponse:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: lee-dohm/no-response@v0.5.0
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          # Number of days of inactivity before an Issue is closed for lack of response
+          daysUntilClose: 7
+          # Label requiring a response
+          responseRequiredLabel: 'status: needs more information'
+          # Comment to post when closing an Issue for lack of response. Set to `false` to disable
+          closeComment: >
+            Since the issue is missing key information and has been inactive for 7 days, it has been automatically closed.
+            If you wish to see the issue reopened, please provide the missing information.

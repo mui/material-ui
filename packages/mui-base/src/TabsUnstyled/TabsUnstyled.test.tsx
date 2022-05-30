@@ -10,9 +10,8 @@ import {
   createMount,
 } from 'test/utils';
 import Tab from '@mui/base/TabUnstyled';
-import Tabs, { tabsUnstyledClasses as classes } from '@mui/base/TabsUnstyled';
+import Tabs, { tabsUnstyledClasses as classes, TabsUnstyledProps } from '@mui/base/TabsUnstyled';
 import TabsList from '@mui/base/TabsListUnstyled';
-import TabsUnstyledProps from './TabsUnstyledProps';
 
 describe('<TabsUnstyled />', () => {
   const mount = createMount();
@@ -43,6 +42,7 @@ describe('<TabsUnstyled />', () => {
         expectedClassName: classes.root,
       },
     },
+    skip: ['componentsPropsCallbacks'], // not implemented yet
   }));
 
   it('can be named via `aria-label`', () => {

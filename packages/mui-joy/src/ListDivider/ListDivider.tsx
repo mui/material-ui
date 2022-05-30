@@ -18,7 +18,7 @@ const useUtilityClasses = (ownerState: ListDividerProps) => {
 };
 
 const ListDividerRoot = styled('li', {
-  name: 'MuiListDivider',
+  name: 'JoyListDivider',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: ListDividerProps & { row: boolean } }>(({ theme, ownerState }) => ({
@@ -53,7 +53,7 @@ const ListDividerRoot = styled('li', {
 const ListDivider = React.forwardRef(function ListDivider(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
-    name: 'MuiListDivider',
+    name: 'JoyListDivider',
   });
 
   const row = React.useContext(RowListContext);
@@ -93,6 +93,10 @@ ListDivider.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
+   * Override or extend the styles applied to the component.
+   */
+  classes: PropTypes.object,
+  /**
    * @ignore
    */
   className: PropTypes.string,
@@ -108,6 +112,14 @@ ListDivider.propTypes /* remove-proptypes */ = {
   inset: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['gutter', 'startDecorator', 'startContent']),
     PropTypes.string,
+  ]),
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
+    PropTypes.func,
+    PropTypes.object,
   ]),
 } as any;
 

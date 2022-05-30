@@ -20,7 +20,7 @@ Here are the most significant improvements in April:
   (Snackbar, List, Checkbox, Radio & Switch).
 - 🎁 We have added a demo for building a [TransferList](/material-ui/react-transfer-list/) component.
 
-  [![Transfer List](/static/blog/april-2019-update/transfer-list.png)](/material-ui/react-transfer-list/)
+  [![Transfer list](/static/blog/april-2019-update/transfer-list.png)](/material-ui/react-transfer-list/)
 
 - 💅 We have changed the class name generation to output global class names.
   We have seen many people struggling with our `classes` API.

@@ -1,13 +1,13 @@
 ---
 product: material-ui
-title: Tree View React component
+title: Tree view React component
 components: TreeView, TreeItem
 githubLabel: 'component: tree view'
-waiAria: https://www.w3.org/TR/wai-aria-practices/#TreeView
+waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/treeview/
 packageName: '@mui/lab'
 ---
 
-# Tree View
+# Tree view
 
 <p class="description">A tree view widget presents a hierarchical list.</p>
 
@@ -101,7 +101,7 @@ If it is true:
 
 ## Accessibility
 
-(WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#TreeView)
+(WAI-ARIA: https://www.w3.org/WAI/ARIA/apg/patterns/treeview/)
 
 The component follows the WAI-ARIA authoring practices.
 

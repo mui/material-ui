@@ -41,13 +41,6 @@ const GOLDs = [
     href: 'https://www.laststance.io/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
   },
   {
-    src: 'https://images.opencollective.com/movavi-software/a1d0167/logo/40.png',
-    srcSet: 'https://images.opencollective.com/movavi-software/a1d0167/logo/80.png 2x',
-    name: 'Movavi',
-    description: 'An all-in-one video maker for Mac.',
-    href: 'https://www.movavi.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
-  },
-  {
     src: 'https://images.opencollective.com/aussiecasinohex/923df37/logo/40.png',
     srcSet: 'https://images.opencollective.com/aussiecasinohex/923df37/logo/80.png 2x',
     name: 'CasinoHEX Australia',

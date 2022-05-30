@@ -44,7 +44,7 @@ const useUtilityClasses = () => {
  *
  * Demos:
  *
- * - [Table Pagination](https://mui.com/base/react-table-pagination/)
+ * - [Table pagination](https://mui.com/base/react-table-pagination/)
  *
  * API:
  *
@@ -213,6 +213,10 @@ TablePaginationUnstyled.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   children: PropTypes.node,
+  /**
+   * Override or extend the styles applied to the component.
+   */
+  classes: PropTypes.object,
   /**
    * @ignore
    */

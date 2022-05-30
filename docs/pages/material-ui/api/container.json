@@ -8,8 +8,7 @@
       "type": {
         "name": "union",
         "description": "'xs'<br>&#124;&nbsp;'sm'<br>&#124;&nbsp;'md'<br>&#124;&nbsp;'lg'<br>&#124;&nbsp;'xl'<br>&#124;&nbsp;false<br>&#124;&nbsp;string"
-      },
-      "default": "'lg'"
+      }
     },
     "sx": {
       "type": {
