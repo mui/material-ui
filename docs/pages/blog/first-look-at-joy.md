@@ -27,11 +27,14 @@ And, as we've reconfirmed with [our latest developer survey](/blog/2021-develope
 
 ## Why not just build a different theme?
 
-One of the main objectives with this new product is to break away from Material Design. A different theme would still require you and your team to have at least some sense of how Material Design is structured, and how that is expressed in Material UI. We wanted to provide an alternative to that. With Joy, we want you to be able to start with a fresh design by default.
+One of the main objectives with this new product is to break away from Material Design.
+A different theme would still require you and your team to have at least some sense of how Material Design is structured, and how that is expressed in Material UI. We wanted to provide an alternative to that. With Joy, we want you to be able to start with a fresh design by default.
 
 We also had many ideas for improving the experience of developing design systems, so a separate package is an opportunity to prototype and test some of these new features without running the risk of compromising the experience of the thousands of teams that use Material UI today.
 
-Material UI and Joy UI will still share many conventions and features, and overall philosophy. This will not only decrease the learning curve for adopting Joy, but also because we think of them both representing the ideal developer experience for developing design systems. So if at any time Joy UI has a feature that Material UI doesn't, it will catch-up at some point, and vice versa.
+Material UI and Joy UI will still share many conventions and features, and overall philosophy.
+This will not only decrease the learning curve for adopting Joy, but also because we think of them both representing the ideal developer experience for developing design systems.
+So if at any time Joy UI has a feature that Material UI doesn't, it will catch-up at some point, and vice versa.
 
 ## What are the new things we're introducing in Joy UI?
 
@@ -39,7 +42,11 @@ Aside from a fresher look and feel for your upcoming project, here are a few fea
 
 ### Global variants
 
-Instead of defining variants at the component level, Joy defines variants at the global level. This sounds bold at first, but the more we experiment the more it starts to make sense. Global variants mostly affect three CSS properties: color, background, and border. What this means is that you'll be able to switch between the same set of variants in any component, more easily maintaining consistency across your app. The four variants are text, outlined, soft, and solid.
+Instead of defining variants at the component level, Joy defines variants at the global level.
+This sounds bold at first, but the more we experiment the more it starts to make sense.
+Global variants mostly affect three CSS properties: color, background, and border.
+What this means is that you'll be able to switch between the same set of variants in any component, more easily maintaining consistency across your app.
+The four variants are text, outlined, soft, and solid.
 
 ### Component integration
 
@@ -61,9 +68,11 @@ Within each mode, you'll be able to have as many as you want－powered by CSS va
 
 ## When will I be able to use it?
 
-A significant part of the core infrastructure for Joy has already been developed, and we've been working for the last couple of months on adding more structural components. Once we get to a reasonable number, and with sufficient documentation, we plan to release an alpha version, most likely during the second half of 2022.
+A significant part of the core infrastructure for Joy has already been developed, and we've been working for the last couple of months on adding more structural components.
+Once we get to a reasonable number, and with sufficient documentation, we plan to release an alpha version, most likely during the second half of 2022.
 
-Meanwhile, we've developed a couple of mock UIs that showcase what Joy looks like out of the box, and to allow you to explore it further. Follow the CodeSandbox links from the demos to experiment with Joy UI for yourself.
+Meanwhile, we've developed a couple of mock UIs that showcase what Joy looks like out of the box, and to allow you to explore it further.
+Follow the CodeSandbox links from the demos to experiment with Joy UI for yourself.
 
 **Email UI－CodeSanbox**
 
@@ -77,6 +86,7 @@ Meanwhile, we've developed a couple of mock UIs that showcase what Joy looks lik
 
 <img src="/static/blog/first-look-at-joy/files.png" style="width: 796px; margin-top: 8px; margin-bottom: 16px;" alt="Screenshot of file management mock up application built with Joy UI" />
 
-We hope will get as excited as we are. Joy UI is just getting started, so stay tuned for more news about it in the near future!
+We hope will get as excited as we are.
+Joy UI is just getting started, so stay tuned for more news about it in the near future!
 
 Happy developing! 👩‍💻
