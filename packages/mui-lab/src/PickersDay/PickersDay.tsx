@@ -1,0 +1,39 @@
+import * as React from 'react';
+import { PickersDay as XPickersDay, PickersDayProps } from '@mui/x-date-pickers/PickersDay';
+
+let warnedOnce = false;
+
+const warn = () => {
+  if (!warnedOnce) {
+    console.warn(
+      [
+        'MUI: The PickersDay component was moved from `@mui/lab` to `@mui/x-date-pickers`',
+        'The import from `@mui/lab` will be removed in the first release of July 2022.',
+        '',
+        "You should use `import { PickersDay } from '@mui/x-date-pickers'`",
+        "or `import { PickersDay } from '@mui/x-date-pickers/PickersDay'`",
+        '',
+        'More information about this migration on our blog: https://mui.com/blog/lab-date-pickers-to-mui-x/.',
+      ].join('\n'),
+    );
+
+    warnedOnce = true;
+  }
+};
+
+type PickersDayComponent = (<TDate>(
+  props: PickersDayProps<TDate> & React.RefAttributes<HTMLDivElement>,
+) => JSX.Element) & { propTypes?: any };
+
+/**
+ * @ignore - do not document.
+ */
+const PickersDay = React.forwardRef(function DeprecatedPickersDay<TDate>(
+  props: PickersDayProps<TDate>,
+) {
+  warn();
+
+  return <XPickersDay {...props} />;
+}) as PickersDayComponent;
+
+export default PickersDay;
