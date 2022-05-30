@@ -42,7 +42,7 @@ const pages = [
   },
   {
     pathname: '/joy-ui/customization',
-    icon: 'StyleIcon',
+    icon: 'CreateIcon',
     children: [
       { pathname: '/joy-ui/customization/introduction' },
       { pathname: '/joy-ui/customization/theme-tokens' },
