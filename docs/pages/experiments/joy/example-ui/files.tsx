@@ -15,16 +15,20 @@ import CardContent from '@mui/joy/CardContent';
 import Typography from '@mui/joy/Typography';
 import TextField from '@mui/joy/TextField';
 import IconButton from '@mui/joy/IconButton';
-import Link from '@mui/joy/Link';
 import ListDivider from '@mui/joy/ListDivider';
 import Sheet from '@mui/joy/Sheet';
+import List from '@mui/joy/List';
+import ListItem from '@mui/joy/ListItem';
+import ListItemButton from '@mui/joy/ListItemButton';
+import ListItemDecorator from '@mui/joy/ListItemDecorator';
+import ListItemContent from '@mui/joy/ListItemContent';
 
 // Icons import
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
 import DarkModeRoundedIcon from '@mui/icons-material/DarkModeRounded';
 import LightModeRoundedIcon from '@mui/icons-material/LightModeRounded';
 import GridViewRoundedIcon from '@mui/icons-material/GridViewRounded';
-import MailRoundedIcon from '@mui/icons-material/MailRounded';
+import FindInPageRoundedIcon from '@mui/icons-material/FindInPageRounded';
 import MenuIcon from '@mui/icons-material/Menu';
 import FolderOpenIcon from '@mui/icons-material/FolderOpen';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
@@ -96,15 +100,15 @@ export default function FilesExample() {
         <Layout.Header>
           <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 1.5 }}>
             <IconButton
-              variant="soft"
+              variant="outlined"
               size="sm"
               onClick={() => setDrawerOpen(true)}
               sx={{ display: { sm: 'none' } }}
             >
               <MenuIcon />
             </IconButton>
-            <IconButton size="sm" variant="solid">
-              <MailRoundedIcon />
+            <IconButton size="sm" variant="solid" sx={{ display: { xs: 'none', sm: 'inherit' } }}>
+              <FindInPageRoundedIcon />
             </IconButton>
             <Typography fontWeight={700}>Files</Typography>
           </Box>
@@ -159,7 +163,7 @@ export default function FilesExample() {
                 borderRadius: 'sm',
                 gridColumn: '1/-1',
                 bgcolor: 'background.componentBg',
-                display: 'grid',
+                display: { xs: 'none', sm: 'grid' },
                 gridTemplateColumns: '1fr 1fr 1fr 1fr',
                 '& > *': {
                   p: 2,
@@ -229,6 +233,94 @@ export default function FilesExample() {
                 </AvatarGroup>
               </Box>
             </Sheet>
+            <Sheet
+              variant="outlined"
+              sx={{
+                display: { xs: 'inherit', sm: 'none' },
+                borderRadius: 'sm',
+                bgcolor: 'background.componentBg',
+                overflow: 'auto',
+                '& > *': {
+                  '&:nth-child(n):not(:nth-last-child(-n+4))': {
+                    borderBottom: '1px solid',
+                    borderColor: 'divider',
+                  },
+                },
+              }}
+            >
+              <List
+                aria-labelledby="table-in-list"
+                sx={{
+                  '& .JoyListItemButton-root': { p: '0px' },
+                }}
+              >
+                <ListItem>
+                  <ListItemButton variant="soft" sx={{ bgcolor: 'transparent' }}>
+                    <ListItemContent sx={{ p: 2 }}>
+                      <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 1 }}>
+                        <Typography
+                          level="body2"
+                          startDecorator={<FolderOpenIcon color="primary" />}
+                          sx={{ alignItems: 'flex-start' }}
+                        >
+                          Travel pictures
+                        </Typography>
+                        <Typography level="body2" sx={{ color: 'success.600' }}>
+                          987.5MB
+                        </Typography>
+                      </Box>
+                      <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 2 }}>
+                        <Box>
+                          <AvatarGroup
+                            size="sm"
+                            sx={{ '--AvatarGroup-gap': '-8px', '--Avatar-size': '24px' }}
+                          >
+                            <Avatar src="/static/images/avatar/1.jpg" />
+                            <Avatar src="/static/images/avatar/2.jpg" />
+                            <Avatar src="/static/images/avatar/3.jpg" />
+                            <Avatar src="/static/images/avatar/4.jpg" />
+                          </AvatarGroup>
+                        </Box>
+                        <Typography level="body2">21 October 2011, 3PM</Typography>
+                      </Box>
+                    </ListItemContent>
+                  </ListItemButton>
+                </ListItem>
+                <ListDivider sx={{ m: 0 }} />
+                <ListItem>
+                  <ListItemButton variant="soft" sx={{ bgcolor: 'transparent' }}>
+                    <ListItemContent sx={{ p: 2 }}>
+                      <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 1 }}>
+                        <Typography
+                          level="body2"
+                          startDecorator={<FolderOpenIcon color="primary" />}
+                          sx={{ alignItems: 'flex-start' }}
+                        >
+                          Important documents
+                        </Typography>
+                        <Typography level="body2" sx={{ color: 'success.600' }}>
+                          123.3KB
+                        </Typography>
+                      </Box>
+                      <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 2 }}>
+                        <Box>
+                          <AvatarGroup
+                            size="sm"
+                            sx={{ '--AvatarGroup-gap': '-8px', '--Avatar-size': '24px' }}
+                          >
+                            <Avatar src="/static/images/avatar/1.jpg" />
+                            <Avatar src="/static/images/avatar/2.jpg" />
+                            <Avatar src="/static/images/avatar/3.jpg" />
+                            <Avatar src="/static/images/avatar/4.jpg" />
+                          </AvatarGroup>
+                        </Box>
+                        <Typography level="body2">26 May 2010, 7PM</Typography>
+                      </Box>
+                    </ListItemContent>
+                  </ListItemButton>
+                </ListItem>
+              </List>
+            </Sheet>
             <Card
               variant="outlined"
               sx={{
@@ -240,7 +332,7 @@ export default function FilesExample() {
               <CardOverflow
                 sx={{ borderBottom: '1px solid', borderColor: 'neutral.outlinedBorder' }}
               >
-                <AspectRatio ratio="4/3" color="primary">
+                <AspectRatio ratio="16/9" color="primary">
                   <Typography
                     sx={{
                       display: 'flex',
@@ -289,7 +381,7 @@ export default function FilesExample() {
                     Added 5 Aug 2016
                   </Typography>
                 </Box>
-                <IconButton variant="plain" color="neutral">
+                <IconButton variant="plain" color="neutral" sx={{ color: '#fff' }}>
                   <EditOutlinedIcon />
                 </IconButton>
               </CardContent>
@@ -305,7 +397,7 @@ export default function FilesExample() {
               <CardOverflow
                 sx={{ borderBottom: '1px solid', borderColor: 'neutral.outlinedBorder' }}
               >
-                <AspectRatio ratio="4/3" color="primary">
+                <AspectRatio ratio="16/9" color="primary">
                   <Typography
                     sx={{
                       display: 'flex',
@@ -334,6 +426,7 @@ export default function FilesExample() {
         </Layout.Main>
         <Sheet
           sx={{
+            display: { xs: 'none', sm: 'initial' },
             borderLeft: '1px solid',
             borderColor: 'neutral.outlinedBorder',
             bgcolor: 'background.componentBg',
@@ -391,25 +484,39 @@ export default function FilesExample() {
             }}
           >
             <Typography level="body2">Type</Typography>
-            <Typography level="body2">Image</Typography>
+            <Typography level="body2" textColor="text.primary">
+              Image
+            </Typography>
 
             <Typography level="body2">Size</Typography>
-            <Typography level="body2">3,6 MB (3,258,385 bytes)</Typography>
+            <Typography level="body2" textColor="text.primary">
+              3,6 MB (3,258,385 bytes)
+            </Typography>
 
             <Typography level="body2">Storage used</Typography>
-            <Typography level="body2">3,6 MB (3,258,385 bytes)</Typography>
+            <Typography level="body2" textColor="text.primary">
+              3,6 MB (3,258,385 bytes)
+            </Typography>
 
             <Typography level="body2">Location</Typography>
-            <Typography level="body2">Travel pictures</Typography>
+            <Typography level="body2" textColor="text.primary">
+              Travel pictures
+            </Typography>
 
             <Typography level="body2">Owner</Typography>
-            <Typography level="body2">Michael Scott</Typography>
+            <Typography level="body2" textColor="text.primary">
+              Michael Scott
+            </Typography>
 
             <Typography level="body2">Modified</Typography>
-            <Typography level="body2">26 October 2016</Typography>
+            <Typography level="body2" textColor="text.primary">
+              26 October 2016
+            </Typography>
 
             <Typography level="body2">Created</Typography>
-            <Typography level="body2">5 August 2016</Typography>
+            <Typography level="body2" textColor="text.primary">
+              5 August 2016
+            </Typography>
           </Box>
           <ListDivider component="hr" />
           <Box sx={{ p: 2 }}>
