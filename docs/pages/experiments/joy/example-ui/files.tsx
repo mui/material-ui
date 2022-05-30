@@ -519,8 +519,8 @@ export default function FilesExample() {
             </Typography>
           </Box>
           <ListDivider component="hr" />
-          <Box sx={{ p: 2 }}>
-            <Button variant="plain" size="sm" endIcon={<EditOutlinedIcon />} sx={{ pl: 1 }}>
+          <Box sx={{ py: 2, px: 1 }}>
+            <Button variant="plain" size="sm" endIcon={<EditOutlinedIcon />}>
               Add a description
             </Button>
           </Box>

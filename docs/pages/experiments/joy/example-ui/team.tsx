@@ -69,43 +69,47 @@ const ColorSchemeToggle = () => {
 };
 
 const TeamNav = () => (
-  <List sx={{ '--List-item-radius': '8px', '--List-decorator-width': '24px' }}>
-    <ListItem nested>
-      <ListItem component="div" id="nav-list-team">
-        <ListItemContent
-          sx={{
-            fontWeight: 'lg',
-            fontSize: 'xs2',
-            textTransform: 'uppercase',
-            letterSpacing: '.1rem',
-            color: 'text.tertiary',
-          }}
+  <List size="sm" sx={{ '--List-item-radius': '8px' }}>
+    <ListItem nested sx={{ p: 0 }}>
+      <Box sx={{ mb: 1, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+        <Typography
+          id="nav-list-browse"
+          textColor="neutral.500"
+          fontWeight={700}
+          sx={{ fontSize: '10px', textTransform: 'uppercase', letterSpacing: '.1rem' }}
         >
-          Team
-        </ListItemContent>
-        <KeyboardArrowDownRoundedIcon color="primary" />
-      </ListItem>
-      <List aria-labelledby="nav-list-team">
+          Browse
+        </Typography>
+        <IconButton size="sm" variant="plain" color="primary" sx={{ '--IconButton-size': '24px' }}>
+          <KeyboardArrowDownRoundedIcon fontSize="small" color="primary" />
+        </IconButton>
+      </Box>
+      <List
+        aria-labelledby="nav-list-browse"
+        sx={{
+          '& .JoyListItemButton-root': { p: '8px' },
+        }}
+      >
         <ListItem>
-          <ListItemButton selected variant="soft">
-            <ListItemDecorator>
-              <FolderOpenIcon fontSize="md" />
+          <ListItemButton variant="soft" color="primary">
+            <ListItemDecorator sx={{ color: 'inherit' }}>
+              <FolderOpenIcon fontSize="small" />
             </ListItemDecorator>
             <ListItemContent>People</ListItemContent>
           </ListItemButton>
         </ListItem>
         <ListItem>
           <ListItemButton>
-            <ListItemDecorator>
-              <ShareOutlinedIcon fontSize="md" />
+            <ListItemDecorator sx={{ color: 'neutral.500' }}>
+              <FolderOutlinedIcon fontSize="small" />
             </ListItemDecorator>
             <ListItemContent>Managing accounts</ListItemContent>
           </ListItemButton>
         </ListItem>
         <ListItem>
           <ListItemButton>
-            <ListItemDecorator>
-              <FolderOutlinedIcon fontSize="md" />
+            <ListItemDecorator sx={{ color: 'neutral.500' }}>
+              <ShareOutlinedIcon fontSize="small" />
             </ListItemDecorator>
             <ListItemContent>Policies</ListItemContent>
             <Chip variant="soft" size="sm" sx={{ borderRadius: 'sm' }}>
