@@ -19,7 +19,7 @@ const planInfo = {
     color: 'green',
     title: 'Community',
     description:
-      'Get all the MIT-licensed MUI component libraries, including open-source and open-core code.',
+      'Get started with the industry-standard UI library for building React user interfaces, MIT-licensed.',
   },
   pro: {
     color: 'blue',
@@ -30,7 +30,7 @@ const planInfo = {
     color: 'gold',
     title: 'Premium',
     description:
-      'The most advanced features for handling data-rich applications, as well as the highest priority for support.',
+      'The most advanced features for handling data-rich applications, and the highest priority for support.',
   },
 } as const;
 
