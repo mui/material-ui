@@ -85,9 +85,13 @@ export default function TemplateCollection() {
                   onClick={() => {
                     const { files } = codeSandbox.createJoyTemplate({
                       ...item,
-                      title: name,
+                      title: `${startCase(name)} Template - Joy UI`,
+                      githubLocation: `${process.env.SOURCE_CODE_REPO}/blob/v${
+                        process.env.LIB_VERSION
+                      }/docs/data/joy/templates/${name}/App.${
+                        item.codeVariant === 'TS' ? 'tsx' : 'js'
+                      }`,
                     });
-                    console.log('files', files);
                     const parameters = compress({ files });
 
                     // ref: https://codesandbox.io/docs/api/#define-api
