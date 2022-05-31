@@ -62,7 +62,7 @@ In general, you can expect the following release cycle:
 
 | Date           | Version | Status           |
 | :------------- | :------ | :--------------- |
-| ?              | v6.0.0  | Work not started |
+| TBA            | v6.0.0  | Work not started |
 | September 2021 | v5.0.0  | Released         |
 | May 2019       | v4.0.0  | Released         |
 | September 2018 | v3.0.0  | Released         |
