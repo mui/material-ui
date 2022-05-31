@@ -91,7 +91,7 @@ export default function GroupedAvatars() {
               key={data.var}
               label={data.var}
               size="sm"
-              variant="soft"
+              variant="outlined"
               defaultValue={Number(data.defaultValue.replace('px', '')) || undefined}
               endDecorator={<Typography level="body3">px</Typography>}
               type={data.type}

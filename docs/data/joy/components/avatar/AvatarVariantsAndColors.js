@@ -29,11 +29,18 @@ export default function AvatarVariantsAndColors() {
         sx={{
           maxWidth: 343,
           p: 2,
+          bgcolor: 'background.level1',
           borderRadius: 'sm',
         }}
       >
-        <Typography id="avatar-variant-selector" fontWeight="xl" mb={1}>
-          Variant
+        <Typography
+          level="body2"
+          fontWeight="xl"
+          id="avatar-variant-selector"
+          textColor="text.primary"
+          mb={1}
+        >
+          Variants
         </Typography>
         <RadioGroup
           row
@@ -46,7 +53,11 @@ export default function AvatarVariantsAndColors() {
           {['plain', 'outlined', 'soft', 'solid'].map((value) => {
             const checked = variant === value;
             return (
-              <Chip variant="outlined" color={checked ? 'primary' : 'neutral'}>
+              <Chip
+                size="sm"
+                variant="outlined"
+                color={checked ? 'primary' : 'neutral'}
+              >
                 <Radio
                   size="sm"
                   variant={checked ? 'solid' : 'outlined'}
@@ -67,7 +78,14 @@ export default function AvatarVariantsAndColors() {
           })}
         </RadioGroup>
 
-        <Typography id="avatar-color-selector" fontWeight="xl" mb={1} mt={3}>
+        <Typography
+          id="avatar-color-selector"
+          level="body2"
+          fontWeight="xl"
+          textColor="text.primary"
+          mb={1}
+          mt={3}
+        >
           Color
         </Typography>
         <RadioGroup
@@ -82,7 +100,11 @@ export default function AvatarVariantsAndColors() {
             (value) => {
               const checked = color === value;
               return (
-                <Chip variant="outlined" color={checked ? 'primary' : 'neutral'}>
+                <Chip
+                  size="sm"
+                  variant="outlined"
+                  color={checked ? 'primary' : 'neutral'}
+                >
                   <Radio
                     size="sm"
                     variant={checked ? 'solid' : 'outlined'}

@@ -31,8 +31,8 @@ export default function InteractiveCard() {
         <Typography level="body2">California, USA</Typography>
       </CardContent>
       <CardOverflow
-        variant="solid"
-        color="success"
+        variant="soft"
+        color="primary"
         sx={{
           px: 0.2,
           writingMode: 'vertical-rl',
