@@ -396,7 +396,7 @@ function reduceChildRoutes(context) {
   if (page.children && page.children.length >= 1) {
     const topLevel = activePage
       ? activePage.pathname.indexOf(`${page.pathname}`) === 0 ||
-        page.scopePathnames?.some((pathname) => activePage.pathname.includes(pathname))
+      page.scopePathnames?.some((pathname) => activePage.pathname.includes(pathname))
       : false;
     let firstChild = page.children[0];
 
@@ -506,11 +506,10 @@ export default function AppNavDrawer(props) {
                 ...(!isProductScoped && {
                   px: 1,
                   py: 0.4,
-                  border: `1px solid ${
-                    theme.palette.mode === 'dark'
+                  border: `1px solid ${theme.palette.mode === 'dark'
                       ? theme.palette.primaryDark[700]
                       : theme.palette.grey[200]
-                  }`,
+                    }`,
                   '&:hover': {
                     borderColor:
                       theme.palette.mode === 'dark'
@@ -549,14 +548,14 @@ export default function AppNavDrawer(props) {
                   key={item.text}
                   {...(item.current
                     ? {
-                        selected: true,
-                        onClick: () => setAnchorEl(null),
-                      }
+                      selected: true,
+                      onClick: () => setAnchorEl(null),
+                    }
                     : {
-                        component: 'a',
-                        href: item.href,
-                        onClick: onClose,
-                      })}
+                      component: 'a',
+                      href: item.href,
+                      onClick: onClose,
+                    })}
                 >
                   {item.text} {item.current && <DoneRounded sx={{ fontSize: 16, ml: 0.25 }} />}
                 </MenuItem>
@@ -651,33 +650,33 @@ export default function AppNavDrawer(props) {
           {
             // TODO: remove first condition when https://github.com/mui/mui-x/pull/4692 is released
             (asPathWithoutLang.startsWith('/x/advanced-components') ||
-              asPathWithoutLang.startsWith('/x/getting-started')) && (
+              asPathWithoutLang.startsWith('/x/introduction')) && (
               <ProductIdentifier name="Advanced components" metadata="MUI X" />
             )
           }
           {(asPathWithoutLang.startsWith('/x/react-data-grid') ||
             asPathWithoutLang.startsWith('/x/api/data-grid')) && (
-            <ProductIdentifier
-              name="Data Grid"
-              metadata="MUI X"
-              versionSelector={renderVersionSelector([
-                // DATA_GRID_VERSION is set from the X repo
-                { text: `v${process.env.DATA_GRID_VERSION}`, current: true },
-                { text: 'v4', href: `https://v4.mui.com${languagePrefix}/components/data-grid/` },
-              ])}
-            />
-          )}
+              <ProductIdentifier
+                name="Data Grid"
+                metadata="MUI X"
+                versionSelector={renderVersionSelector([
+                  // DATA_GRID_VERSION is set from the X repo
+                  { text: `v${process.env.DATA_GRID_VERSION}`, current: true },
+                  { text: 'v4', href: `https://v4.mui.com${languagePrefix}/components/data-grid/` },
+                ])}
+              />
+            )}
           {(asPathWithoutLang.startsWith('/x/react-date-pickers') ||
             asPathWithoutLang.startsWith('/x/api/date-pickers')) && (
-            <ProductIdentifier
-              name="Date pickers"
-              metadata="MUI X"
-              versionSelector={renderVersionSelector([
-                // DATE_PICKERS_VERSION is set from the X repo
-                { text: `v${process.env.DATE_PICKERS_VERSION}`, current: true },
-              ])}
-            />
-          )}
+              <ProductIdentifier
+                name="Date pickers"
+                metadata="MUI X"
+                versionSelector={renderVersionSelector([
+                  // DATE_PICKERS_VERSION is set from the X repo
+                  { text: `v${process.env.DATE_PICKERS_VERSION}`, current: true },
+                ])}
+              />
+            )}
         </ToolbarDiv>
         <Divider
           sx={{
