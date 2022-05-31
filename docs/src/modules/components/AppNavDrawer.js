@@ -80,6 +80,7 @@ function ProductDrawerButton(props) {
         }}
         PaperProps={{
           sx: {
+            pointerEvents: 'none',
             width: { xs: 340, sm: 480 },
             '& ul': {
               margin: 0,

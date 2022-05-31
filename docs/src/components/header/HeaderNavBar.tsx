@@ -221,7 +221,7 @@ export default function HeaderNavBar() {
               anchorEl={productsMenuRef.current}
               transition
               placement="bottom-start"
-              style={{ zIndex: 1200 }}
+              style={{ zIndex: 1200, pointerEvents: 'none' }}
             >
               {({ TransitionProps }) => (
                 <Fade {...TransitionProps} timeout={350}>
