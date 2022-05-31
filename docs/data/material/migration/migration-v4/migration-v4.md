@@ -31,7 +31,7 @@ Need to refer back to an older version of the docs? Check out [the v4 documentat
 
 Material UI v5 includes many bug fixes and improvements over v4.
 
-Chief among these improvements is the new styling engine, which offers significant advancements in performance as well as a more enjoyable developer experience.
+Chief among these improvements is the new styling engine, which offers significant advancements in performance when it comes to dynamic styles, as well as a more enjoyable developer experience.
 
 Additionally, v5 is the only version that supports React 18, so you will need to migrate to take advantage of the latest React features.
 
