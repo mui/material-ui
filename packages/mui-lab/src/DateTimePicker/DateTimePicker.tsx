@@ -11,8 +11,8 @@ const warn = () => {
   if (!warnedOnce) {
     console.warn(
       [
-        'MUI: The DateTimePicker component was moved from `@mui/lab` to `@mui/x-date-pickers`',
-        'The import from `@mui/lab` will be removed in the first release of July 2022.',
+        'MUI: The DateTimePicker component was moved from `@mui/lab` to `@mui/x-date-pickers`.',
+        'The component will no longer be exported from `@mui/lab` in the first release of July 2022.',
         '',
         "You should use `import { DateTimePicker } from '@mui/x-date-pickers'`",
         "or `import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker'`",
