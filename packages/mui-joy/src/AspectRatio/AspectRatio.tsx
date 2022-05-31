@@ -159,6 +159,7 @@ AspectRatio.propTypes /* remove-proptypes */ = {
     'inherit',
     'initial',
     'none',
+    'revert-layer',
     'revert',
     'scale-down',
     'unset',
