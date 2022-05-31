@@ -30,6 +30,6 @@ You can follow [this GitHub issue](https://github.com/mui/material-ui/issues/293
 
 Material UI and [MUI Base](/base/getting-started/overview/) feature many of the same UI components, but MUI Base comes without any default styles or styling solution.
 
-Material UI is _comprehensive_ in that it comes packaged with default styles, and is optimized to work with [emotion](https://emotion.sh/docs/introduction) (or [styled-components](https://styled-components.com/)).
+Material UI is _comprehensive_ in that it comes packaged with default styles, and is optimized to work with [Emotion](https://emotion.sh/) (or [styled-components](https://styled-components.com/)).
 
 MUI Base, by contrast, could be considered the "skeletal" or "headless" counterpart to Material UI—in fact, Material UI v6 will use MUI Base components and hooks for its foundational structure.
