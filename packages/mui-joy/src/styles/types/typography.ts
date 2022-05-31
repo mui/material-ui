@@ -30,6 +30,8 @@ export interface FontWeight {
   md: string | number;
   lg: string | number;
   xl: string | number;
+  xl2: string | number;
+  xl3: string | number;
 }
 
 export interface LineHeight {

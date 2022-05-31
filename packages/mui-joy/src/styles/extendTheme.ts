@@ -310,8 +310,10 @@ export default function extendTheme(themeInput?: ThemeInput): Theme {
       xs: 200,
       sm: 300,
       md: 500,
-      lg: 700,
-      xl: 800,
+      lg: 600,
+      Xl: 700,
+      xl2: 800,
+      xl3: 900,
     },
     focus: {
       selector: '&.Mui-focusVisible, &:focus-visible',
