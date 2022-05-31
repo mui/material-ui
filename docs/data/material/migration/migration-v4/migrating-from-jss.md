@@ -12,7 +12,7 @@
 
 ## Migrating from JSS to Emotion
 
-One of the biggest changes in v5 is the swapping of JSS for [Emotion](https://emotion.sh/docs/introduction) (or styled-components as an alternative).
+One of the biggest changes in v5 is the replacement of JSS for [Emotion](https://emotion.sh/docs/introduction) (or [styled-components](https://styled-components.com/) as an alternative) as a default styling solution .
 
 Note that you may continue to use JSS after migrating to v5, and when you're ready to move over to the new styling engine, you can refactor your components progressively.
 
