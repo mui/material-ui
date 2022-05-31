@@ -33,7 +33,7 @@ const ColorSchemePicker = () => {
           setMode('light');
         }
       }}
-      sx={{ '--Button-gutter': '0.25rem', minWidth: 'var(--Button-minHeight)' }}
+      sx={{ '--Button-paddingInline': '0.25rem', minWidth: 'var(--Button-minHeight)' }}
     >
       {mode === 'light' ? <Moon /> : <Sun />}
     </Button>
@@ -118,7 +118,7 @@ export default function JoyButton() {
               variant="solid"
               color="success"
               endIcon={<KeyboardArrowDown fontSize="lg" />}
-              sx={{ '--Button-gutter': '0.5rem' }}
+              sx={{ '--Button-paddingInline': '0.5rem' }}
               // sx={{ px: '0.5rem' }} // should not use `px` because endIcon will have mismatch position
             >
               <ThumbUp />

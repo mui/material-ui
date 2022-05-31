@@ -3,6 +3,10 @@ import { OverrideProps } from '@mui/types';
 
 interface TabsUnstyledComponentsPropsOverrides {}
 
+type TabsUnstyledOrientation = 'horizontal' | 'vertical';
+
+type TabsUnstyledDirection = 'ltr' | 'rtl';
+
 export interface TabsUnstyledOwnProps {
   /**
    * The content of the component.
@@ -21,12 +25,12 @@ export interface TabsUnstyledOwnProps {
    * The component orientation (layout flow direction).
    * @default 'horizontal'
    */
-  orientation?: 'horizontal' | 'vertical';
+  orientation?: TabsUnstyledOrientation;
   /**
    * The direction of the text.
    * @default 'ltr'
    */
-  direction?: 'ltr' | 'rtl';
+  direction?: TabsUnstyledDirection;
   className?: string;
   /**
    * The components used for each slot inside the Tabs.
@@ -59,7 +63,7 @@ export interface TabsUnstyledTypeMap<P = {}, D extends React.ElementType = 'div'
   defaultComponent: D;
 }
 
-type TabsUnstyledProps<
+export type TabsUnstyledProps<
   D extends React.ElementType = TabsUnstyledTypeMap['defaultComponent'],
   P = {},
 > = OverrideProps<TabsUnstyledTypeMap<P, D>, D> & {
@@ -71,4 +75,13 @@ type TabsUnstyledProps<
   component?: D;
 };
 
-export default TabsUnstyledProps;
+export type TabsUnstyledOwnerState = TabsUnstyledProps & {
+  orientation: TabsUnstyledOrientation;
+  direction: TabsUnstyledDirection;
+};
+
+export type TabsUnstyledRootSlotProps = {
+  ownerState: TabsUnstyledOwnerState;
+  ref: React.Ref<any>;
+  className?: string;
+};

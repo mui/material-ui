@@ -120,6 +120,7 @@ export default function createCssVarsProvider(options) {
       prefix,
       vars: rootVars,
       getCssVar: createGetCssVar(prefix),
+      getColorSchemeSelector: (targetColorScheme) => `[${attribute}="${targetColorScheme}"] &`,
     };
 
     const defaultColorSchemeStyleSheet = {};

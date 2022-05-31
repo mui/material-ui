@@ -10,9 +10,9 @@ const ROUTES = {
   pricing: '/pricing/',
   about: '/about/',
   handbook: 'https://mui-org.notion.site/Handbook-f086d47e10794d5e839aef9dc67f324b',
-  baseDocs: '/base/getting-started/installation/',
+  baseDocs: '/base/getting-started/overview/',
   materialDocs: '/material-ui/getting-started/installation/',
-  joyDocs: '/joy-ui/getting-started/usage/',
+  joyDocs: '/joy-ui/getting-started/overview/',
   systemDocs: '/system/basics/',
   materialIcons: FEATURE_TOGGLE.enable_redirects
     ? '/material-ui/material-icons/'
