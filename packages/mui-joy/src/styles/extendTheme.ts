@@ -173,10 +173,38 @@ export default function extendTheme(themeInput?: ThemeInput): Theme {
       success: {
         ...colors.green,
         ...createLightModeVariantVariables('success'),
+        solidColor: '#fff',
+        solidBg: `var(--joy-palette-success-600)`,
+        solidHoverBg: `var(--joy-palette-success-700)`,
+        solidActiveBg: `var(--joy-palette-success-800)`,
+        solidDisabledColor: `var(--joy-palette-success-50)`,
+        solidDisabledBg: `var(--joy-palette-success-300)`,
+
+        softColor: `var(--joy-palette-success-700)`,
+
+        outlinedColor: `var(--joy-palette-success-800)`,
+        outlinedBorder: `var(--joy-palette-success-300)`,
+        outlinedHoverBorder: `var(--joy-palette-success-400)`,
+
+        plainColor: `var(--joy-palette-success-900)`,
       },
       warning: {
         ...colors.yellow,
         ...createLightModeVariantVariables('warning'),
+        solidColor: `var(--joy-palette-common-black)`,
+        solidBg: `var(--joy-palette-warning-500)`,
+        solidHoverBg: `var(--joy-palette-warning-600)`,
+        solidActiveBg: `var(--joy-palette-warning-700)`,
+        solidDisabledColor: `var(--joy-palette-warning-50)`,
+        solidDisabledBg: `var(--joy-palette-warning-300)`,
+
+        softColor: `var(--joy-palette-warning-800)`,
+
+        outlinedColor: `var(--joy-palette-warning-800)`,
+        outlinedBorder: `var(--joy-palette-warning-500)`,
+        outlinedHoverBorder: `var(--joy-palette-warning-600)`,
+
+        plainColor: `var(--joy-palette-warning-800)`,
       },
       common: {
         white: '#FFF',
@@ -252,10 +280,22 @@ export default function extendTheme(themeInput?: ThemeInput): Theme {
       success: {
         ...colors.green,
         ...createDarkModeVariantVariables('success'),
+        solidColor: '#fff',
+        solidBg: `var(--joy-palette-success-600)`,
+        solidHoverBg: `var(--joy-palette-success-700)`,
+        solidActiveBg: `var(--joy-palette-success-800)`,
+        solidDisabledColor: `var(--joy-palette-success-50)`,
+        solidDisabledBg: `var(--joy-palette-success-300)`,
       },
       warning: {
         ...colors.yellow,
         ...createDarkModeVariantVariables('warning'),
+        solidColor: `var(--joy-palette-common-black)`,
+        solidBg: `var(--joy-palette-warning-500)`,
+        solidHoverBg: `var(--joy-palette-warning-600)`,
+        solidActiveBg: `var(--joy-palette-warning-700)`,
+        solidDisabledColor: `var(--joy-palette-warning-50)`,
+        solidDisabledBg: `var(--joy-palette-warning-300)`,
       },
       common: {
         white: '#FFF',
