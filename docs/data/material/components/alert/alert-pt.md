@@ -58,6 +58,8 @@ Duas variantes adicionais estão disponíveis – delineado e preenchido:
 
 {{"demo": "OutlinedAlerts.js"}}
 
+When using an outlined alert with the [`Snackbar` component](/material-ui/react-snackbar/#customization), background content will be visible and bleed through the alert by default. You can prevent this by adding `bgcolor: 'background.paper'` to the[`sx` prop](/material-ui/customization/how-to-customize/#the-sx-prop) on the `Alert` component.
+
 ### Preenchido
 
 {{"demo": "FilledAlerts.js"}}
@@ -68,7 +70,7 @@ You can use the Snackbar to [display a toast](/material-ui/react-snackbar/#custo
 
 ## Cor
 
-A propriedade `color` irá sobrescrever a cor padrão para a severidade especificada.
+The `color` prop will override the default color for the specified severity.
 
 {{"demo": "ColorAlerts.js"}}
 
@@ -76,8 +78,8 @@ A propriedade `color` irá sobrescrever a cor padrão para a severidade especifi
 
 (WAI-ARIA: https://www.w3.org/WAI/ARIA/apg/patterns/alert/)
 
-Quando o componente é exibido de forma dinâmica, o conteúdo é automaticamente anunciado pela maioria dos leitores de tela. No momento, os leitores de tela não informam aos usuários sobre alertas que estão presentes quando a página carrega.
+When the component is dynamically displayed, the content is automatically announced by most screen readers. At this time, screen readers do not inform users of alerts that are present when the page loads.
 
-O uso de cores para adicionar significado apenas fornece uma indicação visual, que não vai ser transmitida para usuários de tecnologias assistivas, como leitores de tela. Certifique-se de que a informação indicada pela cor seja clara a partir do próprio conteúdo (por exemplo, o texto visível), ou esteja incluída através de meios alternativos, como um texto oculto adicional.
+Using color to add meaning only provides a visual indication, which will not be conveyed to users of assistive technologies such as screen readers. Ensure that information denoted by the color is either obvious from the content itself (for example the visible text), or is included through alternative means, such as additional hidden text.
 
-As ações devem ter um índice de tabulação de 0 para que possam ser acessíveis por usuários que usam apenas o teclado.
+Actions must have a tab index of 0 so that they can be reached by keyboard-only users.
