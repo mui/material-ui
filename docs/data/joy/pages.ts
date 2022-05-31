@@ -40,6 +40,10 @@ const pages = [
       },
     ],
   },
+  {
+    pathname: '/joy-ui/templates',
+    icon: 'ReaderIcon',
+  },
 ];
 
 export default pages;
