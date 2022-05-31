@@ -93,7 +93,7 @@ const theme = createTheme({
 
 Be aware, however, that using this utility (and customizing `-webkit-scrollbar`) forces macOS to always show the scrollbar.
 
-### 文字铸排
+### 配色方案
 
 This API is introduced in @mui/material (v5.1.0) for switching between `"light"` and `"dark"` modes of native components such as scrollbar, using the `color-scheme` CSS property. To enable it, you can set `enableColorScheme=true` as follows:
 
@@ -107,7 +107,7 @@ This API is introduced in @mui/material (v5.1.0) for switching between `"light"`
 </ScopedCssBaseline>
 ```
 
-### Typography
+### 文字铸排
 
 - 在 `<html>` 里面不会声明基础的 font-size，但是我们假设是 16px (浏览器的默认设置)。 You can learn more about the implications of changing the `<html>` default font size in [the theme documentation](/material-ui/customization/typography/#typography-html-font-size) page.
 - 在 `theme.typography.body1` 元素上设置 `<body>` 样式。
