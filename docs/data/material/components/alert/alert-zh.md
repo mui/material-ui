@@ -58,6 +58,8 @@ You can use a [transition component](/material-ui/transitions/) such as `Collaps
 
 {{"demo": "OutlinedAlerts.js"}}
 
+When using an outlined alert with the [`Snackbar` component](/material-ui/react-snackbar/#customization), background content will be visible and bleed through the alert by default. You can prevent this by adding `bgcolor: 'background.paper'` to the[`sx` prop](/material-ui/customization/how-to-customize/#the-sx-prop) on the `Alert` component.
+
 ### 填充
 
 {{"demo": "FilledAlerts.js"}}
@@ -68,7 +70,7 @@ You can use the Snackbar to [display a toast](/material-ui/react-snackbar/#custo
 
 ## Color 颜色
 
-使用 `color` 属性可以覆盖不同程度提醒的默认颜色。
+The `color` prop will override the default color for the specified severity.
 
 {{"demo": "ColorAlerts.js"}}
 
@@ -76,8 +78,8 @@ You can use the Snackbar to [display a toast](/material-ui/react-snackbar/#custo
 
 (WAI-ARIA: https://www.w3.org/WAI/ARIA/apg/patterns/alert/)
 
-当动态地显示组件时，大部分屏幕都会自动朗读其内容。 此时，屏幕阅读不会将页面加载时出现的提醒通知给用户。
+When the component is dynamically displayed, the content is automatically announced by most screen readers. At this time, screen readers do not inform users of alerts that are present when the page loads.
 
-使用颜色来增加意义只提供了一个视觉指示，而不会传达给一个辅助用户的技术，如屏幕阅读器。 请确保用颜色表示的信息，或者对于内容本身（例如一些可见的文本）是明显的，或者通过其他方法包含信息，例如一个附加的隐藏文本。
+Using color to add meaning only provides a visual indication, which will not be conveyed to users of assistive technologies such as screen readers. Ensure that information denoted by the color is either obvious from the content itself (for example the visible text), or is included through alternative means, such as additional hidden text.
 
-动作的选项卡索引（tab index）必须为 0，这样只使用键盘的用户才能访问它们。
+Actions must have a tab index of 0 so that they can be reached by keyboard-only users.
