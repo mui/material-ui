@@ -311,7 +311,7 @@ export default function extendTheme(themeInput?: ThemeInput): Theme {
       sm: 300,
       md: 500,
       lg: 600,
-      Xl: 700,
+      xl: 700,
       xl2: 800,
       xl3: 900,
     },
