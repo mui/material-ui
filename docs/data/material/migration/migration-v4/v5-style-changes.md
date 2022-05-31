@@ -27,6 +27,78 @@ If you have already followed the instructions in the main migration guide and ru
 All other changes must be handled manually.
 :::
 
+## Migrate theme styleOverrides to Emotion
+
+Although your style overrides defined in the theme may partially work, there is an important difference regarding how the nested elements are styled.
+
+The `$` syntax used with JSS will not work with Emotion.
+You need to replace those selectors with a valid class selector.
+
+### Replace state class names
+
+```diff
+ const theme = createTheme({
+   components: {
+     MuiOutlinedInput: {
+       styleOverrides: {
+         root: {
+-          '&$focused': {
++          '&.Mui-focused': {
+             borderWidth: 1,
+           }
+         }
+       }
+     }
+   }
+ });
+```
+
+### Replace nested classes selectors with global class names
+
+```diff
+const theme = createTheme({
+  components: {
+    MuiOutlinedInput: {
+      styleOverrides: {
+        root: {
+-         '& $notchedOutline': {
++         '& .MuiOutlinedInput-notchedOutline': {
+            borderWidth: 1,
+          }
+        }
+      }
+    }
+  }
+});
+```
+
+:::info
+For each component, we export a `[component]Classes` constant that contains all nested classes for that component.
+
+You can rely on this instead of hardcoding the classes.
+:::
+
+```diff
++import { outlinedInputClasses } from '@mui/material/OutlinedInput';
+
+ const theme = createTheme({
+   components: {
+     MuiOutlinedInput: {
+       styleOverrides: {
+         root: {
+-          '& $notchedOutline': {
++          [`& .${outlinedInputClasses['notchedOutline']}`]: {
+             borderWidth: 1,
+           }
+         }
+       }
+     }
+   }
+ });
+```
+
+Take a look at the complete [list of global state classnames](/material-ui/customization/how-to-customize/#state-classes) available.
+
 ## ref
 
 ### Refactor non-ref-forwarding class components

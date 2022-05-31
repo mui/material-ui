@@ -1,4 +1,4 @@
-# Migrating from JSS
+# Migrating from JSS (optional)
 
 <p class="description">This guide explains how to migrate from JSS to Emotion when updating from Material UI v4 to v5.</p>
 
@@ -18,82 +18,6 @@ Note that you may still continue to use JSS for adding overrides for the compone
 Then, if at any point you want to move over to the new styling engine, you can refactor your components progressively.
 
 This document reviews all the steps necessary to migrate away from JSS.
-
-## Migrate theme styleOverrides to Emotion
-
-Although your style overrides defined in the theme may partially work, there is an important difference regarding how the nested elements are styled.
-
-The `$` syntax used with JSS will not work with Emotion.
-You need to replace those selectors with a valid class selector.
-
-### Replace state class names
-
-```diff
- const theme = createTheme({
-   components: {
-     MuiOutlinedInput: {
-       styleOverrides: {
-         root: {
--          '&$focused': {
-+          '&.Mui-focused': {
-             borderWidth: 1,
-           }
-         }
-       }
-     }
-   }
- });
-```
-
-### Replace nested classes selectors with global class names
-
-```diff
-const theme = createTheme({
-  components: {
-    MuiOutlinedInput: {
-      styleOverrides: {
-        root: {
--         '& $notchedOutline': {
-+         '& .MuiOutlinedInput-notchedOutline': {
-            borderWidth: 1,
-          }
-        }
-      }
-    }
-  }
-});
-```
-
-:::info
-For each component, we export a `[component]Classes` constant that contains all nested classes for that component.
-
-You can rely on this instead of hardcoding the classes.
-:::
-
-```diff
-+import { outlinedInputClasses } from '@mui/material/OutlinedInput';
-
- const theme = createTheme({
-   components: {
-     MuiOutlinedInput: {
-       styleOverrides: {
-         root: {
--          '& $notchedOutline': {
-+          [`& .${outlinedInputClasses['notchedOutline']}`]: {
-             borderWidth: 1,
-           }
-         }
-       }
-     }
-   }
- });
-```
-
-Take a look at the complete [list of global state classnames](/material-ui/customization/how-to-customize/#state-classes) available.
-
-## Migrate from JSS
-
-This is the last step in the migration process to remove the `@mui/styles` package from your codebase.
 
 While you can use either of the following two options, the first is considered preferable:
 

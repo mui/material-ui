@@ -201,7 +201,10 @@ const pages = [
             pathname: '/material-ui/migration/v5-component-changes',
             title: 'Breaking changes: components',
           },
-          { pathname: '/material-ui/migration/migrating-from-jss', title: 'Migrating from JSS' },
+          {
+            pathname: '/material-ui/migration/migrating-from-jss',
+            title: 'Migrating from JSS (optional)',
+          },
           {
             pathname: '/material-ui/migration/troubleshooting',
             title: 'Troubleshooting',
