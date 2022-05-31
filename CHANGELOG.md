@@ -37,6 +37,7 @@ A big thanks to the 8 contributors who made this release possible. Here are some
 
 ### Docs
 
+- &#8203;<!-- 24 -->[docs] Iterate on the job ad for React engineer in Core (#32900) @mnajdova
 - &#8203;<!-- 23 -->[blog] Fix avatar image resolution (#32890) @oliviertassinari
 - &#8203;<!-- 19 -->[docs] Link the first page of the product (#32943) @oliviertassinari
 - &#8203;<!-- 18 -->[docs] Batch small changes (#32170) @michaldudak
