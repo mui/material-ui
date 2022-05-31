@@ -17,11 +17,11 @@ import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownR
 import MenuIcon from '@mui/icons-material/Menu';
 
 // custom
-import exampleUITheme, { LoadFont } from 'docs/src/_experiments/JoyExampleUIs/exampleUITheme';
-import EmailNav from 'docs/src/_experiments/JoyExampleUIs/EmailNav';
-import EmailList from 'docs/src/_experiments/JoyExampleUIs/EmailList';
-import EmailContent from 'docs/src/_experiments/JoyExampleUIs/EmailContent';
-import Layout from 'docs/src/_experiments/JoyExampleUIs/Layout';
+import emailTheme from './theme';
+import Layout from './components/Layout';
+import Navigation from './components/Navigation';
+import Mails from './components/Mails';
+import MailContent from './components/MailContent';
 
 const ColorSchemeToggle = () => {
   const { mode, setMode } = useColorScheme();
@@ -53,8 +53,7 @@ const ColorSchemeToggle = () => {
 export default function EmailExample() {
   const [drawerOpen, setDrawerOpen] = React.useState(false);
   return (
-    <CssVarsProvider disableTransitionOnChange theme={exampleUITheme}>
-      <LoadFont />
+    <CssVarsProvider disableTransitionOnChange theme={emailTheme}>
       <GlobalStyles<Theme>
         styles={(theme) => ({
           body: {
@@ -65,7 +64,7 @@ export default function EmailExample() {
       />
       {drawerOpen && (
         <Layout.SideDrawer onClose={() => setDrawerOpen(false)}>
-          <EmailNav />
+          <Navigation />
         </Layout.SideDrawer>
       )}
       <Layout.Root
@@ -77,7 +76,14 @@ export default function EmailExample() {
         }}
       >
         <Layout.Header>
-          <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 1.5 }}>
+          <Box
+            sx={{
+              display: 'flex',
+              flexDirection: 'row',
+              alignItems: 'center',
+              gap: 1.5,
+            }}
+          >
             <IconButton
               variant="outlined"
               size="sm"
@@ -86,7 +92,11 @@ export default function EmailExample() {
             >
               <MenuIcon />
             </IconButton>
-            <IconButton size="sm" variant="solid" sx={{ display: { xs: 'none', sm: 'inherit' } }}>
+            <IconButton
+              size="sm"
+              variant="solid"
+              sx={{ display: { xs: 'none', sm: 'inherit' } }}
+            >
               <MailRoundedIcon />
             </IconButton>
             <Typography fontWeight={700}>Email</Typography>
@@ -126,7 +136,7 @@ export default function EmailExample() {
           </Box>
         </Layout.Header>
         <Layout.SideNav>
-          <EmailNav />
+          <Navigation />
         </Layout.SideNav>
         <Layout.SidePane>
           <Box
@@ -141,7 +151,11 @@ export default function EmailExample() {
             <Typography
               textColor="neutral.500"
               fontWeight={700}
-              sx={{ fontSize: '10px', textTransform: 'uppercase', letterSpacing: '.1rem' }}
+              sx={{
+                fontSize: '10px',
+                textTransform: 'uppercase',
+                letterSpacing: '.1rem',
+              }}
             >
               Unread
             </Typography>
@@ -155,7 +169,11 @@ export default function EmailExample() {
             </IconButton>
           </Box>
           <Box sx={{ py: 10 }}>
-            <Typography textColor="text.tertiary" level="body2" sx={{ textAlign: 'center' }}>
+            <Typography
+              textColor="text.tertiary"
+              level="body2"
+              sx={{ textAlign: 'center' }}
+            >
               You&apos;ve read all messages in your inbox.
             </Typography>
           </Box>
@@ -170,7 +188,11 @@ export default function EmailExample() {
             <Typography
               textColor="neutral.500"
               fontWeight={700}
-              sx={{ fontSize: '10px', textTransform: 'uppercase', letterSpacing: '.1rem' }}
+              sx={{
+                fontSize: '10px',
+                textTransform: 'uppercase',
+                letterSpacing: '.1rem',
+              }}
             >
               Everything else
             </Typography>
@@ -183,10 +205,10 @@ export default function EmailExample() {
               <KeyboardArrowDownRoundedIcon fontSize="small" color="primary" />
             </IconButton>
           </Box>
-          <EmailList />
+          <Mails />
         </Layout.SidePane>
         <Layout.Main>
-          <EmailContent />
+          <MailContent />
         </Layout.Main>
       </Layout.Root>
     </CssVarsProvider>
