@@ -210,6 +210,7 @@
     "/base/react-textarea-autosize": "自适应多行文本框",
     "/base/react-trap-focus": "捕获焦点",
     "/material-ui/getting-started": "快速入门",
+    "/material-ui/getting-started/overview": "Overview",
     "/material-ui/getting-started/installation": "安装",
     "/material-ui/getting-started/usage": "使用说明",
     "/material-ui/getting-started/example-projects": "示例程序",
