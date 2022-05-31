@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Avatar from '@mui/joy/Avatar';
 import Box from '@mui/joy/Box';
+import Sheet from '@mui/joy/Sheet';
 import Chip from '@mui/joy/Chip';
 import ChipDelete from '@mui/joy/ChipDelete';
 import TextField from '@mui/joy/TextField';
@@ -95,15 +96,15 @@ export default function GroupedAvatars() {
           Person name
         </Chip>
       </Box>
-      <Box
+      <Sheet
+        variant="outlined"
         sx={{
           gridRow: 'span 2',
           display: 'flex',
           flexWrap: 'wrap',
           gap: 2,
           p: 2,
-          border: '1px solid',
-          borderColor: 'background.level3',
+          bgcolor: 'background.level1',
           borderRadius: 'sm',
         }}
       >
@@ -143,7 +144,7 @@ export default function GroupedAvatars() {
             />
           ))}
         </Box>
-      </Box>
+      </Sheet>
       <BrandingProvider mode="dark">
         <HighlighedCode
           code={`<Chip

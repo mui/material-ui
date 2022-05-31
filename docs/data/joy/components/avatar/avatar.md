@@ -10,6 +10,12 @@ githubLabel: 'component: avatar'
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
+## Variants and colors
+
+The avatar applies Joy's global variant tokens－which has `soft` and `neutral` as default values for variant and color, respectively.
+
+{{"demo": "AvatarVariantsAndColors.js"}}
+
 ## Image
 
 Image avatar can be created by passing standard html `img` props (eg. `src` or `srcSet`) to the component.
@@ -21,12 +27,6 @@ Image avatar can be created by passing standard html `img` props (eg. `src` or `
 Pass a string as `children` prop to the avatar to display initials.
 
 {{"demo": "InitialAvatars.js"}}
-
-## Variants and Colors
-
-The avatar applies Joy's global variant which has `soft` variant with `neutral` color by default.
-
-{{"demo": "AvatarVariantsAndColors.js"}}
 
 ## Sizes
 

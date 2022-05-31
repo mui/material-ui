@@ -2,6 +2,7 @@ import * as React from 'react';
 import Avatar from '@mui/joy/Avatar';
 import AvatarGroup from '@mui/joy/AvatarGroup';
 import Box from '@mui/joy/Box';
+import Sheet from '@mui/joy/Sheet';
 import TextField from '@mui/joy/TextField';
 import Typography from '@mui/joy/Typography';
 import BrandingProvider from 'docs/src/BrandingProvider';
@@ -71,7 +72,8 @@ export default function GroupedAvatars() {
           <Avatar>+3</Avatar>
         </AvatarGroup>
       </Box>
-      <Box
+      <Sheet
+        variant="outlined"
         sx={{
           gridRow: 'span 2',
           display: 'flex',
@@ -79,11 +81,11 @@ export default function GroupedAvatars() {
           gap: 2,
           p: 2,
           bgcolor: 'background.level1',
-          borderRadius: 'xs',
+          borderRadius: 'sm',
         }}
       >
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-          <Typography fontWeight="lg">CSS variables</Typography>
+          <Typography fontWeight="xl">CSS variables</Typography>
           {vars.map((data) => (
             <TextField
               key={data.var}
@@ -118,7 +120,7 @@ export default function GroupedAvatars() {
             />
           ))}
         </Box>
-      </Box>
+      </Sheet>
       <BrandingProvider mode="dark">
         <HighlighedCode
           code={`<AvatarGroup${formatSx(sx)}>

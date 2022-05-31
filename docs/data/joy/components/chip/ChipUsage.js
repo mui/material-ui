@@ -27,7 +27,7 @@ const Select = styled('select')(({ theme }) => ({
 }));
 
 const defaultProps = {
-  children: 'MUI Joy Chip',
+  children: 'Joy UI Chip',
   variant: 'solid',
   color: 'primary',
   size: 'md',
@@ -111,7 +111,8 @@ export default function ChipUsage() {
           />
         </BrandingProvider>
       </Box>
-      <Box
+      <Sheet
+        variant="outlined"
         sx={{
           flexGrow: 1,
           display: 'flex',
@@ -119,7 +120,7 @@ export default function ChipUsage() {
           gap: 2,
           p: 2,
           bgcolor: 'background.level1',
-          borderRadius: 'xs',
+          borderRadius: 'sm',
         }}
       >
         <Box
@@ -134,11 +135,12 @@ export default function ChipUsage() {
             <Typography
               component="label"
               level="body2"
-              fontWeight="lg"
+              fontWeight="xl"
+              textColor="text.primary"
               htmlFor="variant-select"
               mb={0.5}
             >
-              variant
+              Variant
             </Typography>
             <Select
               id="variant-select"
@@ -160,10 +162,11 @@ export default function ChipUsage() {
             <Typography
               id="badge-color-selector"
               level="body2"
-              fontWeight="lg"
+              fontWeight="xl"
+              textColor="text.primary"
               mb={1}
             >
-              color
+              Color
             </Typography>
             <RadioGroup
               row
@@ -237,10 +240,11 @@ export default function ChipUsage() {
             <Typography
               id="badge-size-selector"
               level="body2"
-              fontWeight="lg"
+              fontWeight="xl"
+              textColor="text.primary"
               mb={1}
             >
-              size
+              Size
             </Typography>
             <RadioGroup
               row
@@ -267,8 +271,8 @@ export default function ChipUsage() {
                   >
                     <Radio
                       size="sm"
-                      variant="outlined"
-                      color="neutral"
+                      variant={checked ? 'solid' : 'outlined'}
+                      color={checked ? 'primary' : null}
                       label={
                         <Typography
                           endDecorator={checked ? <Check fontSize="md" /> : null}
@@ -289,10 +293,11 @@ export default function ChipUsage() {
             <Typography
               id="badge-disabled-selector"
               level="body2"
-              fontWeight="lg"
+              fontWeight="xl"
+              textColor="text.primary"
               mb={1}
             >
-              disabled
+              Disabled
             </Typography>
             <RadioGroup
               row
@@ -319,8 +324,8 @@ export default function ChipUsage() {
                   >
                     <Radio
                       size="sm"
-                      variant="outlined"
-                      color="neutral"
+                      variant={checked ? 'solid' : 'outlined'}
+                      color={checked ? 'primary' : null}
                       label={
                         <Typography
                           endDecorator={checked ? <Check fontSize="md" /> : null}
@@ -341,10 +346,11 @@ export default function ChipUsage() {
             <Typography
               id="chip-children-text-field"
               level="body2"
-              fontWeight="lg"
+              fontWeight="xl"
+              textColor="text.primary"
               mb={1}
             >
-              children
+              Children
             </Typography>
             <TextField
               id="children-text-field"
@@ -360,7 +366,7 @@ export default function ChipUsage() {
             />
           </Box>
         </Box>
-      </Box>
+      </Sheet>
     </Box>
   );
 }

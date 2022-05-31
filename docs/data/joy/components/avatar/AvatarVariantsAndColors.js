@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Avatar from '@mui/joy/Avatar';
 import Box from '@mui/joy/Box';
-import Badge from '@mui/joy/Badge';
+import Sheet from '@mui/joy/Sheet';
 import RadioGroup from '@mui/joy/RadioGroup';
 import Radio from '@mui/joy/Radio';
 import Chip from '@mui/joy/Chip';
@@ -24,15 +24,15 @@ export default function AvatarVariantsAndColors() {
           IN
         </Avatar>
       </Box>
-      <Box
+      <Sheet
+        variant="outlined"
         sx={{
           maxWidth: 343,
           p: 2,
-          bgcolor: 'background.level1',
-          borderRadius: 'xs',
+          borderRadius: 'sm',
         }}
       >
-        <Typography id="avatar-variant-selector" fontWeight="lg" mb={1}>
+        <Typography id="avatar-variant-selector" fontWeight="xl" mb={1}>
           Variant
         </Typography>
         <RadioGroup
@@ -46,29 +46,28 @@ export default function AvatarVariantsAndColors() {
           {['plain', 'outlined', 'soft', 'solid'].map((value) => {
             const checked = variant === value;
             return (
-              <Badge
-                key={value}
-                size="sm"
-                badgeContent={<Check fontSize="sm" />}
-                badgeInset="8%"
-                invisible={!checked}
-                sx={{ '--Badge-paddingX': '0px' }}
-              >
-                <Chip variant="plain">
-                  <Radio
-                    variant={checked ? 'outlined' : 'plain'}
-                    label={value}
-                    value={value}
-                    disableIcon
-                    overlay
-                  />
-                </Chip>
-              </Badge>
+              <Chip variant="outlined" color={checked ? 'primary' : 'neutral'}>
+                <Radio
+                  size="sm"
+                  variant={checked ? 'solid' : 'outlined'}
+                  color={checked ? 'primary' : 'neutral'}
+                  label={
+                    <Typography
+                      endDecorator={checked ? <Check fontSize="md" /> : null}
+                    >
+                      {value}
+                    </Typography>
+                  }
+                  value={value}
+                  disableIcon
+                  overlay
+                />
+              </Chip>
             );
           })}
         </RadioGroup>
 
-        <Typography id="avatar-color-selector" fontWeight="lg" mb={1} mt={3}>
+        <Typography id="avatar-color-selector" fontWeight="xl" mb={1} mt={3}>
           Color
         </Typography>
         <RadioGroup
@@ -83,29 +82,28 @@ export default function AvatarVariantsAndColors() {
             (value) => {
               const checked = color === value;
               return (
-                <Badge
-                  key={value}
-                  size="sm"
-                  badgeContent={<Check fontSize="sm" />}
-                  badgeInset="8%"
-                  invisible={!checked}
-                  sx={{ '--Badge-paddingX': '0px' }}
-                >
-                  <Chip variant="plain">
-                    <Radio
-                      variant={checked ? 'outlined' : 'plain'}
-                      label={value}
-                      value={value}
-                      disableIcon
-                      overlay
-                    />
-                  </Chip>
-                </Badge>
+                <Chip variant="outlined" color={checked ? 'primary' : 'neutral'}>
+                  <Radio
+                    size="sm"
+                    variant={checked ? 'solid' : 'outlined'}
+                    color={checked ? 'primary' : 'neutral'}
+                    label={
+                      <Typography
+                        endDecorator={checked ? <Check fontSize="md" /> : null}
+                      >
+                        {value}
+                      </Typography>
+                    }
+                    value={value}
+                    disableIcon
+                    overlay
+                  />
+                </Chip>
               );
             },
           )}
         </RadioGroup>
-      </Box>
+      </Sheet>
     </Box>
   );
 }

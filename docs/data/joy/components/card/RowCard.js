@@ -9,11 +9,11 @@ export default function InteractiveCard() {
   return (
     <Card
       row
-      variant="soft"
-      color="success"
+      variant="outlined"
       sx={{
         minWidth: '260px',
         gap: 2,
+        bgcolor: 'background.body',
       }}
     >
       <CardOverflow>
@@ -34,14 +34,16 @@ export default function InteractiveCard() {
         variant="solid"
         color="success"
         sx={{
+          px: 0.2,
           writingMode: 'vertical-rl',
           textAlign: 'center',
-          fontSize: 'sm',
-          fontWeight: 'md',
+          fontSize: 'xs2',
+          fontWeight: 'xl2',
           letterSpacing: '1px',
+          textTransform: 'uppercase',
         }}
       >
-        USED
+        Ticket
       </CardOverflow>
     </Card>
   );
