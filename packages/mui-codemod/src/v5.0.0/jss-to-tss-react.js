@@ -1,5 +1,21 @@
 const ruleEndRegEx = /[^a-zA-Z0-9_]+/;
 
+function buildRuleRegex(ruleNames) {
+  if (!ruleNames.length) {
+    // Return a regex matching nothing - https://stackoverflow.com/a/940840/25507
+    return new RegExp('a^');
+  }
+  let ruleRegExString = '(';
+  ruleNames.forEach((ruleName, index) => {
+    if (index > 0) {
+      ruleRegExString += '|';
+    }
+    ruleRegExString += `\\$${ruleName}`;
+  });
+  ruleRegExString += ')';
+  return new RegExp(ruleRegExString, 'g');
+}
+
 function transformNestedKeys(j, comments, propValueNode, ruleRegEx, nestedKeys) {
   propValueNode.properties.forEach((prop) => {
     if (prop.value?.type === 'ObjectExpression') {
@@ -68,15 +84,7 @@ function transformStylesExpression(j, comments, stylesExpression, nestedKeys, se
         ruleNames.push(prop.key.name);
       }
     });
-    let ruleRegExString = '(';
-    ruleNames.forEach((ruleName, index) => {
-      if (index > 0) {
-        ruleRegExString += '|';
-      }
-      ruleRegExString += `\\$${ruleName}`;
-    });
-    ruleRegExString += ')';
-    const ruleRegEx = new RegExp(ruleRegExString, 'g');
+    const ruleRegEx = buildRuleRegex(ruleNames);
     objectExpression.properties.forEach((prop) => {
       if (prop.value) {
         if (prop.value.type !== 'ObjectExpression') {

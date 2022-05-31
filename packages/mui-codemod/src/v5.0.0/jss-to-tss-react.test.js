@@ -148,6 +148,19 @@ describe('@mui/codemod', () => {
         const expected = read('./jss-to-tss-react.test/expected-withStyles.js');
         expect(actual).to.equal(expected, 'The transformed version should be correct');
       });
+      it('handles global-only styles', () => {
+        const actual = transform(
+          {
+            source: read('./jss-to-tss-react.test/actual-global.js'),
+            path: require.resolve('./jss-to-tss-react.test/actual-global.js'),
+          },
+          { jscodeshift },
+          {},
+        );
+
+        const expected = read('./jss-to-tss-react.test/expected-global.js');
+        expect(actual).to.equal(expected, 'The transformed version should be correct');
+      });
     });
   });
 });
