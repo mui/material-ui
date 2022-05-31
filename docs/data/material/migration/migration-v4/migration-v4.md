@@ -231,6 +231,10 @@ We strongly recommend using the default setup with Emotion instead.
 
 Once you've installed all the necessary packages and ensured that your app still runs, you can safely remove the old `@material-ui/*` packages by running `npm uninstall @material-ui/*` or `yarn remove @material-ui/*`.
 
+:::success
+The [preset-safe codemod](#preset-safe) (explained in more detail below) handles this automatically.
+:::
+
 ## Fix CSS specificity (optional)
 
 If you want to apply styles to components by importing a CSS file, you need to bump up the specificity to be able to target the correct components.
