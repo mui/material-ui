@@ -16,7 +16,7 @@ A big thanks to the 8 contributors who made this release possible. Here are some
 
 ### `@mui/lab@5.0.0-alpha.84`
 
-- &#8203;<!-- 07 -->[Masonry] Place items to the left when there is less object than specified in `column` prop (#32873) @hbjORbj
+- &#8203;<!-- 07 -->[Masonry] Place items to the left when there are less objects than specified in `column` prop (#32873) @hbjORbj
 
 ### `@mui/base@5.0.0-alpha.83`
 
