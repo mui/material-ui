@@ -62,7 +62,7 @@ export default function TemplateCollection() {
         const item = templates[name];
         return (
           <Card key={name} sx={{ bgcolor: 'initial', boxShadow: 'none', p: 0 }}>
-            <AspectRatio objectFit="contain">
+            <AspectRatio objectFit="contain" ratio="2">
               <img alt="" src={thumbnails[name]} />
             </AspectRatio>
             <Box sx={{ display: 'flex', alignItems: 'center', pt: 1 }}>
