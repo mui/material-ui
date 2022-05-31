@@ -5,10 +5,10 @@
 ## Introduction
 
 MUI Base is a library of unstyled React UI components.
-The components were extracted from [Material UI](/material-ui/getting-started/overview/).
-It features the same robust engineering but without implementing Material Design.
+These components were extracted from [Material UI](/material-ui/getting-started/overview/), and are now available as a standalone package.
+They feature the same robust engineering but without implementing Material Design.
 
-It includes prebuilt components with production-ready functionality, along with low-level hooks for transferring that functionality to other components.
+MUI Base includes prebuilt components with production-ready functionality, along with low-level hooks for transferring that functionality to other components.
 
 With MUI Base, you can rapidly build on top of our foundational components using any styling solution you choose—no need to override any default style engine or theme.
 
@@ -35,4 +35,4 @@ MUI Base features many of the same components as [Material UI](/material-ui/gett
 MUI Base is not packaged with any default theme or built-in style engine.
 This makes it a great choice if you need complete control over how your app's CSS is implemented.
 
-You could think of MUI Base as the "skeletal" or "headless" version of Material UI—in fact, the future versions of Material UI (starting with v6) will use these components and hooks for their foundational structure.
+You could think of MUI Base as the "skeletal" or "headless" version of Material UI—in fact, future versions of Material UI (starting with v6) will use these components and hooks for their foundational structure.
