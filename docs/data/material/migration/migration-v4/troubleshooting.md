@@ -8,7 +8,7 @@
 2. [Breaking changes part one: style and theme](/material-ui/migration/v5-style-changes/)
 3. [Breaking changes part two: components](/material-ui/migration/v5-component-changes/)
 4. [Migrating from JSS](/material-ui/migration/migrating-from-jss/)
-5. Troubleshooting <— _you are here_
+5. Troubleshooting 👈 _you are here_
 
 ## Styles broken after migrating to v5
 

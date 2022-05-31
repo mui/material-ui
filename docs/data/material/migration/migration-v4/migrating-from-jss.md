@@ -7,7 +7,7 @@
 1. [Getting started](/material-ui/migration/migration-v4/)
 2. [Breaking changes part one: style and theme](/material-ui/migration/v5-style-changes/)
 3. [Breaking changes part two: components](/material-ui/migration/v5-component-changes/)
-4. Migrating from JSS <— _you are here_
+4. Migrating from JSS 👈 _you are here_
 5. [Troubleshooting](/material-ui/migration/troubleshooting/)
 
 ## Migrating from JSS to Emotion

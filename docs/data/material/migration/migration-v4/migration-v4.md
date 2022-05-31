@@ -4,7 +4,7 @@
 
 ## Material UI v5 migration
 
-1. Getting started <— _you are here_
+1. Getting started 👈 _you are here_
 2. [Breaking changes part one: style and theme](/material-ui/migration/v5-style-changes/)
 3. [Breaking changes part two: components](/material-ui/migration/v5-component-changes/)
 4. [Migrating from JSS](/material-ui/migration/migrating-from-jss/)
