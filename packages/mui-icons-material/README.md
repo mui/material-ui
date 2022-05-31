@@ -1,6 +1,6 @@
 # @mui/icons-material
 
-This package provides the Google [Material icons](https://fonts.google.com/icons) packaged as a set of [React](https://facebook.github.io/react/) components.
+This package provides the Google [Material Icons](https://fonts.google.com/icons?icon.set=Material+Icons) converted to [`SvgIcon`](https://mui.com/material-ui/api/svg-icon/) components.
 
 ## Installation
 
@@ -35,8 +35,8 @@ yarn add @mui/material
 
 <!-- #default-branch-switch -->
 
-- [The documentation](https://mui.com/components/icons/#svg-material-icons)
-- [The icons search](https://mui.com/components/material-icons/)
+- [The documentation](https://mui.com/material-ui/icons/#svgicon)
+- [The icons search](https://mui.com/material-ui/material-icons/)
 
 ## Contributing
 

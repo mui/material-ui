@@ -338,7 +338,7 @@ const teamMembers: Array<Profile> = [
     locationCountry: 'in',
     about: 'Into sports and hiking!',
     twitter: 'gprakhar123',
-    github: 'newguy-123',
+    github: 'prakhargupta1',
   },
   {
     src: '/static/branding/about/jose.png',

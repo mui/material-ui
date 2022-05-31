@@ -189,13 +189,11 @@ function getTranslatedHeader(t, header) {
 function Heading(props) {
   const { hash, level: Level = 'h2' } = props;
   const t = useTranslate();
-  const headingId = `heading-${hash}`;
 
   return (
-    <Level id={headingId}>
-      <span className="anchor-link" id={hash} />
+    <Level id={hash}>
       {getTranslatedHeader(t, hash)}
-      <a aria-labelledby={headingId} className="anchor-link-style" href={`#${hash}`} tabIndex={-1}>
+      <a aria-labelledby={hash} className="anchor-link-style" href={`#${hash}`} tabIndex={-1}>
         <svg>
           <use xlinkHref="#anchor-link-icon" />
         </svg>

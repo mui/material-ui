@@ -37,7 +37,7 @@ The following chart illustrates how MUI's packages are related to one another:
 <img src="/static/images/packages/mui-packages.png" style="width: 796px; margin-top: 4px; margin-bottom: 8px;" alt="The first half of the image shows @mui/material and @mui/base as component libraries, and @mui/system and styled engines as styling solutions, both under the MUI Core umbrella. The second half shows @mui/x-data-grid and @mui/x-date-pickers as components from MUI X."/>
 
 In this article, we'll only cover the MUI Core packages.
-Check the [MUI X overview](/x/getting-started/overview) for more information about our collection of advanced components.
+Check the [MUI X overview](/x/advanced-components/) for more information about our collection of advanced components.
 
 ## Component libraries
 
@@ -96,7 +96,7 @@ These engines come in two packages:
 - `@mui/styled-engine`
 - `@mui/styled-engine-sc`
 
-By default, Material UI uses [emotion](https://emotion.sh/docs/styled) as its styling engine—it's included in the [installation](/material-ui/getting-started/installation) process.
+By default, Material UI uses [emotion](https://emotion.sh/docs/styled) as its styling engine—it's included in the [installation](/material-ui/getting-started/installation/) process.
 If you plan to stick with emotion, then `@mui/styled-engine` is a dependency in your app, and you don't need to install it separately.
 
 If you prefer to use [styled-components](https://styled-components.com/docs/basics#getting-started), then you need to install `@mui/styled-engine-sc` in place of the emotion packages.
@@ -107,7 +107,7 @@ In either case, you won't interact much with either of these packages beyond ins
 :::warning
 ⚠ **Note:** prior to v5, Material UI used `@mui/styles` as a JSS wrapper.
 This package is now deprecated and will be removed in the future.
-Check out [the guide to migrating from v4 to v5](https://mui.com/material-ui/guides/migration-v4/) to learn how to upgrade to a newer solution.
+Check out [the guide to migrating from v4 to v5](/material-ui/guides/migration-v4/) to learn how to upgrade to a newer solution.
 :::
 
 ### MUI System
