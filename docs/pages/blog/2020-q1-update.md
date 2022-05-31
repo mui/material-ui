@@ -38,7 +38,7 @@ Here are the most significant improvements since the beginning of the year:
 
 - 🦴 We have added a new "wave" animation to the [Skeleton](https://v4.mui.com/components/skeleton/#animations) component.
 
-  <video autoplay muted loop style="max-height: 95px; margin-bottom: 24px;">
+  <video style="max-height: 95px; margin-bottom: 24px;" autoplay muted loop playsinline>
     <source src="/static/blog/2020-q1-update/skeleton.webm" type="video/webm" />
   </video>
 

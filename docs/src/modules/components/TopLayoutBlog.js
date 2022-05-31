@@ -161,7 +161,7 @@ const styles = ({ theme }) => ({
     },
     '& .blog-description': {
       fontSize: theme.typography.pxToRem(13),
-      textAlign: 'left',
+      textAlign: 'center',
       color: theme.palette.grey[600],
       '& a': {
         color:
