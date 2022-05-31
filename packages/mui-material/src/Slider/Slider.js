@@ -342,7 +342,7 @@ const SliderValueLabel = styled(SliderValueLabelUnstyled, {
       height: 8,
       transform: 'translate(-50%, 50%) rotate(45deg)',
       backgroundColor: 'inherit',
-      right: '-8px',
+      right: '-20%',
       top: '25%',
     },
   }),
