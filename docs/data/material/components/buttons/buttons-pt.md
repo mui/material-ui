@@ -89,7 +89,7 @@ For larger or smaller buttons, use the `size` prop.
 
 {{"demo": "IconLabelButtons.js"}}
 
-## Ícone do botão
+## Botão de ícone
 
 Botões de ícones são comumente encontrados em barras de aplicativos e barras de ferramentas.
 
@@ -99,7 +99,7 @@ Botões de ícones são comumente encontrados em barras de aplicativos e barras 
 
 ### Tamanhos
 
-For larger or smaller icon buttons, use the `size` prop.
+Para botões maiores ou menores, use a prop `size`
 
 {{"demo": "IconButtonSizes.js"}}
 
@@ -115,7 +115,7 @@ Aqui estão alguns exemplos de customização do componente. You can learn more 
 
 {{"demo": "CustomizedButtons.js", "defaultCodeOpen": false}}
 
-🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/button/).
+🎨 Se você está procurando inspiração, você pode verificar [os exemplos de customização de MUI Treasury](https://mui-treasury.com/styles/button/).
 
 ## Botão de carregamento
 
