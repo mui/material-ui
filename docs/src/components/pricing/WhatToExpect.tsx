@@ -78,8 +78,8 @@ export default function WhatToExpect() {
               </Typography>
             </Box>
             <Typography variant="body2" color="text.secondary">
-              With your purchase you receive support and access to new versions for the duration
-              of your subscription. You can{' '}
+              With your purchase you receive support and access to new versions for the duration of
+              your subscription. You can{' '}
               <Link href="https://mui.com/x/advanced-components/#support">
                 learn more about support
               </Link>{' '}
