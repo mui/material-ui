@@ -1,3 +1,5 @@
+import preserveLeadingComments from '../util/preserveLeadingComments';
+
 /**
  * @param {import('jscodeshift').FileInfo} file
  * @param {import('jscodeshift').API} api
@@ -42,12 +44,7 @@ export default function transformer(file, api, options) {
 
   const stylesPackage = '@material-ui/styles';
 
-  // https://github.com/facebook/jscodeshift/blob/master/recipes/retain-first-comment.md
-  const getFirstNode = () => root.find(j.Program).get('body', 0).node;
-
-  // Save the comments attached to the first node
-  const firstNode = getFirstNode();
-  const { comments } = firstNode;
+  const leadingComments = preserveLeadingComments(j, root);
 
   root
     .find(j.ImportDeclaration)
@@ -102,11 +99,7 @@ export default function transformer(file, api, options) {
     .filter((path) => !path.node.specifiers.length)
     .remove();
 
-  // If the first node has been modified or deleted, reattach the comments
-  const firstNode2 = getFirstNode();
-  if (firstNode2 !== firstNode) {
-    firstNode2.comments = comments;
-  }
+  leadingComments.reapply();
 
   return root.toSource(printOptions);
 }

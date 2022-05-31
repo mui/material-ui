@@ -1,3 +1,5 @@
+import preserveLeadingComments from '../util/preserveLeadingComments';
+
 const ruleEndRegEx = /[^a-zA-Z0-9_]+/;
 
 function transformNestedKeys(j, comments, propValueNode, ruleRegEx, nestedKeys) {
@@ -172,6 +174,8 @@ export default function transformer(file, api, options) {
 
   const root = j(file.source);
   const printOptions = options.printOptions || { quote: 'single' };
+
+  const leadingComments = preserveLeadingComments(j, root);
 
   let importsChanged = false;
   let foundCreateStyles = false;
@@ -448,5 +452,8 @@ export default function transformer(file, api, options) {
       });
     });
   }
+
+  leadingComments.reapply();
+
   return root.toSource(printOptions);
 }
