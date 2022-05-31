@@ -7,7 +7,7 @@ import * as _ from 'lodash';
 import kebabCase from 'lodash/kebabCase';
 import * as prettier from 'prettier';
 import remark from 'remark';
-import remarkVisit from 'unist-util-visit';
+import { visit as remarkVisit, Parent } from 'unist-util-visit';
 import { defaultHandlers, parse as docgenParse, ReactDocgenApi } from 'react-docgen';
 import muiDefaultPropsHandler from 'docs/src/modules/utils/defaultPropsHandler';
 import { LANGUAGES } from 'docs/src/modules/constants';
@@ -85,6 +85,11 @@ export function writePrettifiedFile(
   });
 }
 
+interface LinkNode extends Parent {
+  type: 'link';
+  url: string;
+}
+
 /**
  * Produces markdown of the description that can be hosted anywhere.
  *
@@ -97,7 +102,7 @@ async function computeApiDescription(api: ReactApi, options: { host: string }): 
   const file = await remark()
     .use(function docsLinksAttacher() {
       return function transformer(tree) {
-        remarkVisit(tree, 'link', (linkNode) => {
+        remarkVisit(tree as LinkNode, 'link', (linkNode) => {
           if ((linkNode.url as string).startsWith('/')) {
             linkNode.url = `${host}${linkNode.url}`;
           }
