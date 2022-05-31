@@ -33,6 +33,12 @@ function addHiddenInput(form, name, value) {
   form.appendChild(input);
 }
 
+const thumbnails = {
+  email: '/static/blog/first-look-at-joy/email.png',
+  team: '/static/blog/first-look-at-joy/people.png',
+  files: '/static/blog/first-look-at-joy/files.png',
+};
+
 /**
  * To display a template on the site:
  * - Create a folder next to this file.
@@ -56,10 +62,10 @@ export default function TemplateCollection() {
         const item = templates[name];
         return (
           <Card key={name} sx={{ bgcolor: 'initial', boxShadow: 'none', p: 0 }}>
-            <AspectRatio>
-              <img alt="" src="/static/images/cards/yosemite.jpeg" />
+            <AspectRatio objectFit="contain">
+              <img alt="" src={thumbnails[name]} />
             </AspectRatio>
-            <Box sx={{ display: 'flex', alignItems: 'center', pt: 2 }}>
+            <Box sx={{ display: 'flex', alignItems: 'center', pt: 1 }}>
               <Typography component="h3" fontSize="xl" fontWeight="lg">
                 {startCase(name)}
               </Typography>
