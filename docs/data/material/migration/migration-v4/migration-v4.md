@@ -16,7 +16,7 @@ This is the first document in a multi-part series to walk you through upgrading 
 
 We highly recommend running our [codemods](#run-codemods) for efficiency—these will automatically address many of the [breaking changes](#address-breaking-changes) introduced in v5.
 
-One of the biggest changes in v5 is the swapping of JSS for [Emotion](https://emotion.sh/docs/introduction).
+One of the biggest changes in v5 is the replacement of JSS for [Emotion](https://emotion.sh/docs/introduction) as a default styling solution.
 
 Note that you may continue to use JSS after migrating to v5, and when you're ready to move over to the new styling engine, you can refactor your components progressively.
 
