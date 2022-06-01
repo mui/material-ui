@@ -284,6 +284,20 @@ index 791a7da1f4..a5db13b414 100644
 
 Alternatively, you can open the Netlify preview of the documentation, and open any demo in Codesandbox. The documentation automatically configures the dependencies to use the preview packages.
 
+Not just that, you can even locally package and test your changes. In the following example, we are packaging mui-material.
+
+```
+$packages\mui-material> yarn build
+$packages\mui-material> cd build
+$packages\mui-material> npm pack
+```
+
+This will create a mui-material-x.x.x.tar.gz file in the build folder. Copy the file and move it to the project you want to test in. Then do,
+
+```
+$test-project> npm i ./mui-material-x.x.x.tar.gz
+```
+
 ## Translations
 
 Translations are handled via [Crowdin](https://translate.mui.com).
