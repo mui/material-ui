@@ -4,7 +4,7 @@ import setRef from './setRef';
 function MyRef() {
   const ref = React.useRef<HTMLDivElement>();
 
-  const handleRef = React.useCallback((node) => {
+  const handleRef = React.useCallback((node: any) => {
     setRef(ref, node.current);
   }, []);
 
