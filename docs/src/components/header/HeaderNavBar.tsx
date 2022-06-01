@@ -82,6 +82,7 @@ const ProductSubMenu = React.forwardRef<HTMLAnchorElement, ProductSubMenuProps>(
         <Box
           sx={{
             px: 2,
+            pointerEvents: 'none',
             '& circle': {
               fill: (theme) =>
                 theme.palette.mode === 'dark'
@@ -221,7 +222,7 @@ export default function HeaderNavBar() {
               anchorEl={productsMenuRef.current}
               transition
               placement="bottom-start"
-              style={{ zIndex: 1200, pointerEvents: 'none' }}
+              style={{ zIndex: 1200 }}
             >
               {({ TransitionProps }) => (
                 <Fade {...TransitionProps} timeout={350}>
