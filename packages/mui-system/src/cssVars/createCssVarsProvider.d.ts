@@ -9,6 +9,21 @@ export interface ColorSchemeContextValue<SupportedColorScheme extends string>
 
 export interface CssVarsProviderConfig<ColorScheme extends string> {
   /**
+   * DOM attribute for applying color scheme
+   * @default 'data-color-scheme'
+   */
+  attribute?: string;
+  /**
+   * localStorage key used to store application `mode`
+   * @default 'mode'
+   */
+  modeStorageKey?: string;
+  /**
+   * localStorage key used to store `colorScheme`
+   * @default 'color-scheme'
+   */
+  colorSchemeStorageKey?: string;
+  /**
    * Design system default color scheme.
    * - provides string if the design system has one default color scheme (either light or dark)
    * - provides object if the design system has default light & dark color schemes
@@ -43,12 +58,10 @@ export interface CreateCssVarsProviderResult<ColorScheme extends string, ThemeIn
         theme?: ThemeInput;
         /**
          * localStorage key used to store application `mode`
-         * @default 'mui-mode'
          */
         modeStorageKey?: string;
         /**
          * DOM attribute for applying color scheme
-         * @default 'data-mui-color-scheme'
          */
         attribute?: string;
         /**
@@ -68,7 +81,6 @@ export interface CreateCssVarsProviderResult<ColorScheme extends string, ThemeIn
         colorSchemeSelector?: string;
         /**
          * localStorage key used to store `colorScheme`
-         * @default 'mui-color-scheme'
          */
         colorSchemeStorageKey?: string;
         /**
