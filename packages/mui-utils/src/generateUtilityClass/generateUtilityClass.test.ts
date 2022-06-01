@@ -48,4 +48,8 @@ describe('generateUtilityClass', () => {
       expect(generateUtilityClass('MuiTest', 'selected')).to.equal('Mui-selected');
     });
   });
+
+  it('custom state prefix', () => {
+    expect(generateUtilityClass('JoyButton', 'focusVisible', 'Joy')).to.equal('Joy-focusVisible');
+  });
 });
