@@ -161,6 +161,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
   React.useImperativeHandle(
     handleRef,
     () => ({
+      ...inputRef.current,
       focus: () => {
         displayRef.current.focus();
       },
