@@ -31,8 +31,7 @@ export default function generateUtilityClass(
   globalStatePrefix = 'Mui',
 ): string {
   const globalStateClass = globalStateClassesMapping[slot as GlobalStateSlot];
-  return (
-    `${globalStatePrefix}-${globalStateClass}` ||
-    `${ClassNameGenerator.generate(componentName)}-${slot}`
-  );
+  return globalStateClass
+    ? `${globalStatePrefix}-${globalStateClass}`
+    : `${ClassNameGenerator.generate(componentName)}-${slot}`;
 }
