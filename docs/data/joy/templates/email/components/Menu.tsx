@@ -11,11 +11,11 @@ const Popper = styled(PopperUnstyled)({
 const Listbox = styled('ul')(({ theme }) => ({
   ...theme.variants.outlined.neutral,
   marginBlock: '0.25rem',
-  padding: '0.25rem',
+  padding: '0.45rem',
   borderRadius: theme.vars.radius.sm,
   boxShadow: theme.vars.shadow.md,
-  backgroundColor: theme.vars.palette.background.body,
-  gap: theme.spacing(0.5),
+  backgroundColor: theme.vars.palette.background.componentBg,
+  gap: theme.spacing(1),
   display: 'flex',
   flexDirection: 'column',
 }));
@@ -25,11 +25,10 @@ const MenuItem = styled(MenuItemUnstyled, {
 })<{ active?: boolean }>(({ theme, active }) => ({
   listStyle: 'none',
   fontFamily: theme.vars.fontFamily.body,
-  fontSize: theme.vars.fontSize.md,
-  padding: '0.25rem 0.75rem',
+  fontSize: theme.vars.fontSize.sm,
+  padding: '0.45rem 0.75rem',
   borderRadius: theme.vars.radius.xs,
-  border: '1px solid transparent',
-  minWidth: 96,
+  minWidth: 120,
   textDecoration: 'none',
   display: 'flex',
   ...theme.variants.plain.neutral,
@@ -40,7 +39,7 @@ const MenuItem = styled(MenuItemUnstyled, {
       }
     : {
         '&:hover': {
-          ...theme.variants.outlined.neutral,
+          ...theme.variants.softHover.neutral,
           cursor: 'pointer',
         },
         '&:active': theme.variants.outlinedHover.neutral,
