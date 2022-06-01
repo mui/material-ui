@@ -132,7 +132,7 @@ const DialogPaper = styled(Paper, {
       },
     },
   }),
-  ...(ownerState.maxWidth !== 'xs' && {
+  ...(ownerState.maxWidth && ownerState.maxWidth !== 'xs' && {
     maxWidth: `${theme.breakpoints.values[ownerState.maxWidth]}${theme.breakpoints.unit}`,
     [`&.${dialogClasses.paperScrollBody}`]: {
       [theme.breakpoints.down(theme.breakpoints.values[ownerState.maxWidth] + 32 * 2)]: {
