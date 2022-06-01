@@ -5,7 +5,9 @@ import NextLink from 'next/link';
 import AspectRatio from '@mui/joy/AspectRatio';
 import Box from '@mui/joy/Box';
 import Card from '@mui/joy/Card';
-import IconButton from '@mui/joy/IconButton';
+import List from '@mui/joy/List';
+import ListDivider from '@mui/joy/ListDivider';
+import Button from '@mui/joy/Button';
 import Typography from '@mui/joy/Typography';
 import SvgIcon from '@mui/joy/SvgIcon';
 import Visibility from '@mui/icons-material/Visibility';
@@ -49,41 +51,59 @@ const thumbnails = {
 export default function TemplateCollection() {
   const templates = extractTemplates(cache);
   return (
-    <Box
+    <List
       sx={{
         px: { xs: 2, sm: 0 },
         flexGrow: 1,
-        display: 'grid',
         gap: 4,
-        gridTemplateColumns: 'repeat(auto-fill, minmax(256px, 1fr))',
       }}
     >
-      {Object.keys(templates).map((name) => {
+      {Object.keys(templates).map((name, index) => {
         const item = templates[name];
         return (
-          <Card key={name} sx={{ bgcolor: 'initial', boxShadow: 'none', p: 0 }}>
-            <AspectRatio objectFit="contain" ratio="2">
-              <img alt="" src={thumbnails[name]} />
-            </AspectRatio>
-            <Box sx={{ display: 'flex', alignItems: 'center', pt: 1 }}>
-              <Typography component="h3" fontSize="xl" fontWeight="lg">
-                {startCase(name)}
-              </Typography>
-              <Box sx={{ ml: 'auto', display: 'flex', gap: 1, zIndex: 1 }}>
+          <React.Fragment>
+            {index !== 0 && <ListDivider />}
+            <Card
+              component="li"
+              key={name}
+              sx={{
+                bgcolor: 'initial',
+                boxShadow: 'none',
+                p: 0,
+              }}
+            >
+              <Box
+                sx={{
+                  display: 'flex',
+                  flexWrap: 'wrap',
+                  gap: 1,
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  pb: 1,
+                  '& > *': {
+                    minWidth: `clamp(0px, (400px - 100%) * 999 , 100%)`,
+                  },
+                }}
+              >
+                <Typography component="h3" fontSize="xl2" fontWeight="lg">
+                  {startCase(name)}
+                </Typography>
                 <NextLink href={`/joy-ui/templates/${name}/`} passHref>
-                  <IconButton
+                  <Button
                     component="a"
-                    variant="plain"
+                    variant="outlined"
                     color="neutral"
                     data-ga-event-category="joy-template"
                     data-ga-event-label={name}
                     data-ga-event-action="preview"
+                    startIcon={<Visibility />}
+                    sx={{ ml: 'auto' }}
                   >
-                    <Visibility />
-                  </IconButton>
+                    Preview
+                  </Button>
                 </NextLink>
-                <IconButton
-                  variant="plain"
+                <Button
+                  variant="outlined"
                   color="neutral"
                   data-ga-event-category="joy-template"
                   data-ga-event-label={name}
@@ -115,16 +135,22 @@ export default function TemplateCollection() {
                     form.submit();
                     document.body.removeChild(form);
                   }}
+                  startIcon={
+                    <SvgIcon viewBox="0 0 1024 1024">
+                      <path d="M755 140.3l0.5-0.3h0.3L512 0 268.3 140h-0.3l0.8 0.4L68.6 256v512L512 1024l443.4-256V256L755 140.3z m-30 506.4v171.2L548 920.1V534.7L883.4 341v215.7l-158.4 90z m-584.4-90.6V340.8L476 534.4v385.7L300 818.5V646.7l-159.4-90.6zM511.7 280l171.1-98.3 166.3 96-336.9 194.5-337-194.6 165.7-95.7L511.7 280z" />
+                    </SvgIcon>
+                  }
                 >
-                  <SvgIcon viewBox="0 0 1024 1024">
-                    <path d="M755 140.3l0.5-0.3h0.3L512 0 268.3 140h-0.3l0.8 0.4L68.6 256v512L512 1024l443.4-256V256L755 140.3z m-30 506.4v171.2L548 920.1V534.7L883.4 341v215.7l-158.4 90z m-584.4-90.6V340.8L476 534.4v385.7L300 818.5V646.7l-159.4-90.6zM511.7 280l171.1-98.3 166.3 96-336.9 194.5-337-194.6 165.7-95.7L511.7 280z" />
-                  </SvgIcon>
-                </IconButton>
+                  Code Sandbox
+                </Button>
               </Box>
-            </Box>
-          </Card>
+              <AspectRatio ratio="2">
+                <img alt="" src={thumbnails[name]} />
+              </AspectRatio>
+            </Card>
+          </React.Fragment>
         );
       })}
-    </Box>
+    </List>
   );
 }
