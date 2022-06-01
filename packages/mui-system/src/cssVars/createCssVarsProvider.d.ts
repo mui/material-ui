@@ -57,14 +57,6 @@ export interface CreateCssVarsProviderResult<ColorScheme extends string, ThemeIn
       Partial<CssVarsProviderConfig<ColorScheme>> & {
         theme?: ThemeInput;
         /**
-         * localStorage key used to store application `mode`
-         */
-        modeStorageKey?: string;
-        /**
-         * DOM attribute for applying color scheme
-         */
-        attribute?: string;
-        /**
          * The document used to perform `disableTransitionOnChange` feature
          * @default document
          */
@@ -79,10 +71,6 @@ export interface CreateCssVarsProviderResult<ColorScheme extends string, ThemeIn
          * @default ':root'
          */
         colorSchemeSelector?: string;
-        /**
-         * localStorage key used to store `colorScheme`
-         */
-        colorSchemeStorageKey?: string;
         /**
          * The window that attaches the 'storage' event listener
          * @default window
