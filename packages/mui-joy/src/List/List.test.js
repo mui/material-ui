@@ -13,7 +13,7 @@ describe('Joy <List />', () => {
     inheritComponent: 'ul',
     render,
     ThemeProvider,
-    muiName: 'MuiList',
+    muiName: 'JoyList',
     refInstanceof: window.HTMLUListElement,
     skip: ['componentsProp', 'classesRoot', 'themeVariants'],
   }));

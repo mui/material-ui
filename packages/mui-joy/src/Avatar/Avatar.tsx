@@ -29,7 +29,7 @@ const useUtilityClasses = (ownerState: AvatarProps) => {
 };
 
 const AvatarRoot = styled('div', {
-  name: 'MuiAvatar',
+  name: 'JoyAvatar',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: AvatarProps }>(({ theme, ownerState }) => {
@@ -60,6 +60,7 @@ const AvatarRoot = styled('div', {
       justifyContent: 'center',
       flexShrink: 0,
       lineHeight: 1,
+      overflow: 'hidden',
       borderRadius: 'var(--Avatar-radius, 50%)',
       userSelect: 'none',
     },
@@ -68,10 +69,10 @@ const AvatarRoot = styled('div', {
 });
 
 const AvatarImg = styled('img', {
-  name: 'MuiAvatar',
+  name: 'JoyAvatar',
   slot: 'Img',
   overridesResolver: (props, styles) => styles.img,
-})<{ ownerState: AvatarProps }>(({ ownerState }) => ({
+})<{ ownerState: AvatarProps }>({
   width: '100%',
   height: '100%',
   textAlign: 'center',
@@ -81,14 +82,10 @@ const AvatarImg = styled('img', {
   color: 'transparent',
   // Hide the image broken icon, only works on Chrome.
   textIndent: 10000,
-  borderRadius:
-    ownerState.variant === 'outlined'
-      ? `calc(var(--Avatar-radius, 50%) - var(--variant-outlinedBorderWidth, 0px))`
-      : 'var(--Avatar-radius, 50%)',
-}));
+});
 
 const AvatarFallback = styled(Person, {
-  name: 'MuiAvatar',
+  name: 'JoyAvatar',
   slot: 'Fallback',
   overridesResolver: (props, styles) => styles.fallback,
 })<{ ownerState: AvatarProps }>({
@@ -142,7 +139,7 @@ function useLoaded({ crossOrigin, referrerPolicy, src, srcSet }: UseLoadedProps)
 const Avatar = React.forwardRef(function Avatar(inProps, ref) {
   const props = useThemeProps<typeof inProps & AvatarProps>({
     props: inProps,
-    name: 'MuiAvatar',
+    name: 'JoyAvatar',
   });
 
   const groupContext = React.useContext(AvatarGroupContext);
@@ -282,7 +279,7 @@ Avatar.propTypes /* remove-proptypes */ = {
    * @default 'soft'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['contained', 'light', 'outlined', 'text']),
+    PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
     PropTypes.string,
   ]),
 } as any;

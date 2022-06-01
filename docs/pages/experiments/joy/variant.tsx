@@ -272,10 +272,10 @@ export default function JoyVariant() {
             },
           },
           components: {
-            MuiButton: {
+            JoyButton: {
               styleOverrides: {
                 root: ({ ownerState }) => ({
-                  '--Button-gutter': '1rem',
+                  '--Button-paddingInline': '1rem',
                   borderRadius: '4px',
                   ...(ownerState.size === 'sm' && {
                     minHeight: 32,
@@ -481,7 +481,7 @@ declare module '@mui/joy/styles' {
     MuiButton: {
       styleOverrides: {
         root: ({ ownerState }) => ({
-          '--Button-gutter': '1rem',
+          '--Button-paddingInline': '1rem',
           borderRadius: '4px',
           ...(ownerState.size === 'sm' && {
             minHeight: 32,

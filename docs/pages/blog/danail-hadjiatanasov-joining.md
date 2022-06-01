@@ -15,7 +15,7 @@ Although he was working with Angular, his true passion is React, having hacked s
 
 Danail has already landed his first feature in the data grid: [column reordering](https://mui.com/x/react-data-grid/columns/#column-reorder):
 
-<video autoplay muted loop style="margin-bottom: 24px;">
+<video autoplay muted loop playsinline style="margin-bottom: 24px;">
   <source src="/static/blog/danail-hadjiatanasov-joining/reorder.mp4" type="video/mp4" />
 </video>
 

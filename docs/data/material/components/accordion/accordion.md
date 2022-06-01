@@ -4,7 +4,7 @@ title: React Accordion component
 components: Accordion, AccordionActions, AccordionDetails, AccordionSummary
 githubLabel: 'component: accordion'
 materialDesign: https://material.io/archive/guidelines/components/expansion-panels.html
-waiAria: https://www.w3.org/TR/wai-aria-practices/#accordion
+waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/accordion/
 ---
 
 # Accordion
@@ -54,7 +54,7 @@ Be sure to identify bottlenecks first and then try out these optimization strate
 
 ## Accessibility
 
-(WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#accordion)
+(WAI-ARIA: https://www.w3.org/WAI/ARIA/apg/patterns/accordion/)
 
 For optimal accessibility we recommend setting `id` and `aria-controls` on the
 `AccordionSummary`. The `Accordion` will derive the necessary `aria-labelledby`

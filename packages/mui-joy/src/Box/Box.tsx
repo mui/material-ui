@@ -8,7 +8,7 @@ import styleFunctionSx from '../styles/styleFunctionSx';
 
 const Box = createBox({
   defaultTheme,
-  defaultClassName: 'MuiBox-root',
+  defaultClassName: 'JoyBox-root',
   generateClassName: ClassNameGenerator.generate,
   styleFunctionSx,
 }) as OverridableComponent<BoxTypeMap>;

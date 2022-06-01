@@ -68,4 +68,76 @@ describe('<ListItemButton />', () => {
       expect(button).to.have.class(classes.focusVisible);
     });
   });
+
+  describe('prop: href', () => {
+    const href = 'example.com';
+
+    it('should rendered as link without specifying component="a"', () => {
+      const { getByRole } = render(<ListItemButton href={href} />);
+
+      const link = getByRole('link');
+
+      expect(!!link).to.equal(true);
+    });
+
+    it('should rendered as link when specifying component="div"', () => {
+      const { getByRole } = render(<ListItemButton href={href} component="div" />);
+
+      const link = getByRole('link');
+
+      expect(!!link).to.equal(true);
+    });
+
+    it('should rendered as link when specifying component="a"', () => {
+      const { getByRole } = render(<ListItemButton href={href} component="a" />);
+
+      const link = getByRole('link');
+
+      expect(!!link).to.equal(true);
+    });
+
+    it('should rendered as specifying component', () => {
+      const { getByRole } = render(<ListItemButton href={href} component="h1" />);
+
+      const heading = getByRole('heading');
+
+      expect(!!heading).to.equal(true);
+    });
+  });
+
+  describe('prop: to', () => {
+    const to = 'example.com';
+
+    it('should rendered as link without specifying component="a"', () => {
+      const { getByRole } = render(<ListItemButton to={to} />);
+
+      const link = getByRole('link');
+
+      expect(!!link).to.equal(true);
+    });
+
+    it('should rendered as link when specifying component="div"', () => {
+      const { getByRole } = render(<ListItemButton to={to} component="div" />);
+
+      const link = getByRole('link');
+
+      expect(!!link).to.equal(true);
+    });
+
+    it('should rendered as link when specifying component="a"', () => {
+      const { getByRole } = render(<ListItemButton to={to} component="a" />);
+
+      const link = getByRole('link');
+
+      expect(!!link).to.equal(true);
+    });
+
+    it('should rendered as specifying component', () => {
+      const { getByRole } = render(<ListItemButton to={to} component="h1" />);
+
+      const heading = getByRole('heading');
+
+      expect(!!heading).to.equal(true);
+    });
+  });
 });

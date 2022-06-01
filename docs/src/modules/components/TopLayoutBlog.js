@@ -161,7 +161,7 @@ const styles = ({ theme }) => ({
     },
     '& .blog-description': {
       fontSize: theme.typography.pxToRem(13),
-      textAlign: 'left',
+      textAlign: 'center',
       color: theme.palette.grey[600],
       '& a': {
         color:
@@ -246,8 +246,8 @@ function TopLayoutBlog(props) {
                     <Avatar
                       sx={{ width: 36, height: 36 }}
                       alt=""
-                      src={`${authors[author].avatar}?s=${32}`}
-                      srcSet={`${authors[author].avatar}?s=${32 * 2} 2x`}
+                      src={`${authors[author].avatar}?s=${36}`}
+                      srcSet={`${authors[author].avatar}?s=${36 * 2} 2x`}
                     />
                     <div>
                       <Typography variant="body2" fontWeight="500">

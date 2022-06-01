@@ -203,7 +203,7 @@ GitHub lets us host the Git repository and coordinate contributions.
 
 Netlify lets us distribute the documentation.
 
-[<img loading="lazy" alt="CrowdIn" src="https://support.crowdin.com/assets/logos/crowdin-logo1-small.png" height="30">](https://crowdin.com/)
+[<img loading="lazy" alt="Crowdin" src="https://support.crowdin.com/assets/logos/crowdin-logo-small-black.svg" height="30">](https://crowdin.com/)
 
 Crowdin lets us translate the documentation.
 
