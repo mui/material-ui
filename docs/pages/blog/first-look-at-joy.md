@@ -40,28 +40,30 @@ Aside from a fresher look and feel for your upcoming project, here are a few fea
 
 ### Global variants
 
-Instead of defining variants at the component level, Joy defines variants at the global level.
+Instead of defining variants at the component level, Joy UI defines variants at the global level.
 This sounds bold at first, but the more we experiment the more it starts to make sense.
 Global variants mostly affect three CSS properties: color, background, and border.
+
 What this means is that you'll be able to switch between the same set of variants in any component, more easily maintaining consistency across your app.
-The four variants are text, outlined, soft, and solid.
+The four variants available in the components are text, outlined, soft, and solid.
 
 ### Component integration
 
 We put considerable effort into constructing the CSS variables for each component such that they can be seamlessly composed with the least customization.
 One good example is the card component, where the border radius of the card’s children automatically adapts to that of the card.
 These small details mean the components adapt to different scenarios, which saves considerable time by avoiding manual adjustments.
-Joy doesn't sacrifice the customization experience in order to have these automatic adjustments.
+
+Joy UI doesn't sacrifice the customization experience in order to have these automatic adjustments.
 You're still able to override the style completely via the usual CSS overrides, or even adjust the predefined CSS variables with the `sx` prop.
 
 ### Perfect dark mode, for server-side rendering
 
-Joy provides a simple and effective way to prevent UI flicker when users refresh or re-enter the page when dark mode is ebabled.
+Joy UI provides a simple and effective way to prevent UI flicker when users refresh or re-enter the page when dark mode is ebabled.
 What's more, it takes care of the synchronization between browser tabs with a single line of code, which allows developers to configure attributes and settings as required.
 
 ### Unlimited color schemes
 
-Joy not only allows for simple toggling between dark and light mode but also provide the right tooling so you can provide your users with multiple color schemes.
+Joy UI not only allows for simple toggling between dark and light mode but also provide the right tooling so you can provide your users with multiple color schemes.
 Within each mode, you'll be able to have as many as you want－powered by CSS variables.
 
 ## When will I be able to use it?
@@ -98,6 +100,6 @@ They are also available on the docs [Templates page](/joy-ui/getting-started/tem
 - [CodeSandbox](https://codesandbox.io/s/dclgbp?file=/App.tsx)
 
 We hope will get as excited as we are.
-Joy UI is just getting started, so stay tuned for more news about it in the near future!
+Joy UI is just getting started－stay tuned for more news about it in the near future!
 
 Happy developing! 👩‍💻
