@@ -37,8 +37,9 @@ import GroupRoundedIcon from '@mui/icons-material/GroupRounded';
 
 // custom
 import teamTheme from './theme';
+import Menu from './components/Menu';
 import Layout from './components/Layout';
-import JoySlider from './components/JoySlider';
+import Slider from './components/Slider';
 
 const ColorSchemeToggle = () => {
   const { mode, setMode } = useColorScheme();
@@ -216,9 +217,24 @@ export default function TeamExample() {
             >
               <SearchRoundedIcon />
             </IconButton>
-            <IconButton size="sm" variant="outlined" color="primary">
-              <GridViewRoundedIcon />
-            </IconButton>
+            <Menu
+              id="app-selector"
+              control={
+                <IconButton
+                  size="sm"
+                  variant="outlined"
+                  color="primary"
+                  aria-label="Apps"
+                >
+                  <GridViewRoundedIcon />
+                </IconButton>
+              }
+              menus={[
+                { label: 'Email', component: 'a', href: '/joy-ui/templates/email/' },
+                { label: 'Team', active: true },
+                { label: 'Files', component: 'a', href: '/joy-ui/templates/team/' },
+              ]}
+            />
             <ColorSchemeToggle />
           </Box>
         </Layout.Header>
@@ -306,7 +322,7 @@ export default function TeamExample() {
             <Box sx={{ mt: 2 }}>
               <TextField placeholder="Search for a city" />
               <Box sx={{ mt: 2, display: 'flex', gap: 1 }}>
-                <JoySlider
+                <Slider
                   valueLabelFormat={(value) => `${value} km`}
                   step={1}
                   min={0}

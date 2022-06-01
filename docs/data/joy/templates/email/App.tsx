@@ -18,6 +18,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 
 // custom
 import emailTheme from './theme';
+import Menu from './components/Menu';
 import Layout from './components/Layout';
 import Navigation from './components/Navigation';
 import Mails from './components/Mails';
@@ -129,9 +130,27 @@ export default function EmailExample() {
             >
               <SearchRoundedIcon />
             </IconButton>
-            <IconButton size="sm" variant="outlined" color="primary">
-              <GridViewRoundedIcon />
-            </IconButton>
+            <Menu
+              id="app-selector"
+              control={
+                <IconButton
+                  size="sm"
+                  variant="outlined"
+                  color="primary"
+                  aria-label="Apps"
+                >
+                  <GridViewRoundedIcon />
+                </IconButton>
+              }
+              menus={[
+                {
+                  label: 'Email',
+                  active: true,
+                },
+                { label: 'Team', component: 'a', href: '/joy-ui/templates/team/' },
+                { label: 'Files', component: 'a', href: '/joy-ui/templates/files/' },
+              ]}
+            />
             <ColorSchemeToggle />
           </Box>
         </Layout.Header>

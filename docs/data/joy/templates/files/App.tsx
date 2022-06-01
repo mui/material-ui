@@ -34,6 +34,7 @@ import CloseIcon from '@mui/icons-material/Close';
 
 // custom
 import filesTheme from './theme';
+import Menu from './components/Menu';
 import Layout from './components/Layout';
 import Navigation from './components/Navigation';
 
@@ -148,9 +149,24 @@ export default function FilesExample() {
             >
               <SearchRoundedIcon />
             </IconButton>
-            <IconButton size="sm" variant="outlined" color="primary">
-              <GridViewRoundedIcon />
-            </IconButton>
+            <Menu
+              id="app-selector"
+              control={
+                <IconButton
+                  size="sm"
+                  variant="outlined"
+                  color="primary"
+                  aria-label="Apps"
+                >
+                  <GridViewRoundedIcon />
+                </IconButton>
+              }
+              menus={[
+                { label: 'Email', component: 'a', href: '/joy-ui/templates/email/' },
+                { label: 'Team', component: 'a', href: '/joy-ui/templates/team/' },
+                { label: 'Files', active: true },
+              ]}
+            />
             <ColorSchemeToggle />
           </Box>
         </Layout.Header>
