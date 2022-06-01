@@ -1,15 +1,13 @@
 ---
-title: First look at Joy UI
-description: A new starting point for your design system.
+title: First look at Joy UI 🥳
+description: A sneak peek at MUI's new starting point for your design system.
 date: 2022-06-01T00:00:00.000Z
 authors: ['danilo-leal', 'siriwatknp']
 tags: ['News', 'MUI Core']
 card: true
 ---
 
-<img src="/static/blog/first-look-at-joy/card.png" style="width: 796px;" alt="First look at Joy UI: a new starting point for your design system." />
-
-## Introducing Joy UI
+<img src="/static/blog/first-look-at-joy/card.png" style="width: 796px; margin-bottom: 24px;" alt="First look at Joy UI: a new starting point for your design system." />
 
 If you're a close follower of everything MUI, you might be aware that we've been working on a new design system product.
 If not, we're writing this piece to give you a first look at Joy－MUI's new starting point for your design system!
@@ -68,23 +66,27 @@ Within each mode, you'll be able to have as many as you want－powered by CSS va
 
 ## When will I be able to use it?
 
-A significant part of the core infrastructure for Joy has already been developed, and we've been working for the last couple of months on adding more structural components.
+A significant part of the core infrastructure for Joy UI has already been developed, and we've been working for the last couple of months on adding more structural components.
 Once we get to a reasonable number, and with sufficient documentation, we plan to release an alpha version, most likely during the second half of 2022.
 
-Meanwhile, we've developed a couple of mock UIs that showcase what Joy looks like out of the box, and to allow you to explore it further.
+Meanwhile, we've developed a couple of templates that showcase what Joy looks like out of the box, and to allow you to explore it further.
 Follow the CodeSandbox links from the demos to experiment with Joy UI for yourself.
 
-**Email UI－CodeSandbox**
+:::info
+They are also available on the docs [Templates page](/joy-ui/getting-started/templates).
+:::
+
+**Email－[CodeSandbox](https://codesandbox.io/s/8gtttr?file=/App.tsx)**
 
 <img src="/static/blog/first-look-at-joy/email.png" style="width: 796px; margin-top: 8px; margin-bottom: 16px;" alt="Screenshot of an email mock up application built with Joy UI" />
 
-**Team management UI－CodeSandbox**
-
-<img src="/static/blog/first-look-at-joy/people.png" style="width: 796px; margin-top: 8px; margin-bottom: 16px;" alt="Screenshot of a team management mock up application built with Joy UI" />
-
-**File management UI－CodeSandbox**
+**File management－[CodeSandbox](https://codesandbox.io/s/ro2b1t?file=/App.tsx)**
 
 <img src="/static/blog/first-look-at-joy/files.png" style="width: 796px; margin-top: 8px; margin-bottom: 16px;" alt="Screenshot of file management mock up application built with Joy UI" />
+
+**Team management－[CodeSandbox](https://codesandbox.io/s/dclgbp?file=/App.tsx)**
+
+<img src="/static/blog/first-look-at-joy/people.png" style="width: 796px; margin-top: 8px; margin-bottom: 16px;" alt="Screenshot of a team management mock up application built with Joy UI" />
 
 We hope will get as excited as we are.
 Joy UI is just getting started, so stay tuned for more news about it in the near future!
