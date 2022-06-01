@@ -18,11 +18,11 @@ To give you an idea of what it looks like, here are some common examples:
 
 ### Input
 
-It can adjust the size of the icons or the buttons when they are used as a decorators.
+The `Input` can adjust the size of the icons or the buttons when they are used as a decorators.
 
 {{"demo": "InputIntegration.js"}}
 
-Moreover, Joy guarantees that the spacing and the radius follows the input if you customize the variable.
+Moreover, Joy guarantees that the spacing and the radius follows the input if you customize the variable that the component provides.
 
 {{"demo": "InputChildHeight.js"}}
 
