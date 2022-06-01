@@ -52,10 +52,10 @@ export default function EmailContent() {
             }}
           >
             <Typography level="body2" textColor="text.primary" mb={0.5}>
-              Janet Erickson
+              Alex Jonnold
             </Typography>
             <Typography level="body3" textColor="text.tertiary">
-              14 Oct 2016
+              21 Oct 2022
             </Typography>
           </Box>
         </Box>
@@ -78,7 +78,7 @@ export default function EmailContent() {
         sx={{ py: 2, display: 'flex', flexDirection: 'column', alignItems: 'start' }}
       >
         <Typography level="h5" textColor="text.primary">
-          Blank slates for new website
+          Details for our Yosemite Park hike
         </Typography>
         <Box
           sx={{
@@ -99,7 +99,7 @@ export default function EmailContent() {
               From
             </Typography>
             <Chip size="sm" variant="outlined" onClick={() => {}}>
-              janet@mail.com
+              alex.jonnold@hike.com
             </Chip>
           </Box>
           <Box>
@@ -112,29 +112,34 @@ export default function EmailContent() {
               to
             </Typography>
             <Chip size="sm" variant="outlined" onClick={() => {}}>
-              janet@mail.com
+              steve@mail.com
             </Chip>
           </Box>
         </Box>
       </Box>
       <ListDivider component="hr" />
       <Typography level="body2" textColor="text.secondary" mt={2} mb={2}>
-        Hi, Thomas,
+        Hello, my friend!
         <br />
         <br />
-        You don&apos;t have to be a designer to appreciate good typography – just
-        check out this student-made device that can detect and name fonts just by
-        looking at it.
+        So, it seems we are getting there! Our trip is finally here. As you know, I
+        love Yosemite National Park, a lot of great climbers and explorers have made
+        history there, so I&apos; very excited to bring you with me in this journey.
         <br />
         <br />
-        While the pop culture world obsesses over the latest Snapchat filter fads and
-        Instagram friending, skilled photographers are taking the shots that
-        transcend social media Share Quote. Take advantage of an incredible offer to
-        become a skilled and certified photographer, taking frame-worthy shots every
-        time with The Hollywood Art Institute Photography Course and Certification.
+        There are plenty of amazing things to see there, from internationally
+        recognized granite cliffs, waterfalls, clear streams, giant sequoia groves,
+        lakes, mountains, meadows, glaciers, and a lot o biological diversity. It is
+        amazing that almost 95 percent of the park is designated wilderness. Yosemite
+        is one of the largest and least fragmented habitat blocks in the Serra
+        Nevada, and the park supports a fantastic diversity of plants and animals.
         <br />
         <br />
-        Regards, Janet Erickson
+        I really hope you love coming along with me, we will have an awesome time!
+        I'm attaching a few pics I took on the last time I went there-get excited!
+        <br />
+        <br />
+        See you soon, Alex Jonnold
       </Typography>
       <ListDivider component="hr" />
       <Typography
@@ -194,9 +199,9 @@ export default function EmailContent() {
           </CardOverflow>
           <Box sx={{ p: 2 }}>
             <Typography level="body2" color="primary">
-              blank_slates.doc
+              videos-hike.zip
             </Typography>
-            <Typography level="body3">345 Kb</Typography>
+            <Typography level="body3">100 MB</Typography>
           </Box>
         </Card>
       </Box>
