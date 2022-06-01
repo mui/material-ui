@@ -136,7 +136,8 @@ export default function EmailContent() {
         <br />
         <br />
         I really hope you love coming along with me, we will have an awesome time!
-        I'm attaching a few pics I took on the last time I went there-get excited!
+        I&apos;m attaching a few pics I took on the last time I went there-get
+        excited!
         <br />
         <br />
         See you soon, Alex Jonnold
