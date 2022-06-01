@@ -18,8 +18,7 @@ const planInfo = {
   community: {
     color: 'green',
     title: 'Community',
-    description:
-      'The #1 UI library for fast-developing beautiful react applications.',
+    description: 'The #1 UI library for fast-developing beautiful react applications.',
   },
   pro: {
     color: 'blue',
