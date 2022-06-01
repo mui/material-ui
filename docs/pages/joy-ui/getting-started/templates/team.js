@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Head from 'next/head';
-import TeamApp from 'docs/data/joy/getting-started/getting-started/templates/team/App';
+import TeamApp from 'docs/data/joy/getting-started/templates/team/App';
 import { NextNProgressBar } from 'docs/src/modules/components/AppFrame';
 
 export default function Team() {

@@ -88,7 +88,10 @@ export default function TemplateCollection() {
                 <Typography component="h3" fontSize="xl" fontWeight="xl">
                   {startCase(name)}
                 </Typography>
-                <NextLink href={`/joy-ui/templates/${name}/`} passHref>
+                <NextLink
+                  href={`/joy-ui/getting-started/templates/${name}/`}
+                  passHref
+                >
                   <Button
                     component="a"
                     variant="outlined"
