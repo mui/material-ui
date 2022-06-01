@@ -157,7 +157,8 @@ export function PlanPrice(props: PlanPriceProps) {
   );
 }
 
-const Info = ({ value, metadata }: { value: React.ReactNode; metadata?: string }) => {
+function Info(props: { value: React.ReactNode; metadata?: React.ReactNode }) {
+  const { value, metadata } = props;
   return (
     <React.Fragment>
       {typeof value === 'string' ? <Typography variant="body2">{value}</Typography> : value}
@@ -173,7 +174,8 @@ const Info = ({ value, metadata }: { value: React.ReactNode; metadata?: string }
       )}
     </React.Fragment>
   );
-};
+}
+
 const ColumnHead = ({
   label,
   metadata,
@@ -508,7 +510,7 @@ const rowHeaders: Record<string, React.ReactNode> = {
       {...{
         label: 'Bug reports & feature requests',
         tooltip:
-          'You can report an unlimited number of bugs and submit unlimited feature requests.',
+          'You can report an unlimited number of bugs and submit unlimited feature requests. We do our best to handle them.',
       }}
     />
   ),
@@ -717,9 +719,21 @@ const premiumData: Record<string, React.ReactNode> = {
   'bugs/features': <Info value={yes} metadata="Priority over Pro" />,
   'tech-advisory': pending,
   'support-duration': <Info value="1 year" />,
-  'response-time': <Info value={pending} metadata="Available later on" />,
-  'pre-screening': <Info value="4 hours" metadata="priority only, add-on not available yet" />,
-  'issue-escalation': <Info value={pending} metadata="priority only, add-on not available yet" />,
+  'response-time': (
+    <Info
+      value={pending}
+      metadata={
+        <React.Fragment>
+          Available later on
+          <br />
+          2 business days.
+          <br />1 business day (priority add-on only)
+        </React.Fragment>
+      }
+    />
+  ),
+  'pre-screening': <Info value={pending} metadata="4 hours (priority add-on only)" />,
+  'issue-escalation': <Info value={pending} metadata="priority add-on only" />,
 };
 
 const RowCategory = (props: BoxProps) => (
