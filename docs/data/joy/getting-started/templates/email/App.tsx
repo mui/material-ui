@@ -147,8 +147,16 @@ export default function EmailExample() {
                   label: 'Email',
                   active: true,
                 },
-                { label: 'Team', component: 'a', href: '/joy-ui/templates/team/' },
-                { label: 'Files', component: 'a', href: '/joy-ui/templates/files/' },
+                {
+                  label: 'Team',
+                  component: 'a',
+                  href: '/joy-ui/getting-started/templates/team/',
+                },
+                {
+                  label: 'Files',
+                  component: 'a',
+                  href: '/joy-ui/getting-started/templates/files/',
+                },
               ]}
             />
             <ColorSchemeToggle />

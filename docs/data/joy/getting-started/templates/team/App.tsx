@@ -230,9 +230,17 @@ export default function TeamExample() {
                 </IconButton>
               }
               menus={[
-                { label: 'Email', component: 'a', href: '/joy-ui/templates/email/' },
+                {
+                  label: 'Email',
+                  component: 'a',
+                  href: '/joy-ui/getting-started/templates/email/',
+                },
                 { label: 'Team', active: true },
-                { label: 'Files', component: 'a', href: '/joy-ui/templates/files/' },
+                {
+                  label: 'Files',
+                  component: 'a',
+                  href: '/joy-ui/getting-started/templates/files/',
+                },
               ]}
             />
             <ColorSchemeToggle />

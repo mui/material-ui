@@ -162,8 +162,16 @@ export default function FilesExample() {
                 </IconButton>
               }
               menus={[
-                { label: 'Email', component: 'a', href: '/joy-ui/templates/email/' },
-                { label: 'Team', component: 'a', href: '/joy-ui/templates/team/' },
+                {
+                  label: 'Email',
+                  component: 'a',
+                  href: '/joy-ui/getting-started/templates/email/',
+                },
+                {
+                  label: 'Team',
+                  component: 'a',
+                  href: '/joy-ui/getting-started/templates/team/',
+                },
                 { label: 'Files', active: true },
               ]}
             />
