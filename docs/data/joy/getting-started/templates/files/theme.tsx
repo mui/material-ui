@@ -28,6 +28,6 @@ export default extendTheme({
   },
   fontFamily: {
     // display: "'Roboto Flex', var(--joy-fontFamily-fallback)",
-    // body: "'Roboto Flex', var(--joy-fontFamily-fallback)",
+    // body: "'Inter', var(--joy-fontFamily-fallback)",
   },
 });

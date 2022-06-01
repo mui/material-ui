@@ -7,7 +7,7 @@ const Root = (props: BoxProps) => (
     {...props}
     sx={[
       {
-        bgcolor: 'background.bodyEmail',
+        bgcolor: 'background.appBody',
         display: 'grid',
         gridTemplateColumns: {
           xs: '1fr',

@@ -2,7 +2,7 @@ import { extendTheme } from '@mui/joy/styles';
 
 declare module '@mui/joy/styles' {
   interface PaletteBackground {
-    bodyEmail: string;
+    appBody: string;
     componentBg: string;
   }
 }
@@ -12,7 +12,7 @@ export default extendTheme({
     light: {
       palette: {
         background: {
-          bodyEmail: 'var(--joy-palette-neutral-50)',
+          appBody: 'var(--joy-palette-neutral-50)',
           componentBg: 'var(--joy-palette-common-white)',
         },
       },
@@ -20,7 +20,7 @@ export default extendTheme({
     dark: {
       palette: {
         background: {
-          bodyEmail: 'var(--joy-palette-common-black)',
+          appBody: 'var(--joy-palette-common-black)',
           componentBg: 'var(--joy-palette-background-level1)',
         },
       },
