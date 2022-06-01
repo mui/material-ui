@@ -183,7 +183,7 @@ export default function TeamExample() {
             <IconButton
               size="sm"
               variant="solid"
-              sx={{ display: { xs: 'none', sm: 'initial' } }}
+              sx={{ display: { xs: 'none', sm: 'inline-flex' } }}
             >
               <GroupRoundedIcon />
             </IconButton>

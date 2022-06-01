@@ -96,7 +96,7 @@ export default function EmailExample() {
             <IconButton
               size="sm"
               variant="solid"
-              sx={{ display: { xs: 'none', sm: 'inherit' } }}
+              sx={{ display: { xs: 'none', sm: 'inline-flex' } }}
             >
               <MailRoundedIcon />
             </IconButton>

@@ -115,7 +115,7 @@ export default function FilesExample() {
             <IconButton
               size="sm"
               variant="solid"
-              sx={{ display: { xs: 'none', sm: 'initial' } }}
+              sx={{ display: { xs: 'none', sm: 'inline-flex' } }}
             >
               <FindInPageRoundedIcon />
             </IconButton>
