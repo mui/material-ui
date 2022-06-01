@@ -6,6 +6,7 @@ const pages = [
       { pathname: '/joy-ui/getting-started/overview' },
       { pathname: '/joy-ui/getting-started/usage' },
       { pathname: '/joy-ui/getting-started/tutorial' },
+      { pathname: '/joy-ui/getting-started/templates' },
       {
         pathname: '/joy-ui/core-features',
         subheader: 'core-features',
@@ -39,10 +40,6 @@ const pages = [
         children: [{ pathname: '/joy-ui/react-card' }],
       },
     ],
-  },
-  {
-    pathname: '/joy-ui/templates',
-    icon: 'ReaderIcon',
   },
 ];
 

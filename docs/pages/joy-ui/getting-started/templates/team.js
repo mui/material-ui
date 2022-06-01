@@ -1,9 +1,9 @@
 import * as React from 'react';
 import Head from 'next/head';
-import EmailApp from 'docs/data/joy/templates/email/App';
+import TeamApp from 'docs/data/joy/getting-started/getting-started/templates/team/App';
 import { NextNProgressBar } from 'docs/src/modules/components/AppFrame';
 
-export default function Email() {
+export default function Team() {
   return (
     <React.Fragment>
       <Head>
@@ -15,7 +15,7 @@ export default function Email() {
         />
       </Head>
       <NextNProgressBar />
-      <EmailApp />
+      <TeamApp />
     </React.Fragment>
   );
 }
