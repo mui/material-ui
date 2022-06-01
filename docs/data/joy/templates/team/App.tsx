@@ -232,7 +232,7 @@ export default function TeamExample() {
               menus={[
                 { label: 'Email', component: 'a', href: '/joy-ui/templates/email/' },
                 { label: 'Team', active: true },
-                { label: 'Files', component: 'a', href: '/joy-ui/templates/team/' },
+                { label: 'Files', component: 'a', href: '/joy-ui/templates/files/' },
               ]}
             />
             <ColorSchemeToggle />
