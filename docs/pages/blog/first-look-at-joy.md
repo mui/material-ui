@@ -70,23 +70,32 @@ A significant part of the core infrastructure for Joy UI has already been develo
 Once we get to a reasonable number, and with sufficient documentation, we plan to release an alpha version, most likely during the second half of 2022.
 
 Meanwhile, we've developed a couple of templates that showcase what Joy looks like out of the box, and to allow you to explore it further.
-Follow the CodeSandbox links from the demos to experiment with Joy UI for yourself.
+Follow the templates' CodeSandbox or live demo links to experiment with Joy UI for yourself.
 
 :::info
-They are also available on the docs [Templates page](/joy-ui/getting-started/templates).
+They are also available on the docs [Templates page](/joy-ui/getting-started/templates/).
 :::
 
-**Email－[CodeSandbox](https://codesandbox.io/s/8gtttr?file=/App.tsx)**
+### Email
 
 <img src="/static/blog/first-look-at-joy/email.png" style="width: 796px; margin-top: 8px; margin-bottom: 16px;" alt="Screenshot of an email mock up application built with Joy UI" />
 
-**File management－[CodeSandbox](https://codesandbox.io/s/ro2b1t?file=/App.tsx)**
+- [Live demo](/joy-ui/getting-started/templates/email/)
+- [CodeSandbox](https://codesandbox.io/s/8gtttr?file=/App.tsx)
+
+### File management
 
 <img src="/static/blog/first-look-at-joy/files.png" style="width: 796px; margin-top: 8px; margin-bottom: 16px;" alt="Screenshot of file management mock up application built with Joy UI" />
 
-**Team management－[CodeSandbox](https://codesandbox.io/s/dclgbp?file=/App.tsx)**
+- [Live demo](/joy-ui/getting-started/templates/files/)
+- [CodeSandbox](https://codesandbox.io/s/ro2b1t?file=/App.tsx)
+
+### Team management
 
 <img src="/static/blog/first-look-at-joy/people.png" style="width: 796px; margin-top: 8px; margin-bottom: 16px;" alt="Screenshot of a team management mock up application built with Joy UI" />
+
+- [Live demo](/joy-ui/getting-started/templates/team/)
+- [CodeSandbox](https://codesandbox.io/s/dclgbp?file=/App.tsx)
 
 We hope will get as excited as we are.
 Joy UI is just getting started, so stay tuned for more news about it in the near future!
