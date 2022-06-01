@@ -4,8 +4,7 @@ import Snackbar from '@mui/material/Snackbar';
 
 export default function PositionedSnackbar() {
   return (
-    <Box dir="ltr" sx={{ width: 400, padding: '50px 70px' }}>
-      <Box>Snackbar - LTR orientation</Box>
+    <Box dir="ltr" sx={{ width: window?.innerWidth, height: '100vh' }}>
       <Snackbar
         key="left"
         anchorOrigin={{ horizontal: 'left', vertical: 'bottom' }}
