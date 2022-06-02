@@ -309,7 +309,6 @@ const SliderValueLabel = styled(SliderValueLabelUnstyled, {
   transition: theme.transitions.create(['transform'], {
     duration: theme.transitions.duration.shortest,
   }),
-  top: -10,
   transformOrigin: 'bottom center',
   transform: 'translateY(-100%) scale(0)',
   position: 'absolute',
@@ -320,20 +319,37 @@ const SliderValueLabel = styled(SliderValueLabelUnstyled, {
   alignItems: 'center',
   justifyContent: 'center',
   padding: '0.25rem 0.75rem',
+  ...(ownerState.orientation === 'horizontal' && {
+    top: '-10px',
+    '&:before': {
+      position: 'absolute',
+      content: '""',
+      width: 8,
+      height: 8,
+      transform: 'translate(-50%, 50%) rotate(45deg)',
+      backgroundColor: 'inherit',
+      bottom: 0,
+      left: '50%',
+    },
+  }),
+  ...(ownerState.orientation === 'vertical' && {
+    right: '30px',
+    top: '25px',
+    '&:before': {
+      position: 'absolute',
+      content: '""',
+      width: 8,
+      height: 8,
+      transform: 'translate(-50%, 50%) rotate(45deg)',
+      backgroundColor: 'inherit',
+      right: '-20%',
+      top: '25%',
+    },
+  }),
   ...(ownerState.size === 'small' && {
     fontSize: theme.typography.pxToRem(12),
     padding: '0.25rem 0.5rem',
   }),
-  '&:before': {
-    position: 'absolute',
-    content: '""',
-    width: 8,
-    height: 8,
-    bottom: 0,
-    left: '50%',
-    transform: 'translate(-50%, 50%) rotate(45deg)',
-    backgroundColor: 'inherit',
-  },
 }));
 
 SliderValueLabel.propTypes /* remove-proptypes */ = {
