@@ -62,19 +62,6 @@ function ProductSubMenu({
   );
 }
 
-// const Description = styled('span')(({ theme }) => ({
-//   fontSize: '0.8rem',
-//   fontWeight: theme.typography.fontWeightRegular,
-//   color:
-//     theme.palette.mode === 'dark' ? theme.palette.primaryDark[100] : theme.palette.primaryDark[800],
-//   position: 'absolute',
-//   left: '0.5rem',
-//   bottom: '-0.675rem',
-//   pointerEvents: 'none',
-//   opacity: 0,
-//   transition: '0.2s',
-// }));
-
 export default function MuiProductSelector() {
   const { product } = useRouterExtra();
 
@@ -126,14 +113,7 @@ export default function MuiProductSelector() {
               variant={product === 'material-ui' ? 'filled' : 'outlined'}
               component={Link}
               href={ROUTES.materialDocs}
-              label={
-                <React.Fragment>
-                  Material UI{' '}
-                  {/* <Description className="product-description">
-                    React components that implement Google&apos;s Material Design.
-                  </Description> */}
-                </React.Fragment>
-              }
+              label={<React.Fragment>Material UI </React.Fragment>}
               clickable
               size="small"
             />
@@ -143,14 +123,7 @@ export default function MuiProductSelector() {
                 variant={product === 'joy-ui' ? 'filled' : 'outlined'}
                 component={Link}
                 href={ROUTES.joyDocs}
-                label={
-                  <React.Fragment>
-                    Joy UI{' '}
-                    {/* <Description className="product-description">
-                      React components for building your design system.
-                    </Description> */}
-                  </React.Fragment>
-                }
+                label={<React.Fragment>Joy UI </React.Fragment>}
                 clickable
                 size="small"
               />
@@ -160,14 +133,7 @@ export default function MuiProductSelector() {
               variant={product === 'base' ? 'filled' : 'outlined'}
               component={Link}
               href={ROUTES.baseDocs}
-              label={
-                <React.Fragment>
-                  MUI Base{' '}
-                  {/* <Description className="product-description">
-                    Unstyled React components and low-level hooks.
-                  </Description> */}
-                </React.Fragment>
-              }
+              label={<React.Fragment>MUI Base </React.Fragment>}
               clickable
               size="small"
             />
@@ -176,14 +142,7 @@ export default function MuiProductSelector() {
               variant={product === 'system' ? 'filled' : 'outlined'}
               component={Link}
               href={ROUTES.systemDocs}
-              label={
-                <React.Fragment>
-                  MUI System{' '}
-                  {/* <Description className="product-description">
-                    CSS utilities for rapidly laying out custom designs.
-                  </Description> */}
-                </React.Fragment>
-              }
+              label={<React.Fragment>MUI System </React.Fragment>}
               clickable
               size="small"
             />
