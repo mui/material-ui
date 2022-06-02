@@ -29,6 +29,7 @@ importRegressionFixtures.keys().forEach((path) => {
 
 const blacklist = [
   'docs-joy-templates/TemplateCollection.png',
+  'docs-joy-core-features-automatic-adjustment/ListThemes.png',
   'docs-components-alert/TransitionAlerts.png', // Needs interaction
   'docs-components-app-bar/BackToTop.png', // Needs interaction
   'docs-components-app-bar/ElevateAppBar.png', // Needs interaction
