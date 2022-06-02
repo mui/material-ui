@@ -294,7 +294,7 @@ const SliderMark = styled('span', {
   width: 2,
   height: 2,
   borderRadius: 1,
-  backgroundColor: 'currentColor',
+  backgroundColor: 'var(--Slider-thumb-color)',
   ...(ownerState.orientation === 'horizontal' && {
     top: '50%',
     transform: 'translate(-1px, -50%)',
