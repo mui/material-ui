@@ -65,22 +65,22 @@ const SliderRoot = styled('span', {
       ...(ownerState.size === 'sm' && {
         '--Slider-track-width': isOrientedVertical ? '6px' : '40px',
         '--Slider-track-height': isOrientedVertical ? '40px' : '6px',
-        '--Slider-thumb-size': '12px',
+        '--Slider-thumb-size': '16px',
         fontSize: theme.vars.fontSize.sm,
       }),
       ...(ownerState.size === 'md' && {
         '--Slider-track-width': isOrientedVertical ? '12px' : '48px',
         '--Slider-track-height': isOrientedVertical ? '48px' : '12px',
-        '--Slider-thumb-size': '16px',
+        '--Slider-thumb-size': '24px',
         fontSize: theme.vars.fontSize.md,
       }),
       ...(ownerState.size === 'lg' && {
         '--Slider-track-width': isOrientedVertical ? '18px' : '64px',
         '--Slider-track-height': isOrientedVertical ? '64px' : '18px',
-        '--Slider-thumb-size': '24px',
+        '--Slider-thumb-size': '32px',
         fontSize: theme.vars.fontSize.lg,
       }),
-      '--Slider-thumb-radius': 'calc(var(--Slider-track-radius) - 2px)',
+      '--Slider-thumb-radius': 'calc(var(--Slider-thumb-size) / 2)',
       '--Slider-thumb-width': 'var(--Slider-thumb-size)',
       '--Slider-thumb-offset':
         'max((var(--Slider-track-height) - var(--Slider-thumb-size)) / 2, 0px)',
@@ -100,6 +100,7 @@ const SliderRoot = styled('span', {
       position: 'relative',
       cursor: 'pointer',
       touchAction: 'none',
+      width: '100%',
       WebkitTapHighlightColor: 'transparent',
       ...(ownerState.orientation === 'horizontal' && {
         minWidth: '5rem',
