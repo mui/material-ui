@@ -11,12 +11,6 @@ export default function useRouterExtra() {
     ...router,
     asPathWithoutLang,
     product: product as 'base' | 'material-ui' | 'joy-ui' | 'system' | 'data-grid' | 'date-pickers',
-    isMuiBase: product === 'base',
-    isMaterialUI: product === 'material-ui',
-    isJoyUI: product === 'joy-ui',
-    isMuiSystem: product === 'system',
     isMuiX: asPathWithoutLang.startsWith('/x'),
-    isDataGrid: product === 'data-grid',
-    isDatePickers: product === 'date-pickers',
   };
 }

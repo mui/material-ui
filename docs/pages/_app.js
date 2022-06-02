@@ -174,8 +174,7 @@ Tip: you can access the documentation \`theme\` object directly in the console.
 function AppWrapper(props) {
   const { children, emotionCache, pageProps } = props;
 
-  const { asPathWithoutLang, isMuiBase, isMaterialUI, isJoyUI, isMuiSystem, ...router } =
-    useRouterExtra();
+  const { asPathWithoutLang, product, ...router } = useRouterExtra();
 
   React.useEffect(() => {
     loadDependencies();
@@ -189,16 +188,16 @@ function AppWrapper(props) {
   }, []);
 
   let productPages = pages;
-  if (isMuiBase) {
+  if (product === 'base') {
     productPages = basePages;
   }
-  if (isMaterialUI) {
+  if (product === 'material-ui') {
     productPages = materialPages;
   }
-  if (isJoyUI) {
+  if (product === 'joy-ui') {
     productPages = joyPages;
   }
-  if (isMuiSystem && FEATURE_TOGGLE.enable_system_scope) {
+  if (product === 'system') {
     productPages = systemPages;
   }
 

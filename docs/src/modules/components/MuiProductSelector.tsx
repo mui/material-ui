@@ -76,7 +76,7 @@ function ProductSubMenu({
 // }));
 
 export default function MuiProductSelector() {
-  const router = useRouterExtra();
+  const { product } = useRouterExtra();
 
   return (
     <React.Fragment>
@@ -122,8 +122,8 @@ export default function MuiProductSelector() {
             }}
           >
             <Chip
-              color={router.isMaterialUI ? 'default' : undefined}
-              variant={router.isMaterialUI ? 'filled' : 'outlined'}
+              color={product === 'material-ui' ? 'default' : undefined}
+              variant={product === 'material-ui' ? 'filled' : 'outlined'}
               component={Link}
               href={ROUTES.materialDocs}
               label={
@@ -139,8 +139,8 @@ export default function MuiProductSelector() {
             />
             {shouldShowJoy && (
               <Chip
-                color={router.isJoyUI ? 'default' : undefined}
-                variant={router.isJoyUI ? 'filled' : 'outlined'}
+                color={product === 'joy-ui' ? 'default' : undefined}
+                variant={product === 'joy-ui' ? 'filled' : 'outlined'}
                 component={Link}
                 href={ROUTES.joyDocs}
                 label={
@@ -156,8 +156,8 @@ export default function MuiProductSelector() {
               />
             )}
             <Chip
-              color={router.isMuiBase ? 'default' : undefined}
-              variant={router.isMuiBase ? 'filled' : 'outlined'}
+              color={product === 'base' ? 'default' : undefined}
+              variant={product === 'base' ? 'filled' : 'outlined'}
               component={Link}
               href={ROUTES.baseDocs}
               label={
@@ -172,8 +172,8 @@ export default function MuiProductSelector() {
               size="small"
             />
             <Chip
-              color={router.isMuiSystem ? 'default' : undefined}
-              variant={router.isMuiSystem ? 'filled' : 'outlined'}
+              color={product === 'system' ? 'default' : undefined}
+              variant={product === 'system' ? 'filled' : 'outlined'}
               component={Link}
               href={ROUTES.systemDocs}
               label={
