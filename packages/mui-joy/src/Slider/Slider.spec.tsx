@@ -19,10 +19,6 @@ import Slider from '@mui/joy/Slider';
 <Slider color="warning" />;
 <Slider color="neutral" />;
 
-<Slider variant="outlined" />;
-<Slider variant="soft" />;
-<Slider variant="solid" />;
-
 <Slider size="sm" />;
 <Slider size="md" />;
 <Slider size="lg" />;
