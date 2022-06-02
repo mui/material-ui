@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import GlobalStyles from '@mui/material/GlobalStyles';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Container from '@mui/material/Container';
@@ -55,6 +56,13 @@ export default function AppHeader() {
 
   return (
     <Header>
+      <GlobalStyles
+        styles={{
+          ':root': {
+            '--MuiDocs-header-height': '64px',
+          },
+        }}
+      />
       <Container sx={{ display: 'flex', alignItems: 'center', minHeight: 56 }}>
         <Box
           component={Link}
