@@ -13,7 +13,6 @@ describe('<Slider />', () => {
     ThemeProvider,
     muiName: 'MuiSlider',
     refInstanceof: window.HTMLSpanElement,
-    testVariantProps: { variant: 'solid' },
     skip: [
       'componentProp',
       'componentsProp',

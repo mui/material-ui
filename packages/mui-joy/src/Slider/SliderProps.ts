@@ -1,21 +1,12 @@
 import { ExtendSliderUnstyledTypeMap } from '@mui/base/SliderUnstyled';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import * as React from 'react';
-import { ColorPaletteProp, SxProps, VariantProp } from '../styles/types';
+import { ColorPaletteProp, SxProps } from '../styles/types';
 
-export type SliderSlot =
-  | 'root'
-  | 'mark'
-  | 'markLabel'
-  | 'rail'
-  | 'track'
-  | 'thumb'
-  | 'valueLabel'
-  | 'input';
+export type SliderSlot = 'root' | 'mark' | 'markLabel' | 'rail' | 'track' | 'thumb' | 'valueLabel';
 
 export interface SliderPropsColorOverrides {}
 export interface SliderPropsSizeOverrides {}
-export interface SliderPropsVariantOverrides {}
 
 export type SliderTypeMap<
   D extends React.ElementType = 'span',
@@ -37,11 +28,6 @@ export type SliderTypeMap<
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */
     sx?: SxProps;
-    /**
-     * The variant to use.
-     * @default 'solid'
-     */
-    variant?: OverridableStringUnion<VariantProp, SliderPropsVariantOverrides>;
   };
   defaultComponent: D;
 }>;
@@ -57,7 +43,6 @@ export type SliderThumbProps = NonNullable<SliderTypeMap['props']['componentsPro
 export type SliderValueLabelProps = NonNullable<
   SliderTypeMap['props']['componentsProps']
 >['valueLabel'];
-export type SliderInputProps = NonNullable<SliderTypeMap['props']['componentsProps']>['input'];
 
 export type SliderProps<
   D extends React.ElementType = SliderTypeMap['defaultComponent'],

@@ -21,10 +21,6 @@ export interface SliderClasses {
   trackInverted: string;
   /** Class name applied to the thumb element. */
   thumb: string;
-  /** State class applied to the thumb element if it's active. */
-  active: string;
-  /** State class applied to the thumb element if keyboard focused. */
-  focusVisible: string;
   /** Class name applied to the thumb label element. */
   valueLabel: string;
   /** Class name applied to the thumb label element if it's open. */
@@ -35,12 +31,8 @@ export interface SliderClasses {
   valueLabelLabel: string;
   /** Class name applied to the mark element. */
   mark: string;
-  /** Class name applied to the mark element if active (depending on the value). */
-  markActive: string;
   /** Class name applied to the mark label element. */
   markLabel: string;
-  /** Class name applied to the mark label element if active (depending on the value). */
-  markLabelActive: string;
   /** Styles applied to the root element if `color="primary"`. */
   colorPrimary: string;
   /** Styles applied to the root element if `color="neutral"`. */
@@ -59,12 +51,6 @@ export interface SliderClasses {
   sizeMd: string;
   /** Styles applied to the root element if `size="lg"`. */
   sizeLg: string;
-  /** Styles applied to the root element if `variant="solid"`. */
-  variantSolid: string;
-  /** Styles applied to the root element if `variant="soft"`. */
-  variantSoft: string;
-  /** Styles applied to the root element if `variant="outlined"`. */
-  variantOutlined: string;
 }
 
 export type SliderClassKey = keyof SliderClasses;
@@ -75,8 +61,6 @@ export function getSliderUtilityClass(slot: string): string {
 
 const sliderClasses: SliderClasses = generateUtilityClasses('MuiSlider', [
   'root',
-  'active',
-  'focusVisible',
   'disabled',
   'dragging',
   'marked',
@@ -86,9 +70,7 @@ const sliderClasses: SliderClasses = generateUtilityClasses('MuiSlider', [
   'rail',
   'track',
   'mark',
-  'markActive',
   'markLabel',
-  'markLabelActive',
   'thumb',
   'valueLabel',
   'valueLabelOpen',
@@ -104,9 +86,6 @@ const sliderClasses: SliderClasses = generateUtilityClasses('MuiSlider', [
   'sizeSm',
   'sizeMd',
   'sizeLg',
-  'variantSolid',
-  'variantSoft',
-  'variantOutlined',
 ]);
 
 export default sliderClasses;

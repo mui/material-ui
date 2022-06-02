@@ -37,7 +37,6 @@ const ColorSchemePicker = () => {
 const props = {
   size: ['sm', 'md', 'lg'],
   color: ['primary', 'danger', 'info', 'success', 'warning', 'neutral'],
-  variant: ['solid', 'outlined', 'soft'],
   disabled: [true, false],
   orientation: ['horizontal', 'vertical'],
   track: ['inverted'],

@@ -15,7 +15,7 @@ import sliderClasses, { getSliderUtilityClass } from './sliderClasses';
 import { SliderProps, SliderTypeMap } from './SliderProps';
 
 const useUtilityClasses = (ownerState: SliderProps) => {
-  const { disabled, orientation, track, size, color, variant } = ownerState;
+  const { disabled, orientation, track, size, color } = ownerState;
 
   const slots = {
     root: [
@@ -25,20 +25,14 @@ const useUtilityClasses = (ownerState: SliderProps) => {
       track === 'inverted' && 'trackInverted',
       track === false && 'trackFalse',
       color && `color${capitalize(color)}`,
-      variant && `variant${capitalize(variant)}`,
       size && `size${capitalize(size)}`,
     ],
     rail: ['rail'],
     track: ['track'],
     mark: ['mark'],
-    markActive: ['markActive'],
     markLabel: ['markLabel'],
-    markLabelActive: ['markLabelActive'],
     valueLabel: ['valueLabel'],
     thumb: ['thumb', disabled && 'disabled'],
-    active: ['active'],
-    disabled: ['disabled'],
-    focusVisible: ['focusVisible'],
   };
 
   return composeClasses(slots, getSliderUtilityClass, {});
@@ -47,20 +41,12 @@ const useUtilityClasses = (ownerState: SliderProps) => {
 const sliderColorVariables =
   ({ theme, ownerState }: { theme: Theme; ownerState: SliderProps }) =>
   (data: { state?: 'Hover' | 'Disabled' } = {}) => {
-    const variant = ownerState.variant;
     const color = ownerState.color;
     return {
-      '--Slider-track-background': theme.vars.palette[color!]?.[`${variant!}${data.state || ''}Bg`],
-      '--Slider-track-color':
-        ownerState.variant === 'solid' ? '#fff' : theme.vars.palette[color!]?.plainColor,
-      '--Slider-track-borderColor':
-        variant === 'outlined'
-          ? theme.vars.palette[color!]?.[`${variant!}${data.state || ''}Border`]
-          : 'currentColor',
-      '--Slider-thumb-background':
-        theme.vars.palette[color!]?.[`${variant!}${data.state || ''}Color`],
-      '--Slider-thumb-color':
-        ownerState.variant === 'solid' ? theme.vars.palette[color!]?.plainColor : '#fff',
+      '--Slider-track-background': theme.vars.palette[color!]?.[`solid${data.state || ''}Bg`],
+      '--Slider-track-color': '#fff',
+      '--Slider-thumb-background': theme.vars.palette[color!]?.[`solid${data.state || ''}Color`],
+      '--Slider-thumb-color': theme.vars.palette[color!]?.plainColor,
     };
   };
 
@@ -73,15 +59,9 @@ const SliderRoot = styled('span', {
   const isOrientedVertical = ownerState.orientation === 'vertical';
   return [
     {
-      '--variant-borderWidth':
-        theme.variants[ownerState.variant!]?.[ownerState.color!]?.['--variant-borderWidth'],
-      ...(ownerState.variant === 'outlined' && {
-        border: 'var(--variant-borderWidth) none',
-      }),
       // Variables used for `track` are used for `rail` the same way
       '--Slider-track-radius': theme.vars.radius.lg,
-      '--Slider-thumb-shadow':
-        ownerState.variant === 'soft' ? 'none' : '0 0 0 1px var(--Slider-track-background)', // create border-like if the thumb is bigger than the track
+      '--Slider-thumb-shadow': '0 0 0 1px var(--Slider-track-background)',
       ...(ownerState.size === 'sm' && {
         '--Slider-track-width': isOrientedVertical ? '6px' : '40px',
         '--Slider-track-height': isOrientedVertical ? '40px' : '6px',
@@ -154,8 +134,6 @@ const SliderRail = styled('span', {
   {
     display: 'block',
     position: 'absolute',
-    border: 'var(--variant-borderWidth) solid',
-    borderColor: 'var(--Slider-track-borderColor)',
     backgroundColor: 'var(--Slider-track-background)',
     borderRadius: 'var(--Slider-track-radius)',
     opacity: 0.38,
@@ -187,8 +165,6 @@ const SliderTrack = styled('span', {
       display: 'block',
       position: 'absolute',
       color: 'var(--Slider-track-color)',
-      border: 'var(--variant-borderWidth) solid',
-      borderColor: 'var(--Slider-track-borderColor)',
       backgroundColor: 'var(--Slider-track-background)',
       borderRadius: 'var(--Slider-track-radius)',
       ...(ownerState.orientation === 'horizontal' && {
@@ -205,8 +181,8 @@ const SliderTrack = styled('span', {
         display: 'none',
       }),
       ...(ownerState.track === 'inverted' && {
-        backgroundColor: 'var(--Slider-track-borderColor)',
-        opacity: 0.38,
+        backgroundColor: 'var(--Slider-thumb-background)',
+        opacity: 0.62,
       }),
     },
   ];
@@ -363,7 +339,6 @@ const Slider = React.forwardRef(function Slider(inProps, ref) {
     componentsProps = {},
     color = 'primary',
     size = 'md',
-    variant = 'solid',
     ...other
   } = props;
 
@@ -371,7 +346,6 @@ const Slider = React.forwardRef(function Slider(inProps, ref) {
     ...props,
     size,
     color,
-    variant,
   };
 
   const classes = useUtilityClasses(ownerState);
@@ -397,26 +371,26 @@ const Slider = React.forwardRef(function Slider(inProps, ref) {
           ...componentsProps.root,
           ...(shouldSpreadAdditionalProps(components.Root) && {
             as: component,
-            ownerState: { variant, size, color },
+            ownerState: { size, color },
             className: clsx(classes.root, className),
           }),
         },
         thumb: {
           ...componentsProps.thumb,
           ...(shouldSpreadAdditionalProps(components.Thumb) && {
-            ownerState: { variant, size, color },
+            ownerState: { size, color },
           }),
         },
         track: {
           ...componentsProps.track,
           ...(shouldSpreadAdditionalProps(components.Track) && {
-            ownerState: { variant, size, color },
+            ownerState: { size, color },
           }),
         },
         valueLabel: {
           ...componentsProps.valueLabel,
           ...(shouldSpreadAdditionalProps(components.ValueLabel) && {
-            ownerState: { variant, size, color },
+            ownerState: { size, color },
           }),
         },
       }}
@@ -498,11 +472,6 @@ Slider.propTypes /* remove-proptypes */ = {
     PropTypes.func,
     PropTypes.object,
   ]),
-  /**
-   * The variant to use.
-   * @default 'solid'
-   */
-  variant: PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
 } as any;
 
 export default Slider;
