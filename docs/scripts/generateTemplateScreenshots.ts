@@ -11,7 +11,7 @@ const urls = [
 
 (async () => {
   // eslint-disable-next-line no-console
-  console.info('host:', host);
+  console.info('Host:', host);
   const browser = await chromium.launch();
   const page = await browser.newPage({ viewport: { width: 1600, height: 800 } });
 
@@ -21,16 +21,18 @@ const urls = [
         await sequence;
         await page.goto(`${host}${aUrl}`);
 
-        const filePath = aUrl.replace(/\/$/, '');
+        const filePath = `${directory}${aUrl.replace(/\/$/, '')}.png`;
         // eslint-disable-next-line no-console
         console.info('Saving screenshot to:', filePath);
-        await page.screenshot({ path: `${directory}${filePath}.png` });
+        await page.screenshot({ path: filePath });
 
         // capture dark mode
         const toggle = await page.$('#toggle-mode');
         if (toggle) {
           await page.click('#toggle-mode');
           await page.screenshot({ path: `${directory}${filePath}-dark.png` });
+
+          await page.click('#toggle-mode'); // switch back to light
         }
 
         return Promise.resolve();
