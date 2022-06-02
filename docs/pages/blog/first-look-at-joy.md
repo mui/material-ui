@@ -69,26 +69,27 @@ The four variants available in the components are `plain`, `outlined`, `soft`, a
 ### Component integration
 
 We put considerable effort into constructing the CSS variables for each component such that they can be seamlessly composed with the least customization.
-One good example is the card component, where the border radius of the card’s children automatically adapts to that of the card.
+One good example is the input component, where the border radius of the input's children automatically adapts to that of the input.
 These small details mean the components adapt to different scenarios, which saves considerable time by avoiding manual adjustments.
-
-Joy UI doesn't sacrifice the customization experience in order to have these automatic adjustments.
-You're still able to override the style completely via the usual CSS overrides, or even adjust the predefined CSS variables with the `sx` prop.
 
 <!-- Add an image that represent the UI of the code -->
 
 ```jsx
 <Input
   placeholder="password"
-  endDecorator={<IconButton><Visibility /></IconButton>}
+  endDecorator={<IconButton size="sm"><Visibility /></IconButton>}
 />
 
 <Input
+  size="lg"
   placeholder="password"
   endDecorator={<IconButton><Visibility /></IconButton>}
   sx={{ '--Input-radius': '24px' }}
 />
 ```
+
+Joy UI doesn't sacrifice the customization experience in order to have these automatic adjustments.
+You're still able to override the style completely via the usual CSS overrides, or even adjust the predefined CSS variables with the `sx` prop.
 
 ### Perfect dark mode, for server-side rendering
 
