@@ -45,7 +45,26 @@ This sounds bold at first, but the more we experiment the more it starts to make
 Global variants mostly affect three CSS properties: color, background, and border.
 
 What this means is that you'll be able to switch between the same set of variants in any component, more easily maintaining consistency across your app.
-The four variants available in the components are text, outlined, soft, and solid.
+The four variants available in the components are `plain`, `outlined`, `soft`, and `solid`.
+
+<!-- Add an image that represent the UI of the code -->
+
+```jsx
+<Button variant="plain">
+<Button variant="outlined">
+<Button variant="soft">
+<Button variant="solid">
+
+<Chip variant="plain">
+<Chip variant="outlined">
+<Chip variant="soft">
+<Chip variant="solid">
+
+<Checkbox variant="plain">
+<Checkbox variant="outlined">
+<Checkbox variant="soft">
+<Checkbox variant="solid">
+```
 
 ### Component integration
 
@@ -55,6 +74,21 @@ These small details mean the components adapt to different scenarios, which save
 
 Joy UI doesn't sacrifice the customization experience in order to have these automatic adjustments.
 You're still able to override the style completely via the usual CSS overrides, or even adjust the predefined CSS variables with the `sx` prop.
+
+<!-- Add an image that represent the UI of the code -->
+
+```jsx
+<Input
+  placeholder="password"
+  endDecorator={<IconButton><Visibility /></IconButton>}
+/>
+
+<Input
+  placeholder="password"
+  endDecorator={<IconButton><Visibility /></IconButton>}
+  sx={{ '--Input-radius': '24px' }}
+/>
+```
 
 ### Perfect dark mode, for server-side rendering
 
