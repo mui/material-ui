@@ -45,7 +45,7 @@ This sounds bold at first, but the more we experiment the more it starts to make
 [Global variants](/joy-ui/core-features/global-variant/) mostly affect three CSS properties: color, background, and border.
 
 What this means is that you'll be able to switch between the same set of variants in any component, more easily maintaining consistency across your app.
-The four variants available in the components are text, outlined, soft, and solid.
+The four variants available in all components are `plain`, `outlined`, `soft`, and `solid`.
 
 ### Component integration
 
@@ -58,7 +58,7 @@ You're still able to override the style completely via the usual CSS overrides, 
 
 ### Perfect dark mode, for server-side rendering
 
-Joy UI provides a simple and effective way to prevent UI flicker when users refresh or re-enter the page when dark mode is ebabled.
+Joy UI provides a simple and effective way to prevent UI flicker when users refresh or re-enter the page when dark mode is enabled.
 What's more, it takes care of the synchronization between browser tabs with a single line of code, which allows developers to configure attributes and settings as required.
 
 ### Unlimited color schemes
