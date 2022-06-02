@@ -9,6 +9,15 @@ import { useTranslate } from 'docs/src/modules/utils/i18n';
 
 export default function BackToTop() {
   const t = useTranslate();
+  const [open, setOpen] = React.useState(false);
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
 
   const trigger = useScrollTrigger({
     disableHysteresis: true,
@@ -17,11 +26,12 @@ export default function BackToTop() {
 
   const handleClick = () => {
     window.scrollTo({ top: 0 });
+    setOpen(false);
   };
 
   return (
     <Fade in={trigger}>
-      <Tooltip title="Scroll to top">
+      <Tooltip title="Scroll to top" open={open} onClose={handleClose} onOpen={handleOpen}>
         <Fab
           sx={(theme) => ({
             position: 'fixed',
