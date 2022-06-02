@@ -2,6 +2,7 @@ import * as React from 'react';
 import LZString from 'lz-string';
 import startCase from 'lodash/startCase';
 import NextLink from 'next/link';
+import { useTheme } from '@mui/joy/styles';
 import AspectRatio from '@mui/joy/AspectRatio';
 import Box from '@mui/joy/Box';
 import Card from '@mui/joy/Card';
@@ -35,12 +36,6 @@ function addHiddenInput(form, name, value) {
   form.appendChild(input);
 }
 
-const thumbnails = {
-  email: '/static/blog/first-look-at-joy/email.png',
-  team: '/static/blog/first-look-at-joy/people.png',
-  files: '/static/blog/first-look-at-joy/files.png',
-};
-
 /**
  * To display a template on the site:
  * - Create a folder next to this file.
@@ -50,6 +45,7 @@ const thumbnails = {
 
 export default function TemplateCollection() {
   const templates = extractTemplates(cache);
+  const theme = useTheme();
   return (
     <List
       sx={{
@@ -61,7 +57,7 @@ export default function TemplateCollection() {
       {Object.keys(templates).map((name, index) => {
         const item = templates[name];
         return (
-          <React.Fragment>
+          <React.Fragment key={name}>
             {index !== 0 && <ListDivider />}
             <Card
               component="li"
@@ -149,8 +145,15 @@ export default function TemplateCollection() {
                   CodeSandbox
                 </Button>
               </Box>
-              <AspectRatio ratio="2">
-                <img alt="" src={thumbnails[name]} />
+              <AspectRatio ratio="2" variant="outlined">
+                <Box
+                  sx={{
+                    background: `center/cover no-repeat url(/static/screenshots/joy-ui/getting-started/templates/${name}${
+                      theme.palette.mode === 'dark' ? '-dark' : ''
+                    }.png)`,
+                    transition: '0.3s',
+                  }}
+                />
               </AspectRatio>
             </Card>
           </React.Fragment>
