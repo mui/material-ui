@@ -68,9 +68,10 @@ Within each mode, you'll be able to have as many as you want－powered by CSS va
 
 ## When will I be able to use it?
 
-A significant part of the core infrastructure for Joy UI has already been developed, and we've been working for the last couple of months on adding more structural components.
-Once we get to a reasonable number, and with sufficient documentation, we plan to release an alpha version, most likely during the second half of 2022.
+A significant part of the core infrastructure for Joy UI has already been developed, and we've been working for the last couple of months on adding more and more components.
+The package is already [available at npm](https://www.npmjs.com/package/@mui/joy) but until we get to a reasonable number of components, and with sufficient documentation, it remains as _initial_ work in progress.
 
+It should, though, be ready for more mature experimentation and testing most likely dureing the second half of 2022.
 Meanwhile, we've developed a couple of templates that showcase what Joy looks like out of the box, and to allow you to explore it further.
 Follow the templates' CodeSandbox or live demo links to experiment with Joy UI for yourself.
 
@@ -99,7 +100,7 @@ Follow the templates' CodeSandbox or live demo links to experiment with Joy UI f
 - [Live demo](/joy-ui/getting-started/templates/team/)
 - [CodeSandbox](https://codesandbox.io/s/dclgbp?file=/App.tsx)
 
-We hope will get as excited as we are.
+We hope you'll get as excited as we are.
 Joy UI is just getting started－stay tuned for more news about it in the near future!
 
 Happy developing! 👩‍💻
