@@ -28,7 +28,7 @@ If you customize their CSS variables, Joy UI secures that their spacing and radi
 Nested lists are a common source of frustration when it comes to styling.
 Again leveraging CSS variables, Joy UI takes care of the customization heavy-lifting by introducing meaningful variables that you can play around with direct from the browser's inspector window.
 
-{{"demo": "ListThemes.js", "bg": true}}
+{{"demo": "ListThemes.js"}}
 
 ## HTML semantics
 

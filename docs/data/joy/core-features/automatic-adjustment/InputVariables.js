@@ -6,18 +6,16 @@ import Input from '@mui/joy/Input';
 import Sheet from '@mui/joy/Sheet';
 import TextField from '@mui/joy/TextField';
 
-import Send from '@mui/icons-material/SendRounded';
-
 export default function InputIntegration() {
   const [radius, setRadius] = React.useState(16);
   const [childHeight, setChildHeight] = React.useState(32);
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
       <Input
-        size="lg"
-        placeholder="yourname@mui.com"
+        size="md"
+        placeholder="email@mui.com"
         endDecorator={
-          <Button size="sm" endIcon={<Send />} sx={{ boxShadow: 'sm' }}>
+          <Button variant="soft" size="sm" sx={{ boxShadow: 'sm' }}>
             Subscribe
           </Button>
         }

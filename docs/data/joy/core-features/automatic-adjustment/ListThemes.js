@@ -3,6 +3,7 @@ import BrandingProvider from 'docs/src/BrandingProvider';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import { styled } from '@mui/joy/styles';
 import Box from '@mui/joy/Box';
+import Sheet from '@mui/joy/Sheet';
 import FormLabel from '@mui/joy/FormLabel';
 import List from '@mui/joy/List';
 import ListItem from '@mui/joy/ListItem';
@@ -53,7 +54,7 @@ export default function ButtonThemes() {
     cozy: {},
   };
   return (
-    <Box
+    <Sheet
       sx={{
         m: -1.5,
         mt: 0.5,
@@ -70,6 +71,10 @@ export default function ButtonThemes() {
         <Box
           sx={{
             m: 'auto',
+            border: '1px solid',
+            borderColor: (theme) => theme.variants.outlinedHover.neutral,
+            borderRadius: 'sm',
+            overflow: 'auto',
             '& > *': {
               bgcolor: 'background.body',
             },
@@ -108,9 +113,10 @@ export default function ButtonThemes() {
         <Box
           sx={{
             mx: 'auto',
-            pt: 3,
+            pt: 2,
             width: '100%',
             display: 'flex',
+            flexDirection: 'column',
             gap: 1,
             alignItems: 'center',
             justifyContent: 'center',
@@ -182,6 +188,6 @@ export default function ButtonThemes() {
           />
         </BrandingProvider>
       }
-    </Box>
+    </Sheet>
   );
 }

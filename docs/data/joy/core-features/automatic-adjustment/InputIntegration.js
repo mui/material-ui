@@ -3,41 +3,41 @@ import Box from '@mui/joy/Box';
 import IconButton from '@mui/joy/IconButton';
 import Input from '@mui/joy/Input';
 
-import Key from '@mui/icons-material/Key';
-import Visibility from '@mui/icons-material/Visibility';
+import KeyRoundedIcon from '@mui/icons-material/KeyRounded';
+import VisibilityRoundedIcon from '@mui/icons-material/VisibilityRounded';
 
 export default function InputIntegration() {
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
       <Input
         size="sm"
-        startDecorator={<Key />}
+        startDecorator={<KeyRoundedIcon />}
         placeholder="Password"
         type="password"
         endDecorator={
           <IconButton color="neutral" size="sm">
-            <Visibility />
+            <VisibilityRoundedIcon />
           </IconButton>
         }
       />
       <Input
-        startDecorator={<Key />}
+        startDecorator={<KeyRoundedIcon />}
         placeholder="Password"
         type="password"
         endDecorator={
           <IconButton color="neutral" size="sm">
-            <Visibility />
+            <VisibilityRoundedIcon />
           </IconButton>
         }
       />
       <Input
         size="lg"
-        startDecorator={<Key />}
+        startDecorator={<KeyRoundedIcon />}
         placeholder="Password"
         type="password"
         endDecorator={
           <IconButton color="neutral">
-            <Visibility />
+            <VisibilityRoundedIcon />
           </IconButton>
         }
       />
