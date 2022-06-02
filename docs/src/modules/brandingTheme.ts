@@ -402,9 +402,7 @@ export function getThemedComponents(theme: Theme): { components: Theme['componen
       MuiMenu: {
         styleOverrides: {
           paper: {
-            mt: 0.5,
             minWidth: 160,
-            elevation: 0,
             color: theme.palette.text.secondary,
             backgroundImage: 'none',
             backgroundColor:
