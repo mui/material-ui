@@ -150,7 +150,7 @@ export default function TemplateCollection() {
                   sx={{
                     background: `center/cover no-repeat url(/static/screenshots/joy-ui/getting-started/templates/${name}${
                       theme.palette.mode === 'dark' ? '-dark' : ''
-                    }.png)`,
+                    }.jpg)`,
                     transition: '0.3s',
                   }}
                 />
