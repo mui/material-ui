@@ -7,7 +7,6 @@ const StyledBadge = styled(BadgeUnstyled)`
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  color: rgba(0, 0, 0, 0.85);
   font-size: 14px;
   list-style: none;
   font-family: IBM Plex Sans, sans-serif;
