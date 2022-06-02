@@ -75,7 +75,7 @@ Meanwhile, we've developed a couple of templates that showcase what Joy looks li
 Follow the templates' CodeSandbox or live demo links to experiment with Joy UI for yourself.
 
 :::info
-They are also available on the docs [Templates page](/joy-ui/getting-started/templates/).
+👉 They are also available on the docs [Templates page](/joy-ui/getting-started/templates/).
 :::
 
 ### Email
