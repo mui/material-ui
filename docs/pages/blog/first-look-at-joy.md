@@ -62,7 +62,9 @@ We put considerable effort into constructing the CSS variables for each componen
 One good example is the input component, where the border radius of the input's children automatically adapts to that of the input.
 These small details mean the components adapt to different scenarios, which saves considerable time by avoiding manual adjustments.
 
-<!-- Add an image that represent the UI of the code -->
+<img src="/static/blog/first-look-at-joy/component-integration.png" style="width: 796px; margin-top: 16px; margin-bottom: 8px;" alt="Screenshot of two text inputs, one being native from Joy UI and another with border-radius customized" />
+
+<p class="blog-description">When customizing the input's border radius, the icon button inside of it adapts automatically.</p>
 
 ```jsx
 <Input
