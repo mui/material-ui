@@ -1,0 +1,4 @@
+<Sheet variant="plain">Plain</Sheet>
+<Sheet variant="solid">Solid</Sheet>
+<Sheet variant="outlined">Outlined</Sheet>
+<Sheet variant="soft">Soft</Sheet>

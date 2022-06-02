@@ -2,12 +2,11 @@ import Box from '@mui/joy/Box';
 import Sheet from '@mui/joy/Sheet';
 import * as React from 'react';
 
-export default function SimpleSheet() {
+export default function SheetElevations() {
   return (
     <Box
       sx={{
         display: 'flex',
-        flexWrap: 'wrap',
         '& > div': {
           m: 2,
           width: 128,

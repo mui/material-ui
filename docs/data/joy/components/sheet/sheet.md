@@ -11,15 +11,25 @@ unstyled: /base/react-sheet/
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## Basic
-
 Use the `Sheet` component as a generic container for your components.
 You can play around with variants, color, and elevation to achieve the desired result.
 
 {{"demo": "SheetUsage.js", "hideToolbar": true}}
 
-## Elevation
+## Variants
 
-`Sheet` comes with three predefined elevation values: `sm`, `md`, and `lg`.
+The `Sheet` comes with four global variants: `plain` (default), `outlined`, `soft` and `solid`.
 
-{{"demo": "SimpleSheet.js"}}
+{{"demo": "SheetVariants.js"}}
+
+## Colors
+
+All theme palettes are available via the `color` prop which can be combined with the `variant` prop.
+
+{{"demo": "SheetColors.js"}}
+
+## Elevations
+
+The `Sheet` comes with three predefined elevation values: `sm`, `md`, and `lg`.
+
+{{"demo": "SheetElevations.js"}}
