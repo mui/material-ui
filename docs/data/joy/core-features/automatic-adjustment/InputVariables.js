@@ -15,7 +15,7 @@ export default function InputIntegration() {
         size="md"
         placeholder="email@mui.com"
         endDecorator={
-          <Button variant="soft" size="sm" sx={{ boxShadow: 'sm' }}>
+          <Button variant="soft" size="sm">
             Subscribe
           </Button>
         }
