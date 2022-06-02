@@ -299,7 +299,7 @@ The default `theme.palette.info` colors were changed to pass the AA accessibilit
 
 ### Change default theme.palette.success colors
 
-The default `theme.palette.success` colors were changed to pass the AA standard contrast ratio in both light and dark modes.
+The default `theme.palette.success` colors were changed to pass the AA accessibility standard contrast ratio in both light and dark modes.
 
 ```diff
   success = {
@@ -316,7 +316,7 @@ The default `theme.palette.success` colors were changed to pass the AA standard 
 
 ### Change default theme.palette.warning colors
 
-The default `theme.palette.warning` colors were changed to pass the AA standard contrast ratio in both light and dark modes.
+The default `theme.palette.warning` colors were changed to pass the AA accesibility standard contrast ratio in both light and dark modes.
 
 ```diff
   warning = {

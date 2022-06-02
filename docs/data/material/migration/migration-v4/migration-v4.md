@@ -18,8 +18,8 @@ We highly recommend running our [codemods](#run-codemods) for efficiency—these
 
 One of the biggest changes in v5 is the replacement of JSS for [Emotion](https://emotion.sh/docs/introduction) as a default styling solution.
 
-Note that you may continue to use JSS for adding overrides for the components (e.g. `makeStyles`, `withStyles`) even after migrating to v5.
-However, once the upgrade to v5 is done, we recommend to progressively moving over to the new styling engine.
+Note that you may continue to use JSS for adding overrides to the components (e.g. `makeStyles`, `withStyles`) even after migrating to v5.
+Once you've completed the rest of the v5 upgrade, we recommend progressively moving over to the new styling engine.
 
 This process is covered in [Migrating from JSS](/material-ui/migration/migrating-from-jss/).
 
