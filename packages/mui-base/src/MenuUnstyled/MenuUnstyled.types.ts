@@ -1,5 +1,6 @@
 import React from 'react';
 import PopperUnstyled, { PopperUnstyledProps } from '../PopperUnstyled';
+import { SlotComponentProps } from '../utils';
 import { UseMenuListboxSlotProps } from './useMenu.types';
 
 export interface MenuUnstyledComponentsPropsOverrides {}
@@ -29,9 +30,16 @@ export interface MenuUnstyledProps {
     Listbox?: React.ElementType;
   };
   componentsProps?: {
-    root?: Partial<React.ComponentPropsWithRef<typeof PopperUnstyled>> &
-      MenuUnstyledComponentsPropsOverrides;
-    listbox?: React.ComponentPropsWithRef<'ul'> & MenuUnstyledComponentsPropsOverrides;
+    root?: SlotComponentProps<
+      typeof PopperUnstyled,
+      MenuUnstyledComponentsPropsOverrides,
+      MenuUnstyledOwnerState
+    >;
+    listbox?: SlotComponentProps<
+      'ul',
+      MenuUnstyledComponentsPropsOverrides,
+      MenuUnstyledOwnerState
+    >;
   };
   /**
    * Always keep the menu in the DOM.
@@ -40,6 +48,7 @@ export interface MenuUnstyledProps {
    * @default false
    */
   keepMounted?: boolean;
+  listboxId?: string;
   /**
    * Triggered when focus leaves the menu and the menu should close.
    */
