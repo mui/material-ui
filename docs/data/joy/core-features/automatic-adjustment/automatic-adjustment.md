@@ -24,7 +24,7 @@ The `Input` can adjust the size of the icons or the buttons when they are used a
 
 Moreover, Joy guarantees that the spacing and the radius follows the input if you customize the variable that the component provides.
 
-{{"demo": "InputChildHeight.js"}}
+{{"demo": "InputVariables.js"}}
 
 ### List
 
