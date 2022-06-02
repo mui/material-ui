@@ -31,6 +31,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import FolderOpenIcon from '@mui/icons-material/FolderOpen';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 import CloseIcon from '@mui/icons-material/Close';
+import BookRoundedIcon from '@mui/icons-material/BookRounded';
 
 // custom
 import filesTheme from './theme';
@@ -148,6 +149,15 @@ export default function FilesExample() {
               sx={{ display: { xs: 'inline-flex', sm: 'none' } }}
             >
               <SearchRoundedIcon />
+            </IconButton>
+            <IconButton
+              size="sm"
+              variant="outlined"
+              color="primary"
+              component="a"
+              href="/blog/first-look-at-joy/"
+            >
+              <BookRoundedIcon />
             </IconButton>
             <Menu
               id="app-selector"

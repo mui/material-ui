@@ -15,6 +15,7 @@ import GridViewRoundedIcon from '@mui/icons-material/GridViewRounded';
 import MailRoundedIcon from '@mui/icons-material/MailRounded';
 import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
 import MenuIcon from '@mui/icons-material/Menu';
+import BookRoundedIcon from '@mui/icons-material/BookRounded';
 
 // custom
 import emailTheme from './theme';
@@ -129,6 +130,15 @@ export default function EmailExample() {
               sx={{ display: { xs: 'inline-flex', sm: 'none' } }}
             >
               <SearchRoundedIcon />
+            </IconButton>
+            <IconButton
+              size="sm"
+              variant="outlined"
+              color="primary"
+              component="a"
+              href="/blog/first-look-at-joy/"
+            >
+              <BookRoundedIcon />
             </IconButton>
             <Menu
               id="app-selector"
