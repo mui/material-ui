@@ -12,16 +12,20 @@ const urls = [
 ];
 
 (async () => {
-  try {
-    const browser = await chromium.launch();
-    const page = await browser.newPage({ viewport: { width: 1600, height: 800 } });
+  // eslint-disable-next-line no-console
+  console.info('host:', host);
+  const browser = await chromium.launch();
+  const page = await browser.newPage({ viewport: { width: 1600, height: 800 } });
 
+  try {
     await Promise.resolve().then(() =>
       urls.reduce(async (sequence, aUrl) => {
         await sequence;
         await page.goto(`${host}${aUrl}`);
 
-        const filePath = aUrl.replace(/(.*)\/?$/, '$1');
+        const filePath = aUrl.replace(/\/$/, '');
+        // eslint-disable-next-line no-console
+        console.info('Saving screenshot to:', filePath);
         await page.screenshot({ path: `${directory}${filePath}.png` });
 
         // capture dark mode
@@ -34,9 +38,10 @@ const urls = [
         return Promise.resolve();
       }, Promise.resolve()),
     );
-
-    await browser.close();
   } catch (error) {
-    throw new Error(error);
+    // eslint-disable-next-line no-console
+    console.log(error);
   }
+
+  await browser.close();
 })();
