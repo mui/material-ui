@@ -4,6 +4,7 @@ import Fab from '@mui/material/Fab';
 import Tooltip from '@mui/material/Tooltip';
 import KeyboardArrowUpRoundedIcon from '@mui/icons-material/KeyboardArrowUpRounded';
 import Fade from '@mui/material/Fade';
+import { Theme } from '@mui/material/styles';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 
 export default function BackToTop() {
@@ -54,7 +55,7 @@ export default function BackToTop() {
         >
           <KeyboardArrowUpRoundedIcon
             sx={{
-              color: (theme) =>
+              color: (theme: Theme) =>
                 theme.palette.mode === 'dark'
                   ? theme.palette.primary[200]
                   : theme.palette.primary[800],
