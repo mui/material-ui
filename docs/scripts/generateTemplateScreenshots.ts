@@ -21,7 +21,7 @@ const urls = [
         await sequence;
         await page.goto(`${host}${aUrl}`);
 
-        const filePath = `${directory}${aUrl.replace(/\/$/, '')}.png`;
+        const filePath = `${directory}${aUrl.replace(/\/$/, '')}.jpg`;
         // eslint-disable-next-line no-console
         console.info('Saving screenshot to:', filePath);
         await page.screenshot({ path: filePath });
@@ -30,7 +30,7 @@ const urls = [
         const toggle = await page.$('#toggle-mode');
         if (toggle) {
           await page.click('#toggle-mode');
-          await page.screenshot({ path: `${directory}${filePath}-dark.png` });
+          await page.screenshot({ path: filePath.replace('.jpg', '-dark.jpg') });
 
           await page.click('#toggle-mode'); // switch back to light
         }
