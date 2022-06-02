@@ -18,8 +18,8 @@ If you ever considered going with Material UI because of the thought through dev
 
 You might intuitively associate MUI with Material UI, which despite the indeed potentially confusing names, are separate things.
 Material UI is MUI's React implementation of Google's Material Design.
-Over the years Material UI has established itself as the go-to library for quickly breathing life into products, mostly thanks to its design, customizability, and documentation.
 
+Over the years Material UI has established itself as the go-to library for quickly breathing life into products, mostly thanks to its design, customizability, and documentation.
 However, the components do come with the default 2018 Google look and feel that is no longer as popular as it was.
 And, as we've reconfirmed with [our latest developer survey](/blog/2021-developer-survey-results/#what-are-your-most-important-criteria-for-choosing-a-ui-library/), the design aspect of UI libraries is one of the most important ones whenever evaluating which to choose.
 
