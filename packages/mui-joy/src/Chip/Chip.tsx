@@ -50,7 +50,7 @@ const ChipRoot = styled('div', {
       '--Chip-decorator-childOffset':
         'min(calc(var(--Chip-paddingInline) - var(--Chip-decorator-offset) - (var(--Chip-minHeight) - 2 * var(--variant-borderWidth) - var(--Chip-decorator-childHeight)) / 2), var(--Chip-paddingInline) - var(--Chip-decorator-offset))',
       '--internal-paddingBlock':
-        'max((var(--Chip-minHeight) - 2 * var(--variant-borderWidth) - var(--Chip-decorator-childHeight)) / 2)',
+        'max((var(--Chip-minHeight) - 2 * var(--variant-borderWidth) - var(--Chip-decorator-childHeight)) / 2, 0px)',
       '--Chip-decorator-childRadius':
         'max((var(--Chip-radius) - var(--variant-borderWidth)) - var(--internal-paddingBlock), min(var(--internal-paddingBlock) / 2, (var(--Chip-radius) - var(--variant-borderWidth)) / 2))',
       '--Chip-delete-radius': 'var(--Chip-decorator-childRadius)',
