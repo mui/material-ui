@@ -651,7 +651,7 @@ export default function AppNavDrawer(props) {
           {
             // TODO: remove first condition when https://github.com/mui/mui-x/pull/4692 is released
             (asPathWithoutLang.startsWith('/x/advanced-components') ||
-              asPathWithoutLang.startsWith('/x/getting-started')) && (
+              asPathWithoutLang.startsWith('/x/introduction')) && (
               <ProductIdentifier name="Advanced components" metadata="MUI X" />
             )
           }

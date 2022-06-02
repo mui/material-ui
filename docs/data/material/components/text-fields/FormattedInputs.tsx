@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { IMaskInput } from 'react-imask';
-import NumberFormat from 'react-number-format';
+import NumberFormat, { InputAttributes } from 'react-number-format';
 import Box from '@mui/material/Box';
 import Input from '@mui/material/Input';
 import InputLabel from '@mui/material/InputLabel';
@@ -30,29 +30,30 @@ const TextMaskCustom = React.forwardRef<HTMLElement, CustomProps>(
   },
 );
 
-const NumberFormatCustom = React.forwardRef<NumberFormat, CustomProps>(
-  function NumberFormatCustom(props, ref) {
-    const { onChange, ...other } = props;
+const NumberFormatCustom = React.forwardRef<
+  NumberFormat<InputAttributes>,
+  CustomProps
+>(function NumberFormatCustom(props, ref) {
+  const { onChange, ...other } = props;
 
-    return (
-      <NumberFormat
-        {...other}
-        getInputRef={ref}
-        onValueChange={(values) => {
-          onChange({
-            target: {
-              name: props.name,
-              value: values.value,
-            },
-          });
-        }}
-        thousandSeparator
-        isNumericString
-        prefix="$"
-      />
-    );
-  },
-);
+  return (
+    <NumberFormat
+      {...other}
+      getInputRef={ref}
+      onValueChange={(values) => {
+        onChange({
+          target: {
+            name: props.name,
+            value: values.value,
+          },
+        });
+      }}
+      thousandSeparator
+      isNumericString
+      prefix="$"
+    />
+  );
+});
 
 interface State {
   textmask: string;
