@@ -66,7 +66,7 @@ const InputRoot = styled('div', {
     '--Input-decorator-childOffset':
       'min(calc(var(--Input-paddingInline) - var(--Input-decorator-offset) - (var(--Input-minHeight) - 2 * var(--variant-borderWidth) - var(--Input-decorator-childHeight)) / 2), var(--Input-paddingInline) - var(--Input-decorator-offset))',
     '--internal-paddingBlock':
-      'max((var(--Input-minHeight) - 2 * var(--variant-borderWidth) - var(--Input-decorator-childHeight)) / 2)',
+      'max((var(--Input-minHeight) - 2 * var(--variant-borderWidth) - var(--Input-decorator-childHeight)) / 2, 0px)',
     '--Input-decorator-childRadius':
       'max((var(--Input-radius) - var(--variant-borderWidth)) - var(--internal-paddingBlock), min(var(--internal-paddingBlock) / 2, (var(--Input-radius) - var(--variant-borderWidth)) / 2))',
     '--Button-minHeight': 'var(--Input-decorator-childHeight)',
