@@ -163,7 +163,7 @@ declare const TablePagination: OverridableComponent<
   TablePaginationTypeMap<{}, React.JSXElementConstructor<TablePaginationBaseProps>>
 >;
 
-export type TablePaginationBaseProps = Omit<TableCellProps, 'classes' | 'component' | 'children'>;
+export type TablePaginationBaseProps = Omit<TableCellProps, 'classes' | 'children'>;
 
 export type TablePaginationProps<
   D extends React.ElementType = React.JSXElementConstructor<TablePaginationBaseProps>,
