@@ -11,6 +11,8 @@ unstyled: /base/react-sheet/
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
+## Basic
+
 Use the `Sheet` component as a generic container for your components.
 You can play around with variants, color, and elevation to achieve the desired result.
 
