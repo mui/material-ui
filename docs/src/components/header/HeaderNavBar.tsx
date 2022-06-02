@@ -82,7 +82,6 @@ const ProductSubMenu = React.forwardRef<HTMLAnchorElement, ProductSubMenuProps>(
         <Box
           sx={{
             px: 2,
-            pointerEvents: 'none',
             '& circle': {
               fill: (theme) =>
                 theme.palette.mode === 'dark'
