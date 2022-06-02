@@ -1,8 +1,6 @@
 import { chromium } from 'playwright';
 
-const host = process.env.PR_NUMBER
-  ? `https://deploy-preview-${process.env.PR_NUMBER}--material-ui.netlify.app`
-  : 'http://localhost:3000';
+const host = process.env.DEPLOY_PREVIEW || 'http://localhost:3000';
 const directory = 'docs/public/static/screenshots';
 
 const urls = [
