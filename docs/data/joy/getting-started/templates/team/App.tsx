@@ -34,6 +34,7 @@ import KeyboardArrowUpRoundedIcon from '@mui/icons-material/KeyboardArrowUpRound
 import MenuIcon from '@mui/icons-material/Menu';
 import KeyboardArrowRightRoundedIcon from '@mui/icons-material/KeyboardArrowRightRounded';
 import GroupRoundedIcon from '@mui/icons-material/GroupRounded';
+import BookRoundedIcon from '@mui/icons-material/BookRounded';
 
 // custom
 import teamTheme from './theme';
@@ -216,6 +217,15 @@ export default function TeamExample() {
               sx={{ display: { xs: 'inline-flex', sm: 'none' } }}
             >
               <SearchRoundedIcon />
+            </IconButton>
+            <IconButton
+              size="sm"
+              variant="outlined"
+              color="primary"
+              component="a"
+              href="/blog/first-look-at-joy/"
+            >
+              <BookRoundedIcon />
             </IconButton>
             <Menu
               id="app-selector"

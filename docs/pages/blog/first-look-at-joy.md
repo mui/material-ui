@@ -18,8 +18,8 @@ If you ever considered going with Material UI because of the thought through dev
 
 You might intuitively associate MUI with Material UI, which despite the indeed potentially confusing names, are separate things.
 Material UI is MUI's React implementation of Google's Material Design.
-Over the years Material UI has established itself as the go-to library for quickly breathing life into products, mostly thanks to its design, customizability, and documentation.
 
+Over the years Material UI has established itself as the go-to library for quickly breathing life into products, mostly thanks to its design, customizability, and documentation.
 However, the components do come with the default 2018 Google look and feel that is no longer as popular as it was.
 And, as we've reconfirmed with [our latest developer survey](/blog/2021-developer-survey-results/#what-are-your-most-important-criteria-for-choosing-a-ui-library/), the design aspect of UI libraries is one of the most important ones whenever evaluating which to choose.
 
@@ -30,7 +30,7 @@ A different theme would still require you and your team to have at least some se
 
 We also had many ideas for improving the experience of developing design systems, so a separate package is an opportunity to prototype and test some of these new features without running the risk of compromising the experience of the thousands of teams that use Material UI today.
 
-Material UI and Joy UI will still share many conventions and features, and overall philosophy.
+Material UI and Joy UI will still share many conventions and features.
 This will not only decrease the learning curve for adopting Joy, but also because we think of them both representing the ideal developer experience for developing design systems.
 So if at any time Joy UI has a feature that Material UI doesn't, it will catch-up at some point, and vice versa.
 
@@ -42,7 +42,7 @@ Aside from a fresher look and feel for your upcoming project, here are a few fea
 
 Instead of defining variants at the component level, Joy UI defines variants at the global level.
 This sounds bold at first, but the more we experiment the more it starts to make sense.
-Global variants mostly affect three CSS properties: color, background, and border.
+[Global variants](/joy-ui/core-features/global-variant/) mostly affect three CSS properties: color, background, and border.
 
 What this means is that you'll be able to switch between the same set of variants in any component, more easily maintaining consistency across your app.
 The four variants available in the components are `plain`, `outlined`, `soft`, and `solid`.
@@ -92,7 +92,7 @@ You're still able to override the style completely via the usual CSS overrides, 
 
 ### Perfect dark mode, for server-side rendering
 
-Joy UI provides a simple and effective way to prevent UI flicker when users refresh or re-enter the page when dark mode is ebabled.
+Joy UI provides a simple and effective way to prevent UI flicker when users refresh or re-enter the page when dark mode is enabled.
 What's more, it takes care of the synchronization between browser tabs with a single line of code, which allows developers to configure attributes and settings as required.
 
 ### Unlimited color schemes
@@ -102,14 +102,15 @@ Within each mode, you'll be able to have as many as you want－powered by CSS va
 
 ## When will I be able to use it?
 
-A significant part of the core infrastructure for Joy UI has already been developed, and we've been working for the last couple of months on adding more structural components.
-Once we get to a reasonable number, and with sufficient documentation, we plan to release an alpha version, most likely during the second half of 2022.
+A significant part of the core infrastructure for Joy UI has already been developed, and we've been working for the last couple of months on adding more and more components.
+The package is already [available at npm](https://www.npmjs.com/package/@mui/joy) but until we get to a reasonable number of components, and with sufficient documentation, it remains as _initial_ work in progress.
 
+It should, though, be ready for more mature experimentation and testing most likely dureing the second half of 2022.
 Meanwhile, we've developed a couple of templates that showcase what Joy looks like out of the box, and to allow you to explore it further.
 Follow the templates' CodeSandbox or live demo links to experiment with Joy UI for yourself.
 
 :::info
-They are also available on the docs [Templates page](/joy-ui/getting-started/templates/).
+👉 They are also available on the docs [Templates page](/joy-ui/getting-started/templates/).
 :::
 
 ### Email
@@ -133,7 +134,7 @@ They are also available on the docs [Templates page](/joy-ui/getting-started/tem
 - [Live demo](/joy-ui/getting-started/templates/team/)
 - [CodeSandbox](https://codesandbox.io/s/dclgbp?file=/App.tsx)
 
-We hope will get as excited as we are.
+We hope you'll get as excited as we are.
 Joy UI is just getting started－stay tuned for more news about it in the near future!
 
 Happy developing! 👩‍💻
