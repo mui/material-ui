@@ -47,23 +47,13 @@ This sounds bold at first, but the more we experiment the more it starts to make
 What this means is that you'll be able to switch between the same set of variants in any component, more easily maintaining consistency across your app.
 The four variants available in the components are `plain`, `outlined`, `soft`, and `solid`.
 
-<!-- Add an image that represent the UI of the code -->
+<img src="/static/blog/first-look-at-joy/global-variants.png" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" alt="Screenshot of button component using all available variants." />
 
 ```jsx
-<Button variant="plain">
-<Button variant="outlined">
-<Button variant="soft">
 <Button variant="solid">
-
-<Chip variant="plain">
-<Chip variant="outlined">
-<Chip variant="soft">
-<Chip variant="solid">
-
-<Checkbox variant="plain">
-<Checkbox variant="outlined">
-<Checkbox variant="soft">
-<Checkbox variant="solid">
+<Button variant="soft">
+<Button variant="outlined">
+<Button variant="plain">
 ```
 
 ### Component integration
