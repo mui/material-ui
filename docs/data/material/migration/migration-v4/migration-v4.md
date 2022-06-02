@@ -19,7 +19,7 @@ We highly recommend running our [codemods](#run-codemods) for efficiency—these
 One of the biggest changes in v5 is the replacement of JSS for [Emotion](https://emotion.sh/docs/introduction) as a default styling solution.
 
 Note that you may continue to use JSS for adding overrides for the components (e.g. `makeStyles`, `withStyles`) even after migrating to v5.
-Then, if at any point you want to move over to the new styling engine, you can refactor your components progressively.
+However, once the upgrade to v5 is done, we recommend to progressively moving over to the new styling engine.
 
 This process is covered in [Migrating from JSS](/material-ui/migration/migrating-from-jss/).
 
@@ -33,9 +33,9 @@ Material UI v5 includes many bug fixes and improvements over v4.
 
 Chief among these improvements is the new styling engine, which offers significant advancements in performance when it comes to dynamic styles, as well as a more enjoyable developer experience.
 
-Additionally, v5 is the only version that supports React 18, so you will need to migrate to take advantage of the latest React features.
+Additionally, v5 is the only version that fully supports React 18, so you will need to migrate to take advantage of the latest React features.
 
-To learn more, check out [the blog post about the release of Material UI v5](/blog/mui-core-v5/).
+To learn more, check out [the blog post about the release of Material UI v5](https://mui.com/blog/mui-core-v5/).
 
 :::info
 💡 Create small commits as you go to ensure a smooth migration.
@@ -254,7 +254,7 @@ const ChipWithGreenIcon = () => (
 );
 ```
 
-In this example, in order to correctly apply a particular style to the delete icon of `Chip`, you need to increase the specificity of your CSS classes, as shown below:
+In this example, in order to correctly apply a particular style to the delete icon of `Chip`, one option is to increase the specificity of your CSS classes, as shown below:
 
 ```css
 .MuiChip-root .green {

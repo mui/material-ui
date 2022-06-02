@@ -20,7 +20,7 @@ The following document lists all breaking changes related to components in v5 an
 If you haven't already, please be sure to review [Breaking changes in v5 part one: styles and themes](/material-ui/migration/v5-style-changes/) to continue the migration process.
 
 :::warning
-Breaking changes that are handled by codemods are denoted by a ✅ emoji in the table of contents on the right side of the screen.
+Breaking changes that are handled by the codemods are denoted by a ✅ emoji in the table of contents on the right side of the screen.
 
 If you have already followed the instructions in the main migration guide and run the codemods, then you should not need to take any further action on these items.
 
@@ -83,22 +83,22 @@ Remove `debug` prop. There are a couple of simpler alternatives: `open={true}`, 
 It makes customizations easier. You can recover from the change with:
 
 ```diff
-  <Autocomplete
+ <Autocomplete
 -  renderOption={(option, { selected }) => (
 -    <React.Fragment>
 +  renderOption={(props, option, { selected }) => (
 +    <li {...props}>
-        <Checkbox
-          icon={icon}
-          checkedIcon={checkedIcon}
-          style={{ marginRight: 8 }}
-          checked={selected}
-        />
-        {option.title}
+       <Checkbox
+         icon={icon}
+         checkedIcon={checkedIcon}
+         style={{ marginRight: 8 }}
+         checked={selected}
+       />
+       {option.title}
 -    </React.Fragment>
 +    </li>
-    )}
-  />
+   )}
+ />
 ```
 
 ### ✅ Rename `closeIcon` to `clearIcon`
@@ -130,7 +130,7 @@ Change the CSS rules that use `[data-focus="true"]` to use `.Mui-focused`. The `
 Rename `getOptionSelected` to `isOptionEqualToValue` to better describe its purpose.
 
 ```diff
-  <Autocomplete
+ <Autocomplete
 -  getOptionSelected={(option, value) => option.title === value.title}
 +  isOptionEqualToValue={(option, value) => option.title === value.title}
 ```
@@ -178,7 +178,7 @@ Rename `circle` to `circular` and `rectangle` to `rectangular` for consistency.
 ```
 
 ```diff
-  <Badge classes={{
+ <Badge classes={{
 -  anchorOriginTopRightRectangle: 'className',
 -  anchorOriginBottomRightRectangle: 'className',
 -  anchorOriginTopLeftRectangle: 'className',
@@ -193,7 +193,7 @@ Rename `circle` to `circular` and `rectangle` to `rectangular` for consistency.
 +  anchorOriginTopRightCircular: 'className',
 +  anchorOriginBottomRightCircular: 'className',
 +  anchorOriginTopLeftCircular: 'className',
-  }}>
+ }}>
 ```
 
 ## BottomNavigation
@@ -217,14 +217,14 @@ Remove the `wrapper` classKey too.
 You can find out more details about this change in [this GitHub pull request](https://github.com/mui/material-ui/pull/26923).
 
 ```diff
-  <button class="MuiBottomNavigationAction-root">
+ <button class="MuiBottomNavigationAction-root">
 -  <span class="MuiBottomNavigationAction-wrapper">
-      {icon}
-      <span class="MuiBottomNavigationAction-label">
-        {label}
-      </span>
+     {icon}
+     <span class="MuiBottomNavigationAction-label">
+       {label}
+     </span>
 -  </span>
-  </button>
+ </button>
 ```
 
 ## Box
@@ -331,14 +331,14 @@ If you prefer to use the `default` color in v4, take a look at this [CodeSandbox
 The `span` element that wraps children has been removed.
 The `label` classKey is also removed.
 
-You can find out more details about this change in [this GitHub pull request](https://github.com/mui/material-ui/pull/26666).
+You can find out more details about this change in [this GitHub pull request](https://github.com/mui/material-ui/pull/26666), it used to be necessary for iOS.
 
 ```diff
-  <button class="MuiButton-root">
+ <button class="MuiButton-root">
 -  <span class="MuiButton-label">
-      children
+     children
 -  </span>
-  </button>
+ </button>
 ```
 
 ## Chip
@@ -630,12 +630,12 @@ Remove `display: flex` from `AccordionDetails` (formerly `ExpansionPanelDetails`
 Rename `focused` to `focusVisible` for consistency:
 
 ```diff
-  <AccordionSummary
-    classes={{
+ <AccordionSummary
+   classes={{
 -    focused: 'custom-focus-visible-classname',
 +    focusVisible: 'custom-focus-visible-classname',
-    }}
-  />
+   }}
+ />
 ```
 
 ### Remove IconButtonProps prop
@@ -658,14 +658,14 @@ The component renders a `<div>` element instead of an `IconButton`, so the prop 
 The `span` element that wraps children has been removed.
 The `label` classKey is also removed.
 
-You can find out more details about this change in [this GitHub pull request](https://github.com/mui/material-ui/pull/27112).
+You can find out more details about this change in [this GitHub pull request](https://github.com/mui/material-ui/pull/27112), it used to be necessary for iOS.
 
 ```diff
-  <button class="MuiFab-root">
+ <button class="MuiFab-root">
 -  <span class="MuiFab-label">
-      {children}
+     {children}
 -  </span>
-  </button>
+ </button>
 ```
 
 ## FormControl
@@ -847,14 +847,14 @@ The change was made to better match Google's products when Material Design stopp
 The `span` element that wraps children has been removed.
 The `label` classKey is also removed.
 
-You can find out more details about this change in [this GitHub pull request](https://github.com/mui/material-ui/pull/26666).
+You can find out more details about this change in [this GitHub pull request](https://github.com/mui/material-ui/pull/26666), it used to be necessary for iOS.
 
 ```diff
-  <button class="MuiIconButton-root">
+ <button class="MuiIconButton-root">
 -  <span class="MuiIconButton-label">
-      <svg />
+     <svg />
 -  </span>
-  </button>
+ </button>
 ```
 
 ## Link
@@ -889,7 +889,7 @@ The `on*` transition props were removed.
 Use `TransitionProps` instead.
 
 ```diff
-  <Menu
+ <Menu
 -  onEnter={onEnter}
 -  onEntered={onEntered}
 -  onEntering={onEntering}
@@ -904,7 +904,7 @@ Use `TransitionProps` instead.
 +    onExited,
 +    onExiting,
 +  }}
-  >
+ >
 ```
 
 :::info
@@ -920,7 +920,7 @@ The menu is now displayed below the anchor instead of on top of it.
 You can restore the previous behavior with:
 
 ```diff
-  <Menu
+ <Menu
 +  anchorOrigin={{
 +    vertical: 'top',
 +    horizontal: 'left',
@@ -960,7 +960,7 @@ Remove the `disableBackdropClick` prop because it is redundant.
 Use `onClose` with `reason === 'backdropClick'` instead.
 
 ```diff
-  <Modal
+ <Modal
 -  disableBackdropClick
 -  onClose={handleClose}
 +  onClose={(event, reason) => {
@@ -968,7 +968,7 @@ Use `onClose` with `reason === 'backdropClick'` instead.
 +      handleClose(event, reason);
 +    }
 +  }}
-  />
+ />
 ```
 
 ### ✅ Remove `onEscapeKeyDown` prop
@@ -978,14 +978,14 @@ Remove the `onEscapeKeyDown` prop because it is redundant.
 Use `onClose` with `reason === "escapeKeyDown"` instead.
 
 ```diff
-  <Modal
+ <Modal
 -  onEscapeKeyDown={handleEscapeKeyDown}
 +  onClose={(event, reason) => {
 +    if (reason === 'escapeKeyDown') {
 +      handleEscapeKeyDown(event);
 +    }
 +  }}
-  />
+ />
 ```
 
 ### Remove `onRendered` prop
@@ -1186,10 +1186,10 @@ Change the default empty icon to improve accessibility.
 If you have a custom `icon` prop but no `emptyIcon` prop, you can restore the previous behavior with:
 
 ```diff
-  <Rating
-    icon={customIcon}
+ <Rating
+   icon={customIcon}
 +  emptyIcon={null}
-  />
+ />
 ```
 
 ### Rename visuallyhidden
@@ -1368,7 +1368,7 @@ The `on*` transition props were removed.
 Use `TransitionProps` instead.
 
 ```diff
-  <Snackbar
+ <Snackbar
 -  onEnter={onEnter}
 -  onEntered={onEntered}
 -  onEntering={onEntering}
@@ -1383,7 +1383,7 @@ Use `TransitionProps` instead.
 +    onExited,
 +    onExiting,
 +  }}
-  >
+ >
 ```
 
 ## SpeedDial

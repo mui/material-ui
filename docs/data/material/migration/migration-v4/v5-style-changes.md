@@ -31,7 +31,7 @@ All other changes must be handled manually.
 
 Although your style overrides defined in the theme may partially work, there is an important difference regarding how the nested elements are styled.
 
-The `$` syntax used with JSS will not work with Emotion.
+The `$` syntax (local rule reference) used with JSS will not work with Emotion.
 You need to replace those selectors with a valid class selector.
 
 ### Replace state class names
@@ -87,7 +87,7 @@ You can rely on this instead of hardcoding the classes.
        styleOverrides: {
          root: {
 -          '& $notchedOutline': {
-+          [`& .${outlinedInputClasses['notchedOutline']}`]: {
++          [`& .${outlinedInputClasses.notchedOutline}`]: {
              borderWidth: 1,
            }
          }
@@ -164,7 +164,8 @@ Here are the specific element types that each component expects:
 
 The style library used by default in v5 is [Emotion](https://emotion.sh/docs/introduction).
 
-If you are migrating from JSS to Emotion, and you're currently using JSS style overrides for your components—for example, those created by `makeStyles`—you will need to take care of the CSS injection order.
+If you were using JSS for the style overrides of Material UI components—for example, those created by `makeStyles`—you will need to take care of the CSS injection order.
+JSS `<style`>' elements need to be injected in the `<head>` after Emotion `<style>`' elements.
 
 To do so, you need to have the `StyledEngineProvider` with the `injectFirst` option at the top of your component tree, as shown here:
 
@@ -281,7 +282,7 @@ The `theme.palette.type` key was renamed to `theme.palette.mode`, to better foll
 
 ### Change default theme.palette.info colors
 
-The default `theme.palette.info` colors were changed to pass the AA standard contrast ratio in both light and dark modes.
+The default `theme.palette.info` colors were changed to pass the AA accessibility standard contrast ratio in both light and dark modes.
 
 ```diff
   info = {
@@ -351,9 +352,9 @@ The component definitions in the theme were restructured under the `components` 
 #### 1. props
 
 ```diff
-  import { createTheme } from '@mui/material/styles';
+ import { createTheme } from '@mui/material/styles';
 
-  const theme = createTheme({
+ const theme = createTheme({
 -  props: {
 -    MuiButton: {
 -      disableRipple: true,
@@ -366,15 +367,15 @@ The component definitions in the theme were restructured under the `components` 
 +      },
 +    },
 +  },
-  });
+ });
 ```
 
 #### 2. overrides
 
 ```diff
-  import { createTheme } from '@mui/material/styles';
+ import { createTheme } from '@mui/material/styles';
 
-  const theme = createTheme({
+ const theme = createTheme({
 -  overrides: {
 -    MuiButton: {
 -      root: { padding: 0 },
@@ -387,7 +388,7 @@ The component definitions in the theme were restructured under the `components` 
 +      },
 +    },
 +  },
-  });
+ });
 ```
 
 ## @mui/styles
@@ -451,7 +452,7 @@ The previous name caused confusion when the input color already had an alpha val
 
 ### ✅ Update createStyles import
 
-The `createStyles` function from `@mui/material/styles` was moved to the one exported from `@mui/styles`. It is necessary for removing the dependency to `@mui/styles` in the core package.
+The `createStyles` function from `@mui/material/styles` was moved to the one exported from `@mui/styles`. It is necessary for removing the dependency on `@mui/styles` in the Material UI npm package.
 
 ```diff
 -import { createStyles } from '@mui/material/styles';
