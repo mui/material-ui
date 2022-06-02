@@ -30,7 +30,7 @@ A different theme would still require you and your team to have at least some se
 
 We also had many ideas for improving the experience of developing design systems, so a separate package is an opportunity to prototype and test some of these new features without running the risk of compromising the experience of the thousands of teams that use Material UI today.
 
-Material UI and Joy UI will still share many conventions and features, and overall philosophy.
+Material UI and Joy UI will still share many conventions and features.
 This will not only decrease the learning curve for adopting Joy, but also because we think of them both representing the ideal developer experience for developing design systems.
 So if at any time Joy UI has a feature that Material UI doesn't, it will catch-up at some point, and vice versa.
 
