@@ -43,7 +43,7 @@ export default function TrackFalseSlider() {
         track={false}
         aria-labelledby="track-false-slider"
         getAriaValueText={valueText}
-        defaultValue={30}
+        defaultValue={37}
         marks={marks}
       />
       <Separator />
