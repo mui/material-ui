@@ -34,6 +34,8 @@ const Header = styled('header')(({ theme }) => ({
       : 'rgba(255,255,255,0.72)',
 }));
 
+const HEIGHT = 56;
+
 export default function AppHeader() {
   const changeTheme = useChangeTheme();
   const [mode, setMode] = React.useState<string | null>(null);
@@ -59,11 +61,11 @@ export default function AppHeader() {
       <GlobalStyles
         styles={{
           ':root': {
-            '--MuiDocs-header-height': '64px',
+            '--MuiDocs-header-height': `${HEIGHT}px`,
           },
         }}
       />
-      <Container sx={{ display: 'flex', alignItems: 'center', minHeight: 56 }}>
+      <Container sx={{ display: 'flex', alignItems: 'center', minHeight: HEIGHT }}>
         <Box
           component={Link}
           href={ROUTES.home}
