@@ -9,7 +9,7 @@ githubLabel: 'component: ClickAwayListener'
 
 <p class="description">Detecta se um evento de clique ocorreu fora de um elemento. Ele ouve cliques que ocorrem em algum lugar no documento.</p>
 
-- 📦 [992 B gzipped](/size-snapshot).
+- 📦 [992 B gzipped](/size-snapshot/).
 - ⚛️ Supports portals
 
 [A paleta](/system/palette/) com funções de estilo.
