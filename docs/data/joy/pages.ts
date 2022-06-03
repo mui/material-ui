@@ -11,7 +11,10 @@ const pages = [
   {
     pathname: '/joy-ui/core-features',
     icon: 'ReaderIcon',
-    children: [{ pathname: '/joy-ui/core-features/global-variant' }],
+    children: [
+      { pathname: '/joy-ui/core-features/global-variant' },
+      { pathname: '/joy-ui/core-features/automatic-adjustment' },
+    ],
   },
   {
     pathname: '/joy-ui/react-',
