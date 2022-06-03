@@ -32,7 +32,6 @@ import {
 } from 'docs/src/modules/utils/i18n';
 import DocsStyledEngineProvider from 'docs/src/modules/utils/StyledEngineProvider';
 import createEmotionCache from 'docs/src/createEmotionCache';
-import BackToTop from 'docs/src/modules/components/BackToTop';
 import findActivePage from 'docs/src/modules/utils/findActivePage';
 import useRouterExtra from 'docs/src/modules/utils/useRouterExtra';
 
@@ -247,7 +246,6 @@ export default function MyApp(props) {
 
   return (
     <AppWrapper emotionCache={emotionCache} pageProps={pageProps}>
-      <BackToTop />
       <Component {...pageProps} />
     </AppWrapper>
   );
