@@ -165,7 +165,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
       focus: () => {
         displayRef.current.focus();
       },
-      node: inputRef.current,
+      node: inputRef.current, // TODO v6: Remove
       value,
     }),
     [value],
