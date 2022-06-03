@@ -14,7 +14,7 @@ unstyled: /base/react-popper/
 
 - 🕷 Popper 依赖第三方库 ([Popper.js](https://github.com/popperjs/popper-core)) 来实现完美的定位。
 - 💄 这是 react-popper 的一个替代性 API。 它是为了简单性而设计。
-- 📦 [24.9 kB gzipped](/size-snapshot).
+- 📦 [24.9 kB gzipped](/size-snapshot/).
 - The children is [`Portal`](/material-ui/react-portal/) to the body of the document to avoid rendering problems. 您可以使用 `disablePortal` 来禁用此行为。
 - The scroll isn't blocked like with the [`Popover`](/material-ui/react-popover/) component. 弹出提示的位置会随着视口中的可用面积而更新。
 - Clicking away 不会隐藏`弹出提示`组件。 If you need this behavior, you can use [`ClickAwayListener`](/material-ui/react-click-away-listener/) - see the example in the [menu documentation section](/material-ui/react-menu/#menulist-composition).
