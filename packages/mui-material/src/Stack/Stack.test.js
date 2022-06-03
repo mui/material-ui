@@ -258,24 +258,25 @@ describe('<Stack />', () => {
     });
 
     it('should generate correct styles if custom breakpoints are provided in theme', () => {
+      const customTheme = createTheme({
+        breakpoints: {
+          values: {
+            smallest: 0,
+            small: 375,
+            mobile: 600,
+            tablet: 992,
+            desktop: 1200,
+          },
+        },
+      });
+
       expect(
         style({
           ownerState: {
             direction: 'column',
             spacing: 4,
           },
-          theme: {
-            ...defaultTheme,
-            breakpoints: {
-              values: {
-                smallest: 0,
-                small: 375,
-                mobile: 600,
-                tablet: 992,
-                desktop: 1200,
-              },
-            },
-          },
+          theme: customTheme,
         }),
       ).to.deep.equal({
         '& > :not(style) + :not(style)': {
@@ -288,22 +289,17 @@ describe('<Stack />', () => {
     });
 
     it('should generate correct responsive styles if custom responsive spacing values are provided', () => {
-      const breakpointsValues = {
-        smallest: 0,
-        small: 375,
-        mobile: 600,
-        tablet: 992,
-        desktop: 1200,
-      };
-
-      const customTheme = {
-        ...defaultTheme,
+      const customTheme = createTheme({
         breakpoints: {
-          values: breakpointsValues,
-          keys: ['smallest', 'small', 'mobile', 'tablet', 'desktop'],
-          up: (key) => `@media (min-width:${breakpointsValues[key]}px)`,
+          values: {
+            smallest: 0,
+            small: 375,
+            mobile: 600,
+            tablet: 992,
+            desktop: 1200,
+          },
         },
-      };
+      });
 
       expect(
         style({
