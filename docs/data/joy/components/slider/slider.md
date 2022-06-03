@@ -11,6 +11,36 @@ unstyled: /base/react-slider/
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
+## Colors
+
+All theme palettes are available via the `color` prop.
+
+{{"demo": "SliderColors.js"}}
+
+## Sizes
+
+The `Slider` comes with three predefined size values: `sm`, `md`, and `lg`.
+
+{{"demo": "SliderSizes.js"}}
+
+## Steps
+
+By passing a number to the `step` prop, you can change the default step increment.
+
+{{"demo": "StepsSlider.js"}}
+
+## Marks
+
+By providing an array of objects to the `marks` prop, you can have custom marks.
+
+{{"demo": "MarksSlider.js"}}
+
+## Label always visible
+
+You can force the thumb label to be always visible with `valueLabelDisplay="on"`.
+
+{{"demo": "AlwaysVisibleLabelSlider.js"}}
+
 ## Range slider
 
 By passing an array of values to the `value` prop, you can use the `Slider` to set the start and end of a range.
