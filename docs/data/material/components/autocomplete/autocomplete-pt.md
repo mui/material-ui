@@ -128,7 +128,7 @@ The `useAutocomplete` hook is also reexported from @mui/material for convenience
 import { createFilterOptions } from '@material-ui/core/Autocomplete';
 ```
 
-- 📦 [4.5 kB gzipado](/size-snapshot).
+- 📦 [4.5 kB gzipped](/size-snapshot/).
 
 {{"demo": "UseAutocomplete.js", "defaultCodeOpen": false}}
 
