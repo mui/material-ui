@@ -267,9 +267,12 @@ describe('<Stack />', () => {
           theme: {
             ...defaultTheme,
             breakpoints: {
-              ...defaultTheme.breakpoints,
               values: {
+                smallest: 0,
                 small: 375,
+                mobile: 600,
+                tablet: 992,
+                desktop: 1200,
               },
             },
           },
@@ -286,15 +289,18 @@ describe('<Stack />', () => {
 
     it('should generate correct responsive styles if custom responsive spacing values are provided', () => {
       const breakpointsValues = {
+        smallest: 0,
         small: 375,
+        mobile: 600,
+        tablet: 992,
+        desktop: 1200,
       };
 
       const customTheme = {
         ...defaultTheme,
         breakpoints: {
-          ...defaultTheme.breakpoints,
           values: breakpointsValues,
-          keys: ['small'],
+          keys: ['smallest', 'small', 'mobile', 'tablet', 'desktop'],
           up: (key) => `@media (min-width:${breakpointsValues[key]}px)`,
         },
       };
