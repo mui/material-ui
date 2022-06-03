@@ -4,7 +4,7 @@
 
 ## 打包文件的大小是很重要的
 
-The bundle size of MUI is taken very seriously. Size snapshots are taken on every commit for every package and critical parts of those packages ([view the latest snapshot](/size-snapshot)). 结合 [dangerJS](https://danger.systems/js/) 一起，我们可以在每个 Pull Request 中都可以查看[详细的打包文件的大小变化](https://github.com/mui/material-ui/pull/14638#issuecomment-466658459) 。
+The bundle size of MUI is taken very seriously. Size snapshots are taken on every commit for every package and critical parts of those packages ([view the latest snapshot](/size-snapshot/)). 结合 [dangerJS](https://danger.systems/js/) 一起，我们可以在每个 Pull Request 中都可以查看[详细的打包文件的大小变化](https://github.com/mui/material-ui/pull/14638#issuecomment-466658459) 。
 
 ## 何时以及如何使用 tree-shaking?
 
