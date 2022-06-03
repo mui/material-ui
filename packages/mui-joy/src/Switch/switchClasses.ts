@@ -1,4 +1,4 @@
-import { generateUtilityClass, generateUtilityClasses } from '@mui/base';
+import { generateUtilityClass, generateUtilityClasses } from '../className';
 
 export interface SwitchClasses {
   /** Styles applied to the root element. */
