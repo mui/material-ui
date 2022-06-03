@@ -1,5 +1,7 @@
-import { OverrideProps } from '@mui/types';
+import { OverrideProps, Simplify } from '@mui/types';
+import React from 'react';
 import { ButtonUnstyledOwnProps } from '../ButtonUnstyled';
+import { UseTabRootSlotProps } from './useTab.types';
 
 interface TabUnstyledComponentsPropsOverrides {}
 
@@ -30,7 +32,7 @@ export interface TabUnstyledOwnProps
   };
 }
 
-type TabUnstyledProps<
+export type TabUnstyledProps<
   D extends React.ElementType = TabUnstyledTypeMap['defaultComponent'],
   P = {},
 > = OverrideProps<TabUnstyledTypeMap<P, D>, D> & {
@@ -47,4 +49,17 @@ export interface TabUnstyledTypeMap<P = {}, D extends React.ElementType = 'butto
   defaultComponent: D;
 }
 
-export default TabUnstyledProps;
+export type TabUnstyledOwnerState = TabUnstyledProps & {
+  active: boolean;
+  focusVisible: boolean;
+  disabled: boolean;
+  selected: boolean;
+};
+
+export type TabUnstyledRootSlotProps = Simplify<
+  UseTabRootSlotProps & {
+    className?: string;
+    ref: React.Ref<any>;
+    ownerState: TabUnstyledOwnerState;
+  }
+>;

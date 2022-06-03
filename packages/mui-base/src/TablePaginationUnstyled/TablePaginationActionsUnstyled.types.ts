@@ -62,7 +62,7 @@ interface TablePaginationActionsUnstyledOwnProps extends React.HTMLAttributes<HT
   showLastButton: boolean;
 }
 
-type TablePaginationActionsUnstyledProps<
+export type TablePaginationActionsUnstyledProps<
   D extends React.ElementType = TablePaginationActionsUnstyledTypeMap['defaultComponent'],
   P = {},
 > = OverrideProps<TablePaginationActionsUnstyledTypeMap<P, D>, D> & {
@@ -82,4 +82,19 @@ export interface TablePaginationActionsUnstyledTypeMap<
   defaultComponent: D;
 }
 
-export default TablePaginationActionsUnstyledProps;
+export type TablePaginationActionsUnstyledOwnerState = TablePaginationActionsUnstyledProps;
+
+export type TablePaginationActionsUnstyledRootSlotProps = {
+  children?: React.ReactNode;
+  ownerState: TablePaginationActionsUnstyledOwnerState;
+  ref: React.Ref<any>;
+};
+
+export type TablePaginationActionsUnstyledButtonSlotProps = {
+  'aria-label': string;
+  children?: React.ReactNode;
+  disabled: boolean;
+  onClick: React.MouseEventHandler<HTMLButtonElement>;
+  ownerState: TablePaginationActionsUnstyledOwnerState;
+  title: string;
+};

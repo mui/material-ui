@@ -116,7 +116,7 @@ export default function JoyRadio() {
                   <ListItem component="div">
                     <ListItemContent>
                       <Radio label="Thin" value="Thin" color="warning" />
-                      <Typography level="body3" ml="28px" mt={0.5} color="warning.400">
+                      <Typography level="body3" ml="28px" mt={0.5} textColor="warning.400">
                         This might make your pizza too crispy.
                       </Typography>
                     </ListItemContent>
@@ -276,7 +276,7 @@ export default function JoyRadio() {
               variant="soft"
               sx={{ p: 2, display: 'flex', gap: 2, my: 2, borderRadius: '18px' }}
             >
-              <Typography level="body3" color="text.primary">
+              <Typography level="body3" textColor="text.primary">
                 <Typography fontWeight="md">
                   Choose from two anti-reflective glass options.
                 </Typography>{' '}
@@ -391,13 +391,13 @@ export default function JoyRadio() {
                       <Typography sx={{ display: 'flex' }}>
                         <Typography level="inherit" fontWeight="md" flexGrow={1}>
                           Small <br />
-                          <Typography fontWeight="normal" fontSize="sm" color="text.secondary">
+                          <Typography fontWeight="normal" fontSize="sm" textColor="text.secondary">
                             Description
                           </Typography>
                         </Typography>
                         <Typography level="inherit" fontWeight="md" textAlign="right">
                           $40 <br />
-                          <Typography fontWeight="normal" fontSize="sm" color="text.secondary">
+                          <Typography fontWeight="normal" fontSize="sm" textColor="text.secondary">
                             per month
                           </Typography>
                         </Typography>

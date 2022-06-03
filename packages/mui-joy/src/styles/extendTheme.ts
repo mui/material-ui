@@ -419,6 +419,7 @@ export default function extendTheme(themeInput?: ThemeInput): Theme {
               const instanceFontSize = ownerState.instanceFontSize as 'inherit' | keyof FontSize;
               return {
                 color: 'var(--Icon-color)',
+                margin: 'var(--Icon-margin)',
                 ...(ownerState.fontSize &&
                   ownerState.fontSize !== 'inherit' && {
                     fontSize: `var(--Icon-fontSize, ${themeProp.fontSize[ownerState.fontSize]})`,
