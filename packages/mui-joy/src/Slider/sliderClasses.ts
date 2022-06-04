@@ -31,6 +31,8 @@ export interface SliderClasses {
   valueLabelLabel: string;
   /** Class name applied to the mark element. */
   mark: string;
+  /** Class name applied to the mark element when it is active. */
+  markActive: string;
   /** Class name applied to the mark label element. */
   markLabel: string;
   /** Styles applied to the root element if `color="primary"`. */
@@ -70,6 +72,7 @@ const sliderClasses: SliderClasses = generateUtilityClasses('MuiSlider', [
   'rail',
   'track',
   'mark',
+  'markActive',
   'markLabel',
   'thumb',
   'valueLabel',

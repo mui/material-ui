@@ -188,7 +188,7 @@ export default function extendTheme(themeInput?: ThemeInput): Theme {
         level1: 'var(--joy-palette-neutral-50)',
         level2: 'var(--joy-palette-neutral-100)',
         level3: 'var(--joy-palette-neutral-200)',
-        tooltip: 'var(--joy-palette-neutral-900)',
+        tooltip: 'var(--joy-palette-neutral-800)',
       },
       divider: 'rgba(0 0 0 / 0.12)',
       focusVisible: 'var(--joy-palette-primary-200)',
