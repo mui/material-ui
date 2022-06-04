@@ -482,6 +482,15 @@ The function `createMuiTheme` was renamed to `createTheme` to make it more intui
 +const theme = createTheme({
 ```
 
+### ✅ Update MuiThemeProvider import
+
+The `MuiThemeProvider` component is no longer exported from `@mui/material/styles`. Use `ThemeProvider` instead.
+
+```diff
+-import { MuiThemeProvider } from '@mui/material/styles';
++import { ThemeProvider } from '@mui/material/styles';
+```
+
 ### ✅ Update jssPreset import
 
 The `jssPreset` object is no longer exported from `@mui/material/styles`. You should import it directly from `@mui/styles`.
@@ -519,15 +528,6 @@ If you are using this utility together with `@mui/material`, it's recommended th
 -  return <Component />;
 +  return <ThemeProvider theme={theme}><Component {...props} /></ThemeProvider>;
   }
-```
-
-### ✅ Update MuiThemeProvider import
-
-The `MuiThemeProvider` component is no longer exported from `@mui/material/styles`. Use `ThemeProvider` instead.
-
-```diff
--import { MuiThemeProvider } from '@mui/material/styles';
-+import { ThemeProvider } from '@mui/material/styles';
 ```
 
 ### ✅ Update ServerStyleSheets import
