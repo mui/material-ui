@@ -11,17 +11,7 @@ unstyled: /base/react-slider/
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## Colors
-
-All theme palettes are available via the `color` prop.
-
-{{"demo": "SliderColors.js"}}
-
-## Sizes
-
-The `Slider` comes with three predefined size values: `sm`, `md`, and `lg`.
-
-{{"demo": "SliderSizes.js"}}
+{{"demo": "SliderUsage.js"}}
 
 ## Steps
 

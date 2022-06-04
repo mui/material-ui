@@ -47,7 +47,7 @@ const sliderColorVariables =
       '--Slider-track-color': '#fff',
       '--Slider-rail-background': theme.vars.palette.background.level2,
       '--Slider-thumb-background': theme.vars.palette[color!]?.[`solid${data.state || ''}Color`],
-      '--Slider-thumb-color': theme.vars.palette[color!]?.plainColor,
+      '--Slider-thumb-color': theme.vars.palette[color!]?.[`plain${data.state || ''}Color`],
     };
   };
 
@@ -66,8 +66,8 @@ const SliderRoot = styled('span', {
         '--Slider-mark-background': 'var(--Slider-track-color)',
       },
       ...(ownerState.size === 'sm' && {
-        '--Slider-mark-size': '1px',
-        '--Slider-track-size': '3px',
+        '--Slider-mark-size': '2px',
+        '--Slider-track-size': '4px',
         '--Slider-thumb-size': '10px',
         '--Slider-valueLabel-arrowSize': '6px',
       }),
