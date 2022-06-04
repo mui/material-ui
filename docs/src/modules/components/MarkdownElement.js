@@ -230,8 +230,10 @@ const Root = styled('div')(({ theme }) => ({
     border: '1px solid',
     borderRadius: theme.shape.borderRadius,
     '& > p': {
-      margin: 0,
       color: 'inherit',
+      '&:last-child': {
+        margin: 0,
+      },
     },
     '& ul, li': {
       color: 'inherit',
