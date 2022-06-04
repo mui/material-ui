@@ -42,7 +42,7 @@ function BreadcrumbCollapsed(props: BreadcrumbsProps) {
 
   return (
     <li>
-      <BreadcrumbCollapsedButton {...props} ownerState={ownerState} ref={ref}>
+      <BreadcrumbCollapsedButton {...props} color={'primary'} ownerState={ownerState} ref={ref}>
         <BreadcrumbCollapsedIcon ownerState={ownerState} />
       </BreadcrumbCollapsedButton>
     </li>
