@@ -217,13 +217,6 @@ const SliderThumb = styled('span', {
         left: '50%',
         transform: 'translate(-50%, 50%)',
       }),
-      '&:before': {
-        position: 'absolute',
-        content: '""',
-        borderRadius: 'inherit',
-        width: '100%',
-        height: '100%',
-      },
       '&::after': {
         position: 'absolute',
         content: '""',
