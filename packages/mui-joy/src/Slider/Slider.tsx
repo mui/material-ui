@@ -3,6 +3,7 @@ import {
   SliderValueLabelUnstyled,
   unstable_composeClasses as composeClasses,
 } from '@mui/base';
+import { shouldForwardProp } from '@mui/system';
 import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import clsx from 'clsx';
@@ -288,6 +289,8 @@ const SliderValueLabel = styled(SliderValueLabelUnstyled, {
 const SliderMark = styled('span', {
   name: 'MuiSlider',
   slot: 'Mark',
+  // `markActive` is injected by SliderUnstyled, should not spread to DOM
+  shouldForwardProp: (prop) => shouldForwardProp(prop) && prop !== 'markActive',
   overridesResolver: (props, styles) => styles.mark,
 })<{ ownerState: SliderProps }>(({ ownerState }) => ({
   position: 'absolute',
@@ -308,6 +311,8 @@ const SliderMark = styled('span', {
 const SliderMarkLabel = styled('span', {
   name: 'MuiSlider',
   slot: 'MarkLabel',
+  // `markLabelActive` is injected by SliderUnstyled, should not spread to DOM
+  shouldForwardProp: (prop) => shouldForwardProp(prop) && prop !== 'markLabelActive',
   overridesResolver: (props, styles) => styles.markLabel,
 })<{ ownerState: SliderProps }>(({ theme, ownerState }) => ({
   ...theme.typography.body2,
