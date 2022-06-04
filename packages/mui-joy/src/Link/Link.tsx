@@ -11,7 +11,7 @@ import {
 import { unstable_extendSxProp as extendSxProp } from '@mui/system';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
-import { getLinkUtilityClass } from './linkClasses';
+import linkClasses, { getLinkUtilityClass } from './linkClasses';
 import { LinkProps, LinkTypeMap } from './LinkProps';
 import { TypographyContext } from '../Typography/Typography';
 
@@ -103,7 +103,7 @@ const LinkRoot = styled('a', {
         : {
             color: theme.vars.palette[ownerState.color!]?.plainColor,
             cursor: 'pointer',
-            '&.Mui-disabled': {
+            [`&.${linkClasses.disabled}`]: {
               pointerEvents: 'none',
               color: theme.vars.palette[ownerState.color!]?.plainDisabledColor,
             },
