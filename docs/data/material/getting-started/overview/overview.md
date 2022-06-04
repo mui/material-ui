@@ -12,19 +12,22 @@ Material UI is beautiful by design, and features a suite of customization option
 
 :::info
 Material UI v5 supports Material Design v2.
-Adoption of v3 is tentatively planned for Material UI v6.
+Adoption of v3 is tentatively planned for Material UI v6 (no deadline has yet been fixed).
 You can follow [this GitHub issue](https://github.com/mui/material-ui/issues/29345) for future updates.
 :::
 
 ## Advantages of Material UI
 
-- **Ship faster:** thousands of open-source contributors have poured countless hours into these components.
-  Focus on your core business logic—we've got your UI covered.
-- **Beautiful by default:** we're meticulous about our implementation of Material Design, ensuring that every Material UI component meets the highest standards of form and function.
-- **Cross-team collaboration:** Material UI's intuitive developer experience reduces the barrier to entry for back-end devs and less technical designers, empowering teams to collaborate more effectively.
-- **Reliability:** Material UI is almost as old as React itself—its history stretches back to 2014—and we're in this for the long haul.
-  When you build with Material UI, you can count on our community's support for years to come.
-- **Design kits:** streamline your workflow and boost consistency between designers and developers by using our [design kits](https://mui.com/design-kits/) in your favorite design tool.
+- **Ship faster:** thousands of open-source [contributors](https://api7.ai/contributor-graph?chart=contributorOverTime&repo=mui-org/material-ui) have poured countless hours into these components.
+  Focus on your core business logic instead of reinventing the wheel—we've got your UI covered.
+- **Beautiful by default:** we're meticulous about our implementation of [Material Design](https://material.io/), ensuring that every Material UI component meets the highest standards of form and function.
+  We even diverge from the official specifications where necessary to ensure multiple great look & feel options.
+- **Customizability:** the library includes and extensive set of intuitive customizability features. [The templates](https://mui.com/store/) in our store demonstrate how far you can go with customizations.
+- **Cross-team collaboration:** Material UI's intuitive developer experience reduces the barrier to entry for back-end developers and less technical designers, empowering teams to collaborate more effectively.
+  The [design kits](https://mui.com/design-kits/) streamline your workflow and boost consistency between designers and developers.
+- **You won't be fired** for picking Material UI. It has the largest UI community in the React ecosystem.
+  It's almost as old as React itself—its history stretches back to 2014—and we're in this for the long haul.
+  You can count on community's support for years to come (e.g. [StackOverflow](https://insights.stackoverflow.com/trends?tags=material-ui)).
 
 ## Material UI vs. MUI Base
 
