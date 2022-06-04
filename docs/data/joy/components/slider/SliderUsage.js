@@ -41,7 +41,7 @@ export default function SliderUsage() {
               width: 240,
               maxWidth: '100%',
             }),
-            ...(props.orientation === 'vertical' && { height: 240 }),
+            ...(props.orientation === 'vertical' && { height: 200 }),
           }}
         >
           <Slider defaultValue={3} max={10} {...props} />

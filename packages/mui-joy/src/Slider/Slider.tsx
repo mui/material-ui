@@ -99,13 +99,14 @@ const SliderRoot = styled('span', {
       position: 'relative',
       cursor: 'pointer',
       touchAction: 'none',
-      width: '100%',
       WebkitTapHighlightColor: 'transparent',
       ...(ownerState.orientation === 'horizontal' && {
         padding: 'calc(var(--Slider-size) / 2) 0',
+        width: '100%',
       }),
       ...(ownerState.orientation === 'vertical' && {
         padding: '0 calc(var(--Slider-size) / 2)',
+        height: '100%',
       }),
       '@media print': {
         colorAdjust: 'exact',
@@ -161,6 +162,9 @@ const SliderTrack = styled('span', {
         ownerState.track === 'inverted'
           ? 'var(--Slider-rail-background)'
           : 'var(--Slider-track-background)',
+      // TODO: discuss the transition approach in a separate PR. This value is copied from mui-material Slider.
+      transition:
+        'left 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,width 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,bottom 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,height 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
       ...(ownerState.orientation === 'horizontal' && {
         height: 'var(--Slider-track-size)',
         top: '50%',
@@ -171,7 +175,7 @@ const SliderTrack = styled('span', {
         width: 'var(--Slider-track-size)',
         left: '50%',
         transform: 'translateX(-50%)',
-        borderRadius: 'var(--Slider-track-radius) var(--Slider-track-radius) 0 0',
+        borderRadius: '0 0 var(--Slider-track-radius) var(--Slider-track-radius)',
       }),
       ...(ownerState.track === false && {
         display: 'none',
@@ -201,6 +205,9 @@ const SliderThumb = styled('span', {
       borderColor: 'var(--Slider-thumb-color)',
       color: 'var(--Slider-thumb-color)',
       backgroundColor: 'var(--Slider-thumb-background)',
+      // TODO: discuss the transition approach in a separate PR. This value is copied from mui-material Slider.
+      transition:
+        'box-shadow 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,left 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,bottom 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
       ...(ownerState.orientation === 'horizontal' && {
         top: '50%',
         transform: 'translate(-50%, -50%)',
