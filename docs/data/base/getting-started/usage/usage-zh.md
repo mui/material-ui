@@ -1,4 +1,4 @@
-# MUI Base - Usage
+# Usage
 
 <p class="description">Learn the basics of working with MUI Base components.</p>
 
