@@ -334,7 +334,7 @@ const SliderValueLabel = styled(SliderValueLabelUnstyled, {
   }),
   ...(ownerState.orientation === 'vertical' && {
     right: '30px',
-    top: '25px',
+    top: '24px',
     transformOrigin: 'right center',
     '&:before': {
       position: 'absolute',
