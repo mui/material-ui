@@ -168,31 +168,6 @@ With yarn:
 yarn add @mui/icons-material
 ```
 
-:::warning
-With the release of v5, the names of all related packages were changed from `@material-ui/*` to `@mui/*` as part of our updated branding. See [this blog post](/blog/material-ui-is-now-mui/) for details.
-
-<details>
-<summary>Updated package names</summary>
-
-```text
-@material-ui/core -> @mui/material
-@material-ui/unstyled -> @mui/base
-@material-ui/icons -> @mui/icons-material
-@material-ui/styles -> @mui/styles
-@material-ui/system -> @mui/system
-@material-ui/lab -> @mui/lab
-@material-ui/types -> @mui/types
-@material-ui/styled-engine -> @mui/styled-engine
-@material-ui/styled-engine-sc ->@mui/styled-engine-sc
-@material-ui/private-theming -> @mui/private-theming
-@material-ui/codemod -> @mui/codemod
-@material-ui/docs -> @mui/docs
-@material-ui/envinfo -> @mui/envinfo
-```
-
-</details>
-:::
-
 ### Date and time pickers
 
 The date and time picker components have been moved to MUI X.
@@ -226,6 +201,31 @@ We strongly recommend using the default setup with Emotion instead.
 :::warning
 📝 Make sure that your application is still running without errors, and commit the changes before continuing to the next step.
 :::
+
+### Replace all imports
+
+With the release of v5, the names of all related packages were changed from `@material-ui/*` to `@mui/*` as part of our updated branding. See [this blog post](/blog/material-ui-is-now-mui/) for details.
+
+<details>
+<summary>Updated package names</summary>
+
+```text
+@material-ui/core -> @mui/material
+@material-ui/unstyled -> @mui/base
+@material-ui/icons -> @mui/icons-material
+@material-ui/styles -> @mui/styles
+@material-ui/system -> @mui/system
+@material-ui/lab -> @mui/lab
+@material-ui/types -> @mui/types
+@material-ui/styled-engine -> @mui/styled-engine
+@material-ui/styled-engine-sc ->@mui/styled-engine-sc
+@material-ui/private-theming -> @mui/private-theming
+@material-ui/codemod -> @mui/codemod
+@material-ui/docs -> @mui/docs
+@material-ui/envinfo -> @mui/envinfo
+```
+
+</details>
 
 ### Remove old packages
 
