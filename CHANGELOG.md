@@ -1,5 +1,62 @@
 # [Versions](https://mui.com/versions/)
 
+## 5.8.2
+
+<!-- generated comparing v5.8.1..master -->
+
+_May 30, 2022_
+
+A big thanks to the 8 contributors who made this release possible. Here are some highlights ✨:
+
+- 🐛 bug fixes and 📚 documentation improvements.
+
+### `@mui/system@5.8.2`
+
+- &#8203;<!-- 04 -->[system] Add `getColorSchemeSelector` util (#32868) @siriwatknp
+
+### `@mui/lab@5.0.0-alpha.84`
+
+- &#8203;<!-- 07 -->[Masonry] Place items to the left when there are less objects than specified in `column` prop (#32873) @hbjORbj
+
+### `@mui/base@5.0.0-alpha.83`
+
+- &#8203;<!-- 24 -->[BadgeUnstyled] Define ownerState and slot props' types (#32750) @michaldudak
+- &#8203;<!-- 06 -->[SliderUnstyled] Define ownerState and slot props' types (#32739) @michaldudak
+- &#8203;<!-- 05 -->[SwitchUnstyled] Define ownerState and slot props' types (#32573) @michaldudak
+- &#8203;<!-- 03 -->[TabsUnstyled] Define ownerState and slot props' types (#32918) @michaldudak
+- &#8203;<!-- 02 -->[TabUnstyled] Define ownerState and slot props' types (#32915) @michaldudak
+
+### `@mui/joy@5.0.0-alpha.30`
+
+- &#8203;<!-- 13 -->[Joy] use `textColor` prop for Typography and Link (#32938) @siriwatknp
+- &#8203;<!-- 12 -->[Joy] Make variants for more flexible (#32931) @siriwatknp
+- &#8203;<!-- 11 -->[Joy] Improve automatic adjustment (#32923) @siriwatknp
+- &#8203;<!-- 10 -->[Joy] Add `Chip` doc (#32819) @hbjORbj
+- &#8203;<!-- 09 -->[Joy] Add `AspectRatio` demos (#32848) @siriwatknp
+- &#8203;<!-- 08 -->[Joy] Fix wrong urls (#32883) @siriwatknp
+
+### Docs
+
+- &#8203;<!-- 24 -->[docs] Iterate on the job ad for React engineer in Core (#32900) @mnajdova
+- &#8203;<!-- 23 -->[blog] Fix avatar image resolution (#32890) @oliviertassinari
+- &#8203;<!-- 19 -->[docs] Link the first page of the product (#32943) @oliviertassinari
+- &#8203;<!-- 18 -->[docs] Batch small changes (#32170) @michaldudak
+- &#8203;<!-- 17 -->[docs] Allow function prop to return undefined (#32766) @m4theushw
+- &#8203;<!-- 16 -->[docs] Fix wrong link to Material Icons (#32847) @oliviertassinari
+- &#8203;<!-- 15 -->[docs] Fix ClassNameGenerator content (#32800) @siriwatknp
+- &#8203;<!-- 14 -->[docs] Fix navigation links (#32851) @oliviertassinari
+- &#8203;<!-- 14 -->[docs] Document the `size` prop for InputLabel (#32936) @romelperez
+- &#8203;<!-- 21 -->[docs] Add note about transparent background on the outlined Alert variant (#32810) @aaarichter
+- &#8203;<!-- 01 -->[website] Update the careers's page with the new roles (#32535) @oliviertassinari
+
+### Core
+
+- &#8203;<!-- 22 -->[core] Improve the incomplete issues workflow (#32878) @mnajdova
+- &#8203;<!-- 21 -->[core] Add CI check that the PR has label (#32886) @mnajdova
+- &#8203;<!-- 20 -->[core] Avoid leaking @babel/runtime (#32874) @oliviertassinari
+
+All contributors of this release in alphabetical order: @aaarichter, @hbjORbj, @m4theushw, @michaldudak, @mnajdova, @oliviertassinari, @romelperez, @siriwatknp
+
 ## 5.8.1
 
 <!-- generated comparing v5.8.0..master -->

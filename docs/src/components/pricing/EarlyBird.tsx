@@ -9,7 +9,7 @@ import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRou
 
 export default function EarlyBird() {
   return (
-    <Container sx={{ pt: 2, pb: { xs: 2, sm: 4, md: 8 }, scrollMarginTop: '80px' }} id="early-bird">
+    <Container sx={{ pt: 2, pb: { xs: 2, sm: 4, md: 8 }, scrollMarginTop: 80 }} id="early-bird">
       <Stack
         sx={{
           borderRadius: 1,

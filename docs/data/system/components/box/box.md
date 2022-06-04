@@ -1,7 +1,7 @@
 ---
+product: system
 title: React Box component
 components: Box
-product: system
 githubLabel: 'component: Box'
 ---
 

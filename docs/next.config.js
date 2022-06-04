@@ -58,7 +58,12 @@ module.exports = {
     // next includes node_modules in webpack externals. Some of those have dependencies
     // on the aliases defined above. If a module is an external those aliases won't be used.
     // We need tell webpack to not consider those packages as externals.
-    if (options.isServer) {
+    if (
+      options.isServer &&
+      // Next executes this twice on the server with React 18 (once per runtime).
+      // We only care about Node runtime at this point.
+      (options.nextRuntime === undefined || options.nextRuntime === 'nodejs')
+    ) {
       const [nextExternals, ...externals] = config.externals;
 
       if (externals.length > 0) {

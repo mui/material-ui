@@ -16,3 +16,12 @@ function Link(props: JSX.IntrinsicElements['a']) {
 <Typography component="div" href="/">
   Text
 </Typography>;
+
+<Typography color="primary" />;
+<Typography color="neutral" />;
+<Typography color="danger" />;
+<Typography color="info" />;
+<Typography color="success" />;
+<Typography color="warning" />;
+
+<Typography textColor="neutral.500" />;

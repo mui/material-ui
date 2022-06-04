@@ -6,7 +6,7 @@ import { unstable_capitalize as capitalize, unstable_useId as useId } from '@mui
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { useSwitch } from '@mui/base/SwitchUnstyled';
 import { styled, useThemeProps } from '../styles';
-import { getRadioUtilityClass } from './radioClasses';
+import radioClasses, { getRadioUtilityClass } from './radioClasses';
 import { RadioProps, RadioTypeMap } from './RadioProps';
 import RadioGroupContext from '../RadioGroup/RadioGroupContext';
 import { TypographyContext } from '../Typography/Typography';
@@ -114,9 +114,12 @@ const RadioRadio = styled('span', {
   ...(!ownerState.disableIcon
     ? [
         theme.variants[ownerState.variant!]?.[ownerState.color!],
-        theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
-        theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
-        theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
+        { '&:hover': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!] },
+        { '&:active': theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!] },
+        {
+          [radioClasses.disabled]:
+            theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
+        },
       ]
     : []),
 ]);
@@ -145,9 +148,12 @@ const RadioAction = styled('span', {
   ...(ownerState.disableIcon
     ? [
         theme.variants[ownerState.variant!]?.[ownerState.color!],
-        theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
-        theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
-        theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
+        { '&:hover': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!] },
+        { '&:active': theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!] },
+        {
+          [radioClasses.disabled]:
+            theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
+        },
       ]
     : []),
 ]);

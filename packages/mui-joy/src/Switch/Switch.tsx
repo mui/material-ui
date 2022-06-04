@@ -57,7 +57,8 @@ const SwitchRoot = styled('span', {
 })<{ ownerState: SwitchProps }>(({ theme, ownerState }) => {
   const getColorVariables = switchColorVariables({ theme, ownerState });
   return {
-    ...(ownerState.variant === 'outlined' && theme.variants.outlined[ownerState.color!]),
+    '--variant-borderWidth':
+      theme.variants[ownerState.variant!]?.[ownerState.color!]?.['--variant-borderWidth'],
     '--Switch-track-radius': theme.vars.radius.lg,
     '--Switch-thumb-shadow':
       ownerState.variant === 'soft' ? 'none' : '0 0 0 1px var(--Switch-track-background)', // create border-like if the thumb is bigger than the track
@@ -152,7 +153,7 @@ const SwitchTrack = styled('span', {
   justifyContent: 'space-between',
   alignItems: 'center',
   boxSizing: 'border-box',
-  border: 'var(--variant-outlinedBorderWidth, 0px) solid',
+  border: 'var(--variant-borderWidth) solid',
   borderColor: 'var(--Switch-track-borderColor)',
   backgroundColor: 'var(--Switch-track-background)',
   borderRadius: 'var(--Switch-track-radius)',
