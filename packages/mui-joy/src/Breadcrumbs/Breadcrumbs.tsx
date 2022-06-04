@@ -6,21 +6,15 @@ import PropTypes from 'prop-types';
 import * as React from 'react';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
-import Typography from '../Typography';
 import BreadcrumbCollapsed from './BreadcrumbCollapsed';
 import breadcrumbsClasses, { getBreadcrumbsUtilityClass } from './breadcrumbsClasses';
 import { BreadcrumbsProps, BreadcrumbsTypeMap } from './BreadcrumbsProps';
 
 const useUtilityClasses = (ownerState: BreadcrumbsProps) => {
-  const { size, variant, color } = ownerState;
+  const { size } = ownerState;
 
   const slots = {
-    root: [
-      'root',
-      variant && `variant${capitalize(variant)}`,
-      color && `color${capitalize(color)}`,
-      size && `size${capitalize(size)}`,
-    ],
+    root: ['root', size && `size${capitalize(size)}`],
     li: ['li'],
     ol: ['ol'],
     separator: ['separator'],
@@ -29,7 +23,7 @@ const useUtilityClasses = (ownerState: BreadcrumbsProps) => {
   return composeClasses(slots, getBreadcrumbsUtilityClass, {});
 };
 
-const BreadcrumbsRoot = styled(Typography, {
+const BreadcrumbsRoot = styled('nav', {
   name: 'MuiBreadcrumbs',
   slot: 'Root',
   overridesResolver: (props, styles) => {
@@ -52,7 +46,6 @@ const BreadcrumbsRoot = styled(Typography, {
       }),
       lineHeight: 1,
     },
-    theme.variants[ownerState.variant!]?.[ownerState.color!],
     {
       backgroundColor: theme.palette.background.body,
     },
@@ -72,7 +65,6 @@ const BreadcrumbsOl = styled('ol', {
       padding: 0,
       margin: 0,
       listStyle: 'none',
-      color: theme.palette[ownerState.color!]['700'],
     },
   ];
 });
@@ -125,13 +117,10 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(inProps, ref) {
     children,
     className,
     component = 'nav',
-    color = 'primary',
     size = 'md',
-    variant = 'solid',
     expandText = 'Show path',
     itemsAfterCollapse = 1,
     itemsBeforeCollapse = 1,
-    maxItems = 8,
     separator = '/',
     ...other
   } = props;
@@ -145,11 +134,8 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(inProps, ref) {
     expandText,
     itemsAfterCollapse,
     itemsBeforeCollapse,
-    maxItems,
     separator,
-    color,
     size,
-    variant,
   };
 
   const classes = useUtilityClasses(ownerState);
@@ -201,9 +187,7 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(inProps, ref) {
     >
       <BreadcrumbsOl className={classes.ol} ref={listRef} ownerState={ownerState}>
         {insertSeparators(
-          expanded || (maxItems && allItems.length <= maxItems)
-            ? allItems
-            : renderItemsBeforeAndAfter(allItems),
+          expanded ? allItems : renderItemsBeforeAndAfter(allItems),
           classes.separator,
           separator,
           ownerState,
@@ -226,11 +210,6 @@ Breadcrumbs.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   className: PropTypes.string,
-  /**
-   * The color of the component. It supports those theme colors that make sense for this component.
-   * @default 'primary'
-   */
-  color: PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
@@ -257,11 +236,6 @@ Breadcrumbs.propTypes /* remove-proptypes */ = {
    * Custom separator node.
    * @default '/'
    */
-  maxItems: PropTypes.number,
-  /**
-   * Custom separator node.
-   * @default '/'
-   */
   separator: PropTypes.node,
   /**
    * The size of the component.
@@ -277,11 +251,6 @@ Breadcrumbs.propTypes /* remove-proptypes */ = {
     PropTypes.func,
     PropTypes.object,
   ]),
-  /**
-   * The variant to use.
-   * @default 'solid'
-   */
-  variant: PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
 } as any;
 
 export default Breadcrumbs;
