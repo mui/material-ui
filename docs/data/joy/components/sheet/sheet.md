@@ -1,8 +1,6 @@
 ---
 product: joy-ui
 title: React Sheet component
-githubLabel: 'component: sheet'
-unstyled: /base/react-sheet/
 ---
 
 # Sheet
@@ -14,4 +12,4 @@ unstyled: /base/react-sheet/
 Use the `Sheet` component as a generic container for your components.
 You can play around with variants, color, and elevation to achieve the desired result.
 
-{{"demo": "SheetUsage.js", "hideToolbar": true}}
+{{"demo": "SheetUsage.js", "hideToolbar": true, "bg": true}}
