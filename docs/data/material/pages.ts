@@ -181,47 +181,6 @@ const pages = [
     ],
   },
   {
-    pathname: '/material-ui/migration',
-    title: 'Migration',
-    icon: 'BookIcon',
-    children: [
-      {
-        pathname: '/material-ui/migration',
-        subheader: 'Upgrade to v5',
-        children: [
-          {
-            pathname: '/material-ui/migration/migration-v4',
-            title: 'Migrating to v5: getting started',
-          },
-          {
-            pathname: '/material-ui/migration/v5-style-changes',
-            title: 'Breaking changes: style and theme',
-          },
-          {
-            pathname: '/material-ui/migration/v5-component-changes',
-            title: 'Breaking changes: components',
-          },
-          {
-            pathname: '/material-ui/migration/migrating-from-jss',
-            title: 'Migrating from JSS (optional)',
-          },
-          {
-            pathname: '/material-ui/migration/troubleshooting',
-            title: 'Troubleshooting',
-          },
-        ],
-      },
-      {
-        pathname: '/material-ui/migration',
-        subheader: 'Earlier versions',
-        children: [
-          { pathname: '/material-ui/migration/migration-v3', title: 'Migration from v3 to v4' },
-          { pathname: '/material-ui/migration/migration-v0x', title: 'Migration from v0.x to v1' },
-        ],
-      },
-    ],
-  },
-  {
     pathname: '/material-ui/guides',
     title: 'How To Guides',
     icon: 'VisibilityIcon',
@@ -271,6 +230,47 @@ const pages = [
       { pathname: '/material-ui/discover-more/vision' },
       { pathname: '/material-ui/discover-more/changelog' },
       { pathname: '/material-ui/discover-more/languages' },
+    ],
+  },
+  {
+    pathname: '/material-ui/migration',
+    title: 'Migration',
+    icon: 'BookIcon',
+    children: [
+      {
+        pathname: '/material-ui/migration',
+        subheader: 'Upgrade to v5',
+        children: [
+          {
+            pathname: '/material-ui/migration/migration-v4',
+            title: 'Migrating to v5: getting started',
+          },
+          {
+            pathname: '/material-ui/migration/v5-style-changes',
+            title: 'Breaking changes: style and theme',
+          },
+          {
+            pathname: '/material-ui/migration/v5-component-changes',
+            title: 'Breaking changes: components',
+          },
+          {
+            pathname: '/material-ui/migration/migrating-from-jss',
+            title: 'Migrating from JSS (optional)',
+          },
+          {
+            pathname: '/material-ui/migration/troubleshooting',
+            title: 'Troubleshooting',
+          },
+        ],
+      },
+      {
+        pathname: '/material-ui/migration',
+        subheader: 'Earlier versions',
+        children: [
+          { pathname: '/material-ui/migration/migration-v3', title: 'Migration from v3 to v4' },
+          { pathname: '/material-ui/migration/migration-v0x', title: 'Migration from v0.x to v1' },
+        ],
+      },
     ],
   },
   {
