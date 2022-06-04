@@ -195,9 +195,12 @@ https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 /components/transitions/ /material-ui/transitions/ 301
 /pt/components/transitions/ /pt/material-ui/transitions/ 301
 /zh/components/transitions/ /zh/material-ui/transitions/ 301
-/components/pickers/ /material-ui/lab-date-and-time-pickers/ 301
-/pt/components/pickers/ /pt/material-ui/lab-date-and-time-pickers/ 301
-/zh/components/pickers/ /zh/material-ui/lab-date-and-time-pickers/ 301
+/components/pickers/ /x/react-date-pickers/getting-started/ 301
+/pt/components/pickers/ /pt/x/react-date-pickers/getting-started/ 301
+/zh/components/pickers/ /zh/x/react-date-pickers/getting-started/ 301
+/material-ui/lab-date-and-time-pickers/ /x/react-date-pickers/getting-started/ 301
+/pt/material-ui/lab-date-and-time-pickers/ /pt/x/react-date-pickers/getting-started/ 301
+/zh/material-ui/lab-date-and-time-pickers/ /zh/x/react-date-pickers/getting-started/ 301
 /components/about-the-lab/ /material-ui/about-the-lab/ 301
 /pt/components/about-the-lab/ /pt/material-ui/about-the-lab/ 301
 /zh/components/about-the-lab/ /zh/material-ui/about-the-lab/ 301

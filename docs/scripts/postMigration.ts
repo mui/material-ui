@@ -219,9 +219,6 @@ function run() {
 /components/transitions/ /material-ui/transitions/ 301
 /:lang/components/transitions/ /:lang/material-ui/transitions/ 301
 
-/components/pickers/ /material-ui/lab-date-and-time-pickers/ 301
-/:lang/components/pickers/ /:lang/material-ui/lab-date-and-time-pickers/ 301
-
 /components/about-the-lab/ /material-ui/about-the-lab/ 301
 /:lang/components/about-the-lab/ /:lang/material-ui/about-the-lab/ 301
 
