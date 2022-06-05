@@ -688,7 +688,7 @@ export default function useSlider(parameters: UseSliderParameters) {
     getHiddenInputProps,
     getRootProps,
     getThumbProps,
-    marks: marks as boolean | Mark[],
+    marks: marks as Mark[],
     open,
     range,
     trackLeap,
