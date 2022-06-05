@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { GlobalStyles } from '@mui/system';
-import { sliderUnstyledClasses } from '@mui/base/SliderUnstyled';
 import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
 import type { Theme } from '@mui/joy/styles';
 import Avatar from '@mui/joy/Avatar';
@@ -19,6 +18,7 @@ import ListItemDecorator from '@mui/joy/ListItemDecorator';
 import ListItemContent from '@mui/joy/ListItemContent';
 import RadioGroup from '@mui/joy/RadioGroup';
 import Radio from '@mui/joy/Radio';
+import Slider from '@mui/joy/Slider';
 import Sheet from '@mui/joy/Sheet';
 
 // Icons import
@@ -40,7 +40,6 @@ import BookRoundedIcon from '@mui/icons-material/BookRounded';
 import teamTheme from './theme';
 import Menu from './components/Menu';
 import Layout from './components/Layout';
-import Slider from './components/Slider';
 
 const ColorSchemeToggle = () => {
   const { mode, setMode } = useColorScheme();
@@ -347,14 +346,6 @@ export default function TeamExample() {
                   min={0}
                   max={20}
                   valueLabelDisplay="auto"
-                  sx={{
-                    [`& input[value="0"] + .${sliderUnstyledClasses.valueLabel}`]: {
-                      justifyContent: 'flex-start',
-                    },
-                    [`& input[value="20"] + .${sliderUnstyledClasses.valueLabel}`]: {
-                      justifyContent: 'flex-end',
-                    },
-                  }}
                 />
               </Box>
             </Box>
