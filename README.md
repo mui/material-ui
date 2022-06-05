@@ -191,6 +191,10 @@ Future plans and high-priority features and enhancements can be found in our [ro
 This project is licensed under the terms of the
 [MIT license](/LICENSE).
 
+## Security
+
+For details of supported versions and contact details for reporting security issues, please refer to the [security policy](https://github.com/mui/material-ui/blob/master/SECURITY.md).
+
 ## Sponsoring services
 
 These great services sponsor MUI's core infrastructure:
