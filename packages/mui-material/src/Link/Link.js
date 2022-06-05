@@ -39,7 +39,7 @@ const getTextDecorationColor = (theme, color, opacity) => {
     default:
       return alpha(color, opacity);
   }
-}
+};
 
 const useUtilityClasses = (ownerState) => {
   const { classes, component, focusVisible, underline } = ownerState;

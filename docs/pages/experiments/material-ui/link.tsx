@@ -57,7 +57,9 @@ export default function CssVarsTemplate() {
           }}
         >
           <Box>
-            <Link href="./#" underline="always">Link</Link>
+            <Link href="./#" underline="always">
+              Link
+            </Link>
           </Box>
           <Box>
             <Link href="./#" color="inherit" underline="always">
