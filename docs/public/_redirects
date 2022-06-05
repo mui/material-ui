@@ -65,9 +65,11 @@ https://v3-9-0.mui.com/* https://v3.mui.com/:splat 301!
 /api/grid-list-tile/ /material-ui/api/image-list-item/ 301
 /api/grid-list-tile-bar/ /material-ui/api/image-list-item-bar/ 301
 /customization/components/ /material-ui/customization/how-to-customize/ 301
+/:lang/customization/components/ /:lang/material-ui/customization/how-to-customize/ 301
 /customization/globals/ /material-ui/customization/theme-components/ 301
 # 2021
 /api/root-ref/ https://v4.mui.com/api/root-ref/ 301
+/:lang/api/root-ref/ https://v4.mui.com/:lang/api/root-ref/ 301
 /components/slider-styled/ /material-ui/react-slider/ 301
 /customization/styled/ /system/styled/ 301
 /api/data-grid/x-grid/ /x/api/data-grid/data-grid-pro/ 301
@@ -77,6 +79,7 @@ https://v1.material-ui.com/* https://v1.mui.com/:splat 301!
 https://v3.material-ui.com/* https://v3.mui.com/:splat 301!
 https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 /company/careers/ /careers/ 301
+/:lang/company/careers/ /:lang/careers/ 301
 /discover-more/team/ /about/ 301
 /api/data-grid/grid-export-csv-options/ /x/api/data-grid/grid-csv-export-options/ 301
 /fr/* /:splat 301
@@ -321,6 +324,11 @@ https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 /company/about/ /about/ 301
 /company/jobs/ /careers/ 301
 /material-ui/customization/unstyled-components/ /base/getting-started/overview/ 301
+/material/* /material-ui/:splat 301
+/zh/material/* /zh/material-ui/:splat 301
+/pt/material/* /pt/material-ui/:splat 301
+/zh/blog/* /blog/:splat 301
+/pt/blog/* /blog/:splat 301
 # 2023
 
 # Proxies
