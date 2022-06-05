@@ -6,7 +6,7 @@ import Box from '@mui/joy/Box';
 import Chip from '@mui/joy/Chip';
 import Typography from '@mui/joy/Typography';
 import RadioGroup from '@mui/joy/RadioGroup';
-import Radio from '@mui/joy/Radio';
+import Radio, { radioClasses } from '@mui/joy/Radio';
 import Switch from '@mui/joy/Switch';
 import Sheet from '@mui/joy/Sheet';
 import Check from '@mui/icons-material/Check';
@@ -82,6 +82,13 @@ export default function JoyUsageDemo<T extends { [k: string]: string | number | 
   data,
   renderDemo,
 }: JoyUsageDemoProps<T>) {
+  const defaultProps = data.reduce(
+    (prev, curr) => ({
+      ...prev,
+      [curr.propName]: curr.defaultValue,
+    }),
+    {},
+  ) as T;
   const [props, setProps] = React.useState<T>({} as T);
   return (
     <Box
@@ -108,7 +115,7 @@ export default function JoyUsageDemo<T extends { [k: string]: string | number | 
             p: 2,
           }}
         >
-          {renderDemo(props)}
+          {renderDemo({ ...defaultProps, ...props })}
         </Box>
         <BrandingProvider mode="dark">
           <HighlightedCode
@@ -164,6 +171,12 @@ export default function JoyUsageDemo<T extends { [k: string]: string | number | 
                   sx={{
                     alignSelf: 'stretch',
                     justifyContent: 'space-between',
+                    '--Switch-track-background': (theme) =>
+                      `rgba(${theme.vars.palette.neutral.mainChannel} / 0.3)`,
+                    '&:hover': {
+                      '--Switch-track-background': (theme) =>
+                        `rgba(${theme.vars.palette.neutral.mainChannel} / 0.5)`,
+                    },
                   }}
                 />
               );
@@ -224,7 +237,7 @@ export default function JoyUsageDemo<T extends { [k: string]: string | number | 
             }
             if (knob === 'color') {
               return (
-                <Box key={propName as string}>
+                <Box key={propName as string} sx={{ mb: 1 }}>
                   <Typography id={`${componentName}-color`} level="body2" fontWeight="lg" mb={1}>
                     color
                   </Typography>
@@ -253,23 +266,24 @@ export default function JoyUsageDemo<T extends { [k: string]: string | number | 
                             disableIcon
                             overlay
                             sx={{
-                              '& .JoyRadio-action': { bgcolor: `${value}.500` },
-                              '& .JoyRadio-label': {
+                              [`& .${radioClasses.action}`]: { bgcolor: `${value}.500` },
+                              [`& .${radioClasses.label}`]: {
                                 fontSize: '10px',
                                 color: 'text.secondary',
                                 position: 'absolute',
                                 bottom: '-1rem',
                                 left: '50%',
                                 transform: 'translateX(-50%)',
-                                opacity: 0,
+                                opacity: '0.01', // prevent double for touch device.
                                 transition: '0.2s',
                               },
-                              '&:hover, &.Joy-focusVisible': {
-                                '& .JoyRadio-label': {
-                                  opacity: 1,
-                                  bottom: '-1.25rem',
+                              [`&:hover, &.${radioClasses.focusVisible}, &.${radioClasses.checked}`]:
+                                {
+                                  [`& .${radioClasses.label}`]: {
+                                    opacity: 1,
+                                    bottom: '-1.25rem',
+                                  },
                                 },
-                              },
                             }}
                           />
                           {checked && (
