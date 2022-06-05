@@ -94,6 +94,11 @@ const SliderRoot = styled('span', {
         color: theme.vars.palette.text.tertiary,
         ...getColorVariables({ state: 'Disabled' }),
       },
+      [`&.${sliderClasses.dragging}`]: {
+        [`& .${sliderClasses.track}, & .${sliderClasses.thumb}`]: {
+          transition: 'none',
+        },
+      },
       boxSizing: 'content-box',
       display: 'inline-block',
       position: 'relative',
