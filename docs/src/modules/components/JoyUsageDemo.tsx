@@ -5,6 +5,7 @@ import { styled, ColorPaletteProp } from '@mui/joy/styles';
 import Box from '@mui/joy/Box';
 import Chip from '@mui/joy/Chip';
 import Typography from '@mui/joy/Typography';
+import Link from '@mui/joy/Link';
 import RadioGroup from '@mui/joy/RadioGroup';
 import Radio, { radioClasses } from '@mui/joy/Radio';
 import Switch from '@mui/joy/Switch';
@@ -12,6 +13,7 @@ import Sheet from '@mui/joy/Sheet';
 import Check from '@mui/icons-material/Check';
 import TextField from '@mui/joy/TextField';
 import { inputClasses } from '@mui/joy/Input';
+import Replay from '@mui/icons-material/ReplayRounded';
 
 const Select = styled('select')(({ theme }) => ({
   padding: '0.25rem',
@@ -85,7 +87,7 @@ interface JoyUsageDemoProps<ComponentProps> {
   renderDemo: (props: ComponentProps) => React.ReactElement;
 }
 
-export default function JoyUsageDemo<T extends { [k: string]: string | number | boolean }>({
+export default function JoyUsageDemo<T extends {} = {}>({
   componentName,
   childrenAccepted = false,
   data,
@@ -153,6 +155,21 @@ export default function JoyUsageDemo<T extends { [k: string]: string | number | 
             minWidth: '160px',
           }}
         >
+          {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+          <Link
+            component="button"
+            startDecorator={<Replay />}
+            fontSize="sm"
+            onClick={() => setProps({} as T)}
+            sx={{
+              alignSelf: 'flex-end',
+              visibility: Object.keys(props).length ? 'visible' : 'hidden',
+              mt: -1,
+              mb: -2,
+            }}
+          >
+            Reset All
+          </Link>
           {data.map(({ propName, knob, options = [], defaultValue }) => {
             const resolvedValue = props[propName] || defaultValue;
             if (knob === 'switch') {
