@@ -244,11 +244,11 @@ const SliderMark = styled('span', {
         transform: `translate(calc(var(--Slider-mark-size) / -2), -50%)`,
         ...(props['data-index'] === 0 && {
           // data-index is from SliderUnstyled
-          transform: `translate(var(--Slider-mark-size), -50%)`,
+          transform: `translate(min(var(--Slider-mark-size), 3px), -50%)`,
         }),
         ...(props.style?.left === '100%' && {
           // workaround for detecting last mark
-          transform: `translate(calc(var(--Slider-mark-size) * -2), -50%)`,
+          transform: `translate(calc(var(--Slider-mark-size) * -1 - min(var(--Slider-mark-size), 3px)), -50%)`,
         }),
       }),
       ...(ownerState.orientation === 'vertical' && {
@@ -256,11 +256,11 @@ const SliderMark = styled('span', {
         transform: 'translate(-50%, calc(var(--Slider-mark-size) / 2))',
         ...(props['data-index'] === 0 && {
           // data-index is from SliderUnstyled
-          transform: `translate(-50%, var(--Slider-mark-size))`,
+          transform: `translate(-50%, min(var(--Slider-mark-size), 3px))`,
         }),
         ...(props.style?.left === '100%' && {
           // workaround for detecting last mark
-          transform: `translate(-50%, calc(var(--Slider-mark-size) * -2))`,
+          transform: `translate(-50%, calc(var(--Slider-mark-size) * -1 - min(var(--Slider-mark-size), 3px)))`,
         }),
       }),
     };
