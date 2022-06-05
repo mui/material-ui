@@ -41,7 +41,7 @@ function createCode(data: {
   const props = Object.entries(inProps).sort((a, b) => a[0].localeCompare(b[0]));
 
   if (!Object.keys(props).length) {
-    code = `${code}${closedJsx}`;
+    code = `${code} ${closedJsx}`;
   } else {
     let children = '';
     props.forEach((prop) => {
@@ -139,37 +139,38 @@ export default function JoyUsageDemo<T extends {} = {}>({
       <Box
         sx={{
           flexGrow: 1,
-          display: 'flex',
-          flexWrap: 'wrap',
           gap: 2,
           p: 2,
           bgcolor: 'background.level1',
           borderRadius: 'xs',
         }}
       >
+        <Typography
+          fontWeight="lg"
+          endDecorator={
+            // eslint-disable-next-line jsx-a11y/anchor-is-valid
+            <Link
+              component="button"
+              onClick={() => setProps({} as T)}
+              startDecorator={<Replay />}
+              fontSize="xs"
+              sx={{ visibility: Object.keys(props).length ? 'visible' : 'hidden' }}
+            >
+              Reset All
+            </Link>
+          }
+          justifyContent="space-between"
+          sx={{ mb: 1 }}
+        >
+          Props
+        </Typography>
         <Box
           sx={{
             display: 'flex',
             flexDirection: 'column',
             gap: 2,
-            minWidth: '160px',
           }}
         >
-          {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-          <Link
-            component="button"
-            startDecorator={<Replay />}
-            fontSize="sm"
-            onClick={() => setProps({} as T)}
-            sx={{
-              alignSelf: 'flex-end',
-              visibility: Object.keys(props).length ? 'visible' : 'hidden',
-              mt: -1,
-              mb: -2,
-            }}
-          >
-            Reset All
-          </Link>
           {data.map(({ propName, knob, options = [], defaultValue }) => {
             const resolvedValue = props[propName] || defaultValue;
             if (knob === 'switch') {
@@ -183,20 +184,10 @@ export default function JoyUsageDemo<T extends {} = {}>({
                       [propName]: event.target.checked,
                     }))
                   }
-                  startDecorator={
-                    <Typography
-                      component="span"
-                      level="body2"
-                      fontWeight="lg"
-                      sx={{ ml: 'calc(var(--Switch-decorator-paddingX) * -1)' }}
-                    >
-                      {propName}
-                    </Typography>
-                  }
+                  endDecorator={propName}
                   size="sm"
                   sx={{
-                    alignSelf: 'stretch',
-                    justifyContent: 'space-between',
+                    alignSelf: 'flex-start',
                     '--Switch-track-background': (theme) =>
                       `rgba(${theme.vars.palette.neutral.mainChannel} / 0.3)`,
                     '&:hover': {
@@ -212,9 +203,9 @@ export default function JoyUsageDemo<T extends {} = {}>({
                 <Box key={propName as string}>
                   <Typography
                     id={`${componentName}-${propName}`}
-                    level="body2"
-                    fontWeight="lg"
-                    mb={1}
+                    fontSize="xs"
+                    fontWeight="md"
+                    sx={{ mb: 0.5 }}
                   >
                     {propName}
                   </Typography>
@@ -239,7 +230,7 @@ export default function JoyUsageDemo<T extends {} = {}>({
                           variant="plain"
                           color="neutral"
                           size="sm"
-                          sx={{ bgcolor: 'background.body' }}
+                          sx={{ bgcolor: 'background.body', '--Chip-radius': '4px' }}
                         >
                           <Radio
                             size="sm"
@@ -264,7 +255,7 @@ export default function JoyUsageDemo<T extends {} = {}>({
             if (knob === 'color') {
               return (
                 <Box key={propName as string} sx={{ mb: 1 }}>
-                  <Typography id={`${componentName}-color`} level="body2" fontWeight="lg" mb={1}>
+                  <Typography id={`${componentName}-color`} fontSize="xs" fontWeight="md" mb={0.5}>
                     color
                   </Typography>
                   <RadioGroup
@@ -338,8 +329,8 @@ export default function JoyUsageDemo<T extends {} = {}>({
                 <Box key={propName as string}>
                   <Typography
                     component="label"
-                    level="body2"
-                    fontWeight="lg"
+                    fontSize="xs"
+                    fontWeight="md"
                     htmlFor={`${componentName}-${propName}`}
                     mb={0.5}
                   >
