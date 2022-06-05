@@ -11,7 +11,7 @@ describe('<Slider />', () => {
     classes,
     render,
     ThemeProvider,
-    muiName: 'MuiSlider',
+    muiName: 'JoySlider',
     refInstanceof: window.HTMLSpanElement,
     skip: [
       'componentProp',

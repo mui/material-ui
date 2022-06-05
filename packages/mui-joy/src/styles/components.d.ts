@@ -182,7 +182,7 @@ export interface Components<Theme = unknown> {
     defaultProps?: Partial<SvgIconProps>;
     styleOverrides?: OverridesStyleRules<SvgIconSlot, SvgIconProps, Theme>;
   };
-  MuiSlider?: {
+  JoySlider?: {
     defaultProps?: Partial<SliderProps>;
     styleOverrides?: OverridesStyleRules<SliderSlot, SliderProps, Theme>;
   };
