@@ -360,9 +360,7 @@ const SliderMarkLabel = styled('span', {
 const Slider = React.forwardRef(function Slider(inProps, ref) {
   const props = useThemeProps<typeof inProps & SliderProps>({ props: inProps, name: 'JoySlider' });
   const {
-    children,
     component = 'span',
-    className,
     components = {},
     componentsProps = {},
     color = 'primary',
