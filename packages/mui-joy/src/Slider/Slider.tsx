@@ -1,41 +1,50 @@
-import PropTypes from 'prop-types';
 import * as React from 'react';
+import clsx from 'clsx';
+import { unstable_composeClasses as composeClasses } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
-import { unstable_capitalize as capitalize } from '@mui/utils';
 import { shouldForwardProp } from '@mui/system';
-import {
-  SliderUnstyled,
-  SliderValueLabelUnstyled,
-  unstable_composeClasses as composeClasses,
-} from '@mui/base';
-import { Theme, useThemeProps } from '../styles';
-import styled from '../styles/styled';
-import shouldSpreadAdditionalProps from '../utils/shouldSpreadAdditionalProps';
+import { useSlider } from '@mui/base/SliderUnstyled';
+import { useThemeProps, styled, Theme } from '../styles';
 import sliderClasses, { getSliderUtilityClass } from './sliderClasses';
 import { SliderProps, SliderTypeMap } from './SliderProps';
 
-const useUtilityClasses = (ownerState: SliderProps) => {
-  const { disabled, orientation, track, size, color } = ownerState;
+type OwnerState = SliderProps & {
+  dragging: boolean;
+  marked: boolean;
+};
+
+const valueToPercent = (value: number, min: number, max: number) =>
+  ((value - min) * 100) / (max - min);
+
+const Identity = (x: any) => x;
+
+const useUtilityClasses = (ownerState: OwnerState) => {
+  const { disabled, dragging, marked, orientation, track, classes } = ownerState;
 
   const slots = {
     root: [
       'root',
       disabled && 'disabled',
+      dragging && 'dragging',
+      marked && 'marked',
       orientation === 'vertical' && 'vertical',
       track === 'inverted' && 'trackInverted',
       track === false && 'trackFalse',
-      color && `color${capitalize(color)}`,
-      size && `size${capitalize(size)}`,
     ],
     rail: ['rail'],
     track: ['track'],
     mark: ['mark'],
+    markActive: ['markActive'],
     markLabel: ['markLabel'],
+    markLabelActive: ['markLabelActive'],
     valueLabel: ['valueLabel'],
+    valueLabelOpen: ['valueLabelOpen'],
     thumb: ['thumb', disabled && 'disabled'],
+    active: ['active'],
+    focusVisible: ['focusVisible'],
   };
 
-  return composeClasses(slots, getSliderUtilityClass, {});
+  return composeClasses(slots, getSliderUtilityClass, classes);
 };
 
 const sliderColorVariables =
@@ -231,7 +240,7 @@ const SliderMark = styled('span', {
   // `markActive` is injected by SliderUnstyled, should not spread to DOM
   shouldForwardProp: (prop) => shouldForwardProp(prop) && prop !== 'markActive',
   overridesResolver: (props, styles) => styles.mark,
-})<{ ownerState: SliderProps; 'data-index': number; style: React.CSSProperties }>(
+})<{ ownerState: SliderProps & { markActive: boolean }; 'data-index': number }>(
   ({ ownerState, ...props }) => {
     return {
       position: 'absolute',
@@ -256,18 +265,18 @@ const SliderMark = styled('span', {
         transform: 'translate(-50%, calc(var(--Slider-mark-size) / 2))',
         ...(props['data-index'] === 0 && {
           // data-index is from SliderUnstyled
-          transform: `translate(-50%, min(var(--Slider-mark-size), 3px))`,
+          transform: `translate(-50%, calc(min(var(--Slider-mark-size), 3px) * -1))`,
         }),
-        ...(props.style?.left === '100%' && {
+        ...(props.style?.bottom === '100%' && {
           // workaround for detecting last mark
-          transform: `translate(-50%, calc(var(--Slider-mark-size) * -1 - min(var(--Slider-mark-size), 3px)))`,
+          transform: `translate(-50%, calc(var(--Slider-mark-size) * 1 + min(var(--Slider-mark-size), 3px)))`,
         }),
       }),
     };
   },
 );
 
-const SliderValueLabel = styled(SliderValueLabelUnstyled, {
+const SliderValueLabel = styled('span', {
   name: 'JoySlider',
   slot: 'ValueLabel',
   overridesResolver: (props, styles) => styles.valueLabel,
@@ -321,8 +330,9 @@ const SliderValueLabel = styled(SliderValueLabelUnstyled, {
     transform:
       'translateY(calc((var(--Slider-thumb-size) + var(--Slider-valueLabel-arrowSize)) * -1)) scale(1)',
   },
-  [`& .${sliderClasses.valueLabelCircle}`]: {
-    display: 'inline-flex',
+  '& > span': {
+    display: 'flex',
+    alignItems: 'center',
     zIndex: 1,
   },
 }));
@@ -348,21 +358,54 @@ const SliderMarkLabel = styled('span', {
   position: 'absolute',
   whiteSpace: 'nowrap',
   ...(ownerState.orientation === 'horizontal' && {
-    top: 'calc(50% + (max(var(--Slider-track-size), var(--Slider-thumb-size)) / 2))',
+    top: 'calc(50% + 4px + (max(var(--Slider-track-size), var(--Slider-thumb-size)) / 2))',
     transform: 'translateX(-50%)',
   }),
   ...(ownerState.orientation === 'vertical' && {
-    left: 36,
+    left: 'calc(50% + 8px + (max(var(--Slider-track-size), var(--Slider-thumb-size)) / 2))',
     transform: 'translateY(50%)',
   }),
 }));
 
+const SliderInput = styled('input', {
+  name: 'JoySlider',
+  slot: 'Input',
+  overridesResolver: (props, styles) => styles.input,
+})<{ ownerState: SliderProps }>({});
+
 const Slider = React.forwardRef(function Slider(inProps, ref) {
-  const props = useThemeProps<typeof inProps & SliderProps>({ props: inProps, name: 'JoySlider' });
+  const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
+    props: inProps,
+    name: 'JoySlider',
+  });
   const {
-    component = 'span',
-    components = {},
+    'aria-label': ariaLabel,
+    'aria-valuetext': ariaValuetext,
+    className,
+    component,
     componentsProps = {},
+    classes: classesProp,
+    disableSwap = false,
+    disabled = false,
+    defaultValue,
+    getAriaLabel,
+    getAriaValueText,
+    marks: marksProp = false,
+    max = 100,
+    min = 0,
+    name,
+    onChange,
+    onChangeCommitted,
+    onMouseDown,
+    orientation = 'horizontal',
+    scale = Identity,
+    step = 1,
+    tabIndex,
+    track = 'normal',
+    value: valueProp,
+    valueLabelDisplay = 'off',
+    valueLabelFormat = Identity,
+    isRtl = false,
     color = 'primary',
     size = 'md',
     ...other
@@ -370,135 +413,174 @@ const Slider = React.forwardRef(function Slider(inProps, ref) {
 
   const ownerState = {
     ...props,
-    size,
+    marks: marksProp,
+    classes: classesProp,
+    disabled,
+    defaultValue,
+    isRtl,
+    max,
+    min,
+    orientation,
+    scale,
+    step,
+    track,
+    valueLabelDisplay,
+    valueLabelFormat,
     color,
+    size,
+  } as OwnerState;
+
+  const {
+    axisProps,
+    getRootProps,
+    getHiddenInputProps,
+    getThumbProps,
+    open,
+    active,
+    axis,
+    range,
+    focusVisible,
+    dragging,
+    marks,
+    values,
+    trackOffset,
+    trackLeap,
+  } = useSlider({ ...ownerState, ref });
+
+  ownerState.marked = marks.length > 0 && marks.some((mark) => mark.label);
+  ownerState.dragging = dragging;
+
+  const trackStyle = {
+    ...axisProps[axis].offset(trackOffset),
+    ...axisProps[axis].leap(trackLeap),
   };
+
+  const hiddenInputProps = getHiddenInputProps();
 
   const classes = useUtilityClasses(ownerState);
 
   return (
-    <SliderUnstyled
+    <SliderRoot
       {...other}
-      ref={ref}
-      classes={classes}
-      components={{
-        Root: SliderRoot,
-        Rail: SliderRail,
-        Track: SliderTrack,
-        Thumb: SliderThumb,
-        ValueLabel: SliderValueLabel,
-        Mark: SliderMark,
-        MarkLabel: SliderMarkLabel,
-        ...components,
-      }}
-      componentsProps={{
-        ...componentsProps,
-        root: {
-          ...componentsProps.root,
-          ...(shouldSpreadAdditionalProps(components.Root) && {
-            as: component,
-            ownerState,
-          }),
-        },
-        thumb: {
-          ...componentsProps.thumb,
-          ...(shouldSpreadAdditionalProps(components.Thumb) && {
-            ownerState,
-          }),
-        },
-        track: {
-          ...componentsProps.track,
-          ...(shouldSpreadAdditionalProps(components.Track) && {
-            ownerState,
-          }),
-        },
-        valueLabel: {
-          ...componentsProps.valueLabel,
-          ...(shouldSpreadAdditionalProps(components.ValueLabel) && {
-            ownerState,
-          }),
-        },
-        markLabel: {
-          ...componentsProps.markLabel,
-          ...(shouldSpreadAdditionalProps(components.ValueLabel) && {
-            ownerState,
-          }),
-        },
-      }}
-    />
+      {...getRootProps(onMouseDown ? { onMouseDown } : {})}
+      as={component}
+      ownerState={ownerState}
+      className={clsx(classes.root, className)}
+    >
+      <SliderRail
+        {...componentsProps.rail}
+        ownerState={ownerState}
+        className={clsx(classes.rail, componentsProps.rail?.className)}
+      />
+      <SliderTrack
+        {...componentsProps.track}
+        ownerState={ownerState}
+        className={clsx(classes.track, componentsProps.track?.className)}
+        style={{ ...trackStyle, ...componentsProps.track?.style }}
+      />
+      {marks
+        .filter((mark) => mark.value >= min && mark.value <= max)
+        .map((mark, index) => {
+          const percent = valueToPercent(mark.value, min, max);
+          const style = axisProps[axis].offset(percent);
+
+          let markActive;
+          if (track === false) {
+            markActive = values.indexOf(mark.value) !== -1;
+          } else {
+            markActive =
+              (track === 'normal' &&
+                (range
+                  ? mark.value >= values[0] && mark.value <= values[values.length - 1]
+                  : mark.value <= values[0])) ||
+              (track === 'inverted' &&
+                (range
+                  ? mark.value <= values[0] || mark.value >= values[values.length - 1]
+                  : mark.value >= values[0]));
+          }
+
+          return (
+            <React.Fragment key={mark.value}>
+              <SliderMark
+                data-index={index}
+                {...componentsProps.mark}
+                ownerState={{ ...ownerState, markActive }}
+                style={{ ...style, ...componentsProps.mark?.style }}
+                className={clsx(classes.mark, componentsProps.mark?.className, {
+                  [classes.markActive]: markActive,
+                })}
+              />
+              {mark.label != null ? (
+                <SliderMarkLabel
+                  aria-hidden
+                  data-index={index}
+                  {...componentsProps.markLabel}
+                  ownerState={ownerState}
+                  style={{ ...style, ...componentsProps.markLabel?.style }}
+                  className={clsx(classes.markLabel, componentsProps.markLabel?.className, {
+                    [classes.markLabelActive]: markActive,
+                  })}
+                >
+                  {mark.label}
+                </SliderMarkLabel>
+              ) : null}
+            </React.Fragment>
+          );
+        })}
+      {values.map((value, index) => {
+        const percent = valueToPercent(value, min, max);
+        const style = axisProps[axis].offset(percent);
+        return (
+          <SliderThumb
+            key={index}
+            data-index={index}
+            {...componentsProps.thumb}
+            {...getThumbProps()}
+            ownerState={ownerState}
+            className={clsx(classes.thumb, componentsProps.thumb?.className, {
+              [classes.active]: active === index,
+              [classes.focusVisible]: focusVisible === index,
+            })}
+            style={{
+              ...style,
+              pointerEvents: disableSwap && active !== index ? 'none' : undefined,
+              ...componentsProps.thumb?.style,
+            }}
+          >
+            {/* @ts-expect-error TODO: revisit the null type in useSlider */}
+            <SliderInput
+              {...hiddenInputProps}
+              {...componentsProps.input}
+              data-index={index}
+              aria-label={getAriaLabel ? getAriaLabel(index) : ariaLabel}
+              aria-valuenow={scale(value)}
+              aria-valuetext={
+                getAriaValueText ? getAriaValueText(scale(value), index) : ariaValuetext
+              }
+              value={values[index]}
+              ownerState={ownerState}
+              style={{
+                ...hiddenInputProps.style,
+                ...componentsProps.input?.style,
+              }}
+            />
+            {valueLabelDisplay !== 'off' ? (
+              <SliderValueLabel
+                {...componentsProps.valueLabel}
+                ownerState={ownerState}
+                className={clsx(classes.valueLabel, componentsProps.valueLabel?.className, {
+                  [classes.valueLabelOpen]:
+                    open === index || active === index || valueLabelDisplay === 'on',
+                })}
+              >
+                <span>{value}</span>
+              </SliderValueLabel>
+            ) : null}
+          </SliderThumb>
+        );
+      })}
+    </SliderRoot>
   );
 }) as OverridableComponent<SliderTypeMap>;
-
-Slider.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
-  /**
-   * @ignore
-   */
-  children: PropTypes.node,
-  /**
-   * The color of the component. It supports those theme colors that make sense for this component.
-   * @default 'primary'
-   */
-  color: PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
-  /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
-   */
-  component: PropTypes.elementType,
-  /**
-   * The components used for each slot inside the Slider.
-   * Either a string to use a HTML element or a component.
-   * @default {}
-   */
-  components: PropTypes.shape({
-    Input: PropTypes.elementType,
-    Mark: PropTypes.elementType,
-    MarkLabel: PropTypes.elementType,
-    Rail: PropTypes.elementType,
-    Root: PropTypes.elementType,
-    Thumb: PropTypes.elementType,
-    Track: PropTypes.elementType,
-    ValueLabel: PropTypes.elementType,
-  }),
-  /**
-   * The props used for each slot inside the Slider.
-   * @default {}
-   */
-  componentsProps: PropTypes.shape({
-    input: PropTypes.object,
-    mark: PropTypes.object,
-    markLabel: PropTypes.object,
-    rail: PropTypes.object,
-    root: PropTypes.object,
-    thumb: PropTypes.object,
-    track: PropTypes.object,
-    valueLabel: PropTypes.shape({
-      className: PropTypes.string,
-      components: PropTypes.shape({
-        Root: PropTypes.elementType,
-      }),
-      style: PropTypes.object,
-      value: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.number), PropTypes.number]),
-      valueLabelDisplay: PropTypes.oneOf(['auto', 'off', 'on']),
-    }),
-  }),
-  /**
-   * The size of the component.
-   * It accepts theme values between 'sm' and 'lg'.
-   * @default 'md'
-   */
-  size: PropTypes.oneOf(['sm', 'md', 'lg']),
-  /**
-   * The system prop that allows defining system overrides as well as additional CSS styles.
-   */
-  sx: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
-    PropTypes.func,
-    PropTypes.object,
-  ]),
-} as any;
 
 export default Slider;
