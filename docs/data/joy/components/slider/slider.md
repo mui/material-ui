@@ -52,3 +52,7 @@ The track can be turned off with `track={false}`.
 The track can be inverted with `track="inverted"`.
 
 {{"demo": "TrackInvertedSlider.js"}}
+
+## Component variables
+
+{{"demo": "SliderVariables.js"}}
