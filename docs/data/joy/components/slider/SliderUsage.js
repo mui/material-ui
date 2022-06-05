@@ -6,7 +6,7 @@ import JoyUsageDemo from 'docs/src/modules/components/JoyUsageDemo';
 export default function SliderUsage() {
   return (
     <JoyUsageDemo
-      componentName="slider"
+      componentName="Slider"
       data={[
         {
           propName: 'color',

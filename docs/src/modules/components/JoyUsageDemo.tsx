@@ -11,6 +11,7 @@ import Switch from '@mui/joy/Switch';
 import Sheet from '@mui/joy/Sheet';
 import Check from '@mui/icons-material/Check';
 import TextField from '@mui/joy/TextField';
+import { inputClasses } from '@mui/joy/Input';
 
 const Select = styled('select')(({ theme }) => ({
   padding: '0.25rem',
@@ -27,12 +28,18 @@ const Select = styled('select')(({ theme }) => ({
   },
 }));
 
-function createCode(name: string, inProps: Record<string, string | number | boolean>) {
+function createCode(data: {
+  name: string;
+  props: Record<string, string | number | boolean>;
+  childrenAccepted?: boolean;
+}) {
+  const { props: inProps, name, childrenAccepted } = data;
+  const closedJsx = childrenAccepted ? '>' : '/>';
   let code = `<${name}`;
   const props = Object.entries(inProps).sort((a, b) => a[0].localeCompare(b[0]));
 
   if (!Object.keys(props).length) {
-    code = `${code}>`;
+    code = `${code}${closedJsx}`;
   } else {
     let children = '';
     props.forEach((prop) => {
@@ -59,7 +66,7 @@ function createCode(name: string, inProps: Record<string, string | number | bool
     if (children) {
       code = `${code}>\n  ${children}\n</${name}>`;
     } else {
-      code = `${code}${props.length > 2 ? `\n>` : `>`}`;
+      code = `${code}${props.length > 2 ? `\n${closedJsx}` : `${childrenAccepted ? '>' : ' />'}`}`;
     }
   }
 
@@ -68,6 +75,7 @@ function createCode(name: string, inProps: Record<string, string | number | bool
 
 interface JoyUsageDemoProps<ComponentProps> {
   componentName: string;
+  childrenAccepted?: boolean;
   data: Array<{
     propName: keyof ComponentProps;
     knob: 'switch' | 'color' | 'select' | 'input' | 'radio';
@@ -79,6 +87,7 @@ interface JoyUsageDemoProps<ComponentProps> {
 
 export default function JoyUsageDemo<T extends { [k: string]: string | number | boolean }>({
   componentName,
+  childrenAccepted = false,
   data,
   renderDemo,
 }: JoyUsageDemoProps<T>) {
@@ -94,10 +103,10 @@ export default function JoyUsageDemo<T extends { [k: string]: string | number | 
     <Box
       sx={{
         m: -1.5,
-        mt: 0.5,
         flexGrow: 1,
         maxWidth: 'calc(100% + 24px)',
         display: 'flex',
+        flexWrap: 'wrap',
         gap: 1.5,
         '& .markdown-body pre': {
           margin: 0,
@@ -119,7 +128,7 @@ export default function JoyUsageDemo<T extends { [k: string]: string | number | 
         </Box>
         <BrandingProvider mode="dark">
           <HighlightedCode
-            code={createCode('Chip', props)}
+            code={createCode({ name: componentName, props, childrenAccepted })}
             language="jsx"
             sx={{ display: { xs: 'none', md: 'block' } }}
           />
@@ -352,7 +361,7 @@ export default function JoyUsageDemo<T extends { [k: string]: string | number | 
                     }))
                   }
                   sx={{
-                    '& .JoyInput-root': {
+                    [`& .${inputClasses.root}`]: {
                       bgcolor: 'background.body',
                     },
                   }}
