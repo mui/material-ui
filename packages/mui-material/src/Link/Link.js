@@ -24,6 +24,23 @@ const transformDeprecatedColors = (color) => {
   return colorTransformations[color] || color;
 };
 
+const getTextDecorationColor = (theme, color, opacity) => {
+  switch (color) {
+    case 'primary.main':
+    case 'text.primary':
+    case 'secondary.main':
+    case 'text.secondary':
+    case 'error.main':
+      return theme.vars
+        ? `rgba(${getPath(theme.vars.palette, `${color}Channel`)} / ${opacity})`
+        : alpha(getPath(theme.palette, color), opacity);
+    case 'inherit':
+      return undefined;
+    default:
+      return alpha(color, opacity);
+  }
+}
+
 const useUtilityClasses = (ownerState) => {
   const { classes, component, focusVisible, underline } = ownerState;
 
@@ -52,8 +69,8 @@ const LinkRoot = styled(Typography, {
     ];
   },
 })(({ theme, ownerState }) => {
-  const color =
-    getPath(theme, `palette.${transformDeprecatedColors(ownerState.color)}`) || ownerState.color;
+  const color = transformDeprecatedColors(ownerState.color);
+  const textDecorationColor = getTextDecorationColor(theme, color, 0.4);
   return {
     ...(ownerState.underline === 'none' && {
       textDecoration: 'none',
@@ -66,7 +83,7 @@ const LinkRoot = styled(Typography, {
     }),
     ...(ownerState.underline === 'always' && {
       textDecoration: 'underline',
-      textDecorationColor: color !== 'inherit' ? alpha(color, 0.4) : undefined,
+      textDecorationColor,
       '&:hover': {
         textDecorationColor: 'inherit',
       },
