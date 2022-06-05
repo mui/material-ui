@@ -52,7 +52,7 @@ const sliderColorVariables =
   };
 
 const SliderRoot = styled('span', {
-  name: 'MuiSlider',
+  name: 'JoySlider',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: SliderProps }>(({ theme, ownerState }) => {
@@ -121,7 +121,7 @@ const SliderRoot = styled('span', {
 });
 
 const SliderRail = styled('span', {
-  name: 'MuiSlider',
+  name: 'JoySlider',
   slot: 'Rail',
   overridesResolver: (props, styles) => styles.rail,
 })<{ ownerState: SliderProps }>(({ ownerState }) => [
@@ -154,7 +154,7 @@ const SliderRail = styled('span', {
 ]);
 
 const SliderTrack = styled('span', {
-  name: 'MuiSlider',
+  name: 'JoySlider',
   slot: 'Track',
   overridesResolver: (props, styles) => styles.track,
 })<{ ownerState: SliderProps }>(({ ownerState }) => {
@@ -169,7 +169,7 @@ const SliderTrack = styled('span', {
           : 'var(--Slider-track-background)',
       // TODO: discuss the transition approach in a separate PR. This value is copied from mui-material Slider.
       transition:
-        'left 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,bottom 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
+        'left 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, width 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, bottom 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, height 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
       ...(ownerState.orientation === 'horizontal' && {
         height: 'var(--Slider-track-size)',
         top: '50%',
@@ -190,7 +190,7 @@ const SliderTrack = styled('span', {
 });
 
 const SliderThumb = styled('span', {
-  name: 'MuiSlider',
+  name: 'JoySlider',
   slot: 'Thumb',
   overridesResolver: (props, styles) => styles.thumb,
 })<{ ownerState: SliderProps }>(({ ownerState }) => {
@@ -226,7 +226,7 @@ const SliderThumb = styled('span', {
 });
 
 const SliderMark = styled('span', {
-  name: 'MuiSlider',
+  name: 'JoySlider',
   slot: 'Mark',
   // `markActive` is injected by SliderUnstyled, should not spread to DOM
   shouldForwardProp: (prop) => shouldForwardProp(prop) && prop !== 'markActive',
@@ -268,27 +268,27 @@ const SliderMark = styled('span', {
 );
 
 const SliderValueLabel = styled(SliderValueLabelUnstyled, {
-  name: 'MuiSlider',
+  name: 'JoySlider',
   slot: 'ValueLabel',
   overridesResolver: (props, styles) => styles.valueLabel,
 })<{ ownerState: SliderProps }>(({ theme, ownerState }) => ({
   ...(ownerState.size === 'sm' && {
     fontSize: theme.fontSize.xs,
-    lineHeight: theme.lineHeight.sm,
-    padding: '2px 0.25rem',
-    minWidth: '24px',
+    lineHeight: theme.lineHeight.md,
+    paddingInline: '0.25rem',
+    minWidth: '20px',
   }),
   ...(ownerState.size === 'md' && {
     fontSize: theme.fontSize.sm,
-    lineHeight: theme.lineHeight.sm,
-    padding: '0.25rem 0.375rem',
-    minWidth: '28px',
+    lineHeight: theme.lineHeight.md,
+    paddingInline: '0.375rem',
+    minWidth: '24px',
   }),
   ...(ownerState.size === 'lg' && {
     fontSize: theme.fontSize.md,
     lineHeight: theme.lineHeight.md,
-    padding: '0.5rem 0.75rem',
-    minWidth: '32px',
+    paddingInline: '0.5rem',
+    minWidth: '28px',
   }),
   zIndex: 1,
   display: 'flex',
@@ -296,7 +296,6 @@ const SliderValueLabel = styled(SliderValueLabelUnstyled, {
   justifyContent: 'center',
   whiteSpace: 'nowrap',
   fontFamily: theme.vars.fontFamily.body,
-  fontSize: theme.vars.fontSize.sm,
   fontWeight: theme.vars.fontWeight.md,
   bottom: '2px',
   transformOrigin: 'bottom center',
@@ -322,10 +321,14 @@ const SliderValueLabel = styled(SliderValueLabelUnstyled, {
     transform:
       'translateY(calc((var(--Slider-thumb-size) + var(--Slider-valueLabel-arrowSize)) * -1)) scale(1)',
   },
+  [`& .${sliderClasses.valueLabelCircle}`]: {
+    display: 'inline-flex',
+    zIndex: 1,
+  },
 }));
 
 const SliderMarkLabel = styled('span', {
-  name: 'MuiSlider',
+  name: 'JoySlider',
   slot: 'MarkLabel',
   // `markLabelActive` is injected by SliderUnstyled, should not spread to DOM
   shouldForwardProp: (prop) => shouldForwardProp(prop) && prop !== 'markLabelActive',
@@ -355,7 +358,7 @@ const SliderMarkLabel = styled('span', {
 }));
 
 const Slider = React.forwardRef(function Slider(inProps, ref) {
-  const props = useThemeProps<typeof inProps & SliderProps>({ props: inProps, name: 'MuiSlider' });
+  const props = useThemeProps<typeof inProps & SliderProps>({ props: inProps, name: 'JoySlider' });
   const {
     children,
     component = 'span',
