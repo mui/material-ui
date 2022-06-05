@@ -12,7 +12,7 @@ Some of the key features:
 
 - ⚛️ It has an idiomatic React API.
 - 🚀 It's performant, it observes the document to detect when its media queries change, instead of polling the values periodically.
-- 📦 [1 kB gzipped](/size-snapshot).
+- 📦 [1 kB gzipped](/size-snapshot/).
 - 🤖 It supports server-side rendering.
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}

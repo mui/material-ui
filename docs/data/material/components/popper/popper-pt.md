@@ -15,7 +15,7 @@ Algumas características importantes do componente `Popper`:
 
 - 🕷 Popper é baseado na biblioteca de terceiros ([Popper.js](https://github.com/popperjs/popper-core)) para um posicionamento perfeito.
 - 💄 É uma API alternativa para react-popper. Visa a simplicidade.
-- 📦 [8 kB gzipped](/size-snapshot).
+- 📦 [8 kB gzipped](/size-snapshot/).
 - O elemento filho [`Portal`](/material-ui/react-portal/) no corpo do documento, evita problemas de renderização. Você pode desativar esse comportamento com `disablePortal`.
 - O scroll não e bloqueado como ocorre com o componente [`Popover`](/material-ui/react-popover/). O posicionamento do popper é atualizado com a área disponível no visor.
 - Clicar fora não oculta o componente `Popper`. Se você precisar desse comportamento, você pode usar o componente [`ClickAwayListener`](/material-ui/react-click-away-listener/) - veja o exemplo na [seção da documentação do menu](/material-ui/react-menu/#menulist-composition).

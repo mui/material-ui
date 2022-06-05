@@ -318,7 +318,7 @@ function MuiNav() {
         '--joy-palette-primary-softBg': theme.vars.palette.primary[50],
         '--joy-palette-primary-softHoverBg': 'rgba(0, 127, 255, 0.12)',
         '--joy-palette-primary-softActiveBg': 'rgba(0, 127, 255, 0.12)',
-        '[data-mui-color-scheme="dark"] &': {
+        [theme.getColorSchemeSelector('dark')]: {
           '--joy-palette-text-primary': '#fff',
           '--joy-palette-text-secondary': theme.vars.palette.neutral[400],
           '--joy-palette-neutral-plainHoverBg': 'rgba(19, 47, 76, 0.4)',
@@ -436,7 +436,7 @@ const Firebash = () => {
     { icon: <Public />, label: 'Hosting' },
   ];
   return (
-    <Sheet data-mui-color-scheme="dark" sx={{ bgcolor: 'rgb(5, 30, 52)' }}>
+    <Sheet data-joy-color-scheme="dark" sx={{ bgcolor: 'rgb(5, 30, 52)' }}>
       <List
         sx={{
           '& *': {
@@ -588,13 +588,13 @@ const Gatsby = () => {
     <Box sx={{ maxWidth: 280, pl: '24px', bgcolor: 'background.body' }}>
       <List
         size="sm"
-        sx={{
+        sx={(theme) => ({
           '--joy-palette-primary-plainColor': '#8a4baf',
           '--joy-palette-neutral-plainHoverBg': 'transparent',
           '--joy-palette-neutral-plainActiveBg': 'transparent',
           '--joy-palette-primary-plainHoverBg': 'transparent',
           '--joy-palette-primary-plainActiveBg': 'transparent',
-          '[data-mui-color-scheme="dark"] &': {
+          [theme.getColorSchemeSelector('dark')]: {
             '--joy-palette-text-secondary': '#635e69',
             '--joy-palette-primary-plainColor': '#d48cff',
           },
@@ -621,7 +621,7 @@ const Gatsby = () => {
           '& [class*="startAction"]': {
             color: 'var(--joy-palette-text-tertiary)',
           },
-        }}
+        })}
       >
         <ListItem nested>
           <ListItem component="div" startAction={<ReceiptLong />}>

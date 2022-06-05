@@ -24,7 +24,6 @@ const pages = [
       '/material-ui/material-icons',
       '/material-ui/about-the-lab',
       '/material-ui/transitions',
-      '/material-ui/lab-date-and-time-pickers',
     ],
     title: 'Components',
     icon: 'ToggleOnIcon',
@@ -142,7 +141,6 @@ const pages = [
         subheader: 'lab',
         children: [
           { pathname: '/material-ui/about-the-lab', title: 'About the lab 🧪' },
-          { pathname: '/material-ui/lab-date-and-time-pickers', title: 'Date & Time pickers' },
           { pathname: '/material-ui/react-masonry' },
           { pathname: '/material-ui/react-timeline' },
           { pathname: '/material-ui/react-tree-view' },
