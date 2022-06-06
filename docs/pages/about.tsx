@@ -379,6 +379,14 @@ const teamMembers: Array<Profile> = [
     about: 'Passionate about videogames and football',
     github: 'apedroferreira',
   },
+  {
+    src: '',
+    name: 'Gerda Mostonaite',
+    title: 'Senior Designer',
+    location: 'New York, USA',
+    locationCountry: 'us',
+    about: 'tbd',
+  },
 ];
 
 const contributors = [
