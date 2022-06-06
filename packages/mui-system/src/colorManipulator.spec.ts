@@ -12,15 +12,9 @@ import {
   alpha,
   lighten,
   darken,
+  ColorFormat,
+  ColorObject,
 } from '@mui/system';
-
-type ColorFormat = 'rgb' | 'rgba' | 'hsl' | 'hsla' | 'color';
-
-interface ColorObject {
-  type: ColorFormat;
-  values: [number, number, number] | [number, number, number, number];
-  colorSpace?: 'srgb' | 'display-p3' | 'a98-rgb' | 'prophoto-rgb' | 'rec-2020';
-}
 
 expectType<(color: string) => string, typeof hexToRgb>(hexToRgb);
 
