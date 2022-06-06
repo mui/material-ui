@@ -207,6 +207,15 @@ describe('<Dialog />', () => {
       );
       expect(getByTestId('paper')).to.have.class(classes.paperWidthXs);
     });
+
+    it('should use the right className when maxWidth={false}', () => {
+      const { getByTestId } = render(
+        <Dialog open maxWidth={false} PaperProps={{ 'data-testid': 'paper' }}>
+          foo
+        </Dialog>,
+      );
+      expect(getByTestId('paper')).to.have.class(classes.paperWidthFalse);
+    });
   });
 
   describe('prop: fullWidth', () => {
