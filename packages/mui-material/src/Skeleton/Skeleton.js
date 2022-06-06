@@ -98,6 +98,9 @@ const SkeletonRoot = styled('span', {
       ...(ownerState.variant === 'circular' && {
         borderRadius: '50%',
       }),
+      ...(ownerState.variant === 'rounded' && {
+        borderRadius: theme.shape.borderRadius,
+      }),
       ...(ownerState.hasChildren && {
         '& > *': {
           visibility: 'hidden',
@@ -230,7 +233,7 @@ Skeleton.propTypes /* remove-proptypes */ = {
    * @default 'text'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['circular', 'rectangular', 'text']),
+    PropTypes.oneOf(['circular', 'rectangular', 'rounded', 'text']),
     PropTypes.string,
   ]),
   /**

@@ -37,7 +37,7 @@ For instance:
 
 ## Variants
 
-The component supports 3 shape variants.
+The component supports 4 shape variants.
 
 {{"demo": "Variants.js"}}
 
