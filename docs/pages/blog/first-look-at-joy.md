@@ -15,16 +15,16 @@ If not, then this post will give you a first look at Joy UI－MUI's new starting
 If you've ever considered using Material UI because of the developer experience, reliability, and completeness, but hesitated because of the design, this is great news for you.
 Joy UI offers all of that, but with a modern look and feel, ease of customization, and lower overhead by not carrying unused Material Design specific code and styling.
 
-## Why work on it?
+## How does Joy UI relate to Material UI?
 
 You might naturally associate MUI with Material UI, which despite the similar names, are separate things.
 Material UI is MUI's React implementation of Google's Material Design.
 
 Over time Material UI has established itself as the go-to library for quickly breathing life into products, mostly thanks to its design, customizability, and documentation.
 However, the components do come by default with the 2018 Google look and feel that is no longer as popular as it once was.
-And, as we've reconfirmed with [our latest developer survey](/blog/2021-developer-survey-results/#what-are-your-most-important-criteria-for-choosing-a-ui-library/), the design aspect of UI libraries is one of the most important ones whenever evaluating which to choose.
+And as we've confirmed with [our latest developer survey](/blog/2021-developer-survey-results/#what-are-your-most-important-criteria-for-choosing-a-ui-library/), design quality is one of the most important elements that developers consider when choosing a UI library.
 
-## Why not just build a different theme?
+## Why not just build a new Material UI theme?
 
 One of the main objectives with this new product is to break away from Material Design.
 A different theme would still require you and your team to have at least some understanding of how Material Design is structured, and how that is expressed in Material UI.
@@ -34,19 +34,20 @@ We also had many ideas for improving the experience of developing design systems
 
 Material UI and Joy UI still share many of the same conventions and features.
 We've done this not only to decrease the learning curve for adopting Joy UI, but also because we believe that the conventions we've established represent the ideal developer experience for working with design systems.
-So if at any time Joy UI has a feature that Material UI doesn't, it will catch-up at some point, and vice versa.
 
-## What are the new things we're introducing in Joy UI?
+Any new DX feature introduced in Joy UI will eventually be reproduced in Material UI, and vice versa.
 
-Aside from a fresher look and feel for your upcoming project, here are a few features we're planning for the alpha version of Joy UI:
+## What new features does Joy UI offer?
+
+Aside from a fresher look and feel for your upcoming project, here are a few features included in the alpha version of Joy UI:
 
 ### Global variants
 
-Instead of defining variants at the component level, Joy UI defines variants at the global level.
+Instead of defining variants at the component level, Joy UI defines them at the global level.
 This sounds bold at first, but the more we experiment the more it starts to make sense.
 [Global variants](/joy-ui/core-features/global-variant/) mostly affect three CSS properties: color, background, and border.
 
-What this means is that you'll be able to switch between the same set of variants in any component, more easily maintaining consistency across your app.
+What this means is that you're able to switch between the same set of variants in any component, more easily maintaining consistency across your app.
 The four variants available in the components are `solid`, `soft, `outlined`, and `plain`.
 
 <img src="/static/blog/first-look-at-joy/global-variants.png" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" alt="Screenshot of button component using all available variants." />
@@ -60,9 +61,9 @@ The four variants available in the components are `solid`, `soft, `outlined`, an
 
 ### Component integration
 
-We put considerable effort into constructing the CSS variables for each component such that they can be seamlessly composed with the least customization.
+We meticulously constructed the CSS variables for each component so you can seamlessly compose them with little customization necessary.
 One good example is the input component, where the border radius of the input's children automatically adapts to that of the input.
-These small details mean the components adapt to different scenarios, which saves considerable time by avoiding manual adjustments.
+These small details mean the components adapt to different scenarios, which saves considerable time when customizing the components by avoiding manual adjustments.
 
 <img src="/static/blog/first-look-at-joy/component-integration.png" style="width: 796px; margin-top: 16px; margin-bottom: 8px;" alt="Screenshot of two text inputs, one being native from Joy UI and another with border-radius customized" />
 
@@ -82,54 +83,53 @@ These small details mean the components adapt to different scenarios, which save
 />
 ```
 
-Joy UI doesn't sacrifice the customization experience in order to have these automatic adjustments.
+Joy UI doesn't sacrifice customization in order to have these automatic adjustments.
 You're still able to override the style completely via the usual CSS overrides, or even adjust the predefined CSS variables with the `sx` prop.
 
 ### Perfect dark mode, for server-side rendering
 
-Joy UI provides a simple and effective way to prevent UI flicker when users refresh or re-enter the page when dark mode is enabled.
+Joy UI provides an effective way to prevent UI flicker when users refresh or re-enter a page with dark mode enabled.
 What's more, it takes care of the synchronization between browser tabs with a single line of code, which allows developers to configure attributes and settings as required.
 
 ### Unlimited color schemes
 
-Joy UI not only allows for simple toggling between dark and light mode but also provide the right tooling so you can provide your users with multiple color schemes.
-Within each mode, you'll be able to have as many as you want－powered by CSS variables.
+Beyond light and dark mode toggling, Joy UI lets you provide your users with multiple color schemes.
+Within each mode, you'll be able to have as many color schemes as you want－powered by CSS variables.
 
-## When will I be able to use it?
+## When will Joy UI be ready to use?
 
-A significant part of the core infrastructure for Joy UI has already been developed, and we've been working for the last couple of months on adding more and more components.
-The package is already [available at npm](https://www.npmjs.com/package/@mui/joy) but until we get to a reasonable number of components, and with sufficient documentation, it remains as _initial_ work in progress.
+A significant part of the core infrastructure for Joy UI has already been developed, and we've been working for the last couple of months on adding more components.
+The package is already [available from npm](https://www.npmjs.com/package/@mui/joy) but until we get to a reasonable number of components, and with sufficient documentation, it remains an _initial_ work in progress.
 
 It should be ready for more mature experimentation and testing in the second half of 2022.
-Meanwhile, we've developed a couple of templates that showcase what Joy looks like out of the box, and to allow you to explore it further.
+Meanwhile, we've developed a couple of templates that showcase what Joy looks like out of the box, so you can explore it further.
 Follow the templates' CodeSandbox or live demo links to experiment with Joy UI for yourself.
 
 :::info
-👉 They are also available on the docs [Templates page](/joy-ui/getting-started/templates/).
+👉 They are also available in the docs [Templates page](/joy-ui/getting-started/templates/).
 :::
 
 ### Email
 
-<img src="/static/blog/first-look-at-joy/email.png" style="width: 796px; margin-top: 8px; margin-bottom: 16px;" alt="Screenshot of an email mock up application built with Joy UI" />
+<img src="/static/blog/first-look-at-joy/email.png" style="width: 796px; margin-top: 8px; margin-bottom: 16px;" alt="Screenshot of an email application mockup built with Joy UI" />
 
 - [Live demo](/joy-ui/getting-started/templates/email/)
 - [CodeSandbox](https://codesandbox.io/s/8gtttr?file=/App.tsx)
 
 ### File management
 
-<img src="/static/blog/first-look-at-joy/files.png" style="width: 796px; margin-top: 8px; margin-bottom: 16px;" alt="Screenshot of file management mock up application built with Joy UI" />
+<img src="/static/blog/first-look-at-joy/files.png" style="width: 796px; margin-top: 8px; margin-bottom: 16px;" alt="Screenshot of file management application mockup built with Joy UI" />
 
 - [Live demo](/joy-ui/getting-started/templates/files/)
 - [CodeSandbox](https://codesandbox.io/s/ro2b1t?file=/App.tsx)
 
 ### Team management
 
-<img src="/static/blog/first-look-at-joy/people.png" style="width: 796px; margin-top: 8px; margin-bottom: 16px;" alt="Screenshot of a team management mock up application built with Joy UI" />
+<img src="/static/blog/first-look-at-joy/people.png" style="width: 796px; margin-top: 8px; margin-bottom: 16px;" alt="Screenshot of a team management application mockup built with Joy UI" />
 
 - [Live demo](/joy-ui/getting-started/templates/team/)
 - [CodeSandbox](https://codesandbox.io/s/dclgbp?file=/App.tsx)
 
-We hope you'll get as excited as we are.
-Joy UI is just getting started－stay tuned for more news about it in the near future!
+Joy UI is just getting started and we hope you're as excited as we are－stay tuned for more news in the near future!
 
 Happy developing! 👩‍💻
