@@ -1,12 +1,10 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import { MenuItemUnstyledOwnerState, MenuItemUnstyledProps } from './MenuItemUnstyled.types';
-import { appendOwnerState } from '../utils';
 import { getMenuItemUnstyledUtilityClass } from './menuItemUnstyledClasses';
 import useMenuItem from './useMenuItem';
 import composeClasses from '../composeClasses';
-import resolveComponentProps from '../utils/resolveComponentProps';
+import useSlotProps from '../utils/useSlotProps';
 
 function getUtilityClasses(ownerState: MenuItemUnstyledOwnerState) {
   const { disabled, focusVisible } = ownerState;
@@ -54,17 +52,14 @@ const MenuItemUnstyled = React.forwardRef(function MenuItemUnstyled(
   const classes = getUtilityClasses(ownerState);
 
   const Root = component ?? components.Root ?? 'li';
-  const rootComponentProps = resolveComponentProps(componentsProps.root, ownerState);
-  const rootProps = appendOwnerState(
-    Root,
-    {
-      ...other,
-      ...getRootProps(other),
-      ...rootComponentProps,
-      className: clsx(classes.root, className, rootComponentProps?.className),
-    },
+  const rootProps = useSlotProps({
+    elementType: Root,
+    getSlotProps: getRootProps,
+    externalSlotProps: componentsProps.root,
+    externalForwardedProps: other,
+    className: [classes.root, className],
     ownerState,
-  );
+  });
 
   return <Root {...rootProps}>{children}</Root>;
 });

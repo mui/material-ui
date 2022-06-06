@@ -2,10 +2,8 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { HTMLElementType, refType, unstable_useForkRef as useForkRef } from '@mui/utils';
-import appendOwnerState from '../utils/appendOwnerState';
 import MenuUnstyledContext, { MenuUnstyledContextType } from './MenuUnstyledContext';
 import {
-  MenuUnstyledListboxSlotProps,
   MenuUnstyledOwnerState,
   MenuUnstyledProps,
   MenuUnstyledRootSlotProps,
@@ -14,8 +12,7 @@ import { getMenuUnstyledUtilityClass } from './menuUnstyledClasses';
 import useMenu from './useMenu';
 import composeClasses from '../composeClasses';
 import PopperUnstyled from '../PopperUnstyled';
-import { WithOptionalOwnerState } from '../utils';
-import resolveComponentProps from '../utils/resolveComponentProps';
+import useSlotProps from '../utils/useSlotProps';
 
 function getUtilityClasses(ownerState: MenuUnstyledOwnerState) {
   const { open } = ownerState;
@@ -85,36 +82,31 @@ const MenuUnstyled = React.forwardRef(function MenuUnstyled(
 
   const classes = getUtilityClasses(ownerState);
 
-  const Popper = component ?? components.Root ?? PopperUnstyled;
-  const popperComponentProps = resolveComponentProps(componentsProps.root, ownerState);
-  const popperProps: MenuUnstyledRootSlotProps = appendOwnerState(
-    Popper,
-    {
-      ...other,
+  const Root = component ?? components.Root ?? PopperUnstyled;
+  const rootProps: MenuUnstyledRootSlotProps = useSlotProps({
+    elementType: Root,
+    externalForwardedProps: other,
+    externalSlotProps: componentsProps.root,
+    additionalProps: {
       anchorEl,
       open,
       keepMounted,
       role: undefined,
-      ...popperComponentProps,
-      className: clsx(classes.root, className, popperComponentProps?.className),
-      ref: useForkRef(popperComponentProps?.ref, forwardedRef),
     },
+    className: clsx(classes.root, className),
     ownerState,
-  ) as MenuUnstyledRootSlotProps;
+  }) as MenuUnstyledRootSlotProps;
+
+  rootProps.ref = useForkRef(rootProps.ref, forwardedRef);
 
   const Listbox = components.Listbox ?? 'ul';
-  const listboxComponentProps = resolveComponentProps(componentsProps.listbox, ownerState);
-  const propsFromHook = getListboxProps();
-  const listboxProps: WithOptionalOwnerState<MenuUnstyledListboxSlotProps> = appendOwnerState(
-    Listbox,
-    {
-      ...propsFromHook,
-      ...listboxComponentProps,
-      className: clsx(classes.listbox, listboxComponentProps?.className),
-      ref: useForkRef(propsFromHook.ref, listboxComponentProps?.ref),
-    },
+  const listboxProps = useSlotProps({
+    elementType: Listbox,
+    getSlotProps: getListboxProps,
+    externalSlotProps: componentsProps.listbox,
     ownerState,
-  );
+    className: classes.listbox,
+  });
 
   const contextValue: MenuUnstyledContextType = {
     registerItem,
@@ -125,11 +117,11 @@ const MenuUnstyled = React.forwardRef(function MenuUnstyled(
   };
 
   return (
-    <Popper {...popperProps} ref={forwardedRef}>
+    <Root {...rootProps}>
       <Listbox {...listboxProps}>
         <MenuUnstyledContext.Provider value={contextValue}>{children}</MenuUnstyledContext.Provider>
       </Listbox>
-    </Popper>
+    </Root>
   );
 });
 

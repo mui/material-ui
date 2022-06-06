@@ -67,10 +67,11 @@ export interface MenuUnstyledOwnerState extends MenuUnstyledProps {
 export type MenuUnstyledRootSlotProps = {
   anchorEl: PopperUnstyledProps['anchorEl'];
   children?: React.ReactNode;
-  className: string | undefined;
+  className?: string;
   keepMounted: PopperUnstyledProps['keepMounted'];
   open: boolean;
   ownerState: MenuUnstyledOwnerState;
+  ref: React.Ref<any>;
 };
 
 export type MenuUnstyledListboxSlotProps = UseMenuListboxSlotProps & {
