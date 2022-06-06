@@ -167,7 +167,7 @@ const DemoRootJoy = joyStyled('div', {
   /* Isolate the demo with an outline. */
   ...(bg === 'outlined' && {
     padding: theme.spacing(3),
-    backgroundColor: theme.vars.palette.background.body,
+    backgroundColor: theme.vars.palette.background.common,
     border: `1px solid`,
     borderColor: theme.vars.palette.divider,
     borderLeftWidth: 0,
@@ -176,7 +176,7 @@ const DemoRootJoy = joyStyled('div', {
   /* Prepare the background to display an inner elevation. */
   ...(bg === true && {
     padding: theme.spacing(3),
-    backgroundColor: theme.vars.palette.background.level1,
+    backgroundColor: theme.vars.palette.background.body,
   }),
   ...(hiddenToolbar && {
     paddingTop: theme.spacing(2),

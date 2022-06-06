@@ -217,6 +217,7 @@ export default function extendTheme(themeInput?: ThemeInput): Theme {
       },
       background: {
         body: 'var(--joy-palette-common-white)',
+        common: 'var(--joy-palette-common-white)',
         level1: 'var(--joy-palette-neutral-50)',
         level2: 'var(--joy-palette-neutral-100)',
         level3: 'var(--joy-palette-neutral-200)',
@@ -309,6 +310,7 @@ export default function extendTheme(themeInput?: ThemeInput): Theme {
       },
       background: {
         body: 'var(--joy-palette-neutral-900)',
+        common: 'var(--joy-palette-common-black)',
         level1: 'var(--joy-palette-neutral-800)',
         level2: 'var(--joy-palette-neutral-700)',
         level3: 'var(--joy-palette-neutral-600)',
