@@ -14,6 +14,7 @@ const pages = [
     children: [
       { pathname: '/joy-ui/core-features/global-variant' },
       { pathname: '/joy-ui/core-features/automatic-adjustment' },
+      { pathname: '/joy-ui/core-features/perfect-dark-mode' },
     ],
   },
   {
@@ -42,6 +43,12 @@ const pages = [
         children: [{ pathname: '/joy-ui/react-card' }],
       },
     ],
+  },
+  {
+    pathname: '/joy-ui/guides',
+    title: 'How To Guides',
+    icon: 'VisibilityIcon',
+    children: [{ pathname: '/joy-ui/guides/apply-dark-mode', title: 'Apply dark mode' }],
   },
 ];
 
