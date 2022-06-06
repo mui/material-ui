@@ -10,7 +10,7 @@ card: true
 <img src="/static/blog/first-look-at-joy/card.png" style="width: 796px; margin-bottom: 24px;" alt="First look at Joy UI: a new starting point for your design system." />
 
 If you're a close follower of everything MUI, you might be aware that we've been working on a new design system product.
-If not, we're writing this piece to give you a first look at Joy－MUI's new starting point for your design system!
+If not, we're writing this piece to give you a first look at Joy UI－MUI's new starting point for your design system!
 
 If you ever considered going with Material UI because of the thought through developer experience, reliability, and completeness but ended up hesitating because of the design, this is great news for you. Joy UI is meant to offer you all of that with a modern look and feel, ease of customization, and lower overhead by not carrying unused Material Design specific code and styling.
 
@@ -45,7 +45,7 @@ This sounds bold at first, but the more we experiment the more it starts to make
 [Global variants](/joy-ui/core-features/global-variant/) mostly affect three CSS properties: color, background, and border.
 
 What this means is that you'll be able to switch between the same set of variants in any component, more easily maintaining consistency across your app.
-The four variants available in the components are `plain`, `outlined`, `soft`, and `solid`.
+The four variants available in the components are `solid`, `soft, `outlined`, and `plain`.
 
 <img src="/static/blog/first-look-at-joy/global-variants.png" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" alt="Screenshot of button component using all available variants." />
 
@@ -98,7 +98,7 @@ Within each mode, you'll be able to have as many as you want－powered by CSS va
 A significant part of the core infrastructure for Joy UI has already been developed, and we've been working for the last couple of months on adding more and more components.
 The package is already [available at npm](https://www.npmjs.com/package/@mui/joy) but until we get to a reasonable number of components, and with sufficient documentation, it remains as _initial_ work in progress.
 
-It should, though, be ready for more mature experimentation and testing most likely dureing the second half of 2022.
+It should be ready for more mature experimentation and testing in the second half of 2022.
 Meanwhile, we've developed a couple of templates that showcase what Joy looks like out of the box, and to allow you to explore it further.
 Follow the templates' CodeSandbox or live demo links to experiment with Joy UI for yourself.
 
