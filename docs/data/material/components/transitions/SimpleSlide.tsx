@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { Theme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Switch from '@mui/material/Switch';
 import Paper from '@mui/material/Paper';
 import Slide from '@mui/material/Slide';
 import FormControlLabel from '@mui/material/FormControlLabel';
+import { Theme } from '@mui/material/styles';
 
 const icon = (
   <Paper sx={{ m: 1 }} elevation={4}>

@@ -8,7 +8,6 @@
 //
 // Follow this flexbox Guide to better understand the underlying model:
 // - https://css-tricks.com/snippets/css/a-guide-to-flexbox/
-
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
