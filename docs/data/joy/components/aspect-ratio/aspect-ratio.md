@@ -8,7 +8,7 @@ title: React Aspect Ratio component
 <p class="description">The Aspect Ratio component shapes the content with the specified ratio.</p>
 
 The default Aspect Ration implementation combines `height: 0px` with percentage padding-bottom to create the proper aspect ratio of the content.
-(It will be replaced by the [CSS aspect-ratio](https://developer.mozilla.org/en-US/docs/Web/CSS/aspect-ratio) in the future once it has sufficient various browser support).
+(It will be replaced by the [CSS aspect-ratio](https://developer.mozilla.org/en-US/docs/Web/CSS/aspect-ratio) in the future once it has sufficient browser support).
 
 - The content to fit the area of the aspect ratio component must be its first direct child.
 - It is designed to be composed with other components, e.g. [`Card`](/joy-ui/react-card/).
