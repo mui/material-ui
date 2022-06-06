@@ -167,7 +167,7 @@ function excludeDemoFixture(suite, name) {
     return true;
   }
 
-  if (suite.includes('docs-joy') && name.endsWith('Variables')) {
+  if (suite.includes('docs-joy') && name.match(/(Variables|Usage)$/)) {
     return true;
   }
 
