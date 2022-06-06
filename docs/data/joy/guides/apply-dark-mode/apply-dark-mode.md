@@ -1,10 +1,10 @@
 # Apply dark mode
 
-<p class="description">A how-to-guide for applying dark mode to your application.</p>
+<p class="description">A how-to-guide for applying dark mode to your application with Joy UI.</p>
 
-## Switch to dark
+## The mode toggle component
 
-You have to create a custom component and call `setMode` from the `useColorScheme()` hook to switch between modes.
+In the example below, we're using a `Button` component that calls `setMode` from the `useColorSchemes()` hook to handle the mode toggling.
 
 ```js
 import { useColorScheme } from '@mui/joy/styles';
@@ -27,16 +27,17 @@ const ModeToggle = () => {
 {{"demo": "ModeToggle.js"}}
 
 :::warning
-Make sure to use `useColorScheme()` in a component that renders inside `<CssVarsProvider>`, otherwise it will throw an error.
+**Note:** Make sure to use `useColorScheme()` in a component that's inside `<CssVarsProvider>`, otherwise it will throw an error.
 :::
 
 ## Server-side rendering
 
 ### Avoid hydration mismatch
 
-The `mode` will be available only on the client side (it is `undefined` on the server), so if you try to render UI based on it before mounting on the client, you will see a hydration mismatch error.
+Makre sure to render the UI when the page is mounted on the client.
 
-Make sure to render the UI when the page is mounted on the client:
+This is because the `mode` will only be available to the client-side (it is `undefined` on the server).
+If you try to render your UI based on the server, before mounting on the client, you'll see a hydration mismatch error.
 
 ```diff
 const ModeToggle = () => {
@@ -64,13 +65,13 @@ const ModeToggle = () => {
 };
 ```
 
-### Avoid screen flicker
+### Avoiding screen flickering
 
-To prevent [the flicker](/joy-ui/core-features/perfect-dark-mode/#the-flicker), apply `getInitColorSchemeScript()` before the main application script (varies across frameworks). Take a look at the specific framework setup below.
+To prevent [the UI of flickering](/joy-ui/core-features/perfect-dark-mode/#current-problem-the-flickering), apply `getInitColorSchemeScript()` before the main application script－it varies across frameworks:
 
 ### Next.js
 
-To use the API with a Next.js project, add the following code to the custom [`pages/_document.js`](https://nextjs.org/docs/advanced-features/custom-document) file:
+To use the Joy UI API with a Next.js project, add the following code to the custom [`pages/_document.js`](https://nextjs.org/docs/advanced-features/custom-document) file:
 
 ```jsx
 import Document, { Html, Head, Main, NextScript } from 'next/document';
@@ -94,7 +95,7 @@ export default class MyDocument extends Document {
 
 ### Gatsby
 
-To use the API with a Gatsby project, add the following code to the custom [`gatsby-ssr.js`](https://www.gatsbyjs.com/docs/reference/config-files/gatsby-ssr/) file:
+To use the Joy UI API with a Next.js project, add the following code to the custom [`gatsby-ssr.js`](https://www.gatsbyjs.com/docs/reference/config-files/gatsby-ssr/) file:
 
 ```jsx
 import React from 'react';
