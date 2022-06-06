@@ -1,20 +1,25 @@
 # Perfect dark mode
 
-<p class="description">Built-in support for perfect dark mode on server-side rendering.</p>
+<p class="description">Learn how Joy UI's solution for perfect dark mode on server-side rendering.</p>
 
-## The flicker
+## Current problem: the flickering
 
-It happens with SSR (server-side rendering) and SSG (server-side generation) applications when users have switched to dark mode and refresh the page. It page appears as light mode and then quickly turn dark after hydrated. This experience could cause eye fatigue to the users that are in low lighting condition.
+You might've noticed that in application with SSR (server-side rendering) and SSG (server-side generation) when users switch to dark mode and refresh the page, it iniatially loads in light mode and then, after hydration, quickly goes back to dark.
 
-<img src="https://media.giphy.com/media/9hvxemkpotSiQGzLo8/giphy.gif" style="border-radius: 4px; display: block; width: 400px; margin-inline: auto; margin-bottom: 24px;" alt="First look at Joy UI: a new starting point for your design system." />
+This not only causes eye-fatigue to users that are in low-light settings but also interrupts browsing experience for those who interact with the website in the in-between of modes changing.
 
-The above recording is taken from [mui.com](https://mui.com/) when the page is hard refreshed. Usually, the root cause of this issue comes from the javascript runtime calculation to switch the stylesheet between light and dark modes.
+<img src="https://media.giphy.com/media/9hvxemkpotSiQGzLo8/giphy.gif" style="border-radius: 10px; display: block; width: 730px; margin-inline: auto; margin-bottom: 24px;" alt="Today's dark mode flickering in MUI's website." />
 
-## The solution
+The above recording is taken from [MUI's website](https://mui.com/) when the page is hard refreshed.
+Usually, the root cause of this issue comes from the JavaScript runtime calculation to switch the stylesheet between light and dark modes.
 
-The root cause requires us to rethink about the styling and theming approach while building Joy UI. If you want to read more about the implementation details, please check out the [Github RFC](https://github.com/mui/material-ui/issues/27651).
+## The solution: CSS variables
 
-Joy provides the `getInitColorSchemeScript()` function that you can integrate with various React frameworks such as Next.js, Gatsby, and Remix. The function must be placed before the main script to apply the correct stylesheet before your application appears on the screen.
+Ultimately, to solve this problem, we needed to think of a different styling and theming approach altogether.
+Joy UI comes with CSS variables supported out-of-the-box which allows every theme to be rendered at build time, given we want to set the selected mode before the broswer renders the DOM.
+
+Joy UI provides the `getInitColorSchemeScript()` function that enables you to integrate it with various React frameworks, such as Next.js, Gatsby, and Remix.
+This function must be placed before the main script so it can apply the correct stylesheet before your components are rendered.
 
 ```js
 // Next.js example
@@ -37,4 +42,5 @@ export default class MyDocument extends Document {
 }
 ```
 
-You can find other framework setup and more details in the [apply dark mode](/joy-ui/guides/apply-dark-mode/) page.
+- Check out our [RFC on CSS variables support](https://github.com/mui/material-ui/issues/27651) to get the full picture of its implementation in Joy UI.
+- Learn [how to apply dark mode](/joy-ui/guides/apply-dark-mode/) in various frameworks by visiting the How To Guides.
