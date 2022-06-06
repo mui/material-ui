@@ -339,13 +339,14 @@ export default function TeamExample() {
             </Box>
             <Box sx={{ mt: 2 }}>
               <TextField placeholder="Search for a city" />
-              <Box sx={{ mt: 2, display: 'flex', gap: 1 }}>
+              <Box sx={{ mt: 3, display: 'flex', gap: 1 }}>
                 <Slider
                   valueLabelFormat={(value) => `${value} km`}
+                  defaultValue={6}
                   step={1}
                   min={0}
                   max={20}
-                  valueLabelDisplay="auto"
+                  valueLabelDisplay="on"
                 />
               </Box>
             </Box>
