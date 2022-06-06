@@ -104,7 +104,6 @@ export default function GroupedAvatars() {
           flexWrap: 'wrap',
           gap: 2,
           p: 2,
-          bgcolor: 'background.level1',
           borderRadius: 'sm',
         }}
       >

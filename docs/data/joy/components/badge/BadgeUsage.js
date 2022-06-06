@@ -76,12 +76,10 @@ export default function BadgeUsage() {
   return (
     <Box
       sx={{
-        m: -1.5,
-        mt: 0.5,
         flexGrow: 1,
         maxWidth: 'calc(100% + 24px)',
         display: 'flex',
-        gap: 1.5,
+        gap: 2,
         '& .markdown-body pre': {
           margin: 0,
           borderRadius: 'xs',
@@ -120,12 +118,12 @@ export default function BadgeUsage() {
       <Sheet
         variant="outlined"
         sx={{
+          gap: 2,
+          p: 2,
+          mt: 2,
           flexGrow: 1,
           display: 'flex',
           flexWrap: 'wrap',
-          gap: 2,
-          p: 2,
-          bgcolor: 'background.level1',
           borderRadius: 'sm',
         }}
       >
@@ -187,7 +185,7 @@ export default function BadgeUsage() {
               }}
               sx={{ flexWrap: 'wrap', gap: 1 }}
             >
-              {['neutral', 'primary', 'danger', 'info', 'success', 'warning'].map(
+              {['primary', 'neutral', 'danger', 'info', 'success', 'warning'].map(
                 (value) => {
                   const checked = color === value;
                   return (
@@ -279,13 +277,7 @@ export default function BadgeUsage() {
                       size="sm"
                       variant={checked ? 'solid' : 'outlined'}
                       color={checked ? 'primary' : null}
-                      label={
-                        <Typography
-                          endDecorator={checked ? <Check fontSize="md" /> : null}
-                        >
-                          {value}
-                        </Typography>
-                      }
+                      label={<Typography>{value}</Typography>}
                       value={value}
                       disableIcon
                       overlay

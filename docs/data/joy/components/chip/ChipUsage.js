@@ -119,7 +119,6 @@ export default function ChipUsage() {
           flexWrap: 'wrap',
           gap: 2,
           p: 2,
-          bgcolor: 'background.level1',
           borderRadius: 'sm',
         }}
       >
@@ -259,7 +258,7 @@ export default function ChipUsage() {
               }}
               sx={{ flexWrap: 'wrap', gap: 1 }}
             >
-              {['sm', 'md', 'lg'].map((value) => {
+              {['lg', 'md', 'sm'].map((value) => {
                 const checked = size === value;
                 return (
                   <Chip
@@ -273,13 +272,7 @@ export default function ChipUsage() {
                       size="sm"
                       variant={checked ? 'solid' : 'outlined'}
                       color={checked ? 'primary' : null}
-                      label={
-                        <Typography
-                          endDecorator={checked ? <Check fontSize="md" /> : null}
-                        >
-                          {value}
-                        </Typography>
-                      }
+                      label={<Typography>{value}</Typography>}
                       value={value}
                       disableIcon
                       overlay
@@ -312,7 +305,7 @@ export default function ChipUsage() {
               }}
               sx={{ flexWrap: 'wrap', gap: 1 }}
             >
-              {[false, true].map((value) => {
+              {[true, false].map((value) => {
                 const checked = disabled === value;
                 return (
                   <Chip
@@ -326,13 +319,7 @@ export default function ChipUsage() {
                       size="sm"
                       variant={checked ? 'solid' : 'outlined'}
                       color={checked ? 'primary' : null}
-                      label={
-                        <Typography
-                          endDecorator={checked ? <Check fontSize="md" /> : null}
-                        >
-                          {`${value}`}
-                        </Typography>
-                      }
+                      label={<Typography>{`${value}`}</Typography>}
                       value={`${value}`}
                       disableIcon
                       overlay

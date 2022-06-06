@@ -46,7 +46,7 @@ export default function GroupedAvatars() {
     <Box
       sx={{
         width: '100%',
-        mt: 2,
+        mt: 1,
         display: 'grid',
         gridTemplateColumns: '1fr auto',
         gridTemplateRows: '1fr auto',
@@ -80,7 +80,6 @@ export default function GroupedAvatars() {
           flexWrap: 'wrap',
           gap: 2,
           p: 2,
-          bgcolor: 'background.level1',
           borderRadius: 'sm',
         }}
       >

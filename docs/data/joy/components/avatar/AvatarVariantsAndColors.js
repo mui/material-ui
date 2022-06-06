@@ -6,7 +6,6 @@ import RadioGroup from '@mui/joy/RadioGroup';
 import Radio from '@mui/joy/Radio';
 import Chip from '@mui/joy/Chip';
 import Typography from '@mui/joy/Typography';
-import Check from '@mui/icons-material/Check';
 
 export default function AvatarVariantsAndColors() {
   const [variant, setVariant] = React.useState('soft');
@@ -29,7 +28,6 @@ export default function AvatarVariantsAndColors() {
         sx={{
           maxWidth: 343,
           p: 2,
-          bgcolor: 'background.level1',
           borderRadius: 'sm',
         }}
       >
@@ -50,25 +48,19 @@ export default function AvatarVariantsAndColors() {
           onChange={(event) => setVariant(event.target.value)}
           sx={{ flexWrap: 'wrap', gap: 1 }}
         >
-          {['plain', 'outlined', 'soft', 'solid'].map((value) => {
+          {['solid', 'soft', 'outlined', 'plain'].map((value) => {
             const checked = variant === value;
             return (
               <Chip
                 size="sm"
-                variant="outlined"
+                variant="plain"
                 color={checked ? 'primary' : 'neutral'}
               >
                 <Radio
                   size="sm"
                   variant={checked ? 'solid' : 'outlined'}
                   color={checked ? 'primary' : 'neutral'}
-                  label={
-                    <Typography
-                      endDecorator={checked ? <Check fontSize="md" /> : null}
-                    >
-                      {value}
-                    </Typography>
-                  }
+                  label={<Typography>{value}</Typography>}
                   value={value}
                   disableIcon
                   overlay
@@ -96,26 +88,20 @@ export default function AvatarVariantsAndColors() {
           onChange={(event) => setColor(event.target.value)}
           sx={{ flexWrap: 'wrap', gap: 1 }}
         >
-          {['neutral', 'primary', 'danger', 'info', 'success', 'warning'].map(
+          {['primary', 'neutral', 'danger', 'info', 'success', 'warning'].map(
             (value) => {
               const checked = color === value;
               return (
                 <Chip
                   size="sm"
-                  variant="outlined"
+                  variant="plain"
                   color={checked ? 'primary' : 'neutral'}
                 >
                   <Radio
                     size="sm"
                     variant={checked ? 'solid' : 'outlined'}
                     color={checked ? 'primary' : 'neutral'}
-                    label={
-                      <Typography
-                        endDecorator={checked ? <Check fontSize="md" /> : null}
-                      >
-                        {value}
-                      </Typography>
-                    }
+                    label={<Typography>{value}</Typography>}
                     value={value}
                     disableIcon
                     overlay

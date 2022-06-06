@@ -179,7 +179,7 @@ const DemoRootJoy = joyStyled('div', {
     backgroundColor: theme.vars.palette.background.body,
   }),
   ...(hiddenToolbar && {
-    paddingTop: theme.spacing(2),
+    paddingTop: theme.spacing(3),
   }),
 }));
 
