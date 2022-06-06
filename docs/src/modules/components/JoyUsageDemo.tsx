@@ -105,6 +105,7 @@ export default function JoyUsageDemo<T extends {} = {}>({
     <Box
       sx={{
         m: -1.5,
+        mt: 0.25,
         flexGrow: 1,
         maxWidth: 'calc(100% + 24px)',
         display: 'flex',
@@ -146,6 +147,8 @@ export default function JoyUsageDemo<T extends {} = {}>({
         }}
       >
         <Typography
+          id="usage-props"
+          component="h2"
           fontWeight="lg"
           endDecorator={
             // eslint-disable-next-line jsx-a11y/anchor-is-valid
@@ -160,7 +163,7 @@ export default function JoyUsageDemo<T extends {} = {}>({
             </Link>
           }
           justifyContent="space-between"
-          sx={{ mb: 1 }}
+          sx={{ mb: 1, scrollMarginTop: 160 }}
         >
           Props
         </Typography>
@@ -254,7 +257,7 @@ export default function JoyUsageDemo<T extends {} = {}>({
             }
             if (knob === 'color') {
               return (
-                <Box key={propName as string} sx={{ mb: 1 }}>
+                <Box key={propName as string} sx={{ mb: 1.5 }}>
                   <Typography id={`${componentName}-color`} fontSize="xs" fontWeight="md" mb={0.5}>
                     color
                   </Typography>
@@ -262,7 +265,7 @@ export default function JoyUsageDemo<T extends {} = {}>({
                     row
                     name={`${componentName}-color`}
                     aria-labelledby={`${componentName}-color`}
-                    value={resolvedValue}
+                    value={resolvedValue || ''}
                     onChange={(event) =>
                       setProps((latestProps) => ({
                         ...latestProps,
@@ -277,7 +280,7 @@ export default function JoyUsageDemo<T extends {} = {}>({
                         <Sheet key={value} sx={{ width: 28, height: 28, bgcolor: 'unset' }}>
                           <Radio
                             variant="solid"
-                            color={resolvedValue as ColorPaletteProp}
+                            color={value as ColorPaletteProp}
                             label={value}
                             value={value}
                             disableIcon
@@ -338,14 +341,15 @@ export default function JoyUsageDemo<T extends {} = {}>({
                   </Typography>
                   <Select
                     id={`${componentName}-${propName}`}
-                    value={resolvedValue as string}
+                    value={(resolvedValue || 'none') as string}
                     onChange={(event) =>
                       setProps((latestProps) => ({
                         ...latestProps,
-                        variant: event.target.value,
+                        [propName]: event.target.value,
                       }))
                     }
                   >
+                    {!resolvedValue && <option value="none">{''}</option>}
                     {options.map((value) => (
                       <option key={value} value={value}>
                         {value}

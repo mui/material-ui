@@ -101,11 +101,11 @@ const LinkRoot = styled('a', {
             marginInline: '-0.25em',
           }
         : {
-            color: theme.vars.palette[ownerState.color!]?.plainColor,
+            color: `rgba(${theme.vars.palette[ownerState.color!]?.mainChannel} / 1)`,
             cursor: 'pointer',
             '&.Mui-disabled': {
               pointerEvents: 'none',
-              color: theme.vars.palette[ownerState.color!]?.plainDisabledColor,
+              color: `rgba(${theme.vars.palette[ownerState.color!]?.mainChannel} / 0.6)`,
             },
           }),
       userSelect: 'none',

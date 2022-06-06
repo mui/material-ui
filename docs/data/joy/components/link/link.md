@@ -11,17 +11,9 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/link/
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## Basic
-
 The Link represents the html anchor element. It accepts the same props as the [`Typography`](/joy-ui/react-typography/) component (the system props are also included).
 
-{{"demo": "Links.js"}}
-
-## Underline
-
-The `underline` prop can be used to set the underline behavior. The default is `always`.
-
-{{"demo": "UnderlineLink.js"}}
+{{"demo": "LinkUsage.js", "hideToolbar": true}}
 
 ## As button
 
@@ -40,6 +32,18 @@ You might want to use this approach when:
   Do something
 </Link>
 ```
+
+## With Typography
+
+The `Link` can be used as a child of the [`Typography`](/joy-ui/react-typography/) component. The level of the link inherits from the parent typography unless the prop is specified.
+
+{{"demo": "LinkAndTypography.js"}}
+
+## With Card
+
+To create an accesible card, we recommend to use the `Link` to be the card's title and specify `overlay` prop to expand the clickable area to the whole card. This way the card is visually focusable while preserving the correct semantic.
+
+{{"demo": "LinkCard.js"}}
 
 ## Security
 
@@ -82,3 +86,9 @@ import JoyLink from '@mui/joy/Link';
   Instead, use [specific descriptions](https://developers.google.com/web/tools/lighthouse/audits/descriptive-link-text).
 - For the best user experience, links should stand out from the text on the page. For instance, you can keep the default `underline="always"` behavior.
 - If a link doesn't have a meaningful href, [it should be rendered using a `<button>` element](#as-button).
+
+## Common examples
+
+These are some useful examples that demonstrate the composition of the link and other components as decorators.
+
+{{"demo": "DecoratorExamples.js"}}
