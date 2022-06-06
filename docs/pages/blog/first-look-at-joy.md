@@ -48,7 +48,7 @@ This sounds bold at first, but the more we experiment the more it starts to make
 [Global variants](/joy-ui/core-features/global-variant/) mostly affect three CSS properties: color, background, and border.
 
 What this means is that you're able to switch between the same set of variants in any component, more easily maintaining consistency across your app.
-The four variants available in the components are `solid`, `soft, `outlined`, and `plain`.
+The four variants available in the components are `solid`, `soft`, `outlined`, and `plain`.
 
 <img src="/static/blog/first-look-at-joy/global-variants.png" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" alt="Screenshot of button component using all available variants." />
 
