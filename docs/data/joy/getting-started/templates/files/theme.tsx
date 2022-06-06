@@ -21,7 +21,7 @@ export default extendTheme({
       palette: {
         background: {
           appBody: 'var(--joy-palette-common-black)',
-          componentBg: 'var(--joy-palette-background-level1)',
+          componentBg: 'var(--joy-palette-neutral-900)',
         },
       },
     },
