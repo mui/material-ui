@@ -155,7 +155,7 @@ export default function EmailContent() {
       <Box
         sx={(theme) => ({
           display: 'flex',
-          flexDirection: { xs: 'column', sm: 'row' },
+          flexWrap: 'wrap',
           gap: 2,
           '& > div': {
             boxShadow: 'none',
@@ -199,7 +199,7 @@ export default function EmailContent() {
               </Box>
             </AspectRatio>
           </CardOverflow>
-          <Box sx={{ p: 2 }}>
+          <Box sx={{ p: { xs: 1, sm: 2 } }}>
             <Typography level="body2" color="primary">
               videos-hike.zip
             </Typography>
