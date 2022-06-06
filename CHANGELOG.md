@@ -1,5 +1,68 @@
 # [Versions](https://mui.com/versions/)
 
+## 5.8.3
+
+<!-- generated comparing v5.8.2..master -->
+
+_Jun 7, 2022_
+
+A big thanks to the 13 contributors who made this release possible.
+This release is mostly about 🐛 bug fixes and 📚 documentation improvements.
+
+## `@mui/material@5.8.3`
+
+- &#8203;<!-- 30 -->[Alert] Constrain message width and allow overflow (#32747) @Janpot
+- &#8203;<!-- 08 -->[Slider] Fix positioning of tooltips on vertical slider (#32919) @abhinav-22-tech
+
+## `@mui/system@5.8.3`
+
+- &#8203;<!-- 06 -->[system] Configurable attributes for libraries (#32971) @siriwatknp
+
+## `@mui/lab@5.0.0-alpha.85`
+
+- &#8203;<!-- 09 -->[pickers] Add deprecations when importing pickers from the lab (#32950) @flaviendelangle
+
+## `@mui/joy@5.0.0-alpha.31`
+
+- &#8203;<!-- 12 -->[Joy] Add docs about dark mode (#33002) @siriwatknp
+- &#8203;<!-- 11 -->[Joy] Add `Slider` component and demos (#32694) @hbjORbj
+- &#8203;<!-- 10 -->[Joy] Add automatic adjustment page to core features (#32980) @siriwatknp
+
+## `@mui/base@5.0.0-alpha.84`
+
+- &#8203;<!-- 29 -->[base] Remove @mui/system in tests (#32945) @kevinji
+- &#8203;<!-- 27 -->[ButtonUnstyled] Accept callbacks in componentsProps (#32991) @michaldudak
+- &#8203;<!-- 07 -->[SwitchUnstyled] Accept callbacks in componentsProps (#32993) @michaldudak
+- &#8203;<!-- 05 -->[TablePaginationUnstyled] Define ownerState and slot props' types (#32905) @michaldudak
+- &#8203;<!-- 04 -->[TabPanelUnstyled] Define ownerState and slot props' types (#32928) @michaldudak
+- &#8203;<!-- 03 -->[TabsListUnstyled] Define ownerState and slot props' types (#32925) @michaldudak
+
+## Docs
+
+- &#8203;<!-- 28 -->[blog] Fix anchor link scroll (#32994) @oliviertassinari
+- &#8203;<!-- 22 -->[docs] Redirect older URLs (#33037) @oliviertassinari
+- &#8203;<!-- 21 -->[docs] Remove pickers page from the Lab section (#32961) @DanailH
+- &#8203;<!-- 20 -->[docs] Polish overview page to Material UI (#32954) @oliviertassinari
+- &#8203;<!-- 19 -->[docs] Fix 301 link @oliviertassinari
+- &#8203;<!-- 18 -->[docs] Throw on 301 links (#32939) @oliviertassinari
+- &#8203;<!-- 17 -->[docs] Improve UX with back to top (#32896) @oliviertassinari
+- &#8203;<!-- 16 -->[docs] Improve product identifier (#32707) @danilo-leal
+- &#8203;<!-- 15 -->[docs] Fix icon color in `BadgeUnstyled` docs (#32976) @ZeeshanTamboli
+- &#8203;<!-- 14 -->[docs] Show product identifier on updated MUI X Introduction pages (#32966) @samuelsycamore
+- &#8203;<!-- 13 -->[docs] Add What doesn't count as a breaking change? (#32850) @oliviertassinari
+- &#8203;<!-- 02 -->[website] Polish the pricing page (#32811) @oliviertassinari
+- &#8203;<!-- 01 -->[website] Remove unnecessary `address` dependency (#32957) @michaldudak
+
+## Core
+
+- &#8203;<!-- 26 -->[core] Prepare Next.js config for React 18 (#32963) @michaldudak
+- &#8203;<!-- 25 -->[core] Update dependencies to fix security vulnerabilities (#32947) @michaldudak
+- &#8203;<!-- 24 -->[core] Improve icon synonyms (#32742) @oliviertassinari
+- &#8203;<!-- 23 -->[core] Remove dead logic (#32940) @oliviertassinari
+- &#8203;<!-- 31 -->Add security link to README for Tidelift @mbrookes
+
+All contributors of this release in alphabetical order: @abhinav-22-tech, @DanailH, @danilo-leal, @flaviendelangle, @hbjORbj, @Janpot, @kevinji, @mbrookes, @michaldudak, @oliviertassinari, @samuelsycamore, @siriwatknp, @ZeeshanTamboli
+
 ## 5.8.2
 
 <!-- generated comparing v5.8.1..master -->
