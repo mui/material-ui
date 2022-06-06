@@ -426,7 +426,7 @@ export default function TeamExample() {
               >
                 <Box sx={{ display: 'flex', gap: 2 }}>
                   <Avatar
-                    src="/static/images/avatar/1.jpg"
+                    src="https://i.pravatar.cc/150?img=6"
                     sx={{ borderRadius: 'sm' }}
                   />
                   <Box>

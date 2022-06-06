@@ -39,7 +39,7 @@ export default function EmailContent() {
         <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
           <Box
             component="img"
-            src="/static/images/avatar/1.jpg"
+            src="https://i.pravatar.cc/150?img=3"
             sx={{
               width: 40,
               height: 40,

@@ -246,10 +246,10 @@ export default function FilesExample() {
                   size="sm"
                   sx={{ '--AvatarGroup-gap': '-8px', '--Avatar-size': '24px' }}
                 >
-                  <Avatar src="/static/images/avatar/1.jpg" />
-                  <Avatar src="/static/images/avatar/2.jpg" />
-                  <Avatar src="/static/images/avatar/3.jpg" />
-                  <Avatar src="/static/images/avatar/4.jpg" />
+                  <Avatar src="https://i.pravatar.cc/150?img=6" />
+                  <Avatar src="https://i.pravatar.cc/150?img=7" />
+                  <Avatar src="https://i.pravatar.cc/150?img=8" />
+                  <Avatar src="https://i.pravatar.cc/150?img=9" />
                 </AvatarGroup>
               </Box>
 
@@ -269,10 +269,10 @@ export default function FilesExample() {
                   size="sm"
                   sx={{ '--AvatarGroup-gap': '-8px', '--Avatar-size': '24px' }}
                 >
-                  <Avatar src="/static/images/avatar/1.jpg" />
-                  <Avatar src="/static/images/avatar/2.jpg" />
-                  <Avatar src="/static/images/avatar/3.jpg" />
-                  <Avatar src="/static/images/avatar/4.jpg" />
+                  <Avatar src="https://i.pravatar.cc/150?img=6" />
+                  <Avatar src="https://i.pravatar.cc/150?img=7" />
+                  <Avatar src="https://i.pravatar.cc/150?img=8" />
+                  <Avatar src="https://i.pravatar.cc/150?img=9" />
                 </AvatarGroup>
               </Box>
             </Sheet>
@@ -333,10 +333,10 @@ export default function FilesExample() {
                               '--Avatar-size': '24px',
                             }}
                           >
-                            <Avatar src="/static/images/avatar/1.jpg" />
-                            <Avatar src="/static/images/avatar/2.jpg" />
-                            <Avatar src="/static/images/avatar/3.jpg" />
-                            <Avatar src="/static/images/avatar/4.jpg" />
+                            <Avatar src="https://i.pravatar.cc/150?img=6" />
+                            <Avatar src="https://i.pravatar.cc/150?img=7" />
+                            <Avatar src="https://i.pravatar.cc/150?img=8" />
+                            <Avatar src="https://i.pravatar.cc/150?img=9" />
                           </AvatarGroup>
                         </Box>
                         <Typography level="body2">21 October 2011, 3PM</Typography>
@@ -381,10 +381,10 @@ export default function FilesExample() {
                               '--Avatar-size': '24px',
                             }}
                           >
-                            <Avatar src="/static/images/avatar/1.jpg" />
-                            <Avatar src="/static/images/avatar/2.jpg" />
-                            <Avatar src="/static/images/avatar/3.jpg" />
-                            <Avatar src="/static/images/avatar/4.jpg" />
+                            <Avatar src="https://i.pravatar.cc/150?img=6" />
+                            <Avatar src="https://i.pravatar.cc/150?img=7" />
+                            <Avatar src="https://i.pravatar.cc/150?img=8" />
+                            <Avatar src="https://i.pravatar.cc/150?img=9" />
                           </AvatarGroup>
                         </Box>
                         <Typography level="body2">26 May 2010, 7PM</Typography>
@@ -562,10 +562,10 @@ export default function FilesExample() {
               Shared with
             </Typography>
             <AvatarGroup size="sm" sx={{ '--Avatar-size': '24px' }}>
-              <Avatar src="/static/images/avatar/1.jpg" />
-              <Avatar src="/static/images/avatar/2.jpg" />
-              <Avatar src="/static/images/avatar/3.jpg" />
-              <Avatar src="/static/images/avatar/4.jpg" />
+              <Avatar src="https://i.pravatar.cc/150?img=6" />
+              <Avatar src="https://i.pravatar.cc/150?img=7" />
+              <Avatar src="https://i.pravatar.cc/150?img=8" />
+              <Avatar src="https://i.pravatar.cc/150?img=9" />
             </AvatarGroup>
           </Box>
           <ListDivider component="hr" />
