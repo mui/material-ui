@@ -26,7 +26,7 @@ Different variants convey different levels of importance. In most cases, you'd w
 
 <!-- A demo of small UIs that use different components with variants to showcase -->
 
-{{"demo": "LevelOfImportancy.js"}}
+{{"demo": "LevelOfImportancy.js", "bg": true}}
 
 Global variants are an easy and effortless way to create meaningful user interfaces. Additionally, as a benefit, dark mode works without any modification to them. Click on the Settings icon at the upper right hand corner and turn dark mode on if you haven't yet!
 
