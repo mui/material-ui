@@ -51,19 +51,27 @@ export default function LevelOfImportancy() {
             <Close />
           </IconButton>
         </Sheet>
-        <Box sx={{ p: 2 }}>
+        <Sheet sx={{ p: 2 }}>
           <Sheet
             variant="outlined"
             sx={{
               borderRadius: 'md',
               overflow: 'auto',
               borderColor: 'background.level2',
+              bgcolor: 'background.level1',
             }}
           >
             <AspectRatio>
               <img alt="" src="/static/images/cards/yosemite.jpeg" />
             </AspectRatio>
-            <Box sx={{ display: 'flex', p: 1.5, gap: 1.5 }}>
+            <Box
+              sx={{
+                display: 'flex',
+                p: 1.5,
+                gap: 1.5,
+                '& > button': { bgcolor: 'background.body' },
+              }}
+            >
               <IconButton
                 color="danger"
                 variant="plain"
@@ -83,7 +91,7 @@ export default function LevelOfImportancy() {
               </IconButton>
             </Box>
           </Sheet>
-        </Box>
+        </Sheet>
         <Sheet
           sx={{
             display: 'flex',

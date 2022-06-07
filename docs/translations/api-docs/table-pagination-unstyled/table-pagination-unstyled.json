@@ -1,7 +1,6 @@
 {
   "componentDescription": "A pagination for tables.",
   "propDescriptions": {
-    "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
     "component": "The component used for the root node. Either a string to use a HTML element or a component.",
     "components": "The components used for each slot inside the TablePagination. Either a string to use a HTML element or a component.",
     "componentsProps": "The props used for each slot inside the TablePagination.",
@@ -15,47 +14,5 @@
     "rowsPerPage": "The number of rows per page.<br>Set -1 to display all the rows.",
     "rowsPerPageOptions": "Customizes the options of the rows per page select field. If less than two options are available, no select field will be displayed. Use -1 for the value with a custom label to show all the rows."
   },
-  "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
-    "toolbar": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the Toolbar component"
-    },
-    "spacer": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the spacer element"
-    },
-    "selectLabel": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the select label Typography element"
-    },
-    "selectRoot": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the Select component `root` element"
-    },
-    "select": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the Select component `select` class"
-    },
-    "selectIcon": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the Select component `icon` class"
-    },
-    "input": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the Select component `root` element"
-    },
-    "menuItem": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the MenuItem component"
-    },
-    "displayedRows": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the displayed rows Typography element"
-    },
-    "actions": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the internal `TablePaginationUnstyledActions` component"
-    }
-  }
+  "classDescriptions": {}
 }

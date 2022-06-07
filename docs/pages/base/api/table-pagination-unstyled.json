@@ -4,7 +4,6 @@
     "onPageChange": { "type": { "name": "func" }, "required": true },
     "page": { "type": { "name": "custom", "description": "integer" }, "required": true },
     "rowsPerPage": { "type": { "name": "custom", "description": "integer" }, "required": true },
-    "classes": { "type": { "name": "object" } },
     "component": { "type": { "name": "elementType" } },
     "components": {
       "type": {
@@ -39,35 +38,7 @@
     }
   },
   "name": "TablePaginationUnstyled",
-  "styles": {
-    "classes": [
-      "root",
-      "toolbar",
-      "spacer",
-      "selectLabel",
-      "selectRoot",
-      "select",
-      "selectIcon",
-      "input",
-      "menuItem",
-      "displayedRows",
-      "actions"
-    ],
-    "globalClasses": {
-      "root": "MuiTablePagination-root",
-      "toolbar": "MuiTablePagination-toolbar",
-      "spacer": "MuiTablePagination-spacer",
-      "selectLabel": "MuiTablePagination-selectLabel",
-      "selectRoot": "MuiTablePagination-selectRoot",
-      "select": "MuiTablePagination-select",
-      "selectIcon": "MuiTablePagination-selectIcon",
-      "input": "MuiTablePagination-input",
-      "menuItem": "MuiTablePagination-menuItem",
-      "displayedRows": "MuiTablePagination-displayedRows",
-      "actions": "MuiTablePagination-actions"
-    },
-    "name": null
-  },
+  "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
   "forwardsRefTo": "HTMLTableCellElement",
   "filename": "/packages/mui-base/src/TablePaginationUnstyled/TablePaginationUnstyled.tsx",

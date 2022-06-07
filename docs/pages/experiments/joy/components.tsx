@@ -318,8 +318,8 @@ const components: {
         <Input
           color="primary"
           placeholder="Placeholder"
-          startDecorator={<Typography color="inherit">$</Typography>}
-          endDecorator={<Typography color="text.tertiary">USD</Typography>}
+          startDecorator={<Typography textColor="inherit">$</Typography>}
+          endDecorator={<Typography textColor="text.tertiary">USD</Typography>}
           {...props}
         />
         <Input placeholder="Placeholder" color="danger" endDecorator={<Info />} {...props} />
@@ -521,7 +521,7 @@ const components: {
               <Avatar
                 src="/static/images/avatar/3.jpg"
                 variant="outlined"
-                sx={{ borderColor: 'background.body', '--variant-outlinedBorderWidth': '2px' }}
+                sx={{ borderColor: 'background.body', '--variant-borderWidth': '2px' }}
               />
             }
             {...props}

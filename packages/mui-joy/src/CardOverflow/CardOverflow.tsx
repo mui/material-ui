@@ -28,10 +28,7 @@ const CardOverflowRoot = styled('div', {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: CardOverflowProps & { row: boolean } }>(({ theme, ownerState }) => {
-  const childRadius =
-    ownerState.variant === 'outlined'
-      ? `calc(var(--CardOverflow-radius) - var(--variant-outlinedBorderWidth))`
-      : 'var(--CardOverflow-radius)';
+  const childRadius = 'calc(var(--CardOverflow-radius) - var(--variant-borderWidth))';
   return [
     ownerState.row
       ? {
@@ -40,6 +37,7 @@ const CardOverflowRoot = styled('div', {
           marginBottom: 'var(--CardOverflow-offset)',
           padding: 'var(--Card-padding) 0px',
           borderRadius: 'var(--CardOverflow-radius)',
+          position: 'relative',
           // use data-attribute instead of :first-child, :last-child to support zero config SSR (emotion)
           '&[data-first-child]': {
             '--AspectRatio-radius': `${childRadius} 0 0 ${childRadius}`,
@@ -60,6 +58,7 @@ const CardOverflowRoot = styled('div', {
           marginRight: 'var(--CardOverflow-offset)',
           padding: '0px var(--Card-padding)',
           borderRadius: 'var(--CardOverflow-radius)',
+          position: 'relative',
           // use data-attribute instead of :first-child, :last-child to support zero config SSR (emotion)
           '&[data-first-child]': {
             '--AspectRatio-radius': `${childRadius} ${childRadius} 0 0`,
