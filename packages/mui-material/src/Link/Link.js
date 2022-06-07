@@ -53,7 +53,8 @@ const LinkRoot = styled(Typography, {
   },
 })(({ theme, ownerState }) => {
   const color =
-    getPath(theme, `palette.${transformDeprecatedColors(ownerState.color)}`) || ownerState.color;
+    getPath(theme, `palette.${transformDeprecatedColors(ownerState.color)}`, false) ||
+    ownerState.color;
   return {
     ...(ownerState.underline === 'none' && {
       textDecoration: 'none',
