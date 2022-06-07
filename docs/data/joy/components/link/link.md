@@ -41,7 +41,7 @@ The `Link` can be used as a child of the [`Typography`](/joy-ui/react-typography
 
 ## With Card
 
-To create an accesible card, we recommend to use the `Link` to be the card's title and specify `overlay` prop to expand the clickable area to the whole card. This way the card is visually focusable while preserving the correct semantic.
+To create an accesible card, we recommend to use the `Link` to be the card's title and specify `overlay` prop to expand the clickable area to the whole card. This way the card can be visually focused while preserving the correct semantic.
 
 {{"demo": "LinkCard.js"}}
 

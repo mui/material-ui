@@ -4,12 +4,16 @@ import Box from '@mui/joy/Box';
 import Card from '@mui/joy/Card';
 import Link from '@mui/joy/Link';
 import Typography from '@mui/joy/Typography';
+import CenterFocusWeak from '@mui/icons-material/CenterFocusWeak';
 
 export default function Links() {
   return (
     <Card
       sx={{
         bgcolor: 'background.level1',
+        '&:hover, &:focus-within': {
+          bgcolor: 'background.level2',
+        },
         boxShadow: 'inset 0 1px 0 0 rgb(255 255 255 / 5%)',
       }}
     >
@@ -31,7 +35,9 @@ export default function Links() {
           <Typography level="body2">Spark joy components</Typography>
         </div>
       </Box>
-      <Typography level="body2">Joy UI is a new library from MUI.</Typography>
+      <Typography level="body2" display="flex" alignItems="center" gap={0.5}>
+        Click the <CenterFocusWeak /> and <kbd>TAB</kbd> to test the focus
+      </Typography>
     </Card>
   );
 }
