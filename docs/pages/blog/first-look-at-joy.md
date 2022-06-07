@@ -91,7 +91,7 @@ You're still able to override the style completely via the usual CSS overrides, 
 ### Perfect dark mode, for server-side rendering
 
 Joy UI provides an effective way to prevent UI flicker when users refresh or re-enter a page with dark mode enabled.
-The out-of-the-box CSS variables support allows every color scheme to be rendered at build time, selecting the configured mode before the browser renders the DOM.
+The out-of-the-box CSS variables support allows every color scheme to be rendered at build time, inserting the selected color scheme and mode before the browser renders the DOM.
 
 What's more, it provides a function called `getInitColorSchemeScript()` that enables you to have perfect functioning dark mode in various React framworks, such as Next.js, Gatsby, and Remix.
 
@@ -127,7 +127,7 @@ A significant part of the core infrastructure for Joy UI has already been develo
 The package is already [available from npm](https://www.npmjs.com/package/@mui/joy) but until we get to a reasonable number of components, and with sufficient documentation, it remains an _initial_ work in progress.
 
 It should be ready for more mature experimentation and testing in the second half of 2022.
-Meanwhile, we've developed a couple of templates that showcase what Joy looks like out of the box, so you can explore it further.
+Meanwhile, we've developed a couple of templates that showcase what Joy UI looks like out of the box, so you can explore it further.
 Follow the templates' CodeSandbox or live demo links to experiment with Joy UI for yourself.
 
 :::info
@@ -158,7 +158,3 @@ Follow the templates' CodeSandbox or live demo links to experiment with Joy UI f
 Joy UI is just getting started and we hope you're as excited as we are－stay tuned for more news in the near future!
 
 Happy developing! 👩‍💻
-
-```
-
-```
