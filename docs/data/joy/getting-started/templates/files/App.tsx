@@ -175,15 +175,18 @@ export default function FilesExample() {
               menus={[
                 {
                   label: 'Email',
-                  component: 'a',
                   href: '/joy-ui/getting-started/templates/email/',
                 },
                 {
                   label: 'Team',
-                  component: 'a',
                   href: '/joy-ui/getting-started/templates/team/',
                 },
-                { label: 'Files', active: true },
+                {
+                  label: 'Files',
+                  active: true,
+                  href: '/joy-ui/getting-started/templates/files/',
+                  'aria-current': 'page',
+                },
               ]}
             />
             <ColorSchemeToggle />

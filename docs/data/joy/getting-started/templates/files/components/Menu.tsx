@@ -18,6 +18,7 @@ const Listbox = styled('ul')(({ theme }) => ({
   gap: theme.spacing(1),
   display: 'flex',
   flexDirection: 'column',
+  listStyle: 'none',
 }));
 
 const MenuItem = styled(MenuItemUnstyled, {
@@ -103,11 +104,21 @@ const Menu = ({
         components={{ Root: Popper, Listbox }}
         componentsProps={{ root: { placement: 'bottom-end' }, listbox: { id } }}
       >
-        {menus.map(({ label, active, ...item }) => (
-          <MenuItem active={active} key={label} onClick={close} {...item}>
-            {label}
-          </MenuItem>
-        ))}
+        {menus.map(({ label, active, ...item }) => {
+          const menuItem = (
+            <MenuItem active={active} {...item}>
+              {label}
+            </MenuItem>
+          );
+          if (item.href) {
+            return (
+              <li key={label} role="none">
+                {React.cloneElement(menuItem, { component: 'a' })}
+              </li>
+            );
+          }
+          return React.cloneElement(menuItem, { key: label });
+        })}
       </MenuUnstyled>
     </React.Fragment>
   );
