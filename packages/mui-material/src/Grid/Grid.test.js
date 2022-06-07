@@ -241,59 +241,193 @@ describe('<Grid />', () => {
 
   describe('prop: spacing', () => {
     it('should have a spacing', () => {
-      const { container } = render(<Grid container spacing={1} />);
+      const theme = createTheme({
+        components: {
+          MuiGrid: {
+            styleOverrides: {
+              'spacing-xs-1': {
+                position: 'absolute',
+                top: '10px',
+                left: '20px',
+              },
+            },
+          },
+        },
+      });
+
+      const { container } = render(
+        <ThemeProvider theme={theme}>
+          <Grid container spacing={1} />
+        </ThemeProvider>,
+      );
       expect(container.firstChild).to.have.class(classes['spacing-xs-1']);
+      expect(container.firstChild).toHaveComputedStyle({
+        position: 'absolute',
+        top: '10px',
+        left: '20px',
+      });
     });
 
     it('should support decimal values', () => {
+      const theme = createTheme({
+        components: {
+          MuiGrid: {
+            styleOverrides: {
+              'spacing-xs-1.5': {
+                position: 'absolute',
+                top: '10px',
+                left: '20px',
+              },
+            },
+          },
+        },
+      });
+
       const { container } = render(
-        <Grid container spacing={1.5}>
-          <Grid item data-testid="child" />
-        </Grid>,
+        <ThemeProvider theme={theme}>
+          <Grid container spacing={1.5}>
+            <Grid item data-testid="child" />
+          </Grid>
+        </ThemeProvider>,
       );
       expect(container.firstChild).to.have.class('MuiGrid-spacing-xs-1.5');
-      expect(screen.getByTestId('child')).toHaveComputedStyle({
-        paddingTop: '12px',
-        paddingLeft: '12px',
+      expect(container.firstChild).toHaveComputedStyle({
+        position: 'absolute',
+        top: '10px',
+        left: '20px',
       });
     });
 
     it('should not support undefined values', () => {
+      const theme = createTheme({
+        components: {
+          MuiGrid: {
+            styleOverrides: {
+              'spacing-xs-undefined': {
+                position: 'absolute',
+                top: '10px',
+                left: '20px',
+              },
+            },
+          },
+        },
+      });
+
       const { container } = render(
-        <Grid container>
-          <Grid item />
-        </Grid>,
+        <ThemeProvider theme={theme}>
+          <Grid container>
+            <Grid item />
+          </Grid>
+        </ThemeProvider>,
       );
       expect(container.firstChild).not.to.have.class('MuiGrid-spacing-xs-undefined');
+      expect(container.firstChild).not.to.toHaveComputedStyle({
+        position: 'absolute',
+        top: '10px',
+        left: '20px',
+      });
     });
 
     it('should not support zero values', () => {
+      const theme = createTheme({
+        components: {
+          MuiGrid: {
+            styleOverrides: {
+              'spacing-xs-0': {
+                position: 'absolute',
+                top: '10px',
+                left: '20px',
+              },
+            },
+          },
+        },
+      });
+
       const { container } = render(
-        <Grid container spacing={0}>
-          <Grid item />
-        </Grid>,
+        <ThemeProvider theme={theme}>
+          <Grid container spacing={0}>
+            <Grid item />
+          </Grid>
+        </ThemeProvider>,
       );
       expect(container.firstChild).not.to.have.class('MuiGrid-spacing-xs-0');
+      expect(container.firstChild).not.to.toHaveComputedStyle({
+        position: 'absolute',
+        top: '10px',
+        left: '20px',
+      });
     });
 
     it('should support object values', () => {
+      const theme = createTheme({
+        components: {
+          MuiGrid: {
+            styleOverrides: {
+              'spacing-sm-1.5': {
+                position: 'absolute',
+                top: '10px',
+                left: '20px',
+              },
+              'spacing-md-2': {
+                position: 'relative',
+                top: '30px',
+                left: '50px',
+              },
+            },
+          },
+        },
+      });
+
       const { container } = render(
-        <Grid container spacing={{ sm: 1.5, md: 2 }}>
-          <Grid item />
-        </Grid>,
+        <ThemeProvider theme={theme}>
+          <Grid container spacing={{ sm: 1.5, md: 2 }}>
+            <Grid item />
+          </Grid>
+        </ThemeProvider>,
       );
       expect(container.firstChild).to.have.class('MuiGrid-spacing-sm-1.5');
       expect(container.firstChild).to.have.class('MuiGrid-spacing-md-2');
+      expect(container.firstChild).to.toHaveComputedStyle({
+        position: 'relative',
+        top: '30px',
+        left: '50px',
+      });
     });
 
     it('should ignore object values of zero', () => {
+      const theme = createTheme({
+        components: {
+          MuiGrid: {
+            styleOverrides: {
+              'spacing-sm-0': {
+                position: 'absolute',
+                top: '10px',
+                left: '20px',
+              },
+              'spacing-md-2': {
+                position: 'relative',
+                top: '30px',
+                left: '50px',
+              },
+            },
+          },
+        },
+      });
+
       const { container } = render(
-        <Grid container spacing={{ sm: 0, md: 2 }}>
-          <Grid item />
-        </Grid>,
+        <ThemeProvider theme={theme}>
+          <Grid container spacing={{ sm: 0, md: 2 }}>
+            <Grid item />
+          </Grid>
+        </ThemeProvider>,
       );
       expect(container.firstChild).not.to.have.class('MuiGrid-spacing-sm-0');
       expect(container.firstChild).to.have.class('MuiGrid-spacing-md-2');
+      expect(container.firstChild).to.toHaveComputedStyle({
+        position: 'relative',
+        top: '30px',
+        left: '50px',
+      });
     });
 
     it('should support custom breakpoints', () => {
@@ -303,6 +437,22 @@ describe('<Grid />', () => {
           values: {
             mobile: 0,
             desktop: 1200,
+          },
+        },
+        components: {
+          MuiGrid: {
+            styleOverrides: {
+              'spacing-mobile-1.5': {
+                position: 'absolute',
+                top: '10px',
+                left: '20px',
+              },
+              'spacing-desktop-3': {
+                position: 'relative',
+                top: '30px',
+                left: '50px',
+              },
+            },
           },
         },
       });
@@ -316,6 +466,11 @@ describe('<Grid />', () => {
       );
       expect(container.firstChild).to.have.class('MuiGrid-spacing-mobile-1.5');
       expect(container.firstChild).to.have.class('MuiGrid-spacing-desktop-3');
+      expect(container.firstChild).to.toHaveComputedStyle({
+        position: 'relative',
+        top: '30px',
+        left: '50px',
+      });
     });
 
     it('should ignore custom breakpoints with values of zero', () => {
@@ -325,6 +480,22 @@ describe('<Grid />', () => {
           values: {
             mobile: 0,
             desktop: 1200,
+          },
+        },
+        components: {
+          MuiGrid: {
+            styleOverrides: {
+              'spacing-mobile-0': {
+                position: 'absolute',
+                top: '10px',
+                left: '20px',
+              },
+              'spacing-desktop-3': {
+                position: 'relative',
+                top: '30px',
+                left: '50px',
+              },
+            },
           },
         },
       });
@@ -338,6 +509,11 @@ describe('<Grid />', () => {
       );
       expect(container.firstChild).to.not.have.class('MuiGrid-spacing-mobile-0');
       expect(container.firstChild).to.have.class('MuiGrid-spacing-desktop-3');
+      expect(container.firstChild).to.toHaveComputedStyle({
+        position: 'relative',
+        top: '30px',
+        left: '50px',
+      });
     });
 
     it("shouldn't support custom breakpoints without its spacing values", () => {
@@ -347,6 +523,22 @@ describe('<Grid />', () => {
           values: {
             mobile: 0,
             desktop: 1200,
+          },
+        },
+        components: {
+          MuiGrid: {
+            styleOverrides: {
+              'spacing-mobile-undefined': {
+                position: 'absolute',
+                top: '10px',
+                left: '20px',
+              },
+              'spacing-desktop-3': {
+                position: 'relative',
+                top: '30px',
+                left: '50px',
+              },
+            },
           },
         },
       });
@@ -360,6 +552,11 @@ describe('<Grid />', () => {
       );
       expect(container.firstChild).to.not.have.class('sMuiGrid-spacing-mobile-undefined');
       expect(container.firstChild).to.have.class('MuiGrid-spacing-desktop-3');
+      expect(container.firstChild).to.toHaveComputedStyle({
+        position: 'relative',
+        top: '30px',
+        left: '50px',
+      });
     });
 
     it("should ignore custom breakpoints that doesn't exist in the theme", () => {
@@ -369,6 +566,22 @@ describe('<Grid />', () => {
           values: {
             mobile: 0,
             desktop: 1200,
+          },
+        },
+        components: {
+          MuiGrid: {
+            styleOverrides: {
+              'spacing-md-1.5': {
+                position: 'absolute',
+                top: '10px',
+                left: '20px',
+              },
+              'spacing-desktop-3': {
+                position: 'relative',
+                top: '30px',
+                left: '50px',
+              },
+            },
           },
         },
       });
@@ -383,6 +596,11 @@ describe('<Grid />', () => {
 
       expect(container.firstChild).to.not.have.class('MuiGrid-spacing-md-1.5');
       expect(container.firstChild).to.have.class('MuiGrid-spacing-desktop-3');
+      expect(container.firstChild).to.toHaveComputedStyle({
+        position: 'relative',
+        top: '30px',
+        left: '50px',
+      });
     });
 
     it('should ignore custom breakpoints with negative values', () => {
@@ -392,6 +610,22 @@ describe('<Grid />', () => {
           values: {
             mobile: 0,
             desktop: 1200,
+          },
+        },
+        components: {
+          MuiGrid: {
+            styleOverrides: {
+              'spacing-mobile--1.5': {
+                position: 'absolute',
+                top: '10px',
+                left: '20px',
+              },
+              'spacing-desktop--3': {
+                position: 'relative',
+                top: '30px',
+                left: '50px',
+              },
+            },
           },
         },
       });
@@ -405,6 +639,11 @@ describe('<Grid />', () => {
       );
       expect(container.firstChild).to.not.have.class('MuiGrid-spacing-md--1.5');
       expect(container.firstChild).to.not.have.class('MuiGrid-spacing-desktop--3');
+      expect(container.firstChild).to.not.toHaveComputedStyle({
+        position: 'relative',
+        top: '30px',
+        left: '50px',
+      });
     });
 
     it('should ignore grid item with spacing object', () => {
@@ -416,6 +655,22 @@ describe('<Grid />', () => {
             desktop: 1200,
           },
         },
+        components: {
+          MuiGrid: {
+            styleOverrides: {
+              'spacing-mobile--1.5': {
+                position: 'absolute',
+                top: '10px',
+                left: '20px',
+              },
+              'spacing-desktop--3': {
+                position: 'relative',
+                top: '30px',
+                left: '50px',
+              },
+            },
+          },
+        },
       });
       expect(() => {
         const { container } = render(
@@ -425,6 +680,11 @@ describe('<Grid />', () => {
         );
         expect(container.firstChild).to.not.have.class('MuiGrid-spacing-mobile-1.5');
         expect(container.firstChild).to.not.have.class('MuiGrid-spacing-desktop-3');
+        expect(container.firstChild).to.not.toHaveComputedStyle({
+          position: 'relative',
+          top: '30px',
+          left: '50px',
+        });
       }).toErrorDev(
         'Warning: Failed prop type: The prop `spacing` of `Grid` can only be used together with the `container` prop.',
       );
@@ -1236,5 +1496,20 @@ describe('<Grid />', () => {
         flexWrap: 'wrap-reverse',
       });
     });
+  });
+});
+
+let menuHeader = document.querySelectorAll('div.menu_header');
+
+menuHeader.forEach((head) => {
+  head.addEventListener('click', () => {
+    const elements = document.getElementsByClassName('active_red');
+
+    if (elements[0] && head === elements[0]) {
+      head.classList.toggle('active_red');
+    } else {
+      if (elements[0]) elements[0].classList.remove('active_red');
+      head.classList.toggle('active_red');
+    }
   });
 });
