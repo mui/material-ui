@@ -39,50 +39,51 @@ const LinkRoot = styled(Typography, {
       ownerState.component === 'button' && styles.button,
     ];
   },
-})(({ theme, ownerState }) => ({
-  ...(ownerState.underline === 'none' && {
-    textDecoration: 'none',
-  }),
-  ...(ownerState.underline === 'hover' && {
-    textDecoration: 'none',
-    '&:hover': {
-      textDecoration: 'underline',
-    },
-  }),
-  ...(ownerState.underline === 'always' && {
-    textDecoration: 'underline',
-    ...(ownerState.color !== 'inherit' && {
-      textDecorationColor: getTextDecoration({ theme, ownerState }),
+})(({ theme, ownerState }) => {
+  return {
+    ...(ownerState.underline === 'none' && {
+      textDecoration: 'none',
     }),
-    '&:hover': {
-      textDecorationColor: 'inherit',
-    },
-  }),
-  // Same reset as ButtonBase.root
-  ...(ownerState.component === 'button' && {
-    position: 'relative',
-    WebkitTapHighlightColor: 'transparent',
-    backgroundColor: 'transparent',
-
-    // We disable the focus ring for mouse, touch and keyboard users.
-    outline: 0,
-    border: 0,
-    margin: 0,
-    borderRadius: 0,
-    padding: 0,
-    cursor: 'pointer',
-    userSelect: 'none',
-    verticalAlign: 'middle',
-    MozAppearance: 'none',
-    WebkitAppearance: 'none',
-    '&::-moz-focus-inner': {
-      borderStyle: 'none', // Remove Firefox dotted outline.
-    },
-    [`&.${linkClasses.focusVisible}`]: {
-      outline: 'auto',
-    },
-  }),
-}));
+    ...(ownerState.underline === 'hover' && {
+      textDecoration: 'none',
+      '&:hover': {
+        textDecoration: 'underline',
+      },
+    }),
+    ...(ownerState.underline === 'always' && {
+      textDecoration: 'underline',
+      ...(ownerState.color !== 'inherit' && {
+        textDecorationColor: getTextDecoration({ theme, ownerState }),
+      }),
+      '&:hover': {
+        textDecorationColor: 'inherit',
+      },
+    }),
+    // Same reset as ButtonBase.root
+    ...(ownerState.component === 'button' && {
+      position: 'relative',
+      WebkitTapHighlightColor: 'transparent',
+      backgroundColor: 'transparent',
+      // We disable the focus ring for mouse, touch and keyboard users.
+      outline: 0,
+      border: 0,
+      margin: 0,
+      borderRadius: 0,
+      padding: 0,
+      cursor: 'pointer',
+      userSelect: 'none',
+      verticalAlign: 'middle',
+      MozAppearance: 'none',
+      WebkitAppearance: 'none',
+      '&::-moz-focus-inner': {
+        borderStyle: 'none', // Remove Firefox dotted outline.
+      },
+      [`&.${linkClasses.focusVisible}`]: {
+        outline: 'auto',
+      },
+    }),
+  };
+});
 
 const Link = React.forwardRef(function Link(inProps, ref) {
   const props = useThemeProps({
