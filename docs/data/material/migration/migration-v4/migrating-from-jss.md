@@ -454,7 +454,7 @@ The equivalent of the `$` syntax is also supported in tss's `withStyles()`.
 
 [Global theme overrides](https://v4.mui.com/customization/components/#global-theme-override) are supported out of the box by TSS.
 
-Follow the instructions in the relevant section of the [Breaking changes](/material-ui/migration/v5-style-changes#restructure-component-definitions) doc, and [provide a `name` to `makeStyles`](https://docs.tss-react.dev/page-1/makestyles-usestyles/#naming-the-stylesheets-useful-for-debugging-and-theme-style-overrides).
+Follow the instructions in the relevant section of the [Breaking changes](/material-ui/migration/v5-style-changes/#restructure-component-definitions) doc, and [provide a `name` to `makeStyles`](https://docs.tss-react.dev/page-1/makestyles-usestyles/#naming-the-stylesheets-useful-for-debugging-and-theme-style-overrides).
 
 In Material UI v5, [style overrides also accept callbacks](https://mui.com/material-ui/customization/theme-components/).
 
