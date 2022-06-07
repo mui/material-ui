@@ -1,4 +1,4 @@
-import { generateUtilityClass, generateUtilityClasses } from '../className';
+import { generateUtilityClass, generateUtilityClasses } from '@mui/base';
 
 export interface SliderClasses {
   /** Class name applied to the root element. */
