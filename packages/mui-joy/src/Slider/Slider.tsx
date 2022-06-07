@@ -40,6 +40,8 @@ const useUtilityClasses = (ownerState: OwnerState) => {
     valueLabel: ['valueLabel'],
     valueLabelOpen: ['valueLabelOpen'],
     thumb: ['thumb', disabled && 'disabled'],
+    thumbStart: ['thumbStart'],
+    thumbEnd: ['thumbEnd'],
     active: ['active'],
     focusVisible: ['focusVisible'],
   };
@@ -306,7 +308,7 @@ const SliderValueLabel = styled('span', {
   whiteSpace: 'nowrap',
   fontFamily: theme.vars.fontFamily.body,
   fontWeight: theme.vars.fontWeight.md,
-  bottom: '2px',
+  bottom: 0,
   transformOrigin: 'bottom center',
   transform:
     'translateY(calc((var(--Slider-thumb-size) + var(--Slider-valueLabel-arrowSize)) * -1)) scale(0)',
@@ -320,20 +322,18 @@ const SliderValueLabel = styled('span', {
     position: 'absolute',
     content: '""',
     bottom: 0,
-    width: 'var(--Slider-valueLabel-arrowSize)',
-    height: 'var(--Slider-valueLabel-arrowSize)',
+    border: 'calc(var(--Slider-valueLabel-arrowSize) / 2) solid',
+    borderColor: theme.vars.palette.background.tooltip,
+    borderRightColor: 'transparent',
+    borderBottomColor: 'transparent',
+    borderLeftColor: 'transparent',
     left: '50%',
-    transform: 'translate(-50%, 50%) rotate(45deg)',
-    backgroundColor: 'inherit',
+    transform: 'translate(-50%, 100%)',
+    backgroundColor: 'transparent',
   },
   [`&.${sliderClasses.valueLabelOpen}`]: {
     transform:
       'translateY(calc((var(--Slider-thumb-size) + var(--Slider-valueLabel-arrowSize)) * -1)) scale(1)',
-  },
-  '& > span': {
-    display: 'flex',
-    alignItems: 'center',
-    zIndex: 1,
   },
 }));
 
@@ -540,6 +540,8 @@ const Slider = React.forwardRef(function Slider(inProps, ref) {
             className={clsx(classes.thumb, componentsProps.thumb?.className, {
               [classes.active]: active === index,
               [classes.focusVisible]: focusVisible === index,
+              [classes.thumbStart]: percent === 0,
+              [classes.thumbEnd]: percent === 100,
             })}
             style={{
               ...style,
@@ -573,7 +575,7 @@ const Slider = React.forwardRef(function Slider(inProps, ref) {
                     open === index || active === index || valueLabelDisplay === 'on',
                 })}
               >
-                <span>{value}</span>
+                {value}
               </SliderValueLabel>
             ) : null}
           </SliderThumb>
