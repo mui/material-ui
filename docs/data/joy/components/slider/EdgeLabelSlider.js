@@ -12,7 +12,6 @@ export default function EdgeLabelSlider() {
       <Slider
         max={10}
         aria-label="Always visible"
-        defaultValue={80}
         getAriaValueText={valueText}
         marks
         valueLabelDisplay="on"
