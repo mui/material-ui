@@ -193,7 +193,7 @@ const Text = styled('p')(({ theme }) => ({
 
 :::warning
 **Note:** Adding too many tokens will increase the stylesheet bundle size and add up maintenance costs for your project.
-To style components without introducing new tokens, check out the [one-off styling](/joy-ui/customization/one-off-styling) page.
+To style components without introducing new tokens, check out the [one-off styling](/joy-ui/customization/one-off-styling/) page.
 :::
 
 ## Global variant tokens
