@@ -10,7 +10,7 @@ packageName: '@mui/base'
 
 <p class="description">Um componente de texto para React que se ajusta conforme o conteúdo.</p>
 
-- 📦 [2.1 kB gzipped](/size-snapshot)
+- 📦 [2.1 kB gzipped](/size-snapshot/)
 
 O componente `TextareaAutosize` ajusta automaticamente a altura do textarea em eventos de teclado e redimensionamento de janela.
 

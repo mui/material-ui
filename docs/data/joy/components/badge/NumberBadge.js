@@ -21,7 +21,7 @@ export default function ColorBadge() {
         <IconButton size="sm" onClick={() => setCount((c) => c - 1)}>
           <Remove />
         </IconButton>
-        <Typography fontWeight="md" color="text.secondary">
+        <Typography fontWeight="md" textColor="text.secondary">
           {count}
         </Typography>
         <IconButton size="sm" onClick={() => setCount((c) => c + 1)}>

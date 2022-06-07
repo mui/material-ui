@@ -122,7 +122,7 @@ import { useAutocomplete } from '@mui/base/AutocompleteUnstyled';
 import useAutocomplete from '@mui/material/useAutocomplete';
 ```
 
-- 📦 [4.5kB 的压缩包](/size-snapshot)。
+- 📦 [4.5kB 的压缩包](/size-snapshot/)。
 
 {{"demo": "UseAutocomplete.js", "defaultCodeOpen": false}}
 

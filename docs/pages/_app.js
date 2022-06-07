@@ -32,9 +32,8 @@ import {
 } from 'docs/src/modules/utils/i18n';
 import DocsStyledEngineProvider from 'docs/src/modules/utils/StyledEngineProvider';
 import createEmotionCache from 'docs/src/createEmotionCache';
-import BackToTop from 'docs/src/modules/components/BackToTop';
 import findActivePage from 'docs/src/modules/utils/findActivePage';
-import FEATURE_TOGGLE from 'docs/src/featureToggle';
+import useRouterExtra from 'docs/src/modules/utils/useRouterExtra';
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
@@ -173,7 +172,7 @@ Tip: you can access the documentation \`theme\` object directly in the console.
 function AppWrapper(props) {
   const { children, emotionCache, pageProps } = props;
 
-  const router = useRouter();
+  const { asPathWithoutLang, product, ...router } = useRouterExtra();
 
   React.useEffect(() => {
     loadDependencies();
@@ -186,18 +185,17 @@ function AppWrapper(props) {
     }
   }, []);
 
-  const asPathWithoutLang = router.asPath.replace(/^\/[a-zA-Z]{2}\//, '/');
   let productPages = pages;
-  if (asPathWithoutLang.startsWith('/base')) {
+  if (product === 'base') {
     productPages = basePages;
   }
-  if (asPathWithoutLang.startsWith('/material-ui')) {
+  if (product === 'material-ui') {
     productPages = materialPages;
   }
-  if (asPathWithoutLang.startsWith('/joy-ui')) {
+  if (product === 'joy-ui') {
     productPages = joyPages;
   }
-  if (asPathWithoutLang.startsWith('/system') && FEATURE_TOGGLE.enable_system_scope) {
+  if (product === 'system') {
     productPages = systemPages;
   }
 
@@ -248,7 +246,6 @@ export default function MyApp(props) {
 
   return (
     <AppWrapper emotionCache={emotionCache} pageProps={pageProps}>
-      <BackToTop />
       <Component {...pageProps} />
     </AppWrapper>
   );

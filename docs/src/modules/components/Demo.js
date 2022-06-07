@@ -38,7 +38,23 @@ function getDemoName(location) {
 
 function useDemoData(codeVariant, demo, githubLocation) {
   const userLanguage = useUserLanguage();
-  const title = `${getDemoName(githubLocation)} Material Demo`;
+  const router = useRouter();
+  const asPathWithoutLang = router.asPath.replace(/^\/[a-zA-Z]{2}\//, '/');
+  let product;
+  let name = 'Material UI';
+  if (asPathWithoutLang.startsWith('/joy-ui/')) {
+    product = 'joy-ui';
+    name = 'Joy UI';
+  }
+  if (asPathWithoutLang.startsWith('/base/')) {
+    product = 'base';
+    name = 'MUI Base';
+  }
+  if (asPathWithoutLang.startsWith('/x/')) {
+    name = 'MUI X';
+  }
+
+  const title = `${getDemoName(githubLocation)} demo — ${name}`;
   if (codeVariant === CODE_VARIANTS.TS && demo.rawTS) {
     return {
       codeVariant: CODE_VARIANTS.TS,
@@ -48,6 +64,7 @@ function useDemoData(codeVariant, demo, githubLocation) {
       Component: demo.tsx,
       sourceLanguage: 'tsx',
       title,
+      product,
     };
   }
 
@@ -59,6 +76,7 @@ function useDemoData(codeVariant, demo, githubLocation) {
     Component: demo.js,
     sourceLanguage: 'jsx',
     title,
+    product,
   };
 }
 

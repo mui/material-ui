@@ -1,8 +1,8 @@
 import * as React from 'react';
 
-export const DEFAULT_MODE_STORAGE_KEY = 'mui-mode';
-export const DEFAULT_COLOR_SCHEME_STORAGE_KEY = 'mui-color-scheme';
-export const DEFAULT_ATTRIBUTE = 'data-mui-color-scheme';
+export const DEFAULT_MODE_STORAGE_KEY = 'mode';
+export const DEFAULT_COLOR_SCHEME_STORAGE_KEY = 'color-scheme';
+export const DEFAULT_ATTRIBUTE = 'data-color-scheme';
 
 export interface GetInitColorSchemeScriptOptions {
   /**
@@ -25,17 +25,17 @@ export interface GetInitColorSchemeScriptOptions {
   colorSchemeNode?: string;
   /**
    * localStorage key used to store `mode`
-   * @default 'mui-mode'
+   * @default 'mode'
    */
   modeStorageKey?: string;
   /**
    * localStorage key used to store `colorScheme`
-   * @default 'mui-color-scheme'
+   * @default 'color-scheme'
    */
   colorSchemeStorageKey?: string;
   /**
    * DOM attribute for applying color scheme
-   * @default 'data-mui-color-scheme'
+   * @default 'data-color-scheme'
    */
   attribute?: string;
 }

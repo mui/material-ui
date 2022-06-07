@@ -1,6 +1,6 @@
 {
   "name": "@mui/base",
-  "version": "5.0.0-alpha.81",
+  "version": "5.0.0-alpha.83",
   "private": false,
   "author": "MUI Team",
   "description": "Unstyled React components and low-level hooks.",
@@ -21,7 +21,7 @@
   "bugs": {
     "url": "https://github.com/mui/material-ui/issues"
   },
-  "homepage": "https://mui.com/base/getting-started/installation/",
+  "homepage": "https://mui.com/base/getting-started/overview/",
   "funding": {
     "type": "opencollective",
     "url": "https://opencollective.com/mui"

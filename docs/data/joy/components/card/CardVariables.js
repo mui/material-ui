@@ -162,7 +162,7 @@ export default function GroupedAvatars() {
               }}
               sx={{
                 maxWidth: 160,
-                '& .JoyInput-root': { '--Input-gutter': '0.5rem' },
+                '& .JoyInput-root': { '--Input-paddingInline': '0.5rem' },
               }}
             />
           ))}
