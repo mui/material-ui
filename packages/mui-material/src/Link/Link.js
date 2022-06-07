@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { elementTypeAcceptingRef } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
-import { alpha, getPath } from '@mui/system';
 import capitalize from '../utils/capitalize';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
@@ -11,35 +10,7 @@ import useIsFocusVisible from '../utils/useIsFocusVisible';
 import useForkRef from '../utils/useForkRef';
 import Typography from '../Typography';
 import linkClasses, { getLinkUtilityClass } from './linkClasses';
-
-const colorTransformations = {
-  primary: 'primary.main',
-  textPrimary: 'text.primary',
-  secondary: 'secondary.main',
-  textSecondary: 'text.secondary',
-  error: 'error.main',
-};
-
-const transformDeprecatedColors = (color) => {
-  return colorTransformations[color] || color;
-};
-
-const getTextDecorationColor = (theme, color, opacity) => {
-  switch (color) {
-    case 'primary.main':
-    case 'text.primary':
-    case 'secondary.main':
-    case 'text.secondary':
-    case 'error.main':
-      return theme.vars
-        ? `rgba(${getPath(theme.vars.palette, `${color}Channel`)} / ${opacity})`
-        : alpha(getPath(theme.palette, color), opacity);
-    case 'inherit':
-      return undefined;
-    default:
-      return alpha(color, opacity);
-  }
-};
+import getTextDecoration, { colorTransformations } from './getTextDecoration';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, component, focusVisible, underline } = ownerState;
@@ -68,51 +39,50 @@ const LinkRoot = styled(Typography, {
       ownerState.component === 'button' && styles.button,
     ];
   },
-})(({ theme, ownerState }) => {
-  const color = transformDeprecatedColors(ownerState.color);
-  const textDecorationColor = getTextDecorationColor(theme, color, 0.4);
-  return {
-    ...(ownerState.underline === 'none' && {
-      textDecoration: 'none',
-    }),
-    ...(ownerState.underline === 'hover' && {
-      textDecoration: 'none',
-      '&:hover': {
-        textDecoration: 'underline',
-      },
-    }),
-    ...(ownerState.underline === 'always' && {
+})(({ theme, ownerState }) => ({
+  ...(ownerState.underline === 'none' && {
+    textDecoration: 'none',
+  }),
+  ...(ownerState.underline === 'hover' && {
+    textDecoration: 'none',
+    '&:hover': {
       textDecoration: 'underline',
-      textDecorationColor,
-      '&:hover': {
-        textDecorationColor: 'inherit',
-      },
+    },
+  }),
+  ...(ownerState.underline === 'always' && {
+    textDecoration: 'underline',
+    ...(ownerState.color !== 'inherit' && {
+      textDecorationColor: getTextDecoration({ theme, ownerState }),
     }),
-    // Same reset as ButtonBase.root
-    ...(ownerState.component === 'button' && {
-      position: 'relative',
-      WebkitTapHighlightColor: 'transparent',
-      backgroundColor: 'transparent', // Reset default value
-      // We disable the focus ring for mouse, touch and keyboard users.
-      outline: 0,
-      border: 0,
-      margin: 0, // Remove the margin in Safari
-      borderRadius: 0,
-      padding: 0, // Remove the padding in Firefox
-      cursor: 'pointer',
-      userSelect: 'none',
-      verticalAlign: 'middle',
-      MozAppearance: 'none', // Reset
-      WebkitAppearance: 'none', // Reset
-      '&::-moz-focus-inner': {
-        borderStyle: 'none', // Remove Firefox dotted outline.
-      },
-      [`&.${linkClasses.focusVisible}`]: {
-        outline: 'auto',
-      },
-    }),
-  };
-});
+    '&:hover': {
+      textDecorationColor: 'inherit',
+    },
+  }),
+  // Same reset as ButtonBase.root
+  ...(ownerState.component === 'button' && {
+    position: 'relative',
+    WebkitTapHighlightColor: 'transparent',
+    backgroundColor: 'transparent',
+
+    // We disable the focus ring for mouse, touch and keyboard users.
+    outline: 0,
+    border: 0,
+    margin: 0,
+    borderRadius: 0,
+    padding: 0,
+    cursor: 'pointer',
+    userSelect: 'none',
+    verticalAlign: 'middle',
+    MozAppearance: 'none',
+    WebkitAppearance: 'none',
+    '&::-moz-focus-inner': {
+      borderStyle: 'none', // Remove Firefox dotted outline.
+    },
+    [`&.${linkClasses.focusVisible}`]: {
+      outline: 'auto',
+    },
+  }),
+}));
 
 const Link = React.forwardRef(function Link(inProps, ref) {
   const props = useThemeProps({
