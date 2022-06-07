@@ -10,7 +10,7 @@ card: true
 <img src="/static/blog/first-look-at-joy/card.png" style="width: 796px; margin-bottom: 24px;" alt="First look at Joy UI: a new starting point for your design system." />
 
 If you're a close follower of everything MUI, you might be aware that we've been working on a new design system.
-If not, then this post will give you a first look at Joy UI－MUI's new starting point for your design system!
+If not, then this post will give you a first look at **Joy UI**－MUI's new starting point for your design system!
 
 If you've ever considered using Material UI because of the developer experience, reliability, and completeness, but hesitated because of the design, this is great news for you.
 Joy UI offers all of that, but with a modern look and feel, ease of customization, and lower overhead by not carrying unused Material Design specific code and styling.
@@ -35,7 +35,9 @@ We also had many ideas for improving the experience of developing design systems
 Material UI and Joy UI still share many of the same conventions and features.
 We've done this not only to decrease the learning curve for adopting Joy UI, but also because we believe that the conventions we've established represent the ideal developer experience for working with design systems.
 
-Any new DX feature introduced in Joy UI will eventually be reproduced in Material UI, and vice versa.
+:::info
+💡 Any new DX feature introduced in Joy UI will eventually be reproduced in Material UI, and vice versa.
+:::
 
 ## What new features does Joy UI offer?
 
@@ -89,7 +91,30 @@ You're still able to override the style completely via the usual CSS overrides, 
 ### Perfect dark mode, for server-side rendering
 
 Joy UI provides an effective way to prevent UI flicker when users refresh or re-enter a page with dark mode enabled.
-What's more, it takes care of the synchronization between browser tabs with a single line of code, which allows developers to configure attributes and settings as required.
+The out-of-the-box CSS variables support allows every color scheme to be rendered at build time, selecting the configured mode before the browser renders the DOM.
+
+What's more, it provides a function called `getInitColorSchemeScript()` that enables you to have perfect functioning dark mode in various React framworks, such as Next.js, Gatsby, and Remix.
+
+```js
+// A Next.js example
+import Document, { Html, Head, Main, NextScript } from 'next/document';
+import { getInitColorSchemeScript } from '@mui/joy/styles';
+
+export default class MyDocument extends Document {
+  render() {
+    return (
+      <Html>
+        <Head>...</Head>
+        <body>
+          {getInitColorSchemeScript()}
+          <Main />
+          <NextScript />
+        </body>
+      </Html>
+    );
+  }
+}
+```
 
 ### Unlimited color schemes
 
@@ -133,3 +158,7 @@ Follow the templates' CodeSandbox or live demo links to experiment with Joy UI f
 Joy UI is just getting started and we hope you're as excited as we are－stay tuned for more news in the near future!
 
 Happy developing! 👩‍💻
+
+```
+
+```
