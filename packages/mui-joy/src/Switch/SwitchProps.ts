@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { OverridableStringUnion } from '@mui/types';
-import { UseSwitchProps } from '@mui/base/SwitchUnstyled';
+import { UseSwitchParameters } from '@mui/base/SwitchUnstyled';
 import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
 
 export type SwitchSlot = 'root' | 'action' | 'input' | 'track' | 'thumb';
@@ -11,7 +11,7 @@ export interface SwitchPropsColorOverrides {}
 
 export interface SwitchPropsSizeOverrides {}
 
-interface SwitchOwnerState extends UseSwitchProps {
+interface SwitchOwnerState extends UseSwitchParameters {
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'neutral'

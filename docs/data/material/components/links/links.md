@@ -2,7 +2,7 @@
 product: material-ui
 components: Link
 githubLabel: 'component: link'
-waiAria: https://www.w3.org/TR/wai-aria-practices/#link
+waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/link/
 ---
 
 # Links
@@ -45,7 +45,7 @@ Here is a [more detailed guide](/material-ui/guides/routing/#link).
 
 ## Accessibility
 
-(WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#link)
+(WAI-ARIA: https://www.w3.org/WAI/ARIA/apg/patterns/link/)
 
 - When providing the content for the link, avoid generic descriptions like "click here" or "go to".
   Instead, use [specific descriptions](https://developers.google.com/web/tools/lighthouse/audits/descriptive-link-text).

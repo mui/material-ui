@@ -239,9 +239,6 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
                   [classes.active]: active === index,
                   [classes.focusVisible]: focusVisible === index,
                 })}
-                {...(!isHostComponent(Thumb) && {
-                  ownerState: { ...ownerState, ...thumbProps.ownerState },
-                })}
                 style={{
                   ...style,
                   pointerEvents: disableSwap && active !== index ? 'none' : undefined,

@@ -21,7 +21,7 @@ Here are the most significant improvements since June 2020. This was a dense qua
   While we still plan a couple of breaking changes on them, we are confident that they have reached the same level of quality as the other core components.
 - 👮 We have introduced a new component in the lab, the [TrapFocus](https://mui.com/base/react-trap-focus/). It manages focus for its descendants. This is useful when implementing overlays such as modal dialogs, which should not allow the focus to escape while open:
 
-  <video autoplay muted loop style="max-height: 416px; margin-bottom: 24px;">
+  <video style="max-height: 416px; margin-bottom: 24px;" autoplay muted loop playsinline>
     <source src="/static/blog/2020-q3-update/trap-focus.mp4" type="video/mp4" />
   </video>
 
