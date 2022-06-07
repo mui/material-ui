@@ -185,7 +185,7 @@ export function generateColumnGap({ theme, ownerState }) {
   return styles;
 }
 
-export function resolveSpacingClasses(spacing, breakpoints, styles = {}) {
+export function resolveSpacingStyles(spacing, breakpoints, styles = {}) {
   // undefined/null or `spacing` <= 0
   if (!spacing || spacing <= 0) {
     return [];
@@ -195,24 +195,22 @@ export function resolveSpacingClasses(spacing, breakpoints, styles = {}) {
     (typeof spacing === 'string' && !Number.isNaN(Number(spacing))) ||
     typeof spacing === 'number'
   ) {
-    return [styles[`spacing-xs-${String(spacing)}`] || `spacing-xs-${String(spacing)}`];
+    return [styles[`spacing-xs-${String(spacing)}`]];
   }
   // in case of object `spacing`
-  const classes = [];
+  const spacingStyles = [];
 
   breakpoints.forEach((breakpoint) => {
     const value = spacing[breakpoint];
 
     if (Number(value) > 0) {
-      const className =
-        styles[`spacing-${breakpoint}-${String(value)}`] ||
-        `spacing-${breakpoint}-${String(value)}`;
+      const style = styles[`spacing-${breakpoint}-${String(value)}`];
 
-      classes.push(className);
+      spacingStyles.push(style);
     }
   });
 
-  return classes;
+  return spacingStyles;
 }
 
 // Default CSS values
@@ -228,11 +226,11 @@ const GridRoot = styled('div', {
     const { ownerState } = props;
     const { container, direction, item, spacing, wrap, zeroMinWidth, breakpoints } = ownerState;
 
-    let spacingClasses = [];
+    let spacingStyles = [];
 
     // in case of grid item
     if (container) {
-      spacingClasses = resolveSpacingClasses(spacing, breakpoints, styles);
+      spacingStyles = resolveSpacingStyles(spacing, breakpoints, styles);
     }
 
     const breakpointsStyles = [];
@@ -250,7 +248,7 @@ const GridRoot = styled('div', {
       container && styles.container,
       item && styles.item,
       zeroMinWidth && styles.zeroMinWidth,
-      ...spacingClasses,
+      ...spacingStyles,
       direction !== 'row' && styles[`direction-xs-${String(direction)}`],
       wrap !== 'wrap' && styles[`wrap-xs-${String(wrap)}`],
       ...breakpointsStyles,
@@ -279,6 +277,34 @@ const GridRoot = styled('div', {
   generateColumnGap,
   generateGrid,
 );
+
+export function resolveSpacingClasses(spacing, breakpoints) {
+  // undefined/null or `spacing` <= 0
+  if (!spacing || spacing <= 0) {
+    return [];
+  }
+  // in case of string/number `spacing`
+  if (
+    (typeof spacing === 'string' && !Number.isNaN(Number(spacing))) ||
+    typeof spacing === 'number'
+  ) {
+    return [`spacing-xs-${String(spacing)}`];
+  }
+  // in case of object `spacing`
+  const classes = [];
+
+  breakpoints.forEach((breakpoint) => {
+    const value = spacing[breakpoint];
+
+    if (Number(value) > 0) {
+      const className = `spacing-${breakpoint}-${String(value)}`;
+
+      classes.push(className);
+    }
+  });
+
+  return classes;
+}
 
 const useUtilityClasses = (ownerState) => {
   const { classes, container, direction, item, spacing, wrap, zeroMinWidth, breakpoints } =
