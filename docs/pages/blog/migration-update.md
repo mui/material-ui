@@ -2,8 +2,7 @@
 title: Why you should migrate to Material UI v5 today
 description: We have completely revamped our Migration guide to reduce friction when upgrading to v5. Get started now!
 date: 2022-06-10T00:00:00.000Z
-authors:
-  ['samuelsycamore']
+authors: ['samuelsycamore']
 card: true
 tags: ['News', 'MUI Core']
 ---
@@ -20,7 +19,7 @@ This could be because v5 contains many breaking changes from v4, so the migratio
 
 That's why we've completely revamped our [v4 -> v5 migration guide](https://mui.com/material-ui/migration/migration-v4/)—to help reduce the amount of friction you might encounter when updating to v5.
 
-We hope it helps! 
+We hope it helps!
 Be sure to check out [the updated migration guide](https://mui.com/material-ui/migration/migration-v4/) in the Material UI docs.
 
 ## Why you should upgrade to v5
