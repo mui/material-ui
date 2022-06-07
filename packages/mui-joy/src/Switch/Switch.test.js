@@ -11,7 +11,7 @@ describe('<Switch />', () => {
     classes,
     render,
     ThemeProvider,
-    muiName: 'MuiSwitch',
+    muiName: 'JoySwitch',
     testDeepOverrides: [
       { slotName: 'track', slotClassName: classes.track },
       { slotName: 'input', slotClassName: classes.input },
@@ -28,7 +28,7 @@ describe('<Switch />', () => {
     ],
   }));
 
-  it('should pass componentProps down to slots', () => {
+  it('should pass `componentsProps` down to slots', () => {
     const { container } = render(
       <Switch
         data-testid="root-switch"

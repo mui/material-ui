@@ -15,20 +15,20 @@ describe('variant utils', () => {
         200: '',
       }),
     ).to.equal(false);
-    expect(isVariantPalette({ text: '' })).to.equal(false);
+    expect(isVariantPalette({ plain: '' })).to.equal(false);
 
-    expect(isVariantPalette({ textColor: '' })).to.equal(true);
-    expect(isVariantPalette({ textHoverColor: '' })).to.equal(true);
-    expect(isVariantPalette({ textActiveColor: '' })).to.equal(true);
-    expect(isVariantPalette({ textDisabledColor: '' })).to.equal(true);
-    expect(isVariantPalette({ lightBg: '' })).to.equal(true);
-    expect(isVariantPalette({ lightHoverBg: '' })).to.equal(true);
-    expect(isVariantPalette({ lightActiveBg: '' })).to.equal(true);
-    expect(isVariantPalette({ lightDisabledBg: '' })).to.equal(true);
-    expect(isVariantPalette({ containedBg: '' })).to.equal(true);
-    expect(isVariantPalette({ containedHoverBg: '' })).to.equal(true);
-    expect(isVariantPalette({ containedActiveBg: '' })).to.equal(true);
-    expect(isVariantPalette({ containedDisabledBg: '' })).to.equal(true);
+    expect(isVariantPalette({ plainColor: '' })).to.equal(true);
+    expect(isVariantPalette({ plainHoverColor: '' })).to.equal(true);
+    expect(isVariantPalette({ plainActiveColor: '' })).to.equal(true);
+    expect(isVariantPalette({ plainDisabledColor: '' })).to.equal(true);
+    expect(isVariantPalette({ softBg: '' })).to.equal(true);
+    expect(isVariantPalette({ softHoverBg: '' })).to.equal(true);
+    expect(isVariantPalette({ softActiveBg: '' })).to.equal(true);
+    expect(isVariantPalette({ softDisabledBg: '' })).to.equal(true);
+    expect(isVariantPalette({ solidBg: '' })).to.equal(true);
+    expect(isVariantPalette({ solidHoverBg: '' })).to.equal(true);
+    expect(isVariantPalette({ solidActiveBg: '' })).to.equal(true);
+    expect(isVariantPalette({ solidDisabledBg: '' })).to.equal(true);
     expect(isVariantPalette({ outlinedBorder: '' })).to.equal(true);
     expect(isVariantPalette({ outlinedHoverBorder: '' })).to.equal(true);
     expect(isVariantPalette({ outlinedActiveBorder: '' })).to.equal(true);
@@ -38,32 +38,34 @@ describe('variant utils', () => {
   describe('initial state', () => {
     it('[color] should create a variant', () => {
       expect(
-        createVariantStyle('text', {
-          textColor: 'var(--any-token)',
+        createVariantStyle('any', {
+          anyColor: 'var(--any-token)',
         }),
-      ).to.deep.equal({
+      ).to.deep.include({
+        '--variant-borderWidth': '0px',
         color: 'var(--any-token)',
       });
     });
 
     it('[bg] should create a variant', () => {
       expect(
-        createVariantStyle('light', {
-          lightBg: 'var(--any-token)',
+        createVariantStyle('any', {
+          anyBg: 'var(--any-token)',
         }),
-      ).to.deep.equal({
+      ).to.deep.include({
+        '--variant-borderWidth': '0px',
         backgroundColor: 'var(--any-token)',
       });
     });
 
     it('[border] should create a variant', () => {
       expect(
-        createVariantStyle('outlined', {
-          outlinedBorder: 'var(--any-token)',
+        createVariantStyle('any', {
+          anyBorder: 'var(--any-token)',
         }),
-      ).to.deep.equal({
-        '--variant-outlinedBorderWidth': '1px',
-        border: 'var(--variant-outlinedBorderWidth) solid',
+      ).to.deep.include({
+        '--variant-borderWidth': '1px',
+        border: 'var(--variant-borderWidth) solid',
         borderColor: 'var(--any-token)',
       });
     });
@@ -72,40 +74,34 @@ describe('variant utils', () => {
   describe('hover state', () => {
     it('[color] should create a variant', () => {
       expect(
-        createVariantStyle('textHover', {
-          textHoverColor: 'var(--any-token)',
+        createVariantStyle('anyHover', {
+          anyHoverColor: 'var(--any-token)',
         }),
-      ).to.deep.equal({
+      ).to.deep.include({
         cursor: 'pointer',
-        '&:hover': {
-          color: 'var(--any-token)',
-        },
+        color: 'var(--any-token)',
       });
     });
 
     it('[bg] should create a variant', () => {
       expect(
-        createVariantStyle('lightHover', {
-          lightHoverBg: 'var(--any-token)',
+        createVariantStyle('anyHover', {
+          anyHoverBg: 'var(--any-token)',
         }),
-      ).to.deep.equal({
+      ).to.deep.include({
         cursor: 'pointer',
-        '&:hover': {
-          backgroundColor: 'var(--any-token)',
-        },
+        backgroundColor: 'var(--any-token)',
       });
     });
 
     it('[border] should create a variant', () => {
       expect(
-        createVariantStyle('outlinedHover', {
-          outlinedHoverBorder: 'var(--any-token)',
+        createVariantStyle('anyHover', {
+          anyHoverBorder: 'var(--any-token)',
         }),
-      ).to.deep.equal({
+      ).to.deep.include({
         cursor: 'pointer',
-        '&:hover': {
-          borderColor: 'var(--any-token)',
-        },
+        borderColor: 'var(--any-token)',
       });
     });
   });
@@ -113,37 +109,31 @@ describe('variant utils', () => {
   describe('active state', () => {
     it('[color] should create a variant', () => {
       expect(
-        createVariantStyle('textActive', {
-          textActiveColor: 'var(--any-token)',
+        createVariantStyle('anyActive', {
+          anyActiveColor: 'var(--any-token)',
         }),
-      ).to.deep.equal({
-        '&:active': {
-          color: 'var(--any-token)',
-        },
+      ).to.deep.include({
+        color: 'var(--any-token)',
       });
     });
 
     it('[bg] should create a variant', () => {
       expect(
-        createVariantStyle('lightActive', {
-          lightActiveBg: 'var(--any-token)',
+        createVariantStyle('anyActive', {
+          anyActiveBg: 'var(--any-token)',
         }),
-      ).to.deep.equal({
-        '&:active': {
-          backgroundColor: 'var(--any-token)',
-        },
+      ).to.deep.include({
+        backgroundColor: 'var(--any-token)',
       });
     });
 
     it('[border] should create a variant', () => {
       expect(
-        createVariantStyle('outlinedActive', {
-          outlinedActiveBorder: 'var(--any-token)',
+        createVariantStyle('anyActive', {
+          anyActiveBorder: 'var(--any-token)',
         }),
-      ).to.deep.equal({
-        '&:active': {
-          borderColor: 'var(--any-token)',
-        },
+      ).to.deep.include({
+        borderColor: 'var(--any-token)',
       });
     });
   });
@@ -151,44 +141,56 @@ describe('variant utils', () => {
   describe('disabled state', () => {
     it('[color] should create a variant', () => {
       expect(
-        createVariantStyle('textDisabled', {
-          textDisabledColor: 'var(--any-token)',
+        createVariantStyle('anyDisabled', {
+          anyDisabledColor: 'var(--any-token)',
         }),
-      ).to.deep.equal({
-        '&.Mui-disabled': {
-          color: 'var(--any-token)',
-          pointerEvents: 'none',
-          cursor: 'default',
-        },
+      ).to.deep.include({
+        color: 'var(--any-token)',
+        pointerEvents: 'none',
+        cursor: 'default',
       });
     });
 
     it('[bg] should create a variant', () => {
       expect(
-        createVariantStyle('lightDisabled', {
-          lightDisabledBg: 'var(--any-token)',
+        createVariantStyle('anyDisabled', {
+          anyDisabledBg: 'var(--any-token)',
         }),
-      ).to.deep.equal({
-        '&.Mui-disabled': {
-          backgroundColor: 'var(--any-token)',
-          pointerEvents: 'none',
-          cursor: 'default',
-        },
+      ).to.deep.include({
+        backgroundColor: 'var(--any-token)',
+        pointerEvents: 'none',
+        cursor: 'default',
       });
     });
 
     it('[border] should create a variant', () => {
       expect(
-        createVariantStyle('outlinedDisabled', {
-          outlinedDisabledBorder: 'var(--any-token)',
+        createVariantStyle('anyDisabled', {
+          anyDisabledBorder: 'var(--any-token)',
         }),
-      ).to.deep.equal({
-        '&.Mui-disabled': {
-          borderColor: 'var(--any-token)',
-          pointerEvents: 'none',
-          cursor: 'default',
-        },
+      ).to.deep.include({
+        borderColor: 'var(--any-token)',
+        pointerEvents: 'none',
+        cursor: 'default',
       });
+    });
+  });
+
+  it('should have --variant-borderWidth to initial states even without border token', () => {
+    const vars = {
+      anyColor: 'var(--any-token)',
+      anyBg: 'var(--any-token)',
+      anyHoverColor: 'var(--any-token)',
+      anyHoverBg: 'var(--any-token)',
+      anyActiveColor: 'var(--any-token)',
+      anyActiveBg: 'var(--any-token)',
+      anyDisabledColor: 'var(--any-token)',
+      anyDisabledBg: 'var(--any-token)',
+    };
+    expect(createVariantStyle('any', vars)).to.deep.equal({
+      '--variant-borderWidth': '0px',
+      color: 'var(--any-token)',
+      backgroundColor: 'var(--any-token)',
     });
   });
 
@@ -224,8 +226,8 @@ describe('variant utils', () => {
       outlined: {
         primary: {
           color: 'var(--any-token)',
-          '--variant-outlinedBorderWidth': '1px',
-          border: 'var(--variant-outlinedBorderWidth) solid',
+          '--variant-borderWidth': '1px',
+          border: 'var(--variant-borderWidth) solid',
           borderColor: 'var(--any-token)',
           backgroundColor: 'var(--any-token)',
         },
@@ -233,31 +235,25 @@ describe('variant utils', () => {
       outlinedHover: {
         primary: {
           cursor: 'pointer',
-          '&:hover': {
-            color: 'var(--any-token)',
-            borderColor: 'var(--any-token)',
-            backgroundColor: 'var(--any-token)',
-          },
+          color: 'var(--any-token)',
+          borderColor: 'var(--any-token)',
+          backgroundColor: 'var(--any-token)',
         },
       },
       outlinedActive: {
         primary: {
-          '&:active': {
-            color: 'var(--any-token)',
-            borderColor: 'var(--any-token)',
-            backgroundColor: 'var(--any-token)',
-          },
+          color: 'var(--any-token)',
+          borderColor: 'var(--any-token)',
+          backgroundColor: 'var(--any-token)',
         },
       },
       outlinedDisabled: {
         primary: {
-          '&.Mui-disabled': {
-            color: 'var(--any-token)',
-            borderColor: 'var(--any-token)',
-            backgroundColor: 'var(--any-token)',
-            pointerEvents: 'none',
-            cursor: 'default',
-          },
+          color: 'var(--any-token)',
+          borderColor: 'var(--any-token)',
+          backgroundColor: 'var(--any-token)',
+          pointerEvents: 'none',
+          cursor: 'default',
         },
       },
     });
@@ -265,46 +261,41 @@ describe('variant utils', () => {
 
   it('should not include invalid value to variant', () => {
     expect(
-      createVariantStyle('text', {
-        textColor: 'var(--any-token)',
-        textHoverColor: '',
-        textActiveColor: null,
-        textDisabledColor: undefined,
+      createVariantStyle('plain', {
+        plainColor: 'var(--any-token)',
+        plainHoverColor: '',
+        plainActiveColor: null,
+        plainDisabledColor: undefined,
       }),
     ).to.deep.equal({
+      '--variant-borderWidth': '0px',
       color: 'var(--any-token)',
     });
   });
 
-  it('create correct context color for text variant', () => {
+  it('create correct context color for plain variant', () => {
     const vars = {
-      textColor: 'var(--joy-variant-textColor)',
-      textHoverColor: `var(--joy-variant-textHoverColor, var(--joy-variant-textColor))`,
-      textHoverBg: 'var(--joy-variant-textHoverBg)',
-      textActiveColor: 'var(--joy-variant-textActiveColor, var(--joy-variant-textHoverColor))',
-      textDisabledColor: 'var(--joy-variant-textDisabledColor)',
+      plainColor: 'var(--joy-variant-plainColor)',
+      plainHoverColor: `var(--joy-variant-plainHoverColor, var(--joy-variant-plainColor))`,
+      plainHoverBg: 'var(--joy-variant-plainHoverBg)',
+      plainActiveColor: 'var(--joy-variant-plainActiveColor, var(--joy-variant-plainHoverColor))',
+      plainDisabledColor: 'var(--joy-variant-plainDisabledColor)',
     };
-    expect(createVariantStyle('text', vars)).to.deep.equal({
-      color: 'var(--joy-variant-textColor)',
+    expect(createVariantStyle('plain', vars)).to.deep.include({
+      color: 'var(--joy-variant-plainColor)',
     });
-    expect(createVariantStyle('textHover', vars)).to.deep.equal({
+    expect(createVariantStyle('plainHover', vars)).to.deep.include({
       cursor: 'pointer',
-      '&:hover': {
-        color: 'var(--joy-variant-textHoverColor, var(--joy-variant-textColor))',
-        backgroundColor: 'var(--joy-variant-textHoverBg)',
-      },
+      color: 'var(--joy-variant-plainHoverColor, var(--joy-variant-plainColor))',
+      backgroundColor: 'var(--joy-variant-plainHoverBg)',
     });
-    expect(createVariantStyle('textActive', vars)).to.deep.equal({
-      '&:active': {
-        color: 'var(--joy-variant-textActiveColor, var(--joy-variant-textHoverColor))',
-      },
+    expect(createVariantStyle('plainActive', vars)).to.deep.include({
+      color: 'var(--joy-variant-plainActiveColor, var(--joy-variant-plainHoverColor))',
     });
-    expect(createVariantStyle('textDisabled', vars)).to.deep.equal({
-      '&.Mui-disabled': {
-        pointerEvents: 'none',
-        cursor: 'default',
-        color: 'var(--joy-variant-textDisabledColor)',
-      },
+    expect(createVariantStyle('plainDisabled', vars)).to.deep.include({
+      pointerEvents: 'none',
+      cursor: 'default',
+      color: 'var(--joy-variant-plainDisabledColor)',
     });
   });
 
@@ -326,10 +317,8 @@ describe('variant utils', () => {
           },
         },
       });
-      expect(result.primary).to.deep.equal({
-        '&:active': {
-          borderColor: 'var(--any-token)',
-        },
+      expect(result.primary).to.deep.include({
+        borderColor: 'var(--any-token)',
       });
     });
 
@@ -337,69 +326,67 @@ describe('variant utils', () => {
       const theme = {
         palette: {
           customColor: {
-            lightColor: 'some-color',
-            lightBg: 'some-color',
-            lightHoverColor: 'some-color',
+            softColor: 'some-color',
+            softBg: 'some-color',
+            softHoverColor: 'some-color',
           },
         },
         vars: {
           palette: {
             customColor: {
-              lightColor: 'var(--any-token)',
-              lightBg: 'var(--any-token)',
-              lightHoverColor: 'var(--any-token)',
+              softColor: 'var(--any-token)',
+              softBg: 'var(--any-token)',
+              softHoverColor: 'var(--any-token)',
             },
           },
         },
       };
-      const lightResult = createVariant('light', theme);
-      expect(lightResult.customColor).to.deep.equal({
+      const softResult = createVariant('soft', theme);
+      expect(softResult.customColor).to.deep.include({
         color: 'var(--any-token)',
         backgroundColor: 'var(--any-token)',
       });
 
-      const lightHoverResult = createVariant('lightHover', theme);
-      expect(lightHoverResult.customColor).to.deep.equal({
+      const softHoverResult = createVariant('softHover', theme);
+      expect(softHoverResult.customColor).to.deep.include({
         cursor: 'pointer',
-        '&:hover': {
-          color: 'var(--any-token)',
-        },
+        color: 'var(--any-token)',
       });
     });
 
     it('auto generate "context"', () => {
-      expect(createVariant('text').context).to.deep.equal({
-        color: 'var(--variant-textColor)',
+      expect(createVariant('plain').context).to.deep.include({
+        color: 'var(--variant-plainColor)',
       });
-      expect(createVariant('outlined').context).to.deep.equal({
+      expect(createVariant('outlined').context).to.deep.include({
         color: 'var(--variant-outlinedColor)',
-        '--variant-outlinedBorderWidth': '1px',
-        border: 'var(--variant-outlinedBorderWidth) solid',
+        '--variant-borderWidth': '1px',
+        border: 'var(--variant-borderWidth) solid',
         borderColor: 'var(--variant-outlinedBorder)',
       });
-      expect(createVariant('light').context).to.deep.equal({
-        color: 'var(--variant-lightColor)',
-        backgroundColor: 'var(--variant-lightBg)',
+      expect(createVariant('soft').context).to.deep.include({
+        color: 'var(--variant-softColor)',
+        backgroundColor: 'var(--variant-softBg)',
       });
-      expect(createVariant('contained').context).to.deep.equal({
-        backgroundColor: 'var(--variant-containedBg)',
+      expect(createVariant('solid').context).to.deep.include({
+        backgroundColor: 'var(--variant-solidBg)',
       });
     });
   });
 
   describe('createContainedOverrides', () => {
-    it('automatically create contained overrides if the variable is in the correct format', () => {
+    it('automatically create solid overrides if the variable is in the correct format', () => {
       const result = createContainedOverrides({
         prefix: 'foo',
         palette: {
           primary: {
-            textColor: '',
+            plainColor: '',
           },
           secondary: {
-            lightBg: '',
+            softBg: '',
           },
           alternate: {
-            containedBg: '',
+            solidBg: '',
           },
         },
       });
@@ -407,15 +394,15 @@ describe('variant utils', () => {
       sinon.assert.match(result, {
         primary: {
           '--foo-palette-text-primary': '#fff',
-          '--variant-textColor': 'var(--foo-palette-primary-100)',
+          '--variant-plainColor': 'var(--foo-palette-primary-100)',
         },
         secondary: {
           '--foo-palette-text-secondary': 'var(--foo-palette-secondary-100)',
-          '--variant-lightBg': 'rgba(255 255 255 / 0.12)',
+          '--variant-softBg': 'rgba(255 255 255 / 0.12)',
         },
         alternate: {
           '--foo-palette-text-tertiary': 'var(--foo-palette-alternate-200)',
-          '--variant-containedBg': 'var(--foo-palette-alternate-700, rgba(0 0 0 / 0.16))',
+          '--variant-solidBg': 'var(--foo-palette-alternate-700, rgba(0 0 0 / 0.16))',
         },
       });
     });

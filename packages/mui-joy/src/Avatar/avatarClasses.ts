@@ -27,19 +27,19 @@ export interface AvatarClasses {
   img: string;
   /** Styles applied to the root element if `variant="outlined"`. */
   variantOutlined: string;
-  /** Styles applied to the root element if `variant="light"`. */
-  variantLight: string;
-  /** Styles applied to the root element if `variant="contained"`. */
-  variantContained: string;
+  /** Styles applied to the root element if `variant="soft"`. */
+  variantSoft: string;
+  /** Styles applied to the root element if `variant="solid"`. */
+  variantSolid: string;
 }
 
 export type AvatarClassKey = keyof AvatarClasses;
 
 export function getAvatarUtilityClass(slot: string): string {
-  return generateUtilityClass('MuiAvatar', slot);
+  return generateUtilityClass('JoyAvatar', slot);
 }
 
-const avatarClasses: AvatarClasses = generateUtilityClasses('MuiAvatar', [
+const avatarClasses: AvatarClasses = generateUtilityClasses('JoyAvatar', [
   'root',
   'colorPrimary',
   'colorNeutral',
@@ -53,8 +53,8 @@ const avatarClasses: AvatarClasses = generateUtilityClasses('MuiAvatar', [
   'sizeLg',
   'img',
   'variantOutlined',
-  'variantLight',
-  'variantContained',
+  'variantSoft',
+  'variantSolid',
 ]);
 
 export default avatarClasses;

@@ -1,5 +1,5 @@
-import PropTypes from 'prop-types';
 import { createBox } from '@mui/system';
+import PropTypes from 'prop-types';
 import { OverridableComponent } from '@mui/types';
 import { unstable_ClassNameGenerator as ClassNameGenerator } from '../className';
 import { BoxTypeMap } from './BoxProps';
@@ -8,16 +8,16 @@ import styleFunctionSx from '../styles/styleFunctionSx';
 
 const Box = createBox({
   defaultTheme,
-  defaultClassName: 'MuiBox-root',
+  defaultClassName: 'JoyBox-root',
   generateClassName: ClassNameGenerator.generate,
   styleFunctionSx,
 }) as OverridableComponent<BoxTypeMap>;
 
 Box.propTypes /* remove-proptypes */ = {
-  // --------------------------------- Warning ---------------------------------
-  // | The propTypes for the system components are NOT automatically generated |
-  // |  If you are updating the props, make sure to update the propTypes too   |
-  // ---------------------------------------------------------------------------
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit TypeScript types and run "yarn proptypes"  |
+  // ----------------------------------------------------------------------
   /**
    * @ignore
    */
@@ -35,6 +35,6 @@ Box.propTypes /* remove-proptypes */ = {
     PropTypes.func,
     PropTypes.object,
   ]),
-};
+} as any;
 
 export default Box;

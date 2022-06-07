@@ -1,0 +1,12 @@
+<Chip
+  variant="outlined"
+  color="danger"
+  onClick={handleClick}
+  endDecorator={
+    <ChipDelete color="danger" variant="plain" onClick={handleClick}>
+      <DeleteForever />
+    </ChipDelete>
+  }
+>
+  Clear
+</Chip>

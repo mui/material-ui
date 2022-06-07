@@ -50,7 +50,7 @@ const ColorSchemePicker = () => {
 const props = {
   size: ['sm', 'md', 'lg'],
   color: ['primary', 'danger', 'info', 'success', 'warning'],
-  variant: ['outlined', 'light', 'contained'],
+  variant: ['plain', 'outlined', 'soft', 'solid'],
 } as const;
 
 export default function JoyRadio() {
@@ -116,7 +116,7 @@ export default function JoyRadio() {
                   <ListItem component="div">
                     <ListItemContent>
                       <Radio label="Thin" value="Thin" color="warning" />
-                      <Typography level="body3" ml="28px" mt={0.5} color="warning.400">
+                      <Typography level="body3" ml="28px" mt={0.5} textColor="warning.400">
                         This might make your pizza too crispy.
                       </Typography>
                     </ListItemContent>
@@ -273,10 +273,10 @@ export default function JoyRadio() {
               Display
             </Typography>
             <Sheet
-              variant="light"
+              variant="soft"
               sx={{ p: 2, display: 'flex', gap: 2, my: 2, borderRadius: '18px' }}
             >
-              <Typography level="body3" color="text.primary">
+              <Typography level="body3" textColor="text.primary">
                 <Typography fontWeight="md">
                   Choose from two anti-reflective glass options.
                 </Typography>{' '}
@@ -391,13 +391,13 @@ export default function JoyRadio() {
                       <Typography sx={{ display: 'flex' }}>
                         <Typography level="inherit" fontWeight="md" flexGrow={1}>
                           Small <br />
-                          <Typography fontWeight="normal" fontSize="sm" color="text.secondary">
+                          <Typography fontWeight="normal" fontSize="sm" textColor="text.secondary">
                             Description
                           </Typography>
                         </Typography>
                         <Typography level="inherit" fontWeight="md" textAlign="right">
                           $40 <br />
-                          <Typography fontWeight="normal" fontSize="sm" color="text.secondary">
+                          <Typography fontWeight="normal" fontSize="sm" textColor="text.secondary">
                             per month
                           </Typography>
                         </Typography>
@@ -581,7 +581,7 @@ export default function JoyRadio() {
         >
           <Sheet variant="outlined" sx={{ borderRadius: 'sm' }}>
             <Radio id="website" value="website" checkedIcon={<CheckCircle />} />
-            <Avatar variant="light" size="lg" />
+            <Avatar variant="soft" size="lg" />
             <Typography
               htmlFor="website"
               component="label"
@@ -594,7 +594,7 @@ export default function JoyRadio() {
           </Sheet>
           <Sheet variant="outlined" sx={{ borderRadius: 'sm' }}>
             <Radio id="documents" value="documents" checkedIcon={<CheckCircle />} />
-            <Avatar variant="light" size="lg" />
+            <Avatar variant="soft" size="lg" />
             <Typography
               htmlFor="documents"
               component="label"
@@ -607,7 +607,7 @@ export default function JoyRadio() {
           </Sheet>
           <Sheet variant="outlined" sx={{ borderRadius: 'sm' }}>
             <Radio id="social-account" value="social-account" checkedIcon={<CheckCircle />} />
-            <Avatar variant="light" size="lg" />
+            <Avatar variant="soft" size="lg" />
             <Typography
               htmlFor="social-account"
               component="label"

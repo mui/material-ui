@@ -30,7 +30,7 @@ const useUtilityClasses = (ownerState: ListItemProps) => {
 };
 
 const ListItemRoot = styled('li', {
-  name: 'MuiListItem',
+  name: 'JoyListItem',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: ListItemProps & { row: boolean } }>(({ theme, ownerState }) => [
@@ -98,7 +98,7 @@ calc(-1 * var(--List-item-paddingLeft))`,
 ]);
 
 const ListItemStartAction = styled('div', {
-  name: 'MuiListItem',
+  name: 'JoyListItem',
   slot: 'StartAction',
   overridesResolver: (props, styles) => styles.startAction,
 })<{ ownerState: ListItemProps }>(({ ownerState }) => ({
@@ -110,7 +110,7 @@ const ListItemStartAction = styled('div', {
 }));
 
 const ListItemEndAction = styled('div', {
-  name: 'MuiListItem',
+  name: 'JoyListItem',
   slot: 'StartAction',
   overridesResolver: (props, styles) => styles.startAction,
 })<{ ownerState: ListItemProps }>(({ ownerState }) => ({
@@ -124,7 +124,7 @@ const ListItemEndAction = styled('div', {
 const ListItem = React.forwardRef(function ListItem(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
-    name: 'MuiListItem',
+    name: 'JoyListItem',
   });
 
   const listComponent = React.useContext(ComponentListContext);
@@ -136,7 +136,7 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
     children,
     nested = false,
     sticky = false,
-    variant = 'text',
+    variant = 'plain',
     color = 'neutral',
     startAction,
     endAction,
@@ -204,7 +204,7 @@ ListItem.propTypes /* remove-proptypes */ = {
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'neutral'
    */
-  color: PropTypes.oneOf(['context', 'danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+  color: PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
@@ -238,9 +238,9 @@ ListItem.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * The variant to use.
-   * @default 'text'
+   * @default 'plain'
    */
-  variant: PropTypes.oneOf(['contained', 'light', 'outlined', 'text']),
+  variant: PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
 } as any;
 
 export default ListItem;

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
 import { OptionState } from '../ListboxUnstyled';
 import composeClasses from '../composeClasses';
-import OptionUnstyledProps, { OptionUnstyledOwnerState } from './OptionUnstyledProps';
+import { OptionUnstyledProps, OptionUnstyledOwnerState } from './OptionUnstyled.types';
 import { SelectUnstyledContext } from '../SelectUnstyled/SelectUnstyledContext';
 import { getOptionUnstyledUtilityClass } from './optionUnstyledClasses';
 import appendOwnerState from '../utils/appendOwnerState';

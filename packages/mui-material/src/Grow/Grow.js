@@ -21,9 +21,10 @@ const styles = {
   },
 };
 
-/**
- * Conditionally apply a workaround for the CSS transition bug in Safari 15.4 / WebKit browsers.
- * Remove this workaround once the WebKit bug fix is released.
+/*
+ TODO v6: remove
+ Conditionally apply a workaround for the CSS transition bug in Safari 15.4 / WebKit browsers.
+ Remove this workaround once the WebKit bug fix is released.
  */
 const isWebKit154 =
   typeof navigator !== 'undefined' &&

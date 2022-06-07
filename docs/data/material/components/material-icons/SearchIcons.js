@@ -297,6 +297,7 @@ const DialogDetails = React.memo(function DialogDetails(props) {
             TransitionProps={{ onExited: () => setCopied2(false) }}
           >
             <Markdown
+              copyButtonHidden
               onClick={handleClick(2)}
               code={`import ${selectedIcon.importName}Icon from '@mui/icons-material/${selectedIcon.importName}';`}
               language="js"

@@ -29,7 +29,7 @@ const ColorSchemePicker = () => {
           setMode('light');
         }
       }}
-      sx={{ '--Button-gutter': '0.25rem', minWidth: 'var(--Button-minHeight)' }}
+      sx={{ '--Button-paddingInline': '0.25rem', minWidth: 'var(--Button-minHeight)' }}
     >
       {mode === 'light' ? <Moon /> : <Sun />}
     </Button>
@@ -38,7 +38,7 @@ const ColorSchemePicker = () => {
 
 export default function JoySheet() {
   const SheetProps = {
-    variant: ['text', 'outlined', 'light', 'contained'],
+    variant: ['plain', 'outlined', 'soft', 'solid'],
     color: ['primary', 'neutral', 'danger', 'info', 'success', 'warning'],
     elevation: ['xs', 'sm', 'md', 'lg', 'xl'],
   } as const;
@@ -56,9 +56,9 @@ export default function JoySheet() {
           elevation="sm"
           sx={{ p: 2, display: 'flex', gap: 2, borderRadius: 'sm', alignItems: 'center' }}
         >
-          <Sheet variant="light" color="primary" sx={{ p: 1, borderRadius: 'xs' }}>
+          <Sheet variant="soft" color="primary" sx={{ p: 1, borderRadius: 'xs' }}>
             <Sheet
-              variant="contained"
+              variant="solid"
               color="primary"
               sx={{ borderRadius: 'xs', display: 'flex', p: 1 }}
             >

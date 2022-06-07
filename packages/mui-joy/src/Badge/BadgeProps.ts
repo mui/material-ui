@@ -1,8 +1,7 @@
+import * as React from 'react';
 import { ExtendBadgeUnstyledTypeMap } from '@mui/base/BadgeUnstyled';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
-import * as React from 'react';
-import { SxProps } from '../styles/defaultTheme';
-import { ColorPaletteProp, VariantProp } from '../styles/types';
+import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
 
 export type BadgeSlot = 'root' | 'badge';
 
@@ -39,7 +38,7 @@ export type BadgeTypeMap<
      * The color of the component. It supports those theme colors that make sense for this component.
      * @default 'primary'
      */
-    color?: OverridableStringUnion<Exclude<ColorPaletteProp, 'context'>, BadgePropsColorOverrides>;
+    color?: OverridableStringUnion<ColorPaletteProp, BadgePropsColorOverrides>;
     /**
      * The size of the component.
      * @default 'md'
@@ -51,9 +50,9 @@ export type BadgeTypeMap<
     sx?: SxProps;
     /**
      * The variant to use.
-     * @default 'contained'
+     * @default 'solid'
      */
-    variant?: OverridableStringUnion<Exclude<VariantProp, 'text'>, BadgePropsVariantOverrides>;
+    variant?: OverridableStringUnion<VariantProp, BadgePropsVariantOverrides>;
   };
   defaultComponent: D;
 }>;

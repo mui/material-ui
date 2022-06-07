@@ -95,9 +95,9 @@ const ControlInput = ({ id, label = 'Label', unit, ...props }: any) => {
       <Input
         id={id}
         size="sm"
-        variant="light"
+        variant="soft"
         {...props}
-        endAdornment={
+        endDecorator={
           unit ? (
             <Typography level="body3" sx={{ pointerEvents: 'none' }}>
               {unit}
@@ -140,7 +140,7 @@ const components: {
     render: (props: any) => (
       <React.Fragment>
         <Button {...props}>Text</Button>
-        <Button startIcon={<Add />} variant="light" {...props}>
+        <Button startIcon={<Add />} variant="soft" {...props}>
           Add more row
         </Button>
         <Button endIcon={<DeleteForever />} variant="outlined" {...props}>
@@ -149,8 +149,7 @@ const components: {
       </React.Fragment>
     ),
     cssVars: [
-      { id: '--Button-gutter', type: 'number', unit: 'px', defaultValue: 24 },
-      { id: '--Button-iconOffsetStep', type: 'number', defaultValue: 2 },
+      { id: '--Button-paddingInline', type: 'number', unit: 'px', defaultValue: 24 },
       { id: '--Button-gap', type: 'number', unit: 'px' },
     ],
   },
@@ -161,7 +160,7 @@ const components: {
         <IconButton color="success" {...props}>
           <Add />
         </IconButton>
-        <IconButton variant="contained" color="danger" {...props}>
+        <IconButton variant="solid" color="danger" {...props}>
           <DeleteForever />
         </IconButton>
         <IconButton variant="outlined" color="primary" {...props}>
@@ -180,8 +179,8 @@ const components: {
       <React.Fragment>
         <Switch variant="outlined" {...props} />
         <Switch variant="outlined" defaultChecked {...props} />
-        <Switch variant="light" {...props} />
-        <Switch variant="light" defaultChecked {...props} />
+        <Switch variant="soft" {...props} />
+        <Switch variant="soft" defaultChecked {...props} />
         <Switch {...props} />
         <Switch defaultChecked {...props} />
       </React.Fragment>
@@ -238,7 +237,7 @@ const components: {
                 nested
                 component="div"
                 endAction={
-                  <IconButton variant="text" color="danger">
+                  <IconButton variant="plain" color="danger">
                     <DeleteForever />
                   </IconButton>
                 }
@@ -308,8 +307,8 @@ const components: {
       <React.Fragment>
         <Input
           placeholder="Placeholder"
-          startAdornment={<Key />}
-          endAdornment={
+          startDecorator={<Key />}
+          endDecorator={
             <IconButton size="sm" color="neutral">
               <Visibility />
             </IconButton>
@@ -319,31 +318,30 @@ const components: {
         <Input
           color="primary"
           placeholder="Placeholder"
-          startAdornment={<Typography color="inherit">$</Typography>}
-          endAdornment={<Typography color="text.tertiary">USD</Typography>}
+          startDecorator={<Typography textColor="inherit">$</Typography>}
+          endDecorator={<Typography textColor="text.tertiary">USD</Typography>}
           {...props}
         />
-        <Input placeholder="Placeholder" color="danger" endAdornment={<Info />} {...props} />
+        <Input placeholder="Placeholder" color="danger" endDecorator={<Info />} {...props} />
         <Input
           placeholder="Placeholder"
-          variant="light"
+          variant="soft"
           color="success"
-          endAdornment={<TaskAlt />}
+          endDecorator={<TaskAlt />}
           {...props}
         />
         <Input
           placeholder="Placeholder"
-          variant="contained"
+          variant="solid"
           color="info"
-          endAdornment={<TaskAlt />}
+          endDecorator={<TaskAlt />}
           {...props}
         />
       </React.Fragment>
     ),
     cssVars: [
-      { id: '--Input-minHeight', type: 'number', unit: 'px', defaultValue: 40 },
       { id: '--Input-radius', type: 'number', unit: 'px', defaultValue: 8 },
-      { id: '--Input-gutter', type: 'number', unit: 'px', defaultValue: 12 },
+      { id: '--Input-paddingInline', type: 'number', unit: 'px', defaultValue: 12 },
       { id: '--Input-gap', type: 'number', unit: 'px', defaultValue: 8 },
       {
         id: '--Input-placeholderOpacity',
@@ -401,7 +399,7 @@ const components: {
               </Box>
               <IconButton
                 size="lg"
-                variant="contained"
+                variant="solid"
                 sx={{
                   position: 'absolute',
                   zIndex: 2,
@@ -489,7 +487,7 @@ const components: {
       <React.Fragment>
         <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
           <Chip
-            variant="light"
+            variant="soft"
             size="sm"
             startDecorator={
               <Avatar
@@ -503,7 +501,7 @@ const components: {
             Robert Stark
           </Chip>
           <Chip
-            variant="light"
+            variant="soft"
             startDecorator={
               <Avatar
                 src="/static/images/avatar/2.jpg"
@@ -517,13 +515,13 @@ const components: {
             Robert Stark
           </Chip>
           <Chip
-            variant="light"
+            variant="soft"
             size="lg"
             startDecorator={
               <Avatar
                 src="/static/images/avatar/3.jpg"
                 variant="outlined"
-                sx={{ borderColor: 'background.body', '--variant-outlinedBorderWidth': '2px' }}
+                sx={{ borderColor: 'background.body', '--variant-borderWidth': '2px' }}
               />
             }
             {...props}
@@ -542,11 +540,11 @@ const components: {
           </Chip>
         </Box>
         <Box sx={{ display: 'flex', gap: 1 }}>
-          <Chip variant="light" color="neutral" endDecorator={<ChipDelete />} {...props}>
+          <Chip variant="soft" color="neutral" endDecorator={<ChipDelete />} {...props}>
             Fruit
           </Chip>
           <Chip
-            variant="light"
+            variant="soft"
             color="neutral"
             endDecorator={<ChipDelete variant="outlined" />}
             {...props}
@@ -556,7 +554,7 @@ const components: {
           <Chip
             variant="outlined"
             color="neutral"
-            endDecorator={<ChipDelete variant="light" />}
+            endDecorator={<ChipDelete variant="soft" />}
             {...props}
           >
             Fruit
@@ -642,7 +640,7 @@ function Playground({ initialName }: { initialName?: string }) {
             <ListItem key={config.name} sx={{ mb: 1 }}>
               <ListItemButton
                 color={config.name === current ? 'primary' : 'neutral'}
-                variant={config.name === current ? 'light' : 'text'}
+                variant={config.name === current ? 'soft' : 'plain'}
                 selected={config.name === current}
                 onClick={() => setCurrent(config.name)}
                 sx={{

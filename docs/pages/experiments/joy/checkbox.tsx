@@ -44,7 +44,7 @@ const ColorSchemePicker = () => {
 const props = {
   size: ['sm', 'md', 'lg'],
   color: ['primary', 'danger', 'info', 'success', 'warning'],
-  variant: ['outlined', 'light', 'contained'],
+  variant: ['plain', 'outlined', 'soft', 'solid'],
 } as const;
 
 const Rank = () => {
@@ -129,7 +129,7 @@ const Pattern = () => {
                 overlay
                 disableIcon
                 color="primary"
-                variant={value.includes(item) ? 'contained' : 'light'}
+                variant={value.includes(item) ? 'solid' : 'soft'}
                 label={item}
                 checked={value.includes(item)}
                 onChange={(event) => {
@@ -270,37 +270,37 @@ export default function JoyCheckbox() {
             </Typography>
             <Box role="group" aria-labelledby="filter-status">
               <List
-                sx={{
+                sx={(theme) => ({
                   '--List-item-radius': '4px',
-                  '[data-mui-color-scheme="light"] &': {
+                  [theme.getColorSchemeSelector('light')]: {
                     '--joy-palette-neutral-lightBg': 'var(--joy-palette-neutral-50)',
                   },
-                }}
+                })}
               >
-                <ListItem variant="light" color="danger">
+                <ListItem variant="soft" color="danger">
                   <Checkbox label="Declined Payment" color="danger" checked overlay />
-                  <Typography color="inherit" sx={{ ml: 'auto' }}>
+                  <Typography textColor="inherit" sx={{ ml: 'auto' }}>
                     8
                   </Typography>
                 </ListItem>
-                <ListItem variant="light" color="warning">
+                <ListItem variant="soft" color="warning">
                   <Checkbox label="Delivery Error" color="warning" checked overlay />
-                  <Typography color="inherit" sx={{ ml: 'auto' }}>
+                  <Typography textColor="inherit" sx={{ ml: 'auto' }}>
                     24
                   </Typography>
                 </ListItem>
-                <ListItem variant="light">
+                <ListItem variant="soft">
                   <Checkbox disabled label="Wrong Amount" color="neutral" overlay />
                 </ListItem>
-                <ListItem variant="light">
+                <ListItem variant="soft">
                   <Checkbox label="Wrong Address" color="neutral" overlay />
                 </ListItem>
-                <ListItem variant="light">
+                <ListItem variant="soft">
                   <Checkbox label="Wrong UX Solution" color="neutral" overlay />
                 </ListItem>
               </List>
             </Box>
-            <Button variant="text" color="warning" size="sm" sx={{ px: 1.5, mt: 1 }}>
+            <Button variant="plain" color="warning" size="sm" sx={{ px: 1.5, mt: 1 }}>
               Clear All
             </Button>
           </Sheet>
@@ -320,23 +320,23 @@ export default function JoyCheckbox() {
             </Typography>
             <Box role="group" aria-labelledby="member">
               <List
-                sx={{
+                sx={(theme) => ({
                   '--List-item-radius': '4px',
                   '& .MuiCheckbox-root': {
                     mr: 'auto',
                     alignItems: 'center',
                     '--Checkbox-gap': '12px',
                   },
-                  '[data-mui-color-scheme="light"] &': {
+                  [theme.getColorSchemeSelector('light')]: {
                     '--joy-palette-neutral-lightBg': 'var(--joy-palette-neutral-50)',
                   },
-                }}
+                })}
               >
                 <ListItem>
                   <Checkbox disabled label="Friedrich Oberbrunner" overlay />
                   <Avatar aria-hidden="true" src="/static/images/avatar/1.jpg" />
                 </ListItem>
-                <ListItem variant="light" color="primary">
+                <ListItem variant="soft" color="primary">
                   <Checkbox
                     overlay
                     label={
@@ -360,7 +360,7 @@ export default function JoyCheckbox() {
                 </ListItem>
                 <ListItem>
                   <Checkbox label="Anonymous User" color="neutral" overlay />
-                  <Avatar aria-hidden="true" variant="contained">
+                  <Avatar aria-hidden="true" variant="solid">
                     AU
                   </Avatar>
                 </ListItem>
@@ -444,7 +444,7 @@ export default function JoyCheckbox() {
                       disabled={index === 0}
                       overlay
                       disableIcon
-                      variant="light"
+                      variant="soft"
                       label={item}
                     />
                   </ListItem>

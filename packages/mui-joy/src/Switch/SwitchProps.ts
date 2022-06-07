@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { OverridableStringUnion } from '@mui/types';
-import { UseSwitchProps } from '@mui/base/SwitchUnstyled';
-import { SxProps } from '../styles/defaultTheme';
-import { ColorPaletteProp, VariantProp } from '../styles/types';
+import { UseSwitchParameters } from '@mui/base/SwitchUnstyled';
+import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
 
 export type SwitchSlot = 'root' | 'action' | 'input' | 'track' | 'thumb';
 
@@ -12,12 +11,12 @@ export interface SwitchPropsColorOverrides {}
 
 export interface SwitchPropsSizeOverrides {}
 
-interface SwitchOwnerState extends UseSwitchProps {
+interface SwitchOwnerState extends UseSwitchParameters {
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'neutral'
    */
-  color?: OverridableStringUnion<Exclude<ColorPaletteProp, 'context'>, SwitchPropsColorOverrides>;
+  color?: OverridableStringUnion<ColorPaletteProp, SwitchPropsColorOverrides>;
   /**
    * The size of the component.
    * @default 'md'
@@ -25,9 +24,9 @@ interface SwitchOwnerState extends UseSwitchProps {
   size?: OverridableStringUnion<'sm' | 'md' | 'lg', SwitchPropsSizeOverrides>;
   /**
    * The variant to use.
-   * @default 'contained'
+   * @default 'solid'
    */
-  variant?: OverridableStringUnion<Exclude<VariantProp, 'text'>, SwitchPropsVariantOverrides>;
+  variant?: OverridableStringUnion<VariantProp, SwitchPropsVariantOverrides>;
 }
 
 export interface SwitchProps

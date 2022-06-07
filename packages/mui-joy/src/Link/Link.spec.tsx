@@ -5,10 +5,10 @@ import * as React from 'react';
 <Link component="div" />;
 
 // `variant`
-<Link variant="text" />;
-<Link variant="light" />;
+<Link variant="plain" />;
+<Link variant="soft" />;
 <Link variant="outlined" />;
-<Link variant="contained" />;
+<Link variant="solid" />;
 
 // `color`
 <Link color="primary" />;
@@ -17,6 +17,8 @@ import * as React from 'react';
 <Link color="success" />;
 <Link color="warning" />;
 <Link color="neutral" />;
+
+<Link textColor="neutral.500" />;
 
 // `level`
 <Link level="h2" />;
@@ -33,6 +35,9 @@ import * as React from 'react';
 <Link underline="always" />;
 <Link underline="none" />;
 <Link underline="hover" />;
+
+// extend sx
+<Link fontWeight="md" my={1} />;
 
 // @ts-expect-error there is no variant `filled`
 <Link variant="filled" />;

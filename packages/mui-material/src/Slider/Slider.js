@@ -33,22 +33,11 @@ const SliderRoot = styled('span', {
   overridesResolver: (props, styles) => {
     const { ownerState } = props;
 
-    const marks =
-      ownerState.marksProp === true && ownerState.step !== null
-        ? [...Array(Math.floor((ownerState.max - ownerState.min) / ownerState.step) + 1)].map(
-            (_, index) => ({
-              value: ownerState.min + ownerState.step * index,
-            }),
-          )
-        : ownerState.marksProp || [];
-
-    const marked = marks.length > 0 && marks.some((mark) => mark.label);
-
     return [
       styles.root,
       styles[`color${capitalize(ownerState.color)}`],
       ownerState.size !== 'medium' && styles[`size${capitalize(ownerState.size)}`],
-      marked && styles.marked,
+      ownerState.marked && styles.marked,
       ownerState.orientation === 'vertical' && styles.vertical,
       ownerState.track === 'inverted' && styles.trackInverted,
       ownerState.track === false && styles.trackFalse,
@@ -320,7 +309,6 @@ const SliderValueLabel = styled(SliderValueLabelUnstyled, {
   transition: theme.transitions.create(['transform'], {
     duration: theme.transitions.duration.shortest,
   }),
-  top: -10,
   transformOrigin: 'bottom center',
   transform: 'translateY(-100%) scale(0)',
   position: 'absolute',
@@ -331,20 +319,37 @@ const SliderValueLabel = styled(SliderValueLabelUnstyled, {
   alignItems: 'center',
   justifyContent: 'center',
   padding: '0.25rem 0.75rem',
+  ...(ownerState.orientation === 'horizontal' && {
+    top: '-10px',
+    '&:before': {
+      position: 'absolute',
+      content: '""',
+      width: 8,
+      height: 8,
+      transform: 'translate(-50%, 50%) rotate(45deg)',
+      backgroundColor: 'inherit',
+      bottom: 0,
+      left: '50%',
+    },
+  }),
+  ...(ownerState.orientation === 'vertical' && {
+    right: '30px',
+    top: '25px',
+    '&:before': {
+      position: 'absolute',
+      content: '""',
+      width: 8,
+      height: 8,
+      transform: 'translate(-50%, 50%) rotate(45deg)',
+      backgroundColor: 'inherit',
+      right: '-20%',
+      top: '25%',
+    },
+  }),
   ...(ownerState.size === 'small' && {
     fontSize: theme.typography.pxToRem(12),
     padding: '0.25rem 0.5rem',
   }),
-  '&:before': {
-    position: 'absolute',
-    content: '""',
-    width: 8,
-    height: 8,
-    bottom: 0,
-    left: '50%',
-    transform: 'translate(-50%, 50%) rotate(45deg)',
-    backgroundColor: 'inherit',
-  },
 }));
 
 SliderValueLabel.propTypes /* remove-proptypes */ = {
