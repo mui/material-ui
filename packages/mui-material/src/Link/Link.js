@@ -63,18 +63,18 @@ const LinkRoot = styled(Typography, {
     ...(ownerState.component === 'button' && {
       position: 'relative',
       WebkitTapHighlightColor: 'transparent',
-      backgroundColor: 'transparent',
+      backgroundColor: 'transparent', // Reset default value
       // We disable the focus ring for mouse, touch and keyboard users.
       outline: 0,
       border: 0,
-      margin: 0,
+      margin: 0, // Remove the margin in Safari
       borderRadius: 0,
-      padding: 0,
+      padding: 0, // Remove the padding in Firefox
       cursor: 'pointer',
       userSelect: 'none',
       verticalAlign: 'middle',
-      MozAppearance: 'none',
-      WebkitAppearance: 'none',
+      MozAppearance: 'none', // Reset
+      WebkitAppearance: 'none', // Reset
       '&::-moz-focus-inner': {
         borderStyle: 'none', // Remove Firefox dotted outline.
       },
