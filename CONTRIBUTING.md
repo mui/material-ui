@@ -284,7 +284,8 @@ index 791a7da1f4..a5db13b414 100644
 
 Alternatively, you can open the Netlify preview of the documentation, and open any demo in Codesandbox. The documentation automatically configures the dependencies to use the preview packages.
 
-Not just that, you can even locally package and test your changes. In the following example, we are packaging mui-material.
+You can also package and test your changes locally. 
+The following example shows how to package `@mui/material`:
 
 ```
 $packages\mui-material> yarn build
