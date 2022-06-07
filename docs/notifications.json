@@ -23,5 +23,10 @@
     "id": 64,
     "title": "<b>Premium passengers, please proceed to the boarding gate</b> 🚀",
     "text": "<a style=\"color: inherit;\" data-ga-event-category=\"Blog\" data-ga-event-action=\"notification\" data-ga-event-label=\"lab-date-pickers-to-mui-x/\" href=\"/blog/premium-plan-release/\">Check out our blog post</a> introducing the MUI X Premium plan, and the new licensing model."
+  },
+  {
+    "id": 65,
+    "title": "<b>We're glad to share the first look of Joy UI</b> 🚀",
+    "text": "<a style=\"color: inherit;\" data-ga-event-category=\"Blog\" data-ga-event-action=\"notification\" data-ga-event-label=\"first-look-at-joy/\" href=\"/blog/first-look-at-joy/\">Check out our blog post</a> introducing Joy UI, the new starting point for your design system."
   }
 ]
