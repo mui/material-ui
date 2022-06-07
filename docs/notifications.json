@@ -27,6 +27,6 @@
   {
     "id": 65,
     "title": "<b>We're glad to share the first look of Joy UI</b> 🚀",
-    "text": "<a style=\"color: inherit;\" data-ga-event-category=\"Blog\" data-ga-event-action=\"notification\" data-ga-event-label=\"first-look-at-joy/\" href=\"/blog/first-look-at-joy/\">Check out our blog post</a> introducing Joy UI, the new starting point for your design system."
+    "text": "Joy UI is MUI's new starting point for your design system. <a style=\"color: inherit;\" data-ga-event-category=\"Blog\" data-ga-event-action=\"notification\" data-ga-event-label=\"first-look-at-joy/\" href=\"/blog/first-look-at-joy/\">Check out the blog post</a> to see what's in store for this new library."
   }
 ]
