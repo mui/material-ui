@@ -7,20 +7,23 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/link/
 
 # Link
 
-<p class="description">The Link component allows you to easily customize anchor elements with your theme colors and typography styles.</p>
+<p class="description">The <code>Link</code> component allows you to customize anchor tags with theme colors and typography styles.</p>
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-The Link represents the html anchor element. It accepts the same props as the [`Typography`](/joy-ui/react-typography/) component (the system props are also included).
+`Link` represents the HRML anchor element.
+
+It accepts the same props as the [`Typography`](/joy-ui/react-typography/) component as well as the system props.
 
 {{"demo": "LinkUsage.js", "hideToolbar": true}}
 
-## As button
+## As a button
 
+It's possible to use the `Link` component as a button too.
 You might want to use this approach when:
 
 - The link doesn't have a meaningful href.
-- The design leans toward the link than the [`Button`](/joy-ui/react-button/).
+- The design looks more a link rather than the [`Button`](/joy-ui/react-button/).
 
 ```js
 <Link
@@ -35,23 +38,27 @@ You might want to use this approach when:
 
 ## With Typography
 
-The `Link` can be used as a child of the [`Typography`](/joy-ui/react-typography/) component. The level of the link inherits from the parent typography unless the prop is specified.
+`Link` can be used as a child of the [`Typography`](/joy-ui/react-typography/) component.
+In that case, the link component will inherit the typographic level scale from its typography parent, unless a value for the `level` prop is specified.
 
 {{"demo": "LinkAndTypography.js"}}
 
-## With Card
+## With the Card
 
-To create an accesible card, we recommend to use the `Link` to be the card's title and specify `overlay` prop to expand the clickable area to the whole card. This way the card can be visually focused while preserving the correct semantic.
+When creating a card that has a entirely clickable surface, in order to have it accessible, use the `Link` component as the card's title.
+Then, specify the `overlay` prop to expand the clickable area to the whole card surface.
+
+This way, you assure that the whole card can be focused and also preserves correct semantic.
 
 {{"demo": "LinkCard.js"}}
 
 ## Security
 
-When you use `target="_blank"` with Links, it is [recommended](https://developers.google.com/web/tools/lighthouse/audits/noopener) to always set `rel="noopener"` or `rel="noreferrer"` when linking to third party content.
+When using `target="_blank"` with links, it's [recommended](https://developers.google.com/web/tools/lighthouse/audits/noopener) to always set `rel="noopener"` or `rel="noreferrer"` when linking to a third-party content.
 
 - `rel="noopener"` prevents the new page from being able to access the `window.opener` property and ensures it runs in a separate process.
   Without this, the target page can potentially redirect your page to a malicious URL.
-- `rel="noreferrer"` has the same effect, but also prevents the _Referer_ header from being sent to the new page.
+- `rel="noreferrer"` has the same effect, but also prevents the _Referer_ header from being sent to a new page.
   ⚠️ Removing the referrer header will affect analytics.
 
 ## Third-party routing library
@@ -82,13 +89,14 @@ import JoyLink from '@mui/joy/Link';
 
 (WAI-ARIA: https://www.w3.org/WAI/ARIA/apg/patterns/link/)
 
-- When providing the content for the link, avoid generic descriptions like "click here" or "go to".
+- Avoid generic link call to action, such as "click here" or "go to".
   Instead, use [specific descriptions](https://developers.google.com/web/tools/lighthouse/audits/descriptive-link-text).
-- For the best user experience, links should stand out from the text on the page. For instance, you can keep the default `underline="always"` behavior.
+- For an optimal user experience, links should stand out from the text on the page.
+  Keeping the default `underline="always"` behavior is a safe bet.
 - If a link doesn't have a meaningful href, [it should be rendered using a `<button>` element](#as-button).
 
 ## Common examples
 
-These are some useful examples that demonstrate the composition of the link and other components as decorators.
+These are examples that demonstrate using the `Link` component together with other components as decorators.
 
 {{"demo": "DecoratorExamples.js"}}
