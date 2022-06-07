@@ -157,15 +157,15 @@ export default function EmailExample() {
                 {
                   label: 'Email',
                   active: true,
+                  href: '/joy-ui/getting-started/templates/email/',
+                  'aria-current': 'page',
                 },
                 {
                   label: 'Team',
-                  component: 'a',
                   href: '/joy-ui/getting-started/templates/team/',
                 },
                 {
                   label: 'Files',
-                  component: 'a',
                   href: '/joy-ui/getting-started/templates/files/',
                 },
               ]}
