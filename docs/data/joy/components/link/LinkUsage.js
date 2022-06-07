@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import * as React from 'react';
 import Link from '@mui/joy/Link';
 import JoyUsageDemo from 'docs/src/modules/components/JoyUsageDemo';
