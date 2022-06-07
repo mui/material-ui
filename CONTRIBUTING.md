@@ -293,7 +293,8 @@ $packages\mui-material> cd build
 $packages\mui-material> npm pack
 ```
 
-This will create a mui-material-x.x.x.tar.gz file in the build folder. Copy the file and move it to the project you want to test in. Then do,
+This will create a `mui-material-x.x.x.tar.gz` file in the build folder. 
+Copy the file and move it to the project you want to test in, then run:
 
 ```
 $test-project> npm i ./mui-material-x.x.x.tar.gz
