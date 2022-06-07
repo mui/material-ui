@@ -4,7 +4,7 @@ import {
   demos,
   docs,
   demoComponents,
-} from 'docs/data/material/guides/migration-v3/migration-v3.md?@mui/markdown';
+} from 'docs/data/material/migration/migration-v4/v5-style-changes.md?@mui/markdown';
 
 export default function Page() {
   return <MarkdownDocs demos={demos} docs={docs} demoComponents={demoComponents} />;

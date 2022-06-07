@@ -2598,7 +2598,7 @@ _Sep 1, 2021_
 A big thanks to the 18 contributors who made this release possible. Here are some highlights ✨:
 
 - 🎉 Renamed packages to `@mui/*` as part of rebranding the company, following the strategy of expanding the library scope beyond Material Design. For more details about it, check the [GitHub discussion](https://github.com/mui/material-ui/discussions/27803).
-- 🛠 Added `mui-replace` codemod for migrating `@material-ui/*` to new packages `@mui/*`. Check out this [codemod detail](https://github.com/mui/material-ui/blob/next/packages/mui-codemod/README.md#mui-replace) or head to [migration guide](https://mui.com/material-ui/guides/migration-v4/#preset-safe)
+- 🛠 Added `mui-replace` codemod for migrating `@material-ui/*` to new packages `@mui/*`. Check out this [codemod detail](https://github.com/mui/material-ui/blob/next/packages/mui-codemod/README.md#mui-replace) or head to [migration guide](https://mui.com/material-ui/migration/migration-v4/#preset-safe)
 - 🧪 Added new `<Mansory>` component to the lab, [check it out](https://mui.com/components/masonry/). It has been crafted by our first intern, @hbjORbj 👏!
 
 ### `@mui/material@5.0.0-rc.0`
@@ -4003,7 +4003,7 @@ A big thanks to the 16 contributors who made this release possible. Here are som
   />
   ```
 
-> Follow [this link](https://mui.com/material-ui/guides/migration-v4/#main-content) for full migration from v4 => v5
+> Follow [this link](https://mui.com/material-ui/migration/migration-v4/) for full migration from v4 => v5
 
 #### Changes
 
