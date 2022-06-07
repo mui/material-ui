@@ -32,7 +32,7 @@ const useUtilityClasses = (ownerState: SwitchProps & { focusVisible: boolean }) 
 
 const switchColorVariables =
   ({ theme, ownerState }: { theme: Theme; ownerState: SwitchProps }) =>
-  (data: { state?: 'Hover' | 'Disabled'; checked?: boolean } = {}) => {
+  (data: { state?: 'Hover' | 'Disabled' } = {}) => {
     const variant = ownerState.variant;
     const color = ownerState.color;
     return {
@@ -91,15 +91,15 @@ const SwitchRoot = styled('span', {
       ...getColorVariables({ state: 'Hover' }),
     },
     [`&.${switchClasses.checked}`]: {
-      ...getColorVariables({ checked: true }),
+      ...getColorVariables(),
       '&:hover': {
-        ...getColorVariables({ checked: true, state: 'Hover' }),
+        ...getColorVariables({ state: 'Hover' }),
       },
     },
     [`&.${switchClasses.disabled}`]: {
       pointerEvents: 'none',
       color: theme.vars.palette.text.tertiary,
-      ...getColorVariables({ state: 'Disabled', checked: ownerState.checked }),
+      ...getColorVariables({ state: 'Disabled' }),
     },
     display: 'inline-flex',
     alignItems: 'center',
