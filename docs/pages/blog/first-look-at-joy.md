@@ -1,7 +1,7 @@
 ---
 title: First look at Joy UI 🥳
 description: A sneak peek at MUI's new starting point for your design system.
-date: 2022-06-01T00:00:00.000Z
+date: 2022-06-08T00:00:00.000Z
 authors: ['danilo-leal', 'siriwatknp']
 tags: ['News', 'MUI Core']
 card: true
