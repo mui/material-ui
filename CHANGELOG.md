@@ -71,6 +71,7 @@ This release is mostly about 🐛 bug fixes and 📚 documentation improvements.
 - Add security link to README for Tidelift @mbrookes
 
 All contributors of this release in alphabetical order: @abhinav-22-tech, @DanailH, @danilo-leal, @flaviendelangle, @haneenmahd, @hbjORbj, @Janpot, @kevinji, @mbrookes, @michaldudak, @oliviertassinari, @ryancogswell, @samuelsycamore, @siriwatknp, @ZeeshanTamboli
+
 ## 5.8.2
 
 <!-- generated comparing v5.8.1..master -->
