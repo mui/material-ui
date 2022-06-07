@@ -39,6 +39,9 @@ describe('getTextDecoration', () => {
       expect(getTextDecoration({ theme, ownerState: { color: 'error.main' } })).to.equal(
         'rgba(211, 47, 47, 0.4)',
       );
+      expect(getTextDecoration({ theme, ownerState: { color: 'grey.500' } })).to.equal(
+        'rgba(158, 158, 158, 0.4)',
+      );
     });
 
     it('valid CSS color', () => {
@@ -54,6 +57,7 @@ describe('getTextDecoration', () => {
 
   describe('CSS variables', () => {
     const theme = extendTheme();
+    theme.palette = theme.colorSchemes.light.palette;
     theme.vars = theme.colorSchemes.light;
     theme.vars.palette.primary.mainChannel = 'var(--palette-primary-main)';
     theme.vars.palette.secondary.mainChannel = 'var(--palette-secondary-main)';
@@ -94,6 +98,9 @@ describe('getTextDecoration', () => {
       );
       expect(getTextDecoration({ theme, ownerState: { color: 'error.main' } })).to.equal(
         'rgba(var(--palette-error-main) / 0.4)',
+      );
+      expect(getTextDecoration({ theme, ownerState: { color: 'grey.500' } })).to.equal(
+        'rgba(158, 158, 158, 0.4)',
       );
     });
 
