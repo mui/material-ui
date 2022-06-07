@@ -10,8 +10,10 @@ export default function EdgeLabelSlider() {
   return (
     <Box sx={{ width: 300 }}>
       <Slider
+        track={false}
+        defaultValue={[0, 10]}
         max={10}
-        aria-label="Always visible"
+        getAriaLabel={() => 'Amount'}
         getAriaValueText={valueText}
         marks
         valueLabelDisplay="on"
