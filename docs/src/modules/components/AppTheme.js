@@ -1,6 +1,26 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import Head from 'docs/src/modules/components/Head';
+import {
+  Experimental_CssVarsProvider as CssVarsProvider,
+  useColorScheme,
+} from '@mui/material/styles';
+import Fab from '@mui/material/Fab';
+import DarkMode from '@mui/icons-material/DarkMode';
+import LightMode from '@mui/icons-material/LightMode';
+
+const ModeToggle = () => {
+  const { mode, setMode } = useColorScheme();
+  return (
+    <Fab
+      color="primary"
+      onClick={() => setMode(mode === 'light' ? 'dark' : 'light')}
+      sx={{ position: 'fixed', bottom: '1.5rem', right: '1rem' }}
+    >
+      {mode === 'light' ? <LightMode /> : <DarkMode />}
+    </Fab>
+  );
+};
 
 export default function AppTheme(props) {
   const { children } = props;
@@ -10,7 +30,10 @@ export default function AppTheme(props) {
       <Head>
         <meta name="robots" content="noindex,nofollow" />
       </Head>
-      {children}
+      <CssVarsProvider>
+        {children}
+        <ModeToggle />
+      </CssVarsProvider>
     </React.Fragment>
   );
 }
