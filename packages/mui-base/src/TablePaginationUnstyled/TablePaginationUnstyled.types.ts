@@ -127,7 +127,7 @@ export interface TablePaginationUnstyledTypeMap<P = {}, D extends React.ElementT
   defaultComponent: D;
 }
 
-type TablePaginationUnstyledProps<
+export type TablePaginationUnstyledProps<
   D extends React.ElementType = TablePaginationUnstyledTypeMap['defaultComponent'],
   P = {},
 > = OverrideProps<TablePaginationUnstyledTypeMap<P, D>, D> & {
@@ -139,4 +139,64 @@ type TablePaginationUnstyledProps<
   component?: D;
 };
 
-export default TablePaginationUnstyledProps;
+export type TablePaginationUnstyledOwnerState = TablePaginationUnstyledProps;
+
+export type TablePaginationUnstyledRootSlotProps = {
+  children?: React.ReactNode;
+  className?: string;
+  colSpan?: number;
+  ownerState: TablePaginationUnstyledOwnerState;
+  ref?: React.Ref<any>;
+};
+
+export type TablePaginationUnstyledSelectSlotProps = {
+  ['aria-label']: string;
+  ['aria-labelledby']?: string;
+  children?: React.ReactNode;
+  className?: string;
+  id?: string;
+  onChange: (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) => void;
+  ownerState: TablePaginationUnstyledOwnerState;
+  value: React.SelectHTMLAttributes<HTMLSelectElement>['value'];
+};
+
+export type TablePaginationUnstyledActionsSlotProps = {
+  className?: string;
+  count: number;
+  getItemAriaLabel: (type: ItemAriaLabelType) => string;
+  onPageChange: (event: React.MouseEvent<HTMLButtonElement> | null, page: number) => void;
+  ownerState: TablePaginationUnstyledOwnerState;
+  page: number;
+  rowsPerPage: number;
+};
+
+export type TablePaginationUnstyledMenuItemSlotProps = {
+  children?: React.ReactNode;
+  className?: string;
+  ownerState: TablePaginationUnstyledOwnerState;
+  value: React.SelectHTMLAttributes<HTMLSelectElement>['value'];
+};
+
+export type TablePaginationUnstyledSelectLabelSlotProps = {
+  children?: React.ReactNode;
+  className?: string;
+  id?: string;
+  ownerState: TablePaginationUnstyledOwnerState;
+};
+
+export type TablePaginationUnstyledDisplayedRowsSlotProps = {
+  children?: React.ReactNode;
+  className?: string;
+  ownerState: TablePaginationUnstyledOwnerState;
+};
+
+export type TablePaginationUnstyledToolbarSlotProps = {
+  children?: React.ReactNode;
+  className?: string;
+  ownerState: TablePaginationUnstyledOwnerState;
+};
+
+export type TablePaginationUnstyledSpacerSlotProps = {
+  className?: string;
+  ownerState: TablePaginationUnstyledOwnerState;
+};

@@ -38,7 +38,9 @@ Here are the most significant improvements in April:
 
 - We have added support for custom [header scroll behaviors](/material-ui/react-app-bar/#scrolling):
 
-  <video src="/static/blog/april-2019-update/scroll-trigger.mp4" controls loop autoplay></video>
+  <video style="margin-bottom: 24px;" autoplay muted loop playsinline>
+    <source src="/static/blog/april-2019-update/scroll-trigger.mp4" type="video/mp4" />
+  </video>
 
 But this summary is just scratching the surface. We have accepted 243 commits from 69 different contributors. We have changed 1,545 files with 36,461 additions and 20,237 deletions.
 

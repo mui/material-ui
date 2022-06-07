@@ -1,5 +1,6 @@
 import React from 'react';
 import { OverrideProps } from '@mui/types';
+import { UseTabsListRootSlotProps } from './useTabsList.types';
 
 interface TabsListUnstyledComponentsPropsOverrides {}
 
@@ -31,7 +32,7 @@ export interface TabsListUnstyledTypeMap<P = {}, D extends React.ElementType = '
   defaultComponent: D;
 }
 
-type TabsListUnstyledProps<
+export type TabsListUnstyledProps<
   D extends React.ElementType = TabsListUnstyledTypeMap['defaultComponent'],
   P = {},
 > = OverrideProps<TabsListUnstyledTypeMap<P, D>, D> & {
@@ -43,4 +44,12 @@ type TabsListUnstyledProps<
   component?: D;
 };
 
-export default TabsListUnstyledProps;
+export type TabsListUnstyledOwnerState = TabsListUnstyledProps & {
+  isRtl: boolean;
+  orientation: 'horizontal' | 'vertical';
+};
+
+export type TabsListUnstyledRootSlotProps = UseTabsListRootSlotProps & {
+  className?: string;
+  ownerState: TabsListUnstyledOwnerState;
+};

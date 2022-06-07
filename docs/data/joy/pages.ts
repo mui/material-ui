@@ -11,7 +11,11 @@ const pages = [
   {
     pathname: '/joy-ui/core-features',
     icon: 'ReaderIcon',
-    children: [{ pathname: '/joy-ui/core-features/global-variant' }],
+    children: [
+      { pathname: '/joy-ui/core-features/global-variant' },
+      { pathname: '/joy-ui/core-features/automatic-adjustment' },
+      { pathname: '/joy-ui/core-features/perfect-dark-mode' },
+    ],
   },
   {
     pathname: '/joy-ui/react-',
@@ -21,7 +25,7 @@ const pages = [
       {
         pathname: '/joy-ui/components/inputs',
         subheader: 'inputs',
-        children: [{ pathname: '/joy-ui/react-button' }],
+        children: [{ pathname: '/joy-ui/react-button' }, { pathname: '/joy-ui/react-slider' }],
       },
       {
         pathname: '/joy-ui/components/data-display',
@@ -50,6 +54,12 @@ const pages = [
       { pathname: '/joy-ui/customization/themed-components' },
       { pathname: '/joy-ui/customization/using-css-variables', title: 'Using CSS variables' },
     ],
+  },
+  {
+    pathname: '/joy-ui/guides',
+    title: 'How To Guides',
+    icon: 'VisibilityIcon',
+    children: [{ pathname: '/joy-ui/guides/apply-dark-mode', title: 'Apply dark mode' }],
   },
 ];
 
