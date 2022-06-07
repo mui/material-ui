@@ -22,7 +22,7 @@ githubLabel: 'component: Popper'
 
 - Clicking away does not hide the `Popper` component. If you need this behavior, you can use [`ClickAwayListener`](/base/react-click-away-listener/)
 
-**Bundle size**: 📦 [8 kB gzipped](/size-snapshot).
+**Bundle size**: 📦 [8 kB gzipped](/size-snapshot/).
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 

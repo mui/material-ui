@@ -1,6 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
+import GlobalStyles from '@mui/material/GlobalStyles';
 import { styled, alpha } from '@mui/material/styles';
 import NProgress from 'nprogress';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -200,6 +201,13 @@ function AppFrame(props) {
       </SkipLink>
       <MarkdownLinks />
       <StyledAppBar disablePermanent={disablePermanent}>
+        <GlobalStyles
+          styles={{
+            ':root': {
+              '--MuiDocs-header-height': '64px',
+            },
+          }}
+        />
         <Toolbar variant="dense" disableGutters>
           <NavIconButton
             edge="start"

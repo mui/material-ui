@@ -219,7 +219,7 @@ function TopLayoutBlog(props) {
             {...(ROUTES.blog.startsWith('http') && {
               rel: 'nofollow',
             })}
-            color="text.secondary"
+            color="primary"
             variant="body2"
             className={classes.back}
           >
@@ -257,7 +257,7 @@ function TopLayoutBlog(props) {
                         href={`https://github.com/${authors[author].github}`}
                         target="_blank"
                         rel="noreferrer noopener"
-                        color="text.secondary"
+                        color="primary"
                         variant="body2"
                         sx={{ fontWeight: 500 }}
                       >
