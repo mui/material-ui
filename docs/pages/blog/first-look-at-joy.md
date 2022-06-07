@@ -61,7 +61,7 @@ The four variants available in the components are `solid`, `soft`, `outlined`, a
 <Button variant="plain">
 ```
 
-### Component integration
+### Automatic adjustment
 
 We meticulously constructed the CSS variables for each component so you can seamlessly compose them with little customization necessary.
 One good example is the input component, where the border radius of the input's children automatically adapts to that of the input.
