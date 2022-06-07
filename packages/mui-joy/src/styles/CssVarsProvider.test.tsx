@@ -329,7 +329,7 @@ describe('[Joy] CssVarsProvider', () => {
       expect(screen.getByTestId('palette-background').textContent).to.equal(
         JSON.stringify({
           body: 'var(--joy-palette-background-body)',
-          common: 'var(--joy-palette-background-common)',
+          surface: 'var(--joy-palette-background-surface)',
           level1: 'var(--joy-palette-background-level1)',
           level2: 'var(--joy-palette-background-level2)',
           level3: 'var(--joy-palette-background-level3)',

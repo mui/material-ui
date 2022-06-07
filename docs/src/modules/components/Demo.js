@@ -167,7 +167,7 @@ const DemoRootJoy = joyStyled('div', {
   /* Isolate the demo with an outline. */
   ...(bg === 'outlined' && {
     padding: theme.spacing(3),
-    backgroundColor: theme.vars.palette.background.common,
+    backgroundColor: theme.vars.palette.background.surface,
     border: `1px solid`,
     borderColor: theme.vars.palette.divider,
     borderLeftWidth: 0,

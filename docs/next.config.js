@@ -258,6 +258,11 @@ module.exports = {
     if (FEATURE_TOGGLE.enable_redirects) {
       return [
         {
+          source: '/joy-ui/',
+          destination: '/joy-ui/getting-started/overview/',
+          permanent: false,
+        },
+        {
           source: '/styles/:path*',
           destination: '/system/styles/:path*',
           permanent: false,

@@ -29,6 +29,7 @@ export default function JoyVariablesDemo(props: {
     <Box
       sx={{
         m: -1.5,
+        mt: 0.25,
         flexGrow: 1,
         maxWidth: 'calc(100% + 24px)',
         display: 'flex',
@@ -66,7 +67,7 @@ export default function JoyVariablesDemo(props: {
           flexBasis: 240,
           flexGrow: 1,
           p: 2,
-          bgcolor: 'background.level1',
+          bgcolor: 'background.body',
           borderRadius: 'xs',
         }}
       >
