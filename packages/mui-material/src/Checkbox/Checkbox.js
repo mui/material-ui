@@ -45,7 +45,11 @@ const CheckboxRoot = styled(SwitchBase, {
   ...(!ownerState.disableRipple && {
     '&:hover': {
       backgroundColor: theme.vars
-        ? `rgba(${theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.hoverOpacity})`
+        ? `rgba(${
+            ownerState.color === 'default'
+              ? theme.vars.palette.action.activeChannel
+              : theme.vars.palette.primary.mainChannel
+          } / ${theme.vars.palette.action.hoverOpacity})`
         : alpha(
             ownerState.color === 'default'
               ? theme.palette.action.active
