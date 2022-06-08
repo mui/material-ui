@@ -54,6 +54,31 @@ When the aspect ratio component is placed as a child of a flexbox `row` containe
 
 {{"demo": "FlexRowRatio.js"}}
 
+## Integration
+
+### Next.js Image
+
+The `AspectRatio` component can be used with [Next.js Image](https://nextjs.org/docs/basic-features/image-optimization) component.
+
+```js
+import Image from 'next/image';
+import AspectRatio from '@mui/joy/AspectRatio';
+import mountains from '../public/mountains.jpg';
+
+function App() {
+  return (
+    <AspectRatio variant="outlined" ratio="1" objectFit="cover">
+      {/* only layout="fill" makes sense for using with AspectRatio */}
+      <Image alt="Mountains" src={mountains} layout="fill" placeholder="blur" />
+    </AspectRatio>
+  );
+}
+```
+
+:::info
+Always use `layout="fill"` on the image component, otherwise you don't need to use aspect ratio because the height is based on the image.
+:::
+
 ## Common examples
 
 ### Mobile Carousel
