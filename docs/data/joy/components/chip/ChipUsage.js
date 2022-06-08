@@ -29,12 +29,9 @@ export default function ChipUsages() {
           knob: 'switch',
           defaultValue: false,
         },
+        { propName: 'onClick', defaultValue: () => {} },
       ]}
-      renderDemo={(props) => (
-        <Chip onClick={() => {}} {...props}>
-          Chip
-        </Chip>
-      )}
+      renderDemo={(props) => <Chip {...props}>Chip</Chip>}
     />
   );
 }
