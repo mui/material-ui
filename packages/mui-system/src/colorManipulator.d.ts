@@ -1,4 +1,4 @@
-export type ColorFormat = 'rgb' | 'rgba' | 'hsl' | 'hsla';
+export type ColorFormat = 'rgb' | 'rgba' | 'hsl' | 'hsla' | 'color';
 export interface ColorObject {
   type: ColorFormat;
   values: [number, number, number] | [number, number, number, number];
