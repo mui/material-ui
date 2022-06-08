@@ -227,7 +227,10 @@ export default function transformer(file, api, options) {
         );
         importsChanged = true;
       }
-    } else if (importSource === '@material-ui/styles/makeStyles') {
+    } else if (
+      importSource === '@material-ui/styles/makeStyles' ||
+      importSource === '@mui/styles/makeStyles'
+    ) {
       foundMakeStyles = true;
       path.replace(
         j.importDeclaration(
@@ -236,7 +239,10 @@ export default function transformer(file, api, options) {
         ),
       );
       importsChanged = true;
-    } else if (importSource === '@material-ui/styles/withStyles') {
+    } else if (
+      importSource === '@material-ui/styles/withStyles' ||
+      importSource === '@mui/styles/withStyles'
+    ) {
       foundWithStyles = true;
       path.replace(
         j.importDeclaration(
