@@ -14,7 +14,7 @@ The above recording is taken from [MUI's website](https://mui.com/) when the pag
 
 ## The solution: CSS variables
 
-Ultimately, to solve this problem, we needed to think of a different styling and theming approach altogether. Joy UI comes with CSS variables supported out-of-the-box which allows every theme to be rendered at build time, given we want to set the selected mode before the broswer renders the DOM.
+Ultimately, to solve this problem, we needed to think of a different styling and theming approach altogether. Joy UI comes with CSS variables support out-of-the-box which allows every color scheme to be rendered at build time, given we want to set the selected mode before the broswer renders the DOM.
 
 Joy UI provides the `getInitColorSchemeScript()` function that enables you to integrate it with various React frameworks, such as Next.js, Gatsby, and Remix. This function must be placed before the main script so it can apply the correct stylesheet before your components are rendered.
 
