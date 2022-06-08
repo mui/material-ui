@@ -42,7 +42,7 @@ Specify the `onClick` prop on the `ChipDelete` to trigger some action.
 
 The `Chip` component contains these CSS variables to communicate with `ChipDelete` and `Avatar` components. The demo below demonstrates the customization of a chip using the variables through the `sx` prop.
 
-{{"demo": "ChipVariables.js"}}
+{{"demo": "ChipVariables.js", "hideToolbar": true}}
 
 ## With checkbox
 
