@@ -65,6 +65,7 @@ const ROUTES = {
   dataGridFeaturesComparison: FEATURE_TOGGLE.enable_redirects
     ? '/x/react-data-grid/getting-started/#feature-comparison'
     : '/components/data-grid/getting-started/#feature-comparison',
+  datePickersSpace: '/x/react-date-pickers/getting-started/',
 };
 
 export default ROUTES;

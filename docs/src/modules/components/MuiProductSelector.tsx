@@ -15,6 +15,37 @@ const shouldShowJoy =
   process.env.PULL_REQUEST ||
   FEATURE_TOGGLE.enable_joy_scope;
 
+function ProductChipsContainer({ children }: { children: React.ReactNode }) {
+  return (
+    <Box
+      sx={{
+        ml: '36px',
+        pl: 2,
+        pt: 1.5,
+        position: 'relative',
+      }}
+    >
+      <Stack
+        direction={{ xs: 'column', sm: 'row' }}
+        alignItems="flex-start"
+        spacing={1}
+        sx={{
+          '& > .MuiChip-root': {
+            position: 'initial',
+            '&:hover': {
+              '& .product-description': {
+                opacity: 1,
+              },
+            },
+          },
+        }}
+      >
+        {children}
+      </Stack>
+    </Box>
+  );
+}
+
 function ProductChip({
   selected,
   href,
@@ -107,72 +138,58 @@ export default function MuiProductSelector() {
           name="MUI Core"
           description="Ready-to-use foundational components, free forever."
         />
-        <Box
-          sx={{
-            ml: '36px',
-            pl: 2,
-            pt: 1.5,
-            position: 'relative',
-          }}
-        >
-          <Stack
-            direction={{ xs: 'column', sm: 'row' }}
-            alignItems="flex-start"
-            spacing={1}
-            sx={{
-              '& > .MuiChip-root': {
-                position: 'initial',
-                '&:hover': {
-                  '& .product-description': {
-                    opacity: 1,
-                  },
-                },
-              },
-            }}
-          >
-            <ProductChip
-              selected={product === 'material-ui'}
-              href={ROUTES.materialDocs}
-              label="Material UI"
-            />
-            {shouldShowJoy && (
-              <ProductChip selected={product === 'joy-ui'} href={ROUTES.joyDocs} label="Joy UI" />
-            )}
-            <ProductChip selected={product === 'base'} href={ROUTES.baseDocs} label="MUI Base" />
-            <ProductChip
-              selected={product === 'system'}
-              href={ROUTES.systemDocs}
-              label="MUI System"
-            />
-          </Stack>
-        </Box>
-      </Box>
-      <li role="none">
-        <Link
-          href={ROUTES.advancedComponents}
-          sx={{
-            p: 2,
-            width: '100%',
-            '&:hover': {
-              backgroundColor: (theme) =>
-                theme.palette.mode === 'dark'
-                  ? alpha(theme.palette.primaryDark[700], 0.4)
-                  : theme.palette.grey[50],
-            },
-          }}
-        >
-          <ProductSubMenu
-            role="menuitem"
-            icon={<IconImage name="product-advanced" />}
-            name={
-              <Box component="span" display="inline-flex" alignItems="center">
-                MUI&nbsp;X
-              </Box>
-            }
-            description="Advanced and powerful components for complex use cases."
+        <ProductChipsContainer>
+          <ProductChip
+            selected={product === 'material-ui'}
+            href={ROUTES.materialDocs}
+            label="Material UI"
           />
-        </Link>
-      </li>
+          {shouldShowJoy && (
+            <ProductChip selected={product === 'joy-ui'} href={ROUTES.joyDocs} label="Joy UI" />
+          )}
+          <ProductChip selected={product === 'base'} href={ROUTES.baseDocs} label="MUI Base" />
+          <ProductChip
+            selected={product === 'system'}
+            href={ROUTES.systemDocs}
+            label="MUI System"
+          />
+        </ProductChipsContainer>
+      </Box>
+      <Box
+        component="li"
+        role="none"
+        sx={{
+          p: 2,
+          borderBottom: '1px solid',
+          borderColor: (theme) =>
+            theme.palette.mode === 'dark'
+              ? alpha(theme.palette.primary[100], 0.08)
+              : theme.palette.grey[100],
+        }}
+      >
+        <ProductSubMenu
+          role="menuitem"
+          icon={<IconImage name="product-advanced" />}
+          name={
+            <Box component="span" display="inline-flex" alignItems="center">
+              MUI&nbsp;X
+            </Box>
+          }
+          description="Advanced and powerful components for complex use cases."
+        />
+        <ProductChipsContainer>
+          <ProductChip
+            selected={product === 'data-grid'}
+            href={ROUTES.dataGridSpace}
+            label="Data Grid"
+          />
+          <ProductChip
+            selected={product === 'date-pickers'}
+            href={ROUTES.datePickersSpace}
+            label="Date Pickers"
+          />
+        </ProductChipsContainer>
+      </Box>
     </React.Fragment>
   );
 }
