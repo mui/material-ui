@@ -68,6 +68,24 @@ function ProductChip({
   );
 }
 
+function ProductGroup(props: BoxProps) {
+  return (
+    <Box
+      component="li"
+      role="none"
+      sx={{
+        p: 2,
+        borderBottom: '1px solid',
+        borderColor: (theme) =>
+          theme.palette.mode === 'dark'
+            ? alpha(theme.palette.primary[100], 0.08)
+            : theme.palette.grey[100],
+      }}
+      {...props}
+    />
+  );
+}
+
 function ProductSubMenu({
   icon,
   name,
@@ -120,18 +138,7 @@ export default function MuiProductSelector() {
 
   return (
     <React.Fragment>
-      <Box
-        component="li"
-        role="none"
-        sx={{
-          p: 2,
-          borderBottom: '1px solid',
-          borderColor: (theme) =>
-            theme.palette.mode === 'dark'
-              ? alpha(theme.palette.primary[100], 0.08)
-              : theme.palette.grey[100],
-        }}
-      >
+      <ProductGroup>
         <ProductSubMenu
           role="menuitem"
           icon={<IconImage name="product-core" />}
@@ -154,19 +161,8 @@ export default function MuiProductSelector() {
             label="MUI System"
           />
         </ProductChipsContainer>
-      </Box>
-      <Box
-        component="li"
-        role="none"
-        sx={{
-          p: 2,
-          borderBottom: '1px solid',
-          borderColor: (theme) =>
-            theme.palette.mode === 'dark'
-              ? alpha(theme.palette.primary[100], 0.08)
-              : theme.palette.grey[100],
-        }}
-      >
+      </ProductGroup>
+      <ProductGroup>
         <ProductSubMenu
           role="menuitem"
           icon={<IconImage name="product-advanced" />}
@@ -189,7 +185,7 @@ export default function MuiProductSelector() {
             label="Date Pickers"
           />
         </ProductChipsContainer>
-      </Box>
+      </ProductGroup>
     </React.Fragment>
   );
 }
