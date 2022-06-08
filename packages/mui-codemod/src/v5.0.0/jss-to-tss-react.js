@@ -3,7 +3,7 @@ const ruleEndRegEx = /[^a-zA-Z0-9_]+/;
 function transformNestedKeys(j, comments, propValueNode, ruleRegEx, nestedKeys) {
   propValueNode.properties.forEach((prop) => {
     if (prop.value?.type === 'ObjectExpression') {
-      if (typeof prop.key.value === 'string') {
+      if (typeof prop.key.value === 'string' && ruleRegEx !== null) {
         let ruleIndex = prop.key.value.search(ruleRegEx);
         let searchStartIndex = 0;
         const elements = [];
@@ -66,6 +66,19 @@ function transformStylesExpression(j, comments, stylesExpression, nestedKeys, se
     objectExpression.properties.forEach((prop) => {
       if (prop.key?.name) {
         ruleNames.push(prop.key.name);
+      } else if (prop.key?.value === '@global') {
+        comments.push(
+          j.commentLine(
+            ` TODO jss-to-tss-react codemod: '@global' is not supported by tss-react.`,
+            true,
+          ),
+        );
+        comments.push(
+          j.commentLine(
+            ` See https://mui.com/material-ui/customization/how-to-customize/#4-global-css-override for alternatives.`,
+            true,
+          ),
+        );
       }
     });
     let ruleRegExString = '(';
@@ -76,7 +89,7 @@ function transformStylesExpression(j, comments, stylesExpression, nestedKeys, se
       ruleRegExString += `\\$${ruleName}`;
     });
     ruleRegExString += ')';
-    const ruleRegEx = new RegExp(ruleRegExString, 'g');
+    const ruleRegEx = ruleNames.length === 0 ? null : new RegExp(ruleRegExString, 'g');
     objectExpression.properties.forEach((prop) => {
       if (prop.value) {
         if (prop.value.type !== 'ObjectExpression') {

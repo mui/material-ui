@@ -67,7 +67,7 @@ export default function JoyVariablesDemo(props: {
           flexBasis: 240,
           flexGrow: 1,
           p: 2,
-          bgcolor: 'background.level1',
+          bgcolor: 'background.body',
           borderRadius: 'xs',
         }}
       >

@@ -14,7 +14,7 @@ import Check from '@mui/icons-material/Check';
 
 const Select = styled('select')(({ theme }) => ({
   padding: '0.25rem',
-  border: 'none',
+  border: '1px solid',
   borderRadius: theme.radius.sm,
   width: '100%',
   minHeight: '2rem',
@@ -22,7 +22,6 @@ const Select = styled('select')(({ theme }) => ({
   ...theme.variants.outlined.neutral,
   [theme.focus.selector]: {
     borderColor: theme.vars.palette.primary[500],
-    boxShadow: `inset 0 0 0 1px ${theme.vars.palette.primary[500]}`,
     outline: 'none',
   },
 }));
@@ -77,12 +76,10 @@ export default function BadgeUsage() {
   return (
     <Box
       sx={{
-        m: -1.5,
-        mt: 0.5,
         flexGrow: 1,
         maxWidth: 'calc(100% + 24px)',
         display: 'flex',
-        gap: 1.5,
+        gap: 2,
         '& .markdown-body pre': {
           margin: 0,
           borderRadius: 'xs',
@@ -118,15 +115,16 @@ export default function BadgeUsage() {
           />
         </BrandingProvider>
       </Box>
-      <Box
+      <Sheet
+        variant="outlined"
         sx={{
+          gap: 2,
+          p: 2,
+          mt: 2,
           flexGrow: 1,
           display: 'flex',
           flexWrap: 'wrap',
-          gap: 2,
-          p: 2,
-          bgcolor: 'background.level1',
-          borderRadius: 'xs',
+          borderRadius: 'sm',
         }}
       >
         <Box
@@ -141,11 +139,12 @@ export default function BadgeUsage() {
             <Typography
               component="label"
               level="body2"
-              fontWeight="lg"
+              fontWeight="xl"
               htmlFor="variant-select"
-              mb={0.5}
+              textColor="text.primary"
+              mb={1}
             >
-              variant
+              Variant
             </Typography>
             <Select
               id="variant-select"
@@ -167,10 +166,11 @@ export default function BadgeUsage() {
             <Typography
               id="badge-color-selector"
               level="body2"
-              fontWeight="lg"
+              fontWeight="xl"
+              textColor="text.primary"
               mb={1}
             >
-              color
+              Color
             </Typography>
             <RadioGroup
               row
@@ -185,7 +185,7 @@ export default function BadgeUsage() {
               }}
               sx={{ flexWrap: 'wrap', gap: 1 }}
             >
-              {['neutral', 'primary', 'danger', 'info', 'success', 'warning'].map(
+              {['primary', 'neutral', 'danger', 'info', 'success', 'warning'].map(
                 (value) => {
                   const checked = color === value;
                   return (
@@ -244,10 +244,11 @@ export default function BadgeUsage() {
             <Typography
               id="badge-size-selector"
               level="body2"
-              fontWeight="lg"
+              fontWeight="xl"
+              textColor="text.primary"
               mb={1}
             >
-              size
+              Size
             </Typography>
             <RadioGroup
               row
@@ -274,15 +275,9 @@ export default function BadgeUsage() {
                   >
                     <Radio
                       size="sm"
-                      variant="outlined"
-                      color="neutral"
-                      label={
-                        <Typography
-                          endDecorator={checked ? <Check fontSize="md" /> : null}
-                        >
-                          {value}
-                        </Typography>
-                      }
+                      variant={checked ? 'solid' : 'outlined'}
+                      color={checked ? 'primary' : null}
+                      label={<Typography>{value}</Typography>}
                       value={value}
                       disableIcon
                       overlay
@@ -311,7 +306,7 @@ export default function BadgeUsage() {
             }}
           />
         </Box>
-      </Box>
+      </Sheet>
     </Box>
   );
 }
