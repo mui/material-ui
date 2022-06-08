@@ -2,7 +2,7 @@ import * as React from 'react';
 import AspectRatio from '@mui/joy/AspectRatio';
 import Box from '@mui/joy/Box';
 import Typography from '@mui/joy/Typography';
-import Sheet from '@mui/joy/Sheet';
+import Card from '@mui/joy/Card';
 
 const data = [
   {
@@ -28,6 +28,7 @@ export default function FlexRowRatio() {
       sx={{
         display: 'flex',
         gap: 1,
+        py: 1,
         overflow: 'auto',
         width: 343,
         scrollSnapType: 'x mandatory',
@@ -38,15 +39,13 @@ export default function FlexRowRatio() {
       }}
     >
       {data.map((item) => (
-        <Sheet
+        <Card
+          row
           key={item.title}
           variant="outlined"
           sx={{
             gap: 2,
-            p: 2,
-            display: 'flex',
-            alignItems: 'center',
-            borderRadius: 'sm',
+            '--Card-padding': (theme) => theme.spacing(2),
           }}
         >
           <AspectRatio
@@ -59,7 +58,7 @@ export default function FlexRowRatio() {
             <Typography fontWeight="md">{item.title}</Typography>
             <Typography level="body2">{item.description}</Typography>
           </Box>
-        </Sheet>
+        </Card>
       ))}
     </Box>
   );
