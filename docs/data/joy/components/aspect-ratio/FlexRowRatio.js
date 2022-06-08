@@ -44,7 +44,7 @@ export default function FlexRowRatio() {
         endDecorator="px"
         type="number"
         value={flexBasis}
-        onChange={(event) => setFlexBasis(event.target.value)}
+        onChange={(event) => setFlexBasis(event.target.valueAsNumber)}
         sx={{ mx: 'auto', width: '100%' }}
       />
     </Box>
