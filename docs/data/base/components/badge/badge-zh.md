@@ -22,11 +22,11 @@ import BadgeUnstyled from '@mui/base/BadgeUnstyled';
 
 ## 徽章的可见性
 
-You can control the visibility of a `BadgeUnstyled` by using the `invisible` prop. Setting a badge to `invisible` does not actually hide it—instead, this prop adds the `MuiBadge-invisible` class to the badge, which you can target with styles to hide however you prefer:
+你可以通过prop传入一个`invisible`来控制`BadgeUnstyled`是否可见 将徽章设置为 `invisible` 本质上并不是不生效 — — 而是将其隐藏。 这个prop 添加了 `MuiBadge-invisible` 类，你可以用你喜欢的样式来隐藏它
 
 {{"demo": "BadgeVisibility.js"}}
 
-## Numerical badges
+## 数字徽章
 
 The following props are useful when `badgeContent` is a number.
 
