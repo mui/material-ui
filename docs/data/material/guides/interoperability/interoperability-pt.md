@@ -745,7 +745,7 @@ export default function SliderThumbOverrides() {
 
 [TSS](https://docs.tss-react.dev) integrates well with MUI and provide a better TypeScript support than JSS.
 
-:::info If you are updating from `@material-ui/core` (v4) to `@mui/material` (v5) checkout [migration guide](/material-ui/guides/migration-v4/#2-use-tss-react). :::
+:::info If you are updating from `@material-ui/core` (v4) to `@mui/material` (v5), check out the [tss-react section](/material-ui/migration/migrating-from-jss/#2-use-tss-react) of the Migration guide. :::
 
 ```tsx
 import { render } from 'react-dom';
