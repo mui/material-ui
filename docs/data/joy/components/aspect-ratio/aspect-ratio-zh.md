@@ -7,10 +7,10 @@ title: React Aspect Ratio component
 
 <p class="description">The Aspect Ratio component shapes the content with the specified ratio.</p>
 
-The default implementation combines `height: 0px` with percentage padding-bottom to create the proper aspect ratio of the content. (It will be replaced by the [CSS aspect-ratio](https://developer.mozilla.org/en-US/docs/Web/CSS/aspect-ratio) in the future once it has sufficient various browser support).
+The default aspect ratio implementation combines `height: 0px` with percentage padding-bottom to create the proper aspect ratio for the content. (It will be replaced by the [CSS aspect-ratio](https://developer.mozilla.org/en-US/docs/Web/CSS/aspect-ratio) in the future once it has sufficient browser support).
 
 - The content to fit the area of the aspect ratio component must be its first direct child.
-- It is designed to be composed with other components, eg. [`Card`](/joy-ui/react-card/).
+- It's designed to be composed with other components, e.g. [`Card`](/joy-ui/react-card/).
 
 ## Basic usage
 
@@ -50,10 +50,10 @@ When the aspect ratio component is placed as a child of a flexbox `row` containe
 
 Make sure to keep your content concise given the limited width real estate available. Since the texts are short, we can set `white-space: nowrap` to make the title stay in one line. The `min-width` CSS property is necessary on the aspect ratio component to prevent it from shrinking to zero.
 
-{{"demo": "CarouselRatio.js", "bg": true}}
+{{"demo": "CarouselRatio.js"}}
 
 ### List stack
 
 This is a simple illustration of composing aspect ratio with list components.
 
-{{"demo": "ListStackRatio.js", "bg": true}}
+{{"demo": "ListStackRatio.js"}}
