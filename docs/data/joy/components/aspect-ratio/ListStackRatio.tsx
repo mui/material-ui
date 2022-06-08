@@ -7,7 +7,6 @@ import ListDivider from '@mui/joy/ListDivider';
 import ListItem from '@mui/joy/ListItem';
 import ListItemContent from '@mui/joy/ListItemContent';
 import ListItemButton from '@mui/joy/ListItemButton';
-import ListItemDecorator from '@mui/joy/ListItemDecorator';
 
 const data = [
   {
@@ -39,23 +38,16 @@ export default function FlexRowRatio() {
         borderRadius: 'sm',
       }}
     >
-      <List
-        sx={{
-          py: 'var(--List-gap)',
-          '--List-decorator-width': '120px',
-        }}
-      >
+      <List sx={{ py: 'var(--List-gap)' }}>
         {data.map((item, index) => (
           <React.Fragment key={item.title}>
             <ListItem>
               <ListItemButton sx={{ gap: 2 }}>
-                <ListItemDecorator>
-                  <AspectRatio
-                    sx={{ flexBasis: 200, borderRadius: 'sm', overflow: 'auto' }}
-                  >
-                    <img src={item.src} alt={item.title} />
-                  </AspectRatio>
-                </ListItemDecorator>
+                <AspectRatio
+                  sx={{ flexBasis: 120, borderRadius: 'sm', overflow: 'auto' }}
+                >
+                  <img src={item.src} alt={item.title} />
+                </AspectRatio>
                 <ListItemContent>
                   <Typography fontWeight="md">{item.title}</Typography>
                   <Typography level="body2">{item.description}</Typography>
