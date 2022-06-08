@@ -110,7 +110,8 @@ const InputRoot = styled('div', {
   theme.variants[`${ownerState.variant!}`]?.[ownerState.color!],
   { '&:hover': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!] },
   {
-    [inputClasses.disabled]: theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
+    [`&.${inputClasses.disabled}`]:
+      theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
   },
   ownerState.variant !== 'solid' && {
     [`&.${inputClasses.focused}`]: {

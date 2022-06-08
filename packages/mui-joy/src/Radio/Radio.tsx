@@ -117,7 +117,7 @@ const RadioRadio = styled('span', {
         { '&:hover': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!] },
         { '&:active': theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!] },
         {
-          [radioClasses.disabled]:
+          [`&.${radioClasses.disabled}`]:
             theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
         },
       ]
@@ -151,7 +151,7 @@ const RadioAction = styled('span', {
         { '&:hover': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!] },
         { '&:active': theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!] },
         {
-          [radioClasses.disabled]:
+          [`&.${radioClasses.disabled}`]:
             theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
         },
       ]

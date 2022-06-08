@@ -106,7 +106,7 @@ const ChipRoot = styled('div', {
       ? [
           theme.variants[ownerState.variant!]?.[ownerState.color!],
           {
-            [chipClasses.disabled]:
+            [`&.${chipClasses.disabled}`]:
               theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
           },
         ]

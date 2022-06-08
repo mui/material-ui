@@ -51,7 +51,7 @@ const ChipDeleteRoot = styled('button', {
   { '&:hover': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!] },
   { '&:active': theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!] },
   {
-    [chipDeleteClasses.disabled]:
+    [`&.${chipDeleteClasses.disabled}`]:
       theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
   },
 ]);
