@@ -198,9 +198,6 @@ module.exports = {
         if (page.pathname.startsWith('/experiments') && !staging) {
           return;
         }
-        if (page.pathname.startsWith('/joy-ui') && !staging) {
-          return;
-        }
         // The blog is not translated
         if (
           userLanguage !== 'en' &&
