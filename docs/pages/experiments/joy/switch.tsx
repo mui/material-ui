@@ -1,5 +1,7 @@
 import * as React from 'react';
 import Box from '@mui/joy/Box';
+import List from '@mui/joy/List';
+import ListItem from '@mui/joy/ListItem';
 import Button from '@mui/joy/Button';
 import Switch from '@mui/joy/Switch';
 import Typography from '@mui/joy/Typography';
@@ -37,7 +39,7 @@ const ColorSchemePicker = () => {
 const props = {
   size: ['sm', 'md', 'lg'],
   color: ['primary', 'danger', 'info', 'success', 'warning'],
-  variant: ['outlined', 'light', 'contained'],
+  variant: ['plain', 'outlined', 'soft', 'solid'],
 } as const;
 
 export default function JoySwitch() {
@@ -133,13 +135,20 @@ export default function JoySwitch() {
             />
           </Box>
           <Box>
-            <Typography color="info.textColor">Fluent</Typography>
+            <Typography>Decorator</Typography>
+            <Switch startDecorator="Off" checked={false} />
+            <Switch endDecorator="On" checked />
+            <Switch endDecorator="On" checked disabled />
+            <Switch endDecorator="On" checked size="sm" />
+          </Box>
+          <Box>
+            <Typography color="info">Fluent</Typography>
             {(
               [
                 { checked: false, variant: 'outlined' },
-                { checked: true, variant: 'contained' },
+                { checked: true, variant: 'solid' },
                 { disabled: true, variant: 'outlined' },
-                { disabled: true, checked: true, variant: 'contained' },
+                { disabled: true, checked: true, variant: 'solid' },
               ] as const
             ).map((data, index) => (
               <Switch
@@ -174,7 +183,7 @@ export default function JoySwitch() {
             ))}
           </Box>
           <Box>
-            <Typography color="info.textColor">iOS</Typography>
+            <Typography color="info">iOS</Typography>
             {(
               [
                 { checked: false },
@@ -202,7 +211,7 @@ export default function JoySwitch() {
             ))}
           </Box>
           <Box>
-            <Typography color="info.textColor">strapi</Typography>
+            <Typography color="info">strapi</Typography>
             {(
               [
                 { checked: false, color: 'danger' },
@@ -227,13 +236,13 @@ export default function JoySwitch() {
             ))}
           </Box>
           <Box>
-            <Typography color="info.textColor">Material</Typography>
+            <Typography color="info">Material</Typography>
             {(
               [
-                { checked: false, variant: 'contained' },
-                { checked: true, variant: 'light' },
-                { disabled: true, checked: false, variant: 'contained' },
-                { disabled: true, checked: true, variant: 'light' },
+                { checked: false, variant: 'solid' },
+                { checked: true, variant: 'soft' },
+                { disabled: true, checked: false, variant: 'solid' },
+                { disabled: true, checked: true, variant: 'soft' },
               ] as const
             ).map((data, index) => (
               <Switch
@@ -265,7 +274,7 @@ export default function JoySwitch() {
             ))}
           </Box>
           <Box>
-            <Typography color="info.textColor">Chakra UI</Typography>
+            <Typography color="info">Chakra UI</Typography>
             {[
               { checked: false },
               { checked: true },
@@ -294,7 +303,7 @@ export default function JoySwitch() {
             ))}
           </Box>
           <Box>
-            <Typography color="info.textColor">Tailwind UI</Typography>
+            <Typography color="info">Tailwind UI</Typography>
             {([{ checked: false }, { checked: true, color: 'info' }] as const).map(
               (data, index) => (
                 <Switch
@@ -331,13 +340,13 @@ export default function JoySwitch() {
             ))}
           </Box>
           <Box>
-            <Typography color="info.textColor">Mantine</Typography>
+            <Typography color="info">Mantine</Typography>
             {(
               [
                 { checked: false, variant: 'outlined' },
-                { checked: true, variant: 'contained' },
+                { checked: true, variant: 'solid' },
                 { disabled: true, checked: false, variant: 'outlined' },
-                { disabled: true, checked: true, variant: 'contained' },
+                { disabled: true, checked: true, variant: 'solid' },
               ] as const
             ).map((data, index) => (
               <Switch
@@ -366,6 +375,26 @@ export default function JoySwitch() {
               />
             ))}
           </Box>
+        </Box>
+        <Box
+          sx={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
+            gap: 2,
+          }}
+        >
+          <List>
+            <ListItem>
+              <Typography component="label" htmlFor="noti" noWrap sx={{ flex: 1 }}>
+                Notifications
+              </Typography>
+              <Switch
+                componentsProps={{ input: { id: 'noti' } }}
+                endDecorator={(ownerState) => (ownerState.checked ? 'On' : 'Off')}
+                sx={{ position: 'initial' }}
+              />
+            </ListItem>
+          </List>
         </Box>
       </Box>
     </CssVarsProvider>

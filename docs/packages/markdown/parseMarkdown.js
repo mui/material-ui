@@ -10,6 +10,55 @@ const headerKeyValueRegExp = /(.*?):[\r\n]?\s+(\[[^\]]+\]|.*)/g;
 const emptyRegExp = /^\s*$/;
 
 /**
+ * Same as https://github.com/markedjs/marked/blob/master/src/helpers.js
+ * Need to duplicate because `marked` does not export `escape` function
+ */
+const escapeTest = /[&<>"']/;
+const escapeReplace = /[&<>"']/g;
+const escapeTestNoEncode = /[<>"']|&(?!#?\w+;)/;
+const escapeReplaceNoEncode = /[<>"']|&(?!#?\w+;)/g;
+const escapeReplacements = {
+  '&': '&amp;',
+  '<': '&lt;',
+  '>': '&gt;',
+  '"': '&quot;',
+  "'": '&#39;',
+};
+const getEscapeReplacement = (ch) => escapeReplacements[ch];
+function escape(html, encode) {
+  if (encode) {
+    if (escapeTest.test(html)) {
+      return html.replace(escapeReplace, getEscapeReplacement);
+    }
+  } else if (escapeTestNoEncode.test(html)) {
+    return html.replace(escapeReplaceNoEncode, getEscapeReplacement);
+  }
+
+  return html;
+}
+
+function checkUrlHealth(href, linkText, context) {
+  // Skip links that are externals to MUI
+  if (!(href[0] === '/' || href.startsWith('https://mui.com/'))) {
+    return;
+  }
+
+  const url = new URL(href, 'https://mui.com/');
+
+  if (url.host === 'mui.com' && url.pathname[url.pathname.length - 1] !== '/') {
+    throw new Error(
+      [
+        'Missing trailing slash. The following link:',
+        `[${linkText}](${href}) in ${context.location} is missing a trailing slash, please add it.`,
+        '',
+        'See https://ahrefs.com/blog/trailing-slash/ for more details.',
+        '',
+      ].join('\n'),
+    );
+  }
+}
+
+/**
  * Extract information from the top of the markdown.
  * For instance, the following input:
  *
@@ -102,14 +151,12 @@ function renderInline(markdown) {
   return marked.parseInline(markdown);
 }
 
-const externs = [
+const noSEOadvantage = [
   'https://material.io/',
   'https://getbootstrap.com/',
-  'https://www.amazon.com/',
   'https://materialdesignicons.com/',
   'https://www.w3.org/',
-  'https://devexpress.github.io/',
-  'https://ui-kit.co/',
+  'https://tailwindcss.com/',
 ];
 
 /**
@@ -194,13 +241,11 @@ function createRender(context) {
           hash,
         });
       }
-      const headingId = `heading-${hash}`;
 
       return [
-        `<h${level} id="${headingId}">`,
-        `<span class="anchor-link" id="${hash}"></span>`,
+        `<h${level} id="${hash}">`,
         headingHtml,
-        `<a aria-labelledby="${headingId}" class="anchor-link-style" href="#${hash}" tabindex="-1">`,
+        `<a aria-labelledby="${hash}" class="anchor-link-style" href="#${hash}" tabindex="-1">`,
         '<svg><use xlink:href="#anchor-link-icon" /></svg>',
         '</a>',
         `</h${level}>`,
@@ -209,11 +254,13 @@ function createRender(context) {
     renderer.link = (href, linkTitle, linkText) => {
       let more = '';
 
-      if (externs.some((domain) => href.indexOf(domain) !== -1)) {
+      if (noSEOadvantage.some((domain) => href.indexOf(domain) !== -1)) {
         more = ' target="_blank" rel="noopener nofollow"';
       }
 
       let finalHref = href;
+
+      checkUrlHealth(href, linkText, context);
 
       if (
         userLanguage !== 'en' &&
@@ -226,6 +273,25 @@ function createRender(context) {
       }
 
       return `<a href="${finalHref}"${more}>${linkText}</a>`;
+    };
+    renderer.code = (code, infostring, escaped) => {
+      // https://github.com/markedjs/marked/blob/30e90e5175700890e6feb1836c57b9404c854466/src/Renderer.js#L15
+      const lang = (infostring || '').match(/\S*/)[0];
+      const out = prism(code, lang);
+      if (out != null && out !== code) {
+        escaped = true;
+        code = out;
+      }
+
+      code = `${code.replace(/\n$/, '')}\n`;
+
+      if (!lang) {
+        return `<pre><code>${escaped ? code : escape(code, true)}</code></pre>\n`;
+      }
+
+      return `<div class="MuiCode-root"><pre><code class="language-${escape(lang, true)}">${
+        escaped ? code : escape(code, true)
+      }</code></pre><button data-ga-event-category="code" data-ga-event-action="copy-click" aria-label="Copy the code" class="MuiCode-copy">Copy <span class="MuiCode-copyKeypress"><span>or</span> $key + C</span></button></div>\n`;
     };
 
     const markedOptions = {
@@ -240,10 +306,67 @@ function createRender(context) {
       renderer,
     };
 
+    marked.use({
+      extensions: [
+        {
+          name: 'callout',
+          level: 'block',
+          start(src) {
+            const match = src.match(/:::/);
+            return match ? match.index : undefined;
+          },
+          tokenizer(src) {
+            const rule =
+              /^ {0,3}(:{3,}(?=[^:\n]*\n)|~{3,})([^\n]*)\n(?:|([\s\S]*?)\n)(?: {0,3}\1[~:]* *(?=\n|$)|$)/;
+            const match = rule.exec(src);
+            if (match) {
+              const token = {
+                type: 'callout',
+                raw: match[0],
+                text: match[3].trim(),
+                severity: match[2],
+                tokens: [],
+              };
+              this.lexer.blockTokens(token.text, token.tokens);
+              return token;
+            }
+            return undefined;
+          },
+          renderer(token) {
+            return `<aside class="MuiCallout-root MuiCallout-${token.severity}">${this.parser.parse(
+              token.tokens,
+            )}\n</aside>`;
+          },
+        },
+      ],
+    });
+
     return marked(markdown, markedOptions);
   }
 
   return render;
+}
+
+/**
+ * @param {string} product
+ * @example 'material'
+ * @param {string} componentPkg
+ * @example 'mui-base'
+ * @param {string} component
+ * @example 'ButtonUnstyled'
+ * @returns {string}
+ */
+function resolveComponentApiUrl(product, componentPkg, component) {
+  if (!product) {
+    return `/api/${kebabCase(component)}/`;
+  }
+  if (product === 'date-pickers') {
+    return `/x/api/date-pickers/${kebabCase(component)}/`;
+  }
+  if (componentPkg === 'mui-base') {
+    return `/base/api/${kebabCase(component)}/`;
+  }
+  return `/${product}/api/${kebabCase(component)}/`;
 }
 
 /**
@@ -260,28 +383,6 @@ function prepareMarkdown(config) {
    */
   const docs = {};
   const headingHashes = {};
-
-  /**
-   * @param {string} product
-   * @example 'material'
-   * @param {string} componentPkg
-   * @example 'mui-base'
-   * @param {string} component
-   * @example 'ButtonUnstyled'
-   * @returns {string}
-   */
-  function resolveComponentApiUrl(product, componentPkg, component) {
-    if (!product) {
-      return `/api/${kebabCase(component)}/`;
-    }
-    if (product === 'date-pickers') {
-      return `/x/api/date-pickers/${kebabCase(component)}/`;
-    }
-    if (componentPkg === 'mui-base') {
-      return `/base/api/${kebabCase(component)}/`;
-    }
-    return `/${product}/api/${kebabCase(component)}/`;
-  }
 
   translations
     // Process the English markdown before the other locales.
@@ -320,8 +421,9 @@ ${headers.components
   `);
       }
 
+      const location = headers.filename || `/docs${pageFilename}/${filename}`;
       const toc = [];
-      const render = createRender({ headingHashes, toc, userLanguage });
+      const render = createRender({ headingHashes, toc, userLanguage, location });
 
       const rendered = contents.map((content) => {
         if (/^"(demo|component)": "(.*)"/.test(content)) {
@@ -346,7 +448,7 @@ ${headers.components
 
       docs[userLanguage] = {
         description,
-        location: headers.filename || `/docs${pageFilename}/${filename}`,
+        location,
         rendered,
         toc,
         title,

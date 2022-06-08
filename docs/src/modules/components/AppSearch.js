@@ -326,16 +326,8 @@ export default function AppSearch() {
                 const parseUrl = document.createElement('a');
                 parseUrl.href = item.url;
 
-                let hash = parseUrl.hash;
-
-                if (['lvl2', 'lvl3'].includes(item.type)) {
-                  // remove '#heading-' from `href` url so that the link targets <span class="anchor-link"> inside <h2> or <h3>
-                  // this will make the title appear under the Header
-                  hash = hash.replace('#heading-', '#');
-                }
-
                 const { canonicalAs, canonicalPathname } = pathnameToLanguage(
-                  `${parseUrl.pathname}${hash}`,
+                  `${parseUrl.pathname}${parseUrl.hash}`,
                 );
 
                 return {

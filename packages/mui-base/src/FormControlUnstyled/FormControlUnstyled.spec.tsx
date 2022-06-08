@@ -6,7 +6,7 @@ const CustomComponent: React.FC<{ stringProp: string; numberProp: number }> = ()
 
 const FormControlUnstyledTest = () => (
   <div>
-    <FormControlUnstyled focused />
+    <FormControlUnstyled required />
     {/* @ts-expect-error */}
     <FormControlUnstyled invalidProp={0} />
 

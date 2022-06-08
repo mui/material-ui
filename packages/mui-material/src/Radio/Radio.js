@@ -35,14 +35,20 @@ const RadioRoot = styled(SwitchBase, {
     return [styles.root, styles[`color${capitalize(ownerState.color)}`]];
   },
 })(({ theme, ownerState }) => ({
-  color: theme.palette.text.secondary,
+  color: (theme.vars || theme).palette.text.secondary,
   '&:hover': {
-    backgroundColor: alpha(
-      ownerState.color === 'default'
-        ? theme.palette.action.active
-        : theme.palette[ownerState.color].main,
-      theme.palette.action.hoverOpacity,
-    ),
+    backgroundColor: theme.vars
+      ? `rgba(${
+          ownerState.color === 'default'
+            ? theme.vars.palette.action.activeChannel
+            : theme.vars.palette[ownerState.color].mainChannel
+        } / ${theme.vars.palette.action.hoverOpacity})`
+      : alpha(
+          ownerState.color === 'default'
+            ? theme.palette.action.active
+            : theme.palette[ownerState.color].main,
+          theme.palette.action.hoverOpacity,
+        ),
     // Reset on touch devices, it doesn't add specificity
     '@media (hover: none)': {
       backgroundColor: 'transparent',
@@ -50,11 +56,11 @@ const RadioRoot = styled(SwitchBase, {
   },
   ...(ownerState.color !== 'default' && {
     [`&.${radioClasses.checked}`]: {
-      color: theme.palette[ownerState.color].main,
+      color: (theme.vars || theme).palette[ownerState.color].main,
     },
   }),
   [`&.${radioClasses.disabled}`]: {
-    color: theme.palette.action.disabled,
+    color: (theme.vars || theme).palette.action.disabled,
   },
 }));
 

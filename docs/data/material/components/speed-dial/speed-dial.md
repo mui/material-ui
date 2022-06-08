@@ -4,7 +4,7 @@ title: React Speed dial component
 components: SpeedDial, SpeedDialAction, SpeedDialIcon
 githubLabel: 'component: speed dial'
 materialDesign: https://material.io/components/buttons-floating-action-button#types-of-transitions
-waiAria: https://www.w3.org/TR/wai-aria-practices/#menubutton
+waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/menubutton/
 ---
 
 # Speed dial

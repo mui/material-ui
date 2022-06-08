@@ -42,7 +42,7 @@ export type MenuListTypeMap<P = {}, D extends React.ElementType = 'ul'> = Extend
 export type MenuListClassKey = keyof NonNullable<MenuListTypeMap['props']['classes']>;
 
 /**
- * A permanently displayed menu following https://www.w3.org/TR/wai-aria-practices/#menubutton.
+ * A permanently displayed menu following https://www.w3.org/WAI/ARIA/apg/patterns/menubutton/.
  * It's exposed to help customization of the [`Menu`](https://mui.com/material-ui/api/menu/) component if you
  * use it separately you need to move focus into the component manually. Once
  * the focus is placed inside the component it is fully keyboard accessible.

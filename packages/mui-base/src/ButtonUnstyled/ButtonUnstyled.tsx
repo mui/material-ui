@@ -13,6 +13,7 @@ import {
 import useButton from './useButton';
 import appendOwnerState from '../utils/appendOwnerState';
 import { WithOptionalOwnerState } from '../utils/types';
+import resolveComponentProps from '../utils/resolveComponentProps';
 
 export interface ButtonUnstyledOwnerState extends ButtonUnstyledOwnProps {
   focusVisible: boolean;
@@ -64,11 +65,8 @@ const ButtonUnstyled = React.forwardRef(function ButtonUnstyled<
   const buttonRef = React.useRef<HTMLButtonElement | HTMLAnchorElement | HTMLElement>();
   const handleRef = useForkRef(buttonRef, forwardedRef);
 
-  const ButtonRoot: React.ElementType = component ?? components.Root ?? 'button';
-
   const { active, focusVisible, setFocusVisible, getRootProps } = useButton({
     ...props,
-    component: ButtonRoot,
     focusableWhenDisabled,
     ref: handleRef,
   });
@@ -93,13 +91,15 @@ const ButtonUnstyled = React.forwardRef(function ButtonUnstyled<
 
   const classes = useUtilityClasses(ownerState);
 
+  const ButtonRoot: React.ElementType = component ?? components.Root ?? 'button';
+  const rootComponentsProps = resolveComponentProps(componentsProps.root, ownerState);
   const buttonRootProps: WithOptionalOwnerState<ButtonUnstyledRootSlotProps> = appendOwnerState(
     ButtonRoot,
     {
       ...getRootProps(),
       ...other,
-      ...componentsProps.root,
-      className: clsx(classes.root, className, componentsProps.root?.className),
+      ...rootComponentsProps,
+      className: clsx(classes.root, className, rootComponentsProps?.className),
     },
     ownerState,
   );
@@ -134,9 +134,9 @@ ButtonUnstyled.propTypes /* remove-proptypes */ = {
   /**
    * The component used for the Root slot.
    * Either a string to use a HTML element or a component.
-   * @default 'button'
+   * This is equivalent to `components.Root`. If both are provided, the `component` is used.
    */
-  component: PropTypes.elementType,
+  component: PropTypes /* @typescript-to-proptypes-ignore */.elementType,
   /**
    * The components used for each slot inside the Button.
    * Either a string to use a HTML element or a component.
@@ -150,7 +150,7 @@ ButtonUnstyled.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   componentsProps: PropTypes.shape({
-    root: PropTypes.object,
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
    * If `true`, the component is disabled.

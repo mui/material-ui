@@ -1,11 +1,9 @@
 import * as React from 'react';
 import { OverridableStringUnion } from '@mui/types';
-import { UseSwitchProps } from '@mui/base/SwitchUnstyled';
-import { SwitchClasses } from './switchClasses';
-import { SxProps } from '../styles/defaultTheme';
-import { ColorPaletteProp, VariantProp } from '../styles/types';
+import { UseSwitchParameters } from '@mui/base/SwitchUnstyled';
+import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
 
-export type SwitchSlot = 'root' | 'input' | 'track' | 'thumb';
+export type SwitchSlot = 'root' | 'action' | 'input' | 'track' | 'thumb';
 
 export interface SwitchPropsVariantOverrides {}
 
@@ -13,9 +11,27 @@ export interface SwitchPropsColorOverrides {}
 
 export interface SwitchPropsSizeOverrides {}
 
+interface SwitchOwnerState extends UseSwitchParameters {
+  /**
+   * The color of the component. It supports those theme colors that make sense for this component.
+   * @default 'neutral'
+   */
+  color?: OverridableStringUnion<ColorPaletteProp, SwitchPropsColorOverrides>;
+  /**
+   * The size of the component.
+   * @default 'md'
+   */
+  size?: OverridableStringUnion<'sm' | 'md' | 'lg', SwitchPropsSizeOverrides>;
+  /**
+   * The variant to use.
+   * @default 'solid'
+   */
+  variant?: OverridableStringUnion<VariantProp, SwitchPropsVariantOverrides>;
+}
+
 export interface SwitchProps
-  extends UseSwitchProps,
-    Omit<React.HTMLAttributes<HTMLSpanElement>, keyof UseSwitchProps> {
+  extends SwitchOwnerState,
+    Omit<React.HTMLAttributes<HTMLSpanElement>, keyof SwitchOwnerState> {
   /**
    * Class name applied to the root element.
    */
@@ -30,31 +46,23 @@ export interface SwitchProps
    * @default {}
    */
   componentsProps?: {
+    action?: React.HTMLAttributes<HTMLDivElement>;
     thumb?: React.HTMLAttributes<HTMLSpanElement>;
     input?: React.InputHTMLAttributes<HTMLInputElement>;
     track?: React.HTMLAttributes<HTMLSpanElement>;
+    startDecorator?: React.HTMLAttributes<HTMLSpanElement>;
+    endDecorator?: React.HTMLAttributes<HTMLSpanElement>;
   };
   /**
-   * Override or extend the styles applied to the component.
+   * The element that appears at the end of the switch.
    */
-  classes?: Partial<SwitchClasses>;
+  endDecorator?: React.ReactNode | ((ownerState: SwitchOwnerState) => React.ReactNode);
   /**
-   * The color of the component. It supports those theme colors that make sense for this component.
-   * @default 'neutral'
+   * The element that appears at the end of the switch.
    */
-  color?: OverridableStringUnion<Exclude<ColorPaletteProp, 'context'>, SwitchPropsColorOverrides>;
-  /**
-   * The size of the component.
-   * @default 'md'
-   */
-  size?: OverridableStringUnion<'sm' | 'md' | 'lg', SwitchPropsSizeOverrides>;
+  startDecorator?: React.ReactNode | ((ownerState: SwitchOwnerState) => React.ReactNode);
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx?: SxProps;
-  /**
-   * The variant to use.
-   * @default 'contained'
-   */
-  variant?: OverridableStringUnion<Exclude<VariantProp, 'text'>, SwitchPropsVariantOverrides>;
 }
