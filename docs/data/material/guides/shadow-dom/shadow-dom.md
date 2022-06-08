@@ -1,12 +1,15 @@
 # Shadow DOM
 
-<p class="description"><a href="https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM" target="_blank" rel="noopener nofollow">Shadow DOM</a> can be helpful to isolate part of the app from unwanted global styles.</p>
+<p class="description">The shadow DOM lets you encapsulate parts of an app to keep them separate from global styles that target the regular DOM tree.</p>
 
-## Steps
+## How to use the shadow DOM with Material UI
 
 ### 1. Styles
 
-In order for styles to work in Shadow DOM, they need to be applied inside of the Shadow DOM:
+The shadow DOM is an API that provides a way to attach a hidden separated DOM to an element.
+This is useful when you need to keep the structure, style, and behavior of different components separate from the rest of the code on the page, to prevent conflicts.
+See [the MDN docs on the shadow DOM](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM) for more information.
+The following code snippet shows how to apply styles inside of the shadow DOM:
 
 ```tsx
 const container = document.querySelector('#root');
@@ -31,8 +34,10 @@ ReactDOM.createRoot(shadowRootElement).render(
 
 ### 2. Theme
 
-MUI components like `Menu`, `Dialog`, `Popover` and others use [React Portal](https://reactjs.org/docs/portals.html) to render a new "subtree" in a container outside of current DOM hierarchy.
-By default, this container is `document.body`. But since the styles are applied only inside of the Shadow DOM, we need to render portals inside the Shadow DOM container as well:
+MUI components like `Menu`, `Dialog`, `Popover` and others use [`Portal`](/material-ui/react-portal/) to render a new "subtree" in a container outside of current DOM hierarchy.
+By default, this container is `document.body`.
+
+But since the styles are applied only inside of the Shadow DOM, we need to render portals inside the Shadow DOM container as well:
 
 ```tsx
 const theme = createTheme({
@@ -59,6 +64,6 @@ const theme = createTheme({
 
 ## Demo
 
-In the example below you can see that component outside of the Shadow DOM is affected by global styles, while component inside of the Shadow DOM is not.
+In the example below you can see that the component outside of the shadow DOM is affected by global styles, while the component inside of the shadow DOM is not:
 
 {{"demo": "ShadowDOMDemo.js", "defaultCodeOpen": false}}
