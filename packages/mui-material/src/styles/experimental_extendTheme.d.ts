@@ -39,6 +39,34 @@ export interface Opacity {
   inputTouchBottomLine: number;
 }
 
+export type Overlays = [
+  string | undefined,
+  string | undefined,
+  string | undefined,
+  string | undefined,
+  string | undefined,
+  string | undefined,
+  string | undefined,
+  string | undefined,
+  string | undefined,
+  string | undefined,
+  string | undefined,
+  string | undefined,
+  string | undefined,
+  string | undefined,
+  string | undefined,
+  string | undefined,
+  string | undefined,
+  string | undefined,
+  string | undefined,
+  string | undefined,
+  string | undefined,
+  string | undefined,
+  string | undefined,
+  string | undefined,
+  string | undefined,
+];
+
 export interface ThemeOptions extends Omit<SystemThemeOptions, 'zIndex'> {
   mixins?: MixinsOptions;
   components?: Components<BaseTheme>;
@@ -47,6 +75,7 @@ export interface ThemeOptions extends Omit<SystemThemeOptions, 'zIndex'> {
     {
       palette?: PaletteOptions;
       opacity?: Partial<Opacity>;
+      overlays?: Overlays;
     }
   >;
   shadows?: Shadows;
@@ -60,6 +89,7 @@ interface BaseTheme extends SystemTheme {
   mixins: Mixins;
   palette: Palette;
   opacity: Opacity;
+  overlays: Overlays;
   shadows: Shadows;
   transitions: Transitions;
   typography: Typography;

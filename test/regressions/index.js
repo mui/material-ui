@@ -28,7 +28,6 @@ importRegressionFixtures.keys().forEach((path) => {
 }, []);
 
 const blacklist = [
-  'docs-joy-components-avatar/AvatarGroupVariables.png', // Redundant
   'docs-components-alert/TransitionAlerts.png', // Needs interaction
   'docs-components-app-bar/BackToTop.png', // Needs interaction
   'docs-components-app-bar/ElevateAppBar.png', // Needs interaction
@@ -163,6 +162,10 @@ const unusedBlacklistPatterns = new Set(blacklist);
 
 function excludeDemoFixture(suite, name) {
   if (/^docs-premium-themes(.*)/.test(suite)) {
+    return true;
+  }
+
+  if (suite.includes('docs-joy') && name.endsWith('Variables')) {
     return true;
   }
 
