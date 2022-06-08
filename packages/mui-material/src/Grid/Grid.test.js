@@ -1498,18 +1498,3 @@ describe('<Grid />', () => {
     });
   });
 });
-
-let menuHeader = document.querySelectorAll('div.menu_header');
-
-menuHeader.forEach((head) => {
-  head.addEventListener('click', () => {
-    const elements = document.getElementsByClassName('active_red');
-
-    if (elements[0] && head === elements[0]) {
-      head.classList.toggle('active_red');
-    } else {
-      if (elements[0]) elements[0].classList.remove('active_red');
-      head.classList.toggle('active_red');
-    }
-  });
-});
