@@ -32,6 +32,12 @@ Specify the `onClick` prop in order to enable the clickability of the `Chip` com
 
 {{"demo": "ClickableChip.js"}}
 
+## As link
+
+Pass component prop to the action slot to change from button to anchor tag. The rest of the props are spread to the DOM.
+
+{{"demo": "LinkChip.js"}}
+
 ## Clickable and Deletable
 
 Specify the `onClick` prop on the `ChipDelete` to trigger some action.
