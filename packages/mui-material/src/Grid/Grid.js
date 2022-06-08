@@ -204,9 +204,7 @@ export function resolveSpacingStyles(spacing, breakpoints, styles = {}) {
     const value = spacing[breakpoint];
 
     if (Number(value) > 0) {
-      const style = styles[`spacing-${breakpoint}-${String(value)}`];
-
-      spacingStyles.push(style);
+      spacingStyles.push(styles[`spacing-${breakpoint}-${String(value)}`]);
     }
   });
 
