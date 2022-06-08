@@ -109,6 +109,7 @@ export default function JoyUsageDemo<T extends {} = {}>({
         flexGrow: 1,
         maxWidth: 'calc(100% + 24px)',
         display: 'flex',
+        flexDirection: { xs: 'column', sm: 'row' },
         flexWrap: 'wrap',
         gap: 1.5,
         '& .markdown-body pre': {
@@ -158,6 +159,7 @@ export default function JoyUsageDemo<T extends {} = {}>({
             Props
           </Typography>
           <IconButton
+            aria-label="Reset all"
             variant="outlined"
             color="neutral"
             size="sm"
