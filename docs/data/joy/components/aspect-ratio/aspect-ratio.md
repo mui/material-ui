@@ -35,6 +35,12 @@ It has `object-fit: cover` by default.
 
 {{"demo": "MediaRatio.js"}}
 
+## Placeholder
+
+When the media does not exist, you can render a placeholder inside an aspect ratio component. Wrap the placeholder with a `<div>` or `Box` component to center the content.
+
+{{"demo": "PlaceholderAspectRatio.js"}}
+
 ## Controlling the height
 
 Use `minHeight` and `maxHeight` to set the lower and upper bound of the component's height.

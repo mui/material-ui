@@ -60,6 +60,9 @@ const AspectRatioContent = styled('div', {
     overflow: 'hidden',
     // use data-attribute instead of :first-child to support zero config SSR (emotion)
     '& > [data-first-child]': {
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
       boxSizing: 'border-box',
       position: 'absolute',
       width: '100%',
