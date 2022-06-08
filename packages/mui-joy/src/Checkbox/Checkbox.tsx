@@ -55,11 +55,6 @@ const CheckboxRoot = styled('span', {
     '--Checkbox-gap': '0.625rem',
     fontSize: theme.vars.fontSize.lg,
   }),
-  ...(ownerState.label &&
-    !ownerState.disableIcon && {
-      // add some space at the end to not have focus overlapping the label
-      paddingInlineEnd: 'var(--Checkbox-gap)',
-    }),
   position: ownerState.overlay ? 'initial' : 'relative',
   display: 'inline-flex',
   fontFamily: theme.vars.fontFamily.body,
