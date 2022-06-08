@@ -58,7 +58,7 @@ const InputRoot = styled('div', {
       '--Input-minHeight': '3rem',
       '--Input-paddingInline': '1rem',
       '--Input-gap': '0.75rem',
-      '--Input-decorator-childHeight': 'min(2.5rem, var(--Input-minHeight))',
+      '--Input-decorator-childHeight': 'min(2.375rem, var(--Input-minHeight))',
       '--Icon-fontSize': '1.75rem',
     }),
     // variables for controlling child components
@@ -161,6 +161,7 @@ const InputStartDecorator = styled('span', {
   '--Icon-margin': '0 0 0 calc(var(--Input-paddingInline) / -4)',
   pointerEvents: 'none', // to make the input focused when click on the element because start element usually is an icon
   display: 'inherit',
+  alignItems: 'center',
   marginInlineEnd: 'var(--Input-gap)',
   color: theme.vars.palette.text.tertiary,
   ...(ownerState.focused && {
@@ -175,8 +176,9 @@ const InputEndDecorator = styled('span', {
 })<{ ownerState: InputProps & InputUnstyledOwnerState }>(({ theme, ownerState }) => ({
   '--Button-margin': '0 calc(var(--Input-decorator-childOffset) * -1) 0 0',
   '--IconButton-margin': '0 calc(var(--Input-decorator-childOffset) * -1) 0 0',
-  '--Icon-margin': '0 calc(var(--Chip-paddingInline) / -4) 0 0',
+  '--Icon-margin': '0 calc(var(--Input-paddingInline) / -4) 0 0',
   display: 'inherit',
+  alignItems: 'center',
   marginInlineStart: 'var(--Input-gap)',
   color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Color`],
 }));
