@@ -15,6 +15,28 @@ const shouldShowJoy =
   process.env.PULL_REQUEST ||
   FEATURE_TOGGLE.enable_joy_scope;
 
+function ProductChip({
+  selected,
+  href,
+  label,
+}: {
+  selected: boolean;
+  href: string;
+  label: string;
+}) {
+  return (
+    <Chip
+      color={selected ? 'default' : undefined}
+      variant={selected ? 'filled' : 'outlined'}
+      component={Link}
+      href={href}
+      label={label}
+      clickable
+      size="small"
+    />
+  );
+}
+
 function ProductSubMenu({
   icon,
   name,
@@ -108,43 +130,19 @@ export default function MuiProductSelector() {
               },
             }}
           >
-            <Chip
-              color={product === 'material-ui' ? 'default' : undefined}
-              variant={product === 'material-ui' ? 'filled' : 'outlined'}
-              component={Link}
+            <ProductChip
+              selected={product === 'material-ui'}
               href={ROUTES.materialDocs}
-              label={<React.Fragment>Material UI </React.Fragment>}
-              clickable
-              size="small"
+              label="Material UI"
             />
             {shouldShowJoy && (
-              <Chip
-                color={product === 'joy-ui' ? 'default' : undefined}
-                variant={product === 'joy-ui' ? 'filled' : 'outlined'}
-                component={Link}
-                href={ROUTES.joyDocs}
-                label={<React.Fragment>Joy UI </React.Fragment>}
-                clickable
-                size="small"
-              />
+              <ProductChip selected={product === 'joy-ui'} href={ROUTES.joyDocs} label="Joy UI" />
             )}
-            <Chip
-              color={product === 'base' ? 'default' : undefined}
-              variant={product === 'base' ? 'filled' : 'outlined'}
-              component={Link}
-              href={ROUTES.baseDocs}
-              label={<React.Fragment>MUI Base </React.Fragment>}
-              clickable
-              size="small"
-            />
-            <Chip
-              color={product === 'system' ? 'default' : undefined}
-              variant={product === 'system' ? 'filled' : 'outlined'}
-              component={Link}
+            <ProductChip selected={product === 'base'} href={ROUTES.baseDocs} label="MUI Base" />
+            <ProductChip
+              selected={product === 'system'}
               href={ROUTES.systemDocs}
-              label={<React.Fragment>MUI System </React.Fragment>}
-              clickable
-              size="small"
+              label="MUI System"
             />
           </Stack>
         </Box>
