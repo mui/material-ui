@@ -24,7 +24,7 @@ const customIcons = {
     label: 'Dissatisfied',
   },
   3: {
-    icon: <SentimentSatisfiedIcon color="primary" />,
+    icon: <SentimentSatisfiedIcon color="warning" />,
     label: 'Neutral',
   },
   4: {
