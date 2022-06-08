@@ -85,7 +85,7 @@ It provides only React component functionality and accessibility features withou
 
 Since it doesn't rely on any specific styling solution, you can pick a method that best fits your needs, from pure CSS to CSS-in-JS.
 
-For more details, check out the [unstyled components page](/material-ui/customization/unstyled-components/)
+For more details, check out the [unstyled components page](/base/getting-started/overview/)
 
 ## Design system
 

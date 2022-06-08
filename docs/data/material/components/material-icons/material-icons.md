@@ -12,7 +12,7 @@ githubLabel: 'package: icons'
 
 The following npm package,
 [@mui/icons-material](https://www.npmjs.com/package/@mui/icons-material),
-includes the 2,000+ official [Material icons](https://fonts.google.com/icons) converted to [`SvgIcon`](/material-ui/api/svg-icon/) components.
+includes the 2,000+ official [Material Icons](https://fonts.google.com/icons?icon.set=Material+Icons) converted to [`SvgIcon`](/material-ui/api/svg-icon/) components.
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 

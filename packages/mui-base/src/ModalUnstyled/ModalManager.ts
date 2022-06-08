@@ -225,7 +225,7 @@ export default class ModalManager {
     }
   }
 
-  remove(modal: Modal): number {
+  remove(modal: Modal, ariaHiddenState = true): number {
     const modalIndex = this.modals.indexOf(modal);
 
     if (modalIndex === -1) {
@@ -250,7 +250,7 @@ export default class ModalManager {
 
       if (modal.modalRef) {
         // In case the modal wasn't in the DOM yet.
-        ariaHidden(modal.modalRef, true);
+        ariaHidden(modal.modalRef, ariaHiddenState);
       }
 
       ariaHiddenSiblings(

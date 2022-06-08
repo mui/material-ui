@@ -356,7 +356,7 @@ export default function useAutocomplete(props) {
     }
 
     // Scroll active descendant into view.
-    // Logic copied from https://www.w3.org/TR/wai-aria-practices/examples/listbox/js/listbox.js
+    // Logic copied from https://www.w3.org/WAI/ARIA/apg/example-index/combobox/js/select-only.js
     //
     // Consider this API instead once it has a better browser support:
     // .scrollIntoView({ scrollMode: 'if-needed', block: 'nearest' });

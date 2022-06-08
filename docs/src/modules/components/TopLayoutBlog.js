@@ -219,7 +219,7 @@ function TopLayoutBlog(props) {
             {...(ROUTES.blog.startsWith('http') && {
               rel: 'nofollow',
             })}
-            color="text.secondary"
+            color="primary"
             variant="body2"
             className={classes.back}
           >
@@ -246,8 +246,8 @@ function TopLayoutBlog(props) {
                     <Avatar
                       sx={{ width: 36, height: 36 }}
                       alt=""
-                      src={`${authors[author].avatar}?s=${32}`}
-                      srcSet={`${authors[author].avatar}?s=${32 * 2} 2x`}
+                      src={`${authors[author].avatar}?s=${36}`}
+                      srcSet={`${authors[author].avatar}?s=${36 * 2} 2x`}
                     />
                     <div>
                       <Typography variant="body2" fontWeight="500">
@@ -257,7 +257,7 @@ function TopLayoutBlog(props) {
                         href={`https://github.com/${authors[author].github}`}
                         target="_blank"
                         rel="noreferrer noopener"
-                        color="text.secondary"
+                        color="primary"
                         variant="body2"
                         sx={{ fontWeight: 500 }}
                       >

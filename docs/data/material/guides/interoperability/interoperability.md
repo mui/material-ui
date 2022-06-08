@@ -766,8 +766,7 @@ if you like the hook-based API (`makeStyles` → `useStyles`) that [`react-jss`]
 TypeScript support than JSS.
 
 :::info
-If you are updating from `@material-ui/core` (v4) to `@mui/material` (v5) checkout
-[migration guide](/material-ui/guides/migration-v4/#2-use-tss-react).
+If you are updating from `@material-ui/core` (v4) to `@mui/material` (v5), check out the [tss-react section](/material-ui/migration/migrating-from-jss/#2-use-tss-react) of the Migration guide.
 :::
 
 ```tsx

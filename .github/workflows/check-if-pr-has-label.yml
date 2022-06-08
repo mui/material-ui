@@ -1,0 +1,16 @@
+name: Check if PR has label
+
+on:
+  pull_request:
+    types: [opened, reopened, labeled, unlabeled]
+
+jobs:
+  test-label-applied:
+  # Tests that label is added on the PR
+    runs-on: ubuntu-latest
+    steps:
+      - uses: mnajdova/github-action-required-labels@v2.0
+        with:
+          mode: minimum
+          count: 1
+          labels: ""

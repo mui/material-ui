@@ -4,7 +4,7 @@
 
 ## Tamanho do pacote importa
 
-O tamanho do pacote do Material UI é levado muito a sério. Fotos contendo o tamanho do pacote são feitas em cada commit e partes críticas dos pacotes([veja a última foto](/size-snapshot)). Combinado com [dangerJS](https://danger.systems/js/) podemos inspecionar [alterações detalhadas no tamanho do pacote](https://github.com/mui/material-ui/pull/14638#issuecomment-466658459) em cada solicitação de Pull Request.
+O tamanho do pacote do Material UI é levado muito a sério. Fotos contendo o tamanho do pacote são feitas em cada commit e partes críticas dos pacotes([veja a última foto](/size-snapshot/)). Combinado com [dangerJS](https://danger.systems/js/) podemos inspecionar [alterações detalhadas no tamanho do pacote](https://github.com/mui/material-ui/pull/14638#issuecomment-466658459) em cada solicitação de Pull Request.
 
 ## Quando e como usar tree-shaking?
 
