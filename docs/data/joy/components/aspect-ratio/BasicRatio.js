@@ -10,12 +10,7 @@ export default function BasicRatio() {
       sx={{ width: 300, borderRadius: 'md', overflow: 'auto' }}
     >
       <AspectRatio>
-        <Typography
-          level="h2"
-          sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-        >
-          16 : 9
-        </Typography>
+        <Typography level="h2">16 : 9</Typography>
       </AspectRatio>
     </Sheet>
   );
