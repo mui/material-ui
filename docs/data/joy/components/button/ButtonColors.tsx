@@ -16,9 +16,10 @@ export default function ButtonColors() {
         flexDirection: 'row',
         overflow: 'auto',
         width: '100%',
+        gap: 2,
       }}
     >
-      <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2 }}>
+      <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2, '& > *': { flex: 1 } }}>
         <Button variant={variant} color="primary">
           Primary
         </Button>
