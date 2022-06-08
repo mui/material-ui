@@ -2,7 +2,6 @@
 product: joy-ui
 title: React Chip component
 githubLabel: 'component: chip'
-unstyled: /base/react-chip/
 ---
 
 # Chip
