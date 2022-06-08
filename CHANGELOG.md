@@ -2000,7 +2000,7 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 - &#8203;<!-- 33 -->[core] Add `experiments` index page (#29582) @siriwatknp
 - &#8203;<!-- 32 -->[core] Move s3 bucket ownership to mui-org (#29609) @eps1lon
 - &#8203;<!-- 31 -->[core] Improve support request message (#29614) @mnajdova
-- &#8203;<!-- 30 -->[core] Use support request Github Action (#29594) @mnajdova
+- &#8203;<!-- 30 -->[core] Use support request GitHub Action (#29594) @mnajdova
 - &#8203;<!-- 29 -->[core] Remove unused `getJsxPreview` util (#29586) @ZeeshanTamboli
 - &#8203;<!-- 28 -->[core] Use GitHub issue forms (#28038) @oliviertassinari
 - &#8203;<!-- 26 -->[core] Add playground (#29423) @oliviertassinari
@@ -6055,7 +6055,7 @@ A big thanks to the 24 contributors who made this release possible. Here are som
 - [docs] Fix duplicated styles generated from emotion (#23809) @mnajdova
 - [docs] Fix icon alignment in /components/breadcrumbs (#23818) @eps1lon
 - [docs] Fix production deploy (#23963) @eps1lon
-- [docs] Fix source on Github links (#23821) @praveenkumar-kalidass
+- [docs] Fix source on GitHub links (#23821) @praveenkumar-kalidass
 - [docs] Fix StickyHeaderTable round borders (#23882) @antoniopacheco
 - [docs] Fix typo in date picker dayjs adapter name (#23935) @andresmrm
 - [docs] Improve system properties page (#23961) @mnajdova
