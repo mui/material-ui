@@ -33,6 +33,7 @@ import { TextFieldProps, TextFieldSlot } from '../TextField/TextFieldProps';
 import { TypographyProps, TypographySlot } from '../Typography/TypographyProps';
 import { ChipProps, ChipSlot } from '../Chip/ChipProps';
 import { ChipDeleteProps, ChipDeleteSlot } from '../ChipDelete/ChipDeleteProps';
+import { SliderProps, SliderSlot } from '../Slider/SliderProps';
 import { RadioProps, RadioSlot } from '../Radio/RadioProps';
 import { RadioGroupProps, RadioGroupSlot } from '../RadioGroup/RadioGroupProps';
 
@@ -180,6 +181,10 @@ export interface Components<Theme = unknown> {
   JoySvgIcon?: {
     defaultProps?: Partial<SvgIconProps>;
     styleOverrides?: OverridesStyleRules<SvgIconSlot, SvgIconProps, Theme>;
+  };
+  JoySlider?: {
+    defaultProps?: Partial<SliderProps>;
+    styleOverrides?: OverridesStyleRules<SliderSlot, SliderProps, Theme>;
   };
   JoyTextField?: {
     defaultProps?: Partial<TextFieldProps>;

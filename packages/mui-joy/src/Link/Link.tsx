@@ -62,6 +62,11 @@ const LinkRoot = styled('a', {
     {
       '--Icon-fontSize': '1.25em',
       ...(ownerState.level && ownerState.level !== 'inherit' && theme.typography[ownerState.level]),
+      ...(ownerState.level === 'inherit' && {
+        fontSize: 'inherit',
+        fontFamily: 'inherit',
+        lineHeight: 'inherit',
+      }),
       ...(ownerState.underline === 'none' && {
         textDecoration: 'none',
       }),
@@ -140,14 +145,18 @@ const LinkRoot = styled('a', {
 });
 
 const Link = React.forwardRef(function Link(inProps, ref) {
-  const { color = 'primary', ...themeProps } = useThemeProps<typeof inProps & LinkProps>({
+  const {
+    color = 'primary',
+    textColor,
+    ...themeProps
+  } = useThemeProps<typeof inProps & LinkProps>({
     props: inProps,
     name: 'JoyLink',
   });
 
   const nested = React.useContext(TypographyContext);
 
-  const props = extendSxProp(themeProps) as LinkProps;
+  const props = extendSxProp({ ...themeProps, color: textColor }) as LinkProps;
 
   const {
     className,
@@ -304,6 +313,10 @@ Link.propTypes /* remove-proptypes */ = {
     PropTypes.func,
     PropTypes.object,
   ]),
+  /**
+   * The system color.
+   */
+  textColor: PropTypes /* @typescript-to-proptypes-ignore */.any,
   /**
    * Controls when the link should have an underline.
    * @default 'hover'
