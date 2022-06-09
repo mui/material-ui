@@ -284,21 +284,23 @@ index 791a7da1f4..a5db13b414 100644
 
 Alternatively, you can open the Netlify preview of the documentation, and open any demo in Codesandbox. The documentation automatically configures the dependencies to use the preview packages.
 
-You can also package and test your changes locally. 
-The following example shows how to package `@mui/material`:
+You can also package and test your changes locally.
+The following example shows how to package `@mui/material` (you can package any mui module with the following steps).
 
 ```
+$> cd packages/mui-material # or path to any other mui package
 $packages\mui-material> yarn build
-$packages\mui-material> cd build
+$packages\mui-material> cd ./build
 $packages\mui-material> npm pack
 ```
 
-This will create a `mui-material-x.x.x.tar.gz` file in the build folder. 
-Copy the file and move it to the project you want to test in, then run:
+Navigate to the build folder of your respective package and find a file with the following format `mui-material-x.x.x.tar.gz`. Copy this file and move it to the project you want to test in, then run:
 
 ```
-$test-project> npm i ./mui-material-x.x.x.tar.gz
+$test-project> npm i ./path-to-file/mui-material-x.x.x.tar.gz
 ```
+
+**NOTE**: If you have already installed a package, your changes will not be reflected when you reinstall it. A quick fix for this would be to temporarily bump the version number in your `package.json` before running `yarn build`.
 
 ## Translations
 
