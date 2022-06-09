@@ -14,9 +14,9 @@ githubLabel: 'component: avatar'
 
 The avatar applies Joy UI's global variant tokens－which has `soft` and `neutral` as default values for variant and color, respectively.
 
-{{"demo": "AvatarVariantsAndColors.js"}}
+{{"demo": "AvatarUsage.js", "hideToolbar": true}}
 
-## Image
+## 图像
 
 Image avatar can be created by passing standard html `img` props (e.g. `src` or `srcSet`) to the component.
 
