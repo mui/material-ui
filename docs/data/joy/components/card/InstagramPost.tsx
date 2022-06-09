@@ -90,11 +90,22 @@ export default function InstagramPost() {
           </IconButton>
         </Box>
       </Box>
-      <Link component="button" color="neutral" fontSize="sm" fontWeight="lg">
+      <Link
+        component="button"
+        underline="none"
+        fontSize="sm"
+        fontWeight="lg"
+        textColor="text.primary"
+      >
         8.1M Likes
       </Link>
       <Typography fontSize="sm">
-        <Link component="button" color="neutral" fontWeight="lg">
+        <Link
+          component="button"
+          color="neutral"
+          fontWeight="lg"
+          textColor="text.primary"
+        >
           MUI
         </Link>{' '}
         The React component library you always wanted

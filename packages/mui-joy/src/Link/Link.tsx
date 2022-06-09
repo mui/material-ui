@@ -11,7 +11,7 @@ import {
 import { unstable_extendSxProp as extendSxProp } from '@mui/system';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
-import { getLinkUtilityClass } from './linkClasses';
+import linkClasses, { getLinkUtilityClass } from './linkClasses';
 import { LinkProps, LinkTypeMap } from './LinkProps';
 import { TypographyContext } from '../Typography/Typography';
 
@@ -101,11 +101,11 @@ const LinkRoot = styled('a', {
             marginInline: '-0.25em',
           }
         : {
-            color: theme.vars.palette[ownerState.color!]?.plainColor,
+            color: `rgba(${theme.vars.palette[ownerState.color!]?.mainChannel} / 1)`,
             cursor: 'pointer',
             '&.Mui-disabled': {
               pointerEvents: 'none',
-              color: theme.vars.palette[ownerState.color!]?.plainDisabledColor,
+              color: `rgba(${theme.vars.palette[ownerState.color!]?.mainChannel} / 0.6)`,
             },
           }),
       userSelect: 'none',
@@ -137,10 +137,13 @@ const LinkRoot = styled('a', {
             [theme.focus.selector]: theme.focus.default,
           }),
     },
-    ownerState.variant && theme.variants[ownerState.variant]?.[ownerState.color!],
-    ownerState.variant && theme.variants[`${ownerState.variant}Hover`]?.[ownerState.color!],
-    ownerState.variant && theme.variants[`${ownerState.variant}Active`]?.[ownerState.color!],
-    ownerState.variant && theme.variants[`${ownerState.variant}Disabled`]?.[ownerState.color!],
+    ownerState.variant && {
+      ...theme.variants[ownerState.variant]?.[ownerState.color!],
+      '&:hover': theme.variants[`${ownerState.variant}Hover`]?.[ownerState.color!],
+      '&:active': theme.variants[`${ownerState.variant}Active`]?.[ownerState.color!],
+      [`&.${linkClasses.disabled}`]:
+        theme.variants[`${ownerState.variant}Disabled`]?.[ownerState.color!],
+    },
   ];
 });
 
