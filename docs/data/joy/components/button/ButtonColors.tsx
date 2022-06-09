@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { VariantProp } from '@mui/joy/styles';
 import Box from '@mui/joy/Box';
+import Sheet from '@mui/joy/Sheet';
 import Button from '@mui/joy/Button';
 import RadioGroup from '@mui/joy/RadioGroup';
 import Radio from '@mui/joy/Radio';
@@ -10,51 +11,63 @@ export default function ButtonColors() {
   const [variant, setVariant] = React.useState<VariantProp>('solid');
   return (
     <Box
-      sx={{ display: 'flex', gap: 2, justifyContent: 'center', flexWrap: 'wrap' }}
+      sx={{
+        display: 'flex',
+        flexDirection: 'row',
+        overflow: 'auto',
+        width: '100%',
+      }}
     >
-      <Box
+      <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2 }}>
+        <Button variant={variant} color="primary">
+          Primary
+        </Button>
+        <Button variant={variant} color="neutral">
+          Neutral
+        </Button>
+        <Button variant={variant} color="danger">
+          Danger
+        </Button>
+        <Button variant={variant} color="info">
+          Info
+        </Button>
+        <Button variant={variant} color="success">
+          Success
+        </Button>
+        <Button variant={variant} color="warning">
+          Warning
+        </Button>
+      </Box>
+      <Sheet
+        variant="outlined"
         sx={{
-          mb: 2,
-          width: '100%',
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
+          p: 2,
+          borderRadius: 'sm',
         }}
       >
-        <Typography fontWeight="lg" mr={2} id="variant-label">
+        <Typography
+          level="body2"
+          fontWeight="xl"
+          id="variant-label"
+          textColor="text.primary"
+          mb={2}
+        >
           Variant:
         </Typography>
         <RadioGroup
+          size="sm"
           aria-labelledby="variant-label"
           name="variant"
           row
           value={variant}
           onChange={(event) => setVariant(event.target.value as VariantProp)}
         >
-          <Radio label="Plain" value="plain" />
-          <Radio label="Outlined" value="outlined" />
-          <Radio label="Soft" value="soft" />
           <Radio label="Solid" value="solid" />
+          <Radio label="Soft" value="soft" />
+          <Radio label="Outlined" value="outlined" />
+          <Radio label="Plain" value="plain" />
         </RadioGroup>
-      </Box>
-      <Button variant={variant} color="primary">
-        Primary
-      </Button>
-      <Button variant={variant} color="neutral">
-        Neutral
-      </Button>
-      <Button variant={variant} color="danger">
-        Danger
-      </Button>
-      <Button variant={variant} color="info">
-        Info
-      </Button>
-      <Button variant={variant} color="success">
-        Success
-      </Button>
-      <Button variant={variant} color="warning">
-        Warning
-      </Button>
+      </Sheet>
     </Box>
   );
 }

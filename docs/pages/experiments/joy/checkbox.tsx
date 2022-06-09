@@ -270,12 +270,12 @@ export default function JoyCheckbox() {
             </Typography>
             <Box role="group" aria-labelledby="filter-status">
               <List
-                sx={{
+                sx={(theme) => ({
                   '--List-item-radius': '4px',
-                  '[data-mui-color-scheme="light"] &': {
+                  [theme.getColorSchemeSelector('light')]: {
                     '--joy-palette-neutral-lightBg': 'var(--joy-palette-neutral-50)',
                   },
-                }}
+                })}
               >
                 <ListItem variant="soft" color="danger">
                   <Checkbox label="Declined Payment" color="danger" checked overlay />
@@ -320,17 +320,17 @@ export default function JoyCheckbox() {
             </Typography>
             <Box role="group" aria-labelledby="member">
               <List
-                sx={{
+                sx={(theme) => ({
                   '--List-item-radius': '4px',
                   '& .MuiCheckbox-root': {
                     mr: 'auto',
                     alignItems: 'center',
                     '--Checkbox-gap': '12px',
                   },
-                  '[data-mui-color-scheme="light"] &': {
+                  [theme.getColorSchemeSelector('light')]: {
                     '--joy-palette-neutral-lightBg': 'var(--joy-palette-neutral-50)',
                   },
-                }}
+                })}
               >
                 <ListItem>
                   <Checkbox disabled label="Friedrich Oberbrunner" overlay />

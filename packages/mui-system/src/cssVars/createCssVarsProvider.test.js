@@ -198,7 +198,7 @@ describe('createCssVarsProvider', () => {
       fireEvent.click(screen.getByRole('button', { name: 'change to dark' }));
 
       expect(screen.getByTestId('current-color-scheme').textContent).to.equal('dark');
-      expect(document.documentElement.getAttribute('data-mui-color-scheme')).to.equal('dark');
+      expect(document.documentElement.getAttribute(DEFAULT_ATTRIBUTE)).to.equal('dark');
     });
 
     it('display error if non-existed colorScheme is set', () => {

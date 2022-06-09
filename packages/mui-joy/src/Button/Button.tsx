@@ -73,13 +73,13 @@ const ButtonRoot = styled('button', {
         '--Icon-fontSize': '1.5rem', // control the SvgIcon font-size
         '--Button-paddingInline': '1.5rem', // gutter is the padding-x
         minHeight: 'var(--Button-minHeight, 2.5rem)', // use min-height instead of height to make the button resilient to its content
-        fontSize: theme.vars.fontSize.md,
+        fontSize: theme.vars.fontSize.sm,
       }),
       ...(ownerState.size === 'lg' && {
         '--Icon-fontSize': '1.75rem',
         '--Button-paddingInline': '2rem',
         minHeight: 'var(--Button-minHeight, 3rem)',
-        fontSize: theme.vars.fontSize.lg,
+        fontSize: theme.vars.fontSize.md,
       }),
       '--Button-gap': 'clamp(0.25rem, var(--Button-paddingInline) * 0.5, 0.5rem)', // gap between start/end icon and content [0.25rem, x, 0.5rem]
       paddingBlock: 'calc(0.25rem - var(--variant-borderWidth))', // the padding-block act as a minimum spacing between content and root element
@@ -93,6 +93,7 @@ const ButtonRoot = styled('button', {
       alignItems: 'center',
       justifyContent: 'center',
       position: 'relative',
+      textDecoration: 'none', // prevent user agent underline when used as anchor
       // TODO: discuss the transition approach in a separate PR. This value is copied from mui-material Button.
       transition:
         'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',

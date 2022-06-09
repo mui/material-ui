@@ -133,6 +133,13 @@ export interface PopoverActions {
   updatePosition(): void;
 }
 
+export function getOffsetTop(rect: DOMRect, vertical: number | 'center' | 'bottom' | 'top'): number;
+
+export function getOffsetLeft(
+  rect: DOMRect,
+  horizontal: number | 'center' | 'right' | 'left',
+): number;
+
 /**
  *
  * Demos:
