@@ -27,12 +27,12 @@ export interface MergeSlotPropsParameters<
   /**
    * Props provided to the `componentsProps.*` of the unstyled component.
    */
-  externalSlotProps?: WithClassName<ExternalForwardedProps>;
+  externalSlotProps?: WithClassName<ExternalSlotProps>;
   /**
    * Extra props placed on the unstyled component that should be forwarded to the slot.
    * This should usually be used only for the root slot.
    */
-  externalForwardedProps?: WithClassName<ExternalSlotProps>;
+  externalForwardedProps?: WithClassName<ExternalForwardedProps>;
   /**
    * Additional props to be placed on the slot.
    */
@@ -91,10 +91,10 @@ export default function mergeSlotProps<
     // The simpler case - getSlotProps is not defined, so no internal event handlers are defined,
     // so we can simply merge all the props without having to worry about extracting event handlers.
     const joinedClasses = clsx(
-      className,
-      additionalProps?.className,
       externalForwardedProps?.className,
       externalSlotProps?.className,
+      className,
+      additionalProps?.className,
     );
 
     const props = {
@@ -128,11 +128,11 @@ export default function mergeSlotProps<
 
   const internalSlotProps = getSlotProps(eventHandlers);
   const joinedClasses = clsx(
-    className,
-    internalSlotProps?.className,
-    additionalProps?.className,
     externalForwardedProps?.className,
     externalSlotProps?.className,
+    className,
+    additionalProps?.className,
+    internalSlotProps?.className,
   );
 
   const props = {

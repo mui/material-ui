@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { HTMLElementType, refType, unstable_useForkRef as useForkRef } from '@mui/utils';
+import { HTMLElementType, refType } from '@mui/utils';
 import MenuUnstyledContext, { MenuUnstyledContextType } from './MenuUnstyledContext';
 import {
   MenuUnstyledOwnerState,
@@ -92,12 +92,11 @@ const MenuUnstyled = React.forwardRef(function MenuUnstyled(
       open,
       keepMounted,
       role: undefined,
+      ref: forwardedRef,
     },
     className: clsx(classes.root, className),
     ownerState,
   }) as MenuUnstyledRootSlotProps;
-
-  rootProps.ref = useForkRef(rootProps.ref, forwardedRef);
 
   const Listbox = components.Listbox ?? 'ul';
   const listboxProps = useSlotProps({

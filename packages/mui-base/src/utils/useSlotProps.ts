@@ -37,14 +37,11 @@ export type UseSlotPropsResult<
   ExternalSlotProps,
   AdditionalProps,
   OwnerState,
-> = SlotProps &
-  ExternalSlotProps &
-  ExternalForwardedProps &
-  AdditionalProps & {
-    className?: string | undefined;
-  } & {
-    ownerState?: OwnerState | undefined;
-  };
+> = Omit<SlotProps & ExternalSlotProps & ExternalForwardedProps & AdditionalProps, 'ref'> & {
+  className?: string | undefined;
+  ownerState?: OwnerState | undefined;
+  ref: (instance: any | null) => void;
+};
 
 /**
  * Builds the props to be passed into the slot of an unstyled component.
@@ -64,7 +61,7 @@ export default function useSlotProps<
     SlotProps,
     ExternalForwardedProps,
     WithRef<ExternalSlotProps>,
-    AdditionalProps,
+    WithRef<AdditionalProps>,
     OwnerState
   >,
 ) {
@@ -77,7 +74,13 @@ export default function useSlotProps<
 
   const props = appendOwnerState(
     elementType,
-    { ...merged.props, ref: useForkRef(merged.internalRef, resolvedComponentsProps?.ref) },
+    {
+      ...merged.props,
+      ref: useForkRef(
+        merged.internalRef,
+        useForkRef(resolvedComponentsProps?.ref, parameters.additionalProps?.ref),
+      ),
+    },
     ownerState,
   );
 
