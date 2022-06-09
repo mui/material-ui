@@ -12,7 +12,7 @@ export default function ClickableChip() {
         color="neutral"
         size="lg"
         startDecorator={<Avatar size="sm" src={`/static/images/avatar/1.jpg`} />}
-        endDecorator={<CheckIcon fontSize="md" sx={{ mr: 0.25 }} />}
+        endDecorator={<CheckIcon fontSize="md" />}
         onClick={() => alert('You clicked the Joy Chip!')}
       >
         Mark

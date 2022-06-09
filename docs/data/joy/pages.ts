@@ -1,20 +1,22 @@
 const pages = [
   {
     pathname: '/joy-ui/getting-started',
+    scopePathnames: ['/joy-ui/core-features'],
     icon: 'DescriptionIcon',
     children: [
       { pathname: '/joy-ui/getting-started/overview' },
       { pathname: '/joy-ui/getting-started/usage' },
       { pathname: '/joy-ui/getting-started/tutorial' },
-    ],
-  },
-  {
-    pathname: '/joy-ui/core-features',
-    icon: 'ReaderIcon',
-    children: [
-      { pathname: '/joy-ui/core-features/global-variant' },
-      { pathname: '/joy-ui/core-features/automatic-adjustment' },
-      { pathname: '/joy-ui/core-features/perfect-dark-mode' },
+      { pathname: '/joy-ui/getting-started/templates' },
+      {
+        pathname: '/joy-ui/core-features',
+        subheader: 'core-features',
+        children: [
+          { pathname: '/joy-ui/core-features/global-variant' },
+          { pathname: '/joy-ui/core-features/automatic-adjustment' },
+          { pathname: '/joy-ui/core-features/perfect-dark-mode' },
+        ],
+      },
     ],
   },
   {
@@ -35,12 +37,18 @@ const pages = [
           { pathname: '/joy-ui/react-avatar' },
           { pathname: '/joy-ui/react-badge' },
           { pathname: '/joy-ui/react-chip' },
+          { pathname: '/joy-ui/react-typography' },
         ],
       },
       {
         pathname: '/joy-ui/components/surfaces',
         subheader: 'surfaces',
         children: [{ pathname: '/joy-ui/react-card' }],
+      },
+      {
+        pathname: '/joy-ui/components/navigation',
+        subheader: 'navigation',
+        children: [{ pathname: '/joy-ui/react-link' }],
       },
     ],
   },

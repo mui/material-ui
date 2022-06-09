@@ -5,7 +5,7 @@ import { styled, ColorPaletteProp } from '@mui/joy/styles';
 import Box from '@mui/joy/Box';
 import Chip from '@mui/joy/Chip';
 import Typography from '@mui/joy/Typography';
-import Link from '@mui/joy/Link';
+import IconButton from '@mui/joy/IconButton';
 import RadioGroup from '@mui/joy/RadioGroup';
 import Radio, { radioClasses } from '@mui/joy/Radio';
 import Switch from '@mui/joy/Switch';
@@ -13,7 +13,7 @@ import Sheet from '@mui/joy/Sheet';
 import Check from '@mui/icons-material/Check';
 import TextField from '@mui/joy/TextField';
 import { inputClasses } from '@mui/joy/Input';
-import Replay from '@mui/icons-material/ReplayRounded';
+import ReplayRoundedIcon from '@mui/icons-material/ReplayRounded';
 
 const Select = styled('select')(({ theme }) => ({
   padding: '0.25rem',
@@ -49,11 +49,15 @@ function createCode(data: {
         if (props.length <= 2) {
           if (typeof prop[1] === 'boolean') {
             code = `${code} ${prop[0]}${prop[1] ? '' : '={false}'}`;
+          } else if (typeof prop[1] === 'function') {
+            code = `${code} ${prop[0]}={${(prop[1] as Function).toString()}}`;
           } else {
             code = `${code} ${prop[0]}=${
               typeof prop[1] === 'number' ? `{${prop[1]}}` : `"${prop[1]}"`
             }`;
           }
+        } else if (typeof prop[1] === 'function') {
+          code = `${code}\n  ${prop[0]}={${(prop[1] as Function).toString()}}`;
         } else if (typeof prop[1] === 'boolean') {
           code = `${code}\n  ${prop[0]}${prop[1] ? '' : '={false}'}`;
         } else {
@@ -80,7 +84,7 @@ interface JoyUsageDemoProps<ComponentProps> {
   childrenAccepted?: boolean;
   data: Array<{
     propName: keyof ComponentProps;
-    knob: 'switch' | 'color' | 'select' | 'input' | 'radio';
+    knob?: 'switch' | 'color' | 'select' | 'input' | 'radio';
     options?: Array<string>;
     defaultValue?: string | number | boolean;
   }>;
@@ -100,14 +104,25 @@ export default function JoyUsageDemo<T extends {} = {}>({
     }),
     {},
   ) as T;
+  const staticProps = data
+    .filter((p) => !p.knob)
+    .reduce(
+      (prev, curr) => ({
+        ...prev,
+        [curr.propName]: curr.defaultValue,
+      }),
+      {},
+    ) as T;
   const [props, setProps] = React.useState<T>({} as T);
   return (
     <Box
       sx={{
         m: -1.5,
+        mt: 0.25,
         flexGrow: 1,
         maxWidth: 'calc(100% + 24px)',
         display: 'flex',
+        flexDirection: { xs: 'column', sm: 'row' },
         flexWrap: 'wrap',
         gap: 1.5,
         '& .markdown-body pre': {
@@ -130,40 +145,51 @@ export default function JoyUsageDemo<T extends {} = {}>({
         </Box>
         <BrandingProvider mode="dark">
           <HighlightedCode
-            code={createCode({ name: componentName, props, childrenAccepted })}
+            code={createCode({
+              name: componentName,
+              props: { ...props, ...staticProps },
+              childrenAccepted,
+            })}
             language="jsx"
             sx={{ display: { xs: 'none', md: 'block' } }}
           />
         </BrandingProvider>
       </Box>
-      <Box
+      <Sheet
+        variant="outlined"
         sx={{
           flexGrow: 1,
           gap: 2,
           p: 2,
-          bgcolor: 'background.level1',
-          borderRadius: 'xs',
+          borderRadius: 'sm',
         }}
       >
-        <Typography
-          fontWeight="lg"
-          endDecorator={
-            // eslint-disable-next-line jsx-a11y/anchor-is-valid
-            <Link
-              component="button"
-              onClick={() => setProps({} as T)}
-              startDecorator={<Replay />}
-              fontSize="xs"
-              sx={{ visibility: Object.keys(props).length ? 'visible' : 'hidden' }}
-            >
-              Reset All
-            </Link>
-          }
-          justifyContent="space-between"
-          sx={{ mb: 1 }}
+        <Box
+          sx={{
+            mb: 2,
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+          }}
         >
-          Props
-        </Typography>
+          <Typography id="usage-props" component="h3" fontWeight="lg" sx={{ scrollMarginTop: 160 }}>
+            Props
+          </Typography>
+          <IconButton
+            aria-label="Reset all"
+            variant="outlined"
+            color="neutral"
+            size="sm"
+            onClick={() => setProps({} as T)}
+            sx={{
+              visibility: Object.keys(props).length ? 'visible' : 'hidden',
+              '--IconButton-size': '30px',
+            }}
+          >
+            <ReplayRoundedIcon />
+          </IconButton>
+        </Box>
+
         <Box
           sx={{
             display: 'flex',
@@ -173,6 +199,9 @@ export default function JoyUsageDemo<T extends {} = {}>({
         >
           {data.map(({ propName, knob, options = [], defaultValue }) => {
             const resolvedValue = props[propName] || defaultValue;
+            if (!knob) {
+              return null;
+            }
             if (knob === 'switch') {
               return (
                 <Switch
@@ -228,19 +257,15 @@ export default function JoyUsageDemo<T extends {} = {}>({
                         <Chip
                           key={value}
                           variant="plain"
-                          color="neutral"
+                          color={checked ? 'primary' : 'neutral'}
                           size="sm"
-                          sx={{ bgcolor: 'background.body', '--Chip-radius': '4px' }}
+                          sx={{ bgcolor: 'background.body' }}
                         >
                           <Radio
                             size="sm"
-                            variant="outlined"
-                            color="neutral"
-                            label={
-                              <Typography endDecorator={checked ? <Check fontSize="md" /> : null}>
-                                {value}
-                              </Typography>
-                            }
+                            variant={checked ? 'solid' : 'outlined'}
+                            color={checked ? 'primary' : 'neutral'}
+                            label={<Typography>{value}</Typography>}
                             value={value}
                             disableIcon
                             overlay
@@ -255,29 +280,29 @@ export default function JoyUsageDemo<T extends {} = {}>({
             if (knob === 'color') {
               return (
                 <Box key={propName as string} sx={{ mb: 1 }}>
-                  <Typography id={`${componentName}-color`} fontSize="xs" fontWeight="md" mb={0.5}>
-                    color
+                  <Typography id={`${componentName}-color`} fontSize="xs" fontWeight="lg" mb={1}>
+                    Color
                   </Typography>
                   <RadioGroup
                     row
                     name={`${componentName}-color`}
                     aria-labelledby={`${componentName}-color`}
-                    value={resolvedValue}
+                    value={resolvedValue || ''}
                     onChange={(event) =>
                       setProps((latestProps) => ({
                         ...latestProps,
                         color: event.target.value,
                       }))
                     }
-                    sx={{ flexWrap: 'wrap', gap: 1 }}
+                    sx={{ flexWrap: 'wrap', gap: 1.5 }}
                   >
-                    {['neutral', 'primary', 'danger', 'info', 'success', 'warning'].map((value) => {
+                    {['primary', 'neutral', 'danger', 'info', 'success', 'warning'].map((value) => {
                       const checked = resolvedValue === value;
                       return (
                         <Sheet key={value} sx={{ width: 28, height: 28, bgcolor: 'unset' }}>
                           <Radio
                             variant="solid"
-                            color={resolvedValue as ColorPaletteProp}
+                            color={value as ColorPaletteProp}
                             label={value}
                             value={value}
                             disableIcon
@@ -330,22 +355,23 @@ export default function JoyUsageDemo<T extends {} = {}>({
                   <Typography
                     component="label"
                     fontSize="xs"
-                    fontWeight="md"
+                    fontWeight="lg"
+                    mb={1}
                     htmlFor={`${componentName}-${propName}`}
-                    mb={0.5}
                   >
                     {propName}
                   </Typography>
                   <Select
                     id={`${componentName}-${propName}`}
-                    value={resolvedValue as string}
+                    value={(resolvedValue || 'none') as string}
                     onChange={(event) =>
                       setProps((latestProps) => ({
                         ...latestProps,
-                        variant: event.target.value,
+                        [propName]: event.target.value,
                       }))
                     }
                   >
+                    {!resolvedValue && <option value="none">{''}</option>}
                     {options.map((value) => (
                       <option key={value} value={value}>
                         {value}
@@ -379,7 +405,7 @@ export default function JoyUsageDemo<T extends {} = {}>({
             return null;
           })}
         </Box>
-      </Box>
+      </Sheet>
     </Box>
   );
 }

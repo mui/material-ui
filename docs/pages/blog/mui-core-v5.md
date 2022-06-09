@@ -134,7 +134,7 @@ The first immediate benefit of the move to emotion was **performance**. The `<Bo
 We would like to thank all the community contributors that made the migration of the components and documentation possible in [#24405](https://github.com/mui/material-ui/issues/24405) and [#16947](https://github.com/mui/material-ui/issues/16947): [@natac13](https://github.com/natac13), [@vicasas](https://github.com/vicasas), [@mngu](https://github.com/mngu), [@kodai3](https://github.com/kodai3), [@xs9627](https://github.com/xs9627), [@povilass](https://github.com/povilass), [@duganbrett](https://github.com/duganbrett), [@queengooborg](https://github.com/queengooborg), and more.
 It was a major undertaking!
 
-Going forward, developers can either keep using JSS with the legacy `@mui/styles` package [or migrate from JSS](https://mui.com/material-ui/guides/migration-v4/#migrate-from-jss).
+Going forward, developers can either keep using JSS with the legacy `@mui/styles` package [or migrate from JSS](https://mui.com/material-ui/migration/migrating-from-jss/).
 We recommend the latter to match the core components.
 
 ### The `sx` prop
@@ -616,16 +616,16 @@ If you are starting your upgrade, these are the three things you should look int
 
 - ⚓ We have introduced actionable deprecations in v4.
   You can upgrade to v4.12.0 and start preparing your codebase to be compatible with v5.
-- ⚒️ We have prepared a [codemod](https://mui.com/material-ui/guides/migration-v4/#preset-safe) that does most of the transformations you will need for the migration.
+- ⚒️ We have prepared a [codemod](https://mui.com/material-ui/migration/migration-v4/#preset-safe) that does most of the transformations you will need for the migration.
   If you are not familiar with what a codemod is, check out [Effective Refactoring with Codemods by Edd Yerburgh](https://www.youtube.com/watch?v=H9qtLutnT_g&ab_channel=Pusher).
-- 📄 Lastly, we have prepared a step-by-step [migration guide](https://mui.com/material-ui/guides/migration-v4/).
+- 📄 Lastly, we have prepared a step-by-step [migration guide](https://mui.com/material-ui/migration/migration-v4/).
   This guide is the one place where you can find all information required for upgrading to v5.
 
 ### Change of the package names
 
 To support our [new brand](https://mui.com/blog/material-ui-is-now-mui/), we changed some of the terminology used in the project.
 The npm packages have been renamed.
-For more details on this, check [the migration guide](https://mui.com/material-ui/guides/migration-v4/#update-mui-version).
+For more details on this, check [the migration guide](https://mui.com/material-ui/migration/migration-v4/).
 
 ### Change of the styling solution
 
@@ -637,7 +637,7 @@ If you are not ready to migrate away from the `makeStyles` API now, you can:
 - add `@mui/styles` as a dependency and change the imports of the `makeStyles`/`withStyles` utilities
 - use [`tss-react`](https://github.com/garronej/tss-react) - its API is similar to JSS `makeStyles` but is powered by emotion, which minimizes the bundle duplication with the core components.
 
-You can find more information for this on the [Migrate from JSS](https://mui.com/material-ui/guides/migration-v4/#migrate-from-jss) section of the migration guide.
+You can find more information for this on the [Migrate from JSS](https://mui.com/material-ui/migration/migrating-from-jss/) section of the migration guide.
 
 ### Changes to the supported platforms
 

@@ -198,9 +198,6 @@ module.exports = {
         if (page.pathname.startsWith('/experiments') && !staging) {
           return;
         }
-        if (page.pathname.startsWith('/joy-ui') && !staging) {
-          return;
-        }
         // The blog is not translated
         if (
           userLanguage !== 'en' &&
@@ -257,6 +254,11 @@ module.exports = {
   async redirects() {
     if (FEATURE_TOGGLE.enable_redirects) {
       return [
+        {
+          source: '/joy-ui/',
+          destination: '/joy-ui/getting-started/overview/',
+          permanent: false,
+        },
         {
           source: '/styles/:path*',
           destination: '/system/styles/:path*',

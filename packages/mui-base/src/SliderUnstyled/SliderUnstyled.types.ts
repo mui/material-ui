@@ -23,7 +23,7 @@ export type SliderUnstyledOwnerState = SliderUnstyledProps & {
   valueLabelFormat: string | ((value: number, index: number) => React.ReactNode);
 };
 
-export interface ValueLabelProps extends React.HTMLAttributes<HTMLSpanElement> {
+export interface SliderValueLabelProps extends React.HTMLAttributes<HTMLSpanElement> {
   children: React.ReactElement;
   index: number;
   open: boolean;
@@ -76,7 +76,7 @@ export interface SliderUnstyledTypeMap<P = {}, D extends React.ElementType = 'sp
       thumb?: React.ComponentPropsWithRef<'span'> & SliderUnstyledComponentsPropsOverrides;
       mark?: React.ComponentPropsWithRef<'span'> & SliderUnstyledComponentsPropsOverrides;
       markLabel?: React.ComponentPropsWithRef<'span'> & SliderUnstyledComponentsPropsOverrides;
-      valueLabel?: React.ComponentPropsWithRef<typeof SliderValueLabelUnstyled> &
+      valueLabel?: Partial<React.ComponentPropsWithRef<typeof SliderValueLabelUnstyled>> &
         SliderUnstyledComponentsPropsOverrides;
       input?: React.ComponentPropsWithRef<'input'> & SliderUnstyledComponentsPropsOverrides;
     };
