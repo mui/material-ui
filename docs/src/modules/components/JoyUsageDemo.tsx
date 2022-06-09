@@ -5,7 +5,7 @@ import { styled, ColorPaletteProp } from '@mui/joy/styles';
 import Box from '@mui/joy/Box';
 import Chip from '@mui/joy/Chip';
 import Typography from '@mui/joy/Typography';
-import Link from '@mui/joy/Link';
+import IconButton from '@mui/joy/IconButton';
 import RadioGroup from '@mui/joy/RadioGroup';
 import Radio, { radioClasses } from '@mui/joy/Radio';
 import Switch from '@mui/joy/Switch';
@@ -13,7 +13,7 @@ import Sheet from '@mui/joy/Sheet';
 import Check from '@mui/icons-material/Check';
 import TextField from '@mui/joy/TextField';
 import { inputClasses } from '@mui/joy/Input';
-import Replay from '@mui/icons-material/ReplayRounded';
+import ReplayRoundedIcon from '@mui/icons-material/ReplayRounded';
 
 const Select = styled('select')(({ theme }) => ({
   padding: '0.25rem',
@@ -105,6 +105,7 @@ export default function JoyUsageDemo<T extends {} = {}>({
     <Box
       sx={{
         m: -1.5,
+        mt: 0.25,
         flexGrow: 1,
         maxWidth: 'calc(100% + 24px)',
         display: 'flex',
@@ -136,34 +137,38 @@ export default function JoyUsageDemo<T extends {} = {}>({
           />
         </BrandingProvider>
       </Box>
-      <Box
+      <Sheet
+        variant="outlined"
         sx={{
           flexGrow: 1,
           gap: 2,
           p: 2,
-          bgcolor: 'background.level1',
-          borderRadius: 'xs',
+          borderRadius: 'sm',
         }}
       >
-        <Typography
-          fontWeight="lg"
-          endDecorator={
-            // eslint-disable-next-line jsx-a11y/anchor-is-valid
-            <Link
-              component="button"
-              onClick={() => setProps({} as T)}
-              startDecorator={<Replay />}
-              fontSize="xs"
-              sx={{ visibility: Object.keys(props).length ? 'visible' : 'hidden' }}
-            >
-              Reset All
-            </Link>
-          }
-          justifyContent="space-between"
-          sx={{ mb: 1 }}
+        <Box
+          sx={{
+            mb: 2,
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+          }}
         >
-          Props
-        </Typography>
+          <Typography fontWeight="lg">Props</Typography>
+          <IconButton
+            variant="outlined"
+            color="neutral"
+            size="sm"
+            onClick={() => setProps({} as T)}
+            sx={{
+              visibility: Object.keys(props).length ? 'visible' : 'hidden',
+              '--IconButton-size': '30px',
+            }}
+          >
+            <ReplayRoundedIcon />
+          </IconButton>
+        </Box>
+
         <Box
           sx={{
             display: 'flex',
@@ -228,19 +233,15 @@ export default function JoyUsageDemo<T extends {} = {}>({
                         <Chip
                           key={value}
                           variant="plain"
-                          color="neutral"
+                          color={checked ? 'primary' : 'neutral'}
                           size="sm"
-                          sx={{ bgcolor: 'background.body', '--Chip-radius': '4px' }}
+                          sx={{ bgcolor: 'background.body' }}
                         >
                           <Radio
                             size="sm"
-                            variant="outlined"
-                            color="neutral"
-                            label={
-                              <Typography endDecorator={checked ? <Check fontSize="md" /> : null}>
-                                {value}
-                              </Typography>
-                            }
+                            variant={checked ? 'solid' : 'outlined'}
+                            color={checked ? 'primary' : 'neutral'}
+                            label={<Typography>{value}</Typography>}
                             value={value}
                             disableIcon
                             overlay
@@ -255,8 +256,8 @@ export default function JoyUsageDemo<T extends {} = {}>({
             if (knob === 'color') {
               return (
                 <Box key={propName as string} sx={{ mb: 1 }}>
-                  <Typography id={`${componentName}-color`} fontSize="xs" fontWeight="md" mb={0.5}>
-                    color
+                  <Typography id={`${componentName}-color`} fontSize="xs" fontWeight="lg" mb={1}>
+                    Color
                   </Typography>
                   <RadioGroup
                     row
@@ -269,9 +270,9 @@ export default function JoyUsageDemo<T extends {} = {}>({
                         color: event.target.value,
                       }))
                     }
-                    sx={{ flexWrap: 'wrap', gap: 1 }}
+                    sx={{ flexWrap: 'wrap', gap: 1.5 }}
                   >
-                    {['neutral', 'primary', 'danger', 'info', 'success', 'warning'].map((value) => {
+                    {['primary', 'neutral', 'danger', 'info', 'success', 'warning'].map((value) => {
                       const checked = resolvedValue === value;
                       return (
                         <Sheet key={value} sx={{ width: 28, height: 28, bgcolor: 'unset' }}>
@@ -330,9 +331,9 @@ export default function JoyUsageDemo<T extends {} = {}>({
                   <Typography
                     component="label"
                     fontSize="xs"
-                    fontWeight="md"
+                    fontWeight="lg"
+                    mb={1}
                     htmlFor={`${componentName}-${propName}`}
-                    mb={0.5}
                   >
                     {propName}
                   </Typography>
@@ -379,7 +380,7 @@ export default function JoyUsageDemo<T extends {} = {}>({
             return null;
           })}
         </Box>
-      </Box>
+      </Sheet>
     </Box>
   );
 }

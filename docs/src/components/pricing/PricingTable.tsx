@@ -105,7 +105,7 @@ export function PlanPrice(props: PlanPriceProps) {
           </Typography>
         </Box>
         <Typography variant="body2" color="text.secondary" sx={{ mt: 2 }}>
-          Billed annually at $180.
+          Billed annually at $180/dev.
         </Typography>
         <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
           Price capped at 10 developers.
@@ -148,7 +148,7 @@ export function PlanPrice(props: PlanPriceProps) {
         </Typography>
       </Box>
       <Typography variant="body2" color="text.secondary" sx={{ mt: 2 }}>
-        Billed annually at $444.
+        Billed annually at $444/dev.
       </Typography>
       <Link variant="body2" href="#early-bird" sx={{ mb: 2 }}>
         * Early bird special.

@@ -11,7 +11,7 @@ unstyled: /base/react-slider/
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-{{"demo": "SliderUsage.js"}}
+{{"demo": "SliderUsage.js", "hideToolbar": true}}
 
 ## Steps
 
@@ -55,4 +55,4 @@ The track can be inverted with `track="inverted"`.
 
 ## Component variables
 
-{{"demo": "SliderVariables.js"}}
+{{"demo": "SliderVariables.js", "hideToolbar": true}}

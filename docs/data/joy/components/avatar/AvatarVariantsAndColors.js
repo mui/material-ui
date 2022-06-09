@@ -1,12 +1,11 @@
 import * as React from 'react';
 import Avatar from '@mui/joy/Avatar';
 import Box from '@mui/joy/Box';
-import Badge from '@mui/joy/Badge';
+import Sheet from '@mui/joy/Sheet';
 import RadioGroup from '@mui/joy/RadioGroup';
 import Radio from '@mui/joy/Radio';
 import Chip from '@mui/joy/Chip';
 import Typography from '@mui/joy/Typography';
-import Check from '@mui/icons-material/Check';
 
 export default function AvatarVariantsAndColors() {
   const [variant, setVariant] = React.useState('soft');
@@ -24,16 +23,22 @@ export default function AvatarVariantsAndColors() {
           IN
         </Avatar>
       </Box>
-      <Box
+      <Sheet
+        variant="outlined"
         sx={{
           maxWidth: 343,
           p: 2,
-          bgcolor: 'background.level1',
-          borderRadius: 'xs',
+          borderRadius: 'sm',
         }}
       >
-        <Typography id="avatar-variant-selector" fontWeight="lg" mb={1}>
-          Variant
+        <Typography
+          level="body2"
+          fontWeight="xl"
+          id="avatar-variant-selector"
+          textColor="text.primary"
+          mb={1}
+        >
+          Variants
         </Typography>
         <RadioGroup
           row
@@ -43,32 +48,36 @@ export default function AvatarVariantsAndColors() {
           onChange={(event) => setVariant(event.target.value)}
           sx={{ flexWrap: 'wrap', gap: 1 }}
         >
-          {['plain', 'outlined', 'soft', 'solid'].map((value) => {
+          {['solid', 'soft', 'outlined', 'plain'].map((value) => {
             const checked = variant === value;
             return (
-              <Badge
-                key={value}
+              <Chip
                 size="sm"
-                badgeContent={<Check fontSize="sm" />}
-                badgeInset="8%"
-                invisible={!checked}
-                sx={{ '--Badge-paddingX': '0px' }}
+                variant="plain"
+                color={checked ? 'primary' : 'neutral'}
               >
-                <Chip variant="plain">
-                  <Radio
-                    variant={checked ? 'outlined' : 'plain'}
-                    label={value}
-                    value={value}
-                    disableIcon
-                    overlay
-                  />
-                </Chip>
-              </Badge>
+                <Radio
+                  size="sm"
+                  variant={checked ? 'solid' : 'outlined'}
+                  color={checked ? 'primary' : 'neutral'}
+                  label={<Typography>{value}</Typography>}
+                  value={value}
+                  disableIcon
+                  overlay
+                />
+              </Chip>
             );
           })}
         </RadioGroup>
 
-        <Typography id="avatar-color-selector" fontWeight="lg" mb={1} mt={3}>
+        <Typography
+          id="avatar-color-selector"
+          level="body2"
+          fontWeight="xl"
+          textColor="text.primary"
+          mb={1}
+          mt={3}
+        >
           Color
         </Typography>
         <RadioGroup
@@ -79,33 +88,30 @@ export default function AvatarVariantsAndColors() {
           onChange={(event) => setColor(event.target.value)}
           sx={{ flexWrap: 'wrap', gap: 1 }}
         >
-          {['neutral', 'primary', 'danger', 'info', 'success', 'warning'].map(
+          {['primary', 'neutral', 'danger', 'info', 'success', 'warning'].map(
             (value) => {
               const checked = color === value;
               return (
-                <Badge
-                  key={value}
+                <Chip
                   size="sm"
-                  badgeContent={<Check fontSize="sm" />}
-                  badgeInset="8%"
-                  invisible={!checked}
-                  sx={{ '--Badge-paddingX': '0px' }}
+                  variant="plain"
+                  color={checked ? 'primary' : 'neutral'}
                 >
-                  <Chip variant="plain">
-                    <Radio
-                      variant={checked ? 'outlined' : 'plain'}
-                      label={value}
-                      value={value}
-                      disableIcon
-                      overlay
-                    />
-                  </Chip>
-                </Badge>
+                  <Radio
+                    size="sm"
+                    variant={checked ? 'solid' : 'outlined'}
+                    color={checked ? 'primary' : 'neutral'}
+                    label={<Typography>{value}</Typography>}
+                    value={value}
+                    disableIcon
+                    overlay
+                  />
+                </Chip>
               );
             },
           )}
         </RadioGroup>
-      </Box>
+      </Sheet>
     </Box>
   );
 }

@@ -158,12 +158,14 @@ export function resolveBreakpointValues({
       acc[breakpoint] =
         breakpointValues[i] != null ? breakpointValues[i] : breakpointValues[previous];
       previous = i;
-    } else {
+    } else if (typeof breakpointValues === 'object') {
       acc[breakpoint] =
         breakpointValues[breakpoint] != null
           ? breakpointValues[breakpoint]
-          : breakpointValues[previous] || breakpointValues;
+          : breakpointValues[previous];
       previous = breakpoint;
+    } else {
+      acc[breakpoint] = breakpointValues;
     }
     return acc;
   }, {});

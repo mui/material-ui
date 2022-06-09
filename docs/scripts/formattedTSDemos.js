@@ -6,10 +6,10 @@
  */
 
 /**
- * List of demos to ignore when transpiling
+ * List of demos or folders to ignore when transpiling
  * Example: "app-bar/BottomAppBar.tsx"
  */
-const ignoreList = ['/pages.ts'];
+const ignoreList = ['/pages.ts', 'docs/data/joy/getting-started/templates'];
 
 const fse = require('fs-extra');
 const path = require('path');
@@ -42,7 +42,12 @@ async function getFiles(root) {
         const filePath = path.join(root, name);
         const stat = await fse.stat(filePath);
 
-        if (stat.isDirectory()) {
+        if (
+          stat.isDirectory() &&
+          !ignoreList.some((ignorePath) =>
+            filePath.startsWith(path.normalize(`${workspaceRoot}/${ignorePath}`)),
+          )
+        ) {
           files.push(...(await getFiles(filePath)));
         } else if (
           stat.isFile() &&
