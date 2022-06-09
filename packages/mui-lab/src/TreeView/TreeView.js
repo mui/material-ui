@@ -591,10 +591,13 @@ const TreeView = React.forwardRef(function TreeView(inProps, ref) {
   /*
    * Mapping Helpers
    */
+  const [allDisabledState, setAllDisabledState] = React.useState({});
+
   const registerNode = React.useCallback((node) => {
     const { id, index, parentId, expandable, idAttribute, disabled } = node;
 
     nodeMap.current[id] = { id, index, parentId, expandable, idAttribute, disabled };
+    setAllDisabledState((prev) => ({ ...prev, [id]: disabled }));
   }, []);
 
   const unregisterNode = React.useCallback((id) => {
