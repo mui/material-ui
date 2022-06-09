@@ -20,7 +20,7 @@ They are typically placed throughout your UI, in places like:
 - Cards
 - Toolbars
 
-## Basic button
+## Variants
 
 The `Button` comes with four global variants: `solid` (default), `soft`, `outlined` and `plain`.
 
@@ -38,8 +38,37 @@ The `Button` has three sizes: `sm`, `md` (default) and `lg`.
 
 {{"demo": "ButtonSizes.js"}}
 
-## Icons
+## Disabled
+
+Specify `disabled` prop to the button to disable the interaction and focus.
+
+{{"demo": "ButtonDisabled.js"}}
+
+## With icons
 
 Use `startIcon` and/or `endIcon` props to control the position of the specified icon.
 
 {{"demo": "ButtonIcons.js"}}
+
+## Icon button
+
+If you want an equal width and height button without displaying the label, use `IconButton`. It accepts the same values for `variant`, `color`, and `size` props.
+
+{{"demo": "IconButtons.js"}}
+
+:::info
+**♿️ Accessibility**: You have to provide an appropriate [`aria-label`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-label) to the icon button for screen readers. This is useful for people with severe visual impairments.
+
+```js
+<IconButton aria-label="Add to favorite">
+  <FavoriteBorder />
+</IconButton>
+```
+
+:::
+
+## As link
+
+Use `component="a"` prop to change the html element from `button` to `a`.
+
+{{"demo": "ButtonLink.js"}}
