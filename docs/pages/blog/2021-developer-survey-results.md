@@ -805,7 +805,7 @@ Thanks again and until the next survey!
 
 Here is some additional content related to the topics covered throughout this post:
 
-- [How to migrate from v4 to v5](/material-ui/guides/migration-v4/)
+- [How to migrate from v4 to v5](/material-ui/migration/migration-v4/)
 - [Style library interoperability](/material-ui/guides/interoperability/)
 - [Approaches to customizing Material UI components](/material-ui/customization/how-to-customize/)
 

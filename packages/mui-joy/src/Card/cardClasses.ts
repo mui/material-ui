@@ -29,6 +29,8 @@ export interface CardClasses {
   sizeMd: string;
   /** Styles applied to the root element if `size="lg"`. */
   sizeLg: string;
+  /** Styles applied to the root element if `row={true}`. */
+  row: string;
 }
 
 export type CardClassKey = keyof CardClasses;
@@ -52,6 +54,7 @@ const cardClasses: CardClasses = generateUtilityClasses('JoyCard', [
   'sizeSm',
   'sizeMd',
   'sizeLg',
+  'row',
 ]);
 
 export default cardClasses;

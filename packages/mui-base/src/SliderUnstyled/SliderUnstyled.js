@@ -78,7 +78,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
   // consider extracting to hook an reusing the lint rule for the varints
   const ownerState = {
     ...props,
-    mark: marksProp,
+    marks: marksProp,
     classes: classesProp,
     disabled,
     isRtl,
@@ -155,57 +155,59 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
         className={clsx(classes.track, trackProps.className)}
         style={{ ...trackStyle, ...trackProps.style }}
       />
-      {marks.map((mark, index) => {
-        const percent = valueToPercent(mark.value, min, max);
-        const style = axisProps[axis].offset(percent);
+      {marks
+        .filter((mark) => mark.value >= min && mark.value <= max)
+        .map((mark, index) => {
+          const percent = valueToPercent(mark.value, min, max);
+          const style = axisProps[axis].offset(percent);
 
-        let markActive;
-        if (track === false) {
-          markActive = values.indexOf(mark.value) !== -1;
-        } else {
-          markActive =
-            (track === 'normal' &&
-              (range
-                ? mark.value >= values[0] && mark.value <= values[values.length - 1]
-                : mark.value <= values[0])) ||
-            (track === 'inverted' &&
-              (range
-                ? mark.value <= values[0] || mark.value >= values[values.length - 1]
-                : mark.value >= values[0]));
-        }
+          let markActive;
+          if (track === false) {
+            markActive = values.indexOf(mark.value) !== -1;
+          } else {
+            markActive =
+              (track === 'normal' &&
+                (range
+                  ? mark.value >= values[0] && mark.value <= values[values.length - 1]
+                  : mark.value <= values[0])) ||
+              (track === 'inverted' &&
+                (range
+                  ? mark.value <= values[0] || mark.value >= values[values.length - 1]
+                  : mark.value >= values[0]));
+          }
 
-        return (
-          <React.Fragment key={mark.value}>
-            <Mark
-              data-index={index}
-              {...markProps}
-              {...(!isHostComponent(Mark) && {
-                markActive,
-              })}
-              style={{ ...style, ...markProps.style }}
-              className={clsx(classes.mark, markProps.className, {
-                [classes.markActive]: markActive,
-              })}
-            />
-            {mark.label != null ? (
-              <MarkLabel
-                aria-hidden
+          return (
+            <React.Fragment key={mark.value}>
+              <Mark
                 data-index={index}
-                {...markLabelProps}
-                {...(!isHostComponent(MarkLabel) && {
-                  markLabelActive: markActive,
+                {...markProps}
+                {...(!isHostComponent(Mark) && {
+                  markActive,
                 })}
-                style={{ ...style, ...markLabelProps.style }}
-                className={clsx(classes.markLabel, markLabelProps.className, {
-                  [classes.markLabelActive]: markActive,
+                style={{ ...style, ...markProps.style }}
+                className={clsx(classes.mark, markProps.className, {
+                  [classes.markActive]: markActive,
                 })}
-              >
-                {mark.label}
-              </MarkLabel>
-            ) : null}
-          </React.Fragment>
-        );
-      })}
+              />
+              {mark.label != null ? (
+                <MarkLabel
+                  aria-hidden
+                  data-index={index}
+                  {...markLabelProps}
+                  {...(!isHostComponent(MarkLabel) && {
+                    markLabelActive: markActive,
+                  })}
+                  style={{ ...style, ...markLabelProps.style }}
+                  className={clsx(classes.markLabel, markLabelProps.className, {
+                    [classes.markLabelActive]: markActive,
+                  })}
+                >
+                  {mark.label}
+                </MarkLabel>
+              ) : null}
+            </React.Fragment>
+          );
+        })}
       {values.map((value, index) => {
         const percent = valueToPercent(value, min, max);
         const style = axisProps[axis].offset(percent);
@@ -236,9 +238,6 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
                 className={clsx(classes.thumb, thumbProps.className, {
                   [classes.active]: active === index,
                   [classes.focusVisible]: focusVisible === index,
-                })}
-                {...(!isHostComponent(Thumb) && {
-                  ownerState: { ...ownerState, ...thumbProps.ownerState },
                 })}
                 style={{
                   ...style,
@@ -355,12 +354,14 @@ SliderUnstyled.propTypes /* remove-proptypes */ = {
     thumb: PropTypes.object,
     track: PropTypes.object,
     valueLabel: PropTypes.shape({
+      children: PropTypes.element,
       className: PropTypes.string,
       components: PropTypes.shape({
         Root: PropTypes.elementType,
       }),
+      open: PropTypes.bool,
       style: PropTypes.object,
-      value: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.number), PropTypes.number]),
+      value: PropTypes.number,
       valueLabelDisplay: PropTypes.oneOf(['auto', 'off', 'on']),
     }),
   }),

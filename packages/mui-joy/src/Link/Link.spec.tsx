@@ -18,6 +18,8 @@ import * as React from 'react';
 <Link color="warning" />;
 <Link color="neutral" />;
 
+<Link textColor="neutral.500" />;
+
 // `level`
 <Link level="h2" />;
 <Link level="h3" />;
@@ -43,11 +45,8 @@ import * as React from 'react';
 // @ts-expect-error there is no color `secondary`
 <Link color="secondary" />;
 
-// @ts-expect-error there is no level `h7`
-<Link level="h7" />;
-
-// @ts-expect-error there is no level `body4`
-<Link level="body4" />;
+// @ts-expect-error there is no level `unknown`
+<Link level="unknown" />;
 
 // @ts-expect-error there is no underline `never`
 <Link underline="never" />;

@@ -50,7 +50,23 @@ function trimLeadingSpaces(input = '') {
 
 function useDemoData(codeVariant, demo, githubLocation) {
   const userLanguage = useUserLanguage();
-  const title = `${getDemoName(githubLocation)} Material Demo`;
+  const router = useRouter();
+  const asPathWithoutLang = router.asPath.replace(/^\/[a-zA-Z]{2}\//, '/');
+  let product;
+  let name = 'Material UI';
+  if (asPathWithoutLang.startsWith('/joy-ui/')) {
+    product = 'joy-ui';
+    name = 'Joy UI';
+  }
+  if (asPathWithoutLang.startsWith('/base/')) {
+    product = 'base';
+    name = 'MUI Base';
+  }
+  if (asPathWithoutLang.startsWith('/x/')) {
+    name = 'MUI X';
+  }
+
+  const title = `${getDemoName(githubLocation)} demo — ${name}`;
   if (codeVariant === CODE_VARIANTS.TS && demo.rawTS) {
     return {
       codeVariant: CODE_VARIANTS.TS,
@@ -59,6 +75,7 @@ function useDemoData(codeVariant, demo, githubLocation) {
       raw: demo.rawTS,
       sourceLanguage: 'tsx',
       title,
+      product,
     };
   }
 
@@ -69,6 +86,7 @@ function useDemoData(codeVariant, demo, githubLocation) {
     raw: demo.raw,
     sourceLanguage: 'jsx',
     title,
+    product,
   };
 }
 
@@ -159,7 +177,7 @@ const DemoRootJoy = joyStyled('div', {
   /* Isolate the demo with an outline. */
   ...(bg === 'outlined' && {
     padding: theme.spacing(3),
-    backgroundColor: theme.vars.palette.background.body,
+    backgroundColor: theme.vars.palette.background.surface,
     border: `1px solid`,
     borderColor: theme.vars.palette.divider,
     borderLeftWidth: 0,
@@ -168,10 +186,10 @@ const DemoRootJoy = joyStyled('div', {
   /* Prepare the background to display an inner elevation. */
   ...(bg === true && {
     padding: theme.spacing(3),
-    backgroundColor: theme.vars.palette.background.level1,
+    backgroundColor: theme.vars.palette.background.body,
   }),
   ...(hiddenToolbar && {
-    paddingTop: theme.spacing(2),
+    paddingTop: theme.spacing(3),
   }),
 }));
 

@@ -1,14 +1,8 @@
 import { useTabContext, getPanelId, getTabId } from '../TabsUnstyled';
+import { UseTabPanelParameters } from './useTabPanel.types';
 
-export interface UseTabPanelProps {
-  /**
-   * The value of the TabPanel. It will be shown when the Tab with the corresponding value is selected.
-   */
-  value: number | string;
-}
-
-const useTabPanel = (props: UseTabPanelProps) => {
-  const { value } = props;
+const useTabPanel = (parameters: UseTabPanelParameters) => {
+  const { value } = parameters;
 
   const context = useTabContext();
   if (context === null) {
@@ -21,9 +15,9 @@ const useTabPanel = (props: UseTabPanelProps) => {
 
   const getRootProps = () => {
     return {
-      'aria-labelledby': tabId,
+      'aria-labelledby': tabId ?? undefined,
       hidden,
-      id,
+      id: id ?? undefined,
     };
   };
 
