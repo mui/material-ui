@@ -209,37 +209,34 @@ const SliderThumb = styled('span', {
   name: 'JoySlider',
   slot: 'Thumb',
   overridesResolver: (props, styles) => styles.thumb,
-})<{ ownerState: SliderProps }>(({ ownerState }) => {
-  return [
-    {
-      position: 'absolute',
-      boxSizing: 'border-box',
-      outline: 0,
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      width: 'var(--Slider-thumb-width)',
-      height: 'var(--Slider-thumb-size)',
-      borderRadius: 'var(--Slider-thumb-radius)',
-      boxShadow: 'var(--Slider-thumb-shadow)',
-      border: '2px solid',
-      borderColor: 'var(--Slider-thumb-color)',
-      color: 'var(--Slider-thumb-color)',
-      backgroundColor: 'var(--Slider-thumb-background)',
-      // TODO: discuss the transition approach in a separate PR. This value is copied from mui-material Slider.
-      transition:
-        'box-shadow 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,left 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,bottom 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
-      ...(ownerState.orientation === 'horizontal' && {
-        top: '50%',
-        transform: 'translate(-50%, -50%)',
-      }),
-      ...(ownerState.orientation === 'vertical' && {
-        left: '50%',
-        transform: 'translate(-50%, 50%)',
-      }),
-    },
-  ];
-});
+})<{ ownerState: SliderProps }>(({ ownerState, theme }) => ({
+  position: 'absolute',
+  boxSizing: 'border-box',
+  outline: 0,
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  width: 'var(--Slider-thumb-width)',
+  height: 'var(--Slider-thumb-size)',
+  borderRadius: 'var(--Slider-thumb-radius)',
+  boxShadow: 'var(--Slider-thumb-shadow)',
+  border: '2px solid',
+  borderColor: 'var(--Slider-thumb-color)',
+  color: 'var(--Slider-thumb-color)',
+  backgroundColor: 'var(--Slider-thumb-background)',
+  // TODO: discuss the transition approach in a separate PR. This value is copied from mui-material Slider.
+  transition:
+    'box-shadow 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,left 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,bottom 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
+  [theme.focus.selector]: theme.focus.default,
+  ...(ownerState.orientation === 'horizontal' && {
+    top: '50%',
+    transform: 'translate(-50%, -50%)',
+  }),
+  ...(ownerState.orientation === 'vertical' && {
+    left: '50%',
+    transform: 'translate(-50%, 50%)',
+  }),
+}));
 
 const SliderMark = styled('span', {
   name: 'JoySlider',
