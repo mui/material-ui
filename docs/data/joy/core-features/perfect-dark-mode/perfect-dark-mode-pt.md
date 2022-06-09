@@ -4,7 +4,7 @@
 
 ## Current problem: the flickering
 
-You might've noticed that in application with SSR (server-side rendering) and SSG (server-side generation) when users switch to dark mode and refresh the page, it iniatially loads in light mode and then, after hydration, quickly goes back to dark.
+You might've noticed that in application with SSR (server-side rendering) and SSG (static site generation, a.k.a Jamstack) when users switch to dark mode and refresh the page, it iniatially loads in light mode and then, after hydration, quickly goes back to dark.
 
 This not only causes eye-fatigue to users that are in low-light settings but also interrupts browsing experience for those who interact with the website in the in-between of modes changing.
 
@@ -14,9 +14,9 @@ The above recording is taken from [MUI's website](https://mui.com/) when the pag
 
 ## The solution: CSS variables
 
-Ultimately, to solve this problem, we needed to think of a different styling and theming approach altogether. Joy UI comes with CSS variables support out-of-the-box which allows every color scheme to be rendered at build time, given we want to set the selected mode before the broswer renders the DOM.
+Ultimately, to solve this problem, we needed to think of a different styling and theming approach altogether. Joy UI comes with CSS variables support out-of-the-box which allows every color schemes to be rendered at build time, given we want to set the selected mode before the browser renders the DOM.
 
-Joy UI provides the `getInitColorSchemeScript()` function that enables you to integrate it with various React frameworks, such as Next.js, Gatsby, and Remix. This function must be placed before the main script so it can apply the correct stylesheet before your components are rendered.
+Joy UI provides the `getInitColorSchemeScript()` function that enables you to integrate with various React frameworks, such as Next.js, Gatsby, and Remix. This function must be placed before the main script so it can apply the correct stylesheet before your components are rendered.
 
 ```js
 // Next.js example
