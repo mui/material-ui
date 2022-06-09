@@ -50,7 +50,6 @@ export default function ButtonThemes() {
     dense: {
       '--List-nestedInsetStart': '0px',
     },
-    cozy: {},
   };
   return (
     <Box
@@ -67,19 +66,15 @@ export default function ButtonThemes() {
       }}
     >
       <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, mb: 3 }}>
-        <Box
-          sx={{
-            m: 'auto',
-            border: '1px solid',
-            borderColor: (theme) => theme.variants.outlinedHover.neutral,
-            borderRadius: 'sm',
-            overflow: 'auto',
-            '& > *': {
+        <Box sx={{ m: 'auto' }}>
+          <List
+            sx={{
+              ...rootPresets[preset],
               bgcolor: 'background.body',
-            },
-          }}
-        >
-          <List sx={preset ? rootPresets[preset] : {}}>
+              border: '1px solid',
+              borderColor: 'neutral.outlinedBorder',
+            }}
+          >
             <ListItem>
               <ListItemButton>
                 <ListItemDecorator>
@@ -157,7 +152,7 @@ export default function ButtonThemes() {
   <ListItem nested>
     <ListItemButton>...</ListItemButton>
     <List${
-      preset
+      nestedPresets[preset]
         ? `
       sx={{
         ${JSON.stringify(nestedPresets[preset], null, 8)
