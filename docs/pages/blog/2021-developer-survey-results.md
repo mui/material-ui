@@ -184,7 +184,7 @@ Here are the most recurring topics for improvement this year:
 - **Fewer breaking changes:** MUI Core v5 introduced some important breaking changes, especially because of the new styling solution.
   Rest assured that we don't expect to release any major updates this year—in fact, we aim to keep majors at least 12 months apart from each other.
 - **Improve customization:** Common requests include making customization easier, providing more examples of common use-cases (like font-family and primary/secondary colors), and improving the theme capabilities.
-  Even with the popularity of emotion and styled-components, there continues to be an enormous need to facilitate customization.
+  Even with the popularity of Emotion and styled-components, there continues to be an enormous need to facilitate customization.
 
 If you are interested in an analysis of the growing and decreasing pain, you can [head to the appendix](https://mui-org.notion.site/Raw-data-aa374141dcb3453dbfea301dcc437126#30728bf1bc8d4f70a1739fa20f11459a).
 
