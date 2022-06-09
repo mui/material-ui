@@ -38,6 +38,8 @@ const theme = extendTheme({
     JoyTypography: {
       defaultProps: {
         levelMapping: {
+          display1: 'h1',
+          display2: 'h1',
           h1: 'h2',
           h2: 'h2',
           h3: 'h3',
@@ -47,6 +49,8 @@ const theme = extendTheme({
           body1: 'p',
           body2: 'span',
           body3: 'span',
+          body4: 'span',
+          body5: 'span',
         },
       },
     },
@@ -87,7 +91,7 @@ By doing that, you'll be able to use those levels from the `level` prop:
 ```
 
 :::info
-If using **TypeScript** you need module augmentation to add those values to the theme:
+If using **TypeScript**, you need module augmentation to add those values to the theme:
 
 ```ts
 // in your theme or index file
@@ -128,6 +132,8 @@ If you use **TypeScript**, you have to remove them from the types as well:
 // in your theme or index file
 declare module '@mui/joy/styles' {
   interface TypographySystemOverrides {
+    display1: false;
+    display2: false;
     h1: false;
     h2: false;
     h3: false;
@@ -137,6 +143,8 @@ declare module '@mui/joy/styles' {
     body1: false;
     body2: false;
     body3: false;
+    body4: false;
+    body5: false;
   }
 }
 ```

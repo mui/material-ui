@@ -103,13 +103,13 @@ const defaultVariantMapping: Record<string, string> = {
   h4: 'h4',
   h5: 'h5',
   h6: 'h6',
-  display1: 'p',
-  display2: 'p',
+  display1: 'h1',
+  display2: 'h2',
   body1: 'p',
   body2: 'p',
-  body3: 'p',
-  body4: 'p',
-  body5: 'p',
+  body3: 'span',
+  body4: 'span',
+  body5: 'span',
   inherit: 'p',
 };
 
