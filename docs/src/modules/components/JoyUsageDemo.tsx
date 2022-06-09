@@ -49,11 +49,15 @@ function createCode(data: {
         if (props.length <= 2) {
           if (typeof prop[1] === 'boolean') {
             code = `${code} ${prop[0]}${prop[1] ? '' : '={false}'}`;
+          } else if (typeof prop[1] === 'function') {
+            code = `${code} ${prop[0]}={${(prop[1] as Function).toString()}}`;
           } else {
             code = `${code} ${prop[0]}=${
               typeof prop[1] === 'number' ? `{${prop[1]}}` : `"${prop[1]}"`
             }`;
           }
+        } else if (typeof prop[1] === 'function') {
+          code = `${code}\n  ${prop[0]}={${(prop[1] as Function).toString()}}`;
         } else if (typeof prop[1] === 'boolean') {
           code = `${code}\n  ${prop[0]}${prop[1] ? '' : '={false}'}`;
         } else {
@@ -80,7 +84,7 @@ interface JoyUsageDemoProps<ComponentProps> {
   childrenAccepted?: boolean;
   data: Array<{
     propName: keyof ComponentProps;
-    knob: 'switch' | 'color' | 'select' | 'input' | 'radio';
+    knob?: 'switch' | 'color' | 'select' | 'input' | 'radio';
     options?: Array<string>;
     defaultValue?: string | number | boolean;
   }>;
@@ -100,6 +104,15 @@ export default function JoyUsageDemo<T extends {} = {}>({
     }),
     {},
   ) as T;
+  const staticProps = data
+    .filter((p) => !p.knob)
+    .reduce(
+      (prev, curr) => ({
+        ...prev,
+        [curr.propName]: curr.defaultValue,
+      }),
+      {},
+    ) as T;
   const [props, setProps] = React.useState<T>({} as T);
   return (
     <Box
@@ -109,6 +122,7 @@ export default function JoyUsageDemo<T extends {} = {}>({
         flexGrow: 1,
         maxWidth: 'calc(100% + 24px)',
         display: 'flex',
+        flexDirection: { xs: 'column', sm: 'row' },
         flexWrap: 'wrap',
         gap: 1.5,
         '& .markdown-body pre': {
@@ -131,7 +145,11 @@ export default function JoyUsageDemo<T extends {} = {}>({
         </Box>
         <BrandingProvider mode="dark">
           <HighlightedCode
-            code={createCode({ name: componentName, props, childrenAccepted })}
+            code={createCode({
+              name: componentName,
+              props: { ...props, ...staticProps },
+              childrenAccepted,
+            })}
             language="jsx"
             sx={{ display: { xs: 'none', md: 'block' } }}
           />
@@ -154,8 +172,11 @@ export default function JoyUsageDemo<T extends {} = {}>({
             alignItems: 'center',
           }}
         >
-          <Typography fontWeight="lg">Props</Typography>
+          <Typography id="usage-props" component="h3" fontWeight="lg" sx={{ scrollMarginTop: 160 }}>
+            Props
+          </Typography>
           <IconButton
+            aria-label="Reset all"
             variant="outlined"
             color="neutral"
             size="sm"
@@ -178,6 +199,9 @@ export default function JoyUsageDemo<T extends {} = {}>({
         >
           {data.map(({ propName, knob, options = [], defaultValue }) => {
             const resolvedValue = props[propName] || defaultValue;
+            if (!knob) {
+              return null;
+            }
             if (knob === 'switch') {
               return (
                 <Switch
@@ -263,7 +287,7 @@ export default function JoyUsageDemo<T extends {} = {}>({
                     row
                     name={`${componentName}-color`}
                     aria-labelledby={`${componentName}-color`}
-                    value={resolvedValue}
+                    value={resolvedValue || ''}
                     onChange={(event) =>
                       setProps((latestProps) => ({
                         ...latestProps,
@@ -278,7 +302,7 @@ export default function JoyUsageDemo<T extends {} = {}>({
                         <Sheet key={value} sx={{ width: 28, height: 28, bgcolor: 'unset' }}>
                           <Radio
                             variant="solid"
-                            color={resolvedValue as ColorPaletteProp}
+                            color={value as ColorPaletteProp}
                             label={value}
                             value={value}
                             disableIcon
@@ -339,14 +363,15 @@ export default function JoyUsageDemo<T extends {} = {}>({
                   </Typography>
                   <Select
                     id={`${componentName}-${propName}`}
-                    value={resolvedValue as string}
+                    value={(resolvedValue || 'none') as string}
                     onChange={(event) =>
                       setProps((latestProps) => ({
                         ...latestProps,
-                        variant: event.target.value,
+                        [propName]: event.target.value,
                       }))
                     }
                   >
+                    {!resolvedValue && <option value="none">{''}</option>}
                     {options.map((value) => (
                       <option key={value} value={value}>
                         {value}

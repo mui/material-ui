@@ -2,7 +2,6 @@
 product: joy-ui
 title: React Chip component
 githubLabel: 'component: chip'
-unstyled: /base/react-chip/
 ---
 
 # Chip
@@ -31,6 +30,12 @@ The variant of the `ChipDelete` changes based on the parent `Chip` unless you sp
 Specify the `onClick` prop in order to enable the clickability of the `Chip` component.
 
 {{"demo": "ClickableChip.js"}}
+
+## As link
+
+Pass component prop to the action slot to change from button to anchor tag. The rest of the props are spread to the DOM.
+
+{{"demo": "LinkChip.js"}}
 
 ## Clickable and Deletable
 
