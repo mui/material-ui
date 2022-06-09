@@ -57,7 +57,7 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/checkbox/
 
 ## 表单组
 
-`FormGroup` is a helpful wrapper used to group selection control components.
+`FormGroup` 是一个用于对选择控件进行分组的有益的容器
 
 {{"demo": "CheckboxesGroup.js"}}
 
