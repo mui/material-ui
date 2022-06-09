@@ -109,7 +109,7 @@
     "inputFocused": {
       "description": "Estilos aplicados para {{nodeName}} se {{conditions}}.",
       "nodeName": "o elemento input",
-      "conditions": "estiver focado"
+      "conditions": "the input is focused"
     },
     "endAdornment": {
       "description": "Estilos aplicados a {{nodeName}}.",
