@@ -49,7 +49,7 @@ Box 组件能够封装您的组件。 它创建了一个新的 DOM 元素，默�
 +<Box component="button" sx={{ border: '1px dashed grey' }}>Save</Box>
 ```
 
-## System props
+## System属性
 
 作为一个 CSS 实用组件, `Box` 也支持所有 [`system`](/system/properties/) 属性。 您可以直接在组件上使用它们作为 prop。 例如，margin-top:
 
