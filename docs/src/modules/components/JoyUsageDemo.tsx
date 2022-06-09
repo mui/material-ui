@@ -122,6 +122,7 @@ export default function JoyUsageDemo<T extends {} = {}>({
         flexGrow: 1,
         maxWidth: 'calc(100% + 24px)',
         display: 'flex',
+        flexDirection: { xs: 'column', sm: 'row' },
         flexWrap: 'wrap',
         gap: 1.5,
         '& .markdown-body pre': {
@@ -171,8 +172,11 @@ export default function JoyUsageDemo<T extends {} = {}>({
             alignItems: 'center',
           }}
         >
-          <Typography fontWeight="lg">Props</Typography>
+          <Typography id="usage-props" component="h3" fontWeight="lg" sx={{ scrollMarginTop: 160 }}>
+            Props
+          </Typography>
           <IconButton
+            aria-label="Reset all"
             variant="outlined"
             color="neutral"
             size="sm"
@@ -283,7 +287,7 @@ export default function JoyUsageDemo<T extends {} = {}>({
                     row
                     name={`${componentName}-color`}
                     aria-labelledby={`${componentName}-color`}
-                    value={resolvedValue}
+                    value={resolvedValue || ''}
                     onChange={(event) =>
                       setProps((latestProps) => ({
                         ...latestProps,
@@ -298,7 +302,7 @@ export default function JoyUsageDemo<T extends {} = {}>({
                         <Sheet key={value} sx={{ width: 28, height: 28, bgcolor: 'unset' }}>
                           <Radio
                             variant="solid"
-                            color={resolvedValue as ColorPaletteProp}
+                            color={value as ColorPaletteProp}
                             label={value}
                             value={value}
                             disableIcon
@@ -359,14 +363,15 @@ export default function JoyUsageDemo<T extends {} = {}>({
                   </Typography>
                   <Select
                     id={`${componentName}-${propName}`}
-                    value={resolvedValue as string}
+                    value={(resolvedValue || 'none') as string}
                     onChange={(event) =>
                       setProps((latestProps) => ({
                         ...latestProps,
-                        variant: event.target.value,
+                        [propName]: event.target.value,
                       }))
                     }
                   >
+                    {!resolvedValue && <option value="none">{''}</option>}
                     {options.map((value) => (
                       <option key={value} value={value}>
                         {value}

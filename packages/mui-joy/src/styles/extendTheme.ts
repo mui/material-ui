@@ -334,7 +334,7 @@ export default function extendTheme(themeInput?: ThemeInput): Theme {
       xs: '0.75rem',
       sm: '0.875rem',
       md: '1rem',
-      lg: '1.125',
+      lg: '1.125rem',
       xl: '1.25rem',
       xl2: '1.5rem',
       xl3: '1.875rem',
