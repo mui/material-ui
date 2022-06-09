@@ -287,7 +287,7 @@ Alternatively, you can open the Netlify preview of the documentation, and open a
 You can also package and test your changes locally.
 The following example shows how to package `@mui/material`, but you can package any MUI module with this process:
 
-```
+```sh
 $> cd packages/mui-material # or path to any other mui package
 $packages\mui-material> yarn build
 $packages\mui-material> cd ./build
@@ -297,7 +297,7 @@ $packages\mui-material> npm pack
 Navigate to the build folder of your respective package and locate a file with the format `mui-material-x.x.x.tar.gz`. 
 Copy this file and move it to the project directory you want to test in, then run:
 
-```
+```sh
 $test-project> npm i ./path-to-file/mui-material-x.x.x.tar.gz
 ```
 
