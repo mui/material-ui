@@ -300,7 +300,7 @@ Navigate to the build folder of your respective package and find a file with the
 $test-project> npm i ./path-to-file/mui-material-x.x.x.tar.gz
 ```
 
-**NOTE**: If you have already installed a package, your changes will not be reflected when you reinstall it. A quick fix for this would be to temporarily bump the version number in your `package.json` before running `yarn build`.
+**NOTE**: If you have already installed this package, your changes will not be reflected when you reinstall it. A quick fix for this would be to temporarily bump the version number in your `package.json` before running `yarn build`.
 
 ## Translations
 
