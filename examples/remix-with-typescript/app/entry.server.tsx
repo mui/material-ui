@@ -2,10 +2,8 @@ import * as React from 'react';
 import { renderToString } from 'react-dom/server';
 import { RemixServer } from 'remix';
 import type { EntryContext } from 'remix';
-
 import createEmotionCache from './src/createEmotionCache';
 import theme from './src/theme';
-
 import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider } from '@mui/material/styles';
 import { CacheProvider } from '@emotion/react';
