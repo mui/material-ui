@@ -1,16 +1,11 @@
 import * as React from 'react';
-import Slider, { SliderThumb } from '@mui/material/Slider';
+import Slider, { SliderThumb, SliderValueLabelProps } from '@mui/material/Slider';
 import { styled } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import Tooltip from '@mui/material/Tooltip';
 import Box from '@mui/material/Box';
 
-interface Props {
-  children: React.ReactElement;
-  value: number;
-}
-
-function ValueLabelComponent(props: Props) {
+function ValueLabelComponent(props: SliderValueLabelProps) {
   const { children, value } = props;
 
   return (

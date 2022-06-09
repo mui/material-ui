@@ -1,5 +1,77 @@
 # [Versions](https://mui.com/versions/)
 
+## 5.8.3
+
+<!-- generated comparing v5.8.2..master -->
+
+_Jun 7, 2022_
+
+A big thanks to the 15 contributors who made this release possible.
+This release is mostly about 🐛 bug fixes and 📚 documentation improvements.
+
+## `@mui/material@5.8.3`
+
+- [Alert] Constrain message width and allow overflow (#32747) @Janpot
+- [Checkbox] Add support for CSS variables (#32579) @haneenmahd
+- [Slider] Fix positioning of tooltips on vertical slider (#32919) @abhinav-22-tech
+
+## `@mui/system@5.8.3`
+
+- [system] Configurable attributes for libraries (#32971) @siriwatknp
+
+## `@mui/codemod@5.8.3
+
+- [codemod] Fix infinite loop in jss-to-tss-react and add TODO (#33048) @ryancogswell
+
+## `@mui/lab@5.0.0-alpha.85`
+
+- [pickers] Add deprecations when importing pickers from the lab (#32950) @flaviendelangle
+
+## `@mui/joy@5.0.0-alpha.31`
+
+- [Joy] Add `Slider` component and demos (#32694) @hbjORbj
+- [Joy] Add articles about customization approaches (#32887) @siriwatknp
+- [Joy] Add automatic adjustment page to core features (#32980) @siriwatknp
+- [Joy] Add docs about dark mode (#33002) @siriwatknp
+- [Joy] Add template UIs & first look blog post (#32791) @danilo-leal
+
+## `@mui/base@5.0.0-alpha.84`
+
+- [base] Remove @mui/system in tests (#32945) @kevinji
+- [ButtonUnstyled] Accept callbacks in componentsProps (#32991) @michaldudak
+- [SwitchUnstyled] Accept callbacks in componentsProps (#32993) @michaldudak
+- [TablePaginationUnstyled] Define ownerState and slot props' types (#32905) @michaldudak
+- [TabPanelUnstyled] Define ownerState and slot props' types (#32928) @michaldudak
+- [TabsListUnstyled] Define ownerState and slot props' types (#32925) @michaldudak
+
+## Docs
+
+- [blog] Fix anchor link scroll (#32994) @oliviertassinari
+- [docs] Add "Migration" section to sidebar and revise v4-v5 content (#32740) @samuelsycamore
+- [docs] Add What doesn't count as a breaking change? (#32850) @oliviertassinari
+- [docs] Fix 301 link @oliviertassinari
+- [docs] Fix icon color in `BadgeUnstyled` docs (#32976) @ZeeshanTamboli
+- [docs] Improve product identifier (#32707) @danilo-leal
+- [docs] Improve UX with back to top (#32896) @oliviertassinari
+- [docs] Polish overview page to Material UI (#32954) @oliviertassinari
+- [docs] Redirect older URLs (#33037) @oliviertassinari
+- [docs] Remove pickers page from the Lab section (#32961) @DanailH
+- [docs] Show product identifier on updated MUI X Introduction pages (#32966) @samuelsycamore
+- [docs] Throw on 301 links (#32939) @oliviertassinari
+- [website] Add Gerda to the about page (#33038) @danilo-leal
+- [website] Polish the pricing page (#32811) @oliviertassinari
+- [website] Remove unnecessary `address` dependency (#32957) @michaldudak
+
+## Core
+
+- [core] Improve icon synonyms (#32742) @oliviertassinari
+- [core] Prepare Next.js config for React 18 (#32963) @michaldudak
+- [core] Remove dead logic (#32940) @oliviertassinari
+- [core] Update dependencies to fix security vulnerabilities (#32947) @michaldudak
+- Add security link to README for Tidelift @mbrookes
+
+All contributors of this release in alphabetical order: @abhinav-22-tech, @DanailH, @danilo-leal, @flaviendelangle, @haneenmahd, @hbjORbj, @Janpot, @kevinji, @mbrookes, @michaldudak, @oliviertassinari, @ryancogswell, @samuelsycamore, @siriwatknp, @ZeeshanTamboli
+
 ## 5.8.2
 
 <!-- generated comparing v5.8.1..master -->
@@ -2598,7 +2670,7 @@ _Sep 1, 2021_
 A big thanks to the 18 contributors who made this release possible. Here are some highlights ✨:
 
 - 🎉 Renamed packages to `@mui/*` as part of rebranding the company, following the strategy of expanding the library scope beyond Material Design. For more details about it, check the [GitHub discussion](https://github.com/mui/material-ui/discussions/27803).
-- 🛠 Added `mui-replace` codemod for migrating `@material-ui/*` to new packages `@mui/*`. Check out this [codemod detail](https://github.com/mui/material-ui/blob/next/packages/mui-codemod/README.md#mui-replace) or head to [migration guide](https://mui.com/material-ui/guides/migration-v4/#preset-safe)
+- 🛠 Added `mui-replace` codemod for migrating `@material-ui/*` to new packages `@mui/*`. Check out this [codemod detail](https://github.com/mui/material-ui/blob/next/packages/mui-codemod/README.md#mui-replace) or head to [migration guide](https://mui.com/material-ui/migration/migration-v4/#preset-safe)
 - 🧪 Added new `<Mansory>` component to the lab, [check it out](https://mui.com/components/masonry/). It has been crafted by our first intern, @hbjORbj 👏!
 
 ### `@mui/material@5.0.0-rc.0`
@@ -4003,7 +4075,7 @@ A big thanks to the 16 contributors who made this release possible. Here are som
   />
   ```
 
-> Follow [this link](https://mui.com/material-ui/guides/migration-v4/#main-content) for full migration from v4 => v5
+> Follow [this link](https://mui.com/material-ui/migration/migration-v4/) for full migration from v4 => v5
 
 #### Changes
 

@@ -15,7 +15,7 @@
     "componentsProps": {
       "type": {
         "name": "shape",
-        "description": "{ input?: object, mark?: object, markLabel?: object, rail?: object, root?: object, thumb?: object, track?: object, valueLabel?: { className?: string, components?: { Root?: elementType }, style?: object, value?: Array&lt;number&gt;<br>&#124;&nbsp;number, valueLabelDisplay?: 'auto'<br>&#124;&nbsp;'off'<br>&#124;&nbsp;'on' } }"
+        "description": "{ input?: object, mark?: object, markLabel?: object, rail?: object, root?: object, thumb?: object, track?: object, valueLabel?: { children?: element, className?: string, components?: { Root?: elementType }, open?: bool, style?: object, value?: number, valueLabelDisplay?: 'auto'<br>&#124;&nbsp;'off'<br>&#124;&nbsp;'on' } }"
       },
       "default": "{}"
     },

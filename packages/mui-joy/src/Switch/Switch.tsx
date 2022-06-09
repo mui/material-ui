@@ -32,7 +32,7 @@ const useUtilityClasses = (ownerState: SwitchProps & { focusVisible: boolean }) 
 
 const switchColorVariables =
   ({ theme, ownerState }: { theme: Theme; ownerState: SwitchProps }) =>
-  (data: { state?: 'Hover' | 'Disabled'; checked?: boolean } = {}) => {
+  (data: { state?: 'Hover' | 'Disabled' } = {}) => {
     const variant = ownerState.variant;
     const color = ownerState.color;
     return {
@@ -66,21 +66,21 @@ const SwitchRoot = styled('span', {
       '--Switch-track-width': '40px',
       '--Switch-track-height': '20px',
       '--Switch-thumb-size': '12px',
-      '--Switch-decorator-paddingX': '4px',
+      '--Switch-gap': '6px',
       fontSize: theme.vars.fontSize.sm,
     }),
     ...(ownerState.size === 'md' && {
       '--Switch-track-width': '48px',
       '--Switch-track-height': '24px',
       '--Switch-thumb-size': '16px',
-      '--Switch-decorator-paddingX': '8px',
+      '--Switch-gap': '8px',
       fontSize: theme.vars.fontSize.md,
     }),
     ...(ownerState.size === 'lg' && {
       '--Switch-track-width': '64px',
       '--Switch-track-height': '32px',
       '--Switch-thumb-size': '24px',
-      '--Switch-decorator-paddingX': '12px',
+      '--Switch-gap': '12px',
     }),
     '--Switch-thumb-radius': 'calc(var(--Switch-track-radius) - 2px)',
     '--Switch-thumb-width': 'var(--Switch-thumb-size)',
@@ -91,15 +91,15 @@ const SwitchRoot = styled('span', {
       ...getColorVariables({ state: 'Hover' }),
     },
     [`&.${switchClasses.checked}`]: {
-      ...getColorVariables({ checked: true }),
+      ...getColorVariables(),
       '&:hover': {
-        ...getColorVariables({ checked: true, state: 'Hover' }),
+        ...getColorVariables({ state: 'Hover' }),
       },
     },
     [`&.${switchClasses.disabled}`]: {
       pointerEvents: 'none',
       color: theme.vars.palette.text.tertiary,
-      ...getColorVariables({ state: 'Disabled', checked: ownerState.checked }),
+      ...getColorVariables({ state: 'Disabled' }),
     },
     display: 'inline-flex',
     alignItems: 'center',
@@ -200,7 +200,7 @@ const SwitchStartDecorator = styled('span', {
   overridesResolver: (props, styles) => styles.startDecorator,
 })<{ ownerState: SwitchProps }>({
   display: 'inline-flex',
-  padding: '0px var(--Switch-decorator-paddingX)',
+  marginInlineEnd: 'var(--Switch-gap)',
 });
 
 const SwitchEndDecorator = styled('span', {
@@ -209,7 +209,7 @@ const SwitchEndDecorator = styled('span', {
   overridesResolver: (props, styles) => styles.endDecorator,
 })<{ ownerState: SwitchProps }>({
   display: 'inline-flex',
-  padding: '0px var(--Switch-decorator-paddingX)',
+  marginInlineStart: 'var(--Switch-gap)',
 });
 
 const Switch = React.forwardRef<HTMLSpanElement, SwitchProps>(function Switch(inProps, ref) {
