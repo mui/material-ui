@@ -107,7 +107,7 @@ In either case, you won't interact much with either of these packages beyond ins
 :::warning
 ⚠ **Note:** prior to v5, Material UI used `@mui/styles` as a JSS wrapper.
 This package is now deprecated and will be removed in the future.
-Check out [the guide to migrating from v4 to v5](/material-ui/guides/migration-v4/) to learn how to upgrade to a newer solution.
+Check out [the guide to migrating from v4 to v5](/material-ui/migration/migration-v4/) to learn how to upgrade to a newer solution.
 :::
 
 ### MUI System

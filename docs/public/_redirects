@@ -20,7 +20,7 @@
 /r/issue-template-latest https://codesandbox.io/s/material-ui-issue-latest-s2dsx 302
 /r/ts-issue-template https://www.typescriptlang.org/play?#code/JYWwDg9gTgLgBAKjgQwM5wEoFNkGN4BmUEIcA5FDvmQNwBQokscA3nXHAPSdwwAWWOLhKQAdllEx0ATwgBXOHNRYAJnQC+cIiXIABEHOCcQyGFijBkAGzJ06BOaPzAIouABEsICAAoAlKzsXDwAmvJQQhAqWBpAA 302
 /r/custom-component-variants /material-ui/customization/how-to-customize/#adding-new-component-variants 302
-/r/migration-v4 /material-ui/guides/migration-v4/ 302
+/r/migration-v4 /material-ui/migration/migration-v4/ 302
 
 # Legacy redirection
 # Added in chronological order (the last line is the most recent one)
@@ -324,6 +324,9 @@ https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 /company/about/ /about/ 301
 /company/jobs/ /careers/ 301
 /material-ui/customization/unstyled-components/ /base/getting-started/overview/ 301
+/material-ui/guides/migration-v4/ /material-ui/migration/migration-v4/ 301
+/material-ui/guides/migration-v3/ /material-ui/migration/migration-v3/ 301
+/material-ui/guides/migration-v0x/ /material-ui/migration/migration-v0x/ 301
 /material/* /material-ui/:splat 301
 /zh/material/* /zh/material-ui/:splat 301
 /pt/material/* /pt/material-ui/:splat 301
