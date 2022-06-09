@@ -125,8 +125,8 @@ const LinkRoot = styled('a', {
               left: 0,
               bottom: 0,
               right: 0,
-              borderRadius: `var(--Link-overlayRadius, var(--internal-action-radius, inherit))`,
-              margin: `var(--Link-overlayMargin)`,
+              borderRadius: `var(--internal-action-radius, inherit)`,
+              margin: `var(--internal-action-margin)`,
             },
             [`${theme.focus.selector}`]: {
               '&::after': theme.focus.default,
@@ -265,7 +265,7 @@ Link.propTypes /* remove-proptypes */ = {
    * @default 'primary'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['context', 'danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
   /**

@@ -49,11 +49,15 @@ function createCode(data: {
         if (props.length <= 2) {
           if (typeof prop[1] === 'boolean') {
             code = `${code} ${prop[0]}${prop[1] ? '' : '={false}'}`;
+          } else if (typeof prop[1] === 'function') {
+            code = `${code} ${prop[0]}={${(prop[1] as Function).toString()}}`;
           } else {
             code = `${code} ${prop[0]}=${
               typeof prop[1] === 'number' ? `{${prop[1]}}` : `"${prop[1]}"`
             }`;
           }
+        } else if (typeof prop[1] === 'function') {
+          code = `${code}\n  ${prop[0]}={${(prop[1] as Function).toString()}}`;
         } else if (typeof prop[1] === 'boolean') {
           code = `${code}\n  ${prop[0]}${prop[1] ? '' : '={false}'}`;
         } else {
@@ -80,7 +84,7 @@ interface JoyUsageDemoProps<ComponentProps> {
   childrenAccepted?: boolean;
   data: Array<{
     propName: keyof ComponentProps;
-    knob: 'switch' | 'color' | 'select' | 'input' | 'radio';
+    knob?: 'switch' | 'color' | 'select' | 'input' | 'radio';
     options?: Array<string>;
     defaultValue?: string | number | boolean;
   }>;
@@ -100,6 +104,15 @@ export default function JoyUsageDemo<T extends {} = {}>({
     }),
     {},
   ) as T;
+  const staticProps = data
+    .filter((p) => !p.knob)
+    .reduce(
+      (prev, curr) => ({
+        ...prev,
+        [curr.propName]: curr.defaultValue,
+      }),
+      {},
+    ) as T;
   const [props, setProps] = React.useState<T>({} as T);
   return (
     <Box
@@ -132,7 +145,11 @@ export default function JoyUsageDemo<T extends {} = {}>({
         </Box>
         <BrandingProvider mode="dark">
           <HighlightedCode
-            code={createCode({ name: componentName, props, childrenAccepted })}
+            code={createCode({
+              name: componentName,
+              props: { ...props, ...staticProps },
+              childrenAccepted,
+            })}
             language="jsx"
             sx={{ display: { xs: 'none', md: 'block' } }}
           />
@@ -182,6 +199,9 @@ export default function JoyUsageDemo<T extends {} = {}>({
         >
           {data.map(({ propName, knob, options = [], defaultValue }) => {
             const resolvedValue = props[propName] || defaultValue;
+            if (!knob) {
+              return null;
+            }
             if (knob === 'switch') {
               return (
                 <Switch

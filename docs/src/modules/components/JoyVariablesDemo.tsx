@@ -22,8 +22,9 @@ export default function JoyVariablesDemo(props: {
   childrenAccepted?: boolean;
   data: Array<{ var: string; defaultValue?: string }>;
   renderDemo: (sx: { [k: string]: string }) => React.ReactElement;
+  renderCode?: (formattedSx: string) => string;
 }) {
-  const { componentName, data = [], childrenAccepted = false } = props;
+  const { componentName, data = [], childrenAccepted = false, renderCode } = props;
   const [sx, setSx] = React.useState<{ [k: string]: string }>({});
   return (
     <Box
@@ -56,7 +57,11 @@ export default function JoyVariablesDemo(props: {
         </Box>
         <BrandingProvider mode="dark">
           <HighlighedCode
-            code={`<${componentName} ${formatSx(sx)}${childrenAccepted ? '>' : '/>'}`}
+            code={
+              renderCode
+                ? renderCode(formatSx(sx))
+                : `<${componentName} ${formatSx(sx)}${childrenAccepted ? '>' : '/>'}`
+            }
             language="jsx"
             sx={{ display: { xs: 'none', md: 'initial' } }}
           />

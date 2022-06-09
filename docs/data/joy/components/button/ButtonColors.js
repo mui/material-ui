@@ -13,36 +13,41 @@ export default function ButtonColors() {
     <Box
       sx={{
         display: 'flex',
-        flexDirection: 'row',
-        overflow: 'auto',
-        width: '100%',
+        alignItems: 'center',
+        gap: 3,
       }}
     >
-      <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 2 }}>
-        <Button variant={variant} color="primary">
+      <Box
+        sx={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(2, minmax(80px, 1fr))',
+          gap: 1,
+        }}
+      >
+        <Button size="sm" variant={variant} color="primary">
           Primary
         </Button>
-        <Button variant={variant} color="neutral">
+        <Button size="sm" variant={variant} color="neutral">
           Neutral
         </Button>
-        <Button variant={variant} color="danger">
+        <Button size="sm" variant={variant} color="danger">
           Danger
         </Button>
-        <Button variant={variant} color="info">
+        <Button size="sm" variant={variant} color="info">
           Info
         </Button>
-        <Button variant={variant} color="success">
+        <Button size="sm" variant={variant} color="success">
           Success
         </Button>
-        <Button variant={variant} color="warning">
+        <Button size="sm" variant={variant} color="warning">
           Warning
         </Button>
       </Box>
       <Sheet
-        variant="outlined"
         sx={{
-          p: 2,
-          borderRadius: 'sm',
+          pl: 2.5,
+          borderLeft: '1px solid',
+          borderColor: 'divider',
         }}
       >
         <Typography
@@ -50,7 +55,7 @@ export default function ButtonColors() {
           fontWeight="xl"
           id="variant-label"
           textColor="text.primary"
-          mb={2}
+          mb={1}
         >
           Variant:
         </Typography>
@@ -58,7 +63,6 @@ export default function ButtonColors() {
           size="sm"
           aria-labelledby="variant-label"
           name="variant"
-          row
           value={variant}
           onChange={(event) => setVariant(event.target.value)}
         >
