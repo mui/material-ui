@@ -10,7 +10,7 @@ import blue from '../colors/blue';
 import lightBlue from '../colors/lightBlue';
 import green from '../colors/green';
 
-const getLightTokens = () => ({
+export const light = {
   // The colors used to style the text.
   text: {
     // The most important text.
@@ -47,11 +47,9 @@ const getLightTokens = () => ({
     focusOpacity: 0.12,
     activatedOpacity: 0.12,
   },
-});
+};
 
-export const light = getLightTokens();
-
-const getDarkTokens = () => ({
+export const dark = {
   text: {
     primary: common.white,
     secondary: 'rgba(255, 255, 255, 0.7)',
@@ -76,9 +74,7 @@ const getDarkTokens = () => ({
     focusOpacity: 0.12,
     activatedOpacity: 0.24,
   },
-});
-
-export const dark = getDarkTokens();
+};
 
 function addLightOrDark(intent, direction, shade, tonalOffset) {
   const tonalOffsetLight = tonalOffset.light || tonalOffset;
@@ -265,7 +261,7 @@ export default function createPalette(palette) {
     return color;
   };
 
-  const modes = { dark: getDarkTokens(), light: getLightTokens() };
+  const modes = { dark, light };
 
   if (process.env.NODE_ENV !== 'production') {
     if (!modes[mode]) {

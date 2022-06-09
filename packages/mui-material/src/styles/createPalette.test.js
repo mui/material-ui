@@ -91,7 +91,7 @@ describe('createPalette()', () => {
     expect(palette.secondary.main, 'should use purple as the default secondary color').to.equal(
       purple[200],
     );
-    expect(palette.text, 'should use dark theme text').to.deep.equal(dark.text);
+    expect(palette.text, 'should use dark theme text').to.equal(dark.text);
   });
 
   describe('augmentColor', () => {
