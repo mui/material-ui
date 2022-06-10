@@ -21,36 +21,39 @@ const ListDividerRoot = styled('li', {
   name: 'JoyListDivider',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: ListDividerProps & { row: boolean } }>(({ theme, ownerState }) => ({
-  border: 'none', // reset the border for `hr` tag
-  ...(ownerState.row && {
-    '--List-divider-marginX': 'calc(var(--List-gap) + var(--List-divider-gap))',
-    borderInlineStart: '1px solid',
-    marginBlock: 0,
-    marginInline: 'var(--List-divider-marginX)',
+})<{ ownerState: ListDividerProps & { row: boolean; 'data-first-child'?: boolean } }>(
+  ({ theme, ownerState }) => ({
+    border: 'none', // reset the border for `hr` tag
+    ...(ownerState.row && {
+      '--List-divider-marginX': 'calc(var(--List-gap) + var(--List-divider-gap))',
+      borderInlineStart: '1px solid',
+      marginBlock: 0,
+      marginInline: 'var(--List-divider-marginX)',
+    }),
+    ...(!ownerState.row && {
+      // by default, the divider line is stretched from edge-to-edge of the List
+      // spacing between ListItem can be controlled by `--List-divider-gap` on the List
+      ...(ownerState['data-first-child'] === undefined && {
+        marginBlockStart: 'calc(var(--List-gap) + var(--List-divider-gap))',
+      }),
+      marginBlockEnd: 'var(--List-divider-gap)',
+      marginInline: 'calc(-1 * var(--List-padding))',
+      ...(ownerState.inset === 'gutter' && {
+        marginInlineStart: 'var(--List-item-paddingLeft)',
+        marginInlineEnd: 'var(--List-item-paddingRight)',
+      }),
+      ...(ownerState.inset === 'startDecorator' && {
+        marginInlineStart: 'var(--List-item-paddingLeft)',
+      }),
+      ...(ownerState.inset === 'startContent' && {
+        marginInlineStart: 'calc(var(--List-item-paddingLeft) + var(--List-decorator-width))',
+      }),
+      borderBlockEnd: '1px solid',
+    }),
+    borderColor: theme.vars.palette.divider,
+    listStyle: 'none',
   }),
-  ...(!ownerState.row && {
-    '--List-divider-marginY': 'calc(var(--List-gap) + var(--List-divider-gap))',
-    // by default, the divider line is stretched from edge-to-edge of the List
-    // spacing between ListItem can be controlled by `--List-divider-gap` on the List
-    marginBlock: 'var(--List-divider-marginY)',
-    marginInline: 'calc(-1 * var(--List-padding))',
-    ...(ownerState.inset === 'gutter' && {
-      marginBlock: 'var(--List-divider-marginY)',
-      marginInlineStart: 'var(--List-item-paddingLeft)',
-      marginInlineEnd: 'var(--List-item-paddingRight)',
-    }),
-    ...(ownerState.inset === 'startDecorator' && {
-      marginInlineStart: 'var(--List-item-paddingLeft)',
-    }),
-    ...(ownerState.inset === 'startContent' && {
-      marginInlineStart: 'calc(var(--List-item-paddingLeft) + var(--List-decorator-width))',
-    }),
-    borderBlockEnd: '1px solid',
-  }),
-  borderColor: theme.vars.palette.divider,
-  listStyle: 'none',
-}));
+);
 
 const ListDivider = React.forwardRef(function ListDivider(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({

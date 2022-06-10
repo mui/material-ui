@@ -1,6 +1,7 @@
 import * as React from 'react';
 import List from '@mui/joy/List';
 import ListItem from '@mui/joy/ListItem';
+import ListItemButton from '@mui/joy/ListItemButton';
 import Typography from '@mui/joy/Typography';
 
 export default function StickyList() {
@@ -18,8 +19,12 @@ export default function StickyList() {
           </Typography>
         </ListItem>
         <List aria-labelledby="nested-list-demo-1">
-          <ListItem>Subitem 1</ListItem>
-          <ListItem>Subitem 2</ListItem>
+          <ListItem>
+            <ListItemButton>Subitem 1</ListItemButton>
+          </ListItem>
+          <ListItem>
+            <ListItemButton>Subitem 2</ListItemButton>
+          </ListItem>
         </List>
       </ListItem>
       <ListItem nested>
@@ -34,8 +39,12 @@ export default function StickyList() {
           </Typography>
         </ListItem>
         <List aria-labelledby="nested-list-demo-2">
-          <ListItem>Subitem 1</ListItem>
-          <ListItem>Subitem 2</ListItem>
+          <ListItem>
+            <ListItemButton>Subitem 1</ListItemButton>
+          </ListItem>
+          <ListItem>
+            <ListItemButton>Subitem 2</ListItemButton>
+          </ListItem>
         </List>
       </ListItem>
     </List>

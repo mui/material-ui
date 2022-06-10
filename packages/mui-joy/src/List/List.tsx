@@ -67,7 +67,6 @@ const ListRoot = styled('ul', {
         // instanceSize is the specified size of the rendered element <List size="sm" />
         // only apply size variables if instanceSize is provided so that the variables can be pass down to children by default.
         ...applySizeVars(ownerState.instanceSize),
-        '--List-gap': '0px',
         '--List-item-paddingRight': 'var(--List-item-paddingX)',
         '--List-item-paddingLeft': 'var(--NestedList-item-paddingLeft)',
         // reset ListItem, ListItemButton negative margin (caused by NestedListItem)

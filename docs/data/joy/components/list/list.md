@@ -79,6 +79,8 @@ Joy provides 4 List related components:
 
 ## Component variables
 
+{{"demo": "ListVariables.js", "bg": true, "hideToolbar": true}}
+
 ## Common examples
 
 ### iOS Settings

@@ -2,7 +2,7 @@ import * as React from 'react';
 import List from '@mui/joy/List';
 import ListItemDecorator from '@mui/joy/ListItemDecorator';
 import ListItemButton from '@mui/joy/ListItemButton';
-import VideoCam from '@mui/icons-material/VideoCam';
+import Videocam from '@mui/icons-material/Videocam';
 import Image from '@mui/icons-material/Image';
 
 export default function ActionableList() {
@@ -16,7 +16,7 @@ export default function ActionableList() {
       </ListItemButton>
       <ListItemButton>
         <ListItemDecorator>
-          <VideoCam />
+          <Videocam />
         </ListItemDecorator>
         Add another video
       </ListItemButton>
