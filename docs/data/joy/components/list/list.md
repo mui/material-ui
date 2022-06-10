@@ -47,6 +47,12 @@ Joy provides 4 List related components:
 
 ### Selected
 
+{{"demo": "SelectedList.js", "bg": true}}
+
+### Variants and colors
+
+{{"demo": "VariantsColorsList.js", "hideToolbar": true}}
+
 ### Secondary action
 
 ## Sizes
