@@ -1,18 +1,18 @@
 # Instalação
 
-<p class="description">Install Material UI, the world's most popular React UI framework.</p>
+<p class="description">Instale Material UI! O framework UI mais popular do mundo de React.</p>
 
-Material UI is available as an [npm package](https://www.npmjs.com/package/@mui/material).
+O Material UI está disponível como um [pacote npm](https://www.npmjs.com/package/@mui/material)
 
 ## npm
 
-To install and save in your `package.json` dependencies, run the command below using **npm**:
+Para instalar e salvar as dependências do seu `pacote.json`, execute o seguinte comando **npm** abaixo:
 
 ```sh
 npm install @mui/material @emotion/react @emotion/styled
 ```
 
-Or **yarn**:
+Ou **yarn**
 
 ```sh
 yarn add @mui/material @emotion/react @emotion/styled
@@ -20,7 +20,7 @@ yarn add @mui/material @emotion/react @emotion/styled
 
 <!-- #react-peer-version -->
 
-Please note that [react](https://www.npmjs.com/package/react) >= 17.0.0 and [react-dom](https://www.npmjs.com/package/react-dom) >= 17.0.0 are peer dependencies.
+Por favor, note que [react](https://www.npmjs.com/package/react) >= 17.0.0 and [react-dom](https://www.npmjs.com/package/react-dom) >= 17.0.0 são dependências obrigatórias.
 
 Material UI is using [emotion](https://emotion.sh/docs/introduction) as a styling engine by default. If you want to use [`styled-components`](https://styled-components.com/) instead, run:
 
