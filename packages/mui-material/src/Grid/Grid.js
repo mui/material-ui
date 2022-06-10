@@ -20,6 +20,7 @@ import { unstable_composeClasses as composeClasses } from '@mui/base';
 import requirePropFactory from '../utils/requirePropFactory';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
+import useTheme from '../styles/useTheme';
 import GridContext from './GridContext';
 import gridClasses, { getGridUtilityClass } from './gridClasses';
 
@@ -183,9 +184,9 @@ export function generateColumnGap({ theme, ownerState }) {
   return styles;
 }
 
-export function resolveSpacingClasses(spacing, container, styles = {}) {
-  // in case of grid item or undefined/null or `spacing` <= 0
-  if (!container || !spacing || spacing <= 0) {
+export function resolveSpacingStyles(spacing, breakpoints, styles = {}) {
+  // undefined/null or `spacing` <= 0
+  if (!spacing || spacing <= 0) {
     return [];
   }
   // in case of string/number `spacing`
@@ -193,18 +194,20 @@ export function resolveSpacingClasses(spacing, container, styles = {}) {
     (typeof spacing === 'string' && !Number.isNaN(Number(spacing))) ||
     typeof spacing === 'number'
   ) {
-    return [styles[`spacing-xs-${String(spacing)}`] || `spacing-xs-${String(spacing)}`];
+    return [styles[`spacing-xs-${String(spacing)}`]];
   }
   // in case of object `spacing`
-  const { xs, sm, md, lg, xl } = spacing;
+  const spacingStyles = [];
 
-  return [
-    Number(xs) > 0 && (styles[`spacing-xs-${String(xs)}`] || `spacing-xs-${String(xs)}`),
-    Number(sm) > 0 && (styles[`spacing-sm-${String(sm)}`] || `spacing-sm-${String(sm)}`),
-    Number(md) > 0 && (styles[`spacing-md-${String(md)}`] || `spacing-md-${String(md)}`),
-    Number(lg) > 0 && (styles[`spacing-lg-${String(lg)}`] || `spacing-lg-${String(lg)}`),
-    Number(xl) > 0 && (styles[`spacing-xl-${String(xl)}`] || `spacing-xl-${String(xl)}`),
-  ];
+  breakpoints.forEach((breakpoint) => {
+    const value = spacing[breakpoint];
+
+    if (Number(value) > 0) {
+      spacingStyles.push(styles[`spacing-${breakpoint}-${String(value)}`]);
+    }
+  });
+
+  return spacingStyles;
 }
 
 // Default CSS values
@@ -217,22 +220,35 @@ const GridRoot = styled('div', {
   name: 'MuiGrid',
   slot: 'Root',
   overridesResolver: (props, styles) => {
-    const { container, direction, item, lg, md, sm, spacing, wrap, xl, xs, zeroMinWidth } =
-      props.ownerState;
+    const { ownerState } = props;
+    const { container, direction, item, spacing, wrap, zeroMinWidth, breakpoints } = ownerState;
+
+    let spacingStyles = [];
+
+    // in case of grid item
+    if (container) {
+      spacingStyles = resolveSpacingStyles(spacing, breakpoints, styles);
+    }
+
+    const breakpointsStyles = [];
+
+    breakpoints.forEach((breakpoint) => {
+      const value = ownerState[breakpoint];
+
+      if (value !== false) {
+        breakpointsStyles.push(styles[`grid-${breakpoint}-${String(value)}`]);
+      }
+    });
 
     return [
       styles.root,
       container && styles.container,
       item && styles.item,
       zeroMinWidth && styles.zeroMinWidth,
-      ...resolveSpacingClasses(spacing, container, styles),
+      ...spacingStyles,
       direction !== 'row' && styles[`direction-xs-${String(direction)}`],
       wrap !== 'wrap' && styles[`wrap-xs-${String(wrap)}`],
-      xs !== false && styles[`grid-xs-${String(xs)}`],
-      sm !== false && styles[`grid-sm-${String(sm)}`],
-      md !== false && styles[`grid-md-${String(md)}`],
-      lg !== false && styles[`grid-lg-${String(lg)}`],
-      xl !== false && styles[`grid-xl-${String(xl)}`],
+      ...breakpointsStyles,
     ];
   },
 })(
@@ -259,9 +275,54 @@ const GridRoot = styled('div', {
   generateGrid,
 );
 
+export function resolveSpacingClasses(spacing, breakpoints) {
+  // undefined/null or `spacing` <= 0
+  if (!spacing || spacing <= 0) {
+    return [];
+  }
+  // in case of string/number `spacing`
+  if (
+    (typeof spacing === 'string' && !Number.isNaN(Number(spacing))) ||
+    typeof spacing === 'number'
+  ) {
+    return [`spacing-xs-${String(spacing)}`];
+  }
+  // in case of object `spacing`
+  const classes = [];
+
+  breakpoints.forEach((breakpoint) => {
+    const value = spacing[breakpoint];
+
+    if (Number(value) > 0) {
+      const className = `spacing-${breakpoint}-${String(value)}`;
+
+      classes.push(className);
+    }
+  });
+
+  return classes;
+}
+
 const useUtilityClasses = (ownerState) => {
-  const { classes, container, direction, item, lg, md, sm, spacing, wrap, xl, xs, zeroMinWidth } =
+  const { classes, container, direction, item, spacing, wrap, zeroMinWidth, breakpoints } =
     ownerState;
+
+  let spacingClasses = [];
+
+  // in case of grid item
+  if (container) {
+    spacingClasses = resolveSpacingClasses(spacing, breakpoints);
+  }
+
+  const breakpointsClasses = [];
+
+  breakpoints.forEach((breakpoint) => {
+    const value = ownerState[breakpoint];
+
+    if (value !== false) {
+      breakpointsClasses.push(`grid-${breakpoint}-${String(value)}`);
+    }
+  });
 
   const slots = {
     root: [
@@ -269,14 +330,10 @@ const useUtilityClasses = (ownerState) => {
       container && 'container',
       item && 'item',
       zeroMinWidth && 'zeroMinWidth',
-      ...resolveSpacingClasses(spacing, container),
+      ...spacingClasses,
       direction !== 'row' && `direction-xs-${String(direction)}`,
       wrap !== 'wrap' && `wrap-xs-${String(wrap)}`,
-      xs !== false && `grid-xs-${String(xs)}`,
-      sm !== false && `grid-sm-${String(sm)}`,
-      md !== false && `grid-md-${String(md)}`,
-      lg !== false && `grid-lg-${String(lg)}`,
-      xl !== false && `grid-xl-${String(xl)}`,
+      ...breakpointsClasses,
     ],
   };
 
@@ -285,6 +342,8 @@ const useUtilityClasses = (ownerState) => {
 
 const Grid = React.forwardRef(function Grid(inProps, ref) {
   const themeProps = useThemeProps({ props: inProps, name: 'MuiGrid' });
+  const { breakpoints } = useTheme();
+
   const props = extendSxProp(themeProps);
   const {
     className,
@@ -294,16 +353,11 @@ const Grid = React.forwardRef(function Grid(inProps, ref) {
     container = false,
     direction = 'row',
     item = false,
-    lg = false,
-    md = false,
     rowSpacing: rowSpacingProp,
-    sm = false,
     spacing = 0,
     wrap = 'wrap',
-    xl = false,
-    xs = false,
     zeroMinWidth = false,
-    ...other
+    ...propsRest
   } = props;
 
   const rowSpacing = rowSpacingProp || spacing;
@@ -314,21 +368,31 @@ const Grid = React.forwardRef(function Grid(inProps, ref) {
   // columns set with default breakpoint unit of 12
   const columns = container ? columnsProp || 12 : columnsContext;
 
+  const breakpointsValues = {};
+  const propsRestFiltered = { ...propsRest };
+
+  breakpoints.keys.forEach((key) => {
+    if (key in propsRest) {
+      breakpointsValues[key] = propsRest[key];
+      delete propsRestFiltered[key];
+    } else {
+      breakpointsValues[key] = false;
+    }
+  });
+
   const ownerState = {
     ...props,
     columns,
     container,
     direction,
     item,
-    lg,
-    md,
-    sm,
     rowSpacing,
     columnSpacing,
     wrap,
-    xl,
-    xs,
     zeroMinWidth,
+    spacing,
+    ...breakpointsValues,
+    breakpoints: breakpoints.keys,
   };
 
   const classes = useUtilityClasses(ownerState);
@@ -340,7 +404,7 @@ const Grid = React.forwardRef(function Grid(inProps, ref) {
         className={clsx(classes.root, className)}
         as={component}
         ref={ref}
-        {...other}
+        {...propsRestFiltered}
       />
     </GridContext.Provider>
   );
@@ -409,6 +473,10 @@ Grid.propTypes /* remove-proptypes */ = {
    * @default false
    */
   item: PropTypes.bool,
+  /**
+   * @ignore
+   */
+  key: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
    * If a number, it sets the number of columns the grid item uses.
    * It can't be greater than the total number of columns of the container (12 by default).
