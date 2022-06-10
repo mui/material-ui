@@ -6,7 +6,7 @@ import ListItemButton from '@mui/joy/ListItemButton';
 import Home from '@mui/icons-material/Home';
 import Apps from '@mui/icons-material/Apps';
 
-export default function ActionableList() {
+export default function SelectedList() {
   return (
     <List sx={{ bgcolor: 'background.surface', maxWidth: 240 }}>
       <ListItem>

@@ -5,7 +5,7 @@ import ListItemButton from '@mui/joy/ListItemButton';
 import Videocam from '@mui/icons-material/Videocam';
 import Image from '@mui/icons-material/Image';
 
-export default function ActionableList() {
+export default function NavList() {
   return (
     <List component="nav" sx={{ bgcolor: 'background.surface', maxWidth: 240 }}>
       <ListItemButton>

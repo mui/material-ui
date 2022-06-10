@@ -4,7 +4,7 @@ import ListItem from '@mui/joy/ListItem';
 import ListItemButton from '@mui/joy/ListItemButton';
 import Typography from '@mui/joy/Typography';
 
-export default function StickyList() {
+export default function NestedList() {
   return (
     <List sx={{ maxWidth: 200, bgcolor: 'background.surface' }}>
       <ListItem nested>

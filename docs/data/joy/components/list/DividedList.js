@@ -7,7 +7,7 @@ import ListItem from '@mui/joy/ListItem';
 import ListItemDecorator from '@mui/joy/ListItemDecorator';
 import Typography from '@mui/joy/Typography';
 
-export default function EllipsisList() {
+export default function DividedList() {
   return (
     <Box
       sx={{
