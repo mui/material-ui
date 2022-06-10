@@ -85,6 +85,8 @@ Joy provides 4 List related components:
 
 ### iOS Settings
 
+{{"demo": "ExampleIOSList.js", "bg": true}}
+
 ### Gmail navigation
 
 ### Collapsible list

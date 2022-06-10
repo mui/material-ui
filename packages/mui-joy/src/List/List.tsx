@@ -90,11 +90,11 @@ const ListRoot = styled('ul', {
           'max(var(--List-radius, 0px) - var(--List-padding), min(var(--List-padding) / 2, var(--List-radius, 0px) / 2))',
         '--List-item-startActionTranslateX': 'var(--List-item-paddingLeft)',
         '--List-item-endActionTranslateX': 'calc(-1 * var(--List-item-paddingLeft))',
-        borderRadius: 'var(--List-radius, 0px)',
         padding: 'var(--List-padding)',
         margin: 'initial',
       },
       {
+        borderRadius: 'var(--List-radius, 0px)',
         listStyle: 'none',
         display: 'flex',
         flexDirection: ownerState.row ? 'row' : 'column',
