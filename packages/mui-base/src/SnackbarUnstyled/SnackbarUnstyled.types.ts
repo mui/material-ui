@@ -4,6 +4,7 @@ import { ClickAwayListenerProps } from '../ClickAwayListener';
 export type SnackbarCloseReason = 'timeout' | 'clickaway' | 'escapeKeyDown';
 
 export interface SnackbarUnstyledProps<TransitionType = {}> {
+  className?: string;
   children?: React.ReactElement<any, any>;
   /**
    * Props applied to the `ClickAwayListener` element.
