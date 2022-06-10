@@ -446,7 +446,6 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
   const getFirstVisibleTab = (tabs) => {
     const containerSize = tabsRef.current[clientSize];
     const containerStartBound = Math.round(tabsRef.current[scrollStart]);
-
     const containerEndBound = Math.round(containerStartBound + containerSize);
 
     const offset = vertical ? 'offsetTop' : 'offsetLeft';
