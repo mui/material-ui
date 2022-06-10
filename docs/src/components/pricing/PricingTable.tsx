@@ -354,6 +354,12 @@ const rowHeaders: Record<string, React.ReactNode> = {
       tooltip="Core components following Material Design available in @mui/material."
     />
   ),
+  'Joy UI': (
+    <ColumnHead
+      label="Joy UI"
+      tooltip="Core components following Material Design available in @mui/material."
+    />
+  ),
   // Advanced
   'data-grid/column-groups': (
     <ColumnHead label="Column groups" nested href="/x/react-data-grid/column-groups/" />
@@ -561,6 +567,7 @@ const communityData: Record<string, React.ReactNode> = {
   'MUI Base': yes,
   'MUI System': yes,
   'Material UI': yes,
+  'Joy UI': yes,
   // MUI X
   'data-grid/column-groups': pending,
   'data-grid/column-spanning': yes,
@@ -617,6 +624,7 @@ const proData: Record<string, React.ReactNode> = {
   'MUI Base': yes,
   'MUI System': yes,
   'Material UI': yes,
+  'Joy UI': yes,
   // MUI X
   'data-grid/column-groups': pending,
   'data-grid/column-spanning': yes,
@@ -673,6 +681,7 @@ const premiumData: Record<string, React.ReactNode> = {
   'MUI Base': yes,
   'MUI System': yes,
   'Material UI': yes,
+  'Joy UI': yes,
   // MUI X
   'data-grid/column-groups': pending,
   'data-grid/column-spanning': yes,
@@ -949,6 +958,8 @@ export default function PricingTable({
         MUI Core (open-source)
       </RowHead>
       {renderRow('Material UI')}
+      {divider}
+      {renderRow('Joy UI')}
       {divider}
       {renderRow('MUI Base')}
       {divider}
