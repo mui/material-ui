@@ -42,7 +42,7 @@ export default function ExampleIOSList() {
             },
           },
           '--List-radius': '16px',
-          '--List-gap': '2rem',
+          '--List-gap': '1rem',
           '--List-item-radius': '0px',
           '--List-divider-gap': '0px',
           '--List-item-paddingY': '0.75rem',
@@ -100,7 +100,7 @@ export default function ExampleIOSList() {
             90 days of activation.
           </Typography>
         </ListItem>
-        <ListItem nested sx={{ mt: 1 }}>
+        <ListItem nested sx={{ mt: 0 }}>
           <List sx={{ '--List-gap': '0px' }}>
             <ListItem>
               <ListItemDecorator>
