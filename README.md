@@ -9,6 +9,8 @@
 
 - _Material UI_ is a comprehensive library of components that features our implementation of Google's [Material Design](https://material.io/design/introduction/) system.
 
+- _Joy UI_ is a comprehensive library of components with a fresh look & feel.
+
 - _MUI Base_ is our library of "unstyled" components and low-level hooks. With Base, you gain complete control over your app's CSS and accessibility features.
 
 - _MUI System_ is a collection of CSS utilities to help you rapidly lay out custom designs.
