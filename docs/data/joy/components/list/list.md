@@ -43,7 +43,7 @@ Joy provides 4 List related components:
 
 ## Actionable
 
-### As link
+{{"demo": "ActionableList.js", "bg": true}}
 
 ### Selected
 
