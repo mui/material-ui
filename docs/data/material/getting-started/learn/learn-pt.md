@@ -1,6 +1,6 @@
-# Learning resources
+# Recursos de Aprendizagem
 
-<p class="description">New to Material UI? Get up to speed quickly with our curated list of learning resources.</p>
+<p class="description">Novo no Material UI? Get up to speed quickly with our curated list of learning resources.</p>
 
 ## Your first component
 
