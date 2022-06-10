@@ -59,6 +59,17 @@ const pages = [
     icon: 'CodeIcon',
     children: pagesApi,
   },
+  {
+    pathname: '/base/guides',
+    title: 'How To Guides',
+    icon: 'VisibilityIcon',
+    children: [
+      {
+        pathname: '/base/guides/interoperability-with-tailwind-css',
+        title: 'Interoperability with Tailwind CSS',
+      },
+    ],
+  },
 ];
 
 export default pages;
