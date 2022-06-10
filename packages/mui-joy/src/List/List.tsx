@@ -32,8 +32,7 @@ const ListRoot = styled('ul', {
           '--List-gap': '0.25rem',
           '--List-item-minHeight': '2rem',
           '--List-item-paddingY': '0.25rem',
-          '--List-item-paddingLeft': '0.25rem',
-          '--List-item-paddingRight': '0.25rem',
+          '--List-item-paddingX': '0.25rem',
           '--List-item-fontSize': theme.vars.fontSize.sm,
           '--List-decorator-width': ownerState.row ? '1.5rem' : '2rem',
           '--Icon-fontSize': '1.125rem',
@@ -44,8 +43,7 @@ const ListRoot = styled('ul', {
           '--List-gap': '0.375rem',
           '--List-item-minHeight': '2.5rem',
           '--List-item-paddingY': '0.375rem',
-          '--List-item-paddingLeft': '0.75rem',
-          '--List-item-paddingRight': '0.75rem',
+          '--List-item-paddingX': '0.75rem',
           '--List-item-fontSize': theme.vars.fontSize.md,
           '--List-decorator-width': ownerState.row ? '2rem' : '2.5rem',
           '--Icon-fontSize': '1.25rem',
@@ -56,8 +54,7 @@ const ListRoot = styled('ul', {
           '--List-gap': '0.5rem',
           '--List-item-minHeight': '3rem',
           '--List-item-paddingY': '0.5rem',
-          '--List-item-paddingLeft': '0.5rem',
-          '--List-item-paddingRight': '0.5rem',
+          '--List-item-paddingX': '0.5rem',
           '--List-item-fontSize': theme.vars.fontSize.md,
           '--List-decorator-width': ownerState.row ? '2.5rem' : '3rem',
           '--Icon-fontSize': '1.5rem',
@@ -70,13 +67,15 @@ const ListRoot = styled('ul', {
         // instanceSize is the specified size of the rendered element <List size="sm" />
         // only apply size variables if instanceSize is provided so that the variables can be pass down to children by default.
         ...applySizeVars(ownerState.instanceSize),
+        '--List-item-paddingRight': 'var(--List-item-paddingX)',
         '--List-item-paddingLeft': 'var(--NestedList-item-paddingLeft)',
         // reset ListItem, ListItemButton negative margin (caused by NestedListItem)
         '--List-itemButton-margin': '0px',
         '--List-item-margin': '0px',
         padding: 0,
-        margin: 'var(--NestedList-margin)',
-        marginTop: 'var(--List-gap)',
+        marginInlineStart: 'var(--NestedList-marginLeft)',
+        marginInlineEnd: 'var(--NestedList-marginRight)',
+        marginBlockStart: 'var(--List-gap)',
       },
       !ownerState.nested && {
         ...applySizeVars(ownerState.size),
@@ -85,6 +84,8 @@ const ListRoot = styled('ul', {
         '--List-divider-gap': '0px',
         '--List-decorator-color': theme.vars.palette.text.tertiary,
         '--List-nestedInsetStart': '0px',
+        '--List-item-paddingLeft': 'var(--List-item-paddingX)',
+        '--List-item-paddingRight': 'var(--List-item-paddingX)',
         // by default, The ListItem & ListItemButton use automatic radius adjustment based on the parent List.
         '--List-item-radius':
           'max(var(--List-radius) - var(--List-padding), min(var(--List-padding) / 2, var(--List-radius) / 2))',

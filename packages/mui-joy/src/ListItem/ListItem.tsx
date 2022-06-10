@@ -45,8 +45,8 @@ calc(-1 * var(--List-item-paddingLeft))`,
   },
   ownerState.nested && {
     // add negative margin to NestedList equal to this ListItem padding
-    '--NestedList-margin':
-      '0px calc(-1 * var(--List-item-paddingRight)) 0px calc(-1 * var(--List-item-paddingLeft))',
+    '--NestedList-marginRight': 'calc(-1 * var(--List-item-paddingRight))',
+    '--NestedList-marginLeft': 'calc(-1 * var(--List-item-paddingLeft))',
     '--NestedList-item-paddingLeft': `calc(var(--List-item-paddingLeft) + var(--List-nestedInsetStart))`,
     // add negative margin to ListItem, ListItemButton to make them start from the edge.
     '--List-itemButton-margin':
@@ -68,10 +68,10 @@ calc(-1 * var(--List-item-paddingLeft))`,
     borderRadius: 'var(--List-item-radius)',
     display: 'flex',
     position: 'relative',
-    padding: 'var(--List-item-paddingY)',
-    paddingLeft: 'var(--List-item-paddingLeft)',
-    paddingRight: 'var(--List-item-paddingRight)',
-    minHeight: 'var(--List-item-minHeight)',
+    paddingBlock: 'var(--List-item-paddingY)',
+    paddingInlineStart: 'var(--List-item-paddingLeft)',
+    paddingInlineEnd: 'var(--List-item-paddingRight)',
+    minBlockSize: 'var(--List-item-minHeight)',
     fontSize: 'var(--List-item-fontSize)',
     fontFamily: theme.vars.fontFamily.body,
     ...(ownerState.sticky && {
@@ -83,15 +83,15 @@ calc(-1 * var(--List-item-paddingLeft))`,
     // Using :last-child or :first-child selector would complicate ListDivider margin
     [`& + .${listItemClasses.root}`]: ownerState.row
       ? {
-          marginLeft: 'var(--List-gap)',
+          marginInlineStart: 'var(--List-gap)',
         }
       : {
-          marginTop: 'var(--List-gap)',
+          marginBlockStart: 'var(--List-gap)',
         },
     [`& + .${listItemButtonClasses.root}`]: ownerState.row
-      ? { marginLeft: 'var(--List-gap)' }
+      ? { marginInlineStart: 'var(--List-gap)' }
       : {
-          marginTop: 'var(--List-gap)',
+          marginBlockStart: 'var(--List-gap)',
         },
   },
   theme.variants[ownerState.variant!]?.[ownerState.color!],
