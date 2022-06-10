@@ -56,7 +56,10 @@ export default function ExampleIOSList() {
         })}
       >
         <ListItem nested>
-          <List sx={{ '--List-gap': '0px', '--List-decorator-width': '72px' }}>
+          <List
+            aria-label="Personal info"
+            sx={{ '--List-gap': '0px', '--List-decorator-width': '72px' }}
+          >
             <ListItem>
               <ListItemDecorator>
                 <Avatar size="lg" sx={{ '--Avatar-size': '60px' }}>
@@ -95,21 +98,24 @@ export default function ExampleIOSList() {
           >
             Apple TV+ Free Year Available
           </ListItemButton>
-          <Typography id="apple-tv-description" level="body3">
+          <Typography id="apple-tv-description" level="body3" aria-hidden>
             Included with your recent Apple device purchase. Must be accepted within
             90 days of activation.
           </Typography>
         </ListItem>
         <ListItem nested sx={{ mt: 0 }}>
-          <List sx={{ '--List-gap': '0px' }}>
+          <List aria-label="Network" sx={{ '--List-gap': '0px' }}>
             <ListItem>
               <ListItemDecorator>
                 <Sheet variant="solid" color="warning">
                   <Flight />
                 </Sheet>
               </ListItemDecorator>
-              <ListItemContent>Airplane Mode</ListItemContent>
+              <ListItemContent htmlFor="airplane-mode" component="label">
+                Airplane Mode
+              </ListItemContent>
               <Switch
+                id="airplane-mode"
                 size="lg"
                 color="success"
                 sx={{
