@@ -89,6 +89,8 @@ Joy provides 4 List related components:
 
 ### Gmail navigation
 
+{{"demo": "ExampleGmailList.js", "bg": true}}
+
 ### Collapsible list
 
 ### Apps grid
