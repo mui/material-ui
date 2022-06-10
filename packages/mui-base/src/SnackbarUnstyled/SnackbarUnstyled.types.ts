@@ -53,6 +53,9 @@ export interface SnackbarUnstyledProps<TransitionType = {}> {
    * @param {string} reason Can be: `"timeout"` (`autoHideDuration` expired), `"clickaway"`, or `"escapeKeyDown"`.
    */
   onClose?: (event: React.SyntheticEvent<any> | Event | null, reason: SnackbarCloseReason) => void;
+  onFocus?: React.FocusEventHandler;
+  onMouseEnter?: React.MouseEventHandler;
+  onMouseLeave?: React.MouseEventHandler;
   /**
    * The number of milliseconds to wait before dismissing after user interaction.
    * If `autoHideDuration` prop isn't specified, it does nothing.

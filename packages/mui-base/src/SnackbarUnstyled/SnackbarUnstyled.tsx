@@ -15,6 +15,9 @@ const SnackbarUnstyled = (props: SnackbarUnstyledProps) => {
     componentsProps = {},
     onBlur,
     onClose,
+    onFocus,
+    onMouseEnter,
+    onMouseLeave,
     resumeHideDuration,
     ...other
   } = props;
@@ -50,6 +53,12 @@ const SnackbarUnstyled = (props: SnackbarUnstyledProps) => {
     }
   };
 
+  // Pause the timer when the user is interacting with the Snackbar
+  // or when the user hide the window.
+  const handlePause = () => {
+    clearTimeout(timerAutoHide.current);
+  };
+
   // Restart the timer when the user is no longer interacting with the Snackbar
   // or when the window is shown back.
   const handleResume = React.useCallback(() => {
@@ -59,14 +68,39 @@ const SnackbarUnstyled = (props: SnackbarUnstyledProps) => {
   }, [autoHideDuration, resumeHideDuration, setAutoHideTimer]);
 
   const handleBlur = (event: React.FocusEvent) => {
-    if (onBlur) {
-      onBlur(event);
+    const onBlurMethod = onBlur || componentsProps.root?.onBlur;
+    if (onBlurMethod) {
+      onBlurMethod(event);
+    }
+    handleResume();
+  };
+
+  const handleFocus = (event: React.FocusEvent) => {
+    if (onFocus) {
+      onFocus(event);
+    }
+    handlePause();
+  };
+
+  const handleMouseEnter = (event: React.MouseEvent) => {
+    if (onMouseEnter) {
+      onMouseEnter(event);
+    }
+    handlePause();
+  };
+
+  const handleMouseLeave = (event: React.MouseEvent) => {
+    if (onMouseLeave) {
+      onMouseLeave(event);
     }
     handleResume();
   };
 
   const rootProps = {
     onBlur: handleBlur,
+    onFocus: handleFocus,
+    onMouseEnter: handleMouseEnter,
+    onMouseLeave: handleMouseLeave,
     ...other,
     ...componentsProps.root,
     className: clsx(className, componentsProps.root?.className),
