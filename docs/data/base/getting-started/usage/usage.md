@@ -87,7 +87,7 @@ These two examples are equivalent:
 ```
 
 :::warning
-Note: However, if both `componentsProps.root` and additional props are specified with same properties but different values, the `componentsProps.root` props will take precedence.
+However, if both `componentsProps.root` and additional props are specified with both having same properties but different values, the `componentsProps.root` props will take precedence.
 :::
 
 ## Components vs. hooks
