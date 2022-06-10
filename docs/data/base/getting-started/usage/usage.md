@@ -86,6 +86,10 @@ These two examples are equivalent:
 <BadgeUnstyled componentsProps={{ root: { id: 'badge1' } }}>
 ```
 
+:::warning
+Note: However, if both `componentsProps.root` and additional props are specified with same properties but different values, the `componentsProps.root` props will take precedence.
+:::
+
 ## Components vs. hooks
 
 MUI Base includes two kinds of building blocks: **components** and **hooks**.
