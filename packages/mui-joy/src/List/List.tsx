@@ -29,10 +29,10 @@ const ListRoot = styled('ul', {
     function applySizeVars(size: ListProps['size']) {
       if (size === 'sm') {
         return {
-          '--List-gap': '0.25rem',
+          '--List-divider-gap': '0.25rem',
           '--List-item-minHeight': '2rem',
           '--List-item-paddingY': '0.25rem',
-          '--List-item-paddingX': '0.25rem',
+          '--List-item-paddingX': '0.375rem',
           '--List-item-fontSize': theme.vars.fontSize.sm,
           '--List-decorator-width': ownerState.row ? '1.5rem' : '2rem',
           '--Icon-fontSize': '1.125rem',
@@ -40,7 +40,7 @@ const ListRoot = styled('ul', {
       }
       if (size === 'md') {
         return {
-          '--List-gap': '0.375rem',
+          '--List-divider-gap': '0.375rem',
           '--List-item-minHeight': '2.5rem',
           '--List-item-paddingY': '0.375rem',
           '--List-item-paddingX': '0.75rem',
@@ -51,10 +51,10 @@ const ListRoot = styled('ul', {
       }
       if (size === 'lg') {
         return {
-          '--List-gap': '0.5rem',
+          '--List-divider-gap': '0.5rem',
           '--List-item-minHeight': '3rem',
           '--List-item-paddingY': '0.5rem',
-          '--List-item-paddingX': '0.5rem',
+          '--List-item-paddingX': '1rem',
           '--List-item-fontSize': theme.vars.fontSize.md,
           '--List-decorator-width': ownerState.row ? '2.5rem' : '3rem',
           '--Icon-fontSize': '1.5rem',
@@ -67,6 +67,7 @@ const ListRoot = styled('ul', {
         // instanceSize is the specified size of the rendered element <List size="sm" />
         // only apply size variables if instanceSize is provided so that the variables can be pass down to children by default.
         ...applySizeVars(ownerState.instanceSize),
+        '--List-gap': '0px',
         '--List-item-paddingRight': 'var(--List-item-paddingX)',
         '--List-item-paddingLeft': 'var(--NestedList-item-paddingLeft)',
         // reset ListItem, ListItemButton negative margin (caused by NestedListItem)
@@ -79,19 +80,18 @@ const ListRoot = styled('ul', {
       },
       !ownerState.nested && {
         ...applySizeVars(ownerState.size),
+        '--List-gap': '0px',
         '--List-padding': '0px',
-        '--List-radius': '0px',
-        '--List-divider-gap': '0px',
         '--List-decorator-color': theme.vars.palette.text.tertiary,
         '--List-nestedInsetStart': '0px',
         '--List-item-paddingLeft': 'var(--List-item-paddingX)',
         '--List-item-paddingRight': 'var(--List-item-paddingX)',
         // by default, The ListItem & ListItemButton use automatic radius adjustment based on the parent List.
         '--List-item-radius':
-          'max(var(--List-radius) - var(--List-padding), min(var(--List-padding) / 2, var(--List-radius) / 2))',
+          'max(var(--List-radius, 0px) - var(--List-padding), min(var(--List-padding) / 2, var(--List-radius, 0px) / 2))',
         '--List-item-startActionTranslateX': 'var(--List-item-paddingLeft)',
         '--List-item-endActionTranslateX': 'calc(-1 * var(--List-item-paddingLeft))',
-        borderRadius: 'var(--List-radius)',
+        borderRadius: 'var(--List-radius, 0px)',
         padding: 'var(--List-padding)',
         margin: 'initial',
       },
@@ -135,7 +135,11 @@ const List = React.forwardRef(function List(inProps, ref) {
           ownerState={ownerState}
           {...other}
         >
-          {children}
+          {React.Children.map(children, (child, index) =>
+            index === 0 && React.isValidElement(child)
+              ? React.cloneElement(child, { 'data-first-child': '' })
+              : child,
+          )}
         </ListRoot>
       </ComponentListContext.Provider>
     </RowListContext.Provider>

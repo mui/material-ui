@@ -6,8 +6,7 @@ import { OverridableComponent } from '@mui/types';
 import composeClasses from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
 import { ListItemProps, ListItemTypeMap } from './ListItemProps';
-import listItemClasses, { getListItemUtilityClass } from './listItemClasses';
-import { listItemButtonClasses } from '../ListItemButton';
+import { getListItemUtilityClass } from './listItemClasses';
 import NestedListContext from '../List/NestedListContext';
 import RowListContext from '../List/RowListContext';
 import ComponentListContext from '../List/ComponentListContext';
@@ -33,69 +32,68 @@ const ListItemRoot = styled('li', {
   name: 'JoyListItem',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: ListItemProps & { row: boolean } }>(({ theme, ownerState }) => [
-  !ownerState.nested && {
-    // add negative margin to ListItemButton equal to this ListItem padding
-    '--List-itemButton-margin': `calc(-1 * var(--List-item-paddingY))
+})<{ ownerState: ListItemProps & { row: boolean; 'data-first-child'?: string } }>(
+  ({ theme, ownerState }) => [
+    !ownerState.nested && {
+      // add negative margin to ListItemButton equal to this ListItem padding
+      '--List-itemButton-margin': `calc(-1 * var(--List-item-paddingY))
 calc(-1 * var(--List-item-paddingRight))
 calc(-1 * var(--List-item-paddingY))
 calc(-1 * var(--List-item-paddingLeft))`,
-    alignItems: 'center',
-    margin: 'var(--List-item-margin)',
-  },
-  ownerState.nested && {
-    // add negative margin to NestedList equal to this ListItem padding
-    '--NestedList-marginRight': 'calc(-1 * var(--List-item-paddingRight))',
-    '--NestedList-marginLeft': 'calc(-1 * var(--List-item-paddingLeft))',
-    '--NestedList-item-paddingLeft': `calc(var(--List-item-paddingLeft) + var(--List-nestedInsetStart))`,
-    // add negative margin to ListItem, ListItemButton to make them start from the edge.
-    '--List-itemButton-margin':
-      'calc(-1 * var(--List-item-paddingY)) calc(-1 * var(--List-item-paddingRight)) 0px calc(-1 * var(--List-item-paddingLeft))',
-    '--List-item-margin':
-      'calc(-1 * var(--List-item-paddingY)) calc(-1 * var(--List-item-paddingRight)) 0px calc(-1 * var(--List-item-paddingLeft))',
-    flexDirection: 'column',
-  },
-  // Base styles
-  {
-    '--internal-action-radius': 'var(--List-item-radius)',
-    ...(ownerState.startAction && {
-      '--internal-startActionWidth': '3rem', // to add sufficient padding-left on ListItemButton
-    }),
-    ...(ownerState.endAction && {
-      '--internal-endActionWidth': '3rem', // to add sufficient padding-right on ListItemButton
-    }),
-    boxSizing: 'border-box',
-    borderRadius: 'var(--List-item-radius)',
-    display: 'flex',
-    position: 'relative',
-    paddingBlock: 'var(--List-item-paddingY)',
-    paddingInlineStart: 'var(--List-item-paddingLeft)',
-    paddingInlineEnd: 'var(--List-item-paddingRight)',
-    minBlockSize: 'var(--List-item-minHeight)',
-    fontSize: 'var(--List-item-fontSize)',
-    fontFamily: theme.vars.fontFamily.body,
-    ...(ownerState.sticky && {
-      position: 'sticky',
-      top: 0,
-      zIndex: 1,
-      background: 'var(--List-item-stickyBackground)',
-    }),
-    // Using :last-child or :first-child selector would complicate ListDivider margin
-    [`& + .${listItemClasses.root}`]: ownerState.row
-      ? {
-          marginInlineStart: 'var(--List-gap)',
-        }
-      : {
-          marginBlockStart: 'var(--List-gap)',
-        },
-    [`& + .${listItemButtonClasses.root}`]: ownerState.row
-      ? { marginInlineStart: 'var(--List-gap)' }
-      : {
-          marginBlockStart: 'var(--List-gap)',
-        },
-  },
-  theme.variants[ownerState.variant!]?.[ownerState.color!],
-]);
+      alignItems: 'center',
+      margin: 'var(--List-item-margin)',
+    },
+    ownerState.nested && {
+      // add negative margin to NestedList equal to this ListItem padding
+      '--NestedList-marginRight': 'calc(-1 * var(--List-item-paddingRight))',
+      '--NestedList-marginLeft': 'calc(-1 * var(--List-item-paddingLeft))',
+      '--NestedList-item-paddingLeft': `calc(var(--List-item-paddingLeft) + var(--List-nestedInsetStart))`,
+      // add negative margin to ListItem, ListItemButton to make them start from the edge.
+      '--List-itemButton-margin':
+        'calc(-1 * var(--List-item-paddingY)) calc(-1 * var(--List-item-paddingRight)) 0px calc(-1 * var(--List-item-paddingLeft))',
+      '--List-item-margin':
+        'calc(-1 * var(--List-item-paddingY)) calc(-1 * var(--List-item-paddingRight)) 0px calc(-1 * var(--List-item-paddingLeft))',
+      flexDirection: 'column',
+    },
+    // Base styles
+    {
+      '--internal-action-radius': 'var(--List-item-radius)',
+      ...(ownerState.startAction && {
+        '--internal-startActionWidth': '3rem', // to add sufficient padding-left on ListItemButton
+      }),
+      ...(ownerState.endAction && {
+        '--internal-endActionWidth': '3rem', // to add sufficient padding-right on ListItemButton
+      }),
+      boxSizing: 'border-box',
+      borderRadius: 'var(--List-item-radius)',
+      display: 'flex',
+      position: 'relative',
+      paddingBlockStart: 'var(--List-item-paddingY)',
+      paddingBlockEnd: ownerState.nested ? 0 : 'var(--List-item-paddingY)',
+      paddingInlineStart: 'var(--List-item-paddingLeft)',
+      paddingInlineEnd: 'var(--List-item-paddingRight)',
+      ...(ownerState['data-first-child'] === undefined && {
+        marginInlineStart: ownerState.row ? 'var(--List-gap)' : undefined,
+        marginBlockStart: ownerState.row ? undefined : 'var(--List-gap)',
+      }),
+      minBlockSize: 'var(--List-item-minHeight)',
+      fontSize: 'var(--List-item-fontSize)',
+      fontFamily: theme.vars.fontFamily.body,
+      ...(ownerState.sticky && {
+        position: 'sticky',
+        top: 0,
+        zIndex: 1,
+        background: 'var(--List-item-stickyBackground)',
+      }),
+      // Using :last-child or :first-child selector would complicate ListDivider margin
+      // [`& > .${listItemClasses.root}, & > .${listItemButtonClasses.root}`]: {
+      //   marginInlineStart: ownerState.row ? 0 : undefined,
+      //   marginBlockStart: ownerState.row ? undefined : 0,
+      // },
+    },
+    theme.variants[ownerState.variant!]?.[ownerState.color!],
+  ],
+);
 
 const ListItemStartAction = styled('div', {
   name: 'JoyListItem',
@@ -172,7 +170,11 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
           </ListItemStartAction>
         )}
 
-        {children}
+        {React.Children.map(children, (child, index) =>
+          index === 0 && React.isValidElement(child)
+            ? React.cloneElement(child, { 'data-first-child': '' })
+            : child,
+        )}
         {endAction && (
           <ListItemEndAction className={classes.endAction} ownerState={ownerState}>
             {endAction}
