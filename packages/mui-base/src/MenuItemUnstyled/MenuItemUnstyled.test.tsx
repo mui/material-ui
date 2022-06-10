@@ -45,7 +45,6 @@ describe('MenuItemUnstyled', () => {
     },
     skip: [
       'reactTestRenderer', // Need to be wrapped in MenuUnstyledContext
-      'componentsPropsCallbacks', // not implemented yet
     ],
   }));
 });
