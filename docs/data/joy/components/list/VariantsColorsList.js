@@ -8,7 +8,7 @@ import Home from '@mui/icons-material/Home';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import JoyUsageDemo from 'docs/src/modules/components/JoyUsageDemo';
 
-export default function ActionableList() {
+export default function VariantsColorsList() {
   return (
     <JoyUsageDemo
       componentName="ListItemButton"

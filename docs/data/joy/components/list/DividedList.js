@@ -25,7 +25,7 @@ export default function EllipsisList() {
           <List
             key={inset || 'none'}
             sx={{
-              py: 1,
+              paddingBlock: 1,
               bgcolor: 'background.surface',
               minWidth: 240,
               '--List-decorator-width': '48px',

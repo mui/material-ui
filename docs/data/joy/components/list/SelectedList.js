@@ -25,6 +25,12 @@ export default function ActionableList() {
           Apps
         </ListItemButton>
       </ListItem>
+      <ListItem>
+        <ListItemButton>
+          <ListItemDecorator />
+          Settings
+        </ListItemButton>
+      </ListItem>
     </List>
   );
 }

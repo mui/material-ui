@@ -45,6 +45,10 @@ Joy provides 4 List related components:
 
 {{"demo": "ActionableList.js", "bg": true}}
 
+### Nav
+
+{{"demo": "NavList.js", "bg": true}}
+
 ### Selected
 
 {{"demo": "SelectedList.js", "bg": true}}
@@ -55,9 +59,25 @@ Joy provides 4 List related components:
 
 ### Secondary action
 
+{{"demo": "SecondaryList.js", "bg": true}}
+
 ## Sizes
 
+{{"demo": "SizesList.js", "bg": true}}
+
+## Nested list
+
+{{"demo": "NestedList.js", "bg": true}}
+
 ## Sticky item
+
+{{"demo": "StickyList.js", "bg": true}}
+
+## Horizontal list
+
+{{"demo": "HorizontalList.js", "bg": true}}
+
+## Component variables
 
 ## Common examples
 
