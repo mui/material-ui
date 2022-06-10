@@ -20,7 +20,7 @@ export default function EllipsisList() {
       {[undefined, 'gutter', 'startContent', 'startDecorator'].map((inset) => (
         <Box>
           <Typography level="body2" mb={1}>
-            inset=&quot;{inset || 'default'}&quot;
+            {inset ? `inset="${inset}"` : '(default)'}
           </Typography>
           <List
             key={inset || 'none'}

@@ -85,6 +85,8 @@ Joy provides 4 List related components:
 
 ### iOS Settings
 
-### Sidebar navigation
+### Gmail navigation
 
-### Horizontal navigation
+### Collapsible list
+
+### Apps grid
