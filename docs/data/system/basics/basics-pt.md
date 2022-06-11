@@ -179,7 +179,7 @@ This prop provides a superset of CSS (contains all CSS properties/selectors in a
 
 ### Desempenho
 
-The system relies on CSS-in-JS. It works with both emotion and styled-components.
+The system relies on CSS-in-JS. It works with both Emotion and styled-components.
 
 Pros:
 
