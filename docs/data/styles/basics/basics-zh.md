@@ -2,7 +2,7 @@
 
 <p class="description">无论您是否使用了 Material-UI 组件，都可以在应用中使用 Material-UI 的样式方案。</p>
 
-> ⚠️ `@mui/styles` is the _**legacy**_ styling solution for MUI. It depends on [JSS](https://cssinjs.org/) as a styling solution, which is not used in the `@mui/material` anymore, deprecated in v5. If you don't want to have both emotion & JSS in your bundle, please refer to the [`@mui/system`](/system/basics/) documentation which is the recommended alternative.
+> ⚠️ `@mui/styles` is the _**legacy**_ styling solution for MUI. It depends on [JSS](https://cssinjs.org/) as a styling solution, which is not used in the `@mui/material` anymore, deprecated in v5. If you don't want to have both Emotion & JSS in your bundle, please refer to the [`@mui/system`](/system/basics/) documentation which is the recommended alternative.
 
 > ⚠️ `@mui/styles` is not compatible with [React.StrictMode](https://reactjs.org/docs/strict-mode.html) or React 18.
 
@@ -12,7 +12,7 @@ Material-UI 旨在为构建动态的 UI 提供扎实的基础。 为了构造更
 
 In previous versions, MUI has used [Less](https://lesscss.org/), and then a custom inline-style solution to write the component styles, but these approaches proved to be limited. In previous versions, MUI has used [Less](https://lesscss.org/), and then a custom inline-style solution to write the component styles, but these approaches proved to be limited. [_CSS-in-JS_ 方案](https://github.com/oliviertassinari/a-journey-toward-better-style) 突破了这些限制，并**提供了很多强大的功能**（主题嵌套、动态样式、自我支持等等）。
 
-MUI's styling solution is inspired by many other styling libraries such as [styled-components](https://styled-components.com/) and [emotion](https://emotion.sh/).
+MUI's styling solution is inspired by many other styling libraries such as [styled-components](https://styled-components.com/) and [Emotion](https://emotion.sh/).
 
 - 💅 You can expect [the same advantages](https://styled-components.com/docs/basics#motivation) as styled-components.
 
