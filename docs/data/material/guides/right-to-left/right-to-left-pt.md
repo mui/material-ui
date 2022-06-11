@@ -60,9 +60,9 @@ Having installed the plugin in your project, MUI components still require it to 
 
 ### 3. Carregando o plugin rtl
 
-#### 3.1 JSS
+#### 4.1 Emotion
 
-If you use emotion as your style engine, you should create a new cache instance that uses the `stylis-plugin-rtl` (the default `prefixer` plugin must also be included in order to retain vendor prefixing) and provide that on the top of your application tree. The [CacheProvider](https://emotion.sh/docs/cache-provider) component enables this:
+If you use Emotion as your style engine, you should create a new cache instance that uses the `stylis-plugin-rtl` (the default `prefixer` plugin must also be included in order to retain vendor prefixing) and provide that on the top of your application tree. The [CacheProvider](https://emotion.sh/docs/cache-provider) component enables this:
 
 ```jsx
 import rtlPlugin from 'stylis-plugin-rtl';
@@ -127,7 +127,7 @@ _Use the direction toggle button on the top right corner to flip the whole docum
 
 ## Optando pela transformação do rtl
 
-### emotion & styled-components
+### Emotion & styled-components
 
 You have to use the template literal syntax and add the `/* @noflip */` directive before the rule or property for which you want to disable right-to-left styles.
 
