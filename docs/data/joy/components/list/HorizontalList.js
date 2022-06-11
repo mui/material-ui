@@ -1,4 +1,5 @@
 import * as React from 'react';
+import Box from '@mui/joy/Box';
 import List from '@mui/joy/List';
 import ListItem from '@mui/joy/ListItem';
 import ListItemButton from '@mui/joy/ListItemButton';
@@ -7,23 +8,39 @@ import Person from '@mui/icons-material/Person';
 
 export default function HorizontalList() {
   return (
-    <List row sx={{ bgcolor: 'background.surface', maxWidth: 343 }}>
-      <ListItem>
-        <ListItemButton aria-label="Home">
-          <Home />
-        </ListItemButton>
-      </ListItem>
-      <ListItem>
-        <ListItemButton>Products</ListItemButton>
-      </ListItem>
-      <ListItem>
-        <ListItemButton>Blog</ListItemButton>
-      </ListItem>
-      <ListItem sx={{ marginInlineStart: 'auto' }}>
-        <ListItemButton aria-label="Profile">
-          <Person />
-        </ListItemButton>
-      </ListItem>
-    </List>
+    <Box component="nav" aria-label="My site">
+      <List role="menubar" row sx={{ bgcolor: 'background.surface', minWidth: 343 }}>
+        <ListItem role="none">
+          <ListItemButton
+            role="menuitem"
+            component="a"
+            href="#horizontal-list"
+            aria-label="Home"
+          >
+            <Home />
+          </ListItemButton>
+        </ListItem>
+        <ListItem role="none">
+          <ListItemButton role="menuitem" component="a" href="#horizontal-list">
+            Products
+          </ListItemButton>
+        </ListItem>
+        <ListItem role="none">
+          <ListItemButton role="menuitem" component="a" href="#horizontal-list">
+            Blog
+          </ListItemButton>
+        </ListItem>
+        <ListItem role="none" sx={{ marginInlineStart: 'auto' }}>
+          <ListItemButton
+            role="menuitem"
+            component="a"
+            href="#horizontal-list"
+            aria-label="Profile"
+          >
+            <Person />
+          </ListItemButton>
+        </ListItem>
+      </List>
+    </Box>
   );
 }
