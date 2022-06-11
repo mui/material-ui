@@ -5,23 +5,24 @@
 ## Getting started
 
 The goal of this guide is to teach you how to style MUI Base components using Tailwind CSS.
-The guide assumes you have experience with Tailwind CSS already, or you are at least familiar with it.
+If you don't have experience with Tailwind CSS, we recommend you study that first before diving into this guide.
 We're not going to cover all the steps to build the UI we'll use as an example but rather how to insert MUI Base components, making it interactive and accessible, and style it with Tailwind CSS.
 
 This guide result is an interactive media player.
 That's how it's going to look like in the end.
 
-<img src="/static/images/base-with-tailwind-css/player-final.png" alt="Example UI using Tailwind CSS - player" width="638" />
+<img src="/static/images/base-with-tailwind-css/player-final.png" alt="Screenshot of the media player used as example in the guide, designed by the Tailwind Labs team" width="638" />
 
 :::info
-The player is took as an inspiration from the [Tailwind CSS](https://tailwindcss.com/)'s documentation.
+All credits go to the Tailwind Labs team for designing this component, found on the [Tailwind CSS website](https://tailwindcss.com/).
 :::
 
 ## Setting up the project
 
-We are going to use `create-react-app` in thsi demo. For setting up the project, follow the instructions give in the [official Tailwind CSS installation page](https://tailwindcss.com/docs/guides/create-react-app).
+We'll use `create-react-app` for this guide. 
+For setting it up, follow the instructions given on the [Tailwind CSS installation page](https://tailwindcss.com/docs/guides/create-react-app).
 
-After you are done with that, add `@mui/base` in the project using:
+Once you're done with the basic setup, install `@mui/base` in the project:
 
 ```sh
 npm install @mui/base
@@ -29,7 +30,7 @@ npm install @mui/base
 
 ## Adding the player markdown
 
-Next, we are going to add the markdown for the player that already has Tailwind CSS on top.
+Now, create a file called `Player.tsx` and add the markdown below in it, which is already using Tailwind CSS.
 
 ```tsx
 import * as React from 'react';
@@ -208,13 +209,17 @@ const Player = React.forwardRef(function Player(
 export default Player;
 ```
 
-After this, you should see the player from the picture above. If you try to interact with it, for example use the slider, you will notice that it doesn't do anything. We are going to be adding the functionality in the next steps.
+Next, add the `Player` component in the `App.tsx` file.
+You should see the player render as it is on the screenshot above.
+However, the component is not yet interactive. 
+That's what we'll do in the next step.
 
 ## Adding an interactive Slider component
 
-In order to fix the issue with the uninteractive `Slider`, we are going to use the `SliderUnstyled` component from MUI Base.
-Let's add a new file next to the `App.tsx`, called `Slider.tsx`.
-Next we will create a custom `Slider` component that uses the `SliderUnstyled` component.
+Let's start by giving life to the slider. 
+For that, we'll use the `SliderUnstyled` component from MUI Base.
+The first step is creating a new file called `Slider.tsx`.
+Now, copy the code below in the file.
 
 ```tsx
 import * as React from 'react';
@@ -239,13 +244,14 @@ const Slider = React.forwardRef(function Slider(
 export default Slider;
 ```
 
-You will notice that the `componentsProps` above, defines the class names for the different parts of the slider.
-Most of the classes are copied from the initial markup, with small adjustments in order to make the `Slider` functional.
-Next, let's use this `Slider` in the `Player` component, by replacing the lines 24-29 with:
+To assign specific Tailwind CSS utility classes for each part of the component, we're using `componentsProps`.
+Most of them were copied from the original markup with small adjustments now that it is interactive.
+
+Let's add the `Slider` into the `Player` component now:
 
 ```diff
---- a/src/App.tsx
-+++ b/src/App.tsx
+--- a/src/Player.tsx
++++ b/src/Player.tsx
 @@ -1,4 +1,5 @@
  import * as React from 'react';
 +import Slider from './Slider';
@@ -268,15 +274,14 @@ Next, let's use this `Slider` in the `Player` component, by replacing the lines 
              <div className="text-cyan-500 dark:text-slate-100">24:16</div>
 ```
 
-After this you will get the following result:
+You should be seeing this:
 
-<img src="/static/images/base-with-tailwind-css/player-slider.png" alt="Example UI using Tailwind CSS - player" width="638" />
+<img src="/static/images/base-with-tailwind-css/player-slider.png" alt="Screenshot of the media player used as example in the guide, designed by the Tailwind Labs team" width="638" />
 
-You will notice now that the slider is interactive, however it doesn't look exactly as the initial picture.
+Even though the slider is now interactive, it still does not look exactly like the original design.
 This is because we haven't defined the element that represents the dot inside the thumb.
-In order to do this, is not enough to just propagate classes for the thumb, we need to actually render a custom component for it.
-We can do this easily by passing the custom component in the `components` props of the `Slider`.
-This is what we need to do
+
+To do this, it's not enough to just use classes for the thumb, we need also to render a custom component that gets passed in the `components` prop of the `Slider`.
 
 ```diff
 --- a/src/Slider.tsx
@@ -314,26 +319,27 @@ This is what we need to do
      }}
 ```
 
-If you refresh the page now, you will see that the thumb looks idential as in the first picture.
-All that we did is, created custom component, appended the same classes as we did before on the root element, and before rendering the default children provided by the Slider component, we've added a span that represents the dot inside the thumb.
-This is just a small example, but you can image building much more custom component for each of the slots available in the MUI Base components.
+After refreshing the page, you should see the thumb looking identical to the design now.
+What we did was create a custom component, that had the same classes as before now appended to the root element, and before rendering the default children provided by the `Slider`, we added a `<span>` that represents the dot inside the thumb.
+This is just an example but you can build a lot more custom components for each and every slot available in the MUI Base components.
 
 :::warning
-⚠️ When you are building building custom components for the slots, it is important to always <b>propagate the props sent from the owner component on the root element</b>.
-This is important, as the props will contain event handlers and aria properties necessaryf or making the component accessible.\
-In addition to this, each of the slots receives an `ownerState` object, which contains the props & state of the owner component. This is useful if you want to style the component based on some internal state.
+⚠️ When building custom components for the slots, always <b>propagate the props sent from the owner component on the root element</b>.
+This is because the props will contain event handlers and aria properties necessary to make the component accessible.
+Additionally, each of the slots receives an `ownerState` object, which contains the props & state of the owner component. 
+This is useful if you want to style the component based on some internal state.
 :::
 
-## Adding custom focus visible selector on the buttons
+## Adding a custom focus visible selector on the buttons
 
-The last step of this guide, will cover how we can add custom styles based on an internal state of the component.
-To showcase this, we will create a custom `Button` component, that will use the `focusVisible` state of the `ButtonUnstyled` for applying a cyan ring around the button.
+To finish this guide off, let's see how you can add custom styles based on a component's internal state.
+We'll create a custom `Button` component that uses the `focusVisible` state from the MUI Base `ButtonUnstyled` to apply a cyan ring around it.
 
-This is how the focused button will look like in the end:
+This is how it'll look like:
 
-<img src="/static/images/base-with-tailwind-css/player-buttons.png" alt="Example UI using Tailwind CSS - player" width="638" />
+<img src="/static/images/base-with-tailwind-css/player-buttons.png" alt="Screenshot of a button used as example in the guide, designed by the Tailwind Labs team" width="638" />
 
-Let's add a custom `Button.tsx` file that will have the following content:
+Create a `Button.tsx` file and copy the following code:
 
 ```tsx
 import * as React from 'react';
@@ -365,12 +371,13 @@ const Button = React.forwardRef(function Button(
 export default Button;
 ```
 
-You can see how in this demo, we use a `callback` for the `root` inside the `componentsProps` so that we can conditionaly apply classes when the `focusVisible` is true.
-Last, let's replace the all buttons in the intial markup with the new custom `Button` component.
+Note that we're using a `callback` for the `root` element inside the `componentsProps`. 
+This allows us to conditionally apply utility classes if `focusVisible` is true.
+Now, let's replace all buttons in the initial markup with the new custom `Button` component.
 
 ```diff
---- a/src/App.tsx
-+++ b/src/App.tsx
+--- a/src/Player.tsx
++++ b/src/Player.tsx
 @@ -1,4 +1,5 @@
  import * as React from 'react';
 +import Button from './Button';
@@ -439,14 +446,15 @@ Last, let's replace the all buttons in the intial markup with the new custom `Bu
      </div>
 ```
 
-You may noticed that I slightly changed the classes use for the custom borders on some of the buttons so that we can have a consistent focus indicator on all buttons.
+Some classes were slightly changed on some buttons so we have a consistent focus indicator.
 
 ## Conclusion
 
-This is what we learned in this guide:
+These are the things we covered in this guide:
 
-✅ How to apply the Tailwind CSS classes inside the MUI Base components using the `componentsProps` prop, which allows us to target each slot inside the components.\
-✅ We also learned that in some more involved customization scenarios, we may even need to create custom components for some of the slots. We can then use the `components` prop to pass the custom component. When creating custom components, it is important not to forget to pass all props on the root of the component.\
-✅ Lastly, if we want to add some conditional style based on the state of the owner component, we can use a callback as a value inside the `componentsProps` prop.
+✅ How to use Tailwind CSS utility classes to style MUI Base components, using the `componentsProps`prop for targeting specific slots within the component.
+✅ How to create custom components for specific slots in more complex customization scenarios.
+We used the `component` prop to pass them into the parent component.
+✅ How to apply conditional styling based on the owner component's state using a callback as value for the `componentsProps` prop.
 
-You can find the complete code of this demo under in the following [link](https://github.com/mui/material-ui/tree/master/examples/mui-base-with-tailwind-css).
+Get all the code used in this guide in the [MUI Base with Tailwind CSS](https://github.com/mui/material-ui/tree/master/examples/mui-base-with-tailwind-css) example project.
