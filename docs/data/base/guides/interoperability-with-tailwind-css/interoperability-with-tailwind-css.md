@@ -6,7 +6,7 @@
 
 The goal of this guide is to teach you how to style MUI Base components using Tailwind CSS.
 The guide assumes you have experience with Tailwind CSS already, or you are at least familiar with it.
-We are not going to cover how to build the UI using Tailwind CSS, but rather how to MUI Base on top of a view already biult with Tailwind CSS, in order to make it interactive and accessible.
+We're not going to cover all the steps to build the UI we'll use as an example but rather how to insert MUI Base components, making it interactive and accessible, and style it with Tailwind CSS.
 Trough out the guide, we'll build an interactive player.
 You can see the final look of it on the picture below.
 
