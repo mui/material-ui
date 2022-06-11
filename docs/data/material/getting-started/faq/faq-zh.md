@@ -91,9 +91,9 @@ const theme = createTheme({
 }
 ```
 
-## 如何禁用全局过渡动画？
+## Do I have to use Emotion to style my app?
 
-不用的，JSS 不是一个必须选择。 但是它是一个内置的插件，所以使用它并不会产生额外的捆绑包尺寸。
+不用的，JSS 不是一个必须选择。 But if you are using the default styled engine (`@mui/styled-engine`) the Emotion dependency comes built in, so carries no additional bundle size overhead.
 
 然而，也许您正在给应用程序添加一些 Material-UI 组件，而应用程序以及使用了其他的样式解决方案，或者您已经熟悉了不同的 API，而不想学习一个新的 API？ In that case, head over to the [Style library interoperability](/material-ui/guides/interoperability/) section, where we show how simple it is to restyle MUI components with alternative style libraries.
 
