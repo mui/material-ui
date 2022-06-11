@@ -25,7 +25,7 @@ You can follow [this GitHub issue](https://github.com/mui/material-ui/issues/293
 - **Customizability:** the library includes and extensive set of intuitive customizability features. [The templates](https://mui.com/store/) in our store demonstrate how far you can go with customizations.
 - **Cross-team collaboration:** Material UI's intuitive developer experience reduces the barrier to entry for back-end developers and less technical designers, empowering teams to collaborate more effectively.
   The [design kits](https://mui.com/design-kits/) streamline your workflow and boost consistency between designers and developers.
-- **You won't be fired** for picking Material UI. It has the largest UI community in the React ecosystem.
+- **Trusted by thousands of organizations:** Material UI has the largest UI community in the React ecosystem.
   It's almost as old as React itself—its history stretches back to 2014—and we're in this for the long haul.
   You can count on community's support for years to come (e.g. [StackOverflow](https://insights.stackoverflow.com/trends?tags=material-ui)).
 
