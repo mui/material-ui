@@ -27,11 +27,6 @@ export default function ExampleIOSList() {
         sx={(theme) => ({
           '& ul': {
             bgcolor: 'background.surface',
-            [`& .${sheetClasses.root}`]: {
-              p: 0.5,
-              lineHeight: 0,
-              borderRadius: 'sm',
-            },
             '& > li:first-child > [role="button"]': {
               borderTopRightRadius: 'var(--List-radius)',
               borderTopLeftRadius: 'var(--List-radius)',
@@ -47,11 +42,11 @@ export default function ExampleIOSList() {
           '--List-divider-gap': '0px',
           '--List-item-paddingY': '0.75rem',
           // override global variant tokens
-          '--joy-palette-neutral-plainHoverBg': theme.vars.palette.neutral[200],
-          '--joy-palette-neutral-plainActiveBg': theme.vars.palette.neutral[300],
+          '--joy-palette-neutral-plainHoverBg': 'rgba(0 0 0 / 0.08)',
+          '--joy-palette-neutral-plainActiveBg': 'rgba(0 0 0 / 0.12)',
           [theme.getColorSchemeSelector('dark')]: {
-            '--joy-palette-neutral-plainHoverBg': theme.vars.palette.neutral[800],
-            '--joy-palette-neutral-plainActiveBg': theme.vars.palette.neutral[600],
+            '--joy-palette-neutral-plainHoverBg': 'rgba(255 255 255 / 0.1)',
+            '--joy-palette-neutral-plainActiveBg': 'rgba(255 255 255 / 0.16)',
           },
         })}
       >
@@ -82,29 +77,38 @@ export default function ExampleIOSList() {
             </ListItem>
           </List>
         </ListItem>
-        <ListItem
-          sx={{
-            flexDirection: 'column',
-            alignItems: 'initial',
-          }}
-        >
-          <ListItemButton
-            aria-describedby="apple-tv-description"
+        <ListItem nested>
+          <ListItem
             sx={{
               bgcolor: 'background.surface',
               mb: 1,
               borderRadius: 'var(--List-radius)',
             }}
           >
-            Apple TV+ Free Year Available
-          </ListItemButton>
+            <ListItemButton
+              aria-describedby="apple-tv-description"
+              sx={{ borderRadius: 'var(--List-radius)' }}
+            >
+              Apple TV+ Free Year Available
+            </ListItemButton>
+          </ListItem>
           <Typography id="apple-tv-description" level="body3" aria-hidden>
             Included with your recent Apple device purchase. Must be accepted within
             90 days of activation.
           </Typography>
         </ListItem>
-        <ListItem nested sx={{ mt: 0 }}>
-          <List aria-label="Network" sx={{ '--List-gap': '0px' }}>
+        <ListItem nested>
+          <List
+            aria-label="Network"
+            sx={{
+              '--List-gap': '0px',
+              [`& .${sheetClasses.root}`]: {
+                p: 0.5,
+                lineHeight: 0,
+                borderRadius: 'sm',
+              },
+            }}
+          >
             <ListItem>
               <ListItemDecorator>
                 <Sheet variant="solid" color="warning">
@@ -118,14 +122,13 @@ export default function ExampleIOSList() {
                 id="airplane-mode"
                 size="lg"
                 color="success"
-                sx={{
+                sx={(theme) => ({
                   '--Switch-track-width': '48px',
                   '--Switch-track-height': '28px',
-                  '--Switch-thumb-shadow': (theme) => theme.vars.shadow.sm,
-                  '--Switch-track-background': (theme) =>
-                    theme.vars.palette.background.level3,
+                  '--Switch-thumb-shadow': theme.vars.shadow.sm,
+                  '--Switch-track-background': theme.vars.palette.background.level3,
                   '&:hover': {
-                    '--Switch-track-background': (theme) =>
+                    '--Switch-track-background':
                       theme.vars.palette.background.level3,
                   },
                   '&:active': {
@@ -135,14 +138,12 @@ export default function ExampleIOSList() {
                     },
                   },
                   [`&.${switchClasses.checked}`]: {
-                    '--Switch-track-background': (theme) =>
-                      theme.vars.palette.success[500],
+                    '--Switch-track-background': theme.vars.palette.success[500],
                     '&:hover': {
-                      '--Switch-track-background': (theme) =>
-                        theme.vars.palette.success[500],
+                      '--Switch-track-background': theme.vars.palette.success[500],
                     },
                   },
-                }}
+                })}
               />
             </ListItem>
             <ListItem>
