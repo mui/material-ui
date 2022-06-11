@@ -503,7 +503,7 @@ The `DataGridPro` on the other hand is available under a paid commercial license
 ### Date Picker
 
 We have transferred the ownership of the `@material-ui/pickers` from [Dmitriy Kovalenko](https://github.com/dmtrKovalenko) to the main organization.
-The [picker components](/material-ui/lab-date-and-time-pickers/) are now part of the `@mui/lab` package.
+The date picker components are now part of the `@mui/lab` package.
 
 We spent a lot of time making sure they are consistent.
 We are now working toward reaching the same level of excellence as the other core components.
