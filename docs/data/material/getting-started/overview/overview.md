@@ -20,8 +20,8 @@ You can follow [this GitHub issue](https://github.com/mui/material-ui/issues/293
 
 - **Ship faster:** thousands of open-source [contributors](https://api7.ai/contributor-graph?chart=contributorOverTime&repo=mui-org/material-ui) have poured countless hours into these components.
   Focus on your core business logic instead of reinventing the wheel—we've got your UI covered.
-- **Beautiful by default:** we're meticulous about our implementation of [Material Design](https://material.io/), ensuring that every Material UI component meets the highest standards of form and function.
-  We even diverge from the official specifications where necessary to ensure multiple great look & feel options.
+- **Beautiful by default:** we're meticulous about our implementation of [Material Design](https://material.io/), ensuring that every Material UI component meets the highest standards of form and function,
+  but diverge from the official spec where necessary to provide multiple great options.
 - **Customizability:** the library includes and extensive set of intuitive customizability features. [The templates](https://mui.com/store/) in our store demonstrate how far you can go with customizations.
 - **Cross-team collaboration:** Material UI's intuitive developer experience reduces the barrier to entry for back-end developers and less technical designers, empowering teams to collaborate more effectively.
   The [design kits](https://mui.com/design-kits/) streamline your workflow and boost consistency between designers and developers.

@@ -84,7 +84,7 @@ The open-source community is always welcome to submit new features and bug fixes
 The current status of each MUI version is as follows:
 
 - MUI Core v5: ✅ Active development and continuous support.
-- [Material UI v4](https://v4.mui.com/): ⚠️ Guaranteed Support (only) for security issues and regressions.
+- [Material UI v4](https://v4.mui.com/): ⚠️ Guaranteed Support for security issues and regressions.
 - [Material UI v3](https://v3.mui.com/): 🅧 No longer supported.
 - Material UI v2: 🅧 Never existed.
 - [Material UI v1](https://v1.mui.com/): 🅧 No longer supported.
