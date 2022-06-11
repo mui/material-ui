@@ -1,6 +1,6 @@
 # Style library interoperability
 
-<p class="description">虽然您可以使用 Material-UI 提供的基于 emotion 的样式解决方案来自定义您的程序，但也可以使用您喜欢的其他方案（从普通的 CSS 到 styled-components）。</p>
+<p class="description">While you can use the Emotion-based styling solution provided by MUI to style your application, you can also use the one you already know and love (from plain CSS to styled-components).</p>
 
 本指南旨在归档当前比较流行的一些替代方案，但是您会发现在这里运用的法则，也可以在其他库里适用。 我们为以下的样式方案提供了一些示例：
 
@@ -66,7 +66,7 @@ export default function GlobalCssPriority() {
 }
 ```
 
-**注意：** 如果您使用的是 emotion 并且在您的程序中自定义了缓存，那么这将会覆盖 MUI 的缓存。 为了使注入顺序仍然正确，您需要添加前缀选项。 下面是一个示例：
+**Note:** If you are using Emotion and have a custom cache in your app, that one will override the one coming from MUI. 为了使注入顺序仍然正确，您需要添加前缀选项。 下面是一个示例：
 
 ```jsx
 import * as React from 'react';
@@ -222,7 +222,7 @@ export default function GlobalCssPriority() {
 }
 ```
 
-**Note:** If you are using emotion and have a custom cache in your app, that one will override the one coming from Material-UI. In order for the injection order to still be correct, you need to add the prepend option. 下面是一个示例： In order for the injection order to still be correct, you need to add the prepend option. Here is an example: In order for the injection order to still be correct, you need to add the prepend option. Here is an example:
+**Note:** If you are using Emotion and have a custom cache in your app, that one will override the one coming from MUI. In order for the injection order to still be correct, you need to add the prepend option. Here is an example:
 
 ```jsx
 import * as React from 'react';
@@ -287,7 +287,7 @@ export default function GlobalCssSliderDeep() {
 
 ### 改变默认的样式引擎
 
-默认情况下，Material-UI 组件使用 emotion 来作为它们的样式引擎。 If, however, you would like to use `styled-components`, you can configure your app by following the [styled engine guide](/material-ui/guides/styled-engine/#how-to-switch-to-styled-components) or starting with one of the example projects:
+By default, MUI components come with Emotion as their style engine. If, however, you would like to use `styled-components`, you can configure your app by following the [styled engine guide](/material-ui/guides/styled-engine/#how-to-switch-to-styled-components) or starting with one of the example projects:
 
 <!-- #default-branch-switch -->
 
@@ -461,7 +461,7 @@ export default function GlobalCssPriority() {
 }
 ```
 
-**Note:** If you are using emotion and have a custom cache in your app, that one will override the one coming from MUI. In order for the injection order to still be correct, you need to add the prepend option. Here is an example:
+**Note:** If you are using Emotion and have a custom cache in your app, that one will override the one coming from MUI. In order for the injection order to still be correct, you need to add the prepend option. Here is an example:
 
 ```jsx
 import * as React from 'react';
@@ -643,7 +643,7 @@ export default function GlobalCssPriority() {
 }
 ```
 
-**Note:** If you are using emotion and have a custom cache in your app, it will override the one coming from MUI. In order for the injection order to still be correct, you need to add the prepend option. Here is an example:
+**Note:** If you are using Emotion and have a custom cache in your app, it will override the one coming from MUI. In order for the injection order to still be correct, you need to add the prepend option. Here is an example:
 
 ```jsx
 import * as React from 'react';
