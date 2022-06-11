@@ -89,9 +89,9 @@ Material UI relies on styling engines to inject CSS into your app. These engines
 - `@mui/styled-engine`
 - `@mui/styled-engine-sc`
 
-By default, Material UI uses [emotion](https://emotion.sh/docs/styled) as its styling engine—it's included in the [installation](/material-ui/getting-started/installation/) process. If you plan to stick with emotion, then `@mui/styled-engine` is a dependency in your app, and you don't need to install it separately.
+By default, Material UI uses [Emotion](https://emotion.sh/docs/styled) as its styling engine—it's included in the [installation](/material-ui/getting-started/installation/) process. If you plan to stick with Emotion, then `@mui/styled-engine` is a dependency in your app, and you don't need to install it separately.
 
-If you prefer to use [styled-components](https://styled-components.com/docs/basics#getting-started), then you need to install `@mui/styled-engine-sc` in place of the emotion packages. See the [Styled engine guide](/material-ui/guides/styled-engine/) for more details.
+If you prefer to use [styled-components](https://styled-components.com/docs/basics#getting-started), then you need to install `@mui/styled-engine-sc` in place of the Emotion packages. See the [Styled engine guide](/material-ui/guides/styled-engine/) for more details.
 
 In either case, you won't interact much with either of these packages beyond installation—they're used internally in `@mui/system`.
 
@@ -99,7 +99,7 @@ In either case, you won't interact much with either of these packages beyond ins
 
 ### MUI System
 
-MUI System is a collection of CSS utilities to help you rapidly lay out custom designs. It uses the emotion adapter (`@mui/styled-engine`) as the default style engine to create the CSS utilities.
+MUI System is a collection of CSS utilities to help you rapidly lay out custom designs. It uses the Emotion adapter (`@mui/styled-engine`) as the default style engine to create the CSS utilities.
 
 #### Advantages of MUI System
 
@@ -107,6 +107,6 @@ MUI System is a collection of CSS utilities to help you rapidly lay out custom d
 - You can use `sx` prop normally as the `styled` API supports it by default.
 - You can have themeable components by using `styled` via slots and variants.
 
-:::warning To use MUI System, you must install either emotion or styled-components, because the respective `styled-engine` package depends on it. :::
+:::warning To use MUI System, you must install either Emotion or styled-components, because the respective `styled-engine` package depends on it. :::
 
 <img src="/static/images/packages/mui-system.png" style="width: 796px; margin-top: 4px; margin-bottom: 8px;" alt="A diagram showing an arrow going from @mui/system to @mui/styled-engine, with a note that it is the default engine. Then, from @mui/styled-engine a solid arrow points to @emotion/react and @emotion/styled while a dashed arrow points to @mui/styled-engine-sc, which points to styled-components." />
