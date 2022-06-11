@@ -1,6 +1,6 @@
 # Interoperability with Tailwind CSS
 
-<p class="description">Learn the basics of how to use Tailwind CSS with MUI Base components.</p>
+<p class="description">Learn how to use Tailwind CSS with MUI Base components.</p>
 
 ## Getting started
 
