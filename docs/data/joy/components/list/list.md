@@ -93,4 +93,6 @@ Joy provides 4 List related components:
 
 ### Collapsible list
 
+{{"demo": "ExampleCollapsibleList.js", "bg": true}}
+
 ### Apps grid
