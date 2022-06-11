@@ -90,9 +90,9 @@ Observe que o uso de `CssBaseline` é necessário para que a abordagem acima fun
 }
 ```
 
-## Como posso desativar as transições globalmente?
+## Do I have to use Emotion to style my app?
 
-Não, não é obrigatório. Mas essa dependência vem embutida, portanto, não sobrecarrega o tamanho do pacote.
+Não, não é obrigatório. But if you are using the default styled engine (`@mui/styled-engine`) the Emotion dependency comes built in, so carries no additional bundle size overhead.
 
 No entanto, talvez você esteja adicionando os componentes Material-UI para uma aplicação que já usa outra solução de estilos, ou, já esta familiarizado com uma API diferente e não quer aprender uma nova? In that case, head over to the [Style library interoperability](/material-ui/guides/interoperability/) section, where we show how simple it is to restyle MUI components with alternative style libraries.
 
