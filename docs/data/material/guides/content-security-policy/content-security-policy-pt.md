@@ -50,9 +50,9 @@ Você deve passar o nonce na tag `<style>` no servidor.
 />
 ```
 
-Então, você deve passar este nonce para o JSS para que ele possa adicioná-lo às tags `<style>` subsequentes.
+Then, you must pass this nonce to Emotion's cache so it can add it to subsequent `<style>`.
 
-:::warning Note, if you were using `StyledEngineProvider` with `injectFirst`, you will need to replace it with `CacheProvider` from emotion and add the `prepend: true` option. :::
+:::warning Note, if you were using `StyledEngineProvider` with `injectFirst`, you will need to replace it with `CacheProvider` from Emotion and add the `prepend: true` option. :::
 
 ```js
 <head>
