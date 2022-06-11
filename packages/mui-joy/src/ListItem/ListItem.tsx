@@ -1,7 +1,10 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_capitalize as capitalize } from '@mui/utils';
+import {
+  unstable_capitalize as capitalize,
+  unstable_isMuiElement as isMuiElement,
+} from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
 import composeClasses from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
@@ -173,7 +176,13 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
 
         {React.Children.map(children, (child, index) =>
           index === 0 && React.isValidElement(child)
-            ? React.cloneElement(child, { 'data-first-child': '' })
+            ? React.cloneElement(child, {
+                'data-first-child': '',
+                ...(isMuiElement(child, ['ListItem']) && {
+                  // The ListItem of ListItem should not be 'li'
+                  component: child.props.component || 'div',
+                }),
+              })
             : child,
         )}
         {endAction && (
@@ -245,5 +254,8 @@ ListItem.propTypes /* remove-proptypes */ = {
    */
   variant: PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
 } as any;
+
+// @ts-ignore For internal check.
+ListItem.muiName = 'ListItem';
 
 export default ListItem;
