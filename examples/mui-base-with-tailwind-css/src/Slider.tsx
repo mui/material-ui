@@ -15,7 +15,7 @@ const Thumb = React.forwardRef(function Thumb(
       {...other}
       ref={ref}
     >
-      <span className="w-1.5 h-1.5 bg-cyan-500 dark:bg-cyan-400 rounded-full ring-1 ring-inset ring-slate-900/5"></span>
+      <span className="w-1.5 h-1.5 bg-cyan-500 dark:bg-cyan-400 rounded-full ring-1 ring-inset ring-slate-900/5" />
       {children}
     </span>
   );

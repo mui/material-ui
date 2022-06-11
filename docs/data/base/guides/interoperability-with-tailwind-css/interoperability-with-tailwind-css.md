@@ -19,7 +19,7 @@ All credits go to the Tailwind Labs team for designing this component, found on 
 
 ## Setting up the project
 
-We'll use `create-react-app` for this guide. 
+We'll use `create-react-app` for this guide.
 For setting it up, follow the instructions given on the [Tailwind CSS installation page](https://tailwindcss.com/docs/guides/create-react-app).
 
 Once you're done with the basic setup, install `@mui/base` in the project:
@@ -211,12 +211,12 @@ export default Player;
 
 Next, add the `Player` component in the `App.tsx` file.
 You should see the player render as it is on the screenshot above.
-However, the component is not yet interactive. 
+However, the component is not yet interactive.
 That's what we'll do in the next step.
 
 ## Adding an interactive Slider component
 
-Let's start by giving life to the slider. 
+Let's start by giving life to the slider.
 For that, we'll use the `SliderUnstyled` component from MUI Base.
 The first step is creating a new file called `Slider.tsx`.
 Now, copy the code below in the file.
@@ -326,9 +326,10 @@ This is just an example but you can build a lot more custom components for each 
 :::warning
 ⚠️ When building custom components for the slots, always <b>propagate the props sent from the owner component on the root element</b>.
 This is because the props will contain event handlers and aria properties necessary to make the component accessible.
-Additionally, each of the slots receives an `ownerState` object, which contains the props & state of the owner component. 
-This is useful if you want to style the component based on some internal state.
 :::
+
+Additionally, each of the slots receives an `ownerState` object, which contains the props & state of the owner component.
+This is useful if you want to style the component based on some internal state.
 
 ## Adding a custom focus visible selector on the buttons
 
@@ -371,7 +372,7 @@ const Button = React.forwardRef(function Button(
 export default Button;
 ```
 
-Note that we're using a `callback` for the `root` element inside the `componentsProps`. 
+Note that we're using a `callback` for the `root` element inside the `componentsProps`.
 This allows us to conditionally apply utility classes if `focusVisible` is true.
 Now, let's replace all buttons in the initial markup with the new custom `Button` component.
 
