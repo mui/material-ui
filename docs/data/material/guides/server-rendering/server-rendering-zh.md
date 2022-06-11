@@ -86,7 +86,7 @@ When rendering, we will wrap `App`, the root component, inside a [`CacheProvider
 
 The key step in server-side rendering is to render the initial HTML of the component **before** we send it to the client-side. 我们用 [ReactDOMServer.renderToString()](https://reactjs.org/docs/react-dom-server.html) 来实现此操作。 我们用 [ReactDOMServer.renderToString()](https://reactjs.org/docs/react-dom-server.html) 来实现此操作。
 
-MUI is using emotion as its default styled engine. We need to extract the styles from the emotion instance. The client-side is straightforward. All we need to do is use the same cache configuration as the server-side. 让我们来看看客户端的文件： We need to extract the styles from the emotion instance. The client-side is straightforward. All we need to do is use the same cache configuration as the server-side. 让我们来看看客户端的文件：
+MUI is using Emotion as its default styled engine. We need to extract the styles from the Emotion instance. The client-side is straightforward. All we need to do is use the same cache configuration as the server-side. 让我们来看看客户端的文件：
 
 `getCache.js`
 
@@ -100,7 +100,7 @@ export default function getCache() {
 }
 ```
 
-With this we are creating new emotion cache instance and using this to extract the critical styles for the html as well.
+With this we are creating new Emotion cache instance and using this to extract the critical styles for the html as well.
 
 我们将看到在 `renderFullPage` 函数中，是如何传递这些信息的。
 
