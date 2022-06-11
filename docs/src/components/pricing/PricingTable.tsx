@@ -18,18 +18,18 @@ const planInfo = {
   community: {
     color: 'green',
     title: 'Community',
-    description: 'The #1 UI library for fast-developing beautiful react applications.',
+    description: 'Get started with the industry-standard React UI library, MIT-licensed.',
   },
   pro: {
     color: 'blue',
     title: 'Pro',
-    description: 'Your go-to option for building data-rich applications with complex use cases.',
+    description: 'Your go-to option for building data-rich applications.',
   },
   premium: {
     color: 'gold',
     title: 'Premium',
     description:
-      'The most advanced features for handling data in enterprise applications, as well as the highest priority for support.',
+      'The most advanced features for data-rich applications, as well as the highest priority for support.',
   },
 } as const;
 
