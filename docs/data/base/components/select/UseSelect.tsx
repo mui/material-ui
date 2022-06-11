@@ -158,5 +158,5 @@ const options = [
 ];
 
 export default function UseSelect() {
-  return <CustomSelect placeholder="Select a color..." options={options} />;
+  return <CustomSelect placeholder="Select a color…" options={options} />;
 }
