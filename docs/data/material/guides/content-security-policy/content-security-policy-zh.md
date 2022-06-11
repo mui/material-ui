@@ -50,9 +50,9 @@ header('Content-Security-Policy').set(
 />
 ```
 
-然后，您必须将此随机数传递给 JSS ，以便将其添加到后续 `<style>` 标记中。
+Then, you must pass this nonce to Emotion's cache so it can add it to subsequent `<style>`.
 
-:::warning Note, if you were using `StyledEngineProvider` with `injectFirst`, you will need to replace it with `CacheProvider` from emotion and add the `prepend: true` option. :::
+:::warning Note, if you were using `StyledEngineProvider` with `injectFirst`, you will need to replace it with `CacheProvider` from Emotion and add the `prepend: true` option. :::
 
 ```js
 <head>
