@@ -30,6 +30,16 @@ const Select = styled('select')(({ theme }) => ({
   },
 }));
 
+const shallowEqual = (item1: { [k: string]: any }, item2: { [k: string]: any }) => {
+  let equal = true;
+  Object.entries(item1).forEach(([key, value]: [string, any]) => {
+    if (item2[key] !== value) {
+      equal = false;
+    }
+  });
+  return equal;
+};
+
 function createCode(data: {
   name: string;
   props: Record<string, string | number | boolean>;
@@ -211,9 +221,9 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
             variant="outlined"
             color="neutral"
             size="sm"
-            onClick={() => setProps({} as T)}
+            onClick={() => setProps(initialProps as T)}
             sx={{
-              visibility: Object.keys(props).length ? 'visible' : 'hidden',
+              visibility: !shallowEqual(props, initialProps) ? 'visible' : 'hidden',
               '--IconButton-size': '30px',
             }}
           >
