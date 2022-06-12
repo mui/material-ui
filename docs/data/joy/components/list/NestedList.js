@@ -1,52 +1,64 @@
 import * as React from 'react';
+import Box from '@mui/joy/Box';
 import List from '@mui/joy/List';
 import ListItem from '@mui/joy/ListItem';
 import ListItemButton from '@mui/joy/ListItemButton';
 import Typography from '@mui/joy/Typography';
+import Switch from '@mui/joy/Switch';
 
 export default function NestedList() {
+  const [small, setSmall] = React.useState(false);
   return (
-    <List sx={{ maxWidth: 200, bgcolor: 'background.surface' }}>
-      <ListItem nested>
-        <ListItem component="div">
-          <Typography
-            id="nested-list-demo-1"
-            level="body3"
-            textTransform="uppercase"
-            fontWeight="lg"
-          >
-            Category 1
-          </Typography>
+    <Box>
+      <Switch
+        size="sm"
+        checked={small}
+        onChange={(event) => setSmall(event.target.checked)}
+        endDecorator={<Typography>Small nested list</Typography>}
+        sx={{ mb: 2 }}
+      />
+      <List sx={{ maxWidth: 200, bgcolor: 'background.surface' }}>
+        <ListItem nested>
+          <ListItem component="div">
+            <Typography
+              id="nested-list-demo-1"
+              level="body3"
+              textTransform="uppercase"
+              fontWeight="lg"
+            >
+              Category 1
+            </Typography>
+          </ListItem>
+          <List aria-labelledby="nested-list-demo-1" size={small ? 'sm' : undefined}>
+            <ListItem>
+              <ListItemButton>Subitem 1</ListItemButton>
+            </ListItem>
+            <ListItem>
+              <ListItemButton>Subitem 2</ListItemButton>
+            </ListItem>
+          </List>
         </ListItem>
-        <List aria-labelledby="nested-list-demo-1">
-          <ListItem>
-            <ListItemButton>Subitem 1</ListItemButton>
+        <ListItem nested>
+          <ListItem component="div">
+            <Typography
+              id="nested-list-demo-2"
+              level="body3"
+              textTransform="uppercase"
+              fontWeight="lg"
+            >
+              Category 2
+            </Typography>
           </ListItem>
-          <ListItem>
-            <ListItemButton>Subitem 2</ListItemButton>
-          </ListItem>
-        </List>
-      </ListItem>
-      <ListItem nested>
-        <ListItem component="div">
-          <Typography
-            id="nested-list-demo-2"
-            level="body3"
-            textTransform="uppercase"
-            fontWeight="lg"
-          >
-            Category 2
-          </Typography>
+          <List aria-labelledby="nested-list-demo-2" size={small ? 'sm' : undefined}>
+            <ListItem>
+              <ListItemButton>Subitem 1</ListItemButton>
+            </ListItem>
+            <ListItem>
+              <ListItemButton>Subitem 2</ListItemButton>
+            </ListItem>
+          </List>
         </ListItem>
-        <List aria-labelledby="nested-list-demo-2">
-          <ListItem>
-            <ListItemButton>Subitem 1</ListItemButton>
-          </ListItem>
-          <ListItem>
-            <ListItemButton>Subitem 2</ListItemButton>
-          </ListItem>
-        </List>
-      </ListItem>
-    </List>
+      </List>
+    </Box>
   );
 }
