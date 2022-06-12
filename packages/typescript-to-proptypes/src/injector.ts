@@ -152,10 +152,8 @@ function plugin(
     // key is a reserved prop name in React
     // e.g. https://github.com/reactjs/rfcs/pull/107
     // no need to add a prop-type if we won't generate the docs for it.
-    if (data.prop.name === 'key') {
-      if (data.prop.jsDoc === '@ignore') {
-        return false;
-      }
+    if (data.prop.name === 'key' && data.prop.jsDoc === '@ignore') {
+      return false;
     }
 
     if (options.shouldInclude) {
