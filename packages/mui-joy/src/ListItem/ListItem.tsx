@@ -180,6 +180,7 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
               })
             : child,
         )}
+
         {endAction && (
           <ListItemEndAction className={classes.endAction} ownerState={ownerState}>
             {endAction}
