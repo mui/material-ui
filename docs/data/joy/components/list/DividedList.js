@@ -17,7 +17,7 @@ export default function DividedList() {
         gap: 2,
       }}
     >
-      {[undefined, 'gutter', 'startContent', 'startDecorator'].map((inset) => (
+      {[undefined, 'gutter', 'startDecorator', 'startContent'].map((inset) => (
         <Box>
           <Typography level="body2" mb={1}>
             {inset ? `inset="${inset}"` : '(default)'}
