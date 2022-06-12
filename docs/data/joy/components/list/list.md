@@ -95,4 +95,6 @@ Joy provides 4 List related components:
 
 {{"demo": "ExampleCollapsibleList.js", "bg": true}}
 
-### Apps grid
+### Navigation menu
+
+{{"demo": "ExampleNavigationMenu.js", "bg": true}}

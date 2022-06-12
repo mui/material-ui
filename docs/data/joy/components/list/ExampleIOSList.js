@@ -53,7 +53,10 @@ export default function ExampleIOSList() {
         <ListItem nested>
           <List
             aria-label="Personal info"
-            sx={{ '--List-gap': '0px', '--List-decorator-width': '72px' }}
+            sx={{
+              '--List-gap': '0px',
+              '--List-decorator-width': '72px',
+            }}
           >
             <ListItem>
               <ListItemDecorator>

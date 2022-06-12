@@ -132,7 +132,15 @@ export default function ExampleCollapsibleList() {
           }
         >
           <ListItemButton>
-            <Typography level="inherit">How-to Guides</Typography>
+            <Typography
+              level="inherit"
+              sx={{
+                fontWeight: open2 ? 'bold' : undefined,
+                color: open2 ? 'text.primary' : 'inherit',
+              }}
+            >
+              How-to Guides
+            </Typography>
             <Typography component="span" level="body3" sx={{ ml: 1 }}>
               39
             </Typography>
