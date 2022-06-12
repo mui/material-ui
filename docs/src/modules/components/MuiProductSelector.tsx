@@ -2,6 +2,7 @@ import * as React from 'react';
 import { alpha } from '@mui/material/styles';
 import Box, { BoxProps } from '@mui/material/Box';
 import Chip from '@mui/material/Chip';
+import { unstable_debounce as debounce } from '@mui/utils';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 import IconImage from 'docs/src/components/icon/IconImage';
@@ -60,27 +61,54 @@ const products = [
   {
     name: 'Material UI',
     href: ROUTES.materialDocs,
+    description: "React components that implement Google's Material Design.",
     slug: 'material-ui',
   },
   {
     name: 'Joy UI',
     href: ROUTES.joyDocs,
+    description: 'React components for building your design system.',
     slug: 'joy-ui',
   },
   {
     name: 'MUI Base',
     href: ROUTES.baseDocs,
+    description: 'Unstyled React components and low-level hooks.',
     slug: 'base',
   },
   {
     name: 'MUI System',
     href: ROUTES.systemDocs,
+    description: 'CSS utilities for rapidly laying out custom designs.',
     slug: 'system',
   },
 ];
 
+const muiCoreDescription = 'Ready-to-use foundational components, free forever.';
+
 export default function MuiProductSelector() {
   const routerExtra = useRouterExtra();
+  const [description, setDescription] = React.useState(muiCoreDescription);
+
+  const setDescriptionDebounced = React.useMemo(
+    () => debounce(setDescription, 80),
+    [setDescription],
+  );
+
+  const handleMouseEnter = (product: any) => () => {
+    setDescriptionDebounced.clear();
+    setDescription(product.description);
+  };
+
+  const handleMouseLeave = () => {
+    setDescriptionDebounced(muiCoreDescription);
+  };
+
+  React.useEffect(() => {
+    return () => {
+      setDescriptionDebounced.clear();
+    };
+  }, [setDescriptionDebounced]);
 
   return (
     <React.Fragment>
@@ -89,6 +117,7 @@ export default function MuiProductSelector() {
         role="none"
         sx={{
           p: 2,
+          minWidth: 465, // account for all the descriptions' size.
           borderBottom: '1px solid',
           borderColor: (theme) =>
             theme.palette.mode === 'dark'
@@ -100,7 +129,7 @@ export default function MuiProductSelector() {
           role="menuitem"
           icon={<IconImage name="product-core" />}
           name="MUI Core"
-          description="Ready-to-use foundational components, free forever."
+          description={description}
         />
         <Box
           sx={{
@@ -133,6 +162,8 @@ export default function MuiProductSelector() {
                 component={Link}
                 href={product.href}
                 label={product.name}
+                onMouseEnter={handleMouseEnter(product)}
+                onMouseLeave={handleMouseLeave}
                 clickable
                 size="small"
               />

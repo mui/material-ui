@@ -268,7 +268,11 @@ export default function HeaderNavBar() {
                           role="menuitem"
                           href={ROUTES.productAdvanced}
                           icon={<IconImage name="product-advanced" />}
-                          name="MUI X"
+                          name={
+                            <Box component="span" display="inline-flex" alignItems="center">
+                              MUI&nbsp;X
+                            </Box>
+                          }
                           description="Advanced and powerful components for complex use cases."
                           onKeyDown={handleKeyDown}
                         />
