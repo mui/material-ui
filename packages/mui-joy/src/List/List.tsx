@@ -73,7 +73,7 @@ const ListRoot = styled('ul', {
         '--List-itemButton-margin': '0px',
         '--List-item-margin': '0px',
         '--List-item-radius':
-          'max(var(--List-radius, 0px) - var(--List-padding), min(var(--List-padding) / 2, var(--List-radius, 0px) / 2))',
+          'var(--internal-nested-item-radius, max(var(--List-radius, 0px) - var(--List-padding), min(var(--List-padding) / 2, var(--List-radius, 0px) / 2)))',
         marginInlineStart: 'var(--NestedList-marginLeft)',
         marginInlineEnd: 'var(--NestedList-marginRight)',
         marginBlockStart: 'var(--List-gap)',
@@ -87,8 +87,9 @@ const ListRoot = styled('ul', {
         '--List-item-paddingLeft': 'var(--List-item-paddingX)',
         '--List-item-paddingRight': 'var(--List-item-paddingX)',
         // by default, The ListItem & ListItemButton use automatic radius adjustment based on the parent List.
-        '--List-item-startActionTranslateX': 'var(--List-item-paddingLeft)',
-        '--List-item-endActionTranslateX': 'calc(-1 * var(--List-item-paddingLeft))',
+        '--List-item-startActionTranslateX': 'calc(0.5 * var(--List-item-paddingLeft))',
+        '--List-item-endActionTranslateX': 'calc(-0.5 * var(--List-item-paddingRight))',
+        '--internal-nested-item-radius': 'var(--List-item-radius)',
         margin: 'initial',
       },
       {

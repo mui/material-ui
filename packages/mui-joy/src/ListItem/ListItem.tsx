@@ -91,11 +91,6 @@ calc(-1 * var(--List-item-paddingLeft))`,
         zIndex: 1,
         background: 'var(--List-item-stickyBackground)',
       }),
-      // Using :last-child or :first-child selector would complicate ListDivider margin
-      // [`& > .${listItemClasses.root}, & > .${listItemButtonClasses.root}`]: {
-      //   marginInlineStart: ownerState.row ? 0 : undefined,
-      //   marginBlockStart: ownerState.row ? undefined : 0,
-      // },
     },
     theme.variants[ownerState.variant!]?.[ownerState.color!],
   ],
