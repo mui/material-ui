@@ -9,7 +9,7 @@ export default function LoadingButtons() {
       <LoadingButton loading variant="outlined">
         Submit
       </LoadingButton>
-      <LoadingButton loading loadingIndicator="Loading…" variant="outlined">
+      <LoadingButton loading loadingIndicator="Loading..." variant="outlined">
         Fetch data
       </LoadingButton>
       <LoadingButton

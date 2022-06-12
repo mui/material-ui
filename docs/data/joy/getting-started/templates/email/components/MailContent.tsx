@@ -9,7 +9,6 @@ import Button from '@mui/joy/Button';
 import IconButton from '@mui/joy/IconButton';
 import AspectRatio from '@mui/joy/AspectRatio';
 import ListDivider from '@mui/joy/ListDivider';
-import Avatar from '@mui/joy/Avatar';
 
 // Icons import
 import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
@@ -38,12 +37,20 @@ export default function EmailContent() {
         }}
       >
         <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-          <Avatar
-            src="https://i.pravatar.cc/40?img=3"
-            srcSet="https://i.pravatar.cc/80?img=3"
-            sx={{ borderRadius: 'sm' }}
+          <Box
+            component="img"
+            src="https://i.pravatar.cc/150?img=3"
+            sx={{
+              width: 40,
+              height: 40,
+              borderRadius: '8px',
+            }}
           />
-          <Box sx={{ ml: 2 }}>
+          <Box
+            sx={{
+              ml: 2,
+            }}
+          >
             <Typography level="body2" textColor="text.primary" mb={0.5}>
               Alex Jonnold
             </Typography>
@@ -158,24 +165,29 @@ export default function EmailContent() {
         })}
       >
         <Card variant="outlined">
-          <AspectRatio ratio="1" sx={{ minWidth: 80 }}>
+          <AspectRatio ratio="1" sx={{ minWidth: '80px' }}>
             <img
-              src="https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&fit=crop&w=2370"
+              src="https://images.unsplash.com/photo-1527549993586-dff825b37782?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2370"
               alt="Yosemite National Park"
             />
           </AspectRatio>
         </Card>
         <Card variant="outlined">
-          <AspectRatio ratio="1" sx={{ minWidth: 80 }}>
+          <AspectRatio ratio="1" sx={{ minWidth: '80px' }}>
             <img
-              src="https://images.unsplash.com/photo-1532614338840-ab30cf10ed36?auto=format&fit=crop&w=2370"
+              src="https://images.unsplash.com/photo-1532614338840-ab30cf10ed36?ixlib=rb-1.2.1&raw_url=true&q=80&fm=jpg&crop=entropy&cs=tinysrgb&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2370"
               alt="Yosemite National Park"
             />
           </AspectRatio>
         </Card>
         <Card variant="outlined" row>
           <CardOverflow>
-            <AspectRatio ratio="1" sx={{ minWidth: 80 }}>
+            <AspectRatio
+              ratio="1"
+              sx={{
+                minWidth: '80px',
+              }}
+            >
               <Box
                 sx={{
                   display: 'flex',

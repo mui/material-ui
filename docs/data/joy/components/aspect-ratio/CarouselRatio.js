@@ -6,23 +6,23 @@ import Card from '@mui/joy/Card';
 
 const data = [
   {
-    src: 'https://images.unsplash.com/photo-1502657877623-f66bf489d236',
+    src: 'https://images.unsplash.com/photo-1502657877623-f66bf489d236?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2369',
     title: 'Night view',
     description: '4.21M views',
   },
   {
-    src: 'https://images.unsplash.com/photo-1527549993586-dff825b37782',
+    src: 'https://images.unsplash.com/photo-1527549993586-dff825b37782?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3270',
     title: 'Lake view',
     description: '4.74M views',
   },
   {
-    src: 'https://images.unsplash.com/photo-1532614338840-ab30cf10ed36',
+    src: 'https://images.unsplash.com/photo-1532614338840-ab30cf10ed36?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3270',
     title: 'Mountain view',
     description: '3.98M views',
   },
 ];
 
-export default function CarouselRatio() {
+export default function FlexRowRatio() {
   return (
     <Box
       sx={{
@@ -52,11 +52,7 @@ export default function CarouselRatio() {
             ratio="1"
             sx={{ minWidth: 60, borderRadius: 'sm', overflow: 'auto' }}
           >
-            <img
-              src={`${item.src}?h=120&fit=crop&auto=format`}
-              srcSet={`${item.src}?h=120&fit=crop&auto=format&dpr=2 2x`}
-              alt={item.title}
-            />
+            <img src={item.src} alt={item.title} />
           </AspectRatio>
           <Box sx={{ whiteSpace: 'nowrap' }}>
             <Typography fontWeight="md">{item.title}</Typography>
