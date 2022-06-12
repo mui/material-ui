@@ -45,7 +45,7 @@ const ListRoot = styled('ul', {
           '--List-item-paddingY': '0.375rem',
           '--List-item-paddingX': '0.75rem',
           '--List-item-fontSize': theme.vars.fontSize.md,
-          '--List-decorator-width': ownerState.row ? '2rem' : '2.5rem',
+          '--List-decorator-width': ownerState.row ? '1.75rem' : '2.5rem',
           '--Icon-fontSize': '1.25rem',
         };
       }
@@ -56,7 +56,7 @@ const ListRoot = styled('ul', {
           '--List-item-paddingY': '0.5rem',
           '--List-item-paddingX': '1rem',
           '--List-item-fontSize': theme.vars.fontSize.md,
-          '--List-decorator-width': ownerState.row ? '2.5rem' : '3rem',
+          '--List-decorator-width': ownerState.row ? '2.25rem' : '3rem',
           '--Icon-fontSize': '1.5rem',
         };
       }
@@ -72,7 +72,8 @@ const ListRoot = styled('ul', {
         // reset ListItem, ListItemButton negative margin (caused by NestedListItem)
         '--List-itemButton-margin': '0px',
         '--List-item-margin': '0px',
-        padding: 0,
+        '--List-item-radius':
+          'max(var(--List-radius, 0px) - var(--List-padding), min(var(--List-padding) / 2, var(--List-radius, 0px) / 2))',
         marginInlineStart: 'var(--NestedList-marginLeft)',
         marginInlineEnd: 'var(--NestedList-marginRight)',
         marginBlockStart: 'var(--List-gap)',
@@ -86,11 +87,8 @@ const ListRoot = styled('ul', {
         '--List-item-paddingLeft': 'var(--List-item-paddingX)',
         '--List-item-paddingRight': 'var(--List-item-paddingX)',
         // by default, The ListItem & ListItemButton use automatic radius adjustment based on the parent List.
-        '--List-item-radius':
-          'max(var(--List-radius, 0px) - var(--List-padding), min(var(--List-padding) / 2, var(--List-radius, 0px) / 2))',
         '--List-item-startActionTranslateX': 'var(--List-item-paddingLeft)',
         '--List-item-endActionTranslateX': 'calc(-1 * var(--List-item-paddingLeft))',
-        padding: 'var(--List-padding)',
         margin: 'initial',
       },
       {
@@ -99,6 +97,7 @@ const ListRoot = styled('ul', {
         display: 'flex',
         flexDirection: ownerState.row ? 'row' : 'column',
         flexGrow: 1,
+        padding: 'var(--List-padding, 0px)',
         position: 'relative', // for sticky ListItem
       },
     ];
