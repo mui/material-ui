@@ -65,10 +65,10 @@ calc(-1 * var(--List-item-paddingLeft))`,
       // Integration with control elements, eg. Checkbox, Radio.
       '--internal-action-radius': 'var(--internal-item-radius)',
       ...(ownerState.startAction && {
-        '--internal-startActionWidth': '3rem', // to add sufficient padding-left on ListItemButton
+        '--internal-startActionWidth': '2rem', // to add sufficient padding-left on ListItemButton
       }),
       ...(ownerState.endAction && {
-        '--internal-endActionWidth': '3rem', // to add sufficient padding-right on ListItemButton
+        '--internal-endActionWidth': '2.5rem', // to add sufficient padding-right on ListItemButton
       }),
       boxSizing: 'border-box',
       borderRadius: 'var(--internal-item-radius)',
