@@ -34,7 +34,7 @@ In some cases
 
 can be slower than 
 
-`import Delete from '@mui/icons-material/Delete'.
+`import Delete from '@mui/icons-material/Delete'`
 
 If this is an issue for you, you have various options:
 
