@@ -72,8 +72,8 @@ const ListRoot = styled('ul', {
         // reset ListItem, ListItemButton negative margin (caused by NestedListItem)
         '--List-itemButton-margin': '0px',
         '--List-item-margin': '0px',
-        '--List-item-radius':
-          'var(--internal-nested-item-radius, max(var(--List-radius, 0px) - var(--List-padding), min(var(--List-padding) / 2, var(--List-radius, 0px) / 2)))',
+        '--List-item-radius': 'var(--nested-List-item-radius)',
+        padding: 0,
         marginInlineStart: 'var(--NestedList-marginLeft)',
         marginInlineEnd: 'var(--NestedList-marginRight)',
         marginBlockStart: 'var(--List-gap)',
@@ -86,19 +86,21 @@ const ListRoot = styled('ul', {
         '--List-nestedInsetStart': '0px',
         '--List-item-paddingLeft': 'var(--List-item-paddingX)',
         '--List-item-paddingRight': 'var(--List-item-paddingX)',
+        '--List-item-radius':
+          'max(var(--List-radius, 0px) - var(--List-padding), min(var(--List-padding) / 2, var(--List-radius, 0px) / 2))',
+        '--nested-List-item-radius': 'var(--List-item-radius)', // make --List-item-radius inheritable from the top to bottom.
         // by default, The ListItem & ListItemButton use automatic radius adjustment based on the parent List.
         '--List-item-startActionTranslateX': 'calc(0.5 * var(--List-item-paddingLeft))',
         '--List-item-endActionTranslateX': 'calc(-0.5 * var(--List-item-paddingRight))',
-        '--internal-nested-item-radius': 'var(--List-item-radius)',
         margin: 'initial',
+        padding: 'var(--List-padding, 0px)',
       },
       {
-        borderRadius: 'var(--List-radius, 0px)',
+        borderRadius: 'var(--List-radius)',
         listStyle: 'none',
         display: 'flex',
         flexDirection: ownerState.row ? 'row' : 'column',
         flexGrow: 1,
-        padding: 'var(--List-padding, 0px)',
         position: 'relative', // for sticky ListItem
       },
     ];

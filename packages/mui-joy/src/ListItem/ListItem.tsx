@@ -60,10 +60,8 @@ calc(-1 * var(--List-item-paddingLeft))`,
     },
     // Base styles
     {
-      '--internal-item-radius':
-        'var(--List-item-radius, max(var(--List-radius, 0px) - var(--List-padding), min(var(--List-padding) / 2, var(--List-radius, 0px) / 2)))',
       // Integration with control elements, eg. Checkbox, Radio.
-      '--internal-action-radius': 'var(--internal-item-radius)',
+      '--internal-action-radius': 'var(--List-item-radius)',
       ...(ownerState.startAction && {
         '--internal-startActionWidth': '2rem', // to add sufficient padding-left on ListItemButton
       }),
@@ -71,7 +69,7 @@ calc(-1 * var(--List-item-paddingLeft))`,
         '--internal-endActionWidth': '2.5rem', // to add sufficient padding-right on ListItemButton
       }),
       boxSizing: 'border-box',
-      borderRadius: 'var(--internal-item-radius)',
+      borderRadius: 'var(--List-item-radius)',
       display: 'flex',
       position: 'relative',
       paddingBlockStart: 'var(--List-item-paddingY)',

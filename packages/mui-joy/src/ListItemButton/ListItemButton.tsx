@@ -65,8 +65,7 @@ const ListItemButtonRoot = styled('div', {
         'calc(var(--List-item-paddingRight) + var(--List-item-endActionWidth, var(--internal-endActionWidth, 0px)) - var(--variant-borderWidth))', // --internal variable makes it possible to customize the actionWidth from the top List
       minBlockSize: 'var(--List-item-minHeight)',
       border: 'none',
-      borderRadius:
-        'var(--internal-item-radius, max(var(--List-radius, 0px) - var(--List-padding), min(var(--List-padding) / 2, var(--List-radius, 0px) / 2)))',
+      borderRadius: 'var(--List-item-radius)',
       flex: ownerState.row ? 'none' : 1,
       minInlineSize: 0,
       // TODO: discuss the transition approach in a separate PR. This value is copied from mui-material Button.
