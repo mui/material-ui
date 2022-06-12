@@ -42,7 +42,7 @@ export default function LoadingButtonsTransition() {
           size="small"
           onClick={handleClick}
           loading={loading}
-          loadingIndicator="Loading..."
+          loadingIndicator="Loading…"
           variant="outlined"
         >
           Fetch data
@@ -82,7 +82,7 @@ export default function LoadingButtonsTransition() {
         <LoadingButton
           onClick={handleClick}
           loading={loading}
-          loadingIndicator="Loading..."
+          loadingIndicator="Loading…"
           variant="outlined"
         >
           Fetch data
