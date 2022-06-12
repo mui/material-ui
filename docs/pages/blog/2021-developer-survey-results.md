@@ -73,7 +73,7 @@ Scale: -100 to 0 needs improvements, 0 to 30 is good, 30 to 70 is great, and 70 
 
 ### What is the main benefit you get from using MUI?
 
-<img src="/static/blog/2021-developer-survey-results/3.png" style="width: 796px; margin-top: 16px; margin-bottom: 8px;" alt="This question results in 2019 - Design: 248; Time: 193; DX: 128; Components: 89; Customizability: 53; Documentation: 25; Accessibility: 5; Typescript: 5; Community support: 4; This question results in 2021 - Time: 597; Design: 407; Components: 309; DX: 306; Customizability: 181; Documentation: 57; Community support: 26; Accessibility: 24; Performance: 17" />
+<img src="/static/blog/2021-developer-survey-results/3.png" style="width: 796px; margin-top: 16px; margin-bottom: 8px;" alt="This question results in 2019 - Design: 248; Time: 193; DX: 128; Components: 89; Customizability: 53; Documentation: 25; Accessibility: 5; TypeScript: 5; Community support: 4; This question results in 2021 - Time: 597; Design: 407; Components: 309; DX: 306; Customizability: 181; Documentation: 57; Community support: 26; Accessibility: 24; Performance: 17" />
 
 <p class="blog-description">1422 out of 1589 answered this question in 2021.</p>
 
