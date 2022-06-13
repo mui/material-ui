@@ -55,11 +55,6 @@ const CheckboxRoot = styled('span', {
     '--Checkbox-gap': '0.625rem',
     fontSize: theme.vars.fontSize.lg,
   }),
-  ...(ownerState.label &&
-    !ownerState.disableIcon && {
-      // add some space at the end to not have focus overlapping the label
-      paddingInlineEnd: 'var(--Checkbox-gap)',
-    }),
   position: ownerState.overlay ? 'initial' : 'relative',
   display: 'inline-flex',
   fontFamily: theme.vars.fontFamily.body,
@@ -102,7 +97,7 @@ const CheckboxCheckbox = styled('span', {
         { '&:hover': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!] },
         { '&:active': theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!] },
         {
-          [checkboxClasses.disabled]:
+          [`&.${checkboxClasses.disabled}`]:
             theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
         },
       ]
@@ -135,7 +130,7 @@ const CheckboxAction = styled('span', {
         { '&:hover': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!] },
         { '&:active': theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!] },
         {
-          [checkboxClasses.disabled]:
+          [`&.${checkboxClasses.disabled}`]:
             theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
         },
       ]

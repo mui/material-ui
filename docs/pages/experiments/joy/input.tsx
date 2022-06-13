@@ -138,7 +138,7 @@ export default function JoyTypography() {
             startDecorator={<Search />}
             placeholder="Search anything"
             endDecorator={
-              <IconButton variant="outlined" color="neutral">
+              <IconButton variant="outlined" color="neutral" size="sm">
                 /
               </IconButton>
             }
