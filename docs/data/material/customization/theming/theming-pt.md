@@ -232,7 +232,6 @@ This component takes a `theme` prop and applies it to the entire React tree that
 
 ```jsx
 import * as React from 'react';
-import ReactDOM from 'react-dom';
 import { red } from '@mui/material/colors';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 
