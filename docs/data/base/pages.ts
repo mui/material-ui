@@ -65,8 +65,8 @@ const pages = [
     icon: 'VisibilityIcon',
     children: [
       {
-        pathname: '/base/guides/interoperability-with-tailwind-css',
-        title: 'Interoperability with Tailwind CSS',
+        pathname: '/base/guides/working-with-tailwind-css',
+        title: 'Working with Tailwind CSS',
       },
     ],
   },
