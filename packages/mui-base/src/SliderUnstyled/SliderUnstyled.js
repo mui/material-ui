@@ -474,10 +474,6 @@ SliderUnstyled.propTypes /* remove-proptypes */ = {
    */
   onChangeCommitted: PropTypes.func,
   /**
-   * @ignore
-   */
-  onMouseDown: PropTypes.func,
-  /**
    * The component orientation.
    * @default 'horizontal'
    */
