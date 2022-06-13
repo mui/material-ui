@@ -453,9 +453,9 @@ Some classes were slightly changed on some buttons so we have a consistent focus
 
 These are the things we covered in this guide:
 
-✅ How to use Tailwind CSS utility classes to style MUI Base components, using the `componentsProps`prop for targeting specific slots within the component.
+✅ How to use Tailwind CSS utility classes to style MUI Base components, using the `componentsProps`prop for targeting specific slots within the component.\
 ✅ How to create custom components for specific slots in more complex customization scenarios.
-We used the `component` prop to pass them into the parent component.
+We used the `component` prop to pass them into the parent component.\
 ✅ How to apply conditional styling based on the owner component's state using a callback as value for the `componentsProps` prop.
 
 Get all the code used in this guide in the [MUI Base with Tailwind CSS](https://github.com/mui/material-ui/tree/master/examples/mui-base-with-tailwind-css) example project.
