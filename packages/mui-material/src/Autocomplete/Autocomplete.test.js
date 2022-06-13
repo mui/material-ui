@@ -729,6 +729,25 @@ describe('<Autocomplete />', () => {
     });
   });
 
+  describe('prop: getOptionKey', () => {
+    it('should correctly override getOptionLabel behavior', () => {
+      const { getByRole } = render(
+        <Autocomplete
+          openOnFocus
+          getOptionLabel={(option) => option.label}
+          getOptionKey={(option) => option.id}
+          options={[{ id: '1', label: 'Label' }]}
+          renderOption={(props, option) => <li {...props}>{`${props.key} - ${option.label}`}</li>}
+          renderInput={(props) => <TextField {...props} autoFocus />}
+        />,
+      );
+
+      const option = getByRole('option');
+
+      expect(option).to.have.text('1 - Label');
+    });
+  });
+
   describe('WAI-ARIA conforming markup', () => {
     specify('when closed', () => {
       const { getAllByRole, getByRole, queryByRole } = render(
