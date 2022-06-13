@@ -31,10 +31,11 @@ type DatePickerComponent = (<TDate>(
  */
 const DatePicker = React.forwardRef(function DeprecatedDatePicker<TDate>(
   props: DatePickerProps<TDate>,
+  ref: React.Ref<any>,
 ) {
   warn();
 
-  return <XDatePicker {...props} />;
+  return <XDatePicker ref={ref} {...props} />;
 }) as DatePickerComponent;
 
 DatePicker.propTypes /* remove-proptypes */ = {
