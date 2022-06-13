@@ -18,7 +18,7 @@ You can use the new Premium features to provide your end users with the most sop
 
 ### Row grouping
 
-[Row grouping](https://mui.com/x/react-data-grid/row-grouping/) was temporarily available on Pro [as a preview](https://mui.com/blog/introducing-the-row-grouping-feature/#how-to-unlock-this-feature), you may be already familiar with it. It lets users group data based on repeating values in the grid.
+[Row grouping](https://mui.com/x/react-data-grid/row-grouping/) was temporarily available on Pro [as a preview](https://mui.com/blog/introducing-the-row-grouping-feature/#how-to-unlock-this-feature), so you may be already familiar with it. It lets users group data based on repeating values in the grid.
 For example, users can now group orders by buyers, movies by directors, or cities by the governing parties.
 
 These kinds of use cases would usually be dealt with using a new query on the database—which might require a new service end-point, and maybe even a new front-end, along with all the UX challenges this would entail.
