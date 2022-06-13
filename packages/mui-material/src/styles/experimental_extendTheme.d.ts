@@ -53,11 +53,6 @@ export interface PaletteColorChannel {
   contrastTextChannel: string;
 }
 
-export interface PaletteGreyChannel {
-  dark: string; // special token for Tooltip
-  darkChannel: string;
-}
-
 export interface PaletteActionChannel {
   activeChannel: string;
   selectedChannel: string;
@@ -145,7 +140,6 @@ export interface ColorSystemOptions {
     error?: Partial<PaletteColorChannel>;
     info?: Partial<PaletteColorChannel>;
     success?: Partial<PaletteColorChannel>;
-    grey?: Partial<PaletteGreyChannel>;
     text?: Partial<PaletteTextChannel>;
     dividerChannel?: Partial<string>;
     action?: Partial<PaletteActionChannel>;
@@ -173,7 +167,6 @@ export interface ColorSystem {
     error: PaletteColorChannel;
     info: PaletteColorChannel;
     success: PaletteColorChannel;
-    grey: PaletteGreyChannel;
     text: PaletteTextChannel;
     dividerChannel: string;
     action: PaletteActionChannel;
@@ -262,7 +255,7 @@ export interface Theme extends BaseTheme {
     field: ThemeCSSVar | CustomVar,
     ...vars: (ThemeCSSVar | CustomVar)[]
   ) => string;
-  getColorSchemeSelector: (colorScheme: DefaultColorScheme | ExtendedColorScheme) => string;
+  getColorSchemeSelector: (colorScheme: SupportedColorScheme) => string;
 }
 
 /**
