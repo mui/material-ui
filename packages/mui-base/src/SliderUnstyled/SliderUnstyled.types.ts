@@ -11,6 +11,7 @@ import {
 
 export type SliderUnstyledOwnerState = SliderUnstyledProps & {
   disabled: boolean;
+  focusVisible: boolean;
   isRtl: boolean;
   mark: boolean | Mark[];
   max: number;
