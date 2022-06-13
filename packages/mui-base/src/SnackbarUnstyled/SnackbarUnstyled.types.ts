@@ -41,6 +41,11 @@ export interface SnackbarUnstyledProps<TransitionType = {}> {
     root?: React.HTMLAttributes<HTMLDivElement>;
     transition?: TransitionType;
   };
+  /**
+   * If `true`, the `autoHideDuration` timer will expire even if the window is not focused.
+   * @default false
+   */
+  disableWindowBlurListener?: boolean;
   onBlur?: React.FocusEventHandler;
   /**
    * Callback fired when the component requests to be closed.
@@ -56,6 +61,10 @@ export interface SnackbarUnstyledProps<TransitionType = {}> {
   onFocus?: React.FocusEventHandler;
   onMouseEnter?: React.MouseEventHandler;
   onMouseLeave?: React.MouseEventHandler;
+  /**
+   * If `true`, the component is shown.
+   */
+  open?: boolean;
   /**
    * The number of milliseconds to wait before dismissing after user interaction.
    * If `autoHideDuration` prop isn't specified, it does nothing.

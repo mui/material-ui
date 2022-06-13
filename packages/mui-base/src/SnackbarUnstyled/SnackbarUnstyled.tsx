@@ -13,11 +13,13 @@ const SnackbarUnstyled = (props: SnackbarUnstyledProps) => {
     component,
     components = {},
     componentsProps = {},
+    disableWindowBlurListener = false,
     onBlur,
     onClose,
     onFocus,
     onMouseEnter,
     onMouseLeave,
+    open,
     resumeHideDuration,
     ...other
   } = props;
@@ -28,6 +30,33 @@ const SnackbarUnstyled = (props: SnackbarUnstyledProps) => {
 
   const TransitionComponent = components.Transition;
 
+  React.useEffect(() => {
+    if (!open) {
+      return undefined;
+    }
+
+    /**
+     * @param {KeyboardEvent} nativeEvent
+     */
+    function handleKeyDown(nativeEvent: KeyboardEvent) {
+      if (!nativeEvent.defaultPrevented) {
+        // IE11, Edge (prior to using Bink?) use 'Esc'
+        if (nativeEvent.key === 'Escape' || nativeEvent.key === 'Esc') {
+          // not calling `preventDefault` since we don't know if people may ignore this event e.g. a permanently open snackbar
+          if (onClose) {
+            onClose(nativeEvent, 'escapeKeyDown');
+          }
+        }
+      }
+    }
+
+    document.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [open, onClose]);
+
   const handleClose = useEventCallback(
     (event: Event | React.SyntheticEvent<any, Event> | null, reason: SnackbarCloseReason) => {
       if (onClose) {
@@ -36,7 +65,7 @@ const SnackbarUnstyled = (props: SnackbarUnstyledProps) => {
     },
   );
 
-  const setAutoHideTimer = useEventCallback((autoHideDurationParam: number) => {
+  const setAutoHideTimer = useEventCallback((autoHideDurationParam: number | null) => {
     if (!onClose || autoHideDurationParam == null) {
       return;
     }
@@ -46,6 +75,16 @@ const SnackbarUnstyled = (props: SnackbarUnstyledProps) => {
       handleClose(null, 'timeout');
     }, autoHideDurationParam);
   });
+
+  React.useEffect(() => {
+    if (open) {
+      setAutoHideTimer(autoHideDuration);
+    }
+
+    return () => {
+      clearTimeout(timerAutoHide.current);
+    };
+  }, [open, autoHideDuration, setAutoHideTimer]);
 
   const handleClickAway = (event: React.SyntheticEvent<any> | Event) => {
     if (onClose) {
@@ -99,6 +138,26 @@ const SnackbarUnstyled = (props: SnackbarUnstyledProps) => {
     handleResume();
   };
 
+  React.useEffect(() => {
+    // TODO: window global should be refactored here
+    if (!disableWindowBlurListener && open) {
+      window.addEventListener('focus', handleResume);
+      window.addEventListener('blur', handlePause);
+
+      return () => {
+        window.removeEventListener('focus', handleResume);
+        window.removeEventListener('blur', handlePause);
+      };
+    }
+
+    return undefined;
+  }, [disableWindowBlurListener, handleResume, open]);
+
+  // So we only render active snackbars.
+  if (!open) {
+    return null;
+  }
+
   const rootProps = {
     onBlur: handleBlur,
     onFocus: handleFocus,
@@ -107,6 +166,9 @@ const SnackbarUnstyled = (props: SnackbarUnstyledProps) => {
     ...other,
     ...componentsProps.root,
     className: clsx(className, componentsProps.root?.className),
+    // ClickAwayListener adds an `onClick` prop which results in the alert not being announced.
+    // See https://github.com/mui/material-ui/issues/29080
+    role: 'presentation',
   };
 
   return (
