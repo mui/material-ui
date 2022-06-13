@@ -4,5 +4,7 @@ export type WithOptionalOwnerState<T extends { ownerState: unknown }> = Omit<T, 
   Partial<Pick<T, 'ownerState'>>;
 
 export type SlotComponentProps<TSlotComponent extends React.ElementType, TOverrides, TOwnerState> =
-  | (React.ComponentPropsWithRef<TSlotComponent> & TOverrides)
-  | ((ownerState: TOwnerState) => React.ComponentPropsWithRef<TSlotComponent> & TOverrides);
+  | (Partial<React.ComponentPropsWithRef<TSlotComponent>> & TOverrides)
+  | ((
+      ownerState: TOwnerState,
+    ) => Partial<React.ComponentPropsWithRef<TSlotComponent>> & TOverrides);
