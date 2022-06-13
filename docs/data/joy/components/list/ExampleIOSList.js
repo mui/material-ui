@@ -26,6 +26,7 @@ export default function ExampleIOSList() {
         aria-labelledby="ios-example-demo"
         sx={(theme) => ({
           '& ul': {
+            '--List-gap': '0px',
             bgcolor: 'background.surface',
             '& > li:first-child > [role="button"]': {
               borderTopRightRadius: 'var(--List-radius)',
@@ -38,7 +39,6 @@ export default function ExampleIOSList() {
           },
           '--List-radius': '16px',
           '--List-gap': '1rem',
-          '--List-item-radius': '0px',
           '--List-divider-gap': '0px',
           '--List-item-paddingY': '0.75rem',
           // override global variant tokens
@@ -51,13 +51,7 @@ export default function ExampleIOSList() {
         })}
       >
         <ListItem nested>
-          <List
-            aria-label="Personal info"
-            sx={{
-              '--List-gap': '0px',
-              '--List-decorator-width': '72px',
-            }}
-          >
+          <List aria-label="Personal info" sx={{ '--List-decorator-width': '72px' }}>
             <ListItem>
               <ListItemDecorator>
                 <Avatar size="lg" sx={{ '--Avatar-size': '60px' }}>
@@ -104,7 +98,6 @@ export default function ExampleIOSList() {
           <List
             aria-label="Network"
             sx={{
-              '--List-gap': '0px',
               [`& .${sheetClasses.root}`]: {
                 p: 0.5,
                 lineHeight: 0,
