@@ -59,7 +59,7 @@ const AspectRatioContent = styled('div', {
     paddingBottom: 'var(--AspectRatio-paddingBottom)',
     overflow: 'hidden',
     // use data-attribute instead of :first-child to support zero config SSR (emotion)
-    // use nested selector for integrating with nextjs image (spans are inserted on top of the img)
+    // use nested selector for integrating with nextjs image `fill` layout (spans are inserted on top of the img)
     '& [data-first-child]': {
       display: 'flex',
       justifyContent: 'center',

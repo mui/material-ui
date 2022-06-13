@@ -134,15 +134,10 @@ Here is an example of a basic app using Material UI's `Button` component:
 
 ```jsx
 import * as React from 'react';
-import ReactDOM from 'react-dom';
 import Button from '@mui/material/Button';
 
 function App() {
-  return (
-    <Button variant="contained" color="primary">
-      Hello World
-    </Button>
-  );
+  return <Button variant="contained">Hello World</Button>;
 }
 ```
 

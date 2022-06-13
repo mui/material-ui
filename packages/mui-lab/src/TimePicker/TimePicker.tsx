@@ -31,10 +31,11 @@ type TimePickerComponent = (<TDate>(
  */
 const TimePicker = React.forwardRef(function DeprecatedTimePicker<TDate>(
   props: TimePickerProps<TDate>,
+  ref: React.Ref<any>,
 ) {
   warn();
 
-  return <XTimePicker {...props} />;
+  return <XTimePicker ref={ref} {...props} />;
 }) as TimePickerComponent;
 
 TimePicker.propTypes /* remove-proptypes */ = {

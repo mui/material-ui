@@ -241,7 +241,6 @@ It should preferably be used at **the root of your component tree**.
 
 ```jsx
 import * as React from 'react';
-import ReactDOM from 'react-dom';
 import { StylesProvider } from '@mui/styles';
 
 function App() {
@@ -265,7 +264,6 @@ It should preferably be used at **the root of your component tree**.
 
 ```jsx
 import * as React from 'react';
-import ReactDOM from 'react-dom';
 import { ThemeProvider } from '@mui/material/styles';
 
 const theme = {};
