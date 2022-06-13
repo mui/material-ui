@@ -85,8 +85,9 @@ const ListRoot = styled('ul', {
         '--List-nestedInsetStart': '0px',
         '--List-item-paddingLeft': 'var(--List-item-paddingX)',
         '--List-item-paddingRight': 'var(--List-item-paddingX)',
+        // If --List-padding is 0, the --List-item-radius will be 0.
         '--List-item-radius':
-          'max(var(--List-radius, 0px) - var(--List-padding), min(var(--List-padding) / 2, var(--List-radius, 0px) / 2))',
+          'min(calc(var(--List-padding) * 999), max(var(--List-radius, 0px) - var(--List-padding), min(var(--List-padding) / 2, var(--List-radius, 0px) / 2)))',
         // by default, The ListItem & ListItemButton use automatic radius adjustment based on the parent List.
         '--List-item-startActionTranslateX': 'calc(0.5 * var(--List-item-paddingLeft))',
         '--List-item-endActionTranslateX': 'calc(-0.5 * var(--List-item-paddingRight))',
