@@ -237,7 +237,7 @@ export {};
 export interface ThemeOptions extends SystemThemeOptions {
   mixins?: MixinsOptions;
   components?: Components<BaseTheme>;
-  colorSchemes?: Record<SupportedColorScheme, ColorSystemOptions>;
+  colorSchemes?: Partial<Record<SupportedColorScheme, ColorSystemOptions>>;
   shadows?: Shadows;
   transitions?: TransitionsOptions;
   typography?: TypographyOptions | ((palette: Palette) => TypographyOptions);
