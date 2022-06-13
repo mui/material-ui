@@ -34,17 +34,21 @@ Uma barra de pesquisa lateral
 
 {{"demo": "SearchAppBar.js", "bg": true}}
 
+## Responsive App bar with Drawer
+
+{{"demo": "DrawerAppBar.js", "bg": true,"iframe": true}}
+
 ## App bar with a primary search field
 
-Uma barra de pesquisa primária
+A primary searchbar.
 
 {{"demo": "PrimarySearchAppBar.js", "bg": true}}
 
-## Densa (apenas para desktop)
+## Dense (desktop only)
 
 {{"demo": "DenseAppBar.js", "bg": true}}
 
-## Proeminente
+## Prominent
 
 A prominent app bar.
 
