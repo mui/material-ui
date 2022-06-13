@@ -68,30 +68,33 @@ const SnackbarUnstyled = (props: SnackbarUnstyledProps) => {
   }, [autoHideDuration, resumeHideDuration, setAutoHideTimer]);
 
   const handleBlur = (event: React.FocusEvent) => {
-    const onBlurMethod = onBlur || componentsProps.root?.onBlur;
-    if (onBlurMethod) {
-      onBlurMethod(event);
+    const onBlurCallback = componentsProps.root?.onBlur || onBlur;
+    if (onBlurCallback) {
+      onBlurCallback(event);
     }
     handleResume();
   };
 
   const handleFocus = (event: React.FocusEvent) => {
-    if (onFocus) {
-      onFocus(event);
+    const onFocusCallback = componentsProps.root?.onFocus || onFocus;
+    if (onFocusCallback) {
+      onFocusCallback(event);
     }
     handlePause();
   };
 
   const handleMouseEnter = (event: React.MouseEvent) => {
-    if (onMouseEnter) {
-      onMouseEnter(event);
+    const onMouseEnterCallback = componentsProps.root?.onMouseEnter || onMouseEnter;
+    if (onMouseEnterCallback) {
+      onMouseEnterCallback(event);
     }
     handlePause();
   };
 
   const handleMouseLeave = (event: React.MouseEvent) => {
-    if (onMouseLeave) {
-      onMouseLeave(event);
+    const onMouseLeaveCallback = componentsProps.root?.onMouseLeave || onMouseLeave;
+    if (onMouseLeaveCallback) {
+      onMouseLeaveCallback(event);
     }
     handleResume();
   };
