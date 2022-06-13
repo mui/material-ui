@@ -339,25 +339,25 @@ const rowHeaders: Record<string, React.ReactNode> = {
   'MUI Base': (
     <ColumnHead
       label="MUI Base"
-      tooltip="A library of 'unstyled' components and low-level hooks, available @mui/base."
+      tooltip="A library of headless ('unstyled') React UI components and low-level hooks, available in @mui/base."
     />
   ),
   'MUI System': (
     <ColumnHead
       label="MUI System"
-      tooltip="A collection of CSS utilities to help you rapidly lay out custom designs, available @mui/system."
+      tooltip="CSS utilities for rapidly laying out custom designs, available in @mui/system."
     />
   ),
   'Material UI': (
     <ColumnHead
       label="Material UI"
-      tooltip="A comprehensive library of components that features our implementation of Google's Material Design system, available @mui/material."
+      tooltip="A library of React UI components that implements Google's Material Design, available in @mui/material."
     />
   ),
   'Joy UI': (
     <ColumnHead
       label="Joy UI"
-      tooltip="A comprehensive library of components with a fresh look and feel, available @mui/joy."
+      tooltip="A library of beautifully designed React UI components, available in @mui/joy."
     />
   ),
   // Advanced
