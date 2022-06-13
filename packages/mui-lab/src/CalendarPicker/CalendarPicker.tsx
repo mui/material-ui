@@ -33,10 +33,11 @@ type CalendarPickerComponent = (<TDate>(
  */
 const CalendarPicker = React.forwardRef(function DeprecatedCalendarPicker<TDate>(
   props: CalendarPickerProps<TDate>,
+  ref: React.Ref<any>,
 ) {
   warn();
 
-  return <XCalendarPicker {...props} />;
+  return <XCalendarPicker ref={ref} {...props} />;
 }) as CalendarPickerComponent;
 
 export default CalendarPicker;
