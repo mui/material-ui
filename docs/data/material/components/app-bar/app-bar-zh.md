@@ -34,13 +34,17 @@ The top App bar provides content and actions related to the current screen. 该�
 
 {{"demo": "SearchAppBar.js", "bg": true}}
 
+## Responsive App bar with Drawer
+
+{{"demo": "DrawerAppBar.js", "bg": true,"iframe": true}}
+
 ## App bar with a primary search field
 
-主要搜索栏。
+A primary searchbar.
 
 {{"demo": "PrimarySearchAppBar.js", "bg": true}}
 
-## 紧凑模式（仅限桌面模式）
+## Dense (desktop only)
 
 {{"demo": "DenseAppBar.js", "bg": true}}
 
@@ -54,9 +58,9 @@ A prominent app bar.
 
 {{"demo": "BottomAppBar.js", "iframe": true, "maxWidth": 400}}
 
-## 固定位置
+## Fixed placement
 
-当渲染一个固定位置的应用栏时，元素的尺寸不会影响页面的其余内容。 这可能导致部分内容会被挡在应用栏后面使其无法可见。 下面有 3 种解决方案：
+When you render the app bar position fixed, the dimension of the element doesn't impact the rest of the page. This can cause some part of your content to be invisible, behind the app bar. Here are 3 possible solutions:
 
 1. 使用 `position =“ sticky”` 代替 fixed。 ⚠️ sticky 不支持 IE11。
 2. 可以渲染第二个 `<Toolbar />` 组件：
@@ -91,25 +95,25 @@ function App() {
 }
 ```
 
-## 滚动
+## Scrolling
 
-您可以使用 `useScrollTrigger()` 这个 hook 来响应用户触发的滚动操作。
+You can use the `useScrollTrigger()` hook to respond to user scroll actions.
 
 ### Hide App bar
 
-向下滚动会隐藏应用栏，这样一来会留有更多的空间进行阅读。
+The app bar hides on scroll down to leave more space for reading.
 
 {{"demo": "HideAppBar.js", "iframe": true}}
 
 ### Elevate App bar
 
-应用栏阴影会在滚动时加深，以表明用户还未到页面的顶部。
+The app bar elevates on scroll to communicate that the user is not at the top of the page.
 
 {{"demo": "ElevateAppBar.js", "iframe": true}}
 
 ### 回到顶部
 
-在滚动的时候，会出现一个浮动操作按钮，这样以便于返回页面的顶部。
+A floating action buttons appears on scroll to make it easy to get back to the top of the page.
 
 {{"demo": "BackToTop.js", "iframe": true}}
 
@@ -125,7 +129,7 @@ function App() {
 
 #### 返回结果
 
-`trigger` ：滚动位置是否与目标值匹配？
+`trigger`: Does the scroll position match the criteria?
 
 #### 例子
 
@@ -142,8 +146,8 @@ function HideOnScroll(props) {
 }
 ```
 
-## 在深色模式上启用颜色
+## Enable color on dark
 
-根据 [Material Design 规范](https://material.io/design/color/dark-theme.html)，`color` 属性在深色模式下对应用栏的外观没有影响。 您可以通过设置 `enableColorOnDark` 属性为 `true` 来覆盖此行为。
+Following the [Material Design guidelines](https://material.io/design/color/dark-theme.html), the `color` prop has no effect on the appearance of the app bar in dark mode. You can override this behavior by setting the `enableColorOnDark` prop to `true`.
 
 {{"demo": "EnableColorOnDarkAppBar.js", "bg": true}}
