@@ -90,6 +90,7 @@ export default function extendTheme(options = {}, ...args) {
       'StepContent',
       'Switch',
       'TableCell',
+      'Tooltip',
     ]);
     if (key === 'light') {
       setColor(palette.AppBar, 'defaultBgColor', 'var(--md-palette-grey-100)');
@@ -124,6 +125,7 @@ export default function extendTheme(options = {}, ...args) {
       setColor(palette.Switch, 'successDisabledColor', lighten(palette.success.main, 0.62));
       setColor(palette.Switch, 'warningDisabledColor', lighten(palette.warning.main, 0.62));
       setColor(palette.TableCell, 'borderColor', lighten(alpha(palette.divider, 1), 0.88));
+      setColor(palette.Tooltip, 'bgColor', alpha(theme.palette.grey[700], 0.92));
     } else {
       setColor(palette.AppBar, 'defaultBgColor', 'var(--md-palette-grey-900)');
       setColor(palette.Chip, 'defaultBorderColor', 'var(--md-palette-grey-700)');
@@ -158,18 +160,13 @@ export default function extendTheme(options = {}, ...args) {
       setColor(palette.Switch, 'successDisabledColor', darken(palette.success.main, 0.55));
       setColor(palette.Switch, 'warningDisabledColor', darken(palette.warning.main, 0.55));
       setColor(palette.TableCell, 'borderColor', darken(alpha(palette.divider, 1), 0.68));
+      setColor(palette.Tooltip, 'bgColor', alpha(theme.palette.grey[700], 0.92));
     }
 
     palette.common.backgroundChannel = colorChannel(palette.common.background);
     palette.common.onBackgroundChannel = colorChannel(palette.common.onBackground);
 
     palette.dividerChannel = colorChannel(palette.divider);
-
-    // special token for Tooltip
-    // TODO: consider adding `main`, and `light` to palette.grey to make it consistent.
-    if (!palette.grey.dark) {
-      palette.grey.dark = palette.grey[700];
-    }
 
     Object.keys(palette).forEach((color) => {
       const colors = palette[color];
@@ -196,9 +193,12 @@ export default function extendTheme(options = {}, ...args) {
         palette[color].secondaryChannel = colorChannel(colors.secondary);
       }
 
-      // Action colors: action.activeChannel
+      // Action colors: action.hover, action.active, action.selected, action.focus, action.disabled
       if (colors.active) {
         palette[color].activeChannel = colorChannel(colors.active);
+      }
+      if (colors.selected) {
+        palette[color].selectedChannel = colorChannel(colors.selected);
       }
     });
   });
