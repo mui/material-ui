@@ -92,8 +92,8 @@ MyDocument.getInitialProps = async (ctx) => {
 
   const initialProps = await Document.getInitialProps(ctx);
 
-  // Gemerate style tags for the styles coming from emotion
-  // This is important. It prevents emotion to render invalid HTML.
+  // Generate style tags for the styles coming from Emotion
+  // This is important. It prevents Emotion from rendering invalid HTML.
   // See https://github.com/mui/material-ui/issues/26561#issuecomment-855286153
   const emotionStyles = extractCriticalToChunks(initialProps.html);
   const emotionStyleTags = emotionStyles.styles.map((style) => (
