@@ -173,10 +173,6 @@ MobileTimePicker.propTypes /* remove-proptypes */ = {
   /**
    * @ignore
    */
-  key: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  /**
-   * @ignore
-   */
   label: PropTypes.node,
   /**
    * Custom mask. Can be used to override generate from format. (e.g. `__/__/____ __:__` or `__/__/____ __:__ _M`).

@@ -172,10 +172,6 @@ StaticDatePicker.propTypes /* remove-proptypes */ = {
   /**
    * @ignore
    */
-  key: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  /**
-   * @ignore
-   */
   label: PropTypes.node,
   /**
    * Left arrow icon aria-label text.
