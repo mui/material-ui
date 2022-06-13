@@ -45,8 +45,6 @@ const useUtilityClasses = (ownerState: OwnerState) => {
     valueLabel: ['valueLabel'],
     valueLabelOpen: ['valueLabelOpen'],
     thumb: ['thumb', disabled && 'disabled'],
-    thumbStart: ['thumbStart'],
-    thumbEnd: ['thumbEnd'],
     active: ['active'],
     focusVisible: ['focusVisible'],
   };
@@ -534,8 +532,6 @@ const Slider = React.forwardRef(function Slider(inProps, ref) {
             className={clsx(classes.thumb, componentsProps.thumb?.className, {
               [classes.active]: active === index,
               [classes.focusVisible]: focusVisible === index,
-              [classes.thumbStart]: percent === 0,
-              [classes.thumbEnd]: percent === 100,
             })}
             style={{
               ...style,

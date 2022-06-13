@@ -21,10 +21,6 @@ export interface SliderClasses {
   trackInverted: string;
   /** Class name applied to the thumb element. */
   thumb: string;
-  /** Class name applied to the thumb element if percent is 0. */
-  thumbStart: string;
-  /** Class name applied to the thumb element if percent is 100. */
-  thumbEnd: string;
   /** Class name applied to the thumb label element. */
   valueLabel: string;
   /** Class name applied to the thumb label element if it's open. */
