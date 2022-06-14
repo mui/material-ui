@@ -32,10 +32,11 @@ Material UI v5 is the only version that fully supports React 18, so you'll need 
 
 ### 2. New style engine
 
-One of the biggest changes in v5 is the replacement of JSS with Emotion as the default style engine.
+One of the biggest changes in v5 is the replacement of JSS with [Emotion](https://emotion.sh/docs/introduction) as the default style engine.
 This offers significant advancements in performance when it comes to dynamic styles, and we also believe that it leads to a much more enjoyable developer experience.
 
 Emotion unlocks many new customization options that developers had been requesting for years, such as custom style utility props, color variants, and custom theme variants.
+Check out [this RFC on GitHub](https://github.com/mui/material-ui/issues/22342) for details about this change.
 
 ### 3. Better customization tools
 
