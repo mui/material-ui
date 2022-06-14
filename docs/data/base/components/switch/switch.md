@@ -9,7 +9,7 @@ packageName: '@mui/base'
 
 # Unstyled switch
 
-<p class="description">The <code>SwitchUnstyled</code> component provides users with a switch for toggling between two mutually exclusive states.</p>
+<p class="description">The SwitchUnstyled component provides users with a switch for toggling between two mutually exclusive states.</p>
 
 Switches are UI elements that let users choose between two states—most commonly on/off.
 

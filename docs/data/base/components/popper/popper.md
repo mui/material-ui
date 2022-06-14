@@ -9,7 +9,7 @@ packageName: '@mui/base'
 
 # Unstyled popper
 
-<p class="description">The `PopperUnstyled` component lets you create tooltips and popovers that display information about an element on the page.</p>
+<p class="description">The PopperUnstyled component lets you create tooltips and popovers that display information about an element on the page.</p>
 
 `PopperUnstyled` relies on the third-party library ([Popper.js v2](https://popper.js.org/docs/v2/)) for perfect positioning.
 

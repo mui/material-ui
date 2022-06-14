@@ -1,6 +1,6 @@
 ---
 product: base
-title: React ClickAwayListener component
+title: Detect click outside React component
 components: ClickAwayListener
 githubLabel: 'component: ClickAwayListener'
 packageName: '@mui/base'
@@ -8,7 +8,7 @@ packageName: '@mui/base'
 
 # Click-away listener
 
-<p class="description">The <code>ClickAwayListener</code> component detects when a click event happens outside of its child element.</p>
+<p class="description">The ClickAwayListener component detects when a click event happens outside of its child element.</p>
 
 `ClickAwayListener` is a utility component that listens for click events outside of its child.
 

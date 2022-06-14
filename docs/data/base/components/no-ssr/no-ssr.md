@@ -7,7 +7,7 @@ packageName: '@mui/base'
 
 # No SSR
 
-<p class="description">The <code>NoSsr</code> component defers the rendering of children components from the server to the client.</p>
+<p class="description">The NoSsr component defers the rendering of children components from the server to the client.</p>
 
 This component can be useful in a variety of situations:
 

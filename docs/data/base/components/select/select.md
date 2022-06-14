@@ -25,7 +25,7 @@ import SelectUnstyled from '@mui/base/SelectUnstyled';
 
 {{"demo": "UnstyledSelectSimple.js", "defaultCodeOpen": false}}
 
-The `SelectUnstyled` component accepts generic props.
+`SelectUnstyled` accepts generic props.
 Due to TypeScript limitations, this may cause unexpected behavior when wrapping the component in `forwardRef` (or other higher-order components).
 In such cases, the generic argument will be defaulted to `unknown` and type suggestions will be incomplete.
 To avoid this, you can manually cast the resulting component to the correct type:

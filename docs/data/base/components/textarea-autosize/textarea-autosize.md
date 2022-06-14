@@ -8,7 +8,7 @@ packageName: '@mui/base'
 
 # Textarea autosize
 
-<p class="description">The <code>TextareaAutosize</code> component gives you a <code>&lt;textarea&gt;</code> HTML element that automatically adjusts its height to match the length of the content within.</p>
+<p class="description">The TextareaAutosize component gives you a textarea HTML element that automatically adjusts its height to match the length of the content within.</p>
 
 `TextareaAutosize` is a component that replaces the native `<textarea>` HTML element.
 
