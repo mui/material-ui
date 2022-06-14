@@ -8,7 +8,6 @@ import List from '@mui/joy/List';
 import ListItem from '@mui/joy/ListItem';
 import ListItemDecorator from '@mui/joy/ListItemDecorator';
 import ListItemButton from '@mui/joy/ListItemButton';
-
 import ArticleRoundedIcon from '@mui/icons-material/ArticleRounded';
 import ToggleOffRoundedIcon from '@mui/icons-material/ToggleOffRounded';
 
@@ -50,7 +49,6 @@ export default function ButtonThemes() {
     dense: {
       '--List-nestedInsetStart': '0px',
     },
-    cozy: {},
   };
   return (
     <Box
@@ -67,19 +65,15 @@ export default function ButtonThemes() {
       }}
     >
       <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, mb: 3 }}>
-        <Box
-          sx={{
-            m: 'auto',
-            border: '1px solid',
-            borderColor: (theme) => theme.variants.outlinedHover.neutral,
-            borderRadius: 'sm',
-            overflow: 'auto',
-            '& > *': {
+        <Box sx={{ m: 'auto' }}>
+          <List
+            sx={{
+              ...rootPresets[preset],
               bgcolor: 'background.body',
-            },
-          }}
-        >
-          <List sx={preset ? rootPresets[preset] : {}}>
+              border: '1px solid',
+              borderColor: 'neutral.outlinedBorder',
+            }}
+          >
             <ListItem>
               <ListItemButton>
                 <ListItemDecorator>
@@ -157,7 +151,7 @@ export default function ButtonThemes() {
   <ListItem nested>
     <ListItemButton>...</ListItemButton>
     <List${
-      preset
+      nestedPresets[preset]
         ? `
       sx={{
         ${JSON.stringify(nestedPresets[preset], null, 8)

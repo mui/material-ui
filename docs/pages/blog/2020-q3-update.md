@@ -104,14 +104,14 @@ Here are the most significant improvements since June 2020. This was a dense qua
   Note that we have experimented with headless components (hooks only) in the past. For instance, you can leverage the [useAutocomplete](/material-ui/react-autocomplete/#useautocomplete), and [usePagination](/material-ui/react-pagination/#usepagination) hooks. However, we are pushing with unstyled first as a required step for the next item: ⬇️.
 
 - 👩‍🎨 We have completed the first iteration of the new styling solution of v5.<br />
-  You can find a [new version](/material-ui/react-slider/) of the slider in the lab powered by [emotion](https://emotion.sh/docs/introduction).<br />
-  If you are already using styled-components in your application, you can swap emotion for styled-components 💅. Check this [CodeSandbox](https://codesandbox.io/s/sliderstyled-with-styled-components-forked-olc27?file=/package.json) or [CRA](https://github.com/mui/material-ui/tree/HEAD/examples/create-react-app-with-styled-components/) for a demo. It relies on aliases to prevent any bundle size overhead.<br />
-  The new styling solution saves 2kB+ gzipped in the bundle compared to JSS, and about 14 kB gzipped if you were already using styled-components or emotion.<br />
+  You can find a [new version](/material-ui/react-slider/) of the slider in the lab powered by [Emotion](https://emotion.sh/docs/introduction).<br />
+  If you are already using styled-components in your application, you can swap Emotion for styled-components 💅. Check this [CodeSandbox](https://codesandbox.io/s/sliderstyled-with-styled-components-forked-olc27?file=/package.json) or [CRA](https://github.com/mui/material-ui/tree/HEAD/examples/create-react-app-with-styled-components/) for a demo. It relies on aliases to prevent any bundle size overhead.<br />
+  The new styling solution saves 2kB+ gzipped in the bundle compared to JSS, and about 14 kB gzipped if you were already using styled-components or Emotion.<br />
   Last but not least, this change allows us to take advantage of dynamic style props. We will use them for dynamic color props, variant props, and new style props available in the core components.
 
   <img src="/static/blog/2020-q3-update/emotion.png" alt="" style="width: 329px;" />
 
-  <p class="blog-description">Slider powered by emotion</p>
+  <p class="blog-description">Slider powered by Emotion</p>
 
   <img src="/static/blog/2020-q3-update/styled-components.png" alt="" style="width: 323px;" />
 

@@ -42,16 +42,9 @@ const SnackbarRoot = styled('div', {
   },
 })(({ theme, ownerState }) => {
   const center = {
-    ...(!ownerState.isRtl && {
-      left: '50%',
-      right: 'auto',
-      transform: 'translateX(-50%)',
-    }),
-    ...(ownerState.isRtl && {
-      right: '50%',
-      left: 'auto',
-      transform: 'translateX(50%)',
-    }),
+    left: '50%',
+    right: 'auto',
+    transform: 'translateX(-50%)',
   };
 
   return {
@@ -69,24 +62,12 @@ const SnackbarRoot = styled('div', {
       ...(ownerState.anchorOrigin.vertical === 'top' ? { top: 24 } : { bottom: 24 }),
       ...(ownerState.anchorOrigin.horizontal === 'center' && center),
       ...(ownerState.anchorOrigin.horizontal === 'left' && {
-        ...(!ownerState.isRtl && {
-          left: 24,
-          right: 'auto',
-        }),
-        ...(ownerState.isRtl && {
-          right: 24,
-          left: 'auto',
-        }),
+        left: 24,
+        right: 'auto',
       }),
       ...(ownerState.anchorOrigin.horizontal === 'right' && {
-        ...(!ownerState.isRtl && {
-          right: 24,
-          left: 'auto',
-        }),
-        ...(ownerState.isRtl && {
-          left: 24,
-          right: 'auto',
-        }),
+        right: 24,
+        left: 'auto',
       }),
     },
   };
@@ -123,9 +104,7 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
     ...other
   } = props;
 
-  const isRtl = theme.direction === 'rtl';
-
-  const ownerState = { ...props, anchorOrigin: { vertical, horizontal }, isRtl };
+  const ownerState = { ...props, anchorOrigin: { vertical, horizontal } };
   const classes = useUtilityClasses(ownerState);
 
   const timerAutoHide = React.useRef();

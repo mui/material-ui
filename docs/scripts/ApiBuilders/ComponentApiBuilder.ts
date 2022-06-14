@@ -276,10 +276,10 @@ function extractClassConditions(descriptions: any) {
 
 /**
  * @param filepath - absolute path
- * @example toGithubPath('/home/user/material-ui/packages/Accordion') === '/packages/Accordion'
- * @example toGithubPath('C:\\Development\material-ui\packages\Accordion') === '/packages/Accordion'
+ * @example toGitHubPath('/home/user/material-ui/packages/Accordion') === '/packages/Accordion'
+ * @example toGitHubPath('C:\\Development\material-ui\packages\Accordion') === '/packages/Accordion'
  */
-function toGithubPath(filepath: string): string {
+function toGitHubPath(filepath: string): string {
   return `/${path.relative(process.cwd(), filepath).replace(/\\/g, '/')}`;
 }
 
@@ -348,7 +348,7 @@ const generateApiPage = (outputDirectory: string, reactApi: ReactApi) => {
     },
     spread: reactApi.spread,
     forwardsRefTo: reactApi.forwardsRefTo,
-    filename: toGithubPath(reactApi.filename),
+    filename: toGitHubPath(reactApi.filename),
     inheritance: reactApi.inheritance
       ? {
           component: reactApi.inheritance.name,

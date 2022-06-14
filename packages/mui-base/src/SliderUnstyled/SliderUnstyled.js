@@ -354,12 +354,14 @@ SliderUnstyled.propTypes /* remove-proptypes */ = {
     thumb: PropTypes.object,
     track: PropTypes.object,
     valueLabel: PropTypes.shape({
+      children: PropTypes.element,
       className: PropTypes.string,
       components: PropTypes.shape({
         Root: PropTypes.elementType,
       }),
+      open: PropTypes.bool,
       style: PropTypes.object,
-      value: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.number), PropTypes.number]),
+      value: PropTypes.number,
       valueLabelDisplay: PropTypes.oneOf(['auto', 'off', 'on']),
     }),
   }),

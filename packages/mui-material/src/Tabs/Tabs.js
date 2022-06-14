@@ -443,10 +443,27 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     scroll(scrollValue);
   };
 
+  const getFirstVisibleTab = (tabs) => {
+    const containerSize = tabsRef.current[clientSize];
+    const containerStartBound = Math.round(tabsRef.current[scrollStart]);
+    const containerEndBound = Math.round(containerStartBound + containerSize);
+
+    const offset = vertical ? 'offsetTop' : 'offsetLeft';
+    return tabs.find((tab) => {
+      const centerPoint = tab[offset] + tab[clientSize] / 2;
+      return centerPoint >= containerStartBound && centerPoint <= containerEndBound;
+    });
+  };
+
   const getScrollSize = () => {
     const containerSize = tabsRef.current[clientSize];
     let totalSize = 0;
     const children = Array.from(tabListRef.current.children);
+    const firstVisibleTab = getFirstVisibleTab(children);
+
+    if (firstVisibleTab && firstVisibleTab[clientSize] > containerSize) {
+      return firstVisibleTab[clientSize];
+    }
 
     for (let i = 0; i < children.length; i += 1) {
       const tab = children[i];
@@ -455,6 +472,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
       }
       totalSize += tab[clientSize];
     }
+
     return totalSize;
   };
 
