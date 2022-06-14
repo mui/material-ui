@@ -4,14 +4,13 @@
 
 <!-- generated comparing v5.8.3..master -->
 
-_Jun 13, 2022_
+_Jun 14, 2022_
 
 A big thanks to the 22 contributors who made this release possible.
 This release is mostly about 🐛 bug fixes and 📚 documentation improvements.
 
 ### `@mui/material@5.8.4`
 
-- &#8203;<!-- 37 -->[Autocomplete] Add `getOptionKey` prop (#32910) @pushys
 - &#8203;<!-- 36 -->[Button] Add missing classes in `ButtonClasses` type (#33040) @ZeeshanTamboli
 - &#8203;<!-- 20 -->[Grid] Fix prop-type key regression (#33123) @oliviertassinari
 - &#8203;<!-- 19 -->[Grid] support customized breakpoints (#31998) @boutahlilsoufiane
@@ -62,9 +61,11 @@ This release is mostly about 🐛 bug fixes and 📚 documentation improvements.
 - &#8203;<!-- 26 -->[docs] Fix a typo in `InputUnstyled` docs (#33077) @ZeeshanTamboli
 - &#8203;<!-- 25 -->[docs] Add notification for Joy blog post (#33059) @siriwatknp
 - &#8203;<!-- 24 -->[docs] Improve aspect ratio docs and integration (#33065) @siriwatknp
+- &#8203;<!-- 34 -->[docs] Update code block copy label (#33128) @siriwatknp
 - &#8203;<!-- 23 -->[docs] Fix typo in Autocomplete CSS API (#32838) @KeaghanKennedy
 - &#8203;<!-- 22 -->[docs] Improvements for Radio Group Rating Docs (#32843) @Kai-W
 - &#8203;<!-- 21 -->[docs] Enable Joy pages (#33064) @siriwatknp
+- &#8203;<!-- 02 -->[website] Add Joy UI to the pricing page (#33099) @danilo-leal
 - &#8203;<!-- 01 -->[website] Clarify the pricing a bit (#33069) @oliviertassinari
 
 ### Core
@@ -72,8 +73,9 @@ This release is mostly about 🐛 bug fixes and 📚 documentation improvements.
 - &#8203;<!-- 39 -->yarn proptypes @oliviertassinari
 - &#8203;<!-- 34 -->[core] Update dependencies to fix security vulnerabilities (#33095) @michaldudak
 - &#8203;<!-- 33 -->[core] Import new line convention (#33068) @oliviertassinari
+- &#8203;<!-- 37 -->[core] Make repository configurable in changelog script (#33130) @Janpot
 
-All contributors of this release in alphabetical order: @aaarichter, @alansouzati, @boutahlilsoufiane, @cherniavskii, @dvlprAlamin, @frankkluijtmans, @igordanchenko, @joshkel, @Kai-W, @KeaghanKennedy, @l-zoy, @michaldudak, @mkrtchian, @mnajdova, @Moizsohail, @oliviertassinari, @pushys, @rart, @siriwatknp, @tech-meppem, @winderica, @ZeeshanTamboli
+All contributors of this release in alphabetical order: @aaarichter, @alansouzati, @boutahlilsoufiane, @cherniavskii, @danilo-leal, @dvlprAlamin, @frankkluijtmans, @igordanchenko, @Janpot, @joshkel, @Kai-W, @KeaghanKennedy, @l-zoy, @michaldudak, @mkrtchian, @mnajdova, @Moizsohail, @oliviertassinari, @pushys, @rart, @siriwatknp, @tech-meppem, @winderica, @ZeeshanTamboli
 
 ## 5.8.3
 
