@@ -7,7 +7,7 @@ import Container from '@mui/material/Container';
 const Placeholder = () => <Box sx={{ height: { xs: 587, sm: 303, md: 289 } }} />;
 const StartToday = dynamic(() => import('./StartToday'), { loading: Placeholder });
 
-const HeroEnd = () => {
+export default function HeroEnd() {
   const { ref, inView } = useInView({
     triggerOnce: true,
     threshold: 0,
@@ -28,6 +28,4 @@ const HeroEnd = () => {
       </Container>
     </Box>
   );
-};
-
-export default HeroEnd;
+}
