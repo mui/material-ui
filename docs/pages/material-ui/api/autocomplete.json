@@ -43,7 +43,6 @@
     "fullWidth": { "type": { "name": "bool" } },
     "getLimitTagsText": { "type": { "name": "func" }, "default": "(more) => `+${more}`" },
     "getOptionDisabled": { "type": { "name": "func" } },
-    "getOptionKey": { "type": { "name": "func" } },
     "getOptionLabel": {
       "type": { "name": "func" },
       "default": "(option) => option.label ?? option"
