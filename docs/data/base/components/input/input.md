@@ -30,7 +30,7 @@ After [installation](/base/getting-started/installation/), you can start buildin
 ```js
 import InputUnstyled from '@mui/base/InputUnstyled';
 
-<InputUnstyled />
+<InputUnstyled />;
 ```
 
 ### Basic usage

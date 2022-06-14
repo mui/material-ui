@@ -13,7 +13,7 @@ packageName: '@mui/base'
 
 ## Introduction
 
-The `ModalUnstyled` component renders its children in front of a backdrop. 
+The `ModalUnstyled` component renders its children in front of a backdrop.
 This lets you create an element that your users must interact with before continuing in the parent application.
 
 ### Features
@@ -53,9 +53,7 @@ After [installation](/base/getting-started/installation/), you can start buildin
 ```js
 import ModalUnstyled from '@mui/base/ModalUnstyled';
 
-<ModalUnstyled>
-  // the modal's content
-</ModalUnstyled>
+<ModalUnstyled>// the modal's content</ModalUnstyled>;
 ```
 
 ### Basic usage
@@ -68,7 +66,7 @@ Click **Open modal** to see how it behaves:
 ### Nested modal
 
 :::warning
-Though it is possible to create nested modals—for example, a select modal within a dialog—stacking more than two at a time is discouraged. 
+Though it is possible to create nested modals—for example, a select modal within a dialog—stacking more than two at a time is discouraged.
 
 This is because each successive modal blocks interaction with all elements behind it, making prior states inaccessible and overly complicated for the user to navigate through.
 :::
@@ -100,7 +98,7 @@ You can also use [react-spring](https://github.com/pmndrs/react-spring) with `Mo
 ### Performance
 
 The modal's content is unmounted when it is not open.
-This means that it will need to be re-mounted each time it is opened. 
+This means that it will need to be re-mounted each time it is opened.
 
 If you are rendering expensive component trees inside your modal, and you want to optimize for interaction responsiveness, you can change this default behavior by enabling the `keepMounted` prop.
 
@@ -151,7 +149,7 @@ See the [WAI-ARIA guide on the Dialog (Modal) pattern](https://www.w3.org/WAI/AR
 
 - Follow the [WAI-ARIA authoring practices](https://www.w3.org/WAI/ARIA/apg/example-index/dialog-modal/dialog.html) to help you set the initial focus on the most relevant element based on the content of the modal.
   :::warning
-  A modal window can sit on top of either the parent application, or another modal window. 
-  _All_ windows under the topmost modal are **inert**, meaning the user cannot interact with them. 
+  A modal window can sit on top of either the parent application, or another modal window.
+  _All_ windows under the topmost modal are **inert**, meaning the user cannot interact with them.
   This can lead to [conflicting behaviors](#focus-trap).
   :::

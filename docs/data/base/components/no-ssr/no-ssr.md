@@ -32,9 +32,7 @@ After [installation](/base/getting-started/installation/), you can start buildin
 ```js
 import NoSsr from '@mui/base/NoSsr';
 
-<NoSsr>
-  // the content to be rendered on the client side
-</NoSsr>
+<NoSsr>// the content to be rendered on the client side</NoSsr>;
 ```
 
 ### Basic usage

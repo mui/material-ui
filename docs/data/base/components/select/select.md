@@ -39,7 +39,7 @@ import OptionUnstyled from '@mui/base/OptionUnstyled';
 <SelectUnstyled>
   <OptionUnstyled>Option one</OptionUnstyled>
   <OptionUnstyled>Option two</OptionUnstyled>
-</SelectUnstyled>
+</SelectUnstyled>;
 ```
 
 ### Basic usage

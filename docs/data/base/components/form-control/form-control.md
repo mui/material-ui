@@ -31,7 +31,7 @@ After [installation](/base/getting-started/installation/), you can start buildin
 ```js
 import FormControlUnstyled from '@mui/base/FormControlUnstyled';
 
-<FormControlUnstyled />
+<FormControlUnstyled />;
 ```
 
 ### Basic usage
@@ -44,7 +44,6 @@ In addition to providing a context, you can access the state of the form control
 The state will be provided as a parameter to this function.
 
 {{"demo": "FormControlFunctionChild.js"}}
-
 
 ## Hook
 

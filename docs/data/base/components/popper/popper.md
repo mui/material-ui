@@ -32,9 +32,7 @@ After [installation](/base/getting-started/installation/), you can start buildin
 ```js
 import PopperUnstyled from '@mui/base/PopperUnstyled';
 
-<PopperUnstyled>
-  // the popper's content
-</PopperUnstyled>
+<PopperUnstyled>// the popper's content</PopperUnstyled>;
 ```
 
 ### Basic usage
@@ -51,14 +49,14 @@ Click **Toggle Popper** to see how it behaves:
 {{"demo": "SimplePopper.js", "defaultCodeOpen": true}}
 
 :::warning
-By default, clicking outside the popper does not hide it. 
+By default, clicking outside the popper does not hide it.
 If you need this behavior, you can use the [`ClickAwayListener`](/base/react-click-away-listener/) component.
 :::
 
 ### Placement
 
-The popper's default placement is `bottom`. 
-You can change it using the `placement` prop. 
+The popper's default placement is `bottom`.
+You can change it using the `placement` prop.
 Try changing this value to `top` in the interactive demo below to see how it works:
 
 {{"demo": "PlacementPopper.js"}}
