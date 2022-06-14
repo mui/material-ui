@@ -13,11 +13,10 @@ export default function StickyList() {
         width: 240,
         maxHeight: 300,
         overflow: 'auto',
-        bgcolor: 'background.body',
         borderRadius: 'sm',
       }}
     >
-      <List sx={{ p: 1 }}>
+      <List sx={{ '--List-padding': '8px' }}>
         {[...Array(5)].map((_, categoryIndex) => (
           <ListItem nested key={categoryIndex}>
             <ListItem component="div" sticky>

@@ -1,23 +1,20 @@
 import * as React from 'react';
 import Avatar from '@mui/joy/Avatar';
-import Box from '@mui/joy/Box';
 import List from '@mui/joy/List';
 import ListItem from '@mui/joy/ListItem';
 import ListItemContent from '@mui/joy/ListItemContent';
 import ListItemDecorator from '@mui/joy/ListItemDecorator';
 import Typography from '@mui/joy/Typography';
+import Sheet from '@mui/joy/Sheet';
 
 export default function EllipsisList() {
   return (
-    <Box
+    <Sheet
+      variant="outlined"
       sx={{
         width: 270,
         p: 2,
-        bgcolor: 'background.body',
         borderRadius: 'sm',
-        border: '1px solid',
-        borderColor: 'neutral.outlinedBorder',
-        overflow: 'auto',
       }}
     >
       <Typography
@@ -57,6 +54,6 @@ export default function EllipsisList() {
           </ListItemContent>
         </ListItem>
       </List>
-    </Box>
+    </Sheet>
   );
 }

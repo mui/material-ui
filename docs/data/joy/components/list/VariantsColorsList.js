@@ -4,6 +4,7 @@ import ListItem from '@mui/joy/ListItem';
 import ListItemContent from '@mui/joy/ListItemContent';
 import ListItemDecorator from '@mui/joy/ListItemDecorator';
 import ListItemButton from '@mui/joy/ListItemButton';
+import Sheet from '@mui/joy/Sheet';
 import Home from '@mui/icons-material/Home';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import JoyUsageDemo from 'docs/src/modules/components/JoyUsageDemo';
@@ -32,27 +33,19 @@ export default function VariantsColorsList() {
         },
       ]}
       renderDemo={(props) => (
-        <List
-          sx={{
-            width: 200,
-            my: 5,
-            bgcolor: 'background.body',
-            borderRadius: 'sm',
-            border: '1px solid',
-            borderColor: 'neutral.outlinedBorder',
-            overflow: 'auto',
-          }}
-        >
-          <ListItem>
-            <ListItemButton {...props}>
-              <ListItemDecorator>
-                <Home />
-              </ListItemDecorator>
-              <ListItemContent>Home</ListItemContent>
-              <KeyboardArrowRight fontSize="md" />
-            </ListItemButton>
-          </ListItem>
-        </List>
+        <Sheet variant="outlined" sx={{ my: 5, width: 200, borderRadius: 'sm' }}>
+          <List>
+            <ListItem>
+              <ListItemButton {...props}>
+                <ListItemDecorator>
+                  <Home />
+                </ListItemDecorator>
+                <ListItemContent>Home</ListItemContent>
+                <KeyboardArrowRight fontSize="md" />
+              </ListItemButton>
+            </ListItem>
+          </List>
+        </Sheet>
       )}
     />
   );

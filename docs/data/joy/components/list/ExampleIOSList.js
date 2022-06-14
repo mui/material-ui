@@ -33,7 +33,7 @@ export default function ExampleIOSList() {
       </Typography>
       <List
         aria-labelledby="ios-example-demo"
-        sx={(theme) => ({
+        sx={{
           '& ul': {
             '--List-gap': '0px',
             bgcolor: 'background.surface',
@@ -50,7 +50,7 @@ export default function ExampleIOSList() {
           '--List-gap': '1rem',
           '--List-divider-gap': '0px',
           '--List-item-paddingY': '0.75rem',
-        })}
+        }}
       >
         <ListItem nested>
           <List aria-label="Personal info" sx={{ '--List-decorator-width': '72px' }}>

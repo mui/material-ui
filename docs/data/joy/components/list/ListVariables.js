@@ -29,86 +29,78 @@ export default function ListVariables() {
         { var: '--List-divider-gap', defaultValue: '6px' },
       ]}
       renderDemo={(sx) => (
-        <List
-          sx={{
-            ...sx,
-            width: 240,
-            p: 1,
-            bgcolor: 'background.body',
-            borderRadius: 'sm',
-            border: '1px solid',
-            borderColor: 'neutral.outlinedBorder',
-          }}
-        >
-          <ListItem>
-            <ListItemButton>
-              <ListItemDecorator>
-                <Home />
-              </ListItemDecorator>
-              Home
-            </ListItemButton>
-          </ListItem>
-          <ListItem>
-            <ListItemButton>
-              <ListItemDecorator>
-                <Apps />
-              </ListItemDecorator>
-              Products
-            </ListItemButton>
-          </ListItem>
-          <ListDivider />
-          <ListItem nested>
+        <Sheet variant="outlined" sx={{ width: 240, borderRadius: 'sm', pb: 1 }}>
+          <List sx={sx}>
             <ListItem>
-              <Typography
-                level="body2"
-                fontWeight="md"
-                startDecorator={
-                  <Sheet
-                    sx={{
-                      width: 8,
-                      height: 8,
-                      bgcolor: 'success.500',
-                      borderRadius: '50%',
-                    }}
-                  />
-                }
-              >
-                Online people
-              </Typography>
+              <ListItemButton>
+                <ListItemDecorator>
+                  <Home />
+                </ListItemDecorator>
+                Home
+              </ListItemButton>
             </ListItem>
-            <List>
-              <ListItem
-                endAction={
-                  <IconButton variant="plain" color="neutral" size="sm">
-                    <MoreVert />
-                  </IconButton>
-                }
-              >
-                <ListItemButton>
-                  <ListItemDecorator sx={{ alignSelf: 'flex-start' }}>
-                    <Avatar size="sm" src="/static/images/avatar/1.jpg" />
-                  </ListItemDecorator>
-                  Mabel Boyle
-                </ListItemButton>
+            <ListItem>
+              <ListItemButton>
+                <ListItemDecorator>
+                  <Apps />
+                </ListItemDecorator>
+                Products
+              </ListItemButton>
+            </ListItem>
+            <ListDivider />
+            <ListItem nested>
+              <ListItem>
+                <Typography
+                  level="body2"
+                  fontWeight="md"
+                  startDecorator={
+                    <Sheet
+                      sx={{
+                        width: 8,
+                        height: 8,
+                        bgcolor: 'success.500',
+                        borderRadius: '50%',
+                      }}
+                    />
+                  }
+                >
+                  Online people
+                </Typography>
               </ListItem>
-              <ListDivider inset="startContent" />
-              <ListItem
-                endAction={
-                  <IconButton variant="plain" color="neutral" size="sm">
-                    <MoreVert />
-                  </IconButton>
-                }
-              >
-                <ListItemButton>
-                  <ListItemDecorator sx={{ alignSelf: 'flex-start' }}>
-                    <Avatar size="sm" src="/static/images/avatar/2.jpg" />
-                  </ListItemDecorator>
-                  Boyd Burt
-                </ListItemButton>
-              </ListItem>
-            </List>
-          </ListItem>
-        </List>
+              <List>
+                <ListItem
+                  endAction={
+                    <IconButton variant="plain" color="neutral" size="sm">
+                      <MoreVert />
+                    </IconButton>
+                  }
+                >
+                  <ListItemButton>
+                    <ListItemDecorator sx={{ alignSelf: 'flex-start' }}>
+                      <Avatar size="sm" src="/static/images/avatar/1.jpg" />
+                    </ListItemDecorator>
+                    Mabel Boyle
+                  </ListItemButton>
+                </ListItem>
+                <ListDivider inset="startContent" />
+                <ListItem
+                  endAction={
+                    <IconButton variant="plain" color="neutral" size="sm">
+                      <MoreVert />
+                    </IconButton>
+                  }
+                >
+                  <ListItemButton>
+                    <ListItemDecorator sx={{ alignSelf: 'flex-start' }}>
+                      <Avatar size="sm" src="/static/images/avatar/2.jpg" />
+                    </ListItemDecorator>
+                    Boyd Burt
+                  </ListItemButton>
+                </ListItem>
+              </List>
+            </ListItem>
+          </List>
+        </Sheet>
       )}
     />
   );

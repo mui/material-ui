@@ -23,7 +23,6 @@ export default function ExampleGmailList() {
         aria-label="Sidebar"
         sx={{
           '--List-item-paddingLeft': '0px',
-          '--List-item-radius': '0 20px 20px 0',
           '--List-decorator-width': '64px',
           '--List-decorator-color': (theme) => theme.vars.palette.text.secondary,
           '--List-item-minHeight': '32px',
@@ -31,6 +30,9 @@ export default function ExampleGmailList() {
           [`& .${listItemDecoratorClasses.root}`]: {
             justifyContent: 'flex-end',
             pr: '18px',
+          },
+          '& [role="button"]': {
+            borderRadius: '0 20px 20px 0',
           },
         }}
       >

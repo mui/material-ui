@@ -30,7 +30,6 @@ export default function DividedList() {
               borderRadius: 'sm',
               border: '1px solid',
               borderColor: 'neutral.outlinedBorder',
-              overflow: 'auto',
               minWidth: 240,
               '--List-decorator-width': '48px',
               '--List-item-paddingLeft': '1.5rem',

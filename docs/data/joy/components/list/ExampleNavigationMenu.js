@@ -10,6 +10,7 @@ import ListItem from '@mui/joy/ListItem';
 import ListItemContent from '@mui/joy/ListItemContent';
 import ListItemButton from '@mui/joy/ListItemButton';
 import ListItemDecorator from '@mui/joy/ListItemDecorator';
+import Sheet from '@mui/joy/Sheet';
 import HomeRounded from '@mui/icons-material/HomeRounded';
 import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown';
 import Person from '@mui/icons-material/Person';
@@ -138,47 +139,46 @@ const AboutMenu = React.forwardRef(({ focusNext, focusPrevious, ...props }, ref)
           disablePortal
           keepMounted
         >
-          <List
-            role="menu"
-            aria-label="About"
-            sx={{
-              my: 2,
-              boxShadow: 'md',
-              bgcolor: 'background.body',
-              borderRadius: 'sm',
-              border: '1px solid',
-              borderColor: 'neutral.outlinedBorder',
-              '--List-radius': '8px',
-              '--List-padding': '4px',
-              '--List-divider-gap': '4px',
-              '--List-decorator-width': '32px',
-            }}
+          <Sheet
+            variant="outlined"
+            sx={{ my: 2, boxShadow: 'md', borderRadius: 'sm' }}
           >
-            <ListItem role="none">
-              <ListItemButton role="menuitem" {...getTargetProps(0)}>
-                <ListItemDecorator>
-                  <Apps />
-                </ListItemDecorator>
-                Overview
-              </ListItemButton>
-            </ListItem>
-            <ListItem role="none">
-              <ListItemButton role="menuitem" {...getTargetProps(1)}>
-                <ListItemDecorator>
-                  <Person />
-                </ListItemDecorator>
-                Administration
-              </ListItemButton>
-            </ListItem>
-            <ListItem role="none">
-              <ListItemButton role="menuitem" {...getTargetProps(2)}>
-                <ListItemDecorator>
-                  <FactCheck />
-                </ListItemDecorator>
-                Facts
-              </ListItemButton>
-            </ListItem>
-          </List>
+            <List
+              role="menu"
+              aria-label="About"
+              sx={{
+                '--List-radius': '8px',
+                '--List-padding': '4px',
+                '--List-divider-gap': '4px',
+                '--List-decorator-width': '32px',
+              }}
+            >
+              <ListItem role="none">
+                <ListItemButton role="menuitem" {...getTargetProps(0)}>
+                  <ListItemDecorator>
+                    <Apps />
+                  </ListItemDecorator>
+                  Overview
+                </ListItemButton>
+              </ListItem>
+              <ListItem role="none">
+                <ListItemButton role="menuitem" {...getTargetProps(1)}>
+                  <ListItemDecorator>
+                    <Person />
+                  </ListItemDecorator>
+                  Administration
+                </ListItemButton>
+              </ListItem>
+              <ListItem role="none">
+                <ListItemButton role="menuitem" {...getTargetProps(2)}>
+                  <ListItemDecorator>
+                    <FactCheck />
+                  </ListItemDecorator>
+                  Facts
+                </ListItemButton>
+              </ListItem>
+            </List>
+          </Sheet>
         </PopperUnstyled>
       </Box>
     </ClickAwayListener>
@@ -252,49 +252,47 @@ const AdmissionsMenu = React.forwardRef(
             disablePortal
             keepMounted
           >
-            <List
-              role="menu"
-              aria-label="About"
-              sx={{
-                my: 2,
-                boxShadow: 'md',
-                bgcolor: 'background.body',
-                borderRadius: 'sm',
-                border: '1px solid',
-                borderColor: 'neutral.outlinedBorder',
-                minWidth: 180,
-                '--List-radius': '8px',
-                '--List-padding': '4px',
-                '--List-divider-gap': '4px',
-              }}
+            <Sheet
+              variant="outlined"
+              sx={{ my: 2, boxShadow: 'md', borderRadius: 'sm', minWidth: 180 }}
             >
-              <ListItem role="none">
-                <ListItemButton role="menuitem" {...getTargetProps(0)}>
-                  <ListItemContent>Apply</ListItemContent>
-                  <Chip size="sm" variant="soft" color="danger">
-                    Last 2 days!
-                  </Chip>
-                </ListItemButton>
-              </ListItem>
-              <ListDivider />
-              <ListItem role="none">
-                <ListItemButton role="menuitem" {...getTargetProps(1)}>
-                  Visit
-                </ListItemButton>
-              </ListItem>
-              <ListItem
-                role="none"
-                endAction={
-                  <IconButton variant="outlined" color="neutral" size="sm">
-                    <BookmarkAdd />
-                  </IconButton>
-                }
+              <List
+                role="menu"
+                aria-label="About"
+                sx={{
+                  '--List-radius': '8px',
+                  '--List-padding': '4px',
+                  '--List-divider-gap': '4px',
+                }}
               >
-                <ListItemButton role="menuitem" {...getTargetProps(2)}>
-                  Photo tour
-                </ListItemButton>
-              </ListItem>
-            </List>
+                <ListItem role="none">
+                  <ListItemButton role="menuitem" {...getTargetProps(0)}>
+                    <ListItemContent>Apply</ListItemContent>
+                    <Chip size="sm" variant="soft" color="danger">
+                      Last 2 days!
+                    </Chip>
+                  </ListItemButton>
+                </ListItem>
+                <ListDivider />
+                <ListItem role="none">
+                  <ListItemButton role="menuitem" {...getTargetProps(1)}>
+                    Visit
+                  </ListItemButton>
+                </ListItem>
+                <ListItem
+                  role="none"
+                  endAction={
+                    <IconButton variant="outlined" color="neutral" size="sm">
+                      <BookmarkAdd />
+                    </IconButton>
+                  }
+                >
+                  <ListItemButton role="menuitem" {...getTargetProps(2)}>
+                    Photo tour
+                  </ListItemButton>
+                </ListItem>
+              </List>
+            </Sheet>
           </PopperUnstyled>
         </Box>
       </ClickAwayListener>
@@ -306,52 +304,49 @@ export default function ExampleNavigationMenu() {
   const { targets, getTargetProps, setActiveIndex } = useRovingIndex();
   return (
     <Box sx={{ minHeight: 190 }}>
-      <List
-        role="menubar"
-        row
-        sx={{
-          bgcolor: 'background.body',
-          borderRadius: 'sm',
-          border: '1px solid',
-          borderColor: 'neutral.outlinedBorder',
-          '--List-radius': '8px',
-          '--List-padding': '4px',
-          '--List-gap': '8px',
-          boxShadow: 'sm',
-        }}
-      >
-        <ListItem role="none">
-          <ListItemButton
-            role="menuitem"
-            {...getTargetProps(0)}
-            component="a"
-            href="#navigation-menu"
-          >
-            <ListItemDecorator>
-              <HomeRounded />
-            </ListItemDecorator>
-            Home
-          </ListItemButton>
-        </ListItem>
-        <ListItem role="none">
-          <AboutMenu
-            onMouseEnter={() => {
-              setActiveIndex(1);
-              targets[1].focus();
-            }}
-            {...getTargetProps(1)}
-          />
-        </ListItem>
-        <ListItem role="none">
-          <AdmissionsMenu
-            onMouseEnter={() => {
-              setActiveIndex(2);
-              targets[2].focus();
-            }}
-            {...getTargetProps(2)}
-          />
-        </ListItem>
-      </List>
+      <Sheet variant="outlined" sx={{ borderRadius: 'sm', boxShadow: 'sm' }}>
+        <List
+          role="menubar"
+          row
+          sx={{
+            '--List-radius': '8px',
+            '--List-padding': '4px',
+            '--List-gap': '8px',
+          }}
+        >
+          <ListItem role="none">
+            <ListItemButton
+              role="menuitem"
+              {...getTargetProps(0)}
+              component="a"
+              href="#navigation-menu"
+            >
+              <ListItemDecorator>
+                <HomeRounded />
+              </ListItemDecorator>
+              Home
+            </ListItemButton>
+          </ListItem>
+          <ListItem role="none">
+            <AboutMenu
+              onMouseEnter={() => {
+                setActiveIndex(1);
+                targets[1].focus();
+              }}
+              {...getTargetProps(1)}
+            />
+          </ListItem>
+          <ListItem role="none">
+            <AdmissionsMenu
+              onMouseEnter={() => {
+                setActiveIndex(2);
+                targets[2].focus();
+              }}
+              {...getTargetProps(2)}
+            />
+          </ListItem>
+        </List>
+      </Sheet>
     </Box>
   );
 }
