@@ -2,7 +2,6 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 It shows how you can use @mui/base together with Tailwind CSS to build your application.
-For a preview, [click here](https://music-player-mui-base-tailwind-css.vercel.app/).
 
 ## Available Scripts
 
