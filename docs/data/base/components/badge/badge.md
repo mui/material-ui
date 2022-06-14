@@ -19,10 +19,14 @@ The `BadgeUnstyled` component creates a badge that is applied to its child eleme
 
 ### Features
 
-- Toggle visibility with the `invisible` prop
-- Set maximum and minimum values when `badgeContent` is a number
+- 👻 Toggle visibility with the `invisible` prop
+- #️⃣ Set maximum and minimum values when `badgeContent` is a number
 
-## Anatomy
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+
+## Component
+
+### Anatomy
 
 After [installation](/base/getting-started/installation/), you can start building with this component using the following basic elements:
 
@@ -33,10 +37,6 @@ import BadgeUnstyled from '@mui/base/BadgeUnstyled';
   // the element that the badge is attached to
 </BadgeUnstyled>
 ```
-
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
-
-## Component
 
 ### Basic usage
 

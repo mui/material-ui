@@ -11,22 +11,47 @@ packageName: '@mui/base'
 
 <p class="description">The select components let you create lists of options for users to choose from.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+## Introduction
+
+A select is a UI element that gives users a list of options to choose from.
 
 MUI Base offers two components to replace the native HTML `<select>` tag: `SelectUnstyled` and `MultiSelectUnstyled`.
+It also includes `OptionUnstyled` for creating the options on the list, and `OptionGroupUnstyled` for grouping those options.
 
-## SelectUnstyled
+### Features
 
-```tsx
+- 🦍 Can be used as a controlled or uncontrolled component
+- 🧬 Accepts custom elements and non-string values for options
+- 🪆 Options can be grouped and nested
+
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+
+## Component
+
+### Anatomy
+
+After [installation](/base/getting-started/installation/), you can start building with this component using the following basic elements:
+
+```js
 import SelectUnstyled from '@mui/base/SelectUnstyled';
+import OptionUnstyled from '@mui/base/OptionUnstyled';
+
+<SelectUnstyled>
+  <OptionUnstyled>Option one</OptionUnstyled>
+  <OptionUnstyled>Option two</OptionUnstyled>
+</SelectUnstyled>
 ```
 
-### Basic select
+### Basic usage
+
+The following demo shows how to create and style a select component.
+Note that it also uses [`PopperUnstyled`](/base/react-popper/) to render a popup for the list of options:
 
 {{"demo": "UnstyledSelectSimple.js", "defaultCodeOpen": false}}
 
 `SelectUnstyled` accepts generic props.
 Due to TypeScript limitations, this may cause unexpected behavior when wrapping the component in `forwardRef` (or other higher-order components).
+
 In such cases, the generic argument will be defaulted to `unknown` and type suggestions will be incomplete.
 To avoid this, you can manually cast the resulting component to the correct type:
 
@@ -72,16 +97,16 @@ You can include custom elements to be rendered inside the listbox.
 
 ### Grouping options
 
-Options can be grouped, similarly to the how the native `select` element works.
-Unlike the native `select`, however, groups can be nested.
+Options can be grouped, similarly to how the native `<select>` element works.
+Unlike the native `<select>`, groups can be nested.
 
-Place the `Option` components inside `OptionGroup` to achieve this.
+The following demo shows how to group options with the `OptionGroupUnstyled` component:
 
 {{"demo": "UnstyledSelectGrouping.js", "defaultCodeOpen": false}}
 
-## MultiSelectUnstyled
+### Multi-select
 
-The `MultiSelectUnstyled` component lets your users select multiple options.
+The `MultiSelectUnstyled` component lets your users select multiple options from the list.
 
 ```js
 import { MultiSelectUnstyled } from '@mui/base/SelectUnstyled';
@@ -89,7 +114,7 @@ import { MultiSelectUnstyled } from '@mui/base/SelectUnstyled';
 
 {{"demo": "UnstyledSelectMultiple.js", "defaultCodeOpen": false}}
 
-## The useSelect hook
+## Hook
 
 ```js
 import { useSelect } from '@mui/base/SelectUnstyled';
