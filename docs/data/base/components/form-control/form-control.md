@@ -12,17 +12,41 @@ packageName: '@mui/base'
   The FormControlUnstyled component is a utility that lets you associate a form input with auxillary components, such as labels, error indicators, or helper text.
 </p>
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
-
-## Basic usage
+## Introduction
 
 `FormControlUnstyled` wraps an input with other associated components in order to make the state of the input available to those components.
 
 For instance, you may want to show an additional element asking the user to enter a value if the input is empty, or display a warning icon if the entered value is incorrect.
 
+### Features
+
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+
+## Component
+
+### Anatomy
+
+After [installation](/base/getting-started/installation/), you can start building with this component using the following basic elements:
+
+```js
+import FormControlUnstyled from '@mui/base/FormControlUnstyled';
+
+<FormControlUnstyled />
+```
+
+### Basic usage
+
 {{"demo": "BasicFormControl.js"}}
 
-## useFormControlUnstyledContext hook
+### Accessing the form control state
+
+In addition to providing a context, you can access the state of the form control by providing a function as a child of the `FormControlUnstyled`.
+The state will be provided as a parameter to this function.
+
+{{"demo": "FormControlFunctionChild.js"}}
+
+
+## Hook
 
 The `FormControlUnstyled` component provides a context that can be read by the `useFormControlUnstyledContext` hook.
 
@@ -58,10 +82,3 @@ The following callbacks are also part of the returned object—they are meant to
 | `onChange` | React.ChangeEvent => void | Value change handler. Should be forwarded to the inner input. |
 | `onBlur`   | () => void                | Focus change handler. Should be forwarded to the inner input. |
 | `onFocus`  | () => void                | Focus change handler. Should be forwarded to the inner input. |
-
-## Using FormControlUnstyled without reading context
-
-In addition to providing a context, you can access the state of the form control by providing a function as a child of the `FormControlUnstyled`.
-The state will be provided as a parameter to this function.
-
-{{"demo": "FormControlFunctionChild.js"}}
