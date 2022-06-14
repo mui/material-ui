@@ -9,13 +9,24 @@ import Typography from '@mui/joy/Typography';
 
 export default function EllipsisList() {
   return (
-    <Box sx={{ width: 240 }}>
+    <Box
+      sx={{
+        width: 270,
+        p: 2,
+        bgcolor: 'background.body',
+        borderRadius: 'sm',
+        border: '1px solid',
+        borderColor: 'neutral.outlinedBorder',
+        overflow: 'auto',
+      }}
+    >
       <Typography
         id="ellipsis-list-demo"
-        level="body3"
+        level="body4"
         textTransform="uppercase"
-        fontWeight="lg"
+        fontWeight="xl"
         mb={2}
+        sx={{ letterSpacing: '0.15rem' }}
       >
         Inbox
       </Typography>

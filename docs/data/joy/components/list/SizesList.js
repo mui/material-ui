@@ -24,7 +24,16 @@ export default function SizesList() {
           <Typography level="body2" fontWeight="lg" mb={1}>
             size=&quot;{size}&quot;
           </Typography>
-          <List size={size} sx={{ bgcolor: 'background.surface', maxWidth: 240 }}>
+          <List
+            size={size}
+            sx={{
+              bgcolor: 'background.body',
+              borderRadius: 'sm',
+              border: '1px solid',
+              borderColor: 'neutral.outlinedBorder',
+              maxWidth: 240,
+            }}
+          >
             <ListItem>
               <ListItemButton>
                 <ListItemDecorator>

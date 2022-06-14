@@ -18,7 +18,7 @@ import Star from '@mui/icons-material/Star';
 export default function ExampleGmailList() {
   const [index, setIndex] = React.useState(0);
   return (
-    <Sheet sx={{ py: 2, pr: 2, width: 300 }}>
+    <Sheet variant="outlined" sx={{ py: 2, pr: 2, width: 300, borderRadius: 'sm' }}>
       <List
         aria-label="Sidebar"
         sx={{

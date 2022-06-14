@@ -18,7 +18,16 @@ import Podcasts from '@mui/icons-material/Podcasts';
 
 export default function ExampleIOSList() {
   return (
-    <Box sx={{ width: 343 }}>
+    <Box
+      sx={{
+        width: 343,
+        p: 1,
+        bgcolor: 'background.body',
+        borderRadius: 'sm',
+        border: '1px solid',
+        borderColor: 'neutral.outlinedBorder',
+      }}
+    >
       <Typography level="h3" fontSize="xl2" fontWeight="xl" id="ios-example-demo">
         Settings
       </Typography>
@@ -37,17 +46,10 @@ export default function ExampleIOSList() {
               borderBottomLeftRadius: 'var(--List-radius)',
             },
           },
-          '--List-radius': '16px',
+          '--List-radius': '8px',
           '--List-gap': '1rem',
           '--List-divider-gap': '0px',
           '--List-item-paddingY': '0.75rem',
-          // override global variant tokens
-          '--joy-palette-neutral-plainHoverBg': 'rgba(0 0 0 / 0.08)',
-          '--joy-palette-neutral-plainActiveBg': 'rgba(0 0 0 / 0.12)',
-          [theme.getColorSchemeSelector('dark')]: {
-            '--joy-palette-neutral-plainHoverBg': 'rgba(255 255 255 / 0.1)',
-            '--joy-palette-neutral-plainActiveBg': 'rgba(255 255 255 / 0.16)',
-          },
         })}
       >
         <ListItem nested>

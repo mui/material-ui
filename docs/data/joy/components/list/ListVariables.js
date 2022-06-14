@@ -29,7 +29,17 @@ export default function ListVariables() {
         { var: '--List-divider-gap', defaultValue: '6px' },
       ]}
       renderDemo={(sx) => (
-        <List sx={{ ...sx, width: 240, bgcolor: 'background.surface' }}>
+        <List
+          sx={{
+            ...sx,
+            width: 240,
+            p: 1,
+            bgcolor: 'background.body',
+            borderRadius: 'sm',
+            border: '1px solid',
+            borderColor: 'neutral.outlinedBorder',
+          }}
+        >
           <ListItem>
             <ListItemButton>
               <ListItemDecorator>

@@ -142,9 +142,12 @@ const AboutMenu = React.forwardRef(({ focusNext, focusPrevious, ...props }, ref)
             role="menu"
             aria-label="About"
             sx={{
-              my: 1,
+              my: 2,
               boxShadow: 'md',
-              bgcolor: 'background.surface',
+              bgcolor: 'background.body',
+              borderRadius: 'sm',
+              border: '1px solid',
+              borderColor: 'neutral.outlinedBorder',
               '--List-radius': '8px',
               '--List-padding': '4px',
               '--List-divider-gap': '4px',
@@ -253,9 +256,12 @@ const AdmissionsMenu = React.forwardRef(
               role="menu"
               aria-label="About"
               sx={{
-                my: 1,
+                my: 2,
                 boxShadow: 'md',
-                bgcolor: 'background.surface',
+                bgcolor: 'background.body',
+                borderRadius: 'sm',
+                border: '1px solid',
+                borderColor: 'neutral.outlinedBorder',
                 minWidth: 180,
                 '--List-radius': '8px',
                 '--List-padding': '4px',
@@ -299,13 +305,16 @@ const AdmissionsMenu = React.forwardRef(
 export default function ExampleNavigationMenu() {
   const { targets, getTargetProps, setActiveIndex } = useRovingIndex();
   return (
-    <Box sx={{ minHeight: 172 }}>
+    <Box sx={{ minHeight: 190 }}>
       <List
         role="menubar"
         row
         sx={{
-          bgcolor: 'background.surface',
-          '--List-radius': '40px',
+          bgcolor: 'background.body',
+          borderRadius: 'sm',
+          border: '1px solid',
+          borderColor: 'neutral.outlinedBorder',
+          '--List-radius': '8px',
           '--List-padding': '4px',
           '--List-gap': '8px',
           boxShadow: 'sm',
