@@ -8,9 +8,9 @@ const Button = React.forwardRef(function Button(
   props: ButtonUnstyledProps,
   ref: React.ForwardedRef<HTMLButtonElement>,
 ) {
-  const { ...other } = props;
   return (
     <ButtonUnstyled
+      {...props}
       componentsProps={{
         root: (state: ButtonUnstyledOwnerState) => ({
           className: `hover:text-cyan-500 transition-colors ${
@@ -18,7 +18,6 @@ const Button = React.forwardRef(function Button(
           }`,
         }),
       }}
-      {...other}
       ref={ref}
     />
   );
