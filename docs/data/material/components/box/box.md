@@ -9,7 +9,7 @@ githubLabel: 'component: Box'
 
 <p class="description">The Box component serves as a wrapper component for most of the CSS utility needs.</p>
 
-The Box component packages [all the style functions](/system/basics/#all-inclusive) that are exposed in `@mui/system`.
+The Box component packages [all the style functions](/system/properties/) that are exposed in `@mui/system`.
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
