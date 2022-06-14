@@ -15,9 +15,9 @@ import { teal, deepOrange, orange, cyan } from '@mui/material/colors';
 const COLORS = ['primary', 'secondary', 'error', 'info', 'warning', 'success'];
 
 const overrideCssVariables = {
-  '--md-palette-primary-main': '#FF0000',
-  '--md-palette-primary-mainChannel': '255 0 0',
-  '--md-palette-primary-dark': '#8b0000',
+  '--mui-palette-primary-main': '#FF0000',
+  '--mui-palette-primary-mainChannel': '255 0 0',
+  '--mui-palette-primary-dark': '#8b0000',
 };
 
 const ColorSchemePicker = () => {
