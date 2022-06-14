@@ -9,7 +9,7 @@
 
 - [_Material UI_](https://mui.com/material-ui/getting-started/overview/) is a comprehensive library of components that features our implementation of Google's [Material Design](https://material.io/design/introduction/) system.
 
-- [_Joy UI_](https://mui.com/joy-ui/getting-started/overview/) is a comprehensive library of components with a fresh look & feel.
+- [_Joy UI_](https://mui.com/joy-ui/getting-started/overview/) is a beautifully designed library of React UI components.
 
 - [_MUI Base_](https://mui.com/base/getting-started/overview/) is our library of "unstyled" components and low-level hooks. With Base, you gain complete control over your app's CSS and accessibility features.
 
