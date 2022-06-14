@@ -1,7 +1,7 @@
 ---
 title: Why you should migrate to Material UI v5 today
 description: We have completely revamped our Migration guide to reduce friction when upgrading to v5. Get started now!
-date: 2022-06-10T00:00:00.000Z
+date: 2022-06-15T00:00:00.000Z
 authors: ['samuelsycamore']
 card: true
 tags: ['News', 'MUI Core']
@@ -35,6 +35,8 @@ Material UI v5 is the only version that fully supports React 18, so you'll need 
 One of the biggest changes in v5 is the replacement of JSS with Emotion as the default style engine.
 This offers significant advancements in performance when it comes to dynamic styles, and we also believe that it leads to a much more enjoyable developer experience.
 
+Emotion unlocks many new customization options that developers had been requesting for years, such as custom style utility props, color variants, and custom theme variants.
+
 ### 3. Better customization tools
 
 Material UI v5 introduces the `sx` prop, which opens up a whole new realm of possibility for applying custom styles.
@@ -63,20 +65,19 @@ export default function BoxSx() {
 }
 ```
 
-### 4. Global class names
-
-With v5, all host DOM nodes now have global class names.
-You can use these to apply styles to child elements, making it much simpler to customize complex components.
-
-### 4. Upcoming CSS variables support
-
-[CSS variables](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties) will help us solve a lot of customization issues in the future. One of them is the dark mode flashing issue that has been requested for a long time.
-
-More importantly, this feature is opt-in if you are using Material UI v5! you can check out the progress of this effort [here](https://github.com/mui/material-ui/issues/32049).
-
-### 5. IntelliSense prop descriptions
+### 4. IntelliSense prop descriptions
 
 All prop descriptions are now written in TypeScript, which means that you can access details about the usage of a given prop right inside of your IDE—no need to seek out the official documentation to find this information.
+
+![Screenshot of IntelliSense tooltip showing the details about the Material UI Badge component](/static/blog/migration-update/intellisense-tooltip.png)
+
+### 5. Upcoming CSS variables support
+
+[CSS variables](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties) will help us solve a lot of customization issues in the future.
+One of them is the dark mode flashing issue that has been requested for a long time.
+
+More importantly, this feature is opt-in if you are using Material UI v5!
+You can check out the progress on this effort [here](https://github.com/mui/material-ui/issues/32049).
 
 ## Upgrade now
 
