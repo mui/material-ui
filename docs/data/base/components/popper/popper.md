@@ -11,11 +11,23 @@ packageName: '@mui/base'
 
 <p class="description">The PopperUnstyled component lets you create tooltips and popovers that display information about an element on the page.</p>
 
-`PopperUnstyled` relies on the third-party library ([Popper.js v2](https://popper.js.org/docs/v2/)) for perfect positioning.
+## Introduction
+
+`PopperUnstyled` is a utility component for creating various kinds of popups.
+It relies on the third-party library ([Popper.js v2](https://popper.js.org/docs/v2/)) for positioning.
+
+### Features
+
+- 🕳 Can be used with or without the `Portal` component
+- ▶️ Supports animated transitions
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
-## Basic popper
+## Component
+
+### Anatomy
+
+After [installation](/base/getting-started/installation/), you can start building with this component using the following basic elements:
 
 ```js
 import PopperUnstyled from '@mui/base/PopperUnstyled';
@@ -47,6 +59,4 @@ You can animate the open and close states of the popper with a render prop child
 
 These two callbacks allow the popper to unmount the child content when closed and fully transitioned.
 
-## Bundle size
 
-📦 [8.1 kB gzipped](/size-snapshot/).
