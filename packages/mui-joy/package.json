@@ -3,7 +3,7 @@
   "version": "5.0.0-alpha.31",
   "private": false,
   "author": "MUI Team",
-  "description": "Joy design system — React components",
+  "description": "A library of beautifully designed React UI components.",
   "main": "./src/index.ts",
   "keywords": [
     "react",

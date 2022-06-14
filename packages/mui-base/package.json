@@ -3,7 +3,7 @@
   "version": "5.0.0-alpha.84",
   "private": false,
   "author": "MUI Team",
-  "description": "Unstyled React components and low-level hooks.",
+  "description": "A library of headless ('unstyled') React UI components and low-level hooks.",
   "main": "./src/index.js",
   "keywords": [
     "react",
