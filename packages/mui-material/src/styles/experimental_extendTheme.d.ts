@@ -224,6 +224,9 @@ interface ThemeVars extends ColorSystem {
   shape: Theme['shape'];
 }
 
+// shut off automatic exporting for the `ThemeVars` above
+export {};
+
 export interface CssVarsTheme extends Omit<Theme, 'palette' | 'components'>, ColorSystem {
   components?: Components<Omit<CssVarsTheme, 'components'>>;
   colorSchemes: Record<SupportedColorScheme, ColorSystem>;
@@ -244,5 +247,5 @@ export interface CssVarsTheme extends Omit<Theme, 'palette' | 'components'>, Col
  */
 export default function experimental_extendTheme(
   options?: CssVarsThemeOptions,
-  ...args: Array<object>
+  ...args: object[]
 ): CssVarsTheme;
