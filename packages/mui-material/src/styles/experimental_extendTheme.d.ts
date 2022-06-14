@@ -231,7 +231,7 @@ export interface CssVarsTheme extends Omit<Theme, 'palette' | 'components'>, Col
   vars: ThemeVars;
   getCssVar: <CustomVar extends string = never>(
     field: ThemeCSSVar | CustomVar,
-    ...vars: (ThemeCSSVar | CustomVar)[]
+    ...vars: Array<ThemeCSSVar | CustomVar>
   ) => string;
   getColorSchemeSelector: (colorScheme: SupportedColorScheme) => string;
 }
@@ -244,5 +244,5 @@ export interface CssVarsTheme extends Omit<Theme, 'palette' | 'components'>, Col
  */
 export default function experimental_extendTheme(
   options?: CssVarsThemeOptions,
-  ...args: object[]
+  ...args: Array<object>
 ): CssVarsTheme;
