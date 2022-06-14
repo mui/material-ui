@@ -94,7 +94,7 @@ This release is mostly about 🐛 bug fixes and 📚 documentation improvements.
 
 - [system] Configurable attributes for libraries (#32971) @siriwatknp
 
-### `@mui/codemod@5.8.3
+### `@mui/codemod@5.8.3`
 
 - [codemod] Fix infinite loop in jss-to-tss-react and add TODO (#33048) @ryancogswell
 
