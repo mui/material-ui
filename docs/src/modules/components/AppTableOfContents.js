@@ -4,7 +4,9 @@ import PropTypes from 'prop-types';
 import throttle from 'lodash/throttle';
 import { styled } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
 import NoSsr from '@mui/material/NoSsr';
+import { useTheme } from '@mui/material/styles';
 import Link from 'docs/src/modules/components/Link';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 import { openLinkInNewTab } from 'docs/src/modules/components/MarkdownLinks';
@@ -114,9 +116,21 @@ function flatten(headings) {
   return itemsWithNode;
 }
 
+const shouldShowJobAd = () => {
+  const date = new Date();
+  const timeZoneOffset = date.getTimezoneOffset();
+  // Hide for IST (GMT+5:30)
+  if (timeZoneOffset === -5.5 * 60) {
+    return false;
+  }
+  return true;
+};
+
 export default function AppTableOfContents(props) {
   const { toc } = props;
   const t = useTranslate();
+  const theme = useTheme();
+  const showAddJob = shouldShowJobAd();
 
   const items = React.useMemo(() => flatten(toc), [toc]);
   const [activeState, setActiveState] = React.useState(null);
@@ -204,6 +218,41 @@ export default function AppTableOfContents(props) {
     <Nav aria-label={t('pageTOC')}>
       <NoSsr>
         <TableOfContentsBanner />
+        {showAddJob && (
+          <Link
+            href="/careers/"
+            underline="none"
+            sx={{
+              color: 'text.secondary',
+              overflow: 'hidden',
+              p: 1,
+              display: 'block',
+              '& img': {
+                display: 'block',
+              },
+              border: '1px solid',
+              borderRadius: 1,
+              borderColor:
+                theme.palette.mode === 'dark'
+                  ? theme.palette.primaryDark[700]
+                  : theme.palette.grey[200],
+              fontSize: '0.9rem'
+            }}
+          >
+            <img
+              src={`/static/hiring-toc-${theme.palette.mode}.png`}
+              alt=""
+              loading="lazy"
+              width={175}
+              height={119}
+            />
+            {"We're hiring a React engineer and more roles."}
+            {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
+            <Box component="span" sx={{ display: 'block', mt: 0.5 }}>
+              Learn more &rarr;
+            </Box>
+          </Link>
+        )}
       </NoSsr>
       {toc.length > 0 ? (
         <React.Fragment>
