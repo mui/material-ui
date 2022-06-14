@@ -83,11 +83,11 @@ describe('experimental_extendTheme', () => {
 
     expect(theme.colorSchemes.light.palette.dividerChannel).to.equal('0 0 0');
 
-    expect(theme.colorSchemes.light.palette.grey.darkChannel).to.equal('97 97 97');
-    expect(theme.colorSchemes.dark.palette.grey.darkChannel).to.equal('97 97 97');
-
     expect(theme.colorSchemes.dark.palette.action.activeChannel).to.equal('255 255 255');
     expect(theme.colorSchemes.light.palette.action.activeChannel).to.equal('0 0 0');
+
+    expect(theme.colorSchemes.dark.palette.action.selectedChannel).to.equal('255 255 255');
+    expect(theme.colorSchemes.light.palette.action.selectedChannel).to.equal('0 0 0');
   });
 
   it('should change grey darkChannel', () => {
