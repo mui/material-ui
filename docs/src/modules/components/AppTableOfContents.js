@@ -2,11 +2,10 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import throttle from 'lodash/throttle';
-import { styled } from '@mui/material/styles';
+import { styled, useTheme } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import NoSsr from '@mui/material/NoSsr';
-import { useTheme } from '@mui/material/styles';
 import Link from 'docs/src/modules/components/Link';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 import { openLinkInNewTab } from 'docs/src/modules/components/MarkdownLinks';
@@ -246,6 +245,7 @@ export default function AppTableOfContents(props) {
               width={175}
               height={119}
             />
+            {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
             {"We're hiring a React engineer and more roles."}
             {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
             <Box component="span" sx={{ display: 'block', mt: 0.5 }}>
