@@ -144,13 +144,6 @@ export interface UseAutocompleteProps<
    */
   getOptionLabel?: (option: T | AutocompleteFreeSoloValueMapping<FreeSolo>) => string;
   /**
-   * Used to determine the key value for a given option.
-   *
-   * @param {T} option
-   * @returns {string}
-   */
-  getOptionKey?: (option: T) => string;
-  /**
    * Used to determine if the option represents the given value.
    * Uses strict equality by default.
    * ⚠️ Both arguments need to be handled, an option can only match with one value.
