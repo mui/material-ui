@@ -6,14 +6,17 @@
 
 _Jun 14, 2022_
 
-A big thanks to the 22 contributors who made this release possible.
-This release is mostly about 🐛 bug fixes and 📚 documentation improvements.
+A big thanks to the 24 contributors who made this release possible. Here are some highlights ✨:
+
+- 🚀 Added support for custom breakpoints in the `Grid` component by @boutahlilsoufiane
+- 📚 Added guide on how to use Material UI with Shadow DOM by @cherniavskii
+- many other 🐛 bug fixes and 📚 documentation improvements
 
 ### `@mui/material@5.8.4`
 
 - &#8203;<!-- 36 -->[Button] Add missing classes in `ButtonClasses` type (#33040) @ZeeshanTamboli
 - &#8203;<!-- 20 -->[Grid] Fix prop-type key regression (#33123) @oliviertassinari
-- &#8203;<!-- 19 -->[Grid] support customized breakpoints (#31998) @boutahlilsoufiane
+- &#8203;<!-- 19 -->[Grid] Support custom breakpoints (#31998) @boutahlilsoufiane
 - &#8203;<!-- 18 -->[Grow] Limit CSS transition bug workaround to Safari 15.4 only (#32996) @igordanchenko
 - &#8203;<!-- 17 -->[Hidden] Remove dependency on hoist-non-react-statics (#33015) @oliviertassinari
 - &#8203;<!-- 12 -->[Link] Add support for CSS variables (#33036) @winderica
