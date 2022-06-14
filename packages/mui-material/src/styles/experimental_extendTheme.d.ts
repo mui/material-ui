@@ -1,12 +1,9 @@
 /* eslint-disable @typescript-eslint/naming-convention */
-import { ThemeOptions as SystemThemeOptions, Theme as SystemTheme } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
-import { Mixins, MixinsOptions } from './createMixins';
+import { ThemeOptions, Theme } from './createTheme';
 import { Palette, PaletteOptions } from './createPalette';
-import { Typography, TypographyOptions } from './createTypography';
 import { Shadows } from './shadows';
-import { Transitions, TransitionsOptions } from './createTransitions';
-import { ZIndex, ZIndexOptions } from './zIndex';
+import { ZIndex } from './zIndex';
 import { Components } from './components';
 
 /**
@@ -130,10 +127,7 @@ export interface PaletteTooltip {
 }
 
 export interface ColorSystemOptions {
-  palette?: Omit<
-    PaletteOptions,
-    'mode' | 'contrastThreshold' | 'tonalOffset' | 'getContrastText' | 'augmentColor'
-  > & {
+  palette?: PaletteOptions & {
     common?: Partial<PaletteCommonChannel>;
     primary?: Partial<PaletteColorChannel>;
     secondary?: Partial<PaletteColorChannel>;
@@ -214,28 +208,9 @@ export type Overlays = [
   string | undefined,
 ];
 
-interface BaseTheme extends Omit<SystemTheme, 'palette'>, ColorSystem {
-  mixins: Mixins;
-  shadows: Shadows;
-  transitions: Transitions;
-  typography: Typography;
-  zIndex: ZIndex;
-  unstable_strictMode?: boolean;
-  colorSchemes: Record<SupportedColorScheme, ColorSystem>;
-}
-
-// shut off automatic exporting for the `BaseTheme` above
-export {};
-
-export interface ThemeOptions extends SystemThemeOptions {
-  mixins?: MixinsOptions;
-  components?: Components<BaseTheme>;
+export interface CssVarsThemeOptions extends Omit<ThemeOptions, 'palette' | 'components'> {
+  components?: Components<Omit<CssVarsTheme, 'components'>>;
   colorSchemes?: Partial<Record<SupportedColorScheme, ColorSystemOptions>>;
-  shadows?: Shadows;
-  transitions?: TransitionsOptions;
-  typography?: TypographyOptions | ((palette: Palette) => TypographyOptions);
-  zIndex?: ZIndexOptions;
-  unstable_strictMode?: boolean;
 }
 
 /**
@@ -246,9 +221,12 @@ type ThemeCSSVar = string;
 interface ThemeVars extends ColorSystem {
   shadows: Shadows;
   zIndex: ZIndex;
+  shape: Theme['shape'];
 }
 
-export interface Theme extends BaseTheme {
+export interface CssVarsTheme extends Omit<Theme, 'palette' | 'components'>, ColorSystem {
+  components?: Components<Omit<CssVarsTheme, 'components'>>;
+  colorSchemes: Record<SupportedColorScheme, ColorSystem>;
   prefix: string;
   vars: ThemeVars;
   getCssVar: <CustomVar extends string = never>(
@@ -264,4 +242,7 @@ export interface Theme extends BaseTheme {
  * @param args Deep merge the arguments with the about to be returned theme.
  * @returns A complete, ready-to-use theme object.
  */
-export default function experimental_extendTheme(options?: ThemeOptions, ...args: object[]): Theme;
+export default function experimental_extendTheme(
+  options?: CssVarsThemeOptions,
+  ...args: object[]
+): CssVarsTheme;

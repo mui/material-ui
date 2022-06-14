@@ -95,6 +95,8 @@ export * from './CssVarsProvider';
 
 export { default as experimental_extendTheme } from './experimental_extendTheme';
 export type {
+  CssVarsTheme,
+  CssVarsThemeOptions,
   ColorSchemeOverrides,
   SupportedColorScheme,
   Opacity,

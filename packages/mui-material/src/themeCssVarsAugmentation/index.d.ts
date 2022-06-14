@@ -1,5 +1,5 @@
 import type {
-  Theme as ThemeWithVars,
+  CssVarsTheme,
   ColorSystem,
   PaletteCommonChannel,
   PaletteColorChannel,
@@ -18,12 +18,19 @@ import type {
   PaletteTooltip,
 } from '../styles/experimental_extendTheme';
 
+/**
+ * Enhance the theme types to include new properties from the CssVarsProvider.
+ * - styled
+ * - sx
+ * - useTheme
+ */
 declare module '@mui/material/styles' {
+  // The palette must be extended in each node.
   interface Theme extends Omit<ColorSystem, 'palette'> {
     prefix: string;
-    vars: ThemeWithVars['vars'];
-    getCssVar: ThemeWithVars['getCssVar'];
-    getColorSchemeSelector: ThemeWithVars['getColorSchemeSelector'];
+    vars: CssVarsTheme['vars'];
+    getCssVar: CssVarsTheme['getCssVar'];
+    getColorSchemeSelector: CssVarsTheme['getColorSchemeSelector'];
   }
 
   interface Palette {
