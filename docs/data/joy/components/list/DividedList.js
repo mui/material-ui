@@ -18,7 +18,7 @@ export default function DividedList() {
       }}
     >
       {[undefined, 'gutter', 'startDecorator', 'startContent'].map((inset) => (
-        <Box>
+        <Box key={inset || 'default'}>
           <Typography level="body2" mb={1}>
             {inset ? `inset="${inset}"` : '(default)'}
           </Typography>
