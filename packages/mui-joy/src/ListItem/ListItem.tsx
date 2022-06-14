@@ -14,12 +14,13 @@ import NestedListContext from '../List/NestedListContext';
 import RowListContext from '../List/RowListContext';
 import ComponentListContext from '../List/ComponentListContext';
 
-const useUtilityClasses = (ownerState: ListItemProps) => {
-  const { sticky, nested, variant, color } = ownerState;
+const useUtilityClasses = (ownerState: ListItemProps & { nesting: boolean }) => {
+  const { sticky, nested, nesting, variant, color } = ownerState;
   const slots = {
     root: [
       'root',
       nested && 'nested',
+      nesting && 'nesting',
       sticky && 'sticky',
       color && `color${capitalize(color)}`,
       variant && `variant${capitalize(variant)}`,
@@ -31,6 +32,43 @@ const useUtilityClasses = (ownerState: ListItemProps) => {
   return composeClasses(slots, getListItemUtilityClass, {});
 };
 
+const getInternalItemRadius = (ownerState: {
+  row: boolean;
+  nesting: boolean;
+  'data-first-child'?: string;
+  'data-last-child'?: string;
+}) => {
+  if (ownerState.nesting) {
+    return {
+      // set the undefined variable to use fallback value.
+      '--internal-item-radius': 'var(--internal-invalid)',
+    };
+  }
+  if (ownerState['data-first-child'] !== undefined || ownerState['data-last-child'] !== undefined) {
+    const radii = Array(4).fill('var(--List-item-radius)');
+    if (ownerState['data-first-child'] !== undefined) {
+      radii[0] = 'var(--internal-child-radius)';
+      if (ownerState.row) {
+        radii[3] = 'var(--internal-child-radius)';
+      } else {
+        radii[1] = 'var(--internal-child-radius)';
+      }
+    }
+    if (ownerState['data-last-child'] !== undefined) {
+      radii[1] = 'var(--internal-child-radius)';
+      if (ownerState.row) {
+        radii[2] = 'var(--internal-child-radius)';
+      } else {
+        radii[3] = 'var(--internal-child-radius)';
+      }
+    }
+    return {
+      '--internal-item-radius': radii.join(' '),
+    };
+  }
+  return {};
+};
+
 const ListItemRoot = styled('li', {
   name: 'JoyListItem',
   slot: 'Root',
@@ -38,6 +76,7 @@ const ListItemRoot = styled('li', {
 })<{
   ownerState: ListItemProps & {
     row: boolean;
+    nesting: boolean;
     'data-first-child'?: string;
     'data-last-child'?: string;
   };
@@ -75,28 +114,28 @@ calc(-1 * var(--List-item-paddingLeft))`,
     }),
     boxSizing: 'border-box',
     borderRadius: 'var(--List-item-radius)',
-    ...(!ownerState.nested && {
-      ...((ownerState['data-first-child'] !== undefined ||
-        ownerState['data-last-child'] !== undefined) && {
-        // create internal variable to share with ListItemButton
-        '--internal-item-radius': `${
-          ownerState['data-first-child'] !== undefined
-            ? 'var(--internal-child-radius) var(--internal-child-radius)'
-            : 'var(--List-item-radius) var(--List-item-radius)'
-        } ${
-          ownerState['data-last-child'] !== undefined
-            ? 'var(--internal-child-radius) var(--internal-child-radius)'
-            : 'var(--List-item-radius) var(--List-item-radius)'
-        }`,
-      }),
-      ...(ownerState['data-first-child'] !== undefined && {
-        borderTopLeftRadius: 'var(--internal-child-radius)',
-        borderTopRightRadius: 'var(--internal-child-radius)',
-      }),
-      ...(ownerState['data-last-child'] !== undefined && {
-        borderBottomLeftRadius: 'var(--internal-child-radius)',
-        borderBottomRightRadius: 'var(--internal-child-radius)',
-      }),
+    ...getInternalItemRadius(ownerState),
+    ...(ownerState['data-first-child'] !== undefined && {
+      ...(ownerState.row
+        ? {
+            borderTopLeftRadius: 'var(--internal-child-radius)',
+            borderBottomLeftRadius: 'var(--internal-child-radius)',
+          }
+        : {
+            borderTopLeftRadius: 'var(--internal-child-radius)',
+            borderTopRightRadius: 'var(--internal-child-radius)',
+          }),
+    }),
+    ...(ownerState['data-last-child'] !== undefined && {
+      ...(ownerState.row
+        ? {
+            borderTopRightRadius: 'var(--internal-child-radius)',
+            borderBottomRightRadius: 'var(--internal-child-radius)',
+          }
+        : {
+            borderBottomLeftRadius: 'var(--internal-child-radius)',
+            borderBottomRightRadius: 'var(--internal-child-radius)',
+          }),
     }),
     display: 'flex',
     position: 'relative',
@@ -153,6 +192,7 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
 
   const listComponent = React.useContext(ComponentListContext);
   const row = React.useContext(RowListContext);
+  const nesting = React.useContext(NestedListContext);
 
   const {
     component,
@@ -174,6 +214,7 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
     row,
     variant,
     color,
+    nesting,
     ...props,
   };
 

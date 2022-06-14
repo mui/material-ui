@@ -72,14 +72,29 @@ const ListItemButtonRoot = styled('div', {
     minBlockSize: 'var(--List-item-minHeight)',
     border: 'none',
     borderRadius: 'var(--internal-item-radius, var(--List-item-radius))', // --internal-item-radius comes from ListItem
+    // style applied when ListItemButton is a direct child of a List
     ...(ownerState['data-first-child'] !== undefined &&
       ownerState['data-parent'] !== 'ListItem' && {
-        borderTopLeftRadius: 'var(--internal-item-radius, var(--internal-child-radius))',
-        borderTopRightRadius: 'var(--internal-item-radius, var(--internal-child-radius))',
+        ...(ownerState.row
+          ? {
+              borderTopLeftRadius: 'var(--internal-child-radius)',
+              borderBottomLeftRadius: 'var(--internal-child-radius)',
+            }
+          : {
+              borderTopLeftRadius: 'var(--internal-child-radius)',
+              borderTopRightRadius: 'var(--internal-child-radius)',
+            }),
       }),
     ...(ownerState['data-last-child'] !== undefined && {
-      borderBottomLeftRadius: 'var(--internal-item-radius, var(--internal-child-radius))',
-      borderBottomRightRadius: 'var(--internal-item-radius, var(--internal-child-radius))',
+      ...(ownerState.row
+        ? {
+            borderTopRightRadius: 'var(--internal-child-radius)',
+            borderBottomRightRadius: 'var(--internal-child-radius)',
+          }
+        : {
+            borderBottomLeftRadius: 'var(--internal-child-radius)',
+            borderBottomRightRadius: 'var(--internal-child-radius)',
+          }),
     }),
     flex: ownerState.row ? 'none' : 1,
     minInlineSize: 0,

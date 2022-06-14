@@ -11,10 +11,10 @@ import NestedListContext from './NestedListContext';
 import RowListContext from './RowListContext';
 import ComponentListContext from './ComponentListContext';
 
-const useUtilityClasses = (ownerState: ListProps & { nested: boolean }) => {
-  const { size, nested, row } = ownerState;
+const useUtilityClasses = (ownerState: ListProps & { nesting: boolean }) => {
+  const { size, nesting, row } = ownerState;
   const slots = {
-    root: ['root', size && `size${capitalize(size)}`, nested && 'nested', row && 'row'],
+    root: ['root', size && `size${capitalize(size)}`, nesting && 'nesting', row && 'row'],
   };
 
   return composeClasses(slots, getListUtilityClass, {});
@@ -24,7 +24,7 @@ const ListRoot = styled('ul', {
   name: 'JoyList',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: ListProps & { nested: boolean; instanceSize: ListProps['size'] } }>(
+})<{ ownerState: ListProps & { nesting: boolean; instanceSize: ListProps['size'] } }>(
   ({ theme, ownerState }) => {
     function applySizeVars(size: ListProps['size']) {
       if (size === 'sm') {
@@ -63,7 +63,7 @@ const ListRoot = styled('ul', {
       return {};
     }
     return [
-      ownerState.nested && {
+      ownerState.nesting && {
         // instanceSize is the specified size of the rendered element <List size="sm" />
         // only apply size variables if instanceSize is provided so that the variables can be pass down to children by default.
         ...applySizeVars(ownerState.instanceSize),
@@ -77,7 +77,7 @@ const ListRoot = styled('ul', {
         marginInlineEnd: 'var(--NestedList-marginRight)',
         marginBlockStart: 'var(--List-gap)',
       },
-      !ownerState.nested && {
+      !ownerState.nesting && {
         ...applySizeVars(ownerState.size),
         '--List-gap': '0px',
         '--List-padding': '0px',
@@ -108,7 +108,7 @@ const ListRoot = styled('ul', {
 );
 
 const List = React.forwardRef(function List(inProps, ref) {
-  const nested = React.useContext(NestedListContext);
+  const nesting = React.useContext(NestedListContext);
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
     name: 'JoyList',
@@ -119,7 +119,7 @@ const List = React.forwardRef(function List(inProps, ref) {
   const ownerState = {
     instanceSize: inProps.size,
     size,
-    nested,
+    nesting,
     row,
     ...props,
   };
