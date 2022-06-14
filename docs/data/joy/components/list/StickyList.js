@@ -7,7 +7,16 @@ import Sheet from '@mui/joy/Sheet';
 
 export default function StickyList() {
   return (
-    <Sheet sx={{ width: 240, maxHeight: 300, overflow: 'auto' }}>
+    <Sheet
+      variant="outlined"
+      sx={{
+        width: 240,
+        maxHeight: 300,
+        overflow: 'auto',
+        bgcolor: 'background.body',
+        borderRadius: 'sm',
+      }}
+    >
       <List sx={{ p: 1 }}>
         {[...Array(5)].map((_, categoryIndex) => (
           <ListItem nested key={categoryIndex}>

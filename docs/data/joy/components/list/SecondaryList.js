@@ -8,7 +8,15 @@ import Delete from '@mui/icons-material/Delete';
 
 export default function SecondaryList() {
   return (
-    <List sx={{ bgcolor: 'background.surface', maxWidth: 240 }}>
+    <List
+      sx={{
+        bgcolor: 'background.body',
+        borderRadius: 'sm',
+        border: '1px solid',
+        borderColor: 'neutral.outlinedBorder',
+        maxWidth: 240,
+      }}
+    >
       <ListItem
         startAction={
           <IconButton aria-label="Add" size="sm" variant="plain" color="neutral">

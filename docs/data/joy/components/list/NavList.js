@@ -7,7 +7,17 @@ import Image from '@mui/icons-material/Image';
 
 export default function NavList() {
   return (
-    <List component="nav" sx={{ bgcolor: 'background.surface', maxWidth: 240 }}>
+    <List
+      component="nav"
+      sx={{
+        bgcolor: 'background.body',
+        borderRadius: 'sm',
+        border: '1px solid',
+        borderColor: 'neutral.outlinedBorder',
+        overflow: 'auto',
+        maxWidth: 240,
+      }}
+    >
       <ListItemButton>
         <ListItemDecorator>
           <Image />

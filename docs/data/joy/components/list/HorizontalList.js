@@ -9,7 +9,18 @@ import Person from '@mui/icons-material/Person';
 export default function HorizontalList() {
   return (
     <Box component="nav" aria-label="My site">
-      <List role="menubar" row sx={{ bgcolor: 'background.surface', minWidth: 343 }}>
+      <List
+        role="menubar"
+        row
+        sx={{
+          bgcolor: 'background.body',
+          borderRadius: 'sm',
+          border: '1px solid',
+          borderColor: 'neutral.outlinedBorder',
+          overflow: 'auto',
+          minWidth: 343,
+        }}
+      >
         <ListItem role="none">
           <ListItemButton
             role="menuitem"

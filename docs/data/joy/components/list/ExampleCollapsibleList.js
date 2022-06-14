@@ -12,7 +12,16 @@ export default function ExampleCollapsibleList() {
   const [open, setOpen] = React.useState(false);
   const [open2, setOpen2] = React.useState(false);
   return (
-    <Box sx={{ width: 280, pl: '24px', bgcolor: 'background.body' }}>
+    <Box
+      sx={{
+        width: 280,
+        pl: '24px',
+        bgcolor: 'background.body',
+        borderRadius: 'sm',
+        border: '1px solid',
+        borderColor: 'neutral.outlinedBorder',
+      }}
+    >
       <List
         size="sm"
         sx={(theme) => ({

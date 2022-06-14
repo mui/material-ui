@@ -8,7 +8,16 @@ import Info from '@mui/icons-material/Info';
 
 export default function ActionableList() {
   return (
-    <List sx={{ bgcolor: 'background.surface', maxWidth: 240 }}>
+    <List
+      sx={{
+        bgcolor: 'background.body',
+        borderRadius: 'sm',
+        border: '1px solid',
+        borderColor: 'neutral.outlinedBorder',
+        overflow: 'auto',
+        maxWidth: 240,
+      }}
+    >
       <ListItem>
         <ListItemButton onClick={() => alert('You clicked')}>
           <ListItemDecorator>

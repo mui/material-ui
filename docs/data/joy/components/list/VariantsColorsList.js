@@ -32,7 +32,17 @@ export default function VariantsColorsList() {
         },
       ]}
       renderDemo={(props) => (
-        <List sx={{ width: 200, my: 5 }}>
+        <List
+          sx={{
+            width: 200,
+            my: 5,
+            bgcolor: 'background.body',
+            borderRadius: 'sm',
+            border: '1px solid',
+            borderColor: 'neutral.outlinedBorder',
+            overflow: 'auto',
+          }}
+        >
           <ListItem>
             <ListItemButton {...props}>
               <ListItemDecorator>

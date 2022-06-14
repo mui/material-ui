@@ -14,10 +14,20 @@ export default function NestedList() {
         size="sm"
         checked={small}
         onChange={(event) => setSmall(event.target.checked)}
-        endDecorator={<Typography>Small nested list</Typography>}
+        endDecorator={
+          <Typography level="body2">Toggle small nested list</Typography>
+        }
         sx={{ mb: 2 }}
       />
-      <List sx={{ maxWidth: 200, bgcolor: 'background.surface' }}>
+      <List
+        sx={{
+          maxWidth: 200,
+          bgcolor: 'background.body',
+          borderRadius: 'sm',
+          border: '1px solid',
+          borderColor: 'neutral.outlinedBorder',
+        }}
+      >
         <ListItem nested>
           <ListItem component="div">
             <Typography
