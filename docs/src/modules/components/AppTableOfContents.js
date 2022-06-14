@@ -236,7 +236,7 @@ export default function AppTableOfContents(props) {
                 theme.palette.mode === 'dark'
                   ? theme.palette.primaryDark[700]
                   : theme.palette.grey[200],
-              fontSize: '0.9rem'
+              fontSize: '0.9rem',
             }}
           >
             <img
