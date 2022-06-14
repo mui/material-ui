@@ -38,7 +38,7 @@ const SheetRoot = styled('div', {
         variantStyle?.backgroundColor ||
         variantStyle?.background ||
         theme.vars.palette.background.body, // for sticky List
-      '--List-radius': childRadius,
+      '--List-radius': `calc(${childRadius} - var(--variant-borderWidth, 0px))`,
       '--internal-action-radius': childRadius,
       // TODO: discuss the theme transition.
       // This value is copied from mui-material Sheet.

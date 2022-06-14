@@ -85,9 +85,10 @@ const ListRoot = styled('ul', {
         '--List-nestedInsetStart': '0px',
         '--List-item-paddingLeft': 'var(--List-item-paddingX)',
         '--List-item-paddingRight': 'var(--List-item-paddingX)',
+        '--internal-child-radius':
+          'max(var(--List-radius, 0px) - var(--List-padding), min(var(--List-padding) / 2, var(--List-radius, 0px) / 2))',
         // If --List-padding is 0, the --List-item-radius will be 0.
-        '--List-item-radius':
-          'min(calc(var(--List-padding) * 999), max(var(--List-radius, 0px) - var(--List-padding), min(var(--List-padding) / 2, var(--List-radius, 0px) / 2)))',
+        '--List-item-radius': 'min(calc(var(--List-padding) * 999), var(--internal-child-radius))',
         // by default, The ListItem & ListItemButton use automatic radius adjustment based on the parent List.
         '--List-item-startActionTranslateX': 'calc(0.5 * var(--List-item-paddingLeft))',
         '--List-item-endActionTranslateX': 'calc(-0.5 * var(--List-item-paddingRight))',
@@ -136,8 +137,11 @@ const List = React.forwardRef(function List(inProps, ref) {
           {...other}
         >
           {React.Children.map(children, (child, index) =>
-            index === 0 && React.isValidElement(child)
-              ? React.cloneElement(child, { 'data-first-child': '' })
+            React.isValidElement(child)
+              ? React.cloneElement(child, {
+                  ...(index === 0 && { 'data-first-child': '' }),
+                  ...(index === React.Children.count(children) - 1 && { 'data-last-child': '' }),
+                })
               : child,
           )}
         </ListRoot>
