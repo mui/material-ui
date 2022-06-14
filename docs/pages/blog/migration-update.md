@@ -67,11 +67,13 @@ export default function BoxSx() {
 
 With v5, all host DOM nodes now have global class names.
 You can use these to apply styles to child elements, making it much simpler to customize complex components.
+
 ### 4. Upcoming CSS variables support
 
 [CSS variables](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties) will help us solve a lot of customization issues in the future. One of them is the dark mode flashing issue that has been requested for a long time.
 
 More importantly, this feature is opt-in if you are using Material UI v5! you can check out the progress of this effort [here](https://github.com/mui/material-ui/issues/32049).
+
 ### 5. IntelliSense prop descriptions
 
 All prop descriptions are now written in TypeScript, which means that you can access details about the usage of a given prop right inside of your IDE—no need to seek out the official documentation to find this information.
