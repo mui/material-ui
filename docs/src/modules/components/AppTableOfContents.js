@@ -261,7 +261,7 @@ export default function AppTableOfContents(props) {
                 sx={{ mt: 0.5 }}
               >
                 {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
-                {"We're hiring a React Engineer and more amazing roles－come find out more!"}
+                {"We're looking for React Engineers and other amazing roles－come find out more!"}
                 {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
               </Typography>
             </Box>
