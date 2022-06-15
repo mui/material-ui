@@ -17,7 +17,7 @@ import codeSandbox from 'docs/src/modules/sandbox/CodeSandbox';
 import extractTemplates from 'docs/src/modules/utils/extractTemplates';
 
 const cache = {};
-const req = require.context('!raw-loader!./', true, /^\.\/[^/]+\/.*\.(js|tsx)$/);
+const req = require.context('./?raw', true, /^\.\/[^/]+\/.*\.(js|tsx)$/);
 req.keys().forEach((key) => {
   cache[key] = req(key);
 });
@@ -45,6 +45,7 @@ function addHiddenInput(form, name, value) {
  */
 
 export default function TemplateCollection() {
+  console.log('cache', cache);
   const templates = extractTemplates(cache);
   const theme = useTheme();
   return (
