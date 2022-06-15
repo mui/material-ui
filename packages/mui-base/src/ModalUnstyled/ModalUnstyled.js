@@ -77,7 +77,6 @@ const ModalUnstyled = React.forwardRef(function ModalUnstyled(props, ref) {
     onKeyDown,
     open,
     /* eslint-disable react/prop-types */
-    theme,
     onTransitionEnter,
     onTransitionExited,
     ...other

@@ -1,5 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import { isHostComponent } from '@mui/base';
 import { elementAcceptingRef, HTMLElementType } from '@mui/utils';
 import ModalUnstyled, { modalUnstyledClasses } from '@mui/base/ModalUnstyled';
 import styled from '../styles/styled';
@@ -74,6 +75,8 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
     disableScrollLock = false,
     hideBackdrop = false,
     keepMounted = false,
+    // eslint-disable-next-line react/prop-types
+    theme,
     ...other
   } = props;
 
@@ -99,15 +102,17 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
 
   const classes = extendUtilityClasses(ownerState);
 
+  const Root = components.Root ?? component ?? ModalRoot;
+
   return (
     <ModalUnstyled
       components={{
-        Root: component ?? ModalRoot,
+        Root,
         Backdrop: BackdropComponent,
         ...components,
       }}
       componentsProps={{
-        root: componentsProps.root,
+        root: { ...componentsProps.root, ...(!isHostComponent(Root) && { as: component, theme }) },
         backdrop: { ...BackdropProps, ...componentsProps.backdrop },
       }}
       onTransitionEnter={() => setExited(false)}
