@@ -8,17 +8,13 @@ packageName: '@mui/base'
 
 # Unstyled form control
 
-<p class="description">
-  The FormControlUnstyled component is a utility that lets you associate a form input with auxillary components, such as labels, error indicators, or helper text.
-</p>
+<p class="description">The FormControlUnstyled component is a utility that lets you associate a form input with auxillary components, such as labels, error indicators, or helper text.</p>
 
 ## Introduction
 
-`FormControlUnstyled` wraps an input with other associated components in order to make the state of the input available to those components.
+`FormControlUnstyled` wraps an input component with other associated components in order to make the state of the input available to those components.
 
 For instance, you may want to show an additional element asking the user to enter a value if the input is empty, or display a warning icon if the entered value is incorrect.
-
-### Features
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
@@ -31,17 +27,24 @@ After [installation](/base/getting-started/installation/), you can start buildin
 ```js
 import FormControlUnstyled from '@mui/base/FormControlUnstyled';
 
-<FormControlUnstyled />;
+<FormControlUnstyled>
+  // <input /> and/or other contents of the form
+</FormControlUnstyled>
 ```
 
 ### Basic usage
+
+The following demo shows how to create and style a form that uses `FormControlUnstyled` to wrap the elements of the form.
+Note that it also uses the `useFormControlUnstyledContext` hook in order to pass props to the custom `InputUnstyled`—see the [Hook section](#hook) below for more details. 
 
 {{"demo": "BasicFormControl.js"}}
 
 ### Accessing the form control state
 
-In addition to providing a context, you can access the state of the form control by providing a function as a child of the `FormControlUnstyled`.
+You can access the state of the form control by providing a function as a child of the `FormControlUnstyled`.
 The state will be provided as a parameter to this function.
+
+The following demo shows how to access the state of the form control in an `InputUnstyled` component nested inside of `FormControlUnstyled`:
 
 {{"demo": "FormControlFunctionChild.js"}}
 
@@ -59,7 +62,7 @@ The demo below shows both:
 
 {{"demo": "UseFormControl.js", "defaultCodeOpen": false}}
 
-Note that even though `FormControlUnstyled` supports both controlled and uncontrolled-style API
+Note that even though `FormControlUnstyled` supports both controlled and uncontrolled-style APIs
 (i.e. it accepts `value` and `defaultValue` props), `useFormControlUnstyledContext` returns only the controlled `value`.
 This way, you don't have to implement both in your custom input—`FormControlUnstyled` does this for you.
 
