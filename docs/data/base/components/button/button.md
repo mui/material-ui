@@ -10,17 +10,32 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/button/
 
 <p class="description">Buttons allow users to take actions and make choices with a single tap.</p>
 
-## Basic button
+## Introduction
 
-```js
+`ButtonUnstyled` replaces the native HTML `<button>` element.
+
+## Component
+
+### Anatomy
+
+After [installation](/base/getting-started/installation/), you can start building with this component using the following basic elements:
+
+```jsx
 import ButtonUnstyled from '@mui/base/ButtonUnstyled';
 
-<ButtonUnstyled>Button</ButtonUnstyled>;
+<ButtonUnstyled>
+  Button text
+</ButtonUnstyled>
 ```
+
+### Basic usage
+
+The following demo shows how to create and style two basic buttons.
+Notice that the second button cannot be clicked due to the `disabled` prop:
 
 {{"demo": "UnstyledButtonsSimple.js", "defaultCodeOpen": true}}
 
-## Customizing the root element
+### Customizing the root element
 
 By default, the `ButtonUnstyled` component renders a native `button` HTML element.
 You can override this by setting the `component` or `components.Root` prop.
@@ -38,7 +53,7 @@ You can even use SVGs, as the following demo illustrates:
 
 {{"demo": "UnstyledButtonCustom.js", "defaultCodeOpen": false}}
 
-## Focus on disabled buttons
+### Focus on disabled buttons
 
 Similarly to the native HTML `<button>` element, the `ButtonUnstyled` component can't receive focus when it's disabled.
 This may reduce its accessibility, as screen readers won't be able to announce the existence and state of the button.
@@ -51,14 +66,21 @@ This should be used whenever the disabled button needs to be read by screen read
 
 MUI Base uses this prop internally in [menu items](/base/react-menu/), making it possible to use the keyboard to navigate to disabled items (in compliance with [ARIA guidelines](https://www.w3.org/TR/wai-aria-practices-1.2/#h-note-17)).
 
+The following demo shows how the `focusableWhenDisabled` prop works—use the <kbd class="key">Tab</kbd> key to navigate within this document to see that only the second button accepts the focus:
+
 {{"demo": "UnstyledButtonsDisabledFocus.js"}}
 
-The `focusWhenDisabled` prop works the same when the root slot is customized, except that the `aria-disabled` attribute is used no regardless of the prop's state.
+The `focusableWhenDisabled` prop works the same when the root slot is customized, except that the `aria-disabled` attribute is used no regardless of the prop's state.
 The ability to receive focus is controlled internally by the `tabindex` attribute.
 
 {{"demo": "UnstyledButtonsDisabledFocusCustom.js"}}
 
-## The useButton hook
+### Limitations
+
+If a `ButtonUnstyled` is customized with a non-button element (i.e. `<ButtonUnstyled component="span" />`), it will not submit the form it's in when clicked.
+Similarly, `<ButtonUnstyled component="span" type="reset">` will not reset its parent form.
+
+## Hook
 
 ```js
 import { useButton } from '@mui/base/ButtonUnstyled';
@@ -70,9 +92,6 @@ It returns props to be placed on a custom button element, along with fields repr
 The `useButton` hook requires the `ref` of the element it's used on.
 Additionally, you need to provide the `component` prop (unless you intend to use the native HTML `<button>`).
 
+The following demo shows how to build the same buttons from the [Basic usage section](#basic-usage) with the `useButton` hook:
+
 {{"demo": "UseButton.js", "defaultCodeOpen": true}}
-
-## Limitations
-
-If a `ButtonUnstyled` is customized with a non-button element (i.e. `<ButtonUnstyled component="span" />`), it will not submit the form it's in when clicked.
-Similarly, `<ButtonUnstyled component="span" type="reset">` will not reset its parent form.

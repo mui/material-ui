@@ -50,7 +50,7 @@ As such, it should be used sparingly—only when the app _requires_ user input b
 
 After [installation](/base/getting-started/installation/), you can start building with this component using the following basic elements:
 
-```js
+```jsx
 import ModalUnstyled from '@mui/base/ModalUnstyled';
 
 <ModalUnstyled>
