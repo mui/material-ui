@@ -3,6 +3,16 @@ import clsx from 'clsx';
 import { unstable_useEventCallback as useEventCallback } from '@mui/utils';
 import ClickAwayListener from '../ClickAwayListener';
 import { SnackbarCloseReason, SnackbarUnstyledProps } from './SnackbarUnstyled.types';
+import composeClasses from '../composeClasses';
+import { getSnackbarUnstyledUtilityClass } from './snackbarUnstyledClasses';
+
+const useUtilityClasses = () => {
+  const slots = {
+    root: ['root'],
+  };
+
+  return composeClasses(slots, getSnackbarUnstyledUtilityClass, undefined);
+};
 
 const SnackbarUnstyled = React.forwardRef(function SnackbarUnstyled(
   props: SnackbarUnstyledProps,
@@ -26,6 +36,8 @@ const SnackbarUnstyled = React.forwardRef(function SnackbarUnstyled(
     resumeHideDuration,
     ...other
   } = props;
+
+  const classes = useUtilityClasses();
 
   const timerAutoHide = React.useRef<ReturnType<typeof setTimeout>>();
 
@@ -168,7 +180,7 @@ const SnackbarUnstyled = React.forwardRef(function SnackbarUnstyled(
     onMouseLeave: handleMouseLeave,
     ...other,
     ...componentsProps.root,
-    className: clsx(className, componentsProps.root?.className),
+    className: clsx(classes.root, className, componentsProps.root?.className),
     ref,
     // ClickAwayListener adds an `onClick` prop which results in the alert not being announced.
     // See https://github.com/mui/material-ui/issues/29080
