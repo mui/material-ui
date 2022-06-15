@@ -70,8 +70,10 @@ const ListRoot = styled('ul', {
         '--List-item-paddingRight': 'var(--List-item-paddingX)',
         '--List-item-paddingLeft': 'var(--NestedList-item-paddingLeft)',
         // reset ListItem, ListItemButton negative margin (caused by NestedListItem)
-        '--List-itemButton-margin': '0px',
-        '--List-item-margin': '0px',
+        '--List-itemButton-marginBlock': '0px',
+        '--List-itemButton-marginInline': '0px',
+        '--List-item-marginBlock': '0px',
+        '--List-item-marginInline': '0px',
         padding: 0,
         marginInlineStart: 'var(--NestedList-marginLeft)',
         marginInlineEnd: 'var(--NestedList-marginRight)',
@@ -139,8 +141,8 @@ const List = React.forwardRef(function List(inProps, ref) {
           {React.Children.map(children, (child, index) =>
             React.isValidElement(child)
               ? React.cloneElement(child, {
+                  // to let List(Item|ItemButton) knows when to apply margin(Inline|Block)Start
                   ...(index === 0 && { 'data-first-child': '' }),
-                  ...(index === React.Children.count(children) - 1 && { 'data-last-child': '' }),
                 })
               : child,
           )}

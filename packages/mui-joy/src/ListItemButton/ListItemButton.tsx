@@ -41,12 +41,7 @@ const ListItemButtonRoot = styled('div', {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{
-  ownerState: ListItemButtonProps & {
-    row: boolean;
-    'data-first-child'?: string;
-    'data-last-child'?: string;
-    'data-parent'?: string;
-  };
+  ownerState: ListItemButtonProps & { row: boolean; 'data-first-child'?: string };
 }>(({ theme, ownerState }) => [
   {
     ...(ownerState.selected && {
@@ -58,7 +53,8 @@ const ListItemButtonRoot = styled('div', {
     textAlign: 'initial',
     textDecoration: 'initial', // reset native anchor tag
     // In some cases, ListItemButton is a child of ListItem so the margin needs to be controlled by the ListItem. The value is negative to account for the ListItem's padding
-    margin: 'var(--List-itemButton-margin)',
+    marginInline: 'var(--List-itemButton-marginInline)',
+    marginBlock: 'var(--List-itemButton-marginBlock)',
     ...(ownerState['data-first-child'] === undefined && {
       marginInlineStart: ownerState.row ? 'var(--List-gap)' : undefined,
       marginBlockStart: ownerState.row ? undefined : 'var(--List-gap)',
@@ -71,31 +67,7 @@ const ListItemButtonRoot = styled('div', {
       'calc(var(--List-item-paddingRight) + var(--List-item-endActionWidth, var(--internal-endActionWidth, 0px)) - var(--variant-borderWidth))', // --internal variable makes it possible to customize the actionWidth from the top List
     minBlockSize: 'var(--List-item-minHeight)',
     border: 'none',
-    borderRadius: 'var(--internal-item-radius, var(--List-item-radius))', // --internal-item-radius comes from ListItem
-    // style applied when ListItemButton is a direct child of a List
-    ...(ownerState['data-first-child'] !== undefined &&
-      ownerState['data-parent'] !== 'ListItem' && {
-        ...(ownerState.row
-          ? {
-              borderTopLeftRadius: 'var(--internal-child-radius)',
-              borderBottomLeftRadius: 'var(--internal-child-radius)',
-            }
-          : {
-              borderTopLeftRadius: 'var(--internal-child-radius)',
-              borderTopRightRadius: 'var(--internal-child-radius)',
-            }),
-      }),
-    ...(ownerState['data-last-child'] !== undefined && {
-      ...(ownerState.row
-        ? {
-            borderTopRightRadius: 'var(--internal-child-radius)',
-            borderBottomRightRadius: 'var(--internal-child-radius)',
-          }
-        : {
-            borderBottomLeftRadius: 'var(--internal-child-radius)',
-            borderBottomRightRadius: 'var(--internal-child-radius)',
-          }),
-    }),
+    borderRadius: 'var(--List-item-radius)',
     flex: ownerState.row ? 'none' : 1,
     minInlineSize: 0,
     // TODO: discuss the transition approach in a separate PR. This value is copied from mui-material Button.
@@ -279,8 +251,5 @@ ListItemButton.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
 } as any;
-
-// @ts-ignore For internal check.
-ListItemButton.muiName = 'ListItemButton';
 
 export default ListItemButton;

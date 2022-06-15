@@ -32,63 +32,20 @@ const useUtilityClasses = (ownerState: ListItemProps & { nesting: boolean }) => 
   return composeClasses(slots, getListItemUtilityClass, {});
 };
 
-const getInternalItemRadius = (ownerState: {
-  row: boolean;
-  nesting: boolean;
-  'data-first-child'?: string;
-  'data-last-child'?: string;
-}) => {
-  if (ownerState.nesting) {
-    return {
-      // set the undefined variable to use fallback value.
-      '--internal-item-radius': 'var(--internal-invalid)',
-    };
-  }
-  if (ownerState['data-first-child'] !== undefined || ownerState['data-last-child'] !== undefined) {
-    const radii = Array(4).fill('var(--List-item-radius)');
-    if (ownerState['data-first-child'] !== undefined) {
-      radii[0] = 'var(--internal-child-radius)';
-      if (ownerState.row) {
-        radii[3] = 'var(--internal-child-radius)';
-      } else {
-        radii[1] = 'var(--internal-child-radius)';
-      }
-    }
-    if (ownerState['data-last-child'] !== undefined) {
-      radii[1] = 'var(--internal-child-radius)';
-      if (ownerState.row) {
-        radii[2] = 'var(--internal-child-radius)';
-      } else {
-        radii[3] = 'var(--internal-child-radius)';
-      }
-    }
-    return {
-      '--internal-item-radius': radii.join(' '),
-    };
-  }
-  return {};
-};
-
 const ListItemRoot = styled('li', {
   name: 'JoyListItem',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{
-  ownerState: ListItemProps & {
-    row: boolean;
-    nesting: boolean;
-    'data-first-child'?: string;
-    'data-last-child'?: string;
-  };
+  ownerState: ListItemProps & { row: boolean; 'data-first-child'?: string };
 }>(({ theme, ownerState }) => [
   !ownerState.nested && {
     // add negative margin to ListItemButton equal to this ListItem padding
-    '--List-itemButton-margin': `calc(-1 * var(--List-item-paddingY))
-calc(-1 * var(--List-item-paddingRight))
-calc(-1 * var(--List-item-paddingY))
-calc(-1 * var(--List-item-paddingLeft))`,
+    '--List-itemButton-marginInline': `calc(-1 * var(--List-item-paddingLeft)) calc(-1 * var(--List-item-paddingRight))`,
+    '--List-itemButton-marginBlock': 'calc(-1 * var(--List-item-paddingY))',
     alignItems: 'center',
-    margin: 'var(--List-item-margin)',
+    marginBlock: 'var(--List-item-marginBlock)',
+    marginInline: 'var(--List-item-marginInline)',
   },
   ownerState.nested && {
     // add negative margin to NestedList equal to this ListItem padding
@@ -96,10 +53,12 @@ calc(-1 * var(--List-item-paddingLeft))`,
     '--NestedList-marginLeft': 'calc(-1 * var(--List-item-paddingLeft))',
     '--NestedList-item-paddingLeft': `calc(var(--List-item-paddingLeft) + var(--List-nestedInsetStart))`,
     // add negative margin to ListItem, ListItemButton to make them start from the edge.
-    '--List-itemButton-margin':
-      'calc(-1 * var(--List-item-paddingY)) calc(-1 * var(--List-item-paddingRight)) 0px calc(-1 * var(--List-item-paddingLeft))',
-    '--List-item-margin':
-      'calc(-1 * var(--List-item-paddingY)) calc(-1 * var(--List-item-paddingRight)) 0px calc(-1 * var(--List-item-paddingLeft))',
+    '--List-itemButton-marginBlock': 'calc(-1 * var(--List-item-paddingY)) 0px',
+    '--List-itemButton-marginInline':
+      'calc(-1 * var(--List-item-paddingLeft)) calc(-1 * var(--List-item-paddingRight))',
+    '--List-item-marginBlock': 'calc(-1 * var(--List-item-paddingY)) 0px',
+    '--List-item-marginInline':
+      'calc(-1 * var(--List-item-paddingLeft)) calc(-1 * var(--List-item-paddingRight))',
     flexDirection: 'column',
   },
   // Base styles
@@ -114,29 +73,6 @@ calc(-1 * var(--List-item-paddingLeft))`,
     }),
     boxSizing: 'border-box',
     borderRadius: 'var(--List-item-radius)',
-    ...getInternalItemRadius(ownerState),
-    ...(ownerState['data-first-child'] !== undefined && {
-      ...(ownerState.row
-        ? {
-            borderTopLeftRadius: 'var(--internal-child-radius)',
-            borderBottomLeftRadius: 'var(--internal-child-radius)',
-          }
-        : {
-            borderTopLeftRadius: 'var(--internal-child-radius)',
-            borderTopRightRadius: 'var(--internal-child-radius)',
-          }),
-    }),
-    ...(ownerState['data-last-child'] !== undefined && {
-      ...(ownerState.row
-        ? {
-            borderTopRightRadius: 'var(--internal-child-radius)',
-            borderBottomRightRadius: 'var(--internal-child-radius)',
-          }
-        : {
-            borderBottomLeftRadius: 'var(--internal-child-radius)',
-            borderBottomRightRadius: 'var(--internal-child-radius)',
-          }),
-    }),
     display: 'flex',
     position: 'relative',
     paddingBlockStart: 'var(--List-item-paddingY)',
@@ -215,6 +151,7 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
     variant,
     color,
     nesting,
+    nested,
     ...props,
   };
 
@@ -238,15 +175,13 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
         )}
 
         {React.Children.map(children, (child, index) =>
-          index === 0 && React.isValidElement(child)
+          React.isValidElement(child)
             ? React.cloneElement(child, {
-                'data-first-child': '',
+                // to let ListItem knows when to apply margin(Inline|Block)Start
+                ...(index === 0 && { 'data-first-child': '' }),
                 ...(isMuiElement(child, ['ListItem']) && {
                   // The ListItem of ListItem should not be 'li'
                   component: child.props.component || 'div',
-                }),
-                ...(isMuiElement(child, ['ListItemButton']) && {
-                  'data-parent': 'ListItem',
                 }),
               })
             : child,
@@ -322,7 +257,7 @@ ListItem.propTypes /* remove-proptypes */ = {
   variant: PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
 } as any;
 
-// @ts-ignore For internal check.
+// @ts-ignore internal logic to prevent <li> in <li>
 ListItem.muiName = 'ListItem';
 
 export default ListItem;
