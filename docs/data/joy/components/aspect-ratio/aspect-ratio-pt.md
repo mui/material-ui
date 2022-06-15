@@ -3,9 +3,9 @@ product: joy-ui
 title: React Aspect Ratio component
 ---
 
-# Aspect Ratio
+# Aspect ratio
 
-<p class="description">The Aspect Ratio component shapes the content with the specified ratio.</p>
+<p class="description">The aspect ratio component shapes the content with the specified ratio.</p>
 
 The default aspect ratio implementation combines `height: 0px` with percentage padding-bottom to create the proper aspect ratio for the content. (It will be replaced by the [CSS aspect-ratio](https://developer.mozilla.org/en-US/docs/Web/CSS/aspect-ratio) in the future once it has sufficient browser support).
 
@@ -75,7 +75,7 @@ function App() {
 
 ## Common examples
 
-### Mobile Carousel
+### Mobile carousel
 
 Make sure to keep your content concise given the limited width real estate available. Since the texts are short, we can set `white-space: nowrap` to make the title stay in one line. The `min-width` CSS property is necessary on the aspect ratio component to prevent it from shrinking to zero.
 
