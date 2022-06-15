@@ -54,7 +54,7 @@ You can wrap the Joy `Checkbox` component with the Joy `Chip` component.
 
 {{"demo": "CheckboxChip.js"}}
 
-## With Radio
+## With radio
 
 You can wrap the Joy `Radio` component with the Joy `Chip` component.
 
