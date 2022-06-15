@@ -28,7 +28,6 @@ const Select = styled('select')(({ theme }) => ({
 const defaultProps = {
   variant: 'plain',
   color: 'neutral',
-  elevation: undefined,
 };
 
 function createCode(name, inProps) {
@@ -66,11 +65,7 @@ function createCode(name, inProps) {
 
 export default function SheetUsage() {
   const [props, setProps] = React.useState({});
-  const {
-    variant = defaultProps.variant,
-    color = defaultProps.color,
-    elevation = defaultProps.elevation,
-  } = props;
+  const { variant = defaultProps.variant, color = defaultProps.color } = props;
   return (
     <Box
       sx={{
@@ -240,58 +235,6 @@ export default function SheetUsage() {
                   );
                 },
               )}
-            </RadioGroup>
-          </Box>
-          <Box>
-            <Typography
-              id="badge-elevation-selector"
-              level="body2"
-              fontWeight="lg"
-              mb={1}
-            >
-              elevation
-            </Typography>
-            <RadioGroup
-              row
-              name="badge-elevation"
-              aria-labelledby="badge-elevation-selector"
-              value={elevation}
-              onChange={(event) => {
-                return setProps((latestProps) => ({
-                  ...latestProps,
-                  elevation: event.target.value,
-                }));
-              }}
-              sx={{ flexWrap: 'wrap', gap: 1 }}
-            >
-              {['xs', 'sm', 'md', 'lg', 'xl'].map((value) => {
-                const checked = elevation === value;
-                return (
-                  <Chip
-                    key={value}
-                    variant="plain"
-                    color="neutral"
-                    size="sm"
-                    sx={{ bgcolor: 'background.body' }}
-                  >
-                    <Radio
-                      size="sm"
-                      variant="outlined"
-                      color="neutral"
-                      label={
-                        <Typography
-                          endDecorator={checked ? <Check fontSize="md" /> : null}
-                        >
-                          {value}
-                        </Typography>
-                      }
-                      value={value}
-                      disableIcon
-                      overlay
-                    />
-                  </Chip>
-                );
-              })}
             </RadioGroup>
           </Box>
         </Box>

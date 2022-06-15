@@ -19,13 +19,6 @@ import * as React from 'react';
 <Sheet color="warning" />;
 <Sheet color="neutral" />;
 
-// `elevation`
-<Sheet elevation="xs" />;
-<Sheet elevation="sm" />;
-<Sheet elevation="md" />;
-<Sheet elevation="lg" />;
-<Sheet elevation="xl" />;
-
 // @ts-expect-error there is no variant `filled`
 <Sheet variant="filled" />;
 
