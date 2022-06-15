@@ -9,20 +9,43 @@ packageName: '@mui/base'
 
 # Unstyled slider
 
-<p class="description">The SliderUnstyled component lets users make selections from a range of values along a horizontal or vertical bar.</p>
+<p class="description">A slider is a UI element that lets users select a single value or a range of values along a bar.
 
-Users may need to select a single value or a range of values on a slider.
-They are ideal for interface controls that benefit from a visual representation of adjustable content, such as volume or brightness settings, or for applying image filters.
+</p>
+
+## Introduction
+
+The `SliderUnstyled` component lets users make selections from a range of values along a horizontal or vertical bar.
+
+Sliders are ideal for interface controls that benefit from a visual representation of adjustable content, such as volume or brightness settings, or for applying image filters such as gradients or saturation.
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
-```js
+### Features
+
+- 🐛 Supports continuous and discrete sliders that snap to pre-defined stops
+- 🧮 Users can select a single value or a range of values 
+
+## Component
+
+### Anatomy
+
+After [installation](/base/getting-started/installation/), you can start building with this component using the following basic elements:
+
+```jsx
 import SliderUnstyled from '@mui/base/SliderUnstyled';
+
+<SliderUnstyled />
 ```
+
+### Basic usage
+
+The following demo shows how to create and style two basic sliders.
+Notice that both are set to a default value of 10 with the `defaultValue` prop, and the the second slider cannot be adjusted due to the `disabled` prop:
 
 {{"demo": "UnstyledSlider.js", "defaultCodeOpen": false}}
 
-## Discrete sliders
+### Discrete sliders
 
 The most basic slider is _continuous_, which means it does not have pre-defined (_discrete_) values for the user to select from.
 This is suitable for situations in which an approximate value is good enough for the user, such as brightness or volume.
@@ -33,19 +56,19 @@ To generate a mark for each stop, use `marks={true}`:
 
 {{"demo": "DiscreteSlider.js"}}
 
-### Custom marks
+#### Custom marks
 
 You can create custom marks by providing a rich array to the `marks` prop:
 
 {{"demo": "DiscreteSliderMarks.js"}}
 
-### Restricted values
+#### Restricted values
 
 If the user should only be able to select from the values provided with the `marks` prop, add `step={null}` to disable all other options:
 
 {{"demo": "DiscreteSliderValues.js"}}
 
-## Range slider
+### Range slider
 
 To let users set the start and end of a range on a slider, provide an array of values to the `value` or `defaultValue` prop:
 
@@ -53,7 +76,7 @@ To let users set the start and end of a range on a slider, provide an array of v
 
 ## Accessibility
 
-(WAI-ARIA: https://www.w3.org/WAI/ARIA/apg/patterns/slidertwothumb/)
+See the [WAI-ARIA guide on the Slider (Multi-Thumb) pattern](https://www.w3.org/WAI/ARIA/apg/patterns/slidertwothumb/) for complete details on accessibility best practices.
 
 The component handles most of the work necessary to make it accessible.
 However, you need to make sure that:
