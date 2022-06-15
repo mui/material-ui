@@ -10,19 +10,38 @@ packageName: '@mui/base'
 
 <p class="description">Table pagination is an interface tool for splitting up large amounts of data to make it easier for users to navigate.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+## Introduction
 
-The `TablePaginationUnstyled` component controls two properties of its parent table:
+The `TablePaginationUnstyled` component lets you add pagination controls to a table. 
+It controls two properties of its parent table:
 
 - displayed page index
 - number of rows per page
 
-By default it renders its internal components wrapped in a `<td>` tag, so it can be inserted into a table's `<tr>`.
+`TablePaginationUnstyled` renders its internal elements in a `<td>` tag by default so it can be inserted into a table's `<tr>`.
+You can use the `component` or `components.Root` prop to render a different root element—for example, if you need to place the pagination controls outside of the table.
 
-You can change this default behavior by supplying the `component` or `components.Root` prop.
-This is useful it you need to place the pagination controls outside of the table.
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
-## Basic usage
+## Component
+
+### Anatomy
+
+After [installation](/base/getting-started/installation/), you can start building with this component using the following basic elements:
+
+```jsx
+import TablePaginationUnstyled from '@mui/base/TablePaginationUnstyled';
+
+<table>
+  <tr>
+    <TablePaginationUnstyled />
+  </tr>
+</table>
+```
+
+### Basic usage
+
+The following demo shows an example of customized table pagination controls in a table footer that spans the entire row:
 
 {{"demo": "TableUnstyled.js"}}
 
@@ -45,6 +64,8 @@ This prop requires an array of either numbers or objects:
   />
   ```
 
-## Customized look and feel
+### Customized look and feel
+
+The following demo shows another example of table pagination controls but with additional style customization:
 
 {{"demo": "TableCustomized.js"}}
