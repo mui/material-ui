@@ -7,9 +7,11 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/tabpanel/
 packageName: '@mui/base'
 ---
 
-# Tabs
+# Unstyled tabs
 
 <p class="description">Tabs are UI elements for organizing and navigating between groups of related content.</p>
+
+## Introduction
 
 Tabs are implemented using a collection of related components:
 
@@ -20,13 +22,26 @@ Tabs are implemented using a collection of related components:
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
-## Basic tabs
+## Component
 
-```js
+### Anatomy
+
+After [installation](/base/getting-started/installation/), you can start building with this component collection using the following basic elements:
+
+```jsx
 import TabUnstyled from '@mui/base/TabUnstyled';
 import TabsListUnstyled from '@mui/base/TabUnstyled';
 import TabPanelUnstyled from '@mui/base/TabPanelUnstyled';
 import TabsUnstyled from '@mui/base/TabsUnstyled';
+
+<TabsUnstyled>
+  <TabsListUnstyled>
+    <TabUnstyled>Tab one</TabUnstyled>
+    <TabUnstyled>Tab two</TabUnstyled>
+  </TabsListUnstyled>
+  <TabPanelUnstyled>Panel one</TabPanelUnstyled>
+  <TabPanelUnstyled>Panel two</TabPanelUnstyled>
+</TabsUnstyled>
 ```
 
 By default, tabs and their corresponding panels are **zero-indexed** (i.e. the first tab has a `value` of `0`, then `1`, `2`, etc.). Clicking on a given tab opens the panel with the same `value`, which corresponds to the order in which each component is nested within its container.
@@ -37,7 +52,7 @@ The following demo omits the `value` prop from the `TabUnstyled` components, and
 
 {{"demo": "UnstyledTabsBasic.js"}}
 
-## Customizing the root element
+### Customizing the root element
 
 By default, `TabUnstyled` renders a native HTML `<button>` element.
 You can override this by setting the `component` or `components.Root` prop.
@@ -45,11 +60,11 @@ You can override this by setting the `component` or `components.Root` prop.
 If a non-interactive element (such as a `<span>`) is provided this way, the `TabUnstyled` will take care of adding the necessary accessibility attributes.
 
 The `TabPanelUnstyled` renders a native `<div>` element by default.
-You can override this by setting the `component` or `components.Root` prop on the `TabPanelUnstyled`.
+You can also override this with the `component` or `components.Root` prop.
 
 {{"demo": "UnstyledTabsCustomized.js"}}
 
-## Third-party routing library
+### Third-party routing library
 
 A common use case for tabs is to implement client-side navigation that doesn't require an HTTP round-trip to the server.
 
