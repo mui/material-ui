@@ -4,7 +4,7 @@
 
 ## Installation
 
-Install Joy via either npm or yarn using the commands below in your directory of choice.
+Install Joy UI via either npm or yarn using the commands below in your directory of choice.
 
 **npm**
 
@@ -40,7 +40,7 @@ export default App;
 
 ## Render your first component
 
-To render any Joy component, make sure you place them inside the `CssVarProvider` element. Let's start off with a button.
+To render any Joy UI component, make sure you place them inside the `CssVarProvider` element.
 
 ```diff
 import { CssVarsProvider } from '@mui/joy/styles';
@@ -57,11 +57,4 @@ function App() {
 export default App;
 ```
 
-Make sure that your development server is running, save your file, and that's it!
-It's that fast.
-You're now ready to go on exploring Joy and build amazing UIs.
-
-## Next steps
-
-- 👩‍💻 [Build your first UI](/joy-ui/getting-started/tutorial/) with Joy.
-- 💎 Learn about Joy's main features.
+It's that fast to have your first app with Joy UI going!
