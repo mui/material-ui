@@ -19,6 +19,8 @@ It renders an unordered list (`<ul>`) by default.
 Use `MenuItemUnstyled` to add items to the menu.
 These are rendered as `<li>` elements.
 
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+
 ## Components
 
 ### Anatomy
