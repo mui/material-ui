@@ -97,9 +97,9 @@ export default function extendTheme(options = {}, ...args) {
       setColor(palette.Chip, 'defaultBorder', 'var(--md-palette-grey-400)');
       setColor(palette.Chip, 'defaultAvatarColor', 'var(--md-palette-grey-700)');
       setColor(palette.Chip, 'defaultIconColor', 'var(--md-palette-grey-700)');
-      setColor(palette.FilledInput, 'bgColor', 'rgba(0, 0, 0, 0.06)');
-      setColor(palette.FilledInput, 'hoverBgColor', 'rgba(0, 0, 0, 0.09)');
-      setColor(palette.FilledInput, 'disabledBgColor', 'rgba(0, 0, 0, 0.12)');
+      setColor(palette.FilledInput, 'bg', 'rgba(0, 0, 0, 0.06)');
+      setColor(palette.FilledInput, 'hoverBg', 'rgba(0, 0, 0, 0.09)');
+      setColor(palette.FilledInput, 'disabledBg', 'rgba(0, 0, 0, 0.12)');
       setColor(palette.LinearProgress, 'primaryBgColor', lighten(palette.primary.main, 0.62));
       setColor(palette.LinearProgress, 'secondaryBgColor', lighten(palette.secondary.main, 0.62));
       setColor(palette.LinearProgress, 'errorBgColor', lighten(palette.error.main, 0.62));
@@ -131,9 +131,9 @@ export default function extendTheme(options = {}, ...args) {
       setColor(palette.Chip, 'defaultBorder', 'var(--md-palette-grey-700)');
       setColor(palette.Chip, 'defaultAvatarColor', 'var(--md-palette-grey-300)');
       setColor(palette.Chip, 'defaultIconColor', 'var(--md-palette-grey-300)');
-      setColor(palette.FilledInput, 'bgColor', 'rgba(255, 255, 255, 0.09)');
-      setColor(palette.FilledInput, 'hoverBgColor', 'rgba(255, 255, 255, 0.13)');
-      setColor(palette.FilledInput, 'disabledBgColor', 'rgba(255, 255, 255, 0.12)');
+      setColor(palette.FilledInput, 'bg', 'rgba(255, 255, 255, 0.09)');
+      setColor(palette.FilledInput, 'hoverBg', 'rgba(255, 255, 255, 0.13)');
+      setColor(palette.FilledInput, 'disabledBg', 'rgba(255, 255, 255, 0.12)');
       setColor(palette.LinearProgress, 'primaryBgColor', darken(palette.primary.main, 0.5));
       setColor(palette.LinearProgress, 'secondaryBgColor', darken(palette.secondary.main, 0.5));
       setColor(palette.LinearProgress, 'errorBgColor', darken(palette.error.main, 0.5));
