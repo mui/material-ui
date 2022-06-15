@@ -10,7 +10,6 @@ packageName: '@mui/base'
 # Unstyled slider
 
 <p class="description">A slider is a UI element that lets users select a single value or a range of values along a bar.
-
 </p>
 
 ## Introduction
@@ -22,7 +21,7 @@ Sliders are ideal for interface controls that benefit from a visual representati
 ### Features
 
 - 🐛 Supports continuous and discrete sliders that snap to pre-defined stops
-- 🧮 Users can select a single value or a range of values 
+- 🧮 Users can select a single value or a range of values
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
@@ -34,7 +33,9 @@ After [installation](/base/getting-started/installation/), you can start buildin
 
 ```jsx
 import SliderUnstyled from '@mui/base/SliderUnstyled';
+```
 
+```jsx
 <SliderUnstyled />
 ```
 

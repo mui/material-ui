@@ -12,7 +12,7 @@ packageName: '@mui/base'
 
 ## Introduction
 
-The `TablePaginationUnstyled` component lets you add pagination controls to a table. 
+The `TablePaginationUnstyled` component lets you add pagination controls to a table.
 It controls two properties of its parent table:
 
 - displayed page index
@@ -31,7 +31,9 @@ After [installation](/base/getting-started/installation/), you can start buildin
 
 ```jsx
 import TablePaginationUnstyled from '@mui/base/TablePaginationUnstyled';
+```
 
+```jsx
 <table>
   <tr>
     <TablePaginationUnstyled />

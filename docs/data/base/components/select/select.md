@@ -35,7 +35,9 @@ After [installation](/base/getting-started/installation/), you can start buildin
 ```jsx
 import SelectUnstyled from '@mui/base/SelectUnstyled';
 import OptionUnstyled from '@mui/base/OptionUnstyled';
+```
 
+```jsx
 <SelectUnstyled>
   <OptionUnstyled>Option one</OptionUnstyled>
   <OptionUnstyled>Option two</OptionUnstyled>

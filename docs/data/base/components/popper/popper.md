@@ -26,10 +26,10 @@ After [installation](/base/getting-started/installation/), you can start buildin
 
 ```jsx
 import PopperUnstyled from '@mui/base/PopperUnstyled';
+```
 
-<PopperUnstyled>
-  {/* the popper's content */}
-</PopperUnstyled>
+```jsx
+<PopperUnstyled>{/* the popper's content */}</PopperUnstyled>
 ```
 
 ### Basic usage

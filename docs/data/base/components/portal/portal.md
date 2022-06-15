@@ -27,10 +27,10 @@ After [installation](/base/getting-started/installation/), you can start buildin
 
 ```jsx
 import Portal from '@mui/base/Portal';
+```
 
-<Portal>
-  {/* children to be rendered outside of the current DOM node */}
-</Portal>
+```jsx
+<Portal>{/* children to be rendered outside of the current DOM node */}</Portal>
 ```
 
 ### Basic usage

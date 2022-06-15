@@ -29,7 +29,9 @@ After [installation](/base/getting-started/installation/), you can start buildin
 
 ```jsx
 import InputUnstyled from '@mui/base/InputUnstyled';
+```
 
+```jsx
 <InputUnstyled />
 ```
 

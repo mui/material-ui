@@ -25,7 +25,9 @@ After [installation](/base/getting-started/installation/), you can start buildin
 
 ```jsx
 import SwitchUnstyled from '@mui/base/SwitchUnstyled';
+```
 
+```jsx
 <SwitchUnstyled />
 ```
 

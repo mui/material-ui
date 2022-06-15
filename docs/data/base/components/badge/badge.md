@@ -30,12 +30,12 @@ The `BadgeUnstyled` component creates a badge that is applied to its child eleme
 
 After [installation](/base/getting-started/installation/), you can start building with this component using the following basic elements:
 
-```js
+```jsx
 import BadgeUnstyled from '@mui/base/BadgeUnstyled';
+```
 
-<BadgeUnstyled>
-  {/* the element that the badge is attached to */}
-</BadgeUnstyled>;
+```jsx
+<BadgeUnstyled>{/* the element that the badge is attached to */}</BadgeUnstyled>
 ```
 
 ### Basic usage

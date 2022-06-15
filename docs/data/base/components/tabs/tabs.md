@@ -41,7 +41,7 @@ import TabsUnstyled from '@mui/base/TabsUnstyled';
   </TabsListUnstyled>
   <TabPanelUnstyled>Panel one</TabPanelUnstyled>
   <TabPanelUnstyled>Panel two</TabPanelUnstyled>
-</TabsUnstyled>
+</TabsUnstyled>;
 ```
 
 By default, tabs and their corresponding panels are **zero-indexed** (i.e. the first tab has a `value` of `0`, then `1`, `2`, etc.). Clicking on a given tab opens the panel with the same `value`, which corresponds to the order in which each component is nested within its container.

@@ -31,9 +31,10 @@ After [installation](/base/getting-started/installation/), you can start buildin
 
 ```jsx
 import NoSsr from '@mui/base/NoSsr';
+```
 
-<NoSsr>
-  {/* some content to be rendered on the client side */}</NoSsr>
+```jsx
+<NoSsr>{/* some content to be rendered on the client side */}</NoSsr>
 ```
 
 ### Basic usage
