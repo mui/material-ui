@@ -94,7 +94,7 @@ export default function extendTheme(options = {}, ...args) {
     ]);
     if (key === 'light') {
       setColor(palette.AppBar, 'defaultBg', 'var(--md-palette-grey-100)');
-      setColor(palette.Chip, 'defaultBorderColor', 'var(--md-palette-grey-400)');
+      setColor(palette.Chip, 'defaultBorder', 'var(--md-palette-grey-400)');
       setColor(palette.Chip, 'defaultAvatarColor', 'var(--md-palette-grey-700)');
       setColor(palette.Chip, 'defaultIconColor', 'var(--md-palette-grey-700)');
       setColor(palette.FilledInput, 'bgColor', 'rgba(0, 0, 0, 0.06)');
@@ -128,7 +128,7 @@ export default function extendTheme(options = {}, ...args) {
       setColor(palette.Tooltip, 'bgColor', alpha(palette.grey[700], 0.92));
     } else {
       setColor(palette.AppBar, 'defaultBg', 'var(--md-palette-grey-900)');
-      setColor(palette.Chip, 'defaultBorderColor', 'var(--md-palette-grey-700)');
+      setColor(palette.Chip, 'defaultBorder', 'var(--md-palette-grey-700)');
       setColor(palette.Chip, 'defaultAvatarColor', 'var(--md-palette-grey-300)');
       setColor(palette.Chip, 'defaultIconColor', 'var(--md-palette-grey-300)');
       setColor(palette.FilledInput, 'bgColor', 'rgba(255, 255, 255, 0.09)');

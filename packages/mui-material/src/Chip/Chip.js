@@ -232,7 +232,7 @@ const ChipRoot = styled('div', {
     ...(ownerState.variant === 'outlined' && {
       backgroundColor: 'transparent',
       border: theme.vars
-        ? `1px solid ${theme.vars.palette.Chip.defaultBorderColor}`
+        ? `1px solid ${theme.vars.palette.Chip.defaultBorder}`
         : `1px solid ${
             theme.palette.mode === 'light' ? theme.palette.grey[400] : theme.palette.grey[700]
           }`,
