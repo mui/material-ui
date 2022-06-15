@@ -26,13 +26,15 @@ After [installation](/base/getting-started/installation/), you can start buildin
 
 ```jsx
 import TextareaAutosize from '@mui/base/TextareaAutosize';
+```
 
-<TextareaAutosize />;
+```jsx
+<TextareaAutosize />
 ```
 
 ### Basic usage
 
-By default, an empty `TextareaAutosize` component renders as a single row:
+By default, an empty `TextareaAutosize` component renders as a single row, as shown in the following demo:
 
 {{"demo": "EmptyTextarea.js"}}
 
