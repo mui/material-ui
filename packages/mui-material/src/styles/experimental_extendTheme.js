@@ -93,10 +93,10 @@ export default function extendTheme(options = {}, ...args) {
       'Tooltip',
     ]);
     if (key === 'light') {
-      setColor(palette.AppBar, 'defaultBg', 'var(--md-palette-grey-100)');
-      setColor(palette.Chip, 'defaultBorder', 'var(--md-palette-grey-400)');
-      setColor(palette.Chip, 'defaultAvatarColor', 'var(--md-palette-grey-700)');
-      setColor(palette.Chip, 'defaultIconColor', 'var(--md-palette-grey-700)');
+      setColor(palette.AppBar, 'defaultBg', 'var(--mui-palette-grey-100)');
+      setColor(palette.Chip, 'defaultBorder', 'var(--mui-palette-grey-400)');
+      setColor(palette.Chip, 'defaultAvatarColor', 'var(--mui-palette-grey-700)');
+      setColor(palette.Chip, 'defaultIconColor', 'var(--mui-palette-grey-700)');
       setColor(palette.FilledInput, 'bg', 'rgba(0, 0, 0, 0.06)');
       setColor(palette.FilledInput, 'hoverBg', 'rgba(0, 0, 0, 0.09)');
       setColor(palette.FilledInput, 'disabledBg', 'rgba(0, 0, 0, 0.12)');
@@ -106,7 +106,7 @@ export default function extendTheme(options = {}, ...args) {
       setColor(palette.LinearProgress, 'infoBg', lighten(palette.info.main, 0.62));
       setColor(palette.LinearProgress, 'successBg', lighten(palette.success.main, 0.62));
       setColor(palette.LinearProgress, 'warningBg', lighten(palette.warning.main, 0.62));
-      setColor(palette.Skeleton, 'bg', 'rgba(var(--md-palette-text-primary) / 0.11)');
+      setColor(palette.Skeleton, 'bg', 'rgba(var(--mui-palette-text-primary) / 0.11)');
       setColor(palette.Slider, 'primaryTrack', lighten(palette.primary.main, 0.62));
       setColor(palette.Slider, 'secondaryTrack', lighten(palette.secondary.main, 0.62));
       setColor(palette.Slider, 'errorTrack', lighten(palette.error.main, 0.62));
@@ -114,10 +114,10 @@ export default function extendTheme(options = {}, ...args) {
       setColor(palette.Slider, 'successTrack', lighten(palette.success.main, 0.62));
       setColor(palette.Slider, 'warningTrack', lighten(palette.warning.main, 0.62));
       setColor(palette.SnackbarContent, 'bg', emphasize(palette.background.default, 0.8));
-      setColor(palette.StepConnector, 'border', 'var(--md-palette-grey-400)');
-      setColor(palette.StepContent, 'border', 'var(--md-palette-grey-400)');
-      setColor(palette.Switch, 'defaultColor', 'var(--md-palette-common-white)');
-      setColor(palette.Switch, 'defaultDisabledColor', 'var(--md-palette-grey-100)');
+      setColor(palette.StepConnector, 'border', 'var(--mui-palette-grey-400)');
+      setColor(palette.StepContent, 'border', 'var(--mui-palette-grey-400)');
+      setColor(palette.Switch, 'defaultColor', 'var(--mui-palette-common-white)');
+      setColor(palette.Switch, 'defaultDisabledColor', 'var(--mui-palette-grey-100)');
       setColor(palette.Switch, 'primaryDisabledColor', lighten(palette.primary.main, 0.62));
       setColor(palette.Switch, 'secondaryDisabledColor', lighten(palette.secondary.main, 0.62));
       setColor(palette.Switch, 'errorDisabledColor', lighten(palette.error.main, 0.62));
@@ -127,10 +127,10 @@ export default function extendTheme(options = {}, ...args) {
       setColor(palette.TableCell, 'border', lighten(alpha(palette.divider, 1), 0.88));
       setColor(palette.Tooltip, 'bg', alpha(palette.grey[700], 0.92));
     } else {
-      setColor(palette.AppBar, 'defaultBg', 'var(--md-palette-grey-900)');
-      setColor(palette.Chip, 'defaultBorder', 'var(--md-palette-grey-700)');
-      setColor(palette.Chip, 'defaultAvatarColor', 'var(--md-palette-grey-300)');
-      setColor(palette.Chip, 'defaultIconColor', 'var(--md-palette-grey-300)');
+      setColor(palette.AppBar, 'defaultBg', 'var(--mui-palette-grey-900)');
+      setColor(palette.Chip, 'defaultBorder', 'var(--mui-palette-grey-700)');
+      setColor(palette.Chip, 'defaultAvatarColor', 'var(--mui-palette-grey-300)');
+      setColor(palette.Chip, 'defaultIconColor', 'var(--mui-palette-grey-300)');
       setColor(palette.FilledInput, 'bg', 'rgba(255, 255, 255, 0.09)');
       setColor(palette.FilledInput, 'hoverBg', 'rgba(255, 255, 255, 0.13)');
       setColor(palette.FilledInput, 'disabledBg', 'rgba(255, 255, 255, 0.12)');
@@ -140,7 +140,7 @@ export default function extendTheme(options = {}, ...args) {
       setColor(palette.LinearProgress, 'infoBg', darken(palette.info.main, 0.5));
       setColor(palette.LinearProgress, 'successBg', darken(palette.success.main, 0.5));
       setColor(palette.LinearProgress, 'warningBg', darken(palette.warning.main, 0.5));
-      setColor(palette.Skeleton, 'bg', 'rgba(var(--md-palette-text-primary) / 0.13)');
+      setColor(palette.Skeleton, 'bg', 'rgba(var(--mui-palette-text-primary) / 0.13)');
       setColor(palette.Slider, 'primaryTrack', darken(palette.primary.main, 0.5));
       setColor(palette.Slider, 'secondaryTrack', darken(palette.secondary.main, 0.5));
       setColor(palette.Slider, 'errorTrack', darken(palette.error.main, 0.5));
@@ -148,10 +148,10 @@ export default function extendTheme(options = {}, ...args) {
       setColor(palette.Slider, 'successTrack', darken(palette.success.main, 0.5));
       setColor(palette.Slider, 'warningTrack', darken(palette.warning.main, 0.5));
       setColor(palette.SnackbarContent, 'bg', emphasize(palette.background.default, 0.98));
-      setColor(palette.StepConnector, 'border', 'var(--md-palette-grey-600)');
-      setColor(palette.StepContent, 'border', 'var(--md-palette-grey-600)');
-      setColor(palette.Switch, 'defaultColor', 'var(--md-palette-grey-300)');
-      setColor(palette.Switch, 'defaultDisabledColor', 'var(--md-palette-grey-600)');
+      setColor(palette.StepConnector, 'border', 'var(--mui-palette-grey-600)');
+      setColor(palette.StepContent, 'border', 'var(--mui-palette-grey-600)');
+      setColor(palette.Switch, 'defaultColor', 'var(--mui-palette-grey-300)');
+      setColor(palette.Switch, 'defaultDisabledColor', 'var(--mui-palette-grey-600)');
       setColor(palette.Switch, 'primaryDisabledColor', darken(palette.primary.main, 0.55));
       setColor(palette.Switch, 'secondaryDisabledColor', darken(palette.secondary.main, 0.55));
       setColor(palette.Switch, 'errorDisabledColor', darken(palette.error.main, 0.55));
