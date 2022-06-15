@@ -161,7 +161,14 @@ export default function TemplateCollection() {
                   passHref
                 >
                   {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-                  <Link tabIndex={-1} overlay aria-hidden />
+                  <Link
+                    tabIndex={-1}
+                    overlay
+                    aria-hidden
+                    data-ga-event-category="joy-template"
+                    data-ga-event-label={name}
+                    data-ga-event-action="preview-img"
+                  />
                 </NextLink>
               </AspectRatio>
             </Card>
