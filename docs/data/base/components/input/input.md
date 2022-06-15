@@ -21,6 +21,8 @@ The `InputUnstyled` component replaces the native HTML `<input>` tag, and can al
 - 🚀 Can be transformed into a `<textarea>` using the `multiline` prop
 - ♿️ Automatically adds the appropriate ARIA roles
 
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+
 ## Component
 
 ### Anatomy
