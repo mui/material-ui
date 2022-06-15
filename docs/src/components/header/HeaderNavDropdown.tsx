@@ -11,11 +11,6 @@ import Link from 'docs/src/modules/components/Link';
 import ROUTES from 'docs/src/route';
 import FEATURE_TOGGLE from 'docs/src/featureToggle';
 
-const shouldShowJoy =
-  process.env.NODE_ENV === 'development' ||
-  process.env.PULL_REQUEST ||
-  FEATURE_TOGGLE.enable_joy_scope;
-
 const Anchor = styled('a')<{ component?: React.ElementType; noLinkStyle?: boolean }>(
   ({ theme }) => ({
     ...theme.typography.body2,
@@ -77,15 +72,11 @@ const DOCS = [
     description: "React components that implement Google's Material Design.",
     href: ROUTES.materialDocs,
   },
-  ...(shouldShowJoy
-    ? [
-        {
-          name: 'Joy UI',
-          description: 'React components for building your design system.',
-          href: ROUTES.joyDocs,
-        },
-      ]
-    : []),
+  {
+    name: 'Joy UI',
+    description: 'React components for building your design system.',
+    href: ROUTES.joyDocs,
+  },
   {
     name: 'MUI Base',
     description: 'Unstyled React components and low-level hooks.',
