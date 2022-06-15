@@ -1,5 +1,7 @@
 #!/usr/bin/env node
+const console = require('console');
 const envinfo = require('envinfo');
+const clipboard = require('clipboardy');
 
 const json = process.argv.indexOf('--json') !== -1;
 envinfo
@@ -32,6 +34,9 @@ envinfo
     },
   )
   .then((output) => {
-    // eslint-disable-next-line no-console
     console.log(output);
+
+    // write to memory
+    console.log('\x1b[33m%s\x1b[0m', '\nOutput copied to clipboard');
+    clipboard.writeSync(output);
   });
