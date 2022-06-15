@@ -6,6 +6,7 @@ import { useTheme } from '@mui/joy/styles';
 import AspectRatio from '@mui/joy/AspectRatio';
 import Box from '@mui/joy/Box';
 import Card from '@mui/joy/Card';
+import Link from '@mui/joy/Link';
 import List from '@mui/joy/List';
 import ListDivider from '@mui/joy/ListDivider';
 import Button from '@mui/joy/Button';
@@ -154,6 +155,13 @@ export default function TemplateCollection() {
                     transition: '0.3s',
                   }}
                 />
+                <NextLink
+                  href={`/joy-ui/getting-started/templates/${name}/`}
+                  passHref
+                >
+                  {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+                  <Link tabIndex={-1} overlay aria-hidden />
+                </NextLink>
               </AspectRatio>
             </Card>
           </React.Fragment>
