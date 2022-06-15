@@ -22,7 +22,7 @@ Tabs are implemented using a collection of related components:
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
-## Component
+## Components
 
 ### Anatomy
 

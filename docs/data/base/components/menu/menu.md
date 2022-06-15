@@ -11,27 +11,47 @@ packageName: '@mui/base'
 
 <p class="description">The menu components provide your users with a list of options on temporary surfaces.</p>
 
-## MenuUnstyled and MenuItemUnstyled components
+## Introduction
+
+The `MenuUnstyled` component gives users a list of items in a popup that they can navigate through with a mouse or keyboard.
+It renders an unordered list (`<ul>`) by default.
+
+Use `MenuItemUnstyled` to add items to the menu.
+These are rendered as `<li>` elements.
+
+## Components
+
+### Anatomy
+
+After [installation](/base/getting-started/installation/), you can start building with this component collection using the following basic elements:
 
 ```jsx
 import MenuUnstyled from '@mui/base/MenuUnstyled';
 import MenuItemUnstyled from '@mui/base/MenuItemUnstyled';
 ```
 
-You can use the `MenuUnstyled` component to create custom menus.
-It renders a list of items in a popup that users can navigate through with a mouse or keyboard.
-
-When not customized, the `MenuUnstyled` component renders a plain `<ul>` element.
+```jsx
+<MenuUnstyled>
+  <MenuItemUnstyled>Item one</MenuItemUnstyled>
+  <MenuItemUnstyled>Item two</MenuItemUnstyled>
+</MenuUnstyled>
+```
 
 ### Basic usage
+
+The following demo shows how to create and style a menu component.
+Click **Dashboard** to view the menu—notice that it uses the [`Popper`](/base/react-popper/) component to visually break out of its parent container:
 
 {{"demo": "MenuSimple.js"}}
 
 ### Wrapping MenuItems
 
-`MenuItemUnstyled` components don't have to be direct chilrden of a `MenuUnstyled` component. You can wrap them in any component needed to achieve the desired appearance.
+`MenuItemUnstyled` components don't have to be direct children of a `MenuUnstyled` component.
+You can wrap them in any component needed to achieve the desired appearance.
 
-In addition to `MenuItemUnstyled` components, the `MenuUnstyled` component can also contain non-interactive children, such as help text.
+In addition to `MenuItemUnstyled` components, the `MenuUnstyled` component can also contain non-interactive children, such as helper text.
+
+The following demo shows an example of a menu with items grouped under non-interactive headers, along with helper text that displays the **Current zoom level**:
 
 {{"demo": "WrappedMenuItems.js"}}
 
@@ -60,7 +80,7 @@ Just like `MenuUnstyled`, it can be customized by setting the `component` or `co
 - `Mui-focusVisible` - set when the MenuItem is highligthed via keyboard navigation.
   This is a polyfill for the native `:focus-visible` pseudoclass as it's not available in Safari.
 
-## The useMenu and useMenuItem hooks
+## Hooks
 
 ```jsx
 import { useMenu } from '@mui/base/MenuUnstyled';

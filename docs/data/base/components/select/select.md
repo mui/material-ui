@@ -26,11 +26,11 @@ It also includes `OptionUnstyled` for creating the options on the list, and `Opt
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
-## Component
+## Components
 
 ### Anatomy
 
-After [installation](/base/getting-started/installation/), you can start building with this component using the following basic elements:
+After [installation](/base/getting-started/installation/), you can start building with this component collection using the following basic elements:
 
 ```jsx
 import SelectUnstyled from '@mui/base/SelectUnstyled';
