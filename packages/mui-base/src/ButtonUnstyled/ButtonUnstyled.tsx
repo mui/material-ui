@@ -1,6 +1,5 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import composeClasses from '../composeClasses';
 import { getButtonUnstyledUtilityClass } from './buttonUnstyledClasses';
 import {
@@ -97,7 +96,7 @@ const ButtonUnstyled = React.forwardRef(function ButtonUnstyled<
       ref: forwardedRef,
     },
     ownerState,
-    className: clsx(classes.root, className),
+    className: [classes.root, className],
   });
 
   return <Root {...rootProps}>{children}</Root>;
