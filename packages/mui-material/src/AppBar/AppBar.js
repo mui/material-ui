@@ -73,9 +73,7 @@ const AppBarRoot = styled(Paper, {
       position: 'relative',
     }),
     ...(ownerState.color === 'default' && {
-      backgroundColor: theme.vars
-        ? theme.vars.palette.AppBar.defaultBgColor
-        : backgroundColorDefault,
+      backgroundColor: theme.vars ? theme.vars.palette.AppBar.defaultBg : backgroundColorDefault,
       color: theme.vars
         ? theme.vars.palette.text.primary
         : theme.palette.getContrastText(backgroundColorDefault),
