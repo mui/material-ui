@@ -193,9 +193,12 @@ export default function extendTheme(options = {}, ...args) {
         palette[color].secondaryChannel = colorChannel(colors.secondary);
       }
 
-      // Action colors: action.activeChannel
+      // Action colors: action.active, action.selected
       if (colors.active) {
         palette[color].activeChannel = colorChannel(colors.active);
+      }
+      if (colors.selected) {
+        palette[color].selectedChannel = colorChannel(colors.selected);
       }
     });
   });

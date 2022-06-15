@@ -166,6 +166,7 @@ describe('[Material UI] CssVarsProvider', () => {
           focusOpacity: 'var(--md-palette-action-focusOpacity)',
           activatedOpacity: 'var(--md-palette-action-activatedOpacity)',
           activeChannel: 'var(--md-palette-action-activeChannel)',
+          selectedChannel: 'var(--md-palette-action-selectedChannel)',
         }),
       );
       expect(screen.getByTestId('palette-common').textContent).to.equal(
