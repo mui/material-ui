@@ -17,6 +17,10 @@ One of the biggest changes in v5 is the replacement of JSS for [Emotion](https:/
 Note that you may continue to use JSS for adding overrides for the components (e.g. `makeStyles`, `withStyles`) even after migrating to v5.
 Then, if at any point you want to move over to the new styling engine, you can refactor your components progressively.
 
+:::info
+If you are using Next.js and you are not sure how to configure SSR to work with both Emotion & JSS, take a look a this [example project](https://github.com/mui/material-ui/tree/master/examples/nextjs-with-typescript-v4-migration).
+:::
+
 This document reviews all the steps necessary to migrate away from JSS.
 
 While you can use either of the following two options, the first is considered preferable:

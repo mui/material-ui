@@ -120,16 +120,16 @@ After [exploring](https://github.com/mui/material-ui/issues/22342) many differen
    This API is already known by many.
 2. We have defined a common interface with concrete implementations:
 
-   - `@mui/styled-engine`: implemented with emotion (default).
+   - `@mui/styled-engine`: implemented with Emotion (default).
    - `@mui/styled-engine-sc`: implemented with styled-components
    - If you are using a different styling library, feel free to contribute a wrapper. For instance, there is [one attempt with goober](https://github.com/mui/material-ui/pull/27776), a library obsessing on bundle size (3kB gzipped).
 
-   This allows developers to swap between different style engines. For example, styled-components users no longer need to bundle emotion **and** styled-component, nor do they need to configure the server-side rendering for each.
+   This allows developers to swap between different style engines. For example, styled-components users no longer need to bundle Emotion **and** styled-component, nor do they need to configure the server-side rendering for each.
    How does the [swap work](https://mui.com/material-ui/guides/styled-engine/#how-to-switch-to-styled-components)? The same way it does from React to Preact.
 
-3. For the last couple of months, we have been [sponsoring](https://opencollective.com/emotion) emotion with a $100/month grant. We are now increasing this amount to $1,000/month. It's in our best interest to help ensure the library keeps pushing the envelope, leading the state of the art in a competitive space.
+3. For the last couple of months, we have been [sponsoring](https://opencollective.com/emotion) Emotion with a $100/month grant. We are now increasing this amount to $1,000/month. It's in our best interest to help ensure the library keeps pushing the envelope, leading the state of the art in a competitive space.
 
-The first immediate benefit of the move to emotion was **performance**. The `<Box>` component is [x5-x10 more performant](https://codesandbox.io/s/zlh5w?file=/src/App.js) in v5, compared to v4.
+The first immediate benefit of the move to Emotion was **performance**. The `<Box>` component is [x5-x10 more performant](https://codesandbox.io/s/zlh5w?file=/src/App.js) in v5, compared to v4.
 
 We would like to thank all the community contributors that made the migration of the components and documentation possible in [#24405](https://github.com/mui/material-ui/issues/24405) and [#16947](https://github.com/mui/material-ui/issues/16947): [@natac13](https://github.com/natac13), [@vicasas](https://github.com/vicasas), [@mngu](https://github.com/mngu), [@kodai3](https://github.com/kodai3), [@xs9627](https://github.com/xs9627), [@povilass](https://github.com/povilass), [@duganbrett](https://github.com/duganbrett), [@queengooborg](https://github.com/queengooborg), and more.
 It was a major undertaking!
@@ -382,7 +382,7 @@ You can use [#27170](https://github.com/mui/material-ui/issues/27170) to follow 
 
 ### Smaller demos in the docs
 
-We have used the migration of the demos from JSS to emotion as an opportunity to rework them.
+We have used the migration of the demos from JSS to Emotion as an opportunity to rework them.
 Many of the demos were originally added taking into account how they would help maintainers work on the components.
 Instead, we have reversed the priority, putting the developers using them [first](https://github.com/mui/material-ui/issues/22484).
 
@@ -503,7 +503,7 @@ The `DataGridPro` on the other hand is available under a paid commercial license
 ### Date Picker
 
 We have transferred the ownership of the `@material-ui/pickers` from [Dmitriy Kovalenko](https://github.com/dmtrKovalenko) to the main organization.
-The [picker components](/material-ui/lab-date-and-time-pickers/) are now part of the `@mui/lab` package.
+The date picker components are now part of the `@mui/lab` package.
 
 We spent a lot of time making sure they are consistent.
 We are now working toward reaching the same level of excellence as the other core components.

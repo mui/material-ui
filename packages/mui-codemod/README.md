@@ -437,7 +437,7 @@ You can find more details about this breaking change in [the migration guide](ht
 
 #### `emotion-prepend-cache`
 
-Adds `prepend: true` to emotion `createCache`
+Adds `prepend: true` to Emotion `createCache`
 
 ```diff
 const cache = emotionCreateCache({

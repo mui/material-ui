@@ -67,7 +67,7 @@ Customizing the theme tokens, as described above, will affect every Joy UI compo
 If you want to customize a specific component and want every instance of it to be consistent, you can target it directly within the theme.
 
 :::info
-Check the specific [themed components page](/joy-ui/customization/themed-tokens/) for more in-depth instructions.
+Check the specific [themed components page](/joy-ui/customization/themed-components/) for more in-depth instructions.
 :::
 
 Here is an example of customizing the Button's default `fontWeight` and `boxShadow`:

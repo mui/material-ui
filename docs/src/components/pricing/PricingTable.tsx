@@ -339,19 +339,25 @@ const rowHeaders: Record<string, React.ReactNode> = {
   'MUI Base': (
     <ColumnHead
       label="MUI Base"
-      tooltip="Unstyled components and react hooks available in @mui/base."
+      tooltip="A library of headless ('unstyled') React UI components and low-level hooks, available in @mui/base."
     />
   ),
   'MUI System': (
     <ColumnHead
       label="MUI System"
-      tooltip="CSS utilities for rapidly laying out custom designs available in @mui/system."
+      tooltip="CSS utilities for rapidly laying out custom designs, available in @mui/system."
     />
   ),
   'Material UI': (
     <ColumnHead
       label="Material UI"
-      tooltip="Core components following Material Design available in @mui/material."
+      tooltip="A library of React UI components that implements Google's Material Design, available in @mui/material."
+    />
+  ),
+  'Joy UI': (
+    <ColumnHead
+      label="Joy UI"
+      tooltip="A library of beautifully designed React UI components, available in @mui/joy."
     />
   ),
   // Advanced
@@ -561,6 +567,7 @@ const communityData: Record<string, React.ReactNode> = {
   'MUI Base': yes,
   'MUI System': yes,
   'Material UI': yes,
+  'Joy UI': yes,
   // MUI X
   'data-grid/column-groups': pending,
   'data-grid/column-spanning': yes,
@@ -617,6 +624,7 @@ const proData: Record<string, React.ReactNode> = {
   'MUI Base': yes,
   'MUI System': yes,
   'Material UI': yes,
+  'Joy UI': yes,
   // MUI X
   'data-grid/column-groups': pending,
   'data-grid/column-spanning': yes,
@@ -673,6 +681,7 @@ const premiumData: Record<string, React.ReactNode> = {
   'MUI Base': yes,
   'MUI System': yes,
   'Material UI': yes,
+  'Joy UI': yes,
   // MUI X
   'data-grid/column-groups': pending,
   'data-grid/column-spanning': yes,
@@ -949,6 +958,8 @@ export default function PricingTable({
         MUI Core (open-source)
       </RowHead>
       {renderRow('Material UI')}
+      {divider}
+      {renderRow('Joy UI')}
       {divider}
       {renderRow('MUI Base')}
       {divider}
