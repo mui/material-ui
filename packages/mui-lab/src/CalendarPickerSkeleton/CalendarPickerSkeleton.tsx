@@ -34,10 +34,11 @@ type CalendarPickerSkeletonComponent = ((
  */
 const CalendarPickerSkeleton = React.forwardRef(function DeprecatedCalendarPickerSkeleton(
   props: CalendarPickerSkeletonProps,
+  ref: React.Ref<any>,
 ) {
   warn();
 
-  return <XCalendarPickerSkeleton {...props} />;
+  return <XCalendarPickerSkeleton ref={ref} {...props} />;
 }) as CalendarPickerSkeletonComponent;
 
 CalendarPickerSkeleton.propTypes /* remove-proptypes */ = {

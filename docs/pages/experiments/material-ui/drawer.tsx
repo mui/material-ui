@@ -1,5 +1,4 @@
 import * as React from 'react';
-
 import Moon from '@mui/icons-material/DarkMode';
 import Sun from '@mui/icons-material/LightMode';
 import MailIcon from '@mui/icons-material/Mail';
