@@ -2,7 +2,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import throttle from 'lodash/throttle';
-import { styled, useTheme } from '@mui/material/styles';
+import { styled, useTheme, alpha } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import NoSsr from '@mui/material/NoSsr';
@@ -118,7 +118,7 @@ function flatten(headings) {
 const shouldShowJobAd = () => {
   const date = new Date();
   const timeZoneOffset = date.getTimezoneOffset();
-  // Hide for time zones UT+5.5 - UTC+14 & UTC-8 - UTC-12 
+  // Hide for time zones UT+5.5 - UTC+14 & UTC-8 - UTC-12
   if (timeZoneOffset <= -5.5 * 60 || timeZoneOffset >= 8 * 60) {
     return false;
   }
@@ -221,35 +221,49 @@ export default function AppTableOfContents(props) {
           <Link
             href="/careers/"
             underline="none"
-            sx={{
-              color: 'text.secondary',
-              overflow: 'hidden',
-              p: 1,
-              display: 'block',
-              '& img': {
-                display: 'block',
-              },
+            sx={(theme) => ({
+              mb: 2,
+              display: 'flex',
+              flexDirection: 'column',
+              overflow: 'auto',
+              backgroundColor:
+                theme.palette.mode === 'dark'
+                  ? alpha(theme.palette.primary[900], 0.2)
+                  : alpha(theme.palette.grey[50], 0.4),
               border: '1px solid',
-              borderRadius: 1,
               borderColor:
                 theme.palette.mode === 'dark'
                   ? theme.palette.primaryDark[700]
                   : theme.palette.grey[200],
-              fontSize: '0.9rem',
-            }}
+              borderRadius: 1,
+              transitionProperty: 'all',
+              transitionTiming: 'cubic-bezier(0.4, 0, 0.2, 1)',
+              transitionDuration: '150ms',
+              '&:hover, &:focus-visible': {
+                borderColor:
+                  theme.palette.mode === 'dark'
+                    ? theme.palette.primaryDark[500]
+                    : theme.palette.primary[200],
+              },
+            })}
           >
-            <img
-              src={`/static/hiring-toc-${theme.palette.mode}.png`}
-              alt=""
-              loading="lazy"
-              width={175}
-              height={119}
-            />
-            {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
-            {"We're hiring a React engineer and more roles."}
-            {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
-            <Box component="span" sx={{ display: 'block', mt: 0.5 }}>
-              Learn more &rarr;
+            <Box sx={{ p: 1 }}>
+              <Typography component="span" variant="button" fontWeight="500" color="text.primary">
+                {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
+                {'🚀  Join the MUI team!'}
+                {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
+              </Typography>
+              <Typography
+                component="span"
+                variant="caption"
+                fontWeight="normal"
+                color="text.secondary"
+                sx={{ mt: 0.5 }}
+              >
+                {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
+                {"We're hiring a React Engineer and more amazing roles－come find out more!"}
+                {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
+              </Typography>
             </Box>
           </Link>
         )}
