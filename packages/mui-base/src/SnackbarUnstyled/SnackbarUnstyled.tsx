@@ -1,4 +1,5 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_useEventCallback as useEventCallback } from '@mui/utils';
 import ClickAwayListener from '../ClickAwayListener';
@@ -199,5 +200,98 @@ const SnackbarUnstyled = React.forwardRef(function SnackbarUnstyled(
     </ClickAwayListener>
   );
 });
+
+SnackbarUnstyled.propTypes /* remove-proptypes */ = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit TypeScript types and run "yarn proptypes"  |
+  // ----------------------------------------------------------------------
+  /**
+   * The number of milliseconds to wait before automatically calling the
+   * `onClose` function. `onClose` should then set the state of the `open`
+   * prop to hide the Snackbar. This behavior is disabled by default with
+   * the `null` value.
+   * @default null
+   */
+  autoHideDuration: PropTypes.number,
+  /**
+   * @ignore
+   */
+  children: PropTypes.element,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
+   * Props applied to the `ClickAwayListener` element.
+   */
+  ClickAwayListenerProps: PropTypes.object,
+  /**
+   * The component used for the Root slot.
+   * Either a string to use a HTML element or a component.
+   * This is equivalent to `components.Root`. If both are provided, the `component` is used.
+   */
+  component: PropTypes.elementType,
+  /**
+   * The components used for each slot inside the Snackbar.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  components: PropTypes.shape({
+    Root: PropTypes.elementType,
+    Transition: PropTypes.elementType,
+  }),
+  /**
+   * The props used for each slot inside the Snackbar.
+   * @default {}
+   */
+  componentsProps: PropTypes.shape({
+    root: PropTypes.object,
+    transition: PropTypes.object,
+  }),
+  /**
+   * If `true`, the `autoHideDuration` timer will expire even if the window is not focused.
+   * @default false
+   */
+  disableWindowBlurListener: PropTypes.bool,
+  /**
+   * @ignore
+   */
+  onBlur: PropTypes.func,
+  /**
+   * Callback fired when the component requests to be closed.
+   * Typically `onClose` is used to set state in the parent component,
+   * which is used to control the `Snackbar` `open` prop.
+   * The `reason` parameter can optionally be used to control the response to `onClose`,
+   * for example ignoring `clickaway`.
+   *
+   * @param {React.SyntheticEvent<any> | Event} event The event source of the callback.
+   * @param {string} reason Can be: `"timeout"` (`autoHideDuration` expired), `"clickaway"`, or `"escapeKeyDown"`.
+   */
+  onClose: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onFocus: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onMouseEnter: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onMouseLeave: PropTypes.func,
+  /**
+   * If `true`, the component is shown.
+   */
+  open: PropTypes.bool,
+  /**
+   * The number of milliseconds to wait before dismissing after user interaction.
+   * If `autoHideDuration` prop isn't specified, it does nothing.
+   * If `autoHideDuration` prop is specified but `resumeHideDuration` isn't,
+   * we default to `autoHideDuration / 2` ms.
+   */
+  resumeHideDuration: PropTypes.number,
+} as any;
 
 export default SnackbarUnstyled;
