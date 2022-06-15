@@ -14,7 +14,16 @@ const useUtilityClasses = () => {
 
   return composeClasses(slots, getSnackbarUnstyledUtilityClass, undefined);
 };
-
+/**
+ *
+ * Demos:
+ *
+ * - [Snackbar](https://mui.com/base/react-snackbar/)
+ *
+ * API:
+ *
+ * - [SnackbarUnstyled API](https://mui.com/base/api/snackbar-unstyled/)
+ */
 const SnackbarUnstyled = React.forwardRef(function SnackbarUnstyled(
   props: SnackbarUnstyledProps,
   ref: React.ForwardedRef<any>,

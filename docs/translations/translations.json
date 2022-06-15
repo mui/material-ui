@@ -207,6 +207,7 @@
     "/base/react-no-ssr": "No SSR",
     "/base/react-popper": "Popper",
     "/base/react-portal": "Portal",
+    "/base/react-snackbar": "Snackbar",
     "/base/react-textarea-autosize": "Textarea autosize",
     "/base/react-trap-focus": "Trap focus",
     "/material-ui/getting-started": "Getting started",

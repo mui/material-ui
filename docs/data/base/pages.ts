@@ -29,6 +29,16 @@ const pages = [
         ],
       },
       {
+        pathname: '/base/components/feedback',
+        subheader: 'feedback',
+        children: [
+          {
+            pathname: '/base/react-snackbar',
+            title: 'Snackbar',
+          },
+        ],
+      },
+      {
         pathname: '/base/components/navigation',
         subheader: 'navigation',
         children: [

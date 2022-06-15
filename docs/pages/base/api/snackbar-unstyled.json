@@ -1,0 +1,30 @@
+{
+  "props": {
+    "autoHideDuration": { "type": { "name": "number" }, "default": "null" },
+    "ClickAwayListenerProps": { "type": { "name": "object" } },
+    "component": { "type": { "name": "elementType" } },
+    "components": {
+      "type": {
+        "name": "shape",
+        "description": "{ Root?: elementType, Transition?: elementType }"
+      },
+      "default": "{}"
+    },
+    "componentsProps": {
+      "type": { "name": "shape", "description": "{ root?: object, transition?: object }" },
+      "default": "{}"
+    },
+    "disableWindowBlurListener": { "type": { "name": "bool" } },
+    "onClose": { "type": { "name": "func" } },
+    "open": { "type": { "name": "bool" } },
+    "resumeHideDuration": { "type": { "name": "number" } }
+  },
+  "name": "SnackbarUnstyled",
+  "styles": { "classes": [], "globalClasses": {}, "name": null },
+  "spread": true,
+  "forwardsRefTo": "HTMLDivElement",
+  "filename": "/packages/mui-base/src/SnackbarUnstyled/SnackbarUnstyled.tsx",
+  "inheritance": null,
+  "demos": "<ul><li><a href=\"/base/react-snackbar/\">Snackbar</a></li></ul>",
+  "cssComponent": false
+}
