@@ -24,6 +24,3 @@ import * as React from 'react';
 
 // @ts-expect-error there is no color `secondary`
 <Sheet color="secondary" />;
-
-// @ts-expect-error there is no elevation `xl2`
-<Sheet elevation="xl2" />;
