@@ -9,19 +9,27 @@ packageName: '@mui/base'
 
 # Unstyled switch
 
-<p class="description">The SwitchUnstyled component provides users with a switch for toggling between two mutually exclusive states.</p>
+<p class="description">Switches are UI elements that let users choose between two states—most commonly on/off.</p>
 
-Switches are UI elements that let users choose between two states—most commonly on/off.
+## Introduction
+
+The `SwitchUnstyled` component provides users with a switch for toggling between two mutually exclusive states.
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
-## SwitchUnstyled
+## Component
+
+### Anatomy
+
+After [installation](/base/getting-started/installation/), you can start building with this component using the following basic elements:
 
 ```jsx
 import SwitchUnstyled from '@mui/base/SwitchUnstyled';
+
+<SwitchUnstyled />
 ```
 
-## Basic switch
+### Basic usage
 
 The `SwitchUnstyled` component is composed of a root `<span>` that houses three interior elements—a track, a thumb, and an input—and it assigns CSS classes for styling each piece:
 
@@ -45,13 +53,15 @@ The following demo shows how to assign styles and props to the interior elements
 
 To make the `SwitchUnstyled` component accessible, you should ensure that the corresponding labels reflect the current state of the switch.
 
-## The useSwitch hook
+## Hook
 
 ```js
 import { useSwitch } from '@mui/base/SwitchUnstyled';
 ```
 
 The `useSwitch` hook lets you use the functionality of `SwitchUnstyled` in other components.
+This hook gives you the most customization options, but requires more work to implement.
+Using the hook allows you to take full control over the rendered components, their props and CSS classes.
 
 It accepts the same options as the `SwitchUnstyled` component, aside from the `component`, `components`, and `componentsProps` props.
 
