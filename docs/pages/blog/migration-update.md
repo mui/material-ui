@@ -38,6 +38,8 @@ This offers significant advancements in performance when it comes to dynamic sty
 Emotion unlocks many new customization options that developers had been requesting for years, such as custom style utility props, color variants, and custom theme variants.
 Check out [this RFC on GitHub](https://github.com/mui/material-ui/issues/22342) for details about this change.
 
+![Screenshot of the new style engine GitHub issue in Material UI's repository](/static/blog/migration-update/style-engine.png)
+
 ### 3. Better customization tools
 
 Material UI v5 introduces the `sx` prop, which opens up a whole new realm of possibility for applying custom styles.
