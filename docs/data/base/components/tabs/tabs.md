@@ -44,6 +44,8 @@ import TabsUnstyled from '@mui/base/TabsUnstyled';
 </TabsUnstyled>;
 ```
 
+### Basic usage
+
 By default, tabs and their corresponding panels are **zero-indexed** (i.e. the first tab has a `value` of `0`, then `1`, `2`, etc.). Clicking on a given tab opens the panel with the same `value`, which corresponds to the order in which each component is nested within its container.
 
 Though not required, you can add the `value` prop to `TabUnstyled` and `TabPanelUnstyled` to take control over how these components are associated with one another.

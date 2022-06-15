@@ -17,11 +17,6 @@ It typically sits on or near an element and indicates the status of that element
 
 The `BadgeUnstyled` component creates a badge that is applied to its child element.
 
-### Features
-
-- 👻 Toggle visibility with the `invisible` prop
-- #️⃣ Set maximum and minimum values when `badgeContent` is a number
-
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Component
