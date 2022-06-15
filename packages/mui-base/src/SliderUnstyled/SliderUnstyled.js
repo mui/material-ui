@@ -100,7 +100,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
     active,
     axis,
     range,
-    focusVisible,
+    focusedThumbIndex,
     dragging,
     marks,
     values,
@@ -110,7 +110,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
 
   ownerState.marked = marks.length > 0 && marks.some((mark) => mark.label);
   ownerState.dragging = dragging;
-  ownerState.focusVisible = focusVisible;
+  ownerState.focusedThumbIndex = focusedThumbIndex;
 
   const classes = useUtilityClasses(ownerState);
 
@@ -268,7 +268,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
                 {...thumbProps}
                 className={clsx(classes.thumb, thumbProps.className, {
                   [classes.active]: active === index,
-                  [classes.focusVisible]: focusVisible === index,
+                  [classes.focusVisible]: focusedThumbIndex === index,
                 })}
                 style={{
                   ...style,

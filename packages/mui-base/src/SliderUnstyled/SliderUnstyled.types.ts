@@ -12,7 +12,7 @@ import {
 
 export type SliderUnstyledOwnerState = SliderUnstyledProps & {
   disabled: boolean;
-  focusVisible: boolean;
+  focusedThumbIndex: number;
   isRtl: boolean;
   mark: boolean | Mark[];
   max: number;
