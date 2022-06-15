@@ -6,6 +6,7 @@ const isRunningOnWindows = process.platform === 'win32';
 
 describe('@mui/envinfo', () => {
   const packagePath = __dirname;
+
   before(function beforeHook() {
     // only run in node
     if (!/jsdom/.test(window.navigator.userAgent)) {
@@ -20,7 +21,7 @@ describe('@mui/envinfo', () => {
     });
   });
 
-  function execEnvinfo(args) {
+  function execEnvinfo(args = []) {
     const buildPath = path.resolve(packagePath, 'build');
     return execFileSync(
       isRunningOnWindows ? 'npx.cmd' : 'npx',
@@ -36,8 +37,9 @@ describe('@mui/envinfo', () => {
     // Need more time to download packages
     this.timeout(10000);
 
-    const envinfoJSON = execEnvinfo(['--json']);
+    const envinfoJSON = execEnvinfo(['--json', '--skipClipboard']);
 
+    // eslint-disable-next-line no-console
     const envinfo = JSON.parse(envinfoJSON);
 
     // chai doesn't have expect.any(String) like jest so we have to use what's available

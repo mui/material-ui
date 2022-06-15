@@ -4,6 +4,8 @@ const envinfo = require('envinfo');
 const clipboard = require('clipboardy');
 
 const json = process.argv.indexOf('--json') !== -1;
+const skipClipboard = process.argv.indexOf('--skipClipboard') !== -1;
+
 envinfo
   .run(
     {
@@ -36,7 +38,9 @@ envinfo
   .then((output) => {
     console.log(output);
 
-    // write to memory
-    console.log('\x1b[33m%s\x1b[0m', '\nOutput copied to clipboard');
-    clipboard.writeSync(output);
+    if (!skipClipboard) {
+      // write to memory
+      console.log('\x1b[33m%s\x1b[0m', '\nOutput copied to clipboard');
+      clipboard.writeSync(output);
+    }
   });
