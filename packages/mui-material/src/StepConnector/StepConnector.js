@@ -66,7 +66,7 @@ const StepConnectorLine = styled('span', {
     theme.palette.mode === 'light' ? theme.palette.grey[400] : theme.palette.grey[600];
   return {
     display: 'block',
-    borderColor: theme.vars ? theme.vars.palette.StepConnector?.borderColor : borderColor,
+    borderColor: theme.vars ? theme.vars.palette.StepConnector.border : borderColor,
     ...(ownerState.orientation === 'horizontal' && {
       borderTopStyle: 'solid',
       borderTopWidth: 1,

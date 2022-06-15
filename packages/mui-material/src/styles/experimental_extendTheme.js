@@ -114,8 +114,8 @@ export default function extendTheme(options = {}, ...args) {
       setColor(palette.Slider, 'successTrack', lighten(palette.success.main, 0.62));
       setColor(palette.Slider, 'warningTrack', lighten(palette.warning.main, 0.62));
       setColor(palette.SnackbarContent, 'bg', emphasize(palette.background.default, 0.8));
-      setColor(palette.StepConnector, 'borderColor', 'var(--md-palette-grey-400)');
-      setColor(palette.StepContent, 'borderColor', 'var(--md-palette-grey-400)');
+      setColor(palette.StepConnector, 'border', 'var(--md-palette-grey-400)');
+      setColor(palette.StepContent, 'border', 'var(--md-palette-grey-400)');
       setColor(palette.Switch, 'defaultColor', 'var(--md-palette-common-white)');
       setColor(palette.Switch, 'defaultDisabledColor', 'var(--md-palette-grey-100)');
       setColor(palette.Switch, 'primaryDisabledColor', lighten(palette.primary.main, 0.62));
@@ -149,8 +149,8 @@ export default function extendTheme(options = {}, ...args) {
       setColor(palette.Slider, 'warningTrack', darken(palette.warning.main, 0.5));
       setColor(palette.SnackbarContent, 'bg', emphasize(palette.background.default, 0.98));
       setColor(palette.AppBar, 'defaultBgColor', 'var(--md-palette-grey-900)');
-      setColor(palette.StepConnector, 'borderColor', 'var(--md-palette-grey-600)');
-      setColor(palette.StepContent, 'borderColor', 'var(--md-palette-grey-600)');
+      setColor(palette.StepConnector, 'border', 'var(--md-palette-grey-600)');
+      setColor(palette.StepContent, 'border', 'var(--md-palette-grey-600)');
       setColor(palette.Switch, 'defaultColor', 'var(--md-palette-grey-300)');
       setColor(palette.Switch, 'defaultDisabledColor', 'var(--md-palette-grey-600)');
       setColor(palette.Switch, 'primaryDisabledColor', darken(palette.primary.main, 0.55));
