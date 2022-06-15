@@ -3,7 +3,7 @@ import Head from 'next/head';
 import Avatar from '@mui/joy/Avatar';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
-import Checkbox from '@mui/joy/Checkbox';
+import Checkbox, { checkboxClasses } from '@mui/joy/Checkbox';
 import List from '@mui/joy/List';
 import ListItem from '@mui/joy/ListItem';
 import Sheet from '@mui/joy/Sheet';
@@ -322,7 +322,7 @@ export default function JoyCheckbox() {
               <List
                 sx={(theme) => ({
                   '--List-item-radius': '4px',
-                  '& .MuiCheckbox-root': {
+                  [`& .${checkboxClasses.root}`]: {
                     mr: 'auto',
                     alignItems: 'center',
                     '--Checkbox-gap': '12px',

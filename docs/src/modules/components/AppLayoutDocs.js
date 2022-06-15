@@ -109,7 +109,6 @@ function AppLayoutDocs(props) {
           ':root': {
             '--MuiDocs-navDrawer-width': '300px',
             '--MuiDocs-toc-width': '240px',
-            '--MuiDocs-header-height': '64px',
           },
         }}
       />

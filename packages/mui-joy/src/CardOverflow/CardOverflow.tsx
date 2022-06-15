@@ -27,7 +27,13 @@ const CardOverflowRoot = styled('div', {
   name: 'JoyCardOverflow',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: CardOverflowProps & { row: boolean } }>(({ theme, ownerState }) => {
+})<{
+  ownerState: CardOverflowProps & {
+    row: boolean;
+    'data-first-child'?: string;
+    'data-last-child'?: string;
+  };
+}>(({ theme, ownerState }) => {
   const childRadius = 'calc(var(--CardOverflow-radius) - var(--variant-borderWidth))';
   return [
     ownerState.row
@@ -39,18 +45,18 @@ const CardOverflowRoot = styled('div', {
           borderRadius: 'var(--CardOverflow-radius)',
           position: 'relative',
           // use data-attribute instead of :first-child, :last-child to support zero config SSR (emotion)
-          '&[data-first-child]': {
+          ...(ownerState['data-first-child'] !== undefined && {
             '--AspectRatio-radius': `${childRadius} 0 0 ${childRadius}`,
             borderTopRightRadius: 0,
             borderBottomRightRadius: 0,
             marginLeft: 'var(--CardOverflow-offset)',
-          },
-          '&[data-last-child]': {
+          }),
+          ...(ownerState['data-last-child'] !== undefined && {
             '--AspectRatio-radius': `0 ${childRadius} ${childRadius} 0`,
             borderTopLeftRadius: 0,
             borderBottomLeftRadius: 0,
             marginRight: 'var(--CardOverflow-offset)',
-          },
+          }),
         }
       : {
           '--AspectRatio-margin': '0px calc(-1 * var(--Card-padding))',
@@ -60,18 +66,18 @@ const CardOverflowRoot = styled('div', {
           borderRadius: 'var(--CardOverflow-radius)',
           position: 'relative',
           // use data-attribute instead of :first-child, :last-child to support zero config SSR (emotion)
-          '&[data-first-child]': {
+          ...(ownerState['data-first-child'] !== undefined && {
             '--AspectRatio-radius': `${childRadius} ${childRadius} 0 0`,
             borderBottomLeftRadius: 0,
             borderBottomRightRadius: 0,
             marginTop: 'var(--CardOverflow-offset)',
-          },
-          '&[data-last-child]': {
+          }),
+          ...(ownerState['data-last-child'] !== undefined && {
             '--AspectRatio-radius': `0 0 ${childRadius} ${childRadius}`,
             borderTopLeftRadius: 0,
             borderTopRightRadius: 0,
             marginBottom: 'var(--CardOverflow-offset)',
-          },
+          }),
         },
     theme.variants[ownerState.variant!]?.[ownerState.color!],
   ];

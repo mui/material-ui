@@ -78,17 +78,17 @@ MUI Core has been open-source ([MIT](https://tldrlegal.com/license/mit-license))
 Developers can ensure MUI is the right choice for their React applications through MUI's community maintenance strategy.
 The MUI team regularly ships new releases, bug fixes, and is very welcoming to community pull requests.
 
-Given the reality of time and resource constraints, as well as the desire to keep innovating, over time it becomes necessary to shift focus to newer versions of the framework ([our release schedule](#release-frequency)), while making the transition to newer versions as smooth as possible, including publishing migration guides such as [this one for v5](/material-ui/guides/migration-v4/).
+Given the reality of time and resource constraints, as well as the desire to keep innovating, over time it becomes necessary to shift focus to newer versions of the framework ([our release schedule](#release-frequency)), while making the transition to newer versions as smooth as possible, including publishing migration guides such as [this one for v5](/material-ui/migration/migration-v4/).
 The open-source community is always welcome to submit new features and bug fixes as well.
 
 The current status of each MUI version is as follows:
 
 - MUI Core v5: ✅ Active development and continuous support.
-- [MUI Core v4](https://v4.mui.com/): ⚠️ Guaranteed Support (only) for security issues and regressions.
-- [MUI Core v3](https://v3.mui.com/): 🅧 No longer supported.
-- ~MUI Core v2 (never existed)~.
-- [MUI Core v1](https://v1.mui.com/): 🅧 No longer supported.
-- [MUI Core v0.x](https://v0.mui.com/#/): 🅧 No longer supported.
+- [Material UI v4](https://v4.mui.com/): ⚠️ Guaranteed Support for security issues and regressions.
+- [Material UI v3](https://v3.mui.com/): 🅧 No longer supported.
+- Material UI v2: 🅧 Never existed.
+- [Material UI v1](https://v1.mui.com/): 🅧 No longer supported.
+- [Material UI v0.x](https://v0.mui.com/#/): 🅧 No longer supported.
 
 For teams and organizations that require additional support for older versions, MUI has [options available](/material-ui/getting-started/support/#professional-support-premium).
 

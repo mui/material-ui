@@ -114,7 +114,7 @@ export default function createStyled(input = {}) {
     const muiStyledResolver = (styleArg, ...expressions) => {
       const expressionsWithDefaultTheme = expressions
         ? expressions.map((stylesArg) => {
-            // On the server emotion doesn't use React.forwardRef for creating components, so the created
+            // On the server Emotion doesn't use React.forwardRef for creating components, so the created
             // component stays as a function. This condition makes sure that we do not interpolate functions
             // which are basically components used as a selectors.
             // eslint-disable-next-line no-underscore-dangle
@@ -177,7 +177,7 @@ export default function createStyled(input = {}) {
         transformedStyleArg.raw = [...styleArg.raw, ...placeholders];
       } else if (
         typeof styleArg === 'function' &&
-        // On the server emotion doesn't use React.forwardRef for creating components, so the created
+        // On the server Emotion doesn't use React.forwardRef for creating components, so the created
         // component stays as a function. This condition makes sure that we do not interpolate functions
         // which are basically components used as a selectors.
         // eslint-disable-next-line no-underscore-dangle

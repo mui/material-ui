@@ -71,6 +71,8 @@ const sliderClasses: SliderClasses = generateUtilityClasses('JoySlider', [
   'markActive',
   'markLabel',
   'thumb',
+  'thumbStart',
+  'thumbEnd',
   'valueLabel',
   'valueLabelOpen',
   'colorPrimary',

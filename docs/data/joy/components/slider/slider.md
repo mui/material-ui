@@ -11,7 +11,7 @@ unstyled: /base/react-slider/
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-{{"demo": "SliderUsage.js"}}
+{{"demo": "SliderUsage.js", "hideToolbar": true}}
 
 ## Steps
 
@@ -30,6 +30,12 @@ By providing an array of objects to the `marks` prop, you can have custom marks.
 You can force the thumb label to be always visible with `valueLabelDisplay="on"`.
 
 {{"demo": "AlwaysVisibleLabelSlider.js"}}
+
+### Keep label at edges
+
+For horizontal slider on mobile viewports, the value label might be offset from the track. Apply the style to keep the label at the start/end edges:
+
+{{"demo": "EdgeLabelSlider.js"}}
 
 ## Range slider
 
@@ -55,4 +61,4 @@ The track can be inverted with `track="inverted"`.
 
 ## Component variables
 
-{{"demo": "SliderVariables.js"}}
+{{"demo": "SliderVariables.js", "hideToolbar": true}}

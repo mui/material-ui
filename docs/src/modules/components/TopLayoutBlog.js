@@ -97,7 +97,7 @@ const styles = ({ theme }) => ({
     theme.palette.mode === 'dark'
       ? `linear-gradient(180deg, ${theme.palette.primaryDark[900]} 0%, #001E3C 100%)`
       : `linear-gradient(180deg, ${theme.palette.grey[50]} 0%, #FFFFFF 100%)`,
-  backgroundSize: 'auto 250px ',
+  backgroundSize: '100% 300px',
   backgroundRepeat: 'no-repeat',
   [`& .${classes.back}`]: {
     display: 'flex',
@@ -161,7 +161,7 @@ const styles = ({ theme }) => ({
     },
     '& .blog-description': {
       fontSize: theme.typography.pxToRem(13),
-      textAlign: 'center',
+      textAlign: 'left',
       color: theme.palette.grey[600],
       '& a': {
         color:

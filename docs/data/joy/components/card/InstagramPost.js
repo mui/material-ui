@@ -79,7 +79,7 @@ export default function InstagramPost() {
                 borderRadius: '50%',
                 width: `max(${6 - index}px, 3px)`,
                 height: `max(${6 - index}px, 3px)`,
-                bgcolor: index === 0 ? 'primary.solidBg' : 'neutral.softBg',
+                bgcolor: index === 0 ? 'primary.solidBg' : 'background.level3',
               }}
             />
           ))}
@@ -90,11 +90,22 @@ export default function InstagramPost() {
           </IconButton>
         </Box>
       </Box>
-      <Link component="button" color="neutral" fontSize="sm" fontWeight="lg">
+      <Link
+        component="button"
+        underline="none"
+        fontSize="sm"
+        fontWeight="lg"
+        textColor="text.primary"
+      >
         8.1M Likes
       </Link>
       <Typography fontSize="sm">
-        <Link component="button" color="neutral" fontWeight="lg">
+        <Link
+          component="button"
+          color="neutral"
+          fontWeight="lg"
+          textColor="text.primary"
+        >
           MUI
         </Link>{' '}
         The React component library you always wanted
