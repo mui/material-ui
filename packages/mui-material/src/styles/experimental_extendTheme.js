@@ -42,7 +42,7 @@ export default function extendTheme(options = {}, ...args) {
         ...colorSchemesInput.light,
         palette: lightPalette,
         opacity: {
-          placeholder: 0.42,
+          inputPlaceholder: 0.42,
           inputTouchBottomLine: 0.42,
           switchTrackDisabled: 0.12,
           switchTrack: 0.38,
@@ -54,7 +54,7 @@ export default function extendTheme(options = {}, ...args) {
         ...colorSchemesInput.dark,
         palette: darkPalette,
         opacity: {
-          placeholder: 0.5,
+          inputPlaceholder: 0.5,
           inputTouchBottomLine: 0.7,
           switchTrackDisabled: 0.2,
           switchTrack: 0.3,
