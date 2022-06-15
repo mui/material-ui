@@ -79,7 +79,7 @@ export default function InstagramPost() {
                 borderRadius: '50%',
                 width: `max(${6 - index}px, 3px)`,
                 height: `max(${6 - index}px, 3px)`,
-                bgcolor: index === 0 ? 'primary.solidBg' : 'neutral.softBg',
+                bgcolor: index === 0 ? 'primary.solidBg' : 'background.level3',
               }}
             />
           ))}

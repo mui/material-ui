@@ -8,7 +8,6 @@ The following code snippet demonstrates a simple app that uses the MUI Base [`Bu
 
 ```jsx
 import * as React from 'react';
-import ReactDOM from 'react-dom';
 import ButtonUnstyled from '@mui/base/ButtonUnstyled';
 
 function App() {
