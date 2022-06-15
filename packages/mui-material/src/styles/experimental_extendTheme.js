@@ -125,7 +125,7 @@ export default function extendTheme(options = {}, ...args) {
       setColor(palette.Switch, 'successDisabledColor', lighten(palette.success.main, 0.62));
       setColor(palette.Switch, 'warningDisabledColor', lighten(palette.warning.main, 0.62));
       setColor(palette.TableCell, 'border', lighten(alpha(palette.divider, 1), 0.88));
-      setColor(palette.Tooltip, 'bgColor', alpha(palette.grey[700], 0.92));
+      setColor(palette.Tooltip, 'bg', alpha(palette.grey[700], 0.92));
     } else {
       setColor(palette.AppBar, 'defaultBg', 'var(--md-palette-grey-900)');
       setColor(palette.Chip, 'defaultBorder', 'var(--md-palette-grey-700)');
@@ -159,7 +159,7 @@ export default function extendTheme(options = {}, ...args) {
       setColor(palette.Switch, 'successDisabledColor', darken(palette.success.main, 0.55));
       setColor(palette.Switch, 'warningDisabledColor', darken(palette.warning.main, 0.55));
       setColor(palette.TableCell, 'border', darken(alpha(palette.divider, 1), 0.68));
-      setColor(palette.Tooltip, 'bgColor', alpha(palette.grey[700], 0.92));
+      setColor(palette.Tooltip, 'bg', alpha(palette.grey[700], 0.92));
     }
 
     palette.common.backgroundChannel = colorChannel(palette.common.background);
