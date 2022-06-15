@@ -2,7 +2,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import throttle from 'lodash/throttle';
-import { styled, useTheme, alpha } from '@mui/material/styles';
+import { styled, alpha } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import NoSsr from '@mui/material/NoSsr';
@@ -128,7 +128,6 @@ const shouldShowJobAd = () => {
 export default function AppTableOfContents(props) {
   const { toc } = props;
   const t = useTranslate();
-  const theme = useTheme();
   const showAddJob = shouldShowJobAd();
 
   const items = React.useMemo(() => flatten(toc), [toc]);
@@ -249,9 +248,7 @@ export default function AppTableOfContents(props) {
           >
             <Box sx={{ p: 1 }}>
               <Typography component="span" variant="button" fontWeight="500" color="text.primary">
-                {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
-                {'🚀  Join the MUI team!'}
-                {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
+                {'🚀 Join the MUI team!'}
               </Typography>
               <Typography
                 component="span"
@@ -262,7 +259,6 @@ export default function AppTableOfContents(props) {
               >
                 {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
                 {"We're looking for React Engineers and other amazing roles－come find out more!"}
-                {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
               </Typography>
             </Box>
           </Link>
