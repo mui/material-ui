@@ -80,4 +80,4 @@ The default is 99.
 Screen readers may not provide users with enough information about a badge's contents.
 To make your badge accessible, you must provide a full description with `aria-label`, as shown in the demo below:
 
-{{"demo": "AccessibleBadges.js", "defaultCodeOpen": false}}
+{{"demo": "AccessibleBadges.js"}}
