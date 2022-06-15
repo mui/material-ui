@@ -66,5 +66,5 @@ const CustomInput = React.forwardRef(function CustomInput(
 });
 
 export default function UseInput() {
-  return <CustomInput aria-label="Demo input" placeholder="Type something..." />;
+  return <CustomInput aria-label="Demo input" placeholder="Type something…" />;
 }

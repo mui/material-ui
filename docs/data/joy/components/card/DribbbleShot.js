@@ -31,10 +31,10 @@ export default function DribbbleShot() {
               height="247"
               sizes="338px"
               data-sizes="auto"
-              data-srcset="https://images.unsplash.com/photo-1515825838458-f2a94b20105a?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=988"
-              data-src="https://images.unsplash.com/photo-1515825838458-f2a94b20105a?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=988"
-              src="https://images.unsplash.com/photo-1515825838458-f2a94b20105a?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=988"
-              srcSet="https://images.unsplash.com/photo-1515825838458-f2a94b20105a?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=988"
+              data-srcset="https://images.unsplash.com/photo-1515825838458-f2a94b20105a?crop=entropy&auto=format&fit=crop&w=988"
+              data-src="https://images.unsplash.com/photo-1515825838458-f2a94b20105a?crop=entropy&auto=format&fit=crop&w=988"
+              src="https://images.unsplash.com/photo-1515825838458-f2a94b20105a?crop=entropy&auto=format&fit=crop&w=988"
+              srcSet="https://images.unsplash.com/photo-1515825838458-f2a94b20105a?crop=entropy&auto=format&fit=crop&w=988"
             />
           </figure>
         </AspectRatio>

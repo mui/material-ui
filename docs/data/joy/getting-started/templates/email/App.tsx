@@ -23,7 +23,7 @@ import Menu from './components/Menu';
 import Layout from './components/Layout';
 import Navigation from './components/Navigation';
 import Mails from './components/Mails';
-import MailContent from './components/MailContent';
+import EmailContent from './components/EmailContent';
 
 const ColorSchemeToggle = () => {
   const { mode, setMode } = useColorScheme();
@@ -102,11 +102,13 @@ export default function EmailExample() {
             >
               <MailRoundedIcon />
             </IconButton>
-            <Typography fontWeight={700}>Email</Typography>
+            <Typography component="h1" fontWeight="xl">
+              Email
+            </Typography>
           </Box>
           <TextField
             size="sm"
-            placeholder="Search anything..."
+            placeholder="Search anything…"
             startDecorator={<SearchRoundedIcon color="primary" />}
             endDecorator={
               <IconButton variant="outlined" size="sm" color="neutral">
@@ -246,7 +248,7 @@ export default function EmailExample() {
           <Mails />
         </Layout.SidePane>
         <Layout.Main>
-          <MailContent />
+          <EmailContent />
         </Layout.Main>
       </Layout.Root>
     </CssVarsProvider>
