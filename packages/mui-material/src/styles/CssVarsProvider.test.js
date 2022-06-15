@@ -199,7 +199,7 @@ describe('[Material UI] CssVarsProvider', () => {
 
       expect(screen.getByTestId('opacity').textContent).to.equal(
         JSON.stringify({
-          placeholder: 'var(--md-opacity-placeholder)',
+          inputPlaceholder: 'var(--md-opacity-inputPlaceholder)',
           inputTouchBottomLine: 'var(--md-opacity-inputTouchBottomLine)',
           switchTrackDisabled: 'var(--md-opacity-switchTrackDisabled)',
           switchTrack: 'var(--md-opacity-switchTrack)',
