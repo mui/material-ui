@@ -13,7 +13,7 @@ If you've used [Material UI](/material-ui/customization/theme-components/), you 
 - Use `defaultProps` to change the default props of the component.
 - Use `styleOverrides` to apply styles to each component slots. All Joy UI component contains the `root` slot.
 
-Check the [`components.d.ts`](https://github.com/mui/material-ui/blob/master/packages/mui-joy/src/styles/components.d.ts#L57) file to see every component identifier.
+Check the [`components.d.ts`](https://github.com/mui/material-ui/blob/master/packages/mui-joy/src/styles/components.d.ts#L58) file to see every component identifier.
 
 ```js
 import { CssVarsProvider, extendTheme } from '@mui/joy/styles';
