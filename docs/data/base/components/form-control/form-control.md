@@ -24,18 +24,18 @@ For instance, you may want to show an additional element asking the user to ente
 
 After [installation](/base/getting-started/installation/), you can start building with this component using the following basic elements:
 
-```js
+```jsx
 import FormControlUnstyled from '@mui/base/FormControlUnstyled';
 
 <FormControlUnstyled>
-  // <input /> and/or other contents of the form
+  {/* <input /> and/or other contents of the form */}
 </FormControlUnstyled>
 ```
 
 ### Basic usage
 
 The following demo shows how to create and style a form that uses `FormControlUnstyled` to wrap the elements of the form.
-Note that it also uses the `useFormControlUnstyledContext` hook in order to pass props to the custom `InputUnstyled`—see the [Hook section](#hook) below for more details. 
+Note that it also uses the `useFormControlUnstyledContext` hook in order to pass props to the custom `InputUnstyled`—see the [Hook section](#hook) below for more details.
 
 {{"demo": "BasicFormControl.js"}}
 

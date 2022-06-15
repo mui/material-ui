@@ -32,14 +32,14 @@ It also includes `OptionUnstyled` for creating the options on the list, and `Opt
 
 After [installation](/base/getting-started/installation/), you can start building with this component using the following basic elements:
 
-```js
+```jsx
 import SelectUnstyled from '@mui/base/SelectUnstyled';
 import OptionUnstyled from '@mui/base/OptionUnstyled';
 
 <SelectUnstyled>
   <OptionUnstyled>Option one</OptionUnstyled>
   <OptionUnstyled>Option two</OptionUnstyled>
-</SelectUnstyled>;
+</SelectUnstyled>
 ```
 
 ### Basic usage

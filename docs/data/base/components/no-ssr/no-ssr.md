@@ -29,10 +29,11 @@ This component can be useful in a variety of situations:
 
 After [installation](/base/getting-started/installation/), you can start building with this component using the following basic elements:
 
-```js
+```jsx
 import NoSsr from '@mui/base/NoSsr';
 
-<NoSsr>// the content to be rendered on the client side</NoSsr>;
+<NoSsr>
+  {/* some content to be rendered on the client side */}</NoSsr>
 ```
 
 ### Basic usage

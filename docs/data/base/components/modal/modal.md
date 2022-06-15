@@ -53,7 +53,9 @@ After [installation](/base/getting-started/installation/), you can start buildin
 ```js
 import ModalUnstyled from '@mui/base/ModalUnstyled';
 
-<ModalUnstyled>// the modal's content</ModalUnstyled>;
+<ModalUnstyled>
+  {/* the modal's content */}
+</ModalUnstyled>
 ```
 
 ### Basic usage

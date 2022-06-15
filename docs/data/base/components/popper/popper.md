@@ -16,11 +16,6 @@ packageName: '@mui/base'
 `PopperUnstyled` is a utility component for creating various kinds of popups.
 It relies on the third-party library ([Popper.js v2](https://popper.js.org/docs/v2/)) for positioning.
 
-### Features
-
-- 🕳 Can be used with or without the [`Portal`](/base/react-portal/) and [`ClickAwayListener`](/base/react-click-away-listener/) components
-- ▶️ Supports animated transitions
-
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Component
@@ -29,10 +24,12 @@ It relies on the third-party library ([Popper.js v2](https://popper.js.org/docs/
 
 After [installation](/base/getting-started/installation/), you can start building with this component using the following basic elements:
 
-```js
+```jsx
 import PopperUnstyled from '@mui/base/PopperUnstyled';
 
-<PopperUnstyled>// the popper's content</PopperUnstyled>;
+<PopperUnstyled>
+  {/* the popper's content */}
+</PopperUnstyled>
 ```
 
 ### Basic usage

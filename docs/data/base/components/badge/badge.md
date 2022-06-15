@@ -33,7 +33,9 @@ After [installation](/base/getting-started/installation/), you can start buildin
 ```js
 import BadgeUnstyled from '@mui/base/BadgeUnstyled';
 
-<BadgeUnstyled>// the element that the badge is attached to</BadgeUnstyled>;
+<BadgeUnstyled>
+  {/* the element that the badge is attached to */}
+</BadgeUnstyled>;
 ```
 
 ### Basic usage

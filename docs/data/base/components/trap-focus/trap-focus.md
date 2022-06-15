@@ -10,31 +10,52 @@ packageName: '@mui/base'
 
 <p class="description">The TrapFocus component prevents the user's focus from escaping its children components.</p>
 
+## Introduction
+
 `TrapFocus` is a utility component that is useful when implementing an overlay such as a [modal dialog](/base/react-modal/), which should block all interactions outside of it while open.
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
-## TrapFocus
+## Component
 
-```js
+### Anatomy
+
+After [installation](/base/getting-started/installation/), you can start building with this component using the following basic elements:
+
+```jsx
 import TrapFocus from '@mui/base/TrapFocus';
+
+<TrapFocus>
+  {/* children where the focus will be trapped */}
+</TrapFocus>
 ```
 
-## Basic trap focus
+### Basic usage
 
-The following demo shows a `Button` that opens a `Box` component nested inside of a `TrapFocus`. As long as the `Box` is open, the user's keyboard cannot interact with the rest of the app:
+The following demo shows a `<button>` that opens a [`Box`](/material-ui/react-box/) component nested inside of a `TrapFocus`. As long as the `Box` is open, the user's keyboard cannot interact with the rest of the app.
+Press the **Open** button and then use the <kbd class="key">Tab</kbd> key to move the focus—notice that it will not leave the `Box`:
 
 {{"demo": "BasicTrapFocus.js"}}
 
-## Disable enforced focus
+:::error
+Because the `TrapFocus` component blocks interaction with the rest of the app by default, the demo above also behaves this way.
+If you leave the `Box` open in the demo, you won't be able to click on other buttons in this document.
+Click **Close** in the demo to resolve this.
+
+The next section explains how to change this default behavior.
+:::
+
+### Disable enforced focus
 
 By default, clicks outside of the `TrapFocus` component are blocked.
 
-You can disable this behavior with the `disableEnforceFocus` prop:
+You can disable this behavior with the `disableEnforceFocus` prop.
+
+Compare the following demo with the demo from the [Basic trap focus section](#basic-trap-focus)—notice how that demo prevents you from clicking outside of it, while this one allows it:
 
 {{"demo": "DisableEnforceFocus.js"}}
 
-## Lazy activation
+### Lazy activation
 
 By default, the `TrapFocus` component automatically moves the focus to the first of its children when the `open` prop is present.
 
@@ -43,13 +64,9 @@ When auto focus is disabled—as in the demo below—the component only traps th
 
 {{"demo": "LazyTrapFocus.js"}}
 
-## Escape the focus loop
+### Escape the focus loop
 
 The following demo uses the [`Portal`](/base/react-portal/) component to render a subset of the `TrapFocus` children into a new "subtree" outside of the current DOM hierarchy.
 This way, they are no longer part of the focus loop.
 
 {{"demo": "PortalTrapFocus.js"}}
-
-## Component size
-
-- 📦 [2.0 kB gzipped](https://bundlephobia.com/package/@mui/base@latest)

@@ -27,10 +27,10 @@ The `InputUnstyled` component replaces the native HTML `<input>` tag, and can al
 
 After [installation](/base/getting-started/installation/), you can start building with this component using the following basic elements:
 
-```js
+```jsx
 import InputUnstyled from '@mui/base/InputUnstyled';
 
-<InputUnstyled />;
+<InputUnstyled />
 ```
 
 ### Basic usage
