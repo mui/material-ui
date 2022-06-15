@@ -184,7 +184,7 @@ const Text = styled('p')(({ theme }) => ({
 }));
 ```
 
-:::warning **Note:** Adding too many tokens will increase the stylesheet bundle size and add up maintenance costs for your project. To style components without introducing new tokens, check out the [one-off styling](/joy-ui/customization/one-off-styling/) page. :::
+:::warning **Note:** Adding too many tokens will increase the stylesheet bundle size and add up maintenance costs for your project. To style components without introducing new tokens, check out the [one-off styling](/joy-ui/customization/approaches/#one-off-customization) page. :::
 
 ## Global variant tokens
 
@@ -303,4 +303,4 @@ You can apply custom styles to each global variant via the `variants` node. They
 
 {{"demo": "CustomVariantStyle.js", "defaultCodeOpen": true}}
 
-:::warning Note that the custom styles will be applied to every component using the specific variant and color. If you want to apply styles for a specific set of components, use the [theme components](/joy-ui/customization/theme-components/) approach instead. :::
+:::warning Note that the custom styles will be applied to every component using the specific variant and color. If you want to apply styles for a specific set of components, use the [themed components](/joy-ui/customization/themed-components/) approach instead. :::
