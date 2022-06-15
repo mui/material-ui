@@ -27,6 +27,10 @@ This process is covered in [Migrating from JSS](/material-ui/migration/migrating
 Need to refer back to an older version of the docs? Check out [the v4 documentation here](https://v4.mui.com/).
 :::
 
+:::info
+If you are using Next.js and you are not sure how to configure SSR to work with both Emotion & JSS, take a look a this [example project](https://github.com/mui/material-ui/tree/master/examples/nextjs-with-typescript-v4-migration).
+:::
+
 ## Why you should migrate
 
 Material UI v5 includes many bug fixes and improvements over v4.
