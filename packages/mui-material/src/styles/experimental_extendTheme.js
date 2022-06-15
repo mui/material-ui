@@ -124,7 +124,7 @@ export default function extendTheme(options = {}, ...args) {
       setColor(palette.Switch, 'infoDisabledColor', lighten(palette.info.main, 0.62));
       setColor(palette.Switch, 'successDisabledColor', lighten(palette.success.main, 0.62));
       setColor(palette.Switch, 'warningDisabledColor', lighten(palette.warning.main, 0.62));
-      setColor(palette.TableCell, 'borderColor', lighten(alpha(palette.divider, 1), 0.88));
+      setColor(palette.TableCell, 'border', lighten(alpha(palette.divider, 1), 0.88));
       setColor(palette.Tooltip, 'bgColor', alpha(palette.grey[700], 0.92));
     } else {
       setColor(palette.AppBar, 'defaultBg', 'var(--md-palette-grey-900)');
@@ -148,7 +148,6 @@ export default function extendTheme(options = {}, ...args) {
       setColor(palette.Slider, 'successTrack', darken(palette.success.main, 0.5));
       setColor(palette.Slider, 'warningTrack', darken(palette.warning.main, 0.5));
       setColor(palette.SnackbarContent, 'bg', emphasize(palette.background.default, 0.98));
-      setColor(palette.AppBar, 'defaultBgColor', 'var(--md-palette-grey-900)');
       setColor(palette.StepConnector, 'border', 'var(--md-palette-grey-600)');
       setColor(palette.StepContent, 'border', 'var(--md-palette-grey-600)');
       setColor(palette.Switch, 'defaultColor', 'var(--md-palette-grey-300)');
@@ -159,7 +158,7 @@ export default function extendTheme(options = {}, ...args) {
       setColor(palette.Switch, 'infoDisabledColor', darken(palette.info.main, 0.55));
       setColor(palette.Switch, 'successDisabledColor', darken(palette.success.main, 0.55));
       setColor(palette.Switch, 'warningDisabledColor', darken(palette.warning.main, 0.55));
-      setColor(palette.TableCell, 'borderColor', darken(alpha(palette.divider, 1), 0.68));
+      setColor(palette.TableCell, 'border', darken(alpha(palette.divider, 1), 0.68));
       setColor(palette.Tooltip, 'bgColor', alpha(palette.grey[700], 0.92));
     }
 
