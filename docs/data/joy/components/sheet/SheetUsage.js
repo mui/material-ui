@@ -3,7 +3,6 @@ import BrandingProvider from 'docs/src/BrandingProvider';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import { styled } from '@mui/joy/styles';
 import Box from '@mui/joy/Box';
-import Chip from '@mui/joy/Chip';
 import Typography from '@mui/joy/Typography';
 import RadioGroup from '@mui/joy/RadioGroup';
 import Radio from '@mui/joy/Radio';
