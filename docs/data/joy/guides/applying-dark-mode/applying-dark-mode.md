@@ -1,4 +1,4 @@
-# Apply dark mode
+# Applying dark mode
 
 <p class="description">A how-to-guide for applying dark mode to your application with Joy UI.</p>
 
