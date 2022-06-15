@@ -25,9 +25,6 @@ export default function NestedList() {
         sx={{
           width: 200,
           borderRadius: 'sm',
-          '& li[data-last-child] li[data-last-child]': {
-            '--List-item-radius': '0px 0px var(--List-radius) var(--List-radius)',
-          },
         }}
       >
         <List>

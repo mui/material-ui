@@ -22,6 +22,7 @@ export default function ExampleGmailList() {
       <List
         aria-label="Sidebar"
         sx={{
+          // ...applyRadiusOnEdges({ target: 'deepest' | 'nested' }),
           '--List-item-paddingLeft': '0px',
           '--List-decorator-width': '64px',
           '--List-decorator-color': (theme) => theme.vars.palette.text.secondary,

@@ -9,7 +9,7 @@ import Info from '@mui/icons-material/Info';
 
 export default function ActionableList() {
   return (
-    <Sheet variant="outlined" sx={{ width: 240, borderRadius: 'sm' }}>
+    <Sheet variant="outlined" sx={{ inlineSize: 240, borderRadius: 'sm' }}>
       <List>
         <ListItem>
           <ListItemButton onClick={() => alert('You clicked')}>

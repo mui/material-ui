@@ -29,7 +29,7 @@ export default function ListVariables() {
         { var: '--List-divider-gap', defaultValue: '6px' },
       ]}
       renderDemo={(sx) => (
-        <Sheet variant="outlined" sx={{ width: 240, borderRadius: 'sm', pb: 1 }}>
+        <Sheet variant="outlined" sx={{ width: 240, borderRadius: 'sm', py: 1 }}>
           <List sx={sx}>
             <ListItem>
               <ListItemButton>
