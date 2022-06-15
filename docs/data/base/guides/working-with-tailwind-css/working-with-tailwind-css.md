@@ -355,7 +355,7 @@ To do this, it's not enough to just use classes for the thumb—we need also to 
 After refreshing the page, you should see the thumb looking identical to the design now.
 
 The code above creates a custom component with all the classes and props necessary to serve as the thumb.
-Because we want to have additional dot inside the thumb, we needed to add new element in the markup of the thumb: a `<span>`.
+Since we want to have an additional dot inside the thumb, we need to add new element in the markup of the thumb: a `<span>`.
 Note that after the thumb, we are still rendering the `children` passed via props.
 This is important because the `children` in this case contain a hidden `<input>` element, that makes the thumb accessible.
 
