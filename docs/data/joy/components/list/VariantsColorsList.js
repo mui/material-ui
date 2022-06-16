@@ -34,13 +34,8 @@ export default function VariantsColorsList() {
       renderDemo={(props) => (
         <List
           sx={{
-            width: 200,
+            width: 320,
             my: 5,
-            bgcolor: 'background.body',
-            borderRadius: 'sm',
-            border: '1px solid',
-            borderColor: 'neutral.outlinedBorder',
-            overflow: 'auto',
           }}
         >
           <ListItem>

@@ -32,12 +32,7 @@ export default function ListVariables() {
         <List
           sx={{
             ...sx,
-            width: 240,
-            p: 1,
-            bgcolor: 'background.body',
-            borderRadius: 'sm',
-            border: '1px solid',
-            borderColor: 'neutral.outlinedBorder',
+            width: 320,
           }}
         >
           <ListItem>

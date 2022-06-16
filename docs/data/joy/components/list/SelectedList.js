@@ -10,12 +10,7 @@ export default function SelectedList() {
   return (
     <List
       sx={{
-        bgcolor: 'background.body',
-        borderRadius: 'sm',
-        border: '1px solid',
-        borderColor: 'neutral.outlinedBorder',
-        overflow: 'auto',
-        maxWidth: 240,
+        maxWidth: 320,
       }}
     >
       <ListItem>

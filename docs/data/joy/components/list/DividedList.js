@@ -14,13 +14,13 @@ export default function DividedList() {
         display: 'flex',
         flexWrap: 'wrap',
         justifyContent: 'center',
-        gap: 2,
+        gap: 4,
       }}
     >
       {[undefined, 'gutter', 'startDecorator', 'startContent'].map((inset) => (
         <Box>
-          <Typography level="body2" mb={1}>
-            {inset ? `inset="${inset}"` : '(default)'}
+          <Typography level="body3" mb={2}>
+            <code>{inset ? `inset="${inset}"` : '(default)'}</code>
           </Typography>
           <List
             key={inset || 'none'}

@@ -8,13 +8,11 @@ import Sheet from '@mui/joy/Sheet';
 export default function StickyList() {
   return (
     <Sheet
-      variant="outlined"
       sx={{
-        width: 240,
+        bgcolor: 'transparent',
+        width: 320,
         maxHeight: 300,
         overflow: 'auto',
-        bgcolor: 'background.body',
-        borderRadius: 'sm',
       }}
     >
       <List sx={{ p: 1 }}>

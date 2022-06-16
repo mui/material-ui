@@ -10,11 +10,7 @@ export default function SecondaryList() {
   return (
     <List
       sx={{
-        bgcolor: 'background.body',
-        borderRadius: 'sm',
-        border: '1px solid',
-        borderColor: 'neutral.outlinedBorder',
-        maxWidth: 240,
+        maxWidth: 320,
       }}
     >
       <ListItem

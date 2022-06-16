@@ -13,12 +13,7 @@ export default function HorizontalList() {
         role="menubar"
         row
         sx={{
-          bgcolor: 'background.body',
-          borderRadius: 'sm',
-          border: '1px solid',
-          borderColor: 'neutral.outlinedBorder',
-          overflow: 'auto',
-          minWidth: 343,
+          minWidth: 320,
         }}
       >
         <ListItem role="none">

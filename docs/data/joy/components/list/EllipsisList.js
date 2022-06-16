@@ -11,13 +11,7 @@ export default function EllipsisList() {
   return (
     <Box
       sx={{
-        width: 270,
-        p: 2,
-        bgcolor: 'background.body',
-        borderRadius: 'sm',
-        border: '1px solid',
-        borderColor: 'neutral.outlinedBorder',
-        overflow: 'auto',
+        width: 320,
       }}
     >
       <Typography

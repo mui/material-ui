@@ -310,14 +310,9 @@ export default function ExampleNavigationMenu() {
         role="menubar"
         row
         sx={{
-          bgcolor: 'background.body',
-          borderRadius: 'sm',
-          border: '1px solid',
-          borderColor: 'neutral.outlinedBorder',
           '--List-radius': '8px',
           '--List-padding': '4px',
           '--List-gap': '8px',
-          boxShadow: 'sm',
         }}
       >
         <ListItem role="none">
