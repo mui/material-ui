@@ -19,18 +19,18 @@ export default function ExampleFilterStatusCheckbox() {
         id="filter-status"
         sx={{
           textTransform: 'uppercase',
-          fontSize: 'xs',
-          letterSpacing: 'md',
-          fontWeight: 'md',
+          fontSize: 'xs2',
+          letterSpacing: 'lg',
+          fontWeight: 'lg',
           color: 'text.secondary',
-          mb: 1,
+          mb: 2,
         }}
       >
         Filter status
       </Typography>
       <Box role="group" aria-labelledby="filter-status">
         <List>
-          <ListItem variant="soft" color="danger">
+          <ListItem variant="soft" color="danger" sx={{ borderRadius: 'sm' }}>
             <Checkbox
               label="Declined Payment"
               color="danger"
@@ -44,7 +44,7 @@ export default function ExampleFilterStatusCheckbox() {
               8
             </Typography>
           </ListItem>
-          <ListItem variant="soft" color="warning">
+          <ListItem variant="soft" color="warning" sx={{ borderRadius: 'sm' }}>
             <Checkbox
               label="Delivery Error"
               color="warning"
@@ -72,7 +72,7 @@ export default function ExampleFilterStatusCheckbox() {
         </List>
       </Box>
       <Button
-        variant="plain"
+        variant="outlined"
         color="neutral"
         size="sm"
         onClick={() =>

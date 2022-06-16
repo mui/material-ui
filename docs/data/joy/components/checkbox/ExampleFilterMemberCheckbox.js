@@ -28,11 +28,11 @@ export default function ExampleFilterMemberCheckbox() {
         id="member"
         sx={{
           textTransform: 'uppercase',
-          fontSize: 'xs',
-          letterSpacing: 'md',
-          fontWeight: 'md',
+          fontSize: 'xs2',
+          letterSpacing: 'lg',
+          fontWeight: 'lg',
           color: 'text.secondary',
-          mb: 1,
+          mb: 2,
         }}
       >
         Team members
@@ -59,7 +59,13 @@ export default function ExampleFilterMemberCheckbox() {
               onChange={toggleMember(0)}
             />
           </ListItem>
-          <ListItem {...(members[1] && { variant: 'soft', color: 'primary' })}>
+          <ListItem
+            sx={{ borderRadius: 'sm' }}
+            {...(members[1] && {
+              variant: 'soft',
+              color: 'primary',
+            })}
+          >
             <Avatar aria-hidden="true" src="/static/images/avatar/2.jpg" />
             <Checkbox
               overlay
@@ -69,7 +75,7 @@ export default function ExampleFilterMemberCheckbox() {
                   {members[1] && (
                     <Typography
                       aria-hidden="true"
-                      sx={{ display: 'block', fontSize: 'sm', color: 'primary.500' }}
+                      sx={{ display: 'block', fontSize: 'sm', color: 'neutral.500' }}
                     >
                       This user is your friend.
                     </Typography>
