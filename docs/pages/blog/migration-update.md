@@ -80,7 +80,7 @@ All prop descriptions are now written in TypeScript, which means that you can ac
 One of them is the dark mode flashing issue that has been requested for a long time.
 
 More importantly, this feature is opt-in if you are using Material UI v5!
-You can check out the progress on this effort [here](https://github.com/mui/material-ui/issues/32049).
+You can check out the progress on this effort [with the issue #32049](https://github.com/mui/material-ui/issues/32049).
 
 ## Upgrade now
 
