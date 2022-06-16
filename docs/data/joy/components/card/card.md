@@ -20,7 +20,7 @@ Joy UI provides four Card-related components:
 
 ## Component
 
-After [installation](/joy-ui/getting-started/installation), you can start building with this component using the following basic elements:
+After [installation](/joy-ui/getting-started/installation/), you can start building with this component using the following basic elements:
 
 ```jsx
 import Card from '@mui/joy/Card';

@@ -15,7 +15,7 @@ Joy UI's uses _Public Sans_, a Google Font, as the default typeface.
 
 ## Component
 
-After [installation](/joy-ui/getting-started/installation), you can start building with this component using the following basic elements:
+After [installation](/joy-ui/getting-started/installation/), you can start building with this component using the following basic elements:
 
 ```jsx
 import Typography from '@mui/joy/Typography';
