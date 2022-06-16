@@ -19,7 +19,7 @@ We'll use it once it increases significantly.
 
 ## Component
 
-After installation, you can start building with this component using the following basic elements:
+After [installation](/joy-ui/getting-started/installation), you can start building with this component using the following basic elements:
 
 ```jsx
 import AspectRatio from '@mui/joy/AspectRatio';

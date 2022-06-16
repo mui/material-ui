@@ -5,6 +5,7 @@ const pages = [
     icon: 'DescriptionIcon',
     children: [
       { pathname: '/joy-ui/getting-started/overview' },
+      { pathname: '/joy-ui/getting-started/installation' },
       { pathname: '/joy-ui/getting-started/usage' },
       { pathname: '/joy-ui/getting-started/tutorial' },
       { pathname: '/joy-ui/getting-started/templates' },

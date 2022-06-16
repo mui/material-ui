@@ -19,7 +19,7 @@ The badge component is most frequently used to signal status (online, offline, b
 
 ## Component
 
-After installation, you can start building with this component using the following basic elements:
+After [installation](/joy-ui/getting-started/installation), you can start building with this component using the following basic elements:
 
 ```jsx
 import Badge from '@mui/joy/Badge';

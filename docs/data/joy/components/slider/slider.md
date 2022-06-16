@@ -19,7 +19,7 @@ Sliders are ideal for interface controls that benefit from a visual representati
 
 ## Component
 
-After installation, you can start building with this component using the following basic elements:
+After [installation](/joy-ui/getting-started/installation), you can start building with this component using the following basic elements:
 
 ```jsx
 import Slider from '@mui/joy/Slider';

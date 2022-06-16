@@ -20,7 +20,7 @@ It accepts the same props as the [`Typography`](/joy-ui/react-typography/) compo
 
 ## Component
 
-After installation, you can start building with this component using the following basic elements:
+After [installation](/joy-ui/getting-started/installation), you can start building with this component using the following basic elements:
 
 ```jsx
 import Link from '@mui/joy/Link';
