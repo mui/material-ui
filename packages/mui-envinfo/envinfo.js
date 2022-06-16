@@ -39,8 +39,13 @@ envinfo
     console.log(output);
 
     if (!skipClipboard) {
-      // write to memory
-      console.log('\x1b[33m%s\x1b[0m', '\nOutput copied to clipboard');
-      clipboard.writeSync(output);
+      try {
+        // write to OS clipboard
+        clipboard.writeSync(output);
+        console.log('\x1b[33m%s\x1b[0m', '\nOutput copied to clipboard', '\x1b[0m');
+      } catch (e) {
+        console.log('\x1b[31m%s\x1b[0m', '\nFailed to copy to clipboard', '\x1b[0m');
+        console.log(e);
+      }
     }
   });

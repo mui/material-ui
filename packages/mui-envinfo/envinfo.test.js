@@ -7,7 +7,18 @@ const isRunningOnWindows = process.platform === 'win32';
 
 describe('@mui/envinfo', () => {
   const packagePath = __dirname;
+  let isClipboardAvailable = true;
 
+  before(function testClipboardAvailability() {
+    try {
+      clipboard.writeSync('');
+    } catch (e) {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      isClipboardAvailable = false;
+    }
+  });
+
+  // eslint-disable-next-line mocha/no-sibling-hooks
   before(function beforeHook() {
     // only run in node
     if (!/jsdom/.test(window.navigator.userAgent)) {
@@ -15,7 +26,9 @@ describe('@mui/envinfo', () => {
     }
 
     // clear clipboard
-    clipboard.writeSync('');
+    if (isClipboardAvailable) {
+      clipboard.writeSync('');
+    }
 
     // Building might take some time
     this.timeout(10000);
@@ -25,9 +38,11 @@ describe('@mui/envinfo', () => {
     });
   });
 
-  afterEach(function afterEachHook() {
-    // clear clipboard
-    clipboard.writeSync('');
+  afterEach(function clearClipboardAfterEach() {
+    if (isClipboardAvailable) {
+      // clear clipboard
+      clipboard.writeSync('');
+    }
   });
 
   function execEnvinfo(args = []) {
@@ -70,6 +85,10 @@ describe('@mui/envinfo', () => {
   });
 
   it('copies env information to the clipboard', function test() {
+    if (!isClipboardAvailable) {
+      this.skip();
+    }
+
     // Need more time to download packages
     this.timeout(10000);
 
@@ -87,6 +106,10 @@ describe('@mui/envinfo', () => {
   });
 
   it("doesn't copy to clipboard with --skipClipboard flag", function test() {
+    if (!isClipboardAvailable) {
+      this.skip();
+    }
+
     // Need more time to download packages
     this.timeout(10000);
 
@@ -97,5 +120,15 @@ describe('@mui/envinfo', () => {
 
     expect(consoleOutput).to.not.include(info);
     expect(envFromClipboard).to.be.equal('');
+  });
+
+  it('when copy to clipboard fails, adds error message at the end', function test() {
+    if (isClipboardAvailable) {
+      this.skip();
+    }
+
+    const consoleOutput = execEnvinfo().toLocaleLowerCase();
+
+    expect(consoleOutput).to.include('failed to copy to clipboard');
   });
 });
