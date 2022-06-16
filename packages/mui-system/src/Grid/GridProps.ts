@@ -4,7 +4,7 @@ import { SxProps } from '../styleFunctionSx';
 import { Theme, Breakpoint, BreakpointOverrides } from '../createTheme';
 import { SystemProps } from '../Box';
 
-type ResponsiveStyleValue<T> = T | Array<T | null> | { [key: string]: T | null };
+type ResponsiveStyleValue<T> = T | Array<T | null> | { [key in Breakpoint]?: T | null };
 
 export type GridDirection = 'row' | 'row-reverse' | 'column' | 'column-reverse';
 
@@ -147,7 +147,7 @@ export interface GridBaseProps extends Breakpoints {
    * It can only be used on a type `container` component.
    * @default 0
    */
-  spacing?: ResponsiveStyleValue<GridSpacing>;
+  spacing?: ResponsiveStyleValue<GridSpacing> | undefined;
   /**
    * Defines the `flex-wrap` style property.
    * It's applied for all screen sizes.
