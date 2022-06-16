@@ -15,15 +15,15 @@ export default function SizesList() {
         flexGrow: 1,
         display: 'flex',
         justifyContent: 'center',
-        gap: 2,
+        gap: 6,
         flexWrap: 'wrap',
         '& > *': { minWidth: 0, flexBasis: 120 },
       }}
     >
       {['sm', 'md', 'lg'].map((size) => (
         <Box key={size}>
-          <Typography level="body2" fontWeight="lg" mb={1}>
-            size=&quot;{size}&quot;
+          <Typography level="body3" mb={2}>
+            <code>size=&quot;{size}&quot;</code>
           </Typography>
           <Sheet variant="outlined" sx={{ borderRadius: 'sm', maxWidth: 240 }}>
             <List size={size}>

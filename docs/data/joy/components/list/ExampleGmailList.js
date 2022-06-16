@@ -7,7 +7,7 @@ import ListItemDecorator, {
 import ListItemContent from '@mui/joy/ListItemContent';
 import ListItemButton from '@mui/joy/ListItemButton';
 import Typography from '@mui/joy/Typography';
-import Sheet from '@mui/joy/Sheet';
+import Box from '@mui/joy/Box';
 import ArrowDropDown from '@mui/icons-material/ArrowDropDown';
 import InboxIcon from '@mui/icons-material/Inbox';
 import Label from '@mui/icons-material/Label';
@@ -18,7 +18,7 @@ import Star from '@mui/icons-material/Star';
 export default function ExampleGmailList() {
   const [index, setIndex] = React.useState(0);
   return (
-    <Sheet variant="outlined" sx={{ py: 2, pr: 2, width: 300, borderRadius: 'sm' }}>
+    <Box sx={{ py: 2, pr: 2, width: 320 }}>
       <List
         aria-label="Sidebar"
         sx={{
@@ -111,6 +111,6 @@ export default function ExampleGmailList() {
           </List>
         </ListItem>
       </List>
-    </Sheet>
+    </Box>
   );
 }

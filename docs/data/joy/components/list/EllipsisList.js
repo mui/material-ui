@@ -12,9 +12,7 @@ export default function EllipsisList() {
     <Sheet
       variant="outlined"
       sx={{
-        width: 270,
-        p: 2,
-        borderRadius: 'sm',
+        width: 320,
       }}
     >
       <Typography

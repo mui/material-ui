@@ -20,12 +20,8 @@ export default function ExampleIOSList() {
   return (
     <Box
       sx={{
-        width: 343,
+        width: 320,
         p: 1,
-        bgcolor: 'background.body',
-        borderRadius: 'sm',
-        border: '1px solid',
-        borderColor: 'neutral.outlinedBorder',
       }}
     >
       <Typography level="h3" fontSize="xl2" fontWeight="xl" id="ios-example-demo">
@@ -33,7 +29,7 @@ export default function ExampleIOSList() {
       </Typography>
       <List
         aria-labelledby="ios-example-demo"
-        sx={{
+        sx={(theme) => ({
           '& ul': {
             '--List-gap': '0px',
             bgcolor: 'background.surface',
@@ -50,7 +46,14 @@ export default function ExampleIOSList() {
           '--List-gap': '1rem',
           '--List-divider-gap': '0px',
           '--List-item-paddingY': '0.75rem',
-        }}
+          // override global variant tokens
+          '--joy-palette-neutral-plainHoverBg': 'rgba(0 0 0 / 0.08)',
+          '--joy-palette-neutral-plainActiveBg': 'rgba(0 0 0 / 0.12)',
+          [theme.getColorSchemeSelector('dark')]: {
+            '--joy-palette-neutral-plainHoverBg': 'rgba(255 255 255 / 0.1)',
+            '--joy-palette-neutral-plainActiveBg': 'rgba(255 255 255 / 0.16)',
+          },
+        })}
       >
         <ListItem nested>
           <List aria-label="Personal info" sx={{ '--List-decorator-width': '72px' }}>

@@ -33,19 +33,22 @@ export default function VariantsColorsList() {
         },
       ]}
       renderDemo={(props) => (
-        <Sheet variant="outlined" sx={{ my: 5, width: 200, borderRadius: 'sm' }}>
-          <List>
-            <ListItem>
-              <ListItemButton {...props}>
-                <ListItemDecorator>
-                  <Home />
-                </ListItemDecorator>
-                <ListItemContent>Home</ListItemContent>
-                <KeyboardArrowRight fontSize="md" />
-              </ListItemButton>
-            </ListItem>
-          </List>
-        </Sheet>
+        <List
+          sx={{
+            width: 320,
+            my: 5,
+          }}
+        >
+          <ListItem>
+            <ListItemButton {...props}>
+              <ListItemDecorator>
+                <Home />
+              </ListItemDecorator>
+              <ListItemContent>Home</ListItemContent>
+              <KeyboardArrowRight fontSize="md" />
+            </ListItemButton>
+          </ListItem>
+        </List>
       )}
     />
   );

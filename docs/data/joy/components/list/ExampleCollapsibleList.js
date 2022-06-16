@@ -14,12 +14,8 @@ export default function ExampleCollapsibleList() {
   return (
     <Box
       sx={{
-        width: 280,
+        width: 320,
         pl: '24px',
-        bgcolor: 'background.body',
-        borderRadius: 'sm',
-        border: '1px solid',
-        borderColor: 'neutral.outlinedBorder',
       }}
     >
       <List

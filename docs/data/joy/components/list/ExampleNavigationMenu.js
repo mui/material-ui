@@ -303,53 +303,51 @@ export default function ExampleNavigationMenu() {
     useRovingIndex();
   return (
     <Box sx={{ minHeight: 190 }}>
-      <Sheet variant="outlined" sx={{ borderRadius: 'sm', boxShadow: 'sm' }}>
-        <List
-          role="menubar"
-          row
-          sx={{
-            '--List-radius': '8px',
-            '--List-padding': '4px',
-            '--List-gap': '8px',
-          }}
-        >
-          <ListItem role="none">
-            <ListItemButton
-              role="menuitem"
-              {...getTargetProps(0)}
-              component="a"
-              href="#navigation-menu"
-            >
-              <ListItemDecorator>
-                <HomeRounded />
-              </ListItemDecorator>
-              Home
-            </ListItemButton>
-          </ListItem>
-          <ListItem role="none">
-            <AboutMenu
-              onMouseEnter={() => {
-                setActiveIndex(1);
-                targets[1].focus();
-              }}
-              focusNext={focusNext}
-              focusPrevious={focusPrevious}
-              {...getTargetProps(1)}
-            />
-          </ListItem>
-          <ListItem role="none">
-            <AdmissionsMenu
-              onMouseEnter={() => {
-                setActiveIndex(2);
-                targets[2].focus();
-              }}
-              focusNext={focusNext}
-              focusPrevious={focusPrevious}
-              {...getTargetProps(2)}
-            />
-          </ListItem>
-        </List>
-      </Sheet>
+      <List
+        role="menubar"
+        row
+        sx={{
+          '--List-radius': '8px',
+          '--List-padding': '4px',
+          '--List-gap': '8px',
+        }}
+      >
+        <ListItem role="none">
+          <ListItemButton
+            role="menuitem"
+            {...getTargetProps(0)}
+            component="a"
+            href="#navigation-menu"
+          >
+            <ListItemDecorator>
+              <HomeRounded />
+            </ListItemDecorator>
+            Home
+          </ListItemButton>
+        </ListItem>
+        <ListItem role="none">
+          <AboutMenu
+            onMouseEnter={() => {
+              setActiveIndex(1);
+              targets[1].focus();
+            }}
+            focusNext={focusNext}
+            focusPrevious={focusPrevious}
+            {...getTargetProps(1)}
+          />
+        </ListItem>
+        <ListItem role="none">
+          <AdmissionsMenu
+            onMouseEnter={() => {
+              setActiveIndex(2);
+              targets[2].focus();
+            }}
+            focusNext={focusNext}
+            focusPrevious={focusPrevious}
+            {...getTargetProps(2)}
+          />
+        </ListItem>
+      </List>
     </Box>
   );
 }

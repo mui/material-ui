@@ -1,20 +1,21 @@
 import * as React from 'react';
+import Box from '@mui/joy/Box';
 import List from '@mui/joy/List';
 import ListItem from '@mui/joy/ListItem';
 import ListItemButton from '@mui/joy/ListItemButton';
-import Sheet from '@mui/joy/Sheet';
 import Home from '@mui/icons-material/Home';
 import Person from '@mui/icons-material/Person';
 
 export default function HorizontalList() {
   return (
-    <Sheet
-      variant="outlined"
-      component="nav"
-      aria-label="My site"
-      sx={{ borderRadius: 'sm', width: 343 }}
-    >
-      <List role="menubar" row>
+    <Box component="nav" aria-label="My site">
+      <List
+        role="menubar"
+        row
+        sx={{
+          minWidth: 320,
+        }}
+      >
         <ListItem role="none">
           <ListItemButton
             role="menuitem"
@@ -46,6 +47,6 @@ export default function HorizontalList() {
           </ListItemButton>
         </ListItem>
       </List>
-    </Sheet>
+    </Box>
   );
 }
