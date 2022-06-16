@@ -222,7 +222,7 @@ describe('<Dialog />', () => {
         <Dialog open maxWidth={false} PaperProps={{ 'data-testid': 'paper' }}>
           foo
         </Dialog>,
-      );  
+      );
 
       expect(screen.getByTestId('paper')).toHaveComputedStyle({
         maxWidth: 'calc(100% - 64px)',
