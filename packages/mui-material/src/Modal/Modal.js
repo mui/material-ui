@@ -1,8 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { isHostComponent } from '@mui/base';
-import { elementAcceptingRef, HTMLElementType } from '@mui/utils';
 import ModalUnstyled, { modalUnstyledClasses } from '@mui/base/ModalUnstyled';
+import { isHostComponent, resolveComponentProps } from '@mui/base/utils';
+import { elementAcceptingRef, HTMLElementType } from '@mui/utils';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import Backdrop from '../Backdrop';
@@ -112,8 +112,17 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
         ...components,
       }}
       componentsProps={{
-        root: { ...componentsProps.root, ...(!isHostComponent(Root) && { as: component, theme }) },
-        backdrop: { ...BackdropProps, ...componentsProps.backdrop },
+        root: (unstyledOwnerState) => ({
+          ...resolveComponentProps(componentsProps.root, { ...unstyledOwnerState, ...ownerState }),
+          ...(!isHostComponent(Root) && { as: component, theme }),
+        }),
+        backdrop: (unstyledOwnerState) => ({
+          ...BackdropProps,
+          ...resolveComponentProps(componentsProps.backdrop, {
+            ...unstyledOwnerState,
+            ...ownerState,
+          }),
+        }),
       }}
       onTransitionEnter={() => setExited(false)}
       onTransitionExited={() => setExited(true)}
