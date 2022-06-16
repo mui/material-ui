@@ -209,23 +209,26 @@ describe('<Dialog />', () => {
     });
 
     it('should use the right className when maxWidth={false}', () => {
-      const { getByTestId } = render(
+      render(
         <Dialog open maxWidth={false} PaperProps={{ 'data-testid': 'paper' }}>
           foo
         </Dialog>,
       );
-      expect(getByTestId('paper')).to.have.class(classes.paperWidthFalse);
+      expect(screen.getByTestId('paper')).to.have.class(classes.paperWidthFalse);
     });
 
     it('should apply the correct max-width styles when maxWidth={false}', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+
       render(
-        <Dialog open maxWidth={false}>
+        <Dialog open maxWidth={false} PaperProps={{ 'data-testid': 'paper' }}>
           foo
         </Dialog>,
       );
 
-      const paper = document.querySelector(`.${classes.paperWidthFalse}`);
-      expect(paper).toHaveComputedStyle({
+      expect(screen.getByTestId('paper')).toHaveComputedStyle({
         maxWidth: 'calc(100% - 64px)',
       });
     });
