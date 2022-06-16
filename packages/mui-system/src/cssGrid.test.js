@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import grid from './systemGrid';
+import grid from './cssGrid';
 
 describe('grid', () => {
   it('should use the spacing unit', () => {
