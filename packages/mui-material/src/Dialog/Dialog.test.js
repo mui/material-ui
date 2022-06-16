@@ -217,16 +217,12 @@ describe('<Dialog />', () => {
       expect(screen.getByTestId('paper')).to.have.class(classes.paperWidthFalse);
     });
 
-    it('should apply the correct max-width styles when maxWidth={false}', function test() {
-      if (/jsdom/.test(window.navigator.userAgent)) {
-        this.skip();
-      }
-
+    it('should apply the correct max-width styles when maxWidth={false}', () => {
       render(
         <Dialog open maxWidth={false} PaperProps={{ 'data-testid': 'paper' }}>
           foo
         </Dialog>,
-      );
+      );  
 
       expect(screen.getByTestId('paper')).toHaveComputedStyle({
         maxWidth: 'calc(100% - 64px)',
