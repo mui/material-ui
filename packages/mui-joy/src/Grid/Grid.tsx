@@ -10,7 +10,6 @@ const Grid = createGrid({
     overridesResolver: (props, styles) => styles.root,
   }),
   componentName: 'MuiGrid',
-  // eslint-disable-next-line material-ui/mui-name-matches-component-name
   useThemeProps: (inProps) => useThemeProps({ props: inProps, name: 'MuiGrid' }),
 }) as OverridableComponent<GridTypeMap>;
 
