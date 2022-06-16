@@ -142,6 +142,32 @@ describe('grid generator', () => {
           },
         });
       });
+
+      it('supports object (random order)', () => {
+        const newBreakpoints = createBreakpoints({
+          values: { mobile: 0, laptop: 1024, tablet: 640, desktop: 1280 },
+        });
+        const styles = {};
+        traverseBreakpoints(
+          newBreakpoints,
+          { monitor: 5, laptop: 3, mobile: 4, desktop: 2, tablet: 1 }, // lg is not a part of custom breakpoints
+          (appendStyle, value) => {
+            appendStyle(styles, { margin: value });
+          },
+        );
+        expect(styles).to.deep.equal({
+          margin: 4,
+          '@media (min-width:640px)': {
+            margin: 1,
+          },
+          '@media (min-width:1024px)': {
+            margin: 3,
+          },
+          '@media (min-width:1280px)': {
+            margin: 2,
+          },
+        });
+      });
     });
 
     describe('new breakpoints', () => {
