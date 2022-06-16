@@ -1,6 +1,6 @@
 /*
 Comments to be preserved when clsx import is removed. These comments should come before
-and comments that they get combined with.
+any comments that they get combined with.
  */
 import clsx from "clsx";
 /*
