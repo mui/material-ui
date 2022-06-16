@@ -173,9 +173,9 @@ describe('ModalManager', () => {
 
       beforeEach(() => {
         shadowContainer = document.createElement('div');
-        const shadowRoot = shadowContainer.attachShadow({ mode: 'open' })
+        const shadowRoot = shadowContainer.attachShadow({ mode: 'open' });
         container2 = document.createElement('div');
-        shadowRoot.appendChild(container2)
+        shadowRoot.appendChild(container2);
       });
 
       afterEach(() => {
