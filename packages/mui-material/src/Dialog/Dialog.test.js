@@ -216,7 +216,20 @@ describe('<Dialog />', () => {
       );
       expect(getByTestId('paper')).to.have.class(classes.paperWidthFalse);
     });
+
+    it('should apply the correct max-width styles when maxWidth={false}', function test() {
+      render(
+        <Dialog open maxWidth={false}>
+          foo
+        </Dialog>,
+      );
+
+      const paper = document.querySelector(`.${classes.paperWidthFalse}`);
+      expect(paper).toHaveComputedStyle({
+        maxWidth: 'calc(100% - 64px)',
+      });
   });
+});
 
   describe('prop: fullWidth', () => {
     it('should set `fullWidth` class if specified', () => {
