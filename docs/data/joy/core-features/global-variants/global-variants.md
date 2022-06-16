@@ -1,6 +1,6 @@
-# Global variant
+# Global variants
 
-<p class="description">Joy UI enables consistent look and feel across all components.</p>
+<p class="description">Joy UI enables consistent look and feel across all components by using global variants.</p>
 
 <!-- The intention of the page is to describe the overall feature like "what is it?", "what it looks like?", other topics like "The why", "How to customize" etc. should be in another page.  -->
 

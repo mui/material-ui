@@ -12,7 +12,7 @@ const pages = [
         pathname: '/joy-ui/core-features',
         subheader: 'core-features',
         children: [
-          { pathname: '/joy-ui/core-features/global-variant' },
+          { pathname: '/joy-ui/core-features/global-variants' },
           { pathname: '/joy-ui/core-features/automatic-adjustment' },
           { pathname: '/joy-ui/core-features/perfect-dark-mode' },
         ],
