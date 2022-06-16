@@ -200,12 +200,6 @@ declare module '@mui/joy/styles' {
 }
 ```
 
-## Common examples
-
-Examples showcasing how to compose designs with the `Typography` component and others as decorators.
-
-{{"demo": "DecoratorExamples.js"}}
-
 ## Accessibility
 
 Here are a few tips to make sure you have an accessible typography component:
@@ -214,3 +208,9 @@ Here are a few tips to make sure you have an accessible typography component:
 - **Dynamic units**: use [relative units (rem)](/material-ui/customization/typography/#font-size) for `fontSize` to accommodate the user's settings.
 - **Heading hierarchy**: [don't skip](https://www.w3.org/WAI/tutorials/page-structure/headings/) heading levels.
   Remember to [separate the semantics from the style](#changing-the-semantic-element).
+
+## Common examples
+
+Examples showcasing how to compose designs with the `Typography` component and others as decorators.
+
+{{"demo": "DecoratorExamples.js"}}
