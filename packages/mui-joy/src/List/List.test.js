@@ -39,13 +39,13 @@ describe('Joy <List />', () => {
     expect(container.firstChild).to.have.class(classes.sizeLg);
   });
 
-  it('should have nested classes', () => {
+  it('should have nesting classes', () => {
     const { getByRole } = render(
       <ListItem nested>
         <List />
       </ListItem>,
     );
-    expect(getByRole('list')).to.have.class(classes.nested);
+    expect(getByRole('list')).to.have.class(classes.nesting);
   });
 
   it('should have row classes', () => {

@@ -4,6 +4,7 @@ import ListItem from '@mui/joy/ListItem';
 import ListItemContent from '@mui/joy/ListItemContent';
 import ListItemDecorator from '@mui/joy/ListItemDecorator';
 import ListItemButton from '@mui/joy/ListItemButton';
+import Sheet from '@mui/joy/Sheet';
 import Home from '@mui/icons-material/Home';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
 import JoyUsageDemo from 'docs/src/modules/components/JoyUsageDemo';

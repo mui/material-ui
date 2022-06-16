@@ -18,7 +18,7 @@ export default function DividedList() {
       }}
     >
       {[undefined, 'gutter', 'startDecorator', 'startContent'].map((inset) => (
-        <Box>
+        <Box key={inset || 'default'}>
           <Typography level="body3" mb={2}>
             <code>{inset ? `inset="${inset}"` : '(default)'}</code>
           </Typography>
@@ -30,7 +30,6 @@ export default function DividedList() {
               borderRadius: 'sm',
               border: '1px solid',
               borderColor: 'neutral.outlinedBorder',
-              overflow: 'auto',
               minWidth: 240,
               '--List-decorator-width': '48px',
               '--List-item-paddingLeft': '1.5rem',

@@ -29,7 +29,7 @@ export default function ExampleIOSList() {
       </Typography>
       <List
         aria-labelledby="ios-example-demo"
-        sx={(theme) => ({
+        sx={{
           '& ul': {
             '--List-gap': '0px',
             bgcolor: 'background.surface',

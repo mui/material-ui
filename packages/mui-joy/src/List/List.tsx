@@ -11,10 +11,10 @@ import NestedListContext from './NestedListContext';
 import RowListContext from './RowListContext';
 import ComponentListContext from './ComponentListContext';
 
-const useUtilityClasses = (ownerState: ListProps & { nested: boolean }) => {
-  const { size, nested, row } = ownerState;
+const useUtilityClasses = (ownerState: ListProps & { nesting: boolean }) => {
+  const { size, nesting, row } = ownerState;
   const slots = {
-    root: ['root', size && `size${capitalize(size)}`, nested && 'nested', row && 'row'],
+    root: ['root', size && `size${capitalize(size)}`, nesting && 'nesting', row && 'row'],
   };
 
   return composeClasses(slots, getListUtilityClass, {});
@@ -24,7 +24,7 @@ const ListRoot = styled('ul', {
   name: 'JoyList',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: ListProps & { nested: boolean; instanceSize: ListProps['size'] } }>(
+})<{ ownerState: ListProps & { nesting: boolean; instanceSize: ListProps['size'] } }>(
   ({ theme, ownerState }) => {
     function applySizeVars(size: ListProps['size']) {
       if (size === 'sm') {
@@ -63,21 +63,23 @@ const ListRoot = styled('ul', {
       return {};
     }
     return [
-      ownerState.nested && {
+      ownerState.nesting && {
         // instanceSize is the specified size of the rendered element <List size="sm" />
         // only apply size variables if instanceSize is provided so that the variables can be pass down to children by default.
         ...applySizeVars(ownerState.instanceSize),
         '--List-item-paddingRight': 'var(--List-item-paddingX)',
         '--List-item-paddingLeft': 'var(--NestedList-item-paddingLeft)',
         // reset ListItem, ListItemButton negative margin (caused by NestedListItem)
-        '--List-itemButton-margin': '0px',
-        '--List-item-margin': '0px',
+        '--List-itemButton-marginBlock': '0px',
+        '--List-itemButton-marginInline': '0px',
+        '--List-item-marginBlock': '0px',
+        '--List-item-marginInline': '0px',
         padding: 0,
         marginInlineStart: 'var(--NestedList-marginLeft)',
         marginInlineEnd: 'var(--NestedList-marginRight)',
         marginBlockStart: 'var(--List-gap)',
       },
-      !ownerState.nested && {
+      !ownerState.nesting && {
         ...applySizeVars(ownerState.size),
         '--List-gap': '0px',
         '--List-padding': '0px',
@@ -85,9 +87,10 @@ const ListRoot = styled('ul', {
         '--List-nestedInsetStart': '0px',
         '--List-item-paddingLeft': 'var(--List-item-paddingX)',
         '--List-item-paddingRight': 'var(--List-item-paddingX)',
+        '--internal-child-radius':
+          'max(var(--List-radius, 0px) - var(--List-padding), min(var(--List-padding) / 2, var(--List-radius, 0px) / 2))',
         // If --List-padding is 0, the --List-item-radius will be 0.
-        '--List-item-radius':
-          'min(calc(var(--List-padding) * 999), max(var(--List-radius, 0px) - var(--List-padding), min(var(--List-padding) / 2, var(--List-radius, 0px) / 2)))',
+        '--List-item-radius': 'min(calc(var(--List-padding) * 999), var(--internal-child-radius))',
         // by default, The ListItem & ListItemButton use automatic radius adjustment based on the parent List.
         '--List-item-startActionTranslateX': 'calc(0.5 * var(--List-item-paddingLeft))',
         '--List-item-endActionTranslateX': 'calc(-0.5 * var(--List-item-paddingRight))',
@@ -107,7 +110,7 @@ const ListRoot = styled('ul', {
 );
 
 const List = React.forwardRef(function List(inProps, ref) {
-  const nested = React.useContext(NestedListContext);
+  const nesting = React.useContext(NestedListContext);
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
     name: 'JoyList',
@@ -118,7 +121,7 @@ const List = React.forwardRef(function List(inProps, ref) {
   const ownerState = {
     instanceSize: inProps.size,
     size,
-    nested,
+    nesting,
     row,
     ...props,
   };
@@ -136,8 +139,11 @@ const List = React.forwardRef(function List(inProps, ref) {
           {...other}
         >
           {React.Children.map(children, (child, index) =>
-            index === 0 && React.isValidElement(child)
-              ? React.cloneElement(child, { 'data-first-child': '' })
+            React.isValidElement(child)
+              ? React.cloneElement(child, {
+                  // to let List(Item|ItemButton) knows when to apply margin(Inline|Block)Start
+                  ...(index === 0 && { 'data-first-child': '' }),
+                })
               : child,
           )}
         </ListRoot>

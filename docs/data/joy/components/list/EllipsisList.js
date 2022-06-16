@@ -1,15 +1,16 @@
 import * as React from 'react';
 import Avatar from '@mui/joy/Avatar';
-import Box from '@mui/joy/Box';
 import List from '@mui/joy/List';
 import ListItem from '@mui/joy/ListItem';
 import ListItemContent from '@mui/joy/ListItemContent';
 import ListItemDecorator from '@mui/joy/ListItemDecorator';
 import Typography from '@mui/joy/Typography';
+import Sheet from '@mui/joy/Sheet';
 
 export default function EllipsisList() {
   return (
-    <Box
+    <Sheet
+      variant="outlined"
       sx={{
         width: 320,
       }}
@@ -51,6 +52,6 @@ export default function EllipsisList() {
           </ListItemContent>
         </ListItem>
       </List>
-    </Box>
+    </Sheet>
   );
 }

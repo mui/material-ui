@@ -15,7 +15,7 @@ export default function StickyList() {
         overflow: 'auto',
       }}
     >
-      <List sx={{ p: 1 }}>
+      <List sx={{ '--List-padding': '8px' }}>
         {[...Array(5)].map((_, categoryIndex) => (
           <ListItem nested key={categoryIndex}>
             <ListItem component="div" sticky>
