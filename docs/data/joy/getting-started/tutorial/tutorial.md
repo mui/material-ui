@@ -8,11 +8,11 @@ In this small tutorial, you'll learn how to:
 2. Build a basic login page with them.
 3. Toggle light and dark mode.
 
-As a **prerequisite**, make sure to have Joy UI properly installed.
-You can follow [the usage page](/joy-ui/getting-started/usage/) to quickly learn how to do it.
+The only **prerequesite** is [having Joy UI installed](<(/joy-ui/getting-started/installation/)>).
 
 :::warning
-⚠️ **Note:** We won't cover deep theming and component customization at this moment.
+⚠️ **Note:** We won't cover theming and component customization strategies at this moment.
+Check later [the different customization approaches](/joy-ui/customization/approaches/) for more in-depth about that.
 :::
 
 ## Building the login page
