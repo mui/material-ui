@@ -30,9 +30,6 @@ export default function MyApp() {
 
 ### Basic usage
 
-The `Sheet` also has access to the `color` prop, allowing you to access every palette of the theme.
-
-Use the `Sheet` component as a generic container for your components.
-You can play around with variants, color, and elevation to achieve the desired result.
+The `Sheet` component, in addition to the variants, also has access to the `color` prop, allowing you to use every palette of the theme.
 
 {{"demo": "SimpleSheet.js"}}
