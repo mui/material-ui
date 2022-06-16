@@ -4,7 +4,7 @@ export default function Usage() {
   return (
     <iframe
       title="codesandbox"
-      src="https://codesandbox.io/embed/base-usage-7km2h7?hidenavigation=1&fontsize=14&view=preview"
+      src="https://codesandbox.io/embed/7km2h7?hidenavigation=1&fontsize=14&view=preview"
       style={{
         width: '100%',
         height: 350,

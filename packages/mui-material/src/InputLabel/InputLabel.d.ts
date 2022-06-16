@@ -46,6 +46,11 @@ export interface InputLabelProps extends StandardProps<FormLabelProps> {
    */
   shrink?: boolean;
   /**
+   * The size of the component.
+   * @default 'normal'
+   */
+  size?: 'small' | 'normal';
+  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx?: SxProps<Theme>;

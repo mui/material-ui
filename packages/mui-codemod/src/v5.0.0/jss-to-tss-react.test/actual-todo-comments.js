@@ -36,6 +36,15 @@ const useStyles3 = makeStyles({
   }
 });
 
+const useGlobalStyles = makeStyles(() => ({
+  '@global': {
+    '.sample': {
+      backgroundColor: "purple",
+      color: "white",
+    }
+  }
+}));
+
 function InnerComponent() {
   const classes = useStyles2();
   return <div className={classes.test2}>Inner Test</div>;

@@ -11,6 +11,7 @@ export default function ButtonIcons() {
     <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap' }}>
       <Button startIcon={<Add />}>Add to cart</Button>
       <Button
+        aria-label="Like"
         variant="soft"
         color="neutral"
         endIcon={<KeyboardArrowDown fontSize="lg" />}

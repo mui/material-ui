@@ -5,7 +5,7 @@ import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } 
 import { useButton } from '@mui/base/ButtonUnstyled';
 import composeClasses from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
-import { getIconButtonUtilityClass } from './iconButtonClasses';
+import iconButtonClasses, { getIconButtonUtilityClass } from './iconButtonClasses';
 import { IconButtonProps, IconButtonTypeMap, ExtendIconButton } from './IconButtonProps';
 
 const useUtilityClasses = (ownerState: IconButtonProps & { focusVisible: boolean }) => {
@@ -35,46 +35,53 @@ const IconButtonRoot = styled('button', {
   name: 'JoyIconButton',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: IconButtonProps }>(({ theme, ownerState }) => [
-  {
-    ...(ownerState.size === 'sm' && {
-      '--IconButton-size': '2rem',
-      '--Icon-fontSize': '1.25rem',
-    }),
-    ...(ownerState.size === 'md' && {
-      '--IconButton-size': '2.5rem', // for defining width x height
-      '--IconButton-padding': '0.25rem',
-      '--Icon-fontSize': '1.5rem', // control the SvgIcon font-size
-    }),
-    ...(ownerState.size === 'lg' && {
-      '--IconButton-size': '3rem',
-      '--IconButton-padding': '0.5rem',
-      '--Icon-fontSize': '1.75rem',
-    }),
-    padding: 'var(--IconButton-padding)',
-    ...(ownerState.variant === 'outlined' && {
-      padding: 'calc(var(--IconButton-padding) - var(--variant-outlinedBorderWidth))', // account for the border width
-    }),
-    fontFamily: theme.vars.fontFamily.body,
-    minWidth: 'var(--IconButton-size)', // use min-width instead of height to make the button resilient to its content
-    minHeight: 'var(--IconButton-size)', // use min-height instead of height to make the button resilient to its content
-    borderRadius: theme.vars.radius.sm,
-    border: 'none',
-    backgroundColor: 'transparent',
-    display: 'inline-flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    position: 'relative',
-    // TODO: discuss the transition approach in a separate PR. This value is copied from mui-material Button.
-    transition:
-      'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
-    [theme.focus.selector]: theme.focus.default,
-  },
-  theme.variants[ownerState.variant!]?.[ownerState.color!],
-  theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
-  theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
-  theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
-]);
+})<{ ownerState: IconButtonProps & { instanceSize: IconButtonProps['size'] } }>(
+  ({ theme, ownerState }) => [
+    {
+      '--Icon-margin': 'initial', // reset the icon's margin.
+      ...(ownerState.size === 'sm' && {
+        '--Icon-fontSize': '1.25rem',
+        minWidth: 'var(--IconButton-size, 2rem)', // use min-width instead of height to make the button resilient to its content
+        minHeight: 'var(--IconButton-size, 2rem)', // use min-height instead of height to make the button resilient to its content
+        fontSize: theme.vars.fontSize.sm,
+      }),
+      ...(ownerState.size === 'md' && {
+        '--Icon-fontSize': '1.5rem', // control the SvgIcon font-size
+        minWidth: 'var(--IconButton-size, 2.5rem)',
+        minHeight: 'var(--IconButton-size, 2.5rem)',
+        fontSize: theme.vars.fontSize.md,
+      }),
+      ...(ownerState.size === 'lg' && {
+        '--Icon-fontSize': '1.75rem',
+        minWidth: 'var(--IconButton-size, 3rem)',
+        minHeight: 'var(--IconButton-size, 3rem)',
+        fontSize: theme.vars.fontSize.lg,
+      }),
+      padding: 0,
+      fontFamily: theme.vars.fontFamily.body,
+      fontWeight: theme.vars.fontWeight.md,
+      margin: `var(--IconButton-margin)`, // to be controlled by other components, eg. Input
+      borderRadius: `var(--IconButton-radius, ${theme.vars.radius.sm})`, // to be controlled by other components, eg. Input
+      border: 'none',
+      backgroundColor: 'transparent',
+      display: 'inline-flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      position: 'relative',
+      // TODO: discuss the transition approach in a separate PR. This value is copied from mui-material Button.
+      transition:
+        'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
+      [theme.focus.selector]: theme.focus.default,
+    },
+    theme.variants[ownerState.variant!]?.[ownerState.color!],
+    { '&:hover': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!] },
+    { '&:active': theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!] },
+    {
+      [`&.${iconButtonClasses.disabled}`]:
+        theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
+    },
+  ],
+);
 
 const IconButton = React.forwardRef(function IconButton(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
@@ -120,6 +127,7 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
     color,
     variant,
     size,
+    instanceSize: inProps.size,
     focusVisible,
   };
 
@@ -167,7 +175,7 @@ IconButton.propTypes /* remove-proptypes */ = {
    * @default 'primary'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['context', 'danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
   /**
