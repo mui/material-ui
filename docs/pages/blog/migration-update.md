@@ -9,9 +9,9 @@ tags: ['News', 'MUI Core']
 
 Are you still using Material UI v4 in 2022?
 
-What are you thinking?! 😛 The [community is migrating](https://npm-stat.com/charts.html?package=@mui/material,@material-ui/core), don't stay behind.
+What are you thinking?! 😛 Don't get left behind!
 
-We [released v5 in late 2021](/blog/mui-core-v5/), and since then, we've seen a steady migration of users over to the new packages.
+We [released v5 in late 2021](/blog/mui-core-v5/), and since then, we've seen [a steady migration of users](https://npm-stat.com/charts.html?package=@mui/material,@material-ui/core) over to the new packages.
 This is exciting for us, because we're super proud of all the improvements that were shipped with v5.
 
 But it seems as though a fair share of users are still hesitant to make the jump.
@@ -39,6 +39,8 @@ Emotion unlocks many new customization options that developers had been requesti
 Check out [this RFC on GitHub](https://github.com/mui/material-ui/issues/22342) for details about this change.
 
 ![Screenshot of the new style engine GitHub issue in Material UI's repository](/static/blog/migration-update/style-engine.png)
+
+Keep in mind that the new style engine is 100% incrementally adoptable: you can use JSS and Emotion together in the same app while migrating your components over.
 
 ### 3. Better customization tools
 
@@ -80,7 +82,7 @@ All prop descriptions are now written in TypeScript, which means that you can ac
 One of them is the dark mode flashing issue that has been requested for a long time.
 
 More importantly, this feature is opt-in if you are using Material UI v5!
-You can check out the progress on this effort [with the issue #32049](https://github.com/mui/material-ui/issues/32049).
+You can check out the progress on this effort [in this GitHub issue](https://github.com/mui/material-ui/issues/32049).
 
 ## Upgrade now
 
