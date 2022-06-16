@@ -122,14 +122,21 @@ function handleContainer(containerInfo: Container, props: ManagedModalProps) {
       });
     }
 
-    // Improve Gatsby support
-    // https://css-tricks.com/snippets/css/force-vertical-scrollbar/
-    const parent = container.parentElement;
-    const containerWindow = ownerWindow(container);
-    const scrollContainer =
-      parent?.nodeName === 'HTML' && containerWindow.getComputedStyle(parent).overflowY === 'scroll'
-        ? parent
-        : container;
+    let scrollContainer: HTMLElement;
+
+    if (container.parentNode instanceof DocumentFragment) {
+      scrollContainer = ownerDocument(container).body;
+    } else {
+      // Improve Gatsby support
+      // https://css-tricks.com/snippets/css/force-vertical-scrollbar/
+      const parent = container.parentElement;
+      const containerWindow = ownerWindow(container);
+      scrollContainer =
+        parent?.nodeName === 'HTML' &&
+        containerWindow.getComputedStyle(parent).overflowY === 'scroll'
+          ? parent
+          : container;
+    }
 
     // Block the scroll even if no scrollbar is visible to account for mobile keyboard
     // screensize shrink.
