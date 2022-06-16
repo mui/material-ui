@@ -53,7 +53,7 @@ export default function ExampleIOSList() {
             '--joy-palette-neutral-plainHoverBg': 'rgba(255 255 255 / 0.1)',
             '--joy-palette-neutral-plainActiveBg': 'rgba(255 255 255 / 0.16)',
           },
-        })}
+        }}
       >
         <ListItem nested>
           <List aria-label="Personal info" sx={{ '--List-decorator-width': '72px' }}>

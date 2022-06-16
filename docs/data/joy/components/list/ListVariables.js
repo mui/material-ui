@@ -8,7 +8,6 @@ import ListItemButton from '@mui/joy/ListItemButton';
 import ListItemDecorator from '@mui/joy/ListItemDecorator';
 import ListDivider from '@mui/joy/ListDivider';
 import Typography from '@mui/joy/Typography';
-import Sheet from '@mui/joy/Sheet';
 import Home from '@mui/icons-material/Home';
 import Apps from '@mui/icons-material/Apps';
 import MoreVert from '@mui/icons-material/MoreVert';
@@ -69,60 +68,60 @@ export default function ListVariables() {
                 Products
               </ListItemButton>
             </ListItem>
-            <ListDivider />
-            <ListItem nested>
-              <ListItem>
-                <Typography
-                  level="body2"
-                  fontWeight="md"
-                  startDecorator={
-                    <Sheet
-                      sx={{
-                        width: 8,
-                        height: 8,
-                        bgcolor: 'success.500',
-                        borderRadius: '50%',
-                      }}
-                    />
-                  }
-                >
-                  Online people
-                </Typography>
-              </ListItem>
-              <List>
-                <ListItem
-                  endAction={
-                    <IconButton variant="plain" color="neutral" size="sm">
-                      <MoreVert />
-                    </IconButton>
-                  }
-                >
-                  <ListItemButton>
-                    <ListItemDecorator sx={{ alignSelf: 'flex-start' }}>
-                      <Avatar size="sm" src="/static/images/avatar/1.jpg" />
-                    </ListItemDecorator>
-                    Mabel Boyle
-                  </ListItemButton>
-                </ListItem>
-                <ListDivider inset="startContent" />
-                <ListItem
-                  endAction={
-                    <IconButton variant="plain" color="neutral" size="sm">
-                      <MoreVert />
-                    </IconButton>
-                  }
-                >
-                  <ListItemButton>
-                    <ListItemDecorator sx={{ alignSelf: 'flex-start' }}>
-                      <Avatar size="sm" src="/static/images/avatar/2.jpg" />
-                    </ListItemDecorator>
-                    Boyd Burt
-                  </ListItemButton>
-                </ListItem>
-              </List>
+          </ListItem>
+          <ListDivider />
+          <ListItem nested>
+            <ListItem>
+              <Typography
+                level="body2"
+                fontWeight="md"
+                startDecorator={
+                  <Sheet
+                    sx={{
+                      width: 8,
+                      height: 8,
+                      bgcolor: 'success.500',
+                      borderRadius: '50%',
+                    }}
+                  />
+                }
+              >
+                Online people
+              </Typography>
             </ListItem>
-          </List>
-        </Sheet>
+            <List>
+              <ListItem
+                endAction={
+                  <IconButton variant="plain" color="neutral" size="sm">
+                    <MoreVert />
+                  </IconButton>
+                }
+              >
+                <ListItemButton>
+                  <ListItemDecorator sx={{ alignSelf: 'flex-start' }}>
+                    <Avatar size="sm" src="/static/images/avatar/1.jpg" />
+                  </ListItemDecorator>
+                  Mabel Boyle
+                </ListItemButton>
+              </ListItem>
+              <ListDivider inset="startContent" />
+              <ListItem
+                endAction={
+                  <IconButton variant="plain" color="neutral" size="sm">
+                    <MoreVert />
+                  </IconButton>
+                }
+              >
+                <ListItemButton>
+                  <ListItemDecorator sx={{ alignSelf: 'flex-start' }}>
+                    <Avatar size="sm" src="/static/images/avatar/2.jpg" />
+                  </ListItemDecorator>
+                  Boyd Burt
+                </ListItemButton>
+              </ListItem>
+            </List>
+          </ListItem>
+        </List>
       )}
     />
   );
