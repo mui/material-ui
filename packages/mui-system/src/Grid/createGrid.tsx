@@ -36,14 +36,14 @@ function useThemePropsDefault<T>(props: T) {
   return useThemePropsSystem({
     props,
     name: 'MuiGrid',
-    defaultTheme: { ...defaultTheme, components: {} },
+    defaultTheme,
   });
 }
 
 function resolveSpacingClasses(
   spacing: GridBaseProps['spacing'],
   container?: boolean,
-  styles: Record<string, string> = {},
+  classes: Record<string, string> = {},
 ) {
   // in case of grid item or undefined/null or `spacing` <= 0
   if (!container || !spacing || spacing <= 0) {
@@ -54,18 +54,18 @@ function resolveSpacingClasses(
     (typeof spacing === 'string' && !Number.isNaN(Number(spacing))) ||
     typeof spacing === 'number'
   ) {
-    return [styles[`spacing-xs-${String(spacing)}`] || `spacing-xs-${String(spacing)}`];
+    return [classes[`spacing-xs-${String(spacing)}`] || `spacing-xs-${String(spacing)}`];
   }
   // in case of object `spacing`
   // @ts-ignore internal logic
   const { xs, sm, md, lg, xl } = spacing;
 
   return [
-    Number(xs) > 0 && (styles[`spacing-xs-${String(xs)}`] || `spacing-xs-${String(xs)}`),
-    Number(sm) > 0 && (styles[`spacing-sm-${String(sm)}`] || `spacing-sm-${String(sm)}`),
-    Number(md) > 0 && (styles[`spacing-md-${String(md)}`] || `spacing-md-${String(md)}`),
-    Number(lg) > 0 && (styles[`spacing-lg-${String(lg)}`] || `spacing-lg-${String(lg)}`),
-    Number(xl) > 0 && (styles[`spacing-xl-${String(xl)}`] || `spacing-xl-${String(xl)}`),
+    Number(xs) > 0 && (classes[`spacing-xs-${String(xs)}`] || `spacing-xs-${String(xs)}`),
+    Number(sm) > 0 && (classes[`spacing-sm-${String(sm)}`] || `spacing-sm-${String(sm)}`),
+    Number(md) > 0 && (classes[`spacing-md-${String(md)}`] || `spacing-md-${String(md)}`),
+    Number(lg) > 0 && (classes[`spacing-lg-${String(lg)}`] || `spacing-lg-${String(lg)}`),
+    Number(xl) > 0 && (classes[`spacing-xl-${String(xl)}`] || `spacing-xl-${String(xl)}`),
   ];
 }
 
