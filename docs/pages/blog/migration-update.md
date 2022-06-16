@@ -11,7 +11,7 @@ Are you still using Material UI v4 in 2022?
 
 What are you thinking?! 😛 The [community is migrating](https://npm-stat.com/charts.html?package=@mui/material,@material-ui/core), don't stay behind.
 
-We released v5 in late 2021, and since then, we've seen a steady migration of users over to the new packages.
+We [released v5 in late 2021](/blog/mui-core-v5/), and since then, we've seen a steady migration of users over to the new packages.
 This is exciting for us, because we're super proud of all the improvements that were shipped with v5.
 
 But it seems as though a fair share of users are still hesitant to make the jump.
