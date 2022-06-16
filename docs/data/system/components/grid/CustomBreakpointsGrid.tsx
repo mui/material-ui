@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ThemeProvider, createTheme } from '@mui/system';
+import { ThemeProvider, createTheme, Theme } from '@mui/system';
 import Box from '@mui/system/Box';
 import Grid from '@mui/system/Grid';
 import styled from '@mui/system/styled';
@@ -10,7 +10,7 @@ declare module '@mui/system' {
     tablet: true;
     mobile: true;
     desktop: true;
-    // You need to uncomment to remove the default breakpoints from the theme.
+    // In your project, uncomment to remove the default breakpoints from the theme.
     // xs: false;
     // sm: false;
     // md: false;
@@ -31,17 +31,22 @@ const Item = styled('div')(({ theme }) => ({
 export default function CustomBreakpointsGrid() {
   return (
     <ThemeProvider
-      theme={createTheme({
-        breakpoints: {
-          // @ts-ignore this can be removed after uncommented the code in the module augmentation above
-          values: {
-            laptop: 1024,
-            tablet: 640,
-            mobile: 0,
-            desktop: 1280,
+      theme={(theme: Theme) =>
+        createTheme({
+          palette: {
+            mode: theme.palette.mode,
           },
-        },
-      })}
+          breakpoints: {
+            // @ts-ignore this can be removed after uncommented the code in the module augmentation above
+            values: {
+              mobile: 0,
+              laptop: 1024,
+              tablet: 640,
+              desktop: 1280,
+            },
+          },
+        })
+      }
     >
       <Box sx={{ flexGrow: 1 }}>
         <Grid container spacing={{ mobile: 1, tablet: 2, laptop: 3 }}>
