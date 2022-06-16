@@ -23,7 +23,7 @@ const theme = createTheme({
 
 {{"demo": "DefaultProps.js"}}
 
-If you're using Typescript and [lab components](/material-ui/about-the-lab/), check [this article to learn how to override their styles](/material-ui/about-the-lab/#typescript).
+If you're using TypeScript and [lab components](/material-ui/about-the-lab/), check [this article to learn how to override their styles](/material-ui/about-the-lab/#typescript).
 
 ## Global style overrides
 

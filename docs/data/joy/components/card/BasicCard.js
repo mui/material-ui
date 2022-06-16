@@ -28,7 +28,7 @@ export default function BasicCard() {
 
       <AspectRatio minHeight="120px" maxHeight="200px" sx={{ my: 2 }}>
         <img
-          src="https://images.unsplash.com/photo-1527549993586-dff825b37782?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3270"
+          src="https://images.unsplash.com/photo-1527549993586-dff825b37782?crop=entropy&auto=format&fit=crop&w=3270"
           alt=""
         />
       </AspectRatio>

@@ -28,12 +28,10 @@ type YearPickerComponent = (<TDate>(
 /**
  * @ignore - do not document.
  */
-const YearPicker = React.forwardRef(function DeprecatedYearPicker<TDate>(
-  props: YearPickerProps<TDate>,
-) {
+const YearPicker = function DeprecatedYearPicker<TDate>(props: YearPickerProps<TDate>) {
   warn();
 
   return <XYearPicker {...props} />;
-}) as YearPickerComponent;
+} as YearPickerComponent;
 
 export default YearPicker;

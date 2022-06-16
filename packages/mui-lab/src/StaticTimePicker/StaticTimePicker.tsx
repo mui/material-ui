@@ -34,10 +34,11 @@ type StaticTimePickerComponent = (<TDate>(
  */
 const StaticTimePicker = React.forwardRef(function DeprecatedStaticTimePicker<TDate>(
   props: StaticTimePickerProps<TDate>,
+  ref: React.Ref<any>,
 ) {
   warn();
 
-  return <XStaticTimePicker {...props} />;
+  return <XStaticTimePicker ref={ref} {...props} />;
 }) as StaticTimePickerComponent;
 
 StaticTimePicker.propTypes /* remove-proptypes */ = {
@@ -151,10 +152,6 @@ StaticTimePicker.propTypes /* remove-proptypes */ = {
       current: PropTypes.object,
     }),
   ]),
-  /**
-   * @ignore
-   */
-  key: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
    * @ignore
    */

@@ -2835,9 +2835,9 @@ The following will not correctly apply the style to the delete icon:
 
 ## Troubleshooting
 
-### Storybook emotion with v5
+### Storybook Emotion with v5
 
-If your project uses Storybook v6.x, you will need to update `.storybook/main.js` webpack config to use the most recent version of emotion.
+If your project uses Storybook v6.x, you will need to update `.storybook/main.js` webpack config to use the most recent version of Emotion.
 
 ```js
 // .storybook/main.js
