@@ -25,7 +25,7 @@
     "@types/lodash": "^4.14.182",
     "@types/node": "^16.11.39",
     "@types/prettier": "^2.6.3",
-    "@types/react": "^17.0.45",
+    "@types/react": "^18.0.14",
     "@types/uuid": "^8.3.4",
     "fast-glob": "^3.2.11",
     "prettier": "^2.6.2",
