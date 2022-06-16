@@ -60,8 +60,6 @@ const useRovingIndex = (options) => {
     onClick: () => {
       setActiveIndex(index);
     },
-    focusNext,
-    focusPrevious,
   });
   return {
     activeIndex,
@@ -301,7 +299,8 @@ const AdmissionsMenu = React.forwardRef(
 );
 
 export default function ExampleNavigationMenu() {
-  const { targets, getTargetProps, setActiveIndex } = useRovingIndex();
+  const { targets, getTargetProps, setActiveIndex, focusNext, focusPrevious } =
+    useRovingIndex();
   return (
     <Box sx={{ minHeight: 190 }}>
       <Sheet variant="outlined" sx={{ borderRadius: 'sm', boxShadow: 'sm' }}>
@@ -333,6 +332,8 @@ export default function ExampleNavigationMenu() {
                 setActiveIndex(1);
                 targets[1].focus();
               }}
+              focusNext={focusNext}
+              focusPrevious={focusPrevious}
               {...getTargetProps(1)}
             />
           </ListItem>
@@ -342,6 +343,8 @@ export default function ExampleNavigationMenu() {
                 setActiveIndex(2);
                 targets[2].focus();
               }}
+              focusNext={focusNext}
+              focusPrevious={focusPrevious}
               {...getTargetProps(2)}
             />
           </ListItem>
