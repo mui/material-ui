@@ -45,7 +45,6 @@ function addHiddenInput(form, name, value) {
  */
 
 export default function TemplateCollection() {
-  console.log('cache', cache);
   const templates = extractTemplates(cache);
   const theme = useTheme();
   return (
