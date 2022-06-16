@@ -13,7 +13,6 @@ describe('@mui/envinfo', () => {
     try {
       clipboard.writeSync('');
     } catch (e) {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       isClipboardAvailable = false;
     }
   });
