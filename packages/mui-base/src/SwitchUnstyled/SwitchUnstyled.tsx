@@ -1,7 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import composeClasses from '../composeClasses';
 import useSwitch from './useSwitch';
-import classes from './switchUnstyledClasses';
+import { getSwitchUnstyledUtilityClass } from './switchUnstyledClasses';
 import {
   SwitchUnstyledProps,
   SwitchUnstyledOwnerState,
@@ -11,6 +12,25 @@ import {
   SwitchUnstyledTrackSlotProps,
 } from './SwitchUnstyled.types';
 import { useSlotProps, WithOptionalOwnerState } from '../utils';
+
+const useUtilityClasses = (ownerState: SwitchUnstyledOwnerState) => {
+  const { checked, disabled, focusVisible, readOnly } = ownerState;
+
+  const slots = {
+    root: [
+      'root',
+      checked && 'checked',
+      disabled && 'disabled',
+      focusVisible && 'focusVisible',
+      readOnly && 'readOnly',
+    ],
+    thumb: ['thumb'],
+    input: ['input'],
+    track: ['track'],
+  };
+
+  return composeClasses(slots, getSwitchUnstyledUtilityClass, {});
+};
 
 /**
  * The foundation for building custom-styled switches.
@@ -29,7 +49,6 @@ const SwitchUnstyled = React.forwardRef(function SwitchUnstyled(
 ) {
   const {
     checked: checkedProp,
-    className,
     component,
     components = {},
     componentsProps = {},
@@ -41,7 +60,7 @@ const SwitchUnstyled = React.forwardRef(function SwitchUnstyled(
     onFocusVisible,
     readOnly: readOnlyProp,
     required,
-    ...otherProps
+    ...other
   } = props;
 
   const useSwitchProps = {
@@ -65,23 +84,18 @@ const SwitchUnstyled = React.forwardRef(function SwitchUnstyled(
     readOnly,
   };
 
-  const stateClasses = {
-    [classes.checked]: checked,
-    [classes.disabled]: disabled,
-    [classes.focusVisible]: focusVisible,
-    [classes.readOnly]: readOnly,
-  };
+  const classes = useUtilityClasses(ownerState);
 
   const Root: React.ElementType = component ?? components.Root ?? 'span';
   const rootProps: WithOptionalOwnerState<SwitchUnstyledRootSlotProps> = useSlotProps({
     elementType: Root,
     externalSlotProps: componentsProps.root,
-    externalForwardedProps: otherProps,
+    externalForwardedProps: other,
     additionalProps: {
       ref,
     },
     ownerState,
-    className: [classes.root, stateClasses, className],
+    className: classes.root,
   });
 
   const Thumb: React.ElementType = components.Thumb ?? 'span';
@@ -128,10 +142,6 @@ SwitchUnstyled.propTypes /* remove-proptypes */ = {
    * If `true`, the component is checked.
    */
   checked: PropTypes.bool,
-  /**
-   * Class name applied to the root element.
-   */
-  className: PropTypes.string,
   /**
    * The component used for the Root slot.
    * Either a string to use a HTML element or a component.

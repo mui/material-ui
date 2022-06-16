@@ -32,7 +32,6 @@ const MenuItemUnstyled = React.forwardRef(function MenuItemUnstyled(
 ) {
   const {
     children,
-    className,
     disabled: disabledProp = false,
     component,
     components = {},
@@ -57,7 +56,7 @@ const MenuItemUnstyled = React.forwardRef(function MenuItemUnstyled(
     getSlotProps: getRootProps,
     externalSlotProps: componentsProps.root,
     externalForwardedProps: other,
-    className: [classes.root, className],
+    className: classes.root,
     ownerState,
   });
 
@@ -73,10 +72,6 @@ MenuItemUnstyled.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   children: PropTypes.node,
-  /**
-   * @ignore
-   */
-  className: PropTypes.string,
   /**
    * @ignore
    */
