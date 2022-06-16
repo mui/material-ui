@@ -228,8 +228,8 @@ describe('<Dialog />', () => {
       expect(paper).toHaveComputedStyle({
         maxWidth: 'calc(100% - 64px)',
       });
+    });
   });
-});
 
   describe('prop: fullWidth', () => {
     it('should set `fullWidth` class if specified', () => {
