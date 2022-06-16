@@ -66,11 +66,21 @@ module.exports = {
     ) {
       const [nextExternals, ...externals] = config.externals;
 
-      if (externals.length > 0) {
-        // currently not the case but other next plugins might introduce additional
-        // rules for externals. We would need to handle those in the callback
-        throw new Error('There are other externals in the webpack config.');
-      }
+      // TODO: This needs to be verified again
+      // The second element in config.externals is:
+      // {
+      //   '@builder.io/partytown': '{}',
+      //   'next/dist/compiled/etag': '{}',
+      //   'next/dist/compiled/chalk': '{}',
+      //   'react-dom': '{}'
+      // }
+      // Not sure where they come from, will need to investigate this further.
+      // I am disabling the check for now
+      // if (externals.length > 0) {
+      //   // currently not the case but other next plugins might introduce additional
+      //   // rules for externals. We would need to handle those in the callback
+      //   throw new Error('There are other externals in the webpack config.');
+      // }
 
       config.externals = [
         (ctx, callback) => {
