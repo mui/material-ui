@@ -28,7 +28,7 @@ describe('<Switch />', () => {
     ],
   }));
 
-  it('should pass componentProps down to slots', () => {
+  it('should pass `componentsProps` down to slots', () => {
     const { container } = render(
       <Switch
         data-testid="root-switch"

@@ -60,7 +60,10 @@ export const style = ({ ownerState, theme }) => {
     const transformer = createUnarySpacing(theme);
 
     const base = Object.keys(theme.breakpoints.values).reduce((acc, breakpoint) => {
-      if (ownerState.spacing[breakpoint] != null || ownerState.direction[breakpoint] != null) {
+      if (
+        (typeof ownerState.spacing === 'object' && ownerState.spacing[breakpoint] != null) ||
+        (typeof ownerState.direction === 'object' && ownerState.direction[breakpoint] != null)
+      ) {
         acc[breakpoint] = true;
       }
       return acc;

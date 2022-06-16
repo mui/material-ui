@@ -40,25 +40,21 @@ const createPrefixVar = (prefix: string | undefined | null) => {
  * result will be the stylesheet based on the palette tokens
  * @example {
  *   color: '--token',
- *   backgroundColor: '--token'
+ *   backgroundColor: '--token',
+ *   '--variant-borderWidth': '0px',
  * }
  * @example {
  *   cursor: 'pointer',
- *   '&:hover': {
- *      color: '--token',
- *   }
- * }
- * @example {
- *   '&:active': {
- *      color: '--token',
- *   }
+ *   color: '--token',
+ *   backgroundColor: '--token',
+ *   '--variant-borderWidth': '1px',
  * }
  * @example {
  *   pointerEvents: 'none',
  *   cursor: 'default',
- *   '&.Mui-disabled': {
- *      color: '--token',
- *   }
+ *   color: '--token',
+ *   backgroundColor: '--token',
+ *   '--variant-borderWidth': '0px',
  * }
  */
 export const createVariantStyle = (

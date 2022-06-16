@@ -1,4 +1,5 @@
-export { ClockPicker as default, clockPickerClasses } from '@mui/x-date-pickers/ClockPicker';
+export { default } from './ClockPicker';
+export { clockPickerClasses } from '@mui/x-date-pickers/ClockPicker';
 export type {
   ClockPickerClasses,
   ClockPickerClassKey,

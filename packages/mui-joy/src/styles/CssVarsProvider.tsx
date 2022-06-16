@@ -9,6 +9,9 @@ const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssV
   Theme
 >({
   theme: extendTheme(),
+  attribute: 'data-joy-color-scheme',
+  modeStorageKey: 'joy-mode',
+  colorSchemeStorageKey: 'joy-color-scheme',
   defaultColorScheme: {
     light: 'light',
     dark: 'dark',

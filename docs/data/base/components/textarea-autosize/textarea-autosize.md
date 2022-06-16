@@ -42,4 +42,4 @@ Use the `maxRows` prop to define the maximum height of the component:
 
 ## Bundle size
 
-📦 [1.5 kB gzipped](/size-snapshot).
+📦 [1.5 kB gzipped](/size-snapshot/).

@@ -3,7 +3,7 @@ import Head from 'next/head';
 import Avatar from '@mui/joy/Avatar';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
-import Checkbox from '@mui/joy/Checkbox';
+import Checkbox, { checkboxClasses } from '@mui/joy/Checkbox';
 import List from '@mui/joy/List';
 import ListItem from '@mui/joy/ListItem';
 import Sheet from '@mui/joy/Sheet';
@@ -270,12 +270,12 @@ export default function JoyCheckbox() {
             </Typography>
             <Box role="group" aria-labelledby="filter-status">
               <List
-                sx={{
+                sx={(theme) => ({
                   '--List-item-radius': '4px',
-                  '[data-mui-color-scheme="light"] &': {
+                  [theme.getColorSchemeSelector('light')]: {
                     '--joy-palette-neutral-lightBg': 'var(--joy-palette-neutral-50)',
                   },
-                }}
+                })}
               >
                 <ListItem variant="soft" color="danger">
                   <Checkbox label="Declined Payment" color="danger" checked overlay />
@@ -320,17 +320,17 @@ export default function JoyCheckbox() {
             </Typography>
             <Box role="group" aria-labelledby="member">
               <List
-                sx={{
+                sx={(theme) => ({
                   '--List-item-radius': '4px',
-                  '& .MuiCheckbox-root': {
+                  [`& .${checkboxClasses.root}`]: {
                     mr: 'auto',
                     alignItems: 'center',
                     '--Checkbox-gap': '12px',
                   },
-                  '[data-mui-color-scheme="light"] &': {
+                  [theme.getColorSchemeSelector('light')]: {
                     '--joy-palette-neutral-lightBg': 'var(--joy-palette-neutral-50)',
                   },
-                }}
+                })}
               >
                 <ListItem>
                   <Checkbox disabled label="Friedrich Oberbrunner" overlay />

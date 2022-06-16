@@ -150,7 +150,10 @@ SvgIcon.propTypes /* remove-proptypes */ = {
     'xl4',
     'xl5',
     'xl6',
+    'xl7',
     'xs',
+    'xs2',
+    'xs3',
   ]),
   /**
    * Applies a color attribute to the SVG element.

@@ -65,11 +65,6 @@ const RadioRoot = styled('span', {
         '--Radio-gap': '0.625rem',
         fontSize: theme.vars.fontSize.lg,
       }),
-      ...(ownerState.label &&
-        !ownerState.disableIcon && {
-          // add some space at the end to not have focus overlapping the label
-          paddingInlineEnd: 'var(--Radio-gap)',
-        }),
       position: ownerState.overlay ? 'initial' : 'relative',
       display: 'inline-flex',
       boxSizing: 'border-box',
@@ -117,7 +112,7 @@ const RadioRadio = styled('span', {
         { '&:hover': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!] },
         { '&:active': theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!] },
         {
-          [radioClasses.disabled]:
+          [`&.${radioClasses.disabled}`]:
             theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
         },
       ]
@@ -151,7 +146,7 @@ const RadioAction = styled('span', {
         { '&:hover': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!] },
         { '&:active': theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!] },
         {
-          [radioClasses.disabled]:
+          [`&.${radioClasses.disabled}`]:
             theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
         },
       ]

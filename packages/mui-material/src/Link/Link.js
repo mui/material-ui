@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { elementTypeAcceptingRef } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
-import { alpha, getPath } from '@mui/system';
 import capitalize from '../utils/capitalize';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
@@ -11,18 +10,7 @@ import useIsFocusVisible from '../utils/useIsFocusVisible';
 import useForkRef from '../utils/useForkRef';
 import Typography from '../Typography';
 import linkClasses, { getLinkUtilityClass } from './linkClasses';
-
-const colorTransformations = {
-  primary: 'primary.main',
-  textPrimary: 'text.primary',
-  secondary: 'secondary.main',
-  textSecondary: 'text.secondary',
-  error: 'error.main',
-};
-
-const transformDeprecatedColors = (color) => {
-  return colorTransformations[color] || color;
-};
+import getTextDecoration, { colorTransformations } from './getTextDecoration';
 
 const useUtilityClasses = (ownerState) => {
   const { classes, component, focusVisible, underline } = ownerState;
@@ -52,8 +40,6 @@ const LinkRoot = styled(Typography, {
     ];
   },
 })(({ theme, ownerState }) => {
-  const color =
-    getPath(theme, `palette.${transformDeprecatedColors(ownerState.color)}`) || ownerState.color;
   return {
     ...(ownerState.underline === 'none' && {
       textDecoration: 'none',
@@ -66,7 +52,9 @@ const LinkRoot = styled(Typography, {
     }),
     ...(ownerState.underline === 'always' && {
       textDecoration: 'underline',
-      textDecorationColor: color !== 'inherit' ? alpha(color, 0.4) : undefined,
+      ...(ownerState.color !== 'inherit' && {
+        textDecorationColor: getTextDecoration({ theme, ownerState }),
+      }),
       '&:hover': {
         textDecorationColor: 'inherit',
       },

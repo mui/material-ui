@@ -24,7 +24,6 @@ const pages = [
       '/material-ui/material-icons',
       '/material-ui/about-the-lab',
       '/material-ui/transitions',
-      '/material-ui/lab-date-and-time-pickers',
     ],
     title: 'Components',
     icon: 'ToggleOnIcon',
@@ -142,7 +141,6 @@ const pages = [
         subheader: 'lab',
         children: [
           { pathname: '/material-ui/about-the-lab', title: 'About the lab 🧪' },
-          { pathname: '/material-ui/lab-date-and-time-pickers', title: 'Date & Time pickers' },
           { pathname: '/material-ui/react-masonry' },
           { pathname: '/material-ui/react-timeline' },
           { pathname: '/material-ui/react-tree-view' },
@@ -200,14 +198,12 @@ const pages = [
         pathname: '/material-ui/guides/pickers-migration',
         title: 'Migration from @material-ui/pickers',
       },
-      { pathname: '/material-ui/guides/migration-v4', title: 'Migration from v4' },
-      { pathname: '/material-ui/guides/migration-v3', title: 'Migration from v3' },
-      { pathname: '/material-ui/guides/migration-v0x', title: 'Migration from v0.x' },
       { pathname: '/material-ui/guides/testing' },
       { pathname: '/material-ui/guides/localization' },
       { pathname: '/material-ui/guides/content-security-policy', title: 'Content Security Policy' },
       { pathname: '/material-ui/guides/right-to-left', title: 'Right-to-left' },
       { pathname: '/material-ui/guides/flow' },
+      { pathname: '/material-ui/guides/shadow-dom', title: 'Shadow DOM' },
     ],
   },
   {
@@ -234,6 +230,47 @@ const pages = [
       { pathname: '/material-ui/discover-more/vision' },
       { pathname: '/material-ui/discover-more/changelog' },
       { pathname: '/material-ui/discover-more/languages' },
+    ],
+  },
+  {
+    pathname: '/material-ui/migration',
+    title: 'Migration',
+    icon: 'BookIcon',
+    children: [
+      {
+        pathname: '/material-ui/migration',
+        subheader: 'Upgrade to v5',
+        children: [
+          {
+            pathname: '/material-ui/migration/migration-v4',
+            title: 'Migrating to v5: getting started',
+          },
+          {
+            pathname: '/material-ui/migration/v5-style-changes',
+            title: 'Breaking changes: style and theme',
+          },
+          {
+            pathname: '/material-ui/migration/v5-component-changes',
+            title: 'Breaking changes: components',
+          },
+          {
+            pathname: '/material-ui/migration/migrating-from-jss',
+            title: 'Migrating from JSS (optional)',
+          },
+          {
+            pathname: '/material-ui/migration/troubleshooting',
+            title: 'Troubleshooting',
+          },
+        ],
+      },
+      {
+        pathname: '/material-ui/migration',
+        subheader: 'Earlier versions',
+        children: [
+          { pathname: '/material-ui/migration/migration-v3', title: 'Migration from v3 to v4' },
+          { pathname: '/material-ui/migration/migration-v0x', title: 'Migration from v0.x to v1' },
+        ],
+      },
     ],
   },
   {

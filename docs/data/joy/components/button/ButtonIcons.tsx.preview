@@ -1,5 +1,6 @@
 <Button startIcon={<Add />}>Add to cart</Button>
 <Button
+  aria-label="Like"
   variant="soft"
   color="neutral"
   endIcon={<KeyboardArrowDown fontSize="lg" />}

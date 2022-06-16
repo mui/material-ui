@@ -12,7 +12,7 @@ Algumas das principais características:
 
 - ⚛️ Tem uma API React idiomática.
 - 🚀 É performático, ele observa o documento para detectar quando suas consultas de mídia mudam, em vez de pesquisar os valores periodicamente.
-- 📦 [1 kB gzipped](/size-snapshot).
+- 📦 [1 kB gzipped](/size-snapshot/).
 - 🤖 Suporta a renderização do lado do servidor.
 
 [A paleta](/system/palette/) com funções de estilo.

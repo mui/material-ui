@@ -172,7 +172,8 @@ import Link from '@mui/joy/Link';
 
 ## 🎁 Bonus: Setting up dark mode
 
-Joy provides an effortless way to toggle between modes by using the react hook `useColorScheme`. All you need to do is create a component that uses the hook and then render it under the `CssVarsProvider` component.
+Joy UI provides an effortless way to toggle between modes by using the react hook `useColorScheme`.
+All you need to do is create a component that uses the hook and then render it under the `CssVarsProvider` component.
 
 ```jsx
 import React from 'react';
@@ -218,6 +219,8 @@ export default function App() {
 }
 ```
 
-> 💡 By using the `useColorScheme` hook, Joy ensures that the user selected mode (stored in localStorage by default) is in-sync across browser tabs.
+:::info
+💡 With the `useColorScheme` hook, Joy UI ensures that the user selected mode (stored in localStorage by default) is in-sync across browser tabs.
+:::
 
 Congratulations 🎉! You have seamlessly built a simple yet good looking UI!

@@ -39,7 +39,6 @@ const InputRoot = styled('div', {
     '--Input-radius': theme.vars.radius.sm, // radius is used by the decorator children
     '--Input-gap': '0.5rem',
     '--Input-placeholderOpacity': 0.5,
-    '--Input-decorator-offset': 'calc(var(--Input-paddingInline) / 4)', // negative margin of the start/end adornment
     '--Input-focusedThickness': 'calc(var(--variant-borderWidth, 1px) + 1px)',
     '--Input-focusedHighlight':
       theme.vars.palette[ownerState.color === 'neutral' ? 'primary' : ownerState.color!]?.[500],
@@ -59,14 +58,14 @@ const InputRoot = styled('div', {
       '--Input-minHeight': '3rem',
       '--Input-paddingInline': '1rem',
       '--Input-gap': '0.75rem',
-      '--Input-decorator-childHeight': 'min(2.25rem, var(--Input-minHeight))',
+      '--Input-decorator-childHeight': 'min(2.375rem, var(--Input-minHeight))',
       '--Icon-fontSize': '1.75rem',
     }),
     // variables for controlling child components
     '--Input-decorator-childOffset':
-      'min(calc(var(--Input-paddingInline) - var(--Input-decorator-offset) - (var(--Input-minHeight) - 2 * var(--variant-borderWidth) - var(--Input-decorator-childHeight)) / 2), var(--Input-paddingInline) - var(--Input-decorator-offset))',
+      'min(calc(var(--Input-paddingInline) - (var(--Input-minHeight) - 2 * var(--variant-borderWidth) - var(--Input-decorator-childHeight)) / 2), var(--Input-paddingInline))',
     '--internal-paddingBlock':
-      'max((var(--Input-minHeight) - 2 * var(--variant-borderWidth) - var(--Input-decorator-childHeight)) / 2)',
+      'max((var(--Input-minHeight) - 2 * var(--variant-borderWidth) - var(--Input-decorator-childHeight)) / 2, 0px)',
     '--Input-decorator-childRadius':
       'max((var(--Input-radius) - var(--variant-borderWidth)) - var(--internal-paddingBlock), min(var(--internal-paddingBlock) / 2, (var(--Input-radius) - var(--variant-borderWidth)) / 2))',
     '--Button-minHeight': 'var(--Input-decorator-childHeight)',
@@ -111,7 +110,8 @@ const InputRoot = styled('div', {
   theme.variants[`${ownerState.variant!}`]?.[ownerState.color!],
   { '&:hover': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!] },
   {
-    [inputClasses.disabled]: theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
+    [`&.${inputClasses.disabled}`]:
+      theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
   },
   ownerState.variant !== 'solid' && {
     [`&.${inputClasses.focused}`]: {
@@ -159,9 +159,10 @@ const InputStartDecorator = styled('span', {
 })<{ ownerState: InputProps & InputUnstyledOwnerState }>(({ theme, ownerState }) => ({
   '--Button-margin': '0 0 0 calc(var(--Input-decorator-childOffset) * -1)',
   '--IconButton-margin': '0 0 0 calc(var(--Input-decorator-childOffset) * -1)',
+  '--Icon-margin': '0 0 0 calc(var(--Input-paddingInline) / -4)',
   pointerEvents: 'none', // to make the input focused when click on the element because start element usually is an icon
   display: 'inherit',
-  marginInlineStart: 'calc(var(--Input-decorator-offset) * -1)',
+  alignItems: 'center',
   marginInlineEnd: 'var(--Input-gap)',
   color: theme.vars.palette.text.tertiary,
   ...(ownerState.focused && {
@@ -176,9 +177,10 @@ const InputEndDecorator = styled('span', {
 })<{ ownerState: InputProps & InputUnstyledOwnerState }>(({ theme, ownerState }) => ({
   '--Button-margin': '0 calc(var(--Input-decorator-childOffset) * -1) 0 0',
   '--IconButton-margin': '0 calc(var(--Input-decorator-childOffset) * -1) 0 0',
+  '--Icon-margin': '0 calc(var(--Input-paddingInline) / -4) 0 0',
   display: 'inherit',
+  alignItems: 'center',
   marginInlineStart: 'var(--Input-gap)',
-  marginInlineEnd: 'calc(var(--Input-decorator-offset) * -1)',
   color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Color`],
 }));
 
