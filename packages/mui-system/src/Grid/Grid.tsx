@@ -25,7 +25,7 @@ Grid.propTypes /* remove-proptypes */ = {
    * The number of columns.
    * @default 12
    */
-  columns: PropTypes.oneOfType([
+  columns: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.arrayOf(PropTypes.number),
     PropTypes.number,
     PropTypes.object,
@@ -34,7 +34,7 @@ Grid.propTypes /* remove-proptypes */ = {
    * Defines the horizontal space between the type `item` components.
    * It overrides the value of the `spacing` prop.
    */
-  columnSpacing: PropTypes.oneOfType([
+  columnSpacing: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])),
     PropTypes.number,
     PropTypes.object,
@@ -51,7 +51,7 @@ Grid.propTypes /* remove-proptypes */ = {
    * It is applied for all screen sizes.
    * @default 'row'
    */
-  direction: PropTypes.oneOfType([
+  direction: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['column-reverse', 'column', 'row-reverse', 'row']),
     PropTypes.arrayOf(PropTypes.oneOf(['column-reverse', 'column', 'row-reverse', 'row'])),
     PropTypes.object,
@@ -92,7 +92,7 @@ Grid.propTypes /* remove-proptypes */ = {
    * Defines the vertical space between the type `item` components.
    * It overrides the value of the `spacing` prop.
    */
-  rowSpacing: PropTypes.oneOfType([
+  rowSpacing: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])),
     PropTypes.number,
     PropTypes.object,
@@ -119,7 +119,7 @@ Grid.propTypes /* remove-proptypes */ = {
    * It can only be used on a type `container` component.
    * @default 0
    */
-  spacing: PropTypes.oneOfType([
+  spacing: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])),
     PropTypes.number,
     PropTypes.object,
