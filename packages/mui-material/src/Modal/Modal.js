@@ -183,8 +183,8 @@ Modal.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   componentsProps: PropTypes.shape({
-    backdrop: PropTypes.object,
-    root: PropTypes.object,
+    backdrop: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
    * An HTML element or function that returns one.
