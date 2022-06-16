@@ -19,7 +19,7 @@ const HighlightedCode = React.forwardRef(function HighlightedCode(props, ref) {
     return prism(code.trim(), language);
   }, [code, language]);
   const [copied, setCopied] = React.useState(false);
-  const [key, setKey] = React.useState('Ctrl');
+  const [key, setKey] = React.useState('Ctrl + ');
   const handlers = useCodeCopy();
   React.useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -64,7 +64,7 @@ const HighlightedCode = React.forwardRef(function HighlightedCode(props, ref) {
           >
             {copied ? 'Copied' : 'Copy'}&nbsp;
             <span className="MuiCode-copyKeypress">
-              <span>or</span> {key} + C
+              <span>(Or</span> {key}C<span>)</span>
             </span>
           </button>
         )}

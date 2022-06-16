@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { useRouter } from 'next/router';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Collapse from '@mui/material/Collapse';
@@ -27,7 +26,7 @@ const Anchor = styled('a')<{ component?: React.ElementType; noLinkStyle?: boolea
     padding: theme.spacing(1),
     borderRadius: theme.spacing(1),
     transition: theme.transitions.create('background'),
-    '&:hover, &:focus': {
+    '&:hover, &:focus-visible': {
       backgroundColor:
         theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : theme.palette.grey[100],
       // Reset on touch devices, it doesn't add specificity
@@ -67,11 +66,38 @@ const PRODUCTS = [
   },
 ];
 
+const DOCS = [
+  {
+    name: 'Material UI',
+    description: "React components that implement Google's Material Design.",
+    href: ROUTES.materialDocs,
+  },
+  {
+    name: 'Joy UI',
+    description: 'React components for building your design system.',
+    href: ROUTES.joyDocs,
+  },
+  {
+    name: 'MUI Base',
+    description: 'Unstyled React components and low-level hooks.',
+    href: ROUTES.baseDocs,
+  },
+  {
+    name: 'MUI System',
+    description: 'CSS utilities for rapidly laying out custom designs.',
+    href: ROUTES.systemDocs,
+  },
+  {
+    name: 'MUI X',
+    description: 'Advanced and powerful components for complex use cases.',
+    href: ROUTES.advancedComponents,
+  },
+];
+
 export default function HeaderNavDropdown() {
-  const router = useRouter();
-  const asPathWithoutLang = router.asPath.replace(/^\/[a-zA-Z]{2}\//, '/');
   const [open, setOpen] = React.useState(false);
   const [productsOpen, setProductsOpen] = React.useState(true);
+  const [docsOpen, setDocsOpen] = React.useState(false);
   const hambugerRef = React.useRef<HTMLButtonElement | null>(null);
   return (
     <React.Fragment>
@@ -177,16 +203,47 @@ export default function HeaderNavDropdown() {
               )}
               <li>
                 <Anchor
-                  href={
-                    asPathWithoutLang.startsWith('/x')
-                      ? ROUTES.advancedComponents
-                      : ROUTES.documentation
-                  }
-                  as={Link}
-                  noLinkStyle
+                  as="button"
+                  onClick={() => setDocsOpen((bool) => !bool)}
+                  sx={{ justifyContent: 'space-between' }}
                 >
                   Docs
+                  <KeyboardArrowDownRounded
+                    color="primary"
+                    sx={{
+                      transition: '0.3s',
+                      transform: docsOpen ? 'rotate(-180deg)' : 'rotate(0)',
+                    }}
+                  />
                 </Anchor>
+                <Collapse in={docsOpen}>
+                  <UList
+                    sx={{
+                      borderLeft: '1px solid',
+                      borderColor: (theme) =>
+                        theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.100',
+                      pl: 1,
+                      pb: 1,
+                      ml: 1,
+                    }}
+                  >
+                    {DOCS.map((item) => (
+                      <li key={item.name}>
+                        <Anchor
+                          href={item.href}
+                          as={Link}
+                          noLinkStyle
+                          sx={{ flexDirection: 'column', alignItems: 'initial' }}
+                        >
+                          <div>{item.name}</div>
+                          <Typography variant="body2" color="text.secondary">
+                            {item.description}
+                          </Typography>
+                        </Anchor>
+                      </li>
+                    ))}
+                  </UList>
+                </Collapse>
               </li>
               <li>
                 <Anchor href={ROUTES.pricing} as={Link} noLinkStyle>

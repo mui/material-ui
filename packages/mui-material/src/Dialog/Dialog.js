@@ -233,13 +233,15 @@ const Dialog = React.forwardRef(function Dialog(inProps, ref) {
   return (
     <DialogRoot
       className={clsx(classes.root, className)}
-      BackdropProps={{
-        transitionDuration,
-        as: BackdropComponent,
-        ...BackdropProps,
-      }}
       closeAfterTransition
-      BackdropComponent={DialogBackdrop}
+      components={{ Backdrop: DialogBackdrop }}
+      componentsProps={{
+        backdrop: {
+          transitionDuration,
+          as: BackdropComponent,
+          ...BackdropProps,
+        },
+      }}
       disableEscapeKeyDown={disableEscapeKeyDown}
       onClose={onClose}
       open={open}
@@ -295,6 +297,7 @@ Dialog.propTypes /* remove-proptypes */ = {
   'aria-labelledby': PropTypes.string,
   /**
    * A backdrop component. This prop enables custom backdrop rendering.
+   * @deprecated Use `components.Backdrop` instead.
    * @default styled(Backdrop, {
    *   name: 'MuiModal',
    *   slot: 'Backdrop',

@@ -58,7 +58,12 @@ module.exports = {
     // next includes node_modules in webpack externals. Some of those have dependencies
     // on the aliases defined above. If a module is an external those aliases won't be used.
     // We need tell webpack to not consider those packages as externals.
-    if (options.isServer && options.nextRuntime === 'nodejs') {
+    if (
+      options.isServer &&
+      // Next executes this twice on the server with React 18 (once per runtime).
+      // We only care about Node runtime at this point.
+      (options.nextRuntime === undefined || options.nextRuntime === 'nodejs')
+    ) {
       const [nextExternals, ...externals] = config.externals;
 
       if (externals.length > 0) {
@@ -193,9 +198,6 @@ module.exports = {
         if (page.pathname.startsWith('/experiments') && !staging) {
           return;
         }
-        if (page.pathname.startsWith('/joy-ui') && !staging) {
-          return;
-        }
         // The blog is not translated
         if (
           userLanguage !== 'en' &&
@@ -252,6 +254,11 @@ module.exports = {
   async redirects() {
     if (FEATURE_TOGGLE.enable_redirects) {
       return [
+        {
+          source: '/joy-ui/',
+          destination: '/joy-ui/getting-started/overview/',
+          permanent: false,
+        },
         {
           source: '/styles/:path*',
           destination: '/system/styles/:path*',

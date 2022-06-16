@@ -14,7 +14,7 @@ import KeyboardArrowDownRounded from '@mui/icons-material/KeyboardArrowDownRound
 
 const faqData = [
   {
-    summary: 'How do I know if I need to buy license?',
+    summary: 'How do I know if I need to buy a license?',
     detail: (
       <React.Fragment>
         If you are in doubt, check the license file of the npm package you're installing.
@@ -66,7 +66,7 @@ const faqData = [
     ),
   },
   {
-    summary: 'How to remove the "Unlicensed product" watermark?',
+    summary: 'How to remove the "unlicensed" watermark?',
     detail: (
       <React.Fragment>
         After you purchase a license, you'll receive a license key by email Once you have the
@@ -258,7 +258,7 @@ export default function FAQ() {
           >
             <Box sx={{ textAlign: 'left' }}>
               <Typography variant="body2" color="text.primary" fontWeight="bold" component="h3">
-                Got any questions unanswered or need more help?
+                Got any questions unanswered or need help?
               </Typography>
             </Box>
             <Typography variant="body2" color="text.secondary" sx={{ my: 1, textAlign: 'left' }}>
@@ -268,8 +268,8 @@ export default function FAQ() {
             <Typography variant="body2" color="text.secondary" sx={{ my: 1, textAlign: 'left' }}>
               For product-related problems, please open
               <Link href="https://github.com/mui/mui-x/issues/new/choose">a new GitHub issue</Link>.
-              If you need to share private information, you can{' '}
-              <Link href="mailto:x@mui.com">email us</Link>.
+              (If you need to share private information, you can{' '}
+              <Link href="mailto:x@mui.com">email</Link> us.)
             </Typography>
           </Paper>
         </Grid>

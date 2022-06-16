@@ -96,6 +96,8 @@ const AlertMessage = styled('div', {
   overridesResolver: (props, styles) => styles.message,
 })({
   padding: '8px 0',
+  minWidth: 0,
+  overflow: 'auto',
 });
 
 const AlertAction = styled('div', {

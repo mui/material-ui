@@ -28,7 +28,7 @@ Here are the most significant improvements in March:
 
 _(We'll do our best, no guarantee!)_
 
-- We are almost done with [the v4.0.0-alpha breaking changes](https://github.com/mui/material-ui/issues/13663). You can already find [the upgrade path](/material-ui/guides/migration-v3/) from v3 to v4 in the documentation. Next, we will release the first beta version (no more breaking changes).
+- We are almost done with [the v4.0.0-alpha breaking changes](https://github.com/mui/material-ui/issues/13663). You can already find [the upgrade path](/material-ui/migration/migration-v3/) from v3 to v4 in the documentation. Next, we will release the first beta version (no more breaking changes).
   The results of the MUI developer survey suggested that there are too many breaking changes.
   Don't worry, it's almost over! We will focus on providing more components once we have released v4 stable.
 - We will continue, and hopefully complete, the tasks we undertook:

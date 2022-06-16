@@ -11,6 +11,9 @@ const {
   getInitColorSchemeScript,
 } = createCssVarsProvider({
   theme: defaultTheme,
+  attribute: 'data-mui-color-scheme',
+  modeStorageKey: 'mui-mode',
+  colorSchemeStorageKey: 'mui-color-scheme',
   defaultColorScheme: {
     light: 'light',
     dark: 'dark',

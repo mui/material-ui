@@ -73,7 +73,7 @@ Scale: -100 to 0 needs improvements, 0 to 30 is good, 30 to 70 is great, and 70 
 
 ### What is the main benefit you get from using MUI?
 
-<img src="/static/blog/2021-developer-survey-results/3.png" style="width: 796px; margin-top: 16px; margin-bottom: 8px;" alt="This question results in 2019 - Design: 248; Time: 193; DX: 128; Components: 89; Customizability: 53; Documentation: 25; Accessibility: 5; Typescript: 5; Community support: 4; This question results in 2021 - Time: 597; Design: 407; Components: 309; DX: 306; Customizability: 181; Documentation: 57; Community support: 26; Accessibility: 24; Performance: 17" />
+<img src="/static/blog/2021-developer-survey-results/3.png" style="width: 796px; margin-top: 16px; margin-bottom: 8px;" alt="This question results in 2019 - Design: 248; Time: 193; DX: 128; Components: 89; Customizability: 53; Documentation: 25; Accessibility: 5; TypeScript: 5; Community support: 4; This question results in 2021 - Time: 597; Design: 407; Components: 309; DX: 306; Customizability: 181; Documentation: 57; Community support: 26; Accessibility: 24; Performance: 17" />
 
 <p class="blog-description">1422 out of 1589 answered this question in 2021.</p>
 
@@ -184,7 +184,7 @@ Here are the most recurring topics for improvement this year:
 - **Fewer breaking changes:** MUI Core v5 introduced some important breaking changes, especially because of the new styling solution.
   Rest assured that we don't expect to release any major updates this year—in fact, we aim to keep majors at least 12 months apart from each other.
 - **Improve customization:** Common requests include making customization easier, providing more examples of common use-cases (like font-family and primary/secondary colors), and improving the theme capabilities.
-  Even with the popularity of emotion and styled-components, there continues to be an enormous need to facilitate customization.
+  Even with the popularity of Emotion and styled-components, there continues to be an enormous need to facilitate customization.
 
 If you are interested in an analysis of the growing and decreasing pain, you can [head to the appendix](https://mui-org.notion.site/Raw-data-aa374141dcb3453dbfea301dcc437126#30728bf1bc8d4f70a1739fa20f11459a).
 
@@ -805,7 +805,7 @@ Thanks again and until the next survey!
 
 Here is some additional content related to the topics covered throughout this post:
 
-- [How to migrate from v4 to v5](/material-ui/guides/migration-v4/)
+- [How to migrate from v4 to v5](/material-ui/migration/migration-v4/)
 - [Style library interoperability](/material-ui/guides/interoperability/)
 - [Approaches to customizing Material UI components](/material-ui/customization/how-to-customize/)
 
