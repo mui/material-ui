@@ -23,7 +23,10 @@
       "default": "{}"
     },
     "componentsProps": {
-      "type": { "name": "shape", "description": "{ badge?: object, root?: object }" },
+      "type": {
+        "name": "shape",
+        "description": "{ badge?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object }"
+      },
       "default": "{}"
     },
     "invisible": { "type": { "name": "bool" } },

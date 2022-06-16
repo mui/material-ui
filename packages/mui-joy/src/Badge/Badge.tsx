@@ -216,7 +216,7 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
         Badge: BadgeBadge,
         ...components,
       }}
-      className={clsx(className, classes.root, componentsProps.root?.className)}
+      className={clsx(className, classes.root)}
       componentsProps={{
         root: {
           ...componentsProps.root,
@@ -233,7 +233,7 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
         },
         badge: {
           ...componentsProps.badge,
-          className: clsx(classes.badge, componentsProps.badge?.className),
+          className: clsx(classes.badge),
           ...(shouldSpreadAdditionalProps(components.Badge) && {
             ownerState: {
               anchorOrigin,
@@ -309,8 +309,8 @@ Badge.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   componentsProps: PropTypes.shape({
-    badge: PropTypes.object,
-    root: PropTypes.object,
+    badge: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
    * If `true`, the badge is invisible.
