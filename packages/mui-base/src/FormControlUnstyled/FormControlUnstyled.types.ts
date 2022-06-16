@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { OverrideProps, Simplify } from '@mui/types';
+import { SlotComponentProps } from '../utils';
 
 export type NativeFormControlElement = HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement;
 
@@ -23,7 +24,11 @@ export interface FormControlUnstyledOwnProps {
     Root?: React.ElementType;
   };
   componentsProps?: {
-    root?: React.HTMLAttributes<HTMLDivElement> & FormControlUnstyledComponentsPropsOverrides;
+    root?: SlotComponentProps<
+      'div',
+      FormControlUnstyledComponentsPropsOverrides,
+      FormControlUnstyledOwnerState
+    >;
   };
   defaultValue?: unknown;
   /**
@@ -68,6 +73,7 @@ export type FormControlUnstyledOwnerState = Simplify<
   Omit<FormControlUnstyledOwnProps, NonOptionalOwnerState> &
     Required<Pick<FormControlUnstyledProps, NonOptionalOwnerState>> & {
       filled: boolean;
+      focused: boolean;
     }
 >;
 
