@@ -87,3 +87,9 @@ export type FormControlUnstyledState = Simplify<
     onFocus: () => void;
   }
 >;
+
+export type FormControlUnstyledRootSlotProps = {
+  children: React.ReactNode | ((state: FormControlUnstyledState) => React.ReactNode);
+  className?: string;
+  ownerState: FormControlUnstyledOwnerState;
+};

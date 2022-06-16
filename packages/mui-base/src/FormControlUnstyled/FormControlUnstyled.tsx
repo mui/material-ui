@@ -10,8 +10,9 @@ import {
   FormControlUnstyledTypeMap,
   FormControlUnstyledOwnerState,
   FormControlUnstyledState,
+  FormControlUnstyledRootSlotProps,
 } from './FormControlUnstyled.types';
-import { useSlotProps } from '../utils';
+import { useSlotProps, WithOptionalOwnerState } from '../utils';
 import composeClasses from '../composeClasses';
 
 function hasValue(value: unknown) {
@@ -131,7 +132,7 @@ const FormControlUnstyled = React.forwardRef(function FormControlUnstyled<
   const classes = useUtilityClasses(ownerState);
 
   const Root = component ?? components.Root ?? 'div';
-  const rootProps = useSlotProps({
+  const rootProps: WithOptionalOwnerState<FormControlUnstyledRootSlotProps> = useSlotProps({
     elementType: Root,
     externalSlotProps: componentsProps.root,
     externalForwardedProps: other,
