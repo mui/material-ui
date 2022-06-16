@@ -4,7 +4,7 @@ description: We have completely revamped our Migration guide to reduce friction 
 date: 2022-06-15T00:00:00.000Z
 authors: ['samuelsycamore']
 card: true
-tags: ['News', 'MUI Core']
+tags: ['MUI Core']
 ---
 
 Are you still using Material UI v4 in 2022?
