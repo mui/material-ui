@@ -122,34 +122,36 @@ export interface PaletteWithChannels {
   info: PaletteColor & Channels;
   success: PaletteColor & Channels;
   grey: Color & { darkChannel: string };
-  text: TypeText & { primaryChannel: string; secondaryChannel: string; disabledChannel: string };
+  text: TypeText & { primaryChannel: string; secondaryChannel: string };
   divider: TypeDivider;
   dividerChannel: TypeDivider;
-  action: TypeAction & { disabledChannel: string; activeChannel: string };
+  action: TypeAction & { activeChannel: string; selectedChannel: string };
   background: TypeBackground;
   getContrastText: (background: string) => string;
   augmentColor: (options: PaletteAugmentColorOptions) => PaletteColor;
   // component tokens
   AppBar: {
-    defaultBgColor: string;
+    defaultBg: string;
+    darkBg: string;
+    darkColor: string;
   };
   Chip: {
-    defaultBorderColor: string;
+    defaultBorder: string;
     defaultAvatarColor: string;
     defaultIconColor: string;
   };
   FilledInput: {
-    bgColor: string;
-    hoverBgColor: string;
-    disabledBgColor: string;
+    bg: string;
+    hoverBg: string;
+    disabledBg: string;
   };
   LinearProgress: {
-    primaryBgColor: string;
-    secondaryBgColor: string;
-    errorBgColor: string;
-    infoBgColor: string;
-    successBgColor: string;
-    warningBgColor: string;
+    primaryBg: string;
+    secondaryBg: string;
+    errorBg: string;
+    infoBg: string;
+    successBg: string;
+    warningBg: string;
   };
   Slider: {
     primaryTrack: string;
@@ -160,13 +162,13 @@ export interface PaletteWithChannels {
     warningTrack: string;
   };
   SnackbarContent: {
-    bgColor: string;
+    bg: string;
   };
   StepConnector: {
-    borderColor: string;
+    border: string;
   };
   StepContent: {
-    borderColor: string;
+    border: string;
   };
   Switch: {
     defaultColor: string;
@@ -179,7 +181,10 @@ export interface PaletteWithChannels {
     warningDisabledColor: string;
   };
   TableCell: {
-    borderColor: string;
+    border: string;
+  };
+  Tooltip: {
+    bg: string;
   };
 }
 
