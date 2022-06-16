@@ -1,6 +1,5 @@
 import * as React from 'react';
 import Avatar from '@mui/joy/Avatar';
-import Box from '@mui/joy/Box';
 import List from '@mui/joy/List';
 import ListDivider from '@mui/joy/ListDivider';
 import ListItem from '@mui/joy/ListItem';
@@ -18,12 +17,7 @@ import Podcasts from '@mui/icons-material/Podcasts';
 
 export default function ExampleIOSList() {
   return (
-    <Box
-      sx={{
-        width: 320,
-        p: 1,
-      }}
-    >
+    <Sheet variant="soft" sx={{ width: 343, p: 2, borderRadius: 'sm' }}>
       <Typography level="h3" fontSize="xl2" fontWeight="xl" id="ios-example-demo">
         Settings
       </Typography>
@@ -45,10 +39,13 @@ export default function ExampleIOSList() {
           '--List-radius': '8px',
           '--List-gap': '1rem',
           '--List-divider-gap': '0px',
-          '--List-item-paddingY': '0.75rem',
+          '--List-item-paddingY': '0.5rem',
           // override global variant tokens
           '--joy-palette-neutral-plainHoverBg': 'rgba(0 0 0 / 0.08)',
           '--joy-palette-neutral-plainActiveBg': 'rgba(0 0 0 / 0.12)',
+          [theme.getColorSchemeSelector('light')]: {
+            '--joy-palette-divider': 'rgba(0 0 0 / 0.08)',
+          },
           [theme.getColorSchemeSelector('dark')]: {
             '--joy-palette-neutral-plainHoverBg': 'rgba(255 255 255 / 0.1)',
             '--joy-palette-neutral-plainActiveBg': 'rgba(255 255 255 / 0.16)',
@@ -147,6 +144,7 @@ export default function ExampleIOSList() {
                 })}
               />
             </ListItem>
+            <ListDivider inset="startContent" />
             <ListItem>
               <ListItemButton>
                 <ListItemDecorator>
@@ -159,6 +157,7 @@ export default function ExampleIOSList() {
                 <KeyboardArrowRight fontSize="xl3" sx={{ color: 'text.tertiary' }} />
               </ListItemButton>
             </ListItem>
+            <ListDivider inset="startContent" />
             <ListItem>
               <ListItemButton>
                 <ListItemDecorator>
@@ -171,6 +170,7 @@ export default function ExampleIOSList() {
                 <KeyboardArrowRight fontSize="xl3" sx={{ color: 'text.tertiary' }} />
               </ListItemButton>
             </ListItem>
+            <ListDivider inset="startContent" />
             <ListItem>
               <ListItemButton>
                 <ListItemDecorator>
@@ -189,6 +189,6 @@ export default function ExampleIOSList() {
           </List>
         </ListItem>
       </List>
-    </Box>
+    </Sheet>
   );
 }

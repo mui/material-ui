@@ -30,10 +30,7 @@ export default function ListVariables() {
       ]}
       renderDemo={(sx) => (
         <List
-          sx={{
-            ...sx,
-            width: 320,
-          }}
+          sx={(theme) => ({ ...sx, width: 300, ...theme.variants.outlined.neutral })}
         >
           <ListItem>
             <ListItemButton>
@@ -50,25 +47,6 @@ export default function ListVariables() {
               </ListItemDecorator>
               Products
             </ListItemButton>
-          </ListItem>
-          <ListDivider />
-          <ListItem nested>
-            <ListItem>
-              <ListItemButton>
-                <ListItemDecorator>
-                  <Home />
-                </ListItemDecorator>
-                Home
-              </ListItemButton>
-            </ListItem>
-            <ListItem>
-              <ListItemButton>
-                <ListItemDecorator>
-                  <Apps />
-                </ListItemDecorator>
-                Products
-              </ListItemButton>
-            </ListItem>
           </ListItem>
           <ListDivider />
           <ListItem nested>
