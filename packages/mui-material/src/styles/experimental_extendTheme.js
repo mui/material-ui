@@ -128,6 +128,8 @@ export default function extendTheme(options = {}, ...args) {
       setColor(palette.Tooltip, 'bg', alpha(palette.grey[700], 0.92));
     } else {
       setColor(palette.AppBar, 'defaultBg', 'var(--mui-palette-grey-900)');
+      setColor(palette.AppBar, 'darkBg', 'var(--mui-palette-background-paper)'); // specific for dark mode
+      setColor(palette.AppBar, 'darkColor', 'var(--mui-palette-text-primary)'); // specific for dark mode
       setColor(palette.Chip, 'defaultBorder', 'var(--mui-palette-grey-700)');
       setColor(palette.Chip, 'defaultAvatarColor', 'var(--mui-palette-grey-300)');
       setColor(palette.Chip, 'defaultIconColor', 'var(--mui-palette-grey-300)');
