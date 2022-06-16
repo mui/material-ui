@@ -76,14 +76,14 @@ Use both the `onClick` prop and the complementary `ChipDelete` component to make
 
 ### With radio
 
-Similar to the above, wrap the `Radio` component with the `Chip` to use them together.
-Use radios when you want to support only single selection.
+Common to filtering UIs, wrap the `Radio` component with the `Chip` to use them together.
+Use radios when you want to enable single selection.
 
 {{"demo": "RadioChip.js"}}
 
 ### With a checkbox
 
-Common to filtering UIs, wrap the `Checkbox` component with the `Chip` to use them together.
+Similar to the above, wrap the `Checkbox` component with the `Chip` to use them together.
 Use checkboxes when you want to enable multiple selection.
 
 {{"demo": "CheckboxChip.js"}}
