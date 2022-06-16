@@ -37,6 +37,27 @@ function escape(html, encode) {
   return html;
 }
 
+function checkUrlHealth(href, linkText, context) {
+  // Skip links that are externals to MUI
+  if (!(href[0] === '/' || href.startsWith('https://mui.com/'))) {
+    return;
+  }
+
+  const url = new URL(href, 'https://mui.com/');
+
+  if (url.host === 'mui.com' && url.pathname[url.pathname.length - 1] !== '/') {
+    throw new Error(
+      [
+        'Missing trailing slash. The following link:',
+        `[${linkText}](${href}) in ${context.location} is missing a trailing slash, please add it.`,
+        '',
+        'See https://ahrefs.com/blog/trailing-slash/ for more details.',
+        '',
+      ].join('\n'),
+    );
+  }
+}
+
 /**
  * Extract information from the top of the markdown.
  * For instance, the following input:
@@ -133,7 +154,6 @@ function renderInline(markdown) {
 const noSEOadvantage = [
   'https://material.io/',
   'https://getbootstrap.com/',
-  'https://www.amazon.com/',
   'https://materialdesignicons.com/',
   'https://www.w3.org/',
   'https://tailwindcss.com/',
@@ -240,6 +260,8 @@ function createRender(context) {
 
       let finalHref = href;
 
+      checkUrlHealth(href, linkText, context);
+
       if (
         userLanguage !== 'en' &&
         href.indexOf('/') === 0 &&
@@ -269,7 +291,7 @@ function createRender(context) {
 
       return `<div class="MuiCode-root"><pre><code class="language-${escape(lang, true)}">${
         escaped ? code : escape(code, true)
-      }</code></pre><button data-ga-event-category="code" data-ga-event-action="copy-click" aria-label="Copy the code" class="MuiCode-copy">Copy <span class="MuiCode-copyKeypress"><span>or</span> $key + C</span></button></div>\n`;
+      }</code></pre><button data-ga-event-category="code" data-ga-event-action="copy-click" aria-label="Copy the code" class="MuiCode-copy">Copy <span class="MuiCode-copyKeypress"><span>(Or</span> $keyC<span>)</span></span></button></div>\n`;
     };
 
     const markedOptions = {
@@ -326,6 +348,28 @@ function createRender(context) {
 }
 
 /**
+ * @param {string} product
+ * @example 'material'
+ * @param {string} componentPkg
+ * @example 'mui-base'
+ * @param {string} component
+ * @example 'ButtonUnstyled'
+ * @returns {string}
+ */
+function resolveComponentApiUrl(product, componentPkg, component) {
+  if (!product) {
+    return `/api/${kebabCase(component)}/`;
+  }
+  if (product === 'date-pickers') {
+    return `/x/api/date-pickers/${kebabCase(component)}/`;
+  }
+  if (componentPkg === 'mui-base') {
+    return `/base/api/${kebabCase(component)}/`;
+  }
+  return `/${product}/api/${kebabCase(component)}/`;
+}
+
+/**
  * @param {object} config
  * @param {Array<{ markdown: string, filename: string, userLanguage: string }>} config.translations - Mapping of locale to its markdown
  * @param {string} config.pageFilename - posix filename relative to nextjs pages directory
@@ -339,28 +383,6 @@ function prepareMarkdown(config) {
    */
   const docs = {};
   const headingHashes = {};
-
-  /**
-   * @param {string} product
-   * @example 'material'
-   * @param {string} componentPkg
-   * @example 'mui-base'
-   * @param {string} component
-   * @example 'ButtonUnstyled'
-   * @returns {string}
-   */
-  function resolveComponentApiUrl(product, componentPkg, component) {
-    if (!product) {
-      return `/api/${kebabCase(component)}/`;
-    }
-    if (product === 'date-pickers') {
-      return `/x/api/date-pickers/${kebabCase(component)}/`;
-    }
-    if (componentPkg === 'mui-base') {
-      return `/base/api/${kebabCase(component)}/`;
-    }
-    return `/${product}/api/${kebabCase(component)}/`;
-  }
 
   translations
     // Process the English markdown before the other locales.
@@ -399,8 +421,9 @@ ${headers.components
   `);
       }
 
+      const location = headers.filename || `/docs${pageFilename}/${filename}`;
       const toc = [];
-      const render = createRender({ headingHashes, toc, userLanguage });
+      const render = createRender({ headingHashes, toc, userLanguage, location });
 
       const rendered = contents.map((content) => {
         if (/^"(demo|component)": "(.*)"/.test(content)) {
@@ -425,7 +448,7 @@ ${headers.components
 
       docs[userLanguage] = {
         description,
-        location: headers.filename || `/docs${pageFilename}/${filename}`,
+        location,
         rendered,
         toc,
         title,

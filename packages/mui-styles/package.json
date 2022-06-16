@@ -1,6 +1,6 @@
 {
   "name": "@mui/styles",
-  "version": "5.8.0",
+  "version": "5.8.4",
   "private": false,
   "author": "MUI Team",
   "description": "MUI Styles - The legacy JSS-based styling solution of Material UI.",
@@ -49,11 +49,11 @@
   "dependencies": {
     "@babel/runtime": "^7.17.2",
     "@emotion/hash": "^0.8.0",
-    "@mui/private-theming": "^5.8.0",
-    "@mui/types": "^7.1.3",
-    "@mui/utils": "^5.8.0",
+    "@mui/private-theming": "^5.8.4",
+    "@mui/types": "^7.1.4",
+    "@mui/utils": "^5.8.4",
     "clsx": "^1.1.1",
-    "csstype": "^3.0.11",
+    "csstype": "^3.1.0",
     "hoist-non-react-statics": "^3.3.2",
     "jss": "^10.8.2",
     "jss-plugin-camel-case": "^10.8.2",

@@ -3,14 +3,15 @@ product: joy-ui
 title: React Aspect Ratio component
 ---
 
-# Aspect Ratio
+# Aspect ratio
 
-<p class="description">The Aspect Ratio component shapes the content with the specified ratio.</p>
+<p class="description">The aspect ratio component shapes the content with the specified ratio.</p>
 
-The default implementation combines `height: 0px` with percentage padding-bottom to create the proper aspect ratio of the content. (It will be replaced by the [CSS aspect-ratio](https://developer.mozilla.org/en-US/docs/Web/CSS/aspect-ratio) in the future once it has sufficient various browser support).
+The default aspect ratio implementation combines `height: 0px` with percentage padding-bottom to create the proper aspect ratio for the content.
+(It will be replaced by the [CSS aspect-ratio](https://developer.mozilla.org/en-US/docs/Web/CSS/aspect-ratio) in the future once it has sufficient browser support).
 
 - The content to fit the area of the aspect ratio component must be its first direct child.
-- It is designed to be composed with other components, eg. [`Card`](/joy-ui/react-card/).
+- It's designed to be composed with other components, e.g. [`Card`](/joy-ui/react-card/).
 
 ## Basic usage
 
@@ -34,6 +35,12 @@ It has `object-fit: cover` by default.
 
 {{"demo": "MediaRatio.js"}}
 
+## Placeholder
+
+When the media does not exist, you can render a placeholder inside an aspect ratio component. Wrap the placeholder with a `<div>` or `Box` component to center the content.
+
+{{"demo": "PlaceholderAspectRatio.js"}}
+
 ## Controlling the height
 
 Use `minHeight` and `maxHeight` to set the lower and upper bound of the component's height.
@@ -47,18 +54,43 @@ When the aspect ratio component is placed as a child of a flexbox `row` containe
 
 {{"demo": "FlexRowRatio.js"}}
 
+## Integration
+
+### Next.js Image
+
+The `AspectRatio` component can be used with [Next.js Image](https://nextjs.org/docs/basic-features/image-optimization) component.
+
+```js
+import Image from 'next/image';
+import AspectRatio from '@mui/joy/AspectRatio';
+import mountains from '../public/mountains.jpg';
+
+function App() {
+  return (
+    <AspectRatio variant="outlined" ratio="1" objectFit="cover">
+      {/* only layout="fill" makes sense for using with AspectRatio */}
+      <Image alt="Mountains" src={mountains} layout="fill" placeholder="blur" />
+    </AspectRatio>
+  );
+}
+```
+
+:::info
+Always use `layout="fill"` on the image component, otherwise you don't need to use aspect ratio because the height is based on the image.
+:::
+
 ## Common examples
 
-### Mobile Carousel
+### Mobile carousel
 
 Make sure to keep your content concise given the limited width real estate available.
 Since the texts are short, we can set `white-space: nowrap` to make the title stay in one line.
 The `min-width` CSS property is necessary on the aspect ratio component to prevent it from shrinking to zero.
 
-{{"demo": "CarouselRatio.js", "bg": true}}
+{{"demo": "CarouselRatio.js"}}
 
 ### List stack
 
 This is a simple illustration of composing aspect ratio with list components.
 
-{{"demo": "ListStackRatio.js", "bg": true}}
+{{"demo": "ListStackRatio.js"}}

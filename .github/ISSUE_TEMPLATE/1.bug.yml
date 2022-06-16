@@ -59,7 +59,7 @@ body:
       description: Run `npx @mui/envinfo` and post the results. If you encounter issues with TypeScript please include the used tsconfig.
       value: |
         <details>
-          <summary>`npx @mui/envinfo`</summary>
+          <summary><code>npx @mui/envinfo</code></summary>
 
         ```
           Don't forget to mention which browser you used.

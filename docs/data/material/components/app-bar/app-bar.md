@@ -34,6 +34,10 @@ A side searchbar.
 
 {{"demo": "SearchAppBar.js", "bg": true}}
 
+## Responsive App bar with Drawer
+
+{{"demo": "DrawerAppBar.js", "bg": true,"iframe": true}}
+
 ## App bar with a primary search field
 
 A primary searchbar.

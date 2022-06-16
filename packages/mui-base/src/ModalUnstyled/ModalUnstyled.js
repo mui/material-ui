@@ -89,6 +89,8 @@ const ModalUnstyled = React.forwardRef(function ModalUnstyled(props, ref) {
   const handleRef = useForkRef(modalRef, ref);
   const hasTransition = getHasTransition(props);
 
+  const ariaHiddenProp = props['aria-hidden'] ?? true;
+
   const getDoc = () => ownerDocument(mountNodeRef.current);
   const getModal = () => {
     modal.current.modalRef = modalRef.current;
@@ -126,13 +128,13 @@ const ModalUnstyled = React.forwardRef(function ModalUnstyled(props, ref) {
     if (open && isTopModal()) {
       handleMounted();
     } else {
-      ariaHidden(modalRef.current, true);
+      ariaHidden(modalRef.current, ariaHiddenProp);
     }
   });
 
   const handleClose = React.useCallback(() => {
-    manager.remove(getModal());
-  }, [manager]);
+    manager.remove(getModal(), ariaHiddenProp);
+  }, [manager, ariaHiddenProp]);
 
   React.useEffect(() => {
     return () => {

@@ -1,0 +1,10 @@
+<Sheet
+  variant="outlined"
+  sx={{ width: 300, borderRadius: 'md', overflow: 'auto' }}
+>
+  <AspectRatio>
+    <Typography level="h2" component="div">
+      16 : 9
+    </Typography>
+  </AspectRatio>
+</Sheet>

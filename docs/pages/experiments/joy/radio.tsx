@@ -3,11 +3,11 @@ import Avatar from '@mui/joy/Avatar';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import List from '@mui/joy/List';
-import ListItem from '@mui/joy/ListItem';
+import ListItem, { listItemClasses } from '@mui/joy/ListItem';
 import ListDivider from '@mui/joy/ListDivider';
 import ListItemContent from '@mui/joy/ListItemContent';
 import ListItemDecorator from '@mui/joy/ListItemDecorator';
-import Radio from '@mui/joy/Radio';
+import Radio, { radioClasses } from '@mui/joy/Radio';
 import RadioGroup from '@mui/joy/RadioGroup';
 import Typography from '@mui/joy/Typography';
 import Sheet from '@mui/joy/Sheet';
@@ -116,7 +116,7 @@ export default function JoyRadio() {
                   <ListItem component="div">
                     <ListItemContent>
                       <Radio label="Thin" value="Thin" color="warning" />
-                      <Typography level="body3" ml="28px" mt={0.5} color="warning.400">
+                      <Typography level="body3" ml="28px" mt={0.5} textColor="warning.400">
                         This might make your pizza too crispy.
                       </Typography>
                     </ListItemContent>
@@ -215,7 +215,7 @@ export default function JoyRadio() {
                   boxShadow: 'md',
                   gap: 0.5,
                 },
-                '& .MuiRadio-root': {
+                [`& .${radioClasses.root}`]: {
                   mt: -1,
                   mr: -1,
                   mb: 1,
@@ -276,7 +276,7 @@ export default function JoyRadio() {
               variant="soft"
               sx={{ p: 2, display: 'flex', gap: 2, my: 2, borderRadius: '18px' }}
             >
-              <Typography level="body3" color="text.primary">
+              <Typography level="body3" textColor="text.primary">
                 <Typography fontWeight="md">
                   Choose from two anti-reflective glass options.
                 </Typography>{' '}
@@ -294,20 +294,20 @@ export default function JoyRadio() {
               aria-labelledby="display-heading"
               sx={{
                 '--Radio-action-radius': '18px',
-                '& .MuiRadio-root': {
+                [`& .${radioClasses.root}`]: {
                   color: 'initial',
                   padding: '14px',
                   minHeight: '83px',
                   fontWeight: 'md',
                   flexGrow: 1,
                   '&.Mui-checked': {
-                    '& .MuiRadio-action': {
+                    [`& .${radioClasses.action}`]: {
                       borderWidth: 2,
                       borderColor: 'primary.500',
                     },
                   },
                 },
-                '& .MuiRadio-label': {
+                [`& .${radioClasses.label}`]: {
                   display: 'flex',
                   justifyContent: 'space-between',
                   alignItems: 'center',
@@ -366,13 +366,13 @@ export default function JoyRadio() {
               name="plan-type"
               defaultValue="sm"
               sx={{
-                '& .MuiRadio-root': {
+                [`& .${radioClasses.root}`]: {
                   flexGrow: 1,
                   alignItems: 'center',
                   pr: 0,
                   '--Radio-gap': '1rem',
                 },
-                '& .MuiRadio-action': {
+                [`& .${radioClasses.action}`]: {
                   outlineOffset: '-2px',
                 },
               }}
@@ -391,13 +391,13 @@ export default function JoyRadio() {
                       <Typography sx={{ display: 'flex' }}>
                         <Typography level="inherit" fontWeight="md" flexGrow={1}>
                           Small <br />
-                          <Typography fontWeight="normal" fontSize="sm" color="text.secondary">
+                          <Typography fontWeight="normal" fontSize="sm" textColor="text.secondary">
                             Description
                           </Typography>
                         </Typography>
                         <Typography level="inherit" fontWeight="md" textAlign="right">
                           $40 <br />
-                          <Typography fontWeight="normal" fontSize="sm" color="text.secondary">
+                          <Typography fontWeight="normal" fontSize="sm" textColor="text.secondary">
                             per month
                           </Typography>
                         </Typography>
@@ -422,16 +422,16 @@ export default function JoyRadio() {
               sx={(theme) => ({
                 '--List-item-paddingY': '1rem',
                 '--List-item-radius': '4px',
-                '& .MuiListItem-root': {
+                [`& .${listItemClasses.root}`]: {
                   ...theme.variants.outlined.neutral,
                   boxShadow: 'sm',
                   bgcolor: 'background.body',
                 },
-                '& .MuiRadio-root': {
+                [`& .${radioClasses.root}`]: {
                   flexGrow: 1,
                   flexDirection: 'row-reverse',
-                  '&.Mui-checked': {
-                    '& .MuiRadio-action': {
+                  [`&.${radioClasses.checked}`]: {
+                    [`& .${radioClasses.action}`]: {
                       inset: -1,
                       border: '2px solid',
                       borderColor: theme.vars.palette.primary[500],
@@ -487,23 +487,23 @@ export default function JoyRadio() {
                 py: 0,
                 ...theme.variants.outlined.neutral,
               },
-              '& .MuiRadio-root': {
+              [`& .${radioClasses.root}`]: {
                 flexGrow: 1,
                 flexDirection: 'row-reverse',
                 padding: 1.5,
                 mx: -1.5,
                 borderBottom: '1px solid',
                 borderColor: 'neutral.outlinedBorder',
-                '&.Mui-checked': {
+                [`&.${radioClasses.checked}`]: {
                   borderColor: 'primary.500',
-                  '& .MuiRadio-action': {
+                  [`& .${radioClasses.action}`]: {
                     inset: -1,
                     border: '1px solid',
                     borderColor: theme.vars.palette.primary[500],
                   },
                 },
               },
-              '& .MuiRadio-label': {
+              [`& .${radioClasses.label}`]: {
                 margin: 0,
               },
             })}
@@ -557,16 +557,16 @@ export default function JoyRadio() {
               p: 2,
               minWidth: 120,
             },
-            '& .MuiRadio-root': {
-              '&.Mui-checked': {
-                '& .MuiRadio-action': {
+            [`& .${radioClasses.root}`]: {
+              [`&.${radioClasses.checked}`]: {
+                [`& .${radioClasses.action}`]: {
                   inset: -1,
                   border: '3px solid',
                   borderColor: 'primary.500',
                 },
               },
             },
-            '& .MuiRadio-radio': {
+            [`& .${radioClasses.radio}`]: {
               display: 'contents',
               '& > svg': {
                 zIndex: 2,
@@ -629,15 +629,15 @@ export default function JoyRadio() {
             gridTemplateColumns: '1fr 1fr',
             gap: 2,
             maxWidth: 320,
-            '& .Mui-checked': {
-              '& .MuiRadio-action': {
+            [`& .${radioClasses.checked}`]: {
+              [`& .${radioClasses.action}`]: {
                 bgcolor: 'primary.outlinedHoverBg',
               },
             },
-            '& .Mui-disabled label *': {
+            [`& .${radioClasses.disabled} label *`]: {
               color: 'neutral.textDisabledColor',
             },
-            '& .MuiRadio-label': {
+            [`& .${radioClasses.label}`]: {
               display: 'flex',
               flexDirection: 'column',
               justifyContent: 'center',
