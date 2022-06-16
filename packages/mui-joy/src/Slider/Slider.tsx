@@ -7,6 +7,7 @@ import {
   SliderUnstyled,
   SliderValueLabelUnstyled,
   unstable_composeClasses as composeClasses,
+  resolveComponentProps,
 } from '@mui/base';
 import { Theme, useThemeProps } from '../styles';
 import styled from '../styles/styled';
@@ -393,37 +394,37 @@ const Slider = React.forwardRef(function Slider(inProps, ref) {
       }}
       componentsProps={{
         ...componentsProps,
-        root: {
-          ...componentsProps.root,
+        root: (os) => ({
+          ...resolveComponentProps(componentsProps.root, { ...os, ...ownerState }),
           ...(shouldSpreadAdditionalProps(components.Root) && {
             as: component,
             ownerState,
           }),
-        },
-        thumb: {
-          ...componentsProps.thumb,
+        }),
+        thumb: (os) => ({
+          ...resolveComponentProps(componentsProps.thumb, { ...os, ...ownerState }),
           ...(shouldSpreadAdditionalProps(components.Thumb) && {
             ownerState,
           }),
-        },
-        track: {
-          ...componentsProps.track,
+        }),
+        track: (os) => ({
+          ...resolveComponentProps(componentsProps.track, { ...os, ...ownerState }),
           ...(shouldSpreadAdditionalProps(components.Track) && {
             ownerState,
           }),
-        },
-        valueLabel: {
-          ...componentsProps.valueLabel,
+        }),
+        valueLabel: (os) => ({
+          ...resolveComponentProps(componentsProps.valueLabel, { ...os, ...ownerState }),
           ...(shouldSpreadAdditionalProps(components.ValueLabel) && {
             ownerState,
           }),
-        },
-        markLabel: {
-          ...componentsProps.markLabel,
+        }),
+        markLabel: (os) => ({
+          ...resolveComponentProps(componentsProps.markLabel, { ...os, ...ownerState }),
           ...(shouldSpreadAdditionalProps(components.ValueLabel) && {
             ownerState,
           }),
-        },
+        }),
       }}
     />
   );
