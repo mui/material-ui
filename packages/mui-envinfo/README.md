@@ -1,6 +1,6 @@
 # @mui/envinfo
 
-Prints information about the current environment relevant to MUI packages to the console.
+Prints information about the current environment relevant to MUI packages to the console and clipboard.
 Please use this package if you report [issues to MUI](https://github.com/mui/material-ui/issues).
 
 ## Usage
@@ -39,3 +39,9 @@ $ npx @mui/envinfo
     styled-components:  5.2.1
     typescript: ^4.0.2 => 4.0.5
 ```
+
+## Options
+
+`--json` - writes output as JSON
+
+`--skipClipboard` - doesn't copy information to clipboard

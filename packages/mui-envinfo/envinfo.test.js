@@ -1,6 +1,7 @@
 const { expect } = require('chai');
 const { execFileSync } = require('child_process');
 const path = require('path');
+const clipboard = require('clipboardy');
 
 const isRunningOnWindows = process.platform === 'win32';
 
@@ -13,12 +14,20 @@ describe('@mui/envinfo', () => {
       this.skip();
     }
 
+    // clear clipboard
+    clipboard.writeSync('');
+
     // Building might take some time
     this.timeout(10000);
     execFileSync(isRunningOnWindows ? 'yarn.cmd' : 'yarn', ['build'], {
       cwd: packagePath,
       stdio: 'pipe',
     });
+  });
+
+  afterEach(function afterEachHook() {
+    // clear clipboard
+    clipboard.writeSync('');
   });
 
   function execEnvinfo(args = []) {
@@ -39,10 +48,9 @@ describe('@mui/envinfo', () => {
 
     const envinfoJSON = execEnvinfo(['--json', '--skipClipboard']);
 
-    // eslint-disable-next-line no-console
     const envinfo = JSON.parse(envinfoJSON);
 
-    // chai doesn't have expect.any(String) like jest so we have to use what's available
+    // chai doesn't have expect.any(String) like jest, so we have to use what's available
     // We basically want to test like https://github.com/eps1lon/testing-library-envinfo/blob/2543092f4e4af02d79e306ec6546a9c12b258675/index.test.js#L20-L68
     // The specific versions change over time so we can't use snapshots.
     expect(envinfo).to.have.nested.property('Binaries.Node');
@@ -59,5 +67,35 @@ describe('@mui/envinfo', () => {
     expect(envinfo).to.have.nested.property('npmPackages.react-dom');
     expect(envinfo).to.have.nested.property('npmPackages.styled-components');
     expect(envinfo).to.have.nested.property('npmPackages.typescript');
+  });
+
+  it('copies env information to the clipboard', function test() {
+    // Need more time to download packages
+    this.timeout(10000);
+
+    const info = 'Output copied to clipboard';
+
+    const consoleOutput = execEnvinfo();
+    const envFromClipboard = clipboard.readSync();
+
+    expect(consoleOutput).to.include(info);
+    expect(consoleOutput).to.include(envFromClipboard);
+
+    expect(envFromClipboard).to.include('@mui/material');
+    expect(envFromClipboard).to.include('typescript');
+    expect(envFromClipboard).to.not.include(info);
+  });
+
+  it("doesn't copy to clipboard with --skipClipboard flag", function test() {
+    // Need more time to download packages
+    this.timeout(10000);
+
+    const info = 'Output copied to clipboard';
+
+    const consoleOutput = execEnvinfo(['--skipClipboard']);
+    const envFromClipboard = clipboard.readSync();
+
+    expect(consoleOutput).to.not.include(info);
+    expect(envFromClipboard).to.be.equal('');
   });
 });
