@@ -387,6 +387,7 @@ function plugin(
           if (babelTypes.isArrowFunctionExpression(arg) || babelTypes.isFunctionExpression(arg)) {
             getFromProp(arg.params[0]);
           } else if ((nodeInit.callee as babel.types.Identifier)?.name?.match(/create[A-Z].*/)) {
+            // Any components that are created by a factory function, eg. System Box | Container | Grid.
             getFromProp(node);
           }
         }
