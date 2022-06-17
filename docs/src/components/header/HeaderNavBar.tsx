@@ -200,9 +200,9 @@ export default function HeaderNavBar() {
         {FEATURE_TOGGLE.nav_products && (
           <li
             role="none"
-            onMouseOver={() => setSubMenuOpen(true)}
+            onMouseEnter={() => setSubMenuOpen(true)}
             onFocus={() => setSubMenuOpen(true)}
-            onMouseOut={() => setSubMenuOpen(false)}
+            onMouseLeave={() => setSubMenuOpen(false)}
             onBlur={() => setSubMenuOpen(false)}
           >
             <div
@@ -304,9 +304,9 @@ export default function HeaderNavBar() {
         )}
         <li
           role="none"
-          onMouseOver={() => setDocsMenuOpen(true)}
+          onMouseEnter={() => setDocsMenuOpen(true)}
           onFocus={() => setDocsMenuOpen(true)}
-          onMouseOut={() => setDocsMenuOpen(false)}
+          onMouseLeave={() => setDocsMenuOpen(false)}
           onBlur={() => setDocsMenuOpen(false)}
         >
           <div
