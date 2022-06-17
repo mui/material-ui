@@ -164,6 +164,9 @@ export interface PaletteWithChannels {
   SnackbarContent: {
     bg: string;
   };
+  SpeedDialAction: {
+    fabHoverBg: string;
+  };
   StepConnector: {
     border: string;
   };

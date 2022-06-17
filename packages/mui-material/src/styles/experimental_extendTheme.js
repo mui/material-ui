@@ -86,6 +86,7 @@ export default function extendTheme(options = {}, ...args) {
       'Skeleton',
       'Slider',
       'SnackbarContent',
+      'SpeedDialAction',
       'StepConnector',
       'StepContent',
       'Switch',
@@ -114,6 +115,7 @@ export default function extendTheme(options = {}, ...args) {
       setColor(palette.Slider, 'successTrack', lighten(palette.success.main, 0.62));
       setColor(palette.Slider, 'warningTrack', lighten(palette.warning.main, 0.62));
       setColor(palette.SnackbarContent, 'bg', emphasize(palette.background.default, 0.8));
+      setColor(palette.SpeedDialAction, 'fabHoverBg', emphasize(palette.background.paper, 0.15));
       setColor(palette.StepConnector, 'border', 'var(--mui-palette-grey-400)');
       setColor(palette.StepContent, 'border', 'var(--mui-palette-grey-400)');
       setColor(palette.Switch, 'defaultColor', 'var(--mui-palette-common-white)');
@@ -150,6 +152,7 @@ export default function extendTheme(options = {}, ...args) {
       setColor(palette.Slider, 'successTrack', darken(palette.success.main, 0.5));
       setColor(palette.Slider, 'warningTrack', darken(palette.warning.main, 0.5));
       setColor(palette.SnackbarContent, 'bg', emphasize(palette.background.default, 0.98));
+      setColor(palette.SpeedDialAction, 'fabHoverBg', emphasize(palette.background.paper, 0.15));
       setColor(palette.StepConnector, 'border', 'var(--mui-palette-grey-600)');
       setColor(palette.StepContent, 'border', 'var(--mui-palette-grey-600)');
       setColor(palette.Switch, 'defaultColor', 'var(--mui-palette-grey-300)');

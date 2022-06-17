@@ -41,7 +41,9 @@ const SpeedDialActionFab = styled(Fab, {
   color: (theme.vars || theme).palette.text.secondary,
   backgroundColor: (theme.vars || theme).palette.background.paper,
   '&:hover': {
-    backgroundColor: emphasize(theme.palette.background.paper, 0.15),
+    backgroundColor: theme.vars
+      ? theme.vars.palette.SpeedDialAction.fabHoverBg
+      : emphasize(theme.palette.background.paper, 0.15),
   },
   transition: `${theme.transitions.create('transform', {
     duration: theme.transitions.duration.shorter,
