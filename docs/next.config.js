@@ -1,11 +1,32 @@
 const path = require('path');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const nextTranspileModules = require('next-transpile-modules')
 const pkg = require('../package.json');
 const { findPages } = require('./src/modules/utils/find');
 const { LANGUAGES, LANGUAGES_SSR } = require('./src/modules/constants');
 const FEATURE_TOGGLE = require('./src/featureToggle');
 
-const workspaceRoot = path.join(__dirname, '../');
+const withTM = nextTranspileModules([
+  'notistack',
+  '@mui/material',
+  '@mui/docs',
+  '@mui/icons-material',
+  '@mui/lab',
+  '@mui/styled-engine',
+  '@mui/styles',
+  '@mui/system',
+  '@mui/private-theming',
+  '@mui/utils',
+  '@mui/base',
+  '@mui/material-next',
+  '@mui/joy',
+  '@mui/x-data-grid',
+  '@mui/x-data-grid-pro',
+  '@mui/x-date-pickers',
+  '@mui/x-date-pickers-pro',
+  '@mui/x-data-grid-generator',
+  '@mui/x-license-pro'
+]);
 
 const reactStrictMode = true;
 if (reactStrictMode) {
@@ -28,7 +49,7 @@ if (staging) {
   console.log(`Staging deploy of ${process.env.REPOSITORY_URL || 'local repository'}`);
 }
 
-module.exports = {
+module.exports = withTM({
   eslint: {
     ignoreDuringBuilds: true,
   },
@@ -55,44 +76,6 @@ module.exports = {
       );
     }
 
-    // next includes node_modules in webpack externals. Some of those have dependencies
-    // on the aliases defined above. If a module is an external those aliases won't be used.
-    // We need tell webpack to not consider those packages as externals.
-    if (
-      options.isServer &&
-      // Next executes this twice on the server with React 18 (once per runtime).
-      // We only care about Node runtime at this point.
-      (options.nextRuntime === undefined || options.nextRuntime === 'nodejs')
-    ) {
-      const [nextExternals, ...externals] = config.externals;
-
-      if (externals.length > 0) {
-        // currently not the case but other next plugins might introduce additional
-        // rules for externals. We would need to handle those in the callback
-        throw new Error('There are other externals in the webpack config.');
-      }
-
-      config.externals = [
-        (ctx, callback) => {
-          const { request } = ctx;
-          const hasDependencyOnRepoPackages = [
-            'notistack',
-            '@mui/x-data-grid',
-            '@mui/x-data-grid-pro',
-            '@mui/x-date-pickers',
-            '@mui/x-date-pickers-pro',
-            '@mui/x-data-grid-generator',
-            '@mui/x-license-pro',
-          ].some((dep) => request.startsWith(dep));
-
-          if (hasDependencyOnRepoPackages) {
-            return callback(null);
-          }
-          return nextExternals(ctx, callback);
-        },
-      ];
-    }
-
     config.module.rules.forEach((r) => {
       r.resourceQuery = { not: [/raw/] };
     });
@@ -107,6 +90,24 @@ module.exports = {
           '.tsx',
           ...config.resolve.extensions.filter((extension) => extension !== '.tsx'),
         ],
+        alias: {
+          ...config.resolve.alias,
+          '@mui/material': path.resolve(__dirname, '../packages/mui-material/src'),
+          '@mui/docs': path.resolve(__dirname, '../packages/mui-docs/src'),
+          '@mui/icons-material': path.resolve(__dirname, '../packages/mui-icons-material/lib'),
+          '@mui/lab': path.resolve(__dirname, '../packages/mui-lab/src'),
+          '@mui/styled-engine': path.resolve(__dirname, '../packages/mui-styled-engine/src'),
+          '@mui/styles': path.resolve(__dirname, '../packages/mui-styles/src'),
+          '@mui/system': path.resolve(__dirname, '../packages/mui-system/src'),
+          '@mui/private-theming': path.resolve(__dirname, '../packages/mui-private-theming/src'),
+          '@mui/utils': path.resolve(__dirname, '../packages/mui-utils/src'),
+          '@mui/base': path.resolve(__dirname, '../packages/mui-base/src'),
+          '@mui/material-next': path.resolve(__dirname, '../packages/mui-material-next/src'),
+          '@mui/joy': path.resolve(__dirname, '../packages/mui-joy/src'),
+          docs: path.resolve(__dirname, './'),
+          modules: path.resolve(__dirname, '../modules'),
+          pages: path.resolve(__dirname, './pages'),
+        }
       },
       module: {
         ...config.module,
@@ -123,52 +124,6 @@ module.exports = {
                 type: 'asset/source',
               },
             ],
-          },
-          // transpile 3rd party packages with dependencies in this repository
-          {
-            test: /\.(js|mjs|jsx)$/,
-            resourceQuery: { not: [/raw/] },
-            include:
-              /node_modules(\/|\\)(notistack|@mui(\/|\\)x-data-grid|@mui(\/|\\)x-data-grid-pro|@mui(\/|\\)x-license-pro|@mui(\/|\\)x-data-grid-generator|@mui(\/|\\)x-date-pickers-pro|@mui(\/|\\)x-date-pickers)/,
-            use: {
-              loader: 'babel-loader',
-              options: {
-                // on the server we use the transpiled commonJS build, on client ES6 modules
-                // babel needs to figure out in what context to parse the file
-                sourceType: 'unambiguous',
-                plugins: [
-                  [
-                    'babel-plugin-module-resolver',
-                    {
-                      alias: {
-                        // all packages in this monorepo
-                        '@mui/material': '../packages/mui-material/src',
-                        '@mui/docs': '../packages/mui-docs/src',
-                        '@mui/icons-material': '../packages/mui-icons-material/lib',
-                        '@mui/lab': '../packages/mui-lab/src',
-                        '@mui/styled-engine': '../packages/mui-styled-engine/src',
-                        '@mui/styles': '../packages/mui-styles/src',
-                        '@mui/system': '../packages/mui-system/src',
-                        '@mui/private-theming': '../packages/mui-private-theming/src',
-                        '@mui/utils': '../packages/mui-utils/src',
-                        '@mui/base': '../packages/mui-base/src',
-                        '@mui/material-next': '../packages/mui-material-next/src',
-                        '@mui/joy': '../packages/mui-joy/src',
-                      },
-                      // transformFunctions: ['require'],
-                    },
-                  ],
-                ],
-              },
-            },
-          },
-          // required to transpile ../packages/
-          {
-            test: /\.(js|mjs|tsx|ts)$/,
-            resourceQuery: { not: [/raw/] },
-            include: [workspaceRoot],
-            exclude: /(node_modules|mui-icons-material)/,
-            use: options.defaultLoaders.babel,
           },
           {
             resourceQuery: /raw/,
@@ -364,4 +319,4 @@ module.exports = {
   },
   // Can be turned on when https://github.com/vercel/next.js/issues/24640 is fixed
   optimizeFonts: false,
-};
+});
