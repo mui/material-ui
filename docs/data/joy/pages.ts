@@ -27,7 +27,11 @@ const pages = [
       {
         pathname: '/joy-ui/components/inputs',
         subheader: 'inputs',
-        children: [{ pathname: '/joy-ui/react-button' }, { pathname: '/joy-ui/react-slider' }],
+        children: [
+          { pathname: '/joy-ui/react-button' },
+          { pathname: '/joy-ui/react-checkbox' },
+          { pathname: '/joy-ui/react-slider' },
+        ],
       },
       {
         pathname: '/joy-ui/components/data-display',

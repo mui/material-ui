@@ -432,7 +432,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                   onChange={(event) =>
                     setProps((latestProps) => ({
                       ...latestProps,
-                      badgeContent: event.target.value || undefined,
+                      [propName]: event.target.value || undefined,
                     }))
                   }
                   sx={{
