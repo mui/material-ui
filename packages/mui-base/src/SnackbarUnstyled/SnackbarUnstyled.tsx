@@ -226,7 +226,7 @@ SnackbarUnstyled.propTypes /* remove-proptypes */ = {
   /**
    * @ignore
    */
-  children: PropTypes.element,
+  children: PropTypes.node,
   /**
    * @ignore
    */
