@@ -156,6 +156,12 @@ export interface GridBaseProps extends Breakpoints {
   wrap?: GridWrap;
 }
 
+export interface GridOwnerState extends GridBaseProps {
+  nested: boolean;
+  gridSize: Partial<Record<Breakpoint, GridSize | boolean>>;
+  gridOffset: Partial<Record<Breakpoint, GridSize>>;
+}
+
 export interface GridTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P & GridBaseProps & { sx?: SxProps<Theme> } & SystemProps<Theme>;
   defaultComponent: D;

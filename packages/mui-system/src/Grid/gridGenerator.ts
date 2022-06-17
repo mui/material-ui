@@ -1,10 +1,10 @@
 import { Breakpoints, Breakpoint } from '../createTheme/createBreakpoints';
 import { Spacing } from '../createTheme/createSpacing';
-import { GridBaseProps } from './GridProps';
+import { GridOwnerState } from './GridProps';
 
 interface Props {
   theme: { breakpoints: Breakpoints; spacing?: Spacing };
-  ownerState: GridBaseProps & { nested: boolean };
+  ownerState: GridOwnerState;
 }
 
 interface Iterator<T> {
@@ -64,7 +64,7 @@ export const generateGridSizeStyles = ({ theme, ownerState }: Props) => {
   const styles = {};
   traverseBreakpoints<'auto' | number | true>(
     theme.breakpoints,
-    ownerState,
+    ownerState.gridSize,
     (appendStyle, value) => {
       let style = {};
       if (value === true) {
@@ -99,27 +99,25 @@ export const generateGridSizeStyles = ({ theme, ownerState }: Props) => {
 };
 
 export const generateGridOffsetStyles = ({ theme, ownerState }: Props) => {
-  const offsetProps: Record<string, number | 'auto'> = {};
-  Object.entries(ownerState).forEach(([propName, propValue]) => {
-    if (propName.endsWith('Offset')) {
-      offsetProps[propName.replace('Offset', '')] = propValue;
-    }
-  });
   const styles = {};
-  traverseBreakpoints<number | 'auto'>(theme.breakpoints, offsetProps, (appendStyle, value) => {
-    let style = {};
-    if (value === 'auto') {
-      style = {
-        marginLeft: 'auto',
-      };
-    }
-    if (typeof value === 'number') {
-      style = {
-        marginLeft: value === 0 ? '0px' : `calc(100% * ${value} / var(--Grid-columns))`,
-      };
-    }
-    appendStyle(styles, style);
-  });
+  traverseBreakpoints<number | 'auto'>(
+    theme.breakpoints,
+    ownerState.gridOffset,
+    (appendStyle, value) => {
+      let style = {};
+      if (value === 'auto') {
+        style = {
+          marginLeft: 'auto',
+        };
+      }
+      if (typeof value === 'number') {
+        style = {
+          marginLeft: value === 0 ? '0px' : `calc(100% * ${value} / var(--Grid-columns))`,
+        };
+      }
+      appendStyle(styles, style);
+    },
+  );
   return styles;
 };
 
@@ -208,4 +206,42 @@ export const generateGridStyles = ({ ownerState }: Props): {} => {
       flexWrap: ownerState.wrap,
     }),
   };
+};
+
+export const generateSizeClassNames = (gridSize: GridOwnerState['gridSize']) => {
+  const classNames: string[] = [];
+  Object.entries(gridSize).forEach(([key, value]) => {
+    if (value !== false && value !== undefined) {
+      classNames.push(`grid-${key}-${String(value)}`);
+    }
+  });
+  return classNames;
+};
+
+export const generateSpacingClassNames = (
+  spacing: GridOwnerState['spacing'],
+  smallestBreakpoint: string = 'xs',
+) => {
+  function isValidSpacing(val: GridOwnerState['spacing'] | null) {
+    if (val === undefined) {
+      return false;
+    }
+    return (
+      (typeof val === 'string' && !Number.isNaN(Number(val))) ||
+      (typeof val === 'number' && val > 0)
+    );
+  }
+  if (isValidSpacing(spacing)) {
+    return [`spacing-${smallestBreakpoint}-${String(spacing)}`];
+  }
+  if (typeof spacing === 'object' && !Array.isArray(spacing)) {
+    const classNames: string[] = [];
+    Object.entries(spacing).forEach(([key, value]) => {
+      if (isValidSpacing(value)) {
+        classNames.push(`spacing-${key}-${String(value)}`);
+      }
+    });
+    return classNames;
+  }
+  return [];
 };

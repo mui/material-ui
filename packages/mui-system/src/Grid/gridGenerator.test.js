@@ -8,6 +8,8 @@ import {
   generateGridRowSpacingStyles,
   generateGridColumnSpacingStyles,
   generateGridOffsetStyles,
+  generateSizeClassNames,
+  generateSpacingClassNames,
 } from './gridGenerator';
 
 const spacing = createSpacing();
@@ -231,11 +233,13 @@ describe('grid generator', () => {
         generateGridSizeStyles({
           theme: { breakpoints },
           ownerState: {
-            xs: 'auto',
-            sm: 6,
-            md: true,
-            lg: 4,
-            xl: 'auto',
+            gridSize: {
+              xs: 'auto',
+              sm: 6,
+              md: true,
+              lg: 4,
+              xl: 'auto',
+            },
             // should not consider other props
             rowSpacing: 1,
             columnSpacing: { xs: 1, sm: 2 },
@@ -407,7 +411,7 @@ describe('grid generator', () => {
       expect(
         generateGridOffsetStyles({
           theme: { breakpoints, spacing },
-          ownerState: { xsOffset: 0, mdOffset: 5, lgOffset: 'auto' },
+          ownerState: { gridOffset: { xs: 0, md: 5, lg: 'auto' } },
         }),
       ).to.deep.equal({
         marginLeft: '0px',
@@ -418,6 +422,53 @@ describe('grid generator', () => {
           marginLeft: `auto`,
         },
       });
+    });
+  });
+
+  describe('class names', () => {
+    it('should generate correct grid size class names', () => {
+      expect(
+        generateSizeClassNames({
+          xs: 'auto',
+          sm: 4,
+          md: false,
+          lg: undefined,
+          xl: true,
+        }),
+      ).to.deep.equal(['grid-xs-auto', 'grid-sm-4', 'grid-xl-true']);
+    });
+
+    it('should generate correct spacing class names', () => {
+      expect(generateSpacingClassNames()).to.deep.equal([]);
+      expect(generateSpacingClassNames([0, 1])).to.deep.equal([]);
+
+      expect(generateSpacingClassNames(2)).to.deep.equal(['spacing-xs-2']);
+      expect(
+        generateSpacingClassNames({
+          xs: 0,
+          sm: 2,
+          lg: 4,
+          xl: '1rem', // should not appear in class name
+        }),
+      ).to.deep.equal(['spacing-sm-2', 'spacing-lg-4']);
+    });
+
+    it('should work with any breakpoint', () => {
+      expect(
+        generateSizeClassNames({
+          mobile: 'auto',
+          tablet: 4,
+        }),
+      ).to.deep.equal(['grid-mobile-auto', 'grid-tablet-4']);
+
+      expect(generateSpacingClassNames(2, 'mobile')).to.deep.equal(['spacing-mobile-2']);
+
+      expect(
+        generateSpacingClassNames({
+          mobile: 3,
+          tablet: 4,
+        }),
+      ).to.deep.equal(['spacing-mobile-3', 'spacing-tablet-4']);
     });
   });
 });

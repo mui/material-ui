@@ -35,7 +35,6 @@ const gridClasses: GridClasses = generateUtilityClasses('MuiGrid', [
   'root',
   'container',
   'item',
-  'zeroMinWidth',
 
   // spacings
   ...SPACINGS.map((spacing) => `spacing-xs-${spacing}` as const),

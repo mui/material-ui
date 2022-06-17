@@ -210,4 +210,58 @@ describe('System <Grid />', () => {
       });
     });
   });
+
+  describe('Custom breakpoints', () => {
+    it('should apply the custom breakpoint class', () => {
+      const { container } = render(
+        <ThemeProvider
+          theme={createTheme({
+            breakpoints: {
+              values: {
+                mobile: 0,
+                tablet: 640,
+                laptop: 1024,
+              },
+            },
+          })}
+        >
+          {/* `lg` is to mimic mistake, it is not a breakpoint anymore */}
+          <Grid mobile={2} tablet={3} laptop="auto" lg={5} />
+        </ThemeProvider>,
+      );
+
+      expect(container.firstChild).to.have.class('MuiGrid-grid-mobile-2');
+      expect(container.firstChild).to.have.class('MuiGrid-grid-tablet-3');
+      expect(container.firstChild).to.have.class('MuiGrid-grid-laptop-auto');
+
+      // The grid should not have class for `lg` prop
+      expect(container.firstChild).not.to.have.class('MuiGrid-grid-lg-5');
+      // The `lg` prop is treated as native props that spread to DOM
+      expect(container.firstChild).to.have.attribute('lg', '5');
+    });
+
+    it('should apply the custom breakpoint spacing class', () => {
+      const { container } = render(
+        <ThemeProvider
+          theme={createTheme({
+            breakpoints: {
+              values: {
+                mobile: 0,
+                tablet: 640,
+                laptop: 1024,
+              },
+            },
+          })}
+        >
+          <Grid container spacing={2} />
+          <Grid container spacing={{ tablet: 2, laptop: 4 }} />
+        </ThemeProvider>,
+      );
+
+      expect(container.firstChild).to.have.class('MuiGrid-spacing-mobile-2');
+
+      expect(container.lastChild).to.have.class('MuiGrid-spacing-tablet-2');
+      expect(container.lastChild).to.have.class('MuiGrid-spacing-laptop-4');
+    });
+  });
 });

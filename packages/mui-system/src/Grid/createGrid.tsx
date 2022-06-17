@@ -19,9 +19,12 @@ import {
   generateGridRowSpacingStyles,
   generateGridDirectionStyles,
   generateGridOffsetStyles,
+  generateSizeClassNames,
+  generateSpacingClassNames,
 } from './gridGenerator';
 import { CreateMUIStyled } from '../createStyled';
-import { GridBaseProps, GridTypeMap } from './GridProps';
+import { GridTypeMap, GridOwnerState } from './GridProps';
+import type { Breakpoint } from '../createTheme';
 
 const defaultTheme = createTheme();
 
@@ -38,35 +41,6 @@ function useThemePropsDefault<T>(props: T) {
     name: 'MuiGrid',
     defaultTheme,
   });
-}
-
-function resolveSpacingClasses(
-  spacing: GridBaseProps['spacing'],
-  container?: boolean,
-  classes: Record<string, string> = {},
-) {
-  // in case of grid item or undefined/null or `spacing` <= 0
-  if (!container || !spacing || spacing <= 0) {
-    return [];
-  }
-  // in case of string/number `spacing`
-  if (
-    (typeof spacing === 'string' && !Number.isNaN(Number(spacing))) ||
-    typeof spacing === 'number'
-  ) {
-    return [classes[`spacing-xs-${String(spacing)}`] || `spacing-xs-${String(spacing)}`];
-  }
-  // in case of object `spacing`
-  // @ts-ignore internal logic
-  const { xs, sm, md, lg, xl } = spacing;
-
-  return [
-    Number(xs) > 0 && (classes[`spacing-xs-${String(xs)}`] || `spacing-xs-${String(xs)}`),
-    Number(sm) > 0 && (classes[`spacing-sm-${String(sm)}`] || `spacing-sm-${String(sm)}`),
-    Number(md) > 0 && (classes[`spacing-md-${String(md)}`] || `spacing-md-${String(md)}`),
-    Number(lg) > 0 && (classes[`spacing-lg-${String(lg)}`] || `spacing-lg-${String(lg)}`),
-    Number(xl) > 0 && (classes[`spacing-xl-${String(xl)}`] || `spacing-xl-${String(xl)}`),
-  ];
 }
 
 export default function createGrid(
@@ -89,49 +63,26 @@ export default function createGrid(
     return generateUtilityClass(componentName, slot);
   };
 
-  const useUtilityClasses = (ownerState: GridBaseProps & { classes?: Record<string, string> }) => {
-    const {
-      classes,
-      container,
-      direction,
-      lg,
-      md,
-      sm,
-      spacing,
-      wrap,
-      xl,
-      xs,
-      lgOffset,
-      mdOffset,
-      smOffset,
-      xlOffset,
-      xsOffset,
-    } = ownerState;
+  const useUtilityClasses = (ownerState: GridOwnerState, theme: typeof defaultTheme) => {
+    const { container, direction, spacing, wrap, gridSize } = ownerState;
 
     const slots = {
       root: [
         'root',
         container && 'container',
-        ...resolveSpacingClasses(spacing, container),
         direction !== 'row' && `direction-xs-${String(direction)}`,
         wrap !== 'wrap' && `wrap-xs-${String(wrap)}`,
-        xs !== false && `grid-xs-${String(xs)}`,
-        sm !== false && `grid-sm-${String(sm)}`,
-        md !== false && `grid-md-${String(md)}`,
-        lg !== false && `grid-lg-${String(lg)}`,
-        xl !== false && `grid-xl-${String(xl)}`,
-        !!xsOffset && `grid-xs-offset-${String(xsOffset)}`,
-        !!smOffset && `grid-sm-offset-${String(smOffset)}`,
-        !!mdOffset && `grid-md-offset-${String(mdOffset)}`,
-        !!lgOffset && `grid-lg-offset-${String(lgOffset)}`,
-        !!xlOffset && `grid-xl-offset-${String(xlOffset)}`,
+        ...generateSizeClassNames(gridSize),
+        ...(container ? generateSpacingClassNames(spacing, theme.breakpoints.keys[0]) : []),
       ],
     };
 
-    return composeClasses(slots, getGridUtilityClass, classes);
+    return composeClasses(slots, getGridUtilityClass, {});
   };
 
-  const GridRoot = createStyledComponent<{ ownerState: GridBaseProps & { nested: boolean } }>(
+  const GridRoot = createStyledComponent<{
+    ownerState: GridOwnerState;
+  }>(
     generateGridColumnsStyles,
     generateGridColumnSpacingStyles,
     generateGridRowSpacingStyles,
@@ -156,13 +107,23 @@ export default function createGrid(
       spacing: spacingProp = 0,
       rowSpacing: rowSpacingProp = spacingProp,
       columnSpacing: columnSpacingProp = spacingProp,
-      xs = false,
-      sm = false,
-      md = false,
-      lg = false,
-      xl = false,
-      ...other
+      ...rest
     } = props;
+    // collect breakpoints related props because they can be custom from the theme.
+    const gridSize = {} as GridOwnerState['gridSize'];
+    const gridOffset = {} as GridOwnerState['gridOffset'];
+    const other: Record<string, any> = {};
+
+    Object.entries(rest).forEach(([key, val]) => {
+      if (theme.breakpoints.values[key as Breakpoint] !== undefined) {
+        gridSize[key as Breakpoint] = val;
+      } else if (theme.breakpoints.values[key.replace('Offset', '') as Breakpoint] !== undefined) {
+        gridOffset[key.replace('Offset', '') as Breakpoint] = val;
+      } else {
+        other[key] = val;
+      }
+    });
+
     const columns = inProps.columns ?? (nested ? undefined : columnsProp);
     const spacing = inProps.spacing ?? (nested ? undefined : spacingProp);
     const rowSpacing =
@@ -179,21 +140,11 @@ export default function createGrid(
       spacing,
       rowSpacing,
       columnSpacing,
-      xs,
-      sm,
-      md,
-      lg,
-      xl,
+      gridSize,
+      gridOffset,
     };
 
-    const otherWithoutCustomBreakpoints: Record<string, any> = {};
-
-    Object.entries(other).forEach(([key, val]) => {
-      if (!(theme.breakpoints.keys as string[]).includes(key) && !key.endsWith('Offset')) {
-        otherWithoutCustomBreakpoints[key] = val;
-      }
-    });
-    const classes = useUtilityClasses(ownerState);
+    const classes = useUtilityClasses(ownerState, theme);
 
     if (nested) {
       // to reduce the number of contexts in React devtool
@@ -203,7 +154,7 @@ export default function createGrid(
           as={component}
           ownerState={ownerState}
           className={clsx(classes.root, className)}
-          {...otherWithoutCustomBreakpoints}
+          {...other}
         />
       );
     }
@@ -214,7 +165,7 @@ export default function createGrid(
           as={component}
           ownerState={ownerState}
           className={clsx(classes.root, className)}
-          {...otherWithoutCustomBreakpoints}
+          {...other}
         />
       </NestedContext.Provider>
     );
