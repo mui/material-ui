@@ -12,25 +12,25 @@ Para promover uma maior consistência entre os aplicativos, os temas claro e esc
 
 Se você deseja personalizar o tema, você precisa usar o `ThemeProvider` componente para injetar um tema em sua aplicação. No entanto, isso é opcional; Material-UI componentes vêm com um tema padrão.
 
-O `ThemeProvider` depende do [ recurso de contexto do React](https://pt-br.reactjs.org/docs/context.html) afim de passar o tema para baixo na árvore de componentes, então você precisa ter certeza de que o `ThemeProvider` é um pai dos componentes que você está tentando customizar. Você pode aprender mais sobre isso lendo a [sessão da API](#themeprovider).
+O `ThemeProvider` depende do [ recurso de contexto do React](https://pt-br.reactjs.org/docs/context.html) afim de passar o tema para baixo na árvore de componentes, então você precisa ter certeza de que o `ThemeProvider` é um pai dos componentes que você está tentando customizar. Você pode aprender mais sobre isso lendo a [seção da API](#themeprovider).
 
 ## Variáveis de configuração do tema
 
 Alterar as variáveis de configuração do tema é a maneira mais eficaz de combinar o Material-UI às suas necessidades. As seções a seguir abordam as variáveis mais importantes do tema:
 
 - [`.paleta`](/material-ui/customization/palette/)
-- [`.typography`](/material-ui/customization/typography/)
+- [`.tipografia`](/material-ui/customization/typography/)
 - [`.espaçamento`](/material-ui/customization/spacing/)
 - [`.pontos de quebra`](/material-ui/customization/breakpoints/)
 - [`.zIndex`](/material-ui/customization/z-index/)
 - [`.transições`](/material-ui/customization/transitions/)
 - [`.componentes`](/material-ui/customization/theme-components/)
 
-You can check out the [default theme section](/material-ui/customization/default-theme/) to view the default theme in full.
+Você pode conferir a [seção do tema padrão](/material-ui/customization/default-theme/) para ver tudo sobre o tema padrão.
 
 ### Variáveis customizáveis
 
-When using MUI's theme with [MUI System](/system/basics/) or [any other styling solution](/material-ui/guides/interoperability/#themeprovider), it can be convenient to add additional variables to the theme so you can use them everywhere. Por exemplo:
+Ao usar o tema do MUI com o [MUI System](/system/basics/) ou [qualquer outra solução de estilização](/material-ui/guides/interoperability/#themeprovider), pode ser conveniente acrescentar variáveis adicionais ao tema, para que você possa usá-las em todos os lugares. Por exemplo:
 
 ```jsx
 const theme = createTheme({
