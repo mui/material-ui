@@ -6,6 +6,7 @@ import {
   UseSelectListboxSlotProps,
 } from './useSelect.types';
 import PopperUnstyled, { PopperUnstyledProps } from '../PopperUnstyled';
+import { SlotComponentProps } from '../utils';
 
 export interface SelectUnstyledComponentsPropsOverrides {}
 
@@ -28,6 +29,11 @@ export interface SelectUnstyledCommonProps {
    * @default false
    */
   defaultListboxOpen?: boolean;
+  /**
+   * `id` attribute of the listbox element.
+   * Also used to derive the `id` attributes of options.
+   */
+  listboxId?: string;
   /**
    * Controls the open state of the select's listbox.
    * @default undefined
@@ -56,11 +62,21 @@ export interface SelectUnstyledProps<TValue extends {}> extends SelectUnstyledCo
    * @default {}
    */
   componentsProps?: {
-    root?: React.ComponentPropsWithRef<'button'> & SelectUnstyledComponentsPropsOverrides;
-    listbox?: React.ComponentPropsWithRef<'ul'> & SelectUnstyledComponentsPropsOverrides;
-    // PopperUnstyled has a required prop: open, but it is not necessary to provide it in componentsProps.
-    popper?: Partial<React.ComponentPropsWithRef<typeof PopperUnstyled>> &
-      SelectUnstyledComponentsPropsOverrides;
+    root?: SlotComponentProps<
+      'button',
+      SelectUnstyledComponentsPropsOverrides,
+      SelectUnstyledOwnerState<TValue>
+    >;
+    listbox?: SlotComponentProps<
+      'button',
+      SelectUnstyledComponentsPropsOverrides,
+      SelectUnstyledOwnerState<TValue>
+    >;
+    popper?: SlotComponentProps<
+      typeof PopperUnstyled,
+      SelectUnstyledComponentsPropsOverrides,
+      SelectUnstyledOwnerState<TValue>
+    >;
   };
   /**
    * The default selected value. Use when the component is not controlled.
