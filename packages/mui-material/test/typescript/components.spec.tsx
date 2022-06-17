@@ -188,9 +188,9 @@ const IconButtonTest = () => (
 );
 
 const IconButtonAsLinkTest = () => {
-  const ForwardedLink = React.forwardRef<HTMLAnchorElement, ReactRouterLinkProps>(
-    (props, ref) => <ReactRouterLink {...props} ref={ref} />,
-  );
+  const ForwardedLink = React.forwardRef<HTMLAnchorElement, ReactRouterLinkProps>((props, ref) => (
+    <ReactRouterLink {...props} ref={ref} />
+  ));
   const ExtendedIconButton: React.FC<IconButtonProps<typeof ForwardedLink>> = (props) => (
     <IconButton component={ForwardedLink} {...props} />
   );

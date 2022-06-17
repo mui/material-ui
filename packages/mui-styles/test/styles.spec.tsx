@@ -51,10 +51,9 @@ const styleRule = createStyles({
   },
 });
 
-const ComponentWithChildren: React.FunctionComponent<WithStyles<typeof simpleStyles> & { children?: React.ReactNode }> = ({
-  classes,
-  children,
-}) => <div className={classes.root}>{children}</div>;
+const ComponentWithChildren: React.FunctionComponent<
+  WithStyles<typeof simpleStyles> & { children?: React.ReactNode }
+> = ({ classes, children }) => <div className={classes.root}>{children}</div>;
 
 const StyledExampleThree = withStyles(styleRule)(ComponentWithChildren);
 <StyledExampleThree />;
