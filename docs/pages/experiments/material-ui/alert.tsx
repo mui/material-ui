@@ -49,7 +49,6 @@ export default function CssVarsTemplate() {
           sx={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fill, minmax(256px, 1fr))',
-            gridAutoRows: 'minmax(160px, auto)',
             gap: 2,
             '& > div': {
               placeSelf: 'center',
@@ -66,6 +65,30 @@ export default function CssVarsTemplate() {
             This is an info alert — check it out!
           </Alert>
           <Alert variant="filled" severity="success">
+            This is a success alert — check it out!
+          </Alert>
+          <Alert variant="standard" severity="error">
+            This is an error alert — check it out!
+          </Alert>
+          <Alert variant="standard" severity="warning">
+            This is a warning alert — check it out!
+          </Alert>
+          <Alert variant="standard" severity="info">
+            This is an info alert — check it out!
+          </Alert>
+          <Alert variant="standard" severity="success">
+            This is a success alert — check it out!
+          </Alert>
+          <Alert variant="outlined" severity="error">
+            This is an error alert — check it out!
+          </Alert>
+          <Alert variant="outlined" severity="warning">
+            This is a warning alert — check it out!
+          </Alert>
+          <Alert variant="outlined" severity="info">
+            This is an info alert — check it out!
+          </Alert>
+          <Alert variant="outlined" severity="success">
             This is a success alert — check it out!
           </Alert>
         </Box>

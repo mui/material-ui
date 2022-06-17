@@ -41,8 +41,8 @@ const AlertRoot = styled(Paper, {
     ];
   },
 })(({ theme, ownerState }) => {
-  const getColor = (theme.vars || theme).palette.mode === 'light' ? darken : lighten;
-  const getBackgroundColor = (theme.vars || theme).palette.mode === 'light' ? lighten : darken;
+  const getColor = theme.palette.mode === 'light' ? darken : lighten;
+  const getBackgroundColor = theme.palette.mode === 'light' ? lighten : darken;
   const color = ownerState.color || ownerState.severity;
 
   return {
@@ -52,34 +52,50 @@ const AlertRoot = styled(Paper, {
     padding: '6px 16px',
     ...(color &&
       ownerState.variant === 'standard' && {
-        color: getColor((theme.vars || theme).palette[color].light, 0.6),
-        backgroundColor: getBackgroundColor((theme.vars || theme).palette[color].light, 0.9),
-        [`& .${alertClasses.icon}`]: {
-          color:
-            (theme.vars || theme).palette.mode === 'dark'
-              ? (theme.vars || theme).palette[color].main
-              : (theme.vars || theme).palette[color].light,
-        },
+        color: theme.vars
+          ? theme.vars.palette.Alert[`${color}Color`]
+          : getColor(theme.palette[color].light, 0.6),
+        backgroundColor: theme.vars
+          ? theme.vars.palette.Alert[`${color}StandardBg`]
+          : getBackgroundColor(theme.palette[color].light, 0.9),
+        [`& .${alertClasses.icon}`]: theme.vars
+          ? { color: theme.vars.palette.Alert[`${color}IconColor`] }
+          : {
+              color:
+                theme.palette.mode === 'dark'
+                  ? theme.palette[color].main
+                  : theme.palette[color].light,
+            },
       }),
     ...(color &&
       ownerState.variant === 'outlined' && {
-        color: getColor((theme.vars || theme).palette[color].light, 0.6),
+        color: theme.vars
+          ? theme.vars.palette.Alert[`${color}Color`]
+          : getColor(theme.palette[color].light, 0.6),
         border: `1px solid ${(theme.vars || theme).palette[color].light}`,
-        [`& .${alertClasses.icon}`]: {
-          color:
-            (theme.vars || theme).palette.mode === 'dark'
-              ? (theme.vars || theme).palette[color].main
-              : (theme.vars || theme).palette[color].light,
-        },
+        [`& .${alertClasses.icon}`]: theme.vars
+          ? { color: theme.vars.palette.Alert[`${color}IconColor`] }
+          : {
+              color:
+                theme.palette.mode === 'dark'
+                  ? theme.palette[color].main
+                  : theme.palette[color].light,
+            },
       }),
     ...(color &&
       ownerState.variant === 'filled' && {
         color: '#fff',
         fontWeight: theme.typography.fontWeightMedium,
-        backgroundColor:
-          (theme.vars || theme).palette.mode === 'dark'
-            ? (theme.vars || theme).palette[color].dark
-            : (theme.vars || theme).palette[color].main,
+        ...(theme.vars
+          ? {
+              backgroundColor: theme.vars.palette.Alert[`${color}FilledBg`],
+            }
+          : {
+              backgroundColor:
+                theme.palette.mode === 'dark'
+                  ? theme.palette[color].dark
+                  : theme.palette[color].main,
+            }),
       }),
   };
 });
