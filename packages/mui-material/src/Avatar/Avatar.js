@@ -53,10 +53,14 @@ const AvatarRoot = styled('div', {
   }),
   ...(ownerState.colorDefault && {
     color: (theme.vars || theme).palette.background.default,
-    backgroundColor:
-      theme.palette.mode === 'light'
-        ? (theme.vars || theme).palette.grey[400]
-        : (theme.vars || theme).palette.grey[600],
+    ...(theme.vars
+      ? {
+          backgroundColor: theme.vars.palette.Avatar.defaultBg,
+        }
+      : {
+          backgroundColor:
+            theme.palette.mode === 'light' ? theme.palette.grey[400] : theme.palette.grey[600],
+        }),
   }),
 }));
 
