@@ -92,11 +92,7 @@ describe('<ButtonBase />', () => {
 
     it('should use custom LinkComponent when provided in the theme', () => {
       const CustomLink = React.forwardRef((props, ref) => {
-        return (
-          <a data-testid="customLink" ref={ref} {...props}>
-            {props.children}
-          </a>
-        );
+        return <a data-testid="customLink" ref={ref} {...props} />;
       });
       const theme = createTheme({
         components: {
@@ -129,11 +125,7 @@ describe('<ButtonBase />', () => {
 
     it('should not add role="button" if custom component and href are used', () => {
       const CustomLink = React.forwardRef((props, ref) => {
-        return (
-          <a data-testid="customLink" ref={ref} {...props}>
-            {props.children}
-          </a>
-        );
+        return <a data-testid="customLink" ref={ref} {...props} />;
       });
 
       const { container } = render(
@@ -153,11 +145,7 @@ describe('<ButtonBase />', () => {
       const CustomLink = React.forwardRef((props, ref) => {
         // @ts-expect-error missing types in CustomLink
         const { to, ...other } = props;
-        return (
-          <a data-testid="customLink" ref={ref} {...other} href={to}>
-            {props.children}
-          </a>
-        );
+        return <a data-testid="customLink" ref={ref} {...other} href={to} />;
       });
 
       const { container } = render(
