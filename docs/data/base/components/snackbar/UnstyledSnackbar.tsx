@@ -52,7 +52,7 @@ export default function UnstyledSnackbar() {
         Open snackbar
       </button>
       <StyledSnackbar open={open} autoHideDuration={5000} onClose={handleClose}>
-        <div>Hello World</div>
+        Hello World
       </StyledSnackbar>
     </React.Fragment>
   );

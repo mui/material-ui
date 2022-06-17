@@ -13,7 +13,7 @@ export interface SnackbarUnstyledProps<TransitionType = {}> {
    */
   autoHideDuration?: number | null;
   className?: string;
-  children?: React.ReactElement<any, any>;
+  children?: React.ReactNode;
   /**
    * Props applied to the `ClickAwayListener` element.
    */
