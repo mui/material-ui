@@ -1,4 +1,5 @@
 import React from 'react';
+import { SlotComponentProps } from '../utils';
 
 export interface OptionGroupUnstyledComponentsPropsOverrides {}
 
@@ -36,24 +37,41 @@ export interface OptionGroupUnstyledProps {
    * @default {}
    */
   componentsProps?: {
-    root?: React.ComponentPropsWithRef<'li'> & OptionGroupUnstyledComponentsPropsOverrides;
-    label?: React.ComponentPropsWithRef<'span'> & OptionGroupUnstyledComponentsPropsOverrides;
-    list?: React.ComponentPropsWithRef<'ul'> & OptionGroupUnstyledComponentsPropsOverrides;
+    root?: SlotComponentProps<
+      'li',
+      OptionGroupUnstyledComponentsPropsOverrides,
+      OptionGroupUnstyledOwnerState
+    >;
+    label?: SlotComponentProps<
+      'span',
+      OptionGroupUnstyledComponentsPropsOverrides,
+      OptionGroupUnstyledOwnerState
+    >;
+    list?: SlotComponentProps<
+      'ul',
+      OptionGroupUnstyledComponentsPropsOverrides,
+      OptionGroupUnstyledOwnerState
+    >;
   };
 }
+
+export type OptionGroupUnstyledOwnerState = OptionGroupUnstyledProps;
 
 export type OptionGroupUnstyledRootSlotProps = {
   children?: React.ReactNode;
   className: string;
+  ownerState: OptionGroupUnstyledOwnerState;
   ref: React.Ref<HTMLLIElement>;
 };
 
 export type OptionGroupUnstyledLabelSlotProps = {
   children?: React.ReactNode;
   className: string;
+  ownerState: OptionGroupUnstyledOwnerState;
 };
 
 export type OptionGroupUnstyledListSlotProps = {
   children?: React.ReactNode;
   className: string;
+  ownerState: OptionGroupUnstyledOwnerState;
 };

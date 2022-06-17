@@ -38,8 +38,8 @@ export type UseSlotPropsResult<
   AdditionalProps,
   OwnerState,
 > = Omit<SlotProps & ExternalSlotProps & ExternalForwardedProps & AdditionalProps, 'ref'> & {
-  className?: string | undefined;
-  ownerState?: OwnerState | undefined;
+  className: string | undefined;
+  ownerState: OwnerState | undefined;
   ref: (instance: any | null) => void;
 };
 
