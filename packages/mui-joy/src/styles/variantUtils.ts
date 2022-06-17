@@ -40,25 +40,21 @@ const createPrefixVar = (prefix: string | undefined | null) => {
  * result will be the stylesheet based on the palette tokens
  * @example {
  *   color: '--token',
- *   backgroundColor: '--token'
+ *   backgroundColor: '--token',
+ *   '--variant-borderWidth': '0px',
  * }
  * @example {
  *   cursor: 'pointer',
- *   '&:hover': {
- *      color: '--token',
- *   }
- * }
- * @example {
- *   '&:active': {
- *      color: '--token',
- *   }
+ *   color: '--token',
+ *   backgroundColor: '--token',
+ *   '--variant-borderWidth': '1px',
  * }
  * @example {
  *   pointerEvents: 'none',
  *   cursor: 'default',
- *   '&.Mui-disabled': {
- *      color: '--token',
- *   }
+ *   color: '--token',
+ *   backgroundColor: '--token',
+ *   '--variant-borderWidth': '0px',
  * }
  */
 export const createVariantStyle = (
@@ -72,28 +68,22 @@ export const createVariantStyle = (
       if (variantVar.match(new RegExp(`${name}(color|bg|border)`, 'i')) && !!value) {
         const cssVar = getCssVar ? getCssVar(variantVar) : value;
         if (variantVar.includes('Hover')) {
-          if (!result['&:hover']) {
-            result.cursor = 'pointer';
-            result['&:hover'] = {};
-          }
-          assignCss(result['&:hover'] as any, variantVar, cssVar);
-        } else if (variantVar.includes('Active')) {
-          if (!result['&:active']) {
-            result['&:active'] = {};
-          }
-          assignCss(result['&:active'] as any, variantVar, cssVar);
-        } else if (variantVar.includes('Disabled')) {
-          if (!result['&.Mui-disabled']) {
-            result['&.Mui-disabled'] = {
-              pointerEvents: 'none',
-              cursor: 'default',
-            };
-          }
-          assignCss(result['&.Mui-disabled'] as any, variantVar, cssVar);
+          result.cursor = 'pointer';
+        }
+        if (variantVar.includes('Disabled')) {
+          result.pointerEvents = 'none';
+          result.cursor = 'default';
+        }
+        if (variantVar.match(/(Hover|Active|Disabled)/)) {
+          assignCss(result as any, variantVar, cssVar);
         } else {
+          // initial state
+          if (!result['--variant-borderWidth']) {
+            result['--variant-borderWidth'] = '0px';
+          }
           if (variantVar.includes('Border')) {
-            result['--variant-outlinedBorderWidth'] = '1px';
-            result.border = 'var(--variant-outlinedBorderWidth) solid';
+            result['--variant-borderWidth'] = '1px';
+            result.border = 'var(--variant-borderWidth) solid';
           }
           // border color should come later
           assignCss(result as any, variantVar, cssVar);

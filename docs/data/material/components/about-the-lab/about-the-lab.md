@@ -17,26 +17,19 @@ For a component to be ready to move to the core, the following criteria are cons
 
 ## Installation
 
-Install the package in your project directory with:
+To install and save in your `package.json` dependencies, run the command below using **npm**:
 
 ```sh
-// with npm
-npm install @mui/lab
-
-// with yarn
-yarn add @mui/lab
+npm install @mui/lab @mui/material
 ```
 
-The lab has a peer dependency on the core components.
-If you are not already using MUI in your project, you can install it with:
+Or **yarn**:
 
 ```sh
-// with npm
-npm install @mui/material
-
-// with yarn
-yarn add @mui/material
+yarn add @mui/lab @mui/material
 ```
+
+Note that the lab has a peer dependency on the Material UI components.
 
 ## TypeScript
 

@@ -44,10 +44,10 @@ export interface SvgIconClasses {
 export type SvgIconClassKey = keyof SvgIconClasses;
 
 export function getSvgIconUtilityClass(slot: string): string {
-  return generateUtilityClass('MuiSvgIcon', slot);
+  return generateUtilityClass('JoySvgIcon', slot);
 }
 
-const svgIconClasses: SvgIconClasses = generateUtilityClasses('MuiSvgIcon', [
+const svgIconClasses: SvgIconClasses = generateUtilityClasses('JoySvgIcon', [
   'root',
   'colorInherit',
   'colorPrimary',

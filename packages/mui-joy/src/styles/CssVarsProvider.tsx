@@ -1,45 +1,17 @@
 import { deepmerge } from '@mui/utils';
 import { unstable_createCssVarsProvider as createCssVarsProvider } from '@mui/system';
-import { Theme, DefaultColorScheme, ExtendedColorScheme, FontSize } from './types';
-import { Components } from './components';
 import extendTheme from './extendTheme';
 import { createVariant, createTextOverrides, createContainedOverrides } from './variantUtils';
+import type { Theme, DefaultColorScheme, ExtendedColorScheme } from './types';
 
 const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssVarsProvider<
   DefaultColorScheme | ExtendedColorScheme,
   Theme
 >({
-  theme: {
-    ...extendTheme(),
-    components: {
-      // TODO: find a way to abstract SvgIcon out of @mui/material
-      MuiSvgIcon: {
-        defaultProps: {
-          fontSize: 'xl',
-        },
-        styleOverrides: {
-          root: ({ ownerState, theme }) => {
-            const instanceFontSize = ownerState.instanceFontSize as 'inherit' | keyof FontSize;
-            return {
-              color: 'var(--Icon-color)',
-              ...(ownerState.fontSize &&
-                ownerState.fontSize !== 'inherit' && {
-                  fontSize: `var(--Icon-fontSize, ${theme.fontSize[ownerState.fontSize]})`,
-                }),
-              ...(ownerState.color &&
-                ownerState.color !== 'inherit' && {
-                  color: theme.vars.palette[ownerState.color].plainColor,
-                }),
-              ...(instanceFontSize &&
-                instanceFontSize !== 'inherit' && {
-                  '--Icon-fontSize': theme.vars.fontSize[instanceFontSize],
-                }),
-            };
-          },
-        },
-      },
-    } as Components<Theme>,
-  },
+  theme: extendTheme(),
+  attribute: 'data-joy-color-scheme',
+  modeStorageKey: 'joy-mode',
+  colorSchemeStorageKey: 'joy-color-scheme',
   defaultColorScheme: {
     light: 'light',
     dark: 'dark',

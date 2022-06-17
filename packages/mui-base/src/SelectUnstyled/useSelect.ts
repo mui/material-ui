@@ -40,7 +40,6 @@ function useSelect<TValue>(props: UseSelectSingleParameters<TValue>): UseSelectS
 function useSelect<TValue>(props: UseSelectMultiParameters<TValue>): UseSelectMultiResult<TValue>;
 function useSelect<TValue>(props: UseSelectParameters<TValue>) {
   const {
-    buttonComponent,
     buttonRef: buttonRefProp,
     defaultValue,
     disabled = false,
@@ -206,7 +205,6 @@ function useSelect<TValue>(props: UseSelectParameters<TValue>) {
     active: buttonActive,
     focusVisible: buttonFocusVisible,
   } = useButton({
-    component: buttonComponent,
     disabled,
     ref: handleButtonRef,
   });

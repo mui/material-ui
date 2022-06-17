@@ -1,13 +1,23 @@
 import * as React from 'react';
-import { OverrideProps } from '@mui/types';
+import { OverrideProps, OverridableStringUnion } from '@mui/types';
 import { TypographyClasses } from './typographyClasses';
-import { TypographySystem, SxProps, SystemProps } from '../styles/types';
+import {
+  ColorPaletteProp,
+  TypographySystem,
+  SxProps,
+  SystemProps,
+  VariantProp,
+} from '../styles/types';
 
 export type TypographySlot = 'root' | 'startDecorator' | 'endDecorator';
 
+export interface TypographyPropsColorOverrides {}
+
+export interface TypographyPropsVariantOverrides {}
+
 export interface TypographyTypeMap<P = {}, D extends React.ElementType = 'span'> {
   props: P &
-    SystemProps & {
+    Omit<SystemProps, 'color'> & {
       /**
        * The content of the component.
        */
@@ -16,6 +26,10 @@ export interface TypographyTypeMap<P = {}, D extends React.ElementType = 'span'>
        * Override or extend the styles applied to the component.
        */
       classes?: Partial<TypographyClasses>;
+      /**
+       * The color of the component. It supports those theme colors that make sense for this component.
+       */
+      color?: OverridableStringUnion<ColorPaletteProp, TypographyPropsColorOverrides>;
       /**
        * Element placed after the children.
        */
@@ -62,9 +76,17 @@ export interface TypographyTypeMap<P = {}, D extends React.ElementType = 'span'>
        */
       startDecorator?: React.ReactNode;
       /**
+       * The system color.
+       */
+      textColor?: SystemProps['color'];
+      /**
        * The system prop that allows defining system overrides as well as additional CSS styles.
        */
       sx?: SxProps;
+      /**
+       * The variant to use.
+       */
+      variant?: OverridableStringUnion<VariantProp, TypographyPropsVariantOverrides>;
     };
   defaultComponent: D;
 }

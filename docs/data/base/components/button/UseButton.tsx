@@ -49,7 +49,6 @@ const CustomButton = React.forwardRef(function CustomButton(
   const { active, disabled, focusVisible, getRootProps } = useButton({
     ...props,
     ref,
-    component: CustomButtonRoot,
   });
 
   const classes = {

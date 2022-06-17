@@ -23,6 +23,7 @@ describe('<FormControlUnstyled />', () => {
         expectedClassName: formControlUnstyledClasses.root,
       },
     },
+    skip: ['componentsPropsCallbacks'], // not implemented yet
   }));
 
   describe('initial state', () => {

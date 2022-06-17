@@ -73,6 +73,7 @@ const useExternalDocumentation: Record<string, '*' | readonly string[]> = {
   OutlinedInput: useExternalPropsFromInputBase,
   Radio: ['disableRipple', 'id', 'inputProps', 'inputRef', 'required'],
   Checkbox: ['defaultChecked'],
+  Container: ['component'],
   Switch: [
     'checked',
     'defaultChecked',
@@ -219,7 +220,7 @@ async function generateProptypes(
   const isTsFile = /(\.(ts|tsx))/.test(sourceFile);
 
   const unstyledFile = getUnstyledFilename(tsFile, true);
-  const unstyledPropsFile = unstyledFile.replace('.d.ts', 'Props.ts');
+  const unstyledPropsFile = unstyledFile.replace('.d.ts', '.types.ts');
 
   const propsFile = tsFile.replace(/(\.d\.ts|\.tsx|\.ts)/g, 'Props.ts');
   const generatedForTypeScriptFile = sourceFile === tsFile;

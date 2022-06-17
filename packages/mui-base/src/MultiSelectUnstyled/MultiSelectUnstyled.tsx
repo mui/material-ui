@@ -126,7 +126,6 @@ const MultiSelectUnstyled = React.forwardRef(function MultiSelectUnstyled<TValue
     getOptionState,
     value,
   } = useSelect<TValue>({
-    buttonComponent: Button,
     buttonRef: handleButtonRef,
     defaultValue,
     disabled: disabledProp,

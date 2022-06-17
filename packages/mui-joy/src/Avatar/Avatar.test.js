@@ -15,7 +15,7 @@ describe('<Avatar />', () => {
     inheritComponent: 'div',
     render,
     ThemeProvider,
-    muiName: 'MuiAvatar',
+    muiName: 'JoyAvatar',
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'span',
     testDeepOverrides: { slotName: 'fallback', slotClassName: classes.fallback },

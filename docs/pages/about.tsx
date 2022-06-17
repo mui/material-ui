@@ -338,7 +338,7 @@ const teamMembers: Array<Profile> = [
     locationCountry: 'in',
     about: 'Into sports and hiking!',
     twitter: 'gprakhar123',
-    github: 'newguy-123',
+    github: 'prakhargupta1',
   },
   {
     src: '/static/branding/about/jose.png',
@@ -369,6 +369,24 @@ const teamMembers: Array<Profile> = [
     about: 'Musician and edible wild plant enthusiast 🌱',
     twitter: 'tanoaksam',
     github: 'samuelsycamore',
+  },
+  {
+    src: '/static/branding/about/pedro.png',
+    name: 'Pedro Ferreira',
+    title: 'MUI Toolpad engineer',
+    location: 'Porto, Portugal',
+    locationCountry: 'pt',
+    about: 'Passionate about videogames and football',
+    github: 'apedroferreira',
+  },
+  {
+    src: '/static/branding/about/gerda.png',
+    name: 'Gerda Mostonaite',
+    title: 'Senior Designer',
+    location: 'New York, USA',
+    locationCountry: 'us',
+    about: '🎨 Art & design, traveling, and asking questions',
+    github: 'gerdadesign',
   },
 ];
 

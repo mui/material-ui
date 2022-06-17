@@ -32,7 +32,7 @@ describe('<Badge />', () => {
       render,
       ThemeProvider,
       refInstanceof: window.HTMLSpanElement,
-      muiName: 'MuiBadge',
+      muiName: 'JoyBadge',
       testVariantProps: { color: 'neutral', variant: 'soft' },
       skip: ['classesRoot', 'componentsProp'],
     }),

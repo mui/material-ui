@@ -44,19 +44,21 @@ const Plan = React.forwardRef<
         </Button>
       ) : (
         <Button
-          variant={plan === 'pro' ? 'contained' : 'outlined'}
+          variant={plan.match(/(pro|premium)/) ? 'contained' : 'outlined'}
           fullWidth
           component={Link}
           noLinkStyle
           href={
-            plan === 'community'
-              ? '/material-ui/getting-started/usage/'
-              : 'https://mui.com/store/items/material-ui-pro/'
+            {
+              community: '/material-ui/getting-started/usage/',
+              pro: 'https://mui.com/store/items/mui-x-pro/',
+              premium: 'https://mui.com/store/items/mui-x-premium/',
+            }[plan]
           }
           endIcon={<KeyboardArrowRightRounded />}
           sx={{ py: 1 }}
         >
-          {plan === 'pro' ? 'Buy now' : 'Get started'}
+          {plan.match(/(pro|premium)/) ? 'Buy now' : 'Get started'}
         </Button>
       )}
       {benefits &&
@@ -88,7 +90,7 @@ export default function PricingList() {
         sx={{
           mb: 2,
           position: 'sticky',
-          top: 63,
+          top: 55,
           bgcolor: 'background.paper',
           zIndex: 1,
           mx: { xs: -2, sm: -3 },
@@ -129,7 +131,7 @@ export default function PricingList() {
       {planIndex === 2 && (
         <Fade in>
           <div>
-            <Plan plan="premium" unavailable />
+            <Plan plan="premium" />
             <PricingTable columnHeaderHidden plans={['premium']} />
           </div>
         </Fade>

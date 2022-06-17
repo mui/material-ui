@@ -1,8 +1,9 @@
 import * as React from 'react';
+import { SlotComponentProps } from '../utils';
 
 export interface MenuItemUnstyledComponentsPropsOverrides {}
 
-export interface MenuItemOwnerState extends MenuItemUnstyledProps {
+export interface MenuItemUnstyledOwnerState extends MenuItemUnstyledProps {
   disabled: boolean;
   focusVisible: boolean;
 }
@@ -21,7 +22,11 @@ export interface MenuItemUnstyledProps {
     Root?: React.ElementType;
   };
   componentsProps?: {
-    root?: React.ComponentPropsWithRef<'li'> & MenuItemUnstyledComponentsPropsOverrides;
+    root?: SlotComponentProps<
+      'li',
+      MenuItemUnstyledComponentsPropsOverrides,
+      MenuItemUnstyledOwnerState
+    >;
   };
   /**
    * A text representation of the menu item's content.

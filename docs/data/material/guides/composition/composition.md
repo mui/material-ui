@@ -193,12 +193,16 @@ ref forwarding. However, only the following component types can be given a `ref`
 If you don't use one of the above types when using your components in conjunction with MUI, you might see a warning from
 React in your console similar to:
 
-> Function components cannot be given refs. Attempts to access this ref will fail. Did you mean to use React.forwardRef()?
+:::info
+Function components cannot be given refs. Attempts to access this ref will fail. Did you mean to use React.forwardRef()?
+:::
 
 Note that you will still get this warning for `lazy` and `memo` components if their wrapped component can't hold a ref.
 In some instances, an additional warning is issued to help with debugging, similar to:
 
-> Invalid prop `component` supplied to `ComponentName`. Expected an element type that can hold a ref.
+:::warning
+Invalid prop `component` supplied to `ComponentName`. Expected an element type that can hold a ref.
+:::
 
 Only the two most common use cases are covered. For more information see [this section in the official React docs](https://reactjs.org/docs/forwarding-refs.html).
 

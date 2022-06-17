@@ -3,6 +3,7 @@ import {
   ExtendSliderUnstyledTypeMap,
   ExtendSliderUnstyled,
   SliderUnstyledTypeMap,
+  SliderValueLabelProps,
 } from '@mui/base/SliderUnstyled';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
@@ -55,13 +56,14 @@ export type SliderTypeMap<
   defaultComponent: D;
 }>;
 
+export { SliderValueLabelProps } from '@mui/base/SliderUnstyled';
+
 type SliderRootProps = NonNullable<SliderTypeMap['props']['componentsProps']>['root'];
 type SliderMarkProps = NonNullable<SliderTypeMap['props']['componentsProps']>['mark'];
 type SliderMarkLabelProps = NonNullable<SliderTypeMap['props']['componentsProps']>['markLabel'];
 type SliderRailProps = NonNullable<SliderTypeMap['props']['componentsProps']>['rail'];
 type SliderTrackProps = NonNullable<SliderTypeMap['props']['componentsProps']>['track'];
 type SliderThumbProps = NonNullable<SliderTypeMap['props']['componentsProps']>['thumb'];
-type SliderValueLabelProps = NonNullable<SliderTypeMap['props']['componentsProps']>['valueLabel'];
 type SliderInputProps = NonNullable<SliderTypeMap['props']['componentsProps']>['input'];
 
 export const SliderRoot: React.FC<SliderRootProps>;

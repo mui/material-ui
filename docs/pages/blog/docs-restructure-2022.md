@@ -45,7 +45,7 @@ As for the URLs, this is how they look now:
 ### Improved search experience
 
 The documentation restructuring ranks search results based on the product that you are currently looking at.
-For example, if you are looking at Material UI documentation, when you press <kbd><kbd class="key">⌘</kbd>+<kbd class="key">K</kbd></kbd> (or <kbd><kbd class="key">CTRL</kbd>+<kbd class="key">K</kbd></kbd> on Windows) and type a keyword, you will find that most of the results are related to Material UI.
+For example, if you are looking at Material UI documentation, when you press <kbd><kbd class="key">⌘</kbd>+<kbd class="key">K</kbd></kbd> (or <kbd><kbd class="key">Ctrl</kbd>+<kbd class="key">K</kbd></kbd> on Windows) and type a keyword, you will find that most of the results are related to Material UI.
 
 We have also added product labels for Material UI and MUI Base in case it's unclear which library the search results refer to.
 

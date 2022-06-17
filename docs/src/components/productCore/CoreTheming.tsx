@@ -131,7 +131,12 @@ export default function CoreTheming() {
               />
             </Frame.Demo>
             <Frame.Info sx={{ maxHeight: 300, overflow: 'auto' }}>
-              <HighlightedCode component={MarkdownElement} code={code} language="jsx" />
+              <HighlightedCode
+                copyButtonHidden
+                component={MarkdownElement}
+                code={code}
+                language="jsx"
+              />
             </Frame.Info>
           </Frame>
         </Grid>

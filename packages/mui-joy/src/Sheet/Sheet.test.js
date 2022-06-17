@@ -13,7 +13,7 @@ describe('<Sheet />', () => {
     inheritComponent: 'div',
     render,
     ThemeProvider,
-    muiName: 'MuiSheet',
+    muiName: 'JoySheet',
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'header',
     testVariantProps: { variant: 'solid' },

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import { styled } from '@mui/system';
-import { useSwitch, UseSwitchProps } from '@mui/base/SwitchUnstyled';
+import { useSwitch, UseSwitchParameters } from '@mui/base/SwitchUnstyled';
 
 const blue = {
   500: '#007FFF',
@@ -71,7 +71,7 @@ const BasicSwitchThumb = styled('span')`
   }
 `;
 
-function BasicSwitch(props: UseSwitchProps) {
+function BasicSwitch(props: UseSwitchParameters) {
   const { getInputProps, checked, disabled, focusVisible } = useSwitch(props);
 
   const stateClasses = {

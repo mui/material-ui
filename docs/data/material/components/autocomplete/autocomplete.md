@@ -3,7 +3,7 @@ product: material-ui
 title: React Autocomplete component
 components: TextField, Popper, Autocomplete
 githubLabel: 'component: autocomplete'
-waiAria: https://www.w3.org/TR/wai-aria-practices/#combobox
+waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/combobox/
 ---
 
 # Autocomplete
@@ -69,7 +69,9 @@ The component has two states that can be controlled:
 1. the "value" state with the `value`/`onChange` props combination. This state represents the value selected by the user, for instance when pressing <kbd class="key">Enter</kbd>.
 2. the "input value" state with the `inputValue`/`onInputChange` props combination. This state represents the value displayed in the textbox.
 
-> ⚠️ These two states are isolated, they should be controlled independently.
+:::warning
+⚠️ These two states are isolated, they should be controlled independently.
+:::
 
 {{"demo": "ControllableStates.js"}}
 
@@ -83,8 +85,11 @@ The prop is designed to cover the primary use case of a **search input** with su
 
 {{"demo": "FreeSolo.js"}}
 
-> ⚠️ Be careful when using the free solo mode with non-string options, as it may cause type mismatch.  
-> The value created by typing into the textbox is always a string, regardless of the type of the options.
+:::warning
+⚠️ Be careful when using the free solo mode with non-string options, as it may cause type mismatch.
+
+The value created by typing into the textbox is always a string, regardless of the type of the options.
+:::
 
 ### Creatable
 
@@ -130,7 +135,7 @@ The `useAutocomplete` hook is also reexported from @mui/material for convenience
 import useAutocomplete from '@mui/material/useAutocomplete';
 ```
 
-- 📦 [4.5 kB gzipped](/size-snapshot).
+- 📦 [4.5 kB gzipped](/size-snapshot/).
 
 {{"demo": "UseAutocomplete.js", "defaultCodeOpen": false}}
 
@@ -172,7 +177,9 @@ For this demo, we need to load the [Google Maps JavaScript](https://developers.g
 
 {{"demo": "GoogleMaps.js"}}
 
-> ⚠️ Before you can start using the Google Maps JavaScript API and Places API, you must sign up and create a billing account.
+:::warning
+⚠️ Before you can start using the Google Maps JavaScript API and Places API, you must sign up and create a billing account.
+:::
 
 ## Multiple values
 
@@ -339,7 +346,7 @@ If you provide a custom `ListboxComponent` prop, you need to make sure that the 
 
 ## Accessibility
 
-(WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#combobox)
+(WAI-ARIA: https://www.w3.org/WAI/ARIA/apg/patterns/combobox/)
 
 We encourage the usage of a label for the textbox.
 The component implements the WAI-ARIA authoring practices.

@@ -10,7 +10,16 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Chip from '@mui/material/Chip';
 import Box from '@mui/material/Box';
+import Input from '@mui/material/Input';
 import { teal, deepOrange, orange, cyan } from '@mui/material/colors';
+
+const COLORS = ['primary', 'secondary', 'error', 'info', 'warning', 'success'];
+
+const overrideCssVariables = {
+  '--mui-palette-primary-main': '#FF0000',
+  '--mui-palette-primary-mainChannel': '255 0 0',
+  '--mui-palette-primary-dark': '#8b0000',
+};
 
 const ColorSchemePicker = () => {
   const { mode, setMode } = useColorScheme();
@@ -63,131 +72,55 @@ export default function Page() {
           <Box sx={{ pb: 4 }}>
             <ColorSchemePicker />
           </Box>
+          {COLORS.map((color: any) => (
+            <Box key={`button-${color}`} sx={{ display: 'flex', flexWrap: 'wrap', gap: 4, mb: 1 }}>
+              <Button color={color} variant="contained">
+                Text
+              </Button>
+              <Button color={color} variant="outlined">
+                Text
+              </Button>
+              <Button color={color}>Text</Button>
+            </Box>
+          ))}
+
           <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 4, mb: 1 }}>
-            <Button color="inherit" variant="contained">
+            <Button sx={overrideCssVariables} variant="contained">
               Text
             </Button>
-            <Button color="inherit" variant="outlined">
+            <Button sx={overrideCssVariables} variant="outlined">
               Text
             </Button>
-            <Button color="inherit">Text</Button>
-          </Box>
-          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 4, mb: 1 }}>
-            <Button variant="contained">Text</Button>
-            <Button variant="outlined">Text</Button>
-            <Button>Text</Button>
-          </Box>
-          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 4, mb: 1 }}>
-            <Button color="secondary" variant="contained">
-              Text
-            </Button>
-            <Button color="secondary" variant="outlined">
-              Text
-            </Button>
-            <Button color="secondary">Text</Button>
-          </Box>
-          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 4, mb: 1 }}>
-            <Button color="error" variant="contained">
-              Text
-            </Button>
-            <Button color="error" variant="outlined">
-              Text
-            </Button>
-            <Button color="error">Text</Button>
-          </Box>
-          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 4, mb: 1 }}>
-            <Button color="info" variant="contained">
-              Text
-            </Button>
-            <Button color="info" variant="outlined">
-              Text
-            </Button>
-            <Button color="info">Text</Button>
-          </Box>
-          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 4, mb: 1 }}>
-            <Button color="warning" variant="contained">
-              Text
-            </Button>
-            <Button color="warning" variant="outlined">
-              Text
-            </Button>
-            <Button color="warning">Text</Button>
-          </Box>
-          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 4, mb: 1 }}>
-            <Button color="success" variant="contained">
-              Text
-            </Button>
-            <Button color="success" variant="outlined">
-              Text
-            </Button>
-            <Button color="success">Text</Button>
-          </Box>
-          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 4, mb: 1 }}>
-            <Button
-              sx={{
-                '--md-palette-primary-main': '#FF0000',
-                '--md-palette-primary-mainChannel': '255 0 0',
-                '--md-palette-primary-dark': '#8b0000',
-              }}
-              variant="contained"
-            >
-              Text
-            </Button>
-            <Button
-              sx={{
-                '--md-palette-primary-main': '#FF0000',
-                '--md-palette-primary-mainChannel': '255 0 0',
-              }}
-              variant="outlined"
-            >
-              Text
-            </Button>
-            <Button
-              sx={{
-                '--md-palette-primary-main': '#FF0000',
-                '--md-palette-primary-mainChannel': '255 0 0',
-              }}
-            >
-              Text
-            </Button>
+            <Button sx={overrideCssVariables}>Text</Button>
           </Box>
         </Box>
+
         <Box sx={{ py: 5, maxWidth: { md: 1152, xl: 1536 }, mx: 'auto' }}>
-          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 4, mb: 1 }}>
-            <Chip variant="filled" label="Text" />
-            <Chip variant="outlined" label="Text" />
-            <Chip variant="notification" label="Text" />
-          </Box>
-          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 4, mb: 1 }}>
-            <Chip color="primary" variant="filled" label="Text" />
-            <Chip color="primary" variant="outlined" label="Text" />
-            <Chip color="primary" variant="notification" label="Text" />
-          </Box>
-          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 4, mb: 1 }}>
-            <Chip color="secondary" variant="filled" label="Text" />
-            <Chip color="secondary" variant="outlined" label="Text" />
-            <Chip color="secondary" variant="notification" label="Text" />
-          </Box>
-          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 4, mb: 1 }}>
-            <Chip color="error" variant="filled" label="Text" />
-            <Chip color="error" variant="outlined" label="Text" />
-            <Chip color="error" variant="notification" label="Text" />
-          </Box>
-          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 4, mb: 1 }}>
-            <Chip color="info" variant="filled" label="Text" />
-            <Chip color="info" variant="outlined" label="Text" />
-            <Chip color="info" variant="notification" label="Text" />
-          </Box>
-          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 4, mb: 1 }}>
-            <Chip color="warning" variant="filled" label="Text" />
-            <Chip color="warning" variant="outlined" label="Text" />
-            <Chip color="warning" variant="notification" label="Text" />
-          </Box>
-          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 4, mb: 1 }}>
-            <Chip color="success" variant="filled" label="Text" />
-            <Chip color="success" variant="outlined" label="Text" />
-            <Chip color="success" variant="notification" label="Text" />
-          </Box>
+          {COLORS.map((color: any) => (
+            <Box key={`chip-${color}`} sx={{ display: 'flex', flexWrap: 'wrap', gap: 4, mb: 1 }}>
+              <Chip color={color} variant="filled" label="Text" />
+              <Chip color={color} variant="outlined" label="Text" />
+              <Chip color={color} variant="notification" label="Text" />
+            </Box>
+          ))}
+        </Box>
+
+        <Box
+          component="form"
+          sx={{
+            mb: 1,
+            py: 5,
+            maxWidth: { md: 1152, xl: 1536 },
+            mx: 'auto',
+            '& > :not(style)': { m: 1 },
+          }}
+          noValidate
+          autoComplete="off"
+        >
+          {COLORS.map((color: any) => (
+            <Input key={`input-${color}`} color={color} placeholder={color} />
+          ))}
+          <Input sx={overrideCssVariables} placeholder="custom" />
         </Box>
         <Box sx={{ py: 5, maxWidth: { md: 1152, xl: 1536 }, mx: 'auto' }}>
           <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 4, mb: 1 }}>

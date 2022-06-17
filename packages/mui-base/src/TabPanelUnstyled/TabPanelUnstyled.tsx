@@ -2,11 +2,15 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { OverridableComponent } from '@mui/types';
-import { appendOwnerState } from '../utils';
+import { appendOwnerState, WithOptionalOwnerState } from '../utils';
 import composeClasses from '../composeClasses';
 import { getTabPanelUnstyledUtilityClass } from './tabPanelUnstyledClasses';
 import useTabPanel from './useTabPanel';
-import TabPanelUnstyledProps, { TabPanelUnstyledTypeMap } from './TabPanelUnstyledProps';
+import {
+  TabPanelUnstyledProps,
+  TabPanelUnstyledRootSlotProps,
+  TabPanelUnstyledTypeMap,
+} from './TabPanelUnstyled.types';
 
 const useUtilityClasses = (ownerState: { hidden: boolean }) => {
   const { hidden } = ownerState;
@@ -51,23 +55,20 @@ const TabPanelUnstyled = React.forwardRef<unknown, TabPanelUnstyledProps>(functi
   const classes = useUtilityClasses(ownerState);
 
   const TabPanelRoot: React.ElementType = component ?? components.Root ?? 'div';
-  const tabPanelRootProps = appendOwnerState(
+  const tabPanelRootProps: WithOptionalOwnerState<TabPanelUnstyledRootSlotProps> = appendOwnerState(
     TabPanelRoot,
-    { ...other, ...componentsProps.root },
+    {
+      ...getRootProps(),
+      role: 'tabpanel',
+      ...other,
+      ...componentsProps.root,
+      ref,
+      className: clsx(classes.root, componentsProps.root?.className, className),
+    },
     ownerState,
   );
 
-  return (
-    <TabPanelRoot
-      {...getRootProps()}
-      ref={ref}
-      role="tabpanel"
-      {...tabPanelRootProps}
-      className={clsx(classes.root, componentsProps.root?.className, className)}
-    >
-      {!hidden && children}
-    </TabPanelRoot>
-  );
+  return <TabPanelRoot {...tabPanelRootProps}>{!hidden && children}</TabPanelRoot>;
 }) as OverridableComponent<TabPanelUnstyledTypeMap>;
 
 TabPanelUnstyled.propTypes /* remove-proptypes */ = {

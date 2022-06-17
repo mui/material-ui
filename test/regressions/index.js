@@ -28,6 +28,8 @@ importRegressionFixtures.keys().forEach((path) => {
 }, []);
 
 const blacklist = [
+  'docs-joy-getting-started-templates/TemplateCollection.png',
+  'docs-joy-core-features-automatic-adjustment/ListThemes.png',
   'docs-components-alert/TransitionAlerts.png', // Needs interaction
   'docs-components-app-bar/BackToTop.png', // Needs interaction
   'docs-components-app-bar/ElevateAppBar.png', // Needs interaction
@@ -165,6 +167,10 @@ function excludeDemoFixture(suite, name) {
     return true;
   }
 
+  if (suite.includes('docs-joy') && name.match(/(Variables|Usage)$/)) {
+    return true;
+  }
+
   return blacklist.some((pattern) => {
     if (typeof pattern === 'string') {
       if (pattern === suite) {
@@ -274,7 +280,11 @@ function App(props) {
   React.useEffect(() => {
     webfontloader.load({
       google: {
-        families: ['Roboto:300,400,500,700', 'Public Sans:300,400,500,700', 'Material+Icons'],
+        families: [
+          'Roboto:300,400,500,700',
+          'Public Sans:300,400,500,600,700,800,900',
+          'Material+Icons',
+        ],
       },
       custom: {
         families: ['Font Awesome 5 Free:n9'],

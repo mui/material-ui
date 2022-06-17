@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Container from '@mui/material/Container';
+import Container from '@mui/joy/Container';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import Typography from '@mui/joy/Typography';
@@ -91,15 +91,20 @@ const ColorToken = ({ name, value }: { name: string; value: string }) => {
 const PaletteTokens = () => {
   const { colorScheme } = useColorScheme();
   const { palette } = useTheme();
+  const [mounted, setMounted] = React.useState(false);
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
   return (
     <React.Fragment>
-      <Typography level="h5" sx={{ mb: 1 }}>
-        Palette ({colorScheme})
-      </Typography>
-
+      {mounted && (
+        <Typography level="h5" sx={{ mb: 1 }}>
+          Palette ({colorScheme})
+        </Typography>
+      )}
       <Box>
         {Object.entries(palette).map(([key, nestedObj]) => {
-          if (typeof nestedObj === 'string') {
+          if (typeof nestedObj === 'string' && mounted) {
             return <ColorToken key={key} name={key} value={nestedObj} />;
           }
           return (

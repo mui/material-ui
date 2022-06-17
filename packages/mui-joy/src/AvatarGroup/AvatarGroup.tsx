@@ -19,7 +19,7 @@ const useUtilityClasses = () => {
 };
 
 const AvatarGroupGroupRoot = styled('div', {
-  name: 'MuiAvatarGroup',
+  name: 'JoyAvatarGroup',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: AvatarGroupProps }>(({ ownerState, theme }) => ({
@@ -44,7 +44,7 @@ const AvatarGroupGroupRoot = styled('div', {
 const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
   const props = useThemeProps<typeof inProps & AvatarGroupProps>({
     props: inProps,
-    name: 'MuiAvatarGroup',
+    name: 'JoyAvatarGroup',
   });
 
   const { className, color, component = 'div', size = 'md', variant, children, ...other } = props;
@@ -123,7 +123,7 @@ AvatarGroup.propTypes /* remove-proptypes */ = {
    * @default 'soft'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['contained', 'light', 'outlined', 'text']),
+    PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
     PropTypes.string,
   ]),
 } as any;

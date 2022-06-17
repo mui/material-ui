@@ -149,8 +149,7 @@ const components: {
       </React.Fragment>
     ),
     cssVars: [
-      { id: '--Button-gutter', type: 'number', unit: 'px', defaultValue: 24 },
-      { id: '--Button-iconOffsetStep', type: 'number', defaultValue: 2 },
+      { id: '--Button-paddingInline', type: 'number', unit: 'px', defaultValue: 24 },
       { id: '--Button-gap', type: 'number', unit: 'px' },
     ],
   },
@@ -319,8 +318,8 @@ const components: {
         <Input
           color="primary"
           placeholder="Placeholder"
-          startDecorator={<Typography color="inherit">$</Typography>}
-          endDecorator={<Typography color="text.tertiary">USD</Typography>}
+          startDecorator={<Typography textColor="inherit">$</Typography>}
+          endDecorator={<Typography textColor="text.tertiary">USD</Typography>}
           {...props}
         />
         <Input placeholder="Placeholder" color="danger" endDecorator={<Info />} {...props} />
@@ -341,9 +340,8 @@ const components: {
       </React.Fragment>
     ),
     cssVars: [
-      { id: '--Input-minHeight', type: 'number', unit: 'px', defaultValue: 40 },
       { id: '--Input-radius', type: 'number', unit: 'px', defaultValue: 8 },
-      { id: '--Input-gutter', type: 'number', unit: 'px', defaultValue: 12 },
+      { id: '--Input-paddingInline', type: 'number', unit: 'px', defaultValue: 12 },
       { id: '--Input-gap', type: 'number', unit: 'px', defaultValue: 8 },
       {
         id: '--Input-placeholderOpacity',
@@ -382,7 +380,7 @@ const components: {
           <CardOverflow variant="outlined">
             <AspectRatio ratio="1">
               <img
-                src="https://images.unsplash.com/photo-1627483262268-9c2b5b2834b5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
+                src="https://images.unsplash.com/photo-1627483262268-9c2b5b2834b5?auto=format&fit=crop&w=1770"
                 alt=""
               />
               <Box
@@ -450,7 +448,7 @@ const components: {
         >
           <CardCover>
             <img
-              src="https://images.unsplash.com/photo-1525630558331-067c957817a9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2250&q=80"
+              src="https://images.unsplash.com/photo-1525630558331-067c957817a9?auto=format&fit=crop&w=2250"
               alt=""
             />
           </CardCover>
@@ -523,7 +521,7 @@ const components: {
               <Avatar
                 src="/static/images/avatar/3.jpg"
                 variant="outlined"
-                sx={{ borderColor: 'background.body', '--variant-outlinedBorderWidth': '2px' }}
+                sx={{ borderColor: 'background.body', '--variant-borderWidth': '2px' }}
               />
             }
             {...props}

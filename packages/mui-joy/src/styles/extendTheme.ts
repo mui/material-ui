@@ -12,7 +12,7 @@ import colors from '../colors';
 import { DefaultColorScheme, ExtendedColorScheme } from './types/colorScheme';
 import { ColorSystem, ColorPaletteProp, PaletteRange } from './types/colorSystem';
 import { Focus } from './types/focus';
-import { TypographySystem } from './types/typography';
+import { TypographySystem, FontSize } from './types/typography';
 import { Variants } from './types/variants';
 import { Theme, ThemeCSSVar, ThemeScales } from './types';
 import { Components } from './components';
@@ -58,15 +58,15 @@ const createLightModeVariantVariables = (color: ColorPaletteProp) => ({
   plainActiveBg: `var(--joy-palette-${color}-200)`,
   plainDisabledColor: `var(--joy-palette-${color}-200)`,
 
-  outlinedColor: `var(--joy-palette-${color}-600)`,
+  outlinedColor: `var(--joy-palette-${color}-500)`,
   outlinedBorder: `var(--joy-palette-${color}-200)`,
   outlinedHoverBg: `var(--joy-palette-${color}-100)`,
   outlinedHoverBorder: `var(--joy-palette-${color}-300)`,
   outlinedActiveBg: `var(--joy-palette-${color}-200)`,
-  outlinedDisabledColor: `var(--joy-palette-${color}-200)`,
+  outlinedDisabledColor: `var(--joy-palette-${color}-100)`,
   outlinedDisabledBorder: `var(--joy-palette-${color}-100)`,
 
-  softColor: `var(--joy-palette-${color}-700)`,
+  softColor: `var(--joy-palette-${color}-600)`,
   softBg: `var(--joy-palette-${color}-100)`,
   softHoverBg: `var(--joy-palette-${color}-200)`,
   softActiveBg: `var(--joy-palette-${color}-300)`,
@@ -74,9 +74,9 @@ const createLightModeVariantVariables = (color: ColorPaletteProp) => ({
   softDisabledBg: `var(--joy-palette-${color}-50)`,
 
   solidColor: '#fff',
-  solidBg: `var(--joy-palette-${color}-600)`,
-  solidHoverBg: `var(--joy-palette-${color}-700)`,
-  solidActiveBg: `var(--joy-palette-${color}-800)`,
+  solidBg: `var(--joy-palette-${color}-500)`,
+  solidHoverBg: `var(--joy-palette-${color}-600)`,
+  solidActiveBg: `var(--joy-palette-${color}-700)`,
   solidDisabledColor: `#fff`,
   solidDisabledBg: `var(--joy-palette-${color}-200)`,
 
@@ -93,7 +93,7 @@ const createDarkModeVariantVariables = (color: ColorPaletteProp) => ({
 
   outlinedColor: `var(--joy-palette-${color}-200)`,
   outlinedBorder: `var(--joy-palette-${color}-700)`,
-  outlinedHoverBg: `var(--joy-palette-${color}-900)`,
+  outlinedHoverBg: `var(--joy-palette-${color}-800)`,
   outlinedHoverBorder: `var(--joy-palette-${color}-600)`,
   outlinedActiveBg: `var(--joy-palette-${color}-900)`,
   outlinedDisabledColor: `var(--joy-palette-${color}-800)`,
@@ -119,7 +119,7 @@ const createDarkModeVariantVariables = (color: ColorPaletteProp) => ({
 });
 
 export default function extendTheme(themeInput?: ThemeInput): Theme {
-  const { breakpoints, spacing, components, ...scalesInput } = themeInput || {};
+  const { breakpoints, spacing, components: componentsInput, ...scalesInput } = themeInput || {};
   const lightColorSystem = {
     palette: {
       primary: {
@@ -173,10 +173,42 @@ export default function extendTheme(themeInput?: ThemeInput): Theme {
       success: {
         ...colors.green,
         ...createLightModeVariantVariables('success'),
+        solidColor: '#fff',
+        solidBg: `var(--joy-palette-success-600)`,
+        solidHoverBg: `var(--joy-palette-success-700)`,
+        solidActiveBg: `var(--joy-palette-success-800)`,
+        solidDisabledColor: `var(--joy-palette-success-50)`,
+        solidDisabledBg: `var(--joy-palette-success-300)`,
+
+        softColor: `var(--joy-palette-success-700)`,
+
+        outlinedColor: `var(--joy-palette-success-800)`,
+        outlinedBorder: `var(--joy-palette-success-300)`,
+        outlinedHoverBorder: `var(--joy-palette-success-400)`,
+
+        plainColor: `var(--joy-palette-success-900)`,
       },
       warning: {
         ...colors.yellow,
         ...createLightModeVariantVariables('warning'),
+        solidColor: `var(--joy-palette-common-black)`,
+        solidBg: `var(--joy-palette-warning-500)`,
+        solidHoverBg: `var(--joy-palette-warning-600)`,
+        solidActiveBg: `var(--joy-palette-warning-700)`,
+        solidDisabledColor: `var(--joy-palette-warning-50)`,
+        solidDisabledBg: `var(--joy-palette-warning-300)`,
+
+        softColor: `var(--joy-palette-warning-800)`,
+
+        outlinedColor: `var(--joy-palette-warning-800)`,
+        outlinedBorder: `var(--joy-palette-warning-500)`,
+        outlinedHoverBorder: `var(--joy-palette-warning-600)`,
+
+        plainColor: `var(--joy-palette-warning-800)`,
+      },
+      common: {
+        white: '#FFF',
+        black: '#0F0F0F',
       },
       text: {
         primary: 'var(--joy-palette-neutral-800)',
@@ -184,12 +216,14 @@ export default function extendTheme(themeInput?: ThemeInput): Theme {
         tertiary: 'var(--joy-palette-neutral-500)',
       },
       background: {
-        body: '#fff',
+        body: 'var(--joy-palette-common-white)',
+        surface: 'var(--joy-palette-common-white)',
         level1: 'var(--joy-palette-neutral-50)',
         level2: 'var(--joy-palette-neutral-100)',
         level3: 'var(--joy-palette-neutral-200)',
+        tooltip: 'var(--joy-palette-neutral-800)',
       },
-      divider: 'rgba(0 0 0 / 0.12)',
+      divider: 'var(--joy-palette-neutral-200)',
       focusVisible: 'var(--joy-palette-primary-200)',
     },
     shadowRing: '0 0 #000',
@@ -210,11 +244,11 @@ export default function extendTheme(themeInput?: ThemeInput): Theme {
         plainDisabledColor: `var(--joy-palette-neutral-600)`,
 
         outlinedColor: `var(--joy-palette-neutral-200)`,
-        outlinedBorder: `var(--joy-palette-neutral-700)`,
+        outlinedBorder: `var(--joy-palette-neutral-800)`,
         outlinedHoverColor: `var(--joy-palette-neutral-50)`,
-        outlinedHoverBg: `var(--joy-palette-neutral-900)`,
-        outlinedHoverBorder: `var(--joy-palette-neutral-600)`,
-        outlinedActiveBg: `var(--joy-palette-neutral-900)`,
+        outlinedHoverBg: `var(--joy-palette-neutral-800)`,
+        outlinedHoverBorder: `var(--joy-palette-neutral-700)`,
+        outlinedActiveBg: `var(--joy-palette-neutral-800)`,
         outlinedDisabledColor: `var(--joy-palette-neutral-600)`,
         outlinedDisabledBorder: `var(--joy-palette-neutral-800)`,
 
@@ -248,10 +282,26 @@ export default function extendTheme(themeInput?: ThemeInput): Theme {
       success: {
         ...colors.green,
         ...createDarkModeVariantVariables('success'),
+        solidColor: '#fff',
+        solidBg: `var(--joy-palette-success-600)`,
+        solidHoverBg: `var(--joy-palette-success-700)`,
+        solidActiveBg: `var(--joy-palette-success-800)`,
+        solidDisabledColor: `var(--joy-palette-success-50)`,
+        solidDisabledBg: `var(--joy-palette-success-300)`,
       },
       warning: {
         ...colors.yellow,
         ...createDarkModeVariantVariables('warning'),
+        solidColor: `var(--joy-palette-common-black)`,
+        solidBg: `var(--joy-palette-warning-500)`,
+        solidHoverBg: `var(--joy-palette-warning-600)`,
+        solidActiveBg: `var(--joy-palette-warning-700)`,
+        solidDisabledColor: `var(--joy-palette-warning-50)`,
+        solidDisabledBg: `var(--joy-palette-warning-300)`,
+      },
+      common: {
+        white: '#FFF',
+        black: '#0F0F0F',
       },
       text: {
         primary: 'var(--joy-palette-neutral-100)',
@@ -260,11 +310,13 @@ export default function extendTheme(themeInput?: ThemeInput): Theme {
       },
       background: {
         body: 'var(--joy-palette-neutral-900)',
+        surface: 'var(--joy-palette-common-black)',
         level1: 'var(--joy-palette-neutral-800)',
         level2: 'var(--joy-palette-neutral-700)',
         level3: 'var(--joy-palette-neutral-600)',
+        tooltip: 'var(--joy-palette-neutral-600)',
       },
-      divider: 'rgba(255 255 255 / 0.16)',
+      divider: 'var(--joy-palette-neutral-800)',
       focusVisible: 'var(--joy-palette-primary-500)',
     },
     shadowRing: '0 0 #000',
@@ -277,16 +329,19 @@ export default function extendTheme(themeInput?: ThemeInput): Theme {
       dark: darkColorSystem,
     },
     fontSize: {
+      xs3: '0.5rem',
+      xs2: '0.625rem',
       xs: '0.75rem',
       sm: '0.875rem',
       md: '1rem',
-      lg: '1.25rem',
-      xl: '1.5rem',
-      xl2: '1.875rem',
-      xl3: '2.25rem',
-      xl4: '3rem',
-      xl5: '3.75rem',
-      xl6: '4.5rem',
+      lg: '1.125rem',
+      xl: '1.25rem',
+      xl2: '1.5rem',
+      xl3: '1.875rem',
+      xl4: '2.25rem',
+      xl5: '3rem',
+      xl6: '3.75rem',
+      xl7: '4.5rem',
     },
     fontFamily: {
       body: '"Public Sans", var(--joy-fontFamily-fallback)',
@@ -299,13 +354,15 @@ export default function extendTheme(themeInput?: ThemeInput): Theme {
       xs: 200,
       sm: 300,
       md: 500,
-      lg: 700,
-      xl: 800,
+      lg: 600,
+      xl: 700,
+      xl2: 800,
+      xl3: 900,
     },
     focus: {
       selector: '&.Mui-focusVisible, &:focus-visible',
       default: {
-        outlineOffset: 0, // reset user agent stylesheet
+        outlineOffset: 'var(--joy-focus-outlineOffset, 0px)', // reset user agent stylesheet
         outline: '4px solid var(--joy-palette-focusVisible)',
       },
     },
@@ -334,10 +391,26 @@ export default function extendTheme(themeInput?: ThemeInput): Theme {
       xl: 'var(--joy-shadowRing), 0.3px 0.8px 1.1px rgba(var(--joy-shadowChannel) / 0.11), 1.8px 4.5px 6.4px -0.2px rgba(var(--joy-shadowChannel) / 0.13), 3.2px 7.9px 11.2px -0.4px rgba(var(--joy-shadowChannel) / 0.16), 4.8px 12px 17px -0.5px rgba(var(--joy-shadowChannel) / 0.19), 7px 17.5px 24.7px -0.7px rgba(var(--joy-shadowChannel) / 0.21), 10.2px 25.5px 36px -0.9px rgba(var(--joy-shadowChannel) / 0.24), 14.8px 36.8px 52.1px -1.1px rgba(var(--joy-shadowChannel) / 0.27), 21px 52.3px 74px -1.2px rgba(var(--joy-shadowChannel) / 0.29)',
     },
     typography: {
+      display1: {
+        fontFamily: 'var(--joy-fontFamily-display)',
+        fontWeight: 'var(--joy-fontWeight-xl)' as CSSProperties['fontWeight'],
+        fontSize: 'var(--joy-fontSize-xl7)',
+        lineHeight: 'var(--joy-lineHeight-sm)',
+        letterSpacing: 'var(--joy-letterSpacing-sm)',
+        color: 'var(--joy-palette-text-primary)',
+      },
+      display2: {
+        fontFamily: 'var(--joy-fontFamily-display)',
+        fontWeight: 'var(--joy-fontWeight-xl)' as CSSProperties['fontWeight'],
+        fontSize: 'var(--joy-fontSize-xl6)',
+        lineHeight: 'var(--joy-lineHeight-sm)',
+        letterSpacing: 'var(--joy-letterSpacing-sm)',
+        color: 'var(--joy-palette-text-primary)',
+      },
       h1: {
         fontFamily: 'var(--joy-fontFamily-display)',
         fontWeight: 'var(--joy-fontWeight-lg)' as CSSProperties['fontWeight'],
-        fontSize: 'var(--joy-fontSize-xl4)',
+        fontSize: 'var(--joy-fontSize-xl5)',
         lineHeight: 'var(--joy-lineHeight-sm)',
         letterSpacing: 'var(--joy-letterSpacing-sm)',
         color: 'var(--joy-palette-text-primary)',
@@ -345,7 +418,7 @@ export default function extendTheme(themeInput?: ThemeInput): Theme {
       h2: {
         fontFamily: 'var(--joy-fontFamily-display)',
         fontWeight: 'var(--joy-fontWeight-lg)' as CSSProperties['fontWeight'],
-        fontSize: 'var(--joy-fontSize-xl3)',
+        fontSize: 'var(--joy-fontSize-xl4)',
         lineHeight: 'var(--joy-lineHeight-sm)',
         letterSpacing: 'var(--joy-letterSpacing-sm)',
         color: 'var(--joy-palette-text-primary)',
@@ -353,28 +426,28 @@ export default function extendTheme(themeInput?: ThemeInput): Theme {
       h3: {
         fontFamily: 'var(--joy-fontFamily-body)',
         fontWeight: 'var(--joy-fontWeight-md)' as CSSProperties['fontWeight'],
-        fontSize: 'var(--joy-fontSize-xl2)',
+        fontSize: 'var(--joy-fontSize-xl3)',
         lineHeight: 'var(--joy-lineHeight-sm)',
         color: 'var(--joy-palette-text-primary)',
       },
       h4: {
         fontFamily: 'var(--joy-fontFamily-body)',
         fontWeight: 'var(--joy-fontWeight-md)' as CSSProperties['fontWeight'],
-        fontSize: 'var(--joy-fontSize-xl)',
+        fontSize: 'var(--joy-fontSize-xl2)',
         lineHeight: 'var(--joy-lineHeight-md)',
         color: 'var(--joy-palette-text-primary)',
       },
       h5: {
         fontFamily: 'var(--joy-fontFamily-body)',
         fontWeight: 'var(--joy-fontWeight-md)' as CSSProperties['fontWeight'],
-        fontSize: 'var(--joy-fontSize-lg)',
+        fontSize: 'var(--joy-fontSize-xl)',
         lineHeight: 'var(--joy-lineHeight-md)',
         color: 'var(--joy-palette-text-primary)',
       },
       h6: {
         fontFamily: 'var(--joy-fontFamily-body)',
         fontWeight: 'var(--joy-fontWeight-md)' as CSSProperties['fontWeight'],
-        fontSize: 'var(--joy-fontSize-md)',
+        fontSize: 'var(--joy-fontSize-lg)',
         lineHeight: 'var(--joy-lineHeight-md)',
         color: 'var(--joy-palette-text-primary)',
       },
@@ -396,6 +469,18 @@ export default function extendTheme(themeInput?: ThemeInput): Theme {
         lineHeight: 'var(--joy-lineHeight-md)',
         color: 'var(--joy-palette-text-tertiary)',
       },
+      body4: {
+        fontFamily: 'var(--joy-fontFamily-body)',
+        fontSize: 'var(--joy-fontSize-xs2)',
+        lineHeight: 'var(--joy-lineHeight-md)',
+        color: 'var(--joy-palette-text-tertiary)',
+      },
+      body5: {
+        fontFamily: 'var(--joy-fontFamily-body)',
+        fontSize: 'var(--joy-fontSize-xs3)',
+        lineHeight: 'var(--joy-lineHeight-md)',
+        color: 'var(--joy-palette-text-tertiary)',
+      },
     },
   };
 
@@ -407,11 +492,40 @@ export default function extendTheme(themeInput?: ThemeInput): Theme {
     colorSchemes,
     ...mergedScales,
     breakpoints: createBreakpoints(breakpoints ?? {}),
-    components,
+    components: deepmerge(
+      {
+        // TODO: find a way to abstract SvgIcon out of @mui/material
+        MuiSvgIcon: {
+          defaultProps: {
+            fontSize: 'xl',
+          },
+          styleOverrides: {
+            root: ({ ownerState, theme: themeProp }) => {
+              const instanceFontSize = ownerState.instanceFontSize as 'inherit' | keyof FontSize;
+              return {
+                color: 'var(--Icon-color)',
+                margin: 'var(--Icon-margin)',
+                ...(ownerState.fontSize &&
+                  ownerState.fontSize !== 'inherit' && {
+                    fontSize: `var(--Icon-fontSize, ${themeProp.fontSize[ownerState.fontSize]})`,
+                  }),
+                ...(ownerState.color &&
+                  ownerState.color !== 'inherit' && {
+                    color: themeProp.vars.palette[ownerState.color]?.plainColor,
+                  }),
+                ...(instanceFontSize &&
+                  instanceFontSize !== 'inherit' && {
+                    '--Icon-fontSize': themeProp.vars.fontSize[instanceFontSize],
+                  }),
+              };
+            },
+          },
+        },
+      } as Components<Theme>,
+      componentsInput,
+    ),
     getCssVar: createGetCssVar('joy'),
     spacing: createSpacing(spacing),
-    vars: { ...mergedScales, ...colorSchemes.light }, // dummy vars, (the real `vars` have to be generated by CssVarsProvider)
-    variants: {}, // variants will be generated internally based on the selected color scheme.
   } as unknown as Theme; // Need type casting due to module augmentation inside the repo
 
   /**

@@ -8,6 +8,9 @@ import Sun from '@mui/icons-material/LightMode';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
+import Input from '@mui/material/Input';
+
+const COLORS = ['primary', 'secondary', 'error', 'info', 'warning', 'success'];
 
 const ColorSchemePicker = () => {
   const { mode, setMode } = useColorScheme();
@@ -42,71 +45,48 @@ export default function Page() {
         <Box sx={{ pb: 4 }}>
           <ColorSchemePicker />
         </Box>
-        <div>
-          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 4, mb: 1 }}>
-            <Button variant="contained">Text</Button>
-            <Button variant="outlined">Text</Button>
+
+        {COLORS.map((color: any) => (
+          <Box key={`button-${color}`} sx={{ display: 'flex', flexWrap: 'wrap', gap: 4, mb: 1 }}>
+            <Button color={color} variant="contained">
+              Text
+            </Button>
+            <Button color={color} variant="outlined">
+              Text
+            </Button>
             <Button>Text</Button>
           </Box>
-          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 4, mb: 1 }}>
-            <Button color="secondary" variant="contained">
-              Text
-            </Button>
-            <Button color="secondary" variant="outlined">
-              Text
-            </Button>
-            <Button color="secondary">Text</Button>
-          </Box>
-          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 4, mb: 1 }}>
-            <Button color="error" variant="contained">
-              Text
-            </Button>
-            <Button color="error" variant="outlined">
-              Text
-            </Button>
-            <Button color="error">Text</Button>
-          </Box>
-          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 4, mb: 1 }}>
-            <Button color="info" variant="contained">
-              Text
-            </Button>
-            <Button color="info" variant="outlined">
-              Text
-            </Button>
-            <Button color="info">Text</Button>
-          </Box>
-          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 4, mb: 1 }}>
-            <Button color="warning" variant="contained">
-              Text
-            </Button>
-            <Button color="warning" variant="outlined">
-              Text
-            </Button>
-            <Button color="warning">Text</Button>
-          </Box>
-          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 4, mb: 1 }}>
-            <Button color="success" variant="contained">
-              Text
-            </Button>
-            <Button color="success" variant="outlined">
-              Text
-            </Button>
-            <Button color="success">Text</Button>
-          </Box>
-        </div>
-        <div>
-          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 4, mb: 1 }}>
-            <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
-            <Avatar variant="rounded" alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
-            <Avatar variant="square" alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
-          </Box>
-          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 4, mb: 1 }}>
-            <Avatar>H</Avatar>
-            <Avatar variant="rounded">H</Avatar>
-            <Avatar variant="square">H</Avatar>
-          </Box>
-        </div>
+        ))}
       </Box>
+
+      <Box sx={{ py: 5, maxWidth: { md: 1152, xl: 1536 }, mx: 'auto' }}>
+        <Box
+          component="form"
+          sx={{
+            mb: 1,
+            '& > :not(style)': { m: 1 },
+          }}
+          noValidate
+          autoComplete="off"
+        >
+          {COLORS.map((color: any) => (
+            <Input key={`input-${color}`} color={color} placeholder={color} />
+          ))}
+        </Box>
+      </Box>
+
+      <div>
+        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 4, mb: 1 }}>
+          <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+          <Avatar variant="rounded" alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+          <Avatar variant="square" alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+        </Box>
+        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 4, mb: 1 }}>
+          <Avatar>H</Avatar>
+          <Avatar variant="rounded">H</Avatar>
+          <Avatar variant="square">H</Avatar>
+        </Box>
+      </div>
     </CssVarsProvider>
   );
 }

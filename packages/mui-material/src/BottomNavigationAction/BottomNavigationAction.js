@@ -36,7 +36,7 @@ const BottomNavigationActionRoot = styled(ButtonBase, {
   padding: '0px 12px',
   minWidth: 80,
   maxWidth: 168,
-  color: theme.palette.text.secondary,
+  color: (theme.vars || theme).palette.text.secondary,
   flexDirection: 'column',
   flex: '1',
   ...(!ownerState.showLabel &&
@@ -49,7 +49,7 @@ const BottomNavigationActionRoot = styled(ButtonBase, {
       paddingTop: 0,
     }),
   [`&.${bottomNavigationActionClasses.selected}`]: {
-    color: theme.palette.primary.main,
+    color: (theme.vars || theme).palette.primary.main,
   },
 }));
 

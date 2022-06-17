@@ -2,7 +2,7 @@ import * as React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
 
-export type AspectRatioSlot = 'root';
+export type AspectRatioSlot = 'root' | 'content';
 
 export interface AspectRatioPropsColorOverrides {}
 export interface AspectRatioPropsVariantOverrides {}
@@ -20,13 +20,20 @@ export interface AspectRatioTypeMap<P = {}, D extends React.ElementType = 'div'>
      */
     children?: React.ReactNode;
     /**
+     * The props used for each slot inside the AspectRatio.
+     * @default {}
+     */
+    componentsProps?: {
+      content: React.HTMLAttributes<HTMLDivElement> & { sx: SxProps };
+    };
+    /**
      * The minimum calculated height of the element (not the CSS height).
      */
-    min?: number | string;
+    minHeight?: number | string;
     /**
      * The maximum calculated height of the element (not the CSS height).
      */
-    max?: number | string;
+    maxHeight?: number | string;
     /**
      * The CSS object-fit value of the first-child.
      */
