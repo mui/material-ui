@@ -18,9 +18,9 @@ The `Grid` component works well for a layout with known columns. The columns can
 The grid system is implemented with the `Grid` component:
 
 - It uses [CSS's Flexible Box module](https://www.w3.org/TR/css-flexbox-1/) for high flexibility.
-- The grid is a flex item by default which can enable container capability by using the `container` prop.
+- The grid is always a flex item. Use the `container` prop to add flex container to it.
 - Item widths are set in percentages, so they're always fluid and sized relative to their parent element.
-- There are five grid breakpoints: xs, sm, md, lg, and xl.
+- There are five default grid breakpoints: xs, sm, md, lg, and xl. If you need custom breakpoints, check out [custom breakpoints grid](#custom-breakpoints).
 - Integer values can be given to each breakpoint, indicating how many of the 12 available columns are occupied by the component when the viewport width satisfies the [breakpoint constraints](/material-ui/customization/breakpoints/#default-breakpoints).
 - It uses negative margin and padding technique to create [gap-like](https://developer.mozilla.org/en-US/docs/Web/CSS/gap) between children.
 - It **does not** have the concept of rows. Meaning, you can't make the children span to multiple rows. If you need to do that, we recommend to use [CSS Grid](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout) instead.
@@ -111,7 +111,7 @@ You can change the default number of columns (12) with the `columns` prop.
 
 ## Custom breakpoints
 
-If you specify custom breakpoints to the theme, you can use those names as grid item props and in responsive values. For **Typescript**, you have to set module augmentation on theme breakpoints and the grid breakpoints interfaces.
+If you specify custom breakpoints to the theme, you can use those names as grid item props and in responsive values. For **Typescript**, you have to set module augmentation on theme breakpoints.
 
 ```ts
 declare module '@mui/system' {
@@ -142,19 +142,19 @@ Move the item to the right by using offset props which can be a number or `"auto
 
 {{"demo": "OffsetGrid.js", "bg": true}}
 
+## Prevent scrollbar
+
+If you use grid as a container in a small viewport, you might see a horizontal scrollbar because the negative margin is applied on all sides of the grid container.
+
+To prevent the scrollbar, set `disableEqualOverflow` prop to `true`. It will enable negative margin only on the top and left sides of the grid which remove overflow on the right-hand side.
+
+{{"demo": "OverflowGrid.js", "bg": true}}
+
+:::warning
+If you add borders or background to the grid with `disableEqualOverflow`, you will see the misalignments with the content in the grid item. This is expected since negative margin only applied on the top and left sides of the grid.
+:::
+
 ## Limitations
-
-### Negative margin
-
-The spacing between items is implemented with a negative margin. This might lead to unexpected behaviors. For instance, it can cause an overflow on mobile viewport (horizontal scroll), you need to apply `overflow: hidden;` to the parent of the grid container.
-
-```js
-<Box sx={{ maxWidth: '100vw', overflow: 'hidden' }}>
-  <Grid container spacing={4}>
-    ...grid items
-  </Grid>
-</Box>
-```
 
 ### `direction: column | column-reverse`
 

@@ -58,6 +58,7 @@ export default function createGrid(
   } = options;
 
   const NestedContext = React.createContext(false);
+  const OverflowContext = React.createContext<boolean | undefined>(undefined);
 
   const getGridUtilityClass = (slot: string) => {
     return generateUtilityClass(componentName, slot);
@@ -97,6 +98,7 @@ export default function createGrid(
     const themeProps = useThemeProps<typeof inProps & { component?: React.ElementType }>(inProps);
     const props = extendSxProp(themeProps) as Omit<typeof themeProps, 'color'>; // `color` type conflicts with html color attribute.
     const nested = React.useContext(NestedContext);
+    const overflow = React.useContext(OverflowContext);
     const {
       className,
       columns: columnsProp = 12,
@@ -107,6 +109,7 @@ export default function createGrid(
       spacing: spacingProp = 0,
       rowSpacing: rowSpacingProp = spacingProp,
       columnSpacing: columnSpacingProp = spacingProp,
+      disableEqualOverflow,
       ...rest
     } = props;
     // collect breakpoints related props because they can be custom from the theme.
@@ -142,33 +145,32 @@ export default function createGrid(
       columnSpacing,
       gridSize,
       gridOffset,
+      disableEqualOverflow: disableEqualOverflow ?? overflow ?? false,
     };
 
     const classes = useUtilityClasses(ownerState, theme);
 
-    if (nested) {
-      // to reduce the number of contexts in React devtool
-      return (
-        <GridRoot
-          ref={ref}
-          as={component}
-          ownerState={ownerState}
-          className={clsx(classes.root, className)}
-          {...other}
-        />
+    let result = (
+      <GridRoot
+        ref={ref}
+        as={component}
+        ownerState={ownerState}
+        className={clsx(classes.root, className)}
+        {...other}
+      />
+    );
+
+    if (!nested) {
+      result = <NestedContext.Provider value>{result}</NestedContext.Provider>;
+    }
+
+    if (disableEqualOverflow !== undefined && disableEqualOverflow !== (overflow ?? false)) {
+      result = (
+        <OverflowContext.Provider value={disableEqualOverflow}>{result}</OverflowContext.Provider>
       );
     }
-    return (
-      <NestedContext.Provider value>
-        <GridRoot
-          ref={ref}
-          as={component}
-          ownerState={ownerState}
-          className={clsx(classes.root, className)}
-          {...other}
-        />
-      </NestedContext.Provider>
-    );
+
+    return result;
   }) as OverridableComponent<GridTypeMap>;
 
   Grid.propTypes /* remove-proptypes */ = {
