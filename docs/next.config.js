@@ -7,7 +7,6 @@ const { LANGUAGES, LANGUAGES_SSR } = require('./src/modules/constants');
 const FEATURE_TOGGLE = require('./src/featureToggle');
 
 const withTM = nextTranspileModules([
-  'notistack',
   '@mui/material',
   '@mui/docs',
   '@mui/icons-material',
@@ -20,12 +19,6 @@ const withTM = nextTranspileModules([
   '@mui/base',
   '@mui/material-next',
   '@mui/joy',
-  '@mui/x-data-grid',
-  '@mui/x-data-grid-pro',
-  '@mui/x-date-pickers',
-  '@mui/x-date-pickers-pro',
-  '@mui/x-data-grid-generator',
-  '@mui/x-license-pro',
 ]);
 
 const reactStrictMode = true;
@@ -74,6 +67,44 @@ module.exports = withTM({
           statsFilename: `stats-${options.isServer ? 'server' : 'client'}.json`,
         }),
       );
+    }
+
+    // next includes node_modules in webpack externals. Some of those have dependencies
+    // on the aliases defined above. If a module is an external those aliases won't be used.
+    // We need tell webpack to not consider those packages as externals.
+    if (
+      options.isServer &&
+      // Next executes this twice on the server with React 18 (once per runtime).
+      // We only care about Node runtime at this point.
+      (options.nextRuntime === undefined || options.nextRuntime === 'nodejs')
+    ) {
+      const [nextExternals, ...externals] = config.externals;
+
+      if (externals.length > 0) {
+        // currently not the case but other next plugins might introduce additional
+        // rules for externals. We would need to handle those in the callback
+        throw new Error('There are other externals in the webpack config.');
+      }
+
+      config.externals = [
+        (ctx, callback) => {
+          const { request } = ctx;
+          const hasDependencyOnRepoPackages = [
+            'notistack',
+            '@mui/x-data-grid',
+            '@mui/x-data-grid-pro',
+            '@mui/x-date-pickers',
+            '@mui/x-date-pickers-pro',
+            '@mui/x-data-grid-generator',
+            '@mui/x-license-pro',
+          ].some((dep) => request.startsWith(dep));
+
+          if (hasDependencyOnRepoPackages) {
+            return callback(null);
+          }
+          return nextExternals(ctx, callback);
+        },
+      ];
     }
 
     config.module.rules.forEach((r) => {
