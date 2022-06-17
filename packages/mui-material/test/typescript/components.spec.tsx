@@ -184,21 +184,22 @@ const IconButtonTest = () => (
     <IconButton color="primary" aria-label="add to shopping cart">
       <FakeIcon />
     </IconButton>
-    {() => {
-      const ForwardedLink = React.forwardRef<HTMLAnchorElement, ReactRouterLinkProps>(
-        (props, ref) => <ReactRouterLink {...props} ref={ref} />,
-      );
-      const ExtendedIconButton: React.FC<IconButtonProps<typeof ForwardedLink>> = (props) => (
-        <IconButton component={ForwardedLink} {...props} />
-      );
-      return (
-        <ExtendedIconButton color="secondary" aria-label="Go to top page." to="/" target="_self">
-          <FakeIcon />
-        </ExtendedIconButton>
-      );
-    }}
   </div>
 );
+
+const IconButtonAsLinkTest = () => {
+  const ForwardedLink = React.forwardRef<HTMLAnchorElement, ReactRouterLinkProps>(
+    (props, ref) => <ReactRouterLink {...props} ref={ref} />,
+  );
+  const ExtendedIconButton: React.FC<IconButtonProps<typeof ForwardedLink>> = (props) => (
+    <IconButton component={ForwardedLink} {...props} />
+  );
+  return (
+    <ExtendedIconButton color="secondary" aria-label="Go to top page." to="/" target="_self">
+      <FakeIcon />
+    </ExtendedIconButton>
+  );
+};
 
 const CardTest = () => (
   <Card>

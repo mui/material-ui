@@ -51,7 +51,7 @@ const styleRule = createStyles({
   },
 });
 
-const ComponentWithChildren: React.FunctionComponent<WithStyles<typeof simpleStyles>> = ({
+const ComponentWithChildren: React.FunctionComponent<WithStyles<typeof simpleStyles> & { children?: React.ReactNode }> = ({
   classes,
   children,
 }) => <div className={classes.root}>{children}</div>;

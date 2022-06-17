@@ -146,8 +146,8 @@ export default function Virtualize() {
       options={OPTIONS}
       groupBy={(option) => option[0].toUpperCase()}
       renderInput={(params) => <TextField {...params} label="10,000 options" />}
-      renderOption={(props, option) => [props, option]}
-      renderGroup={(params) => params}
+      renderOption={(props, option) => [props, option] as React.ReactNode}
+      renderGroup={(params) => params as unknown as React.ReactNode}
     />
   );
 }

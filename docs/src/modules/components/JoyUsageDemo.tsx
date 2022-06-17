@@ -213,7 +213,7 @@ export default function JoyUsageDemo<T extends {} = {}>({
                       [propName]: event.target.checked,
                     }))
                   }
-                  endDecorator={propName}
+                  endDecorator={String(propName)}
                   size="sm"
                   sx={{
                     alignSelf: 'flex-start',
@@ -228,20 +228,16 @@ export default function JoyUsageDemo<T extends {} = {}>({
               );
             }
             if (knob === 'radio') {
+              const labelId = `${componentName}-${String(propName)}`;
               return (
                 <Box key={propName as string}>
-                  <Typography
-                    id={`${componentName}-${propName}`}
-                    fontSize="xs"
-                    fontWeight="md"
-                    sx={{ mb: 0.5 }}
-                  >
-                    {propName}
+                  <Typography id={labelId} fontSize="xs" fontWeight="md" sx={{ mb: 0.5 }}>
+                    {String(propName)}
                   </Typography>
                   <RadioGroup
                     row
-                    name={`${componentName}-${propName}`}
-                    aria-labelledby={`${componentName}-${propName}`}
+                    name={labelId}
+                    aria-labelledby={labelId}
                     value={resolvedValue}
                     onChange={(event) =>
                       setProps((latestProps) => ({
@@ -350,6 +346,7 @@ export default function JoyUsageDemo<T extends {} = {}>({
               );
             }
             if (knob === 'select') {
+              const selectId = `${componentName}-${String(propName)}`;
               return (
                 <Box key={propName as string}>
                   <Typography
@@ -357,12 +354,12 @@ export default function JoyUsageDemo<T extends {} = {}>({
                     fontSize="xs"
                     fontWeight="lg"
                     mb={1}
-                    htmlFor={`${componentName}-${propName}`}
+                    htmlFor={selectId}
                   >
-                    {propName}
+                    {String(propName)}
                   </Typography>
                   <Select
-                    id={`${componentName}-${propName}`}
+                    id={selectId}
                     value={(resolvedValue || 'none') as string}
                     onChange={(event) =>
                       setProps((latestProps) => ({
@@ -385,7 +382,7 @@ export default function JoyUsageDemo<T extends {} = {}>({
               return (
                 <TextField
                   key={propName as string}
-                  label={propName}
+                  label={String(propName)}
                   size="sm"
                   value={resolvedValue || ''}
                   onChange={(event) =>
