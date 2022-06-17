@@ -92,6 +92,7 @@ describe('<ButtonBase />', () => {
 
     it('should use custom LinkComponent when provided in the theme', () => {
       const CustomLink = React.forwardRef((props, ref) => {
+        // eslint-disable-next-line jsx-a11y/anchor-has-content
         return <a data-testid="customLink" ref={ref} {...props} />;
       });
       const theme = createTheme({
@@ -125,6 +126,7 @@ describe('<ButtonBase />', () => {
 
     it('should not add role="button" if custom component and href are used', () => {
       const CustomLink = React.forwardRef((props, ref) => {
+        // eslint-disable-next-line jsx-a11y/anchor-has-content
         return <a data-testid="customLink" ref={ref} {...props} />;
       });
 
@@ -145,6 +147,7 @@ describe('<ButtonBase />', () => {
       const CustomLink = React.forwardRef((props, ref) => {
         // @ts-expect-error missing types in CustomLink
         const { to, ...other } = props;
+        // eslint-disable-next-line jsx-a11y/anchor-has-content
         return <a data-testid="customLink" ref={ref} {...other} href={to} />;
       });
 

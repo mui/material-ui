@@ -181,11 +181,14 @@ describe('<Slide />', () => {
       });
 
       const handleEntering = spy();
-      render(
-        <ThemeProvider theme={theme}>
-          <Slide {...defaultProps} onEntering={handleEntering} />
-        </ThemeProvider>,
-      );
+
+      act(() => {
+        render(
+          <ThemeProvider theme={theme}>
+            <Slide {...defaultProps} onEntering={handleEntering} />
+          </ThemeProvider>,
+        );
+      });
 
       expect(handleEntering.args[0][0].style.transition).to.equal(
         `transform ${theme.transitions.duration.enteringScreen}ms cubic-bezier(0.0, 0, 0.2, 1) 0ms`,

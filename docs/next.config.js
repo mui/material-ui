@@ -64,7 +64,7 @@ module.exports = {
       // We only care about Node runtime at this point.
       (options.nextRuntime === undefined || options.nextRuntime === 'nodejs')
     ) {
-      const [nextExternals, ...externals] = config.externals;
+      const [nextExternals] = config.externals;
 
       // TODO: This needs to be verified again
       // The second element in config.externals is:
