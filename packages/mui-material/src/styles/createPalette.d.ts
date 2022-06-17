@@ -135,6 +135,9 @@ export interface PaletteWithChannels {
     darkBg: string;
     darkColor: string;
   };
+  Avatar: {
+    defaultBg: string;
+  };
   Chip: {
     defaultBorder: string;
     defaultAvatarColor: string;

@@ -80,6 +80,7 @@ export default function extendTheme(options = {}, ...args) {
     // assign component variables
     assignNode(palette, [
       'AppBar',
+      'Avatar',
       'Chip',
       'FilledInput',
       'LinearProgress',
@@ -94,6 +95,7 @@ export default function extendTheme(options = {}, ...args) {
     ]);
     if (key === 'light') {
       setColor(palette.AppBar, 'defaultBg', 'var(--mui-palette-grey-100)');
+      setColor(palette.Avatar, 'defaultBg', 'var(--mui-palette-grey-400)');
       setColor(palette.Chip, 'defaultBorder', 'var(--mui-palette-grey-400)');
       setColor(palette.Chip, 'defaultAvatarColor', 'var(--mui-palette-grey-700)');
       setColor(palette.Chip, 'defaultIconColor', 'var(--mui-palette-grey-700)');
@@ -130,6 +132,7 @@ export default function extendTheme(options = {}, ...args) {
       setColor(palette.AppBar, 'defaultBg', 'var(--mui-palette-grey-900)');
       setColor(palette.AppBar, 'darkBg', 'var(--mui-palette-background-paper)'); // specific for dark mode
       setColor(palette.AppBar, 'darkColor', 'var(--mui-palette-text-primary)'); // specific for dark mode
+      setColor(palette.Avatar, 'defaultBg', 'var(--mui-palette-grey-600)');
       setColor(palette.Chip, 'defaultBorder', 'var(--mui-palette-grey-700)');
       setColor(palette.Chip, 'defaultAvatarColor', 'var(--mui-palette-grey-300)');
       setColor(palette.Chip, 'defaultIconColor', 'var(--mui-palette-grey-300)');
