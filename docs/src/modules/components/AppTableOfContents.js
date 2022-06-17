@@ -2,8 +2,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import throttle from 'lodash/throttle';
-import { styled } from '@mui/material/styles';
+import { styled, alpha } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
 import NoSsr from '@mui/material/NoSsr';
 import Link from 'docs/src/modules/components/Link';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
@@ -114,9 +115,20 @@ function flatten(headings) {
   return itemsWithNode;
 }
 
+const shouldShowJobAd = () => {
+  const date = new Date();
+  const timeZoneOffset = date.getTimezoneOffset();
+  // Hide for time zones UT+5.5 - UTC+14 & UTC-8 - UTC-12
+  if (timeZoneOffset <= -5.5 * 60 || timeZoneOffset >= 8 * 60) {
+    return false;
+  }
+  return true;
+};
+
 export default function AppTableOfContents(props) {
   const { toc } = props;
   const t = useTranslate();
+  const showAddJob = shouldShowJobAd();
 
   const items = React.useMemo(() => flatten(toc), [toc]);
   const [activeState, setActiveState] = React.useState(null);
@@ -204,6 +216,53 @@ export default function AppTableOfContents(props) {
     <Nav aria-label={t('pageTOC')}>
       <NoSsr>
         <TableOfContentsBanner />
+        {showAddJob && (
+          <Link
+            href="/careers/"
+            underline="none"
+            sx={(theme) => ({
+              mb: 2,
+              display: 'flex',
+              flexDirection: 'column',
+              overflow: 'auto',
+              backgroundColor:
+                theme.palette.mode === 'dark'
+                  ? alpha(theme.palette.primary[900], 0.2)
+                  : alpha(theme.palette.grey[50], 0.4),
+              border: '1px solid',
+              borderColor:
+                theme.palette.mode === 'dark'
+                  ? theme.palette.primaryDark[700]
+                  : theme.palette.grey[200],
+              borderRadius: 1,
+              transitionProperty: 'all',
+              transitionTiming: 'cubic-bezier(0.4, 0, 0.2, 1)',
+              transitionDuration: '150ms',
+              '&:hover, &:focus-visible': {
+                borderColor:
+                  theme.palette.mode === 'dark'
+                    ? theme.palette.primaryDark[500]
+                    : theme.palette.primary[200],
+              },
+            })}
+          >
+            <Box sx={{ p: 1 }}>
+              <Typography component="span" variant="button" fontWeight="500" color="text.primary">
+                {'🚀 Join the MUI team!'}
+              </Typography>
+              <Typography
+                component="span"
+                variant="caption"
+                fontWeight="normal"
+                color="text.secondary"
+                sx={{ mt: 0.5 }}
+              >
+                {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
+                {"We're looking for React Engineers and other amazing roles－come find out more!"}
+              </Typography>
+            </Box>
+          </Link>
+        )}
       </NoSsr>
       {toc.length > 0 ? (
         <React.Fragment>

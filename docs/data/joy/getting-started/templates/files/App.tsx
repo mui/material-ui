@@ -39,7 +39,7 @@ import Menu from './components/Menu';
 import Layout from './components/Layout';
 import Navigation from './components/Navigation';
 
-const ColorSchemeToggle = () => {
+function ColorSchemeToggle() {
   const { mode, setMode } = useColorScheme();
   const [mounted, setMounted] = React.useState(false);
   React.useEffect(() => {
@@ -65,7 +65,7 @@ const ColorSchemeToggle = () => {
       {mode === 'light' ? <DarkModeRoundedIcon /> : <LightModeRoundedIcon />}
     </IconButton>
   );
-};
+}
 
 export default function FilesExample() {
   const [drawerOpen, setDrawerOpen] = React.useState(false);
@@ -121,11 +121,13 @@ export default function FilesExample() {
             >
               <FindInPageRoundedIcon />
             </IconButton>
-            <Typography fontWeight={700}>Files</Typography>
+            <Typography component="h1" fontWeight="xl">
+              Files
+            </Typography>
           </Box>
           <TextField
             size="sm"
-            placeholder="Search anything..."
+            placeholder="Search anything…"
             startDecorator={<SearchRoundedIcon color="primary" />}
             endDecorator={
               <IconButton variant="outlined" size="sm" color="neutral">
@@ -249,13 +251,24 @@ export default function FilesExample() {
                   size="sm"
                   sx={{ '--AvatarGroup-gap': '-8px', '--Avatar-size': '24px' }}
                 >
-                  <Avatar src="https://i.pravatar.cc/150?img=6" />
-                  <Avatar src="https://i.pravatar.cc/150?img=7" />
-                  <Avatar src="https://i.pravatar.cc/150?img=8" />
-                  <Avatar src="https://i.pravatar.cc/150?img=9" />
+                  <Avatar
+                    src="https://i.pravatar.cc/24?img=6"
+                    srcSet="https://i.pravatar.cc/48?img=6 2x"
+                  />
+                  <Avatar
+                    src="https://i.pravatar.cc/24?img=7"
+                    srcSet="https://i.pravatar.cc/48?img=7 2x"
+                  />
+                  <Avatar
+                    src="https://i.pravatar.cc/24?img=8"
+                    srcSet="https://i.pravatar.cc/48?img=8 2x"
+                  />
+                  <Avatar
+                    src="https://i.pravatar.cc/24?img=9"
+                    srcSet="https://i.pravatar.cc/48?img=9 2x"
+                  />
                 </AvatarGroup>
               </Box>
-
               <Typography
                 level="body2"
                 startDecorator={<FolderOpenIcon color="primary" />}
@@ -272,10 +285,22 @@ export default function FilesExample() {
                   size="sm"
                   sx={{ '--AvatarGroup-gap': '-8px', '--Avatar-size': '24px' }}
                 >
-                  <Avatar src="https://i.pravatar.cc/150?img=6" />
-                  <Avatar src="https://i.pravatar.cc/150?img=7" />
-                  <Avatar src="https://i.pravatar.cc/150?img=8" />
-                  <Avatar src="https://i.pravatar.cc/150?img=9" />
+                  <Avatar
+                    src="https://i.pravatar.cc/24?img=6"
+                    srcSet="https://i.pravatar.cc/48?img=6 2x"
+                  />
+                  <Avatar
+                    src="https://i.pravatar.cc/24?img=7"
+                    srcSet="https://i.pravatar.cc/48?img=7 2x"
+                  />
+                  <Avatar
+                    src="https://i.pravatar.cc/24?img=8"
+                    srcSet="https://i.pravatar.cc/48?img=8 2x"
+                  />
+                  <Avatar
+                    src="https://i.pravatar.cc/24?img=9"
+                    srcSet="https://i.pravatar.cc/48?img=9 2x"
+                  />
                 </AvatarGroup>
               </Box>
             </Sheet>
@@ -336,10 +361,22 @@ export default function FilesExample() {
                               '--Avatar-size': '24px',
                             }}
                           >
-                            <Avatar src="https://i.pravatar.cc/150?img=6" />
-                            <Avatar src="https://i.pravatar.cc/150?img=7" />
-                            <Avatar src="https://i.pravatar.cc/150?img=8" />
-                            <Avatar src="https://i.pravatar.cc/150?img=9" />
+                            <Avatar
+                              src="https://i.pravatar.cc/24?img=6"
+                              srcSet="https://i.pravatar.cc/48?img=6 2x"
+                            />
+                            <Avatar
+                              src="https://i.pravatar.cc/24?img=7"
+                              srcSet="https://i.pravatar.cc/48?img=7 2x"
+                            />
+                            <Avatar
+                              src="https://i.pravatar.cc/24?img=8"
+                              srcSet="https://i.pravatar.cc/48?img=8 2x"
+                            />
+                            <Avatar
+                              src="https://i.pravatar.cc/24?img=9"
+                              srcSet="https://i.pravatar.cc/48?img=9 2x"
+                            />
                           </AvatarGroup>
                         </Box>
                         <Typography level="body2">21 October 2011, 3PM</Typography>
@@ -384,10 +421,22 @@ export default function FilesExample() {
                               '--Avatar-size': '24px',
                             }}
                           >
-                            <Avatar src="https://i.pravatar.cc/150?img=6" />
-                            <Avatar src="https://i.pravatar.cc/150?img=7" />
-                            <Avatar src="https://i.pravatar.cc/150?img=8" />
-                            <Avatar src="https://i.pravatar.cc/150?img=9" />
+                            <Avatar
+                              src="https://i.pravatar.cc/24?img=6"
+                              srcSet="https://i.pravatar.cc/48?img=6 2x"
+                            />
+                            <Avatar
+                              src="https://i.pravatar.cc/24?img=7"
+                              srcSet="https://i.pravatar.cc/48?img=7 2x"
+                            />
+                            <Avatar
+                              src="https://i.pravatar.cc/24?img=8"
+                              srcSet="https://i.pravatar.cc/48?img=8 2x"
+                            />
+                            <Avatar
+                              src="https://i.pravatar.cc/24?img=9"
+                              srcSet="https://i.pravatar.cc/48?img=9 2x"
+                            />
                           </AvatarGroup>
                         </Box>
                         <Typography level="body2">26 May 2010, 7PM</Typography>
@@ -445,7 +494,7 @@ export default function FilesExample() {
               <CardCover>
                 <img
                   alt=""
-                  src="https://images.unsplash.com/photo-1534067783941-51c9c23ecefd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80"
+                  src="https://images.unsplash.com/photo-1534067783941-51c9c23ecefd?auto=format&fit=crop&w=774"
                 />
               </CardCover>
               <CardCover
@@ -557,7 +606,7 @@ export default function FilesExample() {
           <AspectRatio ratio="21/9">
             <img
               alt=""
-              src="https://images.unsplash.com/photo-1534067783941-51c9c23ecefd?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80"
+              src="https://images.unsplash.com/photo-1534067783941-51c9c23ecefd?auto=format&fit=crop&w=774"
             />
           </AspectRatio>
           <Box sx={{ p: 2, display: 'flex', gap: 1, alignItems: 'center' }}>
@@ -565,10 +614,22 @@ export default function FilesExample() {
               Shared with
             </Typography>
             <AvatarGroup size="sm" sx={{ '--Avatar-size': '24px' }}>
-              <Avatar src="https://i.pravatar.cc/150?img=6" />
-              <Avatar src="https://i.pravatar.cc/150?img=7" />
-              <Avatar src="https://i.pravatar.cc/150?img=8" />
-              <Avatar src="https://i.pravatar.cc/150?img=9" />
+              <Avatar
+                src="https://i.pravatar.cc/24?img=6"
+                srcSet="https://i.pravatar.cc/48?img=6 2x"
+              />
+              <Avatar
+                src="https://i.pravatar.cc/24?img=7"
+                srcSet="https://i.pravatar.cc/48?img=7 2x"
+              />
+              <Avatar
+                src="https://i.pravatar.cc/24?img=8"
+                srcSet="https://i.pravatar.cc/48?img=8 2x"
+              />
+              <Avatar
+                src="https://i.pravatar.cc/24?img=9"
+                srcSet="https://i.pravatar.cc/48?img=9 2x"
+              />
             </AvatarGroup>
           </Box>
           <ListDivider component="hr" />

@@ -1,7 +1,5 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
-import { unstable_useForkRef as useForkRef } from '@mui/utils';
 import composeClasses from '../composeClasses';
 import { getButtonUnstyledUtilityClass } from './buttonUnstyledClasses';
 import {
@@ -11,9 +9,8 @@ import {
   ButtonUnstyledRootSlotProps,
 } from './ButtonUnstyled.types';
 import useButton from './useButton';
-import appendOwnerState from '../utils/appendOwnerState';
 import { WithOptionalOwnerState } from '../utils/types';
-import resolveComponentProps from '../utils/resolveComponentProps';
+import { useSlotProps } from '../utils';
 
 export interface ButtonUnstyledOwnerState extends ButtonUnstyledOwnProps {
   focusVisible: boolean;
@@ -63,12 +60,10 @@ const ButtonUnstyled = React.forwardRef(function ButtonUnstyled<
   } = props;
 
   const buttonRef = React.useRef<HTMLButtonElement | HTMLAnchorElement | HTMLElement>();
-  const handleRef = useForkRef(buttonRef, forwardedRef);
 
   const { active, focusVisible, setFocusVisible, getRootProps } = useButton({
     ...props,
     focusableWhenDisabled,
-    ref: handleRef,
   });
 
   React.useImperativeHandle(
@@ -91,20 +86,20 @@ const ButtonUnstyled = React.forwardRef(function ButtonUnstyled<
 
   const classes = useUtilityClasses(ownerState);
 
-  const ButtonRoot: React.ElementType = component ?? components.Root ?? 'button';
-  const rootComponentsProps = resolveComponentProps(componentsProps.root, ownerState);
-  const buttonRootProps: WithOptionalOwnerState<ButtonUnstyledRootSlotProps> = appendOwnerState(
-    ButtonRoot,
-    {
-      ...getRootProps(),
-      ...other,
-      ...rootComponentsProps,
-      className: clsx(classes.root, className, rootComponentsProps?.className),
+  const Root: React.ElementType = component ?? components.Root ?? 'button';
+  const rootProps: WithOptionalOwnerState<ButtonUnstyledRootSlotProps> = useSlotProps({
+    elementType: Root,
+    getSlotProps: getRootProps,
+    externalForwardedProps: other,
+    externalSlotProps: componentsProps.root,
+    additionalProps: {
+      ref: forwardedRef,
     },
     ownerState,
-  );
+    className: [classes.root, className],
+  });
 
-  return <ButtonRoot {...buttonRootProps}>{children}</ButtonRoot>;
+  return <Root {...rootProps}>{children}</Root>;
 });
 
 ButtonUnstyled.propTypes /* remove-proptypes */ = {

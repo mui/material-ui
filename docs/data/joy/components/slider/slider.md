@@ -31,6 +31,12 @@ You can force the thumb label to be always visible with `valueLabelDisplay="on"`
 
 {{"demo": "AlwaysVisibleLabelSlider.js"}}
 
+### Keep label at edges
+
+For horizontal slider on mobile viewports, the value label might be offset from the track. Apply the style to keep the label at the start/end edges:
+
+{{"demo": "EdgeLabelSlider.js"}}
+
 ## Range slider
 
 By passing an array of values to the `value` prop, you can use the `Slider` to set the start and end of a range.
