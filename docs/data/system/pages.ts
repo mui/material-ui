@@ -27,7 +27,10 @@ const pages = [
     pathname: '/system/react-',
     title: 'Components',
     icon: 'ToggleOnIcon',
-    children: [{ pathname: '/system/react-box', title: 'Box' }],
+    children: [
+      { pathname: '/system/react-box', title: 'Box' },
+      { pathname: '/system/react-container', title: 'Container' },
+    ],
   },
   {
     title: 'Component API',

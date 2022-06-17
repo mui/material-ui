@@ -2,7 +2,6 @@ import * as React from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import Avatar, { AvatarProps } from '@mui/material/Avatar';
 import Box, { BoxProps } from '@mui/material/Box';
-import ROUTES from 'docs/src/route';
 import Slide from 'docs/src/components/animation/Slide';
 import FadeDelay from 'docs/src/components/animation/FadeDelay';
 
@@ -54,7 +53,15 @@ const DesignToolLink = React.forwardRef<
     <Anchor
       ref={ref}
       aria-label="Go to MUI Store"
-      href={{ figma: ROUTES.storeFigma, sketch: ROUTES.storeSketch, xd: ROUTES.storeXD }[brand]}
+      href={
+        {
+          figma:
+            'https://mui.com/store/items/figma-react/?utm_source=marketing&utm_medium=referral&utm_campaign=home-products',
+          sketch:
+            'https://mui.com/store/items/sketch-react/?utm_source=marketing&utm_medium=referral&utm_campaign=home-products',
+          xd: 'https://mui.com/store/items/adobe-xd-react/?utm_source=marketing&utm_medium=referral&utm_campaign=home-products',
+        }[brand]
+      }
       target="_blank"
       {...props}
     >

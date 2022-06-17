@@ -1,24 +1,54 @@
 import * as React from 'react';
 
-export const DEFAULT_MODE_STORAGE_KEY = 'mui-mode';
-export const DEFAULT_COLOR_SCHEME_STORAGE_KEY = 'mui-color-scheme';
-export const DEFAULT_ATTRIBUTE = 'data-mui-color-scheme';
+export const DEFAULT_MODE_STORAGE_KEY = 'mode';
+export const DEFAULT_COLOR_SCHEME_STORAGE_KEY = 'color-scheme';
+export const DEFAULT_ATTRIBUTE = 'data-color-scheme';
 
-export default function getInitColorSchemeScript(options?: {
+export interface GetInitColorSchemeScriptOptions {
+  /**
+   * If `true`, the initial color scheme is set to the user's prefers-color-scheme mode
+   * @default false
+   */
   enableSystem?: boolean;
+  /**
+   * The default color scheme to be used on the light mode
+   */
   defaultLightColorScheme?: string;
+  /**
+   * The default color scheme to be used on the dark mode
+   */
   defaultDarkColorScheme?: string;
+  /**
+   * The node (provided as string) used to attach the color-scheme attribute
+   * @default 'document.documentElement'
+   */
+  colorSchemeNode?: string;
+  /**
+   * localStorage key used to store `mode`
+   * @default 'mode'
+   */
   modeStorageKey?: string;
+  /**
+   * localStorage key used to store `colorScheme`
+   * @default 'color-scheme'
+   */
   colorSchemeStorageKey?: string;
+  /**
+   * DOM attribute for applying color scheme
+   * @default 'data-color-scheme'
+   */
   attribute?: string;
-}) {
+}
+
+export default function getInitColorSchemeScript(options?: GetInitColorSchemeScriptOptions) {
   const {
-    enableSystem,
+    enableSystem = false,
     defaultLightColorScheme = 'light',
     defaultDarkColorScheme = 'dark',
     modeStorageKey = DEFAULT_MODE_STORAGE_KEY,
     colorSchemeStorageKey = DEFAULT_COLOR_SCHEME_STORAGE_KEY,
     attribute = DEFAULT_ATTRIBUTE,
+    colorSchemeNode = 'document.documentElement',
   } = options || {};
   return (
     <script
@@ -43,7 +73,7 @@ export default function getInitColorSchemeScript(options?: {
           colorScheme = localStorage.getItem('${colorSchemeStorageKey}-dark') || '${defaultDarkColorScheme}';
         }
         if (colorScheme) {
-          document.documentElement.setAttribute('${attribute}', colorScheme);
+          ${colorSchemeNode}.setAttribute('${attribute}', colorScheme);
         }
       } catch (e) {} })();`,
       }}

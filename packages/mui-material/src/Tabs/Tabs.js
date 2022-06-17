@@ -152,7 +152,7 @@ const TabsScroller = styled('div', {
     width: '100%',
   }),
   ...(ownerState.hideScrollbar && {
-    // Hide dimensionless scrollbar on MacOS
+    // Hide dimensionless scrollbar on macOS
     scrollbarWidth: 'none', // Firefox
     '&::-webkit-scrollbar': {
       display: 'none', // Safari + Chrome
@@ -218,7 +218,7 @@ const TabsScrollbarSize = styled(ScrollbarSize, {
 })({
   overflowX: 'auto',
   overflowY: 'hidden',
-  // Hide dimensionless scrollbar on MacOS
+  // Hide dimensionless scrollbar on macOS
   scrollbarWidth: 'none', // Firefox
   '&::-webkit-scrollbar': {
     display: 'none', // Safari + Chrome
@@ -451,10 +451,16 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     for (let i = 0; i < children.length; i += 1) {
       const tab = children[i];
       if (totalSize + tab[clientSize] > containerSize) {
+        // If the first item is longer than the container size, then only scroll
+        // by the container size.
+        if (i === 0) {
+          totalSize = containerSize;
+        }
         break;
       }
       totalSize += tab[clientSize];
     }
+
     return totalSize;
   };
 

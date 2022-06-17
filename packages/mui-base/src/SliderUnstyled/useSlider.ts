@@ -8,32 +8,14 @@ import {
   unstable_useControlled as useControlled,
   visuallyHidden,
 } from '@mui/utils';
-import SliderUnstyledProps from './SliderUnstyledProps';
-
-interface Mark {
-  value: number;
-  label?: React.ReactNode;
-}
-
-export interface UseSliderProps {
-  ref: React.Ref<any>;
-  'aria-labelledby'?: SliderUnstyledProps['aria-labelledby'];
-  defaultValue?: SliderUnstyledProps['defaultValue'];
-  disabled?: SliderUnstyledProps['disabled'];
-  disableSwap?: SliderUnstyledProps['disableSwap'];
-  isRtl?: SliderUnstyledProps['isRtl'];
-  marks?: SliderUnstyledProps['marks'];
-  max?: SliderUnstyledProps['max'];
-  min?: SliderUnstyledProps['min'];
-  name?: SliderUnstyledProps['name'];
-  onChange?: SliderUnstyledProps['onChange'];
-  onChangeCommitted?: SliderUnstyledProps['onChangeCommitted'];
-  orientation?: SliderUnstyledProps['orientation'];
-  scale?: SliderUnstyledProps['scale'];
-  step?: SliderUnstyledProps['step'];
-  tabIndex?: SliderUnstyledProps['tabIndex'];
-  value?: SliderUnstyledProps['value'];
-}
+import {
+  Mark,
+  UseSliderHiddenInputProps,
+  UseSliderParameters,
+  UseSliderRootSlotProps,
+  UseSliderThumbSlotProps,
+} from './useSlider.types';
+import { EventHandlers } from '../utils';
 
 const INTENTIONAL_DRAG_COUNT_THRESHOLD = 2;
 
@@ -196,13 +178,13 @@ function doesSupportTouchActionNone() {
   return cachedSupportsTouchActionNone;
 }
 
-export default function useSlider(props: UseSliderProps) {
+export default function useSlider(parameters: UseSliderParameters) {
   const {
-    ref,
     'aria-labelledby': ariaLabelledby,
     defaultValue,
-    disableSwap = false,
     disabled = false,
+    disableSwap = false,
+    isRtl = false,
     marks: marksProp = false,
     max = 100,
     min = 0,
@@ -210,12 +192,12 @@ export default function useSlider(props: UseSliderProps) {
     onChange,
     onChangeCommitted,
     orientation = 'horizontal',
+    ref,
     scale = Identity,
     step = 1,
     tabIndex,
     value: valueProp,
-    isRtl = false,
-  } = props;
+  } = parameters;
 
   const touchId = React.useRef<number>();
   // We can't use the :active browser pseudo-classes.
@@ -490,7 +472,7 @@ export default function useSlider(props: UseSliderProps) {
       return;
     }
 
-    const { newValue } = getFingerNewValue({ finger, values });
+    const { newValue } = getFingerNewValue({ finger, move: true, values });
 
     setActive(-1);
     if (nativeEvent.type === 'touchend') {
@@ -571,7 +553,7 @@ export default function useSlider(props: UseSliderProps) {
 
   const createHandleMouseDown =
     (otherHandlers: Record<string, React.EventHandler<any>>) =>
-    (event: React.MouseEvent<HTMLSpanElement, MouseEvent>) => {
+    (event: React.MouseEvent<HTMLSpanElement>) => {
       otherHandlers.onMouseDown?.(event);
       if (disabled) {
         return;
@@ -609,12 +591,14 @@ export default function useSlider(props: UseSliderProps) {
   const trackOffset = valueToPercent(range ? values[0] : min, min, max);
   const trackLeap = valueToPercent(values[values.length - 1], min, max) - trackOffset;
 
-  const getRootProps = (otherHandlers?: Record<string, React.EventHandler<any>>) => {
+  const getRootProps = <TOther extends EventHandlers = {}>(
+    otherHandlers: TOther = {} as TOther,
+  ): UseSliderRootSlotProps<TOther> => {
     const ownEventHandlers = {
       onMouseDown: createHandleMouseDown(otherHandlers || {}),
     };
 
-    const mergedEventHandlers: Record<string, React.EventHandler<any>> = {
+    const mergedEventHandlers = {
       ...otherHandlers,
       ...ownEventHandlers,
     };
@@ -641,13 +625,15 @@ export default function useSlider(props: UseSliderProps) {
       setOpen(-1);
     };
 
-  const getThumbProps = (otherHandlers?: Record<string, React.EventHandler<any>>) => {
+  const getThumbProps = <TOther extends EventHandlers = {}>(
+    otherHandlers: TOther = {} as TOther,
+  ): UseSliderThumbSlotProps<TOther> => {
     const ownEventHandlers = {
       onMouseOver: createHandleMouseOver(otherHandlers || {}),
       onMouseLeave: createHandleMouseLeave(otherHandlers || {}),
     };
 
-    const mergedEventHandlers: Record<string, React.EventHandler<any>> = {
+    const mergedEventHandlers = {
       ...otherHandlers,
       ...ownEventHandlers,
     };
@@ -656,14 +642,16 @@ export default function useSlider(props: UseSliderProps) {
     };
   };
 
-  const getHiddenInputProps = (otherHandlers?: Record<string, React.EventHandler<any>>) => {
+  const getHiddenInputProps = <TOther extends EventHandlers = {}>(
+    otherHandlers: TOther = {} as TOther,
+  ): UseSliderHiddenInputProps<TOther> => {
     const ownEventHandlers = {
       onChange: createHandleHiddenInputChange(otherHandlers || {}),
       onFocus: createHandleHiddenInputFocus(otherHandlers || {}),
       onBlur: createHandleHiddenInputBlur(otherHandlers || {}),
     };
 
-    const mergedEventHandlers: Record<string, React.EventHandler<any>> = {
+    const mergedEventHandlers = {
       ...otherHandlers,
       ...ownEventHandlers,
     };
@@ -676,9 +664,9 @@ export default function useSlider(props: UseSliderProps) {
       'aria-valuemin': scale(min),
       name,
       type: 'range',
-      min: props.min,
-      max: props.max,
-      step: props.step,
+      min: parameters.min,
+      max: parameters.max,
+      step: parameters.step,
       disabled,
       ...mergedEventHandlers,
       style: {
@@ -692,19 +680,19 @@ export default function useSlider(props: UseSliderProps) {
   };
 
   return {
-    axis,
-    axisProps,
-    getRootProps,
-    getHiddenInputProps,
-    getThumbProps,
-    dragging,
-    marks,
-    values,
     active,
+    axis: axis as keyof typeof axisProps,
+    axisProps,
+    dragging,
     focusVisible,
+    getHiddenInputProps,
+    getRootProps,
+    getThumbProps,
+    marks: marks as Mark[],
     open,
     range,
-    trackOffset,
     trackLeap,
+    trackOffset,
+    values,
   };
 }

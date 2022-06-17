@@ -55,7 +55,7 @@ export interface AvatarTypeMap<P = {}, D extends React.ElementType = 'div'> {
      * The variant to use.
      * @default 'soft'
      */
-    variant?: OverridableStringUnion<Exclude<VariantProp, 'text'>, AvatarPropsVariantOverrides>;
+    variant?: OverridableStringUnion<VariantProp, AvatarPropsVariantOverrides>;
   };
   defaultComponent: D;
 }

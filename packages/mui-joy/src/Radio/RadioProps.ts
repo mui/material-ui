@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
-import { UseSwitchProps } from '@mui/base/SwitchUnstyled';
+import { UseSwitchParameters } from '@mui/base/SwitchUnstyled';
 import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
 
 export type RadioSlot = 'root' | 'radio' | 'action' | 'input' | 'label';
@@ -13,7 +13,7 @@ export interface RadioPropsSizeOverrides {}
 
 export interface RadioTypeMap<P = {}, D extends React.ElementType = 'span'> {
   props: P &
-    UseSwitchProps & {
+    UseSwitchParameters & {
       /**
        * The icon to display when the component is checked.
        */
@@ -79,7 +79,7 @@ export interface RadioTypeMap<P = {}, D extends React.ElementType = 'span'> {
        * The variant to use.
        * @default 'outlined'
        */
-      variant?: OverridableStringUnion<Exclude<VariantProp, 'text'>, RadioPropsVariantOverrides>;
+      variant?: OverridableStringUnion<VariantProp, RadioPropsVariantOverrides>;
       /**
        * The value of the component. The DOM API casts this to a string.
        */

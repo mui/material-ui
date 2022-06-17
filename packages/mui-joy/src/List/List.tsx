@@ -21,7 +21,7 @@ const useUtilityClasses = (ownerState: ListProps & { nested: boolean }) => {
 };
 
 const ListRoot = styled('ul', {
-  name: 'MuiList',
+  name: 'JoyList',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: ListProps & { nested: boolean; instanceSize: ListProps['size'] } }>(
@@ -109,7 +109,7 @@ const List = React.forwardRef(function List(inProps, ref) {
   const nested = React.useContext(NestedListContext);
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
-    name: 'MuiList',
+    name: 'JoyList',
   });
 
   const { component, className, children, size = 'md', row = false, ...other } = props;

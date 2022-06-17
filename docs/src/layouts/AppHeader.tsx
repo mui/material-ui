@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import GlobalStyles from '@mui/material/GlobalStyles';
 import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Container from '@mui/material/Container';
@@ -33,6 +34,8 @@ const Header = styled('header')(({ theme }) => ({
       : 'rgba(255,255,255,0.72)',
 }));
 
+const HEIGHT = 56;
+
 export default function AppHeader() {
   const changeTheme = useChangeTheme();
   const [mode, setMode] = React.useState<string | null>(null);
@@ -55,7 +58,14 @@ export default function AppHeader() {
 
   return (
     <Header>
-      <Container sx={{ display: 'flex', alignItems: 'center', minHeight: 56 }}>
+      <GlobalStyles
+        styles={{
+          ':root': {
+            '--MuiDocs-header-height': `${HEIGHT}px`,
+          },
+        }}
+      />
+      <Container sx={{ display: 'flex', alignItems: 'center', minHeight: HEIGHT }}>
         <Box
           component={Link}
           href={ROUTES.home}

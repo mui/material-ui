@@ -249,6 +249,48 @@ function testComponentsPropsProp(
   });
 }
 
+interface TestOwnerState {
+  'data-testid'?: string;
+}
+
+function testComponentsPropsCallbacks(
+  element: React.ReactElement,
+  getOptions: () => UnstyledConformanceOptions,
+) {
+  const { render, slots } = getOptions();
+
+  if (!render) {
+    throwMissingPropError('render');
+  }
+
+  if (!slots) {
+    throwMissingPropError('slots');
+  }
+
+  forEachSlot(slots, (slotName, slotOptions) => {
+    it(`sets custom properties on ${capitalize(
+      slotName,
+    )} slot's element with a callback function`, () => {
+      const testId = randomStringValue();
+      const className = randomStringValue();
+
+      const componentsProps = {
+        [slotName]: (ownerState: TestOwnerState) => ({
+          'data-testid': `${ownerState['data-testid']}-${slotName}`,
+          className,
+        }),
+      };
+
+      const { getByTestId } = render(
+        React.cloneElement(element, { componentsProps, 'data-testid': testId }),
+      );
+
+      expect(getByTestId(`${testId}-${slotName}`)).to.have.class(slotOptions.expectedClassName);
+      expect(getByTestId(`${testId}-${slotName}`)).to.have.class(className);
+    });
+  });
+}
+
 function testOwnerStatePropagation(
   element: React.ReactElement,
   getOptions: () => UnstyledConformanceOptions,
@@ -295,6 +337,7 @@ const fullSuite = {
   componentProp: testComponentProp,
   componentsProp: testComponentsProp,
   componentsPropsProp: testComponentsPropsProp,
+  componentsPropsCallbacks: testComponentsPropsCallbacks,
   mergeClassName: testClassName,
   propsSpread: testPropForwarding,
   reactTestRenderer: testReactTestRenderer,

@@ -15,7 +15,6 @@ Here's a quick example to get you started, **it's literally all you need**:
 
 ```jsx
 import * as React from 'react';
-import ReactDOM from 'react-dom';
 import Button from '@mui/material/Button';
 
 function App() {

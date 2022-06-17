@@ -16,7 +16,7 @@ const useUtilityClasses = () => {
 };
 
 const FormHelperTextRoot = styled('p', {
-  name: 'MuiFormHelperText',
+  name: 'JoyFormHelperText',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: FormHelperTextProps }>(({ theme }) => ({
@@ -32,7 +32,7 @@ const FormHelperTextRoot = styled('p', {
 const FormHelperText = React.forwardRef(function FormHelperText(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
-    name: 'MuiFormHelperText',
+    name: 'JoyFormHelperText',
   });
 
   const { children, className, component, ...other } = props;

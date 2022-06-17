@@ -38,10 +38,10 @@ export interface SheetClasses {
 export type SheetClassKey = keyof SheetClasses;
 
 export function getSheetUtilityClass(slot: string): string {
-  return generateUtilityClass('MuiSheet', slot);
+  return generateUtilityClass('JoySheet', slot);
 }
 
-const sheetClasses: SheetClasses = generateUtilityClasses('MuiSheet', [
+const sheetClasses: SheetClasses = generateUtilityClasses('JoySheet', [
   'root',
   'colorPrimary',
   'colorNeutral',

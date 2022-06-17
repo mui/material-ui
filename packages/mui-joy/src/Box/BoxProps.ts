@@ -2,6 +2,8 @@ import { OverrideProps } from '@mui/types';
 import { SxProps, SystemProps } from '@mui/system';
 import { Theme } from '../styles/types';
 
+export type BoxSlot = 'root';
+
 export interface BoxTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P &
     SystemProps<Theme> & {

@@ -4,11 +4,13 @@
 
 ## npm
 
+To install and save in your `package.json` dependencies, run the command below using **npm**:
+
 ```sh
 npm install @mui/base
 ```
 
-## yarn
+Or **yarn**:
 
 ```sh
 yarn add @mui/base

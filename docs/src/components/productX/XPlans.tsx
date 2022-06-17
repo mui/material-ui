@@ -38,7 +38,7 @@ export default function XPlans() {
                   Available with <GradientText>MIT and commercial licenses</GradientText>
                 </Typography>
               }
-              description="The advanced components are available under two licenses: MUI X, the MIT licensed, free to use version; and MUI X Pro, the commercially license version with the most advanced features."
+              description="MUI X components are available under two licenses: MIT for the free community version, and commercial for Pro and Premium plans."
             />
             <Button
               component={Link}

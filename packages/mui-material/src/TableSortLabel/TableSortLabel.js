@@ -35,19 +35,19 @@ const TableSortLabelRoot = styled(ButtonBase, {
   flexDirection: 'inherit',
   alignItems: 'center',
   '&:focus': {
-    color: theme.palette.text.secondary,
+    color: (theme.vars || theme).palette.text.secondary,
   },
   '&:hover': {
-    color: theme.palette.text.secondary,
+    color: (theme.vars || theme).palette.text.secondary,
     [`& .${tableSortLabelClasses.icon}`]: {
       opacity: 0.5,
     },
   },
   [`&.${tableSortLabelClasses.active}`]: {
-    color: theme.palette.text.primary,
+    color: (theme.vars || theme).palette.text.primary,
     [`& .${tableSortLabelClasses.icon}`]: {
       opacity: 1,
-      color: theme.palette.text.secondary,
+      color: (theme.vars || theme).palette.text.secondary,
     },
   },
 }));

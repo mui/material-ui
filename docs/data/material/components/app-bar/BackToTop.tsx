@@ -8,7 +8,7 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Fab from '@mui/material/Fab';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-import Zoom from '@mui/material/Zoom';
+import Fade from '@mui/material/Fade';
 
 interface Props {
   /**
@@ -37,14 +37,13 @@ function ScrollTop(props: Props) {
 
     if (anchor) {
       anchor.scrollIntoView({
-        behavior: 'smooth',
         block: 'center',
       });
     }
   };
 
   return (
-    <Zoom in={trigger}>
+    <Fade in={trigger}>
       <Box
         onClick={handleClick}
         role="presentation"
@@ -52,7 +51,7 @@ function ScrollTop(props: Props) {
       >
         {children}
       </Box>
-    </Zoom>
+    </Fade>
   );
 }
 
@@ -81,7 +80,7 @@ Praesent commodo cursus magna, vel scelerisque nisl consectetur et.`,
         </Box>
       </Container>
       <ScrollTop {...props}>
-        <Fab color="secondary" size="small" aria-label="scroll back to top">
+        <Fab size="small" aria-label="scroll back to top">
           <KeyboardArrowUpIcon />
         </Fab>
       </ScrollTop>

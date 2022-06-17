@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { unstable_useControlled as useControlled, unstable_useId as useId } from '@mui/utils';
 
-export interface UseTabsProps {
+export interface UseTabsParameters {
   /**
    * The value of the currently selected `Tab`.
    * If you don't want any selected `Tab`, you can set this prop to `false`.
@@ -32,7 +32,7 @@ export interface UseTabsProps {
   selectionFollowsFocus?: boolean;
 }
 
-const useTabs = (props: UseTabsProps) => {
+const useTabs = (parameters: UseTabsParameters) => {
   const {
     value: valueProp,
     defaultValue,
@@ -40,7 +40,7 @@ const useTabs = (props: UseTabsProps) => {
     orientation,
     direction,
     selectionFollowsFocus,
-  } = props;
+  } = parameters;
 
   const [value, setValue] = useControlled({
     controlled: valueProp,
@@ -61,16 +61,11 @@ const useTabs = (props: UseTabsProps) => {
     [onChange, setValue],
   );
 
-  const getRootProps = () => {
-    return {};
-  };
-
   const tabsContextValue = React.useMemo(() => {
     return { idPrefix, value, onSelected, orientation, direction, selectionFollowsFocus };
   }, [idPrefix, value, onSelected, orientation, direction, selectionFollowsFocus]);
 
   return {
-    getRootProps,
     tabsContextValue,
   };
 };

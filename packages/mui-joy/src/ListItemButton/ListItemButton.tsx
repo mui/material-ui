@@ -38,7 +38,7 @@ const useUtilityClasses = (ownerState: ListItemButtonProps & { focusVisible: boo
 };
 
 const ListItemButtonRoot = styled('div', {
-  name: 'MuiListItemButton',
+  name: 'JoyListItemButton',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: ListItemButtonProps & { row: boolean } }>(({ theme, ownerState }) => [
@@ -53,11 +53,12 @@ const ListItemButtonRoot = styled('div', {
     textDecoration: 'initial', // reset native anchor tag
     // In some cases, ListItemButton is a child of ListItem so the margin needs to be controlled by the ListItem. The value is negative to account for the ListItem's padding
     margin: 'var(--List-itemButton-margin)',
-    padding: 'var(--List-item-paddingY)',
+    // account for the border width
+    padding: 'calc(var(--List-item-paddingY) - var(--variant-borderWidth))',
     paddingLeft:
-      'calc(var(--List-item-paddingLeft) + var(--List-item-startActionWidth, var(--internal-startActionWidth, 0px)))', // --internal variable makes it possible to customize the actionWidth from the top List
+      'calc(var(--List-item-paddingLeft) + var(--List-item-startActionWidth, var(--internal-startActionWidth, 0px)) - var(--variant-borderWidth))', // --internal variable makes it possible to customize the actionWidth from the top List
     paddingRight:
-      'calc(var(--List-item-paddingRight) + var(--List-item-endActionWidth, var(--internal-endActionWidth, 0px)))', // --internal variable makes it possible to customize the actionWidth from the top List
+      'calc(var(--List-item-paddingRight) + var(--List-item-endActionWidth, var(--internal-endActionWidth, 0px)) - var(--variant-borderWidth))', // --internal variable makes it possible to customize the actionWidth from the top List
     minHeight: 'var(--List-item-minHeight)',
     border: 'none',
     borderRadius: 'var(--List-item-radius)',
@@ -71,6 +72,7 @@ const ListItemButtonRoot = styled('div', {
     ...(ownerState.selected && {
       fontWeight: theme.vars.fontWeight.md,
     }),
+    [theme.focus.selector]: theme.focus.default,
     // Can't use :last-child or :first-child selector because ListItemButton can be inside ListItem with start/end action
     // We want to be specific on what siblings the gap should be added.
     [`& + .${listItemButtonClasses.root}`]: ownerState.row
@@ -84,27 +86,19 @@ const ListItemButtonRoot = styled('div', {
           marginTop: 'var(--List-gap)',
         },
   },
-  {
-    ...(ownerState.variant === 'outlined' && {
-      // account for the border width
-      padding: 'calc(var(--List-item-paddingY) - var(--variant-outlinedBorderWidth))',
-      paddingLeft:
-        'calc(var(--List-item-paddingLeft) + var(--List-item-startActionWidth, var(--internal-startActionWidth, 0px)) - var(--variant-outlinedBorderWidth))', // --internal variable makes it possible to customize the actionWidth from the top List
-      paddingRight:
-        'calc(var(--List-item-paddingRight) + var(--List-item-endActionWidth, var(--internal-endActionWidth, 0px)) - var(--variant-outlinedBorderWidth))', // --internal variable makes it possible to customize the actionWidth from the top List
-    }),
-    [theme.focus.selector]: theme.focus.default,
-  },
   theme.variants[ownerState.variant!]?.[ownerState.color!],
-  theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
-  theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
-  theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
+  { '&:hover': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!] },
+  { '&:active': theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!] },
+  {
+    [`&.${listItemButtonClasses.disabled}`]:
+      theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
+  },
 ]);
 
 const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
-    name: 'MuiListItemButton',
+    name: 'JoyListItemButton',
   });
 
   const row = React.useContext(RowListContext);
@@ -207,7 +201,7 @@ ListItemButton.propTypes /* remove-proptypes */ = {
    * @default 'neutral'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['context', 'danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
   /**
@@ -259,7 +253,7 @@ ListItemButton.propTypes /* remove-proptypes */ = {
    * @default 'plain'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['contained', 'light', 'outlined', 'text']),
+    PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
     PropTypes.string,
   ]),
 } as any;

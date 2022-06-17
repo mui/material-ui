@@ -96,6 +96,11 @@ export type ExtendedPaletteRange = OverridableStringUnion<
 
 export interface PaletteRange extends Record<ExtendedPaletteRange, string>, PaletteVariant {}
 
+export interface PaletteCommon {
+  white: string;
+  black: string;
+}
+
 export interface PaletteText {
   primary: string;
   secondary: string;
@@ -103,9 +108,11 @@ export interface PaletteText {
 }
 export interface PaletteBackground {
   body: string;
+  common: string;
   level1: string;
   level2: string;
   level3: string;
+  tooltip: string;
 }
 
 export interface ColorPalettePropOverrides {}
@@ -133,6 +140,7 @@ export interface Palette {
   info: PaletteInfo;
   success: PaletteSuccess;
   warning: PaletteWarning;
+  common: PaletteCommon;
   text: PaletteText;
   background: PaletteBackground;
   divider: string;

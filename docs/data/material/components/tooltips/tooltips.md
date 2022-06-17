@@ -4,7 +4,7 @@ title: React Tooltip component
 components: Tooltip
 githubLabel: 'component: tooltip'
 materialDesign: https://material.io/components/tooltips
-waiAria: https://www.w3.org/TR/wai-aria-practices/#tooltip
+waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/
 ---
 
 # Tooltip
@@ -91,11 +91,15 @@ You can disable this behavior (thus failing the success criterion which is requi
 
 By default disabled elements like `<button>` do not trigger user interactions so a `Tooltip` will not activate on normal events like hover. To accommodate disabled elements, add a simple wrapper element, such as a `span`.
 
-> ⚠️ In order to work with Safari, you need at least one display block or flex item below the tooltip wrapper.
+:::warning
+⚠️ In order to work with Safari, you need at least one display block or flex item below the tooltip wrapper.
+:::
 
 {{"demo": "DisabledTooltips.js"}}
 
-> If you're not wrapping a MUI component that inherits from `ButtonBase`, for instance, a native `<button>` element, you should also add the CSS property _pointer-events: none;_ to your element when disabled:
+:::warning
+If you're not wrapping a MUI component that inherits from `ButtonBase`, for instance, a native `<button>` element, you should also add the CSS property _pointer-events: none;_ to your element when disabled:
+:::
 
 ```jsx
 <Tooltip title="You don't have permission to do this">
@@ -137,7 +141,7 @@ On mobile, the tooltip is displayed when the user longpresses the element and hi
 
 ## Accessibility
 
-(WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#tooltip)
+(WAI-ARIA: https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/)
 
 By default, the tooltip only labels its child element.
 This is notably different from `title` which can either label **or** describe its child depending on whether the child already has a label.

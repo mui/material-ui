@@ -29,7 +29,7 @@ const ColorSchemePicker = () => {
           setMode('light');
         }
       }}
-      sx={{ '--Button-gutter': '0.25rem', minWidth: 'var(--Button-minHeight)' }}
+      sx={{ '--Button-paddingInline': '0.25rem', minWidth: 'var(--Button-minHeight)' }}
     >
       {mode === 'light' ? <Moon /> : <Sun />}
     </Button>

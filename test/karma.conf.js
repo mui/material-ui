@@ -187,6 +187,8 @@ module.exports = function setKarmaConfig(config) {
           path: false,
           // needed by enzyme > cheerio
           stream: false,
+          // required by enzyme > cheerio > parse5
+          util: require.resolve('util/'),
         },
       },
       // TODO: 'browserslist:modern'

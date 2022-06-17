@@ -17,7 +17,6 @@ import Highlighter from 'docs/src/components/action/Highlighter';
 import More from 'docs/src/components/action/More';
 import Frame from 'docs/src/components/action/Frame';
 import Link from 'docs/src/modules/components/Link';
-import ROUTES from 'docs/src/route';
 
 const DEMOS = ['Components', 'Branding', 'Iconography'];
 
@@ -65,7 +64,11 @@ export default function TemplateDemo() {
                 />
               </Highlighter>
             ))}
-            <More component={Link} href={ROUTES.storeDesign} noLinkStyle />
+            <More
+              component={Link}
+              href="https://mui.com/store/?utm_source=marketing&utm_medium=referral&utm_campaign=design-cta3#design"
+              noLinkStyle
+            />
           </Group>
         </Grid>
         <Grid item xs={12} md={6}>
@@ -172,13 +175,13 @@ export default function TemplateDemo() {
             <Frame.Info sx={{ display: 'flex', alignItems: 'center', minWidth: 0 }}>
               <Box sx={{ minWidth: 0 }}>
                 <Typography variant="body2" fontWeight={500} noWrap sx={{ mb: 0.5 }}>
-                  MUI for Figma
+                  e.g. MUI for Figma
                 </Typography>
               </Box>
               <Button
                 component={Link}
                 noLinkStyle
-                href={ROUTES.storeDesign}
+                href="https://mui.com/store/?utm_source=marketing&utm_medium=referral&utm_campaign=design-cta2#design"
                 endIcon={<LaunchRounded sx={{ '&&': { fontSize: 16 } }} />}
                 sx={{ ml: 'auto', color: 'primary.300' }}
               >

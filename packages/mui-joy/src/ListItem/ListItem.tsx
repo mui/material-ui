@@ -30,7 +30,7 @@ const useUtilityClasses = (ownerState: ListItemProps) => {
 };
 
 const ListItemRoot = styled('li', {
-  name: 'MuiListItem',
+  name: 'JoyListItem',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: ListItemProps & { row: boolean } }>(({ theme, ownerState }) => [
@@ -98,7 +98,7 @@ calc(-1 * var(--List-item-paddingLeft))`,
 ]);
 
 const ListItemStartAction = styled('div', {
-  name: 'MuiListItem',
+  name: 'JoyListItem',
   slot: 'StartAction',
   overridesResolver: (props, styles) => styles.startAction,
 })<{ ownerState: ListItemProps }>(({ ownerState }) => ({
@@ -110,7 +110,7 @@ const ListItemStartAction = styled('div', {
 }));
 
 const ListItemEndAction = styled('div', {
-  name: 'MuiListItem',
+  name: 'JoyListItem',
   slot: 'StartAction',
   overridesResolver: (props, styles) => styles.startAction,
 })<{ ownerState: ListItemProps }>(({ ownerState }) => ({
@@ -124,7 +124,7 @@ const ListItemEndAction = styled('div', {
 const ListItem = React.forwardRef(function ListItem(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
-    name: 'MuiListItem',
+    name: 'JoyListItem',
   });
 
   const listComponent = React.useContext(ComponentListContext);

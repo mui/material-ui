@@ -1,6 +1,6 @@
 # Style library interoperability
 
-<p class="description">While you can use the emotion based styling solution provided by MUI to style your application, you can also use the one you already know and love (from plain CSS to styled-components).</p>
+<p class="description">While you can use the Emotion-based styling solution provided by MUI to style your application, you can also use the one you already know and love (from plain CSS to styled-components).</p>
 
 This guide aims to document the most popular alternatives,
 but you should find that the principles applied here can be adapted to other libraries.
@@ -68,7 +68,7 @@ export default function GlobalCssPriority() {
 }
 ```
 
-**Note:** If you are using emotion and have a custom cache in your app, that one will override the one coming from MUI. In order for the injection order to still be correct, you need to add the prepend option. Here is an example:
+**Note:** If you are using Emotion and have a custom cache in your app, that one will override the one coming from MUI. In order for the injection order to still be correct, you need to add the prepend option. Here is an example:
 
 ```jsx
 import * as React from 'react';
@@ -221,7 +221,7 @@ export default function GlobalCssPriority() {
 }
 ```
 
-**Note:** If you are using emotion and have a custom cache in your app, that one will override the one coming from MUI. In order for the injection order to still be correct, you need to add the prepend option. Here is an example:
+**Note:** If you are using Emotion and have a custom cache in your app, that one will override the one coming from MUI. In order for the injection order to still be correct, you need to add the prepend option. Here is an example:
 
 ```jsx
 import * as React from 'react';
@@ -289,7 +289,7 @@ export default function GlobalCssSliderDeep() {
 
 ### Change the default styled engine
 
-By default, MUI components come with emotion as their style engine. If,
+By default, MUI components come with Emotion as their style engine. If,
 however, you would like to use `styled-components`, you can configure your app by following the [styled engine guide](/material-ui/guides/styled-engine/#how-to-switch-to-styled-components) or starting with one of the example projects:
 
 <!-- #default-branch-switch -->
@@ -370,11 +370,13 @@ export default function StyledComponentsDeep2() {
 By using the MUI theme provider, the theme will be available in the theme context
 of the styled engine too (emotion or styled-components, depending on your configuration).
 
-> ⚠️ If you are **already** using a custom theme with styled-components or emotion,
-> it might not be compatible with MUI's theme specification. If it's not
-> compatible, you need to render MUI's ThemeProvider <b>first</b>. This will
-> ensure the theme structures are isolated. This is ideal for the progressive adoption
-> of MUI's components in the codebase.
+:::warning
+⚠️ If you are **already** using a custom theme with styled-components or emotion,
+it might not be compatible with MUI's theme specification. If it's not
+compatible, you need to render MUI's ThemeProvider <b>first</b>. This will
+ensure the theme structures are isolated. This is ideal for the progressive adoption
+of MUI's components in the codebase.
+:::
 
 You are encouraged to share the same theme object between MUI and the rest of your project.
 
@@ -476,7 +478,7 @@ export default function GlobalCssPriority() {
 }
 ```
 
-**Note:** If you are using emotion and have a custom cache in your app, that one will override the one coming from MUI. In order for the injection order to still be correct, you need to add the prepend option. Here is an example:
+**Note:** If you are using Emotion and have a custom cache in your app, that one will override the one coming from MUI. In order for the injection order to still be correct, you need to add the prepend option. Here is an example:
 
 ```jsx
 import * as React from 'react';
@@ -614,14 +616,16 @@ If you are used to Tailwind CSS and want to use it together with the MUI compone
 If you use a different framework, or already have set up your project, follow these steps:
 
 1. Add Tailwind CSS to your project, following the instructions in https://tailwindcss.com/docs/installation.
-2. Remove Tailwind's `base` directive in favor of the `CssBaseline` component provided by `@mui/material`, as it plays nicer with the MUI components.
+2. Remove [Tailwind CSS's preflight](https://tailwindcss.com/docs/preflight) style so it can use the MUI's preflight instead ([CssBaseline](/material-ui/react-css-baseline/)).
 
-**index.css**
+**tailwind.config.js**
 
 ```diff
--@tailwind base;
- @tailwind components;
- @tailwind utilities;
+ module.exports = {
++  corePlugins: {
++    preflight: false,
++  },
+ };
 ```
 
 3. Add the `important` option, using the id of your app wrapper. For example, `#__next` for Next.js and `"#root"` for CRA:
@@ -662,7 +666,7 @@ export default function GlobalCssPriority() {
 }
 ```
 
-**Note:** If you are using emotion and have a custom cache in your app, it will override the one coming from MUI. In order for the injection order to still be correct, you need to add the prepend option. Here is an example:
+**Note:** If you are using Emotion and have a custom cache in your app, it will override the one coming from MUI. In order for the injection order to still be correct, you need to add the prepend option. Here is an example:
 
 ```jsx
 import * as React from 'react';
@@ -761,8 +765,9 @@ if you like the hook-based API (`makeStyles` → `useStyles`) that [`react-jss`]
 [TSS](https://docs.tss-react.dev) integrates well with MUI and provide a better
 TypeScript support than JSS.
 
-> If you are updating from `@material-ui/core` (v4) to `@mui/material` (v5) checkout
-> [migration guide](/material-ui/guides/migration-v4/#2-use-tss-react).
+:::info
+If you are updating from `@material-ui/core` (v4) to `@mui/material` (v5), check out the [tss-react section](/material-ui/migration/migrating-from-jss/#2-use-tss-react) of the Migration guide.
+:::
 
 ```tsx
 import { render } from 'react-dom';
@@ -786,10 +791,10 @@ render(
 );
 ```
 
-Now you can simply  
-`import { makeStyles, withStyles } from 'tss-react/mui'`.  
+Now you can simply
+`import { makeStyles, withStyles } from 'tss-react/mui'`.
 The theme object that will be passed to your callbacks functions will be the one you
-get with  
+get with
 `import { useTheme } from '@mui/material/styles'`.
 
 If you want to take controls over what the `theme` object should be,
@@ -804,8 +809,8 @@ import { createMakeAndWithStyles } from 'tss-react';
 export const { makeStyles, withStyles } = createMakeAndWithStyles({
   useTheme,
   /*
-    OR, if you have extended the default mui theme adding your own custom properties: 
-    Let's assume the myTheme object that you provide to the <ThemeProvider /> is of 
+    OR, if you have extended the default mui theme adding your own custom properties:
+    Let's assume the myTheme object that you provide to the <ThemeProvider /> is of
     type MyTheme then you'll write:
     */
   //"useTheme": useTheme as (()=> MyTheme)
@@ -840,9 +845,17 @@ const useStyles = makeStyles<{ color: 'red' | 'blue' }>()((theme, { color }) => 
 
 For info on how to setup SSR or anything else, please refer to [the TSS documentation](https://github.com/garronej/tss-react).
 
-> ⚠️ **Keep `@emotion/styled` as a dependency of your project**. Even if you never use it explicitly,
-> it's a peer dependency of `@mui/material`.
+:::info
+There is [an ESLint plugin](https://docs.tss-react.dev/detecting-unused-classes) for detecting unused classes.
+:::
 
-> ⚠️ For [Storybook](https://storybook.js.org): As of writing this lines storybook still uses by default emotion 10.  
-> Material UI and TSS runs emotion 11 so there is [some changes](https://github.com/InseeFrLab/onyxia-ui/blob/324de62248074582b227e584c53fb2e123f5325f/.storybook/main.js#L31-L32)
-> to be made to your `.storybook/main.js` to make it uses emotion 11.
+:::warning
+⚠️ **Keep `@emotion/styled` as a dependency of your project**. Even if you never use it explicitly,
+it's a peer dependency of `@mui/material`.
+:::
+
+:::warning
+⚠️ For [Storybook](https://storybook.js.org): As of writing this lines storybook still uses by default emotion 10.  
+Material UI and TSS runs emotion 11 so there is [some changes](https://github.com/InseeFrLab/onyxia-ui/blob/324de62248074582b227e584c53fb2e123f5325f/.storybook/main.js#L31-L32)
+to be made to your `.storybook/main.js` to make it uses emotion 11.
+:::

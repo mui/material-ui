@@ -10,7 +10,7 @@ import useTheme from '../styles/useTheme';
 import { getPaperUtilityClass } from './paperClasses';
 
 // Inspired by https://github.com/material-components/material-components-ios/blob/bca36107405594d5b7b16265a5b0ed698f85a5ee/components/Elevation/src/UIColor%2BMaterialElevation.m#L61
-const getOverlayAlpha = (elevation) => {
+export const getOverlayAlpha = (elevation) => {
   let alphaValue;
   if (elevation < 1) {
     alphaValue = 5.11916 * elevation ** 2;
@@ -49,22 +49,26 @@ const PaperRoot = styled('div', {
     ];
   },
 })(({ theme, ownerState }) => ({
-  backgroundColor: theme.palette.background.paper,
-  color: theme.palette.text.primary,
+  backgroundColor: (theme.vars || theme).palette.background.paper,
+  color: (theme.vars || theme).palette.text.primary,
   transition: theme.transitions.create('box-shadow'),
   ...(!ownerState.square && {
     borderRadius: theme.shape.borderRadius,
   }),
   ...(ownerState.variant === 'outlined' && {
-    border: `1px solid ${theme.palette.divider}`,
+    border: `1px solid ${(theme.vars || theme).palette.divider}`,
   }),
   ...(ownerState.variant === 'elevation' && {
-    boxShadow: theme.shadows[ownerState.elevation],
-    ...(theme.palette.mode === 'dark' && {
-      backgroundImage: `linear-gradient(${alpha(
-        '#fff',
-        getOverlayAlpha(ownerState.elevation),
-      )}, ${alpha('#fff', getOverlayAlpha(ownerState.elevation))})`,
+    boxShadow: (theme.vars || theme).shadows[ownerState.elevation],
+    ...(!theme.vars &&
+      theme.palette.mode === 'dark' && {
+        backgroundImage: `linear-gradient(${alpha(
+          '#fff',
+          getOverlayAlpha(ownerState.elevation),
+        )}, ${alpha('#fff', getOverlayAlpha(ownerState.elevation))})`,
+      }),
+    ...(theme.vars && {
+      backgroundImage: theme.vars.overlays?.[ownerState.elevation],
     }),
   }),
 }));
