@@ -80,9 +80,7 @@ export default function WhatToExpect() {
             <Typography variant="body2" color="text.secondary">
               With your purchase you receive support and access to new versions for the duration of
               your subscription. You can{' '}
-              <Link href="https://mui.com/x/advanced-components/#support">
-                learn more about support
-              </Link>{' '}
+              <Link href="https://mui.com/x/introduction/support/">learn more about support</Link>{' '}
               in the docs. Note that, except for critical issues, e.g. security, we release bug
               fixes, and other improvements on top of the latest version, instead of patching older
               versions.

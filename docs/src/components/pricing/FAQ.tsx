@@ -90,8 +90,8 @@ const faqData = [
       <React.Fragment>
         After you purchase a license, you'll receive a license key by email. Once you have the
         license key, you need to follow the{' '}
-        <Link href="/x/advanced-components/#license-key-installation">instructions</Link> necessary
-        to set it up.
+        <Link href="/x/introduction/licensing/#license-key-installation">instructions</Link>{' '}
+        necessary to set it up.
       </React.Fragment>
     ),
   },
