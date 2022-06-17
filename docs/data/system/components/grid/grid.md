@@ -101,8 +101,6 @@ a column based on the natural width of its content.
 
 The grid container that renders inside another grid container is a nested grid which inherits the `columns` and `spacing` from the top. The deep nested grid will inherit the props from the upper nested grid if it receives those props.
 
-👌 There is no limit on the levels of the nested grids but you should use it wisely.
-
 {{"demo": "NestedGrid.js", "bg": true}}
 
 ## Columns
@@ -114,6 +112,24 @@ You can change the default number of columns (12) with the `columns` prop.
 ## Custom breakpoints
 
 If you specify custom breakpoints to the theme, you can use those names as grid item props and in responsive values. For **Typescript**, you have to set module augmentation on theme breakpoints and the grid breakpoints interfaces.
+
+```ts
+declare module '@mui/system' {
+  interface BreakpointOverrides {
+    // Your custom breakpoints
+    laptop: true;
+    tablet: true;
+    mobile: true;
+    desktop: true;
+    // Remove default breakpoints
+    xs: false;
+    sm: false;
+    md: false;
+    lg: false;
+    xl: false;
+  }
+}
+```
 
 {{"demo": "CustomBreakpointsGrid.js", "bg": true}}
 
