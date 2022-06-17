@@ -103,23 +103,23 @@ export const arEG: Localization = {
   components: {
     MuiBreadcrumbs: {
       defaultProps: {
-        expandText: 'ظهر العنوان',
+        expandText: 'إظهار المسار',
       },
     },
     MuiTablePagination: {
       defaultProps: {
         getItemAriaLabel: (type) => {
           if (type === 'first') {
-            return 'امش للصفحة الأولى';
+            return 'انتقل إلى الصفحة الأولى';
           }
           if (type === 'last') {
-            return 'امش للصفحة الأخيرة';
+            return 'انتقل إلى الصفحة الأخيرة';
           }
           if (type === 'next') {
-            return 'امش للصفحة التالية';
+            return 'انتقل إلى الصفحة التالية';
           }
           // if (type === 'previous') {
-          return 'امش للصفحة السابقة';
+          return 'انتقل إلى الصفحة السابقة';
         },
         labelRowsPerPage: 'عدد الصفوف في الصفحة:',
         labelDisplayedRows: ({ from, to, count }) =>
@@ -136,7 +136,7 @@ export const arEG: Localization = {
       defaultProps: {
         clearText: 'مسح',
         closeText: 'إغلاق',
-        loadingText: 'يتم التحميل…',
+        loadingText: 'جار التحميل...',
         noOptionsText: 'لا يوجد خيارات',
         openText: 'فتح',
       },
@@ -151,19 +151,19 @@ export const arEG: Localization = {
         'aria-label': 'التنقل عبر الصفحات',
         getItemAriaLabel: (type, page, selected) => {
           if (type === 'page') {
-            return `${selected ? '' : 'امش إلى '} صفحة ${page}`;
+            return `${selected ? '' : 'انتقل إلى '} صفحة ${page}`;
           }
           if (type === 'first') {
-            return 'امش للصفحة الأولى';
+            return 'انتقل إلى الصفحة الأولى';
           }
           if (type === 'last') {
-            return 'امش للصفحة الأخيرة';
+            return 'انتقل إلى الصفحة الأخيرة';
           }
           if (type === 'next') {
-            return 'امش للصفحة التالية';
+            return 'انتقل إلى الصفحة التالية';
           }
           // if (type === 'previous') {
-          return 'امش  للصفحة السابقة';
+          return 'انتقل  إلى الصفحة السابقة';
         },
       },
     },
@@ -174,23 +174,23 @@ export const arSD: Localization = {
   components: {
     MuiBreadcrumbs: {
       defaultProps: {
-        expandText: 'إظهر العنوان',
+        expandText: 'إظهار المسار',
       },
     },
     MuiTablePagination: {
       defaultProps: {
         getItemAriaLabel: (type) => {
           if (type === 'first') {
-            return 'إذهب الى الصفحة الأولى';
+            return 'انتقل إلى الصفحة الأولى';
           }
           if (type === 'last') {
-            return 'إذهب الي الصفحة الأخيرة';
+            return 'انتقل إلى الصفحة الأخيرة';
           }
           if (type === 'next') {
-            return 'إذهب الى الصفحة التالية';
+            return 'انتقل إلى الصفحة التالية';
           }
           // if (type === 'previous') {
-          return 'إذهب الى الصفحة السابقة';
+          return 'انتقل إلى الصفحة السابقة';
         },
         labelRowsPerPage: 'عدد الصفوف في الصفحة:',
         labelDisplayedRows: ({ from, to, count }) =>
@@ -207,7 +207,7 @@ export const arSD: Localization = {
       defaultProps: {
         clearText: 'مسح',
         closeText: 'إغلاق',
-        loadingText: 'يتم التحميل…',
+        loadingText: 'جار التحميل...',
         noOptionsText: 'لا يوجد خيارات',
         openText: 'فتح',
       },
@@ -222,19 +222,19 @@ export const arSD: Localization = {
         'aria-label': 'التنقل عبر الصفحات',
         getItemAriaLabel: (type, page, selected) => {
           if (type === 'page') {
-            return `${selected ? '' : 'إذهب إلى '} صفحة ${page}`;
+            return `${selected ? '' : 'انتقل إلى '} صفحة ${page}`;
           }
           if (type === 'first') {
-            return 'إذهب الى الصفحة الأولى';
+            return 'انتقل إلى الصفحة الأولى';
           }
           if (type === 'last') {
-            return 'إذهب الي الصفحة الأخيرة';
+            return 'انتقل الي الصفحة الأخيرة';
           }
           if (type === 'next') {
-            return 'إذهب الى الصفحة التالية';
+            return 'انتقل إلى الصفحة التالية';
           }
           // if (type === 'previous') {
-          return 'إذهب الى الصفحة السابقة';
+          return 'انتقل إلى الصفحة السابقة';
         },
       },
     },

@@ -1,11 +1,11 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { unstable_capitalize as capitalize } from '@mui/utils';
+import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
 import composeClasses from '@mui/base/composeClasses';
 import { appendOwnerState } from '@mui/base/utils';
-import { useInput, InputOwnerState } from '@mui/base/InputUnstyled';
+import { useInput, InputUnstyledOwnerState } from '@mui/base/InputUnstyled';
 import { styled, useThemeProps } from '../styles';
 import { InputTypeMap, InputProps } from './InputProps';
 import inputClasses, { getInputUtilityClass } from './inputClasses';
@@ -31,36 +31,50 @@ const useUtilityClasses = (ownerState: InputProps) => {
 };
 
 const InputRoot = styled('div', {
-  name: 'MuiInput',
+  name: 'JoyInput',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: InputProps & InputOwnerState }>(({ theme, ownerState }) => [
+})<{ ownerState: InputProps & InputUnstyledOwnerState }>(({ theme, ownerState }) => [
   {
-    '--Input-radius': theme.vars.radius.sm, // radius is used by
+    '--Input-radius': theme.vars.radius.sm, // radius is used by the decorator children
     '--Input-gap': '0.5rem',
     '--Input-placeholderOpacity': 0.5,
-    '--Input-decorator-offset': 'calc(var(--Input-gutter) / 4)', // negative margin of the start/end adornment
-    '--Input-focusedThickness': 'calc(var(--variant-outlinedBorderWidth, 1px) + 1px)',
+    '--Input-focusedThickness': 'calc(var(--variant-borderWidth, 1px) + 1px)',
     '--Input-focusedHighlight':
       theme.vars.palette[ownerState.color === 'neutral' ? 'primary' : ownerState.color!]?.[500],
     ...(ownerState.size === 'sm' && {
-      '--Input-gutter': '0.5rem',
+      '--Input-minHeight': '2rem',
+      '--Input-paddingInline': '0.5rem',
+      '--Input-decorator-childHeight': 'min(1.5rem, var(--Input-minHeight))',
       '--Icon-fontSize': '1.25rem',
-      minHeight: '32px',
     }),
     ...(ownerState.size === 'md' && {
-      '--Input-gutter': '0.75rem', // gutter is the padding-x
+      '--Input-minHeight': '2.5rem',
+      '--Input-paddingInline': '0.75rem', // gutter is the padding-x
+      '--Input-decorator-childHeight': 'min(2rem, var(--Input-minHeight))',
       '--Icon-fontSize': '1.5rem',
-      minHeight: '40px',
     }),
     ...(ownerState.size === 'lg' && {
-      '--Input-gutter': '1rem',
+      '--Input-minHeight': '3rem',
+      '--Input-paddingInline': '1rem',
       '--Input-gap': '0.75rem',
+      '--Input-decorator-childHeight': 'min(2.375rem, var(--Input-minHeight))',
       '--Icon-fontSize': '1.75rem',
-      minHeight: '48px',
     }),
+    // variables for controlling child components
+    '--Input-decorator-childOffset':
+      'min(calc(var(--Input-paddingInline) - (var(--Input-minHeight) - 2 * var(--variant-borderWidth) - var(--Input-decorator-childHeight)) / 2), var(--Input-paddingInline))',
+    '--internal-paddingBlock':
+      'max((var(--Input-minHeight) - 2 * var(--variant-borderWidth) - var(--Input-decorator-childHeight)) / 2, 0px)',
+    '--Input-decorator-childRadius':
+      'max((var(--Input-radius) - var(--variant-borderWidth)) - var(--internal-paddingBlock), min(var(--internal-paddingBlock) / 2, (var(--Input-radius) - var(--variant-borderWidth)) / 2))',
+    '--Button-minHeight': 'var(--Input-decorator-childHeight)',
+    '--IconButton-size': 'var(--Input-decorator-childHeight)',
+    '--Button-radius': 'var(--Input-decorator-childRadius)',
+    '--IconButton-radius': 'var(--Input-decorator-childRadius)',
     boxSizing: 'border-box',
     minWidth: 0, // forces the Input to stay inside a container by default
+    minHeight: 'var(--Input-minHeight)',
     ...(ownerState.fullWidth && {
       width: '100%',
     }),
@@ -68,7 +82,7 @@ const InputRoot = styled('div', {
     position: 'relative',
     display: 'flex',
     alignItems: 'center',
-    padding: `0.25rem var(--Input-gutter)`,
+    paddingInline: `var(--Input-paddingInline)`,
     borderRadius: 'var(--Input-radius)',
     fontFamily: theme.vars.fontFamily.body,
     fontSize: theme.vars.fontSize.md,
@@ -90,12 +104,15 @@ const InputRoot = styled('div', {
       bottom: 0,
       zIndex: 1,
       borderRadius: 'inherit',
-      margin: 'calc(var(--variant-outlinedBorderWidth) * -1)', // for outlined variant
+      margin: 'calc(var(--variant-borderWidth) * -1)', // for outlined variant
     },
   },
   theme.variants[`${ownerState.variant!}`]?.[ownerState.color!],
-  theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
-  theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
+  { '&:hover': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!] },
+  {
+    [`&.${inputClasses.disabled}`]:
+      theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
+  },
   ownerState.variant !== 'solid' && {
     [`&.${inputClasses.focused}`]: {
       backgroundColor: 'initial',
@@ -111,10 +128,10 @@ const InputRoot = styled('div', {
 ]);
 
 const InputInput = styled('input', {
-  name: 'MuiInput',
+  name: 'JoyInput',
   slot: 'Input',
   overridesResolver: (props, styles) => styles.input,
-})<{ ownerState: InputProps & InputOwnerState }>(({ theme, ownerState }) => ({
+})<{ ownerState: InputProps & InputUnstyledOwnerState }>(({ theme, ownerState }) => ({
   border: 'none', // remove the native input width
   minWidth: 0, // remove the native input width
   outline: 0, // remove the native input outline
@@ -136,14 +153,17 @@ const InputInput = styled('input', {
 }));
 
 const InputStartDecorator = styled('span', {
-  name: 'MuiInput',
+  name: 'JoyInput',
   slot: 'StartDecorator',
   overridesResolver: (props, styles) => styles.startDecorator,
-})<{ ownerState: InputProps & InputOwnerState }>(({ theme, ownerState }) => ({
+})<{ ownerState: InputProps & InputUnstyledOwnerState }>(({ theme, ownerState }) => ({
+  '--Button-margin': '0 0 0 calc(var(--Input-decorator-childOffset) * -1)',
+  '--IconButton-margin': '0 0 0 calc(var(--Input-decorator-childOffset) * -1)',
+  '--Icon-margin': '0 0 0 calc(var(--Input-paddingInline) / -4)',
   pointerEvents: 'none', // to make the input focused when click on the element because start element usually is an icon
   display: 'inherit',
-  marginLeft: 'calc(var(--Input-decorator-offset) * -1)',
-  marginRight: 'var(--Input-gap)',
+  alignItems: 'center',
+  marginInlineEnd: 'var(--Input-gap)',
   color: theme.vars.palette.text.tertiary,
   ...(ownerState.focused && {
     color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Color`],
@@ -151,20 +171,23 @@ const InputStartDecorator = styled('span', {
 }));
 
 const InputEndDecorator = styled('span', {
-  name: 'MuiInput',
+  name: 'JoyInput',
   slot: 'EndDecorator',
   overridesResolver: (props, styles) => styles.endDecorator,
-})<{ ownerState: InputProps & InputOwnerState }>(({ theme, ownerState }) => ({
+})<{ ownerState: InputProps & InputUnstyledOwnerState }>(({ theme, ownerState }) => ({
+  '--Button-margin': '0 calc(var(--Input-decorator-childOffset) * -1) 0 0',
+  '--IconButton-margin': '0 calc(var(--Input-decorator-childOffset) * -1) 0 0',
+  '--Icon-margin': '0 calc(var(--Input-paddingInline) / -4) 0 0',
   display: 'inherit',
-  marginLeft: 'var(--Input-gap)',
-  marginRight: 'calc(var(--Input-decorator-offset) * -1)',
+  alignItems: 'center',
+  marginInlineStart: 'var(--Input-gap)',
   color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Color`],
 }));
 
 const Input = React.forwardRef(function Input(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
-    name: 'MuiInput',
+    name: 'JoyInput',
   });
 
   const {
@@ -184,7 +207,6 @@ const Input = React.forwardRef(function Input(inProps, ref) {
     fullWidth = false,
     error,
     id,
-    inputRef,
     name,
     onClick,
     onChange,
@@ -210,20 +232,17 @@ const Input = React.forwardRef(function Input(inProps, ref) {
     formControlContext,
     error: errorState,
     disabled: disabledState,
-  } = useInput(
-    {
-      disabled,
-      defaultValue,
-      error,
-      onBlur,
-      onClick,
-      onChange,
-      onFocus,
-      required,
-      value,
-    },
-    inputRef,
-  );
+  } = useInput({
+    disabled,
+    defaultValue,
+    error,
+    onBlur,
+    onClick,
+    onChange,
+    onFocus,
+    required,
+    value,
+  });
 
   const ownerState = {
     ...props,
@@ -232,7 +251,7 @@ const Input = React.forwardRef(function Input(inProps, ref) {
     disabled: disabledState,
     error: errorState,
     focused,
-    formControl: formControlContext!,
+    formControlContext: formControlContext!,
     type,
     size,
     variant,
@@ -276,6 +295,8 @@ const Input = React.forwardRef(function Input(inProps, ref) {
     ownerState,
   );
 
+  rootProps.ref = useForkRef(ref, useForkRef(rootProps.ref, componentsProps.root?.ref));
+
   const InputComponent = components.Input ?? InputInput;
   const inputProps = appendOwnerState(
     InputComponent,
@@ -286,8 +307,10 @@ const Input = React.forwardRef(function Input(inProps, ref) {
     ownerState,
   );
 
+  inputProps.ref = useForkRef(componentsProps.input?.ref, inputProps.ref);
+
   return (
-    <Root ref={ref} {...rootProps}>
+    <Root {...rootProps}>
       {startDecorator && (
         <InputStartDecorator className={classes.startDecorator} ownerState={ownerState}>
           {startDecorator}
@@ -400,15 +423,6 @@ Input.propTypes /* remove-proptypes */ = {
    */
   id: PropTypes.string,
   /**
-   * Pass a ref to the `input` element.
-   */
-  inputRef: PropTypes.oneOfType([
-    PropTypes.func,
-    PropTypes.shape({
-      current: PropTypes.any.isRequired,
-    }),
-  ]),
-  /**
    * Name attribute of the `input` element.
    */
   name: PropTypes.string,
@@ -484,7 +498,7 @@ Input.propTypes /* remove-proptypes */ = {
    * @default 'outlined'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['contained', 'light', 'outlined', 'text']),
+    PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
     PropTypes.string,
   ]),
 } as any;

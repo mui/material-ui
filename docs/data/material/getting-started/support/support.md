@@ -13,7 +13,12 @@ StackOverflow is also visited from time to time by the maintainers of MUI.
 
 [Post a question](https://stackoverflow.com/questions/tagged/mui)
 
-> 💡 **Tip**: If you're using an older version and use external resources (such as StackOverflow) for help with it, you may find answers with links that direct you to content that no longer exists in the latest version of the documentation. To easily access any previous version of the docs, simply add `v[number]` at the beginning of the URL, like so: [v4.mui.com](https://v4.mui.com/).
+:::info
+💡 **Tip**:
+
+If you're using an older version and use external resources (such as StackOverflow) for help with it, you may find answers with links that direct you to content that no longer exists in the latest version of the documentation. To easily access any previous version of the docs, simply add `v[number]` at the beginning of the URL, like so: [v4.mui.com](https://v4.mui.com/).
+
+:::
 
 ### GitHub
 

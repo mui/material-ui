@@ -32,6 +32,7 @@ export {
   duration,
   easing,
 } from './createTransitions';
+export { Mixins } from './createMixins';
 export {
   Direction,
   Breakpoint,

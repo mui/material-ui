@@ -13,7 +13,7 @@ describe('<CardOverflow />', () => {
     inheritComponent: 'div',
     render,
     ThemeProvider,
-    muiName: 'MuiCardOverflow',
+    muiName: 'JoyCardOverflow',
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'span',
     testVariantProps: { variant: 'solid' },

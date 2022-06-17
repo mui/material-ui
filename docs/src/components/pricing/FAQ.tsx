@@ -14,7 +14,7 @@ import KeyboardArrowDownRounded from '@mui/icons-material/KeyboardArrowDownRound
 
 const faqData = [
   {
-    summary: 'How do I know if I need to buy license?',
+    summary: 'How do I know if I need to buy a license?',
     detail: (
       <React.Fragment>
         If you are in doubt, check the license file of the npm package you're installing.
@@ -41,14 +41,12 @@ const faqData = [
     ),
   },
   {
-    summary: 'How many licenses do I need?',
+    summary: 'How many developer seats do I need?',
     detail: (
       <React.Fragment>
-        The number of licenses purchased must correspond to the number of concurrent developers
-        contributing changes to the front-end code of a project that uses MUI X Pro. However, the
-        number of developer licenses required is capped at 10 developers for the <b>Pro plan</b> and
-        10 developers/project for the <b>Premium plan</b>, developers above this cap don't need to
-        be licensed.
+        The number of seats purchased on your license must correspond to the number of concurrent
+        developers contributing changes to the front-end code of a project that uses MUI X Pro or
+        Premium.
         <br />
         <br />
         <b>Example 1.</b> Company 'A' is developing an application named 'AppA'. The app needs to
@@ -68,7 +66,7 @@ const faqData = [
     ),
   },
   {
-    summary: 'How to remove the "Unlicensed product" watermark?',
+    summary: 'How to remove the "unlicensed" watermark?',
     detail: (
       <React.Fragment>
         After you purchase a license, you'll receive a license key by email Once you have the
@@ -92,15 +90,12 @@ const faqData = [
     summary: 'Am I allowed to use the product after the update entitlement expires?',
     detail: (
       <React.Fragment>
-        Yes. The license is perpetual, so you are allowed to continue using the product even after
-        the entitlement expires. However, you will be using the last product version released before
-        this time. You will lose access to subsequently released functionality and updates, as well
-        as technical support.
+        Yes. You can continue to use the product in production environments after the entitlement
+        expires. But you will need to keep your subscription active to continue development, update
+        for new features, or gain access to technical support.
         <br />
         <br />
-        If you wish to preserve your access to product updates (new features and fixes) and
-        dedicated support, you need to renew your license, please{' '}
-        <Link href="mailto:sales@mui.com">contact sales</Link>.
+        To renew your license, please <Link href="mailto:sales@mui.com">contact sales</Link>.
       </React.Fragment>
     ),
   },
@@ -263,7 +258,7 @@ export default function FAQ() {
           >
             <Box sx={{ textAlign: 'left' }}>
               <Typography variant="body2" color="text.primary" fontWeight="bold" component="h3">
-                Got any questions unanswered or need more help?
+                Got any questions unanswered or need help?
               </Typography>
             </Box>
             <Typography variant="body2" color="text.secondary" sx={{ my: 1, textAlign: 'left' }}>
@@ -273,8 +268,8 @@ export default function FAQ() {
             <Typography variant="body2" color="text.secondary" sx={{ my: 1, textAlign: 'left' }}>
               For product-related problems, please open
               <Link href="https://github.com/mui/mui-x/issues/new/choose">a new GitHub issue</Link>.
-              If you need to share private information, you can{' '}
-              <Link href="mailto:x@mui.com">email us</Link>.
+              (If you need to share private information, you can{' '}
+              <Link href="mailto:x@mui.com">email</Link> us.)
             </Typography>
           </Paper>
         </Grid>

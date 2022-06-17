@@ -10,7 +10,7 @@ packageName: '@mui/base'
 
 <p class="description">用于检测点击事件是否发生在元素之外。 它可以监听文档中某处发生的点击事件。</p>
 
-- 📦 [1.5kB 已压缩的包](/size-snapshot)。
+- 📦 [1.5kB 已压缩的包](/size-snapshot/)。
 - ⚛️ 支持传送门组件
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}

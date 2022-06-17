@@ -16,10 +16,10 @@ export interface ListItemClasses {
 export type ListItemClassKey = keyof ListItemClasses;
 
 export function getListItemUtilityClass(slot: string): string {
-  return generateUtilityClass('MuiListItem', slot);
+  return generateUtilityClass('JoyListItem', slot);
 }
 
-const listItemClasses: ListItemClasses = generateUtilityClasses('MuiListItem', [
+const listItemClasses: ListItemClasses = generateUtilityClasses('JoyListItem', [
   'root',
   'startAction',
   'endAction',

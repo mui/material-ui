@@ -3,7 +3,7 @@ product: base
 title: Unstyled React Tabs components
 components: TabsUnstyled, TabUnstyled, TabPanelUnstyled, TabsListUnstyled
 githubLabel: 'component: tabs'
-waiAria: https://www.w3.org/TR/wai-aria-practices/#tabpanel
+waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/tabpanel/
 packageName: '@mui/base'
 ---
 
@@ -57,7 +57,7 @@ The `TabUnstyled` component provides the `component` prop to handle this use cas
 
 ## Accessibility
 
-(WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#tabpanel)
+(WAI-ARIA: https://www.w3.org/WAI/ARIA/apg/patterns/tabpanel/)
 
 The following steps are necessary to make the tab component suite accessible to assistive technology:
 
@@ -70,7 +70,7 @@ The demos below illustrate the proper use of ARIA labels.
 
 By default, when using keyboard navigation, the tab components open via **manual activation**—that is, the next panel is displayed only after the user activates the tab with either <kbd class="key">Space</kbd>, <kbd class="key">Enter</kbd>, or a mouse click.
 
-This is the preferable behavior for tabs in most cases, acccording to [the WAI-ARIA authoring practices](https://www.w3.org/TR/wai-aria-practices/#kbd_selection_follows_focus).
+This is the preferable behavior for tabs in most cases, acccording to [the WAI-ARIA authoring practices](https://www.w3.org/WAI/ARIA/apg/patterns/tabpanel/).
 
 Alternatively, you can set the panels to be displayed automatically when their corresponding tabs are in focus—this behavior of the selection following the focus is known as **automatic activation**.
 

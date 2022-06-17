@@ -100,10 +100,10 @@ If you choose not to use it, you can still disable transitions and animations by
 }
 ```
 
-## Do I have to use emotion to style my app?
+## Do I have to use Emotion to style my app?
 
 No, it's not required.
-But if you are using the default styled engine (`@mui/styled-engine`) the emotion dependency comes built in, so carries no additional bundle size overhead.
+But if you are using the default styled engine (`@mui/styled-engine`) the Emotion dependency comes built in, so carries no additional bundle size overhead.
 
 Perhaps, however, you're adding some MUI components to an app that already uses another styling solution,
 or are already familiar with a different API, and don't want to learn a new one? In that case, head over to the
@@ -143,7 +143,9 @@ If you're not sure if the MUI component in question forwards its ref you
 can check the API documentation under "Props" e.g. the [Button API](/material-ui/api/button/#props)
 includes
 
-> The ref is forwarded to the root element.
+:::info
+The ref is forwarded to the root element.
+:::
 
 indicating that you can access the DOM element with a ref.
 
@@ -151,8 +153,10 @@ indicating that you can access the DOM element with a ref.
 
 If you are seeing a warning message in the console like the one below, you probably have several instances of `@mui/styles` initialized on the page.
 
-> It looks like there are several instances of `@mui/styles` initialized in this application.
-> This may cause theme propagation issues, broken class names, specificity issues, and make your application bigger without a good reason.
+:::warning
+It looks like there are several instances of `@mui/styles` initialized in this application.
+This may cause theme propagation issues, broken class names, specificity issues, and make your application bigger without a good reason.
+:::
 
 ### Possible reasons
 
@@ -365,7 +369,9 @@ You could end up accidentally using two class name generators in a variety of sc
 - You are using `StylesProvider` for a **subset** of your React tree.
 - You are using a bundler and it is splitting code in a way that causes multiple class name generator instances to be created.
 
-> If you are using webpack with the [SplitChunksPlugin](https://webpack.js.org/plugins/split-chunks-plugin/), try configuring the [`runtimeChunk` setting under `optimizations`](https://webpack.js.org/configuration/optimization/#optimization-runtimechunk).
+:::info
+💡 If you are using webpack with the [SplitChunksPlugin](https://webpack.js.org/plugins/split-chunks-plugin/), try configuring the [`runtimeChunk` setting under `optimizations`](https://webpack.js.org/configuration/optimization/#optimization-runtimechunk).
+:::
 
 Overall, it's simple to recover from this problem by wrapping each MUI application with [`StylesProvider`](/system/styles/api/#stylesprovider) components at the top of their component trees **and using a single class name generator shared among them**.
 
@@ -398,7 +404,11 @@ function handleRender(req, res) {
 
 ### [v4] React class name hydration mismatch
 
-> Warning: Prop className did not match.
+:::warning
+**⚠️ Warning**
+
+Prop className did not match.
+:::
 
 There is a class name mismatch between the client and the server. It might work for the first request.
 Another symptom is that the styling changes between initial page load and the downloading of the client scripts.

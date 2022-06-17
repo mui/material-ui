@@ -23,7 +23,7 @@ const theme = createTheme({
 
 {{"demo": "DefaultProps.js"}}
 
-If you're using Typescript and [lab components](/material-ui/about-the-lab/), check [this article to learn how to override their styles](/material-ui/about-the-lab/#typescript).
+If you're using TypeScript and [lab components](/material-ui/about-the-lab/), check [this article to learn how to override their styles](/material-ui/about-the-lab/#typescript).
 
 ## Global style overrides
 
@@ -57,13 +57,15 @@ You can use these classes inside the `styleOverrides` key to modify the correspo
 const theme = createTheme({
   components: {
     MuiButton: {
-      styleOverrides: ({ ownerState }) => ({
-        ...(ownerState.variant === 'contained' &&
-          ownerState.color === 'primary' && {
-            backgroundColor: '#202020',
-            color: '#fff',
-          }),
-      }),
+      styleOverrides: {
+        root: ({ ownerState }) => ({
+          ...(ownerState.variant === 'contained' &&
+            ownerState.color === 'primary' && {
+              backgroundColor: '#202020',
+              color: '#fff',
+            }),
+        }),
+      },
     },
   },
 });
@@ -103,7 +105,9 @@ Learn more about [the concept behind the `sx` prop](/system/the-sx-prop/) and [h
 You can use the `sx` prop inside the `styleOverrides` key to modify styles within the theme using shorthand CSS notation.
 This is especially handy if you're already using the `sx` prop with your components, because you can use the same syntax in your theme and quickly transfer styles between the two.
 
-> **Note:** The `sx` prop is a stable feature for customizing components in Material UI v5, but it is still considered _experimental_ when used directly inside the theme object.
+:::info
+**Note:** The `sx` prop is a stable feature for customizing components in Material UI v5, but it is still considered _experimental_ when used directly inside the theme object.
+:::
 
 {{"demo": "GlobalThemeOverrideSx.js", "defaultCodeOpen": false}}
 

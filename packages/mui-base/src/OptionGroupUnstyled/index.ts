@@ -1,7 +1,6 @@
 export { default } from './OptionGroupUnstyled';
 
-export type { default as OptionGroupUnstyledProps } from './OptionGroupUnstyledProps';
-export * from './OptionGroupUnstyledProps';
+export * from './OptionGroupUnstyled.types';
 
 export { default as optionGroupUnstyledClasses } from './optionGroupUnstyledClasses';
 export * from './optionGroupUnstyledClasses';

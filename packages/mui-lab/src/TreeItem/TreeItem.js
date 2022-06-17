@@ -256,7 +256,7 @@ const TreeItem = React.forwardRef(function TreeItem(inProps, ref) {
      *
      * If the tree does not support multiple selection, aria-selected
      * is set to true for the selected node and it is not present on any other node in the tree.
-     * Source: https://www.w3.org/TR/wai-aria-practices/#TreeView
+     * Source: https://www.w3.org/WAI/ARIA/apg/patterns/treeview/
      */
     ariaSelected = true;
   }

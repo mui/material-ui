@@ -10,7 +10,7 @@ import { useUserLanguage } from 'docs/src/modules/utils/i18n';
  * File to keep in sync with:
  *
  * - /docs/src/modules/components/Link.tsx
- * - /examples/nextjs/src/Link.tsx
+ * - /examples/nextjs/src/Link.js
  * - /examples/nextjs-with-typescript/src/Link.tsx
  */
 

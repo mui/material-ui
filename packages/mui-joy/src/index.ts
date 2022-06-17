@@ -19,6 +19,9 @@ export * from './Switch';
 export { default as SvgIcon } from './SvgIcon';
 export * from './SvgIcon';
 
+export { default as Slider } from './Slider';
+export * from './Slider';
+
 export { default as Link } from './Link';
 export * from './Link';
 
@@ -64,6 +67,11 @@ export * from './FormHelperText';
 export { default as TextField } from './TextField';
 export * from './TextField';
 
+export { default as Box } from './Box';
+export * from './Box';
+
+export { default as Container } from './Container';
+export * from './Container';
 export { default as Badge } from './Badge';
 export * from './Badge';
 

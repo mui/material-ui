@@ -10,10 +10,10 @@ export interface FormLabelClasses {
 export type FormLabelClassKey = keyof FormLabelClasses;
 
 export function getFormLabelUtilityClass(slot: string): string {
-  return generateUtilityClass('MuiFormLabel', slot);
+  return generateUtilityClass('JoyFormLabel', slot);
 }
 
-const formLabelClasses: FormLabelClasses = generateUtilityClasses('MuiFormLabel', [
+const formLabelClasses: FormLabelClasses = generateUtilityClasses('JoyFormLabel', [
   'root',
   'asterisk',
 ]);

@@ -12,7 +12,7 @@ describe('Joy <IconButton />', () => {
     classes,
     ThemeProvider,
     refInstanceof: window.HTMLButtonElement,
-    muiName: 'MuiIconButton',
+    muiName: 'JoyIconButton',
     testVariantProps: { variant: 'solid', color: 'success' },
     skip: ['propsSpread', 'componentsProp', 'classesRoot'],
   }));

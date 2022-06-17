@@ -31,10 +31,36 @@ const useUtilityClasses = (ownerState: BadgeProps) => {
 };
 
 const BadgeRoot = styled('span', {
-  name: 'MuiBadge',
+  name: 'JoyBadge',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: BadgeProps }>(() => ({
+})<{ ownerState: BadgeProps }>(({ theme, ownerState }) => ({
+  ...(ownerState.size === 'sm' && {
+    '--Badge-minHeight': '0.5rem',
+    ...(ownerState.badgeContent && {
+      '--Badge-minHeight': '1rem',
+    }),
+    '--Badge-paddingX': '0.25rem',
+    fontSize: theme.vars.fontSize.xs,
+  }),
+  ...(ownerState.size === 'md' && {
+    '--Badge-minHeight': '0.75rem',
+    ...(ownerState.badgeContent && {
+      '--Badge-minHeight': '1.25rem',
+    }),
+    '--Badge-paddingX': '0.375rem',
+    fontSize: theme.vars.fontSize.sm,
+  }),
+  ...(ownerState.size === 'lg' && {
+    '--Badge-minHeight': '1rem',
+    ...(ownerState.badgeContent && {
+      '--Badge-minHeight': '1.5rem',
+    }),
+    '--Badge-paddingX': '0.5rem',
+    fontSize: theme.vars.fontSize.md,
+  }),
+  '--Badge-ringSize': '2px',
+  '--Badge-ring': `0 0 0 var(--Badge-ringSize) var(--Badge-ringColor, ${theme.vars.palette.background.body})`,
   position: 'relative',
   display: 'inline-flex',
   // For correct alignment with the text.
@@ -43,7 +69,7 @@ const BadgeRoot = styled('span', {
 }));
 
 const BadgeBadge = styled('span', {
-  name: 'MuiBadge',
+  name: 'JoyBadge',
   slot: 'Badge',
   overridesResolver: (props, styles) => styles.badge,
 })<{ ownerState: BadgeProps }>(({ theme, ownerState }) => {
@@ -81,32 +107,6 @@ const BadgeBadge = styled('span', {
   const transformOriginX = ownerState.anchorOrigin?.horizontal === 'left' ? '0%' : '100%';
   return [
     {
-      ...(ownerState.size === 'sm' && {
-        '--Badge-minHeight': '0.5rem',
-        ...(ownerState.badgeContent && {
-          '--Badge-minHeight': '1rem',
-        }),
-        '--Badge-paddingX': '0.25rem',
-        fontSize: theme.vars.fontSize.xs,
-      }),
-      ...(ownerState.size === 'md' && {
-        '--Badge-minHeight': '0.75rem',
-        ...(ownerState.badgeContent && {
-          '--Badge-minHeight': '1.25rem',
-        }),
-        '--Badge-paddingX': '0.375rem',
-        fontSize: theme.vars.fontSize.sm,
-      }),
-      ...(ownerState.size === 'lg' && {
-        '--Badge-minHeight': '1rem',
-        ...(ownerState.badgeContent && {
-          '--Badge-minHeight': '1.5rem',
-        }),
-        '--Badge-paddingX': '0.5rem',
-        fontSize: theme.vars.fontSize.md,
-      }),
-      '--Badge-ringSize': '2px',
-      '--Badge-ring': `0 0 0 var(--Badge-ringSize) var(--Badge-ringColor, ${theme.vars.palette.background.body})`,
       display: 'inline-flex',
       flexWrap: 'wrap',
       justifyContent: 'center',
@@ -119,7 +119,7 @@ const BadgeBadge = styled('span', {
       fontWeight: theme.vars.fontWeight.md,
       lineHeight: 1,
       padding:
-        'calc(var(--Badge-paddingX) / 2 - var(--variant-outlinedBorderWidth, 0px)) calc(var(--Badge-paddingX) - var(--variant-outlinedBorderWidth, 0px))',
+        'calc(var(--Badge-paddingX) / 2 - var(--variant-borderWidth)) calc(var(--Badge-paddingX) - var(--variant-borderWidth))',
       minHeight: 'var(--Badge-minHeight)',
       minWidth: 'var(--Badge-minHeight)',
       borderRadius: 'var(--Badge-radius, var(--Badge-minHeight))',
@@ -144,7 +144,7 @@ const BadgeBadge = styled('span', {
 });
 
 const Badge = React.forwardRef(function Badge(inProps, ref) {
-  const props = useThemeProps<typeof inProps & BadgeProps>({ props: inProps, name: 'MuiBadge' });
+  const props = useThemeProps<typeof inProps & BadgeProps>({ props: inProps, name: 'JoyBadge' });
   const {
     anchorOrigin: anchorOriginProp = {
       vertical: 'top',
@@ -216,7 +216,7 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
         Badge: BadgeBadge,
         ...components,
       }}
-      className={clsx(className, classes.root, componentsProps.root?.className)}
+      className={clsx(className, classes.root)}
       componentsProps={{
         root: {
           ...componentsProps.root,
@@ -233,7 +233,7 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
         },
         badge: {
           ...componentsProps.badge,
-          className: clsx(classes.badge, componentsProps.badge?.className),
+          className: clsx(classes.badge),
           ...(shouldSpreadAdditionalProps(components.Badge) && {
             ownerState: {
               anchorOrigin,
@@ -309,8 +309,8 @@ Badge.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   componentsProps: PropTypes.shape({
-    badge: PropTypes.object,
-    root: PropTypes.object,
+    badge: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
    * If `true`, the badge is invisible.
@@ -345,7 +345,7 @@ Badge.propTypes /* remove-proptypes */ = {
    * @default 'solid'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['contained', 'light', 'outlined', 'text']),
+    PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
     PropTypes.string,
   ]),
 } as any;

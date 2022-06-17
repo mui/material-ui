@@ -8,11 +8,11 @@ export interface ListItemDecoratorClasses {
 export type ListItemDecoratorClassKey = keyof ListItemDecoratorClasses;
 
 export function getListItemDecoratorUtilityClass(slot: string): string {
-  return generateUtilityClass('MuiListItemDecorator', slot);
+  return generateUtilityClass('JoyListItemDecorator', slot);
 }
 
 const listItemDecoratorClasses: ListItemDecoratorClasses = generateUtilityClasses(
-  'MuiListItemDecorator',
+  'JoyListItemDecorator',
   ['root'],
 );
 

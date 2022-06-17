@@ -9,7 +9,7 @@ githubLabel: 'component: TextareaAutosize'
 
 <p class="description">A textarea component for React which grows with content.</p>
 
-- 📦 [1.5 kB gzipped](/size-snapshot)
+- 📦 [1.5 kB gzipped](/size-snapshot/)
 
 The `TextareaAutosize` component automatically adjust the textarea height on keyboard and window resize events.
 

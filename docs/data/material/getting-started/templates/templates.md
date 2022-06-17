@@ -27,6 +27,6 @@ So far we have demos for a dashboard, sign in page, sign up page, blog page, che
 
 ## Premium templates
 
-Looking for something more? You can find complete templates & themes in the <a href="https://mui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=templates-store" data-ga-event-category="store" data-ga-event-action="click" data-ga-event-label="templates">premium template section</a>.
+Looking for something more? You can find complete templates & themes in the <a href="https://mui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=templates-store">premium template section</a>.
 
-<a href="https://mui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=templates-store" data-ga-event-category="store" data-ga-event-action="click" data-ga-event-label="templates"><img src="/static/images/themes-light.jpg" alt="react templates" /></a>
+<a href="https://mui.com/store/?utm_source=docs&utm_medium=referral&utm_campaign=templates-store"><img src="/static/images/themes-light.jpg" alt="react templates" /></a>

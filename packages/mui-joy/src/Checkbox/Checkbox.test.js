@@ -11,7 +11,7 @@ describe('<Checkbox />', () => {
     classes,
     render,
     ThemeProvider,
-    muiName: 'MuiCheckbox',
+    muiName: 'JoyCheckbox',
     testDeepOverrides: [{ slotName: 'input', slotClassName: classes.input }],
     refInstanceof: window.HTMLSpanElement,
     skip: ['componentProp', 'componentsProp', 'classesRoot', 'propsSpread', 'themeVariants'],

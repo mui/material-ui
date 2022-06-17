@@ -17,11 +17,15 @@ _(Resize the window to see the responsive breakpoints)_
 
 <!-- #default-branch-switch -->
 
-```jsx
-// with npm
-npm install @mui/system @emotion/react @emotion/styled
+To install and save in your `package.json` dependencies, run the command below using **npm**:
 
-// with yarn
+```sh
+npm install @mui/system @emotion/react @emotion/styled
+```
+
+Or **yarn**:
+
+```sh
 yarn add @mui/system @emotion/react @emotion/styled
 ```
 
@@ -30,10 +34,10 @@ Or if you want to use `styled-components` as a styling engine:
 <!-- #default-branch-switch -->
 
 ```sh
-// with npm
 npm install @mui/system @mui/styled-engine-sc styled-components
+```
 
-// with yarn
+```sh
 yarn add @mui/system @mui/styled-engine-sc styled-components
 ```
 
@@ -180,7 +184,7 @@ For more details, visit the [`sx` prop page](/system/the-sx-prop/).
 
 ### Performance tradeoff
 
-The system relies on CSS-in-JS. It works with both emotion and styled-components.
+The system relies on CSS-in-JS. It works with both Emotion and styled-components.
 
 Pros:
 

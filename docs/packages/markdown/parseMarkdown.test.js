@@ -164,7 +164,7 @@ authors:
           en: { toc },
         },
       } = prepareMarkdown({
-        pageFilename: 'test',
+        pageFilename: '/test',
         translations: [{ filename: 'index.md', markdown, userLanguage: 'en' }],
       });
 
@@ -195,7 +195,7 @@ authors:
           en: { toc },
         },
       } = prepareMarkdown({
-        pageFilename: 'test',
+        pageFilename: '/test',
         translations: [{ filename: 'index.md', markdown, userLanguage: 'en' }],
       });
 
@@ -248,7 +248,7 @@ authors:
           zh: { toc: tocZh },
         },
       } = prepareMarkdown({
-        pageFilename: 'same-hash-test',
+        pageFilename: '/same-hash-test',
         translations: [
           { filename: 'localization.md', markdown: markdownEn, userLanguage: 'en' },
           { filename: 'localization-pt.md', markdown: markdownPt, userLanguage: 'pt' },
@@ -339,7 +339,7 @@ authors:
           pt: { toc: tocPt },
         },
       } = prepareMarkdown({
-        pageFilename: 'same-hash-test',
+        pageFilename: '/same-hash-test',
         translations: [
           { filename: 'localization.md', markdown: markdownEn, userLanguage: 'en' },
           { filename: 'localization-pt.md', markdown: markdownPt, userLanguage: 'pt' },
@@ -390,6 +390,22 @@ authors:
           text: 'Locales',
         },
       ]);
+    });
+
+    it('should report missing trailing splashes', () => {
+      const markdown = `
+# Localization
+
+[bar](/bar/)
+[foo](/foo)
+`;
+
+      expect(() => {
+        prepareMarkdown({
+          pageFilename: '/test',
+          translations: [{ filename: 'index.md', markdown, userLanguage: 'en' }],
+        });
+      }).to.throw(/\[foo]\(\/foo\) in \/docs\/test\/index\.md is missing a trailing slash/);
     });
   });
 });

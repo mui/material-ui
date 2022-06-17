@@ -7,11 +7,13 @@
 
 **MUI Core** contains foundational React UI component libraries for shipping new features faster.
 
-- _Material UI_ is a comprehensive library of components that features our implementation of Google's [Material Design](https://material.io/design/introduction/) system.
+- [_Material UI_](https://mui.com/material-ui/getting-started/overview/) is a comprehensive library of components that features our implementation of Google's [Material Design](https://material.io/design/introduction/) system.
 
-- _MUI Base_ is our library of "unstyled" components and low-level hooks. With Base, you gain complete control over your app's CSS and accessibility features.
+- [_Joy UI_](https://mui.com/joy-ui/getting-started/overview/) is a beautifully designed library of React UI components.
 
-- _MUI System_ is a collection of CSS utilities to help you rapidly lay out custom designs.
+- [_MUI Base_](https://mui.com/base/getting-started/overview/) is our library of "unstyled" components and low-level hooks. With Base, you gain complete control over your app's CSS and accessibility features.
+
+- [_MUI System_](https://mui.com/system/basics/) is a collection of CSS utilities to help you rapidly lay out custom designs.
 
 <div align="center">
 
@@ -48,9 +50,9 @@ yarn add @mui/material @emotion/react @emotion/styled
 <details>
   <summary>Older versions</summary>
 
-- **[v4.x](https://v4.mui.com/)** ([Migration from v4 to v5](https://mui.com/material-ui/guides/migration-v4/))
-- **[v3.x](https://v3.mui.com/)** ([Migration from v3 to v4](https://mui.com/material-ui/guides/migration-v3/))
-- **[v0.x](https://v0.mui.com/)** ([Migration to v1](https://mui.com/material-ui/guides/migration-v0x/))
+- **[v4.x](https://v4.mui.com/)** ([Migration from v4 to v5](https://mui.com/material-ui/migration/migration-v4/))
+- **[v3.x](https://v3.mui.com/)** ([Migration from v3 to v4](https://mui.com/material-ui/migration/migration-v3/))
+- **[v0.x](https://v0.mui.com/)** ([Migration to v1](https://mui.com/material-ui/migration/migration-v0x/))
 
 </details>
 
@@ -103,6 +105,7 @@ Visit our [`styled-engine` guide](https://mui.com/material-ui/guides/styled-engi
 <p align="center">
   <a href="https://octopus.com/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="128" width="128" src="https://avatars3.githubusercontent.com/u/1287123?s=256" alt="octopus" title="Repeatable, reliable deployments" loading="lazy" /></a>
   <a href="https://www.doit-intl.com/flexsave/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="128" width="128" src="https://avatars3.githubusercontent.com/u/8424863?s=256" alt="doit-intl" title="Management Platform for Google Cloud and AWS" loading="lazy" /></a>
+  <a href="https://www.zesty.io/integrations/nextjs-cms/?utm_source=mui&utm_medium=referral&utm_campaign=sponsor" rel="noopener sponsored" target="_blank"><img height="90" width="90" src="https://brand.zesty.io/zesty-io-logo.svg" alt="zesty.io" title="The only Next.js CMS you need" loading="lazy" /></a>
 </p>
 
 Diamond Sponsors are those who have pledged \$1,500/month or more to MUI.
@@ -133,15 +136,10 @@ Here is an example of a basic app using Material UI's `Button` component:
 
 ```jsx
 import * as React from 'react';
-import ReactDOM from 'react-dom';
 import Button from '@mui/material/Button';
 
 function App() {
-  return (
-    <Button variant="contained" color="primary">
-      Hello World
-    </Button>
-  );
+  return <Button variant="contained">Hello World</Button>;
 }
 ```
 
@@ -190,6 +188,10 @@ Future plans and high-priority features and enhancements can be found in our [ro
 This project is licensed under the terms of the
 [MIT license](/LICENSE).
 
+## Security
+
+For details of supported versions and contact details for reporting security issues, please refer to the [security policy](https://github.com/mui/material-ui/blob/master/SECURITY.md).
+
 ## Sponsoring services
 
 These great services sponsor MUI's core infrastructure:
@@ -202,7 +204,7 @@ GitHub lets us host the Git repository and coordinate contributions.
 
 Netlify lets us distribute the documentation.
 
-[<img loading="lazy" alt="CrowdIn" src="https://support.crowdin.com/assets/logos/crowdin-logo1-small.png" height="30">](https://crowdin.com/)
+[<img loading="lazy" alt="Crowdin" src="https://support.crowdin.com/assets/logos/crowdin-logo-small-black.svg" height="30">](https://crowdin.com/)
 
 Crowdin lets us translate the documentation.
 

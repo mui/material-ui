@@ -6,7 +6,7 @@
     "mouseEvent": {
       "type": {
         "name": "enum",
-        "description": "'onClick'<br>&#124;&nbsp;'onMouseDown'<br>&#124;&nbsp;'onMouseUp'<br>&#124;&nbsp;false"
+        "description": "'onClick'<br>&#124;&nbsp;'onMouseDown'<br>&#124;&nbsp;'onMouseUp'<br>&#124;&nbsp;'onPointerDown'<br>&#124;&nbsp;'onPointerUp'<br>&#124;&nbsp;false"
       },
       "default": "'onClick'"
     },

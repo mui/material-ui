@@ -2,7 +2,6 @@ import * as React from 'react';
 import { ThemeProvider, createTheme, useTheme } from '@mui/material/styles';
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
-
 import ViewQuiltRounded from '@mui/icons-material/ViewQuiltRounded';
 import ViewModuleRounded from '@mui/icons-material/ViewModuleRounded';
 import ViewAgendaRounded from '@mui/icons-material/ViewAgendaRounded';

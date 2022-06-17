@@ -96,6 +96,8 @@ const AlertMessage = styled('div', {
   overridesResolver: (props, styles) => styles.message,
 })({
   padding: '8px 0',
+  minWidth: 0,
+  overflow: 'auto',
 });
 
 const AlertAction = styled('div', {
@@ -160,7 +162,11 @@ const Alert = React.forwardRef(function Alert(inProps, ref) {
       <AlertMessage ownerState={ownerState} className={classes.message}>
         {children}
       </AlertMessage>
-      {action != null ? <AlertAction className={classes.action}>{action}</AlertAction> : null}
+      {action != null ? (
+        <AlertAction ownerState={ownerState} className={classes.action}>
+          {action}
+        </AlertAction>
+      ) : null}
       {action == null && onClose ? (
         <AlertAction ownerState={ownerState} className={classes.action}>
           <IconButton

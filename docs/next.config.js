@@ -19,7 +19,10 @@ const isDeployPreview = process.env.PULL_REQUEST === 'true';
 const buildOnlyEnglishLocale = isDeployPreview && !l10nPRInNetlify && !vercelDeploy;
 
 const staging =
-  process.env.REPOSITORY_URL === undefined || /mui\/material-ui$/.test(process.env.REPOSITORY_URL);
+  process.env.REPOSITORY_URL === undefined ||
+  // The linked repository url comes from https://app.netlify.com/sites/material-ui/settings/deploys
+  /mui-org\/material-ui$/.test(process.env.REPOSITORY_URL);
+
 if (staging) {
   // eslint-disable-next-line no-console
   console.log(`Staging deploy of ${process.env.REPOSITORY_URL || 'local repository'}`);
@@ -55,7 +58,12 @@ module.exports = {
     // next includes node_modules in webpack externals. Some of those have dependencies
     // on the aliases defined above. If a module is an external those aliases won't be used.
     // We need tell webpack to not consider those packages as externals.
-    if (options.isServer) {
+    if (
+      options.isServer &&
+      // Next executes this twice on the server with React 18 (once per runtime).
+      // We only care about Node runtime at this point.
+      (options.nextRuntime === undefined || options.nextRuntime === 'nodejs')
+    ) {
       const [nextExternals, ...externals] = config.externals;
 
       if (externals.length > 0) {
@@ -84,6 +92,10 @@ module.exports = {
         },
       ];
     }
+
+    config.module.rules.forEach((r) => {
+      r.resourceQuery = { not: [/raw/] };
+    });
 
     return {
       ...config,
@@ -115,6 +127,7 @@ module.exports = {
           // transpile 3rd party packages with dependencies in this repository
           {
             test: /\.(js|mjs|jsx)$/,
+            resourceQuery: { not: [/raw/] },
             include:
               /node_modules(\/|\\)(notistack|@mui(\/|\\)x-data-grid|@mui(\/|\\)x-data-grid-pro|@mui(\/|\\)x-license-pro|@mui(\/|\\)x-data-grid-generator|@mui(\/|\\)x-date-pickers-pro|@mui(\/|\\)x-date-pickers)/,
             use: {
@@ -152,9 +165,14 @@ module.exports = {
           // required to transpile ../packages/
           {
             test: /\.(js|mjs|tsx|ts)$/,
+            resourceQuery: { not: [/raw/] },
             include: [workspaceRoot],
             exclude: /(node_modules|mui-icons-material)/,
             use: options.defaultLoaders.babel,
+          },
+          {
+            resourceQuery: /raw/,
+            type: 'asset/source',
           },
         ]),
       },
@@ -187,14 +205,7 @@ module.exports = {
       const prefix = userLanguage === 'en' ? '' : `/${userLanguage}`;
 
       pages2.forEach((page) => {
-        if (process.env.PULL_REQUEST !== 'true' && page.pathname.startsWith('/experiments')) {
-          return;
-        }
-        if (
-          page.pathname.startsWith('/joy-ui') &&
-          process.env.PULL_REQUEST !== 'true' &&
-          !FEATURE_TOGGLE.enable_joy_scope
-        ) {
+        if (page.pathname.startsWith('/experiments') && !staging) {
           return;
         }
         // The blog is not translated
@@ -253,6 +264,11 @@ module.exports = {
   async redirects() {
     if (FEATURE_TOGGLE.enable_redirects) {
       return [
+        {
+          source: '/joy-ui/',
+          destination: '/joy-ui/getting-started/overview/',
+          permanent: false,
+        },
         {
           source: '/styles/:path*',
           destination: '/system/styles/:path*',

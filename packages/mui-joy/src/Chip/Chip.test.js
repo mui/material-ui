@@ -13,7 +13,7 @@ describe('<Chip />', () => {
     inheritComponent: 'div',
     render,
     ThemeProvider,
-    muiName: 'MuiChip',
+    muiName: 'JoyChip',
     refInstanceof: window.HTMLDivElement,
     testDeepOverrides: { slotName: 'label', slotClassName: classes.label },
     testComponentPropWith: 'span',

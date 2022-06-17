@@ -10,7 +10,7 @@ packageName: '@mui/base'
 
 <p class="description">Detecta se um evento de clique ocorreu fora de um elemento. Ele ouve cliques que ocorrem em algum lugar no documento.</p>
 
-- 📦 [1.5 kB gzipped](/size-snapshot).
+- 📦 [1.5 kB gzipped](/size-snapshot/).
 - ⚛️ Suporte para portais
 
 [A paleta](/system/palette/) com funções de estilo.

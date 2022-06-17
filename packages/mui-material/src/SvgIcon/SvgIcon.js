@@ -51,10 +51,10 @@ const SvgIconRoot = styled('svg', {
   }[ownerState.fontSize],
   // TODO v5 deprecate, v6 remove for sx
   color:
-    theme.palette?.[ownerState.color]?.main ??
+    (theme.vars || theme).palette?.[ownerState.color]?.main ??
     {
-      action: theme.palette?.action?.active,
-      disabled: theme.palette?.action?.disabled,
+      action: (theme.vars || theme).palette?.action?.active,
+      disabled: (theme.vars || theme).palette?.action?.disabled,
       inherit: undefined,
     }[ownerState.color],
 }));

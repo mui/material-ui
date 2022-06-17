@@ -6,6 +6,7 @@ import AvatarGroup from '@mui/joy/AvatarGroup';
 import Avatar from '@mui/joy/Avatar';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
+import Chip from '@mui/joy/Chip';
 import Card from '@mui/joy/Card';
 import CardCover from '@mui/joy/CardCover';
 import CardContent from '@mui/joy/CardContent';
@@ -32,6 +33,7 @@ import LocationOn from '@mui/icons-material/LocationOnOutlined';
 import Visibility from '@mui/icons-material/Visibility';
 import CallMade from '@mui/icons-material/CallMade';
 import CreateNewFolder from '@mui/icons-material/CreateNewFolder';
+import Info from '@mui/icons-material/Info';
 
 const ColorSchemePicker = () => {
   const { mode, setMode } = useColorScheme();
@@ -70,7 +72,7 @@ const Covers = () => {
           {
             image: (
               <img
-                src="https://images.unsplash.com/photo-1483683804023-6ccdb62f86ef?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2835&q=80"
+                src="https://images.unsplash.com/photo-1483683804023-6ccdb62f86ef?auto=format&fit=crop&w=2835"
                 alt=""
               />
             ),
@@ -194,9 +196,9 @@ export default function JoySvgIcon() {
               >
                 +18°C
               </Typography>
-              <AspectRatio min="120px" max="200px" sx={{ my: 2 }}>
+              <AspectRatio minHeight="120px" maxHeight="200px" sx={{ my: 2 }}>
                 <img
-                  src="https://images.unsplash.com/photo-1501698335706-90b736210a61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1674&q=80"
+                  src="https://images.unsplash.com/photo-1501698335706-90b736210a61?auto=format&fit=crop&w=1674"
                   alt=""
                 />
               </AspectRatio>
@@ -225,7 +227,7 @@ export default function JoySvgIcon() {
           >
             <CardCover>
               <img
-                src="https://images.unsplash.com/photo-1525630558331-067c957817a9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2250&q=80"
+                src="https://images.unsplash.com/photo-1525630558331-067c957817a9?auto=format&fit=crop&w=2250"
                 alt=""
               />
             </CardCover>
@@ -300,7 +302,7 @@ export default function JoySvgIcon() {
               sx={{ my: 2, borderColor: 'rgba(0,0,0,0.12)' }}
             >
               <img
-                src="https://images.unsplash.com/photo-1464820453369-31d2c0b651af?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80"
+                src="https://images.unsplash.com/photo-1464820453369-31d2c0b651af?auto=format&fit=crop&w=1180"
                 alt=""
               />
             </AspectRatio>
@@ -321,10 +323,10 @@ export default function JoySvgIcon() {
             </Box>
           </Card>
           <Card component="li" variant="outlined" sx={{ '&:focus-within': { boxShadow: 'lg' } }}>
-            <CardOverflow variant="outlined">
+            <CardOverflow>
               <AspectRatio ratio="1">
                 <img
-                  src="https://images.unsplash.com/photo-1627483262268-9c2b5b2834b5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
+                  src="https://images.unsplash.com/photo-1627483262268-9c2b5b2834b5?auto=format&fit=crop&w=1770"
                   alt=""
                 />
                 <Box
@@ -341,20 +343,21 @@ export default function JoySvgIcon() {
                 >
                   04:26
                 </Box>
-                <IconButton
-                  size="lg"
-                  variant="solid"
-                  sx={{
-                    position: 'absolute',
-                    zIndex: 2,
-                    borderRadius: '50%',
-                    right: '1rem',
-                    bottom: 'calc(-1/2 * var(--IconButton-size))',
-                  }}
-                >
-                  <PlayArrow />
-                </IconButton>
               </AspectRatio>
+              <IconButton
+                size="lg"
+                variant="solid"
+                sx={{
+                  position: 'absolute',
+                  zIndex: 2,
+                  borderRadius: '50%',
+                  right: '1rem',
+                  bottom: '0px',
+                  transform: 'translateY(50%)',
+                }}
+              >
+                <PlayArrow />
+              </IconButton>
             </CardOverflow>
             <Typography level="h2" sx={{ fontSize: 'lg', mt: 3 }}>
               <Link href="#minimal-photo" overlay>
@@ -365,7 +368,6 @@ export default function JoySvgIcon() {
               By <Link href="#sukjit">Sujith</Link>
             </Typography>
             <CardOverflow
-              variant="outlined"
               sx={{
                 display: 'flex',
                 gap: 1,
@@ -398,19 +400,19 @@ export default function JoySvgIcon() {
             >
               <AspectRatio ratio="1">
                 <img
-                  src="https://images.unsplash.com/photo-1598214886806-c87b84b7078b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1450&q=80"
+                  src="https://images.unsplash.com/photo-1598214886806-c87b84b7078b?auto=format&fit=crop&w=1450"
                   alt=""
                 />
               </AspectRatio>
               <AspectRatio ratio="1">
                 <img
-                  src="https://images.unsplash.com/photo-1597589022928-bb4002c099ec?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80"
+                  src="https://images.unsplash.com/photo-1597589022928-bb4002c099ec?auto=format&fit=crop&w=1180"
                   alt=""
                 />
               </AspectRatio>
               <AspectRatio ratio="1">
                 <img
-                  src="https://images.unsplash.com/photo-1516073924210-ab16d9c03b13?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1706&q=80"
+                  src="https://images.unsplash.com/photo-1516073924210-ab16d9c03b13?auto=format&fit=crop&w=1706"
                   alt=""
                 />
               </AspectRatio>
@@ -663,7 +665,7 @@ export default function JoySvgIcon() {
               flexWrap: 'wrap',
               resize: 'horizontal',
               overflow: 'hidden',
-              gap: 'clamp(0px, (100% - 360px) * 999, 16px)',
+              gap: 'clamp(0px, (100% - 360px + 32px) * 999, 16px)',
               transition: 'transform 0.3s, border 0.3s',
               '&:hover': {
                 borderColor: theme.vars.palette.text.primary,
@@ -676,15 +678,17 @@ export default function JoySvgIcon() {
               variant="soft"
               sx={{
                 flexGrow: 1,
-                pb: 'clamp(0px, (100% - 360px) * 999, min(calc(100% / (16 / 9)), 300px))',
+                display: 'contents',
+                '--AspectRatio-paddingBottom':
+                  'clamp(0px, (100% - 360px) * 999, min(calc(100% / (16 / 9)), 300px))',
               }}
             >
               <img
                 alt=""
-                src="https://images.unsplash.com/photo-1620987278429-ab178d6eb547?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1450&q=80"
+                src="https://images.unsplash.com/photo-1620987278429-ab178d6eb547?auto=format&fit=crop&w=1450"
               />
             </AspectRatio>
-            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, maxWidth: '199px' }}>
+            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, maxWidth: '200px' }}>
               <Box sx={{ display: 'flex' }}>
                 <div>
                   <Typography level="h2" sx={{ fontSize: 'lg' }}>
@@ -708,10 +712,13 @@ export default function JoySvgIcon() {
                   <CallMade />
                 </IconButton>
               </Box>
-              <AspectRatio variant="soft" sx={{ pb: 'clamp(0px, (100% - 200px) * 999, 200px)' }}>
+              <AspectRatio
+                variant="soft"
+                sx={{ '--AspectRatio-paddingBottom': 'clamp(0px, (100% - 200px) * 999, 200px)' }}
+              >
                 <img
                   alt=""
-                  src="https://images.unsplash.com/photo-1620987278429-ab178d6eb547?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1450&q=80"
+                  src="https://images.unsplash.com/photo-1620987278429-ab178d6eb547?auto=format&fit=crop&w=1450"
                 />
               </AspectRatio>
               <Box sx={{ display: 'flex', gap: 1.5, mt: 'auto' }}>
@@ -725,6 +732,60 @@ export default function JoySvgIcon() {
                   <Typography>siriwatknp</Typography>
                 </div>
               </Box>
+            </Box>
+          </Card>
+          <Card component="li" variant="outlined" sx={{ '--Card-padding': '0px' }}>
+            <AspectRatio variant="outlined" sx={{ display: 'flex' }}>
+              <img
+                alt=""
+                src="https://images.unsplash.com/photo-1620987278429-ab178d6eb547?auto=format&fit=crop&w=1450"
+              />
+            </AspectRatio>
+          </Card>
+          <Card
+            component="li"
+            variant="outlined"
+            sx={{
+              placeSelf: 'flex-start',
+              minWidth: '300px',
+              flexDirection: 'row',
+              gap: 2,
+              '&:hover': { boxShadow: 'md', borderColor: 'primary.outlinedHoverBorder' },
+            }}
+          >
+            <AspectRatio ratio="1" maxHeight={100} sx={{ minWidth: 80 }}>
+              <img src="/static/images/cards/real-estate.png" alt="" />
+            </AspectRatio>
+            <Box>
+              <Box sx={{ ml: 0.5, mb: 1 }}>
+                <Typography
+                  level="h2"
+                  fontSize="sm"
+                  aria-describedby="card-description"
+                  mt={0.5}
+                  mb={1}
+                >
+                  <Link
+                    overlay
+                    underline="none"
+                    href="#interactive-card"
+                    sx={{ color: 'text.tertiary' }}
+                  >
+                    123 Main St, Phoenix, AZ
+                  </Link>
+                </Typography>
+                <Typography fontSize="md" fontWeight="lg" id="card-description">
+                  $280k - $310k
+                </Typography>
+              </Box>
+              <Chip
+                variant="soft"
+                startDecorator={<Info fontSize="md" />}
+                size="sm"
+                sx={{ pointerEvents: 'none' }}
+              >
+                Confidence score of 85%
+              </Chip>
             </Box>
           </Card>
         </Box>

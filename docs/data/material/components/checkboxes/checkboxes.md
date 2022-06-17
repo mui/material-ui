@@ -4,7 +4,7 @@ title: React Checkbox component
 components: Checkbox, FormControl, FormGroup, FormLabel, FormControlLabel
 materialDesign: https://material.io/components/selection-controls#checkboxes
 githubLabel: 'component: checkbox'
-waiAria: https://www.w3.org/TR/wai-aria-practices/#checkbox
+waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/checkbox/
 ---
 
 # Checkbox
@@ -57,8 +57,10 @@ Visually, there are **three** states a checkbox can be in: checked, unchecked, o
 
 {{"demo": "IndeterminateCheckbox.js"}}
 
-> ⚠️ When indeterminate is set, the value of the `checked` prop only impacts the form submitted values.
-> It has no accessibility or UX implications.
+:::warning
+⚠️ When indeterminate is set, the value of the `checked` prop only impacts the form submitted values.
+It has no accessibility or UX implications.
+:::
 
 ## FormGroup
 
@@ -88,7 +90,7 @@ You can learn more about this in the [overrides documentation page](/material-ui
 
 ## Accessibility
 
-(WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#checkbox)
+(WAI-ARIA: https://www.w3.org/WAI/ARIA/apg/patterns/checkbox/)
 
 - All form controls should have labels, and this includes radio buttons, checkboxes, and switches. In most cases, this is done by using the `<label>` element ([FormControlLabel](/material-ui/api/form-control-label/)).
 - When a label can't be used, it's necessary to add an attribute directly to the input component.
