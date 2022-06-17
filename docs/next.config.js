@@ -1,6 +1,6 @@
 const path = require('path');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
-const nextTranspileModules = require('next-transpile-modules')
+const nextTranspileModules = require('next-transpile-modules');
 const pkg = require('../package.json');
 const { findPages } = require('./src/modules/utils/find');
 const { LANGUAGES, LANGUAGES_SSR } = require('./src/modules/constants');
@@ -25,7 +25,7 @@ const withTM = nextTranspileModules([
   '@mui/x-date-pickers',
   '@mui/x-date-pickers-pro',
   '@mui/x-data-grid-generator',
-  '@mui/x-license-pro'
+  '@mui/x-license-pro',
 ]);
 
 const reactStrictMode = true;
@@ -107,7 +107,7 @@ module.exports = withTM({
           docs: path.resolve(__dirname, './'),
           modules: path.resolve(__dirname, '../modules'),
           pages: path.resolve(__dirname, './pages'),
-        }
+        },
       },
       module: {
         ...config.module,
