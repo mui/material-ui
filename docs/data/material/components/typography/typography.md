@@ -40,10 +40,12 @@ To [install the Roboto package](https://www.npmjs.com/package/@fontsource/roboto
 npm
 ```sh
 npm install @fontsource/roboto
+```
 
 yarn
 ```sh
 yarn add @fontsource/roboto
+```
 
 Then, you can import it in your entry-point.
 
