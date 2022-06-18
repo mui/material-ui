@@ -60,7 +60,7 @@ describe('@mui/envinfo', () => {
     // Need more time to download packages
     this.timeout(10000);
 
-    const envinfoJSON = execEnvinfo(['--json', '--skipClipboard']);
+    const envinfoJSON = execEnvinfo(['--json']);
 
     const envinfo = JSON.parse(envinfoJSON);
 
@@ -83,7 +83,38 @@ describe('@mui/envinfo', () => {
     expect(envinfo).to.have.nested.property('npmPackages.typescript');
   });
 
-  it('copies env information to the clipboard', function test() {
+  it('with --clipboard flag, copies env information to the clipboard', function test() {
+    if (!isClipboardAvailable) {
+      this.skip();
+    }
+
+    // Need more time to download packages
+    this.timeout(10000);
+
+    const info = 'Output copied to clipboard';
+
+    const consoleOutput = execEnvinfo(['--clipboard']);
+    const envFromClipboard = clipboard.readSync();
+
+    expect(consoleOutput).to.include(info);
+    expect(consoleOutput).to.include(envFromClipboard);
+
+    expect(envFromClipboard).to.include('@mui/material');
+    expect(envFromClipboard).to.include('typescript');
+    expect(envFromClipboard).to.not.include(info);
+  });
+
+  it('when copy to clipboard fails, adds error message at the end', function test() {
+    if (isClipboardAvailable) {
+      this.skip();
+    }
+
+    const consoleOutput = execEnvinfo(['--clipboard']).toLocaleLowerCase();
+
+    expect(consoleOutput).to.include('failed to copy to clipboard');
+  });
+
+  it("without --clipboard flag, doesn't copy to clipboard", function test() {
     if (!isClipboardAvailable) {
       this.skip();
     }
@@ -96,38 +127,7 @@ describe('@mui/envinfo', () => {
     const consoleOutput = execEnvinfo();
     const envFromClipboard = clipboard.readSync();
 
-    expect(consoleOutput).to.include(info);
-    expect(consoleOutput).to.include(envFromClipboard);
-
-    expect(envFromClipboard).to.include('@mui/material');
-    expect(envFromClipboard).to.include('typescript');
-    expect(envFromClipboard).to.not.include(info);
-  });
-
-  it("doesn't copy to clipboard with --skipClipboard flag", function test() {
-    if (!isClipboardAvailable) {
-      this.skip();
-    }
-
-    // Need more time to download packages
-    this.timeout(10000);
-
-    const info = 'Output copied to clipboard';
-
-    const consoleOutput = execEnvinfo(['--skipClipboard']);
-    const envFromClipboard = clipboard.readSync();
-
     expect(consoleOutput).to.not.include(info);
     expect(envFromClipboard).to.be.equal('');
-  });
-
-  it('when copy to clipboard fails, adds error message at the end', function test() {
-    if (isClipboardAvailable) {
-      this.skip();
-    }
-
-    const consoleOutput = execEnvinfo().toLocaleLowerCase();
-
-    expect(consoleOutput).to.include('failed to copy to clipboard');
   });
 });

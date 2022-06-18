@@ -1,6 +1,6 @@
 # @mui/envinfo
 
-Prints information about the current environment relevant to MUI packages to the console and clipboard.
+Prints information about the current environment relevant to MUI packages to the console.
 Please use this package if you report [issues to MUI](https://github.com/mui/material-ui/issues).
 
 ## Usage
@@ -44,4 +44,4 @@ $ npx @mui/envinfo
 
 `--json` - writes output as JSON
 
-`--skipClipboard` - doesn't copy information to clipboard
+`--clipboard` - copies env information to clipboard
