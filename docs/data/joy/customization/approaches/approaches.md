@@ -17,7 +17,7 @@ If you want every instance of a given component to be styled consistently, themi
 You can think of it as a mask that wraps them and adds custom styles.
 That way, you should be able to switch between themes without changing your app's logic.
 
-Here are some examples that reproduce popular designs out there (only the light mode, though):
+Here are some examples that reproduce popular designs (only the light mode, though):
 
 {{"demo": "ButtonThemes.js", "hideToolbar": true}}
 
@@ -64,13 +64,13 @@ function App() {
 ### Themed components
 
 Customizing the theme tokens, as described above, will affect every Joy UI component.
-If you want to customize a specific component and want every instance of it to be consistent, you can target it directly within the theme.
+To customize a specific component so every instance of it is consistent, target it directly within the theme.
 
 :::info
 Check the specific [themed components page](/joy-ui/customization/themed-components/) for more in-depth instructions.
 :::
 
-Here is an example of customizing the Button's default `fontWeight` and `boxShadow`:
+Here is an example of customizing the [`Button`](/joy-ui/react-button/)'s default `fontWeight` and `boxShadow`:
 
 ```js
 import { CssVarsProvider, extendTheme } from '@mui/joy/styles';
