@@ -14,7 +14,7 @@ export default function ButtonIcons() {
         aria-label="Like"
         variant="soft"
         color="neutral"
-        endIcon={<KeyboardArrowDown fontSize="lg" />}
+        endIcon={<KeyboardArrowDown />}
       >
         <ThumbUp />
       </Button>
