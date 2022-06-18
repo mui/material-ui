@@ -154,7 +154,7 @@ export default function JoyVariablesDemo(props: {
                     if (!value) {
                       const newSx = { ...prevSx };
                       // @ts-ignore
-                      delete newSx[data.var];
+                      delete newSx[item.var];
                       return newSx;
                     }
                     return {
