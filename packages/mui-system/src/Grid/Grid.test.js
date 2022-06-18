@@ -232,7 +232,7 @@ describe('System <Grid />', () => {
       });
     });
 
-    it('should use the value from theme and nestable', () => {
+    it('should use the value from theme and nestable', function test() {
       if (/jsdom/.test(window.navigator.userAgent)) {
         this.skip();
       }
@@ -260,10 +260,10 @@ describe('System <Grid />', () => {
         marginLeft: '-16px',
       });
       expect(container.firstChild.firstChild).toHaveComputedStyle({
-        marginTop: '-16px',
-        marginLeft: '-16px',
-        marginRight: '-16px',
-        marginBottom: '-16px',
+        marginTop: '-12px',
+        marginLeft: '-12px',
+        marginRight: '-12px',
+        marginBottom: '-12px',
         paddingTop: '16px',
         paddingLeft: '16px',
       });

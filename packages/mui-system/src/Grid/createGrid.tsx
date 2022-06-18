@@ -109,9 +109,15 @@ export default function createGrid(
       spacing: spacingProp = 0,
       rowSpacing: rowSpacingProp = spacingProp,
       columnSpacing: columnSpacingProp = spacingProp,
-      disableEqualOverflow,
+      disableEqualOverflow: themeDisableEqualOverflow,
       ...rest
     } = props;
+    // `disableEqualOverflow` can be set from theme defaultProps,
+    // so the **nested** grid should not use it from theme and look at the instance props instead.
+    let disableEqualOverflow = themeDisableEqualOverflow;
+    if (nested && themeDisableEqualOverflow !== undefined) {
+      disableEqualOverflow = inProps.disableEqualOverflow;
+    }
     // collect breakpoints related props because they can be custom from the theme.
     const gridSize = {} as GridOwnerState['gridSize'];
     const gridOffset = {} as GridOwnerState['gridOffset'];
@@ -145,8 +151,8 @@ export default function createGrid(
       columnSpacing,
       gridSize,
       gridOffset,
-      disableEqualOverflow: disableEqualOverflow ?? overflow ?? false,
-      parentDisableEqualOverflow: overflow,
+      disableEqualOverflow: disableEqualOverflow ?? overflow ?? false, // use context value if exists.
+      parentDisableEqualOverflow: overflow, // for nested grid
     };
 
     const classes = useUtilityClasses(ownerState, theme);
@@ -166,6 +172,7 @@ export default function createGrid(
     }
 
     if (disableEqualOverflow !== undefined && disableEqualOverflow !== (overflow ?? false)) {
+      // This means the root grid with `disableEqualOverflow` or nested grid with different `disableEqualOverflow` from the context.
       result = (
         <OverflowContext.Provider value={disableEqualOverflow}>{result}</OverflowContext.Provider>
       );
