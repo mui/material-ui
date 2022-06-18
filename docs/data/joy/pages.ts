@@ -10,12 +10,12 @@ const pages = [
       { pathname: '/joy-ui/getting-started/tutorial' },
       { pathname: '/joy-ui/getting-started/templates' },
       {
-        pathname: '/joy-ui/core-features',
-        subheader: 'core-features',
+        pathname: '/joy-ui/main-features',
+        subheader: 'main-features',
         children: [
-          { pathname: '/joy-ui/core-features/global-variants' },
-          { pathname: '/joy-ui/core-features/automatic-adjustment' },
-          { pathname: '/joy-ui/core-features/perfect-dark-mode' },
+          { pathname: '/joy-ui/main-features/global-variants' },
+          { pathname: '/joy-ui/main-features/automatic-adjustment' },
+          { pathname: '/joy-ui/main-features/perfect-dark-mode' },
         ],
       },
     ],
