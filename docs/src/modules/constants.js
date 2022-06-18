@@ -35,6 +35,10 @@ const LANGUAGES_IGNORE_PAGES = (pathname) => {
     return true;
   }
 
+  if (pathname === '/size-snapshot/') {
+    return true;
+  }
+
   return false;
 };
 
