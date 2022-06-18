@@ -133,7 +133,8 @@ function App() {
 ```
 
 :::info
-**Note**: Joy will add the prefix (default as `joy`) to all CSS variables. If you want to change that, do `<CssVarsProvider prefix="myproduct">`.
+**Note**: Joy UI will add the prefix (default as `joy`) to all CSS variables.
+To change that, do `<CssVarsProvider prefix="myproduct">`.
 The generated CSS variables will then be:
 
 ```diff
@@ -264,20 +265,20 @@ For example:
 
 ### Overriding global variant tokens
 
-If you want to customize the global variants, we recommend to start from the Button component as it tends to have the larger amount of interactive variants when compared to other components.
+To customize the global variants, we recommend to start from the Button component as it tends to have the larger amount of interactive variants when compared to other components.
 
-As an example, let's customize Joy's [`Button`](/joy-ui/react-button/) so they look like the ones from [Bootstrap](https://getbootstrap.com/docs/5.2/components/buttons/#examples):
+As an example, let's customize Joy UI's [`Button`](/joy-ui/react-button/) so they look like the ones from [Bootstrap](https://getbootstrap.com/docs/5.2/components/buttons/#examples):
 
-- Bootstrap's default buttons are comparable to Joy's `solid` variant.
-- Bootstrap's `secondary` variant uses a grey color, similar to Joy's `neutral`.
-- Bootstrap's `btn-light` is similar to Joy's button using the `soft` variant and `neutral` color palette.
-- Joy doesn't have anything similar, out-of-the-box, to Bootstrap's `btn-dark`.
+- Bootstrap's default buttons are comparable to Joy UI's `solid` variant.
+- Bootstrap's `secondary` variant uses a grey color, similar to Joy UI's `neutral`.
+- Bootstrap's `btn-light` is similar to Joy UI's button using the `soft` variant and `neutral` color palette.
+- Joy UI doesn't have anything similar, out-of-the-box, to Bootstrap's `btn-dark`.
   - We could achieve that using one of the tree main customization approaches.
 
 {{"demo": "BootstrapVariantTokens.js"}}
 
 :::warning
-⚠️ Make sure that every color schemes have the same set of global variant tokens, otherwise, their styles will be inconsistent. It can also cause problems for server-side rendering.
+**⚠️ Keep in mind:** Make sure that every color schemes have the same set of global variant tokens, otherwise, their styles will be inconsistent, and itt can also cause problems for server-side rendering.
 
 ```js
 extendTheme({
