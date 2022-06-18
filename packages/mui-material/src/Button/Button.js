@@ -322,7 +322,8 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     variant,
   };
 
-  const classes = useUtilityClasses(ownerState);
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  const { root: classes_root, ...classes } = useUtilityClasses(ownerState);
 
   const startIcon = startIconProp && (
     <ButtonStartIcon className={classes.startIcon} ownerState={ownerState}>
@@ -339,7 +340,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
   return (
     <ButtonRoot
       ownerState={ownerState}
-      className={clsx(className, contextProps.className)}
+      className={clsx(contextProps.className, classes_root, className)}
       component={component}
       disabled={disabled}
       focusRipple={!disableFocusRipple}
