@@ -430,6 +430,21 @@ describe('grid generator', () => {
           '--Grid-rowSpacing': '0px',
         },
       });
+
+      expect(
+        generateGridRowSpacingStyles({
+          theme: { breakpoints, spacing },
+          ownerState: { container: true, rowSpacing: { xs: 0, md: 2, xl: 0 } },
+        }),
+      ).to.deep.equal({
+        '--Grid-rowSpacing': '0px',
+        '@media (min-width:900px)': {
+          '--Grid-rowSpacing': '16px',
+        },
+        '@media (min-width:1536px)': {
+          '--Grid-rowSpacing': '0px',
+        },
+      });
     });
   });
 
@@ -466,6 +481,21 @@ describe('grid generator', () => {
         '--Grid-columnSpacing': '16px',
         '@media (min-width:900px)': {
           '--Grid-columnSpacing': '24px',
+        },
+        '@media (min-width:1536px)': {
+          '--Grid-columnSpacing': '0px',
+        },
+      });
+
+      expect(
+        generateGridColumnSpacingStyles({
+          theme: { breakpoints, spacing },
+          ownerState: { container: true, columnSpacing: { xs: 0, md: 2, xl: 0 } },
+        }),
+      ).to.deep.equal({
+        '--Grid-columnSpacing': '0px',
+        '@media (min-width:900px)': {
+          '--Grid-columnSpacing': '16px',
         },
         '@media (min-width:1536px)': {
           '--Grid-columnSpacing': '0px',
