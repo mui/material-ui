@@ -146,6 +146,7 @@ export default function createGrid(
       gridSize,
       gridOffset,
       disableEqualOverflow: disableEqualOverflow ?? overflow ?? false,
+      parentDisableEqualOverflow: overflow,
     };
 
     const classes = useUtilityClasses(ownerState, theme);

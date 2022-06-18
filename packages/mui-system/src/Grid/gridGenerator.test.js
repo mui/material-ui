@@ -1,8 +1,10 @@
 import { expect } from 'chai';
+import sinon from 'sinon';
 import createSpacing from '../createTheme/createSpacing';
 import createBreakpoints from '../createTheme/createBreakpoints';
 import {
   traverseBreakpoints,
+  generateGridStyles,
   generateGridSizeStyles,
   generateGridColumnsStyles,
   generateGridRowSpacingStyles,
@@ -223,6 +225,72 @@ describe('grid generator', () => {
             margin: 4,
           },
         });
+      });
+    });
+  });
+
+  describe('generateGridStyles', () => {
+    it('root container', () => {
+      const result = generateGridStyles({ ownerState: { container: true, nested: false } });
+      expect(result).to.deep.equal({
+        minWidth: 0,
+        boxSizing: 'border-box',
+        display: 'flex',
+        flexWrap: 'wrap',
+        margin: 'calc(var(--Grid-rowSpacing) / -2) calc(var(--Grid-columnSpacing) / -2)',
+        '--Grid-nested-rowSpacing': 'var(--Grid-rowSpacing)',
+        '--Grid-nested-columnSpacing': 'var(--Grid-columnSpacing)',
+      });
+    });
+
+    it('nested container', () => {
+      const result = generateGridStyles({ ownerState: { container: true, nested: true } });
+      sinon.assert.match(result, {
+        margin: `calc(var(--Grid-rowSpacing) / -2) calc(var(--Grid-columnSpacing) / -2)`,
+        padding: `calc(var(--Grid-nested-rowSpacing) / 2) calc(var(--Grid-nested-columnSpacing) / 2)`,
+      });
+    });
+
+    it('root container with disableEqualOverflow', () => {
+      const result = generateGridStyles({
+        ownerState: { container: true, nested: true, disableEqualOverflow: true },
+      });
+      sinon.assert.match(result, {
+        margin: `calc(var(--Grid-rowSpacing) * -1) 0px 0px calc(var(--Grid-columnSpacing) * -1)`,
+        padding: `calc(var(--Grid-nested-rowSpacing)) 0px 0px calc(var(--Grid-nested-columnSpacing))`,
+      });
+    });
+
+    it('nested container without disableEqualOverflow but parent has', () => {
+      const result = generateGridStyles({
+        ownerState: {
+          container: true,
+          nested: true,
+          disableEqualOverflow: false,
+          parentDisableEqualOverflow: true,
+        },
+      });
+      sinon.assert.match(result, {
+        margin: `calc(var(--Grid-rowSpacing) / -2) calc(var(--Grid-columnSpacing) / -2)`,
+        padding: `calc(var(--Grid-nested-rowSpacing)) 0px 0px calc(var(--Grid-nested-columnSpacing))`,
+      });
+    });
+
+    it('item', () => {
+      const result = generateGridStyles({ ownerState: { container: false, nested: false } });
+      expect(result).to.deep.equal({
+        minWidth: 0,
+        boxSizing: 'border-box',
+        padding: `calc(var(--Grid-rowSpacing) / 2) calc(var(--Grid-columnSpacing) / 2)`,
+      });
+    });
+
+    it('item with disableEqualOverflow', () => {
+      const result = generateGridStyles({
+        ownerState: { container: false, disableEqualOverflow: true },
+      });
+      sinon.assert.match(result, {
+        padding: `calc(var(--Grid-rowSpacing)) 0px 0px calc(var(--Grid-columnSpacing))`,
       });
     });
   });

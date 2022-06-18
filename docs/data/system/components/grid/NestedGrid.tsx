@@ -12,7 +12,7 @@ const Item = styled('div')(({ theme }) => ({
 export default function NestedGrid() {
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <Grid container spacing={2} disableEqualOverflow>
+      <Grid container spacing={2}>
         <Grid xs={12} md={5} lg={4}>
           <Item>Email subscribe section</Item>
         </Grid>
@@ -89,12 +89,7 @@ export default function NestedGrid() {
           <Grid sx={{ order: { xs: 2, sm: 1 } }}>
             <Item>© Copyright</Item>
           </Grid>
-          <Grid
-            container
-            // disableEqualOverflow={false}
-            columnSpacing={1}
-            sx={{ order: { xs: 1, sm: 2 } }}
-          >
+          <Grid container columnSpacing={1} sx={{ order: { xs: 1, sm: 2 } }}>
             <Grid>
               <Item>Link A</Item>
             </Grid>

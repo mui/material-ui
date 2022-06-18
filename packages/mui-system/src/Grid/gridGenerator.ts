@@ -4,7 +4,7 @@ import { GridOwnerState } from './GridProps';
 
 interface Props {
   theme: { breakpoints: Breakpoints; spacing?: Spacing };
-  ownerState: GridOwnerState;
+  ownerState: GridOwnerState & { parentDisableEqualOverflow?: boolean };
 }
 
 interface Iterator<T> {
@@ -189,6 +189,10 @@ export const generateGridStyles = ({ ownerState }: Props): {} => {
       ? {
           display: 'flex',
           flexWrap: 'wrap',
+          ...(ownerState.wrap &&
+            ownerState.wrap !== 'wrap' && {
+              flexWrap: ownerState.wrap,
+            }),
           margin: `calc(var(--Grid-rowSpacing) / -2) calc(var(--Grid-columnSpacing) / -2)`,
           ...(ownerState.disableEqualOverflow && {
             margin: `calc(var(--Grid-rowSpacing) * -1) 0px 0px calc(var(--Grid-columnSpacing) * -1)`,
@@ -196,7 +200,7 @@ export const generateGridStyles = ({ ownerState }: Props): {} => {
           ...(ownerState.nested
             ? {
                 padding: `calc(var(--Grid-nested-rowSpacing) / 2) calc(var(--Grid-nested-columnSpacing) / 2)`,
-                ...(ownerState.disableEqualOverflow && {
+                ...((ownerState.disableEqualOverflow || ownerState.parentDisableEqualOverflow) && {
                   padding: `calc(var(--Grid-nested-rowSpacing)) 0px 0px calc(var(--Grid-nested-columnSpacing))`,
                 }),
               }
@@ -211,9 +215,6 @@ export const generateGridStyles = ({ ownerState }: Props): {} => {
             padding: `calc(var(--Grid-rowSpacing)) 0px 0px calc(var(--Grid-columnSpacing))`,
           }),
         }),
-    ...(ownerState.wrap !== 'wrap' && {
-      flexWrap: ownerState.wrap,
-    }),
   };
 };
 
