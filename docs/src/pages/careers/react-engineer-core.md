@@ -145,4 +145,4 @@ You can find the other perks & benefits on the [careers](/careers/#perks-amp-ben
 
 ## How to apply?
 
-[Apply now for this position 📮](https://jobs.ashbyhq.com/mui/e71433e9-2ddf-42bd-9da6-d0a102d1ce3c/application)
+[Apply now for this position 📮](https://jobs.ashbyhq.com/MUI/e71433e9-2ddf-42bd-9da6-d0a102d1ce3c/application)
