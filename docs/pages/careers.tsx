@@ -170,11 +170,6 @@ const openRolesData = [
         description: 'You will lead the technical and operational development of MUI Store.',
         url: '/careers/product-engineer/',
       },
-      {
-        title: 'Developer Experience Engineer - Core',
-        description: 'You will focus on providing experiences that delight developers using MUI.',
-        url: '/careers/developer-experience-engineer/',
-      },
     ],
   },
   {
