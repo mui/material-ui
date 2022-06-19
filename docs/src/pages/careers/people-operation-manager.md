@@ -50,7 +50,7 @@ Depending on the day, you'll:
   - You will help all individuals understand their primary role within the wider organization.
   - You will partner with Finance for budgeting/compensation purposes. You will manage compensation, benefits, leave, and other people-related matters.
   - You will shape a strategy that aligns and moves MUI towards continued growth, innovation, and improvement.
-- **Improve employees experience**.
+- **Improve employees' experience**.
   - You will work on the employee engagement survey results.
   - You will reduce the admin burden.
   - You will own the Retreat. Bring our remote team together. Being a fully distributed remote team has its challenges. You organize team events, make sure everybody has what they need to be productive, and find creative ways to engage as a team.
