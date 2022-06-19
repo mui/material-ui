@@ -20,12 +20,15 @@
         "description": "'column-reverse'<br>&#124;&nbsp;'column'<br>&#124;&nbsp;'row-reverse'<br>&#124;&nbsp;'row'<br>&#124;&nbsp;Array&lt;'column-reverse'<br>&#124;&nbsp;'column'<br>&#124;&nbsp;'row-reverse'<br>&#124;&nbsp;'row'&gt;<br>&#124;&nbsp;object"
       }
     },
+    "disableEqualOverflow": { "type": { "name": "bool" } },
     "lg": {
       "type": { "name": "union", "description": "'auto'<br>&#124;&nbsp;number<br>&#124;&nbsp;bool" }
     },
+    "lgOffset": { "type": { "name": "union", "description": "'auto'<br>&#124;&nbsp;number" } },
     "md": {
       "type": { "name": "union", "description": "'auto'<br>&#124;&nbsp;number<br>&#124;&nbsp;bool" }
     },
+    "mdOffset": { "type": { "name": "union", "description": "'auto'<br>&#124;&nbsp;number" } },
     "rowSpacing": {
       "type": {
         "name": "union",
@@ -35,6 +38,7 @@
     "sm": {
       "type": { "name": "union", "description": "'auto'<br>&#124;&nbsp;number<br>&#124;&nbsp;bool" }
     },
+    "smOffset": { "type": { "name": "union", "description": "'auto'<br>&#124;&nbsp;number" } },
     "spacing": {
       "type": {
         "name": "union",
@@ -50,9 +54,11 @@
     "xl": {
       "type": { "name": "union", "description": "'auto'<br>&#124;&nbsp;number<br>&#124;&nbsp;bool" }
     },
+    "xlOffset": { "type": { "name": "union", "description": "'auto'<br>&#124;&nbsp;number" } },
     "xs": {
       "type": { "name": "union", "description": "'auto'<br>&#124;&nbsp;number<br>&#124;&nbsp;bool" }
-    }
+    },
+    "xsOffset": { "type": { "name": "union", "description": "'auto'<br>&#124;&nbsp;number" } }
   },
   "name": "Grid",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
