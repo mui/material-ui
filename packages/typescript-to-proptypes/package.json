@@ -23,7 +23,7 @@
     "@types/babel__core": "^7.1.19",
     "@types/doctrine": "^0.0.5",
     "@types/lodash": "^4.14.182",
-    "@types/node": "^16.11.39",
+    "@types/node": "^16.11.41",
     "@types/prettier": "^2.6.3",
     "@types/react": "^17.0.45",
     "@types/uuid": "^8.3.4",
