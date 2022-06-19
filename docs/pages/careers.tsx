@@ -188,17 +188,6 @@ const openRolesData = [
       },
     ],
   },
-  {
-    title: 'Support',
-    roles: [
-      {
-        title: 'Support Agent - Store',
-        description:
-          "You will provide support for the customers of MUI Store. You will directly impact customers' satisfaction and success.",
-        url: '/careers/support-agent/',
-      },
-    ],
-  },
 ];
 
 const nextRolesData = [
@@ -229,6 +218,17 @@ const nextRolesData = [
       {
         title: 'Technical Recruiter',
         description: 'You will hire the next engineers joining the team.',
+      },
+    ],
+  },
+  {
+    title: 'Support',
+    roles: [
+      {
+        title: 'Support Agent - Store',
+        description:
+          "You will provide support for the customers of MUI Store. You will directly impact customers' satisfaction and success.",
+        url: '/careers/support-agent/',
       },
     ],
   },
