@@ -175,11 +175,6 @@ const openRolesData = [
         description: 'You will focus on providing experiences that delight developers using MUI.',
         url: '/careers/developer-experience-engineer/',
       },
-      {
-        title: 'Engineering Manager - Toolpad',
-        description: 'You will grow the small engineering team currently working on MUI Toolpad.',
-        url: '/careers/engineering-manager/',
-      },
     ],
   },
   {
