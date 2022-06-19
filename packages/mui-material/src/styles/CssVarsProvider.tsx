@@ -1,6 +1,9 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import { unstable_createCssVarsProvider as createCssVarsProvider } from '@mui/system';
-import experimental_extendTheme from './experimental_extendTheme';
+import experimental_extendTheme, {
+  SupportedColorScheme,
+  CssVarsTheme,
+} from './experimental_extendTheme';
 import createTypography from './createTypography';
 
 const defaultTheme = experimental_extendTheme();
@@ -9,7 +12,7 @@ const {
   CssVarsProvider: Experimental_CssVarsProvider,
   useColorScheme,
   getInitColorSchemeScript,
-} = createCssVarsProvider({
+} = createCssVarsProvider<SupportedColorScheme, CssVarsTheme>({
   theme: defaultTheme,
   attribute: 'data-mui-color-scheme',
   modeStorageKey: 'mui-mode',
