@@ -33,10 +33,9 @@ Users are encouraged to explore the data and create combinations with multiple g
 and are then able to export these new views to Excel, with the next Premium feature: Excel export.
 
 :::info
+With the Premium release, we have made Row grouping available for production use in the `@mui/x-data-grid-premium` package.
 
-With the Premium release, we moved Row grouping permanently to the `@mui/x-data-grid-premium` package.
-
-The feature was available [as a preview](https://mui.com/blog/introducing-the-row-grouping-feature/#how-to-unlock-this-feature) for Pro users intending to migrate to the new plan.
+This feature was previously available [as a preview](https://mui.com/blog/introducing-the-row-grouping-feature/#how-to-unlock-this-feature) for Pro users intending to migrate to the new plan.
 
 :::
 
@@ -79,7 +78,7 @@ We’d also like to keep it within reach of individuals and small teams, while s
 Here is a list of everything that has changed:
 
 :::warning
-⚠️ Please note: The following **pricing** changes apply only to **new customers**. Existing customers are not impacted, and their license agreement remains valid.
+⚠️ Please note: The following **pricing** changes apply only to **new customers**. Existing customers are grandfathered, they can renew their license under the [previous terms](https://mui.com/store/legal/mui-x-eula-2022-05-08/) once. Their last renewal can have a support duration of up to 5 years.
 :::
 
 - **Price point per developer seat**
