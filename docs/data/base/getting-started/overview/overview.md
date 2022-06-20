@@ -1,4 +1,8 @@
-# Overview
+---
+title: Overview
+---
+
+# MUI Base - Overview
 
 <p class="description">MUI Base is a library of headless ("unstyled") React UI components and low-level hooks.</p>
 
