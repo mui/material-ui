@@ -4,12 +4,12 @@ import SnackbarUnstyled, { SnackbarCloseReason } from '@mui/base/SnackbarUnstyle
 
 const snackbarInLeft = keyframes`
   from {
-		transform: translateX(-100%);
-		
-	}
-	to {
-		transform: translateX(0);
-	}
+    transform: translateX(-100%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
 `;
 
 const StyledSnackbar = styled(SnackbarUnstyled)`
