@@ -74,6 +74,8 @@ interface TransformProps {
 }
 
 const Transform = ({ open, children, onEnter, onExit }: TransformProps) => {
+  const nodeRef = React.useRef(null);
+
   return (
     <Transition
       timeout={{ enter: 300, exit: 500 }}
@@ -81,6 +83,7 @@ const Transform = ({ open, children, onEnter, onExit }: TransformProps) => {
       appear
       onEnter={onEnter}
       onExit={onExit}
+      nodeRef={nodeRef}
     >
       {(status) => {
         return (
@@ -118,6 +121,7 @@ const statusStyles = {
 
 const FadeTransform = (props: TransformProps) => {
   const { open, children, onEnter, onExit } = props;
+  const nodeRef = React.useRef(null);
 
   return (
     <Transition
@@ -126,6 +130,7 @@ const FadeTransform = (props: TransformProps) => {
       appear
       onEnter={onEnter}
       onExit={onExit}
+      nodeRef={nodeRef}
     >
       {(status) => (
         <div
