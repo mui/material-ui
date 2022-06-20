@@ -33,7 +33,7 @@ export type SupportedColorScheme = DefaultColorScheme | ExtendedColorScheme;
 
 export interface Opacity {
   inputPlaceholder: number;
-  inputTouchBottomLine: number;
+  inputUnderline: number;
 }
 
 export type Overlays = [
