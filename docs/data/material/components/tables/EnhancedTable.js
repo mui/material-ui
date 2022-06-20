@@ -192,17 +192,17 @@ function EnhancedTableHead(props) {
 }
 
 EnhancedTableHead.propTypes = {
-  rows: PropTypes.arrayOf(
-    PropTypes.shape({
-      name: PropTypes.string.isRequired,
-      calories: PropTypes.number.isRequired,
-      fat: PropTypes.number.isRequired,
-      carbs: PropTypes.number.isRequired,
-      protein: PropTypes.number.isRequired,
-    })
-  ).isRequired,
   numSelected: PropTypes.number.isRequired,
   page: PropTypes.number.isRequired,
+  rows: PropTypes.arrayOf(
+    PropTypes.shape({
+      calories: PropTypes.number.isRequired,
+      carbs: PropTypes.number.isRequired,
+      fat: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      protein: PropTypes.number.isRequired,
+    }),
+  ).isRequired,
   rowsPerPage: PropTypes.number.isRequired,
   setDessertsOnPage: PropTypes.func.isRequired,
   setSelected: PropTypes.func.isRequired,

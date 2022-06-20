@@ -178,7 +178,7 @@ function EnhancedTableHead(props: EnhancedTableHeadProps) {
 
     setDessertsOnPage(
       // if you don't need to support IE11, you can replace the `stableSort` call with:
-      // data
+      // rows
       //   .sort(getComparator(newOrder, newOrderBy))
       //   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
       stableSort<Dessert>(rows, getComparator(newOrder, newOrderBy)).slice(
