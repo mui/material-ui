@@ -4,10 +4,10 @@ import {
   Experimental_CssVarsProvider as CssVarsProvider,
   styled,
   useTheme,
+  Overlays,
 } from '@mui/material/styles';
-import type { Overlays } from '@mui/material/styles';
 
-const theme = extendTheme({
+const customTheme = extendTheme({
   colorSchemes: {
     light: {
       opacity: {
@@ -40,7 +40,7 @@ const TestUseTheme = () => {
   return <div style={{ background: theme.vars.palette.common.background }}>test</div>;
 };
 
-<CssVarsProvider theme={theme}>
+<CssVarsProvider theme={customTheme}>
   <TestStyled
     sx={(theme) => ({
       [theme.getColorSchemeSelector('dark')]: {
