@@ -161,7 +161,7 @@ export interface PaletteTooltip {
 }
 
 export interface ColorSystemOptions {
-  palette?: PaletteOptions & {
+  palette?: Omit<PaletteOptions, 'mode'> & {
     common?: Partial<PaletteCommonChannel>;
     primary?: Partial<PaletteColorChannel>;
     secondary?: Partial<PaletteColorChannel>;
