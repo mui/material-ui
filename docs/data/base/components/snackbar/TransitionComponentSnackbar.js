@@ -65,6 +65,8 @@ const positioningStyles = {
 };
 
 const Transform = ({ open, children, onEnter, onExit }) => {
+  const nodeRef = React.useRef(null);
+
   return (
     <Transition
       timeout={{ enter: 300, exit: 500 }}
@@ -72,6 +74,7 @@ const Transform = ({ open, children, onEnter, onExit }) => {
       appear
       onEnter={onEnter}
       onExit={onExit}
+      nodeRef={nodeRef}
     >
       {(status) => {
         return (
@@ -116,6 +119,7 @@ const statusStyles = {
 
 const FadeTransform = (props) => {
   const { open, children, onEnter, onExit } = props;
+  const nodeRef = React.useRef(null);
 
   return (
     <Transition
@@ -124,6 +128,7 @@ const FadeTransform = (props) => {
       appear
       onEnter={onEnter}
       onExit={onExit}
+      nodeRef={nodeRef}
     >
       {(status) => (
         <div
