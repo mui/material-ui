@@ -1,9 +1,14 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { OverridableComponent } from '@mui/types';
 import { unstable_useEventCallback as useEventCallback } from '@mui/utils';
 import ClickAwayListener from '../ClickAwayListener';
-import { SnackbarCloseReason, SnackbarUnstyledProps } from './SnackbarUnstyled.types';
+import {
+  SnackbarCloseReason,
+  SnackbarUnstyledProps,
+  SnackbarUnstyledTypeMap,
+} from './SnackbarUnstyled.types';
 import composeClasses from '../composeClasses';
 import { getSnackbarUnstyledUtilityClass } from './snackbarUnstyledClasses';
 
@@ -235,7 +240,7 @@ const SnackbarUnstyled = React.forwardRef(function SnackbarUnstyled(
       </Root>
     </ClickAwayListener>
   );
-});
+}) as OverridableComponent<SnackbarUnstyledTypeMap>;
 
 SnackbarUnstyled.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
