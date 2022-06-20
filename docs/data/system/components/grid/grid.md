@@ -111,7 +111,13 @@ You can change the default number of columns (12) with the `columns` prop.
 
 ## Custom breakpoints
 
-If you specify custom breakpoints to the theme, you can use those names as grid item props and in responsive values. For **Typescript**, you have to set module augmentation on theme breakpoints.
+If you specify custom breakpoints to the theme, you can use those names as grid item props and in responsive values.
+
+{{"demo": "CustomBreakpointsGrid.js", "bg": true}}
+
+:::info
+
+For **TypeScript**, you have to set module augmentation on the theme breakpoints interface.
 
 ```ts
 declare module '@mui/system' {
@@ -131,7 +137,7 @@ declare module '@mui/system' {
 }
 ```
 
-{{"demo": "CustomBreakpointsGrid.js", "bg": true}}
+:::
 
 ## Offset
 
