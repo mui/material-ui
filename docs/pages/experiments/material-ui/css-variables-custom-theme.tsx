@@ -6,6 +6,7 @@ import {
 } from '@mui/material/styles';
 import Moon from '@mui/icons-material/DarkMode';
 import Sun from '@mui/icons-material/LightMode';
+import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import Chip from '@mui/material/Chip';
 import Box from '@mui/material/Box';
@@ -15,9 +16,9 @@ import { teal, deepOrange, orange, cyan } from '@mui/material/colors';
 const COLORS = ['primary', 'secondary', 'error', 'info', 'warning', 'success'];
 
 const overrideCssVariables = {
-  '--md-palette-primary-main': '#FF0000',
-  '--md-palette-primary-mainChannel': '255 0 0',
-  '--md-palette-primary-dark': '#8b0000',
+  '--mui-palette-primary-main': '#FF0000',
+  '--mui-palette-primary-mainChannel': '255 0 0',
+  '--mui-palette-primary-dark': '#8b0000',
 };
 
 const ColorSchemePicker = () => {
@@ -120,6 +121,18 @@ export default function Page() {
             <Input key={`input-${color}`} color={color} placeholder={color} />
           ))}
           <Input sx={overrideCssVariables} placeholder="custom" />
+        </Box>
+        <Box sx={{ py: 5, maxWidth: { md: 1152, xl: 1536 }, mx: 'auto' }}>
+          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 4, mb: 1 }}>
+            <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+            <Avatar variant="rounded" alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+            <Avatar variant="square" alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+          </Box>
+          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 4, mb: 1 }}>
+            <Avatar>H</Avatar>
+            <Avatar variant="rounded">H</Avatar>
+            <Avatar variant="square">H</Avatar>
+          </Box>
         </Box>
       </Box>
     </CssVarsProvider>

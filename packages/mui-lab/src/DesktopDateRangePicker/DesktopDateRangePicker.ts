@@ -34,17 +34,6 @@ const DesktopDateRangePicker = React.forwardRef(function DeprecatedDesktopDateRa
   return null;
 }) as DesktopDateRangePickerComponent;
 
-DesktopDateRangePicker.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
-  /**
-   * @ignore
-   */
-  key: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-} as any;
-
 export default DesktopDateRangePicker;
 
 export type DesktopDateRangePickerProps = Record<any, any>;

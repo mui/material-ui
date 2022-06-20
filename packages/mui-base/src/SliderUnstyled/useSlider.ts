@@ -681,14 +681,14 @@ export default function useSlider(parameters: UseSliderParameters) {
 
   return {
     active,
-    axis,
+    axis: axis as keyof typeof axisProps,
     axisProps,
     dragging,
     focusVisible,
     getHiddenInputProps,
     getRootProps,
     getThumbProps,
-    marks,
+    marks: marks as Mark[],
     open,
     range,
     trackLeap,

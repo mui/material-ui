@@ -379,6 +379,15 @@ const teamMembers: Array<Profile> = [
     about: 'Passionate about videogames and football',
     github: 'apedroferreira',
   },
+  {
+    src: '/static/branding/about/gerda.png',
+    name: 'Gerda Mostonaite',
+    title: 'Senior Designer',
+    location: 'New York, USA',
+    locationCountry: 'us',
+    about: '🎨 Art & design, traveling, and asking questions',
+    github: 'gerdadesign',
+  },
 ];
 
 const contributors = [

@@ -10,7 +10,7 @@ packageName: '@mui/base'
 
 <p class="description">一个自适应内容大小的 React 文本框组件。</p>
 
-- 📦 [2.1kB 的压缩包](/size-snapshot)
+- 📦 [2.1kB 的压缩包](/size-snapshot/)
 
 当触发键盘和窗口大小事件的时候，`TextareaAutosize` 组件将自动调整的文本框的高度。
 

@@ -49,4 +49,4 @@ These two callbacks allow the popper to unmount the child content when closed an
 
 ## Bundle size
 
-📦 [8 kB gzipped](/size-snapshot).
+📦 [8.1 kB gzipped](/size-snapshot/).

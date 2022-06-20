@@ -122,13 +122,76 @@ export interface PaletteWithChannels {
   info: PaletteColor & Channels;
   success: PaletteColor & Channels;
   grey: Color & { darkChannel: string };
-  text: TypeText & { primaryChannel: string; secondaryChannel: string; disabledChannel: string };
+  text: TypeText & { primaryChannel: string; secondaryChannel: string };
   divider: TypeDivider;
   dividerChannel: TypeDivider;
-  action: TypeAction & { disabledChannel: string; activeChannel: string };
+  action: TypeAction & { activeChannel: string; selectedChannel: string };
   background: TypeBackground;
   getContrastText: (background: string) => string;
   augmentColor: (options: PaletteAugmentColorOptions) => PaletteColor;
+  // component tokens
+  AppBar: {
+    defaultBg: string;
+    darkBg: string;
+    darkColor: string;
+  };
+  Avatar: {
+    defaultBg: string;
+  };
+  Chip: {
+    defaultBorder: string;
+    defaultAvatarColor: string;
+    defaultIconColor: string;
+  };
+  FilledInput: {
+    bg: string;
+    hoverBg: string;
+    disabledBg: string;
+  };
+  LinearProgress: {
+    primaryBg: string;
+    secondaryBg: string;
+    errorBg: string;
+    infoBg: string;
+    successBg: string;
+    warningBg: string;
+  };
+  Slider: {
+    primaryTrack: string;
+    secondaryTrack: string;
+    errorTrack: string;
+    infoTrack: string;
+    successTrack: string;
+    warningTrack: string;
+  };
+  SnackbarContent: {
+    bg: string;
+  };
+  SpeedDialAction: {
+    fabHoverBg: string;
+  };
+  StepConnector: {
+    border: string;
+  };
+  StepContent: {
+    border: string;
+  };
+  Switch: {
+    defaultColor: string;
+    defaultDisabledColor: string;
+    primaryDisabledColor: string;
+    secondaryDisabledColor: string;
+    errorDisabledColor: string;
+    infoDisabledColor: string;
+    successDisabledColor: string;
+    warningDisabledColor: string;
+  };
+  TableCell: {
+    border: string;
+  };
+  Tooltip: {
+    bg: string;
+  };
 }
 
 export type PartialTypeObject = { [P in keyof TypeObject]?: Partial<TypeObject[P]> };

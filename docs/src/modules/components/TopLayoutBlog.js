@@ -97,7 +97,7 @@ const styles = ({ theme }) => ({
     theme.palette.mode === 'dark'
       ? `linear-gradient(180deg, ${theme.palette.primaryDark[900]} 0%, #001E3C 100%)`
       : `linear-gradient(180deg, ${theme.palette.grey[50]} 0%, #FFFFFF 100%)`,
-  backgroundSize: 'auto 250px ',
+  backgroundSize: '100% 300px',
   backgroundRepeat: 'no-repeat',
   [`& .${classes.back}`]: {
     display: 'flex',
@@ -219,7 +219,7 @@ function TopLayoutBlog(props) {
             {...(ROUTES.blog.startsWith('http') && {
               rel: 'nofollow',
             })}
-            color="text.secondary"
+            color="primary"
             variant="body2"
             className={classes.back}
           >
@@ -257,7 +257,7 @@ function TopLayoutBlog(props) {
                         href={`https://github.com/${authors[author].github}`}
                         target="_blank"
                         rel="noreferrer noopener"
-                        color="text.secondary"
+                        color="primary"
                         variant="body2"
                         sx={{ fontWeight: 500 }}
                       >

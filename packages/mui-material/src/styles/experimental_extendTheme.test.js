@@ -83,34 +83,11 @@ describe('experimental_extendTheme', () => {
 
     expect(theme.colorSchemes.light.palette.dividerChannel).to.equal('0 0 0');
 
-    expect(theme.colorSchemes.light.palette.grey.darkChannel).to.equal('97 97 97');
-    expect(theme.colorSchemes.dark.palette.grey.darkChannel).to.equal('97 97 97');
-
     expect(theme.colorSchemes.dark.palette.action.activeChannel).to.equal('255 255 255');
     expect(theme.colorSchemes.light.palette.action.activeChannel).to.equal('0 0 0');
-  });
 
-  it('should change grey darkChannel', () => {
-    const theme = extendTheme({
-      colorSchemes: {
-        light: {
-          palette: {
-            grey: {
-              dark: '#888',
-            },
-          },
-        },
-        dark: {
-          palette: {
-            grey: {
-              dark: '#999',
-            },
-          },
-        },
-      },
-    });
-    expect(theme.colorSchemes.light.palette.grey.darkChannel).to.equal('136 136 136');
-    expect(theme.colorSchemes.dark.palette.grey.darkChannel).to.equal('153 153 153');
+    expect(theme.colorSchemes.dark.palette.action.selectedChannel).to.equal('255 255 255');
+    expect(theme.colorSchemes.light.palette.action.selectedChannel).to.equal('0 0 0');
   });
 
   it('should generate common background, onBackground channels', () => {
@@ -225,12 +202,16 @@ describe('experimental_extendTheme', () => {
     it('should provide the default opacities', () => {
       const theme = extendTheme();
       expect(theme.colorSchemes.light.opacity).to.deep.equal({
-        placeholder: 0.42,
+        inputPlaceholder: 0.42,
         inputTouchBottomLine: 0.42,
+        switchTrackDisabled: 0.12,
+        switchTrack: 0.38,
       });
       expect(theme.colorSchemes.dark.opacity).to.deep.equal({
-        placeholder: 0.5,
+        inputPlaceholder: 0.5,
         inputTouchBottomLine: 0.7,
+        switchTrackDisabled: 0.2,
+        switchTrack: 0.3,
       });
     });
 
@@ -239,22 +220,22 @@ describe('experimental_extendTheme', () => {
         colorSchemes: {
           light: {
             opacity: {
-              placeholder: 1,
+              inputPlaceholder: 1,
             },
           },
           dark: {
             opacity: {
-              placeholder: 0.2,
+              inputPlaceholder: 0.2,
             },
           },
         },
       });
-      expect(theme.colorSchemes.light.opacity).to.deep.equal({
-        placeholder: 1,
+      expect(theme.colorSchemes.light.opacity).to.deep.include({
+        inputPlaceholder: 1,
         inputTouchBottomLine: 0.42,
       });
-      expect(theme.colorSchemes.dark.opacity).to.deep.equal({
-        placeholder: 0.2,
+      expect(theme.colorSchemes.dark.opacity).to.deep.include({
+        inputPlaceholder: 0.2,
         inputTouchBottomLine: 0.7,
       });
     });

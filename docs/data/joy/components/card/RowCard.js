@@ -9,17 +9,17 @@ export default function InteractiveCard() {
   return (
     <Card
       row
-      variant="soft"
-      color="success"
+      variant="outlined"
       sx={{
         minWidth: '260px',
         gap: 2,
+        bgcolor: 'background.body',
       }}
     >
       <CardOverflow>
         <AspectRatio ratio="1" sx={{ width: 90 }}>
           <img
-            src="https://images.unsplash.com/photo-1507833423370-a126b89d394b?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3387"
+            src="https://images.unsplash.com/photo-1507833423370-a126b89d394b?crop=entropy&auto=format&fit=crop&w=3387"
             alt=""
           />
         </AspectRatio>
@@ -31,17 +31,19 @@ export default function InteractiveCard() {
         <Typography level="body2">California, USA</Typography>
       </CardContent>
       <CardOverflow
-        variant="solid"
-        color="success"
+        variant="soft"
+        color="primary"
         sx={{
+          px: 0.2,
           writingMode: 'vertical-rl',
           textAlign: 'center',
-          fontSize: 'sm',
-          fontWeight: 'md',
+          fontSize: 'xs2',
+          fontWeight: 'xl2',
           letterSpacing: '1px',
+          textTransform: 'uppercase',
         }}
       >
-        USED
+        Ticket
       </CardOverflow>
     </Card>
   );

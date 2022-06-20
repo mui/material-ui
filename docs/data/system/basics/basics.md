@@ -184,7 +184,7 @@ For more details, visit the [`sx` prop page](/system/the-sx-prop/).
 
 ### Performance tradeoff
 
-The system relies on CSS-in-JS. It works with both emotion and styled-components.
+The system relies on CSS-in-JS. It works with both Emotion and styled-components.
 
 Pros:
 

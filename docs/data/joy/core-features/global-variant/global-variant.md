@@ -34,7 +34,7 @@ Lastly, the `plain` variant, as it only contains text and no background, is usua
 
 <!-- A demo of small UIs that use different components with variants to showcase -->
 
-{{"demo": "LevelOfImportancy.js"}}
+{{"demo": "LevelOfImportancy.js", "bg": true}}
 
 Global variants are an easy and effortless way to create meaningful user interfaces.
 Additionally, as a benefit, dark mode works without any modification to them.
