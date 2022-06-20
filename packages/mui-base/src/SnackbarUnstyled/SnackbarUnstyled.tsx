@@ -132,7 +132,7 @@ const SnackbarUnstyled = React.forwardRef(function SnackbarUnstyled(
     }
   }, [autoHideDuration, resumeHideDuration, setAutoHideTimer]);
 
-  const handleBlur = (event: React.FocusEvent) => {
+  const handleBlur = (event: React.FocusEvent<HTMLDivElement, Element>) => {
     const onBlurCallback = componentsProps.root?.onBlur || onBlur;
     if (onBlurCallback) {
       onBlurCallback(event);
@@ -140,7 +140,7 @@ const SnackbarUnstyled = React.forwardRef(function SnackbarUnstyled(
     handleResume();
   };
 
-  const handleFocus = (event: React.FocusEvent) => {
+  const handleFocus = (event: React.FocusEvent<HTMLDivElement, Element>) => {
     const onFocusCallback = componentsProps.root?.onFocus || onFocus;
     if (onFocusCallback) {
       onFocusCallback(event);
@@ -148,7 +148,7 @@ const SnackbarUnstyled = React.forwardRef(function SnackbarUnstyled(
     handlePause();
   };
 
-  const handleMouseEnter = (event: React.MouseEvent) => {
+  const handleMouseEnter = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     const onMouseEnterCallback = componentsProps.root?.onMouseEnter || onMouseEnter;
     if (onMouseEnterCallback) {
       onMouseEnterCallback(event);
@@ -156,7 +156,7 @@ const SnackbarUnstyled = React.forwardRef(function SnackbarUnstyled(
     handlePause();
   };
 
-  const handleMouseLeave = (event: React.MouseEvent) => {
+  const handleMouseLeave = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     const onMouseLeaveCallback = componentsProps.root?.onMouseLeave || onMouseLeave;
     if (onMouseLeaveCallback) {
       onMouseLeaveCallback(event);

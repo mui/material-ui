@@ -1,9 +1,10 @@
 import React from 'react';
+import { OverrideProps } from '@mui/types';
 import { ClickAwayListenerProps } from '../ClickAwayListener';
 
 export type SnackbarCloseReason = 'timeout' | 'clickaway' | 'escapeKeyDown';
 
-export interface SnackbarUnstyledProps<TransitionType = {}> {
+interface SnackbarUnstyledOwnProps<TransitionType = {}> {
   /**
    * The number of milliseconds to wait before automatically calling the
    * `onClose` function. `onClose` should then set the state of the `open`
@@ -12,7 +13,6 @@ export interface SnackbarUnstyledProps<TransitionType = {}> {
    * @default null
    */
   autoHideDuration?: number | null;
-  className?: string;
   children?: React.ReactNode;
   /**
    * Props applied to the `ClickAwayListener` element.
@@ -46,7 +46,6 @@ export interface SnackbarUnstyledProps<TransitionType = {}> {
    * @default false
    */
   disableWindowBlurListener?: boolean;
-  onBlur?: React.FocusEventHandler;
   /**
    * Callback fired when the component requests to be closed.
    * Typically `onClose` is used to set state in the parent component,
@@ -58,9 +57,6 @@ export interface SnackbarUnstyledProps<TransitionType = {}> {
    * @param {string} reason Can be: `"timeout"` (`autoHideDuration` expired), `"clickaway"`, or `"escapeKeyDown"`.
    */
   onClose?: (event: React.SyntheticEvent<any> | Event | null, reason: SnackbarCloseReason) => void;
-  onFocus?: React.FocusEventHandler;
-  onMouseEnter?: React.MouseEventHandler;
-  onMouseLeave?: React.MouseEventHandler;
   /**
    * If `true`, the component is shown.
    */
@@ -73,3 +69,13 @@ export interface SnackbarUnstyledProps<TransitionType = {}> {
    */
   resumeHideDuration?: number;
 }
+
+export interface SnackbarUnstyledTypeMap<P = {}, D extends React.ElementType = 'div'> {
+  props: P & SnackbarUnstyledOwnProps;
+  defaultComponent: D;
+}
+
+export type SnackbarUnstyledProps<
+  D extends React.ElementType = SnackbarUnstyledTypeMap['defaultComponent'],
+  P = {},
+> = OverrideProps<SnackbarUnstyledTypeMap<P, D>, D>;
