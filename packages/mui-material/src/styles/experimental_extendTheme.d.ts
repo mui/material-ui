@@ -32,7 +32,7 @@ export type ExtendedColorScheme = OverridableStringUnion<never, ColorSchemeOverr
 export type SupportedColorScheme = DefaultColorScheme | ExtendedColorScheme;
 
 export interface Opacity {
-  placeholder: number;
+  inputPlaceholder: number;
   inputTouchBottomLine: number;
 }
 
@@ -188,7 +188,7 @@ export interface ColorSystemOptions {
 }
 
 export interface ColorSystem {
-  palette: Palette & {
+  palette: Omit<Palette, 'mode' | 'contrastThreshold' | 'tonalOffset'> & {
     common: PaletteCommonChannel;
     primary: PaletteColorChannel;
     secondary: PaletteColorChannel;
