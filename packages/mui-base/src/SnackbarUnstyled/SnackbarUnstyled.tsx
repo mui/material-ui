@@ -30,7 +30,7 @@ const useUtilityClasses = () => {
  * - [SnackbarUnstyled API](https://mui.com/base/api/snackbar-unstyled/)
  */
 const SnackbarUnstyled = React.forwardRef(function SnackbarUnstyled(
-  props: SnackbarUnstyledProps,
+  props: SnackbarUnstyledProps & { component?: React.ElementType },
   ref: React.ForwardedRef<any>,
 ) {
   const {
@@ -268,9 +268,8 @@ SnackbarUnstyled.propTypes /* remove-proptypes */ = {
    */
   ClickAwayListenerProps: PropTypes.object,
   /**
-   * The component used for the Root slot.
+   * The component used for the root node.
    * Either a string to use a HTML element or a component.
-   * This is equivalent to `components.Root`. If both are provided, the `component` is used.
    */
   component: PropTypes.elementType,
   /**
