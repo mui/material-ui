@@ -31,7 +31,8 @@ const {
     return newTheme;
   },
   shouldSkipGeneratingVar: (keys) =>
-    !!keys[0].match(/(typography|mixins|breakpoints|direction|transitions)/),
+    !!keys[0].match(/(typography|mixins|breakpoints|direction|transitions)/) ||
+    (keys[0] === 'palette' && !!keys[1]?.match(/(mode|contrastThreshold|tonalOffset)/)),
 });
 
 export { useColorScheme, getInitColorSchemeScript, Experimental_CssVarsProvider };
