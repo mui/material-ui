@@ -2,6 +2,7 @@ import * as React from 'react';
 import { SxProps } from '@mui/system';
 import { SnackbarUnstyledProps } from '@mui/base/SnackbarUnstyled';
 import { Theme } from '../styles';
+import { InternalStandardProps as StandardProps } from '..';
 import { SnackbarContentProps } from '../SnackbarContent';
 import { TransitionProps } from '../transitions/transition';
 import { SnackbarClasses } from './snackbarClasses';
@@ -15,14 +16,15 @@ export { SnackbarCloseReason } from '@mui/base/SnackbarUnstyled';
 
 export interface SnackbarProps
   extends Pick<
-    SnackbarUnstyledProps,
-    | 'autoHideDuration'
-    | 'ClickAwayListenerProps'
-    | 'disableWindowBlurListener'
-    | 'onClose'
-    | 'open'
-    | 'resumeHideDuration'
-  > {
+      SnackbarUnstyledProps,
+      | 'autoHideDuration'
+      | 'ClickAwayListenerProps'
+      | 'disableWindowBlurListener'
+      | 'onClose'
+      | 'open'
+      | 'resumeHideDuration'
+    >,
+    StandardProps<React.HTMLAttributes<HTMLDivElement>> {
   /**
    * The action to display. It renders after the message, at the end of the snackbar.
    */
