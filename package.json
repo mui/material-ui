@@ -1,4 +1,5 @@
 {
+  "name": "@mui/monorepo",
   "version": "5.8.4",
   "private": true,
   "scripts": {
