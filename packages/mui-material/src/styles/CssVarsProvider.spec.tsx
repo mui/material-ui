@@ -25,6 +25,19 @@ const customTheme = extendTheme({
         mode: '',
       },
     },
+    dark: {
+      opacity: {},
+      palette: {},
+    },
+  },
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: ({ theme }) => ({
+          color: theme.vars.palette.primary.main,
+        }),
+      },
+    },
   },
 });
 
