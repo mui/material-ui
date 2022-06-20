@@ -188,7 +188,8 @@ export interface ColorSystemOptions {
 }
 
 export interface ColorSystem {
-  palette: Omit<Palette, 'mode' | 'contrastThreshold' | 'tonalOffset'> & {
+  palette: Palette & {
+    colorScheme: SupportedColorScheme;
     common: PaletteCommonChannel;
     primary: PaletteColorChannel;
     secondary: PaletteColorChannel;
@@ -219,7 +220,19 @@ export interface CssVarsThemeOptions extends Omit<ThemeOptions, 'palette' | 'com
   colorSchemes?: Partial<Record<SupportedColorScheme, ColorSystemOptions>>;
 }
 
-interface ThemeVars extends ColorSystem {
+// should not include keys defined in `shouldSkipGeneratingVar` and have value typeof function
+interface ThemeVars {
+  palette: Omit<
+    ColorSystem['palette'],
+    | 'colorScheme'
+    | 'mode'
+    | 'contrastThreshold'
+    | 'tonalOffset'
+    | 'getContrastText'
+    | 'augmentColor'
+  >;
+  opacity: Opacity;
+  overlays: Overlays;
   shadows: Shadows;
   zIndex: ZIndex;
   shape: Theme['shape'];
