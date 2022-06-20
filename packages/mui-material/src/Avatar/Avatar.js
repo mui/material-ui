@@ -46,15 +46,21 @@ const AvatarRoot = styled('div', {
   overflow: 'hidden',
   userSelect: 'none',
   ...(ownerState.variant === 'rounded' && {
-    borderRadius: theme.shape.borderRadius,
+    borderRadius: (theme.vars || theme).shape.borderRadius,
   }),
   ...(ownerState.variant === 'square' && {
     borderRadius: 0,
   }),
   ...(ownerState.colorDefault && {
-    color: theme.palette.background.default,
-    backgroundColor:
-      theme.palette.mode === 'light' ? theme.palette.grey[400] : theme.palette.grey[600],
+    color: (theme.vars || theme).palette.background.default,
+    ...(theme.vars
+      ? {
+          backgroundColor: theme.vars.palette.Avatar.defaultBg,
+        }
+      : {
+          backgroundColor:
+            theme.palette.mode === 'light' ? theme.palette.grey[400] : theme.palette.grey[600],
+        }),
   }),
 }));
 

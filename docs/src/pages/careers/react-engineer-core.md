@@ -145,4 +145,4 @@ You can find the other perks & benefits on the [careers](/careers/#perks-amp-ben
 
 ## How to apply?
 
-[Apply now for this position 📮](https://airtable.com/shrdqo1Z6srZXGcvh?prefill_Applying+for=React%20Engineer%20-%20Core&prefill_source=mui.com)
+[Apply now for this position 📮](https://jobs.ashbyhq.com/mui/e71433e9-2ddf-42bd-9da6-d0a102d1ce3c/application)
