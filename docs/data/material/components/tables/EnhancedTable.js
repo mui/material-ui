@@ -116,17 +116,17 @@ const DEFAULT_ORDER = 'asc';
 const DEFAULT_ORDER_BY = 'calories';
 
 function EnhancedTableHead(props) {
-  const { numSelected, data, page, rowsPerPage, setDessertsOnPage, setSelected } =
+  const { numSelected, rows, page, rowsPerPage, setDessertsOnPage, setSelected } =
     props;
 
-  const rowCount = data.length;
+  const rowCount = rows.length;
 
   const [order, setOrder] = React.useState(DEFAULT_ORDER);
   const [orderBy, setOrderBy] = React.useState(DEFAULT_ORDER_BY);
 
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
-      const newSelecteds = data.map((n) => n.name);
+      const newSelecteds = rows.map((n) => n.name);
       setSelected(newSelecteds);
       return;
     }
@@ -141,10 +141,10 @@ function EnhancedTableHead(props) {
 
     setDessertsOnPage(
       // if you don't need to support IE11, you can replace the `stableSort` call with:
-      // data
+      // rows
       //   .sort(getComparator(newOrder, newOrderBy))
       //   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-      stableSort(data, getComparator(newOrder, newOrderBy)).slice(
+      stableSort(rows, getComparator(newOrder, newOrderBy)).slice(
         page * rowsPerPage,
         page * rowsPerPage + rowsPerPage,
       ),
@@ -192,7 +192,15 @@ function EnhancedTableHead(props) {
 }
 
 EnhancedTableHead.propTypes = {
-  data: PropTypes.array.isRequired,
+  rows: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      calories: PropTypes.number.isRequired,
+      fat: PropTypes.number.isRequired,
+      carbs: PropTypes.number.isRequired,
+      protein: PropTypes.number.isRequired,
+    })
+  ).isRequired,
   numSelected: PropTypes.number.isRequired,
   page: PropTypes.number.isRequired,
   rowsPerPage: PropTypes.number.isRequired,
@@ -332,7 +340,7 @@ export default function EnhancedTable() {
           >
             <EnhancedTableHead
               numSelected={selected.length}
-              data={desserts}
+              rows={desserts}
               page={page}
               rowsPerPage={rowsPerPage}
               setDessertsOnPage={setDessertsOnPage}
