@@ -35,7 +35,8 @@ For each of them, we assign a specific CSS class:
 Notice that each element is styled using only one CSS class— the thumb style, for example, is applied with the `css-jsexje-MuiSwitch-thumb` class.
 So any CSS selector that includes more than one class will override its style.
 
-I’m not a designer, so I made an ugly switch example using only CSS:
+I’m not a designer, so I made an ugly switch example using only CSS.
+You can play with those examples in a [codesandbox](https://codesandbox.io/s/fast-http-kv85p5?file=/src/App.js)
 
 <img src="/static/blog/making-customizable-components/uglySwitches.png" style="width: 200px; margin-top: 16px; margin-bottom: 8px;" alt="Switch customized with CSS" />
 
