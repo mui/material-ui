@@ -1,3 +1,10 @@
+/*
+Comments to be preserved when clsx import is removed. These comments should come before
+any comments that they get combined with.
+ */
+/*
+Comments that should not be lost when the clsx import comments are preserved.
+ */
 import React from "react";
 import { makeStyles } from 'tss-react/mui';
 
