@@ -19,3 +19,9 @@ import SnackbarUnstyled from '@mui/base/SnackbarUnstyled';
 ## Basic usage
 
 {{"demo": "UnstyledSnackbar.js", "defaultCodeOpen": false}}
+
+## Providing `Transition` component
+
+You can also provide a Transition component in `components.Transition` prop if you want to apply animations to your snackbar.
+
+{{"demo": "TransitionComponentSnackbar.js", "defaultCodeOpen": false}}

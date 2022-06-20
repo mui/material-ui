@@ -50,6 +50,7 @@ const SnackbarUnstyled = React.forwardRef(function SnackbarUnstyled(
   const classes = useUtilityClasses();
 
   const timerAutoHide = React.useRef<ReturnType<typeof setTimeout>>();
+  const [exited, setExited] = React.useState(true);
 
   const Root = component || components.Root || 'div';
 
@@ -80,7 +81,7 @@ const SnackbarUnstyled = React.forwardRef(function SnackbarUnstyled(
     return () => {
       document.removeEventListener('keydown', handleKeyDown);
     };
-  }, [open, onClose]);
+  }, [exited, open, onClose]);
 
   const handleClose = useEventCallback(
     (event: Event | React.SyntheticEvent<any, Event> | null, reason: SnackbarCloseReason) => {
@@ -178,8 +179,16 @@ const SnackbarUnstyled = React.forwardRef(function SnackbarUnstyled(
     return undefined;
   }, [disableWindowBlurListener, handleResume, open]);
 
+  const handleExited = () => {
+    setExited(true);
+  };
+
+  const handleEnter = () => {
+    setExited(false);
+  };
+
   // So we only render active snackbars.
-  if (!open) {
+  if (!open && exited) {
     return null;
   }
 
@@ -201,7 +210,13 @@ const SnackbarUnstyled = React.forwardRef(function SnackbarUnstyled(
     <ClickAwayListener onClickAway={handleClickAway} {...ClickAwayListenerProps}>
       <Root {...rootProps}>
         {TransitionComponent ? (
-          <TransitionComponent {...componentsProps.transition}>{children}</TransitionComponent>
+          <TransitionComponent
+            onEnter={handleEnter}
+            onExited={handleExited}
+            {...componentsProps.transition}
+          >
+            {children}
+          </TransitionComponent>
         ) : (
           children
         )}
