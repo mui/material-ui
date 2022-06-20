@@ -21,7 +21,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { visuallyHidden } from '@mui/utils';
 
-interface Data {
+interface Dessert {
   calories: number;
   carbs: number;
   fat: number;
@@ -29,13 +29,13 @@ interface Data {
   protein: number;
 }
 
-function createData(
+function createDessert(
   name: string,
   calories: number,
   fat: number,
   carbs: number,
   protein: number,
-): Data {
+): Dessert {
   return {
     name,
     calories,
@@ -45,20 +45,20 @@ function createData(
   };
 }
 
-const rows = [
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Donut', 452, 25.0, 51, 4.9),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
-  createData('Honeycomb', 408, 3.2, 87, 6.5),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Jelly Bean', 375, 0.0, 94, 0.0),
-  createData('KitKat', 518, 26.0, 65, 7.0),
-  createData('Lollipop', 392, 0.2, 98, 0.0),
-  createData('Marshmallow', 318, 0, 81, 2.0),
-  createData('Nougat', 360, 19.0, 9, 37.0),
-  createData('Oreo', 437, 18.0, 63, 4.0),
+const desserts = [
+  createDessert('Cupcake', 305, 3.7, 67, 4.3),
+  createDessert('Donut', 452, 25.0, 51, 4.9),
+  createDessert('Eclair', 262, 16.0, 24, 6.0),
+  createDessert('Frozen yoghurt', 159, 6.0, 24, 4.0),
+  createDessert('Gingerbread', 356, 16.0, 49, 3.9),
+  createDessert('Honeycomb', 408, 3.2, 87, 6.5),
+  createDessert('Ice cream sandwich', 237, 9.0, 37, 4.3),
+  createDessert('Jelly Bean', 375, 0.0, 94, 0.0),
+  createDessert('KitKat', 518, 26.0, 65, 7.0),
+  createDessert('Lollipop', 392, 0.2, 98, 0.0),
+  createDessert('Marshmallow', 318, 0, 81, 2.0),
+  createDessert('Nougat', 360, 19.0, 9, 37.0),
+  createDessert('Oreo', 437, 18.0, 63, 4.0),
 ];
 
 function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
@@ -101,7 +101,7 @@ function stableSort<T>(array: readonly T[], comparator: (a: T, b: T) => number) 
 
 interface HeadCell {
   disablePadding: boolean;
-  id: keyof Data;
+  id: keyof Dessert;
   label: string;
   numeric: boolean;
 }
@@ -139,22 +139,54 @@ const headCells: readonly HeadCell[] = [
   },
 ];
 
-interface EnhancedTableProps {
+const DEFAULT_ROWS_PER_PAGE = 5;
+const DEFAULT_ORDER = 'asc';
+const DEFAULT_ORDER_BY = 'calories';
+
+interface EnhancedTableHeadProps {
   numSelected: number;
-  onRequestSort: (event: React.MouseEvent<unknown>, property: keyof Data) => void;
-  onSelectAllClick: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  order: Order;
-  orderBy: string;
-  rowCount: number;
+  rows: Dessert[];
+  page: number;
+  rowsPerPage: number;
+  setDessertsOnPage: React.Dispatch<React.SetStateAction<Dessert[]>>;
+  setSelected: React.Dispatch<readonly string[]>;
 }
 
-function EnhancedTableHead(props: EnhancedTableProps) {
-  const { onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort } =
+function EnhancedTableHead(props: EnhancedTableHeadProps) {
+  const { numSelected, rows, page, rowsPerPage, setDessertsOnPage, setSelected } =
     props;
-  const createSortHandler =
-    (property: keyof Data) => (event: React.MouseEvent<unknown>) => {
-      onRequestSort(event, property);
-    };
+
+  const rowCount = rows.length;
+
+  const [order, setOrder] = React.useState<Order>(DEFAULT_ORDER);
+  const [orderBy, setOrderBy] = React.useState<keyof Dessert>(DEFAULT_ORDER_BY);
+
+  const handleSelectAllClick = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.checked) {
+      const newSelecteds = rows.map((n) => n.name);
+      setSelected(newSelecteds);
+      return;
+    }
+    setSelected([]);
+  };
+
+  const createSortHandler = (newOrderBy: keyof Dessert) => () => {
+    const isAsc = orderBy === newOrderBy && order === 'asc';
+    const newOrder = isAsc ? 'desc' : 'asc';
+    setOrder(newOrder);
+    setOrderBy(newOrderBy);
+
+    setDessertsOnPage(
+      // if you don't need to support IE11, you can replace the `stableSort` call with:
+      // data
+      //   .sort(getComparator(newOrder, newOrderBy))
+      //   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+      stableSort<Dessert>(rows, getComparator(newOrder, newOrderBy)).slice(
+        page * rowsPerPage,
+        page * rowsPerPage + rowsPerPage,
+      ),
+    );
+  };
 
   return (
     <TableHead>
@@ -164,7 +196,7 @@ function EnhancedTableHead(props: EnhancedTableProps) {
             color="primary"
             indeterminate={numSelected > 0 && numSelected < rowCount}
             checked={rowCount > 0 && numSelected === rowCount}
-            onChange={onSelectAllClick}
+            onChange={handleSelectAllClick}
             inputProps={{
               'aria-label': 'select all desserts',
             }}
@@ -179,7 +211,7 @@ function EnhancedTableHead(props: EnhancedTableProps) {
           >
             <TableSortLabel
               active={orderBy === headCell.id}
-              direction={orderBy === headCell.id ? order : 'asc'}
+              direction={orderBy === headCell.id ? order : DEFAULT_ORDER}
               onClick={createSortHandler(headCell.id)}
             >
               {headCell.label}
@@ -250,33 +282,34 @@ const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
   );
 };
 
+const initDessertsOnPage = (
+  data: Dessert[],
+  {
+    order = DEFAULT_ORDER,
+    orderBy = DEFAULT_ORDER_BY,
+    rowsPerPage = DEFAULT_ROWS_PER_PAGE,
+  }: {
+    order?: Order;
+    orderBy?: keyof Dessert;
+    rowsPerPage?: number;
+  } = {},
+): Dessert[] =>
+  // if you don't need to support IE11, you can replace the `stableSort` call with:
+  // data
+  //   .sort(getComparator(order, orderBy))
+  //   .slice(0, rowsPerPage)
+  stableSort(data, getComparator(order, orderBy)).slice(0, rowsPerPage);
+const initialDessertsOnPage = initDessertsOnPage(desserts);
+
 export default function EnhancedTable() {
-  const [order, setOrder] = React.useState<Order>('asc');
-  const [orderBy, setOrderBy] = React.useState<keyof Data>('calories');
+  const [dessertsOnPage, setDessertsOnPage] =
+    React.useState<Dessert[]>(initialDessertsOnPage);
   const [selected, setSelected] = React.useState<readonly string[]>([]);
   const [page, setPage] = React.useState(0);
   const [dense, setDense] = React.useState(false);
-  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [rowsPerPage, setRowsPerPage] = React.useState(DEFAULT_ROWS_PER_PAGE);
 
-  const handleRequestSort = (
-    event: React.MouseEvent<unknown>,
-    property: keyof Data,
-  ) => {
-    const isAsc = orderBy === property && order === 'asc';
-    setOrder(isAsc ? 'desc' : 'asc');
-    setOrderBy(property);
-  };
-
-  const handleSelectAllClick = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (event.target.checked) {
-      const newSelecteds = rows.map((n) => n.name);
-      setSelected(newSelecteds);
-      return;
-    }
-    setSelected([]);
-  };
-
-  const handleClick = (event: React.MouseEvent<unknown>, name: string) => {
+  const handleRowSelect = (event: React.MouseEvent<unknown>, name: string) => {
     const selectedIndex = selected.indexOf(name);
     let newSelected: readonly string[] = [];
 
@@ -296,7 +329,14 @@ export default function EnhancedTable() {
     setSelected(newSelected);
   };
 
-  const handleChangePage = (event: unknown, newPage: number) => {
+  const handleChangePage = (
+    event: React.MouseEvent<HTMLButtonElement, MouseEvent> | null,
+    newPage: number,
+  ) => {
+    setDessertsOnPage(
+      desserts.slice(newPage * rowsPerPage, newPage * rowsPerPage + rowsPerPage),
+    );
+
     setPage(newPage);
   };
 
@@ -312,8 +352,8 @@ export default function EnhancedTable() {
   const isSelected = (name: string) => selected.indexOf(name) !== -1;
 
   // Avoid a layout jump when reaching the last page with empty rows.
-  const emptyRows =
-    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
+  const emptyRowsInLastPage =
+    page > 0 ? Math.max(0, (1 + page) * rowsPerPage - desserts.length) : 0;
 
   return (
     <Box sx={{ width: '100%' }}>
@@ -327,59 +367,55 @@ export default function EnhancedTable() {
           >
             <EnhancedTableHead
               numSelected={selected.length}
-              order={order}
-              orderBy={orderBy}
-              onSelectAllClick={handleSelectAllClick}
-              onRequestSort={handleRequestSort}
-              rowCount={rows.length}
+              rows={desserts}
+              page={page}
+              rowsPerPage={rowsPerPage}
+              setDessertsOnPage={setDessertsOnPage}
+              setSelected={setSelected}
             />
             <TableBody>
-              {/* if you don't need to support IE11, you can replace the `stableSort` call with:
-              rows.slice().sort(getComparator(order, orderBy)) */}
-              {stableSort(rows, getComparator(order, orderBy))
-                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map((row, index) => {
-                  const isItemSelected = isSelected(row.name);
-                  const labelId = `enhanced-table-checkbox-${index}`;
+              {dessertsOnPage.map((dessert, index) => {
+                const isItemSelected = isSelected(dessert.name);
+                const labelId = `enhanced-table-checkbox-${index}`;
 
-                  return (
-                    <TableRow
-                      hover
-                      onClick={(event) => handleClick(event, row.name)}
-                      role="checkbox"
-                      aria-checked={isItemSelected}
-                      tabIndex={-1}
-                      key={row.name}
-                      selected={isItemSelected}
+                return (
+                  <TableRow
+                    hover
+                    onClick={(event) => handleRowSelect(event, dessert.name)}
+                    role="checkbox"
+                    aria-checked={isItemSelected}
+                    tabIndex={-1}
+                    key={dessert.name}
+                    selected={isItemSelected}
+                  >
+                    <TableCell padding="checkbox">
+                      <Checkbox
+                        color="primary"
+                        checked={isItemSelected}
+                        inputProps={{
+                          'aria-labelledby': labelId,
+                        }}
+                      />
+                    </TableCell>
+                    <TableCell
+                      component="th"
+                      id={labelId}
+                      scope="row"
+                      padding="none"
                     >
-                      <TableCell padding="checkbox">
-                        <Checkbox
-                          color="primary"
-                          checked={isItemSelected}
-                          inputProps={{
-                            'aria-labelledby': labelId,
-                          }}
-                        />
-                      </TableCell>
-                      <TableCell
-                        component="th"
-                        id={labelId}
-                        scope="row"
-                        padding="none"
-                      >
-                        {row.name}
-                      </TableCell>
-                      <TableCell align="right">{row.calories}</TableCell>
-                      <TableCell align="right">{row.fat}</TableCell>
-                      <TableCell align="right">{row.carbs}</TableCell>
-                      <TableCell align="right">{row.protein}</TableCell>
-                    </TableRow>
-                  );
-                })}
-              {emptyRows > 0 && (
+                      {dessert.name}
+                    </TableCell>
+                    <TableCell align="right">{dessert.calories}</TableCell>
+                    <TableCell align="right">{dessert.fat}</TableCell>
+                    <TableCell align="right">{dessert.carbs}</TableCell>
+                    <TableCell align="right">{dessert.protein}</TableCell>
+                  </TableRow>
+                );
+              })}
+              {emptyRowsInLastPage > 0 && (
                 <TableRow
                   style={{
-                    height: (dense ? 33 : 53) * emptyRows,
+                    height: (dense ? 33 : 53) * emptyRowsInLastPage,
                   }}
                 >
                   <TableCell colSpan={6} />
@@ -391,7 +427,7 @@ export default function EnhancedTable() {
         <TablePagination
           rowsPerPageOptions={[5, 10, 25]}
           component="div"
-          count={rows.length}
+          count={desserts.length}
           rowsPerPage={rowsPerPage}
           page={page}
           onPageChange={handleChangePage}
