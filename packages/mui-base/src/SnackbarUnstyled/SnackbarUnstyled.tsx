@@ -179,12 +179,24 @@ const SnackbarUnstyled = React.forwardRef(function SnackbarUnstyled(
     return undefined;
   }, [disableWindowBlurListener, handleResume, open]);
 
-  const handleExited = () => {
+  const handleExited = (node: HTMLElement) => {
     setExited(true);
+
+    const onExited = componentsProps.transition?.onExited;
+
+    if (onExited) {
+      onExited(node);
+    }
   };
 
-  const handleEnter = () => {
+  const handleEnter = (node: HTMLElement, isAppearing: boolean) => {
     setExited(false);
+
+    const onEnter = componentsProps.transition?.onEnter;
+
+    if (onEnter) {
+      onEnter(node, isAppearing);
+    }
   };
 
   // So we only render active snackbars.
@@ -193,10 +205,6 @@ const SnackbarUnstyled = React.forwardRef(function SnackbarUnstyled(
   }
 
   const rootProps = {
-    onBlur: handleBlur,
-    onFocus: handleFocus,
-    onMouseEnter: handleMouseEnter,
-    onMouseLeave: handleMouseLeave,
     ...other,
     ...componentsProps.root,
     className: clsx(classes.root, className, componentsProps.root?.className),
@@ -204,6 +212,10 @@ const SnackbarUnstyled = React.forwardRef(function SnackbarUnstyled(
     // ClickAwayListener adds an `onClick` prop which results in the alert not being announced.
     // See https://github.com/mui/material-ui/issues/29080
     role: 'presentation',
+    onBlur: handleBlur,
+    onFocus: handleFocus,
+    onMouseEnter: handleMouseEnter,
+    onMouseLeave: handleMouseLeave,
   };
 
   return (
@@ -211,9 +223,9 @@ const SnackbarUnstyled = React.forwardRef(function SnackbarUnstyled(
       <Root {...rootProps}>
         {TransitionComponent ? (
           <TransitionComponent
+            {...componentsProps.transition}
             onEnter={handleEnter}
             onExited={handleExited}
-            {...componentsProps.transition}
           >
             {children}
           </TransitionComponent>

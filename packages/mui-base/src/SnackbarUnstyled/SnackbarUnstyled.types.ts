@@ -4,7 +4,7 @@ import { ClickAwayListenerProps } from '../ClickAwayListener';
 
 export type SnackbarCloseReason = 'timeout' | 'clickaway' | 'escapeKeyDown';
 
-interface SnackbarUnstyledOwnProps<TransitionType = {}> {
+interface SnackbarUnstyledOwnProps {
   /**
    * The number of milliseconds to wait before automatically calling the
    * `onClose` function. `onClose` should then set the state of the `open`
@@ -39,7 +39,9 @@ interface SnackbarUnstyledOwnProps<TransitionType = {}> {
    */
   componentsProps?: {
     root?: React.HTMLAttributes<HTMLDivElement>;
-    transition?: TransitionType;
+    transition?: {
+      [key: string]: any;
+    };
   };
   /**
    * If `true`, the `autoHideDuration` timer will expire even if the window is not focused.
