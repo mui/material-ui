@@ -227,6 +227,7 @@ const Switch = React.forwardRef<HTMLSpanElement, SwitchProps>(function Switch(in
     onFocusVisible,
     readOnly: readOnlyProp,
     required,
+    id,
     color,
     variant = 'solid',
     size = 'md',
@@ -250,6 +251,7 @@ const Switch = React.forwardRef<HTMLSpanElement, SwitchProps>(function Switch(in
 
   const ownerState = {
     ...props,
+    id,
     checked,
     disabled,
     focusVisible,
@@ -298,6 +300,7 @@ const Switch = React.forwardRef<HTMLSpanElement, SwitchProps>(function Switch(in
         className={clsx(classes.action, componentsProps.action?.className)}
       >
         <SwitchInput
+          id={id}
           {...componentsProps.input}
           ownerState={ownerState}
           {...getInputProps()}
