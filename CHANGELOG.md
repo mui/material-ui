@@ -53,7 +53,6 @@ A big thanks to the 12 contributors who made this release possible. Here are som
 - &#8203;<!-- 17 -->[core] Remove dead and redundant code (#33125) @oliviertassinari
 - &#8203;<!-- 16 -->[core] Improve inline code rendering within the details tag (#33086) @Harmouch101
 
-
 All contributors of this release in alphabetical order: @cherniavskii, @DanailH, @gin1314, @Harmouch101, @joserodolfofreitas, @kmurgic, @michaldudak, @mnajdova, @oliviertassinari, @ryancogswell, @siriwatknp, @vicasas
 
 ## 5.8.4
