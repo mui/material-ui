@@ -1101,7 +1101,7 @@ A big thanks to the 17 contributors who made this release possible. Here are som
 - &#8203;<!-- 25 -->[core] Update playwright docker to match the specified version (#31236) @siriwatknp
 - &#8203;<!-- 24 -->[core] Remove parallel on buildTypes (#31189) @siriwatknp
 - &#8203;<!-- 23 -->[core] Fix propTypes generation for optional any props (#31141) @m4theushw
-- &#8203;<!-- 04 -->[Typescript] Remove variants deprecation (#31239) @siriwatknp
+- &#8203;<!-- 04 -->[typescript] Remove variants deprecation (#31239) @siriwatknp
 
 All contributors of this release in alphabetical order: @adriancampos, @Andarist, @bonellia, @davwheat, @greengiraffe, @hbjORbj, @iclaude3, @m4theushw, @michaldudak, @mnajdova, @oliviertassinari, @PunitSoniME, @RedHeadphone, @robertwt7, @samuelsycamore, @siriwatknp, @sviande
 
@@ -1166,7 +1166,7 @@ A big thanks to the 16 contributors who made this release possible. Here are som
 - [Select] Allow customizing Select based on its variant (#30788) @michaldudak
 - [Portal] Re-export 'Portal' in material (#31003) @liradb2000
 - [ToggleButton] Add prop types for `onClick` and `onChange` (#30883) @sydneyjodon-wk
-- [Typescript] Added TypeText declaration to the exports file (#30890) @agauravdev
+- [typescript] Added TypeText declaration to the exports file (#30890) @agauravdev
 
 ### `@mui/system@5.4.2`
 
@@ -4604,8 +4604,8 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 - &#8203;<!-- 29 -->[Button] Rename `pending` prop to `loading` in LoadingButton (#25874) @m4theushw
 
   ```diff
-  -<LoadingButton pending pendingIndicator="Pending..." pendingPosition="end" />
-  +<LoadingButton loading loadingIndicator="Pending..." loadingPosition="end" />
+  -<LoadingButton pending pendingIndicator="Pending…" pendingPosition="end" />
+  +<LoadingButton loading loadingIndicator="Pending…" loadingPosition="end" />
   ```
 
 - &#8203;<!-- 25 -->[ButtonBase] Remove buttonRef prop (#25896) @m4theushw

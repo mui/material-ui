@@ -72,7 +72,7 @@ const Covers = () => {
           {
             image: (
               <img
-                src="https://images.unsplash.com/photo-1483683804023-6ccdb62f86ef?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2835&q=80"
+                src="https://images.unsplash.com/photo-1483683804023-6ccdb62f86ef?auto=format&fit=crop&w=2835"
                 alt=""
               />
             ),
@@ -198,7 +198,7 @@ export default function JoySvgIcon() {
               </Typography>
               <AspectRatio minHeight="120px" maxHeight="200px" sx={{ my: 2 }}>
                 <img
-                  src="https://images.unsplash.com/photo-1501698335706-90b736210a61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1674&q=80"
+                  src="https://images.unsplash.com/photo-1501698335706-90b736210a61?auto=format&fit=crop&w=1674"
                   alt=""
                 />
               </AspectRatio>
@@ -227,7 +227,7 @@ export default function JoySvgIcon() {
           >
             <CardCover>
               <img
-                src="https://images.unsplash.com/photo-1525630558331-067c957817a9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2250&q=80"
+                src="https://images.unsplash.com/photo-1525630558331-067c957817a9?auto=format&fit=crop&w=2250"
                 alt=""
               />
             </CardCover>
@@ -302,7 +302,7 @@ export default function JoySvgIcon() {
               sx={{ my: 2, borderColor: 'rgba(0,0,0,0.12)' }}
             >
               <img
-                src="https://images.unsplash.com/photo-1464820453369-31d2c0b651af?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80"
+                src="https://images.unsplash.com/photo-1464820453369-31d2c0b651af?auto=format&fit=crop&w=1180"
                 alt=""
               />
             </AspectRatio>
@@ -326,7 +326,7 @@ export default function JoySvgIcon() {
             <CardOverflow>
               <AspectRatio ratio="1">
                 <img
-                  src="https://images.unsplash.com/photo-1627483262268-9c2b5b2834b5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
+                  src="https://images.unsplash.com/photo-1627483262268-9c2b5b2834b5?auto=format&fit=crop&w=1770"
                   alt=""
                 />
                 <Box
@@ -400,19 +400,19 @@ export default function JoySvgIcon() {
             >
               <AspectRatio ratio="1">
                 <img
-                  src="https://images.unsplash.com/photo-1598214886806-c87b84b7078b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1450&q=80"
+                  src="https://images.unsplash.com/photo-1598214886806-c87b84b7078b?auto=format&fit=crop&w=1450"
                   alt=""
                 />
               </AspectRatio>
               <AspectRatio ratio="1">
                 <img
-                  src="https://images.unsplash.com/photo-1597589022928-bb4002c099ec?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80"
+                  src="https://images.unsplash.com/photo-1597589022928-bb4002c099ec?auto=format&fit=crop&w=1180"
                   alt=""
                 />
               </AspectRatio>
               <AspectRatio ratio="1">
                 <img
-                  src="https://images.unsplash.com/photo-1516073924210-ab16d9c03b13?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1706&q=80"
+                  src="https://images.unsplash.com/photo-1516073924210-ab16d9c03b13?auto=format&fit=crop&w=1706"
                   alt=""
                 />
               </AspectRatio>
@@ -685,7 +685,7 @@ export default function JoySvgIcon() {
             >
               <img
                 alt=""
-                src="https://images.unsplash.com/photo-1620987278429-ab178d6eb547?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1450&q=80"
+                src="https://images.unsplash.com/photo-1620987278429-ab178d6eb547?auto=format&fit=crop&w=1450"
               />
             </AspectRatio>
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, maxWidth: '200px' }}>
@@ -718,7 +718,7 @@ export default function JoySvgIcon() {
               >
                 <img
                   alt=""
-                  src="https://images.unsplash.com/photo-1620987278429-ab178d6eb547?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1450&q=80"
+                  src="https://images.unsplash.com/photo-1620987278429-ab178d6eb547?auto=format&fit=crop&w=1450"
                 />
               </AspectRatio>
               <Box sx={{ display: 'flex', gap: 1.5, mt: 'auto' }}>
@@ -738,7 +738,7 @@ export default function JoySvgIcon() {
             <AspectRatio variant="outlined" sx={{ display: 'flex' }}>
               <img
                 alt=""
-                src="https://images.unsplash.com/photo-1620987278429-ab178d6eb547?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1450&q=80"
+                src="https://images.unsplash.com/photo-1620987278429-ab178d6eb547?auto=format&fit=crop&w=1450"
               />
             </AspectRatio>
           </Card>

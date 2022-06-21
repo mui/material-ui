@@ -93,6 +93,10 @@ module.exports = {
       ];
     }
 
+    config.module.rules.forEach((r) => {
+      r.resourceQuery = { not: [/raw/] };
+    });
+
     return {
       ...config,
       plugins,
@@ -123,6 +127,7 @@ module.exports = {
           // transpile 3rd party packages with dependencies in this repository
           {
             test: /\.(js|mjs|jsx)$/,
+            resourceQuery: { not: [/raw/] },
             include:
               /node_modules(\/|\\)(notistack|@mui(\/|\\)x-data-grid|@mui(\/|\\)x-data-grid-pro|@mui(\/|\\)x-license-pro|@mui(\/|\\)x-data-grid-generator|@mui(\/|\\)x-date-pickers-pro|@mui(\/|\\)x-date-pickers)/,
             use: {
@@ -160,9 +165,14 @@ module.exports = {
           // required to transpile ../packages/
           {
             test: /\.(js|mjs|tsx|ts)$/,
+            resourceQuery: { not: [/raw/] },
             include: [workspaceRoot],
             exclude: /(node_modules|mui-icons-material)/,
             use: options.defaultLoaders.babel,
+          },
+          {
+            resourceQuery: /raw/,
+            type: 'asset/source',
           },
         ]),
       },

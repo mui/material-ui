@@ -11,7 +11,6 @@ import {
   ListItemButtonTypeMap,
 } from './ListItemButtonProps';
 import listItemButtonClasses, { getListItemButtonUtilityClass } from './listItemButtonClasses';
-import listItemClasses from '../ListItem/listItemClasses';
 import RowListContext from '../List/RowListContext';
 
 const useUtilityClasses = (ownerState: ListItemButtonProps & { focusVisible: boolean }) => {
@@ -41,7 +40,9 @@ const ListItemButtonRoot = styled('div', {
   name: 'JoyListItemButton',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: ListItemButtonProps & { row: boolean } }>(({ theme, ownerState }) => [
+})<{
+  ownerState: ListItemButtonProps & { row: boolean; 'data-first-child'?: string };
+}>(({ theme, ownerState }) => [
   {
     ...(ownerState.selected && {
       '--List-decorator-color': 'initial',
@@ -52,18 +53,23 @@ const ListItemButtonRoot = styled('div', {
     textAlign: 'initial',
     textDecoration: 'initial', // reset native anchor tag
     // In some cases, ListItemButton is a child of ListItem so the margin needs to be controlled by the ListItem. The value is negative to account for the ListItem's padding
-    margin: 'var(--List-itemButton-margin)',
+    marginInline: 'var(--List-itemButton-marginInline)',
+    marginBlock: 'var(--List-itemButton-marginBlock)',
+    ...(ownerState['data-first-child'] === undefined && {
+      marginInlineStart: ownerState.row ? 'var(--List-gap)' : undefined,
+      marginBlockStart: ownerState.row ? undefined : 'var(--List-gap)',
+    }),
     // account for the border width
-    padding: 'calc(var(--List-item-paddingY) - var(--variant-borderWidth))',
-    paddingLeft:
+    paddingBlock: 'calc(var(--List-item-paddingY) - var(--variant-borderWidth))',
+    paddingInlineStart:
       'calc(var(--List-item-paddingLeft) + var(--List-item-startActionWidth, var(--internal-startActionWidth, 0px)) - var(--variant-borderWidth))', // --internal variable makes it possible to customize the actionWidth from the top List
-    paddingRight:
+    paddingInlineEnd:
       'calc(var(--List-item-paddingRight) + var(--List-item-endActionWidth, var(--internal-endActionWidth, 0px)) - var(--variant-borderWidth))', // --internal variable makes it possible to customize the actionWidth from the top List
-    minHeight: 'var(--List-item-minHeight)',
+    minBlockSize: 'var(--List-item-minHeight)',
     border: 'none',
     borderRadius: 'var(--List-item-radius)',
     flex: ownerState.row ? 'none' : 1,
-    minWidth: 0,
+    minInlineSize: 0,
     // TODO: discuss the transition approach in a separate PR. This value is copied from mui-material Button.
     transition:
       'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
@@ -73,18 +79,6 @@ const ListItemButtonRoot = styled('div', {
       fontWeight: theme.vars.fontWeight.md,
     }),
     [theme.focus.selector]: theme.focus.default,
-    // Can't use :last-child or :first-child selector because ListItemButton can be inside ListItem with start/end action
-    // We want to be specific on what siblings the gap should be added.
-    [`& + .${listItemButtonClasses.root}`]: ownerState.row
-      ? { marginLeft: 'var(--List-gap)' }
-      : {
-          marginTop: 'var(--List-gap)',
-        },
-    [`& + .${listItemClasses.root}`]: ownerState.row
-      ? { marginLeft: 'var(--List-gap)' }
-      : {
-          marginTop: 'var(--List-gap)',
-        },
   },
   theme.variants[ownerState.variant!]?.[ownerState.color!],
   { '&:hover': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!] },
