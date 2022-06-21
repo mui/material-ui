@@ -58,12 +58,10 @@ You can play with those examples in a [codesandbox](https://codesandbox.io/s/fas
 
 ### Let JS generate the CSS
 
-Maybe you don’t want to invest too much time digging through long and cluttered stylesheets just to find the single instance where this padding or that margin is defined.
-Maybe you’re sick of mindlessly adjusting hex values in a hundred different places because the designer decided that “blue” should be #29b6f6 instead of #4fc3f7.
+Maybe you don't want to spent your time switching between CSS and JS filed, or write long and cluttered stylesheets.
+To avoid those problem you can integrate the style in your JS code 🎉
 
-You maybe be don’t want to spend time writing long CSS files, spending time saying “In which file is define this f\*\*\*ing 5px padding?” or modifying all your files, because a designer decided that blue should be #29b6f6 instead of #4fc3f7.
-
-Over time, MUI has added multiple ways to customize components.
+Because the level of customization varies across projects, MUI has added multiple ways to customize components.
 If you want more information on this topic, you can have a look at the [documentation](https://mui.com/material-ui/customization/how-to-customize/)
 
 ## Logic modification
