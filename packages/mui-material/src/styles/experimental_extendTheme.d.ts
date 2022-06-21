@@ -160,6 +160,7 @@ export interface PaletteTooltip {
   bg: string;
 }
 
+// The Palette should be sync with `../themeCssVarsAugmentation/index.d.ts`
 export interface ColorSystemOptions {
   palette?: Omit<PaletteOptions, 'mode'> & {
     common?: Partial<PaletteCommonChannel>;
@@ -172,6 +173,7 @@ export interface ColorSystemOptions {
     dividerChannel?: Partial<string>;
     action?: Partial<PaletteActionChannel>;
     AppBar?: Partial<PaletteAppBar>;
+    Avatar?: Partial<PaletteAvatar>;
     Chip?: Partial<PaletteChip>;
     FilledInput?: Partial<PaletteFilledInput>;
     LinearProgress?: Partial<PaletteLinearProgress>;
@@ -187,6 +189,7 @@ export interface ColorSystemOptions {
   overlays?: Overlays;
 }
 
+// The Palette should be sync with `../themeCssVarsAugmentation/index.d.ts`
 export interface ColorSystem {
   palette: Palette & {
     colorScheme: SupportedColorScheme;
@@ -200,6 +203,7 @@ export interface ColorSystem {
     dividerChannel: string;
     action: PaletteActionChannel;
     AppBar: PaletteAppBar;
+    Avatar: PaletteAvatar;
     Chip: PaletteChip;
     FilledInput: PaletteFilledInput;
     LinearProgress: PaletteLinearProgress;

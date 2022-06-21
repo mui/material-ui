@@ -32,6 +32,7 @@ declare module '@mui/material/styles' {
     getColorSchemeSelector: CssVarsTheme['getColorSchemeSelector'];
   }
 
+  // The extended Palette should be in sync with `extendTheme`
   interface Palette {
     dividerChannel: string;
     AppBar: PaletteAppBar;
