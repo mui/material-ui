@@ -218,42 +218,6 @@ const StyledComponent = styled('button')(({ theme }) => ({
 }));
 ```
 
-#### Augment palette types
-
-The module augmentation approach remains the same. For example, if you want to add new tokens to the palette you can do this:
-
-```ts
-declare module '@mui/material/styles' {
-  interface PaletteOptions {
-    gradient: {
-      default: string;
-    };
-  }
-
-  interface Palette {
-    gradient: {
-      default: string;
-    };
-  }
-}
-
-const theme = extendTheme({
-  colorSchemes: {
-    light: {
-      palette: {
-        // Now, the `gradient` node is required.
-        gradient: {
-          default: 'linear-gradient(...)',
-        },
-      },
-    },
-    // do the same for `dark`
-  },
-});
-```
-
-Then you will be able to see the theme types of `theme.vars.palette.gradient.default` in any of the styling APIs.
-
 ## API
 
 ### `<CssVarsProvider>` props
