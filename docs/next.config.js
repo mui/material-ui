@@ -2,7 +2,7 @@ const path = require('path');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const pkg = require('../package.json');
 const { findPages } = require('./src/modules/utils/find');
-const { LANGUAGES, LANGUAGES_SSR } = require('./src/modules/constants');
+const { LANGUAGES, LANGUAGES_SSR, LANGUAGES_IGNORE_PAGES } = require('./src/modules/constants');
 const FEATURE_TOGGLE = require('./src/featureToggle');
 
 const workspaceRoot = path.join(__dirname, '../');
@@ -209,10 +209,7 @@ module.exports = {
           return;
         }
         // The blog is not translated
-        if (
-          userLanguage !== 'en' &&
-          (page.pathname === '/blog' || page.pathname.startsWith('/blog/'))
-        ) {
+        if (userLanguage !== 'en' && LANGUAGES_IGNORE_PAGES(page.pathname)) {
           return;
         }
         if (!page.children) {

@@ -1,6 +1,7 @@
 const { marked } = require('marked');
 const kebabCase = require('lodash/kebabCase');
 const textToHash = require('./textToHash');
+const { LANGUAGES_IGNORE_PAGES } = require('../../src/modules/constants');
 const prism = require('./prism');
 
 const headerRegExp = /---[\r\n]([\s\S]*)[\r\n]---/;
@@ -262,13 +263,7 @@ function createRender(context) {
 
       checkUrlHealth(href, linkText, context);
 
-      if (
-        userLanguage !== 'en' &&
-        href.indexOf('/') === 0 &&
-        href !== '/size-snapshot' &&
-        // The blog is not translated
-        !href.startsWith('/blog/')
-      ) {
+      if (userLanguage !== 'en' && href.indexOf('/') === 0 && !LANGUAGES_IGNORE_PAGES(href)) {
         finalHref = `/${userLanguage}${href}`;
       }
 
