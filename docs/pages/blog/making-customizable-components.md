@@ -1,6 +1,6 @@
 ---
 title: 'Making customizable components'
-description: The use case of of data grid
+description: The use case of the data grid
 date: 2022-06-23T00:00:00.000Z
 authors: ['alexfauquette']
 tags: ['MUI X']
@@ -18,7 +18,7 @@ Along the way, we’ll explore how these tradeoffs ultimately led to the solutio
 ## Style modification
 
 If you already use a styling library, don’t hesitate to skip this part.
-See you back in Logic modification section
+See you back in the [Logic modification section](#logic-modification)
 
 ### Good old CSS
 
@@ -71,7 +71,7 @@ You may have to modify the logic, which will have to be handled by the component
 
 ### Add a prop
 
-Consider a component that lets users rate a product..
+Consider a component that lets users rate a product.
 Going from 1 to 5 stars is good.
 But maybe you need to go up to 10.
 To do so we can add a `max` prop and render as many stars as the value of `max`.
@@ -193,7 +193,7 @@ This trade-off makes sense for react-admin, which is used for building complete 
 Their users need complete freedom when it comes to rearranging components and introducing new components anywhere.
 
 But MUI’s products exist at a lower level.
-We focus on the building blocks, not the entire website (but we do have templates for that 😉).
+We focus on the building blocks, not the entire website (but we do have [templates](https://mui.com/templates/) for that 😉).
 So that’s not the approach we took for the `DataGrid`.
 
 #### Keep a single component
@@ -255,7 +255,7 @@ const CustomFilterPanel = (props) => (
 But this strategy of adding props to customize components is a bit verbose.
 So we added a way to pass props to an existing component using `componentsProps`.
 You can pass props to every slot on `components` using `componentsProps`.
-Here’s how to to pass `columnsSort='asc'` to the filter panel slot:
+Here’s how to pass `columnsSort='asc'` to the filter panel slot:
 
 ```jsx
 <DataGrid
