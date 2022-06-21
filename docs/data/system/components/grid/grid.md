@@ -162,9 +162,9 @@ If you add borders or background to the grid with `disableEqualOverflow`, you wi
 
 ## Limitations
 
-### `direction: column | column-reverse`
+### direction column and column-reverse
 
-The `xs`, `sm`, `md`, `lg`, and `xl` props are **not supported** within `direction="column"` and `direction="column-reverse"` containers.
+The column width (`xs`, ..., `xl`) and offset props are **not supported** within `direction="column"` and `direction="column-reverse"` containers.
 
 They define the number of grids the component will use for a given breakpoint. They are intended to control **width** using `flex-basis` in `row` containers but they will impact height in `column` containers.
 If used, these props may have undesirable effects on the height of the `Grid` item elements.
