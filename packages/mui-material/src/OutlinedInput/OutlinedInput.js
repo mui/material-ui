@@ -154,6 +154,7 @@ const OutlinedInput = React.forwardRef(function OutlinedInput(inProps, ref) {
     muiFormControl,
     states: ['required'],
   });
+
   const ownerState = {
     ...props,
     color: fcs.color || 'primary',
