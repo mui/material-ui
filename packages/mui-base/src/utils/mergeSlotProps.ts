@@ -1,4 +1,4 @@
-import clsx from 'clsx';
+import clsx, { ClassValue } from 'clsx';
 import { Simplify } from '@mui/types';
 import { EventHandlers } from './types';
 import extractEventHandlers from './extractEventHandlers';
@@ -38,7 +38,7 @@ export interface MergeSlotPropsParameters<
   /**
    * Extra class name(s) to be placed on the slot.
    */
-  className?: string | (string | undefined)[] | undefined;
+  className?: ClassValue | ClassValue[];
 }
 
 export type MergeSlotPropsResult<

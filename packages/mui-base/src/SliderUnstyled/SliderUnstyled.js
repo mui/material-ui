@@ -166,6 +166,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
     elementType: Mark,
     externalSlotProps: componentsProps.mark,
     ownerState,
+    className: classes.mark,
   });
 
   const MarkLabel = components.MarkLabel ?? 'span';
@@ -217,7 +218,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
                   markActive,
                 })}
                 style={{ ...style, ...markProps.style }}
-                className={clsx(classes.mark, markProps.className, {
+                className={clsx(markProps.className, {
                   [classes.markActive]: markActive,
                 })}
               />
@@ -285,9 +286,6 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
                     getAriaValueText ? getAriaValueText(scale(value), index) : ariaValuetext
                   }
                   value={values[index]}
-                  {...(!isHostComponent(Input) && {
-                    ownerState: { ...ownerState, ...inputProps.ownerState },
-                  })}
                   {...inputProps}
                 />
               </Thumb>

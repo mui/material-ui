@@ -663,7 +663,7 @@ export default function useSlider(parameters: UseSliderParameters) {
       type: 'range',
       min: parameters.min,
       max: parameters.max,
-      step: parameters.step,
+      step: parameters.step ?? undefined,
       disabled,
       ...mergedEventHandlers,
       style: {
@@ -678,14 +678,14 @@ export default function useSlider(parameters: UseSliderParameters) {
 
   return {
     active,
-    axis,
+    axis: axis as keyof typeof axisProps,
     axisProps,
     dragging,
     focusedThumbIndex,
     getHiddenInputProps,
     getRootProps,
     getThumbProps,
-    marks,
+    marks: marks as Mark[],
     open,
     range,
     trackLeap,

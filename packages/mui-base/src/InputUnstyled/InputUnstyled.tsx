@@ -1,11 +1,7 @@
 import * as React from 'react';
-import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { OverridableComponent } from '@mui/types';
-import { unstable_useForkRef as useForkRef } from '@mui/utils';
-import appendOwnerState from '../utils/appendOwnerState';
 import isHostComponent from '../utils/isHostComponent';
-import resolveComponentProps from '../utils/resolveComponentProps';
 import classes from './inputUnstyledClasses';
 import {
   InputUnstyledInputSlotProps,
@@ -15,7 +11,7 @@ import {
   InputUnstyledTypeMap,
 } from './InputUnstyled.types';
 import useInput from './useInput';
-import { WithOptionalOwnerState } from '../utils';
+import { EventHandlers, useSlotProps, WithOptionalOwnerState } from '../utils';
 
 /**
  *
@@ -126,31 +122,27 @@ const InputUnstyled = React.forwardRef(function InputUnstyled(
   };
 
   const Root = component ?? components.Root ?? 'div';
-  const rootComponentsProps = resolveComponentProps(componentsProps.root, ownerState);
-  const rootProps: WithOptionalOwnerState<InputUnstyledRootSlotProps> = appendOwnerState(
-    Root,
-    {
-      ...getRootProps({ ...other, ...rootComponentsProps }),
-      className: clsx(classes.root, rootStateClasses, className, rootComponentsProps?.className),
+  const rootProps: WithOptionalOwnerState<InputUnstyledRootSlotProps> = useSlotProps({
+    elementType: Root,
+    getSlotProps: getRootProps,
+    externalSlotProps: componentsProps.root,
+    externalForwardedProps: other,
+    additionalProps: {
+      ref: forwardedRef,
     },
     ownerState,
-  );
-
-  rootProps.ref = useForkRef(rootProps.ref, useForkRef(rootComponentsProps?.ref, forwardedRef));
+    className: [classes.root, rootStateClasses, className],
+  });
 
   let Input = components.Input ?? 'input';
-  const inputComponentsProps = resolveComponentProps(componentsProps.input, ownerState);
-
-  let inputProps: WithOptionalOwnerState<InputUnstyledInputSlotProps> = appendOwnerState(
-    Input,
-    {
-      ...getInputProps({ ...inputComponentsProps, ...propsToForward }),
-      className: clsx(classes.input, inputStateClasses, inputComponentsProps?.className),
-    },
+  let inputProps: WithOptionalOwnerState<InputUnstyledInputSlotProps> = useSlotProps({
+    elementType: Input,
+    getSlotProps: (otherHandlers: EventHandlers) =>
+      getInputProps({ ...otherHandlers, ...propsToForward }),
+    externalSlotProps: componentsProps.input,
     ownerState,
-  );
-
-  inputProps.ref = useForkRef(inputProps.ref, inputComponentsProps?.ref);
+    className: [classes.input, inputStateClasses],
+  });
 
   if (multiline) {
     const hasHostTextarea = isHostComponent(components.Textarea ?? 'textarea');
