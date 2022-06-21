@@ -286,6 +286,7 @@ export type SliderUnstyledRailSlotProps = {
 
 export type SliderUnstyledThumbSlotProps = UseSliderThumbSlotProps & {
   'data-index': number;
+  'data-focusvisible': boolean;
   children: React.ReactNode;
   className?: string;
   ownerState: SliderUnstyledOwnerState;

@@ -633,12 +633,9 @@ export default function useSlider(parameters: UseSliderParameters) {
       onMouseLeave: createHandleMouseLeave(otherHandlers || {}),
     };
 
-    const mergedEventHandlers = {
+    return {
       ...otherHandlers,
       ...ownEventHandlers,
-    };
-    return {
-      ...mergedEventHandlers,
     };
   };
 
