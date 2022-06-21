@@ -183,7 +183,6 @@ export default function createGrid(
 
   Grid.propTypes /* remove-proptypes */ = {
     children: PropTypes.node,
-    classes: PropTypes.object,
     className: PropTypes.string,
     columns: PropTypes.oneOfType([
       PropTypes.arrayOf(PropTypes.number),
@@ -203,8 +202,11 @@ export default function createGrid(
       PropTypes.arrayOf(PropTypes.oneOf(['column-reverse', 'column', 'row-reverse', 'row'])),
       PropTypes.object,
     ]),
+    disableEqualOverflow: PropTypes.bool,
     lg: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number, PropTypes.bool]),
+    lgOffset: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number]),
     md: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number, PropTypes.bool]),
+    mdOffset: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number]),
     rowSpacing: PropTypes.oneOfType([
       PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])),
       PropTypes.number,
@@ -212,6 +214,7 @@ export default function createGrid(
       PropTypes.string,
     ]),
     sm: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number, PropTypes.bool]),
+    smOffset: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number]),
     spacing: PropTypes.oneOfType([
       PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])),
       PropTypes.number,
@@ -225,7 +228,9 @@ export default function createGrid(
     ]),
     wrap: PropTypes.oneOf(['nowrap', 'wrap-reverse', 'wrap']),
     xl: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number, PropTypes.bool]),
+    xlOffset: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number]),
     xs: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number, PropTypes.bool]),
+    xsOffset: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number]),
   };
 
   return Grid;
