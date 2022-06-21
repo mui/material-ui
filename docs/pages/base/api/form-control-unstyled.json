@@ -1,7 +1,6 @@
 {
   "props": {
     "children": { "type": { "name": "union", "description": "node<br>&#124;&nbsp;func" } },
-    "className": { "type": { "name": "string" } },
     "component": { "type": { "name": "elementType" } },
     "components": {
       "type": { "name": "shape", "description": "{ Root?: elementType }" },
