@@ -6,6 +6,7 @@ import {
   useTheme,
   Overlays,
 } from '@mui/material/styles';
+import type {} from '@mui/material/themeCssVarsAugmentation';
 
 const customTheme = extendTheme({
   colorSchemes: {
