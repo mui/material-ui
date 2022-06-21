@@ -23,6 +23,8 @@ const customTheme = extendTheme({
         },
         // @ts-expect-error
         mode: '',
+        getContrastText: () => '',
+        tonalOffset: 1,
       },
     },
     dark: {
@@ -42,7 +44,9 @@ const customTheme = extendTheme({
 });
 
 const TestStyled = styled('div')(({ theme }) => ({
+  // test that `theme.vars` works
   color: theme.vars.palette.primary.main,
+  // test that `theme.getColorSchemeSelector` works
   [theme.getColorSchemeSelector('dark')]: {
     color: theme.vars.palette.common.onBackground,
   },
@@ -50,12 +54,14 @@ const TestStyled = styled('div')(({ theme }) => ({
 
 const TestUseTheme = () => {
   const theme = useTheme();
+  // test that `theme` from useTheme has access to CSS vars
   return <div style={{ background: theme.vars.palette.common.background }}>test</div>;
 };
 
 <CssVarsProvider theme={customTheme}>
   <TestStyled
     sx={(theme) => ({
+      // test that `theme` in sx has access to CSS vars
       [theme.getColorSchemeSelector('dark')]: {
         border: '1px solid',
         borderColor: theme.vars.palette.divider,
