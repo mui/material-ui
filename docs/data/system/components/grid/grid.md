@@ -70,7 +70,7 @@ It's similar to the `row-gap` and `column-gap` properties of [CSS Grid](/system/
 ## Responsive values
 
 You can switch the props' value based on the active breakpoint.
-For instance, we can implement the ["recommended"](https://material.io/design/layout/responsive-layout-grid.html) responsive layout grid of Material Design.
+For instance, we can implement the [recommended](https://material.io/design/layout/responsive-layout-grid.html) responsive layout grid of Material Design.
 
 {{"demo": "ResponsiveGrid.js", "bg": true}}
 
@@ -99,7 +99,7 @@ a column based on the natural width of its content.
 
 ## Nested Grid
 
-The grid container that renders inside another grid container is a nested grid which inherits the `columns` and `spacing` from the top. The deep nested grid will inherit the props from the upper nested grid if it receives those props.
+The grid container that renders inside another grid container is a nested grid which inherits the [`columns`](#columns) and [`spacing`](#spacing) from the top. The deep nested grid will inherit the props from the upper nested grid if it receives those props.
 
 {{"demo": "NestedGrid.js", "bg": true}}
 
