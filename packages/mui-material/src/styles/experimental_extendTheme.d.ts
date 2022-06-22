@@ -89,6 +89,29 @@ export interface PaletteTextChannel {
   disabledChannel: string;
 }
 
+export interface PaletteAlert {
+  errorColor: string;
+  infoColor: string;
+  successColor: string;
+  warningColor: string;
+  errorFilledBg: string;
+  infoFilledBg: string;
+  successFilledBg: string;
+  warningFilledBg: string;
+  errorFilledColor: string;
+  infoFilledColor: string;
+  successFilledColor: string;
+  warningFilledColor: string;
+  errorStandardBg: string;
+  infoStandardBg: string;
+  successStandardBg: string;
+  warningStandardBg: string;
+  errorIconColor: string;
+  infoIconColor: string;
+  successIconColor: string;
+  warningIconColor: string;
+}
+
 export interface PaletteAppBar {
   defaultBg: string;
   darkBg: string;
@@ -120,6 +143,10 @@ export interface PaletteLinearProgress {
   warningBg: string;
 }
 
+export interface PaletteSkeleton {
+  bg: string;
+}
+
 export interface PaletteSlider {
   primaryTrack: string;
   secondaryTrack: string;
@@ -131,6 +158,10 @@ export interface PaletteSlider {
 
 export interface PaletteSnackbarContent {
   bg: string;
+}
+
+export interface PaletteSpeedDialAction {
+  fabHoverBg: string;
 }
 
 export interface PaletteStepConnector {
@@ -172,13 +203,16 @@ export interface ColorSystemOptions {
     text?: Partial<PaletteTextChannel>;
     dividerChannel?: Partial<string>;
     action?: Partial<PaletteActionChannel>;
+    Alert?: Partial<PaletteAlert>;
     AppBar?: Partial<PaletteAppBar>;
     Avatar?: Partial<PaletteAvatar>;
     Chip?: Partial<PaletteChip>;
     FilledInput?: Partial<PaletteFilledInput>;
     LinearProgress?: Partial<PaletteLinearProgress>;
+    Skeleton?: Partial<PaletteSkeleton>;
     Slider?: Partial<PaletteSlider>;
     SnackbarContent?: Partial<PaletteSnackbarContent>;
+    SpeedDialAction?: Partial<PaletteSpeedDialAction>;
     StepConnector?: Partial<PaletteStepConnector>;
     StepContent?: Partial<PaletteStepContent>;
     Switch?: Partial<PaletteSwitch>;
@@ -202,13 +236,16 @@ export interface ColorSystem {
     text: PaletteTextChannel;
     dividerChannel: string;
     action: PaletteActionChannel;
+    Alert: PaletteAlert;
     AppBar: PaletteAppBar;
     Avatar: PaletteAvatar;
     Chip: PaletteChip;
     FilledInput: PaletteFilledInput;
     LinearProgress: PaletteLinearProgress;
+    Skeleton: PaletteSkeleton;
     Slider: PaletteSlider;
     SnackbarContent: PaletteSnackbarContent;
+    SpeedDialAction: PaletteSpeedDialAction;
     StepConnector: PaletteStepConnector;
     StepContent: PaletteStepContent;
     Switch: PaletteSwitch;
