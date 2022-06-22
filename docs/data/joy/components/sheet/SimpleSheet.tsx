@@ -3,7 +3,7 @@ import * as React from 'react';
 
 export default function SimpleSheet() {
   return (
-    <Sheet variant="outlined" sx={{ p: 4 }}>
+    <Sheet variant="outlined" color="neutral" sx={{ p: 4 }}>
       Hello world!
     </Sheet>
   );
