@@ -38,28 +38,83 @@ export default function MyApp() {
 
 ### Basic usage
 
+`FormControlUnstyled` wraps around the elements of a form that need access to the state of an `<input>`.
+For instance, if the form's **Submit** button needs to change states after the user enters information, then the component will be structured like this:
+
+```jsx
+<FormControlUnstyled>
+  <input />
+  <button>Submit</button>
+</FormControlUnstyled>
+```
+
 The following demo shows how to create and style a form that uses `FormControlUnstyled` to wrap the elements of the form.
 Note that it also uses the `useFormControlUnstyledContext` hook in order to pass props to the custom `InputUnstyled`—see the [Hook section](#hook) below for more details.
 
 {{"demo": "BasicFormControl.js"}}
 
-### Accessing the form control state
+### Internal slots
 
-You can access the state of the form control by providing a function as a child of the `FormControlUnstyled`.
-The state will be provided as a parameter to this function.
+The `FormControlUnstyled` component is composed of a root `<div>` slot with no interior subcomponents:
 
-The following demo shows how to access the state of the form control in an `InputUnstyled` component nested inside of `FormControlUnstyled`:
+```html
+<div class="BaseFormControl-root">
+  <!-- form elements are nested here -->
+</div>
+```
 
-{{"demo": "FormControlFunctionChild.js"}}
+### Slot props
+
+:::info
+The following props are available on all Base components.
+See [Usage](/getting-started/usage/) for full details.
+:::
+
+Use the `component` prop to override the root slot with a custom element:
+
+```jsx
+<FormControlUnstyled component="span" />
+```
+
+Use the `components` prop to override any interior slots in addition to the root (largely unnecessary here, since this component contains no subcomponents):
+
+```jsx
+<BadgeUnstyled components={{ Root: 'span' }} />
+```
+
+:::warning
+If the root element is customized with both the `component` and `components` props, then `component` will take precedence.
+:::
+
+Use the `componentsProps` prop to pass custom props to internal slots.
+The following code snippet applies a CSS class called `my-form-control` to the root slot:
+
+```jsx
+<BadgeUnstyled componentsProps={{ root: { className: 'my-form-control' } }} />
+```
+
+:::warning
+Note that `componentsProps` slot names are written in lowercase (`root`) while `components` slot names are capitalized (`Root`).
+:::
 
 ## Hook
 
-The `FormControlUnstyled` component provides a context that can be read by the `useFormControlUnstyledContext` hook.
+```jsx
+import { useFormControlUnstyledContext } from '@mui/base/FormControlUnstyled';
+```
 
-You can use the `useFormControlUnstyledContext` hook to enable integration between custom form inputs and `FormControlUnstyled`.
-You can also use it to read the form control's state and react to its changes in a custom component.
+The `useFormControlUnstyledContext` hook reads the context provided by `FormControlUnstyled`. You can use this hook to enable integration between custom form inputs and `FormControlUnstyled`. You can also use it to read the form control's state and react to its changes in a custom component.
 
-The demo below shows both:
+Hooks _do not_ support [slot props](#slot-props), but they do support [customization props](#customization).
+
+:::info
+Hooks give you the most room for customization, but require more work to implement.
+With hooks, you can take full control over how your component is rendered, and define all the custom props and CSS classes you need.
+
+You may not need to use hooks unless you find that you're limited by the customization options of their component counterparts—for instance, if your component requires significantly different [internal slot structure](#internal-slots).
+:::
+
+The demo below shows how to integrate this hook with its component counterpart:
 
 - `CustomInput` is a wrapper around a native HTML `<input>` that adds `FormControlUnstyled` integration.
 - `ControlStateDisplay` reads the state of the form control and displays it as text.
@@ -88,3 +143,19 @@ The following callbacks are also part of the returned object—they are meant to
 | `onChange` | React.ChangeEvent => void | Value change handler. Should be forwarded to the inner input. |
 | `onBlur`   | () => void                | Focus change handler. Should be forwarded to the inner input. |
 | `onFocus`  | () => void                | Focus change handler. Should be forwarded to the inner input. |
+
+## Customization
+
+:::info
+The following features can be used with both components and hooks.
+For the sake of simplicity, demos and code snippets primarily feature components.
+:::
+
+### Accessing the form control state
+
+You can access the state of the form control by providing a function as a child of the `FormControlUnstyled`.
+The state will be provided as a parameter to this function.
+
+The following demo shows how to access the state of the form control in an `InputUnstyled` component nested inside of `FormControlUnstyled`:
+
+{{"demo": "FormControlFunctionChild.js"}}
