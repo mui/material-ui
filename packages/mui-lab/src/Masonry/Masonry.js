@@ -1,4 +1,5 @@
 import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { flushSync } from 'react-dom';
 import { styled, useThemeProps } from '@mui/material/styles';
 import {
   createUnarySpacing,
@@ -245,9 +246,13 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
       }
     });
     if (!skip) {
-      setMaxColumnHeight(Math.max(...columnHeights));
-      const numOfLineBreaks = currentNumberOfColumns > 0 ? currentNumberOfColumns - 1 : 0;
-      setNumberOfLineBreaks(numOfLineBreaks);
+      // In React 18, state updates in a ResizeObserver's callback are happening after the paint which causes flickering
+      // when doing some visual updates in it. Using flushSync ensures that the dom will be painted after the states updates happen
+      // Related issue - https://github.com/facebook/react/issues/24331
+      flushSync(() => {
+        setMaxColumnHeight(Math.max(...columnHeights));
+        setNumberOfLineBreaks(currentNumberOfColumns > 0 ? currentNumberOfColumns - 1 : 0);
+      });
     }
   };
 

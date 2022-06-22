@@ -447,7 +447,7 @@ const className = `${sheetName}-${ruleName}-${identifier}`;
 const productionPrefix = 'jss';
 const identifier = 123;
 
-const className = `${productionPrefix}-${identifier}`;
+const className = `${productionPrefix}${identifier}`;
 ```
 
 However, when the following conditions are met, the class names are **deterministic**:

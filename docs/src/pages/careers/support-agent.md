@@ -70,4 +70,4 @@ You can find the other perks & benefits on the [careers](/careers/#perks-amp-ben
 
 ## How to apply?
 
-[Apply now for this position 📮](https://airtable.com/shrdqo1Z6srZXGcvh?prefill_Applying+for=Support%20Agent%20-%20Store&prefill_source=mui.com)
+[Apply now for this position 📮](https://jobs.ashbyhq.com/MUI/79a9b5ec-6fb3-41ec-b48b-0a792ced7c19/application?utm_source=ZNRrPGBkqO)

@@ -153,6 +153,9 @@ export interface PaletteWithChannels {
     darkBg: string;
     darkColor: string;
   };
+  Avatar: {
+    defaultBg: string;
+  };
   Chip: {
     defaultBorder: string;
     defaultAvatarColor: string;
@@ -181,6 +184,9 @@ export interface PaletteWithChannels {
   };
   SnackbarContent: {
     bg: string;
+  };
+  SpeedDialAction: {
+    fabHoverBg: string;
   };
   StepConnector: {
     border: string;
