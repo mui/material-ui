@@ -1,5 +1,6 @@
 {
-  "version": "5.8.4",
+  "name": "@mui/monorepo",
+  "version": "5.8.5",
   "private": true,
   "scripts": {
     "proptypes": "cross-env BABEL_ENV=development babel-node --extensions \".tsx,.ts,.js\" ./scripts/generateProptypes.ts",

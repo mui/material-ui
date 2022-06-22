@@ -22,14 +22,16 @@ const StyledAppContainer = styled(AppContainer)(({ theme }) => ({
   },
 }));
 
-function TopLayoutCompany(props) {
+function TopLayoutCareers(props) {
   const { docs } = props;
   const { description, rendered, title } = docs.en;
 
   return (
     <BrandingProvider>
       <AppHeader />
-      <Head title={`${title} - MUI`} description={description} />
+      <Head title={`${title} - MUI`} description={description}>
+        <meta name="robots" content="noindex,nofollow" />
+      </Head>
       <StyledDiv>
         <StyledAppContainer component="main" sx={{ py: { xs: 3, sm: 4, md: 8 } }}>
           <Link
@@ -52,8 +54,8 @@ function TopLayoutCompany(props) {
   );
 }
 
-TopLayoutCompany.propTypes = {
+TopLayoutCareers.propTypes = {
   docs: PropTypes.object.isRequired,
 };
 
-export default TopLayoutCompany;
+export default TopLayoutCareers;

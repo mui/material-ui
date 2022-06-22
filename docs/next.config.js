@@ -2,7 +2,7 @@ const path = require('path');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const pkg = require('../package.json');
 const { findPages } = require('./src/modules/utils/find');
-const { LANGUAGES, LANGUAGES_SSR } = require('./src/modules/constants');
+const { LANGUAGES, LANGUAGES_SSR, LANGUAGES_IGNORE_PAGES } = require('./src/modules/constants');
 const FEATURE_TOGGLE = require('./src/featureToggle');
 
 const workspaceRoot = path.join(__dirname, '../');
@@ -103,6 +103,10 @@ module.exports = {
       ];
     }
 
+    config.module.rules.forEach((r) => {
+      r.resourceQuery = { not: [/raw/] };
+    });
+
     return {
       ...config,
       plugins,
@@ -133,6 +137,7 @@ module.exports = {
           // transpile 3rd party packages with dependencies in this repository
           {
             test: /\.(js|mjs|jsx)$/,
+            resourceQuery: { not: [/raw/] },
             include:
               /node_modules(\/|\\)(notistack|@mui(\/|\\)x-data-grid|@mui(\/|\\)x-data-grid-pro|@mui(\/|\\)x-license-pro|@mui(\/|\\)x-data-grid-generator|@mui(\/|\\)x-date-pickers-pro|@mui(\/|\\)x-date-pickers)/,
             use: {
@@ -170,9 +175,14 @@ module.exports = {
           // required to transpile ../packages/
           {
             test: /\.(js|mjs|tsx|ts)$/,
+            resourceQuery: { not: [/raw/] },
             include: [workspaceRoot],
             exclude: /(node_modules|mui-icons-material)/,
             use: options.defaultLoaders.babel,
+          },
+          {
+            resourceQuery: /raw/,
+            type: 'asset/source',
           },
         ]),
       },
@@ -209,10 +219,7 @@ module.exports = {
           return;
         }
         // The blog is not translated
-        if (
-          userLanguage !== 'en' &&
-          (page.pathname === '/blog' || page.pathname.startsWith('/blog/'))
-        ) {
+        if (userLanguage !== 'en' && LANGUAGES_IGNORE_PAGES(page.pathname)) {
           return;
         }
         if (!page.children) {

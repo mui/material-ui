@@ -30,6 +30,16 @@ const Select = styled('select')(({ theme }) => ({
   },
 }));
 
+const shallowEqual = (item1: { [k: string]: any }, item2: { [k: string]: any }) => {
+  let equal = true;
+  Object.entries(item1).forEach(([key, value]: [string, any]) => {
+    if (item2[key] !== value) {
+      equal = false;
+    }
+  });
+  return equal;
+};
+
 function createCode(data: {
   name: string;
   props: Record<string, string | number | boolean>;
@@ -80,40 +90,71 @@ function createCode(data: {
 }
 
 interface JoyUsageDemoProps<ComponentProps> {
+  /**
+   * Name of the component to show in the code block.
+   */
   componentName: string;
+  /**
+   * For displaying the close bracket of the component in the code block.
+   * if `true`, shows '>' otherwise shows '/>'
+   */
   childrenAccepted?: boolean;
+  /**
+   * Configuration
+   */
   data: Array<{
+    /**
+     * Name of the prop
+     */
     propName: keyof ComponentProps;
+    /**
+     * The controller to be used:
+     * - `switch`: render the switch component for boolean
+     * - `color`: render the built-in color selector
+     * - `select`: render <select> with the specified options
+     * - `input`: render <input />
+     * - `radio`: render group of radios
+     */
     knob?: 'switch' | 'color' | 'select' | 'input' | 'radio';
+    /**
+     * The options for these knobs: `select` and `radio`
+     */
     options?: Array<string>;
+    /**
+     * The default value to be used by the components.
+     * If exists, it will be injected to the `renderDemo` callback but it will not show
+     * in the code block.
+     *
+     * To make it appears in the code block, specified `codeBlockDisplay: true`
+     */
     defaultValue?: string | number | boolean;
+    /**
+     * If true, the prop with defaultValue will always display in the code block.
+     */
+    codeBlockDisplay?: true;
   }>;
   renderDemo: (props: ComponentProps) => React.ReactElement;
 }
 
-export default function JoyUsageDemo<T extends {} = {}>({
+export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
   componentName,
   childrenAccepted = false,
   data,
   renderDemo,
 }: JoyUsageDemoProps<T>) {
-  const defaultProps = data.reduce(
-    (prev, curr) => ({
-      ...prev,
-      [curr.propName]: curr.defaultValue,
-    }),
-    {},
-  ) as T;
-  const staticProps = data
-    .filter((p) => !p.knob)
-    .reduce(
-      (prev, curr) => ({
-        ...prev,
-        [curr.propName]: curr.defaultValue,
-      }),
-      {},
-    ) as T;
-  const [props, setProps] = React.useState<T>({} as T);
+  const defaultProps = {} as { [k in keyof T]: any };
+  const initialProps = {} as { [k in keyof T]: any };
+  const staticProps = {} as { [k in keyof T]: any };
+  data.forEach((p) => {
+    defaultProps[p.propName] = p.defaultValue;
+    if (p.codeBlockDisplay) {
+      initialProps[p.propName] = p.defaultValue;
+    }
+    if (!p.knob) {
+      staticProps[p.propName] = p.defaultValue;
+    }
+  });
+  const [props, setProps] = React.useState<T>(initialProps as T);
   return (
     <Box
       sx={{
@@ -180,9 +221,9 @@ export default function JoyUsageDemo<T extends {} = {}>({
             variant="outlined"
             color="neutral"
             size="sm"
-            onClick={() => setProps({} as T)}
+            onClick={() => setProps(initialProps as T)}
             sx={{
-              visibility: Object.keys(props).length ? 'visible' : 'hidden',
+              visibility: !shallowEqual(props, initialProps) ? 'visible' : 'hidden',
               '--IconButton-size': '30px',
             }}
           >
@@ -198,7 +239,7 @@ export default function JoyUsageDemo<T extends {} = {}>({
           }}
         >
           {data.map(({ propName, knob, options = [], defaultValue }) => {
-            const resolvedValue = props[propName] || defaultValue;
+            const resolvedValue = props[propName] ?? defaultValue;
             if (!knob) {
               return null;
             }
@@ -206,7 +247,7 @@ export default function JoyUsageDemo<T extends {} = {}>({
               return (
                 <Switch
                   key={propName as string}
-                  checked={Boolean(props[propName])}
+                  checked={Boolean(resolvedValue)}
                   onChange={(event) =>
                     setProps((latestProps) => ({
                       ...latestProps,
@@ -388,7 +429,7 @@ export default function JoyUsageDemo<T extends {} = {}>({
                   onChange={(event) =>
                     setProps((latestProps) => ({
                       ...latestProps,
-                      badgeContent: event.target.value || undefined,
+                      [propName]: event.target.value || undefined,
                     }))
                   }
                   sx={{
