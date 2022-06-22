@@ -130,6 +130,24 @@ export interface PaletteWithChannels {
   getContrastText: (background: string) => string;
   augmentColor: (options: PaletteAugmentColorOptions) => PaletteColor;
   // component tokens
+  Alert: {
+    errorColor: string;
+    infoColor: string;
+    successColor: string;
+    warningColor: string;
+    errorFilledBg: string;
+    infoFilledBg: string;
+    successFilledBg: string;
+    warningFilledBg: string;
+    errorStandardBg: string;
+    infoStandardBg: string;
+    successStandardBg: string;
+    warningStandardBg: string;
+    errorIconColor: string;
+    infoIconColor: string;
+    successIconColor: string;
+    warningIconColor: string;
+  };
   AppBar: {
     defaultBg: string;
     darkBg: string;

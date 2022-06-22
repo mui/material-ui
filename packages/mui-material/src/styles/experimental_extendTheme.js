@@ -79,6 +79,7 @@ export default function extendTheme(options = {}, ...args) {
 
     // assign component variables
     assignNode(palette, [
+      'Alert',
       'AppBar',
       'Avatar',
       'Chip',
@@ -95,6 +96,34 @@ export default function extendTheme(options = {}, ...args) {
       'Tooltip',
     ]);
     if (key === 'light') {
+      setColor(palette.Alert, 'errorColor', darken(palette.error.light, 0.6));
+      setColor(palette.Alert, 'infoColor', darken(palette.info.light, 0.6));
+      setColor(palette.Alert, 'successColor', darken(palette.success.light, 0.6));
+      setColor(palette.Alert, 'warningColor', darken(palette.warning.light, 0.6));
+      setColor(palette.Alert, 'errorFilledBg', 'var(--mui-palette-error-main)');
+      setColor(palette.Alert, 'infoFilledBg', 'var(--mui-palette-info-main)');
+      setColor(palette.Alert, 'successFilledBg', 'var(--mui-palette-success-main)');
+      setColor(palette.Alert, 'warningFilledBg', 'var(--mui-palette-warning-main)');
+      setColor(palette.Alert, 'errorFilledColor', lightPalette.getContrastText(palette.error.main));
+      setColor(palette.Alert, 'infoFilledColor', lightPalette.getContrastText(palette.info.main));
+      setColor(
+        palette.Alert,
+        'successFilledColor',
+        lightPalette.getContrastText(palette.success.main),
+      );
+      setColor(
+        palette.Alert,
+        'warningFilledColor',
+        lightPalette.getContrastText(palette.warning.main),
+      );
+      setColor(palette.Alert, 'errorStandardBg', lighten(palette.error.light, 0.9));
+      setColor(palette.Alert, 'infoStandardBg', lighten(palette.info.light, 0.9));
+      setColor(palette.Alert, 'successStandardBg', lighten(palette.success.light, 0.9));
+      setColor(palette.Alert, 'warningStandardBg', lighten(palette.warning.light, 0.9));
+      setColor(palette.Alert, 'errorIconColor', 'var(--mui-palette-error-light)');
+      setColor(palette.Alert, 'infoIconColor', 'var(--mui-palette-info-light)');
+      setColor(palette.Alert, 'successIconColor', 'var(--mui-palette-success-light)');
+      setColor(palette.Alert, 'warningIconColor', 'var(--mui-palette-warning-light)');
       setColor(palette.AppBar, 'defaultBg', 'var(--mui-palette-grey-100)');
       setColor(palette.Avatar, 'defaultBg', 'var(--mui-palette-grey-400)');
       setColor(palette.Chip, 'defaultBorder', 'var(--mui-palette-grey-400)');
@@ -131,6 +160,34 @@ export default function extendTheme(options = {}, ...args) {
       setColor(palette.TableCell, 'border', lighten(alpha(palette.divider, 1), 0.88));
       setColor(palette.Tooltip, 'bg', alpha(palette.grey[700], 0.92));
     } else {
+      setColor(palette.Alert, 'errorColor', lighten(palette.error.light, 0.6));
+      setColor(palette.Alert, 'infoColor', lighten(palette.info.light, 0.6));
+      setColor(palette.Alert, 'successColor', lighten(palette.success.light, 0.6));
+      setColor(palette.Alert, 'warningColor', lighten(palette.warning.light, 0.6));
+      setColor(palette.Alert, 'errorFilledBg', 'var(--mui-palette-error-dark)');
+      setColor(palette.Alert, 'infoFilledBg', 'var(--mui-palette-info-dark)');
+      setColor(palette.Alert, 'successFilledBg', 'var(--mui-palette-success-dark)');
+      setColor(palette.Alert, 'warningFilledBg', 'var(--mui-palette-warning-dark)');
+      setColor(palette.Alert, 'errorFilledColor', darkPalette.getContrastText(palette.error.dark));
+      setColor(palette.Alert, 'infoFilledColor', darkPalette.getContrastText(palette.info.dark));
+      setColor(
+        palette.Alert,
+        'successFilledColor',
+        darkPalette.getContrastText(palette.success.dark),
+      );
+      setColor(
+        palette.Alert,
+        'warningFilledColor',
+        darkPalette.getContrastText(palette.warning.dark),
+      );
+      setColor(palette.Alert, 'errorStandardBg', darken(palette.error.light, 0.9));
+      setColor(palette.Alert, 'infoStandardBg', darken(palette.info.light, 0.9));
+      setColor(palette.Alert, 'successStandardBg', darken(palette.success.light, 0.9));
+      setColor(palette.Alert, 'warningStandardBg', darken(palette.warning.light, 0.9));
+      setColor(palette.Alert, 'errorIconColor', 'var(--mui-palette-error-main)');
+      setColor(palette.Alert, 'infoIconColor', 'var(--mui-palette-info-main)');
+      setColor(palette.Alert, 'successIconColor', 'var(--mui-palette-success-main)');
+      setColor(palette.Alert, 'warningIconColor', 'var(--mui-palette-warning-main)');
       setColor(palette.AppBar, 'defaultBg', 'var(--mui-palette-grey-900)');
       setColor(palette.AppBar, 'darkBg', 'var(--mui-palette-background-paper)'); // specific for dark mode
       setColor(palette.AppBar, 'darkColor', 'var(--mui-palette-text-primary)'); // specific for dark mode
