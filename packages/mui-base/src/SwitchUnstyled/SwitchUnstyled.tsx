@@ -1,9 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
+import composeClasses from '../composeClasses';
 import useSwitch from './useSwitch';
-import classes from './switchUnstyledClasses';
-import appendOwnerState from '../utils/appendOwnerState';
+import { getSwitchUnstyledUtilityClass } from './switchUnstyledClasses';
 import {
   SwitchUnstyledProps,
   SwitchUnstyledOwnerState,
@@ -12,8 +11,26 @@ import {
   SwitchUnstyledThumbSlotProps,
   SwitchUnstyledTrackSlotProps,
 } from './SwitchUnstyled.types';
-import { WithOptionalOwnerState } from '../utils';
-import resolveComponentProps from '../utils/resolveComponentProps';
+import { useSlotProps, WithOptionalOwnerState } from '../utils';
+
+const useUtilityClasses = (ownerState: SwitchUnstyledOwnerState) => {
+  const { checked, disabled, focusVisible, readOnly } = ownerState;
+
+  const slots = {
+    root: [
+      'root',
+      checked && 'checked',
+      disabled && 'disabled',
+      focusVisible && 'focusVisible',
+      readOnly && 'readOnly',
+    ],
+    thumb: ['thumb'],
+    input: ['input'],
+    track: ['track'],
+  };
+
+  return composeClasses(slots, getSwitchUnstyledUtilityClass, {});
+};
 
 /**
  * The foundation for building custom-styled switches.
@@ -32,7 +49,6 @@ const SwitchUnstyled = React.forwardRef(function SwitchUnstyled(
 ) {
   const {
     checked: checkedProp,
-    className,
     component,
     components = {},
     componentsProps = {},
@@ -44,7 +60,7 @@ const SwitchUnstyled = React.forwardRef(function SwitchUnstyled(
     onFocusVisible,
     readOnly: readOnlyProp,
     required,
-    ...otherProps
+    ...other
   } = props;
 
   const useSwitchProps = {
@@ -68,56 +84,48 @@ const SwitchUnstyled = React.forwardRef(function SwitchUnstyled(
     readOnly,
   };
 
-  const stateClasses = {
-    [classes.checked]: checked,
-    [classes.disabled]: disabled,
-    [classes.focusVisible]: focusVisible,
-    [classes.readOnly]: readOnly,
-  };
+  const classes = useUtilityClasses(ownerState);
 
   const Root: React.ElementType = component ?? components.Root ?? 'span';
-  const rootComponentProps = resolveComponentProps(componentsProps.root, ownerState);
-  const rootProps: WithOptionalOwnerState<SwitchUnstyledRootSlotProps> = appendOwnerState(
-    Root,
-    {
-      ...otherProps,
-      ...rootComponentProps,
-      className: clsx(classes.root, stateClasses, className, rootComponentProps?.className),
+  const rootProps: WithOptionalOwnerState<SwitchUnstyledRootSlotProps> = useSlotProps({
+    elementType: Root,
+    externalSlotProps: componentsProps.root,
+    externalForwardedProps: other,
+    additionalProps: {
+      ref,
     },
     ownerState,
-  );
+    className: classes.root,
+  });
 
   const Thumb: React.ElementType = components.Thumb ?? 'span';
-  const thumbComponentProps = resolveComponentProps(componentsProps.thumb, ownerState);
-  const thumbProps: WithOptionalOwnerState<SwitchUnstyledThumbSlotProps> = appendOwnerState(
-    Thumb,
-    { ...thumbComponentProps, className: clsx(classes.thumb, thumbComponentProps?.className) },
+  const thumbProps: WithOptionalOwnerState<SwitchUnstyledThumbSlotProps> = useSlotProps({
+    elementType: Thumb,
+    externalSlotProps: componentsProps.thumb,
     ownerState,
-  );
+    className: classes.thumb,
+  });
 
   const Input: React.ElementType = components.Input ?? 'input';
-  const inputComponentProps = resolveComponentProps(componentsProps.input, ownerState);
-  const inputProps: WithOptionalOwnerState<SwitchUnstyledInputSlotProps> = appendOwnerState(
-    Input,
-    {
-      ...getInputProps(),
-      ...inputComponentProps,
-      className: clsx(classes.input, inputComponentProps?.className),
-    },
+  const inputProps: WithOptionalOwnerState<SwitchUnstyledInputSlotProps> = useSlotProps({
+    elementType: Input,
+    getSlotProps: getInputProps,
+    externalSlotProps: componentsProps.input,
     ownerState,
-  );
+    className: classes.input,
+  });
 
   const Track: React.ElementType =
     components.Track === null ? () => null : components.Track ?? 'span';
-  const trackComponentProps = resolveComponentProps(componentsProps.track, ownerState);
-  const trackProps: WithOptionalOwnerState<SwitchUnstyledTrackSlotProps> = appendOwnerState(
-    Track,
-    { ...trackComponentProps, className: clsx(classes.track, trackComponentProps?.className) },
+  const trackProps: WithOptionalOwnerState<SwitchUnstyledTrackSlotProps> = useSlotProps({
+    elementType: Track,
+    externalSlotProps: componentsProps.track,
     ownerState,
-  );
+    className: classes.track,
+  });
 
   return (
-    <Root ref={ref} {...rootProps}>
+    <Root {...rootProps}>
       <Track {...trackProps} />
       <Thumb {...thumbProps} />
       <Input {...inputProps} />
@@ -134,10 +142,6 @@ SwitchUnstyled.propTypes /* remove-proptypes */ = {
    * If `true`, the component is checked.
    */
   checked: PropTypes.bool,
-  /**
-   * Class name applied to the root element.
-   */
-  className: PropTypes.string,
   /**
    * The component used for the Root slot.
    * Either a string to use a HTML element or a component.

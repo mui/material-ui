@@ -23,16 +23,6 @@ export interface SheetClasses {
   variantSoft: string;
   /** Styles applied to the root element if `variant="solid"`. */
   variantSolid: string;
-  /** Styles applied to the root element if `elevation="xs"`. */
-  elevationXs: string;
-  /** Styles applied to the root element if `elevation="sm"`. */
-  elevationSm: string;
-  /** Styles applied to the root element if `elevation="md"`. */
-  elevationMd: string;
-  /** Styles applied to the root element if `elevation="lg"`. */
-  elevationLg: string;
-  /** Styles applied to the root element if `elevation="xl"`. */
-  elevationXl: string;
 }
 
 export type SheetClassKey = keyof SheetClasses;
@@ -53,11 +43,6 @@ const sheetClasses: SheetClasses = generateUtilityClasses('JoySheet', [
   'variantOutlined',
   'variantSoft',
   'variantSolid',
-  'elevationXs',
-  'elevationSm',
-  'elevationMd',
-  'elevationLg',
-  'elevationXl',
 ]);
 
 export default sheetClasses;
