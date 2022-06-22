@@ -134,7 +134,7 @@ const RadioAction = styled('span', {
   {
     position: 'absolute',
     borderRadius: `var(--Radio-action-radius, ${
-      // Automatic radius adjustment when composing with ListItem
+      // Automatic radius adjustment when composing with ListItem or Sheet
       ownerState.overlay ? 'var(--internal-action-radius, inherit)' : 'inherit'
     })`,
     top: 0,
