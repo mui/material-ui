@@ -437,7 +437,7 @@ export default function EmailExample() {
           </Box>
           <TextField
             size="sm"
-            placeholder="Search anything..."
+            placeholder="Search anything…"
             startDecorator={<SearchRoundedIcon color="primary" />}
             endDecorator={
               <IconButton variant="outlined" size="sm" color="neutral">

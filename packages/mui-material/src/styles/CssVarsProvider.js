@@ -18,7 +18,7 @@ const {
     light: 'light',
     dark: 'dark',
   },
-  prefix: 'md',
+  prefix: 'mui',
   resolveTheme: (theme) => {
     const newTheme = {
       ...theme,

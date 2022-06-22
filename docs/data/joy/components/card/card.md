@@ -13,6 +13,13 @@ Cards are surfaces that display content and actions on a single topic.
 They should be easy to scan for relevant and actionable information.
 Elements, like text and images, should be placed on them in a way that clearly indicates hierarchy.
 
+Joy provides 4 Card related components:
+
+- [`Card`](#basic): used as a container to control the direction of the content. It comes with a border radius, padding, and shadow by default.
+- [`CardOverflow`](#overflow): a handy component that takes care of stretching the content to fill on all edges of the card.
+- [`CardCover`](#back-cover): for displaying background image of the card and used to create layers of gradient.
+- [`CardContent`](#back-cover): usually used with `CardCover` to bring the content to the front.
+
 ## Basic
 
 The `Card` is a surface-level component that can house multiple others to form a meaningful interface.

@@ -132,14 +132,15 @@ const DialogPaper = styled(Paper, {
       },
     },
   }),
-  ...(ownerState.maxWidth !== 'xs' && {
-    maxWidth: `${theme.breakpoints.values[ownerState.maxWidth]}${theme.breakpoints.unit}`,
-    [`&.${dialogClasses.paperScrollBody}`]: {
-      [theme.breakpoints.down(theme.breakpoints.values[ownerState.maxWidth] + 32 * 2)]: {
-        maxWidth: 'calc(100% - 64px)',
+  ...(ownerState.maxWidth &&
+    ownerState.maxWidth !== 'xs' && {
+      maxWidth: `${theme.breakpoints.values[ownerState.maxWidth]}${theme.breakpoints.unit}`,
+      [`&.${dialogClasses.paperScrollBody}`]: {
+        [theme.breakpoints.down(theme.breakpoints.values[ownerState.maxWidth] + 32 * 2)]: {
+          maxWidth: 'calc(100% - 64px)',
+        },
       },
-    },
-  }),
+    }),
   ...(ownerState.fullWidth && {
     width: 'calc(100% - 64px)',
   }),
@@ -233,13 +234,15 @@ const Dialog = React.forwardRef(function Dialog(inProps, ref) {
   return (
     <DialogRoot
       className={clsx(classes.root, className)}
-      BackdropProps={{
-        transitionDuration,
-        as: BackdropComponent,
-        ...BackdropProps,
-      }}
       closeAfterTransition
-      BackdropComponent={DialogBackdrop}
+      components={{ Backdrop: DialogBackdrop }}
+      componentsProps={{
+        backdrop: {
+          transitionDuration,
+          as: BackdropComponent,
+          ...BackdropProps,
+        },
+      }}
       disableEscapeKeyDown={disableEscapeKeyDown}
       onClose={onClose}
       open={open}
@@ -295,6 +298,7 @@ Dialog.propTypes /* remove-proptypes */ = {
   'aria-labelledby': PropTypes.string,
   /**
    * A backdrop component. This prop enables custom backdrop rendering.
+   * @deprecated Use `components.Backdrop` instead.
    * @default styled(Backdrop, {
    *   name: 'MuiModal',
    *   slot: 'Backdrop',

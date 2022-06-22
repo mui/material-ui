@@ -31,10 +31,11 @@ type PickersDayComponent = (<TDate>(
  */
 const PickersDay = React.forwardRef(function DeprecatedPickersDay<TDate>(
   props: PickersDayProps<TDate>,
+  ref: React.Ref<any>,
 ) {
   warn();
 
-  return <XPickersDay {...props} />;
+  return <XPickersDay ref={ref} {...props} />;
 }) as PickersDayComponent;
 
 PickersDay.propTypes /* remove-proptypes */ = {

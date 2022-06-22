@@ -186,7 +186,7 @@ const DemoRootJoy = joyStyled('div', {
   /* Prepare the background to display an inner elevation. */
   ...(bg === true && {
     padding: theme.spacing(3),
-    backgroundColor: theme.vars.palette.background.body,
+    backgroundColor: theme.vars.palette.background.level2,
   }),
   ...(hiddenToolbar && {
     paddingTop: theme.spacing(3),

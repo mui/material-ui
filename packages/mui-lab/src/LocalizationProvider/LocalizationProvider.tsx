@@ -34,10 +34,11 @@ type LocalizationProviderComponent = ((
  */
 const LocalizationProvider = React.forwardRef(function DeprecatedLocalizationProvider(
   props: LocalizationProviderProps,
+  ref: React.Ref<any>,
 ) {
   warn();
 
-  return <XLocalizationProvider {...props} />;
+  return <XLocalizationProvider ref={ref} {...props} />;
 }) as LocalizationProviderComponent;
 
 LocalizationProvider.propTypes /* remove-proptypes */ = {

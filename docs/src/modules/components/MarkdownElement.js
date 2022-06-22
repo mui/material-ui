@@ -23,6 +23,7 @@ const Root = styled('div')(({ theme }) => ({
     overflow: 'auto',
     WebkitOverflowScrolling: 'touch',
     maxWidth: 'calc(100vw - 32px)',
+    maxHeight: '350px',
     [theme.breakpoints.up('md')]: {
       maxWidth: 'calc(100vw - 32px - 16px)',
     },

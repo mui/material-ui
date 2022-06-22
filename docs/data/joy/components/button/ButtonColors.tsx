@@ -1,11 +1,11 @@
 import * as React from 'react';
-import { VariantProp } from '@mui/joy/styles';
 import Box from '@mui/joy/Box';
 import Sheet from '@mui/joy/Sheet';
 import Button from '@mui/joy/Button';
 import RadioGroup from '@mui/joy/RadioGroup';
 import Radio from '@mui/joy/Radio';
 import Typography from '@mui/joy/Typography';
+import { VariantProp } from '@mui/joy/styles';
 
 export default function ButtonColors() {
   const [variant, setVariant] = React.useState<VariantProp>('solid');

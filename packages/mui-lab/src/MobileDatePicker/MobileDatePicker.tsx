@@ -34,10 +34,11 @@ type MobileDatePickerComponent = (<TDate>(
  */
 const MobileDatePicker = React.forwardRef(function DeprecatedMobileDatePicker<TDate>(
   props: MobileDatePickerProps<TDate>,
+  ref: React.Ref<any>,
 ) {
   warn();
 
-  return <XMobileDatePicker {...props} />;
+  return <XMobileDatePicker ref={ref} {...props} />;
 }) as MobileDatePickerComponent;
 
 MobileDatePicker.propTypes /* remove-proptypes */ = {
@@ -186,10 +187,6 @@ MobileDatePicker.propTypes /* remove-proptypes */ = {
       current: PropTypes.object,
     }),
   ]),
-  /**
-   * @ignore
-   */
-  key: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
    * @ignore
    */
