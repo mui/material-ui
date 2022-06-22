@@ -19,11 +19,13 @@ function isOverflowing(container: Element): boolean {
   return container.scrollHeight > container.clientHeight;
 }
 
-export function ariaHidden(element: Element, show: boolean): void {
+export function ariaHidden(element: HTMLElement, show: boolean): void {
   if (show) {
     element.setAttribute('aria-hidden', 'true');
+    element.style.overflow = 'hidden';
   } else {
     element.removeAttribute('aria-hidden');
+    element.style.overflow = '';
   }
 }
 
@@ -65,7 +67,7 @@ function ariaHiddenSiblings(
 ): void {
   const blacklist = [mountElement, currentElement, ...elementsToExclude];
 
-  [].forEach.call(container.children, (element: Element) => {
+  [].forEach.call(container.children, (element: HTMLElement) => {
     const isNotExcludedElement = blacklist.indexOf(element) === -1;
     const isNotForbiddenElement = !isAriaHiddenForbiddenOnElement(element);
     if (isNotExcludedElement && isNotForbiddenElement) {
@@ -177,9 +179,19 @@ function getHiddenSiblings(container: Element) {
   return hiddenSiblings;
 }
 
+function getOverflowSiblings(container: Element) {
+  const overflowSiblings: Element[] = [];
+  [].forEach.call(container.children, (element: Element) => {
+    if (element.getAttribute('overflow')) {
+      overflowSiblings.push(element);
+    }
+  });
+  return overflowSiblings;
+}
+
 interface Modal {
   mount: Element;
-  modalRef: Element;
+  modalRef: HTMLElement;
 }
 
 interface Container {
@@ -220,7 +232,7 @@ export default class ModalManager {
       ariaHidden(modal.modalRef, false);
     }
 
-    const hiddenSiblings = getHiddenSiblings(container);
+    const hiddenSiblings = [...getHiddenSiblings(container), ...getOverflowSiblings(container)];
     ariaHiddenSiblings(container, modal.mount, modal.modalRef, hiddenSiblings, true);
 
     const containerIndex = findIndexOf(this.containers, (item) => item.container === container);
