@@ -104,6 +104,18 @@ export default function extendTheme(options = {}, ...args) {
       setColor(palette.Alert, 'infoFilledBg', 'var(--mui-palette-info-main)');
       setColor(palette.Alert, 'successFilledBg', 'var(--mui-palette-success-main)');
       setColor(palette.Alert, 'warningFilledBg', 'var(--mui-palette-warning-main)');
+      setColor(palette.Alert, 'errorFilledColor', lightPalette.getContrastText(palette.error.main));
+      setColor(palette.Alert, 'infoFilledColor', lightPalette.getContrastText(palette.info.main));
+      setColor(
+        palette.Alert,
+        'successFilledColor',
+        lightPalette.getContrastText(palette.success.main),
+      );
+      setColor(
+        palette.Alert,
+        'warningFilledColor',
+        lightPalette.getContrastText(palette.warning.main),
+      );
       setColor(palette.Alert, 'errorStandardBg', lighten(palette.error.light, 0.9));
       setColor(palette.Alert, 'infoStandardBg', lighten(palette.info.light, 0.9));
       setColor(palette.Alert, 'successStandardBg', lighten(palette.success.light, 0.9));
@@ -156,6 +168,18 @@ export default function extendTheme(options = {}, ...args) {
       setColor(palette.Alert, 'infoFilledBg', 'var(--mui-palette-info-dark)');
       setColor(palette.Alert, 'successFilledBg', 'var(--mui-palette-success-dark)');
       setColor(palette.Alert, 'warningFilledBg', 'var(--mui-palette-warning-dark)');
+      setColor(palette.Alert, 'errorFilledColor', darkPalette.getContrastText(palette.error.dark));
+      setColor(palette.Alert, 'infoFilledColor', darkPalette.getContrastText(palette.info.dark));
+      setColor(
+        palette.Alert,
+        'successFilledColor',
+        darkPalette.getContrastText(palette.success.dark),
+      );
+      setColor(
+        palette.Alert,
+        'warningFilledColor',
+        darkPalette.getContrastText(palette.warning.dark),
+      );
       setColor(palette.Alert, 'errorStandardBg', darken(palette.error.light, 0.9));
       setColor(palette.Alert, 'infoStandardBg', darken(palette.info.light, 0.9));
       setColor(palette.Alert, 'successStandardBg', darken(palette.success.light, 0.9));

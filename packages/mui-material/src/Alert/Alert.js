@@ -84,12 +84,10 @@ const AlertRoot = styled(Paper, {
       }),
     ...(color &&
       ownerState.variant === 'filled' && {
-        color: theme.palette.getContrastText(
-          theme.palette.mode === 'dark' ? theme.palette[color].dark : theme.palette[color].main,
-        ),
         fontWeight: theme.typography.fontWeightMedium,
         ...(theme.vars
           ? {
+              color: theme.vars.palette.Alert[`${color}FilledColor`],
               backgroundColor: theme.vars.palette.Alert[`${color}FilledBg`],
             }
           : {
@@ -97,6 +95,11 @@ const AlertRoot = styled(Paper, {
                 theme.palette.mode === 'dark'
                   ? theme.palette[color].dark
                   : theme.palette[color].main,
+              color: theme.palette.getContrastText(
+                theme.palette.mode === 'dark'
+                  ? theme.palette[color].dark
+                  : theme.palette[color].main,
+              ),
             }),
       }),
   };
