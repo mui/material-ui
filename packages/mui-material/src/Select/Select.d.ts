@@ -5,11 +5,13 @@ import { InputProps } from '../Input';
 import { MenuProps } from '../Menu';
 import { SelectChangeEvent, SelectInputProps } from './SelectInput';
 import { SelectClasses } from './selectClasses';
+import { OutlinedInputProps } from '../OutlinedInput';
 
 export { SelectChangeEvent };
 
 export interface SelectProps<T = unknown>
   extends StandardProps<InputProps, 'value' | 'onChange'>,
+    Omit<OutlinedInputProps, 'value' | 'onChange'>,
     Pick<SelectInputProps<T>, 'onChange'> {
   /**
    * If `true`, the width of the popover will automatically be set according to the items inside the
@@ -29,6 +31,12 @@ export interface SelectProps<T = unknown>
    * @default {}
    */
   classes?: Partial<SelectClasses>;
+  /**
+   * If `true`, the component is initially open. Use when the component open state is not controlled (i.e. the `open` prop is not defined).
+   * You can only use it when the `native` prop is `false` (default).
+   * @default false
+   */
+  defaultOpen?: boolean;
   /**
    * The default value. Use when the component is not controlled.
    */
@@ -63,7 +71,7 @@ export interface SelectProps<T = unknown>
    */
   inputProps?: InputProps['inputProps'];
   /**
-   * See [OutlinedInput#label](/api/outlined-input/#props)
+   * See [OutlinedInput#label](/material-ui/api/outlined-input/#props)
    */
   label?: React.ReactNode;
   /**
@@ -72,7 +80,7 @@ export interface SelectProps<T = unknown>
    */
   labelId?: string;
   /**
-   * Props applied to the [`Menu`](/api/menu/) element.
+   * Props applied to the [`Menu`](/material-ui/api/menu/) element.
    */
   MenuProps?: Partial<MenuProps>;
   /**
@@ -148,13 +156,15 @@ export interface SelectProps<T = unknown>
  *
  * Demos:
  *
- * - [Selects](https://mui.com/components/selects/)
+ * - [Selects](https://mui.com/material-ui/react-select/)
  *
  * API:
  *
- * - [Select API](https://mui.com/api/select/)
- * - inherits [OutlinedInput API](https://mui.com/api/outlined-input/)
+ * - [Select API](https://mui.com/material-ui/api/select/)
+ * - inherits [OutlinedInput API](https://mui.com/material-ui/api/outlined-input/)
  */
-declare const Select: (<T>(props: SelectProps<T>) => JSX.Element) & { muiName: string };
+declare const Select: (<T>(props: SelectProps<T>) => JSX.Element) & {
+  muiName: string;
+};
 
 export default Select;

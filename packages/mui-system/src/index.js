@@ -27,8 +27,10 @@ export { default as typography } from './typography';
 export * from './typography';
 export {
   default as unstable_styleFunctionSx,
+  unstable_createStyleFunctionSx,
   extendSxProp as unstable_extendSxProp,
 } from './styleFunctionSx';
+export { default as experimental_sx } from './sx';
 export { default as unstable_getThemeValue } from './getThemeValue';
 export { default as Box } from './Box';
 export { default as createBox } from './createBox';
@@ -45,3 +47,7 @@ export { default as useThemeWithoutDefault } from './useThemeWithoutDefault';
 export * from './colorManipulator';
 export { default as ThemeProvider } from './ThemeProvider';
 export { default as unstable_createCssVarsProvider } from './cssVars/createCssVarsProvider';
+export { default as unstable_createGetCssVar } from './cssVars/createGetCssVar';
+export { default as createContainer } from './Container/createContainer';
+export { default as Container } from './Container';
+export * from './Container';

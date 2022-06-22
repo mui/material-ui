@@ -4,6 +4,7 @@ description: An update on our mission for Q3 2020.
 date: 2020-10-14T00:00:00.000Z
 authors: ['oliviertassinari']
 card: true
+tags: ['Company']
 ---
 
 This update covers our progress over the last three months, and what we aim to achieve in the coming months.
@@ -12,15 +13,15 @@ This update covers our progress over the last three months, and what we aim to a
 
 Here are the most significant improvements since June 2020. This was a dense quarter!
 
-- 🚧 We have started the quarter with the first pre-release [v5.0.0-alpha.1](https://github.com/mui-org/material-ui/releases?after=v5.0.0-alpha.1) of the next major iteration of the library.
+- 🚧 We have started the quarter with the first pre-release [v5.0.0-alpha.1](https://github.com/mui/material-ui/releases?after=v5.0.0-alpha.1) of the next major iteration of the library.
   There have been eleven more pre-releases since then. During the alpha development stage of version 5, we are focusing on making the planned breaking changes, as well as developing new features.
   On the breaking changes side, we have made almost half of the changes that we have planned.
 - 🧪 We have promoted 7 components from the lab to the core: Alert, Autocomplete, Pagination, Rating, Skeleton, SpeedDial, and ToggleButton.
   Thank you for all your feedback on these components.
   While we still plan a couple of breaking changes on them, we are confident that they have reached the same level of quality as the other core components.
-- 👮 We have introduced a new component in the lab, the [TrapFocus](https://mui.com/components/trap-focus/). It manages focus for its descendants. This is useful when implementing overlays such as modal dialogs, which should not allow the focus to escape while open:
+- 👮 We have introduced a new component in the lab, the [TrapFocus](https://mui.com/base/react-trap-focus/). It manages focus for its descendants. This is useful when implementing overlays such as modal dialogs, which should not allow the focus to escape while open:
 
-  <video autoplay muted loop style="max-height: 416px; margin-bottom: 24px;">
+  <video style="max-height: 416px; margin-bottom: 24px;" autoplay muted loop playsinline>
     <source src="/static/blog/2020-q3-update/trap-focus.mp4" type="video/mp4" />
   </video>
 
@@ -61,38 +62,38 @@ Here are the most significant improvements since June 2020. This was a dense qua
 
   Hopefully, in the future, we will be able to take advantage of the variant feature [coming in Figma](https://help.figma.com/hc/en-us/articles/360055471353-Prepare-for-Variants) with this API.
 
-- ⚡️ We have released a first alpha version of the [data grid component](/components/data-grid/).<br />
+- ⚡️ We have released a first alpha version of the [data grid component](/x/react-data-grid/).<br />
   We announced our intent to build this component [a year ago](/blog/september-2019-update/#our-roadmap-intent-for-october). While we could have implemented a simple version and release it a month later, it wouldn't have set us in the right direction for the years to follow. We're aiming aim to deliver the best-in-class React data grid.
   This objective requires a twin licensing model. The component is available under an MIT license for the features that can be relatively easily implemented, and that can be sustained with an open-source model; as well as a paid commercial license for the more advanced features.
   <br />To ensure we could meet this objective, we spent time finding an expert in the field. This led us to open a new job position, and, a few months later, [Damien Tassone](/blog/spotlight-damien-tassone/) joined to lead the work on this component.
 
-  <a href="/components/data-grid/"><img src="/static/blog/2020-q3-update/data-grid.png" alt="" style="width: 829px; margin-bottom: 8px;" /></a>
+  <a href="/x/react-data-grid/"><img src="/static/blog/2020-q3-update/data-grid.png" alt="" style="width: 829px; margin-bottom: 8px;" /></a>
 
   <p class="blog-description">100,000 rows</p>
 
   After 6 months of development since the initial commit (March 15th, 2020), you can start using the component! (It targets v4.)
 
-- ⚡️ The data grid effort has led to the introduction of a new repository: [_mui-org/material-ui-x_](https://github.com/mui-org/material-ui-x). This is the repository that will host all the future commercial components, all the components that we can't sustain with the open-source model. MUI X is our next iteration in scaling MUI, both as a company and as a comprehensive React library of components. While we have an existing sustainability model that can support, in long term, up to 10 people full-time, we are keen to push it by an order of magnitude.
+- ⚡️ The data grid effort has led to the introduction of a new repository: [_mui/mui-x_](https://github.com/mui/mui-x). This is the repository that will host all the future commercial components, all the components that we can't sustain with the open-source model. MUI X is our next iteration in scaling MUI, both as a company and as a comprehensive React library of components. While we have an existing sustainability model that can support, in long term, up to 10 people full-time, we are keen to push it by an order of magnitude.
 - 🛠 We have migrated parts of the codebase to TypeScript.<br />
-  We had to work on the code infrastructure of _mui-org/material-ui_ to prepare to host the date picker components that are written in TypeScript inside the lab (coming from _mui-org/material-ui-pickers_ that we will archive once we can).
+  We had to work on the code infrastructure of _mui/material-ui_ to prepare to host the date picker components that are written in TypeScript inside the lab (coming from _mui/material-ui-pickers_ that we will archive once we can).
 
   <img src="/static/blog/2020-q3-update/typescript-mui.png" alt="" style="width: 299px; margin-bottom: 8px;" />
 
   <p class="blog-description">MUI's repository</p>
 
-  On the other hand, we started using TypeScript from day one for _mui-org/material-ui-x_.
+  On the other hand, we started using TypeScript from day one for _mui/mui-x_.
 
   <img src="/static/blog/2020-q3-update/typescript-mui-x.png" alt="" style="width: 299px; margin-bottom: 8px;" />
 
   <p class="blog-description">MUI X's repository</p>
 
 - 🐙 We have migrated large parts of the test suite to react-testing-library.<br>
-  15 months ago, we introduced the very [first test](https://github.com/mui-org/material-ui/pull/15732) using the library (to replace enzyme). Last month, react-testing-library had [more downloads](https://npm-stat.com/charts.html?package=enzyme&package=%40testing-library%2Freact&from=2019-10-10&to=2020-10-10) than enzyme!
+  15 months ago, we introduced the very [first test](https://github.com/mui/material-ui/pull/15732) using the library (to replace enzyme). Last month, react-testing-library had [more downloads](https://npm-stat.com/charts.html?package=enzyme&package=%40testing-library%2Freact&from=2019-10-10&to=2020-10-10) than enzyme!
 
   <img src="/static/blog/2020-q3-update/react-testing-library.png" alt="" style="width: 640px; margin-bottom: 40px; margin-top: 24px;" />
 
-- 💅 We have completed the first iteration of the unstyled components for v5.<br />You can find a [new version](https://mui.com/components/slider-styled/#UnstyledSlider.tsx) of the slider in the lab without any styles.
-  The unstyled component weighs in at [5.2 kB gzipped](https://bundlephobia.com/result?p=@mui/lab@5.0.0-alpha.12), compared with 26 kB for the styled version (when used standalone). The component is best suited for use when you want to fully customize the look, without reimplementing the JavaScript and accessibility logic.<br />
+- 💅 We have completed the first iteration of the unstyled components for v5.<br />You can find a [new version](/material-ui/react-slider/#unstyled) of the slider in the lab without any styles.
+  The unstyled component weighs in at [5.2 kB gzipped](https://bundlephobia.com/package/@mui/lab@5.0.0-alpha.12), compared with 26 kB for the styled version (when used standalone). The component is best suited for use when you want to fully customize the look, without reimplementing the JavaScript and accessibility logic.<br />
   We're also pushing in this direction to address a concern we hear from large enterprises
   that want to be able to go one layer down in the abstraction, in order to gain more control.
 
@@ -100,24 +101,24 @@ Here are the most significant improvements since June 2020. This was a dense qua
   import SliderUnstyled from '@mui/lab/SliderUnstyled';
   ```
 
-  Note that we have experimented with headless components (hooks only) in the past. For instance, you can leverage the [useAutocomplete](/components/autocomplete/#useautocomplete), and [usePagination](/components/pagination/#usepagination) hooks. However, we are pushing with unstyled first as a required step for the next item: ⬇️.
+  Note that we have experimented with headless components (hooks only) in the past. For instance, you can leverage the [useAutocomplete](/material-ui/react-autocomplete/#useautocomplete), and [usePagination](/material-ui/react-pagination/#usepagination) hooks. However, we are pushing with unstyled first as a required step for the next item: ⬇️.
 
 - 👩‍🎨 We have completed the first iteration of the new styling solution of v5.<br />
-  You can find a [new version](https://mui.com/components/slider-styled/) of the slider in the lab powered by [emotion](https://emotion.sh/docs/introduction).<br />
-  If you are already using styled-components in your application, you can swap emotion for styled-components 💅. Check this [CodeSandbox](https://codesandbox.io/s/sliderstyled-with-styled-components-forked-olc27?file=/package.json) or [CRA](https://github.com/mui-org/material-ui/blob/HEAD/examples/create-react-app-with-styled-components/) for a demo. It relies on aliases to prevent any bundle size overhead.<br />
-  The new styling solution saves 2kB+ gzipped in the bundle compared to JSS, and about 14 kB gzipped if you were already using styled-components or emotion.<br />
+  You can find a [new version](/material-ui/react-slider/) of the slider in the lab powered by [Emotion](https://emotion.sh/docs/introduction).<br />
+  If you are already using styled-components in your application, you can swap Emotion for styled-components 💅. Check this [CodeSandbox](https://codesandbox.io/s/sliderstyled-with-styled-components-forked-olc27?file=/package.json) or [CRA](https://github.com/mui/material-ui/tree/HEAD/examples/create-react-app-with-styled-components/) for a demo. It relies on aliases to prevent any bundle size overhead.<br />
+  The new styling solution saves 2kB+ gzipped in the bundle compared to JSS, and about 14 kB gzipped if you were already using styled-components or Emotion.<br />
   Last but not least, this change allows us to take advantage of dynamic style props. We will use them for dynamic color props, variant props, and new style props available in the core components.
 
   <img src="/static/blog/2020-q3-update/emotion.png" alt="" style="width: 329px;" />
 
-  <p class="blog-description">Slider powered by emotion</p>
+  <p class="blog-description">Slider powered by Emotion</p>
 
   <img src="/static/blog/2020-q3-update/styled-components.png" alt="" style="width: 323px;" />
 
   <p class="blog-description">Slider powered by styled-components</p>
 
-- ♿︎ We have kept investing in accessibility, we have fixed [13 bugs](https://github.com/mui-org/material-ui/pulls?q=is%3Apr+label%3Aaccessibility+is%3Aclosed+sort%3Aupdated-desc).
-- 🗓 We have introduced public quarterly roadmaps, both for [community](https://github.com/mui-org/material-ui/projects) and [enterprise](https://github.com/mui-org/material-ui-x/projects).
+- ♿︎ We have kept investing in accessibility, we have fixed [13 bugs](https://github.com/mui/material-ui/pulls?q=is%3Apr+label%3Aaccessibility+is%3Aclosed+sort%3Aupdated-desc).
+- 🗓 We have introduced public quarterly roadmaps, both for [MUI Core](https://github.com/mui/material-ui/projects/25) and [MUI X](https://github.com/mui/mui-x/projects/1).
 
 ## Company
 
@@ -140,7 +141,7 @@ We are thrilled to welcome two new full-time developers to MUI:
 
   <p class="blog-description">% of download relative to react-dom</p>
 
-- ⭐️ From 59.0k to 61.6k stars, leave us yours [🌟](https://github.com/mui-org/material-ui).
+- ⭐️ From 59.0k to 61.6k stars, leave us yours [🌟](https://github.com/mui/material-ui).
 - 👨‍👩‍👧‍👦 From 1,825 to 1,934 contributors on GitHub. We add on average 1 new contributor every day.
 - 🏢 We have welcomed two new full-time developers to MUI.
 
@@ -150,20 +151,20 @@ We'll do our best, no guarantee!
 
 ### Community
 
-- 🗓 Execute on all the items of the [public roadmap](https://github.com/mui-org/material-ui/projects/25).
+- 🗓 Execute on all the items of the [public roadmap](https://github.com/mui/material-ui/projects/25).
 - 👩‍🎨 Simplify the migration experience from v4 to v5.
-- ❓ Please upvote [GitHub issues](https://github.com/mui-org/material-ui/issues) if you want us to focus on a specific problem. The number of 👍 helps us to prioritize.
+- ❓ Please upvote [GitHub issues](https://github.com/mui/material-ui/issues) if you want us to focus on a specific problem. The number of 👍 helps us to prioritize.
 
 ### Enterprise
 
 - 👩‍🎨 Complete the collaboration we started with a design agency last quarter to update the branding of the company, redesign the homepage, and design the marketing pages for the enterprise package.
-- 🗓 Execute on all the items in the [public roadmap](https://github.com/mui-org/material-ui-x/projects/1).
-- ❓ Please upvote [GitHub issues](https://github.com/mui-org/material-ui-x/issues) if you want us to focus on a specific problem. The number of 👍 helps us to prioritize.
+- 🗓 Execute on all the items in the [public roadmap](https://github.com/mui/mui-x/projects/1).
+- ❓ Please upvote [GitHub issues](https://github.com/mui/mui-x/issues) if you want us to focus on a specific problem. The number of 👍 helps us to prioritize.
 
 ### Company
 
 These are objectives, no guarantees:
 
-- 🏢 We might hire a full-time designer that has coding skills. One of the objectives would be to solve [#22485](https://github.com/mui-org/material-ui/issues/22485).
+- 🏢 We might hire a full-time designer that has coding skills. One of the objectives would be to solve [#22485](https://github.com/mui/material-ui/issues/22485).
 - 🏝 We have put the company-wide team retreat on hold because of the continued risk presented by COVID-19.
   Hopefully, we will be able to hold it in Q2 2021.

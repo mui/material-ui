@@ -47,7 +47,7 @@ export default function HeroContainer({
                 borderBottomLeftRadius: 10,
                 transition: 'max-height 0.3s',
                 position: 'relative',
-                overflowX: 'hidden',
+                overflow: 'hidden',
                 ...rightSx,
               }}
             >

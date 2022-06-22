@@ -47,7 +47,7 @@ export interface AccordionProps extends StandardProps<PaperProps, 'onChange'> {
   sx?: SxProps<Theme>;
   /**
    * The component used for the transition.
-   * [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default Collapse
    */
   TransitionComponent?: React.JSXElementConstructor<
@@ -55,7 +55,7 @@ export interface AccordionProps extends StandardProps<PaperProps, 'onChange'> {
   >;
   /**
    * Props applied to the transition element.
-   * By default, the element is based on this [`Transition`](https://reactcommunity.org/react-transition-group/transition) component.
+   * By default, the element is based on this [`Transition`](http://reactcommunity.org/react-transition-group/transition/) component.
    */
   TransitionProps?: TransitionProps;
 }
@@ -64,11 +64,11 @@ export interface AccordionProps extends StandardProps<PaperProps, 'onChange'> {
  *
  * Demos:
  *
- * - [Accordion](https://mui.com/components/accordion/)
+ * - [Accordion](https://mui.com/material-ui/react-accordion/)
  *
  * API:
  *
- * - [Accordion API](https://mui.com/api/accordion/)
- * - inherits [Paper API](https://mui.com/api/paper/)
+ * - [Accordion API](https://mui.com/material-ui/api/accordion/)
+ * - inherits [Paper API](https://mui.com/material-ui/api/paper/)
  */
 export default function Accordion(props: AccordionProps): JSX.Element;

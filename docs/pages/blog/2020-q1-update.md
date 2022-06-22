@@ -1,10 +1,10 @@
 ---
+title: Q1 2020 Update
 description: An update on our mission for Q1 2020.
+date: 2020-04-14T00:00:00.000Z
+authors: ['oliviertassinari']
+tags: ['Company']
 ---
-
-# Q1 2020 Update
-
-Olivier Tassinari. April 14, 2020.
 
 Welcome to the new format of our mission update. We are moving from monthly to quarterly updates.
 
@@ -15,30 +15,30 @@ We have done eleven so far. We have optimized for stability.
 
 Here are the most significant improvements since the beginning of the year:
 
-- 🔍 We have polished the [Autocomplete](https://mui.com/components/autocomplete/) component (Combo box). We have closed more than [270](https://github.com/mui-org/material-ui/labels/lab%3A%20Autocomplete) issues and pull requests so far. We will promote the component to the core in the next major (v5).
+- 🔍 We have polished the [Autocomplete](https://mui.com/material-ui/react-autocomplete/) component (Combo box). We have closed more than [270](https://github.com/mui/material-ui/labels/lab%3A%20Autocomplete) issues and pull requests so far. We will promote the component to the core in the next major (v5).
 
   ![autocomplete](/static/blog/2020-q1-update/autocomplete.gif)
 
-  <p class="blog-description">useAutocomplete <a href="https://mui.com/components/autocomplete/#useautocomplete">hook</a> example, 4.5 kB gzipped.</p>
+  <p class="blog-description">useAutocomplete <a href="https://mui.com/material-ui/react-autocomplete/#useautocomplete">hook</a> example, 4.5 kB gzipped.</p>
 
-  If you wish to make your first contribution to open source, the component has a couple of ["good first issues"](https://github.com/mui-org/material-ui/labels/lab%3A%20Autocomplete) that can be taken.
-  If you have TypeScript expertise, the component could [benefit from it](https://github.com/mui-org/material-ui/issues?q=is%3Aopen+label%3A%22lab%3A+Autocomplete%22+label%3Atypescript).
+  If you wish to make your first contribution to open source, the component has a couple of ["good first issues"](https://github.com/mui/material-ui/labels/lab%3A%20Autocomplete) that can be taken.
+  If you have TypeScript expertise, the component could [benefit from it](https://github.com/mui/material-ui/issues?q=is%3Aopen+label%3A%22lab%3A+Autocomplete%22+label%3Atypescript).
 
 - 📆 We have made a first [alpha release](https://next.material-ui-pickers.dev/demo/daterangepicker) of the date range picker. It's not ready to be used in production but you can start playing. We might release some of the new features of the date picker under the upcoming Enterprise offering.
 
   ![date picker](/static/blog/2020-q1-update/date-picker.png)
 
-- ⚠️ We have introduced a new [Alert](https://mui.com/components/alert/) component in the lab. While this component isn't mentioned in the Material Design guidelines, it's a common and well-established pattern. For instance, it can be interested when [combined](https://mui.com/components/snackbars/#notistack) with the Snackbar.
+- ⚠️ We have introduced a new [Alert](https://v4.mui.com/components/alert/) component in the lab. While this component isn't mentioned in the Material Design guidelines, it's a common and well-established pattern. For instance, it can be interested when [combined](https://v4.mui.com/components/snackbars/#notistack) with the Snackbar.
 
   <img src="/static/blog/2020-q1-update/alert.png" alt="alert" style="max-height: 369px; margin-bottom: 24px;" />
 
-- ⏭ We have introduced a new [Pagination](https://mui.com/components/pagination/) component.
+- ⏭ We have introduced a new [Pagination](https://v4.mui.com/components/pagination/) component.
 
   <img src="/static/blog/2020-q1-update/pagination.png" alt="pagination" style="max-height: 208px; margin-bottom: 8px;" />
 
-- 🦴 We have added a new "wave" animation to the [Skeleton](https://mui.com/components/skeleton/#animations) component.
+- 🦴 We have added a new "wave" animation to the [Skeleton](https://v4.mui.com/components/skeleton/#animations) component.
 
-  <video autoplay muted loop style="max-height: 95px; margin-bottom: 24px;">
+  <video style="max-height: 95px; margin-bottom: 24px;" autoplay muted loop playsinline>
     <source src="/static/blog/2020-q1-update/skeleton.webm" type="video/webm" />
   </video>
 
@@ -93,20 +93,20 @@ We'll do our best, no guarantee!
 
   <img src="/static/blog/2020-q1-update/chinese.png" alt="chinese" style="max-width: 134px; margin-bottom: 24px;" />
 
-- 🔥 We will start to work on the [next major: v5](https://github.com/mui-org/material-ui/issues/20012).
+- 🔥 We will start to work on the [next major: v5](https://github.com/mui/material-ui/issues/20012).
   You can expect the following:
 
   - A feature freeze on v4.
   - The introduction of deprecation messages in the next v4 minors. These messages will help developers upgrade to v5.
   - A progressive bug fixes freeze on v4, with the exception of security issues and important bugs.
-  - At least 6 months of work on v5 to get to a stable release (probably more). You can follow our progress using our [milestone](https://github.com/mui-org/material-ui/milestone/35).
+  - At least 6 months of work on v5 to get to a stable release (probably more). You can follow our progress using our [milestone](https://github.com/mui/material-ui/milestone/35).
 
 - 🧑‍💻 We will likely look to hire a new full-time member on the core team to help deliver v5 and new features faster.
-- ⌗ We announced, back in [October 2019](/blog/september-2019-update/#our-roadmap-intent-for-october), our intention to work on an advanced data grid component. The task was bigger than anticipated, but we are making progress. It might take us 12 months to do it right. Damien is now leading and fully dedicated to this effort. You can follow our early-stage progress on [finui.io](https://finui.io/#/grid) and later, integration into the mono-repository on [#18872](https://github.com/mui-org/material-ui/pull/18872).
+- ⌗ We announced, back in [October 2019](/blog/september-2019-update/#our-roadmap-intent-for-october), our intention to work on an advanced data grid component. The task was bigger than anticipated, but we are making progress. It might take us 12 months to do it right. Damien is now leading and fully dedicated to this effort. You can follow our early-stage progress on [finui.io](https://finui.io/#/grid) and later, integration into the mono-repository on [#18872](https://github.com/mui/material-ui/pull/18872).
 
   ![data grid](/static/blog/2020-q1-update/data-grid.png)
 
   <p class="blog-description">For <a href="https://uxdesign.cc/design-better-data-tables-4ecc99d23356">illustration</a> purposes only.</p>
 
 - 📆 We will polish the date picker. We will work on: providing a comprehensive set of features, to unify the experience with the core package, to improve the overall quality. The objective is to make these components stable in the next major (v5).
-- ❓ Please upvote our [GitHub issues](https://github.com/mui-org/material-ui/issues) if you want something specific. The number of 👍 helps us to prioritize.
+- ❓ Please upvote our [GitHub issues](https://github.com/mui/material-ui/issues) if you want something specific. The number of 👍 helps us to prioritize.

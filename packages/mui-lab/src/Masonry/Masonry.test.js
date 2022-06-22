@@ -3,6 +3,7 @@ import { createRenderer, describeConformance } from 'test/utils';
 import Masonry, { masonryClasses as classes } from '@mui/lab/Masonry';
 import { expect } from 'chai';
 import { createTheme } from '@mui/material/styles';
+import defaultTheme from '@mui/material/styles/defaultTheme';
 import { getStyle, parseToNumber } from './Masonry';
 
 describe('<Masonry />', () => {
@@ -28,29 +29,70 @@ describe('<Masonry />', () => {
 
   describe('render', () => {
     it('should render with correct default styles', function test() {
-      if (!/jsdom/.test(window.navigator.userAgent)) {
+      if (/jsdom/.test(window.navigator.userAgent)) {
         this.skip();
       }
+      const width = 400;
       const columns = 4;
       const spacing = 1;
       const { getByTestId } = render(
-        <Masonry data-testid="container">
-          <div data-testid="child" />
-        </Masonry>,
+        <div style={{ width: `${width}px` }}>
+          <Masonry data-testid="container">
+            <div data-testid="child" />
+          </Masonry>
+        </div>,
       );
       expect(getByTestId('container')).toHaveComputedStyle({
-        width: '100%',
+        width: `${width}px`,
         display: 'flex',
-        flexFlow: 'column wrap',
-        alignContent: 'space-between',
+        flexDirection: 'column',
+        flexWrap: 'wrap',
+        alignContent: 'flex-start',
         boxSizing: 'border-box',
-        margin: `${-(parseToNumber(theme.spacing(spacing)) / 2)}px`,
+        marginTop: `${-(parseToNumber(theme.spacing(spacing)) / 2)}px`,
+        marginRight: `${-(parseToNumber(theme.spacing(spacing)) / 2)}px`,
+        marginBottom: `${-(parseToNumber(theme.spacing(spacing)) / 2)}px`,
+        marginLeft: `${-(parseToNumber(theme.spacing(spacing)) / 2)}px`,
       });
       expect(getByTestId('child')).toHaveComputedStyle({
         boxSizing: 'border-box',
-        margin: `${parseToNumber(theme.spacing(spacing)) / 2}px`,
-        width: `calc(${(100 / columns).toFixed(2)}% - ${theme.spacing(spacing)})`,
+        marginTop: `${parseToNumber(theme.spacing(spacing)) / 2}px`,
+        marginRight: `${parseToNumber(theme.spacing(spacing)) / 2}px`,
+        marginBottom: `${parseToNumber(theme.spacing(spacing)) / 2}px`,
+        marginLeft: `${parseToNumber(theme.spacing(spacing)) / 2}px`,
+        width: `${width / columns - parseToNumber(theme.spacing(spacing))}px`,
       });
+    });
+
+    it('should re-compute the height of masonry when dimensions of any child change', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        // only run on browser
+        this.skip();
+      }
+      const spacingProp = 1;
+      const secondChildInitialHeight = 20;
+      const secondChildNewHeight = 10;
+
+      const { getByTestId } = render(
+        <Masonry columns={2} spacing={spacingProp} data-testid="container">
+          <div sx={{ height: 10 }} />
+        </Masonry>,
+      );
+      const masonry = getByTestId('container');
+      const secondItem = document.createElement('div');
+      secondItem.style.height = `${secondChildInitialHeight}px`;
+      masonry.appendChild(secondItem);
+
+      const topAndBottomMargin = parseToNumber(defaultTheme.spacing(spacingProp)) * 2;
+      expect(window.getComputedStyle(masonry).height).to.equal(
+        `${secondChildInitialHeight + topAndBottomMargin}px`,
+      );
+
+      secondItem.style.height = `${secondChildNewHeight}px`;
+
+      expect(window.getComputedStyle(masonry).height).to.equal(
+        `${secondChildNewHeight + topAndBottomMargin}px`,
+      );
     });
 
     it('should throw console error when children are empty', function test() {
@@ -90,7 +132,7 @@ describe('<Masonry />', () => {
         width: '100%',
         display: 'flex',
         flexFlow: 'column wrap',
-        alignContent: 'space-between',
+        alignContent: 'flex-start',
         boxSizing: 'border-box',
         '& > *': {
           boxSizing: 'border-box',
@@ -118,7 +160,7 @@ describe('<Masonry />', () => {
         width: '100%',
         display: 'flex',
         flexFlow: 'column wrap',
-        alignContent: 'space-between',
+        alignContent: 'flex-start',
         boxSizing: 'border-box',
         '& > *': {
           boxSizing: 'border-box',
@@ -167,7 +209,7 @@ describe('<Masonry />', () => {
         width: '100%',
         display: 'flex',
         flexFlow: 'column wrap',
-        alignContent: 'space-between',
+        alignContent: 'flex-start',
         boxSizing: 'border-box',
         '& > *': {
           boxSizing: 'border-box',
@@ -213,7 +255,7 @@ describe('<Masonry />', () => {
         width: '100%',
         display: 'flex',
         flexFlow: 'column wrap',
-        alignContent: 'space-between',
+        alignContent: 'flex-start',
         boxSizing: 'border-box',
         '& > *': {
           boxSizing: 'border-box',
@@ -247,7 +289,7 @@ describe('<Masonry />', () => {
         width: '100%',
         display: 'flex',
         flexFlow: 'column wrap',
-        alignContent: 'space-between',
+        alignContent: 'flex-start',
         boxSizing: 'border-box',
         '& > *': {
           boxSizing: 'border-box',
@@ -291,7 +333,7 @@ describe('<Masonry />', () => {
         width: '100%',
         display: 'flex',
         flexFlow: 'column wrap',
-        alignContent: 'space-between',
+        alignContent: 'flex-start',
         boxSizing: 'border-box',
         '& > *': {
           boxSizing: 'border-box',

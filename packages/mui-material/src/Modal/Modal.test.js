@@ -33,10 +33,10 @@ describe('<Modal />', () => {
       refInstanceof: window.HTMLDivElement,
       testVariantProps: { hideBackdrop: true },
       skip: [
-        'rootClass', // portal, can't determin the root
+        'rootClass', // portal, can't determine the root
         'componentsProp', // TODO isRTL is leaking, why do we even have it in the first place?
-        'themeDefaultProps', // portal, can't determin the root
-        'themeStyleOverrides', // portal, can't determin the root
+        'themeDefaultProps', // portal, can't determine the root
+        'themeStyleOverrides', // portal, can't determine the root
         'reactTestRenderer', // portal https://github.com/facebook/react/issues/11565
       ],
     }),
@@ -213,8 +213,9 @@ describe('<Modal />', () => {
 
     it('should ignore the backdrop click if the event did not come from the backdrop', () => {
       function CustomBackdrop(props) {
+        const { ownerState, ...other } = props;
         return (
-          <div {...props}>
+          <div {...other}>
             <span data-testid="inner" />
           </div>
         );
@@ -351,7 +352,7 @@ describe('<Modal />', () => {
       expect(modalNode).not.toBeAriaHidden();
     });
 
-    // Test case for https://github.com/mui-org/material-ui/issues/15180
+    // Test case for https://github.com/mui/material-ui/issues/15180
     // TODO: how does this relate to `keepMounted`
     // TODO: never finishes
     it('should remove the transition children in the DOM when closed whilst transition status is entering', () => {
@@ -532,7 +533,7 @@ describe('<Modal />', () => {
         expect(getByTestId('foreign-input')).toHaveFocus();
       });
 
-      // Test case for https://github.com/mui-org/material-ui/issues/12831
+      // Test case for https://github.com/mui/material-ui/issues/12831
       it('should unmount the children when starting open and closing immediately', () => {
         const timeout = 50;
         function TestCase() {

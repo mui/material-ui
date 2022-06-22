@@ -8,6 +8,8 @@
     "disableFocusRipple": "If <code>true</code>, the  keyboard focus ripple is disabled.",
     "disableRipple": "If <code>true</code>, the ripple effect is disabled.<br>⚠️ Without a ripple there is no styling for :focus-visible by default. Be sure to highlight the element by applying separate styles with the <code>focusVisibleClassName</code>.",
     "fullWidth": "If <code>true</code>, the button will take up the full width of its container.",
+    "onChange": "Callback fired when the state changes.<br><br><strong>Signature:</strong><br><code>function(event: React.MouseEvent&lt;HTMLElement&gt;, value: any) =&gt; void</code><br><em>event:</em> The event source of the callback.<br><em>value:</em> of the selected button.",
+    "onClick": "Callback fired when the button is clicked.<br><br><strong>Signature:</strong><br><code>function(event: React.MouseEvent&lt;HTMLElement&gt;, value: any) =&gt; void</code><br><em>event:</em> The event source of the callback.<br><em>value:</em> of the selected button.",
     "selected": "If <code>true</code>, the button is rendered in an active state.",
     "size": "The size of the button. The prop defaults to the value inherited from the parent ToggleButtonGroup component.",
     "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/basics/#the-sx-prop\">`sx` page</a> for more details.",
@@ -41,10 +43,6 @@
       "description": "Pseudo-class aplicada a {{nodeName}} se {{conditions}}.",
       "nodeName": "o elemento raiz",
       "conditions": "<code>color=\"secondary\"</code>"
-    },
-    "label": {
-      "description": "Estilos aplicados a {{nodeName}}.",
-      "nodeName": "the `label` wrapper element"
     },
     "sizeSmall": {
       "description": "Estilos aplicados para {{nodeName}} se {{conditions}}.",

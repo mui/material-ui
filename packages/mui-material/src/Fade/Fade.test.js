@@ -4,6 +4,7 @@ import { spy } from 'sinon';
 import { createRenderer, describeConformance } from 'test/utils';
 import { Transition } from 'react-transition-group';
 import Fade from '@mui/material/Fade';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 describe('<Fade />', () => {
   const { clock, render } = createRenderer();
@@ -114,6 +115,66 @@ describe('<Fade />', () => {
 
       expect(element).toHaveInlineStyle({ opacity: '0' });
       expect(element).toHaveInlineStyle({ visibility: 'hidden' });
+    });
+  });
+
+  describe('prop: timeout', () => {
+    it('should render the default theme values by default', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+
+      const theme = createTheme();
+      const enteringScreenDurationInSeconds = theme.transitions.duration.enteringScreen / 1000;
+      const { getByTestId } = render(
+        <Fade in appear>
+          <div data-testid="child">Foo</div>
+        </Fade>,
+      );
+
+      const child = getByTestId('child');
+      expect(child).toHaveComputedStyle({
+        transitionDuration: `${enteringScreenDurationInSeconds}s`,
+      });
+    });
+
+    it('should render the custom theme values', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+
+      const theme = createTheme({
+        transitions: {
+          duration: {
+            enteringScreen: 1,
+          },
+        },
+      });
+      const { getByTestId } = render(
+        <ThemeProvider theme={theme}>
+          <Fade in appear>
+            <div data-testid="child">Foo</div>
+          </Fade>
+        </ThemeProvider>,
+      );
+
+      const child = getByTestId('child');
+      expect(child).toHaveComputedStyle({ transitionDuration: '0.001s' });
+    });
+
+    it('should render the values provided via prop', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+
+      const { getByTestId } = render(
+        <Fade in appear timeout={{ enter: 1 }}>
+          <div data-testid="child">Foo</div>
+        </Fade>,
+      );
+
+      const child = getByTestId('child');
+      expect(child).toHaveComputedStyle({ transitionDuration: '0.001s' });
     });
   });
 });

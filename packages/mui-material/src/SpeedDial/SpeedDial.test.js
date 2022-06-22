@@ -13,6 +13,7 @@ import Icon from '@mui/material/Icon';
 import SpeedDial, { speedDialClasses as classes } from '@mui/material/SpeedDial';
 import SpeedDialAction from '@mui/material/SpeedDialAction';
 import { tooltipClasses } from '@mui/material/Tooltip';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 describe('<SpeedDial />', () => {
   const { clock, render } = createRenderer({ clock: 'fake' });
@@ -408,6 +409,59 @@ describe('<SpeedDial />', () => {
           [0, -1, -1, 0],
         );
       });
+    });
+  });
+
+  describe('prop: transitionDuration', () => {
+    it('should render the default theme values by default', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+
+      const theme = createTheme();
+      const enteringScreenDurationInSeconds = theme.transitions.duration.enteringScreen / 1000;
+      const { getByTestId } = render(<SpeedDial data-testid="speedDial" {...defaultProps} />);
+
+      const child = getByTestId('speedDial').firstChild;
+      expect(child).toHaveComputedStyle({
+        transitionDuration: `${enteringScreenDurationInSeconds}s`,
+      });
+    });
+
+    it('should render the custom theme values', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+
+      const theme = createTheme({
+        transitions: {
+          duration: {
+            enteringScreen: 1,
+          },
+        },
+      });
+
+      const { getByTestId } = render(
+        <ThemeProvider theme={theme}>
+          <SpeedDial data-testid="speedDial" {...defaultProps} />,
+        </ThemeProvider>,
+      );
+
+      const child = getByTestId('speedDial').firstChild;
+      expect(child).toHaveComputedStyle({ transitionDuration: '0.001s' });
+    });
+
+    it('should render the values provided via prop', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+
+      const { getByTestId } = render(
+        <SpeedDial data-testid="speedDial" {...defaultProps} transitionDuration={1} />,
+      );
+
+      const child = getByTestId('speedDial').firstChild;
+      expect(child).toHaveComputedStyle({ transitionDuration: '0.001s' });
     });
   });
 });

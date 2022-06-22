@@ -93,7 +93,7 @@ const ReactRouterLinkTest = () => {
   const reactRouterButtonLink1 = <ButtonLink to="/">Go Home</ButtonLink>;
 
   const MyLink = React.forwardRef<HTMLAnchorElement, LinkProps>((props, ref) => {
-    return <ReactRouterLink innerRef={ref} {...props} />;
+    return <ReactRouterLink ref={ref} {...props} />;
   });
 
   const reactRouterButtonLink2 = (

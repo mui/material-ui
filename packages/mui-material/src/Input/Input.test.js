@@ -28,4 +28,11 @@ describe('<Input />', () => {
     render(<Input componentsProps={{ root: { 'data-test': 'test' } }} />);
     expect(document.querySelector('[data-test=test]')).not.to.equal(null);
   });
+
+  it('should respect the classes coming from InputBase', () => {
+    render(
+      <Input data-test="test" multiline sx={{ [`&.${classes.multiline}`]: { mt: '10px' } }} />,
+    );
+    expect(document.querySelector('[data-test=test]')).toHaveComputedStyle({ marginTop: '10px' });
+  });
 });

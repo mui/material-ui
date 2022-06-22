@@ -88,6 +88,8 @@ const InputLabelRoot = styled(FormLabel, {
       transform: 'translate(12px, 13px) scale(1)',
     }),
     ...(ownerState.shrink && {
+      userSelect: 'none',
+      pointerEvents: 'auto',
       transform: 'translate(12px, 7px) scale(0.75)',
       maxWidth: 'calc(133% - 24px)',
       ...(ownerState.size === 'small' && {
@@ -105,6 +107,8 @@ const InputLabelRoot = styled(FormLabel, {
       transform: 'translate(14px, 9px) scale(1)',
     }),
     ...(ownerState.shrink && {
+      userSelect: 'none',
+      pointerEvents: 'auto',
       maxWidth: 'calc(133% - 24px)',
       transform: 'translate(14px, -9px) scale(0.75)',
     }),
@@ -164,7 +168,9 @@ InputLabel.propTypes /* remove-proptypes */ = {
    */
   classes: PropTypes.object,
   /**
-   * The color of the component. It supports those theme colors that make sense for this component.
+   * The color of the component.
+   * It supports both default and custom theme colors, which can be added as shown in the
+   * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['error', 'info', 'primary', 'secondary', 'success', 'warning']),
@@ -201,10 +207,15 @@ InputLabel.propTypes /* remove-proptypes */ = {
    */
   shrink: PropTypes.bool,
   /**
+   * The size of the component.
+   * @default 'normal'
+   */
+  size: PropTypes.oneOf(['normal', 'small']),
+  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object])),
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
     PropTypes.func,
     PropTypes.object,
   ]),

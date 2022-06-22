@@ -1,155 +1,15 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import {
-  chainPropTypes,
-  unstable_useIsFocusVisible as useIsFocusVisible,
-  unstable_useEnhancedEffect as useEnhancedEffect,
-  unstable_ownerDocument as ownerDocument,
-  unstable_useEventCallback as useEventCallback,
-  unstable_useForkRef as useForkRef,
-  unstable_useControlled as useControlled,
-  visuallyHidden,
-} from '@mui/utils';
+import { chainPropTypes } from '@mui/utils';
+import appendOwnerState from '../utils/appendOwnerState';
 import isHostComponent from '../utils/isHostComponent';
 import composeClasses from '../composeClasses';
 import { getSliderUtilityClass } from './sliderUnstyledClasses';
 import SliderValueLabelUnstyled from './SliderValueLabelUnstyled';
-
-const INTENTIONAL_DRAG_COUNT_THRESHOLD = 2;
-
-function asc(a, b) {
-  return a - b;
-}
-
-function clamp(value, min, max) {
-  if (value == null) {
-    return min;
-  }
-  return Math.min(Math.max(min, value), max);
-}
-
-function findClosest(values, currentValue) {
-  const { index: closestIndex } = values.reduce((acc, value, index) => {
-    const distance = Math.abs(currentValue - value);
-
-    if (acc === null || distance < acc.distance || distance === acc.distance) {
-      return {
-        distance,
-        index,
-      };
-    }
-
-    return acc;
-  }, null);
-  return closestIndex;
-}
-
-function trackFinger(event, touchId) {
-  if (touchId.current !== undefined && event.changedTouches) {
-    for (let i = 0; i < event.changedTouches.length; i += 1) {
-      const touch = event.changedTouches[i];
-      if (touch.identifier === touchId.current) {
-        return {
-          x: touch.clientX,
-          y: touch.clientY,
-        };
-      }
-    }
-
-    return false;
-  }
-
-  return {
-    x: event.clientX,
-    y: event.clientY,
-  };
-}
-
-function valueToPercent(value, min, max) {
-  return ((value - min) * 100) / (max - min);
-}
-
-function percentToValue(percent, min, max) {
-  return (max - min) * percent + min;
-}
-
-function getDecimalPrecision(num) {
-  // This handles the case when num is very small (0.00000001), js will turn this into 1e-8.
-  // When num is bigger than 1 or less than -1 it won't get converted to this notation so it's fine.
-  if (Math.abs(num) < 1) {
-    const parts = num.toExponential().split('e-');
-    const matissaDecimalPart = parts[0].split('.')[1];
-    return (matissaDecimalPart ? matissaDecimalPart.length : 0) + parseInt(parts[1], 10);
-  }
-
-  const decimalPart = num.toString().split('.')[1];
-  return decimalPart ? decimalPart.length : 0;
-}
-
-function roundValueToStep(value, step, min) {
-  const nearest = Math.round((value - min) / step) * step + min;
-  return Number(nearest.toFixed(getDecimalPrecision(step)));
-}
-
-function setValueIndex({ values, newValue, index }) {
-  const output = values.slice();
-  output[index] = newValue;
-  return output.sort(asc);
-}
-
-function focusThumb({ sliderRef, activeIndex, setActive }) {
-  const doc = ownerDocument(sliderRef.current);
-  if (
-    !sliderRef.current.contains(doc.activeElement) ||
-    Number(doc.activeElement.getAttribute('data-index')) !== activeIndex
-  ) {
-    sliderRef.current.querySelector(`[type="range"][data-index="${activeIndex}"]`).focus();
-  }
-
-  if (setActive) {
-    setActive(activeIndex);
-  }
-}
-
-const axisProps = {
-  horizontal: {
-    offset: (percent) => ({ left: `${percent}%` }),
-    leap: (percent) => ({ width: `${percent}%` }),
-  },
-  'horizontal-reverse': {
-    offset: (percent) => ({ right: `${percent}%` }),
-    leap: (percent) => ({ width: `${percent}%` }),
-  },
-  vertical: {
-    offset: (percent) => ({ bottom: `${percent}%` }),
-    leap: (percent) => ({ height: `${percent}%` }),
-  },
-};
+import useSlider, { valueToPercent } from './useSlider';
 
 const Identity = (x) => x;
-
-// TODO: remove support for Safari < 13.
-// https://caniuse.com/#search=touch-action
-//
-// Safari, on iOS, supports touch action since v13.
-// Over 80% of the iOS phones are compatible
-// in August 2020.
-// Utilizing the CSS.supports method to check if touch-action is supported.
-// Since CSS.supports is supported on all but Edge@12 and IE and touch-action
-// is supported on both Edge@12 and IE if CSS.supports is not available that means that
-// touch-action will be supported
-let cachedSupportsTouchActionNone;
-function doesSupportTouchActionNone() {
-  if (cachedSupportsTouchActionNone === undefined) {
-    if (typeof CSS !== 'undefined' && typeof CSS.supports === 'function') {
-      cachedSupportsTouchActionNone = CSS.supports('touch-action', 'none');
-    } else {
-      cachedSupportsTouchActionNone = true;
-    }
-  }
-  return cachedSupportsTouchActionNone;
-}
 
 const useUtilityClasses = (ownerState) => {
   const { disabled, dragging, marked, orientation, track, classes } = ownerState;
@@ -185,12 +45,10 @@ const Forward = ({ children }) => children;
 const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
   const {
     'aria-label': ariaLabel,
-    'aria-labelledby': ariaLabelledby,
     'aria-valuetext': ariaValuetext,
     className,
-    component = 'span',
+    component,
     classes: classesProp,
-    defaultValue,
     disableSwap = false,
     disabled = false,
     getAriaLabel,
@@ -216,406 +74,14 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
     ...other
   } = props;
 
-  const touchId = React.useRef();
-  // We can't use the :active browser pseudo-classes.
-  // - The active state isn't triggered when clicking on the rail.
-  // - The active state isn't transferred when inversing a range slider.
-  const [active, setActive] = React.useState(-1);
-  const [open, setOpen] = React.useState(-1);
-  const [dragging, setDragging] = React.useState(false);
-  const moveCount = React.useRef(0);
-
-  const [valueDerived, setValueState] = useControlled({
-    controlled: valueProp,
-    default: defaultValue ?? min,
-    name: 'Slider',
-  });
-
-  const handleChange =
-    onChange &&
-    ((event, value, thumbIndex) => {
-      // Redefine target to allow name and value to be read.
-      // This allows seamless integration with the most popular form libraries.
-      // https://github.com/mui-org/material-ui/issues/13485#issuecomment-676048492
-      // Clone the event to not override `target` of the original event.
-      const nativeEvent = event.nativeEvent || event;
-      const clonedEvent = new nativeEvent.constructor(nativeEvent.type, nativeEvent);
-
-      Object.defineProperty(clonedEvent, 'target', {
-        writable: true,
-        value: { value, name },
-      });
-
-      onChange(clonedEvent, value, thumbIndex);
-    });
-
-  const range = Array.isArray(valueDerived);
-  let values = range ? valueDerived.slice().sort(asc) : [valueDerived];
-  values = values.map((value) => clamp(value, min, max));
-  const marks =
-    marksProp === true && step !== null
-      ? [...Array(Math.floor((max - min) / step) + 1)].map((_, index) => ({
-          value: min + step * index,
-        }))
-      : marksProp || [];
-
-  const {
-    isFocusVisibleRef,
-    onBlur: handleBlurVisible,
-    onFocus: handleFocusVisible,
-    ref: focusVisibleRef,
-  } = useIsFocusVisible();
-  const [focusVisible, setFocusVisible] = React.useState(-1);
-
-  const sliderRef = React.useRef();
-  const handleFocusRef = useForkRef(focusVisibleRef, sliderRef);
-  const handleRef = useForkRef(ref, handleFocusRef);
-
-  const handleFocus = (event) => {
-    const index = Number(event.currentTarget.getAttribute('data-index'));
-    handleFocusVisible(event);
-    if (isFocusVisibleRef.current === true) {
-      setFocusVisible(index);
-    }
-    setOpen(index);
-  };
-  const handleBlur = (event) => {
-    handleBlurVisible(event);
-    if (isFocusVisibleRef.current === false) {
-      setFocusVisible(-1);
-    }
-    setOpen(-1);
-  };
-  const handleMouseOver = useEventCallback((event) => {
-    const index = Number(event.currentTarget.getAttribute('data-index'));
-    setOpen(index);
-  });
-  const handleMouseLeave = useEventCallback(() => {
-    setOpen(-1);
-  });
-
-  useEnhancedEffect(() => {
-    if (disabled && sliderRef.current.contains(document.activeElement)) {
-      // This is necessary because Firefox and Safari will keep focus
-      // on a disabled element:
-      // https://codesandbox.io/s/mui-pr-22247-forked-h151h?file=/src/App.js
-      document.activeElement.blur();
-    }
-  }, [disabled]);
-
-  if (disabled && active !== -1) {
-    setActive(-1);
-  }
-  if (disabled && focusVisible !== -1) {
-    setFocusVisible(-1);
-  }
-
-  const handleHiddenInputChange = (event) => {
-    const index = Number(event.currentTarget.getAttribute('data-index'));
-    const value = values[index];
-    const marksValues = marks.map((mark) => mark.value);
-    const marksIndex = marksValues.indexOf(value);
-
-    let newValue = event.target.valueAsNumber;
-
-    if (marks && step == null) {
-      newValue = newValue < value ? marksValues[marksIndex - 1] : marksValues[marksIndex + 1];
-    }
-
-    newValue = clamp(newValue, min, max);
-
-    if (marks && step == null) {
-      const markValues = marks.map((mark) => mark.value);
-      const currentMarkIndex = markValues.indexOf(values[index]);
-
-      newValue =
-        newValue < values[index]
-          ? markValues[currentMarkIndex - 1]
-          : markValues[currentMarkIndex + 1];
-    }
-
-    if (range) {
-      // Bound the new value to the thumb's neighbours.
-      if (disableSwap) {
-        newValue = clamp(newValue, values[index - 1] || -Infinity, values[index + 1] || Infinity);
-      }
-
-      const previousValue = newValue;
-      newValue = setValueIndex({
-        values,
-        newValue,
-        index,
-      });
-
-      let activeIndex = index;
-
-      // Potentially swap the index if needed.
-      if (!disableSwap) {
-        activeIndex = newValue.indexOf(previousValue);
-      }
-
-      focusThumb({ sliderRef, activeIndex });
-    }
-
-    setValueState(newValue);
-    setFocusVisible(index);
-
-    if (handleChange) {
-      handleChange(event, newValue, index);
-    }
-
-    if (onChangeCommitted) {
-      onChangeCommitted(event, newValue);
-    }
-  };
-
-  const previousIndex = React.useRef();
-  let axis = orientation;
-  if (isRtl && orientation === 'horizontal') {
-    axis += '-reverse';
-  }
-
-  const getFingerNewValue = ({ finger, move = false, values: values2 }) => {
-    const { current: slider } = sliderRef;
-    const { width, height, bottom, left } = slider.getBoundingClientRect();
-    let percent;
-
-    if (axis.indexOf('vertical') === 0) {
-      percent = (bottom - finger.y) / height;
-    } else {
-      percent = (finger.x - left) / width;
-    }
-
-    if (axis.indexOf('-reverse') !== -1) {
-      percent = 1 - percent;
-    }
-
-    let newValue;
-    newValue = percentToValue(percent, min, max);
-    if (step) {
-      newValue = roundValueToStep(newValue, step, min);
-    } else {
-      const marksValues = marks.map((mark) => mark.value);
-      const closestIndex = findClosest(marksValues, newValue);
-      newValue = marksValues[closestIndex];
-    }
-
-    newValue = clamp(newValue, min, max);
-    let activeIndex = 0;
-
-    if (range) {
-      if (!move) {
-        activeIndex = findClosest(values2, newValue);
-      } else {
-        activeIndex = previousIndex.current;
-      }
-
-      // Bound the new value to the thumb's neighbours.
-      if (disableSwap) {
-        newValue = clamp(
-          newValue,
-          values2[activeIndex - 1] || -Infinity,
-          values2[activeIndex + 1] || Infinity,
-        );
-      }
-
-      const previousValue = newValue;
-      newValue = setValueIndex({
-        values: values2,
-        newValue,
-        index: activeIndex,
-      });
-
-      // Potentially swap the index if needed.
-      if (!(disableSwap && move)) {
-        activeIndex = newValue.indexOf(previousValue);
-        previousIndex.current = activeIndex;
-      }
-    }
-
-    return { newValue, activeIndex };
-  };
-
-  const handleTouchMove = useEventCallback((nativeEvent) => {
-    const finger = trackFinger(nativeEvent, touchId);
-
-    if (!finger) {
-      return;
-    }
-
-    moveCount.current += 1;
-
-    // Cancel move in case some other element consumed a mouseup event and it was not fired.
-    if (nativeEvent.type === 'mousemove' && nativeEvent.buttons === 0) {
-      // eslint-disable-next-line @typescript-eslint/no-use-before-define
-      handleTouchEnd(nativeEvent);
-      return;
-    }
-
-    const { newValue, activeIndex } = getFingerNewValue({
-      finger,
-      move: true,
-      values,
-    });
-
-    focusThumb({ sliderRef, activeIndex, setActive });
-    setValueState(newValue);
-
-    if (!dragging && moveCount.current > INTENTIONAL_DRAG_COUNT_THRESHOLD) {
-      setDragging(true);
-    }
-
-    if (handleChange) {
-      handleChange(nativeEvent, newValue, activeIndex);
-    }
-  });
-
-  const handleTouchEnd = useEventCallback((nativeEvent) => {
-    const finger = trackFinger(nativeEvent, touchId);
-    setDragging(false);
-
-    if (!finger) {
-      return;
-    }
-
-    const { newValue } = getFingerNewValue({ finger, values });
-
-    setActive(-1);
-    if (nativeEvent.type === 'touchend') {
-      setOpen(-1);
-    }
-
-    if (onChangeCommitted) {
-      onChangeCommitted(nativeEvent, newValue);
-    }
-
-    touchId.current = undefined;
-
-    // eslint-disable-next-line @typescript-eslint/no-use-before-define
-    stopListening();
-  });
-
-  const handleTouchStart = useEventCallback((nativeEvent) => {
-    // If touch-action: none; is not supported we need to prevent the scroll manually.
-    if (!doesSupportTouchActionNone()) {
-      nativeEvent.preventDefault();
-    }
-
-    const touch = nativeEvent.changedTouches[0];
-    if (touch != null) {
-      // A number that uniquely identifies the current finger in the touch session.
-      touchId.current = touch.identifier;
-    }
-    const finger = trackFinger(nativeEvent, touchId);
-    const { newValue, activeIndex } = getFingerNewValue({ finger, values });
-    focusThumb({ sliderRef, activeIndex, setActive });
-
-    setValueState(newValue);
-
-    if (handleChange) {
-      handleChange(nativeEvent, newValue, activeIndex);
-    }
-
-    moveCount.current = 0;
-    const doc = ownerDocument(sliderRef.current);
-    doc.addEventListener('touchmove', handleTouchMove);
-    doc.addEventListener('touchend', handleTouchEnd);
-  });
-
-  const stopListening = React.useCallback(() => {
-    const doc = ownerDocument(sliderRef.current);
-    doc.removeEventListener('mousemove', handleTouchMove);
-    doc.removeEventListener('mouseup', handleTouchEnd);
-    doc.removeEventListener('touchmove', handleTouchMove);
-    doc.removeEventListener('touchend', handleTouchEnd);
-  }, [handleTouchEnd, handleTouchMove]);
-
-  React.useEffect(() => {
-    const { current: slider } = sliderRef;
-    slider.addEventListener('touchstart', handleTouchStart, {
-      passive: doesSupportTouchActionNone(),
-    });
-
-    return () => {
-      slider.removeEventListener('touchstart', handleTouchStart, {
-        passive: doesSupportTouchActionNone(),
-      });
-
-      stopListening();
-    };
-  }, [stopListening, handleTouchStart]);
-
-  React.useEffect(() => {
-    if (disabled) {
-      stopListening();
-    }
-  }, [disabled, stopListening]);
-
-  const handleMouseDown = useEventCallback((event) => {
-    if (onMouseDown) {
-      onMouseDown(event);
-    }
-
-    // Only handle left clicks
-    if (event.button !== 0) {
-      return;
-    }
-
-    // Avoid text selection
-    event.preventDefault();
-    const finger = trackFinger(event, touchId);
-    const { newValue, activeIndex } = getFingerNewValue({ finger, values });
-    focusThumb({ sliderRef, activeIndex, setActive });
-
-    setValueState(newValue);
-
-    if (handleChange) {
-      handleChange(event, newValue, activeIndex);
-    }
-
-    moveCount.current = 0;
-    const doc = ownerDocument(sliderRef.current);
-    doc.addEventListener('mousemove', handleTouchMove);
-    doc.addEventListener('mouseup', handleTouchEnd);
-  });
-
-  const trackOffset = valueToPercent(range ? values[0] : min, min, max);
-  const trackLeap = valueToPercent(values[values.length - 1], min, max) - trackOffset;
-  const trackStyle = {
-    ...axisProps[axis].offset(trackOffset),
-    ...axisProps[axis].leap(trackLeap),
-  };
-
-  const Root = components.Root || component;
-  const rootProps = componentsProps.root || {};
-
-  const Rail = components.Rail || 'span';
-  const railProps = componentsProps.rail || {};
-
-  const Track = components.Track || 'span';
-  const trackProps = componentsProps.track || {};
-
-  const Thumb = components.Thumb || 'span';
-  const thumbProps = componentsProps.thumb || {};
-
-  const ValueLabel = components.ValueLabel || SliderValueLabelUnstyled;
-  const valueLabelProps = componentsProps.valueLabel || {};
-
-  const Mark = components.Mark || 'span';
-  const markProps = componentsProps.mark || {};
-
-  const MarkLabel = components.MarkLabel || 'span';
-  const markLabelProps = componentsProps.markLabel || {};
-
   // all props with defaults
   // consider extracting to hook an reusing the lint rule for the varints
   const ownerState = {
     ...props,
+    marks: marksProp,
     classes: classesProp,
     disabled,
-    dragging,
     isRtl,
-    marked: marks.length > 0 && marks.some((mark) => mark.label),
     max,
     min,
     orientation,
@@ -626,91 +92,122 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
     valueLabelFormat,
   };
 
+  const {
+    axisProps,
+    getRootProps,
+    getHiddenInputProps,
+    getThumbProps,
+    open,
+    active,
+    axis,
+    range,
+    focusVisible,
+    dragging,
+    marks,
+    values,
+    trackOffset,
+    trackLeap,
+  } = useSlider({ ...ownerState, ref });
+
+  ownerState.marked = marks.length > 0 && marks.some((mark) => mark.label);
+  ownerState.dragging = dragging;
+
+  const Root = component ?? components.Root ?? 'span';
+  const rootProps = appendOwnerState(Root, { ...other, ...componentsProps.root }, ownerState);
+
+  const Rail = components.Rail ?? 'span';
+  const railProps = appendOwnerState(Rail, componentsProps.rail, ownerState);
+
+  const Track = components.Track ?? 'span';
+  const trackProps = appendOwnerState(Track, componentsProps.track, ownerState);
+  const trackStyle = {
+    ...axisProps[axis].offset(trackOffset),
+    ...axisProps[axis].leap(trackLeap),
+  };
+
+  const Thumb = components.Thumb ?? 'span';
+  const thumbProps = appendOwnerState(Thumb, componentsProps.thumb, ownerState);
+
+  const ValueLabel = components.ValueLabel ?? SliderValueLabelUnstyled;
+  const valueLabelProps = appendOwnerState(ValueLabel, componentsProps.valueLabel, ownerState);
+
+  const Mark = components.Mark ?? 'span';
+  const markProps = appendOwnerState(Mark, componentsProps.mark, ownerState);
+
+  const MarkLabel = components.MarkLabel ?? 'span';
+  const markLabelProps = appendOwnerState(MarkLabel, componentsProps.markLabel, ownerState);
+
+  const Input = components.Input || 'input';
+  const inputProps = appendOwnerState(Input, componentsProps.input, ownerState);
+  const hiddenInputProps = getHiddenInputProps();
+
   const classes = useUtilityClasses(ownerState);
 
   return (
     <Root
-      ref={handleRef}
-      onMouseDown={handleMouseDown}
       {...rootProps}
-      {...(!isHostComponent(Root) && {
-        as: component,
-        ownerState: { ...ownerState, ...rootProps.ownerState },
-      })}
-      {...other}
+      {...getRootProps({ onMouseDown })}
       className={clsx(classes.root, rootProps.className, className)}
     >
-      <Rail
-        {...railProps}
-        {...(!isHostComponent(Rail) && {
-          ownerState: { ...ownerState, ...railProps.ownerState },
-        })}
-        className={clsx(classes.rail, railProps.className)}
-      />
+      <Rail {...railProps} className={clsx(classes.rail, railProps.className)} />
       <Track
         {...trackProps}
-        {...(!isHostComponent(Track) && {
-          ownerState: { ...ownerState, ...trackProps.ownerState },
-        })}
         className={clsx(classes.track, trackProps.className)}
         style={{ ...trackStyle, ...trackProps.style }}
       />
-      {marks.map((mark, index) => {
-        const percent = valueToPercent(mark.value, min, max);
-        const style = axisProps[axis].offset(percent);
+      {marks
+        .filter((mark) => mark.value >= min && mark.value <= max)
+        .map((mark, index) => {
+          const percent = valueToPercent(mark.value, min, max);
+          const style = axisProps[axis].offset(percent);
 
-        let markActive;
-        if (track === false) {
-          markActive = values.indexOf(mark.value) !== -1;
-        } else {
-          markActive =
-            (track === 'normal' &&
-              (range
-                ? mark.value >= values[0] && mark.value <= values[values.length - 1]
-                : mark.value <= values[0])) ||
-            (track === 'inverted' &&
-              (range
-                ? mark.value <= values[0] || mark.value >= values[values.length - 1]
-                : mark.value >= values[0]));
-        }
+          let markActive;
+          if (track === false) {
+            markActive = values.indexOf(mark.value) !== -1;
+          } else {
+            markActive =
+              (track === 'normal' &&
+                (range
+                  ? mark.value >= values[0] && mark.value <= values[values.length - 1]
+                  : mark.value <= values[0])) ||
+              (track === 'inverted' &&
+                (range
+                  ? mark.value <= values[0] || mark.value >= values[values.length - 1]
+                  : mark.value >= values[0]));
+          }
 
-        return (
-          <React.Fragment key={mark.value}>
-            <Mark
-              data-index={index}
-              {...markProps}
-              {...(!isHostComponent(Mark) && {
-                ownerState: { ...ownerState, ...markProps.ownerState },
-                markActive,
-              })}
-              style={{ ...style, ...markProps.style }}
-              className={clsx(classes.mark, markProps.className, {
-                [classes.markActive]: markActive,
-              })}
-            />
-            {mark.label != null ? (
-              <MarkLabel
-                aria-hidden
+          return (
+            <React.Fragment key={mark.value}>
+              <Mark
                 data-index={index}
-                {...markLabelProps}
-                {...(!isHostComponent(MarkLabel) && {
-                  ownerState: {
-                    ...ownerState,
-                    ...markLabelProps.ownerState,
-                  },
+                {...markProps}
+                {...(!isHostComponent(Mark) && {
+                  markActive,
                 })}
-                markLabelActive={markActive}
-                style={{ ...style, ...markLabelProps.style }}
-                className={clsx(classes.markLabel, markLabelProps.className, {
-                  [classes.markLabelActive]: markActive,
+                style={{ ...style, ...markProps.style }}
+                className={clsx(classes.mark, markProps.className, {
+                  [classes.markActive]: markActive,
                 })}
-              >
-                {mark.label}
-              </MarkLabel>
-            ) : null}
-          </React.Fragment>
-        );
-      })}
+              />
+              {mark.label != null ? (
+                <MarkLabel
+                  aria-hidden
+                  data-index={index}
+                  {...markLabelProps}
+                  {...(!isHostComponent(MarkLabel) && {
+                    markLabelActive: markActive,
+                  })}
+                  style={{ ...style, ...markLabelProps.style }}
+                  className={clsx(classes.markLabel, markLabelProps.className, {
+                    [classes.markLabelActive]: markActive,
+                  })}
+                >
+                  {mark.label}
+                </MarkLabel>
+              ) : null}
+            </React.Fragment>
+          );
+        })}
       {values.map((value, index) => {
         const percent = valueToPercent(value, min, max);
         const style = axisProps[axis].offset(percent);
@@ -720,33 +217,27 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
         return (
           <React.Fragment key={index}>
             <ValueLabelComponent
-              valueLabelFormat={valueLabelFormat}
-              valueLabelDisplay={valueLabelDisplay}
-              value={
-                typeof valueLabelFormat === 'function'
-                  ? valueLabelFormat(scale(value), index)
-                  : valueLabelFormat
-              }
-              index={index}
-              open={open === index || active === index || valueLabelDisplay === 'on'}
-              disabled={disabled}
+              {...(!isHostComponent(ValueLabelComponent) && {
+                valueLabelFormat,
+                valueLabelDisplay,
+                value:
+                  typeof valueLabelFormat === 'function'
+                    ? valueLabelFormat(scale(value), index)
+                    : valueLabelFormat,
+                index,
+                open: open === index || active === index || valueLabelDisplay === 'on',
+                disabled,
+              })}
               {...valueLabelProps}
               className={clsx(classes.valueLabel, valueLabelProps.className)}
-              {...(!isHostComponent(ValueLabel) && {
-                ownerState: { ...ownerState, ...valueLabelProps.ownerState },
-              })}
             >
               <Thumb
                 data-index={index}
-                onMouseOver={handleMouseOver}
-                onMouseLeave={handleMouseLeave}
                 {...thumbProps}
+                {...getThumbProps()}
                 className={clsx(classes.thumb, thumbProps.className, {
                   [classes.active]: active === index,
                   [classes.focusVisible]: focusVisible === index,
-                })}
-                {...(!isHostComponent(Thumb) && {
-                  ownerState: { ...ownerState, ...thumbProps.ownerState },
                 })}
                 style={{
                   ...style,
@@ -754,34 +245,22 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
                   ...thumbProps.style,
                 }}
               >
-                <input
-                  tabIndex={tabIndex}
+                <Input
+                  {...hiddenInputProps}
                   data-index={index}
                   aria-label={getAriaLabel ? getAriaLabel(index) : ariaLabel}
-                  aria-labelledby={ariaLabelledby}
-                  aria-orientation={orientation}
-                  aria-valuemax={scale(max)}
-                  aria-valuemin={scale(min)}
                   aria-valuenow={scale(value)}
                   aria-valuetext={
                     getAriaValueText ? getAriaValueText(scale(value), index) : ariaValuetext
                   }
-                  onFocus={handleFocus}
-                  onBlur={handleBlur}
-                  name={name}
-                  type="range"
-                  min={props.min}
-                  max={props.max}
-                  step={props.step}
-                  disabled={disabled}
                   value={values[index]}
-                  onChange={handleHiddenInputChange}
+                  {...(!isHostComponent(Input) && {
+                    ownerState: { ...ownerState, ...inputProps.ownerState },
+                  })}
+                  {...inputProps}
                   style={{
-                    ...visuallyHidden,
-                    direction: isRtl ? 'rtl' : 'ltr',
-                    // So that VoiceOver's focus indicator matches the thumb's dimensions
-                    width: '100%',
-                    height: '100%',
+                    ...hiddenInputProps.style,
+                    ...inputProps.style,
                   }}
                 />
               </Thumb>
@@ -853,6 +332,7 @@ SliderUnstyled.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   components: PropTypes.shape({
+    Input: PropTypes.elementType,
     Mark: PropTypes.elementType,
     MarkLabel: PropTypes.elementType,
     Rail: PropTypes.elementType,
@@ -865,7 +345,26 @@ SliderUnstyled.propTypes /* remove-proptypes */ = {
    * The props used for each slot inside the Slider.
    * @default {}
    */
-  componentsProps: PropTypes.object,
+  componentsProps: PropTypes.shape({
+    input: PropTypes.object,
+    mark: PropTypes.object,
+    markLabel: PropTypes.object,
+    rail: PropTypes.object,
+    root: PropTypes.object,
+    thumb: PropTypes.object,
+    track: PropTypes.object,
+    valueLabel: PropTypes.shape({
+      children: PropTypes.element,
+      className: PropTypes.string,
+      components: PropTypes.shape({
+        Root: PropTypes.elementType,
+      }),
+      open: PropTypes.bool,
+      style: PropTypes.object,
+      value: PropTypes.number,
+      valueLabelDisplay: PropTypes.oneOf(['auto', 'off', 'on']),
+    }),
+  }),
   /**
    * The default value. Use when the component is not controlled.
    */

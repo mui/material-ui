@@ -13,7 +13,7 @@ import {
 
 export interface SlotTestingOptions {
   testWithComponent?: React.ComponentType;
-  testWithElement?: keyof JSX.IntrinsicElements;
+  testWithElement?: keyof JSX.IntrinsicElements | null;
   expectedClassName: string;
   isOptional?: boolean;
 }
@@ -26,6 +26,7 @@ export interface UnstyledConformanceOptions
   ) => MuiRenderResult;
   skip?: (keyof typeof fullSuite)[];
   slots: Record<string, SlotTestingOptions>;
+  testComponentPropWith?: string;
 }
 
 function throwMissingPropError(field: string): never {
@@ -41,7 +42,7 @@ interface WithClassName {
 
 interface WithCustomProp {
   fooBar: string;
-  tabIndex: number;
+  lang: string;
 }
 
 interface WithOwnerState {
@@ -66,7 +67,7 @@ function testPropForwarding(
   element: React.ReactElement,
   getOptions: () => UnstyledConformanceOptions,
 ) {
-  const { render } = getOptions();
+  const { render, testComponentPropWith: Element = 'div' } = getOptions();
 
   if (!render) {
     throwMissingPropError('render');
@@ -74,13 +75,14 @@ function testPropForwarding(
 
   it('forwards custom props to the root element if a component is provided', () => {
     const CustomRoot = React.forwardRef(
-      ({ fooBar, tabIndex }: WithCustomProp, ref: React.ForwardedRef<any>) => {
-        return <div ref={ref} data-foobar={fooBar} tabIndex={tabIndex} />;
+      ({ fooBar, lang }: WithCustomProp, ref: React.ForwardedRef<any>) => {
+        // @ts-ignore
+        return <Element ref={ref} data-foobar={fooBar} lang={lang} />;
       },
     );
 
     const otherProps = {
-      tabIndex: '0',
+      lang: 'fr',
       fooBar: randomStringValue(),
     };
 
@@ -88,21 +90,21 @@ function testPropForwarding(
       React.cloneElement(element, { components: { Root: CustomRoot }, ...otherProps }),
     );
 
-    expect(container.firstChild).to.have.attribute('tabindex', otherProps.tabIndex.toString());
+    expect(container.firstChild).to.have.attribute('lang', otherProps.lang);
     expect(container.firstChild).to.have.attribute('data-foobar', otherProps.fooBar);
   });
 
   it('does forward standard props to the root element if an intrinsic element is provided', () => {
     const otherProps = {
-      tabIndex: '0',
+      lang: 'fr',
       'data-foobar': randomStringValue(),
     };
 
     const { container } = render(
-      React.cloneElement(element, { components: { Root: 'div' }, ...otherProps }),
+      React.cloneElement(element, { components: { Root: Element }, ...otherProps }),
     );
 
-    expect(container.firstChild).to.have.attribute('tabindex', otherProps.tabIndex);
+    expect(container.firstChild).to.have.attribute('lang', otherProps.lang);
     expect(container.firstChild).to.have.attribute('data-foobar', otherProps['data-foobar']);
   });
 }
@@ -111,7 +113,7 @@ function testComponentsProp(
   element: React.ReactElement,
   getOptions: () => UnstyledConformanceOptions,
 ) {
-  const { render, slots } = getOptions();
+  const { render, slots, testComponentPropWith: Element = 'div' } = getOptions();
 
   if (!render) {
     throwMissingPropError('render');
@@ -138,17 +140,28 @@ function testComponentsProp(
       expect(renderedElement).to.have.class(slotOptions.expectedClassName);
     });
 
-    it(`allows overriding the ${capitalize(slotName)} slot with an element`, () => {
-      const slotElement = slotOptions.testWithElement ?? 'i';
+    if (slotOptions.testWithElement !== null) {
+      it(`allows overriding the ${capitalize(slotName)} slot with an element`, () => {
+        const slotElement = slotOptions.testWithElement ?? 'i';
 
-      const components = {
-        [capitalize(slotName)]: slotElement,
-      };
+        const components = {
+          [capitalize(slotName)]: slotElement,
+        };
 
-      const { container } = render(React.cloneElement(element, { components }));
-      const renderedElement = container.querySelector(slotElement);
-      expect(renderedElement).to.have.class(slotOptions.expectedClassName);
-    });
+        const componentsProps = {
+          [slotName]: {
+            'data-testid': 'customized',
+          },
+        };
+
+        const { getByTestId } = render(
+          React.cloneElement(element, { components, componentsProps }),
+        );
+        const renderedElement = getByTestId('customized');
+        expect(renderedElement.nodeName.toLowerCase()).to.equal(slotElement);
+        expect(renderedElement).to.have.class(slotOptions.expectedClassName);
+      });
+    }
 
     if (slotOptions.isOptional) {
       it(`alows omitting the optional ${capitalize(slotName)} slot by providing null`, () => {
@@ -165,17 +178,19 @@ function testComponentsProp(
   it('uses the component provided in component prop when both component and components.Root are provided', () => {
     const RootComponentA = React.forwardRef(
       ({ children }: React.PropsWithChildren<{}>, ref: React.Ref<any>) => (
-        <div data-testid="a" ref={ref}>
+        // @ts-ignore
+        <Element data-testid="a" ref={ref}>
           {children}
-        </div>
+        </Element>
       ),
     );
 
     const RootComponentB = React.forwardRef(
       ({ children }: React.PropsWithChildren<{}>, ref: React.Ref<any>) => (
-        <div data-testid="b" ref={ref}>
+        // @ts-ignore
+        <Element data-testid="b" ref={ref}>
           {children}
-        </div>
+        </Element>
       ),
     );
 
@@ -234,11 +249,53 @@ function testComponentsPropsProp(
   });
 }
 
-function testOwnerStatePropagation(
+interface TestOwnerState {
+  'data-testid'?: string;
+}
+
+function testComponentsPropsCallbacks(
   element: React.ReactElement,
   getOptions: () => UnstyledConformanceOptions,
 ) {
   const { render, slots } = getOptions();
+
+  if (!render) {
+    throwMissingPropError('render');
+  }
+
+  if (!slots) {
+    throwMissingPropError('slots');
+  }
+
+  forEachSlot(slots, (slotName, slotOptions) => {
+    it(`sets custom properties on ${capitalize(
+      slotName,
+    )} slot's element with a callback function`, () => {
+      const testId = randomStringValue();
+      const className = randomStringValue();
+
+      const componentsProps = {
+        [slotName]: (ownerState: TestOwnerState) => ({
+          'data-testid': `${ownerState['data-testid']}-${slotName}`,
+          className,
+        }),
+      };
+
+      const { getByTestId } = render(
+        React.cloneElement(element, { componentsProps, 'data-testid': testId }),
+      );
+
+      expect(getByTestId(`${testId}-${slotName}`)).to.have.class(slotOptions.expectedClassName);
+      expect(getByTestId(`${testId}-${slotName}`)).to.have.class(className);
+    });
+  });
+}
+
+function testOwnerStatePropagation(
+  element: React.ReactElement,
+  getOptions: () => UnstyledConformanceOptions,
+) {
+  const { render, slots, testComponentPropWith: Element = 'div' } = getOptions();
 
   if (!render) {
     throwMissingPropError('render');
@@ -254,7 +311,8 @@ function testOwnerStatePropagation(
         ({ ownerState, expectedOwnerState }: WithOwnerState, ref: React.Ref<any>) => {
           expect(ownerState).not.to.equal(undefined);
           expect(ownerState).to.deep.include(expectedOwnerState);
-          return <div ref={ref} />;
+          // @ts-ignore
+          return <Element ref={ref} />;
         },
       );
 
@@ -279,6 +337,7 @@ const fullSuite = {
   componentProp: testComponentProp,
   componentsProp: testComponentsProp,
   componentsPropsProp: testComponentsPropsProp,
+  componentsPropsCallbacks: testComponentsPropsCallbacks,
   mergeClassName: testClassName,
   propsSpread: testPropForwarding,
   reactTestRenderer: testReactTestRenderer,

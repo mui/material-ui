@@ -7,8 +7,8 @@
   },
   "dependencies": {
     "@emotion/core": "11.0.0",
-    "@emotion/react": "11.4.0",
-    "@emotion/styled": "11.3.0",
+    "@emotion/react": "11.7.1",
+    "@emotion/styled": "11.6.0",
     "@mui/material": "5.0.0-alpha.34",
     "@mui/icons-material": "5.0.0-alpha.34",
     "@mui/lab": "5.0.0-alpha.34",
@@ -16,13 +16,13 @@
     "@mui/styles": "5.0.0-alpha.33",
     "@mui/system": "5.0.0-alpha.34",
     "@mui/utils": "5.0.0-alpha.33",
-    "next": "10.2.0",
+    "next": "12.1.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-is": "17.0.2"
   },
   "devDependencies": {
-    "concurrently": "6.1.0",
-    "playwright": "1.11.0"
+    "concurrently": "6.5.1",
+    "playwright": "1.17.1"
   }
 }

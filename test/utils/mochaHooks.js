@@ -109,6 +109,16 @@ function createUnexpectedConsoleMessagesHooks(Mocha, methodName, expectedMatcher
       return;
     }
 
+    // Unclear why this is an issue for the current occurences of this warning.
+    // TODO: Revisit once https://github.com/facebook/react/issues/22796 is resolved
+    if (
+      message.indexOf(
+        'Detected multiple renderers concurrently rendering the same context provider.',
+      ) !== -1
+    ) {
+      return;
+    }
+
     unexpectedCalls.push([
       // first line includes the (empty) error message
       // i.e. Remove the `Error:` line

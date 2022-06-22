@@ -28,6 +28,7 @@ import ForumRoundedIcon from '@mui/icons-material/ForumRounded';
 import PeopleRoundedIcon from '@mui/icons-material/PeopleRounded';
 import LocalAtmRoundedIcon from '@mui/icons-material/LocalAtmRounded';
 import BrandingProvider from 'docs/src/BrandingProvider';
+import AppHeaderBanner from 'docs/src/components/banner/AppHeaderBanner';
 
 interface Profile {
   /**
@@ -40,9 +41,9 @@ interface Profile {
    */
   title: string;
   /**
-   * Where are you from?
+   * Country wher you live in, ISO 3166-1.
    */
-  country: string; // https://flagpedia.net/download/api
+  locationCountry: string; // https://flagpedia.net/download/api
   /**
    * Lives in
    */
@@ -69,8 +70,18 @@ const Person = (props: Profile & { sx?: PaperProps['sx'] }) => {
         <Tooltip
           title={props.location || false}
           placement="right-end"
-          // @ts-expect-error
-          PopperProps={{ sx: { '& .MuiTooltip-tooltip': { p: 0.5 } } }}
+          PopperProps={{
+            popperOptions: {
+              modifiers: [
+                {
+                  name: 'offset',
+                  options: {
+                    offset: [3, 2],
+                  },
+                },
+              ],
+            },
+          }}
         >
           <Box sx={{ position: 'relative', display: 'inline-block' }}>
             <Avatar
@@ -86,7 +97,13 @@ const Person = (props: Profile & { sx?: PaperProps['sx'] }) => {
                 src: `${props.src}?s=70`,
                 srcSet: `${props.src}?s=140 2x`,
               })}
-              sx={{ width: 70, height: 70, bgcolor: 'primaryDark.800', borderRadius: 1 }}
+              sx={{
+                width: 70,
+                height: 70,
+                backgroundColor: (theme) =>
+                  theme.palette.mode === 'dark' ? 'primary.700' : 'primary.100',
+                borderRadius: 1,
+              }}
             />
             <Box
               sx={{
@@ -98,6 +115,7 @@ const Person = (props: Profile & { sx?: PaperProps['sx'] }) => {
                 width: 24,
                 height: 24,
                 border: '2px solid #fff',
+                backgroundColor: '#fff',
                 borderRadius: 40,
                 overflow: 'hidden',
                 display: 'flex',
@@ -107,7 +125,7 @@ const Person = (props: Profile & { sx?: PaperProps['sx'] }) => {
               <img
                 loading="lazy"
                 height="20"
-                src={`https://flagcdn.com/${props.country}.svg`}
+                src={`https://flagcdn.com/${props.locationCountry}.svg`}
                 alt=""
               />
             </Box>
@@ -173,7 +191,7 @@ const Widget = ({
   icon: React.ReactElement;
 }) => {
   return (
-    <Paper variant="outlined" sx={{ height: '100%', p: 2 }}>
+    <Paper variant="outlined" sx={{ height: '100%', px: 2, pt: 2, pb: 1.5 }}>
       <Typography component="div" variant="body2" fontWeight="bold" sx={{ mb: 1 }}>
         <Box sx={{ display: 'inline-block', lineHeight: 0, verticalAlign: 'bottom', mr: 1 }}>
           {icon}
@@ -187,167 +205,215 @@ const Widget = ({
 
 const teamMembers: Array<Profile> = [
   {
-    src: '/static/branding/about/olivier.jpg',
+    src: '/static/branding/about/olivier.png',
     name: 'Olivier Tassinari',
     title: 'Co-founder',
     location: 'Paris, France',
-    country: 'fr',
+    locationCountry: 'fr',
     about: 'Exercise addict and lifelong learner',
     twitter: 'olivtassinari',
     github: 'oliviertassinari',
   },
   {
     name: 'Matt Brookes',
-    src: '/static/branding/about/matt.jpg',
+    src: '/static/branding/about/matt.png',
     title: 'Co-founder',
     location: 'London, UK',
-    country: 'gb',
+    locationCountry: 'gb',
     about: "When I'm not 👨🏻‍💻, I'm 🧗🏼‍♂️",
     twitter: 'randomtechdude',
     github: 'mbrookes',
   },
   {
-    name: 'Sebastian Silbermann',
-    src: '/static/branding/about/sebastian.jpg',
-    title: 'Core components team',
-    location: 'Dresden, Germany',
-    country: 'de',
-    about: 'Everything Open Source',
-    twitter: 'sebsilbermann',
-    github: 'eps1lon',
-  },
-  {
     name: 'Marija Najdova',
-    src: '/static/branding/about/marija.jpg',
-    title: 'Core components team',
+    src: '/static/branding/about/marija.png',
+    title: 'MUI Core engineer',
     location: 'Skopje, North Macedonia',
-    country: 'mk',
+    locationCountry: 'mk',
     about: 'I do karate 🥋 and read 📚. A lot!',
     twitter: 'marijanajdova',
     github: 'mnajdova',
   },
   {
     name: 'Danail Hadjiatanasov',
-    src: '/static/branding/about/danail.jpg',
-    title: 'Advanced components team',
+    src: '/static/branding/about/danail.png',
+    title: 'MUI X engineer',
     location: 'Amsterdam, Netherlands',
-    country: 'nl',
+    locationCountry: 'nl',
     about: 'Boringly normal, geek deep down. I like 🚗  and 🏂',
     twitter: 'danail_h',
     github: 'DanailH',
   },
   {
     name: 'Matheus Wichman',
-    src: '/static/branding/about/matheus.jpg',
-    title: 'Advanced components team',
+    src: '/static/branding/about/matheus.png',
+    title: 'MUI X engineer',
     location: 'Esteio, Brazil',
-    country: 'br',
+    locationCountry: 'br',
     about: 'I like road cycling 🚲, DIY 🛠 and aviation ✈!',
     github: 'm4theushw',
   },
   {
     name: 'Michał Dudak',
-    src: '/static/branding/about/michal.jpg',
-    title: 'Core components team',
+    src: '/static/branding/about/michal.png',
+    title: 'MUI Core engineer',
     location: 'Silesia, Poland',
-    country: 'pl',
+    locationCountry: 'pl',
     about: 'Motorcyclist, gamer, and coder (UI and more!)',
     twitter: 'michaldudak',
     github: 'michaldudak',
   },
   {
     name: 'Siriwat Kunaporn',
-    src: '/static/branding/about/siriwat.jpg',
-    title: 'Core components team',
+    src: '/static/branding/about/siriwat.png',
+    title: 'MUI Core engineer',
     location: 'Bangkok, Thailand',
-    country: 'th',
+    locationCountry: 'th',
     about: 'UI Lover and ⛷ skiing newbie.',
     twitter: 'siriwatknp',
     github: 'siriwatknp',
   },
   {
     name: 'Danilo Leal',
-    src: '/static/branding/about/danilo.jpg',
-    title: 'Design Lead',
+    src: '/static/branding/about/danilo.png',
+    title: 'Lead designer',
     location: 'São Paulo, Brazil',
-    country: 'br',
-    about: 'Music production and hiking!',
+    locationCountry: 'br',
+    about: 'Music production, hiking, and traveling!',
     github: 'danilo-leal',
     twitter: 'danilobleal',
   },
   {
     name: 'Flavien Delangle',
-    src: '/static/branding/about/flavien.jpg',
-    title: 'Advanced components team',
+    src: '/static/branding/about/flavien.png',
+    title: 'MUI X engineer',
     location: 'Lille, France',
     about: 'Love cycling 🚴‍♂️ and reading 📚',
-    country: 'fr',
+    locationCountry: 'fr',
     github: 'flaviendelangle',
   },
   {
     name: 'Benny Joo',
-    src: '/static/branding/about/benny.jpg',
-    title: 'Core components team',
+    src: '/static/branding/about/benny.png',
+    title: 'MUI Core engineer',
     location: 'London, UK',
-    country: 'kr',
+    locationCountry: 'gb',
     about: 'Love reading 📚 and working out 🏋️‍♂️',
     github: 'hbjORbj',
   },
   {
-    src: '/static/branding/about/alexandre.jpg',
+    src: '/static/branding/about/alexandre.png',
     name: 'Alexandre Fauquette',
-    title: 'Advanced components team',
+    title: 'MUI X engineer',
     location: 'Nancy, France',
-    country: 'fr',
+    locationCountry: 'fr',
     about: 'Love hacking and cycling 🚴‍♂️',
     twitter: 'AleFauquette',
     github: 'alexfauquette',
   },
   {
-    src: '/static/branding/about/bharat.jpg',
+    src: '/static/branding/about/bharat.png',
     name: 'Bharat Kashyap',
-    title: 'Studio team',
+    title: 'MUI Toolpad engineer',
     location: 'New Delhi, India',
-    country: 'in',
+    locationCountry: 'in',
     about: 'Trains 🚅 , architecture 🏛️ , and psychology 🧠 ',
     twitter: 'bharattttttt',
     github: 'bharatkashyap',
   },
   {
-    src: '/static/branding/about/jan.jpg',
+    src: '/static/branding/about/jan.png',
     name: 'Jan Potoms',
-    title: 'Studio team',
+    title: 'MUI Toolpad engineer',
     location: 'Brussels, Belgium',
-    country: 'be',
-    about: 'Always curious, I enjoy cinema, and hiking',
+    locationCountry: 'be',
+    about: 'Always curious, I enjoy cinema and hiking',
     github: 'janpot',
   },
   {
-    src: '/static/branding/about/prakhar.jpg',
+    src: '/static/branding/about/prakhar.png',
     name: 'Prakhar Gupta',
-    title: 'Studio team',
+    title: 'MUI Toolpad PM',
     location: 'New Delhi, India',
-    country: 'in',
+    locationCountry: 'in',
     about: 'Into sports and hiking!',
     twitter: 'gprakhar123',
+    github: 'prakhargupta1',
+  },
+  {
+    src: '/static/branding/about/jose.png',
+    name: 'José Freitas',
+    title: 'MUI X PM',
+    location: 'Augsburg, Germany',
+    locationCountry: 'de',
+    about: 'Art, fiction, and bar philosophy',
+    twitter: 'zehdefreitas',
+    github: 'joserodolfofreitas',
+  },
+  {
+    src: '/static/branding/about/andrii.png',
+    name: 'Andrii Cherniavskyi',
+    title: 'MUI X engineer',
+    location: 'Wrocław, Poland',
+    locationCountry: 'pl',
+    about: 'Love playing music - electric and bass guitar 🎸',
+    twitter: 'iamcherniavskii',
+    github: 'cherniavskii',
+  },
+  {
+    src: '/static/branding/about/sycamore.png',
+    name: 'Sam Sycamore',
+    title: 'Developer Advocate',
+    location: 'Saint Paul, Minnesota, USA',
+    locationCountry: 'us',
+    about: 'Musician and edible wild plant enthusiast 🌱',
+    twitter: 'tanoaksam',
+    github: 'samuelsycamore',
+  },
+  {
+    src: '/static/branding/about/pedro.png',
+    name: 'Pedro Ferreira',
+    title: 'MUI Toolpad engineer',
+    location: 'Porto, Portugal',
+    locationCountry: 'pt',
+    about: 'Passionate about videogames and football',
+    github: 'apedroferreira',
+  },
+  {
+    src: '/static/branding/about/gerda.png',
+    name: 'Gerda Mostonaite',
+    title: 'Senior Designer',
+    location: 'New York, USA',
+    locationCountry: 'us',
+    about: '🎨 Art & design, traveling, and asking questions',
+    github: 'gerdadesign',
   },
 ];
 
 const contributors = [
   {
-    name: 'Danica Shen',
-    github: 'DDDDDanica',
-    title: 'Chinese docs',
-    location: 'Ireland',
-    country: 'ie',
-    src: 'https://avatars.githubusercontent.com/u/12678455',
+    name: 'Sebastian Silbermann',
+    github: 'eps1lon',
+    title: 'MUI Core, everything Open Source',
+    location: 'Berlin, Germany',
+    locationCountry: 'de',
+    src: 'https://avatars.githubusercontent.com/u/12292047',
+    twitter: 'sebsilbermann',
+  },
+  {
+    name: 'Ryan Cogswell',
+    github: 'ryancogswell',
+    title: 'Stack Overflow top contributor',
+    location: 'Minnesota, United States',
+    locationCountry: 'us',
+    src: 'https://avatars.githubusercontent.com/u/287804',
   },
   {
     name: 'Yan Lee',
     github: 'AGDholo',
     title: 'Chinese docs',
     location: 'China',
-    country: 'cn',
+    locationCountry: 'cn',
     src: 'https://avatars.githubusercontent.com/u/13300332',
   },
   {
@@ -355,16 +421,16 @@ const contributors = [
     github: 'jaironalves',
     title: 'Brazilian Portuguese docs',
     location: 'São Paulo, Brazil',
-    country: 'br',
+    locationCountry: 'br',
     src: 'https://avatars.githubusercontent.com/u/29267813',
   },
   {
-    name: 'Ryan Cogswell',
-    github: 'ryancogswell',
-    title: 'Stack Overflow top contributor',
-    location: 'Minnesota, United States',
-    country: 'us',
-    src: 'https://avatars.githubusercontent.com/u/287804',
+    name: 'Danica Shen',
+    github: 'DDDDDanica',
+    title: 'Chinese docs',
+    location: 'Ireland',
+    locationCountry: 'ie',
+    src: 'https://avatars.githubusercontent.com/u/12678455',
   },
 ];
 
@@ -373,88 +439,88 @@ const emeriti = [
     name: 'Hai Nguyen',
     github: 'hai-cea',
     twitter: 'haicea',
-    title: 'v0.x creator',
-    location: 'Dallas, Texas, US',
-    country: 'us',
+    title: 'MUI Core, v0.x creator',
+    location: 'Dallas, US',
+    locationCountry: 'us',
     src: 'https://avatars.githubusercontent.com/u/2007468',
   },
   {
     name: 'Nathan Marks',
     github: 'nathanmarks',
-    title: 'v1.x co-creator',
-    location: 'Toronto, ON',
-    country: 'us',
+    title: 'MUI Core, v1.x co-creator',
+    location: 'Toronto, CA',
+    locationCountry: 'ca',
     src: 'https://avatars.githubusercontent.com/u/4420103',
   },
   {
     name: 'Kevin Ross',
     github: 'rosskevin',
     twitter: 'rosskevin',
-    title: 'Core focus, flow',
-    location: 'Franklin, Tennessee, US',
-    country: 'us',
+    title: 'MUI Core, flow',
+    location: 'Franklin, US',
+    locationCountry: 'us',
     src: 'https://avatars.githubusercontent.com/u/136564',
   },
   {
     name: 'Sebastian Sebald',
     github: 'sebald',
     twitter: 'sebastiansebald',
-    title: 'Core focus',
+    title: 'MUI Core',
     location: 'Freiburg, Germany',
-    country: 'de',
+    locationCountry: 'de',
     src: 'https://avatars.githubusercontent.com/u/985701',
   },
   {
     name: 'Ken Gregory',
     github: 'kgregory',
-    title: 'Core focus',
+    title: 'MUI Core',
     location: 'New Jersey, US',
-    country: 'us',
+    locationCountry: 'us',
     src: 'https://avatars.githubusercontent.com/u/3155127',
   },
   {
     name: 'Tom Crockett',
     github: 'pelotom',
     twitter: 'pelotom',
-    title: 'Core focus',
-    location: 'Los Angeles, California, US',
-    country: 'us',
+    title: 'MUI Core',
+    location: 'Los Angeles, US',
+    locationCountry: 'us',
     src: 'https://avatars.githubusercontent.com/u/128019',
   },
   {
     name: 'Maik Marschner',
     github: 'leMaik',
     twitter: 'leMaikOfficial',
-    title: 'Core focus',
+    title: 'MUI Core',
     location: 'Hannover, Germany',
-    country: 'de',
+    locationCountry: 'de',
     src: 'https://avatars.githubusercontent.com/u/5544859',
   },
   {
     name: 'Oleg Slobodskoi',
     github: 'kof',
     twitter: 'oleg008',
-    title: 'JSS',
+    title: 'MUI Core, JSS',
     location: 'Berlin, Germany',
-    country: 'de',
+    locationCountry: 'de',
     src: 'https://avatars.githubusercontent.com/u/52824',
   },
   {
     name: 'Dmitriy Kovalenko',
     github: 'dmtrKovalenko',
-    twitter: 'dmtrKovalenko',
-    title: 'Date pickers',
+    twitter: 'goose_plus_plus',
+    title: 'MUI X, date pickers',
     location: 'Kharkiv, Ukraine',
-    country: 'ua',
+    locationCountry: 'ua',
     src: 'https://avatars.githubusercontent.com/u/16926049',
   },
   {
     name: 'Josh Wooding',
     github: 'joshwooding',
     twitter: 'JoshWooding_',
-    title: 'Core focus, J.P. Morgan',
+    title: 'MUI Core, J.P. Morgan',
     location: 'London, UK',
-    country: 'gb',
+    locationCountry: 'gb',
     src: 'https://avatars.githubusercontent.com/u/12938082',
   },
 ];
@@ -551,6 +617,7 @@ function AboutContent() {
               endIcon={<KeyboardArrowRightRounded fontSize="small" />}
               variant="contained"
               size="large"
+              sx={{ width: { xs: '100%', sm: 'auto' } }}
             >
               See open roles
             </Button>
@@ -645,13 +712,16 @@ function AboutContent() {
                 structured feedback, you&apos;re always invited to participate to share your
                 thoughts.
               </Typography>
-              <Link
-                href="https://github.com/mui-org/material-ui/issues?q=is%3Aissue+is%3Aopen+sort%3Areactions-%2B1-desc"
-                variant="body2"
+              <Button
+                component="a"
+                // @ts-expect-error
+                variant="link"
+                size="small"
+                href="https://github.com/mui/material-ui/issues?q=is%3Aissue+is%3Aopen+sort%3Areactions-%2B1-desc"
+                endIcon={<KeyboardArrowRightRounded />}
               >
                 Leave your feedback{' '}
-                <KeyboardArrowRightRounded fontSize="small" sx={{ mt: '1px' }} />
-              </Link>
+              </Button>
             </Widget>
           </Grid>
           <Grid item xs={12} sm={6} md={4}>
@@ -672,37 +742,41 @@ function AboutContent() {
               >
                 <li>
                   Add new features by{' '}
-                  <Link href="https://github.com/mui-org/material-ui/blob/HEAD/CONTRIBUTING.md#your-first-pull-request">
+                  <Link href="https://github.com/mui/material-ui/blob/HEAD/CONTRIBUTING.md#your-first-pull-request">
                     submitting a pull request
                   </Link>
                   .
                 </li>
                 <li>
                   Fix bugs or{' '}
-                  <Link href="https://github.com/mui-org/material-ui/tree/HEAD/docs">
+                  <Link href="https://github.com/mui/material-ui/tree/HEAD/docs">
                     improve our documentation
                   </Link>
                   .
                 </li>
                 <li>
                   Help others by reviewing and commenting on existing{' '}
-                  <Link href="https://github.com/mui-org/material-ui/pulls">PRs</Link> and{' '}
-                  <Link href="https://github.com/mui-org/material-ui/issues">issues</Link>.
+                  <Link href="https://github.com/mui/material-ui/pulls">PRs</Link> and{' '}
+                  <Link href="https://github.com/mui/material-ui/issues">issues</Link>.
                 </li>
                 <li>
                   Help <Link href="https://translate.mui.com/">translate</Link> the documentation.
                 </li>
                 <li>
                   Answer questions on{' '}
-                  <Link href="https://stackoverflow.com/questions/tagged/material-ui">
-                    StackOverflow
-                  </Link>
-                  .
+                  <Link href="https://stackoverflow.com/questions/tagged/mui">StackOverflow</Link>.
                 </li>
               </Box>
-              <Link href="https://github.com/mui-org/material-ui" variant="body2">
-                See the repository <KeyboardArrowRightRounded fontSize="small" sx={{ mt: '1px' }} />
-              </Link>
+              <Button
+                component="a"
+                // @ts-expect-error
+                variant="link"
+                size="small"
+                href="https://github.com/mui/material-ui"
+                endIcon={<KeyboardArrowRightRounded />}
+              >
+                See the repository
+              </Button>
             </Widget>
           </Grid>
           <Grid item xs={12} sm={6} md={4}>
@@ -719,10 +793,16 @@ function AboutContent() {
                 All funds donated are managed transparently, and Sponsors receive recognition in the
                 README and on the MUI home page.
               </Typography>
-              <Link href="https://opencollective.com/material-ui" variant="body2">
+              <Button
+                component="a"
+                // @ts-expect-error
+                variant="link"
+                size="small"
+                href="https://opencollective.com/mui"
+                endIcon={<KeyboardArrowRightRounded />}
+              >
                 See Open Collective{' '}
-                <KeyboardArrowRightRounded fontSize="small" sx={{ mt: '1px' }} />
-              </Link>
+              </Button>
             </Widget>
           </Grid>
         </Grid>
@@ -738,8 +818,9 @@ export default function About() {
     <BrandingProvider>
       <Head
         title="About us - MUI"
-        description="MUI (formerly Material-UI) started back in 2014 to unify React and Material Design. Today, MUI has grown to become one of the world's most popular React libraries – used by a vibrant community of more than 2M developers in over 180 countries."
+        description="MUI (formerly Material UI) started back in 2014 to unify React and Material Design. Today, MUI has grown to become one of the world's most popular React libraries – used by a vibrant community of more than 2M developers in over 180 countries."
       />
+      <AppHeaderBanner />
       <AppHeader />
       <main>
         <AboutContent />

@@ -1,6 +1,0 @@
-<StyledBadge badgeContent={5} overlap="circular">
-  <BadgeContent />
-</StyledBadge>
-<StyledBadge badgeContent={5} variant="dot" overlap="circular">
-  <BadgeContent />
-</StyledBadge>

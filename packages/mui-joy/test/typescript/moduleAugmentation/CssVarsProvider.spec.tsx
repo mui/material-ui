@@ -1,15 +1,15 @@
 import * as React from 'react';
-import { CssVarsProvider } from '@mui/joy/styles';
+import { CssVarsProvider, extendTheme } from '@mui/joy/styles';
 
 // override theme
 <CssVarsProvider
-  theme={{
+  theme={extendTheme({
     fontFamily: {
-      sans: '"Rubik", sans-serif',
+      default: '"Rubik", sans-serif',
     },
     // @ts-expect-error 'color' does not exist in JoyTheme
     color: {},
-  }}
+  })}
 />;
 
 // extends PaletteRange
@@ -28,7 +28,7 @@ declare module '@mui/joy/styles' {
 
 // extends ColorSystems
 declare module '@mui/joy/styles' {
-  interface ColorSystems {
+  interface ColorSystem {
     bgcolor: string;
   }
 }
@@ -70,17 +70,17 @@ declare module '@mui/joy/styles' {
 
 // extends TypographySystems
 declare module '@mui/joy/styles' {
-  interface TypographySystems {
+  interface TypographySystem {
     ads: React.CSSProperties;
   }
 }
 
 <CssVarsProvider
-  theme={{
+  theme={extendTheme({
     colorSchemes: {
       light: {
         palette: {
-          brand: {
+          primary: {
             1000: '',
           },
           neutral: {
@@ -112,5 +112,36 @@ declare module '@mui/joy/styles' {
         lineHeight: 1,
       },
     },
-  }}
+    components: {
+      JoyButton: {
+        styleOverrides: {
+          root: ({ ownerState, theme }) => {
+            const { color, variant } = ownerState;
+            const styles = [];
+            if (color === 'primary') {
+              styles.push({
+                width: 120,
+                height: 48,
+              });
+            }
+            if (variant === 'contained') {
+              styles.push(theme.typography.body1);
+            }
+            return styles;
+          },
+        },
+      },
+      JoySwitch: {
+        styleOverrides: {
+          thumb: ({ ownerState, theme }) => [
+            ownerState.color === 'primary' && {
+              '&:hover': {
+                backgroundColor: theme.vars.palette.primary.containedHoverBg,
+              },
+            },
+          ],
+        },
+      },
+    },
+  })}
 />;

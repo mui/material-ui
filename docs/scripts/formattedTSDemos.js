@@ -6,10 +6,10 @@
  */
 
 /**
- * List of demos to ignore when transpiling
+ * List of demos or folders to ignore when transpiling
  * Example: "app-bar/BottomAppBar.tsx"
  */
-const ignoreList = [];
+const ignoreList = ['/pages.ts', 'docs/data/joy/getting-started/templates'];
 
 const fse = require('fs-extra');
 const path = require('path');
@@ -34,25 +34,37 @@ const workspaceRoot = path.join(__dirname, '../../');
 async function getFiles(root) {
   const files = [];
 
-  await Promise.all(
-    (
-      await fse.readdir(root)
-    ).map(async (name) => {
-      const filePath = path.join(root, name);
-      const stat = await fse.stat(filePath);
+  try {
+    await Promise.all(
+      (
+        await fse.readdir(root)
+      ).map(async (name) => {
+        const filePath = path.join(root, name);
+        const stat = await fse.stat(filePath);
 
-      if (stat.isDirectory()) {
-        files.push(...(await getFiles(filePath)));
-      } else if (
-        stat.isFile() &&
-        /\.tsx?$/.test(filePath) &&
-        !filePath.endsWith('.d.ts') &&
-        !ignoreList.some((ignorePath) => filePath.endsWith(path.normalize(ignorePath)))
-      ) {
-        files.push(filePath);
-      }
-    }),
-  );
+        if (
+          stat.isDirectory() &&
+          !ignoreList.some((ignorePath) =>
+            filePath.startsWith(path.normalize(`${workspaceRoot}/${ignorePath}`)),
+          )
+        ) {
+          files.push(...(await getFiles(filePath)));
+        } else if (
+          stat.isFile() &&
+          /\.tsx?$/.test(filePath) &&
+          !filePath.endsWith('.d.ts') &&
+          !ignoreList.some((ignorePath) => filePath.endsWith(path.normalize(ignorePath)))
+        ) {
+          files.push(filePath);
+        }
+      }),
+    );
+  } catch (error) {
+    if (error.message?.includes('no such file or directory')) {
+      return [];
+    }
+    throw error;
+  }
 
   return files;
 }
@@ -130,11 +142,12 @@ async function main(argv) {
     console.log(`Only considering demos matching ${filePattern}`);
   }
 
-  const tsxFiles = (await getFiles(path.join(workspaceRoot, 'docs/src/pages'))).filter(
-    (fileName) => {
-      return filePattern.test(fileName);
-    },
-  );
+  const tsxFiles = [
+    ...(await getFiles(path.join(workspaceRoot, 'docs/src/pages'))), // old structure
+    ...(await getFiles(path.join(workspaceRoot, 'docs/data'))), // new structure
+  ].filter((fileName) => {
+    return filePattern.test(fileName);
+  });
 
   const program = typescriptToProptypes.createTSProgram(tsxFiles, tsConfig);
 

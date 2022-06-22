@@ -1,7 +1,9 @@
-import * as React from 'react';
+import Box from './Box';
+import styleFunctionSx from './styleFunctionSx';
 
 export default function createBox(options?: {
   defaultTheme: object;
   defaultClassName?: string;
-  generateClassName?: () => string;
-}): React.ElementType;
+  generateClassName?: (componentName: string) => string;
+  styleFunctionSx?: typeof styleFunctionSx;
+}): typeof Box;

@@ -1,5 +1,9 @@
 import { expect } from 'chai';
-import breakpoints, { computeBreakpointsBase, resolveBreakpointValues } from './breakpoints';
+import breakpoints, {
+  computeBreakpointsBase,
+  resolveBreakpointValues,
+  removeUnusedBreakpoints,
+} from './breakpoints';
 import style from './style';
 
 const textColor = style({
@@ -188,6 +192,32 @@ describe('breakpoints', () => {
         expect(values).to.equal(3);
       });
 
+      it('return prop as it is for prop of fixed string value', () => {
+        const directionValue = 'columns';
+        const values = resolveBreakpointValues({
+          values: directionValue,
+        });
+        expect(values).to.equal('columns');
+      });
+
+      it('given custom base, resolve breakpoint values for prop of string type', () => {
+        const directionValue = 'columns';
+        const values = resolveBreakpointValues({
+          values: directionValue,
+          base: { small: true },
+        });
+        expect(values).to.deep.equal({ small: directionValue });
+      });
+
+      it('given custom base, resolve breakpoint values for prop of number type', () => {
+        const spacingValue = 3;
+        const values = resolveBreakpointValues({
+          values: spacingValue,
+          base: { small: true },
+        });
+        expect(values).to.deep.equal({ small: spacingValue });
+      });
+
       it('given custom base, resolve breakpoint values for prop of array type', () => {
         const columns = [1, 2, 3];
         const customBase = { extraSmall: true, small: true, medium: true, large: true };
@@ -207,6 +237,34 @@ describe('breakpoints', () => {
         const customBase = { extraSmall: true, small: true, medium: true, large: true };
         const values = resolveBreakpointValues({ values: columns, base: customBase });
         expect(values).to.deep.equal({ extraSmall: 1, small: 2, medium: 3, large: 3 });
+      });
+    });
+  });
+
+  describe('function: removeUnusedBreakpoints', () => {
+    it('allow value to be null', () => {
+      const result = removeUnusedBreakpoints(
+        ['@media (min-width:0px)', '@media (min-width:600px)', '@media (min-width:960px)'],
+        {
+          '@media (min-width:0px)': {
+            fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+            fontSize: '0.875rem',
+            letterSpacing: '0.01071em',
+            fontWeight: 400,
+            lineHeight: 1.43,
+          },
+          '@media (min-width:600px)': null,
+          '@media (min-width:960px)': {},
+        },
+      );
+      expect(result).to.deep.equal({
+        '@media (min-width:0px)': {
+          fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+          fontSize: '0.875rem',
+          letterSpacing: '0.01071em',
+          fontWeight: 400,
+          lineHeight: 1.43,
+        },
       });
     });
   });

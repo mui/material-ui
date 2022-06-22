@@ -12,6 +12,9 @@ export {
   PaletteColorOptions,
   PaletteOptions,
   SimplePaletteColorOptions,
+  TypeText,
+  TypeAction,
+  TypeBackground,
 } from './createPalette';
 export { default as createStyles } from './createStyles';
 export {
@@ -29,6 +32,7 @@ export {
   duration,
   easing,
 } from './createTransitions';
+export { Mixins } from './createMixins';
 export {
   Direction,
   Breakpoint,
@@ -55,6 +59,9 @@ export {
   lighten,
   ColorFormat,
   ColorObject,
+  StyledEngineProvider,
+  SxProps,
+  experimental_sx,
 } from '@mui/system';
 export { default as useTheme } from './useTheme';
 export { default as useThemeProps } from './useThemeProps';
@@ -69,7 +76,7 @@ export { ComponentsProps, ComponentsPropsList } from './props';
 export { ComponentsVariants } from './variants';
 export { ComponentsOverrides, ComponentNameToClassKey } from './overrides';
 export { Components } from './components';
-export { StyledEngineProvider } from '@mui/system';
+export { getUnit as unstable_getUnit, toUnitless as unstable_toUnitless } from './cssUtils';
 
 export type ClassNameMap<ClassKey extends string = string> = Record<ClassKey, string>;
 
@@ -83,3 +90,8 @@ export interface StyledComponentProps<ClassKey extends string = string> {
 export { default as makeStyles } from './makeStyles';
 export { default as withStyles } from './withStyles';
 export { default as withTheme } from './withTheme';
+
+export * from './CssVarsProvider';
+
+export { default as experimental_extendTheme } from './experimental_extendTheme';
+export * from './experimental_extendTheme';

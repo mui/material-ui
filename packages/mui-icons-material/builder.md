@@ -15,7 +15,7 @@ yarn publish
 
 ## Generated folders
 
-The build script downloads Material Design SVG icons to the `material-design-icons` folder,
+The build script downloads Material Design SVG icons to the `material-icons` folder,
 generates the appropriate `.js` files in the `build` folder, and creates a `package.json`.
 
 ## Advanced usage and Custom builds
@@ -34,5 +34,5 @@ through command line options.
   The default and Material Design filters can be found in `filters/rename`.
 
 If you experience any issues building icons or would like a feature added,
-[file an issue](https://github.com/mui-org/material-ui/issues) and let us
+[file an issue](https://github.com/mui/material-ui/issues) and let us
 know.

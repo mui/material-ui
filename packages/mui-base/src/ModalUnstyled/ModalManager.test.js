@@ -299,8 +299,45 @@ describe('ModalManager', () => {
     });
 
     it('should add aria-hidden to container siblings', () => {
+      const secondSibling = document.createElement('input');
+      container2.appendChild(secondSibling);
       modalManager.add({}, container2);
       expect(container2.children[0]).toBeAriaHidden();
+      expect(container2.children[1]).toBeAriaHidden();
+    });
+
+    it('should not add aria-hidden to forbidden container siblings', () => {
+      [
+        'template',
+        'script',
+        'style',
+        'link',
+        'map',
+        'meta',
+        'noscript',
+        'picture',
+        'col',
+        'colgroup',
+        'param',
+        'slot',
+        'source',
+        'track',
+      ].forEach(function createBlacklistSiblings(name) {
+        const sibling = document.createElement(name);
+        container2.appendChild(sibling);
+      });
+      const inputHiddenSibling = document.createElement('input');
+      inputHiddenSibling.setAttribute('type', 'hidden');
+      container2.appendChild(inputHiddenSibling);
+
+      const numberOfChildren = 16;
+      expect(container2.children.length).equal(numberOfChildren);
+
+      modalManager.add({}, container2);
+      expect(container2.children[0]).toBeAriaHidden();
+      for (let i = 1; i < numberOfChildren; i += 1) {
+        expect(container2.children[i]).not.toBeAriaHidden();
+      }
     });
 
     it('should add aria-hidden to previous modals', () => {

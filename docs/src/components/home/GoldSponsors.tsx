@@ -23,7 +23,7 @@ const GOLDs = [
     src: 'https://avatars.githubusercontent.com/u/24789812?size=40',
     srcSet: 'https://avatars.githubusercontent.com/u/24789812?size=80 2x',
     name: 'Bit',
-    description: 'The fastest way to share code.',
+    description: 'A component-driven development platform.',
     href: 'https://bit.dev/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
   },
   {
@@ -34,32 +34,32 @@ const GOLDs = [
     href: 'https://www.text-em-all.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
   },
   {
-    src: 'https://avatars.githubusercontent.com/u/13365608?s=40',
-    srcSet: 'https://avatars.githubusercontent.com/u/13365608?s=80 2x',
-    name: 'Spice Factory',
-    description: 'Next gen digital product studio.',
-    href: 'https://spicefactory.co/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
+    src: 'https://images.opencollective.com/laststance/daffd6c/logo/40.png',
+    srcSet: 'https://images.opencollective.com/laststance/daffd6c/logo/80.png 2x',
+    name: 'Laststance',
+    description: 'An organization for OSS activity in Tokyo.',
+    href: 'https://www.laststance.io/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
   },
   {
-    src: '/static/sponsors/elevator-logo.png',
-    srcSet: '/static/sponsors/elevator-logo-2x.png 2x',
-    name: 'Elevator',
-    description: 'The dopest new hip hop, upcoming artists, music.',
-    href: 'https://www.elevatormag.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
+    src: 'https://images.opencollective.com/aussiecasinohex/923df37/logo/40.png',
+    srcSet: 'https://images.opencollective.com/aussiecasinohex/923df37/logo/80.png 2x',
+    name: 'CasinoHEX Australia',
+    description: 'A guide to online gambling in Australia.',
+    href: 'https://online-aussie-casino.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
   },
   {
-    src: 'https://images.opencollective.com/movavi-software/a1d0167/logo/40.png',
-    srcSet: 'https://images.opencollective.com/movavi-software/a1d0167/logo/80.png 2x',
-    name: 'Movavi',
-    description: 'Screen recorder for Mac.',
-    href: 'https://www.movavi.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
+    src: 'https://images.opencollective.com/sumatosoft_company/0b78570/avatar/40.png',
+    srcSet: 'https://images.opencollective.com/sumatosoft_company/0b78570/avatar/80.png 2x',
+    name: 'SunmatoSoft',
+    description: 'Custom software development company.',
+    href: 'https://sumatosoft.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
   },
   {
-    src: '/static/sponsors/hoodie-bees.png',
-    srcSet: '/static/sponsors/hoodie-bees-2x.png',
-    name: 'Hoodie Bees',
-    description: 'Horse community.',
-    href: 'https://www.hoodiebees.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
+    src: 'https://p18.zdusercontent.com/attachment/9422375/Rullx0rw9lUGKuyKOy4VQ9Zxq?size=40',
+    srcSet: 'https://p18.zdusercontent.com/attachment/9422375/Rullx0rw9lUGKuyKOy4VQ9Zxq?size=80 2x',
+    name: 'MegaFamous',
+    description: 'The best place to buy Instagram followers & likes.',
+    href: 'https://megafamous.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
   },
 ];
 
@@ -71,7 +71,7 @@ export default function GoldSponsors() {
   });
   return (
     <Box ref={ref}>
-      <Box sx={{ mb: 2 }}>
+      <Box sx={{ mb: 1 }}>
         <Typography
           component="h3"
           variant="h5"
@@ -80,13 +80,13 @@ export default function GoldSponsors() {
             color: (theme) =>
               theme.palette.mode === 'dark'
                 ? theme.palette.warning[500]
-                : theme.palette.warning[800],
+                : theme.palette.warning[700],
           }}
         >
           Gold
         </Typography>
       </Box>
-      <Grid container spacing={{ xs: 2, md: 4 }}>
+      <Grid container spacing={{ xs: 2, md: 3 }}>
         {GOLDs.map((item) => (
           <Grid item key={item.name} xs={12} sm={6} md={4} lg={3}>
             <SponsorCard inView={inView} item={item} />
@@ -106,7 +106,7 @@ export default function GoldSponsors() {
             }}
           >
             <IconButton
-              aria-label="Become MUI sponsor"
+              aria-label="Sponsor MUI"
               component="a"
               href={ROUTES.goldSponsor}
               target="_blank"
@@ -123,14 +123,13 @@ export default function GoldSponsors() {
             </IconButton>
             <div>
               <Typography variant="body2" color="text.primary" fontWeight="bold">
-                Become our sponsor!
+                Become a sponsor
               </Typography>
               <Typography variant="body2" color="text.secondary">
-                To join us,{' '}
+                Find out how{' '}
                 <Link href={ROUTES.goldSponsor} target="_blank" rel="noopener noreferrer">
-                  choose how
-                </Link>{' '}
-                you want to contribute.
+                  you can support MUI.
+                </Link>
               </Typography>
             </div>
           </Paper>

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { StyledComponentProps } from '@mui/material/styles';
+import { StyledComponentProps } from '../styles';
 
 export interface CssBaselineProps extends StyledComponentProps<never> {
   /**
@@ -7,7 +7,7 @@ export interface CssBaselineProps extends StyledComponentProps<never> {
    */
   children?: React.ReactNode;
   /**
-   * Enable `color-scheme` css property to use `theme.palette.mode`.
+   * Enable `color-scheme` CSS property to use `theme.palette.mode`.
    * For more details, check out https://developer.mozilla.org/en-US/docs/Web/CSS/color-scheme
    * For browser support, check out https://caniuse.com/?search=color-scheme
    * @default false
@@ -20,10 +20,10 @@ export interface CssBaselineProps extends StyledComponentProps<never> {
  *
  * Demos:
  *
- * - [Css Baseline](https://mui.com/components/css-baseline/)
+ * - [Css baseline](https://mui.com/material-ui/react-css-baseline/)
  *
  * API:
  *
- * - [CssBaseline API](https://mui.com/api/css-baseline/)
+ * - [CssBaseline API](https://mui.com/material-ui/api/css-baseline/)
  */
 export default function CssBaseline(props: CssBaselineProps): JSX.Element;

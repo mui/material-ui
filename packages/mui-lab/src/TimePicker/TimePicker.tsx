@@ -1,77 +1,41 @@
 import * as React from 'react';
-import { useThemeProps } from '@mui/material/styles';
-import useMediaQuery from '@mui/material/useMediaQuery';
 import PropTypes from 'prop-types';
-import DesktopTimePicker, { DesktopTimePickerProps } from '../DesktopTimePicker';
-import MobileTimePicker, { MobileTimePickerProps } from '../MobileTimePicker';
+import { TimePicker as XTimePicker, TimePickerProps } from '@mui/x-date-pickers/TimePicker';
 
-export interface TimePickerProps<TDate = unknown>
-  extends DesktopTimePickerProps<TDate>,
-    MobileTimePickerProps<TDate> {
-  /**
-   * CSS media query when `Mobile` mode will be changed to `Desktop`.
-   * @default '@media (pointer: fine)'
-   * @example '@media (min-width: 720px)' or theme.breakpoints.up("sm")
-   */
-  desktopModeMediaQuery?: string;
-}
+let warnedOnce = false;
+
+const warn = () => {
+  if (!warnedOnce) {
+    console.warn(
+      [
+        'MUI: The TimePicker component was moved from `@mui/lab` to `@mui/x-date-pickers`.',
+        'The component will no longer be exported from `@mui/lab` in the first release of July 2022.',
+        '',
+        "You should use `import { TimePicker } from '@mui/x-date-pickers'`",
+        "or `import { TimePicker } from '@mui/x-date-pickers/TimePicker'`",
+        '',
+        'More information about this migration on our blog: https://mui.com/blog/lab-date-pickers-to-mui-x/.',
+      ].join('\n'),
+    );
+
+    warnedOnce = true;
+  }
+};
 
 type TimePickerComponent = (<TDate>(
   props: TimePickerProps<TDate> & React.RefAttributes<HTMLDivElement>,
 ) => JSX.Element) & { propTypes?: any };
 
 /**
- *
- * Demos:
- *
- * - [Pickers](https://mui.com/components/pickers/)
- * - [Time Picker](https://mui.com/components/time-picker/)
- *
- * API:
- *
- * - [TimePicker API](https://mui.com/api/time-picker/)
+ * @ignore - do not document.
  */
-const TimePicker = React.forwardRef(function TimePicker<TDate>(
-  inProps: TimePickerProps<TDate>,
-  ref: React.Ref<HTMLDivElement>,
+const TimePicker = React.forwardRef(function DeprecatedTimePicker<TDate>(
+  props: TimePickerProps<TDate>,
+  ref: React.Ref<any>,
 ) {
-  const props = useThemeProps({ props: inProps, name: 'MuiTimePicker' });
-  const {
-    cancelText,
-    clearable,
-    clearText,
-    desktopModeMediaQuery = '@media (pointer: fine)',
-    DialogProps,
-    okText,
-    PopperProps,
-    showTodayButton,
-    todayText,
-    TransitionComponent,
-    ...other
-  } = props;
+  warn();
 
-  const isDesktop = useMediaQuery(desktopModeMediaQuery);
-
-  return isDesktop ? (
-    <DesktopTimePicker
-      ref={ref}
-      PopperProps={PopperProps}
-      TransitionComponent={TransitionComponent}
-      {...other}
-    />
-  ) : (
-    <MobileTimePicker
-      ref={ref}
-      cancelText={cancelText}
-      clearable={clearable}
-      clearText={clearText}
-      DialogProps={DialogProps}
-      okText={okText}
-      showTodayButton={showTodayButton}
-      todayText={todayText}
-      {...other}
-    />
-  );
+  return <XTimePicker ref={ref} {...props} />;
 }) as TimePickerComponent;
 
 TimePicker.propTypes /* remove-proptypes */ = {
@@ -119,7 +83,7 @@ TimePicker.propTypes /* remove-proptypes */ = {
   clearText: PropTypes.node,
   /**
    * The components used for each slot.
-   * Either a string to use a HTML element or a component.
+   * Either a string to use an HTML element or a component.
    */
   components: PropTypes.shape({
     OpenPickerIcon: PropTypes.elementType,
@@ -131,7 +95,7 @@ TimePicker.propTypes /* remove-proptypes */ = {
    */
   desktopModeMediaQuery: PropTypes.string,
   /**
-   * Props applied to the [`Dialog`](/api/dialog/) element.
+   * Props applied to the [`Dialog`](https://mui.com/material-ui/api/dialog/) element.
    */
   DialogProps: PropTypes.object,
   /**
@@ -160,6 +124,11 @@ TimePicker.propTypes /* remove-proptypes */ = {
   disableOpenPicker: PropTypes.bool,
   /**
    * Accessible text that helps user to understand which time and view is selected.
+   * @template TDate
+   * @param {ClockPickerView} view The current view rendered.
+   * @param {TDate | null} time The current time.
+   * @param {MuiPickersAdapter<TDate>} adapter The current date adapter.
+   * @returns {string} The clock label.
    * @default <TDate extends any>(
    *   view: ClockView,
    *   time: TDate | null,
@@ -172,6 +141,10 @@ TimePicker.propTypes /* remove-proptypes */ = {
   getClockLabelText: PropTypes.func,
   /**
    * Get aria-label text for control that opens picker dialog. Aria-label text must include selected date. @DateIOType
+   * @template TDateValue
+   * @param {ParseableDate<TDateValue>} value The date from which we want to add an aria-text.
+   * @param {MuiPickersAdapter<TDateValue>} utils The utils to manipulate the date.
+   * @returns {string} The aria-text to render inside the dialog.
    * @default (value, utils) => `Choose date, selected date is ${utils.format(utils.date(value), 'fullDate')}`
    */
   getOpenDialogAriaText: PropTypes.func,
@@ -203,10 +176,6 @@ TimePicker.propTypes /* remove-proptypes */ = {
   /**
    * @ignore
    */
-  key: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  /**
-   * @ignore
-   */
   label: PropTypes.node,
   /**
    * Custom mask. Can be used to override generate from format. (e.g. `__/__/____ __:__` or `__/__/____ __:__ _M`).
@@ -234,10 +203,15 @@ TimePicker.propTypes /* remove-proptypes */ = {
   okText: PropTypes.node,
   /**
    * Callback fired when date is accepted @DateIOType.
+   * @template TDateValue
+   * @param {TDateValue} date The date that was just accepted.
    */
   onAccept: PropTypes.func,
   /**
    * Callback fired when the value (the selected date) changes @DateIOType.
+   * @template TDate
+   * @param {DateRange<TDate>} date The new parsed date.
+   * @param {string} keyboardInputValue The current value of the keyboard input.
    */
   onChange: PropTypes.func.isRequired,
   /**
@@ -252,6 +226,10 @@ TimePicker.propTypes /* remove-proptypes */ = {
    *
    * [Read the guide](https://next.material-ui-pickers.dev/guides/forms) about form integration and error displaying.
    * @DateIOType
+   *
+   * @template TError, TDateValue
+   * @param {TError} reason The reason why the current value is not valid.
+   * @param {TDateValue} value The invalid value.
    */
   onError: PropTypes.func,
   /**
@@ -261,6 +239,7 @@ TimePicker.propTypes /* remove-proptypes */ = {
   onOpen: PropTypes.func,
   /**
    * Callback fired on view change.
+   * @param {ClockPickerView} view The new view.
    */
   onViewChange: PropTypes.func,
   /**
@@ -280,11 +259,11 @@ TimePicker.propTypes /* remove-proptypes */ = {
    */
   orientation: PropTypes.oneOf(['landscape', 'portrait']),
   /**
-   * Paper props passed down to [Paper](https://mui.com/api/paper/) component.
+   * Paper props passed down to [Paper](https://mui.com/material-ui/api/paper/) component.
    */
   PaperProps: PropTypes.object,
   /**
-   * Popper props passed down to [Popper](https://mui.com/api/popper/) component.
+   * Popper props passed down to [Popper](https://mui.com/material-ui/api/popper/) component.
    */
   PopperProps: PropTypes.object,
   /**
@@ -293,20 +272,27 @@ TimePicker.propTypes /* remove-proptypes */ = {
   readOnly: PropTypes.bool,
   /**
    * The `renderInput` prop allows you to customize the rendered input.
-   * The `props` argument of this render prop contains props of [TextField](https://mui.com/api/text-field/#textfield-api) that you need to forward.
+   * The `props` argument of this render prop contains props of [TextField](https://mui.com/material-ui/api/text-field/#props) that you need to forward.
    * Pay specific attention to the `ref` and `inputProps` keys.
    * @example ```jsx
    * renderInput={props => <TextField {...props} />}
    * ````
+   * @param {MuiTextFieldPropsType} props The props of the input.
+   * @returns {React.ReactNode} The node to render as the input.
    */
   renderInput: PropTypes.func.isRequired,
   /**
    * Custom formatter to be passed into Rifm component.
+   * @param {string} str The un-formatted string.
+   * @returns {string} The formatted string.
    */
   rifmFormatter: PropTypes.func,
   /**
    * Dynamically check if time is disabled or not.
    * If returns `false` appropriate time point will ot be acceptable.
+   * @param {number} timeValue The value to check.
+   * @param {ClockPickerView} clockType The clock type of the timeValue.
+   * @returns {boolean} Returns `true` if the time should be disabled
    */
   shouldDisableTime: PropTypes.func,
   /**
@@ -343,7 +329,7 @@ TimePicker.propTypes /* remove-proptypes */ = {
    */
   toolbarTitle: PropTypes.node,
   /**
-   * Custom component for popper [Transition](https://mui.com/components/transitions/#transitioncomponent-prop).
+   * Custom component for popper [Transition](https://mui.com/material-ui/transitions/#transitioncomponent-prop).
    */
   TransitionComponent: PropTypes.elementType,
   /**

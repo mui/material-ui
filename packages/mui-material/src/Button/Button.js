@@ -1,6 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { internal_resolveProps as resolveProps } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { alpha } from '@mui/system';
 import styled, { rootShouldForwardProp } from '../styles/styled';
@@ -78,7 +79,7 @@ const ButtonRoot = styled(ButtonBase, {
     ...theme.typography.button,
     minWidth: 64,
     padding: '6px 16px',
-    borderRadius: theme.shape.borderRadius,
+    borderRadius: (theme.vars || theme).shape.borderRadius,
     transition: theme.transitions.create(
       ['background-color', 'box-shadow', 'border-color', 'color'],
       {
@@ -87,17 +88,20 @@ const ButtonRoot = styled(ButtonBase, {
     ),
     '&:hover': {
       textDecoration: 'none',
-      backgroundColor: alpha(theme.palette.text.primary, theme.palette.action.hoverOpacity),
+      backgroundColor: theme.vars
+        ? `rgba(${theme.vars.palette.text.primaryChannel} / ${theme.vars.palette.action.hoverOpacity})`
+        : alpha(theme.palette.text.primary, theme.palette.action.hoverOpacity),
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
         backgroundColor: 'transparent',
       },
       ...(ownerState.variant === 'text' &&
         ownerState.color !== 'inherit' && {
-          backgroundColor: alpha(
-            theme.palette[ownerState.color].main,
-            theme.palette.action.hoverOpacity,
-          ),
+          backgroundColor: theme.vars
+            ? `rgba(${theme.vars.palette[ownerState.color].mainChannel} / ${
+                theme.vars.palette.action.hoverOpacity
+              })`
+            : alpha(theme.palette[ownerState.color].main, theme.palette.action.hoverOpacity),
           // Reset on touch devices, it doesn't add specificity
           '@media (hover: none)': {
             backgroundColor: 'transparent',
@@ -105,57 +109,58 @@ const ButtonRoot = styled(ButtonBase, {
         }),
       ...(ownerState.variant === 'outlined' &&
         ownerState.color !== 'inherit' && {
-          border: `1px solid ${theme.palette[ownerState.color].main}`,
-          backgroundColor: alpha(
-            theme.palette[ownerState.color].main,
-            theme.palette.action.hoverOpacity,
-          ),
+          border: `1px solid ${(theme.vars || theme).palette[ownerState.color].main}`,
+          backgroundColor: theme.vars
+            ? `rgba(${theme.vars.palette[ownerState.color].mainChannel} / ${
+                theme.vars.palette.action.hoverOpacity
+              })`
+            : alpha(theme.palette[ownerState.color].main, theme.palette.action.hoverOpacity),
           // Reset on touch devices, it doesn't add specificity
           '@media (hover: none)': {
             backgroundColor: 'transparent',
           },
         }),
       ...(ownerState.variant === 'contained' && {
-        backgroundColor: theme.palette.grey.A100,
-        boxShadow: theme.shadows[4],
+        backgroundColor: (theme.vars || theme).palette.grey.A100,
+        boxShadow: (theme.vars || theme).shadows[4],
         // Reset on touch devices, it doesn't add specificity
         '@media (hover: none)': {
-          boxShadow: theme.shadows[2],
-          backgroundColor: theme.palette.grey[300],
+          boxShadow: (theme.vars || theme).shadows[2],
+          backgroundColor: (theme.vars || theme).palette.grey[300],
         },
       }),
       ...(ownerState.variant === 'contained' &&
         ownerState.color !== 'inherit' && {
-          backgroundColor: theme.palette[ownerState.color].dark,
+          backgroundColor: (theme.vars || theme).palette[ownerState.color].dark,
           // Reset on touch devices, it doesn't add specificity
           '@media (hover: none)': {
-            backgroundColor: theme.palette[ownerState.color].main,
+            backgroundColor: (theme.vars || theme).palette[ownerState.color].main,
           },
         }),
     },
     '&:active': {
       ...(ownerState.variant === 'contained' && {
-        boxShadow: theme.shadows[8],
+        boxShadow: (theme.vars || theme).shadows[8],
       }),
     },
     [`&.${buttonClasses.focusVisible}`]: {
       ...(ownerState.variant === 'contained' && {
-        boxShadow: theme.shadows[6],
+        boxShadow: (theme.vars || theme).shadows[6],
       }),
     },
     [`&.${buttonClasses.disabled}`]: {
-      color: theme.palette.action.disabled,
+      color: (theme.vars || theme).palette.action.disabled,
       ...(ownerState.variant === 'outlined' && {
-        border: `1px solid ${theme.palette.action.disabledBackground}`,
+        border: `1px solid ${(theme.vars || theme).palette.action.disabledBackground}`,
       }),
       ...(ownerState.variant === 'outlined' &&
         ownerState.color === 'secondary' && {
-          border: `1px solid ${theme.palette.action.disabled}`,
+          border: `1px solid ${(theme.vars || theme).palette.action.disabled}`,
         }),
       ...(ownerState.variant === 'contained' && {
-        color: theme.palette.action.disabled,
-        boxShadow: theme.shadows[0],
-        backgroundColor: theme.palette.action.disabledBackground,
+        color: (theme.vars || theme).palette.action.disabled,
+        boxShadow: (theme.vars || theme).shadows[0],
+        backgroundColor: (theme.vars || theme).palette.action.disabledBackground,
       }),
     },
     ...(ownerState.variant === 'text' && {
@@ -163,28 +168,31 @@ const ButtonRoot = styled(ButtonBase, {
     }),
     ...(ownerState.variant === 'text' &&
       ownerState.color !== 'inherit' && {
-        color: theme.palette[ownerState.color].main,
+        color: (theme.vars || theme).palette[ownerState.color].main,
       }),
     ...(ownerState.variant === 'outlined' && {
       padding: '5px 15px',
-      border: `1px solid ${
-        theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
-      }`,
+      border: '1px solid currentColor',
     }),
     ...(ownerState.variant === 'outlined' &&
       ownerState.color !== 'inherit' && {
-        color: theme.palette[ownerState.color].main,
-        border: `1px solid ${alpha(theme.palette[ownerState.color].main, 0.5)}`,
+        color: (theme.vars || theme).palette[ownerState.color].main,
+        border: theme.vars
+          ? `1px solid rgba(${theme.vars.palette[ownerState.color].mainChannel} / 0.5)`
+          : `1px solid ${alpha(theme.palette[ownerState.color].main, 0.5)}`,
       }),
     ...(ownerState.variant === 'contained' && {
-      color: theme.palette.getContrastText(theme.palette.grey[300]),
-      backgroundColor: theme.palette.grey[300],
-      boxShadow: theme.shadows[2],
+      color: theme.vars
+        ? // this is safe because grey does not change between default light/dark mode
+          theme.vars.palette.text.primary
+        : theme.palette.getContrastText?.(theme.palette.grey[300]),
+      backgroundColor: (theme.vars || theme).palette.grey[300],
+      boxShadow: (theme.vars || theme).shadows[2],
     }),
     ...(ownerState.variant === 'contained' &&
       ownerState.color !== 'inherit' && {
-        color: theme.palette[ownerState.color].contrastText,
-        backgroundColor: theme.palette[ownerState.color].main,
+        color: (theme.vars || theme).palette[ownerState.color].contrastText,
+        backgroundColor: (theme.vars || theme).palette[ownerState.color].main,
       }),
     ...(ownerState.color === 'inherit' && {
       color: 'inherit',
@@ -279,46 +287,27 @@ const ButtonEndIcon = styled('span', {
 }));
 
 const Button = React.forwardRef(function Button(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiButton' });
-  const {
-    className: classNameContext,
-    color: colorContext,
-    disabled: disabledContext,
-    disableElevation: disableElevationContext,
-    disableFocusRipple: disableFocusRippleContext,
-    disableRipple: disableRippleContext,
-    fullWidth: fullWidthContext,
-    size: sizeContext,
-    variant: variantContext,
-  } = React.useContext(ButtonGroupContext);
+  // props priority: `inProps` > `contextProps` > `themeDefaultProps`
+  const contextProps = React.useContext(ButtonGroupContext);
+  const resolvedProps = resolveProps(contextProps, inProps);
+  const props = useThemeProps({ props: resolvedProps, name: 'MuiButton' });
   const {
     children,
-    className,
-    color: colorProp,
+    color = 'primary',
     component = 'button',
-    disabled: disabledProp,
-    disableElevation: disableElevationProp,
-    disableFocusRipple: disableFocusRippleProp,
-    disableRipple: disableRippleProp,
+    className,
+    disabled = false,
+    disableElevation = false,
+    disableFocusRipple = false,
     endIcon: endIconProp,
     focusVisibleClassName,
-    fullWidth: fullWidthProp,
-    size: sizeProp,
+    fullWidth = false,
+    size = 'medium',
     startIcon: startIconProp,
     type,
-    variant: variantProp,
+    variant = 'text',
     ...other
   } = props;
-
-  const color = colorProp || colorContext || 'primary';
-  // TODO v6: Use nullish coalescing (??) instead of OR operator for these boolean props so that these boolean props for Button with ButtonGroup context take priority. See conversation from https://github.com/mui-org/material-ui/pull/28645#discussion_r738380902.
-  const disabled = disabledProp || disabledContext || false;
-  const disableElevation = disableElevationProp || disableElevationContext || false;
-  const disableFocusRipple = disableFocusRippleProp || disableFocusRippleContext || false;
-  const fullWidth = fullWidthProp || fullWidthContext || false;
-  const size = sizeProp || sizeContext || 'medium';
-  const variant = variantProp || variantContext || 'text';
-  const disableRipple = disableRippleProp || disableRippleContext || false;
 
   const ownerState = {
     ...props,
@@ -350,10 +339,9 @@ const Button = React.forwardRef(function Button(inProps, ref) {
   return (
     <ButtonRoot
       ownerState={ownerState}
-      className={clsx(className, classNameContext)}
+      className={clsx(className, contextProps.className)}
       component={component}
       disabled={disabled}
-      disableRipple={disableRipple}
       focusRipple={!disableFocusRipple}
       focusVisibleClassName={clsx(classes.focusVisible, focusVisibleClassName)}
       ref={ref}
@@ -386,7 +374,9 @@ Button.propTypes /* remove-proptypes */ = {
    */
   className: PropTypes.string,
   /**
-   * The color of the component. It supports those theme colors that make sense for this component.
+   * The color of the component.
+   * It supports both default and custom theme colors, which can be added as shown in the
+   * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
    * @default 'primary'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
@@ -456,7 +446,7 @@ Button.propTypes /* remove-proptypes */ = {
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object])),
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
     PropTypes.func,
     PropTypes.object,
   ]),

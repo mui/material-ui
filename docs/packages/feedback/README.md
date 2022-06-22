@@ -24,13 +24,13 @@ You will need to repeat this command to create a table for production, for examp
 
 For on-demand throughput, replace:
 
-```
+```sh
   --provisioned-throughput ReadCapacityUnits=5,WriteCapacityUnits=1 \
 ```
 
 with:
 
-```
+```sh
   --billing-mode PAY_PER_REQUEST \
 ```
 

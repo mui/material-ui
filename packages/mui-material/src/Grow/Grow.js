@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { elementAcceptingRef } from '@mui/utils';
 import { Transition } from 'react-transition-group';
 import useTheme from '../styles/useTheme';
-import { reflow, getTransitionProps } from '../transitions/utils';
+import { getTransitionProps, reflow } from '../transitions/utils';
 import useForkRef from '../utils/useForkRef';
 
 function getScale(value) {
@@ -21,9 +21,18 @@ const styles = {
   },
 };
 
+/*
+ TODO v6: remove
+ Conditionally apply a workaround for the CSS transition bug in Safari 15.4 / WebKit browsers.
+ */
+const isWebKit154 =
+  typeof navigator !== 'undefined' &&
+  /^((?!chrome|android).)*(safari|mobile)/i.test(navigator.userAgent) &&
+  /(os |version\/)15(.|_)4/i.test(navigator.userAgent);
+
 /**
- * The Grow transition is used by the [Tooltip](/components/tooltips/) and
- * [Popover](/components/popover/) components.
+ * The Grow transition is used by the [Tooltip](/material-ui/react-tooltip/) and
+ * [Popover](/material-ui/react-popover/) components.
  * It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
  */
 const Grow = React.forwardRef(function Grow(props, ref) {
@@ -96,7 +105,7 @@ const Grow = React.forwardRef(function Grow(props, ref) {
         delay,
       }),
       theme.transitions.create('transform', {
-        duration: duration * 0.666,
+        duration: isWebKit154 ? duration : duration * 0.666,
         delay,
         easing: transitionTimingFunction,
       }),
@@ -137,13 +146,13 @@ const Grow = React.forwardRef(function Grow(props, ref) {
         delay,
       }),
       theme.transitions.create('transform', {
-        duration: duration * 0.666,
-        delay: delay || duration * 0.333,
+        duration: isWebKit154 ? duration : duration * 0.666,
+        delay: isWebKit154 ? delay : delay || duration * 0.333,
         easing: transitionTimingFunction,
       }),
     ].join(',');
 
-    node.style.opacity = '0';
+    node.style.opacity = 0;
     node.style.transform = getScale(0.75);
 
     if (onExit) {

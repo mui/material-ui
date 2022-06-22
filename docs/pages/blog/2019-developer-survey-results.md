@@ -1,10 +1,10 @@
 ---
-description: 2019 MUI Developer Survey results
+title: 'The 2019 MUI developer survey: here's what we discovered'
+description: Your feedback helps us to build better products. Here's what we learned about your needs in our annual survey.
+date: 2019-03-16T00:00:00.000Z
+authors: ['oliviertassinari', 'mbrookes']
+tags: ['Developer survey']
 ---
-
-# 2019 MUI Developer Survey results
-
-Olivier Tassinari, Matt Brookes. March 16, 2019.
 
 While we are currently working on the upcoming release of MUI v4, we need to prioritize our
 roadmap for the coming year. To refine our focus, we launched a developer survey last month,
@@ -34,7 +34,7 @@ so we know they love us really. 😘
 
 ### 2. Who do you think would most benefit from MUI?
 
-This word cloud was generated with [wordclouds.com](https://wordclouds.com).
+This word cloud was generated with wordclouds.com.
 
 <img src="/static/blog/2019-survey/2.png" style="display: block; margin: 0 auto;" alt="Word cloud of who would benefit most" />
 
@@ -219,11 +219,11 @@ A nice bell curve, with the majority of developers having 1 to 5 years experienc
 
 ### 10. How long have you been developing with React?
 
-<img src="/static/blog/2019-survey/10.png" style="display: block; margin: 0 auto;" alt="Bar chart: 99	x I'm just getting started!, 77	x 6 months +, 301 x 1 year +, 171 x 3 years +, 32 x 5 years - bleeding edge baby!" />
+<img src="/static/blog/2019-survey/10.png" style="display: block; margin: 0 auto;" alt="Bar chart: 99 x I'm just getting started!, 77 x 6 months +, 301 x 1 year +, 171 x 3 years +, 32 x 5 years - bleeding edge baby!" />
 
 ### 11. How long have you been developing with MUI?
 
-<img src="/static/blog/2019-survey/11.png" style="display: block; margin: 0 auto;" alt="Bar chart: 160	x I'm just getting started!, 147	x 6 months +, 293	x 1 year +, 71 x 3 years +, 11 x Four years + – I'm a pioneer!" />
+<img src="/static/blog/2019-survey/11.png" style="display: block; margin: 0 auto;" alt="Bar chart: 160 x I'm just getting started!, 147 x 6 months +, 293 x 1 year +, 71 x 3 years +, 11 x Four years + – I'm a pioneer!" />
 
 We missed a trick by not including "2 years +" here, so "1 year +" looks stacked.
 The number of users of MUI continues to grow at a steady pace, and once on board, many
@@ -260,9 +260,9 @@ Multiple options were allowed.
 - Blog: 8%
 
 Dashboards are at the top of the heap, and we've long known that many of you are building internal
-systems that can't feature in [the showcase](/discover-more/showcase/). Let us know by opening a PR
+systems that can't feature in [the showcase](/material-ui/discover-more/showcase/). Let us know by opening a PR
 if you're bucking that trend, and have something sparkly to share! And if you're in the 40% building UI
-components, we'd be happy to give you a shout out in the [related projects](/discover-more/related-projects/)
+components, we'd be happy to give you a shout out in the [related projects](/material-ui/discover-more/related-projects/)
 section.
 
 ### 15. What "delivery mechanism" are you using?
@@ -290,7 +290,7 @@ Multiple options were allowed.
 - Gatsby: 8%
 
 Server-side rendering isn't yet very popular.
-As the React ecosystem matures, we might see a [big](https://www.rank2traffic.com/gatsbyjs.org) [push](https://www.rank2traffic.com/nextjs.org) of server-side rendering in the coming months.
+As the React ecosystem matures, we might see a big push of server-side rendering in the coming months.
 
 ### 18. What styling system are you using?
 
@@ -321,7 +321,7 @@ We want to work on the problems that resonate the most with our users.
 4. Improve the static typings
 5. Reduce the overhead of the library
 
-**We will update [our ROADMAP](/discover-more/roadmap/) in the coming days**.
+**We will update [our ROADMAP](/material-ui/discover-more/roadmap/) in the coming days**.
 We will run a similar survey next year to keep track of our progress.
 
 If you want to continue to influence our roadmap, please upvote 👍 the issues you are the most interested in on GitHub.

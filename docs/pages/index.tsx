@@ -14,6 +14,7 @@ import HeroEnd from 'docs/src/components/home/HeroEnd';
 import AppFooter from 'docs/src/layouts/AppFooter';
 import BrandingProvider from 'docs/src/BrandingProvider';
 import NewsletterToast from 'docs/src/components/home/NewsletterToast';
+import AppHeaderBanner from 'docs/src/components/banner/AppHeaderBanner';
 
 export default function Home() {
   return (
@@ -25,6 +26,7 @@ export default function Home() {
       <NoSsr>
         <NewsletterToast />
       </NoSsr>
+      <AppHeaderBanner />
       <AppHeader />
       <main>
         <Hero />
@@ -50,9 +52,9 @@ export default function Home() {
   "url": "https://mui.com/",
   "logo": "https://mui.com/static/logo.png",
   "sameAs": [
-    "https://twitter.com/materialUI",
-    "https://github.com/mui-org/material-ui",
-    "https://opencollective.com/material-ui"
+    "https://twitter.com/MUI_hq",
+    "https://github.com/mui/",
+    "https://opencollective.com/mui"
   ]
 }
           `,

@@ -4,7 +4,7 @@
     "children": "O conteúdo do componente.",
     "classes": "Sobrescreve ou extende os estilos aplicados para o componente. Veja a <a href=\"#css\">API CSS</a> abaixo para maiores detalhes.",
     "expandIcon": "O ícone para exibir como o indicador de expansão.",
-    "focusVisibleClassName": "Esta propriedade pode ajudar a identificar qual elemento tem o foco do teclado. O nome da classe será aplicado quando o elemento receber o foco através da interação do teclado. Ela é um polyfill para o <a href=\"https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo\">seletor CSS :focus-visible</a>. A razão para o uso deste recurso <a href=\"https://github.com/WICG/focus-visible/blob/master/explainer.md\">é explicada aqui</a>. Um <a href=\"https://github.com/WICG/focus-visible\">polyfill pode ser usado</a> para aplicar uma classe <code>focus-visible</code> para outros componentes, se necessário.",
+    "focusVisibleClassName": "This prop can help identify which element has keyboard focus. The class name will be applied when the element gains the focus through keyboard interaction. It&#39;s a polyfill for the <a href=\"https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo\">CSS :focus-visible selector</a>. The rationale for using this feature <a href=\"https://github.com/WICG/focus-visible/blob/HEAD/explainer.md\">is explained here</a>. A <a href=\"https://github.com/WICG/focus-visible\">polyfill can be used</a> to apply a <code>focus-visible</code> class to other components if needed.",
     "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/basics/#the-sx-prop\">`sx` page</a> for more details."
   },
   "classDescriptions": {

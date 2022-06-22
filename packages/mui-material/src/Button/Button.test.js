@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { describeConformance, act, createRenderer, fireEvent } from 'test/utils';
+import { describeConformance, act, createRenderer, fireEvent, screen } from 'test/utils';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Button, { buttonClasses as classes } from '@mui/material/Button';
-import ButtonBase from '@mui/material/ButtonBase';
+import ButtonBase, { touchRippleClasses } from '@mui/material/ButtonBase';
 
 describe('<Button />', () => {
   const { render, renderToString } = createRenderer();
@@ -59,6 +60,66 @@ describe('<Button />', () => {
     expect(button).not.to.have.class(classes.contained);
     expect(button).not.to.have.class(classes.textPrimary);
     expect(button).to.have.class(classes.textSecondary);
+  });
+
+  it('should render a text success button', () => {
+    render(<Button color="success">Hello World</Button>);
+    const button = screen.getByRole('button');
+
+    expect(button).to.have.class(classes.root);
+    expect(button).not.to.have.class(classes.contained);
+    expect(button).not.to.have.class(classes.outlined);
+    expect(button).not.to.have.class(classes.textPrimary);
+    expect(button).not.to.have.class(classes.textSecondary);
+    expect(button).not.to.have.class(classes.textError);
+    expect(button).not.to.have.class(classes.textInfo);
+    expect(button).not.to.have.class(classes.textWarning);
+    expect(button).to.have.class(classes.textSuccess);
+  });
+
+  it('should render a text error button', () => {
+    render(<Button color="error">Hello World</Button>);
+    const button = screen.getByRole('button');
+
+    expect(button).to.have.class(classes.root);
+    expect(button).not.to.have.class(classes.contained);
+    expect(button).not.to.have.class(classes.outlined);
+    expect(button).not.to.have.class(classes.textPrimary);
+    expect(button).not.to.have.class(classes.textSecondary);
+    expect(button).not.to.have.class(classes.textSuccess);
+    expect(button).not.to.have.class(classes.textInfo);
+    expect(button).not.to.have.class(classes.textWarning);
+    expect(button).to.have.class(classes.textError);
+  });
+
+  it('should render a text info button', () => {
+    render(<Button color="info">Hello World</Button>);
+    const button = screen.getByRole('button');
+
+    expect(button).to.have.class(classes.root);
+    expect(button).not.to.have.class(classes.contained);
+    expect(button).not.to.have.class(classes.outlined);
+    expect(button).not.to.have.class(classes.textPrimary);
+    expect(button).not.to.have.class(classes.textSecondary);
+    expect(button).not.to.have.class(classes.textSuccess);
+    expect(button).not.to.have.class(classes.textError);
+    expect(button).not.to.have.class(classes.textWarning);
+    expect(button).to.have.class(classes.textInfo);
+  });
+
+  it('should render a text warning button', () => {
+    render(<Button color="warning">Hello World</Button>);
+    const button = screen.getByRole('button');
+
+    expect(button).to.have.class(classes.root);
+    expect(button).not.to.have.class(classes.contained);
+    expect(button).not.to.have.class(classes.outlined);
+    expect(button).not.to.have.class(classes.textPrimary);
+    expect(button).not.to.have.class(classes.textSecondary);
+    expect(button).not.to.have.class(classes.textSuccess);
+    expect(button).not.to.have.class(classes.textError);
+    expect(button).not.to.have.class(classes.textInfo);
+    expect(button).to.have.class(classes.textWarning);
   });
 
   it('should render an outlined button', () => {
@@ -119,6 +180,85 @@ describe('<Button />', () => {
     expect(button).not.to.have.class(classes.contained);
   });
 
+  it('should render a success outlined button', () => {
+    render(
+      <Button variant="outlined" color="success">
+        Hello World
+      </Button>,
+    );
+    const button = screen.getByRole('button');
+
+    expect(button).to.have.class(classes.root);
+    expect(button).to.have.class(classes.outlined);
+    expect(button).not.to.have.class(classes.text);
+    expect(button).not.to.have.class(classes.textSecondary);
+    expect(button).not.to.have.class(classes.contained);
+    expect(button).not.to.have.class(classes.outlinedInfo);
+    expect(button).not.to.have.class(classes.outlinedWarning);
+    expect(button).not.to.have.class(classes.outlinedError);
+    expect(button).to.have.class(classes.outlinedSuccess);
+  });
+
+  it('should render a error outlined button', () => {
+    render(
+      <Button variant="outlined" color="error">
+        Hello World
+      </Button>,
+    );
+    const button = screen.getByRole('button');
+
+    expect(button).to.have.class(classes.root);
+    expect(button).to.have.class(classes.outlined);
+    expect(button).not.to.have.class(classes.outlinedSecondary);
+    expect(button).not.to.have.class(classes.text);
+    expect(button).not.to.have.class(classes.textSecondary);
+    expect(button).not.to.have.class(classes.contained);
+    expect(button).not.to.have.class(classes.outlinedSuccess);
+    expect(button).not.to.have.class(classes.outlinedInfo);
+    expect(button).not.to.have.class(classes.outlinedWarning);
+    expect(button).to.have.class(classes.outlinedError);
+  });
+
+  it('should render a info outlined button', () => {
+    render(
+      <Button variant="outlined" color="info">
+        Hello World
+      </Button>,
+    );
+    const button = screen.getByRole('button');
+
+    expect(button).to.have.class(classes.root);
+    expect(button).to.have.class(classes.outlined);
+    expect(button).not.to.have.class(classes.outlinedSecondary);
+    expect(button).not.to.have.class(classes.text);
+    expect(button).not.to.have.class(classes.textSecondary);
+    expect(button).not.to.have.class(classes.contained);
+    expect(button).not.to.have.class(classes.outlinedSuccess);
+    expect(button).not.to.have.class(classes.outlinedWarning);
+    expect(button).not.to.have.class(classes.outlinedError);
+    expect(button).to.have.class(classes.outlinedInfo);
+  });
+
+  it('should render a warning outlined button', () => {
+    render(
+      <Button variant="outlined" color="warning">
+        Hello World
+      </Button>,
+    );
+    const button = screen.getByRole('button');
+
+    expect(button).to.have.class(classes.root);
+    expect(button).to.have.class(classes.outlined);
+    expect(button).not.to.have.class(classes.outlinedSecondary);
+    expect(button).not.to.have.class(classes.text);
+    expect(button).not.to.have.class(classes.textSecondary);
+    expect(button).not.to.have.class(classes.contained);
+    expect(button).not.to.have.class(classes.outlinedSuccess);
+    expect(button).not.to.have.class(classes.outlinedInfo);
+    expect(button).not.to.have.class(classes.outlinedError);
+    expect(button).to.have.class(classes.outlinedWarning);
+  });
+
   it('should render a contained button', () => {
     const { getByRole } = render(<Button variant="contained">Hello World</Button>);
     const button = getByRole('button');
@@ -143,6 +283,10 @@ describe('<Button />', () => {
     expect(button).to.have.class(classes.contained);
     expect(button).to.have.class(classes.containedPrimary);
     expect(button).not.to.have.class(classes.containedSecondary);
+    expect(button).not.to.have.class(classes.containedSuccess);
+    expect(button).not.to.have.class(classes.containedError);
+    expect(button).not.to.have.class(classes.containedInfo);
+    expect(button).not.to.have.class(classes.containedWarning);
   });
 
   it('should render a contained secondary button', () => {
@@ -158,6 +302,86 @@ describe('<Button />', () => {
     expect(button).to.have.class(classes.contained);
     expect(button).not.to.have.class(classes.containedPrimary);
     expect(button).to.have.class(classes.containedSecondary);
+    expect(button).not.to.have.class(classes.containedSuccess);
+    expect(button).not.to.have.class(classes.containedError);
+    expect(button).not.to.have.class(classes.containedInfo);
+    expect(button).not.to.have.class(classes.containedWarning);
+  });
+
+  it('should render a contained success button', () => {
+    render(
+      <Button variant="contained" color="success">
+        Hello World
+      </Button>,
+    );
+    const button = screen.getByRole('button');
+
+    expect(button).to.have.class(classes.root);
+    expect(button).not.to.have.class(classes.text);
+    expect(button).to.have.class(classes.contained);
+    expect(button).not.to.have.class(classes.containedPrimary);
+    expect(button).not.to.have.class(classes.containedSecondary);
+    expect(button).not.to.have.class(classes.containedError);
+    expect(button).not.to.have.class(classes.containedInfo);
+    expect(button).not.to.have.class(classes.containedWarning);
+    expect(button).to.have.class(classes.containedSuccess);
+  });
+
+  it('should render a contained error button', () => {
+    render(
+      <Button variant="contained" color="error">
+        Hello World
+      </Button>,
+    );
+    const button = screen.getByRole('button');
+
+    expect(button).to.have.class(classes.root);
+    expect(button).not.to.have.class(classes.text);
+    expect(button).to.have.class(classes.contained);
+    expect(button).not.to.have.class(classes.containedPrimary);
+    expect(button).not.to.have.class(classes.containedSecondary);
+    expect(button).not.to.have.class(classes.containedInfo);
+    expect(button).not.to.have.class(classes.containedSuccess);
+    expect(button).not.to.have.class(classes.containedWarning);
+    expect(button).to.have.class(classes.containedError);
+  });
+
+  it('should render a contained info button', () => {
+    render(
+      <Button variant="contained" color="info">
+        Hello World
+      </Button>,
+    );
+    const button = screen.getByRole('button');
+
+    expect(button).to.have.class(classes.root);
+    expect(button).not.to.have.class(classes.text);
+    expect(button).to.have.class(classes.contained);
+    expect(button).not.to.have.class(classes.containedPrimary);
+    expect(button).not.to.have.class(classes.containedSecondary);
+    expect(button).not.to.have.class(classes.containedSuccess);
+    expect(button).not.to.have.class(classes.containedError);
+    expect(button).not.to.have.class(classes.containedWarning);
+    expect(button).to.have.class(classes.containedInfo);
+  });
+
+  it('should render a contained warning button', () => {
+    render(
+      <Button variant="contained" color="warning">
+        Hello World
+      </Button>,
+    );
+    const button = screen.getByRole('button');
+
+    expect(button).to.have.class(classes.root);
+    expect(button).not.to.have.class(classes.text);
+    expect(button).to.have.class(classes.contained);
+    expect(button).not.to.have.class(classes.containedPrimary);
+    expect(button).not.to.have.class(classes.containedSecondary);
+    expect(button).not.to.have.class(classes.containedSuccess);
+    expect(button).not.to.have.class(classes.containedError);
+    expect(button).not.to.have.class(classes.containedInfo);
+    expect(button).to.have.class(classes.containedWarning);
   });
 
   it('should render a small text button', () => {
@@ -371,5 +595,43 @@ describe('<Button />', () => {
     const { container } = render(<Button disabled classes={{ disabled: disabledClassName }} />);
 
     expect(container.querySelector('button')).to.have.class(disabledClassName);
+  });
+
+  it("should disable ripple when MuiButtonBase has disableRipple in theme's defaultProps", () => {
+    const theme = createTheme({
+      components: {
+        MuiButtonBase: {
+          defaultProps: {
+            disableRipple: true,
+          },
+        },
+      },
+    });
+    const { container } = render(
+      <ThemeProvider theme={theme}>
+        <Button>Disabled ripple</Button>
+      </ThemeProvider>,
+    );
+    expect(container.firstChild.querySelector(`.${touchRippleClasses.root}`)).to.equal(null);
+  });
+
+  it("should disable ripple when MuiButtonBase has disableRipple in theme's defaultProps but override on the individual Buttons if provided", () => {
+    const theme = createTheme({
+      components: {
+        MuiButtonBase: {
+          defaultProps: {
+            disableRipple: true,
+          },
+        },
+      },
+    });
+    const { container } = render(
+      <ThemeProvider theme={theme}>
+        <Button disableRipple={false}>Enabled ripple</Button>
+        <Button>Disabled ripple 1</Button>
+        <Button>Disabled ripple 2</Button>
+      </ThemeProvider>,
+    );
+    expect(container.querySelectorAll(`.${touchRippleClasses.root}`)).to.have.length(1);
   });
 });

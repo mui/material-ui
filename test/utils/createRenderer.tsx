@@ -158,13 +158,31 @@ class DispatchingProfiler implements Profiler {
 const UsedProfiler = enableDispatchingProfiler ? DispatchingProfiler : NoopProfiler;
 const traceSync = enableDispatchingProfiler ? traceByStackSync : noTrace;
 
-// holes are *All* selectors which aren't necessary for id selectors
-const [queryDescriptionOf, , getDescriptionOf, , findDescriptionOf] = buildQueries(
-  function queryAllDescriptionsOf(container, element) {
-    return Array.from(container.querySelectorAll(`#${element.getAttribute('aria-describedby')}`));
-  },
+function queryAllDescriptionsOf(baseElement: HTMLElement, element: Element): HTMLElement[] {
+  const ariaDescribedBy = element.getAttribute('aria-describedby');
+  if (ariaDescribedBy === null) {
+    return [];
+  }
+  return ariaDescribedBy
+    .split(' ')
+    .map((id) => {
+      return document.getElementById(id);
+    })
+    .filter((maybeElement): maybeElement is HTMLElement => {
+      return maybeElement !== null && baseElement.contains(maybeElement);
+    });
+}
+
+const [
+  queryDescriptionOf,
+  getAllDescriptionsOf,
+  getDescriptionOf,
+  findAllDescriptionsOf,
+  findDescriptionOf,
+] = buildQueries<[Element]>(
+  queryAllDescriptionsOf,
   function getMultipleError() {
-    return `Found multiple descriptions. An element should be described by a unique element.`;
+    return `Found multiple descriptions.`;
   },
   function getMissingError() {
     return `Found no describing element.`;
@@ -185,8 +203,11 @@ const [queryByMuiTest, getAllByMuiTest, getByMuiTest, findAllByMuiTest, findByMu
 
 const customQueries = {
   queryDescriptionOf,
+  queryAllDescriptionsOf,
   getDescriptionOf,
+  getAllDescriptionsOf,
   findDescriptionOf,
+  findAllDescriptionsOf,
   /**
    * @deprecated Use `queryAllByTestId` instead
    */
@@ -222,10 +243,6 @@ interface RenderConfiguration {
    * if true does not cleanup before mount
    */
   disableUnmount?: boolean;
-  /**
-   * Set to true if the test fails in React 18.
-   */
-  legacyRoot?: boolean;
   /**
    * wrap in React.StrictMode?
    */
@@ -266,14 +283,12 @@ function render(
   element: React.ReactElement,
   configuration: ClientRenderConfiguration,
 ): MuiRenderResult {
-  const { container, hydrate, legacyRoot, wrapper } = configuration;
+  const { container, hydrate, wrapper } = configuration;
 
   const testingLibraryRenderResult = traceSync('render', () =>
     testingLibraryRender(element, {
       container,
       hydrate,
-      // @ts-ignore Available in the `@testing-library/react` fork used when running with React 18
-      legacyRoot,
       queries: { ...queries, ...customQueries },
       wrapper,
     }),
@@ -420,8 +435,7 @@ interface Renderer {
   renderToString(element: React.ReactElement, options?: RenderOptions): MuiRenderToStringResult;
 }
 
-export interface CreateRendererOptions
-  extends Pick<RenderOptions, 'legacyRoot' | 'strict' | 'strictEffects'> {
+export interface CreateRendererOptions extends Pick<RenderOptions, 'strict' | 'strictEffects'> {
   /**
    * @default 'real'
    */
@@ -433,7 +447,6 @@ export function createRenderer(globalOptions: CreateRendererOptions = {}): Rende
   const {
     clock: clockMode = 'real',
     clockConfig,
-    legacyRoot: globalLegacyRoot,
     strict: globalStrict = true,
     strictEffects: globalStrictEffects = globalStrict,
   } = globalOptions;
@@ -566,11 +579,9 @@ export function createRenderer(globalOptions: CreateRendererOptions = {}): Rende
         );
       }
 
-      const { legacyRoot = globalLegacyRoot, ...localOptions } = options;
       return render(element, {
-        ...localOptions,
+        ...options,
         hydrate: false,
-        legacyRoot,
         wrapper: createWrapper(options),
       });
     },
@@ -583,15 +594,10 @@ export function createRenderer(globalOptions: CreateRendererOptions = {}): Rende
         );
       }
 
-      const {
-        container = serverContainer,
-        legacyRoot = globalLegacyRoot,
-        ...localOptions
-      } = options;
+      const { container = serverContainer, ...localOptions } = options;
       return renderToString(element, {
         ...localOptions,
         container,
-        legacyRoot,
         wrapper: createWrapper(options),
       });
     },

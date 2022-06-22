@@ -52,7 +52,7 @@ const TooltipPopper = styled(Popper, {
     ];
   },
 })(({ theme, ownerState, open }) => ({
-  zIndex: theme.zIndex.tooltip,
+  zIndex: (theme.vars || theme).zIndex.tooltip,
   pointerEvents: 'none', // disable jss-rtl plugin
   ...(!ownerState.disableInteractive && {
     pointerEvents: 'auto',
@@ -118,9 +118,11 @@ const TooltipTooltip = styled('div', {
     ];
   },
 })(({ theme, ownerState }) => ({
-  backgroundColor: alpha(theme.palette.grey[700], 0.92),
-  borderRadius: theme.shape.borderRadius,
-  color: theme.palette.common.white,
+  backgroundColor: theme.vars
+    ? theme.vars.palette.Tooltip.bg
+    : alpha(theme.palette.grey[700], 0.92),
+  borderRadius: (theme.vars || theme).shape.borderRadius,
+  color: (theme.vars || theme).palette.common.white,
   fontFamily: theme.typography.fontFamily,
   padding: '4px 8px',
   fontSize: theme.typography.pxToRem(11),
@@ -196,7 +198,9 @@ const TooltipArrow = styled('span', {
   width: '1em',
   height: '0.71em' /* = width / sqrt(2) = (length of the hypotenuse) */,
   boxSizing: 'border-box',
-  color: alpha(theme.palette.grey[700], 0.9),
+  color: theme.vars
+    ? `rgba(${theme.vars.palette.grey.darkChannel} / 0.9)`
+    : alpha(theme.palette.grey[700], 0.9),
   '&::before': {
     content: '""',
     margin: 'auto',
@@ -747,7 +751,12 @@ Tooltip.propTypes /* remove-proptypes */ = {
    * and `componentsProps.transition` prop values win over `TransitionProps` if both are applied.
    * @default {}
    */
-  componentsProps: PropTypes.object,
+  componentsProps: PropTypes.shape({
+    arrow: PropTypes.object,
+    popper: PropTypes.object,
+    tooltip: PropTypes.object,
+    transition: PropTypes.object,
+  }),
   /**
    * Set to `true` if the `title` acts as an accessible description.
    * By default the `title` acts as an accessible label for the child.
@@ -852,7 +861,7 @@ Tooltip.propTypes /* remove-proptypes */ = {
    */
   PopperComponent: PropTypes.elementType,
   /**
-   * Props applied to the [`Popper`](/api/popper/) element.
+   * Props applied to the [`Popper`](/material-ui/api/popper/) element.
    * @default {}
    */
   PopperProps: PropTypes.object,
@@ -860,7 +869,7 @@ Tooltip.propTypes /* remove-proptypes */ = {
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object])),
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
     PropTypes.func,
     PropTypes.object,
   ]),
@@ -870,13 +879,13 @@ Tooltip.propTypes /* remove-proptypes */ = {
   title: PropTypes /* @typescript-to-proptypes-ignore */.node.isRequired,
   /**
    * The component used for the transition.
-   * [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default Grow
    */
   TransitionComponent: PropTypes.elementType,
   /**
    * Props applied to the transition element.
-   * By default, the element is based on this [`Transition`](https://reactcommunity.org/react-transition-group/transition) component.
+   * By default, the element is based on this [`Transition`](http://reactcommunity.org/react-transition-group/transition/) component.
    */
   TransitionProps: PropTypes.object,
 };

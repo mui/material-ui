@@ -1,30 +1,5 @@
 import pagesApi from './pagesApi';
-
-export interface MuiPage {
-  pathname: string;
-  children?: MuiPage[];
-  disableDrawer?: boolean;
-  icon?: string;
-  /**
-   * Pages are considered to be ordered depth-first.
-   * If a page should be excluded from this order, set `order: false`.
-   * You want to set `ordered: false` if you don't want the page to appear in an ordered list e.g. for previous/next page navigation.
-   */
-  ordered?: boolean;
-  /**
-   * Props spread to the Link component
-   */
-  linkProps?: Record<string, unknown>;
-  subheader?: string;
-  /**
-   * Overrides the default page title.
-   */
-  title?: string;
-}
-
-export interface OrderedMuiPage extends MuiPage {
-  ordered?: true;
-}
+import type { MuiPage, OrderedMuiPage } from './MuiPage';
 
 const pages: readonly MuiPage[] = [
   {
@@ -35,7 +10,7 @@ const pages: readonly MuiPage[] = [
       { pathname: '/getting-started/usage' },
       { pathname: '/getting-started/example-projects' },
       { pathname: '/getting-started/templates' },
-      { pathname: '/getting-started/learn' },
+      { pathname: '/getting-started/learn', title: 'Learning resources' },
       { pathname: '/getting-started/faq', title: 'FAQs' },
       { pathname: '/getting-started/supported-components' },
       { pathname: '/getting-started/supported-platforms' },
@@ -172,7 +147,7 @@ const pages: readonly MuiPage[] = [
           { pathname: '/components/data-grid/localization' },
           { pathname: '/components/data-grid/virtualization' },
           { pathname: '/components/data-grid/accessibility' },
-          { pathname: '/components/data-grid/group-pivot', title: '🚧 Group & Pivot' },
+          { pathname: '/components/data-grid/group-pivot', title: 'Group & Pivot' },
         ],
       },
       {
@@ -180,21 +155,8 @@ const pages: readonly MuiPage[] = [
         subheader: '/components/lab',
         children: [
           { pathname: '/components/about-the-lab', title: 'About the lab 🧪' },
-          {
-            pathname: '/components',
-            subheader: '/components/lab-pickers',
-            title: 'Date / Time',
-            children: [
-              { pathname: '/components/pickers', title: 'Introduction' },
-              { pathname: '/components/date-picker' },
-              { pathname: '/components/date-range-picker', title: 'Date Range Picker ⚡️' },
-              { pathname: '/components/date-time-picker' },
-              { pathname: '/components/time-picker' },
-            ],
-          },
           { pathname: '/components/masonry' },
           { pathname: '/components/timeline' },
-          { pathname: '/components/trap-focus' },
           { pathname: '/components/tree-view' },
         ],
       },
@@ -226,7 +188,10 @@ const pages: readonly MuiPage[] = [
             title: 'GridPrintExportOptions',
           },
         ].map((page) => {
-          return { ...page, linkProps: { as: `${page.pathname.replace(/^\/api-docs/, '/api')}/` } };
+          return {
+            ...page,
+            linkProps: { linkAs: `${page.pathname.replace(/^\/api-docs/, '/api')}/` },
+          };
         }),
       },
     ]
@@ -234,7 +199,10 @@ const pages: readonly MuiPage[] = [
         a.pathname.replace('/api-docs/', '').localeCompare(b.pathname.replace('/api-docs/', '')),
       )
       .map((page) => {
-        return { ...page, linkProps: { as: `${page.pathname.replace(/^\/api-docs/, '/api')}/` } };
+        return {
+          ...page,
+          linkProps: { linkAs: `${page.pathname.replace(/^\/api-docs/, '/api')}/` },
+        };
       }),
   },
   {
@@ -291,11 +259,10 @@ const pages: readonly MuiPage[] = [
     title: 'How To Guides',
     icon: 'VisibilityIcon',
     children: [
-      { pathname: '/guides/api', title: 'API Design Approach' },
-      { pathname: '/guides/classname-generator', title: 'ClassName Generator' },
+      { pathname: '/guides/api', title: 'API design approach' },
       { pathname: '/guides/understand-mui-packages', title: 'Understand MUI packages' },
       { pathname: '/guides/typescript', title: 'TypeScript' },
-      { pathname: '/guides/interoperability', title: 'Style Library Interoperability' },
+      { pathname: '/guides/interoperability', title: 'Style library interoperability' },
       { pathname: '/guides/styled-engine' },
       { pathname: '/guides/minimizing-bundle-size' },
       { pathname: '/guides/composition' },
@@ -303,9 +270,9 @@ const pages: readonly MuiPage[] = [
       { pathname: '/guides/server-rendering' },
       { pathname: '/guides/responsive-ui', title: 'Responsive UI' },
       { pathname: '/guides/pickers-migration', title: 'Migration from @material-ui/pickers' },
-      { pathname: '/guides/migration-v4', title: 'Migration From v4' },
-      { pathname: '/guides/migration-v3', title: 'Migration From v3' },
-      { pathname: '/guides/migration-v0x', title: 'Migration From v0.x' },
+      { pathname: '/guides/migration-v4', title: 'Migration from v4' },
+      { pathname: '/guides/migration-v3', title: 'Migration from v3' },
+      { pathname: '/guides/migration-v0x', title: 'Migration from v0.x' },
       { pathname: '/guides/testing' },
       { pathname: '/guides/localization' },
       { pathname: '/guides/content-security-policy', title: 'Content Security Policy' },
@@ -314,9 +281,19 @@ const pages: readonly MuiPage[] = [
     ],
   },
   {
+    pathname: '/experimental-api',
+    title: 'Experimental APIs',
+    icon: 'ExperimentIcon',
+    children: [
+      { pathname: '/experimental-api/classname-generator', title: 'ClassName generator' },
+      { pathname: '/experimental-api/css-variables', title: 'CSS variables' },
+    ],
+  },
+  {
     pathname: '/styles',
-    title: 'Styles (legacy)',
+    title: 'Styles',
     icon: 'StyleIcon',
+    legacy: true,
     children: [
       { pathname: '/styles/basics' },
       { pathname: '/styles/advanced' },
@@ -338,7 +315,7 @@ const pages: readonly MuiPage[] = [
     ],
   },
   {
-    pathname: 'https://material-ui.com/store/',
+    pathname: 'https://mui.com/store/',
     title: 'Templates',
     icon: 'ReaderIcon',
     linkProps: {
@@ -347,9 +324,10 @@ const pages: readonly MuiPage[] = [
       'data-ga-event-label': 'sidenav',
     },
   },
-  { pathname: '/versions', ordered: false },
-  { pathname: '/', ordered: false, disableDrawer: true },
-  { pathname: 'https://medium.com/material-ui', title: 'Blog', icon: 'BookIcon' },
+  { pathname: '/versions', inSideNav: false },
+  { pathname: '/', inSideNav: false, disableDrawer: true },
+  { pathname: '/blog', title: 'Blog', icon: 'BookIcon' },
 ];
 
+export type { MuiPage, OrderedMuiPage };
 export default pages;

@@ -11,30 +11,6 @@ import * as svgo from 'svgo';
 export const RENAME_FILTER_DEFAULT = './renameFilters/default';
 export const RENAME_FILTER_MUI = './renameFilters/material-design-icons';
 
-const blacklistedIcons = [
-  'AddChart', // Leads to inconsistent casing with `Addchart`
-  '6FtApart', // Arbitrary covid related distance
-  'MotionPhotosOn', // Google product
-  'MotionPhotosPause', // Google product
-  'MotionPhotosPaused', // Google product
-  'Polymer', // Legacy brand
-  'ExposureNeg1', // Google product
-  'ExposureNeg2', // Google product
-  'ExposurePlus1', // Google product
-  'ExposurePlus2', // Google product
-  'ExposureZero', // Google product
-  'VerticalDistribute', // Advanced text editor
-  'HorizontalDistribute', // Advanced text editor
-].reduce((iconsWithVariants, icon) => {
-  return iconsWithVariants.concat([
-    icon,
-    `${icon}Outlined`,
-    `${icon}Rounded`,
-    `${icon}Sharp`,
-    `${icon}TwoTone`,
-  ]);
-}, []);
-
 /**
  * Converts directory separators to slashes, so the path can be used in fast-glob.
  * @param {string} pathToNormalize
@@ -113,7 +89,6 @@ export function cleanPaths({ svgPath, data }) {
       { name: 'removeTitle' },
       { name: 'removeDesc' },
       { name: 'removeUselessDefs' },
-      { name: 'removeXMLNS' },
       { name: 'removeEditorsNSData' },
       { name: 'removeEmptyAttrs' },
       { name: 'removeHiddenElems' },
@@ -245,10 +220,6 @@ async function worker({ progress, svgPath, options, renameFilter, template }) {
   const paths = cleanPaths({ svgPath, data });
 
   const componentName = getComponentName(destPath);
-
-  if (blacklistedIcons.indexOf(componentName) !== -1) {
-    return;
-  }
 
   const fileString = Mustache.render(template, {
     paths,

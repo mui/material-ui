@@ -26,7 +26,7 @@ const Anchor = styled('a')<{ component?: React.ElementType; noLinkStyle?: boolea
     padding: theme.spacing(1),
     borderRadius: theme.spacing(1),
     transition: theme.transitions.create('background'),
-    '&:hover, &:focus': {
+    '&:hover, &:focus-visible': {
       backgroundColor:
         theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : theme.palette.grey[100],
       // Reset on touch devices, it doesn't add specificity
@@ -66,33 +66,49 @@ const PRODUCTS = [
   },
 ];
 
+const DOCS = [
+  {
+    name: 'Material UI',
+    description: "React components that implement Google's Material Design.",
+    href: ROUTES.materialDocs,
+  },
+  {
+    name: 'Joy UI',
+    description: 'React components for building your design system.',
+    href: ROUTES.joyDocs,
+  },
+  {
+    name: 'MUI Base',
+    description: 'Unstyled React components and low-level hooks.',
+    href: ROUTES.baseDocs,
+  },
+  {
+    name: 'MUI System',
+    description: 'CSS utilities for rapidly laying out custom designs.',
+    href: ROUTES.systemDocs,
+  },
+  {
+    name: 'MUI X',
+    description: 'Advanced and powerful components for complex use cases.',
+    href: ROUTES.advancedComponents,
+  },
+];
+
 export default function HeaderNavDropdown() {
   const [open, setOpen] = React.useState(false);
   const [productsOpen, setProductsOpen] = React.useState(true);
+  const [docsOpen, setDocsOpen] = React.useState(false);
   const hambugerRef = React.useRef<HTMLButtonElement | null>(null);
   return (
     <React.Fragment>
       <IconButton
+        color="primary"
         aria-label="Menu"
         ref={hambugerRef}
         disableRipple
         onClick={() => setOpen((value) => !value)}
         sx={{
           position: 'relative',
-          p: '6.5px',
-          borderRadius: 1,
-          border: '1px solid',
-          bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.800' : 'transparent'),
-          borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.500' : 'grey.200'),
-          '& svg': { width: 18, height: 18 },
-          '&:focus': {
-            boxShadow: (theme) =>
-              `0 0 0 1px ${
-                theme.palette.mode === 'dark'
-                  ? theme.palette.primaryDark[600]
-                  : theme.palette.grey[200]
-              }`,
-          },
           '& rect': {
             transformOrigin: 'center',
             transition: '0.2s',
@@ -123,13 +139,16 @@ export default function HeaderNavDropdown() {
             top: 56,
             left: 0,
             right: 0,
-            boxShadow: '0 15px 10px -5px rgb(90 105 120 / 10%)',
+            boxShadow: (theme) =>
+              `0px 4px 20px ${
+                theme.palette.mode === 'dark' ? 'rgba(0, 0, 0, 0.5)' : 'rgba(170, 180, 190, 0.3)'
+              }`,
             bgcolor: 'background.paper',
           }}
         >
           <Box
             sx={{
-              p: 2.5,
+              p: 2,
               bgcolor: 'background.paper',
               maxHeight: 'calc(100vh - 56px)',
               overflow: 'auto',
@@ -183,9 +202,48 @@ export default function HeaderNavDropdown() {
                 </li>
               )}
               <li>
-                <Anchor href={ROUTES.documentation} as={Link} noLinkStyle>
+                <Anchor
+                  as="button"
+                  onClick={() => setDocsOpen((bool) => !bool)}
+                  sx={{ justifyContent: 'space-between' }}
+                >
                   Docs
+                  <KeyboardArrowDownRounded
+                    color="primary"
+                    sx={{
+                      transition: '0.3s',
+                      transform: docsOpen ? 'rotate(-180deg)' : 'rotate(0)',
+                    }}
+                  />
                 </Anchor>
+                <Collapse in={docsOpen}>
+                  <UList
+                    sx={{
+                      borderLeft: '1px solid',
+                      borderColor: (theme) =>
+                        theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.100',
+                      pl: 1,
+                      pb: 1,
+                      ml: 1,
+                    }}
+                  >
+                    {DOCS.map((item) => (
+                      <li key={item.name}>
+                        <Anchor
+                          href={item.href}
+                          as={Link}
+                          noLinkStyle
+                          sx={{ flexDirection: 'column', alignItems: 'initial' }}
+                        >
+                          <div>{item.name}</div>
+                          <Typography variant="body2" color="text.secondary">
+                            {item.description}
+                          </Typography>
+                        </Anchor>
+                      </li>
+                    ))}
+                  </UList>
+                </Collapse>
               </li>
               <li>
                 <Anchor href={ROUTES.pricing} as={Link} noLinkStyle>
@@ -195,6 +253,11 @@ export default function HeaderNavDropdown() {
               <li>
                 <Anchor href={ROUTES.about} as={Link} noLinkStyle>
                   About us
+                </Anchor>
+              </li>
+              <li>
+                <Anchor href={ROUTES.blog} as={Link} noLinkStyle>
+                  Blog
                 </Anchor>
               </li>
             </UList>

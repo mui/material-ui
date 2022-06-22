@@ -50,19 +50,14 @@ describe('<TextField />', () => {
 
   describe('with a label', () => {
     it('label the input', () => {
-      const { getByRole } = render(<TextField id="labelled" label="Foo bar" variant="standard" />);
+      const { getByRole } = render(<TextField label="Foo bar" variant="standard" />);
 
-      expect(getByRole('textbox', { name: 'Foo bar' })).not.to.equal(null);
+      expect(getByRole('textbox')).toHaveAccessibleName('Foo bar');
     });
 
     it('should apply the className to the label', () => {
       const { container } = render(
-        <TextField
-          id="labelled"
-          label="Foo bar"
-          InputLabelProps={{ className: 'foo' }}
-          variant="standard"
-        />,
+        <TextField label="Foo bar" InputLabelProps={{ className: 'foo' }} variant="standard" />,
       );
 
       expect(container.querySelector('label')).to.have.class('foo');
@@ -70,7 +65,7 @@ describe('<TextField />', () => {
 
     ['', undefined].forEach((label) => {
       it(`should not render empty (${label}) label element`, () => {
-        const { container } = render(<TextField id="labelled" label={label} variant="standard" />);
+        const { container } = render(<TextField label={label} variant="standard" />);
 
         expect(container.querySelector('label')).to.equal(null);
       });
@@ -81,7 +76,6 @@ describe('<TextField />', () => {
     it('should apply the className to the FormHelperText', () => {
       const { getDescriptionOf, getByRole } = render(
         <TextField
-          id="aria-test"
           helperText="Foo bar"
           FormHelperTextProps={{ className: 'foo' }}
           variant="standard"
@@ -91,17 +85,16 @@ describe('<TextField />', () => {
       expect(getDescriptionOf(getByRole('textbox'))).to.have.class('foo');
     });
 
-    it('should add accessibility labels to the input', () => {
-      const { getDescriptionOf, getByRole } = render(
+    it('has an accessible description', () => {
+      const { getByRole } = render(
         <TextField
-          id="aria-test"
           helperText="Foo bar"
           FormHelperTextProps={{ className: 'foo' }}
           variant="standard"
         />,
       );
 
-      expect(getDescriptionOf(getByRole('textbox'))).to.have.text('Foo bar');
+      expect(getByRole('textbox')).toHaveAccessibleDescription('Foo bar');
     });
   });
 
@@ -127,6 +120,27 @@ describe('<TextField />', () => {
       expect(container.querySelector('fieldset')).to.have.class(
         outlinedInputClasses.notchedOutline,
       );
+    });
+    it('should render `0` label properly', () => {
+      const { container } = render(
+        <TextField InputProps={{ classes: { notchedOutline: 'notch' } }} label={0} required />,
+      );
+
+      const notch = container.querySelector('.notch legend');
+      expect(notch).to.have.text('0\u00a0*');
+    });
+
+    it('should not set padding for empty, null or undefined label props', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+      const spanStyle = { paddingLeft: '0px', paddingRight: '0px' };
+      ['', undefined, null].forEach((prop) => {
+        const { container: container1 } = render(
+          <TextField InputProps={{ classes: { notchedOutline: 'notch' } }} label={prop} />,
+        );
+        expect(container1.querySelector('span')).toHaveComputedStyle(spanStyle);
+      });
     });
   });
 
@@ -162,11 +176,10 @@ describe('<TextField />', () => {
       expect(select.options).to.have.lengthOf(2);
     });
 
-    it('associates the label with the <select /> when `native={true}` and `id`', () => {
+    it('associates the label with the <select /> when `native={true}`', () => {
       const { getByRole } = render(
         <TextField
           label="Currency:"
-          id="labelled-select"
           select
           SelectProps={{ native: true }}
           value="$"
@@ -181,7 +194,7 @@ describe('<TextField />', () => {
 
     it('renders a combobox with the appropriate accessible name', () => {
       const { getByRole } = render(
-        <TextField select id="my-select" label="Release: " value="stable" variant="standard">
+        <TextField select label="Release: " value="stable" variant="standard">
           <MenuItem value="alpha">Alpha</MenuItem>
           <MenuItem value="beta">Beta</MenuItem>
           <MenuItem value="stable">Stable</MenuItem>
@@ -193,7 +206,7 @@ describe('<TextField />', () => {
 
     it('creates an input[hidden] that has no accessible properties', () => {
       const { container } = render(
-        <TextField select id="my-select" label="Release: " value="stable" variant="standard">
+        <TextField select label="Release: " value="stable" variant="standard">
           <MenuItem value="stable">Stable</MenuItem>
         </TextField>,
       );
@@ -205,7 +218,7 @@ describe('<TextField />', () => {
 
     it('renders a combobox with the appropriate accessible description', () => {
       const { getByRole } = render(
-        <TextField select id="aria-test" helperText="Foo bar" value="10">
+        <TextField select helperText="Foo bar" value="10">
           <MenuItem value={10}>Ten</MenuItem>
         </TextField>,
       );

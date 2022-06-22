@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { chainPropTypes } from '@mui/utils';
-import { generateUtilityClasses, isHostComponent } from '@mui/base';
+import { generateUtilityClasses } from '@mui/base';
 import SliderUnstyled, {
   SliderValueLabelUnstyled,
   sliderUnstyledClasses,
@@ -12,6 +12,7 @@ import { alpha, lighten, darken } from '@mui/system';
 import useThemeProps from '../styles/useThemeProps';
 import styled, { slotShouldForwardProp } from '../styles/styled';
 import useTheme from '../styles/useTheme';
+import shouldSpreadAdditionalProps from '../utils/shouldSpreadAdditionalProps';
 import capitalize from '../utils/capitalize';
 
 export const sliderClasses = {
@@ -26,28 +27,17 @@ export const sliderClasses = {
   ]),
 };
 
-export const SliderRoot = styled('span', {
+const SliderRoot = styled('span', {
   name: 'MuiSlider',
   slot: 'Root',
   overridesResolver: (props, styles) => {
     const { ownerState } = props;
 
-    const marks =
-      ownerState.marksProp === true && ownerState.step !== null
-        ? [...Array(Math.floor((ownerState.max - ownerState.min) / ownerState.step) + 1)].map(
-            (_, index) => ({
-              value: ownerState.min + ownerState.step * index,
-            }),
-          )
-        : ownerState.marksProp || [];
-
-    const marked = marks.length > 0 && marks.some((mark) => mark.label);
-
     return [
       styles.root,
       styles[`color${capitalize(ownerState.color)}`],
       ownerState.size !== 'medium' && styles[`size${capitalize(ownerState.size)}`],
-      marked && styles.marked,
+      ownerState.marked && styles.marked,
       ownerState.orientation === 'vertical' && styles.vertical,
       ownerState.track === 'inverted' && styles.trackInverted,
       ownerState.track === false && styles.trackFalse,
@@ -60,7 +50,7 @@ export const SliderRoot = styled('span', {
   position: 'relative',
   cursor: 'pointer',
   touchAction: 'none',
-  color: theme.palette[ownerState.color].main,
+  color: (theme.vars || theme).palette[ownerState.color].main,
   WebkitTapHighlightColor: 'transparent',
   ...(ownerState.orientation === 'horizontal' && {
     height: 4,
@@ -100,7 +90,7 @@ export const SliderRoot = styled('span', {
   [`&.${sliderClasses.disabled}`]: {
     pointerEvents: 'none',
     cursor: 'default',
-    color: theme.palette.grey[400],
+    color: (theme.vars || theme).palette.grey[400],
   },
   [`&.${sliderClasses.dragging}`]: {
     [`& .${sliderClasses.thumb}, & .${sliderClasses.track}`]: {
@@ -109,7 +99,20 @@ export const SliderRoot = styled('span', {
   },
 }));
 
-export const SliderRail = styled('span', {
+SliderRoot.propTypes /* remove-proptypes */ = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
+  /**
+   * @ignore
+   */
+  children: PropTypes.node,
+};
+
+export { SliderRoot };
+
+const SliderRail = styled('span', {
   name: 'MuiSlider',
   slot: 'Rail',
   overridesResolver: (props, styles) => styles.rail,
@@ -136,7 +139,20 @@ export const SliderRail = styled('span', {
   }),
 }));
 
-export const SliderTrack = styled('span', {
+SliderRail.propTypes /* remove-proptypes */ = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
+  /**
+   * @ignore
+   */
+  children: PropTypes.node,
+};
+
+export { SliderRail };
+
+const SliderTrack = styled('span', {
   name: 'MuiSlider',
   slot: 'Track',
   overridesResolver: (props, styles) => styles.track,
@@ -171,13 +187,26 @@ export const SliderTrack = styled('span', {
       display: 'none',
     }),
     ...(ownerState.track === 'inverted' && {
-      backgroundColor: color,
-      borderColor: color,
+      backgroundColor: theme.vars ? theme.vars.palette.Slider[`${ownerState.color}Track`] : color,
+      borderColor: theme.vars ? theme.vars.palette.Slider[`${ownerState.color}Track`] : color,
     }),
   };
 });
 
-export const SliderThumb = styled('span', {
+SliderTrack.propTypes /* remove-proptypes */ = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
+  /**
+   * @ignore
+   */
+  children: PropTypes.node,
+};
+
+export { SliderTrack };
+
+const SliderThumb = styled('span', {
   name: 'MuiSlider',
   slot: 'Thumb',
   overridesResolver: (props, styles) => {
@@ -220,7 +249,7 @@ export const SliderThumb = styled('span', {
     borderRadius: 'inherit',
     width: '100%',
     height: '100%',
-    boxShadow: theme.shadows[2],
+    boxShadow: (theme.vars || theme).shadows[2],
     ...(ownerState.size === 'small' && {
       boxShadow: 'none',
     }),
@@ -237,13 +266,21 @@ export const SliderThumb = styled('span', {
     transform: 'translate(-50%, -50%)',
   },
   [`&:hover, &.${sliderClasses.focusVisible}`]: {
-    boxShadow: `0px 0px 0px 8px ${alpha(theme.palette[ownerState.color].main, 0.16)}`,
+    boxShadow: `0px 0px 0px 8px ${
+      theme.vars
+        ? `rgba(${theme.vars.palette[ownerState.color].mainChannel} / 0.16)`
+        : alpha(theme.palette[ownerState.color].main, 0.16)
+    }`,
     '@media (hover: none)': {
       boxShadow: 'none',
     },
   },
   [`&.${sliderClasses.active}`]: {
-    boxShadow: `0px 0px 0px 14px ${alpha(theme.palette[ownerState.color].main, 0.16)}`,
+    boxShadow: `0px 0px 0px 14px ${
+      theme.vars
+        ? `rgba(${theme.vars.palette[ownerState.color].mainChannel} / 0.16)`
+        : alpha(theme.palette[ownerState.color].main, 0.16)
+    }`,
   },
   [`&.${sliderClasses.disabled}`]: {
     '&:hover': {
@@ -252,7 +289,20 @@ export const SliderThumb = styled('span', {
   },
 }));
 
-export const SliderValueLabel = styled(SliderValueLabelUnstyled, {
+SliderThumb.propTypes /* remove-proptypes */ = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
+  /**
+   * @ignore
+   */
+  children: PropTypes.node,
+};
+
+export { SliderThumb };
+
+const SliderValueLabel = styled(SliderValueLabelUnstyled, {
   name: 'MuiSlider',
   slot: 'ValueLabel',
   overridesResolver: (props, styles) => styles.valueLabel,
@@ -267,34 +317,63 @@ export const SliderValueLabel = styled(SliderValueLabelUnstyled, {
   transition: theme.transitions.create(['transform'], {
     duration: theme.transitions.duration.shortest,
   }),
-  top: -10,
   transformOrigin: 'bottom center',
   transform: 'translateY(-100%) scale(0)',
   position: 'absolute',
-  backgroundColor: theme.palette.grey[600],
+  backgroundColor: (theme.vars || theme).palette.grey[600],
   borderRadius: 2,
-  color: theme.palette.common.white,
+  color: (theme.vars || theme).palette.common.white,
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
   padding: '0.25rem 0.75rem',
+  ...(ownerState.orientation === 'horizontal' && {
+    top: '-10px',
+    '&:before': {
+      position: 'absolute',
+      content: '""',
+      width: 8,
+      height: 8,
+      transform: 'translate(-50%, 50%) rotate(45deg)',
+      backgroundColor: 'inherit',
+      bottom: 0,
+      left: '50%',
+    },
+  }),
+  ...(ownerState.orientation === 'vertical' && {
+    right: '30px',
+    top: '25px',
+    '&:before': {
+      position: 'absolute',
+      content: '""',
+      width: 8,
+      height: 8,
+      transform: 'translate(-50%, 50%) rotate(45deg)',
+      backgroundColor: 'inherit',
+      right: '-20%',
+      top: '25%',
+    },
+  }),
   ...(ownerState.size === 'small' && {
     fontSize: theme.typography.pxToRem(12),
     padding: '0.25rem 0.5rem',
   }),
-  '&:before': {
-    position: 'absolute',
-    content: '""',
-    width: 8,
-    height: 8,
-    bottom: 0,
-    left: '50%',
-    transform: 'translate(-50%, 50%) rotate(45deg)',
-    backgroundColor: 'inherit',
-  },
 }));
 
-export const SliderMark = styled('span', {
+SliderValueLabel.propTypes /* remove-proptypes */ = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
+  /**
+   * @ignore
+   */
+  children: PropTypes.node,
+};
+
+export { SliderValueLabel };
+
+const SliderMark = styled('span', {
   name: 'MuiSlider',
   slot: 'Mark',
   shouldForwardProp: (prop) => slotShouldForwardProp(prop) && prop !== 'markActive',
@@ -314,19 +393,32 @@ export const SliderMark = styled('span', {
     transform: 'translate(-50%, 1px)',
   }),
   ...(markActive && {
-    backgroundColor: theme.palette.background.paper,
+    backgroundColor: (theme.vars || theme).palette.background.paper,
     opacity: 0.8,
   }),
 }));
 
-export const SliderMarkLabel = styled('span', {
+SliderMark.propTypes /* remove-proptypes */ = {
+  // ----------------------------- Warning --------------------------------
+  // | These PropTypes are generated from the TypeScript type definitions |
+  // |     To update them edit the d.ts file and run "yarn proptypes"     |
+  // ----------------------------------------------------------------------
+  /**
+   * @ignore
+   */
+  children: PropTypes.node,
+};
+
+export { SliderMark };
+
+const SliderMarkLabel = styled('span', {
   name: 'MuiSlider',
   slot: 'MarkLabel',
   shouldForwardProp: (prop) => slotShouldForwardProp(prop) && prop !== 'markLabelActive',
   overridesResolver: (props, styles) => styles.markLabel,
 })(({ theme, ownerState, markLabelActive }) => ({
   ...theme.typography.body2,
-  color: theme.palette.text.secondary,
+  color: (theme.vars || theme).palette.text.secondary,
   position: 'absolute',
   whiteSpace: 'nowrap',
   ...(ownerState.orientation === 'horizontal' && {
@@ -344,11 +436,11 @@ export const SliderMarkLabel = styled('span', {
     },
   }),
   ...(markLabelActive && {
-    color: theme.palette.text.primary,
+    color: (theme.vars || theme).palette.text.primary,
   }),
 }));
 
-SliderRoot.propTypes = {
+SliderMarkLabel.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
@@ -357,43 +449,9 @@ SliderRoot.propTypes = {
    * @ignore
    */
   children: PropTypes.node,
-  /**
-   * @ignore
-   */
-  ownerState: PropTypes.shape({
-    'aria-label': PropTypes.string,
-    'aria-labelledby': PropTypes.string,
-    'aria-valuetext': PropTypes.string,
-    classes: PropTypes.object,
-    color: PropTypes.oneOf(['primary', 'secondary']),
-    defaultValue: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.number), PropTypes.number]),
-    disabled: PropTypes.bool,
-    getAriaLabel: PropTypes.func,
-    getAriaValueText: PropTypes.func,
-    isRtl: PropTypes.bool,
-    marks: PropTypes.oneOfType([
-      PropTypes.arrayOf(
-        PropTypes.shape({
-          label: PropTypes.node,
-          value: PropTypes.number.isRequired,
-        }),
-      ),
-      PropTypes.bool,
-    ]),
-    max: PropTypes.number,
-    min: PropTypes.number,
-    name: PropTypes.string,
-    onChange: PropTypes.func,
-    onChangeCommitted: PropTypes.func,
-    orientation: PropTypes.oneOf(['horizontal', 'vertical']),
-    scale: PropTypes.func,
-    step: PropTypes.number,
-    track: PropTypes.oneOf(['inverted', 'normal', false]),
-    value: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.number), PropTypes.number]),
-    valueLabelDisplay: PropTypes.oneOf(['auto', 'off', 'on']),
-    valueLabelFormat: PropTypes.oneOfType([PropTypes.func, PropTypes.string]),
-  }),
 };
+
+export { SliderMarkLabel };
 
 const extendUtilityClasses = (ownerState) => {
   const { color, size, classes = {} } = ownerState;
@@ -417,10 +475,6 @@ const extendUtilityClasses = (ownerState) => {
   };
 };
 
-const shouldSpreadOwnerState = (Component) => {
-  return !Component || !isHostComponent(Component);
-};
-
 const Slider = React.forwardRef(function Slider(inputProps, ref) {
   const props = useThemeProps({ props: inputProps, name: 'MuiSlider' });
 
@@ -428,6 +482,8 @@ const Slider = React.forwardRef(function Slider(inputProps, ref) {
   const isRtl = theme.direction === 'rtl';
 
   const {
+    // eslint-disable-next-line react/prop-types
+    component = 'span',
     components = {},
     componentsProps = {},
     color = 'primary',
@@ -457,25 +513,26 @@ const Slider = React.forwardRef(function Slider(inputProps, ref) {
         ...componentsProps,
         root: {
           ...componentsProps.root,
-          ...(shouldSpreadOwnerState(components.Root) && {
+          ...(shouldSpreadAdditionalProps(components.Root) && {
+            as: component,
             ownerState: { ...componentsProps.root?.ownerState, color, size },
           }),
         },
         thumb: {
           ...componentsProps.thumb,
-          ...(shouldSpreadOwnerState(components.Thumb) && {
+          ...(shouldSpreadAdditionalProps(components.Thumb) && {
             ownerState: { ...componentsProps.thumb?.ownerState, color, size },
           }),
         },
         track: {
           ...componentsProps.track,
-          ...(shouldSpreadOwnerState(components.Track) && {
+          ...(shouldSpreadAdditionalProps(components.Track) && {
             ownerState: { ...componentsProps.track?.ownerState, color, size },
           }),
         },
         valueLabel: {
           ...componentsProps.valueLabel,
-          ...(shouldSpreadOwnerState(components.ValueLabel) && {
+          ...(shouldSpreadAdditionalProps(components.ValueLabel) && {
             ownerState: { ...componentsProps.valueLabel?.ownerState, color, size },
           }),
         },
@@ -532,7 +589,9 @@ Slider.propTypes /* remove-proptypes */ = {
    */
   classes: PropTypes.object,
   /**
-   * The color of the component. It supports those theme colors that make sense for this component.
+   * The color of the component.
+   * It supports both default and custom theme colors, which can be added as shown in the
+   * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
    * @default 'primary'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
@@ -545,6 +604,7 @@ Slider.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   components: PropTypes.shape({
+    Input: PropTypes.elementType,
     Mark: PropTypes.elementType,
     MarkLabel: PropTypes.elementType,
     Rail: PropTypes.elementType,
@@ -557,7 +617,26 @@ Slider.propTypes /* remove-proptypes */ = {
    * The props used for each slot inside the Slider.
    * @default {}
    */
-  componentsProps: PropTypes.object,
+  componentsProps: PropTypes.shape({
+    input: PropTypes.object,
+    mark: PropTypes.object,
+    markLabel: PropTypes.object,
+    rail: PropTypes.object,
+    root: PropTypes.object,
+    thumb: PropTypes.object,
+    track: PropTypes.object,
+    valueLabel: PropTypes.shape({
+      children: PropTypes.element,
+      className: PropTypes.string,
+      components: PropTypes.shape({
+        Root: PropTypes.elementType,
+      }),
+      open: PropTypes.bool,
+      style: PropTypes.object,
+      value: PropTypes.number,
+      valueLabelDisplay: PropTypes.oneOf(['auto', 'off', 'on']),
+    }),
+  }),
   /**
    * The default value. Use when the component is not controlled.
    */
@@ -654,7 +733,10 @@ Slider.propTypes /* remove-proptypes */ = {
    * The size of the slider.
    * @default 'medium'
    */
-  size: PropTypes.oneOf(['small', 'medium']),
+  size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['small', 'medium']),
+    PropTypes.string,
+  ]),
   /**
    * The granularity with which the slider can step through values. (A "discrete" slider.)
    * The `min` prop serves as the origin for the valid values.
@@ -668,7 +750,7 @@ Slider.propTypes /* remove-proptypes */ = {
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object])),
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
     PropTypes.func,
     PropTypes.object,
   ]),

@@ -13,7 +13,6 @@ import { createStyles, withStyles } from '@mui/styles';
 import TextField, { TextFieldProps } from '@mui/material/TextField';
 import emotionStyled from '@emotion/styled';
 import * as React from 'react';
-import { RouteComponentProps, withRouter } from 'react-router-dom';
 import styled from 'styled-components';
 
 const filledProps = {
@@ -29,6 +28,7 @@ const filledProps = {
 {
   const StyledTextField = styled(TextField)``;
   <StyledTextField variant="filled" {...filledProps} />; // desired to pass
+  // @ts-expect-error
   <StyledTextField {...filledProps} />; // undesired, should throw
 }
 
@@ -40,17 +40,7 @@ const filledProps = {
   <StyledTextField {...filledProps} />; // desired to throw
 }
 
-// react-router
-{
-  type RouterTextFieldProps = TextFieldProps & RouteComponentProps;
-  const RouterTextField: React.FunctionComponent<RouterTextFieldProps> = () => null;
-  const TextFieldWithRouter = withRouter(RouterTextField);
-  <TextFieldWithRouter variant="filled" {...filledProps} />;
-  // @ts-expect-error
-  <TextFieldWithRouter {...filledProps} />; // desired
-}
-
-// https://github.com/mui-org/material-ui/issues/14586
+// https://github.com/mui/material-ui/issues/14586
 {
   const styles = createStyles({
     root: {

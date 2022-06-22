@@ -8,6 +8,10 @@
   "rebaseWhen": "conflicted",
   "ignoreDeps": [],
   "labels": ["dependencies"],
+  "lockFileMaintenance": {
+    "enabled": true,
+    "schedule": "before 6:00am on the first day of the month"
+  },
   "packageRules": [
     {
       "matchDepTypes": ["peerDependencies"],
@@ -24,6 +28,10 @@
     {
       "groupName": "Emotion",
       "matchPackagePatterns": "@emotion/*"
+    },
+    {
+      "groupName": "Font awesome SVG icons",
+      "matchPackagePatterns": "@fortawesome/*"
     },
     {
       "groupName": "core-js",
@@ -80,6 +88,11 @@
       "groupName": "bundling fixtures",
       "matchPaths": ["test/bundling/fixtures/**/package.json"],
       "schedule": "every 6 months on the first day of the month"
+    },
+    {
+      "groupName": "node",
+      "matchPackageNames": ["node"],
+      "enabled": false
     },
     {
       "groupName": "examples",

@@ -105,6 +105,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     autoWidth,
     children,
     className,
+    defaultOpen,
     defaultValue,
     disabled,
     displayEmpty,
@@ -136,13 +137,17 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     default: defaultValue,
     name: 'Select',
   });
+  const [openState, setOpenState] = useControlled({
+    controlled: openProp,
+    default: defaultOpen,
+    name: 'Select',
+  });
 
   const inputRef = React.useRef(null);
   const displayRef = React.useRef(null);
   const [displayNode, setDisplayNode] = React.useState(null);
   const { current: isOpenControlled } = React.useRef(openProp != null);
   const [menuMinWidthState, setMenuMinWidthState] = React.useState();
-  const [openState, setOpenState] = React.useState(false);
   const handleRef = useForkRef(ref, inputRefProp);
 
   const handleDisplayRef = React.useCallback((node) => {
@@ -165,6 +170,16 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     [value],
   );
 
+  // Resize menu on `defaultOpen` automatic toggle.
+  React.useEffect(() => {
+    if (defaultOpen && openState && displayNode && !isOpenControlled) {
+      setMenuMinWidthState(autoWidth ? null : displayNode.clientWidth);
+      displayRef.current.focus();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [displayNode, autoWidth]);
+  // `isOpenControlled` is ignored because the component should never switch between controlled and uncontrolled modes.
+  // `defaultOpen` and `openState` are ignored to avoid unnecessary callbacks.
   React.useEffect(() => {
     if (autoFocus) {
       displayRef.current.focus();
@@ -172,6 +187,9 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
   }, [autoFocus]);
 
   React.useEffect(() => {
+    if (!labelId) {
+      return undefined;
+    }
     const label = ownerDocument(displayRef.current).getElementById(labelId);
     if (label) {
       const handler = () => {
@@ -266,7 +284,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
       if (onChange) {
         // Redefine target to allow name and value to be read.
         // This allows seamless integration with the most popular form libraries.
-        // https://github.com/mui-org/material-ui/issues/13485#issuecomment-676048492
+        // https://github.com/mui/material-ui/issues/13485#issuecomment-676048492
         // Clone the event to not override `target` of the original event.
         const nativeEvent = event.nativeEvent || event;
         const clonedEvent = new nativeEvent.constructor(nativeEvent.type, nativeEvent);
@@ -290,8 +308,8 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         ' ',
         'ArrowUp',
         'ArrowDown',
-        // The native select doesn't respond to enter on MacOS, but it's recommended by
-        // https://www.w3.org/TR/wai-aria-practices/examples/listbox/listbox-collapsible.html
+        // The native select doesn't respond to enter on macOS, but it's recommended by
+        // https://www.w3.org/WAI/ARIA/apg/example-index/combobox/combobox-select-only.html
         'Enter',
       ];
 
@@ -302,7 +320,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     }
   };
 
-  const open = displayNode !== null && (isOpenControlled ? openProp : openState);
+  const open = displayNode !== null && openState;
 
   const handleBlur = (event) => {
     // if open event.stopImmediatePropagation
@@ -330,7 +348,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
     }
   }
 
-  const items = childrenArray.map((child) => {
+  const items = childrenArray.map((child, index, arr) => {
     if (!React.isValidElement(child)) {
       return null;
     }
@@ -371,6 +389,26 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
       foundMatch = true;
     }
 
+    if (child.props.value === undefined) {
+      return React.cloneElement(child, {
+        'aria-readonly': true,
+        role: 'option',
+      });
+    }
+
+    const isFirstSelectableElement = () => {
+      if (value) {
+        return selected;
+      }
+      const firstSelectableElement = arr.find(
+        (item) => item.props.value !== undefined && item.props.disabled !== true,
+      );
+      if (child === firstSelectableElement) {
+        return true;
+      }
+      return selected;
+    };
+
     return React.cloneElement(child, {
       'aria-selected': selected ? 'true' : 'false',
       onClick: handleItemClick(child),
@@ -387,7 +425,10 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         }
       },
       role: 'option',
-      selected,
+      selected:
+        arr[0].props.value === undefined || arr[0].props.disabled === true
+          ? isFirstSelectableElement()
+          : selected,
       value: undefined, // The value is most likely not a valid HTML attribute.
       'data-value': child.props.value, // Instead, we provide it as a data attribute.
     });
@@ -417,7 +458,21 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
   }
 
   if (computeDisplay) {
-    display = multiple ? displayMultiple.join(', ') : displaySingle;
+    if (multiple) {
+      if (displayMultiple.length === 0) {
+        display = null;
+      } else {
+        display = displayMultiple.reduce((output, child, index) => {
+          output.push(child);
+          if (index < displayMultiple.length - 1) {
+            output.push(', ');
+          }
+          return output;
+        }, []);
+      }
+    } else {
+      display = displaySingle;
+    }
   }
 
   // Avoid performing a layout computation in the render method.
@@ -470,8 +525,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         {/* So the vertical align positioning algorithm kicks in. */}
         {isEmpty(display) ? (
           // notranslate needed while Google Translate will not fix zero-width space issue
-          // eslint-disable-next-line react/no-danger
-          <span className="notranslate" dangerouslySetInnerHTML={{ __html: '&#8203;' }} />
+          <span className="notranslate">&#8203;</span>
         ) : (
           display
         )}
@@ -557,6 +611,11 @@ SelectInput.propTypes = {
    */
   className: PropTypes.string,
   /**
+   * If `true`, the component is toggled on mount. Use when the component open state is not controlled.
+   * You can only use it when the `native` prop is `false` (default).
+   */
+  defaultOpen: PropTypes.bool,
+  /**
    * The default value. Use when the component is not controlled.
    */
   defaultValue: PropTypes.any,
@@ -583,7 +642,7 @@ SelectInput.propTypes = {
    */
   labelId: PropTypes.string,
   /**
-   * Props applied to the [`Menu`](/api/menu/) element.
+   * Props applied to the [`Menu`](/material-ui/api/menu/) element.
    */
   MenuProps: PropTypes.object,
   /**

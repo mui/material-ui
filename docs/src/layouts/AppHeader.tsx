@@ -1,7 +1,9 @@
 import * as React from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import GlobalStyles from '@mui/material/GlobalStyles';
 import Box from '@mui/material/Box';
+import Stack from '@mui/material/Stack';
 import Container from '@mui/material/Container';
 import SvgMuiLogo from 'docs/src/icons/SvgMuiLogo';
 import HeaderNavBar from 'docs/src/components/header/HeaderNavBar';
@@ -32,6 +34,8 @@ const Header = styled('header')(({ theme }) => ({
       : 'rgba(255,255,255,0.72)',
 }));
 
+const HEIGHT = 56;
+
 export default function AppHeader() {
   const changeTheme = useChangeTheme();
   const [mode, setMode] = React.useState<string | null>(null);
@@ -54,60 +58,46 @@ export default function AppHeader() {
 
   return (
     <Header>
-      <Container sx={{ display: 'flex', alignItems: 'center', minHeight: 64 }}>
+      <GlobalStyles
+        styles={{
+          ':root': {
+            '--MuiDocs-header-height': `${HEIGHT}px`,
+          },
+        }}
+      />
+      <Container sx={{ display: 'flex', alignItems: 'center', minHeight: HEIGHT }}>
         <Box
           component={Link}
           href={ROUTES.home}
           aria-label="Go to homepage"
           sx={{ lineHeight: 0, mr: 2 }}
         >
-          <SvgMuiLogo width={32} />
+          <SvgMuiLogo width={30} />
         </Box>
         <Box sx={{ display: { xs: 'none', md: 'initial' } }}>
           <HeaderNavBar />
         </Box>
         <Box sx={{ ml: 'auto' }} />
-        <Box sx={{ mr: { xs: 1, md: 1 } }}>
+        <Stack direction="row" spacing={1}>
           <DeferredAppSearch />
-        </Box>
-        <Tooltip title={t('appFrame.github')} enterDelay={300}>
-          <IconButton
-            component="a"
-            color="inherit"
-            href="https://github.com/mui-org/"
-            data-ga-event-category="header"
-            data-ga-event-action="github"
-            sx={{
-              position: 'relative',
-              p: '6.5px',
-              mr: 1,
-              borderRadius: 1,
-              border: '1px solid',
-              color: (theme) => (theme.palette.mode === 'dark' ? 'grey.100' : 'primary.main'),
-              bgcolor: (theme) =>
-                theme.palette.mode === 'dark' ? 'primaryDark.800' : 'transparent',
-              borderColor: (theme) =>
-                theme.palette.mode === 'dark' ? 'primaryDark.500' : 'grey.200',
-              '& svg': { width: 18, height: 18 },
-              '&:focus': {
-                boxShadow: (theme) =>
-                  `0 0 0 1px ${
-                    theme.palette.mode === 'dark'
-                      ? theme.palette.primaryDark[600]
-                      : theme.palette.grey[200]
-                  }`,
-              },
-            }}
-          >
-            <GitHubIcon fontSize="small" />
-          </IconButton>
-        </Tooltip>
-        {mode !== null ? (
-          <ThemeModeToggle
-            checked={mode === 'system' ? prefersDarkMode : mode === 'dark'}
-            onChange={handleChangeThemeMode}
-          />
-        ) : null}
+          <Tooltip title={t('appFrame.github')} enterDelay={300}>
+            <IconButton
+              component="a"
+              color="primary"
+              href="https://github.com/mui"
+              data-ga-event-category="header"
+              data-ga-event-action="github"
+            >
+              <GitHubIcon fontSize="small" />
+            </IconButton>
+          </Tooltip>
+          {mode !== null ? (
+            <ThemeModeToggle
+              checked={mode === 'system' ? prefersDarkMode : mode === 'dark'}
+              onChange={handleChangeThemeMode}
+            />
+          ) : null}
+        </Stack>
         <Box sx={{ display: { md: 'none' }, ml: 1 }}>
           <HeaderNavDropdown />
         </Box>

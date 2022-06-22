@@ -1,7 +1,7 @@
 /* eslint-env mocha */
 import { expect } from 'chai';
 import * as React from 'react';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { ThemeProvider as MDThemeProvider, createTheme } from '@mui/material/styles';
 import ReactTestRenderer from 'react-test-renderer';
 import createMount from './createMount';
 import findOutermostIntrinsic from './findOutermostIntrinsic';
@@ -149,7 +149,7 @@ export function describeRef(element, getOptions) {
  */
 export function testRootClass(element, getOptions) {
   it('applies the root class to the root component if it has this class', () => {
-    const { classes, render } = getOptions();
+    const { classes, render, skip } = getOptions();
     if (classes.root == null) {
       return;
     }
@@ -162,17 +162,23 @@ export function testRootClass(element, getOptions) {
         classes: { ...classes, root: `${classes.root} ${classesRootClassname}` },
       }),
     );
+
     // we established that the root component renders the outermost host previously. We immediately
     // jump to the host component because some components pass the `root` class
     // to the `classes` prop of the root component.
-    // https://github.com/mui-org/material-ui/blob/f9896bcd129a1209153106296b3d2487547ba205/packages/material-ui/src/OutlinedInput/OutlinedInput.js#L101
+    // https://github.com/mui/material-ui/blob/f9896bcd129a1209153106296b3d2487547ba205/packages/material-ui/src/OutlinedInput/OutlinedInput.js#L101
     expect(container.firstChild).to.have.class(className);
     expect(container.firstChild).to.have.class(classes.root);
     expect(document.querySelectorAll(`.${classes.root}`).length).to.equal(1);
 
-    // Test that classes prop works
-    expect(container.firstChild).to.have.class(classesRootClassname);
-    expect(document.querySelectorAll('[classes]').length).to.equal(0);
+    // classes test only for @mui/material
+    if (!skip || !skip.includes('classesRoot')) {
+      // Test that classes prop works
+      expect(container.firstChild).to.have.class(classesRootClassname);
+
+      // Test that `classes` does not spread to DOM
+      expect(document.querySelectorAll('[classes]').length).to.equal(0);
+    }
   });
 }
 
@@ -202,7 +208,7 @@ export function testReactTestRenderer(element) {
  * @property {(node: React.ReactElement) => import('./createRenderer').MuiRenderResult} [render] - Should be a return value from createRenderer
  * @property {Array<keyof typeof fullSuite>} [only] - If specified only run the tests listed
  * @property {any} refInstanceof - `ref` will be an instanceof this constructor.
- * @property {Array<keyof typeof fullSuite>} [skip] - Skip the specified tests
+ * @property {Array<keyof typeof fullSuite | 'classesRoot'>} [skip] - Skip the specified tests
  * @property {string} [testComponentsRootPropWith] - The host component that should be rendered instead.
  * @property {{ slotName: string, slotClassName: string } | Array<{ slotName: string, slotClassName: string }>} [testDeepOverrides]
  * @property {{ prop?: string, value?: any, styleKey: string }} [testStateOverrides]
@@ -245,7 +251,7 @@ function testThemeDefaultProps(element, getOptions) {
   describe('theme default components:', () => {
     it("respect theme's defaultProps", () => {
       const testProp = 'data-id';
-      const { muiName, render } = getOptions();
+      const { muiName, render, ThemeProvider = MDThemeProvider } = getOptions();
 
       if (!muiName) {
         throwMissingPropError('muiName');
@@ -284,7 +290,7 @@ function testThemeStyleOverrides(element, getOptions) {
       if (/jsdom/.test(window.navigator.userAgent)) {
         this.skip();
       }
-      const { muiName, testStateOverrides, render } = getOptions();
+      const { muiName, testStateOverrides, render, ThemeProvider = MDThemeProvider } = getOptions();
 
       if (!testStateOverrides) {
         return;
@@ -333,6 +339,7 @@ function testThemeStyleOverrides(element, getOptions) {
         testDeepOverrides,
         testRootOverrides = { slotName: 'root' },
         render,
+        ThemeProvider = MDThemeProvider,
       } = getOptions();
 
       const testStyle = {
@@ -427,7 +434,13 @@ function testThemeStyleOverrides(element, getOptions) {
         this.skip();
       }
 
-      const { muiName, classes, testStateOverrides, render } = getOptions();
+      const {
+        muiName,
+        classes,
+        testStateOverrides,
+        render,
+        ThemeProvider = MDThemeProvider,
+      } = getOptions();
 
       const classKeys = Object.keys(classes);
 
@@ -494,7 +507,7 @@ function testThemeVariants(element, getOptions) {
         this.skip();
       }
 
-      const { muiName, testVariantProps, render } = getOptions();
+      const { muiName, testVariantProps, render, ThemeProvider = MDThemeProvider } = getOptions();
 
       if (!testVariantProps) {
         throw new Error('missing testVariantProps');

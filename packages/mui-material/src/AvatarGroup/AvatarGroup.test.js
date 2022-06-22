@@ -49,6 +49,85 @@ describe('<AvatarGroup />', () => {
     expect(container.textContent).to.equal('+2');
   });
 
+  it('should pass props from componentsProps.additionalAvatar to the slot component', () => {
+    const componentsProps = { additionalAvatar: { className: 'additional-avatar-test' } };
+
+    const { container } = render(
+      <AvatarGroup max={3} componentsProps={componentsProps}>
+        <Avatar src="/fake.png" />
+        <Avatar src="/fake.png" />
+        <Avatar src="/fake.png" />
+        <Avatar src="/fake.png" />
+      </AvatarGroup>,
+    );
+
+    const additionalAvatar = container.querySelector('.additional-avatar-test');
+    expect(additionalAvatar.classList.contains('additional-avatar-test')).to.equal(true);
+  });
+
+  it('should respect total', () => {
+    const { container } = render(
+      <AvatarGroup total={10}>
+        <Avatar src="/fake.png" />
+        <Avatar src="/fake.png" />
+        <Avatar src="/fake.png" />
+      </AvatarGroup>,
+    );
+    expect(container.querySelectorAll('.MuiAvatar-root').length).to.equal(4);
+    expect(container.querySelectorAll('img').length).to.equal(3);
+    expect(container.textContent).to.equal('+7');
+  });
+
+  it('should respect both total and max', () => {
+    const { container } = render(
+      <AvatarGroup max={2} total={3}>
+        <Avatar src="/fake.png" />
+        <Avatar src="/fake.png" />
+      </AvatarGroup>,
+    );
+    expect(container.querySelectorAll('.MuiAvatar-root').length).to.equal(2);
+    expect(container.querySelectorAll('img').length).to.equal(1);
+    expect(container.textContent).to.equal('+2');
+  });
+
+  it('should respect total and clamp down shown avatars', () => {
+    const { container } = render(
+      <AvatarGroup total={1}>
+        <Avatar src="/fake.png" />
+        <Avatar src="/fake.png" />
+      </AvatarGroup>,
+    );
+    expect(container.querySelectorAll('.MuiAvatar-root').length).to.equal(1);
+    expect(container.querySelectorAll('img').length).to.equal(1);
+    expect(container.textContent).to.equal('');
+  });
+
+  it('should display extra if clamp max is >= total', () => {
+    const { container } = render(
+      <AvatarGroup total={10} max={10}>
+        <Avatar src="/fake.png" />
+        <Avatar src="/fake.png" />
+      </AvatarGroup>,
+    );
+    expect(container.querySelectorAll('.MuiAvatar-root').length).to.equal(3);
+    expect(container.querySelectorAll('img').length).to.equal(2);
+    expect(container.textContent).to.equal('+8');
+  });
+
+  it('should display all avatars if total === max === children.length', () => {
+    const { container } = render(
+      <AvatarGroup total={4} max={4}>
+        <Avatar src="/fake.png" />
+        <Avatar src="/fake.png" />
+        <Avatar src="/fake.png" />
+        <Avatar src="/fake.png" />
+      </AvatarGroup>,
+    );
+    expect(container.querySelectorAll('.MuiAvatar-root').length).to.equal(4);
+    expect(container.querySelectorAll('img').length).to.equal(4);
+    expect(container.textContent).to.equal('');
+  });
+
   it('should display all avatars with default (circular) variant', () => {
     const { container } = render(
       <AvatarGroup>

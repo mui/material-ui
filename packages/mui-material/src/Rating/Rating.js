@@ -90,7 +90,7 @@ const RatingRoot = styled('span', {
   textAlign: 'left',
   WebkitTapHighlightColor: 'transparent',
   [`&.${ratingClasses.disabled}`]: {
-    opacity: theme.palette.action.disabledOpacity,
+    opacity: (theme.vars || theme).palette.action.disabledOpacity,
     pointerEvents: 'none',
   },
   [`&.${ratingClasses.focusVisible} .${ratingClasses.iconActive}`]: {
@@ -151,7 +151,7 @@ const RatingIcon = styled('span', {
     transform: 'scale(1.2)',
   }),
   ...(ownerState.iconEmpty && {
-    color: theme.palette.action.disabled,
+    color: (theme.vars || theme).palette.action.disabled,
   }),
 }));
 
@@ -412,7 +412,7 @@ const Rating = React.forwardRef(function Rating(inProps, ref) {
     let newValue = event.target.value === '' ? null : parseFloat(event.target.value);
 
     // Give mouse priority over keyboard
-    // Fix https://github.com/mui-org/material-ui/issues/22827
+    // Fix https://github.com/mui/material-ui/issues/22827
     if (hover !== -1) {
       newValue = hover;
     }
@@ -641,7 +641,7 @@ Rating.propTypes /* remove-proptypes */ = {
    * Accepts a function which returns a string value that provides a user-friendly name for the current value of the rating.
    * This is important for screen reader users.
    *
-   * For localization purposes, you can use the provided [translations](/guides/localization/).
+   * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
    * @param {number} value The rating label's value to format.
    * @returns {string}
    * @default function defaultLabelText(value) {
@@ -730,7 +730,7 @@ Rating.propTypes /* remove-proptypes */ = {
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object])),
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
     PropTypes.func,
     PropTypes.object,
   ]),

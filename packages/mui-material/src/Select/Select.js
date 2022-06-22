@@ -12,11 +12,25 @@ import FilledInput from '../FilledInput';
 import OutlinedInput from '../OutlinedInput';
 import useThemeProps from '../styles/useThemeProps';
 import useForkRef from '../utils/useForkRef';
+import styled, { rootShouldForwardProp } from '../styles/styled';
 
 const useUtilityClasses = (ownerState) => {
   const { classes } = ownerState;
   return classes;
 };
+
+const styledRootConfig = {
+  name: 'MuiSelect',
+  overridesResolver: (props, styles) => styles.root,
+  shouldForwardProp: (prop) => rootShouldForwardProp(prop) && prop !== 'variant',
+  slot: 'Root',
+};
+
+const StyledInput = styled(Input, styledRootConfig)('');
+
+const StyledOutlinedInput = styled(OutlinedInput, styledRootConfig)('');
+
+const StyledFilledInput = styled(FilledInput, styledRootConfig)('');
 
 const Select = React.forwardRef(function Select(inProps, ref) {
   const props = useThemeProps({ name: 'MuiSelect', props: inProps });
@@ -25,6 +39,7 @@ const Select = React.forwardRef(function Select(inProps, ref) {
     children,
     classes: classesProp = {},
     className,
+    defaultOpen = false,
     displayEmpty = false,
     IconComponent = ArrowDropDownIcon,
     id,
@@ -40,7 +55,7 @@ const Select = React.forwardRef(function Select(inProps, ref) {
     open,
     renderValue,
     SelectDisplayProps,
-    variant: variantProps = 'outlined',
+    variant: variantProp = 'outlined',
     ...other
   } = props;
 
@@ -53,17 +68,17 @@ const Select = React.forwardRef(function Select(inProps, ref) {
     states: ['variant'],
   });
 
-  const variant = fcs.variant || variantProps;
+  const variant = fcs.variant || variantProp;
 
   const InputComponent =
     input ||
     {
-      standard: <Input />,
-      outlined: <OutlinedInput label={label} />,
-      filled: <FilledInput />,
+      standard: <StyledInput />,
+      outlined: <StyledOutlinedInput label={label} />,
+      filled: <StyledFilledInput />,
     }[variant];
 
-  const ownerState = { ...props, classes: classesProp };
+  const ownerState = { ...props, variant, classes: classesProp };
   const classes = useUtilityClasses(ownerState);
 
   const inputComponentRef = useForkRef(ref, InputComponent.ref);
@@ -82,6 +97,7 @@ const Select = React.forwardRef(function Select(inProps, ref) {
         ? { id }
         : {
             autoWidth,
+            defaultOpen,
             displayEmpty,
             labelId,
             MenuProps,
@@ -98,6 +114,7 @@ const Select = React.forwardRef(function Select(inProps, ref) {
     ...(multiple && native && variant === 'outlined' ? { notched: true } : {}),
     ref: inputComponentRef,
     className: clsx(InputComponent.props.className, className),
+    variant,
     ...other,
   });
 });
@@ -129,6 +146,12 @@ Select.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   className: PropTypes.string,
+  /**
+   * If `true`, the component is initially open. Use when the component open state is not controlled (i.e. the `open` prop is not defined).
+   * You can only use it when the `native` prop is `false` (default).
+   * @default false
+   */
+  defaultOpen: PropTypes.bool,
   /**
    * The default value. Use when the component is not controlled.
    */
@@ -163,7 +186,7 @@ Select.propTypes /* remove-proptypes */ = {
    */
   inputProps: PropTypes.object,
   /**
-   * See [OutlinedInput#label](/api/outlined-input/#props)
+   * See [OutlinedInput#label](/material-ui/api/outlined-input/#props)
    */
   label: PropTypes.node,
   /**
@@ -172,7 +195,7 @@ Select.propTypes /* remove-proptypes */ = {
    */
   labelId: PropTypes.string,
   /**
-   * Props applied to the [`Menu`](/api/menu/) element.
+   * Props applied to the [`Menu`](/material-ui/api/menu/) element.
    */
   MenuProps: PropTypes.object,
   /**
@@ -229,7 +252,7 @@ Select.propTypes /* remove-proptypes */ = {
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object])),
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
     PropTypes.func,
     PropTypes.object,
   ]),

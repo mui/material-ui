@@ -12,21 +12,7 @@ interface ThemeModeToggleProps {
 export default function ThemeModeToggle(props: ThemeModeToggleProps) {
   return (
     <Tooltip title={props.checked ? 'Turn on the light' : 'Turn off the light'}>
-      <IconButton
-        disableTouchRipple
-        onClick={() => props.onChange(!props.checked)}
-        sx={{
-          color: (theme) => (theme.palette.mode === 'dark' ? 'grey.100' : 'primary.main'),
-          borderRadius: 1,
-          p: '6.5px',
-          border: '1px solid',
-          bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.800' : 'transparent'),
-          borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.500' : 'grey.200'),
-          '& svg': {
-            fontSize: (theme) => theme.typography.pxToRem(18),
-          },
-        }}
-      >
+      <IconButton color="primary" disableTouchRipple onClick={() => props.onChange(!props.checked)}>
         {props.checked ? (
           <LightModeOutlined fontSize="small" />
         ) : (

@@ -106,7 +106,7 @@ const StyledTreeItemContent = styled(TreeItemContent, {
   },
   [`& .${treeItemClasses.label}`]: {
     width: '100%',
-    // fixes overflow - see https://github.com/mui-org/material-ui/issues/27372
+    // fixes overflow - see https://github.com/mui/material-ui/issues/27372
     minWidth: 0,
     paddingLeft: 4,
     position: 'relative',
@@ -256,7 +256,7 @@ const TreeItem = React.forwardRef(function TreeItem(inProps, ref) {
      *
      * If the tree does not support multiple selection, aria-selected
      * is set to true for the selected node and it is not present on any other node in the tree.
-     * Source: https://www.w3.org/TR/wai-aria-practices/#TreeView
+     * Source: https://www.w3.org/WAI/ARIA/apg/patterns/treeview/
      */
     ariaSelected = true;
   }
@@ -403,19 +403,19 @@ TreeItem.propTypes /* remove-proptypes */ = {
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object])),
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
     PropTypes.func,
     PropTypes.object,
   ]),
   /**
    * The component used for the transition.
-   * [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default Collapse
    */
   TransitionComponent: PropTypes.elementType,
   /**
    * Props applied to the transition element.
-   * By default, the element is based on this [`Transition`](https://reactcommunity.org/react-transition-group/transition) component.
+   * By default, the element is based on this [`Transition`](http://reactcommunity.org/react-transition-group/transition/) component.
    */
   TransitionProps: PropTypes.object,
 };

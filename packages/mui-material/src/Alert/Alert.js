@@ -47,7 +47,6 @@ const AlertRoot = styled(Paper, {
 
   return {
     ...theme.typography.body2,
-    borderRadius: theme.shape.borderRadius,
     backgroundColor: 'transparent',
     display: 'flex',
     padding: '6px 16px',
@@ -99,6 +98,8 @@ const AlertMessage = styled('div', {
   overridesResolver: (props, styles) => styles.message,
 })({
   padding: '8px 0',
+  minWidth: 0,
+  overflow: 'auto',
 });
 
 const AlertAction = styled('div', {
@@ -149,7 +150,6 @@ const Alert = React.forwardRef(function Alert(inProps, ref) {
   return (
     <AlertRoot
       role={role}
-      square
       elevation={0}
       ownerState={ownerState}
       className={clsx(classes.root, className)}
@@ -164,7 +164,11 @@ const Alert = React.forwardRef(function Alert(inProps, ref) {
       <AlertMessage ownerState={ownerState} className={classes.message}>
         {children}
       </AlertMessage>
-      {action != null ? <AlertAction className={classes.action}>{action}</AlertAction> : null}
+      {action != null ? (
+        <AlertAction ownerState={ownerState} className={classes.action}>
+          {action}
+        </AlertAction>
+      ) : null}
       {action == null && onClose ? (
         <AlertAction ownerState={ownerState} className={classes.action}>
           <IconButton
@@ -206,12 +210,14 @@ Alert.propTypes /* remove-proptypes */ = {
   /**
    * Override the default label for the *close popup* icon button.
    *
-   * For localization purposes, you can use the provided [translations](/guides/localization/).
+   * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
    * @default 'Close'
    */
   closeText: PropTypes.string,
   /**
-   * The main color for the alert. Unless provided, the value is taken from the `severity` prop.
+   * The color of the component. Unless provided, the value is taken from the `severity` prop.
+   * It supports both default and custom theme colors, which can be added as shown in the
+   * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['error', 'info', 'success', 'warning']),
@@ -255,7 +261,7 @@ Alert.propTypes /* remove-proptypes */ = {
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object])),
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
     PropTypes.func,
     PropTypes.object,
   ]),

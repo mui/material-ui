@@ -6,49 +6,19 @@ export interface BadgeUnstyledClasses {
   root: string;
   /** Class name applied to the badge `span` element. */
   badge: string;
-  /** Class name applied to the badge `span` element if `variant="dot"`. */
-  dot: string;
-  /** Class name applied to the badge `span` element if `variant="standard"`. */
-  standard: string;
-  /** Class name applied to the badge `span` element if `anchorOrigin={{ 'top', 'right' }} overlap="rectangular"`. */
-  anchorOriginTopRightRectangular: string;
-  /** Class name applied to the badge `span` element if `anchorOrigin={{ 'bottom', 'right' }} overlap="rectangular"`. */
-  anchorOriginBottomRightRectangular: string;
-  /** Class name applied to the badge `span` element if `anchorOrigin={{ 'top', 'left' }} overlap="rectangular"`. */
-  anchorOriginTopLeftRectangular: string;
-  /** Class name applied to the badge `span` element if `anchorOrigin={{ 'bottom', 'left' }} overlap="rectangular"`. */
-  anchorOriginBottomLeftRectangular: string;
-  /** Class name applied to the badge `span` element if `anchorOrigin={{ 'top', 'right' }} overlap="circular"`. */
-  anchorOriginTopRightCircular: string;
-  /** Class name applied to the badge `span` element if `anchorOrigin={{ 'bottom', 'right' }} overlap="circular"`. */
-  anchorOriginBottomRightCircular: string;
-  /** Class name applied to the badge `span` element if `anchorOrigin={{ 'top', 'left' }} overlap="circular"`. */
-  anchorOriginTopLeftCircular: string;
-  /** Class name applied to the badge `span` element if `anchorOrigin={{ 'bottom', 'left' }} overlap="circular"`. */
-  anchorOriginBottomLeftCircular: string;
   /** State class applied to the badge `span` element if `invisible={true}`. */
   invisible: string;
 }
 
 export type BadgeUnstyledClassKey = keyof BadgeUnstyledClasses;
 
-export function getBadgeUtilityClass(slot: string): string {
-  return generateUtilityClass('MuiBadge', slot);
+export function getBadgeUnstyledUtilityClass(slot: string): string {
+  return generateUtilityClass('BaseBadge', slot);
 }
 
-const badgeUnstyledClasses: BadgeUnstyledClasses = generateUtilityClasses('MuiBadge', [
+const badgeUnstyledClasses: BadgeUnstyledClasses = generateUtilityClasses('BaseBadge', [
   'root',
   'badge',
-  'dot',
-  'standard',
-  'anchorOriginTopLeftCircular',
-  'anchorOriginTopLeftRectangular',
-  'anchorOriginTopRightCircular',
-  'anchorOriginTopRightRectangular',
-  'anchorOriginBottomLeftCircular',
-  'anchorOriginBottomLeftRectangular',
-  'anchorOriginBottomRightCircular',
-  'anchorOriginBottomRightRectangular',
   'invisible',
 ]);
 

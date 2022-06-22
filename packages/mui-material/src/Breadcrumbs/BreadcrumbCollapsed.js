@@ -5,7 +5,7 @@ import styled from '../styles/styled';
 import MoreHorizIcon from '../internal/svg-icons/MoreHoriz';
 import ButtonBase from '../ButtonBase';
 
-const BreadcrumbCollapsedButton = styled(ButtonBase, { skipSx: true })(({ theme }) => ({
+const BreadcrumbCollapsedButton = styled(ButtonBase)(({ theme }) => ({
   display: 'flex',
   marginLeft: `calc(${theme.spacing(1)} * 0.5)`,
   marginRight: `calc(${theme.spacing(1)} * 0.5)`,

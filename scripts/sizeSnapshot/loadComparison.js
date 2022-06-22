@@ -6,7 +6,7 @@ const path = require('path');
 const fetch = require('node-fetch');
 const lodash = require('lodash');
 
-const artifactServer = 'https://s3.eu-central-1.amazonaws.com/mui-org-material-ui';
+const ARTIFACT_SERVER = 'https://s3.eu-central-1.amazonaws.com/mui-org-ci';
 
 async function loadCurrentSnapshot() {
   return fse.readJSON(path.join(__dirname, '../../size-snapshot.json'));
@@ -22,7 +22,11 @@ async function loadSnapshot(commitId, ref) {
       `Need a ref for that commit. Did you mean \`loadSnapshot(commitId, 'master')\`?`,
     );
   }
-  const response = await fetch(`${artifactServer}/artifacts/${ref}/${commitId}/size-snapshot.json`);
+  const url = `${ARTIFACT_SERVER}/artifacts/${ref}/${commitId}/size-snapshot.json`;
+  const response = await fetch(url);
+  if (!response.ok) {
+    throw new Error(`Failed to fetch "${url}", HTTP ${response.status}`);
+  }
   return response.json();
 }
 

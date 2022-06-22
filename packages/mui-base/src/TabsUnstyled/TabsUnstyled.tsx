@@ -2,10 +2,14 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { OverridableComponent } from '@mui/types';
-import { appendOwnerState } from '../utils';
+import { appendOwnerState, WithOptionalOwnerState } from '../utils';
 import composeClasses from '../composeClasses';
 import { getTabsUnstyledUtilityClass } from './tabsUnstyledClasses';
-import TabsUnstyledProps, { TabsUnstyledTypeMap } from './TabsUnstyledProps';
+import {
+  TabsUnstyledProps,
+  TabsUnstyledRootSlotProps,
+  TabsUnstyledTypeMap,
+} from './TabsUnstyled.types';
 import useTabs from './useTabs';
 import Context from './TabsContext';
 
@@ -23,11 +27,11 @@ const useUtilityClasses = (ownerState: { orientation: 'horizontal' | 'vertical' 
  *
  * Demos:
  *
- * - [Tabs](https://mui.com/components/tabs/)
+ * - [Tabs](https://mui.com/base/react-tabs/)
  *
  * API:
  *
- * - [TabsUnstyled API](https://mui.com/api/tabs-unstyled/)
+ * - [TabsUnstyled API](https://mui.com/base/api/tabs-unstyled/)
  */
 const TabsUnstyled = React.forwardRef<unknown, TabsUnstyledProps>((props, ref) => {
   const {
@@ -45,7 +49,7 @@ const TabsUnstyled = React.forwardRef<unknown, TabsUnstyledProps>((props, ref) =
     ...other
   } = props;
 
-  const { tabsContextValue, getRootProps } = useTabs(props);
+  const { tabsContextValue } = useTabs(props);
 
   const ownerState = {
     ...props,
@@ -56,19 +60,19 @@ const TabsUnstyled = React.forwardRef<unknown, TabsUnstyledProps>((props, ref) =
   const classes = useUtilityClasses(ownerState);
 
   const TabsRoot: React.ElementType = component ?? components.Root ?? 'div';
-  const tabsRootProps = appendOwnerState(
+  const tabsRootProps: WithOptionalOwnerState<TabsUnstyledRootSlotProps> = appendOwnerState(
     TabsRoot,
-    { ...other, ...componentsProps.root },
+    {
+      ...other,
+      ...componentsProps.root,
+      ref,
+      className: clsx(classes.root, componentsProps.root?.className, className),
+    },
     ownerState,
   );
 
   return (
-    <TabsRoot
-      {...getRootProps()}
-      {...tabsRootProps}
-      ref={ref}
-      className={clsx(classes.root, componentsProps.root?.className, className)}
-    >
+    <TabsRoot {...tabsRootProps}>
       <Context.Provider value={tabsContextValue}>{children}</Context.Provider>
     </TabsRoot>
   );
@@ -104,7 +108,9 @@ TabsUnstyled.propTypes /* remove-proptypes */ = {
    * The props used for each slot inside the Tabs.
    * @default {}
    */
-  componentsProps: PropTypes.object,
+  componentsProps: PropTypes.shape({
+    root: PropTypes.object,
+  }),
   /**
    * The default value. Use when the component is not controlled.
    */

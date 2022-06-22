@@ -1162,6 +1162,32 @@ describe('<Slider />', () => {
       expect(handleChange.args[1][1]).to.deep.equal([20, 20]);
       expect(document.activeElement).to.have.attribute('data-index', '1');
     });
+
+    it('should bound the value when moving the first behind the second', () => {
+      const handleChange = spy();
+      const { container } = render(
+        <Slider defaultValue={[20, 30]} disableSwap onChange={handleChange} />,
+      );
+
+      stub(container.firstChild, 'getBoundingClientRect').callsFake(() => ({
+        width: 100,
+        height: 10,
+        bottom: 10,
+        left: 0,
+      }));
+
+      fireEvent.touchStart(
+        container.firstChild,
+        createTouches([{ identifier: 1, clientX: 15, clientY: 0 }]),
+      );
+      fireEvent.touchMove(
+        document.body,
+        createTouches([{ identifier: 1, clientX: 40, clientY: 0 }]),
+      );
+      expect(handleChange.args[0][1]).to.deep.equal([15, 30]);
+      expect(handleChange.args[1][1]).to.deep.equal([30, 30]);
+      expect(document.activeElement).to.have.attribute('data-index', '0');
+    });
   });
 
   describe('prop: size', () => {
@@ -1181,6 +1207,75 @@ describe('<Slider />', () => {
       const thumb = document.querySelector(`.${classes.thumb}`);
       expect(root).to.have.class(classes.sizeSmall);
       expect(thumb).to.have.class(classes.thumbSizeSmall);
+    });
+  });
+
+  describe('prop: components', () => {
+    it('should render custom components if specified', () => {
+      // ARRANGE
+      const dataTestId = 'slider-input-testid';
+      const name = 'custom-input';
+      const CustomInput = ({ ownerState, ...props }) => (
+        <input {...props} data-testid={dataTestId} name={name} />
+      );
+
+      // ACT
+      const { getByTestId } = render(<Slider components={{ Input: CustomInput }} />);
+
+      // ASSERT
+      expect(getByTestId(dataTestId).name).to.equal(name);
+    });
+  });
+
+  describe('prop: componentsProps', () => {
+    it('should forward the props to their respective components', () => {
+      // ARRANGE
+      const dataTestId = 'slider-input-testid';
+      const id = 'slider-input-id';
+
+      // ACT
+      const { getByTestId } = render(
+        <Slider defaultValue={10} componentsProps={{ input: { 'data-testid': dataTestId, id } }} />,
+      );
+
+      // ASSERT
+      expect(getByTestId(dataTestId).id).to.equal(id);
+    });
+  });
+
+  it('marked slider should be customizable in the theme', function test() {
+    if (/jsdom/.test(window.navigator.userAgent)) {
+      this.skip();
+    }
+
+    const theme = createTheme({
+      components: {
+        MuiSlider: {
+          styleOverrides: {
+            marked: {
+              marginTop: 40,
+              marginBottom: 0,
+            },
+          },
+        },
+      },
+    });
+
+    const { container } = render(
+      <ThemeProvider theme={theme}>
+        <Slider
+          marks={[
+            { label: '1', value: 1 },
+            { label: '2', value: 2 },
+          ]}
+          step={null}
+        />
+      </ThemeProvider>,
+    );
+
+    expect(container.querySelector(`.${classes.marked}`)).toHaveComputedStyle({
+      marginTop: '40px',
+      marginBottom: '0px',
     });
   });
 });

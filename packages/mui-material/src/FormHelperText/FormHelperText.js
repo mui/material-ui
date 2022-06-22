@@ -41,7 +41,7 @@ const FormHelperTextRoot = styled('p', {
     ];
   },
 })(({ theme, ownerState }) => ({
-  color: theme.palette.text.secondary,
+  color: (theme.vars || theme).palette.text.secondary,
   ...theme.typography.caption,
   textAlign: 'left',
   marginTop: 3,
@@ -49,10 +49,10 @@ const FormHelperTextRoot = styled('p', {
   marginBottom: 0,
   marginLeft: 0,
   [`&.${formHelperTextClasses.disabled}`]: {
-    color: theme.palette.text.disabled,
+    color: (theme.vars || theme).palette.text.disabled,
   },
   [`&.${formHelperTextClasses.error}`]: {
-    color: theme.palette.error.main,
+    color: (theme.vars || theme).palette.error.main,
   },
   ...(ownerState.size === 'small' && {
     marginTop: 4,
@@ -111,8 +111,7 @@ const FormHelperText = React.forwardRef(function FormHelperText(inProps, ref) {
     >
       {children === ' ' ? (
         // notranslate needed while Google Translate will not fix zero-width space issue
-        // eslint-disable-next-line react/no-danger
-        <span className="notranslate" dangerouslySetInnerHTML={{ __html: '&#8203;' }} />
+        <span className="notranslate">&#8203;</span>
       ) : (
         children
       )}
@@ -173,7 +172,7 @@ FormHelperText.propTypes /* remove-proptypes */ = {
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object])),
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
     PropTypes.func,
     PropTypes.object,
   ]),

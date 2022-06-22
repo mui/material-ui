@@ -62,7 +62,7 @@ async function getWebpackEntries() {
     const componentName = path.basename(path.dirname(componentPath));
 
     return {
-      name: componentName,
+      id: `@mui/material-next/${componentName}`,
       path: path.relative(workspaceRoot, path.dirname(componentPath)),
     };
   });
@@ -73,7 +73,7 @@ async function getWebpackEntries() {
       const componentName = path.basename(path.dirname(componentPath));
 
       return {
-        name: componentName,
+        id: `@mui/joy/${componentName}`,
         path: path.relative(workspaceRoot, path.dirname(componentPath)),
       };
     },
@@ -153,85 +153,83 @@ async function getWebpackEntries() {
       path: path.join(path.relative(workspaceRoot, materialPackagePath), 'legacy/index.js'),
     },
     {
-      name: '@mui/material-next',
+      id: '@mui/material-next',
       path: path.join(path.relative(workspaceRoot, materialNextPackagePath), 'index.js'),
     },
     ...materialNextComponents,
     {
-      name: '@mui/joy',
+      id: '@mui/joy',
       path: path.join(path.relative(workspaceRoot, joyPackagePath), 'index.js'),
     },
     ...joyComponents,
   ];
 }
 
-module.exports = async function webpackConfig(webpack, environment) {
+function createWebpackConfig(entry, environment) {
   const analyzerMode = environment.analyze ? 'static' : 'disabled';
   const concatenateModules = !environment.accurateBundles;
 
-  const entries = await getWebpackEntries();
-  const configurations = entries.map((entry) => {
-    /**
-     * @type {import('webpack').Configuration}
-     */
-    const configuration = {
-      // ideally this would be computed from the bundles peer dependencies
-      // Ensure that `react` as well as `react/*` are considered externals but not `react*`
-      externals: /^(date-fns|dayjs|luxon|moment|react|react-dom)(\/.*)?$/,
-      mode: 'production',
-      optimization: {
-        concatenateModules,
-        minimizer: [
-          new TerserPlugin({
-            test: /\.js(\?.*)?$/i,
-          }),
-        ],
-      },
-      output: {
-        filename: '[name].js',
-        library: {
-          // TODO: Use `type: 'module'` once it is supported (currently incompatible with `externals`)
-          name: 'M',
-          type: 'var',
-          // type: 'module',
-        },
-        path: path.join(__dirname, 'build'),
-      },
-      plugins: [
-        new CompressionPlugin(),
-        new BundleAnalyzerPlugin({
-          analyzerMode,
-          // We create a report for each bundle so around 120 reports.
-          // Opening them all is spam.
-          // If opened with `webpack --config . --analyze` it'll still open one new tab though.
-          openAnalyzer: false,
-          // '[name].html' not supported: https://github.com/webpack-contrib/webpack-bundle-analyzer/issues/12
-          reportFilename: `${entry.id}.html`,
+  /**
+   * @type {import('webpack').Configuration}
+   */
+  const configuration = {
+    // ideally this would be computed from the bundles peer dependencies
+    // Ensure that `react` as well as `react/*` are considered externals but not `react*`
+    externals: /^(date-fns|dayjs|luxon|moment|react|react-dom)(\/.*)?$/,
+    mode: 'production',
+    optimization: {
+      concatenateModules,
+      minimizer: [
+        new TerserPlugin({
+          test: /\.js(\?.*)?$/i,
         }),
       ],
-      resolve: {
-        alias: {
-          '@mui/material': path.join(workspaceRoot, 'packages/mui-material/build'),
-          '@mui/lab': path.join(workspaceRoot, 'packages/mui-lab/build'),
-          '@mui/styled-engine': path.join(workspaceRoot, 'packages/mui-styled-engine/build'),
-          '@mui/styled-engine-sc': path.join(workspaceRoot, 'packages/mui-styles-sc/build'),
-          '@mui/styles': path.join(workspaceRoot, 'packages/mui-styles/build'),
-          '@mui/system': path.join(workspaceRoot, 'packages/mui-system/build'),
-          '@mui/private-theming': path.join(workspaceRoot, 'packages/mui-private-theming/build'),
-          '@mui/utils': path.join(workspaceRoot, 'packages/mui-utils/build'),
-          '@mui/base': path.join(workspaceRoot, 'packages/mui-base/build'),
-          '@mui/material-next': path.join(workspaceRoot, 'packages/mui-material-next/build'),
-          '@mui/joy': path.join(workspaceRoot, 'packages/mui-joy/build'),
-        },
+    },
+    output: {
+      filename: '[name].js',
+      library: {
+        // TODO: Use `type: 'module'` once it is supported (currently incompatible with `externals`)
+        name: 'M',
+        type: 'var',
+        // type: 'module',
       },
-      entry: { [entry.id]: path.join(workspaceRoot, entry.path) },
-      // TODO: 'browserslist:modern'
-      // See https://github.com/webpack/webpack/issues/14203
-      target: 'web',
-    };
+      path: path.join(__dirname, 'build'),
+    },
+    plugins: [
+      new CompressionPlugin(),
+      new BundleAnalyzerPlugin({
+        analyzerMode,
+        // We create a report for each bundle so around 120 reports.
+        // Opening them all is spam.
+        // If opened with `webpack --config . --analyze` it'll still open one new tab though.
+        openAnalyzer: false,
+        // '[name].html' not supported: https://github.com/webpack-contrib/webpack-bundle-analyzer/issues/12
+        reportFilename: `${entry.id}.html`,
+      }),
+    ],
+    resolve: {
+      alias: {
+        '@mui/material': path.join(workspaceRoot, 'packages/mui-material/build'),
+        '@mui/lab': path.join(workspaceRoot, 'packages/mui-lab/build'),
+        '@mui/styled-engine': path.join(workspaceRoot, 'packages/mui-styled-engine/build'),
+        '@mui/styled-engine-sc': path.join(workspaceRoot, 'packages/mui-styles-sc/build'),
+        '@mui/styles': path.join(workspaceRoot, 'packages/mui-styles/build'),
+        '@mui/system': path.join(workspaceRoot, 'packages/mui-system/build'),
+        '@mui/private-theming': path.join(workspaceRoot, 'packages/mui-private-theming/build'),
+        '@mui/utils': path.join(workspaceRoot, 'packages/mui-utils/build'),
+        '@mui/base': path.join(workspaceRoot, 'packages/mui-base/build'),
+        '@mui/material-next': path.join(workspaceRoot, 'packages/mui-material-next/build'),
+        '@mui/joy': path.join(workspaceRoot, 'packages/mui-joy/build'),
+      },
+    },
+    entry: { [entry.id]: path.join(workspaceRoot, entry.path) },
+    // TODO: 'browserslist:modern'
+    // See https://github.com/webpack/webpack/issues/14203
+    target: 'web',
+  };
 
-    return configuration;
-  });
+  return configuration;
+}
 
-  return configurations;
-};
+exports.getWebpackEntries = getWebpackEntries;
+exports.createWebpackConfig = createWebpackConfig;

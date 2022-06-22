@@ -206,7 +206,7 @@ export default function Hero() {
             <GradientText>free forever</GradientText>
           </Typography>
           <Typography color="text.secondary" sx={{ mb: 3, maxWidth: 500 }}>
-            Get a growing list of components, ready-to-use, free forever and with accessibility
+            Get a growing list of components, ready-to-use, free forever, and with accessibility
             always in mind. We&apos;ve built the foundational UI blocks for your design system so
             you don&apos;t have to.
           </Typography>
@@ -217,6 +217,7 @@ export default function Hero() {
         p: 3,
         minWidth: 2000,
         flexDirection: 'column',
+        overflow: 'hidden', // the components on the Hero section are mostly illustrative, even though they're interactive. That's why scrolling is disabled.
       }}
       right={
         <ThemeProvider
@@ -414,7 +415,7 @@ export default function Hero() {
                   <Typography variant="body2" color="text.secondary">
                     Not just a great valley, but a shrine to human foresight, the strength of
                     granite, the power of glaciers, the persistence of life, and the tranquility of
-                    the High Sierra. It’s famed for its giant, ancient sequoia trees, and the
+                    the High Sierra. It&apos;s famed for its giant, ancient sequoia trees, and the
                     granite cliffs of El Capitan and Half Dome.
                   </Typography>
                 </CardContent>

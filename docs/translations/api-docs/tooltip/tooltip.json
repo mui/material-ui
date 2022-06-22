@@ -2,7 +2,7 @@
   "componentDescription": "",
   "propDescriptions": {
     "arrow": "If <code>true</code>, adds an arrow to the tooltip.",
-    "children": "Tooltip reference element.<br>⚠️ <a href=\"/guides/composition/#caveat-with-refs\">Needs to be able to hold a ref</a>.",
+    "children": "Tooltip reference element.<br>⚠️ <a href=\"/material-ui/guides/composition/#caveat-with-refs\">Needs to be able to hold a ref</a>.",
     "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
     "components": "The components used for each slot inside the Tooltip. Either a string to use a HTML element or a component.",
     "componentsProps": "The props used for each slot inside the Tooltip. Note that <code>componentsProps.popper</code> prop values win over <code>PopperProps</code> and <code>componentsProps.transition</code> prop values win over <code>TransitionProps</code> if both are applied.",
@@ -23,11 +23,11 @@
     "open": "If <code>true</code>, the component is shown.",
     "placement": "Tooltip placement.",
     "PopperComponent": "The component used for the popper.",
-    "PopperProps": "Props applied to the <a href=\"/api/popper/\"><code>Popper</code></a> element.",
+    "PopperProps": "Props applied to the <a href=\"/material-ui/api/popper/\"><code>Popper</code></a> element.",
     "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/the-sx-prop/\">`sx` page</a> for more details.",
     "title": "Tooltip title. Zero-length titles string are never displayed.",
-    "TransitionComponent": "The component used for the transition. <a href=\"/components/transitions/#transitioncomponent-prop\">Follow this guide</a> to learn more about the requirements for this component.",
-    "TransitionProps": "Props applied to the transition element. By default, the element is based on this <a href=\"https://reactcommunity.org/react-transition-group/transition\"><code>Transition</code></a> component."
+    "TransitionComponent": "The component used for the transition. <a href=\"/material-ui/transitions/#transitioncomponent-prop\">Follow this guide</a> to learn more about the requirements for this component.",
+    "TransitionProps": "Props applied to the transition element. By default, the element is based on this <a href=\"http://reactcommunity.org/react-transition-group/transition/\"><code>Transition</code></a> component."
   },
   "classDescriptions": {
     "popper": {

@@ -69,7 +69,7 @@ function useMediaQueryOld(
     const updateMatch = () => {
       // Workaround Safari wrong implementation of matchMedia
       // TODO can we remove it?
-      // https://github.com/mui-org/material-ui/pull/17315#issuecomment-528286677
+      // https://github.com/mui/material-ui/pull/17315#issuecomment-528286677
       if (active) {
         setMatch(queryList.matches);
       }
@@ -85,6 +85,9 @@ function useMediaQueryOld(
 
   return match;
 }
+
+// eslint-disable-next-line no-useless-concat -- Workaround for https://github.com/webpack/webpack/issues/14814
+const maybeReactUseSyncExternalStore: undefined | any = (React as any)['useSyncExternalStore' + ''];
 
 function useMediaQueryNew(
   query: string,
@@ -118,7 +121,7 @@ function useMediaQueryNew(
       },
     ];
   }, [getDefaultSnapshot, matchMedia, query]);
-  const match = (React as any).useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
+  const match = maybeReactUseSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
 
   return match;
 }
@@ -158,7 +161,7 @@ export default function useMediaQuery<Theme = unknown>(
 
   // TODO: Drop `useMediaQueryOld` and use  `use-sync-external-store` shim in `useMediaQueryNew` once the package is stable
   const useMediaQueryImplementation =
-    (React as any).useSyncExternalStore !== undefined ? useMediaQueryNew : useMediaQueryOld;
+    maybeReactUseSyncExternalStore !== undefined ? useMediaQueryNew : useMediaQueryOld;
   const match = useMediaQueryImplementation(
     query,
     defaultMatches,

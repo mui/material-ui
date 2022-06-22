@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { prefixer } from 'stylis';
 import rtlPlugin from 'stylis-plugin-rtl';
 import rtlPluginSc from 'stylis-plugin-rtl-sc';
 import { CacheProvider } from '@emotion/react';
@@ -12,7 +13,7 @@ import Tab from '@mui/material/Tab';
 // Create rtl cache
 const cacheRtl = createCache({
   key: 'muirtl',
-  stylisPlugins: [rtlPlugin],
+  stylisPlugins: [prefixer, rtlPlugin],
 });
 
 export default function RTLVerticalTabs() {

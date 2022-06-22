@@ -3,6 +3,7 @@ import Autocomplete, {
   AutocompleteProps,
   AutocompleteRenderGetTagProps,
 } from '@mui/material/Autocomplete';
+import TextField from '@mui/material/TextField';
 import { expectType } from '@mui/types';
 
 interface MyAutocompleteProps<
@@ -59,6 +60,12 @@ function MyAutocomplete<
   freeSolo
 />;
 
+// Test for getInputProps return type
+<MyAutocomplete
+  options={[{ label: '1' }, { label: '2' }]}
+  renderInput={(params) => <TextField {...params} value={params.inputProps.value} />}
+/>;
+
 interface Tag {
   color: string;
   label: string;
@@ -74,4 +81,14 @@ function renderTags(value: Tag[], getTagProps: AutocompleteRenderGetTagProps) {
 
     return <TagComponent {...tagProps} {...tag} />;
   });
+}
+
+function AutocompleteComponentsProps() {
+  return (
+    <Autocomplete
+      options={['one', 'two', 'three']}
+      renderInput={(params) => <TextField {...params} />}
+      componentsProps={{ paper: { elevation: 2 } }}
+    />
+  );
 }

@@ -1,9 +1,9 @@
 {
   "name": "@mui/material",
-  "version": "5.1.1",
+  "version": "5.8.5",
   "private": false,
   "author": "MUI Team",
-  "description": "Quickly build beautiful React apps. MUI is a simple and customizable component library to build faster, beautiful, and more accessible React applications. Follow your own design system, or start with Material Design.",
+  "description": "React components that implement Google's Material Design.",
   "main": "./src/index.ts",
   "keywords": [
     "react",
@@ -14,17 +14,17 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/mui-org/material-ui.git",
+    "url": "https://github.com/mui/material-ui.git",
     "directory": "packages/mui-material"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/mui-org/material-ui/issues"
+    "url": "https://github.com/mui/material-ui/issues"
   },
-  "homepage": "https://mui.com/",
+  "homepage": "https://mui.com/material-ui/getting-started/overview/",
   "funding": {
     "type": "opencollective",
-    "url": "https://opencollective.com/material-ui"
+    "url": "https://opencollective.com/mui"
   },
   "scripts": {
     "build": "yarn build:legacy && yarn build:modern && yarn build:node && yarn build:stable && yarn build:umd && yarn build:types && yarn build:copy-files",
@@ -44,9 +44,9 @@
   "peerDependencies": {
     "@emotion/react": "^11.5.0",
     "@emotion/styled": "^11.3.0",
-    "@types/react": "^16.8.6 || ^17.0.0",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "@types/react": "^17.0.0 || ^18.0.0",
+    "react": "^17.0.0 || ^18.0.0",
+    "react-dom": "^17.0.0 || ^18.0.0"
   },
   "peerDependenciesMeta": {
     "@types/react": {
@@ -60,16 +60,15 @@
     }
   },
   "dependencies": {
-    "@babel/runtime": "^7.16.3",
-    "@mui/base": "5.0.0-alpha.55",
-    "@mui/system": "^5.1.1",
-    "@mui/types": "^7.1.0",
-    "@mui/utils": "^5.1.1",
+    "@babel/runtime": "^7.17.2",
+    "@mui/base": "5.0.0-alpha.86",
+    "@mui/system": "^5.8.5",
+    "@mui/types": "^7.1.4",
+    "@mui/utils": "^5.8.4",
     "@types/react-transition-group": "^4.4.4",
     "clsx": "^1.1.1",
-    "csstype": "^3.0.10",
-    "hoist-non-react-statics": "^3.3.2",
-    "prop-types": "^15.7.2",
+    "csstype": "^3.1.0",
+    "prop-types": "^15.8.1",
     "react-is": "^17.0.2",
     "react-transition-group": "^4.4.2"
   },

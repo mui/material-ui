@@ -25,7 +25,7 @@ const BottomNavigationRoot = styled('div', {
   display: 'flex',
   justifyContent: 'center',
   height: 56,
-  backgroundColor: theme.palette.background.paper,
+  backgroundColor: (theme.vars || theme).palette.background.paper,
 }));
 
 const BottomNavigation = React.forwardRef(function BottomNavigation(inProps, ref) {
@@ -124,7 +124,7 @@ BottomNavigation.propTypes /* remove-proptypes */ = {
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object])),
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
     PropTypes.func,
     PropTypes.object,
   ]),

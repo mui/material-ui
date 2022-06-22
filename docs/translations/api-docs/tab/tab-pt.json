@@ -7,6 +7,7 @@
     "disableFocusRipple": "If <code>true</code>, the  keyboard focus ripple is disabled.",
     "disableRipple": "If <code>true</code>, the ripple effect is disabled.<br>⚠️ Without a ripple there is no styling for :focus-visible by default. Be sure to highlight the element by applying separate styles with the <code>focusVisibleClassName</code>.",
     "icon": "The icon element.",
+    "iconPosition": "The position of the icon relative to the label.",
     "label": "The label element.",
     "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/basics/#the-sx-prop\">`sx` page</a> for more details.",
     "value": "You can provide your own value. Otherwise, we fallback to the child position index.",
@@ -24,17 +25,17 @@
     "textColorInherit": {
       "description": "Estilos aplicados para {{nodeName}} se {{conditions}}.",
       "nodeName": "o elemento raiz",
-      "conditions": "the parent [<code>Tabs</code>](/api/tabs/) has <code>textColor=\"inherit\"</code>"
+      "conditions": "the parent [<code>Tabs</code>](/material-ui/api/tabs/) has <code>textColor=\"inherit\"</code>"
     },
     "textColorPrimary": {
       "description": "Estilos aplicados para {{nodeName}} se {{conditions}}.",
       "nodeName": "o elemento raiz",
-      "conditions": "the parent [<code>Tabs</code>](/api/tabs/) has <code>textColor=\"primary\"</code>"
+      "conditions": "the parent [<code>Tabs</code>](/material-ui/api/tabs/) has <code>textColor=\"primary\"</code>"
     },
     "textColorSecondary": {
       "description": "Estilos aplicados para {{nodeName}} se {{conditions}}.",
       "nodeName": "o elemento raiz",
-      "conditions": "the parent [<code>Tabs</code>](/api/tabs/) has <code>textColor=\"secondary\"</code>"
+      "conditions": "the parent [<code>Tabs</code>](/material-ui/api/tabs/) has <code>textColor=\"secondary\"</code>"
     },
     "selected": {
       "description": "Pseudo-class aplicada a {{nodeName}} se {{conditions}}.",
@@ -56,9 +57,10 @@
       "nodeName": "o elemento raiz",
       "conditions": "<code>wrapped={true}</code>"
     },
-    "wrapper": {
-      "description": "Estilos aplicados a {{nodeName}}.",
-      "nodeName": "the `icon` and `label`'s wrapper element"
+    "iconWrapper": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the wrapper element of `icon`",
+      "conditions": "<code>icon</code> is provided"
     }
   }
 }

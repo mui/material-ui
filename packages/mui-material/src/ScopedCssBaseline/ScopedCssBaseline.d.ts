@@ -13,7 +13,7 @@ export interface ScopedCssBaselineTypeMap<P = {}, D extends React.ElementType = 
      */
     classes?: Partial<ScopedCssBaselineClasses>;
     /**
-     * Enable `color-scheme` css property to use `theme.palette.mode`.
+     * Enable `color-scheme` CSS property to use `theme.palette.mode`.
      * For more details, check out https://developer.mozilla.org/en-US/docs/Web/CSS/color-scheme
      * For browser support, check out https://caniuse.com/?search=color-scheme
      */
@@ -25,11 +25,11 @@ export interface ScopedCssBaselineTypeMap<P = {}, D extends React.ElementType = 
  *
  * Demos:
  *
- * - [Css Baseline](https://mui.com/components/css-baseline/)
+ * - [Css baseline](https://mui.com/material-ui/react-css-baseline/)
  *
  * API:
  *
- * - [ScopedCssBaseline API](https://mui.com/api/scoped-css-baseline/)
+ * - [ScopedCssBaseline API](https://mui.com/material-ui/api/scoped-css-baseline/)
  */
 declare const ScopedCssBaseline: OverridableComponent<ScopedCssBaselineTypeMap>;
 

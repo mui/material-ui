@@ -27,7 +27,7 @@ const ListItemIconRoot = styled('div', {
   },
 })(({ theme, ownerState }) => ({
   minWidth: 56,
-  color: theme.palette.action.active,
+  color: (theme.vars || theme).palette.action.active,
   flexShrink: 0,
   display: 'inline-flex',
   ...(ownerState.alignItems === 'flex-start' && {
@@ -81,7 +81,7 @@ ListItemIcon.propTypes /* remove-proptypes */ = {
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object])),
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
     PropTypes.func,
     PropTypes.object,
   ]),

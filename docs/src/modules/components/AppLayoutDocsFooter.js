@@ -40,7 +40,7 @@ const PaginationDiv = styled('div')(({ theme }) => {
 const PageLinkButton = styled(Button)(({ theme }) => {
   return {
     textTransform: 'none',
-    fontWeight: theme.typography.fontWeightMedium,
+    fontWeight: 500,
     color: theme.palette.mode === 'dark' ? theme.palette.primary[300] : theme.palette.primary[500],
   };
 });
@@ -85,7 +85,7 @@ function orderedPages(pages, current = []) {
     }, current)
     .filter((page) => {
       return (
-        page.ordered !== false &&
+        page.inSideNav !== false &&
         // ignore external pages
         page.pathname.startsWith('/')
       );
@@ -164,8 +164,9 @@ function usePageNeighbours() {
   const { activePage, pages } = React.useContext(PageContext);
   const pageList = orderedPages(pages);
   const currentPageNum = pageList.indexOf(activePage);
+
   if (currentPageNum === -1) {
-    return { prevPage: undefined, nextPage: undefined };
+    return { prevPage: null, nextPage: null };
   }
 
   const prevPage = pageList[currentPageNum - 1] ?? null;
@@ -308,7 +309,7 @@ export default function AppLayoutDocsFooter() {
             </PaginationDiv>
           </React.Fragment>
         )}
-        <Collapse in={commentOpen} onEntered={handleEntered}>
+        <Collapse in={commentOpen} unmountOnExit onEntered={handleEntered}>
           <form
             aria-labelledby="feedback-message"
             onReset={handleCancelComment}

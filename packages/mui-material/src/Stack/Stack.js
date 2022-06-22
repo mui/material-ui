@@ -60,7 +60,10 @@ export const style = ({ ownerState, theme }) => {
     const transformer = createUnarySpacing(theme);
 
     const base = Object.keys(theme.breakpoints.values).reduce((acc, breakpoint) => {
-      if (ownerState.spacing[breakpoint] != null || ownerState.direction[breakpoint] != null) {
+      if (
+        (typeof ownerState.spacing === 'object' && ownerState.spacing[breakpoint] != null) ||
+        (typeof ownerState.direction === 'object' && ownerState.direction[breakpoint] != null)
+      ) {
         acc[breakpoint] = true;
       }
       return acc;
@@ -165,7 +168,7 @@ Stack.propTypes /* remove-proptypes */ = {
    * The system prop, which allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object])),
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
     PropTypes.func,
     PropTypes.object,
   ]),

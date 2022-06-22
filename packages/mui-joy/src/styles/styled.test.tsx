@@ -13,16 +13,16 @@ describe('[Joy] styled', () => {
       this.skip();
     }
     const Text = styled('div')(({ theme }) => ({
-      borderRadius: theme.vars.borderRadius.md,
+      borderRadius: theme.vars.radius.md,
     }));
 
     const { container } = render(<Text />);
 
     expect(container.firstChild).toHaveComputedStyle({
-      borderTopLeftRadius: toPixel(defaultTheme.borderRadius.md),
-      borderTopRightRadius: toPixel(defaultTheme.borderRadius.md),
-      borderBottomRightRadius: toPixel(defaultTheme.borderRadius.md),
-      borderBottomLeftRadius: toPixel(defaultTheme.borderRadius.md),
+      borderTopLeftRadius: toPixel(defaultTheme.radius.md),
+      borderTopRightRadius: toPixel(defaultTheme.radius.md),
+      borderBottomRightRadius: toPixel(defaultTheme.radius.md),
+      borderBottomLeftRadius: toPixel(defaultTheme.radius.md),
     });
   });
 
@@ -31,11 +31,11 @@ describe('[Joy] styled', () => {
       this.skip();
     }
     const Text = styled('div')(({ theme }) => ({
-      borderRadius: theme.vars.borderRadius.md,
+      borderRadius: theme.vars.radius.md,
     }));
 
     const { container } = render(
-      <ThemeProvider theme={{ borderRadius: { md: '50%' } }}>
+      <ThemeProvider theme={{ radius: { md: '50%' } }}>
         <Text />
       </ThemeProvider>,
     );

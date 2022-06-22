@@ -47,17 +47,21 @@ const IconButtonRoot = styled(ButtonBase, {
     padding: 8,
     borderRadius: '50%',
     overflow: 'visible', // Explicitly set the default value to solve a bug on IE11.
-    color: theme.palette.action.active,
+    color: (theme.vars || theme).palette.action.active,
     transition: theme.transitions.create('background-color', {
       duration: theme.transitions.duration.shortest,
     }),
-    '&:hover': {
-      backgroundColor: alpha(theme.palette.action.active, theme.palette.action.hoverOpacity),
-      // Reset on touch devices, it doesn't add specificity
-      '@media (hover: none)': {
-        backgroundColor: 'transparent',
+    ...(!ownerState.disableRipple && {
+      '&:hover': {
+        backgroundColor: theme.vars
+          ? `rgba(${theme.vars.palette.action.active} / ${theme.vars.palette.action.hoverOpacity})`
+          : alpha(theme.palette.action.active, theme.palette.action.hoverOpacity),
+        // Reset on touch devices, it doesn't add specificity
+        '@media (hover: none)': {
+          backgroundColor: 'transparent',
+        },
       },
-    },
+    }),
     ...(ownerState.edge === 'start' && {
       marginLeft: ownerState.size === 'small' ? -3 : -12,
     }),
@@ -71,17 +75,20 @@ const IconButtonRoot = styled(ButtonBase, {
     }),
     ...(ownerState.color !== 'inherit' &&
       ownerState.color !== 'default' && {
-        color: theme.palette[ownerState.color].main,
-        '&:hover': {
-          backgroundColor: alpha(
-            theme.palette[ownerState.color].main,
-            theme.palette.action.hoverOpacity,
-          ),
-          // Reset on touch devices, it doesn't add specificity
-          '@media (hover: none)': {
-            backgroundColor: 'transparent',
+        color: (theme.vars || theme).palette[ownerState.color].main,
+        ...(!ownerState.disableRipple && {
+          '&:hover': {
+            backgroundColor: theme.vars
+              ? `rgba(${theme.vars.palette[ownerState.color].mainChannel} / ${
+                  theme.vars.palette.action.hoverOpacity
+                })`
+              : alpha(theme.palette[ownerState.color].main, theme.palette.action.hoverOpacity),
+            // Reset on touch devices, it doesn't add specificity
+            '@media (hover: none)': {
+              backgroundColor: 'transparent',
+            },
           },
-        },
+        }),
       }),
     ...(ownerState.size === 'small' && {
       padding: 5,
@@ -93,13 +100,13 @@ const IconButtonRoot = styled(ButtonBase, {
     }),
     [`&.${iconButtonClasses.disabled}`]: {
       backgroundColor: 'transparent',
-      color: theme.palette.action.disabled,
+      color: (theme.vars || theme).palette.action.disabled,
     },
   }),
 );
 
 /**
- * Refer to the [Icons](/components/icons/) section of the documentation
+ * Refer to the [Icons](/material-ui/icons/) section of the documentation
  * regarding the available icon options.
  */
 const IconButton = React.forwardRef(function IconButton(inProps, ref) {
@@ -175,7 +182,9 @@ IconButton.propTypes /* remove-proptypes */ = {
    */
   className: PropTypes.string,
   /**
-   * The color of the component. It supports those theme colors that make sense for this component.
+   * The color of the component.
+   * It supports both default and custom theme colors, which can be added as shown in the
+   * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
    * @default 'default'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
@@ -230,7 +239,7 @@ IconButton.propTypes /* remove-proptypes */ = {
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object])),
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
     PropTypes.func,
     PropTypes.object,
   ]),

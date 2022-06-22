@@ -22,7 +22,13 @@ describe('<FilledInput />', () => {
   it('should have the underline class', () => {
     const { container } = render(<FilledInput />);
     const root = container.firstChild;
-    expect(root).to.have.class(classes.underline);
+    expect(root).not.to.equal(null);
+  });
+
+  it('color={undefined} should not result in crash', () => {
+    expect(() => {
+      render(<FilledInput color={undefined} />);
+    }).not.toErrorDev();
   });
 
   it('can disable the underline', () => {
@@ -39,5 +45,16 @@ describe('<FilledInput />', () => {
   it('should respects the componentsProps if passed', () => {
     render(<FilledInput componentsProps={{ root: { 'data-test': 'test' } }} />);
     expect(document.querySelector('[data-test=test]')).not.to.equal(null);
+  });
+
+  it('should respect the classes coming from InputBase', () => {
+    render(
+      <FilledInput
+        data-test="test"
+        multiline
+        sx={{ [`&.${classes.multiline}`]: { mt: '10px' } }}
+      />,
+    );
+    expect(document.querySelector('[data-test=test]')).toHaveComputedStyle({ marginTop: '10px' });
   });
 });

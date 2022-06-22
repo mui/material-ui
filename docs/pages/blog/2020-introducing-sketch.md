@@ -1,16 +1,16 @@
 ---
+title: Introducing MUI for Sketch
 description: Today, we're excited to announce the introduction of official Sketch symbols for MUI.
+date: 2020-03-30T00:00:00.000Z
+authors: ['oliviertassinari']
+tags: ['News']
 ---
-
-# Introducing MUI for Sketch
-
-Olivier Tassinari. March 30, 2020.
 
 Today, we're excited to introduce the Sketch symbols 💎 for MUI.
 
-[![preview](/static/blog/2020-introducing-sketch/product-preview.png)](https://material-ui.com/store/items/sketch-react/?utm_source=blog&utm_medium=blog&utm_campaign=introducing-sketch)
+[![preview](/static/blog/2020-introducing-sketch/product-preview.png)](https://mui.com/store/items/sketch-react/?utm_source=blog&utm_medium=blog&utm_campaign=introducing-sketch)
 
-<p class="blog-description">Available on our <a href="https://material-ui.com/store/items/sketch-react">store</a></p>
+<p class="blog-description">Available on our <a href="https://mui.com/store/items/sketch-react">store</a></p>
 
 The UI kit contains all the MUI components with states and variations which gives 1,500+ unique elements. All components are designed with the most up to date release.
 
@@ -56,7 +56,7 @@ The following video demonstrates how the symbols can be used to design an invoic
 
 <iframe style="width: 100%; max-width: 648px;" height="364" src="https://www.youtube.com/embed/DTU6r_VE2C4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-Sketch Cloud preview: https://material-ui.com/store/previews/sketch-react/.
+Sketch Cloud preview: https://mui.com/store/previews/sketch-react/.
 
 ## More tools
 
@@ -67,9 +67,9 @@ According to a [recent user survey](https://medium.com/google-design/state-of-de
 <p class="blog-description">Popular tools used to manage Design Systems (n=1762)</p>
 
 We are working on the support of more popular tools.
-We have recently released the support of [Framer X](https://packages.framer.com/package/material-ui/material-ui) for MUI.
-We plan to release the support of **Figma** in the coming weeks. You can subscribe to the [newsletter of the store](https://material-ui.com/store/#subscribe) to be notified when available.
+We have recently released the support of Framer X for MUI.
+We plan to release the support of **Figma** in the coming weeks. You can subscribe to the [newsletter of the store](https://mui.com/store/#subscribe) to be notified when available.
 
 ## Features
 
-You can learn more about the features available on the [Sketch page details](https://material-ui.com/store/items/sketch-react/?utm_source=blog&utm_medium=blog&utm_campaign=introducing-sketch) of the symbols.
+You can learn more about the features available on the [Sketch page details](https://mui.com/store/items/sketch-react/?utm_source=blog&utm_medium=blog&utm_campaign=introducing-sketch) of the symbols.

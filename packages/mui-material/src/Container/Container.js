@@ -1,113 +1,26 @@
-import * as React from 'react';
+/* eslint-disable material-ui/mui-name-matches-component-name */
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
-import useThemeProps from '../styles/useThemeProps';
-import styled from '../styles/styled';
-import { getContainerUtilityClass } from './containerClasses';
+import { createContainer } from '@mui/system';
 import capitalize from '../utils/capitalize';
+import styled from '../styles/styled';
+import useThemeProps from '../styles/useThemeProps';
 
-const useUtilityClasses = (ownerState) => {
-  const { classes, fixed, disableGutters, maxWidth } = ownerState;
+const Container = createContainer({
+  createStyledComponent: styled('div', {
+    name: 'MuiContainer',
+    slot: 'Root',
+    overridesResolver: (props, styles) => {
+      const { ownerState } = props;
 
-  const slots = {
-    root: [
-      'root',
-      maxWidth && `maxWidth${capitalize(String(maxWidth))}`,
-      fixed && 'fixed',
-      disableGutters && 'disableGutters',
-    ],
-  };
-
-  return composeClasses(slots, getContainerUtilityClass, classes);
-};
-
-const ContainerRoot = styled('div', {
-  name: 'MuiContainer',
-  slot: 'Root',
-  overridesResolver: (props, styles) => {
-    const { ownerState } = props;
-
-    return [
-      styles.root,
-      styles[`maxWidth${capitalize(String(ownerState.maxWidth))}`],
-      ownerState.fixed && styles.fixed,
-      ownerState.disableGutters && styles.disableGutters,
-    ];
-  },
-})(
-  ({ theme, ownerState }) => ({
-    width: '100%',
-    marginLeft: 'auto',
-    boxSizing: 'border-box',
-    marginRight: 'auto',
-    display: 'block', // Fix IE11 layout when used with main.
-    ...(!ownerState.disableGutters && {
-      paddingLeft: theme.spacing(2),
-      paddingRight: theme.spacing(2),
-      [theme.breakpoints.up('sm')]: {
-        paddingLeft: theme.spacing(3),
-        paddingRight: theme.spacing(3),
-      },
-    }),
+      return [
+        styles.root,
+        styles[`maxWidth${capitalize(String(ownerState.maxWidth))}`],
+        ownerState.fixed && styles.fixed,
+        ownerState.disableGutters && styles.disableGutters,
+      ];
+    },
   }),
-  ({ theme, ownerState }) =>
-    ownerState.fixed &&
-    Object.keys(theme.breakpoints.values).reduce((acc, breakpoint) => {
-      const value = theme.breakpoints.values[breakpoint];
-
-      if (value !== 0) {
-        acc[theme.breakpoints.up(breakpoint)] = {
-          maxWidth: `${value}${theme.breakpoints.unit}`,
-        };
-      }
-      return acc;
-    }, {}),
-  ({ theme, ownerState }) => ({
-    ...(ownerState.maxWidth === 'xs' && {
-      [theme.breakpoints.up('xs')]: {
-        maxWidth: Math.max(theme.breakpoints.values.xs, 444),
-      },
-    }),
-    ...(ownerState.maxWidth &&
-      ownerState.maxWidth !== 'xs' && {
-        [theme.breakpoints.up(ownerState.maxWidth)]: {
-          maxWidth: `${theme.breakpoints.values[ownerState.maxWidth]}${theme.breakpoints.unit}`,
-        },
-      }),
-  }),
-);
-
-const Container = React.forwardRef(function Container(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiContainer' });
-  const {
-    className,
-    component = 'div',
-    disableGutters = false,
-    fixed = false,
-    maxWidth = 'lg',
-    ...other
-  } = props;
-
-  const ownerState = {
-    ...props,
-    component,
-    disableGutters,
-    fixed,
-    maxWidth,
-  };
-
-  const classes = useUtilityClasses(ownerState);
-
-  return (
-    <ContainerRoot
-      as={component}
-      ownerState={ownerState}
-      className={clsx(classes.root, className)}
-      ref={ref}
-      {...other}
-    />
-  );
+  useThemeProps: (inProps) => useThemeProps({ props: inProps, name: 'MuiContainer' }),
 });
 
 Container.propTypes /* remove-proptypes */ = {
@@ -123,10 +36,6 @@ Container.propTypes /* remove-proptypes */ = {
    * Override or extend the styles applied to the component.
    */
   classes: PropTypes.object,
-  /**
-   * @ignore
-   */
-  className: PropTypes.string,
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
@@ -159,7 +68,7 @@ Container.propTypes /* remove-proptypes */ = {
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object])),
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
     PropTypes.func,
     PropTypes.object,
   ]),

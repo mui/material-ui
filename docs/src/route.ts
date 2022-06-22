@@ -1,3 +1,5 @@
+import FEATURE_TOGGLE from './featureToggle';
+
 const ROUTES = {
   home: '/',
   productCore: '/core/',
@@ -7,37 +9,60 @@ const ROUTES = {
   careers: '/careers/',
   pricing: '/pricing/',
   about: '/about/',
-  handbook: 'https://www.notion.so/mui-org/Handbook-f086d47e10794d5e839aef9dc67f324b',
-  materialIcons: '/components/material-icons/',
-  freeTemplates: '/getting-started/templates/',
-  components: '/getting-started/supported-components/',
-  customization: '/customization/how-to-customize/',
-  theming: '/customization/theming/',
-  documentation: '/getting-started/usage/',
-  communityHelp: '/getting-started/support/#community-help-free',
-  dataGridDocs: '/components/data-grid/getting-started/',
-  blog: 'https://medium.com/material-ui',
-  showcase: '/discover-more/showcase',
-  roadmap: 'https://github.com/mui-org/material-ui-x/projects/1',
-  languages: '/discover-more/languages',
-  vision: '/discover-more/vision/',
-  support: '/getting-started/support/#professional-support-premium',
-  goldSponsor: '/discover-more/backers/#gold/',
-  store: 'https://material-ui.com/store/',
-  dataGridFeatures: '/components/data-grid/getting-started/#feature-comparison',
-  storePopular: 'https://material-ui.com/store/#populars',
-  storeDesign: 'https://material-ui.com/store/#design',
-  storeFigma: 'https://material-ui.com/store/items/figma-react/',
-  storeSketch: 'https://material-ui.com/store/items/sketch-react/',
-  storeXD: 'https://material-ui.com/store/items/adobe-xd-react/',
-  storeTemplateMaterialApp: 'https://material-ui.com/store/items/material-app/',
-  storeTemplateBarza: 'https://material-ui.com/store/items/bazar-pro-react-ecommerce-template/',
-  storeTemplateMinimalFree: 'https://material-ui.com/store/items/minimal-dashboard-free/',
-  storeTemplateMinimalDashboard: 'https://material-ui.com/store/items/minimal-dashboard/',
-  storeTemplateBerry: 'https://material-ui.com/store/items/berry-react-material-admin/',
-  storeTemplateWebbee: 'https://material-ui.com/store/items/webbee-landing-page/',
-  storeTheFront: 'https://material-ui.com/store/items/the-front-landing-page/',
-  storeFlexy: 'https://material-ui.com/store/items/flexy-react-admin-dashboard/',
+  handbook: 'https://mui-org.notion.site/Handbook-f086d47e10794d5e839aef9dc67f324b',
+  baseDocs: '/base/getting-started/overview/',
+  materialDocs: '/material-ui/getting-started/overview/',
+  joyDocs: '/joy-ui/getting-started/overview/',
+  systemDocs: '/system/basics/',
+  materialIcons: FEATURE_TOGGLE.enable_redirects
+    ? '/material-ui/material-icons/'
+    : '/components/material-icons/',
+  freeTemplates: FEATURE_TOGGLE.enable_redirects
+    ? '/material-ui/getting-started/templates/'
+    : '/getting-started/templates/',
+  components: FEATURE_TOGGLE.enable_redirects
+    ? '/material-ui/getting-started/supported-components/'
+    : '/getting-started/supported-components/',
+  customization: FEATURE_TOGGLE.enable_redirects
+    ? '/material-ui/customization/how-to-customize/'
+    : '/customization/how-to-customize/',
+  theming: FEATURE_TOGGLE.enable_redirects
+    ? '/material-ui/customization/theming/'
+    : '/customization/theming/',
+  documentation: '/material-ui/getting-started/overview/',
+  communityHelp: FEATURE_TOGGLE.enable_redirects
+    ? '/material-ui/getting-started/support/#community-help-free'
+    : '/getting-started/support/#community-help-free',
+  blog: '/blog/',
+  showcase: FEATURE_TOGGLE.enable_redirects
+    ? '/material-ui/discover-more/showcase/'
+    : '/discover-more/showcase/',
+  roadmap: 'https://github.com/mui/mui-x/projects/1',
+  languages: FEATURE_TOGGLE.enable_redirects
+    ? '/material-ui/discover-more/languages/'
+    : '/discover-more/languages/',
+  vision: FEATURE_TOGGLE.enable_redirects
+    ? '/material-ui/discover-more/vision/'
+    : '/discover-more/vision/',
+  support: FEATURE_TOGGLE.enable_redirects
+    ? '/material-ui/getting-started/support/#professional-support-premium'
+    : '/getting-started/support/#professional-support-premium',
+  privacyPolicy: 'https://mui.com/store/privacy/',
+  goldSponsor: FEATURE_TOGGLE.enable_redirects
+    ? '/material-ui/discover-more/backers/#gold'
+    : '/discover-more/backers/#gold/',
+  store: 'https://mui.com/store/',
+  advancedComponents: '/x/advanced-components/',
+  dataGridSpace: '/x/react-data-grid/getting-started/',
+  dataGridDocs: FEATURE_TOGGLE.enable_redirects
+    ? '/x/react-data-grid/getting-started/'
+    : '/components/data-grid/getting-started/',
+  dataGridFeatures: FEATURE_TOGGLE.enable_redirects
+    ? '/x/react-data-grid/#features'
+    : '/components/data-grid/#features',
+  dataGridFeaturesComparison: FEATURE_TOGGLE.enable_redirects
+    ? '/x/react-data-grid/getting-started/#feature-comparison'
+    : '/components/data-grid/getting-started/#feature-comparison',
 };
 
 export default ROUTES;

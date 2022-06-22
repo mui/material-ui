@@ -24,7 +24,7 @@ function formatVersion(version) {
 async function getBranches() {
   const githubAuthorizationToken = process.env.GITHUB_AUTH || '';
 
-  const result = await fetch('https://api.github.com/repos/mui-org/material-ui-docs/branches', {
+  const result = await fetch('https://api.github.com/repos/mui/material-ui-docs/branches', {
     headers: {
       Authorization: `Basic ${Buffer.from(githubAuthorizationToken).toString('base64')}`,
     },
@@ -39,7 +39,7 @@ async function getBranches() {
 }
 
 Page.getInitialProps = async () => {
-  const FILTERED_BRANCHES = ['latest', 'l10n', 'next', 'material-ui.com'];
+  const FILTERED_BRANCHES = ['latest', 'l10n', 'next', 'migration', 'material-ui.com'];
 
   const branches = await getBranches();
   /**

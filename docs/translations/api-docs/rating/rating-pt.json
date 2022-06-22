@@ -6,7 +6,7 @@
     "disabled": "Se <code>true</code>, o componente está desabilitado.",
     "emptyIcon": "The icon to display when empty.",
     "emptyLabelText": "The label read when the rating input is empty.",
-    "getLabelText": "Accepts a function which returns a string value that provides a user-friendly name for the current value of the rating. This is important for screen reader users.<br>For localization purposes, you can use the provided <a href=\"/guides/localization/\">translations</a>.<br><br><strong>Signature:</strong><br><code>function(value: number) =&gt; string</code><br><em>value:</em> The rating label&#39;s value to format.",
+    "getLabelText": "Accepts a function which returns a string value that provides a user-friendly name for the current value of the rating. This is important for screen reader users.<br>For localization purposes, you can use the provided <a href=\"/material-ui/guides/localization/\">translations</a>.<br><br><strong>Signature:</strong><br><code>function(value: number) =&gt; string</code><br><em>value:</em> The rating label&#39;s value to format.",
     "highlightSelectedOnly": "If <code>true</code>, only the selected icon will be highlighted.",
     "icon": "The icon element.",
     "IconContainerComponent": "The component containing the icon.",

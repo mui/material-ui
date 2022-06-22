@@ -1,12 +1,13 @@
 {
   "componentDescription": "",
   "propDescriptions": {
+    "action": "A ref for imperative actions. It currently only supports <code>focusVisible()</code> action.",
     "component": "The component used for the root node. Either a string to use a HTML element or a component.",
-    "components": "The components used for each slot inside the Button. Either a string to use a HTML element or a component.",
+    "components": "The components used for each slot inside the Tab. Either a string to use a HTML element or a component.",
+    "componentsProps": "The props used for each slot inside the Tab.",
     "disabled": "If <code>true</code>, the component is disabled.",
     "onChange": "Callback invoked when new value is being set.",
-    "selectionFollowsFocus": "If <code>true</code> the selected tab changes on focus. Otherwise it only changes on activation.",
-    "value": "You can provide your own value. Otherwise, we fallback to the child position index."
+    "value": "You can provide your own value. Otherwise, we fall back to the child position index."
   },
   "classDescriptions": {}
 }

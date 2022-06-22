@@ -77,10 +77,9 @@ const SkeletonRoot = styled('span', {
     return {
       display: 'block',
       // Create a "on paper" color with sufficient contrast retaining the color
-      backgroundColor: alpha(
-        theme.palette.text.primary,
-        theme.palette.mode === 'light' ? 0.11 : 0.13,
-      ),
+      backgroundColor: theme.vars
+        ? theme.vars.palette.Skeleton.bg
+        : alpha(theme.palette.text.primary, theme.palette.mode === 'light' ? 0.11 : 0.13),
       height: '1.2em',
       ...(ownerState.variant === 'text' && {
         marginTop: 0,
@@ -129,7 +128,12 @@ const SkeletonRoot = styled('span', {
 
       &::after {
         animation: ${waveKeyframe} 1.6s linear 0.5s infinite;
-        background: linear-gradient(90deg, transparent, ${theme.palette.action.hover}, transparent);
+        background: linear-gradient(
+          90deg,
+          transparent,
+          ${(theme.vars || theme).palette.action.hover},
+          transparent
+        );
         content: '';
         position: absolute;
         transform: translateX(-100%); /* Avoid flash during server-side hydration */
@@ -221,7 +225,7 @@ Skeleton.propTypes /* remove-proptypes */ = {
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object])),
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
     PropTypes.func,
     PropTypes.object,
   ]),

@@ -404,7 +404,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
       if (enableTouchRipple && !rippleRef.current) {
         console.error(
           [
-            'Material-UI: The `component` prop provided to Button is invalid.',
+            'MUI: The `component` prop provided to Button is invalid.',
             'Please make sure the children prop is rendered in this custom component.',
           ].join('\n'),
         );
@@ -629,7 +629,7 @@ Button.propTypes /* remove-proptypes */ = {
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object])),
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
     PropTypes.func,
     PropTypes.object,
   ]),

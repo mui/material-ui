@@ -681,6 +681,10 @@ const TreeView = React.forwardRef(function TreeView(inProps, ref) {
           if (isExpandable(focusedNodeId)) {
             toggleExpansion(event);
             flag = true;
+          } else if (multiSelect) {
+            flag = selectNode(event, focusedNodeId, true);
+          } else {
+            flag = selectNode(event, focusedNodeId);
           }
         }
         event.stopPropagation();
@@ -943,7 +947,7 @@ TreeView.propTypes /* remove-proptypes */ = {
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object])),
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
     PropTypes.func,
     PropTypes.object,
   ]),

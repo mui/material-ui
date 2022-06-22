@@ -8,7 +8,7 @@ import Button from '@mui/material/Button';
  * Based on https://github.com/sindresorhus/new-github-issue-url/blob/061fa0ddb7d51f3b96d3a0f6a6bebb196f105a7b/index.js
  * with node 8 + IE11 support i.e. not using URL (URLSearchParams.set replaced with Map.set)
  */
-function newGithubIssueUrl(options) {
+function newGitHubIssueUrl(options) {
   const url = `https://github.com/${options.user}/${options.repo}/issues/new`;
 
   const query = Object.keys(options)
@@ -37,14 +37,14 @@ export default class DemoErrorBoundary extends React.Component {
     if (error) {
       const title = `[docs] Demo ${name} crashes`;
       const searchQuery = encodeURIComponent(`is:issue ${title}`);
-      const issueLink = newGithubIssueUrl({
-        user: 'mui-org',
+      const issueLink = newGitHubIssueUrl({
+        user: 'mui',
         repo: 'material-ui',
         title,
         body: `
 <!-- Please make sure you have fullfilled the following items before submitting -->
 <!-- Checked checkbox should look like this: [x] -->
-- [ ] I have [searched for similar issues](https://github.com/mui-org/material-ui/issues?q=${searchQuery}) in this repository and believe that this is not a duplicate.
+- [ ] I have [searched for similar issues](https://github.com/mui/material-ui/issues?q=${searchQuery}) in this repository and believe that this is not a duplicate.
 
 ## Steps to Reproduce
 1. Visit ${window.location.href}

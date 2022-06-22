@@ -13,7 +13,7 @@ export default function styled(tag, options) {
   }
 
   if (process.env.NODE_ENV !== 'production') {
-    return (...styles) => {
+    const fn = (...styles) => {
       const component = typeof tag === 'string' ? `"${tag}"` : 'component';
       if (styles.length === 0) {
         console.error(
@@ -29,9 +29,11 @@ export default function styled(tag, options) {
       }
       return stylesFactory(...styles);
     };
+    fn.withConfig = stylesFactory.withConfig;
+    return fn;
   }
 
-  return (...styles) => stylesFactory(...styles);
+  return stylesFactory;
 }
 
 export { ThemeContext, keyframes, css } from 'styled-components';

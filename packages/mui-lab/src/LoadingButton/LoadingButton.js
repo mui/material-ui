@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { chainPropTypes } from '@mui/utils';
-import { capitalize } from '@mui/material/utils';
+import { capitalize, unstable_useId as useId } from '@mui/material/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { styled, useThemeProps } from '@mui/material/styles';
 import Button from '@mui/material/Button';
@@ -103,7 +103,7 @@ const LoadingButtonLoadingIndicator = styled('div', {
   display: 'flex',
   ...(ownerState.loadingPosition === 'start' &&
     (ownerState.variant === 'outlined' || ownerState.variant === 'contained') && {
-      left: 14,
+      left: ownerState.size === 'small' ? 10 : 14,
     }),
   ...(ownerState.loadingPosition === 'start' &&
     ownerState.variant === 'text' && {
@@ -116,7 +116,7 @@ const LoadingButtonLoadingIndicator = styled('div', {
   }),
   ...(ownerState.loadingPosition === 'end' &&
     (ownerState.variant === 'outlined' || ownerState.variant === 'contained') && {
-      right: 14,
+      right: ownerState.size === 'small' ? 10 : 14,
     }),
   ...(ownerState.loadingPosition === 'end' &&
     ownerState.variant === 'text' && {
@@ -134,19 +134,23 @@ const LoadingButtonLoadingIndicator = styled('div', {
     }),
 }));
 
-const LoadingIndicator = <CircularProgress color="inherit" size={16} />;
-
 const LoadingButton = React.forwardRef(function LoadingButton(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiLoadingButton' });
   const {
     children,
     disabled = false,
+    id: idProp,
     loading = false,
-    loadingIndicator = LoadingIndicator,
+    loadingIndicator: loadingIndicatorProp,
     loadingPosition = 'center',
     variant = 'text',
     ...other
   } = props;
+
+  const id = useId(idProp);
+  const loadingIndicator = loadingIndicatorProp ?? (
+    <CircularProgress aria-labelledby={id} color="inherit" size={16} />
+  );
 
   const ownerState = {
     ...props,
@@ -162,6 +166,7 @@ const LoadingButton = React.forwardRef(function LoadingButton(inProps, ref) {
   return (
     <LoadingButtonRoot
       disabled={disabled || loading}
+      id={id}
       ref={ref}
       {...other}
       variant={variant}
@@ -217,12 +222,18 @@ LoadingButton.propTypes /* remove-proptypes */ = {
    */
   disabled: PropTypes.bool,
   /**
+   * @ignore
+   */
+  id: PropTypes.string,
+  /**
    * If `true`, the loading indicator is shown.
    * @default false
    */
   loading: PropTypes.bool,
   /**
    * Element placed before the children if the button is in loading state.
+   * The node should contain an element with `role="progressbar"` with an accessible name.
+   * By default we render a `CircularProgress` that is labelled by the button itself.
    * @default <CircularProgress color="inherit" size={16} />
    */
   loadingIndicator: PropTypes.node,
@@ -247,7 +258,7 @@ LoadingButton.propTypes /* remove-proptypes */ = {
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object])),
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
     PropTypes.func,
     PropTypes.object,
   ]),
@@ -255,7 +266,10 @@ LoadingButton.propTypes /* remove-proptypes */ = {
    * The variant to use.
    * @default 'text'
    */
-  variant: PropTypes.oneOf(['contained', 'outlined', 'text']),
+  variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['contained', 'outlined', 'text']),
+    PropTypes.string,
+  ]),
 };
 
 export default LoadingButton;

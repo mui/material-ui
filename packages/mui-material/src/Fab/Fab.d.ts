@@ -22,10 +22,15 @@ export type FabTypeMap<P = {}, D extends React.ElementType = 'button'> = ExtendB
      */
     classes?: Partial<FabClasses>;
     /**
-     * The color of the component. It supports those theme colors that make sense for this component.
+     * The color of the component.
+     * It supports both default and custom theme colors, which can be added as shown in the
+     * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
      * @default 'default'
      */
-    color?: OverridableStringUnion<PropTypes.Color, FabPropsColorOverrides>;
+    color?: OverridableStringUnion<
+      PropTypes.Color | 'success' | 'error' | 'info' | 'warning',
+      FabPropsColorOverrides
+    >;
     /**
      * If `true`, the component is disabled.
      * @default false
@@ -68,12 +73,12 @@ export type FabTypeMap<P = {}, D extends React.ElementType = 'button'> = ExtendB
  *
  * Demos:
  *
- * - [Floating Action Button](https://mui.com/components/floating-action-button/)
+ * - [Floating action button](https://mui.com/material-ui/react-floating-action-button/)
  *
  * API:
  *
- * - [Fab API](https://mui.com/api/fab/)
- * - inherits [ButtonBase API](https://mui.com/api/button-base/)
+ * - [Fab API](https://mui.com/material-ui/api/fab/)
+ * - inherits [ButtonBase API](https://mui.com/material-ui/api/button-base/)
  */
 declare const Fab: ExtendButtonBase<FabTypeMap>;
 

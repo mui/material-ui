@@ -16,8 +16,20 @@ import MuiDivider from '@mui/material/Divider';
 import { getCookie } from 'docs/src/modules/utils/helpers';
 import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
 
+async function fetchNotifications() {
+  if (process.env.NODE_ENV === 'development') {
+    const items = (await import('../../../notifications.json')).default;
+    return items;
+  }
+  const response = await fetch(
+    'https://raw.githubusercontent.com/mui/material-ui/master/docs/notifications.json',
+  );
+  return response.json();
+}
+
 const Paper = styled(MuiPaper)({
   transformOrigin: 'top right',
+  backgroundImage: 'none',
 });
 const List = styled(MuiList)(({ theme }) => ({
   width: theme.spacing(40),
@@ -67,6 +79,10 @@ export default function Notifications() {
     setOpen((prevOpen) => !prevOpen);
     setTooltipOpen(false);
 
+    if (process.env.NODE_ENV !== 'development') {
+      // Skip last seen logic in dev to make editing noti easier.
+      return;
+    }
     if (messageList && messageList.length > 0) {
       const newLastSeen = messageList[0].id;
       setNotifications((notifications) => {
@@ -92,10 +108,7 @@ export default function Notifications() {
 
     // Soften the pressure on the main thread.
     const timeout = setTimeout(() => {
-      fetch('https://raw.githubusercontent.com/mui-org/material-ui/master/docs/notifications.json')
-        .then((response) => {
-          return response.json();
-        })
+      fetchNotifications()
         .catch(() => {
           // Swallow the exceptions, e.g. rate limit
           return [];
@@ -132,14 +145,13 @@ export default function Notifications() {
         enterDelay={300}
       >
         <IconButton
-          color="inherit"
+          color="primary"
           ref={anchorRef}
           aria-controls={open ? 'notifications-popup' : undefined}
           aria-haspopup="true"
           onClick={handleToggle}
           data-ga-event-category="AppBar"
           data-ga-event-action="toggleNotifications"
-          sx={{ px: '10px' }}
         >
           <Badge
             color="error"
@@ -172,14 +184,32 @@ export default function Notifications() {
             }}
           >
             <Grow in={open} {...TransitionProps}>
-              <Paper>
+              <Paper
+                sx={{
+                  mt: 0.5,
+                  border: '1px solid',
+                  borderColor: (theme) =>
+                    theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.200',
+                  boxShadow: (theme) =>
+                    `0px 4px 20px ${
+                      theme.palette.mode === 'dark'
+                        ? 'rgba(0, 0, 0, 0.5)'
+                        : 'rgba(170, 180, 190, 0.3)'
+                    }`,
+                }}
+              >
                 <List>
                   {messageList ? (
                     messageList.map((message, index) => (
                       <React.Fragment key={message.id}>
                         <ListItem alignItems="flex-start">
-                          <Typography gutterBottom>{message.title}</Typography>
-                          <Typography gutterBottom variant="body2">
+                          <Typography gutterBottom>
+                            <span
+                              // eslint-disable-next-line react/no-danger
+                              dangerouslySetInnerHTML={{ __html: message.title }}
+                            />
+                          </Typography>
+                          <Typography gutterBottom variant="body2" color="text.secondary">
                             <span
                               id="notification-message"
                               // eslint-disable-next-line react/no-danger

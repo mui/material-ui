@@ -60,7 +60,7 @@ const AccordionRoot = styled(Paper, {
         height: 1,
         content: '""',
         opacity: 1,
-        backgroundColor: theme.palette.divider,
+        backgroundColor: (theme.vars || theme).palette.divider,
         transition: theme.transitions.create(['opacity', 'background-color'], transition),
       },
       '&:first-of-type': {
@@ -85,7 +85,7 @@ const AccordionRoot = styled(Paper, {
         },
       },
       [`&.${accordionClasses.disabled}`]: {
-        backgroundColor: theme.palette.action.disabledBackground,
+        backgroundColor: (theme.vars || theme).palette.action.disabledBackground,
       },
     };
   },
@@ -93,12 +93,12 @@ const AccordionRoot = styled(Paper, {
     ...(!ownerState.square && {
       borderRadius: 0,
       '&:first-of-type': {
-        borderTopLeftRadius: theme.shape.borderRadius,
-        borderTopRightRadius: theme.shape.borderRadius,
+        borderTopLeftRadius: (theme.vars || theme).shape.borderRadius,
+        borderTopRightRadius: (theme.vars || theme).shape.borderRadius,
       },
       '&:last-of-type': {
-        borderBottomLeftRadius: theme.shape.borderRadius,
-        borderBottomRightRadius: theme.shape.borderRadius,
+        borderBottomLeftRadius: (theme.vars || theme).shape.borderRadius,
+        borderBottomRightRadius: (theme.vars || theme).shape.borderRadius,
         // Fix a rendering issue on Edge
         '@supports (-ms-ime-align: auto)': {
           borderBottomLeftRadius: 0,
@@ -254,19 +254,19 @@ Accordion.propTypes /* remove-proptypes */ = {
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object])),
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
     PropTypes.func,
     PropTypes.object,
   ]),
   /**
    * The component used for the transition.
-   * [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default Collapse
    */
   TransitionComponent: PropTypes.elementType,
   /**
    * Props applied to the transition element.
-   * By default, the element is based on this [`Transition`](https://reactcommunity.org/react-transition-group/transition) component.
+   * By default, the element is based on this [`Transition`](http://reactcommunity.org/react-transition-group/transition/) component.
    */
   TransitionProps: PropTypes.object,
 };

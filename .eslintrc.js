@@ -2,7 +2,7 @@ const path = require('path');
 
 const forbidTopLevelMessage = [
   'Prefer one level nested imports to avoid bundling everything in dev mode',
-  'See https://github.com/mui-org/material-ui/pull/24147 for the kind of win it can unlock.',
+  'See https://github.com/mui/material-ui/pull/24147 for the kind of win it can unlock.',
 ].join('\n');
 // This only applies to packages published from this monorepo.
 // If you build a library around `@mui/material` you can safely use `createStyles` without running into the same issue as we are.
@@ -239,11 +239,19 @@ module.exports = {
     },
     // demos
     {
-      files: ['docs/src/pages/**/*.js', 'docs/src/pages/**/*.tsx'],
+      files: [
+        'docs/src/pages/**/*.js',
+        'docs/src/pages/**/*.tsx',
+        'docs/data/**/*.js',
+        'docs/data/**/*.tsx',
+      ],
       rules: {
         // This most often reports data that is defined after the component definition.
         // This is safe to do and helps readability of the demo code since the data is mostly irrelevant.
         '@typescript-eslint/no-use-before-define': 'off',
+        'react/prop-types': 'off',
+        'no-alert': 'off',
+        'no-console': 'off',
       },
     },
     {
@@ -338,13 +346,6 @@ module.exports = {
       },
     },
     {
-      files: ['framer/Material-UI.framerfx/code/**/*.tsx'],
-      rules: {
-        // framer requires named exports
-        'import/prefer-default-export': 'off',
-      },
-    },
-    {
       files: ['packages/typescript-to-proptypes/src/**/*.ts'],
       rules: {
         // Working with flags is common in TypeScript compiler
@@ -370,7 +371,12 @@ module.exports = {
             ],
           },
         ],
-
+      },
+    },
+    {
+      files: ['packages/*/src/**/*{.ts,.tsx,.js}'],
+      excludedFiles: ['*.d.ts', '*.spec.ts', '*.spec.tsx', 'packages/mui-joy/**/*{.ts,.tsx,.js}'],
+      rules: {
         'material-ui/mui-name-matches-component-name': [
           'error',
           {

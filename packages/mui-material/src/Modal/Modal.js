@@ -23,7 +23,7 @@ const ModalRoot = styled('div', {
   },
 })(({ theme, ownerState }) => ({
   position: 'fixed',
-  zIndex: theme.zIndex.modal,
+  zIndex: (theme.vars || theme).zIndex.modal,
   right: 0,
   bottom: 0,
   top: 0,
@@ -47,12 +47,12 @@ const ModalBackdrop = styled(Backdrop, {
 /**
  * Modal is a lower-level construct that is leveraged by the following components:
  *
- * - [Dialog](/api/dialog/)
- * - [Drawer](/api/drawer/)
- * - [Menu](/api/menu/)
- * - [Popover](/api/popover/)
+ * - [Dialog](/material-ui/api/dialog/)
+ * - [Drawer](/material-ui/api/drawer/)
+ * - [Menu](/material-ui/api/menu/)
+ * - [Popover](/material-ui/api/popover/)
  *
- * If you are creating a modal dialog, you probably want to use the [Dialog](/api/dialog/) component
+ * If you are creating a modal dialog, you probably want to use the [Dialog](/material-ui/api/dialog/) component
  * rather than directly using Modal.
  *
  * This component shares many concepts with [react-overlays](https://react-bootstrap.github.io/react-overlays/#modals).
@@ -61,8 +61,10 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
   const props = useThemeProps({ name: 'MuiModal', props: inProps });
   const {
     BackdropComponent = ModalBackdrop,
+    BackdropProps,
     closeAfterTransition = false,
     children,
+    component,
     components = {},
     componentsProps = {},
     disableAutoFocus = false,
@@ -73,6 +75,8 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
     disableScrollLock = false,
     hideBackdrop = false,
     keepMounted = false,
+    // eslint-disable-next-line react/prop-types
+    theme,
     ...other
   } = props;
 
@@ -98,21 +102,19 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
 
   const classes = extendUtilityClasses(ownerState);
 
+  const Root = components.Root ?? component ?? ModalRoot;
+
   return (
     <ModalUnstyled
       components={{
-        Root: ModalRoot,
+        Root,
+        Backdrop: BackdropComponent,
         ...components,
       }}
       componentsProps={{
-        root: {
-          ...componentsProps.root,
-          ...((!components.Root || !isHostComponent(components.Root)) && {
-            ownerState: { ...componentsProps.root?.ownerState },
-          }),
-        },
+        root: { ...componentsProps.root, ...(!isHostComponent(Root) && { as: component, theme }) },
+        backdrop: { ...BackdropProps, ...componentsProps.backdrop },
       }}
-      BackdropComponent={BackdropComponent}
       onTransitionEnter={() => setExited(false)}
       onTransitionExited={() => setExited(true)}
       ref={ref}
@@ -132,6 +134,7 @@ Modal.propTypes /* remove-proptypes */ = {
   // ----------------------------------------------------------------------
   /**
    * A backdrop component. This prop enables custom backdrop rendering.
+   * @deprecated Use `components.Backdrop` instead.
    * @default styled(Backdrop, {
    *   name: 'MuiModal',
    *   slot: 'Backdrop',
@@ -144,7 +147,8 @@ Modal.propTypes /* remove-proptypes */ = {
    */
   BackdropComponent: PropTypes.elementType,
   /**
-   * Props applied to the [`Backdrop`](/api/backdrop/) element.
+   * Props applied to the [`Backdrop`](/material-ui/api/backdrop/) element.
+   * @deprecated Use `componentsProps.backdrop` instead.
    */
   BackdropProps: PropTypes.object,
   /**
@@ -161,18 +165,27 @@ Modal.propTypes /* remove-proptypes */ = {
    */
   closeAfterTransition: PropTypes.bool,
   /**
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   */
+  component: PropTypes.elementType,
+  /**
    * The components used for each slot inside the Modal.
    * Either a string to use a HTML element or a component.
    * @default {}
    */
   components: PropTypes.shape({
+    Backdrop: PropTypes.elementType,
     Root: PropTypes.elementType,
   }),
   /**
    * The props used for each slot inside the Modal.
    * @default {}
    */
-  componentsProps: PropTypes.object,
+  componentsProps: PropTypes.shape({
+    backdrop: PropTypes.object,
+    root: PropTypes.object,
+  }),
   /**
    * An HTML element or function that returns one.
    * The `container` will have the portal children appended to it.
@@ -214,7 +227,7 @@ Modal.propTypes /* remove-proptypes */ = {
   disablePortal: PropTypes.bool,
   /**
    * If `true`, the modal will not restore focus to previously focused element once
-   * modal is hidden.
+   * modal is hidden or unmounted.
    * @default false
    */
   disableRestoreFocus: PropTypes.bool,
@@ -237,6 +250,7 @@ Modal.propTypes /* remove-proptypes */ = {
   keepMounted: PropTypes.bool,
   /**
    * Callback fired when the backdrop is clicked.
+   * @deprecated Use the `onClose` prop with the `reason` argument to handle the `backdropClick` events.
    */
   onBackdropClick: PropTypes.func,
   /**
@@ -255,7 +269,7 @@ Modal.propTypes /* remove-proptypes */ = {
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object])),
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
     PropTypes.func,
     PropTypes.object,
   ]),

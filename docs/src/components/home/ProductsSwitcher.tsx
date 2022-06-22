@@ -8,7 +8,6 @@ import Stack from '@mui/material/Stack';
 import IconImage from 'docs/src/components/icon/IconImage';
 import Highlighter from 'docs/src/components/action/Highlighter';
 import Link from 'docs/src/modules/components/Link';
-
 import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
 import ROUTES from 'docs/src/route';
 
@@ -71,7 +70,7 @@ function ProductItem({
             alignItems: 'center',
             minHeight: 24,
             '& > svg': { transition: '0.2s' },
-            '&:hover > svg': { transform: 'translateX(4px)' },
+            '&:hover > svg': { transform: 'translateX(2px)' },
           }}
           onClick={(event: React.MouseEvent<HTMLAnchorElement>) => {
             event.stopPropagation();
@@ -100,7 +99,7 @@ const ProductsSwitcher = ({
       aria-label="Go to core components page"
       icon={<IconImage name="product-core" />}
       name="MUI Core"
-      description="Ready-to-use foundational components, free forever."
+      description="Foundational components for shipping features faster. Includes Material UI."
       href={ROUTES.productCore}
     />,
     <ProductItem
@@ -111,21 +110,21 @@ const ProductsSwitcher = ({
           MUI X
         </Box>
       }
-      description="Advanced and powerful components for complex use-cases."
+      description="Advanced components for complex use cases."
       href={ROUTES.productAdvanced}
     />,
     <ProductItem
       aria-label="Go to templates page"
       icon={<IconImage name="product-templates" />}
       name="Templates"
-      description="Fully built, out-of-the-box, templates for your application."
+      description="Professionally designed UI layouts to jumpstart your next project."
       href={ROUTES.productTemplates}
     />,
     <ProductItem
       aria-label="Go to design-kits page"
       icon={<IconImage name="product-designkits" />}
       name="Design kits"
-      description="Our components available in your favorite design tool."
+      description="Bring our components to your favorite design tool."
       href={ROUTES.productDesignKits}
     />,
   ];

@@ -9,6 +9,7 @@ import IconImage from 'docs/src/components/icon/IconImage';
 import ROUTES from 'docs/src/route';
 import FEATURE_TOGGLE from 'docs/src/featureToggle';
 import Link from 'docs/src/modules/components/Link';
+import MuiProductSelector from 'docs/src/modules/components/MuiProductSelector';
 
 const Navigation = styled('nav')(({ theme }) => ({
   '& ul': {
@@ -18,7 +19,7 @@ const Navigation = styled('nav')(({ theme }) => ({
     display: 'flex',
   },
   '& li': {
-    color: theme.palette.text.secondary,
+    color: theme.palette.text.primary,
     ...theme.typography.body2,
     fontWeight: 700,
     '& > a, & > div': {
@@ -30,6 +31,8 @@ const Navigation = styled('nav')(({ theme }) => ({
       '&:hover, &:focus': {
         backgroundColor:
           theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : theme.palette.grey[50],
+        color:
+          theme.palette.mode === 'dark' ? theme.palette.primaryDark[200] : theme.palette.grey[700],
         // Reset on touch devices, it doesn't add specificity
         '@media (hover: none)': {
           backgroundColor: 'initial',
@@ -64,7 +67,9 @@ const ProductSubMenu = React.forwardRef<HTMLAnchorElement, ProductSubMenuProps>(
           py: 2,
           '&:hover, &:focus': {
             backgroundColor: (theme) =>
-              theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.50',
+              theme.palette.mode === 'dark'
+                ? alpha(theme.palette.primaryDark[700], 0.4)
+                : theme.palette.grey[50],
             outline: 'none',
             '@media (hover: none)': {
               backgroundColor: 'initial',
@@ -113,8 +118,10 @@ function getNextIndex(eventKey: KeyboardEvent['key'], currentIndex: number, leng
 export default function HeaderNavBar() {
   const [subMenuOpen, setSubMenuOpen] = React.useState(false);
   const [subMenuIndex, setSubMenuIndex] = React.useState<number | null>(null);
+  const [docsMenuOpen, setDocsMenuOpen] = React.useState(false);
   const navRef = React.useRef<HTMLUListElement | null>(null);
   const productsMenuRef = React.useRef<HTMLDivElement | null>(null);
+  const docsMenuRef = React.useRef<HTMLDivElement | null>(null);
   React.useEffect(() => {
     if (typeof subMenuIndex === 'number') {
       document.getElementById(PRODUCT_IDS[subMenuIndex])?.focus();
@@ -214,25 +221,23 @@ export default function HeaderNavBar() {
               anchorEl={productsMenuRef.current}
               transition
               placement="bottom-start"
-              style={{ zIndex: 1200 }}
+              style={{ zIndex: 1200, pointerEvents: subMenuOpen ? 'visible' : 'none' }}
             >
               {({ TransitionProps }) => (
                 <Fade {...TransitionProps} timeout={350}>
                   <Paper
                     variant="outlined"
-                    sx={{
+                    sx={(theme) => ({
                       minWidth: 498,
                       overflow: 'hidden',
-                      borderColor: (theme) =>
-                        theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.200',
-                      bgcolor: (theme) =>
+                      borderColor: theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.200',
+                      bgcolor:
                         theme.palette.mode === 'dark' ? 'primaryDark.900' : 'background.paper',
-                      boxShadow: (theme) =>
-                        `0px 4px 20px ${
-                          theme.palette.mode === 'dark'
-                            ? alpha(theme.palette.background.paper, 0.72)
-                            : 'rgba(170, 180, 190, 0.3)'
-                        }`,
+                      boxShadow: `0px 4px 20px ${
+                        theme.palette.mode === 'dark'
+                          ? alpha(theme.palette.background.paper, 0.72)
+                          : 'rgba(170, 180, 190, 0.3)'
+                      }`,
                       '& ul': {
                         margin: 0,
                         padding: 0,
@@ -240,11 +245,10 @@ export default function HeaderNavBar() {
                       },
                       '& li:not(:last-of-type)': {
                         borderBottom: '1px solid',
-                        borderColor: (theme) =>
-                          theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.100',
+                        borderColor: theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.100',
                       },
                       '& a': { textDecoration: 'none' },
-                    }}
+                    })}
                   >
                     <ul role="menu">
                       <li role="none">
@@ -264,12 +268,8 @@ export default function HeaderNavBar() {
                           role="menuitem"
                           href={ROUTES.productAdvanced}
                           icon={<IconImage name="product-advanced" />}
-                          name={
-                            <Box component="span" display="inline-flex" alignItems="center">
-                              MUI&nbsp;X
-                            </Box>
-                          }
-                          description="Advanced and powerful components for complex use-cases."
+                          name="MUI X"
+                          description="Advanced and powerful components for complex use cases."
                           onKeyDown={handleKeyDown}
                         />
                       </li>
@@ -302,10 +302,58 @@ export default function HeaderNavBar() {
             </Popper>
           </li>
         )}
-        <li role="none">
-          <Link role="menuitem" href={ROUTES.documentation}>
+        <li
+          role="none"
+          onMouseOver={() => setDocsMenuOpen(true)}
+          onFocus={() => setDocsMenuOpen(true)}
+          onMouseOut={() => setDocsMenuOpen(false)}
+          onBlur={() => setDocsMenuOpen(false)}
+        >
+          <div
+            role="menuitem"
+            tabIndex={0}
+            id="products-menu"
+            ref={docsMenuRef}
+            aria-haspopup
+            aria-expanded={docsMenuOpen ? 'true' : 'false'}
+          >
             Docs
-          </Link>
+          </div>
+          <Popper
+            open={docsMenuOpen}
+            anchorEl={docsMenuRef.current}
+            transition
+            placement="bottom-start"
+            style={{ zIndex: 1200, pointerEvents: docsMenuOpen ? 'visible' : 'none' }}
+          >
+            {({ TransitionProps }) => (
+              <Fade {...TransitionProps} timeout={350}>
+                <Paper
+                  variant="outlined"
+                  sx={(theme) => ({
+                    minWidth: 498,
+                    overflow: 'hidden',
+                    borderColor: theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.200',
+                    bgcolor: theme.palette.mode === 'dark' ? 'primaryDark.900' : 'background.paper',
+                    boxShadow: `0px 4px 20px ${
+                      theme.palette.mode === 'dark'
+                        ? alpha(theme.palette.background.paper, 0.72)
+                        : 'rgba(170, 180, 190, 0.3)'
+                    }`,
+                    '& ul': {
+                      margin: 0,
+                      padding: 0,
+                      listStyle: 'none',
+                    },
+                  })}
+                >
+                  <ul role="menu">
+                    <MuiProductSelector />
+                  </ul>
+                </Paper>
+              </Fade>
+            )}
+          </Popper>
         </li>
         <li role="none">
           <Link role="menuitem" href={ROUTES.pricing}>
@@ -315,6 +363,11 @@ export default function HeaderNavBar() {
         <li role="none">
           <Link role="menuitem" href={ROUTES.about}>
             About us
+          </Link>
+        </li>
+        <li role="none">
+          <Link role="menuitem" href={ROUTES.blog}>
+            Blog
           </Link>
         </li>
       </ul>

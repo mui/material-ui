@@ -1244,4 +1244,12 @@ describe('<ButtonBase />', () => {
       expect(screen.getByRole('button')).to.have.property('type', 'reset');
     });
   });
+
+  describe('prop: touchRipplepRef', () => {
+    it('should return a ref', () => {
+      const ref = React.createRef();
+      render(<ButtonBase touchRippleRef={ref} />);
+      expect(ref.current).not.to.equal(null);
+    });
+  });
 });

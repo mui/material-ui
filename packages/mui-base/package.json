@@ -1,9 +1,9 @@
 {
   "name": "@mui/base",
-  "version": "5.0.0-alpha.55",
+  "version": "5.0.0-alpha.86",
   "private": false,
   "author": "MUI Team",
-  "description": "Unstyled React components with which to implement custom design systems.",
+  "description": "A library of headless ('unstyled') React UI components and low-level hooks.",
   "main": "./src/index.js",
   "keywords": [
     "react",
@@ -14,14 +14,18 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/mui-org/material-ui.git",
+    "url": "https://github.com/mui/material-ui.git",
     "directory": "packages/mui-base"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/mui-org/material-ui/issues"
+    "url": "https://github.com/mui/material-ui/issues"
   },
-  "homepage": "https://mui.com/customization/unstyled-components/",
+  "homepage": "https://mui.com/base/getting-started/overview/",
+  "funding": {
+    "type": "opencollective",
+    "url": "https://opencollective.com/mui"
+  },
   "scripts": {
     "build": "yarn build:legacy && yarn build:modern && yarn build:node && yarn build:stable && yarn build:types && yarn build:copy-files",
     "build:legacy": "node ../../scripts/build legacy",
@@ -37,9 +41,9 @@
     "typescript:module-augmentation": "node scripts/testModuleAugmentation.js"
   },
   "peerDependencies": {
-    "@types/react": "^16.8.6 || ^17.0.0",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "@types/react": "^17.0.0 || ^18.0.0",
+    "react": "^17.0.0 || ^18.0.0",
+    "react-dom": "^17.0.0 || ^18.0.0"
   },
   "peerDependenciesMeta": {
     "@types/react": {
@@ -47,16 +51,14 @@
     }
   },
   "dependencies": {
-    "@babel/runtime": "^7.16.3",
-    "@emotion/is-prop-valid": "^1.1.1",
-    "@mui/utils": "^5.1.1",
-    "@popperjs/core": "^2.4.4",
+    "@babel/runtime": "^7.17.2",
+    "@emotion/is-prop-valid": "^1.1.2",
+    "@mui/types": "^7.1.4",
+    "@mui/utils": "^5.8.4",
+    "@popperjs/core": "^2.11.5",
     "clsx": "^1.1.1",
-    "prop-types": "^15.7.2",
+    "prop-types": "^15.8.1",
     "react-is": "^17.0.2"
-  },
-  "devDependencies": {
-    "@mui/types": "^7.1.0"
   },
   "sideEffects": false,
   "publishConfig": {

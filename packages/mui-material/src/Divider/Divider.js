@@ -59,7 +59,7 @@ const DividerRoot = styled('div', {
     flexShrink: 0,
     borderWidth: 0,
     borderStyle: 'solid',
-    borderColor: theme.palette.divider,
+    borderColor: (theme.vars || theme).palette.divider,
     borderBottomWidth: 'thin',
     ...(ownerState.absolute && {
       position: 'absolute',
@@ -68,7 +68,9 @@ const DividerRoot = styled('div', {
       width: '100%',
     }),
     ...(ownerState.light && {
-      borderColor: alpha(theme.palette.divider, 0.08),
+      borderColor: theme.vars
+        ? `rgba(${theme.vars.palette.dividerChannel} / 0.08)`
+        : alpha(theme.palette.divider, 0.08),
     }),
     ...(ownerState.variant === 'inset' && {
       marginLeft: 72,
@@ -102,7 +104,7 @@ const DividerRoot = styled('div', {
       '&::before, &::after': {
         position: 'relative',
         width: '100%',
-        borderTop: `thin solid ${theme.palette.divider}`,
+        borderTop: `thin solid ${(theme.vars || theme).palette.divider}`,
         top: '50%',
         content: '""',
         transform: 'translateY(50%)',
@@ -118,7 +120,7 @@ const DividerRoot = styled('div', {
           top: '0%',
           left: '50%',
           borderTop: 0,
-          borderLeft: `thin solid ${theme.palette.divider}`,
+          borderLeft: `thin solid ${(theme.vars || theme).palette.divider}`,
           transform: 'translateX(0%)',
         },
       }),
@@ -262,7 +264,7 @@ Divider.propTypes /* remove-proptypes */ = {
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object])),
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
     PropTypes.func,
     PropTypes.object,
   ]),

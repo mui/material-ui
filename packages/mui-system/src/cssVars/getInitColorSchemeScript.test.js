@@ -28,7 +28,7 @@ describe('getInitColorSchemeScript', () => {
 
     // clear the localstorage
     storage = {};
-    document.body.removeAttribute(DEFAULT_ATTRIBUTE);
+    document.documentElement.removeAttribute(DEFAULT_ATTRIBUTE);
     window.matchMedia = createMatchMedia(false);
   });
   afterEach(() => {
@@ -41,7 +41,7 @@ describe('getInitColorSchemeScript', () => {
 
     const { container } = render(getInitColorSchemeScript());
     eval(container.firstChild.textContent);
-    expect(document.body.getAttribute(DEFAULT_ATTRIBUTE)).to.equal('foo');
+    expect(document.documentElement.getAttribute(DEFAULT_ATTRIBUTE)).to.equal('foo');
   });
 
   it('should set custom color scheme to body with custom attribute', () => {
@@ -56,7 +56,7 @@ describe('getInitColorSchemeScript', () => {
       }),
     );
     eval(container.firstChild.textContent);
-    expect(document.body.getAttribute('data-mui-baz-scheme')).to.equal('flash');
+    expect(document.documentElement.getAttribute('data-mui-baz-scheme')).to.equal('flash');
   });
 
   it('should set `dark` color scheme to body', () => {
@@ -65,7 +65,7 @@ describe('getInitColorSchemeScript', () => {
 
     const { container } = render(getInitColorSchemeScript());
     eval(container.firstChild.textContent);
-    expect(document.body.getAttribute(DEFAULT_ATTRIBUTE)).to.equal('bar');
+    expect(document.documentElement.getAttribute(DEFAULT_ATTRIBUTE)).to.equal('bar');
   });
 
   it('should set dark color scheme to body, given prefers-color-scheme is `dark`', () => {
@@ -75,7 +75,7 @@ describe('getInitColorSchemeScript', () => {
 
     const { container } = render(getInitColorSchemeScript());
     eval(container.firstChild.textContent);
-    expect(document.body.getAttribute(DEFAULT_ATTRIBUTE)).to.equal('dim');
+    expect(document.documentElement.getAttribute(DEFAULT_ATTRIBUTE)).to.equal('dim');
   });
 
   it('should set light color scheme to body, given prefers-color-scheme is NOT `dark`', () => {
@@ -85,7 +85,7 @@ describe('getInitColorSchemeScript', () => {
 
     const { container } = render(getInitColorSchemeScript());
     eval(container.firstChild.textContent);
-    expect(document.body.getAttribute(DEFAULT_ATTRIBUTE)).to.equal('bright');
+    expect(document.documentElement.getAttribute(DEFAULT_ATTRIBUTE)).to.equal('bright');
   });
 
   describe('[option: `enableSystem`]', () => {
@@ -99,7 +99,7 @@ describe('getInitColorSchemeScript', () => {
         }),
       );
       eval(container.firstChild.textContent);
-      expect(document.body.getAttribute(DEFAULT_ATTRIBUTE)).to.equal('trueDark');
+      expect(document.documentElement.getAttribute(DEFAULT_ATTRIBUTE)).to.equal('trueDark');
     });
 
     it('should set light color scheme to body, given `enableSystem` is true and prefers-color-scheme is NOT `dark`', () => {
@@ -112,7 +112,7 @@ describe('getInitColorSchemeScript', () => {
         }),
       );
       eval(container.firstChild.textContent);
-      expect(document.body.getAttribute(DEFAULT_ATTRIBUTE)).to.equal('yellow');
+      expect(document.documentElement.getAttribute(DEFAULT_ATTRIBUTE)).to.equal('yellow');
     });
   });
 });

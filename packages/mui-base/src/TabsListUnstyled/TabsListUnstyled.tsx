@@ -3,9 +3,13 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { OverridableComponent } from '@mui/types';
 import composeClasses from '../composeClasses';
-import { appendOwnerState } from '../utils';
+import { appendOwnerState, WithOptionalOwnerState } from '../utils';
 import { getTabsListUnstyledUtilityClass } from './tabsListUnstyledClasses';
-import TabsListUnstyledProps, { TabsListUnstyledTypeMap } from './TabsListUnstyledProps';
+import {
+  TabsListUnstyledProps,
+  TabsListUnstyledRootSlotProps,
+  TabsListUnstyledTypeMap,
+} from './TabsListUnstyled.types';
 import useTabsList from './useTabsList';
 
 const useUtilityClasses = (ownerState: { orientation: 'horizontal' | 'vertical' }) => {
@@ -22,11 +26,11 @@ const useUtilityClasses = (ownerState: { orientation: 'horizontal' | 'vertical' 
  *
  * Demos:
  *
- * - [Tabs](https://mui.com/components/tabs/)
+ * - [Tabs](https://mui.com/base/react-tabs/)
  *
  * API:
  *
- * - [TabsListUnstyled API](https://mui.com/api/tabs-list-unstyled/)
+ * - [TabsListUnstyled API](https://mui.com/base/api/tabs-list-unstyled/)
  */
 const TabsListUnstyled = React.forwardRef<unknown, TabsListUnstyledProps>((props, ref) => {
   const { className, children, component, components = {}, componentsProps = {}, ...other } = props;
@@ -42,23 +46,20 @@ const TabsListUnstyled = React.forwardRef<unknown, TabsListUnstyledProps>((props
   const classes = useUtilityClasses(ownerState);
 
   const TabsListRoot: React.ElementType = component ?? components.Root ?? 'div';
-  const tabsListRootProps = appendOwnerState(
+  const tabsListRootProps: WithOptionalOwnerState<TabsListUnstyledRootSlotProps> = appendOwnerState(
     TabsListRoot,
-    { ...other, ...componentsProps.root },
+    {
+      ...getRootProps(),
+      ...other,
+      ...componentsProps.root,
+      className: clsx(className, componentsProps.root?.className, classes.root),
+    },
     ownerState,
   );
 
   const processedChildren = processChildren();
 
-  return (
-    <TabsListRoot
-      {...getRootProps()}
-      {...tabsListRootProps}
-      className={clsx(className, componentsProps.root?.className, classes.root)}
-    >
-      {processedChildren}
-    </TabsListRoot>
-  );
+  return <TabsListRoot {...tabsListRootProps}>{processedChildren}</TabsListRoot>;
 }) as OverridableComponent<TabsListUnstyledTypeMap>;
 
 TabsListUnstyled.propTypes /* remove-proptypes */ = {
@@ -91,7 +92,9 @@ TabsListUnstyled.propTypes /* remove-proptypes */ = {
    * The props used for each slot inside the TabsList.
    * @default {}
    */
-  componentsProps: PropTypes.object,
+  componentsProps: PropTypes.shape({
+    root: PropTypes.object,
+  }),
 } as any;
 
 export default TabsListUnstyled;

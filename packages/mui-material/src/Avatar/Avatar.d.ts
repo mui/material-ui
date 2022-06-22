@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { Theme } from '@mui/material/styles';
 import { OverridableStringUnion } from '@mui/types';
+import { Theme } from '../styles';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { AvatarClasses } from './avatarClasses';
 
@@ -27,7 +27,9 @@ export interface AvatarTypeMap<P = {}, D extends React.ElementType = 'div'> {
      * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attributes) applied to the `img` element if the component is used to display an image.
      * It can be used to listen for the loading error event.
      */
-    imgProps?: React.ImgHTMLAttributes<HTMLImageElement>;
+    imgProps?: React.ImgHTMLAttributes<HTMLImageElement> & {
+      sx?: SxProps<Theme>;
+    };
     /**
      * The `sizes` attribute for the `img` element.
      */
@@ -61,11 +63,11 @@ export interface AvatarTypeMap<P = {}, D extends React.ElementType = 'div'> {
  *
  * Demos:
  *
- * - [Avatars](https://mui.com/components/avatars/)
+ * - [Avatars](https://mui.com/material-ui/react-avatar/)
  *
  * API:
  *
- * - [Avatar API](https://mui.com/api/avatar/)
+ * - [Avatar API](https://mui.com/material-ui/api/avatar/)
  */
 declare const Avatar: OverridableComponent<AvatarTypeMap>;
 

@@ -12,9 +12,9 @@ The rendered UI is either:
 
 1. located inside a separate file in `./fixtures` and written as a React component.
 
-   Here is an [example](https://github.com/mui-org/material-ui/blob/814fb60bbd8e500517b2307b6a297a638838ca89/test/regressions/tests/Menu/SimpleMenuList.js#L6-L16) with the `Menu` component.
+   Here is an [example](https://github.com/mui/material-ui/blob/814fb60bbd8e500517b2307b6a297a638838ca89/test/regressions/tests/Menu/SimpleMenuList.js#L6-L16) with the `Menu` component.
 
-2. a demo from `docs/src/pages`
+2. a demo from `docs/data`
 
    By default all demos are included.
    We exclude demos if they are redundant or flaky etc.
@@ -27,7 +27,7 @@ If you're adding a new test prefer a new component instead of editing existing f
 
 ### Manual
 
-`yarn test:regresions:dev` will build all fixtures and render an overview page that lists all fixtures.
+`yarn test:regressions:dev` will build all fixtures and render an overview page that lists all fixtures.
 This can be used to debug individual fixtures.
 By default, a devtools-like view is shown that can be disabled by appending `#no-dev` to the URL e.g. `http://localhost:3000/docs-customization-typography/CustomResponsiveFontSizes#no-dev` or forced by appending `#dev` to the URL e.g. `http://localhost:3000/docs-customization-typography/CustomResponsiveFontSizes#dev`.
 
@@ -41,16 +41,16 @@ It allows catching regressions like this one:
 
 Screenshots are saved in `./screenshots/$BROWSER_NAME/`.
 Each test tests only a single fixture.
-A fixture can be loaded with `await renderFixture(fixturePath)` e.g. `renderFixture('Unstable_TrapFocus/OpenTrapFocus')`.
+A fixture can be loaded with `await renderFixture(fixturePath)` e.g. `renderFixture('TrapFocus/OpenTrapFocus')`.
 
 ## Commands
 
-For development `yarn test:regresions:dev` and `yarn test:regresions:run --watch` in separate terminals is recommended.
+For development `yarn test:regressions:dev` and `yarn test:regressions:run --watch` in separate terminals is recommended.
 
-| command                       | description                                                                                                        |
-| ----------------------------- | ------------------------------------------------------------------------------------------------------------------ |
-| `yarn test:regresions`        | Full run                                                                                                           |
-| `yarn test:regresions:dev`    | Prepares the fixtures to be able to test in watchmode                                                              |
-| `yarn test:regresions:run`    | Runs the tests (requires `yarn test:regresions:dev` or `yarn test:regresions:build`+`yarn test:regresions:server`) |
-| `yarn test:regresions:build`  | Builds the webpack bundle for viewing the fixtures                                                                 |
-| `yarn test:regresions:server` | Serves the fixture bundle.                                                                                         |
+| command                        | description                                                                                                           |
+| ------------------------------ | --------------------------------------------------------------------------------------------------------------------- |
+| `yarn test:regressions`        | Full run                                                                                                              |
+| `yarn test:regressions:dev`    | Prepares the fixtures to be able to test in watchmode                                                                 |
+| `yarn test:regressions:run`    | Runs the tests (requires `yarn test:regressions:dev` or `yarn test:regressions:build`+`yarn test:regressions:server`) |
+| `yarn test:regressions:build`  | Builds the webpack bundle for viewing the fixtures                                                                    |
+| `yarn test:regressions:server` | Serves the fixture bundle.                                                                                            |

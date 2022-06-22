@@ -61,19 +61,23 @@ const StepConnectorLine = styled('span', {
 
     return [styles.line, styles[`line${capitalize(ownerState.orientation)}`]];
   },
-})(({ ownerState, theme }) => ({
-  display: 'block',
-  borderColor: theme.palette.mode === 'light' ? theme.palette.grey[400] : theme.palette.grey[600],
-  ...(ownerState.orientation === 'horizontal' && {
-    borderTopStyle: 'solid',
-    borderTopWidth: 1,
-  }),
-  ...(ownerState.orientation === 'vertical' && {
-    borderLeftStyle: 'solid',
-    borderLeftWidth: 1,
-    minHeight: 24,
-  }),
-}));
+})(({ ownerState, theme }) => {
+  const borderColor =
+    theme.palette.mode === 'light' ? theme.palette.grey[400] : theme.palette.grey[600];
+  return {
+    display: 'block',
+    borderColor: theme.vars ? theme.vars.palette.StepConnector.border : borderColor,
+    ...(ownerState.orientation === 'horizontal' && {
+      borderTopStyle: 'solid',
+      borderTopWidth: 1,
+    }),
+    ...(ownerState.orientation === 'vertical' && {
+      borderLeftStyle: 'solid',
+      borderLeftWidth: 1,
+      minHeight: 24,
+    }),
+  };
+});
 
 const StepConnector = React.forwardRef(function StepConnector(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiStepConnector' });
@@ -114,7 +118,7 @@ StepConnector.propTypes /* remove-proptypes */ = {
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object])),
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
     PropTypes.func,
     PropTypes.object,
   ]),

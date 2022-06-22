@@ -15,12 +15,12 @@ export const html = (theme, enableColorScheme) => ({
 });
 
 export const body = (theme) => ({
-  color: theme.palette.text.primary,
+  color: (theme.vars || theme).palette.text.primary,
   ...theme.typography.body1,
-  backgroundColor: theme.palette.background.default,
+  backgroundColor: (theme.vars || theme).palette.background.default,
   '@media print': {
     // Save printer ink.
-    backgroundColor: theme.palette.common.white,
+    backgroundColor: (theme.vars || theme).palette.common.white,
   },
 });
 
@@ -39,7 +39,7 @@ export const styles = (theme, enableColorScheme = false) => {
       // Add support for document.body.requestFullScreen().
       // Other elements, if background transparent, are not supported.
       '&::backdrop': {
-        backgroundColor: theme.palette.background.default,
+        backgroundColor: (theme.vars || theme).palette.background.default,
       },
     },
   };
@@ -76,7 +76,7 @@ CssBaseline.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
-   * Enable `color-scheme` css property to use `theme.palette.mode`.
+   * Enable `color-scheme` CSS property to use `theme.palette.mode`.
    * For more details, check out https://developer.mozilla.org/en-US/docs/Web/CSS/color-scheme
    * For browser support, check out https://caniuse.com/?search=color-scheme
    * @default false

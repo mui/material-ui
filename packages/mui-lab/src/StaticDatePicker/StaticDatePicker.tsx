@@ -1,77 +1,44 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { BaseDatePickerProps, useDatePickerDefaultizedProps } from '../DatePicker/shared';
-import DatePickerToolbar from '../DatePicker/DatePickerToolbar';
-import StaticWrapper, { StaticWrapperProps } from '../internal/pickers/wrappers/StaticWrapper';
-import Picker from '../internal/pickers/Picker/Picker';
-import { MuiPickersAdapter } from '../internal/pickers/hooks/useUtils';
-import { useDateValidation } from '../internal/pickers/hooks/useValidation';
-import { parsePickerInputValue } from '../internal/pickers/date-utils';
-import { usePickerState, PickerStateValueManager } from '../internal/pickers/hooks/usePickerState';
+import {
+  StaticDatePicker as XStaticDatePicker,
+  StaticDatePickerProps,
+} from '@mui/x-date-pickers/StaticDatePicker';
 
-const valueManager: PickerStateValueManager<unknown, unknown> = {
-  emptyValue: null,
-  parseInput: parsePickerInputValue,
-  areValuesEqual: (utils: MuiPickersAdapter, a: unknown, b: unknown) => utils.isEqual(a, b),
+let warnedOnce = false;
+
+const warn = () => {
+  if (!warnedOnce) {
+    console.warn(
+      [
+        'MUI: The StaticDatePicker component was moved from `@mui/lab` to `@mui/x-date-pickers`.',
+        'The component will no longer be exported from `@mui/lab` in the first release of July 2022.',
+        '',
+        "You should use `import { StaticDatePicker } from '@mui/x-date-pickers'`",
+        "or `import { StaticDatePicker } from '@mui/x-date-pickers/StaticDatePicker'`",
+        '',
+        'More information about this migration on our blog: https://mui.com/blog/lab-date-pickers-to-mui-x/.',
+      ].join('\n'),
+    );
+
+    warnedOnce = true;
+  }
 };
-
-export interface StaticDatePickerProps<TDate = unknown> extends BaseDatePickerProps<TDate> {
-  /**
-   * Force static wrapper inner components to be rendered in mobile or desktop mode.
-   * @default 'mobile'
-   */
-  displayStaticWrapperAs?: StaticWrapperProps['displayStaticWrapperAs'];
-}
 
 type StaticDatePickerComponent = (<TDate>(
   props: StaticDatePickerProps<TDate> & React.RefAttributes<HTMLDivElement>,
 ) => JSX.Element) & { propTypes?: any };
 
 /**
- *
- * Demos:
- *
- * - [Date Picker](https://mui.com/components/date-picker/)
- *
- * API:
- *
- * - [StaticDatePicker API](https://mui.com/api/static-date-picker/)
+ * @ignore - do not document.
  */
-const StaticDatePicker = React.forwardRef(function StaticDatePicker<TDate>(
-  inProps: StaticDatePickerProps<TDate>,
-  ref: React.Ref<HTMLDivElement>,
+const StaticDatePicker = React.forwardRef(function DeprecatedStaticDatePicker<TDate>(
+  props: StaticDatePickerProps<TDate>,
+  ref: React.Ref<any>,
 ) {
-  // TODO: TDate needs to be instantiated at every usage.
-  const props = useDatePickerDefaultizedProps(
-    inProps as StaticDatePickerProps<unknown>,
-    'MuiStaticDatePicker',
-  );
+  warn();
 
-  const validationError = useDateValidation(props) !== null;
-  const { pickerProps, inputProps } = usePickerState(props, valueManager);
-
-  // Note that we are passing down all the value without spread.
-  // It saves us >1kb gzip and make any prop available automatically on any level down.
-  const {
-    ToolbarComponent = DatePickerToolbar,
-    value,
-    onChange,
-    displayStaticWrapperAs = 'mobile',
-    ...other
-  } = props;
-  const DateInputProps = { ...inputProps, ...other, ref, validationError };
-
-  return (
-    <StaticWrapper displayStaticWrapperAs={displayStaticWrapperAs}>
-      <Picker
-        {...pickerProps}
-        toolbarTitle={props.label || props.toolbarTitle}
-        ToolbarComponent={ToolbarComponent}
-        DateInputProps={DateInputProps}
-        {...other}
-      />
-    </StaticWrapper>
-  );
+  return <XStaticDatePicker ref={ref} {...props} />;
 }) as StaticDatePickerComponent;
 
 StaticDatePicker.propTypes /* remove-proptypes */ = {
@@ -99,7 +66,7 @@ StaticDatePicker.propTypes /* remove-proptypes */ = {
   className: PropTypes.string,
   /**
    * The components used for each slot.
-   * Either a string to use a HTML element or a component.
+   * Either a string to use an HTML element or a component.
    * @default {}
    */
   components: PropTypes.shape({
@@ -115,7 +82,11 @@ StaticDatePicker.propTypes /* remove-proptypes */ = {
    * The props used for each slot inside.
    * @default {}
    */
-  componentsProps: PropTypes.object,
+  componentsProps: PropTypes.shape({
+    leftArrowButton: PropTypes.object,
+    rightArrowButton: PropTypes.object,
+    switchViewButton: PropTypes.object,
+  }),
   /**
    * Default calendar month displayed when `value={null}`.
    */
@@ -160,11 +131,17 @@ StaticDatePicker.propTypes /* remove-proptypes */ = {
   displayStaticWrapperAs: PropTypes.oneOf(['desktop', 'mobile']),
   /**
    * Get aria-label text for control that opens picker dialog. Aria-label text must include selected date. @DateIOType
+   * @template TDateValue
+   * @param {ParseableDate<TDateValue>} value The date from which we want to add an aria-text.
+   * @param {MuiPickersAdapter<TDateValue>} utils The utils to manipulate the date.
+   * @returns {string} The aria-text to render inside the dialog.
    * @default (value, utils) => `Choose date, selected date is ${utils.format(utils.date(value), 'fullDate')}`
    */
   getOpenDialogAriaText: PropTypes.func,
   /**
    * Get aria-label text for switching between views button.
+   * @param {CalendarPickerView} currentView The view from which we want to get the button text.
+   * @returns {string} The label of the view.
    */
   getViewSwitchingButtonText: PropTypes.func,
   /**
@@ -195,10 +172,6 @@ StaticDatePicker.propTypes /* remove-proptypes */ = {
   /**
    * @ignore
    */
-  key: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  /**
-   * @ignore
-   */
   label: PropTypes.node,
   /**
    * Left arrow icon aria-label text.
@@ -224,10 +197,15 @@ StaticDatePicker.propTypes /* remove-proptypes */ = {
   minDate: PropTypes.any,
   /**
    * Callback fired when date is accepted @DateIOType.
+   * @template TDateValue
+   * @param {TDateValue} date The date that was just accepted.
    */
   onAccept: PropTypes.func,
   /**
    * Callback fired when the value (the selected date) changes @DateIOType.
+   * @template TDate
+   * @param {DateRange<TDate>} date The new parsed date.
+   * @param {string} keyboardInputValue The current value of the keyboard input.
    */
   onChange: PropTypes.func.isRequired,
   /**
@@ -242,10 +220,16 @@ StaticDatePicker.propTypes /* remove-proptypes */ = {
    *
    * [Read the guide](https://next.material-ui-pickers.dev/guides/forms) about form integration and error displaying.
    * @DateIOType
+   *
+   * @template TError, TDateValue
+   * @param {TError} reason The reason why the current value is not valid.
+   * @param {TDateValue} value The invalid value.
    */
   onError: PropTypes.func,
   /**
    * Callback firing on month change. @DateIOType
+   * @template TDate
+   * @param {TDate} month The new month.
    */
   onMonthChange: PropTypes.func,
   /**
@@ -255,10 +239,13 @@ StaticDatePicker.propTypes /* remove-proptypes */ = {
   onOpen: PropTypes.func,
   /**
    * Callback fired on view change.
+   * @param {CalendarPickerView} view The new view.
    */
   onViewChange: PropTypes.func,
   /**
    * Callback firing on year change @DateIOType.
+   * @template TDate
+   * @param {TDate} year The new year.
    */
   onYearChange: PropTypes.func,
   /**
@@ -288,25 +275,35 @@ StaticDatePicker.propTypes /* remove-proptypes */ = {
    */
   reduceAnimations: PropTypes.bool,
   /**
-   * Custom renderer for day. Check the [PickersDay](https://mui.com/api/pickers-day/) component.
+   * Custom renderer for day. Check the [PickersDay](https://mui.com/x/api/date-pickers/pickers-day/) component.
+   * @template TDate
+   * @param {TDate} day The day to render.
+   * @param {Array<TDate | null>} selectedDates The dates currently selected.
+   * @param {PickersDayProps<TDate>} pickersDayProps The props of the day to render.
+   * @returns {JSX.Element} The element representing the day.
    */
   renderDay: PropTypes.func,
   /**
    * The `renderInput` prop allows you to customize the rendered input.
-   * The `props` argument of this render prop contains props of [TextField](https://mui.com/api/text-field/#textfield-api) that you need to forward.
+   * The `props` argument of this render prop contains props of [TextField](https://mui.com/material-ui/api/text-field/#props) that you need to forward.
    * Pay specific attention to the `ref` and `inputProps` keys.
    * @example ```jsx
    * renderInput={props => <TextField {...props} />}
    * ````
+   * @param {MuiTextFieldPropsType} props The props of the input.
+   * @returns {React.ReactNode} The node to render as the input.
    */
   renderInput: PropTypes.func.isRequired,
   /**
    * Component displaying when passed `loading` true.
+   * @returns {React.ReactNode} The node to render when loading.
    * @default () => <span data-mui-test="loading-progress">...</span>
    */
   renderLoading: PropTypes.func,
   /**
    * Custom formatter to be passed into Rifm component.
+   * @param {string} str The un-formatted string.
+   * @returns {string} The formatted string.
    */
   rifmFormatter: PropTypes.func,
   /**
@@ -315,11 +312,17 @@ StaticDatePicker.propTypes /* remove-proptypes */ = {
   rightArrowButtonText: PropTypes.string,
   /**
    * Disable specific date. @DateIOType
+   * @template TDate
+   * @param {TDate} day The date to check.
+   * @returns {boolean} If `true` the day will be disabled.
    */
   shouldDisableDate: PropTypes.func,
   /**
    * Disable specific years dynamically.
    * Works like `shouldDisableDate` but for year selection view @DateIOType.
+   * @template TDate
+   * @param {TDate} year The year to test.
+   * @returns {boolean} Return `true` if the year should be disabled.
    */
   shouldDisableYear: PropTypes.func,
   /**

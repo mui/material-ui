@@ -106,7 +106,7 @@ const TabsScroller = styled('div', {
     width: '100%',
   }),
   ...(ownerState.hideScrollbar && {
-    // Hide dimensionless scrollbar on MacOS
+    // Hide dimensionless scrollbar on macOS
     scrollbarWidth: 'none', // Firefox
     '&::-webkit-scrollbar': {
       display: 'none', // Safari + Chrome
@@ -151,7 +151,7 @@ const TabsScrollbarSize = styled(ScrollbarSize, {
 })({
   overflowX: 'auto',
   overflowY: 'hidden',
-  // Hide dimensionless scrollbar on MacOS
+  // Hide dimensionless scrollbar on macOS
   scrollbarWidth: 'none', // Firefox
   '&::-webkit-scrollbar': {
     display: 'none', // Safari + Chrome
@@ -715,7 +715,7 @@ Tabs.propTypes /* remove-proptypes */ = {
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object])),
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
     PropTypes.func,
     PropTypes.object,
   ]),
@@ -725,7 +725,7 @@ Tabs.propTypes /* remove-proptypes */ = {
    */
   TabIndicatorProps: PropTypes.object,
   /**
-   * Props applied to the [`TabScrollButton`](/api/tab-scroll-button/) element.
+   * Props applied to the [`TabScrollButton`](/material-ui/api/tab-scroll-button/) element.
    * @default {}
    */
   TabScrollButtonProps: PropTypes.object,

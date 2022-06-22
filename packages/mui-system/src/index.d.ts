@@ -23,6 +23,10 @@ export const borderRight: SimpleStyleFunction<'borderRight'>;
 export const borderBottom: SimpleStyleFunction<'borderBottom'>;
 export const borderLeft: SimpleStyleFunction<'borderLeft'>;
 export const borderColor: SimpleStyleFunction<'borderColor'>;
+export const borderTopColor: SimpleStyleFunction<'borderTopColor'>;
+export const borderRightColor: SimpleStyleFunction<'borderRightColor'>;
+export const borderBottomColor: SimpleStyleFunction<'borderBottomColor'>;
+export const borderLeftColor: SimpleStyleFunction<'borderLeftColor'>;
 export const borderRadius: SimpleStyleFunction<'borderRadius'>;
 export type BordersProps = PropsFor<typeof borders>;
 
@@ -88,6 +92,7 @@ export const fontWeight: SimpleStyleFunction<'fontWeight'>;
 export const letterSpacing: SimpleStyleFunction<'letterSpacing'>;
 export const lineHeight: SimpleStyleFunction<'lineHeight'>;
 export const textAlign: SimpleStyleFunction<'textAlign'>;
+export const textTransform: SimpleStyleFunction<'textTransform'>;
 export type TypographyProps = PropsFor<typeof typography>;
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
@@ -117,9 +122,12 @@ export * from './spacing';
 
 export {
   default as unstable_styleFunctionSx,
+  unstable_createStyleFunctionSx,
   extendSxProp as unstable_extendSxProp,
 } from './styleFunctionSx';
 export * from './styleFunctionSx';
+
+export { default as experimental_sx } from './sx';
 
 export { default as Box } from './Box';
 export * from './Box';
@@ -158,5 +166,12 @@ export * from './colorManipulator';
 export { default as ThemeProvider } from './ThemeProvider';
 export * from './ThemeProvider';
 
-export { default as unstable_createCssVarsProvider } from './cssVars';
+export { default as unstable_createCssVarsProvider, CreateCssVarsProviderResult } from './cssVars';
+export { default as unstable_createGetCssVar } from './cssVars/createGetCssVar';
 export * from './cssVars';
+
+export { default as createContainer } from './Container/createContainer';
+export * from './Container/createContainer';
+
+export { default as Container } from './Container';
+export * from './Container';

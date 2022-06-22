@@ -5,12 +5,14 @@ import { unstable_composeClasses as composeClasses } from '@mui/base';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import { getFormGroupUtilityClass } from './formGroupClasses';
+import useFormControl from '../FormControl/useFormControl';
+import formControlState from '../FormControl/formControlState';
 
 const useUtilityClasses = (ownerState) => {
-  const { classes, row } = ownerState;
+  const { classes, row, error } = ownerState;
 
   const slots = {
-    root: ['root', row && 'row'],
+    root: ['root', row && 'row', error && 'error'],
   };
 
   return composeClasses(slots, getFormGroupUtilityClass, classes);
@@ -45,7 +47,14 @@ const FormGroup = React.forwardRef(function FormGroup(inProps, ref) {
   });
 
   const { className, row = false, ...other } = props;
-  const ownerState = { ...props, row };
+  const muiFormControl = useFormControl();
+  const fcs = formControlState({
+    props,
+    muiFormControl,
+    states: ['error'],
+  });
+
+  const ownerState = { ...props, row, error: fcs.error };
   const classes = useUtilityClasses(ownerState);
 
   return (
@@ -84,7 +93,7 @@ FormGroup.propTypes /* remove-proptypes */ = {
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object])),
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
     PropTypes.func,
     PropTypes.object,
   ]),

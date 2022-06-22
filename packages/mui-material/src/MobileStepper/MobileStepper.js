@@ -37,21 +37,21 @@ const MobileStepperRoot = styled(Paper, {
   flexDirection: 'row',
   justifyContent: 'space-between',
   alignItems: 'center',
-  background: theme.palette.background.default,
+  background: (theme.vars || theme).palette.background.default,
   padding: 8,
   ...(ownerState.position === 'bottom' && {
     position: 'fixed',
     bottom: 0,
     left: 0,
     right: 0,
-    zIndex: theme.zIndex.mobileStepper,
+    zIndex: (theme.vars || theme).zIndex.mobileStepper,
   }),
   ...(ownerState.position === 'top' && {
     position: 'fixed',
     top: 0,
     left: 0,
     right: 0,
-    zIndex: theme.zIndex.mobileStepper,
+    zIndex: (theme.vars || theme).zIndex.mobileStepper,
   }),
 }));
 
@@ -80,13 +80,13 @@ const MobileStepperDot = styled('div', {
     transition: theme.transitions.create('background-color', {
       duration: theme.transitions.duration.shortest,
     }),
-    backgroundColor: theme.palette.action.disabled,
+    backgroundColor: (theme.vars || theme).palette.action.disabled,
     borderRadius: '50%',
     width: 8,
     height: 8,
     margin: '0 2px',
     ...(dotActive && {
-      backgroundColor: theme.palette.primary.main,
+      backgroundColor: (theme.vars || theme).palette.primary.main,
     }),
   }),
 }));
@@ -212,7 +212,7 @@ MobileStepper.propTypes /* remove-proptypes */ = {
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object])),
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
     PropTypes.func,
     PropTypes.object,
   ]),

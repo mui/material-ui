@@ -8,7 +8,7 @@ const exec = promisify(childProcess.exec);
 
 /**
  * @param {string} commitMessage
- * @returns {string} The tags in lowercases, ordered ascending and commaseparated
+ * @returns {string} The tags in lowercases, ordered ascending and comma separated
  */
 function parseTags(commitMessage) {
   const tagMatch = commitMessage.match(/^(\[[\w-]+\])+/);
@@ -54,7 +54,7 @@ async function findLatestTaggedVersion() {
 }
 
 async function main(argv) {
-  const { githubToken, lastRelease: lastReleaseInput, release } = argv;
+  const { githubToken, lastRelease: lastReleaseInput, release, repo } = argv;
 
   if (!githubToken) {
     throw new TypeError(
@@ -69,7 +69,7 @@ async function main(argv) {
   const lastRelease = lastReleaseInput !== undefined ? lastReleaseInput : latestTaggedVersion;
   if (lastRelease !== latestTaggedVersion) {
     console.warn(
-      `Creating changelog for ${latestTaggedVersion}..${release} when latest tagged version is '${latestTaggedVersion}'.`,
+      `Creating changelog for ${lastRelease}..${release} when latest tagged version is '${latestTaggedVersion}'.`,
     );
   }
 
@@ -78,8 +78,8 @@ async function main(argv) {
    */
   const timeline = octokit.paginate.iterator(
     octokit.repos.compareCommits.endpoint.merge({
-      owner: 'mui-org',
-      repo: 'material-ui',
+      owner: 'mui',
+      repo,
       base: lastRelease,
       head: release,
     }),
@@ -126,11 +126,11 @@ async function main(argv) {
       .toString()
       // Padding them with a zero means we can just feed a list into online sorting tools like https://www.online-utility.org/text/sort.jsp
       // i.e. we can sort the lines alphanumerically
-      .padStart(Math.ceil(Math.log10(commitsItemsByDateDesc.length)), '0')} -->`;
+      .padStart(Math.floor(Math.log10(commitsItemsByDateDesc.length)) + 1, '0')} -->`;
     const shortMessage = commitsItem.commit.message.split('\n')[0];
     return `- ${dateSortMarker}${shortMessage} @${commitsItem.author.login}`;
   });
-  const nowFormated = new Date().toLocaleDateString('en-US', {
+  const nowFormatted = new Date().toLocaleDateString('en-US', {
     month: 'short',
     day: 'numeric',
     year: 'numeric',
@@ -139,7 +139,7 @@ async function main(argv) {
   const changelog = `
 ## TODO RELEASE NAME
 <!-- generated comparing ${lastRelease}..${release} -->
-_${nowFormated}_
+_${nowFormatted}_
 
 A big thanks to the ${
     authors.length
@@ -164,7 +164,7 @@ yargs
       return command
         .option('lastRelease', {
           describe:
-            'The release to compare gainst e.g. `v5.0.0-alpha.23`. Default: The latest tag on the current branch.',
+            'The release to compare against e.g. `v5.0.0-alpha.23`. Default: The latest tag on the current branch.',
           type: 'string',
         })
         .option('githubToken', {
@@ -177,6 +177,11 @@ yargs
           // #default-branch-switch
           default: 'master',
           describe: 'Ref which we want to release',
+          type: 'string',
+        })
+        .option('repo', {
+          default: 'material-ui',
+          describe: 'Repository to generate a changelog for',
           type: 'string',
         });
     },

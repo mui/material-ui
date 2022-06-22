@@ -1,34 +1,40 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
-import Divider from '@mui/material/Divider';
 import KeyboardArrowRightRoundedIcon from '@mui/icons-material/KeyboardArrowRightRounded';
-import { alpha, styled } from '@mui/material/styles';
+import { alpha, styled, experimental_sx as sx } from '@mui/material/styles';
 import Collapse from '@mui/material/Collapse';
-import ButtonBase from '@mui/material/ButtonBase';
+import Chip from '@mui/material/Chip';
+import { openLinkInNewTab } from 'docs/src/modules/components/MarkdownLinks';
 import Link from 'docs/src/modules/components/Link';
-import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined';
-import ToggleOffOutlinedIcon from '@mui/icons-material/ToggleOffOutlined';
+import ArticleRoundedIcon from '@mui/icons-material/ArticleRounded';
+import ToggleOffRoundedIcon from '@mui/icons-material/ToggleOffRounded';
 import CodeRoundedIcon from '@mui/icons-material/CodeRounded';
-import BuildOutlinedIcon from '@mui/icons-material/BuildOutlined';
-import CreateOutlinedIcon from '@mui/icons-material/CreateOutlined';
-import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
-import ColorLensOutlinedIcon from '@mui/icons-material/ColorLensOutlined';
-import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
-import BookOutlined from '@mui/icons-material/BookOutlined';
-import ChromeReaderModeOutlined from '@mui/icons-material/ChromeReaderModeOutlined';
+import HandymanRoundedIcon from '@mui/icons-material/HandymanRounded';
+import EditRoundedIcon from '@mui/icons-material/EditRounded';
+import VisibilityRoundedIcon from '@mui/icons-material/VisibilityRounded';
+import InvertColorsRoundedIcon from '@mui/icons-material/InvertColorsRounded';
+import AddCircleRoundedIcon from '@mui/icons-material/AddCircleRounded';
+import BookRoundedIcon from '@mui/icons-material/BookRounded';
+import ChromeReaderModeRoundedIcon from '@mui/icons-material/ChromeReaderModeRounded';
+import TableViewRoundedIcon from '@mui/icons-material/TableViewRounded';
+import ScienceIcon from '@mui/icons-material/Science';
+import DateRangeRounded from '@mui/icons-material/DateRangeRounded';
 
 const iconsMap = {
-  DescriptionIcon: ArticleOutlinedIcon,
-  ToggleOnIcon: ToggleOffOutlinedIcon,
+  DescriptionIcon: ArticleRoundedIcon,
+  ToggleOnIcon: ToggleOffRoundedIcon,
   CodeIcon: CodeRoundedIcon,
-  BuildIcon: BuildOutlinedIcon,
-  CreateIcon: CreateOutlinedIcon,
-  VisibilityIcon: VisibilityOutlinedIcon,
-  StyleIcon: ColorLensOutlinedIcon,
-  AddIcon: AddCircleOutlineOutlinedIcon,
-  BookIcon: BookOutlined,
-  ReaderIcon: ChromeReaderModeOutlined,
+  BuildIcon: HandymanRoundedIcon,
+  CreateIcon: EditRoundedIcon,
+  VisibilityIcon: VisibilityRoundedIcon,
+  StyleIcon: InvertColorsRoundedIcon,
+  AddIcon: AddCircleRoundedIcon,
+  BookIcon: BookRoundedIcon,
+  ReaderIcon: ChromeReaderModeRoundedIcon,
+  TableViewIcon: TableViewRoundedIcon,
+  ExperimentIcon: ScienceIcon,
+  DatePickerIcon: DateRangeRounded,
 };
 
 const Item = styled(
@@ -36,57 +42,57 @@ const Item = styled(
     return <Component {...props} />;
   },
   {
-    // disable `as` prop
-    shouldForwardProp: () => true,
+    shouldForwardProp: (prop) => prop !== 'depth' && prop !== 'hasIcon' && prop !== 'subheader',
   },
-)(({ theme }) => ({
-  ...theme.typography.body2,
-  display: 'flex',
-  borderRadius: 5,
-  outline: 0,
-  width: '100%',
-  paddingTop: 5,
-  paddingBottom: 5,
-  justifyContent: 'flex-start',
-  fontWeight: theme.typography.fontWeightMedium,
-  transition: theme.transitions.create(['color', 'background-color'], {
-    duration: theme.transitions.duration.shortest,
-  }),
-  '&:hover': {
-    color: theme.palette.text.primary,
-    backgroundColor:
-      theme.palette.mode === 'dark'
-        ? alpha(theme.palette.primaryDark[700], 0.4)
-        : theme.palette.grey[50],
-  },
-  '&.Mui-focusVisible': {
-    backgroundColor: theme.palette.action.focus,
-  },
-  [theme.breakpoints.up('md')]: {
+)(({ theme, hasIcon, depth, subheader }) => {
+  const color = {
+    color: theme.palette.text.secondary,
+    ...(depth === 0 && {
+      color: theme.palette.text.primary,
+    }),
+    ...(subheader && {
+      color: theme.palette.grey[600],
+    }),
+  };
+
+  return {
+    ...theme.typography.body2,
+    display: 'flex',
+    alignItems: 'center',
+    borderRadius: 5,
+    outline: 0,
+    width: '100%',
     paddingTop: 5,
     paddingBottom: 5,
-  },
-}));
-
-const ItemLink = styled(Item, {
-  shouldForwardProp: (prop) => prop !== 'depth' && prop !== 'hasIcon',
-})(({ theme, hasIcon, depth }) => {
-  return {
-    fontSize: theme.typography.pxToRem(13.5),
-    color: theme.palette.text.secondary,
+    justifyContent: 'flex-start',
+    fontWeight: theme.typography.fontWeightMedium,
+    transition: theme.transitions.create(['color', 'background-color'], {
+      duration: theme.transitions.duration.shortest,
+    }),
+    fontSize: theme.typography.pxToRem(14),
+    textDecoration: 'none',
+    paddingLeft: 31 + (depth > 1 ? (depth - 1) * 10 : 0),
+    ...color,
+    ...(subheader && {
+      marginTop: theme.spacing(1),
+      textTransform: 'uppercase',
+      letterSpacing: '.08rem',
+      fontWeight: theme.typography.fontWeightBold,
+      fontSize: theme.typography.pxToRem(11),
+    }),
+    ...(hasIcon && {
+      paddingLeft: 2,
+    }),
     '&.app-drawer-active': {
-      // color: theme.palette.primary.main,
       color:
-        theme.palette.mode === 'dark' ? theme.palette.primary[200] : theme.palette.primary[500],
+        theme.palette.mode === 'dark' ? theme.palette.primary[300] : theme.palette.primary[600],
       backgroundColor:
-        theme.palette.mode === 'dark' ? theme.palette.primaryDark[600] : theme.palette.primary[50],
-      fontWeight: 700,
+        theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : theme.palette.primary[50],
       '&:hover': {
         backgroundColor: alpha(
           theme.palette.primary.main,
           theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
         ),
-        // Reset on touch devices, it doesn't add specificity
         '@media (hover: none)': {
           backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
         },
@@ -98,97 +104,134 @@ const ItemLink = styled(Item, {
         ),
       },
     },
-    paddingLeft: 36 + (depth > 2 ? (depth - 2) * 10 : 0),
-    ...(hasIcon && {
-      paddingLeft: 2,
+    '& .MuiChip-root': {
+      marginTop: '2px',
+    },
+    ...(!subheader && {
+      '&:hover': {
+        color: theme.palette.mode === 'dark' ? '#fff' : theme.palette.common.black,
+        backgroundColor:
+          theme.palette.mode === 'dark'
+            ? alpha(theme.palette.primaryDark[700], 0.4)
+            : theme.palette.grey[50],
+        '@media (hover: none)': {
+          color: color.color,
+          backgroundColor: 'transparent',
+        },
+      },
     }),
-    ...(depth === 0 && {
-      fontSize: theme.typography.pxToRem(14.5),
+    '&.Mui-focusVisible': {
+      backgroundColor: theme.palette.action.focus,
+    },
+    [theme.breakpoints.up('md')]: {
+      paddingTop: 3,
+      paddingBottom: 3,
+    },
+    '& .ItemButtonIcon': {
+      marginLeft: 'auto !important',
+      marginRight: '5px',
+      color: theme.palette.primary.main,
+    },
+    '&:hover .ItemButtonIcon': {
       color: theme.palette.text.primary,
-    }),
+      '@media (hover: none)': {
+        color: theme.palette.primary.main,
+      },
+    },
   };
 });
 
 const ItemButtonIcon = styled(KeyboardArrowRightRoundedIcon, {
   shouldForwardProp: (prop) => prop !== 'open',
-})(({ open, theme }) => {
-  return {
-    fontSize: '1rem',
-    float: 'right',
-    color: theme.palette.primary.main,
-    transform: open && 'rotate(90deg)',
-  };
-});
-
-const ItemButton = styled(Item, {
-  shouldForwardProp: (prop) => prop !== 'depth' && prop !== 'hasIcon',
-})(({ depth, hasIcon, theme }) => {
-  return {
-    color: (() => {
-      if (depth >= 1) {
-        if (theme.palette.mode === 'dark') {
-          return alpha(theme.palette.grey[500], 0.5);
-        }
-        return theme.palette.grey[600];
-      }
-      return theme.palette.text.primary;
-    })(),
-    fontSize: theme.typography.pxToRem(depth === 0 ? 14.5 : 12),
-    fontWeight: depth === 0 ? 500 : 700,
-    margin: depth === 0 ? theme.spacing(0.5, 0) : '8px 0 4px',
-    '&:hover': {
-      backgroundColor: depth === 0 ? '' : alpha(theme.palette.primary.main, 0),
-      color: (() => {
-        if (depth === 0) {
-          return '';
-        }
-        if (theme.palette.mode === 'dark') {
-          return alpha(theme.palette.grey[500], 0.5);
-        }
-        return theme.palette.grey[600];
-      })(),
-      cursor: depth === 0 ? '' : 'text',
-    },
-    [`&:hover ${ItemButtonIcon}`]: {
-      color: theme.palette.text.primary,
-    },
-    paddingLeft: 36,
-    ...(hasIcon && {
-      paddingLeft: 2,
-    }),
-    '& .KeyboardArrowRightRoundedIcon': {
-      marginLeft: 'auto',
-      marginRight: '5px',
-    },
-  };
-});
+})(({ open }) => ({
+  fontSize: '1rem',
+  transform: open && 'rotate(90deg)',
+}));
 
 const StyledLi = styled('li', { shouldForwardProp: (prop) => prop !== 'depth' })(
-  ({ theme, depth }) => {
-    return {
-      padding: depth === 0 ? '0 10px' : '2px 0',
-      marginTop: depth === 0 ? theme.spacing(1) : undefined,
-      display: 'block',
-    };
-  },
+  ({ theme, depth }) => ({
+    display: 'block',
+    padding: depth === 0 ? theme.spacing(1, '10px', 0, '10px') : '2px 0',
+  }),
 );
+
+const LegacyChip = styled(function LegacyChip(props) {
+  return <Chip {...props} label="Legacy" />;
+})(
+  sx({
+    ml: 1,
+    fontSize: (theme) => theme.typography.pxToRem(10),
+    fontWeight: 'semiBold',
+    textTransform: 'uppercase',
+    letterSpacing: '.04rem',
+    height: '16px',
+    border: 1,
+    borderColor: (theme) =>
+      theme.palette.mode === 'dark'
+        ? alpha(theme.palette.warning[800], 0.5)
+        : theme.palette.warning[300],
+    bgcolor: (theme) =>
+      theme.palette.mode === 'dark'
+        ? alpha(theme.palette.warning[900], 0.5)
+        : alpha(theme.palette.warning[100], 0.5),
+    color: (theme) =>
+      theme.palette.mode === 'dark' ? theme.palette.warning[300] : theme.palette.warning[700],
+    '&:hover': {
+      bgcolor: (theme) =>
+        theme.palette.mode === 'dark'
+          ? alpha(theme.palette.warning[900], 0.5)
+          : alpha(theme.palette.warning[100], 0.5),
+    },
+    '& .MuiChip-label': {
+      px: 0.6,
+    },
+  }),
+);
+
+function DeadLink(props) {
+  const { activeClassName, href, noLinkStyle, prefetch, ...other } = props;
+  return <div {...other} />;
+}
+
+DeadLink.propTypes = {
+  activeClassName: PropTypes.any,
+  href: PropTypes.any,
+  noLinkStyle: PropTypes.any,
+  prefetch: PropTypes.any,
+};
 
 export default function AppNavDrawerItem(props) {
   const {
     children,
     depth,
     href,
-    onClick,
-    openImmediately = false,
-    topLevel = false,
-    title,
-    linkProps,
     icon,
+    legacy,
+    linkProps,
+    onClick,
+    openImmediately,
+    plan = 'community',
+    subheader,
+    title,
+    topLevel = false,
     ...other
   } = props;
+  const expandable = openImmediately != null;
   const [open, setOpen] = React.useState(openImmediately);
-  const handleClick = () => {
-    setOpen((oldOpen) => !oldOpen);
+  const handleClick = (event) => {
+    // Ignore the action if opening the link in a new tab
+    if (openLinkInNewTab(event)) {
+      return;
+    }
+
+    if (onClick) {
+      onClick(event);
+    }
+
+    if (expandable && !subheader) {
+      event.preventDefault();
+      setOpen((oldOpen) => !oldOpen);
+    }
   };
 
   const hasIcon = icon && iconsMap[icon];
@@ -198,77 +241,48 @@ export default function AppNavDrawerItem(props) {
     <Box
       component="span"
       sx={{
-        '& svg': { fontSize: (theme) => theme.typography.pxToRem(14) },
+        '& svg': { fontSize: (theme) => theme.typography.pxToRem(16.5) },
         display: 'flex',
         alignItems: 'center',
         height: '100%',
         marginRight: 1.5,
-        p: 0.5,
-        borderRadius: '5px',
-        backgroundColor: (theme) =>
-          theme.palette.mode === 'dark'
-            ? theme.palette.primaryDark[700]
-            : theme.palette.primary[50],
+        py: '2px',
       }}
     >
       <IconComponent {...iconProps} />
     </Box>
   ) : null;
 
-  const divider = depth === 0 && (
-    <li>
-      <Divider sx={{ my: 1.2 }} />
-    </li>
-  );
-
-  if (href) {
-    return (
-      <React.Fragment>
-        <StyledLi {...other} depth={depth}>
-          <ItemLink
-            component={Link}
-            activeClassName="app-drawer-active"
-            href={href}
-            underline="none"
-            onClick={onClick}
-            depth={depth}
-            hasIcon={hasIcon}
-            {...linkProps}
-          >
-            {iconElement}
-            {title}
-          </ItemLink>
-        </StyledLi>
-        {divider}
-      </React.Fragment>
-    );
-  }
-
   return (
-    <React.Fragment>
-      <StyledLi {...other} depth={depth}>
-        <ItemButton
-          component={ButtonBase}
-          depth={depth}
-          hasIcon={hasIcon}
-          disableRipple
-          className={topLevel ? 'algolia-lvl0' : null}
-          onClick={handleClick}
-        >
-          {iconElement}
-          {title}
-          {depth === 0 && <ItemButtonIcon open={open} className="KeyboardArrowRightRoundedIcon" />}
-        </ItemButton>
-        {depth === 0 ? (
-          <Collapse in={open} timeout="auto" unmountOnExit>
-            {children}
-          </Collapse>
-        ) : (
-          children
-        )}
-      </StyledLi>
-      {divider}
-    </React.Fragment>
+    <StyledLi {...other} depth={depth}>
+      {/* Fix overloading with prefetch={false}, only prefetch on hover */}
+      <Item
+        component={subheader ? DeadLink : Link}
+        depth={depth}
+        hasIcon={hasIcon}
+        href={href}
+        prefetch={false}
+        subheader={subheader}
+        activeClassName={expandable ? null : 'app-drawer-active'}
+        className={topLevel ? 'algolia-lvl0' : null}
+        onClick={handleClick}
+        {...linkProps}
+      >
+        {iconElement}
+        {title}
+        {plan === 'pro' && <span className="plan-pro" title="Pro plan" />}
+        {plan === 'premium' && <span className="plan-premium" title="Premium plan" />}
+        {legacy && <LegacyChip />}
+        {expandable && !subheader && <ItemButtonIcon className="ItemButtonIcon" open={open} />}
+      </Item>
+      {expandable ? (
+        <Collapse in={open} timeout="auto" unmountOnExit>
+          {children}
+        </Collapse>
+      ) : (
+        children
+      )}
+    </StyledLi>
   );
 }
 
@@ -277,9 +291,12 @@ AppNavDrawerItem.propTypes = {
   depth: PropTypes.number.isRequired,
   href: PropTypes.string,
   icon: PropTypes.string,
+  legacy: PropTypes.bool,
   linkProps: PropTypes.object,
   onClick: PropTypes.func,
   openImmediately: PropTypes.bool,
+  plan: PropTypes.oneOf(['community', 'pro', 'premium']),
+  subheader: PropTypes.bool.isRequired,
   title: PropTypes.string.isRequired,
   topLevel: PropTypes.bool,
 };

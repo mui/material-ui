@@ -9,7 +9,7 @@ Please read [the full text](/CODE_OF_CONDUCT.md) so that you can understand what
 
 ## A large spectrum of contributions
 
-There are [many ways](https://mui.com/getting-started/faq/#mui-is-awesome-how-can-i-support-the-project) to contribute to MUI, code contribution is one aspect of it. For instance, documentation improvements are as important as code changes.
+There are [many ways](https://mui.com/material-ui/getting-started/faq/#mui-is-awesome-how-can-i-support-the-project) to contribute to MUI, code contribution is one aspect of it. For instance, documentation improvements are as important as code changes.
 
 ## Your first Pull Request
 
@@ -17,10 +17,9 @@ Working on your first Pull Request? You can learn how from this free video serie
 
 [How to Contribute to an Open Source Project on GitHub](https://egghead.io/courses/how-to-contribute-to-an-open-source-project-on-github)
 
-To help you get your feet wet and get you familiar with our contribution process, we have a list of [good first issues](https://github.com/mui-org/material-ui/issues?q=is:open+is:issue+label:"good+first+issue") that contain changes that have a relatively limited scope. This label means that there is already a working solution to the issue in the discussion section. Therefore, it is a great place to get started.
-If you didn't find a suitable issue you can also follow [@MuiContrib](https://twitter.com/MuiContrib) which automatically tweets new good first issues.
+To help you get your feet wet and get you familiar with our contribution process, we have a list of [good first issues](https://github.com/mui/material-ui/issues?q=is:open+is:issue+label:"good+first+issue") that contain changes that have a relatively limited scope. This label means that there is already a working solution to the issue in the discussion section. Therefore, it is a great place to get started.
 
-We also have a list of [good to take issues](https://github.com/mui-org/material-ui/issues?q=is:open+is:issue+label:"good+to+take"). This label is set when there has been already some discussion about the solution and it is clear in which direction to go. These issues are good for developers that want to reduce the chance of going down a rabbit hole.
+We also have a list of [good to take issues](https://github.com/mui/material-ui/issues?q=is:open+is:issue+label:"good+to+take"). This label is set when there has been already some discussion about the solution and it is clear in which direction to go. These issues are good for developers that want to reduce the chance of going down a rabbit hole.
 
 You can also work on any other issue you choose to.
 The "good first" and "good to take" issues are just issues where we have a clear picture about scope and timeline.
@@ -44,7 +43,7 @@ When in doubt, keep your Pull Requests small. To give a Pull Request the best ch
 ```sh
 git clone https://github.com/<your username>/material-ui.git
 cd material-ui
-git remote add upstream https://github.com/mui-org/material-ui.git
+git remote add upstream https://github.com/mui/material-ui.git
 ```
 
 <!-- #default-branch-switch -->
@@ -74,7 +73,7 @@ git checkout -b my-topic-branch
 git push -u origin HEAD
 ```
 
-7. Go to [the repository](https://github.com/mui-org/material-ui) and make a Pull Request.
+7. Go to [the repository](https://github.com/mui/material-ui) and make a Pull Request.
 
 The core team is monitoring for Pull Requests. We will review your Pull Request and either merge it, request changes to it, or close it with an explanation.
 
@@ -107,9 +106,9 @@ Make sure the following is true:
 - If a feature is being added:
   - If the result was already achievable with the core library, explain why this feature needs to be added to the core.
   - If this is a common use case, consider adding an example to the documentation.
-- When adding new features or modifying existing ones, please include tests to confirm the new behavior. You can read more about our test setup in our test [README](https://github.com/mui-org/material-ui/blob/HEAD/test/README.md).
+- When adding new features or modifying existing ones, please include tests to confirm the new behavior. You can read more about our test setup in our test [README](https://github.com/mui/material-ui/blob/HEAD/test/README.md).
 - If props were added or prop types were changed, the TypeScript declarations were updated.
-- When submitting a new component, please add it to the [lab](https://github.com/mui-org/material-ui/tree/HEAD/packages/mui-lab).
+- When submitting a new component, please add it to the [lab](https://github.com/mui/material-ui/tree/HEAD/packages/mui-lab).
 - The branch is not [behind its target branch](https://github.community/t/branch-10-commits-behind/2403).
 
 Because we will only merge a Pull Request for which all tests pass. The following items need to be true:
@@ -122,6 +121,10 @@ Because we will only merge a Pull Request for which all tests pass. The followin
 - The Pull Request title follows the pattern `[Component] Imperative commit message`. (See: [How to Write a Git Commit Message](https://chris.beams.io/posts/git-commit/) for a great explanation).
 
 If you have missed a step, don't worry, the Continuous Integration will run a thorough test on your commits and the maintainers of the project can assist.
+
+If your pull request addresses an open issue, make sure to link the PR to that issue.
+Use any [supported GitHub keyword](https://docs.github.com/en/issues/tracking-your-work-with-issues/linking-a-pull-request-to-an-issue#linking-a-pull-request-to-an-issue-using-a-keyword) in the PR description to automatically link them.
+This makes it easier to understand where the PR is coming from and also speeds things up as the issue gets closed when the PR is merged.
 
 #### Checks and how to fix them
 
@@ -169,6 +172,12 @@ are evaluated in another step.
 
 Typechecks the repository. The log of the failed build should list all issues.
 
+##### ci/circleci: test_bundle_size_monitor
+
+This task is mostly responsible for monitoring the bundle size. It will only report
+the size if the change exceeds a certain threshold. If it fails there's usually
+something wrong with the way the packages or docs were built.
+
 ##### argos
 
 Evaluates the screenshots taken in `test/regressions/tests` and fails if it detects
@@ -179,12 +188,6 @@ might be intended. Clicking on _Details_ will show you the differences.
 
 Renders a preview of the docs with your changes if it succeeds. Otherwise `yarn docs:build`
 or `yarn docs:export` usually fail locally as well.
-
-##### mui-org.material-ui (Azure Pipelines)
-
-This task is mostly responsible for monitoring the bundle size. It will only report
-the size if the change exceeds a certain threshold. If it fails there's usually
-something wrong with the way the packages or docs were built.
 
 #### codecov/project
 
@@ -219,17 +222,17 @@ Finally, when you submit a Pull Request, they are run again by our continuous in
 
 If, for example, you want to add new demos for the button component, you have to take the following steps:
 
-#### 1. Add a new React component file under the related directory.
+### 1. Add a new React component file under the related directory
 
 In this case, you are going to add the new file to the following directory:
 
-```
+```sh
 docs/src/pages/components/buttons/
 ```
 
 and give it a name: `SuperButtons.js`.
 
-#### 2. Edit the page Markdown file.
+### 2. Edit the page Markdown file
 
 The Markdown file is the source for the website documentation. So, whatever you wrote there will be reflected on the website.
 In this case, the file you need to edit is `docs/src/pages/components/buttons/buttons.md`.
@@ -246,7 +249,7 @@ about translations](#translations).
 +{{"demo": "pages/components/buttons/SuperButtons.js"}}
 ```
 
-#### 3. Write the content of the demo
+### 3. Write the content of the demo
 
 MUI documents how to use this library with TypeScript.
 
@@ -255,9 +258,9 @@ When you're done run `yarn docs:typescript:formatted` to automatically create th
 
 If you are not familiar with that language, write the demo in JavaScript, a core contributor might help you to migrate it to TypeScript.
 
-#### 4. You are done 🎉!
+### 4. You are done 🎉
 
-In case you missed something, [we have a real example that can be used as a summary report](https://github.com/mui-org/material-ui/pull/19582/files).
+In case you missed something, [we have a real example that can be used as a summary report](https://github.com/mui/material-ui/pull/19582/files).
 
 ## How can I use a change that wasn't released yet?
 
@@ -275,11 +278,33 @@ index 791a7da1f4..a5db13b414 100644
      "@babel/runtime": "^7.4.4",
      "@mui/styled-engine": "^5.0.0-alpha.16",
 -    "@mui/material": "^5.0.0-alpha.15",
-+    "@mui/material": "https://pkg.csb.dev/mui-org/material-ui/commit/371c952b/@mui/material",
++    "@mui/material": "https://pkg.csb.dev/mui/material-ui/commit/371c952b/@mui/material",
      "@mui/system": "^5.0.0-alpha.16",
 ```
 
 Alternatively, you can open the Netlify preview of the documentation, and open any demo in Codesandbox. The documentation automatically configures the dependencies to use the preview packages.
+
+You can also package and test your changes locally.
+The following example shows how to package `@mui/material`, but you can package any MUI module with this process:
+
+```sh
+$> cd packages/mui-material # or path to any other mui package
+$packages\mui-material> yarn build
+$packages\mui-material> cd ./build
+$packages\mui-material> npm pack
+```
+
+Navigate to the build folder of your respective package and locate a file with the format `mui-material-x.x.x.tar.gz`.
+Copy this file and move it to the project directory you want to test in, then run:
+
+```sh
+$test-project> npm i ./path-to-file/mui-material-x.x.x.tar.gz
+```
+
+:::info
+If you have already installed this package, your changes will not be reflected when you reinstall it.
+As a quick fix, you can temporarily bump the version number in your `package.json` before running `yarn build`.
+:::
 
 ## Translations
 
@@ -290,8 +315,8 @@ these changes across the localized versions.
 
 ## Roadmap
 
-To get a sense of where MUI is heading, or for ideas on where you could contribute, take a look at the [roadmap](https://mui.com/discover-more/roadmap/).
+To get a sense of where MUI is heading, or for ideas on where you could contribute, take a look at the [roadmap](https://mui.com/material-ui/discover-more/roadmap/).
 
 ## License
 
-By contributing your code to the [mui-org/material-ui](https://github.com/mui-org/material-ui) GitHub repository, you agree to license your contribution under the [MIT license](/LICENSE).
+By contributing your code to the [mui/material-ui](https://github.com/mui/material-ui) GitHub repository, you agree to license your contribution under the [MIT license](/LICENSE).

@@ -330,6 +330,7 @@ chai.use((chaiAPI, utils) => {
     options: { styleTypeHint: string },
   ): void {
     const { styleTypeHint } = options;
+
     // Compare objects using hyphen case.
     // This is closer to actual CSS and required for getPropertyValue anyway.
     const expectedStyle: Record<string, string> = {};
@@ -341,6 +342,68 @@ chai.use((chaiAPI, utils) => {
         : hyphenCasedPropertyName;
       expectedStyle[propertyName] = expectedStyleUnnormalized[cssProperty];
     });
+
+    const shorthandProperties = new Set([
+      'all',
+      'animation',
+      'background',
+      'border',
+      'border-block-end',
+      'border-block-start',
+      'border-bottom',
+      'border-color',
+      'border-image',
+      'border-inline-end',
+      'border-inline-start',
+      'border-left',
+      'border-radius',
+      'border-right',
+      'border-style',
+      'border-top',
+      'border-width',
+      'column-rule',
+      'columns',
+      'flex',
+      'flex-flow',
+      'font',
+      'gap',
+      'grid',
+      'grid-area',
+      'grid-column',
+      'grid-row',
+      'grid-template',
+      'list-style',
+      'margin',
+      'mask',
+      'offset',
+      'outline',
+      'overflow',
+      'padding',
+      'place-content',
+      'place-items',
+      'place-self',
+      'scroll-margin',
+      'scroll-padding',
+      'text-decoration',
+      'text-emphasis',
+      'transition',
+    ]);
+    const usedShorthandProperties = Object.keys(expectedStyle).filter((cssProperty) => {
+      return shorthandProperties.has(cssProperty);
+    });
+    if (usedShorthandProperties.length > 0) {
+      throw new Error(
+        [
+          `Shorthand properties are not supported in ${styleTypeHint} styles matchers since browsers can compute them differently. `,
+          'Use longhand properties instead for the follow shorthand properties:\n',
+          usedShorthandProperties
+            .map((cssProperty) => {
+              return `- https://developer.mozilla.org/en-US/docs/Web/CSS/${cssProperty}#constituent_properties`;
+            })
+            .join('\n'),
+        ].join(''),
+      );
+    }
 
     const actualStyle: Record<string, string> = {};
     Object.keys(expectedStyle).forEach((cssProperty) => {
@@ -452,7 +515,8 @@ chai.use((chaiAPI, utils) => {
             ? [expectedMessagesInput]
             : expectedMessagesInput.slice();
         const unexpectedMessages: Error[] = [];
-        let caughtError = null;
+        // TODO Remove type once MUI X enables noImplicitAny
+        let caughtError: unknown | null = null;
 
         this.assert(
           expectedMessages.length > 0,
@@ -488,7 +552,8 @@ chai.use((chaiAPI, utils) => {
           const expectedMessage = remainingMessages.shift();
           messagesMatched += 1;
 
-          let message = null;
+          // TODO Remove type once MUI X enables noImplicitAny
+          let message: string | null = null;
           if (expectedMessage === undefined) {
             message = `Expected no more error messages but got:\n"${actualMessage}"`;
           } else if (!actualMessage.includes(expectedMessage)) {

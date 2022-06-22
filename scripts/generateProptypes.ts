@@ -12,11 +12,6 @@ import {
   getUnstyledFilename,
 } from '../docs/scripts/helpers';
 
-/**
- * Includes component names for which we can't generate .propTypes from the TypeScript types.
- */
-const todoComponents: readonly string[] = [];
-
 const useExternalPropsFromInputBase = [
   'autoComplete',
   'autoFocus',
@@ -78,6 +73,7 @@ const useExternalDocumentation: Record<string, '*' | readonly string[]> = {
   OutlinedInput: useExternalPropsFromInputBase,
   Radio: ['disableRipple', 'id', 'inputProps', 'inputRef', 'required'],
   Checkbox: ['defaultChecked'],
+  Container: ['component'],
   Switch: [
     'checked',
     'defaultChecked',
@@ -179,7 +175,11 @@ async function generateProptypes(
 ): Promise<void> {
   const proptypes = ttp.parseFromProgram(tsFile, program, {
     shouldResolveObject: ({ name }) => {
-      if (name.toLowerCase().endsWith('classes') || name === 'theme' || name.endsWith('Props')) {
+      if (
+        name.toLowerCase().endsWith('classes') ||
+        name === 'theme' ||
+        (name.endsWith('Props') && name !== 'componentsProps')
+      ) {
         return false;
       }
       return undefined;
@@ -190,6 +190,18 @@ async function generateProptypes(
   if (proptypes.body.length === 0) {
     return;
   }
+
+  // exclude internal slot components, eg. ButtonRoot
+  proptypes.body = proptypes.body.filter((data) => {
+    if (data.propsFilename?.endsWith('.tsx')) {
+      // only check for .tsx
+      const match = data.propsFilename.match(/.*\/([A-Z][a-zA-Z]+)\.tsx/);
+      if (match) {
+        return data.name === match[1];
+      }
+    }
+    return true;
+  });
 
   proptypes.body.forEach((component) => {
     component.types.forEach((prop) => {
@@ -208,7 +220,9 @@ async function generateProptypes(
   const isTsFile = /(\.(ts|tsx))/.test(sourceFile);
 
   const unstyledFile = getUnstyledFilename(tsFile, true);
+  const unstyledPropsFile = unstyledFile.replace('.d.ts', '.types.ts');
 
+  const propsFile = tsFile.replace(/(\.d\.ts|\.tsx|\.ts)/g, 'Props.ts');
   const generatedForTypeScriptFile = sourceFile === tsFile;
   const result = ttp.inject(proptypes, sourceContent, {
     disablePropTypesTypeChecking: generatedForTypeScriptFile,
@@ -255,16 +269,18 @@ async function generateProptypes(
         return true;
       }
       let shouldDocument;
+      const { name: componentName } = component;
 
       prop.filenames.forEach((filename) => {
         const isExternal = filename !== tsFile;
-        const implementedByUnstyledVariant = filename === unstyledFile;
-        if (!isExternal || implementedByUnstyledVariant) {
+        const implementedByUnstyledVariant =
+          filename === unstyledFile || filename === unstyledPropsFile;
+        const implementedBySelfPropsFile = filename === propsFile;
+        if (!isExternal || implementedByUnstyledVariant || implementedBySelfPropsFile) {
           shouldDocument = true;
         }
       });
 
-      const { name: componentName } = component;
       if (
         useExternalDocumentation[componentName] &&
         (useExternalDocumentation[componentName] === '*' ||
@@ -304,6 +320,7 @@ async function run(argv: HandlerArgv) {
 
   const allFiles = await Promise.all(
     [
+      path.resolve(__dirname, '../packages/mui-system/src'),
       path.resolve(__dirname, '../packages/mui-base/src'),
       path.resolve(__dirname, '../packages/mui-material/src'),
       path.resolve(__dirname, '../packages/mui-lab/src'),
@@ -325,7 +342,7 @@ async function run(argv: HandlerArgv) {
       return (
         // Filter out files where the directory name and filename doesn't match
         // Example: Modal/ModalManager.d.ts
-        fileName === folderName && !todoComponents.includes(fileName)
+        fileName === folderName
       );
     })
     .filter((filePath) => {

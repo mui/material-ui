@@ -11,11 +11,17 @@ import useThemeProps from '../styles/useThemeProps';
 import formControlLabelClasses, {
   getFormControlLabelUtilityClasses,
 } from './formControlLabelClasses';
+import formControlState from '../FormControl/formControlState';
 
 const useUtilityClasses = (ownerState) => {
-  const { classes, disabled, labelPlacement } = ownerState;
+  const { classes, disabled, labelPlacement, error } = ownerState;
   const slots = {
-    root: ['root', disabled && 'disabled', `labelPlacement${capitalize(labelPlacement)}`],
+    root: [
+      'root',
+      disabled && 'disabled',
+      `labelPlacement${capitalize(labelPlacement)}`,
+      error && 'error',
+    ],
     label: ['label', disabled && 'disabled'],
   };
 
@@ -61,7 +67,7 @@ export const FormControlLabelRoot = styled('label', {
   }),
   [`& .${formControlLabelClasses.label}`]: {
     [`&.${formControlLabelClasses.disabled}`]: {
-      color: theme.palette.text.disabled,
+      color: (theme.vars || theme).palette.text.disabled,
     },
   },
 }));
@@ -80,7 +86,7 @@ const FormControlLabel = React.forwardRef(function FormControlLabel(inProps, ref
     disabled: disabledProp,
     disableTypography,
     inputRef,
-    label,
+    label: labelProp,
     labelPlacement = 'end',
     name,
     onChange,
@@ -108,14 +114,29 @@ const FormControlLabel = React.forwardRef(function FormControlLabel(inProps, ref
     }
   });
 
+  const fcs = formControlState({
+    props,
+    muiFormControl,
+    states: ['error'],
+  });
+
   const ownerState = {
     ...props,
     disabled,
-    label,
     labelPlacement,
+    error: fcs.error,
   };
 
   const classes = useUtilityClasses(ownerState);
+
+  let label = labelProp;
+  if (label != null && label.type !== Typography && !disableTypography) {
+    label = (
+      <Typography component="span" className={classes.label} {...componentsProps.typography}>
+        {label}
+      </Typography>
+    );
+  }
 
   return (
     <FormControlLabelRoot
@@ -125,13 +146,7 @@ const FormControlLabel = React.forwardRef(function FormControlLabel(inProps, ref
       {...other}
     >
       {React.cloneElement(control, controlProps)}
-      {label.type === Typography || disableTypography ? (
-        label
-      ) : (
-        <Typography component="span" className={classes.label} {...componentsProps.typography}>
-          {label}
-        </Typography>
-      )}
+      {label}
     </FormControlLabelRoot>
   );
 });
@@ -157,7 +172,9 @@ FormControlLabel.propTypes /* remove-proptypes */ = {
    * The props used for each slot inside.
    * @default {}
    */
-  componentsProps: PropTypes.object,
+  componentsProps: PropTypes.shape({
+    typography: PropTypes.object,
+  }),
   /**
    * A control element. For instance, it can be a `Radio`, a `Switch` or a `Checkbox`.
    */
@@ -177,7 +194,7 @@ FormControlLabel.propTypes /* remove-proptypes */ = {
   /**
    * A text or an element to be used in an enclosing label element.
    */
-  label: PropTypes.oneOfType([PropTypes.element, PropTypes.number, PropTypes.string]).isRequired,
+  label: PropTypes.node,
   /**
    * The position of the label.
    * @default 'end'
@@ -198,7 +215,7 @@ FormControlLabel.propTypes /* remove-proptypes */ = {
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object])),
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
     PropTypes.func,
     PropTypes.object,
   ]),

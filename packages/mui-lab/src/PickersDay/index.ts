@@ -1,6 +1,3 @@
 export { default } from './PickersDay';
-
-export { pickersDayClasses, getPickersDayUtilityClass } from './PickersDay';
-
-export type PickersDayClassKey = import('./PickersDay').PickersDayClassKey;
-export type PickersDayProps<TDate> = import('./PickersDay').PickersDayProps<TDate>;
+export { pickersDayClasses, getPickersDayUtilityClass } from '@mui/x-date-pickers/PickersDay';
+export type { PickersDayClassKey, PickersDayProps } from '@mui/x-date-pickers/PickersDay';

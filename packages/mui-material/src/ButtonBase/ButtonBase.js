@@ -100,6 +100,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
     onTouchStart,
     tabIndex = 0,
     TouchRippleProps,
+    touchRippleRef,
     type,
     ...other
   } = props;
@@ -107,6 +108,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
   const buttonRef = React.useRef(null);
 
   const rippleRef = React.useRef(null);
+  const handleRippleRef = useForkRef(rippleRef, touchRippleRef);
 
   const {
     isFocusVisibleRef,
@@ -130,11 +132,19 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
     [],
   );
 
+  const [mountedState, setMountedState] = React.useState(false);
+
   React.useEffect(() => {
-    if (focusVisible && focusRipple && !disableRipple) {
+    setMountedState(true);
+  }, []);
+
+  const enableTouchRipple = mountedState && !disableRipple && !disabled;
+
+  React.useEffect(() => {
+    if (focusVisible && focusRipple && !disableRipple && mountedState) {
       rippleRef.current.pulsate();
     }
-  }, [disableRipple, focusRipple, focusVisible]);
+  }, [disableRipple, focusRipple, focusVisible, mountedState]);
 
   function useRippleHandler(rippleAction, eventCallback, skipRippleAction = disableTouchRipple) {
     return useEventCallback((event) => {
@@ -300,14 +310,6 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
   const handleOwnRef = useForkRef(focusVisibleRef, buttonRef);
   const handleRef = useForkRef(ref, handleOwnRef);
 
-  const [mountedState, setMountedState] = React.useState(false);
-
-  React.useEffect(() => {
-    setMountedState(true);
-  }, []);
-
-  const enableTouchRipple = mountedState && !disableRipple && !disabled;
-
   if (process.env.NODE_ENV !== 'production') {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     React.useEffect(() => {
@@ -363,7 +365,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
       {children}
       {enableTouchRipple ? (
         /* TouchRipple is only needed client-side, x2 boost on the server. */
-        <TouchRipple ref={rippleRef} center={centerRipple} {...TouchRippleProps} />
+        <TouchRipple ref={handleRippleRef} center={centerRipple} {...TouchRippleProps} />
       ) : null}
     </ButtonBaseRoot>
   );
@@ -429,7 +431,7 @@ ButtonBase.propTypes /* remove-proptypes */ = {
    * This prop can help identify which element has keyboard focus.
    * The class name will be applied when the element gains the focus through keyboard interaction.
    * It's a polyfill for the [CSS :focus-visible selector](https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo).
-   * The rationale for using this feature [is explained here](https://github.com/WICG/focus-visible/blob/master/explainer.md).
+   * The rationale for using this feature [is explained here](https://github.com/WICG/focus-visible/blob/HEAD/explainer.md).
    * A [polyfill can be used](https://github.com/WICG/focus-visible) to apply a `focus-visible` class to other components
    * if needed.
    */
@@ -504,7 +506,7 @@ ButtonBase.propTypes /* remove-proptypes */ = {
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object])),
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
     PropTypes.func,
     PropTypes.object,
   ]),
@@ -516,6 +518,19 @@ ButtonBase.propTypes /* remove-proptypes */ = {
    * Props applied to the `TouchRipple` element.
    */
   TouchRippleProps: PropTypes.object,
+  /**
+   * A ref that points to the `TouchRipple` element.
+   */
+  touchRippleRef: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.shape({
+      current: PropTypes.shape({
+        pulsate: PropTypes.func.isRequired,
+        start: PropTypes.func.isRequired,
+        stop: PropTypes.func.isRequired,
+      }),
+    }),
+  ]),
   /**
    * @ignore
    */

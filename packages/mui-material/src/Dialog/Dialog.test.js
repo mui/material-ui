@@ -4,6 +4,7 @@ import { spy } from 'sinon';
 import { describeConformance, act, createRenderer, fireEvent, screen } from 'test/utils';
 import Modal from '@mui/material/Modal';
 import Dialog, { dialogClasses as classes } from '@mui/material/Dialog';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 
 /**
  * more comprehensive simulation of a user click (mousedown + click)
@@ -206,6 +207,27 @@ describe('<Dialog />', () => {
       );
       expect(getByTestId('paper')).to.have.class(classes.paperWidthXs);
     });
+
+    it('should use the right className when maxWidth={false}', () => {
+      render(
+        <Dialog open maxWidth={false} PaperProps={{ 'data-testid': 'paper' }}>
+          foo
+        </Dialog>,
+      );
+      expect(screen.getByTestId('paper')).to.have.class(classes.paperWidthFalse);
+    });
+
+    it('should apply the correct max-width styles when maxWidth={false}', () => {
+      render(
+        <Dialog open maxWidth={false} PaperProps={{ 'data-testid': 'paper' }}>
+          foo
+        </Dialog>,
+      );
+
+      expect(screen.getByTestId('paper')).toHaveComputedStyle({
+        maxWidth: 'calc(100% - 64px)',
+      });
+    });
   });
 
   describe('prop: fullWidth', () => {
@@ -274,6 +296,58 @@ describe('<Dialog />', () => {
       expect(dialog).to.have.attr('aria-labelledby', 'dialog-title');
       const label = document.getElementById(dialog.getAttribute('aria-labelledby'));
       expect(label).to.have.text('Choose either one');
+    });
+  });
+
+  describe('prop: transitionDuration', () => {
+    it('should render the default theme values by default', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+
+      const theme = createTheme();
+      const enteringScreenDurationInSeconds = theme.transitions.duration.enteringScreen / 1000;
+      render(<Dialog open />);
+
+      const container = document.querySelector(`.${classes.container}`);
+      expect(container).toHaveComputedStyle({
+        transitionDuration: `${enteringScreenDurationInSeconds}s`,
+      });
+    });
+
+    it('should render the custom theme values', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+
+      const theme = createTheme({
+        transitions: {
+          duration: {
+            enteringScreen: 1,
+          },
+        },
+      });
+      render(
+        <ThemeProvider theme={theme}>
+          <Dialog open />
+        </ThemeProvider>,
+      );
+
+      const container = document.querySelector(`.${classes.container}`);
+      expect(container).toHaveComputedStyle({ transitionDuration: '0.001s' });
+    });
+
+    it('should render the values provided via prop', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+
+      render(<Dialog open transitionDuration={{ enter: 1 }} />);
+
+      const container = document.querySelector(`.${classes.container}`);
+      expect(container).toHaveComputedStyle({
+        transitionDuration: '0.001s',
+      });
     });
   });
 });

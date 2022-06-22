@@ -5,7 +5,7 @@ import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
-import { duration } from '../styles/createTransitions';
+import useTheme from '../styles/useTheme';
 import Zoom from '../Zoom';
 import Fab from '../Fab';
 import capitalize from '../utils/capitalize';
@@ -58,7 +58,7 @@ const SpeedDialRoot = styled('div', {
     return [styles.root, styles[`direction${capitalize(ownerState.direction)}`]];
   },
 })(({ theme, ownerState }) => ({
-  zIndex: theme.zIndex.speedDial,
+  zIndex: (theme.vars || theme).zIndex.speedDial,
   display: 'flex',
   alignItems: 'center',
   pointerEvents: 'none',
@@ -123,6 +123,12 @@ const SpeedDialActions = styled('div', {
 
 const SpeedDial = React.forwardRef(function SpeedDial(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiSpeedDial' });
+  const theme = useTheme();
+  const defaultTransitionDuration = {
+    enter: theme.transitions.duration.enteringScreen,
+    exit: theme.transitions.duration.leavingScreen,
+  };
+
   const {
     ariaLabel,
     FabProps: { ref: origDialButtonRef, ...FabProps } = {},
@@ -141,10 +147,7 @@ const SpeedDial = React.forwardRef(function SpeedDial(inProps, ref) {
     open: openProp,
     openIcon,
     TransitionComponent = Zoom,
-    transitionDuration = {
-      enter: duration.enteringScreen,
-      exit: duration.leavingScreen,
-    },
+    transitionDuration = defaultTransitionDuration,
     TransitionProps,
     ...other
   } = props;
@@ -443,7 +446,7 @@ SpeedDial.propTypes /* remove-proptypes */ = {
    */
   direction: PropTypes.oneOf(['down', 'left', 'right', 'up']),
   /**
-   * Props applied to the [`Fab`](/api/fab/) element.
+   * Props applied to the [`Fab`](/material-ui/api/fab/) element.
    * @default {}
    */
   FabProps: PropTypes.object,
@@ -503,13 +506,13 @@ SpeedDial.propTypes /* remove-proptypes */ = {
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object])),
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
     PropTypes.func,
     PropTypes.object,
   ]),
   /**
    * The component used for the transition.
-   * [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default Zoom
    */
   TransitionComponent: PropTypes.elementType,
@@ -517,8 +520,8 @@ SpeedDial.propTypes /* remove-proptypes */ = {
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.
    * @default {
-   *   enter: duration.enteringScreen,
-   *   exit: duration.leavingScreen,
+   *   enter: theme.transitions.duration.enteringScreen,
+   *   exit: theme.transitions.duration.leavingScreen,
    * }
    */
   transitionDuration: PropTypes.oneOfType([
@@ -531,7 +534,7 @@ SpeedDial.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * Props applied to the transition element.
-   * By default, the element is based on this [`Transition`](https://reactcommunity.org/react-transition-group/transition) component.
+   * By default, the element is based on this [`Transition`](http://reactcommunity.org/react-transition-group/transition/) component.
    */
   TransitionProps: PropTypes.object,
 };

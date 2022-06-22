@@ -1,6 +1,6 @@
 {
   "name": "@mui/docs",
-  "version": "5.1.1",
+  "version": "5.8.4",
   "private": false,
   "author": "MUI Team",
   "description": "MUI Docs - Documentation building blocks.",
@@ -14,14 +14,14 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/mui-org/material-ui.git",
+    "url": "https://github.com/mui/material-ui.git",
     "directory": "packages/mui-docs"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/mui-org/material-ui/issues"
+    "url": "https://github.com/mui/material-ui/issues"
   },
-  "homepage": "https://github.com/mui-org/material-ui/tree/master/packages/mui-docs",
+  "homepage": "https://github.com/mui/material-ui/tree/master/packages/mui-docs",
   "scripts": {
     "build": "yarn build:legacy && yarn build:modern && yarn build:node && yarn build:stable && yarn build:copy-files",
     "build:legacy": "node ../../scripts/build legacy",
@@ -35,8 +35,8 @@
   },
   "peerDependencies": {
     "@mui/material": "^5.0.0",
-    "@types/react": "^16.8.6 || ^17.0.0",
-    "react": "^17.0.2"
+    "@types/react": "^17.0.0 || ^18.0.0",
+    "react": "^17.0.0 || ^18.0.0"
   },
   "peerDependenciesMeta": {
     "@types/react": {
@@ -44,8 +44,8 @@
     }
   },
   "dependencies": {
-    "@babel/runtime": "^7.16.3",
-    "@mui/utils": "^5.1.1",
+    "@babel/runtime": "^7.17.2",
+    "@mui/utils": "^5.8.4",
     "nprogress": "^0.2.0"
   },
   "publishConfig": {

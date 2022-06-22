@@ -4,8 +4,8 @@ const { danger, markdown } = require('danger');
 const { exec } = require('child_process');
 const { loadComparison } = require('./scripts/sizeSnapshot');
 
-const azureBuildId = process.env.AZURE_BUILD_ID;
-const azureBuildUrl = `https://dev.azure.com/mui-org/Material-UI/_build/results?buildId=${azureBuildId}`;
+const circleCIBuildNumber = process.env.CIRCLE_BUILD_NUM;
+const circleCIBuildUrl = `https://app.circleci.com/pipelines/github/mui/material-ui/jobs/${circleCIBuildNumber}`;
 const dangerCommand = process.env.DANGER_COMMAND;
 
 const parsedSizeChangeThreshold = 300;
@@ -109,8 +109,22 @@ function sieveResults(results) {
 
 function prepareBundleSizeReport() {
   markdown(
-    `Bundle size will be reported once [Azure build #${azureBuildId}](${azureBuildUrl}) finishes.`,
+    `Bundle size will be reported once [CircleCI build #${circleCIBuildNumber}](${circleCIBuildUrl}) finishes.`,
   );
+}
+
+// A previous build might have failed to produce a snapshot
+// Let's walk up the tree a bit until we find a commit that has a successful snapshot
+async function loadLastComparison(upstreamRef, n = 0) {
+  const mergeBaseCommit = await git(`merge-base HEAD~${n} ${UPSTREAM_REMOTE}/${upstreamRef}`);
+  try {
+    return await loadComparison(mergeBaseCommit, upstreamRef);
+  } catch (err) {
+    if (n >= 5) {
+      throw err;
+    }
+    return loadLastComparison(upstreamRef, n + 1);
+  }
 }
 
 async function reportBundleSize() {
@@ -124,12 +138,11 @@ async function reportBundleSize() {
     // ignore if it already exist for local testing
   }
   await git(`fetch ${UPSTREAM_REMOTE}`);
-  const mergeBaseCommit = await git(`merge-base HEAD ${UPSTREAM_REMOTE}/${upstreamRef}`);
 
-  const detailedComparisonRoute = `/size-comparison?buildId=${azureBuildId}&baseRef=${danger.github.pr.base.ref}&baseCommit=${mergeBaseCommit}&prNumber=${danger.github.pr.number}`;
+  const comparison = await loadLastComparison(upstreamRef);
+
+  const detailedComparisonRoute = `/size-comparison?circleCIBuildNumber=${circleCIBuildNumber}&baseRef=${danger.github.pr.base.ref}&baseCommit=${comparison.previous}&prNumber=${danger.github.pr.number}`;
   const detailedComparisonUrl = `https://mui-dashboard.netlify.app${detailedComparisonRoute}`;
-
-  const comparison = await loadComparison(mergeBaseCommit, upstreamRef);
 
   const { all: allResults, main: mainResults } = sieveResults(Object.entries(comparison.bundles));
   const anyResultsChanges = allResults.filter(createComparisonFilter(1, 1));

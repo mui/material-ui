@@ -1,5 +1,5 @@
 import { SxProps } from '@mui/system';
-import { Theme } from '@mui/material/styles';
+import { Theme } from '../styles';
 import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
 import { OverrideProps } from '../OverridableComponent';
 import { MenuItemClasses } from './menuItemClasses';
@@ -54,12 +54,12 @@ export type MenuItemTypeMap<P = {}, D extends React.ElementType = 'li'> = Extend
  *
  * Demos:
  *
- * - [Menus](https://mui.com/components/menus/)
+ * - [Menus](https://mui.com/material-ui/react-menu/)
  *
  * API:
  *
- * - [MenuItem API](https://mui.com/api/menu-item/)
- * - inherits [ButtonBase API](https://mui.com/api/button-base/)
+ * - [MenuItem API](https://mui.com/material-ui/api/menu-item/)
+ * - inherits [ButtonBase API](https://mui.com/material-ui/api/button-base/)
  */
 declare const MenuItem: ExtendButtonBase<MenuItemTypeMap>;
 

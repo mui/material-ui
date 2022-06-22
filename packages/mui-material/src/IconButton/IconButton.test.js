@@ -34,13 +34,18 @@ describe('<IconButton />', () => {
     expect(container.querySelector('.touch-ripple')).not.to.equal(null);
   });
 
-  it('can disable the ripple', () => {
-    const { container } = render(
-      <IconButton disableRipple TouchRippleProps={{ className: 'touch-ripple' }}>
-        book
-      </IconButton>,
-    );
-    expect(container.querySelector('.touch-ripple')).to.equal(null);
+  ['default', 'primary'].forEach((color) => {
+    it(`can disable the ripple and hover effect for color ${color}`, () => {
+      const { container, getByRole } = render(
+        <IconButton disableRipple color={color} TouchRippleProps={{ className: 'touch-ripple' }}>
+          book
+        </IconButton>,
+      );
+      expect(container.querySelector('.touch-ripple')).to.equal(null);
+      expect(getComputedStyle(getByRole('button'), ':hover').backgroundColor).to.equal(
+        getComputedStyle(getByRole('button')).backgroundColor,
+      );
+    });
   });
 
   describe('prop: size', () => {

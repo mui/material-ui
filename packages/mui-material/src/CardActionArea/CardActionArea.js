@@ -27,13 +27,13 @@ const CardActionAreaRoot = styled(ButtonBase, {
   textAlign: 'inherit',
   width: '100%',
   [`&:hover .${cardActionAreaClasses.focusHighlight}`]: {
-    opacity: theme.palette.action.hoverOpacity,
+    opacity: (theme.vars || theme).palette.action.hoverOpacity,
     '@media (hover: none)': {
       opacity: 0,
     },
   },
   [`&.${cardActionAreaClasses.focusVisible} .${cardActionAreaClasses.focusHighlight}`]: {
-    opacity: theme.palette.action.focusOpacity,
+    opacity: (theme.vars || theme).palette.action.focusOpacity,
   },
 }));
 
@@ -103,7 +103,7 @@ CardActionArea.propTypes /* remove-proptypes */ = {
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object])),
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
     PropTypes.func,
     PropTypes.object,
   ]),

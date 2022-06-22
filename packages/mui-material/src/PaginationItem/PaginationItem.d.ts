@@ -20,6 +20,8 @@ export interface PaginationItemTypeMap<P = {}, D extends React.ElementType = 'di
     classes?: Partial<PaginationItemClasses>;
     /**
      * The active color.
+     * It supports both default and custom theme colors, which can be added as shown in the
+     * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
      * @default 'standard'
      */
     color?: OverridableStringUnion<
@@ -87,11 +89,11 @@ export interface PaginationItemTypeMap<P = {}, D extends React.ElementType = 'di
  *
  * Demos:
  *
- * - [Pagination](https://mui.com/components/pagination/)
+ * - [Pagination](https://mui.com/material-ui/react-pagination/)
  *
  * API:
  *
- * - [PaginationItem API](https://mui.com/api/pagination-item/)
+ * - [PaginationItem API](https://mui.com/material-ui/api/pagination-item/)
  */
 declare const PaginationItem: OverridableComponent<PaginationItemTypeMap>;
 

@@ -33,19 +33,23 @@ const BottomNavigationActionRoot = styled(ButtonBase, {
   transition: theme.transitions.create(['color', 'padding-top'], {
     duration: theme.transitions.duration.short,
   }),
-  padding: '6px 12px 8px',
+  padding: '0px 12px',
   minWidth: 80,
   maxWidth: 168,
-  color: theme.palette.text.secondary,
+  color: (theme.vars || theme).palette.text.secondary,
   flexDirection: 'column',
   flex: '1',
   ...(!ownerState.showLabel &&
     !ownerState.selected && {
-      paddingTop: 16,
+      paddingTop: 14,
+    }),
+  ...(!ownerState.showLabel &&
+    !ownerState.selected &&
+    !ownerState.label && {
+      paddingTop: 0,
     }),
   [`&.${bottomNavigationActionClasses.selected}`]: {
-    paddingTop: 6,
-    color: theme.palette.primary.main,
+    color: (theme.vars || theme).palette.primary.main,
   },
 }));
 
@@ -160,7 +164,7 @@ BottomNavigationAction.propTypes /* remove-proptypes */ = {
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object])),
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
     PropTypes.func,
     PropTypes.object,
   ]),

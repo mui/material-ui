@@ -4,7 +4,7 @@
     "checked": "If <code>true</code>, the component is checked.",
     "checkedIcon": "The icon to display when the component is checked.",
     "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
-    "color": "The color of the component. It supports those theme colors that make sense for this component.",
+    "color": "The color of the component. It supports both default and custom theme colors, which can be added as shown in the <a href=\"https://mui.com/material-ui/customization/palette/#adding-new-colors\">palette customization guide</a>.",
     "disabled": "If <code>true</code>, the component is disabled.",
     "disableRipple": "If <code>true</code>, the ripple effect is disabled.",
     "icon": "The icon to display when the component is unchecked.",

@@ -2,7 +2,10 @@
 # However, in order to prevent issues, they are ignored here.
 .DS_STORE
 .idea
-.vscode
+# IntelliJ IDEA module file
+*.iml
+.vscode/*
+!.vscode/launch.json
 *.log
 *.tsbuildinfo
 /.eslintcache

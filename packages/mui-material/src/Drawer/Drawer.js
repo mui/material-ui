@@ -7,7 +7,6 @@ import Modal from '../Modal';
 import Slide from '../Slide';
 import Paper from '../Paper';
 import capitalize from '../utils/capitalize';
-import { duration } from '../styles/createTransitions';
 import useTheme from '../styles/useTheme';
 import useThemeProps from '../styles/useThemeProps';
 import styled, { rootShouldForwardProp } from '../styles/styled';
@@ -45,7 +44,7 @@ const DrawerRoot = styled(Modal, {
   slot: 'Root',
   overridesResolver,
 })(({ theme }) => ({
-  zIndex: theme.zIndex.drawer,
+  zIndex: (theme.vars || theme).zIndex.drawer,
 }));
 
 const DrawerDockedRoot = styled('div', {
@@ -77,7 +76,7 @@ const DrawerPaper = styled(Paper, {
   flexDirection: 'column',
   height: '100%',
   flex: '1 0 auto',
-  zIndex: theme.zIndex.drawer,
+  zIndex: (theme.vars || theme).zIndex.drawer,
   // Add iOS momentum scrolling for iOS < 13.0
   WebkitOverflowScrolling: 'touch',
   // temporary style
@@ -110,19 +109,19 @@ const DrawerPaper = styled(Paper, {
   }),
   ...(ownerState.anchor === 'left' &&
     ownerState.variant !== 'temporary' && {
-      borderRight: `1px solid ${theme.palette.divider}`,
+      borderRight: `1px solid ${(theme.vars || theme).palette.divider}`,
     }),
   ...(ownerState.anchor === 'top' &&
     ownerState.variant !== 'temporary' && {
-      borderBottom: `1px solid ${theme.palette.divider}`,
+      borderBottom: `1px solid ${(theme.vars || theme).palette.divider}`,
     }),
   ...(ownerState.anchor === 'right' &&
     ownerState.variant !== 'temporary' && {
-      borderLeft: `1px solid ${theme.palette.divider}`,
+      borderLeft: `1px solid ${(theme.vars || theme).palette.divider}`,
     }),
   ...(ownerState.anchor === 'bottom' &&
     ownerState.variant !== 'temporary' && {
-      borderTop: `1px solid ${theme.palette.divider}`,
+      borderTop: `1px solid ${(theme.vars || theme).palette.divider}`,
     }),
 }));
 
@@ -141,13 +140,18 @@ export function getAnchor(theme, anchor) {
   return theme.direction === 'rtl' && isHorizontal(anchor) ? oppositeDirection[anchor] : anchor;
 }
 
-const defaultTransitionDuration = { enter: duration.enteringScreen, exit: duration.leavingScreen };
 /**
- * The props of the [Modal](/api/modal/) component are available
+ * The props of the [Modal](/material-ui/api/modal/) component are available
  * when `variant="temporary"` is set.
  */
 const Drawer = React.forwardRef(function Drawer(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiDrawer' });
+  const theme = useTheme();
+  const defaultTransitionDuration = {
+    enter: theme.transitions.duration.enteringScreen,
+    exit: theme.transitions.duration.leavingScreen,
+  };
+
   const {
     anchor: anchorProp = 'left',
     BackdropProps,
@@ -166,7 +170,6 @@ const Drawer = React.forwardRef(function Drawer(inProps, ref) {
     variant = 'temporary',
     ...other
   } = props;
-  const theme = useTheme();
 
   // Let's assume that the Drawer will always be rendered on user space.
   // We use this state is order to skip the appear transition during the
@@ -299,7 +302,7 @@ Drawer.propTypes /* remove-proptypes */ = {
    */
   hideBackdrop: PropTypes.bool,
   /**
-   * Props applied to the [`Modal`](/api/modal/) element.
+   * Props applied to the [`Modal`](/material-ui/api/modal/) element.
    * @default {}
    */
   ModalProps: PropTypes.object,
@@ -315,26 +318,29 @@ Drawer.propTypes /* remove-proptypes */ = {
    */
   open: PropTypes.bool,
   /**
-   * Props applied to the [`Paper`](/api/paper/) element.
+   * Props applied to the [`Paper`](/material-ui/api/paper/) element.
    * @default {}
    */
   PaperProps: PropTypes.object,
   /**
-   * Props applied to the [`Slide`](/api/slide/) element.
+   * Props applied to the [`Slide`](/material-ui/api/slide/) element.
    */
   SlideProps: PropTypes.object,
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object])),
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
     PropTypes.func,
     PropTypes.object,
   ]),
   /**
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.
-   * @default { enter: duration.enteringScreen, exit: duration.leavingScreen }
+   * @default {
+   *   enter: theme.transitions.duration.enteringScreen,
+   *   exit: theme.transitions.duration.leavingScreen,
+   * }
    */
   transitionDuration: PropTypes.oneOfType([
     PropTypes.number,
