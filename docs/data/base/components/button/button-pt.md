@@ -1,69 +1,69 @@
 ---
 product: base
-title: Unstyled React Button component and hook
+title: Componente e Hook do botão React sem estilo
 components: ButtonUnstyled
 githubLabel: 'component: button'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/button/
 ---
 
-# Unstyled button
+# Botão sem estilo
 
-<p class="description">Buttons allow users to take actions and make choices with a single tap.</p>
+<p class="description">Botões permitem que os usuários realizem ações e façam escolhas com um único toque</p>
 
-## Basic button
+## Botão básico
 
 ```js
 import ButtonUnstyled from '@mui/base/ButtonUnstyled';
 
-<ButtonUnstyled>Button</ButtonUnstyled>;
+<ButtonUnstyled>Botão</ButtonUnstyled>;
 ```
 
 {{"demo": "UnstyledButtonsSimple.js", "defaultCodeOpen": true}}
 
 ## Customizando o elemento raiz
 
-Por padrão, o componente `ButtonUnstyled` renderiza um elemento HTML `button` nativo. You can override this by setting the `component` or `components.Root` prop.
+Por padrão, o componente `ButtonUnstyled` renderiza um elemento HTML `button` nativo. Você pode sobrescrever isso configurando a propriedade `componente` ou `components.Root`.
 
-If you provide a non-interactive element such as a `<span>`, the `ButtonUnstyled` component will automatically add the necessary accessibility attributes.
+Se você fornecer um elemento não interativo como um `<span>`, o componente `ButtonUnstyled` irá adicionar automaticamente os atributos de acessibilidade necessários.
 
-Compare the attributes on the `<span>` in this demo with the `ButtonUnstyled` from the previous demo:
+Compare os atributos no `<span>` desta demonstração com o `ButtonUnstyled` da demonstração anterior:
 
 {{"demo": "UnstyledButtonsSpan.js"}}
 
-### Complex customization
+### Costumização complexa
 
-`ButtonUnstyled` accepts a wide range of custom elements beyond HTML elements. You can even use SVGs, as the following demo illustrates:
+`ButtonUnstyled` aceita uma ampla gama de elementos customizados além de elementos HTML. Você pode até mesmo usar SVGs, como as seguintes ilustrações de demonstração:
 
 {{"demo": "UnstyledButtonCustom.js", "defaultCodeOpen": false}}
 
-## Focus on disabled buttons
+## Foco nos botões desativados
 
-Similarly to the native HTML `<button>` element, the `ButtonUnstyled` component can't receive focus when it's disabled. This may reduce its accessibility, as screen readers won't be able to announce the existence and state of the button.
+Da mesma forma que o elemento HTML `<button>` nativo, o componente `ButtonUnstyled` não pode receber foco quando está desativado. Isso pode reduzir sua acessibilidade, já que os leitores de tela não poderão anunciar a existência e o estado do botão.
 
-The `focusableWhenDisabled` prop lets you change this behavior. When this prop is set, the underlying button does not set the `disabled` prop. Instead, `aria-disabled` is used, which makes the button focusable.
+A propriedade `focusableWhendisabled` permite que você altere esse comportamento. Quando esta prop é definida, o botão subjacente não define a propriedade `desabilitada`. Em vez disso, `aria-disabled` é usado, o que torna o botão focável.
 
-This should be used whenever the disabled button needs to be read by screen readers.
+Isso deve ser usado sempre que o botão desativado precisar ser lido por leitores de tela.
 
-MUI Base uses this prop internally in [menu items](/base/react-menu/), making it possible to use the keyboard to navigate to disabled items (in compliance with [ARIA guidelines](https://www.w3.org/TR/wai-aria-practices-1.2/#h-note-17)).
+A Base do MUI usa esta propriedade internamente em [itens de menu](/base/react-menu/), tornando possível usar o teclado para navegar por itens desativados (em conformidade com as [diretrizes da ARIA](https://www.w3.org/TR/wai-aria-practices-1.2/#h-note-17)).
 
 {{"demo": "UnstyledButtonsDisabledFocus.js"}}
 
-The `focusWhenDisabled` prop works the same when the root slot is customized, except that the `aria-disabled` attribute is used no regardless of the prop's state. The ability to receive focus is controlled internally by the `tabindex` attribute.
+A propriedade `focusWhendisabled` funciona da mesma forma quando o slot raiz é personalizado, exceto que o atributo `aria-disabled` não é usado independentemente do estado da prop. A habilidade de receber foco é controlada internamente pelo atributo `tabindex`.
 
 {{"demo": "UnstyledButtonsDisabledFocusCustom.js"}}
 
-## The useButton hook
+## Hook do useButton
 
 ```js
 import { useButton } from '@mui/base/ButtonUnstyled';
 ```
 
-The `useButton` hook lets you use the functionality of `ButtonUnstyled` in other components. It returns props to be placed on a custom button element, along with fields representing the internal state of the button.
+O hook `useButton` permite usar a funcionalidade do `ButtonUnstyled` em outros componentes. Ele retorna adereços para serem colocados em um elemento de botão personalizado, juntamente com campos que representam o estado interno do botão.
 
-The `useButton` hook requires the `ref` of the element it's used on. Additionally, you need to provide the `component` prop (unless you intend to use the native HTML `<button>`).
+O hook `useButton` requer o `ref` do elemento no qual está sendo usado. Além disso, você precisa fornecer o componente `da propriedade` (a menos que você pretenda usar o HTML `nativo<button>`).
 
 {{"demo": "UseButton.js", "defaultCodeOpen": true}}
 
-## Limitations
+## Limitações
 
-If a `ButtonUnstyled` is customized with a non-button element (i.e. `<ButtonUnstyled component="span" />`), it will not submit the form it's in when clicked. Similarly, `<ButtonUnstyled component="span" type="reset">` will not reset its parent form.
+Se um `ButtonUnstyled` for personalizado com um elemento não-botão (por exemplo, `<ButtonUnstyled component="span" />`), não enviará o formulário em que ele está quando clicado. Da mesma forma, `<ButtonUnstyled component="span" type="reset">` não redefinirá seu formulário pai.
