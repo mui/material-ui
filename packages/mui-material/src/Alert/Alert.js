@@ -72,7 +72,7 @@ const AlertRoot = styled(Paper, {
       }),
     ...(color &&
       ownerState.variant === 'filled' && {
-        color:
+        color: theme.palette.getContrastText(theme.palette.mode === 'dark' ? theme.palette[color].dark : theme.palette[color].main),
           theme.palette.mode === 'dark'
             ? getContrastText(theme.palette[color].light)
             : getContrastText(theme.palette[color].light, 1),
