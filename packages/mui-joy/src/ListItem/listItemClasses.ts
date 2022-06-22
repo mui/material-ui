@@ -9,6 +9,8 @@ export interface ListItemClasses {
   endAction: string;
   /** Styles applied to the root element, if nested={true}. */
   nested: string;
+  /** Styles applied to the root element, if it is under a nested list item. */
+  nesting: string;
   /** Styles applied to the root element, if sticky={true}. */
   sticky: string;
 }
@@ -16,14 +18,15 @@ export interface ListItemClasses {
 export type ListItemClassKey = keyof ListItemClasses;
 
 export function getListItemUtilityClass(slot: string): string {
-  return generateUtilityClass('MuiListItem', slot);
+  return generateUtilityClass('JoyListItem', slot);
 }
 
-const listItemClasses: ListItemClasses = generateUtilityClasses('MuiListItem', [
+const listItemClasses: ListItemClasses = generateUtilityClasses('JoyListItem', [
   'root',
   'startAction',
   'endAction',
   'nested',
+  'nesting',
   'sticky',
 ]);
 

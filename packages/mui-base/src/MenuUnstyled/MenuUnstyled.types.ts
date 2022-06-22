@@ -1,5 +1,6 @@
 import React from 'react';
 import PopperUnstyled, { PopperUnstyledProps } from '../PopperUnstyled';
+import { SlotComponentProps } from '../utils';
 import { UseMenuListboxSlotProps } from './useMenu.types';
 
 export interface MenuUnstyledComponentsPropsOverrides {}
@@ -29,10 +30,25 @@ export interface MenuUnstyledProps {
     Listbox?: React.ElementType;
   };
   componentsProps?: {
-    root?: Partial<React.ComponentPropsWithRef<typeof PopperUnstyled>> &
-      MenuUnstyledComponentsPropsOverrides;
-    listbox?: React.ComponentPropsWithRef<'ul'> & MenuUnstyledComponentsPropsOverrides;
+    root?: SlotComponentProps<
+      typeof PopperUnstyled,
+      MenuUnstyledComponentsPropsOverrides,
+      MenuUnstyledOwnerState
+    >;
+    listbox?: SlotComponentProps<
+      'ul',
+      MenuUnstyledComponentsPropsOverrides,
+      MenuUnstyledOwnerState
+    >;
   };
+  /**
+   * Always keep the menu in the DOM.
+   * This prop can be useful in SEO situation or when you want to maximize the responsiveness of the Menu.
+   *
+   * @default false
+   */
+  keepMounted?: boolean;
+  listboxId?: string;
   /**
    * Triggered when focus leaves the menu and the menu should close.
    */
@@ -51,10 +67,11 @@ export interface MenuUnstyledOwnerState extends MenuUnstyledProps {
 export type MenuUnstyledRootSlotProps = {
   anchorEl: PopperUnstyledProps['anchorEl'];
   children?: React.ReactNode;
-  className: string | undefined;
+  className?: string;
   keepMounted: PopperUnstyledProps['keepMounted'];
   open: boolean;
   ownerState: MenuUnstyledOwnerState;
+  ref: React.Ref<any>;
 };
 
 export type MenuUnstyledListboxSlotProps = UseMenuListboxSlotProps & {

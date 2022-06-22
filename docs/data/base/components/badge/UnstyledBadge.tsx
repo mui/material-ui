@@ -1,12 +1,11 @@
 import * as React from 'react';
 import { styled, Box } from '@mui/system';
-import BadgeUnstyled from '@mui/base/BadgeUnstyled';
+import BadgeUnstyled, { badgeUnstyledClasses } from '@mui/base/BadgeUnstyled';
 
 const StyledBadge = styled(BadgeUnstyled)`
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  color: rgba(0, 0, 0, 0.85);
   font-size: 14px;
   font-variant: tabular-nums;
   list-style: none;
@@ -15,7 +14,7 @@ const StyledBadge = styled(BadgeUnstyled)`
   display: inline-block;
   line-height: 1;
 
-  & .MuiBadge-badge {
+  & .${badgeUnstyledClasses.badge} {
     z-index: auto;
     min-width: 20px;
     height: 20px;
@@ -29,20 +28,6 @@ const StyledBadge = styled(BadgeUnstyled)`
     background: #07f;
     border-radius: 10px;
     box-shadow: 0 0 0 1px #fff;
-  }
-
-  & .MuiBadge-dot {
-    padding: 0;
-    z-index: auto;
-    min-width: 6px;
-    width: 6px;
-    height: 6px;
-    background: #07f;
-    border-radius: 100%;
-    box-shadow: 0 0 0 1px #fff;
-  }
-
-  & .MuiBadge-anchorOriginTopRight {
     position: absolute;
     top: 0;
     right: 0;
@@ -69,13 +54,8 @@ function BadgeContent() {
 
 export default function UnstyledBadge() {
   return (
-    <Box sx={{ '& > :not(style) + :not(style)': { ml: 4 } }}>
-      <StyledBadge badgeContent={5}>
-        <BadgeContent />
-      </StyledBadge>
-      <StyledBadge badgeContent={5} variant="dot">
-        <BadgeContent />
-      </StyledBadge>
-    </Box>
+    <StyledBadge badgeContent={5}>
+      <BadgeContent />
+    </StyledBadge>
   );
 }

@@ -87,7 +87,7 @@ export interface PopoverProps extends StandardProps<ModalProps, 'children'> {
    */
   open: boolean;
   /**
-   * Props applied to the [`Paper`](/api/paper/) element.
+   * Props applied to the [`Paper`](/material-ui/api/paper/) element.
    * @default {}
    */
   PaperProps?: Partial<PaperProps>;
@@ -110,7 +110,7 @@ export interface PopoverProps extends StandardProps<ModalProps, 'children'> {
   transformOrigin?: PopoverOrigin;
   /**
    * The component used for the transition.
-   * [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default Grow
    */
   TransitionComponent?: React.JSXElementConstructor<
@@ -133,16 +133,23 @@ export interface PopoverActions {
   updatePosition(): void;
 }
 
+export function getOffsetTop(rect: DOMRect, vertical: number | 'center' | 'bottom' | 'top'): number;
+
+export function getOffsetLeft(
+  rect: DOMRect,
+  horizontal: number | 'center' | 'right' | 'left',
+): number;
+
 /**
  *
  * Demos:
  *
- * - [Menus](https://mui.com/components/menus/)
- * - [Popover](https://mui.com/components/popover/)
+ * - [Menus](https://mui.com/material-ui/react-menu/)
+ * - [Popover](https://mui.com/material-ui/react-popover/)
  *
  * API:
  *
- * - [Popover API](https://mui.com/api/popover/)
- * - inherits [Modal API](https://mui.com/api/modal/)
+ * - [Popover API](https://mui.com/material-ui/api/popover/)
+ * - inherits [Modal API](https://mui.com/material-ui/api/modal/)
  */
 export default function Popover(props: PopoverProps): JSX.Element;

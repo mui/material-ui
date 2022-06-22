@@ -34,7 +34,10 @@ describe('<TabsListUnstyled />', () => {
         expectedClassName: tabsListUnstyledClasses.root,
       },
     },
-    // Need to be wrapped with TabsContext
-    skip: ['reactTestRenderer'],
+
+    skip: [
+      'reactTestRenderer', // Need to be wrapped with TabsContext
+      'componentsPropsCallbacks', // not implemented yet
+    ],
   }));
 });

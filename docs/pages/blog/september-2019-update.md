@@ -22,7 +22,7 @@ Here are the most significant improvements in September:
 
   ![Autofill](/static/blog/september-2019-update/autofill.png)
 
-- 📊 Launch a [developer survey](https://www.surveymonkey.com/r/5XHDL76) as a precursor to a major Date Picker enhancement effort. We plan a new investment batch of between 100 and 500 hours.
+- 📊 Launch a [developer survey](https://www.surveymonkey.com/) as a precursor to a major Date Picker enhancement effort. We plan a new investment batch of between 100 and 500 hours.
 
 - 📚 Change imports from `@mui/styles` to `@mui/material/styles`
 
@@ -36,7 +36,7 @@ Here are the most significant improvements in September:
 
   This change removes the need to install the `@mui/styles` package directly.
   It prevents the duplication of `@mui/styles` in bundles and avoids confusion.
-  You can [learn more about the difference](https://mui.com/styles/basics/#material-ui-core-styles-vs-material-ui-styles) in the documentation.
+  You can [learn more about the difference](https://v4.mui.com/styles/basics/#material-ui-core-styles-vs-material-ui-styles) in the documentation.
 
 But this summary is just scratching the surface. We have accepted 199 commits from 61 different contributors. We have changed 1,219 files with 18,223 additions and 11,957 deletions.
 
@@ -58,6 +58,6 @@ _(We'll do our best, no guarantee!)_
 - 📅 We will start to work on a [major upgrade](https://github.com/mui/material-ui-pickers/issues/1293) of the date/time picker components.
 
 - 🧮 We will start to work on a Data Table component.
-  ⭐️ Notice that the advanced features of the data grid will be paid, behind an enterprise subscription. This is an effort part of [our roadmap](/discover-more/roadmap/) to answer enterprise needs.
+  ⭐️ Notice that the advanced features of the data grid will be paid, behind an enterprise subscription. This is an effort part of [our roadmap](/material-ui/discover-more/roadmap/) to answer enterprise needs.
 
 - ❓ Please upvote our [GitHub issues](https://github.com/mui/material-ui/issues) if you want something specific. The number of 👍 helps us to prioritize.

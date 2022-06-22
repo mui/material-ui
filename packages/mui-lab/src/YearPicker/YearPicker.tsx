@@ -1,287 +1,37 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
-import { useTheme, styled, useThemeProps as useThemProps } from '@mui/material/styles';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
-import clsx from 'clsx';
-import PickersYear from './PickersYear';
-import { useUtils, useNow } from '../internal/pickers/hooks/useUtils';
-import { PickerOnChangeFn } from '../internal/pickers/hooks/useViews';
-import { findClosestEnabledDate } from '../internal/pickers/date-utils';
-import { PickerSelectionState } from '../internal/pickers/hooks/usePickerState';
-import { WrapperVariantContext } from '../internal/pickers/wrappers/WrapperVariantContext';
-import { getYearPickerUtilityClass } from './yearPickerClasses';
+import { YearPicker as XYearPicker, YearPickerProps } from '@mui/x-date-pickers/YearPicker';
 
-export interface ExportedYearPickerProps<TDate> {
-  /**
-   * Callback firing on year change @DateIOType.
-   */
-  onYearChange?: (date: TDate) => void;
-  /**
-   * Disable specific years dynamically.
-   * Works like `shouldDisableDate` but for year selection view @DateIOType.
-   */
-  shouldDisableYear?: (day: TDate) => boolean;
-}
+let warnedOnce = false;
 
-const useUtilityClasses = (ownerState: any) => {
-  const { classes } = ownerState;
+const warn = () => {
+  if (!warnedOnce) {
+    console.warn(
+      [
+        'MUI: The YearPicker component was moved from `@mui/lab` to `@mui/x-date-pickers`.',
+        'The component will no longer be exported from `@mui/lab` in the first release of July 2022.',
+        '',
+        "You should use `import { YearPicker } from '@mui/x-date-pickers'`",
+        "or `import { YearPicker } from '@mui/x-date-pickers/YearPicker'`",
+        '',
+        'More information about this migration on our blog: https://mui.com/blog/lab-date-pickers-to-mui-x/.',
+      ].join('\n'),
+    );
 
-  const slots = {
-    root: ['root'],
-  };
-
-  return composeClasses(slots, getYearPickerUtilityClass, classes);
+    warnedOnce = true;
+  }
 };
 
-const YearPickerRoot = styled('div', {
-  name: 'MuiYearPicker',
-  slot: 'Root',
-  overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: YearPickerProps<any> }>({
-  display: 'flex',
-  flexDirection: 'row',
-  flexWrap: 'wrap',
-  overflowY: 'auto',
-  height: '100%',
-  margin: '0 4px',
-});
-
-export type YearPickerClassKey = keyof NonNullable<YearPickerProps<any>['classes']>;
-
-export interface YearPickerProps<TDate> extends ExportedYearPickerProps<TDate> {
-  autoFocus?: boolean;
-  className?: string;
-  classes?: {
-    /** Styles applied to the root element. */
-    root?: string;
-  };
-
-  date: TDate | null;
-  disabled?: boolean;
-  disableFuture?: boolean | null;
-  disablePast?: boolean | null;
-  isDateDisabled: (day: TDate) => boolean;
-  minDate: TDate;
-  maxDate: TDate;
-  onChange: PickerOnChangeFn<TDate>;
-  onFocusedDayChange?: (day: TDate) => void;
-  readOnly?: boolean;
-}
-
-const YearPicker = React.forwardRef(function YearPicker<TDate>(
-  inProps: YearPickerProps<TDate>,
-  ref: React.Ref<HTMLDivElement>,
-) {
-  const props = useThemProps({ props: inProps, name: 'MuiYearPicker' });
-  const {
-    autoFocus,
-    className,
-    date,
-    disabled,
-    disableFuture,
-    disablePast,
-    isDateDisabled,
-    maxDate,
-    minDate,
-    onChange,
-    onFocusedDayChange,
-    onYearChange,
-    readOnly,
-    shouldDisableYear,
-  } = props;
-
-  const ownerState = props;
-  const classes = useUtilityClasses(ownerState);
-
-  const now = useNow<TDate>();
-  const theme = useTheme();
-  const utils = useUtils<TDate>();
-
-  const selectedDate = date || now;
-  const currentYear = utils.getYear(selectedDate);
-  const wrapperVariant = React.useContext(WrapperVariantContext);
-  const selectedYearRef = React.useRef<HTMLButtonElement>(null);
-  const [focusedYear, setFocusedYear] = React.useState<number | null>(currentYear);
-
-  const handleYearSelection = (
-    event: React.SyntheticEvent,
-    year: number,
-    isFinish: PickerSelectionState = 'finish',
-  ) => {
-    if (readOnly) {
-      return;
-    }
-
-    const submitDate = (newDate: TDate) => {
-      onChange(newDate, isFinish);
-
-      if (onFocusedDayChange) {
-        onFocusedDayChange(newDate || now);
-      }
-
-      if (onYearChange) {
-        onYearChange(newDate);
-      }
-    };
-
-    const newDate = utils.setYear(selectedDate, year);
-    if (isDateDisabled(newDate)) {
-      const closestEnabledDate = findClosestEnabledDate({
-        utils,
-        date: newDate,
-        minDate,
-        maxDate,
-        disablePast: Boolean(disablePast),
-        disableFuture: Boolean(disableFuture),
-        shouldDisableDate: isDateDisabled,
-      });
-
-      submitDate(closestEnabledDate || now);
-    } else {
-      submitDate(newDate);
-    }
-  };
-
-  const focusYear = React.useCallback(
-    (year: number) => {
-      if (!isDateDisabled(utils.setYear(selectedDate, year))) {
-        setFocusedYear(year);
-      }
-    },
-    [selectedDate, isDateDisabled, utils],
-  );
-
-  const yearsInRow = wrapperVariant === 'desktop' ? 4 : 3;
-
-  const handleKeyDown = (event: React.KeyboardEvent, year: number) => {
-    switch (event.key) {
-      case 'ArrowUp':
-        focusYear(year - yearsInRow);
-        event.preventDefault();
-        break;
-      case 'ArrowDown':
-        focusYear(year + yearsInRow);
-        event.preventDefault();
-        break;
-      case 'ArrowLeft':
-        focusYear(year + (theme.direction === 'ltr' ? -1 : 1));
-        event.preventDefault();
-        break;
-      case 'ArrowRight':
-        focusYear(year + (theme.direction === 'ltr' ? 1 : -1));
-        event.preventDefault();
-        break;
-      default:
-        break;
-    }
-  };
-
-  return (
-    <YearPickerRoot ref={ref} className={clsx(classes.root, className)} ownerState={ownerState}>
-      {utils.getYearRange(minDate, maxDate).map((year) => {
-        const yearNumber = utils.getYear(year);
-        const selected = yearNumber === currentYear;
-
-        return (
-          <PickersYear
-            key={utils.format(year, 'year')}
-            selected={selected}
-            value={yearNumber}
-            onClick={handleYearSelection}
-            onKeyDown={handleKeyDown}
-            autoFocus={autoFocus && yearNumber === focusedYear}
-            ref={selected ? selectedYearRef : undefined}
-            disabled={
-              disabled ||
-              (disablePast && utils.isBeforeYear(year, now)) ||
-              (disableFuture && utils.isAfterYear(year, now)) ||
-              (shouldDisableYear && shouldDisableYear(year))
-            }
-          >
-            {utils.format(year, 'year')}
-          </PickersYear>
-        );
-      })}
-    </YearPickerRoot>
-  );
-});
-
-YearPicker.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
-  /**
-   * @ignore
-   */
-  autoFocus: PropTypes.bool,
-  /**
-   * @ignore
-   */
-  classes: PropTypes.object,
-  /**
-   * @ignore
-   */
-  className: PropTypes.string,
-  /**
-   * @ignore
-   */
-  date: PropTypes.any,
-  /**
-   * @ignore
-   */
-  disabled: PropTypes.bool,
-  /**
-   * @ignore
-   */
-  disableFuture: PropTypes.bool,
-  /**
-   * @ignore
-   */
-  disablePast: PropTypes.bool,
-  /**
-   * @ignore
-   */
-  isDateDisabled: PropTypes.func.isRequired,
-  /**
-   * @ignore
-   */
-  maxDate: PropTypes.any.isRequired,
-  /**
-   * @ignore
-   */
-  minDate: PropTypes.any.isRequired,
-  /**
-   * @ignore
-   */
-  onChange: PropTypes.func.isRequired,
-  /**
-   * @ignore
-   */
-  onFocusedDayChange: PropTypes.func,
-  /**
-   * Callback firing on year change @DateIOType.
-   */
-  onYearChange: PropTypes.func,
-  /**
-   * @ignore
-   */
-  readOnly: PropTypes.bool,
-  /**
-   * Disable specific years dynamically.
-   * Works like `shouldDisableDate` but for year selection view @DateIOType.
-   */
-  shouldDisableYear: PropTypes.func,
-} as any;
+type YearPickerComponent = (<TDate>(
+  props: YearPickerProps<TDate> & React.RefAttributes<HTMLDivElement>,
+) => JSX.Element) & { propTypes?: any };
 
 /**
- *
- * Demos:
- *
- * - [Date Picker](https://mui.com/components/date-picker/)
- *
- * API:
- *
- * - [YearPicker API](https://mui.com/api/year-picker/)
+ * @ignore - do not document.
  */
-export default YearPicker as <TDate>(props: YearPickerProps<TDate>) => JSX.Element;
+const YearPicker = function DeprecatedYearPicker<TDate>(props: YearPickerProps<TDate>) {
+  warn();
+
+  return <XYearPicker {...props} />;
+} as YearPickerComponent;
+
+export default YearPicker;

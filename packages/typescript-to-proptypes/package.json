@@ -3,9 +3,6 @@
   "version": "5.0.0",
   "private": true,
   "description": "Generate proptypes from TypeScript declarations",
-  "engines": {
-    "node": ">=10.3.0"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/mui/material-ui.git",
@@ -23,15 +20,15 @@
     "typescript": "tsc -p tsconfig.json"
   },
   "devDependencies": {
-    "@types/babel__core": "^7.1.18",
+    "@types/babel__core": "^7.1.19",
     "@types/doctrine": "^0.0.5",
-    "@types/lodash": "^4.14.180",
-    "@types/node": "^16.11.26",
-    "@types/prettier": "^2.4.4",
-    "@types/react": "^17.0.40",
+    "@types/lodash": "^4.14.182",
+    "@types/node": "^16.11.39",
+    "@types/prettier": "^2.6.3",
+    "@types/react": "^17.0.45",
     "@types/uuid": "^8.3.4",
     "fast-glob": "^3.2.11",
-    "prettier": "^2.5.1",
+    "prettier": "^2.6.2",
     "rimraf": "^3.0.2"
   },
   "dependencies": {
@@ -41,7 +38,7 @@
     "@babel/types": "^7.17.0",
     "doctrine": "^3.0.0",
     "lodash": "^4.17.21",
-    "typescript": "^4.6.2",
+    "typescript": "^4.6.4",
     "uuid": "^8.3.2"
   }
 }

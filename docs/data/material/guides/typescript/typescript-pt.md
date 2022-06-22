@@ -6,7 +6,7 @@
 
 <!-- #default-branch-switch -->
 
-Material-UI requires a minimum version of TypeScript 3.5. Have a look at the [Create React App with TypeScript](https://github.com/mui/material-ui/tree/master/examples/create-react-app-with-typescript) example.
+Material UI requires a minimum version of TypeScript 3.5. Have a look at the [Create React App with TypeScript](https://github.com/mui/material-ui/tree/master/examples/create-react-app-with-typescript) example.
 
 Dê uma olhada no exemplo [Create React App com TypeScript](https://github.com/mui/material-ui/tree/master/examples/create-react-app-with-typescript).
 
@@ -33,7 +33,7 @@ As demonstrações incluem variantes tipadas que usam conversão de tipo. É uma
 
 ## Uso da propriedade `component`
 
-Moved to [/customization/theming/#custom-variables](/customization/theming/#custom-variables).
+Moved to [/customization/theming/#custom-variables](/material-ui/customization/theming/#custom-variables).
 
 ## Uso da propriedade `component`
 

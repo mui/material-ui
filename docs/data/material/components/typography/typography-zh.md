@@ -16,7 +16,7 @@ materialDesign: https://material.io/design/typography/the-type-system.html
 
 ## 概述
 
-Material-UI **不会**自动加载 _Roboto_ 字体。 你负责加载你的应用程序中使用的任何字体。 有这样几个简单的方法来加载 Roboto 字体。 若想查询更高级的配置，请参阅[主题定制部分](/customization/typography/)。
+Material UI **不会**自动加载 _Roboto_ 字体。 你负责加载你的应用程序中使用的任何字体。 有这样几个简单的方法来加载 Roboto 字体。 若想查询更高级的配置，请参阅[主题定制部分](/material-ui/customization/typography/)。
 
 ## Roboto 字体 CDN
 
@@ -46,7 +46,7 @@ import '@fontsource/roboto/700.css';
 
 有关更多信息请查看 [Fontsource](https://github.com/fontsource/fontsource)。
 
-您可以将 Fontsource 配置为加载特定的子集（subsets）、字体粗细（weights）和样式（styles）。 Material-UI 默认的排版配置仅依赖于 300，400，500 和 700 的字体权重。
+您可以将 Fontsource 配置为加载特定的子集（subsets）、字体粗细（weights）和样式（styles）。 Material UI 默认的排版配置仅依赖于 300，400，500 和 700 的字体权重。
 
 ## 组件
 
@@ -56,7 +56,7 @@ import '@fontsource/roboto/700.css';
 
 ## 主题
 
-某些情况下，您可能无法使用 `Typography` 组件。 希望您可以利用 theme 里 [`typography`](/customization/default-theme/?expand-path=$.typography) 的一些值。
+某些情况下，您可能无法使用 `Typography` 组件。 希望您可以利用 theme 里 [`typography`](/material-ui/customization/default-theme/?expand-path=$.typography) 的一些值。
 
 {{"demo": "TypographyTheme.js"}}
 
@@ -73,10 +73,11 @@ import '@fontsource/roboto/700.css';
 <Typography variant="h1" component="h2">
   h1. 标题
 </Typography>; Heading
+</Typography>; Heading
 </Typography>;
 ```
 
-- 您也可以 [使用 theme](/customization/theme-components/#default-props) 来修改全局字体映射。
+- 您也可以 [使用 theme](/material-ui/customization/theme-components/#default-props) 来修改全局字体映射。
 
 ```js
 const theme = createTheme({
@@ -103,11 +104,11 @@ const theme = createTheme({
 
 ## 添加 & 禁用变体
 
-除了使用默认的排版变体外，你还可以添加自定义的排版，或者禁用任何你不需要的排版。 更多信息请参见 [添加 & 禁用变体](/customization/typography/#adding-amp-disabling-variants) 示例。
+除了使用默认的排版变体外，你还可以添加自定义的排版，或者禁用任何你不需要的排版。 更多信息请参见 [添加 & 禁用变体](/material-ui/customization/typography/#adding-amp-disabling-variants) 示例。
 
 ## System props
 
-As a CSS utility component, the `Typography` supports all [`system`](/system/properties/) properties. You can use them as prop directly on the component. For instance, a margin-top:
+As a CSS utility component, the `Typography` supports all [`system`](/system/properties/) properties. You can use them as prop directly on the component. For instance, a margin-top: 您可以直接在组件上使用它们作为属性。 例如，顶边距：
 
 ```jsx
 <Typography mt={2}>
@@ -118,5 +119,5 @@ As a CSS utility component, the `Typography` supports all [`system`](/system/pro
 考虑到文字铸排的无障碍设计，需要遵循以下几个关键点：
 
 - **字体颜色**。 在文本颜色和背景颜色间提供足够的对比性，请参考 [WCAG 2.0 颜色对比度](https://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-contrast.html) 的最低标准（4.5:1）。
-- **字体大小（字阶）**。 请使用 [相对单位（rem）](/customization/typography/#font-size) 来适应用户的设置。
+- **字体大小（字阶）**。 请使用 [相对单位（rem）](/material-ui/customization/typography/#font-size) 来适应用户的设置。
 - **标题等级**。 请不要跳过[标题的等级](https://www.w3.org/WAI/tutorials/page-structure/headings/) 。 你需要将 [ style 从语义元素中分离开来](#changing-the-semantic-element)，这样能够解决这个问题。

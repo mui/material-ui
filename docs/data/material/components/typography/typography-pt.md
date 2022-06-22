@@ -16,7 +16,7 @@ O uso de diferentes tamanhos e estilos de uma só vez pode estragar qualquer lei
 
 ## Geral
 
-A fonte _Roboto_ **não** será carregada automaticamente pelo Material-UI. Você é responsável por carregar quaisquer fontes usadas em sua aplicação. A fonte Roboto possui algumas maneiras fáceis de ser carregada. Para uma abordagem mais avançada, dê uma olhada na [seção de customização de temas](/customization/typography/).
+A fonte _Roboto_ **não** será carregada automaticamente pelo Material UI. Você é responsável por carregar quaisquer fontes usadas em sua aplicação. A fonte Roboto possui algumas maneiras fáceis de ser carregada. Para uma abordagem mais avançada, dê uma olhada na [seção de customização de temas](/material-ui/customization/typography/).
 
 ## Fonte Roboto via CDN
 
@@ -46,7 +46,7 @@ import '@fontsource/roboto/700.css';
 
 Para maiores informações, confira em [Fontsource](https://github.com/fontsource/fontsource).
 
-Fontsource pode ser configurado para carregar subconjuntos, pesos e estilos específicos. A configuração de tipografia padrão do Material-UI depende apenas dos pesos de fonte de 300, 400, 500 e 700.
+Fontsource pode ser configurado para carregar subconjuntos, pesos e estilos específicos. A configuração de tipografia padrão do Material UI depende apenas dos pesos de fonte de 300, 400, 500 e 700.
 
 ## Componente
 
@@ -56,7 +56,7 @@ O componente tipografia facilita a aplicação de um conjunto padrão de pesos e
 
 ## Tema
 
-Em algumas situações, talvez você não consiga usar o componente `Typography`. Felizmente, você pode tirar vantagem com o uso das chaves de [`tipografia`](/customization/default-theme/?expand-path=$.typography) do tema.
+Em algumas situações, talvez você não consiga usar o componente `Typography`. Felizmente, você pode tirar vantagem com o uso das chaves de [`tipografia`](/material-ui/customization/default-theme/?expand-path=$.typography) do tema.
 
 {{"demo": "TypographyTheme.js"}}
 
@@ -67,14 +67,15 @@ O componente de Tipografia (Typography) usa a propriedade `variantMapping` para 
 - Você pode alterar o elemento subjacente para uma ocasião em específico com a propriedade `component`:
 
 ```jsx
-{/ * Já existe um h1 na página, não vamos duplicá-lo. */
+{
+  / * Já existe um h1 na página, não vamos duplicá-lo. */;
 }
 <Typography variant="h1" component="h2">
   h1. Heading
 </Typography>;
 ```
 
-- Você pode alterar o mapeamento [globalmente usando o tema](/customization/theme-components/#default-props):
+- Você pode alterar o mapeamento [globalmente usando o tema](/material-ui/customization/theme-components/#default-props):
 
 ```js
 const theme = createTheme({
@@ -101,7 +102,7 @@ const theme = createTheme({
 
 ## Adding & disabling variants
 
-In addition to using the default typography variants, you can add custom ones, or disable any you don't need. See the [Adding & disabling variants](/customization/typography/#adding-amp-disabling-variants) example for more info.
+In addition to using the default typography variants, you can add custom ones, or disable any you don't need. See the [Adding & disabling variants](/material-ui/customization/typography/#adding-amp-disabling-variants) example for more info.
 
 ## System props
 
@@ -116,5 +117,5 @@ As a CSS utility component, the `Typography` supports all [`system`](/system/pro
 Alguns fatores chave a seguir para uma tipografia acessível:
 
 - **Cor**. Forneça contraste suficiente entre o texto e seu fundo, confira a [razão de contraste de cor WCAG 2.0 mínima recomendada](https://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-contrast.html) (4.5:1).
-- **Tamanho da fonte**. Use [unidades relativas (rem)](/customization/typography/#font-size) para acomodar as configurações do usuário.
+- **Tamanho da fonte**. Use [unidades relativas (rem)](/material-ui/customization/typography/#font-size) para acomodar as configurações do usuário.
 - **Hierarquia de títulos**. [Não pule](https://www.w3.org/WAI/tutorials/page-structure/headings/) níveis de título. Para resolver esse problema, você precisa [separar a semântica do estilo](#changing-the-semantic-element).

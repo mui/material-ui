@@ -3,6 +3,7 @@ import { GlobalStyles } from '@mui/system';
 import {
   ColorPaletteProp,
   CssVarsProvider,
+  extendTheme,
   useColorScheme,
   styled,
   experimental_sx as sx,
@@ -18,6 +19,7 @@ import ListItemButton from '@mui/joy/ListItemButton';
 import ListItemDecorator from '@mui/joy/ListItemDecorator';
 import ListItemContent from '@mui/joy/ListItemContent';
 import ListDivider from '@mui/joy/ListDivider';
+import Sheet from '@mui/joy/Sheet';
 import Typography from '@mui/joy/Typography';
 import Moon from '@mui/icons-material/DarkMode';
 import Sun from '@mui/icons-material/LightMode';
@@ -104,7 +106,7 @@ const Circle = ({
         display: 'inline-flex',
         borderRadius: '40px',
         p: '0.5rem',
-        ...theme.variants.light[color],
+        ...theme.variants.soft[color],
       }),
       ...(Array.isArray(sxProp) ? sxProp : [sxProp]),
     ]}
@@ -141,6 +143,7 @@ function CheckboxList() {
             }
           >
             <ListItemButton
+              selected={selected}
               color={selected ? 'success' : undefined}
               role={undefined}
               onClick={handleToggle(value)}
@@ -176,7 +179,7 @@ function Gmail() {
       <ListItem>
         <ListItemButton
           selected={index === 0}
-          variant={index === 0 ? 'light' : 'text'}
+          variant={index === 0 ? 'soft' : 'plain'}
           color={index === 0 ? 'danger' : undefined}
           onClick={() => setIndex(0)}
         >
@@ -192,7 +195,7 @@ function Gmail() {
       <ListItem nested>
         <ListItemButton
           selected={index === 1}
-          variant={index === 1 ? 'light' : 'text'}
+          variant={index === 1 ? 'soft' : 'plain'}
           color={index === 1 ? 'info' : undefined}
           onClick={() => setIndex(1)}
         >
@@ -206,7 +209,7 @@ function Gmail() {
           <ListItem>
             <ListItemButton
               selected={index === 2}
-              variant={index === 2 ? 'light' : 'text'}
+              variant={index === 2 ? 'soft' : 'plain'}
               color={index === 2 ? 'primary' : undefined}
               onClick={() => setIndex(2)}
             >
@@ -220,7 +223,7 @@ function Gmail() {
           <ListItem>
             <ListItemButton
               selected={index === 3}
-              variant={index === 3 ? 'light' : 'text'}
+              variant={index === 3 ? 'soft' : 'plain'}
               color={index === 3 ? 'warning' : undefined}
               onClick={() => setIndex(3)}
             >
@@ -300,6 +303,7 @@ function MuiNav() {
   }
   return (
     <List
+      size="sm"
       sx={(theme) => ({
         // Actually, this part should be inside the theme but put it here for specific instance.
         ...createCssVars(grey, 'palette-neutral'),
@@ -307,24 +311,24 @@ function MuiNav() {
         '--joy-palette-text-primary': theme.vars.palette.neutral[900],
         '--joy-palette-text-secondary': theme.vars.palette.neutral[700],
         '--joy-palette-text-tertiary': theme.vars.palette.neutral[600],
-        '--joy-palette-neutral-textHoverBg': theme.vars.palette.neutral[50],
-        '--joy-palette-neutral-textActiveBg': theme.vars.palette.neutral[50],
-        '--joy-palette-primary-textColor': theme.vars.palette.primary[500],
-        '--joy-palette-primary-lightColor': theme.vars.palette.primary[500],
-        '--joy-palette-primary-lightBg': theme.vars.palette.primary[50],
-        '--joy-palette-primary-lightHoverBg': 'rgba(0, 127, 255, 0.12)',
-        '--joy-palette-primary-lightActiveBg': 'rgba(0, 127, 255, 0.12)',
-        '[data-mui-color-scheme="dark"] &': {
+        '--joy-palette-neutral-plainHoverBg': theme.vars.palette.neutral[50],
+        '--joy-palette-neutral-plainActiveBg': theme.vars.palette.neutral[50],
+        '--joy-palette-primary-plainColor': theme.vars.palette.primary[500],
+        '--joy-palette-primary-softColor': theme.vars.palette.primary[500],
+        '--joy-palette-primary-softBg': theme.vars.palette.primary[50],
+        '--joy-palette-primary-softHoverBg': 'rgba(0, 127, 255, 0.12)',
+        '--joy-palette-primary-softActiveBg': 'rgba(0, 127, 255, 0.12)',
+        [theme.getColorSchemeSelector('dark')]: {
           '--joy-palette-text-primary': '#fff',
           '--joy-palette-text-secondary': theme.vars.palette.neutral[400],
-          '--joy-palette-neutral-textHoverBg': 'rgba(19, 47, 76, 0.4)',
-          '--joy-palette-neutral-textActiveBg': 'rgba(19, 47, 76, 0.4)',
-          '--joy-palette-primary-textColor': theme.vars.palette.primary[400],
-          '--joy-palette-primary-lightColor': theme.vars.palette.primary[300],
-          '--joy-palette-primary-lightBg': '#132f4c',
-          '--joy-palette-primary-lightHoverBg': 'rgba(51, 153, 255, 0.24)',
-          '--joy-palette-primary-lightActiveBg': 'rgba(51, 153, 255, 0.24)',
-          '--List-background': 'rgb(10, 25, 41)',
+          '--joy-palette-neutral-plainHoverBg': 'rgba(19, 47, 76, 0.4)',
+          '--joy-palette-neutral-plainActiveBg': 'rgba(19, 47, 76, 0.4)',
+          '--joy-palette-primary-plainColor': theme.vars.palette.primary[400],
+          '--joy-palette-primary-softColor': theme.vars.palette.primary[300],
+          '--joy-palette-primary-softBg': '#132f4c',
+          '--joy-palette-primary-softHoverBg': 'rgba(51, 153, 255, 0.24)',
+          '--joy-palette-primary-softActiveBg': 'rgba(51, 153, 255, 0.24)',
+          '--List-item-stickyBackground': 'rgb(10, 25, 41)',
         },
         '& *': {
           fontFamily: '"IBM Plex Sans"',
@@ -343,9 +347,8 @@ function MuiNav() {
         '--List-item-paddingLeft': '2px',
         '--List-item-paddingRight': '2px',
         '--List-item-paddingY': '0px',
-        '--List-item-fontSize': theme.vars.fontSize.sm,
         '--List-nestedInsetStart': '28px',
-        '--List-decorator-color': theme.vars.palette.primary.textColor,
+        '--List-decorator-color': theme.vars.palette.primary.plainColor,
       })}
     >
       {(pages as MuiPage[]).map((aPage, index) => {
@@ -365,8 +368,8 @@ function MuiNav() {
                 })
               }
             >
-              <ListItemDecorator sx={{ color: 'primary.textColor' }}>
-                <IconComponent fontSize="md" />
+              <ListItemDecorator>
+                {IconComponent && <IconComponent fontSize="md" />}
               </ListItemDecorator>
               <ListItemContent sx={{ color: 'text.primary' }}>
                 {pageToTitleI18n(aPage, t) || ''}
@@ -375,7 +378,7 @@ function MuiNav() {
                 fontSize="md"
                 sx={{
                   transform: open[index] ? 'unset' : 'rotate(-90deg)',
-                  color: 'var(--joy-palette-primary-textColor)',
+                  color: 'var(--joy-palette-primary-plainColor)',
                 }}
               />
             </ListItemButton>
@@ -393,7 +396,7 @@ function MuiNav() {
                         <ListItemButton
                           color={nestedIndex === 0 ? 'primary' : undefined}
                           selected={nestedIndex === 0}
-                          variant={nestedIndex === 0 ? 'light' : 'text'}
+                          variant={nestedIndex === 0 ? 'soft' : 'plain'}
                         >
                           {pageToTitleI18n(nestedPage, t) || ''}
                         </ListItemButton>
@@ -433,15 +436,15 @@ const Firebash = () => {
     { icon: <Public />, label: 'Hosting' },
   ];
   return (
-    <Box data-mui-color-scheme="dark">
+    <Sheet data-joy-color-scheme="dark" sx={{ bgcolor: 'rgb(5, 30, 52)' }}>
       <List
         sx={{
           '& *': {
             fontFamily: 'Roboto',
           },
 
-          '--joy-palette-neutral-textHoverBg': 'rgba(255, 255, 255, 0.08)',
-          '--joy-palette-neutral-textActiveBg': 'rgba(255, 255, 255, 0.08)',
+          '--joy-palette-neutral-plainHoverBg': 'rgba(255, 255, 255, 0.08)',
+          '--joy-palette-neutral-plainActiveBg': 'rgba(255, 255, 255, 0.08)',
           '--joy-palette-text-primary': '#fff',
           '--joy-palette-text-secondary': 'rgba(255,255,255,0.8)',
           '--joy-palette-text-tertiary': 'rgba(255,255,255,0.5)',
@@ -453,9 +456,7 @@ const Firebash = () => {
           '--List-item-paddingRight': '24px',
           '--List-item-radius': '0px',
           '--List-item-fontSize': '14px',
-          '--List-nestedInsetStart': '0px',
           '--List-divider-gap': '0px',
-          '--List-background': 'rgb(5, 30, 52)',
           '--List-decorator-width': '36px',
           '--List-decorator-color': 'rgba(255, 255, 255, 0.8)',
           '& .MuiListItemButton-root, & .MuiListItemContent-root': {
@@ -476,7 +477,7 @@ const Firebash = () => {
           }}
           endAction={
             <IconButton
-              variant="text"
+              variant="plain"
               color="neutral"
               sx={{
                 '--IconButton-padding': '12px',
@@ -577,7 +578,7 @@ const Firebash = () => {
           </List>
         </ListItem>
       </List>
-    </Box>
+    </Sheet>
   );
 };
 
@@ -587,18 +588,17 @@ const Gatsby = () => {
     <Box sx={{ maxWidth: 280, pl: '24px', bgcolor: 'background.body' }}>
       <List
         size="sm"
-        sx={{
-          '--joy-palette-primary-textColor': '#8a4baf',
-          '--joy-palette-neutral-textHoverBg': 'transparent',
-          '--joy-palette-neutral-textActiveBg': 'transparent',
-          '--joy-palette-primary-textHoverBg': 'transparent',
-          '--joy-palette-primary-textActiveBg': 'transparent',
-          '[data-mui-color-scheme="dark"] &': {
+        sx={(theme) => ({
+          '--joy-palette-primary-plainColor': '#8a4baf',
+          '--joy-palette-neutral-plainHoverBg': 'transparent',
+          '--joy-palette-neutral-plainActiveBg': 'transparent',
+          '--joy-palette-primary-plainHoverBg': 'transparent',
+          '--joy-palette-primary-plainActiveBg': 'transparent',
+          [theme.getColorSchemeSelector('dark')]: {
             '--joy-palette-text-secondary': '#635e69',
-            '--joy-palette-primary-textColor': '#d48cff',
+            '--joy-palette-primary-plainColor': '#d48cff',
           },
 
-          '--List-nestedInsetStart': '0px',
           '--List-radius': '0px',
           '--List-padding': '0px',
           '--List-insetStart': '32px',
@@ -621,7 +621,7 @@ const Gatsby = () => {
           '& [class*="startAction"]': {
             color: 'var(--joy-palette-text-tertiary)',
           },
-        }}
+        })}
       >
         <ListItem nested>
           <ListItem component="div" startAction={<ReceiptLong />}>
@@ -642,7 +642,7 @@ const Gatsby = () => {
           nested
           sx={{ my: 1 }}
           startAction={
-            <IconButton variant="text" size="sm" color="neutral" onClick={() => setOpen(!open)}>
+            <IconButton variant="plain" size="sm" color="neutral" onClick={() => setOpen(!open)}>
               <KeyboardArrowDown sx={{ transform: open ? 'initial' : 'rotate(-90deg)' }} />
             </IconButton>
           }
@@ -682,7 +682,7 @@ const Gatsby = () => {
           nested
           sx={{ my: 1 }}
           startAction={
-            <IconButton variant="text" size="sm" color="neutral">
+            <IconButton variant="plain" size="sm" color="neutral">
               <KeyboardArrowDown />
             </IconButton>
           }
@@ -716,7 +716,7 @@ const Gatsby = () => {
 export default function JoyList() {
   return (
     <CssVarsProvider
-      theme={{
+      theme={extendTheme({
         colorSchemes: {
           light: {
             palette: {
@@ -726,7 +726,7 @@ export default function JoyList() {
             },
           },
         },
-      }}
+      })}
     >
       <GlobalStyles
         styles={{ body: { margin: 0, backgroundColor: 'var(--joy-palette-background-level1)' } }}
@@ -854,13 +854,9 @@ export default function JoyList() {
               </ListItemDecorator>
               <div>
                 <Typography>Brunch this weekend?</Typography>
-                <Typography level="body2" sx={{ color: 'var(--joy-palette-text-primary)' }}>
+                <Typography level="body2" textColor="text.primary">
                   Ali Connors{' '}
-                  <Typography
-                    component="span"
-                    level="inherit"
-                    sx={{ color: 'var(--joy-palette-text-secondary)' }}
-                  >
+                  <Typography textColor="text.secondary">
                     {' '}
                     — I&apos;ll be in your neighborhood doing errands this…
                   </Typography>
@@ -882,13 +878,9 @@ export default function JoyList() {
               </ListItemDecorator>
               <div>
                 <Typography>Summer BBQ</Typography>
-                <Typography level="body2" sx={{ color: 'var(--joy-palette-text-primary)' }}>
+                <Typography level="body2" textColor="text.primary">
                   to Scott, Alex, Jennifer{' '}
-                  <Typography
-                    component="span"
-                    level="inherit"
-                    sx={{ color: 'var(--joy-palette-text-secondary)' }}
-                  >
+                  <Typography textColor="text.secondary">
                     {' '}
                     — Wish I could come, but I&apos;m out of town this…
                   </Typography>
@@ -946,7 +938,7 @@ export default function JoyList() {
               '--List-item-minHeight': '3rem',
             }}
           >
-            <ListItemButton selected variant="contained">
+            <ListItemButton selected variant="solid">
               <ListItemDecorator>
                 <InboxIcon />
               </ListItemDecorator>
@@ -975,12 +967,12 @@ export default function JoyList() {
           >
             <ListItem
               endAction={
-                <Button variant="light" size="sm">
+                <Button variant="soft" size="sm">
                   Clear
                 </Button>
               }
             >
-              <ListItemButton selected variant="light">
+              <ListItemButton selected variant="soft">
                 <ListItemDecorator>
                   <Circle color="primary">
                     <InboxIcon />
@@ -995,7 +987,7 @@ export default function JoyList() {
             <ListDivider component="hr" />
             <ListItem
               endAction={
-                <Button variant="light" color="danger" size="sm">
+                <Button variant="soft" color="danger" size="sm">
                   Clear
                 </Button>
               }
@@ -1031,9 +1023,9 @@ export default function JoyList() {
             >
               <ListItemButton
                 selected
-                variant="contained"
+                variant="solid"
                 color="success"
-                sx={(theme) => theme.variants.containedOverrides.success}
+                sx={(theme) => theme.variants.solidOverrides.success}
               >
                 <ListItemDecorator>
                   <Circle color="success">
@@ -1048,29 +1040,31 @@ export default function JoyList() {
             </ListItem>
           </List>
 
-          <List
-            sx={{
-              maxWidth: 360,
-              maxHeight: 300,
-              overflow: 'auto',
-              '& ul': { p: 0 },
-              '--List-padding': 0,
-              '--List-item-paddingX': '1rem',
-            }}
-          >
-            {[0, 1, 2, 3, 4].map((sectionId) => (
-              <li key={`section-${sectionId}`}>
-                <ul>
-                  <ListItem sticky sx={{ pt: '1.5rem' }}>
-                    <Typography level="body2">{`I'm sticky ${sectionId}`}</Typography>
-                  </ListItem>
-                  {[0, 1, 2].map((item) => (
-                    <ListItem key={`item-${sectionId}-${item}`}>Item {item}</ListItem>
-                  ))}
-                </ul>
-              </li>
-            ))}
-          </List>
+          <Sheet>
+            <List
+              sx={{
+                maxWidth: 360,
+                maxHeight: 300,
+                overflow: 'auto',
+                '& ul': { p: 0 },
+                '--List-padding': 0,
+                '--List-item-paddingX': '1rem',
+              }}
+            >
+              {[0, 1, 2, 3, 4].map((sectionId) => (
+                <li key={`section-${sectionId}`}>
+                  <ul>
+                    <ListItem sticky sx={{ pt: '1.5rem' }}>
+                      <Typography level="body2">{`I'm sticky ${sectionId}`}</Typography>
+                    </ListItem>
+                    {[0, 1, 2].map((item) => (
+                      <ListItem key={`item-${sectionId}-${item}`}>Item {item}</ListItem>
+                    ))}
+                  </ul>
+                </li>
+              ))}
+            </List>
+          </Sheet>
 
           <Box>
             <List size="sm">
@@ -1098,7 +1092,7 @@ export default function JoyList() {
             </List>
             <List size="lg" sx={{ mt: 1 }}>
               <ListItem>
-                <Typography color="text.secondary">Large size</Typography>
+                <Typography textColor="text.secondary">Large size</Typography>
               </ListItem>
               <ListItem>
                 <ListItemDecorator>
@@ -1201,7 +1195,7 @@ export default function JoyList() {
             }}
           >
             <ListItem>
-              <ListItemButton selected variant="light">
+              <ListItemButton selected variant="soft">
                 <ListItemDecorator>
                   <InboxIcon />
                 </ListItemDecorator>{' '}

@@ -3,13 +3,15 @@ import { generateUtilityClass, generateUtilityClasses } from '@mui/base';
 export interface SwitchClasses {
   /** Styles applied to the root element. */
   root: string;
-  /** State class applied to the internal `SwitchBase` component's `checked` class. */
+  /** State class applied to the root `checked` class. */
   checked: string;
-  /** State class applied to the internal SwitchBase component's disabled class. */
+  /** State class applied to the root disabled class. */
   disabled: string;
-  /** Styles applied to the internal SwitchBase component's input element. */
+  /** Styles applied to the action element. */
+  action: string;
+  /** Styles applied to the input element. */
   input: string;
-  /** Styles used to create the thumb passed to the internal `SwitchBase` component `icon` prop. */
+  /** Styles Styles applied to the input element. */
   thumb: string;
   /** Styles applied to the track element. */
   track: string;
@@ -35,22 +37,23 @@ export interface SwitchClasses {
   sizeLg: string;
   /** Styles applied to the root element if `variant="outlined"`. */
   variantOutlined: string;
-  /** Styles applied to the root element if `variant="light"`. */
-  variantLight: string;
-  /** Styles applied to the root element if `variant="contained"`. */
-  variantContained: string;
+  /** Styles applied to the root element if `variant="soft"`. */
+  variantSoft: string;
+  /** Styles applied to the root element if `variant="solid"`. */
+  variantSolid: string;
 }
 
 export type SwitchClassKey = keyof SwitchClasses;
 
 export function getSwitchUtilityClass(slot: string): string {
-  return generateUtilityClass('MuiSwitch', slot);
+  return generateUtilityClass('JoySwitch', slot);
 }
 
-const switchClasses: SwitchClasses = generateUtilityClasses('MuiSwitch', [
+const switchClasses: SwitchClasses = generateUtilityClasses('JoySwitch', [
   'root',
   'checked',
   'disabled',
+  'action',
   'input',
   'thumb',
   'track',
@@ -65,8 +68,8 @@ const switchClasses: SwitchClasses = generateUtilityClasses('MuiSwitch', [
   'sizeMd',
   'sizeLg',
   'variantOutlined',
-  'variantLight',
-  'variantContained',
+  'variantSoft',
+  'variantSolid',
 ]);
 
 export default switchClasses;

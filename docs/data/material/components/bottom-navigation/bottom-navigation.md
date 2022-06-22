@@ -1,12 +1,12 @@
 ---
 product: material-ui
-title: Bottom Navigation React component
+title: Bottom navigation React component
 components: BottomNavigation, BottomNavigationAction
 githubLabel: 'component: bottom navigation'
 materialDesign: https://material.io/components/bottom-navigation
 ---
 
-# Bottom Navigation
+# Bottom navigation
 
 <p class="description">Bottom navigation bars allow movement between primary destinations in an app.</p>
 
@@ -14,13 +14,13 @@ Bottom navigation bars display three to five destinations at the bottom of a scr
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## Bottom Navigation
+## Bottom navigation
 
 When there are only **three** actions, display both icons and text labels at all times.
 
 {{"demo": "SimpleBottomNavigation.js", "bg": true}}
 
-## Bottom Navigation with no label
+## Bottom navigation with no label
 
 If there are **four** or **five** actions, display inactive views as icons only.
 
@@ -36,4 +36,4 @@ This demo keeps bottom navigation fixed to the bottom, no matter the amount of c
 
 One frequent use case is to perform navigation on the client only, without an HTTP round-trip to the server.
 The `BottomNavigationAction` component provides the `component` prop to handle this use case.
-Here is a [more detailed guide](/guides/routing/).
+Here is a [more detailed guide](/material-ui/guides/routing/).

@@ -13,3 +13,4 @@ export interface StyleOptions<PropKey> {
 export function style<PropKey extends string, Theme extends object>(
   options: StyleOptions<PropKey>,
 ): StyleFunction<{ [K in PropKey]?: unknown } & { theme?: Theme }> & { filterProps: string[] };
+export function getPath<T>(obj: T, path: string | undefined, checkVars?: boolean): null | unknown;

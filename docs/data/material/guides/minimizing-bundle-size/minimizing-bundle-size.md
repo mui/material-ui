@@ -5,7 +5,7 @@
 ## Bundle size matters
 
 The bundle size of MUI is taken very seriously. Size snapshots are taken
-on every commit for every package and critical parts of those packages ([view the latest snapshot](/size-snapshot)).
+on every commit for every package and critical parts of those packages ([view the latest snapshot](/size-snapshot/)).
 Combined with [dangerJS](https://danger.systems/js/) we can inspect
 [detailed bundle size changes](https://github.com/mui/material-ui/pull/14638#issuecomment-466658459) on every Pull Request.
 
@@ -199,7 +199,7 @@ It will perform the following diffs:
 
 ## Available bundles
 
-The package published on npm is **transpiled**, with [Babel](https://github.com/babel/babel), to take into account the [supported platforms](/getting-started/supported-platforms/).
+The package published on npm is **transpiled**, with [Babel](https://github.com/babel/babel), to take into account the [supported platforms](/material-ui/getting-started/supported-platforms/).
 
 ⚠️ Developers are **strongly discouraged** to import from any of the other bundles directly.
 Otherwise it's not guaranteed that dependencies used also use legacy or modern bundles.

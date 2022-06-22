@@ -16,6 +16,10 @@ const labels = {
   5: 'Excellent+',
 };
 
+function getLabelText(value) {
+  return `${value} Star${value !== 1 ? 's' : ''}, ${labels[value]}`;
+}
+
 export default function HoverRating() {
   const [value, setValue] = React.useState(2);
   const [hover, setHover] = React.useState(-1);
@@ -32,6 +36,7 @@ export default function HoverRating() {
         name="hover-feedback"
         value={value}
         precision={0.5}
+        getLabelText={getLabelText}
         onChange={(event, newValue) => {
           setValue(newValue);
         }}

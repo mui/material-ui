@@ -33,7 +33,9 @@ export const replaceComponentLinks = (url: string) => {
   if (isNewLocation(url)) {
     return url;
   }
-  if (url.match(/components\/(icons|material-icons|transitions|pickers|about-the-lab)/)) {
+  if (url.startsWith('/customization')) {
+    url = url.replace('customization', 'material-ui/customization');
+  } else if (url.match(/components\/(icons|material-icons|transitions|pickers|about-the-lab)/)) {
     url = url.replace(/\/components\/(.*)/, '/material-ui/$1');
   } else {
     url = url.replace(/\/components\/(.*)/, '/material-ui/react-$1');

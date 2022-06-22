@@ -7,9 +7,9 @@ import * as React from 'react';
 
 // `variant`
 <Avatar />;
-<Avatar variant="light" />;
+<Avatar variant="soft" />;
 <Avatar variant="outlined" />;
-<Avatar variant="contained" />;
+<Avatar variant="solid" />;
 
 // `color`
 <Avatar color="primary" />;

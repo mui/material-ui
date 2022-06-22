@@ -43,7 +43,7 @@ export function getOptionsFromChildren<TValue>(children: React.ReactNode): Selec
 
     const option = {
       value: element.props.value,
-      label: element.props.children,
+      label: element.props.label || element.props.children,
       disabled: element.props.disabled ?? false,
     };
 

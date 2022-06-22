@@ -34,4 +34,4 @@ materialDesign: https://material.io/components/bottom-navigation
 
 ## 第三方路由库
 
-一种常见的用例是仅在客户端上执行导航，而无需通过 HTTP 往返服务器。 针对这种用法，`Link` 组件了提供 `component` 属性来适配它。 这里是 [更详细的指南](/guides/routing/)。
+一种常见的用例是仅在客户端上执行导航，而无需通过 HTTP 往返服务器。 针对这种用法，`Link` 组件了提供 `component` 属性来适配它。 这里是 [更详细的指南](/material-ui/guides/routing/)。

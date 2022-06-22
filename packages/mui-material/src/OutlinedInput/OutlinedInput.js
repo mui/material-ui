@@ -42,25 +42,27 @@ const OutlinedInputRoot = styled(InputBaseRoot, {
     theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)';
   return {
     position: 'relative',
-    borderRadius: theme.shape.borderRadius,
+    borderRadius: (theme.vars || theme).shape.borderRadius,
     [`&:hover .${outlinedInputClasses.notchedOutline}`]: {
-      borderColor: theme.palette.text.primary,
+      borderColor: (theme.vars || theme).palette.text.primary,
     },
     // Reset on touch devices, it doesn't add specificity
     '@media (hover: none)': {
       [`&:hover .${outlinedInputClasses.notchedOutline}`]: {
-        borderColor,
+        borderColor: theme.vars
+          ? `rgba(${theme.vars.palette.common.onBackgroundChannel} / 0.23)`
+          : borderColor,
       },
     },
     [`&.${outlinedInputClasses.focused} .${outlinedInputClasses.notchedOutline}`]: {
-      borderColor: theme.palette[ownerState.color].main,
+      borderColor: (theme.vars || theme).palette[ownerState.color].main,
       borderWidth: 2,
     },
     [`&.${outlinedInputClasses.error} .${outlinedInputClasses.notchedOutline}`]: {
-      borderColor: theme.palette.error.main,
+      borderColor: (theme.vars || theme).palette.error.main,
     },
     [`&.${outlinedInputClasses.disabled} .${outlinedInputClasses.notchedOutline}`]: {
-      borderColor: theme.palette.action.disabled,
+      borderColor: (theme.vars || theme).palette.action.disabled,
     },
     ...(ownerState.startAdornment && {
       paddingLeft: 14,
@@ -81,9 +83,15 @@ const NotchedOutlineRoot = styled(NotchedOutline, {
   name: 'MuiOutlinedInput',
   slot: 'NotchedOutline',
   overridesResolver: (props, styles) => styles.notchedOutline,
-})(({ theme }) => ({
-  borderColor: theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)',
-}));
+})(({ theme }) => {
+  const borderColor =
+    theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)';
+  return {
+    borderColor: theme.vars
+      ? `rgba(${theme.vars.palette.common.onBackgroundChannel} / 0.23)`
+      : borderColor,
+  };
+});
 
 const OutlinedInputInput = styled(InputBaseInput, {
   name: 'MuiOutlinedInput',
@@ -91,12 +99,26 @@ const OutlinedInputInput = styled(InputBaseInput, {
   overridesResolver: inputBaseInputOverridesResolver,
 })(({ theme, ownerState }) => ({
   padding: '16.5px 14px',
-  '&:-webkit-autofill': {
-    WebkitBoxShadow: theme.palette.mode === 'light' ? null : '0 0 0 100px #266798 inset',
-    WebkitTextFillColor: theme.palette.mode === 'light' ? null : '#fff',
-    caretColor: theme.palette.mode === 'light' ? null : '#fff',
-    borderRadius: 'inherit',
-  },
+  ...(!theme.vars && {
+    '&:-webkit-autofill': {
+      WebkitBoxShadow: theme.palette.mode === 'light' ? null : '0 0 0 100px #266798 inset',
+      WebkitTextFillColor: theme.palette.mode === 'light' ? null : '#fff',
+      caretColor: theme.palette.mode === 'light' ? null : '#fff',
+      borderRadius: 'inherit',
+    },
+  }),
+  ...(theme.vars && {
+    '&:-webkit-autofill': {
+      borderRadius: 'inherit',
+    },
+    [theme.getColorSchemeSelector('dark')]: {
+      '&:-webkit-autofill': {
+        WebkitBoxShadow: '0 0 0 100px #266798 inset',
+        WebkitTextFillColor: '#fff',
+        caretColor: '#fff',
+      },
+    },
+  }),
   ...(ownerState.size === 'small' && {
     padding: '8.5px 14px',
   }),
@@ -190,7 +212,9 @@ OutlinedInput.propTypes /* remove-proptypes */ = {
    */
   classes: PropTypes.object,
   /**
-   * The color of the component. It supports those theme colors that make sense for this component.
+   * The color of the component.
+   * It supports both default and custom theme colors, which can be added as shown in the
+   * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
    * The prop defaults to the value (`'primary'`) inherited from the parent FormControl component.
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
@@ -268,7 +292,7 @@ OutlinedInput.propTypes /* remove-proptypes */ = {
    */
   minRows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
-   * If `true`, a [TextareaAutosize](/components/textarea-autosize/) element is rendered.
+   * If `true`, a [TextareaAutosize](/material-ui/react-textarea-autosize/) element is rendered.
    * @default false
    */
   multiline: PropTypes.bool,

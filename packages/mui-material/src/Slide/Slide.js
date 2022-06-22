@@ -79,7 +79,7 @@ export function setTranslateValue(direction, node, containerProp) {
 }
 
 /**
- * The Slide transition is used by the [Drawer](/components/drawers/) component.
+ * The Slide transition is used by the [Drawer](/material-ui/react-drawer/) component.
  * It uses [react-transition-group](https://github.com/reactjs/react-transition-group) internally.
  */
 const Slide = React.forwardRef(function Slide(props, ref) {

@@ -5,7 +5,7 @@
     "centerRipple": "If <code>true</code>, the ripples are centered. They won&#39;t start at the cursor interaction position.",
     "children": "O conteúdo do componente.",
     "classes": "Sobrescreve ou extende os estilos aplicados para o componente. Veja a <a href=\"#css\">API CSS</a> abaixo para maiores detalhes.",
-    "component": "The component used for the root node. Either a string to use a HTML element or a component.<br>⚠️ <a href=\"/guides/composition/#caveat-with-refs\">Needs to be able to hold a ref</a>.",
+    "component": "The component used for the root node. Either a string to use a HTML element or a component.<br>⚠️ <a href=\"/material-ui/guides/composition/#caveat-with-refs\">Needs to be able to hold a ref</a>.",
     "disabled": "Se <code>true</code>, o componente está desabilitado.",
     "disableRipple": "If <code>true</code>, the ripple effect is disabled.<br>⚠️ Without a ripple there is no styling for :focus-visible by default. Be sure to highlight the element by applying separate styles with the <code>focusVisibleClassName</code>.",
     "disableTouchRipple": "If <code>true</code>, the touch ripple effect is disabled.",

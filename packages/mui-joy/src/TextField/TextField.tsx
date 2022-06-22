@@ -29,7 +29,7 @@ const useUtilityClasses = (ownerState: TextFieldProps) => {
 };
 
 const TextFieldRoot = styled('div', {
-  name: 'MuiTextField',
+  name: 'JoyTextField',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: TextFieldProps }>(({ theme, ownerState }) => ({
@@ -45,8 +45,8 @@ const TextFieldRoot = styled('div', {
     '--FormHelperText-color': theme.vars.palette.danger[500],
   },
   [`&.${textFieldClasses.disabled}`]: {
-    '--FormLabel-color': theme.vars.palette[ownerState.color || 'neutral']?.textDisabledColor,
-    '--FormHelperText-color': theme.vars.palette[ownerState.color || 'neutral']?.textDisabledColor,
+    '--FormLabel-color': theme.vars.palette[ownerState.color || 'neutral']?.plainDisabledColor,
+    '--FormHelperText-color': theme.vars.palette[ownerState.color || 'neutral']?.plainDisabledColor,
   },
   display: 'flex',
   flexDirection: 'column',
@@ -58,7 +58,7 @@ const TextFieldRoot = styled('div', {
 const TextField = React.forwardRef(function TextField(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
-    name: 'MuiTextField',
+    name: 'JoyTextField',
   });
 
   const {
@@ -79,7 +79,6 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
     onBlur,
     onChange,
     onFocus,
-    inputRef,
     color,
     disabled = false,
     error = false,
@@ -87,8 +86,9 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
     size = 'md',
     variant = 'outlined',
     fullWidth = false,
-    startAdornment,
-    endAdornment,
+    type = 'text',
+    startDecorator,
+    endDecorator,
     ...other
   } = props;
 
@@ -99,14 +99,15 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
   const ownerState = {
     label,
     helperText,
-    startAdornment,
-    endAdornment,
+    startDecorator,
+    endDecorator,
     disabled,
     error,
     required,
     size,
     variant,
     fullWidth,
+    type,
     ...props,
   };
 
@@ -139,7 +140,8 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
       <Input
         {...componentsProps.input}
         id={id}
-        inputRef={inputRef}
+        name={name}
+        type={type}
         aria-describedby={helperTextId}
         autoComplete={autoComplete}
         autoFocus={autoFocus}
@@ -156,8 +158,8 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
         onChange={onChange}
         onBlur={onBlur}
         onFocus={onFocus}
-        startAdornment={startAdornment}
-        endAdornment={endAdornment}
+        startDecorator={startDecorator}
+        endDecorator={endDecorator}
       />
       {helperText && (
         <FormHelperText
@@ -240,7 +242,7 @@ TextField.propTypes /* remove-proptypes */ = {
   /**
    * Trailing adornment for this input.
    */
-  endAdornment: PropTypes.node,
+  endDecorator: PropTypes.node,
   /**
    * If `true`, the `input` will indicate an error.
    * The prop defaults to the value (`false`) inherited from the parent FormControl component.
@@ -260,15 +262,6 @@ TextField.propTypes /* remove-proptypes */ = {
    * Use this prop to make `label` and `helperText` accessible for screen readers.
    */
   id: PropTypes.string,
-  /**
-   * Pass a ref to the `input` element.
-   */
-  inputRef: PropTypes.oneOfType([
-    PropTypes.func,
-    PropTypes.shape({
-      current: PropTypes.any.isRequired,
-    }),
-  ]),
   /**
    * The label content.
    */
@@ -309,7 +302,12 @@ TextField.propTypes /* remove-proptypes */ = {
   /**
    * Leading adornment for this input.
    */
-  startAdornment: PropTypes.node,
+  startDecorator: PropTypes.node,
+  /**
+   * Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types).
+   * @default 'plain'
+   */
+  type: PropTypes.string,
   /**
    * The value of the `input` element, required for a controlled component.
    */
@@ -319,7 +317,7 @@ TextField.propTypes /* remove-proptypes */ = {
    * @default 'outlined'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['contained', 'light', 'outlined', 'text']),
+    PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
     PropTypes.string,
   ]),
 } as any;

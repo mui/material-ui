@@ -1,4 +1,3 @@
-export { default, getMonthPickerUtilityClass, monthPickerClasses } from './MonthPicker';
-
-export type MonthPickerClassKey = import('./MonthPicker').MonthPickerClassKey;
-export type MonthPickerProps<TDate> = import('./MonthPicker').MonthPickerProps<TDate>;
+export { default } from './MonthPicker';
+export { getMonthPickerUtilityClass, monthPickerClasses } from '@mui/x-date-pickers/MonthPicker';
+export type { MonthPickerClassKey, MonthPickerProps } from '@mui/x-date-pickers/MonthPicker';

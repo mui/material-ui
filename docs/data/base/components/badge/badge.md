@@ -1,6 +1,6 @@
 ---
 product: base
-title: Unstyled React badge
+title: Unstyled React Badge component
 components: BadgeUnstyled
 githubLabel: 'component: badge'
 packageName: '@mui/base'
@@ -8,7 +8,7 @@ packageName: '@mui/base'
 
 # Unstyled badge
 
-<p class="description">Badge generates a small badge to the top-right of its child(ren).</p>
+<p class="description">The `BadgeUnstyled` component generates a small label that is attached to its children elements.</p>
 
 ```js
 import BadgeUnstyled from '@mui/base/BadgeUnstyled';
@@ -22,28 +22,31 @@ import BadgeUnstyled from '@mui/base/BadgeUnstyled';
 
 ## Badge visibility
 
-The visibility of badges can be controlled using the `invisible` prop.
-If a badge is invisible, it has the `MuiBadge-invisible` class.
-It is up to the developer to provide styles that actually hide the badge.
+You can control the visibility of a `BadgeUnstyled` by using the `invisible` prop.
+Setting a badge to `invisible` does not actually hide it—instead, this prop adds the `MuiBadge-invisible` class to the badge, which you can target with styles to hide however you prefer:
 
 {{"demo": "BadgeVisibility.js"}}
 
-The badge hides automatically when `badgeContent` is zero. You can override this with the `showZero` prop.
+## Numerical badges
+
+The following props are useful when `badgeContent` is a number.
+
+### The showZero prop
+
+By default, badges automatically hide when `badgeContent={0}`. You can override this behavior with the `showZero` prop:
 
 {{"demo": "ShowZeroBadge.js"}}
 
-## Maximum value
+### The max prop
 
-You can use the `max` prop to cap the value of the badge content.
-It is set to 99 by default.
-
-Note that `badgeContent` should be a number (or convertible to a number) for this to work.
+You can use the `max` prop to set a maximum value for `badgeContent`.
+The default is 99.
 
 {{"demo": "BadgeMax.js"}}
 
 ## Accessibility
 
-You can't rely on the content of the badge to be announced correctly.
-You should provide a full description, for instance, with `aria-label`:
+Screen readers may not provide users with enough information about a badge's contents.
+To make your `BadgeUnstyled` accessible, you must provide a full description with `aria-label`:
 
 {{"demo": "AccessibleBadges.js", "defaultCodeOpen": false}}

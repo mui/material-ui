@@ -3,16 +3,25 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_useId as useId, chainPropTypes, integerPropType } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
-import { appendOwnerState } from '../utils';
+import { appendOwnerState, WithOptionalOwnerState } from '../utils';
 import composeClasses from '../composeClasses';
 import isHostComponent from '../utils/isHostComponent';
 import TablePaginationActionsUnstyled from './TablePaginationActionsUnstyled';
 import { getTablePaginationUnstyledUtilityClass } from './tablePaginationUnstyledClasses';
-import TablePaginationUnstyledProps, {
+import {
+  TablePaginationUnstyledProps,
   LabelDisplayedRowsArgs,
   TablePaginationUnstyledTypeMap,
   ItemAriaLabelType,
-} from './TablePaginationUnstyledProps';
+  TablePaginationUnstyledRootSlotProps,
+  TablePaginationUnstyledSelectSlotProps,
+  TablePaginationUnstyledActionsSlotProps,
+  TablePaginationUnstyledMenuItemSlotProps,
+  TablePaginationUnstyledSelectLabelSlotProps,
+  TablePaginationUnstyledDisplayedRowsSlotProps,
+  TablePaginationUnstyledToolbarSlotProps,
+  TablePaginationUnstyledSpacerSlotProps,
+} from './TablePaginationUnstyled.types';
 
 function defaultLabelDisplayedRows({ from, to, count }: LabelDisplayedRowsArgs) {
   return `${from}–${to} of ${count !== -1 ? count : `more than ${to}`}`;
@@ -44,11 +53,11 @@ const useUtilityClasses = () => {
  *
  * Demos:
  *
- * - [Tables](https://mui.com/components/tables/)
+ * - [Table pagination](https://mui.com/base/react-table-pagination/)
  *
  * API:
  *
- * - [TablePaginationUnstyled API](https://mui.com/api/table-pagination-unstyled/)
+ * - [TablePaginationUnstyled API](https://mui.com/base/api/table-pagination-unstyled/)
  */
 const TablePaginationUnstyled = React.forwardRef<unknown, TablePaginationUnstyledProps>(
   function TablePaginationUnstyled(props, ref) {
@@ -85,111 +94,148 @@ const TablePaginationUnstyled = React.forwardRef<unknown, TablePaginationUnstyle
       return rowsPerPage === -1 ? count : Math.min(count, (page + 1) * rowsPerPage);
     };
 
+    const selectId = useId(componentsProps.select?.id);
+    const labelId = useId(componentsProps.select?.['aria-labelledby']);
+
     const Root = component ?? components.Root ?? 'td';
-    const rootProps = appendOwnerState(Root, { ...other, ...componentsProps.root }, ownerState);
+    const rootProps: WithOptionalOwnerState<TablePaginationUnstyledRootSlotProps> =
+      appendOwnerState(
+        Root,
+        {
+          colSpan,
+          ref,
+          ...other,
+          ...componentsProps.root,
+          className: clsx(classes.root, componentsProps.root?.className, className),
+        },
+        ownerState,
+      );
 
     const Select = components.Select ?? 'select';
-    const selectProps = appendOwnerState(
-      Select,
-      {
-        ...componentsProps.select,
-        onChange: (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) =>
-          onRowsPerPageChange && onRowsPerPageChange(e),
-      },
-      ownerState,
-    );
+    const selectProps: WithOptionalOwnerState<TablePaginationUnstyledSelectSlotProps> =
+      appendOwnerState(
+        Select,
+        {
+          value: rowsPerPage,
+          id: selectId,
+          ...componentsProps.select,
+          onChange: (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) =>
+            onRowsPerPageChange && onRowsPerPageChange(e),
+          'aria-label': rowsPerPage.toString(),
+          'aria-labelledby': [labelId, selectId].filter(Boolean).join(' ') || undefined,
+          className: clsx(classes.select, componentsProps.select?.className),
+        },
+        ownerState,
+      );
 
     const Actions = components.Actions ?? TablePaginationActionsUnstyled;
-    const actionsProps = appendOwnerState(
-      Actions,
-      {
-        page,
-        rowsPerPage,
-        count,
-        onPageChange,
-        getItemAriaLabel,
-        ...componentsProps.actions,
-      },
-      ownerState,
-    );
+    const actionsProps: WithOptionalOwnerState<TablePaginationUnstyledActionsSlotProps> =
+      appendOwnerState(
+        Actions,
+        {
+          page,
+          rowsPerPage,
+          count,
+          onPageChange,
+          getItemAriaLabel,
+          ...componentsProps.actions,
+          className: clsx(classes.actions, componentsProps.actions?.className),
+        },
+        ownerState,
+      );
 
     const MenuItem = components.MenuItem ?? 'option';
-    const menuItemProps = appendOwnerState(MenuItem, componentsProps.menuItem, ownerState);
+    const menuItemProps: WithOptionalOwnerState<TablePaginationUnstyledMenuItemSlotProps> =
+      appendOwnerState(
+        MenuItem,
+        {
+          ...componentsProps.menuItem,
+          className: clsx(classes.menuItem, componentsProps.menuItem?.className),
+          value: undefined,
+        },
+        ownerState,
+      );
 
     const SelectLabel = components.SelectLabel ?? 'p';
-    const selectLabelProps = appendOwnerState(SelectLabel, componentsProps.selectLabel, ownerState);
+    const selectLabelProps: WithOptionalOwnerState<TablePaginationUnstyledSelectLabelSlotProps> =
+      appendOwnerState(
+        SelectLabel,
+        {
+          ...componentsProps.selectLabel,
+          className: clsx(classes.selectLabel, componentsProps.selectLabel?.className),
+          id: labelId,
+        },
+        ownerState,
+      );
 
     const DisplayedRows = components.DisplayedRows ?? 'p';
-    const displayedRowsProps = appendOwnerState(
-      DisplayedRows,
-      componentsProps.displayedRows,
-      ownerState,
-    );
+    const displayedRowsProps: WithOptionalOwnerState<TablePaginationUnstyledDisplayedRowsSlotProps> =
+      appendOwnerState(
+        DisplayedRows,
+        {
+          ...componentsProps.displayedRows,
+          className: clsx(classes.displayedRows, componentsProps.displayedRows?.className),
+        },
+        ownerState,
+      );
 
     const Toolbar = components.Toolbar ?? 'div';
-    const toolbarProps = appendOwnerState(Toolbar, componentsProps.toolbar, ownerState);
+    const toolbarProps: WithOptionalOwnerState<TablePaginationUnstyledToolbarSlotProps> =
+      appendOwnerState(
+        Toolbar,
+        {
+          ...componentsProps.toolbar,
+          className: clsx(classes.toolbar, componentsProps.toolbar?.className),
+        },
+        ownerState,
+      );
 
     const Spacer = components.Spacer ?? 'div';
-    const spacerProps = appendOwnerState(Spacer, componentsProps.spacer, ownerState);
-
-    const selectId = useId(selectProps.id);
-    const labelId = useId(selectProps['aria-labelledby']);
+    const spacerProps: WithOptionalOwnerState<TablePaginationUnstyledSpacerSlotProps> =
+      appendOwnerState(
+        Spacer,
+        {
+          ...componentsProps.spacer,
+          className: clsx(classes.spacer, componentsProps.spacer?.className),
+        },
+        ownerState,
+      );
 
     return (
-      <Root
-        colSpan={colSpan}
-        ref={ref}
-        {...rootProps}
-        className={clsx(classes.root, rootProps.className, className)}
-      >
-        <Toolbar {...toolbarProps} className={clsx(classes.toolbar, toolbarProps?.className)}>
-          <Spacer {...spacerProps} className={clsx(classes.spacer, spacerProps?.className)} />
+      <Root {...rootProps}>
+        <Toolbar {...toolbarProps}>
+          <Spacer {...spacerProps} />
           {rowsPerPageOptions.length > 1 && (
-            <SelectLabel
-              {...selectLabelProps}
-              className={clsx(classes.selectLabel, selectLabelProps?.className)}
-              id={labelId}
-            >
-              {labelRowsPerPage}
-            </SelectLabel>
+            <SelectLabel {...selectLabelProps}>{labelRowsPerPage}</SelectLabel>
           )}
 
           {rowsPerPageOptions.length > 1 && (
-            <Select
-              value={rowsPerPage}
-              id={selectId}
-              {...selectProps}
-              aria-label={rowsPerPage}
-              aria-labelledby={[labelId, selectId].filter(Boolean).join(' ') || undefined}
-              className={clsx(classes.select, selectProps?.className)}
-            >
-              {rowsPerPageOptions.map((rowsPerPageOption) => (
-                <MenuItem
-                  {...menuItemProps}
-                  className={clsx(classes.menuItem, menuItemProps?.className)}
-                  key={
-                    typeof rowsPerPageOption !== 'number' && rowsPerPageOption.label
+            <Select {...selectProps}>
+              {rowsPerPageOptions.map(
+                (rowsPerPageOption: number | { label: string; value: number }) => (
+                  <MenuItem
+                    {...menuItemProps}
+                    key={
+                      typeof rowsPerPageOption !== 'number' && rowsPerPageOption.label
+                        ? rowsPerPageOption.label
+                        : rowsPerPageOption
+                    }
+                    value={
+                      typeof rowsPerPageOption !== 'number' && rowsPerPageOption.value
+                        ? rowsPerPageOption.value
+                        : rowsPerPageOption
+                    }
+                  >
+                    {typeof rowsPerPageOption !== 'number' && rowsPerPageOption.label
                       ? rowsPerPageOption.label
-                      : rowsPerPageOption
-                  }
-                  value={
-                    typeof rowsPerPageOption !== 'number' && rowsPerPageOption.value
-                      ? rowsPerPageOption.value
-                      : rowsPerPageOption
-                  }
-                >
-                  {typeof rowsPerPageOption !== 'number' && rowsPerPageOption.label
-                    ? rowsPerPageOption.label
-                    : rowsPerPageOption}
-                </MenuItem>
-              ))}
+                      : rowsPerPageOption}
+                  </MenuItem>
+                ),
+              )}
             </Select>
           )}
 
-          <DisplayedRows
-            {...displayedRowsProps}
-            className={clsx(classes.displayedRows, displayedRowsProps?.className)}
-          >
+          <DisplayedRows {...displayedRowsProps}>
             {labelDisplayedRows({
               from: count === 0 ? 0 : page * rowsPerPage + 1,
               to: getLabelDisplayedRowsTo(),
@@ -197,7 +243,7 @@ const TablePaginationUnstyled = React.forwardRef<unknown, TablePaginationUnstyle
               page,
             })}
           </DisplayedRows>
-          <Actions {...actionsProps} className={clsx(classes.actions, actionsProps?.className)} />
+          <Actions {...actionsProps} />
         </Toolbar>
       </Root>
     );
@@ -265,7 +311,7 @@ TablePaginationUnstyled.propTypes /* remove-proptypes */ = {
    * Accepts a function which returns a string value that provides a user-friendly name for the current page.
    * This is important for screen reader users.
    *
-   * For localization purposes, you can use the provided [translations](/guides/localization/).
+   * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
    * @param {string} type The link or button type to format ('first' | 'last' | 'next' | 'previous').
    * @returns {string}
    * @default function defaultGetAriaLabel(type: ItemAriaLabelType) {
@@ -277,7 +323,7 @@ TablePaginationUnstyled.propTypes /* remove-proptypes */ = {
    * Customize the displayed rows label. Invoked with a `{ from, to, count, page }`
    * object.
    *
-   * For localization purposes, you can use the provided [translations](/guides/localization/).
+   * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
    * @default function defaultLabelDisplayedRows({ from, to, count }: LabelDisplayedRowsArgs) {
    *   return `${from}–${to} of ${count !== -1 ? count : `more than ${to}`}`;
    * }
@@ -286,7 +332,7 @@ TablePaginationUnstyled.propTypes /* remove-proptypes */ = {
   /**
    * Customize the rows per page label.
    *
-   * For localization purposes, you can use the provided [translations](/guides/localization/).
+   * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
    * @default 'Rows per page:'
    */
   labelRowsPerPage: PropTypes.node,

@@ -1,12 +1,13 @@
 import * as React from 'react';
 import FormControlUnstyled from '@mui/base/FormControlUnstyled';
 import { expectType } from '@mui/types';
+import { FormControlUnstyledRootSlotProps } from './FormControlUnstyled.types';
 
 const CustomComponent: React.FC<{ stringProp: string; numberProp: number }> = () => <div />;
 
 const FormControlUnstyledTest = () => (
   <div>
-    <FormControlUnstyled focused />
+    <FormControlUnstyled required />
     {/* @ts-expect-error */}
     <FormControlUnstyled invalidProp={0} />
 
@@ -33,3 +34,10 @@ const FormControlUnstyledTest = () => (
     />
   </div>
 );
+
+function Root(props: FormControlUnstyledRootSlotProps) {
+  const { ownerState, ...other } = props;
+  return <div data-filled={ownerState.filled} {...other} />;
+}
+
+const StyledFormControl = <FormControlUnstyled components={{ Root }} />;

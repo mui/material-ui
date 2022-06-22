@@ -1,79 +1,41 @@
 import * as React from 'react';
-import { useThemeProps } from '@mui/material/styles';
-import useMediaQuery from '@mui/material/useMediaQuery';
 import PropTypes from 'prop-types';
-import DesktopDatePicker, { DesktopDatePickerProps } from '../DesktopDatePicker';
-import MobileDatePicker, { MobileDatePickerProps } from '../MobileDatePicker';
+import { DatePicker as XDatePicker, DatePickerProps } from '@mui/x-date-pickers/DatePicker';
 
-export interface DatePickerProps<TDate = unknown>
-  extends DesktopDatePickerProps<TDate>,
-    MobileDatePickerProps<TDate> {
-  /**
-   * CSS media query when `Mobile` mode will be changed to `Desktop`.
-   * @default '@media (pointer: fine)'
-   * @example '@media (min-width: 720px)' or theme.breakpoints.up("sm")
-   */
-  desktopModeMediaQuery?: string;
-}
+let warnedOnce = false;
+
+const warn = () => {
+  if (!warnedOnce) {
+    console.warn(
+      [
+        'MUI: The DatePicker component was moved from `@mui/lab` to `@mui/x-date-pickers`.',
+        'The component will no longer be exported from `@mui/lab` in the first release of July 2022.',
+        '',
+        "You should use `import { DatePicker } from '@mui/x-date-pickers'`",
+        "or `import { DatePicker } from '@mui/x-date-pickers/DatePicker'`",
+        '',
+        'More information about this migration on our blog: https://mui.com/blog/lab-date-pickers-to-mui-x/.',
+      ].join('\n'),
+    );
+
+    warnedOnce = true;
+  }
+};
 
 type DatePickerComponent = (<TDate>(
   props: DatePickerProps<TDate> & React.RefAttributes<HTMLDivElement>,
 ) => JSX.Element) & { propTypes?: any };
 
 /**
- *
- * Demos:
- *
- * - [Date Picker](https://mui.com/components/date-picker/)
- * - [Pickers](https://mui.com/components/pickers/)
- *
- * API:
- *
- * - [DatePicker API](https://mui.com/api/date-picker/)
+ * @ignore - do not document.
  */
-const DatePicker = React.forwardRef(function DatePicker<TDate>(
-  inProps: DatePickerProps<TDate>,
-  ref: React.Ref<HTMLDivElement>,
+const DatePicker = React.forwardRef(function DeprecatedDatePicker<TDate>(
+  props: DatePickerProps<TDate>,
+  ref: React.Ref<any>,
 ) {
-  const props = useThemeProps({ props: inProps, name: 'MuiDatePicker' });
-  const {
-    cancelText,
-    clearable,
-    clearText,
-    desktopModeMediaQuery = '@media (pointer: fine)',
-    DialogProps,
-    okText,
-    PopperProps,
-    showTodayButton,
-    todayText,
-    TransitionComponent,
-    ...other
-  } = props;
+  warn();
 
-  const isDesktop = useMediaQuery(desktopModeMediaQuery);
-
-  return isDesktop ? (
-    <DesktopDatePicker
-      ref={ref}
-      PopperProps={PopperProps}
-      TransitionComponent={TransitionComponent}
-      clearText={clearText}
-      clearable={clearable}
-      {...other}
-    />
-  ) : (
-    <MobileDatePicker
-      ref={ref}
-      cancelText={cancelText}
-      clearable={clearable}
-      clearText={clearText}
-      DialogProps={DialogProps}
-      okText={okText}
-      showTodayButton={showTodayButton}
-      todayText={todayText}
-      {...other}
-    />
-  );
+  return <XDatePicker ref={ref} {...props} />;
 }) as DatePickerComponent;
 
 DatePicker.propTypes /* remove-proptypes */ = {
@@ -120,7 +82,7 @@ DatePicker.propTypes /* remove-proptypes */ = {
   clearText: PropTypes.node,
   /**
    * The components used for each slot.
-   * Either a string to use a HTML element or a component.
+   * Either a string to use an HTML element or a component.
    * @default {}
    */
   components: PropTypes.shape({
@@ -152,7 +114,7 @@ DatePicker.propTypes /* remove-proptypes */ = {
    */
   desktopModeMediaQuery: PropTypes.string,
   /**
-   * Props applied to the [`Dialog`](/api/dialog/) element.
+   * Props applied to the [`Dialog`](https://mui.com/material-ui/api/dialog/) element.
    */
   DialogProps: PropTypes.object,
   /**
@@ -190,11 +152,17 @@ DatePicker.propTypes /* remove-proptypes */ = {
   disablePast: PropTypes.bool,
   /**
    * Get aria-label text for control that opens picker dialog. Aria-label text must include selected date. @DateIOType
+   * @template TDateValue
+   * @param {ParseableDate<TDateValue>} value The date from which we want to add an aria-text.
+   * @param {MuiPickersAdapter<TDateValue>} utils The utils to manipulate the date.
+   * @returns {string} The aria-text to render inside the dialog.
    * @default (value, utils) => `Choose date, selected date is ${utils.format(utils.date(value), 'fullDate')}`
    */
   getOpenDialogAriaText: PropTypes.func,
   /**
    * Get aria-label text for switching between views button.
+   * @param {CalendarPickerView} currentView The view from which we want to get the button text.
+   * @returns {string} The label of the view.
    */
   getViewSwitchingButtonText: PropTypes.func,
   /**
@@ -222,10 +190,6 @@ DatePicker.propTypes /* remove-proptypes */ = {
       current: PropTypes.object,
     }),
   ]),
-  /**
-   * @ignore
-   */
-  key: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
    * @ignore
    */
@@ -259,10 +223,15 @@ DatePicker.propTypes /* remove-proptypes */ = {
   okText: PropTypes.node,
   /**
    * Callback fired when date is accepted @DateIOType.
+   * @template TDateValue
+   * @param {TDateValue} date The date that was just accepted.
    */
   onAccept: PropTypes.func,
   /**
    * Callback fired when the value (the selected date) changes @DateIOType.
+   * @template TDate
+   * @param {DateRange<TDate>} date The new parsed date.
+   * @param {string} keyboardInputValue The current value of the keyboard input.
    */
   onChange: PropTypes.func.isRequired,
   /**
@@ -277,10 +246,16 @@ DatePicker.propTypes /* remove-proptypes */ = {
    *
    * [Read the guide](https://next.material-ui-pickers.dev/guides/forms) about form integration and error displaying.
    * @DateIOType
+   *
+   * @template TError, TDateValue
+   * @param {TError} reason The reason why the current value is not valid.
+   * @param {TDateValue} value The invalid value.
    */
   onError: PropTypes.func,
   /**
    * Callback firing on month change. @DateIOType
+   * @template TDate
+   * @param {TDate} month The new month.
    */
   onMonthChange: PropTypes.func,
   /**
@@ -290,10 +265,13 @@ DatePicker.propTypes /* remove-proptypes */ = {
   onOpen: PropTypes.func,
   /**
    * Callback fired on view change.
+   * @param {CalendarPickerView} view The new view.
    */
   onViewChange: PropTypes.func,
   /**
    * Callback firing on year change @DateIOType.
+   * @template TDate
+   * @param {TDate} year The new year.
    */
   onYearChange: PropTypes.func,
   /**
@@ -313,11 +291,11 @@ DatePicker.propTypes /* remove-proptypes */ = {
    */
   orientation: PropTypes.oneOf(['landscape', 'portrait']),
   /**
-   * Paper props passed down to [Paper](https://mui.com/api/paper/) component.
+   * Paper props passed down to [Paper](https://mui.com/material-ui/api/paper/) component.
    */
   PaperProps: PropTypes.object,
   /**
-   * Popper props passed down to [Popper](https://mui.com/api/popper/) component.
+   * Popper props passed down to [Popper](https://mui.com/material-ui/api/popper/) component.
    */
   PopperProps: PropTypes.object,
   /**
@@ -331,25 +309,35 @@ DatePicker.propTypes /* remove-proptypes */ = {
    */
   reduceAnimations: PropTypes.bool,
   /**
-   * Custom renderer for day. Check the [PickersDay](https://mui.com/api/pickers-day/) component.
+   * Custom renderer for day. Check the [PickersDay](https://mui.com/x/api/date-pickers/pickers-day/) component.
+   * @template TDate
+   * @param {TDate} day The day to render.
+   * @param {Array<TDate | null>} selectedDates The dates currently selected.
+   * @param {PickersDayProps<TDate>} pickersDayProps The props of the day to render.
+   * @returns {JSX.Element} The element representing the day.
    */
   renderDay: PropTypes.func,
   /**
    * The `renderInput` prop allows you to customize the rendered input.
-   * The `props` argument of this render prop contains props of [TextField](https://mui.com/api/text-field/#textfield-api) that you need to forward.
+   * The `props` argument of this render prop contains props of [TextField](https://mui.com/material-ui/api/text-field/#props) that you need to forward.
    * Pay specific attention to the `ref` and `inputProps` keys.
    * @example ```jsx
    * renderInput={props => <TextField {...props} />}
    * ````
+   * @param {MuiTextFieldPropsType} props The props of the input.
+   * @returns {React.ReactNode} The node to render as the input.
    */
   renderInput: PropTypes.func.isRequired,
   /**
    * Component displaying when passed `loading` true.
+   * @returns {React.ReactNode} The node to render when loading.
    * @default () => <span data-mui-test="loading-progress">...</span>
    */
   renderLoading: PropTypes.func,
   /**
    * Custom formatter to be passed into Rifm component.
+   * @param {string} str The un-formatted string.
+   * @returns {string} The formatted string.
    */
   rifmFormatter: PropTypes.func,
   /**
@@ -358,11 +346,17 @@ DatePicker.propTypes /* remove-proptypes */ = {
   rightArrowButtonText: PropTypes.string,
   /**
    * Disable specific date. @DateIOType
+   * @template TDate
+   * @param {TDate} day The date to check.
+   * @returns {boolean} If `true` the day will be disabled.
    */
   shouldDisableDate: PropTypes.func,
   /**
    * Disable specific years dynamically.
    * Works like `shouldDisableDate` but for year selection view @DateIOType.
+   * @template TDate
+   * @param {TDate} year The year to test.
+   * @returns {boolean} Return `true` if the year should be disabled.
    */
   shouldDisableYear: PropTypes.func,
   /**
@@ -404,7 +398,7 @@ DatePicker.propTypes /* remove-proptypes */ = {
    */
   toolbarTitle: PropTypes.node,
   /**
-   * Custom component for popper [Transition](https://mui.com/components/transitions/#transitioncomponent-prop).
+   * Custom component for popper [Transition](https://mui.com/material-ui/transitions/#transitioncomponent-prop).
    */
   TransitionComponent: PropTypes.elementType,
   /**

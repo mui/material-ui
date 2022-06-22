@@ -5,7 +5,9 @@
     "aria-labelledby": { "type": { "name": "string" } },
     "BackdropComponent": {
       "type": { "name": "elementType" },
-      "default": "styled(Backdrop, {\n  name: 'MuiModal',\n  slot: 'Backdrop',\n  overridesResolver: (props, styles) => {\n    return styles.backdrop;\n  },\n})({\n  zIndex: -1,\n})"
+      "default": "styled(Backdrop, {\n  name: 'MuiModal',\n  slot: 'Backdrop',\n  overridesResolver: (props, styles) => {\n    return styles.backdrop;\n  },\n})({\n  zIndex: -1,\n})",
+      "deprecated": true,
+      "deprecationInfo": "Use <code>components.Backdrop</code> instead."
     },
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
@@ -19,7 +21,11 @@
       },
       "default": "'sm'"
     },
-    "onBackdropClick": { "type": { "name": "func" } },
+    "onBackdropClick": {
+      "type": { "name": "func" },
+      "deprecated": true,
+      "deprecationInfo": "Use the <code>onClose</code> prop with the <code>reason</code> argument to handle the <code>backdropClick</code> events."
+    },
     "onClose": { "type": { "name": "func" } },
     "PaperComponent": { "type": { "name": "elementType" }, "default": "Paper" },
     "PaperProps": { "type": { "name": "object" }, "default": "{}" },

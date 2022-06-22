@@ -14,38 +14,20 @@ import {
   borderRight,
   borderBottom,
   borderLeft,
+  borderColor,
+  borderTopColor,
+  borderRightColor,
+  borderBottomColor,
+  borderLeftColor,
+  palette,
   typographyVariant,
 } from '@mui/system';
-import { JoyTheme, SxProps } from './defaultTheme';
+import { Theme, SxProps } from './types';
 
-const borderColor = style({
-  prop: 'borderColor',
-  themeKey: 'vars.palette',
-});
-
-const borderTopColor = style({
-  prop: 'borderTopColor',
-  themeKey: 'vars.palette',
-});
-
-const borderRightColor = style({
-  prop: 'borderRightColor',
-  themeKey: 'vars.palette',
-});
-
-const borderBottomColor = style({
-  prop: 'borderBottomColor',
-  themeKey: 'vars.palette',
-});
-
-const borderLeftColor = style({
-  prop: 'borderLeftColor',
-  themeKey: 'vars.palette',
-});
-
+// The default system themeKey is shape
 const borderRadius = style({
   prop: 'borderRadius',
-  themeKey: 'vars.radius',
+  themeKey: 'radius',
 });
 
 const borders = compose(
@@ -62,52 +44,39 @@ const borders = compose(
   borderRadius,
 );
 
-const color = style({
-  prop: 'color',
-  themeKey: 'vars.palette',
-});
-
-const bgcolor = style({
-  prop: 'bgcolor',
-  cssProperty: 'backgroundColor',
-  themeKey: 'vars.palette',
-});
-
-const backgroundColor = style({
-  prop: 'backgroundColor',
-  themeKey: 'vars.palette',
-});
-
-const palette = compose(color, bgcolor, backgroundColor);
-
+// The default system themeKey is shadows
 const boxShadow = style({
   prop: 'boxShadow',
-  themeKey: 'vars.shadow',
+  themeKey: 'shadow',
 });
 
+// The default system themeKey is typography
 export const fontFamily = style({
   prop: 'fontFamily',
-  themeKey: 'vars.fontFamily',
+  themeKey: 'fontFamily',
 });
 
+// The default system themeKey is typography
 export const fontSize = style({
   prop: 'fontSize',
-  themeKey: 'vars.fontSize',
+  themeKey: 'fontSize',
 });
 
+// The default system themeKey is typography
 export const fontWeight = style({
   prop: 'fontWeight',
-  themeKey: 'vars.fontWeight',
+  themeKey: 'fontWeight',
 });
 
+// The default system themeKey is typography
 export const letterSpacing = style({
   prop: 'letterSpacing',
-  themeKey: 'vars.letterSpacing',
+  themeKey: 'letterSpacing',
 });
 
 export const lineHeight = style({
   prop: 'lineHeight',
-  themeKey: 'vars.lineHeight',
+  themeKey: 'lineHeight',
 });
 
 const typography = compose(
@@ -137,8 +106,8 @@ const styleFunctionSx = unstable_createStyleFunctionSx(styleFunctionMapping);
 styleFunctionSx.filterProps = ['sx'];
 
 export const sx = (styles: SxProps) => {
-  return ({ theme }: { theme: JoyTheme }) =>
-    styleFunctionSx({ sx: styles, theme }) as Interpolation<{ theme: JoyTheme }>;
+  return ({ theme }: { theme: Theme }) =>
+    styleFunctionSx({ sx: styles, theme }) as Interpolation<{ theme: Theme }>;
 };
 
 export default styleFunctionSx;

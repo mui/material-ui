@@ -81,154 +81,242 @@ function run() {
     `# 2022`,
     `# 2022
 ## MUI X
-/components/data-grid/* https://material-ui-x.netlify.app/x/react-data-grid/:splat 200
-/zh/components/data-grid/* https://material-ui-x.netlify.app/zh/x/react-data-grid/:splat 200
-/pt/components/data-grid/* https://material-ui-x.netlify.app/pt/x/react-data-grid/:splat 200
+/components/data-grid/* /x/react-data-grid/:splat/ 301
+/:lang/components/data-grid/* /:lang/x/react-data-grid/:splat/ 301
 
-/api/data-grid/* https://material-ui-x.netlify.app/x/api/data-grid/:splat 200
-/zh/api/data-grid/* https://material-ui-x.netlify.app/zh/x/api/data-grid/:splat 200
-/pt/api/data-grid/* https://material-ui-x.netlify.app/pt/x/api/data-grid/:splat 200
+/api/data-grid/* /x/api/data-grid/:splat 301
+### specific to current supported languages, to prevent this redirect: /x/api/data-grid/* => /x/x/api/data-grid/*
+/zh/api/data-grid/* /zh/x/api/data-grid/:splat 301
+/pt/api/data-grid/* /pt/x/api/data-grid/:splat 301
 
-/x/* https://material-ui-x.netlify.app/x/:splat 200
-/zh/x/* https://material-ui-x.netlify.app/zh/x/:splat 200
-/pt/x/* https://material-ui-x.netlify.app/pt/x/:splat 200
+/components/date-pickers/ /x/react-date-pickers/getting-started/ 301
+/:lang/components/date-pickers/ /:lang/x/react-date-pickers/getting-started/ 301
+
+/components/date-range-pickers/ /x/react-date-pickers/date-range-picker/ 301
+/:lang/components/date-range-pickers/ /:lang/x/react-date-pickers/date-range-picker/ 301
+
+/components/date-time-pickers/ /x/react-date-pickers/date-time-picker/ 301
+/:lang/components/date-time-pickers/ /:lang/x/react-date-pickers/date-time-picker/ 301
+
+/components/time-pickers/ /x/react-date-pickers/time-picker/ 301
+/:lang/components/time-pickers/ /:lang/x/react-date-pickers/time-picker/ 301
+
+/api/date-picker/ /x/api/date-pickers/date-picker/ 301
+/zh/api/date-picker/ /zh/x/api/date-pickers/date-picker/ 301
+/pt/api/date-picker/ /pt/x/api/date-pickers/date-picker/ 301
+
+/api/date-range-picker/ /x/api/date-pickers/date-range-picker/ 301
+/zh/api/date-range-picker/ /zh/x/api/date-pickers/date-range-picker/ 301
+/pt/api/date-range-picker/ /pt/x/api/date-pickers/date-range-picker/ 301
+
+/api/date-range-picker-day/ /x/api/date-pickers/date-range-picker-day/ 301
+/zh/api/date-range-picker-day/ /zh/x/api/date-pickers/date-range-picker-day/ 301
+/pt/api/date-range-picker-day/ /pt/x/api/date-pickers/date-range-picker-day/ 301
+
+/api/date-time-picker/ /x/api/date-pickers/date-time-picker/ 301
+/zh/api/date-time-picker/ /zh/x/api/date-pickers/date-time-picker/ 301
+/pt/api/date-time-picker/ /pt/x/api/date-pickers/date-time-picker/ 301
+
+/api/desktop-date-picker/ /x/api/date-pickers/desktop-date-picker/ 301
+/zh/api/desktop-date-picker/ /zh/x/api/date-pickers/desktop-date-picker/ 301
+/pt/api/desktop-date-picker/ /pt/x/api/date-pickers/desktop-date-picker/ 301
+
+/api/desktop-date-range-picker/ /x/api/date-pickers/desktop-date-range-picker/ 301
+/zh/api/desktop-date-range-picker/ /zh/x/api/date-pickers/desktop-date-range-picker/ 301
+/pt/api/desktop-date-range-picker/ /pt/x/api/date-pickers/desktop-date-range-picker/ 301
+
+/api/desktop-date-time-picker/ /x/api/date-pickers/desktop-date-time-picker/ 301
+/zh/api/desktop-date-time-picker/ /zh/x/api/date-pickers/desktop-date-time-picker/ 301
+/pt/api/desktop-date-time-picker/ /pt/x/api/date-pickers/desktop-date-time-picker/ 301
+
+/api/desktop-time-picker/ /x/api/date-pickers/desktop-time-picker/ 301
+/zh/api/desktop-time-picker/ /zh/x/api/date-pickers/desktop-time-picker/ 301
+/pt/api/desktop-time-picker/ /pt/x/api/date-pickers/desktop-time-picker/ 301
+
+/api/calendar-picker/ /x/api/date-pickers/calendar-picker/ 301
+/zh/api/calendar-picker/ /zh/x/api/date-pickers/calendar-picker/ 301
+/pt/api/calendar-picker/ /pt/x/api/date-pickers/calendar-picker/ 301
+
+/api/calendar-picker-skeleton/ /x/api/date-pickers/calendar-picker-skeleton/ 301
+/zh/api/calendar-picker-skeleton/ /zh/x/api/date-pickers/calendar-picker-skeleton/ 301
+/pt/api/calendar-picker-skeleton/ /pt/x/api/date-pickers/calendar-picker-skeleton/ 301
+
+/api/mobile-date-picker/ /x/api/date-pickers/mobile-date-picker/ 301
+/zh/api/mobile-date-picker/ /zh/x/api/date-pickers/mobile-date-picker/ 301
+/pt/api/mobile-date-picker/ /pt/x/api/date-pickers/mobile-date-picker/ 301
+
+/api/month-picker/ /x/api/date-pickers/month-picker/ 301
+/zh/api/month-picker/ /zh/x/api/date-pickers/month-picker/ 301
+/pt/api/month-picker/ /pt/x/api/date-pickers/month-picker/ 301
+
+/api/pickers-day/ /x/api/date-pickers/pickers-day/ 301
+/zh/api/pickers-day/ /zh/x/api/date-pickers/pickers-day/ 301
+/pt/api/pickers-day/ /pt/x/api/date-pickers/pickers-day/ 301
+
+/api/static-date-picker/ /x/api/date-pickers/static-date-picker/ 301
+/zh/api/static-date-picker/ /zh/x/api/date-pickers/static-date-picker/ 301
+/pt/api/static-date-picker/ /pt/x/api/date-pickers/static-date-picker/ 301
+
+/api/year-picker/ /x/api/date-pickers/year-picker/ 301
+/zh/api/year-picker/ /zh/x/api/date-pickers/year-picker/ 301
+/pt/api/year-picker/ /pt/x/api/date-pickers/year-picker/ 301
+
+/api/mobile-date-range-picker/ /x/api/date-pickers/mobile-date-range-picker/ 301
+/zh/api/mobile-date-range-picker/ /zh/x/api/date-pickers/mobile-date-range-picker/ 301
+/pt/api/mobile-date-range-picker/ /pt/x/api/date-pickers/mobile-date-range-picker/ 301
+
+/api/static-date-range-picker/ /x/api/date-pickers/static-date-range-picker/ 301
+/zh/api/static-date-range-picker/ /zh/x/api/date-pickers/static-date-range-picker/ 301
+/pt/api/static-date-range-picker/ /pt/x/api/date-pickers/static-date-range-picker/ 301
+
+/api/mobile-date-time-picker/ /x/api/date-pickers/mobile-date-time-picker/ 301
+/zh/api/mobile-date-time-picker/ /zh/x/api/date-pickers/mobile-date-time-picker/ 301
+/pt/api/mobile-date-time-picker/ /pt/x/api/date-pickers/mobile-date-time-picker/ 301
+
+/api/static-date-time-picker/ /x/api/date-pickers/static-date-time-picker/ 301
+/zh/api/static-date-time-picker/ /zh/x/api/date-pickers/static-date-time-picker/ 301
+/pt/api/static-date-time-picker/ /pt/x/api/date-pickers/static-date-time-picker/ 301
+
+/api/clock-picker/ /x/api/date-pickers/clock-picker/ 301
+/zh/api/clock-picker/ /zh/x/api/date-pickers/clock-picker/ 301
+/pt/api/clock-picker/ /pt/x/api/date-pickers/clock-picker/ 301
+
+/api/mobile-time-picker/ /x/api/date-pickers/mobile-time-picker/ 301
+/zh/api/mobile-time-picker/ /zh/x/api/date-pickers/mobile-time-picker/ 301
+/pt/api/mobile-time-picker/ /pt/x/api/date-pickers/mobile-time-picker/ 301
+
+/api/static-time-picker/ /x/api/date-pickers/static-time-picker/ 301
+/zh/api/static-time-picker/ /zh/x/api/date-pickers/static-time-picker/ 301
+/pt/api/static-time-picker/ /pt/x/api/date-pickers/static-time-picker/ 301
+
+/api/time-picker/ /x/api/date-pickers/time-picker/ 301
+/zh/api/time-picker/ /zh/x/api/date-pickers/time-picker/ 301
+/pt/api/time-picker/ /pt/x/api/date-pickers/time-picker/ 301
 
 ## MUI Core
 /styles/* /system/styles/:splat 301
-/zh/styles/* /zh/system/styles/:splat 301
-/pt/styles/* /pt/system/styles/:splat 301
+/:lang/styles/* /:lang/system/styles/:splat 301
 
 /getting-started/* /material-ui/getting-started/:splat 301
-/zh/getting-started/* /zh/material-ui/getting-started/:splat 301
-/pt/getting-started/* /pt/material-ui/getting-started/:splat 301
+/:lang/getting-started/* /:lang/material-ui/getting-started/:splat 301
 
 /customization/* /material-ui/customization/:splat 301
-/zh/customization/* /zh/material-ui/customization/:splat 301
-/pt/customization/* /pt/material-ui/customization/:splat 301
+/:lang/customization/* /:lang/material-ui/customization/:splat 301
 
 /guides/* /material-ui/guides/:splat 301
-/zh/guides/* /zh/material-ui/guides/:splat 301
-/pt/guides/* /pt/material-ui/guides/:splat 301
+/:lang/guides/* /:lang/material-ui/guides/:splat 301
 
 /discover-more/* /material-ui/discover-more/:splat 301
-/zh/discover-more/* /zh/material-ui/discover-more/:splat 301
-/pt/discover-more/* /pt/material-ui/discover-more/:splat 301
+/:lang/discover-more/* /:lang/material-ui/discover-more/:splat 301
 
 ### Exceptions
 /components/icons/ /material-ui/icons/ 301
-/zh/components/icons/ /zh/material-ui/icons/ 301
-/pt/components/icons/ /pt/material-ui/icons/ 301
+/:lang/components/icons/ /:lang/material-ui/icons/ 301
 
 /components/material-icons/ /material-ui/material-icons/ 301
-/zh/components/material-icons/ /zh/material-ui/material-icons/ 301
-/pt/components/material-icons/ /pt/material-ui/material-icons/ 301
+/:lang/components/material-icons/ /:lang/material-ui/material-icons/ 301
 
-/components/pickers/ /material-ui/pickers/ 301
-/zh/components/about-the-lab/ /zh/material-ui/about-the-lab/ 301
-/pt/components/transitions/ /pt/material-ui/transitions/ 301
+/components/transitions/ /material-ui/transitions/ 301
+/:lang/components/transitions/ /:lang/material-ui/transitions/ 301
+
+/components/about-the-lab/ /material-ui/about-the-lab/ 301
+/:lang/components/about-the-lab/ /:lang/material-ui/about-the-lab/ 301
+
+/components/trap-focus/ /base/react-trap-focus/ 301
+/:lang/components/trap-focus/ /:lang/base/react-trap-focus/ 301
+
+/guides/classname-generator/ /experimental-api/classname-generator/ 301
+/:lang/guides/classname-generator/ /:lang/experimental-api/classname-generator/ 301
 
 ### React plural
 /components/tabs/ /material-ui/react-tabs/ 301
-/zh/components/tabs/ /zh/material-ui/react-tabs/ 301
-/pt/components/tabs/ /pt/material-ui/react-tabs/ 301
+/:lang/components/tabs/ /:lang/material-ui/react-tabs/ 301
 
 /components/breadcrumbs/ /material-ui/react-breadcrumbs/ 301
-/zh/components/breadcrumbs/ /zh/material-ui/react-breadcrumbs/ 301
-/pt/components/breadcrumbs/ /pt/material-ui/react-breadcrumbs/ 301
+/:lang/components/breadcrumbs/ /:lang/material-ui/react-breadcrumbs/ 301
 
 /components/checkboxes/ /material-ui/react-checkbox/ 301
-/zh/components/checkboxes/ /zh/material-ui/react-checkbox/ 301
-/pt/components/checkboxes/ /pt/material-ui/react-checkbox/ 301
+/:lang/components/checkboxes/ /:lang/material-ui/react-checkbox/ 301
 
 /components/switches/ /material-ui/react-switch/ 301
-/zh/components/switches/ /zh/material-ui/react-switch/ 301
-/pt/components/switches/ /pt/material-ui/react-switch/ 301
+/:lang/components/switches/ /:lang/material-ui/react-switch/ 301
 
 /components/buttons/ /material-ui/react-button/ 301
-/zh/components/buttons/ /zh/material-ui/react-button/ 301
-/pt/components/buttons/ /pt/material-ui/react-button/ 301
+/:lang/components/buttons/ /:lang/material-ui/react-button/ 301
 
 /components/radio-buttons/ /material-ui/react-radio-button/ 301
-/zh/components/radio-buttons/ /zh/material-ui/react-radio-button/ 301
-/pt/components/radio-buttons/ /pt/material-ui/react-radio-button/ 301
+/:lang/components/radio-buttons/ /:lang/material-ui/react-radio-button/ 301
 
 /components/selects/ /material-ui/react-select/ 301
-/zh/components/selects/ /zh/material-ui/react-select/ 301
-/pt/components/selects/ /pt/material-ui/react-select/ 301
+/:lang/components/selects/ /:lang/material-ui/react-select/ 301
 
 /components/text-fields/ /material-ui/react-text-field/ 301
-/zh/components/text-fields/ /zh/material-ui/react-text-field/ 301
-/pt/components/text-fields/ /pt/material-ui/react-text-field/ 301
+/:lang/components/text-fields/ /:lang/material-ui/react-text-field/ 301
 
 /components/avatars/ /material-ui/react-avatar/ 301
-/zh/components/avatars/ /zh/material-ui/react-avatar/ 301
-/pt/components/avatars/ /pt/material-ui/react-avatar/ 301
+/:lang/components/avatars/ /:lang/material-ui/react-avatar/ 301
 
 /components/badges/ /material-ui/react-badge/ 301
-/zh/components/badges/ /zh/material-ui/react-badge/ 301
-/pt/components/badges/ /pt/material-ui/react-badge/ 301
+/:lang/components/badges/ /:lang/material-ui/react-badge/ 301
 
 /components/chips/ /material-ui/react-chip/ 301
-/zh/components/chips/ /zh/material-ui/react-chip/ 301
-/pt/components/chips/ /pt/material-ui/react-chip/ 301
+/:lang/components/chips/ /:lang/material-ui/react-chip/ 301
 
 /components/dividers/ /material-ui/react-divider/ 301
-/zh/components/dividers/ /zh/material-ui/react-divider/ 301
-/pt/components/dividers/ /pt/material-ui/react-divider/ 301
+/:lang/components/dividers/ /:lang/material-ui/react-divider/ 301
 
 /components/lists/ /material-ui/react-list/ 301
-/zh/components/lists/ /zh/material-ui/react-list/ 301
-/pt/components/lists/ /pt/material-ui/react-list/ 301
+/:lang/components/lists/ /:lang/material-ui/react-list/ 301
 
 /components/tables/ /material-ui/react-table/ 301
-/zh/components/tables/ /zh/material-ui/react-table/ 301
-/pt/components/tables/ /pt/material-ui/react-table/ 301
+/:lang/components/tables/ /:lang/material-ui/react-table/ 301
 
 /components/tooltips/ /material-ui/react-tooltip/ 301
-/zh/components/tooltips/ /zh/material-ui/react-tooltip/ 301
-/pt/components/tooltips/ /pt/material-ui/react-tooltip/ 301
+/:lang/components/tooltips/ /:lang/material-ui/react-tooltip/ 301
 
 /components/dialogs/ /material-ui/react-dialog/ 301
-/zh/components/dialogs/ /zh/material-ui/react-dialog/ 301
-/pt/components/dialogs/ /pt/material-ui/react-dialog/ 301
+/:lang/components/dialogs/ /:lang/material-ui/react-dialog/ 301
 
 /components/snackbars/ /material-ui/react-snackbar/ 301
-/zh/components/snackbars/ /zh/material-ui/react-snackbar/ 301
-/pt/components/snackbars/ /pt/material-ui/react-snackbar/ 301
+/:lang/components/snackbars/ /:lang/material-ui/react-snackbar/ 301
 
 /components/cards/ /material-ui/react-card/ 301
-/zh/components/cards/ /zh/material-ui/react-card/ 301
-/pt/components/cards/ /pt/material-ui/react-card/ 301
+/:lang/components/cards/ /:lang/material-ui/react-card/ 301
 
 /components/drawers/ /material-ui/react-drawer/ 301
-/zh/components/drawers/ /zh/material-ui/react-drawer/ 301
-/pt/components/drawers/ /pt/material-ui/react-drawer/ 301
+/:lang/components/drawers/ /:lang/material-ui/react-drawer/ 301
 
 /components/links/ /material-ui/react-link/ 301
-/zh/components/links/ /zh/material-ui/react-link/ 301
-/pt/components/links/ /pt/material-ui/react-link/ 301
+/:lang/components/links/ /:lang/material-ui/react-link/ 301
 
 /components/menus/ /material-ui/react-menu/ 301
-/zh/components/menus/ /zh/material-ui/react-menu/ 301
-/pt/components/menus/ /pt/material-ui/react-menu/ 301
+/:lang/components/menus/ /:lang/material-ui/react-menu/ 301
 
 /components/steppers/ /material-ui/react-stepper/ 301
-/zh/components/steppers/ /zh/material-ui/react-stepper/ 301
-/pt/components/steppers/ /pt/material-ui/react-stepper/ 301
+/:lang/components/steppers/ /:lang/material-ui/react-stepper/ 301
 
 /components/* /material-ui/react-:splat 301
-/zh/components/* /zh/material-ui/react-:splat 301
-/pt/components/* /pt/material-ui/react-:splat 301
+/:lang/components/* /:lang/material-ui/react-:splat 301
+
+/api/unstable-trap-focus/ /base/api/trap-focus/ 301
+/zh/api/unstable-trap-focus/ /zh/base/api/trap-focus/ 301
+/pt/api/unstable-trap-focus/ /pt/base/api/trap-focus/ 301
 
 /api/* /material-ui/api/:splat 301
 /zh/api/* /zh/material-ui/api/:splat 301
-/pt/api/* /pt/material-ui/api/:splat 301`,
+/pt/api/* /pt/material-ui/api/:splat 301
+`,
   );
 
   // remove X redirects because of the above redirects
-  redirects
-    .replace('/api/*/ https://docs-v5--material-ui-x.netlify.app/api/:splat/ 200', '')
-    .replace('/components/* https://docs-v5--material-ui-x.netlify.app/components/:splat 200', '');
+  redirects = redirects
+    .replace('/api/*/ https://docs-v5--material-ui-x.netlify.app/api/:splat/ 200\n', '')
+    .replace('/:lang/api/*/ https://docs-v5--material-ui-x.netlify.app/:lang/api/:splat/ 200\n', '')
+    .replace('/components/* https://docs-v5--material-ui-x.netlify.app/components/:splat 200\n', '')
+    .replace(
+      '/:lang/components/* https://docs-v5--material-ui-x.netlify.app/:lang/components/:splat 200\n',
+      '',
+    );
 
   fs.writeFileSync(redirectsPath, redirects);
 }

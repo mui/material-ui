@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { createMount, createRenderer, describeConformanceUnstyled } from 'test/utils';
+import { createMount, createRenderer, describeConformanceUnstyled, screen } from 'test/utils';
+import { expect } from 'chai';
 import InputUnstyled, { inputUnstyledClasses } from '@mui/base/InputUnstyled';
 
 describe('<InputUnstyled />', () => {
@@ -23,4 +24,10 @@ describe('<InputUnstyled />', () => {
       },
     },
   }));
+
+  it('should render textarea without any console errors when multiline=true', () => {
+    render(<InputUnstyled multiline />);
+
+    expect(screen.getByRole('textbox')).to.have.tagName('textarea');
+  });
 });

@@ -13,11 +13,11 @@
 - _info_ - 用于向用户呈现一些中立的且不一定重要的信息。
 - _success_ - 用于指示一个用户触发的操作的成功完成。
 
-如果想要了解更多关于色彩的知识，您可以查看 [色彩章节](/customization/color/)。
+如果想要了解更多关于色彩的知识，您可以查看 [色彩章节](/material-ui/customization/color/)。
 
 ## 默认值
 
-通过[主题资源管理器](/customization/default-theme/?expand-path=$.palette)或通过打开此页面上的开发工具控制台（dev tools console）（`window.theme.palette`），您可以浏览调色板的默认值。
+通过[主题资源管理器](/material-ui/customization/default-theme/?expand-path=$.palette)或通过打开此页面上的开发工具控制台（dev tools console）（`window.theme.palette`），您可以浏览调色板的默认值。
 
 {{"demo": "Intentions.js", "bg": "inline", "hideToolbar": true}}
 
@@ -27,16 +27,16 @@
 
 您可以通过将一个调色板对象（palette object）作为主题的一部分来覆盖默认的调色板值。 如果存在以下任何情况：
 
-- [`.palette.primary`](/customization/default-theme/?expand-path=$.palette.primary)
-- [`.palette.secondary`](/customization/default-theme/?expand-path=$.palette.secondary)
-- [`.palette.error`](/customization/default-theme/?expand-path=$.palette.error)
-- [`.palette.warning`](/customization/default-theme/?expand-path=$.palette.warning)
-- [`.palette.info`](/customization/default-theme/?expand-path=$.palette.info)
-- [`.palette.success`](/customization/default-theme/?expand-path=$.palette.success)
+- [`.palette.primary`](/material-ui/customization/default-theme/?expand-path=$.palette.primary)
+- [`.palette.secondary`](/material-ui/customization/default-theme/?expand-path=$.palette.secondary)
+- [`.palette.error`](/material-ui/customization/default-theme/?expand-path=$.palette.error)
+- [`.palette.warning`](/material-ui/customization/default-theme/?expand-path=$.palette.warning)
+- [`.palette.info`](/material-ui/customization/default-theme/?expand-path=$.palette.info)
+- [`.palette.success`](/material-ui/customization/default-theme/?expand-path=$.palette.success)
 
 这提供了调色板对象，它们将取代默认的颜色对象。
 
-调色板颜色值可以是[颜色（color）](/customization/color/#2014-material-design-color-palettes)对象，也可以是具有以下 TypeScript 接口指定的一个或多个键（key）的对象：
+调色板颜色值可以是[颜色（color）](/material-ui/customization/color/#2014-material-design-color-palettes)对象，也可以是具有以下 TypeScript 接口指定的一个或多个键（key）的对象：
 
 ```ts
 interface PaletteColor {
@@ -145,7 +145,7 @@ const theme = createTheme({
 });
 ```
 
-如果您使用的是 TypeScript，您还需要使用 [module augmentation](/guides/typescript/#customization-of-theme) 来让主题接受上述值。
+如果您使用的是 TypeScript，您还需要使用 [module augmentation](/material-ui/guides/typescript/#customization-of-theme) 来让主题接受上述值。
 
 <!-- tested with packages/mui-material/test/typescript/augmentation/paletteColors.spec.ts -->
 
@@ -183,8 +183,8 @@ declare module '@material-ui/core/styles/createPalette' {
 
 ## 选取颜色
 
-需要灵感吗？ Material Design 团队已经建立了一个[调色板配置工具](/customization/color/#picking-colors)来帮助您选择颜色。
+需要灵感吗？ Material Design 团队已经建立了一个[调色板配置工具](/material-ui/customization/color/#picking-colors)来帮助您选择颜色。
 
 ## 暗色模式
 
-Material-UI comes with two palette modes: light (the default) and dark. 你可以通过设置 `mode: 'dark'` 来启用夜间模式。
+Material UI comes with two palette modes: light (the default) and dark. 你可以通过设置 `mode: 'dark'` 来启用夜间模式。

@@ -1,8 +1,9 @@
 ---
 product: material-ui
 title: React Popper component
-components: Popper, PopperUnstyled
+components: Popper
 githubLabel: 'component: Popper'
+unstyled: /base/react-popper/
 ---
 
 # Popper
@@ -13,13 +14,13 @@ Some important features of the `Popper` component:
 
 - 🕷 Popper relies on the 3rd party library ([Popper.js](https://popper.js.org/)) for perfect positioning.
 - 💄 It's an alternative API to react-popper. It aims for simplicity.
-- 📦 [8 kB gzipped](/size-snapshot).
-- The children is [`Portal`](/components/portal/) to the body of the document to avoid rendering problems.
+- 📦 [24.9 kB gzipped](/size-snapshot/).
+- The children is [`Portal`](/material-ui/react-portal/) to the body of the document to avoid rendering problems.
   You can disable this behavior with `disablePortal`.
-- The scroll isn't blocked like with the [`Popover`](/components/popover/) component.
+- The scroll isn't blocked like with the [`Popover`](/material-ui/react-popover/) component.
   The placement of the popper updates with the available area in the viewport.
 - Clicking away does not hide the `Popper` component.
-  If you need this behavior, you can use [`ClickAwayListener`](/components/click-away-listener/) - see the example in the [menu documentation section](/components/menus/#menulist-composition).
+  If you need this behavior, you can use [`ClickAwayListener`](/material-ui/react-click-away-listener/) - see the example in the [menu documentation section](/material-ui/react-menu/#menulist-composition).
 - The `anchorEl` is passed as the reference object to create a new `Popper.js` instance.
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
@@ -73,14 +74,3 @@ There is a 3rd party package [`material-ui-popup-state`](https://github.com/jcor
 state for you in most cases.
 
 {{"demo": "PopperPopupState.js"}}
-
-## Unstyled
-
-The @mui/base package contain an unstyled version of Popper - PopperUnstyled.
-It does not have a dependency on @mui/material.
-The only difference between Popper and PopperUnstyled is the support for theming.
-Popper can read the `direction` field from the current theme, while PopperUnstyled accepts the `direction` prop instead.
-
-```js
-import Popper from '@mui/base/PopperUnstyled';
-```

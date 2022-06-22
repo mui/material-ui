@@ -1,9 +1,10 @@
 ---
 product: material-ui
 title: Componente React Modal
-components: Modal, ModalUnstyled
+components: Modal
 githubLabel: 'component: modal'
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#dialog_modal'
+unstyled: import ModalUnstyled from '@mui/base/ModalUnstyled';
 ---
 
 # Modal
@@ -22,30 +23,18 @@ O componente renderiza o conteúdo de seu `children` sobre um componente backdro
 
 > **Nota sobre a terminologia**. O termo "modal" algumas vezes é usado com o sentido de "diálogo", mas isto é um equívoco. Uma janela modal descreve partes de uma UI. Um elemento é considerado modal se [ele bloqueia interações com o resto da aplicação](https://en.wikipedia.org/wiki/Modal_window).
 
-Se você está criando um diálogo modal, você provavelmente quer usar o componente [Dialog](/components/dialogs/) em vez de diretamente um Modal. Modal é uma estrutura de baixo-nível que é aproveitada pelos seguintes componentes:
+Se você está criando um diálogo modal, você provavelmente quer usar o componente [Dialog](/material-ui/react-dialog/) em vez de diretamente um Modal. Modal é uma estrutura de baixo-nível que é aproveitada pelos seguintes componentes:
 
-- [Dialog](/components/dialogs/)
-- [Drawer](/components/drawers/)
-- [Menu](/components/menus/)
-- [Popover](/components/popover/)
+- [Dialog](/material-ui/react-dialog/)
+- [Drawer](/material-ui/react-drawer/)
+- [Menu](/material-ui/react-menu/)
+- [Popover](/material-ui/react-popover/)
 
 ## Basic modal
 
 {{"demo": "BasicModal.js"}}
 
 Você pode desativar o contorno (muitas vezes azul ou ouro) com a propriedade CSS `outline: 0`.
-
-## Unstyled
-
-- 📦 [4.7 kB gzipped](https://bundlephobia.com/package/@mui/base@latest)
-
-The modal also comes with an unstyled version. It's ideal for doing heavy customizations and minimizing bundle size.
-
-```js
-import ModalUnstyled from '@mui/base/ModalUnstyled';
-```
-
-{{"demo": "ModalUnstyled.js"}}
 
 ## Nested modal
 
@@ -57,7 +46,7 @@ Modals can be nested, for example a select within a dialog, but stacking of more
 
 O estado de aberto/fechado do modal pode ser animado com um componente de transição. Este componente deve respeitar as seguintes condições:
 
-- Seja um filho direto descendente do modal.
+- 📦 [4.7 kB gzipped](https://bundlephobia.com/package/@mui/base@latest)
 - Tenha uma propriedade `in`. Isso corresponde ao estado de aberto/fechado.
 - Chamar a propriedade de callback `onEnter` quando a transição de entrada iniciar.
 - Chamar a propriedade de callback `onExited` quando a transição de saída for concluída. Esses dois callbacks permitem que o modal desmonte o conteúdo filho quando fechado e seja totalmente transitado.
@@ -82,13 +71,13 @@ O conteúdo do modal é desmontado quando fechado. Se você precisa disponibiliz
 
 As with any performance optimization, this is not a silver bullet. Be sure to identify bottlenecks first, and then try out these optimization strategies.
 
-## Modal do lado do servidor
+## Modal, ModalUnstyled
 
 React [não suporta](https://github.com/facebook/react/issues/13097) a API [`createPortal()`](https://pt-br.reactjs.org/docs/portals.html) no servidor. Para exibir o modal, você precisa desativar o recurso portal com a propriedade `disablePortal`:
 
 {{"demo": "ServerModal.js"}}
 
-## Limitações
+## Modal do lado do servidor
 
 ### Captura do foco
 
@@ -100,7 +89,7 @@ This is done for accessibility purposes. However, it might create issues. No cas
 <Modal disableEnforceFocus />
 ```
 
-## Acessibilidade
+## Limitações
 
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#dialog_modal)
 

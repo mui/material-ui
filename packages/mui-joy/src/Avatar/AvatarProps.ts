@@ -1,9 +1,8 @@
-import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import * as React from 'react';
-import { SxProps } from '../styles/defaultTheme';
-import { ColorPaletteProp, VariantProp } from '../styles/types';
+import { OverridableStringUnion, OverrideProps } from '@mui/types';
+import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
 
-export type AvatarSlot = 'root';
+export type AvatarSlot = 'root' | 'img' | 'fallback';
 
 export interface AvatarPropsColorOverrides {}
 export interface AvatarPropsVariantOverrides {}
@@ -25,7 +24,7 @@ export interface AvatarTypeMap<P = {}, D extends React.ElementType = 'div'> {
      * The color of the component. It supports those theme colors that make sense for this component.
      * @default 'neutral'
      */
-    color?: OverridableStringUnion<Exclude<ColorPaletteProp, 'context'>, AvatarPropsColorOverrides>;
+    color?: OverridableStringUnion<ColorPaletteProp, AvatarPropsColorOverrides>;
     /**
      * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attributes) applied to the `img` element if the component is used to display an image.
      * It can be used to listen for the loading error event.
@@ -35,7 +34,7 @@ export interface AvatarTypeMap<P = {}, D extends React.ElementType = 'div'> {
     };
     /**
      * The size of the component.
-     * It accepts theme values between 'xs' and 'xl'.
+     * It accepts theme values between 'sm' and 'lg'.
      * @default 'md'
      */
     size?: OverridableStringUnion<'sm' | 'md' | 'lg', AvatarPropsSizeOverrides>;
@@ -54,9 +53,9 @@ export interface AvatarTypeMap<P = {}, D extends React.ElementType = 'div'> {
     sx?: SxProps;
     /**
      * The variant to use.
-     * @default 'light'
+     * @default 'soft'
      */
-    variant?: OverridableStringUnion<Exclude<VariantProp, 'text'>, AvatarPropsVariantOverrides>;
+    variant?: OverridableStringUnion<VariantProp, AvatarPropsVariantOverrides>;
   };
   defaultComponent: D;
 }

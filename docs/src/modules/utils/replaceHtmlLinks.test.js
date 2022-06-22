@@ -309,11 +309,11 @@ describe('replaceHtmlLinks', () => {
     </ul>
     `);
     if (FEATURE_TOGGLE.enable_system_scope) {
-      expect(`<li><a href="/styles/api/">Styles</a></li>`).to.equal(
+      expect(replaceHtmlLinks(`<li><a href="/styles/api/">Styles</a></li>`, '/system')).to.equal(
         `<li><a href="/system/styles/api/">Styles</a></li>`,
       );
     } else {
-      expect(`<li><a href="/styles/api/">Styles</a></li>`).to.equal(
+      expect(replaceHtmlLinks(`<li><a href="/styles/api/">Styles</a></li>`, '/system')).to.equal(
         `<li><a href="/styles/api/">Styles</a></li>`,
       );
     }
@@ -365,11 +365,11 @@ describe('replaceHtmlLinks', () => {
     </ul>
     `);
     if (FEATURE_TOGGLE.enable_system_scope) {
-      expect(`<li><a href="/styles/api/">Styles</a></li>`).to.equal(
+      expect(replaceHtmlLinks(`<li><a href="/styles/api/">Styles</a></li>`, '/system')).to.equal(
         `<li><a href="/system/styles/api/">Styles</a></li>`,
       );
     } else {
-      expect(`<li><a href="/styles/api/">Styles</a></li>`).to.equal(
+      expect(replaceHtmlLinks(`<li><a href="/styles/api/">Styles</a></li>`, '/system')).to.equal(
         `<li><a href="/styles/api/">Styles</a></li>`,
       );
     }

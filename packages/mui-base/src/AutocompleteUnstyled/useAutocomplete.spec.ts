@@ -163,4 +163,13 @@ function Component() {
     },
     freeSolo: true,
   });
+
+  useAutocomplete({
+    options: persons,
+    getOptionLabel(option) {
+      expectType<string | Person, typeof option>(option);
+      return '';
+    },
+    freeSolo: true,
+  });
 }

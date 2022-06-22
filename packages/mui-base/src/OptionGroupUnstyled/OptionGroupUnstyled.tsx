@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import composeClasses from '../composeClasses';
 import { getOptionGroupUnstyledUtilityClass } from './optionGroupUnstyledClasses';
-import OptionGroupUnstyledProps from './OptionGroupUnstyledProps';
+import { OptionGroupUnstyledProps } from './OptionGroupUnstyled.types';
 
 function useUtilityClasses(disabled: boolean) {
   const slots = {
@@ -20,11 +20,11 @@ function useUtilityClasses(disabled: boolean) {
  *
  * Demos:
  *
- * - [Selects](https://mui.com/components/selects/)
+ * - [Select](https://mui.com/base/react-select/)
  *
  * API:
  *
- * - [OptionGroupUnstyled API](https://mui.com/api/option-group-unstyled/)
+ * - [OptionGroupUnstyled API](https://mui.com/base/api/option-group-unstyled/)
  */
 const OptionGroupUnstyled = React.forwardRef(function OptionGroupUnstyled(
   props: OptionGroupUnstyledProps,

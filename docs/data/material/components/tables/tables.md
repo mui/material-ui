@@ -1,9 +1,9 @@
 ---
 product: material-ui
 title: React Table component
-components: Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TablePagination, TableRow, TableSortLabel, TablePaginationUnstyled
+components: Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TablePagination, TableRow, TableSortLabel
 githubLabel: 'component: table'
-waiAria: https://www.w3.org/TR/wai-aria-practices/#table
+waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/table/
 materialDesign: https://material.io/components/data-tables
 ---
 
@@ -30,7 +30,7 @@ A simple example with no frills.
 The `Table` component has a close mapping to the native `<table>` elements.
 This constraint makes building rich data tables challenging.
 
-The [`DataGrid` component](/components/data-grid/) is designed for use-cases that are focused on handling large amounts of tabular data.
+The [`DataGrid` component](/x/react-data-grid/) is designed for use-cases that are focused on handling large amounts of tabular data.
 While it comes with a more rigid structure, in exchange, you gain more powerful features.
 
 {{"demo": "DataTable.js", "bg": "inline"}}
@@ -52,7 +52,7 @@ The Table has been given a fixed width to demonstrate horizontal scrolling. In o
 ## Customization
 
 Here is an example of customizing the component.
-You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
+You can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/).
 
 {{"demo": "CustomizedTables.js", "bg": true}}
 
@@ -103,7 +103,7 @@ You can group column headers by rendering multiple table rows inside a table hea
 ## Collapsible table
 
 An example of a table with expandable rows, revealing more information.
-It utilizes the [`Collapse`](/api/collapse/) component.
+It utilizes the [`Collapse`](/material-ui/api/collapse/) component.
 
 {{"demo": "CollapsibleTable.js", "bg": true}}
 
@@ -121,16 +121,6 @@ Virtualization helps with performance issues.
 
 {{"demo": "ReactVirtualizedTable.js", "bg": true}}
 
-## Unstyled
-
-If you would like to use an unstyled Table, you can use the primitive elements and enhance the table with the unstyled pagination as shown in the demo below.
-
-{{"demo": "TableUnstyled.js"}}
-
-### Customized look and feel
-
-{{"demo": "TableCustomized.js"}}
-
 ## Accessibility
 
 (WAI tutorial: <https://www.w3.org/WAI/tutorials/tables/>)
@@ -140,3 +130,8 @@ If you would like to use an unstyled Table, you can use the primitive elements a
 A caption functions like a heading for a table. Most screen readers announce the content of captions. Captions help users to find a table and understand what it's about and decide if they want to read it.
 
 {{"demo": "AcccessibleTable.js", "bg": true}}
+
+## Unstyled
+
+If you would like to use an unstyled Table, you can use the primitive HTML elements and enhance the table with the TablePaginationUnstyled component.
+See the demos in the [unstyled table pagination docs](/base/react-table-pagination/)

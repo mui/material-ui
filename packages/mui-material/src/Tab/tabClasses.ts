@@ -5,11 +5,11 @@ export interface TabClasses {
   root: string;
   /** Styles applied to the root element if both `icon` and `label` are provided. */
   labelIcon: string;
-  /** Styles applied to the root element if the parent [`Tabs`](/api/tabs/) has `textColor="inherit"`. */
+  /** Styles applied to the root element if the parent [`Tabs`](/material-ui/api/tabs/) has `textColor="inherit"`. */
   textColorInherit: string;
-  /** Styles applied to the root element if the parent [`Tabs`](/api/tabs/) has `textColor="primary"`. */
+  /** Styles applied to the root element if the parent [`Tabs`](/material-ui/api/tabs/) has `textColor="primary"`. */
   textColorPrimary: string;
-  /** Styles applied to the root element if the parent [`Tabs`](/api/tabs/) has `textColor="secondary"`. */
+  /** Styles applied to the root element if the parent [`Tabs`](/material-ui/api/tabs/) has `textColor="secondary"`. */
   textColorSecondary: string;
   /** State class applied to the root element if `selected={true}` (controlled by the Tabs component). */
   selected: string;

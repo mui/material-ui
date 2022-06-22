@@ -1,86 +1,44 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { BaseDatePickerProps, useDatePickerDefaultizedProps } from '../DatePicker/shared';
-import DatePickerToolbar from '../DatePicker/DatePickerToolbar';
-import DesktopWrapper, { DesktopWrapperProps } from '../internal/pickers/wrappers/DesktopWrapper';
-import Picker from '../internal/pickers/Picker/Picker';
-import { MuiPickersAdapter } from '../internal/pickers/hooks/useUtils';
-import { useDateValidation } from '../internal/pickers/hooks/useValidation';
-import { parsePickerInputValue } from '../internal/pickers/date-utils';
-import { KeyboardDateInput } from '../internal/pickers/KeyboardDateInput';
-import { usePickerState, PickerStateValueManager } from '../internal/pickers/hooks/usePickerState';
+import {
+  DesktopDatePicker as XDesktopDatePicker,
+  DesktopDatePickerProps,
+} from '@mui/x-date-pickers/DesktopDatePicker';
 
-const valueManager: PickerStateValueManager<unknown, unknown> = {
-  emptyValue: null,
-  parseInput: parsePickerInputValue,
-  areValuesEqual: (utils: MuiPickersAdapter, a: unknown, b: unknown) => utils.isEqual(a, b),
+let warnedOnce = false;
+
+const warn = () => {
+  if (!warnedOnce) {
+    console.warn(
+      [
+        'MUI: The DesktopDatePicker component was moved from `@mui/lab` to `@mui/x-date-pickers`.',
+        'The component will no longer be exported from `@mui/lab` in the first release of July 2022.',
+        '',
+        "You should use `import { DesktopDatePicker } from '@mui/x-date-pickers'`",
+        "or `import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker'`",
+        '',
+        'More information about this migration on our blog: https://mui.com/blog/lab-date-pickers-to-mui-x/.',
+      ].join('\n'),
+    );
+
+    warnedOnce = true;
+  }
 };
-
-export interface DesktopDatePickerProps<TDate = unknown>
-  extends BaseDatePickerProps<TDate>,
-    DesktopWrapperProps {}
 
 type DesktopDatePickerComponent = (<TDate>(
   props: DesktopDatePickerProps<TDate> & React.RefAttributes<HTMLDivElement>,
 ) => JSX.Element) & { propTypes?: any };
 
 /**
- *
- * Demos:
- *
- * - [Date Picker](https://mui.com/components/date-picker/)
- *
- * API:
- *
- * - [DesktopDatePicker API](https://mui.com/api/desktop-date-picker/)
+ * @ignore - do not document.
  */
-const DesktopDatePicker = React.forwardRef(function DesktopDatePicker<TDate>(
-  inProps: DesktopDatePickerProps<TDate>,
-  ref: React.Ref<HTMLDivElement>,
+const DesktopDatePicker = React.forwardRef(function DeprecatedDesktopDatePicker<TDate>(
+  props: DesktopDatePickerProps<TDate>,
+  ref: React.Ref<any>,
 ) {
-  // TODO: TDate needs to be instantiated at every usage.
-  const props = useDatePickerDefaultizedProps(
-    inProps as DesktopDatePickerProps<unknown>,
-    'MuiDesktopDatePicker',
-  );
+  warn();
 
-  const validationError = useDateValidation(props) !== null;
-  const { pickerProps, inputProps, wrapperProps } = usePickerState(props, valueManager);
-
-  const {
-    onChange,
-    PopperProps,
-    PaperProps,
-    ToolbarComponent = DatePickerToolbar,
-    TransitionComponent,
-    value,
-    clearText,
-    clearable,
-    ...other
-  } = props;
-  const AllDateInputProps = { ...inputProps, ...other, ref, validationError };
-
-  return (
-    <DesktopWrapper
-      {...wrapperProps}
-      DateInputProps={AllDateInputProps}
-      KeyboardDateInputComponent={KeyboardDateInput}
-      PopperProps={PopperProps}
-      PaperProps={PaperProps}
-      TransitionComponent={TransitionComponent}
-      clearText={clearText}
-      clearable={clearable}
-    >
-      <Picker
-        {...pickerProps}
-        autoFocus
-        toolbarTitle={props.label || props.toolbarTitle}
-        ToolbarComponent={ToolbarComponent}
-        DateInputProps={AllDateInputProps}
-        {...other}
-      />
-    </DesktopWrapper>
-  );
+  return <XDesktopDatePicker ref={ref} {...props} />;
 }) as DesktopDatePickerComponent;
 
 DesktopDatePicker.propTypes /* remove-proptypes */ = {
@@ -122,7 +80,7 @@ DesktopDatePicker.propTypes /* remove-proptypes */ = {
   clearText: PropTypes.node,
   /**
    * The components used for each slot.
-   * Either a string to use a HTML element or a component.
+   * Either a string to use an HTML element or a component.
    * @default {}
    */
   components: PropTypes.shape({
@@ -182,11 +140,17 @@ DesktopDatePicker.propTypes /* remove-proptypes */ = {
   disablePast: PropTypes.bool,
   /**
    * Get aria-label text for control that opens picker dialog. Aria-label text must include selected date. @DateIOType
+   * @template TDateValue
+   * @param {ParseableDate<TDateValue>} value The date from which we want to add an aria-text.
+   * @param {MuiPickersAdapter<TDateValue>} utils The utils to manipulate the date.
+   * @returns {string} The aria-text to render inside the dialog.
    * @default (value, utils) => `Choose date, selected date is ${utils.format(utils.date(value), 'fullDate')}`
    */
   getOpenDialogAriaText: PropTypes.func,
   /**
    * Get aria-label text for switching between views button.
+   * @param {CalendarPickerView} currentView The view from which we want to get the button text.
+   * @returns {string} The label of the view.
    */
   getViewSwitchingButtonText: PropTypes.func,
   /**
@@ -217,10 +181,6 @@ DesktopDatePicker.propTypes /* remove-proptypes */ = {
   /**
    * @ignore
    */
-  key: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
-  /**
-   * @ignore
-   */
   label: PropTypes.node,
   /**
    * Left arrow icon aria-label text.
@@ -246,10 +206,15 @@ DesktopDatePicker.propTypes /* remove-proptypes */ = {
   minDate: PropTypes.any,
   /**
    * Callback fired when date is accepted @DateIOType.
+   * @template TDateValue
+   * @param {TDateValue} date The date that was just accepted.
    */
   onAccept: PropTypes.func,
   /**
    * Callback fired when the value (the selected date) changes @DateIOType.
+   * @template TDate
+   * @param {DateRange<TDate>} date The new parsed date.
+   * @param {string} keyboardInputValue The current value of the keyboard input.
    */
   onChange: PropTypes.func.isRequired,
   /**
@@ -264,10 +229,16 @@ DesktopDatePicker.propTypes /* remove-proptypes */ = {
    *
    * [Read the guide](https://next.material-ui-pickers.dev/guides/forms) about form integration and error displaying.
    * @DateIOType
+   *
+   * @template TError, TDateValue
+   * @param {TError} reason The reason why the current value is not valid.
+   * @param {TDateValue} value The invalid value.
    */
   onError: PropTypes.func,
   /**
    * Callback firing on month change. @DateIOType
+   * @template TDate
+   * @param {TDate} month The new month.
    */
   onMonthChange: PropTypes.func,
   /**
@@ -277,10 +248,13 @@ DesktopDatePicker.propTypes /* remove-proptypes */ = {
   onOpen: PropTypes.func,
   /**
    * Callback fired on view change.
+   * @param {CalendarPickerView} view The new view.
    */
   onViewChange: PropTypes.func,
   /**
    * Callback firing on year change @DateIOType.
+   * @template TDate
+   * @param {TDate} year The new year.
    */
   onYearChange: PropTypes.func,
   /**
@@ -300,11 +274,11 @@ DesktopDatePicker.propTypes /* remove-proptypes */ = {
    */
   orientation: PropTypes.oneOf(['landscape', 'portrait']),
   /**
-   * Paper props passed down to [Paper](https://mui.com/api/paper/) component.
+   * Paper props passed down to [Paper](https://mui.com/material-ui/api/paper/) component.
    */
   PaperProps: PropTypes.object,
   /**
-   * Popper props passed down to [Popper](https://mui.com/api/popper/) component.
+   * Popper props passed down to [Popper](https://mui.com/material-ui/api/popper/) component.
    */
   PopperProps: PropTypes.object,
   /**
@@ -318,25 +292,35 @@ DesktopDatePicker.propTypes /* remove-proptypes */ = {
    */
   reduceAnimations: PropTypes.bool,
   /**
-   * Custom renderer for day. Check the [PickersDay](https://mui.com/api/pickers-day/) component.
+   * Custom renderer for day. Check the [PickersDay](https://mui.com/x/api/date-pickers/pickers-day/) component.
+   * @template TDate
+   * @param {TDate} day The day to render.
+   * @param {Array<TDate | null>} selectedDates The dates currently selected.
+   * @param {PickersDayProps<TDate>} pickersDayProps The props of the day to render.
+   * @returns {JSX.Element} The element representing the day.
    */
   renderDay: PropTypes.func,
   /**
    * The `renderInput` prop allows you to customize the rendered input.
-   * The `props` argument of this render prop contains props of [TextField](https://mui.com/api/text-field/#textfield-api) that you need to forward.
+   * The `props` argument of this render prop contains props of [TextField](https://mui.com/material-ui/api/text-field/#props) that you need to forward.
    * Pay specific attention to the `ref` and `inputProps` keys.
    * @example ```jsx
    * renderInput={props => <TextField {...props} />}
    * ````
+   * @param {MuiTextFieldPropsType} props The props of the input.
+   * @returns {React.ReactNode} The node to render as the input.
    */
   renderInput: PropTypes.func.isRequired,
   /**
    * Component displaying when passed `loading` true.
+   * @returns {React.ReactNode} The node to render when loading.
    * @default () => <span data-mui-test="loading-progress">...</span>
    */
   renderLoading: PropTypes.func,
   /**
    * Custom formatter to be passed into Rifm component.
+   * @param {string} str The un-formatted string.
+   * @returns {string} The formatted string.
    */
   rifmFormatter: PropTypes.func,
   /**
@@ -345,11 +329,17 @@ DesktopDatePicker.propTypes /* remove-proptypes */ = {
   rightArrowButtonText: PropTypes.string,
   /**
    * Disable specific date. @DateIOType
+   * @template TDate
+   * @param {TDate} day The date to check.
+   * @returns {boolean} If `true` the day will be disabled.
    */
   shouldDisableDate: PropTypes.func,
   /**
    * Disable specific years dynamically.
    * Works like `shouldDisableDate` but for year selection view @DateIOType.
+   * @template TDate
+   * @param {TDate} year The year to test.
+   * @returns {boolean} Return `true` if the year should be disabled.
    */
   shouldDisableYear: PropTypes.func,
   /**
@@ -381,7 +371,7 @@ DesktopDatePicker.propTypes /* remove-proptypes */ = {
    */
   toolbarTitle: PropTypes.node,
   /**
-   * Custom component for popper [Transition](https://mui.com/components/transitions/#transitioncomponent-prop).
+   * Custom component for popper [Transition](https://mui.com/material-ui/transitions/#transitioncomponent-prop).
    */
   TransitionComponent: PropTypes.elementType,
   /**

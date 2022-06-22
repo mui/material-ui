@@ -1,14 +1,13 @@
 import * as React from 'react';
 import Stack from '@mui/material/Stack';
 import { styled } from '@mui/system';
-import BadgeUnstyled from '@mui/base/BadgeUnstyled';
+import BadgeUnstyled, { badgeUnstyledClasses } from '@mui/base/BadgeUnstyled';
 import MailIcon from '@mui/icons-material/Mail';
 
 const StyledBadge = styled(BadgeUnstyled)`
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  color: rgba(0, 0, 0, 0.85);
   font-size: 14px;
   list-style: none;
   font-family: IBM Plex Sans, sans-serif;
@@ -16,7 +15,7 @@ const StyledBadge = styled(BadgeUnstyled)`
   display: inline-block;
   line-height: 1;
 
-  & .MuiBadge-badge {
+  & .${badgeUnstyledClasses.badge} {
     z-index: auto;
     min-width: 20px;
     height: 20px;
@@ -37,7 +36,7 @@ const StyledBadge = styled(BadgeUnstyled)`
     transform-origin: 100% 0;
   }
 
-  & .MuiBadge-invisible {
+  & .${badgeUnstyledClasses.invisible} {
     display: none;
   }
 `;

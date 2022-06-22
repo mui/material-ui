@@ -34,4 +34,4 @@ Esta demonstração mantém a navegação inferior fixa na parte inferior, não 
 
 ## Biblioteca de roteamento de terceiros
 
-One frequent use case is to perform navigation on the client only, without an HTTP round-trip to the server. The `BottomNavigationAction` component provides the `component` prop to handle this use case. Here is a [more detailed guide](/guides/routing/).
+One frequent use case is to perform navigation on the client only, without an HTTP round-trip to the server. The `BottomNavigationAction` component provides the `component` prop to handle this use case. Here is a [more detailed guide](/material-ui/guides/routing/).

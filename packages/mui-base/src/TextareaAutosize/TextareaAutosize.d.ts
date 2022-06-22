@@ -18,10 +18,11 @@ export interface TextareaAutosizeProps
  *
  * Demos:
  *
- * - [Textarea Autosize](https://mui.com/components/textarea-autosize/)
+ * - [Textarea autosize](https://mui.com/base/react-textarea-autosize/)
+ * - [Textarea autosize](https://mui.com/material-ui/react-textarea-autosize/)
  *
  * API:
  *
- * - [TextareaAutosize API](https://mui.com/api/textarea-autosize/)
+ * - [TextareaAutosize API](https://mui.com/base/api/textarea-autosize/)
  */
 export default function TextareaAutosize(props: TextareaAutosizeProps): JSX.Element;

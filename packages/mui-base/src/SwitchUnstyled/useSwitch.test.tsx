@@ -9,12 +9,12 @@ import {
   screen,
   simulatePointerDevice,
 } from 'test/utils';
-import { useSwitch, UseSwitchProps, UseSwitchResult } from '@mui/base/SwitchUnstyled';
+import { useSwitch, UseSwitchParameters } from '@mui/base/SwitchUnstyled';
 
 describe('useSwitch', () => {
   const { render } = createRenderer();
-  const invokeUseSwitch = (props: UseSwitchProps): UseSwitchResult => {
-    const ref = React.createRef<UseSwitchResult>();
+  const invokeUseSwitch = (props: UseSwitchParameters) => {
+    const ref = React.createRef<ReturnType<typeof useSwitch>>();
     function TestComponent() {
       const switchDefinition = useSwitch(props);
       React.useImperativeHandle(ref, () => switchDefinition, [switchDefinition]);
@@ -28,7 +28,7 @@ describe('useSwitch', () => {
 
   describe('getInputProps', () => {
     it('should include the incoming uncontrolled props in the output', () => {
-      const props: UseSwitchProps = {
+      const props: UseSwitchParameters = {
         defaultChecked: true,
         disabled: true,
         readOnly: true,

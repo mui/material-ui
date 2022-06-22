@@ -11,50 +11,10 @@ type Theme = Omit<MuiTheme, 'components'>;
 export {};
 
 export interface LabComponents {
-  MuiCalendarPicker?: {
-    defaultProps?: ComponentsProps['MuiCalendarPicker'];
-    styleOverrides?: ComponentsOverrides<Theme>['MuiCalendarPicker'];
-    variants?: ComponentsVariants['MuiCalendarPicker'];
-  };
-  MuiCalendarPickerSkeleton?: {
-    defaultProps?: ComponentsProps['MuiCalendarPickerSkeleton'];
-    styleOverrides?: ComponentsOverrides<Theme>['MuiCalendarPickerSkeleton'];
-    variants?: ComponentsVariants['MuiCalendarPickerSkeleton'];
-  };
-  MuiClockPicker?: {
-    defaultProps?: ComponentsProps['MuiClockPicker'];
-    styleOverrides?: ComponentsOverrides<Theme>['MuiClockPicker'];
-    variants?: ComponentsVariants['MuiClockPicker'];
-  };
-  MuiDatePicker?: {
-    defaultProps?: ComponentsProps['MuiDatePicker'];
-    styleOverrides?: ComponentsOverrides<Theme>['MuiDatePicker'];
-    variants?: ComponentsVariants['MuiDatePicker'];
-  };
-  MuiDateRangePickerDay?: {
-    defaultProps?: ComponentsProps['MuiDateRangePickerDay'];
-    styleOverrides?: ComponentsOverrides<Theme>['MuiDateRangePickerDay'];
-    variants?: ComponentsVariants['MuiDateRangePickerDay'];
-  };
-  MuiDateTimePicker?: {
-    defaultProps?: ComponentsProps['MuiDateTimePicker'];
-    styleOverrides?: ComponentsOverrides<Theme>['MuiDateTimePicker'];
-    variants?: ComponentsVariants['MuiDateTimePicker'];
-  };
   MuiLoadingButton?: {
     defaultProps?: ComponentsProps['MuiLoadingButton'];
     styleOverrides?: ComponentsOverrides<Theme>['MuiLoadingButton'];
     variants?: ComponentsVariants['MuiLoadingButton'];
-  };
-  MuiMonthPicker?: {
-    defaultProps?: ComponentsProps['MuiMonthPicker'];
-    styleOverrides?: ComponentsOverrides<Theme>['MuiMonthPicker'];
-    variants?: ComponentsVariants['MuiMonthPicker'];
-  };
-  MuiPickersDay?: {
-    defaultProps?: ComponentsProps['MuiPickersDay'];
-    styleOverrides?: ComponentsOverrides<Theme>['MuiPickersDay'];
-    variants?: ComponentsVariants['MuiPickersDay'];
   };
   MuiTabList?: {
     defaultProps?: ComponentsProps['MuiTabList'];
@@ -110,16 +70,6 @@ export interface LabComponents {
     defaultProps?: ComponentsProps['MuiTreeView'];
     styleOverrides?: ComponentsOverrides<Theme>['MuiTreeView'];
     variants?: ComponentsVariants['MuiTreeView'];
-  };
-  MuiYearPicker?: {
-    defaultProps?: ComponentsProps['MuiYearPicker'];
-    styleOverrides?: ComponentsOverrides<Theme>['MuiYearPicker'];
-    variants?: ComponentsVariants['MuiYearPicker'];
-  };
-  MuiPickerStaticWrapper?: {
-    defaultProps?: ComponentsProps['MuiPickerStaticWrapper'];
-    styleOverrides?: ComponentsOverrides<Theme>['MuiPickerStaticWrapper'];
-    variants?: ComponentsVariants['MuiPickerStaticWrapper'];
   };
 }
 

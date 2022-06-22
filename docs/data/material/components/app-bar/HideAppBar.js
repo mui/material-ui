@@ -42,7 +42,7 @@ export default function HideAppBar(props) {
         <AppBar>
           <Toolbar>
             <Typography variant="h6" component="div">
-              Scroll to Hide App Bar
+              Scroll to hide App bar
             </Typography>
           </Toolbar>
         </AppBar>
