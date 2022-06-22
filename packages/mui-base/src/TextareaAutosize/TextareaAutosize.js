@@ -126,7 +126,7 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(props, ref) 
   const syncHeight = React.useCallback(() => {
     const newState = getUpdatedState();
 
-    if (isEmpty(newState)) { 
+    if (isEmpty(newState)) {
       return;
     }
 
@@ -138,7 +138,7 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(props, ref) 
   const syncHeightWithFlushSycn = () => {
     const newState = getUpdatedState();
 
-    if (isEmpty(newState)) { 
+    if (isEmpty(newState)) {
       return;
     }
 
