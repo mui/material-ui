@@ -20,12 +20,21 @@ const pages = [
         pathname: '/base/components/inputs',
         subheader: 'inputs',
         children: [
-          { pathname: '/base/react-badge', title: 'Badge' },
           { pathname: '/base/react-button', title: 'Button' },
           { pathname: '/base/react-input', title: 'Input' },
           { pathname: '/base/react-select', title: 'Select' },
           { pathname: '/base/react-slider', title: 'Slider' },
           { pathname: '/base/react-switch', title: 'Switch' },
+        ],
+      },
+      {
+        pathname: '/base/components/data-display',
+        subheader: 'data-display',
+        children: [
+          {
+            pathname: '/base/react-badge',
+            title: 'Badge',
+          },
         ],
       },
       {
