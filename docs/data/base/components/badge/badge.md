@@ -35,6 +35,48 @@ export default function MyApp() {
 }
 ```
 
+### Internal slots
+
+The `BadgeUnstyled` component is composed of a root `<span>` that houses the element that the badge is attached to, followed by a `<span>` to represent the badge itself:
+
+```html
+<span class="BaseBadge-root">
+  <!-- the element the badge is attached to is nested here -->
+  <span class="BaseBadge-badge">badge content</span>
+</span>
+```
+
+#### Slot props
+
+The following props are available on all Base components.
+
+Use the `component` prop to override the root slot with a custom element:
+
+```jsx
+<BadgeUnstyled component="div" />
+```
+
+Use the `components` prop to override any interior slots in addition to the root:
+
+```jsx
+<BadgeUnstyled components={{ Root: 'div', Badge: 'div' }} />
+```
+
+:::warning
+If the root element is customized with both the `component` and `components` props, then `component` will take precedence.
+:::
+
+Use the `componentsProps` prop to pass custom props to internal slots.
+The following code snippet applies a CSS class called `my-badge` to the badge slot:
+
+```jsx
+<BadgeUnstyled componentsProps={{ badge: { className: 'my-badge' } }} />
+```
+
+:::warning
+Note that `componentsProps` slot names are written in lowercase (`root`) while `components` slot names are capitalized (`Root`).
+:::
+
 ### Basic usage
 
 The badge component wraps around the UI element that it's attached to—for instance, if the badge indicates the number of emails in an inbox, the component will be structured like this:
