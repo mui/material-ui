@@ -52,10 +52,10 @@ After [installation](/base/getting-started/installation/), you can start buildin
 
 ```jsx
 import ModalUnstyled from '@mui/base/ModalUnstyled';
-```
 
-```jsx
-<ModalUnstyled>{/* the modal's content */}</ModalUnstyled>
+export default function MyApp() {
+  return <ModalUnstyled>{/* the modal's content */}</ModalUnstyled>;
+}
 ```
 
 ### Basic usage

@@ -24,10 +24,10 @@ After [installation](/base/getting-started/installation/), you can start buildin
 
 ```jsx
 import TrapFocus from '@mui/base/TrapFocus';
-```
 
-```jsx
-<TrapFocus>{/* children where the focus will be trapped */}</TrapFocus>
+export default function MyApp() {
+  return <TrapFocus>{/* children where the focus will be trapped */}</TrapFocus>;
+}
 ```
 
 ### Basic usage

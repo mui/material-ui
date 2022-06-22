@@ -26,10 +26,10 @@ After [installation](/base/getting-started/installation/), you can start buildin
 
 ```jsx
 import TextareaAutosize from '@mui/base/TextareaAutosize';
-```
 
-```jsx
-<TextareaAutosize />
+export default function MyApp() {
+  return <TextareaAutosize />;
+}
 ```
 
 ### Basic usage

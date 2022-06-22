@@ -31,14 +31,16 @@ After [installation](/base/getting-started/installation/), you can start buildin
 
 ```jsx
 import TablePaginationUnstyled from '@mui/base/TablePaginationUnstyled';
-```
 
-```jsx
-<table>
-  <tr>
-    <TablePaginationUnstyled />
-  </tr>
-</table>
+export default function MyApp() {
+  return (
+    <table>
+      <tr>
+        <TablePaginationUnstyled />
+      </tr>
+    </table>
+  );
+}
 ```
 
 ### Basic usage

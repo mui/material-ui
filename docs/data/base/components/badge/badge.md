@@ -27,10 +27,12 @@ After [installation](/base/getting-started/installation/), you can start buildin
 
 ```jsx
 import BadgeUnstyled from '@mui/base/BadgeUnstyled';
-```
 
-```jsx
-<BadgeUnstyled>{/* the element that the badge is attached to */}</BadgeUnstyled>
+export default function MyApp() {
+  return (
+    <BadgeUnstyled>{/* the element that the badge is attached to */}</BadgeUnstyled>
+  );
+}
 ```
 
 ### Basic usage

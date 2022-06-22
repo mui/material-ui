@@ -31,10 +31,10 @@ After [installation](/base/getting-started/installation/), you can start buildin
 
 ```jsx
 import NoSsr from '@mui/base/NoSsr';
-```
 
-```jsx
-<NoSsr>{/* some content to be rendered on the client side */}</NoSsr>
+export default function MyApp() {
+  return <NoSsr>{/* element to be rendered on the client side */}</NoSsr>;
+}
 ```
 
 ### Basic usage

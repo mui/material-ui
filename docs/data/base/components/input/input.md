@@ -31,10 +31,10 @@ After [installation](/base/getting-started/installation/), you can start buildin
 
 ```jsx
 import InputUnstyled from '@mui/base/InputUnstyled';
-```
 
-```jsx
-<InputUnstyled />
+export default function MyApp() {
+  return <InputUnstyled />;
+}
 ```
 
 ### Basic usage

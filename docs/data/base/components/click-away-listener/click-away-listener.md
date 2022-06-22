@@ -29,12 +29,14 @@ After [installation](/base/getting-started/installation/), you can start buildin
 
 ```jsx
 import ClickAwayListener from '@mui/base/ClickAwayListener';
-```
 
-```jsx
-<ClickAwayListener>
-  {/* the child listening for a click outside of its container */}
-</ClickAwayListener>
+export default function MyApp() {
+  return (
+    <ClickAwayListener>
+      {/* the child listening for a click outside of its container */}
+    </ClickAwayListener>
+  );
+}
 ```
 
 ### Basic usage

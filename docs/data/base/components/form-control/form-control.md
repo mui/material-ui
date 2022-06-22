@@ -26,12 +26,14 @@ After [installation](/base/getting-started/installation/), you can start buildin
 
 ```jsx
 import FormControlUnstyled from '@mui/base/FormControlUnstyled';
-```
 
-```jsx
-<FormControlUnstyled>
-  {/* <input /> and/or other contents of the form */}
-</FormControlUnstyled>
+export default function MyApp() {
+  return (
+    <FormControlUnstyled>
+      {/* <input /> and/or other contents of the form */}
+    </FormControlUnstyled>
+  );
+}
 ```
 
 ### Basic usage

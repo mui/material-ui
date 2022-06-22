@@ -28,10 +28,10 @@ After [installation](/base/getting-started/installation/), you can start buildin
 
 ```jsx
 import SliderUnstyled from '@mui/base/SliderUnstyled';
-```
 
-```jsx
-<SliderUnstyled />
+export default function MyApp() {
+  return <SliderUnstyled />;
+}
 ```
 
 ### Basic usage

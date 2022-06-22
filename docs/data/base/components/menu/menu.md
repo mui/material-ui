@@ -30,13 +30,15 @@ After [installation](/base/getting-started/installation/), you can start buildin
 ```jsx
 import MenuUnstyled from '@mui/base/MenuUnstyled';
 import MenuItemUnstyled from '@mui/base/MenuItemUnstyled';
-```
 
-```jsx
-<MenuUnstyled>
-  <MenuItemUnstyled>Item one</MenuItemUnstyled>
-  <MenuItemUnstyled>Item two</MenuItemUnstyled>
-</MenuUnstyled>
+export default function MyApp() {
+  return (
+    <MenuUnstyled>
+      <MenuItemUnstyled>{/* item one */}</MenuItemUnstyled>
+      <MenuItemUnstyled>{/* item two */}</MenuItemUnstyled>
+    </MenuUnstyled>
+  );
+}
 ```
 
 ### Basic usage

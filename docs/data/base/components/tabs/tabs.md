@@ -34,14 +34,18 @@ import TabsListUnstyled from '@mui/base/TabUnstyled';
 import TabPanelUnstyled from '@mui/base/TabPanelUnstyled';
 import TabsUnstyled from '@mui/base/TabsUnstyled';
 
-<TabsUnstyled>
-  <TabsListUnstyled>
-    <TabUnstyled>Tab one</TabUnstyled>
-    <TabUnstyled>Tab two</TabUnstyled>
-  </TabsListUnstyled>
-  <TabPanelUnstyled>Panel one</TabPanelUnstyled>
-  <TabPanelUnstyled>Panel two</TabPanelUnstyled>
-</TabsUnstyled>;
+export default function MyApp() {
+  return (
+    <TabsUnstyled>
+      <TabsListUnstyled>
+        <TabUnstyled>{/* tab one */}</TabUnstyled>
+        <TabUnstyled>{/* tab two */}</TabUnstyled>
+      </TabsListUnstyled>
+      <TabPanelUnstyled>{/* panel one */}</TabPanelUnstyled>
+      <TabPanelUnstyled>{/* panel two */}</TabPanelUnstyled>
+    </TabsUnstyled>
+  );
+}
 ```
 
 ### Basic usage

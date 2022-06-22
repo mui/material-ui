@@ -24,10 +24,10 @@ After [installation](/base/getting-started/installation/), you can start buildin
 
 ```jsx
 import ButtonUnstyled from '@mui/base/ButtonUnstyled';
-```
 
-```jsx
-<ButtonUnstyled>Button text</ButtonUnstyled>
+export default function MyApp() {
+  return <ButtonUnstyled>{/* button text */}</ButtonUnstyled>;
+}
 ```
 
 ### Basic usage
