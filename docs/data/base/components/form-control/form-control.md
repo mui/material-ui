@@ -79,7 +79,7 @@ Use the `component` prop to override the root slot with a custom element:
 Use the `components` prop to override any interior slots in addition to the root (largely unnecessary here, since this component contains no subcomponents):
 
 ```jsx
-<BadgeUnstyled components={{ Root: 'span' }} />
+<FormControlUnstyled components={{ Root: 'span' }} />
 ```
 
 :::warning
@@ -90,7 +90,7 @@ Use the `componentsProps` prop to pass custom props to internal slots.
 The following code snippet applies a CSS class called `my-form-control` to the root slot:
 
 ```jsx
-<BadgeUnstyled componentsProps={{ root: { className: 'my-form-control' } }} />
+<FormControlUnstyled componentsProps={{ root: { className: 'my-form-control' } }} />
 ```
 
 :::warning

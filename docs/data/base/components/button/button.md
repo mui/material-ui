@@ -32,12 +32,61 @@ export default function MyApp() {
 
 ### Basic usage
 
+`ButtonUnstyled` behaves similarly to the native HTML `<button>`, so it wraps the text that will be displayed on its surface.
+For instance, if the button is used to confirm a user's choice, then the component will be structured like this:
+
+```jsx
+<ButtonUnstyled>Confirm</ButtonUnstyled>
+```
+
 The following demo shows how to create and style two basic buttons.
 Notice that the second button cannot be clicked due to the `disabled` prop:
 
 {{"demo": "UnstyledButtonsSimple.js", "defaultCodeOpen": true}}
 
-### Customizing the root element
+### Internal slots
+
+The `ButtonUnstyled` component is composed of a root `<button>` slot with no interior subcomponents:
+
+```html
+<button class="BaseButton-root">
+  <!-- button text goes here -->
+</button>
+```
+
+### Slot props
+
+:::info
+The following props are available on all Base components.
+See [Usage](/getting-started/usage/) for full details.
+:::
+
+Use the `component` prop to override the root slot with a custom element:
+
+```jsx
+<ButtonUnstyled component="div" />
+```
+
+Use the `components` prop to override any interior slots in addition to the root (largely unnecessary here, since this component contains no subcomponents):
+
+```jsx
+<ButtonUnstyled components={{ Root: 'div' }} />
+```
+
+:::warning
+If the root element is customized with both the `component` and `components` props, then `component` will take precedence.
+:::
+
+Use the `componentsProps` prop to pass custom props to internal slots.
+The following code snippet applies a CSS class called `my-form-control` to the root slot:
+
+```jsx
+<BadgeUnstyled componentsProps={{ root: { className: 'my-form-control' } }} />
+```
+
+:::warning
+Note that `componentsProps` slot names are written in lowercase (`root`) while `components` slot names are capitalized (`Root`).
+:::
 
 By default, the `ButtonUnstyled` component renders a native `button` HTML element.
 You can override this by setting the `component` or `components.Root` prop.
