@@ -616,22 +616,4 @@ describe('<Chip />', () => {
       expect(chip).not.to.have.class(classes.focusVisible);
     });
   });
-
-  it('should not throw error when a new palette color is added in theme', () => {
-    const theme = createTheme({
-      palette: {
-        custom: {
-          main: '#f90',
-        },
-      },
-    });
-
-    expect(() =>
-      render(
-        <ThemeProvider theme={theme}>
-          <Chip color="custom" label="A test" />
-        </ThemeProvider>,
-      ),
-    ).not.to.throw();
-  });
 });

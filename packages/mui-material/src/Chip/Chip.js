@@ -159,11 +159,7 @@ const ChipRoot = styled('div', {
         ...(ownerState.color !== 'default' && {
           color: theme.vars
             ? `rgba(${theme.vars.palette[ownerState.color].contrastTextChannel} / 0.7)`
-            : alpha(
-                theme.palette[ownerState.color].contrastText ||
-                  theme.palette.getContrastText(theme.palette[ownerState.color].main),
-                0.7,
-              ),
+            : alpha(theme.palette[ownerState.color].contrastText, 0.7),
           '&:hover, &:active': {
             color: (theme.vars || theme).palette[ownerState.color].contrastText,
           },
