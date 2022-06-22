@@ -32,6 +32,18 @@ export default function MyApp() {
 
 ### Basic usage
 
+`<TrapFocus>` wraps around the UI elements that should hold the user's focus.
+For instance, if the focus needs to stay inside of a [`<MenuUnstyled>`](/base/react-menu/), then the component will be structured like this:
+
+```jsx
+<TrapFocus>
+  <MenuUnstyled>
+    <MenuItemUnstyled>{/* item one */}</MenuItemUnstyled>
+    <MenuItemUnstyled>{/* item two */}</MenuItemUnstyled>
+  </MenuUnstyled>
+</TrapFocus>
+```
+
 The following demo shows a `<button>` that opens a [`Box`](/material-ui/react-box/) component nested inside of a `TrapFocus`. As long as the `Box` is open, the user's keyboard cannot interact with the rest of the app.
 Press the **Open** button and then use the <kbd class="key">Tab</kbd> key to move the focus—notice that it will not leave the `Box`:
 

@@ -37,7 +37,8 @@ export default function MyApp() {
 
 ### Basic usage
 
-`BadgeUnstyled` wraps around the UI element that it's attached to—for instance, if the badge indicates the number of emails in an inbox, the component will be structured like this:
+`BadgeUnstyled` wraps around the UI element that it's attached to.
+For instance, if the badge indicates the number of emails in an inbox, then the component will be structured like this:
 
 ```jsx
 <BadgeUnstyled>
@@ -92,14 +93,20 @@ Note that `componentsProps` slot names are written in lowercase (`root`) while `
 
 ## Hook
 
+```jsx
+import { useBadge } from '@mui/base/BadgeUnstyled';
+```
+
 The `useBadge` hook lets you apply the functionality of `BadgeUnstyled` to a fully custom component.
 It returns props to be placed on the custom component, along with fields representing the component's internal state.
 
-:::info
-Hooks give you the most customization options, but require more work to implement.
-Using hooks lets you to take full control over the rendered components as well as their props and CSS classes.
+Hooks _do not_ support [slot props](#slot-props), but they do support [customization props](#customization).
 
-You may not need to use hooks unless you find that you are limited by the customization options of their component counterparts.
+:::info
+Hooks give you the most room for customization, but require more work to implement.
+With hooks, you can take full control over how your component is rendered, and define all the custom props and CSS classes you need.
+
+You may not need to use hooks unless you find that you are limited by the customization options of their component counterparts—for instance, if your component requires significantly different [internal slot structure](#internal-slots).
 :::
 
 ## Customization
