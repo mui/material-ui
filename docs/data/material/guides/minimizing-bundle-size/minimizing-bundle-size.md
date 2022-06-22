@@ -30,7 +30,7 @@ Startup times can be approximately 6x slower with named imports than without e.g
 
 In some cases
 
-`import {Delete} from '@mui/icons-material'` 
+`import { Delete } from '@mui/icons-material'` 
 
 can be slower than 
 
