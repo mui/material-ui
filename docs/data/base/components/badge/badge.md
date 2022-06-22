@@ -46,9 +46,12 @@ The `BadgeUnstyled` component is composed of a root `<span>` that houses the ele
 </span>
 ```
 
-#### Slot props
+### Slot props
 
+:::info
 The following props are available on all Base components.
+See [Usage](/getting-started/usage/) for full details.
+:::
 
 Use the `component` prop to override the root slot with a custom element:
 
@@ -75,6 +78,25 @@ The following code snippet applies a CSS class called `my-badge` to the badge sl
 
 :::warning
 Note that `componentsProps` slot names are written in lowercase (`root`) while `components` slot names are capitalized (`Root`).
+:::
+
+## Hook
+
+The `useBadge` hook lets you apply the functionality of `BadgeUnstyled` to a fully custom component.
+It returns props to be placed on the custom component, along with fields representing the component's internal state.
+
+:::info
+Hooks give you the most customization options, but require more work to implement.
+Using hooks lets you to take full control over the rendered components as well as their props and CSS classes.
+
+You may not need to use hooks unless you find that you are limited by the customization options of their component counterparts.
+:::
+
+## Customization
+
+:::info
+The following features can be used with both components and hooks.
+For the sake of simplicity, demos and code snippets primarily feature components.
 :::
 
 ### Basic usage
