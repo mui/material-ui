@@ -50,7 +50,7 @@ colorSchemes: {
 }
 ```
 
-You can check the [ColorSystem interface](https://github.com/mui/material-ui/blob/master/packages/mui-joy/src/styles/types/colorSystem.ts#L142) to see all of the available interfaces.
+Visit the [ColorSystem interface](https://github.com/mui/material-ui/blob/master/packages/mui-joy/src/styles/types/colorSystem.ts#L142) to see all of the available interfaces.
 
 #### Channel tokens
 
@@ -134,8 +134,7 @@ function App() {
 
 :::info
 **Note**: Joy UI will add the prefix (default as `joy`) to all CSS variables.
-To change that, do `<CssVarsProvider prefix="myproduct">`.
-The generated CSS variables will then be:
+To change it, use `<CssVarsProvider prefix="myproduct">` and the generated CSS variables will then be:
 
 ```diff
 - --joy-palette-primary-50: /* color */ ;
@@ -193,14 +192,14 @@ const Text = styled('p')(({ theme }) => ({
 ```
 
 :::warning
-**Note:** Adding too many tokens will increase the stylesheet bundle size and add up maintenance costs for your project.
-To style components without introducing new tokens, check out the [one-off styling](/joy-ui/customization/approaches/#one-off-customization) page.
+**Note:** Adding new tokens is worth it when you know that a large number of components will use them. That's because doing so increases stylesheet bundle size, plus the added maintenance costs.
+
+If you're not sure about it yet, we recommend using [the `sx` prop](/joy-ui/customization/approaches/#sx-prop) for one-off customizations.
 :::
 
 ## Global variant tokens
 
-By default, Joy UI has four built-in global variants tokens: `plain`, `outlined`, `soft`, and `solid`.
-To learn more about it, check the dedicated [global variants](/joy-ui/core-features/global-variant/) page.
+By default, Joy UI has four built-in [global variants](/joy-ui/main-features/global-variant/) tokens: `plain`, `outlined`, `soft`, and `solid`.
 
 ### Structure
 
@@ -209,8 +208,8 @@ The variant name is composed of three parts, in the format of **variant type | s
 
 For example:
 
-- `solidBg` refers to the solid variant initial state (as there is none specified) background color.
-- `outlinedHoverBorder` refers to the outlined variant hovered border color.
+- `solidBg` refers to the solid variant's initial state (as there is none specified) background color.
+- `outlinedHoverBorder` refers to the outlined variant's hovered border color.
 
 ```js
 // theme
@@ -278,7 +277,7 @@ As an example, let's customize Joy UI's [`Button`](/joy-ui/react-button/) so the
 {{"demo": "BootstrapVariantTokens.js"}}
 
 :::warning
-**⚠️ Keep in mind:** Make sure that every color schemes have the same set of global variant tokens, otherwise, their styles will be inconsistent, and itt can also cause problems for server-side rendering.
+**⚠️ Keep in mind:** Make sure that every color schemes have the same set of global variant tokens, otherwise, their styles will be inconsistent, causing problems for server-side rendering.
 
 ```js
 extendTheme({
@@ -307,19 +306,59 @@ extendTheme({
 
 To remove a global variant token, use `undefined` as a value.
 
-For example, all default global variant tokens comes with the `active` state.
-If you don't want to have the style for the `:active` pseudo class you can do this:
+For example, all default global variant tokens comes with styles for the `:active` pseudo class.
+Here's how you'd remove it from the solid Button variant.
 
-{{"demo": "RemoveActiveTokens.js", "defaultCodeOpen": true}}
+```jsx
+// ⚠️ If the value is `undefined`, it should be `undefined` for other color schemes as well.
+const theme = extendTheme({
+  colorSchemes: {
+    light: {
+      palette: {
+        primary: {
+          solidActiveBg: undefined,
+        },
+      },
+    },
+    dark: {
+      palette: {
+        primary: {
+          solidActiveBg: undefined,
+        },
+      },
+    },
+  },
+});
+```
+
+{{"demo": "RemoveActiveTokens.js"}}
 
 ### Custom global variant token styles
 
 You can apply custom styles to each global variant via the `variants` node.
 They can also be applied to a specific palette, which will therefore be merged to the styles generated from the global variant tokens.
 
-{{"demo": "CustomVariantStyle.js", "defaultCodeOpen": true}}
+```jsx
+const theme = extendTheme({
+  variants: {
+    solid: {
+      primary: {
+        boxShadow: '0 2px 6px 0 rgba(0,0,0,0.3)',
+      },
+    },
+    solidHover: {
+      primary: {
+        '&:hover': {
+          boxShadow: '0 2px 8px 0 rgba(0,0,0,0.4)',
+        },
+      },
+    },
+  },
+});
+```
+
+{{"demo": "CustomVariantStyle.js"}}
 
 :::warning
-Note that the custom styles will be applied to every component using the specific variant and color.
-If you want to apply styles for a specific set of components, use the [themed components](/joy-ui/customization/themed-components/) approach instead.
+**Keep in mind:** changing styles for the solid variant means that every component solid variant will have them. To customize how a specific component look like, use the [themed components](/joy-ui/customization/themed-components/) approach instead.
 :::

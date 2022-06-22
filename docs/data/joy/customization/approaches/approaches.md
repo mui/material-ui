@@ -2,20 +2,22 @@
 
 <p class="description">Learn which approach is recommended, depending on the situation, to customize Joy UI components.</p>
 
-<!-- The purpose of this page is to give the overall customization alternatives to developers without providing too much details -->
-<!-- Some examples and demos are provided to give the sense of what it looks like and then lead each part to another page for more technical details and more examples -->
+- For customizing only a specific instance of a given component, [_use the `sx` prop_](#sx-prop).
+- To ensure every instance of a given component looks the same across you app, [_use theming_](#theming).
+- To create something that Joy UI doesn't support out of the box but still has design consistency, create a [_reusable component_](#reusable-component) that uses Joy UI's theme design tokens.
 
-There are 3 main approaches for customizing Joy UI components:
+## `sx` prop
 
-1. Theming (global customization)
-2. One-off customization (per instance)
-3. Reusable component (custom component)
+The `sx` prop provides a superset of CSS (contains all CSS properties/selectors, in addition to custom ones) that maps values directly from the theme, depending on the CSS property used.
+
+Every Joy UI component supports it and it's a tool that allows you to quickly customize components on the spot.
+Visit [the `sx` prop documentation](/system/the-sx-prop/) to learn more about it.
+
+{{"demo": "SxProp.js" }}
 
 ## Theming
 
-If you want every instance of a given component to be styled consistently, theming is the way to go.
-You can think of it as a mask that wraps them and adds custom styles.
-That way, you should be able to switch between themes without changing your app's logic.
+The theme is an object where you define both your design language with foundational tokens such as color schemes, typography and spacing scales, and how each component, and their different variants and states, uses them.
 
 Here are some examples that reproduce popular designs (only the light mode, though):
 
@@ -23,11 +25,12 @@ Here are some examples that reproduce popular designs (only the light mode, thou
 
 ### Customizing theme tokens
 
-Joy UI's theme consists of two categories of tokens: _low-level_ and _global variant_ tokens.
-Check the [theme tokens](/joy-ui/customization/theme-tokens/) page for detailed information about both.
+Theme tokens refer to both [_low-level_ and _global variant_ design tokens](/joy-ui/customization/theme-tokens/).
 
-Every component rely on them to define their look and feel.
-Therefore, if you want to print your own design language into Joy UI components in a scallable way, you should customize them.
+For example, instead of assigning the same hex code every time you want to change a given component's background color, you assign a theme token instead.
+If, at any point, you want to change that, you'd change in one place only, ensuring you consistency across all the components that use that theme token.
+
+To print your own design language into Joy UI components, start by customizing these tokens first, as every component uses them.
 
 To do that, always use the `extendTheme` function as the customized tokens will be deeply merged into the default theme.
 Under the hood, Joy UI will convert the tokens to CSS variables, enabling you to get them through `theme.vars.*`, which is very convenient as you can use any styling solution to read those CSS vars.
@@ -61,16 +64,13 @@ function App() {
 }
 ```
 
-### Themed components
+### Customizing components
 
-Customizing the theme tokens, as described above, will affect every Joy UI component.
-To customize a specific component so every instance of it is consistent, target it directly within the theme.
+Each Joy UI component uses a pre-defined set of theme tokens.
+For example, the default small [`Button`](/joy-ui/react-button/) comes with `fontSize: sm` by default.
+To change that while ensuring that every instance of it has the same styles, do it [targeting the component directly from the theme](/joy-ui/customization/themed-components/).
 
-:::info
-Check the specific [themed components page](/joy-ui/customization/themed-components/) for more in-depth instructions.
-:::
-
-Here is an example of customizing the [`Button`](/joy-ui/react-button/)'s default `fontWeight` and `boxShadow`:
+Here's a preview of how you'd change the button's font size to large:
 
 ```js
 import { CssVarsProvider, extendTheme } from '@mui/joy/styles';
@@ -78,18 +78,17 @@ import Button from '@mui/joy/Button';
 
 const theme = extendTheme({
   components: {
-    // The identifier always start with `Joy${ComponentName}`.
+    // The component identifier always start with `Joy${ComponentName}`.
     JoyButton: {
       styleOverrides: ({ theme }) => ({
         // theme.vars.* return the CSS variables.
-        fontWeight: theme.vars.fontWeight.lg, // 'var(--joy-fontWeight-lg)'
-        boxShadow: theme.vars.shadow.xs, // 'var(--joy-shadow-xs)'
+        fontSize: theme.vars.fontSize.lg, // 'var(--joy-fontSize-lg)'
       }),
     },
   },
 });
 
-function App() {
+function MyApp() {
   return (
     <CssVarsProvider theme={theme}>
       <Button>Text</Button>
@@ -98,21 +97,11 @@ function App() {
 }
 ```
 
-## One-off customization
-
-### sx prop
-
-To change the style of _one single instance_ of a component, the [`sx` prop](/system/basics/#the-sx-prop) is the recommended option.
-It can be used with all Joy UI components.
-
-{{"demo": "SxProp.js" }}
-
 ## Reusable component
 
-### styled function
+Creating new and custom components is always an option when you don't find exactly what you're looking for.
+You can, however, ensure design consistency with other Joy UI components by pulling styles from the theme through the `styled` function.
 
-To create a custom, new, and reusable component, the `styled` function is the recommended option.
-You can access the theme and use its design tokens, maintaining consistency.
-Additionally, the created component also accepts the `sx` prop if you ever want to do one-off customizations to it.
+You also gain as beenfit the ability to use the `sx` prop, that also accept theme tokens, to customize this newly created component.
 
 {{"demo": "StyledComponent.js"}}

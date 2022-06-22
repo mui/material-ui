@@ -2,24 +2,16 @@
 
 <p class="description">Joy UI enables consistent look and feel across all components by using global variants.</p>
 
-<!-- The intention of the page is to describe the overall feature like "what is it?", "what it looks like?", other topics like "The why", "How to customize" etc. should be in another page.  -->
+Every Joy UI component has the same set of 4 global variants.
+All of them are pulling styles from the same place, ensuring then that each variant looks the same across both "native" and custom components.
+That way, you get a consistent look and feel throughout your design system.
 
-It enables every component across the library to have the same set of variants. That way, both "native" and custom components can access those styles.
-
-Global variants mostly consist of different CSS values for the `color`, `background`, and `border` properties.
-
-:::info
-**Keep in mind:** when updating or customizing the global variants, make sure to do it in small increments given how broad their usage is. That way, you reduce the risk of affecting every component at once.
-:::
-
-<!-- Add a link to read more detail why we limit to these 3 properties -->
+The different design of each variant is mostly achieve using different combination of values for the `color`, `background`, and `border` CSS properties.
 
 ## Types of variants
 
 These four global variants seem to cover most of the design being used today in modern web applications.
 Their names are supposed to be straightforward, meaning you should be able to assume how they look without looking at the screen.
-
-<!-- A demo of buttons with all variants -->
 
 {{"demo": "GlobalVariantComponents.js"}}
 
@@ -29,8 +21,6 @@ Each variant conveys a different level of importance in the UI.
 In most cases, the `solid` variant will be used for primary and generally very important actions on the page.
 Alternatively, `soft`, `outlined`, or `plain` is used for secondary and/or tertiary types of actions.
 Their usage is heavily dependent on context but it's a good rule of thumb to keep the hiearchy of importance in mind.
-
-<!-- A demo of small UIs that use different components with variants to showcase -->
 
 {{"demo": "LevelOfImportancy.js"}}
 

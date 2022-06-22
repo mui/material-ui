@@ -42,5 +42,5 @@ export default class MyDocument extends Document {
 }
 ```
 
+- Learn [how to apply dark mode](/joy-ui/guides/applying-dark-mode/) in various frameworks by visiting the How To Guides.
 - Check out our [RFC on CSS variables support](https://github.com/mui/material-ui/issues/27651) to get the full picture of its implementation in Joy UI.
-- Learn [how to apply dark mode](/joy-ui/guides/apply-dark-mode/) in various frameworks by visiting the How To Guides.

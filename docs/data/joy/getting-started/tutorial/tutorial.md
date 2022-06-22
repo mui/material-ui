@@ -12,7 +12,7 @@ The only **prerequesite** is [having Joy UI installed](/joy-ui/getting-started/i
 
 :::warning
 ⚠️ **Note:** We won't cover theming and component customization strategies at this moment.
-Check later [the different customization approaches](/joy-ui/customization/approaches/) for more in-depth about that.
+Learn more about[the different customization approaches](/joy-ui/customization/approaches/) later.
 :::
 
 ## Building the login page
