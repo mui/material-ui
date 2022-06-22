@@ -86,7 +86,6 @@ export interface PaletteActionChannel {
 export interface PaletteTextChannel {
   primaryChannel: string;
   secondaryChannel: string;
-  disabledChannel: string;
 }
 
 export interface PaletteAlert {
