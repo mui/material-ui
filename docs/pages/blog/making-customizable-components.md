@@ -58,11 +58,11 @@ You can play with those examples in a [codesandbox](https://codesandbox.io/s/fas
 
 ### Let JS generate the CSS
 
-Maybe you don't want to spent your time switching between CSS and JS filed, or write long and cluttered stylesheets.
-To avoid those problem you can integrate the style in your JS code 🎉
+Maybe you don’t want to spent your time switching between CSS and JS files, or write long and cluttered stylesheets.
+To avoid these problems you can integrate the style in your JS code 🎉
 
 Because the level of customization varies across projects, MUI has added multiple ways to customize components.
-If you want more information on this topic, you can have a look at the [documentation](https://mui.com/material-ui/customization/how-to-customize/)
+If you want more information on this topic, you can have a look at the [documentation](https://mui.com/material-ui/customization/how-to-customize/).
 
 ## Logic modification
 
@@ -78,7 +78,8 @@ To do so we can add a `max` prop and render as many stars as the value of `max`.
 
 That works well enough for a simple UI element, but what happens when the component in question has many more moving parts?
 
-End of the article, you now know how to customize component
+
+That works well enough for a simple UI element, but what happens when the component in question has many more moving parts?
 
 ### It’s never that simple
 
@@ -198,13 +199,13 @@ So that’s not the approach we took for the `DataGrid`.
 
 #### Keep a single component
 
-On our side, we wanted to make it as simple as possible to add the DataGrid to your application, so we stuck with the individual component structure — e.g., to create a new data grid, all you need is `<DataGrid rows={...} columns={...} />`.
+For `DataGrid`, we wanted to make it as simple as possible to add the DataGrid to your application, so we stuck with the individual component structure — e.g., to create a new data grid, all you need is `<DataGrid rows={...} columns={...} />`.
 
 To customize this single component, we use what we call the slot strategy.
 
 ## The slot solution
 
-Now we are back to the original problem—let’s look at how we use slots to balance the freedom to customize with the need to avoid building from scratch.
+Now we are back to the original problem, how to allow deep customization on a single component. Let’s look at how we use slots to balance the freedom to customize with the need to avoid building from scratch.
 
 ### Overriding default components
 
@@ -237,7 +238,7 @@ Slots make it simple to override small components.
 But our initial goal was to modify the order of the column selector.
 We can’t provide a slot to override this selector alone, or else we would need to provide one for all of the inputs and buttons, which are too numerous to keep track of.
 
-We could use a slot to override the all filter panel.
+We could use a slot to override the filter panel.
 We provide this slot just in case you need a fully customized panel.
 But honestly, who wants to rewrite an entire component for a simple sorting options?
 
