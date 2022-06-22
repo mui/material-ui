@@ -42,7 +42,7 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(props, ref) 
   const renders = React.useRef(0);
   const [state, setState] = React.useState({});
 
-  const getUpdatedState = () => {
+  const getUpdatedState = React.useCallback(() => {
     const input = inputRef.current;
     const containerWindow = ownerWindow(input);
     const computedStyle = containerWindow.getComputedStyle(input);
@@ -92,7 +92,7 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(props, ref) 
     const overflow = Math.abs(outerHeight - innerHeight) <= 1;
 
     return { outerHeightStyle, overflow };
-  };
+  }, [maxRows, minRows, props.placeholder]);
 
   const updateState = (prevState, newState) => {
     const { outerHeightStyle, overflow } = newState;
@@ -126,17 +126,21 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(props, ref) 
   const syncHeight = React.useCallback(() => {
     const newState = getUpdatedState();
 
-    if (isEmpty(newState)) return;
+    if (isEmpty(newState)) { 
+      return;
+    }
 
     setState((prevState) => {
       return updateState(prevState, newState);
     });
-  }, [maxRows, minRows, props.placeholder]);
+  }, [getUpdatedState]);
 
   const syncHeightWithFlushSycn = () => {
     const newState = getUpdatedState();
 
-    if (isEmpty(newState)) return;
+    if (isEmpty(newState)) { 
+      return;
+    }
 
     // In React 18, state updates in a ResizeObserver's callback are happening after the paint which causes flickering
     // when doing some visual updates in it. Using flushSync ensures that the dom will be painted after the states updates happen
