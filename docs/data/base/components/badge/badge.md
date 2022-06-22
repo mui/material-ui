@@ -35,6 +35,16 @@ export default function MyApp() {
 }
 ```
 
+### Basic usage
+
+`BadgeUnstyled` wraps around the UI element that it's attached to—for instance, if the badge indicates the number of emails in an inbox, the component will be structured like this:
+
+```jsx
+<BadgeUnstyled>
+  <MailIcon />
+</BadgeUnstyled>
+```
+
 ### Internal slots
 
 The `BadgeUnstyled` component is composed of a root `<span>` that houses the element that the badge is attached to, followed by a `<span>` to represent the badge itself:
@@ -99,15 +109,7 @@ The following features can be used with both components and hooks.
 For the sake of simplicity, demos and code snippets primarily feature components.
 :::
 
-### Basic usage
-
-The badge component wraps around the UI element that it's attached to—for instance, if the badge indicates the number of emails in an inbox, the component will be structured like this:
-
-```jsx
-<BadgeUnstyled badgeContent={5}>
-  <MailIcon />
-</BadgeUnstyled>
-```
+### Badge content
 
 The `badgeContent` prop defines the content that's displayed inside the badge.
 When this content is a number, there are additional props you can use for further customization—see the [Numerical badges section](#numerical-badges) below.
@@ -118,7 +120,7 @@ The following demo shows how to create and style a typical numerical badge that'
 
 ### Badge visibility
 
-You can control the visibility of a `BadgeUnstyled` by using the `invisible` prop.
+You can control the visibility of a badge by using the `invisible` prop.
 Setting a badge to `invisible` does not actually hide it—instead, this prop adds the `MuiBadge-invisible` class to the badge, which you can target with styles to hide however you prefer:
 
 {{"demo": "BadgeVisibility.js"}}
