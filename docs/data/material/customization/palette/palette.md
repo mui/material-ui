@@ -87,6 +87,14 @@ const theme = createTheme({
       // dark: will be calculated from palette.secondary.main,
       contrastText: '#ffcc00',
     },
+     // All tokens need to be provided for custom colors if this
+     // color is going to be used as a prop in the Material UI's components
+    custom: {
+      light: '#ffa726'
+      main: '#f57c00',
+      dark: '#ef6c00',
+      contrastText: 'rgba(0, 0, 0, 0.87)',
+    }
     // Used by `getContrastText()` to maximize the contrast between
     // the background and the text.
     contrastThreshold: 3,
