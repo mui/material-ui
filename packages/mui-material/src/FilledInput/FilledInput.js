@@ -98,7 +98,7 @@ const FilledInputRoot = styled(InputBaseRoot, {
       '&:before': {
         borderBottom: `1px solid ${
           theme.vars
-            ? `rgba(${theme.vars.palette.common.onBackgroundChannel} / ${theme.vars.opacity.inputTouchBottomLine})`
+            ? `rgba(${theme.vars.palette.common.onBackgroundChannel} / ${theme.vars.opacity.inputUnderline})`
             : bottomLineColor
         }`,
         left: 0,
