@@ -65,8 +65,8 @@ const SliderRoot = styled('span', {
   name: 'JoySlider',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState?: SliderOwnerState }>(({ theme, ownerState }) => {
-  const getColorVariables = sliderColorVariables({ theme, ownerState: ownerState! });
+})<{ ownerState: SliderOwnerState }>(({ theme, ownerState }) => {
+  const getColorVariables = sliderColorVariables({ theme, ownerState });
   return [
     {
       '--Slider-size': 'max(42px, max(var(--Slider-thumb-size), var(--Slider-track-size)))', // Reach 42px touch target, about ~8mm on screen.
@@ -75,19 +75,19 @@ const SliderRoot = styled('span', {
       [`& .${sliderClasses.markActive}`]: {
         '--Slider-mark-background': 'var(--Slider-track-color)',
       },
-      ...(ownerState!.size === 'sm' && {
+      ...(ownerState.size === 'sm' && {
         '--Slider-mark-size': '2px',
         '--Slider-track-size': '4px',
         '--Slider-thumb-size': '10px',
         '--Slider-valueLabel-arrowSize': '6px',
       }),
-      ...(ownerState!.size === 'md' && {
+      ...(ownerState.size === 'md' && {
         '--Slider-mark-size': '2px',
         '--Slider-track-size': '6px',
         '--Slider-thumb-size': '14px',
         '--Slider-valueLabel-arrowSize': '8px',
       }),
-      ...(ownerState!.size === 'lg' && {
+      ...(ownerState.size === 'lg' && {
         '--Slider-mark-size': '3px',
         '--Slider-track-size': '10px',
         '--Slider-thumb-size': '20px',
@@ -115,11 +115,11 @@ const SliderRoot = styled('span', {
       cursor: 'pointer',
       touchAction: 'none',
       WebkitTapHighlightColor: 'transparent',
-      ...(ownerState!.orientation === 'horizontal' && {
+      ...(ownerState.orientation === 'horizontal' && {
         padding: 'calc(var(--Slider-size) / 2) 0',
         width: '100%',
       }),
-      ...(ownerState!.orientation === 'vertical' && {
+      ...(ownerState.orientation === 'vertical' && {
         padding: '0 calc(var(--Slider-size) / 2)',
         height: '100%',
       }),
@@ -134,30 +134,30 @@ const SliderRail = styled('span', {
   name: 'JoySlider',
   slot: 'Rail',
   overridesResolver: (props, styles) => styles.rail,
-})<{ ownerState?: SliderOwnerState }>(({ ownerState }) => [
+})<{ ownerState: SliderOwnerState }>(({ ownerState }) => [
   {
     display: 'block',
     position: 'absolute',
     backgroundColor:
-      ownerState!.track === 'inverted'
+      ownerState.track === 'inverted'
         ? 'var(--Slider-track-background)'
         : 'var(--Slider-rail-background)',
     borderRadius: 'var(--Slider-track-radius)',
-    ...(ownerState!.orientation === 'horizontal' && {
+    ...(ownerState.orientation === 'horizontal' && {
       height: 'var(--Slider-track-size)',
       top: '50%',
       left: 0,
       right: 0,
       transform: 'translateY(-50%)',
     }),
-    ...(ownerState!.orientation === 'vertical' && {
+    ...(ownerState.orientation === 'vertical' && {
       width: 'var(--Slider-track-size)',
       top: 0,
       bottom: 0,
       left: '50%',
       transform: 'translateX(-50%)',
     }),
-    ...(ownerState!.track === 'inverted' && {
+    ...(ownerState.track === 'inverted' && {
       opacity: 1,
     }),
   },
@@ -167,32 +167,32 @@ const SliderTrack = styled('span', {
   name: 'JoySlider',
   slot: 'Track',
   overridesResolver: (props, styles) => styles.track,
-})<{ ownerState?: SliderOwnerState }>(({ ownerState }) => {
+})<{ ownerState: SliderOwnerState }>(({ ownerState }) => {
   return [
     {
       display: 'block',
       position: 'absolute',
       color: 'var(--Slider-track-color)',
       backgroundColor:
-        ownerState!.track === 'inverted'
+        ownerState.track === 'inverted'
           ? 'var(--Slider-rail-background)'
           : 'var(--Slider-track-background)',
       // TODO: discuss the transition approach in a separate PR. This value is copied from mui-material Slider.
       transition:
         'left 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, width 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, bottom 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, height 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
-      ...(ownerState!.orientation === 'horizontal' && {
+      ...(ownerState.orientation === 'horizontal' && {
         height: 'var(--Slider-track-size)',
         top: '50%',
         transform: 'translateY(-50%)',
         borderRadius: 'var(--Slider-track-radius) 0 0 var(--Slider-track-radius)',
       }),
-      ...(ownerState!.orientation === 'vertical' && {
+      ...(ownerState.orientation === 'vertical' && {
         width: 'var(--Slider-track-size)',
         left: '50%',
         transform: 'translateX(-50%)',
         borderRadius: '0 0 var(--Slider-track-radius) var(--Slider-track-radius)',
       }),
-      ...(ownerState!.track === false && {
+      ...(ownerState.track === false && {
         display: 'none',
       }),
     },
@@ -203,7 +203,7 @@ const SliderThumb = styled('span', {
   name: 'JoySlider',
   slot: 'Thumb',
   overridesResolver: (props, styles) => styles.thumb,
-})<{ ownerState?: SliderOwnerState }>(({ ownerState, theme }) => ({
+})<{ ownerState: SliderOwnerState }>(({ ownerState, theme }) => ({
   position: 'absolute',
   boxSizing: 'border-box',
   outline: 0,
@@ -222,11 +222,11 @@ const SliderThumb = styled('span', {
   transition:
     'box-shadow 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,left 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,bottom 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
   [theme.focus.selector]: theme.focus.default,
-  ...(ownerState!.orientation === 'horizontal' && {
+  ...(ownerState.orientation === 'horizontal' && {
     top: '50%',
     transform: 'translate(-50%, -50%)',
   }),
-  ...(ownerState!.orientation === 'vertical' && {
+  ...(ownerState.orientation === 'vertical' && {
     left: '50%',
     transform: 'translate(-50%, 50%)',
   }),
@@ -236,30 +236,30 @@ const SliderMark = styled('span', {
   name: 'JoySlider',
   slot: 'Mark',
   overridesResolver: (props, styles) => styles.mark,
-})<{ ownerState?: SliderOwnerState & { percent: number } }>(({ ownerState }) => {
+})<{ ownerState: SliderOwnerState & { percent: number } }>(({ ownerState }) => {
   return {
     position: 'absolute',
     width: 'var(--Slider-mark-size)',
     height: 'var(--Slider-mark-size)',
     borderRadius: 'var(--Slider-mark-size)',
     backgroundColor: 'var(--Slider-mark-background)',
-    ...(ownerState!.orientation === 'horizontal' && {
+    ...(ownerState.orientation === 'horizontal' && {
       top: '50%',
       transform: `translate(calc(var(--Slider-mark-size) / -2), -50%)`,
-      ...(ownerState!.percent === 0 && {
+      ...(ownerState.percent === 0 && {
         transform: `translate(min(var(--Slider-mark-size), 3px), -50%)`,
       }),
-      ...(ownerState!.percent === 100 && {
+      ...(ownerState.percent === 100 && {
         transform: `translate(calc(var(--Slider-mark-size) * -1 - min(var(--Slider-mark-size), 3px)), -50%)`,
       }),
     }),
-    ...(ownerState!.orientation === 'vertical' && {
+    ...(ownerState.orientation === 'vertical' && {
       left: '50%',
       transform: 'translate(-50%, calc(var(--Slider-mark-size) / 2))',
-      ...(ownerState!.percent === 0 && {
+      ...(ownerState.percent === 0 && {
         transform: `translate(-50%, calc(min(var(--Slider-mark-size), 3px) * -1))`,
       }),
-      ...(ownerState!.percent === 100 && {
+      ...(ownerState.percent === 100 && {
         transform: `translate(-50%, calc(var(--Slider-mark-size) * 1 + min(var(--Slider-mark-size), 3px)))`,
       }),
     }),
@@ -270,20 +270,20 @@ const SliderValueLabel = styled('span', {
   name: 'JoySlider',
   slot: 'ValueLabel',
   overridesResolver: (props, styles) => styles.valueLabel,
-})<{ ownerState?: SliderOwnerState }>(({ theme, ownerState }) => ({
-  ...(ownerState!.size === 'sm' && {
+})<{ ownerState: SliderOwnerState }>(({ theme, ownerState }) => ({
+  ...(ownerState.size === 'sm' && {
     fontSize: theme.fontSize.xs,
     lineHeight: theme.lineHeight.md,
     paddingInline: '0.25rem',
     minWidth: '20px',
   }),
-  ...(ownerState!.size === 'md' && {
+  ...(ownerState.size === 'md' && {
     fontSize: theme.fontSize.sm,
     lineHeight: theme.lineHeight.md,
     paddingInline: '0.375rem',
     minWidth: '24px',
   }),
-  ...(ownerState!.size === 'lg' && {
+  ...(ownerState.size === 'lg' && {
     fontSize: theme.fontSize.md,
     lineHeight: theme.lineHeight.md,
     paddingInline: '0.5rem',
@@ -330,25 +330,25 @@ const SliderMarkLabel = styled('span', {
   name: 'JoySlider',
   slot: 'MarkLabel',
   overridesResolver: (props, styles) => styles.markLabel,
-})<{ ownerState?: SliderOwnerState }>(({ theme, ownerState }) => ({
+})<{ ownerState: SliderOwnerState }>(({ theme, ownerState }) => ({
   fontFamily: theme.vars.fontFamily.body,
-  ...(ownerState!.size === 'sm' && {
+  ...(ownerState.size === 'sm' && {
     fontSize: theme.vars.fontSize.xs,
   }),
-  ...(ownerState!.size === 'md' && {
+  ...(ownerState.size === 'md' && {
     fontSize: theme.vars.fontSize.sm,
   }),
-  ...(ownerState!.size === 'lg' && {
+  ...(ownerState.size === 'lg' && {
     fontSize: theme.vars.fontSize.md,
   }),
   color: theme.palette.text.tertiary,
   position: 'absolute',
   whiteSpace: 'nowrap',
-  ...(ownerState!.orientation === 'horizontal' && {
+  ...(ownerState.orientation === 'horizontal' && {
     top: 'calc(50% + 4px + (max(var(--Slider-track-size), var(--Slider-thumb-size)) / 2))',
     transform: 'translateX(-50%)',
   }),
-  ...(ownerState!.orientation === 'vertical' && {
+  ...(ownerState.orientation === 'vertical' && {
     left: 'calc(50% + 8px + (max(var(--Slider-track-size), var(--Slider-thumb-size)) / 2))',
     transform: 'translateY(50%)',
   }),

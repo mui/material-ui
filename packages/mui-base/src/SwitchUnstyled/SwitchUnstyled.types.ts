@@ -66,26 +66,26 @@ export type SwitchUnstyledOwnerState = Simplify<
 
 export type SwitchUnstyledRootSlotProps = {
   ownerState: SwitchUnstyledOwnerState;
-  className: string;
+  className?: string;
   children?: React.ReactNode;
 };
 
 export type SwitchUnstyledThumbSlotProps = {
   ownerState: SwitchUnstyledOwnerState;
-  className: string;
+  className?: string;
   children?: React.ReactNode;
 };
 
 export type SwitchUnstyledTrackSlotProps = {
   ownerState: SwitchUnstyledOwnerState;
-  className: string;
+  className?: string;
   children?: React.ReactNode;
 };
 
 export type SwitchUnstyledInputSlotProps = Simplify<
   UseSwitchInputSlotProps & {
     ownerState: SwitchUnstyledOwnerState;
-    className: string;
+    className?: string;
     children?: React.ReactNode;
   }
 >;
