@@ -10,8 +10,8 @@ githubLabel: 'component: Typography'
 
 ## Introduction
 
-The `Typography` component helps you maintain a consistent design by offering a limited set of scale values to choose while also providing a few convenient props that makes common designs faster to build.
-Joy UI's uses _Public Sans_, a Google Font, as the default typeface.
+The `Typography` component helps you maintain a consistent design by offering a limited set of values to choose while also providing a few convenient props that makes common designs faster to build.
+Joy UI's uses [_Public Sans_](https://fonts.google.com/specimen/Public+Sans?query=public), a Google Font, as the default typeface.
 
 ## Component
 
@@ -34,8 +34,8 @@ As a CSS utility component, `Typography` supports every [`system`](/system/prope
 ```
 
 :::info
-💡 **Tip:** The `color` prop is an exception!
-It refers to the palette being used and not specifically the text color.
+💡 **Tip:** The `color` prop is an exception, though!
+It actually refers to the palette being used and not specifically the text color.
 To override that instead, use the `textColor` prop.
 :::
 
@@ -86,7 +86,7 @@ The `Typography` component has access to the typographic level scale defined in 
 Use the `level` prop to control the scale value.
 
 :::info
-**Note:** keep in mind that each level renders a specific HTML tag (e.g. "h1" will render an `<h2>` element, "body1" renders as `<p>`, etc.)
+**Keep in mind:** each level renders a specific HTML tag (e.g. "h1" renders as an `<h2>` element, "body1" renders as a `<p>`, etc.)
 :::
 
 {{"demo": "TypographyScales.js"}}
