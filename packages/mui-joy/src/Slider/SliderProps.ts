@@ -21,6 +21,10 @@ export interface SliderPropsSizeOverrides {}
 export interface SliderComponentsPropsOverrides {}
 
 interface SliderOwnProps {
+  /**
+   * The props used for each slot inside the Slider.
+   * @default {}
+   */
   componentsProps?: {
     root?: SlotComponentProps<'span', SliderComponentsPropsOverrides, SliderOwnerState>;
     track?: SlotComponentProps<'span', SliderComponentsPropsOverrides, SliderOwnerState>;
