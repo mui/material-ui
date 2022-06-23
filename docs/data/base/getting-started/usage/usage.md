@@ -63,7 +63,7 @@ The code snippet below shows how to override the root element of the [`BadgeUnst
 ```
 
 :::warning
-If the root element is customized with both the `component` and `components` props, then `component` will take precedence.
+If the root slot is customized with both the `component` and `components` props, then `component` will take precedence.
 :::
 
 ### componentsProps
