@@ -67,31 +67,38 @@ const theme = createTheme({
 如果你想要提供更多的自定义颜色，你可以创建你自己的调色板，或者直接为一些或者所有的 `theme.palette` 键提供颜色：
 
 ```js
-import { createTheme } from '@mui/core/styles';
+import { createTheme } from '@mui/material/styles';
 
 const theme = createTheme({
   palette: {
     primary: {
-      // light: 这将从 palette.primary.main 中进行计算，
+      // light: will be calculated from palette.primary.main,
       main: '#ff4400',
-      // dark: 这将从 palette.primary.main 中进行计算，
-      // contrastText: 这将计算与 palette.primary.main 的对比度
+      // dark: will be calculated from palette.primary.main,
+      // contrastText: will be calculated to contrast with palette.primary.main
     },
     secondary: {
       light: '#0066ff',
       main: '#0044ff',
-      // dark: 这将从 palette.secondary.main 中进行计算，
+      // dark: will be calculated from palette.secondary.main,
       contrastText: '#ffcc00',
     },
-    // 使用 `getContrastText()` 来最大化
-    // 背景和文本的对比度
+     // Provide every color token (light, main, dark, and contrastText) when using
+     // custom colors for props in Material UI's components.
+     // Then you will be able to use it like this: `<Button color="custom">`
+     // (For TypeScript, you need to add module augmentation for the `custom` value)
+    custom: {
+      light: '#ffa726'
+      main: '#f57c00',
+      dark: '#ef6c00',
+      contrastText: 'rgba(0, 0, 0, 0.87)',
+    }
+    // Used by `getContrastText()` to maximize the contrast between
+    // the background and the text.
     contrastThreshold: 3,
-    // 使用下面的函数用于将颜色的亮度在其调色板中
-    // 移动大约两个指数。
-    contrastThreshold: 3,
-    // 使用下面的函数用于将颜色的亮度在其调色板中
-    // 移动大约两个指数。
-    // 例如，从红色 500（Red 500）切换到 红色 300（Red 300）或 红色 700（Red 700）。
+    // Used by the functions below to shift a color's luminance by approximately
+    // two indexes within its tonal palette.
+    // E.g., shift from Red 500 to Red 300 or Red 700.
     tonalOffset: 0.2,
   },
 });
