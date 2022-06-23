@@ -58,7 +58,7 @@ const createLightModeVariantVariables = (color: ColorPaletteProp) => ({
   plainActiveBg: `var(--joy-palette-${color}-200)`,
   plainDisabledColor: `var(--joy-palette-${color}-300)`,
 
-  outlinedColor: `var(--joy-palette-${color}-500)`,
+  outlinedColor: `var(--joy-palette-${color}-600)`,
   outlinedBorder: `var(--joy-palette-${color}-200)`,
   outlinedHoverBg: `var(--joy-palette-${color}-100)`,
   outlinedHoverBorder: `var(--joy-palette-${color}-300)`,
@@ -86,7 +86,7 @@ const createLightModeVariantVariables = (color: ColorPaletteProp) => ({
 });
 
 const createDarkModeVariantVariables = (color: ColorPaletteProp) => ({
-  plainColor: `var(--joy-palette-${color}-300)`,
+  plainColor: `var(--joy-palette-${color}-200)`,
   plainHoverBg: `var(--joy-palette-${color}-800)`,
   plainActiveBg: `var(--joy-palette-${color}-700)`,
   plainDisabledColor: `var(--joy-palette-${color}-800)`,
