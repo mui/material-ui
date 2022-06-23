@@ -67,7 +67,7 @@ const theme = createTheme({
 Se você deseja fornecer cores mais customizadas, você pode criar seu próprio objeto de cor, ou fornecer cores diretamente para algumas ou todas as chaves da intenção:
 
 ```js
-import { createTheme } from '@material-ui/core/styles';
+import { createTheme } from '@mui/material/styles';
 
 const theme = createTheme({
   palette: {
@@ -83,12 +83,22 @@ const theme = createTheme({
       // dark: will be calculated from palette.secondary.main,
       contrastText: '#ffcc00',
     },
+     // Provide every color token (light, main, dark, and contrastText) when using
+     // custom colors for props in Material UI's components.
+     // Then you will be able to use it like this: `<Button color="custom">`
+     // (For TypeScript, you need to add module augmentation for the `custom` value)
+    custom: {
+      light: '#ffa726'
+      main: '#f57c00',
+      dark: '#ef6c00',
+      contrastText: 'rgba(0, 0, 0, 0.87)',
+    }
     // Used by `getContrastText()` to maximize the contrast between
     // the background and the text.
     contrastThreshold: 3,
-    // Usado pelas funções abaixo para mudança de uma cor de luminância por aproximadamente
-    // dois índices dentro de sua paleta tonal.
-    // Por exemplo, mude de Red 500 para Red 300 ou Red 700.
+    // Used by the functions below to shift a color's luminance by approximately
+    // two indexes within its tonal palette.
+    // E.g., shift from Red 500 to Red 300 or Red 700.
     tonalOffset: 0.2,
   },
 });
