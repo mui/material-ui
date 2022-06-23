@@ -1,6 +1,8 @@
-import fs from 'fs/promises';
+import fs from 'fs';
 import path from 'path';
 import TerserPlugin from 'terser-webpack-plugin';
+
+const fsp = fs.promises;
 
 /**
  * ```sh
@@ -13,7 +15,7 @@ import TerserPlugin from 'terser-webpack-plugin';
 (async function run() {
   try {
     // 1. Read the testable file
-    let code = await fs.readFile(
+    let code = await fsp.readFile(
       path.join(process.cwd(), 'packages/mui-system/scripts/colorSchemeScript.js'),
       { encoding: 'utf-8' },
     );
@@ -56,7 +58,7 @@ import TerserPlugin from 'terser-webpack-plugin';
       process.cwd(),
       'packages/mui-system/src/cssVars/getInitColorSchemeScript.tsx',
     );
-    let productionCode = await fs.readFile(getInitColorSchemeScriptPath, { encoding: 'utf-8' });
+    let productionCode = await fsp.readFile(getInitColorSchemeScriptPath, { encoding: 'utf-8' });
 
     productionCode = productionCode.replace(
       /__html: `.*`/s,
@@ -64,7 +66,7 @@ import TerserPlugin from 'terser-webpack-plugin';
     );
 
     // 4. Replace the file
-    await fs.writeFile(getInitColorSchemeScriptPath, productionCode);
+    await fsp.writeFile(getInitColorSchemeScriptPath, productionCode);
   } catch (error) {
     console.error(error);
   }
