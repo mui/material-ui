@@ -44,7 +44,7 @@ export default function ExampleFilterStatusCheckbox() {
               8
             </Typography>
           </ListItem>
-          <ListItem variant="soft" color="warning" sx={{ borderRadius: 'sm' }}>
+          <ListItem variant="plain" color="warning" sx={{ borderRadius: 'sm' }}>
             <Checkbox
               label="Delivery Error"
               color="warning"
@@ -58,7 +58,7 @@ export default function ExampleFilterStatusCheckbox() {
               24
             </Typography>
           </ListItem>
-          <ListItem variant="soft">
+          <ListItem variant="plain" sx={{ borderRadius: 'sm' }}>
             <Checkbox
               label="Wrong Address"
               color="neutral"
