@@ -58,36 +58,10 @@ export default function getInitColorSchemeScript(options?: GetInitColorSchemeScr
   } = options || {};
   return (
     <script
+      // DO NOT EDIT HERE, auto-generated from `packages/mui-system/scripts/minify-color-scheme-script.js`
       // eslint-disable-next-line react/no-danger
       dangerouslySetInnerHTML={{
-        __html: `(function() { try {
-        var mode = localStorage.getItem('${modeStorageKey}');
-        var cssColorScheme = mode;
-        var colorScheme = '';
-        if (mode === 'system' || (!mode && !!${enableSystem})) {
-          // handle system mode
-          var mql = window.matchMedia('(prefers-color-scheme: dark)');
-          if (mql.matches) {
-            cssColorScheme = 'dark';
-            colorScheme = localStorage.getItem('${colorSchemeStorageKey}-dark') || '${defaultDarkColorScheme}';
-          } else {
-            cssColorScheme = 'light';
-            colorScheme = localStorage.getItem('${colorSchemeStorageKey}-light') || '${defaultLightColorScheme}';
-          }
-        }
-        if (mode === 'light') {
-          colorScheme = localStorage.getItem('${colorSchemeStorageKey}-light') || '${defaultLightColorScheme}';
-        }
-        if (mode === 'dark') {
-          colorScheme = localStorage.getItem('${colorSchemeStorageKey}-dark') || '${defaultDarkColorScheme}';
-        }
-        if (colorScheme) {
-          ${colorSchemeNode}.setAttribute('${attribute}', colorScheme);
-        }
-        if (${enableColorScheme} && !!cssColorScheme) {
-          ${colorSchemeNode}.style.setProperty('color-scheme', cssColorScheme);
-        }
-      } catch (e) {} })();`,
+        __html: `(function(){try{const t=localStorage.getItem,o=t(${modeStorageKey}),r=${colorSchemeStorageKey},l=t(r+"light")||${defaultLightColorScheme},c=t(r+"dark")||${defaultDarkColorScheme};let m=o,a="";if("system"===o||!o&&${enableSystem}){window.matchMedia("(prefers-color-scheme: dark)").matches?(m="dark",a=c):(m="light",a=l)}"light"===o&&(a=l),"dark"===o&&(a=c),a&&${colorSchemeNode}.setAttribute(${attribute},a),${enableColorScheme}&&m&&${colorSchemeNode}.style.setProperty("color-scheme",m)}catch(e){}})();`,
       }}
     />
   );

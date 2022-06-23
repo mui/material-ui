@@ -44,6 +44,7 @@
     "size:snapshot": "node --max-old-space-size=4096 ./scripts/sizeSnapshot/create",
     "size:why": "yarn size:snapshot --analyze",
     "start": "yarn && yarn docs:dev",
+    "system:minify-color-scheme-script": "cross-env BABEL_ENV=development babel-node --extensions \".tsx,.ts,.js\" ./packages/mui-system/scripts/minify-color-scheme-script",
     "t": "node test/cli.js",
     "test": "yarn lint && yarn typescript && yarn test:coverage",
     "test:coverage": "cross-env NODE_ENV=test BABEL_ENV=coverage nyc --reporter=text mocha 'packages/**/*.test.{js,ts,tsx}' 'docs/**/*.test.{js,ts,tsx}' 'scripts/**/*.test.{js,ts,tsx}' 'test/utils/**/*.test.{js,ts,tsx}'",
