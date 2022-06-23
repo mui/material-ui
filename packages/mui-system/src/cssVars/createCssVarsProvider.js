@@ -305,6 +305,7 @@ export default function createCssVarsProvider(options) {
       attribute: defaultAttribute,
       colorSchemeStorageKey: defaultColorSchemeStorageKey,
       modeStorageKey: defaultModeStorageKey,
+      enableColorScheme: designSystemEnableColorScheme,
       ...params,
     });
 
