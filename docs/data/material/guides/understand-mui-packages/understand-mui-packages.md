@@ -42,7 +42,7 @@ Check the [MUI X overview](/x/advanced-components/) for more information about o
 
 Material UI is a comprehensive library of components that features our implementation of Google's Material Design.
 
-Both `@mui/base` and `@mui/system` are included as dependencies, meaning you don't need to install or import them separately—you can import them directly from `@mui/material`.
+`@mui/system` is included as dependency, meaning you don't need to install or import it separately—you can import its components and functions directly from `@mui/material`.
 
 ### MUI Base
 
