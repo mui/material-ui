@@ -29,9 +29,7 @@ const ROUTES = {
   theming: FEATURE_TOGGLE.enable_redirects
     ? '/material-ui/customization/theming/'
     : '/customization/theming/',
-  documentation: FEATURE_TOGGLE.enable_redirects
-    ? '/material-ui/getting-started/installation/'
-    : '/getting-started/installation/',
+  documentation: '/material-ui/getting-started/overview/',
   communityHelp: FEATURE_TOGGLE.enable_redirects
     ? '/material-ui/getting-started/support/#community-help-free'
     : '/getting-started/support/#community-help-free',

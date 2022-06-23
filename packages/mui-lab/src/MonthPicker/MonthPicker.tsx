@@ -30,10 +30,11 @@ type MonthPickerComponent = (<TDate>(
  */
 const MonthPicker = React.forwardRef(function DeprecatedMonthPicker<TDate>(
   props: MonthPickerProps<TDate>,
+  ref: React.Ref<any>,
 ) {
   warn();
 
-  return <XMonthPicker {...props} />;
+  return <XMonthPicker ref={ref} {...props} />;
 }) as MonthPickerComponent;
 
 export default MonthPicker;

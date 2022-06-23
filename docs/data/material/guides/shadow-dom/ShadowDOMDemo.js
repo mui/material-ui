@@ -4,7 +4,7 @@ export default function ShadowDOMDemo() {
   return (
     <iframe
       title="codesandbox"
-      src="https://codesandbox.io/embed/basicselect-demo-material-ui-forked-rki9k5?hidenavigation=1&fontsize=14&view=preview&hidedevtools=1"
+      src="https://codesandbox.io/embed/rki9k5?hidenavigation=1&fontsize=14&view=preview"
       style={{
         width: '100%',
         height: 350,

@@ -30,10 +30,11 @@ type ClockPickerComponent = (<TDate>(
  */
 const ClockPicker = React.forwardRef(function DeprecatedClockPicker<TDate>(
   props: ClockPickerProps<TDate>,
+  ref: React.Ref<any>,
 ) {
   warn();
 
-  return <XClockPicker {...props} />;
+  return <XClockPicker ref={ref} {...props} />;
 }) as ClockPickerComponent;
 
 export default ClockPicker;

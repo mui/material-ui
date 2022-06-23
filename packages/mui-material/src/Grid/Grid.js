@@ -235,7 +235,7 @@ const GridRoot = styled('div', {
     breakpoints.forEach((breakpoint) => {
       const value = ownerState[breakpoint];
 
-      if (value !== false) {
+      if (value) {
         breakpointsStyles.push(styles[`grid-${breakpoint}-${String(value)}`]);
       }
     });
@@ -319,7 +319,7 @@ const useUtilityClasses = (ownerState) => {
   breakpoints.forEach((breakpoint) => {
     const value = ownerState[breakpoint];
 
-    if (value !== false) {
+    if (value) {
       breakpointsClasses.push(`grid-${breakpoint}-${String(value)}`);
     }
   });
@@ -357,7 +357,7 @@ const Grid = React.forwardRef(function Grid(inProps, ref) {
     spacing = 0,
     wrap = 'wrap',
     zeroMinWidth = false,
-    ...propsRest
+    ...other
   } = props;
 
   const rowSpacing = rowSpacingProp || spacing;
@@ -369,14 +369,12 @@ const Grid = React.forwardRef(function Grid(inProps, ref) {
   const columns = container ? columnsProp || 12 : columnsContext;
 
   const breakpointsValues = {};
-  const propsRestFiltered = { ...propsRest };
+  const otherFiltered = { ...other };
 
-  breakpoints.keys.forEach((key) => {
-    if (key in propsRest) {
-      breakpointsValues[key] = propsRest[key];
-      delete propsRestFiltered[key];
-    } else {
-      breakpointsValues[key] = false;
+  breakpoints.keys.forEach((breakpoint) => {
+    if (other[breakpoint] != null) {
+      breakpointsValues[breakpoint] = other[breakpoint];
+      delete otherFiltered[breakpoint];
     }
   });
 
@@ -404,7 +402,7 @@ const Grid = React.forwardRef(function Grid(inProps, ref) {
         className={clsx(classes.root, className)}
         as={component}
         ref={ref}
-        {...propsRestFiltered}
+        {...otherFiltered}
       />
     </GridContext.Provider>
   );
@@ -473,10 +471,6 @@ Grid.propTypes /* remove-proptypes */ = {
    * @default false
    */
   item: PropTypes.bool,
-  /**
-   * @ignore
-   */
-  key: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
    * If a number, it sets the number of columns the grid item uses.
    * It can't be greater than the total number of columns of the container (12 by default).

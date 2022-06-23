@@ -51,6 +51,11 @@ const theme = createTheme({
         container: shadowRootElement,
       },
     },
+    MuiModal: {
+      defaultProps: {
+        container: shadowRootElement,
+      },
+    },
   },
 });
 
@@ -65,4 +70,4 @@ const theme = createTheme({
 
 In the example below you can see that the component outside of the shadow DOM is affected by global styles, while the component inside of the shadow DOM is not:
 
-{{"demo": "ShadowDOMDemo.js", "defaultCodeOpen": false}}
+{{"demo": "ShadowDOMDemo.js", "hideToolbar": true, "bg": true}}
