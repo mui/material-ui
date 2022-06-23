@@ -453,7 +453,7 @@ const className = `${sheetName}-${ruleName}-${identifier}`;
 const productionPrefix = 'jss';
 const identifier = 123;
 
-const className = `${productionPrefix}-${identifier}`;
+const className = `${productionPrefix}${identifier}`;
 ```
 
 当满足以下条件时，类名是 **确定的**：
