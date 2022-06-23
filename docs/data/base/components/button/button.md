@@ -62,6 +62,8 @@ Use the `component` prop to override the root slot with a custom element:
 <ButtonUnstyled component="div" />
 ```
 
+If you provide a non-interactive element such as a `<span>`, the `ButtonUnstyled` component will automatically add the necessary accessibility attributes.
+
 Use the `components` prop to override any interior slots in addition to the root:
 
 ```jsx
@@ -82,8 +84,6 @@ The following code snippet applies a CSS class called `my-button` to the root sl
 :::warning
 Note that `componentsProps` slot names are written in lowercase (`root`) while `components` slot names are capitalized (`Root`).
 :::
-
-If you provide a non-interactive element such as a `<span>`, the `ButtonUnstyled` component will automatically add the necessary accessibility attributes.
 
 Compare the attributes on the `<span>` in this demo with the `ButtonUnstyled` from the previous demo:
 

@@ -43,10 +43,10 @@ export default function MyApp() {
 
 ### Basic usage
 
-`MenuUnstyled` behaves similarly to the native HTML `<ul>`, and `MenuItemUnstyled` corresponds to the `<li>` tag.
+`MenuUnstyled` serves as a replacement for the native HTML `<ul>`, and `MenuItemUnstyled` corresponds to the `<li>` tag.
 
 The following demo shows how to create and style a menu component.
-Click **Dashboard** to view the menu—notice that it uses the [`PopperUnstyled`](/base/react-popper/) component to visually break out of its parent container:
+Click **Dashboard** to view the menu—notice that it uses the built-in [`PopperUnstyled`](/base/react-popper/) component to visually break out of its parent container:
 
 {{"demo": "MenuSimple.js"}}
 

@@ -41,6 +41,8 @@ Notice that both are set to a default value of 10 with the `defaultValue` prop, 
 
 {{"demo": "UnstyledSlider.js", "defaultCodeOpen": false}}
 
+## Customization
+
 ### Discrete sliders
 
 The most basic slider is _continuous_, which means it does not have pre-defined (_discrete_) values for the user to select from.

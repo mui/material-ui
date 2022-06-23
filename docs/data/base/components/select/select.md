@@ -71,17 +71,54 @@ const CustomSelect = React.forwardRef(function CustomSelect<TValue>(
 ) => JSX.Element;
 ```
 
-For the sake of brevity, the rest of the demos that follow will not use `forwardRef`.
+For the sake of brevity, the rest of the demos throughout this doc will not use `forwardRef`.
+
+### Component slots
+
+```html
+<button class="MuiSelectUnstyled-root" type="button">Open</button>
+<div class="MuiSelectUnstyled-popper">
+  <ul class="MuiSelectUnstyled-listbox">
+    <li class="MuiOptionUnstyled-root">Option one</li>
+    <li class="MuiOptionUnstyled-root">Option two</li>
+  </ul>
+</div>
+```
+
+## Hook
+
+```js
+import { useSelect } from '@mui/base/SelectUnstyled';
+```
+
+The `useSelect` hook lets you apply the functionality of `SelectUnstyled` to a fully custom component.
+It returns props to be placed on the custom component, along with fields representing the component's internal state.
+
+Hooks _do not_ support [slot props](#slot-props), but they do support [customization props](#customization).
+
+:::info
+Hooks give you the most room for customization, but require more work to implement.
+With hooks, you can take full control over how your component is rendered, and define all the custom props and CSS classes you need.
+
+You may not need to use hooks unless you find that you're limited by the customization options of their component counterparts—for instance, if your component requires significantly different [structure](#component-slots).
+:::
+
+The following example shows a select that opens when hovered over or focused.
+It can be controlled by a mouse/touch or a keyboard.
+
+{{"demo": "UseSelect.js", "defaultCodeOpen": false}}
+
+## Customization
 
 ### Controlled select
 
-`SelectUnstyled` can be used as an uncontrolled (as shown in the demo above) or controlled component.
+`SelectUnstyled` can be used as an uncontrolled or controlled component:
 
 {{"demo": "UnstyledSelectControlled.js", "defaultCodeOpen": false}}
 
 ### Object values
 
-The `SelectUnstyled` component can be used with non-string values.
+The `SelectUnstyled` component can be used with non-string values:
 
 {{"demo": "UnstyledSelectObjectValues.js", "defaultCodeOpen": false}}
 
@@ -117,18 +154,3 @@ import { MultiSelectUnstyled } from '@mui/base/SelectUnstyled';
 ```
 
 {{"demo": "UnstyledSelectMultiple.js", "defaultCodeOpen": false}}
-
-## Hook
-
-```js
-import { useSelect } from '@mui/base/SelectUnstyled';
-```
-
-You can use the `useSelect` hook to apply the functionality of the unstyled select components to a different component.
-This hook gives you the most customization options, but requires more work to implement.
-Using the hook allows you to take full control over the rendered components, their props and CSS classes.
-
-The following example shows a select that opens when hovered over or focused.
-It can be controlled by a mouse/touch or a keyboard.
-
-{{"demo": "UseSelect.js", "defaultCodeOpen": false}}
