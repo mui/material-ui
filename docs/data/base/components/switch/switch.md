@@ -33,27 +33,21 @@ export default function MyApp() {
 
 ### Basic usage
 
-The `SwitchUnstyled` component is composed of a root `<span>` that houses three interior elements—a track, a thumb, and an input—and it assigns CSS classes for styling each piece:
-
-```html
-<span class="MuiSwitch-root Mui-checked">
-  <span class="MuiSwitch-track"></span>
-  <span class="MuiSwitch-thumb"></span>
-  <input type="checkbox" aria-label="Demo switch" class="MuiSwitch-input" checked />
-</span>
-```
-
-You can set the props for these interior components using the `componentsProps` object.
-
-You can also override them entirely with the `components` prop, to replace them with other HTML elements or custom components.
-
-The following demo shows how to assign styles and props to the interior elements of the `SwitchUnstyled` component:
+The following demo shows how to assign styles and props to the `SwitchUnstyled` component:
 
 {{"demo": "UnstyledSwitches.js"}}
 
-## Accessibility
+### Internal slots
 
-To make the `SwitchUnstyled` component accessible, you should ensure that the corresponding labels reflect the current state of the switch.
+The `SwitchUnstyled` component is composed of a root `<span>` that houses three interior slots—a track, a thumb, and an input:
+
+```html
+<span class="MuiSwitch-root">
+  <span class="MuiSwitch-track"></span>
+  <span class="MuiSwitch-thumb"></span>
+  <input type="checkbox" class="MuiSwitch-input" />
+</span>
+```
 
 ## Hook
 
@@ -61,11 +55,17 @@ To make the `SwitchUnstyled` component accessible, you should ensure that the co
 import { useSwitch } from '@mui/base/SwitchUnstyled';
 ```
 
-The `useSwitch` hook lets you use the functionality of `SwitchUnstyled` in other components.
-This hook gives you the most customization options, but requires more work to implement.
-Using the hook allows you to take full control over the rendered components, their props and CSS classes.
+The `useSwitch` hook lets you apply the functionality of `SwitchUnstyled` to a fully custom component.
+It returns props to be placed on the custom component, along with fields representing the component's internal state.
 
-It accepts the same options as the `SwitchUnstyled` component, aside from the `component`, `components`, and `componentsProps` props.
+Hooks _do not_ support [slot props](#slot-props), but they do support [customization props](#customization).
+
+:::info
+Hooks give you the most room for customization, but require more work to implement.
+With hooks, you can take full control over how your component is rendered, and define all the custom props and CSS classes you need.
+
+You may not need to use hooks unless you find that you're limited by the customization options of their component counterparts—for instance, if your component requires significantly different [internal slot structure](#internal-slots).
+:::
 
 ### Basic example
 
@@ -74,3 +74,7 @@ It accepts the same options as the `SwitchUnstyled` component, aside from the `c
 ### Customized look and feel
 
 {{"demo": "UseSwitchesCustom.js"}}
+
+## Accessibility
+
+To make the switch component accessible, you should ensure that the corresponding labels reflect the current state of the switch.
