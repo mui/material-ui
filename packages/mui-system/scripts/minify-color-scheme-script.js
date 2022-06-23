@@ -20,19 +20,18 @@ import TerserPlugin from 'terser-webpack-plugin';
     // 1.1 Remove variable declaration section
     code = code.replace(/remove-start.*remove-end/s, '');
 
-    const vars = [
-      'enableColorScheme',
-      'enableSystem',
+    const stringVars = [
       'defaultLightColorScheme',
       'defaultDarkColorScheme',
       'modeStorageKey',
       'colorSchemeStorageKey',
       'attribute',
     ];
+    const booleanVars = ['enableColorScheme', 'enableSystem'];
 
     // 2. Minify the code
     const result = await TerserPlugin.terserMinify({ file: code }, undefined, {
-      mangle: { reserved: vars },
+      mangle: { reserved: [...stringVars, ...booleanVars] },
     });
 
     // 2.1 only the content of the function is needed for the minification.
@@ -42,7 +41,10 @@ import TerserPlugin from 'terser-webpack-plugin';
     );
 
     // 2.2 Turn string into variables after the minification
-    vars.forEach((variable) => {
+    stringVars.forEach((variable) => {
+      code = code.replace(new RegExp(variable, 'g'), `'\${${variable}}'`);
+    });
+    booleanVars.forEach((variable) => {
       code = code.replace(new RegExp(variable, 'g'), `\${${variable}}`);
     });
     // replace `document.documentElement` with `colorSchemeNode`

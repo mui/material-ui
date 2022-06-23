@@ -17,8 +17,8 @@ export default function getInitColorSchemeScript(options) {
   // Code-golfing the amount of characters in the script
   const mode = getStorageItem(modeStorageKey);
   const c = colorSchemeStorageKey;
-  const lightColorScheme = getStorageItem(c + 'light') || defaultLightColorScheme;
-  const darkColorScheme = getStorageItem(c + 'dark') || defaultDarkColorScheme;
+  const lightColorScheme = getStorageItem(c + '-light') || defaultLightColorScheme;
+  const darkColorScheme = getStorageItem(c + '-dark') || defaultDarkColorScheme;
   let cssColorScheme = mode;
   let colorScheme = '';
   if (mode === 'system' || (!mode && enableSystem)) {
