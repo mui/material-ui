@@ -13,7 +13,7 @@ packageName: '@mui/base'
 
 ## Introduction
 
-The `ModalUnstyled` component renders its children in front of a backdrop.
+`ModalUnstyled` is a utility component that renders its children in front of a backdrop.
 This lets you create an element that your users must interact with before continuing in the parent application.
 
 ### Features
@@ -64,6 +64,8 @@ The following demo shows how to create and style a basic modal.
 Click **Open modal** to see how it behaves:
 
 {{"demo": "ModalUnstyled.js", "defaultCodeOpen": false }}
+
+## Customization
 
 ### Nested modal
 
@@ -125,9 +127,9 @@ In order to display a modal rendered on the server, you need to disable the port
 
 {{"demo": "ServerModal.js", "defaultCodeOpen": false}}
 
-### Limitations
+## Limitations
 
-#### Focus trap
+### Focus trap
 
 `ModalUnstyled` moves the focus back to the body of the component if the focus tries to escape it.
 

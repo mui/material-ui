@@ -37,7 +37,7 @@ The following demo shows how to assign styles and props to the `SwitchUnstyled` 
 
 {{"demo": "UnstyledSwitches.js"}}
 
-### Internal slots
+### Component slots
 
 The `SwitchUnstyled` component is composed of a root `<span>` that houses three interior slots—a track, a thumb, and an input:
 
@@ -48,6 +48,40 @@ The `SwitchUnstyled` component is composed of a root `<span>` that houses three 
   <input type="checkbox" class="MuiSwitch-input" />
 </span>
 ```
+
+### Slot props
+
+:::info
+The following props are available on all non-utility Base components.
+See [Usage](/getting-started/usage/) for full details.
+:::
+
+Use the `component` prop to override the root slot with a custom element:
+
+```jsx
+<SwitchUnstyled component="div" />
+```
+
+Use the `components` prop to override any interior slots in addition to the root:
+
+```jsx
+<SwitchUnstyled components={{ Root: 'div', Track: 'div' }} />
+```
+
+:::warning
+If the root element is customized with both the `component` and `components` props, then `component` will take precedence.
+:::
+
+Use the `componentsProps` prop to pass custom props to internal slots.
+The following code snippet applies a CSS class called `my-thumb` to the thumb slot:
+
+```jsx
+<SwitchUnstyled componentsProps={{ thumb: { className: 'my-thumb' } }} />
+```
+
+:::warning
+Note that `componentsProps` slot names are written in lowercase (`root`) while `components` slot names are capitalized (`Root`).
+:::
 
 ## Hook
 

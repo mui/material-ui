@@ -43,6 +43,8 @@ At its core, the `NoSsr` component's purpose is to defer rendering from the serv
 
 {{"demo": "SimpleNoSsr.js"}}
 
+## Customization
+
 ### Delay client-side rendering
 
 You can also use `NoSsr` to delay the rendering of specific components on the client side—for example, to let the rest of the application load before an especially complex or data-heavy component.

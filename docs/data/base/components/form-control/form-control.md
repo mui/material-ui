@@ -53,16 +53,6 @@ Note that it also uses the `useFormControlUnstyledContext` hook in order to pass
 
 {{"demo": "BasicFormControl.js"}}
 
-### Component slots
-
-The `FormControlUnstyled` component is composed of a root `<div>` slot with no interior subcomponents:
-
-```html
-<div class="BaseFormControl-root">
-  <!-- form elements are nested here -->
-</div>
-```
-
 ## Hook
 
 ```jsx

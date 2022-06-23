@@ -32,12 +32,7 @@ export default function MyApp() {
 
 ### Basic usage
 
-`ButtonUnstyled` behaves similarly to the native HTML `<button>`, so it wraps the text that will be displayed on its surface.
-For instance, if the button is used to confirm a user's choice, then the component will be structured like this:
-
-```jsx
-<ButtonUnstyled>Confirm</ButtonUnstyled>
-```
+`ButtonUnstyled` behaves similarly to the native HTML `<button>`, so it wraps around the text that will be displayed on its surface.
 
 The following demo shows how to create and style two basic buttons.
 Notice that the second button cannot be clicked due to the `disabled` prop:
