@@ -62,7 +62,7 @@ export type ButtonUnstyledOwnerState = ButtonUnstyledOwnProps & {
 export type ButtonUnstyledRootSlotProps = Simplify<
   UseButtonRootSlotProps & {
     ownerState: ButtonUnstyledOwnerState;
-    className: string;
+    className?: string;
     children?: React.ReactNode;
   }
 >;

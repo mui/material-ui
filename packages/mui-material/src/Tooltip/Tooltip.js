@@ -119,7 +119,7 @@ const TooltipTooltip = styled('div', {
   },
 })(({ theme, ownerState }) => ({
   backgroundColor: theme.vars
-    ? `rgba(${theme.vars.palette.grey.darkChannel} / 0.92)`
+    ? theme.vars.palette.Tooltip.bg
     : alpha(theme.palette.grey[700], 0.92),
   borderRadius: (theme.vars || theme).shape.borderRadius,
   color: (theme.vars || theme).palette.common.white,

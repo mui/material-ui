@@ -1,9 +1,9 @@
 {
   "name": "@mui/base",
-  "version": "5.0.0-alpha.84",
+  "version": "5.0.0-alpha.86",
   "private": false,
   "author": "MUI Team",
-  "description": "Unstyled React components and low-level hooks.",
+  "description": "A library of headless ('unstyled') React UI components and low-level hooks.",
   "main": "./src/index.js",
   "keywords": [
     "react",
@@ -53,8 +53,8 @@
   "dependencies": {
     "@babel/runtime": "^7.17.2",
     "@emotion/is-prop-valid": "^1.1.2",
-    "@mui/types": "^7.1.3",
-    "@mui/utils": "^5.8.0",
+    "@mui/types": "^7.1.4",
+    "@mui/utils": "^5.8.4",
     "@popperjs/core": "^2.11.5",
     "clsx": "^1.1.1",
     "prop-types": "^15.8.1",

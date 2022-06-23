@@ -34,10 +34,11 @@ type StaticDatePickerComponent = (<TDate>(
  */
 const StaticDatePicker = React.forwardRef(function DeprecatedStaticDatePicker<TDate>(
   props: StaticDatePickerProps<TDate>,
+  ref: React.Ref<any>,
 ) {
   warn();
 
-  return <XStaticDatePicker {...props} />;
+  return <XStaticDatePicker ref={ref} {...props} />;
 }) as StaticDatePickerComponent;
 
 StaticDatePicker.propTypes /* remove-proptypes */ = {
@@ -168,10 +169,6 @@ StaticDatePicker.propTypes /* remove-proptypes */ = {
       current: PropTypes.object,
     }),
   ]),
-  /**
-   * @ignore
-   */
-  key: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
    * @ignore
    */

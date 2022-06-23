@@ -1,5 +1,6 @@
 {
-  "version": "5.8.3",
+  "name": "@mui/monorepo",
+  "version": "5.8.5",
   "private": true,
   "scripts": {
     "proptypes": "cross-env BABEL_ENV=development babel-node --extensions \".tsx,.ts,.js\" ./scripts/generateProptypes.ts",
@@ -161,7 +162,6 @@
     "prettier": "^2.6.2",
     "process": "^0.11.10",
     "prop-types": "^15.8.1",
-    "raw-loader": "4.0.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-router-dom": "^6.3.0",

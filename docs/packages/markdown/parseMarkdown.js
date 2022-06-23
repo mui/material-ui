@@ -1,6 +1,7 @@
 const { marked } = require('marked');
 const kebabCase = require('lodash/kebabCase');
 const textToHash = require('./textToHash');
+const { LANGUAGES_IGNORE_PAGES } = require('../../src/modules/constants');
 const prism = require('./prism');
 
 const headerRegExp = /---[\r\n]([\s\S]*)[\r\n]---/;
@@ -262,13 +263,7 @@ function createRender(context) {
 
       checkUrlHealth(href, linkText, context);
 
-      if (
-        userLanguage !== 'en' &&
-        href.indexOf('/') === 0 &&
-        href !== '/size-snapshot' &&
-        // The blog is not translated
-        !href.startsWith('/blog/')
-      ) {
+      if (userLanguage !== 'en' && href.indexOf('/') === 0 && !LANGUAGES_IGNORE_PAGES(href)) {
         finalHref = `/${userLanguage}${href}`;
       }
 
@@ -291,7 +286,7 @@ function createRender(context) {
 
       return `<div class="MuiCode-root"><pre><code class="language-${escape(lang, true)}">${
         escaped ? code : escape(code, true)
-      }</code></pre><button data-ga-event-category="code" data-ga-event-action="copy-click" aria-label="Copy the code" class="MuiCode-copy">Copy <span class="MuiCode-copyKeypress"><span>or</span> $key + C</span></button></div>\n`;
+      }</code></pre><button data-ga-event-category="code" data-ga-event-action="copy-click" aria-label="Copy the code" class="MuiCode-copy">Copy <span class="MuiCode-copyKeypress"><span>(Or</span> $keyC<span>)</span></span></button></div>\n`;
     };
 
     const markedOptions = {

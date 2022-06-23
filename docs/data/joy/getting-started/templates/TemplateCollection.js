@@ -6,6 +6,7 @@ import { useTheme } from '@mui/joy/styles';
 import AspectRatio from '@mui/joy/AspectRatio';
 import Box from '@mui/joy/Box';
 import Card from '@mui/joy/Card';
+import Link from '@mui/joy/Link';
 import List from '@mui/joy/List';
 import ListDivider from '@mui/joy/ListDivider';
 import Button from '@mui/joy/Button';
@@ -16,7 +17,7 @@ import codeSandbox from 'docs/src/modules/sandbox/CodeSandbox';
 import extractTemplates from 'docs/src/modules/utils/extractTemplates';
 
 const cache = {};
-const req = require.context('!raw-loader!./', true, /^\.\/[^/]+\/.*\.(js|tsx)$/);
+const req = require.context('./?raw', true, /^\.\/[^/]+\/.*\.(js|tsx)$/);
 req.keys().forEach((key) => {
   cache[key] = req(key);
 });
@@ -154,6 +155,20 @@ export default function TemplateCollection() {
                     transition: '0.3s',
                   }}
                 />
+                <NextLink
+                  href={`/joy-ui/getting-started/templates/${name}/`}
+                  passHref
+                >
+                  {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+                  <Link
+                    tabIndex={-1}
+                    overlay
+                    aria-hidden
+                    data-ga-event-category="joy-template"
+                    data-ga-event-label={name}
+                    data-ga-event-action="preview-img"
+                  />
+                </NextLink>
               </AspectRatio>
             </Card>
           </React.Fragment>

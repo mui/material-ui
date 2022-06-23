@@ -24,7 +24,7 @@ const ListItemDecoratorRoot = styled('span', {
   display: 'inline-flex',
   alignItems: 'center',
   color: `var(--List-decorator-color)`,
-  minWidth: 'var(--List-decorator-width)',
+  minInlineSize: 'var(--List-decorator-width)',
 });
 
 const ListItemDecorator = React.forwardRef(function ListItemDecorator(inProps, ref) {

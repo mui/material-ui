@@ -4812,7 +4812,7 @@ The `TablePagination` component does no longer try to fix invalid (`page`, `coun
 
 - [styles] Change the withTheme API (#14565) @oliviertassinari
 
-Remove the first option argument of `withTheme()`. The first argument was a placeholder for a potential future option. We have never found a need for it. It's time to remove this argument. It matches the emotion and styled-components API.
+Remove the first option argument of `withTheme()`. The first argument was a placeholder for a potential future option. We have never found a need for it. It's time to remove this argument. It matches the Emotion and styled-components API.
 
 ```diff
 -const DeepChild = withTheme()(DeepChildRaw);
@@ -5426,7 +5426,7 @@ The Tabs `fullWidth` and `scrollable` properties can't be used at the same time.
 
 - [examples] Add nextjs-hooks-with-typescript (#13981) @virzak
 - [docs] Theme usage with styled-components (#13999) @oliviertassinari
-- [docs] Update the emotion documentation (#14001) @oliviertassinari
+- [docs] Update the Emotion documentation (#14001) @oliviertassinari
 - [docs] Duplicate all the demos with the React Hooks API (#13497) @adeelibr
 - [docs] Set react-jss version in nextjs example (#14015) @goofiw
 - [docs] Fix fullWidth deprecation warnings (#14010) @oliviertassinari
@@ -5783,7 +5783,7 @@ Here are some highlights ✨:
 - Introduce a new `@material-ui/styles` package 💅 (#13503).
 
 The Material UI's styling solution has pretty much stayed the same [for the last 12 months](https://github.com/oliviertassinari/a-journey-toward-better-style).
-Some interesting CSS-in-JS libraries like styled-components, emotion or linaria have emerged.
+Some interesting CSS-in-JS libraries like styled-components, Emotion or linaria have emerged.
 This new package is a significant step forward. Some of the key features:
 
 - Supports 4 different APIs: hooks, styled-components, higher-order components and render props.
@@ -6322,7 +6322,7 @@ It contains many bug fixes 🐛 and documentation improvements 📝.
 - [docs] Update themes.md (#12942) @brucegl
 - [docs] Fix documentation error in <Input /> (#12955) @lukePeavey
 - [docs] Minor style update of the tabs demos (#12958) @dotku
-- [docs] Glamorous is deprecated for emotion (#12963) @oliviertassinari
+- [docs] Glamorous is deprecated for Emotion (#12963) @oliviertassinari
 - [docs] Add Emotion to style library interoperability guide (#12966) @lukePeavey
 - [docs] Fix IconButton Snackbar demos (#12964) @bhalahariharan
 - [docs] Show how to combine OutlinedInput and FilledInput (#12968) @oliviertassinari
