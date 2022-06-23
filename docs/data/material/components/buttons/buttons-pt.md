@@ -29,7 +29,7 @@ O `Botão` vem com três variantes: texto (padrão), contido e delineado.
 
 ### Botões de texto
 
-[Text buttons](https://material.io/components/buttons#text-button) are typically used for less-pronounced actions, including those located: in dialogs, in cards. Em cartões, os botões de texto ajudam a manter a ênfase no conteúdo do cartão.
+[Botões de texto](https://material.io/components/buttons#text-button) normalmente são usados ​​para ações menos pronunciadas, incluindo aquelas localizadas: em caixas de diálogo, em cartões. Em cartões, os botões de texto ajudam a manter a ênfase no conteúdo do cartão.
 
 {{"demo": "TextButtons.js"}}
 
