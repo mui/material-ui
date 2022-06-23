@@ -44,11 +44,6 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(props, ref) 
 
   const getUpdatedState = React.useCallback(() => {
     const input = inputRef.current;
-
-    if (!input) {
-      return;
-    }
-
     const containerWindow = ownerWindow(input);
     const computedStyle = containerWindow.getComputedStyle(input);
 
@@ -150,7 +145,6 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(props, ref) 
     // In React 18, state updates in a ResizeObserver's callback are happening after the paint which causes flickering
     // when doing some visual updates in it. Using flushSync ensures that the dom will be painted after the states updates happen
     // Related issue - https://github.com/facebook/react/issues/24331
-    // TODO: Do this only in the resize observer?
     flushSync(() => {
       setState((prevState) => {
         return updateState(prevState, newState);
@@ -161,7 +155,16 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(props, ref) 
   React.useEffect(() => {
     const handleResize = debounce(() => {
       renders.current = 0;
-      syncHeightWithFlushSycn();
+
+      // If the TextareaAutisize component is replaced by Suspense with a fallback, the last
+      // ResizeObserver's handler that runs because of the change in the layout is trying to
+      // access a dom node that is no longer there (as the fallback component is being shown instead).
+      // See https://github.com/mui/material-ui/issues/32640
+      // TODO: Add tests that will ensure the component is not failing when
+      // replaced by Suspense with a fallback, once React is updated to version 18
+      if (inputRef.current) {
+        syncHeightWithFlushSycn();
+      }
     });
     const containerWindow = ownerWindow(inputRef.current);
     containerWindow.addEventListener('resize', handleResize);
