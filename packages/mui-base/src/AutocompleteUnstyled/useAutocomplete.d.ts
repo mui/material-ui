@@ -270,6 +270,21 @@ export interface UseAutocompleteProps<
     reason: AutocompleteChangeReason,
     details?: AutocompleteChangeDetails<T>,
   ) => void;
+  /**
+   * If `true`, the component is disabled.
+   * @default false
+   */
+   disabled?: boolean;
+   /**
+    * If `true`, the component becomes readonly. It is also supported for multiple tags where the tag cannot be deleted.
+    * @default false
+    */
+    readOnly?: boolean;
+   /**
+    * If `true`, the component is in a loading state. This shows the loadingText in place of suggestions (only if there are no suggestions to show, e.g. options are empty).
+    * @default false
+    */
+    loading?: boolean;
 }
 
 export type AutocompleteHighlightChangeReason = 'keyboard' | 'mouse' | 'auto';
