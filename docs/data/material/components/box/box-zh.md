@@ -9,7 +9,7 @@ githubLabel: 'component: Box'
 
 <p class="description">对于大多数 CSS 实用程序来说，Box 组件能够作为一个包装组件来使用。</p>
 
-在`@mui/system`中，您可以找到所述 Box 组件包的 [所有的样式功能](/system/basics/#all-inclusive)。
+The Box component packages [all the style functions](/system/properties/) that are exposed in `@mui/system`.
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
