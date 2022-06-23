@@ -78,8 +78,8 @@ import Button from '@mui/joy/IconButton';
 {{"demo": "IconButtons.js"}}
 
 :::info
-**♿️ Accessibility tip**: Don't forget to provide a meaningful [`aria-label`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-label) to the icon button.
-It helps screen readers to identify the component.
+**♿️ Accessibility tip**: Make sure to provide a meaningful [`aria-label`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-label) to the icon button.
+It helps screen readers to properly identify the component.
 
 ```js
 <IconButton aria-label="Add to favorite">
