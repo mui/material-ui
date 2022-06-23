@@ -38,6 +38,16 @@ By default, an empty `TextareaAutosize` component renders as a single row, as sh
 
 {{"demo": "EmptyTextarea.js"}}
 
+### Internal slots
+
+The `TextareaAutosize` component is composed of a root `<textarea>` slot with no interior subcomponents:
+
+```html
+<textarea></textarea>
+```
+
+## Customization
+
 ### Minimum height
 
 Use the `minRows` prop to define the minimum height of the component:
