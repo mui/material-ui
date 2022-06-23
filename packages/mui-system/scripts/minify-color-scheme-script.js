@@ -3,6 +3,10 @@ import path from 'path';
 import TerserPlugin from 'terser-webpack-plugin';
 
 /**
+ * ```sh
+ * yarn system:minify-color-scheme-script
+ * ```
+ *
  * This script reads `./colorSchemeScript.js` and minified using terser.
  * Some variables are not minified so that they can be mapped with the production code `getInitColorSchemeScript.tsx`
  */
