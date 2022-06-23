@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { styled } from '@mui/system';
 import { Transition } from 'react-transition-group';
 
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import CheckRoundedIcon from '@mui/icons-material/CheckRounded';
 import CloseIcon from '@mui/icons-material/Close';
 import SnackbarUnstyled from '@mui/base/SnackbarUnstyled';
 
@@ -205,7 +205,7 @@ export default function TransitionComponentSnackbar() {
         componentsProps={{ transition: { open } }}
       >
         <SnackbarContent>
-          <CheckCircleIcon
+          <CheckRoundedIcon
             sx={{
               flexShrink: 0,
               marginRight: '0.75rem',
@@ -214,9 +214,9 @@ export default function TransitionComponentSnackbar() {
             }}
           />
           <div className="snackbar-message">
-            <div className="snackbar-title">Account Created</div>
+            <div className="snackbar-title">Notifications sent</div>
             <div className="snackbar-description">
-              We&apos;ve created your account for you
+              All your notifications were sent to the desired adress.
             </div>
           </div>
           <CloseIcon onClick={handleClose} className="snackbar-close-icon" />
