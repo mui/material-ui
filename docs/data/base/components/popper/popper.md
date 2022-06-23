@@ -50,6 +50,8 @@ By default, clicking outside the popper does not hide it.
 If you need this behavior, you can use the [`ClickAwayListener`](/base/react-click-away-listener/) component.
 :::
 
+## Customization
+
 ### Placement
 
 The popper's default placement is `bottom`.
