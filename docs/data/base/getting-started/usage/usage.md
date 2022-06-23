@@ -87,7 +87,7 @@ These two examples are equivalent:
 ```
 
 :::warning
-However, if both `componentsProps.root` and additional props are specified with both having same properties but different values, the `componentsProps.root` props will take precedence.
+If both `componentsProps.root` and additional props have the same keys but different values, the `componentsProps.root` props will take precedence. This does not apply to classes and the `style` prop (they will be merged instead).
 :::
 
 ## Components vs. hooks
