@@ -46,9 +46,9 @@ For instance, if the badge indicates the number of emails in an inbox, then the 
 </BadgeUnstyled>
 ```
 
-### Internal slots
+### Component slots
 
-The `BadgeUnstyled` component is composed of a root `<span>` that houses the element that the badge is attached to, followed by a `<span>` to represent the badge itself:
+The `BadgeUnstyled` component is composed of a root `<span>` that houses the element that the badge is attached to, followed by a `<span>` slot to represent the badge itself:
 
 ```html
 <span class="BaseBadge-root">
@@ -60,7 +60,7 @@ The `BadgeUnstyled` component is composed of a root `<span>` that houses the ele
 ### Slot props
 
 :::info
-The following props are available on all Base components.
+The following props are available on all non-utility Base components.
 See [Usage](/getting-started/usage/) for full details.
 :::
 
@@ -106,7 +106,7 @@ Hooks _do not_ support [slot props](#slot-props), but they do support [customiza
 Hooks give you the most room for customization, but require more work to implement.
 With hooks, you can take full control over how your component is rendered, and define all the custom props and CSS classes you need.
 
-You may not need to use hooks unless you find that you're limited by the customization options of their component counterparts—for instance, if your component requires significantly different [internal slot structure](#internal-slots).
+You may not need to use hooks unless you find that you're limited by the customization options of their component counterparts—for instance, if your component requires significantly different [structure](#component-slots).
 :::
 
 ## Customization

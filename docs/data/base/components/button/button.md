@@ -44,9 +44,9 @@ Notice that the second button cannot be clicked due to the `disabled` prop:
 
 {{"demo": "UnstyledButtonsSimple.js", "defaultCodeOpen": true}}
 
-### Internal slots
+### Component slots
 
-The `ButtonUnstyled` component is composed of a root `<button>` slot with no interior subcomponents:
+The `ButtonUnstyled` component is composed of a root `<button>` slot with no interior slots:
 
 ```html
 <button class="BaseButton-root">
@@ -57,7 +57,7 @@ The `ButtonUnstyled` component is composed of a root `<button>` slot with no int
 ### Slot props
 
 :::info
-The following props are available on all Base components.
+The following props are available on all non-utility Base components.
 See [Usage](/getting-started/usage/) for full details.
 :::
 
@@ -67,7 +67,7 @@ Use the `component` prop to override the root slot with a custom element:
 <ButtonUnstyled component="div" />
 ```
 
-Use the `components` prop to override any interior slots in addition to the root (largely unnecessary here, since this component contains no subcomponents):
+Use the `components` prop to override any interior slots in addition to the root:
 
 ```jsx
 <ButtonUnstyled components={{ Root: 'div' }} />
@@ -114,7 +114,7 @@ Hooks _do not_ support [slot props](#slot-props), but they do support [customiza
 Hooks give you the most room for customization, but require more work to implement.
 With hooks, you can take full control over how your component is rendered, and define all the custom props and CSS classes you need.
 
-You may not need to use hooks unless you find that you're limited by the customization options of their component counterparts—for instance, if your component requires significantly different [internal slot structure](#internal-slots).
+You may not need to use hooks unless you find that you're limited by the customization options of their component counterparts—for instance, if your component requires significantly different [structure](#component-slots).
 :::
 
 The `useButton` hook requires the `ref` of the element it's used on.

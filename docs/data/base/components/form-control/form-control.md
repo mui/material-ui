@@ -12,7 +12,7 @@ packageName: '@mui/base'
 
 ## Introduction
 
-`FormControlUnstyled` wraps an input component with other associated components in order to make the state of the input available to those components.
+`FormControlUnstyled` is a utility that wraps an input component with other associated components in order to make the state of the input available to those components.
 
 For instance, you may want to show an additional element asking the user to enter a value if the input is empty, or display a warning icon if the entered value is incorrect.
 
@@ -53,7 +53,7 @@ Note that it also uses the `useFormControlUnstyledContext` hook in order to pass
 
 {{"demo": "BasicFormControl.js"}}
 
-### Internal slots
+### Component slots
 
 The `FormControlUnstyled` component is composed of a root `<div>` slot with no interior subcomponents:
 
@@ -62,40 +62,6 @@ The `FormControlUnstyled` component is composed of a root `<div>` slot with no i
   <!-- form elements are nested here -->
 </div>
 ```
-
-### Slot props
-
-:::info
-The following props are available on all Base components.
-See [Usage](/getting-started/usage/) for full details.
-:::
-
-Use the `component` prop to override the root slot with a custom element:
-
-```jsx
-<FormControlUnstyled component="span" />
-```
-
-Use the `components` prop to override any interior slots in addition to the root (largely unnecessary here, since this component contains no subcomponents):
-
-```jsx
-<FormControlUnstyled components={{ Root: 'span' }} />
-```
-
-:::warning
-If the root element is customized with both the `component` and `components` props, then `component` will take precedence.
-:::
-
-Use the `componentsProps` prop to pass custom props to internal slots.
-The following code snippet applies a CSS class called `my-form-control` to the root slot:
-
-```jsx
-<FormControlUnstyled componentsProps={{ root: { className: 'my-form-control' } }} />
-```
-
-:::warning
-Note that `componentsProps` slot names are written in lowercase (`root`) while `components` slot names are capitalized (`Root`).
-:::
 
 ## Hook
 
@@ -113,7 +79,7 @@ Hooks _do not_ support [slot props](#slot-props), but they do support [customiza
 Hooks give you the most room for customization, but require more work to implement.
 With hooks, you can take full control over how your component is rendered, and define all the custom props and CSS classes you need.
 
-You may not need to use hooks unless you find that you're limited by the customization options of their component counterparts—for instance, if your component requires significantly different [internal slot structure](#internal-slots).
+You may not need to use hooks unless you find that you're limited by the customization options of their component counterparts—for instance, if your component requires significantly different [structure](#component-slots).
 :::
 
 The demo below shows how to integrate this hook with its component counterpart:

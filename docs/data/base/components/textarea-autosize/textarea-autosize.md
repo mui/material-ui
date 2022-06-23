@@ -12,7 +12,7 @@ packageName: '@mui/base'
 
 ## Introduction
 
-`TextareaAutosize` is a component that replaces the native `<textarea>` HTML element.
+`TextareaAutosize` is a utility component that replaces the native `<textarea>` HTML element.
 
 The height of the `TextareaAutosize` component automatically adjusts as a response to keyboard inputs and window resizing events.
 
@@ -37,14 +37,6 @@ export default function MyApp() {
 By default, an empty `TextareaAutosize` component renders as a single row, as shown in the following demo:
 
 {{"demo": "EmptyTextarea.js"}}
-
-### Internal slots
-
-The `TextareaAutosize` component is composed of a root `<textarea>` slot with no interior subcomponents:
-
-```html
-<textarea></textarea>
-```
 
 ## Customization
 
