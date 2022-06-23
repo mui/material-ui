@@ -25,10 +25,6 @@ export interface SliderClasses {
   valueLabel: string;
   /** Class name applied to the thumb label element if it's open. */
   valueLabelOpen: string;
-  /** Class name applied to the thumb label's circle element. */
-  valueLabelCircle: string;
-  /** Class name applied to the thumb label's label element. */
-  valueLabelLabel: string;
   /** Class name applied to the mark element. */
   mark: string;
   /** Class name applied to the mark element when it is active. */
@@ -58,10 +54,10 @@ export interface SliderClasses {
 export type SliderClassKey = keyof SliderClasses;
 
 export function getSliderUtilityClass(slot: string): string {
-  return generateUtilityClass('MuiSlider', slot);
+  return generateUtilityClass('JoySlider', slot);
 }
 
-const sliderClasses: SliderClasses = generateUtilityClasses('MuiSlider', [
+const sliderClasses: SliderClasses = generateUtilityClasses('JoySlider', [
   'root',
   'disabled',
   'dragging',
@@ -75,10 +71,10 @@ const sliderClasses: SliderClasses = generateUtilityClasses('MuiSlider', [
   'markActive',
   'markLabel',
   'thumb',
+  'thumbStart',
+  'thumbEnd',
   'valueLabel',
   'valueLabelOpen',
-  'valueLabelCircle',
-  'valueLabelLabel',
   'colorPrimary',
   'colorNeutral',
   'colorDanger',

@@ -48,7 +48,7 @@ const FilledInputRoot = styled(InputBaseRoot, {
   const disabledBackground = light ? 'rgba(0, 0, 0, 0.12)' : 'rgba(255, 255, 255, 0.12)';
   return {
     position: 'relative',
-    backgroundColor: theme.vars ? theme.vars.palette.FilledInput.bgColor : backgroundColor,
+    backgroundColor: theme.vars ? theme.vars.palette.FilledInput.bg : backgroundColor,
     borderTopLeftRadius: (theme.vars || theme).shape.borderRadius,
     borderTopRightRadius: (theme.vars || theme).shape.borderRadius,
     transition: theme.transitions.create('background-color', {
@@ -56,19 +56,17 @@ const FilledInputRoot = styled(InputBaseRoot, {
       easing: theme.transitions.easing.easeOut,
     }),
     '&:hover': {
-      backgroundColor: theme.vars ? theme.vars.palette.FilledInput.hoverBgColor : hoverBackground,
+      backgroundColor: theme.vars ? theme.vars.palette.FilledInput.hoverBg : hoverBackground,
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
-        backgroundColor: theme.vars ? theme.vars.palette.FilledInput.bgColor : backgroundColor,
+        backgroundColor: theme.vars ? theme.vars.palette.FilledInput.bg : backgroundColor,
       },
     },
     [`&.${filledInputClasses.focused}`]: {
-      backgroundColor: theme.vars ? theme.vars.palette.FilledInput.bgColor : backgroundColor,
+      backgroundColor: theme.vars ? theme.vars.palette.FilledInput.bg : backgroundColor,
     },
     [`&.${filledInputClasses.disabled}`]: {
-      backgroundColor: theme.vars
-        ? theme.vars.palette.FilledInput.disabledBgColor
-        : disabledBackground,
+      backgroundColor: theme.vars ? theme.vars.palette.FilledInput.disabledBg : disabledBackground,
     },
     ...(!ownerState.disableUnderline && {
       '&:after': {
@@ -100,7 +98,7 @@ const FilledInputRoot = styled(InputBaseRoot, {
       '&:before': {
         borderBottom: `1px solid ${
           theme.vars
-            ? `rgba(${theme.vars.palette.common.onBackgroundChannel} / ${theme.vars.opacity.inputTouchBottomLine})`
+            ? `rgba(${theme.vars.palette.common.onBackgroundChannel} / ${theme.vars.opacity.inputUnderline})`
             : bottomLineColor
         }`,
         left: 0,

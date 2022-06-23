@@ -78,7 +78,7 @@ const SkeletonRoot = styled('span', {
       display: 'block',
       // Create a "on paper" color with sufficient contrast retaining the color
       backgroundColor: theme.vars
-        ? theme.vars.palette.Skeleton.bgColor
+        ? theme.vars.palette.Skeleton.bg
         : alpha(theme.palette.text.primary, theme.palette.mode === 'light' ? 0.11 : 0.13),
       height: '1.2em',
       ...(ownerState.variant === 'text' && {

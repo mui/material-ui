@@ -49,7 +49,7 @@ const TableCellRoot = styled('td', {
   // Workaround for a rendering bug with spanned columns in Chrome 62.0.
   // Removes the alpha (sets it to 1), and lightens or darkens the theme color.
   borderBottom: theme.vars
-    ? `1px solid ${theme.vars.palette.TableCell.borderColor}`
+    ? `1px solid ${theme.vars.palette.TableCell.border}`
     : `1px solid
     ${
       theme.palette.mode === 'light'

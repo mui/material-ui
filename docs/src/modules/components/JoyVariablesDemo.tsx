@@ -1,13 +1,13 @@
 import * as React from 'react';
 import Box from '@mui/joy/Box';
-import Link from '@mui/joy/Link';
 import IconButton from '@mui/joy/IconButton';
 import TextField from '@mui/joy/TextField';
 import Typography from '@mui/joy/Typography';
+import Sheet from '@mui/joy/Sheet';
 import BrandingProvider from 'docs/src/BrandingProvider';
 import HighlighedCode from 'docs/src/modules/components/HighlightedCode';
 import { inputClasses } from '@mui/joy/Input';
-import Replay from '@mui/icons-material/ReplayRounded';
+import ReplayRoundedIcon from '@mui/icons-material/ReplayRounded';
 
 function formatSx(sx: { [k: string]: string }) {
   const lines = Object.keys(sx);
@@ -22,16 +22,19 @@ export default function JoyVariablesDemo(props: {
   childrenAccepted?: boolean;
   data: Array<{ var: string; defaultValue?: string }>;
   renderDemo: (sx: { [k: string]: string }) => React.ReactElement;
+  renderCode?: (formattedSx: string) => string;
 }) {
-  const { componentName, data = [], childrenAccepted = false } = props;
+  const { componentName, data = [], childrenAccepted = false, renderCode } = props;
   const [sx, setSx] = React.useState<{ [k: string]: string }>({});
   return (
     <Box
       sx={{
         m: -1.5,
+        mt: 0.25,
         flexGrow: 1,
         maxWidth: 'calc(100% + 24px)',
         display: 'flex',
+        flexDirection: { xs: 'column', sm: 'row' },
         flexWrap: 'wrap',
         gap: 1.5,
         '& .markdown-body pre': {
@@ -54,41 +57,43 @@ export default function JoyVariablesDemo(props: {
         </Box>
         <BrandingProvider mode="dark">
           <HighlighedCode
-            code={`<${componentName} ${formatSx(sx)}${childrenAccepted ? '>' : '/>'}`}
+            code={
+              renderCode
+                ? renderCode(formatSx(sx))
+                : `<${componentName} ${formatSx(sx)}${childrenAccepted ? '>' : '/>'}`
+            }
             language="jsx"
             sx={{ display: { xs: 'none', md: 'initial' } }}
           />
         </BrandingProvider>
       </Box>
-      <Box
+      <Sheet
+        variant="outlined"
         sx={{
           minWidth: 0,
           flexBasis: 240,
           flexGrow: 1,
           p: 2,
-          bgcolor: 'background.level1',
+          bgcolor: 'background.body',
           borderRadius: 'xs',
         }}
       >
-        <Typography
-          fontWeight="lg"
-          mb={2}
-          endDecorator={
-            // eslint-disable-next-line jsx-a11y/anchor-is-valid
-            <Link
-              component="button"
-              onClick={() => setSx({})}
-              startDecorator={<Replay />}
-              fontSize="xs"
-              sx={{ visibility: Object.keys(sx).length > 1 ? 'visible' : 'hidden' }}
-            >
-              Reset All
-            </Link>
-          }
-          justifyContent="space-between"
-        >
-          CSS variables
-        </Typography>
+        <Box sx={{ mb: 2, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <Typography fontWeight="lg">CSS variables</Typography>
+          <IconButton
+            aria-label="Reset all"
+            variant="outlined"
+            color="neutral"
+            size="sm"
+            onClick={() => setSx({})}
+            sx={{
+              visibility: Object.keys(sx).length > 1 ? 'visible' : 'hidden',
+              '--IconButton-size': '30px',
+            }}
+          >
+            <ReplayRoundedIcon />
+          </IconButton>
+        </Box>
         <Box
           sx={{
             display: 'flex',
@@ -105,6 +110,19 @@ export default function JoyVariablesDemo(props: {
                 size="sm"
                 variant="outlined"
                 value={Number(resolvedValue?.replace('px', '')) || ''}
+                componentsProps={{
+                  input: {
+                    onKeyDown: (event) => {
+                      if ((event.ctrlKey || event.metaKey) && event.code === 'KeyZ') {
+                        setSx((prevSx) => {
+                          const newSx = { ...prevSx };
+                          delete newSx[item.var];
+                          return newSx;
+                        });
+                      }
+                    },
+                  },
+                }}
                 endDecorator={
                   <React.Fragment>
                     <Typography level="body3" mr={0.5}>
@@ -112,6 +130,7 @@ export default function JoyVariablesDemo(props: {
                     </Typography>
                     {sx[item.var] && sx[item.var] !== item.defaultValue && (
                       <IconButton
+                        tabIndex={-1}
                         variant="plain"
                         color="neutral"
                         size="sm"
@@ -123,7 +142,7 @@ export default function JoyVariablesDemo(props: {
                           })
                         }
                       >
-                        <Replay fontSize="sm" />
+                        <ReplayRoundedIcon fontSize="sm" />
                       </IconButton>
                     )}
                   </React.Fragment>
@@ -135,7 +154,7 @@ export default function JoyVariablesDemo(props: {
                     if (!value) {
                       const newSx = { ...prevSx };
                       // @ts-ignore
-                      delete newSx[data.var];
+                      delete newSx[item.var];
                       return newSx;
                     }
                     return {
@@ -155,7 +174,7 @@ export default function JoyVariablesDemo(props: {
             );
           })}
         </Box>
-      </Box>
+      </Sheet>
     </Box>
   );
 }

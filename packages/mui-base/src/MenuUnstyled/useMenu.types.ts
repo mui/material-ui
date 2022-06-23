@@ -4,8 +4,8 @@ import { UseListboxRootSlotProps } from '../ListboxUnstyled';
 export interface MenuItemMetadata {
   id: string;
   disabled: boolean;
-  ref: React.RefObject<HTMLElement>;
   label?: string;
+  ref: React.RefObject<HTMLElement>;
 }
 
 export interface MenuItemState {
@@ -17,7 +17,7 @@ export interface UseMenuParameters {
   open?: boolean;
   onClose?: () => void;
   listboxId?: string;
-  listboxRef?: React.Ref<HTMLElement>;
+  listboxRef?: React.Ref<any>;
 }
 
 interface UseMenuListboxSlotEventHandlers {
@@ -27,4 +27,7 @@ interface UseMenuListboxSlotEventHandlers {
 
 export type UseMenuListboxSlotProps<TOther = {}> = UseListboxRootSlotProps<
   Omit<TOther, keyof UseMenuListboxSlotEventHandlers> & UseMenuListboxSlotEventHandlers
-> & { role: React.AriaRole };
+> & {
+  ref: React.Ref<any>;
+  role: React.AriaRole;
+};

@@ -91,7 +91,7 @@ const getColorShade = (theme, color) => {
     return 'currentColor';
   }
   if (theme.vars) {
-    return theme.vars.palette.LinearProgress[`${color}BgColor`];
+    return theme.vars.palette.LinearProgress[`${color}Bg`];
   }
   return theme.palette.mode === 'light'
     ? lighten(theme.palette[color].main, 0.62)

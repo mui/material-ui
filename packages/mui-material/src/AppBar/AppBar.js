@@ -18,6 +18,10 @@ const useUtilityClasses = (ownerState) => {
   return composeClasses(slots, getAppBarUtilityClass, classes);
 };
 
+// var2 is the fallback.
+// Ex. var1: 'var(--a)', var2: 'var(--b)'; return: 'var(--a, var(--b))'
+const joinVars = (var1, var2) => `${var1?.replace(')', '')}, ${var2})`;
+
 const AppBarRoot = styled(Paper, {
   name: 'MuiAppBar',
   slot: 'Root',
@@ -72,34 +76,61 @@ const AppBarRoot = styled(Paper, {
     ...(ownerState.position === 'relative' && {
       position: 'relative',
     }),
-    ...(ownerState.color === 'default' && {
-      backgroundColor: theme.vars
-        ? theme.vars.palette.AppBar.defaultBgColor
-        : backgroundColorDefault,
-      color: theme.vars
-        ? theme.vars.palette.text.primary
-        : theme.palette.getContrastText(backgroundColorDefault),
-    }),
-    ...(ownerState.color &&
-      ownerState.color !== 'default' &&
-      ownerState.color !== 'inherit' &&
-      ownerState.color !== 'transparent' && {
-        backgroundColor: (theme.vars || theme).palette[ownerState.color].main,
-        color: (theme.vars || theme).palette[ownerState.color].contrastText,
+    ...(!theme.vars && {
+      ...(ownerState.color === 'default' && {
+        backgroundColor: backgroundColorDefault,
+        color: theme.palette.getContrastText(backgroundColorDefault),
       }),
-    ...(ownerState.color === 'inherit' && {
-      color: 'inherit',
-    }),
-    ...(theme.palette.mode === 'dark' &&
-      !ownerState.enableColorOnDark && {
-        backgroundColor: null,
-        color: null,
+      ...(ownerState.color &&
+        ownerState.color !== 'default' &&
+        ownerState.color !== 'inherit' &&
+        ownerState.color !== 'transparent' && {
+          backgroundColor: theme.palette[ownerState.color].main,
+          color: theme.palette[ownerState.color].contrastText,
+        }),
+      ...(ownerState.color === 'inherit' && {
+        color: 'inherit',
       }),
-    ...(ownerState.color === 'transparent' && {
-      backgroundColor: 'transparent',
-      color: 'inherit',
-      ...(theme.palette.mode === 'dark' && {
+      ...(theme.palette.mode === 'dark' &&
+        !ownerState.enableColorOnDark && {
+          backgroundColor: null,
+          color: null,
+        }),
+      ...(ownerState.color === 'transparent' && {
+        backgroundColor: 'transparent',
+        color: 'inherit',
+        ...(theme.palette.mode === 'dark' && {
+          backgroundImage: 'none',
+        }),
+      }),
+    }),
+    ...(theme.vars && {
+      ...(ownerState.color === 'default' && {
+        '--AppBar-background': ownerState.enableColorOnDark
+          ? theme.vars.palette.AppBar.defaultBg
+          : joinVars(theme.vars.palette.AppBar.darkBg, theme.vars.palette.AppBar.defaultBg),
+        '--AppBar-color': ownerState.enableColorOnDark
+          ? theme.vars.palette.text.primary
+          : joinVars(theme.vars.palette.AppBar.darkColor, theme.vars.palette.text.primary),
+      }),
+      ...(ownerState.color &&
+        !ownerState.color.match(/^(default|inherit|transparent)$/) && {
+          '--AppBar-background': ownerState.enableColorOnDark
+            ? theme.vars.palette[ownerState.color].main
+            : joinVars(theme.vars.palette.AppBar.darkBg, theme.vars.palette[ownerState.color].main),
+          '--AppBar-color': ownerState.enableColorOnDark
+            ? theme.vars.palette[ownerState.color].contrastText
+            : joinVars(
+                theme.vars.palette.AppBar.darkColor,
+                theme.vars.palette[ownerState.color].contrastText,
+              ),
+        }),
+      backgroundColor: 'var(--AppBar-background)',
+      color: ownerState.color === 'inherit' ? 'inherit' : 'var(--AppBar-color)',
+      ...(ownerState.color === 'transparent' && {
         backgroundImage: 'none',
+        backgroundColor: 'transparent',
+        color: 'inherit',
       }),
     }),
   };

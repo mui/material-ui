@@ -1,11 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import { HTMLElementType, refType } from '@mui/utils';
-import appendOwnerState from '../utils/appendOwnerState';
 import MenuUnstyledContext, { MenuUnstyledContextType } from './MenuUnstyledContext';
 import {
-  MenuUnstyledListboxSlotProps,
   MenuUnstyledOwnerState,
   MenuUnstyledProps,
   MenuUnstyledRootSlotProps,
@@ -14,7 +11,7 @@ import { getMenuUnstyledUtilityClass } from './menuUnstyledClasses';
 import useMenu from './useMenu';
 import composeClasses from '../composeClasses';
 import PopperUnstyled from '../PopperUnstyled';
-import { WithOptionalOwnerState } from '../utils';
+import useSlotProps from '../utils/useSlotProps';
 
 function getUtilityClasses(ownerState: MenuUnstyledOwnerState) {
   const { open } = ownerState;
@@ -43,11 +40,11 @@ const MenuUnstyled = React.forwardRef(function MenuUnstyled(
     actions,
     anchorEl,
     children,
-    className,
     component,
     components = {},
     componentsProps = {},
     keepMounted = false,
+    listboxId,
     onClose,
     open = false,
     ...other
@@ -64,8 +61,7 @@ const MenuUnstyled = React.forwardRef(function MenuUnstyled(
   } = useMenu({
     open,
     onClose,
-    listboxRef: componentsProps.listbox?.ref,
-    listboxId: componentsProps.listbox?.id,
+    listboxId,
   });
 
   React.useImperativeHandle(
@@ -84,31 +80,30 @@ const MenuUnstyled = React.forwardRef(function MenuUnstyled(
 
   const classes = getUtilityClasses(ownerState);
 
-  const Popper = component ?? components.Root ?? PopperUnstyled;
-  const popperProps: MenuUnstyledRootSlotProps = appendOwnerState(
-    Popper,
-    {
-      ...other,
+  const Root = component ?? components.Root ?? PopperUnstyled;
+  const rootProps: MenuUnstyledRootSlotProps = useSlotProps({
+    elementType: Root,
+    externalForwardedProps: other,
+    externalSlotProps: componentsProps.root,
+    additionalProps: {
       anchorEl,
       open,
       keepMounted,
       role: undefined,
-      ...componentsProps.root,
-      className: clsx(classes.root, className, componentsProps.root?.className),
+      ref: forwardedRef,
     },
+    className: classes.root,
     ownerState,
-  ) as MenuUnstyledRootSlotProps;
+  }) as MenuUnstyledRootSlotProps;
 
   const Listbox = components.Listbox ?? 'ul';
-  const listboxProps: WithOptionalOwnerState<MenuUnstyledListboxSlotProps> = appendOwnerState(
-    Listbox,
-    {
-      ...componentsProps.listbox,
-      ...getListboxProps(),
-      className: clsx(classes.listbox, componentsProps.listbox?.className),
-    },
+  const listboxProps = useSlotProps({
+    elementType: Listbox,
+    getSlotProps: getListboxProps,
+    externalSlotProps: componentsProps.listbox,
     ownerState,
-  );
+    className: classes.listbox,
+  });
 
   const contextValue: MenuUnstyledContextType = {
     registerItem,
@@ -119,11 +114,11 @@ const MenuUnstyled = React.forwardRef(function MenuUnstyled(
   };
 
   return (
-    <Popper {...popperProps} ref={forwardedRef}>
+    <Root {...rootProps}>
       <Listbox {...listboxProps}>
         <MenuUnstyledContext.Provider value={contextValue}>{children}</MenuUnstyledContext.Provider>
       </Listbox>
-    </Popper>
+    </Root>
   );
 });
 
@@ -154,10 +149,6 @@ MenuUnstyled.propTypes /* remove-proptypes */ = {
   /**
    * @ignore
    */
-  className: PropTypes.string,
-  /**
-   * @ignore
-   */
   component: PropTypes.elementType,
   /**
    * @ignore
@@ -170,8 +161,8 @@ MenuUnstyled.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   componentsProps: PropTypes.shape({
-    listbox: PropTypes.object,
-    root: PropTypes.object,
+    listbox: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
    * Always keep the menu in the DOM.
@@ -180,6 +171,10 @@ MenuUnstyled.propTypes /* remove-proptypes */ = {
    * @default false
    */
   keepMounted: PropTypes.bool,
+  /**
+   * @ignore
+   */
+  listboxId: PropTypes.string,
   /**
    * Triggered when focus leaves the menu and the menu should close.
    */

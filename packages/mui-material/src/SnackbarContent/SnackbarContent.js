@@ -33,7 +33,7 @@ const SnackbarContentRoot = styled(Paper, {
     color: theme.vars
       ? theme.vars.palette.text.primary
       : theme.palette.getContrastText(backgroundColor),
-    backgroundColor: theme.vars ? theme.vars.palette.SnackbarContent.bgColor : backgroundColor,
+    backgroundColor: theme.vars ? theme.vars.palette.SnackbarContent.bg : backgroundColor,
     display: 'flex',
     alignItems: 'center',
     flexWrap: 'wrap',

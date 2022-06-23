@@ -10,18 +10,19 @@ unstyled: /base/react-button/
 
 <p class="description">Buttons allow users to take actions, and make choices, with a single tap.</p>
 
-Buttons communicate actions that users can take. They are typically placed throughout your UI, in places like:
+{{"component": "modules/components/ComponentLinkHeader.js"}}
+
+Buttons communicate actions that users can take.
+They are typically placed throughout your UI, in places like:
 
 - Modal windows
 - Forms
 - Cards
 - Toolbars
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+## Variants
 
-## Basic button
-
-The `Button` comes with four global variants: `plain`, `outlined`, `soft` and `solid` (default).
+The `Button` comes with four global variants: `solid` (default), `soft`, `outlined` and `plain`.
 
 {{"demo": "ButtonVariants.js"}}
 
@@ -37,8 +38,37 @@ The `Button` has three sizes: `sm`, `md` (default) and `lg`.
 
 {{"demo": "ButtonSizes.js"}}
 
-## Icons
+## Disabled
+
+Specify `disabled` prop to the button to disable the interaction and focus.
+
+{{"demo": "ButtonDisabled.js"}}
+
+## With icons
 
 Use `startIcon` and/or `endIcon` props to control the position of the specified icon.
 
 {{"demo": "ButtonIcons.js"}}
+
+## Icon button
+
+If you want an equal width and height button without displaying the label, use `IconButton`. It accepts the same values for `variant`, `color`, and `size` props.
+
+{{"demo": "IconButtons.js"}}
+
+:::info
+**♿️ Accessibility**: You have to provide an appropriate [`aria-label`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-label) to the icon button for screen readers. This is useful for people with severe visual impairments.
+
+```js
+<IconButton aria-label="Add to favorite">
+  <FavoriteBorder />
+</IconButton>
+```
+
+:::
+
+## As link
+
+Use `component="a"` prop to change the html element from `button` to `a`.
+
+{{"demo": "ButtonLink.js"}}

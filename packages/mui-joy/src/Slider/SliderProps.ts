@@ -3,9 +3,18 @@ import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import * as React from 'react';
 import { ColorPaletteProp, SxProps } from '../styles/types';
 
-export type SliderSlot = 'root' | 'mark' | 'markLabel' | 'rail' | 'track' | 'thumb' | 'valueLabel';
+export type SliderSlot =
+  | 'root'
+  | 'mark'
+  | 'markLabel'
+  | 'rail'
+  | 'track'
+  | 'thumb'
+  | 'valueLabel'
+  | 'input';
 
 export interface SliderPropsColorOverrides {}
+
 export interface SliderPropsSizeOverrides {}
 
 export type SliderTypeMap<
@@ -31,18 +40,6 @@ export type SliderTypeMap<
   };
   defaultComponent: D;
 }>;
-
-export type SliderRootProps = NonNullable<SliderTypeMap['props']['componentsProps']>['root'];
-export type SliderMarkProps = NonNullable<SliderTypeMap['props']['componentsProps']>['mark'];
-export type SliderMarkLabelProps = NonNullable<
-  SliderTypeMap['props']['componentsProps']
->['markLabel'];
-export type SliderRailProps = NonNullable<SliderTypeMap['props']['componentsProps']>['rail'];
-export type SliderTrackProps = NonNullable<SliderTypeMap['props']['componentsProps']>['track'];
-export type SliderThumbProps = NonNullable<SliderTypeMap['props']['componentsProps']>['thumb'];
-export type SliderValueLabelProps = NonNullable<
-  SliderTypeMap['props']['componentsProps']
->['valueLabel'];
 
 export type SliderProps<
   D extends React.ElementType = SliderTypeMap['defaultComponent'],
