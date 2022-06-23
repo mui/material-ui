@@ -9,7 +9,7 @@ githubLabel: 'component: Box'
 
 <p class="description">O componente Box serve como um componente encapsulador (wrapper) para a auxiliar na maioria das necessidades de uso com CSS.</p>
 
-O component Box compõe [todas as funções de estilo](/system/basics/#all-inclusive) que são expostas no `@material-ui/system`.
+The Box component packages [all the style functions](/system/properties/) that are exposed in `@mui/system`.
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
