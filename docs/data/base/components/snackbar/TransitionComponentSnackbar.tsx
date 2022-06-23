@@ -2,30 +2,52 @@ import * as React from 'react';
 import { styled } from '@mui/system';
 import { Transition } from 'react-transition-group';
 import { TransitionProps } from 'react-transition-group/Transition';
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import CheckRoundedIcon from '@mui/icons-material/CheckRounded';
 import CloseIcon from '@mui/icons-material/Close';
 import SnackbarUnstyled, {
   SnackbarCloseReason,
   SnackbarUnstyledProps,
 } from '@mui/base/SnackbarUnstyled';
 
+const blue = {
+  50: '#F0F7FF',
+  100: '#DAECFF',
+  400: '#3399FF',
+  600: '#0072E5',
+  900: '#003A75',
+};
+
+const grey = {
+  200: '#E0E3E7',
+  800: '#2D3843',
+};
+
 const StyledSnackbar = styled(SnackbarUnstyled)`
   position: fixed;
   z-index: 5500;
   display: flex;
-  top: 15px;
-  right: 15px;
+  bottom: 16px;
+  right: 16px;
   max-width: 560px;
   min-width: 300px;
 `;
 
-const SnackbarContent = styled('div')`
+const SnackbarContent = styled('div')(
+  ({ theme }) => `
   display: flex;
   overflow: hidden;
-  padding: 0.75rem 2rem 0.75rem 1rem;
-  background-color: #9ae6b4;
-  color: #171923;
-  border-radius: 0.375rem;
+  background-color: ${theme.palette.mode === 'dark' ? blue[900] : blue[50]};
+  border-radius: 8px;
+  border: 1px solid ${theme.palette.mode === 'dark' ? blue[600] : blue[400]};
+  box-shadow: ${
+    theme.palette.mode === 'dark'
+      ? `0 5px 13px -3px rgba(0,0,0,0.4)`
+      : `0 5px 13px -3px ${grey[200]}`
+  };
+  padding: 0.875rem;
+  color: ${theme.palette.mode === 'dark' ? '#fff' : blue[900]};
+  font-family: IBM Plex Sans, sans-serif;
+  font-weight: 500;
   text-align: start;
   position: relative;
 
@@ -35,28 +57,30 @@ const SnackbarContent = styled('div')`
   }
 
   & .snackbar-title {
-    font-weight: 700;
     line-height: 1.5rem;
     margin-right: 0.5rem;
   }
 
   & .snackbar-description {
     line-height: 1.5rem;
+    font-weight: 400;
+    color: ${theme.palette.mode === 'dark' ? blue[100] : grey[800]};
   }
 
   & .snackbar-close-icon {
     cursor: pointer;
     font-size: 10px;
     position: absolute;
-    top: 0.25rem;
-    right: 0.25rem;
+    top: 0.725rem;
+    right: 0.725rem;
     width: 1.25rem;
     height: 1.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
   }
-`;
+  `,
+);
 
 const positioningStyles = {
   entering: 'translateX(200px)',
@@ -176,7 +200,7 @@ export default function TransitionComponentSnackbar() {
         componentsProps={{ transition: { open } }}
       >
         <SnackbarContent>
-          <CheckCircleIcon
+          <CheckRoundedIcon
             sx={{
               flexShrink: 0,
               marginRight: '0.75rem',
@@ -185,9 +209,9 @@ export default function TransitionComponentSnackbar() {
             }}
           />
           <div className="snackbar-message">
-            <div className="snackbar-title">Account Created</div>
+            <div className="snackbar-title">Notifications sent</div>
             <div className="snackbar-description">
-              We&apos;ve created your account for you
+              All your notifications were sent to the desired adress.
             </div>
           </div>
           <CloseIcon onClick={handleClose} className="snackbar-close-icon" />

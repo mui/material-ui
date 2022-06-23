@@ -3,7 +3,7 @@ import { styled, keyframes } from '@mui/system';
 import SnackbarUnstyled, { SnackbarCloseReason } from '@mui/base/SnackbarUnstyled';
 
 const blue = {
-  100: '#DAECFF',
+  50: '#F0F7FF',
   400: '#3399FF',
   600: '#0072E5',
   900: '#003A75',
@@ -34,16 +34,16 @@ const StyledSnackbar = styled(SnackbarUnstyled)(
   justify-content: start;
   max-width: 560px;
   min-width: 300px;
-  background-color: ${theme.palette.mode === 'dark' ? blue[600] : blue[100]};
+  background-color: ${theme.palette.mode === 'dark' ? blue[900] : blue[50]};
   border-radius: 8px;
-  border: 1px solid ${blue[400]};
+  border: 1px solid ${theme.palette.mode === 'dark' ? blue[600] : blue[400]};
   box-shadow: ${
     theme.palette.mode === 'dark'
       ? `0 5px 13px -3px rgba(0,0,0,0.4)`
       : `0 5px 13px -3px ${grey[200]}`
   };
   padding: 0.75rem;
-  color: ${theme.palette.mode === 'dark' ? blue[600] : blue[900]};
+  color: ${theme.palette.mode === 'dark' ? '#fff' : blue[900]};
   font-family: IBM Plex Sans, sans-serif;
   font-weight: 600;
   animation: ${snackbarInRight} 500ms;
