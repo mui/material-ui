@@ -128,7 +128,7 @@ The following demo shows how to create and style a typical numerical badge that'
 ### Badge visibility
 
 You can control the visibility of a badge by using the `invisible` prop.
-Setting a badge to `invisible` does not actually hide it—instead, this prop adds the `MuiBadge-invisible` class to the badge, which you can target with styles to hide however you prefer:
+Setting a badge to `invisible` does not actually hide it—instead, this prop adds the `BaseBadge-invisible` class to the badge, which you can target with styles to hide however you prefer:
 
 {{"demo": "BadgeVisibility.js"}}
 
