@@ -16,6 +16,7 @@ import { TypographySystem, FontSize } from './types/typography';
 import { Variants } from './types/variants';
 import { Theme, ThemeCSSVar, ThemeScales } from './types';
 import { Components } from './components';
+import { generateUtilityClass } from '../className';
 
 type CSSProperties = CSS.Properties<number | string>;
 
@@ -360,7 +361,7 @@ export default function extendTheme(themeInput?: ThemeInput): Theme {
       xl3: 900,
     },
     focus: {
-      selector: '&.Mui-focusVisible, &:focus-visible',
+      selector: `&.${generateUtilityClass('', 'focusVisible')}, &:focus-visible`,
       default: {
         outlineOffset: 'var(--joy-focus-outlineOffset, 0px)', // reset user agent stylesheet
         outline: '4px solid var(--joy-palette-focusVisible)',

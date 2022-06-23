@@ -43,7 +43,6 @@ const ButtonUnstyled = React.forwardRef(function ButtonUnstyled<
   const {
     action,
     children,
-    className,
     component,
     components = {},
     componentsProps = {},
@@ -96,7 +95,7 @@ const ButtonUnstyled = React.forwardRef(function ButtonUnstyled<
       ref: forwardedRef,
     },
     ownerState,
-    className: [classes.root, className],
+    className: classes.root,
   });
 
   return <Root {...rootProps}>{children}</Root>;
@@ -122,10 +121,6 @@ ButtonUnstyled.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   children: PropTypes.node,
-  /**
-   * @ignore
-   */
-  className: PropTypes.string,
   /**
    * The component used for the Root slot.
    * Either a string to use a HTML element or a component.
