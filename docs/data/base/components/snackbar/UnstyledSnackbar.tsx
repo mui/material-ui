@@ -2,7 +2,18 @@ import * as React from 'react';
 import { styled, keyframes } from '@mui/system';
 import SnackbarUnstyled, { SnackbarCloseReason } from '@mui/base/SnackbarUnstyled';
 
-const snackbarInLeft = keyframes`
+const blue = {
+  100: '#DAECFF',
+  400: '#3399FF',
+  600: '#0072E5',
+  900: '#003A75',
+};
+
+const grey = {
+  200: '#E0E3E7',
+};
+
+const snackbarInRight = keyframes`
   from {
     transform: translateX(-100%);
   }
@@ -12,24 +23,33 @@ const snackbarInLeft = keyframes`
   }
 `;
 
-const StyledSnackbar = styled(SnackbarUnstyled)`
+const StyledSnackbar = styled(SnackbarUnstyled)(
+  ({ theme }) => `
   position: fixed;
   z-index: 5500;
   display: flex;
-  left: 10px;
-  bottom: 10px;
-  right: auto;
-  justify-content: center;
-  align-items: center;
+  right: 16px;
+  bottom: 16px;
+  left: auto;
+  justify-content: start;
   max-width: 560px;
   min-width: 300px;
-  background-color: #3182ce;
+  background-color: ${theme.palette.mode === 'dark' ? blue[600] : blue[100]};
+  border-radius: 8px;
+  border: 1px solid ${blue[400]};
+  box-shadow: ${
+    theme.palette.mode === 'dark'
+      ? `0 5px 13px -3px rgba(0,0,0,0.4)`
+      : `0 5px 13px -3px ${grey[200]}`
+  };
   padding: 0.75rem;
-  color: white;
+  color: ${theme.palette.mode === 'dark' ? blue[600] : blue[900]};
   font-family: IBM Plex Sans, sans-serif;
-  animation: ${snackbarInLeft} 500ms;
-  transition: transform 0.3s ease-out;
-`;
+  font-weight: 600;
+  animation: ${snackbarInRight} 500ms;
+  transition: transform 0.2s ease-out;
+  `,
+);
 
 export default function UnstyledSnackbar() {
   const [open, setOpen] = React.useState(false);
