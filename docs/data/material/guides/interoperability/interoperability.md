@@ -855,7 +855,7 @@ it's a peer dependency of `@mui/material`.
 :::
 
 :::warning
-⚠️ For [Storybook](https://storybook.js.org): As of writing this lines storybook still uses by default emotion 10.  
-Material UI and TSS runs emotion 11 so there is [some changes](https://github.com/InseeFrLab/onyxia-ui/blob/324de62248074582b227e584c53fb2e123f5325f/.storybook/main.js#L31-L32)
-to be made to your `.storybook/main.js` to make it uses emotion 11.
+⚠️ For [Storybook](https://storybook.js.org): As of writing these lines storybook still uses emotion 10 by default.  
+Material UI and TSS use emotion 11 so [some changes](https://github.com/InseeFrLab/onyxia-ui/blob/324de62248074582b227e584c53fb2e123f5325f/.storybook/main.js#L31-L32)
+ are to be made to your `.storybook/main.js` to make it use emotion 11.
 :::
