@@ -30,7 +30,7 @@ import FormControlUnstyled from '@mui/base/FormControlUnstyled';
 export default function MyApp() {
   return (
     <FormControlUnstyled>
-      {/* <input /> and/or other contents of the form */}
+      {/* <input> and/or other contents of the form */}
     </FormControlUnstyled>
   );
 }
@@ -43,7 +43,7 @@ For instance, if the form's **Submit** button needs to change states after the u
 
 ```jsx
 <FormControlUnstyled>
-  <input />
+  <input>
   <button>Submit</button>
 </FormControlUnstyled>
 ```

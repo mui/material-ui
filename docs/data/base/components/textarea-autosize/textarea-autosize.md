@@ -34,6 +34,8 @@ export default function MyApp() {
 
 ### Basic usage
 
+`TextareaAutosize` behaves similarly to the native HTML`<textarea>`.
+
 By default, an empty `TextareaAutosize` component renders as a single row, as shown in the following demo:
 
 {{"demo": "EmptyTextarea.js"}}

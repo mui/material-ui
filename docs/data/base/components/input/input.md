@@ -39,9 +39,79 @@ export default function MyApp() {
 
 ### Basic usage
 
+`InputUnstyled` behaves similarly to the native HTML `<input>`, except that it's nested inside of a root `<div>`—see [Component slots](#component-slots) for details.
+
 The following demo shows how to create and style an input component, including `placeholder` text:
 
 {{"demo": "UnstyledInputBasic.js", "defaultCodeOpen": false}}
+
+### Component slots
+
+The `InputUnstyled` component is composed of a root `<div>` slot that houses one interior `<input>` slot:
+
+```html
+<div class="MuiInput-root">
+  <input class="MuiInput-input" />
+</div>
+```
+
+### Slot props
+
+:::info
+The following props are available on all non-utility Base components.
+See [Usage](/getting-started/usage/) for full details.
+:::
+
+Use the `component` prop to override the root slot with a custom element:
+
+```jsx
+<InputUnstyled component="aside" />
+```
+
+Use the `components` prop to override any interior slots in addition to the root:
+
+```jsx
+<InputUnstyled components={{ Root: 'aside' }} />
+```
+
+:::warning
+If the root element is customized with both the `component` and `components` props, then `component` will take precedence.
+:::
+
+Use the `componentsProps` prop to pass custom props to internal slots.
+The following code snippet applies a CSS class called `my-input` to the input slot:
+
+```jsx
+<InputUnstyled componentsProps={{ input: { className: 'my-input' } }} />
+```
+
+:::warning
+Note that `componentsProps` slot names are written in lowercase (`root`) while `components` slot names are capitalized (`Root`).
+:::
+
+## Hook
+
+```js
+import { useInput } from '@mui/base/InputUnstyled';
+```
+
+The `useInput` hook lets you apply the functionality of `InputUnstyled` to a fully custom component.
+It returns props to be placed on the custom component, along with fields representing the component's internal state.
+
+Hooks _do not_ support [slot props](#slot-props), but they do support [customization props](#customization).
+
+:::info
+Hooks give you the most room for customization, but require more work to implement.
+With hooks, you can take full control over how your component is rendered, and define all the custom props and CSS classes you need.
+
+You may not need to use hooks unless you find that you're limited by the customization options of their component counterparts—for instance, if your component requires significantly different [structure](#component-slots).
+:::
+
+The demo below shows how to use the `useInput` hook to create a custom input component that receives all the necessary props:
+
+{{"demo": "UseInput.js", "defaultCodeOpen": false}}
+
+## Customization
 
 ### Adornments
 
@@ -69,16 +139,3 @@ To set minimum and maximum sizes, add the `minRows` and `maxRows` props.
 The following demo shows how to insert `TextareaAutosize` into `InputUnstyled` so that its height will grow with the length of the content:
 
 {{"demo": "InputMultilineAutosize.js"}}
-
-## Hook
-
-```js
-import { useInput } from '@mui/base/InputUnstyled';
-```
-
-The `useInput` hook lets you use the functionality of `InputUnstyled` in other components.
-It returns props to be placed on a custom input and root elements, along with fields representing the internal state of the input.
-
-The demo below shows how to use the `useInput` hook to create a custom input component that receives all the necessary props:
-
-{{"demo": "UseInput.js", "defaultCodeOpen": false}}

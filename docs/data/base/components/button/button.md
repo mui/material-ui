@@ -76,7 +76,7 @@ Use the `componentsProps` prop to pass custom props to internal slots.
 The following code snippet applies a CSS class called `my-button` to the root slot:
 
 ```jsx
-<BadgeUnstyled componentsProps={{ root: { className: 'my-button' } }} />
+<ButtonUnstyled componentsProps={{ root: { className: 'my-button' } }} />
 ```
 
 :::warning
