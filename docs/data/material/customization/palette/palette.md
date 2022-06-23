@@ -87,8 +87,9 @@ const theme = createTheme({
       // dark: will be calculated from palette.secondary.main,
       contrastText: '#ffcc00',
     },
-     // All tokens need to be provided for custom colors if this
-     // color is going to be used as a prop in the Material UI's components
+     // Provide every color token (light, main, dark, and contrastText) when using
+     // custom colors for props in Material UI's components.
+     // Then you will be able to use it like this: `<Button color="custom">` (For TypeScript, you need to add module augmentation for the `custom` value)
     custom: {
       light: '#ffa726'
       main: '#f57c00',
