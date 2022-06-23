@@ -103,7 +103,9 @@ Note that `componentsProps` slot names are written in lowercase (`root`) while `
 import { useFormControlUnstyledContext } from '@mui/base/FormControlUnstyled';
 ```
 
-The `useFormControlUnstyledContext` hook reads the context provided by `FormControlUnstyled`. You can use this hook to enable integration between custom form inputs and `FormControlUnstyled`. You can also use it to read the form control's state and react to its changes in a custom component.
+The `useFormControlUnstyledContext` hook reads the context provided by `FormControlUnstyled`.
+This hook lets you work with custom input components inside of the form control.
+You can also use it to read the form control's state and react to its changes in a custom component.
 
 Hooks _do not_ support [slot props](#slot-props), but they do support [customization props](#customization).
 

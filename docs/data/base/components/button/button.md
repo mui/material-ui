@@ -8,7 +8,7 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/button/
 
 # Unstyled button
 
-<p class="description">Buttons allow users to take actions and make choices with a single tap.</p>
+<p class="description">Buttons let users take actions and make choices with a single tap.</p>
 
 ## Introduction
 
@@ -78,18 +78,15 @@ If the root element is customized with both the `component` and `components` pro
 :::
 
 Use the `componentsProps` prop to pass custom props to internal slots.
-The following code snippet applies a CSS class called `my-form-control` to the root slot:
+The following code snippet applies a CSS class called `my-button` to the root slot:
 
 ```jsx
-<BadgeUnstyled componentsProps={{ root: { className: 'my-form-control' } }} />
+<BadgeUnstyled componentsProps={{ root: { className: 'my-button' } }} />
 ```
 
 :::warning
 Note that `componentsProps` slot names are written in lowercase (`root`) while `components` slot names are capitalized (`Root`).
 :::
-
-By default, the `ButtonUnstyled` component renders a native `button` HTML element.
-You can override this by setting the `component` or `components.Root` prop.
 
 If you provide a non-interactive element such as a `<span>`, the `ButtonUnstyled` component will automatically add the necessary accessibility attributes.
 
@@ -97,7 +94,43 @@ Compare the attributes on the `<span>` in this demo with the `ButtonUnstyled` fr
 
 {{"demo": "UnstyledButtonsSpan.js"}}
 
-### Complex customization
+:::warning
+If a `ButtonUnstyled` is customized with a non-button element (i.e. `<ButtonUnstyled component="span" />`), it will not submit the form it's in when clicked.
+Similarly, `<ButtonUnstyled component="span" type="reset">` will not reset its parent form.
+:::
+
+## Hook
+
+```js
+import { useButton } from '@mui/base/ButtonUnstyled';
+```
+
+The `useButton` hook lets you apply the functionality of `ButtonUnstyled` to a fully custom component.
+It returns props to be placed on the custom component, along with fields representing the component's internal state.
+
+Hooks _do not_ support [slot props](#slot-props), but they do support [customization props](#customization).
+
+:::info
+Hooks give you the most room for customization, but require more work to implement.
+With hooks, you can take full control over how your component is rendered, and define all the custom props and CSS classes you need.
+
+You may not need to use hooks unless you find that you're limited by the customization options of their component counterparts—for instance, if your component requires significantly different [internal slot structure](#internal-slots).
+:::
+
+The `useButton` hook requires the `ref` of the element it's used on.
+
+The following demo shows how to build the same buttons as those found in the [Basic usage section](#basic-usage), but with the `useButton` hook:
+
+{{"demo": "UseButton.js", "defaultCodeOpen": true}}
+
+## Customization
+
+:::info
+The following features can be used with both components and hooks.
+For the sake of simplicity, demos and code snippets primarily feature components.
+:::
+
+### Custom elements
 
 `ButtonUnstyled` accepts a wide range of custom elements beyond HTML elements.
 You can even use SVGs, as the following demo illustrates:
@@ -125,24 +158,3 @@ The `focusableWhenDisabled` prop works the same when the root slot is customized
 The ability to receive focus is controlled internally by the `tabindex` attribute.
 
 {{"demo": "UnstyledButtonsDisabledFocusCustom.js"}}
-
-### Limitations
-
-If a `ButtonUnstyled` is customized with a non-button element (i.e. `<ButtonUnstyled component="span" />`), it will not submit the form it's in when clicked.
-Similarly, `<ButtonUnstyled component="span" type="reset">` will not reset its parent form.
-
-## Hook
-
-```js
-import { useButton } from '@mui/base/ButtonUnstyled';
-```
-
-The `useButton` hook lets you use the functionality of `ButtonUnstyled` in other components.
-It returns props to be placed on a custom button element, along with fields representing the internal state of the button.
-
-The `useButton` hook requires the `ref` of the element it's used on.
-Additionally, you need to provide the `component` prop (unless you intend to use the native HTML `<button>`).
-
-The following demo shows how to build the same buttons from the [Basic usage section](#basic-usage) with the `useButton` hook:
-
-{{"demo": "UseButton.js", "defaultCodeOpen": true}}
