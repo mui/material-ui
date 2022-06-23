@@ -35,7 +35,7 @@ describe('getInitColorSchemeScript', () => {
     window.matchMedia = originalMatchmedia;
   });
 
-  it('should set `light` color scheme to body', () => {
+  it('should set `light` color scheme to document', () => {
     storage[DEFAULT_MODE_STORAGE_KEY] = 'light';
     storage[`${DEFAULT_COLOR_SCHEME_STORAGE_KEY}-light`] = 'foo';
 
@@ -44,7 +44,7 @@ describe('getInitColorSchemeScript', () => {
     expect(document.documentElement.getAttribute(DEFAULT_ATTRIBUTE)).to.equal('foo');
   });
 
-  it('should set custom color scheme to body with custom attribute', () => {
+  it('should set custom color scheme to document with custom attribute', () => {
     storage['mui-foo-mode'] = 'light';
     storage[`mui-bar-color-scheme-light`] = 'flash';
 
@@ -59,7 +59,7 @@ describe('getInitColorSchemeScript', () => {
     expect(document.documentElement.getAttribute('data-mui-baz-scheme')).to.equal('flash');
   });
 
-  it('should set `dark` color scheme to body', () => {
+  it('should set `dark` color scheme to document', () => {
     storage[DEFAULT_MODE_STORAGE_KEY] = 'dark';
     storage[`${DEFAULT_COLOR_SCHEME_STORAGE_KEY}-dark`] = 'bar';
 
@@ -68,7 +68,7 @@ describe('getInitColorSchemeScript', () => {
     expect(document.documentElement.getAttribute(DEFAULT_ATTRIBUTE)).to.equal('bar');
   });
 
-  it('should set dark color scheme to body, given prefers-color-scheme is `dark`', () => {
+  it('should set dark color scheme to document, given prefers-color-scheme is `dark`', () => {
     storage[DEFAULT_MODE_STORAGE_KEY] = 'system';
     storage[`${DEFAULT_COLOR_SCHEME_STORAGE_KEY}-dark`] = 'dim';
     window.matchMedia = createMatchMedia(true);
@@ -78,7 +78,7 @@ describe('getInitColorSchemeScript', () => {
     expect(document.documentElement.getAttribute(DEFAULT_ATTRIBUTE)).to.equal('dim');
   });
 
-  it('should set light color scheme to body, given prefers-color-scheme is NOT `dark`', () => {
+  it('should set light color scheme to document, given prefers-color-scheme is NOT `dark`', () => {
     storage[DEFAULT_MODE_STORAGE_KEY] = 'system';
     storage[`${DEFAULT_COLOR_SCHEME_STORAGE_KEY}-light`] = 'bright';
     window.matchMedia = createMatchMedia(false);
@@ -89,7 +89,7 @@ describe('getInitColorSchemeScript', () => {
   });
 
   describe('[option: `enableSystem`]', () => {
-    it('should set dark color scheme to body, given `enableSystem` is true and prefers-color-scheme is `dark`', () => {
+    it('should set dark color scheme to document, given `enableSystem` is true and prefers-color-scheme is `dark`', () => {
       window.matchMedia = createMatchMedia(true);
 
       const { container } = render(
@@ -102,7 +102,7 @@ describe('getInitColorSchemeScript', () => {
       expect(document.documentElement.getAttribute(DEFAULT_ATTRIBUTE)).to.equal('trueDark');
     });
 
-    it('should set light color scheme to body, given `enableSystem` is true and prefers-color-scheme is NOT `dark`', () => {
+    it('should set light color scheme to document, given `enableSystem` is true and prefers-color-scheme is NOT `dark`', () => {
       window.matchMedia = createMatchMedia(false);
 
       const { container } = render(
@@ -113,6 +113,37 @@ describe('getInitColorSchemeScript', () => {
       );
       eval(container.firstChild.textContent);
       expect(document.documentElement.getAttribute(DEFAULT_ATTRIBUTE)).to.equal('yellow');
+    });
+  });
+
+  describe('[option: `enableColorScheme`]', () => {
+    it('should set dark color scheme to document, given `enableColorScheme` & `enableSystem` is true and prefers-color-scheme is `dark`', () => {
+      // simulate 1st visit where `mode` does not exist yet
+      window.matchMedia = createMatchMedia(true);
+
+      const { container } = render(
+        getInitColorSchemeScript({
+          enableSystem: true,
+          enableColorScheme: true,
+          defaultDarkColorScheme: 'trueDark',
+        }),
+      );
+      eval(container.firstChild.textContent);
+      expect(document.documentElement.style.getPropertyValue('color-scheme')).to.equal('dark');
+    });
+
+    it('should set light color scheme to document, if mode exists in the storage', () => {
+      storage[DEFAULT_MODE_STORAGE_KEY] = 'light';
+      window.matchMedia = createMatchMedia(false);
+
+      const { container } = render(
+        getInitColorSchemeScript({
+          enableColorScheme: true,
+          defaultLightColorScheme: 'yellow',
+        }),
+      );
+      eval(container.firstChild.textContent);
+      expect(document.documentElement.style.getPropertyValue('color-scheme')).to.equal('light');
     });
   });
 });
