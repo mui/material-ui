@@ -5,6 +5,7 @@ import {
   Experimental_CssVarsProvider as CssVarsProvider,
   useColorScheme,
 } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
 import Fab from '@mui/material/Fab';
 import DarkMode from '@mui/icons-material/DarkMode';
 import LightMode from '@mui/icons-material/LightMode';
@@ -31,6 +32,7 @@ export default function AppTheme(props) {
         <meta name="robots" content="noindex,nofollow" />
       </Head>
       <CssVarsProvider>
+        <CssBaseline />
         {children}
         <ModeToggle />
       </CssVarsProvider>
