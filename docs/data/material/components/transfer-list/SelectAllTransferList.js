@@ -121,7 +121,6 @@ export default function TransferList() {
             </ListItem>
           );
         })}
-        <ListItem />
       </List>
     </Card>
   );
