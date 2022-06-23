@@ -203,13 +203,13 @@ describe('experimental_extendTheme', () => {
       const theme = extendTheme();
       expect(theme.colorSchemes.light.opacity).to.deep.equal({
         inputPlaceholder: 0.42,
-        inputTouchBottomLine: 0.42,
+        inputUnderline: 0.42,
         switchTrackDisabled: 0.12,
         switchTrack: 0.38,
       });
       expect(theme.colorSchemes.dark.opacity).to.deep.equal({
         inputPlaceholder: 0.5,
-        inputTouchBottomLine: 0.7,
+        inputUnderline: 0.7,
         switchTrackDisabled: 0.2,
         switchTrack: 0.3,
       });
@@ -232,11 +232,11 @@ describe('experimental_extendTheme', () => {
       });
       expect(theme.colorSchemes.light.opacity).to.deep.include({
         inputPlaceholder: 1,
-        inputTouchBottomLine: 0.42,
+        inputUnderline: 0.42,
       });
       expect(theme.colorSchemes.dark.opacity).to.deep.include({
         inputPlaceholder: 0.2,
-        inputTouchBottomLine: 0.7,
+        inputUnderline: 0.7,
       });
     });
   });
