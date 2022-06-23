@@ -31,6 +31,9 @@ module.exports = {
   eslint: {
     ignoreDuringBuilds: true,
   },
+  experimental: {
+    runtime: 'nodejs',
+  },
   typescript: {
     // Motivated by https://github.com/vercel/next.js/issues/7687
     ignoreDevErrors: true,
@@ -63,23 +66,7 @@ module.exports = {
       // We only care about Node runtime at this point.
       (options.nextRuntime === undefined || options.nextRuntime === 'nodejs')
     ) {
-      const [nextExternals] = config.externals;
-
-      // TODO: This needs to be verified again
-      // The second element in config.externals is:
-      // {
-      //   '@builder.io/partytown': '{}',
-      //   'next/dist/compiled/etag': '{}',
-      //   'next/dist/compiled/chalk': '{}',
-      //   'react-dom': '{}'
-      // }
-      // Not sure where they come from, will need to investigate this further.
-      // I am disabling the check for now
-      // if (externals.length > 0) {
-      //   // currently not the case but other next plugins might introduce additional
-      //   // rules for externals. We would need to handle those in the callback
-      //   throw new Error('There are other externals in the webpack config.');
-      // }
+      const [nextExternals, ...externals] = config.externals;
 
       config.externals = [
         (ctx, callback) => {
@@ -99,6 +86,7 @@ module.exports = {
           }
           return nextExternals(ctx, callback);
         },
+        ...externals,
       ];
     }
 
