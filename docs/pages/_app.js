@@ -17,7 +17,7 @@ import GoogleAnalytics from 'docs/src/modules/components/GoogleAnalytics';
 import { CodeCopyProvider } from 'docs/src/modules/utils/CodeCopy';
 import { ThemeProvider } from 'docs/src/modules/components/ThemeContext';
 import { pathnameToLanguage, getCookie } from 'docs/src/modules/utils/helpers';
-import { LANGUAGES } from 'docs/src/modules/constants';
+import { LANGUAGES, LANGUAGES_IGNORE_PAGES } from 'docs/src/modules/constants';
 import { CodeVariantProvider } from 'docs/src/modules/utils/codeVariant';
 import {
   UserLanguageProvider,
@@ -54,7 +54,11 @@ function LanguageNegotiation() {
         acceptLanguage.get(navigator.language) ||
         userLanguage;
 
-      if (userLanguage !== preferedLanguage && !process.env.BUILD_ONLY_ENGLISH_LOCALE) {
+      if (
+        userLanguage !== preferedLanguage &&
+        !process.env.BUILD_ONLY_ENGLISH_LOCALE &&
+        !LANGUAGES_IGNORE_PAGES(router.pathname)
+      ) {
         window.location =
           preferedLanguage === 'en' ? canonicalAs : `/${preferedLanguage}${canonicalAs}`;
       }
@@ -63,7 +67,7 @@ function LanguageNegotiation() {
     if (userLanguage !== userLanguageUrl) {
       setUserLanguage(userLanguageUrl);
     }
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [router.pathname, router.asPath, setUserLanguage, userLanguage]);
 
   return null;
 }
@@ -186,14 +190,11 @@ function AppWrapper(props) {
   let productPages = pages;
   if (product === 'base') {
     productPages = basePages;
-  }
-  if (product === 'material-ui') {
+  } else if (product === 'material-ui') {
     productPages = materialPages;
-  }
-  if (product === 'joy-ui') {
+  } else if (product === 'joy-ui') {
     productPages = joyPages;
-  }
-  if (product === 'system') {
+  } else if (product === 'system') {
     productPages = systemPages;
   }
 
