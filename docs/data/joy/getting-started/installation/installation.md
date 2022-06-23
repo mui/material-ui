@@ -5,8 +5,8 @@
 ## npm
 
 ```sh
-npm init react-app spark-joy
-cd spark-joy
+npm init react-app your-project-name
+cd your-project-name
 npm install @mui/joy @emotion/react @emotion/styled
 npm start
 ```
@@ -14,8 +14,8 @@ npm start
 ## yarn
 
 ```sh
-yarn create react-app spark-joy
-cd spark-joy
+yarn create react-app your-project-name
+cd your-project-name
 yarn add @mui/joy @emotion/react @emotion/styled
 yarn start
 ```

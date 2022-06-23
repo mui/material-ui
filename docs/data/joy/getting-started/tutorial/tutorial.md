@@ -11,8 +11,8 @@ In this small tutorial, you'll learn how to:
 The only **prerequesite** is [having Joy UI installed](/joy-ui/getting-started/installation/).
 
 :::warning
-⚠️ **Note:** We won't cover theming and component customization strategies at this moment.
-Learn more about[the different customization approaches](/joy-ui/customization/approaches/) later.
+⚠️ **Note:** We won't cover theming and general component customization at this moment.
+Learn more about [the different customization approaches](/joy-ui/customization/approaches/) later.
 :::
 
 ## Building the login page
@@ -50,7 +50,6 @@ It's great for creating one-off customizations or rapidly experimenting with dif
 
 ```jsx
 <Sheet
-  variant="outlined"
   sx={{
     maxWidth: 400,
     mx: 'auto', // margin left & right
@@ -84,7 +83,6 @@ You can also change which HTML tag gets rendered in each `Typography` component 
 import Typography from '@mui/joy/Typography';
 
 <Sheet
-  variant="outlined"
   sx={...}
 >
   <div>
@@ -105,7 +103,6 @@ The `TextField` component is made of the `FormLabel`, `Input` and `FormHelperTex
 import TextField from '@mui/joy/TextField';
 
 <Sheet
-  variant="outlined"
   sx={
     {
       // ...
@@ -144,7 +141,6 @@ import Button from '@mui/joy/Button';
 import Link from '@mui/joy/Link';
 
 <Sheet
-  variant="outlined"
   sx={
     {
       // ...
@@ -224,4 +220,4 @@ export default function App() {
 💡 **Note:** With the `useColorScheme` hook, Joy UI ensures that the user selected mode (stored in localStorage by default) is in-sync across browser tabs.
 :::
 
-Congratulations 🎉! You have built your first and yet good looking UI with Joy UI!
+Congratulations 🎉! You've built your first good looking UI with Joy UI!
