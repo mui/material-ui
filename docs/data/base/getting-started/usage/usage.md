@@ -32,7 +32,7 @@ Each component has its own unique API, but all _non-utility_ components accept t
 
 ### components
 
-The `components` prop is an object that lets you override any interior subcomponents—known as _slots_—of the base component itself.
+The `components` prop is an object that lets you override any interior subcomponents—known as **slots**—of the base component itself.
 
 :::info
 Each component contains a root slot, and many complex components (such as [`BadgeUnstyled`](/base/react-badge/)) are composed of additional nested slots that can be customized.
