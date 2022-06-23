@@ -21,7 +21,7 @@ All of these variables are accessible in an object in the theme called `vars`. T
 
 ## Usage
 
-`Experimental_CssVarsProvider` is a new experimental provider that attaches all generated CSS variables to the theme and puts them in React's context. Children elements under this provider will also be able to read the CSS variables from the theme.
+`Experimental_CssVarsProvider` is a new experimental provider that attaches all generated CSS variables to the theme and puts them in React's context. Children elements under this provider will also be able to read the CSS variables from the `theme.vars`.
 
 ```js
 import { Experimental_CssVarsProvider as CssVarsProvider } from '@mui/material/styles';
@@ -30,6 +30,8 @@ function App() {
   return <CssVarsProvider>...</CssVarsProvider>;
 }
 ```
+
+If you use TypeScript, check out the [theme types setup](#typescript).
 
 ### Customizing components
 
@@ -185,6 +187,26 @@ import { getInitColorSchemeScript } from '@mui/material/styles';
 export function onRenderBody({ setPreBodyComponents }) {
   setPreBodyComponents([getInitColorSchemeScript()]);
 }
+```
+
+### TypeScript
+
+You need to import the theme augmentation to include `theme.vars` and other utilities related to CSS variables to the theme:
+
+```ts
+// this can be the root file of you application
+import type {} from '@mui/material/themeCssVarsAugmentation';
+```
+
+Then, you will be able to access `theme.vars` in any of the styling APIs, for example the `styled`:
+
+```ts
+import { styled } from '@mui/material/styles';
+
+const StyledComponent = styled('button')(({ theme }) => ({
+  // typed-safe
+  color: theme.vars.palette.primary.main,
+}));
 ```
 
 ## API
