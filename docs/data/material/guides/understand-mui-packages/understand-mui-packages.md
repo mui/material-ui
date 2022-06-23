@@ -6,9 +6,6 @@
 
 - If you want to build a design system based on Material Design, use `@mui/material`.
 - If you want to build with components that give you complete control over your app's CSS, use `@mui/base`.
-  :::info
-  MUI Base components are also included within`@mui/material`—no need to install Base separately if you're using Material UI.
-  :::
 - For CSS utilities to help in laying out custom designs with Material UI or MUI Base, use `@mui/system`.
 
 ### Glossary
