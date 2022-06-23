@@ -6,7 +6,7 @@ githubLabel: 'component: badge'
 packageName: '@mui/base'
 ---
 
-# Unstyled badge
+# Badge sem estilo
 
 <p class="description">The `BadgeUnstyled` component generates a small label that is attached to its children elements.</p>
 
@@ -16,34 +16,34 @@ import BadgeUnstyled from '@mui/base/BadgeUnstyled';
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
-## Basic usage
+## Uso básico
 
 {{"demo": "UnstyledBadge.js", "defaultCodeOpen": false}}
 
-## Badge visibility
+## Visibilidade do badge
 
 You can control the visibility of a `BadgeUnstyled` by using the `invisible` prop. Setting a badge to `invisible` does not actually hide it—instead, this prop adds the `MuiBadge-invisible` class to the badge, which you can target with styles to hide however you prefer:
 
 {{"demo": "BadgeVisibility.js"}}
 
-## Numerical badges
+## Badge númericos
 
-The following props are useful when `badgeContent` is a number.
+As propriedades a seguir são úteis quando `badgeContent` é um número.
 
-### The showZero prop
+### A propriedade showZero
 
 By default, badges automatically hide when `badgeContent={0}`. You can override this behavior with the `showZero` prop:
 
 {{"demo": "ShowZeroBadge.js"}}
 
-### The max prop
+### A propriedade max
 
 You can use the `max` prop to set a maximum value for `badgeContent`. The default is 99.
 
 {{"demo": "BadgeMax.js"}}
 
-## Accessibility
+## Acessibilidade
 
-Screen readers may not provide users with enough information about a badge's contents. To make your `BadgeUnstyled` accessible, you must provide a full description with `aria-label`:
+Leitores de tela podem não fornecer aos usuários informações suficientes sobre o conteúdo de um emblema. Para tornar o seu `BadgeUnstyled` acessível, você deve fornecer uma descrição completa com a propriedade `aria-label`:
 
 {{"demo": "AccessibleBadges.js", "defaultCodeOpen": false}}
