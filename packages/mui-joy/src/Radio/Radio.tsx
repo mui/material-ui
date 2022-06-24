@@ -71,12 +71,12 @@ const RadioRoot = styled('span', {
       minWidth: 0,
       fontFamily: theme.vars.fontFamily.body,
       lineHeight: 'var(--Radio-size)', // prevent label from having larger height than the checkbox
-      '&.Mui-disabled': {
+      [`&.${radioClasses.disabled}`]: {
         color: theme.vars.palette[ownerState.color!]?.plainDisabledColor,
       },
       ...(ownerState.disableIcon && {
         color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Color`],
-        '&.Mui-disabled': {
+        [`&.${radioClasses.disabled}`]: {
           color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}DisabledColor`],
         },
       }),

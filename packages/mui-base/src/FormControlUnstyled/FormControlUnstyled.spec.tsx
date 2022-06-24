@@ -36,8 +36,12 @@ const FormControlUnstyledTest = () => (
 );
 
 function Root(props: FormControlUnstyledRootSlotProps) {
-  const { ownerState, ...other } = props;
-  return <div data-filled={ownerState.filled} {...other} />;
+  const { ownerState, children, ...other } = props;
+  return (
+    <div data-filled={ownerState.filled} {...other}>
+      {children as React.ReactNode}
+    </div>
+  );
 }
 
 const StyledFormControl = <FormControlUnstyled components={{ Root }} />;

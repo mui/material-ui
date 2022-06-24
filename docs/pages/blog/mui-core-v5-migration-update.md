@@ -1,7 +1,7 @@
 ---
 title: Why you should migrate to Material UI v5 today
 description: We have completely revamped our Migration guide to reduce friction when upgrading to v5. Get started now!
-date: 2022-06-15T00:00:00.000Z
+date: 2022-06-20T00:00:00.000Z
 authors: ['samuelsycamore']
 card: true
 tags: ['MUI Core']
@@ -17,10 +17,10 @@ This is exciting for us, because we're super proud of all the improvements that 
 But it seems as though a fair share of users are still hesitant to make the jump.
 This could be because v5 contains many breaking changes from v4, so the migration can be a large undertaking.
 
-That's why we've completely revamped our [v4 -> v5 migration guide](https://mui.com/material-ui/migration/migration-v4/)—to help reduce the amount of friction you might encounter when updating to v5.
+That's why we've completely revamped our [v4 -> v5 migration guide](/material-ui/migration/migration-v4/)—to help reduce the amount of friction you might encounter when updating to v5.
 
 We hope it helps!
-Be sure to check out [the updated migration guide](https://mui.com/material-ui/migration/migration-v4/) in the Material UI docs.
+Be sure to check out [the updated migration guide](/material-ui/migration/migration-v4/) in the Material UI docs.
 
 ## Why you should upgrade to v5
 
@@ -38,9 +38,16 @@ This offers significant advancements in performance when it comes to dynamic sty
 Emotion unlocks many new customization options that developers had been requesting for years, such as custom style utility props, color variants, and custom theme variants.
 Check out [this RFC on GitHub](https://github.com/mui/material-ui/issues/22342) for details about this change.
 
-![Screenshot of the new style engine GitHub issue in Material UI's repository](/static/blog/migration-update/style-engine.png)
+<p>
+<a href="https://github.com/mui/material-ui/issues/22342">
+  <img
+    src="/static/blog/mui-core-v5-migration-update/style-engine.png"
+    alt="Screenshot of the new style engine GitHub issue in Material UI's repository"
+  />
+</a>
+</p>
 
-Keep in mind that the new style engine is 100% incrementally adoptable: you can use JSS and Emotion together in the same app while migrating your components over.
+Keep in mind that the new style engine is 100% [incrementally adoptable](/material-ui/migration/migrating-from-jss/): you can use JSS and Emotion together in the same app while migrating your components over.
 
 ### 3. Better customization tools
 
@@ -74,7 +81,7 @@ export default function BoxSx() {
 
 All prop descriptions are now written in TypeScript, which means that you can access details about the usage of a given prop right inside of your IDE—no need to seek out the official documentation to find this information.
 
-![Screenshot of IntelliSense tooltip showing the details about the Material UI Badge component](/static/blog/migration-update/intellisense-tooltip.png)
+![Screenshot of IntelliSense tooltip showing the details about the Material UI Badge component](/static/blog/mui-core-v5-migration-update/intellisense-tooltip.png)
 
 ### 5. Upcoming CSS variables support
 
@@ -87,6 +94,6 @@ You can check out the progress on this effort [in this GitHub issue](https://git
 ## Upgrade now
 
 What are you waiting for?
-Jump into the [newly revised migration documention](https://mui.com/material-ui/migration/migration-v4/) and get started today.
+Jump into the [newly revised migration documention](/material-ui/migration/migration-v4/) and get started today.
 
 Let us know if you have any questions along the way!
