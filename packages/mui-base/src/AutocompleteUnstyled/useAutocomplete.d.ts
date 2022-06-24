@@ -274,12 +274,12 @@ export interface UseAutocompleteProps<
    * If `true`, the component is disabled.
    * @default false
    */
-   disabled?: boolean;
-   /**
-    * If `true`, the component becomes readonly. It is also supported for multiple tags where the tag cannot be deleted.
-    * @default false
-    */
-    readOnly?: boolean;
+  disabled?: boolean;
+  /**
+   * If `true`, the component becomes readonly. It is also supported for multiple tags where the tag cannot be deleted.
+   * @default false
+   */
+  readOnly?: boolean;
 }
 
 export type AutocompleteHighlightChangeReason = 'keyboard' | 'mouse' | 'auto';
