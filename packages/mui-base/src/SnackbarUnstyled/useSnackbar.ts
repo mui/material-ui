@@ -154,20 +154,18 @@ export default function useSnackbar(parameters: UseSnackbarParameters) {
     return undefined;
   }, [disableWindowBlurListener, handleResume, open]);
 
-  const createHandleExited =
-    (otherHandlers?: Omit<TransitionProps, 'addEndListener'>) => (node: HTMLElement) => {
-      setExited(true);
+  const createHandleExited = (otherHandlers?: Partial<TransitionProps>) => (node: HTMLElement) => {
+    setExited(true);
 
-      const onExited = otherHandlers?.onExited;
+    const onExited = otherHandlers?.onExited;
 
-      if (onExited) {
-        onExited(node);
-      }
-    };
+    if (onExited) {
+      onExited(node);
+    }
+  };
 
   const createHandleEnter =
-    (otherHandlers?: Omit<TransitionProps, 'addEndListener'>) =>
-    (node: HTMLElement, isAppearing: boolean) => {
+    (otherHandlers?: Partial<TransitionProps>) => (node: HTMLElement, isAppearing: boolean) => {
       setExited(false);
 
       const onEnter = otherHandlers?.onEnter;
@@ -191,7 +189,7 @@ export default function useSnackbar(parameters: UseSnackbarParameters) {
     onMouseLeave: createMouseLeave(otherProps),
   });
 
-  const getTransitionProps = (otherProps?: Omit<TransitionProps, 'addEndListener'>) => ({
+  const getTransitionProps = (otherProps?: Partial<TransitionProps>) => ({
     ...otherProps,
     onEnter: createHandleEnter(otherProps),
     onExited: createHandleExited(otherProps),
