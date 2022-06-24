@@ -20,7 +20,7 @@ For toggling between on and off or single option selection, consider using a swi
 
 ## Component
 
-After [installation](/joy-ui/getting-started/installation/), you can start building with this component using the following basic elements:
+After [installation](/joy-ui/getting-started/usage/), you can start building with this component using the following basic elements:
 
 ```jsx
 import Box from '@mui/joy/Box';
