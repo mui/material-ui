@@ -75,6 +75,49 @@ describe('mergeSlotProps', () => {
     expect(merged.props.className).to.contain('externalSlot');
   });
 
+  it('merges the style props', () => {
+    const getSlotProps = () => ({
+      style: {
+        fontSize: '12px',
+        textAlign: 'center' as const,
+      },
+    });
+
+    const additionalProps = {
+      style: {
+        fontSize: '14px',
+        color: 'red',
+      },
+    };
+
+    const externalForwardedProps = {
+      style: {
+        fontWeight: 500,
+      },
+    };
+
+    const externalSlotProps = {
+      style: {
+        textDecoration: 'underline',
+      },
+    };
+
+    const merged = mergeSlotProps({
+      getSlotProps,
+      additionalProps,
+      externalForwardedProps,
+      externalSlotProps,
+    });
+
+    expect(merged.props.style).to.deep.equal({
+      textAlign: 'center',
+      color: 'red',
+      fontSize: '14px',
+      fontWeight: 500,
+      textDecoration: 'underline',
+    });
+  });
+
   it('returns the ref returned from the getSlotProps function', () => {
     const ref = React.createRef();
     const getSlotProps = () => ({

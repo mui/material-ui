@@ -103,7 +103,7 @@ const LinkRoot = styled('a', {
         : {
             color: `rgba(${theme.vars.palette[ownerState.color!]?.mainChannel} / 1)`,
             cursor: 'pointer',
-            '&.Mui-disabled': {
+            [`&.${linkClasses.disabled}`]: {
               pointerEvents: 'none',
               color: `rgba(${theme.vars.palette[ownerState.color!]?.mainChannel} / 0.6)`,
             },

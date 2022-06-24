@@ -46,7 +46,10 @@ const StyledInputElement = styled('input')(
 `,
 );
 
-const StyledTextareaElement = styled('textarea')(
+const StyledTextareaElement = styled('textarea', {
+  shouldForwardProp: (prop) =>
+    !['ownerState', 'minRows', 'maxRows'].includes(prop.toString()),
+})(
   ({ theme }) => `
   width: 320px;
   font-size: 0.875rem;

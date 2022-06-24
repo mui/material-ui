@@ -1,5 +1,70 @@
 # [Versions](https://mui.com/versions/)
 
+## 5.8.5
+
+<!-- generated comparing v5.8.4..master -->
+
+_Jun 20, 2022_
+
+A big thanks to the 14 contributors who made this release possible. Here are some highlights ✨:
+
+- 🚀 Added support for CSS variables in the `Avatar` component and the `SpeedDialAction` component respectively by @vicasas and @gin1314
+- many other 🐛 bug fixes and 📚 documentation improvements
+
+### `@mui/material@5.8.5`
+
+- &#8203;<!-- 30 -->[Avatar] Add support for CSS variables (#32499) @vicasas
+- &#8203;<!-- 19 -->[Dialog] Fix broken styles if `maxWidth` is set to `false` (#32987) @kmurgic
+- &#8203;<!-- 04 -->[SpeedDialAction] Add support for CSS variables (#32608) @gin1314
+- &#8203;<!-- 02 -->[Tabs] Increment scroll of the minimum amount possible (#33103) @oliviertassinari
+
+### `@mui/codemod@5.8.5`
+
+- &#8203;<!-- 24 -->[codemod] Preserve comments within jss-to-tss-react (#33170) @ryancogswell
+
+### `@mui/lab@5.0.0-alpha.87`
+
+- &#8203;<!-- 06 -->[Masonry] Fix flickering when used with React 18 (#33163) @mnajdova
+
+### `@mui/base@5.0.0-alpha.86`
+
+- &#8203;<!-- 29 -->[BadgeUnstyled] Accept callbacks in componentsProps (#33176) @michaldudak
+- &#8203;<!-- 25 -->[ButtonUnstyled] Use useSlotProps (#33096) @michaldudak
+- &#8203;<!-- 11 -->[FormControlUnstyled] Accept callbacks in componentsProps (#33180) @michaldudak
+- &#8203;<!-- 10 -->[InputUnstyled] Use useSlotProps (#33094) @michaldudak
+- &#8203;<!-- 05 -->[ModalUnstyled] Define ownerState and slot props' types (#32901) @michaldudak
+- &#8203;<!-- 03 -->[SwitchUnstyled] Use useSlotProps (#33174) @michaldudak
+
+### `@mui/joy@5.0.0-alpha.33`
+
+- &#8203;<!-- 09 -->[Joy] Add Checkbox documentation (#33171) @siriwatknp
+- &#8203;<!-- 08 -->[Joy] Add List documentation (#33120) @siriwatknp
+- &#8203;<!-- 07 -->[Joy] Make slider displays Joy classname (#33051) @siriwatknp
+
+### Docs
+
+- &#8203;<!-- 28 -->[blog] Update Blogpost to clear confusion on "no impact" disclaimer. (#33131) @joserodolfofreitas
+- &#8203;<!-- 27 -->[blog] Add post about v5 Migration guide update (#33063) @samuelsycamore
+- &#8203;<!-- 26 -->[blog] Fix display on Safari (#33102) @oliviertassinari
+- &#8203;<!-- 18 -->[docs] Add guide on how to use MUI Base with Tailwind CSS (#33100) @mnajdova
+- &#8203;<!-- 17 -->[docs] Improve Joy template UX (#33159) @siriwatknp
+- &#8203;<!-- 16 -->[docs] Update Shadow DOM guide (#33160) @cherniavskii
+- &#8203;<!-- 15 -->[docs] Fix SEO regressions (#33106) @oliviertassinari
+- &#8203;<!-- 14 -->[docs] Add job ad in table of content (#33143) @mnajdova
+- &#8203;<!-- 13 -->[docs] Add customization as a value proposition (#33014) @oliviertassinari
+- &#8203;<!-- 12 -->[examples] Add example using nextjs & @mui/styles as a starter for the migration to v5 (#33005) @mnajdova
+- &#8203;<!-- 01 -->[website] Replace Airtable with Ashby links for applying to a opened position (#33193) @DanailH
+
+### Core
+
+- &#8203;<!-- 31 -->[core] Add CSS variables support for Material UI components (#32835) @siriwatknp
+- &#8203;<!-- 23 -->[core] Add name to workspace root package.json (#33226) @Janpot
+- &#8203;<!-- 22 -->[core] Update bug template with generic instruction (#33153) @joserodolfofreitas
+- &#8203;<!-- 21 -->[core] Remove dead and redundant code (#33125) @oliviertassinari
+- &#8203;<!-- 20 -->[core] Improve inline code rendering within the details tag (#33086) @Harmouch101
+
+All contributors of this release in alphabetical order: @cherniavskii, @DanailH, @gin1314, @Harmouch101, @Janpot, @joserodolfofreitas, @kmurgic, @michaldudak, @mnajdova, @oliviertassinari, @ryancogswell, @samuelsycamore, @siriwatknp, @vicasas
+
 ## 5.8.4
 
 <!-- generated comparing v5.8.3..master -->
