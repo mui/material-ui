@@ -61,7 +61,7 @@ export default function useInput(parameters: UseInputParameters) {
 
   const { current: isControlled } = React.useRef(value != null);
 
-  const handleInputRefWarning = React.useCallback((instance) => {
+  const handleInputRefWarning = React.useCallback((instance: HTMLElement) => {
     if (process.env.NODE_ENV !== 'production') {
       if (instance && instance.nodeName !== 'INPUT' && !instance.focus) {
         console.error(
