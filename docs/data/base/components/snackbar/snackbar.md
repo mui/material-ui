@@ -32,3 +32,17 @@ You can animate the open and close states of the snackbar with a render prop chi
 These two callbacks allow the snackbar to unmount the child content when closed and fully transitioned.
 
 {{"demo": "TransitionComponentSnackbar.js", "defaultCodeOpen": false}}
+
+## The useSnackbar hook
+
+```js
+import { useSnackbar } from '@mui/base/SnackbarUnstyled';
+```
+
+The `useSnackbar` hook lets you use the functionality of `SnackbarUnstyled` in other components.
+
+It returns props to be placed on the root element and the transition element. If you are using `ClickAwayListener` to close the snackbar by clicking outside of it, make sure to pass `onClickAway` handler returned by this hook to the `ClickAwayListener` component.
+
+Make sure to pass the `open` state to the hook and use it to show/hide the snackbar.
+
+{{"demo": "UseSnackbar.js", "defaultCodeOpen": false}}

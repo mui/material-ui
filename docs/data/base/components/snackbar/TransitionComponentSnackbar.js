@@ -216,7 +216,7 @@ export default function TransitionComponentSnackbar() {
           <div className="snackbar-message">
             <div className="snackbar-title">Notifications sent</div>
             <div className="snackbar-description">
-              All your notifications were sent to the desired adress.
+              All your notifications were sent to the desired address.
             </div>
           </div>
           <CloseIcon onClick={handleClose} className="snackbar-close-icon" />
