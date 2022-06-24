@@ -112,16 +112,13 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
         ...components,
       }}
       componentsProps={{
-        root: (unstyledOwnerState) => ({
-          ...resolveComponentProps(componentsProps.root, { ...unstyledOwnerState, ...ownerState }),
+        root: () => ({
+          ...resolveComponentProps(componentsProps.root, ownerState),
           ...(!isHostComponent(Root) && { as: component, theme }),
         }),
-        backdrop: (unstyledOwnerState) => ({
+        backdrop: () => ({
           ...BackdropProps,
-          ...resolveComponentProps(componentsProps.backdrop, {
-            ...unstyledOwnerState,
-            ...ownerState,
-          }),
+          ...resolveComponentProps(componentsProps.backdrop, ownerState),
         }),
       }}
       onTransitionEnter={() => setExited(false)}
