@@ -34,10 +34,10 @@ export interface CheckboxTypeMap<P = {}, D extends React.ElementType = 'span'> {
        */
       componentsProps?: {
         root?: React.ComponentPropsWithRef<'span'>;
-        action?: React.ComponentPropsWithRef<'span'>;
-        checkbox?: React.ComponentPropsWithRef<'span'>;
-        input?: React.ComponentPropsWithRef<'input'>;
-        label?: React.ComponentPropsWithRef<'label'>;
+        action?: React.ComponentPropsWithRef<'span'> & { sx?: SxProps };
+        checkbox?: React.ComponentPropsWithRef<'span'> & { sx?: SxProps };
+        input?: React.ComponentPropsWithRef<'input'> & { sx?: SxProps };
+        label?: React.ComponentPropsWithRef<'label'> & { sx?: SxProps };
       };
       /**
        * The color of the component. It supports those theme colors that make sense for this component.

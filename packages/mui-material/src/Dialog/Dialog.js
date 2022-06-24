@@ -132,14 +132,15 @@ const DialogPaper = styled(Paper, {
       },
     },
   }),
-  ...(ownerState.maxWidth !== 'xs' && {
-    maxWidth: `${theme.breakpoints.values[ownerState.maxWidth]}${theme.breakpoints.unit}`,
-    [`&.${dialogClasses.paperScrollBody}`]: {
-      [theme.breakpoints.down(theme.breakpoints.values[ownerState.maxWidth] + 32 * 2)]: {
-        maxWidth: 'calc(100% - 64px)',
+  ...(ownerState.maxWidth &&
+    ownerState.maxWidth !== 'xs' && {
+      maxWidth: `${theme.breakpoints.values[ownerState.maxWidth]}${theme.breakpoints.unit}`,
+      [`&.${dialogClasses.paperScrollBody}`]: {
+        [theme.breakpoints.down(theme.breakpoints.values[ownerState.maxWidth] + 32 * 2)]: {
+          maxWidth: 'calc(100% - 64px)',
+        },
       },
-    },
-  }),
+    }),
   ...(ownerState.fullWidth && {
     width: 'calc(100% - 64px)',
   }),

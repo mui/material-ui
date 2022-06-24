@@ -16,6 +16,7 @@ const whitelist = [
   'Node',
   'Performance',
   'document',
+  'DocumentFragment',
 ];
 const blacklist = ['sessionStorage', 'localStorage'];
 

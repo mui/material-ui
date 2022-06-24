@@ -170,16 +170,6 @@ const openRolesData = [
         description: 'You will lead the technical and operational development of MUI Store.',
         url: '/careers/product-engineer/',
       },
-      {
-        title: 'Developer Experience Engineer - Core',
-        description: 'You will focus on providing experiences that delight developers using MUI.',
-        url: '/careers/developer-experience-engineer/',
-      },
-      {
-        title: 'Engineering Manager - Toolpad',
-        description: 'You will grow the small engineering team currently working on MUI Toolpad.',
-        url: '/careers/engineering-manager/',
-      },
     ],
   },
   {
@@ -190,17 +180,6 @@ const openRolesData = [
         description:
           'You will build the HR function from the ground up at a high-growth tech company.',
         url: '/careers/people-operations-manager/',
-      },
-    ],
-  },
-  {
-    title: 'Support',
-    roles: [
-      {
-        title: 'Support Agent - Store',
-        description:
-          "You will provide support for the customers of MUI Store. You will directly impact customers' satisfaction and success.",
-        url: '/careers/support-agent/',
       },
     ],
   },
@@ -234,6 +213,17 @@ const nextRolesData = [
       {
         title: 'Technical Recruiter',
         description: 'You will hire the next engineers joining the team.',
+      },
+    ],
+  },
+  {
+    title: 'Support',
+    roles: [
+      {
+        title: 'Support Agent - Store',
+        description:
+          "You will provide support for the customers of MUI Store. You will directly impact customers' satisfaction and success.",
+        url: '/careers/support-agent/',
       },
     ],
   },
@@ -504,7 +494,7 @@ function CareersContent() {
                     We hire in batches, we collect applications a few months before we actively aim
                     to fill the roles. If none of these roles fit with what you are looking for, you
                     can apply to the{' '}
-                    <Link href="https://airtable.com/shrdqo1Z6srZXGcvh?prefill_Applying+for=Dream%20job&prefill_source=mui.com">
+                    <Link href="https://jobs.ashbyhq.com/MUI/4715d81f-d00f-42d4-a0d0-221f40f73e19/application?utm_source=ZNRrPGBkqO">
                       Dream job
                     </Link>{' '}
                     role.

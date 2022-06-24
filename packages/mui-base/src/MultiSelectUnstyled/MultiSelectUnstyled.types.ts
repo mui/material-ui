@@ -88,7 +88,7 @@ export type MultiSelectUnstyledListboxSlotProps<TValue> = Simplify<
 
 export type MultiSelectUnstyledPopperSlotProps<TValue> = {
   anchorEl: PopperUnstyledProps['anchorEl'];
-  children?: React.ReactNode;
+  children?: PopperUnstyledProps['children'];
   className: string | undefined;
   disablePortal: PopperUnstyledProps['disablePortal'];
   open: boolean;

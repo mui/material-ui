@@ -27,7 +27,11 @@ const pages = [
       {
         pathname: '/joy-ui/components/inputs',
         subheader: 'inputs',
-        children: [{ pathname: '/joy-ui/react-button' }, { pathname: '/joy-ui/react-slider' }],
+        children: [
+          { pathname: '/joy-ui/react-button' },
+          { pathname: '/joy-ui/react-checkbox' },
+          { pathname: '/joy-ui/react-slider' },
+        ],
       },
       {
         pathname: '/joy-ui/components/data-display',
@@ -37,13 +41,14 @@ const pages = [
           { pathname: '/joy-ui/react-avatar' },
           { pathname: '/joy-ui/react-badge' },
           { pathname: '/joy-ui/react-chip' },
+          { pathname: '/joy-ui/react-list' },
           { pathname: '/joy-ui/react-typography' },
         ],
       },
       {
         pathname: '/joy-ui/components/surfaces',
         subheader: 'surfaces',
-        children: [{ pathname: '/joy-ui/react-card' }],
+        children: [{ pathname: '/joy-ui/react-card' }, { pathname: '/joy-ui/react-sheet' }],
       },
       {
         pathname: '/joy-ui/components/navigation',
