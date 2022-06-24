@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { unstable_useEventCallback as useEventCallback } from '@mui/utils';
-import { TransitionProps } from '@mui/material/transitions';
+import { TransitionProps } from 'react-transition-group/Transition';
 import { UseSnackbarParameters, SnackbarCloseReason } from './useSnackbar.types';
 
 /**
@@ -154,18 +154,20 @@ export default function useSnackbar(parameters: UseSnackbarParameters) {
     return undefined;
   }, [disableWindowBlurListener, handleResume, open]);
 
-  const createHandleExited = (otherHandlers?: TransitionProps) => (node: HTMLElement) => {
-    setExited(true);
+  const createHandleExited =
+    (otherHandlers?: Omit<TransitionProps, 'addEndListener'>) => (node: HTMLElement) => {
+      setExited(true);
 
-    const onExited = otherHandlers?.onExited;
+      const onExited = otherHandlers?.onExited;
 
-    if (onExited) {
-      onExited(node);
-    }
-  };
+      if (onExited) {
+        onExited(node);
+      }
+    };
 
   const createHandleEnter =
-    (otherHandlers?: TransitionProps) => (node: HTMLElement, isAppearing: boolean) => {
+    (otherHandlers?: Omit<TransitionProps, 'addEndListener'>) =>
+    (node: HTMLElement, isAppearing: boolean) => {
       setExited(false);
 
       const onEnter = otherHandlers?.onEnter;
@@ -182,13 +184,15 @@ export default function useSnackbar(parameters: UseSnackbarParameters) {
     // ClickAwayListener adds an `onClick` prop which results in the alert not being announced.
     // See https://github.com/mui/material-ui/issues/29080
     role: 'presentation',
+    ...otherProps,
     onBlur: createHandleBlur(otherProps),
     onFocus: createHandleFocus(otherProps),
     onMouseEnter: createMouseEnter(otherProps),
     onMouseLeave: createMouseLeave(otherProps),
   });
 
-  const getTransitionProps = (otherProps?: TransitionProps) => ({
+  const getTransitionProps = (otherProps?: Omit<TransitionProps, 'addEndListener'>) => ({
+    ...otherProps,
     onEnter: createHandleEnter(otherProps),
     onExited: createHandleExited(otherProps),
   });
