@@ -38,10 +38,7 @@ export default function ConsecutiveSnackbars() {
     setSnackPack((prev) => [...prev, { message, key: new Date().getTime() }]);
   };
 
-  const handleClose = (
-    event: React.SyntheticEvent | Event | null,
-    reason?: string,
-  ) => {
+  const handleClose = (event: React.SyntheticEvent | Event, reason?: string) => {
     if (reason === 'clickaway') {
       return;
     }

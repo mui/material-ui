@@ -18,10 +18,7 @@ export default function CustomizedSnackbars() {
     setOpen(true);
   };
 
-  const handleClose = (
-    event?: React.SyntheticEvent | Event | null,
-    reason?: string,
-  ) => {
+  const handleClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
     if (reason === 'clickaway') {
       return;
     }

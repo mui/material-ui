@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
-import { SnackbarUnstyledProps } from '@mui/base/SnackbarUnstyled';
+import { ClickAwayListenerProps } from '@mui/base/ClickAwayListener';
 import { Theme } from '../styles';
 import { InternalStandardProps as StandardProps } from '..';
 import { SnackbarContentProps } from '../SnackbarContent';
@@ -12,19 +12,9 @@ export interface SnackbarOrigin {
   horizontal: 'left' | 'center' | 'right';
 }
 
-export { SnackbarCloseReason } from '@mui/base/SnackbarUnstyled';
+export type SnackbarCloseReason = 'timeout' | 'clickaway' | 'escapeKeyDown';
 
-export interface SnackbarProps
-  extends Pick<
-      SnackbarUnstyledProps,
-      | 'autoHideDuration'
-      | 'ClickAwayListenerProps'
-      | 'disableWindowBlurListener'
-      | 'onClose'
-      | 'open'
-      | 'resumeHideDuration'
-    >,
-    StandardProps<React.HTMLAttributes<HTMLDivElement>> {
+export interface SnackbarProps extends StandardProps<React.HTMLAttributes<HTMLDivElement>> {
   /**
    * The action to display. It renders after the message, at the end of the snackbar.
    */
@@ -37,6 +27,14 @@ export interface SnackbarProps
    */
   anchorOrigin?: SnackbarOrigin;
   /**
+   * The number of milliseconds to wait before automatically calling the
+   * `onClose` function. `onClose` should then set the state of the `open`
+   * prop to hide the Snackbar. This behavior is disabled by default with
+   * the `null` value.
+   * @default null
+   */
+  autoHideDuration?: number | null;
+  /**
    * Replace the `SnackbarContent` component.
    */
   children?: React.ReactElement<any, any>;
@@ -45,9 +43,18 @@ export interface SnackbarProps
    */
   classes?: Partial<SnackbarClasses>;
   /**
+   * Props applied to the `ClickAwayListener` element.
+   */
+  ClickAwayListenerProps?: Partial<ClickAwayListenerProps>;
+  /**
    * Props applied to the [`SnackbarContent`](/material-ui/api/snackbar-content/) element.
    */
   ContentProps?: Partial<SnackbarContentProps>;
+  /**
+   * If `true`, the `autoHideDuration` timer will expire even if the window is not focused.
+   * @default false
+   */
+  disableWindowBlurListener?: boolean;
   /**
    * When displaying multiple consecutive Snackbars from a parent rendering a single
    * <Snackbar/>, add the key prop to ensure independent treatment of each message.
@@ -59,6 +66,28 @@ export interface SnackbarProps
    * The message to display.
    */
   message?: SnackbarContentProps['message'];
+  /**
+   * Callback fired when the component requests to be closed.
+   * Typically `onClose` is used to set state in the parent component,
+   * which is used to control the `Snackbar` `open` prop.
+   * The `reason` parameter can optionally be used to control the response to `onClose`,
+   * for example ignoring `clickaway`.
+   *
+   * @param {React.SyntheticEvent<any> | Event} event The event source of the callback.
+   * @param {string} reason Can be: `"timeout"` (`autoHideDuration` expired), `"clickaway"`, or `"escapeKeyDown"`.
+   */
+  onClose?: (event: React.SyntheticEvent<any> | Event, reason: SnackbarCloseReason) => void;
+  /**
+   * If `true`, the component is shown.
+   */
+  open?: boolean;
+  /**
+   * The number of milliseconds to wait before dismissing after user interaction.
+   * If `autoHideDuration` prop isn't specified, it does nothing.
+   * If `autoHideDuration` prop is specified but `resumeHideDuration` isn't,
+   * we default to `autoHideDuration / 2` ms.
+   */
+  resumeHideDuration?: number;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
