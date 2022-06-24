@@ -24,7 +24,7 @@ export interface UseTabsParameters {
   /**
    * Callback invoked when new value is being set.
    */
-  onChange?: (event: React.SyntheticEvent, value: number | string) => void;
+  onChange?: (event: React.SyntheticEvent, value: number | string | boolean) => void;
   /**
    * If `true` the selected tab changes on focus. Otherwise it only
    * changes on activation.
@@ -52,7 +52,7 @@ const useTabs = (parameters: UseTabsParameters) => {
   const idPrefix = useId();
 
   const onSelected = React.useCallback(
-    (e, newValue) => {
+    (e: React.SyntheticEvent, newValue: string | number | false) => {
       setValue(newValue);
       if (onChange) {
         onChange(e, newValue);
