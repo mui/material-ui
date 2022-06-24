@@ -156,7 +156,7 @@ const TextareaAutosize = React.forwardRef(function TextareaAutosize(props, ref) 
     const handleResize = debounce(() => {
       renders.current = 0;
 
-      // If the TextareaAutisize component is replaced by Suspense with a fallback, the last
+      // If the TextareaAutosize component is replaced by Suspense with a fallback, the last
       // ResizeObserver's handler that runs because of the change in the layout is trying to
       // access a dom node that is no longer there (as the fallback component is being shown instead).
       // See https://github.com/mui/material-ui/issues/32640
