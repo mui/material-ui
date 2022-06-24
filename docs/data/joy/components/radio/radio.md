@@ -5,7 +5,7 @@ githubLabel: 'component: radio'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/radiobutton/
 ---
 
-# Radio
+# Radio button
 
 <p class="description">Radio buttons allow the user to select one option from a set.</p>
 
