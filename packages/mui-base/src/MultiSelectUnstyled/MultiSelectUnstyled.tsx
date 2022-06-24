@@ -170,6 +170,9 @@ const MultiSelectUnstyled = React.forwardRef(function MultiSelectUnstyled<TValue
       elementType: ListboxRoot,
       getSlotProps: getListboxProps,
       externalSlotProps: componentsProps.listbox,
+      additionalProps: {
+        ref: listboxRef,
+      },
       ownerState,
       className: classes.listbox,
     });

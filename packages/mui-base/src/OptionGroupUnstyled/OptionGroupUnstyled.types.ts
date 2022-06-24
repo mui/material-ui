@@ -59,19 +59,19 @@ export type OptionGroupUnstyledOwnerState = OptionGroupUnstyledProps;
 
 export type OptionGroupUnstyledRootSlotProps = {
   children?: React.ReactNode;
-  className: string;
+  className?: string;
   ownerState: OptionGroupUnstyledOwnerState;
   ref: React.Ref<HTMLLIElement>;
 };
 
 export type OptionGroupUnstyledLabelSlotProps = {
   children?: React.ReactNode;
-  className: string;
+  className?: string;
   ownerState: OptionGroupUnstyledOwnerState;
 };
 
 export type OptionGroupUnstyledListSlotProps = {
   children?: React.ReactNode;
-  className: string;
+  className?: string;
   ownerState: OptionGroupUnstyledOwnerState;
 };

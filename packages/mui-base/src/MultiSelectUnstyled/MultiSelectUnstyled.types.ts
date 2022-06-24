@@ -72,7 +72,7 @@ export interface MultiSelectUnstyledOwnerState<TValue> extends MultiSelectUnstyl
 
 export type MultiSelectUnstyledRootSlotProps<TValue> = Simplify<
   UseSelectButtonSlotProps & {
-    className: string;
+    className?: string;
     children?: React.ReactNode;
     ownerState: MultiSelectUnstyledOwnerState<TValue>;
   }
@@ -80,7 +80,7 @@ export type MultiSelectUnstyledRootSlotProps<TValue> = Simplify<
 
 export type MultiSelectUnstyledListboxSlotProps<TValue> = Simplify<
   UseSelectListboxSlotProps & {
-    className: string;
+    className?: string;
     children?: React.ReactNode;
     ownerState: MultiSelectUnstyledOwnerState<TValue>;
   }
@@ -89,7 +89,7 @@ export type MultiSelectUnstyledListboxSlotProps<TValue> = Simplify<
 export type MultiSelectUnstyledPopperSlotProps<TValue> = {
   anchorEl: PopperUnstyledProps['anchorEl'];
   children?: PopperUnstyledProps['children'];
-  className: string | undefined;
+  className?: string;
   disablePortal: PopperUnstyledProps['disablePortal'];
   open: boolean;
   ownerState: MultiSelectUnstyledOwnerState<TValue>;

@@ -164,6 +164,9 @@ const SelectUnstyled = React.forwardRef(function SelectUnstyled<TValue>(
       elementType: ListboxRoot,
       getSlotProps: getListboxProps,
       externalSlotProps: componentsProps.listbox,
+      additionalProps: {
+        ref: listboxRef,
+      },
       ownerState,
       className: classes.listbox,
     },

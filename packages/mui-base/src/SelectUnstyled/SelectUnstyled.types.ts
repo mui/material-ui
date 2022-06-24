@@ -106,7 +106,7 @@ export interface SelectUnstyledOwnerState<TValue> extends SelectUnstyledProps<TV
 
 export type SelectUnstyledRootSlotProps<TValue> = Simplify<
   UseSelectButtonSlotProps & {
-    className: string;
+    className?: string;
     children?: React.ReactNode;
     ownerState: SelectUnstyledOwnerState<TValue>;
   }
@@ -114,7 +114,7 @@ export type SelectUnstyledRootSlotProps<TValue> = Simplify<
 
 export type SelectUnstyledListboxSlotProps<TValue> = Simplify<
   UseSelectListboxSlotProps & {
-    className: string;
+    className?: string;
     children?: React.ReactNode;
     ownerState: SelectUnstyledOwnerState<TValue>;
   }
@@ -123,7 +123,7 @@ export type SelectUnstyledListboxSlotProps<TValue> = Simplify<
 export type SelectUnstyledPopperSlotProps<TValue> = {
   anchorEl: PopperUnstyledProps['anchorEl'];
   children?: PopperUnstyledProps['children'];
-  className: string | undefined;
+  className?: string;
   disablePortal: PopperUnstyledProps['disablePortal'];
   open: boolean;
   ownerState: SelectUnstyledOwnerState<TValue>;
