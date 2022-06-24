@@ -8,9 +8,9 @@ import Person from '@mui/icons-material/Person';
 import People from '@mui/icons-material/People';
 import Apartment from '@mui/icons-material/Apartment';
 
-export default function ExampleRadioPosition() {
+export default function RadioPositionEnd() {
   return (
-    <RadioGroup name="people" overlay>
+    <RadioGroup name="people" overlay defaultValue="person">
       <List
         sx={(theme) => ({
           minWidth: 240,

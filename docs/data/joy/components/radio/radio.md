@@ -42,12 +42,6 @@ The `Radio` component supports every Joy UI global variant and it comes with `ou
 
 {{"demo": "RadioButtons.js"}}
 
-### Position
-
-To swap the label and radio position, use the CSS property `flex-direction: row-reverse`.
-
-{{"demo": "ExampleRadioPosition.js"}}
-
 ### Radio group
 
 The `RadioGrop` component is the ideal wrapper for multiple `Radio` components.
@@ -70,13 +64,19 @@ To change that, target the `radioClasses.radio` class and add `position: 'relati
 
 ### Overlay
 
-To make the whole container in which the radio button is in clickable, use the `overlay` prop.
+To make the whole container in which the radio button is in clickable, use the `overlay` prop. You can pass the prop to `RadioGroup` (will be forwarded to all radios under it) or to individual `Radio` directly.
 
 {{"demo": "OverlayRadio.js"}}
 
 :::info
 💡 **Tip:** Use the CSS variable `--Radio-action-radius` to control the border radius of the clickable area.
 :::
+
+### Position
+
+To swap the label and radio position, use the CSS property `flex-direction: row-reverse`.
+
+{{"demo": "RadioPositionEnd.js"}}
 
 ### Icon
 

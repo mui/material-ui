@@ -7,7 +7,7 @@ import Radio from '@mui/joy/Radio';
 import RadioGroup from '@mui/joy/RadioGroup';
 import Typography from '@mui/joy/Typography';
 import Sheet from '@mui/joy/Sheet';
-import Switch from '@mui/joy/Switch';
+import Switch, { switchClasses } from '@mui/joy/Switch';
 
 export default function ExamplePaymentChannels() {
   const [row, setRow] = React.useState(false);
@@ -35,19 +35,27 @@ export default function ExamplePaymentChannels() {
           endDecorator="Row view"
           checked={row}
           onChange={(event) => setRow(event.target.checked)}
+          sx={{
+            [`&&:not(.${switchClasses.checked})`]: {
+              '--Switch-track-background': (theme) =>
+                theme.vars.palette.background.level3,
+            },
+          }}
         />
       </Box>
       <RadioGroup
         aria-labelledby="example-payment-channel-label"
         overlay
         name="example-payment-channel"
+        defaultValue="Paypal"
       >
         <Sheet
           variant="outlined"
           sx={{
             borderRadius: 'sm',
             boxShadow: 'sm',
-            p: row ? '0px 6px' : '6px 0px',
+            // use logical properties to support writing modes
+            ...(row ? { paddingInline: '6px' } : { paddingBlock: '6px' }),
           }}
         >
           <List row={row}>

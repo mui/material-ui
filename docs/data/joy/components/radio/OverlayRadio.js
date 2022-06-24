@@ -20,7 +20,14 @@ export default function OverlayRadio() {
       >
         Members
       </Typography>
-      <RadioGroup overlay name="member" aria-labelledby="member" row sx={{ gap: 2 }}>
+      <RadioGroup
+        overlay
+        name="member"
+        aria-labelledby="member"
+        defaultValue="person1"
+        row
+        sx={{ gap: 2 }}
+      >
         {[1, 2, 3].map((num) => (
           <Sheet
             key={num}
@@ -43,7 +50,7 @@ export default function OverlayRadio() {
                 mr: -1,
                 mb: 0.5,
                 alignSelf: 'flex-end',
-                '--Radio-action-radius': '4px',
+                '--Radio-action-radius': (theme) => theme.vars.radius.md,
               }}
             />
             <Avatar src={`/static/images/avatar/${num}.jpg`} />

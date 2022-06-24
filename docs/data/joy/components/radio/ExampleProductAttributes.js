@@ -23,6 +23,7 @@ export default function ExampleProductAttributes() {
       </FormLabel>
       <RadioGroup
         aria-labelledby="product-color-attribute"
+        defaultValue="warning"
         sx={{ gap: 2, flexWrap: 'wrap', flexDirection: 'row' }}
       >
         {['primary', 'neutral', 'danger', 'info', 'success', 'warning'].map(
@@ -80,6 +81,7 @@ export default function ExampleProductAttributes() {
       </FormLabel>
       <RadioGroup
         aria-labelledby="product-size-attribute"
+        defaultValue="M"
         sx={{ gap: 2, mb: 2, flexWrap: 'wrap', flexDirection: 'row' }}
       >
         {['XS', 'S', 'M', 'L', 'XL'].map((size) => (
