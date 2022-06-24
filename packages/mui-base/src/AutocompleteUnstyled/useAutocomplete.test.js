@@ -144,6 +144,23 @@ describe('useAutocomplete', () => {
         });
       });
 
+      describe('empty', () => {
+        it('does not call getOptionLabel if filter is empty', () => {
+          let countCallGetOptionLabel = 0;
+          const countGetOptionLabel = (option) => {
+            countCallGetOptionLabel += 1;
+            return getOptionLabel(option);
+          };
+          expect(filterOptions(options, { inputValue: '', countGetOptionLabel })).to.deep.equal(
+            options,
+          );
+          expect(countCallGetOptionLabel).to.equal(
+            0,
+            'getOptionLabel has been called whereas filter is empty',
+          );
+        });
+      });
+
       describe('start', () => {
         it('show only results that start with search', () => {
           expect(filterOptions(options, { inputValue: 'a', getOptionLabel })).to.deep.equal(

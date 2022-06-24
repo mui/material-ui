@@ -27,6 +27,9 @@ export function createFilterOptions(config = {}) {
 
   return (options, { inputValue, getOptionLabel }) => {
     let input = trim ? inputValue.trim() : inputValue;
+    if (!input) {
+      return typeof limit === 'number' ? options.slice(0, limit) : options;
+    }
     if (ignoreCase) {
       input = input.toLowerCase();
     }
