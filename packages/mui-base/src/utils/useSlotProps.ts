@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
 import appendOwnerState, { AppendOwnerStateReturnType } from './appendOwnerState';
-import mergeSlotProps, { MergeSlotPropsParameters, WithRef } from './mergeSlotProps';
+import mergeSlotProps, { MergeSlotPropsParameters, WithCommonProps } from './mergeSlotProps';
 import resolveComponentProps from './resolveComponentProps';
 
 export type UseSlotPropsParameters<
@@ -67,8 +67,8 @@ export default function useSlotProps<
     ElementType,
     SlotProps,
     ExternalForwardedProps,
-    WithRef<ExternalSlotProps>,
-    WithRef<AdditionalProps>,
+    WithCommonProps<ExternalSlotProps>,
+    WithCommonProps<AdditionalProps>,
     OwnerState
   >,
 ) {
