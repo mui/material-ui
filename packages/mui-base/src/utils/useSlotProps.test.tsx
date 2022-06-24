@@ -8,6 +8,7 @@ import useSlotProps, { UseSlotPropsParameters, UseSlotPropsResult } from './useS
 const { render } = createRenderer();
 
 function callUseSlotProps<
+  ElementType extends React.ElementType,
   SlotProps,
   ExternalForwardedProps,
   ExternalSlotProps,
@@ -15,6 +16,7 @@ function callUseSlotProps<
   OwnerState,
 >(
   parameters: UseSlotPropsParameters<
+    ElementType,
     SlotProps,
     ExternalForwardedProps,
     ExternalSlotProps,
@@ -27,6 +29,7 @@ function callUseSlotProps<
       _: unknown,
       ref: React.Ref<
         UseSlotPropsResult<
+          ElementType,
           SlotProps,
           ExternalForwardedProps,
           ExternalSlotProps,
@@ -44,6 +47,7 @@ function callUseSlotProps<
   const ref =
     React.createRef<
       UseSlotPropsResult<
+        ElementType,
         SlotProps,
         ExternalForwardedProps,
         ExternalSlotProps,
