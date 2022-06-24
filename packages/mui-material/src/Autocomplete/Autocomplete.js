@@ -570,8 +570,12 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
                       disabled={disabled}
                       aria-label={popupOpen ? closeText : openText}
                       title={popupOpen ? closeText : openText}
-                      className={clsx(classes.popupIndicator)}
                       ownerState={ownerState}
+                      {...componentsProps.popupIndicator}
+                      className={clsx(
+                        classes.popupIndicator,
+                        componentsProps.popupIndicator?.className,
+                      )}
                     >
                       {popupIcon}
                     </AutocompletePopupIndicator>
@@ -591,7 +595,6 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
       {popupOpen && anchorEl ? (
         <AutocompletePopper
           as={PopperComponent}
-          className={clsx(classes.popper)}
           disablePortal={disablePortal}
           style={{
             width: anchorEl ? anchorEl.clientWidth : null,
@@ -600,6 +603,8 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
           role="presentation"
           anchorEl={anchorEl}
           open
+          {...componentsProps.popper}
+          className={clsx(classes.popper, componentsProps.popper?.className)}
         >
           <AutocompletePaper
             ownerState={ownerState}
@@ -739,6 +744,8 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   componentsProps: PropTypes.shape({
     clearIndicator: PropTypes.object,
     paper: PropTypes.object,
+    popper: PropTypes.object,
+    popupIndicator: PropTypes.object,
   }),
   /**
    * The default value. Use when the component is not controlled.

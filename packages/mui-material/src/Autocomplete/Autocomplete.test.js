@@ -18,6 +18,7 @@ import Autocomplete, {
   createFilterOptions,
 } from '@mui/material/Autocomplete';
 import { paperClasses } from '@mui/material/Paper';
+import { iconButtonClasses } from '@mui/material/IconButton';
 
 function checkHighlightIs(listbox, expected) {
   const focused = listbox.querySelector(`.${classes.focused}`);
@@ -2430,6 +2431,28 @@ describe('<Autocomplete />', () => {
   });
 
   describe('prop: componentsProps', () => {
+    it('should apply the props on the AutocompleteClearIndicator component', () => {
+      render(
+        <Autocomplete
+          open
+          options={['one', 'two']}
+          value="one"
+          renderInput={(params) => <TextField {...params} />}
+          componentsProps={{
+            clearIndicator: {
+              'data-testid': 'clearIndicator',
+              size: 'large',
+              className: 'my-class',
+            },
+          }}
+        />,
+      );
+
+      const clearIndicator = screen.getByTestId('clearIndicator');
+      expect(clearIndicator).to.have.class(iconButtonClasses.sizeLarge);
+      expect(clearIndicator).to.have.class('my-class');
+    });
+
     it('should apply the props on the Paper component', () => {
       render(
         <Autocomplete
@@ -2445,6 +2468,44 @@ describe('<Autocomplete />', () => {
       const paperRoot = screen.getByTestId('paperRoot');
       expect(paperRoot).to.have.class(paperClasses.elevation2);
       expect(paperRoot).to.have.class('my-class');
+    });
+
+    it('should apply the props on the Popper component', () => {
+      render(
+        <Autocomplete
+          open
+          options={['one', 'two']}
+          renderInput={(params) => <TextField {...params} />}
+          componentsProps={{
+            popper: { 'data-testid': 'popperRoot', placement: 'bottom-end', className: 'my-class' },
+          }}
+        />,
+      );
+
+      const popperRoot = screen.getByTestId('popperRoot');
+      expect(popperRoot).to.have.attribute('data-popper-placement', 'bottom-end');
+      expect(popperRoot).to.have.class('my-class');
+    });
+
+    it('should apply the props on the AutocompletePopupIndicator component', () => {
+      render(
+        <Autocomplete
+          open
+          options={['one', 'two']}
+          renderInput={(params) => <TextField {...params} />}
+          componentsProps={{
+            popupIndicator: {
+              'data-testid': 'popupIndicator',
+              size: 'large',
+              className: 'my-class',
+            },
+          }}
+        />,
+      );
+
+      const popupIndicator = screen.getByTestId('popupIndicator');
+      expect(popupIndicator).to.have.class(iconButtonClasses.sizeLarge);
+      expect(popupIndicator).to.have.class('my-class');
     });
   });
 
