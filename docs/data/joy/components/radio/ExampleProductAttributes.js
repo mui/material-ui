@@ -9,8 +9,17 @@ import Done from '@mui/icons-material/Done';
 export default function ExampleProductAttributes() {
   return (
     <Box sx={{ resize: 'horizontal', overflow: 'auto', px: 2 }}>
-      <FormLabel id="product-color-attribute" sx={{ mb: 1.5, fontWeight: 'lg' }}>
-        COLOR
+      <FormLabel
+        id="product-color-attribute"
+        sx={{
+          mb: 1.5,
+          fontWeight: 'xl',
+          textTransform: 'uppercase',
+          fontSize: 'xs',
+          letterSpacing: '0.15rem',
+        }}
+      >
+        Color
       </FormLabel>
       <RadioGroup
         aria-labelledby="product-color-attribute"
@@ -57,8 +66,17 @@ export default function ExampleProductAttributes() {
         )}
       </RadioGroup>
       <br />
-      <FormLabel id="product-size-attribute" sx={{ mb: 1.5, fontWeight: 'lg' }}>
-        SIZE
+      <FormLabel
+        id="product-size-attribute"
+        sx={{
+          mb: 1.5,
+          fontWeight: 'xl',
+          textTransform: 'uppercase',
+          fontSize: 'xs',
+          letterSpacing: '0.15rem',
+        }}
+      >
+        Size
       </FormLabel>
       <RadioGroup
         aria-labelledby="product-size-attribute"
