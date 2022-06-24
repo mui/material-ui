@@ -240,6 +240,11 @@ jobs:
           command: |
             yarn extract-error-codes
             git diff --exit-code
+      - run:
+          name: '`yarn system:minify-color-scheme-script` changes committed?'
+          command: |
+            yarn system:minify-color-scheme-script
+            git diff --exit-code
   test_types:
     <<: *defaults
     resource_class: 'medium+'
