@@ -13,11 +13,26 @@ export default function ExamplePaymentChannels() {
   const [row, setRow] = React.useState(false);
   return (
     <Box sx={{ minWidth: 240 }}>
-      <Box sx={{ mb: 1, display: 'flex', justifyContent: 'space-between' }}>
-        <Typography id="example-payment-channel-label">Pay with</Typography>
+      <Box
+        sx={{
+          mb: 2,
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+        }}
+      >
+        <Typography
+          id="example-payment-channel-label"
+          level="body3"
+          textTransform="uppercase"
+          fontWeight="xl"
+          sx={{ letterSpacing: '0.15rem' }}
+        >
+          Pay with
+        </Typography>
         <Switch
           size="sm"
-          endDecorator="Row"
+          endDecorator="Row view"
           checked={row}
           onChange={(event) => setRow(event.target.checked)}
         />

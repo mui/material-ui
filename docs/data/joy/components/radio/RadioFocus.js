@@ -9,9 +9,11 @@ export default function RadioFocus() {
     <Box>
       <Typography
         id="demo-radio-buttons-group-focus"
-        level="body2"
-        fontWeight="lg"
-        mb={1.5}
+        level="body3"
+        textTransform="uppercase"
+        fontWeight="xl"
+        sx={{ letterSpacing: '0.15rem' }}
+        mb={2}
       >
         Focus
       </Typography>

@@ -15,9 +15,11 @@ export default function ControlledRadioButtonsGroup() {
     <Box>
       <Typography
         id="demo-controlled-radio-buttons-group"
-        level="body2"
-        fontWeight="lg"
-        mb={1.5}
+        level="body3"
+        textTransform="uppercase"
+        fontWeight="xl"
+        sx={{ letterSpacing: '0.15rem' }}
+        mb={2}
       >
         Gender
       </Typography>

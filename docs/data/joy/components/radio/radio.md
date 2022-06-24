@@ -72,7 +72,7 @@ To change that, target the `radioClasses.radio` class and add `position: 'relati
 
 To make the whole container in which the radio button is in clickable, use the `overlay` prop.
 
-{{"demo": "OverlayRadio.js", "bg": true}}
+{{"demo": "OverlayRadio.js"}}
 
 :::info
 💡 **Tip:** Use the CSS variable `--Radio-action-radius` to control the border radius of the clickable area.

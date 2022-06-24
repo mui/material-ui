@@ -4,7 +4,7 @@ import FormLabel from '@mui/joy/FormLabel';
 import Radio, { radioClasses } from '@mui/joy/Radio';
 import RadioGroup from '@mui/joy/RadioGroup';
 import Sheet from '@mui/joy/Sheet';
-import CheckCircle from '@mui/icons-material/CheckCircle';
+import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
 
 export default function IconsRadio() {
   return (
@@ -41,18 +41,18 @@ export default function IconsRadio() {
           key={value}
           variant="outlined"
           sx={{
-            borderRadius: 'sm',
+            borderRadius: 'md',
             bgcolor: 'background.level1',
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
-            gap: 1,
+            gap: 1.5,
             p: 2,
             minWidth: 120,
           }}
         >
-          <Radio id={value} value={value} checkedIcon={<CheckCircle />} />
-          <Avatar variant="soft" size="lg" />
+          <Radio id={value} value={value} checkedIcon={<CheckCircleRoundedIcon />} />
+          <Avatar variant="soft" size="sm" />
           <FormLabel htmlFor={value}>{value}</FormLabel>
         </Sheet>
       ))}

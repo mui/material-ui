@@ -34,7 +34,17 @@ export default function RadioUsage() {
       ]}
       renderDemo={(props) => (
         <div>
-          <FormLabel id="radio-button-usage-label" sx={{ mb: 2 }}>
+          <FormLabel
+            id="radio-button-usage-label"
+            sx={{
+              mb: 2,
+              fontWeight: 'xl',
+              textTransform: 'uppercase',
+              fontSize: 'xs',
+              letterSpacing: '0.15rem',
+              color: 'text.secondary',
+            }}
+          >
             Pizza crust
           </FormLabel>
           <RadioGroup
