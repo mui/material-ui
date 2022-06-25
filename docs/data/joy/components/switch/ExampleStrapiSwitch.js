@@ -13,8 +13,14 @@ export default function ExampleStrapiSwitch() {
         '--Switch-track-width': '40px',
         '--Switch-track-height': '24px',
         '--Switch-track-background': '#EE5E52',
+        '&:hover': {
+          '--Switch-track-background': '#EE5E52',
+        },
         [`&.${switchClasses.checked}`]: {
           '--Switch-track-background': '#5CB176',
+          '&:hover': {
+            '--Switch-track-background': '#5CB176',
+          },
         },
       }}
     />

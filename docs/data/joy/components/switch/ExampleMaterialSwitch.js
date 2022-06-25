@@ -8,7 +8,7 @@ export default function ExampleMaterialSwitch() {
       variant={checked ? 'soft' : 'solid'}
       checked={checked}
       onChange={(event) => setChecked(event.target.checked)}
-      sx={{
+      sx={(theme) => ({
         '--Switch-thumb-shadow':
           'rgb(0 0 0 / 20%) 0px 2px 1px -1px, rgb(0 0 0 / 14%) 0px 1px 1px 0px, rgb(0 0 0 / 12%) 0px 1px 3px 0px',
         '--Switch-thumb-size': '20px',
@@ -33,7 +33,15 @@ export default function ExampleMaterialSwitch() {
           '--Switch-track-background': 'rgba(25, 118, 210, 0.12)',
           '--Switch-thumb-color': 'rgb(167, 202, 237)',
         },
-      }}
+        [theme.getColorSchemeSelector('dark')]: {
+          '--Switch-thumb-background': '#fff',
+          '--Switch-track-background': 'rgba(255, 255, 255, 0.3)',
+          [`&.${switchClasses.checked}`]: {
+            '--Switch-thumb-background': 'rgb(144, 202, 249)',
+            '--Switch-track-background': 'rgba(144, 202, 249, 0.5)',
+          },
+        },
+      })}
     />
   );
 }

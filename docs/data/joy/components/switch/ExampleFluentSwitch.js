@@ -12,10 +12,11 @@ export default function ExampleFluentSwitch() {
         '--Switch-track-width': '40px',
         '--Switch-track-height': '20px',
         '--Switch-thumb-size': '12px',
-        '--Switch-track-borderColor': '#8A8886', // grey110 in Fluent design
+        '--Switch-track-borderColor': 'rgb(96, 94, 92)',
+        '--Switch-thumb-background': 'rgb(96, 94, 92)',
         '--Switch-track-background': (theme) => theme.vars.palette.background.body,
         '&:hover': {
-          '--Switch-track-borderColor': '#323130', // grey160 in Fluent design
+          '--Switch-track-borderColor': 'rgb(50, 49, 48)',
           '--Switch-track-background': (theme) => theme.vars.palette.background.body,
         },
         [`&.${switchClasses.checked}`]: {

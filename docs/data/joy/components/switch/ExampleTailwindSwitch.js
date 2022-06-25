@@ -9,8 +9,8 @@ export default function ExampleTailwindSwitch() {
       <Switch
         checked={checked}
         onChange={(event) => setChecked(event.target.checked)}
-        sx={{
-          '--Switch-thumb-shadow': (theme) => theme.vars.shadow.sm,
+        sx={(theme) => ({
+          '--Switch-thumb-shadow': theme.vars.shadow.sm,
           '--Switch-thumb-size': '18px',
           '--Switch-track-width': '42px',
           '--Switch-track-height': '22px',
@@ -18,20 +18,22 @@ export default function ExampleTailwindSwitch() {
           '&:hover': {
             '--Switch-track-background': '#E9E9EA',
           },
+          [theme.getColorSchemeSelector('dark')]: {
+            '--Switch-track-background': 'rgba(255 255 255 / 0.4)',
+          },
           [`&.${switchClasses.checked}`]: {
             '--Switch-track-background': '#65C466',
             '&:hover': {
               '--Switch-track-background': '#65C466',
             },
           },
-        }}
+        })}
       />
       <Switch
         checked={checked}
         onChange={(event) => setChecked(event.target.checked)}
-        sx={{
-          '--Switch-thumb-shadow': (theme) =>
-            `0 0 0 1px ${theme.vars.palette.divider}, 0 1px 4px 0 rgb(0 0 0 / 0.3), 0 1px 2px 0px rgb(0 0 0 / 0.3)`,
+        sx={(theme) => ({
+          '--Switch-thumb-shadow': `0 0 0 1px ${theme.vars.palette.divider}, 0 1px 4px 0 rgb(0 0 0 / 0.3), 0 1px 2px 0px rgb(0 0 0 / 0.3)`,
           '--Switch-thumb-size': '18px',
           '--Switch-track-width': '36px',
           '--Switch-track-height': '14px',
@@ -39,13 +41,16 @@ export default function ExampleTailwindSwitch() {
           '&:hover': {
             '--Switch-track-background': '#E9E9EA',
           },
+          [theme.getColorSchemeSelector('dark')]: {
+            '--Switch-track-background': 'rgba(255 255 255 / 0.4)',
+          },
           [`&.${switchClasses.checked}`]: {
             '--Switch-track-background': '#65C466',
             '&:hover': {
               '--Switch-track-background': '#65C466',
             },
           },
-        }}
+        })}
       />
     </Box>
   );

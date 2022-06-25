@@ -37,16 +37,14 @@ const switchColorVariables =
     const color = ownerState.color;
     return {
       '--Switch-track-background': theme.vars.palette[color!]?.[`${variant!}${data.state || ''}Bg`],
-      '--Switch-track-color':
-        ownerState.variant === 'solid' ? '#fff' : theme.vars.palette[color!]?.plainColor,
+      '--Switch-track-color': theme.vars.palette[color!]?.[`${variant!}Color`],
       '--Switch-track-borderColor':
         variant === 'outlined'
           ? theme.vars.palette[color!]?.[`${variant!}${data.state || ''}Border`]
           : 'currentColor',
       '--Switch-thumb-background':
         theme.vars.palette[color!]?.[`${variant!}${data.state || ''}Color`],
-      '--Switch-thumb-color':
-        ownerState.variant === 'solid' ? theme.vars.palette[color!]?.plainColor : '#fff',
+      '--Switch-thumb-color': theme.vars.palette[color!]?.[`${variant!}Bg`],
     };
   };
 

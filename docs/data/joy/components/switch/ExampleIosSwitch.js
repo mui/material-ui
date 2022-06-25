@@ -5,7 +5,6 @@ export default function ExampleIosSwitch() {
   const [checked, setChecked] = React.useState(false);
   return (
     <Switch
-      color={checked ? 'success' : 'neutral'}
       checked={checked}
       onChange={(event) => setChecked(event.target.checked)}
       sx={(theme) => ({
