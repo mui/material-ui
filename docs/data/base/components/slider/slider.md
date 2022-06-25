@@ -41,6 +41,76 @@ Notice that both are set to a default value of 10 with the `defaultValue` prop, 
 
 {{"demo": "UnstyledSlider.js", "defaultCodeOpen": false}}
 
+### Component slots
+
+The `SliderUnstyled` component is composed of a root `<span>` that houses three interior `<span>` elements:
+
+- rail: the full length of the slider
+- track: the section of the slider that's active
+- thumb: the button that the user moves across the slider
+
+```html
+<span class="MuiSlider-root">
+  <span class="MuiSlider-rail"></span>
+  <span class="MuiSlider-track"></span>
+  <span class="MuiSlider-thumb">
+    <input />
+  </span>
+</span>
+```
+
+### Slot props
+
+:::info
+The following props are available on all non-utility Base components.
+See [Usage](/getting-started/usage/) for full details.
+:::
+
+Use the `component` prop to override the root slot with a custom element:
+
+```jsx
+<SliderUnstyled component="div" />
+```
+
+Use the `components` prop to override any interior slots in addition to the root:
+
+```jsx
+<SliderUnstyled components={{ Root: 'div', Thumb: 'div' }} />
+```
+
+:::warning
+If the root element is customized with both the `component` and `components` props, then `component` will take precedence.
+:::
+
+Use the `componentsProps` prop to pass custom props to internal slots.
+The following code snippet applies a CSS class called `my-rail` to the rail slot:
+
+```jsx
+<SliderUnstyled componentsProps={{ rail: { className: 'my-rail' } }} />
+```
+
+:::warning
+Note that `componentsProps` slot names are written in lowercase (`root`) while `components` slot names are capitalized (`Root`).
+:::
+
+## Hook
+
+```js
+import { useSlider } from '@mui/base/SliderUnstyled';
+```
+
+The `useSlider` hook lets you apply the functionality of `SliderUnstyled` to a fully custom component.
+It returns props to be placed on the custom component, along with fields representing the component's internal state.
+
+Hooks _do not_ support [slot props](#slot-props), but they do support [customization props](#customization).
+
+:::info
+Hooks give you the most room for customization, but require more work to implement.
+With hooks, you can take full control over how your component is rendered, and define all the custom props and CSS classes you need.
+
+You may not need to use hooks unless you find that you're limited by the customization options of their component counterparts—for instance, if your component requires significantly different [structure](#component-slots).
+:::
+
 ## Customization
 
 ### Discrete sliders
