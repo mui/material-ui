@@ -82,10 +82,10 @@ const SwitchRoot = styled('span', {
       '--Switch-thumb-size': '24px',
       '--Switch-gap': '12px',
     }),
-    '--Switch-thumb-radius': 'calc(var(--Switch-track-radius) - 2px)',
+    '--internal-paddingBlock': `max((var(--Switch-track-height) - 2 * var(--variant-borderWidth) - var(--Switch-thumb-size)) / 2, 0px)`,
+    '--Switch-thumb-radius': `max((var(--Switch-track-radius) - var(--variant-borderWidth)) - var(--internal-paddingBlock), min(var(--internal-paddingBlock) / 2, (var(--Switch-track-radius) - var(--variant-borderWidth)) / 2))`,
     '--Switch-thumb-width': 'var(--Switch-thumb-size)',
-    '--Switch-thumb-offset':
-      'max((var(--Switch-track-height) - var(--Switch-thumb-size)) / 2, 0px)',
+    '--Switch-thumb-offset': `max((var(--Switch-track-height) - var(--Switch-thumb-size)) / 2, 0px)`,
     ...getColorVariables(),
     '&:hover': {
       ...getColorVariables({ state: 'Hover' }),
