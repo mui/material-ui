@@ -73,7 +73,20 @@ const CustomSelect = React.forwardRef(function CustomSelect<TValue>(
 
 For the sake of brevity, the rest of the demos throughout this doc will not use `forwardRef`.
 
+### Multi-select
+
+The `MultiSelectUnstyled` component lets your users select multiple options from the list.
+
+```js
+import { MultiSelectUnstyled } from '@mui/base/SelectUnstyled';
+```
+
+{{"demo": "UnstyledSelectMultiple.js", "defaultCodeOpen": false}}
+
 ### Component slots
+
+The `SelectUnstyled` and `MultiSelectUnstyled` components are composed of a root `<button>` along with a `<div>` that houses a `<ul>` within `PopperUnstyled`.
+`OptionUnstyled` renders as an `<li>`:
 
 ```html
 <button class="MuiSelectUnstyled-root" type="button">Open</button>
@@ -84,6 +97,40 @@ For the sake of brevity, the rest of the demos throughout this doc will not use 
   </ul>
 </div>
 ```
+
+### Slot props
+
+:::info
+The following props are available on all non-utility Base components.
+See [Usage](/getting-started/usage/) for full details.
+:::
+
+Use the `component` prop to override the root slot with a custom element:
+
+```jsx
+<SelectUnstyled component="div" />
+```
+
+Use the `components` prop to override any interior slots in addition to the root:
+
+```jsx
+<SelectUnstyled components={{ Root: 'div', Listbox: 'ol' }} />
+```
+
+:::warning
+If the root element is customized with both the `component` and `components` props, then `component` will take precedence.
+:::
+
+Use the `componentsProps` prop to pass custom props to internal slots.
+The following code snippet applies a CSS class called `my-listbox` to the listbox slot:
+
+```jsx
+<SelectUnstyled componentsProps={{ listbox: { className: 'my-listbox' } }} />
+```
+
+:::warning
+Note that `componentsProps` slot names are written in lowercase (`root`) while `components` slot names are capitalized (`Root`).
+:::
 
 ## Hook
 
@@ -144,13 +191,3 @@ Unlike the native `<select>`, groups can be nested.
 The following demo shows how to group options with the `OptionGroupUnstyled` component:
 
 {{"demo": "UnstyledSelectGrouping.js", "defaultCodeOpen": false}}
-
-### Multi-select
-
-The `MultiSelectUnstyled` component lets your users select multiple options from the list.
-
-```js
-import { MultiSelectUnstyled } from '@mui/base/SelectUnstyled';
-```
-
-{{"demo": "UnstyledSelectMultiple.js", "defaultCodeOpen": false}}
