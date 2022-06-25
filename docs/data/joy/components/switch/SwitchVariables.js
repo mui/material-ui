@@ -9,13 +9,24 @@ export default function SwitchVariables() {
       componentName="Switch"
       data={[
         { var: '--Switch-gap', defaultValue: '8px' },
-        { var: '--Switch-track-radius', defaultValue: '16px' },
-        { var: '--Switch-track-width', defaultValue: '48px' },
-        { var: '--Switch-track-height', defaultValue: '24px' },
-        { var: '--Switch-thumb-size', defaultValue: '10px' },
-        { var: '--Switch-thumb-radius' },
-        { var: '--Switch-thumb-width' },
-        { var: '--Switch-thumb-offset' },
+        [
+          'track',
+          [
+            { var: '--Switch-track-radius', defaultValue: '16px' },
+            { var: '--Switch-track-width', defaultValue: '48px' },
+            { var: '--Switch-track-height', defaultValue: '24px' },
+          ],
+          { defaultOpen: true },
+        ],
+        [
+          'thumb',
+          [
+            { var: '--Switch-thumb-size', defaultValue: '16px' },
+            { var: '--Switch-thumb-radius' },
+            { var: '--Switch-thumb-width' },
+            { var: '--Switch-thumb-offset' },
+          ],
+        ],
       ]}
       renderDemo={(sx) => (
         <Switch

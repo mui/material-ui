@@ -43,7 +43,7 @@ Use `startDecorator` and/or `endDecorator` to insert decorators:
 
 ## Common examples
 
-## Track child
+### Track child
 
 {{"demo": "ExampleTrackChild.js"}}
 
