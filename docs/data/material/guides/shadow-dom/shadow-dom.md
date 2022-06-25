@@ -51,6 +51,11 @@ const theme = createTheme({
         container: shadowRootElement,
       },
     },
+    MuiModal: {
+      defaultProps: {
+        container: shadowRootElement,
+      },
+    },
   },
 });
 
