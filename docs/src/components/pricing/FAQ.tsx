@@ -30,22 +30,11 @@ const faqData = [
     ),
   },
   {
-    summary: 'Why are you calling it "early access"?',
-    detail: (
-      <React.Fragment>
-        We think you'll love the features we've built so far, but we're planning to release more. We
-        opened it up as soon as we had something useful so that you can start getting value from it
-        right away, and we'll be adding new features and components based on our own ideas, and on
-        suggestions from early access customers.
-      </React.Fragment>
-    ),
-  },
-  {
     summary: 'How many developer seats do I need?',
     detail: (
       <React.Fragment>
         The number of seats purchased on your license must correspond to the number of concurrent
-        developers contributing changes to the front-end code of a project that uses MUI X Pro or
+        developers contributing changes to the front-end code of the projects that uses MUI X Pro or
         Premium.
         <br />
         <br />
@@ -62,6 +51,36 @@ const faqData = [
         the new library and so does the team working on 'AppB'. 'AppA' has 5 front-end developers
         and 'AppB' has 3. There are 2 front-end developers on the UI development team. Company 'B'
         purchases 10 licenses.
+        <br />
+        <br />
+        <Link
+          target="_blank"
+          rel="noopener"
+          href="https://mui.com/store/legal/mui-x-eula/#required-quantity-of-licenses"
+        >
+          The clause in the EULA.
+        </Link>
+      </React.Fragment>
+    ),
+  },
+  {
+    summary: 'Do developers have to be named?',
+    detail: (
+      <React.Fragment>
+        <strong>No.</strong> We trust that you will not go over the number of licensed developers.
+        Developers moving on and off projects is expected occasionally, and the license can be
+        transferred between developers at that time.
+      </React.Fragment>
+    ),
+  },
+  {
+    summary: 'Why are you calling it "early access"?',
+    detail: (
+      <React.Fragment>
+        We think you'll love the features we've built so far, but we're planning to release more. We
+        opened it up as soon as we had something useful so that you can start getting value from it
+        right away, and we'll be adding new features and components based on our own ideas, and on
+        suggestions from early access customers.
       </React.Fragment>
     ),
   },
@@ -73,16 +92,6 @@ const faqData = [
         license key, you need to follow the{' '}
         <Link href="/x/advanced-components/#license-key-installation">instructions</Link> necessary
         to set it up.
-      </React.Fragment>
-    ),
-  },
-  {
-    summary: 'Do developers have to be named?',
-    detail: (
-      <React.Fragment>
-        No. We trust that you will not go over the number of licensed developers. Developers moving
-        on and off projects is expected occasionally, and the license can be transferred between
-        developers at that time.
       </React.Fragment>
     ),
   },
