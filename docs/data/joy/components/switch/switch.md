@@ -19,25 +19,27 @@ should be made clear from the corresponding inline label.
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## Controlled
+## Component
+
+### Controlled
 
 Use `checked` and `onChange` to create a controlled switch:
 
 {{"demo": "SwitchControlled.js"}}
 
-## Label
+### Label
 
 You can use a `Typography` to label a `Switch`:
 
 {{"demo": "SwitchLabel.js"}}
 
-## Decorators
+### Decorators
 
 Use `startDecorator` and/or `endDecorator` to insert decorators:
 
 {{"demo": "SwitchDecorators.js"}}
 
-## CSS Variables
+### CSS Variables
 
 {{"demo": "SwitchVariables.js"}}
 
