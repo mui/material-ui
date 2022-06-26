@@ -1,4 +1,5 @@
 import { expect } from 'chai';
+
 import deepmerge from './deepmerge';
 
 describe('deepmerge', () => {
@@ -44,5 +45,23 @@ describe('deepmerge', () => {
       foo: { baz: 'test', bar: 'test' },
       bar: 'test',
     });
+  });
+
+  it('not an object, returns {}', () => {
+    expect(deepmerge([], { b: 1 })).to.deep.equal({});
+
+    expect(deepmerge({ b: 1 }, [1])).to.deep.equal({ b: 1 });
+
+    expect(deepmerge(() => {}, { b: 1 })).to.deep.equal({});
+
+    expect(deepmerge({ b: 1 }, () => {})).to.deep.equal({ b: 1 });
+
+    expect(deepmerge(new Map([[1, 0]]), { b: 1 })).to.deep.equal({});
+
+    expect(deepmerge({ b: 1 }, new Map([[1, 0]]))).to.deep.equal({ b: 1 });
+
+    expect(deepmerge(new Set([[1, 0]]), { b: 1 })).to.deep.equal({});
+
+    expect(deepmerge({ b: 1 }, new Set([[1, 0]]))).to.deep.equal({ b: 1 });
   });
 });

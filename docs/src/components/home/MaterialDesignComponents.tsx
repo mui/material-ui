@@ -432,7 +432,7 @@ export function buildTheme(theme: Theme): ThemeOptions {
       },
       MuiTooltip: theme.components?.MuiTooltip,
       MuiPaper: theme.components?.MuiPaper,
-      MuiTableCell: deepmerge(theme.components?.MuiTableCell || {}, {
+      MuiTableCell: deepmerge(theme.components?.MuiTableCell, {
         styleOverrides: {
           root: {
             borderColor:

@@ -29,11 +29,13 @@ export default function ThemeProvider({
   };
 }>) {
   const { components, ...filteredTheme } = theme || {};
-  let mergedTheme = deepmerge(defaultTheme, filteredTheme) as JoyTheme & { components: Components };
+
+  let mergedTheme = deepmerge(defaultTheme, filteredTheme);
+
   mergedTheme = {
     ...mergedTheme,
     vars: mergedTheme,
-    components: components!,
-  };
+    components,
+  } as JoyTheme & { components: Components };
   return <SystemThemeProvider theme={mergedTheme}>{children}</SystemThemeProvider>;
 }
