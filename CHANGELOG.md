@@ -15,7 +15,10 @@ A big thanks to the 13 contributors who made this release possible. Here are som
 ### `@mui/material@5.8.6`
 
 - &#8203;<!-- 27 -->[Alert] Add support for CSS vars (#32624) @haneenmahd
-- &#8203;<!-- 26 -->[Alert] Use getContrastText for filled variant font color (#29813) @SamoraMabuya
+- &#8203;<!-- 26 -->[Alert] Use `getContrastText` for filled variant font color (#29813) @SamoraMabuya
+
+  Note: The color of the text in the warning contained `Alert` in dark mode was changed to black in order to improve the color contrast ratio
+
 - &#8203;<!-- 11 -->[OutlinedInput] Fix `ownerState` undefined in theme style overrides (#33241) @siriwatknp
 - &#8203;<!-- 08 -->[Tabs] Fix crash when used with React 18 & Suspense (#33277) @mnajdova
 - &#8203;<!-- 05 -->[TypeScript] Add CSS vars type augmentation for Material UI (#33211) @siriwatknp
