@@ -165,6 +165,7 @@ const RatingDecimal = styled('span', {
     return [styles.decimal, iconActive && styles.iconActive];
   },
 })(({ iconActive }) => ({
+  display: 'flex',
   position: 'relative',
   ...(iconActive && {
     transform: 'scale(1.2)',
