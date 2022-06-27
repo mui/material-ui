@@ -40,7 +40,7 @@ export default function ContainerResponsive() {
         >
           <img
             alt=""
-            src="https://images.unsplash.com/photo-1492305175278-3b3afaa2f31f?ixlib=rb-1.2.1&raw_url=true&q=80&fm=jpg&crop=entropy&cs=tinysrgb&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2262"
+            src="https://images.unsplash.com/photo-1492305175278-3b3afaa2f31f?auto=format&fit=crop&w=2262"
           />
         </AspectRatio>
         <Box
@@ -87,7 +87,7 @@ export default function ContainerResponsive() {
           >
             <img
               alt=""
-              src="https://images.unsplash.com/photo-1492305175278-3b3afaa2f31f?ixlib=rb-1.2.1&raw_url=true&q=80&fm=jpg&crop=entropy&cs=tinysrgb&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2262"
+              src="https://images.unsplash.com/photo-1492305175278-3b3afaa2f31f?auto=format&fit=crop&w=2262"
             />
           </AspectRatio>
           <Box sx={{ display: 'flex', gap: 1.5, mt: 'auto' }}>

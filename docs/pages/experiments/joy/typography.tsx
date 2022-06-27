@@ -121,11 +121,11 @@ export default function JoyTypography() {
           <Typography sx={{ '--Typography-gap': '2px' }}>
             Keep me updated about the new features and upcoming improvements (by doing this you
             accept the{' '}
-            <Typography color="primary.textColor" startDecorator={<Info />}>
+            <Typography textColor="primary.textColor" startDecorator={<Info />}>
               Terms
             </Typography>{' '}
             and the{' '}
-            <Typography color="primary.textColor" endDecorator={<Outbound />}>
+            <Typography textColor="primary.textColor" endDecorator={<Outbound />}>
               privacy policy
             </Typography>
             ).
@@ -134,7 +134,7 @@ export default function JoyTypography() {
         <Box sx={{ my: 2 }}>
           <Typography
             endDecorator={
-              <Typography color="text.secondary" fontSize="sm">
+              <Typography textColor="text.secondary" fontSize="sm">
                 20
               </Typography>
             }
@@ -143,7 +143,7 @@ export default function JoyTypography() {
           </Typography>
           <Typography
             endDecorator={
-              <Typography color="text.secondary" fontSize="sm">
+              <Typography textColor="text.secondary" fontSize="sm">
                 7
               </Typography>
             }
@@ -174,7 +174,7 @@ export default function JoyTypography() {
             fontSize="xl4"
             lineHeight={1}
             startDecorator={
-              <Typography fontSize="lg" color="text.secondary">
+              <Typography fontSize="lg" textColor="text.secondary">
                 $
               </Typography>
             }
@@ -210,6 +210,19 @@ export default function JoyTypography() {
             dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
             Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
             mollit anim id est laborum.
+          </Typography>
+        </Box>
+        <Box sx={{ my: 2 }}>
+          <Typography
+            variant="soft"
+            color="primary"
+            startDecorator={<Info />}
+            py={1}
+            px={1}
+            borderRadius="xs"
+            display="inline-flex"
+          >
+            This is a test.
           </Typography>
         </Box>
       </Box>

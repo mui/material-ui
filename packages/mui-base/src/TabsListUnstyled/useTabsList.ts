@@ -6,6 +6,8 @@ import {
 import { isFragment } from 'react-is';
 import { useTabContext } from '../TabsUnstyled';
 import extractEventHandlers from '../utils/extractEventHandlers';
+import { UseTabsListParameters, UseTabsListRootSlotProps } from './useTabsList.types';
+import { EventHandlers } from '../utils';
 
 const nextItem = (list: Element | null, item: Element | null): Element | null => {
   if (!list) {
@@ -66,18 +68,8 @@ const moveFocus = (
   }
 };
 
-export interface UseTabsListProps {
-  'aria-label'?: string;
-  'aria-labelledby'?: string;
-  /**
-   * The content of the component.
-   */
-  children?: React.ReactNode;
-  ref: React.Ref<unknown>;
-}
-
-const useTabsList = (props: UseTabsListProps) => {
-  const { 'aria-label': ariaLabel, 'aria-labelledby': ariaLabelledBy, children, ref } = props;
+const useTabsList = (parameters: UseTabsListParameters) => {
+  const { 'aria-label': ariaLabel, 'aria-labelledby': ariaLabelledBy, children, ref } = parameters;
 
   const tabsListRef = React.createRef<any>();
   const handleRef = useForkRef(tabsListRef, ref);
@@ -138,22 +130,24 @@ const useTabsList = (props: UseTabsListProps) => {
       otherHandlers.onKeyDown?.(event);
     };
 
-  const getRootProps = (otherHandlers?: Record<string, React.EventHandler<any>>) => {
-    const propsEventHandlers = extractEventHandlers(props);
+  const getRootProps = <TOther extends EventHandlers = {}>(
+    otherHandlers: TOther = {} as TOther,
+  ): UseTabsListRootSlotProps<TOther> => {
+    const propsEventHandlers = extractEventHandlers(parameters);
     const externalEventHandlers = { ...propsEventHandlers, ...otherHandlers };
 
     const ownEventHandlers = {
       onKeyDown: createHandleKeyDown(externalEventHandlers),
     };
 
-    const mergedEventHandlers: Record<string, React.EventHandler<any>> = {
+    const mergedEventHandlers = {
       ...externalEventHandlers,
       ...ownEventHandlers,
     };
     return {
       'aria-label': ariaLabel,
       'aria-labelledby': ariaLabelledBy,
-      'aria-orientation': orientation === 'vertical' ? 'vertical' : null,
+      'aria-orientation': orientation === 'vertical' ? 'vertical' : undefined,
       role: 'tablist',
       ref: handleRef,
       ...mergedEventHandlers,

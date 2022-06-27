@@ -5,7 +5,7 @@ import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } 
 import { useButton } from '@mui/base/ButtonUnstyled';
 import composeClasses from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
-import { getIconButtonUtilityClass } from './iconButtonClasses';
+import iconButtonClasses, { getIconButtonUtilityClass } from './iconButtonClasses';
 import { IconButtonProps, IconButtonTypeMap, ExtendIconButton } from './IconButtonProps';
 
 const useUtilityClasses = (ownerState: IconButtonProps & { focusVisible: boolean }) => {
@@ -41,28 +41,26 @@ const IconButtonRoot = styled('button', {
       '--Icon-margin': 'initial', // reset the icon's margin.
       ...(ownerState.size === 'sm' && {
         '--Icon-fontSize': '1.25rem',
-        '--IconButton-padding': '0px',
         minWidth: 'var(--IconButton-size, 2rem)', // use min-width instead of height to make the button resilient to its content
         minHeight: 'var(--IconButton-size, 2rem)', // use min-height instead of height to make the button resilient to its content
+        fontSize: theme.vars.fontSize.sm,
       }),
       ...(ownerState.size === 'md' && {
         '--Icon-fontSize': '1.5rem', // control the SvgIcon font-size
-        '--IconButton-padding': '0.25rem',
         minWidth: 'var(--IconButton-size, 2.5rem)',
         minHeight: 'var(--IconButton-size, 2.5rem)',
+        fontSize: theme.vars.fontSize.md,
       }),
       ...(ownerState.size === 'lg' && {
         '--Icon-fontSize': '1.75rem',
-        '--IconButton-padding': '0.5rem',
         minWidth: 'var(--IconButton-size, 3rem)',
         minHeight: 'var(--IconButton-size, 3rem)',
+        fontSize: theme.vars.fontSize.lg,
       }),
-      padding: 'var(--IconButton-padding)',
-      ...(ownerState.variant === 'outlined' && {
-        padding: 'calc(var(--IconButton-padding) - var(--variant-outlinedBorderWidth))', // account for the border width
-      }),
+      padding: 0,
       fontFamily: theme.vars.fontFamily.body,
-      margin: `var(--Button-margin)`, // to be controlled by other components, eg. Input
+      fontWeight: theme.vars.fontWeight.md,
+      margin: `var(--IconButton-margin)`, // to be controlled by other components, eg. Input
       borderRadius: `var(--IconButton-radius, ${theme.vars.radius.sm})`, // to be controlled by other components, eg. Input
       border: 'none',
       backgroundColor: 'transparent',
@@ -76,9 +74,12 @@ const IconButtonRoot = styled('button', {
       [theme.focus.selector]: theme.focus.default,
     },
     theme.variants[ownerState.variant!]?.[ownerState.color!],
-    theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
-    theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
-    theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
+    { '&:hover': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!] },
+    { '&:active': theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!] },
+    {
+      [`&.${iconButtonClasses.disabled}`]:
+        theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
+    },
   ],
 );
 
@@ -174,7 +175,7 @@ IconButton.propTypes /* remove-proptypes */ = {
    * @default 'primary'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['context', 'danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
   /**

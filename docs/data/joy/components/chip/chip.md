@@ -2,7 +2,6 @@
 product: joy-ui
 title: React Chip component
 githubLabel: 'component: chip'
-unstyled: /base/react-chip/
 ---
 
 # Chip
@@ -32,6 +31,12 @@ Specify the `onClick` prop in order to enable the clickability of the `Chip` com
 
 {{"demo": "ClickableChip.js"}}
 
+## As link
+
+Pass component prop to the action slot to change from button to anchor tag. The rest of the props are spread to the DOM.
+
+{{"demo": "LinkChip.js"}}
+
 ## Clickable and Deletable
 
 Specify the `onClick` prop on the `ChipDelete` to trigger some action.
@@ -42,7 +47,7 @@ Specify the `onClick` prop on the `ChipDelete` to trigger some action.
 
 The `Chip` component contains these CSS variables to communicate with `ChipDelete` and `Avatar` components. The demo below demonstrates the customization of a chip using the variables through the `sx` prop.
 
-{{"demo": "ChipVariables.js"}}
+{{"demo": "ChipVariables.js", "hideToolbar": true}}
 
 ## With checkbox
 
@@ -50,7 +55,7 @@ You can wrap the Joy `Checkbox` component with the Joy `Chip` component.
 
 {{"demo": "CheckboxChip.js"}}
 
-## With Radio
+## With radio
 
 You can wrap the Joy `Radio` component with the Joy `Chip` component.
 

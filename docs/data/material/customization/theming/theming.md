@@ -247,7 +247,6 @@ It should preferably be used at **the root of your component tree**.
 
 ```jsx
 import * as React from 'react';
-import ReactDOM from 'react-dom';
 import { red } from '@mui/material/colors';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 

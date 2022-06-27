@@ -123,7 +123,7 @@ export default function SandboxDependencies(
       const name =
         fullName.charAt(0) === '@' ? fullName.split('/', 2).join('/') : fullName.split('/', 1)[0];
 
-      if (!deps[name]) {
+      if (!deps[name] && name !== '.') {
         deps[name] = versions[name] ? versions[name] : 'latest';
       }
 

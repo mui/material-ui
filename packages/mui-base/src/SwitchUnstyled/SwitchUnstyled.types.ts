@@ -1,4 +1,5 @@
 import { Simplify } from '@mui/types';
+import { SlotComponentProps } from '../utils';
 import { UseSwitchInputSlotProps, UseSwitchParameters } from './useSwitch.types';
 
 export interface SwitchUnstyledComponentsPropsOverrides {}
@@ -31,10 +32,26 @@ export interface SwitchUnstyledProps extends UseSwitchParameters {
    * @default {}
    */
   componentsProps?: {
-    root?: React.HTMLAttributes<HTMLSpanElement> & SwitchUnstyledComponentsPropsOverrides;
-    thumb?: React.HTMLAttributes<HTMLSpanElement> & SwitchUnstyledComponentsPropsOverrides;
-    input?: React.InputHTMLAttributes<HTMLInputElement> & SwitchUnstyledComponentsPropsOverrides;
-    track?: React.HTMLAttributes<HTMLSpanElement> & SwitchUnstyledComponentsPropsOverrides;
+    root?: SlotComponentProps<
+      'span',
+      SwitchUnstyledComponentsPropsOverrides,
+      SwitchUnstyledOwnerState
+    >;
+    thumb?: SlotComponentProps<
+      'span',
+      SwitchUnstyledComponentsPropsOverrides,
+      SwitchUnstyledOwnerState
+    >;
+    input?: SlotComponentProps<
+      'input',
+      SwitchUnstyledComponentsPropsOverrides,
+      SwitchUnstyledOwnerState
+    >;
+    track?: SlotComponentProps<
+      'span',
+      SwitchUnstyledComponentsPropsOverrides,
+      SwitchUnstyledOwnerState
+    >;
   };
 }
 
@@ -49,26 +66,26 @@ export type SwitchUnstyledOwnerState = Simplify<
 
 export type SwitchUnstyledRootSlotProps = {
   ownerState: SwitchUnstyledOwnerState;
-  className: string;
+  className?: string;
   children?: React.ReactNode;
 };
 
 export type SwitchUnstyledThumbSlotProps = {
   ownerState: SwitchUnstyledOwnerState;
-  className: string;
+  className?: string;
   children?: React.ReactNode;
 };
 
 export type SwitchUnstyledTrackSlotProps = {
   ownerState: SwitchUnstyledOwnerState;
-  className: string;
+  className?: string;
   children?: React.ReactNode;
 };
 
 export type SwitchUnstyledInputSlotProps = Simplify<
   UseSwitchInputSlotProps & {
     ownerState: SwitchUnstyledOwnerState;
-    className: string;
+    className?: string;
     children?: React.ReactNode;
   }
 >;

@@ -2,8 +2,7 @@ const path = require('path');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const pkg = require('../package.json');
 const { findPages } = require('./src/modules/utils/find');
-const { LANGUAGES, LANGUAGES_SSR } = require('./src/modules/constants');
-const FEATURE_TOGGLE = require('./src/featureToggle');
+const { LANGUAGES, LANGUAGES_SSR, LANGUAGES_IGNORE_PAGES } = require('./src/modules/constants');
 
 const workspaceRoot = path.join(__dirname, '../');
 
@@ -58,7 +57,12 @@ module.exports = {
     // next includes node_modules in webpack externals. Some of those have dependencies
     // on the aliases defined above. If a module is an external those aliases won't be used.
     // We need tell webpack to not consider those packages as externals.
-    if (options.isServer) {
+    if (
+      options.isServer &&
+      // Next executes this twice on the server with React 18 (once per runtime).
+      // We only care about Node runtime at this point.
+      (options.nextRuntime === undefined || options.nextRuntime === 'nodejs')
+    ) {
       const [nextExternals, ...externals] = config.externals;
 
       if (externals.length > 0) {
@@ -87,6 +91,10 @@ module.exports = {
         },
       ];
     }
+
+    config.module.rules.forEach((r) => {
+      r.resourceQuery = { not: [/raw/] };
+    });
 
     return {
       ...config,
@@ -118,6 +126,7 @@ module.exports = {
           // transpile 3rd party packages with dependencies in this repository
           {
             test: /\.(js|mjs|jsx)$/,
+            resourceQuery: { not: [/raw/] },
             include:
               /node_modules(\/|\\)(notistack|@mui(\/|\\)x-data-grid|@mui(\/|\\)x-data-grid-pro|@mui(\/|\\)x-license-pro|@mui(\/|\\)x-data-grid-generator|@mui(\/|\\)x-date-pickers-pro|@mui(\/|\\)x-date-pickers)/,
             use: {
@@ -155,9 +164,14 @@ module.exports = {
           // required to transpile ../packages/
           {
             test: /\.(js|mjs|tsx|ts)$/,
+            resourceQuery: { not: [/raw/] },
             include: [workspaceRoot],
             exclude: /(node_modules|mui-icons-material)/,
             use: options.defaultLoaders.babel,
+          },
+          {
+            resourceQuery: /raw/,
+            type: 'asset/source',
           },
         ]),
       },
@@ -193,14 +207,8 @@ module.exports = {
         if (page.pathname.startsWith('/experiments') && !staging) {
           return;
         }
-        if (page.pathname.startsWith('/joy-ui') && !staging) {
-          return;
-        }
         // The blog is not translated
-        if (
-          userLanguage !== 'en' &&
-          (page.pathname === '/blog' || page.pathname.startsWith('/blog/'))
-        ) {
+        if (userLanguage !== 'en' && LANGUAGES_IGNORE_PAGES(page.pathname)) {
           return;
         }
         if (!page.children) {
@@ -246,104 +254,6 @@ module.exports = {
       { source: '/api/:rest*/', destination: '/api-docs/:rest*/' },
       { source: `/static/x/:rest*`, destination: 'http://0.0.0.0:3001/static/x/:rest*' },
     ];
-  },
-  // For developement, adjust the redirects here (no effect on production because of `next export`)
-  // For production, configure at `docs/public/_redirects` (netlify)
-  async redirects() {
-    if (FEATURE_TOGGLE.enable_redirects) {
-      return [
-        {
-          source: '/styles/:path*',
-          destination: '/system/styles/:path*',
-          permanent: false,
-        },
-        {
-          source: '/getting-started/:path*',
-          destination: '/material-ui/getting-started/:path*',
-          permanent: false,
-        },
-        {
-          source: '/customization/:path*',
-          destination: '/material-ui/customization/:path*',
-          permanent: false,
-        },
-        {
-          source: '/guides/:path*',
-          destination: '/material-ui/guides/:path*',
-          permanent: false,
-        },
-        {
-          source: '/experimental-api/:path*',
-          destination: '/material-ui/experimental-api/:path*',
-          permanent: false,
-        },
-        {
-          source: '/discover-more/:path*',
-          destination: '/material-ui/discover-more/:path*',
-          permanent: false,
-        },
-        {
-          source: '/components/data-grid/:path*',
-          destination: '/x/react-data-grid/:path*',
-          permanent: false,
-        },
-        {
-          source: '/components/:slug(icons|material-icons|about-the-lab|transitions|pickers)',
-          destination: '/material-ui/:slug',
-          permanent: false,
-        },
-        {
-          source: '/components/:path(tabs|breadcrumbs)',
-          destination: '/material-ui/react-:path',
-          permanent: false,
-        },
-        ...['checkboxes', 'switches'].map((component) => ({
-          source: `/components/${component}`,
-          destination: `/material-ui/react-${component.replace(/es$/, '')}`,
-          permanent: false,
-        })),
-        ...[
-          'buttons',
-          'radio-buttons',
-          'selects',
-          'text-fields',
-          'avatars',
-          'badges',
-          'chips',
-          'dividers',
-          'lists',
-          'tables',
-          'tooltips',
-          'dialogs',
-          'snackbars',
-          'cards',
-          'drawers',
-          'links',
-          'menus',
-          'steppers',
-        ].map((component) => ({
-          source: `/components/${component}`,
-          destination: `/material-ui/react-${component.replace(/s$/, '')}`,
-          permanent: false,
-        })),
-        {
-          source: '/components/:path',
-          destination: '/material-ui/react-:path',
-          permanent: false,
-        },
-        {
-          source: '/api/data-grid/:path*',
-          destination: '/x/api/data-grid/:path*',
-          permanent: false,
-        },
-        {
-          source: '/api/:path*',
-          destination: '/material-ui/api/:path*',
-          permanent: false,
-        },
-      ];
-    }
-    return [];
   },
   // Can be turned on when https://github.com/vercel/next.js/issues/24640 is fixed
   optimizeFonts: false,

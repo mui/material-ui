@@ -6,9 +6,6 @@
 
 - If you want to build a design system based on Material Design, use `@mui/material`.
 - If you want to build with components that give you complete control over your app's CSS, use `@mui/base`.
-  :::info
-  MUI Base components are also included within`@mui/material`—no need to install Base separately if you're using Material UI.
-  :::
 - For CSS utilities to help in laying out custom designs with Material UI or MUI Base, use `@mui/system`.
 
 ### Glossary
@@ -45,7 +42,7 @@ Check the [MUI X overview](/x/advanced-components/) for more information about o
 
 Material UI is a comprehensive library of components that features our implementation of Google's Material Design.
 
-Both `@mui/base` and `@mui/system` are included as dependencies, meaning you don't need to install or import them separately—you can import them directly from `@mui/material`.
+`@mui/system` is included as dependency, meaning you don't need to install or import it separately—you can import its components and functions directly from `@mui/material`.
 
 ### MUI Base
 
@@ -96,10 +93,10 @@ These engines come in two packages:
 - `@mui/styled-engine`
 - `@mui/styled-engine-sc`
 
-By default, Material UI uses [emotion](https://emotion.sh/docs/styled) as its styling engine—it's included in the [installation](/material-ui/getting-started/installation/) process.
-If you plan to stick with emotion, then `@mui/styled-engine` is a dependency in your app, and you don't need to install it separately.
+By default, Material UI uses [Emotion](https://emotion.sh/docs/styled) as its styling engine—it's included in the [installation](/material-ui/getting-started/installation/) process.
+If you plan to stick with Emotion, then `@mui/styled-engine` is a dependency in your app, and you don't need to install it separately.
 
-If you prefer to use [styled-components](https://styled-components.com/docs/basics#getting-started), then you need to install `@mui/styled-engine-sc` in place of the emotion packages.
+If you prefer to use [styled-components](https://styled-components.com/docs/basics#getting-started), then you need to install `@mui/styled-engine-sc` in place of the Emotion packages.
 See the [Styled engine guide](/material-ui/guides/styled-engine/) for more details.
 
 In either case, you won't interact much with either of these packages beyond installation—they're used internally in `@mui/system`.
@@ -107,13 +104,13 @@ In either case, you won't interact much with either of these packages beyond ins
 :::warning
 ⚠ **Note:** prior to v5, Material UI used `@mui/styles` as a JSS wrapper.
 This package is now deprecated and will be removed in the future.
-Check out [the guide to migrating from v4 to v5](/material-ui/guides/migration-v4/) to learn how to upgrade to a newer solution.
+Check out [the guide to migrating from v4 to v5](/material-ui/migration/migration-v4/) to learn how to upgrade to a newer solution.
 :::
 
 ### MUI System
 
 MUI System is a collection of CSS utilities to help you rapidly lay out custom designs.
-It uses the emotion adapter (`@mui/styled-engine`) as the default style engine to create the CSS utilities.
+It uses the Emotion adapter (`@mui/styled-engine`) as the default style engine to create the CSS utilities.
 
 #### Advantages of MUI System
 
@@ -122,7 +119,7 @@ It uses the emotion adapter (`@mui/styled-engine`) as the default style engine t
 - You can have themeable components by using `styled` via slots and variants.
 
 :::warning
-To use MUI System, you must install either emotion or styled-components, because the respective `styled-engine` package depends on it.
+To use MUI System, you must install either Emotion or styled-components, because the respective `styled-engine` package depends on it.
 :::
 
 <img src="/static/images/packages/mui-system.png" style="width: 796px; margin-top: 4px; margin-bottom: 8px;" alt="A diagram showing an arrow going from @mui/system to @mui/styled-engine, with a note that it is the default engine. Then, from @mui/styled-engine a solid arrow points to @emotion/react and @emotion/styled while a dashed arrow points to @mui/styled-engine-sc, which points to styled-components." />

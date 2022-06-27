@@ -8,7 +8,7 @@ card: true
 ---
 
 We’re happy to announce that the Premium plan is [finally out](https://mui.com/pricing/)!
-With it, MUI X officially steps up to the next level, supporting the most advanced use cases for UI components.
+With it, MUI X officially steps up to the next level, supporting more advanced data grid use cases.
 
 <img src="/static/blog/premium-plan-release/card.png" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" alt="Promotional image of MUI X Premium plan release showcasing Data Grid's new features (such as Download data as an Excel file) and Date Range Picker" />
 
@@ -21,11 +21,23 @@ You can use the new Premium features to provide your end users with the most sop
 [Row grouping](https://mui.com/x/react-data-grid/row-grouping/) lets users group data based on repeating values in the grid.
 For example, users can now group orders by buyers, movies by directors, or cities by the governing parties.
 
-These kinds of use cases would usually be dealt with using a new query on the database—which might require a new service end-point, and maybe even a new front-end, along with all the UX challenges this would entail.
+These kinds of use cases would usually be dealt with using a new query on the database—which might require a new service end-point, and maybe even a new front-end, along with all the UX challenges this would entail. Now this functionality is available to your users with a single click.
 
-Now this functionality is available to your users with a single click.
+<video style="margin-bottom: 24px;" autoplay muted loop playsinline controls>
+  <source src="/static/blog/premium-plan-release/row-grouping-example.mp4" type="video/mp4" />
+</video>
+
+<p class="blog-description">The feature in action, from the docs page.</p>
+
 Users are encouraged to explore the data and create combinations with multiple grouping criteria,
 and are then able to export these new views to Excel, with the next Premium feature: Excel export.
+
+:::info
+With the Premium release, we have made Row grouping available for production use in the `@mui/x-data-grid-premium` package.
+
+This feature was previously available [as a preview](https://mui.com/blog/introducing-the-row-grouping-feature/#how-to-unlock-this-feature) for Pro users intending to migrate to the new plan.
+
+:::
 
 ### Excel export
 
@@ -34,6 +46,12 @@ and are then able to export these new views to Excel, with the next Premium feat
 This is one of the most requested features to date, so we're excited to finally deliver.
 
 In the future we intend to support all of the features impacting visualization of the data grid, but we’d love to hear from you if there’s anything in particular you’d like to see in future releases.
+
+<video style="margin-bottom: 24px;" autoplay muted loop playsinline>
+  <source src="/static/blog/premium-plan-release/excel-export-example.mp4" type="video/mp4" />
+</video>
+
+<p class="blog-description">The feature in action, from the docs page.</p>
 
 ### Aggregation (coming in late Q2)
 
@@ -44,6 +62,12 @@ Expanding on the use cases in the previous examples, users will be able to dynam
 
 Aggregation functions open up an exponential number of new possibilities for organizing data—all with just a few clicks.
 
+<video style="margin-bottom: 24px;" autoplay muted loop playsinline controls>
+  <source src="/static/blog/premium-plan-release/aggregation-example.mp4" type="video/mp4" />
+</video>
+
+<p class="blog-description">The feature in action, from the docs page.</p>
+
 ## The new licensing model
 
 With the release of the Premium plan, we’re also announcing a revised pricing and licensing model for MUI X Premium and Pro.
@@ -53,7 +77,9 @@ We’d also like to keep it within reach of individuals and small teams, while s
 
 Here is a list of everything that has changed:
 
-> ⚠️ Please note: The following changes apply only to **new customers**. Existing customers are not impacted, and their license agreement remains valid.
+:::warning
+⚠️ Please note: The following **pricing** changes apply only to **new customers**. Existing customers are grandfathered, they can renew their license under the [previous terms](https://mui.com/store/legal/mui-x-eula-2022-05-08/) once. Their last renewal can have a support duration of up to 5 years.
+:::
 
 - **Price point per developer seat**
 

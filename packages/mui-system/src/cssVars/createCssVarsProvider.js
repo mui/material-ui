@@ -5,7 +5,7 @@ import { deepmerge, unstable_useEnhancedEffect as useEnhancedEffect } from '@mui
 import { GlobalStyles } from '@mui/styled-engine';
 import cssVarsParser from './cssVarsParser';
 import ThemeProvider from '../ThemeProvider';
-import getInitColorSchemeScript, {
+import systemGetInitColorSchemeScript, {
   DEFAULT_ATTRIBUTE,
   DEFAULT_COLOR_SCHEME_STORAGE_KEY,
   DEFAULT_MODE_STORAGE_KEY,
@@ -19,6 +19,9 @@ export const DISABLE_CSS_TRANSITION =
 export default function createCssVarsProvider(options) {
   const {
     theme: defaultTheme = {},
+    attribute: defaultAttribute = DEFAULT_ATTRIBUTE,
+    modeStorageKey: defaultModeStorageKey = DEFAULT_MODE_STORAGE_KEY,
+    colorSchemeStorageKey: defaultColorSchemeStorageKey = DEFAULT_COLOR_SCHEME_STORAGE_KEY,
     defaultMode: desisgnSystemMode = 'light',
     defaultColorScheme: designSystemColorScheme,
     disableTransitionOnChange: designSystemTransitionOnChange = false,
@@ -53,9 +56,9 @@ export default function createCssVarsProvider(options) {
     children,
     theme: themeProp = defaultTheme,
     prefix = designSystemPrefix,
-    modeStorageKey = DEFAULT_MODE_STORAGE_KEY,
-    colorSchemeStorageKey = DEFAULT_COLOR_SCHEME_STORAGE_KEY,
-    attribute = DEFAULT_ATTRIBUTE,
+    modeStorageKey = defaultModeStorageKey,
+    colorSchemeStorageKey = defaultColorSchemeStorageKey,
+    attribute = defaultAttribute,
     defaultMode = desisgnSystemMode,
     defaultColorScheme = designSystemColorScheme,
     disableTransitionOnChange = designSystemTransitionOnChange,
@@ -296,6 +299,15 @@ export default function createCssVarsProvider(options) {
      */
     theme: PropTypes.object,
   };
+
+  const getInitColorSchemeScript = (params) =>
+    systemGetInitColorSchemeScript({
+      attribute: defaultAttribute,
+      colorSchemeStorageKey: defaultColorSchemeStorageKey,
+      modeStorageKey: defaultModeStorageKey,
+      enableColorScheme: designSystemEnableColorScheme,
+      ...params,
+    });
 
   return { CssVarsProvider, useColorScheme, getInitColorSchemeScript };
 }

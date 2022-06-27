@@ -2,17 +2,15 @@
   "props": {
     "children": { "type": { "name": "custom", "description": "element" }, "required": true },
     "open": { "type": { "name": "bool" }, "required": true },
-    "BackdropComponent": { "type": { "name": "elementType" } },
-    "BackdropProps": { "type": { "name": "object" } },
     "classes": { "type": { "name": "object" } },
     "closeAfterTransition": { "type": { "name": "bool" } },
     "component": { "type": { "name": "elementType" } },
     "components": {
-      "type": { "name": "shape", "description": "{ Root?: elementType }" },
+      "type": { "name": "shape", "description": "{ Backdrop?: elementType, Root?: elementType }" },
       "default": "{}"
     },
     "componentsProps": {
-      "type": { "name": "shape", "description": "{ root?: object }" },
+      "type": { "name": "shape", "description": "{ backdrop?: object, root?: object }" },
       "default": "{}"
     },
     "container": { "type": { "name": "union", "description": "HTML element<br>&#124;&nbsp;func" } },

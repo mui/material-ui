@@ -1,4 +1,4 @@
-# Joy UI - Usage
+# Usage
 
 <p class="description">Learn the basics of working with Joy UI components in three quick steps.</p>
 

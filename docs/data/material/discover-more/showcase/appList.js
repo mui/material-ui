@@ -114,7 +114,7 @@ const appList = [
     description:
       'Modern Furniture & Accessories, designed in Canada, for everyday living.',
     image: 'eq3.jpg',
-    link: 'https://www.eq3.com/ca/en/',
+    link: 'https://www.eq3.com/ca/en',
     similarWebVisits: 256,
     dateAdded: '2018-01-34',
   },

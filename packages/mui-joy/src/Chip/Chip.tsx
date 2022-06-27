@@ -10,7 +10,7 @@ import {
 } from '@mui/utils';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
-import { getChipUtilityClass } from './chipClasses';
+import chipClasses, { getChipUtilityClass } from './chipClasses';
 import { ChipProps, ChipTypeMap } from './ChipProps';
 import ChipContext from './ChipContext';
 
@@ -45,14 +45,13 @@ const ChipRoot = styled('div', {
   return [
     {
       '--Chip-radius': '1.5rem',
-      '--Chip-decorator-offset': 'calc(var(--Chip-paddingInline) / 4)', // negative margin of the start/end adornment
       // for controlling chip delete margin offset
       '--Chip-decorator-childOffset':
-        'min(calc(var(--Chip-paddingInline) - var(--Chip-decorator-offset) - (var(--Chip-minHeight) - 2 * var(--variant-outlinedBorderWidth, 0px) - var(--Chip-decorator-childHeight)) / 2), var(--Chip-paddingInline) - var(--Chip-decorator-offset))',
+        'min(calc(var(--Chip-paddingInline) - (var(--Chip-minHeight) - 2 * var(--variant-borderWidth) - var(--Chip-decorator-childHeight)) / 2), var(--Chip-paddingInline))',
       '--internal-paddingBlock':
-        'max((var(--Chip-minHeight) - 2 * var(--variant-outlinedBorderWidth, 0px) - var(--Chip-decorator-childHeight)) / 2, 0px)',
+        'max((var(--Chip-minHeight) - 2 * var(--variant-borderWidth) - var(--Chip-decorator-childHeight)) / 2, 0px)',
       '--Chip-decorator-childRadius':
-        'max((var(--Chip-radius) - var(--variant-outlinedBorderWidth, 0px)) - var(--internal-paddingBlock), min(var(--internal-paddingBlock) / 2, (var(--Chip-radius) - var(--variant-outlinedBorderWidth, 0px)) / 2))',
+        'max((var(--Chip-radius) - var(--variant-borderWidth)) - var(--internal-paddingBlock), min(var(--internal-paddingBlock) / 2, (var(--Chip-radius) - var(--variant-borderWidth)) / 2))',
       '--Chip-delete-radius': 'var(--Chip-decorator-childRadius)',
       '--Chip-delete-size': 'var(--Chip-decorator-childHeight)',
       '--Avatar-radius': 'var(--Chip-decorator-childRadius)',
@@ -63,7 +62,7 @@ const ChipRoot = styled('div', {
         '--Chip-gap': '0.25rem',
         '--Chip-paddingInline': '0.5rem',
         '--Chip-decorator-childHeight':
-          'calc(min(1.5rem, var(--Chip-minHeight)) - 2 * var(--variant-outlinedBorderWidth, 0px))',
+          'calc(min(1.5rem, var(--Chip-minHeight)) - 2 * var(--variant-borderWidth))',
         '--Icon-fontSize': '0.875rem',
         '--Chip-minHeight': '1.5rem',
         fontSize: theme.vars.fontSize.xs,
@@ -99,14 +98,21 @@ const ChipRoot = styled('div', {
       textDecoration: 'none',
       verticalAlign: 'middle',
       boxSizing: 'border-box',
+      [`&.${chipClasses.disabled}`]: {
+        color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}DisabledColor`],
+      },
     },
     ...(!ownerState.clickable
       ? [
           theme.variants[ownerState.variant!]?.[ownerState.color!],
-          theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
+          {
+            [`&.${chipClasses.disabled}`]:
+              theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
+          },
         ]
       : [
           {
+            '--variant-borderWidth': '0px',
             color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Color`],
           },
         ]),
@@ -121,6 +127,7 @@ const ChipLabel = styled('span', {
   display: 'inherit',
   alignItems: 'center',
   order: 1,
+  flexGrow: 1,
   ...(ownerState.clickable && {
     zIndex: 1,
     pointerEvents: 'none',
@@ -150,9 +157,12 @@ const ChipAction = styled('button', {
     [theme.focus.selector]: theme.focus.default,
   },
   theme.variants[ownerState.variant!]?.[ownerState.color!],
-  theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
-  theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
-  theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
+  { '&:hover': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!] },
+  { '&:active': theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!] },
+  {
+    [`&.${chipClasses.disabled}`]:
+      theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
+  },
 ]);
 
 const ChipStartDecorator = styled('span', {
@@ -162,9 +172,9 @@ const ChipStartDecorator = styled('span', {
 })<{ ownerState: ChipProps & { clickable: boolean } }>({
   '--Avatar-marginInlineStart': 'calc(var(--Chip-decorator-childOffset) * -1)',
   '--Chip-delete-margin': '0 0 0 calc(var(--Chip-decorator-childOffset) * -1)',
+  '--Icon-margin': '0 0 0 calc(var(--Chip-paddingInline) / -4)',
   display: 'inherit',
   marginInlineEnd: 'var(--Chip-gap)',
-  marginInlineStart: `calc(var(--Chip-decorator-offset) * -1)`,
   // set zIndex to 1 with order to stay on top of other controls, eg. Checkbox, Radio
   order: 0,
   zIndex: 1,
@@ -177,9 +187,9 @@ const ChipEndDecorator = styled('span', {
   overridesResolver: (props, styles) => styles.endDecorator,
 })<{ ownerState: ChipProps & { clickable: boolean } }>({
   '--Chip-delete-margin': '0 calc(var(--Chip-decorator-childOffset) * -1) 0 0',
+  '--Icon-margin': '0 calc(var(--Chip-paddingInline) / -4) 0 0',
   display: 'inherit',
   marginInlineStart: 'var(--Chip-gap)',
-  marginInlineEnd: `calc(var(--Chip-decorator-offset) * -1)`,
   // set zIndex to 1 with order to stay on top of other controls, eg. Checkbox, Radio
   order: 2,
   zIndex: 1,

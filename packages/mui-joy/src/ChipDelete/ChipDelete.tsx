@@ -7,7 +7,7 @@ import { unstable_composeClasses as composeClasses, useButton } from '@mui/base'
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
 import Close from '../internal/svg-icons/Close';
-import { getChipDeleteUtilityClass } from './chipDeleteClasses';
+import chipDeleteClasses, { getChipDeleteUtilityClass } from './chipDeleteClasses';
 import { ChipDeleteProps, ChipDeleteTypeMap } from './ChipDeleteProps';
 import ChipContext from '../Chip/ChipContext';
 
@@ -32,6 +32,7 @@ const ChipDeleteRoot = styled('button', {
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: ChipDeleteProps }>(({ theme, ownerState }) => [
   {
+    '--Icon-margin': 'initial', // prevent overrides from parent
     pointerEvents: 'visible', // force the ChipDelete to be hoverable because the decorator can have pointerEvents 'none'
     width: 'var(--Chip-delete-size, 2rem)',
     height: 'var(--Chip-delete-size, 2rem)',
@@ -47,9 +48,12 @@ const ChipDeleteRoot = styled('button', {
     [theme.focus.selector]: theme.focus.default,
   },
   theme.variants[ownerState.variant!]?.[ownerState.color!],
-  theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
-  theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
-  theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
+  { '&:hover': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!] },
+  { '&:active': theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!] },
+  {
+    [`&.${chipDeleteClasses.disabled}`]:
+      theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
+  },
 ]);
 
 const chipVariantMapping = {

@@ -10,9 +10,15 @@ githubLabel: 'component: avatar'
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
+## Variants and colors
+
+The avatar applies Joy UI's global variant tokens－which has `soft` and `neutral` as default values for variant and color, respectively.
+
+{{"demo": "AvatarUsage.js", "hideToolbar": true}}
+
 ## Image
 
-Image avatar can be created by passing standard html `img` props (eg. `src` or `srcSet`) to the component.
+Image avatar can be created by passing standard html `img` props (e.g. `src` or `srcSet`) to the component.
 
 {{"demo": "ImageAvatars.js"}}
 
@@ -22,15 +28,9 @@ Pass a string as `children` prop to the avatar to display initials.
 
 {{"demo": "InitialAvatars.js"}}
 
-## Variants and Colors
-
-The avatar applies Joy's global variant which has `soft` variant with `neutral` color by default.
-
-{{"demo": "AvatarVariantsAndColors.js"}}
-
 ## Sizes
 
-The avatar has three standard sizes: `sm`, `md` (default) and `lg`.
+The avatar has three standard sizes: `sm`, `md` (default), and `lg`.
 
 {{"demo": "AvatarSizes.js"}}
 
@@ -61,7 +61,9 @@ Here's a common example of what you'll find most applications out there:
 
 ### Ellipsis action
 
-The `Avatar` exposes meaningful CSS variables to communicate with the `AvatarGroup`. You can apply those variables to other components to mimic the avatar appearance inside the group. This customization technique makes your interface resilient to changes.
+The `Avatar` exposes meaningful CSS variables to communicate with the `AvatarGroup`.
+You can apply those variables to other components to mimic the avatar appearance inside the group.
+This customization technique makes your interface resilient to changes.
 
 Here is an example of using `IconButton` component to create an ellipsis action:
 
@@ -69,7 +71,8 @@ Here is an example of using `IconButton` component to create an ellipsis action:
 
 ### Overlapping order
 
-By default, the first avatar in the group stays behind the second and so on. You can reverse the overlapping order by reversing avatars position and providing CSS `flex-direction: row-reverse` to the `AvatarGroup`.
+By default, the first avatar in the group stays behind the second and so on.
+You can reverse the overlapping order by reversing avatars position and providing CSS `flex-direction: row-reverse` to the `AvatarGroup`.
 
 {{"demo": "OverlapAvatarGroup.js"}}
 
@@ -85,7 +88,8 @@ This approach preserves the overlapping offset between avatars whereas `flex-dir
 
 ### Component variables
 
-The `AvatarGroup` contains CSS variables to control the gap and the ring size of the avatars. You can override these variables via the `sx` prop.
+The `AvatarGroup` contains CSS variables to control the gap and the ring size of the avatars.
+You can override these variables via the `sx` prop.
 
 {{"demo": "AvatarGroupVariables.js", "hideToolbar": true }}
 

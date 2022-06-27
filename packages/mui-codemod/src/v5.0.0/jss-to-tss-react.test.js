@@ -92,6 +92,19 @@ describe('@mui/codemod', () => {
         const expected = read('./jss-to-tss-react.test/expected-from-mui-styles.js');
         expect(actual).to.equal(expected, 'The transformed version should be correct');
       });
+      it('transforms @mui/styles/makeStyles to use tss-react', () => {
+        const actual = transform(
+          {
+            source: read('./jss-to-tss-react.test/actual-from-mui-styles-makeStyles.js'),
+            path: require.resolve('./jss-to-tss-react.test/actual-from-mui-styles-makeStyles.js'),
+          },
+          { jscodeshift },
+          {},
+        );
+
+        const expected = read('./jss-to-tss-react.test/expected-from-mui-styles-makeStyles.js');
+        expect(actual).to.equal(expected, 'The transformed version should be correct');
+      });
       it('transforms typescript makeStyles with nested selectors to use tss-react', () => {
         const actual = transform(
           {

@@ -12,12 +12,12 @@ import { AspectRatioProps, AspectRatioTypeMap } from './AspectRatioProps';
 const useUtilityClasses = (ownerState: AspectRatioProps) => {
   const { variant, color } = ownerState;
   const slots = {
-    root: [
-      'root',
+    root: ['root'],
+    content: [
+      'content',
       variant && `variant${capitalize(variant)}`,
       color && `color${capitalize(color)}`,
     ],
-    content: ['content'],
   };
 
   return composeClasses(slots, getAspectRatioUtilityClass, {});
@@ -28,61 +28,59 @@ const AspectRatioRoot = styled('div', {
   name: 'JoyAspectRatio',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: AspectRatioProps }>(({ theme, ownerState }) => {
+})<{ ownerState: AspectRatioProps }>(({ ownerState }) => {
   const minHeight =
     typeof ownerState.minHeight === 'number' ? `${ownerState.minHeight}px` : ownerState.minHeight;
   const maxHeight =
     typeof ownerState.maxHeight === 'number' ? `${ownerState.maxHeight}px` : ownerState.maxHeight;
-  return [
-    {
-      // a context variable for any child component
-      '--AspectRatio-childRadius':
-        ownerState.variant === 'outlined'
-          ? `calc(var(--AspectRatio-radius) - var(--variant-outlinedBorderWidth))`
-          : 'var(--AspectRatio-radius)',
-      '--AspectRatio-paddingBottom':
-        minHeight || maxHeight
-          ? `clamp(${minHeight || '0px'}, calc(100% / (${ownerState.ratio})), ${
-              maxHeight || '9999px'
-            })`
-          : `calc(100% / (${ownerState.ratio}))`,
-      flexDirection: 'column',
-      borderRadius: 'var(--AspectRatio-radius)',
-      margin: 'var(--AspectRatio-margin)',
-    },
-    theme.variants[ownerState.variant!]?.[ownerState.color!],
-  ];
+  return {
+    // a context variable for any child component
+    '--AspectRatio-paddingBottom':
+      minHeight || maxHeight
+        ? `clamp(${minHeight || '0px'}, calc(100% / (${ownerState.ratio})), ${
+            maxHeight || '9999px'
+          })`
+        : `calc(100% / (${ownerState.ratio}))`,
+    flexDirection: 'column',
+    margin: 'var(--AspectRatio-margin)',
+  };
 });
 
 const AspectRatioContent = styled('div', {
   name: 'JoyAspectRatio',
   slot: 'Content',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: AspectRatioProps }>(({ ownerState }) => ({
-  flex: 1,
-  position: 'relative',
-  borderRadius: 'var(--AspectRatio-radius)',
-  height: 0,
-  paddingBottom: 'var(--AspectRatio-paddingBottom)',
-  // use data-attribute instead of :first-child to support zero config SSR (emotion)
-  '& > [data-first-child]': {
-    borderRadius: 'var(--AspectRatio-childRadius)',
-    boxSizing: 'border-box',
-    position: 'absolute',
-    width: '100%',
-    height: '100%',
-    objectFit: ownerState.objectFit,
+})<{ ownerState: AspectRatioProps }>(({ theme, ownerState }) => [
+  {
+    flex: 1,
+    position: 'relative',
+    borderRadius: 'var(--AspectRatio-radius)',
+    height: 0,
+    paddingBottom: 'var(--AspectRatio-paddingBottom)',
     overflow: 'hidden',
-    margin: 0,
-    padding: 0,
-    '& > img': {
-      // support art-direction that uses <picture><img /></picture>
+    // use data-attribute instead of :first-child to support zero config SSR (emotion)
+    // use nested selector for integrating with nextjs image `fill` layout (spans are inserted on top of the img)
+    '& [data-first-child]': {
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      boxSizing: 'border-box',
+      position: 'absolute',
       width: '100%',
       height: '100%',
       objectFit: ownerState.objectFit,
+      margin: 0,
+      padding: 0,
+      '& > img': {
+        // support art-direction that uses <picture><img /></picture>
+        width: '100%',
+        height: '100%',
+        objectFit: ownerState.objectFit,
+      },
     },
   },
-}));
+  theme.variants[ownerState.variant!]?.[ownerState.color!],
+]);
 
 const AspectRatio = React.forwardRef(function AspectRatio(inProps, ref) {
   const props = useThemeProps<typeof inProps & AspectRatioProps>({
@@ -190,6 +188,7 @@ AspectRatio.propTypes /* remove-proptypes */ = {
     'inherit',
     'initial',
     'none',
+    'revert-layer',
     'revert',
     'scale-down',
     'unset',
