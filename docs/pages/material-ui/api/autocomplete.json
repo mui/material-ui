@@ -120,9 +120,9 @@
       "groupLabel",
       "groupUl"
     ],
-    "globalClasses": { 
+    "globalClasses": {
       "expanded": "Mui-expanded",
-      "focused": "Mui-focused" 
+      "focused": "Mui-focused"
     },
     "name": "MuiAutocomplete"
   },
