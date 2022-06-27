@@ -35,10 +35,9 @@ interface SnackbarUnstyledOwnProps extends Omit<UseSnackbarParameters, 'ref'> {
       | {
           [key: string]: any;
         }
-      | ((
-          ownerState: SnackbarUnstyledOwnerState,
-        ) => Partial<React.ComponentPropsWithRef<'div'>> &
-          SnackbarUnstyledComponentsPropsOverrides);
+      | ((ownerState: SnackbarUnstyledOwnerState) => {
+          [key: string]: any;
+        });
   };
 }
 
