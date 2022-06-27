@@ -11,7 +11,10 @@
       "default": "{}"
     },
     "componentsProps": {
-      "type": { "name": "shape", "description": "{ root?: object, transition?: object }" },
+      "type": {
+        "name": "shape",
+        "description": "{ root?: func<br>&#124;&nbsp;object, transition?: func<br>&#124;&nbsp;object }"
+      },
       "default": "{}"
     },
     "disableWindowBlurListener": { "type": { "name": "bool" } },

@@ -22,7 +22,6 @@ describe('<SnackbarUnstyled />', () => {
           expectedClassName: classes.root,
         },
       },
-      skip: ['componentsPropsCallbacks', 'ownerStatePropagation'], // not implemented yet
     }),
   );
 });

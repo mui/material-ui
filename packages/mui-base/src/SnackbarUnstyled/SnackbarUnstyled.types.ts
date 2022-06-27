@@ -2,6 +2,9 @@ import React from 'react';
 import { OverrideProps } from '@mui/types';
 import { ClickAwayListenerProps } from '../ClickAwayListener';
 import { UseSnackbarParameters } from './useSnackbar.types';
+import { SlotComponentProps } from '../utils';
+
+export interface SnackbarUnstyledComponentsPropsOverrides {}
 
 interface SnackbarUnstyledOwnProps extends Omit<UseSnackbarParameters, 'ref'> {
   children?: React.ReactNode;
@@ -23,10 +26,19 @@ interface SnackbarUnstyledOwnProps extends Omit<UseSnackbarParameters, 'ref'> {
    * @default {}
    */
   componentsProps?: {
-    root?: React.HTMLAttributes<HTMLDivElement>;
-    transition?: {
-      [key: string]: any;
-    };
+    root?: SlotComponentProps<
+      'div',
+      SnackbarUnstyledComponentsPropsOverrides,
+      SnackbarUnstyledOwnerState
+    >;
+    transition?:
+      | {
+          [key: string]: any;
+        }
+      | ((
+          ownerState: SnackbarUnstyledOwnerState,
+        ) => Partial<React.ComponentPropsWithRef<'div'>> &
+          SnackbarUnstyledComponentsPropsOverrides);
   };
 }
 
@@ -39,3 +51,14 @@ export type SnackbarUnstyledProps<
   D extends React.ElementType = SnackbarUnstyledTypeMap['defaultComponent'],
   P = {},
 > = OverrideProps<SnackbarUnstyledTypeMap<P, D>, D>;
+
+export type SnackbarUnstyledOwnerState = SnackbarUnstyledProps & {
+  exited: boolean;
+};
+
+export type SnackbarUnstyledRootSlotProps = {
+  ownerState: SnackbarUnstyledOwnerState;
+  className?: string;
+  children?: React.ReactNode;
+  ref: React.Ref<any>;
+};

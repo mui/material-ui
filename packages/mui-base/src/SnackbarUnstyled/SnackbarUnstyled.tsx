@@ -1,12 +1,17 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import { OverridableComponent } from '@mui/types';
 import ClickAwayListener from '../ClickAwayListener';
-import { SnackbarUnstyledProps, SnackbarUnstyledTypeMap } from './SnackbarUnstyled.types';
+import {
+  SnackbarUnstyledOwnerState,
+  SnackbarUnstyledProps,
+  SnackbarUnstyledRootSlotProps,
+  SnackbarUnstyledTypeMap,
+} from './SnackbarUnstyled.types';
 import composeClasses from '../composeClasses';
 import { getSnackbarUnstyledUtilityClass } from './snackbarUnstyledClasses';
 import useSnackbar from './useSnackbar';
+import { useSlotProps, WithOptionalOwnerState } from '../utils';
 
 const useUtilityClasses = () => {
   const slots = {
@@ -32,7 +37,6 @@ const SnackbarUnstyled = React.forwardRef(function SnackbarUnstyled(
   const {
     autoHideDuration = null,
     children,
-    className,
     ClickAwayListenerProps,
     component,
     components = {},
@@ -59,26 +63,53 @@ const SnackbarUnstyled = React.forwardRef(function SnackbarUnstyled(
     ref,
   });
 
+  const ownerState: SnackbarUnstyledOwnerState = {
+    ...props,
+    autoHideDuration,
+    disableWindowBlurListener,
+    exited,
+  };
+
   const Root = component || components.Root || 'div';
 
   const TransitionComponent = components.Transition;
+
+  const componentsPropsRootSlotEventCallback = (
+    eventHandler: keyof React.HTMLAttributes<HTMLDivElement>,
+  ) => {
+    if (typeof componentsProps.root === 'object') {
+      return componentsProps.root?.[eventHandler];
+    }
+
+    if (typeof componentsProps.root === 'function') {
+      return componentsProps.root?.(ownerState)?.[eventHandler];
+    }
+    return null;
+  };
+
+  const rootProps: WithOptionalOwnerState<SnackbarUnstyledRootSlotProps> = useSlotProps({
+    elementType: Root,
+    getSlotProps: (eventHandlers) =>
+      getRootProps({
+        ...eventHandlers,
+        onBlur: componentsPropsRootSlotEventCallback('onBlur') || onBlur,
+        onFocus: componentsPropsRootSlotEventCallback('onFocus') || onFocus,
+        onMouseEnter: componentsPropsRootSlotEventCallback('onMouseEnter') || onMouseEnter,
+        onMouseLeave: componentsPropsRootSlotEventCallback('onMouseLeave') || onMouseLeave,
+      }),
+    externalForwardedProps: other,
+    externalSlotProps: componentsProps.root,
+    additionalProps: {
+      ref,
+    },
+    ownerState,
+    className: classes.root,
+  });
 
   // So that we only render active snackbars.
   if (!open && exited) {
     return null;
   }
-
-  const rootProps = {
-    ...other,
-    ...componentsProps.root,
-    className: clsx(classes.root, className, componentsProps.root?.className),
-    ...getRootProps({
-      onBlur: componentsProps.root?.onBlur || onBlur,
-      onFocus: componentsProps.root?.onFocus || onFocus,
-      onMouseEnter: componentsProps.root?.onMouseEnter || onMouseEnter,
-      onMouseLeave: componentsProps.root?.onMouseLeave || onMouseLeave,
-    }),
-  };
 
   return (
     <ClickAwayListener onClickAway={onClickAway} {...ClickAwayListenerProps}>
@@ -87,8 +118,14 @@ const SnackbarUnstyled = React.forwardRef(function SnackbarUnstyled(
           <TransitionComponent
             {...componentsProps.transition}
             {...getTransitionProps({
-              onEnter: componentsProps.transition?.onEnter,
-              onExited: componentsProps.transition?.onExited,
+              onEnter:
+                typeof componentsProps.transition === 'function'
+                  ? componentsProps.transition?.(ownerState)?.onEnter
+                  : componentsProps.transition?.onEnter,
+              onExited:
+                typeof componentsProps.transition === 'function'
+                  ? componentsProps.transition?.(ownerState)?.onExited
+                  : componentsProps.transition?.onExited,
             })}
           >
             {children}
@@ -119,10 +156,6 @@ SnackbarUnstyled.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
-   * @ignore
-   */
-  className: PropTypes.string,
-  /**
    * Props applied to the `ClickAwayListener` element.
    */
   ClickAwayListenerProps: PropTypes.object,
@@ -145,8 +178,8 @@ SnackbarUnstyled.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   componentsProps: PropTypes.shape({
-    root: PropTypes.object,
-    transition: PropTypes.object,
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    transition: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
    * If `true`, the `autoHideDuration` timer will expire even if the window is not focused.
