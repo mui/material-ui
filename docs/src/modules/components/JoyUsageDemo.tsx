@@ -230,7 +230,6 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
             <ReplayRoundedIcon />
           </IconButton>
         </Box>
-
         <Box
           sx={{
             display: 'flex',
