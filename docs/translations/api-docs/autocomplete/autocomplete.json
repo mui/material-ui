@@ -71,9 +71,7 @@
       "conditions": "<code>fullWidth={true}</code>"
     },
     "expanded": {
-      "description": "State class applied to {{nodeName}} if {{conditions}}.",
-      "nodeName": "the root element",
-      "conditions": "the Popper is displayed"
+      "description": "State class applied to the root element if the Popper is displayed"
     },
     "focused": {
       "description": "State class applied to {{nodeName}} if {{conditions}}.",

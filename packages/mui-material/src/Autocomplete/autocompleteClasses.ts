@@ -5,6 +5,8 @@ export interface AutocompleteClasses {
   root: string;
   /** Styles applied to the root element if `fullWidth={true}`. */
   fullWidth: string;
+  /** State class applied to the root element if the Popper is displayed */
+  expanded: string;
   /** State class applied to the root element if focused. */
   focused: string;
   /** Styles applied to the tag elements, e.g. the chips. */
