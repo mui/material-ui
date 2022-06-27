@@ -79,11 +79,9 @@ To do so we can add a `max` prop and render as many stars as the value of `max`.
 That works well enough for a simple UI element, but what happens when the component in question has many more moving parts?
 
 
-That works well enough for a simple UI element, but what happens when the component in question has many more moving parts?
-
 ### It’s never that simple
 
-Let’s play with a slightly more complex component: the [`DataGrid`](link to data grid docs).
+Let’s play with a slightly more complex component: the [`DataGrid`](https://mui.com/x/react-data-grid/).
 This component allows you to manage data by applying sorting, filtering, editing, exporting, and many other -INGs.
 
 Consider the following feature request: And together we will try to answer an open issue I get.
