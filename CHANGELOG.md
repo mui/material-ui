@@ -1,5 +1,67 @@
 # [Versions](https://mui.com/versions/)
 
+## 5.8.6
+
+<!-- generated comparing v5.8.5..master -->
+
+_Jun 27, 2022_
+
+A big thanks to the 13 contributors who made this release possible. Here are some highlights ✨:
+
+- ⚒️ Fixed React 18 issues in few components
+- 🚀 Improved the TypeScript augmentation when using CSS variables with `@mui/material`
+- many other 🐛 bug fixes and 📚 documentation improvements
+
+### `@mui/material@5.8.6`
+
+- &#8203;<!-- 27 -->[Alert] Add support for CSS vars (#32624) @haneenmahd
+- &#8203;<!-- 26 -->[Alert] Use getContrastText for filled variant font color (#29813) @SamoraMabuya
+- &#8203;<!-- 11 -->[OutlinedInput] Fix `ownerState` undefined in theme style overrides (#33241) @siriwatknp
+- &#8203;<!-- 08 -->[Tabs] Fix crash when used with React 18 & Suspense (#33277) @mnajdova
+- &#8203;<!-- 05 -->[TypeScript] Add CSS vars type augmentation for Material UI (#33211) @siriwatknp
+
+### `@mui/system@5.8.6`
+
+- &#8203;<!-- 09 -->[system] Add enableColorScheme option to getInitColorSchemeScript (#33261) @siriwatknp
+
+### `@mui/utils@5.8.6`
+
+- &#8203;<!-- 04 -->[utils] Allow state prefix to be configurable (#32972) @siriwatknp
+
+### `@mui/base@5.0.0-alpha.87`
+
+- &#8203;<!-- 25 -->[base] Improve the return type of useSlotProps (#33279) @michaldudak
+- &#8203;<!-- 24 -->[base] Improve some types (#33270) @mnajdova
+- &#8203;<!-- 13 -->[MenuUnstyled] Fix keyboard accessibility of menu items (#33145) @michaldudak
+- &#8203;<!-- 12 -->[ModalManager] Lock body scroll when container is inside shadow DOM (#33168) @jacobweberbowery
+- &#8203;<!-- 10 -->[SliderUnstyled] Use useSlotProps (#33132) @michaldudak
+- &#8203;<!-- 07 -->[TextareaAutosize] Fix crash when used with React 18 & Suspense (#33238) @howlettt
+- &#8203;<!-- 06 -->[TextareaAutosize] Fix warnings for too many renders in React 18 (#33253) @mnajdova
+
+### `@mui/joy@5.0.0-alpha.34`
+
+- &#8203;<!-- 14 -->[Joy] Add `Sheet` doc (#32820) @hbjORbj
+
+### Docs
+
+- &#8203;<!-- 23 -->[blog] Polish Why you should migrate to Material UI v5 today (#33244) @oliviertassinari
+- &#8203;<!-- 21 -->[docs] Add note in docs about `componentsProps.root` taking precedence (#33097) @ZeeshanTamboli
+- &#8203;<!-- 20 -->[docs] Remove a note about Base components being reexported from Material UI (#33265) @michaldudak
+- &#8203;<!-- 19 -->[docs] Update code snippet in docs for custom color palette (#32946) @ZeeshanTamboli
+- &#8203;<!-- 18 -->[docs] Fix the docs for production class generation (#31933) @Fafruch
+- &#8203;<!-- 17 -->[docs] Fix internal link in Box page (#33149) @davidgarciab
+- &#8203;<!-- 16 -->[docs] Badge component link in Base docs should be under Data Display section (#33249) @ZeeshanTamboli
+- &#8203;<!-- 15 -->[examples] Fix comment typo (#33256) @WinmezzZ
+
+### Core
+
+- &#8203;<!-- 22 -->[core] Remove dead code (#33243) @oliviertassinari
+- &#8203;<!-- 03 -->[website] Fix the scroll-top for all the website (#33215) @oliviertassinari
+- &#8203;<!-- 02 -->[website] List new core role @oliviertassinari
+- &#8203;<!-- 01 -->[website] Fix navigation menu close behavior (#33203) @oliviertassinari
+
+All contributors of this release in alphabetical order: @davidgarciab, @Fafruch, @haneenmahd, @hbjORbj, @howlettt, @jacobweberbowery, @michaldudak, @mnajdova, @oliviertassinari, @SamoraMabuya, @siriwatknp, @WinmezzZ, @ZeeshanTamboli
+
 ## 5.8.5
 
 <!-- generated comparing v5.8.4..master -->
