@@ -32,6 +32,7 @@ export type AutocompleteOwnerState<
   ChipComponent extends React.ElementType = ChipTypeMap['defaultComponent'],
 > = AutocompleteProps<T, Multiple, DisableClearable, FreeSolo, ChipComponent> & {
   disablePortal: boolean;
+  expanded: boolean;
   focused: boolean;
   fullWidth: boolean;
   hasClearIcon: boolean;

@@ -28,6 +28,7 @@ const useUtilityClasses = (ownerState) => {
   const {
     classes,
     disablePortal,
+    expanded,
     focused,
     fullWidth,
     hasClearIcon,
@@ -40,6 +41,7 @@ const useUtilityClasses = (ownerState) => {
   const slots = {
     root: [
       'root',
+      expanded && 'expanded',
       focused && 'focused',
       fullWidth && 'fullWidth',
       hasClearIcon && 'hasClearIcon',
@@ -448,11 +450,13 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
 
   const hasClearIcon = !disableClearable && !disabled && dirty && !readOnly;
   const hasPopupIcon = (!freeSolo || forcePopupIcon === true) && forcePopupIcon !== false;
+  const expanded = popupOpen && anchorEl
 
   // If you modify this, make sure to keep the `AutocompleteOwnerState` type in sync.
   const ownerState = {
     ...props,
     disablePortal,
+    expanded,
     focused,
     fullWidth,
     hasClearIcon,
@@ -588,7 +592,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
           },
         })}
       </AutocompleteRoot>
-      {popupOpen && anchorEl ? (
+      {expanded ? (
         <AutocompletePopper
           as={PopperComponent}
           className={clsx(classes.popper)}
