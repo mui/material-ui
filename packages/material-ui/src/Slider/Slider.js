@@ -384,8 +384,8 @@ const Slider = React.forwardRef(function Slider(props, ref) {
   const marks =
     marksProp === true && step !== null
       ? [...Array(Math.floor((max - min) / step) + 1)].map((_, index) => ({
-        value: min + step * index,
-      }))
+          value: min + step * index,
+        }))
       : marksProp || [];
 
   const { isFocusVisible, onBlurVisible, ref: focusVisibleRef } = useIsFocusVisible();
@@ -642,7 +642,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
 
     event.preventDefault();
     const finger = trackFinger(event, touchId);
-    const { newValue, activeIndex } = getFingerNewValue({ finger, values: valueDerived });
+    const { newValue, activeIndex } = getFingerNewValue({ finger, values });
     focusThumb({ sliderRef, activeIndex, setActive });
 
     setValueState(newValue);
