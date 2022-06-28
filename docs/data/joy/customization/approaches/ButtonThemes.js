@@ -566,7 +566,7 @@ export default function ButtonThemes() {
               onChange={(event) => setDesign(event.target.value)}
               sx={{ minWidth: 160 }}
             >
-              <option value="github">Github</option>
+              <option value="github">GitHub</option>
               <option value="fluent">Fluent</option>
               <option value="chakra">Chakra</option>
               <option value="mantine">Mantine</option>

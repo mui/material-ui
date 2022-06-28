@@ -132,7 +132,7 @@ export type InputUnstyledOwnerState = Simplify<
 export type InputUnstyledRootSlotProps = Simplify<
   UseInputRootSlotProps & {
     ownerState: InputUnstyledOwnerState;
-    className: string;
+    className?: string;
     children?: React.ReactNode;
     ref?: React.Ref<HTMLDivElement>;
   }
@@ -145,7 +145,7 @@ export type InputUnstyledInputSlotProps = Simplify<
     'aria-labelledby': React.AriaAttributes['aria-labelledby'];
     autoComplete: string | undefined;
     autoFocus: boolean | undefined;
-    className: string;
+    className?: string;
     id: string | undefined;
     name: string | undefined;
     onKeyDown: React.KeyboardEventHandler<HTMLInputElement> | undefined;

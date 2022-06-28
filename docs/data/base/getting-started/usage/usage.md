@@ -8,7 +8,6 @@ The following code snippet demonstrates a simple app that uses the MUI Base [`Bu
 
 ```jsx
 import * as React from 'react';
-import ReactDOM from 'react-dom';
 import ButtonUnstyled from '@mui/base/ButtonUnstyled';
 
 function App() {
@@ -68,10 +67,10 @@ The code snippet below shows how to override the `Root` element of the [`BadgeUn
 The `componentsProps` prop is an object that contains the props for all slots within a component.
 You can use it to define additional custom props for a component's interior elements.
 
-For example, the code snippet below shows how to add a custom CSS class to the `input` slot of the `BadgeUnstyled` component:
+For example, the code snippet below shows how to add a custom CSS class to the `badge` slot of the `BadgeUnstyled` component:
 
 ```jsx
-<BadgeUnstyled componentsProps={{ input: { className: 'my-badge' } }} />
+<BadgeUnstyled componentsProps={{ badge: { className: 'my-badge' } }} />
 ```
 
 All additional props placed on the primary component are also propagated into the `Root` slot (just as if they were placed in `componentsProps.root`).
@@ -85,6 +84,10 @@ These two examples are equivalent:
 ```jsx
 <BadgeUnstyled componentsProps={{ root: { id: 'badge1' } }}>
 ```
+
+:::warning
+If both `componentsProps.root` and additional props have the same keys but different values, the `componentsProps.root` props will take precedence. This does not apply to classes and the `style` prop (they will be merged instead).
+:::
 
 ## Components vs. hooks
 

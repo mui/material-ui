@@ -1,6 +1,6 @@
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import * as React from 'react';
-import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
+import { ColorPaletteProp, SxProps, VariantProp } from '../styles/types';
 
 export type SheetSlot = 'root';
 
@@ -18,11 +18,6 @@ export interface SheetTypeMap<P = {}, D extends React.ElementType = 'div'> {
      * @default 'neutral'
      */
     color?: OverridableStringUnion<ColorPaletteProp, SheetPropsColorOverrides>;
-    /**
-     * Shadow depth, corresponds to the `theme.shadow` scale.
-     * It accepts theme values between 'xs' and 'xl'.
-     */
-    elevation?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
     /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */

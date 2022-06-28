@@ -3,7 +3,6 @@ import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import ListDivider from '@mui/joy/ListDivider';
 import Input from '@mui/joy/Input';
-import Sheet from '@mui/joy/Sheet';
 import TextField from '@mui/joy/TextField';
 
 export default function InputIntegration() {
@@ -15,7 +14,7 @@ export default function InputIntegration() {
         size="md"
         placeholder="email@mui.com"
         endDecorator={
-          <Button variant="soft" size="sm" sx={{ boxShadow: 'sm' }}>
+          <Button variant="soft" size="sm">
             Subscribe
           </Button>
         }
@@ -25,7 +24,7 @@ export default function InputIntegration() {
         }}
       />
       <ListDivider component="hr" />
-      <Sheet sx={{ mx: 'auto', display: 'flex', gap: 2 }}>
+      <Box sx={{ mx: 'auto', display: 'flex', gap: 2 }}>
         <TextField
           label="--Input-radius"
           size="sm"
@@ -40,7 +39,7 @@ export default function InputIntegration() {
           value={childHeight}
           onChange={(event) => setChildHeight(event.target.valueAsNumber)}
         />
-      </Sheet>
+      </Box>
     </Box>
   );
 }

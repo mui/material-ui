@@ -1,6 +1,6 @@
 # Style library interoperability
 
-<p class="description">While you can use the emotion based styling solution provided by MUI to style your application, you can also use the one you already know and love (from plain CSS to styled-components).</p>
+<p class="description">While you can use the Emotion-based styling solution provided by MUI to style your application, you can also use the one you already know and love (from plain CSS to styled-components).</p>
 
 This guide aims to document the most popular alternatives,
 but you should find that the principles applied here can be adapted to other libraries.
@@ -68,7 +68,7 @@ export default function GlobalCssPriority() {
 }
 ```
 
-**Note:** If you are using emotion and have a custom cache in your app, that one will override the one coming from MUI. In order for the injection order to still be correct, you need to add the prepend option. Here is an example:
+**Note:** If you are using Emotion and have a custom cache in your app, that one will override the one coming from MUI. In order for the injection order to still be correct, you need to add the prepend option. Here is an example:
 
 ```jsx
 import * as React from 'react';
@@ -221,7 +221,7 @@ export default function GlobalCssPriority() {
 }
 ```
 
-**Note:** If you are using emotion and have a custom cache in your app, that one will override the one coming from MUI. In order for the injection order to still be correct, you need to add the prepend option. Here is an example:
+**Note:** If you are using Emotion and have a custom cache in your app, that one will override the one coming from MUI. In order for the injection order to still be correct, you need to add the prepend option. Here is an example:
 
 ```jsx
 import * as React from 'react';
@@ -289,7 +289,7 @@ export default function GlobalCssSliderDeep() {
 
 ### Change the default styled engine
 
-By default, MUI components come with emotion as their style engine. If,
+By default, MUI components come with Emotion as their style engine. If,
 however, you would like to use `styled-components`, you can configure your app by following the [styled engine guide](/material-ui/guides/styled-engine/#how-to-switch-to-styled-components) or starting with one of the example projects:
 
 <!-- #default-branch-switch -->
@@ -478,7 +478,7 @@ export default function GlobalCssPriority() {
 }
 ```
 
-**Note:** If you are using emotion and have a custom cache in your app, that one will override the one coming from MUI. In order for the injection order to still be correct, you need to add the prepend option. Here is an example:
+**Note:** If you are using Emotion and have a custom cache in your app, that one will override the one coming from MUI. In order for the injection order to still be correct, you need to add the prepend option. Here is an example:
 
 ```jsx
 import * as React from 'react';
@@ -666,7 +666,7 @@ export default function GlobalCssPriority() {
 }
 ```
 
-**Note:** If you are using emotion and have a custom cache in your app, it will override the one coming from MUI. In order for the injection order to still be correct, you need to add the prepend option. Here is an example:
+**Note:** If you are using Emotion and have a custom cache in your app, it will override the one coming from MUI. In order for the injection order to still be correct, you need to add the prepend option. Here is an example:
 
 ```jsx
 import * as React from 'react';
@@ -766,8 +766,7 @@ if you like the hook-based API (`makeStyles` → `useStyles`) that [`react-jss`]
 TypeScript support than JSS.
 
 :::info
-If you are updating from `@material-ui/core` (v4) to `@mui/material` (v5) checkout
-[migration guide](/material-ui/guides/migration-v4/#2-use-tss-react).
+If you are updating from `@material-ui/core` (v4) to `@mui/material` (v5), check out the [tss-react section](/material-ui/migration/migrating-from-jss/#2-use-tss-react) of the Migration guide.
 :::
 
 ```tsx

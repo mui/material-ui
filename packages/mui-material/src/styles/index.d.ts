@@ -94,4 +94,27 @@ export { default as withTheme } from './withTheme';
 export * from './CssVarsProvider';
 
 export { default as experimental_extendTheme } from './experimental_extendTheme';
-export * from './experimental_extendTheme';
+export type {
+  ColorSchemeOverrides,
+  SupportedColorScheme,
+  Opacity,
+  Overlays,
+  PaletteActionChannel,
+  PaletteAppBar,
+  PaletteAvatar,
+  PaletteChip,
+  PaletteColorChannel,
+  PaletteCommonChannel,
+  PaletteFilledInput,
+  PaletteLinearProgress,
+  PaletteSlider,
+  PaletteSnackbarContent,
+  PaletteStepConnector,
+  PaletteStepContent,
+  PaletteSwitch,
+  PaletteTableCell,
+  PaletteTextChannel,
+  PaletteTooltip,
+  CssVarsThemeOptions,
+  CssVarsTheme,
+} from './experimental_extendTheme';

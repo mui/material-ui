@@ -1,6 +1,13 @@
+/*
+Comments to be preserved when clsx import is removed. These comments should come before
+any comments that they get combined with.
+ */
+import clsx from "clsx";
+/*
+Comments that should not be lost when the clsx import comments are preserved.
+ */
 import React from "react";
 import { makeStyles } from "@material-ui/core";
-import clsx from "clsx";
 
 const useStyles = makeStyles(() => ({
   test: {
@@ -35,6 +42,15 @@ const useStyles3 = makeStyles({
     };
   }
 });
+
+const useGlobalStyles = makeStyles(() => ({
+  '@global': {
+    '.sample': {
+      backgroundColor: "purple",
+      color: "white",
+    }
+  }
+}));
 
 function InnerComponent() {
   const classes = useStyles2();
