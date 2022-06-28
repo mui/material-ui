@@ -84,7 +84,7 @@ function roundValueToStep(value, step, min) {
   return Number(nearest.toFixed(getDecimalPrecision(step)));
 }
 
-function setValueIndex({ values, source, newValue, index }) {
+function setValueIndex({ values, newValue, index }) {
   const output = values.slice();
   output[index] = newValue;
   return output;
@@ -480,7 +480,6 @@ const Slider = React.forwardRef(function Slider(props, ref) {
       const previousValue = newValue;
       newValue = setValueIndex({
         values,
-        source: valueDerived,
         newValue,
         index,
       }).sort(asc);
@@ -542,7 +541,6 @@ const Slider = React.forwardRef(function Slider(props, ref) {
       const previousValue = newValue;
       newValue = setValueIndex({
         values: values2,
-        source,
         newValue,
         index: activeIndex,
       }).sort(asc);
