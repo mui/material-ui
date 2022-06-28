@@ -11,7 +11,7 @@ unstyled: /base/react-switch/
 
 ## Introduction
 
-Switches are the preferred way to adjust settings on mobile.
+Switches are very commonly used for adjusting settings on mobile.
 The option that the switch controls, as well as the state it's in,
 should be made clear from the corresponding inline label.
 
@@ -21,82 +21,101 @@ should be made clear from the corresponding inline label.
 
 ## Component
 
+After [installation](/joy-ui/getting-started/installation/), you can start building with this component using the following basic elements:
+
+```jsx
+import Switch from '@mui/joy/Switch';
+
+export default function MyApp() {
+  return <Switch />;
+}
+```
+
 ### Controlled
 
-Use `checked` and `onChange` to create a controlled switch:
+To create a controlled switch, use the `checked` and `onChange` props.
 
 {{"demo": "SwitchControlled.js"}}
 
 ### Label
 
-You can use a `Typography` to label a `Switch`:
+Use the `Switch` component inside the `Typography`'s `endDecorator` prop for having labels.
 
 {{"demo": "SwitchLabel.js"}}
 
 ### Decorators
 
-Use `startDecorator` and/or `endDecorator` to insert decorators:
+To insert icon decorators, use the `startDecorator` and/or `endDecorator` props.
 
 {{"demo": "SwitchDecorators.js"}}
 
-### CSS Variables
-
-{{"demo": "SwitchVariables.js"}}
-
-## Accessibility
-
-- It will render an element with the `checkbox` role not `switch` role since this
-  role isn't widely supported yet. Please test first if assistive technology of your
-  target audience supports this role properly. Then you can change the role with
-  `<Switch componentsProps={{ input: { role: 'switch' } }}>`
-- All form controls should have labels, and this includes radio buttons, checkboxes, and switches. In most cases, this is done by using the `<label>` element.
-- When a label can't be used, it's necessary to add an attribute directly to the input component.
-  In this case, you can apply the additional attribute (e.g. `aria-label`, `aria-labelledby`, `title`) to the input slot inside `componentsProps` prop.
-
-```jsx
-<Switch value="checkedA" componentsProps={{ 'aria-label': 'Switch A' }} />
-```
-
-## Common examples
-
-These are customization examples that demonstrate the flexibility of Joy switch.
-
 ### Track child
 
-You can display some texts inside the track slot which some part is covered by the thumb.
+Target the track's children using the `componentsProps` prop to display a text inside of it.
 
 {{"demo": "ExampleTrackChild.js"}}
 
 ### Thumb child
 
-You can also display an icon on the thumb by passing it as a child to the thumb slot. The color is based on the state of the switch.
+Simmilarly to the above, target the thumb's children to display icons inside of it.
 
 {{"demo": "ExampleThumbChild.js"}}
 
+## CSS Variables
+
+Play around with all the CSS variables available in the switch component to see how the design changes.
+
+You can use those to customize the component on both the `sx` prop and the theme.
+
+{{"demo": "SwitchVariables.js"}}
+
+## Accessibility
+
+Here are a few tips to make sure you have an accessible switch component:
+
+- The `Switch` will render with the `checkbox` role as opposed to `switch`.
+  This is mainly because the latter isn't widely supported yet.
+  However, if you believe your audience will support it, make sure to test with assistive technology.
+  Use the `componentProps` prop to change the role:
+
+  ```jsx
+  <Switch componentsProps={{ input: { role: 'switch' } }}>
+  ```
+
+- Every form control component should have proper labels.
+  This includes radio buttons, checkboxes, and switches.
+  In most cases, this is done using the `<label>` element.
+  - If a label can't be applied, make sure to add an attribute (e.g. `aria-label`, `aria-labelledby`, `title`) to the input slot inside the `componentProps` prop.
+  ```jsx
+  <Switch value="checkedA" componentsProps={{ 'aria-label': 'Switch A' }} />
+  ```
+
+## Common examples
+
+### Material Design
+
+You can also find the Material Design switch design, out of the box, in [Material UI's documentation](/material-ui/react-switch/).
+
+{{"demo": "ExampleMaterialSwitch.js"}}
+
 ### Fluent
 
-To customize Joy switch to look like [Fluent design Toggle](https://developer.microsoft.com/en-us/fluentui#/controls/web/toggle), the switch's variant and color are different between states:
+Here's how you'd customize Joy UI's switch to make it look like [Microsoft's Fluent UI](https://developer.microsoft.com/en-us/fluentui#/controls/web/toggle):
 
-- Unchecked: use `outlined` variant + `neutral` color.
-- Checked: use `solid` variant + `primary` color.
+- Unchecked state: `outlined` variant and `neutral` color.
+- Checked state: `solid` variant and `primary` color.
 
 {{"demo": "ExampleFluentSwitch.js"}}
 
 ### iOS
 
-The `:active` is added to replicate when you press and hold the pointer on the switch. The thumb's width increases a little bit to represent the interaction.
-
-The CSS property `width` and `left` of the thumb require to have the same transition to make the effect smooth.
+Note how we've used the `:active` pseudo-class to replicate the small thumb size increase, which happens when you press and holder the switch.
 
 {{"demo": "ExampleIosSwitch.js"}}
 
 ### Strapi
 
 {{"demo": "ExampleStrapiSwitch.js"}}
-
-### Material design
-
-{{"demo": "ExampleMaterialSwitch.js"}}
 
 ### Chakra UI
 
