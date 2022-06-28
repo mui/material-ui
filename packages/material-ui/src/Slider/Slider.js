@@ -16,7 +16,6 @@ import ValueLabel from './ValueLabel';
 function asc(a, b) {
   return a - b;
 }
-
 function clamp(value, min, max) {
   return Math.min(Math.max(min, value), max);
 }
@@ -385,8 +384,8 @@ const Slider = React.forwardRef(function Slider(props, ref) {
   const marks =
     marksProp === true && step !== null
       ? [...Array(Math.floor((max - min) / step) + 1)].map((_, index) => ({
-        value: min + step * index,
-      }))
+          value: min + step * index,
+        }))
       : marksProp || [];
 
   const { isFocusVisible, onBlurVisible, ref: focusVisibleRef } = useIsFocusVisible();
