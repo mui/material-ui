@@ -578,7 +578,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
       return;
     }
 
-    const { newValue } = getFingerNewValue({ finger, values: valueDerived });
+    const { newValue } = getFingerNewValue({ finger, values });
 
     setActive(-1);
     if (event.type === 'touchend') {
@@ -607,7 +607,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
       touchId.current = touch.identifier;
     }
     const finger = trackFinger(event, touchId);
-    const { newValue, activeIndex } = getFingerNewValue({ finger, values: valueDerived });
+    const { newValue, activeIndex } = getFingerNewValue({ finger, values });
     focusThumb({ sliderRef, activeIndex, setActive });
 
     setValueState(newValue);
