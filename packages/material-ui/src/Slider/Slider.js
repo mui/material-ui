@@ -384,8 +384,8 @@ const Slider = React.forwardRef(function Slider(props, ref) {
   const marks =
     marksProp === true && step !== null
       ? [...Array(Math.floor((max - min) / step) + 1)].map((_, index) => ({
-          value: min + step * index,
-        }))
+        value: min + step * index,
+      }))
       : marksProp || [];
 
   const { isFocusVisible, onBlurVisible, ref: focusVisibleRef } = useIsFocusVisible();
@@ -875,14 +875,14 @@ Slider.propTypes = {
   /**
    * Callback function that is fired when the slider's value changed.
    *
-   * @param {object} event The even of the callback.
+   * @param {object} event The event source of the callback.
    * @param {number | number[]} value The new value.
    */
   onChange: PropTypes.func,
   /**
    * Callback function that is fired when the `mouseup` is triggered.
    *
-   * @param {object} event The even of the callback.
+   * @param {object} event The event source of the callback.
    * @param {number | number[]} value The new value.
    */
   onChangeCommitted: PropTypes.func,
