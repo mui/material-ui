@@ -125,6 +125,14 @@ export interface UseIsFocusVisibleResult {
 export default function useIsFocusVisible(): UseIsFocusVisibleResult {
   const ref = React.useCallback((node) => {
     if (node != null) {
+      if (process.env.NODE_ENV !== 'production') {
+        if (!(node instanceof Element)) {
+          throw new Error(
+            'MUI: The `children` component passed to this MUI component is not an HTML or SVG element. ' +
+              'If using a class component, please change it to forward the ref to its DOM node.',
+          );
+        }
+      }
       prepare(node.ownerDocument);
     }
   }, []);
