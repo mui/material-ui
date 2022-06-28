@@ -5,7 +5,7 @@ import Typography from '@mui/joy/Typography';
 export default function SwitchLabel() {
   return (
     <Typography component="label" endDecorator={<Switch sx={{ ml: 1 }} />}>
-      Wake up call
+      Turn alarm on
     </Typography>
   );
 }
