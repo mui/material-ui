@@ -3,6 +3,7 @@ import { styled, alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Popper from '@mui/material/Popper';
 import Paper from '@mui/material/Paper';
+import { unstable_debounce as debounce } from '@mui/utils';
 import Fade from '@mui/material/Fade';
 import Typography from '@mui/material/Typography';
 import IconImage from 'docs/src/components/icon/IconImage';
@@ -116,9 +117,8 @@ function getNextIndex(eventKey: KeyboardEvent['key'], currentIndex: number, leng
 }
 
 export default function HeaderNavBar() {
-  const [subMenuOpen, setSubMenuOpen] = React.useState(false);
+  const [subMenuOpen, setSubMenuOpen] = React.useState<null | 'products' | 'docs'>(null);
   const [subMenuIndex, setSubMenuIndex] = React.useState<number | null>(null);
-  const [docsMenuOpen, setDocsMenuOpen] = React.useState(false);
   const navRef = React.useRef<HTMLUListElement | null>(null);
   const productsMenuRef = React.useRef<HTMLDivElement | null>(null);
   const docsMenuRef = React.useRef<HTMLDivElement | null>(null);
@@ -165,7 +165,7 @@ export default function HeaderNavBar() {
     if (event.key === 'ArrowDown') {
       event.preventDefault();
       if (event.target === productsMenuRef.current) {
-        setSubMenuOpen(true);
+        setSubMenuOpen('products');
       }
       setSubMenuIndex((prevValue) => {
         if (prevValue === null) {
@@ -190,20 +190,40 @@ export default function HeaderNavBar() {
       });
     }
     if (event.key === 'Escape') {
-      setSubMenuOpen(false);
+      setSubMenuOpen(null);
       setSubMenuIndex(null);
     }
   }
+
+  const setSubMenuOpenDebounced = React.useMemo(
+    () => debounce(setSubMenuOpen, 40),
+    [setSubMenuOpen],
+  );
+
+  const setSubMenuOpenUndebounce = React.useMemo(
+    () => (value: typeof subMenuOpen) => {
+      setSubMenuOpenDebounced.clear();
+      setSubMenuOpen(value);
+    },
+    [setSubMenuOpen, setSubMenuOpenDebounced],
+  );
+
+  React.useEffect(() => {
+    return () => {
+      setSubMenuOpenDebounced.clear();
+    };
+  }, [setSubMenuOpenDebounced]);
+
   return (
     <Navigation>
       <ul ref={navRef} role="menubar" onKeyDown={handleLeftRightArrow}>
         {FEATURE_TOGGLE.nav_products && (
           <li
             role="none"
-            onMouseOver={() => setSubMenuOpen(true)}
-            onFocus={() => setSubMenuOpen(true)}
-            onMouseOut={() => setSubMenuOpen(false)}
-            onBlur={() => setSubMenuOpen(false)}
+            onMouseEnter={() => setSubMenuOpenUndebounce('products')}
+            onFocus={() => setSubMenuOpenUndebounce('products')}
+            onMouseLeave={() => setSubMenuOpenDebounced(null)}
+            onBlur={() => setSubMenuOpenUndebounce(null)}
           >
             <div
               role="menuitem"
@@ -211,17 +231,20 @@ export default function HeaderNavBar() {
               id="products-menu"
               ref={productsMenuRef}
               aria-haspopup
-              aria-expanded={subMenuOpen ? 'true' : 'false'}
+              aria-expanded={subMenuOpen === 'products' ? 'true' : 'false'}
               onKeyDown={handleKeyDown}
             >
               Products
             </div>
             <Popper
-              open={subMenuOpen}
+              open={subMenuOpen === 'products'}
               anchorEl={productsMenuRef.current}
               transition
               placement="bottom-start"
-              style={{ zIndex: 1200, pointerEvents: subMenuOpen ? 'visible' : 'none' }}
+              style={{
+                zIndex: 1200,
+                pointerEvents: subMenuOpen === 'products' ? undefined : 'none',
+              }}
             >
               {({ TransitionProps }) => (
                 <Fade {...TransitionProps} timeout={350}>
@@ -304,10 +327,10 @@ export default function HeaderNavBar() {
         )}
         <li
           role="none"
-          onMouseOver={() => setDocsMenuOpen(true)}
-          onFocus={() => setDocsMenuOpen(true)}
-          onMouseOut={() => setDocsMenuOpen(false)}
-          onBlur={() => setDocsMenuOpen(false)}
+          onMouseEnter={() => setSubMenuOpenUndebounce('docs')}
+          onFocus={() => setSubMenuOpenUndebounce('docs')}
+          onMouseLeave={() => setSubMenuOpenDebounced(null)}
+          onBlur={() => setSubMenuOpenUndebounce(null)}
         >
           <div
             role="menuitem"
@@ -315,16 +338,16 @@ export default function HeaderNavBar() {
             id="products-menu"
             ref={docsMenuRef}
             aria-haspopup
-            aria-expanded={docsMenuOpen ? 'true' : 'false'}
+            aria-expanded={subMenuOpen === 'docs' ? 'true' : 'false'}
           >
             Docs
           </div>
           <Popper
-            open={docsMenuOpen}
+            open={subMenuOpen === 'docs'}
             anchorEl={docsMenuRef.current}
             transition
             placement="bottom-start"
-            style={{ zIndex: 1200, pointerEvents: docsMenuOpen ? 'visible' : 'none' }}
+            style={{ zIndex: 1200, pointerEvents: subMenuOpen === 'docs' ? undefined : 'none' }}
           >
             {({ TransitionProps }) => (
               <Fade {...TransitionProps} timeout={350}>

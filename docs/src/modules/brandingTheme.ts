@@ -271,6 +271,9 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
         letterSpacing: 0,
         fontWeight: 700,
       },
+      allVariants: {
+        scrollMarginTop: 'calc(var(--MuiDocs-header-height) + 32px)',
+      },
     },
   } as ThemeOptions);
 
