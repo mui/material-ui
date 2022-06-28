@@ -385,8 +385,8 @@ const Slider = React.forwardRef(function Slider(props, ref) {
   const marks =
     marksProp === true && step !== null
       ? [...Array(Math.floor((max - min) / step) + 1)].map((_, index) => ({
-          value: min + step * index,
-        }))
+        value: min + step * index,
+      }))
       : marksProp || [];
 
   const { isFocusVisible, onBlurVisible, ref: focusVisibleRef } = useIsFocusVisible();
@@ -503,7 +503,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
     axis += '-reverse';
   }
 
-  const getFingerNewValue = ({ finger, move = false, values: values2, source }) => {
+  const getFingerNewValue = ({ finger, move = false, values: values2 }) => {
     const { current: slider } = sliderRef;
     const { width, height, bottom, left } = slider.getBoundingClientRect();
     let percent;
@@ -562,7 +562,6 @@ const Slider = React.forwardRef(function Slider(props, ref) {
       finger,
       move: true,
       values,
-      source: valueDerived,
     });
 
     focusThumb({ sliderRef, activeIndex, setActive });
@@ -580,7 +579,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
       return;
     }
 
-    const { newValue } = getFingerNewValue({ finger, values, source: valueDerived });
+    const { newValue } = getFingerNewValue({ finger, values: valueDerived });
 
     setActive(-1);
     if (event.type === 'touchend') {
@@ -609,7 +608,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
       touchId.current = touch.identifier;
     }
     const finger = trackFinger(event, touchId);
-    const { newValue, activeIndex } = getFingerNewValue({ finger, values, source: valueDerived });
+    const { newValue, activeIndex } = getFingerNewValue({ finger, values: valueDerived });
     focusThumb({ sliderRef, activeIndex, setActive });
 
     setValueState(newValue);
@@ -644,7 +643,7 @@ const Slider = React.forwardRef(function Slider(props, ref) {
 
     event.preventDefault();
     const finger = trackFinger(event, touchId);
-    const { newValue, activeIndex } = getFingerNewValue({ finger, values, source: valueDerived });
+    const { newValue, activeIndex } = getFingerNewValue({ finger, values: valueDerived });
     focusThumb({ sliderRef, activeIndex, setActive });
 
     setValueState(newValue);
@@ -877,14 +876,14 @@ Slider.propTypes = {
   /**
    * Callback function that is fired when the slider's value changed.
    *
-   * @param {object} event The event source of the callback.
+   * @param {object} event The even of the callback.
    * @param {number | number[]} value The new value.
    */
   onChange: PropTypes.func,
   /**
    * Callback function that is fired when the `mouseup` is triggered.
    *
-   * @param {object} event The event source of the callback.
+   * @param {object} event The even of the callback.
    * @param {number | number[]} value The new value.
    */
   onChangeCommitted: PropTypes.func,
