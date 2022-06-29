@@ -289,6 +289,8 @@ export default function Demo(props) {
   const DemoRoot = asPathWithoutLang.startsWith('/joy-ui') ? DemoRootJoy : DemoRootMaterial;
   const Wrapper = asPathWithoutLang.startsWith('/joy-ui') ? BrandingProvider : React.Fragment;
 
+  const isAdVisible = showAd && !disableAd && !demoOptions.disableAd;
+
   return (
     <Root>
       <AnchorLink id={`${demoName}`} />
@@ -357,13 +359,13 @@ export default function Demo(props) {
               variant="outlined"
               error
               component="pre"
-              sx={{ whiteSpace: 'pre-wrap', mb: 1 }}
+              sx={{ whiteSpace: 'pre-wrap', mb: isAdVisible ? 3 : 1 }}
             >
               {debouncedError}
             </FormHelperText>
           )}
         </Collapse>
-        {showAd && !disableAd && !demoOptions.disableAd ? <AdCarbonInline /> : null}
+        {isAdVisible ? <AdCarbonInline /> : null}
       </Wrapper>
     </Root>
   );
