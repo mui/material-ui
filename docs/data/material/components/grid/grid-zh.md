@@ -14,50 +14,50 @@ materialDesign: https://material.io/design/layout/understanding-layout.html
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-:::warning ⚠️ The `Grid` component shouldn't be confused with a data grid; it is closer to a layout grid. For a data grid head to [the `DataGrid` component](/x/react-data-grid/). :::
+警告，不应将`Grid`与data grid相互混淆，那是一个和布局网格相同的网格 For a data grid head to [the `DataGrid` component](/x/react-data-grid/). :::
 
 ## 工作原理
 
-The grid system is implemented with the `Grid` component:
+网格系统是对`Grid`的实现
 
 - 它使用 [CSS 弹性盒子模块](https://www.w3.org/TR/css-flexbox-1/) 来做到高度灵活。
 - 它有两种类型的布局： _containers_ ， _items_。
 - 每项的宽度是按百分比设置的，所以它们的大小总是相对于它们的父元素流动。
 - 子项目（items）使用内边距来保持和其他块（items）的间距。
 - 其中五个断点可供使用：xs，sm，md，lg 和 xl。
-- Integer values can be given to each breakpoint, indicating how many of the 12 available columns are occupied by the component when the viewport width satisfies the [breakpoint constraints](/material-ui/customization/breakpoints/#default-breakpoints).
+- 给每个断点赋予的整型值都代表了当视图宽度可以满足断点约束时组件里占用了12个可用列里的几个
 
-If you are **new to or unfamiliar with flexbox**, we encourage you to read this [CSS-Tricks flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) guide.
+如果你不熟悉flexbox，我们建议你参考 [CSS-Tricks flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)篇
 
 ## Fluid grids 流式网格
 
-Fluid grids use columns that scale and resize content. A fluid grid's layout can use breakpoints to determine if the layout needs to change dramatically.
+流式网格可以通过列（column）来缩放和调整内容的大小。 流式网格可以用断点来决定布局是否需要大幅度变化
 
 ### 基本栅格
 
-Column widths are integer values between 1 and 12; they apply at any breakpoint and indicate how many columns are occupied by the component.
+列宽是一个基于1-12的整型值，他们可以用于任意断点来代表组件占用了多少列
 
-A value given to a breakpoint applies to all the other breakpoints wider than it (unless overridden, as you can read later in this page). For example, `xs={12}` sizes a component to occupy the whole viewport width regardless of its size.
+给定断点适用于其它比它更大的断点（除非重写，你会将在本页的后面看到） 举个例子，`xs={12}`会在无论他自己大小有多大的情况下将组件的宽度调整为占据整个视图宽度
 
 {{"demo": "BasicGrid.js", "bg": true}}
 
 ### 有断点的栅格
 
-Components may have multiple widths defined, causing the layout to change at the defined breakpoint. Width values given to larger breakpoints override those given to smaller breakpoints.
+组件可能有多个宽度定义，这会导致组件根据指定的断点大小来布局 大的断点的宽度值会覆盖小的断点的宽度值
 
-For example, `xs={12} sm={6}` sizes a component to occupy half of the viewport width (6 columns) when viewport width is [600 or more pixels](/material-ui/customization/breakpoints/#default-breakpoints). For smaller viewports, the component fills all 12 available columns.
+举个例子，`xs={12} sm={6}`会在视图宽度为 [的时候让组件占据视图一半的宽度（6列）](/material-ui/customization/breakpoints/#default-breakpoints) 对于较小的视图宽度，则会占据所有的12列
 
 {{"demo": "FullWidthGrid.js", "bg": true}}
 
 ## Spacing 间距
 
-To control space between children, use the `spacing` prop. The spacing value can be any positive number, including decimals and any string. The prop is converted into a CSS property using the [`theme.spacing()`](/material-ui/customization/spacing/) helper.
+控制子控件之间的间距，可以使用`spacing`属性 Spacing可以是包含小数和整型值还有字符串的任意大于0的数 属性值会使用[`theme.spacing()`](/material-ui/customization/spacing/)助手来转换成css属性
 
 {{"demo": "SpacingGrid.js", "bg": true}}
 
 ### 行、列间距
 
-The `rowSpacing` and `columnSpacing` props allow for specifying the row and column gaps independently. It's similar to the `row-gap` and `column-gap` properties of [CSS Grid](/system/grid/#row-gap-amp-column-gap).
+`rowSpacing`和`columnSpacing`属性允许你独立指定列间距和行间距 他和[CSS Grid](/system/grid/#row-gap-amp-column-gap)里的`row-gap`还有 `column-gap`属性相同
 
 {{"demo": "RowAndColumnSpacing.js", "bg": true}}
 
