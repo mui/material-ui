@@ -12,7 +12,7 @@ describe('<CardCover />', () => {
     inheritComponent: 'div',
     render,
     ThemeProvider,
-    muiName: 'MuiCardCover',
+    muiName: 'JoyCardCover',
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'span',
     testVariantProps: { variant: 'solid' },

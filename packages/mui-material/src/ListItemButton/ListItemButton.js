@@ -176,7 +176,8 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
     <ListContext.Provider value={childContext}>
       <ListItemButtonRoot
         ref={handleRef}
-        component={component}
+        href={other.href || other.to}
+        component={(other.href || other.to) && component === 'div' ? 'a' : component}
         focusVisibleClassName={clsx(classes.focusVisible, focusVisibleClassName)}
         ownerState={ownerState}
         {...other}
@@ -248,6 +249,10 @@ ListItemButton.propTypes /* remove-proptypes */ = {
    * if needed.
    */
   focusVisibleClassName: PropTypes.string,
+  /**
+   * @ignore
+   */
+  href: PropTypes.string,
   /**
    * Use to apply selected styling.
    * @default false

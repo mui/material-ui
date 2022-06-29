@@ -1,4 +1,4 @@
-import { generateUtilityClass, generateUtilityClasses } from '@mui/base';
+import { generateUtilityClass, generateUtilityClasses } from '../className';
 
 export interface AvatarClasses {
   /** Styles applied to the root element. */
@@ -36,10 +36,10 @@ export interface AvatarClasses {
 export type AvatarClassKey = keyof AvatarClasses;
 
 export function getAvatarUtilityClass(slot: string): string {
-  return generateUtilityClass('MuiAvatar', slot);
+  return generateUtilityClass('JoyAvatar', slot);
 }
 
-const avatarClasses: AvatarClasses = generateUtilityClasses('MuiAvatar', [
+const avatarClasses: AvatarClasses = generateUtilityClasses('JoyAvatar', [
   'root',
   'colorPrimary',
   'colorNeutral',

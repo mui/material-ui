@@ -23,7 +23,7 @@ const theme = createTheme({
 
 {{"demo": "DefaultProps.js"}}
 
-If you're using Typescript and [lab components](/material-ui/about-the-lab/), check [this article to learn how to override their styles](/material-ui/about-the-lab/#typescript).
+If you're using TypeScript and [lab components](/material-ui/about-the-lab/), check [this article to learn how to override their styles](/material-ui/about-the-lab/#typescript).
 
 ## Global style overrides
 
@@ -57,13 +57,15 @@ You can use these classes inside the `styleOverrides` key to modify the correspo
 const theme = createTheme({
   components: {
     MuiButton: {
-      styleOverrides: ({ ownerState }) => ({
-        ...(ownerState.variant === 'contained' &&
-          ownerState.color === 'primary' && {
-            backgroundColor: '#202020',
-            color: '#fff',
-          }),
-      }),
+      styleOverrides: {
+        root: ({ ownerState }) => ({
+          ...(ownerState.variant === 'contained' &&
+            ownerState.color === 'primary' && {
+              backgroundColor: '#202020',
+              color: '#fff',
+            }),
+        }),
+      },
     },
   },
 });

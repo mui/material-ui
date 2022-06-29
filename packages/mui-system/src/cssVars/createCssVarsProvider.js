@@ -5,7 +5,7 @@ import { deepmerge, unstable_useEnhancedEffect as useEnhancedEffect } from '@mui
 import { GlobalStyles } from '@mui/styled-engine';
 import cssVarsParser from './cssVarsParser';
 import ThemeProvider from '../ThemeProvider';
-import getInitColorSchemeScript, {
+import systemGetInitColorSchemeScript, {
   DEFAULT_ATTRIBUTE,
   DEFAULT_COLOR_SCHEME_STORAGE_KEY,
   DEFAULT_MODE_STORAGE_KEY,
@@ -19,6 +19,9 @@ export const DISABLE_CSS_TRANSITION =
 export default function createCssVarsProvider(options) {
   const {
     theme: defaultTheme = {},
+    attribute: defaultAttribute = DEFAULT_ATTRIBUTE,
+    modeStorageKey: defaultModeStorageKey = DEFAULT_MODE_STORAGE_KEY,
+    colorSchemeStorageKey: defaultColorSchemeStorageKey = DEFAULT_COLOR_SCHEME_STORAGE_KEY,
     defaultMode: desisgnSystemMode = 'light',
     defaultColorScheme: designSystemColorScheme,
     disableTransitionOnChange: designSystemTransitionOnChange = false,
@@ -53,9 +56,9 @@ export default function createCssVarsProvider(options) {
     children,
     theme: themeProp = defaultTheme,
     prefix = designSystemPrefix,
-    modeStorageKey = DEFAULT_MODE_STORAGE_KEY,
-    colorSchemeStorageKey = DEFAULT_COLOR_SCHEME_STORAGE_KEY,
-    attribute = DEFAULT_ATTRIBUTE,
+    modeStorageKey = defaultModeStorageKey,
+    colorSchemeStorageKey = defaultColorSchemeStorageKey,
+    attribute = defaultAttribute,
     defaultMode = desisgnSystemMode,
     defaultColorScheme = designSystemColorScheme,
     disableTransitionOnChange = designSystemTransitionOnChange,
@@ -120,9 +123,11 @@ export default function createCssVarsProvider(options) {
       prefix,
       vars: rootVars,
       getCssVar: createGetCssVar(prefix),
+      getColorSchemeSelector: (targetColorScheme) => `[${attribute}="${targetColorScheme}"] &`,
     };
 
-    const styleSheet = {};
+    const defaultColorSchemeStyleSheet = {};
+    const otherColorSchemesStyleSheet = {};
 
     Object.entries(colorSchemes).forEach(([key, scheme]) => {
       const {
@@ -156,9 +161,9 @@ export default function createCssVarsProvider(options) {
         return defaultColorScheme.light;
       })();
       if (key === resolvedDefaultColorScheme) {
-        styleSheet[colorSchemeSelector] = css;
+        defaultColorSchemeStyleSheet[colorSchemeSelector] = css;
       } else {
-        styleSheet[
+        otherColorSchemesStyleSheet[
           `${colorSchemeSelector === ':root' ? '' : colorSchemeSelector}[${attribute}="${key}"]`
         ] = css;
       }
@@ -228,7 +233,8 @@ export default function createCssVarsProvider(options) {
         }}
       >
         <GlobalStyles styles={{ [colorSchemeSelector]: rootCss }} />
-        <GlobalStyles styles={styleSheet} />
+        <GlobalStyles styles={defaultColorSchemeStyleSheet} />
+        <GlobalStyles styles={otherColorSchemesStyleSheet} />
         <ThemeProvider theme={resolveTheme ? resolveTheme(theme) : theme}>{children}</ThemeProvider>
       </ColorSchemeContext.Provider>
     );
@@ -293,6 +299,15 @@ export default function createCssVarsProvider(options) {
      */
     theme: PropTypes.object,
   };
+
+  const getInitColorSchemeScript = (params) =>
+    systemGetInitColorSchemeScript({
+      attribute: defaultAttribute,
+      colorSchemeStorageKey: defaultColorSchemeStorageKey,
+      modeStorageKey: defaultModeStorageKey,
+      enableColorScheme: designSystemEnableColorScheme,
+      ...params,
+    });
 
   return { CssVarsProvider, useColorScheme, getInitColorSchemeScript };
 }

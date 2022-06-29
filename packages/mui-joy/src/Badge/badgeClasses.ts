@@ -1,4 +1,4 @@
-import { generateUtilityClass, generateUtilityClasses } from '@mui/base';
+import { generateUtilityClass, generateUtilityClasses } from '../className';
 
 export interface BadgeClasses {
   /** Class name applied to the root element. */
@@ -48,10 +48,10 @@ export interface BadgeClasses {
 export type BadgeClassKey = keyof BadgeClasses;
 
 export function getBadgeUtilityClass(slot: string): string {
-  return generateUtilityClass('MuiBadge', slot);
+  return generateUtilityClass('JoyBadge', slot);
 }
 
-const badgeClasses: BadgeClasses = generateUtilityClasses('MuiBadge', [
+const badgeClasses: BadgeClasses = generateUtilityClasses('JoyBadge', [
   'root',
   'badge',
   'anchorOriginTopRight',

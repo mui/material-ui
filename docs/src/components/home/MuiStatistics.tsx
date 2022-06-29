@@ -5,7 +5,7 @@ import Typography from '@mui/material/Typography';
 
 const data = [
   { title: '3.2M', metadata: 'Weekly downloads on npm' },
-  { title: '77k', metadata: 'Stars on GitHub' },
+  { title: '78k', metadata: 'Stars on GitHub' },
   { title: '2.4k', metadata: 'Open-source contributors' },
   { title: '17k', metadata: 'Followers on Twitter' },
 ];

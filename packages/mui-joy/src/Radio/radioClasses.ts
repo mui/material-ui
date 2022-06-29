@@ -1,4 +1,4 @@
-import { generateUtilityClass, generateUtilityClasses } from '@mui/base';
+import { generateUtilityClass, generateUtilityClasses } from '../className';
 
 export interface RadioClasses {
   /** Styles applied to the root element. */
@@ -46,10 +46,10 @@ export interface RadioClasses {
 export type RadioClassKey = keyof RadioClasses;
 
 export function getRadioUtilityClass(slot: string): string {
-  return generateUtilityClass('MuiRadio', slot);
+  return generateUtilityClass('JoyRadio', slot);
 }
 
-const radioClasses: RadioClasses = generateUtilityClasses('MuiRadio', [
+const radioClasses: RadioClasses = generateUtilityClasses('JoyRadio', [
   'root',
   'radio',
   'action',

@@ -33,22 +33,11 @@ const SliderRoot = styled('span', {
   overridesResolver: (props, styles) => {
     const { ownerState } = props;
 
-    const marks =
-      ownerState.marksProp === true && ownerState.step !== null
-        ? [...Array(Math.floor((ownerState.max - ownerState.min) / ownerState.step) + 1)].map(
-            (_, index) => ({
-              value: ownerState.min + ownerState.step * index,
-            }),
-          )
-        : ownerState.marksProp || [];
-
-    const marked = marks.length > 0 && marks.some((mark) => mark.label);
-
     return [
       styles.root,
       styles[`color${capitalize(ownerState.color)}`],
       ownerState.size !== 'medium' && styles[`size${capitalize(ownerState.size)}`],
-      marked && styles.marked,
+      ownerState.marked && styles.marked,
       ownerState.orientation === 'vertical' && styles.vertical,
       ownerState.track === 'inverted' && styles.trackInverted,
       ownerState.track === false && styles.trackFalse,
@@ -61,7 +50,7 @@ const SliderRoot = styled('span', {
   position: 'relative',
   cursor: 'pointer',
   touchAction: 'none',
-  color: theme.palette[ownerState.color].main,
+  color: (theme.vars || theme).palette[ownerState.color].main,
   WebkitTapHighlightColor: 'transparent',
   ...(ownerState.orientation === 'horizontal' && {
     height: 4,
@@ -101,7 +90,7 @@ const SliderRoot = styled('span', {
   [`&.${sliderClasses.disabled}`]: {
     pointerEvents: 'none',
     cursor: 'default',
-    color: theme.palette.grey[400],
+    color: (theme.vars || theme).palette.grey[400],
   },
   [`&.${sliderClasses.dragging}`]: {
     [`& .${sliderClasses.thumb}, & .${sliderClasses.track}`]: {
@@ -198,8 +187,8 @@ const SliderTrack = styled('span', {
       display: 'none',
     }),
     ...(ownerState.track === 'inverted' && {
-      backgroundColor: color,
-      borderColor: color,
+      backgroundColor: theme.vars ? theme.vars.palette.Slider[`${ownerState.color}Track`] : color,
+      borderColor: theme.vars ? theme.vars.palette.Slider[`${ownerState.color}Track`] : color,
     }),
   };
 });
@@ -260,7 +249,7 @@ const SliderThumb = styled('span', {
     borderRadius: 'inherit',
     width: '100%',
     height: '100%',
-    boxShadow: theme.shadows[2],
+    boxShadow: (theme.vars || theme).shadows[2],
     ...(ownerState.size === 'small' && {
       boxShadow: 'none',
     }),
@@ -277,13 +266,21 @@ const SliderThumb = styled('span', {
     transform: 'translate(-50%, -50%)',
   },
   [`&:hover, &.${sliderClasses.focusVisible}`]: {
-    boxShadow: `0px 0px 0px 8px ${alpha(theme.palette[ownerState.color].main, 0.16)}`,
+    boxShadow: `0px 0px 0px 8px ${
+      theme.vars
+        ? `rgba(${theme.vars.palette[ownerState.color].mainChannel} / 0.16)`
+        : alpha(theme.palette[ownerState.color].main, 0.16)
+    }`,
     '@media (hover: none)': {
       boxShadow: 'none',
     },
   },
   [`&.${sliderClasses.active}`]: {
-    boxShadow: `0px 0px 0px 14px ${alpha(theme.palette[ownerState.color].main, 0.16)}`,
+    boxShadow: `0px 0px 0px 14px ${
+      theme.vars
+        ? `rgba(${theme.vars.palette[ownerState.color].mainChannel} / 0.16)`
+        : alpha(theme.palette[ownerState.color].main, 0.16)
+    }`,
   },
   [`&.${sliderClasses.disabled}`]: {
     '&:hover': {
@@ -320,31 +317,47 @@ const SliderValueLabel = styled(SliderValueLabelUnstyled, {
   transition: theme.transitions.create(['transform'], {
     duration: theme.transitions.duration.shortest,
   }),
-  top: -10,
   transformOrigin: 'bottom center',
   transform: 'translateY(-100%) scale(0)',
   position: 'absolute',
-  backgroundColor: theme.palette.grey[600],
+  backgroundColor: (theme.vars || theme).palette.grey[600],
   borderRadius: 2,
-  color: theme.palette.common.white,
+  color: (theme.vars || theme).palette.common.white,
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',
   padding: '0.25rem 0.75rem',
+  ...(ownerState.orientation === 'horizontal' && {
+    top: '-10px',
+    '&:before': {
+      position: 'absolute',
+      content: '""',
+      width: 8,
+      height: 8,
+      transform: 'translate(-50%, 50%) rotate(45deg)',
+      backgroundColor: 'inherit',
+      bottom: 0,
+      left: '50%',
+    },
+  }),
+  ...(ownerState.orientation === 'vertical' && {
+    right: '30px',
+    top: '25px',
+    '&:before': {
+      position: 'absolute',
+      content: '""',
+      width: 8,
+      height: 8,
+      transform: 'translate(-50%, 50%) rotate(45deg)',
+      backgroundColor: 'inherit',
+      right: '-20%',
+      top: '25%',
+    },
+  }),
   ...(ownerState.size === 'small' && {
     fontSize: theme.typography.pxToRem(12),
     padding: '0.25rem 0.5rem',
   }),
-  '&:before': {
-    position: 'absolute',
-    content: '""',
-    width: 8,
-    height: 8,
-    bottom: 0,
-    left: '50%',
-    transform: 'translate(-50%, 50%) rotate(45deg)',
-    backgroundColor: 'inherit',
-  },
 }));
 
 SliderValueLabel.propTypes /* remove-proptypes */ = {
@@ -380,7 +393,7 @@ const SliderMark = styled('span', {
     transform: 'translate(-50%, 1px)',
   }),
   ...(markActive && {
-    backgroundColor: theme.palette.background.paper,
+    backgroundColor: (theme.vars || theme).palette.background.paper,
     opacity: 0.8,
   }),
 }));
@@ -405,7 +418,7 @@ const SliderMarkLabel = styled('span', {
   overridesResolver: (props, styles) => styles.markLabel,
 })(({ theme, ownerState, markLabelActive }) => ({
   ...theme.typography.body2,
-  color: theme.palette.text.secondary,
+  color: (theme.vars || theme).palette.text.secondary,
   position: 'absolute',
   whiteSpace: 'nowrap',
   ...(ownerState.orientation === 'horizontal' && {
@@ -423,7 +436,7 @@ const SliderMarkLabel = styled('span', {
     },
   }),
   ...(markLabelActive && {
-    color: theme.palette.text.primary,
+    color: (theme.vars || theme).palette.text.primary,
   }),
 }));
 
@@ -605,22 +618,27 @@ Slider.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   componentsProps: PropTypes.shape({
-    input: PropTypes.object,
-    mark: PropTypes.object,
-    markLabel: PropTypes.object,
-    rail: PropTypes.object,
-    root: PropTypes.object,
-    thumb: PropTypes.object,
-    track: PropTypes.object,
-    valueLabel: PropTypes.shape({
-      className: PropTypes.string,
-      components: PropTypes.shape({
-        Root: PropTypes.elementType,
+    input: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    mark: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    markLabel: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    rail: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    thumb: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    track: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    valueLabel: PropTypes.oneOfType([
+      PropTypes.func,
+      PropTypes.shape({
+        children: PropTypes.element,
+        className: PropTypes.string,
+        components: PropTypes.shape({
+          Root: PropTypes.elementType,
+        }),
+        open: PropTypes.bool,
+        style: PropTypes.object,
+        value: PropTypes.number,
+        valueLabelDisplay: PropTypes.oneOf(['auto', 'off', 'on']),
       }),
-      style: PropTypes.object,
-      value: PropTypes.oneOfType([PropTypes.arrayOf(PropTypes.number), PropTypes.number]),
-      valueLabelDisplay: PropTypes.oneOf(['auto', 'off', 'on']),
-    }),
+    ]),
   }),
   /**
    * The default value. Use when the component is not controlled.

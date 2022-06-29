@@ -1,1 +1,1 @@
-export { generateUtilityClasses as default } from '@mui/private-classnames';
+export { unstable_generateUtilityClasses as default } from '@mui/utils';

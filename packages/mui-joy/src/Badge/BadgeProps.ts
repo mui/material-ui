@@ -52,7 +52,7 @@ export type BadgeTypeMap<
      * The variant to use.
      * @default 'solid'
      */
-    variant?: OverridableStringUnion<Exclude<VariantProp, 'text'>, BadgePropsVariantOverrides>;
+    variant?: OverridableStringUnion<VariantProp, BadgePropsVariantOverrides>;
   };
   defaultComponent: D;
 }>;

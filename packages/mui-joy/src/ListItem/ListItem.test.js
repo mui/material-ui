@@ -13,7 +13,7 @@ describe('Joy <ListItem />', () => {
     inheritComponent: 'li',
     render,
     ThemeProvider,
-    muiName: 'MuiListItem',
+    muiName: 'JoyListItem',
     refInstanceof: window.HTMLLIElement,
     skip: ['componentsProp', 'classesRoot', 'themeVariants'],
   }));
@@ -79,6 +79,26 @@ describe('Joy <ListItem />', () => {
       );
 
       expect(getByRole('group').firstChild).to.have.tagName('SPAN');
+    });
+  });
+
+  describe('Consecutive ListItem', () => {
+    it('should not be li', () => {
+      const { getByRole } = render(
+        <ListItem>
+          <ListItem>test</ListItem>
+        </ListItem>,
+      );
+      expect(getByRole('listitem').firstChild).to.have.tagName('DIV');
+    });
+
+    it('should use component prop', () => {
+      const { getByRole } = render(
+        <ListItem>
+          <ListItem component="span">test</ListItem>
+        </ListItem>,
+      );
+      expect(getByRole('listitem').firstChild).to.have.tagName('SPAN');
     });
   });
 });

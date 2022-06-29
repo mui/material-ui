@@ -1,15 +1,16 @@
 import * as React from 'react';
-import { useRouter } from 'next/router';
 import { styled, alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Popper from '@mui/material/Popper';
 import Paper from '@mui/material/Paper';
+import { unstable_debounce as debounce } from '@mui/utils';
 import Fade from '@mui/material/Fade';
 import Typography from '@mui/material/Typography';
 import IconImage from 'docs/src/components/icon/IconImage';
 import ROUTES from 'docs/src/route';
 import FEATURE_TOGGLE from 'docs/src/featureToggle';
 import Link from 'docs/src/modules/components/Link';
+import MuiProductSelector from 'docs/src/modules/components/MuiProductSelector';
 
 const Navigation = styled('nav')(({ theme }) => ({
   '& ul': {
@@ -67,7 +68,9 @@ const ProductSubMenu = React.forwardRef<HTMLAnchorElement, ProductSubMenuProps>(
           py: 2,
           '&:hover, &:focus': {
             backgroundColor: (theme) =>
-              theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.50',
+              theme.palette.mode === 'dark'
+                ? alpha(theme.palette.primaryDark[700], 0.4)
+                : theme.palette.grey[50],
             outline: 'none',
             '@media (hover: none)': {
               backgroundColor: 'initial',
@@ -114,12 +117,11 @@ function getNextIndex(eventKey: KeyboardEvent['key'], currentIndex: number, leng
 }
 
 export default function HeaderNavBar() {
-  const router = useRouter();
-  const asPathWithoutLang = router.asPath.replace(/^\/[a-zA-Z]{2}\//, '/');
-  const [subMenuOpen, setSubMenuOpen] = React.useState(false);
+  const [subMenuOpen, setSubMenuOpen] = React.useState<null | 'products' | 'docs'>(null);
   const [subMenuIndex, setSubMenuIndex] = React.useState<number | null>(null);
   const navRef = React.useRef<HTMLUListElement | null>(null);
   const productsMenuRef = React.useRef<HTMLDivElement | null>(null);
+  const docsMenuRef = React.useRef<HTMLDivElement | null>(null);
   React.useEffect(() => {
     if (typeof subMenuIndex === 'number') {
       document.getElementById(PRODUCT_IDS[subMenuIndex])?.focus();
@@ -163,7 +165,7 @@ export default function HeaderNavBar() {
     if (event.key === 'ArrowDown') {
       event.preventDefault();
       if (event.target === productsMenuRef.current) {
-        setSubMenuOpen(true);
+        setSubMenuOpen('products');
       }
       setSubMenuIndex((prevValue) => {
         if (prevValue === null) {
@@ -188,20 +190,40 @@ export default function HeaderNavBar() {
       });
     }
     if (event.key === 'Escape') {
-      setSubMenuOpen(false);
+      setSubMenuOpen(null);
       setSubMenuIndex(null);
     }
   }
+
+  const setSubMenuOpenDebounced = React.useMemo(
+    () => debounce(setSubMenuOpen, 40),
+    [setSubMenuOpen],
+  );
+
+  const setSubMenuOpenUndebounce = React.useMemo(
+    () => (value: typeof subMenuOpen) => {
+      setSubMenuOpenDebounced.clear();
+      setSubMenuOpen(value);
+    },
+    [setSubMenuOpen, setSubMenuOpenDebounced],
+  );
+
+  React.useEffect(() => {
+    return () => {
+      setSubMenuOpenDebounced.clear();
+    };
+  }, [setSubMenuOpenDebounced]);
+
   return (
     <Navigation>
       <ul ref={navRef} role="menubar" onKeyDown={handleLeftRightArrow}>
         {FEATURE_TOGGLE.nav_products && (
           <li
             role="none"
-            onMouseOver={() => setSubMenuOpen(true)}
-            onFocus={() => setSubMenuOpen(true)}
-            onMouseOut={() => setSubMenuOpen(false)}
-            onBlur={() => setSubMenuOpen(false)}
+            onMouseEnter={() => setSubMenuOpenUndebounce('products')}
+            onFocus={() => setSubMenuOpenUndebounce('products')}
+            onMouseLeave={() => setSubMenuOpenDebounced(null)}
+            onBlur={() => setSubMenuOpenUndebounce(null)}
           >
             <div
               role="menuitem"
@@ -209,35 +231,36 @@ export default function HeaderNavBar() {
               id="products-menu"
               ref={productsMenuRef}
               aria-haspopup
-              aria-expanded={subMenuOpen ? 'true' : 'false'}
+              aria-expanded={subMenuOpen === 'products' ? 'true' : 'false'}
               onKeyDown={handleKeyDown}
             >
               Products
             </div>
             <Popper
-              open={subMenuOpen}
+              open={subMenuOpen === 'products'}
               anchorEl={productsMenuRef.current}
               transition
               placement="bottom-start"
-              style={{ zIndex: 1200 }}
+              style={{
+                zIndex: 1200,
+                pointerEvents: subMenuOpen === 'products' ? undefined : 'none',
+              }}
             >
               {({ TransitionProps }) => (
                 <Fade {...TransitionProps} timeout={350}>
                   <Paper
                     variant="outlined"
-                    sx={{
+                    sx={(theme) => ({
                       minWidth: 498,
                       overflow: 'hidden',
-                      borderColor: (theme) =>
-                        theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.200',
-                      bgcolor: (theme) =>
+                      borderColor: theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.200',
+                      bgcolor:
                         theme.palette.mode === 'dark' ? 'primaryDark.900' : 'background.paper',
-                      boxShadow: (theme) =>
-                        `0px 4px 20px ${
-                          theme.palette.mode === 'dark'
-                            ? alpha(theme.palette.background.paper, 0.72)
-                            : 'rgba(170, 180, 190, 0.3)'
-                        }`,
+                      boxShadow: `0px 4px 20px ${
+                        theme.palette.mode === 'dark'
+                          ? alpha(theme.palette.background.paper, 0.72)
+                          : 'rgba(170, 180, 190, 0.3)'
+                      }`,
                       '& ul': {
                         margin: 0,
                         padding: 0,
@@ -245,11 +268,10 @@ export default function HeaderNavBar() {
                       },
                       '& li:not(:last-of-type)': {
                         borderBottom: '1px solid',
-                        borderColor: (theme) =>
-                          theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.100',
+                        borderColor: theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.100',
                       },
                       '& a': { textDecoration: 'none' },
-                    }}
+                    })}
                   >
                     <ul role="menu">
                       <li role="none">
@@ -269,12 +291,8 @@ export default function HeaderNavBar() {
                           role="menuitem"
                           href={ROUTES.productAdvanced}
                           icon={<IconImage name="product-advanced" />}
-                          name={
-                            <Box component="span" display="inline-flex" alignItems="center">
-                              MUI&nbsp;X
-                            </Box>
-                          }
-                          description="Advanced and powerful components for complex use-cases."
+                          name="MUI X"
+                          description="Advanced and powerful components for complex use cases."
                           onKeyDown={handleKeyDown}
                         />
                       </li>
@@ -307,15 +325,58 @@ export default function HeaderNavBar() {
             </Popper>
           </li>
         )}
-        <li role="none">
-          <Link
+        <li
+          role="none"
+          onMouseEnter={() => setSubMenuOpenUndebounce('docs')}
+          onFocus={() => setSubMenuOpenUndebounce('docs')}
+          onMouseLeave={() => setSubMenuOpenDebounced(null)}
+          onBlur={() => setSubMenuOpenUndebounce(null)}
+        >
+          <div
             role="menuitem"
-            href={
-              asPathWithoutLang.startsWith('/x') ? ROUTES.advancedComponents : ROUTES.documentation
-            }
+            tabIndex={0}
+            id="products-menu"
+            ref={docsMenuRef}
+            aria-haspopup
+            aria-expanded={subMenuOpen === 'docs' ? 'true' : 'false'}
           >
             Docs
-          </Link>
+          </div>
+          <Popper
+            open={subMenuOpen === 'docs'}
+            anchorEl={docsMenuRef.current}
+            transition
+            placement="bottom-start"
+            style={{ zIndex: 1200, pointerEvents: subMenuOpen === 'docs' ? undefined : 'none' }}
+          >
+            {({ TransitionProps }) => (
+              <Fade {...TransitionProps} timeout={350}>
+                <Paper
+                  variant="outlined"
+                  sx={(theme) => ({
+                    minWidth: 498,
+                    overflow: 'hidden',
+                    borderColor: theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.200',
+                    bgcolor: theme.palette.mode === 'dark' ? 'primaryDark.900' : 'background.paper',
+                    boxShadow: `0px 4px 20px ${
+                      theme.palette.mode === 'dark'
+                        ? alpha(theme.palette.background.paper, 0.72)
+                        : 'rgba(170, 180, 190, 0.3)'
+                    }`,
+                    '& ul': {
+                      margin: 0,
+                      padding: 0,
+                      listStyle: 'none',
+                    },
+                  })}
+                >
+                  <ul role="menu">
+                    <MuiProductSelector />
+                  </ul>
+                </Paper>
+              </Fade>
+            )}
+          </Popper>
         </li>
         <li role="none">
           <Link role="menuitem" href={ROUTES.pricing}>

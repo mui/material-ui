@@ -1,4 +1,5 @@
 import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { flushSync } from 'react-dom';
 import { styled, useThemeProps } from '@mui/material/styles';
 import {
   createUnarySpacing,
@@ -16,6 +17,13 @@ export const parseToNumber = (val) => {
   return Number(val.replace('px', ''));
 };
 
+const lineBreakStyle = {
+  flexBasis: '100%',
+  width: 0,
+  margin: 0,
+  padding: 0,
+};
+
 const useUtilityClasses = (ownerState) => {
   const { classes } = ownerState;
 
@@ -31,7 +39,7 @@ export const getStyle = ({ ownerState, theme }) => {
     width: '100%',
     display: 'flex',
     flexFlow: 'column wrap',
-    alignContent: 'space-between',
+    alignContent: 'flex-start',
     boxSizing: 'border-box',
     '& > *': {
       boxSizing: 'border-box',
@@ -39,6 +47,7 @@ export const getStyle = ({ ownerState, theme }) => {
   };
 
   const stylesSSR = {};
+  // Only applicable for Server-Side Rendering
   if (ownerState.isSSR) {
     const orderStyleSSR = {};
     const defaultSpacing = Number(theme.spacing(ownerState.defaultSpacing).replace('px', ''));
@@ -237,9 +246,13 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
       }
     });
     if (!skip) {
-      setMaxColumnHeight(Math.max(...columnHeights));
-      const numOfLineBreaks = currentNumberOfColumns > 0 ? currentNumberOfColumns - 1 : 0;
-      setNumberOfLineBreaks(numOfLineBreaks);
+      // In React 18, state updates in a ResizeObserver's callback are happening after the paint which causes flickering
+      // when doing some visual updates in it. Using flushSync ensures that the dom will be painted after the states updates happen
+      // Related issue - https://github.com/facebook/react/issues/24331
+      flushSync(() => {
+        setMaxColumnHeight(Math.max(...columnHeights));
+        setNumberOfLineBreaks(currentNumberOfColumns > 0 ? currentNumberOfColumns - 1 : 0);
+      });
     }
   };
 
@@ -263,12 +276,6 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
   }, [columns, spacing, children]);
 
   const handleRef = useForkRef(ref, masonryRef);
-  const lineBreakStyle = {
-    flexBasis: '100%',
-    width: 0,
-    margin: 0,
-    padding: 0,
-  };
 
   //  columns are likely to have different heights and hence can start to merge;
   //  a line break at the end of each column prevents columns from merging

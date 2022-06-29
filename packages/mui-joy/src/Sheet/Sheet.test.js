@@ -13,7 +13,7 @@ describe('<Sheet />', () => {
     inheritComponent: 'div',
     render,
     ThemeProvider,
-    muiName: 'MuiSheet',
+    muiName: 'JoySheet',
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'header',
     testVariantProps: { variant: 'solid' },
@@ -56,29 +56,6 @@ describe('<Sheet />', () => {
         );
 
         expect(getByTestId('root')).to.have.class(classes[`color${capitalize(color)}`]);
-      });
-    });
-  });
-
-  describe('prop: elevation', () => {
-    it('undefined by default', () => {
-      const { getByTestId } = render(<Sheet data-testid="root">Hello World</Sheet>);
-
-      expect(getByTestId('root')).not.to.have.class(classes.elevationXs);
-      expect(getByTestId('root')).not.to.have.class(classes.elevationSm);
-      expect(getByTestId('root')).not.to.have.class(classes.elevationMd);
-      expect(getByTestId('root')).not.to.have.class(classes.elevationLg);
-      expect(getByTestId('root')).not.to.have.class(classes.elevationXl);
-    });
-    ['xs', 'sm', 'md', 'lg', 'xl'].forEach((elevation) => {
-      it(`should render ${elevation}`, () => {
-        const { getByTestId } = render(
-          <Sheet data-testid="root" elevation={elevation}>
-            Hello World
-          </Sheet>,
-        );
-
-        expect(getByTestId('root')).to.have.class(classes[`elevation${capitalize(elevation)}`]);
       });
     });
   });

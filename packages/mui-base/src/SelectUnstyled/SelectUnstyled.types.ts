@@ -106,7 +106,7 @@ export type SelectUnstyledListboxSlotProps<TValue> = Simplify<
 
 export type SelectUnstyledPopperSlotProps<TValue> = {
   anchorEl: PopperUnstyledProps['anchorEl'];
-  children?: React.ReactNode;
+  children?: PopperUnstyledProps['children'];
   className: string | undefined;
   disablePortal: PopperUnstyledProps['disablePortal'];
   open: boolean;

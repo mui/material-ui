@@ -28,7 +28,6 @@
     "@mui/styled-engine-sc": "packages/mui-styled-engine-sc/build",
     "@mui/system": "packages/mui-system/build",
     "@mui/private-theming": "packages/mui-private-theming/build",
-    "@mui/private-classnames": "packages/mui-private-classnames/build",
     "@mui/types": "packages/mui-types/build",
     "@mui/utils": "packages/mui-utils/build",
     "@mui/base": "packages/mui-base/build",

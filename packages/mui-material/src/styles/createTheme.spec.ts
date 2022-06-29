@@ -78,6 +78,53 @@ const theme = createTheme();
           },
         },
       },
+      MuiBadge: {
+        styleOverrides: {
+          colorInfo: {
+            backgroundColor: '#232323',
+          },
+        },
+      },
+      MuiButton: {
+        styleOverrides: {
+          containedSuccess: {
+            backgroundColor: '#7CFC00',
+          },
+          containedError: {
+            backgroundColor: '#FF4500',
+          },
+          containedInfo: {
+            backgroundColor: '#7B68EE',
+          },
+          containedWarning: {
+            backgroundColor: '#FFD700',
+          },
+          textSuccess: {
+            color: '#7CFC00',
+          },
+          textError: {
+            color: '#FF4500',
+          },
+          textInfo: {
+            color: '#7B68EE',
+          },
+          textWarning: {
+            color: '#FFD700',
+          },
+          outlinedSuccess: {
+            color: '#7CFC00',
+          },
+          outlinedError: {
+            color: '#FF4500',
+          },
+          outlinedInfo: {
+            color: '#7B68EE',
+          },
+          outlinedWarning: {
+            color: '#FFD700',
+          },
+        },
+      },
     },
   });
 }

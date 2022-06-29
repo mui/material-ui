@@ -57,11 +57,11 @@ You can use this object to style your component.
 If you need complete control over a component's rendered HTML structure, you can build it with hooks.
 
 Hooks give you access to the _logic_ that a component uses, but without any default structure.
-See ["Components vs. hooks" on the Base Usage page](http://localhost:3000/base/getting-started/usage/#components-vs-hooks) for more details.
+See ["Components vs. hooks" on the Base Usage page](/base/getting-started/usage/#components-vs-hooks) for more details.
 
 Hooks return the current state of the component (e.g. `checked`, `disabled`, `open`, etc.) and provide functions that return props you can apply to your fully custom components.
 
-In the case of [SwitchUnstyled](/base/react-switch), the component is accompanied by the `useSwitch` hook which gives you all of the functionality without any structure.
+In the case of [SwitchUnstyled](/base/react-switch/), the component is accompanied by the `useSwitch` hook which gives you all of the functionality without any structure.
 
 It returns the following object:
 

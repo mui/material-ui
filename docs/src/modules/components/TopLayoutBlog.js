@@ -78,6 +78,11 @@ export const authors = {
     avatar: 'https://avatars.githubusercontent.com/u/71297412',
     github: 'samuelsycamore',
   },
+  josefreitas: {
+    name: 'José Freitas',
+    avatar: 'https://avatars.githubusercontent.com/u/550141',
+    github: 'joserodolfofreitas',
+  },
 };
 
 const classes = {
@@ -92,7 +97,7 @@ const styles = ({ theme }) => ({
     theme.palette.mode === 'dark'
       ? `linear-gradient(180deg, ${theme.palette.primaryDark[900]} 0%, #001E3C 100%)`
       : `linear-gradient(180deg, ${theme.palette.grey[50]} 0%, #FFFFFF 100%)`,
-  backgroundSize: 'auto 250px ',
+  backgroundSize: '100% 300px',
   backgroundRepeat: 'no-repeat',
   [`& .${classes.back}`]: {
     display: 'flex',
@@ -214,7 +219,7 @@ function TopLayoutBlog(props) {
             {...(ROUTES.blog.startsWith('http') && {
               rel: 'nofollow',
             })}
-            color="text.secondary"
+            color="primary"
             variant="body2"
             className={classes.back}
           >
@@ -241,8 +246,8 @@ function TopLayoutBlog(props) {
                     <Avatar
                       sx={{ width: 36, height: 36 }}
                       alt=""
-                      src={`${authors[author].avatar}?s=${32}`}
-                      srcSet={`${authors[author].avatar}?s=${32 * 2} 2x`}
+                      src={`${authors[author].avatar}?s=${36}`}
+                      srcSet={`${authors[author].avatar}?s=${36 * 2} 2x`}
                     />
                     <div>
                       <Typography variant="body2" fontWeight="500">
@@ -252,7 +257,7 @@ function TopLayoutBlog(props) {
                         href={`https://github.com/${authors[author].github}`}
                         target="_blank"
                         rel="noreferrer noopener"
-                        color="text.secondary"
+                        color="primary"
                         variant="body2"
                         sx={{ fontWeight: 500 }}
                       >

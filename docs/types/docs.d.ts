@@ -21,6 +21,7 @@ declare module 'docs/src/modules/components/HighlightedCode' {
      * @default MarkdownElement
      */
     component?: React.ElementType;
+    sx?: object;
   }
   export default function HighlightedCode(props: Props): React.ReactElement;
 }

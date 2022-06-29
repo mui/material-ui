@@ -54,6 +54,7 @@ describe('<SliderUnstyled />', () => {
         expectedClassName: classes.rail,
       },
     },
+    skip: ['componentsPropsCallbacks'], // not implemented yet
   }));
 
   it('forwards style props on the Root component', () => {
@@ -244,6 +245,42 @@ describe('<SliderUnstyled />', () => {
       );
 
       expect(thumb).to.have.attribute('aria-valuenow', '21');
+    });
+  });
+
+  describe('marks', () => {
+    it('should not render marks that are out of min&max bounds', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        this.skip();
+      }
+
+      const { container } = render(
+        <SliderUnstyled
+          marks={[
+            {
+              value: -1,
+              label: -1,
+            },
+            {
+              value: 0,
+              label: 0,
+            },
+            {
+              value: 100,
+              label: 100,
+            },
+            {
+              value: 120,
+              label: 120,
+            },
+          ]}
+        />,
+      );
+
+      expect(container.querySelectorAll(`.${classes.markLabel}`).length).to.equal(2);
+      expect(container.querySelectorAll(`.${classes.mark}`).length).to.equal(2);
+      expect(container.querySelectorAll(`.${classes.markLabel}`)[0].textContent).to.equal('0');
+      expect(container.querySelectorAll(`.${classes.markLabel}`)[1].textContent).to.equal('100');
     });
   });
 });
