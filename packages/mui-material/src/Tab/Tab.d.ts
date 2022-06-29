@@ -75,4 +75,6 @@ export type TabProps<
   P = {},
 > = OverrideProps<TabTypeMap<P, D>, D>;
 
+export interface TabsPropsIndicatorColorOverrides {}
+
 export default Tab;
