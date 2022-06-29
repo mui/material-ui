@@ -159,7 +159,6 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
     <Box
       sx={{
         m: -1.5,
-        mt: 0.25,
         flexGrow: 1,
         maxWidth: 'calc(100% + 24px)',
         display: 'flex',
