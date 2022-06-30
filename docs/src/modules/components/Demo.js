@@ -353,9 +353,15 @@ export default function Demo(props) {
             value={code}
             onChange={setCode}
             language={demoData.sourceLanguage}
+            copyButtonProps={{
+              'data-ga-event-category': codeOpen ? 'demo-expand' : 'demo',
+              'data-ga-event-label': demoOptions.demo,
+              'data-ga-event-action': 'copy-click',
+            }}
           />
           {debouncedError && error && (
             <FormHelperText
+              aria-live="polite"
               variant="outlined"
               error
               component="pre"

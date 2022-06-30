@@ -6,6 +6,7 @@ import { visuallyHidden } from '@mui/utils';
 import { styled } from '@mui/material/styles';
 import prism from '@mui/markdown/prism';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
+import CodeCopyButton from 'docs/src/modules/components/CodeCopyButton';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 
 const Wrapper = styled(MarkdownElement)(({ theme }) => ({
@@ -22,6 +23,12 @@ const Wrapper = styled(MarkdownElement)(({ theme }) => ({
     outline: `2px solid ${
       theme.palette.mode === 'dark' ? theme.palette.primaryDark['500'] : theme.palette.primary.light
     }`,
+    '& .MuiCode-copy': {
+      opacity: 1,
+    },
+    '& [aria-live="polite"]': {
+      visibility: 'hidden',
+    },
   },
   '&:focus-within': {
     outline: `2px solid ${
@@ -64,7 +71,7 @@ const StyledEditor = styled(Editor)(({ theme }) => ({
   },
 }));
 
-const CodeEditor = ({ language = 'jsx', onChange, ...rest }) => {
+const CodeEditor = ({ language = 'jsx', value, onChange, copyButtonProps, ...rest }) => {
   const t = useTranslate();
   const wrapperRef = React.useRef(null);
 
@@ -101,10 +108,12 @@ const CodeEditor = ({ language = 'jsx', onChange, ...rest }) => {
           padding={20}
           highlight={(code) => prism(code, language)}
           {...rest}
+          value={value}
           onValueChange={onChange}
         />
       </pre>
       <Box
+        aria-live="polite"
         tabIndex={0}
         sx={{
           color: 'white',
@@ -119,13 +128,16 @@ const CodeEditor = ({ language = 'jsx', onChange, ...rest }) => {
           __html: t('editorHint'),
         }}
       />
+      <CodeCopyButton {...copyButtonProps} code={value} />
     </Wrapper>
   );
 };
 
 CodeEditor.propTypes = {
   language: PropTypes.string,
+  value: PropTypes.string,
   onChange: PropTypes.func,
+  copyButtonProps: PropTypes.object,
 };
 
 export default CodeEditor;
