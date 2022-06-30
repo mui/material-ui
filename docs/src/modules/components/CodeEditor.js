@@ -28,10 +28,13 @@ const Wrapper = styled(MarkdownElement)(({ theme }) => ({
       theme.palette.mode === 'dark' ? theme.palette.primaryDark.main : theme.palette.primary.main
     }`,
   },
+  '& pre': {
+    maxHeight: 'initial',
+  },
   '& > pre': {
     margin: '0 auto',
     padding: 0,
-    maxHeight: 'min(48vh, 600px)',
+    maxHeight: 'min(68vh, 1000px)',
   },
 }));
 
