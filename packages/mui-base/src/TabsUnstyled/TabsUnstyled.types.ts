@@ -50,7 +50,7 @@ export interface TabsUnstyledOwnProps {
   /**
    * Callback invoked when new value is being set.
    */
-  onChange?: (event: React.SyntheticEvent, value: number | string) => void;
+  onChange?: (event: React.SyntheticEvent, value: number | string | boolean) => void;
   /**
    * If `true` the selected tab changes on focus. Otherwise it only
    * changes on activation.

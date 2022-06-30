@@ -105,7 +105,7 @@ MyDocument.getInitialProps = async (ctx) => {
     />
   ));
 
-  // Gemerate the css string for the styles coming from jss
+  // Generate the css string for the styles coming from jss
   let css = jssSheets.toString();
   // It might be undefined, e.g. after an error.
   if (css && process.env.NODE_ENV === 'production') {

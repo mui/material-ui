@@ -31,6 +31,7 @@ const pages = [
           { pathname: '/joy-ui/react-button' },
           { pathname: '/joy-ui/react-checkbox' },
           { pathname: '/joy-ui/react-slider' },
+          { pathname: '/joy-ui/react-switch' },
         ],
       },
       {
