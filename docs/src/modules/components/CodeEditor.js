@@ -134,10 +134,10 @@ const CodeEditor = ({ language = 'jsx', value, onChange, copyButtonProps, ...res
 };
 
 CodeEditor.propTypes = {
-  language: PropTypes.string,
-  value: PropTypes.string,
-  onChange: PropTypes.func,
   copyButtonProps: PropTypes.object,
+  language: PropTypes.string,
+  onChange: PropTypes.func,
+  value: PropTypes.string,
 };
 
 export default CodeEditor;

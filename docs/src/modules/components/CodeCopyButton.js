@@ -2,13 +2,11 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import copy from 'clipboard-copy';
-import { useCodeCopy } from 'docs/src/modules/utils/CodeCopy';
 
 const CodeCopyButton = React.forwardRef(function CodeCopyButton(props, ref) {
   const { code, ...other } = props;
   const [copied, setCopied] = React.useState(false);
   const [key, setKey] = React.useState('Ctrl + ');
-  const handlers = useCodeCopy();
   React.useEffect(() => {
     if (typeof window !== 'undefined') {
       const macOS = window.navigator.platform.toUpperCase().indexOf('MAC') >= 0;
@@ -31,12 +29,13 @@ const CodeCopyButton = React.forwardRef(function CodeCopyButton(props, ref) {
 
   return (
     <button
+      ref={ref}
       {...other}
       aria-label="Copy the code"
       type="button"
       className="MuiCode-copy"
       onClick={async (event) => {
-        event.stopPropagation()
+        event.stopPropagation();
         setCopied(true);
         await copy(code);
       }}
