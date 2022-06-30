@@ -227,8 +227,9 @@ function useSelect<TValue>(props: UseSelectParameters<TValue>) {
       listboxRef: handleListboxRef,
       multiple: true,
       onChange: (newOptions) => {
-        setValue(newOptions.map((o) => o.value));
-        (onChange as (value: TValue[]) => void)?.(newOptions.map((o) => o.value));
+        const newValues = newOptions.map((o) => o.value);
+        setValue(newValues);
+        (onChange as (value: TValue[]) => void)?.(newValues);
       },
       options,
       optionStringifier,

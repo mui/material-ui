@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
+import sinon from 'sinon';
 import MultiSelectUnstyled from '@mui/base/MultiSelectUnstyled';
 import { selectUnstyledClasses } from '@mui/base/SelectUnstyled';
 import OptionUnstyled from '@mui/base/OptionUnstyled';
@@ -126,6 +127,33 @@ describe('MultiSelectUnstyled', () => {
       expect(button).to.have.text('1');
       expect(queryByRole('listbox')).to.equal(null);
     });
+  });
+
+  it('does not call onChange if `value` is modified externally', () => {
+    function TestComponent({ onChange }: { onChange: (value: number[]) => void }) {
+      const [value, setValue] = React.useState([1]);
+      const handleChange = (newValue: number[]) => {
+        setValue(newValue);
+        onChange(newValue);
+      };
+
+      return (
+        <div>
+          <button onClick={() => setValue([1, 2])}>Update value</button>
+          <MultiSelectUnstyled value={value} onChange={handleChange}>
+            <OptionUnstyled value={1}>1</OptionUnstyled>
+            <OptionUnstyled value={2}>2</OptionUnstyled>
+          </MultiSelectUnstyled>
+        </div>
+      );
+    }
+
+    const onChange = sinon.spy();
+    const { getByText } = render(<TestComponent onChange={onChange} />);
+
+    const button = getByText('Update value');
+    act(() => button.click());
+    expect(onChange.notCalled).to.equal(true);
   });
 
   it('closes the listbox without selecting an option when focus is lost', () => {
