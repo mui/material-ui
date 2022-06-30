@@ -22,7 +22,7 @@ yarn add @mui/material @emotion/react @emotion/styled
 
 Por favor, note que [react](https://www.npmjs.com/package/react) >= 17.0.0 and [react-dom](https://www.npmjs.com/package/react-dom) >= 17.0.0 são dependências obrigatórias.
 
-Material UI is using [emotion](https://emotion.sh/docs/introduction) as a styling engine by default. If you want to use [`styled-components`](https://styled-components.com/) instead, run:
+Material UI está usando a biblioteca [emotion](https://emotion.sh/docs/introduction) como o motor de estilo padrão. Se você quiser usar [`styled-components`](https://styled-components.com/), execute:
 
 ```sh
 npm install @mui/material @mui/styled-engine-sc styled-components
