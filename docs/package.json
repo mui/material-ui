@@ -98,7 +98,7 @@
     "postcss": "^8.4.14",
     "prop-types": "^15.8.1",
     "react": "^17.0.2",
-    "react-docgen": "^5.4.1",
+    "react-docgen": "^5.4.2",
     "react-dom": "^17.0.2",
     "react-draggable": "^4.4.5",
     "react-final-form": "^6.5.9",
