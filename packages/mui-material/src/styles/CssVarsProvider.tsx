@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/naming-convention */
 import { unstable_createCssVarsProvider as createCssVarsProvider } from '@mui/system';
 import experimental_extendTheme, {
   SupportedColorScheme,
@@ -8,11 +7,10 @@ import createTypography from './createTypography';
 
 const defaultTheme = experimental_extendTheme();
 
-const {
-  CssVarsProvider: Experimental_CssVarsProvider,
-  useColorScheme,
-  getInitColorSchemeScript,
-} = createCssVarsProvider<SupportedColorScheme, CssVarsTheme>({
+const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssVarsProvider<
+  SupportedColorScheme,
+  CssVarsTheme
+>({
   theme: defaultTheme,
   attribute: 'data-mui-color-scheme',
   modeStorageKey: 'mui-mode',
@@ -35,4 +33,8 @@ const {
     (keys[0] === 'palette' && !!keys[1]?.match(/(mode|contrastThreshold|tonalOffset)/)),
 });
 
-export { useColorScheme, getInitColorSchemeScript, Experimental_CssVarsProvider };
+export {
+  useColorScheme,
+  getInitColorSchemeScript,
+  CssVarsProvider as Experimental_CssVarsProvider,
+};
