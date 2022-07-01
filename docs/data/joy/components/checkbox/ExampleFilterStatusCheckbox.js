@@ -30,7 +30,7 @@ export default function ExampleFilterStatusCheckbox() {
       </Typography>
       <Box role="group" aria-labelledby="filter-status">
         <List>
-          <ListItem variant="soft" color="danger" sx={{ borderRadius: 'sm' }}>
+          <ListItem variant="soft" color="danger">
             <Checkbox
               label="Declined Payment"
               color="danger"
