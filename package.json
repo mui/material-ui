@@ -67,7 +67,8 @@
     "test:unit": "cross-env NODE_ENV=test mocha 'packages/**/*.test.{js,ts,tsx}' 'docs/**/*.test.{js,ts,tsx}' 'scripts/**/*.test.{js,ts,tsx}' 'test/utils/**/*.test.{js,ts,tsx}'",
     "test:argos": "node ./scripts/pushArgos.js",
     "typescript": "lerna run --no-bail --parallel typescript",
-    "typescript:ci": "lerna run --concurrency 7 --no-bail --no-sort typescript"
+    "typescript:ci": "lerna run --concurrency 7 --no-bail --no-sort typescript",
+    "validate-declarations": "babel-node --extensions \".ts\" scripts/validateTypescriptDeclarations.ts"
   },
   "devDependencies": {
     "@babel/cli": "^7.17.6",
