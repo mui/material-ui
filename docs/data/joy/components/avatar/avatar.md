@@ -12,6 +12,8 @@ githubLabel: 'component: avatar'
 
 The avatar component is usually seen for displaying user information in places such as menus, tables, and chats.
 
+{{"demo": "AvatarUsage.js", "hideToolbar": true}}
+
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
 ## Component
@@ -25,13 +27,6 @@ export default function MyApp() {
   return <Avatar />;
 }
 ```
-
-### Variants and colors
-
-The avatar component supports the four global variants: `solid` (default), `soft`, `outlined` and `plain`.
-Every palette included in the theme is also available via the `color` prop.
-
-{{"demo": "AvatarUsage.js", "hideToolbar": true}}
 
 ### Sizes
 
