@@ -13,12 +13,8 @@ unstyled: /base/react-button/
 ## Introduction
 
 Buttons communicate actions that users can take.
-They are typically placed throughout your UI, in places like:
 
-- Modal windows
-- Forms
-- Cards
-- Toolbars
+{{"demo": "ButtonUsage.js", "hideToolbar": true}}
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
