@@ -50,8 +50,7 @@ To swap the label and radio position, use the CSS property `flex-direction: row-
 
 ### Radio group
 
-The `RadioGrop` component is the ideal wrapper for multiple `Radio` components.
-It provides a tailored API for radio button grouping and proper keyboard-navigation accessibility support.
+The `RadioGrop` component is the ideal wrapper for multiple `Radio` components as it provides a tailored API for radio button grouping and proper keyboard-navigation accessibility support.
 
 {{"demo": "RadioButtonsGroup.js"}}
 
@@ -70,7 +69,9 @@ To change that, target the `radioClasses.radio` class and add `position: 'relati
 
 ### Overlay
 
-To make the whole container in which the radio button is in clickable, use the `overlay` prop. You can pass the prop to `RadioGroup` (will be forwarded to all radios under it) or to individual `Radio` directly.
+To make the whole container in which the radio button is in clickable, use the `overlay` prop.
+
+You can also use it directly in the `RadioGroup` component as it will automatically be forwarded to every individual radio button inside of it.
 
 {{"demo": "OverlayRadio.js"}}
 
