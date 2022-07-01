@@ -128,7 +128,11 @@ const CodeEditor = ({ language = 'jsx', value, onChange, copyButtonProps, ...res
           __html: t('editorHint'),
         }}
       />
-      <CodeCopyButton {...copyButtonProps} code={value} />
+      <CodeCopyButton
+        {...copyButtonProps}
+        code={value}
+        onKeyDown={(event) => event.stopPropagation()}
+      />
     </Wrapper>
   );
 };
