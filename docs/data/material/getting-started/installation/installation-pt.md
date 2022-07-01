@@ -36,7 +36,7 @@ yarn add @mui/material @mui/styled-engine-sc styled-components
 
 ## Fonte Roboto
 
-Material UI was designed with the [Roboto](https://fonts.google.com/specimen/Roboto) font in mind. So be sure to follow [these instructions](/material-ui/react-typography/#general). For instance, via Google Web Fonts:
+Material UI foi projetado com a fonte [Roboto](https://fonts.google.com/specimen/Roboto) em mente. Então certifique-se de seguir [estas instruções](/material-ui/react-typography/#general). Por exemplo, usando o Google Web Fonts:
 
 ```html
 <link
@@ -62,13 +62,13 @@ In order to use prebuilt SVG Material icons, such as those found in the [icons d
 
 <!-- #default-branch-switch -->
 
-With **npm**:
+Com **npm**:
 
 ```sh
 npm install @mui/icons-material
 ```
 
-With **yarn**:
+Com **yarn**:
 
 ```sh
 yarn add @mui/icons-material
@@ -78,7 +78,7 @@ yarn add @mui/icons-material
 
 You can start using Material UI with minimal Front-end infrastructure, which is great for prototyping.
 
-Two Universal Module Definition (**UMD**) files are provided:
+Dois arquivos do Universal Module Definition (**UMD**) são fornecidos:
 
 - um para desenvolvimento: https://unpkg.com/@mui/material@latest/umd/material-ui.development.js
 - um para produção: https://unpkg.com/@mui/material@latest/umd/material-ui.production.min.js
@@ -95,7 +95,7 @@ You can follow [this CDN example](https://github.com/mui/material-ui/tree/master
 <a href="https://mui.com/store/items/adobe-xd-react/?utm_source=docs&utm_medium=referral&utm_campaign=installation-adobe-xd" style="margin-left: 32px; margin-top: 8px; display: inline-block;"><img src="/static/images/download-adobe-xd.svg" alt="adobe-xd" /></a>
 <a href="https://mui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=installation-sketch" style="margin-left: 32px; margin-top: 8px; display: inline-block;"><img src="/static/images/download-sketch.svg" alt="sketch" /></a>
 
-A set of reusable components for design tools is available, designed to match the React components and to help you craft great products:
+Um conjunto de componentes reutilizáveis para ferramentas de design está disponível, projetado para corresponder aos componentes React e ajudá-lo a construir ótimos produtos:
 
 - [Figma](https://mui.com/store/items/figma-react/?utm_source=docs&utm_medium=referral&utm_campaign=installation-figma): A large UI kit with over 600 handcrafted Material UI components.
 - [Adobe XD](https://mui.com/store/items/adobe-xd-react/?utm_source=docs&utm_medium=referral&utm_campaign=installation-adobe-xd): A large UI kit with over 600 handcrafted Material UI components.
