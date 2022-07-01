@@ -127,7 +127,7 @@
     "dom-accessibility-api": "^0.5.14",
     "dtslint": "^4.2.1",
     "enzyme": "^3.11.0",
-    "eslint": "^8.17.0",
+    "eslint": "^8.18.0",
     "eslint-config-airbnb-typescript": "^12.3.1",
     "eslint-config-prettier": "^8.5.0",
     "eslint-import-resolver-webpack": "^0.13.2",
