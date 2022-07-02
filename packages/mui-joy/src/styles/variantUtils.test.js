@@ -364,6 +364,7 @@ describe('variant utils', () => {
     it('automatically create solid overrides if the variable is in the correct format', () => {
       const result = createContainedOverrides({
         prefix: 'foo',
+        getCssVar: createGetCssVar('foo'),
         palette: {
           primary: {
             plainColor: '',

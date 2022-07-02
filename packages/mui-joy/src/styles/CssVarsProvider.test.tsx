@@ -513,10 +513,6 @@ describe('[Joy] CssVarsProvider', () => {
 
       expect(container.firstChild?.textContent).to.equal(
         [
-          'plainOverrides',
-          'outlinedOverrides',
-          'softOverrides',
-          'solidOverrides',
           'plain',
           'plainHover',
           'plainActive',
@@ -533,6 +529,10 @@ describe('[Joy] CssVarsProvider', () => {
           'solidHover',
           'solidActive',
           'solidDisabled',
+          'plainOverrides',
+          'outlinedOverrides',
+          'softOverrides',
+          'solidOverrides',
         ].join(','),
       );
     });

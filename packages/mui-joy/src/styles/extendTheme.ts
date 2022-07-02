@@ -16,7 +16,7 @@ import { Variants } from './types/variants';
 import { Theme, ThemeCSSVar, ThemeScales } from './types';
 import { Components } from './components';
 import { generateUtilityClass } from '../className';
-import { createVariant } from './variantUtils';
+import { createVariant, createTextOverrides, createContainedOverrides } from './variantUtils';
 
 type Partial2Level<T> = {
   [K in keyof T]?: T[K] extends Record<any, any>
@@ -586,6 +586,11 @@ export default function extendTheme(themeInput?: ThemeInput): Theme {
         solidHover: createVariant('solidHover', variantInput),
         solidActive: createVariant('solidActive', variantInput),
         solidDisabled: createVariant('solidDisabled', variantInput),
+        // variant overrides
+        plainOverrides: createTextOverrides(variantInput),
+        outlinedOverrides: createTextOverrides(variantInput),
+        softOverrides: createTextOverrides(variantInput),
+        solidOverrides: createContainedOverrides(variantInput),
       },
       variantsInput,
     ),

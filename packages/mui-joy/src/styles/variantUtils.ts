@@ -1,4 +1,4 @@
-import { CSSObject, unstable_createGetCssVar as createGetCssVar } from '@mui/system';
+import { CSSObject } from '@mui/system';
 import { DefaultColorPalette, PaletteVariant, PaletteRange } from './types/colorSystem';
 import { VariantKey } from './types/variants';
 
@@ -101,8 +101,8 @@ interface ThemeFragment {
 }
 
 export const createTextOverrides = (theme: ThemeFragment) => {
-  const getCssVar = createGetCssVar(theme.prefix);
-  const prefixVar = createPrefixVar(theme.prefix);
+  const { prefix, getCssVar } = theme;
+  const prefixVar = createPrefixVar(prefix);
   let result = {} as Record<DefaultColorPalette, CSSObject>;
   Object.entries(theme.palette).forEach((entry) => {
     const [color, colorPalette] = entry as [
@@ -128,8 +128,8 @@ export const createTextOverrides = (theme: ThemeFragment) => {
 };
 
 export const createContainedOverrides = (theme: ThemeFragment) => {
-  const getCssVar = createGetCssVar(theme.prefix);
-  const prefixVar = createPrefixVar(theme.prefix);
+  const { prefix, getCssVar } = theme;
+  const prefixVar = createPrefixVar(prefix);
   let result = {} as Record<DefaultColorPalette, CSSObject>;
   Object.entries(theme.palette).forEach((entry) => {
     const [color, colorPalette] = entry as [
