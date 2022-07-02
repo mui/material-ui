@@ -19,7 +19,7 @@ The `Checkbox` component is the one to be used when you want to allow users to s
 
 ## Component
 
-After [installation](/joy-ui/getting-started/installation/), you can start building with this component using the following basic elements:
+After [installation](/joy-ui/getting-started/usage/), you can start building with this component using the following basic elements:
 
 ```jsx
 import Box from '@mui/joy/Box';
