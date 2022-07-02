@@ -88,7 +88,7 @@ const faqData = [
     summary: 'How to remove the "unlicensed" watermark?',
     detail: (
       <React.Fragment>
-        After you purchase a license, you'll receive a license key by email Once you have the
+        After you purchase a license, you'll receive a license key by email. Once you have the
         license key, you need to follow the{' '}
         <Link href="/x/advanced-components/#license-key-installation">instructions</Link> necessary
         to set it up.
