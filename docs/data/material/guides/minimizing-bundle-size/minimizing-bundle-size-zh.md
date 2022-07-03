@@ -207,6 +207,7 @@ module.exports = override(useBabelRc());
       '@mui/material': '@mui/material/legacy',
       '@mui/styled-engine': '@mui/styled-engine/legacy',
       '@mui/system': '@mui/system/legacy',
+      '@mui/utils': '@mui/utils/legacy',
     }
   }
 }
