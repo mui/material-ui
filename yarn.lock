@@ -4495,12 +4495,12 @@ autoprefixer@^9.8.6:
     postcss "^7.0.32"
     postcss-value-parser "^4.1.0"
 
-autosuggest-highlight@^3.2.1:
-  version "3.2.1"
-  resolved "https://registry.yarnpkg.com/autosuggest-highlight/-/autosuggest-highlight-3.2.1.tgz#0c1338deba395ab7552b0502f567ad369d7fea3c"
-  integrity sha512-PZk89g6W6cyE+fbnWF2CCIUAmP55o5wceKVqqL6oosgvbWHKa2Mes6nRC/PGj7OwqBgIy65Nd21Dw3h6qodOmg==
+autosuggest-highlight@^3.3.0:
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/autosuggest-highlight/-/autosuggest-highlight-3.3.0.tgz#f39cf33ab2bcda5d07eb4912ff1e361f43b97948"
+  integrity sha512-Ogc+Ol7FdV6cE2bY4avVwcGDBav9MYTzfG2RGDMutjao4VQoZAOD8lZOATxjnjFXqJ3u7BFZIWcbbe0Hi78vAA==
   dependencies:
-    diacritic "0.0.2"
+    remove-accents "^0.4.2"
 
 available-typed-arrays@^1.0.5:
   version "1.0.5"
@@ -6604,11 +6604,6 @@ di@^0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/di/-/di-0.0.1.tgz#806649326ceaa7caa3306d75d985ea2748ba913c"
   integrity sha1-gGZJMmzqp8qjMG112YXqJ0i6kTw=
-
-diacritic@0.0.2:
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/diacritic/-/diacritic-0.0.2.tgz#fc2a887b5a5bc0a0a854fb614c7c2f209061ee04"
-  integrity sha1-/CqIe1pbwKCoVPthTHwvIJBh7gQ=
 
 diff-sequences@^27.4.0:
   version "27.4.0"
@@ -13738,6 +13733,11 @@ remark@^13.0.0:
     remark-parse "^9.0.0"
     remark-stringify "^9.0.0"
     unified "^9.1.0"
+
+remove-accents@^0.4.2:
+  version "0.4.2"
+  resolved "https://registry.yarnpkg.com/remove-accents/-/remove-accents-0.4.2.tgz#0a43d3aaae1e80db919e07ae254b285d9e1c7bb5"
+  integrity sha512-7pXIJqJOq5tFgG1A2Zxti3Ht8jJF337m4sowbuHsW30ZnkQFnDzy9qBNhgzX8ZLW4+UBcXiiR7SwR6pokHsxiA==
 
 renderkid@^3.0.0:
   version "3.0.0"
