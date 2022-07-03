@@ -26,7 +26,6 @@ export default function createCssVarsProvider(options) {
     defaultColorScheme: designSystemColorScheme,
     disableTransitionOnChange: designSystemTransitionOnChange = false,
     enableColorScheme: designSystemEnableColorScheme = true,
-    prefix: designSystemPrefix = '',
     shouldSkipGeneratingVar: designSystemShouldSkipGeneratingVar,
     resolveTheme,
   } = options;
@@ -70,12 +69,7 @@ export default function createCssVarsProvider(options) {
   }) {
     const hasMounted = React.useRef(false);
 
-    const {
-      colorSchemes = {},
-      components = {},
-      cssVarPrefix = designSystemPrefix,
-      ...restThemeProp
-    } = themeProp;
+    const { colorSchemes = {}, components = {}, cssVarPrefix, ...restThemeProp } = themeProp;
     const allColorSchemes = Object.keys(colorSchemes);
     const defaultLightColorScheme =
       typeof defaultColorScheme === 'string' ? defaultColorScheme : defaultColorScheme.light;
@@ -117,7 +111,6 @@ export default function createCssVarsProvider(options) {
       parsedTheme,
     } = cssVarsParser(theme, {
       prefix: cssVarPrefix,
-      basePrefix: designSystemPrefix,
       shouldSkipGeneratingVar,
     });
 
@@ -141,7 +134,6 @@ export default function createCssVarsProvider(options) {
         parsedTheme: parsedScheme,
       } = cssVarsParser(scheme, {
         prefix: cssVarPrefix,
-        basePrefix: designSystemPrefix,
         shouldSkipGeneratingVar,
       });
       theme.vars = deepmerge(theme.vars, vars);

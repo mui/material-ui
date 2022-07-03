@@ -92,11 +92,6 @@ export default function createCssVarsProvider<
 >(
   options: CssVarsProviderConfig<ColorScheme> & {
     /**
-     * CSS variable prefix
-     * @default ''
-     */
-    prefix?: string;
-    /**
      * Design system default theme
      *
      * The structure inside `theme.colorSchemes[colorScheme]` should be exactly the same in all color schemes because
