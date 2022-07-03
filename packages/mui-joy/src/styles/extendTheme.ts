@@ -606,7 +606,6 @@ export default function extendTheme(themeInput?: ThemeInput): Theme {
       variantsInput,
     ),
     cssVarPrefix,
-    getCssVar,
     spacing: createSpacing(spacing),
   } as unknown as Theme; // Need type casting due to module augmentation inside the repo
 
