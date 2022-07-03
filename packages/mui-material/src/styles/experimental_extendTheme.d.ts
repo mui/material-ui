@@ -256,6 +256,7 @@ export interface ColorSystem {
 }
 
 export interface CssVarsThemeOptions extends Omit<ThemeOptions, 'palette' | 'components'> {
+  cssVarPrefix?: string;
   components?: Components<Omit<CssVarsTheme, 'components'>>;
   colorSchemes?: Partial<Record<SupportedColorScheme, ColorSystemOptions>>;
 }
@@ -284,7 +285,7 @@ export {};
 export interface CssVarsTheme extends Omit<Theme, 'palette' | 'components'>, ColorSystem {
   components?: Components<Omit<CssVarsTheme, 'components'>>;
   colorSchemes: Record<SupportedColorScheme, ColorSystem>;
-  prefix: string;
+  cssVarPrefix: string;
   vars: ThemeVars;
   getCssVar: <CustomVar extends string = never>(
     field: string | CustomVar,
