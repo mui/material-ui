@@ -149,7 +149,7 @@ export default function extendTheme(options = {}, ...args) {
       setColor(palette.SnackbarContent, 'bg', snackbarContentBackground);
       setColor(
         palette.SnackbarContent,
-        'text',
+        'color',
         lightPalette.getContrastText(snackbarContentBackground),
       );
       setColor(palette.SpeedDialAction, 'fabHoverBg', emphasize(palette.background.paper, 0.15));
@@ -221,7 +221,7 @@ export default function extendTheme(options = {}, ...args) {
       setColor(palette.SnackbarContent, 'bg', snackbarContentBackground);
       setColor(
         palette.SnackbarContent,
-        'text',
+        'color',
         darkPalette.getContrastText(snackbarContentBackground),
       );
       setColor(palette.SpeedDialAction, 'fabHoverBg', emphasize(palette.background.paper, 0.15));
