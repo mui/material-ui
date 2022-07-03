@@ -149,7 +149,7 @@ export default function extendTheme(options = {}, ...args) {
       setColor(palette.LinearProgress, 'infoBg', lighten(palette.info.main, 0.62));
       setColor(palette.LinearProgress, 'successBg', lighten(palette.success.main, 0.62));
       setColor(palette.LinearProgress, 'warningBg', lighten(palette.warning.main, 0.62));
-      setColor(palette.Skeleton, 'bg', 'rgba(var(--mui-palette-text-primaryChannel) / 0.11)');
+      setColor(palette.Skeleton, 'bg', `rgba(${getCssVar('palette-text-primaryChannel')} / 0.11)`);
       setColor(palette.Slider, 'primaryTrack', lighten(palette.primary.main, 0.62));
       setColor(palette.Slider, 'secondaryTrack', lighten(palette.secondary.main, 0.62));
       setColor(palette.Slider, 'errorTrack', lighten(palette.error.main, 0.62));
@@ -215,7 +215,7 @@ export default function extendTheme(options = {}, ...args) {
       setColor(palette.LinearProgress, 'infoBg', darken(palette.info.main, 0.5));
       setColor(palette.LinearProgress, 'successBg', darken(palette.success.main, 0.5));
       setColor(palette.LinearProgress, 'warningBg', darken(palette.warning.main, 0.5));
-      setColor(palette.Skeleton, 'bg', 'rgba(var(--mui-palette-text-primaryChannel) / 0.13)');
+      setColor(palette.Skeleton, 'bg', `rgba(${getCssVar('palette-text-primaryChannel')} / 0.13)`);
       setColor(palette.Slider, 'primaryTrack', darken(palette.primary.main, 0.5));
       setColor(palette.Slider, 'secondaryTrack', darken(palette.secondary.main, 0.5));
       setColor(palette.Slider, 'errorTrack', darken(palette.error.main, 0.5));
