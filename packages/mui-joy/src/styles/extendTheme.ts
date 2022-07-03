@@ -40,7 +40,7 @@ export interface ColorSystemInput extends Partial3Level<ColorSystem> {}
 
 // Use Partial2Level instead of PartialDeep because nested value type is CSSObject which does not work with PartialDeep.
 export interface ThemeInput extends Partial2Level<ThemeScales> {
-  prefix?: string;
+  cssVarPrefix?: string;
   focus?: Partial<Focus>;
   typography?: Partial<TypographySystem>;
   variants?: Partial2Level<Variants>;
@@ -50,18 +50,19 @@ export interface ThemeInput extends Partial2Level<ThemeScales> {
   colorSchemes?: Partial<Record<DefaultColorScheme | ExtendedColorScheme, ColorSystemInput>>;
 }
 
-export const createGetCssVar = (prefix = 'joy') => systemCreateGetCssVar<ThemeCSSVar>(prefix);
+export const createGetCssVar = (cssVarPrefix = 'joy') =>
+  systemCreateGetCssVar<ThemeCSSVar>(cssVarPrefix);
 
 export default function extendTheme(themeInput?: ThemeInput): Theme {
   const {
-    prefix = 'joy',
+    cssVarPrefix = 'joy',
     breakpoints,
     spacing,
     components: componentsInput,
     variants: variantsInput,
     ...scalesInput
   } = themeInput || {};
-  const getCssVar = createGetCssVar(prefix);
+  const getCssVar = createGetCssVar(cssVarPrefix);
 
   const createLightModeVariantVariables = (color: ColorPaletteProp) => ({
     plainColor: getCssVar(`palette-${color}-600`),
@@ -594,6 +595,7 @@ export default function extendTheme(themeInput?: ThemeInput): Theme {
       },
       variantsInput,
     ),
+    cssVarPrefix,
     getCssVar,
     spacing: createSpacing(spacing),
   } as unknown as Theme; // Need type casting due to module augmentation inside the repo
