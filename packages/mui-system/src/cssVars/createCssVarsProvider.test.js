@@ -74,48 +74,6 @@ describe('createCssVarsProvider', () => {
       expect(screen.getByTestId('current-color-scheme').textContent).to.equal('light');
     });
 
-    it('has CSS variable prefix', () => {
-      const { CssVarsProvider } = createCssVarsProvider({
-        theme: {
-          colorSchemes: { light: { fontSize: 16 } },
-        },
-        defaultColorScheme: 'light',
-        prefix: 'mui',
-      });
-      const Text = () => {
-        const theme = useTheme();
-        return <div data-testid={`text`}>{theme.vars.fontSize}</div>;
-      };
-      render(
-        <CssVarsProvider>
-          <Text />
-        </CssVarsProvider>,
-      );
-
-      expect(screen.getByTestId('text').textContent).to.equal('var(--mui-fontSize)');
-    });
-
-    it('provide getCssVar util', () => {
-      const { CssVarsProvider } = createCssVarsProvider({
-        theme: {
-          colorSchemes: { light: { palette: { primary: { 500: '#ff5252' } } } },
-        },
-        defaultColorScheme: 'light',
-        prefix: 'mui',
-      });
-      const Text = () => {
-        const theme = useTheme();
-        return <div data-testid={`text`}>{theme.getCssVar('palette-primary-500')}</div>;
-      };
-      render(
-        <CssVarsProvider>
-          <Text />
-        </CssVarsProvider>,
-      );
-
-      expect(screen.getByTestId('text').textContent).to.equal('var(--mui-palette-primary-500)');
-    });
-
     it('provide getColorSchemeSelector util', () => {
       const { CssVarsProvider } = createCssVarsProvider({
         theme: {
@@ -851,7 +809,6 @@ describe('createCssVarsProvider', () => {
           colorSchemes: { light: { fontSize: 16 } },
         },
         defaultColorScheme: 'light',
-        prefix: 'mui',
       });
       const Text = () => {
         const theme = useTheme();

@@ -47,6 +47,7 @@ export default function extendTheme(options = {}, ...args) {
   let theme = {
     ...muiTheme,
     cssVarPrefix,
+    getCssVar,
     colorSchemes: {
       ...colorSchemesInput,
       light: {

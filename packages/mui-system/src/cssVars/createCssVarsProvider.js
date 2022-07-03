@@ -11,7 +11,6 @@ import systemGetInitColorSchemeScript, {
   DEFAULT_MODE_STORAGE_KEY,
 } from './getInitColorSchemeScript';
 import useCurrentColorScheme from './useCurrentColorScheme';
-import createGetCssVar from './createGetCssVar';
 
 export const DISABLE_CSS_TRANSITION =
   '*{-webkit-transition:none!important;-moz-transition:none!important;-o-transition:none!important;-ms-transition:none!important;transition:none!important}';
@@ -120,7 +119,6 @@ export default function createCssVarsProvider(options) {
       colorSchemes,
       cssVarPrefix,
       vars: rootVars,
-      getCssVar: createGetCssVar(cssVarPrefix),
       getColorSchemeSelector: (targetColorScheme) => `[${attribute}="${targetColorScheme}"] &`,
     };
 
