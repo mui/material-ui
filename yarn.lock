@@ -13075,10 +13075,10 @@ react-display-name@^0.2.4:
   resolved "https://registry.yarnpkg.com/react-display-name/-/react-display-name-0.2.4.tgz#e2a670b81d79a2204335510c01246f4c92ff12cf"
   integrity sha512-zvU6iouW+SWwHTyThwxGICjJYCMZFk/6r/+jmOdC7ntQoPlS/Pqb81MkxaMf2bHTSq9TN3K3zX2/ayMW/jCtyA==
 
-react-docgen@^5.4.2:
-  version "5.4.2"
-  resolved "https://registry.yarnpkg.com/react-docgen/-/react-docgen-5.4.2.tgz#697ec899e8dd493bb7ba0d50ec0aa5e49f41d3fa"
-  integrity sha512-4Z5XYpHsn2bbUfaflxoS30VhUvQLBe4GCwwM5v1e1FUOeDdaoJi6wUGSmYp6OdXYEISEAOEIaSPBk4iezNCKBw==
+react-docgen@^5.4.3:
+  version "5.4.3"
+  resolved "https://registry.yarnpkg.com/react-docgen/-/react-docgen-5.4.3.tgz#7d297f73b977d0c7611402e5fc2a168acf332b26"
+  integrity sha512-xlLJyOlnfr8lLEEeaDZ+X2J/KJoe6Nr9AzxnkdQWush5hz2ZSu66w6iLMOScMmxoSHWpWMn+k3v5ZiyCfcWsOA==
   dependencies:
     "@babel/core" "^7.7.5"
     "@babel/generator" "^7.12.11"
