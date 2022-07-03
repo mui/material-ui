@@ -256,6 +256,10 @@ export interface ColorSystem {
 }
 
 export interface CssVarsThemeOptions extends Omit<ThemeOptions, 'palette' | 'components'> {
+  /**
+   * Prefix of the generated CSS variables
+   * @default 'mui'
+   */
   cssVarPrefix?: string;
   components?: Components<Omit<CssVarsTheme, 'components'>>;
   colorSchemes?: Partial<Record<SupportedColorScheme, ColorSystemOptions>>;
