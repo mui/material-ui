@@ -133,7 +133,7 @@ function App() {
 ```
 
 :::info
-**Note**: Joy will add the prefix (default as `joy`) to all CSS variables. If you want to change that, do `<CssVarsProvider prefix="myproduct">`.
+**Note**: Joy will add the prefix (default as `joy`) to all CSS variables. If you want to change that, do `<CssVarsProvider theme={extendTheme({ cssVarPrefix: 'myproduct' })}>`.
 The generated CSS variables will then be:
 
 ```diff
