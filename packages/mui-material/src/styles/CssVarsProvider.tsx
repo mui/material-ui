@@ -5,6 +5,10 @@ import experimental_extendTheme, {
 } from './experimental_extendTheme';
 import createTypography from './createTypography';
 
+const shouldSkipGeneratingVar = (keys: string[]) =>
+  !!keys[0].match(/(typography|mixins|breakpoints|direction|transitions)/) ||
+  (keys[0] === 'palette' && !!keys[1]?.match(/(mode|contrastThreshold|tonalOffset)/));
+
 const defaultTheme = experimental_extendTheme();
 
 const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssVarsProvider<
@@ -19,7 +23,6 @@ const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssV
     light: 'light',
     dark: 'dark',
   },
-  prefix: 'mui',
   resolveTheme: (theme) => {
     const newTheme = {
       ...theme,
@@ -28,13 +31,12 @@ const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssV
 
     return newTheme;
   },
-  shouldSkipGeneratingVar: (keys) =>
-    !!keys[0].match(/(typography|mixins|breakpoints|direction|transitions)/) ||
-    (keys[0] === 'palette' && !!keys[1]?.match(/(mode|contrastThreshold|tonalOffset)/)),
+  shouldSkipGeneratingVar,
 });
 
 export {
   useColorScheme,
   getInitColorSchemeScript,
+  shouldSkipGeneratingVar,
   CssVarsProvider as Experimental_CssVarsProvider,
 };
