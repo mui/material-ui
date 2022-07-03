@@ -51,7 +51,12 @@ export type {
   VariantProp,
 } from './types/variants';
 export type { Theme } from './types/theme';
-export { CssVarsProvider, useColorScheme, getInitColorSchemeScript } from './CssVarsProvider';
+export {
+  CssVarsProvider,
+  useColorScheme,
+  getInitColorSchemeScript,
+  shouldSkipGeneratingVar,
+} from './CssVarsProvider';
 export { default as styled } from './styled';
 export { default as ThemeProvider } from './ThemeProvider';
 export * from './ThemeProvider';

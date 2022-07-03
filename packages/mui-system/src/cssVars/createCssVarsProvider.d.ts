@@ -45,10 +45,13 @@ export interface CssVarsProviderConfig<ColorScheme extends string> {
    */
   enableColorScheme?: boolean;
   /**
-   * CSS variable prefix
-   * @default ''
+   * A function to determine if the key, value should be attached as CSS Variable
+   * `keys` is an array that represents the object path keys.
+   *  Ex, if the theme is { foo: { bar: 'var(--test)' } }
+   *  then, keys = ['foo', 'bar']
+   *        value = 'var(--test)'
    */
-  prefix?: string;
+  shouldSkipGeneratingVar?: (keys: string[], value: string | number) => boolean;
 }
 
 export interface CreateCssVarsProviderResult<ColorScheme extends string, ThemeInput> {
@@ -89,6 +92,11 @@ export default function createCssVarsProvider<
 >(
   options: CssVarsProviderConfig<ColorScheme> & {
     /**
+     * CSS variable prefix
+     * @default ''
+     */
+    prefix?: string;
+    /**
      * Design system default theme
      *
      * The structure inside `theme.colorSchemes[colorScheme]` should be exactly the same in all color schemes because
@@ -114,14 +122,6 @@ export default function createCssVarsProvider<
      *  }
      */
     theme: any;
-    /**
-     * A function to determine if the key, value should be attached as CSS Variable
-     * `keys` is an array that represents the object path keys.
-     *  Ex, if the theme is { foo: { bar: 'var(--test)' } }
-     *  then, keys = ['foo', 'bar']
-     *        value = 'var(--test)'
-     */
-    shouldSkipGeneratingVar?: (keys: string[], value: string | number) => boolean;
     /**
      * A function to be called after the CSS variables are attached. The result of this function will be the final theme pass to ThemeProvider.
      *

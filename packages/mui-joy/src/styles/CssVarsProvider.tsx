@@ -2,6 +2,9 @@ import { unstable_createCssVarsProvider as createCssVarsProvider } from '@mui/sy
 import extendTheme from './extendTheme';
 import type { Theme, DefaultColorScheme, ExtendedColorScheme } from './types';
 
+const shouldSkipGeneratingVar = (keys: string[]) =>
+  !!keys[0].match(/(typography|variants|focus|breakpoints)/);
+
 const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssVarsProvider<
   DefaultColorScheme | ExtendedColorScheme,
   Theme
@@ -14,12 +17,7 @@ const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssV
     light: 'light',
     dark: 'dark',
   },
-  prefix: 'joy',
-  shouldSkipGeneratingVar: (keys) =>
-    keys[0] === 'typography' ||
-    keys[0] === 'variants' ||
-    keys[0] === 'focus' ||
-    keys[0] === 'breakpoints',
+  shouldSkipGeneratingVar,
 });
 
-export { CssVarsProvider, useColorScheme, getInitColorSchemeScript };
+export { CssVarsProvider, useColorScheme, getInitColorSchemeScript, shouldSkipGeneratingVar };

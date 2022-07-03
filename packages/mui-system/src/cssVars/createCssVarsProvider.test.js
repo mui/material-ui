@@ -858,7 +858,12 @@ describe('createCssVarsProvider', () => {
         return <div data-testid={`text`}>{theme.vars.fontSize}</div>;
       };
       render(
-        <CssVarsProvider prefix="foo-bar">
+        <CssVarsProvider
+          theme={{
+            cssVarPrefix: 'foo-bar',
+            colorSchemes: { light: { fontSize: 16 } },
+          }}
+        >
           <Text />
         </CssVarsProvider>,
       );
