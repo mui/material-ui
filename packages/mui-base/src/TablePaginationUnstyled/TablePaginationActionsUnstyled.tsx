@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { OverridableComponent } from '@mui/types';
-import { appendOwnerState, WithOptionalOwnerState } from '../utils';
+import { useSlotProps, WithOptionalOwnerState } from '../utils';
 import { ItemAriaLabelType } from './TablePaginationUnstyled.types';
 import {
   TablePaginationActionsUnstyledButtonSlotProps,
@@ -62,63 +62,69 @@ const TablePaginationActionsUnstyled = React.forwardRef<
 
   const Root = components.Root ?? component ?? 'div';
   const rootProps: WithOptionalOwnerState<TablePaginationActionsUnstyledRootSlotProps> =
-    appendOwnerState(Root, { ref, ...other, ...componentsProps.root }, ownerState);
+    useSlotProps({
+      elementType: Root,
+      externalSlotProps: componentsProps.root,
+      externalForwardedProps: other,
+      additionalProps: { ref },
+      ownerState,
+    });
 
   const FirstButton = components.FirstButton ?? 'button';
   const firstButtonProps: WithOptionalOwnerState<TablePaginationActionsUnstyledButtonSlotProps> =
-    appendOwnerState(
-      FirstButton,
-      {
+    useSlotProps({
+      elementType: FirstButton,
+      externalSlotProps: componentsProps.firstButton,
+      additionalProps: {
         onClick: handleFirstPageButtonClick,
         disabled: page === 0,
         'aria-label': getItemAriaLabel('first', page),
         title: getItemAriaLabel('first', page),
-        ...componentsProps.firstButton,
       },
       ownerState,
-    );
+    });
 
   const LastButton = components.LastButton ?? 'button';
   const lastButtonProps: WithOptionalOwnerState<TablePaginationActionsUnstyledButtonSlotProps> =
-    appendOwnerState(
-      LastButton,
-      {
+    useSlotProps({
+      elementType: LastButton,
+      externalSlotProps: componentsProps.lastButton,
+      additionalProps: {
         onClick: handleLastPageButtonClick,
         disabled: page >= Math.ceil(count / rowsPerPage) - 1,
         'aria-label': getItemAriaLabel('last', page),
         title: getItemAriaLabel('last', page),
-        ...componentsProps.lastButton,
       },
       ownerState,
-    );
+    });
 
   const NextButton = components.NextButton ?? 'button';
   const nextButtonProps: WithOptionalOwnerState<TablePaginationActionsUnstyledButtonSlotProps> =
-    appendOwnerState(
-      NextButton,
-      {
+    useSlotProps({
+      elementType: NextButton,
+      externalSlotProps: componentsProps.nextButton,
+      additionalProps: {
         onClick: handleNextButtonClick,
         disabled: count !== -1 ? page >= Math.ceil(count / rowsPerPage) - 1 : false,
         'aria-label': getItemAriaLabel('next', page),
         title: getItemAriaLabel('next', page),
-        ...componentsProps.nextButton,
       },
       ownerState,
-    );
+    });
 
   const BackButton = components.BackButton ?? 'button';
   const backButtonProps: WithOptionalOwnerState<TablePaginationActionsUnstyledButtonSlotProps> =
-    appendOwnerState(
-      BackButton,
-      {
+    useSlotProps({
+      elementType: BackButton,
+      externalSlotProps: componentsProps.backButton,
+      additionalProps: {
         onClick: handleBackButtonClick,
         disabled: page === 0,
         'aria-label': getItemAriaLabel('previous', page),
         title: getItemAriaLabel('previous', page),
-        ...componentsProps.backButton,
       },
       ownerState,
-    );
+    });
 
   const LastPageIcon = components.LastPageIcon ?? LastPageIconDefault;
   const FirstPageIcon = components.FirstPageIcon ?? FirstPageIconDefault;
