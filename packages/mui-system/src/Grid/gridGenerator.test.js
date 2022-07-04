@@ -9,7 +9,6 @@ import {
   generateGridColumnsStyles,
   generateGridRowSpacingStyles,
   generateGridColumnSpacingStyles,
-  generateGridOffsetStyles,
   generateSizeClassNames,
   generateSpacingClassNames,
 } from './gridGenerator';
@@ -499,25 +498,6 @@ describe('grid generator', () => {
         },
         '@media (min-width:1536px)': {
           '--Grid-columnSpacing': '0px',
-        },
-      });
-    });
-  });
-
-  describe('generateGridOffsetStyles', () => {
-    it('supports responsive object', () => {
-      expect(
-        generateGridOffsetStyles({
-          theme: { breakpoints, spacing },
-          ownerState: { gridOffset: { xs: 0, md: 5, lg: 'auto' } },
-        }),
-      ).to.deep.equal({
-        marginLeft: '0px',
-        '@media (min-width:900px)': {
-          marginLeft: `calc(100% * 5 / var(--Grid-columns))`,
-        },
-        '@media (min-width:1200px)': {
-          marginLeft: `auto`,
         },
       });
     });

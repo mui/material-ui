@@ -18,7 +18,6 @@ import {
   generateGridColumnSpacingStyles,
   generateGridRowSpacingStyles,
   generateGridDirectionStyles,
-  generateGridOffsetStyles,
   generateSizeClassNames,
   generateSpacingClassNames,
 } from './gridGenerator';
@@ -90,7 +89,6 @@ export default function createGrid(
     generateGridSizeStyles,
     generateGridDirectionStyles,
     generateGridStyles,
-    generateGridOffsetStyles,
   );
 
   const Grid = React.forwardRef(function Grid(inProps, ref) {
@@ -120,14 +118,11 @@ export default function createGrid(
     }
     // collect breakpoints related props because they can be custom from the theme.
     const gridSize = {} as GridOwnerState['gridSize'];
-    const gridOffset = {} as GridOwnerState['gridOffset'];
     const other: Record<string, any> = {};
 
     Object.entries(rest).forEach(([key, val]) => {
       if (theme.breakpoints.values[key as Breakpoint] !== undefined) {
         gridSize[key as Breakpoint] = val;
-      } else if (theme.breakpoints.values[key.replace('Offset', '') as Breakpoint] !== undefined) {
-        gridOffset[key.replace('Offset', '') as Breakpoint] = val;
       } else {
         other[key] = val;
       }
@@ -150,7 +145,6 @@ export default function createGrid(
       rowSpacing,
       columnSpacing,
       gridSize,
-      gridOffset,
       disableEqualOverflow: disableEqualOverflow ?? overflow ?? false, // use context value if exists.
       parentDisableEqualOverflow: overflow, // for nested grid
     };
@@ -204,9 +198,7 @@ export default function createGrid(
     ]),
     disableEqualOverflow: PropTypes.bool,
     lg: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number, PropTypes.bool]),
-    lgOffset: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number]),
     md: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number, PropTypes.bool]),
-    mdOffset: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number]),
     rowSpacing: PropTypes.oneOfType([
       PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])),
       PropTypes.number,
@@ -214,7 +206,6 @@ export default function createGrid(
       PropTypes.string,
     ]),
     sm: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number, PropTypes.bool]),
-    smOffset: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number]),
     spacing: PropTypes.oneOfType([
       PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.number, PropTypes.string])),
       PropTypes.number,
@@ -228,9 +219,7 @@ export default function createGrid(
     ]),
     wrap: PropTypes.oneOf(['nowrap', 'wrap-reverse', 'wrap']),
     xl: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number, PropTypes.bool]),
-    xlOffset: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number]),
     xs: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number, PropTypes.bool]),
-    xsOffset: PropTypes.oneOfType([PropTypes.oneOf(['auto']), PropTypes.number]),
   };
 
   return Grid;
