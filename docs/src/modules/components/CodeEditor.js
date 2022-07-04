@@ -26,9 +26,6 @@ const Wrapper = styled(MarkdownElement)(({ theme }) => ({
     '& .MuiCode-copy': {
       opacity: 1,
     },
-    '& [aria-live="polite"]': {
-      visibility: 'hidden',
-    },
   },
   '&:focus-within': {
     outline: `3px solid ${
@@ -71,7 +68,7 @@ const StyledEditor = styled(Editor)(({ theme }) => ({
   },
 }));
 
-const CodeEditor = ({ language = 'jsx', value, onChange, copyButtonProps, ...rest }) => {
+const CodeEditor = ({ language = 'jsx', value, onChange, copyButtonProps, children, ...rest }) => {
   const t = useTranslate();
   const wrapperRef = React.useRef(null);
   const handlers = useCodeCopy();
@@ -135,12 +132,14 @@ const CodeEditor = ({ language = 'jsx', value, onChange, copyButtonProps, ...res
           code={value}
           onKeyDown={(event) => event.stopPropagation()}
         />
+        {children}
       </div>
     </Wrapper>
   );
 };
 
 CodeEditor.propTypes = {
+  children: PropTypes.node,
   copyButtonProps: PropTypes.object,
   language: PropTypes.string,
   onChange: PropTypes.func,

@@ -5,9 +5,9 @@ import { useRunner } from 'react-runner';
 import { debounce } from '@mui/material/utils';
 import { alpha, styled } from '@mui/material/styles';
 import { styled as joyStyled } from '@mui/joy/styles';
+import Alert from '@mui/material/Alert';
 import IconButton from '@mui/material/IconButton';
 import Collapse from '@mui/material/Collapse';
-import FormHelperText from '@mui/material/FormHelperText';
 import NoSsr from '@mui/material/NoSsr';
 import DemoSandboxed from 'docs/src/modules/components/DemoSandboxed';
 import CodeEditor from 'docs/src/modules/components/CodeEditor';
@@ -358,18 +358,36 @@ export default function Demo(props) {
               'data-ga-event-label': demoOptions.demo,
               'data-ga-event-action': 'copy-click',
             }}
-          />
-          {debouncedError && error && (
-            <FormHelperText
-              aria-live="polite"
-              variant="outlined"
-              error
-              component="pre"
-              sx={{ whiteSpace: 'pre-wrap', mb: isAdVisible ? 3 : 1 }}
-            >
-              {debouncedError}
-            </FormHelperText>
-          )}
+          >
+            {debouncedError && error && (
+              <Alert
+                aria-live="polite"
+                variant="filled"
+                severity="error"
+                sx={{
+                  position: 'absolute',
+                  top: 0,
+                  left: '50%',
+                  transform: 'translateX(-50%)',
+                  borderTopLeftRadius: 0,
+                  borderTopRightRadius: 0,
+                  py: '2px',
+                  px: '6px',
+                  '& .MuiAlert-icon': {
+                    fontSize: 16,
+                    mr: 0.5,
+                    py: 0,
+                  },
+                  '& .MuiAlert-message': {
+                    fontSize: 12,
+                    py: 0,
+                  },
+                }}
+              >
+                {debouncedError}
+              </Alert>
+            )}
+          </CodeEditor>
         </Collapse>
         {isAdVisible ? <AdCarbonInline /> : null}
       </Wrapper>
