@@ -7,6 +7,11 @@ import { blue, blueDark } from 'docs/src/modules/brandingTheme';
 const Root = styled('div')(({ theme }) => ({
   ...theme.typography.body1,
   color: theme.palette.text.primary,
+  margin: theme.spacing(0, 2),
+  [theme.breakpoints.up('sm')]: {
+    marginLeft: 0,
+    marginRight: 0,
+  },
   '& strong': {
     color: theme.palette.mode === 'dark' ? theme.palette.grey[200] : theme.palette.text.primary,
   },
