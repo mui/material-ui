@@ -56,9 +56,32 @@ const MyComponent = React.forwardRef(function MyComponent(props, ref) {
 
 You can find a similar concept in the [wrapping components](/material-ui/guides/composition/#wrapping-components) guide.
 
+If using a class component as a child, you'll also need to ensure that the ref is forwarded to the underlying DOM element. (A ref to the class component itself will not work.)
+
+```jsx
+class MyComponent extends React.Component {
+  render() {
+    const { innerRef, ...props } = this.props;
+    //  Spread the props to the underlying DOM element.
+    return <div {...props} ref={innerRef}>Bin</div>
+  }
+};
+
+// Wrap MyComponent to forward the ref as expected by Tooltip
+const WrappedMyComponent = React.forwardRef(function WrappedMyComponent(props, ref) {
+  return <MyComponent {...props} innerRef={ref} />;
+});
+
+// ...
+
+<Tooltip title="Delete">
+  <WrappedMyComponent>
+</Tooltip>
+```
+
 ## 触发器
 
-你可以定义各种类型的事件来触发显示工具提示组件。
+You can define the types of events that cause a tooltip to show.
 
 The touch action requires a long press due to the `enterTouchDelay` prop being set to `700`ms by default.
 
@@ -72,19 +95,19 @@ You can use the `open`, `onOpen` and `onClose` props to control the behavior of 
 
 ## 变量宽度
 
-`Tooltip` 为了保证较好的阅读性，会自动将较长的文字折行。
+The `Tooltip` wraps long text by default to make it readable.
 
 {{"demo": "VariableWidth.js"}}
 
 ## 交互式
 
-Tooltips are interactive by default (to pass [WCAG 2.1 success criterion 1.4.13](https://www.w3.org/TR/WCAG21/#content-on-hover-or-focus)). 若用户在 `leaveDelay` 过期之前将鼠标悬停在工具提示上时，它则不会被关闭。 It won't close when the user hovers over the tooltip before the `leaveDelay` is expired. You can disable this behavior (thus failing the success criterion which is required to reach level AA) by passing `disableInteractive`.
+Tooltips are interactive by default (to pass [WCAG 2.1 success criterion 1.4.13](https://www.w3.org/TR/WCAG21/#content-on-hover-or-focus)). It won't close when the user hovers over the tooltip before the `leaveDelay` is expired. You can disable this behavior (thus failing the success criterion which is required to reach level AA) by passing `disableInteractive`.
 
 {{"demo": "NonInteractiveTooltips.js"}}
 
 ## 禁用元素
 
-默认情况下，`<Button>`等 disabled 的元素不会触发用户交互，因此`Tooltip`不会在 hover 等正常事件上激活显示。 若想容纳已禁用的元素激活工具提示，请添加一个简单的包装元素，如 `span`。
+By default disabled elements like `<button>` do not trigger user interactions so a `Tooltip` will not activate on normal events like hover. To accommodate disabled elements, add a simple wrapper element, such as a `span`.
 
 :::warning
 ⚠️ In order to work with Safari, you need at least one display block or flex item below the tooltip wrapper.
@@ -95,7 +118,7 @@ Tooltips are interactive by default (to pass [WCAG 2.1 success criterion 1.4.13]
 :::warning If you're not wrapping a MUI component that inherits from `ButtonBase`, for instance, a native `<button>` element, you should also add the CSS property _pointer-events: none;_ to your element when disabled: :::
 
 ```jsx
-<Tooltip title="您没有足够的操作权限">
+<Tooltip title="You don't have permission to do this">
   <span>
     <button disabled={disabled} style={disabled ? { pointerEvents: 'none' } : {}}>
       A disabled button
@@ -137,7 +160,7 @@ On mobile, the tooltip is displayed when the user longpresses the element and hi
 By default, the tooltip only labels its child element. This is notably different from `title` which can either label **or** describe its child depending on whether the child already has a label. For example, in:
 
 ```html
-<button title="some more information">一个按钮</button>
+<button title="some more information">A button</button>
 ```
 
 the `title` acts as an accessible description. If you want the tooltip to act as an accessible description you can pass `describeChild`. Note that you shouldn't use `describeChild` if the tooltip provides the only visual label. Otherwise, the child would have no accessible name and the tooltip would violate [success criterion 2.5.3 in WCAG 2.1](https://www.w3.org/WAI/WCAG21/Understanding/label-in-name.html).
