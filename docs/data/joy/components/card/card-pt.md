@@ -8,88 +8,99 @@ githubLabel: 'component: card'
 
 <p class="description">Cards contain content and actions about a single subject.</p>
 
-Cards are surfaces that display content and actions on a single topic.
+## Introduction
 
-They should be easy to scan for relevant and actionable information. Elements, like text and images, should be placed on them in a way that clearly indicates hierarchy.
+Cards are most frequently used for easy to scan, relevant, and actionable information. Joy UI provides four Card-related components:
 
-Joy provides 4 Card related components:
+- [`Card`](#basic): a container to control the content direction.
+- [`CardOverflow`](#overflow): a handy component that takes care of stretching the content to fill all edges of the card.
+- [`CardCover`](#back-cover): a container for displaying background images within the card, also used to create gradient layers.
+- [`CardContent`](#back-cover): a wrapper that brings content to the front when used with `CardCover`.
 
-- [`Card`](#basic): used as a container to control the direction of the content. It comes with a border radius, padding, and shadow by default.
-- [`CardOverflow`](#overflow): a handy component that takes care of stretching the content to fill on all edges of the card.
-- [`CardCover`](#back-cover): for displaying background image of the card and used to create layers of gradient.
-- [`CardContent`](#back-cover): usually used with `CardCover` to bring the content to the front.
+## Component
 
-## Basic
+After [installation](/joy-ui/getting-started/installation/), you can start building with this component using the following basic elements:
 
-The `Card` is a surface-level component that can house multiple others to form a meaningful interface. For example, here are a few components you would use for common card designs:
+```jsx
+import Card from '@mui/joy/Card';
+import Typography from '@mui/joy/Typography';
 
-- `Typography` for creating titles, descriptions, and plain texts.
-- `AspectRatio` for controlling images and video sizes.
-- `Button` and/or `IconButton` for call to action elements.
+export default function MyApp() {
+  return (
+    <Card>
+      <Typography>Hello world!</Typography>
+    </Card>
+  );
+}
+```
+
+### Basic usage
+
+`Card` is a surface-level component that can house multiple others. The most common components you'd use with it are `Typography`, `AspectRatio`, and `Button`.
 
 {{"demo": "BasicCard.js" }}
 
-## Overflow
+### Overflow
 
-To have content spanning from edge to edge of the card, wrap it with the `CardOverflow` component. It will automatically take care of the top and bottom edges if rendered as the first or last child of the parent card.
+To have content spanning from edge to edge of the card, wrap it with the `CardOverflow` component. It automatically takesd care of the top and bottom edges if rendered as the first or last child of the parent card.
 
 {{"demo": "OverflowCard.js" }}
 
-## Back cover
+### Back cover
 
-The `CardCover` component is responsible for creating the content that covers the whole card. You can think of card covers as a background layer that stay behind the `CardContent`.
+The `CardCover` component is responsible for housing the content that covers the whole card. Think of card covers as a background layer that stay behind the `CardContent`.
 
 {{"demo": "CardCovers.js" }}
 
 ### Media
 
-You can use a plain image or a video element inside the `CardCover`. It uses [`object-fit: cover`](https://developer.mozilla.org/en-US/docs/Web/CSS/object-fit) on the image as a default value.
+Use a plain image or a video element inside the `CardCover` to display media. It uses [`object-fit: cover`](https://developer.mozilla.org/en-US/docs/Web/CSS/object-fit) on the image as a default value.
 
 {{"demo": "MediaCover.js" }}
 
 ### Gradient overlay
 
-Insert an additional `CardCover` component to create gradient overlays between the cover and the content.
+To create a gradient overlay, frequently seen when a colorful image is used as background, insert an additional `CardCover` component.
 
-:::info
-💡 Make sure to darken up the gradient overlay to have enough contrast between the background image and the content.
-:::
+:::info 💡 **Tip:** Make sure to darken the gradient overlay up to have enough contrast between the background image and the text content. :::
 
 {{"demo": "GradientCover.js" }}
 
-## Row
+### Row
 
-To show a horizontal card, use `row` prop. The `CardOverflow` will adapt based on its position.
+To show a horizontal card, use the `row` prop. The `CardOverflow` will adapt based on its position.
 
 {{"demo": "RowCard.js" }}
 
-## Actions
+### Actions
 
-### Whole card area
+#### Multiple actions
 
-To have the whole card area clickable, use the `Link` component to wrap the card's title and then pass the `overlay` prop to expand the interactive area to fill the whole card.
+By default, whenever you have additional action elements such as links and buttons, they stay on top of the whole interactive area. In some cases, you might have to manually control each element's `z-index`.
 
-Note that the keyboard focus appearance will also cover the entire card. For more details about cards accessibility, read [Inclusive Component's documentation](https://inclusive-components.design/cards/).
-
-{{"demo": "InteractiveCard.js" }}
-
-### Multiple actions
-
-By default, whenever you have additional action elements such as links and buttons, they'll stay on top of the whole interactive area. However, in some cases, you might have to manually control each element's `z-index`.
-
-:::success 💡 **Tip**: use CSS's pseudo-class [`:focus-within`](https://developer.mozilla.org/en-US/docs/Web/CSS/:focus-within) to style the card when any of its children is focused. :::
+:::info 💡 **Tip**: use CSS's pseudo-class [`:focus-within`](https://developer.mozilla.org/en-US/docs/Web/CSS/:focus-within) to style the card when any of its children is focused. :::
 
 {{"demo": "MultipleInteractionCard.js" }}
 
-## Component variables
+#### Whole card area
 
-The `Card` component exposes two important CSS variables that communicate with other Joy components. If you want to adjust a card's padding or border-radius, it's preferable to do it using the variables below instead of using these properties directly. That's mainly because the variables will also be used to calculate a proper radius for the card's children.
+To make the entire card area clickable, wrap the card's title with the `Link` component. Then, add the `overlay` prop to expand it.
+
+By doing that, you ensure good keyboard navigation support given that the `focus-visible` styles also apply to the entire card. Learn more about best accessibility practices with cards in the [Inclusive Component's documentation](https://inclusive-components.design/cards/).
+
+{{"demo": "InteractiveCard.js" }}
+
+## CSS variables
+
+Play around with all the CSS variables available in the slider component to see how the design changes.
+
+You can use those to customize the component on both the `sx` prop and the theme.
+
+:::info 💡 **Tip**: If you want to adjust a card's padding or border-radius, it's preferable to do it using the variables below instead of using CSS properties directly. That's because the variables will also be used to calculate a proper radius for the card's children. :::
 
 {{"demo": "CardVariables.js" , "hideToolbar": true}}
 
 ## Common examples
-
-Here's how you could replicate a few real-world card designs using several Joy components together with it.
 
 ### Container responsive
 
