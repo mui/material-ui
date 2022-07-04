@@ -16,9 +16,12 @@
 
 在实际应用中，使用原生的 `<a>` 元素是不够的， 您可以使用系统化地增强的 Link 组件来提升用户体验： MUI 主题允许配置此组件一次 例如，通过react-router：
 
-```jsx
+```tsx
+import { Link as RouterLink, LinkProps as RouterLinkProps } from 'react-router-dom';
+import { LinkProps } from '@mui/material/Link';
+
 const LinkBehavior = React.forwardRef<
-  any,
+  HTMLAnchorElement,
   Omit<RouterLinkProps, 'to'> & { href: RouterLinkProps['to'] }
 >((props, ref) => {
   const { href, ...other } = props;
@@ -31,7 +34,7 @@ const theme = createTheme({
     MuiLink: {
       defaultProps: {
         component: LinkBehavior,
-      },
+      } as LinkProps,
     },
     MuiButtonBase: {
       defaultProps: {
