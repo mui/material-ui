@@ -18,7 +18,7 @@ It's a sibling to the `Box` component with the difference being that it supports
 
 ## Component
 
-After [installation](/joy-ui/getting-started/installation/), you can start building with this component using the following basic elements:
+After [installation](/joy-ui/getting-started/usage/), you can start building with this component using the following basic elements:
 
 ```jsx
 import Sheet from '@mui/joy/Sheet';

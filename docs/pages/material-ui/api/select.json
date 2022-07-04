@@ -27,7 +27,7 @@
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
       }
     },
-    "value": { "type": { "name": "any" } },
+    "value": { "type": { "name": "union", "description": "''<br>&#124;&nbsp;any" } },
     "variant": {
       "type": {
         "name": "enum",

@@ -336,12 +336,19 @@ https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 /:lang/api/menu-item-unstyled/ /:lang/base/api/menu-item-unstyled/ 301
 /api/tabs-list-unstyled/ /base/api/tabs-list-unstyled/ 301
 /:lang/api/tabs-list-unstyled/ /:lang/base/api/tabs-list-unstyled/ 301
-/api/api/menu-unstyled/ /base/api/api/menu-unstyled/ 301
-/:lang/api/api/menu-unstyled/ /:lang/base/api/api/menu-unstyled/ 301
+/api/menu-unstyled/ /base/api/menu-unstyled/ 301
+/:lang/api/menu-unstyled/ /:lang/base/api/menu-unstyled/ 301
+/api/tab-panel-unstyled/ /base/api/tab-panel-unstyled/ 301
+/:lang/api/tab-panel-unstyled/ /:lang/base/api/tab-panel-unstyled/ 301
+/api/popper-unstyled/ /base/api/popper-unstyled/ 301
+/:lang/api/popper-unstyled/ /:lang/base/api/popper-unstyled/ 301
+/api/select-unstyled/ /base/api/select-unstyled/ 301
+/:lang/api/select-unstyled/ /:lang/base/api/select-unstyled/ 301
 /api/* /material-ui/api/:splat 301
 /zh/api/* /zh/material-ui/api/:splat 301
 /pt/api/* /pt/material-ui/api/:splat 301
 /company/about/ /about/ 301
+/:lang/company/about/ /:lang/about/ 301
 /company/jobs/ /careers/ 301
 /material-ui/customization/unstyled-components/ /base/getting-started/overview/ 301
 /:lang/material-ui/customization/unstyled-components/ /:lang/base/getting-started/overview/ 301
@@ -368,15 +375,21 @@ https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 
 # Proxies
 
-## Store
+## MUI Store
 /store/* https://mui-store.netlify.app/:splat 200
 /store-staging/* https://master--mui-store.netlify.app/:splat 200
 
 ## MUI X
 ## Unlike the store that expect to be hosted under a subfolder,
 ## MUI X is configured to be hosted at the root.
-/_next/* https://docs-v5--material-ui-x.netlify.app/_next/:splat 200
-/static/x/* https://docs-v5--material-ui-x.netlify.app/static/x/:splat 200
-/x/* https://docs-v5--material-ui-x.netlify.app/x/:splat 200
-/r/x-* https://docs-v5--material-ui-x.netlify.app/r/x-:splat 200
-/:lang/x/* https://docs-v5--material-ui-x.netlify.app/:lang/x/:splat 200
+/_next/* https://material-ui-x.netlify.app/_next/:splat 200
+/static/x/* https://material-ui-x.netlify.app/static/x/:splat 200
+/x/* https://material-ui-x.netlify.app/x/:splat 200
+/r/x-* https://material-ui-x.netlify.app/r/x-:splat 200
+/:lang/x/* https://material-ui-x.netlify.app/:lang/x/:splat 200
+
+## MUI Toolpad
+/_next/* https://mui-toolpad-docs.netlify.app/_next/:splat 200
+/static/toolpad/* https://mui-toolpad-docs.netlify.app/static/toolpad/:splat 200
+/toolpad/* https://mui-toolpad-docs.netlify.app/toolpad/:splat 200
+/r/toolpad-* https://mui-toolpad-docs.netlify.app/r/toolpad-:splat 200

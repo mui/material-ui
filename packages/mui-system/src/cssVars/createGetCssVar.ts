@@ -20,9 +20,9 @@ export default function createGetCssVar<T extends string = string>(prefix: strin
   // AdditionalVars makes `getCssVar` less strict, so it can be use like this `getCssVar('non-mui-variable')` without type error.
   const getCssVar = <AdditionalVars extends string = never>(
     field: T | AdditionalVars,
-    ...vars: (T | AdditionalVars)[]
+    ...fallbacks: (T | AdditionalVars)[]
   ) => {
-    return `var(--${prefix ? `${prefix}-` : ''}${field}${appendVar(...vars)})`;
+    return `var(--${prefix ? `${prefix}-` : ''}${field}${appendVar(...fallbacks)})`;
   };
   return getCssVar;
 }
