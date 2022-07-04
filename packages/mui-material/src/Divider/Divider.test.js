@@ -133,6 +133,17 @@ describe('<Divider />', () => {
       expect(container.firstChild).not.to.have.attribute('role');
     });
 
+    it('avoids adding aria semantics if children are present', () => {
+      // giving an aria semantic would make the children non-accessible as the
+      // separator role can not have children.
+      const { container } = render(
+        <Divider>
+          <h2>content</h2>
+        </Divider>,
+      );
+      expect(container.firstChild).not.to.have.attribute('role');
+    });
+
     it('adds a proper role if none is specified', () => {
       const { container } = render(<Divider component="div" />);
       expect(container.firstChild).to.have.attribute('role', 'separator');

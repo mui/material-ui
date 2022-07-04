@@ -175,7 +175,7 @@ const Divider = React.forwardRef(function Divider(inProps, ref) {
     flexItem = false,
     light = false,
     orientation = 'horizontal',
-    role = component !== 'hr' ? 'separator' : undefined,
+    role = component !== 'hr' && !children ? 'separator' : undefined,
     textAlign = 'center',
     variant = 'fullWidth',
     ...other
