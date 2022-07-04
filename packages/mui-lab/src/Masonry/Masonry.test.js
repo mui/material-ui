@@ -42,8 +42,8 @@ describe('<Masonry />', () => {
           </Masonry>
         </div>,
       );
-      const containerMargin = `calc(0px - (${theme.spacing(spacing)} / 2))`;
-      const childMargin = `calc(${theme.spacing(spacing)} / 2)`;
+      const containerMargin = `-${parseToNumber(theme.spacing(spacing)) / 2}px`;
+      const childMargin = `${parseToNumber(theme.spacing(spacing)) / 2}px`;
       expect(getByTestId('container')).toHaveComputedStyle({
         width: `${width}px`,
         display: 'flex',
