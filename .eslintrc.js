@@ -70,6 +70,7 @@ module.exports = {
           // There's nothing to tree-shake when importing from /icons this way:
           // '@mui/icons-material/*/',
           '@mui/system/*',
+          '!@mui/system/package.json',
           '@mui/utils/*',
           // End block
           // Macros are fine since their import path is transpiled away

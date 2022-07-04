@@ -25,10 +25,10 @@ import DoneRounded from '@mui/icons-material/DoneRounded';
 import FEATURE_TOGGLE from 'docs/src/featureToggle';
 import { isNewLocation } from 'docs/src/modules/utils/replaceUrl';
 import MuiProductSelector from 'docs/src/modules/components/MuiProductSelector';
-import materialPkgJson from 'packages/mui-material/package.json';
-import joyPkgJson from 'packages/mui-joy/package.json';
-import basePkgJson from 'packages/mui-base/package.json';
-import systemPkgJson from 'packages/mui-system/package.json';
+import materialPkgJson from '@mui/material/package.json';
+import joyPkgJson from '@mui/joy/package.json';
+import basePkgJson from '@mui/base/package.json';
+import systemPkgJson from '@mui/system/package.json';
 
 const savedScrollTop = {};
 
