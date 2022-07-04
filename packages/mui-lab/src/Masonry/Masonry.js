@@ -105,7 +105,7 @@ export const getStyle = ({ ownerState, theme }) => {
     }
 
     return {
-      margin: `-calc(${spacing} / 2)`,
+      margin: `calc(0px - (${spacing} / 2))`,
       '& > *': {
         margin: `calc(${spacing} / 2)`,
       },
