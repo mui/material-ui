@@ -1,6 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import * as React from 'react';
-import PropTypes from 'prop-types';
-import { PickersDay as XPickersDay, PickersDayProps } from '@mui/x-date-pickers/PickersDay';
 
 let warnedOnce = false;
 
@@ -9,7 +8,6 @@ const warn = () => {
     console.warn(
       [
         'MUI: The PickersDay component was moved from `@mui/lab` to `@mui/x-date-pickers`.',
-        'The component will no longer be exported from `@mui/lab` in the first release of July 2022.',
         '',
         "You should use `import { PickersDay } from '@mui/x-date-pickers'`",
         "or `import { PickersDay } from '@mui/x-date-pickers/PickersDay'`",
@@ -29,24 +27,20 @@ type PickersDayComponent = (<TDate>(
 /**
  * @ignore - do not document.
  */
-const PickersDay = React.forwardRef(function DeprecatedPickersDay<TDate>(
-  props: PickersDayProps<TDate>,
-  ref: React.Ref<any>,
-) {
+const PickersDay = React.forwardRef(function DeprecatedPickersDay<TDate>() {
   warn();
 
-  return <XPickersDay ref={ref} {...props} />;
+  return null;
 }) as PickersDayComponent;
 
-PickersDay.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
-  /**
-   * The content of the component.
-   */
-  children: PropTypes.node,
-} as any;
-
 export default PickersDay;
+
+export const pickersDayClasses = {};
+
+export const getPickersDayUtilityClass = (slot: string): string => {
+  warn();
+  return '';
+};
+
+export type PickersDayProps<TDate> = Record<any, any>;
+export type PickersDayClassKey = any;

@@ -1,5 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import * as React from 'react';
-import { MonthPicker as XMonthPicker, MonthPickerProps } from '@mui/x-date-pickers/MonthPicker';
 
 let warnedOnce = false;
 
@@ -8,7 +8,6 @@ const warn = () => {
     console.warn(
       [
         'MUI: The MonthPicker component was moved from `@mui/lab` to `@mui/x-date-pickers`.',
-        'The component will no longer be exported from `@mui/lab` in the first release of July 2022.',
         '',
         "You should use `import { MonthPicker } from '@mui/x-date-pickers'`",
         "or `import { MonthPicker } from '@mui/x-date-pickers/MonthPicker'`",
@@ -28,13 +27,20 @@ type MonthPickerComponent = (<TDate>(
 /**
  * @ignore - do not document.
  */
-const MonthPicker = React.forwardRef(function DeprecatedMonthPicker<TDate>(
-  props: MonthPickerProps<TDate>,
-  ref: React.Ref<any>,
-) {
+const MonthPicker = React.forwardRef(function DeprecatedMonthPicker() {
   warn();
 
-  return <XMonthPicker ref={ref} {...props} />;
+  return null;
 }) as MonthPickerComponent;
 
 export default MonthPicker;
+
+export const monthPickerClasses = {}
+
+export const getMonthPickerUtilityClass = (slot: string): string => {
+  warn();
+  return '';
+};
+
+export type MonthPickerProps<TDate> = Record<any, any>;
+export type MonthPickerClassKey = any;
