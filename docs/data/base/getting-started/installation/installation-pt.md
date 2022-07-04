@@ -18,4 +18,4 @@ yarn add @mui/base
 
 <!-- #react-peer-version -->
 
-> **Nota:** [react](https://www.npmjs.com/package/react) >= 17.0.0 e [react-dom](https://www.npmjs.com/package/react-dom) >= 17.0.0 são dependências similares.
+:::warning **Note:** [react](https://www.npmjs.com/package/react) >= 17.0.0 and [react-dom](https://www.npmjs.com/package/react-dom) >= 17.0.0 are peer dependencies. :::
