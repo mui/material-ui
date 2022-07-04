@@ -100,22 +100,20 @@ export const getStyle = ({ ownerState, theme }) => {
       typeof propValue === 'number'
     ) {
       const themeSpacingValue = Number(propValue);
-      spacing = parseToNumber(getValue(transformer, themeSpacingValue));
-      halfSpacing = spacing / 2;
+      spacing = getValue(transformer, themeSpacingValue);
     } else {
       spacing = propValue;
-      halfSpacing = divideStringFontSize(propValue);
     }
 
     return {
-      margin: -halfSpacing,
+      margin: `-calc(${spacing} / 2)`,
       '& > *': {
-        margin: halfSpacing,
+        margin: `calc(${spacing} / 2)`,
       },
       ...(ownerState.maxColumnHeight && {
         height:
           typeof spacing === 'number'
-            ? Math.ceil(ownerState.maxColumnHeight + spacing)
+            ? Math.ceil(ownerState.maxColumnHeight + parseToNumber(spacing))
             : `calc(${ownerState.maxColumnHeight}px + ${spacing})`,
       }),
     };
