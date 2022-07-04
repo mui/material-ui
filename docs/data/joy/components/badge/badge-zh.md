@@ -9,54 +9,70 @@ unstyled: /base/react-badge/
 
 <p class="description">Badge generates a small badge to the top-right of its child(ren).</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+## Introduction
+
+The badge component is most frequently used to signal status (online, offline, busy, etc) and whether there's notifications or not.
 
 {{"demo": "BadgeUsage.js", "hideToolbar": true}}
 
-## Basic
+{{"component": "modules/components/ComponentLinkHeader.js"}}
+
+## Component
+
+After [installation](/joy-ui/getting-started/installation/), you can start building with this component using the following basic elements:
+
+```jsx
+import Badge from '@mui/joy/Badge';
+
+export default function MyApp() {
+  return <Badge />;
+}
+```
+
+### Basic usage
 
 The default appearance of the `Badge` is a dot with a `primary` color.
 
 {{"demo": "SimpleBadge.js"}}
 
-## Content
+### Content
 
-Specify the `badgeContent` prop as a `number | string` to the `Badge` to display the content.
+Use a string or number as value for the `badgeContent` prop to display content.
 
 {{"demo": "ContentBadge.js"}}
 
-The badge hides automatically when `badgeContent` is zero. You can override this with the `showZero` prop.
+The badge automatically hidden if `badgeContent` is zero. You can change this by toggling on the `showZero` prop.
 
 {{"demo": "NumberBadge.js"}}
 
-## Visibility
+### Visibility
 
-The visibility of badges can be controlled using the `invisible` prop.
+Control the badge visibility using the `invisible` prop.
+
+:::info **Note:** If `showZero` is true, the badge will appear even though `invisible` is true. :::
 
 {{"demo": "BadgeVisibility.js"}}
 
-:::info If `showZero` is true, the badge will appear even though `invisible` is false. :::
+### Maximum value
 
-## Maximum value
-
-You can use the `max` prop to cap the value of the badge content.
+Use the `max` prop to cap the content to a maximum value.
 
 {{"demo": "BadgeMax.js"}}
 
-## Inset
+### Position
 
-Use `badgeInset` prop to control the position of the badge. The value can be a string that match the [CSS inset](https://developer.mozilla.org/en-US/docs/Web/CSS/inset) syntax.
-
-{{"demo": "BadgeInset.js"}}
-
-## Position
-
-You can use the `anchorOrigin` prop to move the badge to any corner of the wrapped element.
+Use the `anchorOrigin` prop to control the badge position to any corner of the child element.
 
 {{"demo": "BadgeAlignment.js", "hideToolbar": true}}
 
+### Inset
+
+The `badgeInset` prop gives you precise control of the badge's position. Use a string value matching the [inset CSS property](https://developer.mozilla.org/en-US/docs/Web/CSS/inset) syntax.
+
+{{"demo": "BadgeInset.js"}}
+
 ## Accessibility
 
-You can't rely on the content of the badge to be announced correctly. You should provide a full description, for instance, with `aria-label`:
+Make sure to always provide a meaningful description to the `aria-label` prop, regardless if it is on the badge or the component wrapping it.
 
 {{"demo": "AccessibleBadges.js"}}
