@@ -3424,7 +3424,7 @@ export const zhTW: Localization = {
           }
           return '上一頁';
         },
-        labelRowsPerPage: '每行行數:',
+        labelRowsPerPage: '每頁行數:',
         labelDisplayedRows: ({ from, to, count }) =>
           `第 ${from} 條到第 ${to} 條，${count !== -1 ? `共 ${count} 條` : `至少 ${to} 條`}`,
       },
