@@ -8,54 +8,86 @@ githubLabel: 'component: chip'
 
 <p class="description">Chip generates a compact element that can represent an input, attribute, or action.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+## Introduction
+
+Chips are most frequently used in two main use cases: as pills of informative content or as filtering options.
+
+The badge component is most frequently used to signal status (online, offline, busy, etc) and whether there's notifications or not.
 
 {{"demo": "ChipUsage.js", "hideToolbar": true}}
 
-## Decorators
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
-Specify the `startDecorator` prop or `endDecorator` prop as a `ReactNode` to the `Chip` to display the decorators.
+## Component
+
+After [installation](/joy-ui/getting-started/installation/), you can start building with this component using the following basic elements:
+
+```jsx
+import Chip from '@mui/joy/Chip';
+
+export default function MyApp() {
+  return <Chip>My chip</Chip>;
+}
+```
+
+### Basic usage
+
+Chips comes with medium size, primary color, and solid variant set by default.
+
+{{"demo": "BasicChip.js"}}
+
+### Decorators
+
+Use the `startDecorator` and/or `endDecorator` props to add supporting icons to the chip.
 
 {{"demo": "ChipWithDecorators.js"}}
 
-## Delete button
+### Delete button
 
-The `Chip` has a complementary component called `ChipDelete`. Use it for the purpose of deletable `Chip` components. The variant of the `ChipDelete` changes based on the parent `Chip` unless you specify a specific variant to it.
+To add a delete action inside a chip, use the complementary `ChipDelete` component. Note that its design will automatically adapt to the parent `Chip`.
+
+```jsx
+import ChipDelete from '@mui/joy/ChipDelete';
+```
 
 {{"demo": "DeleteButtonChip.js"}}
 
-## Clickable
+### As a link
 
-Specify the `onClick` prop in order to enable the clickability of the `Chip` component.
+You can also use the chip component as a link by assigning a value of `a` to the `component` prop. Since links are the most appropriate component for navigating through pages, that's useful when you want the same chip design for a link.
 
-{{"demo": "ClickableChip.js"}}
-
-## As link
-
-Pass component prop to the action slot to change from button to anchor tag. The rest of the props are spread to the DOM.
+Doing so will automatically change the rendered HTML tag from `<div>` to `<a>`.
 
 {{"demo": "LinkChip.js"}}
 
-## Clickable and Deletable
+### Clickable
 
-Specify the `onClick` prop on the `ChipDelete` to trigger some action.
+To make chips clikcable, pass a function to the `onClick` prop.
+
+{{"demo": "ClickableChip.js"}}
+
+### Clickable and deletable
+
+Use both the `onClick` prop and the complementary `ChipDelete` component to make a chip support two actions.
 
 {{"demo": "ClickableAndDeletableChip.js"}}
 
-## Component variables
+### With radio
 
-The `Chip` component contains these CSS variables to communicate with `ChipDelete` and `Avatar` components. The demo below demonstrates the customization of a chip using the variables through the `sx` prop.
+Common to filtering UIs, wrap the `Radio` component with the `Chip` to use them together. Use radios when you want to enable single selection.
 
-{{"demo": "ChipVariables.js", "hideToolbar": true}}
+{{"demo": "RadioChip.js"}}
 
-## With checkbox
+### With a checkbox
 
-You can wrap the Joy `Checkbox` component with the Joy `Chip` component.
+Similar to the above, wrap the `Checkbox` component with the `Chip` to use them together. Use checkboxes when you want to enable multiple selection.
 
 {{"demo": "CheckboxChip.js"}}
 
-## With radio
+## CSS variables
 
-You can wrap the Joy `Radio` component with the Joy `Chip` component.
+Play around with all the CSS variables available in the slider component to see how the design changes.
 
-{{"demo": "RadioChip.js"}}
+You can use those to customize the component on both the `sx` prop and the theme.
+
+{{"demo": "ChipVariables.js", "hideToolbar": true}}
