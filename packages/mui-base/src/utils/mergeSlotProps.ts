@@ -135,11 +135,11 @@ export default function mergeSlotProps<
 
   const internalSlotProps = getSlotProps(eventHandlers);
   const joinedClasses = clsx(
+    internalSlotProps?.className,
+    additionalProps?.className,
+    className,
     externalForwardedProps?.className,
     externalSlotProps?.className,
-    className,
-    additionalProps?.className,
-    internalSlotProps?.className,
   );
 
   const mergedStyle = {

@@ -246,7 +246,7 @@ describe('useSlotProps', () => {
     // class names are concatenated
     expect(result).to.haveOwnProperty(
       'className',
-      'externalForwarded externalComponentsProps another-class yet-another-class additional internal',
+      'internal additional another-class yet-another-class externalForwarded externalComponentsProps',
     );
 
     // `data-test` from componentProps overrides the one from forwardedProps
