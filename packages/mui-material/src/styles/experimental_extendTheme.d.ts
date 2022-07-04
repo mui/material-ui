@@ -157,6 +157,7 @@ export interface PaletteSlider {
 
 export interface PaletteSnackbarContent {
   bg: string;
+  color: string;
 }
 
 export interface PaletteSpeedDialAction {
@@ -222,35 +223,36 @@ export interface ColorSystemOptions {
   overlays?: Overlays;
 }
 
-// The Palette should be sync with `../themeCssVarsAugmentation/index.d.ts`
+export interface CssVarsPalette {
+  colorScheme: SupportedColorScheme;
+  common: PaletteCommonChannel;
+  primary: PaletteColorChannel;
+  secondary: PaletteColorChannel;
+  error: PaletteColorChannel;
+  info: PaletteColorChannel;
+  success: PaletteColorChannel;
+  text: PaletteTextChannel;
+  dividerChannel: string;
+  action: PaletteActionChannel;
+  Alert: PaletteAlert;
+  AppBar: PaletteAppBar;
+  Avatar: PaletteAvatar;
+  Chip: PaletteChip;
+  FilledInput: PaletteFilledInput;
+  LinearProgress: PaletteLinearProgress;
+  Skeleton: PaletteSkeleton;
+  Slider: PaletteSlider;
+  SnackbarContent: PaletteSnackbarContent;
+  SpeedDialAction: PaletteSpeedDialAction;
+  StepConnector: PaletteStepConnector;
+  StepContent: PaletteStepContent;
+  Switch: PaletteSwitch;
+  TableCell: PaletteTableCell;
+  Tooltip: PaletteTooltip;
+}
+
 export interface ColorSystem {
-  palette: Palette & {
-    colorScheme: SupportedColorScheme;
-    common: PaletteCommonChannel;
-    primary: PaletteColorChannel;
-    secondary: PaletteColorChannel;
-    error: PaletteColorChannel;
-    info: PaletteColorChannel;
-    success: PaletteColorChannel;
-    text: PaletteTextChannel;
-    dividerChannel: string;
-    action: PaletteActionChannel;
-    Alert: PaletteAlert;
-    AppBar: PaletteAppBar;
-    Avatar: PaletteAvatar;
-    Chip: PaletteChip;
-    FilledInput: PaletteFilledInput;
-    LinearProgress: PaletteLinearProgress;
-    Skeleton: PaletteSkeleton;
-    Slider: PaletteSlider;
-    SnackbarContent: PaletteSnackbarContent;
-    SpeedDialAction: PaletteSpeedDialAction;
-    StepConnector: PaletteStepConnector;
-    StepContent: PaletteStepContent;
-    Switch: PaletteSwitch;
-    TableCell: PaletteTableCell;
-    Tooltip: PaletteTooltip;
-  };
+  palette: Palette & CssVarsPalette;
   opacity: Opacity;
   overlays: Overlays;
 }

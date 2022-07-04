@@ -1,5 +1,6 @@
 import type {
   CssVarsTheme,
+  CssVarsPalette,
   PaletteCommonChannel,
   PaletteColorChannel,
   PaletteTextChannel,
@@ -11,7 +12,11 @@ import type {
  * The theme is typed with CSS variables in `styled`, `sx`, `useTheme`, etc.
  */
 declare module '@mui/material/styles' {
-  interface Theme extends CssVarsTheme {}
+  // The palette must be extended in each node.
+  interface Theme extends Omit<CssVarsTheme, 'palette'> {}
+
+  // The extended Palette should be in sync with `extendTheme`
+  interface Palette extends CssVarsPalette {}
 }
 
 declare module '@mui/material/styles/createPalette' {
