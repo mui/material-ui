@@ -178,7 +178,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
             m: 'auto',
             display: 'flex',
             alignItems: 'center',
-            p: 2,
+            p: 1,
           }}
         >
           {renderDemo({ ...defaultProps, ...props })}
@@ -233,7 +233,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
           sx={{
             display: 'flex',
             flexDirection: 'column',
-            gap: 2,
+            gap: 2.5,
           }}
         >
           {data.map(({ propName, knob, options = [], defaultValue }) => {
@@ -274,7 +274,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                     id={`${componentName}-${propName}`}
                     fontSize="xs"
                     fontWeight="md"
-                    sx={{ mb: 0.5, textTransform: 'capitalize' }}
+                    sx={{ mb: 1, textTransform: 'capitalize' }}
                   >
                     {propName}
                   </Typography>
