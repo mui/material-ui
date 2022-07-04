@@ -10,52 +10,67 @@ unstyled: /base/react-button/
 
 <p class="description">Buttons allow users to take actions, and make choices, with a single tap.</p>
 
+## Introduction
+
+Buttons communicate actions that users can take.
+
+{{"demo": "ButtonUsage.js", "hideToolbar": true}}
+
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-Buttons communicate actions that users can take. They are typically placed throughout your UI, in places like:
+## Component
 
-- Modal windows
-- Forms
-- Cards
-- Toolbars
+After [installation](/joy-ui/getting-started/installation/), you can start building with this component using the following basic elements:
 
-## Variants
+```jsx
+import Button from '@mui/joy/Button';
 
-The `Button` comes with four global variants: `solid` (default), `soft`, `outlined` and `plain`.
+export default function MyApp() {
+  return <Button>My button</Button>;
+}
+```
+
+### Variants
+
+The button component supports the four global variants: `solid` (default), `soft`, `outlined` and `plain`. Choose one of them depending on the button's action importance.
 
 {{"demo": "ButtonVariants.js"}}
 
-## Colors
+### Colors
 
-All theme palettes are available via the `color` prop which can be combined with the `variant` prop.
+Every palette included in the theme is available via the `color` prop. Play around combining different colors with different variants.
 
 {{"demo": "ButtonColors.js"}}
 
-## Sizes
+### Sizes
 
-The `Button` has three sizes: `sm`, `md` (default) and `lg`.
+The button components comes with three sizes out of the box: `sm`, `md` (the default), and `lg`.
 
 {{"demo": "ButtonSizes.js"}}
 
-## Disabled
+### Disabled
 
-Specify `disabled` prop to the button to disable the interaction and focus.
+Use the `disabled` prop to disable interaction and focus.
 
 {{"demo": "ButtonDisabled.js"}}
 
-## With icons
+### With icons
 
-Use `startIcon` and/or `endIcon` props to control the position of the specified icon.
+Use the `startIcon` and/or `endIcon` props to add supporting icons to the button.
 
 {{"demo": "ButtonIcons.js"}}
 
-## Icon button
+### Icon button
 
-If you want an equal width and height button without displaying the label, use `IconButton`. It accepts the same values for `variant`, `color`, and `size` props.
+Use the `IconButton` component if you want width and height to be the same while not having a label. Every prop previously covered are available for this component as well.
+
+```jsx
+import Button from '@mui/joy/IconButton';
+```
 
 {{"demo": "IconButtons.js"}}
 
-:::info **♿️ Accessibility**: You have to provide an appropriate [`aria-label`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-label) to the icon button for screen readers. This is useful for people with severe visual impairments.
+:::info **♿️ Accessibility tip**: Make sure to provide a meaningful [`aria-label`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-label) to the icon button. It helps screen readers to properly identify the component.
 
 ```js
 <IconButton aria-label="Add to favorite">
@@ -65,8 +80,10 @@ If you want an equal width and height button without displaying the label, use `
 
 :::
 
-## As link
+### As a link
 
-Use `component="a"` prop to change the html element from `button` to `a`.
+You can also use the button component as a link by assigning a value of `a` to the `component` prop. Since links are the most appropriate component for navigating through pages, that's useful when you want the same button design for a link.
+
+Doing so will automatically change the rendered HTML tag from `<button>` to `<a>`.
 
 {{"demo": "ButtonLink.js"}}
