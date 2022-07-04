@@ -18,7 +18,7 @@ It's a sibling to the [`Box`](/system/react-box/) component, and equivalent to M
 
 ## Component
 
-After [installation](/joy-ui/getting-started/usage/), you can start building with this component using the following basic elements:
+After [installation](/joy-ui/getting-started/installation/), you can start building with this component using the following basic elements:
 
 ```jsx
 import Sheet from '@mui/joy/Sheet';
