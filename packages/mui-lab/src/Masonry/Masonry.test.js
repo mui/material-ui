@@ -87,13 +87,13 @@ describe('<Masonry />', () => {
 
       const topAndBottomMargin = parseToNumber(defaultTheme.spacing(spacingProp)) * 2;
       expect(window.getComputedStyle(masonry).height).to.equal(
-        `${secondChildInitialHeight + topAndBottomMargin}px)`,
+        `${secondChildInitialHeight + topAndBottomMargin}px`,
       );
 
       secondItem.style.height = `${secondChildNewHeight}px`;
 
       expect(window.getComputedStyle(masonry).height).to.equal(
-        `${secondChildNewHeight + topAndBottomMargin}px)`,
+        `${secondChildNewHeight + topAndBottomMargin}px`,
       );
     });
 
