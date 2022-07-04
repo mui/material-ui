@@ -2,7 +2,7 @@ import clsx, { ClassValue } from 'clsx';
 import { Simplify } from '@mui/types';
 import { EventHandlers } from './types';
 import extractEventHandlers from './extractEventHandlers';
-import omitEventHandlers, { OmitEventHandlers } from './omitEventHandlers';
+import omitEventHandlers from './omitEventHandlers';
 
 export type WithCommonProps<T> = T & {
   className?: string;
@@ -49,8 +49,8 @@ export type MergeSlotPropsResult<
 > = {
   props: Simplify<
     SlotProps &
-      OmitEventHandlers<ExternalForwardedProps> &
-      OmitEventHandlers<ExternalSlotProps> &
+      ExternalForwardedProps &
+      ExternalSlotProps &
       AdditionalProps & { className?: string; style?: React.CSSProperties }
   >;
   internalRef: React.Ref<any> | undefined;
