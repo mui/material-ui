@@ -17,18 +17,6 @@ export const parseToNumber = (val) => {
   return Number(val.replace('px', ''));
 };
 
-export const divideStringFontSize = (val, divisor = 2) => {
-  let result = val;
-  if (val.includes('rem')) {
-    const endIndex = val.indexOf('rem');
-    result = `${Number(val.slice(0, endIndex)) / divisor}rem`;
-  } else if (val.includes('em')) {
-    const endIndex = val.indexOf('em');
-    result = `${Number(val.slice(0, endIndex)) / divisor}em`;
-  }
-  return result;
-};
-
 const lineBreakStyle = {
   flexBasis: '100%',
   width: 0,
