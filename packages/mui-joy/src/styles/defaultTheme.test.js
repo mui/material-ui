@@ -25,6 +25,7 @@ describe('extendTheme', () => {
         'typography',
         'variants',
         'vars',
+        'cssVarPrefix',
       ]).to.includes(field);
     });
   });

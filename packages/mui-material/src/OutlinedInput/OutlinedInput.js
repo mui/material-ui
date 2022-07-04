@@ -155,11 +155,26 @@ const OutlinedInput = React.forwardRef(function OutlinedInput(inProps, ref) {
     states: ['required'],
   });
 
+  const ownerState = {
+    ...props,
+    color: fcs.color || 'primary',
+    disabled: fcs.disabled,
+    error: fcs.error,
+    focused: fcs.focused,
+    formControl: muiFormControl,
+    fullWidth,
+    hiddenLabel: fcs.hiddenLabel,
+    multiline,
+    size: fcs.size,
+    type,
+  };
+
   return (
     <InputBase
       components={{ Root: OutlinedInputRoot, Input: OutlinedInputInput, ...components }}
       renderSuffix={(state) => (
         <NotchedOutlineRoot
+          ownerState={ownerState}
           className={classes.notchedOutline}
           label={
             label != null && label !== '' && fcs.required ? (

@@ -160,16 +160,15 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
         return;
       }
 
-      const keysToPreventDefault = [
-        ' ',
-        'Enter',
-        'ArrowUp',
-        'ArrowDown',
-        'Home',
-        'End',
-        'PageUp',
-        'PageDown',
-      ];
+      const keysToPreventDefault = ['ArrowUp', 'ArrowDown', 'Home', 'End', 'PageUp', 'PageDown'];
+
+      if (focusManagement === 'activeDescendant') {
+        // When the child element is focused using the activeDescendant attribute,
+        // the listbox handles keyboard events on its behalf.
+        // We have to `preventDefault()` is this case to prevent the browser from
+        // scrolling the view when space is pressed or submitting forms when enter is pressed.
+        keysToPreventDefault.push(' ', 'Enter');
+      }
 
       if (keysToPreventDefault.includes(event.key)) {
         event.preventDefault();

@@ -145,7 +145,7 @@ export type InputUnstyledInputSlotProps = Simplify<
     'aria-labelledby': React.AriaAttributes['aria-labelledby'];
     autoComplete: string | undefined;
     autoFocus: boolean | undefined;
-    className: string;
+    className?: string;
     id: string | undefined;
     name: string | undefined;
     onKeyDown: React.KeyboardEventHandler<HTMLInputElement> | undefined;
