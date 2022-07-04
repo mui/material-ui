@@ -2,6 +2,10 @@
 
 <p class="description">Here's what the theme object looks like with the default values.</p>
 
+:::warning **⚠️ Work in progress:** we're still iterating on the whole Joy UI default theme. :::
+
+**Typography-related:**
+
 ```js
 extendTheme({
   fontSize: {
@@ -76,11 +80,13 @@ extendTheme({
 }
 ```
 
+**Box shadows:**
+
 All the shadows are listed [here](https://github.com/mui/material-ui/blob/master/packages/mui-joy/src/styles/types/shadow.ts). We recommend to use `var(--joy-shadowRing)` and `var(--joy-shadowChannel)` for creating the shadows because you can customize the shadow color on the component.
 
 ```js
 extendTheme({
-  radius: {
+  shadows: {
     // default tokens
     xs: 'var(--joy-shadowRing), 0 1px 2px 0 rgba(var(--joy-shadowChannel) / 0.12)',
     sm: '...',
