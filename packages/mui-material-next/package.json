@@ -65,7 +65,7 @@
     "@mui/types": "^7.1.4",
     "@mui/utils": "^5.8.6",
     "@popperjs/core": "^2.11.5",
-    "@types/react-transition-group": "^4.4.4",
+    "@types/react-transition-group": "^4.4.5",
     "clsx": "^1.1.1",
     "csstype": "^3.1.0",
     "prop-types": "^15.8.1",

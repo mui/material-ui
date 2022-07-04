@@ -63,7 +63,7 @@ export interface Theme extends ThemeScales, RuntimeColorSystem {
   variants: Variants;
   spacing: Spacing;
   breakpoints: Breakpoints;
-  prefix: string;
+  cssVarPrefix: string;
   vars: ThemeVars;
   getCssVar: <CustomVar extends string = never>(
     field: ThemeCSSVar | CustomVar,
