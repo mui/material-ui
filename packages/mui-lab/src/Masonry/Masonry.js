@@ -93,7 +93,6 @@ export const getStyle = ({ ownerState, theme }) => {
   const transformer = createUnarySpacing(theme);
   const spacingStyleFromPropValue = (propValue) => {
     let spacing;
-    let halfSpacing;
     // in case of string/number value
     if (
       (typeof propValue === 'string' && !Number.isNaN(Number(propValue))) ||
