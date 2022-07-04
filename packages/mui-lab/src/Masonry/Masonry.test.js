@@ -42,6 +42,8 @@ describe('<Masonry />', () => {
           </Masonry>
         </div>,
       );
+      const containerMargin = `-calc(${theme.spacing(spacing)} / 2)`;
+      const childMargin = `calc(${theme.spacing(spacing)} / 2)`;
       expect(getByTestId('container')).toHaveComputedStyle({
         width: `${width}px`,
         display: 'flex',
@@ -49,17 +51,17 @@ describe('<Masonry />', () => {
         flexWrap: 'wrap',
         alignContent: 'flex-start',
         boxSizing: 'border-box',
-        marginTop: `-calc(${theme.spacing(spacing)} / 2)`,
-        marginRight: `-calc(${theme.spacing(spacing)} / 2)`,
-        marginBottom: `-calc(${theme.spacing(spacing)} / 2)`,
-        marginLeft: `-calc(${theme.spacing(spacing)} / 2)`,
+        marginTop: containerMargin,
+        marginRight: containerMargin,
+        marginBottom: containerMargin,
+        marginLeft: containerMargin,
       });
       expect(getByTestId('child')).toHaveComputedStyle({
         boxSizing: 'border-box',
-        marginTop: `calc(${theme.spacing(spacing)} / 2)`,
-        marginRight: `calc(${theme.spacing(spacing)} / 2)`,
-        marginBottom: `calc(${theme.spacing(spacing)} / 2)`,
-        marginLeft: `calc(${theme.spacing(spacing)} / 2)`,
+        marginTop: childMargin,
+        marginRight: childMargin,
+        marginBottom: childMargin,
+        marginLeft: childMargin,
         width: `${width / columns - parseToNumber(theme.spacing(spacing))}px`,
       });
     });
@@ -85,13 +87,13 @@ describe('<Masonry />', () => {
 
       const topAndBottomMargin = parseToNumber(defaultTheme.spacing(spacingProp)) * 2;
       expect(window.getComputedStyle(masonry).height).to.equal(
-        `calc(${secondChildInitialHeight}px + ${topAndBottomMargin}px)`,
+        `${secondChildInitialHeight + topAndBottomMargin}px)`,
       );
 
       secondItem.style.height = `${secondChildNewHeight}px`;
 
       expect(window.getComputedStyle(masonry).height).to.equal(
-        `calc(${secondChildNewHeight}px + ${topAndBottomMargin}px)`,
+        `${secondChildNewHeight + topAndBottomMargin}px)`,
       );
     });
 
