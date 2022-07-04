@@ -57,10 +57,6 @@ Grid.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
-   * If `true`, the negative margin and padding are apply only to the top and left sides of the grid.
-   */
-  disableEqualOverflow: PropTypes.bool,
-  /**
    * If a number, it sets the number of columns the grid item uses.
    * It can't be greater than the total number of columns of the container (12 by default).
    * If 'auto', the grid item's width matches its content.

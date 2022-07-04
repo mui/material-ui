@@ -108,10 +108,6 @@ export interface GridBaseProps extends Breakpoints {
    */
   direction?: ResponsiveStyleValue<GridDirection>;
   /**
-   * If `true`, the negative margin and padding are apply only to the top and left sides of the grid.
-   */
-  disableEqualOverflow?: boolean;
-  /**
    * Defines the vertical space between the type `item` components.
    * It overrides the value of the `spacing` prop.
    */
