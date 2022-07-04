@@ -452,7 +452,8 @@ const appList = [
     description: 'A full-featured Admin panel app',
     image: 'refine-finefoods.jpg',
     link: 'https://example.mui.admin.refine.dev/',
-    source: 'https://github.com/pankod/refine/tree/next/examples/fineFoods/admin/mui',
+    source:
+      'https://github.com/pankod/refine/tree/next/examples/fineFoods/admin/mui',
     stars: 2415,
     dateAdded: '2022-06-21',
   },
