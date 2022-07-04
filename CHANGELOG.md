@@ -6,7 +6,7 @@
 
 _Jul 4, 2022_
 
-A big thanks to the 12 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 13 contributors who made this release possible. Here are some highlights ✨:
 
 - 🐛 Fixed an issue causing Typescript errors when building a project with Material UI v5.8.6 (@michaldudak)
 - 🐛 Fixed a few bugs in Material UI components. Thanks @henriqueholtz, @jake-collibra, @MattiasMartens and @TimoWilhelm!
@@ -25,30 +25,31 @@ A big thanks to the 12 contributors who made this release possible. Here are som
 
 ### `@mui/system@5.8.7`
 
-- &#8203;<!-- 04 -->[system] Simplify theme input types for `CssVarsProvider` (#33381) @siriwatknp
-- &#8203;<!-- 03 -->[system] Export required types (#33324) @michaldudak
+- [system] Simplify theme input types for `CssVarsProvider` (#33381) @siriwatknp
+- [system] Export required types (#33324) @michaldudak
 
 ### `@mui/joy@5.0.0-alpha.35`
 
-- &#8203;<!-- 09 -->[Joy] Add radio button documentation (#33254) @siriwatknp
-- &#8203;<!-- 08 -->[Joy] Add switch documentation (#33302) @siriwatknp
-- &#8203;<!-- 18 -->[Joy] Enable Joy and Material UI compatibility (#33379) @siriwatknp
+- [Joy] Add radio button documentation (#33254) @siriwatknp
+- [Joy] Add switch documentation (#33302) @siriwatknp
+- [Joy] Batch a couple of documentation refinements (#33158)
+- [Joy] Enable Joy and Material UI compatibility (#33379) @siriwatknp
 
 ### `@mui/base@5.0.0-alpha.88`
 
-- &#8203;<!-- 14 -->[base] Remove a type incompatible with Typescript 3.5 (#33361) @michaldudak
-- &#8203;<!-- 15 -->[BadgeUnstyled] Export BadgeUnstyledOwnProps interface to fix typescript compiler error (#33314) @aaronlademann-wf
-- &#8203;<!-- 02 -->[TablePaginationUnstyled] Accept callbacks in componentsProps (#33309) @michaldudak
+- [base] Remove a type incompatible with Typescript 3.5 (#33361) @michaldudak
+- [BadgeUnstyled] Export BadgeUnstyledOwnProps interface to fix typescript compiler error (#33314) @aaronlademann-wf
+- [TablePaginationUnstyled] Accept callbacks in componentsProps (#33309) @michaldudak
 
 ### Docs
 
-- &#8203;<!-- 13 -->[docs] Fix Link typings in the react-router example (#32308) @aaarichter
-- &#8203;<!-- 12 -->[docs] Add caveat about class components with Tooltip (#33325) @joshkel
-- &#8203;<!-- 11 -->[docs] Fix SEO issues (#33288) @oliviertassinari
-- &#8203;<!-- 10 -->[docs] Fix Slider's "player" demo (#33267) @xlianghang
-- &#8203;<!-- 01 -->[website] Link MUI Toolpad in mui.com (#33287) @oliviertassinari
+- [docs] Fix Link typings in the react-router example (#32308) @aaarichter
+- [docs] Add caveat about class components with Tooltip (#33325) @joshkel
+- [docs] Fix SEO issues (#33288) @oliviertassinari
+- [docs] Fix Slider's "player" demo (#33267) @xlianghang
+- [website] Link MUI Toolpad in mui.com (#33287) @oliviertassinari
 
-All contributors of this release in alphabetical order: @aaarichter, @aaronlademann-wf, @henriqueholtz, @jake-collibra, @joshkel, @MattiasMartens, @Methuselah96, @michaldudak, @oliviertassinari, @siriwatknp, @TimoWilhelm, @xlianghang
+All contributors of this release in alphabetical order: @aaarichter, @aaronlademann-wf, @danilo-leal, @henriqueholtz, @jake-collibra, @joshkel, @MattiasMartens, @Methuselah96, @michaldudak, @oliviertassinari, @siriwatknp, @TimoWilhelm, @xlianghang
 
 ## 5.8.6
 
