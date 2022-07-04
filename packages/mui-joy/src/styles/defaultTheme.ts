@@ -1,10 +1,10 @@
 import { deepmerge } from '@mui/utils';
 import extendTheme from './extendTheme';
-import type { ThemeInput, ColorSystemInput } from './extendTheme';
+import type { CssVarsThemeOptions, ColorSystemOptions } from './extendTheme';
 import type { Theme, RuntimeColorSystem } from './types';
 
 export const getThemeWithVars = (
-  themeInput?: Omit<ThemeInput, 'colorSchemes'> & ColorSystemInput,
+  themeInput?: Omit<CssVarsThemeOptions, 'colorSchemes'> & ColorSystemOptions,
 ) => {
   const {
     colorSchemes,
