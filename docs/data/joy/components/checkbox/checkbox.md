@@ -20,7 +20,7 @@ For toggling between on and off or single option selection, consider using a swi
 
 ## Component
 
-After [installation](/joy-ui/getting-started/installation/), you can start building with this component using the following basic elements:
+After [installation](/joy-ui/getting-started/usage/), you can start building with this component using the following basic elements:
 
 ```jsx
 import Box from '@mui/joy/Box';
@@ -61,10 +61,10 @@ To rely only on variants to communicate the checkbox state change, use the `disa
 
 {{"demo": "IconlessCheckbox.js"}}
 
-### Focus
+### Focus outline
 
 The focus outline, by default, wraps both the checkbox itself and its label.
-To change that, target the `checkboxClasses.checkbox` class and add `position; 'relative'`.
+To change that, target the `checkboxClasses.checkbox` class and add `position: 'relative'`.
 
 {{"demo": "FocusCheckbox.js"}}
 
