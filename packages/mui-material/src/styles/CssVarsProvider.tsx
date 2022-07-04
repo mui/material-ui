@@ -1,8 +1,5 @@
 import { unstable_createCssVarsProvider as createCssVarsProvider } from '@mui/system';
-import experimental_extendTheme, {
-  SupportedColorScheme,
-  CssVarsTheme,
-} from './experimental_extendTheme';
+import experimental_extendTheme, { SupportedColorScheme } from './experimental_extendTheme';
 import createTypography from './createTypography';
 
 const shouldSkipGeneratingVar = (keys: string[]) =>
@@ -11,28 +8,26 @@ const shouldSkipGeneratingVar = (keys: string[]) =>
 
 const defaultTheme = experimental_extendTheme();
 
-const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssVarsProvider<
-  SupportedColorScheme,
-  CssVarsTheme
->({
-  theme: defaultTheme,
-  attribute: 'data-mui-color-scheme',
-  modeStorageKey: 'mui-mode',
-  colorSchemeStorageKey: 'mui-color-scheme',
-  defaultColorScheme: {
-    light: 'light',
-    dark: 'dark',
-  },
-  resolveTheme: (theme) => {
-    const newTheme = {
-      ...theme,
-      typography: createTypography(theme.palette, theme.typography),
-    };
+const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } =
+  createCssVarsProvider<SupportedColorScheme>({
+    theme: defaultTheme,
+    attribute: 'data-mui-color-scheme',
+    modeStorageKey: 'mui-mode',
+    colorSchemeStorageKey: 'mui-color-scheme',
+    defaultColorScheme: {
+      light: 'light',
+      dark: 'dark',
+    },
+    resolveTheme: (theme) => {
+      const newTheme = {
+        ...theme,
+        typography: createTypography(theme.palette, theme.typography),
+      };
 
-    return newTheme;
-  },
-  shouldSkipGeneratingVar,
-});
+      return newTheme;
+    },
+    shouldSkipGeneratingVar,
+  });
 
 export {
   useColorScheme,

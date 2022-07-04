@@ -36,10 +36,10 @@ type Partial3Level<T> = {
   };
 };
 
-export interface ColorSystemInput extends Partial3Level<ColorSystem> {}
+export interface ColorSystemOptions extends Partial3Level<ColorSystem> {}
 
 // Use Partial2Level instead of PartialDeep because nested value type is CSSObject which does not work with PartialDeep.
-export interface ThemeInput extends Partial2Level<ThemeScales> {
+export interface CssVarsThemeOptions extends Partial2Level<ThemeScales> {
   /**
    * Prefix of the generated CSS variables
    * @default 'joy'
@@ -57,13 +57,13 @@ export interface ThemeInput extends Partial2Level<ThemeScales> {
   breakpoints?: BreakpointsOptions;
   spacing?: SpacingOptions;
   components?: Components<Theme>;
-  colorSchemes?: Partial<Record<DefaultColorScheme | ExtendedColorScheme, ColorSystemInput>>;
+  colorSchemes?: Partial<Record<DefaultColorScheme | ExtendedColorScheme, ColorSystemOptions>>;
 }
 
 export const createGetCssVar = (cssVarPrefix = 'joy') =>
   systemCreateGetCssVar<ThemeCSSVar>(cssVarPrefix);
 
-export default function extendTheme(themeInput?: ThemeInput): Theme {
+export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
   const {
     cssVarPrefix = 'joy',
     breakpoints,
@@ -71,7 +71,7 @@ export default function extendTheme(themeInput?: ThemeInput): Theme {
     components: componentsInput,
     variants: variantsInput,
     ...scalesInput
-  } = themeInput || {};
+  } = themeOptions || {};
   const getCssVar = createGetCssVar(cssVarPrefix);
 
   const createLightModeVariantVariables = (color: ColorPaletteProp) => ({

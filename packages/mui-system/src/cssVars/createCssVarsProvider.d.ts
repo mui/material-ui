@@ -54,11 +54,14 @@ export interface CssVarsProviderConfig<ColorScheme extends string> {
   shouldSkipGeneratingVar?: (keys: string[], value: string | number) => boolean;
 }
 
-export interface CreateCssVarsProviderResult<ColorScheme extends string, ThemeInput> {
+export interface CreateCssVarsProviderResult<ColorScheme extends string> {
   CssVarsProvider: (
     props: React.PropsWithChildren<
       Partial<CssVarsProviderConfig<ColorScheme>> & {
-        theme?: ThemeInput;
+        theme?: {
+          cssVarPrefix?: string;
+          colorSchemes: Record<ColorScheme, Record<string, any>>;
+        };
         /**
          * The document used to perform `disableTransitionOnChange` feature
          * @default document
@@ -86,10 +89,7 @@ export interface CreateCssVarsProviderResult<ColorScheme extends string, ThemeIn
   getInitColorSchemeScript: typeof getInitColorSchemeScript;
 }
 
-export default function createCssVarsProvider<
-  ColorScheme extends string,
-  ThemeInput extends { colorSchemes?: Partial<Record<ColorScheme, any>> },
->(
+export default function createCssVarsProvider<ColorScheme extends string>(
   options: CssVarsProviderConfig<ColorScheme> & {
     /**
      * Design system default theme
@@ -125,7 +125,7 @@ export default function createCssVarsProvider<
      */
     resolveTheme?: (theme: any) => any; // the type is any because it depends on the design system.
   },
-): CreateCssVarsProviderResult<ColorScheme, ThemeInput>;
+): CreateCssVarsProviderResult<ColorScheme>;
 
 // disable automatic export
 export {};
