@@ -1,13 +1,12 @@
 import { unstable_createCssVarsProvider as createCssVarsProvider } from '@mui/system';
 import extendTheme from './extendTheme';
-import type { Theme, DefaultColorScheme, ExtendedColorScheme } from './types';
+import type { DefaultColorScheme, ExtendedColorScheme } from './types';
 
 const shouldSkipGeneratingVar = (keys: string[]) =>
   !!keys[0].match(/(typography|variants|focus|breakpoints)/);
 
 const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } = createCssVarsProvider<
-  DefaultColorScheme | ExtendedColorScheme,
-  Theme
+  DefaultColorScheme | ExtendedColorScheme
 >({
   theme: extendTheme(),
   attribute: 'data-joy-color-scheme',
