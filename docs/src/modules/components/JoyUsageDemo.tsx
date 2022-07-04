@@ -158,16 +158,16 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
   return (
     <Box
       sx={{
-        m: -1.5,
+        mt: 2,
         flexGrow: 1,
         maxWidth: 'calc(100% + 24px)',
         display: 'flex',
         flexDirection: { xs: 'column', sm: 'row' },
         flexWrap: 'wrap',
-        gap: 1.5,
+        gap: 2,
         '& .markdown-body pre': {
           margin: 0,
-          borderRadius: 'xs',
+          borderRadius: 'sm',
         },
       }}
     >
@@ -178,7 +178,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
             m: 'auto',
             display: 'flex',
             alignItems: 'center',
-            p: 2,
+            p: 1,
           }}
         >
           {renderDemo({ ...defaultProps, ...props })}
@@ -206,14 +206,14 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
       >
         <Box
           sx={{
-            mb: 2,
+            mb: 1,
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'center',
           }}
         >
           <Typography id="usage-props" component="h3" fontWeight="lg" sx={{ scrollMarginTop: 160 }}>
-            Props
+            Playground
           </Typography>
           <IconButton
             aria-label="Reset all"
@@ -233,7 +233,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
           sx={{
             display: 'flex',
             flexDirection: 'column',
-            gap: 2,
+            gap: 2.5,
           }}
         >
           {data.map(({ propName, knob, options = [], defaultValue }) => {
@@ -255,6 +255,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                   endDecorator={propName}
                   size="sm"
                   sx={{
+                    textTransform: 'capitalize',
                     alignSelf: 'flex-start',
                     '--Switch-track-background': (theme) =>
                       `rgba(${theme.vars.palette.neutral.mainChannel} / 0.3)`,
@@ -273,7 +274,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                     id={`${componentName}-${propName}`}
                     fontSize="xs"
                     fontWeight="md"
-                    sx={{ mb: 0.5 }}
+                    sx={{ mb: 1, textTransform: 'capitalize' }}
                   >
                     {propName}
                   </Typography>
@@ -338,7 +339,15 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                     {['primary', 'neutral', 'danger', 'info', 'success', 'warning'].map((value) => {
                       const checked = resolvedValue === value;
                       return (
-                        <Sheet key={value} sx={{ width: 28, height: 28, bgcolor: 'unset' }}>
+                        <Sheet
+                          key={value}
+                          sx={{
+                            width: 28,
+                            height: 28,
+                            bgcolor: 'unset',
+                            textTransform: 'capitalize',
+                          }}
+                        >
                           <Radio
                             variant="solid"
                             color={value as ColorPaletteProp}
@@ -397,6 +406,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                     fontWeight="lg"
                     mb={1}
                     htmlFor={`${componentName}-${propName}`}
+                    sx={{ textTransform: 'capitalize' }}
                   >
                     {propName}
                   </Typography>
@@ -434,6 +444,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                     }))
                   }
                   sx={{
+                    textTransform: 'capitalize',
                     [`& .${inputClasses.root}`]: {
                       bgcolor: 'background.body',
                     },

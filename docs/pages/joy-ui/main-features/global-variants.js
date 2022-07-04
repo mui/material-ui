@@ -4,7 +4,7 @@ import {
   demos,
   docs,
   demoComponents,
-} from 'docs/data/joy/guides/apply-dark-mode/apply-dark-mode.md?@mui/markdown';
+} from 'docs/data/joy/main-features/global-variants/global-variants.md?@mui/markdown';
 
 export default function Page() {
   return <MarkdownDocs demos={demos} docs={docs} demoComponents={demoComponents} />;

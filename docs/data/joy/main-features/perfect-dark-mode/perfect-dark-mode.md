@@ -1,17 +1,17 @@
 # Perfect dark mode
 
-<p class="description">Learn how Joy UI's solution for perfect dark mode on server-side rendering.</p>
+<p class="description">Joy UI's solution for perfect dark mode on server-side rendering.</p>
 
-## Current problem: the flickering
+## The current flickering problem
 
-You might've noticed that in application with SSR (server-side rendering) and SSG (static site generation, a.k.a Jamstack) when users switch to dark mode and refresh the page, it iniatially loads in light mode and then, after hydration, quickly goes back to dark.
+In apps using SSR (server-side rendering) and SSG (static site generation－e.g. Jamstack), switching to dark mode and then refreshing the page will initially load the light mode to only then, after hydration, go back to the dark mode.
 
-This not only causes eye-fatigue to users that are in low-light settings but also interrupts browsing experience for those who interact with the website in the in-between of modes changing.
+This not only causes eye-fatigue to users that are in low-light settings as it also interrupts the browsing experience for those who interact with the website in the in-between of modes changing.
 
-<img src="https://media.giphy.com/media/9hvxemkpotSiQGzLo8/giphy.gif" style="border-radius: 10px; display: block; width: 730px; margin-inline: auto; margin-bottom: 24px;" alt="Today's dark mode flickering in MUI's website." />
+<img src="https://media.giphy.com/media/9hvxemkpotSiQGzLo8/giphy.gif" style="border-radius: 10px; display: block; width: 400px; margin-inline: auto; margin-bottom: 24px;" alt="Today's dark mode flickering in MUI's website." />
 
 The above recording is taken from [MUI's website](https://mui.com/) when the page is hard refreshed.
-Usually, the root cause of this issue comes from the JavaScript runtime calculation to switch the stylesheet between light and dark modes.
+The root cause of this issue usually comes from the JavaScript runtime calculation to switch the stylesheet between light and dark modes.
 
 ## The solution: CSS variables
 
@@ -42,5 +42,5 @@ export default class MyDocument extends Document {
 }
 ```
 
+- Learn [how to apply dark mode](/joy-ui/guides/applying-dark-mode/) in various frameworks by visiting the How To Guides.
 - Check out our [RFC on CSS variables support](https://github.com/mui/material-ui/issues/27651) to get the full picture of its implementation in Joy UI.
-- Learn [how to apply dark mode](/joy-ui/guides/apply-dark-mode/) in various frameworks by visiting the How To Guides.
