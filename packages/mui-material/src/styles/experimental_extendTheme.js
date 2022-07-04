@@ -157,7 +157,13 @@ export default function extendTheme(options = {}, ...args) {
       setColor(palette.Slider, 'infoTrack', lighten(palette.info.main, 0.62));
       setColor(palette.Slider, 'successTrack', lighten(palette.success.main, 0.62));
       setColor(palette.Slider, 'warningTrack', lighten(palette.warning.main, 0.62));
-      setColor(palette.SnackbarContent, 'bg', emphasize(palette.background.default, 0.8));
+      const snackbarContentBackground = emphasize(palette.background.default, 0.8);
+      setColor(palette.SnackbarContent, 'bg', snackbarContentBackground);
+      setColor(
+        palette.SnackbarContent,
+        'color',
+        lightPalette.getContrastText(snackbarContentBackground),
+      );
       setColor(palette.SpeedDialAction, 'fabHoverBg', emphasize(palette.background.paper, 0.15));
       setColor(palette.StepConnector, 'border', getCssVar('palette-grey-400'));
       setColor(palette.StepContent, 'border', getCssVar('palette-grey-400'));
@@ -223,7 +229,13 @@ export default function extendTheme(options = {}, ...args) {
       setColor(palette.Slider, 'infoTrack', darken(palette.info.main, 0.5));
       setColor(palette.Slider, 'successTrack', darken(palette.success.main, 0.5));
       setColor(palette.Slider, 'warningTrack', darken(palette.warning.main, 0.5));
-      setColor(palette.SnackbarContent, 'bg', emphasize(palette.background.default, 0.98));
+      const snackbarContentBackground = emphasize(palette.background.default, 0.98);
+      setColor(palette.SnackbarContent, 'bg', snackbarContentBackground);
+      setColor(
+        palette.SnackbarContent,
+        'color',
+        darkPalette.getContrastText(snackbarContentBackground),
+      );
       setColor(palette.SpeedDialAction, 'fabHoverBg', emphasize(palette.background.paper, 0.15));
       setColor(palette.StepConnector, 'border', getCssVar('palette-grey-600'));
       setColor(palette.StepContent, 'border', getCssVar('palette-grey-600'));
