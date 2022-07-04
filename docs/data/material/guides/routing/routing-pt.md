@@ -16,13 +16,16 @@ Você também pode fazer com que um botão execute ações de navegação. If yo
 
 Em aplicações da vida real, usar um elemento `<a>` nativo é raramente o suficiente. Você pode melhorar a experiência do usuário usando sistematicamente um componente Link aprimorado. For instance, with react-router: The theme of Material-UI allows configuring this component once. For instance, with react-router:
 
-```jsx
+```tsx
+import { Link as RouterLink, LinkProps as RouterLinkProps } from 'react-router-dom';
+import { LinkProps } from '@mui/material/Link';
+
 const LinkBehavior = React.forwardRef<
-  any,
+  HTMLAnchorElement,
   Omit<RouterLinkProps, 'to'> & { href: RouterLinkProps['to'] }
 >((props, ref) => {
   const { href, ...other } = props;
-  // Map href (Material-UI) -> to (react-router)
+  // Map href (MUI) -> to (react-router)
   return <RouterLink ref={ref} to={href} {...other} />;
 });
 
@@ -31,7 +34,7 @@ const theme = createTheme({
     MuiLink: {
       defaultProps: {
         component: LinkBehavior,
-      },
+      } as LinkProps,
     },
     MuiButtonBase: {
       defaultProps: {
