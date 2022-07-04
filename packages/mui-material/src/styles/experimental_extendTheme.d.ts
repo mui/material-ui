@@ -222,37 +222,35 @@ export interface ColorSystemOptions {
   overlays?: Overlays;
 }
 
-interface PaletteExtend {
-  colorScheme: SupportedColorScheme;
-  common: PaletteCommonChannel;
-  primary: PaletteColorChannel;
-  secondary: PaletteColorChannel;
-  error: PaletteColorChannel;
-  info: PaletteColorChannel;
-  success: PaletteColorChannel;
-  text: PaletteTextChannel;
-  dividerChannel: string;
-  action: PaletteActionChannel;
-  Alert: PaletteAlert;
-  AppBar: PaletteAppBar;
-  Avatar: PaletteAvatar;
-  Chip: PaletteChip;
-  FilledInput: PaletteFilledInput;
-  LinearProgress: PaletteLinearProgress;
-  Skeleton: PaletteSkeleton;
-  Slider: PaletteSlider;
-  SnackbarContent: PaletteSnackbarContent;
-  SpeedDialAction: PaletteSpeedDialAction;
-  StepConnector: PaletteStepConnector;
-  StepContent: PaletteStepContent;
-  Switch: PaletteSwitch;
-  TableCell: PaletteTableCell;
-  Tooltip: PaletteTooltip;
-}
-
 // The Palette should be sync with `../themeCssVarsAugmentation/index.d.ts`
 export interface ColorSystem {
-  palette: Palette & PaletteExtend;
+  palette: Palette & {
+    colorScheme: SupportedColorScheme;
+    common: PaletteCommonChannel;
+    primary: PaletteColorChannel;
+    secondary: PaletteColorChannel;
+    error: PaletteColorChannel;
+    info: PaletteColorChannel;
+    success: PaletteColorChannel;
+    text: PaletteTextChannel;
+    dividerChannel: string;
+    action: PaletteActionChannel;
+    Alert: PaletteAlert;
+    AppBar: PaletteAppBar;
+    Avatar: PaletteAvatar;
+    Chip: PaletteChip;
+    FilledInput: PaletteFilledInput;
+    LinearProgress: PaletteLinearProgress;
+    Skeleton: PaletteSkeleton;
+    Slider: PaletteSlider;
+    SnackbarContent: PaletteSnackbarContent;
+    SpeedDialAction: PaletteSpeedDialAction;
+    StepConnector: PaletteStepConnector;
+    StepContent: PaletteStepContent;
+    Switch: PaletteSwitch;
+    TableCell: PaletteTableCell;
+    Tooltip: PaletteTooltip;
+  };
   opacity: Opacity;
   overlays: Overlays;
 }
