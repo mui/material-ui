@@ -1,5 +1,55 @@
 # [Versions](https://mui.com/versions/)
 
+## 5.8.7
+
+<!-- generated comparing v5.8.6..master -->
+
+_Jul 4, 2022_
+
+A big thanks to the 12 contributors who made this release possible. Here are some highlights ✨:
+
+- 🐛 Fixed an issue causing Typescript errors when building a project with Material UI v5.8.6 (@michaldudak)
+- 🐛 Fixed a few bugs in Material UI components. Thanks @henriqueholtz, @jake-collibra, @MattiasMartens and @TimoWilhelm!
+- many other 🐛 bug fixes and 📚 documentation improvements
+
+### `@mui/material@5.8.7`
+
+- [Autocomplete] Add some missing props in `useAutocomplete` (#33269) @henriqueholtz
+- [Autocomplete] Extend `componentsProps` to include `popper` and `popupIndicator` slots (#33283) @jake-collibra
+- [Select] Annotate empty string as valid value prop (#33088) @MattiasMartens
+- [SnackbarContent] Fix message text color with css var provider (#33285) @TimoWilhelm
+
+### `@mui/styled-engine@5.8.7`
+
+- [styled-engine] Add missing type dependency on csstype (#33310) @Methuselah96
+
+### `@mui/system@5.8.7`
+
+- &#8203;<!-- 04 -->[system] Simplify theme input types for `CssVarsProvider` (#33381) @siriwatknp
+- &#8203;<!-- 03 -->[system] Export required types (#33324) @michaldudak
+
+### `@mui/joy@5.0.0-alpha.35`
+
+- &#8203;<!-- 09 -->[Joy] Add radio button documentation (#33254) @siriwatknp
+- &#8203;<!-- 08 -->[Joy] Add switch documentation (#33302) @siriwatknp
+- &#8203;<!-- 18 -->[Joy] Enable Joy and Material UI compatibility (#33379) @siriwatknp
+
+### `@mui/base@5.0.0-alpha.88`
+
+- &#8203;<!-- 14 -->[base] Remove a type incompatible with Typescript 3.5 (#33361) @michaldudak
+- &#8203;<!-- 15 -->[BadgeUnstyled] Export BadgeUnstyledOwnProps interface to fix typescript compiler error (#33314) @aaronlademann-wf
+- &#8203;<!-- 02 -->[TablePaginationUnstyled] Accept callbacks in componentsProps (#33309) @michaldudak
+
+### Docs
+
+- &#8203;<!-- 13 -->[docs] Fix Link typings in the react-router example (#32308) @aaarichter
+- &#8203;<!-- 12 -->[docs] Add caveat about class components with Tooltip (#33325) @joshkel
+- &#8203;<!-- 11 -->[docs] Fix SEO issues (#33288) @oliviertassinari
+- &#8203;<!-- 10 -->[docs] Fix Slider's "player" demo (#33267) @xlianghang
+- &#8203;<!-- 01 -->[website] Link MUI Toolpad in mui.com (#33287) @oliviertassinari
+
+All contributors of this release in alphabetical order: @aaarichter, @aaronlademann-wf, @henriqueholtz, @jake-collibra, @joshkel, @MattiasMartens, @Methuselah96, @michaldudak, @oliviertassinari, @siriwatknp, @TimoWilhelm, @xlianghang
+
 ## 5.8.6
 
 <!-- generated comparing v5.8.5..master -->
