@@ -1,2 +1,2 @@
-export { default } from './ClockPicker'
+export { default } from './ClockPicker';
 export * from './ClockPicker';

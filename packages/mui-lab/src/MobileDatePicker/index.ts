@@ -1,2 +1,2 @@
-export { default } from './MobileDatePicker'
+export { default } from './MobileDatePicker';
 export * from './MobileDatePicker';

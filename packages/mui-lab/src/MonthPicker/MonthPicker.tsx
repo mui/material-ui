@@ -35,7 +35,7 @@ const MonthPicker = React.forwardRef(function DeprecatedMonthPicker() {
 
 export default MonthPicker;
 
-export const monthPickerClasses = {}
+export const monthPickerClasses = {};
 
 export const getMonthPickerUtilityClass = (slot: string): string => {
   warn();

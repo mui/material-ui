@@ -1,2 +1,2 @@
-export { default } from './CalendarPickerSkeleton'
+export { default } from './CalendarPickerSkeleton';
 export * from './CalendarPickerSkeleton';

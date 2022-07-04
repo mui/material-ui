@@ -1,2 +1,2 @@
-export { default } from './CalendarPicker'
+export { default } from './CalendarPicker';
 export * from './CalendarPicker';
