@@ -468,7 +468,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
 
   if (multiple && value.length > 0) {
     const getCustomizedTagProps = (params) => ({
-      className: clsx(classes.tag),
+      className: classes.tag,
       disabled,
       ...getTagProps(params),
     });
@@ -585,7 +585,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
             }),
           },
           inputProps: {
-            className: clsx(classes.input),
+            className: classes.input,
             disabled,
             readOnly,
             ...getInputProps(),
