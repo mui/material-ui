@@ -180,7 +180,11 @@ If you are already using the [CssBaseline](/material-ui/react-css-baseline/) com
 
 {{"demo": "OverrideCssBaseline.js", "iframe": true, "height": 100}}
 
-:::info Note: It is a good practice to hoist the `<GlobalStyles />` to a static constant, to avoid rerendering. This will ensure that the `<style>` tag generated would not recalculate on each render. :::
+The `styleOverrides` key in the `MuiCssBaseline` component slot also supports callback from which you can access the theme. Here is how you can achieve the same by using this approach.
+
+{{"demo": "OverrideCallbackCssBaseline.js", "iframe": true, "height": 100}}
+
+:::info **Note**: It is a good practice to hoist the `<GlobalStyles />` to a static constant, to avoid rerendering. This will ensure that the `<style>` tag generated would not recalculate on each render. :::
 
 ```diff
  import * as React from 'react';
