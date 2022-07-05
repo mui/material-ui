@@ -181,6 +181,11 @@ const AutocompleteRoot = styled('div', {
     ...(ownerState.inputFocused && {
       opacity: 1,
     }),
+    ...(ownerState.hasClearIcon && {
+      '&::-webkit-search-cancel-button': {
+        WebkitAppearance: 'none',
+      },
+    }),
   },
 }));
 
