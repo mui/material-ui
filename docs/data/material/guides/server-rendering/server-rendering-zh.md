@@ -100,7 +100,7 @@ export default function getCache() {
 }
 ```
 
-With this we are creating new Emotion cache instance and using this to extract the critical styles for the html as well.
+With this we are creating a new Emotion cache instance and using this to extract the critical styles for the html as well.
 
 我们将看到在 `renderFullPage` 函数中，是如何传递这些信息的。
 
