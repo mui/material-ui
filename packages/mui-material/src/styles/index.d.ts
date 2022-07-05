@@ -97,6 +97,7 @@ export { default as experimental_extendTheme } from './experimental_extendTheme'
 export type {
   ColorSchemeOverrides,
   SupportedColorScheme,
+  ColorSystem,
   Opacity,
   Overlays,
   PaletteActionChannel,
@@ -117,4 +118,5 @@ export type {
   PaletteTooltip,
   CssVarsThemeOptions,
   CssVarsTheme,
+  ThemeVars,
 } from './experimental_extendTheme';
