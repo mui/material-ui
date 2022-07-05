@@ -374,7 +374,7 @@ export default function Demo(props) {
                   py: '2px',
                   px: '6px',
                   '& .MuiAlert-icon': {
-                    fontSize: 16,
+                    fontSize: 14,
                     mr: 0.5,
                     py: 0,
                   },

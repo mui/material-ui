@@ -2,13 +2,13 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import Editor from 'react-simple-code-editor';
 import Box from '@mui/material/Box';
-import { visuallyHidden } from '@mui/utils';
 import { styled } from '@mui/material/styles';
 import prism from '@mui/markdown/prism';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import CodeCopyButton from 'docs/src/modules/components/CodeCopyButton';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 import { useCodeCopy } from 'docs/src/modules/utils/CodeCopy';
+import { blue, blueDark } from 'docs/src/modules/brandingTheme';
 
 const Wrapper = styled(MarkdownElement)(({ theme }) => ({
   position: 'relative',
@@ -71,6 +71,7 @@ const StyledEditor = styled(Editor)(({ theme }) => ({
 const CodeEditor = ({ language = 'jsx', value, onChange, copyButtonProps, children, ...rest }) => {
   const t = useTranslate();
   const wrapperRef = React.useRef(null);
+  const enterRef = React.useRef(null);
   const handlers = useCodeCopy();
 
   React.useEffect(() => {
@@ -87,7 +88,9 @@ const CodeEditor = ({ language = 'jsx', value, onChange, copyButtonProps, childr
         }
 
         if (event.key === 'Escape') {
-          wrapperRef.current.lastElementChild.focus();
+          if (enterRef.current) {
+            enterRef.current.focus();
+          }
           return;
         }
 
@@ -112,17 +115,29 @@ const CodeEditor = ({ language = 'jsx', value, onChange, copyButtonProps, childr
           />
         </pre>
         <Box
+          ref={enterRef}
           aria-live="polite"
           tabIndex={0}
-          sx={{
-            color: 'white',
+          sx={(theme) => ({
             position: 'absolute',
-            top: '4px',
-            right: '20px',
-            fontSize: '12px',
+            top: theme.spacing(1),
+            padding: theme.spacing(0.5, 1),
             outline: 'none',
-            '&:not(:focus)': visuallyHidden,
-          }}
+            left: '50%',
+            border: `1px solid`,
+            borderColor: blue[400],
+            backgroundColor: blueDark[600],
+            color: blueDark[50],
+            transform: 'translateX(-50%)',
+            borderRadius: '4px',
+            fontSize: '0.813rem',
+            transition: '0.3s',
+            '&:not(:focus)': {
+              top: 0,
+              opacity: 0,
+              pointerEvents: 'none',
+            },
+          })}
           dangerouslySetInnerHTML={{
             __html: t('editorHint'),
           }}
