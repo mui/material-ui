@@ -1,147 +1,138 @@
 import * as React from 'react';
-import { unstable_useControlled as useControlled } from '@mui/utils';
 import {
-  ActionTypes,
   ListboxAction,
   ListboxReducer,
   ListboxState,
-  UseListboxParameters,
-  UseListboxStrictProps,
+  UseListboxPropsWithDefaults,
 } from './useListbox.types';
 import areArraysEqual from '../utils/areArraysEqual';
 
 /**
+ * Gets the current state. If the selectedValue is controlled,
+ * the `value` prop is the source of truth instead of the internal state.
+ */
+function getControlledState<TOption>(
+  internalState: ListboxState<TOption>,
+  props: UseListboxPropsWithDefaults<TOption>,
+) {
+  if (props.value !== undefined) {
+    return { ...internalState, selectedValue: props.value };
+  }
+
+  return internalState;
+}
+
+function areOptionsEqual<TOption>(
+  option1: TOption | null,
+  option2: TOption | null,
+  optionComparer: (optionA: TOption, optionB: TOption) => boolean,
+) {
+  if (option1 === option2) {
+    return true;
+  }
+
+  if (option1 === null || option2 === null) {
+    return false;
+  }
+
+  return optionComparer(option1, option2);
+}
+
+/**
  * Triggers change event handlers when reducer returns changed state.
  */
-function useReducerReturnValueHandler<TOption>(
-  state: ListboxState<TOption>,
-  value: TOption | TOption[] | null,
-  options: UseListboxParameters<TOption>['options'],
-  optionComparer: React.RefObject<(option: TOption, value: TOption) => boolean>,
-  setValueState: (newValue: TOption | TOption[] | null) => void,
-  onValueChange: UseListboxParameters<TOption>['onChange'],
-  onHighlightChange: UseListboxParameters<TOption>['onHighlightChange'],
+function useStateChangeDetection<TOption>(
+  nextState: ListboxState<TOption>,
+  internalPreviousState: ListboxState<TOption>,
+  propsRef: React.RefObject<UseListboxPropsWithDefaults<TOption>>,
 ) {
-  const valueRef = React.useRef(value);
-  valueRef.current = value;
-
-  const onValueChangeRef = React.useRef(onValueChange);
   React.useEffect(() => {
-    onValueChangeRef.current = onValueChange;
-  }, [onValueChange]);
-
-  const onHighlightChangeRef = React.useRef(onHighlightChange);
-  React.useEffect(() => {
-    onHighlightChangeRef.current = onHighlightChange;
-  }, [onHighlightChange]);
-
-  React.useEffect(() => {
-    if (Array.isArray(state.selectedValue)) {
-      if (areArraysEqual(state.selectedValue, valueRef.current as TOption[])) {
-        return;
-      }
-    } else if (
-      (state.selectedValue == null && valueRef.current == null) ||
-      (state.selectedValue != null &&
-        valueRef.current != null &&
-        optionComparer.current!(state.selectedValue as TOption, valueRef.current as TOption))
-    ) {
+    if (!propsRef.current) {
       return;
     }
 
-    setValueState(state.selectedValue);
-    if (state.selectedValue != null) {
-      // @ts-ignore We know that selectedValue has the correct type depending on `selectMultiple` prop.
-      onValueChangeRef.current?.(state.selectedValue);
+    const previousState = getControlledState(internalPreviousState, propsRef.current);
+    const { multiple, optionComparer, onChange } = propsRef.current;
+
+    if (multiple) {
+      if (
+        !areArraysEqual(
+          nextState.selectedValue as TOption[],
+          (previousState?.selectedValue ?? []) as TOption[],
+          optionComparer,
+        )
+      ) {
+        // TODO: type this properly
+        onChange?.(nextState.selectedValue as any);
+      }
+    } else if (
+      !areOptionsEqual(
+        nextState.selectedValue as TOption,
+        previousState?.selectedValue as TOption,
+        propsRef.current.optionComparer,
+      )
+    ) {
+      // TODO: type this properly
+      onChange?.(nextState.selectedValue as any);
     }
-  }, [state.selectedValue, setValueState, optionComparer]);
+  }, [nextState, internalPreviousState, propsRef]);
 
   React.useEffect(() => {
-    // Fire the highlightChange event when reducer returns changed `highlightedIndex`.
-    onHighlightChangeRef.current?.(state.highlightedValue);
-  }, [state.highlightedValue]);
+    if (!propsRef.current) {
+      return;
+    }
+
+    // Fires the highlightChange event when reducer returns changed `highlightedValue`.
+    if (
+      !areOptionsEqual(
+        internalPreviousState.highlightedValue,
+        nextState.highlightedValue,
+        propsRef.current.optionComparer,
+      )
+    ) {
+      // TODO: test this
+      propsRef.current?.onHighlightChange?.(nextState.highlightedValue);
+    }
+  }, [nextState.highlightedValue, internalPreviousState.highlightedValue, propsRef]);
 }
 
 export default function useControllableReducer<TOption>(
   internalReducer: ListboxReducer<TOption>,
   externalReducer: ListboxReducer<TOption> | undefined,
-  props: UseListboxStrictProps<TOption>,
+  props: UseListboxPropsWithDefaults<TOption>,
 ): [ListboxState<TOption>, (action: ListboxAction<TOption>) => void] {
-  const {
-    value: controlledValue,
-    defaultValue,
-    onChange: onValueChange,
-    onHighlightChange,
-    options,
-    optionComparer,
-  } = props;
+  const { value, defaultValue } = props;
 
   const propsRef = React.useRef(props);
   propsRef.current = props;
 
-  const [value, setValueState] = useControlled({
-    controlled: controlledValue,
-    default: defaultValue,
-    name: 'useListbox',
-  });
+  const initialSelectedValue =
+    (value === undefined ? defaultValue : value) ?? (props.multiple ? [] : null);
 
-  const previousValueRef = React.useRef<TOption | TOption[] | null>(null);
+  const initalState = {
+    highlightedValue: null,
+    selectedValue: initialSelectedValue,
+  };
 
-  const [state, dispatch] = React.useReducer<ListboxReducer<TOption>>(
-    externalReducer ?? internalReducer,
-    {
-      highlightedValue: null,
-      selectedValue: value,
-    } as ListboxState<TOption>,
+  const combinedReducer = React.useCallback(
+    (state, action) => {
+      if (externalReducer) {
+        return externalReducer(getControlledState(state, propsRef.current), action);
+      }
+
+      return internalReducer(getControlledState(state, propsRef.current), action);
+    },
+    [externalReducer, internalReducer, propsRef],
   );
 
-  const optionComparerRef = React.useRef(optionComparer);
-  optionComparerRef.current = optionComparer;
+  // TODO: augment dispatch with props
+  const [nextState, dispatch] = React.useReducer(combinedReducer, initalState);
 
+  const previousState = React.useRef<ListboxState<TOption>>(initalState);
   React.useEffect(() => {
-    // Detect external changes to the controlled `value` prop and update the state.
-    if (controlledValue === undefined) {
-      return;
-    }
+    previousState.current = nextState;
+  }, [previousState, nextState]);
 
-    if (
-      Array.isArray(controlledValue) &&
-      Array.isArray(previousValueRef.current) &&
-      areArraysEqual(
-        previousValueRef.current as TOption[],
-        controlledValue as TOption[],
-        optionComparerRef.current,
-      )
-    ) {
-      // `value` is an array and it did not change.
-      return;
-    }
-
-    if (
-      !Array.isArray(controlledValue) &&
-      controlledValue != null &&
-      previousValueRef.current != null &&
-      optionComparerRef.current(controlledValue as TOption, previousValueRef.current as TOption)
-    ) {
-      // `value` is a single option and it did not change.
-      return;
-    }
-
-    previousValueRef.current = controlledValue;
-    dispatch({
-      type: ActionTypes.setValue,
-      value: controlledValue,
-    });
-  }, [controlledValue]);
-
-  useReducerReturnValueHandler<TOption>(
-    state,
-    value,
-    options,
-    optionComparerRef,
-    setValueState,
-    onValueChange,
-    onHighlightChange,
-  );
-  return [state, dispatch];
+  useStateChangeDetection<TOption>(nextState, previousState.current, propsRef);
+  return [getControlledState(nextState, propsRef.current), dispatch];
 }

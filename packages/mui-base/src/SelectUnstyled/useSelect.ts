@@ -58,7 +58,6 @@ function useSelect<TValue>(props: UseSelectParameters<TValue>) {
   const handleButtonRef = useForkRef(buttonRefProp, buttonRef);
 
   const listboxRef = React.useRef<HTMLElement | null>(null);
-  const intermediaryListboxRef = useForkRef(listboxRefProp, listboxRef);
 
   const [value, setValue] = useControlled({
     controlled: valueProp,
@@ -89,7 +88,7 @@ function useSelect<TValue>(props: UseSelectParameters<TValue>) {
     focusListboxIfRequested();
   };
 
-  const handleListboxRef = useForkRef(intermediaryListboxRef, updateListboxRef);
+  const handleListboxRef = useForkRef(useForkRef(listboxRefProp, listboxRef), updateListboxRef);
 
   React.useEffect(() => {
     focusListboxIfRequested();
@@ -296,9 +295,9 @@ function useSelect<TValue>(props: UseSelectParameters<TValue>) {
   };
 
   React.useDebugValue({
-    selectedOption: listboxSelectedOption as TValue | null,
-    open,
+    selectedOption: listboxSelectedOption,
     highlightedOption,
+    open,
   });
 
   return {

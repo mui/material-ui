@@ -14,6 +14,12 @@ import {
   fireEvent,
 } from 'test/utils';
 
+declare module '@mui/base/MultiSelectUnstyled' {
+  interface MultiSelectUnstyledComponentsPropsOverrides {
+    'data-testid'?: string;
+  }
+}
+
 describe('MultiSelectUnstyled', () => {
   const mount = createMount();
   const { render } = createRenderer();
@@ -154,6 +160,44 @@ describe('MultiSelectUnstyled', () => {
     const button = getByText('Update value');
     act(() => button.click());
     expect(onChange.notCalled).to.equal(true);
+  });
+
+  it('sets a value correctly when interacted by a user and external code', () => {
+    function TestComponent() {
+      const [value, setValue] = React.useState<number[]>([]);
+
+      return (
+        <div>
+          <button data-testid="update-externally" onClick={() => setValue([1])}>
+            Update value
+          </button>
+          <MultiSelectUnstyled
+            value={value}
+            onChange={setValue}
+            componentsProps={{
+              root: {
+                'data-testid': 'select',
+              },
+            }}
+          >
+            <OptionUnstyled value={1}>1</OptionUnstyled>
+            <OptionUnstyled value={2}>2</OptionUnstyled>
+          </MultiSelectUnstyled>
+        </div>
+      );
+    }
+
+    const { getByTestId, getByText } = render(<TestComponent />);
+    const updateButton = getByTestId('update-externally');
+    const selectButton = getByTestId('select');
+
+    act(() => updateButton.click());
+    act(() => selectButton.click());
+
+    const option2 = getByText('2');
+    act(() => option2.click());
+
+    expect(selectButton).to.have.text('1, 2');
   });
 
   it('closes the listbox without selecting an option when focus is lost', () => {
