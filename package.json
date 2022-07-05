@@ -99,7 +99,7 @@
     "@types/lodash": "^4.14.182",
     "@types/mocha": "^9.1.1",
     "@types/prettier": "^2.6.3",
-    "@types/react": "^18.0.9",
+    "@types/react": "^18.0.14",
     "@types/react-is": "^17.0.3",
     "@types/sinon": "^10.0.12",
     "@types/stylis": "^4.0.2",
@@ -165,10 +165,10 @@
     "process": "^0.11.10",
     "prop-types": "^15.8.1",
     "raw-loader": "4.0.2",
-    "react": "^18.1.0",
-    "react-dom": "^18.1.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "react-router-dom": "^6.3.0",
-    "react-test-renderer": "^18.1.0",
+    "react-test-renderer": "^18.2.0",
     "remark": "^13.0.0",
     "rimraf": "^3.0.2",
     "rollup": "^2.75.7",
@@ -213,7 +213,7 @@
     "**/@types/react": "^18.0.9",
     "**/@types/react-is": "^17.0.3",
     "**/cross-fetch": "^3.1.5",
-    "**/react-is": "^18.1.0"
+    "**/react-is": "^18.2.0"
   },
   "nyc": {
     "include": [

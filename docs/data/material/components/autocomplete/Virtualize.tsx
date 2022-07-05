@@ -147,6 +147,7 @@ export default function Virtualize() {
       groupBy={(option) => option[0].toUpperCase()}
       renderInput={(params) => <TextField {...params} label="10,000 options" />}
       renderOption={(props, option) => [props, option] as React.ReactNode}
+      // TODO: Post React 18 update - validate this conversion, look like a hidden bug
       renderGroup={(params) => params as unknown as React.ReactNode}
     />
   );

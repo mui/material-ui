@@ -83,7 +83,7 @@
     "@mui/x-date-pickers": "5.0.0-alpha.1",
     "clsx": "^1.2.0",
     "prop-types": "^15.8.1",
-    "react-is": "^18.1.0",
+    "react-is": "^18.2.0",
     "react-transition-group": "^4.4.2",
     "rifm": "^0.12.1"
   },

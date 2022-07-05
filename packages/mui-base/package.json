@@ -58,7 +58,7 @@
     "@popperjs/core": "^2.11.5",
     "clsx": "^1.2.0",
     "prop-types": "^15.8.1",
-    "react-is": "^18.1.0"
+    "react-is": "^18.2.0"
   },
   "sideEffects": false,
   "publishConfig": {

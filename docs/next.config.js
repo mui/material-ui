@@ -31,9 +31,6 @@ module.exports = {
   eslint: {
     ignoreDuringBuilds: true,
   },
-  experimental: {
-    runtime: 'nodejs',
-  },
   typescript: {
     // Motivated by https://github.com/vercel/next.js/issues/7687
     ignoreDevErrors: true,

@@ -46,7 +46,7 @@
     "@types/prop-types": "^15.7.5",
     "@types/react-is": "^16.7.1 || ^17.0.0",
     "prop-types": "^15.8.1",
-    "react-is": "^18.1.0"
+    "react-is": "^18.2.0"
   },
   "devDependencies": {
     "@babel/helper-module-imports": "^7.16.7",
