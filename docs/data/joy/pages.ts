@@ -75,7 +75,13 @@ const pages = [
     pathname: '/joy-ui/guides',
     title: 'How To Guides',
     icon: 'VisibilityIcon',
-    children: [{ pathname: '/joy-ui/guides/applying-dark-mode', title: 'Applying dark mode' }],
+    children: [
+      { pathname: '/joy-ui/guides/applying-dark-mode', title: 'Applying dark mode' },
+      {
+        pathname: '/joy-ui/guides/using-joy-and-material-ui-together',
+        title: 'Using Joy and Material UI together',
+      },
+    ],
   },
 ];
 
