@@ -5,7 +5,7 @@ export interface AutocompleteClasses {
   root: string;
   /** Styles applied to the root element if `fullWidth={true}`. */
   fullWidth: string;
-  /** State class applied to the root element if the Popper is displayed */
+  /** State class applied to the root element if the listbox is displayed */
   expanded: string;
   /** State class applied to the root element if focused. */
   focused: string;
