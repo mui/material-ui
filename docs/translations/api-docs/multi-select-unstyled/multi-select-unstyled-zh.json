@@ -7,6 +7,7 @@
     "defaultListboxOpen": "If <code>true</code>, the select will be initially open.",
     "defaultValue": "The default selected value. Use when the component is not controlled.",
     "disabled": "If <code>true</code>, the select is disabled.",
+    "listboxId": "<code>id</code> attribute of the listbox element. Also used to derive the <code>id</code> attributes of options.",
     "listboxOpen": "Controls the open state of the select&#39;s listbox.",
     "onChange": "Callback fired when an option is selected.",
     "onListboxOpenChange": "Callback fired when the component requests to be opened. Use in controlled mode (see listboxOpen).",
