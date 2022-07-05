@@ -23,9 +23,12 @@ You can improve the user experience by using an enhanced Link component systemat
 The theme of MUI allows configuring this component once.
 For instance, with react-router:
 
-```jsx
+```tsx
+import { Link as RouterLink, LinkProps as RouterLinkProps } from 'react-router-dom';
+import { LinkProps } from '@mui/material/Link';
+
 const LinkBehavior = React.forwardRef<
-  any,
+  HTMLAnchorElement,
   Omit<RouterLinkProps, 'to'> & { href: RouterLinkProps['to'] }
 >((props, ref) => {
   const { href, ...other } = props;
@@ -38,7 +41,7 @@ const theme = createTheme({
     MuiLink: {
       defaultProps: {
         component: LinkBehavior,
-      },
+      } as LinkProps,
     },
     MuiButtonBase: {
       defaultProps: {
