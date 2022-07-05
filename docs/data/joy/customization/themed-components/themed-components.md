@@ -8,13 +8,14 @@
 
 ## Component identifier
 
-If you've used [Material UI](/material-ui/customization/theme-components/), you are probably familiar with this technique.
-To theme a specific component, specify the component identifier (`Joy{ComponentImportName}`) inside the `components` node.
+If you've used [Material UI](/material-ui/customization/theme-components/) before, you are probably familiar with this technique.
+To customize a specific component in the theme, specify the component identifier (`Joy{ComponentImportName}`) inside the `components` node.
 
-- Use `defaultProps` to change the default props of the component.
-- Use `styleOverrides` to apply styles to each component slots. All Joy UI component contains the `root` slot.
+- Use `defaultProps` to change the default styles the component.
+- Use `styleOverrides` to apply styles to each component slots.
+  - Every Joy UI component contains the `root` slot.
 
-Check the [`components.d.ts`](https://github.com/mui/material-ui/blob/master/packages/mui-joy/src/styles/components.d.ts#L58) file to see every component identifier.
+Visit the [`components.d.ts`](https://github.com/mui/material-ui/blob/master/packages/mui-joy/src/styles/components.d.ts#L58) file to see every component identifier.
 
 ```js
 import { CssVarsProvider, extendTheme } from '@mui/joy/styles';
@@ -39,9 +40,9 @@ function App() {
 }
 ```
 
-## Using design tokens per props
+## Using theme tokens per props
 
-To change the styles of a given prop using design tokens values from the theme, use a callback as value to the style overrides.
+To change the styles of a given prop using theme tokens, use a callback as value to the style overrides.
 The argument contains `theme` and `ownerState` (props).
 
 ```js
@@ -126,7 +127,7 @@ If you have custom color schemes defined, this approach also works.
 However, note that it creates additional CSS specificity which might be cumbersome when the parent component wants to override their children styles.
 
 :::error
-🚨 We don't recommend using the conditional operator to switch between values as it is not performant and if you have more color schemes than light and dark, it creates nested conditional operators.
+🚨 **Note:** We don't recommend using the conditional operator to switch between values as it is not performant.
 
 ```js
 // 🚫 Don't do this

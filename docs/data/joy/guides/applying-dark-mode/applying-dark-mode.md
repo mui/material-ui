@@ -1,8 +1,8 @@
-# Apply dark mode
+# Applying dark mode
 
 <p class="description">A how-to-guide for applying dark mode to your application with Joy UI.</p>
 
-## The mode toggle component
+## The mode-toggle component
 
 In the example below, we're using a `Button` component that calls `setMode` from the `useColorSchemes()` hook to handle the mode toggling.
 
