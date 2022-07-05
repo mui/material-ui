@@ -271,7 +271,12 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
               const labelId = `${componentName}-${String(propName)}`;
               return (
                 <Box key={propName as string}>
-                  <Typography id={labelId} fontSize="xs" fontWeight="md" sx={{ mb: 1, textTransform: 'capitalize' }}>
+                  <Typography
+                    id={labelId}
+                    fontSize="xs"
+                    fontWeight="md"
+                    sx={{ mb: 1, textTransform: 'capitalize' }}
+                  >
                     {String(propName)}
                   </Typography>
                   <RadioGroup
