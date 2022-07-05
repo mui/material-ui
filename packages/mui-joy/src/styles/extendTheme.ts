@@ -197,17 +197,24 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
       warning: {
         ...colors.yellow,
         ...createLightModeVariantVariables('warning'),
-        solidColor: getCssVar(`palette-common-black`),
+        solidColor: getCssVar(`palette-warning-800`),
         solidBg: getCssVar(`palette-warning-200`),
         solidHoverBg: getCssVar(`palette-warning-300`),
         solidActiveBg: getCssVar(`palette-warning-400`),
         solidDisabledColor: getCssVar(`palette-warning-200`),
         solidDisabledBg: getCssVar(`palette-warning-50`),
 
-        softColor: getCssVar(`palette-common-black`),
+        softColor: getCssVar(`palette-warning-800`),
+        softBg: getCssVar(`palette-warning-50`),
+        softHoverBg: getCssVar(`palette-warning-100`),
+        softActiveBg: getCssVar(`palette-warning-200`),
+        softDisabledColor: getCssVar(`palette-warning-200`),
+        softDisabledBg: getCssVar(`palette-warning-50`),
 
+        outlinedColor: getCssVar(`palette-warning-800`),
         outlinedHoverBg: getCssVar(`palette-warning-50`),
 
+        plainColor: getCssVar(`palette-warning-800`),
         plainHoverBg: getCssVar(`palette-warning-50`),
       },
       common: {
