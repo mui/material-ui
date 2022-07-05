@@ -132,8 +132,8 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
     solidBg: getCssVar(`palette-${color}-600`),
     solidHoverBg: getCssVar(`palette-${color}-700`),
     solidActiveBg: getCssVar(`palette-${color}-800`),
-    solidDisabledColor: `#fff`,
-    solidDisabledBg: getCssVar(`palette-${color}-300`),
+    solidDisabledColor: getCssVar(`palette-${color}-700`),
+    solidDisabledBg: getCssVar(`palette-${color}-900`),
 
     overrideTextPrimary: getCssVar(`palette-${color}-200`),
     overrideTextSecondary: getCssVar(`palette-${color}-400`),
@@ -297,8 +297,6 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
         solidBg: getCssVar(`palette-success-600`),
         solidHoverBg: getCssVar(`palette-success-700`),
         solidActiveBg: getCssVar(`palette-success-800`),
-        solidDisabledColor: getCssVar(`palette-success-50`),
-        solidDisabledBg: getCssVar(`palette-success-300`),
       },
       warning: {
         ...colors.yellow,
@@ -307,8 +305,6 @@ export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
         solidBg: getCssVar(`palette-warning-300`),
         solidHoverBg: getCssVar(`palette-warning-400`),
         solidActiveBg: getCssVar(`palette-warning-500`),
-        solidDisabledColor: getCssVar(`palette-warning-50`),
-        solidDisabledBg: getCssVar(`palette-warning-300`),
       },
       common: {
         white: '#FFF',
