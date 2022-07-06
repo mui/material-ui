@@ -96,28 +96,6 @@ export default function App() {
 }
 ```
 
-### TypeScript
-
-Make sure to augment the Material UI theme so you're able to include theme tokens from Joy UI.
-
-```ts
-// This will attach `vars` types to the theme
-import type {} from '@mui/material/themeCssVarsAugmentation';
-import { CssVarsThemeOptions, PaletteRange, Variants } from '@mui/joy/styles';
-
-type JoyComponents = CssVarsThemeOptions['components'];
-
-declare module '@mui/material/styles' {
-  interface Theme {
-    variants: Variants;
-  }
-
-  interface Components extends JoyComponents {}
-
-  interface PaletteColor extends PaletteRange {}
-}
-```
-
 ### CodeSandbox
 
 Visit the following CodeSandbox to preview this use case setup.
@@ -223,3 +201,25 @@ export default function App() {
 Visit the following CodeSandbox to preview this use case setup.
 
 [![Edit Material UI in a Joy UI project](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/joy-ui-feat-material-ui-cy4nj7?fontsize=12&hidenavigation=1&module=%2Fdemo.tsx&theme=dark)
+
+## TypeScript setup
+
+The snippet can be used with both of the above use cases. Here, we augment the Material UI and Joy UI theme to have the same tokens so that you have the same experience when customizing components via APIs like `styled` or `sx`.
+
+```ts
+// This will attach `vars` types to the Material UI theme
+import type {} from '@mui/material/themeCssVarsAugmentation';
+import { CssVarsThemeOptions, PaletteRange, Variants } from '@mui/joy/styles';
+
+type JoyComponents = CssVarsThemeOptions['components'];
+
+declare module '@mui/material/styles' {
+  interface Theme {
+    variants: Variants;
+  }
+
+  interface Components extends JoyComponents {}
+
+  interface PaletteColor extends PaletteRange {}
+}
+```
