@@ -84,7 +84,7 @@
     "@babel/register": "^7.17.0",
     "@emotion/react": "^11.9.3",
     "@emotion/styled": "^11.9.3",
-    "@eps1lon/enzyme-adapter-react-17": "^0.1.0",
+    "@mnajdova/enzyme-adapter-react-18": "^0.2.0",
     "@octokit/rest": "^18.12.0",
     "@playwright/test": "1.17.1",
     "@rollup/plugin-replace": "^4.0.0",
