@@ -1,5 +1,4 @@
 import React from 'react';
-import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
 import { OptionState } from '../ListboxUnstyled';
@@ -7,7 +6,7 @@ import composeClasses from '../composeClasses';
 import { OptionUnstyledProps, OptionUnstyledOwnerState } from './OptionUnstyled.types';
 import { SelectUnstyledContext } from '../SelectUnstyled/SelectUnstyledContext';
 import { getOptionUnstyledUtilityClass } from './optionUnstyledClasses';
-import appendOwnerState from '../utils/appendOwnerState';
+import { useSlotProps } from '../utils';
 
 function useUtilityClasses(ownerState: OptionState) {
   const { disabled, highlighted, selected } = ownerState;
@@ -28,7 +27,6 @@ const OptionUnstyled = React.forwardRef(function OptionUnstyled<TValue>(
 ) {
   const {
     children,
-    className,
     component,
     components = {},
     componentsProps = {},
@@ -82,17 +80,17 @@ const OptionUnstyled = React.forwardRef(function OptionUnstyled<TValue>(
 
   const classes = useUtilityClasses(ownerState);
 
-  const rootProps = appendOwnerState(
-    Root,
-    {
-      ...other,
+  const rootProps = useSlotProps({
+    elementType: Root,
+    externalSlotProps: componentsProps.root,
+    externalForwardedProps: other,
+    additionalProps: {
       ...optionProps,
-      ...componentsProps.root,
       ref: handleRef,
-      className: clsx(classes.root, className, componentsProps.root?.className),
     },
+    className: classes.root,
     ownerState,
-  );
+  });
 
   return <Root {...rootProps}>{children}</Root>;
 });
@@ -106,10 +104,6 @@ OptionUnstyled.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   children: PropTypes.node,
-  /**
-   * @ignore
-   */
-  className: PropTypes.string,
   /**
    * The component used for the Root slot.
    * Either a string to use a HTML element or a component.
@@ -130,7 +124,7 @@ OptionUnstyled.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   componentsProps: PropTypes.shape({
-    root: PropTypes.object,
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
    * If `true`, the option will be disabled.

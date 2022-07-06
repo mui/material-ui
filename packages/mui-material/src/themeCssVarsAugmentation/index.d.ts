@@ -1,22 +1,10 @@
 import type {
   CssVarsTheme,
-  ColorSystem,
+  CssVarsPalette,
   PaletteCommonChannel,
   PaletteColorChannel,
   PaletteTextChannel,
   PaletteActionChannel,
-  PaletteAppBar,
-  PaletteAvatar,
-  PaletteChip,
-  PaletteFilledInput,
-  PaletteLinearProgress,
-  PaletteSlider,
-  PaletteSnackbarContent,
-  PaletteStepConnector,
-  PaletteStepContent,
-  PaletteSwitch,
-  PaletteTableCell,
-  PaletteTooltip,
 } from '../styles/experimental_extendTheme';
 
 /**
@@ -25,29 +13,10 @@ import type {
  */
 declare module '@mui/material/styles' {
   // The palette must be extended in each node.
-  interface Theme extends Omit<ColorSystem, 'palette'> {
-    prefix: string;
-    vars: CssVarsTheme['vars'];
-    getCssVar: CssVarsTheme['getCssVar'];
-    getColorSchemeSelector: CssVarsTheme['getColorSchemeSelector'];
-  }
+  interface Theme extends Omit<CssVarsTheme, 'palette'> {}
 
   // The extended Palette should be in sync with `extendTheme`
-  interface Palette {
-    dividerChannel: string;
-    AppBar: PaletteAppBar;
-    Avatar: PaletteAvatar;
-    Chip: PaletteChip;
-    FilledInput: PaletteFilledInput;
-    LinearProgress: PaletteLinearProgress;
-    Slider: PaletteSlider;
-    SnackbarContent: PaletteSnackbarContent;
-    StepConnector: PaletteStepConnector;
-    StepContent: PaletteStepContent;
-    Switch: PaletteSwitch;
-    TableCell: PaletteTableCell;
-    Tooltip: PaletteTooltip;
-  }
+  interface Palette extends CssVarsPalette {}
 }
 
 declare module '@mui/material/styles/createPalette' {

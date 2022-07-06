@@ -393,4 +393,16 @@ describe('experimental_extendTheme', () => {
     );
     expect(container.firstChild).toHaveComputedStyle({ fontFamily: 'cursive' });
   });
+
+  describe('css var prefix', () => {
+    it('has mui as default css var prefix', () => {
+      const theme = extendTheme();
+      expect(theme.cssVarPrefix).to.equal('mui');
+    });
+
+    it('custom css var prefix', () => {
+      const theme = extendTheme({ cssVarPrefix: 'foo' });
+      expect(theme.cssVarPrefix).to.equal('foo');
+    });
+  });
 });

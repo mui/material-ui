@@ -2,6 +2,7 @@ import React from 'react';
 import { Simplify } from '@mui/types';
 import { OptionState } from '../ListboxUnstyled';
 import { UseSelectOptionSlotProps } from '../SelectUnstyled/useSelect.types';
+import { SlotComponentProps } from '../utils';
 
 export interface OptionUnstyledComponentsPropsOverrides {}
 
@@ -37,7 +38,11 @@ export interface OptionUnstyledProps<TValue> {
    * @default {}
    */
   componentsProps?: {
-    root?: React.ComponentPropsWithRef<'li'> & OptionUnstyledComponentsPropsOverrides;
+    root?: SlotComponentProps<
+      'li',
+      OptionUnstyledComponentsPropsOverrides,
+      OptionUnstyledOwnerState<TValue>
+    >;
   };
   /**
    * A text representation of the option's content.

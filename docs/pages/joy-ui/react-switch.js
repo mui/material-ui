@@ -4,7 +4,7 @@ import {
   demos,
   docs,
   demoComponents,
-} from 'docs/data/joy/core-features/automatic-adjustment/automatic-adjustment.md?@mui/markdown';
+} from 'docs/data/joy/components/switch/switch.md?@mui/markdown';
 
 export default function Page() {
   return <MarkdownDocs demos={demos} docs={docs} demoComponents={demoComponents} />;

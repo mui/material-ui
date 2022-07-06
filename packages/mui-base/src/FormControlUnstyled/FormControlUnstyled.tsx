@@ -131,18 +131,6 @@ const FormControlUnstyled = React.forwardRef(function FormControlUnstyled<
 
   const classes = useUtilityClasses(ownerState);
 
-  const Root = component ?? components.Root ?? 'div';
-  const rootProps: WithOptionalOwnerState<FormControlUnstyledRootSlotProps> = useSlotProps({
-    elementType: Root,
-    externalSlotProps: componentsProps.root,
-    externalForwardedProps: other,
-    additionalProps: {
-      ref,
-    },
-    ownerState,
-    className: classes.root,
-  });
-
   const renderChildren = () => {
     if (typeof children === 'function') {
       return children(childContext);
@@ -151,9 +139,22 @@ const FormControlUnstyled = React.forwardRef(function FormControlUnstyled<
     return children;
   };
 
+  const Root = component ?? components.Root ?? 'div';
+  const rootProps: WithOptionalOwnerState<FormControlUnstyledRootSlotProps> = useSlotProps({
+    elementType: Root,
+    externalSlotProps: componentsProps.root,
+    externalForwardedProps: other,
+    additionalProps: {
+      ref,
+      children: renderChildren(),
+    },
+    ownerState,
+    className: classes.root,
+  });
+
   return (
     <FormControlUnstyledContext.Provider value={childContext}>
-      <Root {...rootProps}>{renderChildren()}</Root>
+      <Root {...rootProps} />
     </FormControlUnstyledContext.Provider>
   );
 }) as OverridableComponent<FormControlUnstyledTypeMap>;
