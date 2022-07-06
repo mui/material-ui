@@ -79,7 +79,7 @@ const pages = [
       { pathname: '/joy-ui/guides/applying-dark-mode', title: 'Applying dark mode' },
       {
         pathname: '/joy-ui/guides/using-joy-and-material-ui-together',
-        title: 'Using Joy and Material UI together',
+        title: 'Joy UI and Material UI together',
       },
     ],
   },
