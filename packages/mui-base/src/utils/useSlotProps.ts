@@ -1,7 +1,11 @@
 import * as React from 'react';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
 import appendOwnerState, { AppendOwnerStateReturnType } from './appendOwnerState';
-import mergeSlotProps, { MergeSlotPropsParameters, WithCommonProps } from './mergeSlotProps';
+import mergeSlotProps, {
+  MergeSlotPropsParameters,
+  MergeSlotPropsResult,
+  WithCommonProps,
+} from './mergeSlotProps';
 import resolveComponentProps from './resolveComponentProps';
 
 export type UseSlotPropsParameters<
@@ -35,15 +39,12 @@ export type UseSlotPropsParameters<
 export type UseSlotPropsResult<
   ElementType extends React.ElementType,
   SlotProps,
-  ExternalForwardedProps,
-  ExternalSlotProps,
   AdditionalProps,
   OwnerState,
 > = AppendOwnerStateReturnType<
   ElementType,
-  Omit<SlotProps & ExternalSlotProps & ExternalForwardedProps & AdditionalProps, 'ref'> & {
-    className?: string | undefined;
-    ref: (instance: any | null) => void;
+  MergeSlotPropsResult<SlotProps, object, object, AdditionalProps>['props'] & {
+    ref: ((instance: any | null) => void) | null;
   },
   OwnerState
 >;
@@ -58,38 +59,39 @@ export type UseSlotPropsResult<
 export default function useSlotProps<
   ElementType extends React.ElementType,
   SlotProps,
-  ExternalForwardedProps,
-  ExternalSlotProps,
   AdditionalProps,
   OwnerState,
 >(
   parameters: UseSlotPropsParameters<
     ElementType,
     SlotProps,
-    ExternalForwardedProps,
-    WithCommonProps<ExternalSlotProps>,
-    WithCommonProps<AdditionalProps>,
+    object,
+    WithCommonProps<object>,
+    AdditionalProps,
     OwnerState
   >,
 ) {
   const { elementType, externalSlotProps, ownerState, ...rest } = parameters;
   const resolvedComponentsProps = resolveComponentProps(externalSlotProps, ownerState);
-  const merged = mergeSlotProps({
+  const { props: mergedProps, internalRef } = mergeSlotProps({
     ...rest,
     externalSlotProps: resolvedComponentsProps,
   });
 
-  const props = appendOwnerState(
-    elementType,
-    {
-      ...merged.props,
-      ref: useForkRef(
-        merged.internalRef,
-        useForkRef(resolvedComponentsProps?.ref, parameters.additionalProps?.ref),
-      ),
-    },
-    ownerState,
-  );
+  const ref = useForkRef(
+    internalRef,
+    useForkRef(resolvedComponentsProps?.ref, parameters.additionalProps?.ref),
+  ) as ((instance: any | null) => void) | null;
+
+  const props: UseSlotPropsResult<ElementType, SlotProps, AdditionalProps, OwnerState> =
+    appendOwnerState(
+      elementType,
+      {
+        ...mergedProps,
+        ref,
+      },
+      ownerState,
+    );
 
   return props;
 }
