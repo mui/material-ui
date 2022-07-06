@@ -231,6 +231,7 @@ export interface CssVarsPalette {
   error: PaletteColorChannel;
   info: PaletteColorChannel;
   success: PaletteColorChannel;
+  warning: PaletteColorChannel;
   text: PaletteTextChannel;
   dividerChannel: string;
   action: PaletteActionChannel;
