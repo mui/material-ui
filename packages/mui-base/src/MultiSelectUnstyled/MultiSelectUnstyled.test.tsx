@@ -14,12 +14,6 @@ import {
   fireEvent,
 } from 'test/utils';
 
-declare module '@mui/base/MultiSelectUnstyled' {
-  interface MultiSelectUnstyledComponentsPropsOverrides {
-    'data-testid'?: string;
-  }
-}
-
 describe('MultiSelectUnstyled', () => {
   const mount = createMount();
   const { render } = createRenderer();
@@ -177,7 +171,7 @@ describe('MultiSelectUnstyled', () => {
             componentsProps={{
               root: {
                 'data-testid': 'select',
-              },
+              } as any,
             }}
           >
             <OptionUnstyled value={1}>1</OptionUnstyled>

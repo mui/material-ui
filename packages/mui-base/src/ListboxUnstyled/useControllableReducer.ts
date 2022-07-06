@@ -52,30 +52,26 @@ function useStateChangeDetection<TOption>(
     }
 
     const previousState = getControlledState(internalPreviousState, propsRef.current);
-    const { multiple, optionComparer, onChange } = propsRef.current;
+    const { multiple, optionComparer } = propsRef.current;
 
     if (multiple) {
-      if (
-        !areArraysEqual(
-          nextState.selectedValue as TOption[],
-          (previousState?.selectedValue ?? []) as TOption[],
-          optionComparer,
-        )
-      ) {
-        // TODO: type this properly
-        onChange?.(nextState.selectedValue as any);
+      const previousSelectedValues = (previousState?.selectedValue ?? []) as TOption[];
+      const nextSelectedValues = nextState.selectedValue as TOption[];
+      const onChange = propsRef.current.onChange as ((value: TOption[]) => void) | undefined;
+
+      if (!areArraysEqual(nextSelectedValues, previousSelectedValues, optionComparer)) {
+        onChange?.(nextSelectedValues);
       }
-    } else if (
-      !areOptionsEqual(
-        nextState.selectedValue as TOption,
-        previousState?.selectedValue as TOption,
-        propsRef.current.optionComparer,
-      )
-    ) {
-      // TODO: type this properly
-      onChange?.(nextState.selectedValue as any);
+    } else {
+      const previousSelectedValue = previousState?.selectedValue as TOption | null;
+      const nextSelectedValue = nextState.selectedValue as TOption | null;
+      const onChange = propsRef.current.onChange as ((value: TOption | null) => void) | undefined;
+
+      if (!areOptionsEqual(nextSelectedValue, previousSelectedValue, optionComparer)) {
+        onChange?.(nextSelectedValue);
+      }
     }
-  }, [nextState, internalPreviousState, propsRef]);
+  }, [nextState.selectedValue, internalPreviousState, propsRef]);
 
   React.useEffect(() => {
     if (!propsRef.current) {
@@ -90,7 +86,6 @@ function useStateChangeDetection<TOption>(
         propsRef.current.optionComparer,
       )
     ) {
-      // TODO: test this
       propsRef.current?.onHighlightChange?.(nextState.highlightedValue);
     }
   }, [nextState.highlightedValue, internalPreviousState.highlightedValue, propsRef]);
@@ -125,7 +120,6 @@ export default function useControllableReducer<TOption>(
     [externalReducer, internalReducer, propsRef],
   );
 
-  // TODO: augment dispatch with props
   const [nextState, dispatch] = React.useReducer(combinedReducer, initalState);
 
   const previousState = React.useRef<ListboxState<TOption>>(initalState);
