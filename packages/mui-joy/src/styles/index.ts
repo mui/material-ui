@@ -29,6 +29,7 @@ export type {
   TypographySystem,
   TypographySystemOverrides,
 } from './types/typography';
+export type { Components } from './components';
 export type {
   VariantPlain,
   VariantPlainHover,
@@ -50,7 +51,7 @@ export type {
   Variants,
   VariantProp,
 } from './types/variants';
-export type { Theme } from './types/theme';
+export type { Theme, ThemeVars, ThemeScales, ThemeCSSVar } from './types/theme';
 export {
   CssVarsProvider,
   useColorScheme,
