@@ -1,5 +1,6 @@
 import React from 'react';
 import { OverrideProps } from '@mui/types';
+import { SlotComponentProps } from '../utils';
 
 interface TabsUnstyledComponentsPropsOverrides {}
 
@@ -45,7 +46,7 @@ export interface TabsUnstyledOwnProps {
    * @default {}
    */
   componentsProps?: {
-    root?: React.ComponentPropsWithRef<'div'> & TabsUnstyledComponentsPropsOverrides;
+    root?: SlotComponentProps<'div', TabsUnstyledComponentsPropsOverrides, TabsUnstyledOwnerState>;
   };
   /**
    * Callback invoked when new value is being set.

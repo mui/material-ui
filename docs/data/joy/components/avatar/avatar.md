@@ -8,62 +8,85 @@ githubLabel: 'component: avatar'
 
 <p class="description">Avatar represents a person that contains an image or initials which can also be presented in a group with multiple avatars.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+## Introduction
 
-## Variants and colors
-
-The avatar applies Joy UI's global variant tokens－which has `soft` and `neutral` as default values for variant and color, respectively.
+The avatar component is usually seen for displaying user information in places such as menus, tables, and chats.
 
 {{"demo": "AvatarUsage.js", "hideToolbar": true}}
 
-## Image
+{{"component": "modules/components/ComponentLinkHeader.js"}}
 
-Image avatar can be created by passing standard html `img` props (e.g. `src` or `srcSet`) to the component.
+## Component
 
-{{"demo": "ImageAvatars.js"}}
+After [installation](/joy-ui/getting-started/installation/), you can start building with this component using the following basic elements:
 
-## Initials
+```jsx
+import Avatar from '@mui/joy/Avatar';
 
-Pass a string as `children` prop to the avatar to display initials.
+export default function MyApp() {
+  return <Avatar />;
+}
+```
 
-{{"demo": "InitialAvatars.js"}}
+### Sizes
 
-## Sizes
-
-The avatar has three standard sizes: `sm`, `md` (default), and `lg`.
+The avatar components comes with three sizes out of the box: `sm`, `md` (the default), and `lg`.
 
 {{"demo": "AvatarSizes.js"}}
 
-## Fallbacks
+### Initials
 
-If an error occurs while loading the avatar image, the component will fall back to alternatives in the following order:
+Use a string as children to display its initials on the avatar component.
 
-1. The provided children
-2. The first letter of the `alt` text
-3. A generic avatar icon
+{{"demo": "InitialAvatars.js"}}
+
+### Image
+
+Insert images in the avatar by using a path inside the `src` prop, similar to how you'd do in the HTML `<img>` element.
+Make sure to to write a meaningful description in the `alt` prop.
+
+{{"demo": "ImageAvatars.js"}}
+
+### Image fallbacks
+
+If an error occurs while loading the avatar image, it will fallback to alternatives in the following order:
+
+1. The provided children string.
+2. The first letter of the `alt` text.
+3. A generic icon.
 
 {{"demo": "FallbackAvatars.js"}}
 
-## Group
+### With a badge
+
+Combine the avatar component with the [`Badge`](/joy-ui/react-bagde/) to extend what you can communicate with it.
+
+{{"demo": "BadgeAvatars.js"}}
+
+### Group
 
 Use `AvatarGroup` component to group multiple avatars together.
 
+```jsx
+import AvatarGroup from '@mui/joy/AvatarGroup';
+```
+
 {{"demo": "GroupedAvatars.js"}}
 
-### Max and total avatars
+### Quantity within a group
 
-The `AvatarGroup` does not provide built-in props to control the maximum and the total avatars.
+The `AvatarGroup` does not provide built-in props to control the maximum and the total number of avatars within a group.
 This is because customization is broader if you have full control of the logic.
 
-Here's a common example of what you'll find most applications out there:
+Use the snippet below as insipiration to create that:
 
 {{"demo": "MaxAndTotalAvatars.js"}}
 
 ### Ellipsis action
 
-The `Avatar` exposes meaningful CSS variables to communicate with the `AvatarGroup`.
-You can apply those variables to other components to mimic the avatar appearance inside the group.
-This customization technique makes your interface resilient to changes.
+`Avatar` exposes meaningful CSS variables to communicate with `AvatarGroup`.
+You can apply those variables to other components to mimic the avatar appearance inside a group.
+This customization technique makes your interface more resilient to changes.
 
 Here is an example of using `IconButton` component to create an ellipsis action:
 
@@ -72,27 +95,24 @@ Here is an example of using `IconButton` component to create an ellipsis action:
 ### Overlapping order
 
 By default, the first avatar in the group stays behind the second and so on.
-You can reverse the overlapping order by reversing avatars position and providing CSS `flex-direction: row-reverse` to the `AvatarGroup`.
+You can reverse the overlapping order by reversing avatars position and using the CSS `flexDirection: row-reverse` property in the `AvatarGroup`.
 
 {{"demo": "OverlapAvatarGroup.js"}}
 
 ### Vertical
 
-If you need to render the avatar grouped vertically, add the CSS `writing-mode: vertical-rl` property to the `AvatarGroup` and rotate the extra element, if existent, by -90 degrees.
+To render the `AvatarGroup` vertically, add the CSS `writing-mode: vertical-rl` property to the it and rotate the extra element, if existent, by -90 degrees.
 
 :::info
-This approach preserves the overlapping offset between avatars whereas `flex-direction: column` does not.
+**Tip:** Give preference to this approach as it preserves the overlapping offset between avatars whereas `flexDirection: column` don't.
 :::
 
 {{"demo": "VerticalAvatarGroup.js"}}
 
-### Component variables
+## CSS variables
 
-The `AvatarGroup` contains CSS variables to control the gap and the ring size of the avatars.
-You can override these variables via the `sx` prop.
+Play around with all the CSS variables available in the slider component to see how the design changes.
+
+You can use those to customize the component on both the `sx` prop and the theme.
 
 {{"demo": "AvatarGroupVariables.js", "hideToolbar": true }}
-
-## With badge
-
-{{"demo": "BadgeAvatars.js"}}

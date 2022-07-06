@@ -134,12 +134,17 @@ export default function mergeSlotProps<
   const otherPropsWithoutEventHandlers = omitEventHandlers(externalForwardedProps);
 
   const internalSlotProps = getSlotProps(eventHandlers);
+
+  // The order of classes is important here.
+  // Emotion (that we use in libraries consuming MUI Base) depends on this order
+  // to properly override style. It requires the most important classes to be last
+  // (see https://github.com/mui/material-ui/pull/33205) for the related discussion.
   const joinedClasses = clsx(
+    internalSlotProps?.className,
+    additionalProps?.className,
+    className,
     externalForwardedProps?.className,
     externalSlotProps?.className,
-    className,
-    additionalProps?.className,
-    internalSlotProps?.className,
   );
 
   const mergedStyle = {

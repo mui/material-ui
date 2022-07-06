@@ -44,7 +44,6 @@ describe('SelectUnstyled', () => {
         testWithElement: null,
       },
     },
-    skip: ['componentsPropsCallbacks'], // not implemented yet
   }));
 
   describe('keyboard navigation', () => {
