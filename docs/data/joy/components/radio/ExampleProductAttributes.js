@@ -35,7 +35,7 @@ export default function ExampleProductAttributes() {
                 width: 40,
                 height: 40,
                 flexShrink: 0,
-                bgcolor: `${color}.500`,
+                bgcolor: `${color}.solidBg`,
                 borderRadius: '50%',
                 display: 'flex',
                 alignItems: 'center',

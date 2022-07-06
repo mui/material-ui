@@ -45,7 +45,6 @@ describe('MultiSelectUnstyled', () => {
         testWithElement: null,
       },
     },
-    skip: ['componentsPropsCallbacks'], // not implemented yet
   }));
 
   describe('keyboard navigation', () => {
