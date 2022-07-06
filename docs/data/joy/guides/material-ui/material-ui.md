@@ -10,12 +10,12 @@ There are two main use cases for using them together:
 2. You've started your project with Joy UI but you find a key component you need is missing.
 
 :::warning
-**⚠️ Note:** Once Joy UI reaches component parity with Material UI, we recommend you to _choose one or the other_. Not only do they have a different design language (and therefore a different theme structure) but they would also increase your bundle size as well as potentially create unnecessary complexities.
+**⚠️ Note:** Once Joy UI reaches component parity with Material UI, we recommend you to _choose one or the other_. Not only do they have a different design language (and therefore a different theme structure) but they would increase your bundle size as well as potentially create unnecessary complexities.
 :::
 
 Additionally, keep these in mind when using them together:
 
-- Both of them use MUI System as their syle engine, which uses React context for theming.
+- Both of them use [MUI System](/system/basics/) as their syle engine, which uses React context for theming.
 - Joy UI requires wrapping your application with the `CssVarsProvider` component but you're able to import it from either @mui/joy or @mui/material.
 
 ## Case A: Joy UI in a Material UI project
