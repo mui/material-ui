@@ -6,7 +6,10 @@ export {
   Theme,
 } from './createTheme';
 export { default as adaptV4Theme, DeprecatedThemeOptions } from './adaptV4Theme';
+export { Shadows } from './shadows';
+export { ZIndex } from './zIndex';
 export {
+  CommonColors,
   Palette,
   PaletteColor,
   PaletteColorOptions,
