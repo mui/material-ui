@@ -1,32 +1,26 @@
-# Using Joy and Material UI together
+# Using Joy UI and Material UI together
 
-<p class="description">A how-to-guide for using Joy and Material UI together in the same project.</p>
+<p class="description">Learn how to use Joy UI and Material UI together in the same project.</p>
 
-## Caveat
+## Introduction
 
-The purpose of this guide is to help developers set up Joy and Material UI together for these specific needs:
+There are two main use cases for using them together:
 
-- The existing project uses Material UI but want to try new components from Joy UI.
-- Starts a project with Joy UI but there is no built-in components eg. Menu, so have to leverage Material UI components.
+1. Your existing project already uses Material UI but you're willing to explore the new components and style Joy UI offers.
+2. You've started your project with Joy UI but you find a key component you need is missing.
 
 :::warning
-Once Joy has parity of components in the future, we do not recommend to use both of them together because they follow different design guidelines. Having multiple design guidelines in the same project could create unnecessary complexities and increase the bundle size.
+**⚠️ Note:** Once Joy UI reaches component parity with Material UI, we recommend you to _choose one or the other_. Not only do they have a different design language (and therefore a different theme structure) but they would also increase your bundle size as well as potentially create unnecessary complexities.
 :::
 
-Here are some details that you need to be aware of when using Joy and Material UI together:
+Additionally, keep these in mind when using them together:
 
-- Joy and Material UI use the same **style engine** from `@mui/system` which share the same react context for theming.
-- Joy components need `CssVarsProvider` (either from `@mui/joy` or `@mui/material`).
-- The theme structure of Joy and Material UI is not exactly the same but can be merged.
+- Both of them use MUI System as their syle engine, which uses React context for theming.
+- Joy UI requires wrapping your application with the `CssVarsProvider` component but you're able to import it from either @mui/joy or @mui/material.
 
-## Joy UI in Material UI project
+## Case A: Joy UI in a Material UI project
 
-This setup is for the project that:
-
-- uses Material UI as a starting point but want to try new components from Joy UI.
-- might transition to Joy UI in the future.
-
-In this use case, the Material UI theme should overrides the theme from Joy UI:
+For this case, the Material UI theme should override the Joy UI's.
 
 ```js
 import { deepmerge } from '@mui/utils';
@@ -62,7 +56,7 @@ const joyTheme = extendJoyTheme({
         neutral: {
           ...grey,
         },
-        // Do the same for `danger`, `info`, `success`, `warning`,
+        // Do the same for the `danger`, `info`, `success`, and `warning` palettes,
         divider: 'var(--mui-palette-divider)',
         text: {
           tertiary: 'rgba(0 0 0 / 0.56)',
@@ -86,7 +80,7 @@ const joyTheme = extendJoyTheme({
 });
 
 // Note: you can't put `joyTheme` inside Material UI's `extendMuiTheme(joyTheme)` because
-//       some of the values in joy theme refers to CSS variables, not the raw color.
+//       some of the values in the Joy UI theme refers to CSS variables abd not raw colors.
 const muiTheme = extendMuiTheme();
 
 // You can use your own `deepmerge` function.
@@ -104,7 +98,7 @@ export default function App() {
 
 ### TypeScript
 
-You need to augment Material UI theme to include theme tokens from Joy UI:
+Make sure to augment the Material UI theme so you're able to include theme tokens from Joy UI.
 
 ```ts
 // This will attach `vars` types to the theme
@@ -124,15 +118,15 @@ declare module '@mui/material/styles' {
 }
 ```
 
-### Code sandbox
+### CodeSandbox
 
-Open the code sandbox to see the full setup and preview.
+Visit the following CodeSandbox to preview this use case setup.
 
-[![Edit Material UI feat. Joy UI](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/material-ui-feat-joy-ui-eph5gi?fontsize=12&module=%2Fdemo.tsx&moduleview=1&theme=dark)
+[![Edit Joy UI in a Material UI project](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/material-ui-feat-joy-ui-eph5gi?fontsize=12&module=%2Fdemo.tsx&moduleview=1&theme=dark)
 
-## Material UI in Joy UI project
+## Case B: Material UI in a Joy UI project
 
-This setup uses `CssVarsProvider` from Joy UI and configures Material UI theme to use the tokens from Joy.
+This setup uses the `CssVarsProvider` component from Joy UI and configures the Material UI theme to use the tokens from Joy UI.
 
 ```js
 import { deepmerge } from '@mui/utils';
@@ -224,8 +218,8 @@ export default function App() {
 }
 ```
 
-### Code sandbox
+### CodeSandbox
 
-Open the code sandbox to see the full setup and preview.
+Visit the following CodeSandbox to preview this use case setup.
 
-[![Edit Joy UI feat. Material UI](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/joy-ui-feat-material-ui-cy4nj7?fontsize=12&hidenavigation=1&module=%2Fdemo.tsx&theme=dark)
+[![Edit Material UI in a Joy UI project](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/joy-ui-feat-material-ui-cy4nj7?fontsize=12&hidenavigation=1&module=%2Fdemo.tsx&theme=dark)
