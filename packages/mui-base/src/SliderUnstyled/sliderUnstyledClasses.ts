@@ -46,6 +46,7 @@ export interface SliderUnstyledClasses {
 
 export type SliderUnstyledClassKey = keyof SliderUnstyledClasses;
 
+// TODO: change `MuiSlider` to 'BaseSlider` after it's possible to customize the prefix from Material UI components.
 export function getSliderUtilityClass(slot: string): string {
   return generateUtilityClass('MuiSlider', slot);
 }

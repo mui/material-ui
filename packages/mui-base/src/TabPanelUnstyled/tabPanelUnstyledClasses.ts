@@ -9,12 +9,12 @@ export interface TabPanelUnstyledClasses {
 export type TabPanelUnstyledClassKey = keyof TabPanelUnstyledClasses;
 
 export function getTabPanelUnstyledUtilityClass(slot: string): string {
-  return generateUtilityClass('TabPanelUnstyled', slot);
+  return generateUtilityClass('BaseTabPanel', slot);
 }
 
-const tabPanelUnstyledClasses: TabPanelUnstyledClasses = generateUtilityClasses(
-  'TabPanelUnstyled',
-  ['root', 'hidden'],
-);
+const tabPanelUnstyledClasses: TabPanelUnstyledClasses = generateUtilityClasses('BaseTabPanel', [
+  'root',
+  'hidden',
+]);
 
 export default tabPanelUnstyledClasses;

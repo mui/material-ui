@@ -10,6 +10,7 @@ export interface ModalUnstyledClasses {
 
 export type ModalUnstyledClassKey = keyof ModalUnstyledClasses;
 
+// TODO: change `MuiModal` to 'BaseModal` after it's possible to customize the prefix from Material UI components.
 export function getModalUtilityClass(slot: string): string {
   return generateUtilityClass('MuiModal', slot);
 }

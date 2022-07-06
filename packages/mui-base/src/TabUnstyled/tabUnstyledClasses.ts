@@ -10,10 +10,10 @@ export interface TabUnstyledClasses {
 export type TabUnstyledClassKey = keyof TabUnstyledClasses;
 
 export function getTabUnstyledUtilityClass(slot: string): string {
-  return generateUtilityClass('TabUnstyled', slot);
+  return generateUtilityClass('BaseTab', slot);
 }
 
-const tabUnstyledClasses: TabUnstyledClasses = generateUtilityClasses('TabUnstyled', [
+const tabUnstyledClasses: TabUnstyledClasses = generateUtilityClasses('BaseTab', [
   'root',
   'selected',
   'disabled',
