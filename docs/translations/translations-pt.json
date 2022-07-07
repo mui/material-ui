@@ -160,7 +160,7 @@
   "visit": "Acesse o site",
   "whosUsing": "Quem está usando MUI?",
   "pages": {
-    "/system": "Sistema",
+    "/system-styles": "System styles",
     "/system/basics": "Noções Básicas",
     "/system/properties": "Propriedades",
     "/system/the-sx-prop": "A propriedade sx",
@@ -180,6 +180,7 @@
     "/system/react-": "Components",
     "/system/react-box": "Box",
     "/system/react-container": "Container",
+    "/system/react-grid": "Grid",
     "/system/styles": "Styles",
     "/system/styles/basics": "Basics",
     "/system/styles/advanced": "Advanced",
