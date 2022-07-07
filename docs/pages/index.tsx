@@ -12,13 +12,13 @@ import Testimonials from 'docs/src/components/home/Testimonials';
 import Sponsors from 'docs/src/components/home/Sponsors';
 import HeroEnd from 'docs/src/components/home/HeroEnd';
 import AppFooter from 'docs/src/layouts/AppFooter';
-import BrandingProvider from 'docs/src/BrandingProvider';
+import BrandingCssVarsProvider from 'docs/src/BrandingCssVarsProvider';
 import NewsletterToast from 'docs/src/components/home/NewsletterToast';
 import AppHeaderBanner from 'docs/src/components/banner/AppHeaderBanner';
 
 export default function Home() {
   return (
-    <BrandingProvider>
+    <BrandingCssVarsProvider>
       <Head
         title="MUI: The React component library you always wanted"
         description="MUI provides a simple, customizable, and accessible library of React components. Follow your own design system, or start with Material Design. You will develop React applications faster."
@@ -60,6 +60,6 @@ export default function Home() {
           `,
         }}
       />
-    </BrandingProvider>
+    </BrandingCssVarsProvider>
   );
 }
