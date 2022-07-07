@@ -4,10 +4,19 @@ import {
   Experimental_CssVarsProvider as CssVarsProvider,
   experimental_extendTheme as extendTheme,
   PaletteColorOptions,
+  Theme,
 } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import { NextNProgressBar } from 'docs/src/modules/components/AppFrame';
-import { blue, blueDark, grey, error, success, warning } from 'docs/src/modules/brandingTheme';
+import {
+  blue,
+  blueDark,
+  grey,
+  error,
+  success,
+  warning,
+  getThemedComponents,
+} from 'docs/src/modules/brandingTheme';
 
 const systemFont = [
   '-apple-system',
@@ -174,9 +183,16 @@ const theme = extendTheme({
   },
 });
 
+const resolveTheme = (parsedTheme: Theme) => {
+  return {
+    ...parsedTheme,
+    ...getThemedComponents(parsedTheme),
+  };
+};
+
 export default function BrandingCssVarsProvider({ children }: { children: React.ReactNode }) {
   return (
-    <CssVarsProvider theme={theme}>
+    <CssVarsProvider theme={theme} resolveTheme={resolveTheme}>
       <CssBaseline />
       <NextNProgressBar />
       {children}

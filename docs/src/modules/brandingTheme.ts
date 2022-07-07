@@ -1,4 +1,5 @@
 import { deepmerge } from '@mui/utils';
+import type {} from '@mui/material/themeCssVarsAugmentation';
 import ArrowDropDownRounded from '@mui/icons-material/ArrowDropDownRounded';
 import { createTheme, ThemeOptions, Theme, alpha } from '@mui/material/styles';
 
@@ -308,7 +309,7 @@ export function getThemedComponents(theme: Theme): { components: Theme['componen
             marginLeft: theme.spacing(-1),
           },
           containedPrimary: {
-            backgroundColor: theme.palette.primary[500],
+            backgroundColor: (theme.vars || theme).palette.primary[500],
             color: '#fff',
           },
         },
@@ -317,17 +318,32 @@ export function getThemedComponents(theme: Theme): { components: Theme['componen
             // @ts-ignore internal repo module augmentation issue
             props: { variant: 'code' },
             style: {
-              color:
-                theme.palette.mode === 'dark' ? theme.palette.grey[400] : theme.palette.grey[800],
               border: '1px solid',
-              borderColor:
-                theme.palette.mode === 'dark'
-                  ? theme.palette.primaryDark[400]
-                  : theme.palette.grey[300],
-              backgroundColor:
-                theme.palette.mode === 'dark'
-                  ? theme.palette.primaryDark[700]
-                  : theme.palette.grey[50],
+              ...(!theme.vars
+                ? {
+                    color:
+                      theme.palette.mode === 'dark'
+                        ? theme.palette.grey[400]
+                        : theme.palette.grey[800],
+                    borderColor:
+                      theme.palette.mode === 'dark'
+                        ? theme.palette.primaryDark[400]
+                        : theme.palette.grey[300],
+                    backgroundColor:
+                      theme.palette.mode === 'dark'
+                        ? theme.palette.primaryDark[700]
+                        : theme.palette.grey[50],
+                  }
+                : {
+                    color: theme.vars.palette.grey[800],
+                    borderColor: theme.vars.palette.grey[300],
+                    backgroundColor: theme.vars.palette.grey[50],
+                    [theme.getColorSchemeSelector('dark')]: {
+                      color: theme.vars.palette.grey[400],
+                      borderColor: theme.vars.palette.primaryDark[300],
+                      backgroundColor: theme.vars.palette.primaryDark[700],
+                    },
+                  }),
               fontFamily: theme.typography.fontFamilyCode,
               fontWeight: 400,
               fontSize: defaultTheme.typography.pxToRem(13), // 14px
@@ -335,28 +351,54 @@ export function getThemedComponents(theme: Theme): { components: Theme['componen
               letterSpacing: 0,
               WebkitFontSmoothing: 'subpixel-antialiased',
               '&:hover, &.Mui-focusVisible': {
-                borderColor: theme.palette.primary.main,
-                backgroundColor:
-                  theme.palette.mode === 'dark'
-                    ? theme.palette.primaryDark[600]
-                    : theme.palette.primary[50],
-                '& .MuiButton-endIcon': {
-                  color:
-                    theme.palette.mode === 'dark'
-                      ? theme.palette.primary[300]
-                      : theme.palette.primary.main,
-                },
+                borderColor: (theme.vars || theme).palette.primary.main,
+                ...(!theme.vars
+                  ? {
+                      backgroundColor:
+                        theme.palette.mode === 'dark'
+                          ? theme.palette.primaryDark[600]
+                          : theme.palette.primary[50],
+                      '& .MuiButton-endIcon': {
+                        color:
+                          theme.palette.mode === 'dark'
+                            ? theme.palette.primary[300]
+                            : theme.palette.primary.main,
+                      },
+                    }
+                  : {
+                      backgroundColor: theme.vars.palette.primary[50],
+                      [theme.getColorSchemeSelector('dark')]: {
+                        backgroundColor: theme.vars.palette.primaryDark[600],
+                      },
+                      '& .MuiButton-endIcon': {
+                        color: theme.vars.palette.primary.main,
+                        [theme.getColorSchemeSelector('dark')]: {
+                          backgroundColor: theme.vars.palette.primary[300],
+                        },
+                      },
+                    }),
               },
               '& .MuiButton-startIcon': {
-                color: theme.palette.grey[400],
+                color: (theme.vars || theme).palette.grey[400],
               },
               '& .MuiButton-endIcon': {
                 display: 'inline-block',
                 position: 'absolute',
                 right: 0,
                 marginRight: 10,
-                color:
-                  theme.palette.mode === 'dark' ? theme.palette.grey[400] : theme.palette.grey[700],
+                ...(!theme.vars
+                  ? {
+                      color:
+                        theme.palette.mode === 'dark'
+                          ? theme.palette.grey[400]
+                          : theme.palette.grey[700],
+                    }
+                  : {
+                      color: theme.vars.palette.grey[400],
+                      [theme.getColorSchemeSelector('dark')]: {
+                        color: theme.vars.palette.grey[700],
+                      },
+                    }),
               },
             },
           },
