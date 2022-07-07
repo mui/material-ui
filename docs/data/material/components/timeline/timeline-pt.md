@@ -10,7 +10,7 @@ packageName: '@mui/lab'
 
 <p class="description">A linha do tempo exibe uma lista de eventos em ordem cronológica.</p>
 
-**Observação:** Este componente não está documentado nas [diretrizes do Material Design](https://material.io/), mas o Material-UI o suporta.
+**Observação:** Este componente não está documentado nas [diretrizes do Material Design](https://material.io/), mas o Material UI o suporta.
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
@@ -50,6 +50,6 @@ A linha do tempo pode exibir conteúdo nos lados opostos.
 
 ## Linha do tempo customizada
 
-Aqui está um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/how-to-customize/).
+Aqui está um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/material-ui/customization/how-to-customize/).
 
 {{"demo": "CustomizedTimeline.js"}}

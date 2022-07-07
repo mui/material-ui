@@ -13,9 +13,9 @@ describe('Joy <Input />', () => {
     classes,
     ThemeProvider,
     refInstanceof: window.HTMLDivElement,
-    muiName: 'MuiInput',
+    muiName: 'JoyInput',
     testDeepOverrides: { slotName: 'input', slotClassName: classes.input },
-    testVariantProps: { variant: 'contained', fullWidth: true },
+    testVariantProps: { variant: 'solid', fullWidth: true },
     skip: ['propsSpread', 'componentsProp', 'classesRoot'],
   }));
 
@@ -29,24 +29,14 @@ describe('Joy <Input />', () => {
     expect(container.firstChild).to.have.class(classes.fullWidth);
   });
 
-  it('should have startAdornment', () => {
-    render(<Input startAdornment={<span data-testid="start">start</span>} />);
+  it('should have startDecorator', () => {
+    render(<Input startDecorator={<span data-testid="start">start</span>} />);
     expect(screen.getByTestId('start')).toBeVisible();
   });
 
-  it('should have adornedStart classes', () => {
-    const { container } = render(<Input startAdornment="start" />);
-    expect(container.firstChild).to.have.class(classes.adornedStart);
-  });
-
-  it('should have endAdornment', () => {
-    render(<Input endAdornment={<span data-testid="end">end</span>} />);
+  it('should have endDecorator', () => {
+    render(<Input endDecorator={<span data-testid="end">end</span>} />);
     expect(screen.getByTestId('end')).toBeVisible();
-  });
-
-  it('should have adornedEnd classes', () => {
-    const { container } = render(<Input endAdornment="end" />);
-    expect(container.firstChild).to.have.class(classes.adornedEnd);
   });
 
   describe('prop: disabled', () => {

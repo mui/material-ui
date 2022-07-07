@@ -118,6 +118,9 @@ Para um desenvolvimento ágil para dispositivos móveis, use classes de exibiç�
 <Box component="div" sx={{ whiteSpace: 'normal' }}>
   Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
 </Box>
+<Box component="div" sx={{ whiteSpace: 'normal' }}>
+  Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
+</Box>
 ```
 
 ## API

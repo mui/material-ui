@@ -38,6 +38,6 @@
   "forwardsRefTo": "HTMLUListElement",
   "filename": "/packages/mui-lab/src/TreeView/TreeView.js",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/material-ui/react-tree-view/\">Tree View</a></li></ul>",
+  "demos": "<ul><li><a href=\"/material-ui/react-tree-view/\">Tree view</a></li></ul>",
   "cssComponent": false
 }

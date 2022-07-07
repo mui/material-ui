@@ -65,9 +65,9 @@ const ButtonGroupRoot = styled('div', {
   overridesResolver,
 })(({ theme, ownerState }) => ({
   display: 'inline-flex',
-  borderRadius: theme.shape.borderRadius,
+  borderRadius: (theme.vars || theme).shape.borderRadius,
   ...(ownerState.variant === 'contained' && {
-    boxShadow: theme.shadows[2],
+    boxShadow: (theme.vars || theme).shadows[2],
   }),
   ...(ownerState.disableElevation && {
     boxShadow: 'none',
@@ -109,19 +109,25 @@ const ButtonGroupRoot = styled('div', {
       }),
       ...(ownerState.variant === 'text' &&
         ownerState.orientation === 'horizontal' && {
-          borderRight: `1px solid ${
-            theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
-          }`,
+          borderRight: theme.vars
+            ? `1px solid rgba(${theme.vars.palette.common.onBackgroundChannel} / 0.23)`
+            : `1px solid ${
+                theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
+              }`,
         }),
       ...(ownerState.variant === 'text' &&
         ownerState.orientation === 'vertical' && {
-          borderBottom: `1px solid ${
-            theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
-          }`,
+          borderBottom: theme.vars
+            ? `1px solid rgba(${theme.vars.palette.common.onBackgroundChannel} / 0.23)`
+            : `1px solid ${
+                theme.palette.mode === 'light' ? 'rgba(0, 0, 0, 0.23)' : 'rgba(255, 255, 255, 0.23)'
+              }`,
         }),
       ...(ownerState.variant === 'text' &&
         ownerState.color !== 'inherit' && {
-          borderColor: alpha(theme.palette[ownerState.color].main, 0.5),
+          borderColor: theme.vars
+            ? `rgba(${theme.vars.palette[ownerState.color].mainChannel} / 0.5)`
+            : alpha(theme.palette[ownerState.color].main, 0.5),
         }),
       ...(ownerState.variant === 'outlined' &&
         ownerState.orientation === 'horizontal' && {
@@ -133,21 +139,21 @@ const ButtonGroupRoot = styled('div', {
         }),
       ...(ownerState.variant === 'contained' &&
         ownerState.orientation === 'horizontal' && {
-          borderRight: `1px solid ${theme.palette.grey[400]}`,
+          borderRight: `1px solid ${(theme.vars || theme).palette.grey[400]}`,
           [`&.${buttonGroupClasses.disabled}`]: {
-            borderRight: `1px solid ${theme.palette.action.disabled}`,
+            borderRight: `1px solid ${(theme.vars || theme).palette.action.disabled}`,
           },
         }),
       ...(ownerState.variant === 'contained' &&
         ownerState.orientation === 'vertical' && {
-          borderBottom: `1px solid ${theme.palette.grey[400]}`,
+          borderBottom: `1px solid ${(theme.vars || theme).palette.grey[400]}`,
           [`&.${buttonGroupClasses.disabled}`]: {
-            borderBottom: `1px solid ${theme.palette.action.disabled}`,
+            borderBottom: `1px solid ${(theme.vars || theme).palette.action.disabled}`,
           },
         }),
       ...(ownerState.variant === 'contained' &&
         ownerState.color !== 'inherit' && {
-          borderColor: theme.palette[ownerState.color].dark,
+          borderColor: (theme.vars || theme).palette[ownerState.color].dark,
         }),
       '&:hover': {
         ...(ownerState.variant === 'outlined' &&
@@ -262,7 +268,9 @@ ButtonGroup.propTypes /* remove-proptypes */ = {
    */
   className: PropTypes.string,
   /**
-   * The color of the component. It supports those theme colors that make sense for this component.
+   * The color of the component.
+   * It supports both default and custom theme colors, which can be added as shown in the
+   * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
    * @default 'primary'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([

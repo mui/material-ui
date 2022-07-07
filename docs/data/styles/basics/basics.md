@@ -4,13 +4,13 @@
 
 > ⚠️ `@mui/styles` is the _**legacy**_ styling solution for MUI.
 > It depends on [JSS](https://cssinjs.org/) as a styling solution, which is not used in the `@mui/material` anymore, deprecated in v5.
-> If you don't want to have both emotion & JSS in your bundle, please refer to the [`@mui/system`](/system/basics/) documentation which is the recommended alternative.
+> If you don't want to have both Emotion & JSS in your bundle, please refer to the [`@mui/system`](/system/basics/) documentation which is the recommended alternative.
 
 > ⚠️ `@mui/styles` is not compatible with [React.StrictMode](https://reactjs.org/docs/strict-mode.html) or React 18.
 
 MUI aims to provide a strong foundation for building dynamic UIs.
 For the sake of simplicity, **we expose the styling solution used in MUI components** as the `@mui/styles` package.
-You can use it, but you don't have to, since MUI is also [interoperable with](/guides/interoperability/) all the other major styling solutions.
+You can use it, but you don't have to, since MUI is also [interoperable with](/material-ui/guides/interoperability/) all the other major styling solutions.
 
 ## Why use MUI's styling solution?
 
@@ -18,7 +18,7 @@ In previous versions, MUI has used [Less](https://lesscss.org/), and then a cust
 [A _CSS-in-JS_ solution](https://github.com/oliviertassinari/a-journey-toward-better-style) overcomes many of those limitations,
 and **unlocks many great features** (theme nesting, dynamic styles, self-support, etc.).
 
-MUI's styling solution is inspired by many other styling libraries such as [styled-components](https://styled-components.com/) and [emotion](https://emotion.sh/).
+MUI's styling solution is inspired by many other styling libraries such as [styled-components](https://styled-components.com/) and [Emotion](https://emotion.sh/).
 
 - 💅 You can expect [the same advantages](https://styled-components.com/docs/basics#motivation) as styled-components.
 
@@ -77,7 +77,7 @@ export default function Hook() {
 ### Styled components API
 
 Note: this only applies to the calling syntax – style definitions still use a JSS object.
-You can also [change this behavior](/styles/advanced/#string-templates), with some limitations.
+You can also [change this behavior](/system/styles/advanced/#string-templates), with some limitations.
 
 ```jsx
 import * as React from 'react';

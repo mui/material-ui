@@ -12,7 +12,7 @@ describe('Joy <FormHelperText />', () => {
     inheritComponent: 'p',
     render,
     ThemeProvider,
-    muiName: 'MuiFormHelperText',
+    muiName: 'JoyFormHelperText',
     refInstanceof: window.HTMLParagraphElement,
     skip: ['componentsProp', 'classesRoot', 'themeVariants'],
   }));

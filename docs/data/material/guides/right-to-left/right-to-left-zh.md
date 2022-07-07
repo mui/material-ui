@@ -1,6 +1,6 @@
 # 从右到左读取
 
-<p class="description">支持从右到左的语言，如阿拉伯语（Arabic）、波斯语（Persian ）或希伯来语（Hebrew ）。 要更改 Material-UI 组件的读取方向，您必须执行以下步骤。</p>
+<p class="description">支持从右到左的语言，如阿拉伯语（Arabic）、波斯语（Persian ）或希伯来语（Hebrew ）。 要更改 Material UI 组件的读取方向，您必须执行以下步骤。</p>
 
 ## 步骤
 
@@ -36,7 +36,7 @@ const theme = createTheme({
 });
 ```
 
-### 3. 3. 安装 rtl 插件
+### 3. 3. 3. 安装 rtl 插件
 
 你需要这个 JSS 插件来翻转样式： [jss-rtl](https://github.com/alitaheri/jss-rtl)。
 
@@ -44,7 +44,7 @@ const theme = createTheme({
 npm install stylis-plugin-rtl
 ```
 
-> **Note**: Only `emotion` is compatible with version 2 of the plugin. `styled-components` requires version 1. If you are using `styled-components` as styled engine, make sure to install the correct version. `styled-components` requires version 1. If you are using `styled-components` as styled engine, make sure to install the correct version. `styled-components` requires version 1. If you are using `styled-components` as a [styled engine](/guides/styled-engine/), make sure to install the correct version. `styled-components` requires version 1. If you are using `styled-components` as a [styled engine](/guides/styled-engine/), make sure to install the correct version.
+> **Note**: Only `emotion` is compatible with version 2 of the plugin. `styled-components` requires version 1. If you are using `styled-components` as styled engine, make sure to install the correct version. `styled-components` requires version 1. If you are using `styled-components` as styled engine, make sure to install the correct version. `styled-components` requires version 1. If you are using `styled-components` as a [styled engine](/material-ui/guides/styled-engine/), make sure to install the correct version. `styled-components` requires version 1. If you are using `styled-components` as a [styled engine](/material-ui/guides/styled-engine/), make sure to install the correct version. `styled-components` requires version 1. If you are using `styled-components` as a [styled engine](/material-ui/guides/styled-engine/), make sure to install the correct version.
 
 如果你正在使用 `emotion` 或者 `styled-components`，你需要使用该插件来翻转样式： [stylis-plugin-rtl](https://github.com/styled-components/stylis-plugin-rtl)。
 
@@ -52,9 +52,9 @@ npm install stylis-plugin-rtl
 npm install jss-rtl
 ```
 
-在你的项目中安装了该插件后，Material-UI 组件仍然需要通过你使用的样式引擎实例来加载它。 下面的指南讲述了如何进行加载。
+在你的项目中安装了该插件后，Material UI 组件仍然需要通过你使用的样式引擎实例来加载它。 下面的指南讲述了如何进行加载。
 
-### 4. 4. 加载 rtl 插件
+### 4. 4. 4. 加载 rtl 插件
 
 #### 3.1 JSS
 
@@ -94,7 +94,7 @@ function RTL(props) {
 
 #### 3.3 styled-components
 
-After installing the plugin in your project, you need to configure the JSS instance to load it. 一旦您通过插件创建了一个新的 JSS 实例，您需要提给组件树中的所有组件。 The next step is to make the new JSS instance available to all the components in the component tree. 我们有一个 [`StylesProvider`](/styles/api/#stylesprovider) 组件来服务这个需求：
+After installing the plugin in your project, you need to configure the JSS instance to load it. 一旦您通过插件创建了一个新的 JSS 实例，您需要提给组件树中的所有组件。 The next step is to make the new JSS instance available to all the components in the component tree. 我们有一个 [`StylesProvider`](/system/styles/api/#stylesprovider) 组件来服务这个需求： The [`StylesProvider`](/system/styles/api/#stylesprovider) component enables this:
 
 ```jsx
 import rtlPlugin from 'stylis-plugin-rtl';

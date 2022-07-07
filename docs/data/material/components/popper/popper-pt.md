@@ -1,8 +1,10 @@
 ---
 product: material-ui
 title: Componente React Popper
-components: Popper, PopperUnstyled
+components: Popper
 githubLabel: 'component: Popper'
+unstyled: /base/react-popper/
+packageName: '@mui/base'
 ---
 
 # Popper
@@ -13,10 +15,10 @@ Algumas características importantes do componente `Popper`:
 
 - 🕷 Popper é baseado na biblioteca de terceiros ([Popper.js](https://github.com/popperjs/popper-core)) para um posicionamento perfeito.
 - 💄 É uma API alternativa para react-popper. Visa a simplicidade.
-- 📦 [8 kB gzipped](/size-snapshot).
-- O elemento filho [`Portal`](/components/portal/) no corpo do documento, evita problemas de renderização. Você pode desativar esse comportamento com `disablePortal`.
-- O scroll não e bloqueado como ocorre com o componente [`Popover`](/components/popover/). O posicionamento do popper é atualizado com a área disponível no visor.
-- Clicar fora não oculta o componente `Popper`. Se você precisar desse comportamento, você pode usar o componente [`ClickAwayListener`](/components/click-away-listener/) - veja o exemplo na [seção da documentação do menu](/components/menus/#menulist-composition).
+- 📦 [8 kB gzipped](/size-snapshot/).
+- O elemento filho [`Portal`](/material-ui/react-portal/) no corpo do documento, evita problemas de renderização. Você pode desativar esse comportamento com `disablePortal`.
+- O scroll não e bloqueado como ocorre com o componente [`Popover`](/material-ui/react-popover/). O posicionamento do popper é atualizado com a área disponível no visor.
+- Clicar fora não oculta o componente `Popper`. Se você precisar desse comportamento, você pode usar o componente [`ClickAwayListener`](/material-ui/react-click-away-listener/) - veja o exemplo na [seção da documentação do menu](/material-ui/react-menu/#menulist-composition).
 - O `anchorEl` é passado como o objeto de referência para criar uma nova instância `Popper.js`.
 
 [A paleta](/system/palette/) com funções de estilo.
@@ -66,11 +68,3 @@ Para situações de uso mais avançadas, você pode tirar proveito com:
 Existe um pacote de terceiros [`material-ui-popup-state`](https://github.com/jcoreio/material-ui-popup-state) que cuida do estado popover para você na maioria das situações.
 
 {{"demo": "PopperPopupState.js"}}
-
-## Unstyled
-
-The @mui/base package contain an unstyled version of Popper - PopperUnstyled. It does not have a dependency on @mui/material. The only difference between Popper and PopperUnstyled is the support for theming. Popper can read the `direction` field from the current theme, while PopperUnstyled accepts the `direction` prop instead.
-
-```js
-import Popper from '@mui/base/PopperUnstyled';
-```

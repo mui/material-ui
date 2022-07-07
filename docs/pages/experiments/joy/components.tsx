@@ -1,11 +1,22 @@
+/* eslint-disable no-alert */
 import * as React from 'react';
 import { useRouter } from 'next/router';
 import { GlobalStyles } from '@mui/system';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { ThemeProvider } from '@mui/material/styles';
+import AspectRatio from '@mui/joy/AspectRatio';
+import Avatar from '@mui/joy/Avatar';
+import AvatarGroup from '@mui/joy/AvatarGroup';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
+import Card from '@mui/joy/Card';
+import CardCover from '@mui/joy/CardCover';
+import CardContent from '@mui/joy/CardContent';
+import CardOverflow from '@mui/joy/CardOverflow';
+import Chip from '@mui/joy/Chip';
+import ChipDelete from '@mui/joy/ChipDelete';
 import Checkbox from '@mui/joy/Checkbox';
 import IconButton from '@mui/joy/IconButton';
+import Link from '@mui/joy/Link';
 import List from '@mui/joy/List';
 import ListItem from '@mui/joy/ListItem';
 import ListItemContent from '@mui/joy/ListItemContent';
@@ -27,10 +38,14 @@ import TaskAlt from '@mui/icons-material/TaskAltRounded';
 import Inbox from '@mui/icons-material/Inbox';
 import Drafts from '@mui/icons-material/Drafts';
 import KeyboardArrowUp from '@mui/icons-material/KeyboardArrowUp';
-import Star from '@mui/icons-material/StarBorder';
+import StarBorder from '@mui/icons-material/StarBorder';
 import Favorite from '@mui/icons-material/FavoriteBorder';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
+import PlayArrow from '@mui/icons-material/PlayArrow';
+import Delete from '@mui/icons-material/Delete';
+import LocationOn from '@mui/icons-material/LocationOnOutlined';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
+import { brandingDarkTheme } from 'docs/src/modules/brandingTheme';
 
 const ColorSchemePicker = () => {
   const { mode, setMode } = useColorScheme();
@@ -43,7 +58,7 @@ const ColorSchemePicker = () => {
   }
 
   return (
-    <Button
+    <IconButton
       variant="outlined"
       onClick={() => {
         if (mode === 'light') {
@@ -52,13 +67,9 @@ const ColorSchemePicker = () => {
           setMode('light');
         }
       }}
-      sx={{
-        p: '0.25rem',
-        width: 'var(--Button-minHeight)',
-      }}
     >
       {mode === 'light' ? <Moon /> : <Sun />}
-    </Button>
+    </IconButton>
   );
 };
 
@@ -84,9 +95,9 @@ const ControlInput = ({ id, label = 'Label', unit, ...props }: any) => {
       <Input
         id={id}
         size="sm"
-        variant="light"
+        variant="soft"
         {...props}
-        endAdornment={
+        endDecorator={
           unit ? (
             <Typography level="body3" sx={{ pointerEvents: 'none' }}>
               {unit}
@@ -110,11 +121,26 @@ const components: {
   }[];
 }[] = [
   {
+    name: 'AvatarGroup',
+    render: (props: any) => (
+      <AvatarGroup {...props}>
+        <Avatar src="/static/images/avatar/1.jpg" />
+        <Avatar src="/static/images/avatar/2.jpg" />
+        <Avatar src="/static/images/avatar/3.jpg" />
+        <Avatar>+3</Avatar>
+      </AvatarGroup>
+    ),
+    cssVars: [
+      { id: '--AvatarGroup-gap', type: 'number', unit: 'px', defaultValue: -8 },
+      { id: '--Avatar-ringSize', type: 'number', unit: 'px', defaultValue: 2 },
+    ],
+  },
+  {
     name: 'Button',
     render: (props: any) => (
       <React.Fragment>
         <Button {...props}>Text</Button>
-        <Button startIcon={<Add />} variant="light" {...props}>
+        <Button startIcon={<Add />} variant="soft" {...props}>
           Add more row
         </Button>
         <Button endIcon={<DeleteForever />} variant="outlined" {...props}>
@@ -123,9 +149,7 @@ const components: {
       </React.Fragment>
     ),
     cssVars: [
-      { id: '--Button-minHeight', type: 'number', unit: 'px', defaultValue: 40 },
-      { id: '--Button-gutter', type: 'number', unit: 'px', defaultValue: 24 },
-      { id: '--Button-iconOffsetStep', type: 'number', defaultValue: 2 },
+      { id: '--Button-paddingInline', type: 'number', unit: 'px', defaultValue: 24 },
       { id: '--Button-gap', type: 'number', unit: 'px' },
     ],
   },
@@ -136,7 +160,7 @@ const components: {
         <IconButton color="success" {...props}>
           <Add />
         </IconButton>
-        <IconButton variant="contained" color="danger" {...props}>
+        <IconButton variant="solid" color="danger" {...props}>
           <DeleteForever />
         </IconButton>
         <IconButton variant="outlined" color="primary" {...props}>
@@ -155,8 +179,8 @@ const components: {
       <React.Fragment>
         <Switch variant="outlined" {...props} />
         <Switch variant="outlined" defaultChecked {...props} />
-        <Switch variant="light" {...props} />
-        <Switch variant="light" defaultChecked {...props} />
+        <Switch variant="soft" {...props} />
+        <Switch variant="soft" defaultChecked {...props} />
         <Switch {...props} />
         <Switch defaultChecked {...props} />
       </React.Fragment>
@@ -213,14 +237,14 @@ const components: {
                 nested
                 component="div"
                 endAction={
-                  <IconButton variant="text" color="danger">
+                  <IconButton variant="plain" color="danger">
                     <DeleteForever />
                   </IconButton>
                 }
               >
                 <ListItemButton>
                   <ListItemDecorator>
-                    <Star />
+                    <StarBorder />
                   </ListItemDecorator>
                   <ListItemContent>Starred</ListItemContent>
                 </ListItemButton>
@@ -273,7 +297,7 @@ const components: {
       { id: '--List-item-fontSize', type: 'number', unit: 'px', defaultValue: 16 },
       { id: '--List-decorator-width', type: 'number', unit: 'px', defaultValue: 40 },
       { id: '--List-divider-gap', type: 'number', unit: 'px', defaultValue: 0 },
-      { id: '--List-nestedInsetStart', type: 'number', unit: 'px', defaultValue: 12 },
+      { id: '--List-nestedInsetStart', type: 'number', unit: 'px', defaultValue: 0 },
       { id: '--List-item-radius', type: 'number', unit: 'px' },
     ],
   },
@@ -283,8 +307,8 @@ const components: {
       <React.Fragment>
         <Input
           placeholder="Placeholder"
-          startAdornment={<Key />}
-          endAdornment={
+          startDecorator={<Key />}
+          endDecorator={
             <IconButton size="sm" color="neutral">
               <Visibility />
             </IconButton>
@@ -294,31 +318,30 @@ const components: {
         <Input
           color="primary"
           placeholder="Placeholder"
-          startAdornment={<Typography color="inherit">$</Typography>}
-          endAdornment={<Typography color="text.tertiary">USD</Typography>}
+          startDecorator={<Typography textColor="inherit">$</Typography>}
+          endDecorator={<Typography textColor="text.tertiary">USD</Typography>}
           {...props}
         />
-        <Input placeholder="Placeholder" color="danger" endAdornment={<Info />} {...props} />
+        <Input placeholder="Placeholder" color="danger" endDecorator={<Info />} {...props} />
         <Input
           placeholder="Placeholder"
-          variant="light"
+          variant="soft"
           color="success"
-          endAdornment={<TaskAlt />}
+          endDecorator={<TaskAlt />}
           {...props}
         />
         <Input
           placeholder="Placeholder"
-          variant="contained"
+          variant="solid"
           color="info"
-          endAdornment={<TaskAlt />}
+          endDecorator={<TaskAlt />}
           {...props}
         />
       </React.Fragment>
     ),
     cssVars: [
-      { id: '--Input-height', type: 'number', unit: 'px', defaultValue: 40 },
       { id: '--Input-radius', type: 'number', unit: 'px', defaultValue: 8 },
-      { id: '--Input-gutter', type: 'number', unit: 'px', defaultValue: 12 },
+      { id: '--Input-paddingInline', type: 'number', unit: 'px', defaultValue: 12 },
       { id: '--Input-gap', type: 'number', unit: 'px', defaultValue: 8 },
       {
         id: '--Input-placeholderOpacity',
@@ -331,7 +354,7 @@ const components: {
         },
       },
       { id: '--Input-focusedThickness', type: 'number', unit: 'px' },
-      { id: '--Input-adornment-offset', type: 'number', unit: 'px' },
+      { id: '--Input-decorator-offset', type: 'number', unit: 'px' },
     ],
   },
   {
@@ -344,6 +367,239 @@ const components: {
       </React.Fragment>
     ),
     cssVars: [{ id: '--Checkbox-size', type: 'number', unit: 'px', defaultValue: 20 }],
+  },
+  {
+    name: 'Card',
+    render: (props: any) => (
+      <Box component="ul" sx={{ display: 'flex', flexWrap: 'wrap', gap: 2 }}>
+        <Card
+          component="li"
+          variant="outlined"
+          sx={{ ...props?.sx, '&:focus-within': { boxShadow: 'lg' } }}
+        >
+          <CardOverflow variant="outlined">
+            <AspectRatio ratio="1">
+              <img
+                src="https://images.unsplash.com/photo-1627483262268-9c2b5b2834b5?auto=format&fit=crop&w=1770"
+                alt=""
+              />
+              <Box
+                sx={{
+                  position: 'absolute',
+                  top: '1rem',
+                  right: '1rem',
+                  borderRadius: '20px',
+                  p: '0.5rem',
+                  fontSize: 'xs',
+                  color: '#fff',
+                  bgcolor: 'rgba(0,0,0,0.5)',
+                }}
+              >
+                04:26
+              </Box>
+              <IconButton
+                size="lg"
+                variant="solid"
+                sx={{
+                  position: 'absolute',
+                  zIndex: 2,
+                  borderRadius: '50%',
+                  right: '1rem',
+                  bottom: 'calc(-1/2 * var(--IconButton-size))',
+                }}
+              >
+                <PlayArrow />
+              </IconButton>
+            </AspectRatio>
+          </CardOverflow>
+          <Typography level="h2" sx={{ fontSize: 'lg', mt: 3 }}>
+            <Link href="#minimal-photo" overlay>
+              Minimal photography
+            </Link>
+          </Typography>
+          <Typography level="body2" sx={{ mt: 0.5, mb: 2 }}>
+            By <Link href="#sukjit">Sujith</Link>
+          </Typography>
+          <CardOverflow
+            variant="outlined"
+            sx={{
+              display: 'flex',
+              gap: 1,
+              py: 1.5,
+              px: 'var(--Card-padding)',
+              mt: 'auto',
+              borderTopColor: 'background.level2',
+              bgcolor: 'background.level1',
+            }}
+          >
+            <Typography level="body2" sx={{ fontWeight: 'md', color: 'text.primary' }}>
+              6.3k views
+            </Typography>
+            <Box sx={{ width: 2, bgcolor: 'divider' }} />
+            <Typography level="body2" sx={{ fontWeight: 'md', color: 'text.primary' }}>
+              1 hour ago
+            </Typography>
+          </CardOverflow>
+        </Card>
+        <Card
+          component="li"
+          size="lg"
+          sx={{ ...props?.sx, minHeight: '360px', '&:hover': { boxShadow: 'xl' } }}
+        >
+          <CardCover>
+            <img
+              src="https://images.unsplash.com/photo-1525630558331-067c957817a9?auto=format&fit=crop&w=2250"
+              alt=""
+            />
+          </CardCover>
+          <CardCover
+            sx={{
+              background:
+                'linear-gradient(to top, rgba(0,0,0,0.4), rgba(0,0,0,0) 30%), linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0) 50%)',
+            }}
+          />
+          <CardContent sx={{ justifyContent: 'flex-end' }}>
+            <Typography level="h2" sx={{ mb: 1, fontSize: 'lg' }}>
+              <Link href="#the-beach" underline="none" overlay sx={{ color: 'neutral.50' }}>
+                The Beach
+              </Link>
+            </Typography>
+            <Box sx={{ display: 'flex', gap: 2 }}>
+              <Typography startDecorator={<LocationOn />} sx={{ color: 'neutral.300' }}>
+                Tarifa, Spain
+              </Typography>
+              <Typography startDecorator={<StarBorder />} sx={{ color: 'neutral.300' }}>
+                4.8
+              </Typography>
+            </Box>
+          </CardContent>
+        </Card>
+      </Box>
+    ),
+    cssVars: [
+      { id: '--Card-padding', type: 'number', unit: 'px', defaultValue: 16 },
+      { id: '--Card-radius', type: 'number', unit: 'px', defaultValue: 8 },
+    ],
+  },
+  {
+    name: 'Chip',
+    render: (props: any) => (
+      <React.Fragment>
+        <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
+          <Chip
+            variant="soft"
+            size="sm"
+            startDecorator={
+              <Avatar
+                src="/static/images/avatar/1.jpg"
+                variant="outlined"
+                sx={{ '--Avatar-size': '24px', borderColor: 'background.body' }}
+              />
+            }
+            {...props}
+          >
+            Robert Stark
+          </Chip>
+          <Chip
+            variant="soft"
+            startDecorator={
+              <Avatar
+                src="/static/images/avatar/2.jpg"
+                size="sm"
+                variant="outlined"
+                sx={{ borderColor: 'background.body' }}
+              />
+            }
+            {...props}
+          >
+            Robert Stark
+          </Chip>
+          <Chip
+            variant="soft"
+            size="lg"
+            startDecorator={
+              <Avatar
+                src="/static/images/avatar/3.jpg"
+                variant="outlined"
+                sx={{ borderColor: 'background.body', '--variant-borderWidth': '2px' }}
+              />
+            }
+            {...props}
+          >
+            Robert Stark
+          </Chip>
+        </Box>
+        <Box sx={{ display: 'flex', gap: 1 }}>
+          <Chip variant="outlined" onClick={() => alert('test')} {...props}>
+            Delete
+            <Delete sx={{ ml: 0.5, mr: -0.5 }} />
+          </Chip>
+          <Chip variant="outlined" color="success" onClick={() => alert('test')} {...props}>
+            <Info sx={{ mr: 0.5, ml: -0.5 }} />
+            Info
+          </Chip>
+        </Box>
+        <Box sx={{ display: 'flex', gap: 1 }}>
+          <Chip variant="soft" color="neutral" endDecorator={<ChipDelete />} {...props}>
+            Fruit
+          </Chip>
+          <Chip
+            variant="soft"
+            color="neutral"
+            endDecorator={<ChipDelete variant="outlined" />}
+            {...props}
+          >
+            Fruit
+          </Chip>
+          <Chip
+            variant="outlined"
+            color="neutral"
+            endDecorator={<ChipDelete variant="soft" />}
+            {...props}
+          >
+            Fruit
+          </Chip>
+        </Box>
+        <Box sx={{ display: 'flex', gap: 1 }}>
+          <Chip
+            startDecorator={<Favorite sx={{ ml: 0.5 }} />}
+            variant="outlined"
+            color="danger"
+            onClick={() => {}}
+            {...props}
+          >
+            Favorite
+          </Chip>
+          <Chip
+            startDecorator={<Favorite sx={{ ml: 0.5 }} />}
+            variant="outlined"
+            color="neutral"
+            onClick={() => {}}
+            {...props}
+          >
+            Favorite
+          </Chip>
+          <Chip
+            startDecorator={<Favorite sx={{ ml: 0.5 }} />}
+            variant="outlined"
+            color="neutral"
+            onClick={() => {}}
+            {...props}
+          >
+            Favorite
+          </Chip>
+        </Box>
+      </React.Fragment>
+    ),
+    cssVars: [
+      { id: '--Icon-fontSize', type: 'number', unit: 'px', defaultValue: 18 },
+      { id: '--Chip-radius', type: 'number', unit: 'px', defaultValue: 24 },
+      { id: '--Chip-gap', type: 'number', unit: 'px', defaultValue: 6 },
+      { id: '--Chip-paddingBlock', type: 'number', unit: 'px', defaultValue: 4 },
+      { id: '--Chip-paddingInline', type: 'number', unit: 'px', defaultValue: 12 },
+      { id: '--Chip-delete-size', type: 'number', unit: 'px', defaultValue: 24 },
+      { id: '--Chip-delete-radius', type: 'number', unit: 'px' },
+    ],
   },
 ];
 
@@ -379,19 +635,20 @@ function Playground({ initialName }: { initialName?: string }) {
         <Box sx={{ pl: 5, pt: 2 }}>
           <ColorSchemePicker />
         </Box>
-        <List
-          sx={{
-            mt: 2,
-            '--List-insetStart': '1.25rem',
-            '--List-radius': '1rem',
-          }}
-        >
+        <List sx={{ mt: 2 }}>
           {components.map((config) => (
             <ListItem key={config.name} sx={{ mb: 1 }}>
               <ListItemButton
                 color={config.name === current ? 'primary' : 'neutral'}
+                variant={config.name === current ? 'soft' : 'plain'}
                 selected={config.name === current}
                 onClick={() => setCurrent(config.name)}
+                sx={{
+                  '&.Mui-selected': {
+                    borderRight: '2px solid',
+                    borderColor: 'primary.containedBg',
+                  },
+                }}
               >
                 {config.name}
               </ListItemButton>
@@ -421,7 +678,7 @@ function Playground({ initialName }: { initialName?: string }) {
             bottom: '1rem',
           }}
         >
-          <ThemeProvider theme={createTheme({ palette: { mode: 'dark' } })}>
+          <ThemeProvider theme={brandingDarkTheme}>
             <HighlightedCode
               component={MarkdownElement}
               code={`<${current} sx={{${renderedSx ? `\n${renderedSx}\n ` : ''}}}

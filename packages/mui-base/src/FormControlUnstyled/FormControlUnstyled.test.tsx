@@ -4,7 +4,7 @@ import { spy } from 'sinon';
 import { createMount, createRenderer, describeConformanceUnstyled, fireEvent } from 'test/utils';
 import FormControlUnstyled, {
   formControlUnstyledClasses,
-  useFormControlUnstyled,
+  useFormControlUnstyledContext,
 } from '@mui/base/FormControlUnstyled';
 
 describe('<FormControlUnstyled />', () => {
@@ -17,7 +17,7 @@ describe('<FormControlUnstyled />', () => {
     mount,
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'div',
-    muiName: 'MuiFormControl',
+    muiName: 'BaseFormControl',
     slots: {
       root: {
         expectedClassName: formControlUnstyledClasses.root,
@@ -28,7 +28,7 @@ describe('<FormControlUnstyled />', () => {
   describe('initial state', () => {
     it('has undefined value', () => {
       function TestComponent() {
-        const context = useFormControlUnstyled();
+        const context = useFormControlUnstyledContext();
         return <input value={context!.value as string} onChange={context!.onChange} />;
       }
 
@@ -43,7 +43,7 @@ describe('<FormControlUnstyled />', () => {
 
     it('has disabled, filled, focused, and required set to false', () => {
       function TestComponent() {
-        const context = useFormControlUnstyled();
+        const context = useFormControlUnstyledContext();
 
         return (
           <input
@@ -76,7 +76,7 @@ describe('<FormControlUnstyled />', () => {
   describe('prop: value', () => {
     it('propagates the value via the context', () => {
       function TestComponent() {
-        const context = useFormControlUnstyled();
+        const context = useFormControlUnstyledContext();
         return <input value={context!.value as string} onChange={context!.onChange} />;
       }
 
@@ -93,7 +93,7 @@ describe('<FormControlUnstyled />', () => {
   describe('prop: disabled', () => {
     it('propagates the value via the context', () => {
       function TestComponent() {
-        const context = useFormControlUnstyled();
+        const context = useFormControlUnstyledContext();
         return <input disabled={context?.disabled} />;
       }
 
@@ -110,7 +110,7 @@ describe('<FormControlUnstyled />', () => {
   describe('prop: defaultValue', () => {
     it('propagates the value via the context', () => {
       function TestComponent() {
-        const context = useFormControlUnstyled();
+        const context = useFormControlUnstyledContext();
         return <input value={context!.value as string} onChange={context!.onChange} />;
       }
 
@@ -124,42 +124,10 @@ describe('<FormControlUnstyled />', () => {
     });
   });
 
-  describe('prop: focused', () => {
-    it('propagates the value via the context', () => {
-      function TestComponent() {
-        const context = useFormControlUnstyled();
-        return <input data-focused={context!.focused} />;
-      }
-
-      const { getByRole } = render(
-        <FormControlUnstyled focused>
-          <TestComponent />
-        </FormControlUnstyled>,
-      );
-
-      expect(getByRole('textbox').dataset).to.have.property('focused', 'true');
-    });
-
-    it('ignores focused when disabled', () => {
-      function TestComponent() {
-        const context = useFormControlUnstyled();
-        return <input data-focused={context!.focused} disabled={context?.disabled} />;
-      }
-
-      const { getByRole } = render(
-        <FormControlUnstyled focused disabled>
-          <TestComponent />
-        </FormControlUnstyled>,
-      );
-      expect(getByRole('textbox')).to.have.property('disabled', true);
-      expect(getByRole('textbox').dataset).to.have.property('focused', 'false');
-    });
-  });
-
   describe('prop: required', () => {
     it('propagates the value via the context', () => {
       function TestComponent() {
-        const context = useFormControlUnstyled();
+        const context = useFormControlUnstyledContext();
         return <input required={context!.required} />;
       }
 
@@ -176,7 +144,7 @@ describe('<FormControlUnstyled />', () => {
   describe('prop: filled', () => {
     it('should be set if value is provided', () => {
       function TestComponent() {
-        const context = useFormControlUnstyled();
+        const context = useFormControlUnstyledContext();
         return <input data-filled={context!.filled} />;
       }
 
@@ -191,7 +159,7 @@ describe('<FormControlUnstyled />', () => {
 
     it('should be set if defaultValue is provided', () => {
       function TestComponent() {
-        const context = useFormControlUnstyled();
+        const context = useFormControlUnstyledContext();
         return <input data-filled={context!.filled} />;
       }
 
@@ -206,7 +174,7 @@ describe('<FormControlUnstyled />', () => {
 
     it('should be set if a controlled inner input sets its value', () => {
       function TestComponent() {
-        const context = useFormControlUnstyled();
+        const context = useFormControlUnstyledContext();
         return (
           <input
             data-filled={context!.filled}
@@ -232,7 +200,7 @@ describe('<FormControlUnstyled />', () => {
   describe('prop: onChange', () => {
     it("propagates the inner input's onChange to FormControlUnstyled's onChange", () => {
       function TestComponent() {
-        const context = useFormControlUnstyled();
+        const context = useFormControlUnstyledContext();
         return <input value={context!.value as string} onChange={context!.onChange} />;
       }
 

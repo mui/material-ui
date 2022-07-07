@@ -41,7 +41,7 @@ const FormHelperTextRoot = styled('p', {
     ];
   },
 })(({ theme, ownerState }) => ({
-  color: theme.palette.text.secondary,
+  color: (theme.vars || theme).palette.text.secondary,
   ...theme.typography.caption,
   textAlign: 'left',
   marginTop: 3,
@@ -49,10 +49,10 @@ const FormHelperTextRoot = styled('p', {
   marginBottom: 0,
   marginLeft: 0,
   [`&.${formHelperTextClasses.disabled}`]: {
-    color: theme.palette.text.disabled,
+    color: (theme.vars || theme).palette.text.disabled,
   },
   [`&.${formHelperTextClasses.error}`]: {
-    color: theme.palette.error.main,
+    color: (theme.vars || theme).palette.error.main,
   },
   ...(ownerState.size === 'small' && {
     marginTop: 4,

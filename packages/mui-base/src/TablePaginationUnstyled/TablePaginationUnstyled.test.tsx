@@ -409,7 +409,7 @@ describe('<TablePaginationUnstyled />', () => {
     });
   });
 
-  describe('prop: componentsProps: select', () => {
+  describe('prop: selectId, labelId', () => {
     it('does allow manual label ids', () => {
       const { container } = render(
         <table>
@@ -421,9 +421,8 @@ describe('<TablePaginationUnstyled />', () => {
                 onPageChange={noop}
                 onRowsPerPageChange={noop}
                 rowsPerPage={10}
-                componentsProps={{
-                  select: { id: 'foo', 'aria-labelledby': 'bar' },
-                }}
+                selectId="foo"
+                labelId="bar"
               />
             </TableRow>
           </TableFooter>

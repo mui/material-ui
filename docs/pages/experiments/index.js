@@ -22,7 +22,10 @@ export default function Experiments({ experiments }) {
       categories[categoryName] = [];
     }
     categories[categoryName].push({
-      name: capitalize(paths[1] || paths[0]),
+      name: name
+        .replace(/^\//, '')
+        .replace(/\/$/, '')
+        .replace(`${categoryName.toLowerCase()}/`, ''),
       pathname: `/experiments/${name}`,
     });
   });

@@ -15,7 +15,7 @@ describe('Joy <TextField />', () => {
     inheritComponent: 'div',
     render,
     ThemeProvider,
-    muiName: 'MuiTextField',
+    muiName: 'JoyTextField',
     refInstanceof: window.HTMLDivElement,
     skip: ['componentsProp', 'classesRoot', 'themeVariants'],
   }));
@@ -46,10 +46,10 @@ describe('Joy <TextField />', () => {
     const { container, rerender } = render(<TextField />);
     expect(container.firstChild).to.have.class(classes.variantOutlined); // default variant
 
-    rerender(<TextField variant="light" />);
-    expect(container.firstChild).to.have.class(classes.variantLight);
+    rerender(<TextField variant="soft" />);
+    expect(container.firstChild).to.have.class(classes.variantSoft);
     expect(container.querySelector(`.${inputClasses.root}`)).to.have.class(
-      inputClasses.variantLight,
+      inputClasses.variantSoft,
     );
   });
 
@@ -69,6 +69,18 @@ describe('Joy <TextField />', () => {
     expect(container.querySelector(`.${inputClasses.root}`)).to.have.class(
       inputClasses.colorPrimary,
     );
+  });
+
+  it('should pass `type` to Input', () => {
+    const { getByLabelText } = render(<TextField label="password" type="password" />);
+
+    expect(getByLabelText(/password/)).to.have.attribute('type', 'password');
+  });
+
+  it('should pass `name` to Input', () => {
+    const { getByRole } = render(<TextField name="username" />);
+
+    expect(getByRole('textbox')).to.have.attribute('name', 'username');
   });
 
   it('should be error', () => {
@@ -150,13 +162,13 @@ describe('Joy <TextField />', () => {
     expect(handleBlur.callCount).to.equal(1);
   });
 
-  it('should accept startAdornment', () => {
-    const { getByText } = render(<TextField startAdornment="foo" />);
+  it('should accept startDecorator', () => {
+    const { getByText } = render(<TextField startDecorator="foo" />);
     expect(getByText('foo')).toBeVisible();
   });
 
-  it('should accept endAdornment', () => {
-    const { getByText } = render(<TextField endAdornment="bar" />);
+  it('should accept endDecorator', () => {
+    const { getByText } = render(<TextField endDecorator="bar" />);
     expect(getByText('bar')).toBeVisible();
   });
 });

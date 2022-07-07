@@ -19,7 +19,9 @@ export interface FormLabelTypeMap<P = {}, D extends React.ElementType = 'label'>
        */
       classes?: Partial<FormLabelClasses>;
       /**
-       * The color of the component. It supports those theme colors that make sense for this component.
+       * The color of the component.
+       * It supports both default and custom theme colors, which can be added as shown in the
+       * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
        */
       color?: OverridableStringUnion<
         'primary' | 'secondary' | 'error' | 'info' | 'success' | 'warning',
@@ -57,13 +59,13 @@ export interface FormLabelTypeMap<P = {}, D extends React.ElementType = 'label'>
  *
  * Demos:
  *
- * - [Checkboxes](https://mui.com/components/checkboxes/)
- * - [Radio Buttons](https://mui.com/components/radio-buttons/)
- * - [Switches](https://mui.com/components/switches/)
+ * - [Checkboxes](https://mui.com/material-ui/react-checkbox/)
+ * - [Radio buttons](https://mui.com/material-ui/react-radio-button/)
+ * - [Switches](https://mui.com/material-ui/react-switch/)
  *
  * API:
  *
- * - [FormLabel API](https://mui.com/api/form-label/)
+ * - [FormLabel API](https://mui.com/material-ui/api/form-label/)
  */
 declare const FormLabel: OverridableComponent<FormLabelTypeMap>;
 

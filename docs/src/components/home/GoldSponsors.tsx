@@ -1,14 +1,14 @@
-import AddRounded from '@mui/icons-material/AddRounded';
+import * as React from 'react';
+import { useInView } from 'react-intersection-observer';
 import Box from '@mui/material/Box';
-import Grid from '@mui/material/Grid';
-import IconButton from '@mui/material/IconButton';
 import Paper from '@mui/material/Paper';
+import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
+import AddRounded from '@mui/icons-material/AddRounded';
+import Grid from '@mui/material/Grid';
 import SponsorCard from 'docs/src/components/home/SponsorCard';
 import Link from 'docs/src/modules/components/Link';
 import ROUTES from 'docs/src/route';
-import * as React from 'react';
-import { useInView } from 'react-intersection-observer';
 
 const GOLDs = [
   {
@@ -23,7 +23,7 @@ const GOLDs = [
     src: 'https://avatars.githubusercontent.com/u/24789812?size=40',
     srcSet: 'https://avatars.githubusercontent.com/u/24789812?size=80 2x',
     name: 'Bit',
-    description: 'The fastest way to share code.',
+    description: 'A component-driven development platform.',
     href: 'https://bit.dev/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
   },
   {
@@ -37,28 +37,21 @@ const GOLDs = [
     src: 'https://images.opencollective.com/laststance/daffd6c/logo/40.png',
     srcSet: 'https://images.opencollective.com/laststance/daffd6c/logo/80.png 2x',
     name: 'Laststance',
-    description: 'Organization for OSS activity based on Tokyo.',
+    description: 'An organization for OSS activity in Tokyo.',
     href: 'https://www.laststance.io/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
-  },
-  {
-    src: 'https://images.opencollective.com/movavi-software/a1d0167/logo/40.png',
-    srcSet: 'https://images.opencollective.com/movavi-software/a1d0167/logo/80.png 2x',
-    name: 'Movavi',
-    description: 'Screen recorder for Mac.',
-    href: 'https://www.movavi.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
   },
   {
     src: 'https://images.opencollective.com/aussiecasinohex/923df37/logo/40.png',
     srcSet: 'https://images.opencollective.com/aussiecasinohex/923df37/logo/80.png 2x',
-    name: 'online-aussie-casino',
-    description: 'Aussie Gambling Guide.',
+    name: 'CasinoHEX Australia',
+    description: 'A guide to online gambling in Australia.',
     href: 'https://online-aussie-casino.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
   },
   {
     src: 'https://images.opencollective.com/sumatosoft_company/0b78570/avatar/40.png',
     srcSet: 'https://images.opencollective.com/sumatosoft_company/0b78570/avatar/80.png 2x',
     name: 'SunmatoSoft',
-    description: 'We help companies to digitalize their businesses.',
+    description: 'Custom software development company.',
     href: 'https://sumatosoft.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
   },
   {
@@ -113,7 +106,7 @@ export default function GoldSponsors() {
             }}
           >
             <IconButton
-              aria-label="Become MUI sponsor"
+              aria-label="Sponsor MUI"
               component="a"
               href={ROUTES.goldSponsor}
               target="_blank"
@@ -130,14 +123,13 @@ export default function GoldSponsors() {
             </IconButton>
             <div>
               <Typography variant="body2" color="text.primary" fontWeight="bold">
-                Become our sponsor!
+                Become a sponsor
               </Typography>
               <Typography variant="body2" color="text.secondary">
-                To join us,{' '}
+                Find out how{' '}
                 <Link href={ROUTES.goldSponsor} target="_blank" rel="noopener noreferrer">
-                  choose how
-                </Link>{' '}
-                you want to contribute.
+                  you can support MUI.
+                </Link>
               </Typography>
             </div>
           </Paper>

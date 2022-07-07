@@ -19,7 +19,7 @@ describe('restructure utils', () => {
       expect(
         markdown.updateMaterialTitle(
           '/material-ui/docs/data/material-ui/components/app-bar.md',
-          'title: App Bar React component',
+          'title: App bar React component',
         ),
       ).to.equal('title: React App Bar');
       expect(
@@ -49,7 +49,7 @@ describe('restructure utils', () => {
       expect(
         markdown.updateMaterialTitle(
           '/material-ui/docs/data/material-ui/components/bottom-navigation.md',
-          'title: Bottom Navigation React component',
+          'title: Bottom navigation React component',
         ),
       ).to.equal('title: React Bottom Navigation');
       expect(

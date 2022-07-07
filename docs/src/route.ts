@@ -10,9 +10,9 @@ const ROUTES = {
   pricing: '/pricing/',
   about: '/about/',
   handbook: 'https://mui-org.notion.site/Handbook-f086d47e10794d5e839aef9dc67f324b',
-  baseDocs: '/base/getting-started/installation/',
-  materialDocs: '/material-ui/getting-started/installation/',
-  joyDocs: '/joy-ui/react-button/',
+  baseDocs: '/base/getting-started/overview/',
+  materialDocs: '/material-ui/getting-started/overview/',
+  joyDocs: '/joy-ui/getting-started/overview/',
   systemDocs: '/system/basics/',
   materialIcons: FEATURE_TOGGLE.enable_redirects
     ? '/material-ui/material-icons/'
@@ -29,9 +29,7 @@ const ROUTES = {
   theming: FEATURE_TOGGLE.enable_redirects
     ? '/material-ui/customization/theming/'
     : '/customization/theming/',
-  documentation: FEATURE_TOGGLE.enable_redirects
-    ? '/material-ui/getting-started/installation/'
-    : '/getting-started/installation/',
+  documentation: '/material-ui/getting-started/overview/',
   communityHelp: FEATURE_TOGGLE.enable_redirects
     ? '/material-ui/getting-started/support/#community-help-free'
     : '/getting-started/support/#community-help-free',
@@ -49,10 +47,12 @@ const ROUTES = {
   support: FEATURE_TOGGLE.enable_redirects
     ? '/material-ui/getting-started/support/#professional-support-premium'
     : '/getting-started/support/#professional-support-premium',
+  privacyPolicy: 'https://mui.com/store/privacy/',
   goldSponsor: FEATURE_TOGGLE.enable_redirects
     ? '/material-ui/discover-more/backers/#gold'
     : '/discover-more/backers/#gold/',
   store: 'https://mui.com/store/',
+  advancedComponents: '/x/advanced-components/',
   dataGridSpace: '/x/react-data-grid/getting-started/',
   dataGridDocs: FEATURE_TOGGLE.enable_redirects
     ? '/x/react-data-grid/getting-started/'
@@ -63,19 +63,6 @@ const ROUTES = {
   dataGridFeaturesComparison: FEATURE_TOGGLE.enable_redirects
     ? '/x/react-data-grid/getting-started/#feature-comparison'
     : '/components/data-grid/getting-started/#feature-comparison',
-  storePopular: 'https://mui.com/store/#populars',
-  storeDesign: 'https://mui.com/store/#design',
-  storeFigma: 'https://mui.com/store/items/figma-react/',
-  storeSketch: 'https://mui.com/store/items/sketch-react/',
-  storeXD: 'https://mui.com/store/items/adobe-xd-react/',
-  storeTemplateMaterialApp: 'https://mui.com/store/items/material-app/',
-  storeTemplateBarza: 'https://mui.com/store/items/bazar-pro-react-ecommerce-template/',
-  storeTemplateMinimalFree: 'https://mui.com/store/items/minimal-dashboard-free/',
-  storeTemplateMinimalDashboard: 'https://mui.com/store/items/minimal-dashboard/',
-  storeTemplateBerry: 'https://mui.com/store/items/berry-react-material-admin/',
-  storeTemplateWebbee: 'https://mui.com/store/items/webbee-landing-page/',
-  storeTheFront: 'https://mui.com/store/items/the-front-landing-page/',
-  storeFlexy: 'https://mui.com/store/items/flexy-react-admin-dashboard/',
 };
 
 export default ROUTES;

@@ -26,7 +26,9 @@ export interface IconTypeMap<P = {}, D extends React.ElementType = 'span'> {
      */
     classes?: Partial<IconClasses>;
     /**
-     * The color of the component. It supports those theme colors that make sense for this component.
+     * The color of the component.
+     * It supports both default and custom theme colors, which can be added as shown in the
+     * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
      * @default 'inherit'
      */
     color?: OverridableStringUnion<
@@ -60,12 +62,12 @@ export interface IconTypeMap<P = {}, D extends React.ElementType = 'span'> {
  *
  * Demos:
  *
- * - [Icons](https://mui.com/components/icons/)
- * - [Material Icons](https://mui.com/components/material-icons/)
+ * - [Icons](https://mui.com/material-ui/icons/)
+ * - [Material icons](https://mui.com/material-ui/material-icons/)
  *
  * API:
  *
- * - [Icon API](https://mui.com/api/icon/)
+ * - [Icon API](https://mui.com/material-ui/api/icon/)
  */
 declare const Icon: OverridableComponent<IconTypeMap> & { muiName: string };
 

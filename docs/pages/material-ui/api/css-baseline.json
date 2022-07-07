@@ -8,6 +8,6 @@
   "spread": true,
   "filename": "/packages/mui-material/src/CssBaseline/CssBaseline.js",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/material-ui/react-css-baseline/\">Css Baseline</a></li></ul>",
+  "demos": "<ul><li><a href=\"/material-ui/react-css-baseline/\">Css baseline</a></li></ul>",
   "cssComponent": false
 }

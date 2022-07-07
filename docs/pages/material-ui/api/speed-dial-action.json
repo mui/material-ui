@@ -41,6 +41,6 @@
   "forwardsRefTo": "HTMLButtonElement",
   "filename": "/packages/mui-material/src/SpeedDialAction/SpeedDialAction.js",
   "inheritance": { "component": "Tooltip", "pathname": "/material-ui/api/tooltip/" },
-  "demos": "<ul><li><a href=\"/material-ui/react-speed-dial/\">Speed Dial</a></li></ul>",
+  "demos": "<ul><li><a href=\"/material-ui/react-speed-dial/\">Speed dial</a></li></ul>",
   "cssComponent": false
 }

@@ -56,6 +56,7 @@ const StyledMenuItem = styled(MenuItemUnstyled)(
   padding: 8px;
   border-radius: 0.45em;
   cursor: default;
+  user-select: none;
 
   &:last-of-type {
     border-bottom: none;
@@ -84,12 +85,11 @@ const TriggerButton = styled('button')(
   font-size: 0.875rem;
   box-sizing: border-box;
   min-height: calc(1.5em + 22px);
-  min-width: 200px;
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[300]};
   border-radius: 0.75em;
   margin: 0.5em;
-  padding: 10px;
+  padding: 10px 20px;
   text-align: left;
   line-height: 1.5;
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
@@ -101,11 +101,6 @@ const TriggerButton = styled('button')(
 
   &.${buttonUnstyledClasses.focusVisible} {
     outline: 3px solid ${theme.palette.mode === 'dark' ? blue[600] : blue[100]};
-  }
-
-  &::after {
-    content: '▾';
-    float: right;
   }
   `,
 );
@@ -177,7 +172,6 @@ export default function WrappedMenuItems() {
 
   const createHandleMenuClick = (menuItem) => {
     return () => {
-      // eslint-disable-next-line no-console
       console.log(`Clicked on ${menuItem}`);
       close();
     };

@@ -1,0 +1,6 @@
+<StyledBadge badgeContent={0}>
+  <MailIcon />
+</StyledBadge>
+<StyledBadge badgeContent={0} showZero>
+  <MailIcon />
+</StyledBadge>

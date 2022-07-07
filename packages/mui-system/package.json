@@ -1,6 +1,6 @@
 {
   "name": "@mui/system",
-  "version": "5.5.0",
+  "version": "5.8.7",
   "private": false,
   "author": "MUI Team",
   "description": "CSS utilities for rapidly laying out custom designs.",
@@ -36,13 +36,14 @@
     "prebuild": "rimraf build tsconfig.build.tsbuildinfo",
     "release": "yarn build && npm publish build",
     "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-system/**/*.test.{js,ts,tsx}'",
-    "typescript": "tslint -p tsconfig.json \"{src,test}/**/*.{spec,d}.{ts,tsx}\" && tsc -p tsconfig.json"
+    "typescript": "tslint -p tsconfig.json \"{src,test}/**/*.{spec,d}.{ts,tsx}\" && tsc -p tsconfig.json",
+    "typescript:module-augmentation": "node scripts/testModuleAugmentation.js"
   },
   "peerDependencies": {
     "@emotion/react": "^11.5.0",
     "@emotion/styled": "^11.3.0",
-    "@types/react": "^16.8.6 || ^17.0.0",
-    "react": "^17.0.0"
+    "@types/react": "^17.0.0 || ^18.0.0",
+    "react": "^17.0.0 || ^18.0.0"
   },
   "peerDependenciesMeta": {
     "@types/react": {
@@ -57,13 +58,13 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.17.2",
-    "@mui/private-theming": "^5.4.4",
-    "@mui/styled-engine": "^5.4.4",
-    "@mui/types": "^7.1.2",
-    "@mui/utils": "^5.4.4",
-    "clsx": "^1.1.1",
-    "csstype": "^3.0.11",
-    "prop-types": "^15.7.2"
+    "@mui/private-theming": "^5.8.6",
+    "@mui/styled-engine": "^5.8.7",
+    "@mui/types": "^7.1.4",
+    "@mui/utils": "^5.8.6",
+    "clsx": "^1.2.0",
+    "csstype": "^3.1.0",
+    "prop-types": "^15.8.1"
   },
   "sideEffects": false,
   "publishConfig": {

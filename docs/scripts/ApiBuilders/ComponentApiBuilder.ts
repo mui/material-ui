@@ -1,5 +1,6 @@
 import { mkdirSync, readFileSync, writeFileSync } from 'fs';
 import path from 'path';
+import * as astTypes from 'ast-types';
 import * as babel from '@babel/core';
 import traverse from '@babel/traverse';
 import * as _ from 'lodash';
@@ -275,10 +276,10 @@ function extractClassConditions(descriptions: any) {
 
 /**
  * @param filepath - absolute path
- * @example toGithubPath('/home/user/material-ui/packages/Accordion') === '/packages/Accordion'
- * @example toGithubPath('C:\\Development\material-ui\packages\Accordion') === '/packages/Accordion'
+ * @example toGitHubPath('/home/user/material-ui/packages/Accordion') === '/packages/Accordion'
+ * @example toGitHubPath('C:\\Development\material-ui\packages\Accordion') === '/packages/Accordion'
  */
-function toGithubPath(filepath: string): string {
+function toGitHubPath(filepath: string): string {
   return `/${path.relative(process.cwd(), filepath).replace(/\\/g, '/')}`;
 }
 
@@ -347,7 +348,7 @@ const generateApiPage = (outputDirectory: string, reactApi: ReactApi) => {
     },
     spread: reactApi.spread,
     forwardsRefTo: reactApi.forwardsRefTo,
-    filename: toGithubPath(reactApi.filename),
+    filename: toGitHubPath(reactApi.filename),
     inheritance: reactApi.inheritance
       ? {
           component: reactApi.inheritance.name,
@@ -514,6 +515,8 @@ const generateComponentApi = async (componentInfo: ComponentInfo, program: ttp.t
     getInheritance,
     getDemos,
     readFile,
+    skipApiGeneration,
+    isSystemComponent,
   } = componentInfo;
 
   const { shouldSkip, spread, EOL, src } = readFile();
@@ -522,12 +525,54 @@ const generateComponentApi = async (componentInfo: ComponentInfo, program: ttp.t
     return null;
   }
 
-  const reactApi: ReactApi = docgenParse(
-    src,
-    null,
-    defaultHandlers.concat(muiDefaultPropsHandler),
-    { filename },
-  );
+  let reactApi: ReactApi;
+
+  if (isSystemComponent) {
+    try {
+      reactApi = docgenParse(
+        src,
+        (ast) => {
+          let node;
+          astTypes.visit(ast, {
+            visitVariableDeclaration: (variablePath) => {
+              const definitions: any[] = [];
+              if (variablePath.node.declarations) {
+                variablePath
+                  .get('declarations')
+                  .each((declarator: any) => definitions.push(declarator.get('init')));
+              }
+
+              definitions.forEach((definition) => {
+                if (definition.value?.callee) {
+                  const definitionName = definition.value.callee.name;
+
+                  if (definitionName === `create${name}`) {
+                    node = definition;
+                  }
+                }
+              });
+              return false;
+            },
+          });
+
+          return node;
+        },
+        defaultHandlers,
+        { filename },
+      );
+    } catch (error) {
+      // fallback to default logic if there is no `create*` definition.
+      if ((error as Error).message === 'No suitable component definition found.') {
+        reactApi = docgenParse(src, null, defaultHandlers.concat(muiDefaultPropsHandler), {
+          filename,
+        });
+      } else {
+        throw error;
+      }
+    }
+  } else {
+    reactApi = docgenParse(src, null, defaultHandlers.concat(muiDefaultPropsHandler), { filename });
+  }
 
   // === Handle unstyled component ===
   const unstyledFileName = getUnstyledFilename(filename);
@@ -606,12 +651,14 @@ const generateComponentApi = async (componentInfo: ComponentInfo, program: ttp.t
   // eslint-disable-next-line no-console
   console.log('Built API docs for', reactApi.name);
 
-  // Generate pages, json and translations
-  generateApiTranslations(path.join(process.cwd(), 'docs/translations/api-docs'), reactApi);
-  generateApiPage(apiPagesDirectory, reactApi);
+  if (!skipApiGeneration) {
+    // Generate pages, json and translations
+    generateApiTranslations(path.join(process.cwd(), 'docs/translations/api-docs'), reactApi);
+    generateApiPage(apiPagesDirectory, reactApi);
 
-  // Add comment about demo & api links (including inherited component) to the component file
-  await annotateComponentDefinition(reactApi);
+    // Add comment about demo & api links (including inherited component) to the component file
+    await annotateComponentDefinition(reactApi);
+  }
 
   return reactApi;
 };

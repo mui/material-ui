@@ -4,11 +4,11 @@
 
 ## 打包文件的大小是很重要的
 
-The bundle size of MUI is taken very seriously. Size snapshots are taken on every commit for every package and critical parts of those packages ([view the latest snapshot](/size-snapshot)). 结合 [dangerJS](https://danger.systems/js/) 一起，我们可以在每个 Pull Request 中都可以查看[详细的打包文件的大小变化](https://github.com/mui/material-ui/pull/14638#issuecomment-466658459) 。
+The bundle size of MUI is taken very seriously. Size snapshots are taken on every commit for every package and critical parts of those packages ([view the latest snapshot](/size-snapshot/)). 结合 [dangerJS](https://danger.systems/js/) 一起，我们可以在每个 Pull Request 中都可以查看[详细的打包文件的大小变化](https://github.com/mui/material-ui/pull/14638#issuecomment-466658459) 。
 
 ## 何时以及如何使用 tree-shaking?
 
-Tree-shaking of MUI works out of the box in modern frameworks. MUI exposes its full API on the top-level `@mui` imports. Tree-shaking of MUI works out of the box in modern frameworks. MUI exposes its full API on the top-level `@mui` imports. If you're using ES6 modules and a bundler that supports tree-shaking ([`webpack` >= 2.x](https://webpack.js.org/guides/tree-shaking/), [`parcel` with a flag](https://en.parceljs.org/cli.html#enable-experimental-scope-hoisting/tree-shaking-support)) you can safely use named imports and still get an optimized bundle size automatically:
+Tree-shaking of MUI works out of the box in modern frameworks. MUI exposes its full API on the top-level `@mui` imports. Tree-shaking of MUI works out of the box in modern frameworks. MUI exposes its full API on the top-level `@mui` imports. Tree-shaking of MUI works out of the box in modern frameworks. MUI exposes its full API on the top-level `@mui` imports. If you're using ES6 modules and a bundler that supports tree-shaking ([`webpack` >= 2.x](https://webpack.js.org/guides/tree-shaking/), [`parcel` with a flag](https://en.parceljs.org/cli.html#enable-experimental-scope-hoisting/tree-shaking-support)) you can safely use named imports and still get an optimized bundle size automatically:
 
 ```js
 import { Button, TextField } from '@material-ui/core';
@@ -89,7 +89,7 @@ import { Button, TextField } from '@material-ui/core';
 
 但是，您需要正确地实施以下两步。
 
-#### 1. 1. 配置 Babel
+#### 1. 1. 1. 配置 Babel
 
 请在以下插件中选择一个：
 
@@ -182,7 +182,7 @@ module.exports = override(useBabelRc());
 
 这样一来，你可以享受更快的启动时间了。
 
-#### 2. 2. 转换您的所有模块导入方式
+#### 2. 2. 2. 转换您的所有模块导入方式
 
 最后，你可以使用这个 [top-level-imports codemod](https://www.npmjs.com/package/@material-ui/codemod#top-level-imports) 将现有的代码库转换为此选项。 它将执行以下的差异：
 
@@ -194,9 +194,9 @@ module.exports = override(useBabelRc());
 
 ## 可用的捆绑包
 
-考虑到一些 [支持的平台](/getting-started/supported-platforms/)，在 npm 上发布的这个依赖包是和 [Babel](https://github.com/babel/babel) 一起被**编译**过的。
+考虑到一些 [支持的平台](/material-ui/getting-started/supported-platforms/)，在 npm 上发布的这个依赖包是和 [Babel](https://github.com/babel/babel) 一起被**编译**过的。
 
-⚠️ 为了尽量减少用户捆绑包中的重复代码，库作者 **非常不鼓励** 从任何其他捆绑包中导入。 Otherwise it's not guaranteed that dependencies used also use legacy or modern bundles. Otherwise it's not guaranteed that dependencies used also use legacy or modern bundles. Instead, use these bundles at the bundler level with e.g [Webpack's `resolve.alias`](https://webpack.js.org/configuration/resolve/#resolvealias):
+⚠️ 为了尽量减少用户捆绑包中的重复代码，库作者 **非常不鼓励** 从任何其他捆绑包中导入。 Otherwise it's not guaranteed that dependencies used also use legacy or modern bundles. Otherwise it's not guaranteed that dependencies used also use legacy or modern bundles. Otherwise it's not guaranteed that dependencies used also use legacy or modern bundles. Instead, use these bundles at the bundler level with e.g [Webpack's `resolve.alias`](https://webpack.js.org/configuration/resolve/#resolvealias):
 
 ```js
 {

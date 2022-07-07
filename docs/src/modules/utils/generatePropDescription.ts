@@ -21,6 +21,10 @@ function resolveType(type: NonNullable<doctrine.Tag['type']>): string {
     return 'null';
   }
 
+  if (type.type === 'UndefinedLiteral') {
+    return 'undefined';
+  }
+
   if (type.type === 'TypeApplication') {
     return `${resolveType(type.expression)}<${type.applications
       .map((typeApplication) => {
@@ -144,7 +148,8 @@ export default function generatePropDescription(
 
   let notes = '';
   if (isElementAcceptingRefProp(type) || isElementTypeAcceptingRefProp(type)) {
-    notes += '<br>⚠️ [Needs to be able to hold a ref](/guides/composition/#caveat-with-refs).';
+    notes +=
+      '<br>⚠️ [Needs to be able to hold a ref](/material-ui/guides/composition/#caveat-with-refs).';
   }
 
   return `${deprecated}${jsDocText}${signature}${notes}`;

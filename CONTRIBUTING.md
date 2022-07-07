@@ -9,7 +9,7 @@ Please read [the full text](/CODE_OF_CONDUCT.md) so that you can understand what
 
 ## A large spectrum of contributions
 
-There are [many ways](https://mui.com/getting-started/faq/#mui-is-awesome-how-can-i-support-the-project) to contribute to MUI, code contribution is one aspect of it. For instance, documentation improvements are as important as code changes.
+There are [many ways](https://mui.com/material-ui/getting-started/faq/#mui-is-awesome-how-can-i-support-the-project) to contribute to MUI, code contribution is one aspect of it. For instance, documentation improvements are as important as code changes.
 
 ## Your first Pull Request
 
@@ -121,6 +121,10 @@ Because we will only merge a Pull Request for which all tests pass. The followin
 - The Pull Request title follows the pattern `[Component] Imperative commit message`. (See: [How to Write a Git Commit Message](https://chris.beams.io/posts/git-commit/) for a great explanation).
 
 If you have missed a step, don't worry, the Continuous Integration will run a thorough test on your commits and the maintainers of the project can assist.
+
+If your pull request addresses an open issue, make sure to link the PR to that issue.
+Use any [supported GitHub keyword](https://docs.github.com/en/issues/tracking-your-work-with-issues/linking-a-pull-request-to-an-issue#linking-a-pull-request-to-an-issue-using-a-keyword) in the PR description to automatically link them.
+This makes it easier to understand where the PR is coming from and also speeds things up as the issue gets closed when the PR is merged.
 
 #### Checks and how to fix them
 
@@ -280,6 +284,28 @@ index 791a7da1f4..a5db13b414 100644
 
 Alternatively, you can open the Netlify preview of the documentation, and open any demo in Codesandbox. The documentation automatically configures the dependencies to use the preview packages.
 
+You can also package and test your changes locally.
+The following example shows how to package `@mui/material`, but you can package any MUI module with this process:
+
+```sh
+$> cd packages/mui-material # or path to any other mui package
+$packages\mui-material> yarn build
+$packages\mui-material> cd ./build
+$packages\mui-material> npm pack
+```
+
+Navigate to the build folder of your respective package and locate a file with the format `mui-material-x.x.x.tar.gz`.
+Copy this file and move it to the project directory you want to test in, then run:
+
+```sh
+$test-project> npm i ./path-to-file/mui-material-x.x.x.tar.gz
+```
+
+:::info
+If you have already installed this package, your changes will not be reflected when you reinstall it.
+As a quick fix, you can temporarily bump the version number in your `package.json` before running `yarn build`.
+:::
+
 ## Translations
 
 Translations are handled via [Crowdin](https://translate.mui.com).
@@ -289,7 +315,7 @@ these changes across the localized versions.
 
 ## Roadmap
 
-To get a sense of where MUI is heading, or for ideas on where you could contribute, take a look at the [roadmap](https://mui.com/discover-more/roadmap/).
+To get a sense of where MUI is heading, or for ideas on where you could contribute, take a look at the [roadmap](https://mui.com/material-ui/discover-more/roadmap/).
 
 ## License
 

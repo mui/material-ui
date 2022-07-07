@@ -4,7 +4,7 @@
 
 ## Details of the Role
 
-- Location: Remote (preference for UTC-6 to UTC+3).
+- Location: Remote (preference for UTC-6 to UTC+5).
 - Type of work: Full-time (contractor or employee [depending on circumstances](https://mui-org.notion.site/Hiring-FAQ-64763b756ae44c37b47b081f98915501))
 - Start date: Immediately.
 - We're a remote company, we prefer asynchronous communication over meetings.
@@ -12,7 +12,7 @@
 
 ## About the company
 
-MUI started with Material-UI, the most successful React implementation of Google's Material Design.
+MUI started with Material UI, the most successful React implementation of Google's Material Design.
 It has gained a large following, not only due to the fidelity to Material Design, but also because of the number of components, its carefully designed component API, obsession for details, and community engagement.
 Today, countless teams and organizations rely on our open-source libraries to build their design system.
 
@@ -31,17 +31,17 @@ Both our open-source community and our premium products are growing fast (x2-3 Y
 We need talented people to keep that going!
 
 The advanced components team (X) needs help to build its best features.
-We have started with the [data grid](/components/data-grid/) a year ago, but it's the beginning.
+We have started with the [data grid](/x/react-data-grid/) a year ago, but it's the beginning.
 Our users are continuously providing feedback on the most important [pains they face](https://github.com/mui/mui-x/issues?q=is%3Aissue+is%3Aopen+sort%3Areactions-%2B1-desc).
 
 ## About the role
 
 ### Why this is interesting
 
-Our solution empowers React developers to build awesome applications – hundreds of thousands of developers use MUI every month.
-We are the second most used UI library in the world, after Bootstrap.
-
 Our enterprise components portfolio is still small, with a million interesting and challenging problems to solve.
+
+Our solution empowers React developers to build awesome applications faster – we see over a million developers on MUI's docs every month.
+Hundreds of thousands of developers use MUI every month.
 
 ### What you'll do on a day-to-day basis
 
@@ -72,9 +72,9 @@ Depending on the day, you'll:
 ## Benefits & Compensation
 
 Competitive compensation depending on the profile and location.
-We are ready to pay top market rates for a person that can significantly push the mission forward.
+We are ready to pay top market rates for a person that can clearly exceed the role's expectations.
 You can find the other perks & benefits on the [careers](/careers/#perks-amp-benefits) page.
 
 ## How to apply?
 
-[Apply now for this position 📮](https://airtable.com/shrdqo1Z6srZXGcvh?prefill_Applying+for=Technical%20Product%20Manager&prefill_source=mui.com)
+[Apply now for this position 📮](https://jobs.ashbyhq.com/MUI/__ID__/application?utm_source=ZNRrPGBkqO)

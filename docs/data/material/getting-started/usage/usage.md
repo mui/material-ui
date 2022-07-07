@@ -7,7 +7,7 @@ MUI components work in isolation.
 They don't rely on any global style-sheets such as [normalize.css](https://github.com/necolas/normalize.css/).
 
 You can use any of the components as demonstrated in the documentation.
-Please refer to each component's [demo page](/components/buttons/) to see how they should be imported.
+Please refer to each component's [demo page](/material-ui/react-button/) to see how they should be imported.
 
 ## Quick start
 
@@ -15,14 +15,11 @@ Here's a quick example to get you started, **it's literally all you need**:
 
 ```jsx
 import * as React from 'react';
-import ReactDOM from 'react-dom';
 import Button from '@mui/material/Button';
 
 function App() {
   return <Button variant="contained">Hello World</Button>;
 }
-
-ReactDOM.render(<App />, document.querySelector('#app'));
 ```
 
 Yes, this really is all you need to get started, as you can see in this live and interactive demo:
@@ -44,7 +41,7 @@ To ensure proper rendering and touch zooming for all devices, add the responsive
 
 ### CssBaseline
 
-MUI provides an optional [CssBaseline](/components/css-baseline/) component.
+MUI provides an optional [CssBaseline](/material-ui/react-css-baseline/) component.
 It fixes some inconsistencies across browsers and devices while providing slightly more opinionated resets to common HTML elements.
 
 ## Versioned Documentation
@@ -56,6 +53,6 @@ You can find older versions of the documentation on a [separate page](https://mu
 
 Now that you have an idea of the basic setup, it's time to learn more about:
 
-- How to provide [the Material Design font and typography](/components/typography/).
-- How to take advantage of the [theming solution](/customization/theming/).
-- How to [override](/customization/how-to-customize/) the look and feel of the components.
+- How to provide [the Material Design font and typography](/material-ui/react-typography/).
+- How to take advantage of the [theming solution](/material-ui/customization/theming/).
+- How to [override](/material-ui/customization/how-to-customize/) the look and feel of the components.

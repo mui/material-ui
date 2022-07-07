@@ -29,17 +29,17 @@ Because the scope of problems MUI solves is bound, we try to play nicely with ot
 
 ## IDE 工具
 
-- [Material-UI Snippets](https://marketplace.visualstudio.com/items?itemName=vscodeshift.material-ui-snippets)：提供编写提示的 VSCode 扩展。
-- [Material-UI Codemorphs](https://marketplace.visualstudio.com/items?itemName=vscodeshift.material-ui-codemorphs)：提供代码模块的 VSCode 扩展。
+- [Material UI Snippets](https://marketplace.visualstudio.com/items?itemName=vscodeshift.material-ui-snippets)：提供编写提示的 VSCode 扩展。
+- [Material UI Codemorphs](https://marketplace.visualstudio.com/items?itemName=vscodeshift.material-ui-codemorphs)：提供代码模块的 VSCode 扩展。
 - [eslint: detect unused classes](https://github.com/jens-ox/eslint-plugin-material-ui-unused-classes)：ESLint 插件检测到 `@material-ui/styles` 中未使用的类。
 
 ## Components 组件
 
-这是一个扩展 Material-UI 的第三方项目的集合。
+这是一个扩展 Material UI 的第三方项目的集合。
 
 ### 布局
 
-- [@mui-treasury/layout](https://mui-treasury.com/layout/): Components to handle the overall layout of a page. [@mui-treasury/layout](https://mui-treasury.com/layout/): Components to handle the overall layout of a page. You can find a couple of examples, e.g. [a reactjs.org clone](https://mui-treasury.com/layout/clones/reactjs/).
+- [@mui-treasury/layout](https://mui-treasury.com/layout/): Components to handle the overall layout of a page. [@mui-treasury/layout](https://mui-treasury.com/layout/): Components to handle the overall layout of a page. [@mui-treasury/layout](https://mui-treasury.com/layout/): Components to handle the overall layout of a page. You can find a couple of examples, e.g. [a reactjs.org clone](https://mui-treasury.com/layout/clones/reactjs/).
 
 ### 通知
 
@@ -53,9 +53,9 @@ Because the scope of problems MUI solves is bound, we try to play nicely with ot
 
 - [react-hook-form](https://react-hook-form.com/)：用于表单验证的 React 钩子。
 - [formik-material-ui](https://github.com/stackworx/formik-mui): Bindings for using MUI with [formik](https://formik.org/).
-- [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui)：用于 [Redux Form](https://redux-form.com/) 和 Material-UI 捆绑使用。
-- [mui-rff](https://github.com/lookfirst/mui-rff)：用于 [React Final Form](https://final-form.org/react) 和 Material-UI 捆绑使用。
-- [@ui-schema/ds-material](https://www.npmjs.com/package/@ui-schema/ds-material) 用于 [UI Schema](https://github.com/ui-schema/ui-schema) 和 Material-UI 捆绑使用，兼容 JSON Schema
+- [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui)：用于 [Redux Form](https://redux-form.com/) 和 Material UI 捆绑使用。
+- [mui-rff](https://github.com/lookfirst/mui-rff)：用于 [React Final Form](https://final-form.org/react) 和 Material UI 捆绑使用。
+- [@ui-schema/ds-material](https://www.npmjs.com/package/@ui-schema/ds-material) 用于 [UI Schema](https://github.com/ui-schema/ui-schema) 和 Material UI 捆绑使用，兼容 JSON Schema
 - [@data-driven-forms/mui-component-mapper](https://data-driven-forms.org/provided-mappers/mui-component-mapper): Bindings for using MUI with [Data Driven Forms](https://github.com/data-driven-forms/react-forms).
 
 ### 幻灯片
@@ -69,11 +69,11 @@ Because the scope of problems MUI solves is bound, we try to play nicely with ot
 
 ### 日程表/日历
 
-- [dx-react-scheduler-material-ui](https://devexpress.github.io/devextreme-reactive/react/scheduler/)：一个基于 Material-UI 的日程表/日历组件，它具有多个功能，包括日历视图、编辑、重复一些预约和日期导航（需要 [付费的许可证](https://js.devexpress.com/licensing/)）。
+- [dx-react-scheduler-material-ui](https://devexpress.github.io/devextreme-reactive/react/scheduler/)：一个基于 Material UI 的日程表/日历组件，它具有多个功能，包括日历视图、编辑、重复一些预约和日期导航（需要 [付费的许可证](https://js.devexpress.com/licensing/)）。
 
 ### 图表
 
-- [dx-react-chart-material-ui](https://devexpress.github.io/devextreme-reactive/react/chart/)：一个基于 Material-UI 的图表，它可以提供各种图表类型来可视化数据，包括条形图、线形图、面积图、散点图、饼图，以及更多（需要 [付费许可证](https://js.devexpress.com/licensing/)）。
+- [dx-react-chart-material-ui](https://devexpress.github.io/devextreme-reactive/react/chart/)：一个基于 Material UI 的图表，它可以提供各种图表类型来可视化数据，包括条形图、线形图、面积图、散点图、饼图，以及更多（需要 [付费许可证](https://js.devexpress.com/licensing/)）。
 
 ### Dialog
 
@@ -89,9 +89,9 @@ Because the scope of problems MUI solves is bound, we try to play nicely with ot
 
 ## Blocks（块级元素）
 
-- [components-extra](https://github.com/alexandre-lelain/components-extra)：提供给了一系列基于 Material-UI 而搭建的”分子（molecule）”组件，譬如一个页脚（Footer），一个 CookiesBanner，一个 BackToTop 按钮，以及一些其他复杂的组件，它们都是高度可自定义的，来帮助开发人员来迅速搭建 UI 的宏观部分。 这些组件往往在网站上重复 —— 这个库解决了这个问题。 This library solves this exact problem.
+- [components-extra](https://github.com/alexandre-lelain/components-extra)：提供给了一系列基于 Material UI 而搭建的”分子（molecule）”组件，譬如一个页脚（Footer），一个 CookiesBanner，一个 BackToTop 按钮，以及一些其他复杂的组件，它们都是高度可自定义的，来帮助开发人员来迅速搭建 UI 的宏观部分。 这些组件往往在网站上重复 —— 这个库解决了这个问题。 This library solves this exact problem.
 
 ## Theming 主题
 
-- [material-ui-theme-editor](https://in-your-saas.github.io/material-ui-theme-editor/)：只需要选择颜色即可为你的 Material-UI 应用生成主题的工具，同时还支持在线预览。
+- [material-ui-theme-editor](https://in-your-saas.github.io/material-ui-theme-editor/)：只需要选择颜色即可为你的 Material UI 应用生成主题的工具，同时还支持在线预览。
 - [Material palette generator](https://material.io/inline-tools/color/)：它可用于通过您输入的任何颜色生成一系列的调色板。

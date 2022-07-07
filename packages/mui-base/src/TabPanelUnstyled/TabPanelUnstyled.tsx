@@ -1,12 +1,15 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import { OverridableComponent } from '@mui/types';
-import { appendOwnerState } from '../utils';
+import { useSlotProps, WithOptionalOwnerState } from '../utils';
 import composeClasses from '../composeClasses';
 import { getTabPanelUnstyledUtilityClass } from './tabPanelUnstyledClasses';
 import useTabPanel from './useTabPanel';
-import TabPanelUnstyledProps, { TabPanelUnstyledTypeMap } from './TabPanelUnstyledProps';
+import {
+  TabPanelUnstyledProps,
+  TabPanelUnstyledRootSlotProps,
+  TabPanelUnstyledTypeMap,
+} from './TabPanelUnstyled.types';
 
 const useUtilityClasses = (ownerState: { hidden: boolean }) => {
   const { hidden } = ownerState;
@@ -21,25 +24,17 @@ const useUtilityClasses = (ownerState: { hidden: boolean }) => {
  *
  * Demos:
  *
- * - [Tabs](https://mui.com/components/tabs/)
+ * - [Tabs](https://mui.com/base/react-tabs/)
  *
  * API:
  *
- * - [TabPanelUnstyled API](https://mui.com/api/tab-panel-unstyled/)
+ * - [TabPanelUnstyled API](https://mui.com/base/api/tab-panel-unstyled/)
  */
 const TabPanelUnstyled = React.forwardRef<unknown, TabPanelUnstyledProps>(function TabPanelUnstyled(
   props,
   ref,
 ) {
-  const {
-    children,
-    className,
-    value,
-    components = {},
-    componentsProps = {},
-    component,
-    ...other
-  } = props;
+  const { children, value, components = {}, componentsProps = {}, component, ...other } = props;
 
   const { hidden, getRootProps } = useTabPanel(props);
 
@@ -51,23 +46,20 @@ const TabPanelUnstyled = React.forwardRef<unknown, TabPanelUnstyledProps>(functi
   const classes = useUtilityClasses(ownerState);
 
   const TabPanelRoot: React.ElementType = component ?? components.Root ?? 'div';
-  const tabPanelRootProps = appendOwnerState(
-    TabPanelRoot,
-    { ...other, ...componentsProps.root },
+  const tabPanelRootProps: WithOptionalOwnerState<TabPanelUnstyledRootSlotProps> = useSlotProps({
+    elementType: TabPanelRoot,
+    getSlotProps: getRootProps,
+    externalSlotProps: componentsProps.root,
+    externalForwardedProps: other,
+    additionalProps: {
+      role: 'tabpanel',
+      ref,
+    },
     ownerState,
-  );
+    className: classes.root,
+  });
 
-  return (
-    <TabPanelRoot
-      {...getRootProps()}
-      ref={ref}
-      role="tabpanel"
-      {...tabPanelRootProps}
-      className={clsx(classes.root, componentsProps.root?.className, className)}
-    >
-      {!hidden && children}
-    </TabPanelRoot>
-  );
+  return <TabPanelRoot {...tabPanelRootProps}>{!hidden && children}</TabPanelRoot>;
 }) as OverridableComponent<TabPanelUnstyledTypeMap>;
 
 TabPanelUnstyled.propTypes /* remove-proptypes */ = {
@@ -79,10 +71,6 @@ TabPanelUnstyled.propTypes /* remove-proptypes */ = {
    * The content of the component.
    */
   children: PropTypes.node,
-  /**
-   * @ignore
-   */
-  className: PropTypes.string,
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
@@ -101,7 +89,7 @@ TabPanelUnstyled.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   componentsProps: PropTypes.shape({
-    root: PropTypes.object,
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
    * The value of the TabPanel. It will be shown when the Tab with the corresponding value is selected.

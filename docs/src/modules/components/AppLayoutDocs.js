@@ -14,6 +14,8 @@ import Ad from 'docs/src/modules/components/Ad';
 import AdManager from 'docs/src/modules/components/AdManager';
 import AdGuest from 'docs/src/modules/components/AdGuest';
 import AppLayoutDocsFooter from 'docs/src/modules/components/AppLayoutDocsFooter';
+import BackToTop from 'docs/src/modules/components/BackToTop';
+import { isNewLocation } from 'docs/src/modules/utils/replaceUrl';
 
 const Main = styled('main', {
   shouldForwardProp: (prop) => prop !== 'disableToc',
@@ -26,7 +28,7 @@ const Main = styled('main', {
     },
   }),
   [theme.breakpoints.up('lg')]: {
-    width: `calc(100% - var(--MuiDocs-navDrawer-width))`,
+    width: 'calc(100% - var(--MuiDocs-navDrawer-width))',
   },
 }));
 
@@ -42,17 +44,15 @@ const StyledAppContainer = styled(AppContainer, {
       '&& .description.ad': {
         marginBottom: 40,
       },
-      ...(!disableToc && {
-        [theme.breakpoints.up('sm')]: {
-          width: `calc(100% - var(--MuiDocs-toc-width))`,
-        },
-      }),
-      ...(!disableToc && {
-        [theme.breakpoints.up('lg')]: {
-          paddingLeft: '60px',
-          paddingRight: '60px',
-        },
-      }),
+    }),
+    ...(!disableToc && {
+      [theme.breakpoints.up('sm')]: {
+        width: 'calc(100% - var(--MuiDocs-toc-width))',
+      },
+      [theme.breakpoints.up('lg')]: {
+        paddingLeft: '60px',
+        paddingRight: '60px',
+      },
     }),
   };
 });
@@ -82,6 +82,7 @@ function AppLayoutDocs(props) {
     throw new Error('Missing description in the page');
   }
 
+  const isNewDocs = isNewLocation(router.asPath);
   const asPathWithoutLang = router.asPath.replace(/^\/[a-zA-Z]{2}\//, '/');
   let productName = 'MUI';
   if (asPathWithoutLang.startsWith('/material-ui')) {
@@ -93,15 +94,21 @@ function AppLayoutDocs(props) {
   if (asPathWithoutLang.startsWith('/x')) {
     productName = 'MUI X';
   }
+  if (asPathWithoutLang.startsWith('/system')) {
+    productName = 'MUI System';
+  }
+  if (asPathWithoutLang.startsWith('/toolpad')) {
+    productName = 'MUI Toolpad';
+  }
 
   return (
-    <AppFrame>
+    // TODO: remove the condition after post-migration (This is to prevent the new urls from being indexed by the old docsearch app)
+    <AppFrame className={isNewDocs ? 'exclude-docsearch-indexing' : ''}>
       <GlobalStyles
         styles={{
           ':root': {
             '--MuiDocs-navDrawer-width': '300px',
             '--MuiDocs-toc-width': '240px',
-            '--MuiDocs-header-height': '64px',
           },
         }}
       />
@@ -127,6 +134,7 @@ function AppLayoutDocs(props) {
           </StyledAppContainer>
         </Main>
       </AdManager>
+      <BackToTop />
     </AppFrame>
   );
 }

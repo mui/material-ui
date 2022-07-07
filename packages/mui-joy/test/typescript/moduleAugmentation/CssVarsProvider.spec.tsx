@@ -1,15 +1,15 @@
 import * as React from 'react';
-import { CssVarsProvider } from '@mui/joy/styles';
+import { CssVarsProvider, extendTheme } from '@mui/joy/styles';
 
 // override theme
 <CssVarsProvider
-  theme={{
+  theme={extendTheme({
     fontFamily: {
       default: '"Rubik", sans-serif',
     },
     // @ts-expect-error 'color' does not exist in JoyTheme
     color: {},
-  }}
+  })}
 />;
 
 // extends PaletteRange
@@ -76,7 +76,7 @@ declare module '@mui/joy/styles' {
 }
 
 <CssVarsProvider
-  theme={{
+  theme={extendTheme({
     colorSchemes: {
       light: {
         palette: {
@@ -113,7 +113,7 @@ declare module '@mui/joy/styles' {
       },
     },
     components: {
-      MuiButton: {
+      JoyButton: {
         styleOverrides: {
           root: ({ ownerState, theme }) => {
             const { color, variant } = ownerState;
@@ -131,7 +131,7 @@ declare module '@mui/joy/styles' {
           },
         },
       },
-      MuiSwitch: {
+      JoySwitch: {
         styleOverrides: {
           thumb: ({ ownerState, theme }) => [
             ownerState.color === 'primary' && {
@@ -143,5 +143,5 @@ declare module '@mui/joy/styles' {
         },
       },
     },
-  }}
+  })}
 />;

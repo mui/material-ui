@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
-import { SxProps } from '../styles/defaultTheme';
+import { SxProps } from '../styles/types';
 import { ListDividerClasses } from './listDividerClasses';
 
 export type ListDividerSlot = 'root';
@@ -19,6 +19,7 @@ export interface ListDividerTypeMap<P = {}, D extends React.ElementType = 'li'> 
     classes?: Partial<ListDividerClasses>;
     /**
      * The empty space on the side(s) of the divider.
+     * This prop has no effect on the divider if the nearest parent List has `row` prop set to `true`.
      */
     inset?: OverridableStringUnion<
       'gutter' | 'startDecorator' | 'startContent',

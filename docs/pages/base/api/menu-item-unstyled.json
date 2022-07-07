@@ -1,11 +1,14 @@
 {
-  "props": { "disabled": { "type": { "name": "bool" } } },
+  "props": {
+    "disabled": { "type": { "name": "bool" } },
+    "label": { "type": { "name": "string" } }
+  },
   "name": "MenuItemUnstyled",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
   "forwardsRefTo": "HTMLLIElement",
   "filename": "/packages/mui-base/src/MenuItemUnstyled/MenuItemUnstyled.tsx",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/material-ui/react-menu/\">Menus</a></li></ul>",
+  "demos": "<ul><li><a href=\"/base/react-menu/\">Menu</a></li></ul>",
   "cssComponent": false
 }

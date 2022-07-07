@@ -1,4 +1,4 @@
-import { generateUtilityClass, generateUtilityClasses } from '@mui/base';
+import { generateUtilityClass, generateUtilityClasses } from '../className';
 
 export interface SheetClasses {
   /** Styles applied to the root element. */
@@ -15,33 +15,23 @@ export interface SheetClasses {
   colorSuccess: string;
   /** Styles applied to the root element if `color="warning"`. */
   colorWarning: string;
-  /** Styles applied to the root element if `variant="text"`. */
-  variantText: string;
+  /** Styles applied to the root element if `variant="plain"`. */
+  variantPlain: string;
   /** Styles applied to the root element if `variant="outlined"`. */
   variantOutlined: string;
-  /** Styles applied to the root element if `variant="light"`. */
-  variantLight: string;
-  /** Styles applied to the root element if `variant="contained"`. */
-  variantContained: string;
-  /** Styles applied to the root element if `elevation="xs"`. */
-  elevationXs: string;
-  /** Styles applied to the root element if `elevation="sm"`. */
-  elevationSm: string;
-  /** Styles applied to the root element if `elevation="md"`. */
-  elevationMd: string;
-  /** Styles applied to the root element if `elevation="lg"`. */
-  elevationLg: string;
-  /** Styles applied to the root element if `elevation="xl"`. */
-  elevationXl: string;
+  /** Styles applied to the root element if `variant="soft"`. */
+  variantSoft: string;
+  /** Styles applied to the root element if `variant="solid"`. */
+  variantSolid: string;
 }
 
 export type SheetClassKey = keyof SheetClasses;
 
 export function getSheetUtilityClass(slot: string): string {
-  return generateUtilityClass('MuiSheet', slot);
+  return generateUtilityClass('JoySheet', slot);
 }
 
-const sheetClasses: SheetClasses = generateUtilityClasses('MuiSheet', [
+const sheetClasses: SheetClasses = generateUtilityClasses('JoySheet', [
   'root',
   'colorPrimary',
   'colorNeutral',
@@ -49,15 +39,10 @@ const sheetClasses: SheetClasses = generateUtilityClasses('MuiSheet', [
   'colorInfo',
   'colorSuccess',
   'colorWarning',
-  'variantText',
+  'variantPlain',
   'variantOutlined',
-  'variantLight',
-  'variantContained',
-  'elevationXs',
-  'elevationSm',
-  'elevationMd',
-  'elevationLg',
-  'elevationXl',
+  'variantSoft',
+  'variantSolid',
 ]);
 
 export default sheetClasses;

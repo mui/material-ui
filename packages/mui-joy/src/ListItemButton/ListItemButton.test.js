@@ -12,7 +12,7 @@ describe('Joy <ListItemButton />', () => {
     inheritComponent: 'div',
     render,
     ThemeProvider,
-    muiName: 'MuiListItemButton',
+    muiName: 'JoyListItemButton',
     refInstanceof: window.HTMLDivElement,
     testVariantProps: { color: 'primary' },
     skip: ['componentsProp', 'classesRoot'],
@@ -41,6 +41,11 @@ describe('Joy <ListItemButton />', () => {
   it('should be disabled', () => {
     const { container } = render(<ListItemButton disabled />);
     expect(container.firstChild).to.have.class(classes.disabled);
+  });
+
+  it('should accept custom role', () => {
+    const { getByRole } = render(<ListItemButton role="menuitem" />);
+    expect(getByRole('menuitem')).toBeVisible();
   });
 
   describe('prop: focusVisibleClassName', () => {

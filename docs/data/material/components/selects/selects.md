@@ -1,8 +1,10 @@
 ---
 product: material-ui
 title: React Select component
-components: Select, NativeSelect, SelectUnstyled, MultiSelectUnstyled, OptionUnstyled, OptionGroupUnstyled
+components: Select, NativeSelect
 githubLabel: 'component: select'
+waiAria: https://www.w3.org/WAI/ARIA/apg/example-index/combobox/combobox-select-only.html
+unstyled: /base/react-select/
 ---
 
 # Select
@@ -21,13 +23,13 @@ Menus are positioned under their emitting elements, unless they are close to the
 
 The Select component is meant to be interchangeable with a native `<select>` element.
 
-If you are looking for more advanced features, like combobox, multiselect, autocomplete, async or creatable support, head to the [`Autocomplete` component](/components/autocomplete/).
+If you are looking for more advanced features, like combobox, multiselect, autocomplete, async or creatable support, head to the [`Autocomplete` component](/material-ui/react-autocomplete/).
 It's meant to be an improved version of the "react-select" and "downshift" packages.
 
 ## Props
 
-The Select component is implemented as a custom `<input>` element of the [InputBase](/api/input-base/).
-It extends the [text field components](/components/text-fields/) sub-components, either the [OutlinedInput](/api/outlined-input/), [Input](/api/input/), or [FilledInput](/api/filled-input/), depending on the variant selected.
+The Select component is implemented as a custom `<input>` element of the [InputBase](/material-ui/api/input-base/).
+It extends the [text field components](/material-ui/react-text-field/) sub-components, either the [OutlinedInput](/material-ui/api/outlined-input/), [Input](/material-ui/api/input/), or [FilledInput](/material-ui/api/filled-input/), depending on the variant selected.
 It shares the same styles and many of the same props. Refer to the respective component's API page for details.
 
 ### Filled and standard variants
@@ -38,11 +40,17 @@ It shares the same styles and many of the same props. Refer to the respective co
 
 {{"demo": "SelectLabels.js"}}
 
-> ⚠ Note that when using FormControl with the outlined variant of the Select, you need to provide a label in two places: in the InputLabel component and in the `label` prop of the Select component (see the above demo).
+:::warning
+⚠ Note that when using FormControl with the outlined variant of the Select, you need to provide a label in two places: in the InputLabel component and in the `label` prop of the Select component (see the above demo).
+:::
 
 ### Auto width
 
 {{"demo": "SelectAutoWidth.js"}}
+
+### Small Size
+
+{{"demo": "SelectSmall.js"}}
 
 ### Other props
 
@@ -58,12 +66,12 @@ we allow such pattern.
 ## TextField
 
 The `TextField` wrapper component is a complete form control including a label, input and help text.
-You can find an example with the select mode [in this section](/components/text-fields/#select).
+You can find an example with the select mode [in this section](/material-ui/react-text-field/#select).
 
 ## Customization
 
 Here are some examples of customizing the component.
-You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
+You can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/).
 
 The first step is to style the `InputBase` component.
 Once it's styled, you can either use it directly as a text field or provide it to the select `input` prop to have a `select` field.
@@ -150,84 +158,3 @@ For a [native select](#native-select), you should mention a label by giving the 
   <option value="20">Twenty</option>
 </NativeSelect>
 ```
-
-## Unstyled
-
-The Select also comes with an unstyled version.
-It's ideal for doing heavy customizations and minimizing bundle size.
-
-### Unstyled component
-
-```jsx
-import SelectUnstyled from '@mui/base/SelectUnstyled';
-```
-
-#### Basic usage
-
-{{"demo": "UnstyledSelectSimple.js"}}
-
-The `SelectUnstyled` is a component that accepts generic props.
-Due to Typescript limitations, this may cause unexpected behavior when wrapping the component in `forwardRef` (or other higher-order components).
-In such cases, the generic argument will be defaulted to `unknown` and type suggestions will be incomplete.
-To avoid this, manually cast the resulting component to the correct type (as shown above).
-
-The rest of the demos below will not use `forwardRef` for brevity.
-
-#### Controlled select
-
-The SelectUnstyled can be used as either uncontrolled (as shown in the demo above) or controlled component.
-
-{{"demo": "UnstyledSelectControlled.js"}}
-
-#### Usage with object values
-
-The unstyled select may be used with non-string values.
-
-{{"demo": "UnstyledSelectObjectValues.js"}}
-
-#### Customizing the selected value appearance
-
-It is possible to customize the selected value display by providing a function to the `renderValue` prop.
-The element returned by this function will be rendered inside the select's button.
-
-{{"demo": "UnstyledSelectCustomRenderValue.js"}}
-
-#### Customizing the options' appearance
-
-Options don't have to be plain strings.
-You can include custom elements to be rendered inside the listbox.
-
-{{"demo": "UnstyledSelectRichOptions.js"}}
-
-#### Grouping
-
-Options can be grouped, similarly to the how the native `select` element works.
-Unlike the native `select`, however, the groups can be nested.
-
-Place the `Option` components inside `OptionGroup` to achieve this.
-
-{{"demo": "UnstyledSelectGrouping.js"}}
-
-#### Multiselect
-
-To be able to select multiple options at once, use the `MultiSelectUnstyled` component.
-
-```js
-import { MultiSelectUnstyled } from '@mui/base/SelectUnstyled';
-```
-
-{{"demo": "UnstyledSelectMultiple.js"}}
-
-### useSelect hook
-
-```js
-import { useSelect } from '@mui/base/SelectUnstyled';
-```
-
-If you need to use Select's functionality in another component, you can use the `useSelect` hook.
-It enables maximal customizability at the cost of being low-level.
-
-The following example shows a select that opens when hovered over or focused.
-It can be controlled by a mouse/touch or a keyboard.
-
-{{"demo": "UseSelect.js"}}

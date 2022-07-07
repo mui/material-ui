@@ -4,7 +4,7 @@
 
 ## Details of the Role
 
-- Location: Remote (preference for UTC-6 to UTC+3).
+- Location: Remote (preference for UTC-6 to UTC+5).
 - Type of work: Full-time (contractor or employee [depending on circumstances](https://mui-org.notion.site/Hiring-FAQ-64763b756ae44c37b47b081f98915501))
 - Start date: Immediately.
 - We're a remote company, we prefer asynchronous communication over meetings.
@@ -12,7 +12,7 @@
 
 ## About the company
 
-MUI started with Material-UI, the most successful React implementation of Google's Material Design.
+MUI started with Material UI, the most successful React implementation of Google's Material Design.
 It has gained a large following, not only due to the fidelity to Material Design, but also because of the number of components, its carefully designed component API, obsession for details, and community engagement.
 Today, countless teams and organizations rely on our open-source libraries to build their design system.
 
@@ -36,10 +36,11 @@ We believe that the best way to improve on these dimensions is to eliminate [80%
 
 ### Why this is interesting
 
-Our solution empowers React developers to build awesome applications – hundreds of thousands of developers use MUI every month.
+Our solution empowers React developers to build awesome applications faster – we see over a million developers on MUI's docs every month.
+Hundreds of thousands of developers use MUI every month.
 
 But providing React components isn't enough.
-In our [last developer survey](/blog/2020-developer-survey-results/), we learned that the majority of our audience are full-stack developers.
+In our [last developer survey](/blog/2021-developer-survey-results/), we learned that the majority of our audience are full-stack developers.
 They are looking for ways to move faster.
 They are working on a couple of new projects every year, and where the integration between the UI and the database is key.
 
@@ -74,9 +75,9 @@ Depending on the day, you'll:
 ## Benefits & Compensation
 
 Competitive compensation depending on the profile and location.
-We are ready to pay top market rates for a person that can significantly push the mission forward.
+We are ready to pay top market rates for a person that can clearly exceed the role's expectations.
 You can find the other perks & benefits on the [careers](/careers/#perks-amp-benefits) page.
 
 ## How to apply?
 
-[Apply now for this position 📮](https://airtable.com/shrdqo1Z6srZXGcvh?prefill_Applying+for=Product%20Manager&prefill_source=mui.com)
+[Apply now for this position 📮](https://jobs.ashbyhq.com/MUI/__ID__/application?utm_source=ZNRrPGBkqO)

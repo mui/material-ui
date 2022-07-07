@@ -3,7 +3,7 @@ product: material-ui
 title: React Breadcrumbs component
 components: Breadcrumbs, Link, Typography
 githubLabel: 'component: breadcrumbs'
-waiAria: https://www.w3.org/TR/wai-aria-practices/#breadcrumb
+waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/breadcrumb/
 ---
 
 # Breadcrumbs
@@ -39,7 +39,7 @@ In the following examples, we are using two string separators and an SVG icon.
 ## Customization
 
 Here is an example of customizing the component.
-You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
+You can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/).
 
 {{"demo": "CustomizedBreadcrumbs.js"}}
 
@@ -49,7 +49,7 @@ You can learn more about this in the [overrides documentation page](/customizati
 
 ## Accessibility
 
-(WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#breadcrumb)
+(WAI-ARIA: https://www.w3.org/WAI/ARIA/apg/patterns/breadcrumb/)
 
 Be sure to add a `aria-label` description on the `Breadcrumbs` component.
 

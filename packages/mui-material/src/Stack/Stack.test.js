@@ -256,5 +256,69 @@ describe('<Stack />', () => {
         flexDirection: 'column',
       });
     });
+
+    it('should generate correct styles if custom breakpoints are provided in theme', () => {
+      const customTheme = createTheme({
+        breakpoints: {
+          values: {
+            smallest: 0,
+            small: 375,
+            mobile: 600,
+            tablet: 992,
+            desktop: 1200,
+          },
+        },
+      });
+
+      expect(
+        style({
+          ownerState: {
+            direction: 'column',
+            spacing: 4,
+          },
+          theme: customTheme,
+        }),
+      ).to.deep.equal({
+        '& > :not(style) + :not(style)': {
+          margin: 0,
+          marginTop: '32px',
+        },
+        display: 'flex',
+        flexDirection: 'column',
+      });
+    });
+
+    it('should generate correct responsive styles if custom responsive spacing values are provided', () => {
+      const customTheme = createTheme({
+        breakpoints: {
+          values: {
+            smallest: 0,
+            small: 375,
+            mobile: 600,
+            tablet: 992,
+            desktop: 1200,
+          },
+        },
+      });
+
+      expect(
+        style({
+          ownerState: {
+            direction: 'column',
+            spacing: { small: 4 },
+          },
+          theme: customTheme,
+        }),
+      ).to.deep.equal({
+        [`@media (min-width:${customTheme.breakpoints.values.small}px)`]: {
+          '& > :not(style) + :not(style)': {
+            margin: 0,
+            marginTop: '32px',
+          },
+        },
+        display: 'flex',
+        flexDirection: 'column',
+      });
+    });
   });
 });
