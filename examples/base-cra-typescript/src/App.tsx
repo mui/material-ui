@@ -1,5 +1,5 @@
 import * as React from 'react';
-import styled from '@emotion/styled';
+import { styled } from '@mui/system';
 import { ButtonUnstyled, buttonUnstyledClasses } from '@mui/base';
 
 const Button = styled(ButtonUnstyled)`
