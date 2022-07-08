@@ -11,7 +11,7 @@ unstyled: /base/react-input/
 
 Text.
 
-<!-- {{"demo": "ButtonUsage.js", "hideToolbar": true}} -->
+{{"demo": "TextFieldUsage.js", "hideToolbar": true}}
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
