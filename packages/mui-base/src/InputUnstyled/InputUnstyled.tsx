@@ -1,25 +1,31 @@
 import * as React from 'react';
-import { OverridableComponent } from '@mui/types';
-import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import appendOwnerState from '../utils/appendOwnerState';
+import { OverridableComponent } from '@mui/types';
 import isHostComponent from '../utils/isHostComponent';
 import classes from './inputUnstyledClasses';
-import InputUnstyledProps, { InputUnstyledTypeMap } from './InputUnstyledProps';
+import {
+  InputUnstyledInputSlotProps,
+  InputUnstyledOwnerState,
+  InputUnstyledProps,
+  InputUnstyledRootSlotProps,
+  InputUnstyledTypeMap,
+} from './InputUnstyled.types';
 import useInput from './useInput';
+import { EventHandlers, useSlotProps, WithOptionalOwnerState } from '../utils';
+
 /**
  *
  * Demos:
  *
- * - [Text Fields](https://mui.com/components/text-fields/)
+ * - [Input](https://mui.com/base/react-input/)
  *
  * API:
  *
- * - [InputUnstyled API](https://mui.com/api/input-unstyled/)
+ * - [InputUnstyled API](https://mui.com/base/api/input-unstyled/)
  */
 const InputUnstyled = React.forwardRef(function InputUnstyled(
   props: InputUnstyledProps,
-  ref: React.ForwardedRef<any>,
+  forwardedRef: React.ForwardedRef<any>,
 ) {
   const {
     'aria-describedby': ariaDescribedby,
@@ -63,22 +69,19 @@ const InputUnstyled = React.forwardRef(function InputUnstyled(
     formControlContext,
     error: errorState,
     disabled: disabledState,
-  } = useInput(
-    {
-      disabled,
-      defaultValue,
-      error,
-      onBlur,
-      onClick,
-      onChange,
-      onFocus,
-      required,
-      value,
-    },
-    componentsProps.input?.ref,
-  );
+  } = useInput({
+    disabled,
+    defaultValue,
+    error,
+    onBlur,
+    onClick,
+    onChange,
+    onFocus,
+    required,
+    value,
+  });
 
-  const ownerState = {
+  const ownerState: InputUnstyledOwnerState = {
     ...props,
     disabled: disabledState,
     error: errorState,
@@ -119,27 +122,32 @@ const InputUnstyled = React.forwardRef(function InputUnstyled(
   };
 
   const Root = component ?? components.Root ?? 'div';
-  const rootProps = appendOwnerState(
-    Root,
-    {
-      ...getRootProps({ ...other, ...componentsProps.root }),
-      className: clsx(classes.root, rootStateClasses, className, componentsProps.root?.className),
+  const rootProps: WithOptionalOwnerState<InputUnstyledRootSlotProps> = useSlotProps({
+    elementType: Root,
+    getSlotProps: getRootProps,
+    externalSlotProps: componentsProps.root,
+    externalForwardedProps: other,
+    additionalProps: {
+      ref: forwardedRef,
     },
     ownerState,
-  );
+    className: [classes.root, rootStateClasses, className],
+  });
 
   let Input = components.Input ?? 'input';
-  let inputProps = appendOwnerState(
-    Input,
-    {
-      ...getInputProps({ ...componentsProps.input, ...propsToForward }),
-      className: clsx(classes.input, inputStateClasses, componentsProps.input?.className),
-    },
+  let inputProps: WithOptionalOwnerState<InputUnstyledInputSlotProps> = useSlotProps({
+    elementType: Input,
+    getSlotProps: (otherHandlers: EventHandlers) =>
+      getInputProps({ ...otherHandlers, ...propsToForward }),
+    externalSlotProps: componentsProps.input,
     ownerState,
-  );
+    className: [classes.input, inputStateClasses],
+  });
 
   if (multiline) {
-    const hasHostTexarea = isHostComponent(components.Textarea ?? 'textarea');
+    const hasHostTextarea = isHostComponent(components.Textarea ?? 'textarea');
+
+    const { ownerState: ownerStateInputProps, ...inputPropsWithoutOwnerState } = inputProps;
 
     if (rows) {
       if (process.env.NODE_ENV !== 'production') {
@@ -149,26 +157,19 @@ const InputUnstyled = React.forwardRef(function InputUnstyled(
           );
         }
       }
-      inputProps = {
-        type: undefined,
-        minRows: hasHostTexarea ? undefined : rows,
-        maxRows: hasHostTexarea ? undefined : rows,
-        ...inputProps,
-      };
-    } else {
-      inputProps = {
-        type: undefined,
-        maxRows: hasHostTexarea ? undefined : maxRows,
-        minRows: hasHostTexarea ? undefined : minRows,
-        ...inputProps,
-      };
     }
+
+    inputProps = {
+      ...(!hasHostTextarea && { minRows: rows || minRows, maxRows: rows || maxRows }),
+      ...(hasHostTextarea ? inputPropsWithoutOwnerState : inputProps),
+      type: undefined,
+    };
 
     Input = components.Textarea ?? 'textarea';
   }
 
   return (
-    <Root {...rootProps} ref={ref}>
+    <Root {...rootProps}>
       {startAdornment}
       <Input {...inputProps} />
       {endAdornment}
@@ -231,8 +232,8 @@ InputUnstyled.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   componentsProps: PropTypes.shape({
-    input: PropTypes.object,
-    root: PropTypes.object,
+    input: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
    * The default value. Use when the component is not controlled.
@@ -323,7 +324,30 @@ InputUnstyled.propTypes /* remove-proptypes */ = {
    * Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types).
    * @default 'text'
    */
-  type: PropTypes.string,
+  type: PropTypes /* @typescript-to-proptypes-ignore */.oneOf([
+    'button',
+    'checkbox',
+    'color',
+    'date',
+    'datetime-local',
+    'email',
+    'file',
+    'hidden',
+    'image',
+    'month',
+    'number',
+    'password',
+    'radio',
+    'range',
+    'reset',
+    'search',
+    'submit',
+    'tel',
+    'text',
+    'time',
+    'url',
+    'week',
+  ]),
   /**
    * The value of the `input` element, required for a controlled component.
    */

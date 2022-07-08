@@ -144,109 +144,90 @@ const faqData = [
 ];
 
 const openRolesData = [
-  // {
-  //   // 1
-  //   title: 'Product',
-  //   roles: [
-  //     {
-  //       title: 'Product Designer',
-  //       description:
-  //         'Design is critical to the success of our mission. We are looking for skills that complement our Lead Designer. You will empower our audience that seeks to build outstanding-looking UIs with new tools.',
-  //       url: '/company/11-product-designer/',
-  //     },
-  //   ],
-  // },
   {
-    // 5
-    title: 'Developer Experience',
-    roles: [
-      {
-        title: 'Developer Advocate',
-        description:
-          'You will educate users on the latest features, craft high-quality examples, and demos, engage with the community, write documentation, advocate for creating faster and more appealing UIs, and help to promote/market the advanced components.',
-        url: '/company/50-developer-advocate/',
-      },
-      {
-        title: 'Developer Experience Engineer',
-        description: 'You will focus on providing experiences that delight developers using MUI.',
-        url: '/company/51-developer-experience-engineer/',
-      },
-      {
-        title: 'Support Engineer - X',
-        description:
-          "You will provide support to users for the advanced components team. You will directly impact developers' satisfaction and success.",
-        url: '/company/50-support-engineer/',
-      },
-    ],
-  },
-  {
-    // 2
     title: 'Engineering',
     roles: [
+      {
+        title: 'React Support Engineer - X',
+        description:
+          "You will provide support, remove blockers and unwrap potential features from reported issues for the advanced components team. You will directly impact developers' satisfaction and success.",
+        url: '/careers/react-support-engineer/',
+      },
+      {
+        title: 'React Engineer - Core',
+        description:
+          'You will strengthen the core components team, e.g. collaborate with the community to land contributions.',
+        url: '/careers/react-engineer-core/',
+      },
       {
         title: 'React Engineer - X',
         description:
           'You will strengthen the advanced components team, build new ambitious complex features, work on strategic problems, and help grow the adoption.',
-        url: '/company/20-react-engineer/',
+        url: '/careers/react-engineer-x/',
       },
       {
-        title: 'Hustler Engineer - Store',
+        title: 'Product Engineer - Store',
         description: 'You will lead the technical and operational development of MUI Store.',
-        url: '/company/22-hustler-engineer/',
+        url: '/careers/product-engineer/',
       },
     ],
   },
   {
-    // 3
     title: 'People',
     roles: [
       {
         title: 'People Operations Manager',
         description:
           'You will build the HR function from the ground up at a high-growth tech company.',
-        url: '/company/30-people-operations-manager/',
+        url: '/careers/people-operations-manager/',
+      },
+    ],
+  },
+];
+
+const nextRolesData = [
+  {
+    title: 'Engineering',
+    roles: [
+      {
+        title: 'Full-stack Engineer - Toolpad',
+        description:
+          'You will join the MUI Toolpad team, to explore the role of MUI in the low code space and help bring the early prototype to a usable product.',
+        url: '/careers/fullstack-engineer/',
       },
     ],
   },
   {
-    // 4
+    title: 'Sales',
+    roles: [
+      {
+        title: 'Account Executive',
+        description:
+          'You will build client relationships and manage the sales process from start to finish.',
+      },
+    ],
+  },
+  {
+    title: 'People',
+    roles: [
+      {
+        title: 'Technical Recruiter',
+        description: 'You will hire the next engineers joining the team.',
+      },
+    ],
+  },
+  {
     title: 'Support',
     roles: [
       {
         title: 'Support Agent - Store',
         description:
           "You will provide support for the customers of MUI Store. You will directly impact customers' satisfaction and success.",
-        url: '/company/41-support-agent/',
+        url: '/careers/support-agent/',
       },
     ],
   },
-];
-
-const futureRolesData = [
-  {
-    // 1
-    title: 'Product',
-    roles: [
-      {
-        title: 'Product Designer',
-        description:
-          'Design is critical to the success of our mission. We are looking for skills that complement our Lead Designer. You will empower our audience that seeks to build outstanding-looking UIs with new tools.',
-        url: '/company/11-product-designer/',
-      },
-    ],
-  },
-  {
-    title: 'Engineering',
-    roles: [
-      {
-        title: 'Full-stack Engineer',
-        description:
-          'You will strengthen the team working on a new low-code product. We are looking for an experienced and ambitious full-stack engineer that is ready to work in an entrepreneurial environment. You are a manager of one, you are curious, enjoy taking risks, and learning.',
-        url: undefined,
-      },
-    ],
-  },
-];
+] as typeof openRolesData;
 
 function renderFAQItem(index: number, defaultExpanded?: boolean) {
   const faq = faqData[index];
@@ -350,9 +331,9 @@ function CareersContent() {
       </Box>
       {/* Perks & benefits */}
       <div>
-        <Container sx={{ py: { xs: 4, md: 8 } }}>
+        <Container sx={{ py: 4 }}>
           <Grid container alignItems="center" spacing={{ xs: 2, sm: 4 }}>
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12} md={6} sx={{ pr: { sm: 0, md: 4 } }}>
               <Typography variant="h2" sx={{ my: 1 }} id="perks-amp-benefits">
                 {'Perks & benefits'}
               </Typography>
@@ -380,53 +361,59 @@ function CareersContent() {
                 </Box>
               ))}
             </Grid>
-            <Grid item xs={12} sm={6} md={3}>
-              <Paper
-                component={Link}
-                href={ROUTES.handbook}
-                noLinkStyle
-                variant="outlined"
-                sx={{ p: 2 }}
-              >
-                <Typography variant="body2" fontWeight="bold" sx={{ mb: 0.5 }}>
-                  Handbook
-                </Typography>
-                <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
-                  See how we run the company and the way we work.
-                </Typography>
-                <Typography
-                  color={(theme) => (theme.palette.mode === 'dark' ? 'primary.400' : 'primary.600')}
-                  variant="body2"
-                  fontWeight="bold"
+            <Grid item xs={12} sm={12} md={6} container spacing={2}>
+              <Grid item xs={12} sm={12} md={6}>
+                <Paper
+                  component={Link}
+                  href={ROUTES.handbook}
+                  noLinkStyle
+                  variant="outlined"
+                  sx={{ p: 2 }}
                 >
-                  Learn more{' '}
-                  <KeyboardArrowRightRounded fontSize="small" sx={{ verticalAlign: 'middle' }} />
-                </Typography>
-              </Paper>
-            </Grid>
-            <Grid item xs={12} sm={6} md={3}>
-              <Paper
-                component={Link}
-                href={ROUTES.blog}
-                noLinkStyle
-                variant="outlined"
-                sx={{ p: 2 }}
-              >
-                <Typography variant="body2" fontWeight="bold" sx={{ mb: 0.5 }}>
-                  Blog
-                </Typography>
-                <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
-                  Check behind the scenes and news from the company.
-                </Typography>
-                <Typography
-                  color={(theme) => (theme.palette.mode === 'dark' ? 'primary.400' : 'primary.600')}
-                  variant="body2"
-                  fontWeight="bold"
+                  <Typography variant="body2" fontWeight="bold" sx={{ mb: 0.5 }}>
+                    Handbook
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
+                    See how we run the company and the way we work.
+                  </Typography>
+                  <Typography
+                    color={(theme) =>
+                      theme.palette.mode === 'dark' ? 'primary.400' : 'primary.600'
+                    }
+                    variant="body2"
+                    fontWeight="bold"
+                  >
+                    Learn more{' '}
+                    <KeyboardArrowRightRounded fontSize="small" sx={{ verticalAlign: 'middle' }} />
+                  </Typography>
+                </Paper>
+              </Grid>
+              <Grid item xs={12} sm={12} md={6}>
+                <Paper
+                  component={Link}
+                  href={ROUTES.blog}
+                  noLinkStyle
+                  variant="outlined"
+                  sx={{ p: 2 }}
                 >
-                  Learn more{' '}
-                  <KeyboardArrowRightRounded fontSize="small" sx={{ verticalAlign: 'middle' }} />
-                </Typography>
-              </Paper>
+                  <Typography variant="body2" fontWeight="bold" sx={{ mb: 0.5 }}>
+                    Blog
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
+                    Check behind the scenes and news from the company.
+                  </Typography>
+                  <Typography
+                    color={(theme) =>
+                      theme.palette.mode === 'dark' ? 'primary.400' : 'primary.600'
+                    }
+                    variant="body2"
+                    fontWeight="bold"
+                  >
+                    Learn more{' '}
+                    <KeyboardArrowRightRounded fontSize="small" sx={{ verticalAlign: 'middle' }} />
+                  </Typography>
+                </Paper>
+              </Grid>
             </Grid>
           </Grid>
         </Container>
@@ -487,59 +474,65 @@ function CareersContent() {
           })}
         </Stack>
       </Container>
-      {/* Future roles */}
-      <ThemeProvider theme={brandingDarkTheme}>
-        <Box sx={{ bgcolor: 'primaryDark.700' }}>
-          <Container sx={{ py: { xs: 4, md: 8 } }}>
-            <Box
-              sx={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-              }}
-            >
-              <div>
-                <Typography variant="h2" sx={{ my: 1 }} id="future-roles">
-                  Future roles
-                </Typography>
-                <Typography color="text.secondary" sx={{ mb: 2, maxWidth: 450 }}>
-                  In the future, we will need to fill the following positions. If you don&apos;t
-                  want to wait for the positions to be opened, you can jump ahead and submit an{' '}
-                  <Link href="https://airtable.com/shr9JdBSiE6noobhc">open application.</Link>
-                </Typography>
-              </div>
-            </Box>
-            <Divider sx={{ my: { xs: 2, sm: 4 }, borderColor: 'primaryDark.600' }} />
-            <Stack
-              spacing={2}
-              divider={<Divider sx={{ my: { xs: 1, sm: 2 }, borderColor: 'primaryDark.600' }} />}
-            >
-              {futureRolesData.map((category) => {
-                const roles = category.roles;
-                return (
-                  <React.Fragment key={category.title}>
-                    <Typography component="h3" variant="h5" fontWeight="extraBold">
-                      {category.title}
-                    </Typography>
-                    {roles.length > 0 ? (
-                      roles.map((role) => (
-                        <Role
-                          key={role.title}
-                          title={role.title}
-                          description={role.description}
-                          url={role.url}
-                        />
-                      ))
-                    ) : (
-                      <Typography color="text.secondary">No plans yet.</Typography>
-                    )}
-                  </React.Fragment>
-                );
-              })}
-            </Stack>
-          </Container>
-        </Box>
-      </ThemeProvider>
+      {/* Next roles */}
+      {nextRolesData.length > 0 ? (
+        <ThemeProvider theme={brandingDarkTheme}>
+          <Box sx={{ bgcolor: 'primaryDark.700' }}>
+            <Container sx={{ py: { xs: 4, md: 8 } }}>
+              <Box
+                sx={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                }}
+              >
+                <div>
+                  <Typography variant="h2" sx={{ my: 1 }} id="next-roles">
+                    Next roles
+                  </Typography>
+                  <Typography color="text.secondary" sx={{ mb: 2, maxWidth: 450 }}>
+                    We hire in batches, we collect applications a few months before we actively aim
+                    to fill the roles. If none of these roles fit with what you are looking for, you
+                    can apply to the{' '}
+                    <Link href="https://jobs.ashbyhq.com/MUI/4715d81f-d00f-42d4-a0d0-221f40f73e19/application?utm_source=ZNRrPGBkqO">
+                      Dream job
+                    </Link>{' '}
+                    role.
+                  </Typography>
+                </div>
+              </Box>
+              <Divider sx={{ my: { xs: 2, sm: 4 }, borderColor: 'primaryDark.600' }} />
+              <Stack
+                spacing={2}
+                divider={<Divider sx={{ my: { xs: 1, sm: 2 }, borderColor: 'primaryDark.600' }} />}
+              >
+                {nextRolesData.map((category) => {
+                  const roles = category.roles;
+                  return (
+                    <React.Fragment key={category.title}>
+                      <Typography component="h3" variant="h5" fontWeight="extraBold">
+                        {category.title}
+                      </Typography>
+                      {roles.length > 0 ? (
+                        roles.map((role) => (
+                          <Role
+                            key={role.title}
+                            title={role.title}
+                            description={role.description}
+                            url={role.url}
+                          />
+                        ))
+                      ) : (
+                        <Typography color="text.secondary">No plans yet.</Typography>
+                      )}
+                    </React.Fragment>
+                  );
+                })}
+              </Stack>
+            </Container>
+          </Box>
+        </ThemeProvider>
+      ) : null}
       {/* Frequently asked questions */}
       <Container sx={{ py: { xs: 4, sm: 6, md: 8 } }}>
         <Typography variant="h2" sx={{ mb: { xs: 2, sm: 4 } }}>

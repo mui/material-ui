@@ -1,8 +1,8 @@
 import styledEngineStyled from '@mui/styled-engine';
 import { getDisplayName } from '@mui/utils';
 import createTheme from './createTheme';
-import styleFunctionSx from './styleFunctionSx';
 import propsToClassKey from './propsToClassKey';
+import defaultStyleFunctionSx from './styleFunctionSx';
 
 function isEmpty(obj) {
   return Object.keys(obj).length === 0;
@@ -53,6 +53,7 @@ const variantsResolver = (props, styles, theme, name) => {
   return variantsStyles;
 };
 
+// Update /system/styled/#api in case if this changes
 export function shouldForwardProp(prop) {
   return prop !== 'ownerState' && prop !== 'theme' && prop !== 'sx' && prop !== 'as';
 }
@@ -68,6 +69,7 @@ export default function createStyled(input = {}) {
     defaultTheme = systemDefaultTheme,
     rootShouldForwardProp = shouldForwardProp,
     slotShouldForwardProp = shouldForwardProp,
+    styleFunctionSx = defaultStyleFunctionSx,
   } = input;
   return (tag, inputOptions = {}) => {
     const {
@@ -112,7 +114,7 @@ export default function createStyled(input = {}) {
     const muiStyledResolver = (styleArg, ...expressions) => {
       const expressionsWithDefaultTheme = expressions
         ? expressions.map((stylesArg) => {
-            // On the server emotion doesn't use React.forwardRef for creating components, so the created
+            // On the server Emotion doesn't use React.forwardRef for creating components, so the created
             // component stays as a function. This condition makes sure that we do not interpolate functions
             // which are basically components used as a selectors.
             // eslint-disable-next-line no-underscore-dangle
@@ -135,7 +137,12 @@ export default function createStyled(input = {}) {
           const styleOverrides = getStyleOverrides(componentName, theme);
 
           if (styleOverrides) {
-            return overridesResolver(props, styleOverrides);
+            const resolvedStyleOverrides = {};
+            Object.entries(styleOverrides).forEach(([slotKey, slotStyle]) => {
+              resolvedStyleOverrides[slotKey] =
+                typeof slotStyle === 'function' ? slotStyle({ ...props, theme }) : slotStyle;
+            });
+            return overridesResolver(props, resolvedStyleOverrides);
           }
 
           return null;
@@ -168,7 +175,14 @@ export default function createStyled(input = {}) {
         // If the type is array, than we need to add placeholders in the template for the overrides, variants and the sx styles.
         transformedStyleArg = [...styleArg, ...placeholders];
         transformedStyleArg.raw = [...styleArg.raw, ...placeholders];
-      } else if (typeof styleArg === 'function') {
+      } else if (
+        typeof styleArg === 'function' &&
+        // On the server Emotion doesn't use React.forwardRef for creating components, so the created
+        // component stays as a function. This condition makes sure that we do not interpolate functions
+        // which are basically components used as a selectors.
+        // eslint-disable-next-line no-underscore-dangle
+        styleArg.__emotion_real !== styleArg
+      ) {
         // If the type is function, we need to define the default theme.
         transformedStyleArg = ({ theme: themeInput, ...other }) =>
           styleArg({ theme: isEmpty(themeInput) ? defaultTheme : themeInput, ...other });
@@ -189,6 +203,11 @@ export default function createStyled(input = {}) {
 
       return Component;
     };
+
+    if (defaultStyledResolver.withConfig) {
+      muiStyledResolver.withConfig = defaultStyledResolver.withConfig;
+    }
+
     return muiStyledResolver;
   };
 }

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { IconButtonProps, InternalStandardProps as StandardProps, Theme } from '@mui/material';
 import { ChipProps, ChipTypeMap } from '@mui/material/Chip';
+import { PaperProps } from '@mui/material/Paper';
 import { PopperProps } from '@mui/material/Popper';
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
@@ -21,6 +22,23 @@ export {
   AutocompleteCloseReason,
   AutocompleteInputChangeReason,
   createFilterOptions,
+};
+
+export type AutocompleteOwnerState<
+  T,
+  Multiple extends boolean | undefined,
+  DisableClearable extends boolean | undefined,
+  FreeSolo extends boolean | undefined,
+  ChipComponent extends React.ElementType = ChipTypeMap['defaultComponent'],
+> = AutocompleteProps<T, Multiple, DisableClearable, FreeSolo, ChipComponent> & {
+  disablePortal: boolean;
+  focused: boolean;
+  fullWidth: boolean;
+  hasClearIcon: boolean;
+  hasPopupIcon: boolean;
+  inputFocused: boolean;
+  popupOpen: boolean;
+  size: OverridableStringUnion<'small' | 'medium', AutocompletePropsSizeOverrides>;
 };
 
 export type AutocompleteRenderGetTagProps = ({ index }: { index: number }) => {
@@ -69,7 +87,7 @@ export interface AutocompleteProps<
 > extends UseAutocompleteProps<T, Multiple, DisableClearable, FreeSolo>,
     StandardProps<React.HTMLAttributes<HTMLDivElement>, 'defaultValue' | 'onChange' | 'children'> {
   /**
-   * Props applied to the [`Chip`](/api/chip/) element.
+   * Props applied to the [`Chip`](/material-ui/api/chip/) element.
    */
   ChipProps?: ChipProps<ChipComponent>;
   /**
@@ -84,14 +102,14 @@ export interface AutocompleteProps<
   /**
    * Override the default text for the *clear* icon button.
    *
-   * For localization purposes, you can use the provided [translations](/guides/localization/).
+   * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
    * @default 'Clear'
    */
   clearText?: string;
   /**
    * Override the default text for the *close popup* icon button.
    *
-   * For localization purposes, you can use the provided [translations](/guides/localization/).
+   * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
    * @default 'Close'
    */
   closeText?: string;
@@ -101,6 +119,9 @@ export interface AutocompleteProps<
    */
   componentsProps?: {
     clearIndicator?: Partial<IconButtonProps>;
+    paper?: PaperProps;
+    popper?: Partial<PopperProps>;
+    popupIndicator?: Partial<IconButtonProps>;
   };
   /**
    * If `true`, the component is disabled.
@@ -148,7 +169,7 @@ export interface AutocompleteProps<
   /**
    * Text to display when in a loading state.
    *
-   * For localization purposes, you can use the provided [translations](/guides/localization/).
+   * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
    * @default 'Loading…'
    */
   loadingText?: React.ReactNode;
@@ -161,14 +182,14 @@ export interface AutocompleteProps<
   /**
    * Text to display when there are no options.
    *
-   * For localization purposes, you can use the provided [translations](/guides/localization/).
+   * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
    * @default 'No options'
    */
   noOptionsText?: React.ReactNode;
   /**
    * Override the default text for the *open popup* icon button.
    *
-   * For localization purposes, you can use the provided [translations](/guides/localization/).
+   * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
    * @default 'Open'
    */
   openText?: string;
@@ -187,6 +208,11 @@ export interface AutocompleteProps<
    * @default <ArrowDropDownIcon />
    */
   popupIcon?: React.ReactNode;
+  /**
+   * If `true`, the component becomes readonly. It is also supported for multiple tags where the tag cannot be deleted.
+   * @default false
+   */
+  readOnly?: boolean;
   /**
    * Render the group.
    *
@@ -219,9 +245,14 @@ export interface AutocompleteProps<
    *
    * @param {T[]} value The `value` provided to the component.
    * @param {function} getTagProps A tag props getter.
+   * @param {object} ownerState The state of the Autocomplete component.
    * @returns {ReactNode}
    */
-  renderTags?: (value: T[], getTagProps: AutocompleteRenderGetTagProps) => React.ReactNode;
+  renderTags?: (
+    value: T[],
+    getTagProps: AutocompleteRenderGetTagProps,
+    ownerState: AutocompleteOwnerState<T, Multiple, DisableClearable, FreeSolo, ChipComponent>,
+  ) => React.ReactNode;
   /**
    * The size of the component.
    * @default 'medium'
@@ -237,11 +268,11 @@ export interface AutocompleteProps<
  *
  * Demos:
  *
- * - [Autocomplete](https://mui.com/components/autocomplete/)
+ * - [Autocomplete](https://mui.com/material-ui/react-autocomplete/)
  *
  * API:
  *
- * - [Autocomplete API](https://mui.com/api/autocomplete/)
+ * - [Autocomplete API](https://mui.com/material-ui/api/autocomplete/)
  */
 export default function Autocomplete<
   T,

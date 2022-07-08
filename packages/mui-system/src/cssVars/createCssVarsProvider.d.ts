@@ -2,73 +2,33 @@ import * as React from 'react';
 import getInitColorSchemeScript from './getInitColorSchemeScript';
 import { Mode, Result } from './useCurrentColorScheme';
 
-export type BuildCssVarsTheme<ThemeInput> = ThemeInput extends {
-  colorSchemes: Record<string, infer ColorSystems>;
-}
-  ? Omit<ThemeInput, 'colorSchemes'> &
-      ColorSystems & { vars: Omit<ThemeInput, 'colorSchemes'> & ColorSystems }
-  : never;
-
-/**
- * DesignSystemColorScheme: is what a design system provide by default. Mostly, `light` and `dark`
- * ApplicationColorScheme: is what developer can extend from a design system. Ex, `comfort` `trueDark` ...any name that they want
- *
- * This type enhance customization experience by checking if developer has extended the colorScheme or not (usually via module augmentation)
- * If yes, they must provide the palette of the extended colorScheme. Otherwise `theme` is optional.
- */
-type DecideTheme<
-  DesignSystemTheme extends { colorSchemes: Record<DesignSystemColorScheme, any> },
-  DesignSystemColorScheme extends string,
-  ApplicationTheme extends { colorSchemes: Record<ApplicationColorScheme, any> },
-  ApplicationColorScheme extends string | never,
-> = [ApplicationColorScheme] extends [never]
-  ? {
-      theme?: Omit<DesignSystemTheme, 'colorSchemes'> & {
-        colorSchemes?: Partial<
-          Record<
-            DesignSystemColorScheme,
-            DesignSystemTheme['colorSchemes'][DesignSystemColorScheme]
-          >
-        >;
-      };
-    }
-  : {
-      theme: Omit<ApplicationTheme, 'colorSchemes'> & {
-        colorSchemes: Partial<
-          Record<
-            DesignSystemColorScheme,
-            DesignSystemTheme['colorSchemes'][DesignSystemColorScheme]
-          >
-        > &
-          Record<ApplicationColorScheme, ApplicationTheme['colorSchemes'][ApplicationColorScheme]>;
-      };
-    };
-
 export interface ColorSchemeContextValue<SupportedColorScheme extends string>
   extends Result<SupportedColorScheme> {
   allColorSchemes: SupportedColorScheme[];
 }
 
-export default function createCssVarsProvider<
-  DesignSystemThemeInput extends {
-    colorSchemes: Record<DesignSystemColorScheme, any>;
-  },
-  DesignSystemColorScheme extends string,
-  ApplicationThemeInput extends {
-    colorSchemes: Record<ApplicationColorScheme, any>;
-  } = never,
-  ApplicationColorScheme extends string = never,
->(options: {
+export interface CssVarsProviderConfig<ColorScheme extends string> {
   /**
-   * Design system default theme
+   * DOM attribute for applying color scheme
+   * @default 'data-color-scheme'
    */
-  theme: DesignSystemThemeInput;
+  attribute?: string;
   /**
-   * Design system default color scheme
+   * localStorage key used to store application `mode`
+   * @default 'mode'
    */
-  defaultColorScheme:
-    | DesignSystemColorScheme
-    | { light: DesignSystemColorScheme; dark: DesignSystemColorScheme };
+  modeStorageKey?: string;
+  /**
+   * localStorage key used to store `colorScheme`
+   * @default 'color-scheme'
+   */
+  colorSchemeStorageKey?: string;
+  /**
+   * Design system default color scheme.
+   * - provides string if the design system has one default color scheme (either light or dark)
+   * - provides object if the design system has default light & dark color schemes
+   */
+  defaultColorScheme: ColorScheme | { light: ColorScheme; dark: ColorScheme };
   /**
    * Design system default mode
    * @default 'light'
@@ -85,11 +45,6 @@ export default function createCssVarsProvider<
    */
   enableColorScheme?: boolean;
   /**
-   * CSS variable prefix
-   * @default ''
-   */
-  prefix?: string;
-  /**
    * A function to determine if the key, value should be attached as CSS Variable
    * `keys` is an array that represents the object path keys.
    *  Ex, if the theme is { foo: { bar: 'var(--test)' } }
@@ -97,49 +52,80 @@ export default function createCssVarsProvider<
    *        value = 'var(--test)'
    */
   shouldSkipGeneratingVar?: (keys: string[], value: string | number) => boolean;
-}): {
+}
+
+export interface CreateCssVarsProviderResult<ColorScheme extends string> {
   CssVarsProvider: (
     props: React.PropsWithChildren<
-      {
+      Partial<CssVarsProviderConfig<ColorScheme>> & {
+        theme?: {
+          cssVarPrefix?: string;
+          colorSchemes: Record<ColorScheme, Record<string, any>>;
+        };
         /**
-         * Application default mode (overrides design system `defaultMode` if specified)
+         * The document used to perform `disableTransitionOnChange` feature
+         * @default document
          */
-        defaultMode?: Mode;
+        documentNode?: Document | null;
         /**
-         * Application default colorScheme (overrides design system `defaultColorScheme` if specified)
+         * The node used to attach the color-scheme attribute
+         * @default document
          */
-        defaultColorScheme?:
-          | DesignSystemColorScheme
-          | ApplicationColorScheme
-          | {
-              light: DesignSystemColorScheme | ApplicationColorScheme;
-              dark: DesignSystemColorScheme | ApplicationColorScheme;
-            };
+        colorSchemeNode?: Document | HTMLElement | null;
         /**
-         * localStorage key used to store application `mode`
-         * @default 'mui-mode'
+         * The CSS selector for attaching the generated custom properties
+         * @default ':root'
          */
-        modeStorageKey?: string;
+        colorSchemeSelector?: string;
         /**
-         * DOM attribute for applying color scheme
-         * @default 'data-mui-color-scheme'
+         * The window that attaches the 'storage' event listener
+         * @default window
          */
-        attribute?: string;
-        /**
-         * CSS variable prefix (overrides design system `prefix` if specified)
-         */
-        prefix?: string;
-      } & DecideTheme<
-        DesignSystemThemeInput,
-        DesignSystemColorScheme,
-        ApplicationThemeInput,
-        ApplicationColorScheme
-      >
+        storageWindow?: Window | null;
+      }
     >,
   ) => React.ReactElement;
-  useColorScheme: () => ColorSchemeContextValue<DesignSystemColorScheme | ApplicationColorScheme>;
+  useColorScheme: () => ColorSchemeContextValue<ColorScheme>;
   getInitColorSchemeScript: typeof getInitColorSchemeScript;
-};
+}
+
+export default function createCssVarsProvider<ColorScheme extends string>(
+  options: CssVarsProviderConfig<ColorScheme> & {
+    /**
+     * Design system default theme
+     *
+     * The structure inside `theme.colorSchemes[colorScheme]` should be exactly the same in all color schemes because
+     * those object of the color scheme will be used when the color scheme is active.
+     *
+     *  {
+     *    colorSchemes: {
+     *      light: { ...lightColorSchemeValues },
+     *      dark: { ...darkColorSchemeValues }
+     *    }
+     *  }
+     *
+     *  If colorScheme is 'light', the `lightColorSchemeValues` will be merged to theme as `{ ...theme, ...lightColorSchemeValues }`
+     *  likewise, if colorScheme is 'dark', the `darkColorSchemeValues` will be merged to theme as `{ ...theme, ...darkColorSchemeValues }`
+     *
+     *  !!! Don't provided the same keys as in colorSchemes to theme because they will be replaced internally when the selected colorScheme is calculated.
+     *  Ex. {
+     *    colorSchemes: {
+     *      light: { palette: { ... } },
+     *      dark: { palette: { ... } }
+     *    },
+     *    palette: { ... }, // This values will be replaced by the `palette` from the light | dark color scheme at runtime.
+     *  }
+     */
+    theme: any;
+    /**
+     * A function to be called after the CSS variables are attached. The result of this function will be the final theme pass to ThemeProvider.
+     *
+     * The example usage is the variant generation in Joy. We need to combine the token from user-input and the default theme first, then generate
+     * variants from those tokens.
+     */
+    resolveTheme?: (theme: any) => any; // the type is any because it depends on the design system.
+  },
+): CreateCssVarsProviderResult<ColorScheme>;
 
 // disable automatic export
 export {};

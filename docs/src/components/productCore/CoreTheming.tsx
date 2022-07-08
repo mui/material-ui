@@ -18,38 +18,63 @@ import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
 const lightTheme = createTheme();
 const darkTheme = createTheme({ palette: { mode: 'dark' } });
 
-const code = `<Card variant="outlined" sx={{p: 1, display: 'flex', flexDirection: {xs: 'column', sm: 'row'} }}>
-  <CardMedia
-    component="img"
-    alt="Beside Myself album cover"
-    src="/static/images/cards/basement-beside-myself.jpg"
-    width="124"
-    height="124"
-    sx={{ borderRadius: 0.5, width: 'auto', objectFit: 'cover' }}
-  />
-  <Box sx={{ alignSelf: 'center', mx: 2 }}>
-    <Typography variant="body1" fontWeight={500}>
-      Ultraviolet
-    </Typography>
-    <Typography component="div" variant="caption" color="text.secondary">
-      Basement • Beside Myself
-    </Typography>
-    <Box sx={{ mt: 2 }}>
-      <IconButton aria-label="fast rewind" disabled>
-        <FastRewindRounded />
-      </IconButton>
-      <IconButton
-        aria-label={paused ? 'play' : 'pause'}
-        sx={{ mx: 2 }}
-        onClick={() => setPaused((val) => !val)}
-      >
-        {paused ? <PlayArrowRounded /> : <PauseRounded />}
-      </IconButton>
-      <IconButton aria-label="fast forward" disabled>
-        <FastForwardRounded />
-      </IconButton>
-    </Box>
-  </Box>
+const code = `        <Card
+variant="outlined"
+sx={{
+  p: 1,
+  display: 'flex',
+  flexDirection: { xs: 'column', sm: 'row' },
+}}
+>
+<CardMedia
+  component="img"
+  width="124"
+  height="124"
+  alt="Beside Myself album cover"
+  src="/static/images/cards/basement-beside-myself.jpeg"
+  sx={{
+    borderRadius: 0.5,
+    width: 'clamp(124px, (304px - 100%) * 999 , 100%)',
+  }}
+/>
+<Box sx={{ alignSelf: 'center', px: { xs: 0, sm: 2 } }}>
+  <Typography
+    variant="body1"
+    color="text.primary"
+    fontWeight={600}
+    sx={{ textAlign: { xs: 'center', sm: 'start' }, mt: { xs: 1.5, sm: 0 } }}
+  >
+    Ultraviolet
+  </Typography>
+  <Typography
+    component="div"
+    variant="caption"
+    color="text.secondary"
+    fontWeight={500}
+    sx={{ textAlign: { xm: 'center', sm: 'start' } }}
+  >
+    Basement • Beside Myself
+  </Typography>
+  <Stack
+    direction="row"
+    spacing={1}
+    sx={{ mt: 2, justifyContent: { xs: 'space-between', sm: 'flex-start' } }}
+  >
+    <IconButton aria-label="fast rewind" disabled>
+      <FastRewindRounded />
+    </IconButton>
+    <IconButton
+      aria-label={paused ? 'play' : 'pause'}
+      sx={{ mx: 1 }}
+      onClick={() => setPaused((val) => !val)}
+    >
+      {paused ? <PlayArrowRounded /> : <PauseRounded />}
+    </IconButton>
+    <IconButton aria-label="fast forward" disabled>
+      <FastForwardRounded />
+    </IconButton>
+  </Stack>
+</Box>
 </Card>`;
 
 export default function CoreTheming() {
@@ -68,7 +93,7 @@ export default function CoreTheming() {
                   Build <GradientText>your design system</GradientText> just as you want it to be
                 </Typography>
               }
-              description="Use the advanced theming feature to easily tailor the components to your needs. You can also quick start with Material Design."
+              description="Use the advanced theming feature to easily tailor the components to your needs. You can also quickly start with Material Design."
             />
           </Box>
           <Group sx={{ mt: 4, pb: { xs: 0, md: 2 } }}>
@@ -106,7 +131,12 @@ export default function CoreTheming() {
               />
             </Frame.Demo>
             <Frame.Info sx={{ maxHeight: 300, overflow: 'auto' }}>
-              <HighlightedCode component={MarkdownElement} code={code} language="jsx" />
+              <HighlightedCode
+                copyButtonHidden
+                component={MarkdownElement}
+                code={code}
+                language="jsx"
+              />
             </Frame.Info>
           </Frame>
         </Grid>

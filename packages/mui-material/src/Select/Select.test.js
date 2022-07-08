@@ -11,6 +11,7 @@ import {
 } from 'test/utils';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import MenuItem from '@mui/material/MenuItem';
+import ListSubheader from '@mui/material/ListSubheader';
 import InputBase from '@mui/material/InputBase';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
@@ -292,6 +293,13 @@ describe('<Select />', () => {
     });
   });
 
+  describe('prop: defaultOpen', () => {
+    it('should be open on mount', () => {
+      const { getByRole } = render(<Select defaultOpen value="" />);
+      expect(getByRole('button', { hidden: true })).to.have.attribute('aria-expanded', 'true');
+    });
+  });
+
   describe('prop: value', () => {
     it('should select the option based on the number value', () => {
       render(
@@ -475,6 +483,88 @@ describe('<Select />', () => {
       );
 
       expect(getAllByRole('option')[1]).to.have.attribute('aria-selected', 'true');
+    });
+
+    describe('when the first child is a ListSubheader', () => {
+      it('first selectable option is focused to use the arrow', () => {
+        const { getAllByRole } = render(
+          <Select defaultValue="" open>
+            <ListSubheader>Category 1</ListSubheader>
+            <MenuItem value={1}>Option 1</MenuItem>
+            <MenuItem value={2}>Option 2</MenuItem>
+            <ListSubheader>Category 2</ListSubheader>
+            <MenuItem value={3}>Option 3</MenuItem>
+            <MenuItem value={4}>Option 4</MenuItem>
+          </Select>,
+        );
+
+        const options = getAllByRole('option');
+        expect(options[1]).to.have.attribute('tabindex', '0');
+
+        act(() => {
+          fireEvent.keyDown(options[1], { key: 'ArrowDown' });
+          fireEvent.keyDown(options[2], { key: 'ArrowDown' });
+          fireEvent.keyDown(options[4], { key: 'Enter' });
+        });
+
+        expect(options[4]).to.have.attribute('aria-selected', 'true');
+      });
+
+      describe('when also the second child is a ListSubheader', () => {
+        it('first selectable option is focused to use the arrow', () => {
+          const { getAllByRole } = render(
+            <Select defaultValue="" open>
+              <ListSubheader>Empty category</ListSubheader>
+              <ListSubheader>Category 1</ListSubheader>
+              <MenuItem value={1}>Option 1</MenuItem>
+              <MenuItem value={2}>Option 2</MenuItem>
+              <ListSubheader>Category 2</ListSubheader>
+              <MenuItem value={3}>Option 3</MenuItem>
+              <MenuItem value={4}>Option 4</MenuItem>
+            </Select>,
+          );
+
+          const options = getAllByRole('option');
+          expect(options[2]).to.have.attribute('tabindex', '0');
+
+          act(() => {
+            fireEvent.keyDown(options[2], { key: 'ArrowDown' });
+            fireEvent.keyDown(options[3], { key: 'ArrowDown' });
+            fireEvent.keyDown(options[5], { key: 'Enter' });
+          });
+
+          expect(options[5]).to.have.attribute('aria-selected', 'true');
+        });
+      });
+    });
+
+    describe('when the first child is a MenuItem disabled', () => {
+      it('first selectable option is focused to use the arrow', () => {
+        const { getAllByRole } = render(
+          <Select defaultValue="" open>
+            <MenuItem value="" disabled>
+              <em>None</em>
+            </MenuItem>
+            <ListSubheader>Category 1</ListSubheader>
+            <MenuItem value={1}>Option 1</MenuItem>
+            <MenuItem value={2}>Option 2</MenuItem>
+            <ListSubheader>Category 2</ListSubheader>
+            <MenuItem value={3}>Option 3</MenuItem>
+            <MenuItem value={4}>Option 4</MenuItem>
+          </Select>,
+        );
+
+        const options = getAllByRole('option');
+        expect(options[2]).to.have.attribute('tabindex', '0');
+
+        act(() => {
+          fireEvent.keyDown(options[2], { key: 'ArrowDown' });
+          fireEvent.keyDown(options[3], { key: 'ArrowDown' });
+          fireEvent.keyDown(options[5], { key: 'Enter' });
+        });
+
+        expect(options[5]).to.have.attribute('aria-selected', 'true');
+      });
     });
 
     it('it will fallback to its content for the accessible name when it has no name', () => {
@@ -736,7 +826,7 @@ describe('<Select />', () => {
     });
 
     it('open only with the left mouse button click', () => {
-      // Test for https://github.com/mui-org/material-ui/issues/19250#issuecomment-578620934
+      // Test for https://github.com/mui/material-ui/issues/19250#issuecomment-578620934
       // Right/middle mouse click shouldn't open the Select
       const { getByRole, queryByRole } = render(
         <Select value="">
@@ -1218,6 +1308,10 @@ describe('<Select />', () => {
       this.skip();
     }
 
+    const rootStyle = {
+      marginTop: '15px',
+    };
+
     const iconStyle = {
       marginTop: '13px',
     };
@@ -1239,6 +1333,7 @@ describe('<Select />', () => {
       components: {
         MuiSelect: {
           styleOverrides: {
+            root: rootStyle,
             select: selectStyle,
             icon: iconStyle,
             nativeInput: nativeInputStyle,
@@ -1248,20 +1343,55 @@ describe('<Select />', () => {
       },
     });
 
-    const { container } = render(
+    const { container, getByTestId } = render(
       <ThemeProvider theme={theme}>
-        <Select open value="first">
+        <Select open value="first" data-testid="select">
           <MenuItem value="first" />
           <MenuItem value="second" />
         </Select>
       </ThemeProvider>,
     );
 
+    expect(getByTestId('select')).toHaveComputedStyle(rootStyle);
     expect(container.getElementsByClassName(classes.icon)[0]).to.toHaveComputedStyle(iconStyle);
     expect(container.getElementsByClassName(classes.nativeInput)[0]).to.toHaveComputedStyle(
       nativeInputStyle,
     );
     expect(container.getElementsByClassName(classes.select)[0]).to.toHaveComputedStyle(selectStyle);
+  });
+
+  ['standard', 'outlined', 'filled'].forEach((variant) => {
+    it(`variant overrides should work for "${variant}" variant`, function test() {
+      const theme = createTheme({
+        components: {
+          MuiSelect: {
+            variants: [
+              {
+                props: {
+                  variant,
+                },
+                style: {
+                  fontWeight: '200',
+                },
+              },
+            ],
+          },
+        },
+      });
+
+      const { getByTestId } = render(
+        <ThemeProvider theme={theme}>
+          <Select variant={variant} value="first" data-testid="input">
+            <MenuItem value="first" />
+            <MenuItem value="second" />
+          </Select>
+        </ThemeProvider>,
+      );
+
+      expect(getByTestId('input')).to.toHaveComputedStyle({
+        fontWeight: '200',
+      });
+    });
   });
 
   describe('prop: input', () => {
@@ -1296,5 +1426,18 @@ describe('<Select />', () => {
       expect(getByTestId('root')).to.have.class('foo');
       expect(getByTestId('root')).to.have.class('bar');
     });
+  });
+
+  it('should not focus select when clicking an arbitrary element with id="undefined"', () => {
+    const { getByRole, getByTestId } = render(
+      <React.Fragment>
+        <div id="undefined" data-testid="test-element" />
+        <Select value="" />
+      </React.Fragment>,
+    );
+
+    fireEvent.click(getByTestId('test-element'));
+
+    expect(getByRole('button')).not.toHaveFocus();
   });
 });

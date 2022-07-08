@@ -30,14 +30,13 @@ function moduleIDToJSIdentifier(moduleID) {
 }
 
 const componentPackageMapping = {
-  material: {},
+  'material-ui': {},
   base: {},
 };
 
 const packages = [
   {
-    name: 'mui-material',
-    product: 'material',
+    product: 'material-ui',
     paths: [
       path.join(__dirname, '../../../packages/mui-lab/src'),
       path.join(__dirname, '../../../packages/mui-material/src'),
@@ -45,7 +44,6 @@ const packages = [
     ],
   },
   {
-    name: 'mui-base',
     product: 'base',
     paths: [path.join(__dirname, '../../../packages/mui-base/src')],
   },
@@ -53,7 +51,7 @@ const packages = [
 
 packages.forEach((pkg) => {
   pkg.paths.forEach((pkgPath) => {
-    const match = pkgPath.match(/packages\/([^/]+)\/src/);
+    const match = pkgPath.match(/packages(?:\\|\/)([^/\\]+)(?:\\|\/)src/);
     const packageName = match ? match[1] : null;
     if (!packageName) {
       throw new Error(`cannot find package name from path: ${pkgPath}`);
@@ -61,6 +59,9 @@ packages.forEach((pkg) => {
     const filePaths = readdirSync(pkgPath);
     filePaths.forEach((folder) => {
       if (folder.match(/^[A-Z]/)) {
+        if (!componentPackageMapping[pkg.product]) {
+          throw new Error(`componentPackageMapping must have "${pkg.product}" as a key`);
+        }
         // filename starts with Uppercase = component
         componentPackageMapping[pkg.product][folder] = packageName;
       }
@@ -118,8 +119,7 @@ module.exports = async function demoLoader() {
   const pageFilename = this.context
     .replace(this.rootContext, '')
     // win32 to posix
-    .replace(/\\/g, '/')
-    .replace(/^\/src\/pages\//, '');
+    .replace(/\\/g, '/');
   const { docs } = prepareMarkdown({ pageFilename, translations, componentPackageMapping });
 
   const demos = {};
@@ -141,7 +141,10 @@ module.exports = async function demoLoader() {
       // TODO: const moduleID = demoName;
       // The import paths currently use a completely different format.
       // They should just use relative imports.
-      const moduleID = `./${demoName.replace(`pages/${pageFilename}/`, '')}`;
+      const moduleID = `./${demoName.replace(
+        `pages/${pageFilename.replace(/^\/src\/pages\//, '')}/`,
+        '',
+      )}`;
       const moduleFilepath = path.join(
         path.dirname(this.resourcePath),
         moduleID.replace(/\//g, path.sep),

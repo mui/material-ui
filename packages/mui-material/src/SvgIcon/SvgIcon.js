@@ -40,21 +40,21 @@ const SvgIconRoot = styled('svg', {
   display: 'inline-block',
   fill: 'currentColor',
   flexShrink: 0,
-  transition: theme.transitions.create('fill', {
-    duration: theme.transitions.duration.shorter,
+  transition: theme.transitions?.create?.('fill', {
+    duration: theme.transitions?.duration?.shorter,
   }),
   fontSize: {
     inherit: 'inherit',
-    small: theme.typography.pxToRem(20),
-    medium: theme.typography.pxToRem(24),
-    large: theme.typography.pxToRem(35),
+    small: theme.typography?.pxToRem?.(20) || '1.25rem',
+    medium: theme.typography?.pxToRem?.(24) || '1.5rem',
+    large: theme.typography?.pxToRem?.(35) || '2.1875',
   }[ownerState.fontSize],
   // TODO v5 deprecate, v6 remove for sx
   color:
-    theme.palette[ownerState.color]?.main ??
+    (theme.vars || theme).palette?.[ownerState.color]?.main ??
     {
-      action: theme.palette.action.active,
-      disabled: theme.palette.action.disabled,
+      action: (theme.vars || theme).palette?.action?.active,
+      disabled: (theme.vars || theme).palette?.action?.disabled,
       inherit: undefined,
     }[ownerState.color],
 }));
@@ -79,6 +79,7 @@ const SvgIcon = React.forwardRef(function SvgIcon(inProps, ref) {
     color,
     component,
     fontSize,
+    instanceFontSize: inProps.fontSize,
     inheritViewBox,
     viewBox,
   };
@@ -128,7 +129,9 @@ SvgIcon.propTypes /* remove-proptypes */ = {
    */
   className: PropTypes.string,
   /**
-   * The color of the component. It supports those theme colors that make sense for this component.
+   * The color of the component.
+   * It supports both default and custom theme colors, which can be added as shown in the
+   * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
    * You can use the `htmlColor` prop to apply a color attribute to the SVG element.
    * @default 'inherit'
    */

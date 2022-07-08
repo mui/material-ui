@@ -31,6 +31,16 @@ describe('parseMarkdown', () => {
       ).to.equal('Some description');
     });
 
+    it('remove backticks', () => {
+      expect(
+        getDescription(`
+<p class="description">
+  Some \`description\`
+</p>
+      `),
+      ).to.equal('Some description');
+    });
+
     it('should not be greedy', () => {
       expect(
         getDescription(`
@@ -51,7 +61,7 @@ describe('parseMarkdown', () => {
 ---
 title: React Alert component
 components: Alert, AlertTitle
-githubLabel: 'component: Alert'
+githubLabel: 'component: alert'
 packageName: '@mui/lab'
 waiAria: https://www.w3.org/TR/wai-aria-practices/#alert
 authors: ['foo', 'bar']
@@ -59,7 +69,7 @@ authors: ['foo', 'bar']
 `),
       ).to.deep.equal({
         components: ['Alert', 'AlertTitle'],
-        githubLabel: 'component: Alert',
+        githubLabel: 'component: alert',
         packageName: '@mui/lab',
         title: 'React Alert component',
         waiAria: 'https://www.w3.org/TR/wai-aria-practices/#alert',
@@ -73,7 +83,7 @@ authors: ['foo', 'bar']
 ---
 title: React Alert component
 components: Alert, AlertTitle
-githubLabel: 'component: Alert'
+githubLabel: 'component: alert'
 packageName: '@mui/lab'
 waiAria: https://www.w3.org/TR/wai-aria-practices/#alert
 authors:
@@ -82,7 +92,7 @@ authors:
 `),
       ).to.deep.equal({
         components: ['Alert', 'AlertTitle'],
-        githubLabel: 'component: Alert',
+        githubLabel: 'component: alert',
         packageName: '@mui/lab',
         title: 'React Alert component',
         waiAria: 'https://www.w3.org/TR/wai-aria-practices/#alert',
@@ -96,7 +106,7 @@ authors:
 ---
 title: React Alert component
 components: Alert, AlertTitle
-githubLabel: 'component: Alert'
+githubLabel: 'component: alert'
 packageName: '@mui/lab'
 waiAria: https://www.w3.org/TR/wai-aria-practices/#alert
 authors:
@@ -108,7 +118,7 @@ authors:
     `),
       ).to.deep.equal({
         components: ['Alert', 'AlertTitle'],
-        githubLabel: 'component: Alert',
+        githubLabel: 'component: alert',
         packageName: '@mui/lab',
         title: 'React Alert component',
         waiAria: 'https://www.w3.org/TR/wai-aria-practices/#alert',
@@ -154,7 +164,7 @@ authors:
           en: { toc },
         },
       } = prepareMarkdown({
-        pageFilename: 'test',
+        pageFilename: '/test',
         translations: [{ filename: 'index.md', markdown, userLanguage: 'en' }],
       });
 
@@ -185,7 +195,7 @@ authors:
           en: { toc },
         },
       } = prepareMarkdown({
-        pageFilename: 'test',
+        pageFilename: '/test',
         translations: [{ filename: 'index.md', markdown, userLanguage: 'en' }],
       });
 
@@ -238,7 +248,7 @@ authors:
           zh: { toc: tocZh },
         },
       } = prepareMarkdown({
-        pageFilename: 'same-hash-test',
+        pageFilename: '/same-hash-test',
         translations: [
           { filename: 'localization.md', markdown: markdownEn, userLanguage: 'en' },
           { filename: 'localization-pt.md', markdown: markdownPt, userLanguage: 'pt' },
@@ -329,7 +339,7 @@ authors:
           pt: { toc: tocPt },
         },
       } = prepareMarkdown({
-        pageFilename: 'same-hash-test',
+        pageFilename: '/same-hash-test',
         translations: [
           { filename: 'localization.md', markdown: markdownEn, userLanguage: 'en' },
           { filename: 'localization-pt.md', markdown: markdownPt, userLanguage: 'pt' },
@@ -380,6 +390,22 @@ authors:
           text: 'Locales',
         },
       ]);
+    });
+
+    it('should report missing trailing splashes', () => {
+      const markdown = `
+# Localization
+
+[bar](/bar/)
+[foo](/foo)
+`;
+
+      expect(() => {
+        prepareMarkdown({
+          pageFilename: '/test',
+          translations: [{ filename: 'index.md', markdown, userLanguage: 'en' }],
+        });
+      }).to.throw(/\[foo]\(\/foo\) in \/docs\/test\/index\.md is missing a trailing slash/);
     });
   });
 });

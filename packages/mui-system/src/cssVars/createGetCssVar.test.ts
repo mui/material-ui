@@ -31,4 +31,12 @@ describe('createGetCssVar', () => {
     const getThemeVar = createGetCssVar('custom');
     expect(getThemeVar('shadow-xs')).to.equal('var(--custom-shadow-xs)');
   });
+
+  it('does not add var() to CSS value', () => {
+    const getCssVar = createGetCssVar();
+    expect(getCssVar('palette-primary-500', 'rgba(255 255 255 / 0.1)')).to.equal(
+      'var(--palette-primary-500, rgba(255 255 255 / 0.1))',
+    );
+    expect(getCssVar('fontSize-sm', '1rem')).to.equal('var(--fontSize-sm, 1rem)');
+  });
 });

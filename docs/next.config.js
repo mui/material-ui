@@ -2,8 +2,7 @@ const path = require('path');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const pkg = require('../package.json');
 const { findPages } = require('./src/modules/utils/find');
-const { LANGUAGES, LANGUAGES_SSR } = require('./src/modules/constants');
-const FEATURE_TOGGLE = require('./src/featureToggle');
+const { LANGUAGES, LANGUAGES_SSR, LANGUAGES_IGNORE_PAGES } = require('./src/modules/constants');
 
 const workspaceRoot = path.join(__dirname, '../');
 
@@ -14,10 +13,15 @@ if (reactStrictMode) {
 }
 const l10nPRInNetlify = /^l10n_/.test(process.env.HEAD) && process.env.NETLIFY === 'true';
 const vercelDeploy = Boolean(process.env.VERCEL);
+const isDeployPreview = process.env.PULL_REQUEST === 'true';
+// For crowdin PRs we want to build all locales for testing.
+const buildOnlyEnglishLocale = isDeployPreview && !l10nPRInNetlify && !vercelDeploy;
 
 const staging =
   process.env.REPOSITORY_URL === undefined ||
+  // The linked repository url comes from https://app.netlify.com/sites/material-ui/settings/deploys
   /mui-org\/material-ui$/.test(process.env.REPOSITORY_URL);
+
 if (staging) {
   // eslint-disable-next-line no-console
   console.log(`Staging deploy of ${process.env.REPOSITORY_URL || 'local repository'}`);
@@ -53,14 +57,13 @@ module.exports = {
     // next includes node_modules in webpack externals. Some of those have dependencies
     // on the aliases defined above. If a module is an external those aliases won't be used.
     // We need tell webpack to not consider those packages as externals.
-    if (options.isServer) {
+    if (
+      options.isServer &&
+      // Next executes this twice on the server with React 18 (once per runtime).
+      // We only care about Node runtime at this point.
+      (options.nextRuntime === undefined || options.nextRuntime === 'nodejs')
+    ) {
       const [nextExternals, ...externals] = config.externals;
-
-      if (externals.length > 0) {
-        // currently not the case but other next plugins might introduce additional
-        // rules for externals. We would need to handle those in the callback
-        throw new Error('There are other externals in the webpack config.');
-      }
 
       config.externals = [
         (ctx, callback) => {
@@ -69,17 +72,24 @@ module.exports = {
             'notistack',
             '@mui/x-data-grid',
             '@mui/x-data-grid-pro',
+            '@mui/x-date-pickers',
+            '@mui/x-date-pickers-pro',
             '@mui/x-data-grid-generator',
             '@mui/x-license-pro',
-          ].includes(request);
+          ].some((dep) => request.startsWith(dep));
 
           if (hasDependencyOnRepoPackages) {
             return callback(null);
           }
           return nextExternals(ctx, callback);
         },
+        ...externals,
       ];
     }
+
+    config.module.rules.forEach((r) => {
+      r.resourceQuery = { not: [/raw/] };
+    });
 
     return {
       ...config,
@@ -111,8 +121,9 @@ module.exports = {
           // transpile 3rd party packages with dependencies in this repository
           {
             test: /\.(js|mjs|jsx)$/,
+            resourceQuery: { not: [/raw/] },
             include:
-              /node_modules(\/|\\)(notistack|@mui(\/|\\)x-data-grid|@mui(\/|\\)x-data-grid-pro|@mui(\/|\\)x-license-pro|@mui(\/|\\)x-data-grid-generator)/,
+              /node_modules(\/|\\)(notistack|@mui(\/|\\)x-data-grid|@mui(\/|\\)x-data-grid-pro|@mui(\/|\\)x-license-pro|@mui(\/|\\)x-data-grid-generator|@mui(\/|\\)x-date-pickers-pro|@mui(\/|\\)x-date-pickers)/,
             use: {
               loader: 'babel-loader',
               options: {
@@ -138,7 +149,7 @@ module.exports = {
                         '@mui/material-next': '../packages/mui-material-next/src',
                         '@mui/joy': '../packages/mui-joy/src',
                       },
-                      transformFunctions: ['require'],
+                      // transformFunctions: ['require'],
                     },
                   ],
                 ],
@@ -148,9 +159,14 @@ module.exports = {
           // required to transpile ../packages/
           {
             test: /\.(js|mjs|tsx|ts)$/,
+            resourceQuery: { not: [/raw/] },
             include: [workspaceRoot],
             exclude: /(node_modules|mui-icons-material)/,
             use: options.defaultLoaders.babel,
+          },
+          {
+            resourceQuery: /raw/,
+            type: 'asset/source',
           },
         ]),
       },
@@ -158,7 +174,7 @@ module.exports = {
   },
   env: {
     COMMIT_REF: process.env.COMMIT_REF,
-    ENABLE_AD: process.env.ENABLE_AD,
+    ENABLE_AD_IN_DEV_MODE: process.env.ENABLE_AD_IN_DEV_MODE,
     GITHUB_AUTH: process.env.GITHUB_AUTH,
     GIT_REVIEW_ID: process.env.REVIEW_ID,
     LIB_VERSION: pkg.version,
@@ -168,9 +184,10 @@ module.exports = {
     REACT_STRICT_MODE: reactStrictMode,
     FEEDBACK_URL: process.env.FEEDBACK_URL,
     // #default-branch-switch
-    SOURCE_CODE_ROOT_URL: 'https://github.com/mui-org/material-ui/blob/master',
-    SOURCE_CODE_REPO: 'https://github.com/mui-org/material-ui',
+    SOURCE_CODE_ROOT_URL: 'https://github.com/mui/material-ui/blob/master',
+    SOURCE_CODE_REPO: 'https://github.com/mui/material-ui',
     STAGING: staging,
+    BUILD_ONLY_ENGLISH_LOCALE: buildOnlyEnglishLocale,
   },
   // Next.js provides a `defaultPathMap` argument, we could simplify the logic.
   // However, we don't in order to prevent any regression in the `findPages()` method.
@@ -182,7 +199,11 @@ module.exports = {
       const prefix = userLanguage === 'en' ? '' : `/${userLanguage}`;
 
       pages2.forEach((page) => {
-        if (process.env.PULL_REQUEST !== 'true' && page.pathname.startsWith('/experiments')) {
+        if (page.pathname.startsWith('/experiments') && !staging) {
+          return;
+        }
+        // The blog is not translated
+        if (userLanguage !== 'en' && LANGUAGES_IGNORE_PAGES(page.pathname)) {
           return;
         }
         if (!page.children) {
@@ -203,8 +224,8 @@ module.exports = {
     }
 
     // We want to speed-up the build of pull requests.
-    // For crowdin PRs we want to build all locales for testing.
-    if (process.env.PULL_REQUEST === 'true' && !l10nPRInNetlify && !vercelDeploy) {
+    // For this, consider only English language on deploy previews, except for crowdin PRs.
+    if (buildOnlyEnglishLocale) {
       // eslint-disable-next-line no-console
       console.log('Considering only English for SSR');
       traverse(pages, 'en');
@@ -220,71 +241,14 @@ module.exports = {
   },
   reactStrictMode,
   trailingSlash: true,
+  // rewrites has no effect when run `next export` for production
   async rewrites() {
     return [
       { source: `/:lang(${LANGUAGES.join('|')})?/:rest*`, destination: '/:rest*' },
       // Make sure to include the trailing slash if `trailingSlash` option is set
       { source: '/api/:rest*/', destination: '/api-docs/:rest*/' },
+      { source: `/static/x/:rest*`, destination: 'http://0.0.0.0:3001/static/x/:rest*' },
     ];
-  },
-  async redirects() {
-    if (FEATURE_TOGGLE.enable_redirects) {
-      return [
-        {
-          source: '/getting-started/:path*',
-          destination: '/material/getting-started/:path*',
-          permanent: false,
-        },
-        {
-          source: '/customization/:path*',
-          destination: '/material/customization/:path*',
-          permanent: false,
-        },
-        {
-          source: '/guides/:path*',
-          destination: '/material/guides/:path*',
-          permanent: false,
-        },
-        {
-          source: '/discover-more/:path*',
-          destination: '/material/discover-more/:path*',
-          permanent: false,
-        },
-        {
-          source: '/components/about-the-lab',
-          destination: '/material/about-the-lab',
-          permanent: false,
-        },
-        {
-          source: '/components/data-grid/:path*',
-          destination: '/x/react-data-grid/:path*',
-          permanent: false,
-        },
-        {
-          source: '/components/:path*',
-          destination: '/material/react-:path*',
-          permanent: false,
-        },
-        {
-          source: '/api/data-grid/:path*',
-          destination: '/x/api/mui-data-grid/:path*',
-          permanent: false,
-        },
-        {
-          source:
-            // if this regex change, make sure to update `replaceMarkdownLinks`
-            '/api/:path(loading-button|tab-list|tab-panel|date-picker|date-time-picker|time-picker|calendar-picker|calendar-picker-skeleton|desktop-picker|mobile-date-picker|month-picker|pickers-day|static-date-picker|year-picker|masonry|timeline|timeline-connector|timeline-content|timeline-dot|timeline-item|timeline-opposite-content|timeline-separator|unstable-trap-focus|tree-item|tree-view)',
-          destination: '/material/api/mui-lab/:path*',
-          permanent: false,
-        },
-        {
-          source: '/api/:path*',
-          destination: '/material/api/mui-material/:path*',
-          permanent: false,
-        },
-      ];
-    }
-    return [];
   },
   // Can be turned on when https://github.com/vercel/next.js/issues/24640 is fixed
   optimizeFonts: false,

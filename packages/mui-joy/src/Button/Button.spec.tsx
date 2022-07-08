@@ -1,6 +1,6 @@
 import * as React from 'react';
 import NextLink from 'next/link';
-import MuiLink from '@mui/material/Link';
+import JoyLink from '@mui/material/Link';
 import Button from '@mui/joy/Button';
 
 <Button>Button</Button>;
@@ -18,10 +18,10 @@ function handleClick4(event: React.MouseEvent<HTMLDivElement>) {}
 // @ts-expect-error should be HTMLAnchorElement | HTMLButtonElement
 <Button onClick={handleClick4}>Button</Button>;
 
-<Button variant="text">Button</Button>;
+<Button variant="plain">Button</Button>;
 <Button variant="outlined">Button</Button>;
-<Button variant="light">Button</Button>;
-<Button variant="contained">Button</Button>;
+<Button variant="soft">Button</Button>;
+<Button variant="solid">Button</Button>;
 // @ts-expect-error no `custom` variant
 <Button variant="custom">Button</Button>;
 
@@ -41,7 +41,7 @@ function handleClick4(event: React.MouseEvent<HTMLDivElement>) {}
 
 <Button component="a" href="/" />;
 <Button component={NextLink} href="/" />;
-<Button component={MuiLink} href="/" />;
+<Button component={JoyLink} href="/" />;
 
 function CustomLink({
   children,
@@ -62,3 +62,25 @@ function CustomLink({
 <Button component={CustomLink} to="/" href="/" />;
 
 <Button sx={{ borderRadius: 0 }}>Button</Button>;
+
+function Icon() {
+  return null;
+}
+
+<Button sx={{ width: 'var(--Button-minHeight)' }}>
+  <Icon />
+</Button>;
+<Button
+  variant="solid"
+  color="success"
+  endIcon={<Icon />}
+  sx={{ width: 'var(--Button-minHeight)' }}
+>
+  <Icon />
+</Button>;
+<Button variant="solid" startIcon={<Icon />} size="sm">
+  Add to cart
+</Button>;
+<Button variant="outlined" endIcon={<Icon />} color="success">
+  Checkout
+</Button>;

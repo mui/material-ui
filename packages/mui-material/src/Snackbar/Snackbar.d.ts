@@ -47,7 +47,7 @@ export interface SnackbarProps extends StandardProps<React.HTMLAttributes<HTMLDi
    */
   ClickAwayListenerProps?: Partial<ClickAwayListenerProps>;
   /**
-   * Props applied to the [`SnackbarContent`](/api/snackbar-content/) element.
+   * Props applied to the [`SnackbarContent`](/material-ui/api/snackbar-content/) element.
    */
   ContentProps?: Partial<SnackbarContentProps>;
   /**
@@ -94,7 +94,7 @@ export interface SnackbarProps extends StandardProps<React.HTMLAttributes<HTMLDi
   sx?: SxProps<Theme>;
   /**
    * The component used for the transition.
-   * [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default Grow
    */
   TransitionComponent?: React.JSXElementConstructor<
@@ -104,8 +104,8 @@ export interface SnackbarProps extends StandardProps<React.HTMLAttributes<HTMLDi
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.
    * @default {
-   *   enter: duration.enteringScreen,
-   *   exit: duration.leavingScreen,
+   *   enter: theme.transitions.duration.enteringScreen,
+   *   exit: theme.transitions.duration.leavingScreen,
    * }
    */
   transitionDuration?: TransitionProps['timeout'];
@@ -121,10 +121,10 @@ export interface SnackbarProps extends StandardProps<React.HTMLAttributes<HTMLDi
  *
  * Demos:
  *
- * - [Snackbars](https://mui.com/components/snackbars/)
+ * - [Snackbars](https://mui.com/material-ui/react-snackbar/)
  *
  * API:
  *
- * - [Snackbar API](https://mui.com/api/snackbar/)
+ * - [Snackbar API](https://mui.com/material-ui/api/snackbar/)
  */
 export default function Snackbar(props: SnackbarProps): JSX.Element;

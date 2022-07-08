@@ -7,15 +7,22 @@ export default function createGetCssVar<T extends string = string>(prefix: strin
     if (!vars.length) {
       return '';
     }
-    return `, var(--${prefix ? `${prefix}-` : ''}${vars[0]}${appendVar(...vars.slice(1))})`;
+    const value = vars[0];
+    if (
+      typeof value === 'string' &&
+      !value.match(/(#|\(|\)|(-?(\d*\.)?\d+)(px|em|%|ex|ch|rem|vw|vh|vmin|vmax|cm|mm|in|pt|pc))/)
+    ) {
+      return `, var(--${prefix ? `${prefix}-` : ''}${value}${appendVar(...vars.slice(1))})`;
+    }
+    return `, ${value}`;
   }
 
   // AdditionalVars makes `getCssVar` less strict, so it can be use like this `getCssVar('non-mui-variable')` without type error.
   const getCssVar = <AdditionalVars extends string = never>(
     field: T | AdditionalVars,
-    ...vars: (T | AdditionalVars)[]
+    ...fallbacks: (T | AdditionalVars)[]
   ) => {
-    return `var(--${prefix ? `${prefix}-` : ''}${field}${appendVar(...vars)})`;
+    return `var(--${prefix ? `${prefix}-` : ''}${field}${appendVar(...fallbacks)})`;
   };
   return getCssVar;
 }

@@ -11,8 +11,8 @@ export { default as compose } from './compose';
 export { default as display } from './display';
 export { default as flexbox } from './flexbox';
 export * from './flexbox';
-export { default as grid } from './grid';
-export * from './grid';
+export { default as grid } from './cssGrid';
+export * from './cssGrid';
 export { default as palette } from './palette';
 export * from './palette';
 export { default as positions } from './positions';
@@ -27,6 +27,7 @@ export { default as typography } from './typography';
 export * from './typography';
 export {
   default as unstable_styleFunctionSx,
+  unstable_createStyleFunctionSx,
   extendSxProp as unstable_extendSxProp,
 } from './styleFunctionSx';
 export { default as experimental_sx } from './sx';
@@ -47,3 +48,6 @@ export * from './colorManipulator';
 export { default as ThemeProvider } from './ThemeProvider';
 export { default as unstable_createCssVarsProvider } from './cssVars/createCssVarsProvider';
 export { default as unstable_createGetCssVar } from './cssVars/createGetCssVar';
+export { default as createContainer } from './Container/createContainer';
+export { default as Container } from './Container';
+export * from './Container';

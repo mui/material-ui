@@ -184,21 +184,22 @@ const IconButtonTest = () => (
     <IconButton color="primary" aria-label="add to shopping cart">
       <FakeIcon />
     </IconButton>
-    {() => {
-      const ForwardedLink = React.forwardRef<HTMLAnchorElement, ReactRouterLinkProps>(
-        (props, ref) => <ReactRouterLink {...props} ref={ref} />,
-      );
-      const ExtendedIconButton: React.FC<IconButtonProps<typeof ForwardedLink>> = (props) => (
-        <IconButton component={ForwardedLink} {...props} />
-      );
-      return (
-        <ExtendedIconButton color="secondary" aria-label="Go to top page." to="/" target="_self">
-          <FakeIcon />
-        </ExtendedIconButton>
-      );
-    }}
   </div>
 );
+
+const IconButtonAsLinkTest = () => {
+  const ForwardedLink = React.forwardRef<HTMLAnchorElement, ReactRouterLinkProps>((props, ref) => (
+    <ReactRouterLink {...props} ref={ref} />
+  ));
+  const ExtendedIconButton: React.FC<IconButtonProps<typeof ForwardedLink>> = (props) => (
+    <IconButton component={ForwardedLink} {...props} />
+  );
+  return (
+    <ExtendedIconButton color="secondary" aria-label="Go to top page." to="/" target="_self">
+      <FakeIcon />
+    </ExtendedIconButton>
+  );
+};
 
 const CardTest = () => (
   <Card>
@@ -268,7 +269,7 @@ const CardMediaTest = () => (
           without stirring, until most of the liquid is absorbed, 15 to 18 minutes. Reduce heat to
           medium-low, add reserved shrimp and mussels, tucking them down into the rice, and cook
           again without stirring, until mussels have opened and rice is just tender, 5 to 7 minutes
-          more. (Discard any mussels that don’t open.)
+          more. (Discard any mussels that don&apos;t open.)
         </Typography>
         <Typography>
           Set aside off of the heat to let rest for 10 minutes, and then serve.
@@ -953,7 +954,7 @@ const LinkTest = () => {
 };
 
 const refTest = () => {
-  // for a detailed explanation of refs in react see https://github.com/mui-org/material-ui/pull/15199
+  // for a detailed explanation of refs in react see https://github.com/mui/material-ui/pull/15199
   const genericRef = React.createRef<Element>();
   const divRef = React.createRef<HTMLDivElement>();
   const inputRef = React.createRef<HTMLInputElement>();

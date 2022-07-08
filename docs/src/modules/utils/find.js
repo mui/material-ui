@@ -34,7 +34,7 @@ function findPagesMarkdown(
     if (FEATURE_TOGGLE.enable_product_scope) {
       pathname = itemPath
         .replace(new RegExp(`\\${path.sep}`, 'g'), '/')
-        .replace(/^.*\/material[^-]/, '/')
+        .replace(/^.*\/(material[^-]|base\/)/, '/')
         .replace('.md', '');
     } else {
       pathname = itemPath
@@ -77,7 +77,8 @@ function findPagesMarkdownNew(
       return;
     }
 
-    if (!markdownRegex.test(item)) {
+    if (!/\.md$/.test(item) || /-(zh|pt)\.md/.test(item)) {
+      // neglect translation markdown
       return;
     }
 
@@ -91,7 +92,7 @@ function findPagesMarkdownNew(
 
     pagesMarkdown.push({
       // Relative location in the path (URL) system.
-      pathname: pathname.replace('components/', 'react-'),
+      pathname,
       // Relative location in the file system.
       filename: itemPath,
     });

@@ -11,6 +11,9 @@ import retry from 'modules/waterfall/retry';
 // This is just a list of new icons.
 // In the future we might change what icons we want to exclude (e.g. by popularity)
 const ignoredIconNames = new Set([
+  // TODO v6: Whatsapp duplicates with WhatsApp
+  // We don't need it https://fonts.google.com/icons?icon.set=Material+Icons&icon.query=whatsapp
+  // 'whatsapp'
   '123',
   '6_ft_apart',
   'add_chart', // Leads to inconsistent casing with `Addchart`

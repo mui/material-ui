@@ -1,5 +1,6 @@
 import { SxProps } from '@mui/system';
 import { OverridableStringUnion } from '@mui/types';
+import * as React from 'react';
 import { Theme } from '..';
 import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
 import { OverrideProps } from '../OverridableComponent';
@@ -24,6 +25,8 @@ export type ToggleButtonTypeMap<
     classes?: Partial<ToggleButtonClasses>;
     /**
      * The color of the button when it is in an active state.
+     * It supports both default and custom theme colors, which can be added as shown in the
+     * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
      * @default 'standard'
      */
     color?: OverridableStringUnion<
@@ -45,6 +48,20 @@ export type ToggleButtonTypeMap<
      * @default false
      */
     fullWidth?: boolean;
+    /**
+     * Callback fired when the state changes.
+     *
+     * @param {React.MouseEvent<HTMLElement>} event The event source of the callback.
+     * @param {any} value of the selected button.
+     */
+    onChange?: (event: React.MouseEvent<HTMLElement>, value: any) => void;
+    /**
+     * Callback fired when the button is clicked.
+     *
+     * @param {React.MouseEvent<HTMLElement>} event The event source of the callback.
+     * @param {any} value of the selected button.
+     */
+    onClick?: (event: React.MouseEvent<HTMLElement>, value: any) => void;
     /**
      * If `true`, the button is rendered in an active state.
      */
@@ -72,12 +89,12 @@ export type ToggleButtonTypeMap<
  *
  * Demos:
  *
- * - [Toggle Button](https://mui.com/components/toggle-button/)
+ * - [Toggle button](https://mui.com/material-ui/react-toggle-button/)
  *
  * API:
  *
- * - [ToggleButton API](https://mui.com/api/toggle-button/)
- * - inherits [ButtonBase API](https://mui.com/api/button-base/)
+ * - [ToggleButton API](https://mui.com/material-ui/api/toggle-button/)
+ * - inherits [ButtonBase API](https://mui.com/material-ui/api/button-base/)
  */
 declare const ToggleButton: ExtendButtonBase<ToggleButtonTypeMap>;
 

@@ -8,12 +8,12 @@
 
 /* inline code */
 code {
-  padding: .1em;
-  border-radius: .3em;
+  padding: 0.1em;
+  border-radius: 0.3em;
   white-space: normal;
 }
 
-code[class*="language-"] {
+code[class*='language-'] {
   color: #f8f8f2;
   background: none;
   text-shadow: 0 1px rgba(0, 0, 0, 0.3);
@@ -48,7 +48,7 @@ code[class*="language-"] {
 }
 
 .namespace {
-  opacity: .7;
+  opacity: 0.7;
 }
 
 .token.property,
@@ -112,7 +112,7 @@ code[class*="language-"] {
 
 /* Overrides to reach AA, copied from https://reactjs.org */
 
-code[class*="language-"] {
+code[class*='language-'] {
   text-shadow: none;
 }
 

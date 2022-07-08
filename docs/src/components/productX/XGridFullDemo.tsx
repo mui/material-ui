@@ -8,7 +8,7 @@ import Button from '@mui/material/Button';
 import Paper from '@mui/material/Paper';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
-import Select from '@mui/material/Select';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
 import Frame from 'docs/src/components/action/Frame';
 import { brandingDarkTheme } from 'docs/src/modules/brandingTheme';
 import XGridGlobalStyles from 'docs/src/components/home/XGridGlobalStyles';
@@ -41,16 +41,16 @@ function SettingsPanel(props: GridToolbarContainerProps) {
   const [typeState, setType] = React.useState<GridDataType>(type);
   const [selectedPaginationValue, setSelectedPaginationValue] = React.useState<number>(-1);
 
-  const handleSizeChange = React.useCallback((event) => {
+  const handleSizeChange = React.useCallback((event: SelectChangeEvent<string>) => {
     setSize(Number(event.target.value));
   }, []);
 
-  const handleDatasetChange = React.useCallback((event) => {
-    setType(event.target.value);
+  const handleDatasetChange = React.useCallback((event: SelectChangeEvent<GridDataType>) => {
+    setType(event.target.value as GridDataType);
   }, []);
 
-  const handlePaginationChange = React.useCallback((event) => {
-    setSelectedPaginationValue(event.target.value);
+  const handlePaginationChange = React.useCallback((event: SelectChangeEvent<number>) => {
+    setSelectedPaginationValue(Number(event.target.value));
   }, []);
 
   const handleApplyChanges = React.useCallback(() => {
@@ -64,9 +64,13 @@ function SettingsPanel(props: GridToolbarContainerProps) {
   return (
     <FormGroup
       className="MuiFormGroup-options"
-      row
       sx={{
-        '& > *': { '&:not(:first-child)': { ml: 1 }, '&:last-child': { ml: 'auto' } },
+        flexDirection: { xs: 'column', sm: 'row' },
+        alignContent: { xs: 'start', sm: 'center' },
+        '& > *': {
+          '&:not(:first-child)': { ml: { xs: 0, sm: 1 } },
+          '&:last-child': { ml: 'auto' },
+        },
         '& .MuiFilledInput-root': {
           borderRadius: 1,
           backgroundColor: 'transparent',
@@ -85,7 +89,7 @@ function SettingsPanel(props: GridToolbarContainerProps) {
       </FormControl>
       <FormControl variant="filled" size="small">
         <InputLabel>Rows</InputLabel>
-        <Select value={sizeState} onChange={handleSizeChange} disableUnderline>
+        <Select value={String(sizeState)} onChange={handleSizeChange} disableUnderline>
           <MenuItem value={100}>100</MenuItem>
           <MenuItem value={1000}>{Number(1000).toLocaleString()}</MenuItem>
           <MenuItem value={10000}>{Number(10000).toLocaleString()}</MenuItem>
@@ -102,7 +106,9 @@ function SettingsPanel(props: GridToolbarContainerProps) {
           <MenuItem value={1000}>{Number(1000).toLocaleString()}</MenuItem>
         </Select>
       </FormControl>
-      <Button onClick={handleApplyChanges}>Apply changes</Button>
+      <Button onClick={handleApplyChanges} sx={{ mt: { xs: 2, sm: 0 } }}>
+        Apply changes
+      </Button>
     </FormGroup>
   );
 }
@@ -168,6 +174,7 @@ export default function XGridFullDemo() {
             '& .MuiDataGrid-root': {
               bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.900' : '#fff'),
               '& .MuiAvatar-root': { width: 24, height: 24, fontSize: 14, fontWeight: 'bold' },
+              '& .MuiButton-root': { marginLeft: 0, marginRight: 1 },
               '& .MuiDataGrid-renderingZone': {
                 '& .MuiDataGrid-cell': {
                   bgcolor: (theme) =>

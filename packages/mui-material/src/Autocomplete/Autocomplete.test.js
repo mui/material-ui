@@ -12,11 +12,13 @@ import {
 import { spy } from 'sinon';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import TextField from '@mui/material/TextField';
-import Chip from '@mui/material/Chip';
+import Chip, { chipClasses } from '@mui/material/Chip';
 import Autocomplete, {
   autocompleteClasses as classes,
   createFilterOptions,
 } from '@mui/material/Autocomplete';
+import { paperClasses } from '@mui/material/Paper';
+import { iconButtonClasses } from '@mui/material/IconButton';
 
 function checkHighlightIs(listbox, expected) {
   const focused = listbox.querySelector(`.${classes.focused}`);
@@ -80,7 +82,7 @@ describe('<Autocomplete />', () => {
       const { getByRole } = render(
         <Autocomplete options={[]} renderInput={(params) => <TextField {...params} />} />,
       );
-      const input = getByRole('textbox');
+      const input = getByRole('combobox');
 
       act(() => {
         input.focus();
@@ -118,7 +120,7 @@ describe('<Autocomplete />', () => {
           renderInput={(params) => <TextField {...params} autoFocus />}
         />,
       );
-      fireEvent.keyDown(screen.getByRole('textbox'), { key: 'ArrowDown' });
+      fireEvent.keyDown(screen.getByRole('combobox'), { key: 'ArrowDown' });
       expect(document.querySelector(`.${classes.paper}`).textContent).to.equal('Loading…');
     });
   });
@@ -170,7 +172,7 @@ describe('<Autocomplete />', () => {
           renderInput={(params) => <TextField {...params} autoFocus />}
         />,
       );
-      const textbox = getByRole('textbox');
+      const textbox = getByRole('combobox');
       expect(textbox).not.to.have.attribute('aria-activedescendant');
 
       setProps({ options, loading: false });
@@ -206,7 +208,7 @@ describe('<Autocomplete />', () => {
           renderInput={(params) => <TextField {...params} autoFocus />}
         />,
       );
-      const textbox = getByRole('textbox');
+      const textbox = getByRole('combobox');
 
       checkHighlightIs(getByRole('listbox'), 'one');
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
@@ -227,7 +229,7 @@ describe('<Autocomplete />', () => {
           renderInput={(params) => <TextField {...params} autoFocus />}
         />,
       );
-      const textbox = getByRole('textbox');
+      const textbox = getByRole('combobox');
 
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
       checkHighlightIs(getByRole('listbox'), 'Bar');
@@ -276,7 +278,7 @@ describe('<Autocomplete />', () => {
       expect(getAllByRole('button', { hidden: true })).to.have.lengthOf(4);
 
       act(() => {
-        getByRole('textbox').focus();
+        getByRole('combobox').focus();
       });
       expect(container.textContent).to.equal('onetwothree');
       // Depending on the subset of components used in this test run the computed `visibility` changes in JSDOM.
@@ -301,7 +303,7 @@ describe('<Autocomplete />', () => {
       expect(getAllByRole('button', { hidden: true })).to.have.lengthOf(2);
 
       act(() => {
-        getByRole('textbox').focus();
+        getByRole('combobox').focus();
       });
       expect(container.textContent).to.equal('onetwothree');
       // Depending on the subset of components used in this test run the computed `visibility` changes in JSDOM.
@@ -321,12 +323,12 @@ describe('<Autocomplete />', () => {
           renderInput={(params) => <TextField {...params} autoFocus />}
         />,
       );
-      const textbox = getByRole('textbox');
+      const textbox = getByRole('combobox');
 
       fireEvent.keyDown(textbox, { key: 'ArrowUp' });
       checkHighlightIs(getByRole('listbox'), 'three');
       fireEvent.keyDown(textbox, { key: 'Enter' }); // selects the last option (three)
-      const input = getByRole('textbox');
+      const input = getByRole('combobox');
       act(() => {
         input.blur();
         input.focus(); // opens the listbox again
@@ -348,7 +350,7 @@ describe('<Autocomplete />', () => {
           renderInput={(params) => <TextField {...params} autoFocus />}
         />,
       );
-      const textbox = screen.getByRole('textbox');
+      const textbox = screen.getByRole('combobox');
 
       fireEvent.change(textbox, { target: { value: 'o' } });
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
@@ -375,7 +377,7 @@ describe('<Autocomplete />', () => {
           renderInput={(params) => <TextField {...params} autoFocus />}
         />,
       );
-      const textbox = screen.getByRole('textbox');
+      const textbox = screen.getByRole('combobox');
 
       act(() => {
         fireEvent.change(textbox, { target: { value: 't' } });
@@ -420,7 +422,7 @@ describe('<Autocomplete />', () => {
           multiple
         />,
       );
-      const input = getByRole('textbox');
+      const input = getByRole('combobox');
 
       act(() => {
         input.focus();
@@ -458,7 +460,7 @@ describe('<Autocomplete />', () => {
           multiple
         />,
       );
-      const textbox = screen.getByRole('textbox');
+      const textbox = screen.getByRole('combobox');
       const [firstSelectedValue, secondSelectedValue] = screen.getAllByRole('button');
 
       fireEvent.keyDown(textbox, { key: 'ArrowLeft' });
@@ -471,6 +473,49 @@ describe('<Autocomplete />', () => {
       expect(handleChange.callCount).to.equal(1);
       expect(handleChange.args[0][1]).to.deep.equal([options[1]]);
       expect(textbox).toHaveFocus();
+    });
+
+    it('should keep listbox open on pressing left or right keys when inputValue is not empty', () => {
+      const handleClose = spy();
+      const options = ['one', 'two', 'three'];
+      const { getByRole } = render(
+        <Autocomplete
+          options={options}
+          onClose={handleClose}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+          multiple
+          inputValue="tw"
+        />,
+      );
+
+      const textbox = getByRole('combobox');
+
+      fireEvent.mouseDown(textbox);
+      fireEvent.keyDown(textbox, { key: 'ArrowLeft' });
+
+      expect(handleClose.callCount).to.equal(0);
+      expect(textbox).to.have.attribute('aria-expanded', 'true');
+    });
+    it('should close listbox on pressing left or right keys when inputValue is empty', () => {
+      const handleClose = spy();
+      const options = ['one', 'two', 'three'];
+      const { getByRole } = render(
+        <Autocomplete
+          options={options}
+          onClose={handleClose}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+          multiple
+          inputValue=""
+        />,
+      );
+
+      const textbox = getByRole('combobox');
+
+      fireEvent.mouseDown(textbox);
+      fireEvent.keyDown(textbox, { key: 'ArrowLeft' });
+
+      expect(handleClose.callCount).to.equal(1);
+      expect(textbox).to.have.attribute('aria-expanded', 'false');
     });
 
     it('should not crash if a tag is missing', () => {
@@ -491,7 +536,7 @@ describe('<Autocomplete />', () => {
           multiple
         />,
       );
-      const textbox = screen.getByRole('textbox');
+      const textbox = screen.getByRole('combobox');
       const [firstSelectedValue] = screen.getAllByRole('button');
 
       fireEvent.keyDown(textbox, { key: 'ArrowLeft' });
@@ -515,7 +560,7 @@ describe('<Autocomplete />', () => {
           multiple
         />,
       );
-      const textbox = screen.getByRole('textbox');
+      const textbox = screen.getByRole('combobox');
 
       fireEvent.change(textbox, { target: { value: 'two' } });
       fireEvent.keyDown(textbox, { key: 'Enter' });
@@ -536,7 +581,7 @@ describe('<Autocomplete />', () => {
         />,
       );
 
-      expect(screen.getByRole('textbox')).to.have.property('value', '');
+      expect(screen.getByRole('combobox')).to.have.property('value', '');
     });
 
     it('should fail validation if a required field has no value', function test() {
@@ -608,7 +653,7 @@ describe('<Autocomplete />', () => {
       </div>
     );
     const { setProps } = render(<Test />);
-    let textbox = screen.getByRole('textbox');
+    let textbox = screen.getByRole('combobox');
 
     fireEvent.keyDown(textbox, { key: 'Enter' });
     expect(handleSubmit.callCount).to.equal(1);
@@ -622,7 +667,7 @@ describe('<Autocomplete />', () => {
     expect(handleSubmit.callCount).to.equal(2);
 
     setProps({ key: 'test-2', multiple: true, freeSolo: true });
-    textbox = screen.getByRole('textbox');
+    textbox = screen.getByRole('combobox');
 
     fireEvent.change(textbox, { target: { value: 'o' } });
     fireEvent.keyDown(textbox, { key: 'Enter' });
@@ -632,7 +677,7 @@ describe('<Autocomplete />', () => {
     expect(handleSubmit.callCount).to.equal(3);
 
     setProps({ key: 'test-3', freeSolo: true });
-    textbox = screen.getByRole('textbox');
+    textbox = screen.getByRole('combobox');
 
     fireEvent.change(textbox, { target: { value: 'o' } });
     fireEvent.keyDown(textbox, { key: 'Enter' });
@@ -663,7 +708,7 @@ describe('<Autocomplete />', () => {
       );
 
       let options;
-      const textbox = screen.getByRole('textbox');
+      const textbox = screen.getByRole('combobox');
 
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
@@ -697,7 +742,7 @@ describe('<Autocomplete />', () => {
       // this assertion can fail if the value is `listbox`
       expect(combobox).not.to.have.attribute('aria-haspopup');
 
-      const textbox = getByRole('textbox');
+      const textbox = getByRole('combobox');
       expect(combobox).to.contain(textbox);
       // reflected aria-multiline has to be false i.e. not present or false
       expect(textbox).not.to.have.attribute('aria-multiline');
@@ -730,13 +775,9 @@ describe('<Autocomplete />', () => {
       const combobox = getByRole('combobox');
       expect(combobox).to.have.attribute('aria-expanded', 'true');
 
-      const textbox = getByRole('textbox');
+      const textbox = getByRole('combobox');
 
       const listbox = getByRole('listbox');
-      expect(combobox, 'combobox owns listbox').to.have.attribute(
-        'aria-owns',
-        listbox.getAttribute('id'),
-      );
       expect(textbox).to.have.attribute('aria-controls', listbox.getAttribute('id'));
       expect(textbox, 'no option is focused when openened').not.to.have.attribute(
         'aria-activedescendant',
@@ -763,7 +804,7 @@ describe('<Autocomplete />', () => {
           renderInput={(params) => <TextField {...params} autoFocus />}
         />,
       );
-      const textbox = getByRole('textbox');
+      const textbox = getByRole('combobox');
       expect(textbox, 'no option is focused when openened').not.to.have.attribute(
         'aria-activedescendant',
       );
@@ -826,7 +867,7 @@ describe('<Autocomplete />', () => {
             renderInput={(params) => <TextField {...params} autoFocus />}
           />,
         );
-        const textbox = screen.getByRole('textbox');
+        const textbox = screen.getByRole('combobox');
 
         fireEvent.keyDown(textbox, { key });
 
@@ -848,7 +889,7 @@ describe('<Autocomplete />', () => {
         />,
       );
 
-      fireEvent.keyDown(screen.getByRole('textbox'), { key: 'Escape' });
+      fireEvent.keyDown(screen.getByRole('combobox'), { key: 'Escape' });
 
       expect(handleChange.callCount).to.equal(0);
     });
@@ -868,7 +909,7 @@ describe('<Autocomplete />', () => {
         />,
       );
 
-      fireEvent.keyDown(screen.getByRole('textbox'), { key: 'Escape' });
+      fireEvent.keyDown(screen.getByRole('combobox'), { key: 'Escape' });
       expect(handleChange.callCount).to.equal(1);
       expect(handleChange.args[0][1]).to.deep.equal([]);
     });
@@ -883,7 +924,7 @@ describe('<Autocomplete />', () => {
           renderInput={(params) => <TextField {...params} autoFocus />}
         />,
       );
-      const textbox = screen.getByRole('textbox');
+      const textbox = screen.getByRole('combobox');
       fireEvent.change(textbox, { target: { value: 'test' } });
       expect(document.activeElement.value).to.equal('test');
       act(() => {
@@ -900,7 +941,7 @@ describe('<Autocomplete />', () => {
           renderInput={(params) => <TextField {...params} autoFocus />}
         />,
       );
-      const textbox = screen.getByRole('textbox');
+      const textbox = screen.getByRole('combobox');
       fireEvent.change(textbox, { target: { value: 'test' } });
       expect(document.activeElement.value).to.equal('test');
       act(() => {
@@ -919,7 +960,7 @@ describe('<Autocomplete />', () => {
           renderInput={(params) => <TextField {...params} autoFocus />}
         />,
       );
-      const textbox = screen.getByRole('textbox');
+      const textbox = screen.getByRole('combobox');
       fireEvent.change(textbox, { target: { value: 'test' } });
       expect(document.activeElement.value).to.equal('test');
       act(() => {
@@ -941,7 +982,7 @@ describe('<Autocomplete />', () => {
         />,
       );
 
-      fireEvent.keyDown(screen.getByRole('textbox'), { key: 'Escape' });
+      fireEvent.keyDown(screen.getByRole('combobox'), { key: 'Escape' });
       expect(handleClose.callCount).to.equal(1);
     });
 
@@ -986,8 +1027,8 @@ describe('<Autocomplete />', () => {
         />,
       );
 
-      fireEvent.keyDown(screen.getByRole('textbox'), { key: 'ArrowDown' });
-      expect(getByRole('textbox')).to.have.attribute(
+      fireEvent.keyDown(screen.getByRole('combobox'), { key: 'ArrowDown' });
+      expect(getByRole('combobox')).to.have.attribute(
         'aria-activedescendant',
         getAllByRole('option')[0].getAttribute('id'),
       );
@@ -1002,9 +1043,9 @@ describe('<Autocomplete />', () => {
         />,
       );
 
-      fireEvent.keyDown(screen.getByRole('textbox'), { key: 'ArrowUp' });
+      fireEvent.keyDown(screen.getByRole('combobox'), { key: 'ArrowUp' });
       const options = getAllByRole('option');
-      expect(getByRole('textbox')).to.have.attribute(
+      expect(getByRole('combobox')).to.have.attribute(
         'aria-activedescendant',
         options[options.length - 1].getAttribute('id'),
       );
@@ -1022,7 +1063,7 @@ describe('<Autocomplete />', () => {
           renderInput={(params) => <TextField {...params} autoFocus />}
         />,
       );
-      const textbox = getByRole('textbox');
+      const textbox = getByRole('combobox');
       const listbox = getByRole('listbox');
       // Actual Behavior when "가" (Korean) is entered and press the arrow down key once on macOS/Chrome
       fireEvent.change(textbox, { target: { value: '가' } });
@@ -1042,7 +1083,7 @@ describe('<Autocomplete />', () => {
           renderInput={(params) => <TextField {...params} autoFocus />}
         />,
       );
-      const textbox = getByRole('textbox');
+      const textbox = getByRole('combobox');
       const combobox = getByRole('combobox');
 
       expect(combobox).to.have.attribute('aria-expanded', 'true');
@@ -1078,7 +1119,7 @@ describe('<Autocomplete />', () => {
           renderInput={(params) => <TextField {...params} autoFocus />}
         />,
       );
-      const textbox = screen.getByRole('textbox');
+      const textbox = screen.getByRole('combobox');
 
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
       fireEvent.keyDown(textbox, { key: 'ArrowUp' });
@@ -1098,7 +1139,7 @@ describe('<Autocomplete />', () => {
           renderInput={(params) => <TextField {...params} autoFocus />}
         />,
       );
-      const textbox = screen.getByRole('textbox');
+      const textbox = screen.getByRole('combobox');
 
       fireEvent.keyDown(textbox, { key: 'ArrowUp' });
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
@@ -1118,7 +1159,7 @@ describe('<Autocomplete />', () => {
             renderInput={(params) => <TextField {...params} autoFocus />}
           />,
         );
-        const textbox = screen.getByRole('textbox');
+        const textbox = screen.getByRole('combobox');
 
         fireEvent.keyDown(textbox, { key: 'ArrowDown' });
         fireEvent.keyDown(textbox, { key: 'ArrowUp' });
@@ -1136,7 +1177,7 @@ describe('<Autocomplete />', () => {
             renderInput={(params) => <TextField {...params} autoFocus />}
           />,
         );
-        const textbox = screen.getByRole('textbox');
+        const textbox = screen.getByRole('combobox');
 
         fireEvent.keyDown(textbox, { key: 'ArrowUp' });
         fireEvent.keyDown(textbox, { key: 'ArrowDown' });
@@ -1156,7 +1197,7 @@ describe('<Autocomplete />', () => {
             renderInput={(params) => <TextField {...params} autoFocus />}
           />,
         );
-        const textbox = screen.getByRole('textbox');
+        const textbox = screen.getByRole('combobox');
 
         fireEvent.keyDown(textbox, { key: 'ArrowDown' });
         fireEvent.keyDown(textbox, { key: 'ArrowUp' });
@@ -1177,7 +1218,7 @@ describe('<Autocomplete />', () => {
             renderInput={(params) => <TextField {...params} autoFocus />}
           />,
         );
-        const textbox = screen.getByRole('textbox');
+        const textbox = screen.getByRole('combobox');
 
         fireEvent.keyDown(textbox, { key: 'ArrowUp' });
 
@@ -1198,7 +1239,7 @@ describe('<Autocomplete />', () => {
             renderInput={(params) => <TextField {...params} autoFocus />}
           />,
         );
-        const textbox = screen.getByRole('textbox');
+        const textbox = screen.getByRole('combobox');
 
         fireEvent.keyDown(textbox, { key: 'ArrowDown' });
         fireEvent.keyDown(textbox, { key: 'ArrowDown' });
@@ -1223,7 +1264,7 @@ describe('<Autocomplete />', () => {
           renderInput={(params) => <TextField {...params} />}
         />,
       );
-      const input = getByRole('textbox');
+      const input = getByRole('combobox');
       expect(input).to.have.property('disabled', true);
     });
 
@@ -1268,7 +1309,7 @@ describe('<Autocomplete />', () => {
           renderInput={(params) => <TextField {...params} />}
         />,
       );
-      const textbox = screen.getByRole('textbox');
+      const textbox = screen.getByRole('combobox');
       act(() => {
         textbox.focus();
       });
@@ -1310,7 +1351,7 @@ describe('<Autocomplete />', () => {
           renderInput={(params) => <TextField {...params} autoFocus />}
         />,
       );
-      const textbox = screen.getByRole('textbox');
+      const textbox = screen.getByRole('combobox');
 
       expect(() => {
         fireEvent.change(textbox, { target: { value: 'a' } });
@@ -1350,7 +1391,7 @@ describe('<Autocomplete />', () => {
           renderInput={(params) => <TextField {...params} autoFocus />}
         />,
       );
-      const textbox = screen.getByRole('textbox');
+      const textbox = screen.getByRole('combobox');
 
       expect(() => {
         fireEvent.keyDown(textbox, { key: 'ArrowDown' });
@@ -1408,11 +1449,6 @@ describe('<Autocomplete />', () => {
       }).toWarnDev([
         'returns duplicated headers',
         !strictModeDoubleLoggingSupressed && 'returns duplicated headers',
-        // React 18 Strict Effects run mount effects twice which lead to a cascading update
-        React.version.startsWith('18') && 'returns duplicated headers',
-        React.version.startsWith('18') &&
-          !strictModeDoubleLoggingSupressed &&
-          'returns duplicated headers',
       ]);
       const options = screen.getAllByRole('option').map((el) => el.textContent);
       expect(options).to.have.length(7);
@@ -1455,7 +1491,7 @@ describe('<Autocomplete />', () => {
           renderInput={(params) => <TextField {...params} autoFocus />}
         />,
       );
-      const textbox = screen.getByRole('textbox');
+      const textbox = screen.getByRole('combobox');
       const listbox = screen.getByRole('listbox');
 
       fireEvent.keyDown(textbox, { key: 'ArrowDown' }); // goes to 'one'
@@ -1478,7 +1514,7 @@ describe('<Autocomplete />', () => {
           renderInput={(params) => <TextField {...params} />}
         />,
       );
-      const input = getByRole('textbox');
+      const input = getByRole('combobox');
       fireEvent.click(input);
 
       const listbox = getByRole('listbox');
@@ -1504,7 +1540,7 @@ describe('<Autocomplete />', () => {
         />,
       );
 
-      const input = getByRole('textbox');
+      const input = getByRole('combobox');
       fireEvent.click(input);
 
       const listbox = getByRole('listbox');
@@ -1519,7 +1555,7 @@ describe('<Autocomplete />', () => {
       );
 
       const combobox = getByRole('combobox');
-      const textbox = getByRole('textbox');
+      const textbox = getByRole('combobox');
       expect(combobox).to.have.attribute('aria-expanded', 'false');
       expect(combobox).not.to.have.attribute('aria-owns');
       expect(textbox).not.to.have.attribute('aria-controls');
@@ -1538,7 +1574,7 @@ describe('<Autocomplete />', () => {
           renderInput={(params) => <TextField {...params} autoFocus />}
         />,
       );
-      const textbox = screen.getByRole('textbox');
+      const textbox = screen.getByRole('combobox');
 
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
       fireEvent.keyDown(textbox, { key: 'Enter' });
@@ -1561,7 +1597,7 @@ describe('<Autocomplete />', () => {
           renderInput={(params) => <TextField {...params} autoFocus />}
         />,
       );
-      const textbox = screen.getByRole('textbox');
+      const textbox = screen.getByRole('combobox');
 
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
       fireEvent.keyDown(textbox, { key: 'Enter' });
@@ -1583,7 +1619,7 @@ describe('<Autocomplete />', () => {
           renderInput={(params) => <TextField {...params} autoFocus />}
         />,
       );
-      const textbox = screen.getByRole('textbox');
+      const textbox = screen.getByRole('combobox');
 
       fireEvent.change(document.activeElement, { target: { value: 'O' } });
 
@@ -1612,7 +1648,7 @@ describe('<Autocomplete />', () => {
           renderInput={(params) => <TextField {...params} />}
         />,
       );
-      const textbox = getByRole('textbox');
+      const textbox = getByRole('combobox');
       const combobox = getByRole('combobox');
       expect(combobox).to.have.attribute('aria-expanded', 'false');
       fireEvent.mouseDown(textbox);
@@ -1629,7 +1665,7 @@ describe('<Autocomplete />', () => {
           renderInput={(params) => <TextField {...params} />}
         />,
       );
-      const textbox = getByRole('textbox');
+      const textbox = getByRole('combobox');
       fireEvent.click(textbox);
       expect(textbox.selectionStart).to.equal(0);
       expect(textbox.selectionEnd).to.equal(3);
@@ -1644,7 +1680,7 @@ describe('<Autocomplete />', () => {
         />,
       );
 
-      const textbox = getByRole('textbox');
+      const textbox = getByRole('combobox');
       fireEvent.click(textbox);
       expect(textbox).toHaveFocus();
 
@@ -1661,7 +1697,7 @@ describe('<Autocomplete />', () => {
         <Autocomplete options={['one']} renderInput={(params) => <TextField {...params} />} />,
       );
       const combobox = getByRole('combobox');
-      const textbox = getByRole('textbox');
+      const textbox = getByRole('combobox');
 
       expect(combobox).to.have.attribute('aria-expanded', 'false');
       fireEvent.mouseDown(textbox); // Open listbox
@@ -1684,7 +1720,7 @@ describe('<Autocomplete />', () => {
         />,
       );
       const combobox = getByRole('combobox');
-      const textbox = getByRole('textbox');
+      const textbox = getByRole('combobox');
 
       expect(combobox).to.have.attribute('aria-expanded', 'false');
       fireEvent.mouseDown(textbox);
@@ -1734,7 +1770,7 @@ describe('<Autocomplete />', () => {
           renderInput={(params) => <TextField {...params} autoFocus />}
         />,
       );
-      const textbox = screen.getByRole('textbox');
+      const textbox = screen.getByRole('combobox');
 
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
       fireEvent.keyDown(textbox, { key: 'Enter' });
@@ -1816,7 +1852,7 @@ describe('<Autocomplete />', () => {
           renderInput={(params) => <TextField {...params} autoFocus />}
         />,
       );
-      const textbox = screen.getByRole('textbox');
+      const textbox = screen.getByRole('combobox');
 
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
       fireEvent.keyDown(textbox, { key: 'Enter' });
@@ -1842,7 +1878,7 @@ describe('<Autocomplete />', () => {
           multiple
         />,
       );
-      const textbox = screen.getByRole('textbox');
+      const textbox = screen.getByRole('combobox');
 
       fireEvent.change(textbox, { target: { value: 'three' } });
       fireEvent.keyDown(textbox, { key: 'Enter' });
@@ -1865,7 +1901,7 @@ describe('<Autocomplete />', () => {
           renderInput={(params) => <TextField {...params} autoFocus />}
         />,
       );
-      const textbox = screen.getByRole('textbox');
+      const textbox = screen.getByRole('combobox');
 
       // Actual behavior when "あ" (Japanese) is entered on macOS/Safari with IME
       fireEvent.change(textbox, { target: { value: 'あ' } });
@@ -1877,6 +1913,14 @@ describe('<Autocomplete />', () => {
 
       expect(handleChange.callCount).to.equal(1);
       expect(handleChange.args[0][1]).to.equal('あ');
+    });
+
+    it('should render endAdornment only when clear icon or popup icon is available', () => {
+      const { container } = render(
+        <Autocomplete freeSolo options={[]} renderInput={(params) => <TextField {...params} />} />,
+      );
+
+      expect(container.querySelector(`.${classes.endAdornment}`)).to.equal(null);
     });
   });
 
@@ -1892,7 +1936,7 @@ describe('<Autocomplete />', () => {
           renderInput={(params) => <TextField {...params} autoFocus />}
         />,
       );
-      const textbox = screen.getByRole('textbox');
+      const textbox = screen.getByRole('combobox');
 
       fireEvent.change(textbox, { target: { value: options[2] } });
       fireEvent.keyDown(textbox, { key: 'Enter' });
@@ -1913,7 +1957,7 @@ describe('<Autocomplete />', () => {
           renderInput={(params) => <TextField {...params} autoFocus />}
         />,
       );
-      const textbox = screen.getByRole('textbox');
+      const textbox = screen.getByRole('combobox');
 
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
@@ -1937,7 +1981,7 @@ describe('<Autocomplete />', () => {
           renderInput={(params) => <TextField {...params} autoFocus />}
         />,
       );
-      const textbox = screen.getByRole('textbox');
+      const textbox = screen.getByRole('combobox');
 
       fireEvent.keyDown(textbox, { key: 'Backspace' });
 
@@ -1958,7 +2002,7 @@ describe('<Autocomplete />', () => {
           renderInput={(params) => <TextField {...params} autoFocus />}
         />,
       );
-      const textbox = screen.getByRole('textbox');
+      const textbox = screen.getByRole('combobox');
 
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
@@ -2024,7 +2068,7 @@ describe('<Autocomplete />', () => {
           renderInput={(params) => <TextField {...params} autoFocus />}
         />,
       );
-      const textbox = screen.getByRole('textbox');
+      const textbox = screen.getByRole('combobox');
 
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
       fireEvent.keyDown(textbox, { key: 'Enter' });
@@ -2047,7 +2091,7 @@ describe('<Autocomplete />', () => {
           blurOnSelect
         />,
       );
-      const textbox = getByRole('textbox');
+      const textbox = getByRole('combobox');
       let firstOption = getByRole('option');
       expect(textbox).toHaveFocus();
       fireEvent.click(firstOption);
@@ -2072,7 +2116,7 @@ describe('<Autocomplete />', () => {
           blurOnSelect="touch"
         />,
       );
-      const textbox = getByRole('textbox');
+      const textbox = getByRole('combobox');
       let firstOption = getByRole('option');
       fireEvent.click(firstOption);
       expect(textbox).toHaveFocus();
@@ -2095,7 +2139,7 @@ describe('<Autocomplete />', () => {
           blurOnSelect="mouse"
         />,
       );
-      const textbox = getByRole('textbox');
+      const textbox = getByRole('combobox');
       let firstOption = getByRole('option');
       fireEvent.touchStart(firstOption);
       fireEvent.click(firstOption);
@@ -2149,7 +2193,7 @@ describe('<Autocomplete />', () => {
           renderInput={(params) => <TextField {...params} />}
         />,
       );
-      const textbox = screen.getByRole('textbox');
+      const textbox = screen.getByRole('combobox');
       expect(textbox).to.have.property('value', 'one');
       setProps({
         getOptionLabel: (option) => option.toUpperCase(),
@@ -2167,7 +2211,7 @@ describe('<Autocomplete />', () => {
           renderInput={(params) => <TextField {...params} autoFocus />}
         />,
       );
-      const textbox = screen.getByRole('textbox');
+      const textbox = screen.getByRole('combobox');
       expect(textbox).to.have.property('value', 'one');
       fireEvent.change(textbox, { target: { value: 'a' } });
       setProps({
@@ -2226,7 +2270,7 @@ describe('<Autocomplete />', () => {
           renderInput={(params) => <TextField {...params} autoFocus />}
         />,
       );
-      const textbox = screen.getByRole('textbox');
+      const textbox = screen.getByRole('combobox');
 
       fireEvent.keyDown(textbox, { key: 'ArrowDown' });
 
@@ -2290,7 +2334,7 @@ describe('<Autocomplete />', () => {
           renderInput={(params) => <TextField {...params} autoFocus />}
         />,
       );
-      const textbox = screen.getByRole('textbox');
+      const textbox = screen.getByRole('combobox');
 
       fireEvent.change(document.activeElement, { target: { value: 'one' } });
       expect(screen.getAllByRole('option').length).to.equal(2);
@@ -2333,7 +2377,7 @@ describe('<Autocomplete />', () => {
         renderInput={(params) => <TextField autoFocus {...params} />}
       />,
     );
-    const textbox = getByRole('textbox');
+    const textbox = getByRole('combobox');
     const combobox = getByRole('combobox');
 
     fireEvent.change(textbox, { target: { value: 'one' } });
@@ -2378,11 +2422,187 @@ describe('<Autocomplete />', () => {
       </div>
     );
     render(<Test />);
-    const textbox = screen.getByRole('textbox');
+    const textbox = screen.getByRole('combobox');
     fireEvent.keyDown(textbox, { key: 'ArrowDown' });
     fireEvent.keyDown(textbox, { key: 'ArrowDown' });
     fireEvent.keyDown(textbox, { key: 'Enter' });
     expect(handleChange.callCount).to.equal(0);
     expect(handleSubmit.callCount).to.equal(1);
+  });
+
+  describe('prop: componentsProps', () => {
+    it('should apply the props on the AutocompleteClearIndicator component', () => {
+      render(
+        <Autocomplete
+          open
+          options={['one', 'two']}
+          value="one"
+          renderInput={(params) => <TextField {...params} />}
+          componentsProps={{
+            clearIndicator: {
+              'data-testid': 'clearIndicator',
+              size: 'large',
+              className: 'my-class',
+            },
+          }}
+        />,
+      );
+
+      const clearIndicator = screen.getByTestId('clearIndicator');
+      expect(clearIndicator).to.have.class(iconButtonClasses.sizeLarge);
+      expect(clearIndicator).to.have.class('my-class');
+    });
+
+    it('should apply the props on the Paper component', () => {
+      render(
+        <Autocomplete
+          open
+          options={['one', 'two']}
+          renderInput={(params) => <TextField {...params} />}
+          componentsProps={{
+            paper: { 'data-testid': 'paperRoot', elevation: 2, className: 'my-class' },
+          }}
+        />,
+      );
+
+      const paperRoot = screen.getByTestId('paperRoot');
+      expect(paperRoot).to.have.class(paperClasses.elevation2);
+      expect(paperRoot).to.have.class('my-class');
+    });
+
+    it('should apply the props on the Popper component', () => {
+      render(
+        <Autocomplete
+          open
+          options={['one', 'two']}
+          renderInput={(params) => <TextField {...params} />}
+          componentsProps={{
+            popper: { 'data-testid': 'popperRoot', placement: 'bottom-end', className: 'my-class' },
+          }}
+        />,
+      );
+
+      const popperRoot = screen.getByTestId('popperRoot');
+      expect(popperRoot).to.have.attribute('data-popper-placement', 'bottom-end');
+      expect(popperRoot).to.have.class('my-class');
+    });
+
+    it('should apply the props on the AutocompletePopupIndicator component', () => {
+      render(
+        <Autocomplete
+          open
+          options={['one', 'two']}
+          renderInput={(params) => <TextField {...params} />}
+          componentsProps={{
+            popupIndicator: {
+              'data-testid': 'popupIndicator',
+              size: 'large',
+              className: 'my-class',
+            },
+          }}
+        />,
+      );
+
+      const popupIndicator = screen.getByTestId('popupIndicator');
+      expect(popupIndicator).to.have.class(iconButtonClasses.sizeLarge);
+      expect(popupIndicator).to.have.class('my-class');
+    });
+  });
+
+  describe('prop: readOnly', () => {
+    it('should make the input readonly', () => {
+      render(
+        <Autocomplete
+          readOnly
+          options={['one', 'two', 'three']}
+          renderInput={(params) => <TextField {...params} />}
+        />,
+      );
+      const input = screen.getByRole('combobox');
+      expect(input).to.have.attribute('readonly');
+    });
+
+    it('should not render the clear button', () => {
+      render(
+        <Autocomplete
+          readOnly
+          defaultValue="one"
+          options={['one', 'two', 'three']}
+          renderInput={(params) => <TextField {...params} />}
+        />,
+      );
+      expect(screen.queryByTitle('Clear')).to.equal(null);
+    });
+
+    it('should not apply the hasClearIcon class', () => {
+      const { container } = render(
+        <Autocomplete
+          readOnly
+          defaultValue="one"
+          options={['one', 'two', 'three']}
+          renderInput={(params) => <TextField {...params} />}
+        />,
+      );
+      expect(container.querySelector(`.${classes.root}`)).not.to.have.class(classes.hasClearIcon);
+      expect(container.querySelector(`.${classes.root}`)).to.have.class(classes.hasPopupIcon);
+    });
+
+    it('should focus on input when clicked', () => {
+      render(
+        <Autocomplete
+          readOnly
+          defaultValue="one"
+          options={['one', 'two']}
+          renderInput={(params) => <TextField {...params} />}
+        />,
+      );
+
+      const textbox = screen.getByRole('combobox');
+      fireEvent.click(textbox);
+      expect(textbox).toHaveFocus();
+
+      act(() => {
+        textbox.blur();
+      });
+      fireEvent.click(screen.queryByTitle('Open'));
+
+      expect(textbox).toHaveFocus();
+    });
+
+    it('should not open the popup', () => {
+      render(
+        <Autocomplete
+          readOnly
+          options={['one', 'two', 'three']}
+          renderInput={(params) => <TextField {...params} />}
+        />,
+      );
+      const textbox = screen.getByRole('combobox');
+      fireEvent.mouseDown(textbox);
+      expect(screen.queryByRole('listbox')).to.equal(null);
+    });
+
+    it('should not be able to delete the tag when multiple=true', () => {
+      const { container } = render(
+        <Autocomplete
+          readOnly
+          multiple
+          defaultValue={['one', 'two']}
+          options={['one', 'two', 'three']}
+          renderInput={(params) => <TextField {...params} />}
+        />,
+      );
+
+      const chip = container.querySelector(`.${chipClasses.root}`);
+      expect(chip).not.to.have.class(chipClasses.deletable);
+
+      const textbox = screen.getByRole('combobox');
+      act(() => {
+        textbox.focus();
+      });
+      expect(container.querySelectorAll(`.${chipClasses.root}`)).to.have.length(2);
+      fireEvent.keyDown(textbox, { key: 'Backspace' });
+      expect(container.querySelectorAll(`.${chipClasses.root}`)).to.have.length(2);
+    });
   });
 });

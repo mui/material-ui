@@ -18,7 +18,7 @@ const faqData = [
     summary: 'What long-term support do you offer?',
     detail: (
       <React.Fragment>
-        We think you’ll love the components we&apos;ve built so far, but we&apos;re planning to
+        We think you&apos;ll love the components we&apos;ve built so far, but we&apos;re planning to
         release more. We opened it up as soon as we had something useful, so that you can start
         getting value from it right away, and we&apos;ll be adding new features and components based
         on our own ideas, and on suggestions from early access customers.
@@ -153,7 +153,9 @@ export default function DesignKitFAQ() {
           <Paper
             variant="outlined"
             sx={{
-              p: 2,
+              pt: 2,
+              pb: 1,
+              px: 2,
               borderStyle: 'dashed',
               borderColor: (theme) =>
                 theme.palette.mode === 'dark' ? 'primaryDark.400' : 'grey.300',
@@ -166,7 +168,7 @@ export default function DesignKitFAQ() {
               </Typography>
             </Box>
             <Typography variant="body2" color="text.primary" sx={{ my: 1, textAlign: 'left' }}>
-              From community help to premium business support, we’re here to help.
+              From community help to premium business support, we&apos;re here to help.
             </Typography>
             <Button
               component="a"
@@ -175,6 +177,7 @@ export default function DesignKitFAQ() {
               size="small"
               href="mailto:sales@mui.com"
               endIcon={<KeyboardArrowRightRounded />}
+              sx={{ ml: -1 }}
             >
               Contact sales
             </Button>

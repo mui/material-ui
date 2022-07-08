@@ -1,45 +1,41 @@
 /* eslint-disable react/no-danger */
 import * as React from 'react';
-import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import throttle from 'lodash/throttle';
-import { styled } from '@mui/material/styles';
+import { styled, alpha } from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
 import NoSsr from '@mui/material/NoSsr';
 import Link from 'docs/src/modules/components/Link';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
+import { openLinkInNewTab } from 'docs/src/modules/components/MarkdownLinks';
 import TableOfContentsBanner from 'docs/src/components/banner/TableOfContentsBanner';
 
-const Nav = styled('nav')(({ theme }) => {
-  return {
-    top: 60,
-    // Fix IE11 position sticky issue.
-    marginTop: 60,
-    width: 240,
-    flexShrink: 0,
-    position: 'sticky',
-    height: 'calc(100vh - 70px)',
-    overflowY: 'auto',
-    padding: theme.spacing(2, 4, 2, 0),
-    display: 'none',
-    [theme.breakpoints.up('sm')]: {
-      display: 'block',
-    },
-  };
-});
+const Nav = styled('nav')(({ theme }) => ({
+  top: 0,
+  order: 1,
+  width: 240,
+  flexShrink: 0,
+  position: 'sticky',
+  height: '100vh',
+  overflowY: 'auto',
+  padding: theme.spacing('calc(var(--MuiDocs-header-height) + 1rem)', 4, 2, 0),
+  display: 'none',
+  [theme.breakpoints.up('sm')]: {
+    display: 'block',
+  },
+}));
 
-const NavLabel = styled(Typography)(({ theme }) => {
-  return {
-    marginTop: theme.spacing(2),
-    marginBottom: theme.spacing(1),
-    paddingLeft: theme.spacing(1.4),
-    fontSize: theme.typography.pxToRem(11),
-    fontWeight: theme.typography.fontWeightBold,
-    textTransform: 'uppercase',
-    letterSpacing: '.08rem',
-    color: theme.palette.grey[600],
-  };
-});
+const NavLabel = styled(Typography)(({ theme }) => ({
+  marginTop: theme.spacing(2),
+  marginBottom: theme.spacing(1),
+  paddingLeft: theme.spacing(1.4),
+  fontSize: theme.typography.pxToRem(11),
+  fontWeight: theme.typography.fontWeightBold,
+  textTransform: 'uppercase',
+  letterSpacing: '.08rem',
+  color: theme.palette.grey[600],
+}));
 
 const NavList = styled(Typography)({
   padding: 0,
@@ -119,13 +115,22 @@ function flatten(headings) {
   return itemsWithNode;
 }
 
+const shouldShowJobAd = () => {
+  const date = new Date();
+  const timeZoneOffset = date.getTimezoneOffset();
+  // Hide for time zones UT+5.5 - UTC+14 & UTC-8 - UTC-12
+  if (timeZoneOffset <= -5.5 * 60 || timeZoneOffset >= 8 * 60) {
+    return false;
+  }
+  return true;
+};
+
 export default function AppTableOfContents(props) {
   const { toc } = props;
   const t = useTranslate();
-  const router = useRouter();
+  const showAddJob = shouldShowJobAd();
 
   const items = React.useMemo(() => flatten(toc), [toc]);
-
   const [activeState, setActiveState] = React.useState(null);
   const clickedRef = React.useRef(false);
   const unsetClickedRef = React.useRef(null);
@@ -172,14 +177,7 @@ export default function AppTableOfContents(props) {
 
   const handleClick = (hash) => (event) => {
     // Ignore click for new tab/new window behavior
-    if (
-      event.defaultPrevented ||
-      event.button !== 0 || // ignore everything but left-click
-      event.metaKey ||
-      event.ctrlKey ||
-      event.altKey ||
-      event.shiftKey
-    ) {
+    if (openLinkInNewTab(event)) {
       return;
     }
 
@@ -204,8 +202,7 @@ export default function AppTableOfContents(props) {
   const itemLink = (item, secondary) => (
     <NavItem
       display="block"
-      // always replace the #* in the url because `router.asPath` might contain previous #
-      href={`${router.asPath.replace(/#.*/, '')}#${item.hash}`}
+      href={`#${item.hash}`}
       underline="none"
       onClick={handleClick(item.hash)}
       active={activeState === item.hash}
@@ -219,6 +216,53 @@ export default function AppTableOfContents(props) {
     <Nav aria-label={t('pageTOC')}>
       <NoSsr>
         <TableOfContentsBanner />
+        {showAddJob && (
+          <Link
+            href="https://jobs.ashbyhq.com/MUI?utm_source=2vOWXNv1PE"
+            underline="none"
+            sx={(theme) => ({
+              mb: 2,
+              display: 'flex',
+              flexDirection: 'column',
+              overflow: 'auto',
+              backgroundColor:
+                theme.palette.mode === 'dark'
+                  ? alpha(theme.palette.primary[900], 0.2)
+                  : alpha(theme.palette.grey[50], 0.4),
+              border: '1px solid',
+              borderColor:
+                theme.palette.mode === 'dark'
+                  ? theme.palette.primaryDark[700]
+                  : theme.palette.grey[200],
+              borderRadius: 1,
+              transitionProperty: 'all',
+              transitionTiming: 'cubic-bezier(0.4, 0, 0.2, 1)',
+              transitionDuration: '150ms',
+              '&:hover, &:focus-visible': {
+                borderColor:
+                  theme.palette.mode === 'dark'
+                    ? theme.palette.primaryDark[500]
+                    : theme.palette.primary[200],
+              },
+            })}
+          >
+            <Box sx={{ p: 1 }}>
+              <Typography component="span" variant="button" fontWeight="500" color="text.primary">
+                {'🚀 Join the MUI team!'}
+              </Typography>
+              <Typography
+                component="span"
+                variant="caption"
+                fontWeight="normal"
+                color="text.secondary"
+                sx={{ mt: 0.5 }}
+              >
+                {/* eslint-disable-next-line material-ui/no-hardcoded-labels */}
+                {"We're looking for React Engineers and other amazing roles－come find out more!"}
+              </Typography>
+            </Box>
+          </Link>
+        )}
       </NoSsr>
       {toc.length > 0 ? (
         <React.Fragment>

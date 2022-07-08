@@ -23,7 +23,7 @@ const GOLDs = [
     src: 'https://avatars.githubusercontent.com/u/24789812?size=40',
     srcSet: 'https://avatars.githubusercontent.com/u/24789812?size=80 2x',
     name: 'Bit',
-    description: 'The fastest way to share code.',
+    description: 'A component-driven development platform.',
     href: 'https://bit.dev/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
   },
   {
@@ -37,29 +37,29 @@ const GOLDs = [
     src: 'https://images.opencollective.com/laststance/daffd6c/logo/40.png',
     srcSet: 'https://images.opencollective.com/laststance/daffd6c/logo/80.png 2x',
     name: 'Laststance',
-    description: 'Organization for OSS activity based on Tokyo.',
+    description: 'An organization for OSS activity in Tokyo.',
     href: 'https://www.laststance.io/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
-  },
-  {
-    src: 'https://images.opencollective.com/movavi-software/a1d0167/logo/40.png',
-    srcSet: 'https://images.opencollective.com/movavi-software/a1d0167/logo/80.png 2x',
-    name: 'Movavi',
-    description: 'Screen recorder for Mac.',
-    href: 'https://www.movavi.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
   },
   {
     src: 'https://images.opencollective.com/aussiecasinohex/923df37/logo/40.png',
     srcSet: 'https://images.opencollective.com/aussiecasinohex/923df37/logo/80.png 2x',
-    name: 'TopAussieCasinos.com',
-    description: 'Aussie Gambling Guide.',
-    href: 'https://topaussiecasinos.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
+    name: 'CasinoHEX Australia',
+    description: 'A guide to online gambling in Australia.',
+    href: 'https://online-aussie-casino.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
   },
   {
     src: 'https://images.opencollective.com/sumatosoft_company/0b78570/avatar/40.png',
     srcSet: 'https://images.opencollective.com/sumatosoft_company/0b78570/avatar/80.png 2x',
     name: 'SunmatoSoft',
-    description: 'We help companies to digitalize their businesses.',
+    description: 'Custom software development company.',
     href: 'https://sumatosoft.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
+  },
+  {
+    src: 'https://p18.zdusercontent.com/attachment/9422375/Rullx0rw9lUGKuyKOy4VQ9Zxq?size=40',
+    srcSet: 'https://p18.zdusercontent.com/attachment/9422375/Rullx0rw9lUGKuyKOy4VQ9Zxq?size=80 2x',
+    name: 'MegaFamous',
+    description: 'The best place to buy Instagram followers & likes.',
+    href: 'https://megafamous.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
   },
 ];
 
@@ -106,7 +106,7 @@ export default function GoldSponsors() {
             }}
           >
             <IconButton
-              aria-label="Become MUI sponsor"
+              aria-label="Sponsor MUI"
               component="a"
               href={ROUTES.goldSponsor}
               target="_blank"
@@ -123,14 +123,13 @@ export default function GoldSponsors() {
             </IconButton>
             <div>
               <Typography variant="body2" color="text.primary" fontWeight="bold">
-                Become our sponsor!
+                Become a sponsor
               </Typography>
               <Typography variant="body2" color="text.secondary">
-                To join us,{' '}
+                Find out how{' '}
                 <Link href={ROUTES.goldSponsor} target="_blank" rel="noopener noreferrer">
-                  choose how
-                </Link>{' '}
-                you want to contribute.
+                  you can support MUI.
+                </Link>
               </Typography>
             </div>
           </Paper>

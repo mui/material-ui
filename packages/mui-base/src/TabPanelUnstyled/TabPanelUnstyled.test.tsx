@@ -34,7 +34,9 @@ describe('<TabPanelUnstyled />', () => {
         expectedClassName: tabPanelUnstyledClasses.root,
       },
     },
-    // Need to be wrapped with TabsContext
-    skip: ['reactTestRenderer'],
+
+    skip: [
+      'reactTestRenderer', // Need to be wrapped with TabsContext
+    ],
   }));
 });

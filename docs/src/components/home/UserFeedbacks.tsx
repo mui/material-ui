@@ -21,7 +21,7 @@ const Feedback = ({
 }) => {
   return (
     <Box sx={{ color: '#fff' }}>
-      <Typography variant="subtitle1" component="div" sx={{ mb: 2 }}>
+      <Typography variant="body1" fontWeight="500" component="div" sx={{ mb: 2.5 }}>
         {quote}
       </Typography>
       <Box sx={{ display: 'flex' }}>
@@ -31,15 +31,15 @@ const Feedback = ({
           alt={`Picture of ${profile.name}`}
           imgProps={{ loading: 'lazy' }}
           sx={{
-            width: 60,
-            height: 60,
-            border: '1px solid',
-            borderColor: '#fff',
+            width: 58,
+            height: 58,
+            border: '2px solid',
+            borderColor: 'primary.200',
             bgcolor: 'grey.800',
           }}
         />
         <Box sx={{ ml: 2 }}>
-          <Typography fontWeight="bold" sx={{ mb: 1 }}>
+          <Typography fontWeight="500" sx={{ mb: 1 }}>
             {profile.name},{' '}
             <Box component="span" sx={{ color: 'grey.500', fontWeight: 'regular' }}>
               {profile.role}
@@ -55,7 +55,7 @@ const Feedback = ({
 const TESTIMONIALS = [
   {
     quote:
-      "“MUI offers a wide variety of high quality components that have allowed us to ship features faster. MUI has been used by more than a hundred engineers in our organization. What’s more, MUI's well architected customization system has allowed us to differentiate ourselves in the marketplace.”",
+      '"MUI offers a wide variety of high quality components that have allowed us to ship features faster. MUI has been used by more than a hundred engineers in our organization. What\'s more, MUI\'s well architected customization system has allowed us to differentiate ourselves in the marketplace."',
     profile: {
       avatarSrc: 'https://avatars.githubusercontent.com/u/28296253?s=58',
       avatarSrcSet: 'https://avatars.githubusercontent.com/u/28296253?s=116 2x',
@@ -74,7 +74,7 @@ const TESTIMONIALS = [
   },
   {
     quote:
-      "“MUI looks great and lets us deliver fast, thanks to their solid API design and documentation - it's refreshing to use a component library where you get everything you need from their site rather than Stack Overflow. We think the upcoming version, with extra themes and customizability, will make MUI even more of a game changer. We're extremely grateful to the team for the time and effort spent maintaining the project.”",
+      '"MUI looks great and lets us deliver fast, thanks to their solid API design and documentation - it\'s refreshing to use a component library where you get everything you need from their site rather than Stack Overflow. We think the upcoming version, with extra themes and customizability, will make MUI even more of a game changer. We\'re extremely grateful to the team for the time and effort spent maintaining the project."',
     profile: {
       avatarSrc: 'https://avatars.githubusercontent.com/u/197016?s=58',
       avatarSrcSet: 'https://avatars.githubusercontent.com/u/197016?s=116 2x',
@@ -93,7 +93,7 @@ const TESTIMONIALS = [
   },
   {
     quote:
-      '“After much research on React component libraries, we decided to ditch our in-house library for MUI, using its powerful customization system to implement our Design System. This simple move did a rare thing in engineering: it lowered our maintenance costs while enhancing both developer and customer experience. All of this was done without sacrificing the organization’s branding and visual identity.”',
+      '"After much research on React component libraries, we decided to ditch our in-house library for MUI, using its powerful customization system to implement our Design System. This simple move did a rare thing in engineering: it lowered our maintenance costs while enhancing both developer and customer experience. All of this was done without sacrificing the organization\'s branding and visual identity."',
     profile: {
       avatarSrc: 'https://avatars.githubusercontent.com/u/732422?s=58',
       avatarSrcSet: 'https://avatars.githubusercontent.com/u/732422?s=116 2x',

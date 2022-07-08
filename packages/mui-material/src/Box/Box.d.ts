@@ -6,8 +6,15 @@ export interface BoxTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P &
     SystemProps<Theme> & {
       children?: React.ReactNode;
+      /**
+       * The component used for the root node.
+       * Either a string to use a HTML element or a component.
+       */
       component?: React.ElementType;
       ref?: React.Ref<unknown>;
+      /**
+       * The system prop that allows defining system overrides as well as additional CSS styles.
+       */
       sx?: SxProps<Theme>;
     };
   defaultComponent: D;
@@ -16,19 +23,11 @@ export interface BoxTypeMap<P = {}, D extends React.ElementType = 'div'> {
  *
  * Demos:
  *
- * - [Box](https://mui.com/components/box/)
+ * - [Box](https://mui.com/material-ui/react-box/)
  *
  * API:
  *
- * - [Box API](https://mui.com/components/box/#api)
- * NOTE - As a CSS utility component, Box also supports all system props.
- * You can use them as props directly on the component.
- * Props use same syntax as `sx`. Not all props are listed in the API section.
- *
- * Example:
- *
- * // For instance, a Box with margin-top:
- * <Box mt={2}>
+ * - [Box API](https://mui.com/material-ui/api/box/)
  */
 declare const Box: OverridableComponent<BoxTypeMap>;
 
@@ -37,22 +36,4 @@ export type BoxProps<
   P = {},
 > = OverrideProps<BoxTypeMap<P, D>, D>;
 
-/**
- *
- * Demos:
- *
- * - [Box](https://mui.com/components/box/)
- *
- * API:
- *
- * - [Box API](https://mui.com/components/box/#api)
- * NOTE - As a CSS utility component, Box also supports all system props.
- * You can use them as props directly on the component.
- * Props use same syntax as `sx`. Not all props are listed in the API section.
- *
- * Example:
- *
- * // For instance, a Box with margin-top:
- * <Box mt={2}>
- */
 export default Box;

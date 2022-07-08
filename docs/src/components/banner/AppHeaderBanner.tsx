@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Link from 'docs/src/modules/components/Link';
 import ROUTES from 'docs/src/route';
@@ -7,37 +6,36 @@ import FEATURE_TOGGLE from 'docs/src/featureToggle';
 
 export default function AppHeaderBanner() {
   return FEATURE_TOGGLE.enable_website_banner ? (
-    <Box
+    <Typography
+      fontWeight="medium"
       sx={{
-        p: 1.5,
+        color: '#fff',
+        p: '12px',
         display: 'flex',
-        alignItems: 'center',
+        flexDirection: { xs: 'column', md: 'row' },
+        alignItems: { xs: 'start', sm: 'center' },
         justifyContent: 'center',
         background: (theme) =>
           theme.palette.mode === 'dark'
             ? `linear-gradient(90deg, ${theme.palette.primary[900]}, ${theme.palette.primary[600]} 120%)`
             : `linear-gradient(-90deg, ${theme.palette.primary[700]}, ${theme.palette.primary[500]} 120%)`,
+        fontSize: (theme) => theme.typography.pxToRem(13),
       }}
     >
-      <Typography
-        variant="body2"
-        fontWeight="medium"
+      🚀&#160;&#160;We&apos;re hiring a Designer, Full-stack Engineer, React Support Engineer, and
+      more!&nbsp;&#160;
+      <Link
+        href={ROUTES.careers} // Fix me!
+        target="_blank"
         sx={{
+          fontWeight: 'semiBold',
+          textDecoration: 'underline',
           color: '#fff',
+          '&:hover': { color: 'grey.200' },
         }}
       >
-        Fix me! &nbsp;
-        <Link
-          href={ROUTES.home} // Fix me!
-          target="_blank"
-          data-ga-event-category="$event-category" // Fix me!
-          data-ga-event-action="click"
-          data-ga-event-label="header"
-          sx={{ color: '#fff', textDecoration: 'underline' }}
-        >
-          Fix me!
-        </Link>
-      </Typography>
-    </Box>
+        Check the careers page →
+      </Link>
+    </Typography>
   ) : null;
 }

@@ -2,10 +2,13 @@ import * as React from 'react';
 import Container from '@mui/material/Container';
 import Box, { BoxProps } from '@mui/material/Box';
 
-export default function Section({
-  bg = 'white',
-  ...props
-}: { bg?: 'white' | 'comfort' | 'dim' | 'gradient' } & BoxProps) {
+interface SelectionProps extends BoxProps {
+  bg?: 'white' | 'comfort' | 'dim' | 'gradient';
+}
+
+export default function Section(props: SelectionProps) {
+  const { bg = 'white', children, sx, ...other } = props;
+
   const map = {
     white: {
       light: 'common.white',
@@ -22,7 +25,7 @@ export default function Section({
   };
   return (
     <Box
-      {...props}
+      {...other}
       sx={{
         ...(bg === 'gradient'
           ? {
@@ -36,10 +39,10 @@ export default function Section({
             }),
         py: { xs: 4, sm: 6, md: 8 },
         overflow: 'hidden',
-        ...props.sx,
+        ...sx,
       }}
     >
-      <Container>{props.children}</Container>
+      <Container>{children}</Container>
     </Box>
   );
 }

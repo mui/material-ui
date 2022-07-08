@@ -47,6 +47,16 @@ describe('cssVarsParser', () => {
         },
       });
     });
+
+    it('create array given by `arrayKeys`', () => {
+      const result = {};
+      assignNestedKeys(result, ['keys', '0'], 'xs', ['keys']);
+      assignNestedKeys(result, ['keys', '2'], 'md', ['keys']);
+      assignNestedKeys(result, ['keys', '1'], 'sm', ['keys']);
+      expect(result).to.deep.equal({
+        keys: ['xs', 'sm', 'md'],
+      });
+    });
   });
   describe('walkObjectDeep', () => {
     it('run callback at each key', () => {
@@ -141,6 +151,22 @@ describe('cssVarsParser', () => {
       });
     });
 
+    it('use prefix if provided', () => {
+      const theme = {
+        bg: 'var(--palette-neutral-50)',
+        text: {
+          heading: 'var(--palette-primary-500, var(--palette-neutral-500))',
+        },
+      };
+      const { css } = cssVarsParser(theme, {
+        prefix: 'foo-bar',
+      });
+      expect(css).to.deep.equal({
+        '--foo-bar-bg': 'var(--palette-neutral-50)',
+        '--foo-bar-text-heading': 'var(--palette-primary-500, var(--palette-neutral-500))',
+      });
+    });
+
     it('attach px to number value', () => {
       const { css } = cssVarsParser({
         fontSize: {
@@ -153,6 +179,36 @@ describe('cssVarsParser', () => {
         '--fontSize-xs': '10px',
         '--fontSize-sm': '12px',
         '--fontSize-md': '16px',
+      });
+    });
+
+    it('does not attach px to color channel values', () => {
+      const { css } = cssVarsParser({
+        primary: {
+          mainChannel: '144 202 249',
+          darkChannel: '66 165 245',
+          lightChannel: '0 100% 50%',
+        },
+      });
+      expect(css).to.deep.equal({
+        '--primary-mainChannel': '144 202 249',
+        '--primary-darkChannel': '66 165 245',
+        '--primary-lightChannel': '0 100% 50%',
+      });
+    });
+
+    it('does not attach px to opacity values', () => {
+      const { css } = cssVarsParser({
+        primary: {
+          hoverOpacity: 0.02,
+          disabledOpacity: 0.5,
+          opacity: 1,
+        },
+      });
+      expect(css).to.deep.equal({
+        '--primary-hoverOpacity': 0.02,
+        '--primary-disabledOpacity': 0.5,
+        '--primary-opacity': 1,
       });
     });
 
@@ -206,75 +262,14 @@ describe('cssVarsParser', () => {
       });
     });
 
-    describe('variable reference with `var()`', () => {
-      it('use prefix if provided', () => {
-        const theme = {
-          bg: 'var(--palette-neutral-50)',
-          text: {
-            heading: 'var(--palette-primary-500, var(--palette-neutral-500))',
-          },
-        };
-        const { css } = cssVarsParser(theme, {
-          prefix: 'foo-bar',
-        });
-        expect(theme).to.deep.equal({
-          bg: 'var(--foo-bar-palette-neutral-50)',
-          text: {
-            heading: 'var(--foo-bar-palette-primary-500, var(--foo-bar-palette-neutral-500))',
-          },
-        });
-        expect(css).to.deep.equal({
-          '--foo-bar-bg': 'var(--foo-bar-palette-neutral-50)',
-          '--foo-bar-text-heading':
-            'var(--foo-bar-palette-primary-500, var(--foo-bar-palette-neutral-500))',
-        });
+    it('css can be produced from array', () => {
+      const { css } = cssVarsParser({
+        shadows: ['sm', 'md', 'lg'],
       });
-
-      it('replace value starts with `var` if basePrefix, prefix are different', () => {
-        const theme = {
-          bg: 'var(--joy-palette-neutral-50)',
-          text: {
-            heading: 'var(--joy-palette-primary-500, var(--joy-palette-neutral-500))',
-          },
-        };
-        const { css } = cssVarsParser(theme, {
-          basePrefix: 'joy',
-          prefix: 'custom',
-        });
-        expect(theme).to.deep.equal({
-          bg: 'var(--custom-palette-neutral-50)',
-          text: {
-            heading: 'var(--custom-palette-primary-500, var(--custom-palette-neutral-500))',
-          },
-        });
-        expect(css).to.deep.equal({
-          '--custom-bg': 'var(--custom-palette-neutral-50)',
-          '--custom-text-heading':
-            'var(--custom-palette-primary-500, var(--custom-palette-neutral-500))',
-        });
-      });
-
-      it('basePrefix in the value is removed if prefix is ""', () => {
-        const theme = {
-          bg: 'var(--joy-palette-neutral-50, var(--joy-colors-white))',
-          text: {
-            heading: 'var(--joy-palette-primary-500)',
-          },
-        };
-        const { css } = cssVarsParser(theme, {
-          basePrefix: 'joy',
-          prefix: '',
-        });
-        expect(theme).to.deep.equal({
-          bg: 'var(--palette-neutral-50, var(--colors-white))',
-          text: {
-            heading: 'var(--palette-primary-500)',
-          },
-        });
-        expect(css).to.deep.equal({
-          '--bg': 'var(--palette-neutral-50, var(--colors-white))',
-          '--text-heading': 'var(--palette-primary-500)',
-        });
+      expect(css).to.deep.equal({
+        '--shadows-0': 'sm',
+        '--shadows-1': 'md',
+        '--shadows-2': 'lg',
       });
     });
   });
@@ -350,6 +345,88 @@ describe('cssVarsParser', () => {
           primary: {
             100: 'var(--palette-primary-100)',
           },
+        },
+      });
+    });
+
+    it('vars can be produced from array', () => {
+      const { vars } = cssVarsParser({
+        shadows: ['sm', 'md', 'lg'],
+      });
+      expect(vars).to.deep.equal({
+        shadows: ['var(--shadows-0)', 'var(--shadows-1)', 'var(--shadows-2)'],
+      });
+    });
+  });
+
+  describe('parsedObject', () => {
+    it('creates a new object on every call', () => {
+      const theme = {
+        primary: {
+          500: '#ffffff',
+          main: 'var(--palette-500)',
+        },
+      };
+      const { parsedTheme } = cssVarsParser(theme, { prefix: 'foo' });
+      const { parsedTheme: parsedTheme2 } = cssVarsParser(theme, { prefix: 'bar' });
+      expect(theme).not.to.equal(parsedTheme);
+      expect(parsedTheme).to.deep.equal({
+        primary: {
+          500: '#ffffff',
+          main: 'var(--palette-500)',
+        },
+      });
+      expect(parsedTheme2).to.deep.equal({
+        primary: {
+          500: '#ffffff',
+          main: 'var(--palette-500)',
+        },
+      });
+      expect(parsedTheme).not.to.equal(parsedTheme2);
+    });
+
+    it('preserve array even if the key is listed in `shouldSkipGeneratingVar`', () => {
+      const theme = {
+        breakpoints: {
+          keys: ['xs', 'sm', 'md', 'lg', 'xl'],
+        },
+      };
+      const { parsedTheme } = cssVarsParser(theme, {
+        shouldSkipGeneratingVar: (keys) => keys[0] === 'breakpoints',
+      });
+      expect(parsedTheme.breakpoints.keys).to.deep.equal(['xs', 'sm', 'md', 'lg', 'xl']);
+    });
+
+    it('preserve function value', () => {
+      const theme = {
+        palette: {
+          getContrastText: () => 'foo',
+        },
+        pxToRem: (px: number) => `${px / 16}rem`,
+      };
+      const { parsedTheme } = cssVarsParser(theme);
+      expect(parsedTheme.palette.getContrastText()).to.equal('foo');
+      expect(parsedTheme.pxToRem(16)).to.equal('1rem');
+    });
+
+    it('all key,values remains in parsedTheme even shouldSkipGeneratingVar is provided', () => {
+      const { parsedTheme } = cssVarsParser(
+        {
+          pxToRem: (px: number) => `${px / 16}rem`,
+          typography: {
+            body: {
+              fontSize: 'var(--fontSize-md)',
+              fontFamily: 'Roboto, var(--fontFamily-fallback)',
+            },
+          },
+        },
+        { prefix: 'foo', shouldSkipGeneratingVar: (keys) => keys[0] === 'typgoraphy' },
+      );
+      expect(parsedTheme.pxToRem(14)).to.equal('0.875rem');
+      expect(parsedTheme.typography).to.deep.equal({
+        body: {
+          fontSize: 'var(--fontSize-md)',
+          fontFamily: 'Roboto, var(--fontFamily-fallback)',
         },
       });
     });

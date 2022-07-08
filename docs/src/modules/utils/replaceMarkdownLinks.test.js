@@ -4,234 +4,373 @@ import replaceMarkdownLinks, {
   replaceAPILinks,
   replaceComponentLinks,
 } from './replaceMarkdownLinks';
+import FEATURE_TOGGLE from '../../featureToggle';
 
 describe('replaceMarkdownLinks', () => {
   it('replace material related links', () => {
     expect(
       replaceMaterialLinks(`
-      <ul>
-      <a href="/guides/minimizing-bundle-size/">reading this guide on minimizing bundle size</a>
-      <a href="/customization/theme-components/#default-props">default props</a>
-      <a data-no-markdown-link="true" tabindex="0" href="/getting-started/usage/">Get started</a>
-      <li><a href="/discover-more/related-projects/">Tree view</a></li>
-      </ul>
+      [reading this guide on minimizing bundle size](/guides/minimizing-bundle-size/)
+      [default props](/customization/theme-components/#default-props)
+      [Get started](/getting-started/usage/)
+      [Tree view](/discover-more/related-projects/)
     `),
     ).to.equal(`
-      <ul>
-      <a href="/material/guides/minimizing-bundle-size/">reading this guide on minimizing bundle size</a>
-      <a href="/material/customization/theme-components/#default-props">default props</a>
-      <a data-no-markdown-link="true" tabindex="0" href="/material/getting-started/usage/">Get started</a>
-      <li><a href="/material/discover-more/related-projects/">Tree view</a></li>
-      </ul>
+      [reading this guide on minimizing bundle size](/material-ui/guides/minimizing-bundle-size/)
+      [default props](/material-ui/customization/theme-components/#default-props)
+      [Get started](/material-ui/getting-started/usage/)
+      [Tree view](/material-ui/discover-more/related-projects/)
     `);
   });
 
   it('should not change if links have been updated', () => {
     expect(
       replaceMaterialLinks(`
-      <ul>
-      <a href="/material/guides/minimizing-bundle-size/">reading this guide on minimizing bundle size</a>
-      <a href="/material/customization/theme-components/#default-props">default props</a>
-      <a data-no-markdown-link="true" tabindex="0" href="/material/getting-started/usage/">Get started</a>
-      <li><a href="/material/discover-more/related-projects/">Tree view</a></li>
-      </ul>
+      [reading this guide on minimizing bundle size](/material-ui/guides/minimizing-bundle-size/)
+      [default props](/material-ui/customization/theme-components/#default-props)
+      [Get started](/material-ui/getting-started/usage/)
+      [Tree view](/material-ui/discover-more/related-projects/)
     `),
     ).to.equal(`
-      <ul>
-      <a href="/material/guides/minimizing-bundle-size/">reading this guide on minimizing bundle size</a>
-      <a href="/material/customization/theme-components/#default-props">default props</a>
-      <a data-no-markdown-link="true" tabindex="0" href="/material/getting-started/usage/">Get started</a>
-      <li><a href="/material/discover-more/related-projects/">Tree view</a></li>
-      </ul>
+      [reading this guide on minimizing bundle size](/material-ui/guides/minimizing-bundle-size/)
+      [default props](/material-ui/customization/theme-components/#default-props)
+      [Get started](/material-ui/getting-started/usage/)
+      [Tree view](/material-ui/discover-more/related-projects/)
     `);
   });
 
   it('replace correct component links', () => {
     expect(
       replaceComponentLinks(`
-      <ul>
-      <li><a href="/components/button-group/">Button Group</a></li>
-      <li><a href="/components/buttons/">Buttons</a></li>
-      <li><a href="/components/tree-view/">Tree view</a></li>
-      <li><a href="/components/data-grid/demo/">Demo</a></li>
-      </ul>
+      [ButtonGroup](/components/button-group/)
+      [Buttons](/components/buttons/)
+      [text](/components/checkboxes/#main-content)
+      [text](/components/radio-buttons#main-content)
+      [text](/components/selects/#main-content)
+      [text](/components/switches/#main-content)
+      [text](/components/text-fields/#main-content)
+      [text](/components/avatars/#main-content)
+      [text](/components/badges/#main-content)
+      [text](/components/chips/#main-content)
+      [text](/components/dividers/#main-content)
+      [text](/components/icons/#main-content)
+      [text](/components/material-icons/#main-content)
+      [text](/components/lists/#main-content)
+      [text](/components/tables/#main-content)
+      [text](/components/tooltips/#main-content)
+      [text](/components/dialogs/#main-content)
+      [text](/components/snackbars/#main-content)
+      [text](/components/cards/#main-content)
+      [text](/components/breadcrumbs/#main-content)
+      [text](/components/drawers/#main-content)
+      [text](/components/links/#main-content)
+      [text](/components/menus/#main-content)
+      [text](/components/steppers/#main-content)
+      [text](/components/tabs/#main-content)
+      [text](/components/transitions/#main-content)
+      [text](/components/pickers/#main-content)
+      [text](/components/trap-focus/#main-content)
+      [text](/components/css-baseline/#main-content)
+      [text](/components/no-ssr/#main-content)
+      [text](/components/image-list/#main-content)
+      [text](/components/progress/#main-content)
+      -
+      [Tree view](/components/tree-view/)
+      [Demo](/components/data-grid/demo/)
     `),
     ).to.equal(`
-      <ul>
-      <li><a href="/material/react-button-group/">Button Group</a></li>
-      <li><a href="/material/react-buttons/">Buttons</a></li>
-      <li><a href="/material/react-tree-view/">Tree view</a></li>
-      <li><a href="/x/react-data-grid/demo/">Demo</a></li>
-      </ul>
+      [ButtonGroup](/material-ui/react-button-group/)
+      [Buttons](/material-ui/react-button/)
+      [text](/material-ui/react-checkbox/#main-content)
+      [text](/material-ui/react-radio-button#main-content)
+      [text](/material-ui/react-select/#main-content)
+      [text](/material-ui/react-switch/#main-content)
+      [text](/material-ui/react-text-field/#main-content)
+      [text](/material-ui/react-avatar/#main-content)
+      [text](/material-ui/react-badge/#main-content)
+      [text](/material-ui/react-chip/#main-content)
+      [text](/material-ui/react-divider/#main-content)
+      [text](/material-ui/icons/#main-content)
+      [text](/material-ui/material-icons/#main-content)
+      [text](/material-ui/react-list/#main-content)
+      [text](/material-ui/react-table/#main-content)
+      [text](/material-ui/react-tooltip/#main-content)
+      [text](/material-ui/react-dialog/#main-content)
+      [text](/material-ui/react-snackbar/#main-content)
+      [text](/material-ui/react-card/#main-content)
+      [text](/material-ui/react-breadcrumbs/#main-content)
+      [text](/material-ui/react-drawer/#main-content)
+      [text](/material-ui/react-link/#main-content)
+      [text](/material-ui/react-menu/#main-content)
+      [text](/material-ui/react-stepper/#main-content)
+      [text](/material-ui/react-tabs/#main-content)
+      [text](/material-ui/transitions/#main-content)
+      [text](/material-ui/pickers/#main-content)
+      [text](/material-ui/react-trap-focus/#main-content)
+      [text](/material-ui/react-css-baseline/#main-content)
+      [text](/material-ui/react-no-ssr/#main-content)
+      [text](/material-ui/react-image-list/#main-content)
+      [text](/material-ui/react-progress/#main-content)
+      -
+      [Tree view](/material-ui/react-tree-view/)
+      [Demo](/x/react-data-grid/demo/)
     `);
   });
 
   it('should do nothing if the components have updated', () => {
     expect(
       replaceComponentLinks(`
-      <ul>
-      <li><a href="/material/react-button-group/">Button Group</a></li>
-      <li><a href="/material/react-buttons/">Buttons</a></li>
-      <li><a href="/material/react-tree-view/">Tree view</a></li>
-      <li><a href="/x/react-data-grid/demo/">Demo</a></li>
-      </ul>
+      [ButtonGroup](/material-ui/react-button-group/)
+      [Buttons](/material-ui/react-button/)
+      [text](/material-ui/react-checkbox/#main-content)
+      [text](/material-ui/react-radio-button#main-content)
+      [text](/material-ui/react-select/#main-content)
+      [text](/material-ui/react-switch/#main-content)
+      [text](/material-ui/react-text-field/#main-content)
+      [text](/material-ui/react-avatar/#main-content)
+      [text](/material-ui/react-badge/#main-content)
+      [text](/material-ui/react-chip/#main-content)
+      [text](/material-ui/react-divider/#main-content)
+      [text](/material-ui/icons/#main-content)
+      [text](/material-ui/material-icons/#main-content)
+      [text](/material-ui/react-list/#main-content)
+      [text](/material-ui/react-table/#main-content)
+      [text](/material-ui/react-tooltip/#main-content)
+      [text](/material-ui/react-dialog/#main-content)
+      [text](/material-ui/react-snackbar/#main-content)
+      [text](/material-ui/react-card/#main-content)
+      [text](/material-ui/react-breadcrumbs/#main-content)
+      [text](/material-ui/react-drawer/#main-content)
+      [text](/material-ui/react-link/#main-content)
+      [text](/material-ui/react-menu/#main-content)
+      [text](/material-ui/react-stepper/#main-content)
+      [text](/material-ui/react-tabs/#main-content)
+      [text](/material-ui/transitions/#main-content)
+      [text](/material-ui/pickers/#main-content)
+      -
+      [Tree view](/material-ui/react-tree-view/)
+      [Demo](/x/react-data-grid/demo/)
     `),
     ).to.equal(`
-      <ul>
-      <li><a href="/material/react-button-group/">Button Group</a></li>
-      <li><a href="/material/react-buttons/">Buttons</a></li>
-      <li><a href="/material/react-tree-view/">Tree view</a></li>
-      <li><a href="/x/react-data-grid/demo/">Demo</a></li>
-      </ul>
+      [ButtonGroup](/material-ui/react-button-group/)
+      [Buttons](/material-ui/react-button/)
+      [text](/material-ui/react-checkbox/#main-content)
+      [text](/material-ui/react-radio-button#main-content)
+      [text](/material-ui/react-select/#main-content)
+      [text](/material-ui/react-switch/#main-content)
+      [text](/material-ui/react-text-field/#main-content)
+      [text](/material-ui/react-avatar/#main-content)
+      [text](/material-ui/react-badge/#main-content)
+      [text](/material-ui/react-chip/#main-content)
+      [text](/material-ui/react-divider/#main-content)
+      [text](/material-ui/icons/#main-content)
+      [text](/material-ui/material-icons/#main-content)
+      [text](/material-ui/react-list/#main-content)
+      [text](/material-ui/react-table/#main-content)
+      [text](/material-ui/react-tooltip/#main-content)
+      [text](/material-ui/react-dialog/#main-content)
+      [text](/material-ui/react-snackbar/#main-content)
+      [text](/material-ui/react-card/#main-content)
+      [text](/material-ui/react-breadcrumbs/#main-content)
+      [text](/material-ui/react-drawer/#main-content)
+      [text](/material-ui/react-link/#main-content)
+      [text](/material-ui/react-menu/#main-content)
+      [text](/material-ui/react-stepper/#main-content)
+      [text](/material-ui/react-tabs/#main-content)
+      [text](/material-ui/transitions/#main-content)
+      [text](/material-ui/pickers/#main-content)
+      -
+      [Tree view](/material-ui/react-tree-view/)
+      [Demo](/x/react-data-grid/demo/)
     `);
   });
 
   it('replace correct API links', () => {
     expect(
       replaceAPILinks(`
-    <h2 id="heading-api"><span class="anchor-link" id="api"></span>API<a aria-labelledby="heading-api" class="anchor-link-style" href="#api" tabindex="-1"><svg><use xlink:href="#anchor-link-icon" /></svg></a></h2><ul>
-<li><a href="/api/button/"><code>&lt;Button /&gt;</code></a></li>
-<li><a href="/api/button-base/"><code>&lt;ButtonBase /&gt;</code></a></li>
-<li><a href="/api/button-unstyled/"><code>&lt;ButtonUnstyled /&gt;</code></a></li>
-<li><a href="/api/icon-button/"><code>&lt;IconButton /&gt;</code></a></li>
-<li><a href="/api/loading-button/"><code>&lt;LoadingButton /&gt;</code></a></li>
-<li><a href="/api/data-grid/data-grid/">DataGrid</a></li>
-<li><a href="/api/data-grid/data-grid-pro/">DataGridPro</a></li>
-<li><a href="/styles/api/">Styles</a></li>
-<li><a href="/system/basics/">System</a></li>
-</ul>
+      [Button](/api/button)
+      [No Ssr](/api/no-ssr)
+      [Portal](/api/portal)
+      [Textarea Autosize](/api/textarea-autosize)
+      [ButtonBase](/api/button-base)
+      [TabPanel](/api/tab-panel)
+      [TabsList](/api/tab-panel)
+      [ButtonUnstyled](/api/button-unstyled)
+      [TabPanelUnstyled](/api/tab-panel-unstyled)
+      [TabsListUnstyled](/api/tabs-list-unstyled)
+      [TrapFocus](/api/trap-focus)
+      [ClickAwayListener](/api/click-away-listener)
+      [IconButton](/api/icon-button)
+      [LoadingButton](/api/loading-button)
+      [DataGrid](/api/data-grid/data-grid)
+      [DataGridPro](/api/data-grid/data-grid-pro)
+      [System](/system/basics)
     `),
     ).to.equal(`
-    <h2 id="heading-api"><span class="anchor-link" id="api"></span>API<a aria-labelledby="heading-api" class="anchor-link-style" href="#api" tabindex="-1"><svg><use xlink:href="#anchor-link-icon" /></svg></a></h2><ul>
-<li><a href="/material/api/mui-material/button/"><code>&lt;Button /&gt;</code></a></li>
-<li><a href="/material/api/mui-material/button-base/"><code>&lt;ButtonBase /&gt;</code></a></li>
-<li><a href="/base/api/mui-base/button-unstyled/"><code>&lt;ButtonUnstyled /&gt;</code></a></li>
-<li><a href="/material/api/mui-material/icon-button/"><code>&lt;IconButton /&gt;</code></a></li>
-<li><a href="/material/api/mui-lab/loading-button/"><code>&lt;LoadingButton /&gt;</code></a></li>
-<li><a href="/x/api/mui-data-grid/data-grid/">DataGrid</a></li>
-<li><a href="/x/api/mui-data-grid/data-grid-pro/">DataGridPro</a></li>
-<li><a href="/styles/api/">Styles</a></li>
-<li><a href="/system/basics/">System</a></li>
-</ul>
+      [Button](/material-ui/api/button)
+      [No Ssr](/base/api/no-ssr)
+      [Portal](/base/api/portal)
+      [Textarea Autosize](/base/api/textarea-autosize)
+      [ButtonBase](/material-ui/api/button-base)
+      [TabPanel](/material-ui/api/tab-panel)
+      [TabsList](/material-ui/api/tab-panel)
+      [ButtonUnstyled](/base/api/button-unstyled)
+      [TabPanelUnstyled](/base/api/tab-panel-unstyled)
+      [TabsListUnstyled](/base/api/tabs-list-unstyled)
+      [TrapFocus](/base/api/trap-focus)
+      [ClickAwayListener](/base/api/click-away-listener)
+      [IconButton](/material-ui/api/icon-button)
+      [LoadingButton](/material-ui/api/loading-button)
+      [DataGrid](/x/api/data-grid/data-grid)
+      [DataGridPro](/x/api/data-grid/data-grid-pro)
+      [System](/system/basics)
     `);
   });
 
   it('should do nothing if the APIs have updated', () => {
     expect(
       replaceAPILinks(`
-      <h2 id="heading-api"><span class="anchor-link" id="api"></span>API<a aria-labelledby="heading-api" class="anchor-link-style" href="#api" tabindex="-1"><svg><use xlink:href="#anchor-link-icon" /></svg></a></h2><ul>
-  <li><a href="/material/api/mui-material/button/"><code>&lt;Button /&gt;</code></a></li>
-  <li><a href="/material/api/mui-material/button-base/"><code>&lt;ButtonBase /&gt;</code></a></li>
-  <li><a href="/base/api/mui-base/button-unstyled/"><code>&lt;ButtonUnstyled /&gt;</code></a></li>
-  <li><a href="/material/api/mui-material/icon-button/"><code>&lt;IconButton /&gt;</code></a></li>
-  <li><a href="/material/api/mui-lab/loading-button/"><code>&lt;LoadingButton /&gt;</code></a></li>
-  </ul>
+      [Button](/material-ui/api/button)
+      [ButtonBase](/material-ui/api/button-base)
+      [ButtonUnstyled](/base/api/button-unstyled)
+      [IconButton](/material-ui/api/icon-button)
+      [LoadingButton](/material-ui/api/loading-button)
+      [DataGrid](/x/api/data-grid/data-grid)
+      [DataGridPro](/x/api/data-grid/data-grid-pro)
+      [System](/system/basics)
       `),
     ).to.equal(`
-      <h2 id="heading-api"><span class="anchor-link" id="api"></span>API<a aria-labelledby="heading-api" class="anchor-link-style" href="#api" tabindex="-1"><svg><use xlink:href="#anchor-link-icon" /></svg></a></h2><ul>
-  <li><a href="/material/api/mui-material/button/"><code>&lt;Button /&gt;</code></a></li>
-  <li><a href="/material/api/mui-material/button-base/"><code>&lt;ButtonBase /&gt;</code></a></li>
-  <li><a href="/base/api/mui-base/button-unstyled/"><code>&lt;ButtonUnstyled /&gt;</code></a></li>
-  <li><a href="/material/api/mui-material/icon-button/"><code>&lt;IconButton /&gt;</code></a></li>
-  <li><a href="/material/api/mui-lab/loading-button/"><code>&lt;LoadingButton /&gt;</code></a></li>
-  </ul>
+      [Button](/material-ui/api/button)
+      [ButtonBase](/material-ui/api/button-base)
+      [ButtonUnstyled](/base/api/button-unstyled)
+      [IconButton](/material-ui/api/icon-button)
+      [LoadingButton](/material-ui/api/loading-button)
+      [DataGrid](/x/api/data-grid/data-grid)
+      [DataGridPro](/x/api/data-grid/data-grid-pro)
+      [System](/system/basics)
       `);
   });
 
-  it('only replace links for new routes (/material/* & /x/*)', () => {
+  it('only replace links for components, api', () => {
     expect(
       replaceMarkdownLinks(
         `
-    <ul>
-    <li><a href="/components/button-group/">Button Group</a></li>
-    <li><a href="/components/buttons/">Buttons</a></li>
-    <li><a href="/components/tree-view/">Tree view</a></li>
-    <li><a href="/components/data-grid/demo/">Demo</a></li>
-    <li><a href="/api/button/"><code>&lt;Button /&gt;</code></a></li>
-    <li><a href="/api/button-base/"><code>&lt;ButtonBase /&gt;</code></a></li>
-    <li><a href="/api/button-unstyled/"><code>&lt;ButtonUnstyled /&gt;</code></a></li>
-    <li><a href="/api/icon-button/"><code>&lt;IconButton /&gt;</code></a></li>
-    <li><a href="/api/loading-button/"><code>&lt;LoadingButton /&gt;</code></a></li>
-    <li><a href="/api/data-grid/data-grid/">DataGrid</a></li>
-    <li><a href="/api/data-grid/data-grid-pro/">DataGridPro</a></li>
-    <li><a href="/styles/api/">Styles</a></li>
-    <li><a href="/system/basics/">System</a></li>
-    <a href="/guides/minimizing-bundle-size/">reading this guide on minimizing bundle size</a>
-    <a href="/customization/theme-components/#default-props">default props</a>
-    <a data-no-markdown-link="true" tabindex="0" href="/getting-started/usage/">Get started</a>
-    <li><a href="/discover-more/related-projects/">Tree view</a></li>
-    </ul>
+        [ButtonGroup](/components/button-group/)
+        [Buttons](/components/buttons/)
+        [text](/components/checkboxes/#main-content)
+        [text](/components/radio-buttons#main-content)
+        [text](/components/selects/#main-content)
+        [text](/components/switches/#main-content)
+        [text](/components/text-fields/#main-content)
+        [text](/components/avatars/#main-content)
+        [text](/components/badges/#main-content)
+        [text](/components/chips/#main-content)
+        [text](/components/dividers/#main-content)
+        [text](/components/icons/#main-content)
+        [text](/components/material-icons/#main-content)
+        [text](/components/lists/#main-content)
+        [text](/components/tables/#main-content)
+        [text](/components/tooltips/#main-content)
+        [text](/components/dialogs/#main-content)
+        [text](/components/snackbars/#main-content)
+        [text](/components/cards/#main-content)
+        [text](/components/breadcrumbs/#main-content)
+        [text](/components/drawers/#main-content)
+        [text](/components/links/#main-content)
+        [text](/components/menus/#main-content)
+        [text](/components/steppers/#main-content)
+        [text](/components/tabs/#main-content)
+        [text](/components/transitions/#main-content)
+        [text](/components/pickers/#main-content)
+        -
+        [Tree view](/components/tree-view/)
+        [Demo](/components/data-grid/demo/)
+
+        [Button](/material-ui/api/button)
+        [ButtonBase](/material-ui/api/button-base)
+        [ButtonUnstyled](/base/api/button-unstyled)
+        [IconButton](/material-ui/api/icon-button)
+        [LoadingButton](/material-ui/api/loading-button)
+        [DataGrid](/x/api/data-grid/data-grid)
+        [DataGridPro](/x/api/data-grid/data-grid-pro)
+        [System](/system/basics)
     `,
-        '/material/react-buttons',
       ),
     ).to.equal(`
-    <ul>
-    <li><a href="/material/react-button-group/">Button Group</a></li>
-    <li><a href="/material/react-buttons/">Buttons</a></li>
-    <li><a href="/material/react-tree-view/">Tree view</a></li>
-    <li><a href="/x/react-data-grid/demo/">Demo</a></li>
-    <li><a href="/material/api/mui-material/button/"><code>&lt;Button /&gt;</code></a></li>
-    <li><a href="/material/api/mui-material/button-base/"><code>&lt;ButtonBase /&gt;</code></a></li>
-    <li><a href="/base/api/mui-base/button-unstyled/"><code>&lt;ButtonUnstyled /&gt;</code></a></li>
-    <li><a href="/material/api/mui-material/icon-button/"><code>&lt;IconButton /&gt;</code></a></li>
-    <li><a href="/material/api/mui-lab/loading-button/"><code>&lt;LoadingButton /&gt;</code></a></li>
-    <li><a href="/x/api/mui-data-grid/data-grid/">DataGrid</a></li>
-    <li><a href="/x/api/mui-data-grid/data-grid-pro/">DataGridPro</a></li>
-    <li><a href="/styles/api/">Styles</a></li>
-    <li><a href="/system/basics/">System</a></li>
-    <a href="/material/guides/minimizing-bundle-size/">reading this guide on minimizing bundle size</a>
-    <a href="/material/customization/theme-components/#default-props">default props</a>
-    <a data-no-markdown-link="true" tabindex="0" href="/material/getting-started/usage/">Get started</a>
-    <li><a href="/material/discover-more/related-projects/">Tree view</a></li>
-    </ul>
+        [ButtonGroup](/material-ui/react-button-group/)
+        [Buttons](/material-ui/react-button/)
+        [text](/material-ui/react-checkbox/#main-content)
+        [text](/material-ui/react-radio-button#main-content)
+        [text](/material-ui/react-select/#main-content)
+        [text](/material-ui/react-switch/#main-content)
+        [text](/material-ui/react-text-field/#main-content)
+        [text](/material-ui/react-avatar/#main-content)
+        [text](/material-ui/react-badge/#main-content)
+        [text](/material-ui/react-chip/#main-content)
+        [text](/material-ui/react-divider/#main-content)
+        [text](/material-ui/icons/#main-content)
+        [text](/material-ui/material-icons/#main-content)
+        [text](/material-ui/react-list/#main-content)
+        [text](/material-ui/react-table/#main-content)
+        [text](/material-ui/react-tooltip/#main-content)
+        [text](/material-ui/react-dialog/#main-content)
+        [text](/material-ui/react-snackbar/#main-content)
+        [text](/material-ui/react-card/#main-content)
+        [text](/material-ui/react-breadcrumbs/#main-content)
+        [text](/material-ui/react-drawer/#main-content)
+        [text](/material-ui/react-link/#main-content)
+        [text](/material-ui/react-menu/#main-content)
+        [text](/material-ui/react-stepper/#main-content)
+        [text](/material-ui/react-tabs/#main-content)
+        [text](/material-ui/transitions/#main-content)
+        [text](/material-ui/pickers/#main-content)
+        -
+        [Tree view](/material-ui/react-tree-view/)
+        [Demo](/x/react-data-grid/demo/)
+
+        [Button](/material-ui/api/button)
+        [ButtonBase](/material-ui/api/button-base)
+        [ButtonUnstyled](/base/api/button-unstyled)
+        [IconButton](/material-ui/api/icon-button)
+        [LoadingButton](/material-ui/api/loading-button)
+        [DataGrid](/x/api/data-grid/data-grid)
+        [DataGridPro](/x/api/data-grid/data-grid-pro)
+        [System](/system/basics)
     `);
+    if (FEATURE_TOGGLE.enable_system_scope) {
+      expect(replaceMarkdownLinks(`[Styles](/styles/api/)`)).to.equal(
+        `[Styles](/system/styles/api/)`,
+      );
+    } else {
+      expect(replaceMarkdownLinks(`[Styles](/styles/api/)`)).to.equal(`[Styles](/styles/api/)`);
+    }
   });
 
-  it('should work with json', () => {
-    const json = {
-      importDifference:
-        'You can learn about the difference by <a href="/guides/minimizing-bundle-size/">reading this guide on minimizing bundle size</a>.',
-    };
-    expect(replaceMarkdownLinks(JSON.stringify(json), '/material/api/')).to.equal(
-      '{"importDifference":"You can learn about the difference by <a href=\\"/material/guides/minimizing-bundle-size/\\">reading this guide on minimizing bundle size</a>."}',
-    );
-    const json2 = {
-      styleOverrides:
-        'The name <code>{{componentStyles.name}}</code> can be used when providing <a href="/customization/theme-components/#default-props">default props</a> or <a href="/customization/theme-components/#global-style-overrides">style overrides</a> in the theme.',
-    };
-    expect(replaceMarkdownLinks(JSON.stringify(json2), '/material/api/')).to.equal(
-      '{"styleOverrides":"The name <code>{{componentStyles.name}}</code> can be used when providing <a href=\\"/material/customization/theme-components/#default-props\\">default props</a> or <a href=\\"/material/customization/theme-components/#global-style-overrides\\">style overrides</a> in the theme."}',
-    );
-  });
-
-  it('does nothing for old routes', () => {
+  it('does not change after transformed', () => {
     expect(
       replaceMarkdownLinks(
         `
-      <ul>
-      <li><a href="/components/button-group/">Button Group</a></li>
-      <li><a href="/components/buttons/">Buttons</a></li>
-      <li><a href="/components/tree-view/">Tree view</a></li>
-      <li><a href="/components/data-grid/demo/">Demo</a></li>
-      <a href="/guides/minimizing-bundle-size/">reading this guide on minimizing bundle size</a>
-      <a href="/customization/theme-components/#default-props">default props</a>
-      <a data-no-markdown-link="true" tabindex="0" href="/getting-started/usage/">Get started</a>
-      <li><a href="/discover-more/related-projects/">Tree view</a></li>
-      </ul>
+        [ButtonGroup](/material-ui/react-button-group/)
+        [Buttons](/material-ui/react-button/)
+        [text](/material-ui/react-checkbox/#main-content)
+        [text](/material-ui/react-radio-button#main-content)
+        [text](/material-ui/react-select/#main-content)
+        [text](/material-ui/react-switch/#main-content)
     `,
-        '/components/buttons/',
       ),
     ).to.equal(`
-      <ul>
-      <li><a href="/components/button-group/">Button Group</a></li>
-      <li><a href="/components/buttons/">Buttons</a></li>
-      <li><a href="/components/tree-view/">Tree view</a></li>
-      <li><a href="/components/data-grid/demo/">Demo</a></li>
-      <a href="/guides/minimizing-bundle-size/">reading this guide on minimizing bundle size</a>
-      <a href="/customization/theme-components/#default-props">default props</a>
-      <a data-no-markdown-link="true" tabindex="0" href="/getting-started/usage/">Get started</a>
-      <li><a href="/discover-more/related-projects/">Tree view</a></li>
-      </ul>
+        [ButtonGroup](/material-ui/react-button-group/)
+        [Buttons](/material-ui/react-button/)
+        [text](/material-ui/react-checkbox/#main-content)
+        [text](/material-ui/react-radio-button#main-content)
+        [text](/material-ui/react-select/#main-content)
+        [text](/material-ui/react-switch/#main-content)
     `);
+  });
+
+  it('does not trasform material-ui', () => {
+    expect(
+      replaceMarkdownLinks(`[Trap Focus](https://mui.com/material-ui/react-trap-focus/)`),
+    ).to.equal(`[Trap Focus](https://mui.com/material-ui/react-trap-focus/)`);
   });
 });

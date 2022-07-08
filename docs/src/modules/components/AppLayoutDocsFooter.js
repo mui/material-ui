@@ -85,7 +85,7 @@ function orderedPages(pages, current = []) {
     }, current)
     .filter((page) => {
       return (
-        page.ordered !== false &&
+        page.inSideNav !== false &&
         // ignore external pages
         page.pathname.startsWith('/')
       );
@@ -164,8 +164,9 @@ function usePageNeighbours() {
   const { activePage, pages } = React.useContext(PageContext);
   const pageList = orderedPages(pages);
   const currentPageNum = pageList.indexOf(activePage);
+
   if (currentPageNum === -1) {
-    return { prevPage: undefined, nextPage: undefined };
+    return { prevPage: null, nextPage: null };
   }
 
   const prevPage = pageList[currentPageNum - 1] ?? null;

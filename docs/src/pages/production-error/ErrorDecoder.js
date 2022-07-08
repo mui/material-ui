@@ -97,9 +97,9 @@ export default function ErrorDecoder() {
     return (
       <Typography color="error">
         Seems like we&apos;re having some issues loading the original message. Try
-        reloading the page. If the error persists please report this isse on our{' '}
+        reloading the page. If the error persists please report this issue on our{' '}
         <Link
-          href="https://github.com/mui-org/material-ui/issues/new?template=1.bug.md"
+          href="https://github.com/mui/material-ui/issues/new?template=1.bug.md"
           target="_blank"
         >
           issue tracker

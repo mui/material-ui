@@ -1,312 +1,232 @@
 import { CSSObject } from '@mui/system';
-import { DefaultVariantKey, DefaultContextualOverrides } from './types/variants';
-import { ColorPaletteProp, DefaultColorPalette } from './types/colorSystem';
+import { DefaultColorPalette, PaletteVariant, PaletteRange } from './types/colorSystem';
+import { VariantKey } from './types/variants';
 
-export const createLightModeVariantVariables = (color: ColorPaletteProp) => ({
-  textColor: `var(--joy-palette-${color}-600)`,
-  textHoverBg: `var(--joy-palette-${color}-100)`,
-  textActiveBg: `var(--joy-palette-${color}-200)`,
-  textDisabledColor: `var(--joy-palette-${color}-200)`,
+export const isVariantPalette = (colorPalette: string | number | Record<string, any>) =>
+  colorPalette &&
+  typeof colorPalette === 'object' &&
+  Object.keys(colorPalette).some((value) =>
+    value.match?.(
+      /^(plain(Hover|Active|Disabled)?(Color|Bg)|outlined(Hover|Active|Disabled)?(Color|Border|Bg)|soft(Hover|Active|Disabled)?(Color|Bg)|solid(Hover|Active|Disabled)?(Color|Bg))$/,
+    ),
+  );
 
-  outlinedColor: `var(--joy-palette-${color}-600)`,
-  outlinedBorder: `var(--joy-palette-${color}-200)`,
-  outlinedHoverBg: `var(--joy-palette-${color}-100)`,
-  outlinedHoverBorder: `var(--joy-palette-${color}-300)`,
-  outlinedActiveBg: `var(--joy-palette-${color}-200)`,
-  outlinedDisabledColor: `var(--joy-palette-${color}-200)`,
-  outlinedDisabledBorder: `var(--joy-palette-${color}-100)`,
+const assignCss = (target: Record<string, string>, variantVar: string, value: string) => {
+  if (variantVar.includes('Color')) {
+    target.color = value;
+  }
+  if (variantVar.includes('Bg')) {
+    target.backgroundColor = value;
+  }
+  if (variantVar.includes('Border')) {
+    target.borderColor = value;
+  }
+};
 
-  lightColor: `var(--joy-palette-${color}-700)`,
-  lightBg: `var(--joy-palette-${color}-100)`,
-  lightHoverBg: `var(--joy-palette-${color}-200)`,
-  lightActiveBg: `var(--joy-palette-${color}-300)`,
-  lightDisabledColor: `var(--joy-palette-${color}-300)`,
-  lightDisabledBg: `var(--joy-palette-${color}-50)`,
+const createPrefixVar = (prefix: string | undefined | null) => {
+  return (cssVar: string) => `--${prefix ? `${prefix}-` : ''}${cssVar.replace(/^--/, '')}`;
+};
 
-  containedColor: '#fff',
-  containedBg: `var(--joy-palette-${color}-600)`,
-  containedHoverBg: `var(--joy-palette-${color}-700)`,
-  containedActiveBg: `var(--joy-palette-${color}-800)`,
-  containedDisabledBg: `var(--joy-palette-${color}-200)`,
-});
+/**
+ *
+ * @param name variant name
+ * @example 'plain'
+ *
+ * @param palette object that contains palette tokens
+ * @example { primary: { plainColor: '', plainHoverColor: '', ...tokens }, ...other palete }
+ *
+ * @param getCssVar a function that receive variant token and return a CSS variable
+ *
+ * result will be the stylesheet based on the palette tokens
+ * @example {
+ *   color: '--token',
+ *   backgroundColor: '--token',
+ *   '--variant-borderWidth': '0px',
+ * }
+ * @example {
+ *   cursor: 'pointer',
+ *   color: '--token',
+ *   backgroundColor: '--token',
+ *   '--variant-borderWidth': '1px',
+ * }
+ * @example {
+ *   pointerEvents: 'none',
+ *   cursor: 'default',
+ *   color: '--token',
+ *   backgroundColor: '--token',
+ *   '--variant-borderWidth': '0px',
+ * }
+ */
+export const createVariantStyle = (
+  name: string,
+  palette: Partial<PaletteRange> | undefined,
+  getCssVar?: (variantVar: keyof PaletteVariant) => string,
+) => {
+  const result: CSSObject = {};
+  (Object.entries(palette || {}) as Array<[keyof PaletteVariant, string]>).forEach(
+    ([variantVar, value]) => {
+      if (variantVar.match(new RegExp(`${name}(color|bg|border)`, 'i')) && !!value) {
+        const cssVar = getCssVar ? getCssVar(variantVar) : value;
+        if (variantVar.includes('Hover')) {
+          result.cursor = 'pointer';
+        }
+        if (variantVar.includes('Disabled')) {
+          result.pointerEvents = 'none';
+          result.cursor = 'default';
+        }
+        if (variantVar.match(/(Hover|Active|Disabled)/)) {
+          assignCss(result as any, variantVar, cssVar);
+        } else {
+          // initial state
+          if (!result['--variant-borderWidth']) {
+            result['--variant-borderWidth'] = '0px';
+          }
+          if (variantVar.includes('Border')) {
+            result['--variant-borderWidth'] = '1px';
+            result.border = 'var(--variant-borderWidth) solid';
+          }
+          // border color should come later
+          assignCss(result as any, variantVar, cssVar);
+        }
+      }
+    },
+  );
+  return result;
+};
 
-export const createDarkModeVariantVariables = (color: ColorPaletteProp) => ({
-  textColor: `var(--joy-palette-${color}-300)`,
-  textHoverBg: `var(--joy-palette-${color}-800)`,
-  textActiveBg: `var(--joy-palette-${color}-700)`,
-  textDisabledColor: `var(--joy-palette-${color}-800)`,
+interface ThemeFragment {
+  prefix?: string;
+  getCssVar: (...args: string[]) => string;
+  palette: Record<string, any>;
+}
 
-  outlinedColor: `var(--joy-palette-${color}-200)`,
-  outlinedBorder: `var(--joy-palette-${color}-700)`,
-  outlinedHoverBg: `var(--joy-palette-${color}-900)`,
-  outlinedHoverBorder: `var(--joy-palette-${color}-600)`,
-  outlinedActiveBg: `var(--joy-palette-${color}-900)`,
-  outlinedDisabledColor: `var(--joy-palette-${color}-800)`,
-  outlinedDisabledBorder: `var(--joy-palette-${color}-800)`,
-
-  lightColor: `var(--joy-palette-${color}-200)`,
-  lightBg: `var(--joy-palette-${color}-900)`,
-  lightHoverBg: `var(--joy-palette-${color}-800)`,
-  lightActiveBg: `var(--joy-palette-${color}-700)`,
-  lightDisabledColor: `var(--joy-palette-${color}-800)`,
-  lightDisabledBg: `var(--joy-palette-${color}-900)`,
-
-  containedColor: `#fff`,
-  containedBg: `var(--joy-palette-${color}-600)`,
-  containedHoverBg: `var(--joy-palette-${color}-700)`,
-  containedActiveBg: `var(--joy-palette-${color}-800)`,
-  containedDisabledBg: `var(--joy-palette-${color}-300)`,
-});
-
-export const getTextDefaultVariant = (color: ColorPaletteProp) => ({
-  color:
-    color === 'context' ? `var(--joy-variant-textColor)` : `var(--joy-palette-${color}-textColor)`,
-  backgroundColor:
-    color === 'context' ? `var(--joy-variant-textBg)` : `var(--joy-palette-${color}-textBg)`,
-});
-
-export const getTextHoverVariant = (color: ColorPaletteProp) => ({
-  cursor: 'pointer',
-  '&:hover': {
-    color:
-      color === 'context'
-        ? `var(--joy-variant-textHoverColor, var(--joy-variant-textColor))`
-        : `var(--joy-palette-${color}-textHoverColor, var(--joy-palette-${color}-textColor))`,
-    backgroundColor:
-      color === 'context'
-        ? `var(--joy-variant-textHoverBg)`
-        : `var(--joy-palette-${color}-textHoverBg)`,
-  },
-});
-
-export const getTextActiveVariant = (color: ColorPaletteProp) => ({
-  '&:active': {
-    color:
-      color === 'context'
-        ? `var(--joy-variant-textActiveColor, var(--joy-variant-textColor))`
-        : `var(--joy-palette-${color}-textActiveColor, var(--joy-palette-${color}-textColor))`,
-    backgroundColor:
-      color === 'context'
-        ? `var(--joy-variant-textActiveBg)`
-        : `var(--joy-palette-${color}-textActiveBg)`,
-  },
-});
-
-export const getTextDisabledVariant = (color: ColorPaletteProp) => ({
-  '&.Mui-disabled': {
-    pointerEvents: 'none',
-    cursor: 'default',
-    color:
-      color === 'context'
-        ? `var(--joy-variant-textDisabledColor)`
-        : `var(--joy-palette-${color}-textDisabledColor)`,
-  },
-});
-
-export const getOutlinedDefaultVariant = (color: ColorPaletteProp) => ({
-  color:
-    color === 'context'
-      ? `var(--joy-variant-outlinedColor)`
-      : `var(--joy-palette-${color}-outlinedColor)`,
-  border: '1px solid',
-  borderColor:
-    color === 'context'
-      ? `var(--joy-variant-outlinedBorder)`
-      : `var(--joy-palette-${color}-outlinedBorder)`,
-  backgroundColor:
-    color === 'context'
-      ? `var(--joy-variant-outlinedBg)`
-      : `var(--joy-palette-${color}-outlinedBg)`,
-});
-
-export const getOutlinedHoverVariant = (color: ColorPaletteProp) => ({
-  cursor: 'pointer',
-  '&:hover': {
-    color:
-      color === 'context'
-        ? `var(--joy-variant-outlinedHoverColor, var(--joy-variant-outlinedColor))`
-        : `var(--joy-palette-${color}-outlinedHoverColor, var(--joy-palette-${color}-outlinedColor))`,
-    backgroundColor:
-      color === 'context'
-        ? `var(--joy-variant-outlinedHoverBg)`
-        : `var(--joy-palette-${color}-outlinedHoverBg)`,
-    borderColor:
-      color === 'context'
-        ? `var(--joy-variant-outlinedHoverBorder)`
-        : `var(--joy-palette-${color}-outlinedHoverBorder)`,
-  },
-});
-
-export const getOutlinedActiveVariant = (color: ColorPaletteProp) => ({
-  '&:active': {
-    color:
-      color === 'context'
-        ? `var(--joy-variant-outlinedActiveColor, var(--joy-variant-outlinedColor))`
-        : `var(--joy-palette-${color}-outlinedActiveColor, var(--joy-palette-${color}-outlinedColor))`,
-    backgroundColor:
-      color === 'context'
-        ? `var(--joy-variant-outlinedActiveBg)`
-        : `var(--joy-palette-${color}-outlinedActiveBg)`,
-  },
-});
-
-export const getOutlinedDisabledVariant = (color: ColorPaletteProp) => ({
-  '&.Mui-disabled': {
-    pointerEvents: 'none',
-    cursor: 'default',
-    color:
-      color === 'context'
-        ? `var(--joy-variant-outlinedDisabledColor)`
-        : `var(--joy-palette-${color}-outlinedDisabledColor)`,
-    borderColor:
-      color === 'context'
-        ? `var(--joy-variant-outlinedDisabledBorder)`
-        : `var(--joy-palette-${color}-outlinedDisabledBorder)`,
-  },
-});
-
-export const getFilledDefaultVariant = (color: ColorPaletteProp) => ({
-  color:
-    color === 'context'
-      ? `var(--joy-variant-lightColor)`
-      : `var(--joy-palette-${color}-lightColor)`,
-  backgroundColor:
-    color === 'context' ? `var(--joy-variant-lightBg)` : `var(--joy-palette-${color}-lightBg)`,
-});
-
-export const getFilledHoverVariant = (color: ColorPaletteProp) => ({
-  cursor: 'pointer',
-  '&:hover': {
-    backgroundColor:
-      color === 'context'
-        ? `var(--joy-variant-lightHoverBg)`
-        : `var(--joy-palette-${color}-lightHoverBg)`,
-  },
-});
-
-export const getFilledActiveVariant = (color: ColorPaletteProp) => ({
-  '&:active': {
-    backgroundColor:
-      color === 'context'
-        ? `var(--joy-variant-lightActiveBg)`
-        : `var(--joy-palette-${color}-lightActiveBg)`,
-  },
-});
-
-export const getFilledDisabledVariant = (color: ColorPaletteProp) => ({
-  '&.Mui-disabled': {
-    pointerEvents: 'none',
-    cursor: 'default',
-    color:
-      color === 'context'
-        ? `var(--joy-variant-lightDisabledColor)`
-        : `var(--joy-palette-${color}-lightDisabledColor)`,
-    backgroundColor:
-      color === 'context'
-        ? `var(--joy-variant-lightDisabledBg)`
-        : `var(--joy-palette-${color}-lightDisabledBg)`,
-  },
-});
-
-export const getContainedDefaultVariant = (color: ColorPaletteProp) => ({
-  color:
-    color === 'context'
-      ? `var(--joy-variant-containedColor)`
-      : `var(--joy-palette-${color}-containedColor)`,
-  backgroundColor:
-    color === 'context'
-      ? `var(--joy-variant-containedBg)`
-      : `var(--joy-palette-${color}-containedBg)`,
-});
-
-export const getContainedHoverVariant = (color: ColorPaletteProp) => ({
-  cursor: 'pointer',
-  '&:hover': {
-    backgroundColor:
-      color === 'context'
-        ? `var(--joy-variant-containedHoverBg)`
-        : `var(--joy-palette-${color}-containedHoverBg)`,
-  },
-});
-
-export const getContainedActiveVariant = (color: ColorPaletteProp) => ({
-  '&:active': {
-    backgroundColor:
-      color === 'context'
-        ? `var(--joy-variant-containedActiveBg)`
-        : `var(--joy-palette-${color}-containedActiveBg)`,
-  },
-});
-
-export const getContainedDisabledVariant = (color: ColorPaletteProp) => ({
-  '&.Mui-disabled': {
-    pointerEvents: 'none',
-    cursor: 'default',
-    backgroundColor:
-      color === 'context'
-        ? `var(--joy-variant-containedDisabledBg)`
-        : `var(--joy-palette-${color}-containedDisabledBg)`,
-  },
-});
-
-export const getContainedOverrides = (color: ColorPaletteProp) => ({
-  // typography
-  '--joy-palette-text-primary': `#fff`,
-  '--joy-palette-text-secondary': `var(--joy-palette-${color}-100)`,
-  '--joy-palette-text-tertiary': `var(--joy-palette-${color}-200)`,
-
-  // other variants
-  '--joy-variant-textColor': `var(--joy-palette-${color}-100)`,
-  '--joy-variant-textBg': `transparent`,
-  '--joy-variant-textHoverBg': `var(--joy-palette-${color}-${color === 'neutral' ? '500' : '400'})`,
-  '--joy-variant-textActiveBg': `var(--joy-palette-${color}-700)`,
-  '--joy-variant-outlinedColor': `#fff`,
-  '--joy-variant-outlinedBorder': `var(--joy-palette-${color}-400)`,
-  '--joy-variant-outlinedHoverBorder': `var(--joy-palette-${color}-400)`,
-  '--joy-variant-outlinedBg': `transparent`,
-  '--joy-variant-outlinedHoverBg': `rgba(255, 255, 255, 0.12)`,
-  '--joy-variant-outlinedActiveBg': `var(--joy-palette-${color}-700)`,
-  '--joy-variant-lightColor': `#fff`,
-  '--joy-variant-lightBg': `rgba(255, 255, 255, 0.2)`,
-  '--joy-variant-lightHoverBg': `var(--joy-palette-${color}-400)`,
-  '--joy-variant-lightActiveBg': `var(--joy-palette-${color}-400)`,
-});
-
-export const createVariant = (variant: DefaultVariantKey | DefaultContextualOverrides) => {
-  const colors: DefaultColorPalette[] = [
-    'neutral',
-    'primary',
-    'danger',
-    'info',
-    'success',
-    'warning',
-    'context',
-  ];
+export const createTextOverrides = (theme: ThemeFragment) => {
+  const { prefix, getCssVar } = theme;
+  const prefixVar = createPrefixVar(prefix);
   let result = {} as Record<DefaultColorPalette, CSSObject>;
-  const generatorMap: Record<DefaultVariantKey | DefaultContextualOverrides, Function> = {
-    text: getTextDefaultVariant,
-    textHover: getTextHoverVariant,
-    textActive: getTextActiveVariant,
-    textDisabled: getTextDisabledVariant,
-    outlined: getOutlinedDefaultVariant,
-    outlinedHover: getOutlinedHoverVariant,
-    outlinedActive: getOutlinedActiveVariant,
-    outlinedDisabled: getOutlinedDisabledVariant,
-    light: getFilledDefaultVariant,
-    lightHover: getFilledHoverVariant,
-    lightActive: getFilledActiveVariant,
-    lightDisabled: getFilledDisabledVariant,
-    contained: getContainedDefaultVariant,
-    containedHover: getContainedHoverVariant,
-    containedActive: getContainedActiveVariant,
-    containedDisabled: getContainedDisabledVariant,
-    containedOverrides: getContainedOverrides,
-  };
-  colors.forEach((color) => {
-    // no need to add context node inside `containedOverrides`
-    if (color !== 'context' || (color === 'context' && variant !== 'containedOverrides')) {
-      result = { ...result, [color]: generatorMap[variant](color) };
+  Object.entries(theme.palette).forEach((entry) => {
+    const [color, colorPalette] = entry as [
+      DefaultColorPalette,
+      string | number | Record<string, any>,
+    ];
+    if (isVariantPalette(colorPalette)) {
+      result = {
+        ...result,
+        [color]: {
+          [prefixVar('--palette-text-primary')]: getCssVar(`palette-${color}-overrideTextPrimary`),
+          [prefixVar('--palette-text-secondary')]: getCssVar(
+            `palette-${color}-overrideTextSecondary`,
+          ),
+          [prefixVar('--palette-text-tertiary')]: getCssVar(
+            `palette-${color}-overrideTextTertiary`,
+          ),
+        },
+      };
     }
+  });
+  return result;
+};
+
+export const createContainedOverrides = (theme: ThemeFragment) => {
+  const { prefix, getCssVar } = theme;
+  const prefixVar = createPrefixVar(prefix);
+  let result = {} as Record<DefaultColorPalette, CSSObject>;
+  Object.entries(theme.palette).forEach((entry) => {
+    const [color, colorPalette] = entry as [
+      DefaultColorPalette,
+      string | number | Record<string, any>,
+    ];
+    if (isVariantPalette(colorPalette)) {
+      result = {
+        ...result,
+        [color]: {
+          [prefixVar('--palette-text-primary')]: '#fff',
+          [prefixVar('--palette-text-secondary')]: getCssVar(`palette-${color}-100`),
+          [prefixVar('--palette-text-tertiary')]: getCssVar(`palette-${color}-200`),
+          '--variant-focusVisible': `rgba(255 255 255 / 0.32)`,
+
+          '--variant-plainColor': getCssVar(`palette-${color}-100`),
+          '--variant-plainHoverColor': `#fff`,
+          '--variant-plainHoverBg': `rgba(255 255 255 / 0.12)`,
+          '--variant-plainActiveBg': `rgba(255 255 255 / 0.2)`,
+          '--variant-plainDisabledColor': getCssVar(`palette-${color}-300`),
+
+          '--variant-outlinedColor': getCssVar(`palette-${color}-100`),
+          '--variant-outlinedBorder': getCssVar(`palette-${color}-300`),
+          '--variant-outlinedHoverColor': `#fff`,
+          '--variant-outlinedHoverBorder': getCssVar(`palette-${color}-200`),
+          '--variant-outlinedHoverBg': `rgba(255 255 255 / 0.12)`,
+          '--variant-outlinedActiveBg': `rgba(255 255 255 / 0.2)`,
+          '--variant-outlinedDisabledColor': getCssVar(`palette-${color}-300`),
+          '--variant-outlinedDisabledBorder': `rgba(255 255 255 / 0.2)`,
+
+          '--variant-softColor': '#fff',
+          '--variant-softBg': `rgba(255 255 255 / 0.12)`,
+          '--variant-softHoverBg': `rgba(255 255 255 / 0.2)`,
+          '--variant-softActiveBg': `rgba(255 255 255 / 0.08)`,
+          '--variant-softDisabledColor': getCssVar(`palette-${color}-300`),
+          '--variant-softDisabledBg': `rgba(255 255 255 / 0.08)`,
+
+          '--variant-solidBg': getCssVar(`palette-${color}-700`, 'rgba(0 0 0 / 0.16)'),
+          '--variant-solidHoverBg': 'rgba(0 0 0 / 0.32)',
+          '--variant-solidActiveBg': 'rgba(0 0 0 / 0.48)',
+          '--variant-solidDisabledColor': getCssVar(`palette-${color}-300`),
+          '--variant-solidDisabledBg': `rgba(255 255 255 / 0.08)`,
+        },
+      };
+    }
+  });
+  return result;
+};
+
+export const createVariant = (variant: VariantKey, theme?: ThemeFragment) => {
+  let result = {} as Record<DefaultColorPalette | 'context', CSSObject>;
+  if (theme) {
+    const { getCssVar, palette } = theme;
+    Object.entries(palette).forEach((entry) => {
+      const [color, colorPalette] = entry as [
+        Exclude<DefaultColorPalette, 'context'>,
+        string | number | Record<string, any>,
+      ];
+      if (isVariantPalette(colorPalette) && typeof colorPalette === 'object') {
+        result = {
+          ...result,
+          [color]: createVariantStyle(variant, colorPalette, (variantVar) =>
+            getCssVar(`palette-${color}-${variantVar}`),
+          ),
+        };
+      }
+    });
+  }
+
+  result.context = createVariantStyle(variant, {
+    plainColor: 'var(--variant-plainColor)',
+    plainHoverColor: `var(--variant-plainHoverColor)`,
+    plainHoverBg: 'var(--variant-plainHoverBg)',
+    plainActiveBg: 'var(--variant-plainActiveBg)',
+    plainDisabledColor: 'var(--variant-plainDisabledColor)',
+
+    outlinedColor: 'var(--variant-outlinedColor)',
+    outlinedBorder: 'var(--variant-outlinedBorder)',
+    outlinedHoverColor: `var(--variant-outlinedHoverColor)`,
+    outlinedHoverBorder: `var(--variant-outlinedHoverBorder)`,
+    outlinedHoverBg: `var(--variant-outlinedHoverBg)`,
+    outlinedActiveBg: `var(--variant-outlinedActiveBg)`,
+    outlinedDisabledColor: `var(--variant-outlinedDisabledColor)`,
+    outlinedDisabledBorder: `var(--variant-outlinedDisabledBorder)`,
+
+    softColor: 'var(--variant-softColor)',
+    softBg: 'var(--variant-softBg)',
+    softHoverBg: 'var(--variant-softHoverBg)',
+    softActiveBg: 'var(--variant-softActiveBg)',
+    softDisabledColor: 'var(--variant-softDisabledColor)',
+    softDisabledBg: 'var(--variant-softDisabledBg)',
+
+    solidBg: 'var(--variant-solidBg)',
+    solidHoverBg: 'var(--variant-solidHoverBg)',
+    solidActiveBg: 'var(--variant-solidActiveBg)',
+    solidDisabledColor: 'var(--variant-solidDisabledColor)',
+    solidDisabledBg: 'var(--variant-solidDisabledBg)',
   });
   return result;
 };

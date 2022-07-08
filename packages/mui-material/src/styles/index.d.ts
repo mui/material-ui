@@ -6,12 +6,18 @@ export {
   Theme,
 } from './createTheme';
 export { default as adaptV4Theme, DeprecatedThemeOptions } from './adaptV4Theme';
+export { Shadows } from './shadows';
+export { ZIndex } from './zIndex';
 export {
+  CommonColors,
   Palette,
   PaletteColor,
   PaletteColorOptions,
   PaletteOptions,
   SimplePaletteColorOptions,
+  TypeText,
+  TypeAction,
+  TypeBackground,
 } from './createPalette';
 export { default as createStyles } from './createStyles';
 export {
@@ -29,6 +35,7 @@ export {
   duration,
   easing,
 } from './createTransitions';
+export { Mixins } from './createMixins';
 export {
   Direction,
   Breakpoint,
@@ -86,3 +93,37 @@ export interface StyledComponentProps<ClassKey extends string = string> {
 export { default as makeStyles } from './makeStyles';
 export { default as withStyles } from './withStyles';
 export { default as withTheme } from './withTheme';
+
+export * from './CssVarsProvider';
+
+export { default as experimental_extendTheme } from './experimental_extendTheme';
+export type {
+  ColorSchemeOverrides,
+  SupportedColorScheme,
+  ColorSystem,
+  CssVarsPalette,
+  Opacity,
+  Overlays,
+  PaletteAlert,
+  PaletteActionChannel,
+  PaletteAppBar,
+  PaletteAvatar,
+  PaletteChip,
+  PaletteColorChannel,
+  PaletteCommonChannel,
+  PaletteFilledInput,
+  PaletteLinearProgress,
+  PaletteSkeleton,
+  PaletteSlider,
+  PaletteSnackbarContent,
+  PaletteSpeedDialAction,
+  PaletteStepConnector,
+  PaletteStepContent,
+  PaletteSwitch,
+  PaletteTableCell,
+  PaletteTextChannel,
+  PaletteTooltip,
+  CssVarsThemeOptions,
+  CssVarsTheme,
+  ThemeVars,
+} from './experimental_extendTheme';

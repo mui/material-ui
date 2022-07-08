@@ -1,4 +1,6 @@
 import { expect } from 'chai';
+import createMixins from '@mui/material/styles/createMixins';
+import createBreakpoints from '../createTheme/createBreakpoints';
 import styleFunctionSx from './styleFunctionSx';
 
 describe('styleFunctionSx', () => {
@@ -237,6 +239,24 @@ describe('styleFunctionSx', () => {
         '@media (min-width:1280px)': { margin: '20px' },
       });
     });
+
+    it('writes breakpoints in correct order if default toolbar mixin is present in theme', () => {
+      const breakpoints = createBreakpoints({});
+      const result = styleFunctionSx({
+        theme: {
+          mixins: createMixins(breakpoints),
+          breakpoints,
+        },
+        sx: (themeParam) => themeParam.mixins.toolbar,
+      });
+
+      // Test the order
+      expect(Object.keys(result)).to.deep.equal([
+        '@media (min-width:0px)',
+        '@media (min-width:600px)',
+        'minHeight',
+      ]);
+    });
   });
 
   describe('theme callback', () => {
@@ -388,6 +408,15 @@ describe('styleFunctionSx', () => {
           '@media (min-width:960px)': { padding: '70px', margin: '30px' },
         },
       ]);
+    });
+
+    it('does not crash if the result is undefined', () => {
+      expect(() =>
+        styleFunctionSx({
+          theme,
+          sx: [(t) => t.typography.unknown],
+        }),
+      ).not.to.throw();
     });
   });
 });

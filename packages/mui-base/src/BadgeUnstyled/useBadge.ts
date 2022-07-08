@@ -1,64 +1,41 @@
 import * as React from 'react';
 import { usePreviousProps } from '@mui/utils';
-import BadgeUnstyledProps from './BadgeUnstyledProps';
 
-export interface UseBadgeProps {
-  anchorOrigin: BadgeUnstyledProps['anchorOrigin'];
-  badgeContent: BadgeUnstyledProps['badgeContent'];
-  invisible: BadgeUnstyledProps['invisible'];
-  max: BadgeUnstyledProps['max'];
-  showZero: BadgeUnstyledProps['showZero'];
-  variant: BadgeUnstyledProps['variant'];
+export interface UseBadgeParameters {
+  badgeContent?: React.ReactNode;
+  invisible?: boolean;
+  max?: number;
+  showZero?: boolean;
 }
 
-export default function useBadge(props: UseBadgeProps) {
+export default function useBadge(parameters: UseBadgeParameters) {
   const {
-    anchorOrigin: anchorOriginProp = {
-      vertical: 'top',
-      horizontal: 'right',
-    },
     badgeContent: badgeContentProp,
-    invisible: invisibleProp,
+    invisible: invisibleProp = false,
     max: maxProp = 99,
     showZero = false,
-    variant: variantProp = 'standard',
-  } = props;
+  } = parameters;
 
-  const prevProps: Partial<BadgeUnstyledProps> = usePreviousProps({
-    anchorOrigin: anchorOriginProp,
+  const prevProps: Partial<UseBadgeParameters> = usePreviousProps({
     badgeContent: badgeContentProp,
     max: maxProp,
-    variant: variantProp,
   });
 
   let invisible = invisibleProp;
 
-  if (
-    invisibleProp == null &&
-    ((badgeContentProp === 0 && !showZero) || (badgeContentProp == null && variantProp !== 'dot'))
-  ) {
+  if (invisibleProp === false && badgeContentProp === 0 && !showZero) {
     invisible = true;
   }
 
-  const {
-    anchorOrigin = anchorOriginProp,
-    badgeContent,
-    max = maxProp,
-    variant = variantProp,
-  } = invisible ? prevProps : props;
+  const { badgeContent, max = maxProp } = invisible ? prevProps : parameters;
 
-  let displayValue: React.ReactNode = '';
-
-  if (variant !== 'dot') {
-    displayValue = badgeContent && Number(badgeContent) > max ? `${max}+` : badgeContent;
-  }
+  const displayValue: React.ReactNode =
+    badgeContent && Number(badgeContent) > max ? `${max}+` : badgeContent;
 
   return {
-    anchorOrigin,
     badgeContent,
     invisible,
     max,
-    variant,
     displayValue,
   };
 }

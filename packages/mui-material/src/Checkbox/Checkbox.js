@@ -41,15 +41,21 @@ const CheckboxRoot = styled(SwitchBase, {
     ];
   },
 })(({ theme, ownerState }) => ({
-  color: theme.palette.text.secondary,
+  color: (theme.vars || theme).palette.text.secondary,
   ...(!ownerState.disableRipple && {
     '&:hover': {
-      backgroundColor: alpha(
-        ownerState.color === 'default'
-          ? theme.palette.action.active
-          : theme.palette[ownerState.color].main,
-        theme.palette.action.hoverOpacity,
-      ),
+      backgroundColor: theme.vars
+        ? `rgba(${
+            ownerState.color === 'default'
+              ? theme.vars.palette.action.activeChannel
+              : theme.vars.palette.primary.mainChannel
+          } / ${theme.vars.palette.action.hoverOpacity})`
+        : alpha(
+            ownerState.color === 'default'
+              ? theme.palette.action.active
+              : theme.palette[ownerState.color].main,
+            theme.palette.action.hoverOpacity,
+          ),
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
         backgroundColor: 'transparent',
@@ -58,10 +64,10 @@ const CheckboxRoot = styled(SwitchBase, {
   }),
   ...(ownerState.color !== 'default' && {
     [`&.${checkboxClasses.checked}, &.${checkboxClasses.indeterminate}`]: {
-      color: theme.palette[ownerState.color].main,
+      color: (theme.vars || theme).palette[ownerState.color].main,
     },
     [`&.${checkboxClasses.disabled}`]: {
-      color: theme.palette.action.disabled,
+      color: (theme.vars || theme).palette.action.disabled,
     },
   }),
 }));
@@ -135,7 +141,9 @@ Checkbox.propTypes /* remove-proptypes */ = {
    */
   classes: PropTypes.object,
   /**
-   * The color of the component. It supports those theme colors that make sense for this component.
+   * The color of the component.
+   * It supports both default and custom theme colors, which can be added as shown in the
+   * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
    * @default 'primary'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([

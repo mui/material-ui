@@ -15,9 +15,9 @@ describe('buildApiUtils', () => {
   describe('extractApiPage', () => {
     it('return info for api page', () => {
       expect(
-        extractApiPage('/material-ui/docs/pages/material/api/mui-material/accordion-actions.js'),
+        extractApiPage('/material-ui/docs/pages/material-ui/api/accordion-actions.js'),
       ).to.deep.equal({
-        apiPathname: '/material/api/mui-material/accordion-actions',
+        apiPathname: '/material-ui/api/accordion-actions',
       });
     });
   });
@@ -94,7 +94,9 @@ describe('buildApiUtils', () => {
         name: 'Button',
         apiPathname: '/api/button/',
         muiName: 'MuiButton',
-        apiPagesDirectory: sinon.match((value) => value.endsWith('docs/pages/api-docs')),
+        apiPagesDirectory: sinon.match((value) =>
+          value.endsWith(`docs${path.sep}pages${path.sep}api-docs`),
+        ),
       });
 
       expect(info.getInheritance('ButtonBase')).to.deep.equal({
@@ -104,7 +106,7 @@ describe('buildApiUtils', () => {
 
       expect(info.getDemos()).to.deep.equal([
         {
-          name: 'Button Group',
+          name: 'Button group',
           demoPathname: '/components/button-group/',
         },
         {
@@ -122,7 +124,9 @@ describe('buildApiUtils', () => {
         name: 'Icon',
         apiPathname: '/api/icon/',
         muiName: 'MuiIcon',
-        apiPagesDirectory: sinon.match((value) => value.endsWith('docs/pages/api-docs')),
+        apiPagesDirectory: sinon.match((value) =>
+          value.endsWith(`docs${path.sep}pages${path.sep}api-docs`),
+        ),
       });
 
       expect(info.getDemos()).to.deep.equal([
@@ -131,7 +135,7 @@ describe('buildApiUtils', () => {
           demoPathname: '/components/icons/',
         },
         {
-          name: 'Material Icons',
+          name: 'Material icons',
           demoPathname: '/components/material-icons/',
         },
       ]);
@@ -150,16 +154,16 @@ describe('buildApiUtils', () => {
       );
       sinon.assert.match(info, {
         name: 'Button',
-        apiPathname: '/material/api/mui-material/button/',
+        apiPathname: '/material-ui/api/button/',
         muiName: 'MuiButton',
         apiPagesDirectory: sinon.match((value) =>
-          value.endsWith('docs/pages/material/api/mui-material'),
+          value.endsWith(path.join('docs', 'pages', 'material-ui', 'api')),
         ),
       });
 
       expect(info.getInheritance('ButtonBase')).to.deep.equal({
         name: 'ButtonBase',
-        apiPathname: '/material/api/mui-material/button-base/',
+        apiPathname: '/material-ui/api/button-base/',
       });
 
       let existed = false;
@@ -171,12 +175,12 @@ describe('buildApiUtils', () => {
       if (existed) {
         expect(info.getDemos()).to.deep.equal([
           {
-            name: 'Button Group',
-            demoPathname: '/material/react-button-group/',
+            name: 'Button group',
+            demoPathname: '/material-ui/react-button-group/',
           },
           {
             name: 'Buttons',
-            demoPathname: '/material/react-buttons/',
+            demoPathname: '/material-ui/react-button/',
           },
         ]);
       }
@@ -195,9 +199,11 @@ describe('buildApiUtils', () => {
       );
       sinon.assert.match(info, {
         name: 'ButtonUnstyled',
-        apiPathname: '/base/api/mui-base/button-unstyled/',
+        apiPathname: '/base/api/button-unstyled/',
         muiName: 'MuiButton',
-        apiPagesDirectory: sinon.match((value) => value.endsWith('docs/pages/base/api/mui-base')),
+        apiPagesDirectory: sinon.match((value) =>
+          value.endsWith(path.join('docs', 'pages', 'base', 'api')),
+        ),
       });
 
       info.readFile();
@@ -213,8 +219,8 @@ describe('buildApiUtils', () => {
       if (existed) {
         expect(info.getDemos()).to.deep.equal([
           {
-            name: 'Buttons',
-            demoPathname: '/material/react-buttons/',
+            name: 'Button',
+            demoPathname: '/base/react-button/',
           },
         ]);
       }

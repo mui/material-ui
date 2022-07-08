@@ -11,16 +11,16 @@ import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 
 export default function StartToday() {
   return (
-    <Grid container spacing={{ xs: 2, md: 4 }} alignItems="center">
+    <Grid container spacing={{ xs: 5, md: 4 }} alignItems="center">
       <Grid item xs={12} sm={6} md={6} sx={{ mb: { md: 4 } }}>
         <SectionHeadline
-          overline="Go live!"
+          overline="Start now"
           title={
             <Typography variant="h2" sx={{ maxWidth: 460, mb: 1 }}>
-              Start building with <GradientText>MUI</GradientText> today!
+              Ship your next project <GradientText>faster</GradientText>
             </Typography>
           }
-          description="Try it for yourself, and share with us what you've built!"
+          description="Find out why MUI's tools are trusted by thousands of open source developers and teams around the world."
         />
         <GetStartedButtons />
       </Grid>
@@ -37,7 +37,7 @@ export default function StartToday() {
               Showcase
             </Typography>
             <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
-              See more projects and companies that rely on MUI.
+              Check out some great examples of MUI&apos;s products in action.
             </Typography>
             <Typography
               color="primary"
@@ -57,8 +57,6 @@ export default function StartToday() {
           <Paper
             component={Link}
             href={ROUTES.blog}
-            target="_blank"
-            rel="noreferrer noopener"
             noLinkStyle
             variant="outlined"
             sx={{ p: 2, height: '100%' }}
@@ -67,7 +65,7 @@ export default function StartToday() {
               Blog
             </Typography>
             <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
-              Check behind the scenes and news from the company.
+              Read the latest updates about our company and products.
             </Typography>
             <Typography
               color="primary"

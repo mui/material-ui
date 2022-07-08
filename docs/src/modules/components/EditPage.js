@@ -21,7 +21,10 @@ export default function EditPage(props) {
       href={
         userLanguage === 'en'
           ? `${process.env.SOURCE_CODE_ROOT_URL}${markdownLocation}`
-          : `${CROWDIN_ROOT_URL}${crowdInLocale}#/master${crowdInPath}`
+          : `${CROWDIN_ROOT_URL}${crowdInLocale}#/${process.env.SOURCE_CODE_ROOT_URL.replace(
+              'https://github.com/mui/',
+              '',
+            ).replace('/blob/', '%20%2F%20')}${crowdInPath}`
       }
       target="_blank"
       rel="noopener nofollow"
@@ -31,8 +34,8 @@ export default function EditPage(props) {
       data-ga-event-action={userLanguage === 'en' ? undefined : 'edit-button'}
       data-ga-event-label={userLanguage === 'en' ? undefined : userLanguage}
       sx={{
-        pl: { xs: 0, sm: 0.5 },
-        mb: { xs: 1, sm: 0 },
+        ml: { md: -1, lg: 0 },
+        mb: 2,
         fontWeight: 500,
         fontSize: theme.typography.pxToRem(12.5),
         color:

@@ -1,59 +1,52 @@
 import * as React from 'react';
-// @ts-ignore
-import { jsx as _jsx } from 'react/jsx-runtime';
-import { CssVarsProvider, styled, useColorScheme, FontSize } from '@mui/joy/styles';
+import { keyframes } from '@mui/system';
+import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import Typography from '@mui/joy/Typography';
+import Moon from '@mui/icons-material/DarkMode';
+import Sun from '@mui/icons-material/LightMode';
+import LocationOn from '@mui/icons-material/LocationOn';
+import Groups from '@mui/icons-material/Groups';
+import Outbound from '@mui/icons-material/Outbound';
+import Info from '@mui/icons-material/InfoOutlined';
 
-export const SvgIcon = styled('svg', {
-  shouldForwardProp: (prop) => prop !== 'fontSize' && prop !== 'sx',
-})<{
-  fontSize: keyof FontSize | 'inherit';
-}>(({ theme, fontSize }) => ({
-  userSelect: 'none',
-  width: '1em',
-  height: '1em',
-  display: 'inline-block',
-  fill: 'currentColor',
-  flexShrink: 0,
-  ...(fontSize && {
-    fontSize: fontSize === 'inherit' ? 'inherit' : theme.vars.fontSize[fontSize],
-  }),
-}));
+const circulate = keyframes({
+  '0%': {
+    transform: 'rotate(0deg)',
+  },
+  '100%': {
+    transform: 'rotate(360deg)',
+  },
+});
 
-function createSvgIcon(path: any, displayName: any, initialProps?: any) {
-  const Component = (props: any, ref: any) =>
-    (
-      <SvgIcon
-        data-testid={`${displayName}Icon`}
-        ref={ref}
-        viewBox="0 0 24 24"
-        fontSize="xl"
-        {...initialProps}
-        {...props}
-        sx={{ ...initialProps?.sx, ...props.sx }}
-      >
-        {path}
-      </SvgIcon>
-    ) as unknown as typeof SvgIcon;
-
-  // @ts-ignore
-  return React.memo(React.forwardRef(Component));
-}
-
-export const Moon = createSvgIcon(
-  _jsx('path', {
-    d: 'M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z',
-  }),
-  'DarkMode',
-);
-
-export const Sun = createSvgIcon(
-  _jsx('path', {
-    d: 'M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.58c-.39-.39-1.03-.39-1.41 0-.39.39-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41L5.99 4.58zm12.37 12.37c-.39-.39-1.03-.39-1.41 0-.39.39-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0 .39-.39.39-1.03 0-1.41l-1.06-1.06zm1.06-10.96c.39-.39.39-1.03 0-1.41-.39-.39-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06zM7.05 18.36c.39-.39.39-1.03 0-1.41-.39-.39-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06z',
-  }),
-  'LightMode',
+const Loader = () => (
+  <Box
+    sx={{
+      borderRadius: '50%',
+      border: 4,
+      borderColor: 'primary.lightBg',
+      width: '1.25em',
+      height: '1.25em',
+      boxSizing: 'border-box',
+      position: 'relative',
+    }}
+  >
+    <Box
+      sx={{
+        position: 'absolute',
+        top: -4,
+        left: -4,
+        width: '1.25em',
+        height: '1.25em',
+        borderRadius: '50%',
+        border: '4px solid',
+        borderColor: (theme) => `${theme.vars.palette.primary.softColor} transparent transparent`,
+        animation: `${circulate} 1s ease infinite`,
+        boxSizing: 'inherit',
+      }}
+    />
+  </Box>
 );
 
 const ColorSchemePicker = () => {
@@ -91,10 +84,147 @@ export default function JoyTypography() {
           <ColorSchemePicker />
         </Box>
         {(['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'body1', 'body2', 'body3'] as const).map((level) => (
-          <Typography gutterBottom level={level} key={level}>
+          <Typography gutterBottom level={level} key={level} startDecorator={<Info />}>
             {`${level} - typography`}
           </Typography>
         ))}
+        <Box
+          sx={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(3, minmax(300px, 1fr))',
+            gap: 2,
+            mt: 4,
+          }}
+        >
+          <Box>
+            <Typography level="body2" startDecorator={<LocationOn />}>
+              Miami, Florida
+            </Typography>
+            <Typography level="body2" startDecorator={<Groups fontSize="lg" />}>
+              5 - 10 people
+            </Typography>
+          </Box>
+          <Box>
+            <Typography startDecorator={<LocationOn />}>Miami, Florida</Typography>
+            <Typography startDecorator={<Groups fontSize="xl" />}>5 - 10 people</Typography>
+          </Box>
+          <Box>
+            <Typography level="h5" startDecorator={<LocationOn />}>
+              Miami, Florida
+            </Typography>
+            <Typography level="h5" startDecorator={<Groups fontSize="xl2" />}>
+              5 - 10 people
+            </Typography>
+          </Box>
+        </Box>
+        <Box sx={{ my: 2, maxWidth: 360 }}>
+          <Typography sx={{ '--Typography-gap': '2px' }}>
+            Keep me updated about the new features and upcoming improvements (by doing this you
+            accept the{' '}
+            <Typography textColor="primary.textColor" startDecorator={<Info />}>
+              Terms
+            </Typography>{' '}
+            and the{' '}
+            <Typography textColor="primary.textColor" endDecorator={<Outbound />}>
+              privacy policy
+            </Typography>
+            ).
+          </Typography>
+        </Box>
+        <Box sx={{ my: 2 }}>
+          <Typography
+            endDecorator={
+              <Typography textColor="text.secondary" fontSize="sm">
+                20
+              </Typography>
+            }
+          >
+            Home
+          </Typography>
+          <Typography
+            endDecorator={
+              <Typography textColor="text.secondary" fontSize="sm">
+                7
+              </Typography>
+            }
+          >
+            Checklist
+          </Typography>
+          <Typography endDecorator={<Info fontSize="md" sx={{ color: 'warning.textColor' }} />}>
+            Warning
+          </Typography>
+        </Box>
+        <Box sx={{ my: 2 }}>
+          <Typography startDecorator={<Loader />}>Processing...</Typography>
+          <Typography
+            startDecorator={
+              <Box
+                sx={{
+                  bgcolor: 'success.500',
+                  width: '0.5em',
+                  height: '0.5em',
+                  borderRadius: '50%',
+                }}
+              />
+            }
+          >
+            Active
+          </Typography>
+          <Typography
+            fontSize="xl4"
+            lineHeight={1}
+            startDecorator={
+              <Typography fontSize="lg" textColor="text.secondary">
+                $
+              </Typography>
+            }
+            sx={{ alignItems: 'flex-start', my: 1 }}
+          >
+            25
+          </Typography>
+          <Typography
+            endDecorator={
+              <Box
+                sx={{
+                  px: 0.5,
+                  py: 0.25,
+                  fontSize: 'xs',
+                  fontWeight: 'md',
+                  bgcolor: 'danger.500',
+                  color: '#fff',
+                  borderRadius: 'xs',
+                }}
+              >
+                HIRING!
+              </Box>
+            }
+          >
+            Careers
+          </Typography>
+        </Box>
+        <Box sx={{ my: 2 }}>
+          <Typography startDecorator={<Info />} sx={{ alignItems: 'flex-start' }}>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+            dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+            mollit anim id est laborum.
+          </Typography>
+        </Box>
+        <Box sx={{ my: 2 }}>
+          <Typography
+            variant="soft"
+            color="primary"
+            startDecorator={<Info />}
+            py={1}
+            px={1}
+            borderRadius="xs"
+            display="inline-flex"
+          >
+            This is a test.
+          </Typography>
+        </Box>
       </Box>
     </CssVarsProvider>
   );

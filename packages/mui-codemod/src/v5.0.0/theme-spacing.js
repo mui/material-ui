@@ -7,7 +7,7 @@ export default function transformer(file) {
       // `${theme.spacing(2)}px` -> theme.spacing(2)
       .replace(/`(-?)\${(-?)(theme\.spacing|spacing)\(([^{}]*)\)}px`/gm, '$3($1$2$4)')
       // `${theme.spacing(2)}px ${theme.spacing(4)}px` -> `${theme.spacing(2)} ${theme.spacing(4)}`
-      .replace(/(?<={(theme\.spacing|spacing)\(.*\)})px/gm, '')
+      .replace(/(?<={(theme\.spacing|spacing)\([^]*.*[^]*\)})px/gm, '')
       .replace(/((theme\.spacing|spacing)\(.*\))\s*\+\s*'px'/gm, '$1')
       .replace(
         /\${(theme.spacing|spacing)(\(.*\))\s*([+-])\s*([\d.]+)\s*}px/gm,

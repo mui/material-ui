@@ -233,7 +233,7 @@ const AutocompletePopper = styled(Popper, {
     ];
   },
 })(({ theme, ownerState }) => ({
-  zIndex: theme.zIndex.modal,
+  zIndex: (theme.vars || theme).zIndex.modal,
   ...(ownerState.disablePortal && {
     position: 'absolute',
   }),
@@ -253,7 +253,7 @@ const AutocompleteLoading = styled('div', {
   slot: 'Loading',
   overridesResolver: (props, styles) => styles.loading,
 })(({ theme }) => ({
-  color: theme.palette.text.secondary,
+  color: (theme.vars || theme).palette.text.secondary,
   padding: '14px 16px',
 }));
 
@@ -262,7 +262,7 @@ const AutocompleteNoOptions = styled('div', {
   slot: 'NoOptions',
   overridesResolver: (props, styles) => styles.noOptions,
 })(({ theme }) => ({
-  color: theme.palette.text.secondary,
+  color: (theme.vars || theme).palette.text.secondary,
   padding: '14px 16px',
 }));
 
@@ -294,36 +294,42 @@ const AutocompleteListbox = styled('div', {
       minHeight: 'auto',
     },
     [`&.${autocompleteClasses.focused}`]: {
-      backgroundColor: theme.palette.action.hover,
+      backgroundColor: (theme.vars || theme).palette.action.hover,
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
         backgroundColor: 'transparent',
       },
     },
     '&[aria-disabled="true"]': {
-      opacity: theme.palette.action.disabledOpacity,
+      opacity: (theme.vars || theme).palette.action.disabledOpacity,
       pointerEvents: 'none',
     },
     [`&.${autocompleteClasses.focusVisible}`]: {
-      backgroundColor: theme.palette.action.focus,
+      backgroundColor: (theme.vars || theme).palette.action.focus,
     },
     '&[aria-selected="true"]': {
-      backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+      backgroundColor: theme.vars
+        ? `rgba(${theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.selectedOpacity})`
+        : alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
       [`&.${autocompleteClasses.focused}`]: {
-        backgroundColor: alpha(
-          theme.palette.primary.main,
-          theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
-        ),
+        backgroundColor: theme.vars
+          ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))`
+          : alpha(
+              theme.palette.primary.main,
+              theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
+            ),
         // Reset on touch devices, it doesn't add specificity
         '@media (hover: none)': {
-          backgroundColor: theme.palette.action.selected,
+          backgroundColor: (theme.vars || theme).palette.action.selected,
         },
       },
       [`&.${autocompleteClasses.focusVisible}`]: {
-        backgroundColor: alpha(
-          theme.palette.primary.main,
-          theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
-        ),
+        backgroundColor: theme.vars
+          ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.focusOpacity}))`
+          : alpha(
+              theme.palette.primary.main,
+              theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
+            ),
       },
     },
   },
@@ -334,7 +340,7 @@ const AutocompleteGroupLabel = styled(ListSubheader, {
   slot: 'GroupLabel',
   overridesResolver: (props, styles) => styles.groupLabel,
 })(({ theme }) => ({
-  backgroundColor: theme.palette.background.paper,
+  backgroundColor: (theme.vars || theme).palette.background.paper,
   top: -8,
 }));
 
@@ -407,6 +413,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     PaperComponent = Paper,
     PopperComponent = Popper,
     popupIcon = <ArrowDropDownIcon />,
+    readOnly = false,
     renderGroup: renderGroupProp,
     renderInput,
     renderOption: renderOptionProp,
@@ -439,9 +446,10 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     groupedOptions,
   } = useAutocomplete({ ...props, componentName: 'Autocomplete' });
 
-  const hasClearIcon = !disableClearable && !disabled && dirty;
+  const hasClearIcon = !disableClearable && !disabled && dirty && !readOnly;
   const hasPopupIcon = (!freeSolo || forcePopupIcon === true) && forcePopupIcon !== false;
 
+  // If you modify this, make sure to keep the `AutocompleteOwnerState` type in sync.
   const ownerState = {
     ...props,
     disablePortal,
@@ -460,13 +468,13 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
 
   if (multiple && value.length > 0) {
     const getCustomizedTagProps = (params) => ({
-      className: clsx(classes.tag),
+      className: classes.tag,
       disabled,
       ...getTagProps(params),
     });
 
     if (renderTags) {
-      startAdornment = renderTags(value, getCustomizedTagProps);
+      startAdornment = renderTags(value, getCustomizedTagProps, ownerState);
     } else {
       startAdornment = value.map((option, index) => (
         <Chip
@@ -537,42 +545,49 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
             ref: setAnchorEl,
             className: classes.inputRoot,
             startAdornment,
-            endAdornment: (
-              <AutocompleteEndAdornment className={classes.endAdornment} ownerState={ownerState}>
-                {hasClearIcon ? (
-                  <AutocompleteClearIndicator
-                    {...getClearProps()}
-                    aria-label={clearText}
-                    title={clearText}
-                    ownerState={ownerState}
-                    {...componentsProps.clearIndicator}
-                    className={clsx(
-                      classes.clearIndicator,
-                      componentsProps.clearIndicator?.className,
-                    )}
-                  >
-                    {clearIcon}
-                  </AutocompleteClearIndicator>
-                ) : null}
+            ...((hasClearIcon || hasPopupIcon) && {
+              endAdornment: (
+                <AutocompleteEndAdornment className={classes.endAdornment} ownerState={ownerState}>
+                  {hasClearIcon ? (
+                    <AutocompleteClearIndicator
+                      {...getClearProps()}
+                      aria-label={clearText}
+                      title={clearText}
+                      ownerState={ownerState}
+                      {...componentsProps.clearIndicator}
+                      className={clsx(
+                        classes.clearIndicator,
+                        componentsProps.clearIndicator?.className,
+                      )}
+                    >
+                      {clearIcon}
+                    </AutocompleteClearIndicator>
+                  ) : null}
 
-                {hasPopupIcon ? (
-                  <AutocompletePopupIndicator
-                    {...getPopupIndicatorProps()}
-                    disabled={disabled}
-                    aria-label={popupOpen ? closeText : openText}
-                    title={popupOpen ? closeText : openText}
-                    className={clsx(classes.popupIndicator)}
-                    ownerState={ownerState}
-                  >
-                    {popupIcon}
-                  </AutocompletePopupIndicator>
-                ) : null}
-              </AutocompleteEndAdornment>
-            ),
+                  {hasPopupIcon ? (
+                    <AutocompletePopupIndicator
+                      {...getPopupIndicatorProps()}
+                      disabled={disabled}
+                      aria-label={popupOpen ? closeText : openText}
+                      title={popupOpen ? closeText : openText}
+                      ownerState={ownerState}
+                      {...componentsProps.popupIndicator}
+                      className={clsx(
+                        classes.popupIndicator,
+                        componentsProps.popupIndicator?.className,
+                      )}
+                    >
+                      {popupIcon}
+                    </AutocompletePopupIndicator>
+                  ) : null}
+                </AutocompleteEndAdornment>
+              ),
+            }),
           },
           inputProps: {
-            className: clsx(classes.input),
+            className: classes.input,
             disabled,
+            readOnly,
             ...getInputProps(),
           },
         })}
@@ -580,7 +595,6 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
       {popupOpen && anchorEl ? (
         <AutocompletePopper
           as={PopperComponent}
-          className={clsx(classes.popper)}
           disablePortal={disablePortal}
           style={{
             width: anchorEl ? anchorEl.clientWidth : null,
@@ -589,8 +603,15 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
           role="presentation"
           anchorEl={anchorEl}
           open
+          {...componentsProps.popper}
+          className={clsx(classes.popper, componentsProps.popper?.className)}
         >
-          <AutocompletePaper as={PaperComponent} className={classes.paper} ownerState={ownerState}>
+          <AutocompletePaper
+            ownerState={ownerState}
+            as={PaperComponent}
+            {...componentsProps.paper}
+            className={clsx(classes.paper, componentsProps.paper?.className)}
+          >
             {loading && groupedOptions.length === 0 ? (
               <AutocompleteLoading className={classes.loading} ownerState={ownerState}>
                 {loadingText}
@@ -673,7 +694,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    */
   blurOnSelect: PropTypes.oneOfType([PropTypes.oneOf(['mouse', 'touch']), PropTypes.bool]),
   /**
-   * Props applied to the [`Chip`](/api/chip/) element.
+   * Props applied to the [`Chip`](/material-ui/api/chip/) element.
    */
   ChipProps: PropTypes.object,
   /**
@@ -693,7 +714,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * If `true`, the input's text is cleared on blur if no value is selected.
    *
    * Set to `true` if you want to help the user enter a new value.
-   * Set to `false` if you want to help the user resume his search.
+   * Set to `false` if you want to help the user resume their search.
    * @default !props.freeSolo
    */
   clearOnBlur: PropTypes.bool,
@@ -705,14 +726,14 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   /**
    * Override the default text for the *clear* icon button.
    *
-   * For localization purposes, you can use the provided [translations](/guides/localization/).
+   * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
    * @default 'Clear'
    */
   clearText: PropTypes.string,
   /**
    * Override the default text for the *close popup* icon button.
    *
-   * For localization purposes, you can use the provided [translations](/guides/localization/).
+   * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
    * @default 'Close'
    */
   closeText: PropTypes.string,
@@ -722,6 +743,9 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    */
   componentsProps: PropTypes.shape({
     clearIndicator: PropTypes.object,
+    paper: PropTypes.object,
+    popper: PropTypes.object,
+    popupIndicator: PropTypes.object,
   }),
   /**
    * The default value. Use when the component is not controlled.
@@ -769,7 +793,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    */
   disablePortal: PropTypes.bool,
   /**
-   * A filter function that determines the options that are eligible.
+   * A function that determines the filtered options to be rendered on search.
    *
    * @param {T[]} options The options to render.
    * @param {object} state The state of the component.
@@ -814,6 +838,8 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   /**
    * Used to determine the string value for a given option.
    * It's used to fill the input (and the list box options if `renderOption` is not provided).
+   *
+   * If used in free solo mode, it must accept both the type of the options and a string.
    *
    * @param {T} option
    * @returns {string}
@@ -882,7 +908,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   /**
    * Text to display when in a loading state.
    *
-   * For localization purposes, you can use the provided [translations](/guides/localization/).
+   * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
    * @default 'Loading…'
    */
   loadingText: PropTypes.node,
@@ -894,7 +920,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   /**
    * Text to display when there are no options.
    *
-   * For localization purposes, you can use the provided [translations](/guides/localization/).
+   * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
    * @default 'No options'
    */
   noOptionsText: PropTypes.node,
@@ -950,7 +976,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   /**
    * Override the default text for the *open popup* icon button.
    *
-   * For localization purposes, you can use the provided [translations](/guides/localization/).
+   * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
    * @default 'Open'
    */
   openText: PropTypes.string,
@@ -973,6 +999,11 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * @default <ArrowDropDownIcon />
    */
   popupIcon: PropTypes.node,
+  /**
+   * If `true`, the component becomes readonly. It is also supported for multiple tags where the tag cannot be deleted.
+   * @default false
+   */
+  readOnly: PropTypes.bool,
   /**
    * Render the group.
    *
@@ -1001,6 +1032,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    *
    * @param {T[]} value The `value` provided to the component.
    * @param {function} getTagProps A tag props getter.
+   * @param {object} ownerState The state of the Autocomplete component.
    * @returns {ReactNode}
    */
   renderTags: PropTypes.func,

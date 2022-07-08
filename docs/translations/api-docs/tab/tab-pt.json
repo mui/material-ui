@@ -25,17 +25,17 @@
     "textColorInherit": {
       "description": "Estilos aplicados para {{nodeName}} se {{conditions}}.",
       "nodeName": "o elemento raiz",
-      "conditions": "the parent [<code>Tabs</code>](/api/tabs/) has <code>textColor=\"inherit\"</code>"
+      "conditions": "the parent [<code>Tabs</code>](/material-ui/api/tabs/) has <code>textColor=\"inherit\"</code>"
     },
     "textColorPrimary": {
       "description": "Estilos aplicados para {{nodeName}} se {{conditions}}.",
       "nodeName": "o elemento raiz",
-      "conditions": "the parent [<code>Tabs</code>](/api/tabs/) has <code>textColor=\"primary\"</code>"
+      "conditions": "the parent [<code>Tabs</code>](/material-ui/api/tabs/) has <code>textColor=\"primary\"</code>"
     },
     "textColorSecondary": {
       "description": "Estilos aplicados para {{nodeName}} se {{conditions}}.",
       "nodeName": "o elemento raiz",
-      "conditions": "the parent [<code>Tabs</code>](/api/tabs/) has <code>textColor=\"secondary\"</code>"
+      "conditions": "the parent [<code>Tabs</code>](/material-ui/api/tabs/) has <code>textColor=\"secondary\"</code>"
     },
     "selected": {
       "description": "Pseudo-class aplicada a {{nodeName}} se {{conditions}}.",

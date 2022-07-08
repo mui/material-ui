@@ -7,16 +7,17 @@ import Divider from '@mui/material/Divider';
 import Paper from '@mui/material/Paper';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
-import { DateRange } from '@mui/lab/DateRangePicker';
-import StaticDateRangePicker from '@mui/lab/StaticDateRangePicker';
-import AdapterDateFns from '@mui/lab/AdapterDateFns';
-import LocalizationProvider from '@mui/lab/LocalizationProvider';
+import { DateRange } from '@mui/x-date-pickers-pro/DateRangePicker';
+import { StaticDateRangePicker } from '@mui/x-date-pickers-pro/StaticDateRangePicker';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import GradientText from 'docs/src/components/typography/GradientText';
 import GetStartedButtons from 'docs/src/components/home/GetStartedButtons';
 import HeroContainer from 'docs/src/layouts/HeroContainer';
 import IconImage from 'docs/src/components/icon/IconImage';
 import FolderTreeView from 'docs/src/components/showcase/FolderTreeView';
 import ROUTES from 'docs/src/route';
+import { alpha } from '@mui/material/styles';
 
 const startDate = new Date();
 startDate.setDate(10);
@@ -67,13 +68,14 @@ export default function XHero() {
       }
       rightSx={{
         p: { md: 2, lg: 3, xl: 4 },
+        overflow: 'hidden', // the components on the Hero section are mostly illustrative, even though they're interactive. That's why scrolling is disabled.
       }}
       right={
         <React.Fragment>
           <Paper
             sx={{
               backgroundColor: (theme) =>
-                theme.palette.mode === 'dark' ? 'primaryDark.800' : 'initial',
+                theme.palette.mode === 'dark' ? 'primaryDark.800' : '#fff',
               border: (theme) =>
                 `1px solid ${
                   theme.palette.mode === 'dark'
@@ -116,6 +118,14 @@ export default function XHero() {
                       fontSize: '1.25rem',
                     },
                   },
+                  '& .MuiDataGrid-columnHeaders': {
+                    borderBottom: (theme) =>
+                      `1px solid ${
+                        theme.palette.mode === 'dark'
+                          ? theme.palette.primaryDark[600]
+                          : theme.palette.grey[200]
+                      }`,
+                  },
                   '& .MuiDataGrid-columnHeaderTitleContainer': {
                     padding: 0,
                     color: 'text.primary',
@@ -126,6 +136,16 @@ export default function XHero() {
                   },
                   '& button, & button > svg': {
                     fontSize: 16,
+                  },
+                  '& .MuiDataGrid-cell': {
+                    fontSize: '0.875rem',
+                    color: 'text.secondary',
+                    borderBottom: (theme) =>
+                      `1px solid ${
+                        theme.palette.mode === 'dark'
+                          ? alpha(theme.palette.primaryDark[600], 0.5)
+                          : theme.palette.grey[200]
+                      }`,
                   },
                   '& .MuiDataGrid-viewport': {
                     '& .MuiDataGrid-cell': {
@@ -166,7 +186,7 @@ export default function XHero() {
             <Paper
               sx={{
                 backgroundColor: (theme) =>
-                  theme.palette.mode === 'dark' ? 'primaryDark.800' : 'initial',
+                  theme.palette.mode === 'dark' ? 'primaryDark.800' : '#fff',
                 border: (theme) =>
                   `1px solid ${
                     theme.palette.mode === 'dark'

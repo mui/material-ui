@@ -4,6 +4,7 @@ description: An update on our mission for Q1 2021.
 date: 2021-04-12T00:00:00.000Z
 authors: ['oliviertassinari']
 card: true
+tags: ['Company']
 ---
 
 This update covers our progress over the last three months, and what we aim to achieve in the months ahead.
@@ -17,13 +18,13 @@ Here are the most significant improvements since December 2020.
 - 👩‍🎤 We have worked on rolling out and scaling the new **styling engine** to all the components.
   At this point, we have migrated 129 out of 167 components to emotion/styled-components.
   Most of the components left to be migrated are in the lab.
-  We are almost done! You can subscribe to [material-ui#24405](https://github.com/mui-org/material-ui/issues/24405) to be notified once finished.
+  We are almost done! You can subscribe to [material-ui#24405](https://github.com/mui/material-ui/issues/24405) to be notified once finished.
   The community has provided invaluable assistance.
 - 📚 To complement the migration of the components, we have worked on the migration of the code examples in the documentation,
   favoring the `sx` prop where possible.
   When a component needs to render styles based on the provided props, we have used the `styled` API.
   Effectively, `makeStyle` and `withStyles` have been removed from the demos (we will deprecate these modules later on).
-  You can subscribe to [material-ui#16947](https://github.com/mui-org/material-ui/issues/16947) to be notified once finished.
+  You can subscribe to [material-ui#16947](https://github.com/mui/material-ui/issues/16947) to be notified once finished.
 - 📚 We have used the update of the documentation as an opportunity to break down the demos into smaller **single-focus** ones, with inline previews.
   For instance:
 
@@ -43,10 +44,10 @@ Here are the most significant improvements since December 2020.
 
   <img src="/static/blog/2021-q1-update/stack.png" alt="" style="width: 502px; margin-bottom: 16px;" />
 
-  You can find [more details](https://mui.com/components/stack/) in the documentation.
+  You can find [more details](https://mui.com/material-ui/react-stack/) in the documentation.
 
 - 🎨 We have improved the support for custom colors and variants.
-  This is [one](https://github.com/mui-org/material-ui/issues/13875) of the most upvoted issues in the GitHub issue tracker.
+  This is [one](https://github.com/mui/material-ui/issues/13875) of the most upvoted issues in the GitHub issue tracker.
   The migration to the new style engine allows us to fully rely on dynamic styles.
   Developers can now do the following:
 
@@ -93,7 +94,7 @@ This new feature removes the need to create a wrapper component.
   - Modal
   - Slider
 
-  We are synchronizing the development of the unstyled package with the creation of the second theme (and not v5).
+  We are synchronizing the development of the Base package with the creation of the second theme (and not v5).
 
 - 🛠 We added a subset of the system as flattened props to the CSS utility components (Box, Typography, Stack, and Grid).
   We initially didn't plan to do so but reversed on hearing the feedback from the community.
@@ -125,16 +126,16 @@ The date picker is at the border between the advanced components and the design 
 
 #### Data Grid
 
-- 🔄 We have started to bring support for [lazy-loading](/components/data-grid/rows/#infinite-loading).
-- ⬇️ We have introduced support for [CSV export](/components/data-grid/export/#csv-export).
+- 🔄 We have started to bring support for [lazy-loading](/x/react-data-grid/rows/#infinite-loading).
+- ⬇️ We have introduced support for [CSV export](/x/react-data-grid/export/#csv-export).
 
   <img src="/static/blog/2021-q1-update/csv-export.png" alt="" style="width: 523px; margin-bottom: 16px;" />
 
 - ♿️ We have fixed a couple of accessibility issues (more in progress).
-- 🌏 We have introduced support for [custom locales](/components/data-grid/localization/).
+- 🌏 We have introduced support for [custom locales](/x/react-data-grid/localization/).
 - 🚨 We have started to work on breaking changes to reach a stable state.
 - 💾 We have extended the support of @mui/material to handle v4 and v5 at the same time.
-  In the future, we might desynchronize the release version of _mui/material-ui_ and _mui/material-ui-x_.
+  In the future, we might desynchronize the release version of _mui/material-ui_ and _mui/mui-x_.
   For MUI X, we will likely need to release breaking changes at a higher frequency: every six months.
 - 🎛 We have added a column selector.
 
@@ -178,7 +179,7 @@ This Handbook is the single **source of truth**. It's meant to be updated by any
   Most indicators point to it: [StackOverflow questions](https://insights.stackoverflow.com/trends?tags=vue.js%2Creactjs%2Cangular), [stars](https://bestofjs.org/projects?sort=monthly), [downloads](https://npm-stat.com/charts.html?package=react-dom,@angular/core,vue), [Traffic on the documentation](https://www.similarweb.com/website/reactjs.org/?competitors=vuejs.org).
   Our strategy to focus on React only seems to be paying off.
 
-- ⭐️ From 63.8k to 67.2k stars, leave us yours [🌟](https://github.com/mui-org/material-ui).
+- ⭐️ From 63.8k to 67.2k stars, leave us yours [🌟](https://github.com/mui/material-ui).
   We have seen a significant influx of stars this quarter.
 - 👨‍👩‍👧‍👦 From 2,052 to 2,141 contributors on GitHub. We add on average one new contributor every day.
 - 💰 Grew gross revenue at +4%/week on average during the period.
@@ -204,15 +205,15 @@ We have the following objectives:
 
 - 🚀 Get v5-beta (no more breaking changes) out! The development of this new version started almost a year ago. It's time to aim for the stable release.
 - 📅 Start handling the issues with the date picker reported by developers.
-- 🗓 Execute on all the items of the [public roadmap](https://github.com/mui-org/material-ui/projects/25).
-- ❓ Please upvote [GitHub issues](https://github.com/mui-org/material-ui/issues?q=is%3Aissue+is%3Aopen+sort%3Areactions-%2B1-desc) if you want us to focus on a specific problem. The number of 👍 helps us to prioritize.
+- 🗓 Execute on all the items of the [public roadmap](https://github.com/mui/material-ui/projects/25).
+- ❓ Please upvote [GitHub issues](https://github.com/mui/material-ui/issues?q=is%3Aissue+is%3Aopen+sort%3Areactions-%2B1-desc) if you want us to focus on a specific problem. The number of 👍 helps us to prioritize.
 
 ### Advanced components
 
 - ✍️ Release the Data Grid cell edit feature we have been working on for the last two months. [A preview](https://deploy-preview-1287--material-ui-x.netlify.app/components/data-grid/editing/).
 - 📅 Start dedicating time to the date range picker.
-- 🗓 Execute on all the items in the [public roadmap](https://github.com/mui-org/material-ui-x/projects/1).
-- ❓ Please upvote [GitHub issues](https://github.com/mui-org/material-ui-x/issues?q=is%3Aissue+is%3Aopen+sort%3Areactions-%2B1-desc) if you want us to focus on a specific problem. The number of 👍 helps us to prioritize.
+- 🗓 Execute on all the items in the [public roadmap](https://github.com/mui/mui-x/projects/1).
+- ❓ Please upvote [GitHub issues](https://github.com/mui/mui-x/issues?q=is%3Aissue+is%3Aopen+sort%3Areactions-%2B1-desc) if you want us to focus on a specific problem. The number of 👍 helps us to prioritize.
 
 ### Design kits
 

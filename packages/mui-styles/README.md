@@ -16,4 +16,4 @@ yarn add @mui/styles
 
 ## Documentation
 
-[The documentation](https://mui.com/styles/basics/)
+[The documentation](https://mui.com/system/styles/basics/)

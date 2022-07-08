@@ -4,30 +4,30 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 
 const data = [
-  { title: '2.3M', metadata: 'Weekly downloads on npm' },
-  { title: '72.7k', metadata: 'Stars on GitHub' },
-  { title: '2.2k', metadata: 'Open-source contributors' },
-  { title: '15.8k', metadata: 'Followers on Twitter' },
+  { title: '3.2M', metadata: 'Weekly downloads on npm' },
+  { title: '78k', metadata: 'Stars on GitHub' },
+  { title: '2.4k', metadata: 'Open-source contributors' },
+  { title: '17k', metadata: 'Followers on Twitter' },
 ];
 
 export default function MuiStatistics() {
   return (
-    <Grid item xs={12} md={6} container spacing={2}>
+    <Grid item xs={12} md={6} container spacing={4}>
       {data.map((item) => (
         <Grid key={item.title} item xs={6}>
           <Box
             sx={{
               height: '100%',
-              p: 1,
+              p: 0.5,
               pl: 2,
-              borderLeft: '4px solid',
+              borderLeft: '2px solid',
               borderColor: (theme) =>
                 theme.palette.mode === 'dark' ? 'primaryDark.600' : 'primary.100',
             }}
           >
             <Typography
               component="div"
-              variant="h3"
+              variant="h4"
               color={(theme) => (theme.palette.mode === 'dark' ? 'primary.200' : 'primary.main')}
               fontWeight="bold"
             >

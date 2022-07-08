@@ -7,12 +7,13 @@ export default function SwitchJoy() {
   return (
     <CssVarsProvider>
       <Box sx={{ display: 'grid', gap: '1rem', gridTemplateColumns: 'repeat(4, min-content)' }}>
-        {['primary', 'danger', 'info', 'success', 'warning'].map((color) => (
-          <Switch key={color} color={color} />
-        ))}
-        {['sm', 'md', 'lg'].map((size) => (
-          <Switch key={size} size={size} />
-        ))}
+        <Switch />
+        <Switch defaultChecked />
+        <Switch defaultChecked color="success" />
+        <Switch variant="outlined" />
+        <Switch variant="outlined" defaultChecked />
+        <Switch variant="soft" />
+        <Switch variant="soft" defaultChecked />
       </Box>
     </CssVarsProvider>
   );

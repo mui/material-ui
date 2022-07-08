@@ -1,6 +1,6 @@
 {
   "name": "@mui/types",
-  "version": "7.1.0",
+  "version": "7.1.4",
   "private": false,
   "author": "MUI Team",
   "description": "Utility types for MUI.",
@@ -16,14 +16,14 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/mui-org/material-ui.git",
+    "url": "https://github.com/mui/material-ui.git",
     "directory": "packages/mui-types"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/mui-org/material-ui/issues"
+    "url": "https://github.com/mui/material-ui/issues"
   },
-  "homepage": "https://github.com/mui-org/material-ui/tree/master/packages/mui-types",
+  "homepage": "https://github.com/mui/material-ui/tree/master/packages/mui-types",
   "scripts": {
     "build": "mkdir build && cpy index.d.ts build/ && yarn build:copy-files",
     "build:copy-files": "node ../../scripts/copy-files.js",

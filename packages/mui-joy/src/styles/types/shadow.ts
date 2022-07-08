@@ -5,5 +5,3 @@ export interface Shadow {
   lg: string;
   xl: string;
 }
-
-export type ShadowProp = keyof Shadow;

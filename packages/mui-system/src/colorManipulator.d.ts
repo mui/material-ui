@@ -1,4 +1,4 @@
-export type ColorFormat = 'rgb' | 'rgba' | 'hsl' | 'hsla';
+export type ColorFormat = 'rgb' | 'rgba' | 'hsl' | 'hsla' | 'color';
 export interface ColorObject {
   type: ColorFormat;
   values: [number, number, number] | [number, number, number, number];
@@ -9,6 +9,7 @@ export function hexToRgb(hex: string): string;
 export function rgbToHex(color: string): string;
 export function hslToRgb(color: string): string;
 export function decomposeColor(color: string): ColorObject;
+export function colorChannel(color: string): string;
 export function recomposeColor(color: ColorObject): string;
 export function getContrastRatio(foreground: string, background: string): number;
 export function getLuminance(color: string): number;

@@ -2,57 +2,36 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { usePreviousProps } from '@mui/utils';
-import { generateUtilityClasses, isHostComponent } from '@mui/base';
-import BadgeUnstyled, { badgeUnstyledClasses, getBadgeUtilityClass } from '@mui/base/BadgeUnstyled';
+import composeClasses from '@mui/base/composeClasses';
+import BadgeUnstyled from '@mui/base/BadgeUnstyled';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
+import shouldSpreadAdditionalProps from '../utils/shouldSpreadAdditionalProps';
 import capitalize from '../utils/capitalize';
-
-export const badgeClasses = {
-  ...badgeUnstyledClasses,
-  ...generateUtilityClasses('MuiBadge', [
-    'colorError',
-    'colorInfo',
-    'colorPrimary',
-    'colorSecondary',
-    'colorSuccess',
-    'colorWarning',
-    'overlapRectangular',
-    'overlapCircular',
-    // TODO: v6 remove the overlap value from these class keys
-    'anchorOriginTopLeftCircular',
-    'anchorOriginTopLeftRectangular',
-    'anchorOriginTopRightCircular',
-    'anchorOriginTopRightRectangular',
-    'anchorOriginBottomLeftCircular',
-    'anchorOriginBottomLeftRectangular',
-    'anchorOriginBottomRightCircular',
-    'anchorOriginBottomRightRectangular',
-  ]),
-};
+import badgeClasses, { getBadgeUtilityClass } from './badgeClasses';
 
 const RADIUS_STANDARD = 10;
 const RADIUS_DOT = 4;
 
-const extendUtilityClasses = (ownerState) => {
-  const { color, anchorOrigin, overlap, classes = {} } = ownerState;
+const useUtilityClasses = (ownerState) => {
+  const { color, anchorOrigin, invisible, overlap, variant, classes = {} } = ownerState;
 
-  return {
-    ...classes,
-    badge: clsx(
-      classes.badge,
-      getBadgeUtilityClass(
-        `anchorOrigin${capitalize(anchorOrigin.vertical)}${capitalize(
-          anchorOrigin.horizontal,
-        )}${capitalize(overlap)}`,
-      ),
-      getBadgeUtilityClass(`overlap${capitalize(overlap)}`),
-      {
-        [getBadgeUtilityClass(`color${capitalize(color)}`)]: color !== 'default',
-        [classes[`color${capitalize(color)}`]]: color !== 'default',
-      },
-    ),
+  const slots = {
+    root: ['root'],
+    badge: [
+      'badge',
+      variant,
+      invisible && 'invisible',
+      `anchorOrigin${capitalize(anchorOrigin.vertical)}${capitalize(anchorOrigin.horizontal)}`,
+      `anchorOrigin${capitalize(anchorOrigin.vertical)}${capitalize(
+        anchorOrigin.horizontal,
+      )}${capitalize(overlap)}`,
+      `overlap${capitalize(overlap)}`,
+      color !== 'default' && `color${capitalize(color)}`,
+    ],
   };
+
+  return composeClasses(slots, getBadgeUtilityClass, classes);
 };
 
 const BadgeRoot = styled('span', {
@@ -108,8 +87,8 @@ const BadgeBadge = styled('span', {
     duration: theme.transitions.duration.enteringScreen,
   }),
   ...(ownerState.color !== 'default' && {
-    backgroundColor: theme.palette[ownerState.color].main,
-    color: theme.palette[ownerState.color].contrastText,
+    backgroundColor: (theme.vars || theme).palette[ownerState.color].main,
+    color: (theme.vars || theme).palette[ownerState.color].contrastText,
   }),
   ...(ownerState.variant === 'dot' && {
     borderRadius: RADIUS_DOT,
@@ -213,10 +192,6 @@ const BadgeBadge = styled('span', {
   }),
 }));
 
-const shouldSpreadAdditionalProps = (Slot) => {
-  return !Slot || !isHostComponent(Slot);
-};
-
 const Badge = React.forwardRef(function Badge(inProps, ref) {
   const props = useThemeProps({ props: inProps, name: 'MuiBadge' });
   const {
@@ -224,12 +199,14 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
       vertical: 'top',
       horizontal: 'right',
     },
+    className,
     component = 'span',
     components = {},
     componentsProps = {},
     overlap: overlapProp = 'rectangular',
     color: colorProp = 'default',
-    invisible: invisibleProp,
+    invisible: invisibleProp = false,
+    max,
     badgeContent: badgeContentProp,
     showZero = false,
     variant: variantProp = 'standard',
@@ -240,12 +217,13 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
     anchorOrigin: anchorOriginProp,
     color: colorProp,
     overlap: overlapProp,
+    variant: variantProp,
   });
 
   let invisible = invisibleProp;
 
   if (
-    invisibleProp == null &&
+    invisibleProp === false &&
     ((badgeContentProp === 0 && !showZero) || (badgeContentProp == null && variantProp !== 'dot'))
   ) {
     invisible = true;
@@ -255,40 +233,60 @@ const Badge = React.forwardRef(function Badge(inProps, ref) {
     color = colorProp,
     overlap = overlapProp,
     anchorOrigin = anchorOriginProp,
+    variant = variantProp,
   } = invisible ? prevProps : props;
 
-  const ownerState = { ...props, anchorOrigin, invisible, color, overlap };
-  const classes = extendUtilityClasses(ownerState);
+  const ownerState = { ...props, anchorOrigin, invisible, color, overlap, variant };
+  const classes = useUtilityClasses(ownerState);
+
+  let displayValue;
+
+  if (variant !== 'dot') {
+    displayValue =
+      badgeContentProp && Number(badgeContentProp) > max ? `${max}+` : badgeContentProp;
+  }
 
   return (
     <BadgeUnstyled
-      anchorOrigin={anchorOrigin}
       invisible={invisibleProp}
-      badgeContent={badgeContentProp}
+      badgeContent={displayValue}
       showZero={showZero}
-      variant={variantProp}
+      max={max}
       {...other}
       components={{
         Root: BadgeRoot,
         Badge: BadgeBadge,
         ...components,
       }}
+      className={clsx(className, classes.root, componentsProps.root?.className)}
       componentsProps={{
         root: {
           ...componentsProps.root,
           ...(shouldSpreadAdditionalProps(components.Root) && {
             as: component,
-            ownerState: { ...componentsProps.root?.ownerState, color, overlap },
+            ownerState: {
+              ...componentsProps.root?.ownerState,
+              anchorOrigin,
+              color,
+              overlap,
+              variant,
+            },
           }),
         },
         badge: {
           ...componentsProps.badge,
+          className: clsx(classes.badge, componentsProps.badge?.className),
           ...(shouldSpreadAdditionalProps(components.Badge) && {
-            ownerState: { ...componentsProps.badge?.ownerState, color, overlap },
+            ownerState: {
+              ...componentsProps.badge?.ownerState,
+              anchorOrigin,
+              color,
+              overlap,
+              variant,
+            },
           }),
         },
       }}
-      classes={classes}
       ref={ref}
     />
   );
@@ -323,7 +321,13 @@ Badge.propTypes /* remove-proptypes */ = {
    */
   classes: PropTypes.object,
   /**
-   * The color of the component. It supports those theme colors that make sense for this component.
+   * @ignore
+   */
+  className: PropTypes.string,
+  /**
+   * The color of the component.
+   * It supports both default and custom theme colors, which can be added as shown in the
+   * [palette customization guide](https://mui.com/material-ui/customization/palette/#adding-new-colors).
    * @default 'default'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
@@ -349,11 +353,12 @@ Badge.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   componentsProps: PropTypes.shape({
-    badge: PropTypes.object,
-    root: PropTypes.object,
+    badge: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
    * If `true`, the badge is invisible.
+   * @default false
    */
   invisible: PropTypes.bool,
   /**

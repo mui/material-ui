@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer, describeConformance } from 'test/utils';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 import OutlinedInput, { outlinedInputClasses as classes } from '@mui/material/OutlinedInput';
 import InputBase from '@mui/material/InputBase';
 
@@ -47,5 +48,39 @@ describe('<OutlinedInput />', () => {
   it('should respects the componentsProps if passed', () => {
     render(<OutlinedInput componentsProps={{ root: { 'data-test': 'test' } }} />);
     expect(document.querySelector('[data-test=test]')).not.to.equal(null);
+  });
+
+  it('should respect the classes coming from InputBase', () => {
+    render(
+      <OutlinedInput
+        data-test="test"
+        multiline
+        sx={{ [`&.${classes.multiline}`]: { mt: '10px' } }}
+      />,
+    );
+    expect(document.querySelector('[data-test=test]')).toHaveComputedStyle({ marginTop: '10px' });
+  });
+
+  it('should have ownerState in the theme style overrides', () => {
+    expect(() =>
+      render(
+        <ThemeProvider
+          theme={createTheme({
+            components: {
+              MuiOutlinedInput: {
+                styleOverrides: {
+                  root: ({ ownerState }) => ({
+                    // test that ownerState is not undefined
+                    ...(ownerState.disabled && {}),
+                  }),
+                },
+              },
+            },
+          })}
+        >
+          <OutlinedInput />
+        </ThemeProvider>,
+      ),
+    ).not.to.throw();
   });
 });

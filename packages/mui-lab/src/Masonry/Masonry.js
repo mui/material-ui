@@ -1,4 +1,5 @@
 import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { flushSync } from 'react-dom';
 import { styled, useThemeProps } from '@mui/material/styles';
 import {
   createUnarySpacing,
@@ -16,6 +17,13 @@ export const parseToNumber = (val) => {
   return Number(val.replace('px', ''));
 };
 
+const lineBreakStyle = {
+  flexBasis: '100%',
+  width: 0,
+  margin: 0,
+  padding: 0,
+};
+
 const useUtilityClasses = (ownerState) => {
   const { classes } = ownerState;
 
@@ -31,7 +39,7 @@ export const getStyle = ({ ownerState, theme }) => {
     width: '100%',
     display: 'flex',
     flexFlow: 'column wrap',
-    alignContent: 'space-between',
+    alignContent: 'flex-start',
     boxSizing: 'border-box',
     '& > *': {
       boxSizing: 'border-box',
@@ -39,9 +47,10 @@ export const getStyle = ({ ownerState, theme }) => {
   };
 
   const stylesSSR = {};
+  // Only applicable for Server-Side Rendering
   if (ownerState.isSSR) {
     const orderStyleSSR = {};
-    const defaultSpacing = Number(theme.spacing(ownerState.defaultSpacing).replace('px', ''));
+    const defaultSpacing = parseToNumber(theme.spacing(ownerState.defaultSpacing));
     for (let i = 1; i <= ownerState.defaultColumns; i += 1) {
       orderStyleSSR[
         `&:nth-of-type(${ownerState.defaultColumns}n+${i % ownerState.defaultColumns})`
@@ -71,15 +80,28 @@ export const getStyle = ({ ownerState, theme }) => {
 
   const transformer = createUnarySpacing(theme);
   const spacingStyleFromPropValue = (propValue) => {
-    const themeSpacingValue = Number(propValue);
-    const spacing = Number(getValue(transformer, themeSpacingValue).replace('px', ''));
+    let spacing;
+    // in case of string/number value
+    if (
+      (typeof propValue === 'string' && !Number.isNaN(Number(propValue))) ||
+      typeof propValue === 'number'
+    ) {
+      const themeSpacingValue = Number(propValue);
+      spacing = getValue(transformer, themeSpacingValue);
+    } else {
+      spacing = propValue;
+    }
+
     return {
-      margin: -(spacing / 2),
+      margin: `calc(0px - (${spacing} / 2))`,
       '& > *': {
-        margin: spacing / 2,
+        margin: `calc(${spacing} / 2)`,
       },
       ...(ownerState.maxColumnHeight && {
-        height: Math.ceil(ownerState.maxColumnHeight + spacing),
+        height:
+          typeof spacing === 'number'
+            ? Math.ceil(ownerState.maxColumnHeight + parseToNumber(spacing))
+            : `calc(${ownerState.maxColumnHeight}px + ${spacing})`,
       }),
     };
   };
@@ -98,7 +120,10 @@ export const getStyle = ({ ownerState, theme }) => {
     const columnValue = Number(propValue);
     const width = `${(100 / columnValue).toFixed(2)}%`;
     const spacing =
-      typeof spacingValues !== 'object' ? getValue(transformer, Number(spacingValues)) : '0px';
+      (typeof spacingValues === 'string' && !Number.isNaN(Number(spacingValues))) ||
+      typeof spacingValues === 'number'
+        ? getValue(transformer, Number(spacingValues))
+        : '0px';
     return {
       '& > *': { width: `calc(${width} - ${spacing})` },
     };
@@ -182,27 +207,16 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  const handleResize = (elements) => {
-    if (!elements) {
+  const handleResize = (masonryChildren) => {
+    if (!masonryRef.current || !masonryChildren || masonryChildren.length === 0) {
       return;
     }
-    let masonry;
-    let masonryFirstChild;
-    let parentWidth;
-    let childWidth;
-    if (elements[0].target.className.includes(classes.root)) {
-      masonry = elements[0].target;
-      parentWidth = elements[0].contentRect.width;
-      masonryFirstChild = elements[1]?.target || masonry.firstChild;
-      childWidth = masonryFirstChild?.contentRect?.width || masonryFirstChild?.clientWidth || 0;
-    } else {
-      masonryFirstChild = elements[0].target;
-      childWidth = elements[0].contentRect.width;
-      masonry = elements[1]?.target || masonryFirstChild.parentElement;
-      parentWidth = masonry.contentRect?.width || masonry.clientWidth;
-    }
+    const masonry = masonryRef.current;
+    const masonryFirstChild = masonryRef.current.firstChild;
+    const parentWidth = masonry.clientWidth;
+    const firstChildWidth = masonryFirstChild.clientWidth;
 
-    if (parentWidth === 0 || childWidth === 0 || !masonry || !masonryFirstChild) {
+    if (parentWidth === 0 || firstChildWidth === 0) {
       return;
     }
 
@@ -211,7 +225,7 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
     const firstChildMarginRight = parseToNumber(firstChildComputedStyle.marginRight);
 
     const currentNumberOfColumns = Math.round(
-      parentWidth / (childWidth + firstChildMarginLeft + firstChildMarginRight),
+      parentWidth / (firstChildWidth + firstChildMarginLeft + firstChildMarginRight),
     );
 
     const columnHeights = new Array(currentNumberOfColumns).fill(0);
@@ -248,9 +262,13 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
       }
     });
     if (!skip) {
-      setMaxColumnHeight(Math.max(...columnHeights));
-      const numOfLineBreaks = currentNumberOfColumns > 0 ? currentNumberOfColumns - 1 : 0;
-      setNumberOfLineBreaks(numOfLineBreaks);
+      // In React 18, state updates in a ResizeObserver's callback are happening after the paint which causes flickering
+      // when doing some visual updates in it. Using flushSync ensures that the dom will be painted after the states updates happen
+      // Related issue - https://github.com/facebook/react/issues/24331
+      flushSync(() => {
+        setMaxColumnHeight(Math.max(...columnHeights));
+        setNumberOfLineBreaks(currentNumberOfColumns > 0 ? currentNumberOfColumns - 1 : 0);
+      });
     }
   };
 
@@ -265,25 +283,15 @@ const Masonry = React.forwardRef(function Masonry(inProps, ref) {
       return undefined;
     }
 
-    const container = masonryRef.current;
-    if (container && resizeObserver) {
-      // only the masonry container and its first child are observed for resizing;
-      // this might cause unforeseen problems in some use cases;
-      resizeObserver.observe(container);
-      if (container.firstChild) {
-        resizeObserver.observe(container.firstChild);
-      }
+    if (masonryRef.current) {
+      masonryRef.current.childNodes.forEach((childNode) => {
+        resizeObserver.observe(childNode);
+      });
     }
     return () => (resizeObserver ? resizeObserver.disconnect() : {});
   }, [columns, spacing, children]);
 
   const handleRef = useForkRef(ref, masonryRef);
-  const lineBreakStyle = {
-    flexBasis: '100%',
-    width: 0,
-    margin: 0,
-    padding: 0,
-  };
 
   //  columns are likely to have different heights and hence can start to merge;
   //  a line break at the end of each column prevents columns from merging

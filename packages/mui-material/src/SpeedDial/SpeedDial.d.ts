@@ -35,7 +35,7 @@ export interface SpeedDialProps
    */
   hidden?: boolean;
   /**
-   * Props applied to the [`Fab`](/api/fab/) element.
+   * Props applied to the [`Fab`](/material-ui/api/fab/) element.
    * @default {}
    */
   FabProps?: Partial<FabProps>;
@@ -72,7 +72,7 @@ export interface SpeedDialProps
   sx?: SxProps<Theme>;
   /**
    * The component used for the transition.
-   * [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default Zoom
    */
   TransitionComponent?: React.JSXElementConstructor<TransitionProps>;
@@ -80,8 +80,8 @@ export interface SpeedDialProps
    * The duration for the transition, in milliseconds.
    * You may specify a single timeout for all transitions, or individually with an object.
    * @default {
-   *   enter: duration.enteringScreen,
-   *   exit: duration.leavingScreen,
+   *   enter: theme.transitions.duration.enteringScreen,
+   *   exit: theme.transitions.duration.leavingScreen,
    * }
    */
   transitionDuration?: TransitionProps['timeout'];
@@ -96,10 +96,10 @@ export interface SpeedDialProps
  *
  * Demos:
  *
- * - [Speed Dial](https://mui.com/components/speed-dial/)
+ * - [Speed dial](https://mui.com/material-ui/react-speed-dial/)
  *
  * API:
  *
- * - [SpeedDial API](https://mui.com/api/speed-dial/)
+ * - [SpeedDial API](https://mui.com/material-ui/api/speed-dial/)
  */
 export default function SpeedDial(props: SpeedDialProps): JSX.Element;

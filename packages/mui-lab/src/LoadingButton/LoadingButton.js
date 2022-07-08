@@ -103,7 +103,7 @@ const LoadingButtonLoadingIndicator = styled('div', {
   display: 'flex',
   ...(ownerState.loadingPosition === 'start' &&
     (ownerState.variant === 'outlined' || ownerState.variant === 'contained') && {
-      left: 14,
+      left: ownerState.size === 'small' ? 10 : 14,
     }),
   ...(ownerState.loadingPosition === 'start' &&
     ownerState.variant === 'text' && {
@@ -116,7 +116,7 @@ const LoadingButtonLoadingIndicator = styled('div', {
   }),
   ...(ownerState.loadingPosition === 'end' &&
     (ownerState.variant === 'outlined' || ownerState.variant === 'contained') && {
-      right: 14,
+      right: ownerState.size === 'small' ? 10 : 14,
     }),
   ...(ownerState.loadingPosition === 'end' &&
     ownerState.variant === 'text' && {
@@ -266,7 +266,10 @@ LoadingButton.propTypes /* remove-proptypes */ = {
    * The variant to use.
    * @default 'text'
    */
-  variant: PropTypes.oneOf(['contained', 'outlined', 'text']),
+  variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['contained', 'outlined', 'text']),
+    PropTypes.string,
+  ]),
 };
 
 export default LoadingButton;

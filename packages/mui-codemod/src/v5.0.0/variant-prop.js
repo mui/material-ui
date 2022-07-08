@@ -13,7 +13,7 @@ export default function transformer(file, api, options) {
     );
 
     if (!variant) {
-      attributes.push(j.jsxAttribute(j.jsxIdentifier('variant'), j.literal('standard')));
+      attributes.unshift(j.jsxAttribute(j.jsxIdentifier('variant'), j.literal('standard')));
     }
   }
 

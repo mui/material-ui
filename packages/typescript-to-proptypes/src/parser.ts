@@ -68,6 +68,13 @@ export function parseFromProgram(
   }
 
   const shouldInclude: ParserOptions['shouldInclude'] = (data) => {
+    // ref is a reserved prop name in React
+    // e.g. https://github.com/reactjs/rfcs/pull/107
+    // no need to add a prop-type
+    if (data.name === 'ref') {
+      return false;
+    }
+
     if (parserOptions.shouldInclude) {
       const result = parserOptions.shouldInclude(data);
       if (result !== undefined) {
@@ -75,7 +82,7 @@ export function parseFromProgram(
       }
     }
 
-    return data.name !== 'ref';
+    return true;
   };
 
   const shouldResolveObject: ParserOptions['shouldResolveObject'] = (data) => {
@@ -437,15 +444,16 @@ export function parseFromProgram(
       declaration &&
       ts.isPropertySignature(declaration)
     ) {
-      parsedType = declaration.questionToken
-        ? t.createUnionType({
-            jsDoc: getDocumentation(symbol),
-            types: [
-              t.createUndefinedType({ jsDoc: undefined }),
-              t.createAnyType({ jsDoc: undefined }),
-            ],
-          })
-        : t.createAnyType({ jsDoc: getDocumentation(symbol) });
+      parsedType =
+        symbol.flags & ts.SymbolFlags.Optional
+          ? t.createUnionType({
+              jsDoc: getDocumentation(symbol),
+              types: [
+                t.createUndefinedType({ jsDoc: undefined }),
+                t.createAnyType({ jsDoc: undefined }),
+              ],
+            })
+          : t.createAnyType({ jsDoc: getDocumentation(symbol) });
     } else {
       parsedType = checkType(type, location, typeStack, symbol.getName());
     }

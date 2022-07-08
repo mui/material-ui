@@ -6,43 +6,99 @@ import { OverridableStringUnion } from '@mui/types';
  * ====================================================
  */
 export interface PaletteVariant {
-  textColor: string;
-  textHoverBg: string;
-  textActiveBg: string;
-  textDisabledColor: string;
+  plainColor: string;
+  plainBg: string;
+  plainBorder: string;
+  // hover state
+  plainHoverColor: string;
+  plainHoverBorder: string;
+  plainHoverBg: string;
+  // active state
+  plainActiveColor: string;
+  plainActiveBorder: string;
+  plainActiveBg: string;
+  // disabled state
+  plainDisabledColor: string;
+  plainDisabledBorder: string;
+  plainDisabledBg: string;
 
   outlinedColor: string;
   outlinedBorder: string;
-  outlinedHoverBg: string;
+  outlinedBg: string;
+  // hover state
+  outlinedHoverColor: string;
   outlinedHoverBorder: string;
+  outlinedHoverBg: string;
+  // active state
+  outlinedActiveColor: string;
+  outlinedActiveBorder: string;
   outlinedActiveBg: string;
+  // disabled state
   outlinedDisabledColor: string;
   outlinedDisabledBorder: string;
+  outlinedDisabledBg: string;
 
-  lightColor: string;
-  lightBg: string;
-  lightHoverBg: string;
-  lightActiveBg: string;
-  lightDisabledColor: string;
-  lightDisabledBg: string;
+  softColor: string;
+  softBorder: string;
+  softBg: string;
+  // hover state
+  softHoverColor: string;
+  softHoverBorder: string;
+  softHoverBg: string;
+  // active state
+  softActiveColor: string;
+  softActiveBorder: string;
+  softActiveBg: string;
+  // disabled state
+  softDisabledColor: string;
+  softDisabledBorder: string;
+  softDisabledBg: string;
 
-  containedColor: string;
-  containedBg: string;
-  containedHoverBg: string;
-  containedActiveBg: string;
-  containedDisabledBg: string;
+  solidColor: string;
+  solidBg: string;
+  solidBorder: string;
+  // hover state
+  solidHoverColor: string;
+  solidHoverBg: string;
+  solidHoverBorder: string;
+  // active state
+  solidActiveColor: string;
+  solidActiveBg: string;
+  solidActiveBorder: string;
+  // disabled state
+  solidDisabledColor: string;
+  solidDisabledBg: string;
+  solidDisabledBorder: string;
+
+  // override palette.text
+  overrideTextPrimary: string;
+  overrideTextSecondary: string;
+  overrideTextTertiary: string;
 }
-export interface PaletteRange extends PaletteVariant {
-  50: string;
-  100: string;
-  200: string;
-  300: string;
-  400: string;
-  500: string;
-  600: string;
-  700: string;
-  800: string;
-  900: string;
+
+export interface PaletteRangeOverrides {}
+export type ExtendedPaletteRange = OverridableStringUnion<
+  | '50'
+  | '100'
+  | '200'
+  | '300'
+  | '400'
+  | '500'
+  | '600'
+  | '700'
+  | '800'
+  | '900'
+  | 'mainChannel'
+  | 'lightChannel'
+  | 'darkChannel',
+  PaletteRangeOverrides
+>;
+
+export interface PaletteRange extends Record<ExtendedPaletteRange, string>, PaletteVariant {}
+
+export interface PaletteCommon {
+  white: string;
+  black: string;
 }
 
 export interface PaletteText {
@@ -50,37 +106,44 @@ export interface PaletteText {
   secondary: string;
   tertiary: string;
 }
-
 export interface PaletteBackground {
   body: string;
+  common: string;
   level1: string;
   level2: string;
   level3: string;
+  tooltip: string;
 }
 
 export interface ColorPalettePropOverrides {}
 
-export type DefaultColorPalette =
-  | 'primary'
-  | 'neutral'
-  | 'danger'
-  | 'info'
-  | 'success'
-  | 'warning'
-  | 'context';
+export type DefaultColorPalette = 'primary' | 'neutral' | 'danger' | 'info' | 'success' | 'warning';
 
 export type ColorPaletteProp = OverridableStringUnion<
   DefaultColorPalette,
   ColorPalettePropOverrides
 >;
 
-export type ColorPalette = {
-  [k in Exclude<ColorPaletteProp, 'context'>]: PaletteRange;
-};
+// Split interfaces into multiple chunks so that they can be augmented independently
 
-export interface Palette extends ColorPalette {
+export interface PalettePrimary extends PaletteRange {}
+export interface PaletteNeutral extends PaletteRange {}
+export interface PaletteDanger extends PaletteRange {}
+export interface PaletteInfo extends PaletteRange {}
+export interface PaletteSuccess extends PaletteRange {}
+export interface PaletteWarning extends PaletteRange {}
+
+export interface Palette {
+  primary: PalettePrimary;
+  neutral: PaletteNeutral;
+  danger: PaletteDanger;
+  info: PaletteInfo;
+  success: PaletteSuccess;
+  warning: PaletteWarning;
+  common: PaletteCommon;
   text: PaletteText;
   background: PaletteBackground;
+  divider: string;
   focusVisible: string;
 }
 

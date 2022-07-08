@@ -1,15 +1,15 @@
 import * as React from 'react';
-import { CssVarsProvider } from '@mui/joy/styles';
+import { CssVarsProvider, extendTheme } from '@mui/joy/styles';
 
 // override theme
 <CssVarsProvider
-  theme={{
+  theme={extendTheme({
     fontFamily: {
       default: '"Rubik", sans-serif',
     },
     // @ts-expect-error 'color' does not exist in JoyTheme
     color: {},
-  }}
+  })}
 />;
 
 // extends PaletteRange
@@ -76,7 +76,7 @@ declare module '@mui/joy/styles' {
 }
 
 <CssVarsProvider
-  theme={{
+  theme={extendTheme({
     colorSchemes: {
       light: {
         palette: {
@@ -112,5 +112,36 @@ declare module '@mui/joy/styles' {
         lineHeight: 1,
       },
     },
-  }}
+    components: {
+      JoyButton: {
+        styleOverrides: {
+          root: ({ ownerState, theme }) => {
+            const { color, variant } = ownerState;
+            const styles = [];
+            if (color === 'primary') {
+              styles.push({
+                width: 120,
+                height: 48,
+              });
+            }
+            if (variant === 'contained') {
+              styles.push(theme.typography.body1);
+            }
+            return styles;
+          },
+        },
+      },
+      JoySwitch: {
+        styleOverrides: {
+          thumb: ({ ownerState, theme }) => [
+            ownerState.color === 'primary' && {
+              '&:hover': {
+                backgroundColor: theme.vars.palette.primary.containedHoverBg,
+              },
+            },
+          ],
+        },
+      },
+    },
+  })}
 />;

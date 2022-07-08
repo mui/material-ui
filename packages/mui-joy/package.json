@@ -1,9 +1,9 @@
 {
   "name": "@mui/joy",
-  "version": "5.0.0-alpha.9",
+  "version": "5.0.0-alpha.35",
   "private": false,
   "author": "MUI Team",
-  "description": "Joy design system — React components",
+  "description": "A library of beautifully designed React UI components.",
   "main": "./src/index.ts",
   "keywords": [
     "react",
@@ -12,12 +12,12 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/mui-org/material-ui.git",
+    "url": "https://github.com/mui/material-ui.git",
     "directory": "packages/mui-joy"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/mui-org/material-ui/issues"
+    "url": "https://github.com/mui/material-ui/issues"
   },
   "homepage": "https://mui.com/",
   "funding": {
@@ -40,9 +40,9 @@
   "peerDependencies": {
     "@emotion/react": "^11.5.0",
     "@emotion/styled": "^11.3.0",
-    "@types/react": "^16.8.6 || ^17.0.0",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "@types/react": "^17.0.0 || ^18.0.0",
+    "react": "^17.0.0 || ^18.0.0",
+    "react-dom": "^17.0.0 || ^18.0.0"
   },
   "peerDependenciesMeta": {
     "@types/react": {
@@ -56,16 +56,15 @@
     }
   },
   "dependencies": {
-    "@babel/runtime": "^7.16.3",
-    "@mui/base": "5.0.0-alpha.63",
-    "@mui/system": "^5.2.6",
-    "@mui/types": "^7.1.0",
-    "@mui/utils": "^5.2.3",
-    "clsx": "^1.1.1",
-    "csstype": "^3.0.10",
-    "hoist-non-react-statics": "^3.3.2",
-    "prop-types": "^15.7.2",
-    "react-is": "^17.0.2"
+    "@babel/runtime": "^7.17.2",
+    "@mui/base": "5.0.0-alpha.88",
+    "@mui/system": "^5.8.7",
+    "@mui/types": "^7.1.4",
+    "@mui/utils": "^5.8.6",
+    "clsx": "^1.2.0",
+    "csstype": "^3.1.0",
+    "prop-types": "^15.8.1",
+    "react-is": "^18.2.0"
   },
   "sideEffects": false,
   "publishConfig": {

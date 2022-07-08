@@ -46,7 +46,7 @@ export default function ComponentLinkHeader(props) {
             size="small"
             variant="outlined"
             rel="nofollow"
-            href={`https://github.com/mui-org/material-ui/labels/${encodeURIComponent(
+            href={`${process.env.SOURCE_CODE_REPO}/labels/${encodeURIComponent(
               headers.githubLabel,
             )}`}
             icon={<InfoOutlinedIcon />}

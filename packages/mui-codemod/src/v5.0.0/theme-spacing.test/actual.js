@@ -11,3 +11,6 @@ padding: `${theme.spacing(2) - 1}px 0`
 `calc(100% - ${theme.spacing(itemHorzPadding) * 0.3}px)`
 `${-theme.spacing(1)}px`
 `-${theme.spacing(1)}px`
+`${theme.spacing(2)}px ${theme.spacing(1)}px ${theme.spacing(2)}px ${theme.spacing(
+  2
+)}px`

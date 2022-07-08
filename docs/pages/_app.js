@@ -1,9 +1,3 @@
-/* eslint-disable import/first */
-import { LicenseInfo } from '@mui/x-data-grid-pro';
-
-// Remove the license warning from demonstration purposes
-LicenseInfo.setLicenseKey(process.env.NEXT_PUBLIC_MUI_LICENSE);
-
 import 'docs/src/modules/components/bootstrap';
 // --- Post bootstrap -----
 import * as React from 'react';
@@ -12,12 +6,18 @@ import NextHead from 'next/head';
 import PropTypes from 'prop-types';
 import acceptLanguage from 'accept-language';
 import { useRouter } from 'next/router';
+import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/utils';
 import pages from 'docs/src/pages';
+import basePages from 'docs/data/base/pages';
+import materialPages from 'docs/data/material/pages';
+import joyPages from 'docs/data/joy/pages';
+import systemPages from 'docs/data/system/pages';
 import PageContext from 'docs/src/modules/components/PageContext';
 import GoogleAnalytics from 'docs/src/modules/components/GoogleAnalytics';
+import { CodeCopyProvider } from 'docs/src/modules/utils/CodeCopy';
 import { ThemeProvider } from 'docs/src/modules/components/ThemeContext';
 import { pathnameToLanguage, getCookie } from 'docs/src/modules/utils/helpers';
-import { LANGUAGES } from 'docs/src/modules/constants';
+import { LANGUAGES, LANGUAGES_IGNORE_PAGES } from 'docs/src/modules/constants';
 import { CodeVariantProvider } from 'docs/src/modules/utils/codeVariant';
 import {
   UserLanguageProvider,
@@ -27,6 +27,11 @@ import {
 import DocsStyledEngineProvider from 'docs/src/modules/utils/StyledEngineProvider';
 import createEmotionCache from 'docs/src/createEmotionCache';
 import findActivePage from 'docs/src/modules/utils/findActivePage';
+import useRouterExtra from 'docs/src/modules/utils/useRouterExtra';
+import { LicenseInfo } from '@mui/x-data-grid-pro';
+
+// Remove the license warning from demonstration purposes
+LicenseInfo.setLicenseKey(process.env.NEXT_PUBLIC_MUI_LICENSE);
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
@@ -39,20 +44,30 @@ function LanguageNegotiation() {
   const router = useRouter();
   const userLanguage = useUserLanguage();
 
-  React.useEffect(() => {
+  useEnhancedEffect(() => {
     const { userLanguage: userLanguageUrl, canonicalAs } = pathnameToLanguage(router.asPath);
-    const preferedLanguage =
-      LANGUAGES.find((lang) => lang === getCookie('userLanguage')) ||
-      acceptLanguage.get(navigator.language) ||
-      userLanguage;
 
-    if (userLanguageUrl === 'en' && userLanguage !== preferedLanguage) {
-      window.location =
-        preferedLanguage === 'en' ? canonicalAs : `/${preferedLanguage}${canonicalAs}`;
-    } else if (userLanguage !== userLanguageUrl) {
+    // Only consider a redirection if coming to the naked folder.
+    if (userLanguageUrl === 'en') {
+      const preferedLanguage =
+        LANGUAGES.find((lang) => lang === getCookie('userLanguage')) ||
+        acceptLanguage.get(navigator.language) ||
+        userLanguage;
+
+      if (
+        userLanguage !== preferedLanguage &&
+        !process.env.BUILD_ONLY_ENGLISH_LOCALE &&
+        !LANGUAGES_IGNORE_PAGES(router.pathname)
+      ) {
+        window.location =
+          preferedLanguage === 'en' ? canonicalAs : `/${preferedLanguage}${canonicalAs}`;
+      }
+    }
+
+    if (userLanguage !== userLanguageUrl) {
       setUserLanguage(userLanguageUrl);
     }
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [router.pathname, router.asPath, setUserLanguage, userLanguage]);
 
   return null;
 }
@@ -159,7 +174,7 @@ Tip: you can access the documentation \`theme\` object directly in the console.
 function AppWrapper(props) {
   const { children, emotionCache, pageProps } = props;
 
-  const router = useRouter();
+  const { asPathWithoutLang, product, ...router } = useRouterExtra();
 
   React.useEffect(() => {
     loadDependencies();
@@ -172,14 +187,21 @@ function AppWrapper(props) {
     }
   }, []);
 
-  // eslint-disable will be removed once docs restructure is done
-  // eslint-disable-next-line prefer-const
   let productPages = pages;
+  if (product === 'base') {
+    productPages = basePages;
+  } else if (product === 'material-ui') {
+    productPages = materialPages;
+  } else if (product === 'joy-ui') {
+    productPages = joyPages;
+  } else if (product === 'system') {
+    productPages = systemPages;
+  }
 
   const activePage = findActivePage(productPages, router.pathname);
 
   let fonts = [];
-  if (router.pathname.match(/onepirate/)) {
+  if (asPathWithoutLang.match(/onepirate/)) {
     fonts = [
       'https://fonts.googleapis.com/css?family=Roboto+Condensed:700|Work+Sans:300,400&display=swap',
     ];
@@ -194,17 +216,19 @@ function AppWrapper(props) {
         ))}
       </NextHead>
       <UserLanguageProvider defaultUserLanguage={pageProps.userLanguage}>
-        <CodeVariantProvider>
-          <PageContext.Provider value={{ activePage, pages: productPages }}>
-            <ThemeProvider>
-              <DocsStyledEngineProvider cacheLtr={emotionCache}>
-                {children}
-                <GoogleAnalytics />
-              </DocsStyledEngineProvider>
-            </ThemeProvider>
-          </PageContext.Provider>
-          <LanguageNegotiation />
-        </CodeVariantProvider>
+        <LanguageNegotiation />
+        <CodeCopyProvider>
+          <CodeVariantProvider>
+            <PageContext.Provider value={{ activePage, pages: productPages }}>
+              <ThemeProvider>
+                <DocsStyledEngineProvider cacheLtr={emotionCache}>
+                  {children}
+                  <GoogleAnalytics />
+                </DocsStyledEngineProvider>
+              </ThemeProvider>
+            </PageContext.Provider>
+          </CodeVariantProvider>
+        </CodeCopyProvider>
       </UserLanguageProvider>
     </React.Fragment>
   );
@@ -225,7 +249,6 @@ export default function MyApp(props) {
     </AppWrapper>
   );
 }
-
 MyApp.propTypes = {
   Component: PropTypes.elementType.isRequired,
   emotionCache: PropTypes.object,
