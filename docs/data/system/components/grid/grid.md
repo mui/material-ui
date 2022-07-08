@@ -111,10 +111,10 @@ You can change the default number of columns (12) with the `columns` prop.
 
 ## Offset
 
-Move the item to the right by using offset props which can be a number or `"auto"`.
+Move the item to the right by using offset props which can be:
 
-- a number, for example, `mdOffset={2}` moves the item to the right by 2 columns starts from `md` breakpoint and up.
-- The `"auto"` value moves the item to the right edge of the grid container.
+- number, for example, `mdOffset={2}` - when used the item is moved to the right by 2 columns starts from `md` breakpoint and up.
+- `"auto"` - when used, the item is moved to the right edge of the grid container.
 
 {{"demo": "OffsetGrid.js", "bg": true}}
 

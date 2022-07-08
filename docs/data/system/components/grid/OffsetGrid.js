@@ -11,7 +11,7 @@ const Item = styled('div')(({ theme }) => ({
   textAlign: 'center',
 }));
 
-export default function VariableWidthGrid() {
+export default function OffsetGrid() {
   return (
     <Grid container spacing={3} sx={{ flexGrow: 1 }}>
       <Grid xs={6} xsOffset={3} md={2} mdOffset={0}>
