@@ -3,8 +3,7 @@ const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const nextTranspileModules = require('next-transpile-modules');
 const pkg = require('../package.json');
 const { findPages } = require('./src/modules/utils/find');
-const { LANGUAGES, LANGUAGES_SSR } = require('./src/modules/constants');
-const FEATURE_TOGGLE = require('./src/featureToggle');
+const { LANGUAGES, LANGUAGES_SSR, LANGUAGES_IGNORE_PAGES } = require('./src/modules/constants');
 
 const withTM = nextTranspileModules([
   '@mui/material',
@@ -80,12 +79,6 @@ module.exports = withTM({
     ) {
       const [nextExternals, ...externals] = config.externals;
 
-      if (externals.length > 0) {
-        // currently not the case but other next plugins might introduce additional
-        // rules for externals. We would need to handle those in the callback
-        throw new Error('There are other externals in the webpack config.');
-      }
-
       config.externals = [
         (ctx, callback) => {
           const { request } = ctx;
@@ -104,6 +97,7 @@ module.exports = withTM({
           }
           return nextExternals(ctx, callback);
         },
+        ...externals,
       ];
     }
 
@@ -195,10 +189,7 @@ module.exports = withTM({
           return;
         }
         // The blog is not translated
-        if (
-          userLanguage !== 'en' &&
-          (page.pathname === '/blog' || page.pathname.startsWith('/blog/'))
-        ) {
+        if (userLanguage !== 'en' && LANGUAGES_IGNORE_PAGES(page.pathname)) {
           return;
         }
         if (!page.children) {
@@ -244,109 +235,6 @@ module.exports = withTM({
       { source: '/api/:rest*/', destination: '/api-docs/:rest*/' },
       { source: `/static/x/:rest*`, destination: 'http://0.0.0.0:3001/static/x/:rest*' },
     ];
-  },
-  // For developement, adjust the redirects here (no effect on production because of `next export`)
-  // For production, configure at `docs/public/_redirects` (netlify)
-  async redirects() {
-    if (FEATURE_TOGGLE.enable_redirects) {
-      return [
-        {
-          source: '/joy-ui/',
-          destination: '/joy-ui/getting-started/overview/',
-          permanent: false,
-        },
-        {
-          source: '/styles/:path*',
-          destination: '/system/styles/:path*',
-          permanent: false,
-        },
-        {
-          source: '/getting-started/:path*',
-          destination: '/material-ui/getting-started/:path*',
-          permanent: false,
-        },
-        {
-          source: '/customization/:path*',
-          destination: '/material-ui/customization/:path*',
-          permanent: false,
-        },
-        {
-          source: '/guides/:path*',
-          destination: '/material-ui/guides/:path*',
-          permanent: false,
-        },
-        {
-          source: '/experimental-api/:path*',
-          destination: '/material-ui/experimental-api/:path*',
-          permanent: false,
-        },
-        {
-          source: '/discover-more/:path*',
-          destination: '/material-ui/discover-more/:path*',
-          permanent: false,
-        },
-        {
-          source: '/components/data-grid/:path*',
-          destination: '/x/react-data-grid/:path*',
-          permanent: false,
-        },
-        {
-          source: '/components/:slug(icons|material-icons|about-the-lab|transitions|pickers)',
-          destination: '/material-ui/:slug',
-          permanent: false,
-        },
-        {
-          source: '/components/:path(tabs|breadcrumbs)',
-          destination: '/material-ui/react-:path',
-          permanent: false,
-        },
-        ...['checkboxes', 'switches'].map((component) => ({
-          source: `/components/${component}`,
-          destination: `/material-ui/react-${component.replace(/es$/, '')}`,
-          permanent: false,
-        })),
-        ...[
-          'buttons',
-          'radio-buttons',
-          'selects',
-          'text-fields',
-          'avatars',
-          'badges',
-          'chips',
-          'dividers',
-          'lists',
-          'tables',
-          'tooltips',
-          'dialogs',
-          'snackbars',
-          'cards',
-          'drawers',
-          'links',
-          'menus',
-          'steppers',
-        ].map((component) => ({
-          source: `/components/${component}`,
-          destination: `/material-ui/react-${component.replace(/s$/, '')}`,
-          permanent: false,
-        })),
-        {
-          source: '/components/:path',
-          destination: '/material-ui/react-:path',
-          permanent: false,
-        },
-        {
-          source: '/api/data-grid/:path*',
-          destination: '/x/api/data-grid/:path*',
-          permanent: false,
-        },
-        {
-          source: '/api/:path*',
-          destination: '/material-ui/api/:path*',
-          permanent: false,
-        },
-      ];
-    }
-    return [];
   },
   // Can be turned on when https://github.com/vercel/next.js/issues/24640 is fixed
   optimizeFonts: false,

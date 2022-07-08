@@ -221,8 +221,7 @@ interface UseListboxRootSlotOwnProps {
   ref: React.Ref<any>;
 }
 
-export type UseListboxRootSlotProps<TOther = {}> = Omit<TOther, keyof UseListboxRootSlotOwnProps> &
-  UseListboxRootSlotOwnProps;
+export type UseListboxRootSlotProps<TOther = {}> = TOther & UseListboxRootSlotOwnProps;
 
 interface UseListboxOptionSlotOwnProps {
   'aria-disabled': React.AriaAttributes['aria-disabled'];

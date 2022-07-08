@@ -2,7 +2,25 @@ import pagesApi from './pagesApi';
 
 const pages = [
   {
-    pathname: '/system',
+    pathname: '/system-styles',
+    scopePathnames: [
+      '/system/basics',
+      '/system/properties',
+      '/system/the-sx-prop',
+      '/system/borders',
+      '/system/display',
+      '/system/flexbox',
+      '/system/grid',
+      '/system/palette',
+      '/system/positions',
+      '/system/shadows',
+      '/system/sizing',
+      '/system/spacing',
+      '/system/screen-readers',
+      '/system/typography',
+      '/system/advanced',
+      '/system/styled',
+    ],
     icon: 'BuildIcon',
     children: [
       { pathname: '/system/basics' },
@@ -30,6 +48,7 @@ const pages = [
     children: [
       { pathname: '/system/react-box', title: 'Box' },
       { pathname: '/system/react-container', title: 'Container' },
+      { pathname: '/system/react-grid', title: 'Grid' },
     ],
   },
   {

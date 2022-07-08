@@ -7,6 +7,7 @@ import {
   UseSelectButtonSlotProps,
   UseSelectListboxSlotProps,
 } from '../SelectUnstyled';
+import { SlotComponentProps } from '../utils';
 
 export interface MultiSelectUnstyledComponentsPropsOverrides {}
 
@@ -26,11 +27,21 @@ export interface MultiSelectUnstyledProps<TValue extends {}> extends SelectUnsty
    * @default {}
    */
   componentsProps?: {
-    root?: React.ComponentPropsWithRef<'button'> & MultiSelectUnstyledComponentsPropsOverrides;
-    listbox?: React.ComponentPropsWithRef<'ul'> & MultiSelectUnstyledComponentsPropsOverrides;
-    // PopperUnstyled has a required prop: open, but it is not necessary to provide it in componentsProps.
-    popper?: Partial<React.ComponentPropsWithRef<typeof PopperUnstyled>> &
-      MultiSelectUnstyledComponentsPropsOverrides;
+    root?: SlotComponentProps<
+      'button',
+      MultiSelectUnstyledComponentsPropsOverrides,
+      MultiSelectUnstyledOwnerState<TValue>
+    >;
+    listbox?: SlotComponentProps<
+      'button',
+      MultiSelectUnstyledComponentsPropsOverrides,
+      MultiSelectUnstyledOwnerState<TValue>
+    >;
+    popper?: SlotComponentProps<
+      typeof PopperUnstyled,
+      MultiSelectUnstyledComponentsPropsOverrides,
+      MultiSelectUnstyledOwnerState<TValue>
+    >;
   };
   /**
    * The default selected values. Use when the component is not controlled.
@@ -61,7 +72,7 @@ export interface MultiSelectUnstyledOwnerState<TValue> extends MultiSelectUnstyl
 
 export type MultiSelectUnstyledRootSlotProps<TValue> = Simplify<
   UseSelectButtonSlotProps & {
-    className: string;
+    className?: string;
     children?: React.ReactNode;
     ownerState: MultiSelectUnstyledOwnerState<TValue>;
   }
@@ -69,7 +80,7 @@ export type MultiSelectUnstyledRootSlotProps<TValue> = Simplify<
 
 export type MultiSelectUnstyledListboxSlotProps<TValue> = Simplify<
   UseSelectListboxSlotProps & {
-    className: string;
+    className?: string;
     children?: React.ReactNode;
     ownerState: MultiSelectUnstyledOwnerState<TValue>;
   }
@@ -77,8 +88,8 @@ export type MultiSelectUnstyledListboxSlotProps<TValue> = Simplify<
 
 export type MultiSelectUnstyledPopperSlotProps<TValue> = {
   anchorEl: PopperUnstyledProps['anchorEl'];
-  children?: React.ReactNode;
-  className: string | undefined;
+  children?: PopperUnstyledProps['children'];
+  className?: string;
   disablePortal: PopperUnstyledProps['disablePortal'];
   open: boolean;
   ownerState: MultiSelectUnstyledOwnerState<TValue>;
