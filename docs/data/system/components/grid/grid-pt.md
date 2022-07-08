@@ -101,15 +101,33 @@ You can change the default number of columns (12) with the `columns` prop.
 
 {{"demo": "ColumnsGrid.js", "bg": true}}
 
+## Offset
+
+Move the item to the right by using offset props which can be:
+
+- number, for example, `mdOffset={2}` - when used the item is moved to the right by 2 columns starts from `md` breakpoint and up.
+- `"auto"` - when used, the item is moved to the right edge of the grid container.
+
+{{"demo": "OffsetGrid.js", "bg": true}}
+
 ## Custom breakpoints
 
-If you specify custom breakpoints to the theme, you can use those names as grid item props and in responsive values.
+If you specify custom breakpoints to the theme, you can use those names as grid item props in responsive values.
 
 {{"demo": "CustomBreakpointsGrid.js", "bg": true}}
 
-:::info
+:::info The custom breakpoints affect both the size and offset props:
 
-For **TypeScript**, you have to set module augmentation on the theme breakpoints interface.
+```diff
+- <Grid xs={6} xsOffset={2} sm={4} smOffset={2} md={3} mdOffset={3}>
++ <Grid mobile={6} mobileOffset={2} tablet={4} tabletOffset={2} laptop={3} laptopOffset={3}>
+```
+
+:::
+
+### TypeScript
+
+You have to set module augmentation on the theme breakpoints interface. The properties with `true` value will appear as `{key}`(size prop) and `{key}Offset`(offset prop).
 
 ```ts
 declare module '@mui/system' {
@@ -128,8 +146,6 @@ declare module '@mui/system' {
   }
 }
 ```
-
-:::
 
 ## Limitations
 
