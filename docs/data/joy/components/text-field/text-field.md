@@ -7,11 +7,12 @@ unstyled: /base/react-input/
 
 # Text field
 
-<p class="description">Text.</p>
+<p class="description">Text fields let users enter and edit text.</p>
 
 ## Introduction
 
-Text.
+Text fields allow users to enter text into a UI.
+They typically appear in forms and dialogs.
 
 {{"demo": "TextFieldUsage.js", "hideToolbar": true}}
 
@@ -28,3 +29,15 @@ export default function MyApp() {
   return <TextField placeholder="Search anything…" />;
 }
 ```
+
+### Sizes
+
+### Form props
+
+### Validation
+
+### Multiline
+
+### Input decorators
+
+### Ful width
