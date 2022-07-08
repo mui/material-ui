@@ -11,7 +11,7 @@ export default function ButtonUsage() {
         {
           propName: 'variant',
           knob: 'select',
-          defaultValue: 'solid',
+          defaultValue: 'outlined',
           options: ['plain', 'outlined', 'soft', 'solid'],
         },
         {
@@ -37,11 +37,8 @@ export default function ButtonUsage() {
         },
       ]}
       renderDemo={(props) => (
-        <Box sx={{ display: 'flex', gap: 2 }}>
-          <Button {...props}>Hello world</Button>
-          <IconButton {...props}>
-            <FavoriteBorder />
-          </IconButton>
+        <Box>
+          <TextField {...props} />
         </Box>
       )}
     />

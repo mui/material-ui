@@ -7,6 +7,8 @@ unstyled: /base/react-input/
 
 # Text field
 
+<p class="description">Text.</p>
+
 ## Introduction
 
 Text.
