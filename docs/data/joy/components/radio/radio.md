@@ -17,7 +17,7 @@ For more in-depth about when to use each, visit [the NNg's documentation](https:
 
 {{"demo": "RadioUsage.js", "hideToolbar": true}}
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Component
 
