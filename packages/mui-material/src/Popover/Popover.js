@@ -120,8 +120,8 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
     TransitionProps: { onEntering, ...TransitionProps } = {},
     ...other
   } = props;
+
   const paperRef = React.useRef();
-  const handlePaperRef = useForkRef(paperRef, PaperProps.ref);
 
   const ownerState = {
     ...props,
@@ -295,6 +295,14 @@ const Popover = React.forwardRef(function Popover(inProps, ref) {
     }
     element.style.transformOrigin = positioning.transformOrigin;
   }, [getPositioningStyle]);
+
+  const handlePaperRefUpdate = (paperElement) => {
+    if (paperElement !== null && open) {
+      setPositioningStyles();
+    }
+  };
+
+  const handlePaperRef = useForkRef(useForkRef(paperRef, handlePaperRefUpdate), PaperProps.ref);
 
   const handleEntering = (element, isAppearing) => {
     if (onEntering) {
