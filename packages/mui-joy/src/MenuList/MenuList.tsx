@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { OverridableComponent } from '@mui/types';
 import composeClasses from '@mui/base/composeClasses';
+import { useSlotProps } from '@mui/base/utils';
 import { useMenu, MenuUnstyledContext, MenuUnstyledContextType } from '@mui/base/MenuUnstyled';
 import { styled, useThemeProps } from '../styles';
 import List from '../List';
@@ -40,22 +41,13 @@ const MenuListRoot = styled(List, {
 }));
 
 const MenuList = React.forwardRef(function MenuList(inProps, ref) {
-  const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
+  const props = useThemeProps({
     props: inProps,
     name: 'MuiMenuList',
   });
   const { id, actions, open, onClose } = useMenuPopup();
 
-  const {
-    id: idProp,
-    children,
-    className,
-    component,
-    size = 'md',
-    onBlur,
-    onKeyDown,
-    ...other
-  } = props;
+  const { id: idProp, children, className, size = 'md', onBlur, onKeyDown, ...other } = props;
 
   const {
     registerItem,
@@ -82,6 +74,13 @@ const MenuList = React.forwardRef(function MenuList(inProps, ref) {
   );
 
   const classes = useUtilityClasses();
+  const listboxProps = useSlotProps({
+    elementType: MenuListRoot,
+    getSlotProps: getListboxProps,
+    externalSlotProps: other,
+    ownerState,
+    className: classes.listbox,
+  });
 
   const contextValue = {
     registerItem,
@@ -105,16 +104,18 @@ const MenuList = React.forwardRef(function MenuList(inProps, ref) {
   }
 
   return (
-    <MenuListRoot
-      component={component}
-      className={clsx(classes.root, className)}
-      ownerState={ownerState}
-      size={size}
-      {...getListboxProps(handlers)}
-      {...other}
-    >
-      <MenuUnstyledContext.Provider value={contextValue}>{children}</MenuUnstyledContext.Provider>
-    </MenuListRoot>
+    <MenuUnstyledContext.Provider value={contextValue}>
+      <MenuListRoot
+        component={component}
+        className={clsx(classes.root, className)}
+        ownerState={ownerState}
+        size={size}
+        {...getListboxProps(handlers)}
+        {...other}
+      >
+        {children}
+      </MenuListRoot>
+    </MenuUnstyledContext.Provider>
   );
 }) as OverridableComponent<MenuListTypeMap>;
 

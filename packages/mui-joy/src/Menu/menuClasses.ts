@@ -1,4 +1,4 @@
-import { generateUtilityClass, generateUtilityClasses } from '@mui/base';
+import { generateUtilityClass, generateUtilityClasses } from '../className';
 
 export interface MenuClasses {
   /** Styles applied to the root element. */
@@ -8,9 +8,9 @@ export interface MenuClasses {
 export type MenuClassKey = keyof MenuClasses;
 
 export function getMenuUtilityClass(slot: string): string {
-  return generateUtilityClass('MuiMenu', slot);
+  return generateUtilityClass('JoyMenu', slot);
 }
 
-const menuClasses: MenuClasses = generateUtilityClasses('MuiMenu', ['root']);
+const menuClasses: MenuClasses = generateUtilityClasses('JoyMenu', ['root']);
 
 export default menuClasses;

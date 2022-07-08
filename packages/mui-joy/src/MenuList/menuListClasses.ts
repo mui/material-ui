@@ -1,4 +1,4 @@
-import { generateUtilityClass, generateUtilityClasses } from '@mui/base';
+import { generateUtilityClass, generateUtilityClasses } from '../className';
 
 export interface MenuListClasses {
   /** Styles applied to the root element. */
@@ -16,10 +16,10 @@ export interface MenuListClasses {
 export type MenuListClassKey = keyof MenuListClasses;
 
 export function getMenuListUtilityClass(slot: string): string {
-  return generateUtilityClass('MuiMenuList', slot);
+  return generateUtilityClass('JoyMenuList', slot);
 }
 
-const menuClasses: MenuListClasses = generateUtilityClasses('MuiMenuList', [
+const menuClasses: MenuListClasses = generateUtilityClasses('JoyMenuList', [
   'root',
   'nested',
   'sizeSm',

@@ -247,19 +247,7 @@ const ThirdMenu = () => {
 
 export default function JoyMenu() {
   return (
-    <CssVarsProvider
-      theme={{
-        colorSchemes: {
-          light: {
-            palette: {
-              neutral: {
-                outlinedBorder: 'rgba(0, 0, 0, 0.12)',
-              },
-            },
-          },
-        },
-      }}
-    >
+    <CssVarsProvider>
       <GlobalStyles
         styles={{ body: { margin: 0, backgroundColor: 'var(--joy-palette-background-level1)' } }}
       />

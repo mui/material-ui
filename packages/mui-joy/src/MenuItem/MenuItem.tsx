@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import composeClasses from '@mui/base/composeClasses';
+import { useSlotProps } from '@mui/base/utils';
 import { useMenuItem } from '@mui/base/MenuItemUnstyled';
 import ListItemButton from '../ListItemButton';
 import { styled, useThemeProps } from '../styles';
@@ -23,53 +23,41 @@ const MenuItemRoot = styled(ListItemButton, {
 })<{ ownerState: MenuItemProps; component?: React.ElementType }>({});
 
 const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
-  const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
+  const props = useThemeProps({
     props: inProps,
     name: 'MuiMenuItem',
   });
 
-  const {
-    children,
-    className,
-    component = 'li',
-    disabled = false,
-    selected,
-    role,
-    ...other
-  } = props;
+  const { children, className, disabled: disabledProp = false, selected, role, ...other } = props;
 
-  const { getRootProps, itemState, focusVisible } = useMenuItem({ component, disabled, ref });
+  const { getRootProps, disabled, focusVisible } = useMenuItem({
+    disabled: disabledProp,
+    ref,
+  });
 
   const ownerState = {
     ...props,
-    component,
+    disabled,
     focusVisible,
   };
 
   const classes = useUtilityClasses();
 
-  if (itemState == null) {
-    return null;
-  }
+  const rootProps = useSlotProps({
+    elementType: MenuItemRoot,
+    getSlotProps: getRootProps,
+    externalSlotProps: {},
+    externalForwardedProps: {
+      ...other,
+      ...((role === 'menuitemradio' || role === 'menuitemcheckbox') && {
+        'aria-checked': selected ? 'true' : 'false',
+      }),
+    },
+    className: classes.root,
+    ownerState,
+  });
 
-  return (
-    <MenuItemRoot
-      component={component}
-      className={clsx(classes.root, className)}
-      ownerState={ownerState}
-      disabled={disabled}
-      selected={selected}
-      {...other}
-      {...getRootProps(other)}
-      {...(role && { role })}
-      {...(role === 'menuitemradio' ||
-        (role === 'menuitemcheckbox' && {
-          'aria-checked': selected ? 'true' : 'false',
-        }))}
-    >
-      {children}
-    </MenuItemRoot>
-  );
+  return <MenuItemRoot {...rootProps}>{children}</MenuItemRoot>;
 }) as ExtendMenuItem<MenuItemTypeMap>;
 
 MenuItem.propTypes /* remove-proptypes */ = {
