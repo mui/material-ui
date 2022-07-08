@@ -33,10 +33,10 @@ describe('<Modal />', () => {
       refInstanceof: window.HTMLDivElement,
       testVariantProps: { hideBackdrop: true },
       skip: [
-        'rootClass', // portal, can't determin the root
+        'rootClass', // portal, can't determine the root
         'componentsProp', // TODO isRTL is leaking, why do we even have it in the first place?
-        'themeDefaultProps', // portal, can't determin the root
-        'themeStyleOverrides', // portal, can't determin the root
+        'themeDefaultProps', // portal, can't determine the root
+        'themeStyleOverrides', // portal, can't determine the root
         'reactTestRenderer', // portal https://github.com/facebook/react/issues/11565
       ],
     }),
@@ -213,8 +213,9 @@ describe('<Modal />', () => {
 
     it('should ignore the backdrop click if the event did not come from the backdrop', () => {
       function CustomBackdrop(props) {
+        const { ownerState, ...other } = props;
         return (
-          <div {...props}>
+          <div {...other}>
             <span data-testid="inner" />
           </div>
         );

@@ -85,6 +85,10 @@ These two examples are equivalent:
 <BadgeUnstyled componentsProps={{ root: { id: 'badge1' } }}>
 ```
 
+:::warning
+If both `componentsProps.root` and additional props have the same keys but different values, the `componentsProps.root` props will take precedence. This does not apply to classes and the `style` prop (they will be merged instead).
+:::
+
 ## Components vs. hooks
 
 MUI Base includes two kinds of building blocks: **components** and **hooks**.

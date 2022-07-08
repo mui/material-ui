@@ -54,7 +54,6 @@ describe('<SliderUnstyled />', () => {
         expectedClassName: classes.rail,
       },
     },
-    skip: ['componentsPropsCallbacks'], // not implemented yet
   }));
 
   it('forwards style props on the Root component', () => {

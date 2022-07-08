@@ -23,6 +23,7 @@ const Root = styled('div')(({ theme }) => ({
     overflow: 'auto',
     WebkitOverflowScrolling: 'touch',
     maxWidth: 'calc(100vw - 32px)',
+    maxHeight: '350px',
     [theme.breakpoints.up('md')]: {
       maxWidth: 'calc(100vw - 32px - 16px)',
     },
@@ -102,7 +103,6 @@ const Root = styled('div')(({ theme }) => ({
     }),
   },
   '& h1, & h2, & h3, & h4': {
-    scrollMarginTop: 'calc(var(--MuiDocs-header-height) + 32px)',
     '& code': {
       fontSize: 'inherit',
       lineHeight: 'inherit',

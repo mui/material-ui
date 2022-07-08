@@ -79,7 +79,7 @@ Other perks are described on [the careers page](/careers/#perks-amp-benefits/).
 
 ## How to apply?
 
-[Apply now for this position 📮](https://airtable.com/shrdqo1Z6srZXGcvh?prefill_Applying+for=Designer&prefill_source=mui.com).
+[Apply now for this position 📮](https://jobs.ashbyhq.com/MUI/__ID__/application?utm_source=ZNRrPGBkqO).
 
 ## What happens next?
 
