@@ -1,6 +1,5 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import { HTMLElementType, refType } from '@mui/utils';
 import MenuUnstyledContext, { MenuUnstyledContextType } from './MenuUnstyledContext';
 import {
@@ -41,7 +40,6 @@ const MenuUnstyled = React.forwardRef(function MenuUnstyled(
     actions,
     anchorEl,
     children,
-    className,
     component,
     components = {},
     componentsProps = {},
@@ -94,7 +92,7 @@ const MenuUnstyled = React.forwardRef(function MenuUnstyled(
       role: undefined,
       ref: forwardedRef,
     },
-    className: clsx(classes.root, className),
+    className: classes.root,
     ownerState,
   }) as MenuUnstyledRootSlotProps;
 
@@ -148,10 +146,6 @@ MenuUnstyled.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   children: PropTypes.node,
-  /**
-   * @ignore
-   */
-  className: PropTypes.string,
   /**
    * @ignore
    */

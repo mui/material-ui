@@ -11,7 +11,7 @@ export type BadgeUnstyledOwnerState = BadgeUnstyledProps & {
   showZero: boolean;
 };
 
-interface BadgeUnstyledOwnProps {
+export interface BadgeUnstyledOwnProps {
   /**
    * The components used for each slot inside the Badge.
    * Either a string to use a HTML element or a component.

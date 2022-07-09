@@ -38,7 +38,7 @@ const Thumb = React.forwardRef(function Thumb(
   props: SliderUnstyledThumbSlotProps,
   ref: React.ForwardedRef<HTMLDivElement>,
 ) {
-  const { 'data-index': index, ownerState, ...other } = props;
+  const { 'data-index': index, 'data-focusvisible': focusVisible, ownerState, ...other } = props;
   return <div data-track={ownerState.track} {...other} ref={ref} />;
 });
 

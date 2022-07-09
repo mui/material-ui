@@ -11,7 +11,7 @@
     "componentsProps": {
       "type": {
         "name": "shape",
-        "description": "{ label?: object, list?: object, root?: object }"
+        "description": "{ label?: func<br>&#124;&nbsp;object, list?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object }"
       },
       "default": "{}"
     },

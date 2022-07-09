@@ -447,6 +447,16 @@ const appList = [
     stars: 1600,
     dateAdded: '2019-03-25',
   },
+  {
+    title: 'refine FineFoods demo',
+    description: 'A full-featured Admin panel app',
+    image: 'refine-finefoods.jpg',
+    link: 'https://example.mui.admin.refine.dev/',
+    source:
+      'https://github.com/pankod/refine/tree/next/examples/fineFoods/admin/mui',
+    stars: 2415,
+    dateAdded: '2022-06-21',
+  },
 ];
 
 export default appList;

@@ -215,11 +215,11 @@ export default function useCurrentColorScheme<SupportedColorScheme extends strin
   );
 
   const handleMediaQuery = React.useCallback(
-    (e?) => {
+    (e?: MediaQueryListEvent) => {
       if (state.mode === 'system') {
         setState((currentState) => ({
           ...currentState,
-          systemMode: e.matches ? 'dark' : 'light',
+          systemMode: e?.matches ? 'dark' : 'light',
         }));
       }
     },
