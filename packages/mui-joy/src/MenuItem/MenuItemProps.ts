@@ -1,12 +1,6 @@
 import * as React from 'react';
-import {
-  OverridableComponent,
-  OverridableStringUnion,
-  OverridableTypeMap,
-  OverrideProps,
-} from '@mui/types';
+import { OverridableComponent, OverridableTypeMap, OverrideProps } from '@mui/types';
 import { ListItemButtonProps } from '../ListItemButton';
-import { ColorPaletteProp, VariantProp } from '../styles/types';
 
 export type MenuItemSlot = 'root';
 
@@ -15,18 +9,7 @@ export interface MenuItemPropsVariantOverrides {}
 export interface MenuItemPropsColorOverrides {}
 
 export interface MenuItemTypeMap<P = {}, D extends React.ElementType = 'div'> {
-  props: P &
-    ListItemButtonProps & {
-      /**
-       * The color of the component. It supports those theme colors that make sense for this component.
-       */
-      color?: OverridableStringUnion<ColorPaletteProp, MenuItemPropsColorOverrides>;
-      /**
-       * The variant to use.
-       * @default 'text'
-       */
-      variant?: OverridableStringUnion<VariantProp, MenuItemPropsVariantOverrides>;
-    };
+  props: P & ListItemButtonProps;
   defaultComponent: D;
 }
 

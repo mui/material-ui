@@ -28,7 +28,7 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
     name: 'MuiMenuItem',
   });
 
-  const { children, className, disabled: disabledProp = false, selected, role, ...other } = props;
+  const { children, className, disabled: disabledProp = false, ...other } = props;
 
   const { getRootProps, disabled, focusVisible } = useMenuItem({
     disabled: disabledProp,
@@ -47,12 +47,7 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
     elementType: MenuItemRoot,
     getSlotProps: getRootProps,
     externalSlotProps: {},
-    externalForwardedProps: {
-      ...other,
-      ...((role === 'menuitemradio' || role === 'menuitemcheckbox') && {
-        'aria-checked': selected ? 'true' : 'false',
-      }),
-    },
+    externalForwardedProps: other,
     className: classes.root,
     ownerState,
   });

@@ -1,6 +1,5 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import { OverridableComponent } from '@mui/types';
 import composeClasses from '@mui/base/composeClasses';
 import { useSlotProps } from '@mui/base/utils';
@@ -9,7 +8,6 @@ import { styled, useThemeProps } from '../styles';
 import List from '../List';
 import { MenuListProps, MenuListTypeMap } from './MenuListProps';
 import { getMenuListUtilityClass } from './menuListClasses';
-import { useMenuPopup } from '../Menu/MenuPopupContext';
 
 const useUtilityClasses = () => {
   const slots = {
@@ -23,31 +21,15 @@ const MenuListRoot = styled(List, {
   name: 'MuiMenuList',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: MenuListProps; component?: React.ElementType }>(({ ownerState, theme }) => ({
-  ...(ownerState.size === 'sm' && {
-    '--List-padding': '0.25rem',
-    '--List-divider-gap': '0.25rem',
-  }),
-  ...(ownerState.size === 'md' && {
-    '--List-padding': '0.25rem',
-    '--List-divider-gap': '0.25rem',
-  }),
-  ...(ownerState.size === 'lg' && {
-    '--List-padding': '0.5rem',
-    '--List-divider-gap': '0.5rem',
-  }),
-  '--List-radius': theme.vars.radius.sm,
-  '--List-gap': '0px',
-}));
+})<{ ownerState: MenuListProps; component?: React.ElementType }>({});
 
 const MenuList = React.forwardRef(function MenuList(inProps, ref) {
   const props = useThemeProps({
     props: inProps,
     name: 'MuiMenuList',
   });
-  const { id, actions, open, onClose } = useMenuPopup();
 
-  const { id: idProp, children, className, size = 'md', onBlur, onKeyDown, ...other } = props;
+  const { actions, id: idProp, children, className, size = 'md', ...other } = props;
 
   const {
     registerItem,
@@ -58,10 +40,8 @@ const MenuList = React.forwardRef(function MenuList(inProps, ref) {
     highlightFirstItem,
     highlightLastItem,
   } = useMenu({
-    open,
-    onClose,
     listboxRef: ref,
-    listboxId: idProp || id,
+    listboxId: idProp,
   });
 
   React.useImperativeHandle(
@@ -74,12 +54,20 @@ const MenuList = React.forwardRef(function MenuList(inProps, ref) {
   );
 
   const classes = useUtilityClasses();
+  const ownerState = {
+    ...props,
+    size,
+  };
   const listboxProps = useSlotProps({
     elementType: MenuListRoot,
     getSlotProps: getListboxProps,
-    externalSlotProps: other,
+    externalSlotProps: {},
+    externalForwardedProps: other,
+    additionalProps: {
+      size,
+    },
     ownerState,
-    className: classes.listbox,
+    className: classes.root,
   });
 
   const contextValue = {
@@ -87,35 +75,13 @@ const MenuList = React.forwardRef(function MenuList(inProps, ref) {
     unregisterItem,
     getItemState,
     getItemProps,
-    open,
+    open: true,
   } as MenuUnstyledContextType;
 
-  const ownerState = {
-    size,
-    ...props,
-  };
-
-  const handlers: Record<string, React.EventHandler<any>> = {};
-  if (onBlur) {
-    handlers.onBlur = onBlur;
-  }
-  if (onKeyDown) {
-    handlers.onKeyDown = onKeyDown;
-  }
-
   return (
-    <MenuUnstyledContext.Provider value={contextValue}>
-      <MenuListRoot
-        component={component}
-        className={clsx(classes.root, className)}
-        ownerState={ownerState}
-        size={size}
-        {...getListboxProps(handlers)}
-        {...other}
-      >
-        {children}
-      </MenuListRoot>
-    </MenuUnstyledContext.Provider>
+    <MenuListRoot {...listboxProps}>
+      <MenuUnstyledContext.Provider value={contextValue}>{children}</MenuUnstyledContext.Provider>
+    </MenuListRoot>
   );
 }) as OverridableComponent<MenuListTypeMap>;
 
