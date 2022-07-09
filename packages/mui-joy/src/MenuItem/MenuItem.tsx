@@ -4,13 +4,15 @@ import composeClasses from '@mui/base/composeClasses';
 import { useSlotProps } from '@mui/base/utils';
 import { useMenuItem } from '@mui/base/MenuItemUnstyled';
 import ListItemButton from '../ListItemButton';
-import MenuButtonContext from '../MenuButton/MenuButtonContext';
 import { styled, useThemeProps } from '../styles';
 import { getMenuItemUtilityClass } from './menuItemClasses';
 import { MenuItemProps, ExtendMenuItem, MenuItemTypeMap } from './MenuItemProps';
 
-const useUtilityClasses = () => {
-  const slots = { root: ['root'] };
+const useUtilityClasses = (ownerState: MenuItemProps & { focusVisible: boolean }) => {
+  const { disabled, focusVisible, selected } = ownerState;
+  const slots = {
+    root: ['root', disabled && 'disabled', focusVisible && 'focusVisible', selected && 'selected'],
+  };
 
   const composedClasses = composeClasses(slots, getMenuItemUtilityClass, {});
 
@@ -18,24 +20,24 @@ const useUtilityClasses = () => {
 };
 
 const MenuItemRoot = styled(ListItemButton, {
-  name: 'MuiMenuItem',
+  name: 'JoyMenuItem',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: MenuItemProps; component?: React.ElementType }>({});
+})<{ ownerState: MenuItemProps }>({});
 
 const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
   const props = useThemeProps({
     props: inProps,
-    name: 'MuiMenuItem',
+    name: 'JoyMenuItem',
   });
-  const menuButton = React.useContext(MenuButtonContext);
 
-  const { children, className, disabled: disabledProp = false, onClick, ...other } = props;
-
-  const handleClick: typeof onClick = (event) => {
-    onClick?.(event);
-    menuButton?.onClose();
-  };
+  const {
+    children,
+    disabled: disabledProp = false,
+    selected = false,
+    component = 'li',
+    ...other
+  } = props;
 
   const { getRootProps, disabled, focusVisible } = useMenuItem({
     disabled: disabledProp,
@@ -44,16 +46,23 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
 
   const ownerState = {
     ...props,
+    component,
     disabled,
     focusVisible,
+    selected,
   };
 
-  const classes = useUtilityClasses();
+  const classes = useUtilityClasses(ownerState);
 
   const rootProps = useSlotProps({
     elementType: MenuItemRoot,
     getSlotProps: getRootProps,
-    externalSlotProps: { onClick: handleClick, disabled },
+    externalSlotProps: {},
+    additionalProps: {
+      component,
+      disabled,
+      selected,
+    },
     externalForwardedProps: other,
     className: classes.root,
     ownerState,
