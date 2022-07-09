@@ -42,7 +42,7 @@
       "typescript-to-proptypes": ["./packages/typescript-to-proptypes/src"]
     },
     // Otherwise we get react-native typings which conflict with dom.lib.
-    "types": ["node", "react"]
+    "types": ["node", "react", "react-is/next"]
   },
   "exclude": ["**/.*/", "**/build", "**/node_modules", "docs/export"]
 }

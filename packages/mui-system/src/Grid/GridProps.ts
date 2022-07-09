@@ -26,6 +26,12 @@ export interface GridDefaultBreakpoints {
    */
   lg?: boolean | GridSize;
   /**
+   * If a number, it sets the margin-left equals to the number of columns the grid item uses.
+   * If 'auto', the grid item push itself to the right-end of the container.
+   * The value is applied for the `lg` breakpoint and wider screens if not overridden.
+   */
+  lgOffset?: GridSize;
+  /**
    * If a number, it sets the number of columns the grid item uses.
    * It can't be greater than the total number of columns of the container (12 by default).
    * If 'auto', the grid item's width matches its content.
@@ -35,6 +41,12 @@ export interface GridDefaultBreakpoints {
    * @default false
    */
   md?: boolean | GridSize;
+  /**
+   * If a number, it sets the margin-left equals to the number of columns the grid item uses.
+   * If 'auto', the grid item push itself to the right-end of the container.
+   * The value is applied for the `md` breakpoint and wider screens if not overridden.
+   */
+  mdOffset?: GridSize;
   /**
    * If a number, it sets the number of columns the grid item uses.
    * It can't be greater than the total number of columns of the container (12 by default).
@@ -46,6 +58,12 @@ export interface GridDefaultBreakpoints {
    */
   sm?: boolean | GridSize;
   /**
+   * If a number, it sets the margin-left equals to the number of columns the grid item uses.
+   * If 'auto', the grid item push itself to the right-end of the container.
+   * The value is applied for the `sm` breakpoint and wider screens if not overridden.
+   */
+  smOffset?: GridSize;
+  /**
    * If a number, it sets the number of columns the grid item uses.
    * It can't be greater than the total number of columns of the container (12 by default).
    * If 'auto', the grid item's width matches its content.
@@ -56,6 +74,12 @@ export interface GridDefaultBreakpoints {
    */
   xl?: boolean | GridSize;
   /**
+   * If a number, it sets the margin-left equals to the number of columns the grid item uses.
+   * If 'auto', the grid item push itself to the right-end of the container.
+   * The value is applied for the `xl` breakpoint and wider screens if not overridden.
+   */
+  xlOffset?: GridSize;
+  /**
    * If a number, it sets the number of columns the grid item uses.
    * It can't be greater than the total number of columns of the container (12 by default).
    * If 'auto', the grid item's width matches its content.
@@ -65,6 +89,12 @@ export interface GridDefaultBreakpoints {
    * @default false
    */
   xs?: boolean | GridSize;
+  /**
+   * If a number, it sets the margin-left equals to the number of columns the grid item uses.
+   * If 'auto', the grid item push itself to the right-end of the container.
+   * The value is applied for the `xs` breakpoint and wider screens if not overridden.
+   */
+  xsOffset?: GridSize;
 }
 
 type CustomBreakpoints = Partial<
@@ -129,6 +159,7 @@ export interface GridBaseProps extends Breakpoints {
 export interface GridOwnerState extends GridBaseProps {
   nested: boolean;
   gridSize: Partial<Record<Breakpoint, GridSize | boolean>>;
+  gridOffset: Partial<Record<Breakpoint, GridSize>>;
 }
 
 export interface GridTypeMap<P = {}, D extends React.ElementType = 'div'> {

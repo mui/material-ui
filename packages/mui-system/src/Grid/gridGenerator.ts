@@ -98,6 +98,29 @@ export const generateGridSizeStyles = ({ theme, ownerState }: Props) => {
   return styles;
 };
 
+export const generateGridOffsetStyles = ({ theme, ownerState }: Props) => {
+  const styles = {};
+  traverseBreakpoints<number | 'auto'>(
+    theme.breakpoints,
+    ownerState.gridOffset,
+    (appendStyle, value) => {
+      let style = {};
+      if (value === 'auto') {
+        style = {
+          marginLeft: 'auto',
+        };
+      }
+      if (typeof value === 'number') {
+        style = {
+          marginLeft: value === 0 ? '0px' : `calc(100% * ${value} / var(--Grid-columns))`,
+        };
+      }
+      appendStyle(styles, style);
+    },
+  );
+  return styles;
+};
+
 export const generateGridColumnsStyles = ({ theme, ownerState }: Props) => {
   if (!ownerState.container) {
     return {};
