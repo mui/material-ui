@@ -276,9 +276,9 @@ export default function JoyMenu() {
               </ListItemDecorator>
               <ListItemContent>Startup</ListItemContent>
             </MenuItem>
-            <MenuItem variant="contained" selected role="menuitemradio">
+            <MenuItem variant="solid">
               <ListItemDecorator>
-                <RadioButtonChecked />
+                <RadioButtonChecked sx={{ color: '#fff' }} />
               </ListItemDecorator>
               <ListItemContent>Business</ListItemContent>
             </MenuItem>
@@ -289,38 +289,37 @@ export default function JoyMenu() {
               <ListItemContent>Enterprise</ListItemContent>
             </MenuItem>
           </MenuList>
-          <MenuList
-            size="sm"
-            sx={{ '--List-item-paddingLeft': '0.5rem', '--List-nestedInsetStart': '0px' }}
-          >
-            <ListItem nested sx={{ py: 0 }}>
-              <List role="group">
-                <MenuItem role="menuitemradio">
-                  <ListItemDecorator />
-                  Single
-                </MenuItem>
-                <MenuItem role="menuitemradio">
-                  <ListItemDecorator />
-                  1.15
-                </MenuItem>
-                <MenuItem role="menuitemradio">
-                  <ListItemDecorator />
-                  Double
-                </MenuItem>
-                <MenuItem role="menuitemradio" selected>
-                  <ListItemDecorator>
-                    <Done />
-                  </ListItemDecorator>
-                  Custom 1.12
-                </MenuItem>
-              </List>
-            </ListItem>
-            <ListDivider />
-            <MenuItem>Add space before paragraph</MenuItem>
-            <MenuItem>Add space after paragraph</MenuItem>
-            <ListDivider />
-            <MenuItem>Custom spacing...</MenuItem>
-          </MenuList>
+          <Sheet variant="outlined" sx={{ borderRadius: '4px', py: 0.5 }}>
+            <MenuList size="sm">
+              <ListItem nested sx={{ py: 0 }}>
+                <List role="group">
+                  <MenuItem role="menuitemradio">
+                    <ListItemDecorator />
+                    Single
+                  </MenuItem>
+                  <MenuItem role="menuitemradio">
+                    <ListItemDecorator />
+                    1.15
+                  </MenuItem>
+                  <MenuItem role="menuitemradio">
+                    <ListItemDecorator />
+                    Double
+                  </MenuItem>
+                  <MenuItem role="menuitemradio" selected>
+                    <ListItemDecorator>
+                      <Done />
+                    </ListItemDecorator>
+                    Custom 1.12
+                  </MenuItem>
+                </List>
+              </ListItem>
+              <ListDivider />
+              <MenuItem>Add space before paragraph</MenuItem>
+              <MenuItem>Add space after paragraph</MenuItem>
+              <ListDivider />
+              <MenuItem>Custom spacing...</MenuItem>
+            </MenuList>
+          </Sheet>
           {/* <FirstMenu /> */}
           <div>
             <Menu id="first-menu" button={<Button variant="outlined">Simple menu</Button>}>
