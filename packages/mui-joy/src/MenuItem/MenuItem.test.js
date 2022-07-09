@@ -24,7 +24,7 @@ const Wrapper = ({ children }) => (
   <MenuUnstyledContext.Provider value={testContext}>{children}</MenuUnstyledContext.Provider>
 );
 
-describe('<MenuItem />', () => {
+describe('Joy <MenuItem />', () => {
   const { render: baseRender } = createRenderer();
   const render = (element, options = {}) => baseRender(element, { wrapper: Wrapper, ...options });
 
