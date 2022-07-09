@@ -4,6 +4,7 @@ import composeClasses from '@mui/base/composeClasses';
 import { useSlotProps } from '@mui/base/utils';
 import { useMenuItem } from '@mui/base/MenuItemUnstyled';
 import ListItemButton from '../ListItemButton';
+import MenuButtonContext from '../MenuButton/MenuButtonContext';
 import { styled, useThemeProps } from '../styles';
 import { getMenuItemUtilityClass } from './menuItemClasses';
 import { MenuItemProps, ExtendMenuItem, MenuItemTypeMap } from './MenuItemProps';
@@ -27,8 +28,14 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
     props: inProps,
     name: 'MuiMenuItem',
   });
+  const menuButton = React.useContext(MenuButtonContext);
 
-  const { children, className, disabled: disabledProp = false, ...other } = props;
+  const { children, className, disabled: disabledProp = false, onClick, ...other } = props;
+
+  const handleClick: typeof onClick = (event) => {
+    onClick?.(event);
+    menuButton?.onClose();
+  };
 
   const { getRootProps, disabled, focusVisible } = useMenuItem({
     disabled: disabledProp,
@@ -46,7 +53,7 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
   const rootProps = useSlotProps({
     elementType: MenuItemRoot,
     getSlotProps: getRootProps,
-    externalSlotProps: {},
+    externalSlotProps: { onClick: handleClick, disabled },
     externalForwardedProps: other,
     className: classes.root,
     ownerState,

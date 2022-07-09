@@ -1,6 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { OverridableComponent } from '@mui/types';
+import { unstable_useForkRef as useForkRef } from '@mui/utils';
 import composeClasses from '@mui/base/composeClasses';
 import { useSlotProps } from '@mui/base/utils';
 import { useMenu, MenuUnstyledContext, MenuUnstyledContextType } from '@mui/base/MenuUnstyled';
@@ -10,6 +11,7 @@ import Sheet from '../Sheet';
 import { styled, useThemeProps } from '../styles';
 import { MenuTypeMap, MenuProps } from './MenuProps';
 import { getMenuUtilityClass } from './menuClasses';
+import MenuButtonContext from '../MenuButton/MenuButtonContext';
 
 const useUtilityClasses = (ownerState: MenuProps) => {
   const { open } = ownerState;
@@ -43,21 +45,31 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     props: inProps,
     name: 'MuiMenu',
   });
+  const menuButton = React.useContext(MenuButtonContext);
 
   const {
-    actions,
-    anchorEl,
+    actions: actionsProp,
+    anchorEl: anchorElProp,
     children,
     componentsProps = {},
     disablePortal = true,
     keepMounted = false,
-    listboxId,
-    onClose,
-    open = false,
+    listboxId: listboxIdProp,
+    onClose: onCloseProp,
+    open: openProp,
     modifiers = [],
     variant = 'outlined',
     ...other
   } = props;
+
+  const actions = useForkRef(actionsProp, menuButton?.actions);
+  const listboxId = listboxIdProp ?? menuButton?.menuId;
+  const anchorEl = anchorElProp ?? menuButton?.anchorEl;
+  const open = openProp ?? menuButton?.open ?? false;
+  const onClose = () => {
+    onCloseProp?.();
+    menuButton?.onClose();
+  };
 
   const {
     registerItem,
