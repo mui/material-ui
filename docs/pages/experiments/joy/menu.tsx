@@ -171,7 +171,7 @@ export default function JoyMenu() {
               </ListItemDecorator>
               <ListItemContent>Startup</ListItemContent>
             </MenuItem>
-            <MenuItem variant="solid">
+            <MenuItem variant="solid" selected disabled>
               <ListItemDecorator>
                 <RadioButtonChecked sx={{ color: '#fff' }} />
               </ListItemDecorator>
