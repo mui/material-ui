@@ -15,6 +15,11 @@ export interface PopperUnstyledProps
    */
   anchorEl?: null | VirtualElement | (() => VirtualElement);
   /**
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   */
+  component?: React.ElementType;
+  /**
    * Popper render function or node.
    */
   children?:
@@ -65,7 +70,7 @@ export interface PopperUnstyledProps
   /**
    * If `true`, the component is shown.
    */
-  open: boolean;
+  open?: boolean;
   /**
    * Popper placement.
    * @default 'bottom'

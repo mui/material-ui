@@ -75,6 +75,7 @@ const MenuList = React.forwardRef(function MenuList(inProps, ref) {
     unregisterItem,
     getItemState,
     getItemProps,
+    getListboxProps,
     open: true,
   } as MenuUnstyledContextType;
 

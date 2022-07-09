@@ -1,18 +1,21 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import { OverridableComponent } from '@mui/types';
 import composeClasses from '@mui/base/composeClasses';
+import { useSlotProps } from '@mui/base/utils';
+import { useMenu, MenuUnstyledContext, MenuUnstyledContextType } from '@mui/base/MenuUnstyled';
 import PopperUnstyled from '@mui/base/PopperUnstyled';
+import List from '../List';
+import Sheet from '../Sheet';
 import { styled, useThemeProps } from '../styles';
-import { MenuTypeMap } from './MenuProps';
-import { MenuActions } from '../MenuList';
+import { MenuTypeMap, MenuProps } from './MenuProps';
 import { getMenuUtilityClass } from './menuClasses';
-import MenuPopupContext from './MenuPopupContext';
 
-const useUtilityClasses = () => {
+const useUtilityClasses = (ownerState: MenuProps) => {
+  const { open } = ownerState;
   const slots = {
-    root: ['root'],
+    root: ['root', open && 'expanded'],
+    listbox: ['listbox', open && 'expanded'],
   };
 
   return composeClasses(slots, getMenuUtilityClass, {});
@@ -22,9 +25,18 @@ const MenuRoot = styled(PopperUnstyled, {
   name: 'MuiMenu',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})({
+})(({ theme }) => ({
+  boxShadow: theme.vars.shadow.sm,
+  borderRadius: theme.vars.radius.sm,
+  paddingBlock: theme.spacing(0.75),
   zIndex: 1,
-});
+}));
+
+const MenuListbox = styled(List, {
+  name: 'MuiMenu',
+  slot: 'Listbox',
+  overridesResolver: (props, styles) => styles.listbox,
+})({});
 
 const Menu = React.forwardRef(function Menu(inProps, ref) {
   const props = useThemeProps<typeof inProps>({
@@ -32,65 +44,104 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     name: 'MuiMenu',
   });
 
-  const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
-  const buttonRef = React.useRef<HTMLButtonElement>(null);
-  const menuActions = React.useRef<MenuActions>(null);
+  const {
+    actions,
+    anchorEl,
+    children,
+    componentsProps = {},
+    disablePortal = true,
+    keepMounted = false,
+    listboxId,
+    onClose,
+    open = false,
+    modifiers = [],
+    variant = 'outlined',
+    ...other
+  } = props;
 
-  const { button, children, className, onClose, id, ...other } = props;
+  const {
+    registerItem,
+    unregisterItem,
+    getListboxProps,
+    getItemProps,
+    getItemState,
+    highlightFirstItem,
+    highlightLastItem,
+  } = useMenu({
+    open,
+    onClose,
+    listboxId,
+  });
 
-  const open = Boolean(anchorEl);
+  React.useImperativeHandle(
+    actions,
+    () => ({
+      highlightFirstItem,
+      highlightLastItem,
+    }),
+    [highlightFirstItem, highlightLastItem],
+  );
 
-  const handleButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-    if (open) {
-      setAnchorEl(null);
-    } else {
-      setAnchorEl(event.currentTarget);
-    }
+  const ownerState = {
+    ...props,
+    disablePortal,
+    variant,
+    modifiers,
+    open,
   };
 
-  const handleButtonKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
-    if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
-      event.preventDefault();
-      setAnchorEl(event.currentTarget);
-      if (event.key === 'ArrowUp') {
-        menuActions.current?.highlightLastItem();
-      }
-    }
+  const classes = useUtilityClasses(ownerState);
+
+  const rootProps = useSlotProps({
+    elementType: MenuRoot,
+    externalForwardedProps: other,
+    externalSlotProps: componentsProps.root,
+    additionalProps: {
+      anchorEl,
+      open,
+      disablePortal,
+      keepMounted,
+      role: undefined,
+      ref,
+      component: Sheet,
+      variant,
+      modifiers: [
+        {
+          name: 'offset',
+          options: {
+            offset: [0, 4],
+          },
+        },
+        ...modifiers,
+      ],
+    },
+    className: classes.root,
+    ownerState,
+  });
+
+  const listboxProps = useSlotProps({
+    elementType: MenuListbox,
+    getSlotProps: getListboxProps,
+    externalSlotProps: componentsProps.listbox,
+    ownerState,
+    className: classes.listbox,
+  });
+
+  const contextValue: MenuUnstyledContextType = {
+    registerItem,
+    unregisterItem,
+    getItemState,
+    getItemProps,
+    getListboxProps,
+    open,
   };
-
-  const handleClose = React.useCallback(() => {
-    setAnchorEl(null);
-    buttonRef.current?.focus();
-    onClose?.();
-  }, [onClose]);
-
-  const classes = useUtilityClasses();
 
   return (
-    <React.Fragment>
-      {React.cloneElement(button, {
-        ref: buttonRef,
-        'aria-controls': open ? id : undefined,
-        'aria-expanded': open || undefined,
-        'aria-haspopup': 'menu',
-        onClick: handleButtonClick,
-        onKeyDown: handleButtonKeyDown,
-      })}
-      <MenuRoot
-        ref={ref}
-        anchorEl={anchorEl}
-        disablePortal
-        keepMounted
-        open={open}
-        role={undefined}
-        className={clsx(classes.root, className)}
-        {...other}
-      >
-        <MenuPopupContext.Provider value={{ id, actions: menuActions, open, onClose: handleClose }}>
-          {children}
-        </MenuPopupContext.Provider>
-      </MenuRoot>
-    </React.Fragment>
+    <MenuRoot {...rootProps}>
+      <MenuListbox {...listboxProps}>
+        <MenuUnstyledContext.Provider value={contextValue}>{children}</MenuUnstyledContext.Provider>
+      </MenuListbox>
+    </MenuRoot>
   );
 }) as OverridableComponent<MenuTypeMap>;
 

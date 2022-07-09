@@ -20,7 +20,6 @@ import ListItemDecorator from '@mui/joy/ListItemDecorator';
 import ListItemContent from '@mui/joy/ListItemContent';
 import ListDivider from '@mui/joy/ListDivider';
 import Link from '@mui/joy/Link';
-import MenuPopup from '@mui/joy/MenuPopup';
 import Menu from '@mui/joy/Menu';
 import MenuList, { MenuActions } from '@mui/joy/MenuList';
 import MenuItem from '@mui/joy/MenuItem';
@@ -131,119 +130,112 @@ const FirstMenu = () => {
       >
         Simple menu
       </Button>
-      <MenuPopup open={open} onClose={onClose} anchorEl={anchorEl}>
-        <Sheet
-          variant="outlined"
-          sx={{ borderRadius: 'sm', minWidth: 160, mt: 0.5, boxShadow: 'sm' }}
-        >
-          <MenuList id="menu1" actions={menuActions}>
-            <MenuItem onClick={onClose}>Menu item 1</MenuItem>
-            <MenuItem onClick={onClose}>Menu item 2</MenuItem>
-            <MenuItem onClick={onClose}>Menu item 3</MenuItem>
-          </MenuList>
-        </Sheet>
-      </MenuPopup>
+      <Menu actions={menuActions} open={open} onClose={onClose} anchorEl={anchorEl}>
+        <MenuItem onClick={onClose}>Menu item 1</MenuItem>
+        <MenuItem onClick={onClose}>Menu item 2</MenuItem>
+        <MenuItem onClick={onClose}>Menu item 3</MenuItem>
+      </Menu>
     </div>
   );
 };
 
-const SecondMenu = () => {
-  const { anchorEl, open, menuButtonRef, menuActions, onClick, onKeyDown, onClose } =
-    useMenuButton();
+// const SecondMenu = () => {
+//   const { anchorEl, open, menuButtonRef, menuActions, onClick, onKeyDown, onClose } =
+//     useMenuButton();
 
-  return (
-    <div>
-      <Button
-        onClick={onClick}
-        onKeyDown={onKeyDown}
-        ref={menuButtonRef}
-        aria-controls={open ? 'menu2' : undefined}
-        aria-expanded={open || undefined}
-        aria-haspopup="menu"
-        variant="outlined"
-      >
-        Group menus
-      </Button>
-      <MenuPopup open={open} onClose={onClose} anchorEl={anchorEl}>
-        <Sheet
-          variant="outlined"
-          sx={{ borderRadius: 'sm', minWidth: 160, mt: 0.5, boxShadow: 'sm' }}
-        >
-          <MenuList id="menu2" actions={menuActions} sx={{ '--List-nestedInsetStart': '0px' }}>
-            <ListItem nested>
-              <ListItem component="div">
-                <Typography level="body3">NAVIGATION</Typography>
-              </ListItem>
-              <List aria-label="Navigation">
-                <MenuItem onClick={onClose}>Back</MenuItem>
-                <MenuItem disabled onClick={onClose}>
-                  Forward
-                </MenuItem>
-                <MenuItem onClick={onClose}>Refresh</MenuItem>
-              </List>
-            </ListItem>
-            <ListItem nested>
-              <ListItem component="div">
-                <Typography level="body3">PAGE</Typography>
-              </ListItem>
-              <List aria-label="Page">
-                <MenuItem onClick={onClose}>Save as</MenuItem>
-                <MenuItem onClick={onClose}>Print</MenuItem>
-              </List>
-            </ListItem>
-            <ListDivider />
-            <MenuItem variant="outlined" color="danger" onClick={onClose}>
-              <ListItemContent>Delete</ListItemContent>
-              <DeleteForever />
-            </MenuItem>
-          </MenuList>
-        </Sheet>
-      </MenuPopup>
-    </div>
-  );
-};
+//   return (
+//     <div>
+//       <Button
+//         onClick={onClick}
+//         onKeyDown={onKeyDown}
+//         ref={menuButtonRef}
+//         aria-controls={open ? 'menu2' : undefined}
+//         aria-expanded={open || undefined}
+//         aria-haspopup="menu"
+//         variant="outlined"
+//       >
+//         Group menus
+//       </Button>
+//       <MenuPopup open={open} onClose={onClose} anchorEl={anchorEl}>
+//         <Sheet
+//           variant="outlined"
+//           sx={{ borderRadius: 'sm', minWidth: 160, mt: 0.5, boxShadow: 'sm' }}
+//         >
+//           <MenuList id="menu2" actions={menuActions} sx={{ '--List-nestedInsetStart': '0px' }}>
+//             <ListItem nested>
+//               <ListItem component="div">
+//                 <Typography level="body3">NAVIGATION</Typography>
+//               </ListItem>
+//               <List aria-label="Navigation">
+//                 <MenuItem onClick={onClose}>Back</MenuItem>
+//                 <MenuItem disabled onClick={onClose}>
+//                   Forward
+//                 </MenuItem>
+//                 <MenuItem onClick={onClose}>Refresh</MenuItem>
+//               </List>
+//             </ListItem>
+//             <ListItem nested>
+//               <ListItem component="div">
+//                 <Typography level="body3">PAGE</Typography>
+//               </ListItem>
+//               <List aria-label="Page">
+//                 <MenuItem onClick={onClose}>Save as</MenuItem>
+//                 <MenuItem onClick={onClose}>Print</MenuItem>
+//               </List>
+//             </ListItem>
+//             <ListDivider />
+//             <MenuItem variant="outlined" color="danger" onClick={onClose}>
+//               <ListItemContent>Delete</ListItemContent>
+//               <DeleteForever />
+//             </MenuItem>
+//           </MenuList>
+//         </Sheet>
+//       </MenuPopup>
+//     </div>
+//   );
+// };
 
-const ThirdMenu = () => {
-  const { anchorEl, open, menuButtonRef, menuActions, onClick, onKeyDown, onClose } =
-    useMenuButton();
+// const ThirdMenu = () => {
+//   const { anchorEl, open, menuButtonRef, menuActions, onClick, onKeyDown, onClose } =
+//     useMenuButton();
 
-  return (
-    <div>
-      <Button
-        onClick={onClick}
-        onKeyDown={onKeyDown}
-        ref={menuButtonRef}
-        aria-controls={open ? 'menu3' : undefined}
-        aria-expanded={open || undefined}
-        aria-haspopup="menu"
-        variant="outlined"
-      >
-        Link menu
-      </Button>
-      <MenuPopup open={open} onClose={onClose} anchorEl={anchorEl} placement="bottom-end">
-        <Sheet
-          variant="outlined"
-          sx={{ borderRadius: 'sm', minWidth: 160, mt: 0.5, boxShadow: 'sm' }}
-        >
-          <MenuList id="menu3" actions={menuActions}>
-            <ListItem>
-              <MenuItem component={Link} href="/" onClick={onClose}>
-                Menu item 1
-              </MenuItem>
-            </ListItem>
-            <ListItem>
-              <NextLink href="#" passHref>
-                <MenuItem component="a" onClick={onClose}>
-                  Menu item 2
-                </MenuItem>
-              </NextLink>
-            </ListItem>
-          </MenuList>
-        </Sheet>
-      </MenuPopup>
-    </div>
-  );
-};
+//   return (
+//     <div>
+//       <Button
+//         onClick={onClick}
+//         onKeyDown={onKeyDown}
+//         ref={menuButtonRef}
+//         aria-controls={open ? 'menu3' : undefined}
+//         aria-expanded={open || undefined}
+//         aria-haspopup="menu"
+//         variant="outlined"
+//       >
+//         Link menu
+//       </Button>
+//       <MenuPopup open={open} onClose={onClose} anchorEl={anchorEl} placement="bottom-end">
+//         <Sheet
+//           variant="outlined"
+//           sx={{ borderRadius: 'sm', minWidth: 160, mt: 0.5, boxShadow: 'sm' }}
+//         >
+//           <MenuList id="menu3" actions={menuActions}>
+//             <ListItem>
+//               <MenuItem component={Link} href="/" onClick={onClose}>
+//                 Menu item 1
+//               </MenuItem>
+//             </ListItem>
+//             <ListItem>
+//               <NextLink href="#" passHref>
+//                 <MenuItem component="a" onClick={onClose}>
+//                   Menu item 2
+//                 </MenuItem>
+//               </NextLink>
+//             </ListItem>
+//           </MenuList>
+//         </Sheet>
+//       </MenuPopup>
+//     </div>
+//   );
+// };
 
 export default function JoyMenu() {
   return (
@@ -320,23 +312,9 @@ export default function JoyMenu() {
               <MenuItem>Custom spacing...</MenuItem>
             </MenuList>
           </Sheet>
-          {/* <FirstMenu /> */}
-          <div>
-            <Menu id="first-menu" button={<Button variant="outlined">Simple menu</Button>}>
-              <Sheet
-                variant="outlined"
-                sx={{ borderRadius: 'sm', minWidth: 160, mt: 0.5, boxShadow: 'sm' }}
-              >
-                <MenuList>
-                  <MenuItem>Menu item 1</MenuItem>
-                  <MenuItem>Menu item 2</MenuItem>
-                  <MenuItem>Menu item 3</MenuItem>
-                </MenuList>
-              </Sheet>
-            </Menu>
-          </div>
-          <SecondMenu />
-          <ThirdMenu />
+          <FirstMenu />
+          {/* <SecondMenu />
+          <ThirdMenu /> */}
         </Box>
       </Box>
     </CssVarsProvider>
