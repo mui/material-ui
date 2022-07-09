@@ -8,10 +8,11 @@ import { styled, useThemeProps } from '../styles';
 import { getMenuItemUtilityClass } from './menuItemClasses';
 import { MenuItemProps, ExtendMenuItem, MenuItemTypeMap } from './MenuItemProps';
 
-const useUtilityClasses = (ownerState: MenuItemProps & { focusVisible: boolean }) => {
-  const { disabled, focusVisible, selected } = ownerState;
+const useUtilityClasses = () => {
+  // Does not need to create state clases: focusVisible, disabled, and selected because ListItemButton already takes care of them.
+  // Otherwise, there will be duplicated classes.
   const slots = {
-    root: ['root', disabled && 'disabled', focusVisible && 'focusVisible', selected && 'selected'],
+    root: ['root'],
   };
 
   const composedClasses = composeClasses(slots, getMenuItemUtilityClass, {});
@@ -52,7 +53,7 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
     selected,
   };
 
-  const classes = useUtilityClasses(ownerState);
+  const classes = useUtilityClasses();
 
   const rootProps = useSlotProps({
     elementType: MenuItemRoot,
