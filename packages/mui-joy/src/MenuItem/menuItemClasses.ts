@@ -11,6 +11,6 @@ export function getMenuItemUtilityClass(slot: string): string {
   return generateUtilityClass('JoyMenuItem', slot);
 }
 
-const listItemButtonClasses: MenuItemClasses = generateUtilityClasses('JoyMenuItem', ['root']);
+const menuItemClasses: MenuItemClasses = generateUtilityClasses('JoyMenuItem', ['root']);
 
-export default listItemButtonClasses;
+export default menuItemClasses;
