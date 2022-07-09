@@ -15,7 +15,7 @@ describe('Joy <MenuList />', () => {
     render,
     ThemeProvider,
     muiName: 'MuiMenuList',
-    refInstanceof: window.HTMLUMenuElement,
+    refInstanceof: window.HTMLUListElement,
     skip: ['componentsProp', 'classesRoot', 'themeVariants'],
   }));
 
@@ -46,6 +46,6 @@ describe('Joy <MenuList />', () => {
         <MenuList />
       </ListItem>,
     );
-    expect(getByRole('menu')).to.have.class(listClasses.nested);
+    expect(getByRole('menu')).to.have.class(listClasses.nesting);
   });
 });

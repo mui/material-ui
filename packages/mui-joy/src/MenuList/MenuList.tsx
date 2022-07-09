@@ -29,7 +29,7 @@ const MenuList = React.forwardRef(function MenuList(inProps, ref) {
     name: 'MuiMenuList',
   });
 
-  const { actions, id: idProp, children, className, size = 'md', ...other } = props;
+  const { actions, id: idProp, children, size = 'md', ...other } = props;
 
   const {
     registerItem,
@@ -63,9 +63,7 @@ const MenuList = React.forwardRef(function MenuList(inProps, ref) {
     getSlotProps: getListboxProps,
     externalSlotProps: {},
     externalForwardedProps: other,
-    additionalProps: {
-      size,
-    },
+    additionalProps: { size },
     ownerState,
     className: classes.root,
   });
