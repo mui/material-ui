@@ -107,7 +107,15 @@ export default function WhatToExpect() {
               Developers contributing changes to the front-end code of a project that include the
               software need an active license. You will need to renew your subscription if you wish
               to continue active development after the end of your subscription. You can learn more
-              about it in <Link href="https://mui.com/store/legal/mui-x-eula/">the EULA</Link>.
+              about it in{' '}
+              <Link
+                target="_blank"
+                rel="noopener"
+                href="https://mui.com/store/legal/mui-x-eula/#perpetual-in-production"
+              >
+                the EULA
+              </Link>
+              .
             </Typography>
           </Paper>
         </Grid>
