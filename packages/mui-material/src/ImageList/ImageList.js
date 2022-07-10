@@ -89,7 +89,7 @@ const ImageList = React.forwardRef(function ImageList(inProps, ref) {
   return (
     <ImageListRoot
       as={component}
-      className={clsx(classes.root, classes[variant], className)}
+      className={clsx(classes[variant], classes.root, className)}
       ref={ref}
       style={style}
       ownerState={ownerState}

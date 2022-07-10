@@ -93,7 +93,7 @@ const ImageListItem = React.forwardRef(function ImageListItem(inProps, ref) {
   return (
     <ImageListItemRoot
       as={component}
-      className={clsx(classes.root, classes[variant], className)}
+      className={clsx(classes[variant], classes.root, className)}
       ref={ref}
       style={{
         height,
