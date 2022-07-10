@@ -40,29 +40,29 @@ This is because the `mode` will only be available to the client-side (it is `und
 If you try to render your UI based on the server, before mounting on the client, you'll see a hydration mismatch error.
 
 ```diff
-const ModeToggle = () => {
-  const { mode, setMode } = useColorScheme();
-  const [mounted, setMounted] = React.useState(false);
+ function ModeToggle() {
+   const { mode, setMode } = useColorScheme();
+   const [mounted, setMounted] = React.useState(false);
 
-+ React.useEffect(() => {
-+   setMounted(true);
-+ }, []);
++  React.useEffect(() => {
++    setMounted(true);
++  }, []);
++
++  if (!mounted) {
++    // to avoid layout shift, render a placeholder button
++    return <Button variant="outlined" color="neutral" sx={{ width: 120 }} />;
++  }
 
-+ if (!mounted) {
-+   // to avoid layout shift, render a placeholder button
-+   return <Button variant="outlined" color="neutral" sx={{ width: 120 }} />;
-+ }
-
-  return (
-    <Button
-      variant="outlined"
-      color="neutral"
-      onClick={() => setMode(mode === 'dark' ? 'light' : 'dark')}
-    >
-      {mode === 'dark' ? 'Turn light' : 'Turn dark'}
-    </Button>
-  );
-};
+   return (
+     <Button
+       variant="outlined"
+       color="neutral"
+       onClick={() => setMode(mode === 'dark' ? 'light' : 'dark')}
+     >
+       {mode === 'dark' ? 'Turn light' : 'Turn dark'}
+     </Button>
+   );
+ };
 ```
 
 ### Avoiding screen flickering
