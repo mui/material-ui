@@ -3,16 +3,18 @@ import PropTypes from 'prop-types';
 import composeClasses from '@mui/base/composeClasses';
 import { useSlotProps } from '@mui/base/utils';
 import { useMenuItem } from '@mui/base/MenuItemUnstyled';
-import ListItemButton from '../ListItemButton';
+import { ListItemButtonRoot } from '../ListItemButton/ListItemButton';
 import { styled, useThemeProps } from '../styles';
 import { getMenuItemUtilityClass } from './menuItemClasses';
 import { MenuItemProps, ExtendMenuItem, MenuItemTypeMap } from './MenuItemProps';
+import RowListContext from '../List/RowListContext';
 
-const useUtilityClasses = () => {
+const useUtilityClasses = (ownerState: MenuItemProps & { focusVisible: boolean }) => {
+  const { focusVisible, disabled, selected } = ownerState;
   // Does not need to create state clases: focusVisible, disabled, and selected because ListItemButton already takes care of them.
   // Otherwise, there will be duplicated classes.
   const slots = {
-    root: ['root'],
+    root: ['root', focusVisible && 'focusVisible', disabled && 'disabled', selected && 'selected'],
   };
 
   const composedClasses = composeClasses(slots, getMenuItemUtilityClass, {});
@@ -20,7 +22,7 @@ const useUtilityClasses = () => {
   return composedClasses;
 };
 
-const MenuItemRoot = styled(ListItemButton, {
+const MenuItemRoot = styled(ListItemButtonRoot, {
   name: 'JoyMenuItem',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
@@ -32,11 +34,15 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
     name: 'JoyMenuItem',
   });
 
+  const row = React.useContext(RowListContext);
+
   const {
     children,
     disabled: disabledProp = false,
-    selected = false,
     component = 'li',
+    selected = false,
+    color = selected ? 'primary' : 'neutral',
+    variant = 'plain',
     ...other
   } = props;
 
@@ -48,21 +54,22 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
   const ownerState = {
     ...props,
     component,
+    color,
     disabled,
     focusVisible,
     selected,
+    row,
+    variant,
   };
 
-  const classes = useUtilityClasses();
+  const classes = useUtilityClasses(ownerState);
 
   const rootProps = useSlotProps({
     elementType: MenuItemRoot,
     getSlotProps: getRootProps,
     externalSlotProps: {},
     additionalProps: {
-      component,
-      disabled,
-      selected,
+      as: component,
     },
     externalForwardedProps: other,
     className: classes.root,

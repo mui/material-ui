@@ -5,7 +5,7 @@ import { MenuUnstyledActions } from '@mui/base/MenuUnstyled';
 import { SheetProps } from '../Sheet';
 import { ListProps } from '../List';
 
-export type MenuSlot = 'root';
+export type MenuSlot = 'root' | 'listbox';
 
 export type { MenuUnstyledActions } from '@mui/base/MenuUnstyled';
 

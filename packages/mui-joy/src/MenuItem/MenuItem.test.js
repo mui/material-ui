@@ -53,7 +53,7 @@ describe('Joy <MenuItem />', () => {
     render(<MenuItem />);
     const menuitem = screen.getByRole('menuitem');
 
-    expect(menuitem).to.have.property('tabIndex', 0);
+    expect(menuitem).to.have.property('tabIndex', -1);
   });
 
   it('should render with the selected class but not aria-selected when `selected`', () => {
@@ -95,6 +95,7 @@ describe('Joy <MenuItem />', () => {
       const handleBlur = spy();
       render(
         <MenuItem
+          tabIndex={0}
           onFocus={handleFocus}
           onKeyDown={handleKeyDown}
           onKeyUp={handleKeyUp}
