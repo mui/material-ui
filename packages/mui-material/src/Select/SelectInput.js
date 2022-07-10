@@ -427,7 +427,8 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
       },
       role: 'option',
       selected:
-        arr[0].props.value === undefined || arr[0].props.disabled === true
+        (arr[0] && arr[0].props && arr[0].props.value === undefined) ||
+        (arr[0] && arr[0].props && arr[0].props.disabled === true)
           ? isFirstSelectableElement()
           : selected,
       value: undefined, // The value is most likely not a valid HTML attribute.
