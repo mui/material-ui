@@ -113,7 +113,7 @@ Here are a few tips to make sure you have an accessible radio button component:
 />
 ```
 
-Visit the [WAI-ARIA documentation](https://www.w3.org/TR/wai-aria-practices/#radiobutton) for more details.
+Visit the [WAI-ARIA documentation](https://www.w3.org/WAI/ARIA/apg/patterns/radiobutton/) for more details.
 
 ## Common examples
 
