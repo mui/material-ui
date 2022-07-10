@@ -138,7 +138,7 @@
     "eslint-plugin-jsx-a11y": "^6.6.0",
     "eslint-plugin-mocha": "^9.0.0",
     "eslint-plugin-react": "^7.29.4",
-    "eslint-plugin-react-hooks": "^4.5.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
     "fast-glob": "^3.2.11",
     "format-util": "^1.0.5",
     "fs-extra": "^10.1.0",
