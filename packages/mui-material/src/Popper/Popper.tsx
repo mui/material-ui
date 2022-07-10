@@ -63,6 +63,11 @@ Popper.propTypes /* remove-proptypes */ = {
     PropTypes.func,
   ]),
   /**
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   */
+  component: PropTypes.elementType,
+  /**
    * An HTML element or function that returns one.
    * The `container` will have the portal children appended to it.
    *
@@ -120,7 +125,7 @@ Popper.propTypes /* remove-proptypes */ = {
   /**
    * If `true`, the component is shown.
    */
-  open: PropTypes.bool.isRequired,
+  open: PropTypes.bool,
   /**
    * Popper placement.
    * @default 'bottom'

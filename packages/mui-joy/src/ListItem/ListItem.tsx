@@ -126,6 +126,7 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
     props: inProps,
     name: 'JoyListItem',
   });
+
   const menuContext = React.useContext(MenuUnstyledContext);
 
   const listComponent = React.useContext(ComponentListContext);

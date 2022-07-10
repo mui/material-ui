@@ -1,5 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import { HTMLElementType, refType } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
 import composeClasses from '@mui/base/composeClasses';
 import { useSlotProps } from '@mui/base/utils';
@@ -48,6 +49,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     actions,
     anchorEl,
     children,
+    color = 'neutral',
     componentsProps = {},
     disablePortal = true,
     keepMounted = false,
@@ -85,6 +87,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
   const ownerState = {
     ...props,
     disablePortal,
+    color,
     variant,
     modifiers,
     open,
@@ -104,6 +107,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
       role: undefined,
       ref,
       component: Sheet,
+      color,
       variant,
       modifiers: [
         {
@@ -151,18 +155,96 @@ Menu.propTypes /* remove-proptypes */ = {
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
   // ----------------------------------------------------------------------
   /**
+   * A ref with imperative actions.
+   * It allows to select the first or last menu item.
+   */
+  actions: refType,
+  /**
+   * An HTML element, [virtualElement](https://popper.js.org/docs/v2/virtual-elements/),
+   * or a function that returns either.
+   * It's used to set the position of the popper.
+   * The return value will passed as the reference object of the Popper instance.
+   */
+  anchorEl: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    HTMLElementType,
+    PropTypes.func,
+  ]),
+  /**
    * The content of the component.
    */
   children: PropTypes.node,
   /**
+   * The color of the component. It supports those theme colors that make sense for this component.
+   */
+  color: PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+  /**
    * @ignore
    */
-  className: PropTypes.string,
+  componentsProps: PropTypes.shape({
+    listbox: PropTypes.object,
+    root: PropTypes.object,
+  }),
   /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
+   * The `children` will be under the DOM hierarchy of the parent component.
+   * @default false
    */
-  component: PropTypes.elementType,
+  disablePortal: PropTypes.bool,
+  /**
+   * Always keep the children in the DOM.
+   * This prop can be useful in SEO situation or
+   * when you want to maximize the responsiveness of the Popper.
+   * @default false
+   */
+  keepMounted: PropTypes.bool,
+  /**
+   * @ignore
+   */
+  listboxId: PropTypes.string,
+  /**
+   * Popper.js is based on a "plugin-like" architecture,
+   * most of its features are fully encapsulated "modifiers".
+   *
+   * A modifier is a function that is called each time Popper.js needs to
+   * compute the position of the popper.
+   * For this reason, modifiers should be very performant to avoid bottlenecks.
+   * To learn how to create a modifier, [read the modifiers documentation](https://popper.js.org/docs/v2/modifiers/).
+   */
+  modifiers: PropTypes.arrayOf(
+    PropTypes.shape({
+      data: PropTypes.object,
+      effect: PropTypes.func,
+      enabled: PropTypes.bool,
+      fn: PropTypes.func,
+      name: PropTypes.any,
+      options: PropTypes.object,
+      phase: PropTypes.oneOf([
+        'afterMain',
+        'afterRead',
+        'afterWrite',
+        'beforeMain',
+        'beforeRead',
+        'beforeWrite',
+        'main',
+        'read',
+        'write',
+      ]),
+      requires: PropTypes.arrayOf(PropTypes.string),
+      requiresIfExists: PropTypes.arrayOf(PropTypes.string),
+    }),
+  ),
+  /**
+   * Triggered when focus leaves the menu and the menu should close.
+   */
+  onClose: PropTypes.func,
+  /**
+   * If `true`, the component is shown.
+   */
+  open: PropTypes.bool,
+  /**
+   * The variant to use.
+   * @default 'plain'
+   */
+  variant: PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
 } as any;
 
 export default Menu;

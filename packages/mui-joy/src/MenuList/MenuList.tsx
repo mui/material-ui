@@ -58,6 +58,7 @@ const MenuList = React.forwardRef(function MenuList(inProps, ref) {
     ...props,
     size,
   };
+
   const listboxProps = useSlotProps({
     elementType: MenuListRoot,
     getSlotProps: getListboxProps,
@@ -90,18 +91,26 @@ MenuList.propTypes /* remove-proptypes */ = {
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
   // ----------------------------------------------------------------------
   /**
+   * A ref with imperative actions.
+   * It allows to select the first or last menu item.
+   */
+  actions: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.shape({
+      current: PropTypes.shape({
+        highlightFirstItem: PropTypes.func.isRequired,
+        highlightLastItem: PropTypes.func.isRequired,
+      }),
+    }),
+  ]),
+  /**
    * The content of the component.
    */
   children: PropTypes.node,
   /**
    * @ignore
    */
-  className: PropTypes.string,
-  /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
-   */
-  component: PropTypes.elementType,
+  id: PropTypes.string,
   /**
    * The size of the component (affect other nested list* components).
    */
