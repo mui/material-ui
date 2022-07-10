@@ -10,7 +10,7 @@ In the example below, we're using a `Button` component that calls `setMode` from
 import { useColorScheme } from '@mui/joy/styles';
 import Button from '@mui/joy/Button';
 
-const ModeToggle = () => {
+function ModeToggle() {
   const { mode, setMode } = useColorScheme();
   return (
     <Button
@@ -21,7 +21,7 @@ const ModeToggle = () => {
       {mode === 'dark' ? 'Turn light' : 'Turn dark'}
     </Button>
   );
-};
+}
 ```
 
 {{"demo": "ModeToggle.js"}}
