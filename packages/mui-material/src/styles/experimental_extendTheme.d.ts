@@ -288,8 +288,8 @@ export interface ThemeVars {
   opacity: Opacity;
   overlays: Overlays;
   shadows: Shadows;
-  zIndex: ZIndex;
   shape: Theme['shape'];
+  zIndex: ZIndex;
 }
 
 type Split<T, K extends keyof T = keyof T> = K extends string | number
@@ -319,7 +319,7 @@ export {};
 export interface ThemeCssVarOverrides {}
 
 export type ThemeCssVar = OverridableStringUnion<
-  | NormalizeVars<Pick<ThemeVars, 'palette' | 'opacity' | 'zIndex'>>
+  | NormalizeVars<Omit<ThemeVars, 'overlays' | 'shadows' | 'shape'>>
   | 'shape-borderRadius'
   | 'shadows-0'
   | 'shadows-1'
