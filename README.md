@@ -163,7 +163,7 @@ In the interactive demo below, try changing the code and see how it affects the 
 (Hint: change `variant` to `"outlined"` and `color` to `"secondary"`.
 For more options, see the [`Button` component page](https://mui.com/material-ui/react-button/) in our docs.)
 
-[![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/4j7m47vlm4)
+[![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/material-ui-u9sy1h)
 
 ## Questions
 
@@ -214,7 +214,6 @@ For details of supported versions and contact details for reporting security iss
 These great services sponsor MUI's core infrastructure:
 
 <picture>
-
   <source media="(prefers-color-scheme: dark)" srcset="/docs/public/static/readme/github-darkmode.svg">
   <source media="(prefers-color-scheme: light)" srcset="/docs/public/static/readme/github-lightmode.svg">
   <img alt="GitHub logo" src="/docs/public/static/readme/github-darkmode.svg">
@@ -223,7 +222,6 @@ These great services sponsor MUI's core infrastructure:
 [GitHub](https://github.com/) lets us host the Git repository and coordinate contributions.
 
 <picture>
-
   <source media="(prefers-color-scheme: dark)" srcset="/docs/public/static/readme/netlify-darkmode.svg">
   <source media="(prefers-color-scheme: light)" srcset="/docs/public/static/readme/netlify-lightmode.svg">
   <img alt="Netlify logo" src="/docs/public/static/readme/netlify-darkmode.svg">
@@ -232,7 +230,6 @@ These great services sponsor MUI's core infrastructure:
 [Netlify](https://www.netlify.com/) lets us distribute the documentation.
 
 <picture>
-
   <source media="(prefers-color-scheme: dark)" srcset="/docs/public/static/readme/crowdin-darkmode.svg">
   <source media="(prefers-color-scheme: light)" srcset="/docs/public/static/readme/crowdin-lightmode.svg">
   <img alt="Crowdin logo" src="/docs/public/static/readme/crowdin-darkmode.svg">
@@ -241,7 +238,6 @@ These great services sponsor MUI's core infrastructure:
 [Crowdin](https://crowdin.com/) lets us translate the documentation.
 
 <picture>
-
   <source media="(prefers-color-scheme: dark)" srcset="/docs/public/static/readme/browserstack-darkmode.svg">
   <source media="(prefers-color-scheme: light)" srcset="/docs/public/static/readme/browserstack-lightmode.svg">
   <img alt="GitHub logo" src="/docs/public/static/readme/browserstack-darkmode.svg">
