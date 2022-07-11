@@ -310,6 +310,7 @@ export default function AppNavDrawer(props) {
             }
             sx={[
               (theme) => ({
+                py: 0.1,
                 minWidth: 0,
                 fontSize: theme.typography.pxToRem(13),
                 fontWeight: 500,
@@ -321,23 +322,6 @@ export default function AppNavDrawer(props) {
                   ml: -0.6,
                   width: 18,
                   height: 18,
-                },
-                px: 1,
-                py: 0.4,
-                border: `1px solid ${
-                  theme.palette.mode === 'dark'
-                    ? theme.palette.primaryDark[700]
-                    : theme.palette.grey[200]
-                }`,
-                '&:hover': {
-                  borderColor:
-                    theme.palette.mode === 'dark'
-                      ? theme.palette.primaryDark[600]
-                      : theme.palette.grey[300],
-                  background:
-                    theme.palette.mode === 'dark'
-                      ? alpha(theme.palette.primaryDark[700], 0.4)
-                      : theme.palette.grey[50],
                 },
               }),
               ...(Array.isArray(sx) ? sx : [sx]),
@@ -404,17 +388,6 @@ export default function AppNavDrawer(props) {
               <SvgMuiLogo width={30} />
             </Box>
           </NextLink>
-          {renderVersionSelector(
-            [
-              { text: `v${process.env.LIB_VERSION}`, current: true },
-              { text: 'v4', href: `https://v4.mui.com${languagePrefix}/` },
-              {
-                text: 'View all versions',
-                href: `https://mui.com${languagePrefix}/versions/`,
-              },
-            ],
-            { mr: 2 },
-          )}
           {asPathWithoutLang.startsWith('/material-ui/') && (
             <ProductIdentifier
               name="Material UI"
