@@ -4,7 +4,6 @@ import replaceHtmlLinks, {
   replaceAPILinks,
   replaceComponentLinks,
 } from './replaceHtmlLinks';
-import FEATURE_TOGGLE from '../../featureToggle';
 
 describe('replaceHtmlLinks', () => {
   it('replace material related links', () => {
@@ -308,15 +307,9 @@ describe('replaceHtmlLinks', () => {
     <li><a href="/material-ui/discover-more/related-projects/">Tree view</a></li>
     </ul>
     `);
-    if (FEATURE_TOGGLE.enable_system_scope) {
-      expect(replaceHtmlLinks(`<li><a href="/styles/api/">Styles</a></li>`, '/system')).to.equal(
-        `<li><a href="/system/styles/api/">Styles</a></li>`,
-      );
-    } else {
-      expect(replaceHtmlLinks(`<li><a href="/styles/api/">Styles</a></li>`, '/system')).to.equal(
-        `<li><a href="/styles/api/">Styles</a></li>`,
-      );
-    }
+    expect(replaceHtmlLinks(`<li><a href="/styles/api/">Styles</a></li>`, '/system')).to.equal(
+      `<li><a href="/system/styles/api/">Styles</a></li>`,
+    );
   });
 
   it('[i18n] only replace links for new routes (/material-ui/* & /x/*)', () => {
@@ -364,15 +357,9 @@ describe('replaceHtmlLinks', () => {
     <li><a href="/zh/material-ui/discover-more/related-projects/">Tree view</a></li>
     </ul>
     `);
-    if (FEATURE_TOGGLE.enable_system_scope) {
-      expect(replaceHtmlLinks(`<li><a href="/styles/api/">Styles</a></li>`, '/system')).to.equal(
-        `<li><a href="/system/styles/api/">Styles</a></li>`,
-      );
-    } else {
-      expect(replaceHtmlLinks(`<li><a href="/styles/api/">Styles</a></li>`, '/system')).to.equal(
-        `<li><a href="/styles/api/">Styles</a></li>`,
-      );
-    }
+    expect(replaceHtmlLinks(`<li><a href="/styles/api/">Styles</a></li>`, '/system')).to.equal(
+      `<li><a href="/system/styles/api/">Styles</a></li>`,
+    );
   });
 
   it('should work with json', () => {

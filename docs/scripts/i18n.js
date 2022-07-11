@@ -42,12 +42,8 @@ async function run() {
     });
   };
 
-  if (!FEATURE_TOGGLE.enable_redirects) {
-    traverse(allPages);
-    traverse(materialPages);
-  } else {
-    traverse([...systemPages, ...basePages, ...materialPages]);
-  }
+  traverse(allPages);
+  traverse(materialPages);
 
   await fse.writeFile(translationsFilename, `${JSON.stringify(output, null, 2)}\n`);
 }

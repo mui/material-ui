@@ -22,8 +22,6 @@ import PageContext from 'docs/src/modules/components/PageContext';
 import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
 import ArrowDropDownRoundedIcon from '@mui/icons-material/ArrowDropDownRounded';
 import DoneRounded from '@mui/icons-material/DoneRounded';
-import FEATURE_TOGGLE from 'docs/src/featureToggle';
-import { isNewLocation } from 'docs/src/modules/utils/replaceUrl';
 import MuiProductSelector from 'docs/src/modules/components/MuiProductSelector';
 import materialPkgJson from 'packages/mui-material/package.json';
 import joyPkgJson from 'packages/mui-joy/package.json';
@@ -290,7 +288,6 @@ export default function AppNavDrawer(props) {
   const mobile = useMediaQuery((theme) => theme.breakpoints.down('lg'));
 
   const drawer = React.useMemo(() => {
-    const isProductScoped = isNewLocation(router.asPath);
     const asPathWithoutLang = router.asPath.replace(/^\/[a-zA-Z]{2}\//, '/');
 
     const navItems = renderNavItems({ onClose, pages, activePage, depth: 0, t });
@@ -313,7 +310,6 @@ export default function AppNavDrawer(props) {
             }
             sx={[
               (theme) => ({
-                py: 0.1,
                 minWidth: 0,
                 fontSize: theme.typography.pxToRem(13),
                 fontWeight: 500,
@@ -326,25 +322,23 @@ export default function AppNavDrawer(props) {
                   width: 18,
                   height: 18,
                 },
-                ...(!isProductScoped && {
-                  px: 1,
-                  py: 0.4,
-                  border: `1px solid ${
+                px: 1,
+                py: 0.4,
+                border: `1px solid ${
+                  theme.palette.mode === 'dark'
+                    ? theme.palette.primaryDark[700]
+                    : theme.palette.grey[200]
+                }`,
+                '&:hover': {
+                  borderColor:
                     theme.palette.mode === 'dark'
-                      ? theme.palette.primaryDark[700]
-                      : theme.palette.grey[200]
-                  }`,
-                  '&:hover': {
-                    borderColor:
-                      theme.palette.mode === 'dark'
-                        ? theme.palette.primaryDark[600]
-                        : theme.palette.grey[300],
-                    background:
-                      theme.palette.mode === 'dark'
-                        ? alpha(theme.palette.primaryDark[700], 0.4)
-                        : theme.palette.grey[50],
-                  },
-                }),
+                      ? theme.palette.primaryDark[600]
+                      : theme.palette.grey[300],
+                  background:
+                    theme.palette.mode === 'dark'
+                      ? alpha(theme.palette.primaryDark[700], 0.4)
+                      : theme.palette.grey[50],
+                },
               }),
               ...(Array.isArray(sx) ? sx : [sx]),
             ]}
@@ -400,7 +394,7 @@ export default function AppNavDrawer(props) {
               sx={{
                 pr: '12px',
                 mr: '4px',
-                borderRight: isProductScoped ? '1px solid' : '0px',
+                borderRight: '1px solid',
                 borderColor: (theme) =>
                   theme.palette.mode === 'dark'
                     ? alpha(theme.palette.primary[100], 0.08)
@@ -410,18 +404,17 @@ export default function AppNavDrawer(props) {
               <SvgMuiLogo width={30} />
             </Box>
           </NextLink>
-          {!isProductScoped &&
-            renderVersionSelector(
-              [
-                { text: `v${process.env.LIB_VERSION}`, current: true },
-                { text: 'v4', href: `https://v4.mui.com${languagePrefix}/` },
-                {
-                  text: 'View all versions',
-                  href: `https://mui.com${languagePrefix}/versions/`,
-                },
-              ],
-              { mr: 2 },
-            )}
+          {renderVersionSelector(
+            [
+              { text: `v${process.env.LIB_VERSION}`, current: true },
+              { text: 'v4', href: `https://v4.mui.com${languagePrefix}/` },
+              {
+                text: 'View all versions',
+                href: `https://mui.com${languagePrefix}/versions/`,
+              },
+            ],
+            { mr: 2 },
+          )}
           {asPathWithoutLang.startsWith('/material-ui/') && (
             <ProductIdentifier
               name="Material UI"
@@ -448,7 +441,7 @@ export default function AppNavDrawer(props) {
               ])}
             />
           )}
-          {asPathWithoutLang.startsWith('/system/') && FEATURE_TOGGLE.enable_system_scope && (
+          {asPathWithoutLang.startsWith('/system/') && (
             <ProductIdentifier
               name="MUI System"
               metadata="MUI Core"

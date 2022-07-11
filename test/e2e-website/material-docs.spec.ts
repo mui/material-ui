@@ -5,10 +5,6 @@ import { TestFixture } from './playwright.config';
 
 const test = base.extend<TestFixture>({});
 
-test.beforeEach(async ({}) => {
-  test.skip(!FEATURE_TOGGLE.enable_product_scope, "Migration haven't started yet");
-});
-
 test.describe('Material docs', () => {
   test('should have correct link with hash in the TOC', async ({ page }) => {
     await page.goto(`/material-ui/getting-started/installation/`);
