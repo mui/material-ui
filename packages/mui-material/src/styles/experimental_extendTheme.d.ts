@@ -308,6 +308,9 @@ type ConcatDeep<T> = T extends Record<string | number, infer V>
 
 type NormalizeVars<T> = ConcatDeep<Split<T>>;
 
+// shut off automatic exporting for the Generics above
+export {};
+
 export type ThemeCSSVar = NormalizeVars<ThemeVars>;
 
 /**
