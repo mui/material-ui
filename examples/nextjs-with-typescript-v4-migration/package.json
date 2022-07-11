@@ -17,10 +17,10 @@
     "@mui/icons-material": "latest",
     "@mui/material": "latest",
     "@mui/styles": "latest",
-    "autoprefixer": "^10.4.7",
-    "clean-css": "^5.3.0",
+    "autoprefixer": "latest",
+    "clean-css": "latest",
     "next": "latest",
-    "postcss": "^8.4.14",
+    "postcss": "latest",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   },
