@@ -175,7 +175,7 @@
     "rollup-plugin-node-globals": "^1.4.0",
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-terser": "^7.0.2",
-    "serve": "^13.0.2",
+    "serve": "^13.0.4",
     "sinon": "^13.0.2",
     "stylelint": "^13.13.1",
     "stylelint-config-standard": "^22.0.0",
