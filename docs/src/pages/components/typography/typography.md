@@ -37,7 +37,7 @@ Then, you can import it in your entry-point.
 import '@fontsource/roboto';
 ```
 
-For more info check out [Fontsource](https://github.com/fontsource/fontsource/tree/main/fonts/google/roboto#readme).
+For more info check out [Fontsource](https://github.com/fontsource/fontsource/blob/main/README.md).
 
 ⚠️ Be careful when using this approach.
 Make sure your bundler doesn't eager load all the font variations (100/300/400/500/700/900, italic/regular, SVG/woff). Fontsource can be configured to load specific subsets, weights and styles.
