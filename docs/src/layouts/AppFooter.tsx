@@ -11,7 +11,6 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import SvgMuiLogo from 'docs/src/icons/SvgMuiLogo';
 import EmailSubscribe from 'docs/src/components/footer/EmailSubscribe';
 import ROUTES from 'docs/src/route';
-import FEATURE_TOGGLE from 'docs/src/featureToggle';
 import Link from 'docs/src/modules/components/Link';
 import SvgStackOverflow from 'docs/src/icons/SvgStackOverflow';
 
@@ -58,19 +57,15 @@ export default function AppFooter() {
             gap: 2,
           }}
         >
-          {FEATURE_TOGGLE.nav_products ? (
-            <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-              <Typography fontWeight="bold" variant="body2">
-                Products
-              </Typography>
-              <Link href={ROUTES.productCore}>MUI Core</Link>
-              <Link href={ROUTES.productAdvanced}>MUI X</Link>
-              <Link href={ROUTES.productTemplates}>Templates</Link>
-              <Link href={ROUTES.productDesignKits}>Design kits</Link>
-            </Box>
-          ) : (
-            <Box sx={{ display: { xs: 'none', md: 'block' } }} />
-          )}
+          <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+            <Typography fontWeight="bold" variant="body2">
+              Products
+            </Typography>
+            <Link href={ROUTES.productCore}>MUI Core</Link>
+            <Link href={ROUTES.productAdvanced}>MUI X</Link>
+            <Link href={ROUTES.productTemplates}>Templates</Link>
+            <Link href={ROUTES.productDesignKits}>Design kits</Link>
+          </Box>
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
             <Typography fontWeight="bold" variant="body2">
               Resources
