@@ -59,7 +59,7 @@ The `InputUnstyled` component is composed of a root `<div>` slot that houses one
 
 :::info
 The following props are available on all non-utility Base components.
-See [Usage](/getting-started/usage/) for full details.
+See [Usage](/base/getting-started/usage/) for full details.
 :::
 
 Use the `component` prop to override the root slot with a custom element:

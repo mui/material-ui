@@ -83,7 +83,7 @@ The tab components are each composed of a root slot with no interior slots:
 
 :::info
 The following props are available on all non-utility Base components.
-See [Usage](/getting-started/usage/) for full details.
+See [Usage](/base/getting-started/usage/) for full details.
 :::
 
 Use the `component` prop to override the root slot with a custom element:
