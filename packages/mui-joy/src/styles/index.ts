@@ -54,7 +54,13 @@ export type {
   Variants,
   VariantProp,
 } from './types/variants';
-export type { Theme, ThemeVars, ThemeScales, ThemeCssVar } from './types/theme';
+export type {
+  Theme,
+  ThemeVars,
+  ThemeScales,
+  ThemeCssVar,
+  ThemeCssVarOverrides,
+} from './types/theme';
 export {
   CssVarsProvider,
   useColorScheme,

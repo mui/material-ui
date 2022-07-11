@@ -33,6 +33,11 @@ type ConcatDeep<T> = T extends Record<string | number, infer V>
     : never
   : never;
 
+/**
+ * Does not work for these cases:
+ * - { borderRadius: string | number } // the value can't be a union
+ * - { shadows: [string, string, ..., string] } // the value can't be an array
+ */
 type NormalizeVars<T> = ConcatDeep<Split<T>>;
 
 export interface RuntimeColorSystem extends Omit<ColorSystem, 'palette'> {
@@ -54,7 +59,9 @@ export interface ThemeScales {
 
 export interface ThemeVars extends ThemeScales, ColorSystem {}
 
-export type ThemeCssVar = NormalizeVars<ThemeVars>;
+export interface ThemeCssVarOverrides {}
+
+export type ThemeCssVar = OverridableStringUnion<NormalizeVars<ThemeVars>, ThemeCssVarOverrides>;
 
 export interface Theme extends ThemeScales, RuntimeColorSystem {
   colorSchemes: Record<DefaultColorScheme | ExtendedColorScheme, ColorSystem>;
@@ -65,10 +72,7 @@ export interface Theme extends ThemeScales, RuntimeColorSystem {
   breakpoints: Breakpoints;
   cssVarPrefix: string;
   vars: ThemeVars;
-  getCssVar: <CustomVar extends string = never>(
-    field: ThemeCssVar | CustomVar,
-    ...vars: (ThemeCssVar | CustomVar)[]
-  ) => string;
+  getCssVar: (field: ThemeCssVar, ...vars: ThemeCssVar[]) => string;
   getColorSchemeSelector: (colorScheme: DefaultColorScheme | ExtendedColorScheme) => string;
 }
 

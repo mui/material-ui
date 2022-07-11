@@ -302,12 +302,15 @@ type ConcatDeep<T> = T extends Record<string | number, infer V>
       ? keyof T
       : keyof V extends string | number
       ? `${keyof T}-${ConcatDeep<Split<V>>}`
-      : V extends Array<any>
-      ? `${keyof T}-${number}`
-      : 'test'
+      : never
     : never
   : never;
 
+/**
+ * Does not work for these cases:
+ * - { borderRadius: string | number } // the value can't be a union
+ * - { shadows: [string, string, ..., string] } // the value can't be an array
+ */
 type NormalizeVars<T> = ConcatDeep<Split<T>>;
 
 // shut off automatic exporting for the Generics above
