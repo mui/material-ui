@@ -1,5 +1,73 @@
 # [Versions](https://mui.com/versions/)
 
+## 5.8.8
+
+<!-- generated comparing v5.8.7..master -->
+
+_Jul 11, 2022_
+
+A big thanks to the 16 contributors who made this release possible. Here are some highlights ✨:
+
+- ⭐️ Add the new `Grid` component to the System (#32746) @siriwatknp
+- 🐛 Fix bugs in Material UI components, thanks to @ZeeshanTamboli and @ivan-ngchakming
+- many other 🐛 bug fixes and 📚 documentation improvements
+
+### `@mui/material@5.8.8`
+
+- &#8203;<!-- 30 -->[Autocomplete] Remove unnecessary `clsx` wrapper for single className (#33398) @ZeeshanTamboli
+- &#8203;<!-- 26 -->[CssBaseline] Fixes in overriding style (#33338) @ZeeshanTamboli
+- &#8203;<!-- 06 -->[Tooltip] Fix children mouse over detection (#32321) @ivan-ngchakming
+- &#8203;<!-- 05 -->[TypeScript] getCssVar autocomplete for Material UI (#33464) @siriwatknp
+- &#8203;<!-- 04 -->[TypeScript] Fix theme options components types to use `Theme` (#33434) @siriwatknp
+- &#8203;<!-- 03 -->[TypeScript] Reexports necessary types for module augmentation (#33397) @siriwatknp
+
+### `@mui/system@5.8.8`
+
+- &#8203;<!-- 09 -->[System] Add offset feature to Grid (#33415) @siriwatknp
+- &#8203;<!-- 08 -->[System] Add new `Grid` implementation (#32746) @siriwatknp
+
+### `@mui/lab@5.0.0-alpha.90`
+
+- &#8203;<!-- 13 -->[lab] Remove the pickers (#33386) @flaviendelangle
+- &#8203;<!-- 12 -->[Masonry] Support `rem`/`em` values for `spacing` prop (#33384) @hbjORbj
+
+### `@mui/base@5.0.0-alpha.89`
+
+- &#8203;<!-- 29 -->[Base] Add MUI base example (#33154) @siriwatknp
+- &#8203;<!-- 28 —>[Base] Change the order of class names merged in useSlotProps (#33383) @michaldudak
+- &#8203;<!-- 11 -->[ModalUnstyled] Accept callbacks in componentsProps (#33181) @michaldudak
+- &#8203;<!-- 10 -->[SelectUnstyled] Accept callbacks in componentsProps (#33197) @michaldudak
+- &#8203;<!-- 07 -->[TabsUnstyled] Accept callbacks in componentsProps (#33284) @michaldudak
+- &#8203;<!-- 11 -->[ModalUnstyled] Accept callbacks in componentsProps (#33181) @michaldudak
+- &#8203;<!-- 10 -->[SelectUnstyled] Accept callbacks in componentsProps (#33197) @michaldudak
+
+### `@mui/joy@5.0.0-alpha.36`
+
+- &#8203;<!-- 15 -->[Joy] Add guide about using Joy and Material UI together (#33396) @siriwatknp
+- &#8203;<!-- 14 -->[Joy] Fix variants color palette regressions (#33394) @danilo-leal
+
+### Docs
+
+- &#8203;<!-- 25 -->[docs] Cleanup the migration (#33463) @siriwatknp
+- &#8203;<!-- 24 -->[docs] Fix broken Sponsoring services links @samuelsycamore
+- &#8203;<!-- 23 -->[docs] Improve repo README with light/dark logos, relative links and more (#33356) @samuelsycamore
+- &#8203;<!-- 22 -->[docs] Update links to MUI X Overview and Introduction pages (#33201) @samuelsycamore
+- &#8203;<!-- 21 -->[docs] Update to React 18 (#33196) @mnajdova
+- &#8203;<!-- 20 -->[docs] Simplify "Upload button" demo (#33326) @baharalidurrani
+- &#8203;<!-- 19 -->[docs] Add "refine" demo to showcase (#33240) @omeraplak
+- &#8203;<!-- 18 -->[docs] Add webpack alias for legacy utils package (#33376) @jgbae
+- &#8203;<!-- 16 -->[docs] Improve external link icons synonyms (#33257) @davidgarciab
+- &#8203;<!-- 31 —>[docs] Correcting small grammatical error (#33393) @robyyo
+- &#8203;<!-- 17 -->[examples] Update MUI Base with Tailwind CSS to use the latest versions of the dependencies (#33401) @mnajdova
+
+### Core
+
+- &#8203;<!-- 27 -->[core] Remove old babel resolve rule (#33432) @oliviertassinari
+- &#8203;<!-- 02 -->[website] Shorten the plan descriptions on the pricing page (#32984) @joserodolfofreitas
+- &#8203;<!-- 01 -->[website] Link EULA in the license quantity section (#33292) @oliviertassinari
+
+All contributors of this release in alphabetical order: @baharalidurrani, @danilo-leal, @davidgarciab, @flaviendelangle, @hbjORbj, @ivan-ngchakming, @jgbae, @joserodolfofreitas, @michaldudak, @mnajdova, @oliviertassinari, @omeraplak, @robyyo, @samuelsycamore, @siriwatknp, @ZeeshanTamboli
+
 ## 5.8.7
 
 <!-- generated comparing v5.8.6..master -->
