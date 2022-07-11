@@ -56,7 +56,7 @@ const pages = [
       {
         pathname: '/joy-ui/components/navigation',
         subheader: 'navigation',
-        children: [{ pathname: '/joy-ui/react-link' }],
+        children: [{ pathname: '/joy-ui/react-link' }, { pathname: '/joy-ui/react-menu' }],
       },
     ],
   },
