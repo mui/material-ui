@@ -715,8 +715,6 @@ root.render(
 );
 ```
 
-**Note:** To see more examples of how to use containers and encapsulation check out the [shadow DOM documentation](/material-ui/guides/shadow-dom/).
-
 ### Usage
 
 Now it's all set up and you can start using Tailwind CSS on the MUI components!
