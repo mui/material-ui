@@ -5,14 +5,14 @@ title: React Sheet component
 
 # Sheet
 
-<p class="description">Sheet is a useful surface component that implements the global variant feature.</p>
+<p class="description">Sheet is a generic container that supports Joy UI's global variants.</p>
 
 ## Introduction
 
 The `Sheet` container is a generic container.
-It's a sibling to the `Box` component with the difference being that it supports Joy UI's global variants out of the box.
+It's a sibling to the [`Box`](/system/react-box/) component, and equivalent to Material UI's [`Paper`](/material-ui/react-paper/), with the difference being that it supports Joy UI's global variants out of the box.
 
-{{"demo": "SheetUsage.js", "hideToolbar": true, "bg": true}}
+{{"demo": "SheetUsage.js", "hideToolbar": true}}
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 

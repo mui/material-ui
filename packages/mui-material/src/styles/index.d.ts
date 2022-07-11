@@ -6,7 +6,10 @@ export {
   Theme,
 } from './createTheme';
 export { default as adaptV4Theme, DeprecatedThemeOptions } from './adaptV4Theme';
+export { Shadows } from './shadows';
+export { ZIndex } from './zIndex';
 export {
+  CommonColors,
   Palette,
   PaletteColor,
   PaletteColorOptions,
@@ -97,8 +100,11 @@ export { default as experimental_extendTheme } from './experimental_extendTheme'
 export type {
   ColorSchemeOverrides,
   SupportedColorScheme,
+  ColorSystem,
+  CssVarsPalette,
   Opacity,
   Overlays,
+  PaletteAlert,
   PaletteActionChannel,
   PaletteAppBar,
   PaletteAvatar,
@@ -107,8 +113,10 @@ export type {
   PaletteCommonChannel,
   PaletteFilledInput,
   PaletteLinearProgress,
+  PaletteSkeleton,
   PaletteSlider,
   PaletteSnackbarContent,
+  PaletteSpeedDialAction,
   PaletteStepConnector,
   PaletteStepContent,
   PaletteSwitch,
@@ -117,4 +125,5 @@ export type {
   PaletteTooltip,
   CssVarsThemeOptions,
   CssVarsTheme,
+  ThemeVars,
 } from './experimental_extendTheme';

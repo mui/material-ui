@@ -1,6 +1,5 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import {
   elementAcceptingRef,
   HTMLElementType,
@@ -10,11 +9,11 @@ import {
   unstable_useEventCallback as useEventCallback,
 } from '@mui/utils';
 import composeClasses from '../composeClasses';
-import appendOwnerState from '../utils/appendOwnerState';
 import Portal from '../Portal';
 import ModalManager, { ariaHidden } from './ModalManager';
 import TrapFocus from '../TrapFocus';
 import { getModalUtilityClass } from './modalUnstyledClasses';
+import { useSlotProps } from '../utils';
 
 const useUtilityClasses = (ownerState) => {
   const { open, exited, classes } = ownerState;
@@ -55,7 +54,6 @@ const ModalUnstyled = React.forwardRef(function ModalUnstyled(props, ref) {
   const {
     children,
     classes: classesProp,
-    className,
     closeAfterTransition = false,
     component = 'div',
     components = {},
@@ -167,10 +165,6 @@ const ModalUnstyled = React.forwardRef(function ModalUnstyled(props, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  if (!keepMounted && !open && (!hasTransition || exited)) {
-    return null;
-  }
-
   const handleEnter = () => {
     setExited(false);
 
@@ -242,30 +236,34 @@ const ModalUnstyled = React.forwardRef(function ModalUnstyled(props, ref) {
   }
 
   const Root = components.Root || component;
-  const rootProps = appendOwnerState(
-    Root,
-    {
-      role: 'presentation',
-      ...other,
-      ...componentsProps.root,
+  const rootProps = useSlotProps({
+    elementType: Root,
+    externalSlotProps: componentsProps.root,
+    externalForwardedProps: other,
+    additionalProps: {
       ref: handleRef,
+      role: 'presentation',
       onKeyDown: handleKeyDown,
-      className: clsx(classes.root, componentsProps.root?.className, className),
     },
+    className: classes.root,
     ownerState,
-  );
+  });
 
   const BackdropComponent = components.Backdrop;
-  const backdropProps = appendOwnerState(
-    BackdropComponent,
-    {
+  const backdropProps = useSlotProps({
+    elementType: BackdropComponent,
+    externalSlotProps: componentsProps.backdrop,
+    additionalProps: {
       'aria-hidden': true,
-      open,
       onClick: handleBackdropClick,
-      ...componentsProps.backdrop,
+      open,
     },
     ownerState,
-  );
+  });
+
+  if (!keepMounted && !open && (!hasTransition || exited)) {
+    return null;
+  }
 
   return (
     <Portal ref={handlePortalRef} container={container} disablePortal={disablePortal}>
@@ -305,10 +303,6 @@ ModalUnstyled.propTypes /* remove-proptypes */ = {
    */
   classes: PropTypes.object,
   /**
-   * @ignore
-   */
-  className: PropTypes.string,
-  /**
    * When set to true the Modal waits until a nested Transition is completed before closing.
    * @default false
    */
@@ -332,8 +326,8 @@ ModalUnstyled.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   componentsProps: PropTypes.shape({
-    backdrop: PropTypes.object,
-    root: PropTypes.object,
+    backdrop: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
    * An HTML element or function that returns one.
