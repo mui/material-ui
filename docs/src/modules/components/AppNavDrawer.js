@@ -471,13 +471,9 @@ export default function AppNavDrawer(props) {
               ])}
             />
           )}
-          {
-            // TODO: remove first condition when https://github.com/mui/mui-x/pull/4692 is released
-            (asPathWithoutLang.startsWith('/x/advanced-components') ||
-              asPathWithoutLang.startsWith('/x/introduction')) && (
-              <ProductIdentifier name="Advanced components" metadata="MUI X" />
-            )
-          }
+          {asPathWithoutLang.startsWith('/x/introduction') && (
+            <ProductIdentifier name="Advanced components" metadata="MUI X" />
+          )}
           {(asPathWithoutLang.startsWith('/x/react-data-grid') ||
             asPathWithoutLang.startsWith('/x/api/data-grid')) && (
             <ProductIdentifier

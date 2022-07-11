@@ -24,7 +24,7 @@ test('able to navigate between products', async ({ page }) => {
     '/system/basics/',
   );
 
-  await expect(page.locator('#mui-product-menu a[href="/x/advanced-components/"]')).toBeVisible();
+  await expect(page.locator('#mui-product-menu a[href="/x/introduction/"]')).toBeVisible();
 
   if (FEATURE_TOGGLE.enable_mui_base_scope) {
     await expect(
