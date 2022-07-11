@@ -1,3 +1,4 @@
+import { OverridableStringUnion } from '@mui/types';
 import {
   Breakpoints,
   Spacing,
