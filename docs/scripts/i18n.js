@@ -4,9 +4,6 @@ import fse from 'fs-extra';
 import { pageToTitle } from 'docs/src/modules/utils/helpers';
 import allPages from 'docs/src/pages';
 import materialPages from 'docs/data/material/pages';
-import systemPages from 'docs/data/system/pages';
-import basePages from 'docs/data/base/pages';
-import FEATURE_TOGGLE from 'docs/src/featureToggle';
 
 const EXCLUDES = ['/api', '/blog', '/x/react-'];
 
