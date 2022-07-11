@@ -29,8 +29,6 @@
     "docs:typescript:check": "yarn workspace docs typescript",
     "docs:typescript:formatted": "cross-env BABEL_ENV=development babel-node --extensions \".tsx,.ts,.js\" ./docs/scripts/formattedTSDemos",
     "docs:mdicons:synonyms": "cross-env BABEL_ENV=development babel-node --extensions \".tsx,.ts,.js\" ./docs/scripts/updateIconSynonyms",
-    "docs:migrate:pages": "cross-env BABEL_ENV=development babel-node --extensions \".tsx,.ts,.js\" ./docs/scripts/restructure.ts",
-    "docs:post-migration": "cross-env BABEL_ENV=development babel-node --extensions \".tsx,.ts,.js\" ./docs/scripts/postMigration.ts",
     "extract-error-codes": "cross-env MUI_EXTRACT_ERROR_CODES=true lerna run --parallel build:modern",
     "template:screenshot": "cross-env BABEL_ENV=development babel-node --extensions \".tsx,.ts,.js\" ./docs/scripts/generateTemplateScreenshots",
     "install:codesandbox": "PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 yarn install --ignore-engines",
