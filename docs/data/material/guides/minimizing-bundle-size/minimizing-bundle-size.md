@@ -25,16 +25,13 @@ that doesn't support tree-shaking.
 ## Development environment
 
 Development bundles can contain the full library which can lead to **slower startup times**.
-This is especially noticeable if you import using named imports from `@mui/icons-material`.
-Startup times can be approximately 6x slower with named imports than without e.g.
+This is especially noticeable if you use named imports from `@mui/icons-material`, which can be up to six times slower than the default import.
+For example, between the following two imports, the first (named) can be significantly slower than the second (default):
 
-In some cases
+```js
+import { Delete } from '@mui/icons-material'
 
-`import { Delete } from '@mui/icons-material'`
-
-can be slower than
-
-`import Delete from '@mui/icons-material/Delete'`
+import Delete from '@mui/icons-material/Delete'
 
 If this is an issue for you, you have various options:
 
