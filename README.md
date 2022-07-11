@@ -213,42 +213,42 @@ For details of supported versions and contact details for reporting security iss
 
 These great services sponsor MUI's core infrastructure:
 
-[<picture>
+<picture>
 
   <source media="(prefers-color-scheme: dark)" srcset="/docs/public/static/readme/github-darkmode.svg">
   <source media="(prefers-color-scheme: light)" srcset="/docs/public/static/readme/github-lightmode.svg">
   <img alt="GitHub logo" src="/docs/public/static/readme/github-darkmode.svg">
-</picture>](https://github.com/)
+</picture>
 
-GitHub lets us host the Git repository and coordinate contributions.
+[GitHub](https://github.com/) lets us host the Git repository and coordinate contributions.
 
-[<picture>
+<picture>
 
   <source media="(prefers-color-scheme: dark)" srcset="/docs/public/static/readme/netlify-darkmode.svg">
   <source media="(prefers-color-scheme: light)" srcset="/docs/public/static/readme/netlify-lightmode.svg">
   <img alt="Netlify logo" src="/docs/public/static/readme/netlify-darkmode.svg">
-</picture>](https://www.netlify.com/)
+</picture>
 
-Netlify lets us distribute the documentation.
+[Netlify](https://www.netlify.com/) lets us distribute the documentation.
 
-[<picture>
+<picture>
 
   <source media="(prefers-color-scheme: dark)" srcset="/docs/public/static/readme/crowdin-darkmode.svg">
   <source media="(prefers-color-scheme: light)" srcset="/docs/public/static/readme/crowdin-lightmode.svg">
   <img alt="Crowdin logo" src="/docs/public/static/readme/crowdin-darkmode.svg">
-</picture>](https://crowdin.com/)
+</picture>
 
-Crowdin lets us translate the documentation.
+[Crowdin](https://crowdin.com/) lets us translate the documentation.
 
-[<picture>
+<picture>
 
   <source media="(prefers-color-scheme: dark)" srcset="/docs/public/static/readme/browserstack-darkmode.svg">
   <source media="(prefers-color-scheme: light)" srcset="/docs/public/static/readme/browserstack-lightmode.svg">
   <img alt="GitHub logo" src="/docs/public/static/readme/browserstack-darkmode.svg">
-</picture>](https://www.browserstack.com/)
+</picture>
 
-BrowserStack lets us test in real browsers.
+[BrowserStack](https://www.browserstack.com/) lets us test in real browsers.
 
-[<img loading="lazy" alt="CodeCov logo" src="https://github.com/codecov.png?size=70" width="35" height="35">](https://codecov.io/)
+<img loading="lazy" alt="CodeCov logo" src="https://github.com/codecov.png?size=70" width="35" height="35">
 
-CodeCov lets us monitor test coverage.
+[CodeCov](https://codecov.io/) lets us monitor test coverage.
