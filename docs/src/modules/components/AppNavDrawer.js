@@ -23,10 +23,10 @@ import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
 import ArrowDropDownRoundedIcon from '@mui/icons-material/ArrowDropDownRounded';
 import DoneRounded from '@mui/icons-material/DoneRounded';
 import MuiProductSelector from 'docs/src/modules/components/MuiProductSelector';
-import materialPkgJson from 'packages/mui-material/package.json';
-import joyPkgJson from 'packages/mui-joy/package.json';
-import basePkgJson from 'packages/mui-base/package.json';
-import systemPkgJson from 'packages/mui-system/package.json';
+import materialPkgJson from '../../../../packages/mui-material/package.json';
+import joyPkgJson from '../../../../packages/mui-joy/package.json';
+import basePkgJson from '../../../../packages/mui-base/package.json';
+import systemPkgJson from '../../../../packages/mui-system/package.json';
 
 const savedScrollTop = {};
 
