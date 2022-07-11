@@ -46,8 +46,8 @@ The following is a curated list of some of the best third-party resources we've 
 
 - [**Next.js 11 Setup with Material UI v5**](https://www.youtube.com/watch?v=IFaFFmPYyMI) by Leo Roese: learn how to integrate Material UI into your Next.js app, using Emotion as the style engine.
 
-- [**Create a Responsive Navigation Bar with Material UI v5**](https://www.youtube.com/watch?v=lUkxSnJ7aDw) by Nikhil Thadani: detailed walkthrough using Material UI with Create React App.
+- [**Material UI Crash Course: Intro to React + Material UI V5 (2022 Edition)**](https://www.youtube.com/watch?v=_W3uuxDnySQ) by Anthony Sistilli: how and why to use Material UI, plus guidance on theming and style customization.
 
-- [**Material UI 5 Tutorial Playlist**](https://www.youtube.com/playlist?list=PLlR2O33QQkfXnZMMZC0y22gLayBbB1UQd) by Nikhil Thadani (Indian Coders): A detailed Playlist covering almost every component of Material UI with Create React App.
+- [**Material UI 5 Tutorial Playlist**](https://www.youtube.com/playlist?list=PLlR2O33QQkfXnZMMZC0y22gLayBbB1UQd) by Nikhil Thadani (Indian Coders): a detailed playlist covering almost every component of Material UI with Create React App.
 
 - [**The Clever Dev**](https://www.youtube.com/channel/UCb6AZy0_D1y661PMZck3jOw) and [**The Smart Devpreneur**](https://smartdevpreneur.com/category/javascript/material-ui/) by Jon M: dozens of high-quality videos and articles digging deep into the nuts and bolts of Material UI.
