@@ -1,6 +1,10 @@
-<Chip variant="outlined" endDecorator={<ChipDelete />}>
+<Chip variant="outlined" color="danger" endDecorator={<ChipDelete />}>
   Remove
 </Chip>
-<Chip variant="soft" endDecorator={<ChipDelete variant="plain" />}>
+<Chip
+  variant="soft"
+  color="danger"
+  endDecorator={<ChipDelete variant="plain" />}
+>
   Delete
 </Chip>

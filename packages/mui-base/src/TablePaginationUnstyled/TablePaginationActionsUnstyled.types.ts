@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { OverrideProps } from '@mui/types';
+import { SlotComponentProps } from '../utils';
 
 export interface TablePaginationActionsUnstyledComponentsPropsOverrides {}
 
@@ -30,16 +31,31 @@ interface TablePaginationActionsUnstyledOwnProps extends React.HTMLAttributes<HT
    * @default {}
    */
   componentsProps?: {
-    root?: React.ComponentPropsWithRef<'div'> &
-      TablePaginationActionsUnstyledComponentsPropsOverrides;
-    firstButton?: React.ComponentPropsWithRef<'button'> &
-      TablePaginationActionsUnstyledComponentsPropsOverrides;
-    lastButton?: React.ComponentPropsWithRef<'button'> &
-      TablePaginationActionsUnstyledComponentsPropsOverrides;
-    nextButton?: React.ComponentPropsWithRef<'button'> &
-      TablePaginationActionsUnstyledComponentsPropsOverrides;
-    backButton?: React.ComponentPropsWithRef<'button'> &
-      TablePaginationActionsUnstyledComponentsPropsOverrides;
+    root?: SlotComponentProps<
+      'div',
+      TablePaginationActionsUnstyledComponentsPropsOverrides,
+      TablePaginationActionsUnstyledOwnerState
+    >;
+    firstButton?: SlotComponentProps<
+      'button',
+      TablePaginationActionsUnstyledComponentsPropsOverrides,
+      TablePaginationActionsUnstyledOwnerState
+    >;
+    lastButton?: SlotComponentProps<
+      'button',
+      TablePaginationActionsUnstyledComponentsPropsOverrides,
+      TablePaginationActionsUnstyledOwnerState
+    >;
+    nextButton?: SlotComponentProps<
+      'button',
+      TablePaginationActionsUnstyledComponentsPropsOverrides,
+      TablePaginationActionsUnstyledOwnerState
+    >;
+    backButton?: SlotComponentProps<
+      'button',
+      TablePaginationActionsUnstyledComponentsPropsOverrides,
+      TablePaginationActionsUnstyledOwnerState
+    >;
   };
   /**
    * Direction of the text.

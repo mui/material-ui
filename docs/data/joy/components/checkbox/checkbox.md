@@ -61,10 +61,10 @@ To rely only on variants to communicate the checkbox state change, use the `disa
 
 {{"demo": "IconlessCheckbox.js"}}
 
-### Focus
+### Focus outline
 
 The focus outline, by default, wraps both the checkbox itself and its label.
-To change that, target the `checkboxClasses.checkbox` class and add `position; 'relative'`.
+To change that, target the `checkboxClasses.checkbox` class and add `position: 'relative'`.
 
 {{"demo": "FocusCheckbox.js"}}
 

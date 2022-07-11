@@ -95,8 +95,8 @@ These two examples are equivalent:
 <BadgeUnstyled componentsProps={{ root: { id: 'badge1' } }}>
 ```
 
-:::info
-If you are customizing a component like [`ButtonUnstyled`](/base/react-button/) that only has a root slot, you may not need to use `componentsProps`.
+:::warning
+If both `componentsProps.root` and additional props have the same keys but different values, the `componentsProps.root` props will take precedence. This does not apply to classes or the `style` prop —they will be merged instead.
 :::
 
 ## Components vs. hooks

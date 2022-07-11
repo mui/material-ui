@@ -685,7 +685,7 @@ The following scenarios are not currently handled by this codemod and will be ma
 - If an arrow function at the rule level contains a code block (i.e. contains an explicit `return`
   statement) rather than just an object expression, it will not be converted.
 
-You can find more details about migrating from JSS to tss-react in [the migration guide](https://mui.com/migration/migrating-from-jss/#2-use-tss-react).
+You can find more details about migrating from JSS to tss-react in [the migration guide](https://mui.com/material-ui/migration/migrating-from-jss/#2-use-tss-react).
 
 #### `link-underline-hover`
 

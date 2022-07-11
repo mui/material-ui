@@ -2,12 +2,12 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { chainPropTypes } from '@mui/utils';
-import appendOwnerState from '../utils/appendOwnerState';
 import isHostComponent from '../utils/isHostComponent';
 import composeClasses from '../composeClasses';
 import { getSliderUtilityClass } from './sliderUnstyledClasses';
 import SliderValueLabelUnstyled from './SliderValueLabelUnstyled';
 import useSlider, { valueToPercent } from './useSlider';
+import useSlotProps from '../utils/useSlotProps';
 
 const Identity = (x) => x;
 
@@ -59,7 +59,6 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
     name,
     onChange,
     onChangeCommitted,
-    onMouseDown,
     orientation = 'horizontal',
     scale = Identity,
     step = 1,
@@ -101,7 +100,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
     active,
     axis,
     range,
-    focusVisible,
+    focusedThumbIndex,
     dragging,
     marks,
     values,
@@ -111,50 +110,84 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
 
   ownerState.marked = marks.length > 0 && marks.some((mark) => mark.label);
   ownerState.dragging = dragging;
-
-  const Root = component ?? components.Root ?? 'span';
-  const rootProps = appendOwnerState(Root, { ...other, ...componentsProps.root }, ownerState);
-
-  const Rail = components.Rail ?? 'span';
-  const railProps = appendOwnerState(Rail, componentsProps.rail, ownerState);
-
-  const Track = components.Track ?? 'span';
-  const trackProps = appendOwnerState(Track, componentsProps.track, ownerState);
-  const trackStyle = {
-    ...axisProps[axis].offset(trackOffset),
-    ...axisProps[axis].leap(trackLeap),
-  };
-
-  const Thumb = components.Thumb ?? 'span';
-  const thumbProps = appendOwnerState(Thumb, componentsProps.thumb, ownerState);
-
-  const ValueLabel = components.ValueLabel ?? SliderValueLabelUnstyled;
-  const valueLabelProps = appendOwnerState(ValueLabel, componentsProps.valueLabel, ownerState);
-
-  const Mark = components.Mark ?? 'span';
-  const markProps = appendOwnerState(Mark, componentsProps.mark, ownerState);
-
-  const MarkLabel = components.MarkLabel ?? 'span';
-  const markLabelProps = appendOwnerState(MarkLabel, componentsProps.markLabel, ownerState);
-
-  const Input = components.Input || 'input';
-  const inputProps = appendOwnerState(Input, componentsProps.input, ownerState);
-  const hiddenInputProps = getHiddenInputProps();
+  ownerState.focusedThumbIndex = focusedThumbIndex;
 
   const classes = useUtilityClasses(ownerState);
 
+  const Root = component ?? components.Root ?? 'span';
+  const rootProps = useSlotProps({
+    elementType: Root,
+    getSlotProps: getRootProps,
+    externalSlotProps: componentsProps.root,
+    externalForwardedProps: other,
+    ownerState,
+    className: [classes.root, className],
+  });
+
+  const Rail = components.Rail ?? 'span';
+  const railProps = useSlotProps({
+    elementType: Rail,
+    externalSlotProps: componentsProps.rail,
+    ownerState,
+    className: classes.rail,
+  });
+
+  const Track = components.Track ?? 'span';
+  const trackProps = useSlotProps({
+    elementType: Track,
+    externalSlotProps: componentsProps.track,
+    additionalProps: {
+      style: {
+        ...axisProps[axis].offset(trackOffset),
+        ...axisProps[axis].leap(trackLeap),
+      },
+    },
+    ownerState,
+    className: classes.track,
+  });
+
+  const Thumb = components.Thumb ?? 'span';
+  const thumbProps = useSlotProps({
+    elementType: Thumb,
+    getSlotProps: getThumbProps,
+    externalSlotProps: componentsProps.thumb,
+    ownerState,
+  });
+
+  const ValueLabel = components.ValueLabel ?? SliderValueLabelUnstyled;
+  const valueLabelProps = useSlotProps({
+    elementType: ValueLabel,
+    externalSlotProps: componentsProps.valueLabel,
+    ownerState,
+  });
+
+  const Mark = components.Mark ?? 'span';
+  const markProps = useSlotProps({
+    elementType: Mark,
+    externalSlotProps: componentsProps.mark,
+    ownerState,
+    className: classes.mark,
+  });
+
+  const MarkLabel = components.MarkLabel ?? 'span';
+  const markLabelProps = useSlotProps({
+    elementType: MarkLabel,
+    externalSlotProps: componentsProps.markLabel,
+    ownerState,
+  });
+
+  const Input = components.Input || 'input';
+  const inputProps = useSlotProps({
+    elementType: Input,
+    getSlotProps: getHiddenInputProps,
+    externalSlotProps: componentsProps.input,
+    ownerState,
+  });
+
   return (
-    <Root
-      {...rootProps}
-      {...getRootProps({ onMouseDown })}
-      className={clsx(classes.root, rootProps.className, className)}
-    >
-      <Rail {...railProps} className={clsx(classes.rail, railProps.className)} />
-      <Track
-        {...trackProps}
-        className={clsx(classes.track, trackProps.className)}
-        style={{ ...trackStyle, ...trackProps.style }}
-      />
+    <Root {...rootProps}>
+      <Rail {...railProps} />
+      <Track {...trackProps} />
       {marks
         .filter((mark) => mark.value >= min && mark.value <= max)
         .map((mark, index) => {
@@ -185,7 +218,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
                   markActive,
                 })}
                 style={{ ...style, ...markProps.style }}
-                className={clsx(classes.mark, markProps.className, {
+                className={clsx(markProps.className, {
                   [classes.markActive]: markActive,
                 })}
               />
@@ -233,11 +266,11 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
             >
               <Thumb
                 data-index={index}
+                data-focusvisible={focusedThumbIndex === index}
                 {...thumbProps}
-                {...getThumbProps()}
                 className={clsx(classes.thumb, thumbProps.className, {
                   [classes.active]: active === index,
-                  [classes.focusVisible]: focusVisible === index,
+                  [classes.focusVisible]: focusedThumbIndex === index,
                 })}
                 style={{
                   ...style,
@@ -246,7 +279,6 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
                 }}
               >
                 <Input
-                  {...hiddenInputProps}
                   data-index={index}
                   aria-label={getAriaLabel ? getAriaLabel(index) : ariaLabel}
                   aria-valuenow={scale(value)}
@@ -254,14 +286,7 @@ const SliderUnstyled = React.forwardRef(function SliderUnstyled(props, ref) {
                     getAriaValueText ? getAriaValueText(scale(value), index) : ariaValuetext
                   }
                   value={values[index]}
-                  {...(!isHostComponent(Input) && {
-                    ownerState: { ...ownerState, ...inputProps.ownerState },
-                  })}
                   {...inputProps}
-                  style={{
-                    ...hiddenInputProps.style,
-                    ...inputProps.style,
-                  }}
                 />
               </Thumb>
             </ValueLabelComponent>
@@ -346,24 +371,27 @@ SliderUnstyled.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   componentsProps: PropTypes.shape({
-    input: PropTypes.object,
-    mark: PropTypes.object,
-    markLabel: PropTypes.object,
-    rail: PropTypes.object,
-    root: PropTypes.object,
-    thumb: PropTypes.object,
-    track: PropTypes.object,
-    valueLabel: PropTypes.shape({
-      children: PropTypes.element,
-      className: PropTypes.string,
-      components: PropTypes.shape({
-        Root: PropTypes.elementType,
+    input: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    mark: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    markLabel: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    rail: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    thumb: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    track: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    valueLabel: PropTypes.oneOfType([
+      PropTypes.func,
+      PropTypes.shape({
+        children: PropTypes.element,
+        className: PropTypes.string,
+        components: PropTypes.shape({
+          Root: PropTypes.elementType,
+        }),
+        open: PropTypes.bool,
+        style: PropTypes.object,
+        value: PropTypes.number,
+        valueLabelDisplay: PropTypes.oneOf(['auto', 'off', 'on']),
       }),
-      open: PropTypes.bool,
-      style: PropTypes.object,
-      value: PropTypes.number,
-      valueLabelDisplay: PropTypes.oneOf(['auto', 'off', 'on']),
-    }),
+    ]),
   }),
   /**
    * The default value. Use when the component is not controlled.
@@ -447,10 +475,6 @@ SliderUnstyled.propTypes /* remove-proptypes */ = {
    * @param {number | number[]} value The new value.
    */
   onChangeCommitted: PropTypes.func,
-  /**
-   * @ignore
-   */
-  onMouseDown: PropTypes.func,
   /**
    * The component orientation.
    * @default 'horizontal'

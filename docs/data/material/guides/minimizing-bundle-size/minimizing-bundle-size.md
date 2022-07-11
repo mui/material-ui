@@ -214,6 +214,7 @@ Instead, use these bundles at the bundler level with e.g [Webpack's `resolve.ali
       '@mui/material': '@mui/material/legacy',
       '@mui/styled-engine': '@mui/styled-engine/legacy',
       '@mui/system': '@mui/system/legacy',
+      '@mui/utils': '@mui/utils/legacy',
     }
   }
 }

@@ -61,7 +61,6 @@ describe('OptionUnstyled', () => {
     },
     skip: [
       'reactTestRenderer', // Need to be wrapped in SelectUnstyledContext
-      'componentsPropsCallbacks', // not implemented yet
     ],
   }));
 });
