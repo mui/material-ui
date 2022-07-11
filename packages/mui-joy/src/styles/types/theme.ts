@@ -54,7 +54,7 @@ export interface ThemeScales {
 
 export interface ThemeVars extends ThemeScales, ColorSystem {}
 
-export type ThemeCSSVar = NormalizeVars<ThemeVars>;
+export type ThemeCssVar = NormalizeVars<ThemeVars>;
 
 export interface Theme extends ThemeScales, RuntimeColorSystem {
   colorSchemes: Record<DefaultColorScheme | ExtendedColorScheme, ColorSystem>;
@@ -66,8 +66,8 @@ export interface Theme extends ThemeScales, RuntimeColorSystem {
   cssVarPrefix: string;
   vars: ThemeVars;
   getCssVar: <CustomVar extends string = never>(
-    field: ThemeCSSVar | CustomVar,
-    ...vars: (ThemeCSSVar | CustomVar)[]
+    field: ThemeCssVar | CustomVar,
+    ...vars: (ThemeCssVar | CustomVar)[]
   ) => string;
   getColorSchemeSelector: (colorScheme: DefaultColorScheme | ExtendedColorScheme) => string;
 }
