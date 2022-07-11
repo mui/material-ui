@@ -4934,7 +4934,7 @@ Object.defineProperty(exports, "Battery1BarTwoTone", {
 Object.defineProperty(exports, "Battery20", {
   enumerable: true,
   get: function () {
-    return _interopRequireDefault(require("./Battery")).default;
+    return _interopRequireDefault(require("./Battery20")).default;
   }
 });
 Object.defineProperty(exports, "Battery20Outlined", {
@@ -4994,7 +4994,7 @@ Object.defineProperty(exports, "Battery2BarTwoTone", {
 Object.defineProperty(exports, "Battery30", {
   enumerable: true,
   get: function () {
-    return _interopRequireDefault(require("./Battery2")).default;
+    return _interopRequireDefault(require("./Battery30")).default;
   }
 });
 Object.defineProperty(exports, "Battery30Outlined", {
@@ -5084,7 +5084,7 @@ Object.defineProperty(exports, "Battery4BarTwoTone", {
 Object.defineProperty(exports, "Battery50", {
   enumerable: true,
   get: function () {
-    return _interopRequireDefault(require("./Battery3")).default;
+    return _interopRequireDefault(require("./Battery50")).default;
   }
 });
 Object.defineProperty(exports, "Battery50Outlined", {
@@ -5144,7 +5144,7 @@ Object.defineProperty(exports, "Battery5BarTwoTone", {
 Object.defineProperty(exports, "Battery60", {
   enumerable: true,
   get: function () {
-    return _interopRequireDefault(require("./Battery4")).default;
+    return _interopRequireDefault(require("./Battery60")).default;
   }
 });
 Object.defineProperty(exports, "Battery60Outlined", {
@@ -5204,7 +5204,7 @@ Object.defineProperty(exports, "Battery6BarTwoTone", {
 Object.defineProperty(exports, "Battery80", {
   enumerable: true,
   get: function () {
-    return _interopRequireDefault(require("./Battery5")).default;
+    return _interopRequireDefault(require("./Battery80")).default;
   }
 });
 Object.defineProperty(exports, "Battery80Outlined", {
@@ -5234,7 +5234,7 @@ Object.defineProperty(exports, "Battery80TwoTone", {
 Object.defineProperty(exports, "Battery90", {
   enumerable: true,
   get: function () {
-    return _interopRequireDefault(require("./Battery6")).default;
+    return _interopRequireDefault(require("./Battery90")).default;
   }
 });
 Object.defineProperty(exports, "Battery90Outlined", {
@@ -5294,7 +5294,7 @@ Object.defineProperty(exports, "BatteryAlertTwoTone", {
 Object.defineProperty(exports, "BatteryCharging20", {
   enumerable: true,
   get: function () {
-    return _interopRequireDefault(require("./BatteryCharging")).default;
+    return _interopRequireDefault(require("./BatteryCharging20")).default;
   }
 });
 Object.defineProperty(exports, "BatteryCharging20Outlined", {
@@ -5324,7 +5324,7 @@ Object.defineProperty(exports, "BatteryCharging20TwoTone", {
 Object.defineProperty(exports, "BatteryCharging30", {
   enumerable: true,
   get: function () {
-    return _interopRequireDefault(require("./BatteryCharging2")).default;
+    return _interopRequireDefault(require("./BatteryCharging30")).default;
   }
 });
 Object.defineProperty(exports, "BatteryCharging30Outlined", {
@@ -5354,7 +5354,7 @@ Object.defineProperty(exports, "BatteryCharging30TwoTone", {
 Object.defineProperty(exports, "BatteryCharging50", {
   enumerable: true,
   get: function () {
-    return _interopRequireDefault(require("./BatteryCharging3")).default;
+    return _interopRequireDefault(require("./BatteryCharging50")).default;
   }
 });
 Object.defineProperty(exports, "BatteryCharging50Outlined", {
@@ -5384,7 +5384,7 @@ Object.defineProperty(exports, "BatteryCharging50TwoTone", {
 Object.defineProperty(exports, "BatteryCharging60", {
   enumerable: true,
   get: function () {
-    return _interopRequireDefault(require("./BatteryCharging4")).default;
+    return _interopRequireDefault(require("./BatteryCharging60")).default;
   }
 });
 Object.defineProperty(exports, "BatteryCharging60Outlined", {
@@ -5414,7 +5414,7 @@ Object.defineProperty(exports, "BatteryCharging60TwoTone", {
 Object.defineProperty(exports, "BatteryCharging80", {
   enumerable: true,
   get: function () {
-    return _interopRequireDefault(require("./BatteryCharging5")).default;
+    return _interopRequireDefault(require("./BatteryCharging80")).default;
   }
 });
 Object.defineProperty(exports, "BatteryCharging80Outlined", {
@@ -5444,7 +5444,7 @@ Object.defineProperty(exports, "BatteryCharging80TwoTone", {
 Object.defineProperty(exports, "BatteryCharging90", {
   enumerable: true,
   get: function () {
-    return _interopRequireDefault(require("./BatteryCharging6")).default;
+    return _interopRequireDefault(require("./BatteryCharging90")).default;
   }
 });
 Object.defineProperty(exports, "BatteryCharging90Outlined", {
@@ -7094,7 +7094,7 @@ Object.defineProperty(exports, "BreakfastDiningTwoTone", {
 Object.defineProperty(exports, "Brightness1", {
   enumerable: true,
   get: function () {
-    return _interopRequireDefault(require("./Brightness")).default;
+    return _interopRequireDefault(require("./Brightness1")).default;
   }
 });
 Object.defineProperty(exports, "Brightness1Outlined", {
@@ -10694,7 +10694,7 @@ Object.defineProperty(exports, "CloudUploadTwoTone", {
 Object.defineProperty(exports, "Co2", {
   enumerable: true,
   get: function () {
-    return _interopRequireDefault(require("./Co")).default;
+    return _interopRequireDefault(require("./Co2")).default;
   }
 });
 Object.defineProperty(exports, "Co2Outlined", {
@@ -12350,7 +12350,7 @@ Object.defineProperty(exports, "Crop", {
 Object.defineProperty(exports, "Crop169", {
   enumerable: true,
   get: function () {
-    return _interopRequireDefault(require("./Crop2")).default;
+    return _interopRequireDefault(require("./Crop169")).default;
   }
 });
 Object.defineProperty(exports, "Crop169Outlined", {
@@ -12380,7 +12380,7 @@ Object.defineProperty(exports, "Crop169TwoTone", {
 Object.defineProperty(exports, "Crop32", {
   enumerable: true,
   get: function () {
-    return _interopRequireDefault(require("./Crop3")).default;
+    return _interopRequireDefault(require("./Crop32")).default;
   }
 });
 Object.defineProperty(exports, "Crop32Outlined", {
@@ -12410,7 +12410,7 @@ Object.defineProperty(exports, "Crop32TwoTone", {
 Object.defineProperty(exports, "Crop54", {
   enumerable: true,
   get: function () {
-    return _interopRequireDefault(require("./Crop4")).default;
+    return _interopRequireDefault(require("./Crop54")).default;
   }
 });
 Object.defineProperty(exports, "Crop54Outlined", {
@@ -12440,7 +12440,7 @@ Object.defineProperty(exports, "Crop54TwoTone", {
 Object.defineProperty(exports, "Crop75", {
   enumerable: true,
   get: function () {
-    return _interopRequireDefault(require("./Crop5")).default;
+    return _interopRequireDefault(require("./Crop75")).default;
   }
 });
 Object.defineProperty(exports, "Crop75Outlined", {
@@ -19670,7 +19670,7 @@ Object.defineProperty(exports, "Filter", {
 Object.defineProperty(exports, "Filter1", {
   enumerable: true,
   get: function () {
-    return _interopRequireDefault(require("./Filter2")).default;
+    return _interopRequireDefault(require("./Filter1")).default;
   }
 });
 Object.defineProperty(exports, "Filter1Outlined", {
@@ -19700,7 +19700,7 @@ Object.defineProperty(exports, "Filter1TwoTone", {
 Object.defineProperty(exports, "Filter2", {
   enumerable: true,
   get: function () {
-    return _interopRequireDefault(require("./Filter3")).default;
+    return _interopRequireDefault(require("./Filter2")).default;
   }
 });
 Object.defineProperty(exports, "Filter2Outlined", {
@@ -19730,7 +19730,7 @@ Object.defineProperty(exports, "Filter2TwoTone", {
 Object.defineProperty(exports, "Filter3", {
   enumerable: true,
   get: function () {
-    return _interopRequireDefault(require("./Filter4")).default;
+    return _interopRequireDefault(require("./Filter3")).default;
   }
 });
 Object.defineProperty(exports, "Filter3Outlined", {
@@ -19760,7 +19760,7 @@ Object.defineProperty(exports, "Filter3TwoTone", {
 Object.defineProperty(exports, "Filter4", {
   enumerable: true,
   get: function () {
-    return _interopRequireDefault(require("./Filter5")).default;
+    return _interopRequireDefault(require("./Filter4")).default;
   }
 });
 Object.defineProperty(exports, "Filter4Outlined", {
@@ -19790,7 +19790,7 @@ Object.defineProperty(exports, "Filter4TwoTone", {
 Object.defineProperty(exports, "Filter5", {
   enumerable: true,
   get: function () {
-    return _interopRequireDefault(require("./Filter6")).default;
+    return _interopRequireDefault(require("./Filter5")).default;
   }
 });
 Object.defineProperty(exports, "Filter5Outlined", {
@@ -19820,7 +19820,7 @@ Object.defineProperty(exports, "Filter5TwoTone", {
 Object.defineProperty(exports, "Filter6", {
   enumerable: true,
   get: function () {
-    return _interopRequireDefault(require("./Filter7")).default;
+    return _interopRequireDefault(require("./Filter6")).default;
   }
 });
 Object.defineProperty(exports, "Filter6Outlined", {
@@ -19850,7 +19850,7 @@ Object.defineProperty(exports, "Filter6TwoTone", {
 Object.defineProperty(exports, "Filter7", {
   enumerable: true,
   get: function () {
-    return _interopRequireDefault(require("./Filter8")).default;
+    return _interopRequireDefault(require("./Filter7")).default;
   }
 });
 Object.defineProperty(exports, "Filter7Outlined", {
@@ -19880,7 +19880,7 @@ Object.defineProperty(exports, "Filter7TwoTone", {
 Object.defineProperty(exports, "Filter8", {
   enumerable: true,
   get: function () {
-    return _interopRequireDefault(require("./Filter9")).default;
+    return _interopRequireDefault(require("./Filter8")).default;
   }
 });
 Object.defineProperty(exports, "Filter8Outlined", {
@@ -19910,7 +19910,7 @@ Object.defineProperty(exports, "Filter8TwoTone", {
 Object.defineProperty(exports, "Filter9", {
   enumerable: true,
   get: function () {
-    return _interopRequireDefault(require("./Filter10")).default;
+    return _interopRequireDefault(require("./Filter9")).default;
   }
 });
 Object.defineProperty(exports, "Filter9Outlined", {
@@ -22760,7 +22760,7 @@ Object.defineProperty(exports, "Forward", {
 Object.defineProperty(exports, "Forward10", {
   enumerable: true,
   get: function () {
-    return _interopRequireDefault(require("./Forward2")).default;
+    return _interopRequireDefault(require("./Forward10")).default;
   }
 });
 Object.defineProperty(exports, "Forward10Outlined", {
@@ -22790,7 +22790,7 @@ Object.defineProperty(exports, "Forward10TwoTone", {
 Object.defineProperty(exports, "Forward30", {
   enumerable: true,
   get: function () {
-    return _interopRequireDefault(require("./Forward3")).default;
+    return _interopRequireDefault(require("./Forward30")).default;
   }
 });
 Object.defineProperty(exports, "Forward30Outlined", {
@@ -22820,7 +22820,7 @@ Object.defineProperty(exports, "Forward30TwoTone", {
 Object.defineProperty(exports, "Forward5", {
   enumerable: true,
   get: function () {
-    return _interopRequireDefault(require("./Forward4")).default;
+    return _interopRequireDefault(require("./Forward5")).default;
   }
 });
 Object.defineProperty(exports, "Forward5Outlined", {
@@ -24026,7 +24026,7 @@ Object.defineProperty(exports, "GrassTwoTone", {
 Object.defineProperty(exports, "Grid3x3", {
   enumerable: true,
   get: function () {
-    return _interopRequireDefault(require("./Grid3x")).default;
+    return _interopRequireDefault(require("./Grid3x3")).default;
   }
 });
 Object.defineProperty(exports, "Grid3x3Outlined", {
@@ -24056,7 +24056,7 @@ Object.defineProperty(exports, "Grid3x3TwoTone", {
 Object.defineProperty(exports, "Grid4x4", {
   enumerable: true,
   get: function () {
-    return _interopRequireDefault(require("./Grid4x")).default;
+    return _interopRequireDefault(require("./Grid4x4")).default;
   }
 });
 Object.defineProperty(exports, "Grid4x4Outlined", {
@@ -31088,7 +31088,7 @@ Object.defineProperty(exports, "Looks", {
 Object.defineProperty(exports, "Looks3", {
   enumerable: true,
   get: function () {
-    return _interopRequireDefault(require("./Looks2")).default;
+    return _interopRequireDefault(require("./Looks3")).default;
   }
 });
 Object.defineProperty(exports, "Looks3Outlined", {
@@ -31118,7 +31118,7 @@ Object.defineProperty(exports, "Looks3TwoTone", {
 Object.defineProperty(exports, "Looks4", {
   enumerable: true,
   get: function () {
-    return _interopRequireDefault(require("./Looks3")).default;
+    return _interopRequireDefault(require("./Looks4")).default;
   }
 });
 Object.defineProperty(exports, "Looks4Outlined", {
@@ -31148,7 +31148,7 @@ Object.defineProperty(exports, "Looks4TwoTone", {
 Object.defineProperty(exports, "Looks5", {
   enumerable: true,
   get: function () {
-    return _interopRequireDefault(require("./Looks4")).default;
+    return _interopRequireDefault(require("./Looks5")).default;
   }
 });
 Object.defineProperty(exports, "Looks5Outlined", {
@@ -31178,7 +31178,7 @@ Object.defineProperty(exports, "Looks5TwoTone", {
 Object.defineProperty(exports, "Looks6", {
   enumerable: true,
   get: function () {
-    return _interopRequireDefault(require("./Looks5")).default;
+    return _interopRequireDefault(require("./Looks6")).default;
   }
 });
 Object.defineProperty(exports, "Looks6Outlined", {
@@ -38630,7 +38630,7 @@ Object.defineProperty(exports, "PersonAddAlt", {
 Object.defineProperty(exports, "PersonAddAlt1", {
   enumerable: true,
   get: function () {
-    return _interopRequireDefault(require("./PersonAddAlt2")).default;
+    return _interopRequireDefault(require("./PersonAddAlt1")).default;
   }
 });
 Object.defineProperty(exports, "PersonAddAlt1Outlined", {
@@ -38870,7 +38870,7 @@ Object.defineProperty(exports, "PersonRemove", {
 Object.defineProperty(exports, "PersonRemoveAlt1", {
   enumerable: true,
   get: function () {
-    return _interopRequireDefault(require("./PersonRemoveAlt")).default;
+    return _interopRequireDefault(require("./PersonRemoveAlt1")).default;
   }
 });
 Object.defineProperty(exports, "PersonRemoveAlt1Outlined", {
@@ -43400,7 +43400,7 @@ Object.defineProperty(exports, "Replay", {
 Object.defineProperty(exports, "Replay10", {
   enumerable: true,
   get: function () {
-    return _interopRequireDefault(require("./Replay2")).default;
+    return _interopRequireDefault(require("./Replay10")).default;
   }
 });
 Object.defineProperty(exports, "Replay10Outlined", {
@@ -43430,7 +43430,7 @@ Object.defineProperty(exports, "Replay10TwoTone", {
 Object.defineProperty(exports, "Replay30", {
   enumerable: true,
   get: function () {
-    return _interopRequireDefault(require("./Replay3")).default;
+    return _interopRequireDefault(require("./Replay30")).default;
   }
 });
 Object.defineProperty(exports, "Replay30Outlined", {
@@ -43460,7 +43460,7 @@ Object.defineProperty(exports, "Replay30TwoTone", {
 Object.defineProperty(exports, "Replay5", {
   enumerable: true,
   get: function () {
-    return _interopRequireDefault(require("./Replay4")).default;
+    return _interopRequireDefault(require("./Replay5")).default;
   }
 });
 Object.defineProperty(exports, "Replay5Outlined", {
@@ -48884,7 +48884,7 @@ Object.defineProperty(exports, "SignalWifiBadTwoTone", {
 Object.defineProperty(exports, "SignalWifiConnectedNoInternet4", {
   enumerable: true,
   get: function () {
-    return _interopRequireDefault(require("./SignalWifiConnectedNoInternet")).default;
+    return _interopRequireDefault(require("./SignalWifiConnectedNoInternet4")).default;
   }
 });
 Object.defineProperty(exports, "SignalWifiConnectedNoInternet4Outlined", {
@@ -48974,7 +48974,7 @@ Object.defineProperty(exports, "SignalWifiStatusbar4BarTwoTone", {
 Object.defineProperty(exports, "SignalWifiStatusbarConnectedNoInternet4", {
   enumerable: true,
   get: function () {
-    return _interopRequireDefault(require("./SignalWifiStatusbarConnectedNoInternet")).default;
+    return _interopRequireDefault(require("./SignalWifiStatusbarConnectedNoInternet4")).default;
   }
 });
 Object.defineProperty(exports, "SignalWifiStatusbarConnectedNoInternet4Outlined", {
@@ -51602,7 +51602,7 @@ Object.defineProperty(exports, "StarBorderOutlined", {
 Object.defineProperty(exports, "StarBorderPurple500", {
   enumerable: true,
   get: function () {
-    return _interopRequireDefault(require("./StarBorderPurple")).default;
+    return _interopRequireDefault(require("./StarBorderPurple500")).default;
   }
 });
 Object.defineProperty(exports, "StarBorderPurple500Outlined", {
@@ -51716,7 +51716,7 @@ Object.defineProperty(exports, "StarOutlined", {
 Object.defineProperty(exports, "StarPurple500", {
   enumerable: true,
   get: function () {
-    return _interopRequireDefault(require("./StarPurple")).default;
+    return _interopRequireDefault(require("./StarPurple500")).default;
   }
 });
 Object.defineProperty(exports, "StarPurple500Outlined", {
@@ -51974,7 +51974,7 @@ Object.defineProperty(exports, "StayPrimaryPortraitTwoTone", {
 Object.defineProperty(exports, "StickyNote2", {
   enumerable: true,
   get: function () {
-    return _interopRequireDefault(require("./StickyNote")).default;
+    return _interopRequireDefault(require("./StickyNote2")).default;
   }
 });
 Object.defineProperty(exports, "StickyNote2Outlined", {
@@ -55766,7 +55766,7 @@ Object.defineProperty(exports, "Timer", {
 Object.defineProperty(exports, "Timer10", {
   enumerable: true,
   get: function () {
-    return _interopRequireDefault(require("./Timer2")).default;
+    return _interopRequireDefault(require("./Timer10")).default;
   }
 });
 Object.defineProperty(exports, "Timer10Outlined", {
@@ -60938,7 +60938,7 @@ Object.defineProperty(exports, "WifiCalling", {
 Object.defineProperty(exports, "WifiCalling3", {
   enumerable: true,
   get: function () {
-    return _interopRequireDefault(require("./WifiCalling2")).default;
+    return _interopRequireDefault(require("./WifiCalling3")).default;
   }
 });
 Object.defineProperty(exports, "WifiCalling3Outlined", {
