@@ -1,3 +1,10 @@
+/*
+Comments to be preserved when clsx import is removed. These comments should come before
+any comments that they get combined with.
+ */
+/*
+Comments that should not be lost when the clsx import comments are preserved.
+ */
 import React from "react";
 import { makeStyles } from 'tss-react/mui';
 
@@ -40,6 +47,17 @@ const useStyles3 = makeStyles()({
     };
   }
 });
+
+// TODO jss-to-tss-react codemod: '@global' is not supported by tss-react.
+// See https://mui.com/material-ui/customization/how-to-customize/#4-global-css-override for alternatives.
+const useGlobalStyles = makeStyles()(() => ({
+  '@global': {
+    '.sample': {
+      backgroundColor: "purple",
+      color: "white",
+    }
+  }
+}));
 
 function InnerComponent() {
   const { classes } = useStyles2();

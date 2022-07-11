@@ -1,17 +1,17 @@
 import * as React from 'react';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
-import IconButton from '@mui/joy/IconButton';
-import Typography from '@mui/joy/Typography';
+// import IconButton from '@mui/joy/IconButton';
+// import Typography from '@mui/joy/Typography';
 import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
 import Moon from '@mui/icons-material/DarkMode';
 import Sun from '@mui/icons-material/LightMode';
-import Add from '@mui/icons-material/Add';
-import DeleteForever from '@mui/icons-material/DeleteForeverOutlined';
-import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
-import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown';
-import ThumbUp from '@mui/icons-material/ThumbUp';
-import ArrowDropDown from '@mui/icons-material/ArrowDropDown';
+// import Add from '@mui/icons-material/Add';
+// import DeleteForever from '@mui/icons-material/DeleteForeverOutlined';
+// import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
+// import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown';
+// import ThumbUp from '@mui/icons-material/ThumbUp';
+// import ArrowDropDown from '@mui/icons-material/ArrowDropDown';
 
 const ColorSchemePicker = () => {
   const { mode, setMode } = useColorScheme();
@@ -25,7 +25,7 @@ const ColorSchemePicker = () => {
 
   return (
     <Button
-      variant="outlined"
+      variant="soft"
       onClick={() => {
         if (mode === 'light') {
           setMode('dark');
@@ -33,7 +33,7 @@ const ColorSchemePicker = () => {
           setMode('light');
         }
       }}
-      sx={{ '--Button-gutter': '0.25rem', minWidth: 'var(--Button-minHeight)' }}
+      sx={{ minWidth: 'var(--Button-minHeight)' }}
     >
       {mode === 'light' ? <Moon /> : <Sun />}
     </Button>
@@ -41,18 +41,18 @@ const ColorSchemePicker = () => {
 };
 
 export default function JoyButton() {
-  const buttonProps = {
-    variant: ['plain', 'outlined', 'soft', 'solid'],
-    color: ['primary', 'neutral', 'danger', 'info', 'success', 'warning'],
-    size: ['sm', 'md', 'lg'],
-  } as const;
+  // const buttonProps = {
+  //   variant: ['plain', 'outlined', 'soft', 'solid'],
+  //   color: ['primary', 'neutral', 'danger', 'info', 'success', 'warning'],
+  //   size: ['sm', 'md', 'lg'],
+  // } as const;
   return (
     <CssVarsProvider>
       <Box sx={{ py: 5, maxWidth: { md: 1152, xl: 1536 }, mx: 'auto' }}>
-        <Box sx={{ px: 3, pb: 4 }}>
+        <Box sx={{ p: 1 }}>
           <ColorSchemePicker />
         </Box>
-        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 5 }}>
+        {/* <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 5 }}>
           {Object.entries(buttonProps).map(([propName, propValue]) => (
             <Box
               key={propName}
@@ -118,7 +118,7 @@ export default function JoyButton() {
               variant="solid"
               color="success"
               endIcon={<KeyboardArrowDown fontSize="lg" />}
-              sx={{ '--Button-gutter': '0.5rem' }}
+              sx={{ '--Button-paddingInline': '0.5rem' }}
               // sx={{ px: '0.5rem' }} // should not use `px` because endIcon will have mismatch position
             >
               <ThumbUp />
@@ -148,9 +148,9 @@ export default function JoyButton() {
               10
             </Button>
           </Box>
-        </Box>
+        </Box> */}
         {/* Danilo's not smart iteration below 😅 - wanted to see each color with every variant. */}
-        <Box sx={{ display: 'flex', py: 16 }}>
+        <Box sx={{ display: 'flex', py: 5 }}>
           <Box sx={{ width: '100px', display: 'grid', gap: 2, mr: 4 }}>
             <Button variant="solid" color="primary">
               Button
@@ -231,6 +231,96 @@ export default function JoyButton() {
               Button
             </Button>
           </Box>
+          <Box
+            sx={{
+              width: '100px',
+              display: 'grid',
+              gap: 2,
+              mr: 4,
+              pl: 4,
+              borderLeft: '1px solid',
+            }}
+          >
+            <Button variant="solid" color="primary" disabled>
+              Button
+            </Button>
+            <Button variant="solid" color="neutral" disabled>
+              Button
+            </Button>
+            <Button variant="solid" color="danger" disabled>
+              Button
+            </Button>
+            <Button variant="solid" color="info" disabled>
+              Button
+            </Button>
+            <Button variant="solid" color="success" disabled>
+              Button
+            </Button>
+            <Button variant="solid" color="warning" disabled>
+              Button
+            </Button>
+          </Box>
+          <Box sx={{ width: '100px', display: 'grid', gap: 2, mr: 4 }}>
+            <Button variant="outlined" color="primary" disabled>
+              Button
+            </Button>
+            <Button variant="outlined" color="neutral" disabled>
+              Button
+            </Button>
+            <Button variant="outlined" color="danger" disabled>
+              Button
+            </Button>
+            <Button variant="outlined" color="info" disabled>
+              Button
+            </Button>
+            <Button variant="outlined" color="success" disabled>
+              Button
+            </Button>
+            <Button variant="outlined" color="warning" disabled>
+              Button
+            </Button>
+          </Box>
+          <Box sx={{ width: '100px', display: 'grid', gap: 2, mr: 4 }}>
+            <Button variant="soft" color="primary" disabled>
+              Button
+            </Button>
+            <Button variant="soft" color="neutral" disabled>
+              Button
+            </Button>
+            <Button variant="soft" color="danger" disabled>
+              Button
+            </Button>
+            <Button variant="soft" color="info" disabled>
+              Button
+            </Button>
+            <Button variant="soft" color="success" disabled>
+              Button
+            </Button>
+            <Button variant="soft" color="warning" disabled>
+              Button
+            </Button>
+          </Box>
+          <Box sx={{ width: '100px', display: 'grid', gap: 2, mr: 4 }}>
+            <Button variant="plain" color="primary" disabled>
+              Button
+            </Button>
+            <Button variant="plain" color="neutral" disabled>
+              Button
+            </Button>
+            <Button variant="plain" color="danger" disabled>
+              Button
+            </Button>
+            <Button variant="plain" color="info" disabled>
+              Button
+            </Button>
+            <Button variant="plain" color="success" disabled>
+              Button
+            </Button>
+            <Button variant="plain" color="warning" disabled>
+              Button
+            </Button>
+          </Box>
+
           <Box sx={{ width: '100px', display: 'grid' }}>
             <Box
               sx={{

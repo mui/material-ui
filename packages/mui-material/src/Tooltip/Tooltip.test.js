@@ -433,6 +433,23 @@ describe('<Tooltip />', () => {
       expect(getByRole('tooltip')).toBeVisible();
       expect(handleFocus.callCount).to.equal(1);
     });
+
+    it('should handle `onMouseOver` forwarding', () => {
+      const handleMouseOver = spy();
+      const { getByRole } = render(
+        <Tooltip enterDelay={100} title="Tooltip">
+          <button id="testChild" type="submit" onMouseOver={handleMouseOver}>
+            Hello World
+          </button>
+        </Tooltip>,
+      );
+
+      fireEvent.mouseOver(getByRole('button'));
+      clock.tick(100);
+
+      expect(getByRole('tooltip')).toBeVisible();
+      expect(handleMouseOver.callCount).to.equal(1);
+    });
   });
 
   describe('prop: delay', () => {

@@ -19,6 +19,9 @@ export * from './Switch';
 export { default as SvgIcon } from './SvgIcon';
 export * from './SvgIcon';
 
+export { default as Slider } from './Slider';
+export * from './Slider';
+
 export { default as Link } from './Link';
 export * from './Link';
 
@@ -77,3 +80,6 @@ export * from './Radio';
 
 export { default as RadioGroup } from './RadioGroup';
 export * from './RadioGroup';
+
+export { default as Grid } from './Grid';
+export * from './Grid';

@@ -1,4 +1,5 @@
 import Moon from '@mui/icons-material/DarkMode';
+import Info from '@mui/icons-material/InfoOutlined';
 import Sun from '@mui/icons-material/LightMode';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
@@ -7,7 +8,6 @@ import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
 import Typography from '@mui/joy/Typography';
 import { GlobalStyles } from '@mui/system';
 import * as React from 'react';
-import Info from '@mui/icons-material/InfoOutlined';
 
 const ColorSchemePicker = () => {
   const { mode, setMode } = useColorScheme();
@@ -29,7 +29,7 @@ const ColorSchemePicker = () => {
           setMode('light');
         }
       }}
-      sx={{ '--Button-gutter': '0.25rem', minWidth: 'var(--Button-minHeight)' }}
+      sx={{ '--Button-paddingInline': '0.25rem', minWidth: 'var(--Button-minHeight)' }}
     >
       {mode === 'light' ? <Moon /> : <Sun />}
     </Button>
@@ -40,7 +40,6 @@ export default function JoySheet() {
   const SheetProps = {
     variant: ['plain', 'outlined', 'soft', 'solid'],
     color: ['primary', 'neutral', 'danger', 'info', 'success', 'warning'],
-    elevation: ['xs', 'sm', 'md', 'lg', 'xl'],
   } as const;
 
   return (
@@ -52,10 +51,7 @@ export default function JoySheet() {
         <Box sx={{ px: 3, pb: 4 }}>
           <ColorSchemePicker />
         </Box>
-        <Sheet
-          elevation="sm"
-          sx={{ p: 2, display: 'flex', gap: 2, borderRadius: 'sm', alignItems: 'center' }}
-        >
+        <Sheet sx={{ p: 2, display: 'flex', gap: 2, borderRadius: 'sm', alignItems: 'center' }}>
           <Sheet variant="soft" color="primary" sx={{ p: 1, borderRadius: 'xs' }}>
             <Sheet
               variant="solid"

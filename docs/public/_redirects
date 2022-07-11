@@ -20,7 +20,7 @@
 /r/issue-template-latest https://codesandbox.io/s/material-ui-issue-latest-s2dsx 302
 /r/ts-issue-template https://www.typescriptlang.org/play?#code/JYWwDg9gTgLgBAKjgQwM5wEoFNkGN4BmUEIcA5FDvmQNwBQokscA3nXHAPSdwwAWWOLhKQAdllEx0ATwgBXOHNRYAJnQC+cIiXIABEHOCcQyGFijBkAGzJ06BOaPzAIouABEsICAAoAlKzsXDwAmvJQQhAqWBpAA 302
 /r/custom-component-variants /material-ui/customization/how-to-customize/#adding-new-component-variants 302
-/r/migration-v4 /material-ui/guides/migration-v4/ 302
+/r/migration-v4 /material-ui/migration/migration-v4/ 302
 
 # Legacy redirection
 # Added in chronological order (the last line is the most recent one)
@@ -52,9 +52,13 @@
 /api/mui-theme-provider/ /system/styles/api/ 301
 /components/expansion-panels/ /material-ui/react-accordion/ 301
 /api/expansion-panel/ /material-ui/api/accordion/ 301
+/:lang/api/expansion-panel/ /:lang/material-ui/api/accordion/ 301
 /api/expansion-panel-actions/ /material-ui/api/accordion-actions/ 301
+/:lang/api/expansion-panel-actions/ /:lang/material-ui/api/accordion-actions/ 301
 /api/expansion-panel-details/ /material-ui/api/accordion-details/ 301
+/:lang/api/expansion-panel-details/ /:lang/material-ui/api/accordion-details/ 301
 /api/expansion-panel-summary/ /material-ui/api/accordion-summary/ 301
+/:lang/api/expansion-panel-summary/ /:lang/material-ui/api/accordion-summary/ 301
 # 2020
 /premium-themes* https://mui.com/store/ 301
 /customization/themes/ /material-ui/customization/theming/ 301
@@ -62,22 +66,31 @@ https://v1-5-0.mui.com/* https://v1.mui.com/:splat 301!
 https://v3-9-0.mui.com/* https://v3.mui.com/:splat 301!
 /components/grid-list/ /material-ui/react-image-list/ 301
 /api/grid-list/ /material-ui/api/image-list/ 301
+/:lang/api/grid-list/ /:lang/material-ui/api/image-list/ 301
 /api/grid-list-tile/ /material-ui/api/image-list-item/ 301
+/:lang/api/grid-list-tile/ /:lang/material-ui/api/image-list-item/ 301
 /api/grid-list-tile-bar/ /material-ui/api/image-list-item-bar/ 301
+/:lang/api/grid-list-tile-bar/ /:lang/material-ui/api/image-list-item-bar/ 301
 /customization/components/ /material-ui/customization/how-to-customize/ 301
+/:lang/customization/components/ /:lang/material-ui/customization/how-to-customize/ 301
 /customization/globals/ /material-ui/customization/theme-components/ 301
+/:lang/customization/globals/ /:lang/material-ui/customization/theme-components/ 301
 # 2021
 /api/root-ref/ https://v4.mui.com/api/root-ref/ 301
+/:lang/api/root-ref/ https://v4.mui.com/:lang/api/root-ref/ 301
 /components/slider-styled/ /material-ui/react-slider/ 301
 /customization/styled/ /system/styled/ 301
 /api/data-grid/x-grid/ /x/api/data-grid/data-grid-pro/ 301
+/api/x-grid/ /x/api/data-grid/data-grid-pro/ 301
 https://next.material-ui.com/* https://mui.com/:splat 301!
 https://v0.material-ui.com/* https://v0.mui.com/:splat 301!
 https://v1.material-ui.com/* https://v1.mui.com/:splat 301!
 https://v3.material-ui.com/* https://v3.mui.com/:splat 301!
 https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 /company/careers/ /careers/ 301
+/:lang/company/careers/ /:lang/careers/ 301
 /discover-more/team/ /about/ 301
+/:lang/discover-more/team/ /:lang/about/ 301
 /api/data-grid/grid-export-csv-options/ /x/api/data-grid/grid-csv-export-options/ 301
 /fr/* /:splat 301
 /de/* /:splat 301
@@ -195,9 +208,12 @@ https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 /components/transitions/ /material-ui/transitions/ 301
 /pt/components/transitions/ /pt/material-ui/transitions/ 301
 /zh/components/transitions/ /zh/material-ui/transitions/ 301
-/components/pickers/ /material-ui/lab-date-and-time-pickers/ 301
-/pt/components/pickers/ /pt/material-ui/lab-date-and-time-pickers/ 301
-/zh/components/pickers/ /zh/material-ui/lab-date-and-time-pickers/ 301
+/components/pickers/ /x/react-date-pickers/getting-started/ 301
+/pt/components/pickers/ /pt/x/react-date-pickers/getting-started/ 301
+/zh/components/pickers/ /zh/x/react-date-pickers/getting-started/ 301
+/material-ui/lab-date-and-time-pickers/ /x/react-date-pickers/getting-started/ 301
+/pt/material-ui/lab-date-and-time-pickers/ /pt/x/react-date-pickers/getting-started/ 301
+/zh/material-ui/lab-date-and-time-pickers/ /zh/x/react-date-pickers/getting-started/ 301
 /components/about-the-lab/ /material-ui/about-the-lab/ 301
 /pt/components/about-the-lab/ /pt/material-ui/about-the-lab/ 301
 /zh/components/about-the-lab/ /zh/material-ui/about-the-lab/ 301
@@ -312,25 +328,77 @@ https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 /api/modal-unstyled/ /base/api/modal-unstyled/ 301
 /pt/api/modal-unstyled/ /pt/base/api/modal-unstyled/ 301
 /zh/api/modal-unstyled/ /zh/base/api/modal-unstyled/ 301
+/api/option-group-unstyled/ /base/api/option-group-unstyled/ 301
+/:lang/api/option-group-unstyled/ /:lang/base/api/option-group-unstyled/ 301
+/api/portal/ /base/api/portal/ 301
+/:lang/api/portal/ /:lang/base/api/portal/ 301
+/api/menu-item-unstyled/ /base/api/menu-item-unstyled/ 301
+/:lang/api/menu-item-unstyled/ /:lang/base/api/menu-item-unstyled/ 301
+/api/tabs-list-unstyled/ /base/api/tabs-list-unstyled/ 301
+/:lang/api/tabs-list-unstyled/ /:lang/base/api/tabs-list-unstyled/ 301
+/api/menu-unstyled/ /base/api/menu-unstyled/ 301
+/:lang/api/menu-unstyled/ /:lang/base/api/menu-unstyled/ 301
+/api/tab-panel-unstyled/ /base/api/tab-panel-unstyled/ 301
+/:lang/api/tab-panel-unstyled/ /:lang/base/api/tab-panel-unstyled/ 301
+/api/popper-unstyled/ /base/api/popper-unstyled/ 301
+/:lang/api/popper-unstyled/ /:lang/base/api/popper-unstyled/ 301
+/api/select-unstyled/ /base/api/select-unstyled/ 301
+/:lang/api/select-unstyled/ /:lang/base/api/select-unstyled/ 301
 /api/* /material-ui/api/:splat 301
 /zh/api/* /zh/material-ui/api/:splat 301
 /pt/api/* /pt/material-ui/api/:splat 301
 /company/about/ /about/ 301
+/:lang/company/about/ /:lang/about/ 301
 /company/jobs/ /careers/ 301
 /material-ui/customization/unstyled-components/ /base/getting-started/overview/ 301
+/:lang/material-ui/customization/unstyled-components/ /:lang/base/getting-started/overview/ 301
+/material-ui/guides/migration-v4/ /material-ui/migration/migration-v4/ 301
+/:lang/material-ui/guides/migration-v4/ /:lang/material-ui/migration/migration-v4/ 301
+/material-ui/guides/migration-v3/ /material-ui/migration/migration-v3/ 301
+/:lang/material-ui/guides/migration-v3/ /:lang/material-ui/migration/migration-v3/ 301
+/material-ui/guides/migration-v0x/ /material-ui/migration/migration-v0x/ 301
+/:lang/material-ui/guides/migration-v0x/ /:lang/material-ui/migration/migration-v0x/ 301
+/material/* /material-ui/:splat 301
+/zh/material/* /zh/material-ui/:splat 301
+/pt/material/* /pt/material-ui/:splat 301
+/zh/blog/* /blog/:splat 301
+/pt/blog/* /blog/:splat 301
+/legal/mui-x-eula/ /store/legal/mui-x-eula/ 301
+/:lang/size-snapshot/ /size-snapshot/ 301
+/joy-ui/customization/themed-tokens/ /joy-ui/customization/themed-components/ 301
+/:lang/joy-ui/customization/one-off-styling/ /:lang/joy-ui/customization/approaches/#one-off-customization 301
+/joy-ui/customization/one-off-styling/ /joy-ui/customization/approaches/#one-off-customization 301
+/:lang/joy-ui/customization/theme-components/ /:lang/joy-ui/customization/themed-components/ 301
+/joy-ui/customization/theme-components/ /joy-ui/customization/themed-components/ 301
+/:lang/joy-ui/customization/theme-components/ /:lang/joy-ui/customization/themed-components/ 301
+/base/react-chip/ /material-ui/react-chip/ 301
+/system/api/ /system/properties/ 301
+/:lang/system/api/ /:lang/system/properties/ 301
+/joy-ui/core-features/global-variant/ /joy-ui/main-features/global-variants/ 301
+/:lang/joy-ui/core-features/global-variant/ /:langjoy-ui/main-features/global-variants/ 301
+/joy-ui/core-features/automatic-adjustment/ /joy-ui/main-features/automatic-adjustment/ 301
+/:lang/joy-ui/core-features/automatic-adjustment/ /:lang/joy-ui/main-features/automatic-adjustment/ 301
+/joy-ui/core-features/perfect-dark-mode/ /joy-ui/main-features/perfect-dark-mode/ 301
+/:lang/joy-ui/core-features/perfect-dark-mode/ /:lang/joy-ui/main-features/perfect-dark-mode/ 301
 # 2023
 
 # Proxies
 
-## Store
+## MUI Store
 /store/* https://mui-store.netlify.app/:splat 200
 /store-staging/* https://master--mui-store.netlify.app/:splat 200
 
 ## MUI X
 ## Unlike the store that expect to be hosted under a subfolder,
 ## MUI X is configured to be hosted at the root.
-/_next/* https://docs-v5--material-ui-x.netlify.app/_next/:splat 200
-/static/x/* https://docs-v5--material-ui-x.netlify.app/static/x/:splat 200
-/x/* https://docs-v5--material-ui-x.netlify.app/x/:splat 200
-/r/x-* https://docs-v5--material-ui-x.netlify.app/r/x-:splat 200
-/:lang/x/* https://docs-v5--material-ui-x.netlify.app/:lang/x/:splat 200
+/_next/* https://material-ui-x.netlify.app/_next/:splat 200
+/static/x/* https://material-ui-x.netlify.app/static/x/:splat 200
+/x/* https://material-ui-x.netlify.app/x/:splat 200
+/r/x-* https://material-ui-x.netlify.app/r/x-:splat 200
+/:lang/x/* https://material-ui-x.netlify.app/:lang/x/:splat 200
+
+## MUI Toolpad
+/_next/* https://mui-toolpad-docs.netlify.app/_next/:splat 200
+/static/toolpad/* https://mui-toolpad-docs.netlify.app/static/toolpad/:splat 200
+/toolpad/* https://mui-toolpad-docs.netlify.app/toolpad/:splat 200
+/r/toolpad-* https://mui-toolpad-docs.netlify.app/r/toolpad-:splat 200

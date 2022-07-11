@@ -1,6 +1,5 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import {
   elementAcceptingRef,
   HTMLElementType,
@@ -10,11 +9,11 @@ import {
   unstable_useEventCallback as useEventCallback,
 } from '@mui/utils';
 import composeClasses from '../composeClasses';
-import isHostComponent from '../utils/isHostComponent';
 import Portal from '../Portal';
 import ModalManager, { ariaHidden } from './ModalManager';
 import TrapFocus from '../TrapFocus';
 import { getModalUtilityClass } from './modalUnstyledClasses';
+import { useSlotProps } from '../utils';
 
 const useUtilityClasses = (ownerState) => {
   const { open, exited, classes } = ownerState;
@@ -53,11 +52,8 @@ const defaultManager = new ModalManager();
  */
 const ModalUnstyled = React.forwardRef(function ModalUnstyled(props, ref) {
   const {
-    BackdropComponent,
-    BackdropProps,
     children,
     classes: classesProp,
-    className,
     closeAfterTransition = false,
     component = 'div',
     components = {},
@@ -79,7 +75,6 @@ const ModalUnstyled = React.forwardRef(function ModalUnstyled(props, ref) {
     onKeyDown,
     open,
     /* eslint-disable react/prop-types */
-    theme,
     onTransitionEnter,
     onTransitionExited,
     ...other
@@ -91,6 +86,8 @@ const ModalUnstyled = React.forwardRef(function ModalUnstyled(props, ref) {
   const modalRef = React.useRef(null);
   const handleRef = useForkRef(modalRef, ref);
   const hasTransition = getHasTransition(props);
+
+  const ariaHiddenProp = props['aria-hidden'] ?? true;
 
   const getDoc = () => ownerDocument(mountNodeRef.current);
   const getModal = () => {
@@ -129,13 +126,13 @@ const ModalUnstyled = React.forwardRef(function ModalUnstyled(props, ref) {
     if (open && isTopModal()) {
       handleMounted();
     } else {
-      ariaHidden(modalRef.current, true);
+      ariaHidden(modalRef.current, ariaHiddenProp);
     }
   });
 
   const handleClose = React.useCallback(() => {
-    manager.remove(getModal());
-  }, [manager]);
+    manager.remove(getModal(), ariaHiddenProp);
+  }, [manager, ariaHiddenProp]);
 
   React.useEffect(() => {
     return () => {
@@ -167,10 +164,6 @@ const ModalUnstyled = React.forwardRef(function ModalUnstyled(props, ref) {
   };
 
   const classes = useUtilityClasses(ownerState);
-
-  if (!keepMounted && !open && (!hasTransition || exited)) {
-    return null;
-  }
 
   const handleEnter = () => {
     setExited(false);
@@ -243,7 +236,34 @@ const ModalUnstyled = React.forwardRef(function ModalUnstyled(props, ref) {
   }
 
   const Root = components.Root || component;
-  const rootProps = componentsProps.root || {};
+  const rootProps = useSlotProps({
+    elementType: Root,
+    externalSlotProps: componentsProps.root,
+    externalForwardedProps: other,
+    additionalProps: {
+      ref: handleRef,
+      role: 'presentation',
+      onKeyDown: handleKeyDown,
+    },
+    className: classes.root,
+    ownerState,
+  });
+
+  const BackdropComponent = components.Backdrop;
+  const backdropProps = useSlotProps({
+    elementType: BackdropComponent,
+    externalSlotProps: componentsProps.backdrop,
+    additionalProps: {
+      'aria-hidden': true,
+      onClick: handleBackdropClick,
+      open,
+    },
+    ownerState,
+  });
+
+  if (!keepMounted && !open && (!hasTransition || exited)) {
+    return null;
+  }
 
   return (
     <Portal ref={handlePortalRef} container={container} disablePortal={disablePortal}>
@@ -253,27 +273,8 @@ const ModalUnstyled = React.forwardRef(function ModalUnstyled(props, ref) {
        * is not meant for humans to interact with directly.
        * https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/no-static-element-interactions.md
        */}
-      <Root
-        role="presentation"
-        {...rootProps}
-        {...(!isHostComponent(Root) && {
-          as: component,
-          ownerState: { ...ownerState, ...rootProps.ownerState },
-          theme,
-        })}
-        {...other}
-        ref={handleRef}
-        onKeyDown={handleKeyDown}
-        className={clsx(classes.root, rootProps.className, className)}
-      >
-        {!hideBackdrop && BackdropComponent ? (
-          <BackdropComponent
-            aria-hidden
-            open={open}
-            onClick={handleBackdropClick}
-            {...BackdropProps}
-          />
-        ) : null}
+      <Root {...rootProps}>
+        {!hideBackdrop && BackdropComponent ? <BackdropComponent {...backdropProps} /> : null}
         <TrapFocus
           disableEnforceFocus={disableEnforceFocus}
           disableAutoFocus={disableAutoFocus}
@@ -294,14 +295,6 @@ ModalUnstyled.propTypes /* remove-proptypes */ = {
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
   // ----------------------------------------------------------------------
   /**
-   * A backdrop component. This prop enables custom backdrop rendering.
-   */
-  BackdropComponent: PropTypes.elementType,
-  /**
-   * Props applied to the backdrop element.
-   */
-  BackdropProps: PropTypes.object,
-  /**
    * A single child content element.
    */
   children: elementAcceptingRef.isRequired,
@@ -309,10 +302,6 @@ ModalUnstyled.propTypes /* remove-proptypes */ = {
    * Override or extend the styles applied to the component.
    */
   classes: PropTypes.object,
-  /**
-   * @ignore
-   */
-  className: PropTypes.string,
   /**
    * When set to true the Modal waits until a nested Transition is completed before closing.
    * @default false
@@ -329,6 +318,7 @@ ModalUnstyled.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   components: PropTypes.shape({
+    Backdrop: PropTypes.elementType,
     Root: PropTypes.elementType,
   }),
   /**
@@ -336,7 +326,8 @@ ModalUnstyled.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   componentsProps: PropTypes.shape({
-    root: PropTypes.object,
+    backdrop: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
    * An HTML element or function that returns one.

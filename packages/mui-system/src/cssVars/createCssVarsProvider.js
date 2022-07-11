@@ -5,13 +5,12 @@ import { deepmerge, unstable_useEnhancedEffect as useEnhancedEffect } from '@mui
 import { GlobalStyles } from '@mui/styled-engine';
 import cssVarsParser from './cssVarsParser';
 import ThemeProvider from '../ThemeProvider';
-import getInitColorSchemeScript, {
+import systemGetInitColorSchemeScript, {
   DEFAULT_ATTRIBUTE,
   DEFAULT_COLOR_SCHEME_STORAGE_KEY,
   DEFAULT_MODE_STORAGE_KEY,
 } from './getInitColorSchemeScript';
 import useCurrentColorScheme from './useCurrentColorScheme';
-import createGetCssVar from './createGetCssVar';
 
 export const DISABLE_CSS_TRANSITION =
   '*{-webkit-transition:none!important;-moz-transition:none!important;-o-transition:none!important;-ms-transition:none!important;transition:none!important}';
@@ -19,12 +18,14 @@ export const DISABLE_CSS_TRANSITION =
 export default function createCssVarsProvider(options) {
   const {
     theme: defaultTheme = {},
+    attribute: defaultAttribute = DEFAULT_ATTRIBUTE,
+    modeStorageKey: defaultModeStorageKey = DEFAULT_MODE_STORAGE_KEY,
+    colorSchemeStorageKey: defaultColorSchemeStorageKey = DEFAULT_COLOR_SCHEME_STORAGE_KEY,
     defaultMode: desisgnSystemMode = 'light',
     defaultColorScheme: designSystemColorScheme,
     disableTransitionOnChange: designSystemTransitionOnChange = false,
     enableColorScheme: designSystemEnableColorScheme = true,
-    prefix: designSystemPrefix = '',
-    shouldSkipGeneratingVar,
+    shouldSkipGeneratingVar: designSystemShouldSkipGeneratingVar,
     resolveTheme,
   } = options;
 
@@ -52,10 +53,9 @@ export default function createCssVarsProvider(options) {
   function CssVarsProvider({
     children,
     theme: themeProp = defaultTheme,
-    prefix = designSystemPrefix,
-    modeStorageKey = DEFAULT_MODE_STORAGE_KEY,
-    colorSchemeStorageKey = DEFAULT_COLOR_SCHEME_STORAGE_KEY,
-    attribute = DEFAULT_ATTRIBUTE,
+    modeStorageKey = defaultModeStorageKey,
+    colorSchemeStorageKey = defaultColorSchemeStorageKey,
+    attribute = defaultAttribute,
     defaultMode = desisgnSystemMode,
     defaultColorScheme = designSystemColorScheme,
     disableTransitionOnChange = designSystemTransitionOnChange,
@@ -64,10 +64,11 @@ export default function createCssVarsProvider(options) {
     documentNode = typeof document === 'undefined' ? undefined : document,
     colorSchemeNode = typeof document === 'undefined' ? undefined : document.documentElement,
     colorSchemeSelector = ':root',
+    shouldSkipGeneratingVar = designSystemShouldSkipGeneratingVar,
   }) {
     const hasMounted = React.useRef(false);
 
-    const { colorSchemes = {}, components = {}, ...restThemeProp } = themeProp;
+    const { colorSchemes = {}, components = {}, cssVarPrefix, ...restThemeProp } = themeProp;
     const allColorSchemes = Object.keys(colorSchemes);
     const defaultLightColorScheme =
       typeof defaultColorScheme === 'string' ? defaultColorScheme : defaultColorScheme.light;
@@ -108,8 +109,7 @@ export default function createCssVarsProvider(options) {
       vars: rootVars,
       parsedTheme,
     } = cssVarsParser(theme, {
-      prefix,
-      basePrefix: designSystemPrefix,
+      prefix: cssVarPrefix,
       shouldSkipGeneratingVar,
     });
 
@@ -117,9 +117,9 @@ export default function createCssVarsProvider(options) {
       ...parsedTheme,
       components,
       colorSchemes,
-      prefix,
+      cssVarPrefix,
       vars: rootVars,
-      getCssVar: createGetCssVar(prefix),
+      getColorSchemeSelector: (targetColorScheme) => `[${attribute}="${targetColorScheme}"] &`,
     };
 
     const defaultColorSchemeStyleSheet = {};
@@ -131,8 +131,7 @@ export default function createCssVarsProvider(options) {
         vars,
         parsedTheme: parsedScheme,
       } = cssVarsParser(scheme, {
-        prefix,
-        basePrefix: designSystemPrefix,
+        prefix: cssVarPrefix,
         shouldSkipGeneratingVar,
       });
       theme.vars = deepmerge(theme.vars, vars);
@@ -282,9 +281,9 @@ export default function createCssVarsProvider(options) {
      */
     modeStorageKey: PropTypes.string,
     /**
-     * CSS variable prefix.
+     * A function to determine if the key, value should be attached as CSS Variable
      */
-    prefix: PropTypes.string,
+    shouldSkipGeneratingVar: PropTypes.func,
     /**
      * The window that attaches the 'storage' event listener
      * @default window
@@ -295,6 +294,15 @@ export default function createCssVarsProvider(options) {
      */
     theme: PropTypes.object,
   };
+
+  const getInitColorSchemeScript = (params) =>
+    systemGetInitColorSchemeScript({
+      attribute: defaultAttribute,
+      colorSchemeStorageKey: defaultColorSchemeStorageKey,
+      modeStorageKey: defaultModeStorageKey,
+      enableColorScheme: designSystemEnableColorScheme,
+      ...params,
+    });
 
   return { CssVarsProvider, useColorScheme, getInitColorSchemeScript };
 }

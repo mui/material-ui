@@ -2,8 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { act, createRenderer, fireEvent } from 'test/utils';
 import OptionUnstyled from '@mui/base/OptionUnstyled';
-import SelectUnstyled from '@mui/base/SelectUnstyled';
-import { styled } from '@mui/system';
+import SelectUnstyled, { SelectUnstyledListboxSlotProps } from '@mui/base/SelectUnstyled';
 
 describe('<SelectUnstyled> integration', () => {
   const { render } = createRenderer();
@@ -13,13 +12,25 @@ describe('<SelectUnstyled> integration', () => {
       this.skip();
     }
 
-    const SelectListbox = styled('ul')({
-      maxHeight: '100px',
-      overflow: 'auto',
+    const SelectListbox = React.forwardRef(function SelectListbox(
+      props: SelectUnstyledListboxSlotProps<string>,
+      ref: React.ForwardedRef<HTMLUListElement>,
+    ) {
+      const { ownerState, ...other } = props;
+      return <ul {...other} ref={ref} style={{ maxHeight: '100px', overflow: 'auto' }} />;
     });
 
-    const Option = styled(OptionUnstyled)({
-      height: '50px',
+    const Option = React.forwardRef(function Option(
+      props: { value: string; children?: React.ReactNode },
+      ref: React.Ref<HTMLLIElement>,
+    ) {
+      return (
+        <OptionUnstyled
+          {...props}
+          ref={ref}
+          componentsProps={{ root: { style: { height: '50px' } } }}
+        />
+      );
     });
 
     const { getByRole } = render(

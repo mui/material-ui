@@ -32,21 +32,19 @@ const useUtilityClasses = (ownerState: SwitchProps & { focusVisible: boolean }) 
 
 const switchColorVariables =
   ({ theme, ownerState }: { theme: Theme; ownerState: SwitchProps }) =>
-  (data: { state?: 'Hover' | 'Disabled'; checked?: boolean } = {}) => {
+  (data: { state?: 'Hover' | 'Disabled' } = {}) => {
     const variant = ownerState.variant;
     const color = ownerState.color;
     return {
       '--Switch-track-background': theme.vars.palette[color!]?.[`${variant!}${data.state || ''}Bg`],
-      '--Switch-track-color':
-        ownerState.variant === 'solid' ? '#fff' : theme.vars.palette[color!]?.plainColor,
+      '--Switch-track-color': theme.vars.palette[color!]?.[`${variant!}Color`],
       '--Switch-track-borderColor':
         variant === 'outlined'
           ? theme.vars.palette[color!]?.[`${variant!}${data.state || ''}Border`]
           : 'currentColor',
       '--Switch-thumb-background':
         theme.vars.palette[color!]?.[`${variant!}${data.state || ''}Color`],
-      '--Switch-thumb-color':
-        ownerState.variant === 'solid' ? theme.vars.palette[color!]?.plainColor : '#fff',
+      '--Switch-thumb-color': theme.vars.palette[color!]?.[`${variant!}Bg`],
     };
   };
 
@@ -57,7 +55,8 @@ const SwitchRoot = styled('span', {
 })<{ ownerState: SwitchProps }>(({ theme, ownerState }) => {
   const getColorVariables = switchColorVariables({ theme, ownerState });
   return {
-    ...(ownerState.variant === 'outlined' && theme.variants.outlined[ownerState.color!]),
+    '--variant-borderWidth':
+      theme.variants[ownerState.variant!]?.[ownerState.color!]?.['--variant-borderWidth'],
     '--Switch-track-radius': theme.vars.radius.lg,
     '--Switch-thumb-shadow':
       ownerState.variant === 'soft' ? 'none' : '0 0 0 1px var(--Switch-track-background)', // create border-like if the thumb is bigger than the track
@@ -65,40 +64,40 @@ const SwitchRoot = styled('span', {
       '--Switch-track-width': '40px',
       '--Switch-track-height': '20px',
       '--Switch-thumb-size': '12px',
-      '--Switch-decorator-paddingX': '4px',
+      '--Switch-gap': '6px',
       fontSize: theme.vars.fontSize.sm,
     }),
     ...(ownerState.size === 'md' && {
       '--Switch-track-width': '48px',
       '--Switch-track-height': '24px',
       '--Switch-thumb-size': '16px',
-      '--Switch-decorator-paddingX': '8px',
+      '--Switch-gap': '8px',
       fontSize: theme.vars.fontSize.md,
     }),
     ...(ownerState.size === 'lg' && {
       '--Switch-track-width': '64px',
       '--Switch-track-height': '32px',
       '--Switch-thumb-size': '24px',
-      '--Switch-decorator-paddingX': '12px',
+      '--Switch-gap': '12px',
     }),
-    '--Switch-thumb-radius': 'calc(var(--Switch-track-radius) - 2px)',
+    '--internal-paddingBlock': `max((var(--Switch-track-height) - 2 * var(--variant-borderWidth) - var(--Switch-thumb-size)) / 2, 0px)`,
+    '--Switch-thumb-radius': `max((var(--Switch-track-radius) - var(--variant-borderWidth)) - var(--internal-paddingBlock), min(var(--internal-paddingBlock) / 2, (var(--Switch-track-radius) - var(--variant-borderWidth)) / 2))`,
     '--Switch-thumb-width': 'var(--Switch-thumb-size)',
-    '--Switch-thumb-offset':
-      'max((var(--Switch-track-height) - var(--Switch-thumb-size)) / 2, 0px)',
+    '--Switch-thumb-offset': `max((var(--Switch-track-height) - var(--Switch-thumb-size)) / 2, 0px)`,
     ...getColorVariables(),
     '&:hover': {
       ...getColorVariables({ state: 'Hover' }),
     },
     [`&.${switchClasses.checked}`]: {
-      ...getColorVariables({ checked: true }),
+      ...getColorVariables(),
       '&:hover': {
-        ...getColorVariables({ checked: true, state: 'Hover' }),
+        ...getColorVariables({ state: 'Hover' }),
       },
     },
     [`&.${switchClasses.disabled}`]: {
       pointerEvents: 'none',
       color: theme.vars.palette.text.tertiary,
-      ...getColorVariables({ state: 'Disabled', checked: ownerState.checked }),
+      ...getColorVariables({ state: 'Disabled' }),
     },
     display: 'inline-flex',
     alignItems: 'center',
@@ -152,7 +151,7 @@ const SwitchTrack = styled('span', {
   justifyContent: 'space-between',
   alignItems: 'center',
   boxSizing: 'border-box',
-  border: 'var(--variant-outlinedBorderWidth, 0px) solid',
+  border: 'var(--variant-borderWidth) solid',
   borderColor: 'var(--Switch-track-borderColor)',
   backgroundColor: 'var(--Switch-track-background)',
   borderRadius: 'var(--Switch-track-radius)',
@@ -199,7 +198,7 @@ const SwitchStartDecorator = styled('span', {
   overridesResolver: (props, styles) => styles.startDecorator,
 })<{ ownerState: SwitchProps }>({
   display: 'inline-flex',
-  padding: '0px var(--Switch-decorator-paddingX)',
+  marginInlineEnd: 'var(--Switch-gap)',
 });
 
 const SwitchEndDecorator = styled('span', {
@@ -208,7 +207,7 @@ const SwitchEndDecorator = styled('span', {
   overridesResolver: (props, styles) => styles.endDecorator,
 })<{ ownerState: SwitchProps }>({
   display: 'inline-flex',
-  padding: '0px var(--Switch-decorator-paddingX)',
+  marginInlineStart: 'var(--Switch-gap)',
 });
 
 const Switch = React.forwardRef<HTMLSpanElement, SwitchProps>(function Switch(inProps, ref) {
@@ -226,6 +225,7 @@ const Switch = React.forwardRef<HTMLSpanElement, SwitchProps>(function Switch(in
     onFocusVisible,
     readOnly: readOnlyProp,
     required,
+    id,
     color,
     variant = 'solid',
     size = 'md',
@@ -249,6 +249,7 @@ const Switch = React.forwardRef<HTMLSpanElement, SwitchProps>(function Switch(in
 
   const ownerState = {
     ...props,
+    id,
     checked,
     disabled,
     focusVisible,
@@ -297,6 +298,7 @@ const Switch = React.forwardRef<HTMLSpanElement, SwitchProps>(function Switch(in
         className={clsx(classes.action, componentsProps.action?.className)}
       >
         <SwitchInput
+          id={id}
           {...componentsProps.input}
           ownerState={ownerState}
           {...getInputProps()}

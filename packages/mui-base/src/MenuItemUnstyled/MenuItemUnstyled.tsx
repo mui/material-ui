@@ -1,13 +1,12 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
-import { MenuItemOwnerState, MenuItemUnstyledProps } from './MenuItemUnstyled.types';
-import { appendOwnerState } from '../utils';
+import { MenuItemUnstyledOwnerState, MenuItemUnstyledProps } from './MenuItemUnstyled.types';
 import { getMenuItemUnstyledUtilityClass } from './menuItemUnstyledClasses';
 import useMenuItem from './useMenuItem';
 import composeClasses from '../composeClasses';
+import useSlotProps from '../utils/useSlotProps';
 
-function getUtilityClasses(ownerState: MenuItemOwnerState) {
+function getUtilityClasses(ownerState: MenuItemUnstyledOwnerState) {
   const { disabled, focusVisible } = ownerState;
 
   const slots = {
@@ -33,7 +32,6 @@ const MenuItemUnstyled = React.forwardRef(function MenuItemUnstyled(
 ) {
   const {
     children,
-    className,
     disabled: disabledProp = false,
     component,
     components = {},
@@ -42,28 +40,25 @@ const MenuItemUnstyled = React.forwardRef(function MenuItemUnstyled(
     ...other
   } = props;
 
-  const Root = component ?? components.Root ?? 'li';
-
   const { getRootProps, disabled, focusVisible } = useMenuItem({
     disabled: disabledProp,
     ref,
     label,
   });
 
-  const ownerState: MenuItemOwnerState = { ...props, disabled, focusVisible };
+  const ownerState: MenuItemUnstyledOwnerState = { ...props, disabled, focusVisible };
 
   const classes = getUtilityClasses(ownerState);
 
-  const rootProps = appendOwnerState(
-    Root,
-    {
-      ...other,
-      ...componentsProps.root,
-      ...getRootProps(other),
-      className: clsx(classes.root, className, componentsProps.root?.className),
-    },
+  const Root = component ?? components.Root ?? 'li';
+  const rootProps = useSlotProps({
+    elementType: Root,
+    getSlotProps: getRootProps,
+    externalSlotProps: componentsProps.root,
+    externalForwardedProps: other,
+    className: classes.root,
     ownerState,
-  );
+  });
 
   return <Root {...rootProps}>{children}</Root>;
 });
@@ -80,10 +75,6 @@ MenuItemUnstyled.propTypes /* remove-proptypes */ = {
   /**
    * @ignore
    */
-  className: PropTypes.string,
-  /**
-   * @ignore
-   */
   component: PropTypes.elementType,
   /**
    * @ignore
@@ -95,7 +86,7 @@ MenuItemUnstyled.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   componentsProps: PropTypes.shape({
-    root: PropTypes.object,
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
    * If `true`, the menu item will be disabled.

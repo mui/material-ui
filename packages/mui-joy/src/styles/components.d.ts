@@ -33,8 +33,10 @@ import { TextFieldProps, TextFieldSlot } from '../TextField/TextFieldProps';
 import { TypographyProps, TypographySlot } from '../Typography/TypographyProps';
 import { ChipProps, ChipSlot } from '../Chip/ChipProps';
 import { ChipDeleteProps, ChipDeleteSlot } from '../ChipDelete/ChipDeleteProps';
+import { SliderProps, SliderSlot } from '../Slider/SliderProps';
 import { RadioProps, RadioSlot } from '../Radio/RadioProps';
 import { RadioGroupProps, RadioGroupSlot } from '../RadioGroup/RadioGroupProps';
+import { GridProps, GridSlot } from '../Grid/GridProps';
 
 export type OverridesStyleRules<
   ClassKey extends string = string,
@@ -181,6 +183,10 @@ export interface Components<Theme = unknown> {
     defaultProps?: Partial<SvgIconProps>;
     styleOverrides?: OverridesStyleRules<SvgIconSlot, SvgIconProps, Theme>;
   };
+  JoySlider?: {
+    defaultProps?: Partial<SliderProps>;
+    styleOverrides?: OverridesStyleRules<SliderSlot, SliderProps, Theme>;
+  };
   JoyTextField?: {
     defaultProps?: Partial<TextFieldProps>;
     styleOverrides?: OverridesStyleRules<TextFieldSlot, TextFieldProps, Theme>;
@@ -188,5 +194,9 @@ export interface Components<Theme = unknown> {
   JoyTypography?: {
     defaultProps?: Partial<TypographyProps>;
     styleOverrides?: OverridesStyleRules<TypographySlot, TypographyProps, Theme>;
+  };
+  MuiGrid?: {
+    defaultProps?: Partial<GridProps>;
+    styleOverrides?: OverridesStyleRules<GridSlot, GridProps, Theme>;
   };
 }

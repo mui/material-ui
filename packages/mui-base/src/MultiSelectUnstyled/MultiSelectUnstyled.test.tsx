@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { expect } from 'chai';
-
 import MultiSelectUnstyled from '@mui/base/MultiSelectUnstyled';
 import { selectUnstyledClasses } from '@mui/base/SelectUnstyled';
 import OptionUnstyled from '@mui/base/OptionUnstyled';
@@ -46,7 +45,6 @@ describe('MultiSelectUnstyled', () => {
         testWithElement: null,
       },
     },
-    skip: ['componentsPropsCallbacks'], // not implemented yet
   }));
 
   describe('keyboard navigation', () => {

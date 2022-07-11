@@ -133,7 +133,7 @@ export type ComponentsOverrides<Theme = unknown> = {
     OverridesStyleRules<ComponentNameToClassKey[Name], Name, Theme>
   >;
 } & {
-  MuiCssBaseline?: CSSObject | string;
+  MuiCssBaseline?: CSSObject | string | ((theme: Theme) => CSSInterpolation);
 };
 
 export interface ComponentNameToClassKey {
