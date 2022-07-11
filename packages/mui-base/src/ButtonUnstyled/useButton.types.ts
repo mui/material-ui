@@ -16,8 +16,7 @@ interface UseButtonRootSlotOwnProps {
   ref: React.Ref<any>;
 }
 
-export type UseButtonRootSlotProps<TOther = {}> = Omit<TOther, keyof UseButtonRootSlotOwnProps> &
-  UseButtonRootSlotOwnProps;
+export type UseButtonRootSlotProps<TOther = {}> = TOther & UseButtonRootSlotOwnProps;
 
 export interface UseButtonParameters {
   /**

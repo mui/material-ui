@@ -41,7 +41,6 @@ export default function RadioChip() {
                 startDecorator={
                   checked && <CheckIcon sx={{ zIndex: 1, pointerEvents: 'none' }} />
                 }
-                sx={{ '--Chip-radius': '4px' }}
               >
                 <Radio
                   variant="outlined"

@@ -5,16 +5,17 @@ const pages = [
     icon: 'DescriptionIcon',
     children: [
       { pathname: '/joy-ui/getting-started/overview' },
+      { pathname: '/joy-ui/getting-started/installation' },
       { pathname: '/joy-ui/getting-started/usage' },
       { pathname: '/joy-ui/getting-started/tutorial' },
       { pathname: '/joy-ui/getting-started/templates' },
       {
-        pathname: '/joy-ui/core-features',
-        subheader: 'core-features',
+        pathname: '/joy-ui/main-features',
+        subheader: 'main-features',
         children: [
-          { pathname: '/joy-ui/core-features/global-variant' },
-          { pathname: '/joy-ui/core-features/automatic-adjustment' },
-          { pathname: '/joy-ui/core-features/perfect-dark-mode' },
+          { pathname: '/joy-ui/main-features/global-variants' },
+          { pathname: '/joy-ui/main-features/automatic-adjustment' },
+          { pathname: '/joy-ui/main-features/perfect-dark-mode' },
         ],
       },
     ],
@@ -74,7 +75,13 @@ const pages = [
     pathname: '/joy-ui/guides',
     title: 'How To Guides',
     icon: 'VisibilityIcon',
-    children: [{ pathname: '/joy-ui/guides/apply-dark-mode', title: 'Apply dark mode' }],
+    children: [
+      { pathname: '/joy-ui/guides/applying-dark-mode', title: 'Applying dark mode' },
+      {
+        pathname: '/joy-ui/guides/using-joy-ui-and-material-ui-together',
+        title: 'Joy UI and Material UI together',
+      },
+    ],
   },
 ];
 

@@ -1,5 +1,56 @@
 # [Versions](https://mui.com/versions/)
 
+## 5.8.7
+
+<!-- generated comparing v5.8.6..master -->
+
+_Jul 4, 2022_
+
+A big thanks to the 13 contributors who made this release possible. Here are some highlights ✨:
+
+- 🐛 Fixed an issue causing Typescript errors when building a project with Material UI v5.8.6 (@michaldudak)
+- 🐛 Fixed a few bugs in Material UI components. Thanks @henriqueholtz, @jake-collibra, @MattiasMartens and @TimoWilhelm!
+- many other 🐛 bug fixes and 📚 documentation improvements
+
+### `@mui/material@5.8.7`
+
+- [Autocomplete] Add some missing props in `useAutocomplete` (#33269) @henriqueholtz
+- [Autocomplete] Extend `componentsProps` to include `popper` and `popupIndicator` slots (#33283) @jake-collibra
+- [Select] Annotate empty string as valid value prop (#33088) @MattiasMartens
+- [SnackbarContent] Fix message text color with css var provider (#33285) @TimoWilhelm
+
+### `@mui/styled-engine@5.8.7`
+
+- [styled-engine] Add missing type dependency on csstype (#33310) @Methuselah96
+
+### `@mui/system@5.8.7`
+
+- [system] Simplify theme input types for `CssVarsProvider` (#33381) @siriwatknp
+- [system] Export required types (#33324) @michaldudak
+
+### `@mui/joy@5.0.0-alpha.35`
+
+- [Joy] Add radio button documentation (#33254) @siriwatknp
+- [Joy] Add switch documentation (#33302) @siriwatknp
+- [Joy] Batch a couple of documentation refinements (#33158)
+- [Joy] Enable Joy and Material UI compatibility (#33379) @siriwatknp
+
+### `@mui/base@5.0.0-alpha.88`
+
+- [base] Remove a type incompatible with Typescript 3.5 (#33361) @michaldudak
+- [BadgeUnstyled] Export BadgeUnstyledOwnProps interface to fix typescript compiler error (#33314) @aaronlademann-wf
+- [TablePaginationUnstyled] Accept callbacks in componentsProps (#33309) @michaldudak
+
+### Docs
+
+- [docs] Fix Link typings in the react-router example (#32308) @aaarichter
+- [docs] Add caveat about class components with Tooltip (#33325) @joshkel
+- [docs] Fix SEO issues (#33288) @oliviertassinari
+- [docs] Fix Slider's "player" demo (#33267) @xlianghang
+- [website] Link MUI Toolpad in mui.com (#33287) @oliviertassinari
+
+All contributors of this release in alphabetical order: @aaarichter, @aaronlademann-wf, @danilo-leal, @henriqueholtz, @jake-collibra, @joshkel, @MattiasMartens, @Methuselah96, @michaldudak, @oliviertassinari, @siriwatknp, @TimoWilhelm, @xlianghang
+
 ## 5.8.6
 
 <!-- generated comparing v5.8.5..master -->
