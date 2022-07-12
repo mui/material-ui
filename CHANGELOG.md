@@ -12,6 +12,7 @@ A big thanks to the 19 contributors who made this release possible. Here are som
 - 📖 Added a guide for using Joy UI and Material UI together (#33396) @siriwatknp
 - 🐛 Fixed a few bugs in Material UI components. Thanks to @ZeeshanTamboli, @ivan-ngchakming, and @joebingham-wk.
 - many other 🐛 bug fixes and 📚 documentation improvements
+- our documentation site is now running with React 18! (#33196) @mnajdova
 
 ### `@mui/material@5.9.0`
 
