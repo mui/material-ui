@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { createGrid } from '@mui/system/Unstable_Grid2';
+import { createGrid } from '@mui/system/Unstable_Grid';
 import { OverridableComponent } from '@mui/types';
 import { styled, useThemeProps } from '../styles';
 import { GridTypeMap } from './GridProps';

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from '@mui/system/styled';
-import Grid from '@mui/system/Unstable_Grid2';
+import Grid from '@mui/system/Unstable_Grid';
 import Box from '@mui/system/Box';
 
 const Item = styled('div')(({ theme }) => ({

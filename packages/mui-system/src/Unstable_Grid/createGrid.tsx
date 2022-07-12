@@ -23,7 +23,7 @@ import {
   generateSpacingClassNames,
 } from './gridGenerator';
 import { CreateMUIStyled } from '../createStyled';
-import { Grid2TypeMap, Grid2OwnerState } from './GridProps';
+import { GridTypeMap, GridOwnerState } from './GridProps';
 import type { Breakpoint } from '../createTheme';
 
 const defaultTheme = createTheme();
@@ -31,7 +31,7 @@ const defaultTheme = createTheme();
 // widening Theme to any so that the consumer can own the theme structure.
 const defaultCreateStyledComponent = (systemStyled as CreateMUIStyled<any>)('div', {
   // TODO: replace with MuiGrid in v6
-  name: 'MuiGrid2',
+  name: 'MuiGrid',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 });
@@ -40,7 +40,7 @@ function useThemePropsDefault<T>(props: T) {
   return useThemePropsSystem({
     props,
     // TODO: replace with MuiGrid in v6
-    name: 'MuiGrid2',
+    name: 'MuiGrid',
     defaultTheme,
   });
 }
@@ -57,12 +57,12 @@ export default function createGrid(
     createStyledComponent = defaultCreateStyledComponent,
     useThemeProps = useThemePropsDefault,
     // TODO: replace with MuiGrid in v6
-    componentName = 'MuiGrid2',
+    componentName = 'MuiGrid',
   } = options;
 
   const NestedContext = React.createContext(false);
 
-  const useUtilityClasses = (ownerState: Grid2OwnerState, theme: typeof defaultTheme) => {
+  const useUtilityClasses = (ownerState: GridOwnerState, theme: typeof defaultTheme) => {
     const { container, direction, spacing, wrap, gridSize } = ownerState;
 
     const slots = {
@@ -80,7 +80,7 @@ export default function createGrid(
   };
 
   const GridRoot = createStyledComponent<{
-    ownerState: Grid2OwnerState;
+    ownerState: GridOwnerState;
   }>(
     generateGridColumnsStyles,
     generateGridColumnSpacingStyles,
@@ -109,8 +109,8 @@ export default function createGrid(
       ...rest
     } = props;
     // collect breakpoints related props because they can be custom from the theme.
-    const gridSize = {} as Grid2OwnerState['gridSize'];
-    const gridOffset = {} as Grid2OwnerState['gridOffset'];
+    const gridSize = {} as GridOwnerState['gridSize'];
+    const gridOffset = {} as GridOwnerState['gridOffset'];
     const other: Record<string, any> = {};
 
     Object.entries(rest).forEach(([key, val]) => {
@@ -160,7 +160,7 @@ export default function createGrid(
     }
 
     return result;
-  }) as OverridableComponent<Grid2TypeMap>;
+  }) as OverridableComponent<GridTypeMap>;
 
   Grid.propTypes /* remove-proptypes */ = {
     children: PropTypes.node,

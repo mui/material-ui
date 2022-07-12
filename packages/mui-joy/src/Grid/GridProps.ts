@@ -1,12 +1,12 @@
 import React from 'react';
 import { OverrideProps } from '@mui/types';
-import { Grid2BaseProps } from '@mui/system/Unstable_Grid2';
+import { GridBaseProps } from '@mui/system/Unstable_Grid';
 import { SxProps, SystemProps } from '../styles/types';
 
 export type GridSlot = 'root';
 
 export interface GridTypeMap<P = {}, D extends React.ElementType = 'div'> {
-  props: P & Grid2BaseProps & { sx?: SxProps } & SystemProps;
+  props: P & GridBaseProps & { sx?: SxProps } & SystemProps;
   defaultComponent: D;
 }
 

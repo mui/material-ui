@@ -2,7 +2,7 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { describeConformance, createRenderer, screen } from 'test/utils';
 import { ThemeProvider, createTheme } from '@mui/system';
-import Grid, { grid2Classes as classes } from '@mui/system/Unstable_Grid2';
+import Grid, { gridClasses as classes } from '@mui/system/Unstable_Grid';
 
 describe('System <Grid />', () => {
   const { render } = createRenderer();
@@ -18,7 +18,7 @@ describe('System <Grid />', () => {
     ThemeProvider,
     refInstanceof: window.HTMLElement,
     // TODO: replace with MuiGrid in v6
-    muiName: 'MuiGrid2',
+    muiName: 'MuiGrid',
     testVariantProps: { container: true, spacing: 5 },
     skip: ['componentsProp', 'classesRoot'],
   }));
@@ -82,7 +82,7 @@ describe('System <Grid />', () => {
           <Grid data-testid="child" />
         </Grid>,
       );
-      expect(container.firstChild).not.to.have.class('MuiGrid2-spacing-xs-undefined');
+      expect(container.firstChild).not.to.have.class('MuiGrid-spacing-xs-undefined');
     });
 
     it('should not support zero values', () => {
@@ -91,7 +91,7 @@ describe('System <Grid />', () => {
           <Grid data-testid="child" />
         </Grid>,
       );
-      expect(container.firstChild).not.to.have.class('MuiGrid2-spacing-xs-0');
+      expect(container.firstChild).not.to.have.class('MuiGrid-spacing-xs-0');
     });
 
     it('should support object values', () => {
@@ -100,8 +100,8 @@ describe('System <Grid />', () => {
           <Grid data-testid="child" />
         </Grid>,
       );
-      expect(container.firstChild).to.have.class('MuiGrid2-spacing-sm-1.5');
-      expect(container.firstChild).to.have.class('MuiGrid2-spacing-md-2');
+      expect(container.firstChild).to.have.class('MuiGrid-spacing-sm-1.5');
+      expect(container.firstChild).to.have.class('MuiGrid-spacing-md-2');
     });
 
     it('should ignore object values of zero', () => {
@@ -110,8 +110,8 @@ describe('System <Grid />', () => {
           <Grid data-testid="child" />
         </Grid>,
       );
-      expect(container.firstChild).not.to.have.class('MuiGrid2-spacing-sm-0');
-      expect(container.firstChild).to.have.class('MuiGrid2-spacing-md-2');
+      expect(container.firstChild).not.to.have.class('MuiGrid-spacing-sm-0');
+      expect(container.firstChild).to.have.class('MuiGrid-spacing-md-2');
     });
   });
 
@@ -197,7 +197,7 @@ describe('System <Grid />', () => {
 
     it('should apply nowrap class and style', () => {
       const { container } = render(<Grid container wrap="nowrap" data-testid="wrap" />);
-      expect(container.firstChild).to.have.class('MuiGrid2-wrap-xs-nowrap');
+      expect(container.firstChild).to.have.class('MuiGrid-wrap-xs-nowrap');
       expect(screen.getByTestId('wrap')).toHaveComputedStyle({
         flexWrap: 'nowrap',
       });
@@ -205,7 +205,7 @@ describe('System <Grid />', () => {
 
     it('should apply wrap-reverse class and style', () => {
       const { container } = render(<Grid container wrap="wrap-reverse" data-testid="wrap" />);
-      expect(container.firstChild).to.have.class('MuiGrid2-wrap-xs-wrap-reverse');
+      expect(container.firstChild).to.have.class('MuiGrid-wrap-xs-wrap-reverse');
       expect(screen.getByTestId('wrap')).toHaveComputedStyle({
         flexWrap: 'wrap-reverse',
       });
@@ -231,12 +231,12 @@ describe('System <Grid />', () => {
         </ThemeProvider>,
       );
 
-      expect(container.firstChild).to.have.class('MuiGrid2-grid-mobile-2');
-      expect(container.firstChild).to.have.class('MuiGrid2-grid-tablet-3');
-      expect(container.firstChild).to.have.class('MuiGrid2-grid-laptop-auto');
+      expect(container.firstChild).to.have.class('MuiGrid-grid-mobile-2');
+      expect(container.firstChild).to.have.class('MuiGrid-grid-tablet-3');
+      expect(container.firstChild).to.have.class('MuiGrid-grid-laptop-auto');
 
       // The grid should not have class for `lg` prop
-      expect(container.firstChild).not.to.have.class('MuiGrid2-grid-lg-5');
+      expect(container.firstChild).not.to.have.class('MuiGrid-grid-lg-5');
       // The `lg` prop is treated as native props that spread to DOM
       expect(container.firstChild).to.have.attribute('lg', '5');
     });
@@ -259,10 +259,10 @@ describe('System <Grid />', () => {
         </ThemeProvider>,
       );
 
-      expect(container.firstChild).to.have.class('MuiGrid2-spacing-mobile-2');
+      expect(container.firstChild).to.have.class('MuiGrid-spacing-mobile-2');
 
-      expect(container.lastChild).to.have.class('MuiGrid2-spacing-tablet-2');
-      expect(container.lastChild).to.have.class('MuiGrid2-spacing-laptop-4');
+      expect(container.lastChild).to.have.class('MuiGrid-spacing-tablet-2');
+      expect(container.lastChild).to.have.class('MuiGrid-spacing-laptop-4');
     });
   });
 });

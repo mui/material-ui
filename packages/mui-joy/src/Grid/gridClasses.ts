@@ -1,7 +1,7 @@
 import { generateUtilityClass, generateUtilityClasses } from '@mui/base';
-import { Grid2Classes } from '@mui/system/Unstable_Grid2';
+import { GridClasses } from '@mui/system/Unstable_Grid';
 
-export type GridClassKey = keyof Grid2Classes;
+export type GridClassKey = keyof GridClasses;
 
 export function getGridUtilityClass(slot: string): string {
   return generateUtilityClass('JoyGrid', slot);
@@ -12,7 +12,7 @@ const DIRECTIONS = ['column-reverse', 'column', 'row-reverse', 'row'] as const;
 const WRAPS = ['nowrap', 'wrap-reverse', 'wrap'] as const;
 const GRID_SIZES = ['auto', true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] as const;
 
-const gridClasses: Grid2Classes = generateUtilityClasses('JoyGrid', [
+const gridClasses: GridClasses = generateUtilityClasses('JoyGrid', [
   'root',
   'container',
   'item',

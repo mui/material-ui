@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { createTheme, ThemeProvider } from '@mui/system';
-import Grid from '@mui/system/Unstable_Grid2';
+import Grid from '@mui/system/Unstable_Grid';
 
 declare module '@mui/system' {
   interface BreakpointOverrides {
