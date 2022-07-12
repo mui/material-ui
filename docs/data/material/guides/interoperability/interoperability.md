@@ -697,7 +697,7 @@ const theme = createTheme({
   components: {
     MuiPopover: {
       defaultProps: {
-        container: root,
+        container: rootElement,
       },
     },
     MuiPopper: {
