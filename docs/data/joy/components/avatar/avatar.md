@@ -14,7 +14,7 @@ The avatar component is usually seen for displaying user information in places s
 
 {{"demo": "AvatarUsage.js", "hideToolbar": true}}
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Component
 
