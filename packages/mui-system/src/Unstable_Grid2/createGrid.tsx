@@ -30,7 +30,8 @@ const defaultTheme = createTheme();
 
 // widening Theme to any so that the consumer can own the theme structure.
 const defaultCreateStyledComponent = (systemStyled as CreateMUIStyled<any>)('div', {
-  name: 'MuiGrid',
+  // TODO: replace with MuiGrid in v6
+  name: 'MuiGrid2',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 });
@@ -38,7 +39,8 @@ const defaultCreateStyledComponent = (systemStyled as CreateMUIStyled<any>)('div
 function useThemePropsDefault<T>(props: T) {
   return useThemePropsSystem({
     props,
-    name: 'MuiGrid',
+    // TODO: replace with MuiGrid in v6
+    name: 'MuiGrid2',
     defaultTheme,
   });
 }
@@ -54,14 +56,11 @@ export default function createGrid(
     // This will allow adding custom styled fn (for example for custom sx style function)
     createStyledComponent = defaultCreateStyledComponent,
     useThemeProps = useThemePropsDefault,
-    componentName = 'MuiGrid',
+    // TODO: replace with MuiGrid in v6
+    componentName = 'MuiGrid2',
   } = options;
 
   const NestedContext = React.createContext(false);
-
-  const getGridUtilityClass = (slot: string) => {
-    return generateUtilityClass(componentName, slot);
-  };
 
   const useUtilityClasses = (ownerState: GridOwnerState, theme: typeof defaultTheme) => {
     const { container, direction, spacing, wrap, gridSize } = ownerState;
@@ -77,7 +76,7 @@ export default function createGrid(
       ],
     };
 
-    return composeClasses(slots, getGridUtilityClass, {});
+    return composeClasses(slots, (slot) => generateUtilityClass(componentName, slot), {});
   };
 
   const GridRoot = createStyledComponent<{

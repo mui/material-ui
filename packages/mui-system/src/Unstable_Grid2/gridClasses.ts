@@ -31,7 +31,8 @@ const DIRECTIONS = ['column-reverse', 'column', 'row-reverse', 'row'] as const;
 const WRAPS = ['nowrap', 'wrap-reverse', 'wrap'] as const;
 const GRID_SIZES = ['auto', true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] as const;
 
-const gridClasses: GridClasses = generateUtilityClasses('MuiGrid', [
+// TODO: replace with MuiGrid in v6
+const gridClasses: GridClasses = generateUtilityClasses('MuiGrid2', [
   'root',
   'container',
   'item',
