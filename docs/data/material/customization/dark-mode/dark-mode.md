@@ -18,7 +18,7 @@ const darkTheme = createTheme({
 function App() {
   return (
     <ThemeProvider theme={darkTheme}>
-    <CssBaseline/>
+      <CssBaseline/>
       <main>This app is using the dark mode</main>
     </ThemeProvider>
   );
