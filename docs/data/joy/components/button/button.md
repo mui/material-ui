@@ -16,7 +16,7 @@ Buttons communicate actions that users can take.
 
 {{"demo": "ButtonUsage.js", "hideToolbar": true}}
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Component
 

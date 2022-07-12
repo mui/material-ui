@@ -17,7 +17,7 @@ should be made clear from the corresponding inline label.
 
 {{"demo": "SwitchUsage.js", "hideToolbar": true}}
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Component
 

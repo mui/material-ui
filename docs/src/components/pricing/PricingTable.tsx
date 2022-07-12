@@ -18,8 +18,7 @@ const planInfo = {
   community: {
     color: 'green',
     title: 'Community',
-    description:
-      'Get started with the industry-standard UI library for building React user interfaces, MIT-licensed.',
+    description: 'Get started with the industry-standard React UI library, MIT-licensed.',
   },
   pro: {
     color: 'blue',
@@ -30,7 +29,7 @@ const planInfo = {
     color: 'gold',
     title: 'Premium',
     description:
-      'The most advanced features for handling data-rich applications, and the highest priority for support.',
+      'The most advanced features for data-rich applications, as well as the highest priority for support.',
   },
 } as const;
 
