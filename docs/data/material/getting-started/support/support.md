@@ -59,7 +59,7 @@ Receive the latest news on MUI.
 
 Find details on the [supported versions](/versions/#supported-versions).
 
-## Technical support (premium)
+## Paid support
 
 ### Pro/Premium plans
 
