@@ -940,15 +940,13 @@ export default function useAutocomplete(props) {
     }
   };
 
-  // Prevent input blur when interacting with the combobox
-  const handleMouseDown = (event) => {
-    if (event.target.getAttribute('id') !== id) {
-      event.preventDefault();
-    }
-  };
-
   // Focus the input when interacting with the combobox
-  const handleClick = () => {
+  const handleClick = (event) => {
+    // Prevent input blur when interacting with the combobox
+    if (!event.currentTarget.contains(event.target)) {
+      return;
+    }
+
     inputRef.current.focus();
 
     if (
@@ -1015,7 +1013,6 @@ export default function useAutocomplete(props) {
       'aria-owns': listboxAvailable ? `${id}-listbox` : null,
       ...other,
       onKeyDown: handleKeyDown(other),
-      onMouseDown: handleMouseDown,
       onClick: handleClick,
     }),
     getInputLabelProps: () => ({

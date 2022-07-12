@@ -19,6 +19,9 @@ import Autocomplete, {
 } from '@mui/material/Autocomplete';
 import { paperClasses } from '@mui/material/Paper';
 import { iconButtonClasses } from '@mui/material/IconButton';
+import InputAdornment from "@mui/material/InputAdornment";
+import Visibility from "@mui/icons-material/Visibility";
+import Tooltip from "@mui/material/Tooltip";
 
 function checkHighlightIs(listbox, expected) {
   const focused = listbox.querySelector(`.${classes.focused}`);
@@ -2604,5 +2607,39 @@ describe('<Autocomplete />', () => {
       fireEvent.keyDown(textbox, { key: 'Backspace' });
       expect(container.querySelectorAll(`.${chipClasses.root}`)).to.have.length(2);
     });
+  });
+
+  it('should not focus when tooltip clicked', () => {
+    render(
+      <Autocomplete
+        options={['one', 'two', 'three']}
+        renderInput={(params) => {
+          return (
+            <TextField
+              {...params}
+              InputProps={{
+                ...params.InputProps,
+                startAdornment: (
+                  <InputAdornment position="end">
+                    <Tooltip title="tooltip" open>
+                      <Visibility />
+                    </Tooltip>
+                  </InputAdornment>
+                )
+              }}
+            />
+          )
+        }}
+      />
+    );
+
+    const textbox = screen.getByRole('combobox');
+    const tooltip = screen.getByText('tooltip');
+
+    act(() => {
+      fireEvent.click(tooltip);
+    });
+
+    expect(textbox).not.toHaveFocus();
   });
 });
