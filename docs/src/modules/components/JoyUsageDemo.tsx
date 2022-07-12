@@ -106,7 +106,7 @@ interface JoyUsageDemoProps<ComponentProps> {
     /**
      * Name of the prop
      */
-    propName: keyof ComponentProps;
+    propName: Extract<keyof ComponentProps, string>;
     /**
      * The controller to be used:
      * - `switch`: render the switch component for boolean
@@ -244,7 +244,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
             if (knob === 'switch') {
               return (
                 <Switch
-                  key={propName as string}
+                  key={propName}
                   checked={Boolean(resolvedValue)}
                   onChange={(event) =>
                     setProps((latestProps) => ({
@@ -268,10 +268,11 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
               );
             }
             if (knob === 'radio') {
+              const labelId = `${componentName}-${propName}`;
               return (
-                <Box key={propName as string}>
+                <Box key={propName}>
                   <Typography
-                    id={`${componentName}-${propName}`}
+                    id={labelId}
                     fontSize="xs"
                     fontWeight="md"
                     sx={{ mb: 1, textTransform: 'capitalize' }}
@@ -280,8 +281,8 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                   </Typography>
                   <RadioGroup
                     row
-                    name={`${componentName}-${propName}`}
-                    aria-labelledby={`${componentName}-${propName}`}
+                    name={labelId}
+                    aria-labelledby={labelId}
                     value={resolvedValue}
                     onChange={(event) =>
                       setProps((latestProps) => ({
@@ -319,7 +320,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
             }
             if (knob === 'color') {
               return (
-                <Box key={propName as string} sx={{ mb: 1 }}>
+                <Box key={propName} sx={{ mb: 1 }}>
                   <Typography id={`${componentName}-color`} fontSize="xs" fontWeight="lg" mb={1}>
                     Color
                   </Typography>
@@ -398,20 +399,21 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
               );
             }
             if (knob === 'select') {
+              const selectId = `${componentName}-${propName}`;
               return (
-                <Box key={propName as string}>
+                <Box key={propName}>
                   <Typography
                     component="label"
                     fontSize="xs"
                     fontWeight="lg"
                     mb={1}
-                    htmlFor={`${componentName}-${propName}`}
+                    htmlFor={selectId}
                     sx={{ textTransform: 'capitalize' }}
                   >
                     {propName}
                   </Typography>
                   <Select
-                    id={`${componentName}-${propName}`}
+                    id={selectId}
                     value={(resolvedValue || 'none') as string}
                     onChange={(event) =>
                       setProps((latestProps) => ({
@@ -433,7 +435,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
             if (knob === 'input') {
               return (
                 <TextField
-                  key={propName as string}
+                  key={propName}
                   label={propName}
                   size="sm"
                   value={resolvedValue || ''}

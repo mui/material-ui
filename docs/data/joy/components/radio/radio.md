@@ -17,7 +17,7 @@ For more in-depth about when to use each, visit [the NNg's documentation](https:
 
 {{"demo": "RadioUsage.js", "hideToolbar": true}}
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Component
 
@@ -113,7 +113,7 @@ Here are a few tips to make sure you have an accessible radio button component:
 />
 ```
 
-Visit the [WAI-ARIA documentation](https://www.w3.org/TR/wai-aria-practices/#radiobutton) for more details.
+Visit the [WAI-ARIA documentation](https://www.w3.org/WAI/ARIA/apg/patterns/radiobutton/) for more details.
 
 ## Common examples
 

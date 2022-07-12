@@ -366,11 +366,20 @@ https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 /legal/mui-x-eula/ /store/legal/mui-x-eula/ 301
 /:lang/size-snapshot/ /size-snapshot/ 301
 /joy-ui/customization/themed-tokens/ /joy-ui/customization/themed-components/ 301
+/:lang/joy-ui/customization/one-off-styling/ /:lang/joy-ui/customization/approaches/#one-off-customization 301
 /joy-ui/customization/one-off-styling/ /joy-ui/customization/approaches/#one-off-customization 301
+/:lang/joy-ui/customization/theme-components/ /:lang/joy-ui/customization/themed-components/ 301
 /joy-ui/customization/theme-components/ /joy-ui/customization/themed-components/ 301
+/:lang/joy-ui/customization/theme-components/ /:lang/joy-ui/customization/themed-components/ 301
 /base/react-chip/ /material-ui/react-chip/ 301
 /system/api/ /system/properties/ 301
 /:lang/system/api/ /:lang/system/properties/ 301
+/joy-ui/core-features/global-variant/ /joy-ui/main-features/global-variants/ 301
+/:lang/joy-ui/core-features/global-variant/ /:langjoy-ui/main-features/global-variants/ 301
+/joy-ui/core-features/automatic-adjustment/ /joy-ui/main-features/automatic-adjustment/ 301
+/:lang/joy-ui/core-features/automatic-adjustment/ /:lang/joy-ui/main-features/automatic-adjustment/ 301
+/joy-ui/core-features/perfect-dark-mode/ /joy-ui/main-features/perfect-dark-mode/ 301
+/:lang/joy-ui/core-features/perfect-dark-mode/ /:lang/joy-ui/main-features/perfect-dark-mode/ 301
 # 2023
 
 # Proxies

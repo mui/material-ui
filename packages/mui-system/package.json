@@ -36,7 +36,8 @@
     "prebuild": "rimraf build tsconfig.build.tsbuildinfo",
     "release": "yarn build && npm publish build",
     "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-system/**/*.test.{js,ts,tsx}'",
-    "typescript": "tslint -p tsconfig.json \"{src,test}/**/*.{spec,d}.{ts,tsx}\" && tsc -p tsconfig.json"
+    "typescript": "tslint -p tsconfig.json \"{src,test}/**/*.{spec,d}.{ts,tsx}\" && tsc -p tsconfig.json",
+    "typescript:module-augmentation": "node scripts/testModuleAugmentation.js"
   },
   "peerDependencies": {
     "@emotion/react": "^11.5.0",
@@ -61,7 +62,7 @@
     "@mui/styled-engine": "^5.8.7",
     "@mui/types": "^7.1.4",
     "@mui/utils": "^5.8.6",
-    "clsx": "^1.2.0",
+    "clsx": "^1.2.1",
     "csstype": "^3.1.0",
     "prop-types": "^15.8.1"
   },
