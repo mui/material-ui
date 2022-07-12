@@ -26,10 +26,19 @@ const MenuRoot = styled(PopperUnstyled, {
   name: 'MuiMenu',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})(({ theme }) => ({
+})<{ ownerState: MenuProps }>(({ theme, ownerState }) => ({
+  '--Menu-radius': theme.vars.radius.sm,
+  borderRadius: 'var(--Menu-radius)',
   boxShadow: theme.vars.shadow.sm,
-  borderRadius: theme.vars.radius.sm,
-  paddingBlock: theme.spacing(0.75),
+  ...(ownerState.size === 'sm' && {
+    paddingBlock: theme.spacing(0.5),
+  }),
+  ...(ownerState.size === 'md' && {
+    paddingBlock: theme.spacing(0.75),
+  }),
+  ...(ownerState.size === 'lg' && {
+    paddingBlock: theme.spacing(1),
+  }),
   zIndex: 1,
 }));
 
@@ -37,7 +46,10 @@ const MenuListbox = styled(List, {
   name: 'MuiMenu',
   slot: 'Listbox',
   overridesResolver: (props, styles) => styles.listbox,
-})({});
+})({
+  '--List-radius': 'var(--Menu-radius)',
+  '--List-padding': 'var(--Menu-padding, 0px)',
+});
 
 const Menu = React.forwardRef(function Menu(inProps, ref) {
   const props = useThemeProps<typeof inProps>({
@@ -58,6 +70,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     open = false,
     modifiers = [],
     variant = 'outlined',
+    size = 'md',
     ...other
   } = props;
 
@@ -89,6 +102,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     disablePortal,
     color,
     variant,
+    size,
     modifiers,
     open,
   };
@@ -126,6 +140,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
   const listboxProps = useSlotProps({
     elementType: MenuListbox,
     getSlotProps: getListboxProps,
+    additionalProps: { size },
     externalSlotProps: componentsProps.listbox,
     ownerState,
     className: classes.listbox,
