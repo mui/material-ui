@@ -704,7 +704,7 @@ const theme = createTheme({
     },
     MuiPopper: {
       defaultProps: {
-        container: root,
+        container: rootElement,
       },
     },
   },
