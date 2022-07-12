@@ -1,16 +1,16 @@
 import PropTypes from 'prop-types';
-import { createGrid } from '@mui/system/Grid';
+import { createGrid } from '@mui/system/Unstable_Grid2';
 import { OverridableComponent } from '@mui/types';
 import { styled, useThemeProps } from '../styles';
 import { GridTypeMap } from './GridProps';
 
 const Grid = createGrid({
   createStyledComponent: styled('div', {
-    name: 'MuiGrid',
+    name: 'JoyGrid',
     overridesResolver: (props, styles) => styles.root,
   }),
-  componentName: 'MuiGrid',
-  useThemeProps: (inProps) => useThemeProps({ props: inProps, name: 'MuiGrid' }),
+  componentName: 'JoyGrid',
+  useThemeProps: (inProps) => useThemeProps({ props: inProps, name: 'JoyGrid' }),
 }) as OverridableComponent<GridTypeMap>;
 
 Grid.propTypes /* remove-proptypes */ = {

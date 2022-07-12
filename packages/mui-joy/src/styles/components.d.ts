@@ -122,6 +122,10 @@ export interface Components<Theme = unknown> {
     defaultProps?: Partial<FormLabelProps>;
     styleOverrides?: OverridesStyleRules<FormLabelSlot, FormLabelProps, Theme>;
   };
+  JoyGrid?: {
+    defaultProps?: Partial<GridProps>;
+    styleOverrides?: OverridesStyleRules<GridSlot, GridProps, Theme>;
+  };
   JoyIconButton?: {
     defaultProps?: Partial<IconButtonProps>;
     styleOverrides?: OverridesStyleRules<IconButtonSlot, IconButtonProps, Theme>;
@@ -194,9 +198,5 @@ export interface Components<Theme = unknown> {
   JoyTypography?: {
     defaultProps?: Partial<TypographyProps>;
     styleOverrides?: OverridesStyleRules<TypographySlot, TypographyProps, Theme>;
-  };
-  MuiGrid?: {
-    defaultProps?: Partial<GridProps>;
-    styleOverrides?: OverridesStyleRules<GridSlot, GridProps, Theme>;
   };
 }
