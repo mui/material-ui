@@ -199,7 +199,7 @@ If you're not sure about it yet, we recommend using [the `sx` prop](/joy-ui/cust
 
 ## Global variant tokens
 
-By default, Joy UI has four built-in [global variants](/joy-ui/main-features/global-variant/) tokens: `plain`, `outlined`, `soft`, and `solid`.
+By default, Joy UI has four built-in [global variants](/joy-ui/main-features/global-variants/) tokens: `plain`, `outlined`, `soft`, and `solid`.
 
 ### Structure
 
