@@ -32,7 +32,7 @@ const ListRoot = styled('ul', {
           '--List-divider-gap': '0.25rem',
           '--List-item-minHeight': '2rem',
           '--List-item-paddingY': '0.25rem',
-          '--List-item-paddingX': '0.375rem',
+          '--List-item-paddingX': '0.5rem',
           '--List-item-fontSize': theme.vars.fontSize.sm,
           '--List-decorator-width': ownerState.row ? '1.5rem' : '2rem',
           '--Icon-fontSize': '1.125rem',
