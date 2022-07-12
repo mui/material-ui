@@ -689,7 +689,7 @@ export default function PlainCssPriority() {
 
 **Note:** If you are using styled-components and have `StyleSheetManager` with a custom `target`, make sure that the target is the first element in the HTML `<head>`. If you are curious to see how it can be done, you can take a look at the [`StyledEngineProvider`](https://github.com/mui/material-ui/blob/master/packages/mui-styled-engine-sc/src/StyledEngineProvider/StyledEngineProvider.js) implementation in the `@mui/styled-engine-sc` package.
 
-5. Change the target container for `Portal`-related elements to appear in the react tree properly.
+5. Change the target container for `Portal`-related elements so that they are injected under the main app wrapper that was used in point 3. for setting up the `important` option in the Tailwind's config.
 
 ```jsx
 const root = ReactDOM.createRoot(document.getElementById('root'));
