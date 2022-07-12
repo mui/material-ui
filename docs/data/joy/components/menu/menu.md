@@ -32,29 +32,28 @@ Choosing an option should immediately ideally commit the option and close the me
 
 ### Size
 
-{{"demo": "SizeMenu.js", "bg": true}}
+By specifying the `size` prop to the menu, the value is passed down to all of the menu items under it.
 
-### Selected menu
+{{"demo": "SizeMenu.js"}}
 
-If used for item selection, when opened, simple menus places the initial focus on the selected menu item.
-The currently selected menu item is set using the `selected` prop (from [ListItem](/material-ui/api/list-item/)).
-To use a selected menu item without impacting the initial focus, set the `variant` prop to "menu".
+### Selected
 
-<!-- {{"demo": "SimpleListMenu.js"}} -->
+Because `MenuItem` uses the same styles as the [`ListItemButton`](/joy-ui/react-list/#selected), you can provide the `selected` prop to it to visually communicate the selected state.
+
+{{"demo": "SelectedMenu.js"}}
 
 ### Positioned menu
 
-Because the `Menu` component uses the `Popover` component to position itself, you can use the same [positioning props](/material-ui/react-popover/#anchor-playground) to position it.
-For instance, you can display the menu on top of the anchor:
+Because the `Menu` component uses the `PopperUnstyled` component to position itself, you can use the same [placement props](/base/react-popper/#placement) to position it.
 
-<!-- {{"demo": "PositionedMenu.js"}} -->
+For instance, you can display the menu from the bottom-end of the anchor:
+
+{{"demo": "PositionedMenu.js"}}
 
 ### MenuList composition
 
-The `Menu` component uses the `Popover` component internally.
-However, you might want to use a different positioning strategy, or not blocking the scroll.
-For answering those needs, we expose a `MenuList` component that you can compose, with `Popper` in this example.
+If you want to have full control on the DOM structure, we expose a `MenuList` component that you can compose with any popup component. In this demo, the [`PopperUnstyled`](/base/react-popper/) is used to demonstrate the composition.
 
 The primary responsibility of the `MenuList` component is to handle the focus.
 
-<!-- {{"demo": "MenuListComposition.js", "bg": true}} -->
+{{"demo": "MenuListComposition.js"}}

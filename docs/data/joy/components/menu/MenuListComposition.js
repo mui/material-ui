@@ -1,0 +1,70 @@
+import * as React from 'react';
+import PopperUnstyled from '@mui/base/PopperUnstyled';
+import ClickAwayListener from '@mui/base/ClickAwayListener';
+import Button from '@mui/joy/Button';
+import MenuList from '@mui/joy/MenuList';
+import MenuItem from '@mui/joy/MenuItem';
+import Sheet from '@mui/joy/Sheet';
+
+export default function MenuListComposition() {
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const handleListKeyDown = (event) => {
+    if (event.key === 'Tab') {
+      setAnchorEl(null);
+    } else if (event.key === 'Escape') {
+      anchorEl.focus();
+      setAnchorEl(null);
+    }
+  };
+
+  return (
+    <div>
+      <Button
+        id="composition-button"
+        aria-controls={open ? 'composition-menu' : undefined}
+        aria-haspopup="true"
+        aria-expanded={open ? 'true' : undefined}
+        variant="outlined"
+        color="neutral"
+        onClick={handleClick}
+        sx={{ borderRadius: 0 }}
+      >
+        Open menu
+      </Button>
+      <PopperUnstyled
+        role={undefined}
+        id="composition-menu"
+        open={open}
+        anchorEl={anchorEl}
+        disablePortal
+        modifiers={[
+          {
+            name: 'offset',
+            options: {
+              offset: [0, 4],
+            },
+          },
+        ]}
+      >
+        <ClickAwayListener onClickAway={handleClose}>
+          <Sheet variant="outlined" sx={{ boxShadow: 'md' }}>
+            <MenuList onKeyDown={handleListKeyDown}>
+              <MenuItem onClick={handleClose}>Single</MenuItem>
+              <MenuItem onClick={handleClose}>1.15</MenuItem>
+              <MenuItem onClick={handleClose}>Double</MenuItem>
+              <MenuItem onClick={handleClose}>Custom: 1.2</MenuItem>
+            </MenuList>
+          </Sheet>
+        </ClickAwayListener>
+      </PopperUnstyled>
+    </div>
+  );
+}
