@@ -3,7 +3,7 @@ import { GridClasses } from '@mui/system/Unstable_Grid';
 
 export type Grid2ClassKey = keyof GridClasses;
 
-export function getGridUtilityClass(slot: string): string {
+export function getGrid2UtilityClass(slot: string): string {
   return generateUtilityClass('MuiGrid2', slot);
 }
 
