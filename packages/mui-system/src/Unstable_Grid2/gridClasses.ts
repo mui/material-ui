@@ -3,7 +3,7 @@ import {
   unstable_generateUtilityClasses as generateUtilityClasses,
 } from '@mui/utils';
 
-export interface GridClasses {
+export interface Grid2Classes {
   /** Styles applied to the root element. */
   root: string;
   /** Styles applied to the root element if `container={true}`. */
@@ -20,7 +20,7 @@ export interface GridClasses {
   'wrap-xs-wrap-reverse': string;
 }
 
-export type GridClassKey = keyof GridClasses;
+export type Grid2ClassKey = keyof Grid2Classes;
 
 export function getGridUtilityClass(slot: string): string {
   return generateUtilityClass('MuiGrid', slot);
@@ -32,7 +32,7 @@ const WRAPS = ['nowrap', 'wrap-reverse', 'wrap'] as const;
 const GRID_SIZES = ['auto', true, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] as const;
 
 // TODO: replace with MuiGrid in v6
-const gridClasses: GridClasses = generateUtilityClasses('MuiGrid2', [
+const grid2Classes: Grid2Classes = generateUtilityClasses('MuiGrid2', [
   'root',
   'container',
   'item',
@@ -52,4 +52,4 @@ const gridClasses: GridClasses = generateUtilityClasses('MuiGrid2', [
   ...GRID_SIZES.map((size) => `grid-xl-${size}` as const),
 ]);
 
-export default gridClasses;
+export default grid2Classes;

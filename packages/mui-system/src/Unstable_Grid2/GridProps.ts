@@ -6,13 +6,13 @@ import { SystemProps } from '../Box';
 
 type ResponsiveStyleValue<T> = T | Array<T | null> | { [key in Breakpoint]?: T | null };
 
-export type GridDirection = 'row' | 'row-reverse' | 'column' | 'column-reverse';
+export type Grid2Direction = 'row' | 'row-reverse' | 'column' | 'column-reverse';
 
-export type GridSpacing = number | string;
+export type Grid2Spacing = number | string;
 
-export type GridWrap = 'nowrap' | 'wrap' | 'wrap-reverse';
+export type Grid2Wrap = 'nowrap' | 'wrap' | 'wrap-reverse';
 
-export type GridSize = 'auto' | number;
+export type Grid2Size = 'auto' | number;
 
 export interface GridDefaultBreakpoints {
   /**
@@ -24,13 +24,13 @@ export interface GridDefaultBreakpoints {
    * The value is applied for the `lg` breakpoint and wider screens if not overridden.
    * @default false
    */
-  lg?: boolean | GridSize;
+  lg?: boolean | Grid2Size;
   /**
    * If a number, it sets the margin-left equals to the number of columns the grid item uses.
    * If 'auto', the grid item push itself to the right-end of the container.
    * The value is applied for the `lg` breakpoint and wider screens if not overridden.
    */
-  lgOffset?: GridSize;
+  lgOffset?: Grid2Size;
   /**
    * If a number, it sets the number of columns the grid item uses.
    * It can't be greater than the total number of columns of the container (12 by default).
@@ -40,13 +40,13 @@ export interface GridDefaultBreakpoints {
    * The value is applied for the `md` breakpoint and wider screens if not overridden.
    * @default false
    */
-  md?: boolean | GridSize;
+  md?: boolean | Grid2Size;
   /**
    * If a number, it sets the margin-left equals to the number of columns the grid item uses.
    * If 'auto', the grid item push itself to the right-end of the container.
    * The value is applied for the `md` breakpoint and wider screens if not overridden.
    */
-  mdOffset?: GridSize;
+  mdOffset?: Grid2Size;
   /**
    * If a number, it sets the number of columns the grid item uses.
    * It can't be greater than the total number of columns of the container (12 by default).
@@ -56,13 +56,13 @@ export interface GridDefaultBreakpoints {
    * The value is applied for the `sm` breakpoint and wider screens if not overridden.
    * @default false
    */
-  sm?: boolean | GridSize;
+  sm?: boolean | Grid2Size;
   /**
    * If a number, it sets the margin-left equals to the number of columns the grid item uses.
    * If 'auto', the grid item push itself to the right-end of the container.
    * The value is applied for the `sm` breakpoint and wider screens if not overridden.
    */
-  smOffset?: GridSize;
+  smOffset?: Grid2Size;
   /**
    * If a number, it sets the number of columns the grid item uses.
    * It can't be greater than the total number of columns of the container (12 by default).
@@ -72,13 +72,13 @@ export interface GridDefaultBreakpoints {
    * The value is applied for the `xl` breakpoint and wider screens if not overridden.
    * @default false
    */
-  xl?: boolean | GridSize;
+  xl?: boolean | Grid2Size;
   /**
    * If a number, it sets the margin-left equals to the number of columns the grid item uses.
    * If 'auto', the grid item push itself to the right-end of the container.
    * The value is applied for the `xl` breakpoint and wider screens if not overridden.
    */
-  xlOffset?: GridSize;
+  xlOffset?: Grid2Size;
   /**
    * If a number, it sets the number of columns the grid item uses.
    * It can't be greater than the total number of columns of the container (12 by default).
@@ -88,17 +88,17 @@ export interface GridDefaultBreakpoints {
    * The value is applied for all the screen sizes with the lowest priority.
    * @default false
    */
-  xs?: boolean | GridSize;
+  xs?: boolean | Grid2Size;
   /**
    * If a number, it sets the margin-left equals to the number of columns the grid item uses.
    * If 'auto', the grid item push itself to the right-end of the container.
    * The value is applied for the `xs` breakpoint and wider screens if not overridden.
    */
-  xsOffset?: GridSize;
+  xsOffset?: Grid2Size;
 }
 
 type CustomBreakpoints = Partial<
-  Record<Breakpoint, boolean | GridSize> & Record<`${Breakpoint}Offset`, GridSize>
+  Record<Breakpoint, boolean | Grid2Size> & Record<`${Breakpoint}Offset`, Grid2Size>
 >;
 
 interface BreakpointOverridesEmpty {}
@@ -110,7 +110,7 @@ type Breakpoints = IfEquals<
   CustomBreakpoints
 >;
 
-export interface GridBaseProps extends Breakpoints {
+export interface Grid2BaseProps extends Breakpoints {
   /**
    * The content of the component.
    */
@@ -124,7 +124,7 @@ export interface GridBaseProps extends Breakpoints {
    * Defines the horizontal space between the type `item` components.
    * It overrides the value of the `spacing` prop.
    */
-  columnSpacing?: ResponsiveStyleValue<GridSpacing>;
+  columnSpacing?: ResponsiveStyleValue<Grid2Spacing>;
   /**
    * If `true`, the component will have the flex *container* behavior.
    * You should be wrapping *items* with a *container*.
@@ -136,40 +136,40 @@ export interface GridBaseProps extends Breakpoints {
    * It is applied for all screen sizes.
    * @default 'row'
    */
-  direction?: ResponsiveStyleValue<GridDirection>;
+  direction?: ResponsiveStyleValue<Grid2Direction>;
   /**
    * Defines the vertical space between the type `item` components.
    * It overrides the value of the `spacing` prop.
    */
-  rowSpacing?: ResponsiveStyleValue<GridSpacing>;
+  rowSpacing?: ResponsiveStyleValue<Grid2Spacing>;
   /**
    * Defines the space between the type `item` components.
    * It can only be used on a type `container` component.
    * @default 0
    */
-  spacing?: ResponsiveStyleValue<GridSpacing> | undefined;
+  spacing?: ResponsiveStyleValue<Grid2Spacing> | undefined;
   /**
    * Defines the `flex-wrap` style property.
    * It's applied for all screen sizes.
    * @default 'wrap'
    */
-  wrap?: GridWrap;
+  wrap?: Grid2Wrap;
 }
 
-export interface GridOwnerState extends GridBaseProps {
+export interface Grid2OwnerState extends Grid2BaseProps {
   nested: boolean;
-  gridSize: Partial<Record<Breakpoint, GridSize | boolean>>;
-  gridOffset: Partial<Record<Breakpoint, GridSize>>;
+  gridSize: Partial<Record<Breakpoint, Grid2Size | boolean>>;
+  gridOffset: Partial<Record<Breakpoint, Grid2Size>>;
 }
 
-export interface GridTypeMap<P = {}, D extends React.ElementType = 'div'> {
-  props: P & GridBaseProps & { sx?: SxProps<Theme> } & SystemProps<Theme>;
+export interface Grid2TypeMap<P = {}, D extends React.ElementType = 'div'> {
+  props: P & Grid2BaseProps & { sx?: SxProps<Theme> } & SystemProps<Theme>;
   defaultComponent: D;
 }
 
 export type GridProps<
-  D extends React.ElementType = GridTypeMap['defaultComponent'],
+  D extends React.ElementType = Grid2TypeMap['defaultComponent'],
   P = {
     component?: React.ElementType;
   },
-> = OverrideProps<GridTypeMap<P, D>, D>;
+> = OverrideProps<Grid2TypeMap<P, D>, D>;

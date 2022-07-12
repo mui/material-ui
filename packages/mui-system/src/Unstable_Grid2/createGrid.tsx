@@ -23,7 +23,7 @@ import {
   generateSpacingClassNames,
 } from './gridGenerator';
 import { CreateMUIStyled } from '../createStyled';
-import { GridTypeMap, GridOwnerState } from './GridProps';
+import { Grid2TypeMap, Grid2OwnerState } from './GridProps';
 import type { Breakpoint } from '../createTheme';
 
 const defaultTheme = createTheme();
@@ -62,7 +62,7 @@ export default function createGrid(
 
   const NestedContext = React.createContext(false);
 
-  const useUtilityClasses = (ownerState: GridOwnerState, theme: typeof defaultTheme) => {
+  const useUtilityClasses = (ownerState: Grid2OwnerState, theme: typeof defaultTheme) => {
     const { container, direction, spacing, wrap, gridSize } = ownerState;
 
     const slots = {
@@ -80,7 +80,7 @@ export default function createGrid(
   };
 
   const GridRoot = createStyledComponent<{
-    ownerState: GridOwnerState;
+    ownerState: Grid2OwnerState;
   }>(
     generateGridColumnsStyles,
     generateGridColumnSpacingStyles,
@@ -109,8 +109,8 @@ export default function createGrid(
       ...rest
     } = props;
     // collect breakpoints related props because they can be custom from the theme.
-    const gridSize = {} as GridOwnerState['gridSize'];
-    const gridOffset = {} as GridOwnerState['gridOffset'];
+    const gridSize = {} as Grid2OwnerState['gridSize'];
+    const gridOffset = {} as Grid2OwnerState['gridOffset'];
     const other: Record<string, any> = {};
 
     Object.entries(rest).forEach(([key, val]) => {
@@ -160,7 +160,7 @@ export default function createGrid(
     }
 
     return result;
-  }) as OverridableComponent<GridTypeMap>;
+  }) as OverridableComponent<Grid2TypeMap>;
 
   Grid.propTypes /* remove-proptypes */ = {
     children: PropTypes.node,

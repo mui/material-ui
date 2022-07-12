@@ -1,10 +1,10 @@
 import { Breakpoints, Breakpoint } from '../createTheme/createBreakpoints';
 import { Spacing } from '../createTheme/createSpacing';
-import { GridOwnerState } from './GridProps';
+import { Grid2OwnerState } from './GridProps';
 
 interface Props {
   theme: { breakpoints: Breakpoints; spacing?: Spacing };
-  ownerState: GridOwnerState & { parentDisableEqualOverflow?: boolean };
+  ownerState: Grid2OwnerState & { parentDisableEqualOverflow?: boolean };
 }
 
 interface Iterator<T> {
@@ -209,7 +209,7 @@ export const generateGridStyles = ({ ownerState }: Props): {} => {
   };
 };
 
-export const generateSizeClassNames = (gridSize: GridOwnerState['gridSize']) => {
+export const generateSizeClassNames = (gridSize: Grid2OwnerState['gridSize']) => {
   const classNames: string[] = [];
   Object.entries(gridSize).forEach(([key, value]) => {
     if (value !== false && value !== undefined) {
@@ -220,10 +220,10 @@ export const generateSizeClassNames = (gridSize: GridOwnerState['gridSize']) => 
 };
 
 export const generateSpacingClassNames = (
-  spacing: GridOwnerState['spacing'],
+  spacing: Grid2OwnerState['spacing'],
   smallestBreakpoint: string = 'xs',
 ) => {
-  function isValidSpacing(val: GridOwnerState['spacing'] | null) {
+  function isValidSpacing(val: Grid2OwnerState['spacing'] | null) {
     if (val === undefined) {
       return false;
     }
