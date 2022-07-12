@@ -1,5 +1,78 @@
 # [Versions](https://mui.com/versions/)
 
+## 5.9.0
+
+<!-- generated comparing v5.8.7..master -->
+
+_Jul 12, 2022_
+
+A big thanks to the 19 contributors who made this release possible. Here are some highlights ✨:
+
+- 🧪 Exported Grid v2 as `Unstable_Grid2` (#33479) @siriwatknp
+- 📖 Added a guide for using Joy UI and Material UI together (#33396) @siriwatknp
+- 🐛 Fixed a few bugs in Material UI components. Thanks to @ZeeshanTamboli, @ivan-ngchakming, and @joebingham-wk.
+- many other 🐛 bug fixes and 📚 documentation improvements
+
+### `@mui/material@5.9.0`
+
+- &#8203;<!-- 31 -->[CssBaseline] Fixes in overriding style (#33338) @ZeeshanTamboli
+- &#8203;<!-- 36 -->[Autocomplete] Remove unnecessary `clsx` wrapper for single className (#33398) @ZeeshanTamboli
+- &#8203;<!-- 18 -->[Grid] Export new grid as unstable (#33479) @siriwatknp
+- &#8203;<!-- 06 -->[Tooltip] Fix children mouse over detection (#32321) @ivan-ngchakming
+- &#8203;<!-- 05 -->[TypeScript] getCssVar autocomplete for Material UI (#33464) @siriwatknp
+- &#8203;<!-- 04 -->[TypeScript] Fix theme options components types to use `Theme` (#33434) @siriwatknp
+- &#8203;<!-- 03 -->[TypeScript] Reexports necessary types for module augmentation (#33397) @siriwatknp
+- &#8203;<!-- 11 -->[ScopedCssBaseline] Add sx typings (#33474) @joebingham-wk
+
+### `@mui/system@5.9.0`
+
+- &#8203;<!-- 09 -->[System] Add offset feature to Grid (#33415) @siriwatknp
+- &#8203;<!-- 08 -->[system] Add new `Grid` implementation (#32746) @siriwatknp
+
+### `@mui/lab@5.0.0-alpha.90`
+
+- &#8203;<!-- 14 -->[lab] Remove the pickers (#33386) @flaviendelangle
+- &#8203;<!-- 13 -->[Masonry] Support `rem`/`em` values for `spacing` prop (#33384) @hbjORbj
+
+### `@mui/base@5.0.0-alpha.89`
+
+- &#8203;<!-- 34 —>[Base] Change the order of class names merged in useSlotProps (#33383) @michaldudak
+- &#8203;<!-- 12 -->[ModalUnstyled] Accept callbacks in componentsProps (#33181) @michaldudak
+- &#8203;<!-- 10 -->[SelectUnstyled] Accept callbacks in componentsProps (#33197) @michaldudak
+- &#8203;<!-- 07 -->[TabsUnstyled] Accept callbacks in componentsProps (#33284) @michaldudak
+
+### `@mui/joy@5.0.0-alpha.36`
+
+- &#8203;<!-- 16 -->[Joy] Add guide about using Joy and Material UI together (#33396) @siriwatknp
+- &#8203;<!-- 15 -->[Joy] Fix variants color palette regressions (#33394) @danilo-leal
+
+### Docs
+
+- &#8203;<!-- 37 —>[docs] Correcting small grammatical error (#33393) @robyyo
+- &#8203;<!-- 30 -->[docs] Link to the correct package on Joy component pages (#33439) @cherniavskii
+- &#8203;<!-- 29 -->[docs] Fix e2e tests (#33477) @siriwatknp
+- &#8203;<!-- 28 -->[docs] Fix dead links (#33462) @oliviertassinari
+- &#8203;<!-- 27 -->[docs] Cleanup the migration (#33463) @siriwatknp
+- &#8203;<!-- 26 -->[docs] Fix broken Sponsoring services links @samuelsycamore
+- &#8203;<!-- 25 -->[docs] Improve repo README with light/dark logos, relative links and more (#33356) @samuelsycamore
+- &#8203;<!-- 24 -->[docs] Update links to MUI X Overview and Introduction pages (#33201) @samuelsycamore
+- &#8203;<!-- 23 -->[docs] Update to React 18 (#33196) @mnajdova
+- &#8203;<!-- 22 -->[docs] Simplify "Upload button" demo (#33326) @baharalidurrani
+- &#8203;<!-- 21 -->[docs] Add "refine" demo to showcase (#33240) @omeraplak
+- &#8203;<!-- 20 -->[docs] Add webpack alias for legacy utils package (#33376) @jgbae
+- &#8203;<!-- 17 —>[docs] Improve external link icons synonyms (#33257) @davidgarciab
+- &#8203;<!-- 19 -->[examples] Update MUI Base with Tailwind CSS to use the latest versions of the dependencies (#33401) @mnajdova
+- &#8203;<!-- 35 —>[examples] Add MUI base example (#33154) @siriwatknp
+
+### Core
+
+- &#8203;<!-- 33 -->[core] Fix @mui/monorepo regression for the import of the docs infra (#33390) @Janpot
+- &#8203;<!-- 32 -->[core] Remove old babel resolve rule (#33432) @oliviertassinari
+- &#8203;<!-- 02 -->[website] Shorten the plan descriptions on the pricing page (#32984) @joserodolfofreitas
+- &#8203;<!-- 01 -->[website] Link EULA in the license quantity section (#33292) @oliviertassinari
+
+All contributors of this release in alphabetical order: @baharalidurrani, @cherniavskii, @danilo-leal, @davidgarciab, @flaviendelangle, @hbjORbj, @ivan-ngchakming, @Janpot, @jgbae, @joebingham-wk, @joserodolfofreitas, @michaldudak, @mnajdova, @oliviertassinari, @omeraplak, @robyyo, @samuelsycamore, @siriwatknp, @ZeeshanTamboli
+
 ## 5.8.7
 
 <!-- generated comparing v5.8.6..master -->
