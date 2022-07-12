@@ -12,17 +12,15 @@ test('able to navigate between products', async ({ page }) => {
   await expect(page.locator('#mui-product-menu')).toBeVisible();
 
   await expect(
-    page.locator('#mui-product-menu a[href="/material-ui/getting-started/installation/"]'),
+    page.locator('#mui-product-menu a[href^="/material-ui/getting-started/"]'),
   ).toBeVisible();
 
-  await expect(page.locator('#mui-product-menu a[href="/system/basics/"]')).toHaveAttribute(
+  await expect(page.locator('#mui-product-menu a[href^="/system/"]')).toHaveAttribute(
     'href',
     '/system/basics/',
   );
 
-  await expect(page.locator('#mui-product-menu a[href="/x/introduction/"]')).toBeVisible();
+  await expect(page.locator('#mui-product-menu a[href^="/x/introduction/"]')).toBeVisible();
 
-  await expect(
-    page.locator('#mui-product-menu a[href="/base/getting-started/installation/"]'),
-  ).toBeVisible();
+  await expect(page.locator('#mui-product-menu a[href^="/base/getting-started/"]')).toBeVisible();
 });
