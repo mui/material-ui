@@ -709,9 +709,11 @@ const theme = createTheme({
 });
 
 root.render(
-  <ThemeProvider theme={theme}>
-    <App />
-  </ThemeProvider>;
+  <StyledEngineProvider injectFirst>
+    <ThemeProvider theme={theme}>
+      <App />
+    </ThemeProvider>
+  </StyledEngineProvider>;
 );
 ```
 
