@@ -4,7 +4,7 @@ title: Componente React para Botões de opção
 components: Radio, RadioGroup, FormControl, FormLabel, FormControlLabel
 githubLabel: 'component: radio'
 materialDesign: 'https://material.io/components/selection-controls#radio-buttons'
-waiAria: 'https://www.w3.org/TR/wai-aria-practices/#radiobutton'
+waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/radiobutton/
 ---
 
 # Botões de opção
@@ -97,7 +97,7 @@ import { useRadioGroup } from '@material-ui/core/RadioGroup';
 
 ## Acessibilidade
 
-(WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#radiobutton)
+(WAI-ARIA: https://www.w3.org/WAI/ARIA/apg/patterns/radiobutton/)
 
 - Todos os controles de formulário devem ter rótulos, e isso inclui os botões de opção, caixas de seleção e interruptores. In most cases, this is done by using the `<label>` element ([FormControlLabel](/material-ui/api/form-control-label/)).
 - Quando um rótulo não pode ser usado, é necessário adicionar um atributo diretamente no componente de entrada. Nesse caso você pode aplicar um atributo adicional (por exemplo, `aria-label`,`aria-labelledby`, `title`) através da propriedade `inputProps`.
