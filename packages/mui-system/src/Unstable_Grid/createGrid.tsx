@@ -30,7 +30,6 @@ const defaultTheme = createTheme();
 
 // widening Theme to any so that the consumer can own the theme structure.
 const defaultCreateStyledComponent = (systemStyled as CreateMUIStyled<any>)('div', {
-  // TODO: replace with MuiGrid in v6
   name: 'MuiGrid',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
@@ -39,7 +38,6 @@ const defaultCreateStyledComponent = (systemStyled as CreateMUIStyled<any>)('div
 function useThemePropsDefault<T>(props: T) {
   return useThemePropsSystem({
     props,
-    // TODO: replace with MuiGrid in v6
     name: 'MuiGrid',
     defaultTheme,
   });
@@ -56,7 +54,6 @@ export default function createGrid(
     // This will allow adding custom styled fn (for example for custom sx style function)
     createStyledComponent = defaultCreateStyledComponent,
     useThemeProps = useThemePropsDefault,
-    // TODO: replace with MuiGrid in v6
     componentName = 'MuiGrid',
   } = options;
 

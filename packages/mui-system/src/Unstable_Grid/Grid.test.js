@@ -17,7 +17,6 @@ describe('System <Grid />', () => {
     render,
     ThemeProvider,
     refInstanceof: window.HTMLElement,
-    // TODO: replace with MuiGrid in v6
     muiName: 'MuiGrid',
     testVariantProps: { container: true, spacing: 5 },
     skip: ['componentsProp', 'classesRoot'],
