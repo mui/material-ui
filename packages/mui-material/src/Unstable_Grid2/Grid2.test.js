@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { describeConformance, createRenderer } from 'test/utils';
-import Grid2, { grid2Classes as classes } from '@mui/material/Grid2';
+import Grid2, { grid2Classes as classes } from '@mui/material/Unstable_Grid2';
 
 // The main tests are in mui-system Unstable_Grid folder
 describe('<Grid2 />', () => {

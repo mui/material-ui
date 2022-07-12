@@ -4,16 +4,17 @@ import { OverridableComponent } from '@mui/types';
 import { styled, useThemeProps } from '../styles';
 import { Grid2TypeMap } from './Grid2Props';
 
-const Grid = createGrid({
+const Grid2 = createGrid({
   createStyledComponent: styled('div', {
     name: 'MuiGrid2',
     overridesResolver: (props, styles) => styles.root,
   }),
   componentName: 'MuiGrid2',
+  // eslint-disable-next-line material-ui/mui-name-matches-component-name
   useThemeProps: (inProps) => useThemeProps({ props: inProps, name: 'MuiGrid2' }),
 }) as OverridableComponent<Grid2TypeMap>;
 
-Grid.propTypes /* remove-proptypes */ = {
+Grid2.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
@@ -32,4 +33,4 @@ Grid.propTypes /* remove-proptypes */ = {
   ]),
 } as any;
 
-export default Grid;
+export default Grid2;

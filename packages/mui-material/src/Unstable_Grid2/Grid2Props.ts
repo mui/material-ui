@@ -4,7 +4,7 @@ import { SxProps, SystemProps } from '@mui/system';
 import { GridBaseProps } from '@mui/system/Unstable_Grid';
 import { Theme } from '../styles';
 
-export type Grid2ClassKey = 'root';
+export type Grid2Slot = 'root';
 
 export interface Grid2TypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P & GridBaseProps & { sx?: SxProps<Theme> } & SystemProps<Theme>;
