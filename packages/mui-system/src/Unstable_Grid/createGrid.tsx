@@ -59,10 +59,6 @@ export default function createGrid(
 
   const NestedContext = React.createContext(false);
 
-  const getGridUtilityClass = (slot: string) => {
-    return generateUtilityClass(componentName, slot);
-  };
-
   const useUtilityClasses = (ownerState: GridOwnerState, theme: typeof defaultTheme) => {
     const { container, direction, spacing, wrap, gridSize } = ownerState;
 
@@ -77,7 +73,7 @@ export default function createGrid(
       ],
     };
 
-    return composeClasses(slots, getGridUtilityClass, {});
+    return composeClasses(slots, (slot) => generateUtilityClass(componentName, slot), {});
   };
 
   const GridRoot = createStyledComponent<{

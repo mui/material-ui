@@ -63,7 +63,7 @@
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
   "forwardsRefTo": "HTMLElement",
-  "filename": "/packages/mui-system/src/Grid/Grid.tsx",
+  "filename": "/packages/mui-system/src/Unstable_Grid/Grid.tsx",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/material-ui/react-grid/\">Grid (Material UI)</a></li></ul>",
   "cssComponent": true

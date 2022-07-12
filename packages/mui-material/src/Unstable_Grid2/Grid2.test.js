@@ -1,22 +1,21 @@
 import * as React from 'react';
 import { describeConformance, createRenderer } from 'test/utils';
-import { ThemeProvider } from '@mui/joy/styles';
-import Grid, { gridClasses as classes } from '@mui/joy/Grid';
+import Grid2, { grid2Classes as classes } from '@mui/material/Unstable_Grid2';
 
-describe('Joy UI <Grid />', () => {
+// The main tests are in mui-system Unstable_Grid folder
+describe('<Grid2 />', () => {
   const { render } = createRenderer();
 
   const defaultProps = {
     children: <div />,
   };
 
-  describeConformance(<Grid {...defaultProps} />, () => ({
+  describeConformance(<Grid2 {...defaultProps} />, () => ({
     classes,
     inheritComponent: 'div',
     render,
-    ThemeProvider,
     refInstanceof: window.HTMLElement,
-    muiName: 'JoyGrid',
+    muiName: 'MuiGrid2',
     testVariantProps: { container: true, spacing: 5 },
     skip: ['componentsProp', 'classesRoot'],
   }));
