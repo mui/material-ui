@@ -4,7 +4,7 @@ title: React Radio buttons（单选按钮）组件
 components: Radio, RadioGroup, FormControl, FormLabel, FormControlLabel
 githubLabel: 'component: radio'
 materialDesign: 'https://material.io/components/selection-controls#radio-buttons'
-waiAria: 'https://www.w3.org/TR/wai-aria-practices/#radiobutton'
+waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/radiobutton/
 ---
 
 # Radio 单选框组件
@@ -97,7 +97,7 @@ import { useRadioGroup } from '@mui/core/RadioGroup';
 
 ## 无障碍设计
 
-(WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#radiobutton)
+(WAI-ARIA: https://www.w3.org/WAI/ARIA/apg/patterns/radiobutton/)
 
 - 所有表单控件都应该带有标签，而这包括了单选按钮，复选框和开关。 In most cases, this is done by using the `<label>` element ([FormControlLabel](/material-ui/api/form-control-label/)).
 - 如果无法使用标签，您则必须在输入组件中直接添加属性。 在这种情况下，您可以经由 `inputProps` 属性，来附着一些额外的属性（例如 `arial-label`，`aria-labelledby`，`title`）。
