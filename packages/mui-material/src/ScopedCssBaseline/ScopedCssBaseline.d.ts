@@ -1,6 +1,6 @@
 import { SxProps } from '@mui/system';
 import * as React from 'react';
-import { Theme } from '..';
+import { Theme } from '../styles';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { ScopedCssBaselineClasses } from './scopedCssBaselineClasses';
 
