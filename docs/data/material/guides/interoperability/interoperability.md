@@ -692,7 +692,9 @@ export default function PlainCssPriority() {
 5. Change the target container for `Portal`-related elements so that they are injected under the main app wrapper that was used in point 3. for setting up the `important` option in the Tailwind's config.
 
 ```jsx
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const rootElement = document.getElementById("root");
+const root = createRoot(rootElement);
+
 const theme = createTheme({
   components: {
     MuiPopover: {
