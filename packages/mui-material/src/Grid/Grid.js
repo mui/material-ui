@@ -132,11 +132,15 @@ export function generateDirection({ theme, ownerState }) {
  * @returns [xs, sm]
  */
 function extractZeroValueBreakpointKeys({ breakpoints, values }) {
-  const nonZeroKeys = [];
+  let nonZeroKey = '';
 
   Object.keys(values).forEach((key) => {
+    if (nonZeroKey !== '') {
+      return;
+    }
+
     if (values[key] !== 0) {
-      nonZeroKeys.push(key);
+      nonZeroKey = key;
     }
   });
 
@@ -144,7 +148,7 @@ function extractZeroValueBreakpointKeys({ breakpoints, values }) {
     return breakpoints[a] - breakpoints[b];
   });
 
-  return sortedBreakpointKeysByValue.slice(0, sortedBreakpointKeysByValue.indexOf(nonZeroKeys[0]));
+  return sortedBreakpointKeysByValue.slice(0, sortedBreakpointKeysByValue.indexOf(nonZeroKey));
 }
 
 export function generateRowGap({ theme, ownerState }) {
