@@ -3,7 +3,6 @@ product: base
 title: Unstyled React Input component and hook
 components: InputUnstyled
 githubLabel: 'component: input'
-packageName: '@mui/base'
 ---
 
 # Unstyled input

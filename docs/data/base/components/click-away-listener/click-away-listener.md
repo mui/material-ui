@@ -3,7 +3,6 @@ product: base
 title: React ClickAwayListener component
 components: ClickAwayListener
 githubLabel: 'component: ClickAwayListener'
-packageName: '@mui/base'
 ---
 
 # Click-away listener

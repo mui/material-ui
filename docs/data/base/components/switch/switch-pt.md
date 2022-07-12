@@ -4,7 +4,6 @@ title: React Switch component
 components: SwitchUnstyled
 githubLabel: 'component: switch'
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#switch'
-packageName: '@mui/base'
 ---
 
 # Switch

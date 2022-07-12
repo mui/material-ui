@@ -1,9 +1,8 @@
 ---
-product: material-ui
+product: base
 title: React Detect click outside（它处点击监听器）组件
 components: ClickAwayListener
 githubLabel: 'component: ClickAwayListener'
-packageName: '@mui/base'
 ---
 
 # Click away listener 它处点击监听器

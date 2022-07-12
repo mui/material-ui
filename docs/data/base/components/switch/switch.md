@@ -4,7 +4,6 @@ title: Unstyled React Switch component and hook
 components: SwitchUnstyled
 githubLabel: 'component: switch'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/switch/
-packageName: '@mui/base'
 ---
 
 # Unstyled switch

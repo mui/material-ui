@@ -4,7 +4,6 @@ title: Unstyled React Modal component
 components: ModalUnstyled
 githubLabel: 'component: modal'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/dialogmodal/
-packageName: '@mui/base'
 ---
 
 # Unstyled modal
