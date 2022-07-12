@@ -4,7 +4,6 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import webfontloader from 'webfontloader';
 import TestViewer from './TestViewer';
-import FEATURE_TOGGLE from '../../docs/src/featureToggle';
 
 // Get all the fixtures specifically written for preventing visual regressions.
 const importRegressionFixtures = require.context('./fixtures', true, /\.(js|ts|tsx)$/, 'lazy');
@@ -28,7 +27,7 @@ importRegressionFixtures.keys().forEach((path) => {
 }, []);
 
 const blacklist = [
-  'docs-joy-templates/TemplateCollection.png',
+  'docs-joy-getting-started-templates/TemplateCollection.png',
   'docs-joy-core-features-automatic-adjustment/ListThemes.png',
   'docs-components-alert/TransitionAlerts.png', // Needs interaction
   'docs-components-app-bar/BackToTop.png', // Needs interaction
@@ -197,10 +196,7 @@ function excludeDemoFixture(suite, name) {
 }
 
 // Also use some of the demos to avoid code duplication.
-let importDemos = require.context('docs/src/pages', true, /js$/, 'lazy');
-if (FEATURE_TOGGLE.enable_product_scope) {
-  importDemos = require.context('docs/data', true, /(?<!pagesApi)\.js$/, 'lazy');
-}
+const importDemos = require.context('docs/data', true, /(?<!pagesApi)\.js$/, 'lazy');
 const demoFixtures = [];
 importDemos.keys().forEach((path) => {
   const [name, ...suiteArray] = path.replace('./', '').replace('.js', '').split('/').reverse();

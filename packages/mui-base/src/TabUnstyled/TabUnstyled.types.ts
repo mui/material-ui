@@ -1,6 +1,7 @@
 import { OverrideProps, Simplify } from '@mui/types';
 import React from 'react';
 import { ButtonUnstyledOwnProps } from '../ButtonUnstyled';
+import { SlotComponentProps } from '../utils';
 import { UseTabRootSlotProps } from './useTab.types';
 
 interface TabUnstyledComponentsPropsOverrides {}
@@ -28,7 +29,7 @@ export interface TabUnstyledOwnProps
    * @default {}
    */
   componentsProps?: {
-    root?: React.ComponentPropsWithRef<'div'> & TabUnstyledComponentsPropsOverrides;
+    root?: SlotComponentProps<'div', TabUnstyledComponentsPropsOverrides, TabUnstyledOwnerState>;
   };
 }
 

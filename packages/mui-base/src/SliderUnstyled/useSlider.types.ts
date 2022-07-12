@@ -51,7 +51,7 @@ type UseSliderHiddenInputOwnProps = {
   onBlur: React.FocusEventHandler;
   onChange: React.ChangeEventHandler;
   onFocus: React.FocusEventHandler;
-  step?: number | null;
+  step?: number;
   style: React.CSSProperties;
   tabIndex?: number;
   type?: React.InputHTMLAttributes<HTMLInputElement>['type'];

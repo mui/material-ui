@@ -5,15 +5,9 @@ import Chip from '@mui/material/Chip';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 import IconImage from 'docs/src/components/icon/IconImage';
-import FEATURE_TOGGLE from 'docs/src/featureToggle';
 import ROUTES from 'docs/src/route';
 import Link from 'docs/src/modules/components/Link';
 import useRouterExtra from 'docs/src/modules/utils/useRouterExtra';
-
-const shouldShowJoy =
-  process.env.NODE_ENV === 'development' ||
-  process.env.PULL_REQUEST ||
-  FEATURE_TOGGLE.enable_joy_scope;
 
 function ProductSubMenu({
   icon,
@@ -62,8 +56,31 @@ function ProductSubMenu({
   );
 }
 
+const products = [
+  {
+    name: 'Material UI',
+    href: ROUTES.materialDocs,
+    slug: 'material-ui',
+  },
+  {
+    name: 'Joy UI',
+    href: ROUTES.joyDocs,
+    slug: 'joy-ui',
+  },
+  {
+    name: 'MUI Base',
+    href: ROUTES.baseDocs,
+    slug: 'base',
+  },
+  {
+    name: 'MUI System',
+    href: ROUTES.systemDocs,
+    slug: 'system',
+  },
+];
+
 export default function MuiProductSelector() {
-  const { product } = useRouterExtra();
+  const routerExtra = useRouterExtra();
 
   return (
     <React.Fragment>
@@ -108,44 +125,18 @@ export default function MuiProductSelector() {
               },
             }}
           >
-            <Chip
-              color={product === 'material-ui' ? 'default' : undefined}
-              variant={product === 'material-ui' ? 'filled' : 'outlined'}
-              component={Link}
-              href={ROUTES.materialDocs}
-              label={<React.Fragment>Material UI </React.Fragment>}
-              clickable
-              size="small"
-            />
-            {shouldShowJoy && (
+            {products.map((product) => (
               <Chip
-                color={product === 'joy-ui' ? 'default' : undefined}
-                variant={product === 'joy-ui' ? 'filled' : 'outlined'}
+                key={product.name}
+                color={routerExtra.product === product.slug ? 'default' : undefined}
+                variant={routerExtra.product === product.slug ? 'filled' : 'outlined'}
                 component={Link}
-                href={ROUTES.joyDocs}
-                label={<React.Fragment>Joy UI </React.Fragment>}
+                href={product.href}
+                label={product.name}
                 clickable
                 size="small"
               />
-            )}
-            <Chip
-              color={product === 'base' ? 'default' : undefined}
-              variant={product === 'base' ? 'filled' : 'outlined'}
-              component={Link}
-              href={ROUTES.baseDocs}
-              label={<React.Fragment>MUI Base </React.Fragment>}
-              clickable
-              size="small"
-            />
-            <Chip
-              color={product === 'system' ? 'default' : undefined}
-              variant={product === 'system' ? 'filled' : 'outlined'}
-              component={Link}
-              href={ROUTES.systemDocs}
-              label={<React.Fragment>MUI System </React.Fragment>}
-              clickable
-              size="small"
-            />
+            ))}
           </Stack>
         </Box>
       </Box>

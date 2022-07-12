@@ -79,6 +79,7 @@ const palette = {
 };
 
 const bootstrapTheme = extendTheme({
+  cssVarPrefix: 'bs',
   colorSchemes: {
     light: { palette },
     dark: { palette },
@@ -116,7 +117,6 @@ export default function BootstrapVariantTokens() {
 
   return (
     <CssVarsProvider
-      prefix="bs"
       theme={bootstrapTheme}
       colorSchemeNode={node || null}
       colorSchemeSelector="#bootstrap-buttons-demo"

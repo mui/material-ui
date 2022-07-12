@@ -54,7 +54,7 @@ The MUI Toolpad application offers a wide variety of engineering challenges. Inc
 Depending on the day, you'll:
 
 - **Help guide architectural decisions**. You'll join us in defining and refining the initial product and also help bring the conversation public as the MVP grows. You'll also interface with other teams at MUI as you'll be building on top of their work.
-- **Contribute to implementing new features**. MUI is a complex codebase. It's built on top of cutting edge web technologies to build the low-code tool for the future.
+- **Contribute to implementing new features**. MUI is a complex codebase. It's built on top of cutting-edge web technologies to build the low-code tool for the future.
 - **Reduce friction**. A large amount of the work on MUI Toolpad is reducing friction and making it easier to use. As our MVP grows, our focus will shift from "making it work" towards "making it easy to work with".
 - **Collaborate with the community**. MUI Toolpad will be open-sourced. As the community grows you'll act as a steward to steer it towards success. This includes reviewing issues, pull requests and questions, and guiding aspiring contributors to make meaningful contributions.
 - **Experiment and play**. Great, unexpected features and heisenbug fixes have come from a number of sources — relentlessly methodical processes of elimination, free-flowing team collaboration, inspiration by adjacent libraries and projects, and difficult-to-explain individual strokes of brilliance. Whatever your preferred style is for creating new things that others might not have thought of, you'll find a welcome home on the team.
@@ -64,7 +64,7 @@ Depending on the day, you'll:
 
 ## The best parts of this job
 
-- **You'll be at the cutting edge of application development** — working on one of the fastest-growing UI libraries on the market.
+- **You'll be at the cutting-edge of application development** — working on one of the fastest-growing UI libraries on the market.
 - **You'll be part of an active, open, friendly community** of developers that are excited about building awesome applications.
 - **Your role will be key to making MUI Toolpad the go-to low code tool** for internal application building.
 
@@ -102,7 +102,7 @@ You can find the other perks & benefits on the [careers](/careers/#perks-amp-ben
 
 ## How to apply?
 
-[Apply now for this position 📮](https://airtable.com/shrdqo1Z6srZXGcvh?prefill_Applying+for=Full-stack%20Engineer%20-%20Toolpad&prefill_source=mui.com)
+[Apply now for this position 📮](https://jobs.ashbyhq.com/MUI/4f76b45b-a18e-4bdb-8a34-8bb5a3c9c2ef/application?utm_source=ZNRrPGBkqO)
 
 ## What happens next?
 

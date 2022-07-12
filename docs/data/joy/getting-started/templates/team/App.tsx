@@ -69,75 +69,77 @@ const ColorSchemeToggle = () => {
   );
 };
 
-const TeamNav = () => (
-  <List size="sm" sx={{ '--List-item-radius': '8px' }}>
-    <ListItem nested sx={{ p: 0 }}>
-      <Box
-        sx={{
-          mb: 1,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-        }}
-      >
-        <Typography
-          id="nav-list-browse"
-          textColor="neutral.500"
-          fontWeight={700}
+function TeamNav() {
+  return (
+    <List size="sm" sx={{ '--List-item-radius': '8px' }}>
+      <ListItem nested sx={{ p: 0 }}>
+        <Box
           sx={{
-            fontSize: '10px',
-            textTransform: 'uppercase',
-            letterSpacing: '.1rem',
+            mb: 1,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
           }}
         >
-          Browse
-        </Typography>
-        <IconButton
-          size="sm"
-          variant="plain"
-          color="primary"
-          sx={{ '--IconButton-size': '24px' }}
+          <Typography
+            id="nav-list-browse"
+            textColor="neutral.500"
+            fontWeight={700}
+            sx={{
+              fontSize: '10px',
+              textTransform: 'uppercase',
+              letterSpacing: '.1rem',
+            }}
+          >
+            Browse
+          </Typography>
+          <IconButton
+            size="sm"
+            variant="plain"
+            color="primary"
+            sx={{ '--IconButton-size': '24px' }}
+          >
+            <KeyboardArrowDownRoundedIcon fontSize="small" color="primary" />
+          </IconButton>
+        </Box>
+        <List
+          aria-labelledby="nav-list-browse"
+          sx={{
+            '& .JoyListItemButton-root': { p: '8px' },
+          }}
         >
-          <KeyboardArrowDownRoundedIcon fontSize="small" color="primary" />
-        </IconButton>
-      </Box>
-      <List
-        aria-labelledby="nav-list-browse"
-        sx={{
-          '& .JoyListItemButton-root': { p: '8px' },
-        }}
-      >
-        <ListItem>
-          <ListItemButton variant="soft" color="primary">
-            <ListItemDecorator sx={{ color: 'inherit' }}>
-              <PeopleRoundedIcon fontSize="small" />
-            </ListItemDecorator>
-            <ListItemContent>People</ListItemContent>
-          </ListItemButton>
-        </ListItem>
-        <ListItem>
-          <ListItemButton>
-            <ListItemDecorator sx={{ color: 'neutral.500' }}>
-              <AssignmentIndRoundedIcon fontSize="small" />
-            </ListItemDecorator>
-            <ListItemContent>Managing accounts</ListItemContent>
-          </ListItemButton>
-        </ListItem>
-        <ListItem>
-          <ListItemButton>
-            <ListItemDecorator sx={{ color: 'neutral.500' }}>
-              <ArticleRoundedIcon fontSize="small" />
-            </ListItemDecorator>
-            <ListItemContent>Policies</ListItemContent>
-            <Chip variant="soft" size="sm" sx={{ borderRadius: 'sm' }}>
-              Beta
-            </Chip>
-          </ListItemButton>
-        </ListItem>
-      </List>
-    </ListItem>
-  </List>
-);
+          <ListItem>
+            <ListItemButton variant="soft" color="primary">
+              <ListItemDecorator sx={{ color: 'inherit' }}>
+                <PeopleRoundedIcon fontSize="small" />
+              </ListItemDecorator>
+              <ListItemContent>People</ListItemContent>
+            </ListItemButton>
+          </ListItem>
+          <ListItem>
+            <ListItemButton>
+              <ListItemDecorator sx={{ color: 'neutral.500' }}>
+                <AssignmentIndRoundedIcon fontSize="small" />
+              </ListItemDecorator>
+              <ListItemContent>Managing accounts</ListItemContent>
+            </ListItemButton>
+          </ListItem>
+          <ListItem>
+            <ListItemButton>
+              <ListItemDecorator sx={{ color: 'neutral.500' }}>
+                <ArticleRoundedIcon fontSize="small" />
+              </ListItemDecorator>
+              <ListItemContent>Policies</ListItemContent>
+              <Chip variant="soft" size="sm" sx={{ borderRadius: 'sm' }}>
+                Beta
+              </Chip>
+            </ListItemButton>
+          </ListItem>
+        </List>
+      </ListItem>
+    </List>
+  );
+}
 
 export default function TeamExample() {
   const [drawerOpen, setDrawerOpen] = React.useState(false);
@@ -188,11 +190,13 @@ export default function TeamExample() {
             >
               <GroupRoundedIcon />
             </IconButton>
-            <Typography fontWeight={700}>Team</Typography>
+            <Typography component="h1" fontWeight="xl">
+              Team
+            </Typography>
           </Box>
           <TextField
             size="sm"
-            placeholder="Search anything..."
+            placeholder="Search anything…"
             startDecorator={<SearchRoundedIcon color="primary" />}
             endDecorator={
               <IconButton variant="outlined" size="sm" color="neutral">
@@ -306,7 +310,7 @@ export default function TeamExample() {
               </IconButton>
             </Box>
             <Box sx={{ mt: 2 }}>
-              <TextField placeholder="Position, skills, etc..." />
+              <TextField placeholder="Position, skills, etc…" />
               <Box sx={{ mt: 2, display: 'flex', gap: 1 }}>
                 <Chip
                   variant="soft"
@@ -429,7 +433,8 @@ export default function TeamExample() {
               >
                 <Box sx={{ display: 'flex', gap: 2 }}>
                   <Avatar
-                    src="https://i.pravatar.cc/150?img=6"
+                    src="https://i.pravatar.cc/40?img=6"
+                    srcSet="https://i.pravatar.cc/80?img=6 2x"
                     sx={{ borderRadius: 'sm' }}
                   />
                   <Box>

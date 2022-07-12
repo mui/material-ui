@@ -88,7 +88,12 @@ function AutocompleteComponentsProps() {
     <Autocomplete
       options={['one', 'two', 'three']}
       renderInput={(params) => <TextField {...params} />}
-      componentsProps={{ paper: { elevation: 2 } }}
+      componentsProps={{
+        clearIndicator: { size: 'large' },
+        paper: { elevation: 2 },
+        popper: { placement: 'bottom-end' },
+        popupIndicator: { size: 'large' },
+      }}
     />
   );
 }

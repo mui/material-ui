@@ -4,10 +4,6 @@ import { TestFixture } from './playwright.config';
 
 const test = base.extend<TestFixture>({});
 
-test.beforeEach(async ({}) => {
-  test.skip(!FEATURE_TOGGLE.enable_redirects, "Redirects haven't started yet");
-});
-
 test(`[data grid] overview should redirect correctly`, async ({ page }) => {
   await page.goto(`/components/data-grid/`);
 

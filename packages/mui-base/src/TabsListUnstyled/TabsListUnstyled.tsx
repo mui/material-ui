@@ -1,9 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import { OverridableComponent } from '@mui/types';
 import composeClasses from '../composeClasses';
-import { appendOwnerState, WithOptionalOwnerState } from '../utils';
+import { useSlotProps, WithOptionalOwnerState } from '../utils';
 import { getTabsListUnstyledUtilityClass } from './tabsListUnstyledClasses';
 import {
   TabsListUnstyledProps,
@@ -33,7 +32,7 @@ const useUtilityClasses = (ownerState: { orientation: 'horizontal' | 'vertical' 
  * - [TabsListUnstyled API](https://mui.com/base/api/tabs-list-unstyled/)
  */
 const TabsListUnstyled = React.forwardRef<unknown, TabsListUnstyledProps>((props, ref) => {
-  const { className, children, component, components = {}, componentsProps = {}, ...other } = props;
+  const { children, component, components = {}, componentsProps = {}, ...other } = props;
 
   const { isRtl, orientation, getRootProps, processChildren } = useTabsList({ ...props, ref });
 
@@ -46,16 +45,14 @@ const TabsListUnstyled = React.forwardRef<unknown, TabsListUnstyledProps>((props
   const classes = useUtilityClasses(ownerState);
 
   const TabsListRoot: React.ElementType = component ?? components.Root ?? 'div';
-  const tabsListRootProps: WithOptionalOwnerState<TabsListUnstyledRootSlotProps> = appendOwnerState(
-    TabsListRoot,
-    {
-      ...getRootProps(),
-      ...other,
-      ...componentsProps.root,
-      className: clsx(className, componentsProps.root?.className, classes.root),
-    },
+  const tabsListRootProps: WithOptionalOwnerState<TabsListUnstyledRootSlotProps> = useSlotProps({
+    elementType: TabsListRoot,
+    getSlotProps: getRootProps,
+    externalSlotProps: componentsProps.root,
+    externalForwardedProps: other,
     ownerState,
-  );
+    className: classes.root,
+  });
 
   const processedChildren = processChildren();
 
@@ -71,10 +68,6 @@ TabsListUnstyled.propTypes /* remove-proptypes */ = {
    * The content of the component.
    */
   children: PropTypes.node,
-  /**
-   * @ignore
-   */
-  className: PropTypes.string,
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
@@ -93,7 +86,7 @@ TabsListUnstyled.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   componentsProps: PropTypes.shape({
-    root: PropTypes.object,
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
 } as any;
 

@@ -712,7 +712,7 @@ describe('<Tabs />', () => {
       tablistContainer.scrollLeft = 0;
       fireEvent.click(findScrollButton(container, 'right'));
       clock.tick(1000);
-      expect(tablistContainer.scrollLeft).equal(220);
+      expect(tablistContainer.scrollLeft).equal(200);
     });
 
     it('should vertically scroll by width of partially visible item', () => {

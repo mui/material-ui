@@ -1,5 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import * as React from 'react';
-import { YearPicker as XYearPicker, YearPickerProps } from '@mui/x-date-pickers/YearPicker';
 
 let warnedOnce = false;
 
@@ -8,7 +8,6 @@ const warn = () => {
     console.warn(
       [
         'MUI: The YearPicker component was moved from `@mui/lab` to `@mui/x-date-pickers`.',
-        'The component will no longer be exported from `@mui/lab` in the first release of July 2022.',
         '',
         "You should use `import { YearPicker } from '@mui/x-date-pickers'`",
         "or `import { YearPicker } from '@mui/x-date-pickers/YearPicker'`",
@@ -28,12 +27,21 @@ type YearPickerComponent = (<TDate>(
 /**
  * @ignore - do not document.
  */
-const YearPicker = React.forwardRef(function DeprecatedYearPicker<TDate>(
-  props: YearPickerProps<TDate>,
-) {
+const YearPicker = function DeprecatedYearPicker() {
   warn();
 
-  return <XYearPicker {...props} />;
-}) as YearPickerComponent;
+  return null;
+} as any as YearPickerComponent;
 
 export default YearPicker;
+
+export const yearPickerClasses = {};
+
+export const getYearPickerUtilityClass = (slot: string): string => {
+  warn();
+  return '';
+};
+
+export type YearPickerClasses = any;
+export type YearPickerClassKey = any;
+export type YearPickerProps<TDate> = Record<any, any>;

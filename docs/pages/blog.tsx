@@ -250,10 +250,7 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
       />
       <AppHeader />
       <main>
-        <Section
-          bg="gradient"
-          sx={{ backgroundSize: 'auto 300px ', backgroundRepeat: 'no-repeat' }}
-        >
+        <Section bg="gradient" sx={{ backgroundSize: '100% 300px', backgroundRepeat: 'no-repeat' }}>
           <Typography variant="body2" color="primary.600" fontWeight="bold" textAlign="center">
             Blog
           </Typography>

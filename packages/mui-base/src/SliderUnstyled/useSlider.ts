@@ -251,7 +251,7 @@ export default function useSlider(parameters: UseSliderParameters) {
     onFocus: handleFocusVisible,
     ref: focusVisibleRef,
   } = useIsFocusVisible();
-  const [focusVisible, setFocusVisible] = React.useState(-1);
+  const [focusedThumbIndex, setFocusedThumbIndex] = React.useState(-1);
 
   const sliderRef = React.useRef<HTMLSpanElement>();
   const handleFocusRef = useForkRef(focusVisibleRef, sliderRef);
@@ -262,7 +262,7 @@ export default function useSlider(parameters: UseSliderParameters) {
       const index = Number(event.currentTarget.getAttribute('data-index'));
       handleFocusVisible(event);
       if (isFocusVisibleRef.current === true) {
-        setFocusVisible(index);
+        setFocusedThumbIndex(index);
       }
       setOpen(index);
       otherHandlers?.onFocus?.(event);
@@ -271,7 +271,7 @@ export default function useSlider(parameters: UseSliderParameters) {
     (otherHandlers: Record<string, React.EventHandler<any>>) => (event: React.FocusEvent) => {
       handleBlurVisible(event);
       if (isFocusVisibleRef.current === false) {
-        setFocusVisible(-1);
+        setFocusedThumbIndex(-1);
       }
       setOpen(-1);
       otherHandlers?.onBlur?.(event);
@@ -290,8 +290,8 @@ export default function useSlider(parameters: UseSliderParameters) {
   if (disabled && active !== -1) {
     setActive(-1);
   }
-  if (disabled && focusVisible !== -1) {
-    setFocusVisible(-1);
+  if (disabled && focusedThumbIndex !== -1) {
+    setFocusedThumbIndex(-1);
   }
 
   const createHandleHiddenInputChange =
@@ -344,7 +344,7 @@ export default function useSlider(parameters: UseSliderParameters) {
       }
 
       setValueState(newValue);
-      setFocusVisible(index);
+      setFocusedThumbIndex(index);
 
       if (handleChange) {
         handleChange(event, newValue, index);
@@ -633,12 +633,9 @@ export default function useSlider(parameters: UseSliderParameters) {
       onMouseLeave: createHandleMouseLeave(otherHandlers || {}),
     };
 
-    const mergedEventHandlers = {
+    return {
       ...otherHandlers,
       ...ownEventHandlers,
-    };
-    return {
-      ...mergedEventHandlers,
     };
   };
 
@@ -666,7 +663,7 @@ export default function useSlider(parameters: UseSliderParameters) {
       type: 'range',
       min: parameters.min,
       max: parameters.max,
-      step: parameters.step,
+      step: parameters.step ?? undefined,
       disabled,
       ...mergedEventHandlers,
       style: {
@@ -681,14 +678,14 @@ export default function useSlider(parameters: UseSliderParameters) {
 
   return {
     active,
-    axis,
+    axis: axis as keyof typeof axisProps,
     axisProps,
     dragging,
-    focusVisible,
+    focusedThumbIndex,
     getHiddenInputProps,
     getRootProps,
     getThumbProps,
-    marks,
+    marks: marks as Mark[],
     open,
     range,
     trackLeap,

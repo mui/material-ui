@@ -1,9 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import * as React from 'react';
-import PropTypes from 'prop-types';
-import {
-  CalendarPickerSkeleton as XCalendarPickerSkeleton,
-  CalendarPickerSkeletonProps,
-} from '@mui/x-date-pickers/CalendarPickerSkeleton';
 
 let warnedOnce = false;
 
@@ -12,7 +8,6 @@ const warn = () => {
     console.warn(
       [
         'MUI: The CalendarPickerSkeleton component was moved from `@mui/lab` to `@mui/x-date-pickers`.',
-        'The component will no longer be exported from `@mui/lab` in the first release of July 2022.',
         '',
         "You should use `import { CalendarPickerSkeleton } from '@mui/x-date-pickers'`",
         "or `import { CalendarPickerSkeleton } from '@mui/x-date-pickers/CalendarPickerSkeleton'`",
@@ -32,23 +27,20 @@ type CalendarPickerSkeletonComponent = ((
 /**
  * @ignore - do not document.
  */
-const CalendarPickerSkeleton = React.forwardRef(function DeprecatedCalendarPickerSkeleton(
-  props: CalendarPickerSkeletonProps,
-) {
+const CalendarPickerSkeleton = React.forwardRef(function DeprecatedCalendarPickerSkeleton() {
   warn();
 
-  return <XCalendarPickerSkeleton {...props} />;
+  return null;
 }) as CalendarPickerSkeletonComponent;
 
-CalendarPickerSkeleton.propTypes /* remove-proptypes */ = {
-  // ----------------------------- Warning --------------------------------
-  // | These PropTypes are generated from the TypeScript type definitions |
-  // |     To update them edit TypeScript types and run "yarn proptypes"  |
-  // ----------------------------------------------------------------------
-  /**
-   * @ignore
-   */
-  children: PropTypes.node,
-} as any;
-
 export default CalendarPickerSkeleton;
+
+export const calendarPickerSkeletonClasses = {};
+
+export const getCalendarPickerSkeletonUtilityClass = (slot: string): string => {
+  warn();
+  return '';
+};
+
+export type CalendarPickerSkeletonProps = Record<any, any>;
+export type CalendarPickerSkeletonClassKey = any;

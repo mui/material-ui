@@ -443,31 +443,19 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     scroll(scrollValue);
   };
 
-  const getFirstVisibleTab = (tabs) => {
-    const containerSize = tabsRef.current[clientSize];
-    const containerStartBound = Math.round(tabsRef.current[scrollStart]);
-    const containerEndBound = Math.round(containerStartBound + containerSize);
-
-    const offset = vertical ? 'offsetTop' : 'offsetLeft';
-    return tabs.find((tab) => {
-      const centerPoint = tab[offset] + tab[clientSize] / 2;
-      return centerPoint >= containerStartBound && centerPoint <= containerEndBound;
-    });
-  };
-
   const getScrollSize = () => {
     const containerSize = tabsRef.current[clientSize];
     let totalSize = 0;
     const children = Array.from(tabListRef.current.children);
-    const firstVisibleTab = getFirstVisibleTab(children);
-
-    if (firstVisibleTab && firstVisibleTab[clientSize] > containerSize) {
-      return firstVisibleTab[clientSize];
-    }
 
     for (let i = 0; i < children.length; i += 1) {
       const tab = children[i];
       if (totalSize + tab[clientSize] > containerSize) {
+        // If the first item is longer than the container size, then only scroll
+        // by the container size.
+        if (i === 0) {
+          totalSize = containerSize;
+        }
         break;
       }
       totalSize += tab[clientSize];
@@ -574,8 +562,16 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
 
   React.useEffect(() => {
     const handleResize = debounce(() => {
-      updateIndicatorState();
-      updateScrollButtonState();
+      // If the Tabs component is replaced by Suspense with a fallback, the last
+      // ResizeObserver's handler that runs because of the change in the layout is trying to
+      // access a dom node that is no longer there (as the fallback component is being shown instead).
+      // See https://github.com/mui/material-ui/issues/33276
+      // TODO: Add tests that will ensure the component is not failing when
+      // replaced by Suspense with a fallback, once React is updated to version 18
+      if (tabsRef.current) {
+        updateIndicatorState();
+        updateScrollButtonState();
+      }
     });
     const win = ownerWindow(tabsRef.current);
     win.addEventListener('resize', handleResize);
