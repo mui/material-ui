@@ -512,7 +512,7 @@ const rowHeaders: Record<string, React.ReactNode> = {
   community: (
     <ColumnHead
       {...{
-        label: 'Community Support for MUI Core',
+        label: 'Community support for MUI Core',
         tooltip:
           'The Support for MUI Core and MIT modules is provided by the community. MUI maintainers focus on solving root issues rather than offering direct support to the community at large.',
       }}
