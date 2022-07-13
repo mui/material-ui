@@ -15,7 +15,7 @@ The `Radio` component is the one to be used when you want to allow users to sele
 
 {{"demo": "RadioUsage.js", "hideToolbar": true}}
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Component
 
