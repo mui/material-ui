@@ -151,7 +151,6 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     unregisterItem,
     getItemState,
     getItemProps,
-    getListboxProps,
     open,
   };
 

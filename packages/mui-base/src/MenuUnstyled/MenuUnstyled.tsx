@@ -110,7 +110,6 @@ const MenuUnstyled = React.forwardRef(function MenuUnstyled(
     unregisterItem,
     getItemState,
     getItemProps,
-    getListboxProps,
     open,
   };
 
