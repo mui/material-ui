@@ -34,19 +34,29 @@ export default function MyApp() {
 
 The text field component comes with three sizes out of the box: `sm`, `md` (the default), and `lg`.
 
+{{"demo": "TextFieldSizes.js", "hideToolbar": true}}
+
 ### Form props
 
 Standard form attributes are supported e.g. `required`, `disabled`, `type`, etc. as well as a `helperText` which is used to give context about a field's input, such as how the input will be used.
+
+{{"demo": "TextFieldFormProps.js", "hideToolbar": true}}
 
 ### Validation
 
 To toggle the error state, use the `error` prop.
 And, to provide feedback about the error to the user, use the `helperText` prop.
 
+{{"demo": "TextFieldValidation.js", "hideToolbar": true}}
+
 ### Input decorators
 
 Use the `startDecorator` and/or `endDecorator` props to add supporting icons or elements to the text field.
 
+{{"demo": "TextFieldDecorators.js", "hideToolbar": true}}
+
 ### Full width
 
 To make the text field take up the full width of its container, use the `fullWidth` prop.
+
+{{"demo": "TextFieldFullwidth.js", "hideToolbar": true}}
