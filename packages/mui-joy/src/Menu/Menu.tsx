@@ -251,7 +251,7 @@ Menu.propTypes /* remove-proptypes */ = {
    */
   onClose: PropTypes.func,
   /**
-   * If `true`, the component is shown.
+   * Controls whether the menu is displayed.
    * @default false
    */
   open: PropTypes.bool,
