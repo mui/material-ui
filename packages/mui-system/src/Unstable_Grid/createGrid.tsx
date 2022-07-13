@@ -108,13 +108,12 @@ export default function createGrid(
       disableEqualOverflow: themeDisableEqualOverflow,
       ...rest
     } = props;
-    // `disableEqualOverflow` can be set from theme defaultProps,
-    // so the **nested** grid does not use it from theme and look at the instance props instead.
+    // Because `disableEqualOverflow` can be set from the theme's defaultProps, the **nested** grid should look at the instance props instead.
     let disableEqualOverflow = themeDisableEqualOverflow;
     if (nested && themeDisableEqualOverflow !== undefined) {
       disableEqualOverflow = inProps.disableEqualOverflow;
     }
-    // collect breakpoints related props because they can be custom from the theme.
+    // collect breakpoints related props because they can be customized from the theme.
     const gridSize = {} as GridOwnerState['gridSize'];
     const gridOffset = {} as GridOwnerState['gridOffset'];
     const other: Record<string, any> = {};
@@ -168,7 +167,9 @@ export default function createGrid(
     }
 
     if (disableEqualOverflow !== undefined && disableEqualOverflow !== (overflow ?? false)) {
-      // This means the root grid with `disableEqualOverflow` or nested grid with different `disableEqualOverflow` from the context.
+      // There are 2 possibilities that should wrap with the OverflowContext to communicate with the nested grids:
+      // 1. It is the root grid with `disableEqualOverflow`.
+      // 2. It is a nested grid with different `disableEqualOverflow` from the context.
       result = (
         <OverflowContext.Provider value={disableEqualOverflow}>{result}</OverflowContext.Provider>
       );
