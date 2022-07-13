@@ -3,7 +3,11 @@ import PropTypes from 'prop-types';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
 import { OptionState } from '../ListboxUnstyled';
 import composeClasses from '../composeClasses';
-import { OptionUnstyledProps, OptionUnstyledOwnerState } from './OptionUnstyled.types';
+import {
+  OptionUnstyledProps,
+  OptionUnstyledOwnerState,
+  OptionUnstyledType,
+} from './OptionUnstyled.types';
 import { SelectUnstyledContext } from '../SelectUnstyled/SelectUnstyledContext';
 import { getOptionUnstyledUtilityClass } from './optionUnstyledClasses';
 import { useSlotProps } from '../utils';
@@ -120,7 +124,7 @@ OptionUnstyled.propTypes /* remove-proptypes */ = {
     Root: PropTypes.elementType,
   }),
   /**
-   * The props used for each slot inside the Input.
+   * The props used for each slot inside the OptionUnstyled.
    * @default {}
    */
   componentsProps: PropTypes.shape({
@@ -153,6 +157,4 @@ OptionUnstyled.propTypes /* remove-proptypes */ = {
  *
  * - [OptionUnstyled API](https://mui.com/base/api/option-unstyled/)
  */
-export default React.memo(OptionUnstyled) as <TValue>(
-  props: OptionUnstyledProps<TValue> & React.RefAttributes<HTMLElement>,
-) => JSX.Element | null;
+export default React.memo(OptionUnstyled) as OptionUnstyledType;
