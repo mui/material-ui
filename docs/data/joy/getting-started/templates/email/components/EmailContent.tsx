@@ -117,7 +117,7 @@ export default function EmailContent() {
         <br />
         So, it seems we are getting there! Our trip is finally here. As you know, I
         love Yosemite National Park, a lot of great climbers and explorers have made
-        history there, so I&apos; very excited to bring you with me in this journey.
+        history there, so I&apos;m very excited to bring you with me in this journey.
         <br />
         <br />
         There are plenty of amazing things to see there, from internationally

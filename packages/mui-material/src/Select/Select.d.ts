@@ -144,7 +144,7 @@ export interface SelectProps<T = unknown>
    * If the value is an object it must have reference equality with the option in order to be selected.
    * If the value is not an object, the string representation must match with the string representation of the option in order to be selected.
    */
-  value?: T;
+  value?: T | '';
   /**
    * The variant to use.
    * @default 'outlined'
