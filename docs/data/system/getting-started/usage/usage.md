@@ -1,25 +1,17 @@
-# MUI System
+# Usage
 
-<p class="description">CSS utilities for rapidly laying out custom designs.</p>
+<p class="description">Learn the basics of working with MUI System and its utilities.</p>
 
-MUI comes with dozens of **ready-to-use** components in the core.
-These components are an incredible starting point but when it comes to making your site stand out with a custom design, it can be simpler to start from an unstyled state. Introducing the system:
+## Why use MUI System?
 
-The **system** lets you quickly build custom UI components leveraging the values defined in your theme.
+MUI System's `sx` prop lets you avoid writing unnecessary styled-component code by instead defining styles directly within the component itself.
+This is especially useful for one-off components with custom designs.
 
-## Demo
-
-_(Resize the window to see the responsive breakpoints)_
-
-{{"demo": "Demo.js", "bg": true, "defaultCodeOpen": true}}
-
-## Why use the system?
-
-Compare how the same stat component can be built with two different APIs.
+The following code samples illustrate the difference between styled-components and `sx`:
 
 {{"demo": "Why.js", "bg": true, "defaultCodeOpen": false}}
 
-1. ❌ using the styled-components's API:
+1. Using the styled-components API:
 
 ```jsx
 const StatWrapper = styled('div')(
@@ -83,7 +75,7 @@ return (
 );
 ```
 
-2. ✅ using the system:
+2. Using MUI System:
 
 ```jsx
 <Box
@@ -119,53 +111,48 @@ return (
 </Box>
 ```
 
-### Problem solved
+### The sx prop
 
-The system focus on solving 3 main problems:
+MUI System's core utility is the `sx` prop, which gives you a quick and efficient way to apply the correct design tokens directly to a React element.
 
-**1. Switching context wastes time.**
+This prop provides a superset of CSS (i.e. it contains all CSS properties and selectors in addition to custom ones) that maps values directly from the theme, depending on the CSS property used.
+It also simplifies the process of defining responsive values by referring to the breakpoints defined in the theme.
 
-There's no need to constantly jump between the usage of the styled components and where they are defined. With the system, those descriptions are right where you need them.
+Visit [the `sx` prop page](/system/the-sx-prop/) for complete details.
 
-**2. Naming things is hard.**
+### Responsive demo
 
-Have you ever found yourself struggling to find a good name for a styled component?
-The system maps the styles directly to the element.
-All you have to do is worry about actual style properties.
+The following demo shows how to use the `sx` prop to apply custom styles and create a complex UI component using the `Box` wrapper alone.
+Resize the window to see the responsive breakpoints:
 
-**3. Enforcing consistency in UIs is hard.**
+{{"demo": "Demo.js", "bg": true, "defaultCodeOpen": true}}
 
-This is especially true when more than one person is building the application, as there has to be some coordination amongst members of the team regarding the choice of design tokens and how they are used, what parts of the theme structure should be used with what CSS properties, and so on.
+### When to use MUI System
 
-The system provides direct access to the value in the theme. It makes it easier to design with constraints.
+The `sx` prop is best suited for applying one-off styles to custom components.
 
-## The `sx` prop
+This is in contrast to the styled-components API, which is ideal for building components that need to support a wide variety of contexts.
+These components are used in many different parts of the application and support different combinations of props.
 
-The `sx` prop, as the main part of the system, solves these problems by providing a fast & simple way of applying the correct design tokens for specific CSS properties directly to a React element. The [demo above](#demo) shows how it can be used to create a one-off design.
+### Performance tradeoffs
 
-This prop provides a superset of CSS (contains all CSS properties/selectors in addition to custom ones) that maps values directly from the theme, depending on the CSS property used.
-Also, it allows a simple way of defining responsive values that correspond to the breakpoints defined in the theme.
-For more details, visit the [`sx` prop page](/system/the-sx-prop/).
+MUI System relies on CSS-in-JS.
+It works with both Emotion and styled-components.
 
-### When to use it?
+#### Pros
 
-- **styled-components**: the API is great to build components that need to support a wide variety of contexts. These components are used in many different parts of the application and support different combinations of props.
-- **`sx` prop**: the API is great to apply one-off styles. It's called "utility" for this reason.
+- 📚 The `sx` prop uses a superset of CSS, so the syntax will be immediately familiar to you if you know CSS already.
+  It also offers (optional) shorthand definitions that can save you time if you put in a little work to learn them upfront.
+  These are documented in the **Style utilities** section of the primary navigation to the left.
+- 📦 The System auto-purges, so that only the CSS that's used on the page is sent to the client.
+  The initial bundle size cost is fixed—it doesn't get any larger as you add more CSS properties.
+  You pay the cost of [@emotion/react](https://bundlephobia.com/package/@emotion/react) and [@mui/system](https://bundlephobia.com/package/@mui/system).
+  The total size is ~15 kB gzipped.
+  But if you are already using a Core component library like Material UI, then it comes with no extra overhead.
 
-### Performance tradeoff
+#### Cons
 
-The system relies on CSS-in-JS. It works with both Emotion and styled-components.
-
-Pros:
-
-- 📚 It allows a lot of flexibility in the API. The `sx` prop supports a superset of CSS. There is **no need to learn CSS twice**. You are set once you have learn the standardized CSS syntax, it's safe, it hasn't changed for a decade. Then, you can **optionally** learn the shorthands if you value the save of time they bring.
-- 📦 Auto-purge. Only the used CSS on the page is sent to the client. The initial bundle size cost is **fixed**. It's not growing with the number of used CSS properties.
-  You pay the cost of [@emotion/react](https://bundlephobia.com/package/@emotion/react) and [@mui/system](https://bundlephobia.com/package/@mui/system). It cost around ~15 kB gzipped.
-  If you are already using the core components, it comes with no extra overhead.
-
-Cons:
-
-- The runtime performance takes a hit.
+- Runtime performance takes a hit.
 
   | Benchmark case                    | Code snippet          | Time normalized |
   | :-------------------------------- | :-------------------- | --------------- |
@@ -178,28 +165,27 @@ Cons:
 
 _Head to the [benchmark folder](https://github.com/mui/material-ui/tree/master/benchmark/browser) for a reproduction of these metrics._
 
-We believe that for most uses it's **fast enough**, but there are simple workarounds when performance becomes critical. For instance, when rendering a list with many items, you can use a CSS child selector to have a single "style injection" point (using d. for the wrapper and a. for each item).
+We believe that for most use cases it's fast enough, but there are simple workarounds when performance becomes critical.
+For instance, when rendering a list with many items, you can use a CSS child selector to have a single "style injection" point (using d. for the wrapper and a. for each item).
 
 ### API tradeoff
 
-Having the system under one prop (`sx`) helps to differentiate props defined for the sole purpose of CSS utilities, vs. those for component business logic.
+Having the System under one prop (`sx`) helps to differentiate props defined for the sole purpose of CSS utilities, vs. those for component business logic.
 It's important for the **separation of concerns**.
 For instance, a `color` prop on a button impacts multiple states (hover, focus, etc.), not to be confused with the color CSS property.
 
 Only the `Box`, `Stack`, `Typography`, and `Grid` components accept the system properties as _props_ for the above reason.
 These components are designed to solve CSS problems, they are CSS component utilities.
 
-## Usage
-
-### Design tokens in the theme
+## Design tokens in the theme
 
 You can explore the [System properties](/system/properties/) page to discover how the different CSS (and custom) properties are mapped to the theme keys.
 
-### Shorthands
+## Shorthands
 
-There are lots of shorthands available for the CSS properties.
-These are documented in the next pages, for instance, [the spacing](/system/spacing/).
-Here is an example leveraging them:
+There are many shorthands available for various CSS properties.
+These are documented on their respective Style utilities pages.
+Here is an example of a few:
 
 ```jsx
 <Box
@@ -215,14 +201,14 @@ Here is an example leveraging them:
 >
 ```
 
-These shorthands are **optional**, they are great to save time when writing styles but it can be overwhelming to learn new custom APIs.
-You might want to skip this part and bet on CSS, it has been standardized for decades, head to the [next section](#superset-of-css).
+These shorthands are optional—they are great to save time when writing styles, but it's not necessary to use them.
 
-### Superset of CSS
+## Superset of CSS
 
-As part of the prop, you can use any regular CSS too: child or pseudo-selectors, media queries, raw CSS values, etc. Here are a few examples:
+The `sx` prop supports CSS syntax including child and pseudo-selectors, media queries, raw CSS values, and more.
+Here are a few examples of how you can implement these CSS features:
 
-- Using pseudo selectors:
+- Using pseudo-selectors:
 
   ```jsx
   <Box
@@ -261,22 +247,23 @@ As part of the prop, you can use any regular CSS too: child or pseudo-selectors,
   >
   ```
 
-### Responsive values
+## Responsive values
 
-If you would like to have responsive values for a CSS property, you can use the breakpoints shorthand syntax. There are two ways of defining the breakpoints:
+The `sx` prop simplifies the process of defining and implementing responsive breakpoints.
+You can define breakpoints in two different ways: as an object, or as an array.
 
-#### 1. Breakpoints as an object
+### Breakpoints as an object
 
-The first option for defining breakpoints is to define them as an object, using the breakpoints as keys.
+The first option for breakpoints is to define them as an object, using the breakpoint values as keys.
 Note that each breakpoint property matches the breakpoint and every larger breakpoint.
 For example, `width: { lg: 100 }` is equivalent to `theme.breakpoints.up('lg')`.
 Here is the previous example again, using the object syntax.
 
 {{"demo": "BreakpointsAsObject.js"}}
 
-#### 2. Breakpoints as an array
+### Breakpoints as an array
 
-The second option is to define your breakpoints as an array, from the smallest to the largest breakpoint.
+The second option is to define your breakpoints as an array, from smallest to largest.
 
 {{"demo": "BreakpointsAsArray.js"}}
 
@@ -354,16 +341,16 @@ If you wish to use the theme for a CSS property that is not supported natively b
 
 The `sx` prop can be used in four different locations:
 
-### 1. Core components
+### Core components
 
 All core MUI components will support the `sx` prop.
 
-### 2. Box
+### Box
 
 [`Box`](/material-ui/react-box/) is a lightweight component that gives access to the `sx` prop, and can be used as a utility component, and as a wrapper for other components.
 It renders a `<div>` element by default.
 
-### 3. Custom components
+### Custom components
 
 In addition to MUI components, you can add the `sx` prop to your custom components too, by using the `styled` utility from `@mui/material/styles`.
 
@@ -373,6 +360,6 @@ import { styled } from '@mui/material/styles';
 const Div = styled('div')``;
 ```
 
-### 4. Any element with the babel plugin
+### Any element with the babel plugin
 
 TODO [#23220](https://github.com/mui/material-ui/issues/23220).
