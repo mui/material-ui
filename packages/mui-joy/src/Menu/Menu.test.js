@@ -19,6 +19,7 @@ describe('Joy <Menu />', () => {
     refInstanceof: window.HTMLDivElement,
     testRootOverrides: { slotName: 'root', slotClassName: classes.root },
     testDeepOverrides: { slotName: 'listbox', slotClassName: classes.listbox },
+    testVariantProps: { variant: 'soft' },
     skip: [
       'rootClass', // portal, can't determin the root
       'classesRoot',

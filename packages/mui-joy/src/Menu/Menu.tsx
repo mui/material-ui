@@ -23,7 +23,7 @@ const useUtilityClasses = (ownerState: MenuProps) => {
 };
 
 const MenuRoot = styled(PopperUnstyled, {
-  name: 'MuiMenu',
+  name: 'JoyMenu',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: MenuProps }>(({ theme, ownerState }) => ({
@@ -43,7 +43,7 @@ const MenuRoot = styled(PopperUnstyled, {
 }));
 
 const MenuListbox = styled(List, {
-  name: 'MuiMenu',
+  name: 'JoyMenu',
   slot: 'Listbox',
   overridesResolver: (props, styles) => styles.listbox,
 })({
@@ -54,7 +54,7 @@ const MenuListbox = styled(List, {
 const Menu = React.forwardRef(function Menu(inProps, ref) {
   const props = useThemeProps<typeof inProps>({
     props: inProps,
-    name: 'MuiMenu',
+    name: 'JoyMenu',
   });
 
   const {
