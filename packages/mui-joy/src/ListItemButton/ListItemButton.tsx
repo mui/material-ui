@@ -36,6 +36,7 @@ const useUtilityClasses = (ownerState: ListItemButtonProps & { focusVisible: boo
   return composedClasses;
 };
 
+// MenuItem uses ListItemButtonRoot (not the whole ListItemButton) to leverage only styles and CSS variables.
 export const ListItemButtonRoot = styled('div', {
   name: 'JoyListItemButton',
   slot: 'Root',

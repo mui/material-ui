@@ -170,6 +170,8 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
         className={clsx(classes.root, className)}
         ownerState={ownerState}
         {...(menuContext && {
+          // ListItem can be used inside Menu to create nested menus, so it should have role="none"
+          // https://www.w3.org/WAI/ARIA/apg/example-index/menubar/menubar-navigation.html
           role: 'none',
         })}
         {...other}
