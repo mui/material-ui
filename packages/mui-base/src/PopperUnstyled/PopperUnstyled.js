@@ -379,7 +379,7 @@ PopperUnstyled.propTypes /* remove-proptypes */ = {
   /**
    * If `true`, the component is shown.
    */
-  open: PropTypes.bool,
+  open: PropTypes.bool.isRequired,
   /**
    * Popper placement.
    * @default 'bottom'
