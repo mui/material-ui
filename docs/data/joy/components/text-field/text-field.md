@@ -32,12 +32,21 @@ export default function MyApp() {
 
 ### Sizes
 
+The text field component comes with three sizes out of the box: `sm`, `md` (the default), and `lg`.
+
 ### Form props
+
+Standard form attributes are supported e.g. `required`, `disabled`, `type`, etc. as well as a `helperText` which is used to give context about a field's input, such as how the input will be used.
 
 ### Validation
 
-### Multiline
+To toggle the error state, use the `error` prop.
+And, to provide feedback about the error to the user, use the `helperText` prop.
 
 ### Input decorators
 
-### Ful width
+Use the `startDecorator` and/or `endDecorator` props to add supporting icons or elements to the text field.
+
+### Full width
+
+To make the text field take up the full width of its container, use the `fullWidth` prop.
