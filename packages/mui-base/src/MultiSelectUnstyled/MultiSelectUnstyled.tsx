@@ -10,6 +10,7 @@ import {
   MultiSelectUnstyledOwnerState,
   MultiSelectUnstyledPopperSlotProps,
   MultiSelectUnstyledRootSlotProps,
+  MultiSelectUnstyledType,
 } from './MultiSelectUnstyled.types';
 import { flattenOptionGroups, getOptionsFromChildren } from '../SelectUnstyled/utils';
 import useSelect from '../SelectUnstyled/useSelect';
@@ -47,6 +48,14 @@ function useUtilityClasses(ownerState: MultiSelectUnstyledOwnerState<any>) {
 
 /**
  * The foundation for building custom-styled multi-selection select components.
+ *
+ * Demos:
+ *
+ * - [Select](https://mui.com/base/react-select/)
+ *
+ * API:
+ *
+ * - [MultiSelectUnstyled API](https://mui.com/base/api/multi-select-unstyled/)
  */
 const MultiSelectUnstyled = React.forwardRef(function MultiSelectUnstyled<TValue>(
   props: MultiSelectUnstyledProps<TValue>,
@@ -211,7 +220,7 @@ const MultiSelectUnstyled = React.forwardRef(function MultiSelectUnstyled<TValue
       )}
     </React.Fragment>
   );
-});
+}) as MultiSelectUnstyledType;
 
 MultiSelectUnstyled.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
@@ -228,7 +237,9 @@ MultiSelectUnstyled.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
-   * @ignore
+   * The component used for the Root slot.
+   * Either a string to use a HTML element or a component.
+   * This is equivalent to `components.Root`. If both are provided, the `component` is used.
    */
   component: PropTypes.elementType,
   /**
@@ -295,17 +306,4 @@ MultiSelectUnstyled.propTypes /* remove-proptypes */ = {
   value: PropTypes.array,
 } as any;
 
-/**
- * The foundation for building custom-styled multi-selection select components.
- *
- * Demos:
- *
- * - [Select](https://mui.com/base/react-select/)
- *
- * API:
- *
- * - [MultiSelectUnstyled API](https://mui.com/base/api/multi-select-unstyled/)
- */
-export default MultiSelectUnstyled as <TValue extends {}>(
-  props: MultiSelectUnstyledProps<TValue> & React.RefAttributes<HTMLElement>,
-) => JSX.Element | null;
+export default MultiSelectUnstyled;

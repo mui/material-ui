@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Simplify } from '@mui/types';
+import { DefaultComponentProps, OverrideProps, Simplify } from '@mui/types';
 import {
   SelectOption,
   UseSelectButtonSlotProps,
@@ -18,6 +18,11 @@ export interface SelectUnstyledCommonProps {
   autoFocus?: boolean;
   children?: React.ReactNode;
   className?: string;
+  /**
+   * The component used for the Root slot.
+   * Either a string to use a HTML element or a component.
+   * This is equivalent to `components.Root`. If both are provided, the `component` is used.
+   */
   component?: React.ElementType;
   /**
    * If `true`, the select is disabled.
@@ -46,7 +51,7 @@ export interface SelectUnstyledCommonProps {
   onListboxOpenChange?: (isOpen: boolean) => void;
 }
 
-export interface SelectUnstyledProps<TValue extends {}> extends SelectUnstyledCommonProps {
+export interface SelectUnstyledOwnProps<TValue extends {}> extends SelectUnstyledCommonProps {
   /**
    * The components used for each slot inside the Select.
    * Either a string to use a HTML element or a component.
@@ -97,7 +102,34 @@ export interface SelectUnstyledProps<TValue extends {}> extends SelectUnstyledCo
   value?: TValue | null;
 }
 
-export interface SelectUnstyledOwnerState<TValue> extends SelectUnstyledProps<TValue> {
+export interface SelectUnstyledTypeMap<
+  TValue extends {},
+  P = {},
+  D extends React.ElementType = 'button',
+> {
+  props: P & SelectUnstyledOwnProps<TValue>;
+  defaultComponent: D;
+}
+
+export type SelectUnstyledProps<
+  TValue extends {},
+  D extends React.ElementType = SelectUnstyledTypeMap<TValue>['defaultComponent'],
+> = OverrideProps<SelectUnstyledTypeMap<TValue, {}, D>, D>;
+
+// OverridableComponent cannot be used below as SelectUnstyled's props are generic.
+export interface SelectUnstyledType {
+  <TValue extends {}, C extends React.ElementType>(
+    props: {
+      component: C;
+    } & OverrideProps<SelectUnstyledTypeMap<TValue>, C>,
+  ): JSX.Element | null;
+  <TValue extends {}>(
+    props: DefaultComponentProps<SelectUnstyledTypeMap<TValue>>,
+  ): JSX.Element | null;
+  propTypes?: any;
+}
+
+export interface SelectUnstyledOwnerState<TValue> extends SelectUnstyledOwnProps<TValue> {
   active: boolean;
   disabled: boolean;
   focusVisible: boolean;

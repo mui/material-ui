@@ -71,3 +71,14 @@ const SelectUnstyledComponentsOverridesUsingHostComponentTest = (
     }}
   />
 );
+
+function CustomRootWithVariantProp(
+  props: React.ButtonHTMLAttributes<HTMLButtonElement> & { variant: string },
+) {
+  const { variant, ...other } = props;
+  return <button type="button" {...other} />;
+}
+
+const PolymorphicComponentTest = (
+  <SelectUnstyled component={CustomRootWithVariantProp} variant="test" />
+);
