@@ -69,7 +69,7 @@ It's described in more detail in the section above.
 MUI X maintainers focus on solving root issues rather than offering direct support to the community at large.
 
 The Pro plan offers developers advanced components and extra features that are challenging to find in OSS.
-To provide a similar quality of experience to the one provided by the community on the MUI Core modules,
+To provide a similar quality of experience to the one provided by the community on the MIT modules,
 the maintainers of MUI provide support for the advanced components included in MUI X.
 This plan includes direct technical support from MUI X maintainers to MUI X components exclusively.\
 Technical support for MUI Core components is **not** included.
