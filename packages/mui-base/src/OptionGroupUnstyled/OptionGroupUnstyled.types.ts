@@ -1,9 +1,10 @@
+import { OverrideProps } from '@mui/types';
 import React from 'react';
 import { SlotComponentProps } from '../utils';
 
 export interface OptionGroupUnstyledComponentsPropsOverrides {}
 
-export interface OptionGroupUnstyledProps {
+export interface OptionGroupUnstyledOwnProps {
   /**
    * The human-readable description of the group.
    */
@@ -55,7 +56,16 @@ export interface OptionGroupUnstyledProps {
   };
 }
 
-export type OptionGroupUnstyledOwnerState = OptionGroupUnstyledProps;
+export interface OptionGroupUnstyledTypeMap<P = {}, D extends React.ElementType = 'li'> {
+  props: P & OptionGroupUnstyledOwnProps;
+  defaultComponent: D;
+}
+
+export type OptionGroupUnstyledProps<
+  D extends React.ElementType = OptionGroupUnstyledTypeMap['defaultComponent'],
+> = OverrideProps<OptionGroupUnstyledTypeMap<{}, D>, D>;
+
+export type OptionGroupUnstyledOwnerState = OptionGroupUnstyledOwnProps;
 
 export type OptionGroupUnstyledRootSlotProps = {
   children?: React.ReactNode;
