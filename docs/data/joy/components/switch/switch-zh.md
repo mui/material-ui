@@ -15,7 +15,7 @@ Switches are very commonly used for adjusting settings on mobile. The option tha
 
 {{"demo": "SwitchUsage.js", "hideToolbar": true}}
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Component
 
