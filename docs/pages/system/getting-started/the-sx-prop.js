@@ -4,7 +4,7 @@ import {
   demos,
   docs,
   demoComponents,
-} from 'docs/data/system/the-sx-prop/the-sx-prop.md?@mui/markdown';
+} from 'docs/data/system/getting-started/the-sx-prop/the-sx-prop.md?@mui/markdown';
 
 export default function Page() {
   return <MarkdownDocs demos={demos} docs={docs} demoComponents={demoComponents} />;
