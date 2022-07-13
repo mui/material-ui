@@ -1,10 +1,10 @@
-import { Simplify } from '@mui/types';
+import { OverrideProps, Simplify } from '@mui/types';
 import { SlotComponentProps } from '../utils';
 import { UseSwitchInputSlotProps, UseSwitchParameters } from './useSwitch.types';
 
 export interface SwitchUnstyledComponentsPropsOverrides {}
 
-export interface SwitchUnstyledProps extends UseSwitchParameters {
+export interface SwitchUnstyledOwnProps extends UseSwitchParameters {
   /**
    * Class name applied to the root element.
    */
@@ -55,8 +55,17 @@ export interface SwitchUnstyledProps extends UseSwitchParameters {
   };
 }
 
+export interface SwitchUnstyledTypeMap<P = {}, D extends React.ElementType = 'span'> {
+  props: P & SwitchUnstyledOwnProps;
+  defaultComponent: D;
+}
+
+export type SwitchUnstyledProps<
+  D extends React.ElementType = SwitchUnstyledTypeMap['defaultComponent'],
+> = OverrideProps<SwitchUnstyledTypeMap<{}, D>, D>;
+
 export type SwitchUnstyledOwnerState = Simplify<
-  SwitchUnstyledProps & {
+  SwitchUnstyledOwnProps & {
     checked: boolean;
     disabled: boolean;
     focusVisible: boolean;

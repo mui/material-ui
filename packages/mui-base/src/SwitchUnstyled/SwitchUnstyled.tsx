@@ -1,5 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import { OverridableComponent } from '@mui/types';
 import composeClasses from '../composeClasses';
 import useSwitch from './useSwitch';
 import { getSwitchUnstyledUtilityClass } from './switchUnstyledClasses';
@@ -10,6 +11,7 @@ import {
   SwitchUnstyledRootSlotProps,
   SwitchUnstyledThumbSlotProps,
   SwitchUnstyledTrackSlotProps,
+  SwitchUnstyledTypeMap,
 } from './SwitchUnstyled.types';
 import { useSlotProps, WithOptionalOwnerState } from '../utils';
 
@@ -43,10 +45,9 @@ const useUtilityClasses = (ownerState: SwitchUnstyledOwnerState) => {
  *
  * - [SwitchUnstyled API](https://mui.com/base/api/switch-unstyled/)
  */
-const SwitchUnstyled = React.forwardRef(function SwitchUnstyled(
-  props: SwitchUnstyledProps,
-  ref: React.ForwardedRef<any>,
-) {
+const SwitchUnstyled = React.forwardRef(function SwitchUnstyled<
+  BaseComponentType extends React.ElementType = SwitchUnstyledTypeMap['defaultComponent'],
+>(props: SwitchUnstyledProps<BaseComponentType>, ref: React.ForwardedRef<any>) {
   const {
     checked: checkedProp,
     component,
@@ -131,7 +132,7 @@ const SwitchUnstyled = React.forwardRef(function SwitchUnstyled(
       <Input {...inputProps} />
     </Root>
   );
-});
+}) as OverridableComponent<SwitchUnstyledTypeMap>;
 
 SwitchUnstyled.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
