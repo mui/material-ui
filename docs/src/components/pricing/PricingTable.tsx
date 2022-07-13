@@ -523,7 +523,7 @@ const rowHeaders: Record<string, React.ReactNode> = {
       {...{
         label: 'Technical support for MUI X',
         tooltip:
-          'You can ask for technical support, report bugs and submit unlimited feature requests to the advanced components. We take your plan as one of the prioritization criteria.',
+          'You can ask for technical support, report bugs and submit unlimited feature requests to the advanced components. We take your subscription plan as one of the prioritization criteria.',
       }}
     />
   ),
