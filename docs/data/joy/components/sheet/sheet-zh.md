@@ -13,7 +13,7 @@ The `Sheet` container is a generic container. It's a sibling to the [`Box`](/sys
 
 {{"demo": "SheetUsage.js", "hideToolbar": true}}
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Component
 
