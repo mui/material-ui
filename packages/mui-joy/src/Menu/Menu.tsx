@@ -252,6 +252,7 @@ Menu.propTypes /* remove-proptypes */ = {
   onClose: PropTypes.func,
   /**
    * If `true`, the component is shown.
+   * @default false
    */
   open: PropTypes.bool,
   /**

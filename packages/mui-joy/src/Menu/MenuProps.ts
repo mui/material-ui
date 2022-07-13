@@ -16,7 +16,7 @@ export type { MenuUnstyledActions } from '@mui/base/MenuUnstyled';
 
 export interface MenuTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P &
-    Omit<PopperUnstyledProps, 'children'> &
+    Omit<PopperUnstyledProps, 'children' | 'open'> &
     Omit<SheetProps, 'variant' | 'color'> & {
       /**
        * A ref with imperative actions.
