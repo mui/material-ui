@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { OverridableComponent, OverridableTypeMap, OverrideProps } from '@mui/types';
-import { ListItemButtonProps } from '../ListItemButton';
+import { ListItemButtonProps } from '../ListItemButton/ListItemButtonProps';
 
 export type MenuItemSlot = 'root';
 

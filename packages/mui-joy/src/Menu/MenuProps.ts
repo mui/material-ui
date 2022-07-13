@@ -2,9 +2,9 @@ import * as React from 'react';
 import { OverrideProps, OverridableStringUnion } from '@mui/types';
 import { PopperUnstyledProps } from '@mui/base/PopperUnstyled';
 import { MenuUnstyledActions } from '@mui/base/MenuUnstyled';
-import { SheetProps } from '../Sheet';
-import { ListProps } from '../List';
 import { ColorPaletteProp, VariantProp } from '../styles/types';
+import { SheetProps } from '../Sheet/SheetProps';
+import { ListProps } from '../List/ListProps';
 
 export type MenuSlot = 'root' | 'listbox';
 
