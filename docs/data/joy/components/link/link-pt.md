@@ -15,7 +15,7 @@ The `Link` component represents the HTML `<a>` element. It accepts the same prop
 
 {{"demo": "LinkUsage.js", "hideToolbar": true}}
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Component
 
