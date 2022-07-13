@@ -202,10 +202,6 @@ export interface Components<Theme = unknown> {
     defaultProps?: Partial<TypographyProps>;
     styleOverrides?: OverridesStyleRules<TypographySlot, TypographyProps, Theme>;
   };
-  JoyGrid?: {
-    defaultProps?: Partial<GridProps>;
-    styleOverrides?: OverridesStyleRules<GridSlot, GridProps, Theme>;
-  };
   JoyMenu?: {
     defaultProps?: Partial<MenuProps>;
     styleOverrides?: OverridesStyleRules<MenuSlot, MenuProps, Theme>;
