@@ -70,7 +70,7 @@ export interface PopperUnstyledProps
   /**
    * If `true`, the component is shown.
    */
-  open?: boolean;
+  open: boolean;
   /**
    * Popper placement.
    * @default 'bottom'
