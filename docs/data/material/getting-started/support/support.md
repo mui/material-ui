@@ -64,20 +64,19 @@ Find details on the [supported versions](/versions/#supported-versions).
 ### Pro/Premium plans
 
 MUI X comes in [three plans](https://mui.com/pricing/).
-The support available on the Community plan is made possible thanks to people like you: the community.
-It's described in more detail in the section above.
+The support available under the Community plan is made possible thanks to people like you: the community.
+This is described in more detail in the section above.
 MUI X maintainers focus on solving root issues rather than offering direct support to the community at large.
 
-The Pro plan offers developers advanced components and extra features that are challenging to find in OSS.
-To provide a similar quality of experience to the one provided by the community on the MIT modules,
-the maintainers of MUI provide support for the advanced components included in MUI X.
-This plan includes direct technical support from MUI X maintainers to MUI X components exclusively.\
+The paid plans offer developers advanced components and extra features that are challenging to find in OSS.
+To provide a similar quality of experience to the one provided by the community for MIT licensed code,
+the developers of MUI  X provide support for the advanced components only.
 Technical support for MUI Core components is **not** included.
 
 The Premium plan provides developers with the highest priority for support tickets.
-No SLAs are provided yet, it's a work in progress.
+No SLAs are provided yet; it's coming.
 
-Please visit [MUI X Support page](https://mui.com/x/introduction/support/#technical-support) for more detailed information on technical support.
+Please visit [the MUI X Support page](https://mui.com/x/introduction/support/#technical-support) for more detailed information on technical support.
 
 ### Tidelift subscription
 
