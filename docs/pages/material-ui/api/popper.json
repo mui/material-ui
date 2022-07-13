@@ -8,6 +8,7 @@
       }
     },
     "children": { "type": { "name": "union", "description": "node<br>&#124;&nbsp;func" } },
+    "component": { "type": { "name": "elementType" } },
     "container": { "type": { "name": "union", "description": "HTML element<br>&#124;&nbsp;func" } },
     "direction": {
       "type": { "name": "enum", "description": "'ltr'<br>&#124;&nbsp;'rtl'" },
