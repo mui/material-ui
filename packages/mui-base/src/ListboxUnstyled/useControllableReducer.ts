@@ -110,7 +110,7 @@ export default function useControllableReducer<TOption>(
   };
 
   const combinedReducer = React.useCallback(
-    (state, action) => {
+    (state: ListboxState<TOption>, action: ListboxAction<TOption>) => {
       if (externalReducer) {
         return externalReducer(getControlledState(state, propsRef.current), action);
       }
