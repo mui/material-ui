@@ -41,6 +41,8 @@ Check out our [selection of basic templates](/material-ui/getting-started/templa
 
 - [**Next.js 11 Setup with Material UI v5**](https://www.youtube.com/watch?v=IFaFFmPYyMI) by Leo Roese: 学习如何使用 Emode 作为样式引擎，将Material UI 整合到您的Next.js 应用。
 
-- **Create a Responsive Navigation Bar with Material UI v5</a> by Nikhil Thadani：详细介绍Create React App脚手架下使用Material UI。</p></li> 
-  
-  - [**The Clever Dev**](https://www.youtube.com/channel/UCb6AZy0_D1y661PMZck3jOw) 和 [**The Smart Devterur**](https://smartdevpreneur.com/category/javascript/material-ui/) by Jon M: 几十个高质量的视频和文章深入探讨Material UI 的具体细节。</ul>
+- [**Material UI v5 Crash Course + Intro to React (2022 Edition)**](https://www.youtube.com/watch?v=_W3uuxDnySQ) by Anthony Sistilli: how and why to use Material UI, plus guidance on theming and style customization.
+
+- [**Material UI v5 Tutorial Playlist**](https://www.youtube.com/playlist?list=PLlR2O33QQkfXnZMMZC0y22gLayBbB1UQd) by Nikhil Thadani (Indian Coders): a detailed playlist covering almost every component of Material UI with Create React App.
+
+- [**The Clever Dev**](https://www.youtube.com/channel/UCb6AZy0_D1y661PMZck3jOw) and [**The Smart Devpreneur**](https://smartdevpreneur.com/category/javascript/material-ui/) by Jon M: dozens of high-quality videos and articles digging deep into the nuts and bolts of Material UI.
