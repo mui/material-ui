@@ -19,5 +19,5 @@ const CustomButtonRoot = React.forwardRef(function CustomButtonRoot(
 });
 
 function ButtonWithCustomRoot(props: ButtonUnstyledProps) {
-  return <ButtonUnstyled {...props} component={CustomButtonRoot} />;
+  return <ButtonUnstyled {...props} components={{ Root: CustomButtonRoot }} />;
 }

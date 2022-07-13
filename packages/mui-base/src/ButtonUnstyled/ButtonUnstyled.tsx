@@ -1,5 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import { OverridableComponent } from '@mui/types';
 import composeClasses from '../composeClasses';
 import { getButtonUnstyledUtilityClass } from './buttonUnstyledClasses';
 import {
@@ -38,8 +39,8 @@ const useUtilityClasses = (ownerState: ButtonUnstyledOwnerState) => {
  * - [ButtonUnstyled API](https://mui.com/base/api/button-unstyled/)
  */
 const ButtonUnstyled = React.forwardRef(function ButtonUnstyled<
-  D extends React.ElementType = ButtonUnstyledTypeMap['defaultComponent'],
->(props: ButtonUnstyledProps<D>, forwardedRef: React.ForwardedRef<any>) {
+  BaseComponentType extends React.ElementType = ButtonUnstyledTypeMap['defaultComponent'],
+>(props: ButtonUnstyledProps<BaseComponentType>, forwardedRef: React.ForwardedRef<any>) {
   const {
     action,
     children,
@@ -99,7 +100,7 @@ const ButtonUnstyled = React.forwardRef(function ButtonUnstyled<
   });
 
   return <Root {...rootProps}>{children}</Root>;
-});
+}) as OverridableComponent<ButtonUnstyledTypeMap>;
 
 ButtonUnstyled.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
