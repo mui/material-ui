@@ -156,7 +156,6 @@ declare module '@mui/system' {
 }
 ```
 
-:::
 
 ## Prevent scrollbar
 
