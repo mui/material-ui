@@ -65,6 +65,12 @@ export type OptionUnstyledProps<
 export interface OptionUnstyledType {
   <TValue, C extends React.ElementType>(
     props: {
+      /**
+       * The component used for the Root slot.
+       * Either a string to use a HTML element or a component.
+       * This is equivalent to components.Root.
+       * If both are provided, the component is used.
+       */
       component: C;
     } & OverrideProps<OptionUnstyledTypeMap<TValue>, C>,
   ): JSX.Element | null;
