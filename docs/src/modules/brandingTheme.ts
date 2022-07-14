@@ -1025,8 +1025,19 @@ export function getThemedComponents(theme: Theme): { components: Theme['componen
           track: {
             opacity: 1,
             borderRadius: 32,
-            backgroundColor:
-              theme.palette.mode === 'dark' ? theme.palette.grey[800] : theme.palette.grey[400],
+            ...(!theme.vars
+              ? {
+                  backgroundColor:
+                    theme.palette.mode === 'dark'
+                      ? theme.palette.grey[800]
+                      : theme.palette.grey[400],
+                }
+              : {
+                  backgroundColor: theme.vars.palette.grey[400],
+                  [theme.getColorSchemeSelector('dark')]: {
+                    backgroundColor: theme.vars.palette.grey[800],
+                  },
+                }),
           },
           thumb: {
             flexShrink: 0,
@@ -1040,27 +1051,62 @@ export function getThemedComponents(theme: Theme): { components: Theme['componen
           root: {
             textTransform: 'none',
             fontWeight: 700,
-            color:
-              theme.palette.mode === 'dark' ? theme.palette.grey[300] : theme.palette.grey[700],
-            borderColor:
-              theme.palette.mode === 'dark'
-                ? theme.palette.primaryDark[500]
-                : theme.palette.grey[200],
+            ...(!theme.vars
+              ? {
+                  color:
+                    theme.palette.mode === 'dark'
+                      ? theme.palette.grey[300]
+                      : theme.palette.grey[700],
+                  borderColor:
+                    theme.palette.mode === 'dark'
+                      ? theme.palette.primaryDark[500]
+                      : theme.palette.grey[200],
+                }
+              : {
+                  color: theme.vars.palette.grey[700],
+                  borderColor: theme.vars.palette.grey[200],
+                  [theme.getColorSchemeSelector('dark')]: {
+                    color: theme.vars.palette.grey[300],
+                    borderColor: theme.vars.palette.primaryDark[500],
+                  },
+                }),
             '&.Mui-selected': {
-              color: theme.palette.mode === 'dark' ? '#fff' : theme.palette.primary[500],
-              borderColor:
-                theme.palette.mode === 'dark'
-                  ? `${theme.palette.primary[700]} !important`
-                  : `${theme.palette.primary[500]} !important`,
-              backgroundColor:
-                theme.palette.mode === 'dark'
-                  ? theme.palette.primaryDark[700]
-                  : theme.palette.primary[50],
+              ...(!theme.vars
+                ? {
+                    color: theme.palette.mode === 'dark' ? '#fff' : theme.palette.primary[500],
+                    borderColor:
+                      theme.palette.mode === 'dark'
+                        ? `${theme.palette.primary[700]} !important`
+                        : `${theme.palette.primary[500]} !important`,
+                    backgroundColor:
+                      theme.palette.mode === 'dark'
+                        ? theme.palette.primaryDark[700]
+                        : theme.palette.primary[50],
+                  }
+                : {
+                    color: theme.vars.palette.primary[500],
+                    borderColor: `${theme.vars.palette.primary[500]} !important`,
+                    backgroundColor: theme.vars.palette.primary[50],
+                    [theme.getColorSchemeSelector('dark')]: {
+                      color: '#fff',
+                      borderColor: `${theme.vars.palette.primary[700]} !important`,
+                      backgroundColor: theme.vars.palette.primaryDark[700],
+                    },
+                  }),
               '&:hover': {
-                backgroundColor:
-                  theme.palette.mode === 'dark'
-                    ? theme.palette.primaryDark[600]
-                    : theme.palette.primary[100],
+                ...(!theme.vars
+                  ? {
+                      backgroundColor:
+                        theme.palette.mode === 'dark'
+                          ? theme.palette.primaryDark[600]
+                          : theme.palette.primary[100],
+                    }
+                  : {
+                      backgroundColor: theme.vars.palette.primary[100],
+                      [theme.getColorSchemeSelector('dark')]: {
+                        backgroundColor: theme.vars.palette.primaryDark[600],
+                      },
+                    }),
               },
             },
           },
