@@ -60,7 +60,6 @@ export default function ExampleFilterMemberCheckbox() {
             />
           </ListItem>
           <ListItem
-            sx={{ borderRadius: 'sm' }}
             {...(members[1] && {
               variant: 'soft',
               color: 'primary',

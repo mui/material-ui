@@ -491,6 +491,9 @@ export default function DemoToolbar(props) {
                   theme.palette.mode === 'dark'
                     ? theme.palette.primaryDark[700]
                     : theme.palette.grey[200],
+                '&.Mui-disabled': {
+                  opacity: 0.5,
+                },
               }}
               value={CODE_VARIANTS.TS}
               disabled={!hasTSVariant}

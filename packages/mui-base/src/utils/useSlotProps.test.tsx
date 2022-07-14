@@ -27,16 +27,7 @@ function callUseSlotProps<
   const TestComponent = React.forwardRef(
     (
       _: unknown,
-      ref: React.Ref<
-        UseSlotPropsResult<
-          ElementType,
-          SlotProps,
-          ExternalForwardedProps,
-          ExternalSlotProps,
-          AdditionalProps,
-          OwnerState
-        >
-      >,
+      ref: React.Ref<UseSlotPropsResult<ElementType, SlotProps, AdditionalProps, OwnerState>>,
     ) => {
       const slotProps = useSlotProps(parameters);
       React.useImperativeHandle(ref, () => slotProps as any);
@@ -45,16 +36,7 @@ function callUseSlotProps<
   );
 
   const ref =
-    React.createRef<
-      UseSlotPropsResult<
-        ElementType,
-        SlotProps,
-        ExternalForwardedProps,
-        ExternalSlotProps,
-        AdditionalProps,
-        OwnerState
-      >
-    >();
+    React.createRef<UseSlotPropsResult<ElementType, SlotProps, AdditionalProps, OwnerState>>();
   render(<TestComponent ref={ref} />);
 
   return ref.current!;
@@ -246,7 +228,7 @@ describe('useSlotProps', () => {
     // class names are concatenated
     expect(result).to.haveOwnProperty(
       'className',
-      'externalForwarded externalComponentsProps another-class yet-another-class additional internal',
+      'internal additional another-class yet-another-class externalForwarded externalComponentsProps',
     );
 
     // `data-test` from componentProps overrides the one from forwardedProps
@@ -259,7 +241,7 @@ describe('useSlotProps', () => {
     expect(additionalRef.current).to.equal('test');
 
     // event handler provided in componentsProps is called
-    result.onClick({});
+    result.onClick({} as React.MouseEvent);
     expect(externalClickHandler.calledOnce).to.equal(true);
 
     // event handler provided in forwardedProps is not called (was overridden by componentsProps)

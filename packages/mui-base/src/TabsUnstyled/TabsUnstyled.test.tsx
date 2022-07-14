@@ -42,7 +42,6 @@ describe('<TabsUnstyled />', () => {
         expectedClassName: classes.root,
       },
     },
-    skip: ['componentsPropsCallbacks'], // not implemented yet
   }));
 
   it('can be named via `aria-label`', () => {
