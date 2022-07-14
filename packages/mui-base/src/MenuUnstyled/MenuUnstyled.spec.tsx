@@ -1,13 +1,6 @@
 import * as React from 'react';
-import TabUnstyled, { TabUnstyledRootSlotProps } from '@mui/base/TabUnstyled';
 import { expectType } from '@mui/types';
-
-function Root(props: TabUnstyledRootSlotProps) {
-  const { ownerState, ...other } = props;
-  return <div data-active={ownerState.active} {...other} />;
-}
-
-const styledTab = <TabUnstyled components={{ Root }} />;
+import MenuUnstyled from '@mui/base/MenuUnstyled';
 
 const PolymorphicComponentTest = () => {
   const CustomComponent: React.FC<{ stringProp: string; numberProp: number }> = () => <div />;
@@ -15,20 +8,20 @@ const PolymorphicComponentTest = () => {
   return (
     <div>
       {/* @ts-expect-error */}
-      <TabUnstyled invalidProp={0} />
+      <MenuUnstyled invalidProp={0} />
 
-      <TabUnstyled component="a" href="#" />
+      <MenuUnstyled component="a" href="#" />
 
-      <TabUnstyled component={CustomComponent} stringProp="test" numberProp={0} />
+      <MenuUnstyled component={CustomComponent} stringProp="test" numberProp={0} />
       {/* @ts-expect-error */}
-      <TabUnstyled component={CustomComponent} />
+      <MenuUnstyled component={CustomComponent} />
 
-      <TabUnstyled
+      <MenuUnstyled
         component="button"
         onClick={(e: React.MouseEvent<HTMLButtonElement>) => e.currentTarget.checkValidity()}
       />
 
-      <TabUnstyled<'button'>
+      <MenuUnstyled<'button'>
         component="button"
         ref={(elem) => {
           expectType<HTMLButtonElement | null, typeof elem>(elem);

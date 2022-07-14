@@ -17,13 +17,6 @@ export interface OptionGroupUnstyledOwnProps {
    */
   disabled?: boolean;
   /**
-   * The component used for the Root slot.
-   * Either a string to use a HTML element or a component.
-   * This is equivalent to components.Root.
-   * If both are provided, the component is used.
-   */
-  component?: React.ElementType;
-  /**
    * The components used for each slot inside the OptionGroupUnstyled.
    * Either a string to use a HTML element or a component.
    * @default {}
@@ -63,7 +56,15 @@ export interface OptionGroupUnstyledTypeMap<P = {}, D extends React.ElementType 
 
 export type OptionGroupUnstyledProps<
   D extends React.ElementType = OptionGroupUnstyledTypeMap['defaultComponent'],
-> = OverrideProps<OptionGroupUnstyledTypeMap<{}, D>, D>;
+> = OverrideProps<OptionGroupUnstyledTypeMap<{}, D>, D> & {
+  /**
+   * The component used for the Root slot.
+   * Either a string to use a HTML element or a component.
+   * This is equivalent to components.Root.
+   * If both are provided, the component is used.
+   */
+  component?: D;
+};
 
 export type OptionGroupUnstyledOwnerState = OptionGroupUnstyledOwnProps;
 

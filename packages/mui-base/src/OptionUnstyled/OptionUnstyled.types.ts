@@ -19,13 +19,6 @@ export interface OptionUnstyledOwnProps<TValue> {
   disabled?: boolean;
   className?: string;
   /**
-   * The component used for the Root slot.
-   * Either a string to use a HTML element or a component.
-   * This is equivalent to components.Root.
-   * If both are provided, the component is used.
-   */
-  component?: React.ElementType;
-  /**
    * The components used for each slot inside the OptionUnstyled.
    * Either a string to use a HTML element or a component.
    * @default {}
@@ -59,7 +52,15 @@ export interface OptionUnstyledTypeMap<TValue, P = {}, D extends React.ElementTy
 export type OptionUnstyledProps<
   TValue,
   D extends React.ElementType = OptionUnstyledTypeMap<TValue>['defaultComponent'],
-> = OverrideProps<OptionUnstyledTypeMap<TValue, {}, D>, D>;
+> = OverrideProps<OptionUnstyledTypeMap<TValue, {}, D>, D> & {
+  /**
+   * The component used for the Root slot.
+   * Either a string to use a HTML element or a component.
+   * This is equivalent to components.Root.
+   * If both are provided, the component is used.
+   */
+  component?: D;
+};
 
 export interface OptionUnstyledType {
   <TValue, C extends React.ElementType>(

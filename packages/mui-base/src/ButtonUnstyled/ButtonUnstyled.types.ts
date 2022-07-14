@@ -17,12 +17,6 @@ export interface ButtonUnstyledOwnProps extends Omit<UseButtonParameters, 'ref'>
   children?: React.ReactNode;
   className?: string;
   /**
-   * The component used for the Root slot.
-   * Either a string to use a HTML element or a component.
-   * This is equivalent to `components.Root`. If both are provided, the `component` is used.
-   */
-  component?: React.ElementType;
-  /**
    * The components used for each slot inside the Button.
    * Either a string to use a HTML element or a component.
    * @default {}
@@ -45,7 +39,14 @@ export interface ButtonUnstyledOwnProps extends Omit<UseButtonParameters, 'ref'>
 
 export type ButtonUnstyledProps<
   D extends React.ElementType = ButtonUnstyledTypeMap['defaultComponent'],
-> = OverrideProps<ButtonUnstyledTypeMap<{}, D>, D>;
+> = OverrideProps<ButtonUnstyledTypeMap<{}, D>, D> & {
+  /**
+   * The component used for the Root slot.
+   * Either a string to use a HTML element or a component.
+   * This is equivalent to `components.Root`. If both are provided, the `component` is used.
+   */
+  component?: D;
+};
 
 export interface ButtonUnstyledTypeMap<P = {}, D extends React.ElementType = 'button'> {
   props: P & ButtonUnstyledOwnProps;

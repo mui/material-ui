@@ -19,12 +19,6 @@ export interface SelectUnstyledCommonProps {
   children?: React.ReactNode;
   className?: string;
   /**
-   * The component used for the Root slot.
-   * Either a string to use a HTML element or a component.
-   * This is equivalent to `components.Root`. If both are provided, the `component` is used.
-   */
-  component?: React.ElementType;
-  /**
    * If `true`, the select is disabled.
    * @default false
    */
@@ -114,7 +108,14 @@ export interface SelectUnstyledTypeMap<
 export type SelectUnstyledProps<
   TValue extends {},
   D extends React.ElementType = SelectUnstyledTypeMap<TValue>['defaultComponent'],
-> = OverrideProps<SelectUnstyledTypeMap<TValue, {}, D>, D>;
+> = OverrideProps<SelectUnstyledTypeMap<TValue, {}, D>, D> & {
+  /**
+   * The component used for the Root slot.
+   * Either a string to use a HTML element or a component.
+   * This is equivalent to `components.Root`. If both are provided, the `component` is used.
+   */
+  component?: D;
+};
 
 // OverridableComponent cannot be used below as SelectUnstyled's props are generic.
 export interface SelectUnstyledType {

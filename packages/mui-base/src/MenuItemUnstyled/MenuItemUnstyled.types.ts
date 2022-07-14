@@ -19,12 +19,6 @@ export interface MenuItemUnstyledOwnProps {
    */
   disabled?: boolean;
   /**
-   * The component used for the Root slot.
-   * Either a string to use a HTML element or a component.
-   * This is equivalent to `components.Root`. If both are provided, the `component` is used.
-   */
-  component?: React.ElementType;
-  /**
    * The components used for each slot inside the MenuItem.
    * Either a string to use a HTML element or a component.
    * @default {}
@@ -57,4 +51,11 @@ export interface MenuItemUnstyledTypeMap<P = {}, D extends React.ElementType = '
 
 export type MenuItemUnstyledProps<
   D extends React.ElementType = MenuItemUnstyledTypeMap['defaultComponent'],
-> = OverrideProps<MenuItemUnstyledTypeMap<{}, D>, D>;
+> = OverrideProps<MenuItemUnstyledTypeMap<{}, D>, D> & {
+  /**
+   * The component used for the Root slot.
+   * Either a string to use a HTML element or a component.
+   * This is equivalent to `components.Root`. If both are provided, the `component` is used.
+   */
+  component?: D;
+};

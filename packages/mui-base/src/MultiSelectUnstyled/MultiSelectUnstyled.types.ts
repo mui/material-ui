@@ -75,7 +75,14 @@ export interface MultiSelectUnstyledTypeMap<
 export type MultiSelectUnstyledProps<
   TValue extends {},
   D extends React.ElementType = MultiSelectUnstyledTypeMap<TValue>['defaultComponent'],
-> = OverrideProps<MultiSelectUnstyledTypeMap<TValue, {}, D>, D>;
+> = OverrideProps<MultiSelectUnstyledTypeMap<TValue, {}, D>, D> & {
+  /**
+   * The component used for the Root slot.
+   * Either a string to use a HTML element or a component.
+   * This is equivalent to `components.Root`. If both are provided, the `component` is used.
+   */
+  component?: D;
+};
 
 // OverridableComponent cannot be used below as MultiSelectUnstyled's props are generic.
 export interface MultiSelectUnstyledType {
