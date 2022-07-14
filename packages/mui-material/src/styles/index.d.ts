@@ -126,4 +126,6 @@ export type {
   CssVarsThemeOptions,
   CssVarsTheme,
   ThemeVars,
+  ThemeCssVar,
+  ThemeCssVarOverrides,
 } from './experimental_extendTheme';

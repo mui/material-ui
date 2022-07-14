@@ -1,4 +1,7 @@
-// export * from './types';
+// reexports from system for module augmentation
+export type { BreakpointOverrides } from '@mui/system';
+
+// Joy typings
 export type { ColorSchemeOverrides, SupportedColorScheme } from './types/colorScheme';
 export type {
   ColorSystem,
@@ -51,7 +54,13 @@ export type {
   Variants,
   VariantProp,
 } from './types/variants';
-export type { Theme, ThemeVars, ThemeScales, ThemeCSSVar } from './types/theme';
+export type {
+  Theme,
+  ThemeVars,
+  ThemeScales,
+  ThemeCssVar,
+  ThemeCssVarOverrides,
+} from './types/theme';
 export {
   CssVarsProvider,
   useColorScheme,

@@ -36,6 +36,7 @@ import { ChipDeleteProps, ChipDeleteSlot } from '../ChipDelete/ChipDeleteProps';
 import { SliderProps, SliderSlot } from '../Slider/SliderProps';
 import { RadioProps, RadioSlot } from '../Radio/RadioProps';
 import { RadioGroupProps, RadioGroupSlot } from '../RadioGroup/RadioGroupProps';
+import { GridProps, GridSlot } from '../Grid/GridProps';
 
 export type OverridesStyleRules<
   ClassKey extends string = string,
@@ -120,6 +121,10 @@ export interface Components<Theme = unknown> {
   JoyFormLabel?: {
     defaultProps?: Partial<FormLabelProps>;
     styleOverrides?: OverridesStyleRules<FormLabelSlot, FormLabelProps, Theme>;
+  };
+  JoyGrid?: {
+    defaultProps?: Partial<GridProps>;
+    styleOverrides?: OverridesStyleRules<GridSlot, GridProps, Theme>;
   };
   JoyIconButton?: {
     defaultProps?: Partial<IconButtonProps>;

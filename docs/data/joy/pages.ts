@@ -1,7 +1,7 @@
 const pages = [
   {
     pathname: '/joy-ui/getting-started',
-    scopePathnames: ['/joy-ui/core-features'],
+    scopePathnames: ['/joy-ui/main-features'],
     icon: 'DescriptionIcon',
     children: [
       { pathname: '/joy-ui/getting-started/overview' },
@@ -75,7 +75,13 @@ const pages = [
     pathname: '/joy-ui/guides',
     title: 'How To Guides',
     icon: 'VisibilityIcon',
-    children: [{ pathname: '/joy-ui/guides/applying-dark-mode', title: 'Applying dark mode' }],
+    children: [
+      { pathname: '/joy-ui/guides/applying-dark-mode', title: 'Applying dark mode' },
+      {
+        pathname: '/joy-ui/guides/using-joy-ui-and-material-ui-together',
+        title: 'Joy UI and Material UI together',
+      },
+    ],
   },
 ];
 

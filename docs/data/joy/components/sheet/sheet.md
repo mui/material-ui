@@ -14,7 +14,7 @@ It's a sibling to the [`Box`](/system/react-box/) component, and equivalent to M
 
 {{"demo": "SheetUsage.js", "hideToolbar": true}}
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Component
 

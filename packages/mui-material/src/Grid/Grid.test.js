@@ -6,7 +6,7 @@ import defaultTheme from '@mui/material/styles/defaultTheme';
 import Grid, { gridClasses as classes } from '@mui/material/Grid';
 import { generateGrid, generateRowGap, generateColumnGap, generateDirection } from './Grid';
 
-describe('<Grid />', () => {
+describe('Material UI <Grid />', () => {
   const { render } = createRenderer();
 
   describeConformance(<Grid />, () => ({
