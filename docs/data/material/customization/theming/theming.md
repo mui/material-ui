@@ -77,7 +77,18 @@ The community has built great tools to build a theme:
 
 ## Accessing the theme in a component
 
-You [can access](/system/styles/advanced/#accessing-the-theme-in-a-component) the theme variables inside your React components.
+You [can access](/system/styles/advanced/#accessing-the-theme-in-a-component) the theme variables inside your functional React components using the `useTheme` hook:
+
+```jsx
+import { useTheme } from '@mui/styles';
+
+function DeepChild() {
+  const theme = useTheme();
+  return <span>{`spacing ${theme.spacing}`}</span>;
+}
+```
+
+{{"demo": "UseTheme.js"}}
 
 ## Nesting the theme
 
