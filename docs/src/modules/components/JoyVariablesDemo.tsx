@@ -89,16 +89,16 @@ export default function JoyVariablesDemo(props: {
   return (
     <Box
       sx={{
-        m: -1.5,
+        m: 0,
         flexGrow: 1,
         maxWidth: 'calc(100% + 24px)',
         display: 'flex',
         flexDirection: { xs: 'column', sm: 'row' },
         flexWrap: 'wrap',
-        gap: 1.5,
+        gap: 2,
         '& .markdown-body pre': {
           margin: 0,
-          borderRadius: 'xs',
+          borderRadius: 'sm',
         },
       }}
     >
@@ -132,14 +132,14 @@ export default function JoyVariablesDemo(props: {
           minWidth: 0,
           flexBasis: 240,
           flexGrow: 1,
-          borderRadius: 'xs',
+          borderRadius: 'sm',
         }}
       >
         <List component="div" sx={{ '--List-padding': '1rem', '--List-divider-gap': '0px' }}>
           <Box
             sx={{ mb: 2, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
           >
-            <Typography fontWeight="lg">CSS variables</Typography>
+            <Typography fontWeight="lg">CSS Variables</Typography>
             <IconButton
               aria-label="Reset all"
               variant="outlined"

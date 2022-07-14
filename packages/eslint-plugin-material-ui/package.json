@@ -8,7 +8,7 @@
     "emoji-regex": "^10.1.0"
   },
   "devDependencies": {
-    "@types/eslint": "^8.4.3",
+    "@types/eslint": "^8.4.5",
     "@typescript-eslint/parser": "^5.27.1"
   },
   "scripts": {

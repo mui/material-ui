@@ -6,6 +6,7 @@ import {
   createVariant,
   createContainedOverrides,
 } from './variantUtils';
+import { createGetCssVar } from './extendTheme';
 
 describe('variant utils', () => {
   it('isVariantPalette', () => {
@@ -302,28 +303,22 @@ describe('variant utils', () => {
   describe('createVariant', () => {
     it('should only create style with properties from palette variables', () => {
       const result = createVariant('outlinedActive', {
+        getCssVar: createGetCssVar('joy'),
         palette: {
           primary: {
             outlinedActiveBorder: 'some-color',
             outlinedActiveBg: null, // background-color will not be created
           },
         },
-        vars: {
-          palette: {
-            primary: {
-              outlinedActiveBorder: 'var(--any-token)',
-              outlinedActiveBg: 'var(--any-token)',
-            },
-          },
-        },
       });
       expect(result.primary).to.deep.include({
-        borderColor: 'var(--any-token)',
+        borderColor: 'var(--joy-palette-primary-outlinedActiveBorder)',
       });
     });
 
     it('automatically create variant style if the variable is in the correct format', () => {
       const theme = {
+        getCssVar: createGetCssVar('joy'),
         palette: {
           customColor: {
             softColor: 'some-color',
@@ -331,26 +326,17 @@ describe('variant utils', () => {
             softHoverColor: 'some-color',
           },
         },
-        vars: {
-          palette: {
-            customColor: {
-              softColor: 'var(--any-token)',
-              softBg: 'var(--any-token)',
-              softHoverColor: 'var(--any-token)',
-            },
-          },
-        },
       };
       const softResult = createVariant('soft', theme);
       expect(softResult.customColor).to.deep.include({
-        color: 'var(--any-token)',
-        backgroundColor: 'var(--any-token)',
+        color: 'var(--joy-palette-customColor-softColor)',
+        backgroundColor: 'var(--joy-palette-customColor-softBg)',
       });
 
       const softHoverResult = createVariant('softHover', theme);
       expect(softHoverResult.customColor).to.deep.include({
         cursor: 'pointer',
-        color: 'var(--any-token)',
+        color: 'var(--joy-palette-customColor-softHoverColor)',
       });
     });
 
@@ -378,6 +364,7 @@ describe('variant utils', () => {
     it('automatically create solid overrides if the variable is in the correct format', () => {
       const result = createContainedOverrides({
         prefix: 'foo',
+        getCssVar: createGetCssVar('foo'),
         palette: {
           primary: {
             plainColor: '',

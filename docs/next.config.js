@@ -65,12 +65,6 @@ module.exports = {
     ) {
       const [nextExternals, ...externals] = config.externals;
 
-      if (externals.length > 0) {
-        // currently not the case but other next plugins might introduce additional
-        // rules for externals. We would need to handle those in the callback
-        throw new Error('There are other externals in the webpack config.');
-      }
-
       config.externals = [
         (ctx, callback) => {
           const { request } = ctx;
@@ -89,6 +83,7 @@ module.exports = {
           }
           return nextExternals(ctx, callback);
         },
+        ...externals,
       ];
     }
 

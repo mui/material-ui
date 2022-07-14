@@ -102,7 +102,7 @@ export default function createEmotionCache() {
 }
 ```
 
-With this we are creating new Emotion cache instance and using this to extract the critical styles for the html as well.
+With this we are creating a new Emotion cache instance and using this to extract the critical styles for the html as well.
 
 We will see how this is passed along in the `renderFullPage` function.
 

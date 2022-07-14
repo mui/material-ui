@@ -112,13 +112,17 @@ You can use the `.` notation to get the value of an object.
 ## Custom prefix
 
 By default, the generated CSS variables are prefixed with `joy`.
-If you want to change the prefix to something else, provide the `prefix` prop to the `CssVarsProvider`:
+If you want to change the prefix to something else, provide the `cssVarPrefix` to the `extendTheme`:
 
 ```jsx
-import { CssVarsProvider } from '@mui/joy/styles';
+import { CssVarsProvider, extendTheme } from '@mui/joy/styles';
 
 function App() {
-  return <CssVarsProvider prefix="company">...</CssVarsProvider>;
+  return (
+    <CssVarsProvider theme={extendTheme({ cssVarPrefix: 'company' })}>
+      ...
+    </CssVarsProvider>
+  );
 }
 ```
 
@@ -131,7 +135,7 @@ The generated CSS variables will be:
 
 ### Remove the prefix
 
-Specify `""` as a value to `<CssVarsProvider prefix="">`.
+Specify `""` as a value to `extendTheme({ cssVarPrefix: '' })`.
 
 The generated CSS variables will be:
 
