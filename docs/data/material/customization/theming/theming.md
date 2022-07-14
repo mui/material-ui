@@ -80,7 +80,7 @@ The community has built great tools to build a theme:
 You can access the theme variables inside your functional React components using the `useTheme` hook:
 
 ```jsx
-import { useTheme } from '@mui/styles';
+import { useTheme } from '@mui/material/styles';
 
 function DeepChild() {
   const theme = useTheme();
