@@ -156,7 +156,6 @@ declare module '@mui/system' {
 }
 ```
 
-
 ## Prevent scrollbar
 
 If you use grid as a container in a small viewport, you might see a horizontal scrollbar because the negative margin is applied on all sides of the grid container.
