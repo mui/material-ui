@@ -2,7 +2,6 @@ import { deepmerge } from '@mui/utils';
 import type {} from '@mui/material/themeCssVarsAugmentation';
 import ArrowDropDownRounded from '@mui/icons-material/ArrowDropDownRounded';
 import { createTheme, ThemeOptions, Theme, alpha } from '@mui/material/styles';
-import { colorChannel } from '@mui/system';
 
 declare module '@mui/material/styles/createPalette' {
   interface ColorRange {
@@ -484,42 +483,67 @@ export function getThemedComponents(theme: Theme): { components: Theme['componen
         styleOverrides: {
           paper: {
             minWidth: 160,
-            color: theme.palette.text.secondary,
+            color: (theme.vars || theme).palette.text.secondary,
             backgroundImage: 'none',
-            backgroundColor:
-              theme.palette.mode === 'dark'
-                ? theme.palette.primaryDark[900]
-                : theme.palette.background.paper,
-            border: `1px solid ${
-              theme.palette.mode === 'dark'
-                ? theme.palette.primaryDark[700]
-                : theme.palette.grey[200]
-            }`,
+            border: '1px solid',
+            ...(!theme.vars
+              ? {
+                  backgroundColor:
+                    theme.palette.mode === 'dark'
+                      ? theme.palette.primaryDark[900]
+                      : theme.palette.background.paper,
+                  borderColor:
+                    theme.palette.mode === 'dark'
+                      ? theme.palette.primaryDark[700]
+                      : theme.palette.grey[200],
+                }
+              : {
+                  backgroundColor: theme.vars.palette.background.paper,
+                  borderColor: theme.vars.palette.grey[200],
+                  [theme.getColorSchemeSelector('dark')]: {
+                    backgroundColor: theme.vars.palette.primaryDark[900],
+                    borderColor: theme.vars.palette.primaryDark[700],
+                  },
+                }),
             '& .MuiMenuItem-root': {
               fontSize: theme.typography.pxToRem(14),
               fontWeight: 500,
-              '&:hover': {
-                backgroundColor:
-                  theme.palette.mode === 'dark'
-                    ? alpha(theme.palette.primaryDark[700], 0.4)
-                    : theme.palette.grey[50],
-              },
-              '&:focus': {
-                backgroundColor:
-                  theme.palette.mode === 'dark'
-                    ? alpha(theme.palette.primaryDark[700], 0.4)
-                    : theme.palette.grey[50],
+              '&:hover, &:focus': {
+                ...(!theme.vars
+                  ? {
+                      backgroundColor:
+                        theme.palette.mode === 'dark'
+                          ? alpha(theme.palette.primaryDark[700], 0.4)
+                          : theme.palette.grey[50],
+                    }
+                  : {
+                      backgroundColor: theme.vars.palette.grey[50],
+                      [theme.getColorSchemeSelector('dark')]: {
+                        backgroundColor: alpha(theme.palette.primaryDark[700], 0.4),
+                      },
+                    }),
               },
               '&.Mui-selected': {
                 fontWeight: 500,
-                color:
-                  theme.palette.mode === 'dark'
-                    ? theme.palette.primary[300]
-                    : theme.palette.primary[600],
-                backgroundColor:
-                  theme.palette.mode === 'dark'
-                    ? theme.palette.primaryDark[700]
-                    : alpha(theme.palette.primary[100], 0.6),
+                ...(!theme.vars
+                  ? {
+                      color:
+                        theme.palette.mode === 'dark'
+                          ? theme.palette.primary[300]
+                          : theme.palette.primary[600],
+                      backgroundColor:
+                        theme.palette.mode === 'dark'
+                          ? theme.palette.primaryDark[700]
+                          : alpha(theme.palette.primary[100], 0.6),
+                    }
+                  : {
+                      color: theme.vars.palette.primary[600],
+                      backgroundColor: alpha(theme.palette.primary[100], 0.6),
+                      [theme.getColorSchemeSelector('dark')]: {
+                        color: theme.vars.palette.primary[300],
+                        backgroundColor: theme.vars.palette.primaryDark[700],
+                      },
+                    }),
               },
             },
           },
