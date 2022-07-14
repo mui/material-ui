@@ -78,9 +78,11 @@ export default function WhatToExpect() {
               </Typography>
             </Box>
             <Typography variant="body2" color="text.secondary">
-              With your purchase you are entitled to technical support (for MUI X components), and access to
-              new versions for the duration of your subscription. You can{' '}
-              <Link href="https://mui.com/x/introduction/support/">learn more about support</Link>{' '}
+              With your purchase you receive professional support (for to MUI X components) and access to new versions for the duration of
+              your subscription. You can{' '}
+              <Link href="https://mui.com/x/introduction/support/">
+                learn more about support
+              </Link>{' '}
               in the docs. Note that, except for critical issues, e.g. security, we release bug
               fixes, and other improvements on top of the latest version, instead of patching older
               versions.
