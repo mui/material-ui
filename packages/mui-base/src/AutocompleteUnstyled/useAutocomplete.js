@@ -309,7 +309,9 @@ export default function useAutocomplete(props) {
   }
 
   const setHighlightedIndex = useEventCallback(({ event, index, reason = 'auto' }) => {
-    highlightedIndexRef.current = index;
+    if (reason !== 'mouse') {
+      highlightedIndexRef.current = index;
+    }
 
     // does the index exist?
     if (index === -1) {
@@ -326,9 +328,8 @@ export default function useAutocomplete(props) {
       return;
     }
 
-    const prev = listboxRef.current.querySelector('[role="option"].Mui-focused');
-    if (prev) {
-      prev.classList.remove('Mui-focused');
+    const prev = listboxRef.current.querySelector('[role="option"].Mui-focusVisible');
+    if (prev && reason !== 'mouse') {
       prev.classList.remove('Mui-focusVisible');
     }
 
@@ -350,9 +351,10 @@ export default function useAutocomplete(props) {
       return;
     }
 
-    option.classList.add('Mui-focused');
-    if (reason === 'keyboard') {
+    if (reason !== 'mouse') {
       option.classList.add('Mui-focusVisible');
+    } else {
+      option.classList.add('Mui-focused');
     }
 
     // Scroll active descendant into view.
@@ -905,6 +907,10 @@ export default function useAutocomplete(props) {
     }
   };
 
+  const handleOptionMouseLeave = (event) => {
+    event.currentTarget.classList.remove('Mui-focused');
+  };
+
   const handleOptionMouseOver = (event) => {
     setHighlightedIndex({
       event,
@@ -1078,6 +1084,7 @@ export default function useAutocomplete(props) {
         tabIndex: -1,
         role: 'option',
         id: `${id}-option-${index}`,
+        onMouseLeave: handleOptionMouseLeave,
         onMouseOver: handleOptionMouseOver,
         onClick: handleOptionClick,
         onTouchStart: handleOptionTouchStart,

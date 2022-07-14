@@ -21,7 +21,7 @@ import { paperClasses } from '@mui/material/Paper';
 import { iconButtonClasses } from '@mui/material/IconButton';
 
 function checkHighlightIs(listbox, expected) {
-  const focused = listbox.querySelector(`.${classes.focused}`);
+  const focused = listbox.querySelector(`.${classes.focusVisible}`);
 
   if (expected) {
     if (focused) {
@@ -1606,6 +1606,35 @@ describe('<Autocomplete />', () => {
       expect(handleChange.args[0][1]).to.deep.equal([options[0]]);
       fireEvent.keyDown(textbox, { key: 'Enter' });
       expect(handleChange.callCount).to.equal(1);
+    });
+
+    it('should select keyboard highlighted option when enter is pressed', () => {
+      render(
+        <Autocomplete
+          autoSelect
+          openOnFocus
+          options={['one', 'two', 'three']}
+          renderInput={(params) => <TextField {...params} />}
+        />,
+      );
+
+      const textbox = screen.getByRole('combobox');
+
+      fireEvent.click(textbox);
+
+      const listItemOne = screen.getByText('one');
+      const listItemTwo = screen.getByText('two');
+
+      fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+
+      fireEvent.mouseOver(listItemTwo);
+
+      expect(listItemOne).to.have.class(classes.focusVisible);
+      expect(listItemTwo).to.have.class(classes.focused);
+
+      fireEvent.keyDown(textbox, { key: 'Enter' });
+
+      expect(document.activeElement.value).to.equal('one');
     });
   });
 
