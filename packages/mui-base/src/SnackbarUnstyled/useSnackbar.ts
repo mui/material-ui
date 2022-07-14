@@ -48,7 +48,7 @@ export default function useSnackbar(parameters: UseSnackbarParameters) {
     return () => {
       document.removeEventListener('keydown', handleKeyDown);
     };
-  }, [exited, open, onClose]);
+  }, [open, onClose]);
 
   const handleClose = useEventCallback(
     (event: Event | React.SyntheticEvent<any, Event> | null, reason: SnackbarCloseReason) => {
