@@ -1,6 +1,5 @@
 import * as React from 'react';
 import Head from 'docs/src/modules/components/Head';
-import { getInitColorSchemeScript } from '@mui/material/styles';
 import NoSsr from '@mui/material/NoSsr';
 import Divider from '@mui/material/Divider';
 import AppHeader from 'docs/src/layouts/AppHeader';
@@ -23,9 +22,7 @@ export default function Home() {
       <Head
         title="MUI: The React component library you always wanted"
         description="MUI provides a simple, customizable, and accessible library of React components. Follow your own design system, or start with Material Design. You will develop React applications faster."
-      >
-        {getInitColorSchemeScript({ enableSystem: true })}
-      </Head>
+      />
       <NoSsr>
         <NewsletterToast />
       </NoSsr>
