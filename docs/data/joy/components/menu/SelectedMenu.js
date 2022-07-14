@@ -11,7 +11,7 @@ export default function SelectedMenu() {
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
-  const handleClose = (index) => () => {
+  const createHandleClose = (index) => () => {
     setAnchorEl(null);
     if (typeof index === 'number') {
       setSelectedIndex(index);
@@ -36,7 +36,7 @@ export default function SelectedMenu() {
         id="selected-menu"
         anchorEl={anchorEl}
         open={open}
-        onClose={handleClose}
+        onClose={createHandleClose()}
         componentsProps={{
           listbox: {
             'aria-labelledby': 'selected-button',
@@ -45,19 +45,19 @@ export default function SelectedMenu() {
       >
         <MenuItem
           {...(selectedIndex === 0 && { selected: true, variant: 'soft' })}
-          onClick={handleClose(0)}
+          onClick={createHandleClose(0)}
         >
           Random project
         </MenuItem>
         <MenuItem
           {...(selectedIndex === 1 && { selected: true, variant: 'soft' })}
-          onClick={handleClose(1)}
+          onClick={createHandleClose(1)}
         >
           Production - web
         </MenuItem>
         <MenuItem
           {...(selectedIndex === 2 && { selected: true, variant: 'soft' })}
-          onClick={handleClose(2)}
+          onClick={createHandleClose(2)}
         >
           Staging - web
         </MenuItem>
