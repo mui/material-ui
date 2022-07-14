@@ -88,8 +88,6 @@ function DeepChild() {
 }
 ```
 
-{{"demo": "UseTheme.js"}}
-
 ## Nesting the theme
 
 [You can nest](/system/styles/advanced/#theme-nesting) multiple theme providers.
