@@ -582,10 +582,19 @@ export function getThemedComponents(theme: Theme): { components: Theme['componen
       MuiDivider: {
         styleOverrides: {
           root: {
-            borderColor:
-              theme.palette.mode === 'dark'
-                ? alpha(theme.palette.primary[100], 0.08)
-                : theme.palette.grey[100],
+            ...(!theme.vars
+              ? {
+                  borderColor:
+                    theme.palette.mode === 'dark'
+                      ? alpha(theme.palette.primary[100], 0.08)
+                      : theme.palette.grey[100],
+                }
+              : {
+                  borderColor: theme.vars.palette.grey[100],
+                  [theme.getColorSchemeSelector('dark')]: {
+                    borderColor: alpha(theme.palette.primary[100], 0.08),
+                  },
+                }),
           },
         },
       },
@@ -595,19 +604,34 @@ export function getThemedComponents(theme: Theme): { components: Theme['componen
         },
         styleOverrides: {
           root: {
-            color:
-              theme.palette.mode === 'dark'
-                ? theme.palette.primary[300]
-                : theme.palette.primary[600],
+            ...(!theme.vars
+              ? {
+                  color:
+                    theme.palette.mode === 'dark'
+                      ? theme.palette.primary[300]
+                      : theme.palette.primary[600],
+                  '&:hover': {
+                    color:
+                      theme.palette.mode === 'dark'
+                        ? theme.palette.primary[200]
+                        : theme.palette.primary[700],
+                  },
+                }
+              : {
+                  color: theme.vars.palette.primary[600],
+                  [theme.getColorSchemeSelector('dark')]: {
+                    color: theme.vars.palette.primary[300],
+                  },
+                  '&:hover': {
+                    color: theme.vars.palette.primary[700],
+                    [theme.getColorSchemeSelector('dark')]: {
+                      color: theme.vars.palette.primary[200],
+                    },
+                  },
+                }),
             fontWeight: 700,
             display: 'inline-flex',
             alignItems: 'center',
-            '&:hover': {
-              color:
-                theme.palette.mode === 'dark'
-                  ? theme.palette.primary[200]
-                  : theme.palette.primary[700],
-            },
             '&.MuiTypography-body1 > svg': {
               marginTop: 2,
             },
