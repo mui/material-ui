@@ -647,78 +647,162 @@ export function getThemedComponents(theme: Theme): { components: Theme['componen
             fontWeight: 500,
             ...(variant === 'outlined' &&
               color === 'default' && {
-                color:
-                  theme.palette.mode === 'dark' ? theme.palette.grey[300] : theme.palette.grey[900],
+                ...(!theme.vars
+                  ? {
+                      color:
+                        theme.palette.mode === 'dark'
+                          ? theme.palette.grey[300]
+                          : theme.palette.grey[900],
+                      borderColor:
+                        theme.palette.mode === 'dark'
+                          ? alpha(theme.palette.grey[100], 0.1)
+                          : theme.palette.grey[200],
+                      '&:hover': {
+                        color:
+                          theme.palette.mode === 'dark'
+                            ? theme.palette.grey[300]
+                            : theme.palette.grey[900],
+                      },
+                    }
+                  : {
+                      color: theme.vars.palette.grey[900],
+                      borderColor: theme.vars.palette.grey[200],
+                      [theme.getColorSchemeSelector('dark')]: {
+                        color: theme.vars.palette.grey[300],
+                        borderColor: alpha(theme.palette.grey[100], 0.1),
+                      },
+                      '&:hover': {
+                        color: theme.vars.palette.grey[900],
+                        [theme.getColorSchemeSelector('dark')]: {
+                          color: theme.vars.palette.grey[300],
+                        },
+                      },
+                    }),
                 backgroundColor: 'transparent',
-                borderColor:
-                  theme.palette.mode === 'dark'
-                    ? alpha(theme.palette.grey[100], 0.1)
-                    : theme.palette.grey[200],
-                '&:hover': {
-                  color:
-                    theme.palette.mode === 'dark'
-                      ? theme.palette.grey[300]
-                      : theme.palette.grey[900],
-                },
               }),
             ...(variant === 'outlined' &&
               color === 'primary' && {
                 '&:hover': {
-                  color: theme.palette.primary[500],
+                  color: (theme.vars || theme).palette.primary[500],
                 },
               }),
             ...(variant === 'filled' &&
               color === 'default' && {
                 border: '1px solid transparent',
-                color: theme.palette.mode === 'dark' ? '#fff' : theme.palette.primary[700],
-                backgroundColor:
-                  theme.palette.mode === 'dark'
-                    ? alpha(theme.palette.primaryDark[500], 0.8)
-                    : alpha(theme.palette.primary[100], 0.5),
-                '&:hover': {
-                  backgroundColor:
-                    theme.palette.mode === 'dark'
-                      ? theme.palette.primaryDark[600]
-                      : theme.palette.primary[100],
-                },
+                ...(!theme.vars
+                  ? {
+                      color: theme.palette.mode === 'dark' ? '#fff' : theme.palette.primary[700],
+                      backgroundColor:
+                        theme.palette.mode === 'dark'
+                          ? alpha(theme.palette.primaryDark[500], 0.8)
+                          : alpha(theme.palette.primary[100], 0.5),
+                      '&:hover': {
+                        backgroundColor:
+                          theme.palette.mode === 'dark'
+                            ? theme.palette.primaryDark[600]
+                            : theme.palette.primary[100],
+                      },
+                    }
+                  : {
+                      color: theme.vars.palette.primary[700],
+                      backgroundColor: alpha(theme.palette.primary[100], 0.5),
+                      [theme.getColorSchemeSelector('dark')]: {
+                        color: '#fff',
+                        backgroundColor: alpha(theme.palette.primaryDark[500], 0.8),
+                      },
+                      '&:hover': {
+                        backgroundColor: theme.vars.palette.primary[100],
+                        [theme.getColorSchemeSelector('dark')]: {
+                          backgroundColor: theme.vars.palette.primaryDark[600],
+                        },
+                      },
+                    }),
               }),
             // for labelling product in the search
             // @ts-ignore internal repo module augmentation issue
             ...(variant === 'light' && {
               ...(color === 'default' && {
-                color:
-                  theme.palette.mode === 'dark'
-                    ? theme.palette.primary[200]
-                    : theme.palette.primary[700],
-                backgroundColor:
-                  theme.palette.mode === 'dark'
-                    ? alpha(theme.palette.primaryDark[700], 0.5)
-                    : alpha(theme.palette.primary[100], 0.3),
+                ...(!theme.vars
+                  ? {
+                      color:
+                        theme.palette.mode === 'dark'
+                          ? theme.palette.primary[200]
+                          : theme.palette.primary[700],
+                      backgroundColor:
+                        theme.palette.mode === 'dark'
+                          ? alpha(theme.palette.primaryDark[700], 0.5)
+                          : alpha(theme.palette.primary[100], 0.3),
+                    }
+                  : {
+                      color: theme.vars.palette.primary[700],
+                      backgroundColor: alpha(theme.palette.primary[100], 0.3),
+                      [theme.getColorSchemeSelector('dark')]: {
+                        color: theme.vars.palette.primary[200],
+                        backgroundColor: alpha(theme.palette.primaryDark[700], 0.5),
+                      },
+                    }),
               }),
               ...(color === 'warning' && {
-                color: theme.palette.mode === 'dark' ? '#fff' : theme.palette.warning[900],
-                backgroundColor:
-                  theme.palette.mode === 'dark'
-                    ? theme.palette.warning[900]
-                    : theme.palette.warning[100],
+                ...(!theme.vars
+                  ? {
+                      color: theme.palette.mode === 'dark' ? '#fff' : theme.palette.warning[900],
+                      backgroundColor:
+                        theme.palette.mode === 'dark'
+                          ? theme.palette.warning[900]
+                          : theme.palette.warning[100],
+                    }
+                  : {
+                      color: theme.vars.palette.warning[900],
+                      backgroundColor: theme.vars.palette.warning[100],
+                      [theme.getColorSchemeSelector('dark')]: {
+                        color: '#fff',
+                        backgroundColor: theme.vars.palette.warning[900],
+                      },
+                    }),
               }),
               ...(color === 'success' && {
-                color: theme.palette.mode === 'dark' ? '#fff' : theme.palette.success[900],
-                backgroundColor:
-                  theme.palette.mode === 'dark'
-                    ? theme.palette.success[900]
-                    : theme.palette.success[100],
+                ...(!theme.vars
+                  ? {
+                      color: theme.palette.mode === 'dark' ? '#fff' : theme.palette.success[900],
+                      backgroundColor:
+                        theme.palette.mode === 'dark'
+                          ? theme.palette.success[900]
+                          : theme.palette.success[100],
+                    }
+                  : {
+                      color: theme.vars.palette.success[900],
+                      backgroundColor: theme.vars.palette.success[100],
+                      [theme.getColorSchemeSelector('dark')]: {
+                        color: '#fff',
+                        backgroundColor: theme.vars.palette.success[900],
+                      },
+                    }),
               }),
             }),
           }),
           deleteIcon: {
-            color: theme.palette.mode === 'dark' ? '#fff' : theme.palette.primary[700],
-            '&:hover': {
-              color:
-                theme.palette.mode === 'dark'
-                  ? theme.palette.grey[100]
-                  : theme.palette.primary[900],
-            },
+            ...(!theme.vars
+              ? {
+                  color: theme.palette.mode === 'dark' ? '#fff' : theme.palette.primary[700],
+                  '&:hover': {
+                    color:
+                      theme.palette.mode === 'dark'
+                        ? theme.palette.grey[100]
+                        : theme.palette.primary[900],
+                  },
+                }
+              : {
+                  color: theme.vars.palette.primary[700],
+                  [theme.getColorSchemeSelector('dark')]: {
+                    color: '#fff',
+                  },
+                  '&:hover': {
+                    color: theme.vars.palette.primary[900],
+                    [theme.getColorSchemeSelector('dark')]: {
+                      color: theme.vars.palette.grey[100],
+                    },
+                  },
+                }),
           },
         },
       },
@@ -815,22 +899,31 @@ export function getThemedComponents(theme: Theme): { components: Theme['componen
         styleOverrides: {
           root: {
             padding: theme.spacing(1, 2),
-            borderColor: theme.palette.divider,
+            borderColor: (theme.vars || theme).palette.divider,
           },
           head: {
-            color: theme.palette.text.primary,
+            color: (theme.vars || theme).palette.text.primary,
             fontWeight: 700,
           },
           body: {
-            color: theme.palette.text.secondary,
+            color: (theme.vars || theme).palette.text.secondary,
           },
         },
       },
       MuiToggleButtonGroup: {
         styleOverrides: {
           root: {
-            backgroundColor:
-              theme.palette.mode === 'dark' ? theme.palette.primaryDark[900] : '#fff',
+            ...(!theme.vars
+              ? {
+                  backgroundColor:
+                    theme.palette.mode === 'dark' ? theme.palette.primaryDark[900] : '#fff',
+                }
+              : {
+                  backgroundColor: '#fff',
+                  [theme.getColorSchemeSelector('dark')]: {
+                    backgroundColor: theme.vars.palette.primaryDark[900],
+                  },
+                }),
           },
         },
       },
