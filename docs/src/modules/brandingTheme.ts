@@ -552,9 +552,20 @@ export function getThemedComponents(theme: Theme): { components: Theme['componen
       MuiPopover: {
         styleOverrides: {
           paper: {
-            boxShadow: `0px 4px 20px ${
-              theme.palette.mode === 'dark' ? 'rgba(0, 0, 0, 0.5)' : 'rgba(170, 180, 190, 0.3)'
-            }`,
+            ...(!theme.vars
+              ? {
+                  boxShadow: `0px 4px 20px ${
+                    theme.palette.mode === 'dark'
+                      ? 'rgba(0, 0, 0, 0.5)'
+                      : 'rgba(170, 180, 190, 0.3)'
+                  }`,
+                }
+              : {
+                  boxShadow: `0px 4px 20px rgba(170, 180, 190, 0.3)`,
+                  [theme.getColorSchemeSelector('dark')]: {
+                    boxShadow: `0px 4px 20px rgba(0, 0, 0, 0.5)`,
+                  },
+                }),
           },
         },
       },
