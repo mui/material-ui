@@ -56,6 +56,7 @@ const theme = extendTheme({
         text: {
           primary: grey[900],
           secondary: grey[700],
+          display1: 'var(--mui-palette-primaryDark-900)',
           display2: 'var(--mui-palette-primaryDark-700)',
           h5: 'var(--mui-palette-primary-main)',
         },
@@ -86,7 +87,7 @@ const theme = extendTheme({
         text: {
           primary: '#fff',
           secondary: grey[400],
-          display1: 'var(--mui-palette-primaryDark-900)',
+          display1: '#fff',
           display2: 'var(--mui-palette-grey-100)',
           h5: 'var(--mui-palette-primary-300)',
         },
