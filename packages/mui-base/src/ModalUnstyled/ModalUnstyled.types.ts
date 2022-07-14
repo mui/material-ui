@@ -144,8 +144,9 @@ export type ExtendModalUnstyled<M extends OverridableTypeMap> = OverridableCompo
 
 export type ModalUnstyledProps<
   D extends React.ElementType = ModalUnstyledTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<ModalUnstyledTypeMap<P, D>, D>;
+> = OverrideProps<ModalUnstyledTypeMap<{}, D>, D> & {
+  component?: D;
+};
 
 export type ModalUnstyledOwnerState = ModalUnstyledProps & {
   closeAfterTransition: boolean;

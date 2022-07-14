@@ -97,7 +97,7 @@ const OptionUnstyled = React.forwardRef(function OptionUnstyled<TValue>(
   });
 
   return <Root {...rootProps}>{children}</Root>;
-});
+}) as OptionUnstyledType;
 
 OptionUnstyled.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
@@ -109,12 +109,10 @@ OptionUnstyled.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
-   * The component used for the Root slot.
+   * The component used for the root node.
    * Either a string to use a HTML element or a component.
-   * This is equivalent to components.Root.
-   * If both are provided, the component is used.
    */
-  component: PropTypes /* @typescript-to-proptypes-ignore */.elementType,
+  component: PropTypes.elementType,
   /**
    * The components used for each slot inside the OptionUnstyled.
    * Either a string to use a HTML element or a component.

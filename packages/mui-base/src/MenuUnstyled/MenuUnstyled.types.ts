@@ -77,11 +77,6 @@ export interface MenuUnstyledTypeMap<P = {}, D extends React.ElementType = 'ul'>
 export type MenuUnstyledProps<
   D extends React.ElementType = MenuUnstyledTypeMap['defaultComponent'],
 > = OverrideProps<MenuUnstyledTypeMap<{}, D>, D> & {
-  /**
-   * The component used for the Root slot.
-   * Either a string to use a HTML element or a component.
-   * This is equivalent to `components.Root`. If both are provided, the `component` is used.
-   */
   component?: D;
 };
 

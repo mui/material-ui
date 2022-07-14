@@ -53,12 +53,6 @@ export type OptionUnstyledProps<
   TValue,
   D extends React.ElementType = OptionUnstyledTypeMap<TValue>['defaultComponent'],
 > = OverrideProps<OptionUnstyledTypeMap<TValue, {}, D>, D> & {
-  /**
-   * The component used for the Root slot.
-   * Either a string to use a HTML element or a component.
-   * This is equivalent to components.Root.
-   * If both are provided, the component is used.
-   */
   component?: D;
 };
 
@@ -66,10 +60,8 @@ export interface OptionUnstyledType {
   <TValue, C extends React.ElementType>(
     props: {
       /**
-       * The component used for the Root slot.
+       * The component used for the root node.
        * Either a string to use a HTML element or a component.
-       * This is equivalent to components.Root.
-       * If both are provided, the component is used.
        */
       component: C;
     } & OverrideProps<OptionUnstyledTypeMap<TValue>, C>,

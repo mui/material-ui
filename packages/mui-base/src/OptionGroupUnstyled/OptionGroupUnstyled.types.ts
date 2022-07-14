@@ -57,12 +57,6 @@ export interface OptionGroupUnstyledTypeMap<P = {}, D extends React.ElementType 
 export type OptionGroupUnstyledProps<
   D extends React.ElementType = OptionGroupUnstyledTypeMap['defaultComponent'],
 > = OverrideProps<OptionGroupUnstyledTypeMap<{}, D>, D> & {
-  /**
-   * The component used for the Root slot.
-   * Either a string to use a HTML element or a component.
-   * This is equivalent to components.Root.
-   * If both are provided, the component is used.
-   */
   component?: D;
 };
 
