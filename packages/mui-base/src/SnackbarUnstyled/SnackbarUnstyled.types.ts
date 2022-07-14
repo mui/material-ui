@@ -1,4 +1,5 @@
 import React from 'react';
+import { TransitionChildren } from 'react-transition-group/Transition';
 import { OverrideProps } from '@mui/types';
 import { ClickAwayListenerProps } from '../ClickAwayListener';
 import { UseSnackbarParameters } from './useSnackbar.types';
@@ -65,5 +66,5 @@ export type SnackbarUnstyledRootSlotProps = {
 export type SnackbarUnstyledTransitionSlotProps = {
   ownerState: SnackbarUnstyledOwnerState;
   className?: string;
-  children?: React.ReactNode;
+  children?: TransitionChildren;
 };

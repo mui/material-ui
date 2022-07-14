@@ -110,6 +110,18 @@ const SnackbarUnstyled = React.forwardRef(function SnackbarUnstyled(
   const transitionProps: WithOptionalOwnerState<SnackbarUnstyledTransitionSlotProps> = useSlotProps(
     {
       elementType: TransitionComponent as React.ElementType,
+      getSlotProps: (otherHandlers) =>
+        getTransitionProps({
+          ...otherHandlers,
+          onEnter:
+            typeof componentsProps.transition === 'function'
+              ? componentsProps.transition?.(ownerState)?.onEnter
+              : componentsProps.transition?.onEnter,
+          onExited:
+            typeof componentsProps.transition === 'function'
+              ? componentsProps.transition?.(ownerState)?.onExited
+              : componentsProps.transition?.onExited,
+        }),
       externalSlotProps: componentsProps.transition,
       ownerState,
     },
@@ -124,21 +136,7 @@ const SnackbarUnstyled = React.forwardRef(function SnackbarUnstyled(
     <ClickAwayListener onClickAway={onClickAway} {...ClickAwayListenerProps}>
       <Root {...rootProps}>
         {TransitionComponent ? (
-          <TransitionComponent
-            {...transitionProps}
-            {...getTransitionProps({
-              onEnter:
-                typeof componentsProps.transition === 'function'
-                  ? componentsProps.transition?.(ownerState)?.onEnter
-                  : componentsProps.transition?.onEnter,
-              onExited:
-                typeof componentsProps.transition === 'function'
-                  ? componentsProps.transition?.(ownerState)?.onExited
-                  : componentsProps.transition?.onExited,
-            })}
-          >
-            {children}
-          </TransitionComponent>
+          <TransitionComponent {...transitionProps}>{children}</TransitionComponent>
         ) : (
           children
         )}
