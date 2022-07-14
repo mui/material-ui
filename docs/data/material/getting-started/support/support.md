@@ -70,7 +70,7 @@ MUI X maintainers focus on solving root issues rather than offering direct suppo
 
 The paid plans offer developers advanced components and extra features that are challenging to find in OSS.
 To provide a similar quality of experience to the one provided by the community for MIT licensed code,
-the developers of MUI  X provide support for the advanced components only.
+the developers of MUI X provide support for the advanced components only.
 Technical support for MUI Core components is **not** included.
 
 The Premium plan provides developers with the highest priority for support tickets.
