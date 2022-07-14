@@ -23,13 +23,6 @@ function ButtonWithCustomRoot(props: ButtonUnstyledProps) {
   return <ButtonUnstyled {...props} components={{ Root: CustomButtonRoot }} />;
 }
 
-function RootWithCustomProp(
-  props: React.HTMLAttributes<HTMLDivElement> & { customVariant: string },
-) {
-  const { customVariant, ...other } = props;
-  return <div {...other} className={`variant-${customVariant}`} />;
-}
-
 const PolymorphicComponentTest = () => {
   const CustomComponent: React.FC<{ stringProp: string; numberProp: number }> = () => <div />;
 
