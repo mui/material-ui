@@ -6,6 +6,7 @@ import {
   SnackbarUnstyledOwnerState,
   SnackbarUnstyledProps,
   SnackbarUnstyledRootSlotProps,
+  SnackbarUnstyledTransitionSlotProps,
   SnackbarUnstyledTypeMap,
 } from './SnackbarUnstyled.types';
 import composeClasses from '../composeClasses';
@@ -106,6 +107,14 @@ const SnackbarUnstyled = React.forwardRef(function SnackbarUnstyled(
     className: classes.root,
   });
 
+  const transitionProps: WithOptionalOwnerState<SnackbarUnstyledTransitionSlotProps> = useSlotProps(
+    {
+      elementType: TransitionComponent as React.ElementType,
+      externalSlotProps: componentsProps.transition,
+      ownerState,
+    },
+  );
+
   // So that we only render active snackbars.
   if (!open && exited) {
     return null;
@@ -116,7 +125,7 @@ const SnackbarUnstyled = React.forwardRef(function SnackbarUnstyled(
       <Root {...rootProps}>
         {TransitionComponent ? (
           <TransitionComponent
-            {...componentsProps.transition}
+            {...transitionProps}
             {...getTransitionProps({
               onEnter:
                 typeof componentsProps.transition === 'function'

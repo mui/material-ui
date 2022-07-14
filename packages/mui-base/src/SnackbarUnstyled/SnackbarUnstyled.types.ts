@@ -61,3 +61,9 @@ export type SnackbarUnstyledRootSlotProps = {
   children?: React.ReactNode;
   ref: React.Ref<any>;
 };
+
+export type SnackbarUnstyledTransitionSlotProps = {
+  ownerState: SnackbarUnstyledOwnerState;
+  className?: string;
+  children?: React.ReactNode;
+};
