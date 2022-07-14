@@ -2,6 +2,7 @@ import { deepmerge } from '@mui/utils';
 import type {} from '@mui/material/themeCssVarsAugmentation';
 import ArrowDropDownRounded from '@mui/icons-material/ArrowDropDownRounded';
 import { createTheme, ThemeOptions, Theme, alpha } from '@mui/material/styles';
+import { colorChannel } from '@mui/system';
 
 declare module '@mui/material/styles/createPalette' {
   interface ColorRange {
@@ -373,7 +374,7 @@ export function getThemedComponents(theme: Theme): { components: Theme['componen
                       '& .MuiButton-endIcon': {
                         color: theme.vars.palette.primary.main,
                         [theme.getColorSchemeSelector('dark')]: {
-                          backgroundColor: theme.vars.palette.primary[300],
+                          color: theme.vars.palette.primary[300],
                         },
                       },
                     }),
@@ -408,10 +409,19 @@ export function getThemedComponents(theme: Theme): { components: Theme['componen
             style: {
               fontSize: theme.typography.pxToRem(14),
               fontWeight: 700,
-              color:
-                theme.palette.mode === 'dark'
-                  ? theme.palette.primary[300]
-                  : theme.palette.primary[600],
+              ...(!theme.vars
+                ? {
+                    color:
+                      theme.palette.mode === 'dark'
+                        ? theme.palette.primary[300]
+                        : theme.palette.primary[600],
+                  }
+                : {
+                    color: theme.vars.palette.primary[600],
+                    [theme.getColorSchemeSelector('dark')]: {
+                      color: theme.vars.palette.primary[300],
+                    },
+                  }),
               mb: 1,
               '& svg': {
                 ml: -0.5,
@@ -427,26 +437,45 @@ export function getThemedComponents(theme: Theme): { components: Theme['componen
             style: {
               height: 34,
               width: 34,
-              border: `1px solid ${
-                theme.palette.mode === 'dark'
-                  ? theme.palette.primaryDark[700]
-                  : theme.palette.grey[200]
-              }`,
+              border: `1px solid`,
+              ...(!theme.vars
+                ? {
+                    borderColor:
+                      theme.palette.mode === 'dark'
+                        ? theme.palette.primaryDark[700]
+                        : theme.palette.grey[200],
+                    color:
+                      theme.palette.mode === 'dark'
+                        ? theme.palette.primary[300]
+                        : theme.palette.primary[500],
+                    '&:hover': {
+                      borderColor:
+                        theme.palette.mode === 'dark'
+                          ? theme.palette.primaryDark[600]
+                          : theme.palette.grey[300],
+                      background:
+                        theme.palette.mode === 'dark'
+                          ? alpha(theme.palette.primaryDark[700], 0.4)
+                          : theme.palette.grey[50],
+                    },
+                  }
+                : {
+                    borderColor: theme.vars.palette.grey[200],
+                    color: theme.vars.palette.primary[500],
+                    [theme.getColorSchemeSelector('dark')]: {
+                      borderColor: theme.vars.palette.grey[700],
+                      color: theme.vars.palette.primary[300],
+                    },
+                    '&:hover': {
+                      borderColor: theme.vars.palette.grey[300],
+                      background: theme.vars.palette.grey[50],
+                      [theme.getColorSchemeSelector('dark')]: {
+                        borderColor: theme.vars.palette.primaryDark[600],
+                        background: alpha(theme.palette.primaryDark[700], 0.4),
+                      },
+                    },
+                  }),
               borderRadius: theme.shape.borderRadius,
-              color:
-                theme.palette.mode === 'dark'
-                  ? theme.palette.primary[300]
-                  : theme.palette.primary[500],
-              '&:hover': {
-                borderColor:
-                  theme.palette.mode === 'dark'
-                    ? theme.palette.primaryDark[600]
-                    : theme.palette.grey[300],
-                background:
-                  theme.palette.mode === 'dark'
-                    ? alpha(theme.palette.primaryDark[700], 0.4)
-                    : theme.palette.grey[50],
-              },
             },
           },
         ],
