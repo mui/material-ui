@@ -15,10 +15,10 @@ function renderFullPage(html, css) {
     <html lang="en">
       <head>
         <title>My page</title>
-        ${css}
         <meta name="viewport" content="initial-scale=1, width=device-width" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
         <meta name="emotion-insertion-point" content="" />
+        ${css}
       </head>
       <body>
         <script async src="build/bundle.js"></script>
