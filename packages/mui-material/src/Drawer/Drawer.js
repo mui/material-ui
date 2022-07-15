@@ -208,7 +208,7 @@ const Drawer = React.forwardRef(function Drawer(inProps, ref) {
   if (variant === 'permanent') {
     return (
       <DrawerDockedRoot
-        className={clsx(classes.docked, classes.root, className)}
+        className={clsx(classes.root, classes.docked, className)}
         ownerState={ownerState}
         ref={ref}
         {...other}
@@ -233,7 +233,7 @@ const Drawer = React.forwardRef(function Drawer(inProps, ref) {
   if (variant === 'persistent') {
     return (
       <DrawerDockedRoot
-        className={clsx(classes.docked, classes.root, className)}
+        className={clsx(classes.root, classes.docked, className)}
         ownerState={ownerState}
         ref={ref}
         {...other}
@@ -251,7 +251,7 @@ const Drawer = React.forwardRef(function Drawer(inProps, ref) {
         ...BackdropPropsProp,
         transitionDuration,
       }}
-      className={clsx(classes.modal, classes.root, className)}
+      className={clsx(classes.root, classes.modal, className)}
       open={open}
       ownerState={ownerState}
       onClose={onClose}
