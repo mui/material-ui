@@ -12,11 +12,22 @@ import HeroContainer from 'docs/src/layouts/HeroContainer';
 function createLoading(sx: BoxProps['sx']) {
   return () => (
     <Box
-      sx={{
-        borderRadius: 1,
-        bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.800' : 'grey.100'),
-        ...sx,
-      }}
+      sx={[
+        (theme) => ({
+          borderRadius: 1,
+          ...(!theme.vars
+            ? {
+                bgcolor: theme.palette.mode === 'dark' ? 'primaryDark.800' : 'grey.100',
+              }
+            : {
+                bgcolor: 'grey.100',
+                [theme.getColorSchemeSelector('dark')]: {
+                  bgcolor: 'primaryDark.800',
+                },
+              }),
+        }),
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
     />
   );
 }

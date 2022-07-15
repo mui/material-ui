@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { Theme, styled } from '@mui/material/styles';
-import { SxProps } from '@mui/system';
+import { styled, Theme, SxProps } from '@mui/material/styles';
 import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
 import Box from '@mui/material/Box';
@@ -53,24 +52,44 @@ export default function EmailSubscribe({ sx }: { sx?: SxProps<Theme> }) {
     return (
       <Alert
         severity="success"
-        sx={{
-          maxWidth: { sm: 400 },
-          bgcolor: (theme) =>
-            theme.palette.mode === 'dark'
-              ? theme.palette.primaryDark[700]
-              : theme.palette.success[50],
-          ...sx,
-        }}
+        sx={[
+          (theme) => ({
+            maxWidth: { sm: 400 },
+            ...(!theme.vars
+              ? {
+                  bgcolor:
+                    theme.palette.mode === 'dark'
+                      ? theme.palette.primaryDark[700]
+                      : theme.palette.success[50],
+                }
+              : {
+                  bgcolor: 'success.50',
+                  [theme.getColorSchemeSelector('dark')]: {
+                    bgcolor: 'primaryDark.700',
+                  },
+                }),
+          }),
+          ...(Array.isArray(sx) ? sx : [sx]),
+        ]}
         iconMapping={{
           success: (
             <CheckCircleRoundedIcon
               fontSize="small"
-              sx={{
-                color: (theme: Theme) =>
-                  theme.palette.mode === 'dark'
-                    ? theme.palette.success[600]
-                    : theme.palette.success[700],
-              }}
+              sx={(theme: Theme) => ({
+                ...(!theme.vars
+                  ? {
+                      color:
+                        theme.palette.mode === 'dark'
+                          ? theme.palette.success[600]
+                          : theme.palette.success[700],
+                    }
+                  : {
+                      color: 'success.700',
+                      [theme.getColorSchemeSelector('dark')]: {
+                        color: 'success.600',
+                      },
+                    }),
+              })}
             />
           ),
         }}
@@ -108,53 +127,94 @@ export default function EmailSubscribe({ sx }: { sx?: SxProps<Theme> }) {
           value={form.email}
           onChange={(event) => setForm({ email: event.target.value, status: 'initial' })}
           inputProps={{ required: true }}
-          sx={{
-            bgcolor: (theme) =>
-              theme.palette.mode === 'dark'
-                ? theme.palette.primaryDark[900]
-                : theme.palette.grey[100],
+          sx={(theme) => ({
+            ...(!theme.vars
+              ? {
+                  bgcolor:
+                    theme.palette.mode === 'dark'
+                      ? theme.palette.primaryDark[900]
+                      : theme.palette.grey[100],
+                }
+              : {
+                  bgcolor: 'grey.100',
+                  [theme.getColorSchemeSelector('dark')]: {
+                    bgcolor: 'primaryDark.900',
+                  },
+                }),
             px: 1,
             py: 0.5,
             typography: 'body2',
             flexGrow: 1,
             minWidth: 200,
             '&:focus': {
-              outline: (theme) =>
-                `2px solid ${
-                  theme.palette.mode === 'dark'
-                    ? theme.palette.primary[400]
-                    : theme.palette.primary[200]
-                }`,
+              outline: '2px solid',
+              ...(!theme.vars
+                ? {
+                    outlineColor:
+                      theme.palette.mode === 'dark'
+                        ? theme.palette.primary[400]
+                        : theme.palette.primary[200],
+                  }
+                : {
+                    outlineColor: 'primary.200',
+                    [theme.getColorSchemeSelector('dark')]: {
+                      outlineColor: 'primary.400',
+                    },
+                  }),
               outlineOffset: '2px',
             },
-          }}
+          })}
         />
         <Button
           disabled={form.status === 'loading'}
           type="submit"
-          sx={{
-            bgcolor: (theme) =>
-              theme.palette.mode === 'dark'
-                ? theme.palette.primaryDark[600]
-                : theme.palette.grey[300],
+          sx={(theme) => ({
+            ...(!theme.vars
+              ? {
+                  bgcolor:
+                    theme.palette.mode === 'dark'
+                      ? theme.palette.primaryDark[600]
+                      : theme.palette.grey[300],
+                  '&:hover': {
+                    bgcolor:
+                      theme.palette.mode === 'dark'
+                        ? theme.palette.primaryDark[700]
+                        : theme.palette.grey[400],
+                  },
+                }
+              : {
+                  bgcolor: 'grey.300',
+                  '&:hover': {
+                    bgcolor: 'grey.400',
+                  },
+                  [theme.getColorSchemeSelector('dark')]: {
+                    bgcolor: 'primaryDark.600',
+                    '&:hover': {
+                      bgcolor: 'primaryDark.700',
+                    },
+                  },
+                }),
             py: 1,
             px: 2,
             color: 'text.primary',
             borderRadius: '0px',
-            '&:hover': {
-              bgcolor: (theme) =>
-                theme.palette.mode === 'dark'
-                  ? theme.palette.primaryDark[700]
-                  : theme.palette.grey[400],
-            },
-          }}
+          })}
         >
           Subscribe
         </Button>
       </Box>
       {form.status === 'failure' && (
         <FormHelperText
-          sx={{ color: (theme) => (theme.palette.mode === 'dark' ? 'warning.500' : 'warning.800') }}
+          sx={(theme) => ({
+            ...(!theme.vars
+              ? { color: theme.palette.mode === 'dark' ? 'warning.500' : 'warning.800' }
+              : {
+                  color: 'warning.800',
+                  [theme.getColorSchemeSelector('dark')]: {
+                    color: 'warning.500',
+                  },
+                }),
+          })}
         >
           Oops! something went wrong, please try again later.
         </FormHelperText>

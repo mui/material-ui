@@ -14,11 +14,22 @@ import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 function createLoading(sx: BoxProps['sx']) {
   return () => (
     <Box
-      sx={{
-        borderRadius: 1,
-        bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.800' : 'grey.100'),
-        ...sx,
-      }}
+      sx={[
+        (theme) => ({
+          borderRadius: 1,
+          ...(!theme.vars
+            ? {
+                bgcolor: theme.palette.mode === 'dark' ? 'primaryDark.800' : 'grey.100',
+              }
+            : {
+                bgcolor: 'grey.100',
+                [theme.getColorSchemeSelector('dark')]: {
+                  bgcolor: 'primaryDark.800',
+                },
+              }),
+        }),
+        ...(Array.isArray(sx) ? sx : [sx]),
+      ]}
     />
   );
 }
@@ -42,11 +53,20 @@ const ProductSuite = () => {
   return (
     <Box
       ref={ref}
-      sx={{
-        bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.900' : 'grey.50'),
+      sx={(theme) => ({
+        ...(!theme.vars
+          ? {
+              bgcolor: theme.palette.mode === 'dark' ? 'primaryDark.900' : 'grey.50',
+            }
+          : {
+              bgcolor: 'grey.50',
+              [theme.getColorSchemeSelector('dark')]: {
+                bgcolor: 'primaryDark.900',
+              },
+            }),
         py: { xs: 4, sm: 6, md: 8 },
         overflow: 'hidden',
-      }}
+      })}
     >
       <Container>
         <Grid container spacing={2}>
