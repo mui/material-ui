@@ -56,7 +56,7 @@ For example, `xs={12} sm={6}` sizes a component to occupy half of the viewport w
 
 To control space between children, use the `spacing` prop.
 The spacing value can be any positive number, including decimals and any string.
-The prop is converted into a CSS property using the [`theme.spacing()`](/customization/spacing/) helper.
+The prop is converted into a CSS property using the [`theme.spacing()`](/material-ui/customization/spacing/) helper.
 
 {{"demo": "SpacingGrid.js", "bg": true, "hideToolbar": true}}
 
