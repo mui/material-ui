@@ -6,7 +6,6 @@ import {
   SnackbarUnstyledOwnerState,
   SnackbarUnstyledProps,
   SnackbarUnstyledRootSlotProps,
-  SnackbarUnstyledTransitionSlotProps,
   SnackbarUnstyledTypeMap,
 } from './SnackbarUnstyled.types';
 import composeClasses from '../composeClasses';
@@ -42,6 +41,7 @@ const SnackbarUnstyled = React.forwardRef(function SnackbarUnstyled(
     components = {},
     componentsProps = {},
     disableWindowBlurListener = false,
+    exited = true,
     onBlur,
     onClose,
     onFocus,
@@ -54,7 +54,7 @@ const SnackbarUnstyled = React.forwardRef(function SnackbarUnstyled(
 
   const classes = useUtilityClasses();
 
-  const { getRootProps, getTransitionProps, exited, onClickAway } = useSnackbar({
+  const { getRootProps, onClickAway } = useSnackbar({
     autoHideDuration,
     disableWindowBlurListener,
     onClose,
@@ -63,16 +63,9 @@ const SnackbarUnstyled = React.forwardRef(function SnackbarUnstyled(
     ref,
   });
 
-  const ownerState: SnackbarUnstyledOwnerState = {
-    ...props,
-    autoHideDuration,
-    disableWindowBlurListener,
-    exited,
-  };
+  const ownerState: SnackbarUnstyledOwnerState = props;
 
   const Root = component || components.Root || 'div';
-
-  const TransitionComponent = components.Transition;
 
   const rootProps: WithOptionalOwnerState<SnackbarUnstyledRootSlotProps> = useSlotProps({
     elementType: Root,
@@ -95,20 +88,6 @@ const SnackbarUnstyled = React.forwardRef(function SnackbarUnstyled(
     className: classes.root,
   });
 
-  const transitionProps: WithOptionalOwnerState<SnackbarUnstyledTransitionSlotProps> = useSlotProps(
-    {
-      elementType: TransitionComponent as React.ElementType,
-      getSlotProps: (otherHandlers) =>
-        getTransitionProps({
-          ...otherHandlers,
-          onEnter: resolveComponentProps(componentsProps.transition, ownerState)?.onEnter,
-          onExited: resolveComponentProps(componentsProps.transition, ownerState)?.onExited,
-        }),
-      externalSlotProps: componentsProps.transition,
-      ownerState,
-    },
-  );
-
   // So that we only render active snackbars.
   if (!open && exited) {
     return null;
@@ -116,13 +95,7 @@ const SnackbarUnstyled = React.forwardRef(function SnackbarUnstyled(
 
   return (
     <ClickAwayListener onClickAway={onClickAway} {...componentsProps.clickAwayListener}>
-      <Root {...rootProps}>
-        {TransitionComponent ? (
-          <TransitionComponent {...transitionProps}>{children}</TransitionComponent>
-        ) : (
-          children
-        )}
-      </Root>
+      <Root {...rootProps}>{children}</Root>
     </ClickAwayListener>
   );
 }) as OverridableComponent<SnackbarUnstyledTypeMap>;
@@ -156,7 +129,6 @@ SnackbarUnstyled.propTypes /* remove-proptypes */ = {
    */
   components: PropTypes.shape({
     Root: PropTypes.elementType,
-    Transition: PropTypes.elementType,
   }),
   /**
    * The props used for each slot inside the Snackbar.
@@ -178,13 +150,17 @@ SnackbarUnstyled.propTypes /* remove-proptypes */ = {
       touchEvent: PropTypes.oneOf(['onTouchEnd', 'onTouchStart', false]),
     }),
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    transition: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
    * If `true`, the `autoHideDuration` timer will expire even if the window is not focused.
    * @default false
    */
   disableWindowBlurListener: PropTypes.bool,
+  /**
+   * The prop used to handle exited transition and unmount the component.
+   * @default true
+   */
+  exited: PropTypes.bool,
   /**
    * @ignore
    */

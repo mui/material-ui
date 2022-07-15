@@ -1,5 +1,4 @@
 import React from 'react';
-import { TransitionChildren } from 'react-transition-group/Transition';
 import { OverrideProps } from '@mui/types';
 import { ClickAwayListenerProps } from '../ClickAwayListener';
 import { UseSnackbarParameters } from './useSnackbar.types';
@@ -16,7 +15,6 @@ export interface SnackbarUnstyledOwnProps extends Omit<UseSnackbarParameters, 'r
    */
   components?: {
     Root?: React.ElementType;
-    Transition?: React.ElementType;
   };
   /**
    * The props used for each slot inside the Snackbar.
@@ -29,14 +27,12 @@ export interface SnackbarUnstyledOwnProps extends Omit<UseSnackbarParameters, 'r
       SnackbarUnstyledComponentsPropsOverrides,
       SnackbarUnstyledOwnerState
     >;
-    transition?:
-      | {
-          [key: string]: any;
-        }
-      | ((ownerState: SnackbarUnstyledOwnerState) => {
-          [key: string]: any;
-        });
   };
+  /**
+   * The prop used to handle exited transition and unmount the component.
+   * @default true
+   */
+  exited?: boolean;
 }
 
 export interface SnackbarUnstyledTypeMap<P = {}, D extends React.ElementType = 'div'> {
@@ -51,19 +47,11 @@ export type SnackbarUnstyledProps<
   component?: D;
 };
 
-export type SnackbarUnstyledOwnerState = SnackbarUnstyledProps & {
-  exited: boolean;
-};
+export type SnackbarUnstyledOwnerState = SnackbarUnstyledProps;
 
 export type SnackbarUnstyledRootSlotProps = {
   ownerState: SnackbarUnstyledOwnerState;
   className?: string;
   children?: React.ReactNode;
   ref: React.Ref<any>;
-};
-
-export type SnackbarUnstyledTransitionSlotProps = {
-  ownerState: SnackbarUnstyledOwnerState;
-  className?: string;
-  children?: TransitionChildren;
 };

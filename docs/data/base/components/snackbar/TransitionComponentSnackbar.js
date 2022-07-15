@@ -1,11 +1,9 @@
 import * as React from 'react';
-import PropTypes from 'prop-types';
 import { styled } from '@mui/system';
-import { Transition } from 'react-transition-group';
-
 import CheckRoundedIcon from '@mui/icons-material/CheckRounded';
 import CloseIcon from '@mui/icons-material/Close';
 import SnackbarUnstyled from '@mui/base/SnackbarUnstyled';
+import Slide from '@mui/material/Slide';
 
 const blue = {
   50: '#F0F7FF',
@@ -80,105 +78,9 @@ const SnackbarContent = styled('div')(
   `,
 );
 
-const positioningStyles = {
-  entering: 'translateX(200px)',
-  entered: 'translateX(0)',
-  exiting: 'translateX(200px)',
-  exited: 'translateX(200px)',
-  unmounted: 'translateX(200px)',
-};
-
-const Transform = ({ open, children, onEnter, onExit }) => {
-  const nodeRef = React.useRef(null);
-
-  return (
-    <Transition
-      timeout={{ enter: 300, exit: 500 }}
-      in={open}
-      appear
-      onEnter={onEnter}
-      onExit={onExit}
-      nodeRef={nodeRef}
-    >
-      {(status) => {
-        return (
-          <div
-            style={{
-              transform: positioningStyles[status],
-              transition: 'transform 300ms ease',
-            }}
-          >
-            {children}
-          </div>
-        );
-      }}
-    </Transition>
-  );
-};
-
-Transform.propTypes = {
-  children: PropTypes.node,
-  onEnter: PropTypes.func,
-  onExit: PropTypes.func,
-  open: PropTypes.bool,
-};
-
-const statusStyles = {
-  entered: {
-    opacity: 1,
-  },
-  entering: {
-    opacity: 0,
-  },
-  exited: {
-    opacity: 0,
-  },
-  exiting: {
-    opacity: 0,
-  },
-  unmounted: {
-    opacity: 0,
-  },
-};
-
-const FadeTransform = (props) => {
-  const { open, children, onEnter, onExit } = props;
-  const nodeRef = React.useRef(null);
-
-  return (
-    <Transition
-      timeout={{ enter: 300, exit: 500 }}
-      in={open}
-      appear
-      onEnter={onEnter}
-      onExit={onExit}
-      nodeRef={nodeRef}
-    >
-      {(status) => (
-        <div
-          style={{
-            ...statusStyles[status],
-            transition: 'opacity 300ms ease',
-          }}
-        >
-          <Transform open={open} onEnter={onEnter} onExit={onExit}>
-            {children}
-          </Transform>
-        </div>
-      )}
-    </Transition>
-  );
-};
-
-FadeTransform.propTypes = {
-  children: PropTypes.node,
-  onEnter: PropTypes.func,
-  onExit: PropTypes.func,
-  open: PropTypes.bool,
-};
-
 export default function TransitionComponentSnackbar() {
   const [open, setOpen] = React.useState(false);
+  const [exited, setExited] = React.useState(true);
 
   const handleClose = (_, reason) => {
     if (reason === 'clickaway') {
@@ -192,6 +94,14 @@ export default function TransitionComponentSnackbar() {
     setOpen(true);
   };
 
+  const handleOnEnter = () => {
+    setExited(false);
+  };
+
+  const handleOnExited = () => {
+    setExited(true);
+  };
+
   return (
     <React.Fragment>
       <button type="button" onClick={handleClick}>
@@ -201,26 +111,35 @@ export default function TransitionComponentSnackbar() {
         autoHideDuration={5000}
         open={open}
         onClose={handleClose}
-        components={{ Transition: FadeTransform }}
-        componentsProps={{ transition: { open } }}
+        exited={exited}
       >
-        <SnackbarContent>
-          <CheckRoundedIcon
-            sx={{
-              flexShrink: 0,
-              marginRight: '0.75rem',
-              width: '1.25rem',
-              height: '1.5rem',
-            }}
-          />
-          <div className="snackbar-message">
-            <div className="snackbar-title">Notifications sent</div>
-            <div className="snackbar-description">
-              All your notifications were sent to the desired address.
+        <Slide
+          in={open}
+          direction="left"
+          appear
+          unmountOnExit
+          timeout={{ enter: 400, exit: 400 }}
+          onEnter={handleOnEnter}
+          onExited={handleOnExited}
+        >
+          <SnackbarContent>
+            <CheckRoundedIcon
+              sx={{
+                flexShrink: 0,
+                marginRight: '0.75rem',
+                width: '1.25rem',
+                height: '1.5rem',
+              }}
+            />
+            <div className="snackbar-message">
+              <div className="snackbar-title">Notifications sent</div>
+              <div className="snackbar-description">
+                All your notifications were sent to the desired address.
+              </div>
             </div>
-          </div>
-          <CloseIcon onClick={handleClose} className="snackbar-close-icon" />
-        </SnackbarContent>
+            <CloseIcon onClick={handleClose} className="snackbar-close-icon" />
+          </SnackbarContent>
+        </Slide>
       </StyledSnackbar>
     </React.Fragment>
   );

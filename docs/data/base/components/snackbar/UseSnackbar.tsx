@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { useSnackbar } from '@mui/base/SnackbarUnstyled';
+import ClickAwayListener from '@mui/base/ClickAwayListener';
 import { css, keyframes, styled } from '@mui/system';
 
 const blue = {
@@ -56,7 +57,7 @@ export default function UseSnackbar() {
     setOpen(false);
   };
 
-  const { getRootProps } = useSnackbar({
+  const { getRootProps, onClickAway } = useSnackbar({
     onClose: handleClose,
     open,
     autoHideDuration: 5000,
@@ -72,7 +73,9 @@ export default function UseSnackbar() {
         Open Snackbar
       </button>
       {open ? (
-        <CustomSnackbar {...getRootProps()}>Hello World</CustomSnackbar>
+        <ClickAwayListener onClickAway={onClickAway}>
+          <CustomSnackbar {...getRootProps()}>Hello World</CustomSnackbar>
+        </ClickAwayListener>
       ) : null}
     </React.Fragment>
   );

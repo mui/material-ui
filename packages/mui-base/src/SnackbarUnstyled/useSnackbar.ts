@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { unstable_useEventCallback as useEventCallback } from '@mui/utils';
-import { TransitionProps } from 'react-transition-group/Transition';
 import { UseSnackbarParameters, SnackbarCloseReason } from './useSnackbar.types';
 
 /**
@@ -21,7 +20,6 @@ export default function useSnackbar(parameters: UseSnackbarParameters) {
   } = parameters;
 
   const timerAutoHide = React.useRef<ReturnType<typeof setTimeout>>();
-  const [exited, setExited] = React.useState(true);
 
   React.useEffect(() => {
     if (!open) {
@@ -154,27 +152,6 @@ export default function useSnackbar(parameters: UseSnackbarParameters) {
     return undefined;
   }, [disableWindowBlurListener, handleResume, open]);
 
-  const createHandleExited = (otherHandlers?: Partial<TransitionProps>) => (node: HTMLElement) => {
-    setExited(true);
-
-    const onExited = otherHandlers?.onExited;
-
-    if (onExited) {
-      onExited(node);
-    }
-  };
-
-  const createHandleEnter =
-    (otherHandlers?: Partial<TransitionProps>) => (node: HTMLElement, isAppearing: boolean) => {
-      setExited(false);
-
-      const onEnter = otherHandlers?.onEnter;
-
-      if (onEnter) {
-        onEnter(node, isAppearing);
-      }
-    };
-
   const getRootProps = <TOther extends Record<string, React.EventHandler<any> | undefined> = {}>(
     otherProps: TOther = {} as TOther,
   ) => ({
@@ -189,11 +166,5 @@ export default function useSnackbar(parameters: UseSnackbarParameters) {
     onMouseLeave: createMouseLeave(otherProps),
   });
 
-  const getTransitionProps = (otherProps?: Partial<TransitionProps>) => ({
-    ...otherProps,
-    onEnter: createHandleEnter(otherProps),
-    onExited: createHandleExited(otherProps),
-  });
-
-  return { getRootProps, getTransitionProps, exited, onClickAway: handleClickAway };
+  return { getRootProps, onClickAway: handleClickAway };
 }

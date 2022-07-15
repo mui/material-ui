@@ -3,6 +3,8 @@
     Open Snackbar
   </button>
   {open ? (
-    <CustomSnackbar {...getRootProps()}>Hello World</CustomSnackbar>
+    <ClickAwayListener onClickAway={onClickAway}>
+      <CustomSnackbar {...getRootProps()}>Hello World</CustomSnackbar>
+    </ClickAwayListener>
   ) : null}
 </React.Fragment>
