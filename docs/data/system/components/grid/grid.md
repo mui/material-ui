@@ -128,8 +128,8 @@ If you specify custom breakpoints to the theme, you can use those names as grid 
 The custom breakpoints affect both the size and offset props:
 
 ```diff
--<Grid xs={6} xsOffset={2} sm={4} smOffset={2}>
-+<Grid mobile={6} mobileOffset={2} tablet={4} tabletOffset={2}>
+-<Grid xs={6} xsOffset={2}>
++<Grid mobile={6} mobileOffset={2}>
 ```
 
 :::
