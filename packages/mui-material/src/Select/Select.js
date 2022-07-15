@@ -186,7 +186,7 @@ Select.propTypes /* remove-proptypes */ = {
    */
   inputProps: PropTypes.object,
   /**
-   * See [OutlinedInput#label](/api/outlined-input/#props)
+   * See [OutlinedInput#label](/material-ui/api/outlined-input/#props)
    */
   label: PropTypes.node,
   /**
@@ -195,7 +195,7 @@ Select.propTypes /* remove-proptypes */ = {
    */
   labelId: PropTypes.string,
   /**
-   * Props applied to the [`Menu`](/api/menu/) element.
+   * Props applied to the [`Menu`](/material-ui/api/menu/) element.
    */
   MenuProps: PropTypes.object,
   /**
@@ -263,7 +263,7 @@ Select.propTypes /* remove-proptypes */ = {
    * If the value is an object it must have reference equality with the option in order to be selected.
    * If the value is not an object, the string representation must match with the string representation of the option in order to be selected.
    */
-  value: PropTypes.any,
+  value: PropTypes.oneOfType([PropTypes.oneOf(['']), PropTypes.any]),
   /**
    * The variant to use.
    * @default 'outlined'

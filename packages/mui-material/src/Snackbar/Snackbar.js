@@ -42,20 +42,13 @@ const SnackbarRoot = styled('div', {
   },
 })(({ theme, ownerState }) => {
   const center = {
-    ...(!ownerState.isRtl && {
-      left: '50%',
-      right: 'auto',
-      transform: 'translateX(-50%)',
-    }),
-    ...(ownerState.isRtl && {
-      right: '50%',
-      left: 'auto',
-      transform: 'translateX(50%)',
-    }),
+    left: '50%',
+    right: 'auto',
+    transform: 'translateX(-50%)',
   };
 
   return {
-    zIndex: theme.zIndex.snackbar,
+    zIndex: (theme.vars || theme).zIndex.snackbar,
     position: 'fixed',
     display: 'flex',
     left: 8,
@@ -69,24 +62,12 @@ const SnackbarRoot = styled('div', {
       ...(ownerState.anchorOrigin.vertical === 'top' ? { top: 24 } : { bottom: 24 }),
       ...(ownerState.anchorOrigin.horizontal === 'center' && center),
       ...(ownerState.anchorOrigin.horizontal === 'left' && {
-        ...(!ownerState.isRtl && {
-          left: 24,
-          right: 'auto',
-        }),
-        ...(ownerState.isRtl && {
-          right: 24,
-          left: 'auto',
-        }),
+        left: 24,
+        right: 'auto',
       }),
       ...(ownerState.anchorOrigin.horizontal === 'right' && {
-        ...(!ownerState.isRtl && {
-          right: 24,
-          left: 'auto',
-        }),
-        ...(ownerState.isRtl && {
-          left: 24,
-          right: 'auto',
-        }),
+        right: 24,
+        left: 'auto',
       }),
     },
   };
@@ -123,9 +104,7 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
     ...other
   } = props;
 
-  const isRtl = theme.direction === 'rtl';
-
-  const ownerState = { ...props, anchorOrigin: { vertical, horizontal }, isRtl };
+  const ownerState = { ...props, anchorOrigin: { vertical, horizontal } };
   const classes = useUtilityClasses(ownerState);
 
   const timerAutoHide = React.useRef();
@@ -278,7 +257,7 @@ const Snackbar = React.forwardRef(function Snackbar(inProps, ref) {
         ownerState={ownerState}
         ref={ref}
         // ClickAwayListener adds an `onClick` prop which results in the alert not being announced.
-        // See https://github.com/mui-org/material-ui/issues/29080
+        // See https://github.com/mui/material-ui/issues/29080
         role="presentation"
         {...other}
       >
@@ -342,7 +321,7 @@ Snackbar.propTypes /* remove-proptypes */ = {
    */
   ClickAwayListenerProps: PropTypes.object,
   /**
-   * Props applied to the [`SnackbarContent`](/api/snackbar-content/) element.
+   * Props applied to the [`SnackbarContent`](/material-ui/api/snackbar-content/) element.
    */
   ContentProps: PropTypes.object,
   /**
@@ -409,7 +388,7 @@ Snackbar.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * The component used for the transition.
-   * [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default Grow
    */
   TransitionComponent: PropTypes.elementType,

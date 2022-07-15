@@ -2,7 +2,6 @@ import path from 'path';
 import fs from 'fs';
 import { expect } from 'chai';
 import sinon from 'sinon';
-import FEATURE_TOGGLE from '../src/featureToggle';
 import {
   extractApiPage,
   extractPackageFile,
@@ -106,7 +105,7 @@ describe('buildApiUtils', () => {
 
       expect(info.getDemos()).to.deep.equal([
         {
-          name: 'Button Group',
+          name: 'Button group',
           demoPathname: '/components/button-group/',
         },
         {
@@ -135,7 +134,7 @@ describe('buildApiUtils', () => {
           demoPathname: '/components/icons/',
         },
         {
-          name: 'Material Icons',
+          name: 'Material icons',
           demoPathname: '/components/material-icons/',
         },
       ]);
@@ -143,11 +142,6 @@ describe('buildApiUtils', () => {
   });
 
   describe('getMaterialComponentInfo', () => {
-    beforeEach(function test() {
-      if (!FEATURE_TOGGLE.enable_product_scope) {
-        this.skip();
-      }
-    });
     it('return correct info for material component file', () => {
       const info = getMaterialComponentInfo(
         path.join(process.cwd(), `/packages/mui-material/src/Button/Button.js`),
@@ -175,7 +169,7 @@ describe('buildApiUtils', () => {
       if (existed) {
         expect(info.getDemos()).to.deep.equal([
           {
-            name: 'Button Group',
+            name: 'Button group',
             demoPathname: '/material-ui/react-button-group/',
           },
           {
@@ -188,11 +182,6 @@ describe('buildApiUtils', () => {
   });
 
   describe('getBaseComponentInfo', () => {
-    beforeEach(function test() {
-      if (!FEATURE_TOGGLE.enable_product_scope) {
-        this.skip();
-      }
-    });
     it('return correct info for base component file', () => {
       const info = getBaseComponentInfo(
         path.join(process.cwd(), `/packages/mui-base/src/ButtonUnstyled/ButtonUnstyled.tsx`),
@@ -219,8 +208,8 @@ describe('buildApiUtils', () => {
       if (existed) {
         expect(info.getDemos()).to.deep.equal([
           {
-            name: 'Buttons',
-            demoPathname: '/material-ui/react-button/',
+            name: 'Button',
+            demoPathname: '/base/react-button/',
           },
         ]);
       }

@@ -5,13 +5,13 @@
 ## Navigation components
 
 There are two main components available to perform navigations.
-The most common one is the [`Link`](/components/links/) as its name might suggest.
+The most common one is the [`Link`](/material-ui/react-link/) as its name might suggest.
 It renders a native `<a>` element and applies the `href` as an attribute.
 
 {{"demo": "LinkDemo.js"}}
 
 You can also make a button perform navigation actions.
-If your component is extending [`ButtonBase`](/api/button-base/), providing a `href` prop enables the link mode.
+If your component is extending [`ButtonBase`](/material-ui/api/button-base/), providing a `href` prop enables the link mode.
 For instance, with a `Button` component:
 
 {{"demo": "ButtonDemo.js"}}
@@ -23,9 +23,12 @@ You can improve the user experience by using an enhanced Link component systemat
 The theme of MUI allows configuring this component once.
 For instance, with react-router:
 
-```jsx
+```tsx
+import { Link as RouterLink, LinkProps as RouterLinkProps } from 'react-router-dom';
+import { LinkProps } from '@mui/material/Link';
+
 const LinkBehavior = React.forwardRef<
-  any,
+  HTMLAnchorElement,
   Omit<RouterLinkProps, 'to'> & { href: RouterLinkProps['to'] }
 >((props, ref) => {
   const { href, ...other } = props;
@@ -38,7 +41,7 @@ const theme = createTheme({
     MuiLink: {
       defaultProps: {
         component: LinkBehavior,
-      },
+      } as LinkProps,
     },
     MuiButtonBase: {
       defaultProps: {
@@ -51,14 +54,16 @@ const theme = createTheme({
 
 {{"demo": "LinkRouterWithTheme.js", "defaultCodeOpen": false}}
 
-> ⚠️ This approach has limitations with TypeScript.
-> The `href` prop only accepts a string.
-> In the event you need to provide a richer structure, see the next section.
+:::warning
+⚠️ This approach has limitations with TypeScript.
+The `href` prop only accepts a string.
+In the event you need to provide a richer structure, see the next section.
+:::
 
 ## `component` prop
 
 You can achieve the integration with third-party routing libraries with the `component` prop.
-You can learn more about this prop in the [**composition guide**](/guides/composition/#component-prop).
+You can learn more about this prop in the [**composition guide**](/material-ui/guides/composition/#component-prop).
 
 ### Link
 
@@ -123,7 +128,7 @@ The [example folder](https://github.com/mui/material-ui/tree/HEAD/examples/nextj
 
 - The second version of the adapter is the `Link` component.
   This component is styled.
-  It leverages the [link component of MUI](/components/links/) with `NextLinkComposed`.
+  It leverages the [link component of MUI](/material-ui/react-link/) with `NextLinkComposed`.
 
   ```tsx
   import Link from '../src/Link';

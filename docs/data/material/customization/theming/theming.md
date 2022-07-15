@@ -21,19 +21,19 @@ You can learn more about this in [the API section](#themeprovider).
 Changing the theme configuration variables is the most effective way to match MUI to your needs.
 The following sections cover the most important theme variables:
 
-- [`.palette`](/customization/palette/)
-- [`.typography`](/customization/typography/)
-- [`.spacing`](/customization/spacing/)
-- [`.breakpoints`](/customization/breakpoints/)
-- [`.zIndex`](/customization/z-index/)
-- [`.transitions`](/customization/transitions/)
-- [`.components`](/customization/theme-components/)
+- [`.palette`](/material-ui/customization/palette/)
+- [`.typography`](/material-ui/customization/typography/)
+- [`.spacing`](/material-ui/customization/spacing/)
+- [`.breakpoints`](/material-ui/customization/breakpoints/)
+- [`.zIndex`](/material-ui/customization/z-index/)
+- [`.transitions`](/material-ui/customization/transitions/)
+- [`.components`](/material-ui/customization/theme-components/)
 
-You can check out the [default theme section](/customization/default-theme/) to view the default theme in full.
+You can check out the [default theme section](/material-ui/customization/default-theme/) to view the default theme in full.
 
 ### Custom variables
 
-When using MUI's theme with [MUI System](/system/basics/) or [any other styling solution](/guides/interoperability/#themeprovider), it can be convenient to add additional variables to the theme so you can use them everywhere.
+When using MUI's theme with [MUI System](/system/basics/) or [any other styling solution](/material-ui/guides/interoperability/#themeprovider), it can be convenient to add additional variables to the theme so you can use them everywhere.
 For instance:
 
 ```jsx
@@ -77,11 +77,11 @@ The community has built great tools to build a theme:
 
 ## Accessing the theme in a component
 
-You [can access](/styles/advanced/#accessing-the-theme-in-a-component) the theme variables inside your React components.
+You [can access](/system/styles/advanced/#accessing-the-theme-in-a-component) the theme variables inside your React components.
 
 ## Nesting the theme
 
-[You can nest](/styles/advanced/#theme-nesting) multiple theme providers.
+[You can nest](/system/styles/advanced/#theme-nesting) multiple theme providers.
 
 {{"demo": "ThemeNesting.js"}}
 
@@ -101,8 +101,10 @@ Generate a theme base on the options received. Then, pass it as a prop to [`Them
 1. `options` (_object_): Takes an incomplete theme object and adds the missing parts.
 2. `...args` (_object[]_): Deep merge the arguments with the about to be returned theme.
 
-> Note: Only the first argument (`options`) is being processed by the `createTheme` function.
-> If you want to actually merge two themes' options and create a new one based on them, you may want to deep merge the two options and provide them as a first argument to the `createTheme` function.
+:::warning
+Note: Only the first argument (`options`) is being processed by the `createTheme` function.
+If you want to actually merge two themes' options and create a new one based on them, you may want to deep merge the two options and provide them as a first argument to the `createTheme` function.
+:::
 
 ```js
 import { deepmerge } from '@mui/utils';
@@ -171,7 +173,7 @@ Generate responsive typography settings based on the options received.
 1. `theme` (_object_): The theme object to enhance.
 2. `options` (_object_ [optional]):
 
-- `breakpoints` (_array\<string\>_ [optional]): Default to `['sm', 'md', 'lg']`. Array of [breakpoints](/customization/breakpoints/) (identifiers).
+- `breakpoints` (_array\<string\>_ [optional]): Default to `['sm', 'md', 'lg']`. Array of [breakpoints](/material-ui/customization/breakpoints/) (identifiers).
 - `disableAlign` (_bool_ [optional]): Default to `false`. Whether font sizes change slightly so line
   heights are preserved and align to Material Design's 4px line height grid.
   This requires a unitless line height in the theme's styles.
@@ -245,7 +247,6 @@ It should preferably be used at **the root of your component tree**.
 
 ```jsx
 import * as React from 'react';
-import ReactDOM from 'react-dom';
 import { red } from '@mui/material/colors';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 
@@ -260,6 +261,4 @@ const theme = createTheme({
 function App() {
   return <ThemeProvider theme={theme}>...</ThemeProvider>;
 }
-
-ReactDOM.render(<App />, document.querySelector('#app'));
 ```

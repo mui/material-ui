@@ -92,17 +92,6 @@ const appList = [
     dateAdded: '2018-01-28',
   },
   {
-    title: 'Sweek',
-    description:
-      'Read thousands of free books, stories and serials on Sweek. ' +
-      'Challenge yourself in writing. Turn your stories into books via Sweek Publishing. ' +
-      'Join the global community of readers and writers!',
-    image: 'sweek.jpg',
-    link: 'https://sweek.com/',
-    similarWebVisits: 200,
-    dateAdded: '2019-01-01',
-  },
-  {
     title: 'Hijup',
     description: 'A pioneering Muslim Fashion e-commerce site.',
     image: 'hijup.jpg',
@@ -121,19 +110,11 @@ const appList = [
     dateAdded: '2019-01-01',
   },
   {
-    title: 'NEO Tracker',
-    description: 'NEO blockchain explorer and wallet.',
-    image: 'neotracker.jpg',
-    link: 'https://neotracker.io/',
-    similarWebVisits: 60,
-    dateAdded: '2019-01-01',
-  },
-  {
     title: 'EQ3',
     description:
       'Modern Furniture & Accessories, designed in Canada, for everyday living.',
     image: 'eq3.jpg',
-    link: 'https://www.eq3.com/ca/en/',
+    link: 'https://www.eq3.com/ca/en',
     similarWebVisits: 256,
     dateAdded: '2018-01-34',
   },
@@ -155,7 +136,7 @@ const appList = [
       'cost, usage and performance in one place. ' +
       '(Used for the business application, but not the marketing website.)',
     image: 'cloudhealth.jpg',
-    link: 'https://www.cloudhealthtech.com/',
+    link: 'https://cloudhealth.vmware.com/',
     similarWebVisits: 132,
     dateAdded: '2018-01-37',
   },
@@ -314,22 +295,6 @@ const appList = [
     dateAdded: '2019-01-01',
   },
   {
-    title: 'Roast',
-    description:
-      'Roast.io makes web hosting HTML and JS single-page apps fast, secure, and easy.',
-    image: 'roast.jpg',
-    link: 'https://www.roast.io/',
-    dateAdded: '2019-01-01',
-  },
-  {
-    title: 'Rung - Exceptionality Management',
-    description:
-      'Rung alerts you about the exceptionalities of your personal and professional life.',
-    image: 'rung.jpg',
-    link: 'https://app.rung.com.br/',
-    dateAdded: '2018-01-12',
-  },
-  {
     title: 'MetaFact',
     description:
       "Metafact is a place to verify knowledge via the world's top experts. " +
@@ -337,21 +302,6 @@ const appList = [
     image: 'metafact.jpg',
     link: 'https://metafact.io/',
     dateAdded: '2019-01-01',
-  },
-  {
-    title: 'Manty Vision',
-    description:
-      'An Open Data tool showing financial and demographic data for all the towns in France.',
-    image: 'manty.jpg',
-    link: 'https://app.manty.eu/',
-    dateAdded: '2018-01-01',
-  },
-  {
-    title: 'Johnny Metrics',
-    description: 'Upload your trades, and analyze your crypto portfolio.',
-    link: 'https://app.johnnymetrics.com/demo',
-    image: 'johnnymetrics.jpg',
-    dateAdded: '2018-01-14',
   },
   {
     title: 'AudioNodes',
@@ -378,17 +328,6 @@ const appList = [
     source: 'https://github.com/typekev/typekev-site',
     stars: 10,
     dateAdded: '2018-01-23',
-  },
-  {
-    title: 'Flink',
-    description:
-      'We revolutionized the insurance contract and developed new products that are ' +
-      'ahead of their time: MyThings and MyDamages. With only half a page of text and simple ' +
-      'illustrations, we have developed the shortest insurance contracts worldwide. ' +
-      'And the simplest.',
-    image: 'flink.jpg',
-    link: 'https://www.goflink.ch/',
-    dateAdded: '2019-01-01',
   },
   {
     title: 'DropDesk',
@@ -434,18 +373,6 @@ const appList = [
     dateAdded: '2018-01-35',
   },
   {
-    title: 'MQTT Explorer',
-    description:
-      'A comprehensive MQTT Client which visualizes broker traffic in a hierarchical view. ' +
-      'The protocol is used in many IoT and home automation scenarios, ' +
-      'making integrating new services dead easy.',
-    link: 'https://mqtt-explorer.com/',
-    source: 'https://github.com/thomasnordquist/MQTT-Explorer',
-    image: 'mqtt-explorer.png',
-    stars: 1600,
-    dateAdded: '2019-03-25',
-  },
-  {
     title: 'TagSpaces',
     description:
       'TagSpaces is an offline, open source, file manager.' +
@@ -471,27 +398,6 @@ const appList = [
     link: 'https://fanspo.com/',
     similarWebVisits: 417,
     dateAdded: '2020-01-20',
-  },
-  {
-    title: 'CinemaPlus',
-    description:
-      'Cinema Plus is an online Movie Ticket Booking web app with MERN Stack.',
-    image: 'cinemaplus.jpg',
-    link: 'https://elcinema.herokuapp.com/',
-    source: 'https://github.com/georgesimos/cinema-plus',
-    stars: 173,
-    dateAdded: '2020-01-31',
-  },
-  {
-    title: 'A Clone of Google Keep',
-    description:
-      'A twin-looking Google Keep clone with light/dark Material theme as adapted exactly in Google Keep,' +
-      ' with a GraphQL backend written in Golang',
-    image: 'googlekeepclone.jpg',
-    link: 'http://googlekeep-anselm94.herokuapp.com/',
-    source: 'https://github.com/anselm94/googlekeepclone',
-    stars: 14,
-    dateAdded: '2020-03-25',
   },
   {
     title: 'Backstage',
@@ -528,6 +434,28 @@ const appList = [
     stars: 15079,
     similarWebVisits: 62,
     dateAdded: '2022-02-05',
+  },
+  {
+    title: 'MQTT Explorer',
+    description:
+      'A comprehensive MQTT Client which visualizes broker traffic in a hierarchical view. ' +
+      'The protocol is used in many IoT and home automation scenarios, ' +
+      'making integrating new services dead easy.',
+    link: 'https://mqtt-explorer.com/',
+    source: 'https://github.com/thomasnordquist/MQTT-Explorer',
+    image: 'mqtt-explorer.png',
+    stars: 1600,
+    dateAdded: '2019-03-25',
+  },
+  {
+    title: 'refine FineFoods demo',
+    description: 'A full-featured Admin panel app',
+    image: 'refine-finefoods.jpg',
+    link: 'https://example.mui.admin.refine.dev/',
+    source:
+      'https://github.com/pankod/refine/tree/next/examples/fineFoods/admin/mui',
+    stars: 2415,
+    dateAdded: '2022-06-21',
   },
 ];
 

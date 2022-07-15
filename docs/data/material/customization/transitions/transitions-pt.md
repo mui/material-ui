@@ -1,6 +1,6 @@
 # Transições
 
-<p class="description">A chave do tema permite que você customize as durações e atenuações das várias transições usadas entre componentes do Material-UI, e oferece um utilitário para criar transições customizadas.</p>
+<p class="description">A chave do tema permite que você customize as durações e atenuações das várias transições usadas entre componentes do Material UI, e oferece um utilitário para criar transições customizadas.</p>
 
 ## API
 
@@ -87,4 +87,4 @@ const theme = createTheme({
 
 ## Referências
 
-Confira a página de [Transições](/components/transitions/) para explorar os componentes de transição que estão incluídos com o Material-UI.
+Confira a página de [Transições](/material-ui/transitions/) para explorar os componentes de transição que estão incluídos com o Material UI.

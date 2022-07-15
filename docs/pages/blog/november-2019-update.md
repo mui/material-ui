@@ -3,7 +3,7 @@ title: November 2019 Update
 description: Here are the most significant improvements in November.
 date: 2019-12-12T00:00:00.000Z
 authors: ['oliviertassinari']
-tags: ['Company update']
+tags: ['Company']
 ---
 
 Here are the most significant improvements in November:
@@ -21,8 +21,8 @@ Here are the most significant improvements in November:
 
   <p class="blog-description">After</p>
 
-- 🌎 We have introduced [localization](/guides/localization/) support.
-  The framework supports [13 locales](/guides/localization/#supported-locales), and growing. We would love to see your translation contribution ✨.
+- 🌎 We have introduced [localization](/material-ui/guides/localization/) support.
+  The framework supports [13 locales](/material-ui/guides/localization/#supported-locales), and growing. We would love to see your translation contribution ✨.
 
 - 👨‍🎤 We have added Framer X support ([#17797](https://github.com/mui/material-ui/pull/17797)) (and now looking into Sketch, Figma and Adobe XD).
 
@@ -47,7 +47,7 @@ We have three major efforts undergoing, we will likely need a couple of months t
 - 📅 We continue to work on a [major upgrade](https://github.com/mui/material-ui-pickers/issues/1293) of the date/time picker components.
 
 - 🧮 We continue to work on a data grid component.
-  This is an effort [of our roadmap](/discover-more/roadmap/) to better answer enterprise needs.
+  This is an effort [of our roadmap](/material-ui/discover-more/roadmap/) to better answer enterprise needs.
   The most advanced features will use a non-MIT license.
   To get a rough idea of what's coming, you can read [this blog post](https://uxdesign.cc/design-better-data-tables-4ecc99d23356).
 

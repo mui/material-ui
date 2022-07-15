@@ -12,22 +12,22 @@ githubLabel: 'hook: useMediaQuery'
 
 - ⚛️ 它有一个符合用户使用习惯的 React API。
 - 🚀 它是高性能的，原理是通过观测文档的媒体查询值发生更改，而不是使用定期轮询的方法来监听其结果。
-- 📦 [1kB 已压缩的包](/size-snapshot)。
+- 📦 [1kB 已压缩的包](/size-snapshot/)。
 - 🤖 它支持服务器端渲染。
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## 简单的媒体查询
 
-你应该将媒体查询提供给 hook 作为第一个参数。 媒体查询的字符串可以是任何有效的 CSS 媒体查询，例如 [`'(prefers-color-scheme: dark)'`](/customization/palette/#user-preference)。
+你应该将媒体查询提供给 hook 作为第一个参数。 媒体查询的字符串可以是任何有效的 CSS 媒体查询，例如 [`'(prefers-color-scheme: dark)'`](/material-ui/customization/palette/#user-preference)。
 
 {{"demo": "SimpleMediaQuery.js", "defaultCodeOpen": true}}
 
 ⚠️ 由于每个浏览器的限制，你不能使用 `'print'`，例如 [Firefox](https://bugzilla.mozilla.org/show_bug.cgi?id=774398) 上的这个问题。
 
-## 使用 Material-UI 的断点辅助功能
+## 使用 Material UI 的断点辅助功能
 
-按照如下所示的例子，你可以这样使用 Material-UI 的 [断点辅助功能](/customization/breakpoints/) ：
+按照如下所示的例子，你可以这样使用 Material UI 的 [断点辅助功能](/material-ui/customization/breakpoints/) ：
 
 ```jsx
 import { useTheme } from '@material-ui/core/styles';
@@ -118,7 +118,7 @@ const theme = createTheme({
 你可以先尝试依赖于客户端的 CSS 媒体查询。 例如，你可以使用：
 
 - [`<Box display>`](/system/display/#hiding-elements)
-- [`themes.breakpoints.up(x)`](/customization/breakpoints/#css-media-queries)
+- [`themes.breakpoints.up(x)`](/material-ui/customization/breakpoints/#css-media-queries)
 - or [`sx prop`](/system/basics/#heading-the-sx-prop)
 
 如果上述的方案都不可用，那么你也可以继续阅读本节文档的其余内容。
@@ -208,6 +208,29 @@ function handleRender(req, res) {
 
   // …
 }
+      width: deviceType === 'mobile' ? '0px' : '1024px',
+    }),
+  });
+
+  const theme = createTheme({
+    components: {
+      // Change the default options of useMediaQuery
+      MuiUseMediaQuery: {
+        defaultProps: {
+          ssrMatchMedia,
+        },
+      },
+    },
+  });
+
+  const html = ReactDOMServer.renderToString(
+    <ThemeProvider theme={theme}>
+      <App />
+    </ThemeProvider>,
+  );
+
+  // …
+}
 ```
 
 {{"demo": "ServerSide.js", "defaultCodeOpen": false}}
@@ -231,10 +254,10 @@ function handleRender(req, res) {
 
 - `options.defaultMatches` (_bool_ [optional]): As `window.matchMedia()` is unavailable on the server, we return a default matches during the first mount. 默认值为 `false`。 默认值为 `false`。
 - `options.matchMedia` (_func_ [optional]): You can provide your own implementation of _matchMedia_. 用其您可以处理一个 iframe 内容窗口。 用其您可以处理一个 iframe 内容窗口。
-- `options.noSsr` (_bool_ [optional])：默认为 `false`。 要和服务器进行同步使用（hydration），hook 需要渲染两次。 A first time with `false`, the value of the server, and a second time with the resolved value. 这个双向渲染周期带有一个缺点。 速度较慢。 如果你只需要 **客户端**渲染，那么可以将该选项设置为 `true`。
+- `options.noSsr` (_bool_ [optional])：默认为 `false`。 要和服务器进行同步使用（hydration），hook 需要渲染两次。 A first time with `false`, the value of the server, and a second time with the resolved value. 这个双向渲染周期带有一个缺点。 这个双向渲染周期带有一个缺点。 速度较慢。 如果你只需要 **客户端**渲染，那么可以将该选项设置为 `true`。
 - `options.ssrMatchMedia` (_func_ [optional]): You can provide your own implementation of _matchMedia_ in a [server-side rendering context](#server-side-rendering).
 
-注意：你可以使用主题的 [`默认属性`](/customization/theme-components/#default-props) 功能和 `MuiUseMediaQuery` 键（key）来更改默认的选项。
+注意：你可以使用主题的 [`默认属性`](/material-ui/customization/theme-components/#default-props) 功能和 `MuiUseMediaQuery` 键（key）来更改默认的选项。
 
 #### 返回结果
 

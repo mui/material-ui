@@ -3,12 +3,12 @@ title: October 2019 Update
 description: Here are the most significant improvements in October.
 date: 2019-11-08T00:00:00.000Z
 authors: ['oliviertassinari']
-tags: ['Company update']
+tags: ['Company']
 ---
 
 Here are the most significant improvements in October:
 
-- 🔍 We have introduced a new autocomplete / combo box / multi-select component [in the lab](/components/autocomplete/).
+- 🔍 We have introduced a new autocomplete / combo box / multi-select component [in the lab](/material-ui/react-autocomplete/).
 
   ![combobox](/static/blog/september-2019-update/combobox.png)
 
@@ -34,7 +34,7 @@ _(We'll do our best, no guarantee!)_
 - 📅 We will start to work on a [major upgrade](https://github.com/mui/material-ui-pickers/issues/1293) of the date/time picker components.
 
 - 🧮 We will start to work on a data table component. The core will be open-source. The advanced features of the data grid will be behind an enterprise subscription ⭐️.
-  This is an effort [of our roadmap](/discover-more/roadmap/) to better answer enterprise needs. To get a rough idea of what's coming, you can read: https://uxdesign.cc/design-better-data-tables-4ecc99d23356.
+  This is an effort [of our roadmap](/material-ui/discover-more/roadmap/) to better answer enterprise needs. To get a rough idea of what's coming, you can read: https://uxdesign.cc/design-better-data-tables-4ecc99d23356.
 
 - ❓ Please upvote our [GitHub issues](https://github.com/mui/material-ui/issues) if you want something specific. The number of 👍 helps us to prioritize.
 

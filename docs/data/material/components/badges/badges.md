@@ -1,8 +1,9 @@
 ---
 product: material-ui
 title: React Badge component
-components: Badge, BadgeUnstyled
+components: Badge
 githubLabel: 'component: badge'
+unstyled: /base/react-badge/
 ---
 
 # Badge
@@ -26,7 +27,7 @@ Use `color` prop to apply theme palette to component.
 ## Customization
 
 Here is an example of customizing the component.
-You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
+You can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/).
 
 {{"demo": "CustomizedBadges.js"}}
 
@@ -36,7 +37,7 @@ The visibility of badges can be controlled using the `invisible` prop.
 
 {{"demo": "BadgeVisibility.js"}}
 
-The badge auto hides with badgeContent is zero. You can override this with the `showZero` prop.
+The badge hides automatically when `badgeContent` is zero. You can override this with the `showZero` prop.
 
 {{"demo": "ShowZeroBadge.js"}}
 
@@ -63,17 +64,6 @@ You can use the `overlap` prop to place the badge relative to the corner of the 
 You can use the `anchorOrigin` prop to move the badge to any corner of the wrapped element.
 
 {{"demo": "BadgeAlignment.js", "hideToolbar": true}}
-
-## Unstyled
-
-The badge also comes with an unstyled version.
-It's ideal for doing heavy customizations and minimizing bundle size.
-
-```js
-import BadgeUnstyled from '@mui/base/BadgeUnstyled';
-```
-
-{{"demo": "UnstyledBadge.js"}}
 
 ## Accessibility
 

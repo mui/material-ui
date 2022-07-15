@@ -1,0 +1,7 @@
+<Button startIcon={<Add />}>Add to cart</Button>
+<Button aria-label="Like" variant="outlined" color="neutral">
+  <ThumbUp />
+</Button>
+<Button variant="soft" endIcon={<KeyboardArrowRight />} color="success">
+  Checkout
+</Button>

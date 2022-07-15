@@ -4,7 +4,7 @@ description: We are excited to share that Danail Hadjiatanasov has joined MUI as
 date: 2020-10-23T00:00:00.000Z
 authors: ['oliviertassinari']
 card: true
-tags: ['Team']
+tags: ['Company']
 ---
 
 We are excited to share that [Danail Hadjiatanasov](https://twitter.com/danail_h) has joined MUI as part of the enterprise team. This was his first full-time week.
@@ -13,9 +13,9 @@ For the past 3 years Danail has been working in a company called [Backbase](http
 
 Although he was working with Angular, his true passion is React, having hacked side projects with it. Now he will be able to combine these two talents, and help take MUI X to the next level!
 
-Danail has already landed his first feature in the data grid: [column reordering](https://mui.com/components/data-grid/columns/#column-reorder):
+Danail has already landed his first feature in the data grid: [column reordering](https://mui.com/x/react-data-grid/columns/#column-reorder):
 
-<video autoplay muted loop style="margin-bottom: 24px;">
+<video autoplay muted loop playsinline style="margin-bottom: 24px;">
   <source src="/static/blog/danail-hadjiatanasov-joining/reorder.mp4" type="video/mp4" />
 </video>
 

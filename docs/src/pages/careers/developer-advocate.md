@@ -12,7 +12,7 @@
 
 ## About the company
 
-MUI started with Material-UI, the most successful React implementation of Google's Material Design.
+MUI started with Material UI, the most successful React implementation of Google's Material Design.
 It has gained a large following, not only due to the fidelity to Material Design, but also because of the number of components, its carefully designed component API, obsession for details, and community engagement.
 Today, countless teams and organizations rely on our open-source libraries to build their design system.
 
@@ -32,13 +32,13 @@ We need talented people to keep that going!
 
 We are looking for a dedicated educator and experienced developer to join us as a Developer Advocate to help people get familiar with and use MUI most effectively.
 
-In our [last developer survey](/blog/2020-developer-survey-results/#5-how-can-we-improve-material-ui-for-you), we learned that have a long way to go in helping developers to be successful with our technology.
+In our [last developer survey](/blog/2021-developer-survey-results/#5-how-can-we-improve-material-ui-for-you), we learned that have a long way to go in helping developers to be successful with our technology.
 We have underinvested in this area for too long.
 Your mission will be to be the voice of the developers of the community inside the company.
 We are looking for someone that can contribute to the following outcomes:
 
 - Amplify the need of the community so the product direction aims at what people need the most.
-- Improve the overall developer experience, resulting in better NPS & CSAT scores.
+- Improve the overall developer experience, resulting in better NPS & CSAT scores, e.g. though educational content.
 - Create momentum in the React community and drive adoption of the library.
 
 ## About the role
@@ -48,7 +48,8 @@ We are looking for someone that can contribute to the following outcomes:
 You will be the first person focusing full-time on developer relations at MUI.
 You will lay the foundations for a team that could grow over time.
 
-Our solution empowers React developers to build awesome applications. It should be easy, it shouldn't require any advanced technical skills. Hundreds of thousands of developers use MUI every month.
+Our solution empowers React developers to build awesome applications faster – we see over a million developers on MUI's docs every month.
+Hundreds of thousands of developers use MUI every month.
 
 ### What you'll do on a day-to-day basis
 
@@ -102,9 +103,9 @@ For the right candidate:
 ## Benefits & Compensation
 
 Competitive compensation depending on the profile and location.
-We are ready to pay top market rates for a person that can significantly push the mission forward.
+We are ready to pay top market rates for a person that can clearly exceed the role's expectations.
 You can find the other perks & benefits on the [careers](/careers/#perks-amp-benefits) page.
 
 ## How to apply?
 
-[Apply now for this position 📮](https://airtable.com/shrdqo1Z6srZXGcvh?prefill_Applying+for=Developer%20Advocate&prefill_source=mui.com)
+[Apply now for this position 📮](https://jobs.ashbyhq.com/MUI/__ID__/application?utm_source=ZNRrPGBkqO)

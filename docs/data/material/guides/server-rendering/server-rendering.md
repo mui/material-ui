@@ -84,12 +84,12 @@ app.listen(port);
 The first thing that we need to do on every request is to create a new `emotion cache`.
 
 When rendering, we will wrap `App`, the root component,
-inside a [`CacheProvider`](https://emotion.sh/docs/cache-provider) and [`ThemeProvider`](/styles/api/#themeprovider) to make the style configuration and the `theme` available to all components in the component tree.
+inside a [`CacheProvider`](https://emotion.sh/docs/cache-provider) and [`ThemeProvider`](/system/styles/api/#themeprovider) to make the style configuration and the `theme` available to all components in the component tree.
 
 The key step in server-side rendering is to render the initial HTML of the component **before** we send it to the client-side. To do this, we use [ReactDOMServer.renderToString()](https://reactjs.org/docs/react-dom-server.html).
 
-MUI is using emotion as its default styled engine.
-We need to extract the styles from the emotion instance.
+MUI is using Emotion as its default styled engine.
+We need to extract the styles from the Emotion instance.
 For this, we need to share the same cache configuration for both the client and server:
 
 `createEmotionCache.js`
@@ -102,7 +102,7 @@ export default function createEmotionCache() {
 }
 ```
 
-With this we are creating new emotion cache instance and using this to extract the critical styles for the html as well.
+With this we are creating a new Emotion cache instance and using this to extract the critical styles for the html as well.
 
 We will see how this is passed along in the `renderFullPage` function.
 
@@ -221,4 +221,4 @@ We host different reference implementations which you can find in the [GitHub re
 
 ## Troubleshooting
 
-Check out the FAQ answer: [My App doesn't render correctly on the server](/getting-started/faq/#my-app-doesnt-render-correctly-on-the-server).
+Check out the FAQ answer: [My App doesn't render correctly on the server](/material-ui/getting-started/faq/#my-app-doesnt-render-correctly-on-the-server).

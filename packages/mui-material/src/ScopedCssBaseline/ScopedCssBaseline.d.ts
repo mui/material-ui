@@ -1,4 +1,6 @@
+import { SxProps } from '@mui/system';
 import * as React from 'react';
+import { Theme } from '../styles';
 import { OverridableComponent, OverrideProps } from '../OverridableComponent';
 import { ScopedCssBaselineClasses } from './scopedCssBaselineClasses';
 
@@ -18,6 +20,10 @@ export interface ScopedCssBaselineTypeMap<P = {}, D extends React.ElementType = 
      * For browser support, check out https://caniuse.com/?search=color-scheme
      */
     enableColorScheme?: boolean;
+    /**
+     * The system prop that allows defining system overrides as well as additional CSS styles.
+     */
+    sx?: SxProps<Theme>;
   };
   defaultComponent: D;
 }
@@ -25,11 +31,11 @@ export interface ScopedCssBaselineTypeMap<P = {}, D extends React.ElementType = 
  *
  * Demos:
  *
- * - [Css Baseline](https://mui.com/components/css-baseline/)
+ * - [Css baseline](https://mui.com/material-ui/react-css-baseline/)
  *
  * API:
  *
- * - [ScopedCssBaseline API](https://mui.com/api/scoped-css-baseline/)
+ * - [ScopedCssBaseline API](https://mui.com/material-ui/api/scoped-css-baseline/)
  */
 declare const ScopedCssBaseline: OverridableComponent<ScopedCssBaselineTypeMap>;
 

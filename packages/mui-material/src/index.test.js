@@ -3,7 +3,6 @@
  * Important: This test also serves as a point to
  * import the entire lib for coverage reporting
  */
-
 import { expect } from 'chai';
 import * as MaterialUI from './index';
 
@@ -26,7 +25,6 @@ describe('material-ui', () => {
       'NoSsr',
       'Portal',
       'TextareaAutosize',
-      'unstable_ClassNameGenerator',
       'unstable_composeClasses',
     ];
 

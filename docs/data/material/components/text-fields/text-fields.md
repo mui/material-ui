@@ -1,12 +1,13 @@
 ---
 product: material-ui
-title: Text Field React component
-components: FilledInput, FormControl, FormControlUnstyled, FormHelperText, Input, InputAdornment, InputBase, InputLabel, OutlinedInput, TextField, InputUnstyled
+title: Text field React component
+components: FilledInput, FormControl, FormHelperText, Input, InputAdornment, InputBase, InputLabel, OutlinedInput, TextField
 githubLabel: 'component: text field'
 materialDesign: https://material.io/components/text-fields
+unstyled: /base/react-input/
 ---
 
-# Text Field
+# Text field
 
 <p class="description">Text fields let users enter and edit text.</p>
 
@@ -40,15 +41,15 @@ The `helperText` prop can then be used to provide feedback to the user about the
 
 ## Multiline
 
-The `multiline` prop transforms the text field into a [`<textarea>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea) element.
-Unless the `rows` prop is set, the height of the text field dynamically matches its content (using [TextareaAutosize](/components/textarea-autosize/)).
+The `multiline` prop transforms the text field into a [TextareaAutosize](/material-ui/react-textarea-autosize/) element.
+Unless the `rows` prop is set, the height of the text field dynamically matches its content (using [TextareaAutosize](/material-ui/react-textarea-autosize/)).
 You can use the `minRows` and `maxRows` props to bound it.
 
 {{"demo": "MultilineTextFields.js"}}
 
 ## Select
 
-The `select` prop makes the text field use the [Select](/components/selects/) component internally.
+The `select` prop makes the text field use the [Select](/material-ui/react-select/) component internally.
 
 {{"demo": "SelectTextFields.js"}}
 
@@ -98,12 +99,12 @@ The component can be controlled or uncontrolled.
 ## Components
 
 `TextField` is composed of smaller components (
-[`FormControl`](/api/form-control/),
-[`Input`](/api/input/),
-[`FilledInput`](/api/filled-input/),
-[`InputLabel`](/api/input-label/),
-[`OutlinedInput`](/api/outlined-input/),
-and [`FormHelperText`](/api/form-helper-text/)
+[`FormControl`](/material-ui/api/form-control/),
+[`Input`](/material-ui/api/input/),
+[`FilledInput`](/material-ui/api/filled-input/),
+[`InputLabel`](/material-ui/api/input-label/),
+[`OutlinedInput`](/material-ui/api/outlined-input/),
+and [`FormHelperText`](/material-ui/api/form-helper-text/)
 ) that you can leverage directly to significantly customize your form inputs.
 
 You might also have noticed that some native HTML input properties are missing from the `TextField` component.
@@ -126,13 +127,13 @@ The `color` prop changes the highlight color of the text field when focused.
 ## Customization
 
 Here are some examples of customizing the component.
-You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
+You can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/).
 
 {{"demo": "CustomizedInputs.js"}}
 
 Customization does not stop at CSS.
 You can use composition to build custom components and give your app a unique feel.
-Below is an example using the [`InputBase`](/api/input-base/) component, inspired by Google Maps.
+Below is an example using the [`InputBase`](/material-ui/api/input-base/) component, inspired by Google Maps.
 
 {{"demo": "CustomizedInputBase.js", "bg": true}}
 
@@ -303,26 +304,9 @@ In order for the text field to be accessible, **the input should be linked to th
 For more advanced use cases, you might be able to take advantage of:
 
 - [react-hook-form](https://react-hook-form.com/): React hook for form validation.
+- [react-hook-form-mui](https://github.com/dohomi/react-hook-form-mui): MUI and react-hook-form combined.
 - [formik-material-ui](https://github.com/stackworx/formik-mui): Bindings for using MUI with [formik](https://formik.org/).
 - [redux-form-material-ui](https://github.com/erikras/redux-form-material-ui): Bindings for using MUI with [Redux Form](https://redux-form.com/).
 - [mui-rff](https://github.com/lookfirst/mui-rff): Bindings for using MUI with [React Final Form](https://final-form.org/react).
-
-## Unstyled
-
-For advanced customization scenarios, you can use the unstyled primitives.
-
-The basic building blocks are the `InputUnstyled` component and the `useInput` hook.
-
-### Unstyled component
-
-The `InputUnstyled` component wraps the native `input` or `textarea` element.
-You can, optionally, provide a custom component to be rendered instead.
-
-{{"demo": "UnstyledInput.js"}}
-
-### Hook
-
-The `useInput` hook is the headless version of the `InputUnstyled` component.
-Use it for even greater control over the rendered output.
-
-{{"demo": "UseInput.js"}}
+- [@ui-schema/ds-material](https://www.npmjs.com/package/@ui-schema/ds-material) Bindings for using Material UI with [UI Schema](https://github.com/ui-schema/ui-schema). JSON Schema compatible.
+- [@data-driven-forms/mui-component-mapper](https://data-driven-forms.org/provided-mappers/mui-component-mapper): Bindings for using Material UI with [Data Driven Forms](https://github.com/data-driven-forms/react-forms).

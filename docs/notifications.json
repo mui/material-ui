@@ -10,13 +10,18 @@
     "text": "You can <a style=\"color: inherit;\" target=\"_blank\" rel=\"noopener\" href=\"https://twitter.com/MUI_hq\">follow us on Twitter</a> to receive exclusive tips and updates about MUI and the React ecosystem."
   },
   {
-    "id": 56,
-    "title": "🚀 <b>Data Grid</b> — Introducing the Row Grouping feature",
-    "text": "Released in <code>@mui/x-data-grid-pro v5.3.0</code>. <a style=\"color: inherit;\" data-ga-event-category=\"Blog\" data-ga-event-action=\"notification\" data-ga-event-label=\"introducing-the-row-grouping-feature\" href=\"/blog/introducing-the-row-grouping-feature/\">Read the blog post</a> or <a style=\"color: inherit;\" target=\"_blank\" rel=\"noopener\" href=\"https://github.com/mui/mui-x/releases/tag/v5.3.0\">the changelog</a> for more details."
+    "id": 63,
+    "title": "📄 <b>Our docs just got a major upgrade!</b>",
+    "text": "Each of MUI's products now has its own dedicated documentation, making it easier than ever to find exactly what you need. <a style=\"color: inherit;\" data-ga-event-category=\"Blog\" data-ga-event-action=\"notification\" data-ga-event-label=\"docs-restructure-2022/\" href=\"/blog/docs-restructure-2022/\">Check out the blog post</a> for more details."
   },
   {
-    "id": 57,
-    "title": "🚀 <b>System</b> — Introducing callback support in style overrides",
-    "text": "Released in <code>@mui/material v5.3.0</code>. <a style=\"color: inherit;\" data-ga-event-category=\"Blog\" data-ga-event-action=\"notification\" data-ga-event-label=\"callback-support-in-style-overrides\" href=\"/blog/callback-support-in-style-overrides/\">Read the blog post</a> or <a style=\"color: inherit;\" target=\"_blank\" rel=\"noopener\" href=\"https://github.com/mui/material-ui/releases/tag/v5.3.0\">the changelog</a> for more details."
+    "id": 64,
+    "title": "<b>Premium passengers, please proceed to the boarding gate</b> 🚀",
+    "text": "<a style=\"color: inherit;\" data-ga-event-category=\"Blog\" data-ga-event-action=\"notification\" data-ga-event-label=\"lab-date-pickers-to-mui-x/\" href=\"/blog/premium-plan-release/\">Check out our blog post</a> introducing the MUI X Premium plan, and the new licensing model."
+  },
+  {
+    "id": 65,
+    "title": "<b>Get a first look at Joy UI</b> 🚀",
+    "text": "Joy UI is MUI's new starting point for your design system. <a style=\"color: inherit;\" data-ga-event-category=\"Blog\" data-ga-event-action=\"notification\" data-ga-event-label=\"first-look-at-joy/\" href=\"/blog/first-look-at-joy/\">Check out the blog post</a> to see what's in store for this new library."
   }
 ]

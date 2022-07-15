@@ -8,16 +8,17 @@ The core of MUI is a crowd-funded open-source project, licensed under the permis
 
 ### Diamond 💎
 
-<p style="display: flex; justify-content: center;">
+<p style="display: flex; justify-content: center; align-items: center;">
   <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="octopus" href="https://octopus.com/?utm_source=MUI&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img height="128" width="128" src="https://avatars3.githubusercontent.com/u/1287123?s=128" srcset="https://avatars3.githubusercontent.com/u/1287123?s=256 2x" alt="octopus" title="Repeatable, reliable deployments" loading="lazy" /></a>
-  <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="doit-intl" href="https://www.doit-intl.com/flexsave/?utm_source=MUI&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img height="128" width="128" src="https://avatars3.githubusercontent.com/u/8424863?s=128" srcset="https://avatars3.githubusercontent.com/u/8424863?s=256 2x" alt="doit-intl" title="Management Platform for Google Cloud and AWS" loading="lazy" /></a>
-  <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="aptugo" href="https://www.aptugo.com/?utm_source=MUI&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img height="128" width="128" src="https://www.aptugo.com/img/favicon.png" alt="aptugo" title="Augmented Software Development Platform" loading="lazy" /></a>
+  <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="doit-intl" href="https://www.doit-intl.com/flexsave/?utm_source=MUI&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" style="margin-right: 24px;"><img height="128" width="128" src="https://avatars3.githubusercontent.com/u/8424863?s=128" srcset="https://avatars3.githubusercontent.com/u/8424863?s=256 2x" alt="doit-intl" title="Management Platform for Google Cloud and AWS" loading="lazy" /></a>
+  <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="zesty.io" href="https://www.zesty.io/integrations/nextjs-cms/?utm_source=mui&utm_medium=referral&utm_campaign=sponsor" rel="noopener sponsored" target="_blank"><img height="90" width="90" src="https://brand.zesty.io/zesty-io-logo.svg" alt="zesty.io" title="The only Next.js CMS you need" loading="lazy" /></a>
 </p>
 
 _0/3 slots available_
 
 Diamond Sponsors are those who have pledged \$1,500/month or more to MUI.
 Please contact us at diamond@mui.com to subscribe to this tier.
+Even when there are no more slots available, we accept higher bids.
 
 ### Gold 🏆
 
@@ -28,9 +29,9 @@ via [OpenCollective](https://opencollective.com/mui) or via [Patreon](https://ww
   <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="bit.dev" href="https://bit.dev/?utm_source=MUI&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img height="96" width="96" src="https://avatars.githubusercontent.com/u/24789812?size=96" srcset="https://avatars.githubusercontent.com/u/24789812?size=192 2x" alt="bit.dev" title="The fastest way to share code" loading="lazy" /></a>
   <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="text-em-all.com" href="https://www.text-em-all.com/?utm_source=MUI&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img src="https://images.opencollective.com/callemall/09710fe/logo/96.png" srcset="https://images.opencollective.com/callemall/09710fe/logo/192.png 2x" alt="text-em-all.com" title="Mass Text Messaging & Automated Calling" height="96" width="96" loading="lazy"></a>
   <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="laststance.com" href="https://www.laststance.io/?utm_source=MUI&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img height="96" width="96" src="https://images.opencollective.com/laststance/daffd6c/avatar/96.png" srcset="https://images.opencollective.com/laststance/daffd6c/avatar/192.png 2x" alt="laststance" title="Organization for OSS activity based on Tokyo" loading="lazy" /></a>
-  <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="movavi.com" href="https://www.movavi.com/?utm_source=MUI&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img height="96" width="96" src="https://images.opencollective.com/movavi-software/a1d0167/logo/96.png" srcset="https://images.opencollective.com/movavi-software/a1d0167/logo/192.png 2x" alt="movavi.com" title="Screen recorder for Mac" loading="lazy" /></a>
   <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="laststance.io" href="https://online-aussie-casino.com/?utm_source=MUI&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img height="96" width="96" src="https://images.opencollective.com/aussiecasinohex/923df37/logo/96.png" srcset="https://images.opencollective.com/aussiecasinohex/923df37/logo/192.png 2x" alt="laststance.io" title="Aussie Gambling Guide" loading="lazy" /></a>
   <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="sunmatosoft" href="https://sumatosoft.com/?utm_source=MUI&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img height="96" width="96" src="https://images.opencollective.com/sumatosoft_company/0b78570/avatar/96.png" srcset="https://images.opencollective.com/sumatosoft_company/0b78570/avatar/192.png 2x" alt="sumatosoft.com" title="We help companies to digitalize their businesses" loading="lazy" /></a>
+  <a data-ga-event-category="sponsor" data-ga-event-action="logo" data-ga-event-label="megafamous" href="https://megafamous.com/?utm_source=MUI&utm_medium=referral&utm_content=backers" rel="noopener sponsored" target="_blank" style="margin-right: 16px;"><img height="96" width="96" src="https://p18.zdusercontent.com/attachment/9422375/Rullx0rw9lUGKuyKOy4VQ9Zxq?size=96" srcset="https://p18.zdusercontent.com/attachment/9422375/Rullx0rw9lUGKuyKOy4VQ9Zxq?size=192 2x" alt="megafamous.com" title="The best place to buy Instagram followers & likes" loading="lazy" /></a>
 </p>
 
 Gold Sponsors are those who have pledged \$500/month or more to MUI.
@@ -100,9 +101,9 @@ GitHub allows us to host the Git repository.
 
 Netlify allows us to distribute the documentation.
 
-[<img loading="lazy" alt="CrowdIn" src="https://support.crowdin.com/assets/logos/crowdin-logo1-small.png" height="30">](https://crowdin.com/)
+[<img loading="lazy" alt="Crowdin" src="https://support.crowdin.com/assets/logos/crowdin-logo-small-black.svg" height="30">](https://crowdin.com/)
 
-CrowdIn allows us to translate the documentation.
+Crowdin allows us to translate the documentation.
 
 [<img loading="lazy" alt="BrowserStack" src="https://www.browserstack.com/images/mail/browserstack-logo-footer.png" height="30">](https://www.browserstack.com/)
 

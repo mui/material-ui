@@ -22,9 +22,9 @@
     "uuid": "^8.3.2"
   },
   "devDependencies": {
-    "claudia": "^5.14.0"
+    "claudia": "^5.14.1"
   },
   "optionalDependencies": {
-    "aws-sdk": "^2.1082.0"
+    "aws-sdk": "^2.1171.0"
   }
 }

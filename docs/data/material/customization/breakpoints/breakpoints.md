@@ -7,7 +7,7 @@ MUI uses a **simplified** implementation of the original [specification](https:/
 
 The breakpoints are used internally in various components to make them responsive,
 but you can also take advantage of them
-for controlling the layout of your application through the [Grid](/components/grid/) component.
+for controlling the layout of your application through the [Grid](/material-ui/react-grid/) component.
 
 ## Default breakpoints
 
@@ -62,7 +62,7 @@ You might want to change the React rendering tree based on the breakpoint value,
 
 ### useMediaQuery hook
 
-You can learn more on the [useMediaQuery](/components/use-media-query/) page.
+You can learn more on the [useMediaQuery](/material-ui/react-use-media-query/) page.
 
 ## Custom breakpoints
 
@@ -70,7 +70,7 @@ You define your project's breakpoints in the `theme.breakpoints` section of your
 
 <!-- Keep in sync with packages/mui-system/src/createTheme/createBreakpoints.d.ts -->
 
-- [`theme.breakpoints.values`](/customization/default-theme/?expand-path=$.breakpoints.values): Default to the [above values](#default-breakpoints). The keys are your screen names, and the values are the min-width where that breakpoint should start.
+- [`theme.breakpoints.values`](/material-ui/customization/default-theme/?expand-path=$.breakpoints.values): Default to the [above values](#default-breakpoints). The keys are your screen names, and the values are the min-width where that breakpoint should start.
 - `theme.breakpoints.unit`: Default to `'px'`. The unit used for the breakpoint's values.
 - `theme.breakpoints.step`: Default to `5`. The increment divided by 100 used to implement exclusive breakpoints.
   For example, `{ step: 5 }` means that `down(500)` will result in `'(max-width: 499.95px)'`.
@@ -106,7 +106,7 @@ const theme = createTheme({
 });
 ```
 
-If you are using TypeScript, you would also need to use [module augmentation](/guides/typescript/#customization-of-theme) for the theme to accept the above values.
+If you are using TypeScript, you would also need to use [module augmentation](/material-ui/guides/typescript/#customization-of-theme) for the theme to accept the above values.
 
 <!-- Tested with packages/mui-material/test/typescript/breakpointsOverrides.augmentation.tsconfig.json -->
 
@@ -268,4 +268,4 @@ const styles = (theme) => ({
 
 ## Default values
 
-You can explore the default values of the breakpoints using [the theme explorer](/customization/default-theme/?expand-path=$.breakpoints) or by opening the dev tools console on this page (`window.theme.breakpoints`).
+You can explore the default values of the breakpoints using [the theme explorer](/material-ui/customization/default-theme/?expand-path=$.breakpoints) or by opening the dev tools console on this page (`window.theme.breakpoints`).

@@ -82,6 +82,8 @@ const theme = {
 <Box sx={{ p: 2 }}>…
 <Box sx={{ m: 1 }}>…
 <Box sx={{ p: 2 }}>…
+<Box sx={{ m: 1 }}>…
+<Box sx={{ p: 2 }}>…
 ```
 
 ## Centralização horizontal
@@ -148,22 +150,22 @@ The CSS flex and grid display properties are often used to align elements at the
 import { spacing } from '@material-ui/system';
 ```
 
-| Nome da importação | Propriedade | Propriedade CSS                 | Chave do tema                                                    |
-|:------------------ |:----------- |:------------------------------- |:---------------------------------------------------------------- |
-| `spacing`          | `m`         | `margin`                        | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
-| `spacing`          | `mt`        | `margin-top`                    | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
-| `spacing`          | `mr`        | `margin-right`                  | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
-| `spacing`          | `mb`        | `margin-bottom`                 | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
-| `spacing`          | `ml`        | `margin-left`                   | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
-| `spacing`          | `mx`        | `margin-left`, `margin-right`   | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
-| `spacing`          | `my`        | `margin-top`, `margin-bottom`   | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
-| `spacing`          | `p`         | `padding`                       | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
-| `spacing`          | `pt`        | `padding-top`                   | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
-| `spacing`          | `pr`        | `padding-right`                 | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
-| `spacing`          | `pb`        | `padding-bottom`                | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
-| `spacing`          | `pl`        | `padding-left`                  | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
-| `spacing`          | `px`        | `padding-left`, `padding-right` | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
-| `spacing`          | `py`        | `padding-top`, `padding-bottom` | [`spacing`](/customization/default-theme/?expand-path=$.spacing) |
+| Nome da importação | Propriedade | Propriedade CSS                 | Chave do tema                                                                |
+|:------------------ |:----------- |:------------------------------- |:---------------------------------------------------------------------------- |
+| `spacing`          | `m`         | `margin`                        | [`spacing`](/material-ui/customization/default-theme/?expand-path=$.spacing) |
+| `spacing`          | `mt`        | `margin-top`                    | [`spacing`](/material-ui/customization/default-theme/?expand-path=$.spacing) |
+| `spacing`          | `mr`        | `margin-right`                  | [`spacing`](/material-ui/customization/default-theme/?expand-path=$.spacing) |
+| `spacing`          | `mb`        | `margin-bottom`                 | [`spacing`](/material-ui/customization/default-theme/?expand-path=$.spacing) |
+| `spacing`          | `ml`        | `margin-left`                   | [`spacing`](/material-ui/customization/default-theme/?expand-path=$.spacing) |
+| `spacing`          | `mx`        | `margin-left`, `margin-right`   | [`spacing`](/material-ui/customization/default-theme/?expand-path=$.spacing) |
+| `spacing`          | `my`        | `margin-top`, `margin-bottom`   | [`spacing`](/material-ui/customization/default-theme/?expand-path=$.spacing) |
+| `spacing`          | `p`         | `padding`                       | [`spacing`](/material-ui/customization/default-theme/?expand-path=$.spacing) |
+| `spacing`          | `pt`        | `padding-top`                   | [`spacing`](/material-ui/customization/default-theme/?expand-path=$.spacing) |
+| `spacing`          | `pr`        | `padding-right`                 | [`spacing`](/material-ui/customization/default-theme/?expand-path=$.spacing) |
+| `spacing`          | `pb`        | `padding-bottom`                | [`spacing`](/material-ui/customization/default-theme/?expand-path=$.spacing) |
+| `spacing`          | `pl`        | `padding-left`                  | [`spacing`](/material-ui/customization/default-theme/?expand-path=$.spacing) |
+| `spacing`          | `px`        | `padding-left`, `padding-right` | [`spacing`](/material-ui/customization/default-theme/?expand-path=$.spacing) |
+| `spacing`          | `py`        | `padding-top`, `padding-bottom` | [`spacing`](/material-ui/customization/default-theme/?expand-path=$.spacing) |
 
 _Algumas pessoas acham a propriedade abreviada confusa, você pode usar a versão completa se preferir:_
 

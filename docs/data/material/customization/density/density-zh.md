@@ -1,6 +1,6 @@
 # Density 密度
 
-<p class="description">如何为 Material-UI 组件设置自定义的密度。</p>
+<p class="description">如何为 Material UI 组件设置自定义的密度。</p>
 
 ## 使用密度
 
@@ -14,23 +14,23 @@
 
 以下组件有一些能够达到较大密度的属性：
 
-- [Button](/api/button/)
-- [Fab](/api/fab/)
-- [FilledInput](/api/filled-input/)
-- [FormControl](/api/form-control/)
-- [FormHelperText](/api/form-helper-text/)
-- [IconButton](/api/icon-button/)
-- [InputBase](/api/input-base/)
-- [InputLabel](/api/input-label/)
-- [ListItem](/api/list-item/)
-- [OutlinedInput](/api/outlined-input/)
-- [Table](/api/table/)
-- [TextField](/api/text-field/)
-- [Toolbar](/api/toolbar/)
+- [Button](/material-ui/api/button/)
+- [Fab](/material-ui/api/fab/)
+- [FilledInput](/material-ui/api/filled-input/)
+- [FormControl](/material-ui/api/form-control/)
+- [FormHelperText](/material-ui/api/form-helper-text/)
+- [IconButton](/material-ui/api/icon-button/)
+- [InputBase](/material-ui/api/input-base/)
+- [InputLabel](/material-ui/api/input-label/)
+- [ListItem](/material-ui/api/list-item/)
+- [OutlinedInput](/material-ui/api/outlined-input/)
+- [Table](/material-ui/api/table/)
+- [TextField](/material-ui/api/text-field/)
+- [Toolbar](/material-ui/api/toolbar/)
 
 ## 探索主题的密度
 
-该工具允许您可以来通过 spacing 和 component 属性来应用密度。 您可以浏览一下，看看在 Material-UI 组件上使用后的整体感觉如何。
+该工具允许您可以来通过 spacing 和 component 属性来应用密度。 您可以浏览一下，看看在 Material UI 组件上使用后的整体感觉如何。
 
 如果您启用了较大的密度，那么一个自定义的主题将被应用到当前的文档中。 该主题仅为演示使用。 您 _不应该_ 将此主题应用在整个应用程序中，因为这可能会对用户的体验产生一些负面影响。 The [Material Design guidelines](https://material.io/design/layout/applying-density.html#typographic-density) has examples for when not to apply density.
 

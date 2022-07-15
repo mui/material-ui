@@ -18,6 +18,7 @@ import Autocomplete, {
   createFilterOptions,
 } from '@mui/material/Autocomplete';
 import { paperClasses } from '@mui/material/Paper';
+import { iconButtonClasses } from '@mui/material/IconButton';
 
 function checkHighlightIs(listbox, expected) {
   const focused = listbox.querySelector(`.${classes.focused}`);
@@ -472,6 +473,49 @@ describe('<Autocomplete />', () => {
       expect(handleChange.callCount).to.equal(1);
       expect(handleChange.args[0][1]).to.deep.equal([options[1]]);
       expect(textbox).toHaveFocus();
+    });
+
+    it('should keep listbox open on pressing left or right keys when inputValue is not empty', () => {
+      const handleClose = spy();
+      const options = ['one', 'two', 'three'];
+      const { getByRole } = render(
+        <Autocomplete
+          options={options}
+          onClose={handleClose}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+          multiple
+          inputValue="tw"
+        />,
+      );
+
+      const textbox = getByRole('combobox');
+
+      fireEvent.mouseDown(textbox);
+      fireEvent.keyDown(textbox, { key: 'ArrowLeft' });
+
+      expect(handleClose.callCount).to.equal(0);
+      expect(textbox).to.have.attribute('aria-expanded', 'true');
+    });
+    it('should close listbox on pressing left or right keys when inputValue is empty', () => {
+      const handleClose = spy();
+      const options = ['one', 'two', 'three'];
+      const { getByRole } = render(
+        <Autocomplete
+          options={options}
+          onClose={handleClose}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+          multiple
+          inputValue=""
+        />,
+      );
+
+      const textbox = getByRole('combobox');
+
+      fireEvent.mouseDown(textbox);
+      fireEvent.keyDown(textbox, { key: 'ArrowLeft' });
+
+      expect(handleClose.callCount).to.equal(1);
+      expect(textbox).to.have.attribute('aria-expanded', 'false');
     });
 
     it('should not crash if a tag is missing', () => {
@@ -1888,6 +1932,14 @@ describe('<Autocomplete />', () => {
       expect(handleChange.callCount).to.equal(1);
       expect(handleChange.args[0][1]).to.equal('あ');
     });
+
+    it('should render endAdornment only when clear icon or popup icon is available', () => {
+      const { container } = render(
+        <Autocomplete freeSolo options={[]} renderInput={(params) => <TextField {...params} />} />,
+      );
+
+      expect(container.querySelector(`.${classes.endAdornment}`)).to.equal(null);
+    });
   });
 
   describe('prop: onChange', () => {
@@ -2397,6 +2449,28 @@ describe('<Autocomplete />', () => {
   });
 
   describe('prop: componentsProps', () => {
+    it('should apply the props on the AutocompleteClearIndicator component', () => {
+      render(
+        <Autocomplete
+          open
+          options={['one', 'two']}
+          value="one"
+          renderInput={(params) => <TextField {...params} />}
+          componentsProps={{
+            clearIndicator: {
+              'data-testid': 'clearIndicator',
+              size: 'large',
+              className: 'my-class',
+            },
+          }}
+        />,
+      );
+
+      const clearIndicator = screen.getByTestId('clearIndicator');
+      expect(clearIndicator).to.have.class(iconButtonClasses.sizeLarge);
+      expect(clearIndicator).to.have.class('my-class');
+    });
+
     it('should apply the props on the Paper component', () => {
       render(
         <Autocomplete
@@ -2412,6 +2486,44 @@ describe('<Autocomplete />', () => {
       const paperRoot = screen.getByTestId('paperRoot');
       expect(paperRoot).to.have.class(paperClasses.elevation2);
       expect(paperRoot).to.have.class('my-class');
+    });
+
+    it('should apply the props on the Popper component', () => {
+      render(
+        <Autocomplete
+          open
+          options={['one', 'two']}
+          renderInput={(params) => <TextField {...params} />}
+          componentsProps={{
+            popper: { 'data-testid': 'popperRoot', placement: 'bottom-end', className: 'my-class' },
+          }}
+        />,
+      );
+
+      const popperRoot = screen.getByTestId('popperRoot');
+      expect(popperRoot).to.have.attribute('data-popper-placement', 'bottom-end');
+      expect(popperRoot).to.have.class('my-class');
+    });
+
+    it('should apply the props on the AutocompletePopupIndicator component', () => {
+      render(
+        <Autocomplete
+          open
+          options={['one', 'two']}
+          renderInput={(params) => <TextField {...params} />}
+          componentsProps={{
+            popupIndicator: {
+              'data-testid': 'popupIndicator',
+              size: 'large',
+              className: 'my-class',
+            },
+          }}
+        />,
+      );
+
+      const popupIndicator = screen.getByTestId('popupIndicator');
+      expect(popupIndicator).to.have.class(iconButtonClasses.sizeLarge);
+      expect(popupIndicator).to.have.class('my-class');
     });
   });
 

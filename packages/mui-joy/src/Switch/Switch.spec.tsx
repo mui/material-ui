@@ -28,8 +28,8 @@ import Switch from '@mui/joy/Switch';
 <Switch color="neutral" />;
 
 <Switch variant="outlined" />;
-<Switch variant="light" />;
-<Switch variant="contained" />;
+<Switch variant="soft" />;
+<Switch variant="solid" />;
 
 <Switch size="sm" />;
 <Switch size="md" />;

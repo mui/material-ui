@@ -4,7 +4,7 @@ description: An update on our mission for Q3 2020.
 date: 2020-10-14T00:00:00.000Z
 authors: ['oliviertassinari']
 card: true
-tags: ['Company update']
+tags: ['Company']
 ---
 
 This update covers our progress over the last three months, and what we aim to achieve in the coming months.
@@ -19,9 +19,9 @@ Here are the most significant improvements since June 2020. This was a dense qua
 - 🧪 We have promoted 7 components from the lab to the core: Alert, Autocomplete, Pagination, Rating, Skeleton, SpeedDial, and ToggleButton.
   Thank you for all your feedback on these components.
   While we still plan a couple of breaking changes on them, we are confident that they have reached the same level of quality as the other core components.
-- 👮 We have introduced a new component in the lab, the [TrapFocus](https://mui.com/components/trap-focus/). It manages focus for its descendants. This is useful when implementing overlays such as modal dialogs, which should not allow the focus to escape while open:
+- 👮 We have introduced a new component in the lab, the [TrapFocus](https://mui.com/base/react-trap-focus/). It manages focus for its descendants. This is useful when implementing overlays such as modal dialogs, which should not allow the focus to escape while open:
 
-  <video autoplay muted loop style="max-height: 416px; margin-bottom: 24px;">
+  <video style="max-height: 416px; margin-bottom: 24px;" autoplay muted loop playsinline>
     <source src="/static/blog/2020-q3-update/trap-focus.mp4" type="video/mp4" />
   </video>
 
@@ -62,12 +62,12 @@ Here are the most significant improvements since June 2020. This was a dense qua
 
   Hopefully, in the future, we will be able to take advantage of the variant feature [coming in Figma](https://help.figma.com/hc/en-us/articles/360055471353-Prepare-for-Variants) with this API.
 
-- ⚡️ We have released a first alpha version of the [data grid component](/components/data-grid/).<br />
+- ⚡️ We have released a first alpha version of the [data grid component](/x/react-data-grid/).<br />
   We announced our intent to build this component [a year ago](/blog/september-2019-update/#our-roadmap-intent-for-october). While we could have implemented a simple version and release it a month later, it wouldn't have set us in the right direction for the years to follow. We're aiming aim to deliver the best-in-class React data grid.
   This objective requires a twin licensing model. The component is available under an MIT license for the features that can be relatively easily implemented, and that can be sustained with an open-source model; as well as a paid commercial license for the more advanced features.
   <br />To ensure we could meet this objective, we spent time finding an expert in the field. This led us to open a new job position, and, a few months later, [Damien Tassone](/blog/spotlight-damien-tassone/) joined to lead the work on this component.
 
-  <a href="/components/data-grid/"><img src="/static/blog/2020-q3-update/data-grid.png" alt="" style="width: 829px; margin-bottom: 8px;" /></a>
+  <a href="/x/react-data-grid/"><img src="/static/blog/2020-q3-update/data-grid.png" alt="" style="width: 829px; margin-bottom: 8px;" /></a>
 
   <p class="blog-description">100,000 rows</p>
 
@@ -92,7 +92,7 @@ Here are the most significant improvements since June 2020. This was a dense qua
 
   <img src="/static/blog/2020-q3-update/react-testing-library.png" alt="" style="width: 640px; margin-bottom: 40px; margin-top: 24px;" />
 
-- 💅 We have completed the first iteration of the unstyled components for v5.<br />You can find a [new version](/components/slider/#unstyled) of the slider in the lab without any styles.
+- 💅 We have completed the first iteration of the unstyled components for v5.<br />You can find a [new version](/material-ui/react-slider/#unstyled) of the slider in the lab without any styles.
   The unstyled component weighs in at [5.2 kB gzipped](https://bundlephobia.com/package/@mui/lab@5.0.0-alpha.12), compared with 26 kB for the styled version (when used standalone). The component is best suited for use when you want to fully customize the look, without reimplementing the JavaScript and accessibility logic.<br />
   We're also pushing in this direction to address a concern we hear from large enterprises
   that want to be able to go one layer down in the abstraction, in order to gain more control.
@@ -101,17 +101,17 @@ Here are the most significant improvements since June 2020. This was a dense qua
   import SliderUnstyled from '@mui/lab/SliderUnstyled';
   ```
 
-  Note that we have experimented with headless components (hooks only) in the past. For instance, you can leverage the [useAutocomplete](/components/autocomplete/#useautocomplete), and [usePagination](/components/pagination/#usepagination) hooks. However, we are pushing with unstyled first as a required step for the next item: ⬇️.
+  Note that we have experimented with headless components (hooks only) in the past. For instance, you can leverage the [useAutocomplete](/material-ui/react-autocomplete/#useautocomplete), and [usePagination](/material-ui/react-pagination/#usepagination) hooks. However, we are pushing with unstyled first as a required step for the next item: ⬇️.
 
 - 👩‍🎨 We have completed the first iteration of the new styling solution of v5.<br />
-  You can find a [new version](/components/slider/) of the slider in the lab powered by [emotion](https://emotion.sh/docs/introduction).<br />
-  If you are already using styled-components in your application, you can swap emotion for styled-components 💅. Check this [CodeSandbox](https://codesandbox.io/s/sliderstyled-with-styled-components-forked-olc27?file=/package.json) or [CRA](https://github.com/mui/material-ui/tree/HEAD/examples/create-react-app-with-styled-components/) for a demo. It relies on aliases to prevent any bundle size overhead.<br />
-  The new styling solution saves 2kB+ gzipped in the bundle compared to JSS, and about 14 kB gzipped if you were already using styled-components or emotion.<br />
+  You can find a [new version](/material-ui/react-slider/) of the slider in the lab powered by [Emotion](https://emotion.sh/docs/introduction).<br />
+  If you are already using styled-components in your application, you can swap Emotion for styled-components 💅. Check this [CodeSandbox](https://codesandbox.io/s/sliderstyled-with-styled-components-forked-olc27?file=/package.json) or [CRA](https://github.com/mui/material-ui/tree/HEAD/examples/create-react-app-with-styled-components/) for a demo. It relies on aliases to prevent any bundle size overhead.<br />
+  The new styling solution saves 2kB+ gzipped in the bundle compared to JSS, and about 14 kB gzipped if you were already using styled-components or Emotion.<br />
   Last but not least, this change allows us to take advantage of dynamic style props. We will use them for dynamic color props, variant props, and new style props available in the core components.
 
   <img src="/static/blog/2020-q3-update/emotion.png" alt="" style="width: 329px;" />
 
-  <p class="blog-description">Slider powered by emotion</p>
+  <p class="blog-description">Slider powered by Emotion</p>
 
   <img src="/static/blog/2020-q3-update/styled-components.png" alt="" style="width: 323px;" />
 

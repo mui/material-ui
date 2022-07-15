@@ -87,8 +87,8 @@ function moveFocus(
 }
 
 /**
- * A permanently displayed menu following https://www.w3.org/TR/wai-aria-practices/#menubutton.
- * It's exposed to help customization of the [`Menu`](/api/menu/) component if you
+ * A permanently displayed menu following https://www.w3.org/WAI/ARIA/apg/patterns/menubutton/.
+ * It's exposed to help customization of the [`Menu`](/material-ui/api/menu/) component if you
  * use it separately you need to move focus into the component manually. Once
  * the focus is placed inside the component it is fully keyboard accessible.
  */

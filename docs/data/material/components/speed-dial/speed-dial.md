@@ -1,13 +1,13 @@
 ---
 product: material-ui
-title: React Speed Dial component
+title: React Speed dial component
 components: SpeedDial, SpeedDialAction, SpeedDialIcon
 githubLabel: 'component: speed dial'
 materialDesign: https://material.io/components/buttons-floating-action-button#types-of-transitions
-waiAria: https://www.w3.org/TR/wai-aria-practices/#menubutton
+waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/menubutton/
 ---
 
-# Speed Dial
+# Speed dial
 
 <p class="description">When pressed, a floating action button can display three to six related actions in the form of a speed dial.</p>
 

@@ -5,7 +5,7 @@
 ## Introduction
 
 All the MUI components are styled with this `styled()` utility.
-This utility is built on top of the `styled()` module of [`@mui/styled-engine`](/guides/styled-engine/) and provides additional features.
+This utility is built on top of the `styled()` module of [`@mui/styled-engine`](/material-ui/guides/styled-engine/) and provides additional features.
 
 ### Import path
 
@@ -18,7 +18,7 @@ The utility can be used as a replacement for emotion's or styled-components' sty
 It aims to solve the same problem, but also provides the following benefits:
 
 1. It uses MUI's default `theme` if no theme is available in React context.
-2. It supports the theme's [`styleOverrides`](/customization/theme-components/#global-style-overrides) and [`variants`](/customization/theme-components/#adding-new-component-variants) to be applied, based on the `name` applied in the options (can be skipped).
+2. It supports the theme's [`styleOverrides`](/material-ui/customization/theme-components/#global-style-overrides) and [`variants`](/material-ui/customization/theme-components/#adding-new-component-variants) to be applied, based on the `name` applied in the options (can be skipped).
 3. It adds support for the [the `sx` prop](/system/basics/#the-sx-prop) (can be skipped).
 4. It adds by default the `shouldForwardProp` option (that can be overridden), taking into account all props used internally in the MUI components: `ownerState`, `theme`, `sx`, and `as`.
 
@@ -34,7 +34,7 @@ It aims to solve the same problem, but also provides the following benefits:
    - `options.shouldForwardProp` (_`(prop: string) => bool`_ [optional]): Indicates whether the `prop` should be forwarded to the `Component`.
    - `options.label` (_string_ [optional]): The suffix of the style sheet. Useful for debugging.
    - `options.name` (_string_ [optional]): The key used under `theme.components` for specifying `styleOverrides` and `variants`. Also used for generating the `label`.
-   - `options.slot` (_string_ [optional]): If `Root`, it automatically applies the theme's `styleOverrides` & `variants`.
+   - `options.slot` (_string_ [optional]): If `Root`, it automatically applies the theme's `variants`.
    - `options.overridesResolver` (_(props: object, styles: Record<string, styles>) => styles_ [optional]): Function that returns styles based on the props and the `theme.components[name].styleOverrides` object.
    - `options.skipVariantsResolver` (_bool_): Disables the automatic resolver for the `theme.components[name].variants`.
    - `options.skipSx` (_bool_ [optional]): Disables the `sx` prop on the component.
@@ -96,7 +96,7 @@ export default styled;
 
 ## Difference with the `sx` prop
 
-The `styled` function is an extension of the `styled` utility provided by the underlying style library used – either emotion or styled-components.
+The `styled` function is an extension of the `styled` utility provided by the underlying style library used – either Emotion or styled-components.
 It is guaranteed that it will produce the same output as the `styled` function coming from the style library for the same input.
 
 The [`sx`](/system/the-sx-prop/) prop, on the other hand, is a new way of styling your components, focused on fast customization. `styled` is a function, while `sx` is a prop of the MUI components.
@@ -117,12 +117,14 @@ With `sx`:
 
 ```js
 const MyStyledButton = (props) => (
-  <button sx={{
-    mx: 1, // ✔️ this shortcut is specific to the `sx` prop,
-  }}>
-     {props.children}
+  <button
+    sx={{
+      mx: 1, // ✔️ this shortcut is specific to the `sx` prop,
+    }}
+  >
+    {props.children}
   </button>
-})
+);
 ```
 
 ### The style definition varies slightly

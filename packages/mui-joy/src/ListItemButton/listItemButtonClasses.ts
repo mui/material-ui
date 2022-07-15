@@ -1,4 +1,4 @@
-import { generateUtilityClass, generateUtilityClasses } from '@mui/base';
+import { generateUtilityClass, generateUtilityClasses } from '../className';
 
 export interface ListItemButtonClasses {
   /** Styles applied to the root element. */
@@ -23,23 +23,23 @@ export interface ListItemButtonClasses {
   disabled: string;
   /** State class applied to the root element if `selected={true}`. */
   selected: string;
-  /** State class applied to the root element if `variant="text"`. */
-  variantText: string;
-  /** State class applied to the root element if `variant="light"`. */
-  variantLight: string;
+  /** State class applied to the root element if `variant="plain"`. */
+  variantPlain: string;
+  /** State class applied to the root element if `variant="soft"`. */
+  variantSoft: string;
   /** State class applied to the root element if `variant="outlined"`. */
   variantOutlined: string;
-  /** State class applied to the root element if `variant="contained"`. */
-  variantContained: string;
+  /** State class applied to the root element if `variant="solid"`. */
+  variantSolid: string;
 }
 
 export type ListItemButtonClassKey = keyof ListItemButtonClasses;
 
 export function getListItemButtonUtilityClass(slot: string): string {
-  return generateUtilityClass('MuiListItemButton', slot);
+  return generateUtilityClass('JoyListItemButton', slot);
 }
 
-const listItemButtonClasses: ListItemButtonClasses = generateUtilityClasses('MuiListItemButton', [
+const listItemButtonClasses: ListItemButtonClasses = generateUtilityClasses('JoyListItemButton', [
   'root',
   'colorPrimary',
   'colorNeutral',
@@ -51,10 +51,10 @@ const listItemButtonClasses: ListItemButtonClasses = generateUtilityClasses('Mui
   'focusVisible',
   'disabled',
   'selected',
-  'variantText',
-  'variantLight',
+  'variantPlain',
+  'variantSoft',
   'variantOutlined',
-  'variantContained',
+  'variantSolid',
 ]);
 
 export default listItemButtonClasses;

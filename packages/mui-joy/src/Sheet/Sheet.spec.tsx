@@ -6,10 +6,10 @@ import * as React from 'react';
 <Sheet component="div" />;
 
 // `variant`
-<Sheet variant="text" />;
-<Sheet variant="light" />;
+<Sheet variant="plain" />;
+<Sheet variant="soft" />;
 <Sheet variant="outlined" />;
-<Sheet variant="contained" />;
+<Sheet variant="solid" />;
 
 // `color`
 <Sheet color="primary" />;
@@ -19,18 +19,8 @@ import * as React from 'react';
 <Sheet color="warning" />;
 <Sheet color="neutral" />;
 
-// `elevation`
-<Sheet elevation="xs" />;
-<Sheet elevation="sm" />;
-<Sheet elevation="md" />;
-<Sheet elevation="lg" />;
-<Sheet elevation="xl" />;
-
 // @ts-expect-error there is no variant `filled`
 <Sheet variant="filled" />;
 
 // @ts-expect-error there is no color `secondary`
 <Sheet color="secondary" />;
-
-// @ts-expect-error there is no elevation `xl2`
-<Sheet elevation="xl2" />;

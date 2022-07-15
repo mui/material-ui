@@ -8,88 +8,72 @@ import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 
+const sourcePrefix = `${process.env.SOURCE_CODE_REPO}/tree/v${process.env.LIB_VERSION}`;
+
 function layouts(t) {
   return [
     {
       title: t('dashboardTitle'),
       description: t('dashboardDescr'),
       src: '/static/images/templates/dashboard.png',
-      href: '/getting-started/templates/dashboard/',
-      source:
-        // #default-branch-switch
-        'https://github.com/mui/material-ui/tree/master/docs/data/material/getting-started/templates/dashboard',
+      href: '/material-ui/getting-started/templates/dashboard/',
+      source: `${sourcePrefix}/docs/data/material/getting-started/templates/dashboard`,
     },
     {
       title: t('signInTitle'),
       description: t('signInDescr'),
       src: '/static/images/templates/sign-in.png',
-      href: '/getting-started/templates/sign-in/',
-      source:
-        // #default-branch-switch
-        'https://github.com/mui/material-ui/tree/master/docs/data/material/getting-started/templates/sign-in',
+      href: '/material-ui/getting-started/templates/sign-in/',
+      source: `${sourcePrefix}/docs/data/material/getting-started/templates/sign-in`,
     },
     {
       title: t('signInSideTitle'),
       description: t('signInSideDescr'),
       src: '/static/images/templates/sign-in-side.png',
-      href: '/getting-started/templates/sign-in-side/',
-      source:
-        // #default-branch-switch
-        'https://github.com/mui/material-ui/tree/master/docs/data/material/getting-started/templates/sign-in-side',
+      href: '/material-ui/getting-started/templates/sign-in-side/',
+      source: `${sourcePrefix}/docs/data/material/getting-started/templates/sign-in-side`,
     },
     {
       title: t('signUpTitle'),
       description: t('signUpDescr'),
       src: '/static/images/templates/sign-up.png',
-      href: '/getting-started/templates/sign-up/',
-      source:
-        // #default-branch-switch
-        'https://github.com/mui/material-ui/tree/master/docs/data/material/getting-started/templates/sign-up',
+      href: '/material-ui/getting-started/templates/sign-up/',
+      source: `${sourcePrefix}/docs/data/material/getting-started/templates/sign-up`,
     },
     {
       title: t('blogTitle'),
       description: t('blogDescr'),
       src: '/static/images/templates/blog.png',
-      href: '/getting-started/templates/blog/',
-      source:
-        // #default-branch-switch
-        'https://github.com/mui/material-ui/tree/master/docs/data/material/getting-started/templates/blog',
+      href: '/material-ui/getting-started/templates/blog/',
+      source: `${sourcePrefix}/docs/data/material/getting-started/templates/blog`,
     },
     {
       title: t('checkoutTitle'),
       description: t('checkoutDescr'),
       src: '/static/images/templates/checkout.png',
-      href: '/getting-started/templates/checkout/',
-      source:
-        // #default-branch-switch
-        'https://github.com/mui/material-ui/tree/master/docs/data/material/getting-started/templates/checkout',
+      href: '/material-ui/getting-started/templates/checkout/',
+      source: `${sourcePrefix}/docs/data/material/getting-started/templates/checkout`,
     },
     {
       title: t('albumTitle'),
       description: t('albumDescr'),
       src: '/static/images/templates/album.png',
-      href: '/getting-started/templates/album/',
-      source:
-        // #default-branch-switch
-        'https://github.com/mui/material-ui/tree/master/docs/data/material/getting-started/templates/album',
+      href: '/material-ui/getting-started/templates/album/',
+      source: `${sourcePrefix}/docs/data/material/getting-started/templates/album`,
     },
     {
       title: t('pricingTitle'),
       description: t('pricingDescr'),
       src: '/static/images/templates/pricing.png',
-      href: '/getting-started/templates/pricing/',
-      source:
-        // #default-branch-switch
-        'https://github.com/mui/material-ui/tree/master/docs/data/material/getting-started/templates/pricing',
+      href: '/material-ui/getting-started/templates/pricing/',
+      source: `${sourcePrefix}/docs/data/material/getting-started/templates/pricing`,
     },
     {
       title: t('stickyFooterTitle'),
       description: t('stickyFooterDescr'),
       src: '/static/images/templates/sticky-footer.png',
-      href: '/getting-started/templates/sticky-footer/',
-      source:
-        // #default-branch-switch
-        'https://github.com/mui/material-ui/tree/master/docs/data/material/getting-started/templates/sticky-footer',
+      href: '/material-ui/getting-started/templates/sticky-footer/',
+      source: `${sourcePrefix}/docs/data/material/getting-started/templates/sticky-footer`,
     },
   ];
 }

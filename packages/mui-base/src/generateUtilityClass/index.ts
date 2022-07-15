@@ -1,3 +1,2 @@
-export { default } from './generateUtilityClass';
-export * from './generateUtilityClass';
-export { default as unstable_ClassNameGenerator } from './ClassNameGenerator';
+export { unstable_generateUtilityClass as default } from '@mui/utils';
+export type { GlobalStateSlot } from '@mui/utils';

@@ -4,7 +4,7 @@ title: Radio buttons React component
 components: Radio, RadioGroup, FormControl, FormLabel, FormControlLabel
 githubLabel: 'component: radio'
 materialDesign: https://material.io/components/selection-controls#radio-buttons
-waiAria: https://www.w3.org/TR/wai-aria-practices/#radiobutton
+waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/radiobutton/
 ---
 
 # Radio
@@ -12,7 +12,7 @@ waiAria: https://www.w3.org/TR/wai-aria-practices/#radiobutton
 <p class="description">Radio buttons allow the user to select one option from a set.</p>
 
 Use radio buttons when the user needs to see all available options.
-If available options can be collapsed, consider using a [Select component](/components/selects/) because it uses less space.
+If available options can be collapsed, consider using a [Select component](/material-ui/react-select/) because it uses less space.
 
 Radio buttons should have the most commonly used option selected by default.
 
@@ -67,7 +67,7 @@ In general, radio buttons should have a value selected by default. If this is no
 ## Customization
 
 Here is an example of customizing the component.
-You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
+You can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/).
 
 {{"demo": "CustomizedRadios.js"}}
 
@@ -101,9 +101,9 @@ import { useRadioGroup } from '@mui/material/RadioGroup';
 
 ## Accessibility
 
-(WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#radiobutton)
+(WAI-ARIA: https://www.w3.org/WAI/ARIA/apg/patterns/radiobutton/)
 
-- All form controls should have labels, and this includes radio buttons, checkboxes, and switches. In most cases, this is done by using the `<label>` element ([FormControlLabel](/api/form-control-label/)).
+- All form controls should have labels, and this includes radio buttons, checkboxes, and switches. In most cases, this is done by using the `<label>` element ([FormControlLabel](/material-ui/api/form-control-label/)).
 - When a label can't be used, it's necessary to add an attribute directly to the input component.
   In this case, you can apply the additional attribute (e.g. `aria-label`, `aria-labelledby`, `title`) via the `inputProps` property.
 

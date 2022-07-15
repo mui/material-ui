@@ -4,7 +4,7 @@ description: An update on our mission for Q1 2021.
 date: 2021-04-12T00:00:00.000Z
 authors: ['oliviertassinari']
 card: true
-tags: ['Company update']
+tags: ['Company']
 ---
 
 This update covers our progress over the last three months, and what we aim to achieve in the months ahead.
@@ -44,7 +44,7 @@ Here are the most significant improvements since December 2020.
 
   <img src="/static/blog/2021-q1-update/stack.png" alt="" style="width: 502px; margin-bottom: 16px;" />
 
-  You can find [more details](https://mui.com/components/stack/) in the documentation.
+  You can find [more details](https://mui.com/material-ui/react-stack/) in the documentation.
 
 - 🎨 We have improved the support for custom colors and variants.
   This is [one](https://github.com/mui/material-ui/issues/13875) of the most upvoted issues in the GitHub issue tracker.
@@ -126,13 +126,13 @@ The date picker is at the border between the advanced components and the design 
 
 #### Data Grid
 
-- 🔄 We have started to bring support for [lazy-loading](/components/data-grid/rows/#infinite-loading).
-- ⬇️ We have introduced support for [CSV export](/components/data-grid/export/#csv-export).
+- 🔄 We have started to bring support for [lazy-loading](/x/react-data-grid/rows/#infinite-loading).
+- ⬇️ We have introduced support for [CSV export](/x/react-data-grid/export/#csv-export).
 
   <img src="/static/blog/2021-q1-update/csv-export.png" alt="" style="width: 523px; margin-bottom: 16px;" />
 
 - ♿️ We have fixed a couple of accessibility issues (more in progress).
-- 🌏 We have introduced support for [custom locales](/components/data-grid/localization/).
+- 🌏 We have introduced support for [custom locales](/x/react-data-grid/localization/).
 - 🚨 We have started to work on breaking changes to reach a stable state.
 - 💾 We have extended the support of @mui/material to handle v4 and v5 at the same time.
   In the future, we might desynchronize the release version of _mui/material-ui_ and _mui/mui-x_.

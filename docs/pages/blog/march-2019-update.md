@@ -3,7 +3,7 @@ title: March 2019 Update
 description: Here are the most significant improvements in March.
 date: 2019-04-05T00:00:00.000Z
 authors: ['oliviertassinari']
-tags: ['Company update']
+tags: ['Company']
 ---
 
 Here are the most significant improvements in March:
@@ -20,15 +20,15 @@ Here are the most significant improvements in March:
   +import Box from '@material-ui/core/Box';
   ```
 
-- We have committed to [a new Roadmap](/discover-more/roadmap/) (prioritized) for the next 6 months.
+- We have committed to [a new Roadmap](/material-ui/discover-more/roadmap/) (prioritized) for the next 6 months.
 - We have migrated 50% of the codebase from the Classes API to the Hooks API. Once we are done with this task we can remove the internal usage of higher-order components.
-- We have introduced [a simplified server-side rendering API](/styles/advanced/#server-side-rendering), inspired by styled-components.
+- We have introduced [a simplified server-side rendering API](/system/styles/advanced/#server-side-rendering), inspired by styled-components.
 
 ## Our roadmap intent for April
 
 _(We'll do our best, no guarantee!)_
 
-- We are almost done with [the v4.0.0-alpha breaking changes](https://github.com/mui/material-ui/issues/13663). You can already find [the upgrade path](/guides/migration-v3/) from v3 to v4 in the documentation. Next, we will release the first beta version (no more breaking changes).
+- We are almost done with [the v4.0.0-alpha breaking changes](https://github.com/mui/material-ui/issues/13663). You can already find [the upgrade path](/material-ui/migration/migration-v3/) from v3 to v4 in the documentation. Next, we will release the first beta version (no more breaking changes).
   The results of the MUI developer survey suggested that there are too many breaking changes.
   Don't worry, it's almost over! We will focus on providing more components once we have released v4 stable.
 - We will continue, and hopefully complete, the tasks we undertook:

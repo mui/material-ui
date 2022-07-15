@@ -65,7 +65,7 @@ There is only one package in this layer - `@mui/system`.
 
 It uses the emotion adapter (`@mui/styled-engine`) as the default styled-engine to create APIs for building a design system from scratch. For example, [`styled`](/system/styled/#main-content) from the styled-engine is enhanced to provide more theming capabilities.
 
-If you want to switch the styled-engine to use styled-components, [follow this guide](/guides/styled-engine/#how-to-switch-to-styled-components).
+If you want to switch the styled-engine to use styled-components, [follow this guide](/material-ui/guides/styled-engine/#how-to-switch-to-styled-components).
 
 <img src="/static/images/packages/mui-system.png" style="display: block; width: 720px; margin: 40px auto;" />
 
@@ -85,7 +85,7 @@ It provides only React component functionality and accessibility features withou
 
 Since it doesn't rely on any specific styling solution, you can pick a method that best fits your needs, from pure CSS to CSS-in-JS.
 
-For more details, check out the [unstyled components page](/customization/unstyled-components/)
+For more details, check out the [unstyled components page](/material-ui/customization/unstyled-components/)
 
 ## Design system
 

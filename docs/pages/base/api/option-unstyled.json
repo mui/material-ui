@@ -7,10 +7,11 @@
       "default": "{}"
     },
     "componentsProps": {
-      "type": { "name": "shape", "description": "{ root?: object }" },
+      "type": { "name": "shape", "description": "{ root?: func<br>&#124;&nbsp;object }" },
       "default": "{}"
     },
-    "disabled": { "type": { "name": "bool" } }
+    "disabled": { "type": { "name": "bool" } },
+    "label": { "type": { "name": "string" } }
   },
   "name": "OptionUnstyled",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
@@ -18,6 +19,6 @@
   "forwardsRefTo": "HTMLLIElement",
   "filename": "/packages/mui-base/src/OptionUnstyled/OptionUnstyled.tsx",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/material-ui/react-select/\">Selects</a></li></ul>",
+  "demos": "<ul><li><a href=\"/base/react-select/\">Select</a></li></ul>",
   "cssComponent": false
 }

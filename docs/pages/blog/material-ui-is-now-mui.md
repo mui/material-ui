@@ -1,20 +1,20 @@
 ---
-title: Material-UI is now MUI!
+title: Material UI is now MUI!
 description: Starting today, we are evolving our brand identity. We are clarifying the difference between our company and our products.
 date: 2021-09-16T00:00:00.000Z
 authors: ['oliviertassinari', 'danilo-leal', 'mbrookes']
-tags: ['Company update']
+tags: ['Company']
 card: true
 ---
 
-<img src="/static/blog/material-ui-is-now-mui/intro.png" alt="The new MUI logo" style="width: 100%; margin-bottom: 16px;" />
+<img src="/static/blog/material-ui-is-now-mui/intro.png" alt="The new MUI logo" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" />
 
 Starting today we are evolving our brand identity to clarifying the difference between our company and our products.
 
-- Material-UI: the organization is now called [**MUI**](https://github.com/mui/).
-- Material-UI: the set of foundational MIT React components is now called [**MUI Core**](https://github.com/mui/material-ui).
+- Material UI: the organization is now called [**MUI**](https://github.com/mui/).
+- Material UI: the set of foundational MIT React components is now called [**MUI Core**](https://github.com/mui/material-ui).
 - Material UI: the Material Design components developed by MUI. Also, we ditched the hyphen!
-- Material-UI X: the set of advanced React components is now called [**MUI X**](https://github.com/mui/mui-x).
+- Material UI X: the set of advanced React components is now called [**MUI X**](https://github.com/mui/mui-x).
 
 Our previous name was no longer serving our areas of focus.
 We have grown our product offering.
@@ -22,7 +22,7 @@ We needed a new identity to match our increased scope.
 
 ## The origin
 
-Material-UI [started](https://www.text-em-all.com/blog/material-ui-the-internet-found-our-ui-project) as a React implementation of the Material Design guidelines in 2014.
+Material UI [started](https://www.text-em-all.com/blog/material-ui-the-internet-found-our-ui-project) as a React implementation of the Material Design guidelines in 2014.
 The goal was simple, to empower React developers to use Material Design.
 The community [loved it](https://news.ycombinator.com/item?id=8582439) and was craving for more, so we kept building.
 
@@ -43,22 +43,19 @@ Our primary focus was to revamp the **customization Developer Experience (DX)**.
 It had become clear that design (aesthetic, UX) and DX were key to unlocking the next stage of growth.
 
 The new brand supports the [v5.0.0 release](/blog/mui-core-v5/) while also creating space for new initiatives that broaden the company horizon. It's a big deal!
-
 Our ultimate goal is to become the most effective and efficient tool to build UIs while making it accessible to the many.
 
 ## Our new brand
 
-Let's dig in.
-
 ### A new name
 
 We are breaking the strong association with Material Design
-as we have seen too many people confusing Material-UI with Google, or as a synonym of Material Design.
+as we have seen too many people confusing Material UI with Google, or as a synonym of Material Design.
 
 We are now called **MUI**. It stands for **M**aterial to build **UI**s
 and is pronounced [/ɛm juː aɪ/](http://ipa-reader.xyz/?text=%C9%9Bmju%CB%90a%C9%AA).
 
-It's shorter, it distinguishes us, and it's familiar – many people already used it for abbreviating Material-UI.
+It's shorter, it distinguishes us, and it's familiar – many people already used it for abbreviating Material UI.
 More importantly, it allows for the release of products not directly coupled to Material Design, such as an unstyled/headless version of the components, a brand new second design system as an alternative to MD, and more ambitious initiatives.
 
 ### A new domain name
@@ -74,11 +71,11 @@ It's basically the same, to keep it familiar –
 we're keeping the geometrical shape, to resonate with the _building blocks_ idea of the components –
 however, we're reducing the emphasis on the 3D perspective, stepping away from the notion of elevation that Material Design coined.
 
-<img loading="lazy" src="/static/blog/material-ui-is-now-mui/old-new.png" alt="Side-by-side of the new and old logo" style="width: 612px; margin-bottom: 16px;" />
+<img loading="lazy" src="/static/blog/material-ui-is-now-mui/old-new.png" alt="Side-by-side of the new and old logo" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" />
 
 To better identify, market, and promote each product, we're introducing logos for each one of them.
 
-<img loading="lazy" src="/static/blog/material-ui-is-now-mui/products.png" alt="Logos for MUI Core, MUI X and Templates" style="width: 600px; margin-bottom: 16px;" />
+<img loading="lazy" src="/static/blog/material-ui-is-now-mui/products.png" alt="Logos for MUI Core, MUI X and Templates" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" />
 
 - **MUI Core** contains ready-to-use foundational components, free forever.
 - **MUI X** includes advanced and powerful components for complex use-cases.
@@ -92,18 +89,12 @@ The npm organization name (scope) has moved from @material-ui to [@mui](https://
 
 ### A new website & documentation
 
-Lastly, to celebrate the start of a new chapter for the company with the release of v5.0.0, and new products in the making, we're introducing a brand new website and documentation design.
+Lastly, to celebrate the start of a new chapter for the company with the release of v5.0.0, and new products in the making, we're introducing a brand new website and documentation design. You'll find a completely different theme from Material Design – new typeface, colors, box-shadows, and more,
+all done using the flexible theming features of v5. [Head to the new website](/)!
 
-You'll find a completely different theme from Material Design – new typeface, colors, box-shadows, and more,
-all done using the flexible theming features of v5.
+<img loading="lazy" src="/static/blog/material-ui-is-now-mui/website-homepage.png" alt="Screenshot of the new website homepage" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" />
 
-<img loading="lazy" src="/static/blog/material-ui-is-now-mui/palette.png" alt="Selection of the new color palette and gradients" style="width: 600px; margin-bottom: 16px;" />
-
-<p class="blog-description">The color palette of our brand.</p>
-
-[Head to the new website](/).
-
-> Note that these changes do **not** impact the design of the components released under the `@mui/*` npm packages.
+> 💡 Note that these changes in the website and documentation do **not** impact the design of the components released under the `@mui/*` npm packages.
 
 ## The path ahead
 

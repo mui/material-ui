@@ -72,7 +72,7 @@ const handleAlignment = (event, newAlignment) => {
 
 ## Botão de alternância customizado
 
-Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
+Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/).
 
 {{"demo": "CustomizedDividers.js", "bg": true}}
 

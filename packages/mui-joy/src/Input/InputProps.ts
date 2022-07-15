@@ -1,11 +1,10 @@
 import React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
-import { UseInputProps } from '@mui/base/InputUnstyled';
+import { UseInputParameters } from '@mui/base/InputUnstyled';
 import { InputClasses } from './inputClasses';
-import { SxProps } from '../styles/defaultTheme';
-import { ColorPaletteProp, VariantProp } from '../styles/types';
+import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
 
-export type InputSlot = 'root' | 'input' | 'startAdornment' | 'endAdornment';
+export type InputSlot = 'root' | 'input' | 'startDecorator' | 'endDecorator';
 
 export interface InputPropsVariantOverrides {}
 
@@ -15,7 +14,7 @@ export interface InputPropsSizeOverrides {}
 
 export interface InputTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P &
-    UseInputProps & {
+    Omit<UseInputParameters, 'inputRef'> & {
       'aria-describedby'?: string;
       'aria-label'?: string;
       'aria-labelledby'?: string;
@@ -39,11 +38,9 @@ export interface InputTypeMap<P = {}, D extends React.ElementType = 'div'> {
       classes?: Partial<InputClasses>;
       /**
        * The color of the component. It supports those theme colors that make sense for this component.
+       * @default 'neutral'
        */
-      color?: OverridableStringUnion<
-        Exclude<ColorPaletteProp, 'context'>,
-        InputPropsColorOverrides
-      >;
+      color?: OverridableStringUnion<ColorPaletteProp, InputPropsColorOverrides>;
       /**
        * The components used for each slot inside the InputBase.
        * Either a string to use a HTML element or a component.
@@ -63,7 +60,7 @@ export interface InputTypeMap<P = {}, D extends React.ElementType = 'div'> {
       /**
        * Trailing adornment for this input.
        */
-      endAdornment?: React.ReactNode;
+      endDecorator?: React.ReactNode;
       /**
        * If `true`, the button will take up the full width of its container.
        * @default false
@@ -73,10 +70,6 @@ export interface InputTypeMap<P = {}, D extends React.ElementType = 'div'> {
        * The id of the `input` element.
        */
       id?: string;
-      /**
-       * Pass a ref to the `input` element.
-       */
-      inputRef?: React.Ref<any>;
       /**
        * Name attribute of the `input` element.
        */
@@ -95,9 +88,10 @@ export interface InputTypeMap<P = {}, D extends React.ElementType = 'div'> {
       /**
        * Leading adornment for this input.
        */
-      startAdornment?: React.ReactNode;
+      startDecorator?: React.ReactNode;
       /**
        * The size of the component.
+       * @default 'md'
        */
       size?: OverridableStringUnion<'sm' | 'md' | 'lg', InputPropsSizeOverrides>;
       /**
@@ -106,7 +100,7 @@ export interface InputTypeMap<P = {}, D extends React.ElementType = 'div'> {
       sx?: SxProps;
       /**
        * Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types).
-       * @default 'text'
+       * @default 'plain'
        */
       type?: string;
       /**

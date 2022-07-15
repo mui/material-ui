@@ -46,7 +46,7 @@ declare module '@mui/material/styles/createTypography' {
 
 const defaultTheme = createTheme();
 
-const blue = {
+export const blue = {
   50: '#F0F7FF',
   100: '#C2E0FF',
   200: '#99CCF3',
@@ -271,10 +271,13 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
         letterSpacing: 0,
         fontWeight: 700,
       },
+      allVariants: {
+        scrollMarginTop: 'calc(var(--MuiDocs-header-height) + 32px)',
+      },
     },
   } as ThemeOptions);
 
-export function getThemedComponents(theme: Theme) {
+export function getThemedComponents(theme: Theme): { components: Theme['components'] } {
   return {
     components: {
       MuiButtonBase: {
@@ -304,6 +307,7 @@ export function getThemedComponents(theme: Theme) {
         },
         variants: [
           {
+            // @ts-ignore internal repo module augmentation issue
             props: { variant: 'code' },
             style: {
               color:
@@ -350,6 +354,7 @@ export function getThemedComponents(theme: Theme) {
             },
           },
           {
+            // @ts-ignore internal repo module augmentation issue
             props: { variant: 'link' },
             style: {
               fontSize: theme.typography.pxToRem(14),
@@ -400,12 +405,10 @@ export function getThemedComponents(theme: Theme) {
       MuiMenu: {
         styleOverrides: {
           paper: {
-            mt: 0.5,
             minWidth: 160,
-            elevation: 0,
             color: theme.palette.text.secondary,
             backgroundImage: 'none',
-            bgColor:
+            backgroundColor:
               theme.palette.mode === 'dark'
                 ? theme.palette.primaryDark[900]
                 : theme.palette.background.paper,
@@ -503,31 +506,74 @@ export function getThemedComponents(theme: Theme) {
       },
       MuiChip: {
         styleOverrides: {
-          root: {
+          root: ({ ownerState: { color, variant } }) => ({
             fontWeight: 500,
-          },
-          outlined: {
-            color: theme.palette.mode === 'dark' ? '#fff' : theme.palette.grey[900],
-            backgroundColor: 'transparent',
-            borderColor:
-              theme.palette.mode === 'dark'
-                ? theme.palette.primaryDark[600]
-                : theme.palette.grey[300],
-          },
-          filled: {
-            border: '1px solid transparent',
-            color: theme.palette.mode === 'dark' ? '#fff' : theme.palette.primary[800],
-            backgroundColor:
-              theme.palette.mode === 'dark'
-                ? theme.palette.primaryDark[500]
-                : theme.palette.primary[100],
-            '&:hover': {
-              backgroundColor:
-                theme.palette.mode === 'dark'
-                  ? theme.palette.primaryDark[600]
-                  : theme.palette.primary[200],
-            },
-          },
+            ...(variant === 'outlined' &&
+              color === 'default' && {
+                color:
+                  theme.palette.mode === 'dark' ? theme.palette.grey[300] : theme.palette.grey[900],
+                backgroundColor: 'transparent',
+                borderColor:
+                  theme.palette.mode === 'dark'
+                    ? alpha(theme.palette.grey[100], 0.1)
+                    : theme.palette.grey[200],
+                '&:hover': {
+                  color:
+                    theme.palette.mode === 'dark'
+                      ? theme.palette.grey[300]
+                      : theme.palette.grey[900],
+                },
+              }),
+            ...(variant === 'outlined' &&
+              color === 'primary' && {
+                '&:hover': {
+                  color: theme.palette.primary[500],
+                },
+              }),
+            ...(variant === 'filled' &&
+              color === 'default' && {
+                border: '1px solid transparent',
+                color: theme.palette.mode === 'dark' ? '#fff' : theme.palette.primary[700],
+                backgroundColor:
+                  theme.palette.mode === 'dark'
+                    ? alpha(theme.palette.primaryDark[500], 0.8)
+                    : alpha(theme.palette.primary[100], 0.5),
+                '&:hover': {
+                  backgroundColor:
+                    theme.palette.mode === 'dark'
+                      ? theme.palette.primaryDark[600]
+                      : theme.palette.primary[100],
+                },
+              }),
+            // for labelling product in the search
+            // @ts-ignore internal repo module augmentation issue
+            ...(variant === 'light' && {
+              ...(color === 'default' && {
+                color:
+                  theme.palette.mode === 'dark'
+                    ? theme.palette.primary[200]
+                    : theme.palette.primary[700],
+                backgroundColor:
+                  theme.palette.mode === 'dark'
+                    ? alpha(theme.palette.primaryDark[700], 0.5)
+                    : alpha(theme.palette.primary[100], 0.3),
+              }),
+              ...(color === 'warning' && {
+                color: theme.palette.mode === 'dark' ? '#fff' : theme.palette.warning[900],
+                backgroundColor:
+                  theme.palette.mode === 'dark'
+                    ? theme.palette.warning[900]
+                    : theme.palette.warning[100],
+              }),
+              ...(color === 'success' && {
+                color: theme.palette.mode === 'dark' ? '#fff' : theme.palette.success[900],
+                backgroundColor:
+                  theme.palette.mode === 'dark'
+                    ? theme.palette.success[900]
+                    : theme.palette.success[100],
+              }),
+            }),
+          }),
           deleteIcon: {
             color: theme.palette.mode === 'dark' ? '#fff' : theme.palette.primary[700],
             '&:hover': {

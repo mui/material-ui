@@ -3,7 +3,7 @@ title: May 2019 Update
 description: Here are the most significant improvements in May.
 date: 2019-06-08T00:00:00.000Z
 authors: ['oliviertassinari']
-tags: ['Company update']
+tags: ['Company']
 ---
 
 Here are the most significant improvements in May:
@@ -22,9 +22,9 @@ _(We'll do our best, no guarantee!)_
 
 ![Slider](/static/blog/may-2019-update/slider.png)
 
-- We will work on a new Tree View component. You can already [preview it](https://deploy-preview-14827--material-ui.netlify.app/components/tree-view/).
+- We will work on a new Tree view component. You can already [preview it](https://deploy-preview-14827--material-ui.netlify.app/components/tree-view/).
 
-![Tree View](/static/blog/may-2019-update/tree-view.png)
+![Tree view](/static/blog/may-2019-update/tree-view.png)
 
 - We will add more themes to the [premium theme marketplace](https://mui.com/store/).
 - We will start exploring how we can provide style adapters in v5 (styled-components, JSS, linaria, naked, etc.)

@@ -3,7 +3,7 @@ title: Q1 2020 Update
 description: An update on our mission for Q1 2020.
 date: 2020-04-14T00:00:00.000Z
 authors: ['oliviertassinari']
-tags: ['Company update']
+tags: ['Company']
 ---
 
 Welcome to the new format of our mission update. We are moving from monthly to quarterly updates.
@@ -15,11 +15,11 @@ We have done eleven so far. We have optimized for stability.
 
 Here are the most significant improvements since the beginning of the year:
 
-- 🔍 We have polished the [Autocomplete](https://mui.com/components/autocomplete/) component (Combo box). We have closed more than [270](https://github.com/mui/material-ui/labels/lab%3A%20Autocomplete) issues and pull requests so far. We will promote the component to the core in the next major (v5).
+- 🔍 We have polished the [Autocomplete](https://mui.com/material-ui/react-autocomplete/) component (Combo box). We have closed more than [270](https://github.com/mui/material-ui/labels/lab%3A%20Autocomplete) issues and pull requests so far. We will promote the component to the core in the next major (v5).
 
   ![autocomplete](/static/blog/2020-q1-update/autocomplete.gif)
 
-  <p class="blog-description">useAutocomplete <a href="https://mui.com/components/autocomplete/#useautocomplete">hook</a> example, 4.5 kB gzipped.</p>
+  <p class="blog-description">useAutocomplete <a href="https://mui.com/material-ui/react-autocomplete/#useautocomplete">hook</a> example, 4.5 kB gzipped.</p>
 
   If you wish to make your first contribution to open source, the component has a couple of ["good first issues"](https://github.com/mui/material-ui/labels/lab%3A%20Autocomplete) that can be taken.
   If you have TypeScript expertise, the component could [benefit from it](https://github.com/mui/material-ui/issues?q=is%3Aopen+label%3A%22lab%3A+Autocomplete%22+label%3Atypescript).
@@ -28,17 +28,17 @@ Here are the most significant improvements since the beginning of the year:
 
   ![date picker](/static/blog/2020-q1-update/date-picker.png)
 
-- ⚠️ We have introduced a new [Alert](https://mui.com/components/alert/) component in the lab. While this component isn't mentioned in the Material Design guidelines, it's a common and well-established pattern. For instance, it can be interested when [combined](https://mui.com/components/snackbars/#notistack) with the Snackbar.
+- ⚠️ We have introduced a new [Alert](https://v4.mui.com/components/alert/) component in the lab. While this component isn't mentioned in the Material Design guidelines, it's a common and well-established pattern. For instance, it can be interested when [combined](https://v4.mui.com/components/snackbars/#notistack) with the Snackbar.
 
   <img src="/static/blog/2020-q1-update/alert.png" alt="alert" style="max-height: 369px; margin-bottom: 24px;" />
 
-- ⏭ We have introduced a new [Pagination](https://mui.com/components/pagination/) component.
+- ⏭ We have introduced a new [Pagination](https://v4.mui.com/components/pagination/) component.
 
   <img src="/static/blog/2020-q1-update/pagination.png" alt="pagination" style="max-height: 208px; margin-bottom: 8px;" />
 
-- 🦴 We have added a new "wave" animation to the [Skeleton](https://mui.com/components/skeleton/#animations) component.
+- 🦴 We have added a new "wave" animation to the [Skeleton](https://v4.mui.com/components/skeleton/#animations) component.
 
-  <video autoplay muted loop style="max-height: 95px; margin-bottom: 24px;">
+  <video style="max-height: 95px; margin-bottom: 24px;" autoplay muted loop playsinline>
     <source src="/static/blog/2020-q1-update/skeleton.webm" type="video/webm" />
   </video>
 

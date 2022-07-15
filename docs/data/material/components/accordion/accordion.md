@@ -4,7 +4,7 @@ title: React Accordion component
 components: Accordion, AccordionActions, AccordionDetails, AccordionSummary
 githubLabel: 'component: accordion'
 materialDesign: https://material.io/archive/guidelines/components/expansion-panels.html
-waiAria: https://www.w3.org/TR/wai-aria-practices/#accordion
+waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/accordion/
 ---
 
 # Accordion
@@ -15,7 +15,10 @@ An accordion is a lightweight container that may either be used standalone, or b
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-> **Note:** Accordions are no longer documented in the [Material Design guidelines](https://material.io/), but MUI will continue to support them. It was formerly known as the "expansion panel".
+:::info
+**Note:**
+Accordions are no longer documented in the [Material Design guidelines](https://material.io/), but MUI will continue to support them. It was formerly known as the "expansion panel".
+:::
 
 ## Basic accordion
 
@@ -30,7 +33,7 @@ Extend the default behavior to create an accordion with the `Accordion` componen
 ## Customization
 
 Here is an example of customizing the component.
-You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
+You can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/).
 
 {{"demo": "CustomizedAccordions.js"}}
 
@@ -51,7 +54,7 @@ Be sure to identify bottlenecks first and then try out these optimization strate
 
 ## Accessibility
 
-(WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#accordion)
+(WAI-ARIA: https://www.w3.org/WAI/ARIA/apg/patterns/accordion/)
 
 For optimal accessibility we recommend setting `id` and `aria-controls` on the
 `AccordionSummary`. The `Accordion` will derive the necessary `aria-labelledby`

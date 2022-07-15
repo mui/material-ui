@@ -24,7 +24,7 @@ import { authors as AUTHORS } from 'docs/src/modules/components/TopLayoutBlog';
 import HeroEnd from 'docs/src/components/home/HeroEnd';
 import Link from 'docs/src/modules/components/Link';
 
-export const getStaticProps = async () => {
+export const getStaticProps = () => {
   const data = getAllBlogPosts();
   return {
     props: data,
@@ -34,32 +34,30 @@ export const getStaticProps = async () => {
 const PostPreview = (props: BlogPost) => {
   return (
     <React.Fragment>
-      {props.tags && (
-        <Box sx={{ display: 'flex', gap: 1, mb: 1.5 }}>
-          {props.tags.map((tag) => (
-            <Chip
-              key={tag}
-              label={tag}
-              size="small"
-              sx={{
-                fontWeight: 500,
-                color: (theme) =>
-                  theme.palette.mode === 'dark' ? theme.palette.grey[50] : theme.palette.grey[700],
+      <Box sx={{ display: 'flex', gap: 1, mb: 1.5 }}>
+        {props.tags.map((tag) => (
+          <Chip
+            key={tag}
+            label={tag}
+            size="small"
+            sx={{
+              fontWeight: 500,
+              color: (theme) =>
+                theme.palette.mode === 'dark' ? theme.palette.grey[50] : theme.palette.grey[700],
+              background: (theme) =>
+                theme.palette.mode === 'dark'
+                  ? alpha(theme.palette.grey[700], 0.5)
+                  : theme.palette.grey[100],
+              '&:hover': {
                 background: (theme) =>
                   theme.palette.mode === 'dark'
                     ? alpha(theme.palette.grey[700], 0.5)
                     : theme.palette.grey[100],
-                '&:hover': {
-                  background: (theme) =>
-                    theme.palette.mode === 'dark'
-                      ? alpha(theme.palette.grey[700], 0.5)
-                      : theme.palette.grey[100],
-                },
-              }}
-            />
-          ))}
-        </Box>
-      )}
+              },
+            }}
+          />
+        ))}
+      </Box>
       <Typography
         component="h2"
         fontWeight="bold"
@@ -91,8 +89,8 @@ const PostPreview = (props: BlogPost) => {
             mb: 1,
             alignSelf: 'flex-start',
             '& .MuiAvatar-circular': {
-              width: '28px',
-              height: '28px',
+              width: 28,
+              height: 28,
               border: 3,
               borderColor: (theme) =>
                 theme.palette.mode === 'dark'
@@ -112,7 +110,12 @@ const PostPreview = (props: BlogPost) => {
           }}
         >
           {(props.authors as Array<keyof typeof AUTHORS>).map((author) => (
-            <Avatar key={author} alt={AUTHORS[author]?.name} src={AUTHORS[author]?.avatar} />
+            <Avatar
+              key={author}
+              alt=""
+              src={`${AUTHORS[author].avatar}?s=${28}`}
+              srcSet={`${AUTHORS[author].avatar}?s=${28 * 2} 2x`}
+            />
           ))}
         </AvatarGroup>
       )}
@@ -175,8 +178,9 @@ const PostPreview = (props: BlogPost) => {
   );
 };
 
+const PAGE_SIZE = 5;
+
 export default function Blog(props: InferGetStaticPropsType<typeof getStaticProps>) {
-  const PAGE_SIZE = 5;
   const router = useRouter();
   const postListRef = React.useRef<HTMLDivElement | null>(null);
   const [page, setPage] = React.useState(0);
@@ -185,24 +189,26 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
   const [firstPost, secondPost, ...otherPosts] = allBlogPosts;
   const tagInfo = { ...rawTagInfo };
   [firstPost, secondPost].forEach((post) => {
-    if (post.tags) {
-      post.tags.forEach((tag) => {
-        if (tagInfo[tag]) {
-          tagInfo[tag]! -= 1;
-        }
-      });
-    }
+    post.tags.forEach((tag) => {
+      if (tagInfo[tag]) {
+        tagInfo[tag]! -= 1;
+      }
+    });
   });
   Object.entries(tagInfo).forEach(([tagName, tagCount]) => {
-    if (!tagCount) {
+    if (tagCount === 0) {
       delete tagInfo[tagName];
     }
   });
-  const filteredPosts = otherPosts.filter(
-    (post) =>
-      !Object.keys(selectedTags).length ||
-      (post.tags || []).some((tag) => Object.keys(selectedTags).includes(tag)),
-  );
+  const filteredPosts = otherPosts.filter((post) => {
+    if (Object.keys(selectedTags).length === 0) {
+      return true;
+    }
+
+    return post.tags.some((tag) => {
+      return Object.keys(selectedTags).includes(tag);
+    });
+  });
   const pageStart = page * PAGE_SIZE;
   const totalPage = Math.ceil(filteredPosts.length / PAGE_SIZE);
   const displayedPosts = filteredPosts.slice(pageStart, pageStart + PAGE_SIZE);
@@ -244,7 +250,7 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
       />
       <AppHeader />
       <main>
-        <Section bg="gradient">
+        <Section bg="gradient" sx={{ backgroundSize: '100% 300px', backgroundRepeat: 'no-repeat' }}>
           <Typography variant="body2" color="primary.600" fontWeight="bold" textAlign="center">
             Blog
           </Typography>

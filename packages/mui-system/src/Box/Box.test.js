@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer, describeConformance } from 'test/utils';
-import Box from '@mui/material/Box';
+import { Box } from '@mui/system';
 
 describe('<Box />', () => {
   const { render } = createRenderer();

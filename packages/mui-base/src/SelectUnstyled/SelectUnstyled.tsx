@@ -1,6 +1,5 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import {
   unstable_useForkRef as useForkRef,
   unstable_useControlled as useControlled,
@@ -15,12 +14,11 @@ import {
 import { flattenOptionGroups, getOptionsFromChildren } from './utils';
 import useSelect from './useSelect';
 import { SelectChild, SelectOption } from './useSelect.types';
-import { appendOwnerState } from '../utils';
+import { useSlotProps, WithOptionalOwnerState } from '../utils';
 import PopperUnstyled from '../PopperUnstyled';
 import { SelectUnstyledContext, SelectUnstyledContextType } from './SelectUnstyledContext';
 import composeClasses from '../composeClasses';
 import { getSelectUnstyledUtilityClass } from './selectUnstyledClasses';
-import { WithOptionalOwnerState } from '../utils/types';
 
 function defaultRenderSingleValue<TValue>(selectedOption: SelectOption<TValue> | null) {
   return selectedOption?.label ?? '';
@@ -54,13 +52,13 @@ const SelectUnstyled = React.forwardRef(function SelectUnstyled<TValue>(
   const {
     autoFocus,
     children,
-    className,
     component,
     components = {},
     componentsProps = {},
     defaultValue,
     defaultListboxOpen = false,
     disabled: disabledProp,
+    listboxId,
     listboxOpen: listboxOpenProp,
     onChange,
     onListboxOpenChange,
@@ -101,7 +99,6 @@ const SelectUnstyled = React.forwardRef(function SelectUnstyled<TValue>(
   };
 
   const handleButtonRef = useForkRef(ref, handleButtonRefChange);
-  const handleListboxRef = useForkRef(listboxRef, componentsProps.listbox?.ref);
 
   React.useEffect(() => {
     if (autoFocus) {
@@ -124,12 +121,10 @@ const SelectUnstyled = React.forwardRef(function SelectUnstyled<TValue>(
     getOptionState,
     value,
   } = useSelect({
-    buttonComponent: Button,
     buttonRef: handleButtonRef,
     defaultValue,
     disabled: disabledProp,
-    listboxId: componentsProps.listbox?.id,
-    listboxRef: handleListboxRef,
+    listboxId,
     multiple: false,
     onChange,
     onOpenChange: handleOpenChange,
@@ -155,42 +150,41 @@ const SelectUnstyled = React.forwardRef(function SelectUnstyled<TValue>(
     return options.find((o) => value === o.value);
   }, [options, value]);
 
-  const buttonProps: WithOptionalOwnerState<SelectUnstyledRootSlotProps<TValue>> = appendOwnerState(
-    Button,
-    {
-      ...getButtonProps(),
-      ...other,
-      ...componentsProps.root,
-      className: clsx(className, componentsProps.root?.className, classes.root),
-    },
+  const buttonProps: WithOptionalOwnerState<SelectUnstyledRootSlotProps<TValue>> = useSlotProps({
+    elementType: Button,
+    getSlotProps: getButtonProps,
+    externalSlotProps: componentsProps.root,
+    externalForwardedProps: other,
     ownerState,
-  );
+    className: classes.root,
+  });
 
-  const listboxProps: WithOptionalOwnerState<SelectUnstyledListboxSlotProps<TValue>> =
-    appendOwnerState(
-      ListboxRoot,
-      {
-        ...getListboxProps(),
-        ...componentsProps.listbox,
-        className: clsx(componentsProps.listbox?.className, classes.listbox),
+  const listboxProps: WithOptionalOwnerState<SelectUnstyledListboxSlotProps<TValue>> = useSlotProps(
+    {
+      elementType: ListboxRoot,
+      getSlotProps: getListboxProps,
+      externalSlotProps: componentsProps.listbox,
+      additionalProps: {
+        ref: listboxRef,
       },
       ownerState,
-    );
+      className: classes.listbox,
+    },
+  );
 
-  // Popper must be a (non-host) component, therefore ownerState will be present within the props
-  const popperProps: SelectUnstyledPopperSlotProps<TValue> = appendOwnerState(
-    Popper,
-    {
-      open: listboxOpen,
+  const popperProps: SelectUnstyledPopperSlotProps<TValue> = useSlotProps({
+    elementType: Popper,
+    externalSlotProps: componentsProps.popper,
+    additionalProps: {
       anchorEl: buttonRef.current,
-      placement: 'bottom-start' as const,
       disablePortal: true,
+      open: listboxOpen,
+      placement: 'bottom-start' as const,
       role: undefined,
-      ...componentsProps.popper,
-      className: clsx(componentsProps.popper?.className, classes.popper),
     },
     ownerState,
-  ) as SelectUnstyledPopperSlotProps<TValue>;
+    className: classes.popper,
+  });
 
   const context: SelectUnstyledContextType = {
     getOptionProps,
@@ -231,10 +225,6 @@ SelectUnstyled.propTypes /* remove-proptypes */ = {
   /**
    * @ignore
    */
-  className: PropTypes.string,
-  /**
-   * @ignore
-   */
   component: PropTypes.elementType,
   /**
    * The components used for each slot inside the Select.
@@ -251,9 +241,9 @@ SelectUnstyled.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   componentsProps: PropTypes.shape({
-    listbox: PropTypes.object,
-    popper: PropTypes.object,
-    root: PropTypes.object,
+    listbox: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    popper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
    * If `true`, the select will be initially open.
@@ -269,6 +259,11 @@ SelectUnstyled.propTypes /* remove-proptypes */ = {
    * @default false
    */
   disabled: PropTypes.bool,
+  /**
+   * `id` attribute of the listbox element.
+   * Also used to derive the `id` attributes of options.
+   */
+  listboxId: PropTypes.string,
   /**
    * Controls the open state of the select's listbox.
    * @default undefined
@@ -299,11 +294,11 @@ SelectUnstyled.propTypes /* remove-proptypes */ = {
  *
  * Demos:
  *
- * - [Selects](https://mui.com/components/selects/)
+ * - [Select](https://mui.com/base/react-select/)
  *
  * API:
  *
- * - [SelectUnstyled API](https://mui.com/api/select-unstyled/)
+ * - [SelectUnstyled API](https://mui.com/base/api/select-unstyled/)
  */
 export default SelectUnstyled as <TValue extends {}>(
   props: SelectUnstyledProps<TValue> & React.RefAttributes<HTMLElement>,

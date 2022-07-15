@@ -13,7 +13,7 @@ export interface BlogPost {
   title: string;
   description: string;
   image?: string;
-  tags?: Array<string>;
+  tags: Array<string>;
   authors?: Array<string>;
   date?: string;
 }
@@ -29,6 +29,10 @@ export const getBlogPost = (filePath: string): BlogPost => {
     slug,
   };
 };
+
+// Avoid typos in the blog markdown pages.
+// https://www.notion.so/mui-org/Blog-247ec2bff5fa46e799ef06a693c94917
+const ALLOWED_TAGS = ['MUI Core', 'MUI X', 'News', 'Company', 'Developer survey', 'Product'];
 
 export const getAllBlogPosts = () => {
   const filePaths = getBlogFilePaths();
@@ -47,14 +51,19 @@ export const getAllBlogPosts = () => {
   const allBlogPosts = rawBlogPosts.filter((post) => !!post.title);
   const tagInfo: Record<string, number | undefined> = {};
   allBlogPosts.forEach((post) => {
-    (post.tags || []).forEach((tag) => {
+    post.tags.forEach((tag) => {
+      if (!ALLOWED_TAGS.includes(tag)) {
+        throw new Error(
+          `The tag "${tag}" in "${post.title}" was not whitelisted. Are you sure it's not a typo?`,
+        );
+      }
+
       tagInfo[tag] = (tagInfo[tag] || 0) + 1;
     });
   });
+
   return {
-    rawBlogPosts, // all posts from the directory
     allBlogPosts, // posts with at least a title
-    allTags: Object.keys(tagInfo),
     tagInfo,
   };
 };

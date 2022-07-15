@@ -1,6 +1,5 @@
 const fs = require('fs');
 const path = require('path');
-const FEATURE_TOGGLE = require('../../featureToggle');
 
 const markdownRegex = /\.md$/;
 
@@ -11,9 +10,7 @@ const markdownRegex = /\.md$/;
  * @returns {Array<{ filename: string, pathname: string }>}
  */
 function findPagesMarkdown(
-  directory = FEATURE_TOGGLE.enable_product_scope
-    ? path.resolve(__dirname, '../../../data')
-    : path.resolve(__dirname, '../../../src/pages'),
+  directory = path.resolve(__dirname, '../../../data'),
   pagesMarkdown = [],
 ) {
   const items = fs.readdirSync(directory);
@@ -31,17 +28,10 @@ function findPagesMarkdown(
     }
 
     let pathname = '';
-    if (FEATURE_TOGGLE.enable_product_scope) {
-      pathname = itemPath
-        .replace(new RegExp(`\\${path.sep}`, 'g'), '/')
-        .replace(/^.*\/material[^-]/, '/')
-        .replace('.md', '');
-    } else {
-      pathname = itemPath
-        .replace(new RegExp(`\\${path.sep}`, 'g'), '/')
-        .replace(/^.*\/pages/, '')
-        .replace('.md', '');
-    }
+    pathname = itemPath
+      .replace(new RegExp(`\\${path.sep}`, 'g'), '/')
+      .replace(/^.*\/(material[^-]|base\/)/, '/')
+      .replace('.md', '');
 
     // Remove the last pathname segment.
     pathname = pathname.split('/').slice(0, 3).join('/');
@@ -77,7 +67,8 @@ function findPagesMarkdownNew(
       return;
     }
 
-    if (!markdownRegex.test(item)) {
+    if (!/\.md$/.test(item) || /-(zh|pt)\.md/.test(item)) {
+      // neglect translation markdown
       return;
     }
 

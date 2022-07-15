@@ -43,6 +43,7 @@ import { FormGroupProps } from '../FormGroup';
 import { FormHelperTextProps } from '../FormHelperText';
 import { FormLabelProps } from '../FormLabel';
 import { GridProps } from '../Grid';
+import { Grid2Props } from '../Unstable_Grid2';
 import { IconButtonProps } from '../IconButton';
 import { IconProps } from '../Icon';
 import { ImageListProps } from '../ImageList';
@@ -115,6 +116,7 @@ import { ToolbarProps } from '../Toolbar';
 import { TooltipProps } from '../Tooltip';
 import { TouchRippleProps } from '../ButtonBase/TouchRipple';
 import { TypographyProps } from '../Typography';
+import { PopperProps } from '../Popper';
 
 export type ComponentsProps = {
   [Name in keyof ComponentsPropsList]?: Partial<ComponentsPropsList[Name]>;
@@ -166,6 +168,7 @@ export interface ComponentsPropsList {
   MuiFormHelperText: FormHelperTextProps;
   MuiFormLabel: FormLabelProps;
   MuiGrid: GridProps;
+  MuiGrid2: Grid2Props;
   MuiImageList: ImageListProps;
   MuiImageListItem: ImageListItemProps;
   MuiImageListItemBar: ImageListItemBarProps;
@@ -195,6 +198,7 @@ export interface ComponentsPropsList {
   MuiPagination: PaginationProps;
   MuiPaginationItem: PaginationItemProps;
   MuiPaper: PaperProps;
+  MuiPopper: PopperProps;
   MuiPopover: PopoverProps;
   MuiRadio: RadioProps;
   MuiRadioGroup: RadioGroupProps;

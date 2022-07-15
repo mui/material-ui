@@ -103,14 +103,19 @@ function resolveValue(key: string, defaultValue?: string) {
   return value || defaultValue;
 }
 
-export default function useCurrentColorScheme<SupportedColorScheme extends string>(options: {
+interface UseCurrentColoSchemeOptions<SupportedColorScheme extends string> {
   defaultLightColorScheme: SupportedColorScheme;
   defaultDarkColorScheme: SupportedColorScheme;
   supportedColorSchemes: Array<SupportedColorScheme>;
   defaultMode?: Mode;
   modeStorageKey?: string;
   colorSchemeStorageKey?: string;
-}): Result<SupportedColorScheme> {
+  storageWindow?: Window | null;
+}
+
+export default function useCurrentColorScheme<SupportedColorScheme extends string>(
+  options: UseCurrentColoSchemeOptions<SupportedColorScheme>,
+): Result<SupportedColorScheme> {
   const {
     defaultMode = 'light',
     defaultLightColorScheme,
@@ -118,6 +123,7 @@ export default function useCurrentColorScheme<SupportedColorScheme extends strin
     supportedColorSchemes = [],
     modeStorageKey = DEFAULT_MODE_STORAGE_KEY,
     colorSchemeStorageKey = DEFAULT_COLOR_SCHEME_STORAGE_KEY,
+    storageWindow = typeof window === 'undefined' ? undefined : window,
   } = options;
 
   const joinedColorSchemes = supportedColorSchemes.join(',');
@@ -138,6 +144,9 @@ export default function useCurrentColorScheme<SupportedColorScheme extends strin
     (mode) => {
       setState((currentState) => {
         const newMode = !mode ? defaultMode : mode;
+        if (mode === currentState.mode) {
+          return currentState;
+        }
         if (typeof localStorage !== 'undefined') {
           localStorage.setItem(modeStorageKey, newMode);
         }
@@ -154,7 +163,7 @@ export default function useCurrentColorScheme<SupportedColorScheme extends strin
   const setColorScheme: Result<SupportedColorScheme>['setColorScheme'] = React.useCallback(
     (value) => {
       if (!value || typeof value === 'string') {
-        if (value && !supportedColorSchemes.includes(value)) {
+        if (value && !joinedColorSchemes.includes(value)) {
           console.error(`\`${value}\` does not exist in \`theme.colorSchemes\`.`);
         } else {
           setState((currentState) => {
@@ -178,8 +187,8 @@ export default function useCurrentColorScheme<SupportedColorScheme extends strin
           });
         }
       } else if (
-        (value.light && !supportedColorSchemes.includes(value.light)) ||
-        (value.dark && !supportedColorSchemes.includes(value.dark))
+        (value.light && !joinedColorSchemes.includes(value.light)) ||
+        (value.dark && !joinedColorSchemes.includes(value.dark))
       ) {
         console.error(`\`${value}\` does not exist in \`theme.colorSchemes\`.`);
       } else {
@@ -202,15 +211,15 @@ export default function useCurrentColorScheme<SupportedColorScheme extends strin
         }
       }
     },
-    [colorSchemeStorageKey, supportedColorSchemes, defaultLightColorScheme, defaultDarkColorScheme],
+    [joinedColorSchemes, colorSchemeStorageKey, defaultLightColorScheme, defaultDarkColorScheme],
   );
 
   const handleMediaQuery = React.useCallback(
-    (e?) => {
+    (e?: MediaQueryListEvent) => {
       if (state.mode === 'system') {
         setState((currentState) => ({
           ...currentState,
-          systemMode: e.matches ? 'dark' : 'light',
+          systemMode: e?.matches ? 'dark' : 'light',
         }));
       }
     },
@@ -270,8 +279,12 @@ export default function useCurrentColorScheme<SupportedColorScheme extends strin
         setMode((value as Mode) || defaultMode);
       }
     };
-    window.addEventListener('storage', handleStorage);
-    return () => window.removeEventListener('storage', handleStorage);
+    if (storageWindow) {
+      // For syncing color-scheme changes between iframes
+      storageWindow.addEventListener('storage', handleStorage);
+      return () => storageWindow.removeEventListener('storage', handleStorage);
+    }
+    return undefined;
   }, [
     setColorScheme,
     setMode,
@@ -279,6 +292,7 @@ export default function useCurrentColorScheme<SupportedColorScheme extends strin
     colorSchemeStorageKey,
     joinedColorSchemes,
     defaultMode,
+    storageWindow,
   ]);
 
   return {

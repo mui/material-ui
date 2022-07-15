@@ -73,7 +73,7 @@ Para a paginação de um conjunto grande de dados tabulares, você deve usar o c
 
 > ⚠️ Observe que a propriedade `Pagination` da página começa em 1 para corresponder ao requisito de incluir o valor na URL, enquanto a propriedade `TablePagination` da página começa em 0 para corresponder ao requisito de zero-based array do JavaScript arrays, que tem com renderização muitos dados tabulares.
 
-Você pode aprender mais sobre este caso de uso na [seção de tabela](/components/tables/#custom-pagination-options) da documentação.
+Você pode aprender mais sobre este caso de uso na [seção de tabela](/material-ui/react-table/#custom-pagination-options) da documentação.
 
 ## Accessibility
 

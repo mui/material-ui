@@ -9,7 +9,7 @@ import { Components } from './components';
 
 export interface ThemeOptions extends Omit<SystemThemeOptions, 'zIndex'> {
   mixins?: MixinsOptions;
-  components?: Components<BaseTheme>;
+  components?: Components<Omit<Theme, 'components'>>;
   palette?: PaletteOptions;
   shadows?: Shadows;
   transitions?: TransitionsOptions;
@@ -32,7 +32,7 @@ interface BaseTheme extends SystemTheme {
 export {};
 
 /**
- * Our [TypeScript guide on theme customization](https://mui.com/guides/typescript/#customization-of-theme) explains in detail how you would add custom properties.
+ * Our [TypeScript guide on theme customization](https://mui.com/material-ui/guides/typescript/#customization-of-theme) explains in detail how you would add custom properties.
  */
 export interface Theme extends BaseTheme {
   components?: Components<BaseTheme>;

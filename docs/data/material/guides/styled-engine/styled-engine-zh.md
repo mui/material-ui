@@ -45,6 +45,8 @@
    //...
 module.exports = {
    //...
+module.exports = {
+   //...
 +  resolve: {
 +    alias: {
 +      '@mui/styled-engine': '@mui/styled-engine-sc'
@@ -85,6 +87,6 @@ These two packages implement the same interface, which makes it makes possible t
 - [使用 TypeScript 来 create-react-app](https://github.com/mui/material-ui/tree/master/examples/create-react-app-with-styled-components-typescript)
 - [其他模板](https://github.com/mui/material-ui/tree/master/examples)
 
-> **注意**: `@emotion/react`, `@emotion/styled`, 和 `styled-components` 是 `@mui/materials` 的可选对等依赖，所以您需要自己安装它们。 更多信息请访问 [安装指南](/getting-started/installation/)。
+> **注意**: `@emotion/react`, `@emotion/styled`, 和 `styled-components` 是 `@mui/materials` 的可选对等依赖，所以您需要自己安装它们。 更多信息请访问 [安装指南](/material-ui/getting-started/installation/)。
 
 **注意：** 这个 package-swap 方法与替换 React 的 [Preact](https://github.com/preactjs/preact) 完全相同。 Preact 开发团队记录了大量安装配置。 如果您被 MUI + styled-components 卡住，请不要犹豫，直接查看他们是如何解决问题的，因为您可能会在里面找到解决思路。

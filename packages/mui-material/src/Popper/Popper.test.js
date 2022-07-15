@@ -284,4 +284,20 @@ describe('<Popper />', () => {
       expect(getByRole('tooltip', { hidden: true }).style.display).to.equal('none');
     });
   });
+
+  describe('default props', () => {
+    it('should consume theme default props', () => {
+      const container = document.createElement('div');
+      const theme = createTheme({ components: { MuiPopper: { defaultProps: { container } } } });
+      render(
+        <ThemeProvider theme={theme}>
+          <Popper {...defaultProps} open>
+            <p id="content">Hello World</p>
+          </Popper>
+        </ThemeProvider>,
+      );
+
+      expect(container).to.have.text('Hello World');
+    });
+  });
 });

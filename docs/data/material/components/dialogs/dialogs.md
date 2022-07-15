@@ -4,14 +4,14 @@ title: React Dialog component
 components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Slide
 githubLabel: 'component: dialog'
 materialDesign: https://material.io/components/dialogs
-waiAria: https://www.w3.org/TR/wai-aria-practices/#dialog_modal
+waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/dialogmodal/
 ---
 
 # Dialog
 
 <p class="description">Dialogs inform users about a task and can contain critical information, require decisions, or involve multiple tasks.</p>
 
-A Dialog is a type of [modal](/components/modal/) window that appears in front of app content to provide critical information or ask for a decision. Dialogs disable all app functionality when they appear, and remain on screen until confirmed, dismissed, or a required action has been taken.
+A Dialog is a type of [modal](/material-ui/react-modal/) window that appears in front of app content to provide critical information or ask for a decision. Dialogs disable all app functionality when they appear, and remain on screen until confirmed, dismissed, or a required action has been taken.
 
 Dialogs are purposefully interruptive, so they should be used sparingly.
 
@@ -65,7 +65,7 @@ For example, if your site prompts for potential subscribers to fill in their ema
 ## Customization
 
 Here is an example of customizing the component.
-You can learn more about this in the [overrides documentation page](/customization/how-to-customize/).
+You can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/).
 
 The dialog has a close button added to aid usability.
 
@@ -84,7 +84,7 @@ When the `fullWidth` prop is true, the dialog will adapt based on the `maxWidth`
 
 ## Responsive full-screen
 
-You may make a dialog responsively full screen using [`useMediaQuery`](/components/use-media-query/#usemediaquery).
+You may make a dialog responsively full screen using [`useMediaQuery`](/material-ui/react-use-media-query/#usemediaquery).
 
 ```jsx
 import useMediaQuery from '@mui/material/useMediaQuery';
@@ -129,12 +129,21 @@ Try the demo below to see what we mean:
 
 ## Performance
 
-Follow the [Modal performance section](/components/modal/#performance).
+Follow the [Modal performance section](/material-ui/react-modal/#performance).
 
 ## Limitations
 
-Follow the [Modal limitations section](/components/modal/#limitations).
+Follow the [Modal limitations section](/material-ui/react-modal/#limitations).
+
+## Complementary projects
+
+### Material UI Confirm
+
+![stars](https://img.shields.io/github/stars/jonatanklosko/material-ui-confirm)
+![npm downloads](https://img.shields.io/npm/dm/material-ui-confirm.svg)
+
+This package provides dialogs for confirming user actions without writing boilerplate code.
 
 ## Accessibility
 
-Follow the [Modal accessibility section](/components/modal/#accessibility).
+Follow the [Modal accessibility section](/material-ui/react-modal/#accessibility).

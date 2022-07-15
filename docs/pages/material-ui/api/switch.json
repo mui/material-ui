@@ -65,6 +65,6 @@
   "forwardsRefTo": "HTMLSpanElement",
   "filename": "/packages/mui-material/src/Switch/Switch.js",
   "inheritance": { "component": "IconButton", "pathname": "/material-ui/api/icon-button/" },
-  "demos": "<ul><li><a href=\"/material-ui/react-switch/\">Switches</a></li>\n<li><a href=\"/material-ui/react-transfer-list/\">Transfer List</a></li></ul>",
+  "demos": "<ul><li><a href=\"/material-ui/react-switch/\">Switches</a></li>\n<li><a href=\"/material-ui/react-transfer-list/\">Transfer list</a></li></ul>",
   "cssComponent": false
 }

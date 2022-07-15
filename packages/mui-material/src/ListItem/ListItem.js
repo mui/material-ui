@@ -99,25 +99,29 @@ export const ListItemRoot = styled('div', {
     },
   }),
   [`&.${listItemClasses.focusVisible}`]: {
-    backgroundColor: theme.palette.action.focus,
+    backgroundColor: (theme.vars || theme).palette.action.focus,
   },
   [`&.${listItemClasses.selected}`]: {
-    backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+    backgroundColor: theme.vars
+      ? `rgba(${theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.selectedOpacity})`
+      : alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
     [`&.${listItemClasses.focusVisible}`]: {
-      backgroundColor: alpha(
-        theme.palette.primary.main,
-        theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
-      ),
+      backgroundColor: theme.vars
+        ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.focusOpacity}))`
+        : alpha(
+            theme.palette.primary.main,
+            theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
+          ),
     },
   },
   [`&.${listItemClasses.disabled}`]: {
-    opacity: theme.palette.action.disabledOpacity,
+    opacity: (theme.vars || theme).palette.action.disabledOpacity,
   },
   ...(ownerState.alignItems === 'flex-start' && {
     alignItems: 'flex-start',
   }),
   ...(ownerState.divider && {
-    borderBottom: `1px solid ${theme.palette.divider}`,
+    borderBottom: `1px solid ${(theme.vars || theme).palette.divider}`,
     backgroundClip: 'padding-box',
   }),
   ...(ownerState.button && {
@@ -126,20 +130,24 @@ export const ListItemRoot = styled('div', {
     }),
     '&:hover': {
       textDecoration: 'none',
-      backgroundColor: theme.palette.action.hover,
+      backgroundColor: (theme.vars || theme).palette.action.hover,
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
         backgroundColor: 'transparent',
       },
     },
     [`&.${listItemClasses.selected}:hover`]: {
-      backgroundColor: alpha(
-        theme.palette.primary.main,
-        theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
-      ),
+      backgroundColor: theme.vars
+        ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))`
+        : alpha(
+            theme.palette.primary.main,
+            theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
+          ),
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
-        backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+        backgroundColor: theme.vars
+          ? `rgba(${theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.selectedOpacity})`
+          : alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
       },
     },
   }),
@@ -322,14 +330,14 @@ ListItem.propTypes /* remove-proptypes */ = {
    * If `true`, the list item is focused during the first mount.
    * Focus will also be triggered if the value changes from false to true.
    * @default false
-   * @deprecated checkout [ListItemButton](/api/list-item-button/) instead
+   * @deprecated checkout [ListItemButton](/material-ui/api/list-item-button/) instead
    */
   autoFocus: PropTypes.bool,
   /**
    * If `true`, the list item is a button (using `ButtonBase`). Props intended
    * for `ButtonBase` can then be applied to `ListItem`.
    * @default false
-   * @deprecated checkout [ListItemButton](/api/list-item-button/) instead
+   * @deprecated checkout [ListItemButton](/material-ui/api/list-item-button/) instead
    */
   button: PropTypes.bool,
   /**
@@ -409,7 +417,7 @@ ListItem.propTypes /* remove-proptypes */ = {
   /**
    * If `true`, the component is disabled.
    * @default false
-   * @deprecated checkout [ListItemButton](/api/list-item-button/) instead
+   * @deprecated checkout [ListItemButton](/material-ui/api/list-item-button/) instead
    */
   disabled: PropTypes.bool,
   /**
@@ -438,7 +446,7 @@ ListItem.propTypes /* remove-proptypes */ = {
   /**
    * Use to apply selected styling.
    * @default false
-   * @deprecated checkout [ListItemButton](/api/list-item-button/) instead
+   * @deprecated checkout [ListItemButton](/material-ui/api/list-item-button/) instead
    */
   selected: PropTypes.bool,
   /**

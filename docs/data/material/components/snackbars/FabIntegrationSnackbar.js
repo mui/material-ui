@@ -33,7 +33,7 @@ export default function FabIntegrationSnackbar() {
               <MenuIcon />
             </IconButton>
             <Typography variant="h6" color="inherit" component="div">
-              App Bar
+              App bar
             </Typography>
           </Toolbar>
         </AppBar>

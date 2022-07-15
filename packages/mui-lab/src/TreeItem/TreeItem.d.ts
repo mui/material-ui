@@ -59,7 +59,7 @@ export interface TreeItemProps
   nodeId: string;
   /**
    * The component used for the transition.
-   * [Follow this guide](/components/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
+   * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
    * @default Collapse
    */
   TransitionComponent?: React.JSXElementConstructor<TransitionProps>;
@@ -78,10 +78,10 @@ export interface TreeItemProps
  *
  * Demos:
  *
- * - [Tree View](https://mui.com/components/tree-view/)
+ * - [Tree view](https://mui.com/material-ui/react-tree-view/)
  *
  * API:
  *
- * - [TreeItem API](https://mui.com/api/tree-item/)
+ * - [TreeItem API](https://mui.com/material-ui/api/tree-item/)
  */
 export default function TreeItem(props: TreeItemProps): JSX.Element;

@@ -152,7 +152,7 @@ const TabsScroller = styled('div', {
     width: '100%',
   }),
   ...(ownerState.hideScrollbar && {
-    // Hide dimensionless scrollbar on MacOS
+    // Hide dimensionless scrollbar on macOS
     scrollbarWidth: 'none', // Firefox
     '&::-webkit-scrollbar': {
       display: 'none', // Safari + Chrome
@@ -200,10 +200,10 @@ const TabsIndicator = styled('span', {
   width: '100%',
   transition: theme.transitions.create(),
   ...(ownerState.indicatorColor === 'primary' && {
-    backgroundColor: theme.palette.primary.main,
+    backgroundColor: (theme.vars || theme).palette.primary.main,
   }),
   ...(ownerState.indicatorColor === 'secondary' && {
-    backgroundColor: theme.palette.secondary.main,
+    backgroundColor: (theme.vars || theme).palette.secondary.main,
   }),
   ...(ownerState.vertical && {
     height: '100%',
@@ -218,7 +218,7 @@ const TabsScrollbarSize = styled(ScrollbarSize, {
 })({
   overflowX: 'auto',
   overflowY: 'hidden',
-  // Hide dimensionless scrollbar on MacOS
+  // Hide dimensionless scrollbar on macOS
   scrollbarWidth: 'none', // Firefox
   '&::-webkit-scrollbar': {
     display: 'none', // Safari + Chrome
@@ -451,10 +451,16 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     for (let i = 0; i < children.length; i += 1) {
       const tab = children[i];
       if (totalSize + tab[clientSize] > containerSize) {
+        // If the first item is longer than the container size, then only scroll
+        // by the container size.
+        if (i === 0) {
+          totalSize = containerSize;
+        }
         break;
       }
       totalSize += tab[clientSize];
     }
+
     return totalSize;
   };
 
@@ -556,8 +562,16 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
 
   React.useEffect(() => {
     const handleResize = debounce(() => {
-      updateIndicatorState();
-      updateScrollButtonState();
+      // If the Tabs component is replaced by Suspense with a fallback, the last
+      // ResizeObserver's handler that runs because of the change in the layout is trying to
+      // access a dom node that is no longer there (as the fallback component is being shown instead).
+      // See https://github.com/mui/material-ui/issues/33276
+      // TODO: Add tests that will ensure the component is not failing when
+      // replaced by Suspense with a fallback, once React is updated to version 18
+      if (tabsRef.current) {
+        updateIndicatorState();
+        updateScrollButtonState();
+      }
     });
     const win = ownerWindow(tabsRef.current);
     win.addEventListener('resize', handleResize);
@@ -852,7 +866,7 @@ Tabs.propTypes /* remove-proptypes */ = {
    */
   TabIndicatorProps: PropTypes.object,
   /**
-   * Props applied to the [`TabScrollButton`](/api/tab-scroll-button/) element.
+   * Props applied to the [`TabScrollButton`](/material-ui/api/tab-scroll-button/) element.
    * @default {}
    */
   TabScrollButtonProps: PropTypes.object,

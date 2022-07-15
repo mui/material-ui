@@ -228,6 +228,11 @@ export interface Components<Theme = unknown> {
     styleOverrides?: ComponentsOverrides<Theme>['MuiGrid'];
     variants?: ComponentsVariants['MuiGrid'];
   };
+  MuiGrid2?: {
+    defaultProps?: ComponentsProps['MuiGrid2'];
+    styleOverrides?: ComponentsOverrides<Theme>['MuiGrid2'];
+    variants?: ComponentsVariants['MuiGrid2'];
+  };
   MuiImageList?: {
     defaultProps?: ComponentsProps['MuiImageList'];
     styleOverrides?: ComponentsOverrides<Theme>['MuiImageList'];
@@ -367,6 +372,9 @@ export interface Components<Theme = unknown> {
     defaultProps?: ComponentsProps['MuiPaper'];
     styleOverrides?: ComponentsOverrides<Theme>['MuiPaper'];
     variants?: ComponentsVariants['MuiPaper'];
+  };
+  MuiPopper?: {
+    defaultProps?: ComponentsProps['MuiPopper'];
   };
   MuiPopover?: {
     defaultProps?: ComponentsProps['MuiPopover'];

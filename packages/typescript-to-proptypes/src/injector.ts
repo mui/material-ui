@@ -147,6 +147,13 @@ function plugin(
     ...otherOptions
   } = options;
   const shouldInclude: Exclude<InjectOptions['shouldInclude'], undefined> = (data) => {
+    // key is a reserved prop name in React
+    // e.g. https://github.com/reactjs/rfcs/pull/107
+    // no need to add a prop-type if we won't generate the docs for it.
+    if (data.prop.name === 'key' && data.prop.jsDoc === '@ignore') {
+      return false;
+    }
+
     if (options.shouldInclude) {
       const result = options.shouldInclude(data);
       if (result !== undefined) {
@@ -379,6 +386,9 @@ function plugin(
           const arg = nodeInit.arguments[0];
           if (babelTypes.isArrowFunctionExpression(arg) || babelTypes.isFunctionExpression(arg)) {
             getFromProp(arg.params[0]);
+          } else if ((nodeInit.callee as babel.types.Identifier)?.name?.match(/create[A-Z].*/)) {
+            // Any components that are created by a factory function, eg. System Box | Container | Grid.
+            getFromProp(node);
           }
         }
       },

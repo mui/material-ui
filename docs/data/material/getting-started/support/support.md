@@ -13,7 +13,12 @@ StackOverflow is also visited from time to time by the maintainers of MUI.
 
 [Post a question](https://stackoverflow.com/questions/tagged/mui)
 
-> 💡 **Tip**: If you're using an older version and use external resources (such as StackOverflow) for help with it, you may find answers with links that direct you to content that no longer exists in the latest version of the documentation. To easily access any previous version of the docs, simply add `v[number]` at the beginning of the URL, like so: [v4.mui.com](https://v4.mui.com/).
+:::info
+💡 **Tip**:
+
+If you're using an older version and use external resources (such as StackOverflow) for help with it, you may find answers with links that direct you to content that no longer exists in the latest version of the documentation. To easily access any previous version of the docs, simply add `v[number]` at the beginning of the URL, like so: [v4.mui.com](https://v4.mui.com/).
+
+:::
 
 ### GitHub
 
@@ -42,7 +47,7 @@ Stay up to date with the development of the library by following the blog.
 
 New to MUI? It's easy to learn if you know where to start!
 
-[Learn MUI](/getting-started/learn/)
+[Learn MUI](/material-ui/getting-started/learn/)
 
 ### Twitter
 
@@ -58,7 +63,7 @@ Find details on the [supported versions](/versions/#supported-versions).
 
 ### Pro/Premium plans
 
-MUI comes in [three plans](/pricing/).
+MUI X comes in [three plans](https://mui.com/pricing/).
 The support available on the Community plan is mostly made possible thanks to people like you: the community. It's described in more detail in the above section. The maintainers of MUI focuses on solving the root issues, not direct support.
 
 The Pro plan allows developers to license extra features that are challenging to find in the OSS space.

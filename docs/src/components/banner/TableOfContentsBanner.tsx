@@ -8,7 +8,7 @@ import { alpha } from '@mui/material/styles';
 export default function TableOfContentsBanner() {
   return FEATURE_TOGGLE.enable_toc_banner ? (
     <Link
-      href="https://ukraine.ua/news/stand-with-ukraine/" // Fix me!
+      href="https://war.ukraine.ua/support-ukraine/"
       target="_blank"
       sx={(theme) => ({
         mb: 2,
@@ -49,7 +49,7 @@ export default function TableOfContentsBanner() {
           MUI stands in solidarity with the Ukrainian people against the Russian invasion.
         </Typography>
         <Typography component="span" variant="caption" fontWeight="normal" color="text.secondary">
-          Find out here how you can help.
+          Find out how you can help.
         </Typography>
       </Box>
     </Link>

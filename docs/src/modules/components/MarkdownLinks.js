@@ -2,8 +2,7 @@ import * as React from 'react';
 import Router from 'next/router';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 
-export function handleEvent(event, as) {
-  // Ignore click for new tab/new window behavior
+export function openLinkInNewTab(event) {
   if (
     event.defaultPrevented ||
     event.button !== 0 || // ignore everything but left-click
@@ -12,6 +11,14 @@ export function handleEvent(event, as) {
     event.altKey ||
     event.shiftKey
   ) {
+    return true;
+  }
+  return false;
+}
+
+export function handleEvent(event, as) {
+  // Ignore click for new tab/new window behavior
+  if (openLinkInNewTab(event)) {
     return;
   }
 

@@ -1,61 +1,48 @@
-# Learn MUI
+# Learning resources
 
-<p class="description">New to MUI? It's easy to learn if you know where to start! This guide will help you to get started quickly.</p>
+<p class="description">New to Material UI? Get up to speed quickly with our curated list of learning resources.</p>
 
-Developers come to MUI from different backgrounds and with different learning styles. Whether you prefer a more theoretical or practical approach, we hope you'll find this section helpful.
-Like any unfamiliar technology, MUI does have a learning curve. With practice and some patience, you will soon get the hang of it.
+## Your first component
 
-## First example
+The following code snippet demonstrates a basic Material UI app that features a `<Button>` component:
 
-The [usage page](/getting-started/usage/#quick-start) contains a small MUI example with a live editor.
-Even if you don't know anything about MUI yet, try changing the code and see how it affects the result.
+```jsx
+import * as React from 'react';
+import Button from '@mui/material/Button';
+
+function App() {
+  return <Button variant="contained">Hello World</Button>;
+}
+```
+
+In the interactive demo below, try changing the code and see how it affects the output. (Hint: change `variant` to `"outlined"` and `color` to `"secondary"`. For more options, see the [`Button` component page](/material-ui/react-button/).)
+
+{{"demo": "../usage/Usage.js", "hideToolbar": true, "bg": true}}
 
 ## Example projects
 
-There are [some example projects](/getting-started/example-projects/) available, providing the infrastructure needed to develop and deploy websites in React.
+Visit the [example projects](/material-ui/getting-started/example-projects/) page to see how we recommend implementing Material UI with various React libraries and frameworks like Next.js, Gatsby, Create React App, and more.
 
 ## Templates
 
-This [selection of basic templates](/getting-started/templates/) will help you get started building your app.
+Check out our [selection of basic templates](/material-ui/getting-started/templates/) to get started building your next app more quickly.
 
 ## Recommended resources
 
-> ⚠️ Note that the resources linked below are using MUI v4, which is not the latest major version. As v5 has been released recently, it will take some time till new contents are created. If you have created any learning material for v5, let us know and we can link them here.
+Beyond our official documentation, there are countless members of our community who create fantastic tutorials and guides for working with Material UI.
 
-When first learning MUI, you might find third-party blog posts, books and video courses more helpful than the official documentation.
-Here are some recommended resources, some of which are free.
+The following is a curated list of some of the best third-party resources we've found for learning how to build beautiful apps with our components.
 
 ### Free
 
-- **Introduction to MUI**: a series of videos covering all the important MUI components.
-  - 📹 [The videos](https://www.youtube.com/watch?v=pHclLuRolzE&list=PLQg6GaokU5CwiVmsZ0d_9Zsg_DnIP_xwr)
-- **Customize MUI for your project**: a look at how you can customize MUI to align with your company identity (design system) and products
-  - 📹 [The videos](https://www.youtube.com/watch?v=bDkB3LoQKxs)
-- **Meet MUI — your new favorite user interface library**: a blog post that guides you in building a Todo MVC while covering some important concepts of MUI.
-  - 📝 [The blog post](https://www.freecodecamp.org/news/meet-your-material-ui-your-new-favorite-user-interface-library-6349a1c88a8c/)
-- **Learn React & MUI**: a series of videos covering all the important MUI components.
-  - 📹 [The videos](https://www.youtube.com/watch?v=xm4LX5fJKZ8&list=PLcCp4mjO-z98WAu4sd0eVha1g-NMfzHZk)
-- **Getting Started With MUI For React**: a blog post that guides you in building a simple card list.
-  - 📝 [The blog post](https://medium.com/codingthesmartway-com-blog/getting-started-with-material-ui-for-react-material-design-for-react-364b2688b555)
-  - 📹 [The video](https://www.youtube.com/watch?v=PWadEeOuv5o)
-- **Elegant UX in React with MUI**: a blog post covering some important MUI concepts.
-  - 📝 [The blog post](https://www.digitalocean.com/community/tutorials/react-material-ui)
+- [**Material UI v5 Crash Course**](https://www.youtube.com/watch?v=o1chMISeTC0) video by Laith Harb: everything you need to know to start building with the latest version of Material UI.
 
-### Paid
+- [**React + Material UI - From Zero to Hero**](https://www.youtube.com/playlist?list=PLDxCaNaYIuUlG5ZqoQzFE27CUOoQvOqnQ) video series by The Atypical Developer: build along with this in-depth series, from basic installation through advanced component implementation.
 
-- **Implement high fidelity designs**: Bridge the gap between Design & Development. Break down detailed designs and bring them to life with MUI and React.
+- [**Next.js 11 Setup with Material UI v5**](https://www.youtube.com/watch?v=IFaFFmPYyMI) by Leo Roese: learn how to integrate Material UI into your Next.js app, using Emotion as the style engine.
 
-  - 💻 [The Course](https://www.udemy.com/course/implement-high-fidelity-designs-with-material-ui-and-reactjs/)
+- [**Material UI v5 Crash Course + Intro to React (2022 Edition)**](https://www.youtube.com/watch?v=_W3uuxDnySQ) by Anthony Sistilli: how and why to use Material UI, plus guidance on theming and style customization.
 
-- **Apply Google Material Design**: This course teaches the fundamentals of Google Material Design and how to develop an end-to-end flight search and booking application using MUI and React.
+- [**Material UI v5 Tutorial Playlist**](https://www.youtube.com/playlist?list=PLlR2O33QQkfXnZMMZC0y22gLayBbB1UQd) by Nikhil Thadani (Indian Coders): a detailed playlist covering almost every component of Material UI with Create React App.
 
-  - 📹 [Watch Course Trailer](https://www.youtube.com/watch?v=hhZ6yFvCWho)
-  - 💻 [The Course](https://bonsaiilabs.com/courseDetail/material-ui-with-react/)
-
-- **Cookbook**: Build modern-day applications by implementing Material Design principles in React, using MUI.
-  - 📘 [The book](https://www.amazon.com/gp/product/1789615224/)
-
-[![cookbook](/static/blog/material-ui-v4-is-out/cookbook.png)](https://www.amazon.com/gp/product/1789615224/)
-
-- **Builder Book**: Learn how to build a full-stack JavaScript and SaaS web application from scratch, using a Modern JavaScript stack and MUI.
-  - 📘 [The book](https://builderbook.org/)
+- [**The Clever Dev**](https://www.youtube.com/channel/UCb6AZy0_D1y661PMZck3jOw) and [**The Smart Devpreneur**](https://smartdevpreneur.com/category/javascript/material-ui/) by Jon M: dozens of high-quality videos and articles digging deep into the nuts and bolts of Material UI.

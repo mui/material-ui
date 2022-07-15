@@ -1,19 +1,24 @@
+import { dirname } from 'path';
 import addImports from 'jscodeshift-add-imports';
+import getJSExports from '../util/getJSExports';
+
+// istanbul ignore next
+if (process.env.NODE_ENV === 'test') {
+  const resolve = require.resolve;
+  require.resolve = (source) =>
+    resolve(source.replace(/^@mui\/material\/modern/, '../../../mui-material/src'));
+}
 
 export default function transformer(fileInfo, api, options) {
   const j = api.jscodeshift;
   const importModule = options.importModule || '@mui/material';
   const targetModule = options.targetModule || '@mui/material';
 
-  let requirePath = importModule;
-
-  if (process.env.NODE_ENV === 'test') {
-    requirePath = requirePath.replace(/^@mui\/material/, '../../../mui-material/src');
-  }
-
-  // eslint-disable-next-line global-require, import/no-dynamic-require
-  const whitelist = require(requirePath);
-
+  const whitelist = getJSExports(
+    require.resolve(`${importModule}/modern`, {
+      paths: [dirname(fileInfo.path)],
+    }),
+  );
   const printOptions = options.printOptions || {
     quote: 'single',
     trailingComma: true,
@@ -54,7 +59,7 @@ export default function transformer(fileInfo, api, options) {
         case 'ImportDefaultSpecifier': {
           const localName = specifier.local.name;
           const moduleName = match[1];
-          if (whitelist[moduleName] == null) {
+          if (!whitelist.has(moduleName)) {
             return;
           }
           resultSpecifiers.push(
@@ -65,7 +70,7 @@ export default function transformer(fileInfo, api, options) {
         }
         case 'ImportSpecifier':
           if (
-            whitelist[specifier.imported.name] == null &&
+            !whitelist.has(specifier.imported.name) == null &&
             specifier.imported.name !== 'withStyles'
           ) {
             return;

@@ -1,5 +1,3 @@
-import FEATURE_TOGGLE from 'docs/src/featureToggle';
-
 export const replaceMaterialLinks = (html: string) => {
   return html.replace(
     /href=(\\*?)"(\/[a-z]{2})?\/(guides|customization|getting-started|discover-more)\/([^"]*)"/gm,
@@ -74,9 +72,10 @@ export default function replaceHtmlLinks(html: string, asPath: string) {
   asPath = asPath.replace(/^\/[a-z]{2}\//, '/');
   if (
     asPath.startsWith('/material-ui/') ||
+    asPath.startsWith('/joy-ui/') ||
     asPath.startsWith('/x/') ||
     asPath.startsWith('/base/') ||
-    (FEATURE_TOGGLE.enable_system_scope && asPath.startsWith('/system'))
+    asPath.startsWith('/system')
   ) {
     return replaceStylesLinks(replaceMaterialLinks(replaceAPILinks(replaceComponentLinks(html))));
   }

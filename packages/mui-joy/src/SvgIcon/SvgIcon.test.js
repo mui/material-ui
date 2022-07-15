@@ -4,7 +4,6 @@ import { createRenderer, describeConformance } from 'test/utils';
 import SvgIcon, { svgIconClasses as classes } from '@mui/joy/SvgIcon';
 import { ThemeProvider } from '@mui/joy/styles';
 import { unstable_capitalize as capitalize } from '@mui/utils';
-import defaultTheme from '../styles/defaultTheme';
 
 describe('<SvgIcon />', () => {
   const { render } = createRenderer();
@@ -24,7 +23,7 @@ describe('<SvgIcon />', () => {
       inheritComponent: 'svg',
       ThemeProvider,
       render,
-      muiName: 'MuiSvgIcon',
+      muiName: 'JoySvgIcon',
       refInstanceof: window.SVGSVGElement,
       testComponentPropWith: (props) => (
         <svg {...props}>
@@ -95,9 +94,6 @@ describe('<SvgIcon />', () => {
       const { container } = render(<SvgIcon>{path}</SvgIcon>);
 
       expect(container.firstChild).to.have.class(classes.fontSizeXl);
-      expect(container.firstChild).toHaveComputedStyle({
-        fontSize: defaultTheme.vars.fontSize.xl,
-      });
     });
 
     ['inherit', 'xs', 'sm', 'md', 'lg', 'xl', 'xl2', 'xl3', 'xl4', 'xl5', 'xl6'].forEach(

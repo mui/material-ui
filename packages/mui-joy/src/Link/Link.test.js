@@ -2,7 +2,6 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import { act, createRenderer, fireEvent, describeConformance } from 'test/utils';
-import Typography from '@mui/joy/Typography';
 import Link, { linkClasses as classes } from '@mui/joy/Link';
 import { ThemeProvider } from '@mui/joy/styles';
 import { unstable_capitalize as capitalize } from '@mui/utils';
@@ -20,12 +19,12 @@ describe('<Link />', () => {
 
   describeConformance(<Link href="/">Home</Link>, () => ({
     classes,
-    inheritComponent: Typography,
+    inheritComponent: 'a',
     render,
     ThemeProvider,
-    muiName: 'MuiLink',
+    muiName: 'JoyLink',
     refInstanceof: window.HTMLAnchorElement,
-    testVariantProps: { color: 'primary', variant: 'text' },
+    testVariantProps: { color: 'primary', variant: 'plain' },
     testStateOverrides: { prop: 'underline', value: 'always', styleKey: 'underlineAlways' },
     skip: [
       'classesRoot',
@@ -93,13 +92,13 @@ describe('<Link />', () => {
         </Link>,
       );
 
-      expect(getByTestId('root')).not.to.have.class(classes.variantText);
+      expect(getByTestId('root')).not.to.have.class(classes.variantPlain);
       expect(getByTestId('root')).not.to.have.class(classes.variantOutlined);
-      expect(getByTestId('root')).not.to.have.class(classes.variantLight);
-      expect(getByTestId('root')).not.to.have.class(classes.variantContained);
+      expect(getByTestId('root')).not.to.have.class(classes.variantSoft);
+      expect(getByTestId('root')).not.to.have.class(classes.variantSolid);
     });
 
-    ['text', 'outlined', 'light', 'contained'].forEach((variant) => {
+    ['plain', 'outlined', 'soft', 'solid'].forEach((variant) => {
       it(`should render ${variant}`, () => {
         const { getByTestId } = render(
           <Link href="/" data-testid="root" variant={variant}>
