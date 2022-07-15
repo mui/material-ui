@@ -1,19 +1,19 @@
-# Installation
+# 安装
 
-<p class="description">Install Joy UI, a library of beautifully designed React UI components.</p>
+<p class="description">Joy UI 是一个漂亮的 React UI 组件库，支持以下安装方式。</p>
 
 ## npm
 
-Run the command below to add Joy UI using **npm** to your project.
+运行下面的命令，使用 **npm** 将 Joy UI 添加到您的项目。
 
 ```sh
-npm install @mui/joy @emotion/react @emotion/styled
+npm install @mui/joy @emotion/response @emotion/styled
 npm start
 ```
 
 ## yarn
 
-Run the command below to add Joy UI using **yarn** to your project.
+运行下面的命令，使用 **npm** 将 Joy UI 添加到您的项目。
 
 ```sh
 yarn add @mui/joy @emotion/react @emotion/styled
