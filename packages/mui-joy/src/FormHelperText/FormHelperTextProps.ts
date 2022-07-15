@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { OverrideProps } from '@mui/types';
-import { SxProps } from '../styles/defaultTheme';
+import { SxProps } from '../styles/types';
 import { FormHelperTextClasses } from './formHelperTextClasses';
 
 export type FormHelperTextSlot = 'root';

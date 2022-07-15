@@ -4,7 +4,7 @@
 
 ## Details of the Role
 
-- Location: Remote (preference for UTC-6 to UTC+3).
+- Location: Remote (preference for UTC-6 to UTC+5).
 - Type of work: Full-time (contractor or employee [depending on circumstances](https://mui-org.notion.site/Hiring-FAQ-64763b756ae44c37b47b081f98915501))
 - Start date: Immediately.
 - We're a remote company, we prefer asynchronous communication over meetings.
@@ -12,7 +12,7 @@
 
 ## About the company
 
-MUI started with Material-UI, the most successful React implementation of Google's Material Design.
+MUI started with Material UI, the most successful React implementation of Google's Material Design.
 It has gained a large following, not only due to the fidelity to Material Design, but also because of the number of components, its carefully designed component API, obsession for details, and community engagement.
 Today, countless teams and organizations rely on our open-source libraries to build their design system.
 
@@ -39,7 +39,8 @@ We need somebody to lead our HR strategy including hiring, onboarding, diversity
 
 You'll have the freedom to implement processes and to drive change across the organization.
 
-Our solution empowers React developers to build awesome applications – hundreds of thousands of developers use MUI every month.
+Our solution empowers React developers to build awesome applications faster – we see over a million developers on MUI's docs every month.
+Hundreds of thousands of developers use MUI every month.
 
 ### What you'll do on a day-to-day basis
 
@@ -49,7 +50,7 @@ Depending on the day, you'll:
   - You will help all individuals understand their primary role within the wider organization.
   - You will partner with Finance for budgeting/compensation purposes. You will manage compensation, benefits, leave, and other people-related matters.
   - You will shape a strategy that aligns and moves MUI towards continued growth, innovation, and improvement.
-- **Improve employees experience**.
+- **Improve employees' experience**.
   - You will work on the employee engagement survey results.
   - You will reduce the admin burden.
   - You will own the Retreat. Bring our remote team together. Being a fully distributed remote team has its challenges. You organize team events, make sure everybody has what they need to be productive, and find creative ways to engage as a team.
@@ -80,9 +81,9 @@ You are curious, you enjoy taking risks, and learning.
 ## Benefits & Compensation
 
 Competitive compensation depending on the profile and location.
-We are ready to pay top market rates for a person that can significantly push the mission forward.
+We are ready to pay top market rates for a person that can clearly exceed the role's expectations.
 You can find the other perks & benefits on the [careers](/careers/#perks-amp-benefits) page.
 
 ## How to apply?
 
-[Apply now for this position 📮](https://airtable.com/shrdqo1Z6srZXGcvh?prefill_Applying+for=People%20Operations%20Manager&prefill_source=mui.com)
+[Apply now for this position 📮](https://jobs.ashbyhq.com/MUI/b46968b7-dde3-4b91-9785-a05aa0a816d8/application?utm_source=ZNRrPGBkqO)

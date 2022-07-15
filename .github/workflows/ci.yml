@@ -38,6 +38,7 @@ jobs:
       - run: yarn release:changelog
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - run: yarn validate-declarations
       - name: yarn release:tag
         run: |
           git remote -v

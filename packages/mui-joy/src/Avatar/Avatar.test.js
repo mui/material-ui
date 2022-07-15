@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { expect } from 'chai';
+import { spy } from 'sinon';
 import { createRenderer, describeConformance, fireEvent } from 'test/utils';
+import { ThemeProvider } from '@mui/joy/styles';
 import Avatar, { avatarClasses as classes } from '@mui/joy/Avatar';
 import { unstable_capitalize as capitalize } from '@mui/utils';
-import { spy } from 'sinon';
 import PersonIcon from '../internal/svg-icons/Person';
 
 describe('<Avatar />', () => {
@@ -13,26 +14,23 @@ describe('<Avatar />', () => {
     classes,
     inheritComponent: 'div',
     render,
-    muiName: 'MuiAvatar',
+    ThemeProvider,
+    muiName: 'JoyAvatar',
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'span',
-    skip: [
-      'themeVariants',
-      'classesRoot',
-      'componentsProp',
-      'themeDefaultProps',
-      'themeStyleOverrides',
-    ],
+    testDeepOverrides: { slotName: 'fallback', slotClassName: classes.fallback },
+    testVariantProps: { variant: 'solid' },
+    skip: ['classesRoot', 'componentsProp'],
   }));
 
   describe('prop: variant', () => {
-    it('light by default', () => {
+    it('soft by default', () => {
       const { getByTestId } = render(<Avatar data-testid="root" />);
 
-      expect(getByTestId('root')).to.have.class(classes.variantLight);
+      expect(getByTestId('root')).to.have.class(classes.variantSoft);
     });
 
-    ['outlined', 'light', 'contained'].forEach((variant) => {
+    ['outlined', 'soft', 'solid'].forEach((variant) => {
       it(`should render ${variant}`, () => {
         const { getByTestId } = render(<Avatar data-testid="root" variant={variant} />);
 

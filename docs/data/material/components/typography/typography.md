@@ -20,7 +20,7 @@ A [typographic scale](https://material.io/design/typography/#type-scale) has a l
 The _Roboto_ font will **not** be automatically loaded by MUI.
 You are responsible for loading any fonts used in your application.
 Roboto Font has a few easy ways to get started. For more advanced configuration, check out
-[the theme customization section](/customization/typography/).
+[the theme customization section](/material-ui/customization/typography/).
 
 ## Roboto Font CDN
 
@@ -35,9 +35,15 @@ Shown below is a sample link markup used to load the Roboto font from a CDN:
 
 ## Install with npm
 
-You can [install it](https://www.npmjs.com/package/@fontsource/roboto) by typing the below command in your terminal:
+You can [install it](https://www.npmjs.com/package/@fontsource/roboto) by running one of the following commands in your terminal:
+
+With **npm**:
 
 `npm install @fontsource/roboto`
+
+Or **yarn**:
+
+`yarn add @fontsource/roboto`
 
 Then, you can import it in your entry-point.
 
@@ -62,7 +68,7 @@ The Typography component makes it easy to apply a default set of font weights an
 ## Theme
 
 In some situations you might not be able to use the `Typography` component.
-Hopefully, you might be able to take advantage of the [`typography`](/customization/default-theme/?expand-path=$.typography) keys of the theme.
+Hopefully, you might be able to take advantage of the [`typography`](/material-ui/customization/default-theme/?expand-path=$.typography) keys of the theme.
 
 {{"demo": "TypographyTheme.js"}}
 
@@ -82,7 +88,7 @@ It's important to realize that the style of a typography component is independen
 </Typography>;
 ```
 
-- You can change the mapping [globally using the theme](/customization/theme-components/#default-props):
+- You can change the mapping [globally using the theme](/material-ui/customization/theme-components/#default-props):
 
 ```js
 const theme = createTheme({
@@ -109,7 +115,7 @@ const theme = createTheme({
 
 ## Adding & disabling variants
 
-In addition to using the default typography variants, you can add custom ones, or disable any you don't need. See the [Adding & disabling variants](/customization/typography/#adding-amp-disabling-variants) example for more info.
+In addition to using the default typography variants, you can add custom ones, or disable any you don't need. See the [Adding & disabling variants](/material-ui/customization/typography/#adding-amp-disabling-variants) example for more info.
 
 ## System props
 
@@ -125,5 +131,5 @@ For instance, a margin-top:
 A few key factors to follow for an accessible typography:
 
 - **Color**. Provide enough contrast between text and its background, check out the minimum recommended [WCAG 2.0 color contrast ratio](https://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-contrast.html) (4.5:1).
-- **Font size**. Use [relative units (rem)](/customization/typography/#font-size) to accommodate the user's settings.
+- **Font size**. Use [relative units (rem)](/material-ui/customization/typography/#font-size) to accommodate the user's settings.
 - **Heading hierarchy**. [Don't skip](https://www.w3.org/WAI/tutorials/page-structure/headings/) heading levels. In order to solve this problem, you need to [separate the semantics from the style](#changing-the-semantic-element).

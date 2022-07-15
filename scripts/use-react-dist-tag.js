@@ -48,8 +48,9 @@ async function main(options) {
     }),
   );
 
-  packageJson.devDependencies['@eps1lon/enzyme-adapter-react-17'] =
-    'npm:@eps1lon/enzyme-adapter-react-next';
+  // TODO: What is this doing?
+  // packageJson.devDependencies['@mnajdova/enzyme-adapter-react-18'] =
+  //   'npm:@mnajdova/enzyme-adapter-react-next';
   packageJson.devDependencies['@testing-library/react'] = 'alpha';
 
   // add newline for clean diff

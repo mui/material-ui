@@ -6,7 +6,7 @@ import defaultTheme from '@mui/material/styles/defaultTheme';
 import Grid, { gridClasses as classes } from '@mui/material/Grid';
 import { generateGrid, generateRowGap, generateColumnGap, generateDirection } from './Grid';
 
-describe('<Grid />', () => {
+describe('Material UI <Grid />', () => {
   const { render } = createRenderer();
 
   describeConformance(<Grid />, () => ({
@@ -175,63 +175,519 @@ describe('<Grid />', () => {
         },
       });
     });
+
+    it('should support custom breakpoints', () => {
+      const theme = createTheme({
+        breakpoints: {
+          keys: ['mobile', 'desktop'],
+          values: {
+            mobile: 0,
+            desktop: 1200,
+          },
+        },
+      });
+      expect(
+        generateDirection({
+          ownerState: {
+            container: true,
+            direction: { mobile: 'row', desktop: 'column' },
+          },
+          theme,
+        }),
+      ).to.deep.equal({
+        '@media (min-width:0px)': {
+          flexDirection: 'row',
+        },
+        '@media (min-width:1200px)': {
+          flexDirection: 'column',
+          '& > .MuiGrid-item': {
+            maxWidth: 'none',
+          },
+        },
+      });
+    });
+
+    it('should generate correct responsive styles regardless of custom breakpoints order', () => {
+      const theme = createTheme({
+        breakpoints: {
+          keys: ['mobile', 'desktop'],
+          values: {
+            mobile: 0,
+            desktop: 1200,
+          },
+        },
+      });
+      expect(
+        generateDirection({
+          ownerState: {
+            container: true,
+            direction: { desktop: 'column', mobile: 'row' },
+          },
+          theme,
+        }),
+      ).to.deep.equal({
+        '@media (min-width:0px)': {
+          flexDirection: 'row',
+        },
+        '@media (min-width:1200px)': {
+          flexDirection: 'column',
+          '& > .MuiGrid-item': {
+            maxWidth: 'none',
+          },
+        },
+      });
+    });
   });
 
   describe('prop: spacing', () => {
     it('should have a spacing', () => {
-      const { container } = render(<Grid container spacing={1} />);
+      const theme = createTheme({
+        components: {
+          MuiGrid: {
+            styleOverrides: {
+              'spacing-xs-1': {
+                position: 'absolute',
+                top: '10px',
+                left: '20px',
+              },
+            },
+          },
+        },
+      });
+
+      const { container } = render(
+        <ThemeProvider theme={theme}>
+          <Grid container spacing={1} />
+        </ThemeProvider>,
+      );
       expect(container.firstChild).to.have.class(classes['spacing-xs-1']);
+      expect(container.firstChild).toHaveComputedStyle({
+        position: 'absolute',
+        top: '10px',
+        left: '20px',
+      });
     });
 
     it('should support decimal values', () => {
+      const theme = createTheme({
+        components: {
+          MuiGrid: {
+            styleOverrides: {
+              'spacing-xs-1.5': {
+                position: 'absolute',
+                top: '10px',
+                left: '20px',
+              },
+            },
+          },
+        },
+      });
+
       const { container } = render(
-        <Grid container spacing={1.5}>
-          <Grid item data-testid="child" />
-        </Grid>,
+        <ThemeProvider theme={theme}>
+          <Grid container spacing={1.5}>
+            <Grid item data-testid="child" />
+          </Grid>
+        </ThemeProvider>,
       );
       expect(container.firstChild).to.have.class('MuiGrid-spacing-xs-1.5');
-      expect(screen.getByTestId('child')).toHaveComputedStyle({
-        paddingTop: '12px',
-        paddingLeft: '12px',
+      expect(container.firstChild).toHaveComputedStyle({
+        position: 'absolute',
+        top: '10px',
+        left: '20px',
       });
     });
 
     it('should not support undefined values', () => {
+      const theme = createTheme({
+        components: {
+          MuiGrid: {
+            styleOverrides: {
+              'spacing-xs-undefined': {
+                position: 'absolute',
+                top: '10px',
+                left: '20px',
+              },
+            },
+          },
+        },
+      });
+
       const { container } = render(
-        <Grid container>
-          <Grid item data-testid="child" />
-        </Grid>,
+        <ThemeProvider theme={theme}>
+          <Grid container>
+            <Grid item />
+          </Grid>
+        </ThemeProvider>,
       );
       expect(container.firstChild).not.to.have.class('MuiGrid-spacing-xs-undefined');
+      expect(container.firstChild).not.to.toHaveComputedStyle({
+        position: 'absolute',
+        top: '10px',
+        left: '20px',
+      });
     });
 
     it('should not support zero values', () => {
+      const theme = createTheme({
+        components: {
+          MuiGrid: {
+            styleOverrides: {
+              'spacing-xs-0': {
+                position: 'absolute',
+                top: '10px',
+                left: '20px',
+              },
+            },
+          },
+        },
+      });
+
       const { container } = render(
-        <Grid container spacing={0}>
-          <Grid item data-testid="child" />
-        </Grid>,
+        <ThemeProvider theme={theme}>
+          <Grid container spacing={0}>
+            <Grid item />
+          </Grid>
+        </ThemeProvider>,
       );
       expect(container.firstChild).not.to.have.class('MuiGrid-spacing-xs-0');
+      expect(container.firstChild).not.to.toHaveComputedStyle({
+        position: 'absolute',
+        top: '10px',
+        left: '20px',
+      });
     });
 
     it('should support object values', () => {
+      const theme = createTheme({
+        components: {
+          MuiGrid: {
+            styleOverrides: {
+              'spacing-sm-1.5': {
+                position: 'absolute',
+                top: '10px',
+                left: '20px',
+              },
+              'spacing-md-2': {
+                position: 'relative',
+                top: '30px',
+                left: '50px',
+              },
+            },
+          },
+        },
+      });
+
       const { container } = render(
-        <Grid container spacing={{ sm: 1.5, md: 2 }}>
-          <Grid item data-testid="child" />
-        </Grid>,
+        <ThemeProvider theme={theme}>
+          <Grid container spacing={{ sm: 1.5, md: 2 }}>
+            <Grid item />
+          </Grid>
+        </ThemeProvider>,
       );
       expect(container.firstChild).to.have.class('MuiGrid-spacing-sm-1.5');
       expect(container.firstChild).to.have.class('MuiGrid-spacing-md-2');
+      expect(container.firstChild).to.toHaveComputedStyle({
+        position: 'relative',
+        top: '30px',
+        left: '50px',
+      });
     });
 
     it('should ignore object values of zero', () => {
+      const theme = createTheme({
+        components: {
+          MuiGrid: {
+            styleOverrides: {
+              'spacing-sm-0': {
+                position: 'absolute',
+                top: '10px',
+                left: '20px',
+              },
+              'spacing-md-2': {
+                position: 'relative',
+                top: '30px',
+                left: '50px',
+              },
+            },
+          },
+        },
+      });
+
       const { container } = render(
-        <Grid container spacing={{ sm: 0, md: 2 }}>
-          <Grid item data-testid="child" />
-        </Grid>,
+        <ThemeProvider theme={theme}>
+          <Grid container spacing={{ sm: 0, md: 2 }}>
+            <Grid item />
+          </Grid>
+        </ThemeProvider>,
       );
       expect(container.firstChild).not.to.have.class('MuiGrid-spacing-sm-0');
       expect(container.firstChild).to.have.class('MuiGrid-spacing-md-2');
+      expect(container.firstChild).to.toHaveComputedStyle({
+        position: 'relative',
+        top: '30px',
+        left: '50px',
+      });
+    });
+
+    it('should support custom breakpoints', () => {
+      const theme = createTheme({
+        breakpoints: {
+          keys: ['mobile', 'desktop'],
+          values: {
+            mobile: 0,
+            desktop: 1200,
+          },
+        },
+        components: {
+          MuiGrid: {
+            styleOverrides: {
+              'spacing-mobile-1.5': {
+                position: 'absolute',
+                top: '10px',
+                left: '20px',
+              },
+              'spacing-desktop-3': {
+                position: 'relative',
+                top: '30px',
+                left: '50px',
+              },
+            },
+          },
+        },
+      });
+
+      const { container } = render(
+        <ThemeProvider theme={theme}>
+          <Grid container spacing={{ mobile: 1.5, desktop: 3 }}>
+            <Grid item />
+          </Grid>
+        </ThemeProvider>,
+      );
+      expect(container.firstChild).to.have.class('MuiGrid-spacing-mobile-1.5');
+      expect(container.firstChild).to.have.class('MuiGrid-spacing-desktop-3');
+      expect(container.firstChild).to.toHaveComputedStyle({
+        position: 'relative',
+        top: '30px',
+        left: '50px',
+      });
+    });
+
+    it('should ignore custom breakpoints with values of zero', () => {
+      const theme = createTheme({
+        breakpoints: {
+          keys: ['mobile', 'desktop'],
+          values: {
+            mobile: 0,
+            desktop: 1200,
+          },
+        },
+        components: {
+          MuiGrid: {
+            styleOverrides: {
+              'spacing-mobile-0': {
+                position: 'absolute',
+                top: '10px',
+                left: '20px',
+              },
+              'spacing-desktop-3': {
+                position: 'relative',
+                top: '30px',
+                left: '50px',
+              },
+            },
+          },
+        },
+      });
+
+      const { container } = render(
+        <ThemeProvider theme={theme}>
+          <Grid container spacing={{ mobile: 0, desktop: 3 }}>
+            <Grid item />
+          </Grid>
+        </ThemeProvider>,
+      );
+      expect(container.firstChild).to.not.have.class('MuiGrid-spacing-mobile-0');
+      expect(container.firstChild).to.have.class('MuiGrid-spacing-desktop-3');
+      expect(container.firstChild).to.toHaveComputedStyle({
+        position: 'relative',
+        top: '30px',
+        left: '50px',
+      });
+    });
+
+    it("shouldn't support custom breakpoints without its spacing values", () => {
+      const theme = createTheme({
+        breakpoints: {
+          keys: ['mobile', 'desktop'],
+          values: {
+            mobile: 0,
+            desktop: 1200,
+          },
+        },
+        components: {
+          MuiGrid: {
+            styleOverrides: {
+              'spacing-mobile-undefined': {
+                position: 'absolute',
+                top: '10px',
+                left: '20px',
+              },
+              'spacing-desktop-3': {
+                position: 'relative',
+                top: '30px',
+                left: '50px',
+              },
+            },
+          },
+        },
+      });
+
+      const { container } = render(
+        <ThemeProvider theme={theme}>
+          <Grid container spacing={{ desktop: 3 }}>
+            <Grid item />
+          </Grid>
+        </ThemeProvider>,
+      );
+      expect(container.firstChild).to.not.have.class('sMuiGrid-spacing-mobile-undefined');
+      expect(container.firstChild).to.have.class('MuiGrid-spacing-desktop-3');
+      expect(container.firstChild).to.toHaveComputedStyle({
+        position: 'relative',
+        top: '30px',
+        left: '50px',
+      });
+    });
+
+    it("should ignore custom breakpoints that doesn't exist in the theme", () => {
+      const theme = createTheme({
+        breakpoints: {
+          keys: ['mobile', 'desktop'],
+          values: {
+            mobile: 0,
+            desktop: 1200,
+          },
+        },
+        components: {
+          MuiGrid: {
+            styleOverrides: {
+              'spacing-md-1.5': {
+                position: 'absolute',
+                top: '10px',
+                left: '20px',
+              },
+              'spacing-desktop-3': {
+                position: 'relative',
+                top: '30px',
+                left: '50px',
+              },
+            },
+          },
+        },
+      });
+
+      const { container } = render(
+        <ThemeProvider theme={theme}>
+          <Grid container spacing={{ md: 1.5, desktop: 3 }}>
+            <Grid item />
+          </Grid>
+        </ThemeProvider>,
+      );
+
+      expect(container.firstChild).to.not.have.class('MuiGrid-spacing-md-1.5');
+      expect(container.firstChild).to.have.class('MuiGrid-spacing-desktop-3');
+      expect(container.firstChild).to.toHaveComputedStyle({
+        position: 'relative',
+        top: '30px',
+        left: '50px',
+      });
+    });
+
+    it('should ignore custom breakpoints with negative values', () => {
+      const theme = createTheme({
+        breakpoints: {
+          keys: ['mobile', 'desktop'],
+          values: {
+            mobile: 0,
+            desktop: 1200,
+          },
+        },
+        components: {
+          MuiGrid: {
+            styleOverrides: {
+              'spacing-mobile--1.5': {
+                position: 'absolute',
+                top: '10px',
+                left: '20px',
+              },
+              'spacing-desktop--3': {
+                position: 'relative',
+                top: '30px',
+                left: '50px',
+              },
+            },
+          },
+        },
+      });
+
+      const { container } = render(
+        <ThemeProvider theme={theme}>
+          <Grid container spacing={{ mobile: -1.5, desktop: -3 }}>
+            <Grid item />
+          </Grid>
+        </ThemeProvider>,
+      );
+      expect(container.firstChild).to.not.have.class('MuiGrid-spacing-md--1.5');
+      expect(container.firstChild).to.not.have.class('MuiGrid-spacing-desktop--3');
+      expect(container.firstChild).to.not.toHaveComputedStyle({
+        position: 'relative',
+        top: '30px',
+        left: '50px',
+      });
+    });
+
+    it('should ignore grid item with spacing object', () => {
+      const theme = createTheme({
+        breakpoints: {
+          keys: ['mobile', 'desktop'],
+          values: {
+            mobile: 0,
+            desktop: 1200,
+          },
+        },
+        components: {
+          MuiGrid: {
+            styleOverrides: {
+              'spacing-mobile--1.5': {
+                position: 'absolute',
+                top: '10px',
+                left: '20px',
+              },
+              'spacing-desktop--3': {
+                position: 'relative',
+                top: '30px',
+                left: '50px',
+              },
+            },
+          },
+        },
+      });
+      expect(() => {
+        const { container } = render(
+          <ThemeProvider theme={theme}>
+            <Grid item spacing={{ mobile: 1.5, desktop: 3 }} />
+          </ThemeProvider>,
+        );
+        expect(container.firstChild).to.not.have.class('MuiGrid-spacing-mobile-1.5');
+        expect(container.firstChild).to.not.have.class('MuiGrid-spacing-desktop-3');
+        expect(container.firstChild).to.not.toHaveComputedStyle({
+          position: 'relative',
+          top: '30px',
+          left: '50px',
+        });
+      }).toErrorDev(
+        'Warning: Failed prop type: The prop `spacing` of `Grid` can only be used together with the `container` prop.',
+      );
     });
 
     it('should generate correct responsive styles', () => {
@@ -285,6 +741,205 @@ describe('<Grid />', () => {
       });
     });
 
+    it('should support custom breakpoints and generate correct responsive styles', () => {
+      const theme = createTheme({
+        breakpoints: {
+          keys: ['mobile', 'desktop'],
+          values: {
+            mobile: 0,
+            desktop: 1200,
+          },
+        },
+      });
+      expect(
+        generateRowGap({
+          ownerState: {
+            container: true,
+            rowSpacing: { mobile: 1.5, desktop: 3 },
+          },
+          theme,
+        }),
+      ).to.deep.equal({
+        '@media (min-width:0px)': {
+          '& > .MuiGrid-item': {
+            paddingTop: '12px',
+          },
+          marginTop: '-12px',
+        },
+        '@media (min-width:1200px)': {
+          '& > .MuiGrid-item': {
+            paddingTop: '24px',
+          },
+          marginTop: '-24px',
+        },
+      });
+
+      expect(
+        generateColumnGap({
+          ownerState: {
+            container: true,
+            columnSpacing: { mobile: 1.5, desktop: 3 },
+          },
+          theme,
+        }),
+      ).to.deep.equal({
+        '@media (min-width:0px)': {
+          '& > .MuiGrid-item': {
+            paddingLeft: '12px',
+          },
+          marginLeft: '-12px',
+          width: 'calc(100% + 12px)',
+        },
+        '@media (min-width:1200px)': {
+          '& > .MuiGrid-item': {
+            paddingLeft: '24px',
+          },
+          marginLeft: '-24px',
+          width: 'calc(100% + 24px)',
+        },
+      });
+    });
+
+    it("shouldn't support custom breakpoints with values of zeros and shouldn't generate responsive styles", () => {
+      const theme = createTheme({
+        breakpoints: {
+          keys: ['mobile', 'desktop'],
+          values: {
+            mobile: 0,
+            desktop: 1200,
+          },
+        },
+      });
+      expect(
+        generateRowGap({
+          ownerState: {
+            container: true,
+            rowSpacing: { mobile: 0, desktop: 3 },
+          },
+          theme,
+        }),
+      ).to.deep.equal({
+        '@media (min-width:0px)': {},
+        '@media (min-width:1200px)': {
+          '& > .MuiGrid-item': {
+            paddingTop: '24px',
+          },
+          marginTop: '-24px',
+        },
+      });
+
+      expect(
+        generateColumnGap({
+          ownerState: {
+            container: true,
+            columnSpacing: { mobile: 0, desktop: 3 },
+          },
+          theme,
+        }),
+      ).to.deep.equal({
+        '@media (min-width:0px)': {},
+        '@media (min-width:1200px)': {
+          '& > .MuiGrid-item': {
+            paddingLeft: '24px',
+          },
+          marginLeft: '-24px',
+          width: 'calc(100% + 24px)',
+        },
+      });
+    });
+
+    it("shouldn't support custom breakpoints without its spacing values and shouldn't generate responsive styles", () => {
+      const theme = createTheme({
+        breakpoints: {
+          keys: ['mobile', 'desktop'],
+          values: {
+            mobile: 0,
+            desktop: 1200,
+          },
+        },
+      });
+      expect(
+        generateRowGap({
+          ownerState: {
+            container: true,
+            rowSpacing: { desktop: 3 },
+          },
+          theme,
+        }),
+      ).to.deep.equal({
+        '@media (min-width:1200px)': {
+          '& > .MuiGrid-item': {
+            paddingTop: '24px',
+          },
+          marginTop: '-24px',
+        },
+      });
+
+      expect(
+        generateColumnGap({
+          ownerState: {
+            container: true,
+            columnSpacing: { desktop: 3 },
+          },
+          theme,
+        }),
+      ).to.deep.equal({
+        '@media (min-width:1200px)': {
+          '& > .MuiGrid-item': {
+            paddingLeft: '24px',
+          },
+          marginLeft: '-24px',
+          width: 'calc(100% + 24px)',
+        },
+      });
+    });
+
+    it("should ignore custom breakpoints that doesn't exist in the theme and shouldn't generate responsive styles", () => {
+      const theme = createTheme({
+        breakpoints: {
+          keys: ['mobile', 'desktop'],
+          values: {
+            mobile: 0,
+            desktop: 1200,
+          },
+        },
+      });
+      expect(
+        generateRowGap({
+          ownerState: {
+            container: true,
+            rowSpacing: { md: 1.5, desktop: 3 },
+          },
+          theme,
+        }),
+      ).to.deep.equal({
+        '@media (min-width:1200px)': {
+          '& > .MuiGrid-item': {
+            paddingTop: '24px',
+          },
+          marginTop: '-24px',
+        },
+      });
+
+      expect(
+        generateColumnGap({
+          ownerState: {
+            container: true,
+            columnSpacing: { md: 1.5, desktop: 3 },
+          },
+          theme,
+        }),
+      ).to.deep.equal({
+        '@media (min-width:1200px)': {
+          '& > .MuiGrid-item': {
+            paddingLeft: '24px',
+          },
+          marginLeft: '-24px',
+          width: 'calc(100% + 24px)',
+        },
+      });
+    });
+
     it('should generate correct responsive styles regardless of breakpoints order ', () => {
       const theme = createTheme();
       expect(
@@ -332,6 +987,65 @@ describe('<Grid />', () => {
           },
           marginLeft: '-16px',
           width: 'calc(100% + 16px)',
+        },
+      });
+    });
+
+    it('should generate correct responsive styles regardless of custom breakpoints order ', () => {
+      const theme = createTheme({
+        breakpoints: {
+          keys: ['mobile', 'desktop'],
+          values: {
+            mobile: 0,
+            desktop: 1200,
+          },
+        },
+      });
+      expect(
+        generateRowGap({
+          ownerState: {
+            container: true,
+            rowSpacing: { mobile: 1.5, desktop: 3 },
+          },
+          theme,
+        }),
+      ).to.deep.equal({
+        '@media (min-width:0px)': {
+          '& > .MuiGrid-item': {
+            paddingTop: '12px',
+          },
+          marginTop: '-12px',
+        },
+        '@media (min-width:1200px)': {
+          '& > .MuiGrid-item': {
+            paddingTop: '24px',
+          },
+          marginTop: '-24px',
+        },
+      });
+
+      expect(
+        generateColumnGap({
+          ownerState: {
+            container: true,
+            columnSpacing: { mobile: 1.5, desktop: 3 },
+          },
+          theme,
+        }),
+      ).to.deep.equal({
+        '@media (min-width:0px)': {
+          '& > .MuiGrid-item': {
+            paddingLeft: '12px',
+          },
+          marginLeft: '-12px',
+          width: 'calc(100% + 12px)',
+        },
+        '@media (min-width:1200px)': {
+          '& > .MuiGrid-item': {
+            paddingLeft: '24px',
+          },
+          marginLeft: '-24px',
+          width: 'calc(100% + 24px)',
         },
       });
     });
@@ -387,6 +1101,307 @@ describe('<Grid />', () => {
           flexBasis: '33.333333%',
           flexGrow: 0,
           maxWidth: '33.333333%',
+        },
+      });
+    });
+
+    it('should generate responsive grid when grid item has a custom breakpoints', () => {
+      const theme = createTheme({
+        breakpoints: {
+          keys: ['mobile', 'tablet', 'desktop'],
+          values: {
+            mobile: 0,
+            tablet: 640,
+            desktop: 1200,
+          },
+        },
+      });
+      expect(
+        generateGrid({
+          ownerState: {
+            columns: 12,
+            mobile: 12,
+            tablet: 6,
+            desktop: 6,
+            item: true,
+          },
+          theme,
+        }),
+      ).to.deep.equal({
+        flexBasis: '100%',
+        flexGrow: 0,
+        maxWidth: '100%',
+        '@media (min-width:640px)': {
+          flexBasis: '50%',
+          flexGrow: 0,
+          maxWidth: '50%',
+        },
+        '@media (min-width:1200px)': {
+          flexBasis: '50%',
+          flexGrow: 0,
+          maxWidth: '50%',
+        },
+      });
+    });
+
+    it('should generate responsive grid when grid item has a custom breakpoints with values of auto', () => {
+      const theme = createTheme({
+        breakpoints: {
+          keys: ['mobile', 'tablet', 'desktop'],
+          values: {
+            mobile: 0,
+            tablet: 640,
+            desktop: 1200,
+          },
+        },
+      });
+      expect(
+        generateGrid({
+          ownerState: {
+            columns: 12,
+            mobile: 'auto',
+            tablet: 6,
+            desktop: 6,
+            item: true,
+          },
+          theme,
+        }),
+      ).to.deep.equal({
+        flexBasis: 'auto',
+        flexGrow: 0,
+        flexShrink: 0,
+        maxWidth: 'none',
+        width: 'auto',
+        '@media (min-width:640px)': {
+          flexBasis: '50%',
+          flexGrow: 0,
+          maxWidth: '50%',
+        },
+        '@media (min-width:1200px)': {
+          flexBasis: '50%',
+          flexGrow: 0,
+          maxWidth: '50%',
+        },
+      });
+    });
+
+    it('should generate responsive grid when grid item has a custom breakpoints with values of true', () => {
+      const theme = createTheme({
+        breakpoints: {
+          keys: ['mobile', 'tablet', 'desktop'],
+          values: {
+            mobile: 0,
+            tablet: 640,
+            desktop: 1200,
+          },
+        },
+      });
+      expect(
+        generateGrid({
+          ownerState: {
+            columns: 12,
+            mobile: true,
+            tablet: 6,
+            desktop: 6,
+            item: true,
+          },
+          theme,
+        }),
+      ).to.deep.equal({
+        flexBasis: 0,
+        flexGrow: 1,
+        maxWidth: '100%',
+        '@media (min-width:640px)': {
+          flexBasis: '50%',
+          flexGrow: 0,
+          maxWidth: '50%',
+        },
+        '@media (min-width:1200px)': {
+          flexBasis: '50%',
+          flexGrow: 0,
+          maxWidth: '50%',
+        },
+      });
+    });
+
+    it("shouldn't generate responsive grid when grid item has a custom breakpoints with values of false", () => {
+      const theme = createTheme({
+        breakpoints: {
+          keys: ['mobile', 'tablet', 'desktop'],
+          values: {
+            mobile: 0,
+            tablet: 640,
+            desktop: 1200,
+          },
+        },
+      });
+      expect(
+        generateGrid({
+          ownerState: {
+            columns: 12,
+            mobile: false,
+            tablet: 6,
+            desktop: 6,
+            item: true,
+          },
+          theme,
+        }),
+      ).to.deep.equal({
+        '@media (min-width:640px)': {
+          flexBasis: '50%',
+          flexGrow: 0,
+          maxWidth: '50%',
+        },
+        '@media (min-width:1200px)': {
+          flexBasis: '50%',
+          flexGrow: 0,
+          maxWidth: '50%',
+        },
+      });
+    });
+
+    it("shouldn't generate responsive grid when grid item has a breakpoints don't exist in the theme", () => {
+      const theme = createTheme({
+        breakpoints: {
+          keys: ['mobile', 'tablet', 'desktop'],
+          values: {
+            mobile: 0,
+            tablet: 640,
+            desktop: 1200,
+          },
+        },
+      });
+      expect(
+        generateGrid({
+          ownerState: {
+            columns: 12,
+            small: 2,
+            tablet: 6,
+            desktop: 6,
+            item: true,
+          },
+          theme,
+        }),
+      ).to.deep.equal({
+        '@media (min-width:640px)': {
+          flexBasis: '50%',
+          flexGrow: 0,
+          maxWidth: '50%',
+        },
+        '@media (min-width:1200px)': {
+          flexBasis: '50%',
+          flexGrow: 0,
+          maxWidth: '50%',
+        },
+      });
+    });
+
+    it('should generate responsive grid when grid item has a custom breakpoints and grid container columns are responsive ', () => {
+      const theme = createTheme({
+        breakpoints: {
+          keys: ['mobile', 'tablet', 'desktop'],
+          values: {
+            mobile: 0,
+            tablet: 640,
+            desktop: 1200,
+          },
+        },
+      });
+      expect(
+        generateGrid({
+          ownerState: {
+            columns: { mobile: 4, tablet: 8, desktop: 12 },
+            mobile: 2,
+            tablet: 2,
+            desktop: 6,
+            item: true,
+          },
+          theme,
+        }),
+      ).to.deep.equal({
+        flexBasis: '50%',
+        flexGrow: 0,
+        maxWidth: '50%',
+        '@media (min-width:640px)': {
+          flexBasis: '25%',
+          flexGrow: 0,
+          maxWidth: '25%',
+        },
+        '@media (min-width:1200px)': {
+          flexBasis: '50%',
+          flexGrow: 0,
+          maxWidth: '50%',
+        },
+      });
+    });
+
+    it('should generate responsive grid when grid item misses custom breakpoints of its container', () => {
+      const theme = createTheme({
+        breakpoints: {
+          keys: ['mobile', 'tablet', 'desktop'],
+          values: {
+            mobile: 0,
+            tablet: 640,
+            desktop: 1200,
+          },
+        },
+      });
+      expect(
+        generateGrid({
+          ownerState: {
+            columns: { mobile: 4, tablet: 8, desktop: 12 },
+            mobile: 2,
+            item: true,
+          },
+          theme,
+        }),
+      ).to.deep.equal({
+        flexBasis: '50%',
+        flexGrow: 0,
+        maxWidth: '50%',
+        '@media (min-width:640px)': {
+          flexBasis: '25%',
+          flexGrow: 0,
+          maxWidth: '25%',
+        },
+        '@media (min-width:1200px)': {
+          flexBasis: '16.666667%',
+          flexGrow: 0,
+          maxWidth: '16.666667%',
+        },
+      });
+    });
+
+    it('should generate responsive grid when grid item misses custom breakpoints of its container and custom breakpoint starts from the middle', () => {
+      const theme = createTheme({
+        breakpoints: {
+          keys: ['mobile', 'tablet', 'desktop'],
+          values: {
+            mobile: 0,
+            tablet: 640,
+            desktop: 1200,
+          },
+        },
+      });
+      expect(
+        generateGrid({
+          ownerState: {
+            columns: { tablet: 8, desktop: 12 },
+            tablet: 2,
+            item: true,
+          },
+          theme,
+        }),
+      ).to.deep.equal({
+        '@media (min-width:640px)': {
+          flexBasis: '25%',
+          flexGrow: 0,
+          maxWidth: '25%',
+        },
+        '@media (min-width:1200px)': {
+          flexBasis: '16.666667%',
+          flexGrow: 0,
+          maxWidth: '16.666667%',
         },
       });
     });

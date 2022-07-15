@@ -40,7 +40,7 @@ import RalewayWoff2 from './fonts/Raleway-Regular.woff2';
 ```
 
 Next, you need to change the theme to use this new font.
-In order to globally define Raleway as a font face, the [`CssBaseline`](/components/css-baseline/) component can be used (or any other CSS solution of your choice).
+In order to globally define Raleway as a font face, the [`CssBaseline`](/material-ui/react-css-baseline/) component can be used (or any other CSS solution of your choice).
 
 ```jsx
 import RalewayWoff2 from './fonts/Raleway-Regular.woff2';
@@ -117,7 +117,7 @@ The computed font size by the browser follows this mathematical equation:
 ### Responsive font sizes
 
 The `theme.typography.*` [variant](#variants) properties map directly to the generated CSS.
-You can use [media queries](/customization/breakpoints/#api) inside them:
+You can use [media queries](/material-ui/customization/breakpoints/#api) inside them:
 
 ```js
 const theme = createTheme();
@@ -135,11 +135,11 @@ theme.typography.h3 = {
 
 {{"demo": "CustomResponsiveFontSizes.js"}}
 
-To automate this setup, you can use the [`responsiveFontSizes()`](/customization/theming/#responsivefontsizes-theme-options-theme) helper to make Typography font sizes in the theme responsive.
+To automate this setup, you can use the [`responsiveFontSizes()`](/material-ui/customization/theming/#responsivefontsizes-theme-options-theme) helper to make Typography font sizes in the theme responsive.
 
 {{"demo": "ResponsiveFontSizesChart.js", "hideToolbar": true}}
 
-You can see this in action in the example below. Adjust your browser's window size, and notice how the font size changes as the width crosses the different [breakpoints](/customization/breakpoints/):
+You can see this in action in the example below. Adjust your browser's window size, and notice how the font size changes as the width crosses the different [breakpoints](/material-ui/customization/breakpoints/):
 
 ```js
 import { createTheme, responsiveFontSizes } from '@mui/material/styles';
@@ -158,7 +158,9 @@ To be done: [#15251](https://github.com/mui/material-ui/issues/15251).
 
 You might want to change the `<html>` element default font size. For instance, when using the [10px simplification](https://www.sitepoint.com/understanding-and-using-rem-units-in-css/).
 
-> ⚠️ Changing the font size can harm accessibility ♿️. Most browsers agreed on the default size of 16px, but the user can change it. For instance, someone with an impaired vision could have set their browser's default font size to something larger.
+:::warning
+⚠️ Changing the font size can harm accessibility ♿️. Most browsers agreed on the default size of 16px, but the user can change it. For instance, someone with an impaired vision could have set their browser's default font size to something larger.
+:::
 
 The `theme.typography.htmlFontSize` property is provided for this use case,
 which tells MUI what the font-size on the `<html>` element is.
@@ -185,7 +187,7 @@ _You need to apply the above CSS on the html element of this page to see the bel
 
 ## Variants
 
-The typography object comes with [13 variants](/components/typography/#component) by default:
+The typography object comes with [13 variants](/material-ui/react-typography/#component) by default:
 
 - h1
 - h2
@@ -241,7 +243,9 @@ const theme = createTheme({
 
 **Step 2. Update the necessary typings (if you are using TypeScript)**
 
-> If you aren't using TypeScript you should skip this step.
+:::info
+If you aren't using TypeScript you should skip this step.
+:::
 
 You need to make sure that the typings for the theme's `typography` variants and the `Typography`'s `variant` prop reflects the new set of variants.
 
@@ -281,4 +285,4 @@ declare module '@mui/material/Typography' {
 
 ## Default values
 
-You can explore the default values of the typography using [the theme explorer](/customization/default-theme/?expand-path=$.typography) or by opening the dev tools console on this page (`window.theme.typography`).
+You can explore the default values of the typography using [the theme explorer](/material-ui/customization/default-theme/?expand-path=$.typography) or by opening the dev tools console on this page (`window.theme.typography`).

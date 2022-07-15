@@ -11,7 +11,8 @@ import {
   getContrastRatio,
   getLuminance,
   lighten,
-} from './colorManipulator';
+  colorChannel,
+} from '@mui/system';
 
 describe('utils/colorManipulator', () => {
   describe('recomposeColor', () => {
@@ -407,6 +408,36 @@ describe('utils/colorManipulator', () => {
 
     it("doesn't modify CSS4 color when coefficient is 0", () => {
       expect(lighten('color(display-p3 1 0 0)', 0)).to.equal('color(display-p3 1 0 0)');
+    });
+  });
+
+  describe('colorChannel', () => {
+    it('converts a short hex color to a color channel` ', () => {
+      expect(colorChannel('#9f3')).to.equal('153 255 51');
+    });
+
+    it('converts a long hex color to a colorChannel` ', () => {
+      expect(colorChannel('#a94fd3')).to.equal('169 79 211');
+    });
+
+    it('converts a long alpha hex color to a color channel` ', () => {
+      expect(colorChannel('#111111f8')).to.equal('17 17 17');
+    });
+
+    it('converts rgb to a color channel` ', () => {
+      expect(colorChannel('rgb(169, 79, 211)')).to.equal('169 79 211');
+    });
+
+    it('converts rgba to a color channel` ', () => {
+      expect(colorChannel('rgba(255, 11, 13, 0.5)')).to.equal('255 11 13');
+    });
+
+    it('converts hsl to a color channel` ', () => {
+      expect(colorChannel('hsl(170, 45%, 50%)')).to.equal('170 45% 50%');
+    });
+
+    it('converts hsla to a color channel` ', () => {
+      expect(colorChannel('hsla(235, 100%, 50%, .5)')).to.equal('235 100% 50%');
     });
   });
 });

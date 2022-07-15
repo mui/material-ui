@@ -1,9 +1,9 @@
 {
   "name": "@mui/private-theming",
-  "version": "5.4.4",
+  "version": "5.9.0",
   "private": false,
   "author": "MUI Team",
-  "description": "MUI Theming - The React theme context to be shared between `@mui/styles` and `@mui/material`.",
+  "description": "Private - The React theme context to be shared between `@mui/styles` and `@mui/material`.",
   "main": "./src/index.js",
   "keywords": [
     "react",
@@ -38,8 +38,8 @@
     "typescript": "tslint -p tsconfig.json \"{src,test}/**/*.{spec,d}.{ts,tsx}\" && tsc -p tsconfig.json"
   },
   "peerDependencies": {
-    "@types/react": "^16.8.6 || ^17.0.0",
-    "react": "^17.0.0"
+    "@types/react": "^17.0.0 || ^18.0.0",
+    "react": "^17.0.0 || ^18.0.0"
   },
   "peerDependenciesMeta": {
     "@types/react": {
@@ -48,8 +48,8 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.17.2",
-    "@mui/utils": "^5.4.4",
-    "prop-types": "^15.7.2"
+    "@mui/utils": "^5.9.0",
+    "prop-types": "^15.8.1"
   },
   "sideEffects": false,
   "publishConfig": {

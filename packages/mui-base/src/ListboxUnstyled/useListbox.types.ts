@@ -5,9 +5,10 @@ type UseListboxStrictPropsRequiredKeys =
   | 'disableListWrap'
   | 'disabledItemsFocusable'
   | 'optionComparer'
+  | 'optionStringifier'
   | 'multiple';
 
-export type UseListboxStrictProps<TOption> = Omit<
+export type UseListboxPropsWithDefaults<TOption> = Omit<
   UseListboxParameters<TOption>,
   UseListboxStrictPropsRequiredKeys
 > &
@@ -24,6 +25,7 @@ enum ActionTypes {
   optionsChange = 'optionsChange',
   setValue = 'setValue',
   setHighlight = 'setHighlight',
+  textNavigation = 'textNagivation',
 }
 
 // split declaration and export due to https://github.com/codesandbox/codesandbox-client/issues/6435
@@ -33,32 +35,32 @@ interface OptionClickAction<TOption> {
   type: ActionTypes.optionClick;
   option: TOption;
   event: React.MouseEvent;
-  props: UseListboxStrictProps<TOption>;
+  props: UseListboxPropsWithDefaults<TOption>;
 }
 
 interface OptionHoverAction<TOption> {
   type: ActionTypes.optionHover;
   option: TOption;
   event: React.MouseEvent;
-  props: UseListboxStrictProps<TOption>;
+  props: UseListboxPropsWithDefaults<TOption>;
 }
 
 interface FocusAction<TOption> {
   type: ActionTypes.focus;
   event: React.FocusEvent;
-  props: UseListboxStrictProps<TOption>;
+  props: UseListboxPropsWithDefaults<TOption>;
 }
 
 interface BlurAction<TOption> {
   type: ActionTypes.blur;
   event: React.FocusEvent;
-  props: UseListboxStrictProps<TOption>;
+  props: UseListboxPropsWithDefaults<TOption>;
 }
 
 interface KeyDownAction<TOption> {
   type: ActionTypes.keyDown;
   event: React.KeyboardEvent;
-  props: UseListboxStrictProps<TOption>;
+  props: UseListboxPropsWithDefaults<TOption>;
 }
 
 interface SetValueAction<TOption> {
@@ -71,11 +73,17 @@ interface SetHighlightAction<TOption> {
   highlight: TOption | null;
 }
 
+interface TextNavigationAction<TOption> {
+  type: ActionTypes.textNavigation;
+  searchString: string;
+  props: UseListboxPropsWithDefaults<TOption>;
+}
+
 interface OptionsChangeAction<TOption> {
   type: ActionTypes.optionsChange;
   options: TOption[];
   previousOptions: TOption[];
-  props: UseListboxStrictProps<TOption>;
+  props: UseListboxPropsWithDefaults<TOption>;
 }
 
 export type ListboxAction<TOption> =
@@ -85,6 +93,7 @@ export type ListboxAction<TOption> =
   | BlurAction<TOption>
   | KeyDownAction<TOption>
   | SetHighlightAction<TOption>
+  | TextNavigationAction<TOption>
   | SetValueAction<TOption>
   | OptionsChangeAction<TOption>;
 
@@ -136,6 +145,11 @@ interface UseListboxCommonProps<TOption> {
    * A function that generates the id attribute of individual options.
    */
   optionIdGenerator?: (option: TOption, index: number) => string;
+  /**
+   * A function that converts an object to its string representation
+   * @default (o) => o
+   */
+  optionStringifier?: (option: TOption) => string | undefined;
   /**
    * Array of options to be rendered in the list.
    */
@@ -207,8 +221,7 @@ interface UseListboxRootSlotOwnProps {
   ref: React.Ref<any>;
 }
 
-export type UseListboxRootSlotProps<TOther = {}> = Omit<TOther, keyof UseListboxRootSlotOwnProps> &
-  UseListboxRootSlotOwnProps;
+export type UseListboxRootSlotProps<TOther = {}> = TOther & UseListboxRootSlotOwnProps;
 
 interface UseListboxOptionSlotOwnProps {
   'aria-disabled': React.AriaAttributes['aria-disabled'];

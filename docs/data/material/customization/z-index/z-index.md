@@ -17,5 +17,5 @@ The `z-index` values start at an arbitrary number, high and specific enough to i
 - tooltip: 1500
 
 These values can always be customized.
-You will find them in the theme under the [`zIndex`](/customization/default-theme/?expand-path=$.zIndex) key of the theme.
+You will find them in the theme under the [`zIndex`](/material-ui/customization/default-theme/?expand-path=$.zIndex) key of the theme.
 Customization of individual values is discouraged; should you change one, you likely need to change them all.

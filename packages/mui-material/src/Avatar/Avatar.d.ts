@@ -63,11 +63,11 @@ export interface AvatarTypeMap<P = {}, D extends React.ElementType = 'div'> {
  *
  * Demos:
  *
- * - [Avatars](https://mui.com/components/avatars/)
+ * - [Avatars](https://mui.com/material-ui/react-avatar/)
  *
  * API:
  *
- * - [Avatar API](https://mui.com/api/avatar/)
+ * - [Avatar API](https://mui.com/material-ui/api/avatar/)
  */
 declare const Avatar: OverridableComponent<AvatarTypeMap>;
 

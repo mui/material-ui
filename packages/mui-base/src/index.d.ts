@@ -2,9 +2,6 @@ export * from './utils';
 
 export * from './AutocompleteUnstyled';
 
-export { default as BackdropUnstyled } from './BackdropUnstyled';
-export * from './BackdropUnstyled';
-
 export { default as BadgeUnstyled } from './BadgeUnstyled';
 export * from './BadgeUnstyled';
 
@@ -81,5 +78,5 @@ export * from './TabUnstyled';
 export { default as TextareaAutosize } from './TextareaAutosize';
 export * from './TextareaAutosize';
 
-export { default as Unstable_TrapFocus } from './Unstable_TrapFocus';
-export * from './Unstable_TrapFocus';
+export { default as TrapFocus } from './TrapFocus';
+export * from './TrapFocus';

@@ -23,6 +23,10 @@ export const borderRight: SimpleStyleFunction<'borderRight'>;
 export const borderBottom: SimpleStyleFunction<'borderBottom'>;
 export const borderLeft: SimpleStyleFunction<'borderLeft'>;
 export const borderColor: SimpleStyleFunction<'borderColor'>;
+export const borderTopColor: SimpleStyleFunction<'borderTopColor'>;
+export const borderRightColor: SimpleStyleFunction<'borderRightColor'>;
+export const borderBottomColor: SimpleStyleFunction<'borderBottomColor'>;
+export const borderLeftColor: SimpleStyleFunction<'borderLeftColor'>;
 export const borderRadius: SimpleStyleFunction<'borderRadius'>;
 export type BordersProps = PropsFor<typeof borders>;
 
@@ -162,6 +166,15 @@ export * from './colorManipulator';
 export { default as ThemeProvider } from './ThemeProvider';
 export * from './ThemeProvider';
 
-export { default as unstable_createCssVarsProvider } from './cssVars';
+export { default as unstable_createCssVarsProvider, CreateCssVarsProviderResult } from './cssVars';
 export { default as unstable_createGetCssVar } from './cssVars/createGetCssVar';
 export * from './cssVars';
+
+export { default as createContainer } from './Container/createContainer';
+export * from './Container/createContainer';
+
+export { default as Container } from './Container';
+export * from './Container';
+
+export { default as Unstable_Grid } from './Unstable_Grid';
+export * from './Unstable_Grid';

@@ -14,7 +14,7 @@ import KeyboardArrowDownRounded from '@mui/icons-material/KeyboardArrowDownRound
 
 const faqData = [
   {
-    summary: 'How do I know if I need to buy license?',
+    summary: 'How do I know if I need to buy a license?',
     detail: (
       <React.Fragment>
         If you are in doubt, check the license file of the npm package you're installing.
@@ -30,25 +30,12 @@ const faqData = [
     ),
   },
   {
-    summary: 'Why are you calling it "early access"?',
+    summary: 'How many developer seats do I need?',
     detail: (
       <React.Fragment>
-        We think you'll love the features we've built so far, but we're planning to release more. We
-        opened it up as soon as we had something useful so that you can start getting value from it
-        right away, and we'll be adding new features and components based on our own ideas, and on
-        suggestions from early access customers.
-      </React.Fragment>
-    ),
-  },
-  {
-    summary: 'How many licenses do I need?',
-    detail: (
-      <React.Fragment>
-        The number of licenses purchased must correspond to the number of concurrent developers
-        contributing changes to the front-end code of a project that uses MUI X Pro. However, the
-        number of developer licenses required is capped at 10 developers for the <b>Pro plan</b> and
-        10 developers/project for the <b>Premium plan</b>, developers above this cap don't need to
-        be licensed.
+        The number of seats purchased on your license must correspond to the number of concurrent
+        developers contributing changes to the front-end code of the projects that uses MUI X Pro or
+        Premium.
         <br />
         <br />
         <b>Example 1.</b> Company 'A' is developing an application named 'AppA'. The app needs to
@@ -64,19 +51,15 @@ const faqData = [
         the new library and so does the team working on 'AppB'. 'AppA' has 5 front-end developers
         and 'AppB' has 3. There are 2 front-end developers on the UI development team. Company 'B'
         purchases 10 licenses.
-      </React.Fragment>
-    ),
-  },
-  {
-    summary: 'How to remove the "Unlicensed product" watermark?',
-    detail: (
-      <React.Fragment>
-        After you purchase a license, you'll receive a license key by email Once you have the
-        license key, you need to follow the{' '}
-        <Link href="/components/data-grid/getting-started/#license-key-installation">
-          instructions
-        </Link>{' '}
-        necessary to set it up.
+        <br />
+        <br />
+        <Link
+          target="_blank"
+          rel="noopener"
+          href="https://mui.com/store/legal/mui-x-eula/#required-quantity-of-licenses"
+        >
+          The clause in the EULA.
+        </Link>
       </React.Fragment>
     ),
   },
@@ -84,9 +67,31 @@ const faqData = [
     summary: 'Do developers have to be named?',
     detail: (
       <React.Fragment>
-        No. We trust that you will not go over the number of licensed developers. Developers moving
-        on and off projects is expected occasionally, and the license can be transferred between
-        developers at that time.
+        <strong>No.</strong> We trust that you will not go over the number of licensed developers.
+        Developers moving on and off projects is expected occasionally, and the license can be
+        transferred between developers at that time.
+      </React.Fragment>
+    ),
+  },
+  {
+    summary: 'Why are you calling it "early access"?',
+    detail: (
+      <React.Fragment>
+        We think you'll love the features we've built so far, but we're planning to release more. We
+        opened it up as soon as we had something useful so that you can start getting value from it
+        right away, and we'll be adding new features and components based on our own ideas, and on
+        suggestions from early access customers.
+      </React.Fragment>
+    ),
+  },
+  {
+    summary: 'How to remove the "unlicensed" watermark?',
+    detail: (
+      <React.Fragment>
+        After you purchase a license, you'll receive a license key by email. Once you have the
+        license key, you need to follow the{' '}
+        <Link href="/x/introduction/licensing/#license-key-installation">instructions</Link>{' '}
+        necessary to set it up.
       </React.Fragment>
     ),
   },
@@ -94,15 +99,12 @@ const faqData = [
     summary: 'Am I allowed to use the product after the update entitlement expires?',
     detail: (
       <React.Fragment>
-        Yes. The license is perpetual, so you are allowed to continue using the product even after
-        the entitlement expires. However, you will be using the last product version released before
-        this time. You will lose access to subsequently released functionality and updates, as well
-        as technical support.
+        Yes. You can continue to use the product in production environments after the entitlement
+        expires. But you will need to keep your subscription active to continue development, update
+        for new features, or gain access to technical support.
         <br />
         <br />
-        If you wish to preserve your access to product updates (new features and fixes) and
-        dedicated support, you need to renew your license, please{' '}
-        <Link href="mailto:sales@mui.com">contact sales</Link>.
+        To renew your license, please <Link href="mailto:sales@mui.com">contact sales</Link>.
       </React.Fragment>
     ),
   },
@@ -265,7 +267,7 @@ export default function FAQ() {
           >
             <Box sx={{ textAlign: 'left' }}>
               <Typography variant="body2" color="text.primary" fontWeight="bold" component="h3">
-                Got any questions unanswered or need more help?
+                Got any questions unanswered or need help?
               </Typography>
             </Box>
             <Typography variant="body2" color="text.secondary" sx={{ my: 1, textAlign: 'left' }}>
@@ -275,8 +277,8 @@ export default function FAQ() {
             <Typography variant="body2" color="text.secondary" sx={{ my: 1, textAlign: 'left' }}>
               For product-related problems, please open
               <Link href="https://github.com/mui/mui-x/issues/new/choose">a new GitHub issue</Link>.
-              If you need to share private information, you can{' '}
-              <Link href="mailto:x@mui.com">email us</Link>.
+              (If you need to share private information, you can{' '}
+              <Link href="mailto:x@mui.com">email</Link> us.)
             </Typography>
           </Paper>
         </Grid>

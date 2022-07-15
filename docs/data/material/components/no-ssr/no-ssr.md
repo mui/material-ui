@@ -35,7 +35,7 @@ React does [2 commits](https://reactjs.org/docs/strict-mode.html#detecting-unexp
 
 ## Unstyled
 
-- 📦 [784 B gzipped](https://bundlephobia.com/package/@mui/base@latest)
+- 📦 [362 B gzipped](https://bundlephobia.com/package/@mui/base@latest)
 
 As the component does not have any styles, it also comes with the Base package.
 

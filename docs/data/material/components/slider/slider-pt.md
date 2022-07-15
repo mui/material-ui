@@ -1,10 +1,11 @@
 ---
 product: material-ui
 title: Componente React Slider
-components: Slider, SliderUnstyled
+components: Slider
 githubLabel: 'component: slider'
 materialDesign: https://material.io/components/sliders
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#slider'
+unstyled: /base/react-slider/
 ---
 
 # Slider
@@ -81,7 +82,7 @@ In this example, an input allows a discrete value to be set.
 
 ## Sliders customizados
 
-Aqui estão alguns exemplos de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/customization/how-to-customize/).
+Aqui estão alguns exemplos de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/material-ui/customization/how-to-customize/).
 
 {{"demo": "CustomizedSlider.js"}}
 
@@ -125,35 +126,19 @@ Na seguinte demonstração, o valor _x_ representa o valor _2^x_. Acrescentar em
 
 ## Unstyled
 
-<!-- #default-branch-switch -->
-
-- 📦 [5.6 kB gzipped](https://bundlephobia.com/package/@mui/base@latest)
-
-The slider also comes with an unstyled version. It's ideal for doing heavy customizations and minimizing bundle size.
-
-```js
-import SliderUnstyled from '@mui/base/SliderUnstyled';
-```
-
-{{"demo": "UnstyledSlider.js"}}
-
-## Acessibilidade
-
 (WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#slider)
 
 O componente lida com a maior parte do trabalho necessário para torná-lo acessível. No entanto, você precisa se certificar de que:
 
-- Cada marcador possua propriedades de rótulo amigável para o usuário (`aria-label`, `aria-labelledby` ou `getAriaLabel`).
+- 📦 [5.6 kB gzipped](https://bundlephobia.com/package/@mui/base@latest)
 - Cada marcador tenha um texto amigável para o seu valor atual. Isso não é necessário se o valor corresponder ao rótulo exibido no slider. Você pode alterar o nome com as propriedades `getAriaValueText` ou `aria-valuetext`.
 
-## Limitações
+## Acessibilidade
 
 ### IE 11
 
 The slider's value label is not centered in IE 11. The alignement is not handled to make customizations easier with the lastest browsers. You can solve the issue with:
 
 ```css
-. MuiSlider-valueLabel {
-  left: calc(-50% - 4px);
-}
+import SliderUnstyled from '@mui/base/SliderUnstyled';
 ```

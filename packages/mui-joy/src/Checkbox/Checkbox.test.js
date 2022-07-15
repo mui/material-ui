@@ -11,7 +11,7 @@ describe('<Checkbox />', () => {
     classes,
     render,
     ThemeProvider,
-    muiName: 'MuiCheckbox',
+    muiName: 'JoyCheckbox',
     testDeepOverrides: [{ slotName: 'input', slotClassName: classes.input }],
     refInstanceof: window.HTMLSpanElement,
     skip: ['componentProp', 'componentsProp', 'classesRoot', 'propsSpread', 'themeVariants'],
@@ -19,6 +19,18 @@ describe('<Checkbox />', () => {
 
   it('should have the classes required for Checkbox', () => {
     expect(classes).to.include.all.keys(['root', 'checked', 'disabled']);
+  });
+
+  it('renders a `role="checkbox"` with the id', () => {
+    const { getByRole } = render(<Checkbox id="foo" />);
+
+    expect(getByRole('checkbox')).to.have.property('id', 'foo');
+  });
+
+  it('renders a `role="checkbox"` with the name', () => {
+    const { getByRole } = render(<Checkbox name="bar" />);
+
+    expect(getByRole('checkbox')).to.have.property('name', 'bar');
   });
 
   it('renders a `role="checkbox"` with the Unchecked state by default', () => {
@@ -29,6 +41,18 @@ describe('<Checkbox />', () => {
 
   it('renders a checkbox with the Checked state when checked', () => {
     const { getByRole } = render(<Checkbox defaultChecked />);
+
+    expect(getByRole('checkbox')).to.have.property('checked', true);
+  });
+
+  it('renders a label', () => {
+    const { getByLabelText, getByRole } = render(<Checkbox label="foo" />);
+
+    expect(getByLabelText('foo')).toBeVisible();
+
+    act(() => {
+      getByLabelText('foo').click();
+    });
 
     expect(getByRole('checkbox')).to.have.property('checked', true);
   });
@@ -65,8 +89,8 @@ describe('<Checkbox />', () => {
 
     expect(container.firstChild).to.have.class(classes.variantOutlined); // default
 
-    rerender(<Checkbox variant="light" />);
-    expect(container.firstChild).to.have.class(classes.variantLight);
+    rerender(<Checkbox variant="soft" />);
+    expect(container.firstChild).to.have.class(classes.variantSoft);
   });
 
   it('should have configurable size', () => {

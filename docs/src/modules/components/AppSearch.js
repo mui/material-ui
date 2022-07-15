@@ -4,6 +4,7 @@ import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import ReactDOMServer from 'react-dom/server';
 import PropTypes from 'prop-types';
 import NextLink from 'next/link';
+import { useRouter } from 'next/router';
 import { DocSearchModal, useDocSearchKeyboardEvents } from '@docsearch/react';
 import Chip from '@mui/material/Chip';
 import ArticleRoundedIcon from '@mui/icons-material/ArticleRounded';
@@ -18,8 +19,6 @@ import { LANGUAGES_SSR } from 'docs/src/modules/constants';
 import Link from 'docs/src/modules/components/Link';
 import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
 import useLazyCSS from 'docs/src/modules/utils/useLazyCSS';
-import { useRouter } from 'next/router';
-import { isNewLocation } from 'docs/src/modules/utils/replaceUrl';
 import getUrlProduct from 'docs/src/modules/utils/getUrlProduct';
 
 const SearchButton = styled('button')(({ theme }) => {
@@ -94,9 +93,9 @@ const NewStartScreen = () => {
         icon: <ArticleRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
       },
       items: [
-        { name: 'Installation', href: '/getting-started/installation/' },
-        { name: 'Usage', href: '/getting-started/usage/' },
-        { name: 'Learn', href: '/getting-started/learn/' },
+        { name: 'Installation', href: '/material-ui/getting-started/installation/' },
+        { name: 'Usage', href: '/material-ui/getting-started/usage/' },
+        { name: 'Learn', href: '/material-ui/getting-started/learn/' },
       ],
     },
     {
@@ -105,9 +104,9 @@ const NewStartScreen = () => {
         icon: <ToggleOffRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
       },
       items: [
-        { name: 'Material Icons', href: '/components/material-icons/' },
-        { name: 'Text Fields', href: '/components/text-fields/' },
-        { name: 'Button', href: '/components/buttons/' },
+        { name: 'Material Icons', href: '/material-ui/material-icons/' },
+        { name: 'Text field', href: '/material-ui/react-text-field/' },
+        { name: 'Button', href: '/material-ui/react-button/' },
       ],
     },
     {
@@ -116,9 +115,9 @@ const NewStartScreen = () => {
         icon: <EditRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
       },
       items: [
-        { name: 'How To Customize', href: '/customization/how-to-customize/' },
-        { name: 'Theming', href: '/customization/theming/' },
-        { name: 'Default Theme', href: '/customization/default-theme/' },
+        { name: 'How to customize', href: '/material-ui/customization/how-to-customize/' },
+        { name: 'Theming', href: '/material-ui/customization/theming/' },
+        { name: 'Default Theme', href: '/material-ui/customization/default-theme/' },
       ],
     },
     {
@@ -218,7 +217,6 @@ export default function AppSearch() {
     setIsOpen(true);
   }, [setIsOpen]);
   const router = useRouter();
-  const isNewDocStructure = isNewLocation(router.asPath);
   const productSpace = getUrlProduct(router.asPath);
 
   const keyboardNavigator = {
@@ -233,10 +231,8 @@ export default function AppSearch() {
     if (modal) {
       // fade out transition
       modal.style.opacity = 0;
-      setTimeout(() => {
-        setIsOpen(false);
-      }, FADE_DURATION);
     }
+    setIsOpen(false); // DO NOT call setIsOpen inside a timeout (it causes scroll issue).
   }, [setIsOpen]);
 
   const onInput = React.useCallback(
@@ -314,16 +310,13 @@ export default function AppSearch() {
         createPortal(
           <DocSearchModal
             initialQuery={initialQuery}
-            appId={isNewDocStructure ? 'TZGZ85B9TB' : 'BH4D9OD16A'}
-            apiKey={
-              isNewDocStructure
-                ? '8177dfb3e2be72b241ffb8c5abafa899'
-                : '1d8534f83b9b0cfea8f16498d19fbcab'
-            }
+            appId={'TZGZ85B9TB'}
+            apiKey={'8177dfb3e2be72b241ffb8c5abafa899'}
             indexName="material-ui"
             searchParameters={{
               facetFilters: ['version:master', facetFilterLanguage],
-              optionalFilters: isNewDocStructure ? [`product:${productSpace}`] : [],
+              optionalFilters: [`product:${productSpace}`],
+              hitsPerPage: 40,
             }}
             placeholder={search}
             transformItems={(items) => {
@@ -333,17 +326,8 @@ export default function AppSearch() {
                 const parseUrl = document.createElement('a');
                 parseUrl.href = item.url;
 
-                let hash = parseUrl.hash;
-
-                if (['lvl2', 'lvl3'].includes(item.type)) {
-                  // remove '#heading-' from `href` url so that the link targets <span class="anchor-link"> inside <h2> or <h3>
-                  // this will make the title appear under the Header
-                  hash = hash.replace('#heading-', '#');
-                }
-
                 const { canonicalAs, canonicalPathname } = pathnameToLanguage(
-                  // TODO: Remove the replace() after algolia crawler has indexed the production site
-                  `${parseUrl.pathname.replace('/material/', '/material-ui/')}${hash}`,
+                  `${parseUrl.pathname}${parseUrl.hash}`,
                 );
 
                 return {

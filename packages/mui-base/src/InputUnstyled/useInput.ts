@@ -1,13 +1,17 @@
 import * as React from 'react';
 import MuiError from '@mui/utils/macros/MuiError.macro';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
-import useFormControl from '../FormControlUnstyled/useFormControl';
+import { FormControlUnstyledState, useFormControlUnstyledContext } from '../FormControlUnstyled';
 import extractEventHandlers from '../utils/extractEventHandlers';
-import { UseInputProps } from './InputUnstyledProps';
+import {
+  UseInputInputSlotProps,
+  UseInputParameters,
+  UseInputRootSlotProps,
+} from './useInput.types';
 
-export default function useInput(props: UseInputProps, inputRef?: React.Ref<HTMLInputElement>) {
+export default function useInput(parameters: UseInputParameters) {
   const {
-    defaultValue,
+    defaultValue: defaultValueProp,
     disabled: disabledProp = false,
     error: errorProp = false,
     onBlur,
@@ -15,30 +19,49 @@ export default function useInput(props: UseInputProps, inputRef?: React.Ref<HTML
     onFocus,
     required: requiredProp = false,
     value: valueProp,
-  } = props;
+  } = parameters;
 
-  const formControlContext = useFormControl();
+  const formControlContext: FormControlUnstyledState | undefined = useFormControlUnstyledContext();
 
-  let value: unknown;
-  let required: boolean;
+  let defaultValue: unknown;
   let disabled: boolean;
   let error: boolean;
+  let required: boolean;
+  let value: unknown;
 
   if (formControlContext) {
-    value = formControlContext.value;
+    defaultValue = undefined;
     disabled = formControlContext.disabled ?? false;
-    required = formControlContext.required ?? false;
     error = formControlContext.error ?? false;
+    required = formControlContext.required ?? false;
+    value = formControlContext.value;
+
+    if (process.env.NODE_ENV !== 'production') {
+      const definedLocalProps = (
+        ['defaultValue', 'disabled', 'error', 'required', 'value'] as const
+      ).filter((prop) => parameters[prop] !== undefined);
+
+      if (definedLocalProps.length > 0) {
+        console.warn(
+          [
+            'MUI: You have set props on an input that is inside a FormControlUnstyled.',
+            'Set these props on a FormControlUnstyled instead. Otherwise they will be ignored.',
+            `Ignored props: ${definedLocalProps.join(', ')}`,
+          ].join('\n'),
+        );
+      }
+    }
   } else {
-    value = valueProp;
+    defaultValue = defaultValueProp;
     disabled = disabledProp;
-    required = requiredProp;
     error = errorProp;
+    required = requiredProp;
+    value = valueProp;
   }
 
   const { current: isControlled } = React.useRef(value != null);
 
-  const handleInputRefWarning = React.useCallback((instance) => {
+  const handleInputRefWarning = React.useCallback((instance: HTMLElement) => {
     if (process.env.NODE_ENV !== 'production') {
       if (instance && instance.nodeName !== 'INPUT' && !instance.focus) {
         console.error(
@@ -52,9 +75,8 @@ export default function useInput(props: UseInputProps, inputRef?: React.Ref<HTML
     }
   }, []);
 
-  const internalInputRef = React.useRef<HTMLInputElement>(null);
-  const handleIncomingRef = useForkRef(inputRef, handleInputRefWarning);
-  const handleInputRef = useForkRef(internalInputRef, handleIncomingRef);
+  const inputRef = React.useRef<HTMLInputElement>(null);
+  const handleInputRef = useForkRef(inputRef, handleInputRefWarning);
 
   const [focused, setFocused] = React.useState(false);
 
@@ -104,7 +126,7 @@ export default function useInput(props: UseInputProps, inputRef?: React.Ref<HTML
     (otherHandlers: Record<string, React.EventHandler<any> | undefined>) =>
     (event: React.ChangeEvent<HTMLInputElement>, ...args: unknown[]) => {
       if (!isControlled) {
-        const element = event.target || internalInputRef.current;
+        const element = event.target || inputRef.current;
         if (element == null) {
           throw new MuiError(
             'MUI: Expected valid input target. ' +
@@ -123,16 +145,18 @@ export default function useInput(props: UseInputProps, inputRef?: React.Ref<HTML
   const handleClick =
     (otherHandlers: Record<string, React.EventHandler<any>>) =>
     (event: React.MouseEvent<HTMLInputElement>) => {
-      if (internalInputRef.current && event.currentTarget === event.target) {
-        internalInputRef.current.focus();
+      if (inputRef.current && event.currentTarget === event.target) {
+        inputRef.current.focus();
       }
 
       otherHandlers.onClick?.(event);
     };
 
-  const getRootProps = (externalProps?: Record<string, unknown>) => {
+  const getRootProps = <TOther extends Record<string, any> = {}>(
+    externalProps: TOther = {} as TOther,
+  ): UseInputRootSlotProps<TOther> => {
     // onBlur, onChange and onFocus are forwarded to the input slot.
-    const propsEventHandlers = extractEventHandlers(props, ['onBlur', 'onChange', 'onFocus']);
+    const propsEventHandlers = extractEventHandlers(parameters, ['onBlur', 'onChange', 'onFocus']);
     const externalEventHandlers = { ...propsEventHandlers, ...extractEventHandlers(externalProps) };
 
     return {
@@ -142,7 +166,9 @@ export default function useInput(props: UseInputProps, inputRef?: React.Ref<HTML
     };
   };
 
-  const getInputProps = (externalProps?: Record<string, unknown>) => {
+  const getInputProps = <TOther extends Record<string, any> = {}>(
+    externalProps: TOther = {} as TOther,
+  ): UseInputInputSlotProps<TOther> => {
     const propsEventHandlers: Record<string, React.EventHandler<any> | undefined> = {
       onBlur,
       onChange,
@@ -151,7 +177,7 @@ export default function useInput(props: UseInputProps, inputRef?: React.Ref<HTML
 
     const externalEventHandlers = { ...propsEventHandlers, ...extractEventHandlers(externalProps) };
 
-    const mergedEventHandlers: Record<string, React.EventHandler<any>> = {
+    const mergedEventHandlers = {
       ...externalProps,
       ...externalEventHandlers,
       onBlur: handleBlur(externalEventHandlers),

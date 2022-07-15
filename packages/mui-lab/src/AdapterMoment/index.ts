@@ -1,1 +1,1 @@
-export { default } from '@date-io/moment';
+export { default } from './AdapterMoment';

@@ -8,6 +8,7 @@ import LocalOfferOutlinedIcon from '@mui/icons-material/LocalOfferOutlined';
 import AllInclusiveOutlinedIcon from '@mui/icons-material/AllInclusiveOutlined';
 import ReplayRoundedIcon from '@mui/icons-material/ReplayRounded';
 import HelpOutlineOutlinedIcon from '@mui/icons-material/HelpOutlineOutlined';
+import Link from 'docs/src/modules/components/Link';
 
 export default function WhatToExpect() {
   return (
@@ -16,9 +17,30 @@ export default function WhatToExpect() {
         variant="h2"
         sx={{ maxWidth: { xs: 280, sm: 320, md: 400 }, mb: { xs: 2, sm: 4 } }}
       >
-        What to expect from our available plans
+        Key information about the paid plans
       </Typography>
       <Grid container spacing={{ xs: 2, sm: 4 }}>
+        <Grid item xs={12} sm={6}>
+          <Paper variant="outlined" sx={{ p: 2, height: '100%' }}>
+            <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
+              <AllInclusiveOutlinedIcon fontSize="small" color="primary" />
+              <Typography
+                fontWeight="bold"
+                component="h3"
+                color="text.primary"
+                variant="body2"
+                sx={{ ml: 1 }}
+              >
+                Perpetual license in production
+              </Typography>
+            </Box>
+            <Typography variant="body2" color="text.secondary">
+              You can use the software in a production environment forever. All the versions of the
+              software released until the end of your subscription are available. There are no
+              further charges unless you choose to continue development.
+            </Typography>
+          </Paper>
+        </Grid>
         <Grid item xs={12} sm={6}>
           <Paper variant="outlined" sx={{ p: 2, height: '100%' }}>
             <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
@@ -34,58 +56,10 @@ export default function WhatToExpect() {
               </Typography>
             </Box>
             <Typography variant="body2" color="text.secondary">
-              The licenses are on a per-developer basis. We offer the following tiered discounts
-              from list prices when purchasing more than one license for your development team:
-            </Typography>
-            <Box component="ul" sx={{ px: 2.5, typography: 'body2', color: 'text.secondary' }}>
-              <li>2-5 Licenses: 10% discount</li>
-              <li>6-10 Licenses: 15% discount</li>
-              <li>11+: License capped, extra developers do not need to be licensed.</li>
-            </Box>
-          </Paper>
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <Paper variant="outlined" sx={{ p: 2, height: '100%' }}>
-            <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
-              <AllInclusiveOutlinedIcon fontSize="small" color="primary" />
-              <Typography
-                fontWeight="bold"
-                component="h3"
-                color="text.primary"
-                variant="body2"
-                sx={{ ml: 1 }}
-              >
-                Perpetual license
-              </Typography>
-            </Box>
-            <Typography variant="body2" color="text.secondary">
-              With your purchase, you are granted a license to use a version of the product in
-              perpetuity. There are no further charges unless you choose to renew support and
-              maintenance to cover newer versions. Please note that while the use of the software is
-              perpetual, support and maintenance are not. We roll bug fixes, performance
-              enhancements, and other improvements into new releases; we don&apos;t patch, fix, or
-              in any way alter older versions.
-            </Typography>
-          </Paper>
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <Paper variant="outlined" sx={{ p: 2, height: '100%' }}>
-            <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
-              <ReplayRoundedIcon fontSize="small" color="primary" />
-              <Typography
-                fontWeight="bold"
-                component="h3"
-                color="text.primary"
-                variant="body2"
-                sx={{ ml: 1 }}
-              >
-                Renewal
-              </Typography>
-            </Box>
-            <Typography variant="body2" color="text.secondary">
-              If you wish to be able to update to the latest versions and access support after the
-              end of your support period, you have the option to renew support and maintenance.
-              Renewal is priced at 50% off the first-year license cost.
+              The licenses are sold on a per-developer basis. The Pro plan includes a cap at 10
+              developers, extra developers do not need to be licensed. You can contact{' '}
+              <Link href="mailto:sales@mui.com">sales</Link> for a volume discount when licensing
+              over 50 developers under the Premium plan.
             </Typography>
           </Paper>
         </Grid>
@@ -100,13 +74,46 @@ export default function WhatToExpect() {
                 variant="body2"
                 sx={{ ml: 1 }}
               >
-                Support and maintenance
+                Maintenance and support
               </Typography>
             </Box>
             <Typography variant="body2" color="text.secondary">
-              With your purchase, you receive support and maintenance for one year. After this time,
-              you can continue to use your licensed versions in perpetuity, but will no longer be
-              able to update to the latest version.
+              With your purchase you receive support and access to new versions for the duration of
+              your subscription. You can{' '}
+              <Link href="https://mui.com/x/introduction/support/">learn more about support</Link>{' '}
+              in the docs. Note that, except for critical issues, e.g. security, we release bug
+              fixes, and other improvements on top of the latest version, instead of patching older
+              versions.
+            </Typography>
+          </Paper>
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <Paper variant="outlined" sx={{ p: 2, height: '100%' }}>
+            <Box sx={{ display: 'flex', alignItems: 'center', mb: 1 }}>
+              <ReplayRoundedIcon fontSize="small" color="primary" />
+              <Typography
+                fontWeight="bold"
+                component="h3"
+                color="text.primary"
+                variant="body2"
+                sx={{ ml: 1 }}
+              >
+                Development license
+              </Typography>
+            </Box>
+            <Typography variant="body2" color="text.secondary">
+              Developers contributing changes to the front-end code of a project that include the
+              software need an active license. You will need to renew your subscription if you wish
+              to continue active development after the end of your subscription. You can learn more
+              about it in{' '}
+              <Link
+                target="_blank"
+                rel="noopener"
+                href="https://mui.com/store/legal/mui-x-eula/#perpetual-in-production"
+              >
+                the EULA
+              </Link>
+              .
             </Typography>
           </Paper>
         </Grid>

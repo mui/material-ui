@@ -1,6 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
+import GlobalStyles from '@mui/material/GlobalStyles';
 import { styled, alpha } from '@mui/material/styles';
 import NProgress from 'nprogress';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -181,7 +182,7 @@ const StyledAppNavDrawer = styled(AppNavDrawer)(({ disablePermanent, theme }) =>
 });
 
 function AppFrame(props) {
-  const { children, disableDrawer = false } = props;
+  const { children, disableDrawer = false, className } = props;
   const t = useTranslate();
 
   const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -192,7 +193,7 @@ function AppFrame(props) {
   const disablePermanent = activePage?.disableDrawer === true || disableDrawer === true;
 
   return (
-    <RootDiv>
+    <RootDiv className={className}>
       <NextNProgressBar />
       <CssBaseline />
       <SkipLink color="secondary" href="#main-content">
@@ -200,6 +201,13 @@ function AppFrame(props) {
       </SkipLink>
       <MarkdownLinks />
       <StyledAppBar disablePermanent={disablePermanent}>
+        <GlobalStyles
+          styles={{
+            ':root': {
+              '--MuiDocs-header-height': '64px',
+            },
+          }}
+        />
         <Toolbar variant="dense" disableGutters>
           <NavIconButton
             edge="start"
@@ -258,6 +266,7 @@ function AppFrame(props) {
 
 AppFrame.propTypes = {
   children: PropTypes.node.isRequired,
+  className: PropTypes.string,
   disableDrawer: PropTypes.bool,
 };
 

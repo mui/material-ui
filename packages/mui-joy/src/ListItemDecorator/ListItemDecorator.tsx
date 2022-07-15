@@ -16,7 +16,7 @@ const useUtilityClasses = () => {
 };
 
 const ListItemDecoratorRoot = styled('span', {
-  name: 'MuiListItemDecorator',
+  name: 'JoyListItemDecorator',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: ListItemDecoratorProps }>({
@@ -24,13 +24,13 @@ const ListItemDecoratorRoot = styled('span', {
   display: 'inline-flex',
   alignItems: 'center',
   color: `var(--List-decorator-color)`,
-  minWidth: 'var(--List-decorator-width)',
+  minInlineSize: 'var(--List-decorator-width)',
 });
 
 const ListItemDecorator = React.forwardRef(function ListItemDecorator(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
-    name: 'MuiListItemDecorator',
+    name: 'JoyListItemDecorator',
   });
 
   const { component, className, children, ...other } = props;
@@ -64,6 +64,10 @@ ListItemDecorator.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
+   * Override or extend the styles applied to the component.
+   */
+  classes: PropTypes.object,
+  /**
    * @ignore
    */
   className: PropTypes.string,
@@ -72,6 +76,14 @@ ListItemDecorator.propTypes /* remove-proptypes */ = {
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
 } as any;
 
 export default ListItemDecorator;

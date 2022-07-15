@@ -199,5 +199,63 @@ describe('style', () => {
         backgroundColor: 'var(--token)',
       });
     });
+
+    it('should automatically use value from vars if vars is defined', () => {
+      const bgcolorStyle = style({
+        prop: 'bgcolor',
+        cssProperty: 'backgroundColor',
+        themeKey: 'palette',
+      });
+      const output = bgcolorStyle({
+        bgcolor: 'primary.main',
+        theme: {
+          palette: {
+            primary: {
+              main: '#ff5252',
+            },
+          },
+          vars: {
+            palette: {
+              primary: {
+                main: 'var(--token)',
+              },
+            },
+          },
+        },
+      });
+      expect(output).to.deep.equal({
+        backgroundColor: 'var(--token)',
+      });
+    });
+
+    it('should use theme value if the var does not exist', () => {
+      const opacityStyle = style({
+        prop: 'opacity',
+        themeKey: 'opacity',
+      });
+      const output = opacityStyle({
+        opacity: 'hover',
+        theme: {
+          palette: {
+            primary: {
+              main: '#ff5252',
+            },
+          },
+          opacity: {
+            hover: 0.5,
+          },
+          vars: {
+            palette: {
+              primary: {
+                main: 'var(--token)',
+              },
+            },
+          },
+        },
+      });
+      expect(output).to.deep.equal({
+        opacity: 0.5,
+      });
+    });
   });
 });

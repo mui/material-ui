@@ -1,40 +1,44 @@
 ---
 product: material-ui
-title: App Bar React component
+title: App bar React component
 components: AppBar, Toolbar, Menu
 githubLabel: 'component: app bar'
 materialDesign: https://material.io/components/app-bars-top
 ---
 
-# App Bar
+# App bar
 
-<p class="description">The App Bar displays information and actions relating to the current screen.</p>
+<p class="description">The App bar displays information and actions relating to the current screen.</p>
 
-The top App Bar provides content and actions related to the current screen. It's used for branding, screen titles, navigation, and actions.
+The top App bar provides content and actions related to the current screen. It's used for branding, screen titles, navigation, and actions.
 
 It can transform into a contextual action bar or be used as a navbar.
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## Basic App Bar
+## Basic App bar
 
 {{"demo": "ButtonAppBar.js", "bg": true}}
 
-## App Bar with menu
+## App bar with menu
 
 {{"demo": "MenuAppBar.js", "bg": true}}
 
-## App Bar with responsive menu
+## App bar with responsive menu
 
 {{"demo": "ResponsiveAppBar.js", "bg": true}}
 
-## App Bar with search field
+## App bar with search field
 
 A side searchbar.
 
 {{"demo": "SearchAppBar.js", "bg": true}}
 
-## App Bar with a primary search field
+## Responsive App bar with Drawer
+
+{{"demo": "DrawerAppBar.js", "bg": true,"iframe": true}}
+
+## App bar with a primary search field
 
 A primary searchbar.
 
@@ -50,7 +54,7 @@ A prominent app bar.
 
 {{"demo": "ProminentAppBar.js", "bg": true}}
 
-## Bottom App Bar
+## Bottom App bar
 
 {{"demo": "BottomAppBar.js", "iframe": true, "maxWidth": 400}}
 
@@ -95,13 +99,13 @@ function App() {
 
 You can use the `useScrollTrigger()` hook to respond to user scroll actions.
 
-### Hide App Bar
+### Hide App bar
 
 The app bar hides on scroll down to leave more space for reading.
 
 {{"demo": "HideAppBar.js", "iframe": true}}
 
-### Elevate App Bar
+### Elevate App bar
 
 The app bar elevates on scroll to communicate that the user is not at the top of the page.
 

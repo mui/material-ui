@@ -1,10 +1,7 @@
 import * as React from 'react';
-import Stack from '@mui/material/Stack';
-import ButtonUnstyled, {
-  buttonUnstyledClasses,
-  ButtonUnstyledProps,
-} from '@mui/base/ButtonUnstyled';
+import ButtonUnstyled, { buttonUnstyledClasses } from '@mui/base/ButtonUnstyled';
 import { styled } from '@mui/system';
+import Stack from '@mui/material/Stack';
 
 const blue = {
   500: '#007FFF',
@@ -12,7 +9,7 @@ const blue = {
   700: '#0059B2',
 };
 
-const CustomButtonRoot = styled('button')`
+const CustomButton = styled(ButtonUnstyled)`
   font-family: IBM Plex Sans, sans-serif;
   font-weight: bold;
   font-size: 0.875rem;
@@ -42,10 +39,6 @@ const CustomButtonRoot = styled('button')`
     cursor: not-allowed;
   }
 `;
-
-function CustomButton(props: ButtonUnstyledProps) {
-  return <ButtonUnstyled {...props} component={CustomButtonRoot} />;
-}
 
 export default function UnstyledButtonsSimple() {
   return (

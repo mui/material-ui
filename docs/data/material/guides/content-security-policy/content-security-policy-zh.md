@@ -20,7 +20,7 @@ CSP 通过要求开发人员检索其资产的来源并将其列入白名单来�
 
 ### 服务端渲染（SSR）
 
-To use CSP with MUI (and emotion), you need to use a nonce. A nonce is a randomly generated string that is only used once, therefore you need to add server middleware to generate one on each request.
+To use CSP with MUI (and emotion), you need to use a nonce. To use CSP with MUI (and emotion), you need to use a nonce. A nonce is a randomly generated string that is only used once, therefore you need to add server middleware to generate one on each request.
 
 CSP nonce 是一个 Base 64 编码的字符串。 你可以生成这样一个：
 

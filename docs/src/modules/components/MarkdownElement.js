@@ -7,11 +7,10 @@ import { blue, blueDark } from 'docs/src/modules/brandingTheme';
 const Root = styled('div')(({ theme }) => ({
   ...theme.typography.body1,
   color: theme.palette.text.primary,
-  wordBreak: 'break-word',
-  '& .anchor-link': {
-    marginTop: -96, // Offset for the anchor.
-    position: 'absolute',
+  '& strong': {
+    color: theme.palette.mode === 'dark' ? theme.palette.grey[200] : theme.palette.text.primary,
   },
+  wordBreak: 'break-word',
   '& pre': {
     margin: theme.spacing(2, 'auto'),
     padding: theme.spacing(2),
@@ -22,8 +21,9 @@ const Root = styled('div')(({ theme }) => ({
     border: '1px solid',
     borderColor: blueDark[700],
     overflow: 'auto',
-    WebkitOverflowScrolling: 'touch', // iOS momentum scrolling.
+    WebkitOverflowScrolling: 'touch',
     maxWidth: 'calc(100vw - 32px)',
+    maxHeight: '350px',
     [theme.breakpoints.up('md')]: {
       maxWidth: 'calc(100vw - 32px - 16px)',
     },
@@ -72,20 +72,20 @@ const Root = styled('div')(({ theme }) => ({
   '& h3': {
     ...theme.typography.h6,
     fontFamily: theme.typography.fontFamilySystem,
-    fontWeight: 'semiBold',
+    fontWeight: theme.typography.fontWeightSemiBold,
     color: theme.palette.mode === 'dark' ? theme.palette.grey[200] : theme.palette.grey[900],
     margin: '24px 0 8px',
   },
   '& h4': {
     ...theme.typography.subtitle1,
     fontFamily: theme.typography.fontFamilySystem,
-    fontWeight: 'semiBold',
+    fontWeight: theme.typography.fontWeightSemiBold,
     color: theme.palette.mode === 'dark' ? theme.palette.grey[300] : theme.palette.grey[900],
     margin: '24px 0 8px',
   },
   '& h5': {
     ...theme.typography.subtitle2,
-    fontWeight: 'semiBold',
+    fontWeight: theme.typography.fontWeightSemiBold,
     color: theme.palette.mode === 'dark' ? theme.palette.grey[300] : theme.palette.grey[900],
     margin: '20px 0 8px',
   },
@@ -141,12 +141,12 @@ const Root = styled('div')(({ theme }) => ({
     },
   },
   '& h1 code': {
-    fontWeight: 'semiBold',
+    fontWeight: theme.typography.fontWeightSemiBold,
     color: theme.palette.mode === 'dark' ? theme.palette.grey[100] : theme.palette.primary[900],
   },
   '& h2 code': {
     fontSize: theme.typography.pxToRem(24),
-    fontWeight: 'semiBold',
+    fontWeight: theme.typography.fontWeightSemiBold,
     color: theme.palette.mode === 'dark' ? theme.palette.grey[100] : theme.palette.primary[900],
   },
   '& h3 code': {
@@ -158,7 +158,7 @@ const Root = styled('div')(({ theme }) => ({
     display: 'block',
     wordBreak: 'normal',
     overflowX: 'auto',
-    WebkitOverflowScrolling: 'touch', // iOS momentum scrolling.
+    WebkitOverflowScrolling: 'touch',
     borderCollapse: 'collapse',
     marginBottom: '20px',
     borderSpacing: 0,
@@ -224,6 +224,135 @@ const Root = styled('div')(({ theme }) => ({
       color: theme.palette.mode === 'dark' ? theme.palette.grey[50] : blueDark[800],
     },
   },
+  '& .MuiCallout-root': {
+    padding: '16px',
+    margin: '16px 0',
+    border: '1px solid',
+    borderRadius: theme.shape.borderRadius,
+    '& > p': {
+      color: 'inherit',
+      '&:last-child': {
+        margin: 0,
+      },
+    },
+    '& ul, li': {
+      color: 'inherit',
+    },
+    '&.MuiCallout-error': {
+      color:
+        theme.palette.mode === 'dark'
+          ? theme.palette.error[50] ?? '#fff'
+          : theme.palette.error[900] ?? theme.palette.text.primary,
+      backgroundColor:
+        theme.palette.mode === 'dark'
+          ? // Support Material Design theme
+            alpha(theme.palette.error[900] ?? theme.palette.error.dark, 0.35)
+          : theme.palette.error[50] ?? theme.palette.error.light,
+      borderColor:
+        theme.palette.mode === 'dark' // Support Material Design theme
+          ? theme.palette.error[800] ?? theme.palette.error.dark
+          : theme.palette.error[200] ?? theme.palette.error.light,
+      '& strong': {
+        color:
+          theme.palette.mode === 'dark'
+            ? theme.palette.error[100] ?? '#fff'
+            : theme.palette.error[800] ?? theme.palette.text.primary,
+      },
+      '& a': {
+        color:
+          theme.palette.mode === 'dark'
+            ? theme.palette.error[100] ?? '#fff'
+            : theme.palette.error[800] ?? theme.palette.text.primary,
+        textDecorationColor: alpha(theme.palette.error.main, 0.4),
+        '&:hover': {
+          textDecorationColor: 'inherit',
+        },
+      },
+    },
+    '&.MuiCallout-info': {
+      color:
+        theme.palette.mode === 'dark'
+          ? theme.palette.primary[50] ?? '#fff'
+          : theme.palette.primary[900] ?? theme.palette.text.primary,
+      backgroundColor:
+        theme.palette.mode === 'dark'
+          ? // Support Material Design theme
+            alpha(theme.palette.primary[900] ?? theme.palette.primary.dark, 0.2)
+          : alpha(theme.palette.primary[50] ?? theme.palette.primary.dark, 0.8),
+      borderColor:
+        theme.palette.mode === 'dark' // Support Material Design theme
+          ? theme.palette.primary[800] ?? theme.palette.primary.dark
+          : theme.palette.primary[100] ?? theme.palette.primary.light,
+      '& strong': {
+        color:
+          theme.palette.mode === 'dark'
+            ? theme.palette.primary[100] ?? '#fff'
+            : theme.palette.primary[800] ?? theme.palette.text.primary,
+      },
+    },
+    '&.MuiCallout-success': {
+      color:
+        theme.palette.mode === 'dark'
+          ? theme.palette.success[50] ?? '#fff'
+          : theme.palette.success[900] ?? theme.palette.text.primary,
+      backgroundColor:
+        theme.palette.mode === 'dark'
+          ? // Support Material Design theme
+            alpha(theme.palette.success[900] ?? theme.palette.success.dark, 0.35)
+          : theme.palette.success[50] ?? theme.palette.success.light,
+      borderColor:
+        theme.palette.mode === 'dark' // Support Material Design theme
+          ? theme.palette.success[800] ?? theme.palette.success.dark
+          : theme.palette.success[200] ?? theme.palette.success.light,
+      '& strong': {
+        color:
+          theme.palette.mode === 'dark'
+            ? theme.palette.success[100] ?? '#fff'
+            : theme.palette.success[900] ?? theme.palette.text.primary,
+      },
+      '& a': {
+        color:
+          theme.palette.mode === 'dark'
+            ? theme.palette.success[100] ?? '#fff'
+            : theme.palette.success[900] ?? theme.palette.text.primary,
+        textDecorationColor: alpha(theme.palette.success.main, 0.4),
+        '&:hover': {
+          textDecorationColor: 'inherit',
+        },
+      },
+    },
+    '&.MuiCallout-warning': {
+      color:
+        theme.palette.mode === 'dark'
+          ? theme.palette.warning[50] ?? '#fff'
+          : theme.palette.grey[900] ?? theme.palette.text.primary,
+      backgroundColor:
+        theme.palette.mode === 'dark'
+          ? // Support Material Design theme
+            alpha(theme.palette.warning[900] ?? theme.palette.warning.dark, 0.35)
+          : alpha(theme.palette.warning[50] ?? theme.palette.warning.light, 0.6),
+      borderColor:
+        theme.palette.mode === 'dark' // Support Material Design theme
+          ? theme.palette.warning[800] ?? theme.palette.warning.dark
+          : theme.palette.warning[300] ?? theme.palette.warning.light,
+      '& strong': {
+        color:
+          theme.palette.mode === 'dark'
+            ? theme.palette.warning[100] ?? '#fff'
+            : theme.palette.warning[800] ?? theme.palette.text.primary,
+      },
+      '& a': {
+        color:
+          theme.palette.mode === 'dark'
+            ? theme.palette.warning[100] ?? '#fff'
+            : theme.palette.warning[800] ?? theme.palette.text.primary,
+        textDecorationColor: alpha(theme.palette.warning.main, 0.4),
+        '&:hover': {
+          textDecorationColor: 'inherit',
+        },
+      },
+    },
+  },
   '& a, & a code': {
     // Style taken from the Link component
     color: theme.palette.mode === 'dark' ? theme.palette.primary[300] : theme.palette.primary[600],
@@ -254,22 +383,19 @@ const Root = styled('div')(({ theme }) => ({
     backgroundColor: theme.palette.divider,
   },
   '& kbd.key': {
-    // Style taken from GitHub
-    padding: '4px 5px',
+    padding: '5px',
     display: 'inline-block',
     whiteSpace: 'nowrap',
     margin: '0 1px',
-    font: '11px SFMono-Regular,Consolas,Liberation Mono,Menlo,monospace',
+    font: '11px Consolas,Liberation Mono,Menlo,monospace',
     lineHeight: '10px',
     color: theme.palette.text.primary,
     verticalAlign: 'middle',
-    backgroundColor: theme.palette.mode === 'dark' ? 'transparent' : theme.palette.grey[50],
-    border: `1px solid ${
-      theme.palette.mode === 'dark' ? theme.palette.grey[800] : theme.palette.grey[300]
-    }`,
+    backgroundColor: theme.palette.mode === 'dark' ? blueDark[900] : theme.palette.grey[50],
+    border: `1px solid ${theme.palette.mode === 'dark' ? blueDark[500] : theme.palette.grey[300]}`,
     borderRadius: 5,
     boxShadow: `inset 0 -1px 0 ${
-      theme.palette.mode === 'dark' ? theme.palette.grey[800] : theme.palette.grey[300]
+      theme.palette.mode === 'dark' ? blueDark[700] : theme.palette.grey[300]
     }`,
   },
   '& details': {
@@ -278,6 +404,71 @@ const Root = styled('div')(({ theme }) => ({
     '& summary': {
       cursor: 'pointer',
     },
+    '& pre': {
+      marginTop: theme.spacing(1),
+    },
+  },
+  '& .MuiCode-root': {
+    position: 'relative',
+    '&:hover': {
+      '& .MuiCode-copy': {
+        display: 'block',
+      },
+    },
+  },
+  '& .MuiCode-copy': {
+    minWidth: 64,
+    display: 'none',
+    backgroundColor: alpha(blueDark[600], 0.5),
+    cursor: 'pointer',
+    position: 'absolute',
+    top: theme.spacing(1),
+    right: theme.spacing(1),
+    fontFamily: 'inherit',
+    fontSize: '0.813rem',
+    fontWeight: 500,
+    padding: theme.spacing(0.5, 1),
+    borderRadius: 4,
+    border: `1px solid`,
+    borderColor: blueDark[500],
+    color: blueDark[50],
+    '&:hover, &:focus': {
+      opacity: 1,
+      color: '#fff',
+      backgroundColor: alpha(blueDark[600], 0.7),
+      borderColor: blueDark[500],
+      '& .MuiCode-copyKeypress': {
+        opacity: 1,
+      },
+    },
+    '&[data-copied]': {
+      // style of the button when it is in copied state.
+      borderColor: blue[700],
+      color: '#fff',
+      backgroundColor: blueDark[600],
+    },
+    '&:focus-visible': {
+      outline: '2px solid',
+      outlineOffset: 2,
+      outlineColor: blueDark[500],
+    },
+  },
+  '& .MuiCode-copyKeypress': {
+    pointerEvents: 'none',
+    userSelect: 'none',
+    opacity: 0,
+    position: 'absolute',
+    left: '50%',
+    top: '100%',
+    minWidth: '100%',
+    marginTop: theme.spacing(0.5),
+    whiteSpace: 'nowrap',
+    transform: 'translateX(-50%)',
+    '& > span': {
+      opacity: 0.72,
+    },
+  },
+  '& li': {
     '& pre': {
       marginTop: theme.spacing(1),
     },

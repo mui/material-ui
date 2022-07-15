@@ -25,19 +25,19 @@ const FocusStyle = styled('button')(({ theme }) => [
   {
     fontWeight: theme.vars.fontWeight.md,
     backgroundColor: theme.vars.palette.background.body,
+    [theme.focus.selector]: theme.focus.default,
   },
-  theme.focus.default,
 ]);
 
 const Variants = styled('button')(({ theme }) => [
   {
     width: 'auto',
   },
-  theme.variants.contained.primary,
+  theme.variants.solid.primary,
 ]);
 
 const DynamicVariants = styled('button')<{ variant?: VariantProp; color?: ColorPaletteProp }>(
-  ({ theme, variant = 'contained', color = 'primary' }) => [
+  ({ theme, variant = 'solid', color = 'primary' }) => [
     {
       width: 'auto',
     },

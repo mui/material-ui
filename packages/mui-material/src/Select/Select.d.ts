@@ -71,7 +71,7 @@ export interface SelectProps<T = unknown>
    */
   inputProps?: InputProps['inputProps'];
   /**
-   * See [OutlinedInput#label](/api/outlined-input/#props)
+   * See [OutlinedInput#label](/material-ui/api/outlined-input/#props)
    */
   label?: React.ReactNode;
   /**
@@ -80,7 +80,7 @@ export interface SelectProps<T = unknown>
    */
   labelId?: string;
   /**
-   * Props applied to the [`Menu`](/api/menu/) element.
+   * Props applied to the [`Menu`](/material-ui/api/menu/) element.
    */
   MenuProps?: Partial<MenuProps>;
   /**
@@ -144,7 +144,7 @@ export interface SelectProps<T = unknown>
    * If the value is an object it must have reference equality with the option in order to be selected.
    * If the value is not an object, the string representation must match with the string representation of the option in order to be selected.
    */
-  value?: T;
+  value?: T | '';
   /**
    * The variant to use.
    * @default 'outlined'
@@ -156,12 +156,12 @@ export interface SelectProps<T = unknown>
  *
  * Demos:
  *
- * - [Selects](https://mui.com/components/selects/)
+ * - [Selects](https://mui.com/material-ui/react-select/)
  *
  * API:
  *
- * - [Select API](https://mui.com/api/select/)
- * - inherits [OutlinedInput API](https://mui.com/api/outlined-input/)
+ * - [Select API](https://mui.com/material-ui/api/select/)
+ * - inherits [OutlinedInput API](https://mui.com/material-ui/api/outlined-input/)
  */
 declare const Select: (<T>(props: SelectProps<T>) => JSX.Element) & {
   muiName: string;

@@ -3,7 +3,7 @@
   "propDescriptions": {
     "children": "O conteúdo do componente.",
     "classes": "Sobrescreve ou extende os estilos aplicados para o componente. Veja a <a href=\"#css\">API CSS</a> abaixo para maiores detalhes.",
-    "color": "The color of a button when it is selected.",
+    "color": "The color of the button when it is selected. It supports both default and custom theme colors, which can be added as shown in the <a href=\"https://mui.com/material-ui/customization/palette/#adding-new-colors\">palette customization guide</a>.",
     "disabled": "If <code>true</code>, the component is disabled. This implies that all ToggleButton children will be disabled.",
     "exclusive": "If <code>true</code>, only allow one of the child ToggleButton values to be selected.",
     "fullWidth": "If <code>true</code>, the button group will take up the full width of its container.",

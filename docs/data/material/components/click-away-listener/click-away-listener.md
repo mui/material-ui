@@ -5,12 +5,12 @@ components: ClickAwayListener
 githubLabel: 'component: ClickAwayListener'
 ---
 
-# Click away listener
+# Click-away listener
 
 <p class="description">Detect if a click event happened outside of an element. It listens for clicks that occur somewhere in the document.</p>
 
-- 📦 [1.5 kB gzipped](/size-snapshot).
-- ⚛️ Support portals
+- 📦 [992 B gzipped](/size-snapshot/).
+- ⚛️ Supports portals
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
@@ -21,11 +21,11 @@ For instance, if you need to hide a menu dropdown when people click anywhere els
 {{"demo": "ClickAway.js"}}
 
 Notice that the component only accepts one child element.
-You can find a more advanced demo on the [Menu documentation section](/components/menus/#menulist-composition).
+You can find a more advanced demo on the [Menu documentation section](/material-ui/react-menu/#menulist-composition).
 
 ## Portal
 
-The following demo uses [`Portal`](/components/portal/) to render the dropdown into a new "subtree" outside of current DOM hierarchy.
+The following demo uses [`Portal`](/material-ui/react-portal/) to render the dropdown into a new "subtree" outside of current DOM hierarchy.
 
 {{"demo": "PortalClickAway.js"}}
 
@@ -36,7 +36,9 @@ However, you can configure it to respond to the leading events (mouse down + tou
 
 {{"demo": "LeadingClickAway.js"}}
 
-> ⚠️ In this mode, only interactions on the scrollbar of the document is ignored.
+:::warning
+⚠️ In this mode, only interactions on the scrollbar of the document is ignored.
+:::
 
 ## Accessibility
 
@@ -58,7 +60,7 @@ This is also required to fix a quirk in NVDA when using Firefox that prevents an
 
 ## Unstyled
 
-- 📦 [784 B gzipped](https://bundlephobia.com/package/@mui/base@latest)
+- 📦 [981 B gzipped](https://bundlephobia.com/package/@mui/base@latest)
 
 As the component does not have any styles, it also comes with the Base package.
 

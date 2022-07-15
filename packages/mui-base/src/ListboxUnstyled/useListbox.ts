@@ -2,7 +2,7 @@ import * as React from 'react';
 import { unstable_useForkRef as useForkRef, unstable_useId as useId } from '@mui/utils';
 import {
   UseListboxParameters,
-  UseListboxStrictProps,
+  UseListboxPropsWithDefaults,
   ActionTypes,
   OptionState,
   UseListboxOptionSlotProps,
@@ -13,8 +13,12 @@ import useControllableReducer from './useControllableReducer';
 import areArraysEqual from '../utils/areArraysEqual';
 import { EventHandlers } from '../utils/types';
 
+const TEXT_NAVIGATION_RESET_TIMEOUT = 500; // milliseconds
+
 const defaultOptionComparer = <TOption>(optionA: TOption, optionB: TOption) => optionA === optionB;
 const defaultIsOptionDisabled = () => false;
+const defaultOptionStringifier = <TOption>(option: TOption) =>
+  typeof option === 'string' ? option : String(option);
 
 export default function useListbox<TOption>(props: UseListboxParameters<TOption>) {
   const {
@@ -26,6 +30,7 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
     listboxRef: externalListboxRef,
     multiple = false,
     optionComparer = defaultOptionComparer,
+    optionStringifier = defaultOptionStringifier,
     options,
     stateReducer: externalReducer,
   } = props;
@@ -38,7 +43,7 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
 
   const optionIdGenerator = props.optionIdGenerator ?? defaultIdGenerator;
 
-  const propsWithDefaults: UseListboxStrictProps<TOption> = {
+  const propsWithDefaults: UseListboxPropsWithDefaults<TOption> = {
     ...props,
     disabledItemsFocusable,
     disableListWrap,
@@ -46,10 +51,19 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
     isOptionDisabled,
     multiple,
     optionComparer,
+    optionStringifier,
   };
 
   const listboxRef = React.useRef<HTMLUListElement>(null);
   const handleRef = useForkRef(externalListboxRef, listboxRef);
+
+  const textCriteriaRef = React.useRef<{
+    searchString: string;
+    lastTime: number | null;
+  }>({
+    searchString: '',
+    lastTime: null,
+  });
 
   const [{ highlightedValue, selectedValue }, dispatch] = useControllableReducer(
     defaultReducer,
@@ -146,16 +160,15 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
         return;
       }
 
-      const keysToPreventDefault = [
-        ' ',
-        'Enter',
-        'ArrowUp',
-        'ArrowDown',
-        'Home',
-        'End',
-        'PageUp',
-        'PageDown',
-      ];
+      const keysToPreventDefault = ['ArrowUp', 'ArrowDown', 'Home', 'End', 'PageUp', 'PageDown'];
+
+      if (focusManagement === 'activeDescendant') {
+        // When the child element is focused using the activeDescendant attribute,
+        // the listbox handles keyboard events on its behalf.
+        // We have to `preventDefault()` is this case to prevent the browser from
+        // scrolling the view when space is pressed or submitting forms when enter is pressed.
+        keysToPreventDefault.push(' ', 'Enter');
+      }
 
       if (keysToPreventDefault.includes(event.key)) {
         event.preventDefault();
@@ -166,6 +179,34 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
         event,
         props: propsWithDefaults,
       });
+
+      // Handle text navigation
+      if (event.key.length === 1 && event.key !== ' ') {
+        const textCriteria = textCriteriaRef.current;
+        const lowerKey = event.key.toLowerCase();
+        const currentTime = performance.now();
+        if (
+          textCriteria.searchString.length > 0 &&
+          textCriteria.lastTime &&
+          currentTime - textCriteria.lastTime > TEXT_NAVIGATION_RESET_TIMEOUT
+        ) {
+          textCriteria.searchString = lowerKey;
+        } else if (
+          textCriteria.searchString.length !== 1 ||
+          lowerKey !== textCriteria.searchString
+        ) {
+          // If there is just one character in the buffer and the key is the same, do not append
+          textCriteria.searchString += lowerKey;
+        }
+
+        textCriteria.lastTime = currentTime;
+
+        dispatch({
+          type: ActionTypes.textNavigation,
+          searchString: textCriteria.searchString,
+          props: propsWithDefaults,
+        });
+      }
     };
 
   const createHandleBlur =

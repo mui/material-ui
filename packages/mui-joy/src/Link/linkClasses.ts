@@ -1,4 +1,4 @@
-import { generateUtilityClass, generateUtilityClasses } from '@mui/base';
+import { generateUtilityClass, generateUtilityClasses } from '../className';
 
 export interface LinkClasses {
   /** Styles applied to the root element. */
@@ -19,14 +19,14 @@ export interface LinkClasses {
   disabled: string;
   /** State class applied to the root element if the link is keyboard focused. */
   focusVisible: string;
-  /** Styles applied to the root element if `variant="text"`. */
-  variantText: string;
+  /** Styles applied to the root element if `variant="plain"`. */
+  variantPlain: string;
   /** Styles applied to the root element if `variant="outlined"`. */
   variantOutlined: string;
-  /** Styles applied to the root element if `variant="light"`. */
-  variantLight: string;
-  /** Styles applied to the root element if `variant="contained"`. */
-  variantContained: string;
+  /** Styles applied to the root element if `variant="soft"`. */
+  variantSoft: string;
+  /** Styles applied to the root element if `variant="solid"`. */
+  variantSolid: string;
   /** Styles applied to the root element if `underline="none"`. */
   underlineNone: string;
   /** Styles applied to the root element if `underline="hover"`. */
@@ -51,15 +51,19 @@ export interface LinkClasses {
   body2: string;
   /** Styles applied to the root element if `level="body3"`. */
   body3: string;
+  /** Styles applied to the startDecorator element */
+  startDecorator: string;
+  /** Styles applied to the endDecorator element */
+  endDecorator: string;
 }
 
 export type LinkClassKey = keyof LinkClasses;
 
 export function getLinkUtilityClass(slot: string): string {
-  return generateUtilityClass('MuiLink', slot);
+  return generateUtilityClass('JoyLink', slot);
 }
 
-const linkClasses: LinkClasses = generateUtilityClasses('MuiLink', [
+const linkClasses: LinkClasses = generateUtilityClasses('JoyLink', [
   'root',
   'disabled',
   'focusVisible',
@@ -70,10 +74,10 @@ const linkClasses: LinkClasses = generateUtilityClasses('MuiLink', [
   'colorSuccess',
   'colorWarning',
   'focusVisible',
-  'variantText',
+  'variantPlain',
   'variantOutlined',
-  'variantLight',
-  'variantContained',
+  'variantSoft',
+  'variantSolid',
   'underlineNone',
   'underlineHover',
   'underlineAlways',
@@ -86,6 +90,8 @@ const linkClasses: LinkClasses = generateUtilityClasses('MuiLink', [
   'body1',
   'body2',
   'body3',
+  'startDecorator',
+  'endDecorator',
 ]);
 
 export default linkClasses;

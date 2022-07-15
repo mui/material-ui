@@ -2,17 +2,18 @@
   "props": {
     "children": { "type": { "name": "custom", "description": "element" }, "required": true },
     "open": { "type": { "name": "bool" }, "required": true },
-    "BackdropComponent": { "type": { "name": "elementType" } },
-    "BackdropProps": { "type": { "name": "object" } },
     "classes": { "type": { "name": "object" } },
     "closeAfterTransition": { "type": { "name": "bool" } },
     "component": { "type": { "name": "elementType" } },
     "components": {
-      "type": { "name": "shape", "description": "{ Root?: elementType }" },
+      "type": { "name": "shape", "description": "{ Backdrop?: elementType, Root?: elementType }" },
       "default": "{}"
     },
     "componentsProps": {
-      "type": { "name": "shape", "description": "{ root?: object }" },
+      "type": {
+        "name": "shape",
+        "description": "{ backdrop?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object }"
+      },
       "default": "{}"
     },
     "container": { "type": { "name": "union", "description": "HTML element<br>&#124;&nbsp;func" } },
@@ -24,7 +25,11 @@
     "disableScrollLock": { "type": { "name": "bool" } },
     "hideBackdrop": { "type": { "name": "bool" } },
     "keepMounted": { "type": { "name": "bool" } },
-    "onBackdropClick": { "type": { "name": "func" } },
+    "onBackdropClick": {
+      "type": { "name": "func" },
+      "deprecated": true,
+      "deprecationInfo": "Use the <code>onClose</code> prop with the <code>reason</code> argument to handle the <code>backdropClick</code> events."
+    },
     "onClose": { "type": { "name": "func" } }
   },
   "name": "ModalUnstyled",
@@ -37,6 +42,6 @@
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-base/src/ModalUnstyled/ModalUnstyled.js",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/material-ui/react-modal/\">Modal</a></li></ul>",
+  "demos": "<ul><li><a href=\"/base/react-modal/\">Modal</a></li></ul>",
   "cssComponent": false
 }

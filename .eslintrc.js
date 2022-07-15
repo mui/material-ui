@@ -69,7 +69,6 @@ module.exports = {
           // Allowing /icons as to reduce cold-start of dev builds significantly.
           // There's nothing to tree-shake when importing from /icons this way:
           // '@mui/icons-material/*/',
-          '@mui/system/*',
           '@mui/utils/*',
           // End block
           // Macros are fine since their import path is transpiled away
@@ -371,7 +370,12 @@ module.exports = {
             ],
           },
         ],
-
+      },
+    },
+    {
+      files: ['packages/*/src/**/*{.ts,.tsx,.js}'],
+      excludedFiles: ['*.d.ts', '*.spec.ts', '*.spec.tsx', 'packages/mui-joy/**/*{.ts,.tsx,.js}'],
+      rules: {
         'material-ui/mui-name-matches-component-name': [
           'error',
           {

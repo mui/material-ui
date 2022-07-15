@@ -32,3 +32,6 @@ export { StyledEngineProvider } from '@mui/system';
 export { default as makeStyles } from './makeStyles';
 export { default as withStyles } from './withStyles';
 export { default as withTheme } from './withTheme';
+
+export * from './CssVarsProvider';
+export { default as experimental_extendTheme } from './experimental_extendTheme';

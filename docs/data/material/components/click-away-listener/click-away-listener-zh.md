@@ -9,7 +9,7 @@ githubLabel: 'component: ClickAwayListener'
 
 <p class="description">用于检测点击事件是否发生在元素之外。 它可以监听文档中某处发生的点击事件。</p>
 
-- 📦 [1.5kB 已压缩的包](/size-snapshot)。
+- 📦 [1.5kB 已压缩的包](/size-snapshot/)。
 - ⚛️ 支持传送门组件
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
@@ -20,11 +20,11 @@ githubLabel: 'component: ClickAwayListener'
 
 {{"demo": "ClickAway.js"}}
 
-请注意，该组件仅接受一个子元素。 你可以在 [Menu 的文档章节](/components/menus/#menulist-composition) 阅读更高级的样例。
+请注意，该组件仅接受一个子元素。 你可以在 [Menu 的文档章节](/material-ui/react-menu/#menulist-composition) 阅读更高级的样例。
 
 ## Portal
 
-下面的演示使用 [`传送门组件（Portal）`](/components/portal/) 将下拉菜单渲染到当前 DOM 层次之外的新的“子级树”。
+下面的演示使用 [`传送门组件（Portal）`](/material-ui/react-portal/) 将下拉菜单渲染到当前 DOM 层次之外的新的“子级树”。
 
 {{"demo": "PortalClickAway.js"}}
 
@@ -38,7 +38,7 @@ githubLabel: 'component: ClickAwayListener'
 
 ## Accessibility
 
-By default `<ClickAwayListener />` will add an `onClick` handler to its children. This can result in e.g. screen readers announcing the children as clickable. However, the purpose of the `onClick` handler is not to make `children` interactive.
+By default `<ClickAwayListener />` will add an `onClick` handler to its children. This can result in e.g. screen readers announcing the children as clickable. However, the purpose of the `onClick` handler is not to make `children` interactive. 这可能会导致例如屏幕阅读器宣布其子元素可以点击。 然而， `onClick` 处理程序的目的不是要让 `子元素` 可交互。
 
 In order to prevent screen readers from marking non-interactive children as "clickable" add `role="presentation"` to the immediate children:
 

@@ -145,44 +145,25 @@ const faqData = [
 
 const openRolesData = [
   {
-    title: 'Product',
-    roles: [
-      {
-        title: 'Designer',
-        description:
-          'Design is critical to the success of our mission. We are looking for skills that complement our Lead Designer. You will empower our audience that seeks to build outstanding-looking UIs with new tools.',
-        url: '/careers/designer/',
-      },
-    ],
-  },
-  {
     title: 'Engineering',
     roles: [
-      {
-        title: 'Full-stack Engineer - Studio',
-        description:
-          'You will join the MUI Studio team, to explore the role of MUI in the low code space and help bring the early prototypes to a usable product.',
-        url: '/careers/fullstack-engineer/',
-      },
       {
         title: 'React Support Engineer - X',
         description:
           "You will provide support, remove blockers and unwrap potential features from reported issues for the advanced components team. You will directly impact developers' satisfaction and success.",
         url: '/careers/react-support-engineer/',
       },
-    ],
-  },
-];
-
-const nextRolesData = [
-  {
-    title: 'Engineering',
-    roles: [
+      {
+        title: 'React Engineer - Core',
+        description:
+          'You will strengthen the core components team, e.g. collaborate with the community to land contributions.',
+        url: '/careers/react-engineer-core/',
+      },
       {
         title: 'React Engineer - X',
         description:
           'You will strengthen the advanced components team, build new ambitious complex features, work on strategic problems, and help grow the adoption.',
-        url: '/careers/react-engineer/',
+        url: '/careers/react-engineer-x/',
       },
       {
         title: 'Product Engineer - Store',
@@ -199,6 +180,39 @@ const nextRolesData = [
         description:
           'You will build the HR function from the ground up at a high-growth tech company.',
         url: '/careers/people-operations-manager/',
+      },
+    ],
+  },
+];
+
+const nextRolesData = [
+  {
+    title: 'Engineering',
+    roles: [
+      {
+        title: 'Full-stack Engineer - Toolpad',
+        description:
+          'You will join the MUI Toolpad team, to explore the role of MUI in the low code space and help bring the early prototype to a usable product.',
+        url: '/careers/fullstack-engineer/',
+      },
+    ],
+  },
+  {
+    title: 'Sales',
+    roles: [
+      {
+        title: 'Account Executive',
+        description:
+          'You will build client relationships and manage the sales process from start to finish.',
+      },
+    ],
+  },
+  {
+    title: 'People',
+    roles: [
+      {
+        title: 'Technical Recruiter',
+        description: 'You will hire the next engineers joining the team.',
       },
     ],
   },
@@ -480,7 +494,7 @@ function CareersContent() {
                     We hire in batches, we collect applications a few months before we actively aim
                     to fill the roles. If none of these roles fit with what you are looking for, you
                     can apply to the{' '}
-                    <Link href="https://airtable.com/shrdqo1Z6srZXGcvh?prefill_Applying+for=Dream%20job&prefill_source=mui.com">
+                    <Link href="https://jobs.ashbyhq.com/MUI/4715d81f-d00f-42d4-a0d0-221f40f73e19/application?utm_source=ZNRrPGBkqO">
                       Dream job
                     </Link>{' '}
                     role.

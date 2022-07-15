@@ -7,7 +7,12 @@ import {
   useListbox,
   ActionTypes,
 } from '../ListboxUnstyled';
-import { MenuItemMetadata, MenuItemState, UseMenuParameters } from './useMenu.types';
+import {
+  MenuItemMetadata,
+  MenuItemState,
+  UseMenuListboxSlotProps,
+  UseMenuParameters,
+} from './useMenu.types';
 import { EventHandlers } from '../utils';
 
 function stateReducer(
@@ -38,7 +43,7 @@ function stateReducer(
   return newState;
 }
 
-export default function useMenu(parameters: UseMenuParameters) {
+export default function useMenu(parameters: UseMenuParameters = {}) {
   const { listboxRef: listboxRefProp, open = false, onClose, listboxId } = parameters;
 
   const [menuItems, setMenuItems] = React.useState<Record<string, MenuItemMetadata>>({});
@@ -46,7 +51,7 @@ export default function useMenu(parameters: UseMenuParameters) {
   const listboxRef = React.useRef<HTMLElement | null>(null);
   const handleRef = useForkRef(listboxRef, listboxRefProp);
 
-  const registerItem = React.useCallback((id, metadata) => {
+  const registerItem = React.useCallback((id: string, metadata: MenuItemMetadata) => {
     setMenuItems((previousState) => {
       const newState = { ...previousState };
       newState[id] = metadata;
@@ -54,7 +59,7 @@ export default function useMenu(parameters: UseMenuParameters) {
     });
   }, []);
 
-  const unregisterItem = React.useCallback((id) => {
+  const unregisterItem = React.useCallback((id: string) => {
     setMenuItems((previousState) => {
       const newState = { ...previousState };
       delete newState[id];
@@ -70,6 +75,7 @@ export default function useMenu(parameters: UseMenuParameters) {
     setHighlightedValue: setListboxHighlight,
   } = useListbox({
     options: Object.keys(menuItems),
+    optionStringifier: (id: string) => menuItems[id].label || menuItems[id].ref.current?.innerText,
     isOptionDisabled: (id) => menuItems?.[id]?.disabled || false,
     listboxRef: handleRef,
     focusManagement: 'DOM',
@@ -96,8 +102,8 @@ export default function useMenu(parameters: UseMenuParameters) {
     }
   }, [open, highlightFirstItem]);
 
-  const createHandleKeyDown = (otherHandlers?: EventHandlers) => (e: React.KeyboardEvent) => {
-    otherHandlers?.onKeyDown?.(e);
+  const createHandleKeyDown = (otherHandlers: EventHandlers) => (e: React.KeyboardEvent) => {
+    otherHandlers.onKeyDown?.(e);
     if (e.defaultPrevented) {
       return;
     }
@@ -107,8 +113,8 @@ export default function useMenu(parameters: UseMenuParameters) {
     }
   };
 
-  const createHandleBlur = (otherHandlers?: EventHandlers) => (e: React.FocusEvent) => {
-    otherHandlers?.onBlur(e);
+  const createHandleBlur = (otherHandlers: EventHandlers) => (e: React.FocusEvent) => {
+    otherHandlers.onBlur?.(e);
 
     if (!listboxRef.current?.contains(e.relatedTarget)) {
       onClose?.();
@@ -122,15 +128,20 @@ export default function useMenu(parameters: UseMenuParameters) {
     }
   }, [highlightedOption, menuItems]);
 
-  const getListboxProps = (otherHandlers?: EventHandlers) => ({
-    ...otherHandlers,
-    ...getRootProps({
+  const getListboxProps = <TOther extends EventHandlers>(
+    otherHandlers: TOther = {} as TOther,
+  ): UseMenuListboxSlotProps => {
+    const rootProps = getRootProps({
       ...otherHandlers,
       onBlur: createHandleBlur(otherHandlers),
       onKeyDown: createHandleKeyDown(otherHandlers),
-    }),
-    role: 'menu',
-  });
+    });
+    return {
+      ...otherHandlers,
+      ...rootProps,
+      role: 'menu',
+    };
+  };
 
   const getItemState = (id: string): MenuItemState => {
     const { disabled, highlighted } = getOptionState(id);

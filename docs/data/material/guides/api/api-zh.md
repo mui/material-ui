@@ -1,6 +1,6 @@
 # API 的设计方法
 
-<p class="description">我们在如何使用 Material-UI 方面学到了很多相关的知识，而通过 v1 版本的重写，我们能够彻底重新考虑组件的 API。</p>
+<p class="description">我们在如何使用 Material UI 方面学到了很多相关的知识，而通过 v1 版本的重写，我们能够彻底重新考虑组件的 API。</p>
 
 > API 设计的难点在于你可以让一些复杂的东西看起来简单，也可能把简单的东西搞得复杂。
 
@@ -30,15 +30,15 @@
 <MenuItem disableRipple />
 ```
 
-`disableRipple` 属性将以这种方式流动：[`MenuItem`](/api/menu-item/)> [`ListItem`](/api/list-item/)> [`ButtonBase`](/api/button-base/)。
+`disableRipple` 属性将以这种方式流动：[`MenuItem`](/material-ui/api/menu-item/)> [`ListItem`](/material-ui/api/list-item/)> [`ButtonBase`](/material-ui/api/button-base/)。
 
 ### 原生属性
 
-我们避免记录 DOM 支持的那些原生属性，如[`className`](/customization/how-to-customize/#overriding-styles-with-class-names)。
+我们避免记录 DOM 支持的那些原生属性，如[`className`](/material-ui/customization/how-to-customize/#overriding-styles-with-class-names)。
 
 ### CSS classes
 
-为了自定义样式，所有组件都接受 [`classes`](/customization/how-to-customize/#overriding-styles-with-class-names) 属性。 类设计兼顾两个约束： 使类结构尽可能简单，同时足以实现 Material Design 指南。
+为了自定义样式，所有组件都接受 [`classes`](/material-ui/customization/how-to-customize/#overriding-styles-with-class-names) 属性。 类设计兼顾两个约束： 使类结构尽可能简单，同时足以实现 Material Design 指南。
 
 - 应用于根元素的类始终称为 `root`。
 - 所有默认样式都分组在单个类中。
@@ -67,19 +67,19 @@ const styles = {
 - 它们自己的扁平化属性（当这些属性是顶层组件抽象的关键时），例如 `Input` 组件的 `id` 属性。
 - 当用户可能需要调整内部 render 方法的子组件时，他们自己的`xxxProps`属性，例如，在内部使用`input`的组件上公开`inputProps`和`InputProps`属性。
 - 他们自己的`xxxComponent`属性，用于执行组件注入。
-- 当您可能需要执行命令性操作时，例如，公开 `inputRef` 属性以访问 `input` 组件上的原生`input`，您就可以使用它们自己的 `xxxRef` 属性。 这有助于回答 [“我如何访问 DOM 元素？”](/getting-started/faq/#how-can-i-access-the-dom-element)。
+- 当您可能需要执行命令性操作时，例如，公开 `inputRef` 属性以访问 `input` 组件上的原生`input`，您就可以使用它们自己的 `xxxRef` 属性。 这有助于回答 [“我如何访问 DOM 元素？”](/material-ui/getting-started/faq/#how-can-i-access-the-dom-element)。
 
 ### Prop naming
 
 应根据 ** 默认值 ** 选择布尔属性的名称。 此选项允许简写的表示：
 
-- the shorthand notation. the shorthand notation. 例如，若提供了一个输入框元素的 `disabled` 属性，则默认值为 `true`。
+- the shorthand notation. the shorthand notation. the shorthand notation. 例如，若提供了一个输入框元素的 `disabled` 属性，则默认值为 `true`。
 
   ```jsx
   -(<Input enabled={false} />) + <Input disabled />;
   ```
 
-- developers to know what the default value is from the name of the boolean prop. It's always the opposite. It's always the opposite.
+- developers to know what the default value is from the name of the boolean prop. It's always the opposite. It's always the opposite. It's always the opposite.
 
 ### 受控的组件
 
@@ -112,7 +112,7 @@ const styles = {
 
   However, it prevents an invalid combination from being used, bounds the number of props exposed, and can easily support new values in the future.
 
-Material-UI 组件根据以下规则将两种方法结合使用：
+Material UI 组件根据以下规则将两种方法结合使用：
 
 - 当需要 **2** 个可能的值时，我们使用 _boolean_。
 - **host element**：`react-dom` 中的一个 DOM 节点，例如 `window.HTMLDivElement` 的实例。

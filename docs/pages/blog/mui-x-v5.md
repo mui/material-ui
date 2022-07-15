@@ -196,12 +196,12 @@ We strongly recommend you migrate MUI X to v5.
 In MUI X v5 we have not only added additional features but also made significant internal improvements and performance optimizations that won't be included in v4.
 All-new `DataGrid` and `DataGridPro` features will be only available in MUI X v5.
 
-Please check [the v4 migration guide](/components/data-grid/migration-v4/) to accelerate the transition.
+Please check [the v4 migration guide](/x/react-data-grid/migration-v4/) to accelerate the transition.
 
 ## What's next?
 
 More exciting things are coming! We have big plans for the rest of this quarter in terms of features we expect to release in both the `DataGrid` and `DataGridPro` components.
-Features such as **[tree data](/components/data-grid/group-pivot/#tree-data)**, **[column pinning](/components/data-grid/columns/#column-pinning)**, and **[variable row height](https://github.com/mui/mui-x/issues/438)** are part of our roadmap.
+Features such as **[tree data](/x/react-data-grid/tree-data/)**, **[column pinning](/x/react-data-grid/columns/#column-pinning)**, and **[variable row height](https://github.com/mui/mui-x/issues/438)** are part of our roadmap.
 
 ### Public roadmap
 

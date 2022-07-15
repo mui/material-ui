@@ -1,4 +1,4 @@
-import { generateUtilityClass, generateUtilityClasses } from '@mui/base';
+import { generateUtilityClass, generateUtilityClasses } from '../className';
 
 export interface AvatarClasses {
   /** Styles applied to the root element. */
@@ -15,7 +15,7 @@ export interface AvatarClasses {
   colorSuccess: string;
   /** Styles applied to the root element if `color="warning"`. */
   colorWarning: string;
-  /** Styles applied to the fallback icon */
+  /** Styles applied to the fallback icon. */
   fallback: string;
   /** Styles applied to the root element if `size="sm"`. */
   sizeSm: string;
@@ -27,19 +27,19 @@ export interface AvatarClasses {
   img: string;
   /** Styles applied to the root element if `variant="outlined"`. */
   variantOutlined: string;
-  /** Styles applied to the root element if `variant="light"`. */
-  variantLight: string;
-  /** Styles applied to the root element if `variant="contained"`. */
-  variantContained: string;
+  /** Styles applied to the root element if `variant="soft"`. */
+  variantSoft: string;
+  /** Styles applied to the root element if `variant="solid"`. */
+  variantSolid: string;
 }
 
 export type AvatarClassKey = keyof AvatarClasses;
 
 export function getAvatarUtilityClass(slot: string): string {
-  return generateUtilityClass('MuiAvatar', slot);
+  return generateUtilityClass('JoyAvatar', slot);
 }
 
-const avatarClasses: AvatarClasses = generateUtilityClasses('MuiAvatar', [
+const avatarClasses: AvatarClasses = generateUtilityClasses('JoyAvatar', [
   'root',
   'colorPrimary',
   'colorNeutral',
@@ -53,8 +53,8 @@ const avatarClasses: AvatarClasses = generateUtilityClasses('MuiAvatar', [
   'sizeLg',
   'img',
   'variantOutlined',
-  'variantLight',
-  'variantContained',
+  'variantSoft',
+  'variantSolid',
 ]);
 
 export default avatarClasses;

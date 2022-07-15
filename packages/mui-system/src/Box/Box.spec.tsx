@@ -56,22 +56,22 @@ function ThemeCallbackTest() {
 function CssVariablesWithNestedSelectors() {
   <Box
     sx={(theme) => ({
-      '--md-palette-primary-main': '#FF0000',
+      '--mui-palette-primary-main': '#FF0000',
     })}
   />;
   <Box
     sx={(theme) => ({
-      '--md-palette-primary-main': '#FF0000',
+      '--mui-palette-primary-main': '#FF0000',
       '&:hover': {
         backgroundColor: theme.palette.primary.main,
-        '--md-palette-primary-main': (t) => theme.palette.primary.main,
-        '--md-spacing': (t) => theme.shape.borderRadius,
+        '--mui-palette-primary-main': (t) => theme.palette.primary.main,
+        '--mui-spacing': (t) => theme.shape.borderRadius,
       },
     })}
   />;
   <Box
     sx={{
-      '--md-palette-primary-main': '#FF0000',
+      '--mui-palette-primary-main': '#FF0000',
       '&:hover': {
         backgroundColor: '#EE0000',
       },
@@ -79,10 +79,28 @@ function CssVariablesWithNestedSelectors() {
   />;
   <Box
     sx={{
-      '--md-palette-primary-main': '#FF0000',
+      '--mui-palette-primary-main': '#FF0000',
       '& .foo-bar': {
         backgroundColor: '#EE0000',
       },
     }}
+  />;
+}
+
+// The fill prop conflicts with the Array's fill functiom.
+// This test ensures that the callback value inside the sx prop
+// can be used without conflicting with the Array's fill function
+function TestFillPropCallback() {
+  <Box
+    sx={{
+      fill: (theme) => theme.palette.primary.main,
+    }}
+  />;
+  <Box
+    sx={[
+      {
+        fill: (theme) => theme.palette.primary.main,
+      },
+    ]}
   />;
 }
