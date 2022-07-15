@@ -1,7 +1,7 @@
 import { deepmerge } from '@mui/utils';
 import type {} from '@mui/material/themeCssVarsAugmentation';
 import ArrowDropDownRounded from '@mui/icons-material/ArrowDropDownRounded';
-import { createTheme, ThemeOptions, Theme, alpha } from '@mui/material/styles';
+import { createTheme, ThemeOptions, alpha } from '@mui/material/styles';
 
 declare module '@mui/material/styles/createPalette' {
   interface ColorRange {
@@ -285,7 +285,7 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
     },
   } as ThemeOptions);
 
-export function getThemedComponents(): { components: Theme['components'] } {
+export function getThemedComponents(): ThemeOptions {
   return {
     components: {
       MuiButtonBase: {
@@ -1035,7 +1035,7 @@ export function getThemedComponents(): { components: Theme['components'] } {
       },
       MuiSwitch: {
         styleOverrides: {
-          root: ({ theme }) => ({
+          root: {
             width: 32,
             height: 20,
             padding: 0,
@@ -1045,8 +1045,8 @@ export function getThemedComponents(): { components: Theme['components'] } {
                 color: '#fff',
               },
             },
-          }),
-          switchBase: ({ theme }) => ({
+          },
+          switchBase: {
             height: 20,
             width: 20,
             padding: 0,
@@ -1054,7 +1054,7 @@ export function getThemedComponents(): { components: Theme['components'] } {
             '&.Mui-checked + .MuiSwitch-track': {
               opacity: 1,
             },
-          }),
+          },
           track: ({ theme }) => ({
             opacity: 1,
             borderRadius: 32,
