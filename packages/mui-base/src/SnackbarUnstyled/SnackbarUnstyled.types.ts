@@ -7,12 +7,8 @@ import { SlotComponentProps } from '../utils';
 
 export interface SnackbarUnstyledComponentsPropsOverrides {}
 
-interface SnackbarUnstyledOwnProps extends Omit<UseSnackbarParameters, 'ref'> {
+export interface SnackbarUnstyledOwnProps extends Omit<UseSnackbarParameters, 'ref'> {
   children?: React.ReactNode;
-  /**
-   * Props applied to the `ClickAwayListener` element.
-   */
-  ClickAwayListenerProps?: Partial<ClickAwayListenerProps>;
   /**
    * The components used for each slot inside the Snackbar.
    * Either a string to use a HTML element or a component.
@@ -27,6 +23,7 @@ interface SnackbarUnstyledOwnProps extends Omit<UseSnackbarParameters, 'ref'> {
    * @default {}
    */
   componentsProps?: {
+    clickAwayListener?: Partial<ClickAwayListenerProps>;
     root?: SlotComponentProps<
       'div',
       SnackbarUnstyledComponentsPropsOverrides,
@@ -50,7 +47,9 @@ export interface SnackbarUnstyledTypeMap<P = {}, D extends React.ElementType = '
 export type SnackbarUnstyledProps<
   D extends React.ElementType = SnackbarUnstyledTypeMap['defaultComponent'],
   P = {},
-> = OverrideProps<SnackbarUnstyledTypeMap<P, D>, D>;
+> = OverrideProps<SnackbarUnstyledTypeMap<P, D>, D> & {
+  component?: D;
+};
 
 export type SnackbarUnstyledOwnerState = SnackbarUnstyledProps & {
   exited: boolean;

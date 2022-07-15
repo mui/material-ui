@@ -12,7 +12,7 @@ import {
 import composeClasses from '../composeClasses';
 import { getSnackbarUnstyledUtilityClass } from './snackbarUnstyledClasses';
 import useSnackbar from './useSnackbar';
-import { useSlotProps, WithOptionalOwnerState } from '../utils';
+import { resolveComponentProps, useSlotProps, WithOptionalOwnerState } from '../utils';
 
 const useUtilityClasses = () => {
   const slots = {
@@ -32,13 +32,12 @@ const useUtilityClasses = () => {
  * - [SnackbarUnstyled API](https://mui.com/base/api/snackbar-unstyled/)
  */
 const SnackbarUnstyled = React.forwardRef(function SnackbarUnstyled(
-  props: SnackbarUnstyledProps & { component?: React.ElementType },
+  props: SnackbarUnstyledProps,
   ref: React.ForwardedRef<any>,
 ) {
   const {
     autoHideDuration = null,
     children,
-    ClickAwayListenerProps,
     component,
     components = {},
     componentsProps = {},
@@ -75,28 +74,17 @@ const SnackbarUnstyled = React.forwardRef(function SnackbarUnstyled(
 
   const TransitionComponent = components.Transition;
 
-  const componentsPropsRootSlotEventCallback = (
-    eventHandler: keyof React.HTMLAttributes<HTMLDivElement>,
-  ) => {
-    if (typeof componentsProps.root === 'object') {
-      return componentsProps.root?.[eventHandler];
-    }
-
-    if (typeof componentsProps.root === 'function') {
-      return componentsProps.root?.(ownerState)?.[eventHandler];
-    }
-    return null;
-  };
-
   const rootProps: WithOptionalOwnerState<SnackbarUnstyledRootSlotProps> = useSlotProps({
     elementType: Root,
     getSlotProps: (eventHandlers) =>
       getRootProps({
         ...eventHandlers,
-        onBlur: componentsPropsRootSlotEventCallback('onBlur') || onBlur,
-        onFocus: componentsPropsRootSlotEventCallback('onFocus') || onFocus,
-        onMouseEnter: componentsPropsRootSlotEventCallback('onMouseEnter') || onMouseEnter,
-        onMouseLeave: componentsPropsRootSlotEventCallback('onMouseLeave') || onMouseLeave,
+        onBlur: resolveComponentProps(componentsProps.root, ownerState)?.onBlur || onBlur,
+        onFocus: resolveComponentProps(componentsProps.root, ownerState)?.onFocus || onFocus,
+        onMouseEnter:
+          resolveComponentProps(componentsProps.root, ownerState)?.onMouseEnter || onMouseEnter,
+        onMouseLeave:
+          resolveComponentProps(componentsProps.root, ownerState)?.onMouseLeave || onMouseLeave,
       }),
     externalForwardedProps: other,
     externalSlotProps: componentsProps.root,
@@ -113,14 +101,8 @@ const SnackbarUnstyled = React.forwardRef(function SnackbarUnstyled(
       getSlotProps: (otherHandlers) =>
         getTransitionProps({
           ...otherHandlers,
-          onEnter:
-            typeof componentsProps.transition === 'function'
-              ? componentsProps.transition?.(ownerState)?.onEnter
-              : componentsProps.transition?.onEnter,
-          onExited:
-            typeof componentsProps.transition === 'function'
-              ? componentsProps.transition?.(ownerState)?.onExited
-              : componentsProps.transition?.onExited,
+          onEnter: resolveComponentProps(componentsProps.transition, ownerState)?.onEnter,
+          onExited: resolveComponentProps(componentsProps.transition, ownerState)?.onExited,
         }),
       externalSlotProps: componentsProps.transition,
       ownerState,
@@ -133,7 +115,7 @@ const SnackbarUnstyled = React.forwardRef(function SnackbarUnstyled(
   }
 
   return (
-    <ClickAwayListener onClickAway={onClickAway} {...ClickAwayListenerProps}>
+    <ClickAwayListener onClickAway={onClickAway} {...componentsProps.clickAwayListener}>
       <Root {...rootProps}>
         {TransitionComponent ? (
           <TransitionComponent {...transitionProps}>{children}</TransitionComponent>
