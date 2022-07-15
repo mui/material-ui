@@ -41,7 +41,7 @@ export interface UseSnackbarParameters {
 
 export type UseSnackbarRootSlotProps<TOther = {}> = TOther & UseSnackbarRootSlotOwnProps;
 
-interface UseSnackbarRootSlotOwnProps {
+export interface UseSnackbarRootSlotOwnProps {
   onBlur: React.FocusEventHandler;
   onFocus: React.FocusEventHandler;
   onMouseEnter: React.MouseEventHandler;
