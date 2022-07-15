@@ -145,10 +145,6 @@ SnackbarUnstyled.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
-   * Props applied to the `ClickAwayListener` element.
-   */
-  ClickAwayListenerProps: PropTypes.object,
-  /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
    */
@@ -167,6 +163,20 @@ SnackbarUnstyled.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   componentsProps: PropTypes.shape({
+    clickAwayListener: PropTypes.shape({
+      children: PropTypes.element.isRequired,
+      disableReactTree: PropTypes.bool,
+      mouseEvent: PropTypes.oneOf([
+        'onClick',
+        'onMouseDown',
+        'onMouseUp',
+        'onPointerDown',
+        'onPointerUp',
+        false,
+      ]),
+      onClickAway: PropTypes.func,
+      touchEvent: PropTypes.oneOf(['onTouchEnd', 'onTouchStart', false]),
+    }),
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     transition: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),

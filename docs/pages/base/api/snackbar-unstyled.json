@@ -1,7 +1,6 @@
 {
   "props": {
     "autoHideDuration": { "type": { "name": "number" }, "default": "null" },
-    "ClickAwayListenerProps": { "type": { "name": "object" } },
     "component": { "type": { "name": "elementType" } },
     "components": {
       "type": {
@@ -13,7 +12,7 @@
     "componentsProps": {
       "type": {
         "name": "shape",
-        "description": "{ root?: func<br>&#124;&nbsp;object, transition?: func<br>&#124;&nbsp;object }"
+        "description": "{ clickAwayListener?: { children: element, disableReactTree?: bool, mouseEvent?: 'onClick'<br>&#124;&nbsp;'onMouseDown'<br>&#124;&nbsp;'onMouseUp'<br>&#124;&nbsp;'onPointerDown'<br>&#124;&nbsp;'onPointerUp'<br>&#124;&nbsp;false, onClickAway?: func, touchEvent?: 'onTouchEnd'<br>&#124;&nbsp;'onTouchStart'<br>&#124;&nbsp;false }, root?: func<br>&#124;&nbsp;object, transition?: func<br>&#124;&nbsp;object }"
       },
       "default": "{}"
     },

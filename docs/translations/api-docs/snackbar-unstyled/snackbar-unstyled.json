@@ -2,7 +2,6 @@
   "componentDescription": "",
   "propDescriptions": {
     "autoHideDuration": "The number of milliseconds to wait before automatically calling the <code>onClose</code> function. <code>onClose</code> should then set the state of the <code>open</code> prop to hide the Snackbar. This behavior is disabled by default with the <code>null</code> value.",
-    "ClickAwayListenerProps": "Props applied to the <code>ClickAwayListener</code> element.",
     "component": "The component used for the root node. Either a string to use a HTML element or a component.",
     "components": "The components used for each slot inside the Snackbar. Either a string to use a HTML element or a component.",
     "componentsProps": "The props used for each slot inside the Snackbar.",
