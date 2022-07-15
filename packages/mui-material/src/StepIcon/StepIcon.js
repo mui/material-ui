@@ -65,6 +65,7 @@ const StepIcon = React.forwardRef(function StepIcon(inProps, ref) {
   const ownerState = { ...props, active, completed, error };
   const classes = useUtilityClasses(ownerState);
 
+  //check for number strings or objects to have as StepIcons. Object covers Icons and MUI Imports
   if (typeof icon === 'number' || typeof icon === 'string' || typeof icon == 'object') {
     const className = clsx(classNameProp, classes.root);
 
