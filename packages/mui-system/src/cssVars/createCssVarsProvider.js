@@ -26,7 +26,7 @@ export default function createCssVarsProvider(options) {
     disableTransitionOnChange: designSystemTransitionOnChange = false,
     enableColorScheme: designSystemEnableColorScheme = true,
     shouldSkipGeneratingVar: designSystemShouldSkipGeneratingVar,
-    resolveTheme: designSystemResolveTheme,
+    resolveTheme,
   } = options;
 
   if (
@@ -65,7 +65,6 @@ export default function createCssVarsProvider(options) {
     colorSchemeNode = typeof document === 'undefined' ? undefined : document.documentElement,
     colorSchemeSelector = ':root',
     shouldSkipGeneratingVar = designSystemShouldSkipGeneratingVar,
-    resolveTheme,
   }) {
     const hasMounted = React.useRef(false);
 
@@ -216,9 +215,6 @@ export default function createCssVarsProvider(options) {
       };
     }, []);
 
-    if (designSystemResolveTheme) {
-      theme = designSystemResolveTheme(theme);
-    }
     if (resolveTheme) {
       theme = resolveTheme(theme);
     }
@@ -288,10 +284,6 @@ export default function createCssVarsProvider(options) {
      * The key in the local storage used to store current color scheme.
      */
     modeStorageKey: PropTypes.string,
-    /**
-     * A function to be called after the CSS variables are attached. The result of this function will be the final theme pass to ThemeProvider.
-     */
-    resolveTheme: PropTypes.func,
     /**
      * A function to determine if the key, value should be attached as CSS Variable
      */

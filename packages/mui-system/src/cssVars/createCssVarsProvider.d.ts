@@ -45,13 +45,6 @@ export interface CssVarsProviderConfig<ColorScheme extends string> {
    */
   enableColorScheme?: boolean;
   /**
-   * A function to be called after the CSS variables are attached. The result of this function will be the final theme pass to ThemeProvider.
-   *
-   * The example usage is the variant generation in Joy. We need to combine the token from user-input and the default theme first, then generate
-   * variants from those tokens.
-   */
-  resolveTheme?: (theme: any) => any; // the type is any because it depends on the design system.
-  /**
    * A function to determine if the key, value should be attached as CSS Variable
    * `keys` is an array that represents the object path keys.
    *  Ex, if the theme is { foo: { bar: 'var(--test)' } }
@@ -124,6 +117,13 @@ export default function createCssVarsProvider<ColorScheme extends string>(
      *  }
      */
     theme: any;
+    /**
+     * A function to be called after the CSS variables are attached. The result of this function will be the final theme pass to ThemeProvider.
+     *
+     * The example usage is the variant generation in Joy. We need to combine the token from user-input and the default theme first, then generate
+     * variants from those tokens.
+     */
+    resolveTheme?: (theme: any) => any; // the type is any because it depends on the design system.
   },
 ): CreateCssVarsProviderResult<ColorScheme>;
 
