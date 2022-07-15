@@ -285,7 +285,7 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
     },
   } as ThemeOptions);
 
-export function getThemedComponents(theme: Theme): { components: Theme['components'] } {
+export function getThemedComponents(): { components: Theme['components'] } {
   return {
     components: {
       MuiButtonBase: {
@@ -298,26 +298,29 @@ export function getThemedComponents(theme: Theme): { components: Theme['componen
           disableElevation: true,
         },
         styleOverrides: {
-          sizeLarge: {
-            padding: '0.875rem 1rem',
-            ...theme.typography.body1,
-            lineHeight: 21 / 16,
-            fontWeight: 700,
-          },
-          sizeSmall: {
-            padding: theme.spacing(0.5, 1),
-            marginLeft: theme.spacing(-1),
-          },
-          containedPrimary: {
-            backgroundColor: (theme.vars || theme).palette.primary[500],
-            color: '#fff',
-          },
+          root: ({ theme, ownerState }) => ({
+            ...(ownerState.size === 'large' && {
+              padding: '0.875rem 1rem',
+              ...theme.typography.body1,
+              lineHeight: 21 / 16,
+              fontWeight: 700,
+            }),
+            ...(ownerState.size === 'small' && {
+              padding: theme.spacing(0.5, 1),
+              marginLeft: theme.spacing(-1),
+            }),
+            ...(ownerState.variant === 'contained' &&
+              ownerState.color === 'primary' && {
+                backgroundColor: (theme.vars || theme).palette.primary[500],
+                color: '#fff',
+              }),
+          }),
         },
         variants: [
           {
             // @ts-ignore internal repo module augmentation issue
             props: { variant: 'code' },
-            style: {
+            style: ({ theme }) => ({
               border: '1px solid',
               ...(!theme.vars
                 ? {
@@ -400,12 +403,12 @@ export function getThemedComponents(theme: Theme): { components: Theme['componen
                       },
                     }),
               },
-            },
+            }),
           },
           {
             // @ts-ignore internal repo module augmentation issue
             props: { variant: 'link' },
-            style: {
+            style: ({ theme }) => ({
               fontSize: theme.typography.pxToRem(14),
               fontWeight: 700,
               ...(!theme.vars
@@ -425,7 +428,7 @@ export function getThemedComponents(theme: Theme): { components: Theme['componen
               '& svg': {
                 ml: -0.5,
               },
-            },
+            }),
           },
         ],
       },
@@ -433,7 +436,7 @@ export function getThemedComponents(theme: Theme): { components: Theme['componen
         variants: [
           {
             props: { color: 'primary' },
-            style: {
+            style: ({ theme }) => ({
               height: 34,
               width: 34,
               border: `1px solid`,
@@ -475,13 +478,13 @@ export function getThemedComponents(theme: Theme): { components: Theme['componen
                     },
                   }),
               borderRadius: theme.shape.borderRadius,
-            },
+            }),
           },
         ],
       },
       MuiMenu: {
         styleOverrides: {
-          paper: {
+          paper: ({ theme }) => ({
             minWidth: 160,
             color: (theme.vars || theme).palette.text.secondary,
             backgroundImage: 'none',
@@ -546,12 +549,12 @@ export function getThemedComponents(theme: Theme): { components: Theme['componen
                     }),
               },
             },
-          },
+          }),
         },
       },
       MuiPopover: {
         styleOverrides: {
-          paper: {
+          paper: ({ theme }) => ({
             ...(!theme.vars
               ? {
                   boxShadow: `0px 4px 20px ${
@@ -566,22 +569,22 @@ export function getThemedComponents(theme: Theme): { components: Theme['componen
                     boxShadow: `0px 4px 20px rgba(0, 0, 0, 0.5)`,
                   },
                 }),
-          },
+          }),
         },
       },
       MuiContainer: {
         styleOverrides: {
-          root: {
+          root: ({ theme }) => ({
             [theme.breakpoints.up('md')]: {
               paddingLeft: theme.spacing(2),
               paddingRight: theme.spacing(2),
             },
-          },
+          }),
         },
       },
       MuiDivider: {
         styleOverrides: {
-          root: {
+          root: ({ theme }) => ({
             ...(!theme.vars
               ? {
                   borderColor:
@@ -595,7 +598,7 @@ export function getThemedComponents(theme: Theme): { components: Theme['componen
                     borderColor: alpha(theme.palette.primary[100], 0.08),
                   },
                 }),
-          },
+          }),
         },
       },
       MuiLink: {
@@ -603,7 +606,7 @@ export function getThemedComponents(theme: Theme): { components: Theme['componen
           underline: 'none',
         },
         styleOverrides: {
-          root: {
+          root: ({ theme }) => ({
             ...(!theme.vars
               ? {
                   color:
@@ -638,12 +641,12 @@ export function getThemedComponents(theme: Theme): { components: Theme['componen
             '& svg:last-child': {
               marginLeft: 2,
             },
-          },
+          }),
         },
       },
       MuiChip: {
         styleOverrides: {
-          root: ({ ownerState: { color, variant } }) => ({
+          root: ({ ownerState: { color, variant }, theme }) => ({
             fontWeight: 500,
             ...(variant === 'outlined' &&
               color === 'default' && {
@@ -780,7 +783,7 @@ export function getThemedComponents(theme: Theme): { components: Theme['componen
               }),
             }),
           }),
-          deleteIcon: {
+          deleteIcon: ({ theme }) => ({
             ...(!theme.vars
               ? {
                   color: theme.palette.mode === 'dark' ? '#fff' : theme.palette.primary[700],
@@ -803,7 +806,7 @@ export function getThemedComponents(theme: Theme): { components: Theme['componen
                     },
                   },
                 }),
-          },
+          }),
         },
       },
       MuiList: {
@@ -815,7 +818,7 @@ export function getThemedComponents(theme: Theme): { components: Theme['componen
       },
       MuiListItemButton: {
         styleOverrides: {
-          root: {
+          root: ({ theme }) => ({
             padding: '8px',
             textTransform: 'none',
             fontWeight: 500,
@@ -848,7 +851,7 @@ export function getThemedComponents(theme: Theme): { components: Theme['componen
                     : theme.palette.primary[100],
               },
             },
-          },
+          }),
         },
       },
       MuiSelect: {
@@ -868,7 +871,7 @@ export function getThemedComponents(theme: Theme): { components: Theme['componen
       },
       MuiPaper: {
         styleOverrides: {
-          root: {
+          root: ({ theme, ownerState }) => ({
             backgroundImage: 'none',
             ...(!theme.vars
               ? {
@@ -884,65 +887,65 @@ export function getThemedComponents(theme: Theme): { components: Theme['componen
             '&[href]': {
               textDecorationLine: 'none',
             },
-          },
-          outlined: {
-            display: 'block',
-            ...(!theme.vars
-              ? {
-                  borderColor:
-                    theme.palette.mode === 'dark'
-                      ? theme.palette.primaryDark[500]
-                      : theme.palette.grey[200],
-                  ...(theme.palette.mode === 'dark' && {
-                    backgroundColor: theme.palette.primaryDark[700],
-                  }),
-                }
-              : {
-                  borderColor: theme.vars.palette.grey[200],
-                  [theme.getColorSchemeSelector('dark')]: {
-                    borderColor: theme.vars.palette.primaryDark[500],
-                    backgroundColor: theme.vars.palette.primaryDark[700],
-                  },
-                }),
-            'a&, button&': {
-              '&:hover': {
-                ...(!theme.vars
-                  ? {
-                      boxShadow: `0px 4px 20px ${
-                        theme.palette.mode === 'dark'
-                          ? 'rgba(0, 0, 0, 0.5)'
-                          : 'rgba(170, 180, 190, 0.3)'
-                      }`,
-                    }
-                  : {
-                      boxShadow: `0px 4px 20px rgba(170, 180, 190, 0.3)`,
-                      [theme.getColorSchemeSelector('dark')]: {
-                        boxShadow: `0px 4px 20px rgba(0, 0, 0, 0.5)`,
-                      },
+            ...(ownerState.variant === 'outlined' && {
+              display: 'block',
+              ...(!theme.vars
+                ? {
+                    borderColor:
+                      theme.palette.mode === 'dark'
+                        ? theme.palette.primaryDark[500]
+                        : theme.palette.grey[200],
+                    ...(theme.palette.mode === 'dark' && {
+                      backgroundColor: theme.palette.primaryDark[700],
                     }),
+                  }
+                : {
+                    borderColor: theme.vars.palette.grey[200],
+                    [theme.getColorSchemeSelector('dark')]: {
+                      borderColor: theme.vars.palette.primaryDark[500],
+                      backgroundColor: theme.vars.palette.primaryDark[700],
+                    },
+                  }),
+              'a&, button&': {
+                '&:hover': {
+                  ...(!theme.vars
+                    ? {
+                        boxShadow: `0px 4px 20px ${
+                          theme.palette.mode === 'dark'
+                            ? 'rgba(0, 0, 0, 0.5)'
+                            : 'rgba(170, 180, 190, 0.3)'
+                        }`,
+                      }
+                    : {
+                        boxShadow: `0px 4px 20px rgba(170, 180, 190, 0.3)`,
+                        [theme.getColorSchemeSelector('dark')]: {
+                          boxShadow: `0px 4px 20px rgba(0, 0, 0, 0.5)`,
+                        },
+                      }),
+                },
               },
-            },
-          },
+            }),
+          }),
         },
       },
       MuiTableCell: {
         styleOverrides: {
-          root: {
+          root: ({ theme, ownerState }) => ({
             padding: theme.spacing(1, 2),
             borderColor: (theme.vars || theme).palette.divider,
-          },
-          head: {
-            color: (theme.vars || theme).palette.text.primary,
-            fontWeight: 700,
-          },
-          body: {
-            color: (theme.vars || theme).palette.text.secondary,
-          },
+            ...(ownerState.variant === 'head' && {
+              color: (theme.vars || theme).palette.text.primary,
+              fontWeight: 700,
+            }),
+            ...(ownerState.variant === 'body' && {
+              color: (theme.vars || theme).palette.text.secondary,
+            }),
+          }),
         },
       },
       MuiToggleButtonGroup: {
         styleOverrides: {
-          root: {
+          root: ({ theme }) => ({
             ...(!theme.vars
               ? {
                   backgroundColor:
@@ -954,12 +957,12 @@ export function getThemedComponents(theme: Theme): { components: Theme['componen
                     backgroundColor: theme.vars.palette.primaryDark[900],
                   },
                 }),
-          },
+          }),
         },
       },
       MuiToggleButton: {
         styleOverrides: {
-          root: {
+          root: ({ theme }) => ({
             textTransform: 'none',
             fontWeight: 500,
             ...(!theme.vars
@@ -1020,7 +1023,7 @@ export function getThemedComponents(theme: Theme): { components: Theme['componen
                     }),
               },
             },
-          },
+          }),
         },
       },
       MuiTooltip: {
@@ -1032,7 +1035,7 @@ export function getThemedComponents(theme: Theme): { components: Theme['componen
       },
       MuiSwitch: {
         styleOverrides: {
-          root: {
+          root: ({ theme }) => ({
             width: 32,
             height: 20,
             padding: 0,
@@ -1042,8 +1045,8 @@ export function getThemedComponents(theme: Theme): { components: Theme['componen
                 color: '#fff',
               },
             },
-          },
-          switchBase: {
+          }),
+          switchBase: ({ theme }) => ({
             height: 20,
             width: 20,
             padding: 0,
@@ -1051,8 +1054,8 @@ export function getThemedComponents(theme: Theme): { components: Theme['componen
             '&.Mui-checked + .MuiSwitch-track': {
               opacity: 1,
             },
-          },
-          track: {
+          }),
+          track: ({ theme }) => ({
             opacity: 1,
             borderRadius: 32,
             ...(!theme.vars
@@ -1068,7 +1071,7 @@ export function getThemedComponents(theme: Theme): { components: Theme['componen
                     backgroundColor: theme.vars.palette.grey[800],
                   },
                 }),
-          },
+          }),
           thumb: {
             flexShrink: 0,
             width: '14px',
@@ -1078,7 +1081,7 @@ export function getThemedComponents(theme: Theme): { components: Theme['componen
       },
       MuiPaginationItem: {
         styleOverrides: {
-          root: {
+          root: ({ theme }) => ({
             textTransform: 'none',
             fontWeight: 700,
             ...(!theme.vars
@@ -1139,7 +1142,7 @@ export function getThemedComponents(theme: Theme): { components: Theme['componen
                     }),
               },
             },
-          },
+          }),
         },
       },
       MuiCssBaseline: {
