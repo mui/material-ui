@@ -34,13 +34,6 @@ const GOLDs = [
     href: 'https://www.text-em-all.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
   },
   {
-    src: 'https://images.opencollective.com/laststance/daffd6c/logo/40.png',
-    srcSet: 'https://images.opencollective.com/laststance/daffd6c/logo/80.png 2x',
-    name: 'Laststance',
-    description: 'An organization for OSS activity in Tokyo.',
-    href: 'https://www.laststance.io/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
-  },
-  {
     src: 'https://images.opencollective.com/aussiecasinohex/923df37/logo/40.png',
     srcSet: 'https://images.opencollective.com/aussiecasinohex/923df37/logo/80.png 2x',
     name: 'CasinoHEX Australia',
