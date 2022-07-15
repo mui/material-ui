@@ -19,7 +19,7 @@ export default function BrandingProvider({ children, mode: modeProp }: BrandingP
   const theme = React.useMemo(() => {
     const designTokens = getDesignTokens(mode);
     let newTheme = createTheme(designTokens);
-    newTheme = deepmerge(newTheme, getThemedComponents(newTheme));
+    newTheme = deepmerge(newTheme, getThemedComponents());
     return newTheme;
   }, [mode]);
   return (
