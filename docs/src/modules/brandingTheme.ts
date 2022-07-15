@@ -394,9 +394,9 @@ export function getThemedComponents(theme: Theme): { components: Theme['componen
                           : theme.palette.grey[700],
                     }
                   : {
-                      color: theme.vars.palette.grey[400],
+                      color: theme.vars.palette.grey[700],
                       [theme.getColorSchemeSelector('dark')]: {
-                        color: theme.vars.palette.grey[700],
+                        color: theme.vars.palette.grey[400],
                       },
                     }),
               },
