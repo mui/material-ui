@@ -870,26 +870,56 @@ export function getThemedComponents(theme: Theme): { components: Theme['componen
         styleOverrides: {
           root: {
             backgroundImage: 'none',
-            backgroundColor:
-              theme.palette.mode === 'dark' ? theme.palette.primaryDark[900] : '#fff',
+            ...(!theme.vars
+              ? {
+                  backgroundColor:
+                    theme.palette.mode === 'dark' ? theme.palette.primaryDark[900] : '#fff',
+                }
+              : {
+                  backgroundColor: '#fff',
+                  [theme.getColorSchemeSelector('dark')]: {
+                    backgroundColor: theme.vars.palette.primaryDark[900],
+                  },
+                }),
             '&[href]': {
               textDecorationLine: 'none',
             },
           },
           outlined: {
             display: 'block',
-            borderColor:
-              theme.palette.mode === 'dark'
-                ? theme.palette.primaryDark[500]
-                : theme.palette.grey[200],
-            ...(theme.palette.mode === 'dark' && {
-              backgroundColor: theme.palette.primaryDark[700],
-            }),
+            ...(!theme.vars
+              ? {
+                  borderColor:
+                    theme.palette.mode === 'dark'
+                      ? theme.palette.primaryDark[500]
+                      : theme.palette.grey[200],
+                  ...(theme.palette.mode === 'dark' && {
+                    backgroundColor: theme.palette.primaryDark[700],
+                  }),
+                }
+              : {
+                  borderColor: theme.vars.palette.grey[200],
+                  [theme.getColorSchemeSelector('dark')]: {
+                    borderColor: theme.vars.palette.primaryDark[500],
+                    backgroundColor: theme.vars.palette.primaryDark[700],
+                  },
+                }),
             'a&, button&': {
               '&:hover': {
-                boxShadow: `0px 4px 20px ${
-                  theme.palette.mode === 'dark' ? 'rgba(0, 0, 0, 0.5)' : 'rgba(170, 180, 190, 0.3)'
-                }`,
+                ...(!theme.vars
+                  ? {
+                      boxShadow: `0px 4px 20px ${
+                        theme.palette.mode === 'dark'
+                          ? 'rgba(0, 0, 0, 0.5)'
+                          : 'rgba(170, 180, 190, 0.3)'
+                      }`,
+                    }
+                  : {
+                      boxShadow: `0px 4px 20px rgba(170, 180, 190, 0.3)`,
+                      [theme.getColorSchemeSelector('dark')]: {
+                        boxShadow: `0px 4px 20px rgba(0, 0, 0, 0.5)`,
+                      },
+                    }),
               },
             },
           },
