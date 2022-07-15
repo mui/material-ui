@@ -1,41 +1,41 @@
-# Joy UI－Overview
+# Joy UI 概述
 
-<p class="description">Joy UI is a library of beautifully designed React UI components.</p>
+<p class="description">Joy UI 是一个漂亮的 React UI 组件库，支持以下安装方式。</p>
 
-It features foundational components such as the ones you'd find in Material UI and it comes with a beautifully designed default theme so you can rapidly start your own design system. You should see Joy UI as a starting point. It comes with a lot of customization features so you match it to your desired look and feel.
+它具有和 Material UI 类似的基本组件列表，并且进行了重新设计，基于漂亮的默认主题，你可以快速开始设计自己的系统。 你应该把Joy UI看作一个起点。 它带有许多自定义功能，您可以将它与您想要的外观和感觉相匹配。
 
-:::warning **Note:** as of today, Joy UI is in active development, with an alpha version soon to be released.
+:::警告 **意：** 到今天为止，Joy UI 正处于活跃的开发阶段，即将发布一个 alpha 版本。
 
-We're adding new components and features regularly, and you're welcome to contribute!
+我们正在定期添加新组件和功能，欢迎您做出贡献！
 
-Look for the [`package: joy`](https://github.com/mui/material-ui/labels/package%3A%20joy) label on open issues and pull requests in the `mui/material-ui` repository on GitHub to see what other community members are working on, and feel free to submit your own. :::
+在 Github 上搜索 [`package: joy`](https://github.com/mui/material-ui/labels/package%3A%20joy) 标签的 issue，并从 `mui/material-ui` 仓库中拉取请求，看看其他社区成员正在进行哪些工作。 并随时提交您自己的文件。 :::
 
-## Advantages of Joy UI
+## Joy UI 的优势
 
-- **Ship faster:** Joy UI gives you a significant amount of prebuilt components you need to develop web apps, with a sleek and carefully designed look and feel, allowing you to achieve a good-looking result without a dedicated designer.
-- **Extensive customization:** you're encouraged to customize each and every tiny piece of the Joy UI components so they match your desired design.
-- **Accessibility in mind:** Joy UI components are built on top of [MUI Base's unstyled components and low-level hooks](/base/getting-started/overview/), giving you support for several accessibility features out of the box. We do our best to make all components screen reader-friendly, also offering suggestions for optimizing accessibility throughout our documentation.
+- **更快交付：** Joy UI 给了您大量你开发网页应用所需的预定义组件， 圆润而细致的外观感，让你能够在没有设计师的情况下取得很好的结果。
+- **深度自定义：** 你可以自定义 Joy UI 每一个小块组件，使得它们符合你的设计风格。
+- **可访问性：** Joy UI 是建立在 [MUI Base  的无样式基础组件和低级钩子上](/base/getting-started/overview/)的一套新组件，并给予您开箱即用的一些辅助功能支持。 我们尽最大努力使所有组件对屏幕阅读器友好，同时文档中也提供了无障碍访问的建议。
 
-## Joy UI vs. Material UI
+## Joy UI 与 Material UI 对比
 
-Joy UI is meant to feature the same list of components you'd find in Material UI, with similar philosophy around component API and customization extensibility, but without the Material Design look & feel.
+Joy UI 指在构建一套同 Material UI 一致的组件列表，同时在组件 API 和自定义的扩展性方面有类似的原理，视觉效果上和 Material UI 并不一样。
 
-If you ever wanted to use Material UI for the breadth of supported components, carefully written component API, and reliability of a tried and tested library but hesitated because of Material Design, Joy UI is here to solve that for you and act as the best alternative for that.
+如果你希望使用和 Material UI 一样多的组件，一样细致设计的 API，以及深度验证和测试过的库，但又对 Material Design 风格犹豫不决的话， Joy UI 是一个很好的替代器。不要犹豫，选它就对了！
 
-## Principles
+## 原则
 
-### Keep it essential
+### 保持基础性
 
-Joy UI should work with the least amount of effort possible. We're striving for the essential only, both in the component API and design (look & feel). Components should have only what they need to do the job. What is considered essential will be drawn from MUI's experience over the years developing component libraries, as well as from benchmarks of modern API and design guidelines—especially when it comes to developing web apps.
+Joy UI 应该只关心尽可能小的范围。 在组件 API 和设计（外观和感觉）方面，我们只追求基本要素。 上下文请求 组件应该只拥有完成工作所需的东西。 MUI 多年来开发组件库的经验以及现代 API 和设计指南的基准——尤其是在开发 Web 应用程序时，将被认为是必不可少的。
 
-### Looks great out-of-the-box
+### 直接使用也不错
 
-Joy UI needs to be simple yet characteristic. Visual attributes such as scale, size, and density should be consistent across all of the components so they live together nicely. We aim to spark delight with simplicity and attention to detail. You should feel like your UI looks great from the start.
+45 / 5,000 Joy UI 需要简单而有特色。 诸如比例、大小和密度之类的视觉属性应该在所有组件中保持一致，这样它们才能很好地结合在一起。 我们的目标是通过简单和对细节的关注让用户喜爱。 您应该一开始就觉得您的 UI 很棒。
 
-### Encourage creativity
+### 鼓励创新
 
-We're aiming for Joy UI to be entirely customizable, and seen as a great starting point. This is meant to encourage you to extend, change, and revamp how Joy UI looks. Be creative by making it your own.
+我们的目标是让 Joy UI 完全可定制，并作为一个很好的基础。 这是为了鼓励您扩展、更改和改进 Joy UI 的外观。 用您的创意来创造属于您自己的设计。
 
-### Focus on developer experience
+### 聚焦于开发者体验
 
-A great developer experience is not only the quality of the code we ship but also how clear the documentation is, and what learning resources are available for developers. We hope that bundling it all together brings joy.
+出色的开发人员体验不仅在于我们发布的代码质量，还在于文档的清晰程度，以及可供开发人员使用的学习资源。 我们相信所有这些能够让你使用 Joy UI 的过程真正感受到 Joy。
