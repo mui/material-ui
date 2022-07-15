@@ -38,3 +38,14 @@ export interface UseSnackbarParameters {
    */
   resumeHideDuration?: number;
 }
+
+export type UseSnackbarRootSlotProps<TOther = {}> = TOther & UseSnackbarRootSlotOwnProps;
+
+interface UseSnackbarRootSlotOwnProps {
+  onBlur: React.FocusEventHandler;
+  onFocus: React.FocusEventHandler;
+  onMouseEnter: React.MouseEventHandler;
+  onMouseLeave: React.MouseEventHandler;
+  ref?: React.Ref<any>;
+  role: React.AriaRole;
+}

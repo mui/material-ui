@@ -1,6 +1,10 @@
 import * as React from 'react';
 import { unstable_useEventCallback as useEventCallback } from '@mui/utils';
-import { UseSnackbarParameters, SnackbarCloseReason } from './useSnackbar.types';
+import {
+  UseSnackbarParameters,
+  SnackbarCloseReason,
+  UseSnackbarRootSlotProps,
+} from './useSnackbar.types';
 
 /**
  * The basic building block for creating custom snackbar.
@@ -154,7 +158,7 @@ export default function useSnackbar(parameters: UseSnackbarParameters) {
 
   const getRootProps = <TOther extends Record<string, React.EventHandler<any> | undefined> = {}>(
     otherProps: TOther = {} as TOther,
-  ) => ({
+  ): UseSnackbarRootSlotProps<TOther> => ({
     ref,
     // ClickAwayListener adds an `onClick` prop which results in the alert not being announced.
     // See https://github.com/mui/material-ui/issues/29080
