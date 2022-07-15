@@ -33,7 +33,7 @@ export default function useSnackbar(parameters: UseSnackbarParameters) {
      */
     function handleKeyDown(nativeEvent: KeyboardEvent) {
       if (!nativeEvent.defaultPrevented) {
-        // IE11, Edge (prior to using Bink?) use 'Esc'
+        // IE11, Edge (prior to using Blink?) use 'Esc'
         if (nativeEvent.key === 'Escape' || nativeEvent.key === 'Esc') {
           // not calling `preventDefault` since we don't know if people may ignore this event e.g. a permanently open snackbar
           if (onClose) {
