@@ -14,7 +14,17 @@ import InfoOutlined from '@mui/icons-material/InfoOutlined';
 export default function BasicTimeline() {
   return (
     <Fade in timeout={700}>
-      <Card variant="outlined" sx={{ p: 2, display: 'flex', alignItems: 'flex-start' }}>
+      <Card
+        variant="outlined"
+        sx={(theme) => ({
+          p: 2,
+          display: 'flex',
+          alignItems: 'flex-start',
+          [theme.getColorSchemeSelector('dark')]: {
+            bgcolor: 'primaryDark.800',
+          },
+        })}
+      >
         <Box
           sx={(theme) => ({
             p: 0.5,
@@ -61,7 +71,7 @@ export default function BasicTimeline() {
               },
               [`& .${timelineDotClasses.root}`]: {
                 zIndex: 1,
-                padding: 3,
+                padding: '3px',
                 boxShadow: 'none',
                 margin: '15px 0',
                 border: 'none',

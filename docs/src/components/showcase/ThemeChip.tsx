@@ -8,37 +8,42 @@ export default function ThemeChip() {
       direction="row"
       spacing={2}
       sx={(theme) => ({
-        [`& .${chipClasses.label}`]: {
-          marginBottom: '1px',
-          fontSize: '0.875rem',
-          lineHeight: 1.5,
-          fontWeight: 700,
-        },
-        [`& .${chipClasses.filled}`]: {
-          color: 'grey.800',
-          bgcolor: 'grey.200',
-          [theme.getColorSchemeSelector('dark')]: {
-            color: '#fff',
-            bgcolor: 'grey.900',
-          },
-          [`&.${chipClasses.colorPrimary}`]: {
-            bgcolor: 'primary.100',
-            color: 'primary.500',
-          },
-        },
-        [`& .${chipClasses.deleteIcon}`]: {
-          color: 'grey.700',
-          '&:hover': {
+        [`& .${chipClasses.root}`]: {
+          [`&.${chipClasses.filled}`]: {
             color: 'grey.800',
+            bgcolor: 'grey.200',
             [theme.getColorSchemeSelector('dark')]: {
-              color: 'grey.500',
+              color: '#fff',
+              bgcolor: 'grey.700',
+            },
+            [`&.${chipClasses.colorPrimary}`]: {
+              bgcolor: 'primary.100',
+              color: 'primary.500',
             },
           },
-        },
-        [`& .${chipClasses.deleteIconColorPrimary}`]: {
-          color: 'primary.500',
-          '&:hover': {
-            color: 'primary.700',
+          [`& .${chipClasses.label}`]: {
+            marginBottom: '1px',
+            fontSize: '0.875rem',
+            lineHeight: 1.5,
+            fontWeight: 700,
+          },
+          [`& .${chipClasses.deleteIcon}`]: {
+            color: 'grey.500',
+            '&:hover': {
+              color: 'grey.700',
+              [theme.getColorSchemeSelector('dark')]: {
+                color: 'grey.400',
+              },
+            },
+          },
+          [`& .${chipClasses.deleteIconColorPrimary}`]: {
+            color: 'primary.500',
+            '&:hover': {
+              color: 'primary.700',
+              [theme.getColorSchemeSelector('dark')]: {
+                color: 'primary.700',
+              },
+            },
           },
         },
       })}
