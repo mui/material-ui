@@ -6,7 +6,7 @@ export default function ThemeSwitch() {
   const label = { inputProps: { 'aria-label': 'Themed Switch' } };
   return (
     <Box
-      sx={(theme) => ({
+      sx={{
         display: 'flex',
         justifyContent: 'space-between',
         flexGrow: 1,
@@ -19,10 +19,6 @@ export default function ThemeSwitch() {
             color: '#fff',
             [`&.${switchClasses.checked}`]: {
               transform: 'translateX(12px)',
-              color: '#fff',
-              '& + .MuiSwitch-track': {
-                opacity: 1,
-              },
             },
           },
           [`& .${switchClasses.thumb}`]: {
@@ -31,16 +27,8 @@ export default function ThemeSwitch() {
             width: 14,
             boxShadow: 'none',
           },
-          [`& .${switchClasses.track}`]: {
-            borderRadius: 20,
-            opacity: 1,
-            bgcolor: 'grey.400',
-            [theme.getColorSchemeSelector('dark')]: {
-              bgcolor: 'grey.800',
-            },
-          },
         },
-      })}
+      }}
     >
       <Switch defaultChecked {...label} />
       <Switch {...label} />
