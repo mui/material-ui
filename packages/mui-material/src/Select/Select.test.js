@@ -154,7 +154,7 @@ describe('<Select />', () => {
   it('should ignore primitive element', () => {
     render(
       <Select open value={2}>
-        "Zero"
+        {'Zero'}
         <MenuItem value={1}>One</MenuItem>
         <MenuItem value={2}>Two</MenuItem>
       </Select>,
