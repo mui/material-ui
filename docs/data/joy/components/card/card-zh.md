@@ -42,7 +42,7 @@ export default function MyApp() {
 
 ### Overflow
 
-To have content spanning from edge to edge of the card, wrap it with the `CardOverflow` component. It automatically takesd care of the top and bottom edges if rendered as the first or last child of the parent card.
+To have content spanning from edge to edge of the card, wrap it with the `CardOverflow` component. It automatically takes care of the top and bottom edges if rendered as the first or last child of the parent card.
 
 {{"demo": "OverflowCard.js" }}
 
