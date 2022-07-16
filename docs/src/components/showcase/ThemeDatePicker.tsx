@@ -1,100 +1,44 @@
 import * as React from 'react';
-import { ThemeProvider, createTheme, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Fade from '@mui/material/Fade';
+import { iconButtonClasses } from '@mui/material/IconButton';
 import TextField from '@mui/material/TextField';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { StaticDatePicker } from '@mui/x-date-pickers/StaticDatePicker';
 
-const primary = {
-  50: '#F0F7FF',
-  100: '#C2E0FF',
-  200: '#80BFFF',
-  300: '#66B2FF',
-  400: '#3399FF',
-  500: '#007FFF',
-  600: '#0072E5',
-  700: '#0059B2',
-  800: '#004C99',
-  900: '#003A75',
-};
-const primaryDark = {
-  50: '#E2EDF8',
-  100: '#CEE0F3',
-  200: '#91B9E3',
-  300: '#5090D3',
-  400: '#265D97',
-  500: '#1E4976',
-  600: '#173A5E',
-  700: '#132F4C',
-  800: '#001E3C',
-  900: '#0A1929',
-};
-const grey = {
-  50: '#F3F6F9',
-  100: '#EAEEF3',
-  200: '#E5E8EC',
-  300: '#D7DCE1',
-  400: '#BFC7CF',
-  500: '#AAB4BE',
-  600: '#96A3B0',
-  700: '#8796A5',
-  800: '#5A6978',
-  900: '#3D4752',
-};
-
 export default function ThemeDatePicker() {
   const [value, setValue] = React.useState<Date | null>(new Date());
-  /*
-   * Note: this demo use `theme.palette.mode` from `useTheme` to make dark mode works in the documentation only.
-   *
-   * Normally, you would implement dark mode via internal state and/or system preference at the root of the application.
-   * For more detail about toggling dark mode: https://mui.com/customization/palette/#toggling-color-mode
-   */
-  const globalTheme = useTheme();
-  const mode = globalTheme.palette.mode;
-  const theme = React.useMemo(() => {
-    const baseTheme = createTheme({
-      palette: {
-        mode,
-        primary,
-        background: {
-          paper: mode === 'dark' ? primaryDark[800] : '#fff',
-        },
-      },
-      shape: {
-        borderRadius: 10,
-      },
-      spacing: 10,
-      typography: {
-        fontFamily: ['-apple-system', 'BlinkMacSystemFont', 'sans-serif'].join(','),
-        button: {
-          textTransform: 'initial',
-        },
-      },
-    });
-    return createTheme(baseTheme, {
-      components: {
-        MuiButtonBase: {
-          defaultProps: {
-            disableTouchRipple: true,
-          },
-        },
-        MuiIconButton: {
-          styleOverrides: {
-            root: {
-              color: mode === 'dark' ? primary[300] : primary[500],
+  return (
+    <LocalizationProvider dateAdapter={AdapterDateFns}>
+      <Fade in timeout={700}>
+        <Box
+          sx={(theme) => ({
+            '& > div': {
+              border: '1px solid',
+              borderColor: 'grey.200',
+              borderRadius: 1,
+              [theme.getColorSchemeSelector('dark')]: {
+                borderColor: 'primaryDark.500',
+              },
             },
-          },
-        },
-        MuiCalendarPicker: {
-          styleOverrides: {
-            root: {
+            '& > div > div > div': {
+              width: '100%',
+            },
+            [`& .${iconButtonClasses.root}`]: {
+              color: 'primary.500',
+              [theme.getColorSchemeSelector('dark')]: {
+                color: 'primary.300',
+              },
+            },
+            '& .MuiCalendarPicker-root': {
               width: '100%',
               '& .MuiTypography-caption': {
-                color: mode === 'dark' ? grey[600] : grey[700],
+                color: 'grey.700',
                 height: 24,
+                [theme.getColorSchemeSelector('dark')]: {
+                  color: 'grey.600',
+                },
               },
               '[role="presentation"]': {
                 '& .MuiIconButton-root': {
@@ -104,61 +48,42 @@ export default function ThemeDatePicker() {
               '& .PrivatePickersSlideTransition-root': {
                 minHeight: 180,
               },
+              '& .PrivatePickersYear-yearButton': {
+                fontSize: '1rem',
+              },
               '& [role="row"]': {
                 justifyContent: 'space-around',
               },
               '& .MuiCalendarPicker-viewTransitionContainer > div > div': {
                 justifyContent: 'space-around',
               },
-            },
-          },
-        },
-        MuiPickersDay: {
-          styleOverrides: {
-            root: {
-              width: 24,
-              height: 24,
-              color: mode === 'dark' ? primary[200] : grey[800],
-              fontWeight: 500,
-            },
-            today: {
-              '&:not(.Mui-selected)': {
-                borderColor: baseTheme.palette.primary.main,
+              '& .MuiPickersDay-root': {
+                width: 24,
+                height: 24,
+                color: 'grey.800',
+                [theme.getColorSchemeSelector('dark')]: {
+                  color: 'primary.200',
+                },
+                fontWeight: 500,
+                '& .MuiPickersDay-today': {
+                  '&:not(.Mui-selected)': {
+                    borderColor: 'primary.main',
+                  },
+                },
               },
             },
-          },
-        },
-      },
-    });
-  }, [mode]);
-
-  return (
-    <ThemeProvider theme={theme}>
-      <LocalizationProvider dateAdapter={AdapterDateFns}>
-        <Fade in timeout={700}>
-          <Box
-            sx={{
-              '& > div': {
-                border: '1px solid',
-                borderColor: mode === 'dark' ? primaryDark[500] : grey[200],
-                borderRadius: 1,
-              },
-              '& > div > div > div': {
-                width: '100%',
-              },
+          })}
+        >
+          <StaticDatePicker
+            displayStaticWrapperAs="desktop"
+            value={value}
+            onChange={(newValue) => {
+              setValue(newValue);
             }}
-          >
-            <StaticDatePicker
-              displayStaticWrapperAs="desktop"
-              value={value}
-              onChange={(newValue) => {
-                setValue(newValue);
-              }}
-              renderInput={(params) => <TextField {...params} />}
-            />
-          </Box>
-        </Fade>
-      </LocalizationProvider>
-    </ThemeProvider>
+            renderInput={(params) => <TextField {...params} />}
+          />
+        </Box>
+      </Fade>
+    </LocalizationProvider>
   );
 }
