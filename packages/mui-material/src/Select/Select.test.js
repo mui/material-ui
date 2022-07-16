@@ -115,6 +115,42 @@ describe('<Select />', () => {
     );
   });
 
+  it('should support conditional rendering with boolean', () => {
+    render(
+      <Select open value={2}>
+        {true && <MenuItem value={1}>One</MenuItem>}
+        <MenuItem value={2}>Two</MenuItem>
+      </Select>,
+    );
+  });
+
+  it('should support conditional rendering with undefined', () => {
+    render(
+      <Select open value={2}>
+        {undefined && <MenuItem value={1}>One</MenuItem>}
+        <MenuItem value={2}>Two</MenuItem>
+      </Select>,
+    );
+  });
+
+  it('should support conditional rendering with null', () => {
+    render(
+      <Select open value={2}>
+        {null && <MenuItem value={1}>One</MenuItem>}
+        <MenuItem value={2}>Two</MenuItem>
+      </Select>,
+    );
+  });
+
+  it('should support conditional rendering with false', () => {
+    render(
+      <Select open value={2}>
+        {false && <MenuItem value={1}>One</MenuItem>}
+        <MenuItem value={2}>Two</MenuItem>
+      </Select>,
+    );
+  });
+
   it('should have an input with [aria-hidden] by default', () => {
     const { container } = render(
       <Select value="10">
