@@ -151,6 +151,16 @@ describe('<Select />', () => {
     );
   });
 
+  it('should ignore primitive element', () => {
+    render(
+      <Select open value={2}>
+        "Zero"
+        <MenuItem value={1}>One</MenuItem>
+        <MenuItem value={2}>Two</MenuItem>
+      </Select>,
+    );
+  });
+
   it('should have an input with [aria-hidden] by default', () => {
     const { container } = render(
       <Select value="10">
