@@ -31,6 +31,12 @@ export default function ThemeDatePicker() {
                 color: 'primary.300',
               },
             },
+            '& .MuiPickerStaticWrapper-root': {
+              bgcolor: '#fff',
+              [theme.getColorSchemeSelector('dark')]: {
+                bgcolor: 'primaryDark.800',
+              },
+            },
             '& .MuiCalendarPicker-root': {
               width: '100%',
               '& .MuiTypography-caption': {
