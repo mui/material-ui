@@ -2,7 +2,7 @@
 
 <p class="description">O tema fornece um conjunto de tipos de tamanhos que funcionam bem juntos e também com a grade de leiaute.</p>
 
-## Família da fonte
+## Fonte
 
 Você pode alterar a família de fontes com a propriedade `theme.typography.fontFamily`.
 
@@ -149,9 +149,7 @@ Para ser feito: [#15251](https://github.com/mui/material-ui/issues/15251).
 
 Você pode querer alterar o tamanho da fonte padrão do elemento `<html>`. Por exemplo, quando usando a [simplificação de 10px](https://www.sitepoint.com/understanding-and-using-rem-units-in-css/).
 
-:::warning
-⚠️ Changing the font size can harm accessibility ♿️. Most browsers agreed on the default size of 16px, but the user can change it. For instance, someone with an impaired vision could have set their browser's default font size to something larger.
-:::
+Alterar o tamanho da fonte pode prejudicar a acessibilidade. Most browsers agreed on the default size of 16px, but the user can change it. Por exemplo, alguém com deficiência visual pode ter definido o tamanho da fonte padrão do navegador para algo maior. :::
 
 The `theme.typography.htmlFontSize` property is provided for this use case, which tells MUI what the font-size on the `<html>` element is. This is used to adjust the `rem` value so the calculated font-size always match the specification.
 
@@ -212,11 +210,11 @@ const theme = createTheme({
 
 {{"demo": "TypographyVariants.js"}}
 
-## Adding & disabling variants
+## Adicionando & desativando variantes
 
-In addition to using the default typography variants, you can add custom ones, or disable any you don't need. Here is what you need to do:
+Além de usar as variantes de tipografia padrão, você pode adicionar variantes personalizadas ou desabilitar as que não precisar. O que você precisa fazer:
 
-**Step 1. Update the theme's typography object**
+**Passo 1. Atualizar o tema da tipografia de um objeto**
 
 ```js
 const theme = createTheme({
@@ -230,10 +228,10 @@ const theme = createTheme({
 });
 ```
 
-**Step 2. Update the necessary typings (if you are using TypeScript)**
+**Passo 2. Atualize as tipagens necessárias (se você estiver usando TypeScript)**
 
 :::info
-If you aren't using TypeScript you should skip this step.
+Se você não estiver usando o TypeScript, pule esta etapa.
 :::
 
 You need to make sure that the typings for the theme's `typography` variants and the `Typography`'s `variant` prop reflects the new set of variants.
@@ -261,7 +259,7 @@ declare module '@material-ui/core/Typography' {
 }
 ```
 
-**Step 3. You can now use the new variant**
+**Passo 3. Agora você pode usar a nova variante criada**
 
 {{"demo": "TypographyCustomVariant.js", "hideToolbar": true}}
 
@@ -274,4 +272,4 @@ declare module '@material-ui/core/Typography' {
 
 ## Valores padrão
 
-You can explore the default values of the typography using [the theme explorer](/material-ui/customization/default-theme/?expand-path=$.typography) or by opening the dev tools console on this page (`window.theme.typography`).
+Você pode explorar os valores padrão da tipografia usando [o explorador de temas](/material-ui/customization/default-theme/?expand-path=$.typography) ou abrindo o console de ferramentas de desenvolvimento nesta página (`window.theme.typography`).
