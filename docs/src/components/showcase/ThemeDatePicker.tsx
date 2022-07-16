@@ -66,12 +66,14 @@ export default function ThemeDatePicker() {
               '& .MuiPickersDay-root': {
                 width: 24,
                 height: 24,
-                color: 'grey.800',
+                fontWeight: 500,
                 [theme.getColorSchemeSelector('dark')]: {
                   color: 'primary.200',
                 },
-                fontWeight: 500,
-                '& .MuiPickersDay-today': {
+                '&.Mui-selected': {
+                  color: '#fff',
+                },
+                '&.MuiPickersDay-today': {
                   '&:not(.Mui-selected)': {
                     borderColor: 'primary.main',
                   },
