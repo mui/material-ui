@@ -1,196 +1,111 @@
 import * as React from 'react';
-import { ThemeProvider, createTheme, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import Fade from '@mui/material/Fade';
 import Typography from '@mui/material/Typography';
 import Timeline from '@mui/lab/Timeline';
-import TimelineItem from '@mui/lab/TimelineItem';
+import TimelineItem, { timelineItemClasses } from '@mui/lab/TimelineItem';
 import TimelineSeparator from '@mui/lab/TimelineSeparator';
-import TimelineConnector from '@mui/lab/TimelineConnector';
-import TimelineContent from '@mui/lab/TimelineContent';
-import TimelineDot from '@mui/lab/TimelineDot';
+import TimelineConnector, { timelineConnectorClasses } from '@mui/lab/TimelineConnector';
+import TimelineContent, { timelineContentClasses } from '@mui/lab/TimelineContent';
+import TimelineDot, { timelineDotClasses } from '@mui/lab/TimelineDot';
 import InfoOutlined from '@mui/icons-material/InfoOutlined';
 
-const primary = {
-  50: '#F0F7FF',
-  100: '#C2E0FF',
-  200: '#80BFFF',
-  300: '#66B2FF',
-  400: '#3399FF',
-  500: '#007FFF',
-  600: '#0072E5',
-  700: '#0059B2',
-  800: '#004C99',
-  900: '#003A75',
-  1000: '#132F4C',
-};
-const primaryDark = {
-  50: '#E2EDF8',
-  100: '#CEE0F3',
-  200: '#91B9E3',
-  300: '#5090D3',
-  400: '#265D97',
-  500: '#1E4976',
-  600: '#173A5E',
-  700: '#132F4C',
-  800: '#001E3C',
-  900: '#0A1929',
-};
-const grey = {
-  50: '#F3F6F9',
-  100: '#EAEEF3',
-  200: '#E5E8EC',
-  300: '#D7DCE1',
-  400: '#BFC7CF',
-  500: '#AAB4BE',
-  600: '#96A3B0',
-  700: '#8796A5',
-  800: '#5A6978',
-  900: '#3D4752',
-};
-
 export default function BasicTimeline() {
-  /*
-   * Note: this demo use `theme.palette.mode` from `useTheme` to make dark mode works in the documentation only.
-   *
-   * Normally, you would implement dark mode via internal state and/or system preference at the root of the application.
-   * For more detail about toggling dark mode: https://mui.com/customization/palette/#toggling-color-mode
-   */
-  const globalTheme = useTheme();
-  const mode = globalTheme.palette.mode;
-  const theme = React.useMemo(
-    () =>
-      createTheme({
-        palette: {
-          mode,
-          primary,
-          ...(mode === 'light' && {
-            text: {
-              primary: grey[900],
-              secondary: grey[800],
+  return (
+    <Fade in timeout={700}>
+      <Card variant="outlined" sx={{ p: 2, display: 'flex', alignItems: 'flex-start' }}>
+        <Box
+          sx={(theme) => ({
+            p: 0.5,
+            borderRadius: 0.5,
+            minWidth: 28,
+            typography: 'body2',
+            textAlign: 'center',
+            bgcolor: 'primary.50',
+            color: 'primary.main',
+            [theme.getColorSchemeSelector('dark')]: {
+              bgcolor: 'primary.700',
+              color: '#fff',
             },
-          }),
-          ...(mode === 'dark' && {
-            text: {
-              primary: '#fff',
-              secondary: grey[500],
-            },
-          }),
-          divider: mode === 'dark' ? primaryDark[500] : grey[200],
-          background: {
-            paper: mode === 'dark' ? primaryDark[800] : '#fff',
-          },
-        },
-        shape: {
-          borderRadius: 10,
-        },
-        spacing: 10,
-        typography: {
-          fontFamily: ['-apple-system', 'BlinkMacSystemFont', 'sans-serif'].join(','),
-          fontWeightRegular: 500,
-        },
-        components: {
-          // @ts-ignore
-          MuiTimelineItem: {
-            styleOverrides: {
-              root: {
+          })}
+        >
+          1
+        </Box>
+        <Box sx={{ ml: 2, flex: 1 }}>
+          <Box sx={{ display: 'flex' }}>
+            <Typography
+              variant="body2"
+              sx={(theme) => ({
+                mb: 1,
+                color: 'text.secondary',
+                [theme.getColorSchemeSelector('dark')]: {
+                  color: 'grey.400',
+                },
+              })}
+            >
+              Use the sx prop to add these properties:
+            </Typography>
+            <InfoOutlined fontSize="small" sx={{ ml: 'auto', color: 'grey.500' }} />
+          </Box>
+          <Timeline
+            sx={(theme) => ({
+              pl: 0,
+              py: 0,
+              my: 0,
+              [`& .${timelineItemClasses.root}`]: {
                 minHeight: 36,
+                '&:before': {
+                  display: 'none',
+                },
               },
-            },
-          },
-          MuiTimelineDot: {
-            styleOverrides: {
-              root: {
+              [`& .${timelineDotClasses.root}`]: {
                 zIndex: 1,
                 padding: 3,
                 boxShadow: 'none',
                 margin: '15px 0',
                 border: 'none',
-                backgroundColor: primary[500],
+                bgcolor: 'primary.500',
               },
-            },
-          },
-          MuiTimelineConnector: {
-            styleOverrides: {
-              root: {
+              [`& .${timelineConnectorClasses.root}`]: {
                 margin: '-15px 0',
-                backgroundColor: mode === 'dark' ? primaryDark[700] : primary[50],
+                bgcolor: 'primary.50',
+                [theme.getColorSchemeSelector('dark')]: {
+                  bgcolor: 'primaryDark.700',
+                },
               },
-            },
-          },
-          MuiTimelineContent: {
-            styleOverrides: {
-              root: {
+              [`& .${timelineContentClasses.root}`]: {
                 fontSize: '0.875rem',
-                color: mode === 'dark' ? grey[100] : grey[800],
+                color: 'grey.800',
+                [theme.getColorSchemeSelector('dark')]: {
+                  color: 'grey.100',
+                },
               },
-            },
-          },
-        },
-      }),
-    [mode],
-  );
-  return (
-    <ThemeProvider theme={theme}>
-      <Fade in timeout={700}>
-        <Card variant="outlined" sx={{ p: 2, display: 'flex', alignItems: 'flex-start' }}>
-          <Box
-            sx={{
-              p: 0.5,
-              borderRadius: 0.5,
-              minWidth: 28,
-              textAlign: 'center',
-              bgcolor: mode === 'dark' ? 'primary.700' : 'primary.50',
-              color: mode === 'dark' ? '#fff' : 'primary.main',
-              typography: 'body2',
-            }}
+            })}
           >
-            1
-          </Box>
-          <Box sx={{ ml: 2, flex: 1 }}>
-            <Box sx={{ display: 'flex' }}>
-              <Typography
-                color={mode === 'dark' ? 'grey.400' : 'text.secondary'}
-                variant="body2"
-                sx={{ mb: 1 }}
-              >
-                Use the sx prop to add these properties:
-              </Typography>
-              <InfoOutlined fontSize="small" sx={{ ml: 'auto', color: 'grey.500' }} />
-            </Box>
-            <Timeline
-              sx={{
-                pl: 0,
-                py: 0,
-                my: 0,
-                '& .MuiTimelineItem-root:before': { display: 'none' },
-              }}
-            >
-              <TimelineItem>
-                <TimelineSeparator>
-                  <TimelineDot />
-                  <TimelineConnector />
-                </TimelineSeparator>
-                <TimelineContent>Margin Top</TimelineContent>
-              </TimelineItem>
-              <TimelineItem>
-                <TimelineSeparator>
-                  <TimelineDot />
-                  <TimelineConnector />
-                </TimelineSeparator>
-                <TimelineContent>Padding Bottom</TimelineContent>
-              </TimelineItem>
-              <TimelineItem>
-                <TimelineSeparator>
-                  <TimelineDot />
-                </TimelineSeparator>
-                <TimelineContent>Flexbox</TimelineContent>
-              </TimelineItem>
-            </Timeline>
-          </Box>
-        </Card>
-      </Fade>
-    </ThemeProvider>
+            <TimelineItem>
+              <TimelineSeparator>
+                <TimelineDot />
+                <TimelineConnector />
+              </TimelineSeparator>
+              <TimelineContent>Margin Top</TimelineContent>
+            </TimelineItem>
+            <TimelineItem>
+              <TimelineSeparator>
+                <TimelineDot />
+                <TimelineConnector />
+              </TimelineSeparator>
+              <TimelineContent>Padding Bottom</TimelineContent>
+            </TimelineItem>
+            <TimelineItem>
+              <TimelineSeparator>
+                <TimelineDot />
+              </TimelineSeparator>
+              <TimelineContent>Flexbox</TimelineContent>
+            </TimelineItem>
+          </Timeline>
+        </Box>
+      </Card>
+    </Fade>
   );
 }
