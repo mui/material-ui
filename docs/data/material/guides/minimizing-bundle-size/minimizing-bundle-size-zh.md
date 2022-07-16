@@ -60,7 +60,7 @@ import TabIndicator from '@mui/core/Tabs/TabIndicator';
 //                                               ^^^^^^^^^^^^ 第三级
 ```
 
-如果您正在使用 `eslint`，您可以通过 [`no-restricted-imports` 规则](https://eslint.org/docs/rules/no-restricted-imports)拦截有问题的导入。 以下的 `.eslintrc` 配置将突出一些有问题的从 `@mui` 包的导入:
+If you're using `eslint` you can catch problematic imports with the [`no-restricted-imports` rule](https://eslint.org/docs/latest/rules/no-restricted-imports). 以下的 `.eslintrc` 配置将突出一些有问题的从 `@mui` 包的导入:
 
 ```json
 {
