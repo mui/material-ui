@@ -96,10 +96,11 @@ Link a style sheet with a function component using the **hook** pattern.
 ### Returns
 
 `hook`: A hook. This hook can be used in a function component. The documentation often calls this returned hook `useStyles`.
+
 #### `useStyles([props]) => classes`
-* It accepts one argument: the props that will be used for "interpolation" in
-the style sheet.
-* It returns a dictionary object containing the generated class names. The keys of this object match the keys of the style rules provided to `makeStyles`.
+
+- It accepts one argument: the props that will be used for "interpolation" in the style sheet.
+- It returns a dictionary object containing the generated class names. The keys of this object match the keys of the style rules provided to `makeStyles`.
 
 When using the function syntax of `styles` to access the `Theme` object, the hook must be called in a component which is inside your app's [`ThemeProvider`](#themeprovider).
 
