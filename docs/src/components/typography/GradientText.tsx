@@ -13,7 +13,8 @@ const GradientText = styled('span')<{
     : {
         background: `linear-gradient(to right, ${theme.vars.palette[color].main}, ${theme.vars.palette[color][700]})`,
         [theme.getColorSchemeSelector('dark')]: {
-          backgorund: theme.vars.palette.primary.main,
+          background: theme.vars.palette.primary.main,
+          WebkitBackgroundClip: 'text',
         },
       }),
   WebkitBackgroundClip: 'text',
