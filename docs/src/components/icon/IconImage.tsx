@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useTheme, styled, Theme } from '@mui/material/styles';
 import { SxProps } from '@mui/system';
+import Box from '@mui/material/Box';
 import Tooltip from '@mui/material/Tooltip';
 
 export type IconImageProps = {
@@ -44,6 +45,10 @@ const Img = styled('img')({ display: 'inline-block', verticalAlign: 'bottom' });
 export default function IconImage(props: IconImageProps) {
   const { name, title, ...other } = props;
   const theme = useTheme();
+  const [mounted, setMounted] = React.useState(false);
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
   let width = '';
   let height = '';
   let category = '';
@@ -87,6 +92,9 @@ export default function IconImage(props: IconImageProps) {
     ].indexOf(name) !== -1
   ) {
     category = 'companies/';
+  }
+  if (!theme.palette.mode && !mounted) {
+    return <Box sx={{ width, height }} />;
   }
   const element = (
     <Img

@@ -26,8 +26,19 @@ const Anchor = styled('a')<{ component?: React.ElementType; noLinkStyle?: boolea
     borderRadius: theme.spacing(1),
     transition: theme.transitions.create('background'),
     '&:hover, &:focus-visible': {
-      backgroundColor:
-        theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : theme.palette.grey[100],
+      ...(!theme.vars
+        ? {
+            backgroundColor:
+              theme.palette.mode === 'dark'
+                ? theme.palette.primaryDark[700]
+                : theme.palette.grey[100],
+          }
+        : {
+            backgroundColor: theme.vars.palette.grey[100],
+            [theme.getColorSchemeSelector('dark')]: {
+              backgroundColor: theme.vars.palette.primaryDark[700],
+            },
+          }),
       // Reset on touch devices, it doesn't add specificity
       '@media (hover: none)': {
         backgroundColor: 'transparent',
@@ -133,17 +144,17 @@ export default function HeaderNavDropdown() {
       >
         <Collapse
           in={open}
-          sx={{
+          sx={(theme) => ({
             position: 'fixed',
             top: 56,
             left: 0,
             right: 0,
-            boxShadow: (theme) =>
-              `0px 4px 20px ${
-                theme.palette.mode === 'dark' ? 'rgba(0, 0, 0, 0.5)' : 'rgba(170, 180, 190, 0.3)'
-              }`,
+            boxShadow: `0px 4px 20px rgba(170, 180, 190, 0.3)`,
+            [theme.getColorSchemeSelector('dark')]: {
+              boxShadow: `0px 4px 20px rgba(0, 0, 0, 0.5)`,
+            },
             bgcolor: 'background.paper',
-          }}
+          })}
         >
           <Box
             sx={{
@@ -153,7 +164,20 @@ export default function HeaderNavDropdown() {
               overflow: 'auto',
             }}
           >
-            <UList>
+            <UList
+              sx={(theme) => ({
+                '& ul': {
+                  borderLeft: '1px solid',
+                  borderColor: 'grey.100',
+                  [theme.getColorSchemeSelector('dark')]: {
+                    borderColor: 'primaryDark.700',
+                  },
+                  pl: 1,
+                  pb: 1,
+                  ml: 1,
+                },
+              })}
+            >
               <li>
                 <Anchor
                   as="button"
@@ -170,16 +194,7 @@ export default function HeaderNavDropdown() {
                   />
                 </Anchor>
                 <Collapse in={productsOpen}>
-                  <UList
-                    sx={{
-                      borderLeft: '1px solid',
-                      borderColor: (theme) =>
-                        theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.100',
-                      pl: 1,
-                      pb: 1,
-                      ml: 1,
-                    }}
-                  >
+                  <UList>
                     {PRODUCTS.map((item) => (
                       <li key={item.name}>
                         <Anchor
@@ -214,16 +229,7 @@ export default function HeaderNavDropdown() {
                   />
                 </Anchor>
                 <Collapse in={docsOpen}>
-                  <UList
-                    sx={{
-                      borderLeft: '1px solid',
-                      borderColor: (theme) =>
-                        theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.100',
-                      pl: 1,
-                      pb: 1,
-                      ml: 1,
-                    }}
-                  >
+                  <UList>
                     {DOCS.map((item) => (
                       <li key={item.name}>
                         <Anchor
