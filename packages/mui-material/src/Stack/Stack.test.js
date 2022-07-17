@@ -50,6 +50,7 @@ describe('<Stack />', () => {
         },
       },
       display: 'flex',
+      flexDirection: 'column',
     });
   });
 
@@ -78,6 +79,7 @@ describe('<Stack />', () => {
         flexDirection: 'row',
       },
       display: 'flex',
+      flexDirection: 'column',
     });
   });
 
@@ -184,6 +186,7 @@ describe('<Stack />', () => {
         },
       },
       display: 'flex',
+      flexDirection: 'column',
     });
   });
 
@@ -219,6 +222,24 @@ describe('<Stack />', () => {
           },
         },
         display: 'flex',
+        flexDirection: 'column',
+      });
+    });
+
+    it('should generate correct direction even though breakpoints are not fully provided', () => {
+      expect(
+        style({
+          ownerState: {
+            direction: { lg: 'row' },
+          },
+          theme,
+        }),
+      ).to.deep.equal({
+        [`@media (min-width:${defaultTheme.breakpoints.values.lg}px)`]: {
+          flexDirection: 'row',
+        },
+        display: 'flex',
+        flexDirection: 'column',
       });
     });
   });
