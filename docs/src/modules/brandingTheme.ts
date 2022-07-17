@@ -1,7 +1,20 @@
 import { deepmerge } from '@mui/utils';
+import { CSSObject } from '@mui/system';
 import type {} from '@mui/material/themeCssVarsAugmentation';
 import ArrowDropDownRounded from '@mui/icons-material/ArrowDropDownRounded';
-import { createTheme, ThemeOptions, alpha } from '@mui/material/styles';
+import { createTheme, ThemeOptions, Theme, alpha } from '@mui/material/styles';
+
+interface GetStyle {
+  (
+    scheme: Record<string, Partial<Record<'default' | 'light' | 'dark', string | number>>>,
+  ): CSSObject;
+}
+
+declare module '@mui/material/styles' {
+  interface Theme {
+    getStyle: GetStyle;
+  }
+}
 
 declare module '@mui/material/styles/createPalette' {
   interface ColorRange {
@@ -283,6 +296,27 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
         scrollMarginTop: 'calc(var(--MuiDocs-header-height) + 32px)',
       },
     },
+    getStyle(scheme: Parameters<GetStyle>[0]) {
+      const style: CSSObject = {};
+      Object.entries(scheme).forEach(([cssProp, value]) => {
+        if ((this as Theme).vars) {
+          style[cssProp] = value.default!;
+          const darkSelector = (this as Theme).getColorSchemeSelector('dark');
+          if (!style[darkSelector]) {
+            style[darkSelector] = {};
+          }
+          if (value.dark) {
+            (style[darkSelector] as CSSObject)[cssProp] = value.dark;
+          }
+        } else {
+          style[cssProp] = value.default;
+          if (value.dark) {
+            style[cssProp] = value.dark;
+          }
+        }
+      });
+      return style;
+    },
   } as ThemeOptions);
 
 export function getThemedComponents(): ThemeOptions {
@@ -321,31 +355,20 @@ export function getThemedComponents(): ThemeOptions {
             props: { variant: 'code' },
             style: ({ theme }) => ({
               border: '1px solid',
-              ...(!theme.vars
-                ? {
-                    color:
-                      theme.palette.mode === 'dark'
-                        ? theme.palette.grey[400]
-                        : theme.palette.grey[800],
-                    borderColor:
-                      theme.palette.mode === 'dark'
-                        ? theme.palette.primaryDark[400]
-                        : theme.palette.grey[300],
-                    backgroundColor:
-                      theme.palette.mode === 'dark'
-                        ? theme.palette.primaryDark[700]
-                        : theme.palette.grey[50],
-                  }
-                : {
-                    color: theme.vars.palette.grey[800],
-                    borderColor: theme.vars.palette.grey[300],
-                    backgroundColor: theme.vars.palette.grey[50],
-                    [theme.getColorSchemeSelector('dark')]: {
-                      color: theme.vars.palette.grey[400],
-                      borderColor: theme.vars.palette.primaryDark[300],
-                      backgroundColor: theme.vars.palette.primaryDark[700],
-                    },
-                  }),
+              ...theme.getStyle({
+                color: {
+                  default: (theme.vars || theme).palette.grey[800],
+                  dark: (theme.vars || theme).palette.grey[400],
+                },
+                borderColor: {
+                  default: (theme.vars || theme).palette.grey[300],
+                  dark: (theme.vars || theme).palette.primaryDark[400],
+                },
+                backgroundColor: {
+                  default: (theme.vars || theme).palette.grey[50],
+                  dark: (theme.vars || theme).palette.primaryDark[700],
+                },
+              }),
               fontFamily: theme.typography.fontFamilyCode,
               fontWeight: 400,
               fontSize: defaultTheme.typography.pxToRem(13), // 14px
@@ -354,31 +377,18 @@ export function getThemedComponents(): ThemeOptions {
               WebkitFontSmoothing: 'subpixel-antialiased',
               '&:hover, &.Mui-focusVisible': {
                 borderColor: (theme.vars || theme).palette.primary.main,
-                ...(!theme.vars
-                  ? {
-                      backgroundColor:
-                        theme.palette.mode === 'dark'
-                          ? theme.palette.primaryDark[600]
-                          : theme.palette.primary[50],
-                      '& .MuiButton-endIcon': {
-                        color:
-                          theme.palette.mode === 'dark'
-                            ? theme.palette.primary[300]
-                            : theme.palette.primary.main,
-                      },
-                    }
-                  : {
-                      backgroundColor: theme.vars.palette.primary[50],
-                      [theme.getColorSchemeSelector('dark')]: {
-                        backgroundColor: theme.vars.palette.primaryDark[600],
-                      },
-                      '& .MuiButton-endIcon': {
-                        color: theme.vars.palette.primary.main,
-                        [theme.getColorSchemeSelector('dark')]: {
-                          color: theme.vars.palette.primary[300],
-                        },
-                      },
-                    }),
+                ...theme.getStyle({
+                  backgroundColor: {
+                    default: (theme.vars || theme).palette.grey[50],
+                    dark: (theme.vars || theme).palette.primaryDark[600],
+                  },
+                }),
+                '& .MuiButton-endIcon': theme.getStyle({
+                  color: {
+                    default: (theme.vars || theme).palette.primary.main,
+                    dark: (theme.vars || theme).palette.primary[300],
+                  },
+                }),
               },
               '& .MuiButton-startIcon': {
                 color: (theme.vars || theme).palette.grey[400],
