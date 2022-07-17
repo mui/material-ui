@@ -107,6 +107,7 @@ const pages = [
           { pathname: '/material-ui/react-box' },
           { pathname: '/material-ui/react-container' },
           { pathname: '/material-ui/react-grid' },
+          { pathname: '/material-ui/react-grid2', title: 'Grid v2', newFeature: true },
           { pathname: '/material-ui/react-stack' },
           { pathname: '/material-ui/react-image-list' },
           { pathname: '/material-ui/react-hidden' },
