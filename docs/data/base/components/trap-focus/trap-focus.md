@@ -84,3 +84,10 @@ When auto focus is disabled—as in the demo below—the component only traps th
 The following demo uses the [`Portal`](/base/react-portal/) component to render a subset of the `TrapFocus` children into a new "subtree" outside of the current DOM hierarchy, so they are no longer part of the focus loop:
 
 {{"demo": "PortalTrapFocus.js"}}
+
+## Using a toggle inside the trap
+
+The most common use case for the `TrapFocus` component is to maintain focus within a [`Modal`](/base/react-modal/) component which is entire separete from the element which would open the modal. However, there are use cases where you may want to have a toggle button for the `open` prop of the `TrapFocus` component which is stored inside that component.
+
+{{"demo": "ContainedToggleTrappedFocus.js"}}
+
