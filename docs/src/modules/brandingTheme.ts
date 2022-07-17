@@ -766,17 +766,6 @@ export function getThemedComponents(): ThemeOptions {
               }),
             }),
           }),
-          deleteIcon: ({ theme }) => ({
-            ...(!theme.vars && {
-              color: theme.palette.mode === 'dark' ? '#fff' : theme.palette.primary[700],
-              '&:hover': {
-                color:
-                  theme.palette.mode === 'dark'
-                    ? theme.palette.grey[100]
-                    : theme.palette.primary[900],
-              },
-            }),
-          }),
         },
       },
       MuiList: {

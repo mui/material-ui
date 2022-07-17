@@ -55,7 +55,7 @@ export default function ThemeDatePicker() {
                 minHeight: 180,
               },
               '& .PrivatePickersYear-yearButton': {
-                fontSize: '1rem',
+                fontSize: '0.875rem',
               },
               '& [role="row"]': {
                 justifyContent: 'space-around',
