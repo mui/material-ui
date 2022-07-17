@@ -71,12 +71,13 @@ const faqData = [
         <strong>and indirectly</strong>.
         <br />
         <br />
-        We are including indirect developers in the pricing model
-        to help reduce the creation of silos in your engineering organization. If only direct
-        developers needed a license, then only a handful of engineers would be allowed to use MUI X.
+        We are including indirect developers in the pricing model to help reduce the creation of
+        silos in your engineering organization. If only direct developers needed a license, then
+        only a handful of engineers would be allowed to use MUI X.
         <br />
         <br />
-        In exchange, the price point per developer is lower than it would be if only direct developers needed a seat.
+        In exchange, the price point per developer is lower than it would be if only direct
+        developers needed a seat.
       </React.Fragment>
     ),
   },
