@@ -79,6 +79,17 @@ export const style = ({ ownerState, theme }) => {
       base,
     });
 
+    if (typeof directionValues === 'object') {
+      Object.keys(directionValues).forEach((breakpoint, index, breakpoints) => {
+        const directionValue = directionValues[breakpoint];
+        if (!directionValue) {
+          const previousDirectionValue =
+            index > 0 ? directionValues[breakpoints[index - 1]] : 'column';
+          directionValues[breakpoint] = previousDirectionValue;
+        }
+      });
+    }
+
     const styleFromPropValue = (propValue, breakpoint) => {
       return {
         '& > :not(style) + :not(style)': {
@@ -91,6 +102,7 @@ export const style = ({ ownerState, theme }) => {
     };
     styles = deepmerge(styles, handleBreakpoints({ theme }, spacingValues, styleFromPropValue));
   }
+  console.log(styles);
 
   return styles;
 };
