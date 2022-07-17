@@ -18,7 +18,16 @@ const Anchor = styled('a')<{ component?: React.ElementType; noLinkStyle?: boolea
     border: 'none',
     width: '100%',
     backgroundColor: 'transparent',
-    color: theme.palette.mode === 'dark' ? '#fff' : theme.palette.text.secondary,
+    ...(!theme.vars
+      ? {
+          color: theme.palette.mode === 'dark' ? '#fff' : theme.palette.text.secondary,
+        }
+      : {
+          color: theme.vars.palette.text.secondary,
+          [theme.getColorSchemeSelector('dark')]: {
+            color: '#fff',
+          },
+        }),
     cursor: 'pointer',
     display: 'flex',
     alignItems: 'center',

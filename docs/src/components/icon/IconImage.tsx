@@ -93,8 +93,9 @@ export default function IconImage(props: IconImageProps) {
   ) {
     category = 'companies/';
   }
-  if (!theme.palette.mode && !mounted) {
-    return <Box sx={{ width, height }} />;
+  if (!mounted && !!theme.vars) {
+    // Prevent hydration mismatch
+    return <Box sx={{ width, height, display: 'inline-block', verticalAlign: 'bottom' }} />;
   }
   const element = (
     <Img

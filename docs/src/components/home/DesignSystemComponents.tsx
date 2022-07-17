@@ -9,11 +9,14 @@ import SectionHeadline from 'docs/src/components/typography/SectionHeadline';
 
 const Placeholder = () => (
   <Box
-    sx={{
+    sx={(theme) => ({
       height: { xs: 1484, sm: 825, md: 605 },
-      bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.900' : 'grey.100'),
       borderRadius: 1,
-    }}
+      bgcolor: 'grey.100',
+      [theme.getColorSchemeSelector('dark')]: {
+        bgcolor: 'primaryDark.900',
+      },
+    })}
   />
 );
 

@@ -11,7 +11,7 @@ const GradientText = styled('span')<{
             : `linear-gradient(to right, ${theme.palette[color].main}, ${theme.palette[color][700]})`,
       }
     : {
-        background: `linear-gradient(to right, ${theme.palette[color].main}, ${theme.palette[color][700]})`,
+        background: `linear-gradient(to right, ${theme.vars.palette[color].main}, ${theme.vars.palette[color][700]})`,
         [theme.getColorSchemeSelector('dark')]: {
           backgorund: theme.vars.palette.primary.main,
         },
