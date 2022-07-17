@@ -283,6 +283,28 @@ describe('<TrapFocus />', () => {
     expect(screen.getByTestId('root')).toHaveFocus();
   });
 
+  it('does not allow sentinelStart or sentinelEnd to be tabbable until open={true}', () => {
+    function Test(props) {
+      return (
+        <TrapFocus open {...props}>
+          <div tabIndex={-1}>
+            <button>Test</button>
+          </div>
+        </TrapFocus>
+      );
+    }
+
+    const { setProps } = render(<Test />);
+
+    setProps({ open: false });
+    expect(screen.getByTestId('sentinelStart').getAttribute('tabindex')).to.eq('-1');
+    expect(screen.getByTestId('sentinelEnd').getAttribute('tabindex')).to.eq('-1');
+
+    setProps({ open: true });
+    expect(screen.getByTestId('sentinelStart').getAttribute('tabindex')).to.eq('0');
+    expect(screen.getByTestId('sentinelEnd').getAttribute('tabindex')).to.eq('0');
+  });
+
   describe('interval', () => {
     clock.withFakeTimers();
 
