@@ -1,7 +1,6 @@
 ---
 product: material-ui
 title: React Grid component
-components: Grid2
 githubLabel: 'component: Grid'
 materialDesign: https://material.io/design/layout/understanding-layout.html
 ---
