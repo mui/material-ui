@@ -1,10 +1,9 @@
 import * as React from 'react';
 import { ThemeProvider, createTheme, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
+import Button, { buttonClasses } from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
-import { getDesignTokens, getThemedComponents } from 'docs/src/modules/brandingTheme';
 import MarkdownElement from 'docs/src/components/markdown/MarkdownElement';
 import MaterialDesignDemo, { componentCode } from 'docs/src/components/home/MaterialDesignDemo';
 import ShowcaseContainer from 'docs/src/components/home/ShowcaseContainer';
@@ -12,47 +11,6 @@ import PointerContainer, { Data } from 'docs/src/components/home/ElementPointer'
 import TouchAppRounded from '@mui/icons-material/TouchAppRounded';
 import StylingInfo from 'docs/src/components/action/StylingInfo';
 import FlashCode from 'docs/src/components/animation/FlashCode';
-
-const darkDesignTokens = getDesignTokens('dark');
-
-let darkBrandingTheme = createTheme(darkDesignTokens);
-
-darkBrandingTheme = createTheme(darkBrandingTheme, {
-  components: {
-    ...getThemedComponents(darkBrandingTheme).components,
-    MuiButtonBase: {
-      defaultProps: {
-        disableTouchRipple: true,
-      },
-    },
-    MuiButton: {
-      defaultProps: {
-        disableElevation: true,
-      },
-      styleOverrides: {
-        root: {
-          borderRadius: 40,
-          padding: darkBrandingTheme.spacing('2px', 1),
-        },
-        sizeSmall: {
-          fontSize: darkBrandingTheme.typography.pxToRem(12),
-          lineHeight: 18 / 12,
-        },
-        text: {
-          color: darkBrandingTheme.palette.grey[400],
-        },
-        outlined: {
-          color: '#fff',
-          backgroundColor: darkBrandingTheme.palette.primary[700],
-          borderColor: darkBrandingTheme.palette.primary[500],
-          '&:hover': {
-            backgroundColor: darkBrandingTheme.palette.primary[700],
-          },
-        },
-      },
-    },
-  },
-});
 
 const lineMapping: Record<string, number | number[]> = {
   avatar: 2,
@@ -219,7 +177,7 @@ export default function CoreShowcase() {
         </React.Fragment>
       }
       code={
-        <ThemeProvider theme={darkBrandingTheme}>
+        <Box data-mui-color-scheme="dark">
           <Box
             sx={{
               p: { xs: 2, sm: 1 },
@@ -227,6 +185,23 @@ export default function CoreShowcase() {
               alignItems: 'center',
               right: 0,
               zIndex: 10,
+              [`& .${buttonClasses.root}`]: {
+                borderRadius: 40,
+                padding: '2px 10px',
+                fontSize: '0.75rem',
+                lineHeight: 18 / 12,
+              },
+              [`& .${buttonClasses.outlined}`]: {
+                color: '#fff',
+                backgroundColor: 'primary.700',
+                borderColor: 'primary.500',
+                '&:hover': {
+                  backgroundColor: 'primary.700',
+                },
+              },
+              [`& .${buttonClasses.text}`]: {
+                color: 'grey.400',
+              },
             }}
           >
             <Button
@@ -235,6 +210,7 @@ export default function CoreShowcase() {
               onClick={() => {
                 setCustomized(false);
               }}
+              sx={{ ml: 0 }}
             >
               Material Design
             </Button>
@@ -244,7 +220,6 @@ export default function CoreShowcase() {
               onClick={() => {
                 setCustomized(true);
               }}
-              sx={{ ml: 1 }}
             >
               Custom Theme
             </Button>
@@ -284,7 +259,7 @@ export default function CoreShowcase() {
               <StylingInfo appeared={customized} sx={{ mb: -2, mx: -2 }} />
             </Box>
           </Box>
-        </ThemeProvider>
+        </Box>
       }
     />
   );

@@ -307,7 +307,6 @@ export function getThemedComponents(): ThemeOptions {
             }),
             ...(ownerState.size === 'small' && {
               padding: theme.spacing(0.5, 1),
-              marginLeft: theme.spacing(-1),
             }),
             ...(ownerState.variant === 'contained' &&
               ownerState.color === 'primary' && {

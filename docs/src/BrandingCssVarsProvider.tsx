@@ -19,7 +19,7 @@ declare module '@mui/material/styles' {
   }
 
   interface PaletteOptions {
-    primaryDark: PaletteColorOptions;
+    primaryDark?: PaletteColorOptions;
   }
 
   interface CssVarsPalette {
