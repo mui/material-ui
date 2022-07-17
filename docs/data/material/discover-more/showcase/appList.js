@@ -214,7 +214,7 @@ const appList = [
       'Comet lets you track code, experiments, and results on ML projects. ' +
       "It's fast, simple, and free for open source projects.",
     image: 'comet.jpg',
-    link: 'https://www.comet.ml/',
+    link: 'https://www.comet.com/',
     similarWebVisits: 180,
     dateAdded: '2019-01-01',
   },
