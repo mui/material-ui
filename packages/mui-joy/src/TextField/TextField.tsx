@@ -45,8 +45,8 @@ const TextFieldRoot = styled('div', {
     '--FormHelperText-color': theme.vars.palette.danger[500],
   },
   [`&.${textFieldClasses.disabled}`]: {
-    '--FormLabel-color': theme.vars.palette[ownerState.color || 'neutral']?.plainDisabledColor,
-    '--FormHelperText-color': theme.vars.palette[ownerState.color || 'neutral']?.plainDisabledColor,
+    '--FormLabel-color': theme.vars.palette[ownerState.color!]?.plainDisabledColor,
+    '--FormHelperText-color': theme.vars.palette[ownerState.color!]?.plainDisabledColor,
   },
   display: 'flex',
   flexDirection: 'column',
