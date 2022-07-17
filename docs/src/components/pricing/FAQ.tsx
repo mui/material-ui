@@ -64,6 +64,23 @@ const faqData = [
     ),
   },
   {
+    summary: 'Why does developers using MUI X indirectly needs to be licensed?',
+    detail: (
+      <React.Fragment>
+        The number of seats purchased must include developers using MUI X Pro or Premium directly{' '}
+        <strong>and indirectly</strong>.
+        <br />
+        <br />
+        We are including indirect developers in the pricing model
+        to help reduce the creation of silos in your engineering organization. If only direct
+        developers needed a license, then only a handful of engineers would be allowed to use MUI X.
+        <br />
+        <br />
+        In exchange, the price point per developer is lower than it would be if only direct developers needed a seat.
+      </React.Fragment>
+    ),
+  },
+  {
     summary: 'Do developers have to be named?',
     detail: (
       <React.Fragment>
@@ -246,14 +263,15 @@ export default function FAQ() {
           {renderItem(0)}
           {renderItem(1)}
           {renderItem(2)}
+          {renderItem(3)}
         </Grid>
         <Grid item xs={12} md={4}>
-          {renderItem(3)}
           {renderItem(4)}
           {renderItem(5)}
+          {renderItem(6)}
         </Grid>
         <Grid item xs={12} md={4}>
-          {renderItem(6)}
+          {renderItem(7)}
           <Paper
             variant="outlined"
             sx={{
