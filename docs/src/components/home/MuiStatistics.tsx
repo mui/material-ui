@@ -16,25 +16,37 @@ export default function MuiStatistics() {
       {data.map((item) => (
         <Grid key={item.title} item xs={6}>
           <Box
-            sx={{
+            sx={(theme) => ({
               height: '100%',
               p: 0.5,
               pl: 2,
               borderLeft: '2px solid',
-              borderColor: (theme) =>
-                theme.palette.mode === 'dark' ? 'primaryDark.600' : 'primary.100',
-            }}
+              borderColor: 'primary.100',
+              [theme.getColorSchemeSelector('dark')]: {
+                borderColor: 'primaryDark.600',
+              },
+            })}
           >
             <Typography
               component="div"
               variant="h4"
-              color={(theme) => (theme.palette.mode === 'dark' ? 'primary.200' : 'primary.main')}
               fontWeight="bold"
+              sx={(theme) => ({
+                color: 'primary.main',
+                [theme.getColorSchemeSelector('dark')]: {
+                  color: 'primary.200',
+                },
+              })}
             >
               {item.title}
             </Typography>
             <Typography
-              color={(theme) => (theme.palette.mode === 'dark' ? 'grey.300' : 'grey.800')}
+              sx={(theme) => ({
+                color: 'grey.800',
+                [theme.getColorSchemeSelector('dark')]: {
+                  color: 'grey.300',
+                },
+              })}
             >
               {item.metadata}
             </Typography>

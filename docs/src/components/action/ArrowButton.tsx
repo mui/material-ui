@@ -16,23 +16,34 @@ export default function ArrowButton({
       size="small"
       aria-label={label[direction]}
       {...props}
-      sx={{
-        color: (theme) => (theme.palette.mode === 'dark' ? '#fff' : 'primary.main'),
+      sx={(theme) => ({
+        color: 'primary.main',
         border: '1px solid',
-        borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.300' : 'grey.200'),
+        borderColor: 'grey.200',
+        [theme.getColorSchemeSelector('dark')]: {
+          color: '#fff',
+          borderColor: 'primaryDark.300',
+        },
         '&:hover': {
-          borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primaryDark.200' : 'grey.300'),
+          borderColor: 'grey.300',
+          [theme.getColorSchemeSelector('dark')]: {
+            borderColor: 'primaryDark.200',
+          },
         },
         '&.Mui-disabled': {
           opacity: 0.5,
-          color: (theme) => (theme.palette.mode === 'dark' ? '#fff' : 'grey.700'),
-          borderColor: (theme) => (theme.palette.mode === 'dark' ? 'primary.700' : 'grey.300'),
+          color: 'grey.700',
+          borderColor: 'grey.300',
+          [theme.getColorSchemeSelector('dark')]: {
+            color: '#fff',
+            borderColor: 'primary.700',
+          },
         },
         '& + .MuiIconButton-root': {
           ml: 2,
         },
         ...props.sx,
-      }}
+      })}
     >
       {direction === 'left' && <KeyboardArrowLeftRounded fontSize="small" />}
       {direction === 'right' && <KeyboardArrowRightRounded fontSize="small" />}
