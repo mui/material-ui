@@ -221,6 +221,45 @@ describe('<Stack />', () => {
         display: 'flex',
       });
     });
+
+    it('handles responsive `direction` prop when it does not start with the smallest breakpoint', () => {
+      expect(
+        style({
+          ownerState: {
+            direction: { lg: 'row' },
+            spacing: { xs: 0, md: 2, xl: 4 },
+          },
+          theme,
+        }),
+      ).to.deep.equal({
+        [`@media (min-width:${defaultTheme.breakpoints.values.xs}px)`]: {
+          '& > :not(style) + :not(style)': {
+            margin: 0,
+            marginTop: '0px',
+          },
+        },
+        [`@media (min-width:${defaultTheme.breakpoints.values.md}px)`]: {
+          '& > :not(style) + :not(style)': {
+            margin: 0,
+            marginTop: '16px',
+          },
+        },
+        [`@media (min-width:${defaultTheme.breakpoints.values.lg}px)`]: {
+          '& > :not(style) + :not(style)': {
+            margin: 0,
+            marginLeft: '16px',
+          },
+          flexDirection: 'row',
+        },
+        [`@media (min-width:${defaultTheme.breakpoints.values.xl}px)`]: {
+          '& > :not(style) + :not(style)': {
+            margin: 0,
+            marginLeft: '32px',
+          },
+        },
+        display: 'flex',
+      });
+    });
   });
 
   describe('prop: spacing', () => {
@@ -318,45 +357,6 @@ describe('<Stack />', () => {
         },
         display: 'flex',
         flexDirection: 'column',
-      });
-    });
-
-    it('handles responsive `direction` prop when it does not start with the smallest breakpoint', () => {
-      expect(
-        style({
-          ownerState: {
-            direction: { lg: 'row' },
-            spacing: { xs: 0, md: 2, xl: 4 },
-          },
-          theme,
-        }),
-      ).to.deep.equal({
-        [`@media (min-width:${defaultTheme.breakpoints.values.xs}px)`]: {
-          '& > :not(style) + :not(style)': {
-            margin: 0,
-            marginTop: '0px',
-          },
-        },
-        [`@media (min-width:${defaultTheme.breakpoints.values.md}px)`]: {
-          '& > :not(style) + :not(style)': {
-            margin: 0,
-            marginTop: '16px',
-          },
-        },
-        [`@media (min-width:${defaultTheme.breakpoints.values.lg}px)`]: {
-          '& > :not(style) + :not(style)': {
-            margin: 0,
-            marginLeft: '16px',
-          },
-          flexDirection: 'row',
-        },
-        [`@media (min-width:${defaultTheme.breakpoints.values.xl}px)`]: {
-          '& > :not(style) + :not(style)': {
-            margin: 0,
-            marginLeft: '32px',
-          },
-        },
-        display: 'flex',
       });
     });
   });
