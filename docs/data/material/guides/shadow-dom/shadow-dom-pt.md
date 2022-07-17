@@ -1,12 +1,12 @@
 # Shadow DOM
 
-<p class="description">The shadow DOM lets you encapsulate parts of an app to keep them separate from global styles that target the regular DOM tree.</p>
+<p class="description">O shadow DOM permite que você encapsule partes de uma aplicação para manter elas separadas do estilo global que visam a árvore DOM regular.</p>
 
-## How to use the shadow DOM with Material UI
+## Como se usar o shadow DOM com Material UI
 
-### 1. Styles
+### 1. Estilos
 
-The shadow DOM is an API that provides a way to attach a hidden separated DOM to an element. This is useful when you need to keep the structure, style, and behavior of different components separate from the rest of the code on the page, to prevent conflicts. See [the MDN docs on the shadow DOM](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM) for more information. The following code snippet shows how to apply styles inside of the shadow DOM:
+O shadow DOM é uma api que fornece uma forma de anexar um DOM oculto separado a um elemento Isso é útil quando você precisa manter a estrutura, estilos e comportamentos de componentes diferentes separados do resto do código na página, para evitar conflitos. Veja a [a documentação do MDN  na documentação do shadow DOM](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM) para mais informações. O seguinte código mostra como se aplicar estilos em um shadow DOM:
 
 ```tsx
 const container = document.querySelector('#root');
@@ -29,9 +29,9 @@ ReactDOM.createRoot(shadowRootElement).render(
 );
 ```
 
-### 2. Theme
+### 2. Tema
 
-MUI components like `Menu`, `Dialog`, `Popover` and others use [`Portal`](/material-ui/react-portal/) to render a new "subtree" in a container outside of current DOM hierarchy. By default, this container is `document.body`. But since the styles are applied only inside of the Shadow DOM, we need to render portals inside the Shadow DOM container as well:
+Os componentes MUI como `Menu`, `Dialog`, `Popover` e outros usam o [`Portal`](/material-ui/react-portal/) para renderizar uma nova "sub árvore" em um container fora da atual hierarquia do DOM. Por padrão, esse container é `document.body`. Mas dado que os estilos são apenas aplicados dentro do Shadow DOM, nós também precisamos renderizar os portais dentro do conteiner do Shadow DOM.
 
 ```tsx
 const theme = createTheme({
@@ -61,8 +61,8 @@ const theme = createTheme({
 </ThemeProvider>;
 ```
 
-## Demo
+## Demostração
 
-In the example below you can see that the component outside of the shadow DOM is affected by global styles, while the component inside of the shadow DOM is not:
+No exemplo abaixo é possível ver que o componente fora do shadow DOM é afetado pelos estilos globais, enquanto o componente dentro do shadow DOM não é:
 
 {{"demo": "ShadowDOMDemo.js", "hideToolbar": true, "bg": true}}
