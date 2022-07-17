@@ -102,7 +102,6 @@ export const style = ({ ownerState, theme }) => {
     };
     styles = deepmerge(styles, handleBreakpoints({ theme }, spacingValues, styleFromPropValue));
   }
-  console.log(styles);
 
   return styles;
 };
