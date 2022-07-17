@@ -222,7 +222,7 @@ describe('<Stack />', () => {
       });
     });
 
-    it('handles responsive `direction` prop when it does not start with the smallest breakpoint', () => {
+    it('should place correct margin direction even though breakpoints are not fully provided', () => {
       expect(
         style({
           ownerState: {
