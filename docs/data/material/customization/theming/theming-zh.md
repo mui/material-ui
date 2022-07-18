@@ -73,7 +73,16 @@ declare module '@mui/material/styles' {
 
 ## 访问一个组件中的主题
 
-You [can access](/system/styles/advanced/#accessing-the-theme-in-a-component) the theme variables inside your React components.
+You can access the theme variables inside your functional React components using the `useTheme` hook:
+
+```jsx
+import { useTheme } from '@mui/material/styles';
+
+function DeepChild() {
+  const theme = useTheme();
+  return <span>{`spacing ${theme.spacing}`}</span>;
+}
+```
 
 ## 嵌套主题
 
@@ -99,9 +108,21 @@ You [can access](/system/styles/advanced/#accessing-the-theme-in-a-component) th
 :::warning Note: Only the first argument (`options`) is being processed by the `createTheme` function. If you want to actually merge two themes' options and create a new one based on them, you may want to deep merge the two options and provide them as a first argument to the `createTheme` function. :::
 
 ```js
-import { createTheme } from '@mui/core/styles';
-import purple from '@mui/core/colors/purple';
-import green from '@mui/core/colors/green';
+import { deepmerge } from '@mui/utils';
+import { createTheme } from '@mui/material/styles';
+
+const theme = createTheme(deepmerge(options1, options2));
+```
+
+#### 返回结果
+
+`theme` (_object_): A complete, ready-to-use theme object.
+
+#### Examples
+
+```js
+import { createTheme } from '@mui/material/styles';
+import { green, purple } from '@mui/material/colors';
 
 const theme = createTheme({
   palette: {
@@ -115,37 +136,31 @@ const theme = createTheme({
 });
 ```
 
-#### 返回结果
-
-`theme` (_object_): A complete, ready-to-use theme object.
-
-#### Examples
-
-```js
-import { createTheme, responsiveFontSizes } from '@mui/core/styles';
-
-let theme = createTheme();
-theme = responsiveFontSizes(theme);
-```
-
 #### 参数
 
 When the value for a theme option is dependent on another theme option, you should compose the theme in steps.
 
 ```js
-import { unstable_createMuiStrictModeTheme } from '@mui/core/styles';
+import { createTheme } from '@mui/material/styles';
 
-const theme = unstable_createMuiStrictModeTheme();
+let theme = createTheme({
+  palette: {
+    primary: {
+      main: '#0052cc',
+    },
+    secondary: {
+      main: '#edf2ff',
+    },
+  },
+});
 
-function App() {
-  return (
-    <React.StrictMode>
-      <ThemeProvider theme={theme}>
-        <LandingPage />
-      </ThemeProvider>
-    </React.StrictMode>
-  );
-}
+theme = createTheme(theme, {
+  palette: {
+    info: {
+      main: theme.palette.secondary.main,
+    },
+  },
+});
 ```
 
 Think of creating a theme as a two-step composition process: first, you define the basic design options; then, you'll use these design options to compose other options.
