@@ -40,6 +40,7 @@ const defaultPopperOptions = {};
 const PopperTooltip = React.forwardRef(function PopperTooltip(props, ref) {
   const {
     anchorEl,
+    component: Root = 'div',
     children,
     direction,
     disablePortal,
@@ -161,9 +162,9 @@ const PopperTooltip = React.forwardRef(function PopperTooltip(props, ref) {
   }
 
   return (
-    <div ref={ownRef} role="tooltip" {...other}>
+    <Root ref={ownRef} role="tooltip" {...other}>
       {typeof children === 'function' ? children(childProps) : children}
-    </div>
+    </Root>
   );
 });
 /* eslint-enable react/prop-types */
@@ -175,6 +176,7 @@ const PopperUnstyled = React.forwardRef(function PopperUnstyled(props, ref) {
   const {
     anchorEl,
     children,
+    component,
     container: containerProp,
     direction = 'ltr',
     disablePortal = false,
@@ -212,6 +214,7 @@ const PopperUnstyled = React.forwardRef(function PopperUnstyled(props, ref) {
   return (
     <Portal disablePortal={disablePortal} container={container}>
       <PopperTooltip
+        component={component}
         anchorEl={anchorEl}
         direction={direction}
         disablePortal={disablePortal}
@@ -308,6 +311,11 @@ PopperUnstyled.propTypes /* remove-proptypes */ = {
     PropTypes.node,
     PropTypes.func,
   ]),
+  /**
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   */
+  component: PropTypes.elementType,
   /**
    * An HTML element or function that returns one.
    * The `container` will have the portal children appended to it.
