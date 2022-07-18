@@ -4,7 +4,8 @@ import { SlotComponentProps } from '../utils';
 
 export interface TablePaginationActionsUnstyledComponentsPropsOverrides {}
 
-interface TablePaginationActionsUnstyledOwnProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface TablePaginationActionsUnstyledOwnProps
+  extends React.HTMLAttributes<HTMLDivElement> {
   /**
    * Override or extend the styles applied to the component.
    */
