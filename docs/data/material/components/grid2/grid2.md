@@ -37,6 +37,7 @@ We build Grid v2 from scratch in order to:
 - Fix [known issues](https://github.com/mui/material-ui/pull/32746) introduced in Material UI v5.
 - Simplify the logic with CSS variables which removes unnecessary `item` prop and reduce CSS specificity.
 - Introduce a proper fix for [preventing a scrollbar](#prevent-scrollbar) by switching between negative margin approaches.
+- Equally set negative margin on all sides of the grid container by default.
 
 Changing Grid from v1 to v2 is considered a breaking change, please follow a [migration guide](/material-ui/migration/migration-grid-v2/) for more details.
 

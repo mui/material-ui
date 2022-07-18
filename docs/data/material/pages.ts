@@ -239,6 +239,10 @@ const pages = [
     icon: 'BookIcon',
     children: [
       {
+        pathname: '/material-ui/migration/migration-grid-v2',
+        title: 'Migrating to Grid v2',
+      },
+      {
         pathname: '/material-ui/migration',
         subheader: 'Upgrade to v5',
         children: [
