@@ -19,9 +19,9 @@ import Autocomplete, {
 } from '@mui/material/Autocomplete';
 import { paperClasses } from '@mui/material/Paper';
 import { iconButtonClasses } from '@mui/material/IconButton';
-import InputAdornment from "@mui/material/InputAdornment";
-import Visibility from "@mui/icons-material/Visibility";
-import Tooltip from "@mui/material/Tooltip";
+import InputAdornment from '@mui/material/InputAdornment';
+import Visibility from '@mui/icons-material/Visibility';
+import Tooltip from '@mui/material/Tooltip';
 
 function checkHighlightIs(listbox, expected) {
   const focused = listbox.querySelector(`.${classes.focused}`);
@@ -2625,12 +2625,12 @@ describe('<Autocomplete />', () => {
                       <Visibility />
                     </Tooltip>
                   </InputAdornment>
-                )
+                ),
               }}
             />
-          )
+          );
         }}
-      />
+      />,
     );
 
     const textbox = screen.getByRole('combobox');
