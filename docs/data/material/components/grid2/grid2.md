@@ -210,6 +210,18 @@ To prevent the scrollbar, set `disableEqualOverflow` prop to `true`. It will ena
 You should avoid adding borders or background to the grid when `disableEqualOverflow: true` because the negative margin (applied only at the top and left sides) makes the grid visually misaligned.
 :::
 
+## Customization
+
+### Centered elements
+
+If you want to make the content of the grid item centered, specify `display="flex"` directly to the grid item. Then, use `justifyContent` and/or `alignItems` to adjust the position of the content.
+
+{{"demo": "CenteredElementGrid.js", "bg": true}}
+
+:::warning
+Using `container` prop would not work because the grid container is designed to wrap only the grid items.
+:::
+
 ## Limitations
 
 ### direction column and column-reverse
