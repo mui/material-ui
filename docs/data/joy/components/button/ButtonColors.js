@@ -1,5 +1,4 @@
 import * as React from 'react';
-
 import Box from '@mui/joy/Box';
 import Sheet from '@mui/joy/Sheet';
 import Button from '@mui/joy/Button';
@@ -24,28 +23,29 @@ export default function ButtonColors() {
           gap: 1,
         }}
       >
-        <Button size="sm" variant={variant} color="primary">
+        <Button size="md" variant={variant} color="primary">
           Primary
         </Button>
-        <Button size="sm" variant={variant} color="neutral">
+        <Button size="md" variant={variant} color="neutral">
           Neutral
         </Button>
-        <Button size="sm" variant={variant} color="danger">
+        <Button size="md" variant={variant} color="danger">
           Danger
         </Button>
-        <Button size="sm" variant={variant} color="info">
+        <Button size="md" variant={variant} color="info">
           Info
         </Button>
-        <Button size="sm" variant={variant} color="success">
+        <Button size="md" variant={variant} color="success">
           Success
         </Button>
-        <Button size="sm" variant={variant} color="warning">
+        <Button size="md" variant={variant} color="warning">
           Warning
         </Button>
       </Box>
       <Sheet
         sx={{
-          pl: 2.5,
+          background: 'transparent',
+          pl: 4,
           borderLeft: '1px solid',
           borderColor: 'divider',
         }}

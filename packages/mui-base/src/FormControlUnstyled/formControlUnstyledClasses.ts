@@ -18,7 +18,7 @@ export interface FormControlUnstyledClasses {
 
 export type FormControlUnstyledClassKey = keyof FormControlUnstyledClasses;
 
-export function getFormControlUnstyledUtilityClasses(slot: string): string {
+export function getFormControlUnstyledUtilityClass(slot: string): string {
   return generateUtilityClass('BaseFormControl', slot);
 }
 

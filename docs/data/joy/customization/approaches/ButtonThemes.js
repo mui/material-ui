@@ -17,6 +17,7 @@ const Select = styled('select')(({ theme }) => ({
 }));
 
 const githubTheme = extendTheme({
+  cssVarPrefix: 'gh',
   colorSchemes: {
     light: {
       palette: {
@@ -138,6 +139,7 @@ const githubCode = `const githubTheme = extendTheme({
 });`;
 
 const fluentTheme = extendTheme({
+  cssVarPrefix: 'fluent',
   colorSchemes: {
     light: {
       palette: {
@@ -269,6 +271,7 @@ const fluentCode = `const fluentTheme = extendTheme({
 });`;
 
 const chakraTheme = extendTheme({
+  cssVarPrefix: 'chakra',
   colorSchemes: {
     light: {
       palette: {
@@ -352,6 +355,7 @@ const chakraCode = `const chakraTheme = extendTheme({
 });`;
 
 const mantineTheme = extendTheme({
+  cssVarPrefix: 'mantine',
   colorSchemes: {
     light: {
       palette: {
@@ -466,9 +470,6 @@ const codes = {
   chakra: chakraCode,
   mantine: mantineCode,
 };
-const prefixes = {
-  github: 'gh',
-};
 
 const useEnhancedEffect =
   typeof window !== 'undefined' ? React.useLayoutEffect : React.useEffect;
@@ -483,7 +484,6 @@ export default function ButtonThemes() {
   const [design, setDesign] = React.useState('github');
   return (
     <CssVarsProvider
-      prefix={prefixes[design] || design}
       theme={themes[design]}
       colorSchemeNode={node || null}
       colorSchemeSelector="#button-themes-demo"
@@ -566,7 +566,7 @@ export default function ButtonThemes() {
               onChange={(event) => setDesign(event.target.value)}
               sx={{ minWidth: 160 }}
             >
-              <option value="github">Github</option>
+              <option value="github">GitHub</option>
               <option value="fluent">Fluent</option>
               <option value="chakra">Chakra</option>
               <option value="mantine">Mantine</option>

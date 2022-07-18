@@ -79,7 +79,7 @@ export default function InstagramPost() {
                 borderRadius: '50%',
                 width: `max(${6 - index}px, 3px)`,
                 height: `max(${6 - index}px, 3px)`,
-                bgcolor: index === 0 ? 'primary.solidBg' : 'neutral.softBg',
+                bgcolor: index === 0 ? 'primary.solidBg' : 'background.level3',
               }}
             />
           ))}
@@ -114,7 +114,7 @@ export default function InstagramPost() {
         component="button"
         underline="none"
         fontSize="sm"
-        startDecorator="..."
+        startDecorator="…"
         sx={{ color: 'text.tertiary' }}
       >
         more
@@ -134,7 +134,7 @@ export default function InstagramPost() {
         <Input
           variant="plain"
           size="sm"
-          placeholder="Add a comment..."
+          placeholder="Add a comment…"
           sx={{ flexGrow: 1, mr: 1, '--Input-focusedThickness': '0px' }}
         />
         <Link disabled underline="none" role="button">

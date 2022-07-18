@@ -1,17 +1,19 @@
 <!-- markdownlint-disable-next-line -->
 <p align="center">
-  <a href="https://mui.com/" rel="noopener" target="_blank"><img width="150" src="https://mui.com/static/logo.svg" alt="MUI logo"></a>
+  <a href="https://mui.com/" rel="noopener" target="_blank"><img width="150" src="/docs/public/static/logo.svg" alt="MUI logo"></a>
 </p>
 
 <h1 align="center">MUI Core</h1>
 
 **MUI Core** contains foundational React UI component libraries for shipping new features faster.
 
-- _Material UI_ is a comprehensive library of components that features our implementation of Google's [Material Design](https://material.io/design/introduction/) system.
+- [_Material UI_](https://mui.com/material-ui/getting-started/overview/) is a comprehensive library of components that features our implementation of Google's [Material Design](https://material.io/design/introduction/) system.
 
-- _MUI Base_ is our library of "unstyled" components and low-level hooks. With Base, you gain complete control over your app's CSS and accessibility features.
+- [_Joy UI_](https://mui.com/joy-ui/getting-started/overview/) is a beautifully designed library of React UI components.
 
-- _MUI System_ is a collection of CSS utilities to help you rapidly lay out custom designs.
+- [_MUI Base_](https://mui.com/base/getting-started/overview/) is our library of "unstyled" components and low-level hooks. With Base, you gain complete control over your app's CSS and accessibility features.
+
+- [_MUI System_](https://mui.com/system/basics/) is a collection of CSS utilities to help you rapidly lay out custom designs.
 
 <div align="center">
 
@@ -37,11 +39,15 @@
 
 Material UI is available as an [npm package](https://www.npmjs.com/package/@mui/material).
 
-```sh
-// with npm
-npm install @mui/material @emotion/react @emotion/styled
+**npm:**
 
-// with yarn
+```sh
+npm install @mui/material @emotion/react @emotion/styled
+```
+
+**yarn:**
+
+```sh
 yarn add @mui/material @emotion/react @emotion/styled
 ```
 
@@ -61,11 +67,15 @@ Use `@latest` for the latest stable release.
 
 MUI Base is available as an [npm package](https://www.npmjs.com/package/@mui/base).
 
-```sh
-// with npm
-npm install @mui/base
+**npm:**
 
-// with yarn
+```sh
+npm install @mui/base
+```
+
+**yarn:**
+
+```sh
 yarn add @mui/base
 ```
 
@@ -76,22 +86,30 @@ We are adding new components regularly and you're welcome to contribute!
 
 MUI System is available as an [npm package](https://www.npmjs.com/package/@mui/system).
 
-```sh
-// with npm
-npm install @mui/system @emotion/react @emotion/styled
+**npm:**
 
-// with yarn
+```sh
+npm install @mui/system @emotion/react @emotion/styled
+```
+
+**yarn:**
+
+```sh
 yarn add @mui/system @emotion/react @emotion/styled
 ```
 
 Or if you want to use `styled-components` as a styling engine:
 
-```sh
-// with npm
-npm install @mui/system @mui/styled-engine-sc styled-components
+**npm:**
 
-// with yarn
-yarn add @mui/system @mui/styled-engine-sc styled-components
+```sh
+npm install @mui/material @mui/styled-engine-sc styled-components
+```
+
+**yarn:**
+
+```sh
+yarn add @mui/material @mui/styled-engine-sc styled-components
 ```
 
 Visit our [`styled-engine` guide](https://mui.com/material-ui/guides/styled-engine/) for more information about how to configure `styled-components` as the style engine.
@@ -134,15 +152,10 @@ Here is an example of a basic app using Material UI's `Button` component:
 
 ```jsx
 import * as React from 'react';
-import ReactDOM from 'react-dom';
 import Button from '@mui/material/Button';
 
 function App() {
-  return (
-    <Button variant="contained" color="primary">
-      Hello World
-    </Button>
-  );
+  return <Button variant="contained">Hello World</Button>;
 }
 ```
 
@@ -150,7 +163,7 @@ In the interactive demo below, try changing the code and see how it affects the 
 (Hint: change `variant` to `"outlined"` and `color` to `"secondary"`.
 For more options, see the [`Button` component page](https://mui.com/material-ui/react-button/) in our docs.)
 
-[![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/4j7m47vlm4)
+[![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/material-ui-u9sy1h)
 
 ## Questions
 
@@ -163,8 +176,9 @@ Our documentation features [a collection of example projects using Material UI](
 
 ## Documentation
 
-- [Material UI](https://mui.com/material-ui/getting-started/installation/)
-- [MUI Base](https://mui.com/base/getting-started/installation/)
+- [Material UI](https://mui.com/material-ui/getting-started/overview/)
+- [Joy UI](https://mui.com/joy-ui/getting-started/overview/)
+- [MUI Base](https://mui.com/base/getting-started/overview/)
 - [MUI System](https://mui.com/system/basics/)
 
 ## Premium themes
@@ -199,22 +213,38 @@ For details of supported versions and contact details for reporting security iss
 
 These great services sponsor MUI's core infrastructure:
 
-[<img loading="lazy" alt="GitHub" src="https://github.githubassets.com/images/modules/logos_page/GitHub-Logo.png" height="25">](https://github.com/)
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="/docs/public/static/readme/github-darkmode.svg">
+  <source media="(prefers-color-scheme: light)" srcset="/docs/public/static/readme/github-lightmode.svg">
+  <img alt="GitHub logo" src="/docs/public/static/readme/github-darkmode.svg">
+</picture>
 
-GitHub lets us host the Git repository and coordinate contributions.
+[GitHub](https://github.com/) lets us host the Git repository and coordinate contributions.
 
-[<img loading="lazy" alt="Netlify" src="https://cdn.netlify.com/15ecf59b59c9d04b88097c6b5d2c7e8a7d1302d0/1b6d6/img/press/logos/full-logo-light.svg" height="30">](https://www.netlify.com/)
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="/docs/public/static/readme/netlify-darkmode.svg">
+  <source media="(prefers-color-scheme: light)" srcset="/docs/public/static/readme/netlify-lightmode.svg">
+  <img alt="Netlify logo" src="/docs/public/static/readme/netlify-darkmode.svg">
+</picture>
 
-Netlify lets us distribute the documentation.
+[Netlify](https://www.netlify.com/) lets us distribute the documentation.
 
-[<img loading="lazy" alt="Crowdin" src="https://support.crowdin.com/assets/logos/crowdin-logo-small-black.svg" height="30">](https://crowdin.com/)
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="/docs/public/static/readme/crowdin-darkmode.svg">
+  <source media="(prefers-color-scheme: light)" srcset="/docs/public/static/readme/crowdin-lightmode.svg">
+  <img alt="Crowdin logo" src="/docs/public/static/readme/crowdin-darkmode.svg">
+</picture>
 
-Crowdin lets us translate the documentation.
+[Crowdin](https://crowdin.com/) lets us translate the documentation.
 
-[<img loading="lazy" alt="BrowserStack" src="https://www.browserstack.com/images/mail/browserstack-logo-footer.png" height="30">](https://www.browserstack.com/)
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="/docs/public/static/readme/browserstack-darkmode.svg">
+  <source media="(prefers-color-scheme: light)" srcset="/docs/public/static/readme/browserstack-lightmode.svg">
+  <img alt="GitHub logo" src="/docs/public/static/readme/browserstack-darkmode.svg">
+</picture>
 
-BrowserStack lets us test in real browsers.
+[BrowserStack](https://www.browserstack.com/) lets us test in real browsers.
 
-[<img loading="lazy" alt="CodeCov" src="https://github.com/codecov.png?size=70" width="35" height="35">](https://codecov.io/)
+<img loading="lazy" alt="CodeCov logo" src="https://github.com/codecov.png?size=70" width="35" height="35">
 
-CodeCov lets us monitor test coverage.
+[CodeCov](https://about.codecov.io/) lets us monitor test coverage.

@@ -30,6 +30,16 @@ const Select = styled('select')(({ theme }) => ({
   },
 }));
 
+const shallowEqual = (item1: { [k: string]: any }, item2: { [k: string]: any }) => {
+  let equal = true;
+  Object.entries(item1).forEach(([key, value]: [string, any]) => {
+    if (item2[key] !== value) {
+      equal = false;
+    }
+  });
+  return equal;
+};
+
 function createCode(data: {
   name: string;
   props: Record<string, string | number | boolean>;
@@ -80,54 +90,84 @@ function createCode(data: {
 }
 
 interface JoyUsageDemoProps<ComponentProps> {
+  /**
+   * Name of the component to show in the code block.
+   */
   componentName: string;
+  /**
+   * For displaying the close bracket of the component in the code block.
+   * if `true`, shows '>' otherwise shows '/>'
+   */
   childrenAccepted?: boolean;
+  /**
+   * Configuration
+   */
   data: Array<{
-    propName: keyof ComponentProps;
+    /**
+     * Name of the prop
+     */
+    propName: Extract<keyof ComponentProps, string>;
+    /**
+     * The controller to be used:
+     * - `switch`: render the switch component for boolean
+     * - `color`: render the built-in color selector
+     * - `select`: render <select> with the specified options
+     * - `input`: render <input />
+     * - `radio`: render group of radios
+     */
     knob?: 'switch' | 'color' | 'select' | 'input' | 'radio';
+    /**
+     * The options for these knobs: `select` and `radio`
+     */
     options?: Array<string>;
+    /**
+     * The default value to be used by the components.
+     * If exists, it will be injected to the `renderDemo` callback but it will not show
+     * in the code block.
+     *
+     * To make it appears in the code block, specified `codeBlockDisplay: true`
+     */
     defaultValue?: string | number | boolean;
+    /**
+     * If true, the prop with defaultValue will always display in the code block.
+     */
+    codeBlockDisplay?: true;
   }>;
   renderDemo: (props: ComponentProps) => React.ReactElement;
 }
 
-export default function JoyUsageDemo<T extends {} = {}>({
+export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
   componentName,
   childrenAccepted = false,
   data,
   renderDemo,
 }: JoyUsageDemoProps<T>) {
-  const defaultProps = data.reduce(
-    (prev, curr) => ({
-      ...prev,
-      [curr.propName]: curr.defaultValue,
-    }),
-    {},
-  ) as T;
-  const staticProps = data
-    .filter((p) => !p.knob)
-    .reduce(
-      (prev, curr) => ({
-        ...prev,
-        [curr.propName]: curr.defaultValue,
-      }),
-      {},
-    ) as T;
-  const [props, setProps] = React.useState<T>({} as T);
+  const defaultProps = {} as { [k in keyof T]: any };
+  const initialProps = {} as { [k in keyof T]: any };
+  const staticProps = {} as { [k in keyof T]: any };
+  data.forEach((p) => {
+    defaultProps[p.propName] = p.defaultValue;
+    if (p.codeBlockDisplay) {
+      initialProps[p.propName] = p.defaultValue;
+    }
+    if (!p.knob) {
+      staticProps[p.propName] = p.defaultValue;
+    }
+  });
+  const [props, setProps] = React.useState<T>(initialProps as T);
   return (
     <Box
       sx={{
-        m: -1.5,
-        mt: 0.25,
+        mt: 2,
         flexGrow: 1,
         maxWidth: 'calc(100% + 24px)',
         display: 'flex',
         flexDirection: { xs: 'column', sm: 'row' },
         flexWrap: 'wrap',
-        gap: 1.5,
+        gap: 2,
         '& .markdown-body pre': {
           margin: 0,
-          borderRadius: 'xs',
+          borderRadius: 'sm',
         },
       }}
     >
@@ -138,7 +178,7 @@ export default function JoyUsageDemo<T extends {} = {}>({
             m: 'auto',
             display: 'flex',
             alignItems: 'center',
-            p: 2,
+            p: 1,
           }}
         >
           {renderDemo({ ...defaultProps, ...props })}
@@ -166,47 +206,46 @@ export default function JoyUsageDemo<T extends {} = {}>({
       >
         <Box
           sx={{
-            mb: 2,
+            mb: 1,
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'center',
           }}
         >
           <Typography id="usage-props" component="h3" fontWeight="lg" sx={{ scrollMarginTop: 160 }}>
-            Props
+            Playground
           </Typography>
           <IconButton
             aria-label="Reset all"
             variant="outlined"
             color="neutral"
             size="sm"
-            onClick={() => setProps({} as T)}
+            onClick={() => setProps(initialProps as T)}
             sx={{
-              visibility: Object.keys(props).length ? 'visible' : 'hidden',
+              visibility: !shallowEqual(props, initialProps) ? 'visible' : 'hidden',
               '--IconButton-size': '30px',
             }}
           >
             <ReplayRoundedIcon />
           </IconButton>
         </Box>
-
         <Box
           sx={{
             display: 'flex',
             flexDirection: 'column',
-            gap: 2,
+            gap: 2.5,
           }}
         >
           {data.map(({ propName, knob, options = [], defaultValue }) => {
-            const resolvedValue = props[propName] || defaultValue;
+            const resolvedValue = props[propName] ?? defaultValue;
             if (!knob) {
               return null;
             }
             if (knob === 'switch') {
               return (
                 <Switch
-                  key={propName as string}
-                  checked={Boolean(props[propName])}
+                  key={propName}
+                  checked={Boolean(resolvedValue)}
                   onChange={(event) =>
                     setProps((latestProps) => ({
                       ...latestProps,
@@ -216,6 +255,7 @@ export default function JoyUsageDemo<T extends {} = {}>({
                   endDecorator={propName}
                   size="sm"
                   sx={{
+                    textTransform: 'capitalize',
                     alignSelf: 'flex-start',
                     '--Switch-track-background': (theme) =>
                       `rgba(${theme.vars.palette.neutral.mainChannel} / 0.3)`,
@@ -228,20 +268,21 @@ export default function JoyUsageDemo<T extends {} = {}>({
               );
             }
             if (knob === 'radio') {
+              const labelId = `${componentName}-${propName}`;
               return (
-                <Box key={propName as string}>
+                <Box key={propName}>
                   <Typography
-                    id={`${componentName}-${propName}`}
+                    id={labelId}
                     fontSize="xs"
                     fontWeight="md"
-                    sx={{ mb: 0.5 }}
+                    sx={{ mb: 1, textTransform: 'capitalize' }}
                   >
                     {propName}
                   </Typography>
                   <RadioGroup
                     row
-                    name={`${componentName}-${propName}`}
-                    aria-labelledby={`${componentName}-${propName}`}
+                    name={labelId}
+                    aria-labelledby={labelId}
                     value={resolvedValue}
                     onChange={(event) =>
                       setProps((latestProps) => ({
@@ -279,7 +320,7 @@ export default function JoyUsageDemo<T extends {} = {}>({
             }
             if (knob === 'color') {
               return (
-                <Box key={propName as string} sx={{ mb: 1 }}>
+                <Box key={propName} sx={{ mb: 1 }}>
                   <Typography id={`${componentName}-color`} fontSize="xs" fontWeight="lg" mb={1}>
                     Color
                   </Typography>
@@ -299,7 +340,15 @@ export default function JoyUsageDemo<T extends {} = {}>({
                     {['primary', 'neutral', 'danger', 'info', 'success', 'warning'].map((value) => {
                       const checked = resolvedValue === value;
                       return (
-                        <Sheet key={value} sx={{ width: 28, height: 28, bgcolor: 'unset' }}>
+                        <Sheet
+                          key={value}
+                          sx={{
+                            width: 28,
+                            height: 28,
+                            bgcolor: 'unset',
+                            textTransform: 'capitalize',
+                          }}
+                        >
                           <Radio
                             variant="solid"
                             color={value as ColorPaletteProp}
@@ -350,19 +399,21 @@ export default function JoyUsageDemo<T extends {} = {}>({
               );
             }
             if (knob === 'select') {
+              const selectId = `${componentName}-${propName}`;
               return (
-                <Box key={propName as string}>
+                <Box key={propName}>
                   <Typography
                     component="label"
                     fontSize="xs"
                     fontWeight="lg"
                     mb={1}
-                    htmlFor={`${componentName}-${propName}`}
+                    htmlFor={selectId}
+                    sx={{ textTransform: 'capitalize' }}
                   >
                     {propName}
                   </Typography>
                   <Select
-                    id={`${componentName}-${propName}`}
+                    id={selectId}
                     value={(resolvedValue || 'none') as string}
                     onChange={(event) =>
                       setProps((latestProps) => ({
@@ -384,17 +435,18 @@ export default function JoyUsageDemo<T extends {} = {}>({
             if (knob === 'input') {
               return (
                 <TextField
-                  key={propName as string}
+                  key={propName}
                   label={propName}
                   size="sm"
                   value={resolvedValue || ''}
                   onChange={(event) =>
                     setProps((latestProps) => ({
                       ...latestProps,
-                      badgeContent: event.target.value || undefined,
+                      [propName]: event.target.value || undefined,
                     }))
                   }
                   sx={{
+                    textTransform: 'capitalize',
                     [`& .${inputClasses.root}`]: {
                       bgcolor: 'background.body',
                     },

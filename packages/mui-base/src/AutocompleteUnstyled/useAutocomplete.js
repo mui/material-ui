@@ -72,13 +72,13 @@ export default function useAutocomplete(props) {
     autoHighlight = false,
     autoSelect = false,
     blurOnSelect = false,
-    disabled: disabledProp,
     clearOnBlur = !props.freeSolo,
     clearOnEscape = false,
     componentName = 'useAutocomplete',
     defaultValue = props.multiple ? [] : null,
     disableClearable = false,
     disableCloseOnSelect = false,
+    disabled: disabledProp,
     disabledItemsFocusable = false,
     disableListWrap = false,
     filterOptions = defaultFilterOptions,
@@ -86,12 +86,12 @@ export default function useAutocomplete(props) {
     freeSolo = false,
     getOptionDisabled,
     getOptionLabel: getOptionLabelProp = (option) => option.label ?? option,
-    isOptionEqualToValue = (option, value) => option === value,
     groupBy,
     handleHomeEndKeys = !props.freeSolo,
     id: idProp,
     includeInputInList = false,
     inputValue: inputValueProp,
+    isOptionEqualToValue = (option, value) => option === value,
     multiple = false,
     onChange,
     onClose,
@@ -632,7 +632,7 @@ export default function useAutocomplete(props) {
     resetInputValue(event, newValue);
 
     handleValue(event, newValue, reason, { option });
-    if (!disableCloseOnSelect && !event.ctrlKey && !event.metaKey) {
+    if (!disableCloseOnSelect && (!event || (!event.ctrlKey && !event.metaKey))) {
       handleClose(event, reason);
     }
 

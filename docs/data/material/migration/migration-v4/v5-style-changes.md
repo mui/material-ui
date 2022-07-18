@@ -175,7 +175,7 @@ import { StyledEngineProvider } from '@mui/material/styles';
 
 export default function GlobalCssPriority() {
   return (
-    {/* Inject emotion before JSS */}
+    {/* Inject Emotion before JSS */}
     <StyledEngineProvider injectFirst>
       {/* Your component tree. Now you can override MUI's styles. */}
     </StyledEngineProvider>

@@ -1,21 +1,39 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import { OverridableComponent } from '@mui/types';
 import { unstable_useControlled as useControlled } from '@mui/utils';
 import FormControlUnstyledContext from './FormControlUnstyledContext';
-import appendOwnerState from '../utils/appendOwnerState';
-import classes from './formControlUnstyledClasses';
+import { getFormControlUnstyledUtilityClass } from './formControlUnstyledClasses';
 import {
   FormControlUnstyledProps,
   NativeFormControlElement,
   FormControlUnstyledTypeMap,
   FormControlUnstyledOwnerState,
   FormControlUnstyledState,
+  FormControlUnstyledRootSlotProps,
 } from './FormControlUnstyled.types';
+import { useSlotProps, WithOptionalOwnerState } from '../utils';
+import composeClasses from '../composeClasses';
 
 function hasValue(value: unknown) {
   return value != null && !(Array.isArray(value) && value.length === 0) && value !== '';
+}
+
+function useUtilityClasses(ownerState: FormControlUnstyledOwnerState) {
+  const { disabled, error, filled, focused, required } = ownerState;
+
+  const slots = {
+    root: [
+      'root',
+      disabled && 'disabled',
+      focused && 'focused',
+      error && 'error',
+      filled && 'filled',
+      required && 'required',
+    ],
+  };
+
+  return composeClasses(slots, getFormControlUnstyledUtilityClass, {});
 }
 
 /**
@@ -56,7 +74,6 @@ const FormControlUnstyled = React.forwardRef(function FormControlUnstyled<
   const {
     defaultValue,
     children,
-    className,
     component,
     components = {},
     componentsProps = {},
@@ -112,8 +129,7 @@ const FormControlUnstyled = React.forwardRef(function FormControlUnstyled<
     value: value ?? '',
   };
 
-  const Root = component ?? components.Root ?? 'div';
-  const rootProps = appendOwnerState(Root, { ...other, ...componentsProps.root }, ownerState);
+  const classes = useUtilityClasses(ownerState);
 
   const renderChildren = () => {
     if (typeof children === 'function') {
@@ -123,24 +139,22 @@ const FormControlUnstyled = React.forwardRef(function FormControlUnstyled<
     return children;
   };
 
+  const Root = component ?? components.Root ?? 'div';
+  const rootProps: WithOptionalOwnerState<FormControlUnstyledRootSlotProps> = useSlotProps({
+    elementType: Root,
+    externalSlotProps: componentsProps.root,
+    externalForwardedProps: other,
+    additionalProps: {
+      ref,
+      children: renderChildren(),
+    },
+    ownerState,
+    className: classes.root,
+  });
+
   return (
     <FormControlUnstyledContext.Provider value={childContext}>
-      <Root
-        ref={ref}
-        {...rootProps}
-        className={clsx(
-          classes.root,
-          className,
-          rootProps?.className,
-          disabled && classes.disabled,
-          error && classes.error,
-          filled && classes.filled,
-          focused && classes.focused,
-          required && classes.required,
-        )}
-      >
-        {renderChildren()}
-      </Root>
+      <Root {...rootProps} />
     </FormControlUnstyledContext.Provider>
   );
 }) as OverridableComponent<FormControlUnstyledTypeMap>;
@@ -158,10 +172,6 @@ FormControlUnstyled.propTypes /* remove-proptypes */ = {
     PropTypes.func,
   ]),
   /**
-   * Class name applied to the root element.
-   */
-  className: PropTypes.string,
-  /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
    */
@@ -178,7 +188,7 @@ FormControlUnstyled.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   componentsProps: PropTypes.shape({
-    root: PropTypes.object,
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
    * @ignore

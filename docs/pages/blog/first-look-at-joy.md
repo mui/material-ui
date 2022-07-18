@@ -47,7 +47,7 @@ Aside from a fresher look and feel for your upcoming project, here are a few fea
 
 Instead of defining variants at the component level, Joy UI defines them at the global level.
 This sounds bold at first, but the more we experiment the more it starts to make sense.
-[Global variants](/joy-ui/core-features/global-variant/) mostly affect three CSS properties: color, background, and border.
+[Global variants](/joy-ui/main-features/global-variants/) mostly affect three CSS properties: color, background, and border.
 
 What this means is that you're able to switch between the same set of variants in any component, more easily maintaining consistency across your app.
 The four variants available in the components are `solid`, `soft`, `outlined`, and `plain`.

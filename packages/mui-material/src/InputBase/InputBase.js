@@ -135,7 +135,7 @@ export const InputBaseComponent = styled('input', {
     color: 'currentColor',
     ...(theme.vars
       ? {
-          opacity: theme.vars.opacity.placeholder,
+          opacity: theme.vars.opacity.inputPlaceholder,
         }
       : {
           opacity: light ? 0.42 : 0.5,
@@ -151,7 +151,7 @@ export const InputBaseComponent = styled('input', {
 
   const placeholderVisible = theme.vars
     ? {
-        opacity: theme.vars.opacity.placeholder,
+        opacity: theme.vars.opacity.inputPlaceholder,
       }
     : {
         opacity: light ? 0.42 : 0.5,

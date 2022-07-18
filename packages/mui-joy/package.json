@@ -1,9 +1,9 @@
 {
   "name": "@mui/joy",
-  "version": "5.0.0-alpha.31",
+  "version": "5.0.0-alpha.36",
   "private": false,
   "author": "MUI Team",
-  "description": "Joy design system — React components",
+  "description": "A library of beautifully designed React UI components.",
   "main": "./src/index.ts",
   "keywords": [
     "react",
@@ -57,15 +57,14 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.17.2",
-    "@mui/base": "5.0.0-alpha.84",
-    "@mui/system": "^5.8.3",
-    "@mui/types": "^7.1.3",
-    "@mui/utils": "^5.8.0",
-    "clsx": "^1.1.1",
+    "@mui/base": "5.0.0-alpha.89",
+    "@mui/system": "^5.9.0",
+    "@mui/types": "^7.1.4",
+    "@mui/utils": "^5.9.0",
+    "clsx": "^1.2.1",
     "csstype": "^3.1.0",
-    "hoist-non-react-statics": "^3.3.2",
     "prop-types": "^15.8.1",
-    "react-is": "^17.0.2"
+    "react-is": "^18.2.0"
   },
   "sideEffects": false,
   "publishConfig": {

@@ -1,4 +1,4 @@
-import { generateUtilityClass, generateUtilityClasses } from '@mui/base';
+import { generateUtilityClass, generateUtilityClasses } from '../className';
 
 export interface ListItemClasses {
   /** Styles applied to the root element. */
@@ -9,6 +9,8 @@ export interface ListItemClasses {
   endAction: string;
   /** Styles applied to the root element, if nested={true}. */
   nested: string;
+  /** Styles applied to the root element, if it is under a nested list item. */
+  nesting: string;
   /** Styles applied to the root element, if sticky={true}. */
   sticky: string;
 }
@@ -24,6 +26,7 @@ const listItemClasses: ListItemClasses = generateUtilityClasses('JoyListItem', [
   'startAction',
   'endAction',
   'nested',
+  'nesting',
   'sticky',
 ]);
 

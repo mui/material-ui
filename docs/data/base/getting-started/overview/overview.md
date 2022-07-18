@@ -23,7 +23,7 @@ Look for the [`package: base`](https://github.com/mui/material-ui/labels/package
 ## Advantages of MUI Base
 
 - **Ship faster:** MUI Base gives you the foundational building blocks you need to assemble a sleek and sophisticated user interface in a fraction of the time that it would take to do it all from scratch.
-- **You own the CSS:** unlike Material UI, which uses emotion as a default style engine, MUI Base has no built-in styling solution.
+- **You own the CSS:** unlike Material UI, which uses Emotion as a default style engine, MUI Base has no built-in styling solution.
   This means you have complete control over your app's CSS.
 - **Accessibility:** MUI Base components are built with accessibility in mind.
   We do our best to make all components screen reader-friendly, and offer suggestions for optimizing accessibility throughout our documentation.
