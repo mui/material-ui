@@ -20,7 +20,7 @@ The height of the `TextareaAutosize` component automatically adjusts as a respon
 
 ## Component
 
-### Anatomy
+### Usage
 
 After [installation](/base/getting-started/installation/), you can start building with this component using the following basic elements:
 
@@ -32,7 +32,7 @@ export default function MyApp() {
 }
 ```
 
-### Basic usage
+### Basics
 
 `TextareaAutosize` behaves similarly to the native HTML`<textarea>`.
 

@@ -19,7 +19,7 @@ The `SwitchUnstyled` component provides users with a switch for toggling between
 
 ## Component
 
-### Anatomy
+### Usage
 
 After [installation](/base/getting-started/installation/), you can start building with this component using the following basic elements:
 
@@ -31,13 +31,13 @@ export default function MyApp() {
 }
 ```
 
-### Basic usage
+### Basics
 
 The following demo shows how to assign styles and props to the `SwitchUnstyled` component:
 
 {{"demo": "UnstyledSwitches.js"}}
 
-### Component slots
+### Anatomy
 
 The `SwitchUnstyled` component is composed of a root `<span>` that houses three interior slots—a track, a thumb, and an input:
 

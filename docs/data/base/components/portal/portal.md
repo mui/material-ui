@@ -21,7 +21,7 @@ The `Portal` component is used internally by the [`ModalUnstyled`](/base/react-m
 
 ## Component
 
-### Anatomy
+### Usage
 
 After [installation](/base/getting-started/installation/), you can start building with this component using the following basic elements:
 
@@ -35,7 +35,7 @@ export default function MyApp() {
 }
 ```
 
-### Basic usage
+### Basics
 
 Normally, children of a component are rendered within that component's DOM tree.
 But sometimes it's necessary to mount a child at a different location in the DOM.

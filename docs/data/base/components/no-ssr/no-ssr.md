@@ -25,7 +25,7 @@ This component can be useful in a variety of situations:
 
 ## Component
 
-### Anatomy
+### Usage
 
 After [installation](/base/getting-started/installation/), you can start building with this component using the following basic elements:
 
@@ -37,7 +37,7 @@ export default function MyApp() {
 }
 ```
 
-### Basic usage
+### Basics
 
 At its core, the `NoSsr` component's purpose is to defer rendering from the server to the client, as shown in the following demo:
 

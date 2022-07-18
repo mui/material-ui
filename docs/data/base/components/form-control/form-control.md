@@ -20,7 +20,7 @@ For instance, you may want to show an additional element asking the user to ente
 
 ## Component
 
-### Anatomy
+### Usage
 
 After [installation](/base/getting-started/installation/), you can start building with this component using the following basic elements:
 
@@ -36,7 +36,7 @@ export default function MyApp() {
 }
 ```
 
-### Basic usage
+### Basics
 
 `FormControlUnstyled` wraps around the elements of a form that need access to the state of an `<input>`.
 For instance, if the form's **Submit** button needs to change states after the user enters information, then the component will be structured like this:

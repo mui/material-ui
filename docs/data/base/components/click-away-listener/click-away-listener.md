@@ -23,7 +23,7 @@ This is useful for components like [`PopperUnstyled`](/base/react-popper/) which
 
 ## Component
 
-### Anatomy
+### Usage
 
 After [installation](/base/getting-started/installation/), you can start building with this component using the following basic elements:
 
@@ -39,7 +39,7 @@ export default function MyApp() {
 }
 ```
 
-### Basic usage
+### Basics
 
 The following demo shows how to hide a menu dropdown when users click anywhere else on the page:
 

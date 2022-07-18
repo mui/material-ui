@@ -18,7 +18,7 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/button/
 
 ## Component
 
-### Anatomy
+### Usage
 
 After [installation](/base/getting-started/installation/), you can start building with this component using the following basic elements:
 
@@ -30,7 +30,7 @@ export default function MyApp() {
 }
 ```
 
-### Basic usage
+### Basics
 
 `ButtonUnstyled` behaves similarly to the native HTML `<button>`, so it wraps around the text that will be displayed on its surface.
 
@@ -39,7 +39,7 @@ Notice that the second button cannot be clicked due to the `disabled` prop:
 
 {{"demo": "UnstyledButtonsSimple.js", "defaultCodeOpen": true}}
 
-### Component slots
+### Anatomy
 
 The `ButtonUnstyled` component is composed of a root `<button>` slot with no interior slots:
 

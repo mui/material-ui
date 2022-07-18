@@ -23,7 +23,7 @@ These are rendered as `<li>` elements.
 
 ## Components
 
-### Anatomy
+### Usage
 
 After [installation](/base/getting-started/installation/), you can start building with this component collection using the following basic elements:
 
@@ -41,7 +41,7 @@ export default function MyApp() {
 }
 ```
 
-### Basic usage
+### Basics
 
 `MenuUnstyled` serves as a replacement for the native HTML `<ul>`, and `MenuItemUnstyled` corresponds to the `<li>` tag.
 
@@ -50,7 +50,7 @@ Click **Dashboard** to view the menu—notice that it uses the built-in [`Popper
 
 {{"demo": "MenuSimple.js"}}
 
-### Component slots
+### Anatomy
 
 The `MenuUnstyled` component is composed of a root slot that renders a `PopperUnstyled` `<div>` by default.
 It contains one interior listbox `<ul>` slot.

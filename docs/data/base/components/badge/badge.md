@@ -21,7 +21,7 @@ The `BadgeUnstyled` component creates a badge that is applied to its child eleme
 
 ## Component
 
-### Anatomy
+### Usage
 
 After [installation](/base/getting-started/installation/), you can start building with this component using the following basic elements:
 
@@ -35,7 +35,7 @@ export default function MyApp() {
 }
 ```
 
-### Basic usage
+### Basics
 
 `BadgeUnstyled` wraps around the UI element that it's attached to.
 For instance, if the badge indicates the number of emails in an inbox, then the component will be structured like this:
@@ -46,7 +46,7 @@ For instance, if the badge indicates the number of emails in an inbox, then the 
 </BadgeUnstyled>
 ```
 
-### Component slots
+### Anatomy
 
 The `BadgeUnstyled` component is composed of a root `<span>` that houses the element that the badge is attached to, followed by a `<span>` slot to represent the badge itself:
 

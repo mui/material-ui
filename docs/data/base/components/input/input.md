@@ -25,7 +25,7 @@ The `InputUnstyled` component replaces the native HTML `<input>` tag, and can al
 
 ## Component
 
-### Anatomy
+### Usage
 
 After [installation](/base/getting-started/installation/), you can start building with this component using the following basic elements:
 
@@ -37,15 +37,15 @@ export default function MyApp() {
 }
 ```
 
-### Basic usage
+### Basics
 
-`InputUnstyled` behaves similarly to the native HTML `<input>`, except that it's nested inside of a root `<div>`—see [Component slots](#component-slots) for details.
+`InputUnstyled` behaves similarly to the native HTML `<input>`, except that it's nested inside of a root `<div>`—see [Anatomy](#anatomy) for details.
 
 The following demo shows how to create and style an input component, including `placeholder` text:
 
 {{"demo": "UnstyledInputBasic.js", "defaultCodeOpen": false}}
 
-### Component slots
+### Anatomy
 
 The `InputUnstyled` component is composed of a root `<div>` slot that houses one interior `<input>` slot:
 

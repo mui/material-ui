@@ -24,7 +24,7 @@ Tabs are implemented using a collection of related components:
 
 ## Components
 
-### Anatomy
+### Usage
 
 After [installation](/base/getting-started/installation/), you can start building with this component collection using the following basic elements:
 
@@ -48,7 +48,7 @@ export default function MyApp() {
 }
 ```
 
-### Basic usage
+### Basics
 
 By default, tabs and their corresponding panels are **zero-indexed** (i.e. the first tab has a `value` of `0`, then `1`, `2`, etc.). Clicking on a given tab opens the panel with the same `value`, which corresponds to the order in which each component is nested within its container.
 
@@ -62,7 +62,7 @@ The next demo shows how to apply custom styles to a set of tabs:
 
 {{"demo": "UnstyledTabsCustomized.js"}}
 
-### Component slots
+### Anatomy
 
 The tab components are each composed of a root slot with no interior slots:
 

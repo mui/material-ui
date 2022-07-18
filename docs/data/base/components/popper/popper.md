@@ -20,7 +20,7 @@ It relies on the third-party library ([Popper.js v2](https://popper.js.org/docs/
 
 ## Component
 
-### Anatomy
+### Usage
 
 After [installation](/base/getting-started/installation/), you can start building with this component using the following basic elements:
 
@@ -32,7 +32,7 @@ export default function MyApp() {
 }
 ```
 
-### Basic usage
+### Basics
 
 By default, the popper is mounted to the DOM when its `open` prop is set to `true`, and removed from the DOM when `open` is `false`.
 

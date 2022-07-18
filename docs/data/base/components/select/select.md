@@ -46,7 +46,7 @@ export default function MyApp() {
 }
 ```
 
-### Basic usage
+### Basics
 
 The following demo shows how to create and style a select component.
 Note that it also uses [`PopperUnstyled`](/base/react-popper/) to render a popup for the list of options:
@@ -83,7 +83,7 @@ import { MultiSelectUnstyled } from '@mui/base/SelectUnstyled';
 
 {{"demo": "UnstyledSelectMultiple.js", "defaultCodeOpen": false}}
 
-### Component slots
+### Anatomy
 
 The `SelectUnstyled` and `MultiSelectUnstyled` components are composed of a root `<button>` along with a `<div>` that houses a `<ul>` within `PopperUnstyled`.
 `OptionUnstyled` renders as an `<li>`:

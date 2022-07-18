@@ -22,7 +22,7 @@ Sliders are ideal for interface controls that benefit from a visual representati
 
 ## Component
 
-### Anatomy
+### Usage
 
 After [installation](/base/getting-started/installation/), you can start building with this component using the following basic elements:
 
@@ -34,14 +34,14 @@ export default function MyApp() {
 }
 ```
 
-### Basic usage
+### Basics
 
 The following demo shows how to create and style two basic sliders.
 Notice that both are set to a default value of 10 with the `defaultValue` prop, and the the second slider cannot be adjusted due to the `disabled` prop:
 
 {{"demo": "UnstyledSlider.js", "defaultCodeOpen": false}}
 
-### Component slots
+### Anatomy
 
 The `SliderUnstyled` component is composed of a root `<span>` that houses three interior `<span>` elements:
 

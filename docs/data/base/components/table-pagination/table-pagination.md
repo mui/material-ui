@@ -26,7 +26,7 @@ See the [Slot props section](#slot-props) for details.
 
 ## Component
 
-### Anatomy
+### Usage
 
 After [installation](/base/getting-started/installation/), you can start building with this component using the following basic elements:
 
@@ -44,13 +44,13 @@ export default function MyApp() {
 }
 ```
 
-### Basic usage
+### Basics
 
 The following demo shows an example of customized table pagination controls in a table footer that spans the entire row:
 
 {{"demo": "TableUnstyled.js"}}
 
-### Component slots
+### Anatomy
 
 The `TablePaginationUnstyled` component is composed of a root `<td>` that houses up to ten interior slots:
 

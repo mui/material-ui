@@ -46,7 +46,7 @@ As such, it should be used sparingly—only when the app _requires_ user input b
 
 ## Component
 
-### Anatomy
+### Usage
 
 After [installation](/base/getting-started/installation/), you can start building with this component using the following basic elements:
 
@@ -58,7 +58,7 @@ export default function MyApp() {
 }
 ```
 
-### Basic usage
+### Basics
 
 The following demo shows how to create and style a basic modal.
 Click **Open modal** to see how it behaves:

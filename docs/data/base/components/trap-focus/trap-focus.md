@@ -18,7 +18,7 @@ packageName: '@mui/base'
 
 ## Component
 
-### Anatomy
+### Usage
 
 After [installation](/base/getting-started/installation/), you can start building with this component using the following basic elements:
 
@@ -30,7 +30,7 @@ export default function MyApp() {
 }
 ```
 
-### Basic usage
+### Basics
 
 `TrapFocus` wraps around the UI elements that should hold the user's focus.
 For instance, if the focus needs to stay inside of a [`MenuUnstyled`](/base/react-menu/), then the component will be structured like this:
