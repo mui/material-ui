@@ -219,8 +219,16 @@ If you want to make the content of the grid item centered, specify `display="fle
 {{"demo": "CenteredElementGrid.js", "bg": true}}
 
 :::warning
-Using `container` prop would not work because the grid container is designed to wrap only the grid items.
+Using `container` prop would not work because the grid container is designed to wrap only the grid items, not random elements.
 :::
+
+### Full bordered
+
+{{"demo": "FullBorderedGrid.js"}}
+
+### Half bordered
+
+{{"demo": "HalfBorderedGrid.js"}}
 
 ## Limitations
 
