@@ -317,7 +317,6 @@ const SliderValueLabel = styled(SliderValueLabelUnstyled, {
   transition: theme.transitions.create(['transform'], {
     duration: theme.transitions.duration.shortest,
   }),
-  transformOrigin: 'bottom center',
   transform: 'translateY(-100%) scale(0)',
   position: 'absolute',
   backgroundColor: (theme.vars || theme).palette.grey[600],
@@ -329,6 +328,7 @@ const SliderValueLabel = styled(SliderValueLabelUnstyled, {
   padding: '0.25rem 0.75rem',
   ...(ownerState.orientation === 'horizontal' && {
     top: '-10px',
+    transformOrigin: 'bottom center',
     '&:before': {
       position: 'absolute',
       content: '""',
@@ -342,7 +342,8 @@ const SliderValueLabel = styled(SliderValueLabelUnstyled, {
   }),
   ...(ownerState.orientation === 'vertical' && {
     right: '30px',
-    top: '25px',
+    top: '24px',
+    transformOrigin: 'right center',
     '&:before': {
       position: 'absolute',
       content: '""',
