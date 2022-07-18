@@ -16,7 +16,7 @@ For toggling between on and off or single option selection, consider using a swi
 
 {{"demo": "CheckboxUsage.js", "hideToolbar": true}}
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Component
 

@@ -1,7 +1,7 @@
 const pages = [
   {
     pathname: '/joy-ui/getting-started',
-    scopePathnames: ['/joy-ui/core-features'],
+    scopePathnames: ['/joy-ui/main-features'],
     icon: 'DescriptionIcon',
     children: [
       { pathname: '/joy-ui/getting-started/overview' },

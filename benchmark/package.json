@@ -11,13 +11,13 @@
     "server:system": "cd ../ && cross-env NODE_ENV=production BABEL_ENV=benchmark babel-node benchmark/server/scenarios/system.js --inspect=0.0.0.0:9229 --extensions \".tsx,.ts,.js\""
   },
   "dependencies": {
-    "@chakra-ui/system": "^2.1.3",
+    "@chakra-ui/system": "^2.2.2",
     "@emotion/react": "^11.9.3",
     "@emotion/styled": "^11.9.3",
     "@mdx-js/react": "^2.1.2",
-    "@mui/material": "^5.8.7",
-    "@mui/styles": "^5.8.7",
-    "@mui/system": "^5.8.7",
+    "@mui/material": "^5.9.1",
+    "@mui/styles": "^5.9.1",
+    "@mui/system": "^5.9.1",
     "@styled-system/css": "^5.1.5",
     "benchmark": "^2.1.4",
     "playwright": "^1.17.1",

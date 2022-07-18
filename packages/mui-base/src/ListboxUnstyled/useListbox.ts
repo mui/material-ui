@@ -2,7 +2,7 @@ import * as React from 'react';
 import { unstable_useForkRef as useForkRef, unstable_useId as useId } from '@mui/utils';
 import {
   UseListboxParameters,
-  UseListboxStrictProps,
+  UseListboxPropsWithDefaults,
   ActionTypes,
   OptionState,
   UseListboxOptionSlotProps,
@@ -43,7 +43,7 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
 
   const optionIdGenerator = props.optionIdGenerator ?? defaultIdGenerator;
 
-  const propsWithDefaults: UseListboxStrictProps<TOption> = {
+  const propsWithDefaults: UseListboxPropsWithDefaults<TOption> = {
     ...props,
     disabledItemsFocusable,
     disableListWrap,
@@ -181,7 +181,7 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
       });
 
       // Handle text navigation
-      if (event.key.length === 1) {
+      if (event.key.length === 1 && event.key !== ' ') {
         const textCriteria = textCriteriaRef.current;
         const lowerKey = event.key.toLowerCase();
         const currentTime = performance.now();

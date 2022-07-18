@@ -14,7 +14,7 @@ The avatar component is usually seen for displaying user information in places s
 
 {{"demo": "AvatarUsage.js", "hideToolbar": true}}
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Component
 
@@ -59,7 +59,7 @@ If an error occurs while loading the avatar image, it will fallback to alternati
 
 ### With a badge
 
-Combine the avatar component with the [`Badge`](/joy-ui/react-bagde/) to extend what you can communicate with it.
+Combine the avatar component with the [`Badge`](/joy-ui/react-badge/) to extend what you can communicate with it.
 
 {{"demo": "BadgeAvatars.js"}}
 
