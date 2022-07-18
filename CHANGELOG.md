@@ -11,6 +11,7 @@ A big thanks to the 19 contributors who made this release possible. Here are som
 - 🧪 Exported Grid v2 as `Unstable_Grid2` (#33479) @siriwatknp
 - 📖 Added a guide for using Joy UI and Material UI together (#33396) @siriwatknp
 - 🐛 Fixed a few bugs in Material UI components. Thanks to @ZeeshanTamboli, @ivan-ngchakming, and @joebingham-wk.
+- ⚠️ **[BREAKING CHANGE]** Date pickers were removed from the lab. Learn how to migrate by visiting the [migration guide](https://mui.com/x/react-date-pickers/migration-lab/). (#33386) @flaviendelangle
 - many other 🐛 bug fixes and 📚 documentation improvements
 - our documentation site is now running with React 18! (#33196) @mnajdova
 
@@ -32,8 +33,15 @@ A big thanks to the 19 contributors who made this release possible. Here are som
 
 ### `@mui/lab@5.0.0-alpha.90`
 
+**⚠️ Breaking changes**
+
 - [lab] Remove the pickers (#33386) @flaviendelangle
-- [Masonry] Support `rem`/`em` values for `spacing` prop (#33384) @hbjORbj
+
+  The pickers are moved to MUI X, check out the [migration guide](https://mui.com/x/react-date-pickers/migration-lab/).
+
+**Changes**
+
+- [Masonry] Support rem/em values for spacing prop (#33384) @hbjORbj
 
 ### `@mui/base@5.0.0-alpha.89`
 

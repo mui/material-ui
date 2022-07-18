@@ -4,7 +4,7 @@ import { SlotComponentProps } from '../utils';
 
 export interface TablePaginationActionsUnstyledComponentsPropsOverrides {}
 
-interface TablePaginationActionsUnstyledOwnProps {
+export interface TablePaginationActionsUnstyledOwnProps {
   /**
    * Override or extend the styles applied to the component.
    */

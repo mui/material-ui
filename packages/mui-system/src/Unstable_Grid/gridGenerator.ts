@@ -194,9 +194,15 @@ export const generateGridStyles = ({ ownerState }: Props): {} => {
               flexWrap: ownerState.wrap,
             }),
           margin: `calc(var(--Grid-rowSpacing) / -2) calc(var(--Grid-columnSpacing) / -2)`,
+          ...(ownerState.disableEqualOverflow && {
+            margin: `calc(var(--Grid-rowSpacing) * -1) 0px 0px calc(var(--Grid-columnSpacing) * -1)`,
+          }),
           ...(ownerState.nested
             ? {
                 padding: `calc(var(--Grid-nested-rowSpacing) / 2) calc(var(--Grid-nested-columnSpacing) / 2)`,
+                ...((ownerState.disableEqualOverflow || ownerState.parentDisableEqualOverflow) && {
+                  padding: `calc(var(--Grid-nested-rowSpacing)) 0px 0px calc(var(--Grid-nested-columnSpacing))`,
+                }),
               }
             : {
                 '--Grid-nested-rowSpacing': 'var(--Grid-rowSpacing)',
@@ -205,6 +211,9 @@ export const generateGridStyles = ({ ownerState }: Props): {} => {
         }
       : {
           padding: `calc(var(--Grid-rowSpacing) / 2) calc(var(--Grid-columnSpacing) / 2)`,
+          ...(ownerState.disableEqualOverflow && {
+            padding: `calc(var(--Grid-rowSpacing)) 0px 0px calc(var(--Grid-columnSpacing))`,
+          }),
         }),
   };
 };

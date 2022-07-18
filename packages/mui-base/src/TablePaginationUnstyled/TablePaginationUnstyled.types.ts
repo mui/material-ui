@@ -14,7 +14,7 @@ export type ItemAriaLabelType = 'first' | 'last' | 'next' | 'previous';
 
 export interface TablePaginationUnstyledComponentsPropsOverrides {}
 
-interface TablePaginationUnstyledOwnProps {
+export interface TablePaginationUnstyledOwnProps {
   /**
    * Override or extend the styles applied to the component.
    */
