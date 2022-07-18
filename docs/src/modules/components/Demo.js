@@ -263,7 +263,7 @@ export default function Demo(props) {
   const [showAd, setShowAd] = React.useState(false);
 
   const usePreview = showPreview && !codeOpen;
-  const initialCode = usePreview ? demo.jsxPreview : demoData.raw;
+  const initialCode = usePreview ? demo.jsxPreview : demoData.raw.trim();
   const [code, setCode] = React.useState(initialCode);
   const resetDemo = React.useCallback(() => {
     setCode(initialCode);

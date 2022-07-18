@@ -19,16 +19,17 @@ const Wrapper = styled(MarkdownElement)(({ theme }) => ({
     marginTop: theme.spacing(0),
   },
   borderRadius: theme.shape.borderRadius,
-  '&:hover': {
-    outline: `3px solid ${
-      theme.palette.mode === 'dark' ? theme.palette.primaryDark['500'] : theme.palette.primary.light
+  '&:hover > .MuiCode-root > pre': {
+    borderColor:
+      theme.palette.mode === 'dark' ? theme.palette.primaryDark[500] : theme.palette.primary.light,
+    boxShadow: `inset 0 0 0 1px ${
+      theme.palette.mode === 'dark' ? theme.palette.primaryDark[500] : theme.palette.primary.light
     }`,
-    '& .MuiCode-copy': {
-      opacity: 1,
-    },
   },
-  '&:focus-within': {
-    outline: `3px solid ${
+  '&:focus-within > .MuiCode-root > pre': {
+    borderColor:
+      theme.palette.mode === 'dark' ? theme.palette.primaryDark.main : theme.palette.primary.main,
+    boxShadow: `inset 0 0 0 2px ${
       theme.palette.mode === 'dark' ? theme.palette.primaryDark.main : theme.palette.primary.main
     }`,
   },
@@ -51,7 +52,6 @@ const StyledEditor = styled(Editor)(({ theme }) => ({
   fontWeight: 400,
   WebkitFontSmoothing: 'subpixel-antialiased',
   color: '#fff',
-
   float: 'left',
   minWidth: '100%',
   caretColor: 'white',
@@ -62,13 +62,11 @@ const StyledEditor = styled(Editor)(({ theme }) => ({
   },
   '& > pre': {
     maxWidth: 'unset',
-    '& > br': {
-      display: 'none',
-    },
   },
 }));
 
-const CodeEditor = ({ language = 'jsx', value, onChange, copyButtonProps, children, ...rest }) => {
+export default function CodeEditor(props) {
+  const { language = 'jsx', value, onChange, copyButtonProps, children, ...rest } = props;
   const t = useTranslate();
   const wrapperRef = React.useRef(null);
   const enterRef = React.useRef(null);
@@ -151,7 +149,7 @@ const CodeEditor = ({ language = 'jsx', value, onChange, copyButtonProps, childr
       </div>
     </Wrapper>
   );
-};
+}
 
 CodeEditor.propTypes = {
   children: PropTypes.node,
@@ -160,5 +158,3 @@ CodeEditor.propTypes = {
   onChange: PropTypes.func,
   value: PropTypes.string,
 };
-
-export default CodeEditor;
