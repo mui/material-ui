@@ -1,8 +1,11 @@
 import * as React from 'react';
+import { OverridableStringUnion } from '@mui/types';
 import { SxProps } from '@mui/system';
 import { Theme } from '..';
 import { OverridableComponent, OverridableTypeMap, OverrideProps } from '../OverridableComponent';
 import { ListClasses } from './listClasses';
+
+export interface ListPropsVariantOverrides {}
 
 export interface ListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
   props: P & {
@@ -34,6 +37,10 @@ export interface ListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */
     sx?: SxProps<Theme>;
+    /**
+     * The variant to use.
+     */
+    variant?: OverridableStringUnion<'default', ListPropsVariantOverrides>;
   };
   defaultComponent: D;
 }
