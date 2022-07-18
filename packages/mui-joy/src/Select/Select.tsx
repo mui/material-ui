@@ -21,6 +21,7 @@ import { useSlotProps } from '@mui/base/utils';
 import composeClasses from '@mui/base/composeClasses';
 import { ButtonRoot } from '../Button/Button';
 import List from '../List/List';
+import Sheet from '../Sheet/Sheet';
 import { styled, useThemeProps } from '../styles';
 import { SelectProps } from './SelectProps';
 import { getSelectUtilityClass } from './selectClasses';
@@ -217,7 +218,7 @@ const Select = React.forwardRef(function Select<TValue>(
         {renderValue(selectedOptions!)}
       </SelectRoot>
       {buttonDefined && (
-        <SelectPopper {...popperProps}>
+        <SelectPopper component={Sheet} {...popperProps}>
           <SelectListbox {...listboxProps}>
             <SelectUnstyledContext.Provider value={context}>
               {children}
