@@ -4,13 +4,14 @@ import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } 
 import composeClasses from '@mui/base/composeClasses';
 import { useSlotProps } from '@mui/base/utils';
 import { SelectUnstyledContext } from '@mui/base/SelectUnstyled';
+import { OptionState } from '@mui/base/ListboxUnstyled';
 import ListItemButton from '../ListItemButton/ListItemButton';
 import { styled, useThemeProps } from '../styles';
 import { OptionProps, ExtendOption, OptionTypeMap } from './OptionProps';
 import { getOptionUtilityClass } from './optionClasses';
 import RowListContext from '../List/RowListContext';
 
-const useUtilityClasses = (ownerState: OptionProps) => {
+const useUtilityClasses = (ownerState: OptionProps & OptionState) => {
   const { color, disabled, highlighted, selected, variant } = ownerState;
 
   const slots = {
@@ -109,34 +110,9 @@ Option.propTypes /* remove-proptypes */ = {
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
   // ----------------------------------------------------------------------
   /**
-   * A ref for imperative actions. It currently only supports `focusVisible()` action.
-   */
-  action: PropTypes.oneOfType([
-    PropTypes.func,
-    PropTypes.shape({
-      current: PropTypes.shape({
-        focusVisible: PropTypes.func.isRequired,
-      }),
-    }),
-  ]),
-  /**
-   * If `true`, the list item is focused during the first mount.
-   * Focus will also be triggered if the value changes from false to true.
-   * @default false
-   */
-  autoFocus: PropTypes.bool,
-  /**
    * The content of the component.
    */
   children: PropTypes.node,
-  /**
-   * Override or extend the styles applied to the component.
-   */
-  classes: PropTypes.object,
-  /**
-   * @ignore
-   */
-  className: PropTypes.string,
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'neutral'
@@ -146,37 +122,14 @@ Option.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
-   */
-  component: PropTypes.elementType,
-  /**
    * If `true`, the component is disabled.
-   * @default false
    */
-  disabled: PropTypes.bool,
+  disabled: PropTypes.bool.isRequired,
   /**
-   * This prop can help identify which element has keyboard focus.
-   * The class name will be applied when the element gains the focus through keyboard interaction.
-   * It's a polyfill for the [CSS :focus-visible selector](https://drafts.csswg.org/selectors-4/#the-focus-visible-pseudo).
-   * The rationale for using this feature [is explained here](https://github.com/WICG/focus-visible/blob/HEAD/explainer.md).
-   * A [polyfill can be used](https://github.com/WICG/focus-visible) to apply a `focus-visible` class to other components
-   * if needed.
+   * A text representation of the option's content.
+   * Used for keyboard text navigation matching.
    */
-  focusVisibleClassName: PropTypes.string,
-  /**
-   * The empty space on the side(s) of the separator.
-   */
-  inset: PropTypes.oneOf(['gutter', 'leftGutter', 'startAdornment']),
-  /**
-   * @ignore
-   */
-  role: PropTypes /* @typescript-to-proptypes-ignore */.string,
-  /**
-   * Use to apply selected styling.
-   * @default false
-   */
-  selected: PropTypes.bool,
+  label: PropTypes.string,
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
@@ -186,9 +139,9 @@ Option.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
-   * @default 0
+   * The option value.
    */
-  tabIndex: PropTypes.number,
+  value: PropTypes.any,
   /**
    * The variant to use.
    * @default 'plain'

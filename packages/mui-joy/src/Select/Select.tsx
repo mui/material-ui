@@ -236,24 +236,14 @@ Select.propTypes /* remove-proptypes */ = {
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
   // ----------------------------------------------------------------------
   /**
-   * A ref for imperative actions. It currently only supports `focusVisible()` action.
+   * If `true`, the select element is focused during the first mount
+   * @default false
    */
-  action: PropTypes.oneOfType([
-    PropTypes.func,
-    PropTypes.shape({
-      current: PropTypes.shape({
-        focusVisible: PropTypes.func.isRequired,
-      }),
-    }),
-  ]),
+  autoFocus: PropTypes.bool,
   /**
    * @ignore
    */
   children: PropTypes.node,
-  /**
-   * @ignore
-   */
-  className: PropTypes.string,
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'primary'
@@ -263,28 +253,55 @@ Select.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
+   * @ignore
    */
   component: PropTypes.elementType,
+  /**
+   * The props used for each slot inside the Input.
+   * @default {}
+   */
+  componentsProps: PropTypes.shape({
+    listbox: PropTypes.object,
+    popper: PropTypes.object,
+    root: PropTypes.object,
+  }),
+  /**
+   * If `true`, the select will be initially open.
+   * @default false
+   */
+  defaultListboxOpen: PropTypes.bool,
+  /**
+   * The default selected value. Use when the component is not controlled.
+   */
+  defaultValue: PropTypes.object,
   /**
    * If `true`, the component is disabled.
    * @default false
    */
   disabled: PropTypes.bool,
   /**
-   * Element placed after the children.
+   * `id` attribute of the listbox element.
+   * Also used to derive the `id` attributes of options.
    */
-  endIcon: PropTypes.node,
+  listboxId: PropTypes.string,
   /**
-   * @ignore
+   * Controls the open state of the select's listbox.
+   * @default undefined
    */
-  focusVisibleClassName: PropTypes.string,
+  listboxOpen: PropTypes.bool,
   /**
-   * If `true`, the button will take up the full width of its container.
-   * @default false
+   * Callback fired when an option is selected.
    */
-  fullWidth: PropTypes.bool,
+  onChange: PropTypes.func,
+  /**
+   * Callback fired when the component requests to be opened.
+   * Use in controlled mode (see listboxOpen).
+   */
+  onListboxOpenChange: PropTypes.func,
+  /**
+   * Function that customizes the rendering of the selected value.
+   */
+  renderValue: PropTypes.func,
   /**
    * The size of the component.
    */
@@ -292,10 +309,6 @@ Select.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['sm', 'md', 'lg']),
     PropTypes.string,
   ]),
-  /**
-   * Element placed before the children.
-   */
-  startIcon: PropTypes.node,
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
@@ -305,9 +318,10 @@ Select.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
-   * @default 0
+   * The selected value.
+   * Set to `null` to deselect all options.
    */
-  tabIndex: PropTypes.number,
+  value: PropTypes.object,
   /**
    * The variant to use.
    * @default 'solid'
