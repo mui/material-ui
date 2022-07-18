@@ -739,6 +739,21 @@ const theme = createTheme({
 });
 ```
 
+### Change negative margin
+
+The negative margin applies only to the top and left sides of the grid container. If you want to preserve the same behavior (negative margin on all sides), we recommend to use the new Grid v2 instead.
+
+```diff
+- import Grid from '@mui/material/Grid';
++ import Grid from '@mui/material/Unstable_Grid2';
+```
+
+To learn more about the Grid v2, check out the [demos](/material-ui/react-grid2/#whats-changed) and the [migration guide](/material-ui/migration/migration-grid-v2/).
+
+:::info
+Grid v2 is introduced in Material UI v5.9.1 which comes with negative margin on all sides by default.
+:::
+
 ## GridList
 
 ### ✅ Rename GridList component
