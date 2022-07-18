@@ -56,7 +56,7 @@ For example, `xs={12} sm={6}` sizes a component to occupy half of the viewport w
 
 To control space between children, use the `spacing` prop.
 The spacing value can be any positive number, including decimals and any string.
-The prop is converted into a CSS property using the [`theme.spacing()`](/customization/spacing/) helper.
+The prop is converted into a CSS property using the [`theme.spacing()`](/material-ui/customization/spacing/) helper.
 
 {{"demo": "SpacingGrid.js", "bg": true, "hideToolbar": true}}
 
@@ -128,8 +128,8 @@ If you specify custom breakpoints to the theme, you can use those names as grid 
 The custom breakpoints affect both the size and offset props:
 
 ```diff
-- <Grid xs={6} xsOffset={2} sm={4} smOffset={2} md={3} mdOffset={3}>
-+ <Grid mobile={6} mobileOffset={2} tablet={4} tabletOffset={2} laptop={3} laptopOffset={3}>
+-<Grid xs={6} xsOffset={2}>
++<Grid mobile={6} mobileOffset={2}>
 ```
 
 :::

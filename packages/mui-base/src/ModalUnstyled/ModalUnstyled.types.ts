@@ -6,7 +6,7 @@ import { ModalUnstyledClasses } from './modalUnstyledClasses';
 
 export interface ModalUnstyledComponentsPropsOverrides {}
 
-interface ModalUnstyledOwnProps {
+export interface ModalUnstyledOwnProps {
   /**
    * A single child content element.
    */
