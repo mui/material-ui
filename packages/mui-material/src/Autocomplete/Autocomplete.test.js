@@ -1318,6 +1318,24 @@ describe('<Autocomplete />', () => {
       setProps({ disabled: true });
       expect(screen.queryByRole('listbox')).to.equal(null);
     });
+
+    it('should not crash when autoSelect & freeSolo are set, text is focused & disabled gets truthy', () => {
+      const { setProps } = render(
+        <Autocomplete
+          autoSelect
+          freeSolo
+          options={['one', 'two', 'three']}
+          renderInput={(params) => <TextField {...params} />}
+          value="one"
+        />,
+      );
+      const textbox = screen.getByRole('combobox');
+      act(() => {
+        textbox.focus();
+      });
+      setProps({ disabled: true });
+      expect(textbox).toBeVisible();
+    });
   });
 
   describe('prop: disableClearable', () => {
