@@ -19,6 +19,7 @@ export default function AutoGrid() {
         display: 'flex',
         flexDirection: 'column',
         gap: 3,
+        width: 200,
         '& > div': {
           overflow: 'auto hidden',
           '&::-webkit-scrollbar': { height: 10, WebkitAppearance: 'none' },
@@ -31,24 +32,20 @@ export default function AutoGrid() {
         },
       })}
     >
-      <Box
-        sx={{
-          width: 200,
-        }}
-      >
+      <div>
         <Grid container spacing={3}>
           <Grid xs={12}>
             <Item>Scroll bar appears</Item>
           </Grid>
         </Grid>
-      </Box>
-      <Box sx={{ width: 200, overflow: 'scroll' }}>
+      </div>
+      <div>
         <Grid container spacing={3} disableEqualOverflow>
           <Grid xs={12}>
             <Item>`disableEqualOverflow` prevents scrollbar</Item>
           </Grid>
         </Grid>
-      </Box>
+      </div>
     </Box>
   );
 }
