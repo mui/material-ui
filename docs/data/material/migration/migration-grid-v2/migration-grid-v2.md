@@ -42,7 +42,7 @@ The default implementation of the negative margin in Grid v2 is spread equally o
 The `item` and `zeroMinWidth` have been removed in Grid v2:
 
 ```diff
-- <Grid item xs={6}>
+- <Grid item zeroMinWidth xs={6}>
 + <Grid xs={6}>
 ```
 
