@@ -1,7 +1,9 @@
 # [Versions](https://mui.com/versions/)
 
 ## 5.9.1
+
 <!-- generated comparing v5.9.0..master -->
+
 _Jul 18, 2022_
 
 A big thanks to the 17 contributors who made this release possible. This release is mainly about 🐛 bug fixes and 📚 documentation improvements
