@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Unstable_Grid2';
 
 export default function HalfBorderedGrid() {
-  const colWidth = { xs: 12, sm: 6, md: 4, lg: 3 };
+  const colWidth = { xs: 12, sm: 6, md: 4, lg: 3 } as const;
   return (
     <Box sx={{ flexGrow: 1, p: 2 }}>
       <Grid
@@ -17,7 +17,7 @@ export default function HalfBorderedGrid() {
             borderRight: 'var(--Grid-borderWidth) solid',
             borderBottom: 'var(--Grid-borderWidth) solid',
             borderColor: 'divider',
-            ...Object.keys(colWidth).reduce(
+            ...(Object.keys(colWidth) as Array<keyof typeof colWidth>).reduce(
               (result, key) => ({
                 ...result,
                 [`&:nth-of-type(${12 / colWidth[key]}n)`]: {
