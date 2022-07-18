@@ -7,7 +7,7 @@
 You can make your application use the dark theme as the default—regardless of the user's preference—by adding `mode: 'dark'` to the `createTheme` helper:
 
 ```js
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { ThemeProvider, createTheme, CssBaseline } from '@mui/material/styles';
 
 const darkTheme = createTheme({
   palette: {
@@ -18,6 +18,7 @@ const darkTheme = createTheme({
 function App() {
   return (
     <ThemeProvider theme={darkTheme}>
+      <CssBaseline />
       <main>This app is using the dark mode</main>
     </ThemeProvider>
   );
@@ -29,6 +30,8 @@ export default App;
 Adding `mode: 'dark'` to the `createTheme` helper modifies several palette values, as shown in the following demo:
 
 {{"demo": "DarkTheme.js", "bg": "inline", "hideToolbar": true}}
+
+Adding `<CssBaseline />` inside of the `<ThemeProvider>` component will also enable dark mode for the app's background.
 
 :::info
 Note: setting the dark mode this way only works if you are using [the default palette](/material-ui/customization/default-theme/). If you have a custom palette, you need to make sure that you have the correct values based on the `mode`. The next section explain how to do this.

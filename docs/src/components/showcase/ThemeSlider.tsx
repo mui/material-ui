@@ -86,7 +86,7 @@ export default function ThemeSlider() {
                   },
                   fontWeight: 700,
                   padding: 0,
-                  left: '2.5rem',
+                  left: '2rem',
                   top: '14px',
                   [`& .${sliderClasses.valueLabelOpen}`]: {
                     transform: 'none',
