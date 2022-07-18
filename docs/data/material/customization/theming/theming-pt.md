@@ -73,7 +73,16 @@ Você [pode acessar](/styles/advanced/#accessing-the-theme-in-a-component) as va
 
 ## Acessando o tema em um componente
 
-You [can access](/system/styles/advanced/#accessing-the-theme-in-a-component) the theme variables inside your React components.
+You can access the theme variables inside your functional React components using the `useTheme` hook:
+
+```jsx
+import { useTheme } from '@mui/material/styles';
+
+function DeepChild() {
+  const theme = useTheme();
+  return <span>{`spacing ${theme.spacing}`}</span>;
+}
+```
 
 ## Aninhando o tema
 
@@ -99,9 +108,21 @@ Gere uma base de temas sobre as opções recebidas. Then, pass it as a prop to [
 :::warning Note: Only the first argument (`options`) is being processed by the `createTheme` function. If you want to actually merge two themes' options and create a new one based on them, you may want to deep merge the two options and provide them as a first argument to the `createTheme` function. :::
 
 ```js
-import { createTheme } from '@material-ui/core/styles';
-import purple from '@material-ui/core/colors/purple';
-import green from '@material-ui/core/colors/green';
+import { deepmerge } from '@mui/utils';
+import { createTheme } from '@mui/material/styles';
+
+const theme = createTheme(deepmerge(options1, options2));
+```
+
+#### Retornos
+
+`theme` (_object_): A complete, ready-to-use theme object.
+
+#### Examples
+
+```js
+import { createTheme } from '@mui/material/styles';
+import { green, purple } from '@mui/material/colors';
 
 const theme = createTheme({
   palette: {
@@ -115,33 +136,31 @@ const theme = createTheme({
 });
 ```
 
-#### Retornos
-
-`theme` (_object_): A complete, ready-to-use theme object.
-
-#### Examples
-
-```js
-import { createTheme, responsiveFontSizes } from '@material-ui/core/styles';
-
-let theme = createTheme();
-theme = responsiveFontSizes(theme);
-```
-
 #### Argumentos
 
 When the value for a theme option is dependent on another theme option, you should compose the theme in steps.
 
 ```js
--function TabPanel(props) {
-+const TabPanel = React.forwardRef(function TabPanel(props, ref) {
-  return <div role="tabpanel" {...props} ref={ref} />;
--}
-+});
+import { createTheme } from '@mui/material/styles';
 
-function Tabs() {
-  return <Fade><TabPanel>...</TabPanel></Fade>;
-}
+let theme = createTheme({
+  palette: {
+    primary: {
+      main: '#0052cc',
+    },
+    secondary: {
+      main: '#edf2ff',
+    },
+  },
+});
+
+theme = createTheme(theme, {
+  palette: {
+    info: {
+      main: theme.palette.secondary.main,
+    },
+  },
+});
 ```
 
 Think of creating a theme as a two-step composition process: first, you define the basic design options; then, you'll use these design options to compose other options.
@@ -195,26 +214,19 @@ Currently `unstable_createMuiStrictModeTheme` adds no additional requirements.
 #### Examples
 
 ```js
-import { createTheme } from '@mui/material/styles';
+import { unstable_createMuiStrictModeTheme } from '@mui/material/styles';
 
-let theme = createTheme({
-  shape: {
-    borderRadius: 4,
-  },
-});
+const theme = unstable_createMuiStrictModeTheme();
 
-theme = createTheme(theme, {
-  components: {
-    MuiChip: {
-      styleOverrides: {
-        root: {
-          // apply theme's border-radius instead of component's default
-          borderRadius: theme.shape.borderRadius,
-        },
-      },
-    },
-  },
-});
+function App() {
+  return (
+    <React.StrictMode>
+      <ThemeProvider theme={theme}>
+        <LandingPage />
+      </ThemeProvider>
+    </React.StrictMode>
+  );
+}
 ```
 
 ### `ThemeProvider`
