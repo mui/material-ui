@@ -5,7 +5,6 @@ import {
   OverridableTypeMap,
   OverrideProps,
 } from '@mui/types';
-
 import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
 
 export type OptionSlot = 'root';

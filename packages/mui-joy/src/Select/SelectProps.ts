@@ -2,7 +2,6 @@ import React from 'react';
 import { OverridableStringUnion } from '@mui/types';
 import { SelectUnstyledCommonProps, SelectOption } from '@mui/base/SelectUnstyled';
 import { PopperUnstyledProps } from '@mui/base/PopperUnstyled';
-import { ButtonProps } from '../Button/ButtonProps';
 import { ListProps } from '../List/ListProps';
 import { SheetProps } from '../Sheet/SheetProps';
 import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
@@ -15,7 +14,7 @@ export interface SelectPropsColorOverrides {}
 
 export interface SelectPropsSizeOverrides {}
 
-export interface SelectProps<TValue extends {}> extends SelectUnstyledCommonProps {
+export interface SelectStaticProps extends SelectUnstyledCommonProps {
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'primary'
@@ -26,27 +25,16 @@ export interface SelectProps<TValue extends {}> extends SelectUnstyledCommonProp
    * @default {}
    */
   componentsProps?: {
-    root?: ButtonProps;
+    root?: React.ComponentPropsWithRef<'div'>;
+    button?: React.ComponentPropsWithRef<'button'> & { sx?: SxProps };
     listbox?: ListProps;
     popper?: PopperUnstyledProps & SheetProps;
   };
-  /**
-   * The default selected value. Use when the component is not controlled.
-   */
-  defaultValue?: TValue | null;
   /**
    * If `true`, the component is disabled.
    * @default false
    */
   disabled?: boolean;
-  /**
-   * Callback fired when an option is selected.
-   */
-  onChange?: (value: TValue | null) => void;
-  /**
-   * Function that customizes the rendering of the selected value.
-   */
-  renderValue?: (option: SelectOption<TValue> | null) => React.ReactNode;
   /**
    * The size of the component.
    */
@@ -56,13 +44,29 @@ export interface SelectProps<TValue extends {}> extends SelectUnstyledCommonProp
    */
   sx?: SxProps;
   /**
-   * The selected value.
-   * Set to `null` to deselect all options.
-   */
-  value?: TValue | null;
-  /**
    * The variant to use.
    * @default 'solid'
    */
   variant?: OverridableStringUnion<VariantProp, SelectPropsVariantOverrides>;
+}
+
+export interface SelectProps<TValue extends {}> extends SelectStaticProps {
+  /**
+   * The default selected value. Use when the component is not controlled.
+   */
+  defaultValue?: TValue | null;
+
+  /**
+   * Callback fired when an option is selected.
+   */
+  onChange?: (value: TValue | null) => void;
+  /**
+   * Function that customizes the rendering of the selected value.
+   */
+  renderValue?: (option: SelectOption<TValue> | null) => React.ReactNode;
+  /**
+   * The selected value.
+   * Set to `null` to deselect all options.
+   */
+  value?: TValue | null;
 }

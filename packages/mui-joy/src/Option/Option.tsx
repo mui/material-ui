@@ -1,52 +1,58 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } from '@mui/utils';
+import { unstable_useForkRef as useForkRef } from '@mui/utils';
 import composeClasses from '@mui/base/composeClasses';
 import { useSlotProps } from '@mui/base/utils';
-import { SelectUnstyledContext } from '@mui/base/SelectUnstyled';
+import { SelectUnstyledContext, SelectUnstyledContextType } from '@mui/base/SelectUnstyled';
 import { OptionState } from '@mui/base/ListboxUnstyled';
-import ListItemButton from '../ListItemButton/ListItemButton';
+import { ListItemButtonRoot } from '../ListItemButton/ListItemButton';
 import { styled, useThemeProps } from '../styles';
+import { ColorPaletteProp } from '../styles/types';
 import { OptionProps, ExtendOption, OptionTypeMap } from './OptionProps';
-import { getOptionUtilityClass } from './optionClasses';
+import optionClasses, { getOptionUtilityClass } from './optionClasses';
 import RowListContext from '../List/RowListContext';
 
 const useUtilityClasses = (ownerState: OptionProps & OptionState) => {
-  const { color, disabled, highlighted, selected, variant } = ownerState;
+  const { disabled, highlighted, selected } = ownerState;
 
   const slots = {
-    root: [
-      'root',
-      disabled && 'disabled',
-      highlighted && 'highlighted',
-      selected && 'selected',
-      color && `color${capitalize(color)}`,
-      variant && `variant${capitalize(variant)}`,
-    ],
+    root: ['root', disabled && 'disabled', highlighted && 'highlighted', selected && 'selected'],
   };
 
   return composeClasses(slots, getOptionUtilityClass, {});
 };
 
-const OptionRoot = styled(ListItemButton, {
+const OptionRoot = styled(ListItemButtonRoot as unknown as 'button', {
   name: 'JoyOption',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{
-  ownerState: OptionProps & { row: boolean; 'data-first-child'?: string };
-}>({});
+})<{ ownerState: OptionProps & OptionState }>(({ theme, ownerState }) => ({
+  [`&.${optionClasses.highlighted}`]: {
+    backgroundColor: theme.vars.palette[ownerState.color!]?.softBg,
+  },
+}));
 
 const Option = React.forwardRef(function Option(inProps, ref) {
-  const props = useThemeProps({
+  const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
     name: 'JoyOption',
   });
 
+  const {
+    component = 'li',
+    children,
+    disabled,
+    value,
+    label,
+    variant = 'plain',
+    color = 'neutral',
+    ...other
+  } = props;
+
   const row = React.useContext(RowListContext);
-
-  const { children, disabled, value, label, ...other } = props;
-
-  const selectContext = React.useContext(SelectUnstyledContext);
+  const selectContext = React.useContext(SelectUnstyledContext) as SelectUnstyledContextType & {
+    color: ColorPaletteProp;
+  };
   if (!selectContext) {
     throw new Error('OptionUnstyled must be used within a SelectUnstyled');
   }
@@ -64,6 +70,9 @@ const Option = React.forwardRef(function Option(inProps, ref) {
   const ownerState = {
     ...props,
     ...optionState,
+    component,
+    variant,
+    color,
     row,
   };
 
@@ -96,6 +105,9 @@ const Option = React.forwardRef(function Option(inProps, ref) {
     additionalProps: {
       ...optionProps,
       ref: handleRef,
+      as: component,
+      variant,
+      color,
     },
     className: classes.root,
     ownerState,
@@ -124,7 +136,7 @@ Option.propTypes /* remove-proptypes */ = {
   /**
    * If `true`, the component is disabled.
    */
-  disabled: PropTypes.bool.isRequired,
+  disabled: PropTypes.bool,
   /**
    * A text representation of the option's content.
    * Used for keyboard text navigation matching.
