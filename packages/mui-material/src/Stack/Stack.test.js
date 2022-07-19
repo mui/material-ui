@@ -222,7 +222,7 @@ describe('<Stack />', () => {
       });
     });
 
-    it.only('should place correct margin direction even though breakpoints are not fully provided', () => {
+    it('should place correct margin direction even though breakpoints are not fully provided', () => {
       expect(
         style({
           ownerState: {
