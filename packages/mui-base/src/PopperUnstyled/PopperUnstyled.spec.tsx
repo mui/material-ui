@@ -7,6 +7,12 @@ const PolymorphicComponentTest = () => {
 
   return (
     <div>
+      <PopperUnstyled open>
+        {(props) => {
+          return <div>{props.placement}</div>;
+        }}
+      </PopperUnstyled>
+
       {/* @ts-expect-error */}
       <PopperUnstyled invalidProp={0} open />
 
