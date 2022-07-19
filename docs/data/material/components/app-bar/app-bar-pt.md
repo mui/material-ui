@@ -16,11 +16,11 @@ Ela pode se transformar em uma barra de ações contextual ou ser utilizada como
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## Basic App bar
+## Barra de Aplicativos Simples
 
 {{"demo": "ButtonAppBar.js", "bg": true}}
 
-## App bar with menu
+## Barra de aplicativos com menu
 
 {{"demo": "MenuAppBar.js", "bg": true}}
 
