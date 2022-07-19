@@ -388,6 +388,15 @@ const teamMembers: Array<Profile> = [
     about: '🎨 Art & design, traveling, and asking questions',
     github: 'gerdadesign',
   },
+  {
+    src: '/static/branding/about/vytautas.png',
+    name: 'Vytautas Butkus',
+    title: 'MUI Toolpad Engineering Manager',
+    location: 'Vilnius, Lithuania',
+    locationCountry: 'lt',
+    about: '🛠️ DYI projects, 🏄🏻‍♂️ Wakeboarding & 🏎️ F1',
+    github: 'bytasv',
+  },
 ];
 
 const contributors = [
