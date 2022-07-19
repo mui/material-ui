@@ -28,7 +28,7 @@ const OptionRoot = styled(ListItemButtonRoot as unknown as 'button', {
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: OptionProps & OptionState }>(({ theme, ownerState }) => ({
   [`&.${optionClasses.highlighted}`]: {
-    backgroundColor: theme.vars.palette[ownerState.color!]?.softBg,
+    backgroundColor: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}HoverBg`],
   },
 }));
 
@@ -45,7 +45,7 @@ const Option = React.forwardRef(function Option(inProps, ref) {
     value,
     label,
     variant = 'plain',
-    color = 'neutral',
+    color: colorProp = 'neutral',
     ...other
   } = props;
 
@@ -67,6 +67,7 @@ const Option = React.forwardRef(function Option(inProps, ref) {
   const optionProps = selectContext.getOptionProps(selectOption);
   const listboxRef = selectContext.listboxRef;
 
+  const color = optionState.selected ? inProps.color ?? selectContext.color : colorProp;
   const ownerState = {
     ...props,
     ...optionState,
@@ -106,8 +107,6 @@ const Option = React.forwardRef(function Option(inProps, ref) {
       ...optionProps,
       ref: handleRef,
       as: component,
-      variant,
-      color,
     },
     className: classes.root,
     ownerState,

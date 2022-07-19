@@ -135,17 +135,9 @@ const SelectPopper = styled(PopperUnstyled, {
   name: 'JoySelect',
   slot: 'Popper',
   overridesResolver: (props, styles) => styles.popper,
-})<{ ownerState: SelectStaticProps }>(({ theme, ownerState }) => ({
+})<{ ownerState: SelectStaticProps }>(({ theme }) => ({
   borderRadius: theme.vars.radius.sm,
-  ...(ownerState.size === 'sm' && {
-    padding: '0.25rem 0',
-  }),
-  ...(ownerState.size === 'md' && {
-    padding: '0.25rem 0',
-  }),
-  ...(ownerState.size === 'lg' && {
-    padding: '0.375rem 0',
-  }),
+  boxShadow: theme.vars.shadow.md,
 }));
 
 const SelectListbox = styled(List, {
@@ -154,6 +146,7 @@ const SelectListbox = styled(List, {
   overridesResolver: (props, styles) => styles.listbox,
 })<{ ownerState: SelectStaticProps }>({
   outline: 'none',
+  paddingBlock: 'var(--List-divider-gap)',
   '--List-radius': 'var(--Select-radius)',
 });
 
@@ -187,6 +180,7 @@ const Select = React.forwardRef(function Select<TValue>(
   } = props;
 
   const renderValue = renderValueProp ?? defaultRenderSingleValue;
+  const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
 
   const [groupedOptions, setGroupedOptions] = React.useState<SelectChild<TValue>[]>([]);
   const options = React.useMemo(() => flattenOptionGroups(groupedOptions), [groupedOptions]);
@@ -206,6 +200,10 @@ const Select = React.forwardRef(function Select<TValue>(
   const listboxRef = React.useRef<HTMLElement | null>(null);
 
   const handleRef = useForkRef(ref, rootRef);
+
+  React.useEffect(() => {
+    setAnchorEl(rootRef.current);
+  }, []);
 
   React.useEffect(() => {
     if (autoFocus) {
@@ -296,6 +294,8 @@ const Select = React.forwardRef(function Select<TValue>(
     additionalProps: {
       ref: listboxRef,
       size,
+      // https://www.w3.org/WAI/ARIA/apg/patterns/listbox/#listbox_roles_states_props
+      'aria-orientation': componentsProps.listbox?.row ? ('horizontal' as const) : undefined,
     },
     ownerState,
     className: classes.listbox,
@@ -305,12 +305,13 @@ const Select = React.forwardRef(function Select<TValue>(
     elementType: SelectPopper,
     externalSlotProps: componentsProps.popper,
     additionalProps: {
-      anchorEl: rootRef.current,
+      anchorEl,
       disablePortal: true,
       open: listboxOpen,
       placement: 'bottom-start' as const,
       role: undefined,
       variant: 'outlined',
+      color,
       modifiers: [
         {
           name: 'offset',
@@ -338,6 +339,7 @@ const Select = React.forwardRef(function Select<TValue>(
     getOptionProps,
     getOptionState,
     listboxRef,
+    color,
   };
 
   return (
@@ -348,13 +350,15 @@ const Select = React.forwardRef(function Select<TValue>(
         </SelectButton>
         <Unfold />
       </SelectRoot>
-      <SelectPopper component={Sheet} {...popperProps}>
-        <SelectListbox {...listboxProps}>
-          <SelectUnstyledContext.Provider value={context}>
-            {children}
-          </SelectUnstyledContext.Provider>
-        </SelectListbox>
-      </SelectPopper>
+      {anchorEl && (
+        <SelectPopper component={Sheet} {...popperProps}>
+          <SelectListbox {...listboxProps}>
+            <SelectUnstyledContext.Provider value={context}>
+              {children}
+            </SelectUnstyledContext.Provider>
+          </SelectListbox>
+        </SelectPopper>
+      )}
     </React.Fragment>
   );
 });
