@@ -17,13 +17,13 @@
 
 ## 安装
 
-To install and save in your `package.json` dependencies, run the command below using **npm**:
+为了将依赖安装并保存在您的`package.json`，您可以用**npm**执行以下指令：
 
 ```sh
 npm install @mui/lab @mui/material
 ```
 
-Or **yarn**:
+或使用**yarn**：
 
 ```sh
 yarn add @mui/lab @mui/material
@@ -33,7 +33,7 @@ Note that the lab has a peer dependency on the Material UI components.
 
 ## TypeScript
 
-In order to benefit from the [CSS overrides](/material-ui/customization/theme-components/#global-style-overrides) and [default prop customization](/material-ui/customization/theme-components/#default-props) with the theme, TypeScript users need to import the following types. Internally, it uses [module augmentation](/material-ui/guides/typescript/#customization-of-theme) to extend the default theme structure with the extension components available in the lab.
+为了从 theme 中的[CSS重载](/customization/theme-components/#global-style-overrides)和[默认的属性自定义](/customization/theme-components/#default-props)中获益，使用TypeScript的用户需要引入如下类型。 TypeScript 在内部将实验室里可用的扩展组件和 [模块扩展(module augmentation)](/guides/typescript/#customization-of-theme)一起使用，这样可以拓展默认的主题（theme）结构。
 
 ```tsx
 // 当使用 TypeScript 4.x 或更高版本时
