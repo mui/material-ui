@@ -41,6 +41,7 @@ const PopperTooltip = React.forwardRef(function PopperTooltip(props, ref) {
   const {
     anchorEl,
     children,
+    component: Root = 'div',
     direction,
     disablePortal,
     modifiers,
@@ -161,9 +162,9 @@ const PopperTooltip = React.forwardRef(function PopperTooltip(props, ref) {
   }
 
   return (
-    <div ref={ownRef} role="tooltip" {...other}>
+    <Root ref={ownRef} role="tooltip" {...other}>
       {typeof children === 'function' ? children(childProps) : children}
-    </div>
+    </Root>
   );
 });
 /* eslint-enable react/prop-types */
