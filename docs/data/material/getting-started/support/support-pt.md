@@ -6,15 +6,15 @@
 
 A comunidade é sua primeira parada para perguntas e conselhos sobre o framework. Bem-vindo à comunidade!
 
-### StackOverflow
+### Stack Overflow
 
-For crowdsourced answers from expert MUI developers in our community. StackOverflow is also visited from time to time by the maintainers of MUI.
+For crowdsourced answers from expert MUI developers in our community. Stack Overflow is also visited from time to time by the maintainers of MUI.
 
 [Poste uma pergunta](https://stackoverflow.com/questions/tagged/mui)
 
 :::info 💡 **Tip**:
 
-If you're using an older version and use external resources (such as StackOverflow) for help with it, you may find answers with links that direct you to content that no longer exists in the latest version of the documentation. To easily access any previous version of the docs, simply add `v[number]` at the beginning of the URL, like so: [v4.mui.com](https://v4.mui.com/).
+If you're using an older version and use external resources (such as Stack Overflow) for help with it, you may find answers with links that direct you to content that no longer exists in the latest version of the documentation. To easily access any previous version of the docs, simply add `v[number]` at the beginning of the URL, like so: [v4.mui.com](https://v4.mui.com/).
 
 :::
 
@@ -56,15 +56,17 @@ Receive the latest news on MUI.
 
 Find details on the [supported versions](/versions/#supported-versions).
 
-## Suporte profissional (premium)
+## Paid support
 
 ### Pro/Premium plans
 
-MUI X comes in [three plans](https://mui.com/pricing/). The support available on the Community plan is mostly made possible thanks to people like you: the community. It's described in more detail in the above section. The maintainers of MUI focuses on solving the root issues, not direct support.
+MUI X comes in [three plans](https://mui.com/pricing/). The support available under the Community plan is made possible thanks to people like you: the community. This is described in more detail in the section above. MUI X maintainers focus on solving root issues rather than offering direct support to the community at large.
 
-The Pro plan allows developers to license extra features that are challenging to find in the OSS space. The maintainers of MUI provide support for these paid features. They aim for a similar quality of experience to the one provided by the community on the open-source modules however no SLAs are provided.
+The paid plans offer developers advanced components and extra features that are challenging to find in OSS. To provide a similar quality of experience to the one provided by the community for MIT licensed code, the developers of MUI X provide support for the advanced components only. Technical support for MUI Core components is **not** included.
 
-The Premium plan goes one step further by providing SLAs on the quality of the support.
+The Premium plan provides developers with the highest priority for support tickets. No SLAs are provided yet; it's coming.
+
+Please visit [the MUI X Support page](https://mui.com/x/introduction/support/#technical-support) for more detailed information on technical support.
 
 ### Tidelift subscription
 
