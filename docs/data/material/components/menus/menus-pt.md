@@ -22,7 +22,7 @@ Um menu básico abre sobre o elemento âncora por padrão (esta opção pode ser
 
 Escolhendo uma opção deve confirmar imediatamente a opção e fechar o menu.
 
-**Desambiguação**: Em contraste com menus simples, uma caixa de diálogo simples pode apresentar detalhes adicionais relacionados às opções disponíveis para um item da lista ou fornecer navegação ou ações indiretas relacionada à tarefa principal. Although they can display the same content, simple menus are preferred over simple dialogs because simple menus are less disruptive to the user's current context.
+**Desambiguação**: Em contraste com menus simples, uma caixa de diálogo simples pode apresentar detalhes adicionais relacionados às opções disponíveis para um item da lista ou fornecer navegação ou ações indiretas relacionada à tarefa principal. Embora eles possam exibir o mesmo conteúdo, menus simples são preferidos em relação a caixas de diálogo simples, porque menus simples são menos disruptivos no contexto atual do usuário.
 
 {{"demo": "BasicMenu.js"}}
 
@@ -34,19 +34,19 @@ No viewport do desktop, o preenchimento é aumentado para dar mais espaço ao me
 
 ## Menu posicionado
 
-For the menu that has long list and long text, you can use the `dense` prop to reduce the padding and text size.
+Para o menu que tem uma longa lista e um longo texto, você pode usar a propriedade `dense` para reduzir o tamanho do preenchimento e do texto.
 
 {{"demo": "DenseMenu.js", "bg": true}}
 
 ## Composição de MenuList
 
-Se usado para seleção de itens, quando abertos, menus simples colocam o foco inicial no item do menu selecionado. The currently selected menu item is set using the `selected` prop (from [ListItem](/material-ui/api/list-item/)). Para usar um item do menu selecionado sem impactar o foco inicial, defina a propriedade `variante` para "menu".
+Se usado para seleção de itens, quando abertos, menus simples colocam o foco inicial no item do menu selecionado. O item de menu atualmente selecionado é definido usando a propriedade `selected` (de [ListItem](/api/list-item/)). Para usar um item do menu selecionado sem impactar o foco inicial, defina a propriedade `variant` para "menu".
 
 {{"demo": "SimpleListMenu.js"}}
 
 ## Menu customizado
 
-Because the `Menu` component uses the `Popover` component to position itself, you can use the same [positioning props](/material-ui/react-popover/#anchor-playground) to position it. Por exemplo, você pode exibir o menu abaixo da âncora:
+Devido ao componente `Menu` usar o componente `Popover` para se posicionar, você pode usar as mesmas [propriedades de posicionamento](/components/popover/#anchor-playground) para posicioná-lo. Por exemplo, você pode exibir o menu abaixo da âncora:
 
 {{"demo": "PositionedMenu.js"}}
 
@@ -72,7 +72,7 @@ Aqui está um exemplo de customização do componente. You can learn more about 
 
 O `MenuItem` é um encapsulador em torno de `ListItem` com alguns estilos adicionais. Você pode usar os mesmos recursos de composição de lista com o componente `MenuItem`:
 
-🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/menu/).
+🎨 Se você está procurando inspiração, você pode verificar [os exemplos de customização de MUI Treasury](https://mui-treasury.com/styles/menu/).
 
 ## Menu de contexto
 
@@ -98,12 +98,12 @@ Aqui está um exemplo de um menu de contexto. (Clique com o botão direito para 
 
 {{"demo": "ContextMenu.js"}}
 
-## Complementary projects
+## Projetos Complementares
 
-For more advanced use cases you might be able to take advantage of:
+Para situações de uso mais avançadas, você pode tirar proveito com:
 
 ### PopupState helper
 
-There is a 3rd party package [`material-ui-popup-state`](https://github.com/jcoreio/material-ui-popup-state) that takes care of menu state for you in most cases.
+Existe um pacote de terceiros [`material-ui-popup-state`](https://github.com/jcoreio/material-ui-popup-state) que cuida do estado do menu para você na maioria das situações.
 
 {{"demo": "MenuPopupState.js"}}
