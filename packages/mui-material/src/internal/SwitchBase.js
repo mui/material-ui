@@ -110,6 +110,9 @@ const SwitchBase = React.forwardRef(function SwitchBase(props, ref) {
 
     const newChecked = event.target.checked;
 
+    if (newChecked) event.target.setAttribute('checked', true);
+    else event.target.removeAttribute('checked');
+
     setCheckedState(newChecked);
 
     if (onChange) {
