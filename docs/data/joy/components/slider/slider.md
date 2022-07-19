@@ -9,56 +9,69 @@ unstyled: /base/react-slider/
 
 <p class="description">Slider generates a background element that can be used for various purposes.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+## Introduction
+
+Sliders are ideal for interface controls that benefit from a visual representation of adjustable content, such as volume or brightness settings, or for applying image filters such as gradients or saturation.
 
 {{"demo": "SliderUsage.js", "hideToolbar": true}}
 
-## Steps
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
-By passing a number to the `step` prop, you can change the default step increment.
+## Component
+
+After [installation](/joy-ui/getting-started/installation/), you can start building with this component using the following basic elements:
+
+```jsx
+import Slider from '@mui/joy/Slider';
+
+export default function MyApp() {
+  return <Slider defaultValue={3} max={10} />;
+}
+```
+
+### Steps
+
+Change the default step increments by setting a desired value to the `step` prop.
 
 {{"demo": "StepsSlider.js"}}
 
-## Marks
+### Custom marks
 
-By providing an array of objects to the `marks` prop, you can have custom marks.
+You can create custom marks by providing a rich array to the `marks` prop:
 
 {{"demo": "MarksSlider.js"}}
 
-## Label always visible
+### Always visible label
 
-You can force the thumb label to be always visible with `valueLabelDisplay="on"`.
+To make the thumb label always visible, toggle on the `valueLabelDisplay` prop.
 
 {{"demo": "AlwaysVisibleLabelSlider.js"}}
 
-### Keep label at edges
+### Keep the label at edges
 
-For horizontal slider on mobile viewports, the value label might be offset from the track. Apply the style to keep the label at the start/end edges:
+Apply the following styles to ensure that the label doesn't get cut off on mobile when it hits the edge of the slider.
 
 {{"demo": "EdgeLabelSlider.js"}}
 
-## Range slider
+### Range slider
 
-By passing an array of values to the `value` prop, you can use the `Slider` to set the start and end of a range.
+To let users set the start and end of a range on a slider, provide an array of values to the `value` or `defaultValue` prop:
 
 {{"demo": "RangeSlider.js"}}
 
-## Track
+### Track
 
-The track shows the range available for user selection.
-
-### Removed track
-
-The track can be turned off with `track={false}`.
-
-{{"demo": "TrackFalseSlider.js"}}
-
-### Inverted track
-
-The track can be inverted with `track="inverted"`.
+The slider's track shows how much of it has been selected.
+You can either invert it by assigning `inverted` to the `track` prop or remove it entirely by assigning a value of `false`.
 
 {{"demo": "TrackInvertedSlider.js"}}
 
-## Component variables
+{{"demo": "TrackFalseSlider.js"}}
+
+## CSS variables
+
+Play around with all the CSS variables available in the slider component to see how the design changes.
+
+You can use those to customize the component on both the `sx` prop and the theme.
 
 {{"demo": "SliderVariables.js", "hideToolbar": true}}

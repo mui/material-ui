@@ -4,7 +4,6 @@ import replaceMarkdownLinks, {
   replaceAPILinks,
   replaceComponentLinks,
 } from './replaceMarkdownLinks';
-import FEATURE_TOGGLE from '../../featureToggle';
 
 describe('replaceMarkdownLinks', () => {
   it('replace material related links', () => {
@@ -337,13 +336,9 @@ describe('replaceMarkdownLinks', () => {
         [DataGridPro](/x/api/data-grid/data-grid-pro)
         [System](/system/basics)
     `);
-    if (FEATURE_TOGGLE.enable_system_scope) {
-      expect(replaceMarkdownLinks(`[Styles](/styles/api/)`)).to.equal(
-        `[Styles](/system/styles/api/)`,
-      );
-    } else {
-      expect(replaceMarkdownLinks(`[Styles](/styles/api/)`)).to.equal(`[Styles](/styles/api/)`);
-    }
+    expect(replaceMarkdownLinks(`[Styles](/styles/api/)`)).to.equal(
+      `[Styles](/system/styles/api/)`,
+    );
   });
 
   it('does not change after transformed', () => {

@@ -69,7 +69,6 @@ module.exports = {
           // Allowing /icons as to reduce cold-start of dev builds significantly.
           // There's nothing to tree-shake when importing from /icons this way:
           // '@mui/icons-material/*/',
-          '@mui/system/*',
           '@mui/utils/*',
           // End block
           // Macros are fine since their import path is transpiled away
@@ -227,7 +226,7 @@ module.exports = {
       rules: {
         'material-ui/no-hardcoded-labels': [
           'error',
-          { allow: ['MUI', 'Twitter', 'GitHub', 'StackOverflow'] },
+          { allow: ['MUI', 'Twitter', 'GitHub', 'Stack Overflow'] },
         ],
       },
     },

@@ -15,7 +15,7 @@
     "componentsProps": {
       "type": {
         "name": "shape",
-        "description": "{ actions?: object, displayedRows?: object, menuItem?: object, root?: object, select?: object, selectLabel?: object, spacer?: object, toolbar?: object }"
+        "description": "{ actions?: func<br>&#124;&nbsp;object, displayedRows?: func<br>&#124;&nbsp;object, menuItem?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object, select?: func<br>&#124;&nbsp;object, selectLabel?: func<br>&#124;&nbsp;object, spacer?: func<br>&#124;&nbsp;object, toolbar?: func<br>&#124;&nbsp;object }"
       },
       "default": "{}"
     },
@@ -27,6 +27,7 @@
       "type": { "name": "func" },
       "default": "function defaultLabelDisplayedRows({ from, to, count }: LabelDisplayedRowsArgs) {\n  return `${from}–${to} of ${count !== -1 ? count : `more than ${to}`}`;\n}"
     },
+    "labelId": { "type": { "name": "string" } },
     "labelRowsPerPage": { "type": { "name": "node" }, "default": "'Rows per page:'" },
     "onRowsPerPageChange": { "type": { "name": "func" } },
     "rowsPerPageOptions": {
@@ -35,7 +36,8 @@
         "description": "Array&lt;number<br>&#124;&nbsp;{ label: string, value: number }&gt;"
       },
       "default": "[10, 25, 50, 100]"
-    }
+    },
+    "selectId": { "type": { "name": "string" } }
   },
   "name": "TablePaginationUnstyled",
   "styles": { "classes": [], "globalClasses": {}, "name": null },

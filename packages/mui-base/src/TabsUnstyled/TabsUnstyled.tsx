@@ -1,8 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import { OverridableComponent } from '@mui/types';
-import { appendOwnerState, WithOptionalOwnerState } from '../utils';
+import { useSlotProps, WithOptionalOwnerState } from '../utils';
 import composeClasses from '../composeClasses';
 import { getTabsUnstyledUtilityClass } from './tabsUnstyledClasses';
 import {
@@ -36,7 +35,6 @@ const useUtilityClasses = (ownerState: { orientation: 'horizontal' | 'vertical' 
 const TabsUnstyled = React.forwardRef<unknown, TabsUnstyledProps>((props, ref) => {
   const {
     children,
-    className,
     value: valueProp,
     defaultValue,
     orientation = 'horizontal',
@@ -60,16 +58,16 @@ const TabsUnstyled = React.forwardRef<unknown, TabsUnstyledProps>((props, ref) =
   const classes = useUtilityClasses(ownerState);
 
   const TabsRoot: React.ElementType = component ?? components.Root ?? 'div';
-  const tabsRootProps: WithOptionalOwnerState<TabsUnstyledRootSlotProps> = appendOwnerState(
-    TabsRoot,
-    {
-      ...other,
-      ...componentsProps.root,
+  const tabsRootProps: WithOptionalOwnerState<TabsUnstyledRootSlotProps> = useSlotProps({
+    elementType: TabsRoot,
+    externalSlotProps: componentsProps.root,
+    externalForwardedProps: other,
+    additionalProps: {
       ref,
-      className: clsx(classes.root, componentsProps.root?.className, className),
     },
     ownerState,
-  );
+    className: classes.root,
+  });
 
   return (
     <TabsRoot {...tabsRootProps}>
@@ -88,10 +86,6 @@ TabsUnstyled.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
-   * @ignore
-   */
-  className: PropTypes.string,
-  /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
    */
@@ -109,7 +103,7 @@ TabsUnstyled.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   componentsProps: PropTypes.shape({
-    root: PropTypes.object,
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
    * The default value. Use when the component is not controlled.

@@ -15,9 +15,9 @@ Switches are very commonly used for adjusting settings on mobile.
 The option that the switch controls, as well as the state it's in,
 should be made clear from the corresponding inline label.
 
-{{"demo": "SwitchUsage.js"}}
+{{"demo": "SwitchUsage.js", "hideToolbar": true}}
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Component
 

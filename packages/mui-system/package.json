@@ -1,6 +1,6 @@
 {
   "name": "@mui/system",
-  "version": "5.8.6",
+  "version": "5.9.1",
   "private": false,
   "author": "MUI Team",
   "description": "CSS utilities for rapidly laying out custom designs.",
@@ -36,7 +36,8 @@
     "prebuild": "rimraf build tsconfig.build.tsbuildinfo",
     "release": "yarn build && npm publish build",
     "test": "cd ../../ && cross-env NODE_ENV=test mocha 'packages/mui-system/**/*.test.{js,ts,tsx}'",
-    "typescript": "tslint -p tsconfig.json \"{src,test}/**/*.{spec,d}.{ts,tsx}\" && tsc -p tsconfig.json"
+    "typescript": "tslint -p tsconfig.json \"{src,test}/**/*.{spec,d}.{ts,tsx}\" && tsc -p tsconfig.json",
+    "typescript:module-augmentation": "node scripts/testModuleAugmentation.js"
   },
   "peerDependencies": {
     "@emotion/react": "^11.5.0",
@@ -57,11 +58,11 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.17.2",
-    "@mui/private-theming": "^5.8.6",
-    "@mui/styled-engine": "^5.8.0",
+    "@mui/private-theming": "^5.9.1",
+    "@mui/styled-engine": "^5.8.7",
     "@mui/types": "^7.1.4",
-    "@mui/utils": "^5.8.6",
-    "clsx": "^1.1.1",
+    "@mui/utils": "^5.9.1",
+    "clsx": "^1.2.1",
     "csstype": "^3.1.0",
     "prop-types": "^15.8.1"
   },

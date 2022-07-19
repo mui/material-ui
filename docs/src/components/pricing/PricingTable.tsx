@@ -18,8 +18,7 @@ const planInfo = {
   community: {
     color: 'green',
     title: 'Community',
-    description:
-      'Get started with the industry-standard UI library for building React user interfaces, MIT-licensed.',
+    description: 'Get started with the industry-standard React UI library, MIT-licensed.',
   },
   pro: {
     color: 'blue',
@@ -30,7 +29,7 @@ const planInfo = {
     color: 'gold',
     title: 'Premium',
     description:
-      'The most advanced features for handling data-rich applications, and the highest priority for support.',
+      'The most advanced features for data-rich applications, as well as the highest priority for support.',
   },
 } as const;
 
@@ -510,13 +509,21 @@ const rowHeaders: Record<string, React.ReactNode> = {
   'mui-x-development': <ColumnHead label="Development license" tooltip="For active development" />,
   'mui-x-updates': <ColumnHead label="Access to new releases" />,
   // Support
-  community: <ColumnHead {...{ label: 'Community' }} />,
+  community: (
+    <ColumnHead
+      {...{
+        label: 'Community support for MUI Core',
+        tooltip:
+          'Support for MUI Core and other MIT licensed code is provided by the community. MUI maintainers focus on solving root issues rather than offering direct support to the community at large.',
+      }}
+    />
+  ),
   'bugs/features': (
     <ColumnHead
       {...{
-        label: 'Bug reports & feature requests',
+        label: 'Technical support for MUI X',
         tooltip:
-          'You can report an unlimited number of bugs and submit unlimited feature requests. We do our best to handle them.',
+          'You can ask for technical support, report bugs and submit unlimited feature requests to the advanced components. We take your subscription plan as one of the prioritization criteria.',
       }}
     />
   ),

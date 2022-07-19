@@ -17,6 +17,22 @@ const theme = createTheme();
   });
 }
 
+// MuiCssBaseline styleOverrides key as a callback
+{
+  createTheme({
+    components: {
+      MuiCssBaseline: {
+        styleOverrides: (themeParam) => `
+          span {
+            background-color: ${themeParam.palette.success.main};
+            color: ${themeParam.palette.error.main};
+          }
+        `,
+      },
+    },
+  });
+}
+
 // theme.typography[variant]
 {
   createTheme({

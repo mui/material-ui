@@ -1352,7 +1352,7 @@ const synonyms = {
   LastPage:
     'application arrow chevron components end forward interface right screen ui ux website',
   Launch:
-    'application arrow box components core interface internal new open screen ui ux website window',
+    'application arrow box components core interface internal link new open screen ui ux website window',
   Layers: 'arrange disabled enabled interaction maps off overlay pages slash stack',
   LayersClear:
     'arrange delete disabled enabled interaction maps off overlay pages slash',
@@ -1721,7 +1721,7 @@ const synonyms = {
   OpenInBrowser: 'arrow box new up website window',
   OpenInFull: 'action arrows expand grow move',
   OpenInNew:
-    'application arrow box components interface screen ui ux website window',
+    'application arrow box components interface link screen ui ux website window',
   OpenInNewOff: 'arrow box disabled enabled export on slash window',
   OpenWith: 'arrows directional expand move',
   OtherHouses:
