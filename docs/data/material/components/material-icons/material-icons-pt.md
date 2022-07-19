@@ -6,14 +6,14 @@ packageName: '@mui/icons-material'
 githubLabel: 'package: icons'
 ---
 
-# Material Icons
+# Ícones Material
 
-<p class="description">2,000+ ready-to-use React Material Icons from the official website.</p>
+<p class="description">Mais de 2.000 Ícones Materiais Prontos para usar a partir do site oficial.</p>
 
-The following npm package, [@mui/icons-material](https://www.npmjs.com/package/@mui/icons-material), includes the 2,000+ official [Material Icons](https://fonts.google.com/icons?icon.set=Material+Icons) converted to [`SvgIcon`](/material-ui/api/svg-icon/) components.
+O pacote npm, [@mui/icons-material](https://www.npmjs.com/package/@mui/icons-material), conta com mais de 2,000 [Ícones Material](https://fonts.google.com/icons?icon.set=Material+Icons) convertidos em componentes [`SvgIcon`](/material-ui/api/svg-icon/).
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
 {{"demo": "SearchIcons.js", "hideToolbar": true, "bg": true}}
 
-ℹ️ A pesquisa suporta sinônimos. Try searching for "hamburger" or "logout".
+ℹ️ A pesquisa suporta sinônimos. Tente procurar por "hamburger" ou "logout".
