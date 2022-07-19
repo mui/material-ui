@@ -44,7 +44,7 @@ const getSideFromDirection = (direction) => {
 export const style = ({ ownerState, theme }) => {
   let styles = {
     display: 'flex',
-    flexDirection: typeof ownerState.direction === 'string' ? ownerState.direction : 'column',
+    flexDirection: 'column',
     ...handleBreakpoints(
       { theme },
       resolveBreakpointValues({
