@@ -36,7 +36,7 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/alert/
 
 ### 过渡效果
 
-You can use a [transition component](/material-ui/transitions/) such as `Collapse` to transition the appearance of the alert.
+您可以使用诸如`Collapse`的[过渡组件](/components/transitions/)来实现警告提示出现时的过渡效果。
 
 {{"demo": "TransitionAlerts.js"}}
 
@@ -44,7 +44,7 @@ You can use a [transition component](/material-ui/transitions/) such as `Collaps
 
 使用 `icon` 属性，您可以在警告提示组件开头添加一个图标。 以此来改变不同程度的默认图标。
 
-通过使用 `iconMapping` 属性，您可以改变不同程度的默认图标映射。 This can be defined globally using [theme customization](/material-ui/customization/theme-components/#default-props).
+通过使用 `iconMapping` 属性，您可以改变不同程度的默认图标映射。 您可以使用 [自定义主题](/customization/theme-components/#default-props)进行全局设置。
 
 把图标属性设置为 `false` 将会移除所有图标。
 
@@ -58,7 +58,7 @@ You can use a [transition component](/material-ui/transitions/) such as `Collaps
 
 {{"demo": "OutlinedAlerts.js"}}
 
-When using an outlined alert with the [`Snackbar` component](/material-ui/react-snackbar/#customization), background content will be visible and bleed through the alert by default. You can prevent this by adding `bgcolor: 'background.paper'` to the[`sx` prop](/material-ui/customization/how-to-customize/#the-sx-prop) on the `Alert` component.
+当使用 [`消息条（Snackbar）`组件](/material-ui/react-snackbar/#customization)时，背景内容将默认可见并出血。 您可以为对`Alert`的[sx</code> 属性](/material-ui/customization/how-to-customize/#the-sx-prop) 添加`bgcolor: 'background.paper'`，以阻止这一行为。
 
 ### 填充
 
@@ -66,11 +66,11 @@ When using an outlined alert with the [`Snackbar` component](/material-ui/react-
 
 ## Toast（提示）
 
-You can use the Snackbar to [display a toast](/material-ui/react-snackbar/#customized-snackbars) with the Alert.
+你可以使用消息条（Snackbar）来显示一个带警告提示组件的 [toast](/components/snackbars/#customized-snackbars) 。
 
 ## Color 颜色
 
-The `color` prop will override the default color for the specified severity.
+使用 `color`属性可以覆盖不同程度提醒的默认颜色。
 
 {{"demo": "ColorAlerts.js"}}
 
@@ -78,8 +78,8 @@ The `color` prop will override the default color for the specified severity.
 
 (WAI-ARIA: https://www.w3.org/WAI/ARIA/apg/patterns/alert/)
 
-When the component is dynamically displayed, the content is automatically announced by most screen readers. At this time, screen readers do not inform users of alerts that are present when the page loads.
+当动态地显示组件时，大部分屏幕阅读器都会自动朗读其内容。 此时，屏幕阅读不会将页面加载时出现的警告提示通知给用户。
 
-Using color to add meaning only provides a visual indication, which will not be conveyed to users of assistive technologies such as screen readers. Ensure that information denoted by the color is either obvious from the content itself (for example the visible text), or is included through alternative means, such as additional hidden text.
+使用颜色来增加意义只提供了一个视觉指示，而不会向诸如屏幕阅读器的辅助技术传达。 请确保用颜色表示的信息，要么内容本身（例如一些可见的文本）是明显的，要么通过其他方法包含信息，例如一个附加的隐藏文本。
 
-Actions must have a tab index of 0 so that they can be reached by keyboard-only users.
+动作的选项卡索引（tab index）必须为0，这样只使用键盘的用户才能访问它们。
