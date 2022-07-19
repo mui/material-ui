@@ -191,6 +191,25 @@ describe('<Stack />', () => {
   });
 
   describe('prop: direction', () => {
+    it('should generate correct direction given string values', () => {
+      expect(
+        style({
+          ownerState: {
+            direction: 'column-reverse',
+            spacing: 1,
+          },
+          theme,
+        }),
+      ).to.deep.equal({
+        '& > :not(style) + :not(style)': {
+          margin: 0,
+          marginBottom: '8px',
+        },
+        display: 'flex',
+        flexDirection: 'column-reverse',
+      });
+    });
+
     it('should generate correct responsive styles regardless of breakpoints order', () => {
       expect(
         style({
