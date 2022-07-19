@@ -18,12 +18,12 @@ Aqui você irá encontrar a versão em desenvolvimento e sua documentação. Pod
 
 A estabilidade garante que componentes e bibliotecas reutilizáveis, tutoriais, ferramentas e práticas aprendidas não se tornem obsoletas inesperadamente. A estabilidade é essencial para que o ecossistema em torno do Material-UI prospere.
 
-This document contains the practices that are followed to provide you with a leading-edge UI library, balanced with stability, ensuring that future changes are always introduced predictably.
+Este documento contém as práticas que são seguidas para fornecer uma biblioteca de ponta para interface do usuário, equilibrada com a estabilidade e garantindo que mudanças futuras sejam sempre introduzidas de maneira previsível.
 
 Material-UI segue o [Controle de Versão Semântico 2.0.0](https://semver.org/). Os números da versão do Material-UI têm três partes: `principal.menor.patch`. O número da versão é incrementado com base no nível de alteração incluído na nova versão.
 
-- **Major releases** contain significant new features, some developer assistance is expected during the update. These releases include [breaking changes](#what-doesnt-count-as-a-breaking-change). When updating to a new major release, you may need to run update scripts, refactor code, run additional tests, and learn new APIs.
-- **Versões menores** contém novos recursos importantes. Minor releases are fully backward-compatible; no developer assistance is expected during the update, but you can optionally modify your apps and libraries to begin using new APIs, features, and capabilities that were added in the release.
+- **Major releases** contain significant new features, some developer assistance is expected during the update. Estas versões incluem [alterações que quebram](#what-doesnt-count-as-a-breaking-change). Ao atualizar para uma nova versão principal, talvez seja necessário executar scripts de atualização, refatorar códigos, executar testes adicionais e aprender sobre as novas APIs.
+- **Versões menores** contém novos recursos importantes. Versões menores são totalmente compatíveis com versões anteriores; nenhuma assistência do desenvolvedor é esperada durante a atualização, mas você pode opcionalmente modificar seus aplicativos e bibliotecas para começar a usar novas APIs, recursos e capacidades que foram adicionados na versão.
 - **Versões de patch** são de baixo risco, contêm correções de bugs e pequenos novos recursos. No developer assistance is expected during the update.
 
 ## What doesn't count as a breaking change?
