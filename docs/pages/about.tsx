@@ -764,7 +764,7 @@ function AboutContent() {
                 </li>
                 <li>
                   Answer questions on{' '}
-                  <Link href="https://stackoverflow.com/questions/tagged/mui">StackOverflow</Link>.
+                  <Link href="https://stackoverflow.com/questions/tagged/mui">Stack Overflow</Link>.
                 </li>
               </Box>
               <Button
