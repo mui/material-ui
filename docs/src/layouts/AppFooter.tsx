@@ -189,7 +189,6 @@ export default function AppFooter() {
             >
               <YouTubeIcon fontSize="small" />
             </IconButton>
-            
           </Stack>
         </Box>
       </Box>
