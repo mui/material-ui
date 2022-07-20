@@ -1,34 +1,23 @@
 import * as React from 'react';
 import BrandingProvider from 'docs/src/BrandingProvider';
 import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
-import { styled, ColorPaletteProp } from '@mui/joy/styles';
+import { ColorPaletteProp } from '@mui/joy/styles';
 import Box from '@mui/joy/Box';
 import Chip from '@mui/joy/Chip';
 import Typography from '@mui/joy/Typography';
 import IconButton from '@mui/joy/IconButton';
 import RadioGroup from '@mui/joy/RadioGroup';
 import Radio, { radioClasses } from '@mui/joy/Radio';
+import ListItemDecorator, { listItemDecoratorClasses } from '@mui/joy/ListItemDecorator';
 import Switch from '@mui/joy/Switch';
+import Select from '@mui/joy/Select';
+import Option, { optionClasses } from '@mui/joy/Option';
 import Sheet from '@mui/joy/Sheet';
 import Check from '@mui/icons-material/Check';
 import TextField from '@mui/joy/TextField';
 import { inputClasses } from '@mui/joy/Input';
 import ReplayRoundedIcon from '@mui/icons-material/ReplayRounded';
-
-const Select = styled('select')(({ theme }) => ({
-  padding: '0.25rem',
-  border: 'none',
-  borderRadius: theme.radius.sm,
-  width: '100%',
-  minHeight: '2rem',
-  ...theme.typography.body2,
-  ...theme.variants.outlined.neutral,
-  [theme.focus.selector]: {
-    borderColor: theme.vars.palette.primary[500],
-    boxShadow: `inset 0 0 0 1px ${theme.vars.palette.primary[500]}`,
-    outline: 'none',
-  },
-}));
+import CheckRounded from '@mui/icons-material/CheckRounded';
 
 const shallowEqual = (item1: { [k: string]: any }, item2: { [k: string]: any }) => {
   let equal = true;
@@ -407,26 +396,50 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                     fontSize="xs"
                     fontWeight="lg"
                     mb={1}
-                    htmlFor={selectId}
+                    id={selectId}
                     sx={{ textTransform: 'capitalize' }}
                   >
                     {propName}
                   </Typography>
                   <Select
-                    id={selectId}
+                    size="sm"
+                    placeholder="Select a variant..."
+                    componentsProps={{
+                      button: {
+                        'aria-labelledby': selectId,
+                      },
+                      listbox: {
+                        sx: {
+                          '--List-decorator-width': '24px',
+                        },
+                      },
+                    }}
                     value={(resolvedValue || 'none') as string}
-                    onChange={(event) =>
+                    onChange={(val) =>
                       setProps((latestProps) => ({
                         ...latestProps,
-                        [propName]: event.target.value,
+                        [propName]: val,
                       }))
                     }
                   >
-                    {!resolvedValue && <option value="none">{''}</option>}
                     {options.map((value) => (
-                      <option key={value} value={value}>
+                      <Option
+                        key={value}
+                        value={value}
+                        label={value}
+                        sx={{
+                          [`&.${optionClasses.selected}`]: {
+                            [`& .${listItemDecoratorClasses.root}`]: {
+                              opacity: 1,
+                            },
+                          },
+                        }}
+                      >
+                        <ListItemDecorator sx={{ opacity: 0 }}>
+                          <CheckRounded />
+                        </ListItemDecorator>
                         {value}
-                      </option>
+                      </Option>
                     ))}
                   </Select>
                 </Box>
