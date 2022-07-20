@@ -12,7 +12,7 @@ How do you build trust, comradery, and—dare I say it?—friendships when there
 
 At MUI, we've chosen to prioritize in-person company retreats as a way to grow together and cultivate the culture that informs how we operate.
 
-In late June 2022, sixteen of us gathered in a remote private residence on Tenerife, a volcanic island off the coast of western Africa that's part of the Canary Islands.
+In late June 2022, sixteen of us gathered in a remote private residence on the island of Tenerife.
 This was MUI's second company retreat, the first being in Portugal in 2021 when the team was just a fraction of the size it is today.
 
 We had a ton of fun getting to know each other better over oceanic activities, poolside conversations, and incredible catered meals—not to mention a steady supply of Spanish wine. 🥂
@@ -20,7 +20,13 @@ Oh, and I guess we got some work done along the way, too? 😅
 
 ## Destination
 
-Short description of Tenerife.
+![Satellite image of Tenerife](/static/blog/tenerife-retreat/tenerife.jpeg)
+
+Tenerife is a volcanic island off the coast of western Africa that's part of the Canary Islands (Spanish: _Canarias_).
+It is the most populous island in the archipelago, and one of the most visited tourist destinations in the world.
+Its central defining feature is Mount Teide, the third largest volcano in the world when measured from its base, rising 7,500 m (24,600 ft) from the bottom of the ocean floor.
+
+With an average temperature ranging from about 18-25 C (68-77 F) year-round, it's hard to pick a bad time to visit!
 
 ## Accommodations
 
