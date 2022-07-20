@@ -54,6 +54,13 @@ const GOLDs = [
     description: 'The best place to buy Instagram followers & likes.',
     href: 'https://megafamous.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
   },
+  {
+    src: 'https://images.opencollective.com/dialmycalls/f5ae9ab/avatar/256.png',
+    srcSet: 'https://images.opencollective.com/dialmycalls/f5ae9ab/avatar/256.png 2x',
+    name: 'DialMyCalls',
+    description: 'Send text messages, calls & emails to thousands with ease.',
+    href: 'https://www.dialmycalls.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
+  },
 ];
 
 export default function GoldSponsors() {
