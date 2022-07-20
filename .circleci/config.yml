@@ -147,7 +147,7 @@ jobs:
           condition:
             and:
               - equal: [<< parameters.react-dist-tag >>, stable]
-              - equal: [<< parameters.react-current-version >>, '']
+              - equal: [<< parameters.react-specific-version >>, '']
           steps:
             - run:
                 name: Should not have any git not staged
