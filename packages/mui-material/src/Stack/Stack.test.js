@@ -50,6 +50,7 @@ describe('<Stack />', () => {
         },
       },
       display: 'flex',
+      flexDirection: 'column',
     });
   });
 
@@ -78,6 +79,7 @@ describe('<Stack />', () => {
         flexDirection: 'row',
       },
       display: 'flex',
+      flexDirection: 'column',
     });
   });
 
@@ -184,10 +186,30 @@ describe('<Stack />', () => {
         },
       },
       display: 'flex',
+      flexDirection: 'column',
     });
   });
 
   describe('prop: direction', () => {
+    it('should generate correct direction given string values', () => {
+      expect(
+        style({
+          ownerState: {
+            direction: 'column-reverse',
+            spacing: 1,
+          },
+          theme,
+        }),
+      ).to.deep.equal({
+        '& > :not(style) + :not(style)': {
+          margin: 0,
+          marginBottom: '8px',
+        },
+        display: 'flex',
+        flexDirection: 'column-reverse',
+      });
+    });
+
     it('should generate correct responsive styles regardless of breakpoints order', () => {
       expect(
         style({
@@ -219,6 +241,24 @@ describe('<Stack />', () => {
           },
         },
         display: 'flex',
+        flexDirection: 'column',
+      });
+    });
+
+    it('should generate correct direction even though breakpoints are not fully provided', () => {
+      expect(
+        style({
+          ownerState: {
+            direction: { lg: 'row' },
+          },
+          theme,
+        }),
+      ).to.deep.equal({
+        [`@media (min-width:${defaultTheme.breakpoints.values.lg}px)`]: {
+          flexDirection: 'row',
+        },
+        display: 'flex',
+        flexDirection: 'column',
       });
     });
 
