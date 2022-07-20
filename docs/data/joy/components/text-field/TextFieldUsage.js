@@ -3,7 +3,7 @@ import JoyUsageDemo from 'docs/src/modules/components/JoyUsageDemo';
 import Box from '@mui/joy/Box';
 import TextField from '@mui/joy/TextField';
 
-export default function ButtonUsage() {
+export default function TextFieldUsage() {
   return (
     <JoyUsageDemo
       componentName="TextField"
