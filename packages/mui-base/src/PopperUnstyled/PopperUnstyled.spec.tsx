@@ -1,6 +1,13 @@
 import * as React from 'react';
-import PopperUnstyled from '@mui/base/PopperUnstyled';
+import PopperUnstyled, { PopperUnstyledRootSlotProps } from '@mui/base/PopperUnstyled';
 import { expectType } from '@mui/types';
+
+function Root(props: PopperUnstyledRootSlotProps) {
+  const { ownerState, ...other } = props;
+  return <div data-open={ownerState.open} {...other} />;
+}
+
+const styledPopper = <PopperUnstyled components={{ Root }} open />;
 
 const PolymorphicComponentTest = () => {
   const CustomComponent: React.FC<{ stringProp: string; numberProp: number }> = () => <div />;

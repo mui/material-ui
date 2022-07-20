@@ -14,7 +14,6 @@ describe('<PopperUnstyled />', () => {
     inheritComponent: 'div',
     refInstanceof: window.HTMLDivElement,
     skip: [
-      'componentsProp',
       'themeDefaultProps',
       'themeStyleOverrides',
       'themeVariants',
