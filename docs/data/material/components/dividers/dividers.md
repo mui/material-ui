@@ -44,6 +44,20 @@ You can also render a divider with content.
 
 {{"demo": "DividerText.js"}}
 
+:::info
+**♿️ Tips**: If you use the `Divider` for visual decoration of your content (eg. a heading), you should do this to make sure that screen readers can announce your content to the users:
+
+- specify an appropriate `component` prop (eg. `div`)
+- explicitly specify `role={undefined}` to the divider
+
+```js
+<Divider component="div" role={undefined}>
+  <Typography variant="h2">My Heading</Typography>
+</Divider>
+```
+
+:::
+
 ## Vertical divider
 
 You can also render a divider vertically using the `orientation` prop.
