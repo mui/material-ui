@@ -21,7 +21,7 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/
 
 ## 文字提示的位置
 
-`Tooltip` 有 12 个**位置** 选项。 它们没有方向箭头，而是依靠源头发出的运动来传递方向。
+The `Tooltip` has 12 **placement** choices. 它们没有方向箭头，而是依靠源头发出的运动来传递方向。
 
 {{"demo": "PositionedTooltips.js"}}
 
