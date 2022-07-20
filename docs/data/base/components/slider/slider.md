@@ -43,7 +43,7 @@ Notice that both are set to a default value of 10 with the `defaultValue` prop, 
 
 ### Anatomy
 
-The `SliderUnstyled` component is composed of a root `<span>` that houses three interior `<span>` elements:
+The `SliderUnstyled` component is composed of a root `<span>` that houses several interior `<span>` elements:
 
 - rail: the full length of the slider
 - track: the section of the slider that's active
