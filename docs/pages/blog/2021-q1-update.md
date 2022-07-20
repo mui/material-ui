@@ -176,7 +176,7 @@ This Handbook is the single **source of truth**. It's meant to be updated by any
 - 📦 From 6.4M to 8.6M downloads per month on npm.<br />
   It seems that React keeps taking market share in the frontend ecosystem;
   it's growing faster than Vue or Angular.
-  Most indicators point to it: [StackOverflow questions](https://insights.stackoverflow.com/trends?tags=vue.js%2Creactjs%2Cangular), [stars](https://bestofjs.org/projects?sort=monthly), [downloads](https://npm-stat.com/charts.html?package=react-dom,@angular/core,vue), [Traffic on the documentation](https://www.similarweb.com/website/reactjs.org/?competitors=vuejs.org).
+  Most indicators point to it: [Stack Overflow questions](https://insights.stackoverflow.com/trends?tags=vue.js%2Creactjs%2Cangular), [stars](https://bestofjs.org/projects?sort=monthly), [downloads](https://npm-stat.com/charts.html?package=react-dom,@angular/core,vue), [Traffic on the documentation](https://www.similarweb.com/website/reactjs.org/?competitors=vuejs.org).
   Our strategy to focus on React only seems to be paying off.
 
 - ⭐️ From 63.8k to 67.2k stars, leave us yours [🌟](https://github.com/mui/material-ui).
