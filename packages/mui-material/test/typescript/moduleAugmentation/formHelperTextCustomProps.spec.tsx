@@ -18,7 +18,7 @@ const theme = createTheme({
           props: { variant: 'warning' },
           style: {
             backgroundColor: '#ffa726',
-            color: '#ffffff'
+            color: '#ffffff',
           },
         },
       ],
@@ -27,10 +27,10 @@ const theme = createTheme({
 });
 
 <FormControl>
-  <FormHelperText variant='warning'>This is warning helper text</FormHelperText>
+  <FormHelperText variant="warning">This is warning helper text</FormHelperText>
 </FormControl>;
 
 // @ts-expect-error unknown variant
 <FormControl>
-  <FormHelperText variant='checked'>This is example helper text</FormHelperText>
+  <FormHelperText variant="checked">This is example helper text</FormHelperText>
 </FormControl>;
