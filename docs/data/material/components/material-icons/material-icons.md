@@ -14,6 +14,14 @@ The following npm package,
 [@mui/icons-material](https://www.npmjs.com/package/@mui/icons-material),
 includes the 2,000+ official [Material Icons](https://fonts.google.com/icons?icon.set=Material+Icons) converted to [`SvgIcon`](/material-ui/api/svg-icon/) components.
 
+:::info
+**Note:**
+The `@mui/icons-material` package depends on `@mui/material`, which requires Emotion packages.
+
+If you don't use Material UI in your project yet, install the icons package with `npm install @mui/icons-material @mui/material @emotion/styled @emotion/react`.  
+Otherwise, just run `npm install @mui/icons-material`.
+:::
+
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
 {{"demo": "SearchIcons.js", "hideToolbar": true, "bg": true}}
