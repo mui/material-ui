@@ -10,6 +10,7 @@ import {
   SelectUnstyledPopperSlotProps,
   SelectUnstyledProps,
   SelectUnstyledRootSlotProps,
+  SelectUnstyledType,
 } from './SelectUnstyled.types';
 import { flattenOptionGroups, getOptionsFromChildren } from './utils';
 import useSelect from './useSelect';
@@ -44,6 +45,14 @@ function useUtilityClasses(ownerState: SelectUnstyledOwnerState<any>) {
 
 /**
  * The foundation for building custom-styled select components.
+ *
+ * Demos:
+ *
+ * - [Select](https://mui.com/base/react-select/)
+ *
+ * API:
+ *
+ * - [SelectUnstyled API](https://mui.com/base/api/select-unstyled/)
  */
 const SelectUnstyled = React.forwardRef(function SelectUnstyled<TValue>(
   props: SelectUnstyledProps<TValue>,
@@ -206,7 +215,7 @@ const SelectUnstyled = React.forwardRef(function SelectUnstyled<TValue>(
       )}
     </React.Fragment>
   );
-});
+}) as SelectUnstyledType;
 
 SelectUnstyled.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
@@ -223,7 +232,8 @@ SelectUnstyled.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
-   * @ignore
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
   /**
@@ -289,17 +299,4 @@ SelectUnstyled.propTypes /* remove-proptypes */ = {
   value: PropTypes /* @typescript-to-proptypes-ignore */.any,
 } as any;
 
-/**
- * The foundation for building custom-styled select components.
- *
- * Demos:
- *
- * - [Select](https://mui.com/base/react-select/)
- *
- * API:
- *
- * - [SelectUnstyled API](https://mui.com/base/api/select-unstyled/)
- */
-export default SelectUnstyled as <TValue extends {}>(
-  props: SelectUnstyledProps<TValue> & React.RefAttributes<HTMLElement>,
-) => JSX.Element | null;
+export default SelectUnstyled;

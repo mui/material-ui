@@ -2064,7 +2064,7 @@ A big thanks to the 16 contributors who made this release possible. Here are som
 - &#8203;<!-- 19 -->[docs] Sync translations with Crowdin (#30067) @l10nbot
 - &#8203;<!-- 18 -->[docs] Fix link on "Custom variables" section in the Theming page #30100 @danilo-leal
 - &#8203;<!-- 17 -->[docs] Fix justifyContent option in the Grid interactive demo (#30117) @danilo-leal
-- &#8203;<!-- 16 -->[docs] Add tip to help access the docs of a previous version when finding answers in StackOverflow (#30101) @danilo-leal
+- &#8203;<!-- 16 -->[docs] Add tip to help access the docs of a previous version when finding answers in Stack Overflow (#30101) @danilo-leal
 - &#8203;<!-- 15 -->[docs] Fix import example inside Unstyled Backdrop section (#30098) @TheodosiouTh
 - &#8203;<!-- 01 -->[website] Column pinning and Tree data are out (#30136) @oliviertassinari
 - &#8203;<!-- 07 -->[survey] Remove survey promotion items (#30122) @danilo-leal
@@ -2145,7 +2145,7 @@ A big thanks to the 25 contributors who made this release possible. Here are som
 - &#8203;<!-- 21 -->[docs] Update nextjs-typescript-example (#29974) @huydhoang
 - &#8203;<!-- 20 -->[docs] Add missing global state classes to API docs generator (#29945) @michaldudak
 - &#8203;<!-- 19 -->[docs] Fix benchmarks folder link (#29981) @fourjr
-- &#8203;<!-- 18 -->[docs] Improve wording in StackOverflow section of support page (#29956) @ronwarner
+- &#8203;<!-- 18 -->[docs] Improve wording in Stack Overflow section of support page (#29956) @ronwarner
 - &#8203;<!-- 17 -->[docs] Remove Black Friday sale notification (#29936) @mbrookes
 - &#8203;<!-- 16 -->[examples] Fix typos in the Remix example (#30071) @MichaelDeBoey
 - &#8203;<!-- 15 -->[examples] Add Remix example (#29952) @mnajdova
@@ -2158,7 +2158,7 @@ A big thanks to the 25 contributors who made this release possible. Here are som
 ### Core
 
 - &#8203;<!-- 31 -->[core] Batch small changes (#30042) @oliviertassinari
-- &#8203;<!-- 28 -->[core] Transition to a new StackOverflow tag (#29967) @oliviertassinari
+- &#8203;<!-- 28 -->[core] Transition to a new Stack Overflow tag (#29967) @oliviertassinari
 
 All contributors of this release in alphabetical order: @chao813, @daniel-sachs, @danilo-leal, @Domino987, @eduardomcv, @flaviendelangle, @fourjr, @genzyy, @hbjORbj, @huydhoang, @jayeclark, @jonathanrtuck, @kkorach, @l10nbot, @mbrookes, @MichaelDeBoey, @michaldudak, @mnajdova, @oliviertassinari, @ronwarner, @Semigradsky, @siriwatknp, @tasugi, @ThewBear, @ZeeshanTamboli
 
@@ -5844,7 +5844,7 @@ A big thanks to the 30 contributors who made this release possible. Here are som
 #### Breaking changes
 
 - &#8203;<!-- 91 -->[types] Rename the exported `Omit` type in `@material-ui/types`. (#24795) @petyosi
-  The module is now called `DistributiveOmit`. The change removes the confusion with the built-in `Omit` helper introduced in TypeScript v3.5. The built-in `Omit`, while similar, is non-distributive. This leads to differences when applied to union types. [See this StackOverflow answer for further details](https://stackoverflow.com/a/57103940/1009797).
+  The module is now called `DistributiveOmit`. The change removes the confusion with the built-in `Omit` helper introduced in TypeScript v3.5. The built-in `Omit`, while similar, is non-distributive. This leads to differences when applied to union types. [See this Stack Overflow answer for further details](https://stackoverflow.com/a/57103940/1009797).
 
 ```diff
 -import { Omit } from '@material-ui/types';
