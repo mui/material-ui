@@ -843,6 +843,7 @@ workflows:
             branches:
               only:
                 - master
+                - core/add-react-17-night-build
     jobs:
       - test_unit:
           react-specific-version: 17.0.2
