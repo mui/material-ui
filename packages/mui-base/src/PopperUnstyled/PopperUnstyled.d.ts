@@ -108,7 +108,7 @@ export interface PopperUnstyledOwnProps {
   transition?: boolean;
 }
 
-export type PopperUnstyledOwnerState = PopperUnstyledOwnProps;
+export interface PopperUnstyledOwnerState extends PopperUnstyledOwnProps {}
 
 export interface PopperUnstyledTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P & PopperUnstyledOwnProps;
@@ -122,11 +122,11 @@ export type PopperUnstyledProps<
   component?: D;
 };
 
-export type PopperUnstyledRootSlotProps = {
+export interface PopperUnstyledRootSlotProps {
   className?: string;
   ref: React.Ref<any>;
   ownerState: PopperUnstyledOwnerState;
-};
+}
 /**
  * Poppers rely on the 3rd party library [Popper.js](https://popper.js.org/docs/v2/) for positioning.
  *

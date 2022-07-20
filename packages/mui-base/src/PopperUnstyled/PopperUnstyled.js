@@ -59,6 +59,7 @@ const PopperTooltip = React.forwardRef(function PopperTooltip(props, ref) {
     disablePortal,
     modifiers,
     open,
+    ownerState: ownerStateProp, // prevent from spreading to DOM, it can come from the parent component e.g. SelectUnstyled.
     placement: initialPlacement,
     popperOptions,
     popperRef: popperRefProp,
