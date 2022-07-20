@@ -298,6 +298,7 @@ describe('<Stack />', () => {
           },
         },
         display: 'flex',
+        flexDirection: 'column',
       });
 
       expect(
@@ -342,6 +343,7 @@ describe('<Stack />', () => {
           },
         },
         display: 'flex',
+        flexDirection: 'column',
       });
     });
   });
