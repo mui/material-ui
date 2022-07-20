@@ -6,7 +6,14 @@ import { ListProps } from '../List/ListProps';
 import { SheetProps } from '../Sheet/SheetProps';
 import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
 
-export type SelectSlot = 'root' | 'popper' | 'listbox';
+export type SelectSlot =
+  | 'root'
+  | 'button'
+  | 'startDecorator'
+  | 'endDecorator'
+  | 'indicator'
+  | 'popper'
+  | 'listbox';
 
 export interface SelectPropsVariantOverrides {}
 
@@ -15,6 +22,12 @@ export interface SelectPropsColorOverrides {}
 export interface SelectPropsSizeOverrides {}
 
 export interface SelectStaticProps extends SelectUnstyledCommonProps {
+  /**
+   * A ref for imperative actions. It currently only supports `focusVisible()` action.
+   */
+  action?: React.Ref<{
+    focusVisible(): void;
+  }>;
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'primary'
@@ -88,4 +101,11 @@ export interface SelectProps<TValue extends {}> extends SelectStaticProps {
    * Set to `null` to deselect all options.
    */
   value?: TValue | null;
+}
+
+export interface SelectOwnerState<TValue> extends SelectProps<TValue> {
+  active: boolean;
+  disabled: boolean;
+  focusVisible: boolean;
+  open: boolean;
 }

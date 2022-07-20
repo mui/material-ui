@@ -35,16 +35,18 @@ export interface SelectClasses {
   variantSoft: string;
   /** Styles applied to the root slot if `variant="solid"`. */
   variantSolid: string;
-  /** State class applied to the SelectBase root slot if the button is keyboard focused. */
-  focusVisible: string;
-  /** State class applied to the root slot if `disabled={true}`. */
-  disabled: string;
   /** Styles applied to the root slot if `size="sm"`. */
   sizeSm: string;
   /** Styles applied to the root slot if `size="md"`. */
   sizeMd: string;
   /** Styles applied to the root slot if `size="lg"`. */
   sizeLg: string;
+  /** State class applied to the SelectBase root slot if the button is keyboard focused. */
+  focusVisible: string;
+  /** State class applied to the root slot if `disabled={true}`. */
+  disabled: string;
+  /** State class applied to the root slot if listbox open. */
+  expanded: string;
 }
 
 export type SelectClassKey = keyof SelectClasses;
@@ -71,11 +73,12 @@ const selectClasses: SelectClasses = generateUtilityClasses('JoySelect', [
   'variantOutlined',
   'variantSoft',
   'variantSolid',
-  'focusVisible',
-  'disabled',
   'sizeSm',
   'sizeMd',
   'sizeLg',
+  'focusVisible',
+  'disabled',
+  'expanded',
 ]);
 
 export default selectClasses;

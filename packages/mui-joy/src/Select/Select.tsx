@@ -19,21 +19,22 @@ import List from '../List/List';
 import Sheet from '../Sheet/Sheet';
 import Unfold from '../internal/svg-icons/Unfold';
 import { styled, useThemeProps } from '../styles';
-import { SelectProps, SelectStaticProps } from './SelectProps';
+import { SelectProps, SelectStaticProps, SelectOwnerState } from './SelectProps';
 import selectClasses, { getSelectUtilityClass } from './selectClasses';
 
 function defaultRenderSingleValue<TValue>(selectedOption: SelectOption<TValue> | null) {
   return selectedOption?.label ?? '';
 }
 
-const useUtilityClasses = (ownerState: SelectStaticProps & { focusVisible: boolean }) => {
-  const { color, disabled, focusVisible, size, variant } = ownerState;
+const useUtilityClasses = (ownerState: SelectOwnerState<any>) => {
+  const { color, disabled, focusVisible, size, variant, open } = ownerState;
 
   const slots = {
     root: [
       'root',
       disabled && 'disabled',
       focusVisible && 'focusVisible',
+      open && 'expanded',
       variant && `variant${capitalize(variant)}`,
       color && `color${capitalize(color)}`,
       size && `size${capitalize(size)}`,
@@ -41,7 +42,7 @@ const useUtilityClasses = (ownerState: SelectStaticProps & { focusVisible: boole
     button: ['button'],
     startDecorator: ['startDecorator'],
     endDecorator: ['endDecorator'],
-    indicator: ['indicator'],
+    indicator: ['indicator', open && 'expanded'],
     listbox: ['listbox', disabled && 'disabled'],
     popper: ['popper'],
   };
@@ -141,7 +142,7 @@ const SelectButton = styled('button', {
   name: 'JoySelect',
   slot: 'Button',
   overridesResolver: (props, styles) => styles.button,
-})<{ ownerState: SelectStaticProps & { value: any } }>(({ ownerState }) => ({
+})<{ ownerState: SelectOwnerState<any> }>(({ ownerState }) => ({
   // reset user-agent button style
   border: 0,
   outline: 'none',
@@ -164,7 +165,7 @@ const SelectPopper = styled(PopperUnstyled, {
   name: 'JoySelect',
   slot: 'Popper',
   overridesResolver: (props, styles) => styles.popper,
-})<{ ownerState: SelectStaticProps }>(({ theme }) => ({
+})<{ ownerState: SelectOwnerState<any> }>(({ theme }) => ({
   borderRadius: theme.vars.radius.sm,
   boxShadow: theme.vars.shadow.md,
   zIndex: 1000,
@@ -174,7 +175,7 @@ const SelectListbox = styled(List, {
   name: 'JoySelect',
   slot: 'Listbox',
   overridesResolver: (props, styles) => styles.listbox,
-})<{ ownerState: SelectStaticProps }>({
+})<{ ownerState: SelectOwnerState<any> }>({
   outline: 'none',
   paddingBlock: 'var(--List-divider-gap)',
   '--List-radius': 'var(--Select-radius)',
@@ -184,7 +185,7 @@ const SelectStartDecorator = styled('span', {
   name: 'JoySelect',
   slot: 'StartDecorator',
   overridesResolver: (props, styles) => styles.startDecorator,
-})<{ ownerState: SelectStaticProps & { focusVisible: boolean } }>(({ theme, ownerState }) => ({
+})<{ ownerState: SelectOwnerState<any> }>(({ theme, ownerState }) => ({
   '--Button-margin': '0 0 0 calc(var(--Select-decorator-childOffset) * -1)',
   '--IconButton-margin': '0 0 0 calc(var(--Select-decorator-childOffset) * -1)',
   '--Icon-margin': '0 0 0 calc(var(--Select-paddingInline) / -4)',
@@ -194,7 +195,7 @@ const SelectStartDecorator = styled('span', {
   marginInlineEnd: 'var(--Select-gap)',
   color: theme.vars.palette.text.tertiary,
   ...(ownerState.focusVisible && {
-    color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Color`],
+    color: 'var(--Select-focusedHighlight)',
   }),
 }));
 
@@ -202,7 +203,7 @@ const SelectEndDecorator = styled('span', {
   name: 'JoySelect',
   slot: 'EndDecorator',
   overridesResolver: (props, styles) => styles.endDecorator,
-})<{ ownerState: SelectStaticProps }>(({ theme, ownerState }) => ({
+})<{ ownerState: SelectOwnerState<any> }>(({ theme, ownerState }) => ({
   '--Button-margin': '0 calc(var(--Select-decorator-childOffset) * -1) 0 0',
   '--IconButton-margin': '0 calc(var(--Select-decorator-childOffset) * -1) 0 0',
   '--Icon-margin': '0 calc(var(--Select-paddingInline) / -4) 0 0',
@@ -215,12 +216,16 @@ const SelectEndDecorator = styled('span', {
 const SelectIndicator = styled('span', {
   name: 'JoySelect',
   slot: 'Indicator',
-})<{ ownerState: SelectStaticProps }>({
+})<{ ownerState: SelectOwnerState<any> }>(({ theme, ownerState }) => ({
+  color: theme.vars.palette.text.tertiary,
   display: 'inherit',
   alignItems: 'center',
   marginInlineStart: 'var(--Select-gap)',
   marginInlineEnd: 'calc(var(--Select-paddingInline) / -4)',
-});
+  ...(ownerState.focusVisible && {
+    color: 'var(--Select-focusedHighlight)',
+  }),
+}));
 
 const Select = React.forwardRef(function Select<TValue>(
   inProps: SelectProps<TValue>,
@@ -232,6 +237,7 @@ const Select = React.forwardRef(function Select<TValue>(
   });
 
   const {
+    action,
     autoFocus,
     children,
     componentsProps = {},
@@ -266,15 +272,25 @@ const Select = React.forwardRef(function Select<TValue>(
     state: 'listboxOpen',
   });
 
-  React.useEffect(() => {
-    setGroupedOptions(getOptionsFromChildren(children));
-  }, [children]);
-
   const rootRef = React.useRef<HTMLElement | null>(null);
   const buttonRef = React.useRef<HTMLElement | null>(null);
   const listboxRef = React.useRef<HTMLElement | null>(null);
 
   const handleRef = useForkRef(ref, rootRef);
+
+  React.useImperativeHandle(
+    action,
+    () => ({
+      focusVisible: () => {
+        buttonRef.current?.focus();
+      },
+    }),
+    [],
+  );
+
+  React.useEffect(() => {
+    setGroupedOptions(getOptionsFromChildren(children));
+  }, [children]);
 
   React.useEffect(() => {
     setAnchorEl(rootRef.current);
@@ -425,7 +441,7 @@ const Select = React.forwardRef(function Select<TValue>(
             {startDecorator}
           </SelectStartDecorator>
         )}
-        <SelectButton {...(buttonProps as { ownerState: SelectProps<any> & { value: any } })}>
+        <SelectButton {...buttonProps}>
           {selectedOptions ? renderValue(selectedOptions) : placeholder}
         </SelectButton>
         {endDecorator && (

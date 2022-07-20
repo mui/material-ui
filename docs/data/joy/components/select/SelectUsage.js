@@ -7,7 +7,7 @@ import CloseRounded from '@mui/icons-material/CloseRounded';
 
 export default function SelectUsage() {
   const [value, setValue] = React.useState(null);
-  const [dirty, setDirty] = React.useState(false);
+  const action = React.useRef(null);
   return (
     <JoyUsageDemo
       componentName="Select"
@@ -39,14 +39,9 @@ export default function SelectUsage() {
       renderDemo={(props) => (
         <Select
           {...props}
+          action={action}
           value={value}
-          onChange={(newValue) => {
-            setValue(newValue);
-            setDirty(true);
-          }}
-          {...(!!dirty && {
-            autoFocus: !value,
-          })}
+          onChange={setValue}
           {...(value && {
             endDecorator: (
               <IconButton
@@ -58,6 +53,7 @@ export default function SelectUsage() {
                 }}
                 onClick={() => {
                   setValue(null);
+                  action.current?.focusVisible();
                 }}
               >
                 <CloseRounded />
