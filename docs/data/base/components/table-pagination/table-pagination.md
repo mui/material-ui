@@ -75,7 +75,22 @@ The `TablePaginationUnstyled` component is composed of a root `<td>` that houses
     </select>
     <p class="MuiTablePaginationUnstyled-displayedRows">1–5 of 13</p>
     <div class="MuiTablePaginationUnstyled-actions">
-      <!-- action buttons are nested here -->
+      <button disabled="" aria-label="Go to first page" title="Go to first page">
+        <span>|⇽</span>
+      </button>
+      <button
+        disabled=""
+        aria-label="Go to previous page"
+        title="Go to previous page"
+      >
+        <span>⇽</span>
+      </button>
+      <button aria-label="Go to next page" title="Go to next page">
+        <span>⇾</span>
+      </button>
+      <button aria-label="Go to last page" title="Go to last page">
+        <span>⇾|</span>
+      </button>
     </div>
   </div>
 </td>
