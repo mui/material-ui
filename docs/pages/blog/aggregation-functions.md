@@ -1,7 +1,7 @@
 ---
 title: Aggregate data like in Excel, but easier!
 description: Introducing aggregation functions and summary rows.
-date: 2022-07-28T00:00:00.000Z
+date: 2022-07-31T00:00:00.000Z
 authors: ['josefreitas', 'flaviendelangle']
 tags: ['MUI X', 'News']
 card: true
@@ -11,7 +11,7 @@ If you ever had a lot of data on a grid, you know that the ability to set differ
 
 The Data grid Premium is all about enabling and empowering advanced use cases for data analysis. And in that spirit, we’re overjoyed to announce that you can now use [aggregation functions](/x/react-data-grid/aggregation/), and with a couple of clicks, extract information like **sum**, **average**, **count**, and others.
 
-## Wait, what is an Aggregation function?
+## Wait, what is an aggregation function?
 
 In a nutshell, those are functions used to return a computed result based on the values of a given column. For example, you have a list of financial transactions, and you want to get the Sum of all transactions and display it in a summary row.
 
@@ -39,6 +39,7 @@ How easy can it be to get the average of transactions per user?
 ## Customize everything
 
 The out-of-the-box experience is very important to us, but as is the ability to customize and extend the feature to your own use case.
+
 You can change the styles of every element involved, set automatic aggregations, choose which columns can be aggregated by which functions, and even create your own custom function.
 
 In the example below, we wanted to get the first value in alphabetical order.
@@ -89,5 +90,5 @@ Please check out the feature’s [full documentation](/x/react-data-grid/aggrega
 We hope you’re excited with aggregation functions as we are!
 As usual, we’re glad to listen to any feedback. Please feel free to open new issues to report bugs or suggest improvements.
 
-And if you’re feeling generous, please consider scheduling a 30 minutes user interview session.
+And if you’re feeling generous, please consider [contacting us](future-mini-survey-link-or-calendly-directly) for a 30 minutes user interview session.
 We’re planning our v6 release, and we’d love to hear more about your pain points and use cases.
