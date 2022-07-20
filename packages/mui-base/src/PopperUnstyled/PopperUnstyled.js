@@ -1,3 +1,4 @@
+import * as React from 'react';
 import {
   chainPropTypes,
   HTMLElementType,
@@ -8,8 +9,10 @@ import {
 } from '@mui/utils';
 import { createPopper } from '@popperjs/core';
 import PropTypes from 'prop-types';
-import * as React from 'react';
+import composeClasses from '../composeClasses';
 import Portal from '../Portal';
+import { getPopperUnstyledUtilityClass } from './popperUnstyledClasses';
+import { useSlotProps } from '../utils';
 
 function flipPlacement(placement, direction) {
   if (direction === 'ltr') {
@@ -34,19 +37,29 @@ function resolveAnchorEl(anchorEl) {
   return typeof anchorEl === 'function' ? anchorEl() : anchorEl;
 }
 
+const useUtilityClasses = () => {
+  const slots = {
+    root: ['root'],
+  };
+
+  return composeClasses(slots, getPopperUnstyledUtilityClass, {});
+};
+
 const defaultPopperOptions = {};
 
 /* eslint-disable react/prop-types */
 const PopperTooltip = React.forwardRef(function PopperTooltip(props, ref) {
   const {
     anchorEl,
-    component: Root = 'div',
     children,
+    component,
+    components = {},
+    componentsProps = {},
     direction,
     disablePortal,
     modifiers,
     open,
-    ownerState,
+    ownerState: ownerStateProp, // prevent from spreading to DOM, it can come from the parent component e.g. SelectUnstyled.
     placement: initialPlacement,
     popperOptions,
     popperRef: popperRefProp,
@@ -161,10 +174,22 @@ const PopperTooltip = React.forwardRef(function PopperTooltip(props, ref) {
     childProps.TransitionProps = TransitionProps;
   }
 
+  const classes = useUtilityClasses();
+  const Root = component ?? components.Root ?? 'div';
+  const rootProps = useSlotProps({
+    elementType: Root,
+    externalSlotProps: componentsProps.root,
+    externalForwardedProps: other,
+    additionalProps: {
+      role: 'tooltip',
+      ref: ownRef,
+    },
+    ownerState: props,
+    className: classes.root,
+  });
+
   return (
-    <Root ref={ownRef} role="tooltip" {...other}>
-      {typeof children === 'function' ? children(childProps) : children}
-    </Root>
+    <Root {...rootProps}>{typeof children === 'function' ? children(childProps) : children}</Root>
   );
 });
 /* eslint-enable react/prop-types */
@@ -176,7 +201,6 @@ const PopperUnstyled = React.forwardRef(function PopperUnstyled(props, ref) {
   const {
     anchorEl,
     children,
-    component,
     container: containerProp,
     direction = 'ltr',
     disablePortal = false,
@@ -214,7 +238,6 @@ const PopperUnstyled = React.forwardRef(function PopperUnstyled(props, ref) {
   return (
     <Portal disablePortal={disablePortal} container={container}>
       <PopperTooltip
-        component={component}
         anchorEl={anchorEl}
         direction={direction}
         disablePortal={disablePortal}
@@ -312,10 +335,20 @@ PopperUnstyled.propTypes /* remove-proptypes */ = {
     PropTypes.func,
   ]),
   /**
-   * The component used for the root node.
+   * The components used for each slot inside the Popper.
    * Either a string to use a HTML element or a component.
+   * @default {}
    */
-  component: PropTypes.elementType,
+  components: PropTypes.shape({
+    Root: PropTypes.elementType,
+  }),
+  /**
+   * The props used for each slot inside the Popper.
+   * @default {}
+   */
+  componentsProps: PropTypes.shape({
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
   /**
    * An HTML element or function that returns one.
    * The `container` will have the portal children appended to it.
