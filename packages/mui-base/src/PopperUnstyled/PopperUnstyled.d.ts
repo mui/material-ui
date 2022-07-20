@@ -1,12 +1,14 @@
 import * as React from 'react';
+import { OverridableComponent, OverrideProps } from '@mui/types';
 import { Instance, VirtualElement, Options, OptionsGeneric } from '@popperjs/core';
 import { PortalProps } from '../Portal';
+import { SlotComponentProps } from '../utils';
 
 export type PopperPlacementType = Options['placement'];
 
-export interface PopperUnstyledProps
-  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'children'> {
-  ref?: React.Ref<HTMLDivElement>;
+interface PopperUnstyledComponentsPropsOverrides {}
+
+export interface PopperUnstyledOwnProps {
   /**
    * An HTML element, [virtualElement](https://popper.js.org/docs/v2/virtual-elements/),
    * or a function that returns either.
@@ -36,6 +38,25 @@ export interface PopperUnstyledProps
    * so it's simply `document.body` most of the time.
    */
   container?: PortalProps['container'];
+  /**
+   * The components used for each slot inside the Popper.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  components?: {
+    Root?: React.ElementType;
+  };
+  /**
+   * The props used for each slot inside the Popper.
+   * @default {}
+   */
+  componentsProps?: {
+    root?: SlotComponentProps<
+      'div',
+      PopperUnstyledComponentsPropsOverrides,
+      PopperUnstyledOwnerState
+    >;
+  };
   /**
    * Direction of the text.
    * @default 'ltr'
@@ -88,6 +109,25 @@ export interface PopperUnstyledProps
   transition?: boolean;
 }
 
+export interface PopperUnstyledOwnerState extends PopperUnstyledOwnProps {}
+
+export interface PopperUnstyledTypeMap<P = {}, D extends React.ElementType = 'div'> {
+  props: P & PopperUnstyledOwnProps;
+  defaultComponent: D;
+}
+
+export type PopperUnstyledProps<
+  D extends React.ElementType = PopperUnstyledTypeMap['defaultComponent'],
+  P = {},
+> = OverrideProps<PopperUnstyledTypeMap<P, D>, D> & {
+  component?: D;
+};
+
+export interface PopperUnstyledRootSlotProps {
+  className?: string;
+  ref: React.Ref<any>;
+  ownerState: PopperUnstyledOwnerState;
+}
 /**
  * Poppers rely on the 3rd party library [Popper.js](https://popper.js.org/docs/v2/) for positioning.
  *
@@ -99,4 +139,6 @@ export interface PopperUnstyledProps
  *
  * - [PopperUnstyled API](https://mui.com/base/api/popper-unstyled/)
  */
-export default function PopperUnstyled(props: PopperUnstyledProps): JSX.Element;
+declare const PopperUnstyled: OverridableComponent<PopperUnstyledTypeMap>;
+
+export default PopperUnstyled;
