@@ -13,7 +13,7 @@ unstyled: /base/react-select/
 
 ## Introduction
 
-The `Select` displays a list of `Option` components inside a popup.
+Users can trigger a popup by clicking on the `Select` which then displays a list of `Option` components.
 
 {{"demo": "SelectUsage.js", "hideToolbar": true}}
 
@@ -24,3 +24,15 @@ If the color of the select is `neutral`, it will have the focus and highlighted 
 ## Component
 
 ### Basic
+
+### Field
+
+### Decorators
+
+### Indicator
+
+## Customization
+
+### Option
+
+### Render value

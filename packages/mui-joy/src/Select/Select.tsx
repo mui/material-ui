@@ -64,16 +64,19 @@ const SelectRoot = styled('div', {
     ...(ownerState.size === 'sm' && {
       '--Select-minHeight': '2rem',
       '--Select-paddingInline': '0.5rem',
+      '--Select-decorator-childHeight': 'min(1.5rem, var(--Select-minHeight))',
       '--Icon-fontSize': '1.25rem',
     }),
     ...(ownerState.size === 'md' && {
       '--Select-minHeight': '2.5rem',
       '--Select-paddingInline': '0.75rem',
+      '--Select-decorator-childHeight': 'min(2rem, var(--Select-minHeight))',
       '--Icon-fontSize': '1.5rem',
     }),
     ...(ownerState.size === 'lg' && {
       '--Select-minHeight': '3rem',
       '--Select-paddingInline': '1rem',
+      '--Select-decorator-childHeight': 'min(2.375rem, var(--Select-minHeight))',
       '--Icon-fontSize': '1.75rem',
     }),
     // variables for controlling child components
@@ -100,6 +103,9 @@ const SelectRoot = styled('div', {
     ...(ownerState.size === 'sm' && {
       fontSize: theme.vars.fontSize.sm,
     }),
+    // TODO: discuss the transition approach in a separate PR. This value is copied from mui-material Button.
+    transition:
+      'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
     '&:before': {
       boxSizing: 'border-box',
       content: '""',
@@ -178,7 +184,7 @@ const SelectStartDecorator = styled('span', {
   name: 'JoySelect',
   slot: 'StartDecorator',
   overridesResolver: (props, styles) => styles.startDecorator,
-})<{ ownerState: SelectStaticProps }>(({ theme }) => ({
+})<{ ownerState: SelectStaticProps & { focusVisible: boolean } }>(({ theme, ownerState }) => ({
   '--Button-margin': '0 0 0 calc(var(--Select-decorator-childOffset) * -1)',
   '--IconButton-margin': '0 0 0 calc(var(--Select-decorator-childOffset) * -1)',
   '--Icon-margin': '0 0 0 calc(var(--Select-paddingInline) / -4)',
@@ -187,9 +193,9 @@ const SelectStartDecorator = styled('span', {
   alignItems: 'center',
   marginInlineEnd: 'var(--Select-gap)',
   color: theme.vars.palette.text.tertiary,
-  // ...(ownerState.focused && {
-  //   color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Color`],
-  // }),
+  ...(ownerState.focusVisible && {
+    color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Color`],
+  }),
 }));
 
 const SelectEndDecorator = styled('span', {
@@ -206,10 +212,12 @@ const SelectEndDecorator = styled('span', {
   color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Color`],
 }));
 
-const SelectIndicator = styled(Unfold, {
+const SelectIndicator = styled('span', {
   name: 'JoySelect',
   slot: 'Indicator',
 })<{ ownerState: SelectStaticProps }>({
+  display: 'inherit',
+  alignItems: 'center',
   marginInlineStart: 'var(--Select-gap)',
   marginInlineEnd: 'calc(var(--Select-paddingInline) / -4)',
 });
@@ -425,9 +433,11 @@ const Select = React.forwardRef(function Select<TValue>(
             {endDecorator}
           </SelectEndDecorator>
         )}
-        <SelectIndicator className={classes.indicator} ownerState={ownerState}>
-          {indicator}
-        </SelectIndicator>
+        {indicator && (
+          <SelectIndicator className={classes.indicator} ownerState={ownerState}>
+            {indicator}
+          </SelectIndicator>
+        )}
       </SelectRoot>
       {anchorEl && (
         <SelectPopper component={Sheet} {...popperProps}>
