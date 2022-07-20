@@ -1,66 +1,66 @@
 ---
 product: material-ui
-title: App bar React component
+title: 应用栏（App bar）React组件
 components: AppBar, Toolbar, Menu
 githubLabel: 'component: app bar'
 materialDesign: https://material.io/components/app-bars-top
 ---
 
-# App bar
+# 应用栏（App bar）
 
-<p class="description">The App bar displays information and actions relating to the current screen.</p>
+<p class="description">应用栏展示了与当前屏幕内容相关的信息和操作。</p>
 
-The top App bar provides content and actions related to the current screen. 该组件常用于展示品牌、展示标题、提供导航和一些可操作的内容。
+顶部应用栏提供与当前屏幕有关的内容和操作。 该组件常用于展示品牌、屏幕标题、导航和操作。
 
 它既可以用作于转换为上下文相关的操作栏，又可以直接充当导航栏。
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## Basic App bar
+## 基础的应用栏
 
 {{"demo": "ButtonAppBar.js", "bg": true}}
 
-## App bar with menu
+## 带有菜单的应用栏
 
 {{"demo": "MenuAppBar.js", "bg": true}}
 
-## App bar with responsive menu
+## 带有响应式菜单的应用栏
 
 {{"demo": "ResponsiveAppBar.js", "bg": true}}
 
-## App bar with search field
+## 带有搜索输入框的应用栏
 
-侧边搜索栏。
+一个侧边搜索栏。
 
 {{"demo": "SearchAppBar.js", "bg": true}}
 
-## Responsive App bar with Drawer
+## 带有抽屉的响应式应用栏
 
 {{"demo": "DrawerAppBar.js", "bg": true,"iframe": true}}
 
-## App bar with a primary search field
+## 带有主搜索输入框的应用栏
 
-A primary searchbar.
+一个主搜索栏。
 
 {{"demo": "PrimarySearchAppBar.js", "bg": true}}
 
-## Dense (desktop only)
+## 紧凑模式（仅限桌面）
 
 {{"demo": "DenseAppBar.js", "bg": true}}
 
-## Prominent
+## 突出
 
-A prominent app bar.
+一个突出显示的应用栏。
 
 {{"demo": "ProminentAppBar.js", "bg": true}}
 
-## Bottom App bar
+## 底部应用栏
 
 {{"demo": "BottomAppBar.js", "iframe": true, "maxWidth": 400}}
 
-## Fixed placement
+## 固定位置
 
-When you render the app bar position fixed, the dimension of the element doesn't impact the rest of the page. This can cause some part of your content to be invisible, behind the app bar. Here are 3 possible solutions:
+当您在固定位置渲染应用栏，元素的尺寸不会影响页面的其余内容。 这可能导致您的部分内容被应用栏遮挡而不可见。 以下是3种可能的解决方案：
 
 1. 使用 `position =“ sticky”` 代替 fixed。 ⚠️ sticky 不支持 IE11。
 2. 可以渲染第二个 `<Toolbar />` 组件：
@@ -95,25 +95,25 @@ function App() {
 }
 ```
 
-## Scrolling
+## 滚动
 
-You can use the `useScrollTrigger()` hook to respond to user scroll actions.
+您可以使用 `useScrollTrigger()` 钩子来响应用户触发的滚动操作。
 
-### Hide App bar
+### 隐藏应用栏
 
-The app bar hides on scroll down to leave more space for reading.
+向下滚动隐藏应用栏，从而为阅读提供更多空间。
 
 {{"demo": "HideAppBar.js", "iframe": true}}
 
-### Elevate App bar
+### 提升应用栏
 
-The app bar elevates on scroll to communicate that the user is not at the top of the page.
+应用栏会在滚动时提升，以表明用户还未到页面的顶部。
 
 {{"demo": "ElevateAppBar.js", "iframe": true}}
 
 ### 回到顶部
 
-A floating action buttons appears on scroll to make it easy to get back to the top of the page.
+滚动时出现一个浮动操作按钮，以便返回页面的顶部。
 
 {{"demo": "BackToTop.js", "iframe": true}}
 
@@ -129,9 +129,9 @@ A floating action buttons appears on scroll to make it easy to get back to the t
 
 #### 返回结果
 
-`trigger`: Does the scroll position match the criteria?
+`trigger`: 此滚动的位置符合要求吗？
 
-#### 例子
+#### 示例
 
 ```jsx
 import useScrollTrigger from '@mui/material/useScrollTrigger';
@@ -146,8 +146,8 @@ function HideOnScroll(props) {
 }
 ```
 
-## Enable color on dark
+## 启用深色模式颜色
 
-Following the [Material Design guidelines](https://material.io/design/color/dark-theme.html), the `color` prop has no effect on the appearance of the app bar in dark mode. You can override this behavior by setting the `enableColorOnDark` prop to `true`.
+按照[Material Design设计准则](https://material.io/design/color/dark-theme.html)，`color`属性对深色模式下的应用栏外观没有影响。 你可以通过将`enableColorOnDark`属性设置为`true`覆盖这一行为。
 
 {{"demo": "EnableColorOnDarkAppBar.js", "bg": true}}
