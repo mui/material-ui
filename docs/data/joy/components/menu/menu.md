@@ -25,7 +25,22 @@ Joy UI provides three menu-related components:
 
 ## Component
 
-### Basic
+After [installation](/joy-ui/getting-started/installation/), you can start building with this component using the following basic elements:
+
+```jsx
+import Menu from '@mui/joy/Menu';
+import MenuItem from '@mui/joy/MenuItem';
+
+export default function MyApp() {
+  return (
+    <Menu>
+      <MenuItem>Add item</MenuItem>
+    </Menu>
+  );
+}
+```
+
+### Basic usage
 
 The basic version of the menu opens over the anchor element by default.
 You can change this via [specific positioning props](#menu-positioning).
