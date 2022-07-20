@@ -33,7 +33,7 @@ async function main(options) {
   const { reactVersion } = options;
 
   if (typeof reactVersion !== 'string') {
-    throw new TypeError(`expected reactVersion: string but got '${distTag}'`);
+    throw new TypeError(`expected reactVersion: string but got '${reactVersion}'`);
   }
 
   if (reactVersion === '') {

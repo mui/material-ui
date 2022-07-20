@@ -838,7 +838,7 @@ workflows:
   react-17:
     triggers:
       - schedule:
-          cron: '30 11 * * *'
+          cron: '0 12 * * *'
           filters:
             branches:
               only:
