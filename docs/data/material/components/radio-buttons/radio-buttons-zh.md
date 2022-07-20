@@ -11,7 +11,7 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/radiobutton/
 
 <p class="description">用户可以通过单选按钮从一组中选择一个选项。</p>
 
-当用户想要看到所有的选项时，可以使用单选按钮。 If available options can be collapsed, consider using a [Select component](/material-ui/react-select/) because it uses less space.
+当用户想要看到所有的选项时，可以使用[单选按钮](/zh/material-ui/react-select/)。 如果可用的选项可以折叠，请考虑使用 [选择组件](/zh/material-ui/react-select/) ，因为它使用的空间较少。
 
 默认情况下，单选按钮应该选择了最常用的选项。
 
