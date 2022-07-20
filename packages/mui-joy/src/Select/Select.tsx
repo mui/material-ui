@@ -129,6 +129,7 @@ const SelectButton = styled('button', {
   display: 'flex',
   alignItems: 'center',
   flex: 1,
+  cursor: 'pointer',
 });
 
 const SelectPopper = styled(PopperUnstyled, {

@@ -44,8 +44,8 @@ const Option = React.forwardRef(function Option(inProps, ref) {
     disabled,
     value,
     label,
-    variant = 'plain',
-    color: colorProp = 'neutral',
+    variant: variantProp,
+    color: colorProp,
     ...other
   } = props;
 
@@ -67,7 +67,14 @@ const Option = React.forwardRef(function Option(inProps, ref) {
   const optionProps = selectContext.getOptionProps(selectOption);
   const listboxRef = selectContext.listboxRef;
 
-  const color = optionState.selected ? inProps.color ?? selectContext.color : colorProp;
+  let color: typeof colorProp = 'neutral';
+  if (optionState.selected) {
+    color = selectContext.color === 'neutral' ? 'primary' : selectContext.color;
+  }
+  if (colorProp) {
+    color = colorProp;
+  }
+  const variant = variantProp ?? (optionState.selected ? 'soft' : 'plain');
   const ownerState = {
     ...props,
     ...optionState,
