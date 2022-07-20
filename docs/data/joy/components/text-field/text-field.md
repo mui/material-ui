@@ -36,6 +36,12 @@ The text field component comes with three sizes out of the box: `sm`, `md` (the 
 
 {{"demo": "TextFieldSizes.js", "hideToolbar": true}}
 
+### Variants
+
+The text field component supports the four global variants: solid (default), soft, outlined and plain.
+
+{{"demo": "TextFieldVariants.js", "hideToolbar": true}}
+
 ### Form props
 
 Standard form attributes are supported e.g. `required`, `disabled`, `type`, etc. as well as a `helperText` which is used to give context about a field's input, such as how the input will be used.
