@@ -358,6 +358,46 @@ describe('<Chip />', () => {
       expect(icon).to.have.class(classes.deleteIconColorSecondary);
     });
 
+    it('should render default icon with the root, deletable, deleteIcon primary class and deleteIcon filled primary class', () => {
+      const { container, getByTestId } = render(
+        <Chip
+          label="Custom delete icon Chip"
+          onDelete={() => {}}
+          color="primary"
+          variant="filled"
+        />,
+      );
+
+      const chip = container.querySelector(`.${classes.root}`);
+      expect(chip).to.have.class(classes.colorPrimary);
+      expect(chip).to.have.class(classes.deletable);
+      expect(chip).to.have.class(classes.deletableColorPrimary);
+      const icon = getByTestId('CancelIcon');
+      expect(icon).to.have.class(classes.deleteIcon);
+      expect(icon).to.have.class(classes.deleteIconColorPrimary);
+      expect(icon).to.have.class(classes.deleteIconFilledColorPrimary);
+    });
+
+    it('should render default icon with the root, deletable, deleteIcon primary class and deleteIcon outlined primary class', () => {
+      const { container, getByTestId } = render(
+        <Chip
+          label="Custom delete icon Chip"
+          onDelete={() => {}}
+          color="primary"
+          variant="outlined"
+        />,
+      );
+
+      const chip = container.querySelector(`.${classes.root}`);
+      expect(chip).to.have.class(classes.colorPrimary);
+      expect(chip).to.have.class(classes.deletable);
+      expect(chip).to.have.class(classes.deletableColorPrimary);
+      const icon = getByTestId('CancelIcon');
+      expect(icon).to.have.class(classes.deleteIcon);
+      expect(icon).to.have.class(classes.deleteIconColorPrimary);
+      expect(icon).to.have.class(classes.deleteIconOutlinedColorPrimary);
+    });
+
     it('accepts a custom icon', () => {
       const handleDelete = spy();
       const { getByTestId } = render(
