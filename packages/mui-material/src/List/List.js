@@ -8,10 +8,16 @@ import ListContext from './ListContext';
 import { getListUtilityClass } from './listClasses';
 
 const useUtilityClasses = (ownerState) => {
-  const { classes, disablePadding, dense, subheader } = ownerState;
+  const { classes, disablePadding, dense, subheader, variant } = ownerState;
 
   const slots = {
-    root: ['root', !disablePadding && 'padding', dense && 'dense', subheader && 'subheader'],
+    root: [
+      'root',
+      variant && variant,
+      !disablePadding && 'padding',
+      dense && 'dense',
+      subheader && 'subheader',
+    ],
   };
 
   return composeClasses(slots, getListUtilityClass, classes);
@@ -52,6 +58,8 @@ const List = React.forwardRef(function List(inProps, ref) {
     component = 'ul',
     dense = false,
     disablePadding = false,
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    variant = 'default',
     subheader,
     ...other
   } = props;
@@ -128,6 +136,14 @@ List.propTypes /* remove-proptypes */ = {
     PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
     PropTypes.func,
     PropTypes.object,
+  ]),
+  /**
+   * The variant to use.
+   * @default 'default'
+   */
+  variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['default']),
+    PropTypes.string,
   ]),
 };
 

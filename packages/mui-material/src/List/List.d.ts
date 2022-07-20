@@ -39,6 +39,7 @@ export interface ListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
     sx?: SxProps<Theme>;
     /**
      * The variant to use.
+     * @default 'default'
      */
     variant?: OverridableStringUnion<'default', ListPropsVariantOverrides>;
   };
