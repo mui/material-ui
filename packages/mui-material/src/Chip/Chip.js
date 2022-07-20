@@ -35,7 +35,7 @@ const useUtilityClasses = (ownerState) => {
       'deleteIcon',
       `deleteIcon${capitalize(size)}`,
       `deleteIconColor${capitalize(color)}`,
-      `deleteIconOutlinedColor${capitalize(color)}`,
+      `deleteIcon${capitalize(variant)}Color${capitalize(color)}`,
     ],
   };
 
@@ -59,7 +59,10 @@ const ChipRoot = styled('div', {
       { [`& .${chipClasses.deleteIcon}`]: styles.deleteIcon },
       { [`& .${chipClasses.deleteIcon}`]: styles[`deleteIcon${capitalize(size)}`] },
       { [`& .${chipClasses.deleteIcon}`]: styles[`deleteIconColor${capitalize(color)}`] },
-      { [`& .${chipClasses.deleteIcon}`]: styles[`deleteIconOutlinedColor${capitalize(color)}`] },
+      {
+        [`& .${chipClasses.deleteIcon}`]:
+          styles[`deleteIcon${capitalize(variant)}Color${capitalize(color)}`],
+      },
       styles.root,
       styles[`size${capitalize(size)}`],
       styles[`color${capitalize(color)}`],
@@ -68,7 +71,7 @@ const ChipRoot = styled('div', {
       onDelete && styles.deletable,
       onDelete && color !== 'default' && styles[`deletableColor${capitalize(color)}`],
       styles[variant],
-      variant === 'outlined' && styles[`outlined${capitalize(color)}`],
+      styles[`${variant}${capitalize(color)}`],
     ];
   },
 })(
