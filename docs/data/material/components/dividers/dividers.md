@@ -45,9 +45,9 @@ You can also render a divider with content.
 {{"demo": "DividerText.js"}}
 
 :::info
-**♿️ Tips**: If you use the `Divider` for visual decoration of your content (eg. a heading), you should do this to make sure that screen readers can announce your content to the users:
+**Accessibility tips**: When using the `Divider component for visual decoration, such as in a heading, follow the tips below to make sure screen readers can announce your app's content to users correctly:
 
-- specify an appropriate `component` prop (eg. `div`)
+- specify an appropriate `component` prop (e.g. `div`)
 - explicitly specify `role={undefined}` to the divider
 
 ```js
