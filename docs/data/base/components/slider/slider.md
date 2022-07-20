@@ -48,16 +48,51 @@ The `SliderUnstyled` component is composed of a root `<span>` that houses three 
 - rail: the full length of the slider
 - track: the section of the slider that's active
 - thumb: the button that the user moves across the slider
+- mark: optional pre-defined stops along the track
+- markLabel: optional label to display the mark's value
+- valueLabel: optional label to display the values on a range slider
 
 ```html
 <span class="MuiSlider-root">
   <span class="MuiSlider-rail"></span>
   <span class="MuiSlider-track"></span>
+  <span
+    data-index="0"
+    class="MuiSlider-mark MuiSlider-markActive"
+    style="left: 0%;"
+  ></span>
+  <span
+    aria-hidden="true"
+    data-index="0"
+    class="MuiSlider-markLabel MuiSlider-markLabelActive"
+    style="left: 0%;"
+    >0</span
+  >
+  <span data-index="1" class="MuiSlider-mark" style="left: 50%;"></span>
+  <span
+    aria-hidden="true"
+    data-index="1"
+    class="MuiSlider-markLabel"
+    style="left: 50%;"
+    >50</span
+  >
+  <span data-index="2" class="MuiSlider-mark" style="left: 100%;"></span>
+  <span
+    aria-hidden="true"
+    data-index="2"
+    class="MuiSlider-markLabel"
+    style="left: 100%;"
+    >100</span
+  >
   <span class="MuiSlider-thumb">
     <input />
   </span>
 </span>
 ```
+
+:::info
+Both the `mark` and `markLabel` slots have corresponding `*Active` classes that are applied conditionally.
+:::
 
 ### Slot props
 
