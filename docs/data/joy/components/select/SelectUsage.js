@@ -35,6 +35,10 @@ export default function SelectUsage() {
           defaultValue: 'Choose one...',
           codeBlockDisplay: true,
         },
+        {
+          propName: 'disabled',
+          knob: 'switch',
+        },
       ]}
       renderDemo={(props) => (
         <Select

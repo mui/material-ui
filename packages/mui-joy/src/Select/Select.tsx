@@ -62,6 +62,7 @@ const SelectRoot = styled('div', {
     '--Select-focusedThickness': 'calc(var(--variant-borderWidth, 1px) + 1px)',
     '--Select-focusedHighlight':
       theme.vars.palette[ownerState.color === 'neutral' ? 'primary' : ownerState.color!]?.[500],
+    '--Select-indicator-color': theme.vars.palette.text.tertiary,
     ...(ownerState.size === 'sm' && {
       '--Select-minHeight': '2rem',
       '--Select-paddingInline': '0.5rem',
@@ -121,14 +122,22 @@ const SelectRoot = styled('div', {
       borderRadius: 'inherit',
       margin: 'calc(var(--variant-borderWidth) * -1)', // for outlined variant
     },
+    [`&.${selectClasses.focusVisible}`]: {
+      '--Select-indicator-color': 'var(--Select-focusedHighlight)',
+    },
+    [`&.${selectClasses.disabled}`]: {
+      '--Select-indicator-color': 'inherit',
+    },
   },
-  theme.variants[`${ownerState.variant!}`]?.[ownerState.color!],
-  { '&:hover': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!] },
   {
+    // apply global variant styles
+    ...theme.variants[`${ownerState.variant!}`]?.[ownerState.color!],
+    '&:hover': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
     [`&.${selectClasses.disabled}`]:
       theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
   },
   ownerState.variant !== 'solid' && {
+    // This style has to come after the global variant to set the background to initial
     [`&.${selectClasses.focusVisible}`]: {
       backgroundColor: 'initial',
       '&:before': {
@@ -175,11 +184,11 @@ const SelectListbox = styled(List, {
   name: 'JoySelect',
   slot: 'Listbox',
   overridesResolver: (props, styles) => styles.listbox,
-})<{ ownerState: SelectOwnerState<any> }>({
+})<{ ownerState: SelectOwnerState<any> }>(({ theme }) => ({
   outline: 'none',
   paddingBlock: 'var(--List-divider-gap)',
-  '--List-radius': 'var(--Select-radius)',
-});
+  '--List-radius': theme.vars.radius.sm, // Can't use --Select-radius because listbox is not a child of the root element
+}));
 
 const SelectStartDecorator = styled('span', {
   name: 'JoySelect',
@@ -216,16 +225,13 @@ const SelectEndDecorator = styled('span', {
 const SelectIndicator = styled('span', {
   name: 'JoySelect',
   slot: 'Indicator',
-})<{ ownerState: SelectOwnerState<any> }>(({ theme, ownerState }) => ({
-  color: theme.vars.palette.text.tertiary,
+})<{ ownerState: SelectOwnerState<any> }>({
+  color: 'var(--Select-indicator-color)',
   display: 'inherit',
   alignItems: 'center',
   marginInlineStart: 'var(--Select-gap)',
   marginInlineEnd: 'calc(var(--Select-paddingInline) / -4)',
-  ...(ownerState.focusVisible && {
-    color: 'var(--Select-focusedHighlight)',
-  }),
-}));
+});
 
 const Select = React.forwardRef(function Select<TValue>(
   inProps: SelectProps<TValue>,
