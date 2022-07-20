@@ -263,3 +263,13 @@ curl --request POST \
   --header 'Circle-Token: $CIRCLE_TOKEN' \
   --data-raw '{"branch":"pull/24289/head","parameters":{"react-dist-tag":"next"}}'
 ```
+
+### Testing specific version of React
+
+You can check integration of different versions of React (e.g. a specific older version that we still need to support) by running `node scripts/use-react-version <version>`.
+
+Possible values for `version`:
+
+- `17.0.2` - this is one of the React versions that we still need to support
+
+If you want to add more versions, head to `scripts/use-react-version.js` and update the `versionsSupported` and the `devDependencies` for that specific version.
