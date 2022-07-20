@@ -2,7 +2,6 @@
 
 <p class="description">Install MUI System, a collection of CSS utilities for rapidly laying out custom designs.</p>
 
-## Installation
 
 <!-- #default-branch-switch -->
 
