@@ -44,7 +44,7 @@ const Option = React.forwardRef(function Option(inProps, ref) {
     disabled,
     value,
     label,
-    variant: variantProp,
+    variant = 'plain',
     color: colorProp,
     ...other
   } = props;
@@ -74,7 +74,6 @@ const Option = React.forwardRef(function Option(inProps, ref) {
   if (colorProp) {
     color = colorProp;
   }
-  const variant = variantProp ?? (optionState.selected ? 'soft' : 'plain');
   const ownerState = {
     ...props,
     ...optionState,

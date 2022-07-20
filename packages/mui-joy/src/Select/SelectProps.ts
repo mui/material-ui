@@ -36,9 +36,28 @@ export interface SelectStaticProps extends SelectUnstyledCommonProps {
    */
   disabled?: boolean;
   /**
+   * Trailing adornment for the select.
+   */
+  endDecorator?: React.ReactNode;
+  /**
+   * The indicator(*) for the select.
+   *    ________________
+   *   [ value        * ]
+   *    ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
+   */
+  indicator?: React.ReactNode;
+  /**
+   * Text to show when there is no selected value.
+   */
+  placeholder?: React.ReactNode;
+  /**
    * The size of the component.
    */
   size?: OverridableStringUnion<'sm' | 'md' | 'lg', SelectPropsSizeOverrides>;
+  /**
+   * Leading adornment for the select.
+   */
+  startDecorator?: React.ReactNode;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

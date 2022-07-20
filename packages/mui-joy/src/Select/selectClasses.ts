@@ -3,6 +3,14 @@ import { generateUtilityClass, generateUtilityClasses } from '../className';
 export interface SelectClasses {
   /** Styles applied to the root slot. */
   root: string;
+  /** Styles applied to the button slot. */
+  button: string;
+  /** Styles applied to the indicator slot. */
+  indicator: string;
+  /** Styles applied to the startDecorator slot. */
+  startDecorator: string;
+  /** Styles applied to the endDecorator slot. */
+  endDecorator: string;
   /** Styles applied to the popper slot. */
   popper: string;
   /** Styles applied to the listbox slot. */
@@ -47,6 +55,10 @@ export function getSelectUtilityClass(slot: string): string {
 
 const selectClasses: SelectClasses = generateUtilityClasses('JoySelect', [
   'root',
+  'button',
+  'indicator',
+  'startDecorator',
+  'endDecorator',
   'popper',
   'listbox',
   'colorPrimary',
