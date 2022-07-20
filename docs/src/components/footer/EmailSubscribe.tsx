@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Theme, styled } from '@mui/material/styles';
+import { Theme, styled, alpha } from '@mui/material/styles';
 import { SxProps } from '@mui/system';
 import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
@@ -94,10 +94,9 @@ export default function EmailSubscribe({ sx }: { sx?: SxProps<Theme> }) {
       <Box
         sx={{
           display: 'flex',
-          borderRadius: 1,
-          overflow: 'hidden',
+          gap: 1,
           width: { xs: '100%', sm: 'auto' },
-          maxWidth: 360,
+          maxWidth: 320,
         }}
       >
         <InputBase
@@ -109,23 +108,39 @@ export default function EmailSubscribe({ sx }: { sx?: SxProps<Theme> }) {
           onChange={(event) => setForm({ email: event.target.value, status: 'initial' })}
           inputProps={{ required: true }}
           sx={{
+            minWidth: 220,
             bgcolor: (theme) =>
+              theme.palette.mode === 'dark' ? theme.palette.primaryDark[900] : '#fff',
+            boxShadow: (theme) =>
               theme.palette.mode === 'dark'
-                ? theme.palette.primaryDark[900]
-                : theme.palette.grey[100],
+                ? '0 1px 2px 0 rgba(0 0 0 / 1)'
+                : '0 1px 2px 0 rgba(0 0 0 / 0.1)',
+            borderRadius: 1,
+            border: '1px solid',
+            borderColor: (theme) =>
+              theme.palette.mode === 'dark'
+                ? theme.palette.primaryDark[500]
+                : theme.palette.grey[300],
             px: 1,
             py: 0.5,
             typography: 'body2',
-            flexGrow: 1,
-            minWidth: 200,
+
+            '&:hover': {
+              borderColor: (theme) =>
+                theme.palette.mode === 'dark'
+                  ? theme.palette.primaryDark[300]
+                  : theme.palette.grey[500],
+              boxShadow: (theme) =>
+                theme.palette.mode === 'dark'
+                  ? '0 1px 2px 0 rgba(0 0 0 / 1)'
+                  : '0 1px 2px 0 rgba(0 0 0 / 0.15)',
+            },
+
             '&:focus': {
-              outline: (theme) =>
-                `2px solid ${
-                  theme.palette.mode === 'dark'
-                    ? theme.palette.primary[400]
-                    : theme.palette.primary[200]
-                }`,
-              outlineOffset: '2px',
+              borderColor: (theme) =>
+                theme.palette.mode === 'dark'
+                  ? theme.palette.primaryDark[300]
+                  : theme.palette.primary[500],
             },
           }}
         />
@@ -135,17 +150,19 @@ export default function EmailSubscribe({ sx }: { sx?: SxProps<Theme> }) {
           sx={{
             bgcolor: (theme) =>
               theme.palette.mode === 'dark'
-                ? theme.palette.primaryDark[600]
-                : theme.palette.grey[300],
+                ? theme.palette.primaryDark[500]
+                : alpha(theme.palette.primary[100], 0.5),
+            color: (theme) =>
+              theme.palette.mode === 'dark'
+                ? theme.palette.primaryDark[100]
+                : theme.palette.primary[600],
             py: 1,
-            px: 2,
-            color: 'text.primary',
-            borderRadius: '0px',
+            px: 1.5,
             '&:hover': {
               bgcolor: (theme) =>
                 theme.palette.mode === 'dark'
-                  ? theme.palette.primaryDark[700]
-                  : theme.palette.grey[400],
+                  ? theme.palette.primaryDark[600]
+                  : alpha(theme.palette.primary[100], 1),
             },
           }}
         >
