@@ -387,7 +387,6 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
   };
 
   const clickable = clickableProp !== false && onClick ? true : clickableProp;
-  const small = size === 'small';
 
   const component = clickable || onDelete ? ButtonBase : ComponentProp || 'div';
 
