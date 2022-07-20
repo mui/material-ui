@@ -192,11 +192,12 @@ Menu.propTypes /* remove-proptypes */ = {
    */
   color: PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
   /**
-   * @ignore
+   * The props used for each slot inside the Popper.
+   * @default {}
    */
   componentsProps: PropTypes.shape({
     listbox: PropTypes.object,
-    root: PropTypes.object,
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
    * The `children` will be under the DOM hierarchy of the parent component.
