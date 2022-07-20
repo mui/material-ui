@@ -175,11 +175,16 @@ const Divider = React.forwardRef(function Divider(inProps, ref) {
     flexItem = false,
     light = false,
     orientation = 'horizontal',
-    role = component !== 'hr' ? 'separator' : undefined,
+    role: roleProp = component !== 'hr' ? 'separator' : undefined,
     textAlign = 'center',
     variant = 'fullWidth',
     ...other
   } = props;
+
+  let role = roleProp;
+  if ('role' in inProps) {
+    role = inProps.role;
+  }
 
   const ownerState = {
     ...props,

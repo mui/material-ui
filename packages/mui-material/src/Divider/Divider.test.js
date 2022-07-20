@@ -143,5 +143,10 @@ describe('<Divider />', () => {
       const { container } = render(<Divider role="presentation" />);
       expect(container.firstChild).to.have.attribute('role', 'presentation');
     });
+
+    it('should not have role if `undefined` is provided', () => {
+      const { container } = render(<Divider component="div" role={undefined} />);
+      expect(container.firstChild).not.to.have.attribute('role');
+    });
   });
 });
