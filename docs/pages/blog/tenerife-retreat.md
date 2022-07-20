@@ -32,7 +32,19 @@ With an average temperature ranging from about 18-25 °C (68-77 °F) year-round,
 
 ## Accommodations
 
-Description of Symbiosis Living.
+![Photo of a guest house at Symbiosis Living](/static/blog/tenerife-retreat/symbiosis.webp)
+
+[Symbiosis Living](https://www.symbiosisliving.com/) is a sustainable retreat venue nestled deep in the hills on the western side of the island.
+The venue is a venerable oasis of lush green flora amid the stark and barren volcanic rock that surrounds it, hosting breezy guest houses adorned with rustic, regionally sourced furniture.
+
+The owners were exceptionally accommodating and supportive for the entirety of our stay.
+Almost all of our meals were cooked fresh by the hosts in their fabulous outdoor kitchen.
+I don't think I've ever eaten that many incredible home-cooked meals in a single week. 😋
+And somehow each one was even better than the last!
+
+![MUI X colleagues José and Andrew bond over a bottle of wine at dinner one night during the retreat.](/static/blog/tenerife-retreat/jose-andrew-wine.jpg)
+
+_MUI X colleagues José and Andrew bond over a bottle of wine at dinner one night during the retreat._
 
 ## Activities
 
