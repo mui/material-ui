@@ -415,25 +415,14 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
 
   let deleteIcon = null;
   if (onDelete) {
-    const customClasses = clsx({
-      [classes.deleteIconSmall]: small,
-      [classes[`deleteIconColor${capitalize(color)}`]]:
-        color !== 'default' && variant !== 'outlined',
-      [classes[`deleteIconOutlinedColor${capitalize(color)}`]]:
-        color !== 'default' && variant === 'outlined',
-    });
-
     deleteIcon =
       deleteIconProp && React.isValidElement(deleteIconProp) ? (
         React.cloneElement(deleteIconProp, {
-          className: clsx(deleteIconProp.props.className, classes.deleteIcon, customClasses),
+          className: clsx(deleteIconProp.props.className, classes.deleteIcon),
           onClick: handleDeleteIconClick,
         })
       ) : (
-        <CancelIcon
-          className={clsx(classes.deleteIcon, customClasses)}
-          onClick={handleDeleteIconClick}
-        />
+        <CancelIcon className={clsx(classes.deleteIcon)} onClick={handleDeleteIconClick} />
       );
   }
 
