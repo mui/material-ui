@@ -83,7 +83,7 @@ We already mentioned that you could customize functions and use aggregation with
 
 Please check out the feature’s [full documentation](/x/react-data-grid/aggregation/) to get a better overview of everything it has to offer.
 
-## Share your feedback! 🗣
+## Share your feedback 🗣
 
 **And if you’re feeling generous, we’re recruiting users to interview!**
 
