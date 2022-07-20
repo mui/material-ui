@@ -77,7 +77,7 @@ To activate the feature, please enabled it with the experimentalFeatures prop.
 <DataGridPremium experimentalFeatures={{ aggregation: true }} {...otherProps} />
 ```
 
-## Use with tree data and more!
+## Use with tree data and more
 
 We already mentioned that you could customize functions and use aggregation with row grouping. But there are a lot of other possibilities to explore!
 
