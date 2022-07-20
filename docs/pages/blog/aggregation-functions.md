@@ -7,9 +7,9 @@ tags: ['MUI X', 'News']
 card: true
 ---
 
-If you ever had a lot of data on a grid, you know that the ability to set different perspectives on data is essential to help users extract information. Typically, one would use at least filtering or sorting. But that barely scratches the surface of what one could do.
+If you ever had a lot of data on a grid, you know that the ability to set different perspectives on data is essential to help users extract information. Typically, one would use at least filtering or sorting, but that barely scratches the surface of what one could do.
 
-The Data grid Premium is all about enabling and empowering advanced use cases for data analysis. And in that spirit, we’re overjoyed to announce that you can now use aggregation functions, and with a couple of clicks, extract information like **sum**, **average**, **count**, and others.
+The Data grid Premium is all about enabling and empowering advanced use cases for data analysis. And in that spirit, we’re overjoyed to announce that you can now use [aggregation functions](/x/react-data-grid/aggregation/), and with a couple of clicks, extract information like **sum**, **average**, **count**, and others.
 
 ## Wait, what is an Aggregation function?
 
@@ -39,7 +39,9 @@ How easy can it be to get the average of transactions per user?
 ## Customize everything
 
 The out-of-the-box experience is very important to us, but as is the ability to customize and extend the feature to your own use case.
-You can change the styles of every element involved, set automatic aggregations, choose which columns can be aggregated by which functions, and even create your own custom function like in the example below, where we wanted to get the first value in alphabetical order.
+You can change the styles of every element involved, set automatic aggregations, choose which columns can be aggregated by which functions, and even create your own custom function.
+
+In the example below, we wanted to get the first value in alphabetical order.
 
 ```tsx
 const firstAlphabeticalAggregation: GridAggregationFunction<string, string | null> =
@@ -78,7 +80,7 @@ To activate the feature, please enabled it with the experimentalFeatures prop.
 
 We already mentioned that you could customize functions and use aggregation with row grouping. But there are a lot of other possibilities to explore!
 
-Please check out the feature’s [full documentation](/x/react-data-grid/aggregation-next/) to get a better overview of everything it has to offer.
+Please check out the feature’s [full documentation](/x/react-data-grid/aggregation/) to get a better overview of everything it has to offer.
 
 ## Share your feedback! 🗣
 
