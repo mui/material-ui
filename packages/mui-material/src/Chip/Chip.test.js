@@ -149,7 +149,7 @@ describe('<Chip />', () => {
       expect(chip).to.have.class(classes.outlinedPrimary);
     });
 
-    it('should render with the root and clickable secondary class', () => {
+    it('should render with the root and outlined clickable secondary class', () => {
       const { getByRole } = render(
         <Chip color="secondary" label="My Chip" onClick={() => {}} variant="outlined" />,
       );
@@ -159,6 +159,36 @@ describe('<Chip />', () => {
       expect(button).to.have.class(classes.colorSecondary);
       expect(button).to.have.class(classes.clickable);
       expect(button).to.have.class(classes.clickableColorSecondary);
+      expect(button).to.have.class(classes.outlined);
+      expect(button).to.have.class(classes.outlinedSecondary);
+    });
+
+    it('should render with the root and filled clickable primary class', () => {
+      const { getByRole } = render(
+        <Chip color="primary" label="My Chip" onClick={() => {}} variant="filled" />,
+      );
+
+      const chip = getByRole('button');
+      expect(chip).to.have.class(classes.root);
+      expect(chip).to.have.class(classes.colorPrimary);
+      expect(chip).to.have.class(classes.clickable);
+      expect(chip).to.have.class(classes.clickableColorPrimary);
+      expect(chip).to.have.class(classes.filled);
+      expect(chip).to.have.class(classes.filledPrimary);
+    });
+
+    it('should render with the root and filled clickable secondary class', () => {
+      const { getByRole } = render(
+        <Chip color="secondary" label="My Chip" onClick={() => {}} variant="filled" />,
+      );
+
+      const chip = getByRole('button');
+      expect(chip).to.have.class(classes.root);
+      expect(chip).to.have.class(classes.colorSecondary);
+      expect(chip).to.have.class(classes.clickable);
+      expect(chip).to.have.class(classes.clickableColorSecondary);
+      expect(chip).to.have.class(classes.filled);
+      expect(chip).to.have.class(classes.filledSecondary);
     });
   });
 
@@ -288,15 +318,15 @@ describe('<Chip />', () => {
 
   describe('prop: deleteIcon', () => {
     it('should render a default icon with the root, deletable and deleteIcon classes', () => {
-      const { container, getByRole, getByTestId } = render(
+      const { getByRole, getByTestId } = render(
         <Chip label="Custom delete icon Chip" onDelete={() => {}} />,
       );
 
-      const chip = container.querySelector(`.${classes.root}`);
-      expect(chip).to.have.class(classes.deletable);
-
+      const chip = getByRole('button');
       const icon = getByTestId('CancelIcon');
-      expect(getByRole('button')).to.contain(icon);
+
+      expect(chip).to.have.class(classes.deletable);
+      expect(chip).to.contain(icon);
       expect(icon).to.have.class(classes.deleteIcon);
     });
 
