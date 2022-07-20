@@ -81,10 +81,11 @@ We already mentioned that you could customize functions and use aggregation with
 Please check out the feature’s [full documentation](/x/react-data-grid/aggregation-next/) to get a better overview of everything it has to offer.
 
 ## Share your feedback! 🗣
+
 **And if you’re feeling generous, we’re recruiting users to interview!**
 
-We hope you’re excited with aggregation functions as we are! 
+We hope you’re excited with aggregation functions as we are!
 As usual, we’re glad to listen to any feedback. Please feel free to open new issues to report bugs or suggest improvements.
 
-And if you’re feeling generous, please consider scheduling a 30 minutes user interview session. 
+And if you’re feeling generous, please consider scheduling a 30 minutes user interview session.
 We’re planning our v6 release, and we’d love to hear more about your pain points and use cases.
