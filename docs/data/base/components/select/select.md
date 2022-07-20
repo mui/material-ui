@@ -28,7 +28,7 @@ It also includes `OptionUnstyled` for creating the options on the list, and `Opt
 
 ## Components
 
-### Anatomy
+### Usage
 
 After [installation](/base/getting-started/installation/), you can start building with this component collection using the following basic elements:
 
