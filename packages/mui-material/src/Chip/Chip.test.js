@@ -287,20 +287,13 @@ describe('<Chip />', () => {
   });
 
   describe('prop: deleteIcon', () => {
-    it('should render a default icon with the root, deletable, deleteIcon and deleteIconOutlinedColorSecondary classes', () => {
-      const { getByRole, getByTestId } = render(
-        <Chip label="Custom delete icon Chip" onDelete={() => {}} />,
-      );
-
-      const icon = getByTestId('CancelIcon');
-      expect(getByRole('button')).to.contain(icon);
-      expect(icon).to.have.class(classes.deleteIcon);
-    });
-
     it('should render a default icon with the root, deletable and deleteIcon classes', () => {
-      const { getByRole, getByTestId } = render(
+      const { container, getByRole, getByTestId } = render(
         <Chip label="Custom delete icon Chip" onDelete={() => {}} />,
       );
+
+      const chip = container.querySelector(`.${classes.root}`);
+      expect(chip).to.have.class(classes.deletable);
 
       const icon = getByTestId('CancelIcon');
       expect(getByRole('button')).to.contain(icon);
