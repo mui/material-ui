@@ -61,6 +61,14 @@ const GOLDs = [
     description: 'Send text messages, calls & emails to thousands with ease.',
     href: 'https://www.dialmycalls.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
   },
+  {
+    src: 'https://goread.io/assets/uploads/usereb4ac3033e8ab3591e0fcefa8c26ce3fd36d5a0f/bd81e54effbcc265ad169015455a0c1e.png',
+    srcSet:
+      'https://goread.io/assets/uploads/usereb4ac3033e8ab3591e0fcefa8c26ce3fd36d5a0f/bd81e54effbcc265ad169015455a0c1e.png 2x',
+    name: 'Goread.io',
+    description: 'Instagram followers, likes, power likes, views, comments, saves in minutes.',
+    href: 'https://goread.io/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
+  },
 ];
 
 export default function GoldSponsors() {
