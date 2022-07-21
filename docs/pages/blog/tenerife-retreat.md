@@ -54,15 +54,25 @@ Throughout our stay in Tenerife, we arranged group activities to make the most o
 
 ### Whale and dolphin watching
 
+![Danail from the MUI X team snaps a selfie on the bow of the whale-watching boat, with coworkers in the background.](/static/blog/tenerife-retreat/whale-watching-danail.jpeg)
+
 ### Scuba diving lessons
 
+![Overhead view of MUI team members learning how to scuba dive underwater.](/static/blog/tenerife-retreat/scuba-1.jpeg)
+
 ### Volcanic hike at sunset
+
+![The sun setting above the clouds as seen near the top of Teide.](/static/blog/tenerife-retreat/teide-sunset.jpg)
 
 ## And also work
 
 ### Roadmap to v6 and beyond
 
+![MUI Core team members Marija, Jun, and Sam discuss the product roadmap.](/static/blog/tenerife-retreat/focus-group.jpeg)
+
 ### Focus groups
+
+![An impromptu focus group gathered next to the pool with laptops to discuss cross-team marketing strategies.](/static/blog/tenerife-retreat/outdoor-focus-group.jpeg)
 
 ### Our feline colleague 🐈
 
@@ -74,3 +84,5 @@ We can't thank her enough for her contributions to the company roadmap.
 ## Join us
 
 We're hiring! Check out our open roles so you can join us before our next retreat in February/March 2023!
+
+![The sun setting above the clouds as seen near the top of Teide.](/static/blog/tenerife-retreat/teide-hike.jpeg)
