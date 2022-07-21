@@ -32,10 +32,12 @@ With an average temperature ranging from about 18-25 °C (68-77 °F) year-round,
 
 ## Accommodations
 
-![Photo of a guest house at Symbiosis Living](/static/blog/tenerife-retreat/symbiosis.webp)
+![Photo of the pool in the evening at Symbiosis Living](/static/blog/tenerife-retreat/pool-evening.jpeg)
 
 [Symbiosis Living](https://www.symbiosisliving.com/) is a sustainable retreat venue nestled deep in the hills on the western side of the island.
 The venue is a venerable oasis of lush green flora amid the stark and barren volcanic rock that surrounds it, hosting breezy guest houses adorned with rustic, regionally sourced furniture.
+
+![Photo of the outdoor kitchen at Symbiosis Living](/static/blog/tenerife-retreat/outdoor-kitchen.jpeg)
 
 The owners were exceptionally accommodating and supportive for the entirety of our stay.
 Almost all of our meals were cooked fresh by the hosts in their fabulous outdoor kitchen.
@@ -48,6 +50,8 @@ _MUI X colleagues José and Andrew bond over a bottle of wine at dinner one nigh
 
 ## Activities
 
+Throughout our stay in Tenerife, we arranged group activities to make the most of what the island has to offer.
+
 ### Whale and dolphin watching
 
 ### Scuba diving lessons
@@ -59,6 +63,13 @@ _MUI X colleagues José and Andrew bond over a bottle of wine at dinner one nigh
 ### Roadmap to v6 and beyond
 
 ### Focus groups
+
+### Our feline colleague 🐈
+
+All throughout our working sessions, we were accompanied by a very friendly young kitty (name unknown) who consistently offered critical support when we needed it the most.
+We can't thank her enough for her contributions to the company roadmap.
+
+![Collage of several photos of the MUI team members cuddling with the neighborhood cat during our work sessions.](/static/blog/tenerife-retreat/cat-collage.jpg)
 
 ## Join us
 
