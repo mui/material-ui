@@ -28,8 +28,7 @@ const additionalVersionsMappings = {
   },
 };
 
-async function main(options) {
-  const { version } = options;
+async function main(version) {
   if (typeof version !== 'string') {
     throw new TypeError(`expected version: string but got '${version}'`);
   }
@@ -112,7 +111,7 @@ async function main(options) {
 }
 
 const [version = process.env.REACT_VERSION] = process.argv.slice(2);
-main({ version }).catch((error) => {
+main(version).catch((error) => {
   console.error(error);
   process.exit(1);
 });
