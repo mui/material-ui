@@ -40,7 +40,6 @@ async function main(version) {
   const packageJsonPath = path.resolve(__dirname, '../package.json');
   const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, { encoding: 'utf8' }));
 
-  const { stdout: v } = await exec(`npm view --json react@${version} version`);
   // the version is something in format: "17.0.0"
   let majorVersion = null;
 
