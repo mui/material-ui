@@ -11,10 +11,6 @@ parameters:
     description: The dist-tag of react to be used
     type: string
     default: stable
-  react-specific-version:
-    description: The specific version of react to be used
-    type: string
-    default: ''  
   workflow:
     description: The name of the workflow to run
     type: string
@@ -30,10 +26,6 @@ defaults: &defaults
       description: The dist-tag of react to be used
       type: string
       default: << pipeline.parameters.react-dist-tag >>
-    react-specific-version:
-      description: The specific version of react to be used
-      type: string
-      default: << pipeline.parameters.react-specific-version >>
     test-gate:
       description: A particular type of tests that should be run
       type: string
@@ -48,7 +40,6 @@ defaults: &defaults
     # expose it globally otherwise we have to thread it from each job to the install command
     BROWSERSTACK_FORCE: << pipeline.parameters.browserstack-force >>
     REACT_DIST_TAG: << parameters.react-dist-tag >>
-    REACT_SPECIFIC_VERSION: << parameters.react-specific-version >>
     TEST_GATE: << parameters.test-gate >>
     AWS_REGION_ARTIFACTS: eu-central-1
   working_directory: /tmp/material-ui
@@ -145,9 +136,7 @@ jobs:
       - when:
           # Install can be "dirty" when running with non-default versions of React
           condition:
-            and:
-              - equal: [<< parameters.react-dist-tag >>, stable]
-              - equal: [<< parameters.react-specific-version >>, '']
+            equal: [<< parameters.react-dist-tag >>, stable]
           steps:
             - run:
                 name: Should not have any git not staged
@@ -847,13 +836,13 @@ workflows:
                 - master
     jobs:
       - test_unit:
-          react-specific-version: 17.0.2
+          react-dist-tag: ^17.0.0
       - test_browser:
-          react-specific-version: 17.0.2
+          react-dist-tag: ^17.0.0
       - test_regressions:
-          react-specific-version: 17.0.2
+          react-dist-tag: ^17.0.0
       - test_e2e:
-          react-specific-version: 17.0.2 
+          react-dist-tag: ^17.0.0
   react-next:
     triggers:
       - schedule:
