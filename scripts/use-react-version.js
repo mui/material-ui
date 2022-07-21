@@ -41,8 +41,7 @@ async function main(version) {
   const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, { encoding: 'utf8' }));
 
   const { stdout: v } = await exec(`npm view --json react@${version} version`);
-  const majorVersion = v.replace('"', '').split('.')[0];
-  console.log(majorVersion);
+  const majorVersion = JSON.parse(v).split('.')[0];
 
   await Promise.all(
     reactPackageNames.map(async (reactPackageName) => {
