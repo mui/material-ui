@@ -90,3 +90,7 @@ This example replicates the application menu bar in MacOS. It supports mouse and
 {{"demo": "MenuToolbarExample.js"}}
 
 ### Icon side navigation
+
+This example is quite common in dashboard application where the side navigation is shrink into icons, that trigger the menu, to provide space to the main area.
+
+{{"demo": "MenuIconSideNavExample.js", "bg": true}}

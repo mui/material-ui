@@ -139,6 +139,11 @@ export default function MenuToolbarExample() {
     }
   };
 
+  const itemProps = {
+    onClick: () => setMenuIndex(null),
+    onKeyDown: handleKeyDown,
+  };
+
   return (
     <List
       row
@@ -173,22 +178,16 @@ export default function MenuToolbarExample() {
                 setMenuIndex(null);
               }}
             >
-              <MenuItem onClick={() => setMenuIndex(null)} onKeyDown={handleKeyDown}>
-                New File
-              </MenuItem>
-              <MenuItem onClick={() => setMenuIndex(null)} onKeyDown={handleKeyDown}>
+              <MenuItem {...itemProps}>New File</MenuItem>
+              <MenuItem {...itemProps}>
                 New Text File... {renderShortcut('⌥ ⌘ N')}
               </MenuItem>
-              <MenuItem onClick={() => setMenuIndex(null)} onKeyDown={handleKeyDown}>
+              <MenuItem {...itemProps}>
                 New Window {renderShortcut('⇧ ⌘ N')}
               </MenuItem>
               <ListDivider role="none" />
-              <MenuItem onClick={() => setMenuIndex(null)} onKeyDown={handleKeyDown}>
-                Open {renderShortcut('⌘ O')}
-              </MenuItem>
-              <MenuItem onClick={() => setMenuIndex(null)} onKeyDown={handleKeyDown}>
-                Open Folder
-              </MenuItem>
+              <MenuItem {...itemProps}>Open {renderShortcut('⌘ O')}</MenuItem>
+              <MenuItem {...itemProps}>Open Folder</MenuItem>
             </Menu>
           }
         >
@@ -215,22 +214,12 @@ export default function MenuToolbarExample() {
                 setMenuIndex(null);
               }}
             >
-              <MenuItem onClick={() => setMenuIndex(null)} onKeyDown={handleKeyDown}>
-                Undo {renderShortcut('⌘ Z')}
-              </MenuItem>
-              <MenuItem onClick={() => setMenuIndex(null)} onKeyDown={handleKeyDown}>
-                Redo {renderShortcut('⇧ ⌘ Z')}
-              </MenuItem>
+              <MenuItem {...itemProps}>Undo {renderShortcut('⌘ Z')}</MenuItem>
+              <MenuItem {...itemProps}>Redo {renderShortcut('⇧ ⌘ Z')}</MenuItem>
               <ListDivider role="none" />
-              <MenuItem onClick={() => setMenuIndex(null)} onKeyDown={handleKeyDown}>
-                Cut {renderShortcut('⌘ X')}
-              </MenuItem>
-              <MenuItem onClick={() => setMenuIndex(null)} onKeyDown={handleKeyDown}>
-                Copy {renderShortcut('⌘ Z')}
-              </MenuItem>
-              <MenuItem onClick={() => setMenuIndex(null)} onKeyDown={handleKeyDown}>
-                Paste {renderShortcut('⌘ V')}
-              </MenuItem>
+              <MenuItem {...itemProps}>Cut {renderShortcut('⌘ X')}</MenuItem>
+              <MenuItem {...itemProps}>Copy {renderShortcut('⌘ Z')}</MenuItem>
+              <MenuItem {...itemProps}>Paste {renderShortcut('⌘ V')}</MenuItem>
             </Menu>
           }
         >
@@ -257,13 +246,11 @@ export default function MenuToolbarExample() {
                 setMenuIndex(null);
               }}
             >
-              <MenuItem onClick={() => setMenuIndex(null)} onKeyDown={handleKeyDown}>
-                Select All {renderShortcut('⌘ A')}
-              </MenuItem>
-              <MenuItem onClick={() => setMenuIndex(null)} onKeyDown={handleKeyDown}>
+              <MenuItem {...itemProps}>Select All {renderShortcut('⌘ A')}</MenuItem>
+              <MenuItem {...itemProps}>
                 Expand Selection {renderShortcut('^ ⇧ ⌘ →')}
               </MenuItem>
-              <MenuItem onClick={() => setMenuIndex(null)} onKeyDown={handleKeyDown}>
+              <MenuItem {...itemProps}>
                 Shrink Selection {renderShortcut('^ ⇧ ⌘ ←')}
               </MenuItem>
             </Menu>
