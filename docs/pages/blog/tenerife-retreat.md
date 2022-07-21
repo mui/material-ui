@@ -56,9 +56,27 @@ Throughout our stay in Tenerife, we arranged group activities to make the most o
 
 ![Danail from the MUI X team snaps a selfie on the bow of the whale-watching boat, with coworkers in the background.](/static/blog/tenerife-retreat/whale-watching-danail.jpeg)
 
+Our first full day together saw us venture out into the Atlantic Ocean in search of dolphins and whales.
+
+The waters surrounding the Canary Islands are a biodiversity hotspot, and feeding grounds for many different species of marine mammals.
+We spotted several [pilot whales](https://whalewatchtenerife.org/pilot-whales/) and what I believe were [bottlenose dolphins](https://whalewatchtenerife.org/bottlenose-dolphin/), though I'll be the first to admit that I'm no expert. 😅
+
+Several of us (myself included) made a critical mistake by skipping the sunscreen because it was a cloudy day.
+We got burned to a crisp!
+And on the first day of the retreat, no less! 😭
+Don't be like us.
+Wear sunscreen.
+
 ### Scuba diving lessons
 
 ![Overhead view of MUI team members learning how to scuba dive underwater.](/static/blog/tenerife-retreat/scuba-1.jpeg)
+
+On day two we split up into smaller groups to get individualized lessons in scuba diving at the beach in Playa San Juan.
+
+I have to admit that I was pretty intimidated, especially after I put on all the gear and tried breathing from the tank for the first time.
+But once I got into the groove, the time underwater went by so quickly!
+The main highlights for me were spotting a [ray](https://aqua-marina.com/rays/) swimming by, and accidentally disturbing a [cuttlefish](https://www.paradisedivers.co.uk/blog/cuttlefish/) who was not pleased by our presence, but put on a great show as a result!
+Sorry, bud!
 
 ### Volcanic hike at sunset
 
