@@ -817,7 +817,10 @@ Tabs.propTypes /* remove-proptypes */ = {
    * Determines the color of the indicator.
    * @default 'primary'
    */
-  indicatorColor: PropTypes.oneOf(['primary', 'secondary']),
+  indicatorColor: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['primary', 'secondary']),
+    PropTypes.string,
+  ]),
   /**
    * Callback fired when the value changes.
    *

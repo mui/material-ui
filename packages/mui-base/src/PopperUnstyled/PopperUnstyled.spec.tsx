@@ -1,34 +1,42 @@
 import * as React from 'react';
-import TabUnstyled, { TabUnstyledRootSlotProps } from '@mui/base/TabUnstyled';
+import PopperUnstyled, { PopperUnstyledRootSlotProps } from '@mui/base/PopperUnstyled';
 import { expectType } from '@mui/types';
 
-function Root(props: TabUnstyledRootSlotProps) {
+function Root(props: PopperUnstyledRootSlotProps) {
   const { ownerState, ...other } = props;
-  return <div data-active={ownerState.active} {...other} />;
+  return <div data-open={ownerState.open} {...other} />;
 }
 
-const styledTab = <TabUnstyled components={{ Root }} />;
+const styledPopper = <PopperUnstyled components={{ Root }} open />;
 
 const PolymorphicComponentTest = () => {
   const CustomComponent: React.FC<{ stringProp: string; numberProp: number }> = () => <div />;
 
   return (
     <div>
+      <PopperUnstyled open>
+        {(props) => {
+          return <div>{props.placement}</div>;
+        }}
+      </PopperUnstyled>
+
       {/* @ts-expect-error */}
-      <TabUnstyled invalidProp={0} />
+      <PopperUnstyled invalidProp={0} open />
 
-      <TabUnstyled component="a" href="#" />
+      <PopperUnstyled open component="a" href="#" />
 
-      <TabUnstyled component={CustomComponent} stringProp="test" numberProp={0} />
+      <PopperUnstyled open component={CustomComponent} stringProp="test" numberProp={0} />
       {/* @ts-expect-error */}
-      <TabUnstyled component={CustomComponent} />
+      <PopperUnstyled open component={CustomComponent} />
 
-      <TabUnstyled
+      <PopperUnstyled
+        open
         component="button"
         onClick={(e: React.MouseEvent<HTMLButtonElement>) => e.currentTarget.checkValidity()}
       />
 
-      <TabUnstyled<'button'>
+      <PopperUnstyled<'button'>
+        open
         component="button"
         ref={(elem) => {
           expectType<HTMLButtonElement | null, typeof elem>(elem);

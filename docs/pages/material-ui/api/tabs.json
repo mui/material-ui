@@ -9,7 +9,10 @@
     "classes": { "type": { "name": "object" } },
     "component": { "type": { "name": "elementType" } },
     "indicatorColor": {
-      "type": { "name": "enum", "description": "'primary'<br>&#124;&nbsp;'secondary'" },
+      "type": {
+        "name": "union",
+        "description": "'primary'<br>&#124;&nbsp;'secondary'<br>&#124;&nbsp;string"
+      },
       "default": "'primary'"
     },
     "onChange": { "type": { "name": "func" } },
