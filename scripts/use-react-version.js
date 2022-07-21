@@ -44,7 +44,7 @@ async function main(options) {
 
   let majorVersion = null;
 
-  if (version.startsWith('^') || version.startsWith('~') || !isNaN(version.charAt(0))) {
+  if (version.startsWith('^') || version.startsWith('~') || !Number.isNaN(version.charAt(0))) {
     majorVersion = version.replace('^', '').replace('~', '').split('.')[0];
   }
 
@@ -96,7 +96,7 @@ async function main(options) {
   // packageJson.devDependencies['@testing-library/react'] = 'alpha';
 
   if (majorVersion) {
-    devDependenciesPackageNames.map((packageName) => {
+    devDependenciesPackageNames.forEach((packageName) => {
       if (!additionalVersionsMappings[majorVersion][packageName]) {
         throw new Error(
           `Version ${majorVersion} does not have version defined for the ${packageName}`,
