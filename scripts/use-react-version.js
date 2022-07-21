@@ -21,7 +21,7 @@ const devDependenciesPackageNames = ['@mnajdova/enzyme-adapter-react-18', '@test
 
 // if we need to support more versions we will need to add new mapping here
 const additionalVersionsMappings = {
-  '17': {
+  17: {
     scheduler: '^0.20.0',
     '@mnajdova/enzyme-adapter-react-18': 'npm:@eps1lon/enzyme-adapter-react-17',
     '@testing-library/react': '^12.1.0',
@@ -29,12 +29,12 @@ const additionalVersionsMappings = {
 };
 
 async function main(options) {
-  const { distTag } = options;
-  if (typeof distTag !== 'string') {
-    throw new TypeError(`expected distTag: string but got '${distTag}'`);
+  const { version } = options;
+  if (typeof version !== 'string') {
+    throw new TypeError(`expected version: string but got '${version}'`);
   }
 
-  if (distTag === 'stable') {
+  if (version === 'stable') {
     console.log('Nothing to do with stable');
     return;
   }
@@ -44,8 +44,8 @@ async function main(options) {
 
   let majorVersion = null;
 
-  if (distTag.startsWith('^') || distTag.startsWith('~') || !isNaN(distTag.charAt(0))) {
-    majorVersion = distTag.replace('^', '').replace('~', '').split('.')[0];
+  if (version.startsWith('^') || version.startsWith('~') || !isNaN(version.charAt(0))) {
+    majorVersion = version.replace('^', '').replace('~', '').split('.')[0];
   }
 
   if (majorVersion) {
@@ -61,30 +61,30 @@ async function main(options) {
 
   await Promise.all(
     reactPackageNames.map(async (reactPackageName) => {
-      const { stdout: versions } = await exec(`npm dist-tag ls ${reactPackageName} ${distTag}`);
+      const { stdout: versions } = await exec(`npm dist-tag ls ${reactPackageName} ${version}`);
       const tagMapping = versions.split('\n').find((mapping) => {
-        return mapping.startsWith(`${distTag}: `);
+        return mapping.startsWith(`${version}: `);
       });
 
-      let version = null;
+      let packageVersion = null;
 
       if (tagMapping === undefined) {
         // Some specific version is being requested
         if (majorVersion) {
-          version = distTag;
+          packageVersion = version;
         } else {
-          throw new Error(`Could not find '${distTag}' in "${versions}"`);
+          throw new Error(`Could not find '${version}' in "${versions}"`);
         }
       } else {
-        version = tagMapping.replace(`${distTag}: `, '');
+        packageVersion = tagMapping.replace(`${version}: `, '');
       }
 
       // the scheduler doesn't follow the versions as the other react packages
       if (majorVersion && reactPackageName === 'scheduler') {
-        version = additionalVersionsMappings[majorVersion].scheduler;
+        packageVersion = additionalVersionsMappings[majorVersion].scheduler;
       }
 
-      packageJson.resolutions[reactPackageName] = version;
+      packageJson.resolutions[reactPackageName] = packageVersion;
     }),
   );
 
@@ -111,8 +111,8 @@ async function main(options) {
   fs.writeFileSync(packageJsonPath, `${JSON.stringify(packageJson, null, 2)}${os.EOL}`);
 }
 
-const [distTag = process.env.REACT_DIST_TAG] = process.argv.slice(2);
-main({ distTag }).catch((error) => {
+const [version = process.env.REACT_VERSION] = process.argv.slice(2);
+main({ version }).catch((error) => {
   console.error(error);
   process.exit(1);
 });

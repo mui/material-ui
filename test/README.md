@@ -242,17 +242,17 @@ For example, in https://app.circleci.com/pipelines/github/mui/material-ui/32796/
 
 ### Testing multiple versions of React
 
-You can check integration of different versions of React (e.g. different [release channels](https://reactjs.org/docs/release-channels.html) or PRs to React) by running `node scripts/use-react-dist-tag <dist-tag>`.
+You can check integration of different versions of React (e.g. different [release channels](https://reactjs.org/docs/release-channels.html) or PRs to React) by running `node scripts/use-react-version <version>`.
 
-Possible values for `dist-tag`:
+Possible values for `version`:
 
 - default: `stable` (minimum supported React version)
 - a tag on npm e.g. `next`, `experimental` or `latest`
-- using an older version e.g `^17.0.0`
+- an older version e.g `^17.0.0`
 
 #### CI
 
-You can pass the same `dist-tag` to our CircleCI pipeline as well:
+You can pass the same `version` to our CircleCI pipeline as well:
 
 With the following API request we're triggering a run of the default workflow in
 PR #24289 for `react@next`
@@ -262,5 +262,5 @@ curl --request POST \
   --url https://circleci.com/api/v2/project/gh/mui/material-ui/pipeline \
   --header 'content-type: application/json' \
   --header 'Circle-Token: $CIRCLE_TOKEN' \
-  --data-raw '{"branch":"pull/24289/head","parameters":{"react-dist-tag":"next"}}'
+  --data-raw '{"branch":"pull/24289/head","parameters":{"react-version":"next"}}'
 ```
