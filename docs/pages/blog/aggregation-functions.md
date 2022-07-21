@@ -40,9 +40,7 @@ How easy can it be to get the average of transactions per user?
 
 The out-of-the-box experience is very important to us, but as is the ability to customize and extend the feature to your own use case.
 
-You can change the styles of every element involved, set automatic aggregations, choose which columns can be aggregated by which functions, and even create your own custom function.
-
-In the example below, we wanted to get the first value in alphabetical order.
+You can change the styles of every element involved, set automatic aggregations, choose which columns can be aggregated by which functions, and even create your own custom function, like in the example below, where we created a function to get the first value in alphabetical order.
 
 ```tsx
 const firstAlphabeticalAggregation: GridAggregationFunction<string, string | null> =
@@ -90,5 +88,6 @@ Please check out the feature’s [full documentation](/x/react-data-grid/aggrega
 We hope you’re excited with aggregation functions as we are!
 As usual, we’re glad to listen to any feedback. Please feel free to open new issues to report bugs or suggest improvements.
 
-And if you’re feeling generous, please consider [contacting us](future-mini-survey-link-or-calendly-directly) for a 30 minutes user interview session.
-We’re planning our v6 release, and we’d love to hear more about your pain points and use cases.
+Moreover, we’re planning our v6 release, and we’d love to hear more about your pain points and use cases.
+If you want to help us steer MUI X, please consider [contacting us](future-mini-survey-link-or-calendly-directly) to schedule a 30 minutes user interview session.
+
