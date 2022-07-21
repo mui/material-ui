@@ -52,6 +52,10 @@ export default function MenuUsage() {
           options: ['sm', 'md', 'lg'],
           defaultValue: 'md',
         },
+        {
+          propName: 'children',
+          defaultValue: '<MenuItem>...</MenuItem>',
+        },
       ]}
       renderDemo={(props) => (
         <Box sx={{ pb: 20 }}>
