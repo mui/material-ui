@@ -61,7 +61,7 @@ async function main(version) {
             const { stdout: reactDOMDependenciesString } = await exec(
               `npm view --json react-dom@${version} dependencies`,
             );
-            packageVersion = JSON.parse(reactDOMDependenciesString)['scheduler'];
+            packageVersion = JSON.parse(reactDOMDependenciesString).scheduler;
           }
         } else {
           throw new Error(`Could not find '${version}' in "${versions}"`);
