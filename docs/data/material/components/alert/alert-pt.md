@@ -66,7 +66,7 @@ When using an outlined alert with the [`Snackbar` component](/material-ui/react-
 
 ## Toast
 
-You can use the Snackbar to [display a toast](/material-ui/react-snackbar/#customized-snackbars) with the Alert.
+You can use the Snackbar to [display a toast](/material-ui/react-snackbar/#customization) with the Alert.
 
 ## Cor
 
