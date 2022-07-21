@@ -66,7 +66,7 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/alert/
 
 ## Toast（提示）
 
-你可以使用消息条（Snackbar）来显示一个带警告提示组件的 [toast](/components/snackbars/#customized-snackbars) 。
+You can use the Snackbar to [display a toast](/material-ui/react-snackbar/#customization) with the Alert.
 
 ## Color 颜色
 
