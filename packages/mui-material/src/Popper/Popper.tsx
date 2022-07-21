@@ -63,10 +63,9 @@ Popper.propTypes /* remove-proptypes */ = {
     PropTypes.func,
   ]),
   /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
+   * @ignore
    */
-  component: PropTypes.elementType,
+  component: PropTypes /* @typescript-to-proptypes-ignore */.elementType,
   /**
    * The components used for each slot inside the Popper.
    * Either a string to use a HTML element or a component.

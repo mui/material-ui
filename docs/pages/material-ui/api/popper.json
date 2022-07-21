@@ -8,7 +8,6 @@
       }
     },
     "children": { "type": { "name": "union", "description": "node<br>&#124;&nbsp;func" } },
-    "component": { "type": { "name": "elementType" } },
     "components": { "type": { "name": "shape", "description": "{ Root?: elementType }" } },
     "componentsProps": {
       "type": { "name": "shape", "description": "{ root?: func<br>&#124;&nbsp;object }" }
