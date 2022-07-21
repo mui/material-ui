@@ -15,7 +15,7 @@ unstyled: /base/react-menu/
 A menu displays a list of choices on a temporary surface.
 It appears when the user interacts with a button, or other type of control.
 
-{{"demo": "MenuDemo.js", "hideToolbar": true}}
+{{"demo": "MenuUsage.js", "hideToolbar": true}}
 
 Joy UI provides three menu-related components:
 
