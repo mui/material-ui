@@ -22,7 +22,6 @@ const devDependenciesPackageNames = ['@mnajdova/enzyme-adapter-react-18', '@test
 // if we need to support more versions we will need to add new mapping here
 const additionalVersionsMappings = {
   17: {
-    scheduler: '^0.20.0',
     '@mnajdova/enzyme-adapter-react-18': 'npm:@eps1lon/enzyme-adapter-react-17',
     '@testing-library/react': '^12.1.0',
   },
@@ -41,22 +40,9 @@ async function main(version) {
   const packageJsonPath = path.resolve(__dirname, '../package.json');
   const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, { encoding: 'utf8' }));
 
-  let majorVersion = null;
-
-  if (version.startsWith('^') || version.startsWith('~') || !Number.isNaN(version.charAt(0))) {
-    majorVersion = version.replace('^', '').replace('~', '').split('.')[0];
-  }
-
-  if (majorVersion) {
-    if (Object.keys(additionalVersionsMappings).indexOf(majorVersion) < 0) {
-      console.log(
-        `This version is not supported. This is the list of all supported versions: ${Object.keys(
-          additionalVersionsMappings,
-        )}`,
-      );
-      return;
-    }
-  }
+  const { stdout: v } = await exec(`npm view --json react@${version} version`);
+  const majorVersion = v.replace('"', '').split('.')[0];
+  console.log(majorVersion);
 
   await Promise.all(
     reactPackageNames.map(async (reactPackageName) => {
@@ -71,16 +57,18 @@ async function main(version) {
         // Some specific version is being requested
         if (majorVersion) {
           packageVersion = version;
+          if (reactPackageName === 'scheduler') {
+            // get the scheduler version from the react-dom's dependencies entry
+            const { stdout: reactDOMDependenciesString } = await exec(
+              `npm view --json react-dom@${version} dependencies`,
+            );
+            packageVersion = JSON.parse(reactDOMDependenciesString)['scheduler'];
+          }
         } else {
           throw new Error(`Could not find '${version}' in "${versions}"`);
         }
       } else {
         packageVersion = tagMapping.replace(`${version}: `, '');
-      }
-
-      // the scheduler doesn't follow the versions as the other react packages
-      if (majorVersion && reactPackageName === 'scheduler') {
-        packageVersion = additionalVersionsMappings[majorVersion].scheduler;
       }
 
       packageJson.resolutions[reactPackageName] = packageVersion;
@@ -94,7 +82,7 @@ async function main(version) {
   //   'npm:@mnajdova/enzyme-adapter-react-next';
   // packageJson.devDependencies['@testing-library/react'] = 'alpha';
 
-  if (majorVersion) {
+  if (additionalVersionsMappings[majorVersion]) {
     devDependenciesPackageNames.forEach((packageName) => {
       if (!additionalVersionsMappings[majorVersion][packageName]) {
         throw new Error(
