@@ -85,12 +85,13 @@ The primary responsibility of this component is handling the focus state.
 
 ### Menu bar
 
-This example replicates the application menu bar in MacOS. It supports mouse and keyboard navigation between menu items.
+This example replicates the application menu bar on macOS.
+It supports mouse and keyboard navigation between menu items.
 
 {{"demo": "MenuToolbarExample.js"}}
 
-### Icon side navigation
+### Side navigation icons
 
-This example is quite common in dashboard application where the side navigation is shrink into icons, that trigger the menu, to provide space to the main area.
+This example is quite common in dashboard applications where the side navigation is shrunk into icons, and the menu is triggered by hovering them.
 
 {{"demo": "MenuIconSideNavExample.js", "bg": true}}
