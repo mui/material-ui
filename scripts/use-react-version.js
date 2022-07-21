@@ -42,7 +42,7 @@ async function main(version) {
 
   const { stdout: v } = await exec(`npm view --json react@${version} version`);
   // the version is something in format: "17.0.0"
-  const majorVersion = v.replace(/^"(.*)"$/, '$1').split('.')[0];
+  const majorVersion = v.replace(/"(.*)"/, '$1').split('.')[0];
 
   await Promise.all(
     reactPackageNames.map(async (reactPackageName) => {
