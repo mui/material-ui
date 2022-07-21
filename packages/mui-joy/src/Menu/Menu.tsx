@@ -135,7 +135,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
   const listboxProps = useSlotProps({
     elementType: MenuListbox,
     getSlotProps: getListboxProps,
-    additionalProps: { size },
+    additionalProps: { size, scoped: true },
     externalSlotProps: componentsProps.listbox,
     ownerState,
     className: classes.listbox,

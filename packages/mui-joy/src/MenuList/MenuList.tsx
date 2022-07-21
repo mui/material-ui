@@ -113,6 +113,7 @@ MenuList.propTypes /* remove-proptypes */ = {
   id: PropTypes.string,
   /**
    * The size of the component (affect other nested list* components).
+   * @default 'md'
    */
   size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['sm', 'md', 'lg']),
