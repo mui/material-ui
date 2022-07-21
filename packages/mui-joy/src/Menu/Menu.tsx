@@ -26,30 +26,20 @@ const MenuRoot = styled(PopperUnstyled, {
   name: 'JoyMenu',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: MenuProps }>(({ theme, ownerState }) => ({
-  '--Menu-radius': theme.vars.radius.sm,
-  borderRadius: 'var(--Menu-radius)',
-  boxShadow: theme.vars.shadow.sm,
-  ...(ownerState.size === 'sm' && {
-    paddingBlock: theme.spacing(0.5),
-  }),
-  ...(ownerState.size === 'md' && {
-    paddingBlock: theme.spacing(0.75),
-  }),
-  ...(ownerState.size === 'lg' && {
-    paddingBlock: theme.spacing(1),
-  }),
-  zIndex: 1,
+})<{ ownerState: MenuProps }>(({ theme }) => ({
+  borderRadius: theme.vars.radius.sm,
+  boxShadow: theme.vars.shadow.md,
+  zIndex: 1000,
 }));
 
 const MenuListbox = styled(List, {
   name: 'JoyMenu',
   slot: 'Listbox',
   overridesResolver: (props, styles) => styles.listbox,
-})({
-  '--List-radius': 'var(--Menu-radius)',
-  '--List-padding': 'var(--Menu-padding, 0px)',
-});
+})(({ theme }) => ({
+  '--List-radius': theme.vars.radius.sm,
+  '--List-padding': 'var(--List-divider-gap) 0px',
+}));
 
 const Menu = React.forwardRef(function Menu(inProps, ref) {
   const props = useThemeProps<typeof inProps>({
@@ -68,11 +58,24 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     listboxId,
     onClose,
     open = false,
-    modifiers = [],
+    modifiers,
     variant = 'outlined',
     size = 'md',
     ...other
   } = props;
+
+  const cachedModifiers = React.useMemo(
+    () => [
+      {
+        name: 'offset',
+        options: {
+          offset: [0, 4],
+        },
+      },
+      ...(modifiers || []),
+    ],
+    [modifiers],
+  );
 
   const {
     registerItem,
@@ -123,15 +126,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
       component: Sheet,
       color,
       variant,
-      modifiers: [
-        {
-          name: 'offset',
-          options: {
-            offset: [0, 4],
-          },
-        },
-        ...modifiers,
-      ],
+      modifiers: cachedModifiers,
     },
     className: classes.root,
     ownerState,

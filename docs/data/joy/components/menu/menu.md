@@ -60,8 +60,9 @@ When specifying a size for the `Menu` component, menu items inside of it will in
 
 ### Selected
 
-Use the selected prop to signal whether a `MenuItem` is selected or not.
-It uses the same styles as the [`ListItemButton`](/joy-ui/react-list/#selected).
+Use the `selected` prop to signal whether a `MenuItem` is selected or not.
+
+The menu item uses the same styles as the [`ListItemButton`](/joy-ui/react-list/#selected).
 
 {{"demo": "SelectedMenu.js"}}
 
@@ -79,3 +80,13 @@ You can use it to compose any popup-alike component.
 The primary responsibility of this component is handling the focus state.
 
 {{"demo": "MenuListComposition.js"}}
+
+## Common examples
+
+### Menu bar
+
+This example replicates the application menu bar in MacOS. It supports mouse and keyboard navigation between menu items.
+
+{{"demo": "MenuToolbarExample.js"}}
+
+### Icon side navigation
