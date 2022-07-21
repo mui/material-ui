@@ -299,7 +299,7 @@ jobs:
           environment:
             TYPESCRIPT_DIST_TAG: next
           command: |
-            node scripts/use-typescript-version
+            node scripts/use-typescript-dist-tag
             # log a patch for maintainers who want to check out this change
             git --no-pager diff HEAD
       - install_js
