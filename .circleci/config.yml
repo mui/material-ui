@@ -74,11 +74,7 @@ commands:
           command: |
             node scripts/use-react-version
             # log a patch for maintainers who want to check out this change
-            git --no-pager diff HEAD
-      - run:
-          name: Resolve react specific version if set
-          command: |
-            node scripts/use-react-version  
+            git --no-pager diff HEAD 
       - restore_cache:
           name: Restore yarn cache
           keys:
