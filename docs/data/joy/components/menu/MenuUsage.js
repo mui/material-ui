@@ -7,13 +7,28 @@ import MenuItem from '@mui/joy/MenuItem';
 import ListDivider from '@mui/joy/ListDivider';
 
 export default function MenuUsage() {
+  const buttonRef = React.useRef(null);
+  const menuActions = React.useRef(null);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
+
   const handleClose = () => {
     setAnchorEl(null);
+    buttonRef.current?.focus();
+  };
+
+  const handleButtonKeyDown = (event) => {
+    if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+      event.preventDefault();
+      setAnchorEl(event.currentTarget);
+      if (event.key === 'ArrowUp') {
+        menuActions.current?.highlightLastItem();
+      }
+    }
   };
 
   return (
@@ -23,13 +38,13 @@ export default function MenuUsage() {
         {
           propName: 'variant',
           knob: 'select',
-          defaultValue: 'solid',
+          defaultValue: 'outlined',
           options: ['plain', 'outlined', 'soft', 'solid'],
         },
         {
           propName: 'color',
           knob: 'color',
-          defaultValue: 'primary',
+          defaultValue: 'neutral',
         },
         {
           propName: 'size',
@@ -37,40 +52,35 @@ export default function MenuUsage() {
           options: ['sm', 'md', 'lg'],
           defaultValue: 'md',
         },
-        {
-          propName: 'disabled',
-          knob: 'switch',
-          defaultValue: false,
-        },
       ]}
       renderDemo={(props) => (
-        <Box>
+        <Box sx={{ pb: 20 }}>
           <Button
-            id="basic-button"
-            aria-controls={open ? 'basic-menu' : undefined}
-            aria-haspopup="true"
+            ref={buttonRef}
+            id="menu-usage-button"
+            aria-controls={open ? 'menu-usage-demo' : undefined}
+            aria-haspopup="menu"
             aria-expanded={open ? 'true' : undefined}
             variant="outlined"
             color="neutral"
             onClick={handleClick}
+            onKeyDown={handleButtonKeyDown}
           >
             Format
           </Button>
           <Menu
-            id="basic-menu"
-            size="sm"
+            {...props}
+            id="menu-usage-demo"
             anchorEl={anchorEl}
             open={open}
             onClose={handleClose}
             componentsProps={{
               listbox: {
-                'aria-labelledby': 'basic-button',
+                'aria-labelledby': 'menu-usage-button',
               },
             }}
           >
-            <MenuItem {...props} onClick={handleClose}>
-              Add space before paragraph
-            </MenuItem>
+            <MenuItem onClick={handleClose}>Add space before paragraph</MenuItem>
             <MenuItem onClick={handleClose}>Add space after paragraph</MenuItem>
             <ListDivider />
             <MenuItem onClick={handleClose}>Custom spacing...</MenuItem>
