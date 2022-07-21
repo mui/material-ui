@@ -89,4 +89,4 @@ We hope you’re excited with aggregation functions as we are!
 As usual, we’re glad to listen to any feedback. Please feel free to open new issues to report bugs or suggest improvements.
 
 Moreover, we’re planning the MUI X v6 release, and we’d love to hear more about your pain points and use cases.
-If you want to help us steer our product, please consider [contacting us](future-mini-survey-link-or-calendly-directly) to schedule a 30 minutes user interview session.
+If you want to help us steer our product, please consider [contacting us](https://docs.google.com/forms/d/e/1FAIpQLSeSUj5N6LYuCzSyVGv9nJgyw5hvYdWTqWoNkdFVykCXh6-cRA/viewform) to schedule a 30 minutes user interview session.
