@@ -1,15 +1,15 @@
 ---
 title: Aggregate data like in Excel, but easier!
-description: Introducing aggregation functions and summary rows.
+description: Introducing aggregation functions and summary rows in Data grid Premium.
 date: 2022-07-31T00:00:00.000Z
 authors: ['josefreitas', 'flaviendelangle']
 tags: ['MUI X', 'News']
 card: true
 ---
 
-If you ever had a lot of data on a grid, you know that the ability to set different perspectives on data is essential to help users extract information. Typically, one would use at least filtering or sorting, but that barely scratches the surface of what one could do.
+If you ever had a lot of data on a grid, you probably know that the ability to set different perspectives on data is essential to help users extract information. Typically, one would use at least filtering or sorting, but that barely scratches the surface of what one could do.
 
-The Data grid Premium is all about enabling and empowering advanced use cases for data analysis. And in that spirit, we’re overjoyed to announce that you can now use [aggregation functions](/x/react-data-grid/aggregation/), and with a couple of clicks, extract information like **sum**, **average**, **count**, and others.
+The Data grid Premium is all about enabling and empowering advanced use cases for data analysis. And in that spirit, we’re overjoyed to announce that starting from [v5.15](changelog-link), you can now use [aggregation functions](/x/react-data-grid/aggregation/), and with a couple of clicks, extract information like **sum**, **average**, **count**, and others.
 
 ## Wait, what is an aggregation function?
 
@@ -67,13 +67,21 @@ const firstAlphabeticalAggregation: GridAggregationFunction<string, string | nul
 
 ## Okay, I’m in! How can I get started?
 
-Because this is the first version of Aggregation functions, we’re adding the feature as experimental, so we have some room to validate its API and the overall direction we’re taking with it. But the feature is stable, and the API will likely not change significantly.
+:::info
+First make sure that you're using `@mui/x-data-grid-premium` and version `5.15` or later.
+
+:::
+
+During the initil version of Aggregation functions, we’re publishing the feature as experimental, so we have some room to validate its API and the overall direction we’re taking with it.
+But the feature is stable, and the API will likely not change significantly.
 
 To activate the feature, please enabled it with the experimentalFeatures prop.
 
 ```tsx
 <DataGridPremium experimentalFeatures={{ aggregation: true }} {...otherProps} />
 ```
+
+And that's it! That enables the aggregation option on the column menu (available by default on columns of type number and string).
 
 ## Use with tree data and more
 
@@ -86,7 +94,8 @@ Please check out the feature’s [full documentation](/x/react-data-grid/aggrega
 **And if you’re feeling generous, we’re recruiting users to interview!**
 
 We hope you’re excited with aggregation functions as we are!
+
 As usual, we’re glad to listen to any feedback. Please feel free to open new issues to report bugs or suggest improvements.
 
 Moreover, we’re planning the MUI X v6 release, and we’d love to hear more about your pain points and use cases.
-If you want to help us steer our product, please consider [contacting us](https://docs.google.com/forms/d/e/1FAIpQLSeSUj5N6LYuCzSyVGv9nJgyw5hvYdWTqWoNkdFVykCXh6-cRA/viewform) to schedule a 30 minutes user interview session.
+If you want to help us steer our product, please consider [contacting us](https://forms.gle/vsBv6CLPz9h57xg8A) to schedule a 30 minutes user interview session.
