@@ -2,7 +2,7 @@
 title: Aggregate data like in Excel, but easier!
 description: Introducing aggregation functions and summary rows in Data grid Premium.
 date: 2022-07-31T00:00:00.000Z
-authors: ['josefreitas', 'flaviendelangle']
+authors: ['josefreitas', 'flaviendelangle', 'cherniavskii']
 tags: ['MUI X', 'News']
 card: true
 ---
@@ -18,11 +18,6 @@ In a nutshell, those are functions used to return a computed result based on the
 <video style="margin-bottom: 24px;" autoplay muted loop playsinline controls>
   <source src="/static/blog/aggregation-functions/summary-row.mp4" type="video/mp4" />
 </video>
-
-:::info
-By the way, this use case for aggregation is empowered by another new feature called **Row pinning**. It enables you to pin rows at the bottom or at the top of your data grid. Check out more details on [its documentation](/x/react-data-grid/rows/#row-pinning) page.
-
-:::
 
 ## High end-user experience
 
@@ -88,6 +83,17 @@ And that's it! That enables the aggregation option on the column menu (available
 We already mentioned that you could customize functions and use aggregation with row grouping. But there are a lot of other possibilities to explore!
 
 Please check out the feature’s [full documentation](/x/react-data-grid/aggregation/) to get a better overview of everything it has to offer.
+
+## Row pinning
+
+Aggregation footer row is empowered by another new feature called [Row pinning](/x/react-data-grid/rows/#row-pinning).
+It enables you to pin rows at the bottom or at the top of your data grid.
+Pinned rows are visible at all times while user scrolls the grid vertically.
+
+> TODO: add video
+
+Row pinning feature is available in Data grid Pro and Premium.
+Check out more details on [its documentation](/x/react-data-grid/rows/#row-pinning) page.
 
 ## Share your feedback 🗣
 
