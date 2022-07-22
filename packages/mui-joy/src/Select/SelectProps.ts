@@ -3,7 +3,6 @@ import { OverridableStringUnion } from '@mui/types';
 import { SelectUnstyledCommonProps, SelectOption } from '@mui/base/SelectUnstyled';
 import { PopperUnstyledProps } from '@mui/base/PopperUnstyled';
 import { ListProps } from '../List/ListProps';
-import { SheetProps } from '../Sheet/SheetProps';
 import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
 
 export type SelectSlot =
@@ -12,7 +11,6 @@ export type SelectSlot =
   | 'startDecorator'
   | 'endDecorator'
   | 'indicator'
-  | 'popper'
   | 'listbox';
 
 export interface SelectPropsVariantOverrides {}
@@ -40,8 +38,7 @@ export interface SelectStaticProps extends SelectUnstyledCommonProps {
   componentsProps?: {
     root?: React.ComponentPropsWithRef<'div'>;
     button?: React.ComponentPropsWithRef<'button'> & { sx?: SxProps };
-    listbox?: ListProps;
-    popper?: PopperUnstyledProps & SheetProps;
+    listbox?: PopperUnstyledProps & Pick<ListProps, 'variant' | 'color'>;
   };
   /**
    * If `true`, the component is disabled.

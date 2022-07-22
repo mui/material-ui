@@ -50,7 +50,7 @@ export default function SelectUsage() {
             endDecorator: (
               <IconButton
                 size="sm"
-                variant="plain"
+                variant={props.variant}
                 color="neutral"
                 onMouseDown={(event) => {
                   event.stopPropagation();
@@ -65,7 +65,7 @@ export default function SelectUsage() {
             ),
             indicator: null,
           })}
-          sx={{ minWidth: 160 }}
+          sx={{ minWidth: 160, mb: 20 }}
         >
           <Option value="react">React</Option>
           <Option value="vue">Vue</Option>

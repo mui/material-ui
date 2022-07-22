@@ -15,8 +15,7 @@ import {
 import type { SelectChild, SelectOption } from '@mui/base/SelectUnstyled';
 import { useSlotProps } from '@mui/base/utils';
 import composeClasses from '@mui/base/composeClasses';
-import List from '../List/List';
-import Sheet from '../Sheet/Sheet';
+import { ListRoot } from '../List/List';
 import Unfold from '../internal/svg-icons/Unfold';
 import { styled, useThemeProps } from '../styles';
 import { SelectProps, SelectStaticProps, SelectOwnerState } from './SelectProps';
@@ -43,8 +42,14 @@ const useUtilityClasses = (ownerState: SelectOwnerState<any>) => {
     startDecorator: ['startDecorator'],
     endDecorator: ['endDecorator'],
     indicator: ['indicator', open && 'expanded'],
-    listbox: ['listbox', disabled && 'disabled'],
-    popper: ['popper'],
+    listbox: [
+      'listbox',
+      open && 'expanded',
+      disabled && 'disabled',
+      variant && `variant${capitalize(variant)}`,
+      color && `color${capitalize(color)}`,
+      size && `size${capitalize(size)}`,
+    ],
   };
 
   return composeClasses(slots, getSelectUtilityClass, {});
@@ -170,25 +175,24 @@ const SelectButton = styled('button', {
   }),
 }));
 
-const SelectPopper = styled(PopperUnstyled, {
-  name: 'JoySelect',
-  slot: 'Popper',
-  overridesResolver: (props, styles) => styles.popper,
-})<{ ownerState: SelectOwnerState<any> }>(({ theme }) => ({
-  borderRadius: theme.vars.radius.sm,
-  boxShadow: theme.vars.shadow.md,
-  zIndex: 1000,
-}));
-
-const SelectListbox = styled(List, {
+const SelectListbox = styled(PopperUnstyled, {
   name: 'JoySelect',
   slot: 'Listbox',
   overridesResolver: (props, styles) => styles.listbox,
-})<{ ownerState: SelectOwnerState<any> }>(({ theme }) => ({
-  outline: 'none',
-  paddingBlock: 'var(--List-divider-gap)',
-  '--List-radius': theme.vars.radius.sm, // Can't use --Select-radius because listbox is not a child of the root element
-}));
+  // ownerState should be forwarded to ListRoot
+  shouldForwardProp: (prop) => prop !== 'theme' && prop !== 'sx' && prop !== 'as',
+})<{ ownerState: SelectOwnerState<any> }>(({ theme, ownerState }) => {
+  const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];
+  return {
+    outline: 'none',
+    boxShadow: theme.vars.shadow.md,
+    zIndex: 1000,
+    ...(!variantStyle.backgroundColor && {
+      backgroundColor: theme.vars.palette.background.body,
+    }),
+    '--List-radius': theme.vars.radius.sm,
+  };
+});
 
 const SelectStartDecorator = styled('span', {
   name: 'JoySelect',
@@ -313,6 +317,30 @@ const Select = React.forwardRef(function Select<TValue>(
     onListboxOpenChange?.(isOpen);
   };
 
+  // cache the modifiers to prevent Popper from being recreated when React rerenders menu.
+  const cachedModifiers = React.useMemo<PopperUnstyledProps['modifiers']>(
+    () => [
+      {
+        name: 'offset',
+        options: {
+          offset: [0, 4],
+        },
+      },
+      {
+        // popper will have the same width as root element when open
+        name: 'equalWidth',
+        enabled: true,
+        phase: 'beforeWrite',
+        requires: ['computeStyles'],
+        fn: ({ state }) => {
+          state.styles.popper.width = `${state.rects.reference.width}px`;
+        },
+      },
+      ...(componentsProps.listbox?.modifiers || []),
+    ],
+    [componentsProps.listbox?.modifiers],
+  );
+
   const {
     buttonActive,
     buttonFocusVisible,
@@ -390,46 +418,20 @@ const Select = React.forwardRef(function Select<TValue>(
     externalSlotProps: componentsProps.listbox,
     additionalProps: {
       ref: listboxRef,
-      size,
-      // https://www.w3.org/WAI/ARIA/apg/patterns/listbox/#listbox_roles_states_props
-      'aria-orientation': componentsProps.listbox?.row ? ('horizontal' as const) : undefined,
-    },
-    ownerState,
-    className: classes.listbox,
-  });
-
-  const popperProps = useSlotProps({
-    elementType: SelectPopper,
-    externalSlotProps: componentsProps.popper,
-    additionalProps: {
       anchorEl,
       disablePortal: true,
       open: listboxOpen,
       placement: 'bottom-start' as const,
-      role: undefined,
-      variant: 'outlined',
-      color,
-      modifiers: [
-        {
-          name: 'offset',
-          options: {
-            offset: [0, 4],
-          },
-        },
-        {
-          // popper will have the same width as root element when open
-          name: 'equalWidth',
-          enabled: true,
-          phase: 'beforeWrite',
-          requires: ['computeStyles'],
-          fn: ({ state }) => {
-            state.styles.popper.width = `${state.rects.reference.width}px`;
-          },
-        },
-      ] as PopperUnstyledProps['modifiers'],
+      component: ListRoot,
+      modifiers: cachedModifiers,
     },
-    ownerState,
-    className: classes.popper,
+    ownerState: {
+      ...ownerState,
+      nesting: false,
+      scoped: true,
+      row: false,
+    },
+    className: classes.listbox,
   });
 
   const context = {
@@ -462,13 +464,11 @@ const Select = React.forwardRef(function Select<TValue>(
         )}
       </SelectRoot>
       {anchorEl && (
-        <SelectPopper component={Sheet} {...popperProps}>
-          <SelectListbox {...listboxProps}>
-            <SelectUnstyledContext.Provider value={context}>
-              {children}
-            </SelectUnstyledContext.Provider>
-          </SelectListbox>
-        </SelectPopper>
+        <SelectListbox {...listboxProps}>
+          <SelectUnstyledContext.Provider value={context}>
+            {children}
+          </SelectUnstyledContext.Provider>
+        </SelectListbox>
       )}
     </React.Fragment>
   );

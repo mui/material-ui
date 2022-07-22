@@ -109,7 +109,6 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     color,
     variant,
     size,
-    instanceSize: inProps.size, // For ListRoot
     modifiers,
     open,
     nesting: false,

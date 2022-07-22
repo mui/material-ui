@@ -18,8 +18,11 @@ Users can trigger a popup by clicking on the `Select` which then displays a list
 {{"demo": "SelectUsage.js", "hideToolbar": true}}
 
 :::info
-If the color of the select is `neutral`, it will have the focus and highlighted option as `primary` color.
-:::
+📝 Note
+
+- The selected option inherits `color` from the select, and uses `primary` color by default.
+- The option **does not** inherit `variant` from the select.
+  :::
 
 ## Component
 
