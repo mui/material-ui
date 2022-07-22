@@ -26,15 +26,15 @@ describe('<PopperUnstyled />', () => {
   }));
 
   it('should pass ownerState to overridable component', () => {
-    const CustomComponent = React.forwardRef(({ ownerState, ...props }, ref) => (
-      <div ref={ref} {...props} {...ownerState} />
+    const CustomComponent = React.forwardRef(({ ownerState }, ref) => (
+      <div ref={ref} data-testid={ownerState.foo} />
     ));
     render(
       <PopperUnstyled
         anchorEl={() => document.createElement('div')}
         open
         component={CustomComponent}
-        ownerState={{ 'data-testid': 'foo' }}
+        ownerState={{ foo: 'foo' }}
       />,
     );
 
