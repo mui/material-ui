@@ -28,7 +28,7 @@ const useUtilityClasses = (ownerState: ListProps & { nesting: boolean }) => {
   return composeClasses(slots, getListUtilityClass, {});
 };
 
-const ListRoot = styled('ul', {
+export const ListRoot = styled('ul', {
   name: 'JoyList',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,

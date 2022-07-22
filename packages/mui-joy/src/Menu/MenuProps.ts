@@ -3,8 +3,6 @@ import { OverrideProps, OverridableStringUnion } from '@mui/types';
 import { PopperUnstyledProps } from '@mui/base/PopperUnstyled';
 import { MenuUnstyledActions } from '@mui/base/MenuUnstyled';
 import { ColorPaletteProp, VariantProp } from '../styles/types';
-import { SheetProps } from '../Sheet/SheetProps';
-import { ListProps } from '../List/ListProps';
 
 export type MenuSlot = 'root' | 'listbox';
 
@@ -14,10 +12,9 @@ export interface MenuPropsVariantOverrides {}
 
 export type { MenuUnstyledActions } from '@mui/base/MenuUnstyled';
 
-export interface MenuTypeMap<P = {}, D extends React.ElementType = 'div'> {
+export interface MenuTypeMap<P = {}, D extends React.ElementType = 'ul'> {
   props: P &
-    Omit<PopperUnstyledProps, 'children' | 'open'> &
-    Omit<SheetProps, 'variant' | 'color'> & {
+    Omit<PopperUnstyledProps, 'children' | 'open'> & {
       /**
        * A ref with imperative actions.
        * It allows to select the first or last menu item.
@@ -28,11 +25,6 @@ export interface MenuTypeMap<P = {}, D extends React.ElementType = 'div'> {
        * @default 'neutral'
        */
       color?: OverridableStringUnion<ColorPaletteProp, MenuPropsColorOverrides>;
-      componentsProps?: {
-        root?: React.ComponentPropsWithRef<'div'>;
-        listbox?: ListProps;
-      };
-      listboxId?: string;
       /**
        * Triggered when focus leaves the menu and the menu should close.
        */

@@ -1,22 +1,26 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { HTMLElementType, refType } from '@mui/utils';
+import { unstable_capitalize as capitalize, HTMLElementType, refType } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
 import composeClasses from '@mui/base/composeClasses';
 import { useSlotProps } from '@mui/base/utils';
 import { useMenu, MenuUnstyledContext, MenuUnstyledContextType } from '@mui/base/MenuUnstyled';
 import PopperUnstyled from '@mui/base/PopperUnstyled';
-import List from '../List';
-import Sheet from '../Sheet';
+import { ListRoot } from '../List/List';
 import { styled, useThemeProps } from '../styles';
 import { MenuTypeMap, MenuProps } from './MenuProps';
 import { getMenuUtilityClass } from './menuClasses';
 
 const useUtilityClasses = (ownerState: MenuProps) => {
-  const { open } = ownerState;
+  const { open, variant, color, size } = ownerState;
   const slots = {
-    root: ['root', open && 'expanded'],
-    listbox: ['listbox', open && 'expanded'],
+    root: [
+      'root',
+      open && 'expanded',
+      variant && `variant${capitalize(variant)}`,
+      color && `color${capitalize(color)}`,
+      size && `size${capitalize(size)}`,
+    ],
   };
 
   return composeClasses(slots, getMenuUtilityClass, {});
@@ -26,19 +30,12 @@ const MenuRoot = styled(PopperUnstyled, {
   name: 'JoyMenu',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
+  // ownerState should be forwarded to ListRoot
+  shouldForwardProp: (prop) => prop !== 'theme' && prop !== 'sx' && prop !== 'as',
 })<{ ownerState: MenuProps }>(({ theme }) => ({
-  borderRadius: theme.vars.radius.sm,
   boxShadow: theme.vars.shadow.md,
   zIndex: 1000,
-}));
-
-const MenuListbox = styled(List, {
-  name: 'JoyMenu',
-  slot: 'Listbox',
-  overridesResolver: (props, styles) => styles.listbox,
-})(({ theme }) => ({
   '--List-radius': theme.vars.radius.sm,
-  '--List-padding': 'var(--List-divider-gap) 0px',
 }));
 
 const Menu = React.forwardRef(function Menu(inProps, ref) {
@@ -52,10 +49,9 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     anchorEl,
     children,
     color = 'neutral',
-    componentsProps = {},
     disablePortal = true,
     keepMounted = false,
-    listboxId,
+    id,
     onClose,
     open = false,
     modifiers,
@@ -64,6 +60,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     ...other
   } = props;
 
+  // cache the modifiers to prevent Popper from being recreated when React rerenders menu.
   const cachedModifiers = React.useMemo(
     () => [
       {
@@ -88,7 +85,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
   } = useMenu({
     open,
     onClose,
-    listboxId,
+    listboxId: id,
   });
 
   React.useImperativeHandle(
@@ -106,8 +103,12 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     color,
     variant,
     size,
+    instanceSize: inProps.size, // For ListRoot
     modifiers,
     open,
+    nesting: false,
+    scoped: true,
+    row: false,
   };
 
   const classes = useUtilityClasses(ownerState);
@@ -115,30 +116,19 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
   const rootProps = useSlotProps({
     elementType: MenuRoot,
     externalForwardedProps: other,
-    externalSlotProps: componentsProps.root,
+    getSlotProps: getListboxProps,
+    externalSlotProps: {},
     additionalProps: {
       anchorEl,
       open,
       disablePortal,
       keepMounted,
-      role: undefined,
       ref,
-      component: Sheet,
-      color,
-      variant,
+      component: ListRoot,
       modifiers: cachedModifiers,
     },
     className: classes.root,
     ownerState,
-  });
-
-  const listboxProps = useSlotProps({
-    elementType: MenuListbox,
-    getSlotProps: getListboxProps,
-    additionalProps: { size, scoped: true },
-    externalSlotProps: componentsProps.listbox,
-    ownerState,
-    className: classes.listbox,
   });
 
   const contextValue: MenuUnstyledContextType = {
@@ -151,9 +141,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
 
   return (
     <MenuRoot {...rootProps}>
-      <MenuListbox {...listboxProps}>
-        <MenuUnstyledContext.Provider value={contextValue}>{children}</MenuUnstyledContext.Provider>
-      </MenuListbox>
+      <MenuUnstyledContext.Provider value={contextValue}>{children}</MenuUnstyledContext.Provider>
     </MenuRoot>
   );
 }) as OverridableComponent<MenuTypeMap>;
