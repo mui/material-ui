@@ -372,14 +372,10 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
       return;
     }
 
-    // Workaround for https://github.com/facebook/react/issues/7769
-    if (!childNode) {
-      setChildNode(event.currentTarget);
-    }
     // Remove the title ahead of time.
     // We don't want to wait for the next render commit.
     // We would risk displaying two tooltips at the same time (native + this one).
-    else {
+    if (childNode) {
       childNode.removeAttribute('title');
     }
 
@@ -424,6 +420,8 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
 
   const handleFocus = (event) => {
     // Workaround for https://github.com/facebook/react/issues/7769
+    // The autoFocus of React might trigger the event before the componentDidMount.
+    // We need to account for this eventuality.
     if (!childNode) {
       setChildNode(event.currentTarget);
     }

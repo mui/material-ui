@@ -30,7 +30,7 @@ const theme = createTheme({
   <FormHelperText variant="warning">This is warning helper text</FormHelperText>
 </FormControl>;
 
-// @ts-expect-error unknown variant
 <FormControl>
+  {/* @ts-expect-error unknown variant */}
   <FormHelperText variant="checked">This is example helper text</FormHelperText>
 </FormControl>;
