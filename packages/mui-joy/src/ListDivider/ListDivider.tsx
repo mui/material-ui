@@ -25,15 +25,19 @@ const ListDividerRoot = styled('li', {
   ({ theme, ownerState }) => ({
     border: 'none', // reset the border for `hr` tag
     ...(ownerState.row && {
-      '--List-divider-marginX': 'calc(var(--List-gap) + var(--List-divider-gap))',
       borderInlineStart: '1px solid',
       marginBlock: 0,
-      marginInline: 'var(--List-divider-marginX)',
+      marginInline: 'var(--List-divider-gap)',
+      ...(ownerState['data-first-child'] === undefined && {
+        // combine --List-gap and --List-divider-gap to replicate flexbox gap behavior
+        marginInlineStart: 'calc(var(--List-gap) + var(--List-divider-gap))',
+      }),
     }),
     ...(!ownerState.row && {
       // by default, the divider line is stretched from edge-to-edge of the List
       // spacing between ListItem can be controlled by `--List-divider-gap` on the List
       ...(ownerState['data-first-child'] === undefined && {
+        // combine --List-gap and --List-divider-gap to replicate flexbox gap behavior
         marginBlockStart: 'calc(var(--List-gap) + var(--List-divider-gap))',
       }),
       marginBlockEnd: 'var(--List-divider-gap)',
@@ -63,7 +67,7 @@ const ListDivider = React.forwardRef(function ListDivider(inProps, ref) {
 
   const row = React.useContext(RowListContext);
 
-  const { component, className, children, inset, ...other } = props;
+  const { component, className, children, inset, role = 'separator', ...other } = props;
 
   const ownerState = {
     inset,
@@ -79,8 +83,13 @@ const ListDivider = React.forwardRef(function ListDivider(inProps, ref) {
       as={component}
       className={clsx(classes.root, className)}
       ownerState={ownerState}
-      role="separator"
-      aria-orientation={row ? 'horizontal' : 'vertical'}
+      role={role}
+      {...(role === 'separator' &&
+        row && {
+          // The implicit aria-orientation of separator is 'horizontal'
+          // https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/separator_role
+          'aria-orientation': 'vertical',
+        })}
       {...other}
     >
       {children}
@@ -118,6 +127,10 @@ ListDivider.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['gutter', 'startDecorator', 'startContent']),
     PropTypes.string,
   ]),
+  /**
+   * @ignore
+   */
+  role: PropTypes /* @typescript-to-proptypes-ignore */.string,
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

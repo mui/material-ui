@@ -59,7 +59,7 @@ const PopperTooltip = React.forwardRef(function PopperTooltip(props, ref) {
     disablePortal,
     modifiers,
     open,
-    ownerState: ownerStateProp, // prevent from spreading to DOM, it can come from the parent component e.g. SelectUnstyled.
+    ownerState,
     placement: initialPlacement,
     popperOptions,
     popperRef: popperRefProp,
@@ -184,7 +184,11 @@ const PopperTooltip = React.forwardRef(function PopperTooltip(props, ref) {
       role: 'tooltip',
       ref: ownRef,
     },
-    ownerState: props,
+    ownerState: {
+      // shallow merge ownerState from external component, e.g. Joy Menu.
+      ...props,
+      ...ownerState,
+    },
     className: classes.root,
   });
 
