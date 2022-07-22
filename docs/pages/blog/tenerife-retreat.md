@@ -69,24 +69,39 @@ Wear sunscreen.
 
 ### Scuba diving lessons
 
-![Overhead view of MUI team members learning how to scuba dive underwater.](/static/blog/tenerife-retreat/scuba-1.jpeg)
+![Members of the MUI team pose in front of the diving school in their scuba gear.](/static/blog/tenerife-retreat/scuba-gear.jpeg)
 
 On day two we split up into smaller groups to get individualized lessons in scuba diving at the beach in Playa San Juan.
 
-I have to admit that I was pretty intimidated, especially after I put on all the gear and tried breathing from the tank for the first time.
+To be honest I was pretty intimidated, especially after I put on all the gear and tried breathing from the tank for the first time.
 But once I got into the groove, the time underwater went by so quickly!
-The main highlights for me were spotting a [ray](https://aqua-marina.com/rays/) swimming by, and accidentally disturbing a [cuttlefish](https://www.paradisedivers.co.uk/blog/cuttlefish/) who was not pleased by our presence, but put on a great show as a result!
+The main highlights for me were spotting a [ray](https://aqua-marina.com/rays/) swimming by, and accidentally disturbing a [cuttlefish](https://www.paradisedivers.co.uk/blog/cuttlefish/) who was not pleased by our presence–and put on a great show as a result!
 Sorry, bud!
 
+![Overhead view of MUI team members learning how to scuba dive underwater.](/static/blog/tenerife-retreat/scuba-1.jpeg)
+
 ### Volcanic hike at sunset
+
+![A group photo of the MUI crew posing near the base of Mount Teide at the start of the hike.](/static/blog/tenerife-retreat/teide-group.jpeg)
+
+The third and final full day of the retreat took us up to Teide National Park for a guided interpretive hike around some of the lower peaks that surround Mount Teide as the sun was going down. 
+
+This was my personal favorite out of all the activities.
+We learned a lot about the natural history of the island from our guide, who led us to one of the best sunset views I've ever seen in my life.
+Photos don't even begin to do it justice.
+I completely understand why Teide is one of Europe's most visited parks.
 
 ![The sun setting above the clouds as seen near the top of Teide.](/static/blog/tenerife-retreat/teide-sunset.jpg)
 
 ## And also work
 
+Believe it or not, we actually did manage to squeeze in some productive work time between all the fun!
+
 ### Roadmap to v6 and beyond
 
 ![MUI Core team members Marija, Jun, and Sam discuss the product roadmap.](/static/blog/tenerife-retreat/focus-group.jpeg)
+
+
 
 ### Focus groups
 
@@ -98,6 +113,12 @@ All throughout our working sessions, we were accompanied by a very friendly youn
 We can't thank her enough for her contributions to the company roadmap.
 
 ![Collage of several photos of the MUI team members cuddling with the neighborhood cat during our work sessions.](/static/blog/tenerife-retreat/cat-collage.jpg)
+
+###
+
+It was honestly kind of odd to have (almost) all of my coworkers in the same as room as me.
+This was the first time that the majority of us had ever met anyone else from the company in person.
+But once we broke the ice and settled into a groove together, I felt that we 
 
 ## Join us
 
