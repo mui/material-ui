@@ -25,15 +25,19 @@ const ListDividerRoot = styled('li', {
   ({ theme, ownerState }) => ({
     border: 'none', // reset the border for `hr` tag
     ...(ownerState.row && {
-      '--List-divider-marginX': 'calc(var(--List-gap) + var(--List-divider-gap))',
       borderInlineStart: '1px solid',
       marginBlock: 0,
-      marginInline: 'var(--List-divider-marginX)',
+      marginInline: 'var(--List-divider-gap)',
+      ...(ownerState['data-first-child'] === undefined && {
+        // combine --List-gap and --List-divider-gap to replicate flexbox gap behavior
+        marginInlineStart: 'calc(var(--List-gap) + var(--List-divider-gap))',
+      }),
     }),
     ...(!ownerState.row && {
       // by default, the divider line is stretched from edge-to-edge of the List
       // spacing between ListItem can be controlled by `--List-divider-gap` on the List
       ...(ownerState['data-first-child'] === undefined && {
+        // combine --List-gap and --List-divider-gap to replicate flexbox gap behavior
         marginBlockStart: 'calc(var(--List-gap) + var(--List-divider-gap))',
       }),
       marginBlockEnd: 'var(--List-divider-gap)',
@@ -80,7 +84,12 @@ const ListDivider = React.forwardRef(function ListDivider(inProps, ref) {
       className={clsx(classes.root, className)}
       ownerState={ownerState}
       role="separator"
-      aria-orientation={row ? 'horizontal' : 'vertical'}
+      {...(!inProps.role &&
+        !row && {
+          // The implicit aria-orientation of separator is 'horizontal'
+          // https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/separator_role
+          'aria-orientation': 'vertical',
+        })}
       {...other}
     >
       {children}
@@ -117,6 +126,133 @@ ListDivider.propTypes /* remove-proptypes */ = {
   inset: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['gutter', 'startDecorator', 'startContent']),
     PropTypes.string,
+  ]),
+  /**
+   * @ignore
+   */
+  role: PropTypes.oneOfType([
+    PropTypes.oneOf([
+      'alert',
+      'alertdialog',
+      'application',
+      'article',
+      'banner',
+      'button',
+      'cell',
+      'checkbox',
+      'columnheader',
+      'combobox',
+      'complementary',
+      'contentinfo',
+      'definition',
+      'dialog',
+      'directory',
+      'document',
+      'feed',
+      'figure',
+      'form',
+      'grid',
+      'gridcell',
+      'group',
+      'heading',
+      'img',
+      'link',
+      'list',
+      'listbox',
+      'listitem',
+      'log',
+      'main',
+      'marquee',
+      'math',
+      'menu',
+      'menubar',
+      'menuitem',
+      'menuitemcheckbox',
+      'menuitemradio',
+      'navigation',
+      'none',
+      'note',
+      'option',
+      'presentation',
+      'progressbar',
+      'radio',
+      'radiogroup',
+      'region',
+      'row',
+      'rowgroup',
+      'rowheader',
+      'scrollbar',
+      'search',
+      'searchbox',
+      'separator',
+      'slider',
+      'spinbutton',
+      'status',
+      'switch',
+      'tab',
+      'table',
+      'tablist',
+      'tabpanel',
+      'term',
+      'textbox',
+      'timer',
+      'toolbar',
+      'tooltip',
+      'tree',
+      'treegrid',
+      'treeitem',
+    ]),
+    PropTypes.shape({
+      '__@iterator@91': PropTypes.func.isRequired,
+      anchor: PropTypes.func.isRequired,
+      at: PropTypes.func.isRequired,
+      big: PropTypes.func.isRequired,
+      blink: PropTypes.func.isRequired,
+      bold: PropTypes.func.isRequired,
+      charAt: PropTypes.func.isRequired,
+      charCodeAt: PropTypes.func.isRequired,
+      codePointAt: PropTypes.func.isRequired,
+      concat: PropTypes.func.isRequired,
+      endsWith: PropTypes.func.isRequired,
+      fixed: PropTypes.func.isRequired,
+      fontcolor: PropTypes.func.isRequired,
+      fontsize: PropTypes.func.isRequired,
+      includes: PropTypes.func.isRequired,
+      indexOf: PropTypes.func.isRequired,
+      italics: PropTypes.func.isRequired,
+      lastIndexOf: PropTypes.func.isRequired,
+      length: PropTypes.number.isRequired,
+      link: PropTypes.func.isRequired,
+      localeCompare: PropTypes.func.isRequired,
+      match: PropTypes.func.isRequired,
+      matchAll: PropTypes.func.isRequired,
+      normalize: PropTypes.func.isRequired,
+      padEnd: PropTypes.func.isRequired,
+      padStart: PropTypes.func.isRequired,
+      repeat: PropTypes.func.isRequired,
+      replace: PropTypes.func.isRequired,
+      search: PropTypes.func.isRequired,
+      slice: PropTypes.func.isRequired,
+      small: PropTypes.func.isRequired,
+      split: PropTypes.func.isRequired,
+      startsWith: PropTypes.func.isRequired,
+      strike: PropTypes.func.isRequired,
+      sub: PropTypes.func.isRequired,
+      substr: PropTypes.func.isRequired,
+      substring: PropTypes.func.isRequired,
+      sup: PropTypes.func.isRequired,
+      toLocaleLowerCase: PropTypes.func.isRequired,
+      toLocaleUpperCase: PropTypes.func.isRequired,
+      toLowerCase: PropTypes.func.isRequired,
+      toString: PropTypes.func.isRequired,
+      toUpperCase: PropTypes.func.isRequired,
+      trim: PropTypes.func.isRequired,
+      trimEnd: PropTypes.func.isRequired,
+      trimLeft: PropTypes.func.isRequired,
+      trimRight: PropTypes.func.isRequired,
+      trimStart: PropTypes.func.isRequired,
+      valueOf: PropTypes.func.isRequired,
+    }),
   ]),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
