@@ -175,12 +175,10 @@ const SelectButton = styled('button', {
   }),
 }));
 
-const SelectListbox = styled(PopperUnstyled, {
+const SelectListbox = styled(ListRoot, {
   name: 'JoySelect',
   slot: 'Listbox',
   overridesResolver: (props, styles) => styles.listbox,
-  // ownerState should be forwarded to ListRoot
-  shouldForwardProp: (prop) => prop !== 'theme' && prop !== 'sx' && prop !== 'as',
 })<{ ownerState: SelectOwnerState<any> }>(({ theme, ownerState }) => {
   const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];
   return {
@@ -412,17 +410,19 @@ const Select = React.forwardRef(function Select<TValue>(
     className: classes.button,
   });
 
+  const { component: listboxComponent, ...externalListboxProps } = componentsProps.listbox || {};
   const listboxProps = useSlotProps({
     elementType: SelectListbox,
     getSlotProps: getListboxProps,
-    externalSlotProps: componentsProps.listbox,
+    externalSlotProps: externalListboxProps,
     additionalProps: {
       ref: listboxRef,
       anchorEl,
       disablePortal: true,
       open: listboxOpen,
       placement: 'bottom-start' as const,
-      component: ListRoot,
+      component: SelectListbox,
+      as: listboxComponent,
       modifiers: cachedModifiers,
     },
     ownerState: {
@@ -464,11 +464,11 @@ const Select = React.forwardRef(function Select<TValue>(
         )}
       </SelectRoot>
       {anchorEl && (
-        <SelectListbox {...listboxProps}>
+        <PopperUnstyled {...listboxProps}>
           <SelectUnstyledContext.Provider value={context}>
             {children}
           </SelectUnstyledContext.Provider>
-        </SelectListbox>
+        </PopperUnstyled>
       )}
     </React.Fragment>
   );

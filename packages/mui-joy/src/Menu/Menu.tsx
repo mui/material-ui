@@ -26,12 +26,10 @@ const useUtilityClasses = (ownerState: MenuProps) => {
   return composeClasses(slots, getMenuUtilityClass, {});
 };
 
-const MenuRoot = styled(PopperUnstyled, {
+const MenuRoot = styled(ListRoot, {
   name: 'JoyMenu',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-  // ownerState should be forwarded to ListRoot
-  shouldForwardProp: (prop) => prop !== 'theme' && prop !== 'sx' && prop !== 'as',
 })<{ ownerState: MenuProps }>(({ theme, ownerState }) => {
   const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];
   return {
@@ -54,6 +52,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     actions,
     anchorEl,
     children,
+    component,
     color = 'neutral',
     disablePortal = true,
     keepMounted = false,
@@ -129,7 +128,8 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
       disablePortal,
       keepMounted,
       ref,
-      component: ListRoot,
+      component: MenuRoot,
+      as: component, // use `as` to insert the component inside of the MenuRoot
       modifiers: cachedModifiers,
     },
     className: classes.root,
@@ -145,9 +145,9 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
   };
 
   return (
-    <MenuRoot {...rootProps}>
+    <PopperUnstyled {...rootProps}>
       <MenuUnstyledContext.Provider value={contextValue}>{children}</MenuUnstyledContext.Provider>
-    </MenuRoot>
+    </PopperUnstyled>
   );
 }) as OverridableComponent<MenuTypeMap>;
 
