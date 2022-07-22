@@ -32,11 +32,17 @@ const MenuRoot = styled(PopperUnstyled, {
   overridesResolver: (props, styles) => styles.root,
   // ownerState should be forwarded to ListRoot
   shouldForwardProp: (prop) => prop !== 'theme' && prop !== 'sx' && prop !== 'as',
-})<{ ownerState: MenuProps }>(({ theme }) => ({
-  boxShadow: theme.vars.shadow.md,
-  zIndex: 1000,
-  '--List-radius': theme.vars.radius.sm,
-}));
+})<{ ownerState: MenuProps }>(({ theme, ownerState }) => {
+  const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];
+  return {
+    boxShadow: theme.vars.shadow.md,
+    zIndex: 1000,
+    ...(!variantStyle.backgroundColor && {
+      backgroundColor: theme.vars.palette.background.body,
+    }),
+    '--List-radius': theme.vars.radius.sm,
+  };
+});
 
 const Menu = React.forwardRef(function Menu(inProps, ref) {
   const props = useThemeProps<typeof inProps>({
