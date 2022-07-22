@@ -1,8 +1,11 @@
 import * as React from 'react';
+import { expect } from 'chai';
+import { createRenderer, describeConformance, screen } from 'test/utils';
 import PopperUnstyled from '@mui/base/PopperUnstyled';
-import { describeConformance } from 'test/utils';
 
 describe('<PopperUnstyled />', () => {
+  const { render } = createRenderer();
+
   const defaultProps = {
     anchorEl: () => document.createElement('svg'),
     children: <span>Hello World</span>,
@@ -21,4 +24,20 @@ describe('<PopperUnstyled />', () => {
       'reactTestRenderer',
     ],
   }));
+
+  it('should pass ownerState to overridable component', () => {
+    const CustomComponent = React.forwardRef(({ ownerState }, ref) => (
+      <div ref={ref} data-testid={ownerState.foo} />
+    ));
+    render(
+      <PopperUnstyled
+        anchorEl={() => document.createElement('div')}
+        open
+        component={CustomComponent}
+        ownerState={{ foo: 'foo' }}
+      />,
+    );
+
+    expect(screen.getByTestId('foo')).toBeVisible();
+  });
 });

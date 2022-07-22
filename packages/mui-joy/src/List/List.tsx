@@ -12,15 +12,23 @@ import RowListContext from './RowListContext';
 import ComponentListContext from './ComponentListContext';
 
 const useUtilityClasses = (ownerState: ListProps & { nesting: boolean }) => {
-  const { size, nesting, row } = ownerState;
+  const { variant, color, size, nesting, row, scoped } = ownerState;
   const slots = {
-    root: ['root', size && `size${capitalize(size)}`, nesting && 'nesting', row && 'row'],
+    root: [
+      'root',
+      variant && `variant${capitalize(variant)}`,
+      color && `color${capitalize(color)}`,
+      size && `size${capitalize(size)}`,
+      nesting && 'nesting',
+      row && 'row',
+      scoped && 'scoped',
+    ],
   };
 
   return composeClasses(slots, getListUtilityClass, {});
 };
 
-const ListRoot = styled('ul', {
+export const ListRoot = styled('ul', {
   name: 'JoyList',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
@@ -32,7 +40,7 @@ const ListRoot = styled('ul', {
           '--List-divider-gap': '0.25rem',
           '--List-item-minHeight': '2rem',
           '--List-item-paddingY': '0.25rem',
-          '--List-item-paddingX': '0.375rem',
+          '--List-item-paddingX': '0.5rem',
           '--List-item-fontSize': theme.vars.fontSize.sm,
           '--List-decorator-width': ownerState.row ? '1.5rem' : '2rem',
           '--Icon-fontSize': '1.125rem',
@@ -63,30 +71,36 @@ const ListRoot = styled('ul', {
       return {};
     }
     return [
-      ownerState.nesting && {
-        // instanceSize is the specified size of the rendered element <List size="sm" />
-        // only apply size variables if instanceSize is provided so that the variables can be pass down to children by default.
-        ...applySizeVars(ownerState.instanceSize),
-        '--List-item-paddingRight': 'var(--List-item-paddingX)',
-        '--List-item-paddingLeft': 'var(--NestedList-item-paddingLeft)',
-        // reset ListItem, ListItemButton negative margin (caused by NestedListItem)
-        '--List-itemButton-marginBlock': '0px',
-        '--List-itemButton-marginInline': '0px',
-        '--List-item-marginBlock': '0px',
-        '--List-item-marginInline': '0px',
-        padding: 0,
-        marginInlineStart: 'var(--NestedList-marginLeft)',
-        marginInlineEnd: 'var(--NestedList-marginRight)',
-        marginBlockStart: 'var(--List-gap)',
-      },
+      ownerState.nesting &&
+        !ownerState.scoped && {
+          // instanceSize is the specified size of the rendered element <List size="sm" />
+          // only apply size variables if instanceSize is provided so that the variables can be pass down to children by default.
+          ...applySizeVars(ownerState.instanceSize),
+          '--List-item-paddingRight': 'var(--List-item-paddingX)',
+          '--List-item-paddingLeft': 'var(--NestedList-item-paddingLeft)',
+          // reset ListItem, ListItemButton negative margin (caused by NestedListItem)
+          '--List-itemButton-marginBlock': '0px',
+          '--List-itemButton-marginInline': '0px',
+          '--List-item-marginBlock': '0px',
+          '--List-item-marginInline': '0px',
+          padding: 0,
+          marginInlineStart: 'var(--NestedList-marginLeft)',
+          marginInlineEnd: 'var(--NestedList-marginRight)',
+          marginBlockStart: 'var(--List-gap)',
+        },
       !ownerState.nesting && {
         ...applySizeVars(ownerState.size),
         '--List-gap': '0px',
-        '--List-padding': '0px',
         '--List-decorator-color': theme.vars.palette.text.tertiary,
         '--List-nestedInsetStart': '0px',
         '--List-item-paddingLeft': 'var(--List-item-paddingX)',
         '--List-item-paddingRight': 'var(--List-item-paddingX)',
+        ...(ownerState.scoped && {
+          '--List-itemButton-marginBlock': '0px',
+          '--List-itemButton-marginInline': '0px',
+          '--List-item-marginBlock': '0px',
+          '--List-item-marginInline': '0px',
+        }),
         '--internal-child-radius':
           'max(var(--List-radius, 0px) - var(--List-padding), min(var(--List-padding) / 2, var(--List-radius, 0px) / 2))',
         // If --List-padding is 0, the --List-item-radius will be 0.
@@ -95,7 +109,11 @@ const ListRoot = styled('ul', {
         '--List-item-startActionTranslateX': 'calc(0.5 * var(--List-item-paddingLeft))',
         '--List-item-endActionTranslateX': 'calc(-0.5 * var(--List-item-paddingRight))',
         margin: 'initial',
-        padding: 'var(--List-padding, 0px)',
+        padding: 'var(--List-padding)',
+        ...(!ownerState.row && {
+          // --List-padding is not declared to let vertical list uses --List-divider-gap by default.
+          padding: 'var(--List-padding, var(--List-divider-gap) 0px)',
+        }),
       },
       {
         borderRadius: 'var(--List-radius)',
@@ -104,6 +122,7 @@ const ListRoot = styled('ul', {
         flexDirection: ownerState.row ? 'row' : 'column',
         flexGrow: 1,
         position: 'relative', // for sticky ListItem
+        ...theme.variants[ownerState.variant!]?.[ownerState.color!],
       },
     ];
   },
@@ -116,13 +135,26 @@ const List = React.forwardRef(function List(inProps, ref) {
     name: 'JoyList',
   });
 
-  const { component, className, children, size = 'md', row = false, ...other } = props;
+  const {
+    component,
+    className,
+    children,
+    size = 'md',
+    row = false,
+    scoped = false,
+    variant = 'plain',
+    color = 'neutral',
+    ...other
+  } = props;
 
   const ownerState = {
     instanceSize: inProps.size,
     size,
     nesting,
+    scoped,
     row,
+    variant,
+    color,
     ...props,
   };
 
@@ -162,13 +194,17 @@ List.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
-   * Override or extend the styles applied to the component.
-   */
-  classes: PropTypes.object,
-  /**
    * @ignore
    */
   className: PropTypes.string,
+  /**
+   * The color of the component. It supports those theme colors that make sense for this component.
+   * @default 'neutral'
+   */
+  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.string,
+  ]),
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
@@ -176,10 +212,18 @@ List.propTypes /* remove-proptypes */ = {
   component: PropTypes.elementType,
   /**
    * If `true`, display the list in horizontal direction.
+   * @default false
    */
   row: PropTypes.bool,
   /**
+   * If `true`, this list creates new list CSS variables scope to prevent the children from inheriting variables from the upper parent.
+   * This props is used in the listbox of Menu, Select.
+   * @default false
+   */
+  scoped: PropTypes.bool,
+  /**
    * The size of the component (affect other nested list* components).
+   * @default 'md'
    */
   size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['sm', 'md', 'lg']),
@@ -192,6 +236,14 @@ List.propTypes /* remove-proptypes */ = {
     PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
     PropTypes.func,
     PropTypes.object,
+  ]),
+  /**
+   * The variant to use.
+   * @default 'plain'
+   */
+  variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
+    PropTypes.string,
   ]),
 } as any;
 

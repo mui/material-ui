@@ -1,20 +1,10 @@
 import { generateUtilityClass, generateUtilityClasses } from '../className';
 
-export interface ListClasses {
+export interface MenuClasses {
   /** Classname applied to the root element. */
   root: string;
-  /** Classname applied to the root element if wrapped with nested context. */
-  nesting: string;
-  /** Classname applied to the root element if `row` is true. */
-  row: string;
-  /** Classname applied to the root element if `scoped` is true. */
-  scoped: string;
-  /** Classname applied to the root element if `size="sm"`. */
-  sizeSm: string;
-  /** Classname applied to the root element if `size="md"`. */
-  sizeMd: string;
-  /** Classname applied to the root element if `size="lg"`. */
-  sizeLg: string;
+  /** Classname applied to the root element when the menu open. */
+  expanded: string;
   /** Classname applied to the root element if `color="primary"`. */
   colorPrimary: string;
   /** Classname applied to the root element if `color="neutral"`. */
@@ -35,22 +25,23 @@ export interface ListClasses {
   variantSoft: string;
   /** Classname applied to the root element if `variant="solid"`. */
   variantSolid: string;
+  /** Classname applied to the root element if `size="sm"`. */
+  sizeSm: string;
+  /** Classname applied to the root element if `size="md"`. */
+  sizeMd: string;
+  /** Classname applied to the root element if `size="lg"`. */
+  sizeLg: string;
 }
 
-export type ListClassKey = keyof ListClasses;
+export type MenuClassKey = keyof MenuClasses;
 
-export function getListUtilityClass(slot: string): string {
-  return generateUtilityClass('JoyList', slot);
+export function getMenuUtilityClass(slot: string): string {
+  return generateUtilityClass('JoyMenu', slot);
 }
 
-const listClasses: ListClasses = generateUtilityClasses('JoyList', [
+const menuClasses: MenuClasses = generateUtilityClasses('JoyMenu', [
   'root',
-  'nesting',
-  'row',
-  'scoped',
-  'sizeSm',
-  'sizeMd',
-  'sizeLg',
+  'expanded',
   'colorPrimary',
   'colorNeutral',
   'colorDanger',
@@ -61,6 +52,9 @@ const listClasses: ListClasses = generateUtilityClasses('JoyList', [
   'variantOutlined',
   'variantSoft',
   'variantSolid',
+  'sizeSm',
+  'sizeMd',
+  'sizeLg',
 ]);
 
-export default listClasses;
+export default menuClasses;

@@ -80,7 +80,7 @@ function createCode(data: {
       }
     });
     if (children) {
-      code = `${code}>\n  ${children}\n</${name}>`;
+      code = `${code}${props.length > 2 ? `\n>` : '>'}\n  ${children}\n</${name}>`;
     } else {
       code = `${code}${props.length > 2 ? `\n${closedJsx}` : `${childrenAccepted ? '>' : ' />'}`}`;
     }
@@ -104,7 +104,7 @@ interface JoyUsageDemoProps<ComponentProps> {
    */
   data: Array<{
     /**
-     * Name of the prop
+     * Name of the prop, e.g. 'children'
      */
     propName: Extract<keyof ComponentProps, string>;
     /**

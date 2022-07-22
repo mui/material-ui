@@ -7,6 +7,7 @@ import {
 } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
 import composeClasses from '@mui/base/composeClasses';
+import { MenuUnstyledContext } from '@mui/base/MenuUnstyled';
 import { styled, useThemeProps } from '../styles';
 import { ListItemProps, ListItemTypeMap } from './ListItemProps';
 import { getListItemUtilityClass } from './listItemClasses';
@@ -126,6 +127,8 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
     name: 'JoyListItem',
   });
 
+  const menuContext = React.useContext(MenuUnstyledContext);
+
   const listComponent = React.useContext(ComponentListContext);
   const row = React.useContext(RowListContext);
   const nesting = React.useContext(NestedListContext);
@@ -166,6 +169,11 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
         }
         className={clsx(classes.root, className)}
         ownerState={ownerState}
+        {...(menuContext && {
+          // ListItem can be used inside Menu to create nested menus, so it should have role="none"
+          // https://www.w3.org/WAI/ARIA/apg/example-index/menubar/menubar-navigation.html
+          role: 'none',
+        })}
         {...other}
       >
         {startAction && (

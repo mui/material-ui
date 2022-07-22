@@ -36,7 +36,8 @@ const useUtilityClasses = (ownerState: ListItemButtonProps & { focusVisible: boo
   return composedClasses;
 };
 
-const ListItemButtonRoot = styled('div', {
+// MenuItem uses ListItemButtonRoot (not the whole ListItemButton) to leverage only styles and CSS variables.
+export const ListItemButtonRoot = styled('div', {
   name: 'JoyListItemButton',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
@@ -101,8 +102,8 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
     children,
     className,
     action,
-    role,
     component = 'div',
+    role,
     selected = false,
     color = selected ? 'primary' : 'neutral',
     variant = 'plain',
