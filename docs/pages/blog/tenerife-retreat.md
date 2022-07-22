@@ -8,7 +8,7 @@ tags: ['Company']
 ---
 
 One of the toughest challenges to overcome as a fully remote team is fostering a supportive and inclusive company culture.
-How do you build trust, comradery, and—dare I say it?—friendships when there are so few opportunities for spontaneous social interactions in our daily work routines?
+How do you build trust, comradery, and—dare I say it?—_friendships_, when there are so few opportunities for spontaneous social interactions in our daily work routines?
 
 At MUI, we've chosen to prioritize in-person company retreats as a way to grow together and cultivate the culture that informs how we operate.
 
@@ -84,7 +84,7 @@ Sorry, bud!
 
 ![A group photo of the MUI crew posing near the base of Mount Teide at the start of the hike.](/static/blog/tenerife-retreat/teide-group.jpeg)
 
-The third and final full day of the retreat took us up to Teide National Park for a guided interpretive hike around some of the lower peaks that surround Mount Teide as the sun was going down. 
+The third and final full day of the retreat took us up to Teide National Park for a guided interpretive hike around some of the lower peaks that surround Mount Teide as the sun was going down.
 
 This was my personal favorite out of all the activities.
 We learned a lot about the natural history of the island from our guide, who led us to one of the best sunset views I've ever seen in my life.
@@ -97,11 +97,18 @@ I completely understand why Teide is one of Europe's most visited parks.
 
 Believe it or not, we actually did manage to squeeze in some productive work time between all the fun!
 
-### Roadmap to v6 and beyond
+### Roadmap to v6
 
 ![MUI Core team members Marija, Jun, and Sam discuss the product roadmap.](/static/blog/tenerife-retreat/focus-group.jpeg)
 
+One of the key goals of the retreat was to outline mid- to long-term goals for our products, and begin to estimate timelines to get where we want to go from here.
 
+We had some great conversations about what we hope to accomplish over the next several months on the way to our next major release: MUI v6.
+It's still hard to say when that release day might come, but we're optimistic that we could see it in mid to late 2023.
+[@RemindMe_OfThis](https://twitter.com/RemindMe_OfThis) September 2023 🙃
+
+In any case, we defined quite a few key initiatives to move forward with while we're still in the world of v5.
+Keep an eye out!
 
 ### Focus groups
 
@@ -118,7 +125,7 @@ We can't thank her enough for her contributions to the company roadmap.
 
 It was honestly kind of odd to have (almost) all of my coworkers in the same as room as me.
 This was the first time that the majority of us had ever met anyone else from the company in person.
-But once we broke the ice and settled into a groove together, I felt that we 
+But once we broke the ice and settled into a groove together, I felt that we
 
 ## Join us
 
