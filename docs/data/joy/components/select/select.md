@@ -75,7 +75,15 @@ const App = () => (
 
 ## Customization
 
-### Option
+### Clearable
+
+You can put `IconButton` as a decorator to the `Select` component. It will fit perfectly for all sizes.
+
+Also, the example set the focus visible back to the select button after the selected value is cleared. This is a good experience for keyboard users.
+
+{{"demo": "SelectClearable.js"}}
+
+### Option composition
 
 You can think of the option as if it is `ListItemButton` component because they share the same style internally, so you can mix list item components within an option.
 

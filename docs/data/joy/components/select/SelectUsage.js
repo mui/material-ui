@@ -39,6 +39,10 @@ export default function SelectUsage() {
           propName: 'disabled',
           knob: 'switch',
         },
+        {
+          propName: 'children',
+          defaultValue: `<Option>...</Option>`,
+        },
       ]}
       renderDemo={(props) => (
         <Select
@@ -52,6 +56,7 @@ export default function SelectUsage() {
                 size="sm"
                 variant={props.variant}
                 color="neutral"
+                disabled={props.disabled}
                 onMouseDown={(event) => {
                   event.stopPropagation();
                 }}
