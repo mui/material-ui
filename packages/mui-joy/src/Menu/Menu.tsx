@@ -39,6 +39,10 @@ const MenuRoot = styled(ListRoot, {
       backgroundColor: theme.vars.palette.background.body,
     }),
     '--List-radius': theme.vars.radius.sm,
+    '--List-item-stickyBackground':
+      variantStyle?.backgroundColor ||
+      variantStyle?.background ||
+      theme.vars.palette.background.body, // for sticky List
   };
 });
 
