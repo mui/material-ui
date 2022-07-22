@@ -26,7 +26,7 @@ Oh, and I guess we got some work done along the way, too? 😅
 
 Tenerife is a volcanic island off the coast of western Africa that's part of the Canary Islands (Spanish: _Canarias_).
 It is the most populous island in the archipelago, and one of the most visited tourist destinations in the world.
-Its central defining feature is Mount Teide, the third largest volcano in the world when measured from its base, rising 7,500 m (24,600 ft) from the bottom of the ocean floor.
+Its central defining feature is Mount Teide, the third largest volcano in the world when measured from its base, which rises 7,500 m (24,600 ft) from the bottom of the ocean floor.
 
 With an average temperature ranging from about 18-25 °C (68-77 °F) year-round, it's hard to pick a bad time to visit!
 
@@ -107,12 +107,20 @@ We had some great conversations about what we hope to accomplish over the next s
 It's still hard to say when that release day might come, but we're optimistic that we could see it in mid to late 2023.
 [@RemindMe_OfThis](https://twitter.com/RemindMe_OfThis) September 2023 🙃
 
-In any case, we defined quite a few key initiatives to move forward with while we're still in the world of v5.
+![The product teams are seen spread out around a large indoor/outdoor workspace](/static/blog/tenerife-retreat/focus-groups.jpeg)
+
+In any case, we now have a better idea of what v6 could look like, and we defined quite a few initiatives to move forward with while we're still in the world of v5.
 Keep an eye out!
 
 ### Focus groups
 
 ![An impromptu focus group gathered next to the pool with laptops to discuss cross-team marketing strategies.](/static/blog/tenerife-retreat/outdoor-focus-group.jpeg)
+
+Before the retreat, we were all invited to propose topics to cover in smaller groups for those who were interested.
+This gave us a great opportunity for some cross-team collaboration that isn't usually part of our standard workflow.
+
+I participated in sessions on copywriting, marketing, and developer outreach that I found particularly exciting—but I'm kind of a nerd like that. 🤓
+Others discussed optimizing TypeScript performance, implementing editable demos in the docs, and supporting [Joy UI](/blog/first-look-at-joy/) with MUI X components, among other things.
 
 ### Our feline colleague 🐈
 
@@ -121,14 +129,34 @@ We can't thank her enough for her contributions to the company roadmap.
 
 ![Collage of several photos of the MUI team members cuddling with the neighborhood cat during our work sessions.](/static/blog/tenerife-retreat/cat-collage.jpg)
 
-###
+### In sync with the async team
 
 It was honestly kind of odd to have (almost) all of my coworkers in the same as room as me.
-This was the first time that the majority of us had ever met anyone else from the company in person.
-But once we broke the ice and settled into a groove together, I felt that we
+This was the first time that the majority of us had ever met anyone else from the company in person—myself included.
+But once we broke the ice and settled into a rhythm together, I felt that we established some common bonds and yes, friendships, that we will carry with us long after the sunburns have faded.
 
-## Join us
+I'm really grateful to have had the opportunity to connect with some of the best and brightest colleagues I've ever had, and in such an idyllic location.
+I think we're all already daydreaming about the next time we'll get to do this!
 
-We're hiring! Check out our open roles so you can join us before our next retreat in February/March 2023!
+Speaking of which...
+
+## Will you be at the next retreat?
+
+We're hiring!
+
+MUI is on track to grow from roughly 20 people to 40 or more by the time we get to our next company retreat in late Q1 2023.
+
+We are constantly interviewing React developers from all around the world, and we are also increasingly looking to hire for non-technical roles such as [People Operations Manager](/careers/people-operations-manager/) in which you could have a huge impact steering the direction of the company's nascent HR department.
+
+Check out [our open roles](/careers/) so you can join us before the next retreat!
+
+The way I see it, we have two options—since it'll be the dead of winter for the Northern Hemisphere, we can either:
+
+1. lean into the winter fun, maybe go skiing in the Alps? ⛷
+2. escape the cold by heading to some Equatorial beaches 🏝
+
+If you have a strong opinion one way or the other, then you better join the team sooner rather than later!
+
+I look forward to meeting new colleagues—as well as reconnecting with this crew—in 2023.
 
 ![The sun setting above the clouds as seen near the top of Teide.](/static/blog/tenerife-retreat/teide-hike.jpeg)
