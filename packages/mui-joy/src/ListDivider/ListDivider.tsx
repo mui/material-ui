@@ -84,8 +84,8 @@ const ListDivider = React.forwardRef(function ListDivider(inProps, ref) {
       className={clsx(classes.root, className)}
       ownerState={ownerState}
       role="separator"
-      {...(!inProps.role &&
-        !row && {
+      {...(!('role' in inProps) &&
+        row && {
           // The implicit aria-orientation of separator is 'horizontal'
           // https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/separator_role
           'aria-orientation': 'vertical',
