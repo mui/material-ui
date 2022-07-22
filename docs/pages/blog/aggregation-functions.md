@@ -63,11 +63,11 @@ const firstAlphabeticalAggregation: GridAggregationFunction<string, string | nul
 ## Okay, I’m in! How can I get started?
 
 :::info
-First make sure that you're using `@mui/x-data-grid-premium` and version `5.15` or later.
+First make sure that you're using `@mui/x-data-grid-premium` and version `5.15.0` or later.
 
 :::
 
-During the initil version of Aggregation functions, we’re publishing the feature as experimental, so we have some room to validate its API and the overall direction we’re taking with it.
+During the initial version of Aggregation functions, we’re publishing the feature as experimental, so we have some room to validate its API and the overall direction we’re taking with it.
 But the feature is stable, and the API will likely not change significantly.
 
 To activate the feature, please enabled it with the experimentalFeatures prop.
@@ -92,7 +92,7 @@ Pinned rows are visible at all times while user scrolls the grid vertically.
 
 > TODO: add video
 
-Row pinning feature is available in Data grid Pro and Premium.
+Row pinning is available in Data grid Pro and Premium.
 Check out more details on [its documentation](/x/react-data-grid/rows/#row-pinning) page.
 
 ## Share your feedback 🗣
