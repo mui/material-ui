@@ -157,6 +157,6 @@ The way I see it, we have two options—since it'll be the dead of winter for th
 
 If you have a strong opinion one way or the other, then you better join the team sooner rather than later!
 
-I look forward to meeting new colleagues—as well as reconnecting with this crew—in 2023.
+I look forward to meeting new colleagues—as well as reconnecting with the Tenerife crew—in 2023.
 
 ![The path leading down the hill from the sunset view, with Teide glowing red in the background.](/static/blog/tenerife-retreat/teide-hike.jpeg)
