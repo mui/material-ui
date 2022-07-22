@@ -398,7 +398,7 @@ https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 /:lang/x/* https://material-ui-x.netlify.app/:lang/x/:splat 200
 
 ## MUI Toolpad
-/_next/* https://mui-toolpad-docs.netlify.app/_next/:splat 200
+/toolpad/_next/* https://mui-toolpad-docs.netlify.app/_next/:splat 200
 /static/toolpad/* https://mui-toolpad-docs.netlify.app/static/toolpad/:splat 200
 /toolpad/* https://mui-toolpad-docs.netlify.app/toolpad/:splat 200
 /r/toolpad-* https://mui-toolpad-docs.netlify.app/r/toolpad-:splat 200
