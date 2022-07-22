@@ -261,6 +261,7 @@ const Select = React.forwardRef(function Select<TValue>(
     listboxOpen: listboxOpenProp,
     onChange,
     onListboxOpenChange,
+    onClose,
     renderValue: renderValueProp,
     value: valueProp,
     size = 'md',
@@ -317,6 +318,9 @@ const Select = React.forwardRef(function Select<TValue>(
   const handleOpenChange = (isOpen: boolean) => {
     setListboxOpen(isOpen);
     onListboxOpenChange?.(isOpen);
+    if (!isOpen) {
+      onClose?.();
+    }
   };
 
   // cache the modifiers to prevent Popper from being recreated when React rerenders menu.

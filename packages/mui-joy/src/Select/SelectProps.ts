@@ -58,6 +58,10 @@ export interface SelectStaticProps extends SelectUnstyledCommonProps {
    */
   indicator?: React.ReactNode;
   /**
+   * Triggered when focus leaves the menu and the menu should close.
+   */
+  onClose?: () => void;
+  /**
    * Text to show when there is no selected value.
    */
   placeholder?: React.ReactNode;
