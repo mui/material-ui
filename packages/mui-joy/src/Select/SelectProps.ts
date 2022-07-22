@@ -38,7 +38,8 @@ export interface SelectStaticProps extends SelectUnstyledCommonProps {
   componentsProps?: {
     root?: React.ComponentPropsWithRef<'div'>;
     button?: React.ComponentPropsWithRef<'button'> & { sx?: SxProps };
-    listbox?: PopperUnstyledProps & Pick<ListProps, 'variant' | 'color'>;
+    listbox?: Omit<PopperUnstyledProps, 'open'> &
+      Pick<ListProps, 'variant' | 'color'> & { sx?: SxProps };
   };
   /**
    * If `true`, the component is disabled.

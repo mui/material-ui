@@ -149,10 +149,9 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
       sx={{
         mt: 2,
         flexGrow: 1,
-        maxWidth: 'calc(100% + 24px)',
+        maxWidth: '100%',
         display: 'flex',
-        flexDirection: { xs: 'column', sm: 'row' },
-        flexWrap: 'wrap',
+        flexDirection: { xs: 'column', md: 'row' },
         gap: 2,
         '& .markdown-body pre': {
           margin: 0,
@@ -160,7 +159,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
         },
       }}
     >
-      <Box sx={{ display: 'flex', flexDirection: 'column', flexGrow: 999 }}>
+      <Box sx={{ display: 'flex', flexDirection: 'column', flexGrow: 999, minWidth: 0 }}>
         <Box
           sx={{
             flexGrow: 1,
@@ -187,7 +186,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
       <Sheet
         variant="outlined"
         sx={{
-          flexGrow: 1,
+          flexShrink: 0,
           gap: 2,
           p: 2,
           borderRadius: 'sm',
