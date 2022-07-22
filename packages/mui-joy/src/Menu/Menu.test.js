@@ -16,9 +16,8 @@ describe('Joy <Menu />', () => {
     render,
     ThemeProvider,
     muiName: 'JoyMenu',
-    refInstanceof: window.HTMLDivElement,
+    refInstanceof: window.HTMLUListElement,
     testRootOverrides: { slotName: 'root', slotClassName: classes.root },
-    testDeepOverrides: { slotName: 'listbox', slotClassName: classes.listbox },
     testVariantProps: { variant: 'soft' },
     skip: [
       'rootClass', // portal, can't determin the root
@@ -29,22 +28,6 @@ describe('Joy <Menu />', () => {
       'themeDefaultProps', // portal, can't determine the root
     ],
   }));
-
-  it('should pass to the Listbox', () => {
-    render(
-      <Menu
-        anchorEl={document.createElement('div')}
-        open
-        componentsProps={{
-          listbox: {
-            'data-testid': 'listbox',
-          },
-        }}
-      />,
-    );
-
-    expect(screen.getByTestId('listbox')).to.have.class(classes.listbox);
-  });
 
   it('should pass onClose prop to Popover', () => {
     const handleClose = spy();
@@ -79,12 +62,10 @@ describe('Joy <Menu />', () => {
     expect(screen.getByTestId('children')).not.to.equal(null);
   });
 
-  describe('list node', () => {
-    it('should render a menu inside the Popover', () => {
-      render(<Menu anchorEl={document.createElement('div')} open data-testid="popover" />);
+  it('should have role="menu"', () => {
+    render(<Menu anchorEl={document.createElement('div')} open data-testid="popover" />);
 
-      expect(screen.getByTestId('popover').querySelector('[role="menu"]')).not.to.equal(null);
-    });
+    expect(screen.getByTestId('popover')).to.have.attribute('role', 'menu');
   });
 
   it('ignores invalid children', () => {
@@ -100,5 +81,29 @@ describe('Joy <Menu />', () => {
     );
 
     expect(screen.getAllByRole('menuitem')).to.have.length(1);
+  });
+
+  describe('classnames', () => {
+    it('size prop', () => {
+      render(<Menu anchorEl={document.createElement('div')} data-testid="menu" open size="sm" />);
+
+      expect(screen.getByTestId('menu')).to.have.class(classes.sizeSm);
+    });
+
+    it('variant prop', () => {
+      render(
+        <Menu anchorEl={document.createElement('div')} data-testid="menu" open variant="soft" />,
+      );
+
+      expect(screen.getByTestId('menu')).to.have.class(classes.variantSoft);
+    });
+
+    it('color prop', () => {
+      render(
+        <Menu anchorEl={document.createElement('div')} data-testid="menu" open color="primary" />,
+      );
+
+      expect(screen.getByTestId('menu')).to.have.class(classes.colorPrimary);
+    });
   });
 });
