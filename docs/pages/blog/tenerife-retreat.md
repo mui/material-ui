@@ -159,4 +159,4 @@ If you have a strong opinion one way or the other, then you better join the team
 
 I look forward to meeting new colleagues—as well as reconnecting with this crew—in 2023.
 
-![The sun setting above the clouds as seen near the top of Teide.](/static/blog/tenerife-retreat/teide-hike.jpeg)
+![The path leading down the hill from the sunset view, with Teide glowing red in the background.](/static/blog/tenerife-retreat/teide-hike.jpeg)
