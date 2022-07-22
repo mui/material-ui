@@ -36,7 +36,7 @@ const useUtilityClasses = (ownerState: ListItemButtonProps & { focusVisible: boo
   return composedClasses;
 };
 
-const ListItemButtonRoot = styled('div', {
+export const ListItemButtonRoot = styled('div', {
   name: 'JoyListItemButton',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,

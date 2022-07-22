@@ -128,6 +128,8 @@ const List = React.forwardRef(function List(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
+  console.log('row', row);
+
   return (
     <RowListContext.Provider value={row}>
       <ComponentListContext.Provider value={typeof component === 'string' ? component : undefined}>

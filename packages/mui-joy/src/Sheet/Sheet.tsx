@@ -24,7 +24,7 @@ const useUtilityClasses = (ownerState: SheetProps) => {
   return composeClasses(slots, getSheetUtilityClass, {});
 };
 
-const SheetRoot = styled('div', {
+export const SheetRoot = styled('div', {
   name: 'JoySheet',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
