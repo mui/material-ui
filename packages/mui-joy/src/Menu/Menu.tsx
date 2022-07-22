@@ -173,7 +173,7 @@ Menu.propTypes /* remove-proptypes */ = {
     PropTypes.func,
   ]),
   /**
-   * The content of the component.
+   * @ignore
    */
   children: PropTypes.node,
   /**
@@ -181,18 +181,14 @@ Menu.propTypes /* remove-proptypes */ = {
    */
   color: PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
   /**
-   * The props used for each slot inside the Popper.
-   * @default {}
-   */
-  componentsProps: PropTypes.shape({
-    listbox: PropTypes.object,
-    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-  }),
-  /**
    * The `children` will be under the DOM hierarchy of the parent component.
    * @default false
    */
   disablePortal: PropTypes.bool,
+  /**
+   * @ignore
+   */
+  id: PropTypes.string,
   /**
    * Always keep the children in the DOM.
    * This prop can be useful in SEO situation or
@@ -200,10 +196,6 @@ Menu.propTypes /* remove-proptypes */ = {
    * @default false
    */
   keepMounted: PropTypes.bool,
-  /**
-   * @ignore
-   */
-  listboxId: PropTypes.string,
   /**
    * Popper.js is based on a "plugin-like" architecture,
    * most of its features are fully encapsulated "modifiers".
