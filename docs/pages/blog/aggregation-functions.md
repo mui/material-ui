@@ -9,7 +9,7 @@ card: true
 
 If you ever had a lot of data on a grid, you probably know that the ability to set different perspectives on data is essential to help users extract information. Typically, one would use at least filtering or sorting, but that barely scratches the surface of what one could do.
 
-The Data grid Premium is all about enabling and empowering advanced use cases for data analysis. And in that spirit, we’re overjoyed to announce that starting from [v5.15](changelog-link), you can now use [aggregation functions](/x/react-data-grid/aggregation/), and with a couple of clicks, extract information like **sum**, **average**, **count**, and others.
+The Data grid Premium is all about enabling and empowering advanced use cases for data analysis. And in that spirit, we’re overjoyed to announce that starting from [v5.15.0](changelog-link), you can now use [aggregation functions](/x/react-data-grid/aggregation/), and with a couple of clicks, extract information like **sum**, **average**, **count**, and others.
 
 ## Wait, what is an aggregation function?
 
@@ -94,7 +94,7 @@ Pinned rows are visible at all times while user scrolls the grid vertically.
 
 Row pinning is available in Data grid Pro and Premium.
 
-Check out more details on [its documentation](/x/react-data-grid/rows/#row-pinning) page.
+Check out more details on its [documentation page](/x/react-data-grid/rows/#row-pinning).
 
 ## Share your feedback 🗣
 
