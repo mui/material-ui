@@ -158,7 +158,7 @@
     "node-fetch": "^2.6.7",
     "nyc": "^15.1.0",
     "piscina": "^3.2.0",
-    "playwright": "^1.17.1",
+    "playwright": "^1.24.0",
     "prettier": "^2.7.1",
     "process": "^0.11.10",
     "prop-types": "^15.8.1",
