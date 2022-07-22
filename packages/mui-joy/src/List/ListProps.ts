@@ -1,11 +1,14 @@
 import * as React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
-import { SxProps } from '../styles/types';
-import { ListClasses } from './listClasses';
+import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
 
 export type ListSlot = 'root';
 
 export interface ListPropsSizeOverrides {}
+
+export interface ListPropsVariantOverrides {}
+
+export interface ListPropsColorOverrides {}
 
 export interface ListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
   props: P & {
@@ -14,9 +17,10 @@ export interface ListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
      */
     children?: React.ReactNode;
     /**
-     * Override or extend the styles applied to the component.
+     * The color of the component. It supports those theme colors that make sense for this component.
+     * @default 'primary'
      */
-    classes?: Partial<ListClasses>;
+    color?: OverridableStringUnion<ColorPaletteProp, ListPropsColorOverrides>;
     /**
      * If `true`, display the list in horizontal direction.
      * @default false
@@ -37,6 +41,11 @@ export interface ListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */
     sx?: SxProps;
+    /**
+     * The variant to use.
+     * @default 'solid'
+     */
+    variant?: OverridableStringUnion<VariantProp, ListPropsVariantOverrides>;
   };
   defaultComponent: D;
 }

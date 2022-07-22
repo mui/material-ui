@@ -12,9 +12,17 @@ import RowListContext from './RowListContext';
 import ComponentListContext from './ComponentListContext';
 
 const useUtilityClasses = (ownerState: ListProps & { nesting: boolean }) => {
-  const { size, nesting, row } = ownerState;
+  const { variant, color, size, nesting, row, scoped } = ownerState;
   const slots = {
-    root: ['root', size && `size${capitalize(size)}`, nesting && 'nesting', row && 'row'],
+    root: [
+      'root',
+      variant && `variant${capitalize(variant)}`,
+      color && `color${capitalize(color)}`,
+      size && `size${capitalize(size)}`,
+      nesting && 'nesting',
+      row && 'row',
+      scoped && 'scoped',
+    ],
   };
 
   return composeClasses(slots, getListUtilityClass, {});
@@ -130,6 +138,8 @@ const List = React.forwardRef(function List(inProps, ref) {
     size = 'md',
     row = false,
     scoped = false,
+    variant = 'plain',
+    color = 'neutral',
     ...other
   } = props;
 
@@ -139,6 +149,8 @@ const List = React.forwardRef(function List(inProps, ref) {
     nesting,
     scoped,
     row,
+    variant,
+    color,
     ...props,
   };
 
