@@ -569,7 +569,7 @@ Select.propTypes /* remove-proptypes */ = {
    * The selected value.
    * Set to `null` to deselect all options.
    */
-  value: PropTypes.object,
+  value: PropTypes.oneOfType([PropTypes.oneOf(['']), PropTypes.any]),
   /**
    * The variant to use.
    * @default 'solid'
