@@ -22,6 +22,7 @@ export default function SelectBasic() {
             variant="plain"
             color="neutral"
             onMouseDown={(event) => {
+              // don't open the popup when clicking on this button
               event.stopPropagation();
             }}
             onClick={() => {
