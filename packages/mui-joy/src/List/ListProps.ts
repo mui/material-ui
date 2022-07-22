@@ -18,7 +18,7 @@ export interface ListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
     children?: React.ReactNode;
     /**
      * The color of the component. It supports those theme colors that make sense for this component.
-     * @default 'primary'
+     * @default 'neutral'
      */
     color?: OverridableStringUnion<ColorPaletteProp, ListPropsColorOverrides>;
     /**
@@ -43,7 +43,7 @@ export interface ListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
     sx?: SxProps;
     /**
      * The variant to use.
-     * @default 'solid'
+     * @default 'plain'
      */
     variant?: OverridableStringUnion<VariantProp, ListPropsVariantOverrides>;
   };

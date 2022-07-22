@@ -91,7 +91,6 @@ const ListRoot = styled('ul', {
       !ownerState.nesting && {
         ...applySizeVars(ownerState.size),
         '--List-gap': '0px',
-        '--List-padding': '0px',
         '--List-decorator-color': theme.vars.palette.text.tertiary,
         '--List-nestedInsetStart': '0px',
         '--List-item-paddingLeft': 'var(--List-item-paddingX)',
@@ -110,7 +109,11 @@ const ListRoot = styled('ul', {
         '--List-item-startActionTranslateX': 'calc(0.5 * var(--List-item-paddingLeft))',
         '--List-item-endActionTranslateX': 'calc(-0.5 * var(--List-item-paddingRight))',
         margin: 'initial',
-        padding: 'var(--List-padding, 0px)',
+        padding: 'var(--List-padding)',
+        ...(!ownerState.row && {
+          // --List-padding is not declared to let vertical list uses --List-divider-gap by default.
+          padding: 'var(--List-padding, var(--List-divider-gap) 0px)',
+        }),
       },
       {
         borderRadius: 'var(--List-radius)',
@@ -119,6 +122,7 @@ const ListRoot = styled('ul', {
         flexDirection: ownerState.row ? 'row' : 'column',
         flexGrow: 1,
         position: 'relative', // for sticky ListItem
+        ...theme.variants[ownerState.variant!]?.[ownerState.color!],
       },
     ];
   },
@@ -190,13 +194,17 @@ List.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
-   * Override or extend the styles applied to the component.
-   */
-  classes: PropTypes.object,
-  /**
    * @ignore
    */
   className: PropTypes.string,
+  /**
+   * The color of the component. It supports those theme colors that make sense for this component.
+   * @default 'neutral'
+   */
+  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.string,
+  ]),
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
@@ -228,6 +236,14 @@ List.propTypes /* remove-proptypes */ = {
     PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
     PropTypes.func,
     PropTypes.object,
+  ]),
+  /**
+   * The variant to use.
+   * @default 'plain'
+   */
+  variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
+    PropTypes.string,
   ]),
 } as any;
 
