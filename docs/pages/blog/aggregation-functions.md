@@ -93,13 +93,14 @@ Pinned rows are visible at all times while user scrolls the grid vertically.
 > TODO: add video
 
 Row pinning is available in Data grid Pro and Premium.
+
 Check out more details on [its documentation](/x/react-data-grid/rows/#row-pinning) page.
 
 ## Share your feedback 🗣
 
 **And if you’re feeling generous, we’re recruiting users to interview!**
 
-We hope you’re excited with aggregation functions as we are!
+We hope you’re excited about the new features as we are!
 
 As usual, we’re glad to listen to any feedback. Please feel free to open new issues to report bugs or suggest improvements.
 
