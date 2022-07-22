@@ -19,8 +19,8 @@ export default function SizeMenu() {
   return (
     <div>
       <Button
-        id="basic-button"
-        aria-controls={open ? 'basic-menu' : undefined}
+        id="size-demo-button"
+        aria-controls={open ? 'size-demo-menu' : undefined}
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
         variant="outlined"
@@ -30,16 +30,12 @@ export default function SizeMenu() {
         Format
       </Button>
       <Menu
-        id="basic-menu"
+        id="size-demo-menu"
         size="sm"
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}
-        componentsProps={{
-          listbox: {
-            'aria-labelledby': 'basic-button',
-          },
-        }}
+        aria-labelledby="size-demo-button"
       >
         <MenuItem onClick={handleClose}>
           <ListItemDecorator /> Single

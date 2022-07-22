@@ -21,8 +21,8 @@ export default function SelectedMenu() {
   return (
     <div>
       <Button
-        id="selected-button"
-        aria-controls={open ? 'selected-menu' : undefined}
+        id="selected-demo-button"
+        aria-controls={open ? 'selected-demo-menu' : undefined}
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
         variant="outlined"
@@ -33,15 +33,11 @@ export default function SelectedMenu() {
         Apps
       </Button>
       <Menu
-        id="selected-menu"
+        id="selected-demo-menu"
         anchorEl={anchorEl}
         open={open}
         onClose={createHandleClose()}
-        componentsProps={{
-          listbox: {
-            'aria-labelledby': 'selected-button',
-          },
-        }}
+        aria-labelledby="selected-demo-button"
       >
         <MenuItem
           {...(selectedIndex === 0 && { selected: true, variant: 'soft' })}

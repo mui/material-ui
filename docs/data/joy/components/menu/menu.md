@@ -19,9 +19,9 @@ It appears when the user interacts with a button, or other type of control.
 
 Joy UI provides three menu-related components:
 
-- `Menu`: A popup and a listbox for wrapping the menu items.
-- `MenuItem`: A menu item which uses the same styles to the `ListItemButton`.
-- `MenuList`: A standalone listbox for composition usage.
+- `Menu`: A listbox popup for wrapping the menu items which reuses the styles from [`List`](/joy-ui/react-list/).
+- `MenuItem`: A menu item which reuses the styles from [`ListItemButton`](/joy-ui/react-list/).
+- `MenuList`: A standalone listbox for composition usage. It also reuses the styles from [`List`](/joy-ui/react-list/).
 
 ## Component
 

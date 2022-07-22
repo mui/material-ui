@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Menu, { menuClasses } from '@mui/joy/Menu';
+import Menu from '@mui/joy/Menu';
 import MenuItem, { menuItemClasses } from '@mui/joy/MenuItem';
 import List from '@mui/joy/List';
 import ListItem from '@mui/joy/ListItem';
@@ -63,10 +63,8 @@ const MenuButton = React.forwardRef(
           sx: (theme) => ({
             width: 288,
             boxShadow: '0 2px 8px 0px rgba(0 0 0 / 0.38)',
-            [`& .${menuClasses.listbox}`]: {
-              '--List-padding': 'var(--List-divider-gap)',
-              '--List-item-minHeight': '32px',
-            },
+            '--List-padding': 'var(--List-divider-gap)',
+            '--List-item-minHeight': '32px',
             [`& .${menuItemClasses.root}`]: {
               transition: 'none',
               '&:hover': {

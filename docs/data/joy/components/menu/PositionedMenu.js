@@ -21,8 +21,8 @@ export default function PositionedMenu() {
   return (
     <div>
       <IconButton
-        id="positioned-button"
-        aria-controls={open ? 'positioned-menu' : undefined}
+        id="positioned-demo-button"
+        aria-controls={open ? 'positioned-demo-menu' : undefined}
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
         variant="outlined"
@@ -32,15 +32,11 @@ export default function PositionedMenu() {
         <MoreVert />
       </IconButton>
       <Menu
-        id="positioned-menu"
+        id="positioned-demo-menu"
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}
-        componentsProps={{
-          listbox: {
-            'aria-labelledby': 'positioned-button',
-          },
-        }}
+        aria-labelledby="positioned-demo-button"
         placement="bottom-end"
       >
         <MenuItem onClick={handleClose}>

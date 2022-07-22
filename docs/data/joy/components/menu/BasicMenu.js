@@ -16,7 +16,7 @@ export default function BasicMenu() {
   return (
     <div>
       <Button
-        id="basic-button"
+        id="basic-demo-button"
         aria-controls={open ? 'basic-menu' : undefined}
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
@@ -31,11 +31,7 @@ export default function BasicMenu() {
         anchorEl={anchorEl}
         open={open}
         onClose={handleClose}
-        componentsProps={{
-          listbox: {
-            'aria-labelledby': 'basic-button',
-          },
-        }}
+        aria-labelledby="basic-demo-button"
       >
         <MenuItem onClick={handleClose}>Profile</MenuItem>
         <MenuItem onClick={handleClose}>My account</MenuItem>

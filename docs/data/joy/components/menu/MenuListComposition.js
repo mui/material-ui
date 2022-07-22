@@ -4,7 +4,6 @@ import ClickAwayListener from '@mui/base/ClickAwayListener';
 import Button from '@mui/joy/Button';
 import MenuList from '@mui/joy/MenuList';
 import MenuItem from '@mui/joy/MenuItem';
-import Sheet from '@mui/joy/Sheet';
 
 export default function MenuListComposition() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -55,14 +54,16 @@ export default function MenuListComposition() {
         ]}
       >
         <ClickAwayListener onClickAway={handleClose}>
-          <Sheet variant="outlined" sx={{ boxShadow: 'md' }}>
-            <MenuList onKeyDown={handleListKeyDown}>
-              <MenuItem onClick={handleClose}>Single</MenuItem>
-              <MenuItem onClick={handleClose}>1.15</MenuItem>
-              <MenuItem onClick={handleClose}>Double</MenuItem>
-              <MenuItem onClick={handleClose}>Custom: 1.2</MenuItem>
-            </MenuList>
-          </Sheet>
+          <MenuList
+            variant="outlined"
+            onKeyDown={handleListKeyDown}
+            sx={{ boxShadow: 'md', bgcolor: 'background.body' }}
+          >
+            <MenuItem onClick={handleClose}>Single</MenuItem>
+            <MenuItem onClick={handleClose}>1.15</MenuItem>
+            <MenuItem onClick={handleClose}>Double</MenuItem>
+            <MenuItem onClick={handleClose}>Custom: 1.2</MenuItem>
+          </MenuList>
         </ClickAwayListener>
       </PopperUnstyled>
     </div>
