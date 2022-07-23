@@ -90,7 +90,9 @@ Aggregation footer row is empowered by another new feature called [Row pinning](
 It enables you to pin rows at the bottom or at the top of your data grid.
 Pinned rows are visible at all times while user scrolls the grid vertically.
 
-> TODO: add video
+<video style="margin-bottom: 24px;" autoplay muted loop playsinline controls>
+  <source src="/static/blog/aggregation-functions/row-pinning.mp4" type="video/mp4" />
+</video>
 
 Row pinning is available in Data grid Pro and Premium.
 
