@@ -9,7 +9,8 @@ card: true
 
 If you ever had a lot of data on a grid, you probably know that the ability to set different perspectives on data is essential to help users extract information. Typically, one would use at least filtering or sorting, but that barely scratches the surface of what one could do.
 
-The Data grid Premium is all about enabling and empowering advanced use cases for data analysis. And in that spirit, we’re overjoyed to announce that starting from [v5.15.0](changelog-link), you can now use [aggregation functions](/x/react-data-grid/aggregation/), and with a couple of clicks, extract information like **sum**, **average**, **count**, and others.
+The Data grid Premium is all about enabling and empowering advanced use cases for data analysis. 
+And in that spirit, we’re overjoyed to announce that starting from [v5.15.0](https://github.com/mui/mui-x/blob/master/CHANGELOG.md#5150), you can now use [aggregation functions](/x/react-data-grid/aggregation/), and with a couple of clicks, extract information like **sum**, **average**, **count**, and others.
 
 ## Wait, what is an aggregation function?
 
