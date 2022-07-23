@@ -17,15 +17,11 @@ const faqData = [
     summary: 'How do I know if I need to buy a license?',
     detail: (
       <React.Fragment>
-        If you are in doubt, check the license file of the npm package you're installing.
-        <br />
-        <br />
-        For instance <Link href="https://unpkg.com/@mui/x-data-grid/LICENSE">
-          @mui/x-data-grid
-        </Link>{' '}
-        is MIT while{' '}
-        <Link href="https://unpkg.com/@mui/x-data-grid-pro/LICENSE">@mui/x-data-grid-pro</Link> is
-        commercial.
+        If you are in doubt, check the license file of the npm package you're installing. For
+        instance <Link href="https://unpkg.com/@mui/x-data-grid/LICENSE">@mui/x-data-grid</Link> is
+        an MIT License (free) while{' '}
+        <Link href="https://unpkg.com/@mui/x-data-grid-pro/LICENSE">@mui/x-data-grid-pro</Link> is a
+        Commercial License.
       </React.Fragment>
     ),
   },
@@ -64,20 +60,30 @@ const faqData = [
     ),
   },
   {
-    summary: 'Why does developers using MUI X indirectly needs to be licensed?',
+    summary: 'Why do we must license developers not using the software directly?',
     detail: (
       <React.Fragment>
-        The number of seats purchased must include developers using MUI X Pro or Premium directly{' '}
-        <strong>and indirectly</strong>.
+        Our pricing model requires all developers working on the same project that the software is
+        used into to be licensed. This is designed to make it easier for your engineers to use the
+        software without having to constantly verify if they have the right number of seats. It aims
+        to replicate one of the great properties open-source licenses have: simplicity.
         <br />
         <br />
-        We are including indirect developers in the pricing model to help reduce the creation of
-        silos in your engineering organization. If only direct developers needed a license, then
-        only a handful of engineers would be allowed to use MUI X.
+        Our pricing model also requires developers using the software indirectly to be licensed,
+        e.g. through a wrapper library. This is because the more developers in your organization
+        using the software, the more they need comprehensive documentation, and the more hedge cases
+        they will ask to be supported.
         <br />
         <br />
-        In exchange, the price point per developer is lower than it would be if only direct
-        developers needed a seat.
+        The price point per developer was adjusted to be much lower than what it would be if only
+        direct use needed a license.{' '}
+        <Link
+          target="_blank"
+          rel="noopener"
+          href="https://mui.com/store/legal/mui-x-eula/#required-quantity-of-licenses"
+        >
+          The clause in the EULA.
+        </Link>
       </React.Fragment>
     ),
   },

@@ -36,8 +36,9 @@ export default function WhatToExpect() {
             </Box>
             <Typography variant="body2" color="text.secondary">
               You can use the software in a production environment forever. All the versions of the
-              software released until the end of your subscription are available. There are no
-              further charges unless you choose to continue development.
+              software released until the end of your subscription are available in perpetuity.
+              There are no further charges unless you choose to continue development. See the
+              &quot;Development license&quot; section of this page for more details.
             </Typography>
           </Paper>
         </Grid>
@@ -56,10 +57,10 @@ export default function WhatToExpect() {
               </Typography>
             </Box>
             <Typography variant="body2" color="text.secondary">
-              The licenses are sold on a per-developer basis. The Pro plan includes a cap at 10
-              developers, extra developers do not need to be licensed. You can contact{' '}
-              <Link href="mailto:sales@mui.com">sales</Link> for a volume discount when licensing
-              over 50 developers under the Premium plan.
+              The licenses are sold on a per-developer basis, using the software directly or
+              indirectly. The Pro plan includes a cap at 10 developers, extra developers do not need
+              to be licensed. You can contact <Link href="mailto:sales@mui.com">sales</Link> for a
+              volume discount when licensing over 50 developers under the Premium plan.
             </Typography>
           </Paper>
         </Grid>
@@ -78,9 +79,11 @@ export default function WhatToExpect() {
               </Typography>
             </Box>
             <Typography variant="body2" color="text.secondary">
-              With your purchase you are entitled to technical support (for MUI X components) and
-              access to new versions for the duration of your subscription. You can{' '}
-              <Link href="https://mui.com/x/introduction/support/">learn more about support</Link>{' '}
+              With your purchase you receive support and access to new versions for the duration of
+              your subscription. You can{' '}
+              <Link href="https://mui.com/x/introduction/support/#technical-support">
+                learn more about support
+              </Link>{' '}
               in the docs. Note that, except for critical issues, e.g. security, we release bug
               fixes, and other improvements on top of the latest version, instead of patching older
               versions.
