@@ -7,7 +7,8 @@
 You can make your application use the dark theme as the default—regardless of the user's preference—by adding `mode: 'dark'` to the `createTheme` helper:
 
 ```js
-import { ThemeProvider, createTheme, CssBaseline } from '@mui/material/styles';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
 
 const darkTheme = createTheme({
   palette: {
