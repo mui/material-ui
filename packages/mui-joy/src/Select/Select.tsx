@@ -1,5 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import { OverrideProps, DefaultComponentProps } from '@mui/types';
 import {
   unstable_capitalize as capitalize,
   unstable_useForkRef as useForkRef,
@@ -18,7 +19,7 @@ import composeClasses from '@mui/base/composeClasses';
 import { ListRoot } from '../List/List';
 import Unfold from '../internal/svg-icons/Unfold';
 import { styled, useThemeProps } from '../styles';
-import { SelectProps, SelectStaticProps, SelectOwnerState } from './SelectProps';
+import { SelectOwnProps, SelectStaticProps, SelectOwnerState, SelectTypeMap } from './SelectProps';
 import selectClasses, { getSelectUtilityClass } from './selectClasses';
 
 function defaultRenderSingleValue<TValue>(selectedOption: SelectOption<TValue> | null) {
@@ -240,7 +241,7 @@ const SelectIndicator = styled('span', {
 });
 
 const Select = React.forwardRef(function Select<TValue>(
-  inProps: SelectProps<TValue>,
+  inProps: SelectOwnProps<TValue>,
   ref: React.ForwardedRef<any>,
 ) {
   const props = useThemeProps({
@@ -428,7 +429,7 @@ const Select = React.forwardRef(function Select<TValue>(
       anchorEl,
       disablePortal: true,
       open: listboxOpen,
-      placement: 'bottom-start' as const,
+      placement: 'bottom' as const,
       component: SelectListbox,
       as: listboxComponent,
       modifiers: cachedModifiers,
@@ -480,7 +481,21 @@ const Select = React.forwardRef(function Select<TValue>(
       )}
     </React.Fragment>
   );
-});
+}) as SelectComponent;
+
+interface SelectComponent {
+  <TValue extends {}, C extends React.ElementType>(
+    props: {
+      /**
+       * The component used for the root node.
+       * Either a string to use a HTML element or a component.
+       */
+      component: C;
+    } & OverrideProps<SelectTypeMap<TValue>, C>,
+  ): JSX.Element | null;
+  <TValue extends {}>(props: DefaultComponentProps<SelectTypeMap<TValue>>): JSX.Element | null;
+  propTypes?: any;
+}
 
 Select.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
@@ -525,7 +540,7 @@ Select.propTypes /* remove-proptypes */ = {
   /**
    * The default selected value. Use when the component is not controlled.
    */
-  defaultValue: PropTypes.object,
+  defaultValue: PropTypes /* @typescript-to-proptypes-ignore */.any,
   /**
    * If `true`, the component is disabled.
    * @default false

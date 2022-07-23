@@ -1,5 +1,5 @@
 import React from 'react';
-import { OverridableStringUnion } from '@mui/types';
+import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import { SelectUnstyledCommonProps, SelectOption } from '@mui/base/SelectUnstyled';
 import { PopperUnstyledProps } from '@mui/base/PopperUnstyled';
 import { ListProps } from '../List/ListProps';
@@ -84,7 +84,7 @@ export interface SelectStaticProps extends SelectUnstyledCommonProps {
   variant?: OverridableStringUnion<VariantProp, SelectPropsVariantOverrides>;
 }
 
-export interface SelectProps<TValue extends {}> extends SelectStaticProps {
+export interface SelectOwnProps<TValue extends {}> extends SelectStaticProps {
   /**
    * The default selected value. Use when the component is not controlled.
    */
@@ -105,9 +105,21 @@ export interface SelectProps<TValue extends {}> extends SelectStaticProps {
   value?: TValue | null;
 }
 
-export interface SelectOwnerState<TValue> extends SelectProps<TValue> {
+export interface SelectOwnerState<TValue> extends SelectOwnProps<TValue> {
   active: boolean;
   disabled: boolean;
   focusVisible: boolean;
   open: boolean;
 }
+
+export interface SelectTypeMap<TValue extends {}, P = {}, D extends React.ElementType = 'button'> {
+  props: P & SelectOwnProps<TValue>;
+  defaultComponent: D;
+}
+
+export type SelectProps<
+  TValue extends {},
+  D extends React.ElementType = SelectTypeMap<TValue>['defaultComponent'],
+> = OverrideProps<SelectTypeMap<TValue, {}, D>, D> & {
+  component?: D;
+};
