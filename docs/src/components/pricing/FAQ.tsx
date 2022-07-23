@@ -63,16 +63,16 @@ const faqData = [
     summary: 'Why do we must license developers not using the software directly?',
     detail: (
       <React.Fragment>
-        Our pricing model requires all developers working on a project using MUI X to be licensed. 
-        This is designed to make it easier for your engineers to use MUI X components
-        without having to constantly verify if they have the right number of seats. It aims
-        to replicate one of the great properties open-source licenses have: simplicity.
+        Our pricing model requires all developers working on a project using MUI X to be licensed.
+        This is designed to make it easier for your engineers to use MUI X components without having
+        to constantly verify if they have the right number of seats. It aims to replicate one of the
+        great properties open-source licenses have: simplicity.
         <br />
         <br />
-        Our pricing model also requires developers indirectly using MUI X to be licensed,
-        e.g. through a wrapper library. This is because the more developers in your organization
-        using the software, the more they need comprehensive documentation, and the more hedge cases
-        they will ask to be supported.
+        Our pricing model also requires developers indirectly using MUI X to be licensed, e.g.
+        through a wrapper library. This is because the more developers in your organization using
+        the software, the more they need comprehensive documentation, and the more hedge cases they
+        will ask to be supported.
         <br />
         <br />
         The price point per developer was adjusted to be much lower than what it would be if only
