@@ -7,7 +7,11 @@ packageName: '@mui/base'
 
 # No SSR
 
-<p class="description">The <code>NoSsr</code> component defers the rendering of children components from the server to the client.</p>
+<p class="description">The NoSsr component defers the rendering of children components from the server to the client.</p>
+
+## Introduction
+
+`NoSsr` is a utility component that prevents its children from being rendered on the server.
 
 This component can be useful in a variety of situations:
 
@@ -19,13 +23,29 @@ This component can be useful in a variety of situations:
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
-## Basic usage
+## Component
 
-At its core, the `NoSsr` component's purpose is to **defer rendering** from the server to the client, as shown in the following demo:
+### Usage
+
+After [installation](/base/getting-started/installation/), you can start building with this component using the following basic elements:
+
+```jsx
+import NoSsr from '@mui/base/NoSsr';
+
+export default function MyApp() {
+  return <NoSsr>{/* element to be rendered on the client side */}</NoSsr>;
+}
+```
+
+### Basics
+
+At its core, the `NoSsr` component's purpose is to defer rendering from the server to the client, as shown in the following demo:
 
 {{"demo": "SimpleNoSsr.js"}}
 
-## Delay client-side rendering
+## Customization
+
+### Delay client-side rendering
 
 You can also use `NoSsr` to delay the rendering of specific components on the client side—for example, to let the rest of the application load before an especially complex or data-heavy component.
 
@@ -33,4 +53,4 @@ The following demo shows how to use the `defer` prop to prioritize rendering the
 
 {{"demo": "FrameDeferring.js"}}
 
-> **Note**: when using `NoSsr` in this way, React applies [two commits](https://reactjs.org/docs/strict-mode.html#detecting-unexpected-side-effects) instead of one.
+:::warning When using `NoSsr` in this way, React applies [two commits](https://reactjs.org/docs/strict-mode.html#detecting-unexpected-side-effects) instead of one. :::
