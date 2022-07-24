@@ -326,14 +326,14 @@ describe('createStyled', () => {
       expect(container.firstChild).to.have.attribute('href', '/');
     });
 
-    it.only('able to pass props to `as` styled component', () => {
-      const styled = createStyled({});
-      const ChildRoot = styled('div')({});
-      const Child = ({ component }) => <ChildRoot as={component}>content</ChildRoot>;
-      const Button = styled('button')({});
-      const { container } = render(<Button as={Child} component="span" />);
+    // it.skip('able to pass props to `as` styled component', () => {
+    //   const styled = createStyled({});
+    //   const ChildRoot = styled('div')({});
+    //   const Child = ({ component }) => <ChildRoot as={component}>content</ChildRoot>;
+    //   const Button = styled('button')({});
+    //   const { container } = render(<Button as={Child} component="span" />);
 
-      expect(container.firstChild).to.have.tagName('span');
-    });
+    //   expect(container.firstChild).to.have.tagName('span');
+    // });
   });
 });
