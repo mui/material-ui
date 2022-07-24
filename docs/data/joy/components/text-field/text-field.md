@@ -30,17 +30,23 @@ export default function MyApp() {
 }
 ```
 
+### Variants
+
+The text field component supports the four global variants: solid (default), soft, outlined, and plain.
+
+{{"demo": "TextFieldVariants.tsx"}}
+
 ### Sizes
 
 The text field component comes with three sizes out of the box: `sm`, `md` (the default), and `lg`.
 
 {{"demo": "TextFieldSizes.tsx"}}
 
-### Variants
+### Colors
 
-The text field component supports the four global variants: solid (default), soft, outlined, and plain.
+Toggle the palette that's being used to color the by text field by using the `color` prop.
 
-{{"demo": "TextFieldVariants.tsx"}}
+{{"demo": "TextFieldColors.tsx"}}
 
 ### Form props
 
