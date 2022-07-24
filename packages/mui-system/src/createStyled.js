@@ -1,3 +1,7 @@
+// Both emotion & styled-components is using `@emotion/is-prop-valid`
+// emotion: https://github.com/emotion-js/emotion/blob/26ded6109f/packages/styled/src/utils.js
+// styled-components: https://github.com/styled-components/styled-components/blob/38256f562b/packages/styled-components/src/models/StyledComponent.ts
+import isPropValid from '@emotion/is-prop-valid';
 import styledEngineStyled from '@mui/styled-engine';
 import { getDisplayName } from '@mui/utils';
 import createTheme from './createTheme';
@@ -6,6 +10,17 @@ import defaultStyleFunctionSx from './styleFunctionSx';
 
 function isEmpty(obj) {
   return Object.keys(obj).length === 0;
+}
+
+function isStringTag(tag) {
+  // https://github.com/emotion-js/emotion/blob/26ded6109fcd8ca9875cc2ce4564fee678a3f3c5/packages/styled/src/utils.js#L40
+  return (
+    typeof tag === 'string' &&
+    // 96 is one less than the char code
+    // for "a" so this is checking that
+    // it's a lowercase character
+    tag.charCodeAt(0) > 96
+  );
 }
 
 const getStyleOverrides = (name, theme) => {
@@ -104,6 +119,9 @@ export default function createStyled(input = {}) {
     } else if (componentSlot) {
       // any other slot specified
       shouldForwardPropOption = slotShouldForwardProp;
+    } else if (isStringTag(tag)) {
+      // if no `slot` specified and tag is string (html), preserve the behavior in emotion & styled-components.
+      shouldForwardPropOption = (prop) => isPropValid(prop) && shouldForwardProp(prop);
     }
 
     const defaultStyledResolver = styledEngineStyled(tag, {
