@@ -458,6 +458,7 @@ const Select = React.forwardRef(function Select<TValue>(
             {startDecorator}
           </SelectStartDecorator>
         )}
+
         <SelectButton {...buttonProps}>
           {selectedOptions ? renderValue(selectedOptions) : placeholder}
         </SelectButton>
@@ -466,6 +467,7 @@ const Select = React.forwardRef(function Select<TValue>(
             {endDecorator}
           </SelectEndDecorator>
         )}
+
         {indicator && (
           <SelectIndicator className={classes.indicator} ownerState={ownerState}>
             {indicator}
@@ -503,6 +505,17 @@ Select.propTypes /* remove-proptypes */ = {
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
   // ----------------------------------------------------------------------
   /**
+   * A ref for imperative actions. It currently only supports `focusVisible()` action.
+   */
+  action: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.shape({
+      current: PropTypes.shape({
+        focusVisible: PropTypes.func.isRequired,
+      }),
+    }),
+  ]),
+  /**
    * If `true`, the select element is focused during the first mount
    * @default false
    */
@@ -520,7 +533,8 @@ Select.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
-   * @ignore
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
   /**
@@ -528,8 +542,8 @@ Select.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   componentsProps: PropTypes.shape({
+    button: PropTypes.object,
     listbox: PropTypes.object,
-    popper: PropTypes.object,
     root: PropTypes.object,
   }),
   /**
@@ -547,6 +561,17 @@ Select.propTypes /* remove-proptypes */ = {
    */
   disabled: PropTypes.bool,
   /**
+   * Trailing adornment for the select.
+   */
+  endDecorator: PropTypes.node,
+  /**
+   * The indicator(*) for the select.
+   *    ________________
+   *   [ value        * ]
+   *    ‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾
+   */
+  indicator: PropTypes.node,
+  /**
    * `id` attribute of the listbox element.
    * Also used to derive the `id` attributes of options.
    */
@@ -561,10 +586,18 @@ Select.propTypes /* remove-proptypes */ = {
    */
   onChange: PropTypes.func,
   /**
+   * Triggered when focus leaves the menu and the menu should close.
+   */
+  onClose: PropTypes.func,
+  /**
    * Callback fired when the component requests to be opened.
    * Use in controlled mode (see listboxOpen).
    */
   onListboxOpenChange: PropTypes.func,
+  /**
+   * Text to show when there is no selected value.
+   */
+  placeholder: PropTypes.node,
   /**
    * Function that customizes the rendering of the selected value.
    */
@@ -577,6 +610,10 @@ Select.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
+   * Leading adornment for the select.
+   */
+  startDecorator: PropTypes.node,
+  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
@@ -588,7 +625,7 @@ Select.propTypes /* remove-proptypes */ = {
    * The selected value.
    * Set to `null` to deselect all options.
    */
-  value: PropTypes.oneOfType([PropTypes.oneOf(['']), PropTypes.any]),
+  value: PropTypes /* @typescript-to-proptypes-ignore */.any,
   /**
    * The variant to use.
    * @default 'solid'

@@ -29,7 +29,6 @@ export interface PopperUnstyledOwnProps {
           onExited: () => {};
         };
       }) => React.ReactNode);
-  component?: React.ElementType;
   /**
    * An HTML element or function that returns one.
    * The `container` will have the portal children appended to it.
