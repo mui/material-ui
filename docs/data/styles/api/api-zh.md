@@ -6,9 +6,9 @@ title: '@mui/core/styles 的 API 参考文档。'
 
 <p class="description">一个返回 <a href="https://cssinjs.org/jss-api/#generate-your-class-names"> 类名称生成器函数 </a> 的函数。</p>
 
-> ⚠️ `@mui/styles` is the _**legacy**_ styling solution for MUI. It depends on [JSS](https://cssinjs.org/) as a styling solution, which is not used in the `@mui/material` anymore, deprecated in v5. If you don't want to have both Emotion & JSS in your bundle, please refer to the [`@mui/system`](/system/basics/) documentation which is the recommended alternative.
+> ⚠️ `@mui/styles`是MUI的_**传统**_样式解决方案。 它依赖于 [JSS ](https://cssinjs.org/)作为样式解决方案，在`@mui/material`中已经不使用了，在v5中被废弃。 如果你不想在你的捆绑包里同时有Emotion和JSS，请参考[`@mui/system`](/system/basics/)文档，这是推荐的替代方案。
 
-> ⚠️ `@mui/styles` is not compatible with [React.StrictMode](https://reactjs.org/docs/strict-mode.html) or React 18.
+> ⚠️ `@mui/styles`与 [React.StrictMode](https://reactjs.org/docs/strict-mode.html) 或 React 18 不兼容。
 
 ## `createGenerateClassName([options]) => class name generator`
 
@@ -112,7 +112,7 @@ export default function MyComponent(props) {
 
 ## `ServerStyleSheets`
 
-这是一个处理服务器端渲染的类助手（class helper）。 [You can follow this guide for a practical approach](/material-ui/guides/server-rendering/).
+这是一个处理服务器端渲染的类助手（class helper）。 [你可以遵循本指南的实用方法](/material-ui/guides/server-rendering/)
 
 ```jsx
 import ReactDOMServer from 'react-dom/server';
@@ -166,8 +166,8 @@ const response = `
 3. `options` (_object_ [optional]):
 
 - `options.defaultTheme`（_object_ [optional]）：如果未通过主题提供者提供主题，则使用默认主题。
-- `options.withTheme` (_bool_ [optional])：默认值是 `false`。 Provide the `theme` object to the component as a prop.
-- `options.name` (_string_ [optional]): 样式表的名称。 Useful for debugging. If the value isn't provided, it will try to fallback to the name of the component.
+- `options.withTheme` (_bool_ [optional])：默认值是 `false`。 将`主题`对象作为一个道具提供给组件。
+- `options.name` (_string_ [optional]): 样式表的名称。 有助于调试。 如果没有提供这个值，它将尝试退回到组件的名称。
 - `options.flip` (_bool_ [optional]): When set to `false`, this sheet will opt-out the `rtl` transformation. 如果设置为 `true`时，则会反转样式。 When set to `true`, the styles are inversed. 当设置为 `null`，它依据 `theme.direction` 而定。 When set to `null`, it follows `theme.direction`.
 - 其他的键将会作为 options 参数传递给 [jss.createStyleSheet([styles], [options])](https://cssinjs.org/jss-api/#create-style-sheet)。
 
@@ -207,7 +207,7 @@ export default function StyledComponents() {
 
 此组件允许您更改样式解决方案的行为。 多亏了 context，选项可以在 React 树下层使用。
 
-It should preferably be used at **the root of your component tree**.
+它最好是在你的**组件树的根部**使用。
 
 ### 属性
 
@@ -283,7 +283,7 @@ export default function MyComponent() {
 
 - 它添加了一个 `classes` 属性，因此您可以从外部覆盖注入的类名。
 - 它将 refs 转发给内部的组件。
-- 它 **不会** 拷贝静态文件。 For instance, it can be used to define a `getInitialProps()` static method (next.js).
+- 它 **不会** 拷贝静态文件。 例如，它可以用来定义一个`getInitialProps()`静态方法（next.js）。
 
 ### 参数
 
@@ -292,7 +292,7 @@ export default function MyComponent() {
 
 - `options.defaultTheme`（_object_ [optional]）：如果未通过主题提供者提供主题，则使用默认主题。
 - `options.withTheme` (_bool_ [optional])：默认值是 `false`。 将 `theme` 对象作为属性提供给组件。
-- `options.name` (_string_ [optional]): 样式表的名称。 Useful for debugging. Useful for debugging. 如果未提供该值，它将尝试回退到组件的名称。
+- `options.name` (_string_ [optional]): 样式表的名称。 有助于调试。 Useful for debugging. 如果未提供该值，它将尝试回退到组件的名称。
 - `options.flip` (_bool_ [optional]): When set to `false`, this sheet will opt-out the `rtl` transformation. 如果设置为 `true`时，则会反转样式。 When set to `true`, the styles are inversed. 当设置为 `null`，它依据 `theme.direction` 而定。 When set to `null`, it follows `theme.direction`.
 - 其他的键将会作为 options 参数传递给 [jss.createStyleSheet([styles], [options])](https://cssinjs.org/jss-api/#create-style-sheet)。
 
