@@ -18,7 +18,7 @@ export default function TextFieldFormProps() {
       <TextField label="Label" placeholder="Type in here..." disabled />
       <TextField
         label="Label"
-        placeholder="Type in here..."
+        placeholder="Type in here…"
         helperText="This is a helper text"
       />
     </Box>

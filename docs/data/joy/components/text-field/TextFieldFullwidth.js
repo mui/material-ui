@@ -5,7 +5,7 @@ import TextField from '@mui/joy/TextField';
 export default function TextFieldFullWidth() {
   return (
     <Box sx={{ width: '100%' }}>
-      <TextField label="Label" placeholder="Type in here..." fullWidth />
+      <TextField label="Label" placeholder="Type in here…" fullWidth />
     </Box>
   );
 }

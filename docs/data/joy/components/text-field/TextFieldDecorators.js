@@ -9,7 +9,7 @@ export default function TextFieldDecorator() {
     <Box sx={{ p: 4 }}>
       <TextField
         label="Label"
-        placeholder="Type in here..."
+        placeholder="Type in here…"
         startDecorator={<PersonRoundedIcon fontSize="small" />}
         endDecorator={
           <Chip size="sm" variant="soft">

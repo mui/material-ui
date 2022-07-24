@@ -13,10 +13,10 @@ export default function TextFieldVariants() {
         flexWrap: 'wrap',
       }}
     >
-      <TextField label="Solid" placeholder="Type in here..." variant="solid" />
-      <TextField label="Soft" placeholder="Type in here..." variant="soft" />
-      <TextField label="Outlined" placeholder="Type in here..." variant="outlined" />
-      <TextField label="Plain" placeholder="Type in here..." variant="plain" />
+      <TextField label="Solid" placeholder="Type in here…" variant="solid" />
+      <TextField label="Soft" placeholder="Type in here…" variant="soft" />
+      <TextField label="Outlined" placeholder="Type in here…" variant="outlined" />
+      <TextField label="Plain" placeholder="Type in here…" variant="plain" />
     </Box>
   );
 }

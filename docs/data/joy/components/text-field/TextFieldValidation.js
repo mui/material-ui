@@ -7,7 +7,7 @@ export default function TextFieldValidator() {
     <Box sx={{ p: 4 }}>
       <TextField
         label="Label"
-        placeholder="Type in here..."
+        placeholder="Type in here…"
         error
         helperText="You got this wrong. Try again!"
       />
