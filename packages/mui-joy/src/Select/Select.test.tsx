@@ -18,6 +18,8 @@ describe('Joy <Select />', () => {
     ThemeProvider,
     refInstanceof: window.HTMLDivElement,
     muiName: 'JoySelect',
+    testDeepOverrides: { slotName: 'button', slotClassName: classes.button },
+    testVariantProps: { variant: 'soft' },
     skip: ['classesRoot', 'propsSpread', 'componentProp', 'componentsProp'],
   }));
 
@@ -420,37 +422,6 @@ describe('Joy <Select />', () => {
     fireEvent.click(options[0]);
 
     expect(onClick.callCount).to.equal(1);
-  });
-
-  it('should support native form validation', function test() {
-    if (/jsdom/.test(window.navigator.userAgent)) {
-      // see https://github.com/jsdom/jsdom/issues/123
-      this.skip();
-    }
-
-    const handleSubmit = spy((event) => {
-      // avoid karma reload.
-      event.preventDefault();
-    });
-    const Form = (props: any) => (
-      <form onSubmit={handleSubmit}>
-        <Select required name="country" {...props}>
-          <Option value="" />
-          <Option value="france">France</Option>
-          <Option value="germany">Germany</Option>
-          <Option value="china">China</Option>
-        </Select>
-        <button type="submit" />
-      </form>
-    );
-    const { container, setProps } = render(<Form value="" />);
-
-    fireEvent.click(container.querySelector('button[type=submit]')!);
-    expect(handleSubmit.callCount).to.equal(0, 'the select is empty it should disallow submit');
-
-    setProps({ value: 'france' });
-    fireEvent.click(container.querySelector('button[type=submit]')!);
-    expect(handleSubmit.callCount).to.equal(1);
   });
 
   it('should not override the event.target on mouse events', () => {
