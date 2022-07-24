@@ -4,23 +4,23 @@
 
 您还在找 v3 版本的文档吗？ [您可以在这里找到它们](https://material-ui.com/versions/) 。
 
-:::info This document is a work in progress. Have you upgraded your site and run into something that's not covered here? [Add your changes on GitHub](https://github.com/mui/material-ui/blob/master/docs/data/material/migration/migration-v3/migration-v3.md). :::
+::info 本文件是一项正在进行的工作。 你是否升级了你的网站并遇到了这里没有涉及的问题？ [在GitHub上添加你的修改](https://github.com/mui/material-ui/blob/master/docs/data/material/migration/migration-v3/migration-v3.md) :::
 
 ## 简介
 
-This is a reference for upgrading your site from Material UI v3 to v4. While there's a lot covered here, you probably won't need to do everything for your site. We'll do our best to keep things easy to follow, and as sequential as possible so you can quickly get rocking on v4!
+这是一个将你的网站从Material UI v3升级到v4的参考。 虽然这里涵盖了很多内容，但你可能不需要为你的网站做所有事情。 我们会尽我们最大的努力让文档简单易懂，并尽可能有序地介绍，这样您可以迅速对 v4 版本游刃有余。
 
 ## 为什么您需要迁移呢
 
-This documentation page covers the **how** of migrating from v3 to v4. The **why** is covered in the [release blog post on Medium](https://mui.com/blog/material-ui-v4-is-out/).
+本文档页面涵盖了**如何**从v3迁移到v4。 **原因**[在Medium上的发布博文](https://mui.com/blog/material-ui-v4-is-out/)中有所阐述。
 
 ## 更新您的依赖包
 
-The very first thing you will need to do is to update your dependencies.
+你需要做的第一件事就是更新你的依赖关系。
 
-### Update Material UI version
+### 更新Material UI版本
 
-You need to update your `package.json` to use the latest version of Material UI.
+你需要更新你的`package.json`以使用最新版本的Material UI。
 
 ```json
 "dependencies": {
@@ -28,7 +28,7 @@ You need to update your `package.json` to use the latest version of Material UI.
 }
 ```
 
-Or run
+或者运行
 
 ```sh
 npm install @material-ui/core
@@ -40,11 +40,11 @@ yarn add @material-ui/core
 
 ### 更新 React 的版本
 
-The minimum required version of React was increased from `react@^16.3.0` to `react@^16.8.0`. This allows us to rely on [Hooks](https://reactjs.org/docs/hooks-intro.html) (we no longer use the class API).
+React的最低要求版本从`react@^16.3.0`增加到`react@^16.8.0`. 这使我们能够依赖[Hooks](https://reactjs.org/docs/hooks-intro.html)（我们不再使用类的API）。
 
-### Update Material UI Styles version
+### 更新Material UI风格版本
 
-If you were previously using `@material-ui/styles` with v3 you need to update your `package.json` to use the latest version of Material UI Styles.
+如果你之前使用`@material-ui/styles`与v3，你需要更新你的`package.json`以使用最新版本的Material UI Styles。
 
 ```json
 "dependencies": {
@@ -52,7 +52,7 @@ If you were previously using `@material-ui/styles` with v3 you need to update yo
 }
 ```
 
-Or run
+或者运行
 
 ```sh
 npm install @material-ui/styles
@@ -70,10 +70,10 @@ yarn add @material-ui/styles
 
 ### Styles（样式表单）
 
-- ⚠️ Material UI depends on JSS v10. JSS v10 is not backward compatible with v9. 请保证您的开发环境中未安装 JSS v9 版本。 （在您的 `package.json` 中删除 `react-jss` 会有所帮助）。 StylesProvider 组件替代了 JssProvider 组件。
+- ⚠️ Material UI依赖于JSS v10。 JSS v10与v9不能向后兼容。 请保证您的开发环境中未安装 JSS v9 版本。 （在您的 `package.json` 中删除 `react-jss` 会有所帮助）。 StylesProvider 组件替代了 JssProvider 组件。
 - 请移除 `withTheme()` 中的第一个可选的参数。 （第一个参数是为从未出现的可能的未来选项的一个占位符。）
 
-  It matches the [emotion API](https://emotion.sh/docs/introduction) and the [styled-components API](https://styled-components.com).
+  它与[emotion API](https://emotion.sh/docs/introduction)和[styled-components API](https://styled-components.com)相匹配。
 
   ```diff
   -const DeepChild = withTheme()(DeepChildRaw);
@@ -179,7 +179,7 @@ function MySelect({ children }) {
 }
 ```
 
-This change is explained in more detail in the [TypeScript guide](/material-ui/guides/typescript/#handling-value-and-event-handlers)
+这一变化在[TypeScript指南](/material-ui/guides/typescript/#handling-value-and-event-handlers)中得到了更详细的解释
 
 ### Button
 
@@ -209,7 +209,7 @@ This change is explained in more detail in the [TypeScript guide](/material-ui/g
   +<Fab variant="extended" />
   ```
 
-- [ButtonBase] 传递给`组件`的属性的组件需要能接受一个 ref。 The [composition guide](/material-ui/guides/composition/#caveat-with-refs) explains the migration strategy.
+- [ButtonBase] 传递给`组件`的属性的组件需要能接受一个 ref。 [构成指南](/material-ui/guides/composition/#caveat-with-refs)解释了迁移策略。
 
   当 `button` 属性设置为 true 时，这也适用于 `BottomNavigationAction`，`Button`，`CardActionArea`，`Checkbox`，`ExpansionPanelSummary`，`Fab`，`IconButton`，`MenuItem`，`Radio`，`StepButton`，`Tab`，`TableSortLabel` 以及 `ListItem`。
 
@@ -228,7 +228,7 @@ This change is explained in more detail in the [TypeScript guide](/material-ui/g
 - [DialogActions] 将 `disableActionSpacing` 属性重命名为 `disableSpacing`。
 - [DialogActions] 将 CSS 类 `action` 重命名为 `spacing`。
 - [DialogContentText] 不使用文字铸排变体 `subtitle1`，而使用 `body1`。
-- [Dialog] 子组件能够接受一个 ref。 The [composition guide](/material-ui/guides/composition/#caveat-with-refs) explains the migration strategy.
+- [Dialog] 子组件能够接受一个 ref。 [构成指南](/material-ui/guides/composition/#caveat-with-refs)解释了迁移策略。
 
 ### Divider
 
@@ -262,7 +262,7 @@ This change is explained in more detail in the [TypeScript guide](/material-ui/g
 
 ### Modal
 
-- [Modal] 子组件能够接受一个 ref。 The [composition guide](/material-ui/guides/composition/#caveat-with-refs) explains the migration strategy.
+- [Modal] 子组件能够接受一个 ref。 [构成指南](/material-ui/guides/composition/#caveat-with-refs)解释了迁移策略。
 
   这也适用于 `Dialog` 和 `Popover` 。
 
@@ -282,11 +282,11 @@ This change is explained in more detail in the [TypeScript guide](/material-ui/g
 
 ### Portal
 
-- [Portal] 当使用 `disablePortal`属性的时候，子元素需要能够接受一个 ref。 The [composition guide](/material-ui/guides/composition/#caveat-with-refs) explains the migration strategy.
+- [Portal] 当使用 `disablePortal`属性的时候，子元素需要能够接受一个 ref。 [构成指南](/material-ui/guides/composition/#caveat-with-refs)解释了迁移策略。
 
 ### Slide 滑动
 
-- [Slide] 子组件能够接受一个 ref。 The [composition guide](/material-ui/guides/composition/#caveat-with-refs) explains the migration strategy.
+- [Slide] 子组件能够接受一个 ref。 [构成指南](/material-ui/guides/composition/#caveat-with-refs)解释了迁移策略。
 
 ### Slider
 
@@ -381,7 +381,7 @@ This change is explained in more detail in the [TypeScript guide](/material-ui/g
 
 ### Tooltip
 
-- [Tooltip] 子组件能够接受一个 ref。 The [composition guide](/material-ui/guides/composition/#caveat-with-refs) explains the migration strategy.
+- [Tooltip] 子组件能够接受一个 ref。 [构成指南](/material-ui/guides/composition/#caveat-with-refs)解释了迁移策略。
 - [Tooltip] 相比以前任何聚焦都会出现，现在只会在 focus-visible 聚焦的时候出现。
 
 ### 文字铸排
