@@ -1,5 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import { unstable_capitalize as capitalize } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
 import { useTabs, TabsContext } from '@mui/base/TabsUnstyled';
@@ -11,10 +12,15 @@ import { getTabsUtilityClass } from './tabsClasses';
 import { TabsOwnerState, TabsTypeMap } from './TabsProps';
 
 const useUtilityClasses = (ownerState: TabsOwnerState) => {
-  const { orientation } = ownerState;
+  const { orientation, variant, color } = ownerState;
 
   const slots = {
-    root: ['root', orientation],
+    root: [
+      'root',
+      orientation,
+      variant && `variant${capitalize(variant)}`,
+      color && `color${capitalize(color)}`,
+    ],
   };
 
   return composeClasses(slots, getTabsUtilityClass, {});

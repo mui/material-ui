@@ -32,20 +32,23 @@ const TabRoot = styled(ListItemButtonRoot, {
   name: 'JoyTab',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: TabOwnerState }>(({ theme, ownerState }) => ({
-  justifyContent: 'center',
-  flexGrow: 1,
-  ...(ownerState.selected && {
-    boxShadow: theme.vars.shadow.sm,
-    fontWeight: 'initial',
-    ...(ownerState.variant !== 'solid' && {
-      backgroundColor: theme.vars.palette.background.body,
-      '&:hover': {
+})<{ ownerState: TabOwnerState }>(({ theme, ownerState }) => {
+  const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];
+  return {
+    justifyContent: 'center',
+    flexGrow: 1,
+    ...(ownerState.selected && {
+      boxShadow: theme.vars.shadow.sm,
+      fontWeight: 'initial',
+      ...(!variantStyle.backgroundColor && {
         backgroundColor: theme.vars.palette.background.body,
-      },
+        '&:hover': {
+          backgroundColor: theme.vars.palette.background.body,
+        },
+      }),
     }),
-  }),
-}));
+  };
+});
 
 const Tab = React.forwardRef(function Tab(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
@@ -64,7 +67,7 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
     onClick,
     onFocus,
     component,
-    variant = 'soft',
+    variant = 'plain',
     color: colorProp,
     ...other
   } = props;

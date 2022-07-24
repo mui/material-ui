@@ -8,6 +8,8 @@ export interface TabListColorOverrides {}
 
 export interface TabListVariantOverrides {}
 
+export interface TabListSizeOverrides {}
+
 export interface TabListTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P & {
     /**
@@ -20,6 +22,10 @@ export interface TabListTypeMap<P = {}, D extends React.ElementType = 'div'> {
      * This can be an element, or just a string.
      */
     children?: React.ReactNode;
+    /**
+     * The size of the component.
+     */
+    size?: OverridableStringUnion<'sm' | 'md' | 'lg', TabListSizeOverrides>;
     /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */

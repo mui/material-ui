@@ -1,32 +1,40 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import { unstable_capitalize as capitalize } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
 import { useTabsList } from '@mui/base/TabsListUnstyled';
 import { useSlotProps } from '@mui/base/utils';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
-import List from '../List/List';
+import { ListRoot } from '../List/List';
+import RowListContext from '../List/RowListContext';
 import { getTabListUtilityClass } from './tabListClasses';
 import { TabListProps, TabListOwnerState, TabListTypeMap } from './TabListProps';
 
 const useUtilityClasses = (ownerState: TabListOwnerState) => {
-  const { orientation } = ownerState;
+  const { orientation, size, variant, color } = ownerState;
 
   const slots = {
-    root: ['root', orientation],
+    root: [
+      'root',
+      orientation,
+      variant && `variant${capitalize(variant)}`,
+      color && `color${capitalize(color)}`,
+      size && `size${capitalize(size)}`,
+    ],
   };
 
   return composeClasses(slots, getTabListUtilityClass, {});
 };
 
-const TabListRoot = styled(List, {
+const TabListRoot = styled(ListRoot, {
   name: 'JoyTabList',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: TabListProps }>(({ theme }) => ({
   '--List-radius': theme.vars.radius.md,
-  '--List-gap': '8px',
+  '--List-gap': '0.5rem',
   '--List-padding': 'var(--List-gap)',
   '--List-divider-gap': '0px',
 }));
@@ -43,10 +51,13 @@ const TabList = React.forwardRef(function TabList(inProps, ref) {
     children,
     variant = 'soft',
     color = 'neutral',
+    size = 'md',
     ...other
   } = props;
 
   const { isRtl, orientation, getRootProps, processChildren } = useTabsList({ ...props, ref });
+
+  const row = orientation === 'horizontal';
 
   const ownerState = {
     ...props,
@@ -54,6 +65,10 @@ const TabList = React.forwardRef(function TabList(inProps, ref) {
     orientation,
     variant,
     color,
+    size,
+    row,
+    nesting: false,
+    scoped: true,
   };
 
   const classes = useUtilityClasses(ownerState);
@@ -64,10 +79,7 @@ const TabList = React.forwardRef(function TabList(inProps, ref) {
     externalSlotProps: {},
     externalForwardedProps: other,
     additionalProps: {
-      component,
-      row: orientation === 'horizontal',
-      variant,
-      color,
+      as: component,
     },
     ownerState,
     className: classes.root,
@@ -75,7 +87,21 @@ const TabList = React.forwardRef(function TabList(inProps, ref) {
 
   const processedChildren = processChildren();
 
-  return <TabListRoot {...tabsListRootProps}>{processedChildren}</TabListRoot>;
+  return (
+    <RowListContext.Provider value={row}>
+      {/* @ts-ignore conflicted ref types */}
+      <TabListRoot {...tabsListRootProps}>
+        {React.Children.map(processedChildren, (child, index) =>
+          React.isValidElement(child)
+            ? React.cloneElement(child, {
+                // to let List(Item|ItemButton) knows when to apply margin(Inline|Block)Start
+                ...(index === 0 && { 'data-first-child': '' }),
+              })
+            : child,
+        )}
+      </TabListRoot>
+    </RowListContext.Provider>
+  );
 }) as OverridableComponent<TabListTypeMap>;
 
 TabList.propTypes /* remove-proptypes */ = {
