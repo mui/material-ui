@@ -38,7 +38,7 @@ The text field component comes with three sizes out of the box: `sm`, `md` (the 
 
 ### Variants
 
-The text field component supports the four global variants: solid (default), soft, outlined and plain.
+The text field component supports the four global variants: solid (default), soft, outlined, and plain.
 
 {{"demo": "TextFieldVariants.js"}}
 
