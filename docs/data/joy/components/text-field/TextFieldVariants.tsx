@@ -6,7 +6,7 @@ export default function TextFieldVariants() {
   return (
     <Box
       sx={{
-        py: 4,
+        py: 2,
         display: 'grid',
         gap: 2,
         alignItems: 'center',

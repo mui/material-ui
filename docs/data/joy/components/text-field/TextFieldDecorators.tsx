@@ -6,7 +6,7 @@ import PersonRoundedIcon from '@mui/icons-material/PersonRounded';
 
 export default function TextFieldDecorator() {
   return (
-    <Box sx={{ p: 4 }}>
+    <Box sx={{ p: 2 }}>
       <TextField
         label="Label"
         placeholder="Type in here…"

@@ -4,7 +4,7 @@ import TextField from '@mui/joy/TextField';
 
 export default function TextFieldValidator() {
   return (
-    <Box sx={{ p: 4 }}>
+    <Box sx={{ p: 2 }}>
       <TextField
         label="Label"
         placeholder="Type in here…"
