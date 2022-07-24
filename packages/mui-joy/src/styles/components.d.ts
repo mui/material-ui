@@ -37,6 +37,9 @@ import { SliderProps, SliderSlot } from '../Slider/SliderProps';
 import { RadioProps, RadioSlot } from '../Radio/RadioProps';
 import { RadioGroupProps, RadioGroupSlot } from '../RadioGroup/RadioGroupProps';
 import { GridProps, GridSlot } from '../Grid/GridProps';
+import { MenuProps, MenuSlot } from '../Menu/MenuProps';
+import { MenuListProps, MenuListSlot } from '../MenuList/MenuListProps';
+import { MenuItemProps, MenuItemSlot } from '../MenuItem/MenuItemProps';
 
 export type OverridesStyleRules<
   ClassKey extends string = string,
@@ -198,5 +201,17 @@ export interface Components<Theme = unknown> {
   JoyTypography?: {
     defaultProps?: Partial<TypographyProps>;
     styleOverrides?: OverridesStyleRules<TypographySlot, TypographyProps, Theme>;
+  };
+  JoyMenu?: {
+    defaultProps?: Partial<MenuProps>;
+    styleOverrides?: OverridesStyleRules<MenuSlot, MenuProps, Theme>;
+  };
+  JoyMenuList?: {
+    defaultProps?: Partial<MenuListProps>;
+    styleOverrides?: OverridesStyleRules<MenuListSlot, MenuListProps, Theme>;
+  };
+  JoyMenuItem?: {
+    defaultProps?: Partial<MenuItemProps>;
+    styleOverrides?: OverridesStyleRules<MenuItemSlot, MenuItemProps, Theme>;
   };
 }
