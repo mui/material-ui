@@ -46,7 +46,6 @@ const ListItemRoot = styled('li', {
     '--List-itemButton-marginInline': `calc(-1 * var(--List-item-paddingLeft)) calc(-1 * var(--List-item-paddingRight))`,
     '--List-itemButton-marginBlock': 'calc(-1 * var(--List-item-paddingY))',
     alignItems: 'center',
-    marginBlock: 'var(--List-item-marginBlock)',
     marginInline: 'var(--List-item-marginInline)',
   },
   ownerState.nested && {
@@ -55,10 +54,9 @@ const ListItemRoot = styled('li', {
     '--NestedList-marginLeft': 'calc(-1 * var(--List-item-paddingLeft))',
     '--NestedList-item-paddingLeft': `calc(var(--List-item-paddingLeft) + var(--List-nestedInsetStart))`,
     // add negative margin to ListItem, ListItemButton to make them start from the edge.
-    '--List-itemButton-marginBlock': 'calc(-1 * var(--List-item-paddingY)) 0px',
+    '--List-itemButton-marginBlock': '0px',
     '--List-itemButton-marginInline':
       'calc(-1 * var(--List-item-paddingLeft)) calc(-1 * var(--List-item-paddingRight))',
-    '--List-item-marginBlock': 'calc(-1 * var(--List-item-paddingY)) 0px',
     '--List-item-marginInline':
       'calc(-1 * var(--List-item-paddingLeft)) calc(-1 * var(--List-item-paddingRight))',
     flexDirection: 'column',
@@ -77,7 +75,7 @@ const ListItemRoot = styled('li', {
     borderRadius: 'var(--List-item-radius)',
     display: 'flex',
     position: 'relative',
-    paddingBlockStart: 'var(--List-item-paddingY)',
+    paddingBlockStart: ownerState.nested ? 0 : 'var(--List-item-paddingY)',
     paddingBlockEnd: ownerState.nested ? 0 : 'var(--List-item-paddingY)',
     paddingInlineStart: 'var(--List-item-paddingLeft)',
     paddingInlineEnd: 'var(--List-item-paddingRight)',
