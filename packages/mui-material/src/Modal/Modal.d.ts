@@ -9,7 +9,7 @@ export type ModalTypeMap<D extends React.ElementType = 'div', P = {}> = ExtendMo
   props: P & {
     /**
      * A backdrop component. This prop enables custom backdrop rendering.
-     * @deprecated Use `components.Backdrop` instead. While this prop currently works, it will be removed in the next major version. 
+     * @deprecated Use `components.Backdrop` instead. While this prop currently works, it will be removed in the next major version.
      * Use the `components.Backdrop` prop to make your application ready for the next version of Material UI.
      * @default styled(Backdrop, {
      *   name: 'MuiModal',
