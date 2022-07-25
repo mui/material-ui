@@ -13,6 +13,7 @@ import { ListItemProps, ListItemTypeMap } from './ListItemProps';
 import { getListItemUtilityClass } from './listItemClasses';
 import NestedListContext from '../List/NestedListContext';
 import RowListContext from '../List/RowListContext';
+import WrapListContext from '../List/WrapListContext';
 import ComponentListContext from '../List/ComponentListContext';
 
 const useUtilityClasses = (ownerState: ListItemProps & { nesting: boolean }) => {
@@ -38,7 +39,7 @@ const ListItemRoot = styled('li', {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{
-  ownerState: ListItemProps & { row: boolean; 'data-first-child'?: string };
+  ownerState: ListItemProps & { row: boolean; wrap: boolean; 'data-first-child'?: string };
 }>(({ theme, ownerState }) => [
   !ownerState.nested && {
     // add negative margin to ListItemButton equal to this ListItem padding
@@ -81,9 +82,19 @@ const ListItemRoot = styled('li', {
     paddingInlineStart: 'var(--List-item-paddingLeft)',
     paddingInlineEnd: 'var(--List-item-paddingRight)',
     ...(ownerState['data-first-child'] === undefined && {
-      marginInlineStart: ownerState.row ? 'var(--List-gap)' : undefined,
-      marginBlockStart: ownerState.row ? undefined : 'var(--List-gap)',
+      ...(ownerState.row
+        ? {
+            marginInlineStart: 'var(--List-gap)',
+          }
+        : {
+            marginBlockStart: 'var(--List-gap)',
+          }),
     }),
+    ...(ownerState.row &&
+      ownerState.wrap && {
+        marginInlineStart: 'var(--List-gap)',
+        marginBlockStart: 'var(--List-gap)',
+      }),
     minBlockSize: 'var(--List-item-minHeight)',
     fontSize: 'var(--List-item-fontSize)',
     fontFamily: theme.vars.fontFamily.body,
@@ -131,6 +142,7 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
 
   const listComponent = React.useContext(ComponentListContext);
   const row = React.useContext(RowListContext);
+  const wrap = React.useContext(WrapListContext);
   const nesting = React.useContext(NestedListContext);
 
   const {
@@ -151,6 +163,7 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
     startAction,
     endAction,
     row,
+    wrap,
     variant,
     color,
     nesting,

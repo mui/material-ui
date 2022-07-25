@@ -14,11 +14,10 @@ export default function IconlessCheckbox() {
       <Box role="group" aria-labelledby="topping">
         <List
           row
+          wrap
           sx={{
-            '--List-gap': '0px',
+            '--List-gap': '8px',
             '--List-item-radius': '20px',
-            flexWrap: 'wrap',
-            gap: 1,
           }}
         >
           {[

@@ -9,6 +9,7 @@ import { ListProps, ListTypeMap } from './ListProps';
 import { getListUtilityClass } from './listClasses';
 import NestedListContext from './NestedListContext';
 import RowListContext from './RowListContext';
+import WrapListContext from './WrapListContext';
 import ComponentListContext from './ComponentListContext';
 
 const useUtilityClasses = (ownerState: ListProps & { nesting: boolean }) => {
@@ -112,8 +113,16 @@ export const ListRoot = styled('ul', {
         // --List-padding is not declared to let list uses --List-divider-gap by default.
         ...(ownerState.row
           ? {
-              paddingInline: 'var(--List-padding, var(--List-divider-gap))',
-              paddingBlock: 'var(--List-padding)',
+              ...(ownerState.wrap
+                ? {
+                    padding: 'var(--List-padding)',
+                    marginInlineStart: 'calc(-1 * var(--List-gap))',
+                    marginBlockStart: 'calc(-1 * var(--List-gap))',
+                  }
+                : {
+                    paddingInline: 'var(--List-padding, var(--List-divider-gap))',
+                    paddingBlock: 'var(--List-padding)',
+                  }),
             }
           : {
               paddingBlock: 'var(--List-padding, var(--List-divider-gap))',
@@ -125,6 +134,9 @@ export const ListRoot = styled('ul', {
         listStyle: 'none',
         display: 'flex',
         flexDirection: ownerState.row ? 'row' : 'column',
+        ...(ownerState.wrap && {
+          flexWrap: 'wrap',
+        }),
         flexGrow: 1,
         position: 'relative', // for sticky ListItem
         ...theme.variants[ownerState.variant!]?.[ownerState.color!],
@@ -146,6 +158,7 @@ const List = React.forwardRef(function List(inProps, ref) {
     children,
     size = 'md',
     row = false,
+    wrap = false,
     scoped = false,
     variant = 'plain',
     color = 'neutral',
@@ -158,6 +171,7 @@ const List = React.forwardRef(function List(inProps, ref) {
     nesting,
     scoped,
     row,
+    wrap,
     variant,
     color,
     ...props,
@@ -167,24 +181,28 @@ const List = React.forwardRef(function List(inProps, ref) {
 
   return (
     <RowListContext.Provider value={row}>
-      <ComponentListContext.Provider value={typeof component === 'string' ? component : undefined}>
-        <ListRoot
-          ref={ref}
-          as={component}
-          className={clsx(classes.root, className)}
-          ownerState={ownerState}
-          {...other}
+      <WrapListContext.Provider value={wrap}>
+        <ComponentListContext.Provider
+          value={typeof component === 'string' ? component : undefined}
         >
-          {React.Children.map(children, (child, index) =>
-            React.isValidElement(child)
-              ? React.cloneElement(child, {
-                  // to let List(Item|ItemButton) knows when to apply margin(Inline|Block)Start
-                  ...(index === 0 && { 'data-first-child': '' }),
-                })
-              : child,
-          )}
-        </ListRoot>
-      </ComponentListContext.Provider>
+          <ListRoot
+            ref={ref}
+            as={component}
+            className={clsx(classes.root, className)}
+            ownerState={ownerState}
+            {...other}
+          >
+            {React.Children.map(children, (child, index) =>
+              React.isValidElement(child)
+                ? React.cloneElement(child, {
+                    // to let List(Item|ItemButton) knows when to apply margin(Inline|Block)Start
+                    ...(index === 0 && { 'data-first-child': '' }),
+                  })
+                : child,
+            )}
+          </ListRoot>
+        </ComponentListContext.Provider>
+      </WrapListContext.Provider>
     </RowListContext.Provider>
   );
 }) as OverridableComponent<ListTypeMap>;
@@ -250,6 +268,13 @@ List.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
     PropTypes.string,
   ]),
+  /**
+   * Only for horizontal list.
+   * If `true`, the list sets the flex-wrap to "wrap" and adjust margin to have gap-like behavior (will move to `gap` in the future).
+   *
+   * @default false
+   */
+  wrap: PropTypes.bool,
 } as any;
 
 export default List;
