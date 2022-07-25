@@ -166,6 +166,7 @@ const List = React.forwardRef(function List(inProps, ref) {
     scoped = false,
     variant = 'plain',
     color = 'neutral',
+    role: roleProp,
     ...other
   } = props;
 
@@ -183,11 +184,7 @@ const List = React.forwardRef(function List(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  let role = menuContext || selectContext ? 'group' : undefined;
-  if (other.role) {
-    role = other.role;
-  }
-
+  const role = roleProp ?? (menuContext || selectContext ? 'group' : undefined);
   return (
     <RowListContext.Provider value={row}>
       <WrapListContext.Provider value={wrap}>
@@ -199,8 +196,8 @@ const List = React.forwardRef(function List(inProps, ref) {
             as={component}
             className={clsx(classes.root, className)}
             ownerState={ownerState}
-            {...other}
             role={role}
+            {...other}
           >
             {React.Children.map(children, (child, index) =>
               React.isValidElement(child)
@@ -243,6 +240,10 @@ List.propTypes /* remove-proptypes */ = {
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
+  /**
+   * @ignore
+   */
+  role: PropTypes /* @typescript-to-proptypes-ignore */.string,
   /**
    * If `true`, display the list in horizontal direction.
    * @default false
