@@ -83,7 +83,8 @@ The primary responsibility of this component is handling the focus state.
 
 ## Debugging
 
-To keep the listbox open for inspecting elements, you can enable the `Emulate a focused page` option from the [Chrome DevTool Rendering](https://developer.chrome.com/docs/devtools/rendering/apply-effects/#emulate-a-focused-page) tab. You can also access this option by using [command menu and search for it](https://developer.chrome.com/docs/devtools/command-menu/).
+To keep the list box open for inspecting elements, enable the `Emulate a focused page` option from the [Chrome DevTool Rendering](https://developer.chrome.com/docs/devtools/rendering/apply-effects/#emulate-a-focused-page) tab. 
+You can also access this option by using [command menu and search for it](https://developer.chrome.com/docs/devtools/command-menu/).
 
 ## Common examples
 
