@@ -36,7 +36,6 @@ const createReactApp = (demo: {
 
   files['package.json'] = {
     content: {
-      name: title,
       description,
       dependencies,
       devDependencies,
@@ -108,7 +107,6 @@ ReactDOM.createRoot(document.querySelector("#root")).render(
 
   files['package.json'] = {
     content: {
-      name: title,
       description,
       dependencies,
       devDependencies,
