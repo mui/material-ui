@@ -156,7 +156,7 @@ export default function MenuToolbarExample() {
         '--List-item-radius': '8px',
       }}
     >
-      <ListItem role="none">
+      <ListItem>
         <MenuButton
           open={menuIndex === 0}
           onOpen={() => setMenuIndex(0)}
@@ -183,7 +183,7 @@ export default function MenuToolbarExample() {
               <MenuItem {...itemProps}>
                 New Window {renderShortcut('⇧ ⌘ N')}
               </MenuItem>
-              <ListDivider role="none" />
+              <ListDivider />
               <MenuItem {...itemProps}>Open {renderShortcut('⌘ O')}</MenuItem>
               <MenuItem {...itemProps}>Open Folder</MenuItem>
             </Menu>
@@ -192,7 +192,7 @@ export default function MenuToolbarExample() {
           File
         </MenuButton>
       </ListItem>
-      <ListItem role="none">
+      <ListItem>
         <MenuButton
           open={menuIndex === 1}
           onOpen={() => setMenuIndex(1)}
@@ -214,7 +214,7 @@ export default function MenuToolbarExample() {
             >
               <MenuItem {...itemProps}>Undo {renderShortcut('⌘ Z')}</MenuItem>
               <MenuItem {...itemProps}>Redo {renderShortcut('⇧ ⌘ Z')}</MenuItem>
-              <ListDivider role="none" />
+              <ListDivider />
               <MenuItem {...itemProps}>Cut {renderShortcut('⌘ X')}</MenuItem>
               <MenuItem {...itemProps}>Copy {renderShortcut('⌘ Z')}</MenuItem>
               <MenuItem {...itemProps}>Paste {renderShortcut('⌘ V')}</MenuItem>
@@ -224,7 +224,7 @@ export default function MenuToolbarExample() {
           Edit
         </MenuButton>
       </ListItem>
-      <ListItem role="none">
+      <ListItem>
         <MenuButton
           open={menuIndex === 2}
           onOpen={() => setMenuIndex(2)}
