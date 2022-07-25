@@ -129,11 +129,11 @@ export default function EmailSubscribe({ sx }: { sx?: SxProps<Theme> }) {
               borderColor: (theme) =>
                 theme.palette.mode === 'dark'
                   ? theme.palette.primaryDark[300]
-                  : theme.palette.grey[500],
+                  : theme.palette.grey[400],
               boxShadow: (theme) =>
                 theme.palette.mode === 'dark'
                   ? '0 1px 2px 0 rgba(0 0 0 / 1)'
-                  : '0 1px 2px 0 rgba(0 0 0 / 0.15)',
+                  : '0 1px 2px 0 rgba(0 0 0 / 0.2)',
             },
 
             [`&.${inputBaseClasses.focused}`]: {
@@ -141,6 +141,11 @@ export default function EmailSubscribe({ sx }: { sx?: SxProps<Theme> }) {
                 theme.palette.mode === 'dark'
                   ? theme.palette.primaryDark[300]
                   : theme.palette.primary[500],
+              outline: '3px solid',
+              outlineColor: (theme) =>
+                theme.palette.mode === 'dark'
+                  ? theme.palette.primaryDark[500]
+                  : theme.palette.primary[200],
             },
           }}
         />
