@@ -241,7 +241,13 @@ const SelectIndicator = styled('span', {
 });
 
 const Select = React.forwardRef(function Select<TValue>(
-  inProps: SelectOwnProps<TValue>,
+  inProps: SelectOwnProps<TValue> & {
+    'aria-describedby'?: string;
+    'aria-label'?: string;
+    'aria-labelledby'?: string;
+    id?: string;
+    name?: string;
+  },
   ref: React.ForwardedRef<any>,
 ) {
   const props = useThemeProps({
@@ -271,6 +277,12 @@ const Select = React.forwardRef(function Select<TValue>(
     startDecorator,
     endDecorator,
     indicator = <Unfold />,
+    // props to forward to the button (all handlers should go through componentsProps.button)
+    'aria-describedby': ariaDescribedby,
+    'aria-label': ariaLabel,
+    'aria-labelledby': ariaLabelledby,
+    id,
+    name,
     ...other
   } = props;
 
@@ -415,6 +427,13 @@ const Select = React.forwardRef(function Select<TValue>(
     elementType: SelectButton,
     getSlotProps: getButtonProps,
     externalSlotProps: componentsProps.button,
+    additionalProps: {
+      'aria-describedby': ariaDescribedby,
+      'aria-label': ariaLabel,
+      'aria-labelledby': ariaLabelledby,
+      id,
+      name,
+    },
     ownerState,
     className: classes.button,
   });
