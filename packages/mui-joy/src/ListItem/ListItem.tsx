@@ -173,15 +173,15 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
+  const [listElement, listRole] = listComponent?.split(':') || ['', ''];
   return (
     <NestedListContext.Provider value={nested}>
       <ListItemRoot
         ref={ref}
-        as={
-          component || (listComponent && !listComponent.match(/^(ul|ol|menu)$/) ? 'div' : undefined)
-        }
+        as={component || (listElement && !listElement.match(/^(ul|ol|menu)$/) ? 'div' : undefined)}
         className={clsx(classes.root, className)}
         ownerState={ownerState}
+        role={{ menu: 'none', menubar: 'none', group: 'presentation' }[listRole]}
         {...(menuContext && {
           // ListItem can be used inside Menu to create nested menus, so it should have role="none"
           // https://www.w3.org/WAI/ARIA/apg/example-index/menubar/menubar-navigation.html

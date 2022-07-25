@@ -183,7 +183,7 @@ const List = React.forwardRef(function List(inProps, ref) {
     <RowListContext.Provider value={row}>
       <WrapListContext.Provider value={wrap}>
         <ComponentListContext.Provider
-          value={typeof component === 'string' ? component : undefined}
+          value={`${typeof component === 'string' ? component : ''}:${other.role || ''}`}
         >
           <ListRoot
             ref={ref}
