@@ -4,6 +4,8 @@ import clsx from 'clsx';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
 import composeClasses from '@mui/base/composeClasses';
+import { MenuUnstyledContext } from '@mui/base/MenuUnstyled';
+import { SelectUnstyledContext } from '@mui/base/SelectUnstyled';
 import { styled, useThemeProps } from '../styles';
 import { ListProps, ListTypeMap } from './ListProps';
 import { getListUtilityClass } from './listClasses';
@@ -147,6 +149,8 @@ export const ListRoot = styled('ul', {
 
 const List = React.forwardRef(function List(inProps, ref) {
   const nesting = React.useContext(NestedListContext);
+  const menuContext = React.useContext(MenuUnstyledContext);
+  const selectContext = React.useContext(SelectUnstyledContext);
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
     name: 'JoyList',
@@ -179,11 +183,16 @@ const List = React.forwardRef(function List(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
+  let role = menuContext || selectContext ? 'group' : undefined;
+  if (other.role) {
+    role = other.role;
+  }
+
   return (
     <RowListContext.Provider value={row}>
       <WrapListContext.Provider value={wrap}>
         <ComponentListContext.Provider
-          value={`${typeof component === 'string' ? component : ''}:${other.role || ''}`}
+          value={`${typeof component === 'string' ? component : ''}:${role || ''}`}
         >
           <ListRoot
             ref={ref}
@@ -191,6 +200,7 @@ const List = React.forwardRef(function List(inProps, ref) {
             className={clsx(classes.root, className)}
             ownerState={ownerState}
             {...other}
+            role={role}
           >
             {React.Children.map(children, (child, index) =>
               React.isValidElement(child)
