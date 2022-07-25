@@ -14,8 +14,8 @@ export default function TextFieldFormProps() {
         flexWrap: 'wrap',
       }}
     >
-      <TextField label="Label" placeholder="Type in here..." required />
-      <TextField label="Label" placeholder="Type in here..." disabled />
+      <TextField label="Label" placeholder="Type in here…" required />
+      <TextField label="Label" placeholder="Type in here…" disabled />
       <TextField
         label="Label"
         placeholder="Type in here…"

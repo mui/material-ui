@@ -14,7 +14,7 @@ unstyled: /base/react-input/
 Text fields allow users to enter text into a UI.
 They typically appear in forms and dialogs.
 
-{{"demo": "TextFieldUsage.tsx"}}
+{{"demo": "TextFieldUsage.js"}}
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
@@ -34,41 +34,41 @@ export default function MyApp() {
 
 The text field component supports the four global variants: solid (default), soft, outlined, and plain.
 
-{{"demo": "TextFieldVariants.tsx"}}
+{{"demo": "TextFieldVariants.js"}}
 
 ### Sizes
 
 The text field component comes with three sizes out of the box: `sm`, `md` (the default), and `lg`.
 
-{{"demo": "TextFieldSizes.tsx"}}
+{{"demo": "TextFieldSizes.js"}}
 
 ### Colors
 
 Toggle the palette that's being used to color the by text field by using the `color` prop.
 
-{{"demo": "TextFieldColors.tsx"}}
+{{"demo": "TextFieldColors.js"}}
 
 ### Form props
 
 Standard form attributes are supported e.g. `required`, `disabled`, `type`, etc. as well as a `helperText` which is used to give context about a field's input, such as how the input will be used.
 
-{{"demo": "TextFieldFormProps.tsx"}}
+{{"demo": "TextFieldFormProps.js"}}
 
 ### Validation
 
 To toggle the error state, use the `error` prop.
 And, to provide feedback about the error to the user, use the `helperText` prop.
 
-{{"demo": "TextFieldValidation.tsx"}}
+{{"demo": "TextFieldValidation.js"}}
 
 ### Input decorators
 
 Use the `startDecorator` and/or `endDecorator` props to add supporting icons or elements to the text field.
 
-{{"demo": "TextFieldDecorators.tsx"}}
+{{"demo": "TextFieldDecorators.js"}}
 
 ### Full width
 
 To make the text field take up the full width of its container, use the `fullWidth` prop.
 
-{{"demo": "TextFieldFullwidth.tsx"}}
+{{"demo": "TextFieldFullwidth.js"}}
