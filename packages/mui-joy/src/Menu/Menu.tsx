@@ -7,6 +7,7 @@ import { useSlotProps } from '@mui/base/utils';
 import { useMenu, MenuUnstyledContext, MenuUnstyledContextType } from '@mui/base/MenuUnstyled';
 import PopperUnstyled from '@mui/base/PopperUnstyled';
 import { ListRoot } from '../List/List';
+import RowListContext from '../List/RowListContext';
 import { styled, useThemeProps } from '../styles';
 import { MenuTypeMap, MenuProps } from './MenuProps';
 import { getMenuUtilityClass } from './menuClasses';
@@ -150,7 +151,9 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
 
   return (
     <PopperUnstyled {...rootProps}>
-      <MenuUnstyledContext.Provider value={contextValue}>{children}</MenuUnstyledContext.Provider>
+      <MenuUnstyledContext.Provider value={contextValue}>
+        <RowListContext.Provider value={false}>{children}</RowListContext.Provider>
+      </MenuUnstyledContext.Provider>
     </PopperUnstyled>
   );
 }) as OverridableComponent<MenuTypeMap>;

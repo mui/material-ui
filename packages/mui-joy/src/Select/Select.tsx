@@ -17,6 +17,7 @@ import type { SelectChild, SelectOption } from '@mui/base/SelectUnstyled';
 import { useSlotProps } from '@mui/base/utils';
 import composeClasses from '@mui/base/composeClasses';
 import { ListRoot } from '../List/List';
+import RowListContext from '../List/RowListContext';
 import Unfold from '../internal/svg-icons/Unfold';
 import { styled, useThemeProps } from '../styles';
 import { SelectOwnProps, SelectStaticProps, SelectOwnerState, SelectTypeMap } from './SelectProps';
@@ -497,7 +498,7 @@ const Select = React.forwardRef(function Select<TValue>(
       {anchorEl && (
         <PopperUnstyled {...listboxProps}>
           <SelectUnstyledContext.Provider value={context}>
-            {children}
+            <RowListContext.Provider value={false}>{children}</RowListContext.Provider>
           </SelectUnstyledContext.Provider>
         </PopperUnstyled>
       )}
