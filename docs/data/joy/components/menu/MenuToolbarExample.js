@@ -176,16 +176,24 @@ export default function MenuToolbarExample() {
                 setMenuIndex(null);
               }}
             >
-              <MenuItem {...itemProps}>New File</MenuItem>
-              <MenuItem {...itemProps}>
-                New Text File... {renderShortcut('⌥ ⌘ N')}
-              </MenuItem>
-              <MenuItem {...itemProps}>
-                New Window {renderShortcut('⇧ ⌘ N')}
-              </MenuItem>
+              <ListItem nested>
+                <List aria-label="New">
+                  <MenuItem {...itemProps}>New File</MenuItem>
+                  <MenuItem {...itemProps}>
+                    New Text File... {renderShortcut('⌥ ⌘ N')}
+                  </MenuItem>
+                  <MenuItem {...itemProps}>
+                    New Window {renderShortcut('⇧ ⌘ N')}
+                  </MenuItem>
+                </List>
+              </ListItem>
               <ListDivider />
-              <MenuItem {...itemProps}>Open {renderShortcut('⌘ O')}</MenuItem>
-              <MenuItem {...itemProps}>Open Folder</MenuItem>
+              <ListItem nested>
+                <List aria-label="Open">
+                  <MenuItem {...itemProps}>Open {renderShortcut('⌘ O')}</MenuItem>
+                  <MenuItem {...itemProps}>Open Folder</MenuItem>
+                </List>
+              </ListItem>
             </Menu>
           }
         >
@@ -212,12 +220,20 @@ export default function MenuToolbarExample() {
                 setMenuIndex(null);
               }}
             >
-              <MenuItem {...itemProps}>Undo {renderShortcut('⌘ Z')}</MenuItem>
-              <MenuItem {...itemProps}>Redo {renderShortcut('⇧ ⌘ Z')}</MenuItem>
+              <ListItem nested>
+                <List aria-label="Time travel">
+                  <MenuItem {...itemProps}>Undo {renderShortcut('⌘ Z')}</MenuItem>
+                  <MenuItem {...itemProps}>Redo {renderShortcut('⇧ ⌘ Z')}</MenuItem>
+                </List>
+              </ListItem>
               <ListDivider />
-              <MenuItem {...itemProps}>Cut {renderShortcut('⌘ X')}</MenuItem>
-              <MenuItem {...itemProps}>Copy {renderShortcut('⌘ Z')}</MenuItem>
-              <MenuItem {...itemProps}>Paste {renderShortcut('⌘ V')}</MenuItem>
+              <ListItem nested>
+                <List aria-label="Tool">
+                  <MenuItem {...itemProps}>Cut {renderShortcut('⌘ X')}</MenuItem>
+                  <MenuItem {...itemProps}>Copy {renderShortcut('⌘ Z')}</MenuItem>
+                  <MenuItem {...itemProps}>Paste {renderShortcut('⌘ V')}</MenuItem>
+                </List>
+              </ListItem>
             </Menu>
           }
         >
