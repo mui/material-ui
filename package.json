@@ -184,6 +184,7 @@
     "stylis-plugin-rtl": "^2.1.1",
     "stylis-plugin-rtl-sc": "npm:stylis-plugin-rtl@^1.1.0",
     "terser-webpack-plugin": "^5.3.3",
+    "thenify": "3.3.1",
     "tslint": "5.14.0",
     "typescript": "^4.6.4",
     "unist-util-visit": "^2.0.3",
@@ -211,7 +212,8 @@
     "**/@types/react": "^18.0.9",
     "**/@types/react-is": "^17.0.3",
     "**/cross-fetch": "^3.1.5",
-    "**/react-is": "^18.2.0"
+    "**/react-is": "^18.2.0",
+    "**/thenify": "^3.3.1"
   },
   "nyc": {
     "include": [
