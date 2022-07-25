@@ -109,11 +109,16 @@ export const ListRoot = styled('ul', {
         '--List-item-startActionTranslateX': 'calc(0.5 * var(--List-item-paddingLeft))',
         '--List-item-endActionTranslateX': 'calc(-0.5 * var(--List-item-paddingRight))',
         margin: 'initial',
-        padding: 'var(--List-padding)',
-        ...(!ownerState.row && {
-          // --List-padding is not declared to let vertical list uses --List-divider-gap by default.
-          padding: 'var(--List-padding, var(--List-divider-gap) 0px)',
-        }),
+        // --List-padding is not declared to let list uses --List-divider-gap by default.
+        ...(ownerState.row
+          ? {
+              paddingInline: 'var(--List-padding, var(--List-divider-gap))',
+              paddingBlock: 'var(--List-padding)',
+            }
+          : {
+              paddingBlock: 'var(--List-padding, var(--List-divider-gap))',
+              paddingInline: 'var(--List-padding)',
+            }),
       },
       {
         borderRadius: 'var(--List-radius)',

@@ -61,10 +61,10 @@ describe('Joy <Select />', () => {
     const handleBlur = stub().callsFake((event) => event.target.name);
     const { getByRole } = render(
       <Select
+        name="blur-testing"
         componentsProps={{
           button: {
             onBlur: handleBlur,
-            name: 'blur-testing',
           },
         }}
         value=""
@@ -106,9 +106,8 @@ describe('Joy <Select />', () => {
   it('should focus list if no selection', () => {
     const { getByRole } = render(<Select value="" autoFocus />);
 
-    fireEvent.click(getByRole('button'));
+    fireEvent.keyDown(getByRole('button'), { key: 'ArrowDown' });
 
-    // TODO not matching WAI-ARIA authoring practices. It should focus the first (or selected) item.
     expect(getByRole('listbox')).toHaveFocus();
   });
 
@@ -255,6 +254,17 @@ describe('Joy <Select />', () => {
   });
 
   describe('accessibility', () => {
+    it('associated with a label', () => {
+      render(
+        <div>
+          <label htmlFor="foo-bar">label</label>
+          <Select id="foo-bar" />
+        </div>,
+      );
+      fireEvent.click(screen.getByLabelText('label'));
+      expect(screen.getByRole('listbox')).toBeVisible();
+    });
+
     it('sets aria-expanded="true" when the listbox is displayed', () => {
       // since we make the rest of the UI inaccessible when open this doesn't
       // technically matter. This is only here in case we keep the rest accessible
@@ -359,7 +369,6 @@ describe('Joy <Select />', () => {
     it('it will fallback to its content for the accessible name when it has no name', () => {
       const { getByRole } = render(<Select value="" />);
 
-      // TODO what is the accessible name actually?
       expect(getByRole('button')).not.to.have.attribute('aria-labelledby');
     });
 
@@ -372,10 +381,7 @@ describe('Joy <Select />', () => {
     it('should have appropriate accessible description when provided in props', () => {
       const { getByRole } = render(
         <React.Fragment>
-          <Select
-            value=""
-            componentsProps={{ button: { 'aria-describedby': 'select-helper-text' } }}
-          />
+          <Select value="" aria-describedby="select-helper-text" />
           <span id="select-helper-text">Helper text content</span>
         </React.Fragment>,
       );

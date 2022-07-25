@@ -7,7 +7,7 @@ import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
 export default function SelectDecorators() {
   return (
     <Select
-      placeholder="Select a pet..."
+      placeholder="Select a pet…"
       startDecorator={<FavoriteBorder />}
       endDecorator={
         <Chip size="sm" color="danger" variant="soft" sx={{ mr: -1 }}>
