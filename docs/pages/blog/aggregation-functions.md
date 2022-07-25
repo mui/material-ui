@@ -1,7 +1,7 @@
 ---
 title: Aggregate data like in Excel, but easier!
 description: Introducing aggregation functions and summary rows in Data grid Premium.
-date: 2022-07-31T00:00:00.000Z
+date: 2022-08-01T00:00:00.000Z
 authors: ['josefreitas', 'flaviendelangle', 'cherniavskii']
 tags: ['MUI X', 'News']
 card: true
@@ -38,23 +38,30 @@ The out-of-the-box experience is very important to us, but as is the ability to 
 
 You can change the styles of every element involved, set automatic aggregations, choose which columns can be aggregated by which functions, and even create your own custom function, like in the example below, where we created a function to get the first value in alphabetical order.
 
-```tsx
-const firstAlphabeticalAggregation: GridAggregationFunction<string, string | null> =
-  {
-    apply: (params) => {
-      if (params.values.length === 0) {
-        return null;
-      }
-      const sortedValue = params.values.sort((a = '', b = '') => a.localeCompare(b));
-      return sortedValue[0];
-    },
-    // The `label` defines what's displayed in the column header when this aggregation is active.
-    label: 'First Alphabetical',
-    // The `types` property defines which type of columns can use this aggregation function.
-    // Here, we only want to propose this aggregation function for `string` columns.
-    // If not defined, aggregation will be available for all column types.
-    columnTypes: ['string'],
-  };
+```ts
+const firstAlphabeticalAggregation: GridAggregationFunction<
+  string,
+  string | null
+> = {
+  apply: (params) => {
+    if (params.values.length === 0) {
+      return null;
+    }
+    const sortedValue = params.values.sort((a = '', b = '') =>
+      a.localeCompare(b),
+    );
+    return sortedValue[0];
+  },
+  // The `label` defines what's displayed in the column header when this
+  // aggregation is active.
+  label: 'First Alphabetical',
+  // The `types` property defines which type of columns can use this
+  // aggregation function. Here, we only want to propose this aggregation
+  // function for `string` columns. If not defined, aggregation will be
+  // available for all column types.
+  columnTypes: ['string'],
+};
+
 ```
 
 <video style="margin-bottom: 24px;" autoplay muted loop playsinline controls>
