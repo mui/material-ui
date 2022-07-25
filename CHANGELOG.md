@@ -49,17 +49,17 @@ A big thanks to the 16 contributors who made this release possible. Here are som
 - &#8203;<!-- 22 -->[docs] Fix Toolpad docs redirection (#33524) @bharatkashyap
 - &#8203;<!-- 21 -->[docs] Fix link to Snackbar customization section in Alert docs (#33586) @ZeeshanTamboli
 - &#8203;<!-- 20 -->[docs] Fix `placement choices` typo in Tooltip docs (#33571) @MonstraG
+- &#8203;<!-- 05 -->[website] Update home page's sponsor grid (#33528) @danilo-leal
+- &#8203;<!-- 04 -->[website] Add Vytautas to the about page (#33567) @bytasv
+- &#8203;<!-- 03 -->[website] Improve newsletter input design (#33585) @danilo-leal
+- &#8203;<!-- 02 -->[website] Add YouTube link to footer (#33580) @gerdadesign
+- &#8203;<!-- 01 -->[website] Clarify scope of technical support (#33435) @joserodolfofreitas
 
 ### Core
 
 - &#8203;<!-- 30 -->[core] Swallow ad blocker fetch fail (#33617) @oliviertassinari
 - &#8203;<!-- 29 -->[core] Fix dep security by resolving `thenify` to latest (#33612) @siriwatknp
 - &#8203;<!-- 06 -->[test] Remove `view` option from Event in Snackbar tests (#33555) @ZeeshanTamboli
-- &#8203;<!-- 05 -->[website] Update home page's sponsor grid (#33528) @danilo-leal
-- &#8203;<!-- 04 -->[website] Add Vytautas to the about page (#33567) @bytasv
-- &#8203;<!-- 03 -->[website] Improve newsletter input design (#33585) @danilo-leal
-- &#8203;<!-- 02 -->[website] Add YouTube link to footer (#33580) @gerdadesign
-- &#8203;<!-- 01 -->[website] Clarify scope of technical support (#33435) @joserodolfofreitas
 
 All contributors of this release in alphabetical order: @AHeiming, @bairamau, @bharatkashyap, @bytasv, @danilo-leal, @dd-ssc, @DinhBaoTran, @gerdadesign, @hbjORbj, @joserodolfofreitas, @michaldudak, @MonstraG, @oliviertassinari, @samuelsycamore, @siriwatknp, @ZeeshanTamboli
 
