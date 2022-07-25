@@ -241,13 +241,7 @@ const SelectIndicator = styled('span', {
 });
 
 const Select = React.forwardRef(function Select<TValue>(
-  inProps: SelectOwnProps<TValue> & {
-    'aria-describedby'?: string;
-    'aria-label'?: string;
-    'aria-labelledby'?: string;
-    id?: string;
-    name?: string;
-  },
+  inProps: SelectOwnProps<TValue>,
   ref: React.ForwardedRef<any>,
 ) {
   const props = useThemeProps({
@@ -284,7 +278,14 @@ const Select = React.forwardRef(function Select<TValue>(
     id,
     name,
     ...other
-  } = props;
+  } = props as typeof inProps & {
+    // need to cast types because SelectOwnProps does not have these properties
+    'aria-describedby'?: string;
+    'aria-label'?: string;
+    'aria-labelledby'?: string;
+    id?: string;
+    name?: string;
+  };
 
   const renderValue = renderValueProp ?? defaultRenderSingleValue;
   const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
@@ -535,11 +536,6 @@ Select.propTypes /* remove-proptypes */ = {
     }),
   ]),
   /**
-   * If `true`, the select element is focused during the first mount
-   * @default false
-   */
-  autoFocus: PropTypes.bool,
-  /**
    * @ignore
    */
   children: PropTypes.node,
@@ -566,11 +562,6 @@ Select.propTypes /* remove-proptypes */ = {
     root: PropTypes.object,
   }),
   /**
-   * If `true`, the select will be initially open.
-   * @default false
-   */
-  defaultListboxOpen: PropTypes.bool,
-  /**
    * The default selected value. Use when the component is not controlled.
    */
   defaultValue: PropTypes /* @typescript-to-proptypes-ignore */.any,
@@ -591,16 +582,6 @@ Select.propTypes /* remove-proptypes */ = {
    */
   indicator: PropTypes.node,
   /**
-   * `id` attribute of the listbox element.
-   * Also used to derive the `id` attributes of options.
-   */
-  listboxId: PropTypes.string,
-  /**
-   * Controls the open state of the select's listbox.
-   * @default undefined
-   */
-  listboxOpen: PropTypes.bool,
-  /**
    * Callback fired when an option is selected.
    */
   onChange: PropTypes.func,
@@ -608,11 +589,6 @@ Select.propTypes /* remove-proptypes */ = {
    * Triggered when focus leaves the menu and the menu should close.
    */
   onClose: PropTypes.func,
-  /**
-   * Callback fired when the component requests to be opened.
-   * Use in controlled mode (see listboxOpen).
-   */
-  onListboxOpenChange: PropTypes.func,
   /**
    * Text to show when there is no selected value.
    */
