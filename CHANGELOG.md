@@ -22,13 +22,10 @@ A big thanks to the 16 contributors who made this release possible. Here are som
 - &#8203;<!-- 08 -->[Tabs] Fix `indicatorColor` prop type (#33569) @ZeeshanTamboli
 - &#8203;<!-- 07 -->[Tabs] Add TypeScript interface to augment tab indicator color in theme (#33333) @AHeiming
 
-### `@mui/system@5.9.2`
+### `@mui/base@5.0.0-alpha.91`
 
 - &#8203;<!-- 33 -->[Base] Make PopperUnstyled `component` overridable (#33573) @siriwatknp
 - &#8203;<!-- 32 -->[Base] Ensure all components are OverridableComponent (#33506) @michaldudak
-- &#8203;<!-- 31 -->[blog] Fix 404 link to Algolia docs search @oliviertassinari
-- &#8203;<!-- 30 -->[core] Swallow ad blocker fetch fail (#33617) @oliviertassinari
-- &#8203;<!-- 29 -->[core] Fix dep security by resolving `thenify` to latest (#33612) @siriwatknp
 
 ### `@mui/joy@5.0.0-alpha.38`
 
@@ -39,6 +36,7 @@ A big thanks to the 16 contributors who made this release possible. Here are som
 
 ### Docs
 
+- &#8203;<!-- 31 -->[blog] Fix 404 link to Algolia docs search @oliviertassinari
 - &#8203;<!-- 27 -->[docs] Fix production deploy of codesandboxes (#33608) @oliviertassinari
 - &#8203;<!-- 26 -->[docs] Show border on `palette.background.paper` in dark mode docs (#33611) @ZeeshanTamboli
 - &#8203;<!-- 25 -->[docs] Fix typo in Joy UI dark mode page (#33620) @bairamau
@@ -50,6 +48,8 @@ A big thanks to the 16 contributors who made this release possible. Here are som
 
 ### Core
 
+- &#8203;<!-- 30 -->[core] Swallow ad blocker fetch fail (#33617) @oliviertassinari
+- &#8203;<!-- 29 -->[core] Fix dep security by resolving `thenify` to latest (#33612) @siriwatknp
 - &#8203;<!-- 06 -->[test] Remove `view` option from Event in Snackbar tests (#33555) @ZeeshanTamboli
 - &#8203;<!-- 05 -->[website] Update home page's sponsor grid (#33528) @danilo-leal
 - &#8203;<!-- 04 -->[website] Add Vytautas to the about page (#33567) @bytasv
