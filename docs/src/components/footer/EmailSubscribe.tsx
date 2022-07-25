@@ -7,7 +7,7 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import FormLabel from '@mui/material/FormLabel';
 import FormHelperText from '@mui/material/FormHelperText';
-import InputBase from '@mui/material/InputBase';
+import InputBase, { inputBaseClasses } from '@mui/material/InputBase';
 import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded';
 import CONFIG from 'docs/src/config';
 
@@ -136,7 +136,7 @@ export default function EmailSubscribe({ sx }: { sx?: SxProps<Theme> }) {
                   : '0 1px 2px 0 rgba(0 0 0 / 0.15)',
             },
 
-            '&:focus': {
+            [`&.${inputBaseClasses.focused}`]: {
               borderColor: (theme) =>
                 theme.palette.mode === 'dark'
                   ? theme.palette.primaryDark[300]
