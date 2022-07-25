@@ -11,7 +11,7 @@ export default function SelectBasic() {
     <Select
       action={action}
       value={value}
-      placeholder="Favorite pet..."
+      placeholder="Favorite pet…"
       onChange={setValue}
       {...(value && {
         // display the button and remove select indicator

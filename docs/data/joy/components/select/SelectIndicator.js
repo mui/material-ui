@@ -6,7 +6,7 @@ import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown';
 export default function SelectIndicator() {
   return (
     <Select
-      placeholder="Select a pet..."
+      placeholder="Select a pet…"
       indicator={<KeyboardArrowDown />}
       sx={{
         width: 240,
