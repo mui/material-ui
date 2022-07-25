@@ -55,7 +55,7 @@ const ButtonEndIcon = styled('span', {
   marginLeft: 'var(--Button-gap)',
 });
 
-const ButtonRoot = styled('button', {
+export const ButtonRoot = styled('button', {
   name: 'JoyButton',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,

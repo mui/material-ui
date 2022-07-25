@@ -46,6 +46,13 @@ export interface ListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
      * @default 'plain'
      */
     variant?: OverridableStringUnion<VariantProp, ListPropsVariantOverrides>;
+    /**
+     * Only for horizontal list.
+     * If `true`, the list sets the flex-wrap to "wrap" and adjust margin to have gap-like behavior (will move to `gap` in the future).
+     *
+     * @default false
+     */
+    wrap?: boolean;
   };
   defaultComponent: D;
 }

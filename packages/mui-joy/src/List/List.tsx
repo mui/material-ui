@@ -4,11 +4,14 @@ import clsx from 'clsx';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
 import composeClasses from '@mui/base/composeClasses';
+import { MenuUnstyledContext } from '@mui/base/MenuUnstyled';
+import { SelectUnstyledContext } from '@mui/base/SelectUnstyled';
 import { styled, useThemeProps } from '../styles';
 import { ListProps, ListTypeMap } from './ListProps';
 import { getListUtilityClass } from './listClasses';
 import NestedListContext from './NestedListContext';
 import RowListContext from './RowListContext';
+import WrapListContext from './WrapListContext';
 import ComponentListContext from './ComponentListContext';
 
 const useUtilityClasses = (ownerState: ListProps & { nesting: boolean }) => {
@@ -109,17 +112,33 @@ export const ListRoot = styled('ul', {
         '--List-item-startActionTranslateX': 'calc(0.5 * var(--List-item-paddingLeft))',
         '--List-item-endActionTranslateX': 'calc(-0.5 * var(--List-item-paddingRight))',
         margin: 'initial',
-        padding: 'var(--List-padding)',
-        ...(!ownerState.row && {
-          // --List-padding is not declared to let vertical list uses --List-divider-gap by default.
-          padding: 'var(--List-padding, var(--List-divider-gap) 0px)',
-        }),
+        // --List-padding is not declared to let list uses --List-divider-gap by default.
+        ...(ownerState.row
+          ? {
+              ...(ownerState.wrap
+                ? {
+                    padding: 'var(--List-padding)',
+                    marginInlineStart: 'calc(-1 * var(--List-gap))',
+                    marginBlockStart: 'calc(-1 * var(--List-gap))',
+                  }
+                : {
+                    paddingInline: 'var(--List-padding, var(--List-divider-gap))',
+                    paddingBlock: 'var(--List-padding)',
+                  }),
+            }
+          : {
+              paddingBlock: 'var(--List-padding, var(--List-divider-gap))',
+              paddingInline: 'var(--List-padding)',
+            }),
       },
       {
         borderRadius: 'var(--List-radius)',
         listStyle: 'none',
         display: 'flex',
         flexDirection: ownerState.row ? 'row' : 'column',
+        ...(ownerState.wrap && {
+          flexWrap: 'wrap',
+        }),
         flexGrow: 1,
         position: 'relative', // for sticky ListItem
         ...theme.variants[ownerState.variant!]?.[ownerState.color!],
@@ -130,6 +149,8 @@ export const ListRoot = styled('ul', {
 
 const List = React.forwardRef(function List(inProps, ref) {
   const nesting = React.useContext(NestedListContext);
+  const menuContext = React.useContext(MenuUnstyledContext);
+  const selectContext = React.useContext(SelectUnstyledContext);
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
     name: 'JoyList',
@@ -141,9 +162,11 @@ const List = React.forwardRef(function List(inProps, ref) {
     children,
     size = 'md',
     row = false,
+    wrap = false,
     scoped = false,
     variant = 'plain',
     color = 'neutral',
+    role: roleProp,
     ...other
   } = props;
 
@@ -153,6 +176,7 @@ const List = React.forwardRef(function List(inProps, ref) {
     nesting,
     scoped,
     row,
+    wrap,
     variant,
     color,
     ...props,
@@ -160,26 +184,32 @@ const List = React.forwardRef(function List(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
+  const role = roleProp ?? (menuContext || selectContext ? 'group' : undefined);
   return (
     <RowListContext.Provider value={row}>
-      <ComponentListContext.Provider value={typeof component === 'string' ? component : undefined}>
-        <ListRoot
-          ref={ref}
-          as={component}
-          className={clsx(classes.root, className)}
-          ownerState={ownerState}
-          {...other}
+      <WrapListContext.Provider value={wrap}>
+        <ComponentListContext.Provider
+          value={`${typeof component === 'string' ? component : ''}:${role || ''}`}
         >
-          {React.Children.map(children, (child, index) =>
-            React.isValidElement(child)
-              ? React.cloneElement(child, {
-                  // to let List(Item|ItemButton) knows when to apply margin(Inline|Block)Start
-                  ...(index === 0 && { 'data-first-child': '' }),
-                })
-              : child,
-          )}
-        </ListRoot>
-      </ComponentListContext.Provider>
+          <ListRoot
+            ref={ref}
+            as={component}
+            className={clsx(classes.root, className)}
+            ownerState={ownerState}
+            role={role}
+            {...other}
+          >
+            {React.Children.map(children, (child, index) =>
+              React.isValidElement(child)
+                ? React.cloneElement(child, {
+                    // to let List(Item|ItemButton) knows when to apply margin(Inline|Block)Start
+                    ...(index === 0 && { 'data-first-child': '' }),
+                  })
+                : child,
+            )}
+          </ListRoot>
+        </ComponentListContext.Provider>
+      </WrapListContext.Provider>
     </RowListContext.Provider>
   );
 }) as OverridableComponent<ListTypeMap>;
@@ -210,6 +240,10 @@ List.propTypes /* remove-proptypes */ = {
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
+  /**
+   * @ignore
+   */
+  role: PropTypes /* @typescript-to-proptypes-ignore */.string,
   /**
    * If `true`, display the list in horizontal direction.
    * @default false
@@ -245,6 +279,13 @@ List.propTypes /* remove-proptypes */ = {
     PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
     PropTypes.string,
   ]),
+  /**
+   * Only for horizontal list.
+   * If `true`, the list sets the flex-wrap to "wrap" and adjust margin to have gap-like behavior (will move to `gap` in the future).
+   *
+   * @default false
+   */
+  wrap: PropTypes.bool,
 } as any;
 
 export default List;
