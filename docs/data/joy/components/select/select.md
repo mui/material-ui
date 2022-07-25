@@ -9,48 +9,58 @@ unstyled: /base/react-select/
 
 <p class="description">Select components are used for collecting user provided information from a list of options.</p>
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
-
 ## Introduction
 
-Users can trigger a popup by clicking on the `Select` which then displays a list of `Option` components.
+The `Select` component is used to trigger a popup that displays a list of `Option` components.
 
 {{"demo": "SelectUsage.js", "hideToolbar": true}}
 
-:::info
-📝 Note
-
-- The selected option inherits `color` from the select, and uses `primary` color by default.
-- The option **does not** inherit `variant` from the select.
-  :::
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Component
 
-### Basic
+After [installation](/joy-ui/getting-started/installation/), you can start building with this component using the following basic elements:
 
-The basic usage of the Select components is similar to native `<select>` and `<option>`.
+```jsx
+import Select from '@mui/joy/Select';
+import Option from '@mui/joy/Option';
+
+export default function SelectBasic() {
+  return (
+    <Select defaultValue="dog">
+      <Option value="dog">Dog</Option>
+      <Option value="cat">Cat</Option>
+    </Select>
+  );
+}
+```
+
+### Basic usage
+
+The `Select` component is similar to the native HTML's `<select>` and `<option>` tags.
 
 {{"demo": "SelectBasic.js"}}
 
 ### Field
 
-Use `FormLabel` for visually associated with the select and provide appropriate `aria-label` to the button slot. If the select has a helper text associated with, provides the id to the button's `aria-describedby`.
+Use the `FormLabel` component to add a label to the select component.
+Make sure to provide an appropriate `aria-label` and an id to the button's `aria-describedby`.
 
 {{"demo": "SelectFieldDemo.js"}}
 
 ### Decorators
 
-Use `startDecorator` and/or `endDecorator` to show extra content in the select.
+Use the `startDecorator` and/or `endDecorator` props to add supporting icons or elements to the select.
 
 {{"demo": "SelectDecorators.js"}}
 
 ### Indicator
 
-You can change the default indicator by providing any React element (including string) to `indicator` prop or using `null` to remove the indicator completely.
+To change the default indicator, use the `indicator` prop with either any React element (including string) or `null` as value (to remove the indicator completely).
 
 {{"demo": "SelectIndicator.js"}}
 
-To apply the indicator to all select instances, provide it to the theme's default props like this:
+To apply the indicator to all instances of the select component, customize the `indicator` prop directly in the theme:
 
 ```js
 import { extendTheme, CssVarsProvider } from '@mui/joy/styles';
@@ -73,27 +83,60 @@ const App = () => (
 );
 ```
 
-## Customization
+### `Option` component
 
-### Clearable
+The `Option` component is used for the chooseable options within the select.
 
-You can put `IconButton` as a decorator to the `Select` component. It will fit perfectly for all sizes.
+The selected option inherits the `color` from the Select parent, and it uses the `primary` palette by default.
+However, it does not inherit the Select's used `variant`.
 
-Also, the example set the focus visible back to the select button after the selected value is cleared. This is a good experience for keyboard users.
+The `ListItemButton` component is very similar to this one, as they share the same internal styles.
+In fact, you can mix them together to compose various designs.
 
-{{"demo": "SelectClearable.js"}}
-
-### Option composition
-
-You can think of the option as if it is `ListItemButton` component because they share the same style internally, so you can mix list item components within an option.
-
-In this case, `ListItemDecorator` is used to provide enough space for the avatar and `ListDivider` is used as a visual separator.
+In the demo below, we're using the `ListItemDecorator` to provide space between the avatars.
+We're also using the `ListDivider` as a visual separator.
 
 {{"demo": "SelectCustomOption.js"}}
 
 :::info
-By default, the option children is used for displaying the selected value. Take a look at [selected value appearance](#selected-value-appearance), to see how to customize the appearance.
+💡 **Keep in mind:** By default, the option children is used for displaying the selected value.
+Take a look at [selected value appearance](#selected-value-appearance) to see how to customize its appearance.
 :::
+
+#### Group options
+
+To create a [listbox with grouped options](https://www.w3.org/WAI/ARIA/apg/example-index/listbox/listbox-grouped.html), wrap the `Option` with `List` component and provide an associated label using `ListItem`.
+That way, you'll have a consistent height and will be able to leverage nested CSS variables.
+
+{{"demo": "SelectGroupedOptions.js"}}
+
+:::info
+💡 **Keep in mind:** If you'd like to set a `max-height` for a long list of options, make sure to specify it to the `listbox` slot so that keyboard-based navigation works as expected.
+
+```jsx
+<Select
+  componentsProps={{
+    listbox: {
+      sx: {
+        maxHeight: 300,
+        overflow: 'auto', // required for scrolling
+      }
+    }
+  }}
+>
+```
+
+:::
+
+## Common examples
+
+### Clear action
+
+Use the `IconButton` component as a decorator to the `Select` to add a clear action.
+
+The `Selct` will set the focus-visible state back to the select button after the select value is cleared, ensuring a great keyboard-navigation experience.
+
+{{"demo": "SelectClearable.js"}}
 
 ### Selected value appearance
 
@@ -103,30 +146,7 @@ The value can be `string`, `number`, or any valid React element.
 
 {{"demo": "SelectCustomValueAppearance.js"}}
 
-### Group options
-
-To create [listbox with grouped options](https://www.w3.org/WAI/ARIA/apg/example-index/listbox/listbox-grouped.html), wrap the options with `List` component and provide an associated label using `ListItem` to have consistent height and leverage nested CSS variables.
-
-{{"demo": "SelectGroupedOptions.js"}}
-
-:::info
-If you'd like to set a max-height for a long list of options, make sure to specify it to the `listbox` slot so that the keyboard navigation works as expected.
-
-```jsx
-<Select
-  componentsProps={{
-    listbox: {
-      sx: {
-        maxHeight: 300,
-        overflow: 'auto', // this is required to make it scrollable.
-      }
-    }
-  }}
->
-```
-
-:::
-
 ## Debugging
 
-To keep the listbox open for inspecting elements, you can enable the `Emulate a focused page` option from the [Chrome DevTool Rendering](https://developer.chrome.com/docs/devtools/rendering/apply-effects/#emulate-a-focused-page) tab. You can also access this option by using [command menu and search for it](https://developer.chrome.com/docs/devtools/command-menu/).
+To keep the listbox open for inspecting elements, enable the `Emulate a focused page` option from the [Chrome DevTool Rendering](https://developer.chrome.com/docs/devtools/rendering/apply-effects/#emulate-a-focused-page) tab.
+You can also access this option by using [command menu and search for it](https://developer.chrome.com/docs/devtools/command-menu/).
