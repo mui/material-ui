@@ -156,7 +156,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
           {React.Children.map(children, (child, index) =>
             React.isValidElement(child)
               ? React.cloneElement(child, {
-                  // to let List(Item|ItemButton) knows when to apply margin(Inline|Block)Start
+                  // to let MenuItem knows when to apply margin(Inline|Block)Start
                   ...(index === 0 && { 'data-first-child': '' }),
                 })
               : child,
