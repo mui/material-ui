@@ -78,7 +78,7 @@ We’d also like to keep it within reach of individuals and small teams, while s
 Here is a list of everything that has changed:
 
 :::warning
-⚠️ Please note: The following **pricing** changes apply only to **new customers**. Existing customers are grandfathered, they can renew their license under the [previous terms](https://mui.com/store/legal/mui-x-eula-2022-05-08/) once. Their last renewal can have a support duration of up to 5 years.
+⚠️ Please note: The following **pricing** changes apply only to **new customers**. Existing customers are grandfathered, they can renew their license under the [previous terms](https://mui.com/legal/mui-x-eula-2022-05-08/) once. Their last renewal can have a support duration of up to 5 years.
 :::
 
 - **Price point per developer seat**
@@ -102,7 +102,7 @@ Here is a list of everything that has changed:
 
   The price for Pro is still capped at 10 seats, but we’re removing the concept of price cap for Premium. We kindly ask you to [contact sales](mailto:sales@mui.com) if you wish to purchase a license for more than 50 developers.
 
-Please, feel free to read the new [license agreement](https://mui.com/store/legal/mui-x-eula/) in detail.
+Please, feel free to read the new [license agreement](https://mui.com/legal/mui-x-eula/) in detail.
 
 ## What can you expect next?
 
