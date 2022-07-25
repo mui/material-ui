@@ -1,0 +1,10 @@
+<TextField
+  label="Label"
+  placeholder="Type in here…"
+  startDecorator={<PersonRoundedIcon fontSize="small" />}
+  endDecorator={
+    <Chip size="sm" variant="soft">
+      New stuff
+    </Chip>
+  }
+/>
