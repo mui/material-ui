@@ -1517,9 +1517,9 @@ describe('<Autocomplete />', () => {
 
       checkHighlightIs(listbox, 'two');
 
-      // three option is added and autocomplete re-renders, reset the highlight
+      // three option is added and autocomplete re-renders, do not reset the highlight
       setProps({ options: ['one', 'two', 'three'] });
-      checkHighlightIs(listbox, null);
+      checkHighlightIs(listbox, 'two');
     });
 
     it('should not select undefined', () => {

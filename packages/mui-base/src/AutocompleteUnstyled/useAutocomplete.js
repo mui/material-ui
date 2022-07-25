@@ -61,6 +61,14 @@ function findIndex(array, comp) {
   return -1;
 }
 
+function usePrevious(value) {
+  const ref = React.useRef(null);
+  React.useEffect(() => {
+    ref.current = value;
+  }, [value]);
+  return ref.current;
+}
+
 const defaultFilterOptions = createFilterOptions();
 
 // Number of options to jump in list box when pageup and pagedown keys are used.
@@ -235,6 +243,8 @@ export default function useAutocomplete(props) {
         },
       )
     : [];
+
+  const prevFilteredOptionsLength = usePrevious(filteredOptions.length);
 
   const listboxAvailable = open && filteredOptions.length > 0 && !readOnly;
 
@@ -455,8 +465,18 @@ export default function useAutocomplete(props) {
 
     const valueItem = multiple ? value[0] : value;
 
-    // The popup is empty, reset
-    if (filteredOptions.length === 0 || valueItem == null) {
+    if (valueItem == null) {
+      const prevNoResults = prevFilteredOptionsLength === 0 && filteredOptions.length > 0;
+      if (filteredOptions.length === 0 || prevFilteredOptionsLength === null || prevNoResults) {
+        changeHighlightedIndex({ diff: 'reset' });
+        return;
+      }
+
+      const resultsAdded = filteredOptions.length > prevFilteredOptionsLength;
+      if (resultsAdded) {
+        return;
+      }
+
       changeHighlightedIndex({ diff: 'reset' });
       return;
     }
