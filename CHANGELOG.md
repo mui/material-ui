@@ -8,6 +8,10 @@ _Jul 25, 2022_
 
 A big thanks to the 16 contributors who made this release possible. Here are some highlights ✨:
 
+- 🧪 Ensure all Base components are `OverridableComponent` (#33506) @michaldudak
+- 🧪 Various improvements on the Material `Stack` component (#33548, #33588, #33549) @hbjORbj
+- Many other 🐛 bug fixes and 📚 documentation improvements
+
 ### `@mui/material@5.9.2`
 
 - &#8203;<!-- 34 -->Revert "[Tooltip] Fix children mouse over detection (#32321)" @oliviertassinari
