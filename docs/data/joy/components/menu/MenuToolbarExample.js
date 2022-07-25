@@ -156,7 +156,7 @@ export default function MenuToolbarExample() {
         '--List-item-radius': '8px',
       }}
     >
-      <ListItem role="none">
+      <ListItem>
         <MenuButton
           open={menuIndex === 0}
           onOpen={() => setMenuIndex(0)}
@@ -176,23 +176,31 @@ export default function MenuToolbarExample() {
                 setMenuIndex(null);
               }}
             >
-              <MenuItem {...itemProps}>New File</MenuItem>
-              <MenuItem {...itemProps}>
-                New Text File... {renderShortcut('⌥ ⌘ N')}
-              </MenuItem>
-              <MenuItem {...itemProps}>
-                New Window {renderShortcut('⇧ ⌘ N')}
-              </MenuItem>
-              <ListDivider role="none" />
-              <MenuItem {...itemProps}>Open {renderShortcut('⌘ O')}</MenuItem>
-              <MenuItem {...itemProps}>Open Folder</MenuItem>
+              <ListItem nested>
+                <List aria-label="New">
+                  <MenuItem {...itemProps}>New File</MenuItem>
+                  <MenuItem {...itemProps}>
+                    New Text File... {renderShortcut('⌥ ⌘ N')}
+                  </MenuItem>
+                  <MenuItem {...itemProps}>
+                    New Window {renderShortcut('⇧ ⌘ N')}
+                  </MenuItem>
+                </List>
+              </ListItem>
+              <ListDivider />
+              <ListItem nested>
+                <List aria-label="Open">
+                  <MenuItem {...itemProps}>Open {renderShortcut('⌘ O')}</MenuItem>
+                  <MenuItem {...itemProps}>Open Folder</MenuItem>
+                </List>
+              </ListItem>
             </Menu>
           }
         >
           File
         </MenuButton>
       </ListItem>
-      <ListItem role="none">
+      <ListItem>
         <MenuButton
           open={menuIndex === 1}
           onOpen={() => setMenuIndex(1)}
@@ -212,19 +220,27 @@ export default function MenuToolbarExample() {
                 setMenuIndex(null);
               }}
             >
-              <MenuItem {...itemProps}>Undo {renderShortcut('⌘ Z')}</MenuItem>
-              <MenuItem {...itemProps}>Redo {renderShortcut('⇧ ⌘ Z')}</MenuItem>
-              <ListDivider role="none" />
-              <MenuItem {...itemProps}>Cut {renderShortcut('⌘ X')}</MenuItem>
-              <MenuItem {...itemProps}>Copy {renderShortcut('⌘ Z')}</MenuItem>
-              <MenuItem {...itemProps}>Paste {renderShortcut('⌘ V')}</MenuItem>
+              <ListItem nested>
+                <List aria-label="Time travel">
+                  <MenuItem {...itemProps}>Undo {renderShortcut('⌘ Z')}</MenuItem>
+                  <MenuItem {...itemProps}>Redo {renderShortcut('⇧ ⌘ Z')}</MenuItem>
+                </List>
+              </ListItem>
+              <ListDivider />
+              <ListItem nested>
+                <List aria-label="Tool">
+                  <MenuItem {...itemProps}>Cut {renderShortcut('⌘ X')}</MenuItem>
+                  <MenuItem {...itemProps}>Copy {renderShortcut('⌘ Z')}</MenuItem>
+                  <MenuItem {...itemProps}>Paste {renderShortcut('⌘ V')}</MenuItem>
+                </List>
+              </ListItem>
             </Menu>
           }
         >
           Edit
         </MenuButton>
       </ListItem>
-      <ListItem role="none">
+      <ListItem>
         <MenuButton
           open={menuIndex === 2}
           onOpen={() => setMenuIndex(2)}

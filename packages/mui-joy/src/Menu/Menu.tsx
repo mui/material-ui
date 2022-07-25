@@ -7,6 +7,7 @@ import { useSlotProps } from '@mui/base/utils';
 import { useMenu, MenuUnstyledContext, MenuUnstyledContextType } from '@mui/base/MenuUnstyled';
 import PopperUnstyled from '@mui/base/PopperUnstyled';
 import { ListRoot } from '../List/List';
+import RowListContext from '../List/RowListContext';
 import { styled, useThemeProps } from '../styles';
 import { MenuTypeMap, MenuProps } from './MenuProps';
 import { getMenuUtilityClass } from './menuClasses';
@@ -26,12 +27,10 @@ const useUtilityClasses = (ownerState: MenuProps) => {
   return composeClasses(slots, getMenuUtilityClass, {});
 };
 
-const MenuRoot = styled(PopperUnstyled, {
+const MenuRoot = styled(ListRoot, {
   name: 'JoyMenu',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-  // ownerState should be forwarded to ListRoot
-  shouldForwardProp: (prop) => prop !== 'theme' && prop !== 'sx' && prop !== 'as',
 })<{ ownerState: MenuProps }>(({ theme, ownerState }) => {
   const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];
   return {
@@ -41,6 +40,10 @@ const MenuRoot = styled(PopperUnstyled, {
       backgroundColor: theme.vars.palette.background.body,
     }),
     '--List-radius': theme.vars.radius.sm,
+    '--List-item-stickyBackground':
+      variantStyle?.backgroundColor ||
+      variantStyle?.background ||
+      theme.vars.palette.background.body, // for sticky List
   };
 });
 
@@ -54,6 +57,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     actions,
     anchorEl,
     children,
+    component,
     color = 'neutral',
     disablePortal = true,
     keepMounted = false,
@@ -109,7 +113,6 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     color,
     variant,
     size,
-    instanceSize: inProps.size, // For ListRoot
     modifiers,
     open,
     nesting: false,
@@ -130,7 +133,8 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
       disablePortal,
       keepMounted,
       ref,
-      component: ListRoot,
+      component: MenuRoot,
+      as: component, // use `as` to insert the component inside of the MenuRoot
       modifiers: cachedModifiers,
     },
     className: classes.root,
@@ -146,9 +150,11 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
   };
 
   return (
-    <MenuRoot {...rootProps}>
-      <MenuUnstyledContext.Provider value={contextValue}>{children}</MenuUnstyledContext.Provider>
-    </MenuRoot>
+    <PopperUnstyled {...rootProps}>
+      <MenuUnstyledContext.Provider value={contextValue}>
+        <RowListContext.Provider value={false}>{children}</RowListContext.Provider>
+      </MenuUnstyledContext.Provider>
+    </PopperUnstyled>
   );
 }) as OverridableComponent<MenuTypeMap>;
 
@@ -180,6 +186,11 @@ Menu.propTypes /* remove-proptypes */ = {
    * The color of the component. It supports those theme colors that make sense for this component.
    */
   color: PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+  /**
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   */
+  component: PropTypes /* @typescript-to-proptypes-ignore */.elementType,
   /**
    * The `children` will be under the DOM hierarchy of the parent component.
    * @default false
