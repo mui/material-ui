@@ -4,7 +4,7 @@ description: Introducing aggregation functions and summary rows in Data grid Pre
 date: 2022-08-01T00:00:00.000Z
 authors: ['josefreitas', 'flaviendelangle', 'cherniavskii']
 tags: ['MUI X', 'News']
-card: true
+card: false
 ---
 
 If you ever had a lot of data on a grid, you probably know that the ability to set different perspectives on data is essential to help users extract information. Typically, one would use at least filtering or sorting, but that barely scratches the surface of what one could do.
