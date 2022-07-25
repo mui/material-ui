@@ -65,7 +65,6 @@ const firstAlphabeticalAggregation: GridAggregationFunction<string, string | nul
 
 :::info
 First make sure that you're using `@mui/x-data-grid-premium` and version `5.15.0` or later.
-
 :::
 
 During the initial version of Aggregation functions, we’re publishing the feature as experimental, so we have some room to validate its API and the overall direction we’re taking with it.
