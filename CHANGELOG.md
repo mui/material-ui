@@ -15,7 +15,6 @@ A big thanks to the 16 contributors who made this release possible. Here are som
 ### `@mui/material@5.9.2`
 
 - &#8203;<!-- 34 -->Revert "[Tooltip] Fix children mouse over detection (#32321)" @oliviertassinari
-- &#8203;<!-- 28 -->[Divider] Add accessibility tips (#33633) @siriwatknp
 - &#8203;<!-- 19 -->[FormHelperText] Fix unable to create new variants (#33589) @DinhBaoTran
 - &#8203;<!-- 18 -->[ImageList] Remove vertical spacing between items in masonry layout (#33593) @michaldudak
 - &#8203;<!-- 13 -->[LoadingButton] Refactor duplicate code (#33570) @ZeeshanTamboli
@@ -40,6 +39,7 @@ A big thanks to the 16 contributors who made this release possible. Here are som
 ### Docs
 
 - &#8203;<!-- 31 -->[blog] Fix 404 link to Algolia docs search (dd4308d) @oliviertassinari
+- &#8203;<!-- 28 -->[docs] Add accessibility tips (#33633) @siriwatknp
 - &#8203;<!-- 27 -->[docs] Fix production deploy of codesandboxes (#33608) @oliviertassinari
 - &#8203;<!-- 26 -->[docs] Show border on `palette.background.paper` in dark mode docs (#33611) @ZeeshanTamboli
 - &#8203;<!-- 25 -->[docs] Fix typo in Joy UI dark mode page (#33620) @bairamau
