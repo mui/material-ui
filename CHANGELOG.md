@@ -33,14 +33,13 @@ A big thanks to the 16 contributors who made this release possible. Here are som
 
 ### `@mui/joy@5.0.0-alpha.38`
 
-- &#8203;<!-- 17 -->[Joy] Add `Select` component (#33630) @siriwatknp
-- &#8203;<!-- 16 -->[Joy] Improve Text Field documentation (#33631) @danilo-leal
-- &#8203;<!-- 15 -->[Joy] Add Text field documentation (#33430) @danilo-leal
+- &#8203;<!-- 17 -->[Select] Add new component in Joy (#33630) @siriwatknp
+- &#8203;<!-- 15 -->[Joy] Add Text field documentation (#33430, #33631) @danilo-leal
 - &#8203;<!-- 14 -->[Joy] Add menu components (#31789) @siriwatknp
 
 ### Docs
 
-- &#8203;<!-- 31 -->[blog] Fix 404 link to Algolia docs search @oliviertassinari
+- &#8203;<!-- 31 -->[blog] Fix 404 link to Algolia docs search (dd4308d) @oliviertassinari
 - &#8203;<!-- 27 -->[docs] Fix production deploy of codesandboxes (#33608) @oliviertassinari
 - &#8203;<!-- 26 -->[docs] Show border on `palette.background.paper` in dark mode docs (#33611) @ZeeshanTamboli
 - &#8203;<!-- 25 -->[docs] Fix typo in Joy UI dark mode page (#33620) @bairamau
