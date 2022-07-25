@@ -227,7 +227,7 @@ const teamMembers: Array<Profile> = [
   {
     name: 'Marija Najdova',
     src: '/static/branding/about/marija.png',
-    title: 'MUI Core engineer',
+    title: 'MUI Core Engineer',
     location: 'Skopje, North Macedonia',
     locationCountry: 'mk',
     about: 'I do karate 🥋 and read 📚. A lot!',
@@ -237,7 +237,7 @@ const teamMembers: Array<Profile> = [
   {
     name: 'Danail Hadjiatanasov',
     src: '/static/branding/about/danail.png',
-    title: 'MUI X engineer',
+    title: 'MUI X Engineer',
     location: 'Amsterdam, Netherlands',
     locationCountry: 'nl',
     about: 'Boringly normal, geek deep down. I like 🚗  and 🏂',
@@ -247,7 +247,7 @@ const teamMembers: Array<Profile> = [
   {
     name: 'Matheus Wichman',
     src: '/static/branding/about/matheus.png',
-    title: 'MUI X engineer',
+    title: 'MUI X Engineer',
     location: 'Esteio, Brazil',
     locationCountry: 'br',
     about: 'I like road cycling 🚲, DIY 🛠 and aviation ✈!',
@@ -256,7 +256,7 @@ const teamMembers: Array<Profile> = [
   {
     name: 'Michał Dudak',
     src: '/static/branding/about/michal.png',
-    title: 'MUI Core engineer',
+    title: 'MUI Core Engineer',
     location: 'Silesia, Poland',
     locationCountry: 'pl',
     about: 'Motorcyclist, gamer, and coder (UI and more!)',
@@ -266,7 +266,7 @@ const teamMembers: Array<Profile> = [
   {
     name: 'Siriwat Kunaporn',
     src: '/static/branding/about/siriwat.png',
-    title: 'MUI Core engineer',
+    title: 'MUI Core Engineer',
     location: 'Bangkok, Thailand',
     locationCountry: 'th',
     about: 'UI Lover and ⛷ skiing newbie.',
@@ -276,7 +276,7 @@ const teamMembers: Array<Profile> = [
   {
     name: 'Danilo Leal',
     src: '/static/branding/about/danilo.png',
-    title: 'Lead designer',
+    title: 'Lead Designer',
     location: 'São Paulo, Brazil',
     locationCountry: 'br',
     about: 'Music production, hiking, and traveling!',
@@ -286,7 +286,7 @@ const teamMembers: Array<Profile> = [
   {
     name: 'Flavien Delangle',
     src: '/static/branding/about/flavien.png',
-    title: 'MUI X engineer',
+    title: 'MUI X Engineer',
     location: 'Lille, France',
     about: 'Love cycling 🚴‍♂️ and reading 📚',
     locationCountry: 'fr',
@@ -295,7 +295,7 @@ const teamMembers: Array<Profile> = [
   {
     name: 'Benny Joo',
     src: '/static/branding/about/benny.png',
-    title: 'MUI Core engineer',
+    title: 'MUI Core Engineer',
     location: 'London, UK',
     locationCountry: 'gb',
     about: 'Love reading 📚 and working out 🏋️‍♂️',
@@ -304,7 +304,7 @@ const teamMembers: Array<Profile> = [
   {
     src: '/static/branding/about/alexandre.png',
     name: 'Alexandre Fauquette',
-    title: 'MUI X engineer',
+    title: 'MUI X Engineer',
     location: 'Nancy, France',
     locationCountry: 'fr',
     about: 'Love hacking and cycling 🚴‍♂️',
@@ -314,7 +314,7 @@ const teamMembers: Array<Profile> = [
   {
     src: '/static/branding/about/bharat.png',
     name: 'Bharat Kashyap',
-    title: 'MUI Toolpad engineer',
+    title: 'MUI Toolpad Engineer',
     location: 'New Delhi, India',
     locationCountry: 'in',
     about: 'Trains 🚅 , architecture 🏛️ , and psychology 🧠 ',
@@ -324,7 +324,7 @@ const teamMembers: Array<Profile> = [
   {
     src: '/static/branding/about/jan.png',
     name: 'Jan Potoms',
-    title: 'MUI Toolpad engineer',
+    title: 'MUI Toolpad Engineer',
     location: 'Brussels, Belgium',
     locationCountry: 'be',
     about: 'Always curious, I enjoy cinema and hiking',
@@ -353,7 +353,7 @@ const teamMembers: Array<Profile> = [
   {
     src: '/static/branding/about/andrii.png',
     name: 'Andrii Cherniavskyi',
-    title: 'MUI X engineer',
+    title: 'MUI X Engineer',
     location: 'Wrocław, Poland',
     locationCountry: 'pl',
     about: 'Love playing music - electric and bass guitar 🎸',
@@ -373,7 +373,7 @@ const teamMembers: Array<Profile> = [
   {
     src: '/static/branding/about/pedro.png',
     name: 'Pedro Ferreira',
-    title: 'MUI Toolpad engineer',
+    title: 'MUI Toolpad Engineer',
     location: 'Porto, Portugal',
     locationCountry: 'pt',
     about: 'Passionate about videogames and football',
