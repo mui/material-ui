@@ -18,7 +18,7 @@ A big thanks to the 16 contributors who made this release possible. Here are som
 - &#8203;<!-- 12 -->[Modal] Explain the meaning of deprecation of the BackdropComponent prop (#33591) @michaldudak
 - &#8203;<!-- 11 -->[Stack] Fix unit test failure (#33588) @hbjORbj
 - &#8203;<!-- 10 -->[Stack] Fix default `flexDirection` value with responsive prop (#33549) @hbjORbj
-- &#8203;<!-- 09 -->[Stack] Ensure that `marginundefined` doesn't occur in styling  (#33548) @hbjORbj
+- &#8203;<!-- 09 -->[Stack] Ensure that `marginundefined` doesn't occur in styling (#33548) @hbjORbj
 - &#8203;<!-- 08 -->[Tabs] Fix `indicatorColor` prop type (#33569) @ZeeshanTamboli
 - &#8203;<!-- 07 -->[Tabs] Add TypeScript interface to augment tab indicator color in theme (#33333) @AHeiming
 
