@@ -7,7 +7,7 @@
       "type": { "name": "elementType" },
       "default": "styled(Backdrop, {\n  name: 'MuiModal',\n  slot: 'Backdrop',\n  overridesResolver: (props, styles) => {\n    return styles.backdrop;\n  },\n})({\n  zIndex: -1,\n})",
       "deprecated": true,
-      "deprecationInfo": "Use <code>components.Backdrop</code> instead. While this prop currently works, it will be removed in the next major version. Use the <code>components.Backdrop</code> prop to make your application ready for the next version of Material UI."
+      "deprecationInfo": "Use <code>components.Backdrop</code> instead. While this prop currently works, it will be removed in the next major version."
     },
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
