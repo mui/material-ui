@@ -7,6 +7,8 @@ import { Theme } from '../styles';
 import { TransitionProps } from '../transitions/transition';
 import { MenuClasses } from './menuClasses';
 
+export interface MenuPropsVariantOverrides {}
+
 export interface MenuProps extends StandardProps<PopoverProps> {
   /**
    * An HTML element, or a function that returns one.
@@ -76,7 +78,7 @@ export interface MenuProps extends StandardProps<PopoverProps> {
    * The variant to use. Use `menu` to prevent selected items from impacting the initial focus.
    * @default 'selectedMenu'
    */
-  variant?: 'menu' | 'selectedMenu';
+  variant?: OverridableStringUnion<'menu' | 'selectedMenu', MenuPropsVariantOverrides>;
 }
 
 /**
