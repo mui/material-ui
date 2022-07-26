@@ -414,7 +414,7 @@ function MySelect({ children }) {
 
 ### UMD
 
-- This change eases the use of Material UI with a CDN:
+- 这一变化简化了Material UI与CDN的使用:
 
   ```diff
   const {
