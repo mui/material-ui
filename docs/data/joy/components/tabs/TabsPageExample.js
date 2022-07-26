@@ -36,7 +36,7 @@ export default function TabsBasic() {
               bgcolor: 'transparent',
               boxShadow: 'none',
               [`&.${tabClasses.selected}`]: {
-                color: 'primary.500',
+                color: 'primary.plainColor',
                 fontWeight: 'lg',
                 '&:before': {
                   content: '""',
@@ -46,7 +46,9 @@ export default function TabsBasic() {
                   bottom: '-1px',
                   left: 'var(--List-item-paddingLeft)',
                   right: 'var(--List-item-paddingRight)',
-                  height: '2px',
+                  height: '3px',
+                  borderTopLeftRadius: '3px',
+                  borderTopRightRadius: '3px',
                   bgcolor: 'primary.500',
                 },
               },

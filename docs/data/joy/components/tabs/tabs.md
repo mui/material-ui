@@ -70,3 +70,5 @@ Since `TabList` uses the same style as the [`List`](/joy-ui/react-list/) compone
 {{"demo": "TabsPageExample.js"}}
 
 ### Mobile bottom navigation
+
+{{"demo": "TabsBottomNavExample.js"}}
