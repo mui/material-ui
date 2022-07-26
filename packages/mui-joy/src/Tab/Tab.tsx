@@ -66,7 +66,7 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
     onChange,
     onClick,
     onFocus,
-    component,
+    component = 'button',
     variant = 'plain',
     color = 'neutral',
     ...other

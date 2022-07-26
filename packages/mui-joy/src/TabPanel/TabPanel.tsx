@@ -42,6 +42,7 @@ const TabPanelRoot = styled(SheetRoot, {
   ...(ownerState.size === 'lg' && {
     fontSize: theme.vars.fontSize.lg,
   }),
+  flexGrow: 1,
 }));
 
 const TabPanel = React.forwardRef(function TabPanel(inProps, ref) {

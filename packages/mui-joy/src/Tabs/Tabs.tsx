@@ -41,6 +41,11 @@ const TabsRoot = styled(SheetRoot, {
   ...(ownerState.size === 'lg' && {
     '--Tabs-gap': '0.5rem',
   }),
+  display: 'flex',
+  flexDirection: 'column',
+  ...(ownerState.orientation === 'vertical' && {
+    flexDirection: 'row',
+  }),
 }));
 
 const Tabs = React.forwardRef(function Tabs(inProps, ref) {

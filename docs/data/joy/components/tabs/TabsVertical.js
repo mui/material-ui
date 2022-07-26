@@ -4,22 +4,27 @@ import TabList from '@mui/joy/TabList';
 import Tab from '@mui/joy/Tab';
 import TabPanel from '@mui/joy/TabPanel';
 
-export default function BasicTabs() {
+export default function TabsVertical() {
   return (
-    <Tabs>
+    <Tabs
+      aria-label="Vertical tabs"
+      orientation="vertical"
+      defaultValue={0}
+      sx={{ minWidth: 300 }}
+    >
       <TabList>
         <Tab>First tab</Tab>
         <Tab>Second tab</Tab>
         <Tab>Third tab</Tab>
       </TabList>
       <TabPanel value={0}>
-        <b>First</b> tab&apos;s content
+        <b>First</b> tab panel
       </TabPanel>
       <TabPanel value={1}>
-        <b>Second</b> tab&apos;s content
+        <b>Second</b> tab panel
       </TabPanel>
       <TabPanel value={2}>
-        <b>Third</b> tab&apos;s content
+        <b>Third</b> tab panel
       </TabPanel>
     </Tabs>
   );

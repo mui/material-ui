@@ -38,6 +38,7 @@ const TabListRoot = styled(ListRoot, {
   '--List-gap': 'var(--Tabs-gap)',
   '--List-padding': 'var(--Tabs-gap)',
   '--List-divider-gap': '0px',
+  flexGrow: 'initial',
 }));
 
 const TabList = React.forwardRef(function TabList(inProps, ref) {

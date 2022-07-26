@@ -29,6 +29,32 @@ Joy UI provides four menu-related components:
 
 ### Basic
 
-The simplest way to render the tabs is to follow this structure.
+The tabs structure follows [WAI ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/patterns/tabpanel/). All you need is specifying `value` prop to the `TabPanel` and use `Tabs`'s `defaultValue` to target the initial selected tab.
 
-{{"demo": "BasicTabs.js"}}
+{{"demo": "TabsBasic.js"}}
+
+### Variant
+
+Both `TabList` and `Tab` accept [global variant](/joy-ui/main-features/global-variants/) values, so you can mix and match to get the desired result.
+
+{{"demo": "TabsVariants.js"}}
+
+### Disabled tab
+
+You can disable a tab by providing `disabled` prop to the `Tab` component.
+
+{{"demo": "TabDisabled.js"}}
+
+### Vertical
+
+Provides `orientation="vertical"` to the `Tabs ` to render in vertical mode. The keyboard navigation such as arrow keys also adapt to the orientation of the tabs.
+
+{{"demo": "TabsVertical.js"}}
+
+### Icon
+
+Since `TabList` uses the same style as the [`List`](/joy-ui/react-list/) component, you can use the icon directly as a child or use `ListItemDecorator` with a text.
+
+{{"demo": "TabsIcon.js"}}
+
+{{"demo": "TabsIconWithText.js"}}

@@ -32,6 +32,10 @@ export interface TabsTypeMap<P = {}, D extends React.ElementType = 'div'> {
        * @default 'plain'
        */
       variant?: OverridableStringUnion<VariantProp, TabsPropsVariantOverrides>;
+      /**
+       * If `true`, the tab items are rendered vertically.
+       */
+      vertical?: boolean;
     };
   defaultComponent: D;
 }

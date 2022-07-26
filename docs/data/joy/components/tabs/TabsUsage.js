@@ -4,7 +4,7 @@ import Tabs from '@mui/joy/Tabs';
 import TabList from '@mui/joy/TabList';
 import Tab from '@mui/joy/Tab';
 
-export default function MenuUsage() {
+export default function TabsUsage() {
   return (
     <JoyUsageDemo
       componentName="Tabs"
