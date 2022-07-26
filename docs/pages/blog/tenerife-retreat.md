@@ -46,7 +46,7 @@ And somehow each one was even better than the last!
 
 ![MUI X colleagues José and Andrew bond over a bottle of wine at dinner one night during the retreat.](/static/blog/tenerife-retreat/jose-andrew-wine.jpg)
 
-_MUI X colleagues José and Andrew bond over a bottle of wine at dinner one night during the retreat._
+<p class="blog-description">MUI X colleagues José and Andrew bond over a bottle of wine at dinner one night during the retreat.</p>
 
 ## Activities
 
