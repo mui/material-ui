@@ -13,13 +13,14 @@ import { TabOwnerState, TabTypeMap } from './TabProps';
 import RowListContext from '../List/RowListContext';
 
 const useUtilityClasses = (ownerState: TabOwnerState) => {
-  const { selected, disabled, variant, color } = ownerState;
+  const { selected, disabled, focusVisible, variant, color } = ownerState;
 
   const slots = {
     root: [
       'root',
-      selected && 'selected',
       disabled && 'disabled',
+      focusVisible && 'focusVisible',
+      selected && 'selected',
       variant && `variant${capitalize(variant)}`,
       color && `color${capitalize(color)}`,
     ],

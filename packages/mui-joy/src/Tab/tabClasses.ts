@@ -3,6 +3,12 @@ import { generateUtilityClass, generateUtilityClasses } from '../className';
 export interface TabClasses {
   /** Classname applied to the root element. */
   root: string;
+  /** Classname applied to the root element if `disabled={true}`. */
+  disabled: string;
+  /** Classname applied to the root element when its focus is visible. */
+  focusVisible: string;
+  /** Classname applied to the root element when it is selected. */
+  selected: string;
   /** Classname applied to the root element if `orientation="horizontal"`. */
   horizontal: string;
   /** Classname applied to the root element if `orientation="vertical"`. */
@@ -37,6 +43,9 @@ export function getTabUtilityClass(slot: string): string {
 
 const tabListClasses: TabClasses = generateUtilityClasses('JoyTab', [
   'root',
+  'disabled',
+  'focusVisible',
+  'selected',
   'horizontal',
   'vertical',
   'colorPrimary',
