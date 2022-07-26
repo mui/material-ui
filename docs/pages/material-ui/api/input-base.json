@@ -72,6 +72,7 @@
       "colorSecondary",
       "fullWidth",
       "hiddenLabel",
+      "readOnly",
       "input",
       "inputSizeSmall",
       "inputMultiline",
