@@ -68,7 +68,7 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
     onFocus,
     component,
     variant = 'plain',
-    color: colorProp,
+    color = 'neutral',
     ...other
   } = props;
 
@@ -90,8 +90,6 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
     }),
     [setFocusVisible],
   );
-
-  const color = colorProp ?? (selected ? 'primary' : 'neutral');
 
   const ownerState = {
     ...props,

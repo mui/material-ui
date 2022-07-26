@@ -9,6 +9,7 @@ import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
 import { ListRoot } from '../List/List';
 import RowListContext from '../List/RowListContext';
+import SizeTabsContext from '../Tabs/SizeTabsContext';
 import { getTabListUtilityClass } from './tabListClasses';
 import { TabListProps, TabListOwnerState, TabListTypeMap } from './TabListProps';
 
@@ -34,8 +35,8 @@ const TabListRoot = styled(ListRoot, {
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: TabListProps }>(({ theme }) => ({
   '--List-radius': theme.vars.radius.md,
-  '--List-gap': '0.5rem',
-  '--List-padding': 'var(--List-gap)',
+  '--List-gap': 'var(--Tabs-gap)',
+  '--List-padding': 'var(--Tabs-gap)',
   '--List-divider-gap': '0px',
 }));
 
@@ -44,6 +45,7 @@ const TabList = React.forwardRef(function TabList(inProps, ref) {
     props: inProps,
     name: 'JoyTabList',
   });
+  const tabsSize = React.useContext(SizeTabsContext);
 
   const {
     className,
@@ -51,13 +53,14 @@ const TabList = React.forwardRef(function TabList(inProps, ref) {
     children,
     variant = 'soft',
     color = 'neutral',
-    size = 'md',
+    size: sizeProp,
     ...other
   } = props;
 
   const { isRtl, orientation, getRootProps, processChildren } = useTabsList({ ...props, ref });
 
   const row = orientation === 'horizontal';
+  const size = sizeProp ?? tabsSize;
 
   const ownerState = {
     ...props,

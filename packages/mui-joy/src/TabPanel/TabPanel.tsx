@@ -6,13 +6,13 @@ import { OverridableComponent } from '@mui/types';
 import { useTabPanel } from '@mui/base/TabPanelUnstyled';
 import { useSlotProps } from '@mui/base/utils';
 import { SheetRoot } from '../Sheet/Sheet';
-import { useThemeProps } from '../styles';
-import styled from '../styles/styled';
+import { styled, useThemeProps } from '../styles';
+import SizeTabsContext from '../Tabs/SizeTabsContext';
 import { getTabPanelUtilityClass } from './tabPanelClasses';
 import { TabPanelOwnerState, TabPanelTypeMap } from './TabPanelProps';
 
 const useUtilityClasses = (ownerState: TabPanelOwnerState) => {
-  const { hidden, variant, color } = ownerState;
+  const { hidden, variant, color, size } = ownerState;
 
   const slots = {
     root: [
@@ -20,6 +20,7 @@ const useUtilityClasses = (ownerState: TabPanelOwnerState) => {
       hidden && 'hidden',
       variant && `variant${capitalize(variant)}`,
       color && `color${capitalize(color)}`,
+      size && `size${capitalize(size)}`,
     ],
   };
 
@@ -30,23 +31,46 @@ const TabPanelRoot = styled(SheetRoot, {
   name: 'JoyTabPanel',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: TabPanelOwnerState }>({});
+})<{ ownerState: TabPanelOwnerState }>(({ theme, ownerState }) => ({
+  padding: 'var(--Tabs-gap)',
+  ...(ownerState.size === 'sm' && {
+    fontSize: theme.vars.fontSize.sm,
+  }),
+  ...(ownerState.size === 'md' && {
+    fontSize: theme.vars.fontSize.md,
+  }),
+  ...(ownerState.size === 'lg' && {
+    fontSize: theme.vars.fontSize.lg,
+  }),
+}));
 
 const TabPanel = React.forwardRef(function TabPanel(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
     name: 'JoyTabPanel',
   });
+  const tabsSize = React.useContext(SizeTabsContext);
 
-  const { children, value, component, color = 'neutral', variant = 'plain', ...other } = props;
+  const {
+    children,
+    value,
+    component,
+    color = 'neutral',
+    variant = 'plain',
+    size: sizeProp,
+    ...other
+  } = props;
 
   const { hidden, getRootProps } = useTabPanel(props);
+
+  const size = sizeProp ?? tabsSize;
 
   const ownerState = {
     ...props,
     hidden,
     color,
     variant,
+    size,
   };
 
   const classes = useUtilityClasses(ownerState);

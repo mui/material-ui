@@ -9,6 +9,8 @@ export interface TabPanelPropsColorOverrides {}
 
 export interface TabPanelPropsVariantOverrides {}
 
+export interface TabPanelPropsSizeOverrides {}
+
 export interface TabPanelTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P &
     Omit<TabPanelUnstyledOwnProps, 'components' | 'componentsProps'> & {
@@ -17,6 +19,10 @@ export interface TabPanelTypeMap<P = {}, D extends React.ElementType = 'div'> {
        * @default 'neutral'
        */
       color?: OverridableStringUnion<ColorPaletteProp, TabPanelPropsColorOverrides>;
+      /**
+       * The size of the component.
+       */
+      size?: OverridableStringUnion<'sm' | 'md' | 'lg', TabPanelPropsSizeOverrides>;
       /**
        * The system prop that allows defining system overrides as well as additional CSS styles.
        */

@@ -9,6 +9,8 @@ export interface TabsPropsColorOverrides {}
 
 export interface TabsPropsVariantOverrides {}
 
+export interface TabsPropsSizeOverrides {}
+
 export interface TabsTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P &
     Omit<TabsUnstyledOwnProps, 'components' | 'componentsProps'> & {
@@ -17,6 +19,10 @@ export interface TabsTypeMap<P = {}, D extends React.ElementType = 'div'> {
        * @default 'neutral'
        */
       color?: OverridableStringUnion<ColorPaletteProp, TabsPropsColorOverrides>;
+      /**
+       * The size of the component.
+       */
+      size?: OverridableStringUnion<'sm' | 'md' | 'lg', TabsPropsSizeOverrides>;
       /**
        * The system prop that allows defining system overrides as well as additional CSS styles.
        */

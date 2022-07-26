@@ -27,6 +27,12 @@ export interface TabsClasses {
   variantSoft: string;
   /** Classname applied to the root element if `variant="solid"`. */
   variantSolid: string;
+  /** Classname applied to the root element if `size="sm"`. */
+  sizeSm: string;
+  /** Classname applied to the root element if `size="md"`. */
+  sizeMd: string;
+  /** Classname applied to the root element if `size="lg"`. */
+  sizeLg: string;
 }
 
 export type TabsClassKey = keyof TabsClasses;
@@ -49,6 +55,9 @@ const tabListClasses: TabsClasses = generateUtilityClasses('JoyTabs', [
   'variantOutlined',
   'variantSoft',
   'variantSolid',
+  'sizeSm',
+  'sizeMd',
+  'sizeLg',
 ]);
 
 export default tabListClasses;

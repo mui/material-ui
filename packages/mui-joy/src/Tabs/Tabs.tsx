@@ -6,13 +6,13 @@ import { OverridableComponent } from '@mui/types';
 import { useTabs, TabsContext } from '@mui/base/TabsUnstyled';
 import { useSlotProps } from '@mui/base/utils';
 import { SheetRoot } from '../Sheet/Sheet';
-import { useThemeProps } from '../styles';
-import styled from '../styles/styled';
+import { styled, useThemeProps } from '../styles';
+import SizeTabsContext from './SizeTabsContext';
 import { getTabsUtilityClass } from './tabsClasses';
 import { TabsOwnerState, TabsTypeMap } from './TabsProps';
 
 const useUtilityClasses = (ownerState: TabsOwnerState) => {
-  const { orientation, variant, color } = ownerState;
+  const { orientation, variant, color, size } = ownerState;
 
   const slots = {
     root: [
@@ -20,6 +20,7 @@ const useUtilityClasses = (ownerState: TabsOwnerState) => {
       orientation,
       variant && `variant${capitalize(variant)}`,
       color && `color${capitalize(color)}`,
+      size && `size${capitalize(size)}`,
     ],
   };
 
@@ -30,7 +31,17 @@ const TabsRoot = styled(SheetRoot, {
   name: 'JoyTabs',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: TabsOwnerState }>({});
+})<{ ownerState: TabsOwnerState }>(({ ownerState }) => ({
+  ...(ownerState.size === 'sm' && {
+    '--Tabs-gap': '3px',
+  }),
+  ...(ownerState.size === 'md' && {
+    '--Tabs-gap': '4px',
+  }),
+  ...(ownerState.size === 'lg' && {
+    '--Tabs-gap': '0.5rem',
+  }),
+}));
 
 const Tabs = React.forwardRef(function Tabs(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
@@ -49,6 +60,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     selectionFollowsFocus,
     variant = 'plain',
     color = 'neutral',
+    size = 'md',
     ...other
   } = props;
 
@@ -60,6 +72,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     direction,
     variant,
     color,
+    size,
   };
 
   const classes = useUtilityClasses(ownerState);
@@ -79,7 +92,9 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
   return (
     // @ts-ignore `defaultValue` between HTMLDiv and TabsProps is conflicted.
     <TabsRoot {...tabsRootProps}>
-      <TabsContext.Provider value={tabsContextValue}>{children}</TabsContext.Provider>
+      <TabsContext.Provider value={tabsContextValue}>
+        <SizeTabsContext.Provider value={size}>{children}</SizeTabsContext.Provider>
+      </TabsContext.Provider>
     </TabsRoot>
   );
 }) as OverridableComponent<TabsTypeMap>;
@@ -129,6 +144,13 @@ Tabs.propTypes /* remove-proptypes */ = {
    * changes on activation.
    */
   selectionFollowsFocus: PropTypes.bool,
+  /**
+   * The size of the component.
+   */
+  size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['sm', 'md', 'lg']),
+    PropTypes.string,
+  ]),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
