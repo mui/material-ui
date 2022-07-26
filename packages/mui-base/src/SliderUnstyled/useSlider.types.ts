@@ -25,7 +25,7 @@ export interface Mark {
   label?: React.ReactNode;
 }
 
-type UseSliderRootSlotOwnProps = {
+export type UseSliderRootSlotOwnProps = {
   onMouseDown: React.MouseEventHandler;
   ref: React.Ref<any>;
 };
@@ -33,7 +33,7 @@ type UseSliderRootSlotOwnProps = {
 export type UseSliderRootSlotProps<TOther = {}> = Omit<TOther, keyof UseSliderRootSlotOwnProps> &
   UseSliderRootSlotOwnProps;
 
-type UseSliderThumbSlotOwnProps = {
+export type UseSliderThumbSlotOwnProps = {
   onMouseLeave: React.MouseEventHandler;
   onMouseOver: React.MouseEventHandler;
 };
@@ -41,7 +41,7 @@ type UseSliderThumbSlotOwnProps = {
 export type UseSliderThumbSlotProps<TOther = {}> = Omit<TOther, keyof UseSliderThumbSlotOwnProps> &
   UseSliderThumbSlotOwnProps;
 
-type UseSliderHiddenInputOwnProps = {
+export type UseSliderHiddenInputOwnProps = {
   'aria-labelledby'?: string;
   'aria-orientation'?: React.AriaAttributes['aria-orientation'];
   'aria-valuemax'?: React.AriaAttributes['aria-valuemax'];

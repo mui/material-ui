@@ -509,13 +509,21 @@ const rowHeaders: Record<string, React.ReactNode> = {
   'mui-x-development': <ColumnHead label="Development license" tooltip="For active development" />,
   'mui-x-updates': <ColumnHead label="Access to new releases" />,
   // Support
-  community: <ColumnHead {...{ label: 'Community' }} />,
+  community: (
+    <ColumnHead
+      {...{
+        label: 'Community support for MUI Core',
+        tooltip:
+          'Support for MUI Core and other MIT licensed code is provided by the community. MUI maintainers focus on solving root issues rather than offering direct support to the community at large.',
+      }}
+    />
+  ),
   'bugs/features': (
     <ColumnHead
       {...{
-        label: 'Bug reports & feature requests',
+        label: 'Technical support for MUI X',
         tooltip:
-          'You can report an unlimited number of bugs and submit unlimited feature requests. We do our best to handle them.',
+          'You can ask for technical support, report bugs and submit unlimited feature requests to the advanced components. We take your subscription plan as one of the prioritization criteria.',
       }}
     />
   ),

@@ -45,7 +45,7 @@ The most common components you'd use with it are `Typography`, `AspectRatio`, an
 ### Overflow
 
 To have content spanning from edge to edge of the card, wrap it with the `CardOverflow` component.
-It automatically takesd care of the top and bottom edges if rendered as the first or last child of the parent card.
+It automatically takes care of the top and bottom edges if rendered as the first or last child of the parent card.
 
 {{"demo": "OverflowCard.js" }}
 

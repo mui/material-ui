@@ -8,7 +8,7 @@ type UseListboxStrictPropsRequiredKeys =
   | 'optionStringifier'
   | 'multiple';
 
-export type UseListboxStrictProps<TOption> = Omit<
+export type UseListboxPropsWithDefaults<TOption> = Omit<
   UseListboxParameters<TOption>,
   UseListboxStrictPropsRequiredKeys
 > &
@@ -35,32 +35,32 @@ interface OptionClickAction<TOption> {
   type: ActionTypes.optionClick;
   option: TOption;
   event: React.MouseEvent;
-  props: UseListboxStrictProps<TOption>;
+  props: UseListboxPropsWithDefaults<TOption>;
 }
 
 interface OptionHoverAction<TOption> {
   type: ActionTypes.optionHover;
   option: TOption;
   event: React.MouseEvent;
-  props: UseListboxStrictProps<TOption>;
+  props: UseListboxPropsWithDefaults<TOption>;
 }
 
 interface FocusAction<TOption> {
   type: ActionTypes.focus;
   event: React.FocusEvent;
-  props: UseListboxStrictProps<TOption>;
+  props: UseListboxPropsWithDefaults<TOption>;
 }
 
 interface BlurAction<TOption> {
   type: ActionTypes.blur;
   event: React.FocusEvent;
-  props: UseListboxStrictProps<TOption>;
+  props: UseListboxPropsWithDefaults<TOption>;
 }
 
 interface KeyDownAction<TOption> {
   type: ActionTypes.keyDown;
   event: React.KeyboardEvent;
-  props: UseListboxStrictProps<TOption>;
+  props: UseListboxPropsWithDefaults<TOption>;
 }
 
 interface SetValueAction<TOption> {
@@ -76,14 +76,14 @@ interface SetHighlightAction<TOption> {
 interface TextNavigationAction<TOption> {
   type: ActionTypes.textNavigation;
   searchString: string;
-  props: UseListboxStrictProps<TOption>;
+  props: UseListboxPropsWithDefaults<TOption>;
 }
 
 interface OptionsChangeAction<TOption> {
   type: ActionTypes.optionsChange;
   options: TOption[];
   previousOptions: TOption[];
-  props: UseListboxStrictProps<TOption>;
+  props: UseListboxPropsWithDefaults<TOption>;
 }
 
 export type ListboxAction<TOption> =

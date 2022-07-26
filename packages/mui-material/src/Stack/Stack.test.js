@@ -50,6 +50,7 @@ describe('<Stack />', () => {
         },
       },
       display: 'flex',
+      flexDirection: 'column',
     });
   });
 
@@ -78,6 +79,7 @@ describe('<Stack />', () => {
         flexDirection: 'row',
       },
       display: 'flex',
+      flexDirection: 'column',
     });
   });
 
@@ -184,10 +186,30 @@ describe('<Stack />', () => {
         },
       },
       display: 'flex',
+      flexDirection: 'column',
     });
   });
 
   describe('prop: direction', () => {
+    it('should generate correct direction given string values', () => {
+      expect(
+        style({
+          ownerState: {
+            direction: 'column-reverse',
+            spacing: 1,
+          },
+          theme,
+        }),
+      ).to.deep.equal({
+        '& > :not(style) + :not(style)': {
+          margin: 0,
+          marginBottom: '8px',
+        },
+        display: 'flex',
+        flexDirection: 'column-reverse',
+      });
+    });
+
     it('should generate correct responsive styles regardless of breakpoints order', () => {
       expect(
         style({
@@ -219,6 +241,109 @@ describe('<Stack />', () => {
           },
         },
         display: 'flex',
+        flexDirection: 'column',
+      });
+    });
+
+    it('should generate correct direction even though breakpoints are not fully provided', () => {
+      expect(
+        style({
+          ownerState: {
+            direction: { lg: 'row' },
+          },
+          theme,
+        }),
+      ).to.deep.equal({
+        [`@media (min-width:${defaultTheme.breakpoints.values.lg}px)`]: {
+          flexDirection: 'row',
+        },
+        display: 'flex',
+        flexDirection: 'column',
+      });
+    });
+
+    it('should place correct margin direction even though breakpoints are not fully provided', () => {
+      expect(
+        style({
+          ownerState: {
+            direction: { lg: 'row' },
+            spacing: { xs: 0, md: 2, xl: 4 },
+          },
+          theme,
+        }),
+      ).to.deep.equal({
+        [`@media (min-width:${defaultTheme.breakpoints.values.xs}px)`]: {
+          '& > :not(style) + :not(style)': {
+            margin: 0,
+            marginTop: '0px',
+          },
+        },
+        [`@media (min-width:${defaultTheme.breakpoints.values.md}px)`]: {
+          '& > :not(style) + :not(style)': {
+            margin: 0,
+            marginTop: '16px',
+          },
+        },
+        [`@media (min-width:${defaultTheme.breakpoints.values.lg}px)`]: {
+          '& > :not(style) + :not(style)': {
+            margin: 0,
+            marginLeft: '16px',
+          },
+          flexDirection: 'row',
+        },
+        [`@media (min-width:${defaultTheme.breakpoints.values.xl}px)`]: {
+          '& > :not(style) + :not(style)': {
+            margin: 0,
+            marginLeft: '32px',
+          },
+        },
+        display: 'flex',
+        flexDirection: 'column',
+      });
+
+      expect(
+        style({
+          ownerState: {
+            direction: { lg: 'column', sm: 'row' },
+            spacing: { md: 2, xl: 4, xs: 0 },
+          },
+          theme,
+        }),
+      ).to.deep.equal({
+        [`@media (min-width:${defaultTheme.breakpoints.values.xs}px)`]: {
+          '& > :not(style) + :not(style)': {
+            margin: 0,
+            marginTop: '0px',
+          },
+        },
+        [`@media (min-width:${defaultTheme.breakpoints.values.sm}px)`]: {
+          '& > :not(style) + :not(style)': {
+            margin: 0,
+            marginLeft: '0px',
+          },
+          flexDirection: 'row',
+        },
+        [`@media (min-width:${defaultTheme.breakpoints.values.md}px)`]: {
+          '& > :not(style) + :not(style)': {
+            margin: 0,
+            marginLeft: '16px',
+          },
+        },
+        [`@media (min-width:${defaultTheme.breakpoints.values.lg}px)`]: {
+          '& > :not(style) + :not(style)': {
+            margin: 0,
+            marginTop: '16px',
+          },
+          flexDirection: 'column',
+        },
+        [`@media (min-width:${defaultTheme.breakpoints.values.xl}px)`]: {
+          '& > :not(style) + :not(style)': {
+            margin: 0,
+            marginTop: '32px',
+          },
+        },
+        display: 'flex',
+        flexDirection: 'column',
       });
     });
   });

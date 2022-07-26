@@ -412,13 +412,13 @@ const Root = styled('div')(({ theme }) => ({
     position: 'relative',
     '&:hover': {
       '& .MuiCode-copy': {
-        opacity: 1,
+        display: 'block',
       },
     },
   },
   '& .MuiCode-copy': {
     minWidth: 64,
-    opacity: 0,
+    display: 'none',
     backgroundColor: alpha(blueDark[600], 0.5),
     cursor: 'pointer',
     position: 'absolute',
