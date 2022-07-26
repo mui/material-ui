@@ -58,3 +58,13 @@ Since `TabList` uses the same style as the [`List`](/joy-ui/react-list/) compone
 {{"demo": "TabsIcon.js"}}
 
 {{"demo": "TabsIconWithText.js"}}
+
+## Common examples
+
+### Pricing tabs
+
+{{"demo": "TabsPricingExample.js"}}
+
+### Page tabs
+
+### Mobile bottom navigation
