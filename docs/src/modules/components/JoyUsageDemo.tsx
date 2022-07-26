@@ -29,11 +29,16 @@ const shallowEqual = (item1: { [k: string]: any }, item2: { [k: string]: any }) 
   return equal;
 };
 
-function createCode(data: {
-  name: string;
-  props: Record<string, string | number | boolean>;
-  childrenAccepted?: boolean;
-}) {
+const defaultGetCodeBlock = (code: string) => code;
+
+function createCode(
+  data: {
+    name: string;
+    props: Record<string, string | number | boolean>;
+    childrenAccepted?: boolean;
+  },
+  getCodeBlock = defaultGetCodeBlock,
+) {
   const { props: inProps, name, childrenAccepted } = data;
   const closedJsx = childrenAccepted ? '>' : '/>';
   let code = `<${name}`;
@@ -75,8 +80,16 @@ function createCode(data: {
     }
   }
 
-  return code;
+  return getCodeBlock(code);
 }
+
+export const prependLinesSpace = (code: string, size: number = 2) => {
+  const newCode: string[] = [];
+  code.split('\n').forEach((line) => {
+    newCode.push(`${Array(size).fill(' ').join('')}${line}`);
+  });
+  return newCode.join('\n');
+};
 
 interface JoyUsageDemoProps<ComponentProps> {
   /**
@@ -122,6 +135,10 @@ interface JoyUsageDemoProps<ComponentProps> {
      */
     codeBlockDisplay?: true;
   }>;
+  /**
+   * A function to override the code block result.
+   */
+  getCodeBlock?: (code: string) => string;
   renderDemo: (props: ComponentProps) => React.ReactElement;
 }
 
@@ -130,6 +147,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
   childrenAccepted = false,
   data,
   renderDemo,
+  getCodeBlock,
 }: JoyUsageDemoProps<T>) {
   const defaultProps = {} as { [k in keyof T]: any };
   const initialProps = {} as { [k in keyof T]: any };
@@ -173,11 +191,14 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
         </Box>
         <BrandingProvider mode="dark">
           <HighlightedCode
-            code={createCode({
-              name: componentName,
-              props: { ...props, ...staticProps },
-              childrenAccepted,
-            })}
+            code={createCode(
+              {
+                name: componentName,
+                props: { ...props, ...staticProps },
+                childrenAccepted,
+              },
+              getCodeBlock,
+            )}
             language="jsx"
             sx={{ display: { xs: 'none', md: 'block' } }}
           />
