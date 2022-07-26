@@ -3,72 +3,61 @@ import PropTypes from 'prop-types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
-import { useTabs, TabsContext } from '@mui/base/TabsUnstyled';
+import { useTabPanel } from '@mui/base/TabPanelUnstyled';
 import { useSlotProps } from '@mui/base/utils';
 import { SheetRoot } from '../Sheet/Sheet';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
-import { getTabsUtilityClass } from './tabsClasses';
-import { TabsOwnerState, TabsTypeMap } from './TabsProps';
+import { getTabPanelUtilityClass } from './tabPanelClasses';
+import { TabPanelOwnerState, TabPanelTypeMap } from './TabPanelProps';
 
-const useUtilityClasses = (ownerState: TabsOwnerState) => {
-  const { orientation, variant, color } = ownerState;
+const useUtilityClasses = (ownerState: TabPanelOwnerState) => {
+  const { hidden, variant, color } = ownerState;
 
   const slots = {
     root: [
       'root',
-      orientation,
+      hidden && 'hidden',
       variant && `variant${capitalize(variant)}`,
       color && `color${capitalize(color)}`,
     ],
   };
 
-  return composeClasses(slots, getTabsUtilityClass, {});
+  return composeClasses(slots, getTabPanelUtilityClass, {});
 };
 
-const TabsRoot = styled(SheetRoot, {
-  name: 'JoyTabs',
+const TabPanelRoot = styled(SheetRoot, {
+  name: 'JoyTabPanel',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: TabsOwnerState }>({});
+})<{ ownerState: TabPanelOwnerState }>({});
 
-const Tabs = React.forwardRef(function Tabs(inProps, ref) {
+const TabPanel = React.forwardRef(function TabPanel(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
-    name: 'JoyTabs',
+    name: 'JoyTabPanel',
   });
 
-  const {
-    children,
-    value: valueProp,
-    defaultValue,
-    orientation = 'horizontal',
-    direction = 'ltr',
-    component,
-    onChange,
-    selectionFollowsFocus,
-    variant = 'plain',
-    color = 'neutral',
-    ...other
-  } = props;
+  const { children, value, component, color = 'neutral', variant = 'plain', ...other } = props;
 
-  const { tabsContextValue } = useTabs(props);
+  const { hidden, getRootProps } = useTabPanel(props);
 
   const ownerState = {
     ...props,
-    orientation,
-    direction,
-    variant,
+    hidden,
     color,
+    variant,
   };
 
   const classes = useUtilityClasses(ownerState);
 
-  const tabsRootProps = useSlotProps({
-    elementType: TabsRoot,
+  const tabPanelRootProps = useSlotProps({
+    elementType: TabPanelRoot,
+    getSlotProps: getRootProps,
     externalSlotProps: {},
     externalForwardedProps: other,
     additionalProps: {
+      role: 'tabpanel',
       ref,
       as: component,
     },
@@ -76,15 +65,10 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     className: classes.root,
   });
 
-  return (
-    // @ts-ignore `defaultValue` between HTMLDiv and TabsProps is conflicted.
-    <TabsRoot {...tabsRootProps}>
-      <TabsContext.Provider value={tabsContextValue}>{children}</TabsContext.Provider>
-    </TabsRoot>
-  );
-}) as OverridableComponent<TabsTypeMap>;
+  return <TabPanelRoot {...tabPanelRootProps}>{!hidden && children}</TabPanelRoot>;
+}) as OverridableComponent<TabPanelTypeMap>;
 
-Tabs.propTypes /* remove-proptypes */ = {
+TabPanel.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
@@ -107,29 +91,6 @@ Tabs.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
-   * The default value. Use when the component is not controlled.
-   */
-  defaultValue: PropTypes.oneOfType([PropTypes.oneOf([false]), PropTypes.number, PropTypes.string]),
-  /**
-   * The direction of the text.
-   * @default 'ltr'
-   */
-  direction: PropTypes.oneOf(['ltr', 'rtl']),
-  /**
-   * Callback invoked when new value is being set.
-   */
-  onChange: PropTypes.func,
-  /**
-   * The component orientation (layout flow direction).
-   * @default 'horizontal'
-   */
-  orientation: PropTypes.oneOf(['horizontal', 'vertical']),
-  /**
-   * If `true` the selected tab changes on focus. Otherwise it only
-   * changes on activation.
-   */
-  selectionFollowsFocus: PropTypes.bool,
-  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
@@ -138,10 +99,9 @@ Tabs.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
-   * The value of the currently selected `Tab`.
-   * If you don't want any selected `Tab`, you can set this prop to `false`.
+   * The value of the TabPanel. It will be shown when the Tab with the corresponding value is selected.
    */
-  value: PropTypes.oneOfType([PropTypes.oneOf([false]), PropTypes.number, PropTypes.string]),
+  value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
   /**
    * The variant to use.
    * @default 'plain'
@@ -152,4 +112,4 @@ Tabs.propTypes /* remove-proptypes */ = {
   ]),
 } as any;
 
-export default Tabs;
+export default TabPanel;
