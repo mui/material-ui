@@ -1,27 +1,27 @@
-# Migration from v0.x to v1
+# 从v0.x迁移到v1
 
 <p class="description">是的，v1 版本已经发布了！ 我们用了两年的努力达到了这个里程碑。</p>
 
 ## 常问问题
 
-### 哇—— API 看起来完全不一样！ Does that mean 1.0 is completely different, I'll have to learn the basics all over again, and migrating will be practically impossible?
+### 哇—— API 看起来完全不一样！ 这是否意味着1.0是完全不同的，我将不得不重新学习基本知识，而且迁移几乎是不可能的？
 
-I'm glad you asked! 答案是不。 答案是不。 The core concepts haven't changed. You will notice that the API provides more flexibility, but this has a cost – lower-level components that abstract less complexity.
+我很高兴你问了这个问题! 答案是不。 核心概念并没有改变。 你会注意到，API提供了更多的灵活性，但这是有代价的------ 较低级别的组件抽象出较少的复杂性。
 
 ### 到底是什么带来了如此巨大的改变呢？
 
-Material UI was started [4 years ago](https://github.com/mui/material-ui/commit/28b768913b75752ecf9b6bb32766e27c241dbc46). 在此期间，整个个生态系统发展了很多，我们也学到了很多东西。 [@nathanmarks](https://github.com/nathanmarks/) started an ambitious task, rebuilding Material UI from the **ground-up** taking advantage of this knowledge to address long-standing issues. 譬如这些主要的变化： 譬如这些主要的变化：
+Material UI是在[4年前](https://github.com/mui/material-ui/commit/28b768913b75752ecf9b6bb32766e27c241dbc46)开始的。 在此期间，整个个生态系统发展了很多，我们也学到了很多东西。 [@nathanmarks](https://github.com/nathanmarks/)开始了一项雄心勃勃的任务，**从头开始**重建Material UI，利用这些知识来解决长期存在的问题。 譬如这些主要的变化： 譬如这些主要的变化：
 
-- New styling solution using CSS-in-JS (better [customization](/material-ui/customization/how-to-customize/) power, better performance)
+- 使用CSS-in-JS的新样式解决方案（更好的[定制](/material-ui/customization/how-to-customize/)能力，更好的性能）。
 - 新的主题处理 （有嵌套，自主支撑等。）
-- Blazing fast documentation thanks to [Next.js](https://github.com/vercel/next.js)
-- Way better [test coverage](/material-ui/guides/testing/) (99%+, run on all the major browsers, [visual regression tests](https://www.argos-ci.com/mui/material-ui))
-- Full [server-side rendering](/material-ui/guides/server-rendering/) support
-- Wide range of [supported browsers](/material-ui/getting-started/supported-platforms/)
+- 由于[Next.js](https://github.com/vercel/next.js)的存在，文档编写速度极快
+- 更好的[测试覆盖率](/material-ui/guides/testing/)（99%以上，在所有主要浏览器上运行，[可视化回归测试](https://www.argos-ci.com/mui/material-ui)）。
+- 全面支持[服务器端渲染](/material-ui/guides/server-rendering/)
+- [支持的浏览器](/material-ui/getting-started/supported-platforms/)范围广泛
 
 ### 我应该从哪里开始迁移？
 
-1. Start by installing the v1.x version of Material UI along side the v0.x version.
+1. 首先，将Material UI的v1.x版本与v0.x版本一起安装。
 
 用 yarn：
 
@@ -77,7 +77,7 @@ export default App;
 
 ### Autocomplete 自动补全组件
 
-Material UI doesn't provide a high-level API for solving this problem. You're encouraged you to explore [the solutions the React community has built](/material-ui/react-autocomplete/).
+Material UI并没有为解决这个问题提供一个高级别的API。 我们鼓励你去[探索React社区所建立的解决方案](/material-ui/react-autocomplete/)。
 
 在你的项目上运行 [迁移助手](https://github.com/mui/material-ui/tree/master/packages/material-ui-codemod)
 
