@@ -4,8 +4,6 @@ import TabList from '@mui/joy/TabList';
 import Tab, { tabClasses } from '@mui/joy/Tab';
 import TabPanel from '@mui/joy/TabPanel';
 import Typography from '@mui/joy/Typography';
-import Button from '@mui/joy/Button';
-import KeyboardArrowRightRounded from '@mui/icons-material/KeyboardArrowRightRounded';
 
 export default function TabsPricingExample() {
   return (
@@ -59,13 +57,6 @@ export default function TabsPricingExample() {
             - Free forever
           </Typography>
         </Typography>
-        <Button
-          variant="outlined"
-          endIcon={<KeyboardArrowRightRounded />}
-          sx={{ width: '100%' }}
-        >
-          Get started
-        </Button>
       </TabPanel>
       <TabPanel value={1}>
         <Typography level="inherit" mt={2}>
@@ -78,9 +69,6 @@ export default function TabsPricingExample() {
             / dev / month
           </Typography>
         </Typography>
-        <Button endIcon={<KeyboardArrowRightRounded />} sx={{ width: '100%' }}>
-          Buy now
-        </Button>
       </TabPanel>
       <TabPanel value={2}>
         <Typography level="inherit" mt={2}>
@@ -91,13 +79,13 @@ export default function TabsPricingExample() {
           <Typography
             fontSize="xl"
             borderRadius="sm"
-            textDecoration="line-through"
             px={0.5}
             mr={0.5}
             sx={(theme) => ({
               ...theme.variants.soft.danger,
               color: 'danger.400',
               verticalAlign: 'text-top',
+              textDecoration: 'line-through',
             })}
           >
             $49
@@ -107,9 +95,6 @@ export default function TabsPricingExample() {
             / dev / month
           </Typography>
         </Typography>
-        <Button endIcon={<KeyboardArrowRightRounded />} sx={{ width: '100%' }}>
-          Buy now
-        </Button>
       </TabPanel>
     </Tabs>
   );
