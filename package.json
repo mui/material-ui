@@ -99,7 +99,7 @@
     "@types/prettier": "^2.6.3",
     "@types/react": "^18.0.14",
     "@types/react-is": "^17.0.3",
-    "@types/sinon": "^10.0.12",
+    "@types/sinon": "^10.0.13",
     "@types/stylis": "^4.0.2",
     "@types/webpack": "^5.28.0",
     "@types/yargs": "^17.0.10",
