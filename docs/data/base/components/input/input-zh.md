@@ -6,18 +6,18 @@ githubLabel: 'component: input'
 packageName: '@mui/base'
 ---
 
-# Unstyled input
+# 无样式的输入框
 
 <p class="description">The InputUnstyled component provides users with a field to enter and edit text.</p>
 
-## Introduction
+## 简介
 
-An input is a UI element that accepts text data from the user. The `InputUnstyled` component replaces the native HTML `<input>` tag, and can also be transformed into a `<textarea>` as needed.
+输入框是用来接受用户输入的文本的 UI 组件。 `InputUnstyled` 组件取代了原生的 HTML `<input>` 标签，可以在需要时转换成 `<textarea>` 。
 
-### Features
+### 功能特色
 
 - ✨ Supports start and end adornments
-- 🚀 Can be transformed into a `<textarea>` using the `multiline` prop
+- 🚀 可以添加 `multiline` 属性转换成 `<textarea>`
 - ♿️ Automatically adds the appropriate ARIA roles
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
