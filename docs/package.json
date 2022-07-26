@@ -74,7 +74,7 @@
     "core-js": "^2.6.11",
     "cross-env": "^7.0.3",
     "css-mediaquery": "^0.1.2",
-    "date-fns": "^2.28.0",
+    "date-fns": "^2.29.1",
     "date-fns-jalali": "^2.21.3-1",
     "docsearch.js": "^2.6.3",
     "doctrine": "^3.0.0",
