@@ -247,6 +247,10 @@ function FixtureRenderer({ component: FixtureComponent }) {
   return null;
 }
 
+FixtureRenderer.propTypes = {
+  component: PropTypes.element,
+};
+
 function App(props) {
   const { fixtures } = props;
 
