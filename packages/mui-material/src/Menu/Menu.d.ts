@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { SxProps } from '@mui/system';
+import { OverridableStringUnion } from '@mui/types';
 import { InternalStandardProps as StandardProps } from '..';
 import { PopoverProps } from '../Popover';
 import { MenuListProps } from '../MenuList';
