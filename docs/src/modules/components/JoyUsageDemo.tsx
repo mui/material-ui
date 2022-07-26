@@ -131,14 +131,16 @@ interface JoyUsageDemoProps<ComponentProps> {
      */
     defaultValue?: string | number | boolean;
     /**
-     * If true, the prop with defaultValue will always display in the code block.
+     * If not specify (`undefined`), the prop displays when user change the value
+     * If `true`, the prop with defaultValue will always display in the code block.
+     * If `false`, the prop does not display in the code block.
      */
-    codeBlockDisplay?: true;
+    codeBlockDisplay?: boolean;
   }>;
   /**
    * A function to override the code block result.
    */
-  getCodeBlock?: (code: string) => string;
+  getCodeBlock?: (code: string, props: ComponentProps) => string;
   renderDemo: (props: ComponentProps) => React.ReactElement;
 }
 
@@ -147,21 +149,28 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
   childrenAccepted = false,
   data,
   renderDemo,
-  getCodeBlock,
+  getCodeBlock = defaultGetCodeBlock,
 }: JoyUsageDemoProps<T>) {
-  const defaultProps = {} as { [k in keyof T]: any };
   const initialProps = {} as { [k in keyof T]: any };
-  const staticProps = {} as { [k in keyof T]: any };
+  let demoProps = {} as { [k in keyof T]: any };
+  let codeBlockProps = {} as { [k in keyof T]: any };
   data.forEach((p) => {
-    defaultProps[p.propName] = p.defaultValue;
+    demoProps[p.propName] = p.defaultValue;
     if (p.codeBlockDisplay) {
       initialProps[p.propName] = p.defaultValue;
     }
     if (!p.knob) {
-      staticProps[p.propName] = p.defaultValue;
+      codeBlockProps[p.propName] = p.defaultValue;
     }
   });
   const [props, setProps] = React.useState<T>(initialProps as T);
+  demoProps = { ...demoProps, ...props };
+  codeBlockProps = { ...props, ...codeBlockProps };
+  data.forEach((p) => {
+    if (p.codeBlockDisplay === false) {
+      delete codeBlockProps[p.propName];
+    }
+  });
   return (
     <Box
       sx={{
@@ -187,17 +196,17 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
             p: 1,
           }}
         >
-          {renderDemo({ ...defaultProps, ...props })}
+          {renderDemo(demoProps)}
         </Box>
         <BrandingProvider mode="dark">
           <HighlightedCode
             code={createCode(
               {
                 name: componentName,
-                props: { ...props, ...staticProps },
+                props: codeBlockProps,
                 childrenAccepted,
               },
-              getCodeBlock,
+              (code) => getCodeBlock(code, demoProps),
             )}
             language="jsx"
             sx={{ display: { xs: 'none', md: 'block' } }}
