@@ -53,6 +53,7 @@ export const ListItemButtonRoot = styled('div', {
     alignItems: 'center',
     textAlign: 'initial',
     textDecoration: 'initial', // reset native anchor tag
+    backgroundColor: 'initial', // reset button background
     // In some cases, ListItemButton is a child of ListItem so the margin needs to be controlled by the ListItem. The value is negative to account for the ListItem's padding
     marginInline: 'var(--List-itemButton-marginInline)',
     marginBlock: 'var(--List-itemButton-marginBlock)',
