@@ -1,6 +1,6 @@
-# Migrating to v5: getting started
+# 迁移到v5：开始
 
-<p class="description">This guide explains how and why to migrate from Material UI v4 to v5.</p>
+<p class="description">本指南解释了如何以及为什么要从Material UI v4迁移到v5。</p>
 
 ## Material UI v5 migration
 
