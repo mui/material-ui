@@ -5,29 +5,22 @@ import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
 import { useTabPanel } from '@mui/base/TabPanelUnstyled';
 import { useSlotProps } from '@mui/base/utils';
-import { SheetRoot } from '../Sheet/Sheet';
 import { styled, useThemeProps } from '../styles';
 import SizeTabsContext from '../Tabs/SizeTabsContext';
 import { getTabPanelUtilityClass } from './tabPanelClasses';
 import { TabPanelOwnerState, TabPanelTypeMap } from './TabPanelProps';
 
 const useUtilityClasses = (ownerState: TabPanelOwnerState) => {
-  const { hidden, variant, color, size } = ownerState;
+  const { hidden, size } = ownerState;
 
   const slots = {
-    root: [
-      'root',
-      hidden && 'hidden',
-      variant && `variant${capitalize(variant)}`,
-      color && `color${capitalize(color)}`,
-      size && `size${capitalize(size)}`,
-    ],
+    root: ['root', hidden && 'hidden', size && `size${capitalize(size)}`],
   };
 
   return composeClasses(slots, getTabPanelUtilityClass, {});
 };
 
-const TabPanelRoot = styled(SheetRoot, {
+const TabPanelRoot = styled('div', {
   name: 'JoyTabPanel',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
@@ -52,15 +45,7 @@ const TabPanel = React.forwardRef(function TabPanel(inProps, ref) {
   });
   const tabsSize = React.useContext(SizeTabsContext);
 
-  const {
-    children,
-    value,
-    component,
-    color = 'neutral',
-    variant = 'plain',
-    size: sizeProp,
-    ...other
-  } = props;
+  const { children, value, component, size: sizeProp, ...other } = props;
 
   const { hidden, getRootProps } = useTabPanel(props);
 
@@ -69,8 +54,6 @@ const TabPanel = React.forwardRef(function TabPanel(inProps, ref) {
   const ownerState = {
     ...props,
     hidden,
-    color,
-    variant,
     size,
   };
 
@@ -103,14 +86,6 @@ TabPanel.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
-   * The color of the component. It supports those theme colors that make sense for this component.
-   * @default 'neutral'
-   */
-  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
-    PropTypes.string,
-  ]),
-  /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
    */
@@ -127,14 +102,6 @@ TabPanel.propTypes /* remove-proptypes */ = {
    * The value of the TabPanel. It will be shown when the Tab with the corresponding value is selected.
    */
   value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
-  /**
-   * The variant to use.
-   * @default 'plain'
-   */
-  variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
-    PropTypes.string,
-  ]),
 } as any;
 
 export default TabPanel;
