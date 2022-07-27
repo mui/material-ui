@@ -50,7 +50,6 @@ const TabList = React.forwardRef(function TabList(inProps, ref) {
   const tabsSize = React.useContext(SizeTabsContext);
 
   const {
-    className,
     component = 'div',
     children,
     variant = 'soft',
