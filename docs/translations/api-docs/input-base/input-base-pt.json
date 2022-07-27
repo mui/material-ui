@@ -93,6 +93,11 @@
       "nodeName": "o elemento raiz",
       "conditions": "<code>hiddenLabel={true}</code>"
     },
+    "readOnly": {
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>readOnly={true}</code>"
+    },
     "input": {
       "description": "Estilos aplicados a {{nodeName}}.",
       "nodeName": "the input element"
