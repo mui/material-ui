@@ -212,8 +212,7 @@
     "**/@types/react": "^18.0.9",
     "**/@types/react-is": "^17.0.3",
     "**/cross-fetch": "^3.1.5",
-    "**/react-is": "^18.2.0",
-    "**/thenify": "^3.3.1"
+    "**/react-is": "^18.2.0"
   },
   "nyc": {
     "include": [
