@@ -75,8 +75,8 @@ const faqData = [
         more hedge cases they will ask to be supported.
         <br />
         <br />
-        The price point per developer was adjusted to be much lower than what it would be if only
-        direct use needed a license.{' '}
+        The price point per developer was adjusted to be lower than what it would be if only direct
+        use needed a license.{' '}
         <Link
           target="_blank"
           rel="noopener"
