@@ -33,13 +33,12 @@ const TabListRoot = styled(ListRoot, {
   name: 'JoyTabList',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: TabListProps }>(({ theme }) => ({
-  '--List-radius': theme.vars.radius.md,
+})<{ ownerState: TabListProps }>({
   '--List-gap': 'var(--Tabs-gap)',
   '--List-padding': 'var(--Tabs-gap)',
   '--List-divider-gap': '0px',
   flexGrow: 'initial',
-}));
+});
 
 const TabList = React.forwardRef(function TabList(inProps, ref) {
   const props = useThemeProps<typeof inProps & TabListProps>({
