@@ -239,8 +239,6 @@ export default App;
 
 You should now see the player rendered on the page, but the component is not yet interactive—that's what we'll cover in the next step.
 
-{{"demo": "PlayerNonInteractive.js", "hideToolbar": true, "bg": true}}
-
 ## Adding an interactive slider component
 
 ### Create the Slider component
@@ -310,7 +308,7 @@ Let's add the `Slider` into the `Player` component now:
 
 You should see this:
 
-{{"demo": "PlayerInteractive.js", "hideToolbar": true, "bg": true}}
+<img src="/static/base/with-tailwind-css/player-slider.png" alt="Screenshot of the media player used as example in the guide, designed by the Tailwind Labs team" style="width: 796px; margin-top: 8px; margin-bottom: 8px;" />
 
 ### Customize the slider thumb
 
@@ -381,7 +379,7 @@ We'll create a custom `Button` component that uses the `focusVisible` state from
 
 This is what it'll look like:
 
-<img src="/static/images/base-with-tailwind-css/player-buttons.png" alt="Screenshot of a button used as example in the guide, designed by the Tailwind Labs team" style="width: 796px; margin-top: 8px; margin-bottom: 8px;" />
+<img src="/static/base/with-tailwind-css/player-buttons.png" alt="Screenshot of a button used as example in the guide, designed by the Tailwind Labs team" style="width: 796px; margin-top: 8px; margin-bottom: 8px;" />
 
 Create a `Button.tsx` file and copy the following code:
 

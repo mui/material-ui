@@ -20,8 +20,8 @@ npm start
 
 or:
 
-<!-- Tailwind CSS requires running command in the terminal, so it does not work in Codesandbox/Stackblitz with the default create react app templates. Because of this in the Codesandbox & Stackblitz links below, it is added via CDN. We will need to update this link when we do updates in the example. -->
+<!-- #default-branch-switch -->
 
-[![Edit on StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/edit/github-bsyjuh?file=public%2Findex.html)
+[![Edit on StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/mui/material-ui/tree/master/examples/mui-base-with-tailwind-css)
 
-[![Edit on CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/mui-base-with-tailwind-css-42z1n8?file=/public/index.html)
+[![Edit on CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/mui/material-ui/tree/master/examples/mui-base-with-tailwind-css)
