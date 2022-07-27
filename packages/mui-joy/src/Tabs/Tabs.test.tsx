@@ -15,6 +15,7 @@ describe('Joy <Tabs />', () => {
     ThemeProvider,
     muiName: 'JoyTabs',
     refInstanceof: window.HTMLDivElement,
+    testVariantProps: { variant: 'solid' },
     skip: ['componentsProp', 'classesRoot', 'reactTestRenderer'],
   }));
 

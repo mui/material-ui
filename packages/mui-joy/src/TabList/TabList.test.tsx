@@ -23,6 +23,7 @@ describe('Joy <TabList />', () => {
     ThemeProvider,
     muiName: 'JoyTabList',
     refInstanceof: window.HTMLDivElement,
+    testVariantProps: { variant: 'solid' },
     skip: ['componentsProp', 'classesRoot', 'reactTestRenderer'],
   }));
 
