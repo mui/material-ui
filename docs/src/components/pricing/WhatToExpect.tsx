@@ -104,8 +104,10 @@ export default function WhatToExpect() {
             <Typography variant="body2" color="text.secondary">
               Developers contributing changes to the front-end code of a project that include the
               software need an active license. You will need to renew your subscription if you wish
-              to continue active development after the end of your subscription. You can learn more
-              about it in{' '}
+              to continue active development after the end of your subscription.
+              <br />
+              {`You don't need a valid license if you stopped developing with the software. You
+              can learn more about it in `}
               <Link
                 target="_blank"
                 rel="noopener"
