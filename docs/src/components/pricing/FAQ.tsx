@@ -26,12 +26,11 @@ const faqData = [
     ),
   },
   {
-    summary: 'How many developer seats do I need?',
+    summary: 'How many developer licenses do I need?',
     detail: (
       <React.Fragment>
-        The number of seats purchased on your license must correspond to the number of concurrent
-        developers contributing changes to the front-end code of the projects that uses MUI X Pro or
-        Premium.
+        The number of licenses purchased must correspond to the number of concurrent developers
+        contributing changes to the front-end code of the projects that uses MUI X Pro or Premium.
         <br />
         <br />
         <b>Example 1.</b> Company 'A' is developing an application named 'AppA'. The app needs to
