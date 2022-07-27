@@ -35,6 +35,9 @@ export default function TabsBasic() {
             [`& .${tabClasses.root}`]: {
               bgcolor: 'transparent',
               boxShadow: 'none',
+              '&:hover': {
+                bgcolor: 'transparent',
+              },
               [`&.${tabClasses.selected}`]: {
                 color: 'primary.plainColor',
                 fontWeight: 'lg',
