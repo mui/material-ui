@@ -384,9 +384,9 @@ https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 # Proxies
 
 ## MUI Store
-/store-asset/* https://deploy-preview-196--mui-store.netlify.app/:splat 200
-/legal/* https://deploy-preview-196--mui-store.netlify.app/legal/:splat 200
-/store/* https://mui-store.netlify.app/:splat 200
+/store-asset/* https://mui-store.netlify.app/:splat 200
+/legal/* https://mui-store.netlify.app/legal/:splat 200
+/store/* https://mui-store.netlify.app/store/:splat 200
 
 ## MUI X
 ## Unlike the store that expect to be hosted under a subfolder,
