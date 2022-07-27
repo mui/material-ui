@@ -18,8 +18,9 @@ const LightTooltip = styled(({ className, ...props }: TooltipProps) => (
 const BootstrapTooltip = styled(({ className, ...props }: TooltipProps) => (
   <Tooltip {...props} arrow classes={{ popper: className }} />
 ))(({ theme }) => ({
-  [`& .${tooltipClasses.arrow}`]: {
-    color: theme.palette.common.black,
+  [`& .${tooltipClasses.arrow}::before`]: {
+    backgroundColor: theme.palette.common.black,
+    border: 'none'
   },
   [`& .${tooltipClasses.tooltip}`]: {
     backgroundColor: theme.palette.common.black,
