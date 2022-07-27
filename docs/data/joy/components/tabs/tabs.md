@@ -59,6 +59,22 @@ Since `TabList` uses the same style as the [`List`](/joy-ui/react-list/) compone
 
 {{"demo": "TabsIconWithText.js"}}
 
+### Accessibility
+
+It is recommended to associate a label to the Tabs, you have two options:
+
+- Renders a text element with an `id` and provides `aria-labelledby="$id"` to the tabs.
+  ```js
+  <Typography id="tabs-accessibility-label">Meaningful label</Typography>
+  <Tabs aria-labelledby="tabs-accessibility-label">...</Tabs>
+  ```
+- Uses `aria-label` directly on the tabs when you don't want to display a text element on the screen.
+  ```js
+  <Tabs aria-label="Meaningful label">...</Tabs>
+  ```
+
+Screen readers will announce the label which helps providing information about the tabs to the users.
+
 ## CSS Variables
 
 {{"demo": "TabsVariables.js"}}
