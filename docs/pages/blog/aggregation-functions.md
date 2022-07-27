@@ -1,32 +1,35 @@
 ---
 title: Aggregate data like in Excel, but easier!
-description: Introducing aggregation functions and summary rows in Data grid Premium.
+description: Aggregation functions and summary rows are now available in the MUI X Premium Data Grid.
 date: 2022-08-01T00:00:00.000Z
 authors: ['josefreitas', 'flaviendelangle', 'cherniavskii']
 tags: ['MUI X', 'News']
 card: false
 ---
 
-If you ever had a lot of data on a grid, you probably know that the ability to set different perspectives on data is essential to help users extract information. Typically, one would use at least filtering or sorting, but that barely scratches the surface of what one could do.
+If you've ever worked with a data-heavy grid, then you understand how important it is for the end user to be able to set different perspectives on the data to gather the information they're looking for.
+Basic functions like filtering and sorting barely scratch the surface of their needs.
 
-The Data grid Premium is all about enabling and empowering advanced use cases for data analysis.
+The Premium Data Grid is all about enabling and empowering advanced use cases for data analysis.
 And in that spirit, we’re overjoyed to announce that starting from [v5.15.0](https://github.com/mui/mui-x/releases/tag/v5.15.0), you can now use [aggregation functions](/x/react-data-grid/aggregation/), and with a couple of clicks, extract information like **sum**, **average**, **count**, and others.
 
 ## Wait, what is an aggregation function?
 
-In a nutshell, those are functions used to return a computed result based on the values of a given column. For example, you have a list of financial transactions, and you want to get the Sum of all transactions and display it in a summary row.
+Aggregation functions are used to return a computed result based on the values of a given column. 
+For example, you might have a list of financial transactions, and you want to get the sum of all transactions and display it in a summary row, as shown in the video below:
 
 <video style="margin-bottom: 24px;" autoplay muted loop playsinline controls>
   <source src="/static/blog/aggregation-functions/summary-row.mp4" type="video/mp4" />
 </video>
 
-## High end-user experience
+## Intuitive end-user experience
 
-The **Sum** function showing a `Total` in summary rows is probably one of the most common use cases. But users can employ multiple aggregation functions in different columns simultaneously, and even combine with row grouping to aggregate children’s data on each group.
+The **Sum** function showing a **Total** in summary rows is one of the most common use cases. But users can employ multiple aggregation functions in different columns simultaneously, and even combine with row grouping to aggregate children’s data on each group.
 
-To make all that work well together, we took to the heart that we’d need to bring and focus on the best end-user experience possible, enabling the majority of use cases out of the box to the end-user, without any significant need for customization.
+To make all that work well together, we knew that the focus had to be on creating the best end-user experience possible. The goal was to enable the majority of use cases right out of the box, without any need for significant customization.
 
 How easy can it be to get the average of transactions per user?
+Check out the video below to see it in action:
 
 <video style="margin-bottom: 24px;" autoplay muted loop playsinline controls>
   <source src="/static/blog/aggregation-functions/with-row-grouping.mp4" type="video/mp4" />
@@ -34,9 +37,10 @@ How easy can it be to get the average of transactions per user?
 
 ## Customize everything
 
-The out-of-the-box experience is very important to us, but as is the ability to customize and extend the feature to your own use case.
+The out-of-the-box experience is very important to us, but equally important is the ability to customize and extend the feature to suit your own use case.
 
-You can change the styles of every element involved, set automatic aggregations, choose which columns can be aggregated by which functions, and even create your own custom function, like in the example below, where we created a function to get the first value in alphabetical order.
+You can change the styles of every element involved, set automatic aggregations, choose which columns can be aggregated by which functions, and even create your own custom functions.
+In the example below, we created a function to get the first value in alphabetical order:
 
 ```ts
 const firstAlphabeticalAggregation: GridAggregationFunction<string, string | null> =
@@ -65,20 +69,18 @@ const firstAlphabeticalAggregation: GridAggregationFunction<string, string | nul
 
 ## Okay, I’m in! How can I get started?
 
-:::info
-First make sure that you're using `@mui/x-data-grid-premium` and version `5.15.0` or later.
-:::
+Aggregation functions are available in `@mui/x-data-grid-premium`, version `5.15.0` or later.
 
-During the initial version of Aggregation functions, we’re publishing the feature as experimental, so we have some room to validate its API and the overall direction we’re taking with it.
-But the feature is stable, and the API will likely not change significantly.
+This feature is currently considered experimental as we continue to validate its API and refine our goals for it.
+But it is stable, and the API most likely will not change significantly.
 
-To activate the feature, please enabled it with the experimentalFeatures prop.
+You can activate the feature with the `experimentalFeatures` prop:
 
 ```tsx
 <DataGridPremium experimentalFeatures={{ aggregation: true }} {...otherProps} />
 ```
 
-And that's it! That enables the aggregation option on the column menu (available by default on columns of type number and string).
+And that's it! That enables the **Aggregation** option on the column menu, which is available by default on columns of type number and string.
 
 ## Use with tree data and more
 
@@ -88,17 +90,17 @@ Please check out the feature’s [full documentation](/x/react-data-grid/aggrega
 
 ## Row pinning
 
-Aggregation footer row is empowered by another new feature called [Row pinning](/x/react-data-grid/rows/#row-pinning).
-It enables you to pin rows at the bottom or at the top of your data grid.
-Pinned rows are visible at all times while user scrolls the grid vertically.
+The Aggregation footer row is powered by another new feature called [Row pinning](/x/react-data-grid/rows/#row-pinning).
+It enables you to pin rows to the top or bottom of your data grid.
+Pinned rows are visible at all times while the user scrolls the grid vertically.
 
 <video style="margin-bottom: 24px;" autoplay muted loop playsinline controls>
   <source src="/static/blog/aggregation-functions/row-pinning.mp4" type="video/mp4" />
 </video>
 
-Row pinning is available in Data grid Pro and Premium.
+Row pinning is available in the Pro and Premium Data Grids.
 
-Check out more details on its [documentation page](/x/react-data-grid/rows/#row-pinning).
+Check out more details in the [Row pinning documentation](/x/react-data-grid/rows/#row-pinning).
 
 ## Share your feedback 🗣
 
@@ -106,7 +108,8 @@ Check out more details on its [documentation page](/x/react-data-grid/rows/#row-
 
 We hope you’re excited about the new features as we are!
 
-As usual, we’re glad to listen to any feedback. Please feel free to open new issues to report bugs or suggest improvements.
+As always, we’re happy to hear from you. 
+Please feel free to open new issues to report bugs or suggest improvements.
 
 Moreover, we’re planning the MUI X v6 release, and we’d love to hear more about your pain points and use cases.
-If you want to help us steer our product, please consider [contacting us](https://forms.gle/vsBv6CLPz9h57xg8A) to schedule a 30 minutes user interview session.
+If you want to help steer the direction of our products, please consider [contacting us](https://forms.gle/vsBv6CLPz9h57xg8A) to schedule a 30-minute user interview session.
