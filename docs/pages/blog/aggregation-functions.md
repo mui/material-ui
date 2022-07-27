@@ -15,7 +15,7 @@ And in that spirit, we’re overjoyed to announce that starting from [v5.15.0](h
 
 ## Wait, what is an aggregation function?
 
-Aggregation functions are used to return a computed result based on the values of a given column. 
+Aggregation functions are used to return a computed result based on the values of a given column.
 For example, you might have a list of financial transactions, and you want to get the sum of all transactions and display it in a summary row, as shown in the video below:
 
 <video style="margin-bottom: 24px;" autoplay muted loop playsinline controls>
@@ -108,7 +108,7 @@ Check out more details in the [Row pinning documentation](/x/react-data-grid/row
 
 We hope you’re excited about the new features as we are!
 
-As always, we’re happy to hear from you. 
+As always, we’re happy to hear from you.
 Please feel free to open new issues to report bugs or suggest improvements.
 
 Moreover, we’re planning the MUI X v6 release, and we’d love to hear more about your pain points and use cases.
