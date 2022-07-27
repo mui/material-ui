@@ -145,12 +145,14 @@ With `sx`:
 import Button from '@mui/material/Button';
 
 const MyStyledButton = (props) => (
-  <Button sx={{
-    padding: 1 // means "theme.spacing(1)", NOT "1px"
-  }}>
-     {props.children}
+  <Button
+    sx={{
+      padding: 1, // means "theme.spacing(1)", NOT "1px"
+    }}
+  >
+    {props.children}
   </Button>
-})
+);
 ```
 
 ### Patterns for how to use props differ
