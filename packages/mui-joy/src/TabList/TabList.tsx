@@ -46,6 +46,7 @@ const TabList = React.forwardRef(function TabList(inProps, ref) {
     props: inProps,
     name: 'JoyTabList',
   });
+
   const tabsSize = React.useContext(SizeTabsContext);
 
   const {

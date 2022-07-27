@@ -43,6 +43,7 @@ const TabPanel = React.forwardRef(function TabPanel(inProps, ref) {
     props: inProps,
     name: 'JoyTabPanel',
   });
+
   const tabsSize = React.useContext(SizeTabsContext);
 
   const { children, value, component, size: sizeProp, ...other } = props;
@@ -90,6 +91,10 @@ TabPanel.propTypes /* remove-proptypes */ = {
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
+  /**
+   * The size of the component.
+   */
+  size: PropTypes.oneOf(['sm', 'md', 'lg']),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
