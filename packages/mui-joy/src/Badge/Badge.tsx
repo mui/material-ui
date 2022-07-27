@@ -60,7 +60,7 @@ const BadgeRoot = styled('span', {
     fontSize: theme.vars.fontSize.md,
   }),
   '--Badge-ringSize': '2px',
-  '--Badge-ring': `0 0 0 var(--Badge-ringSize) var(--Badge-ringColor, ${theme.vars.palette.background.body})`,
+  '--Badge-ring': `0 0 0 var(--Badge-ringSize) var(--Badge-ringColor, ${theme.vars.palette.background.surface})`,
   position: 'relative',
   display: 'inline-flex',
   // For correct alignment with the text.
@@ -126,7 +126,7 @@ const BadgeBadge = styled('span', {
       zIndex: 1,
       transition: 'transform 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
       ...(ownerState.variant === 'outlined' && {
-        backgroundColor: theme.vars.palette.background.body,
+        backgroundColor: theme.vars.palette.background.surface,
       }),
       [ownerState.anchorOrigin!.vertical]: inset[ownerState.anchorOrigin!.vertical],
       [ownerState.anchorOrigin!.horizontal]: inset[ownerState.anchorOrigin!.horizontal],
