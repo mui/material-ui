@@ -43,24 +43,28 @@ You can change the styles of every element involved, set automatic aggregations,
 In the example below, we created a function to get the first value in alphabetical order:
 
 ```ts
-const firstAlphabeticalAggregation: GridAggregationFunction<string, string | null> =
-  {
-    apply: (params) => {
-      if (params.values.length === 0) {
-        return null;
-      }
-      const sortedValue = params.values.sort((a = '', b = '') => a.localeCompare(b));
-      return sortedValue[0];
-    },
-    // The `label` defines what's displayed in the column header when this
-    // aggregation is active.
-    label: 'First Alphabetical',
-    // The `types` property defines which type of columns can use this
-    // aggregation function. Here, we only want to propose this aggregation
-    // function for `string` columns. If not defined, aggregation will be
-    // available for all column types.
-    columnTypes: ['string'],
-  };
+const firstAlphabeticalAggregation: GridAggregationFunction<
+  string,
+  string | null
+> = {
+  apply: (params) => {
+    if (params.values.length === 0) {
+      return null;
+    }
+    const sortedValue = params.values.sort((a = '', b = '') =>
+      a.localeCompare(b),
+    );
+    return sortedValue[0];
+  },
+  // The `label` defines what's displayed in the column header when this
+  // aggregation is active.
+  label: 'First Alphabetical',
+  // The `types` property defines which type of columns can use this
+  // aggregation function. Here, we only want to propose this aggregation
+  // function for `string` columns. If not defined, aggregation will be
+  // available for all column types.
+  columnTypes: ['string'],
+};
 ```
 
 <video style="margin-bottom: 24px;" autoplay muted loop playsinline controls>
