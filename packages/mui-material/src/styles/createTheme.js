@@ -20,6 +20,16 @@ function createTheme(options = {}, ...args) {
     ...other
   } = options;
 
+  if (other.vars) {
+    console.warn(
+      [
+        'MUI: `vars` is a private field used for CSS variables support.',
+        '',
+        'Please use another name.',
+      ].join('\n'),
+    );
+  }
+
   const palette = createPalette(paletteInput);
   const systemTheme = systemCreateTheme(options);
 
