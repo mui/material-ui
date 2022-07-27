@@ -115,5 +115,5 @@ We hope you’re excited about the new features as we are!
 As always, we’re happy to hear from you.
 Please feel free to open new issues to report bugs or suggest improvements.
 
-Moreover, we’re planning the MUI X v6 release, and we’d love to hear more about your pain points and use cases.
+Moreover, we’re planning MUI X v6, and we’d love to hear more about your pain points and use cases.
 If you want to help steer the direction of our products, please consider [contacting us](https://forms.gle/vsBv6CLPz9h57xg8A) to schedule a 30-minute user interview session.
