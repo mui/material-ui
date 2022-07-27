@@ -93,6 +93,11 @@
       "nodeName": "the root element",
       "conditions": "<code>hiddenLabel={true}</code>"
     },
+    "readOnly": {
+      "description": "State class applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>readOnly={true}</code>"
+    },
     "input": {
       "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the input element"
