@@ -237,9 +237,9 @@ export default function EnhancedTable() {
   };
 
   const handleSelectAllClick = (event) => {
-    if (event.target.checked) {
-      const newSelecteds = rows.map((n) => n.name);
-      setSelected(newSelecteds);
+    if (event.target.checked && selected.length === 0) {
+      const newSelected = rows.map((n) => n.name);
+      setSelected(newSelected);
       return;
     }
     setSelected([]);
