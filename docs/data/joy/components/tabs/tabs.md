@@ -47,7 +47,7 @@ You can disable a tab by providing `disabled` prop to the `Tab` component.
 
 ### Vertical
 
-Provides `orientation="vertical"` to the `Tabs ` to render in vertical mode. The keyboard navigation such as arrow keys also adapt to the orientation of the tabs.
+Provides `orientation="vertical"` to the `Tabs` to render in vertical mode. The keyboard navigation such as arrow keys also adapt to the orientation of the tabs.
 
 {{"demo": "TabsVertical.js"}}
 
