@@ -21,7 +21,7 @@ function createTheme(options = {}, ...args) {
   } = options;
 
   if (other.vars) {
-    console.warn(
+    console.error(
       [
         'MUI: `vars` is a private field used for CSS variables support.',
         '',
