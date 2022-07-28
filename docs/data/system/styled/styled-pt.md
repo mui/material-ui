@@ -112,14 +112,16 @@ const MyStyledButton = styled('button')({
 With `sx`:
 
 ```js
+import Button from '@mui/material/Button';
+
 const MyStyledButton = (props) => (
-  <button
+  <Button
     sx={{
       mx: 1, // ✔️ this shortcut is specific to the `sx` prop,
     }}
   >
     {props.children}
-  </button>
+  </Button>
 );
 ```
 
@@ -136,13 +138,17 @@ const MyStyledButton = styled('button')({
 With `sx`:
 
 ```js
+import Button from '@mui/material/Button';
+
 const MyStyledButton = (props) => (
-  <button sx={{
-    padding: 1 // means "theme.spacing(1)", NOT "1px"
-  }}>
-     {props.children}
-  </button>
-})
+  <Button
+    sx={{
+      padding: 1, // means "theme.spacing(1)", NOT "1px"
+    }}
+  >
+    {props.children}
+  </Button>
+);
 ```
 
 ### Patterns for how to use props differ
@@ -158,11 +164,11 @@ const MyStyledButton = styled('button')((props) => ({
 With `sx`:
 
 ```js
+import Button from '@mui/material/Button';
+
 const MyStyledButton = (props) => (
-  <button sx={{backgroundColor: props.myCustomColor}}>
-     {props.children}
-  </button>
-})
+  <Button sx={{ backgroundColor: props.myCustomColor }}>{props.children}</Button>
+);
 ```
 
 ### Parameter when using function are different for each field
@@ -180,18 +186,20 @@ const MyStyledButtonPropsPerField = styled('button')({
 With `sx`:
 
 ```js
-import { lighten } from "polished"
+import Button from '@mui/material/Button';
+import { lighten } from 'polished';
+
 const MyStyledButton = (props) => (
-  <button sx={{backgroundColor: theme => lighten(0.2,theme.palette.primary.main)}}>
-     {props.children}
-  </button>
-})
+  <Button
+    sx={{ backgroundColor: (theme) => lighten(0.2, theme.palette.primary.main) }}
+  >
+    {props.children}
+  </Button>
+);
 // Note: for direct theme access without modification, you can also use a shortcut by providing the key as a string
 const MyStyledButton = (props) => (
-  <button sx={{backgroundColor: "primary.main"}}>
-     {props.children}
-  </button>
-})
+  <Button sx={{ backgroundColor: 'primary.main' }}>{props.children}</Button>
+);
 ```
 
 ### How can I use the `sx` syntax with the `styled()` utility?
