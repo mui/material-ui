@@ -1,7 +1,7 @@
 ---
 title: MUI's company retreat in Tenerife: a recap
 description: Our internationally distributed startup gathered on a remote island to get to know each other better. Here's what happened!
-date: 2022-07-25T00:00:00.000Z
+date: 2022-07-28T00:00:00.000Z
 authors: ['samuelsycamore']
 card: false
 tags: ['Company']
@@ -12,7 +12,9 @@ How do you build trust, comradery, and—dare I say it?—_friendships_, when th
 
 At MUI, we've chosen to prioritize in-person company retreats as a way to grow together and cultivate the culture that informs how we operate.
 
-![Photo of the MUI team in front of the pool at our accommodations in Tenerife](/static/blog/tenerife-retreat/group-photo.jpeg)
+![Photo of the MUI team in front of the pool at our accommodations in Tenerife](/static/blog/2022-tenerife-retreat/group-photo.jpeg)
+
+<p class="blog-description">The MUI team poses next to the pool during the company retreat.</p>
 
 In late June 2022, sixteen of us gathered at a remote private residence on the island of Tenerife.
 This was MUI's second company retreat, the first being in Portugal in 2021 when the team was just a fraction of the size it is today.
@@ -22,7 +24,9 @@ Oh, and I guess we got some work done along the way, too? 😅
 
 ## Destination
 
-![Satellite image of Tenerife](/static/blog/tenerife-retreat/tenerife.jpeg)
+![Satellite image of Tenerife](/static/blog/2022-tenerife-retreat/tenerife.jpeg)
+
+<p class="blog-description">Satellite photo of Tenerife, via <a href="https://en.wikipedia.org/wiki/Tenerife">Wikipedia</a>.</p>
 
 Tenerife is a volcanic island off the coast of western Africa that's part of the Canary Islands (Spanish: _Canarias_).
 It is the most populous island in the archipelago, and one of the most visited tourist destinations in the world.
@@ -32,19 +36,23 @@ With an average temperature ranging from about 18-25 °C (68-77 °F) year-round,
 
 ## Accommodations
 
-![Photo of the pool in the evening at Symbiosis Living](/static/blog/tenerife-retreat/pool-evening.jpeg)
+![Photo of the pool in the evening at Symbiosis Living](/static/blog/2022-tenerife-retreat/pool-evening.jpeg)
+
+<p class="blog-description">A view of the pool at Symbiosis Living as dusk approaches.</p>
 
 [Symbiosis Living](https://www.symbiosisliving.com/) is a sustainable retreat venue nestled deep in the hills on the western side of the island.
 The venue is a venerable oasis of lush green flora amid the stark and barren volcanic rock that surrounds it, hosting breezy guest houses adorned with rustic, regionally sourced furniture.
 
-![Photo of the outdoor kitchen at Symbiosis Living](/static/blog/tenerife-retreat/outdoor-kitchen.jpeg)
+![Photo of the outdoor kitchen at Symbiosis Living](/static/blog/2022-tenerife-retreat/outdoor-kitchen.jpeg)
+
+<p class="blog-description">The outdoor kitchen at Symbiosis Living.</p>
 
 The owners were exceptionally accommodating and supportive for the entirety of our stay.
 Almost all of our meals were cooked fresh by the hosts in their fabulous outdoor kitchen.
 I don't think I've ever eaten that many incredible home-cooked meals in a single week. 😋
 And somehow each one was even better than the last!
 
-![MUI X colleagues José and Andrew bond over a bottle of wine at dinner one night during the retreat.](/static/blog/tenerife-retreat/jose-andrew-wine.jpg)
+![MUI X colleagues José and Andrew bond over a bottle of wine at dinner one night during the retreat.](/static/blog/2022-tenerife-retreat/jose-andrew-wine.jpg)
 
 <p class="blog-description">MUI X colleagues José and Andrew bond over a bottle of wine at dinner one night during the retreat.</p>
 
@@ -54,7 +62,9 @@ Throughout our stay in Tenerife, we arranged group activities to make the most o
 
 ### Whale and dolphin watching
 
-![Danail from the MUI X team snaps a selfie on the bow of the whale-watching boat, with coworkers in the background.](/static/blog/tenerife-retreat/whale-watching-danail.jpeg)
+![Danail from the MUI X team snaps a selfie on the bow of the whale-watching boat, with coworkers in the background.](/static/blog/2022-tenerife-retreat/whale-watching-danail.jpeg)
+
+<p class="blog-description">Danail snaps a selfie on the whale-watching boat.</p>
 
 Our first full day together saw us venture out into the Atlantic Ocean in search of dolphins and whales.
 
@@ -69,7 +79,9 @@ Wear sunscreen.
 
 ### Scuba diving lessons
 
-![Members of the MUI team pose in front of the diving school in their scuba gear.](/static/blog/tenerife-retreat/scuba-gear.jpeg)
+![Members of the MUI team pose in front of the diving school in their scuba gear.](/static/blog/2022-tenerife-retreat/scuba-gear.jpeg)
+
+<p class="blog-description">MUI team members pose in scuba gear after a successful diving lesson.</p>
 
 On day two we split up into smaller groups to get individualized lessons in scuba diving at the beach in Playa San Juan.
 
@@ -78,11 +90,15 @@ But once I got into the groove, the time underwater went by so quickly!
 The main highlights for me were spotting a [ray](https://aqua-marina.com/rays/) swimming by, and accidentally disturbing a [cuttlefish](https://www.paradisedivers.co.uk/blog/cuttlefish/) who was not pleased by our presence–and put on a great show as a result!
 Sorry, bud!
 
-![Overhead view of MUI team members learning how to scuba dive underwater.](/static/blog/tenerife-retreat/scuba-1.jpeg)
+![Overhead view of MUI team members learning how to scuba dive underwater.](/static/blog/2022-tenerife-retreat/scuba-1.jpeg)
+
+<p class="blog-description">MUI team members learn how to dive off the coast of Tenerife.</p>
 
 ### Volcanic hike at sunset
 
-![A group photo of the MUI crew posing near the base of Mount Teide at the start of the hike.](/static/blog/tenerife-retreat/teide-group.jpeg)
+![A group photo of the MUI crew posing near the base of Mount Teide at the start of the hike.](/static/blog/2022-tenerife-retreat/teide-group.jpeg)
+
+<p class="blog-description">The group poses at the start of the trail toward Teide.</p>
 
 The third and final full day of the retreat took us up to Teide National Park for a guided interpretive hike around some of the lower peaks that surround Mount Teide as the sun was going down.
 
@@ -91,7 +107,10 @@ We learned a lot about the natural history of the island from our guide, who led
 Photos don't even begin to do it justice.
 I completely understand why Teide is one of Europe's most visited parks.
 
-![The sun setting above the clouds as seen near the top of Teide.](/static/blog/tenerife-retreat/teide-sunset.jpg)
+![The sun setting above the clouds as seen near the top of Teide.](/static/blog/2022-tenerife-retreat/teide-sunset.jpg)
+
+<p class="blog-description">The Tenerife sunset as seen from Teide, above the clouds.</p>
+
 
 ## And also work
 
@@ -99,7 +118,9 @@ Believe it or not, we actually did manage to squeeze in some productive work tim
 
 ### Roadmap to v6
 
-![MUI Core team members Marija, Jun, and Sam discuss the product roadmap.](/static/blog/tenerife-retreat/focus-group.jpeg)
+![MUI Core team members Marija, Jun, and Sam discuss the product roadmap.](/static/blog/2022-tenerife-retreat/focus-group.jpeg)
+
+<p class="blog-description">MUI Core team discusses the product roadmap.</p>
 
 One of the key goals of the retreat was to outline mid- to long-term goals for our products, and begin to estimate timelines to get where we want to go from here.
 
@@ -107,14 +128,19 @@ We had some great conversations about what we hope to accomplish over the next s
 It's still hard to say when that release day might come, but we're optimistic that we could see it in mid to late 2023.
 [@RemindMe_OfThis](https://twitter.com/RemindMe_OfThis) September 2023 🙃
 
-![The product teams are seen spread out around a large indoor/outdoor workspace](/static/blog/tenerife-retreat/focus-groups.jpeg)
+![The product teams are seen spread out around a large indoor/outdoor workspace](/static/blog/2022-tenerife-retreat/focus-groups.jpeg)
+
+<p class="blog-description">Product teams spread out throughout the breezy indoor/outdoor workspace.</p>
+
 
 In any case, we now have a better idea of what v6 could look like, and we defined quite a few initiatives to move forward with while we're still in the world of v5.
 Keep an eye out!
 
 ### Focus groups
 
-![An impromptu focus group gathered next to the pool with laptops to discuss cross-team marketing strategies.](/static/blog/tenerife-retreat/outdoor-focus-group.jpeg)
+![An impromptu focus group gathered next to the pool with laptops to discuss cross-team marketing strategies.](/static/blog/2022-tenerife-retreat/outdoor-focus-group.jpeg)
+
+<p class="blog-description">A focus group gathers to talk about developer marketing and outreach.</p>
 
 Before the retreat, we were all invited to propose topics to cover in smaller groups for those who were interested.
 This gave us a great opportunity for some cross-team collaboration that isn't usually part of our standard workflow.
@@ -127,7 +153,9 @@ Others discussed optimizing TypeScript performance, implementing editable demos 
 All throughout our working sessions, we were accompanied by a very friendly young kitty (name unknown) who consistently offered critical support when we needed it the most.
 We can't thank her enough for her contributions to the company roadmap.
 
-![Collage of several photos of the MUI team members cuddling with the neighborhood cat during our work sessions.](/static/blog/tenerife-retreat/cat-collage.jpg)
+![Collage of several photos of the MUI team members cuddling with the neighborhood cat during our work sessions.](/static/blog/2022-tenerife-retreat/cat-collage.jpg)
+
+<p class="blog-description">The cat was responsible for all of the cutest moments during the retreat.</p>
 
 ### In sync with the async team
 
@@ -159,4 +187,4 @@ If you have a strong opinion one way or the other, then you better join the team
 
 I look forward to meeting new colleagues—as well as reconnecting with the Tenerife crew—in 2023.
 
-![The path leading down the hill from the sunset view, with Teide glowing red in the background.](/static/blog/tenerife-retreat/teide-hike.jpeg)
+![The path leading down the hill from the sunset view, with Teide glowing red in the background.](/static/blog/2022-tenerife-retreat/teide-hike.jpeg)
