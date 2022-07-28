@@ -49,6 +49,7 @@ export const ListItemButtonRoot = styled('div', {
       '--List-decorator-color': 'initial',
     }),
     boxSizing: 'border-box',
+    position: 'relative',
     display: 'flex',
     alignItems: 'center',
     textAlign: 'initial',
