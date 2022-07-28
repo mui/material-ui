@@ -1,6 +1,7 @@
 import { deepmerge } from '@mui/utils';
 import { generateUtilityClass } from '@mui/base';
 import { createTheme as systemCreateTheme } from '@mui/system';
+import MuiError from '@mui/utils/macros/MuiError.macro';
 import createMixins from './createMixins';
 import createPalette from './createPalette';
 import createTypography from './createTypography';
@@ -21,12 +22,9 @@ function createTheme(options = {}, ...args) {
   } = options;
 
   if (options.vars) {
-    console.error(
-      [
-        'MUI: `vars` is a private field used for CSS variables support.',
-        '',
+    throw new MuiError(
+      'MUI: `vars` is a private field used for CSS variables support.\n' +
         'Please use another name.',
-      ].join('\n'),
     );
   }
 
