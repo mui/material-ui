@@ -1,4 +1,4 @@
-# Create React App example with @mui/base & Tailwind CSS
+# Create React App example with MUI Base & Tailwind CSS
 
 ## How to use
 
