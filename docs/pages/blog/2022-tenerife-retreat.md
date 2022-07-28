@@ -188,3 +188,5 @@ If you have a strong opinion one way or the other, then you better join the team
 I look forward to meeting new colleagues—as well as reconnecting with the Tenerife crew—in 2023.
 
 ![The path leading down the hill from the sunset view, with Teide glowing red in the background.](/static/blog/2022-tenerife-retreat/teide-hike.jpeg)
+
+<p class="blog-description">One final view of Teide glowing red in the sunset.</p>
