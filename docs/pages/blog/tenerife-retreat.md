@@ -138,7 +138,7 @@ But once we broke the ice and settled into a rhythm together, I felt that we est
 I'm really grateful to have had the opportunity to connect with some of the best and brightest colleagues I've ever had, and in such an idyllic location.
 I think we're all already daydreaming about the next time we'll get to do this!
 
-Speaking of which...
+Speaking of which…
 
 ## Will you be at the next retreat?
 
