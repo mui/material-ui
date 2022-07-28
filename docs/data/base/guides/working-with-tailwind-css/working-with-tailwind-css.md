@@ -308,7 +308,7 @@ Let's add the `Slider` into the `Player` component now:
 
 You should see this:
 
-<img src="/static/base/with-tailwind-css/player-slider.png" alt="Screenshot of the media player used as example in the guide, designed by the Tailwind Labs team" style="width: 796px; margin-top: 8px; margin-bottom: 8px;" />
+<img src="/static/base/with-tailwind-css/player-slider.png" alt="Screenshot of the media player used as example in the guide, designed by the Tailwind Labs team" style="width: 745px; margin-top: 8px; margin-bottom: 8px;" />
 
 ### Customize the slider thumb
 
