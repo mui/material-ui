@@ -60,7 +60,7 @@ const BadgeRoot = styled('span', {
     fontSize: theme.vars.fontSize.md,
   }),
   '--Badge-ringSize': '2px',
-  '--Badge-ring': `0 0 0 var(--Badge-ringSize) var(--Badge-ringColor, ${theme.vars.palette.background.body})`,
+  '--Badge-ring': `0 0 0 var(--Badge-ringSize) var(--Badge-ringColor, ${theme.vars.palette.background.surface})`,
   position: 'relative',
   display: 'inline-flex',
   // For correct alignment with the text.
