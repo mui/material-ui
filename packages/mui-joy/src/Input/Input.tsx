@@ -39,7 +39,7 @@ const InputRoot = styled('div', {
     '--Input-radius': theme.vars.radius.sm, // radius is used by the decorator children
     '--Input-gap': '0.5rem',
     '--Input-placeholderOpacity': 0.5,
-    '--Input-focusedThickness': 'calc(var(--variant-borderWidth, 1px) + 1px)',
+    '--Input-focusedThickness': '2px',
     '--Input-focusedHighlight':
       theme.vars.palette[ownerState.color === 'neutral' ? 'primary' : ownerState.color!]?.[500],
     ...(ownerState.size === 'sm' && {
@@ -107,9 +107,13 @@ const InputRoot = styled('div', {
       margin: 'calc(var(--variant-borderWidth) * -1)', // for outlined variant
     },
   },
-  theme.variants[`${ownerState.variant!}`]?.[ownerState.color!],
-  { '&:hover': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!] },
   {
+    // variant styles
+    ...theme.variants[`${ownerState.variant!}`]?.[ownerState.color!],
+    '&:hover': {
+      ...theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
+      cursor: 'text',
+    },
     [`&.${inputClasses.disabled}`]:
       theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
   },
@@ -120,10 +124,6 @@ const InputRoot = styled('div', {
         boxShadow: `inset 0 0 0 var(--Input-focusedThickness) var(--Input-focusedHighlight)`,
       },
     },
-  },
-  {
-    // override pointer cursor from variantHover
-    cursor: 'text',
   },
 ]);
 
