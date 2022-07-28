@@ -289,7 +289,7 @@ Let's add the `Slider` into the `Player` component now:
 +import Slider from './Slider';
 
  const Player = React.forwardRef(function Player(props: { className?: string }, ref: React.ForwardedRef<HTMLDivElement>) {
-   const { className = "", ...other } = props;
+   const { className = '', ...other } = props;
 @@ -21,12 +22,7 @@ const Player = React.forwardRef(function Player(props: { className?: string }, r
          </div>
          <div className="space-y-2">
