@@ -44,6 +44,14 @@ const theme = createTheme({
 });
 ```
 
+**WARNING**: `vars` is a private field used for CSS variables support. It will throw an error if you try to use it:
+
+```jsx
+createTheme({
+  vars: { ... },
+})
+```
+
 If you are using TypeScript, you would also need to use [module augmentation](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation) for the theme to accept the above values.
 
 ```tsx
@@ -173,7 +181,7 @@ theme = createTheme(theme, {
 
 Think of creating a theme as a two-step composition process: first, you define the basic design options; then, you'll use these design options to compose other options.
 
-**WARNING**: `theme.vars` is a private object used for CSS variables support. Please use another name for a custom object.
+**WARNING**: `theme.vars` is a private field used for CSS variables support. Please use another name for a custom object.
 
 ### `responsiveFontSizes(theme, options) => theme`
 
