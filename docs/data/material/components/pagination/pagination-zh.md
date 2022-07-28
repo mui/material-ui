@@ -58,7 +58,7 @@ githubLabel: 'component: pagination'
 For advanced customization use cases, a headless `usePagination()` hook is exposed. 它支持的选项与分页组件大致相同，但不包括与 JSX 渲染有关的所有属性。 它支持的选项与分页组件大致相同，但不包括与 JSX 渲染有关的所有属性。 The Pagination component is built on this hook.
 
 ```jsx
-import { usePagination } from '@mui/core/Pagination';
+import usePagination from '@mui/material/usePagination';
 ```
 
 {{"demo": "UsePagination.js"}}
