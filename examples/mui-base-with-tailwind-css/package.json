@@ -16,8 +16,7 @@
     "react": "latest",
     "react-dom": "latest",
     "react-scripts": "latest",
-    "typescript": "latest",
-    "web-vitals": "latest"
+    "typescript": "latest"
   },
   "scripts": {
     "start": "react-scripts start",

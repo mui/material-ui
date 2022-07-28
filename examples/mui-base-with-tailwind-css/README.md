@@ -25,3 +25,8 @@ or:
 [![Edit on StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/mui/material-ui/tree/master/examples/mui-base-with-tailwind-css)
 
 [![Edit on CodeSandbox](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/mui/material-ui/tree/master/examples/mui-base-with-tailwind-css)
+
+## The idea behind the example
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+It shows how you can use MUI Base together with [Tailwind CSS](https://tailwindcss.com/) to build your application.
