@@ -330,7 +330,7 @@ To do this, it's not enough to just use classes for the thumb—we need also to 
 +  props: SliderUnstyledThumbSlotProps,
 +  ref: React.ForwardedRef<HTMLSpanElement>,
 +) {
-+  const { ownerState, className = "", children, ...other } = props;
++  const { ownerState, className = '', children, ...other } = props;
 +  return (<span className={`${className} ring-cyan-500 dark:ring-cyan-400 ring-2 w-4 h-4 -mt-1 -ml-2 flex items-center justify-center bg-white rounded-full shadow absolute`} {...other} ref={ref}>
 +    <span className="w-1.5 h-1.5 bg-cyan-500 dark:bg-cyan-400 rounded-full ring-1 ring-inset ring-slate-900/5"></span>
 +    {children}
