@@ -43,7 +43,7 @@ export default function TabsPricingExample() {
           },
         })}
       >
-        <Tab>Community</Tab>
+        <Tab sx={{ py: 1.5 }}>Community</Tab>
         <Tab>Pro</Tab>
         <Tab>Premium</Tab>
       </TabList>

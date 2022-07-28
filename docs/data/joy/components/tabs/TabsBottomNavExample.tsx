@@ -33,7 +33,7 @@ export default function TabsBasic() {
           borderBottomRightRadius: '1rem',
           maxWidth: 400,
           mx: 'auto',
-          boxShadow: theme.shadow.md,
+          boxShadow: theme.shadow.sm,
           '--Tabs-gap': '8px',
           '--joy-shadowChannel': theme.vars.palette[colors[index]].darkChannel,
           [`& .${tabClasses.root}`]: {
