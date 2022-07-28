@@ -85,6 +85,7 @@ export interface Palette {
   tonalOffset: PaletteTonalOffset;
   primary: PaletteColor;
   secondary: PaletteColor;
+  tertiary: PaletteColor;
   error: PaletteColor;
   warning: PaletteColor;
   info: PaletteColor;
