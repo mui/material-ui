@@ -23,5 +23,10 @@
     "id": 65,
     "title": "<b>Get a first look at Joy UI</b> 🚀",
     "text": "Joy UI is MUI's new starting point for your design system. <a style=\"color: inherit;\" data-ga-event-category=\"Blog\" data-ga-event-action=\"notification\" data-ga-event-label=\"first-look-at-joy/\" href=\"/blog/first-look-at-joy/\">Check out the blog post</a> to see what's in store for this new library."
+  },
+  {
+    "id": 66,
+    "title": "<b>MUI's company retreat in Tenerife</b> 🏝",
+    "text": "In late June 2022, MUI team members gathered in the Canary Islands for a company retreat. <a style=\"color: inherit;\" data-ga-event-category=\"Blog\" data-ga-event-action=\"notification\" data-ga-event-label=\"2022-tenerife-retreat/\" href=\"/blog/2022-tenerife-retreat/\">Check out the recap here</a>."
   }
 ]
