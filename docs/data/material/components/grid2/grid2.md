@@ -11,38 +11,41 @@ materialDesign: https://material.io/design/layout/understanding-layout.html
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
-The `Grid` component works well for a layout with known columns. The columns can be configured in multple breakpoints which you have to specify the column span of each child.
+The `Grid` component works well for a layout with a known number of columns. 
+The columns can be configured with multiple breakpoints to specify the column span of each child.
 
 ## How it works
 
 The grid system is implemented with the `Grid` component:
 
-- It uses [CSS's Flexible Box module](https://www.w3.org/TR/css-flexbox-1/) for high flexibility.
-- The grid is always a flex item. Use the `container` prop to add flex container to it.
+- It uses [CSS Flexbox](https://www.w3.org/TR/css-flexbox-1/) (rather than CSS Grid) for high flexibility.
+- The grid is always a flex item. Use the `container` prop to add a flex container.
 - Item widths are set in percentages, so they're always fluid and sized relative to their parent element.
 - There are five default grid breakpoints: xs, sm, md, lg, and xl. If you need custom breakpoints, check out [custom breakpoints grid](#custom-breakpoints).
-- Integer values can be given to each breakpoint, indicating how many of the 12 available columns are occupied by the component when the viewport width satisfies the [breakpoint constraints](/material-ui/customization/breakpoints/#default-breakpoints).
-- It uses negative margin and padding technique to create [gap-like](https://developer.mozilla.org/en-US/docs/Web/CSS/gap) between children.
-- It **does not** have the concept of rows. Meaning, you can't make the children span to multiple rows. If you need to do that, we recommend to use [CSS Grid](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout) instead.
-- It **does not** offer auto-placement children feature. It will try to fit the children one by one and if there is not enough space, the rest of the children will start on the next line and so on. If you need the auto-placement feature, we recommend to use [CSS Grid](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout/Auto-placement_in_CSS_Grid_Layout) instead.
+- You can give integer values for each breakpoint, to indicate how many of the 12 available columns are occupied by the component when the viewport width satisfies the [breakpoint constraints](/material-ui/customization/breakpoints/#default-breakpoints).
+- It uses negative margins and padding to create gaps between children, which behave similarly to [the `gap` CSS property](https://developer.mozilla.org/en-US/docs/Web/CSS/gap).
+- It does _not_ support row spanning. Children elements cannot span multiple rows. We recommend using [CSS Grid](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout) if you need this functionality.
+- It does _not_ automatically place children. It will try to fit the children one by one, and if there is not enough space, the rest of the children will start on the next line, and so on. If you need auto-placement, we recommend using [CSS Grid](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout/Auto-placement_in_CSS_Grid_Layout) instead.
 
 :::warning
-⚠️ The `Grid` component shouldn't be confused with a data grid; it is closer to a layout grid. For a data grid head to [the `DataGrid` component](/x/react-data-grid/).
+The `Grid` component is a _layout_ grid, not a _data_ grid. 
+If you need a data grid, check out [the MUI X `DataGrid` component](/x/react-data-grid/).
 :::
 
 ## What's changed
 
-We build Grid v2 from scratch in order to:
+We built `Grid` v2 from scratch in order to:
 
 - Fix [known issues](https://github.com/mui/material-ui/pull/32746) introduced in Material UI v5.
-- Simplify the logic with CSS variables which removes unnecessary `item` prop and reduce CSS specificity.
+- Simplify the logic with CSS variables, removing the unnecessary `item` prop and reducing CSS specificity.
 - Introduce a proper fix for [preventing a scrollbar](#prevent-scrollbar) by switching between negative margin approaches.
-- Equally set negative margin on all sides of the grid container by default.
+- Set negative margins of equal size on all sides of the grid container by default.
 
-Changing Grid from v1 to v2 is considered a breaking change, please follow a [migration guide](/material-ui/migration/migration-grid-v2/) for more details.
+Updating the `Grid` from v1 to v2 is a breaking change. 
+Visit the [Grid v2 migration guide](/material-ui/migration/migration-grid-v2/) for more details.
 
 :::info
-In the next major release of Material UI, we will make the Grid v2 stable and deprecate the v1.
+In the next major release of Material UI, Grid v2 will be stable and v1 will be deprecated.
 :::
 
 ## Fluid grids
@@ -51,9 +54,11 @@ Fluid grids use columns that scale and resize content. A fluid grid's layout can
 
 ### Basic grid
 
-In order to create a grid layout, you need a container. Use `container` prop to create a grid container that wraps the grid items (the `Grid` is always an item).
+In order to create a grid layout, you need a container. 
+Use the `container` prop to create a grid container that wraps the grid items (the `Grid` is always an item).
 
-Column widths are integer values between 1 and 12; they apply at any breakpoint and indicate how many columns are occupied by the component.
+Column widths are integer values between 1 and 12. 
+They can be applied at any breakpoint to indicate how many columns are occupied by the component.
 
 A value given to a breakpoint applies to all the other breakpoints wider than it (unless overridden, as you can read later in this page). For example, `xs={12}` sizes a component to occupy the whole viewport width regardless of its size.
 
@@ -170,8 +175,8 @@ function Demo() {
 The custom breakpoints affect both the size and offset props:
 
 ```diff
-- <Grid xs={6} xsOffset={2} sm={4} smOffset={2} md={3} mdOffset={3}>
-+ <Grid mobile={6} mobileOffset={2} tablet={4} tabletOffset={2} laptop={3} laptopOffset={3}>
+- <Grid xs={6} xsOffset={2}>
++ <Grid mobile={6} mobileOffset={2}>
 ```
 
 :::
