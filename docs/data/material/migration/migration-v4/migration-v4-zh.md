@@ -2,7 +2,7 @@
 
 <p class="description">本指南解释了如何以及为什么要从Material UI v4迁移到v5。</p>
 
-## Material UI v5 migration
+## Material UI v5的迁移
 
 1. Getting started 👈 _you are here_
 2. [Breaking changes part one: style and theme](/material-ui/migration/v5-style-changes/)
