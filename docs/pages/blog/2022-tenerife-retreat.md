@@ -111,7 +111,6 @@ I completely understand why Teide is one of Europe's most visited parks.
 
 <p class="blog-description">The Tenerife sunset as seen from Teide, above the clouds.</p>
 
-
 ## And also work
 
 Believe it or not, we actually did manage to squeeze in some productive work time between all the fun!
@@ -131,7 +130,6 @@ It's still hard to say when that release day might come, but we're optimistic th
 ![The product teams are seen spread out around a large indoor/outdoor workspace](/static/blog/2022-tenerife-retreat/focus-groups.jpeg)
 
 <p class="blog-description">Product teams spread out throughout the breezy indoor/outdoor workspace.</p>
-
 
 In any case, we now have a better idea of what v6 could look like, and we defined quite a few initiatives to move forward with while we're still in the world of v5.
 Keep an eye out!
