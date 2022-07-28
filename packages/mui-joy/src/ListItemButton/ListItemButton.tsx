@@ -219,10 +219,6 @@ ListItemButton.propTypes /* remove-proptypes */ = {
    */
   focusVisibleClassName: PropTypes.string,
   /**
-   * The empty space on the side(s) of the separator.
-   */
-  inset: PropTypes.oneOf(['gutter', 'leftGutter', 'startAdornment']),
-  /**
    * @ignore
    */
   role: PropTypes /* @typescript-to-proptypes-ignore */.string,
