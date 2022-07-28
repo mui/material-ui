@@ -85,7 +85,7 @@ Since `TabList` uses the same style as the [`List`](/joy-ui/react-list/) compone
 
 ### Accessibility
 
-For ensuring proper accessibility, it's recommended by the XXX to associate a label to the Tabs component.
+For ensuring proper accessibility, it's recommended by [ARIA Authoring Practices Guide](https://www.w3.org/WAI/ARIA/apg/patterns/tabpanel/#wai-aria-roles-states-and-properties-22) to associate a label to the Tabs component.
 To do that, there are two options:
 
 #### Option one
