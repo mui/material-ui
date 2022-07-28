@@ -10,26 +10,45 @@ unstyled: /base/react-tabs/
 
 <p class="description">Tabs make it easy to explore and switch between different views.</p>
 
-Tabs organize and allow navigation between groups of content that are related and at the same level of hierarchy.
-
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
-
 ## Introduction
+
+Joy UI provides four tabs-related components:
+
+- `Tabs`: A context provider that synchronizes the selected `Tab` with the corresponding `TabPanel`.
+- `TabList`: A container that consists of `Tab` items.
+- `Tab`: A button to toggle a selected tab.
+- `TabPanel`: A pane that displays on the screen when its value matches with the selected tab.
 
 {{"demo": "TabsUsage.js", "hideToolbar": true}}
 
-Joy UI provides four menu-related components:
-
-- `Tabs`: A context provider that synchronize the selected `Tab` with the correspond `TabPanel`.
-- `TabList`: A container that consists of `Tab` items.
-- `Tab`: A button for toggle a selected tab.
-- `TabPanel` A pane that displays on the screen when its value matches with the selected tab.
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Component
 
-### Basic
+After [installation](/joy-ui/getting-started/installation/), you can start building with this component using the following basic elements:
 
-The tabs structure follows [WAI ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/patterns/tabpanel/). All you need is specifying `value` prop to the `TabPanel` and use `Tabs`'s `defaultValue` to target the initial selected tab.
+```jsx
+import Tabs from '@mui/joy/Tabs';
+import TabList from '@mui/joy/TabList';
+import Tab from '@mui/joy/Tab';
+
+export default function MyApp() {
+  return (
+    <Tabs defaultValue={1}>
+      <TabList>
+        <Tab value={1}>Tab A</Tab>
+        <Tab value={2}>Tab B</Tab>
+        <Tab value={3}>Tab C</Tab>
+      </TabList>
+    </Tabs>
+  );
+}
+```
+
+### Basic usage
+
+The tabs structure follows [WAI ARIA design pattern](https://www.w3.org/WAI/ARIA/apg/patterns/tabpanel/).
+To target the initially selected tab, specify the `value` prop to the `TabPanel` and use `Tabs`'s `defaultValue`.
 
 {{"demo": "TabsBasic.js"}}
 
@@ -41,13 +60,14 @@ Both `TabList` and `Tab` accept [global variant](/joy-ui/main-features/global-va
 
 ### Disabled tab
 
-You can disable a tab by providing `disabled` prop to the `Tab` component.
+To disable a tab, use the `disabled` prop on the `Tab` component.
 
 {{"demo": "TabDisabled.js"}}
 
 ### Vertical
 
-Provides `orientation="vertical"` to the `Tabs` to render in vertical mode. The keyboard navigation such as arrow keys also adapt to the orientation of the tabs.
+To set the tabs orientation to vertical, use the `orientation="vertical"` on the `Tabs` component.
+Keyboard navigation (e.g. arrow keys) will adapt automatically to the used orientation.
 
 {{"demo": "TabsVertical.js"}}
 
@@ -61,21 +81,32 @@ Since `TabList` uses the same style as the [`List`](/joy-ui/react-list/) compone
 
 ### Accessibility
 
-It is recommended to associate a label to the Tabs, you have two options:
+For ensuring proper accessibility, it's recommended by the XXX to associate a label to the Tabs component.
+To do that, there are two options:
 
-- Renders a text element with an `id` and provides `aria-labelledby="$id"` to the tabs.
-  ```js
-  <Typography id="tabs-accessibility-label">Meaningful label</Typography>
-  <Tabs aria-labelledby="tabs-accessibility-label">...</Tabs>
-  ```
-- Uses `aria-label` directly on the tabs when you don't want to display a text element on the screen.
-  ```js
-  <Tabs aria-label="Meaningful label">...</Tabs>
-  ```
+#### Option one
 
-Screen readers will announce the label which helps providing information about the tabs to the users.
+Render a text element with an `id` and provide `aria-labelledby="$is"`to the Tabs component.
+
+```js
+<Typography id="tabs-accessibility-label">Meaningful label</Typography>
+<Tabs aria-labelledby="tabs-accessibility-label">...</Tabs>
+```
+
+#### Option two
+
+When not displaying a text element on the screen, use `aria-label` directly on the Tabs component.
+Screen readers will then properly announce the label.
+
+```js
+<Tabs aria-label="Meaningful label">...</Tabs>
+```
 
 ## CSS Variables
+
+Play around with all the CSS variables available in the slider component to see how the design changes.
+
+You can use those to customize the component on both the `sx` prop and the theme.
 
 {{"demo": "TabsVariables.js"}}
 
