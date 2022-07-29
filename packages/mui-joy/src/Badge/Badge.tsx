@@ -105,42 +105,38 @@ const BadgeBadge = styled('span', {
     ownerState.anchorOrigin?.horizontal === 'left' ? 'translateX(-50%)' : 'translateX(50%)';
   const transformOriginY = ownerState.anchorOrigin?.vertical === 'top' ? '0%' : '100%';
   const transformOriginX = ownerState.anchorOrigin?.horizontal === 'left' ? '0%' : '100%';
-  return [
-    {
-      display: 'inline-flex',
-      flexWrap: 'wrap',
-      justifyContent: 'center',
-      alignContent: 'center',
-      alignItems: 'center',
-      position: 'absolute',
-      boxSizing: 'border-box',
-      boxShadow: 'var(--Badge-ring)',
-      fontFamily: theme.vars.fontFamily.body,
-      fontWeight: theme.vars.fontWeight.md,
-      lineHeight: 1,
-      padding:
-        'calc(var(--Badge-paddingX) / 2 - var(--variant-borderWidth)) calc(var(--Badge-paddingX) - var(--variant-borderWidth))',
-      minHeight: 'var(--Badge-minHeight)',
-      minWidth: 'var(--Badge-minHeight)',
-      borderRadius: 'var(--Badge-radius, var(--Badge-minHeight))',
-      zIndex: 1,
-      transition: 'transform 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
-      ...(ownerState.variant === 'outlined' && {
-        backgroundColor: theme.vars.palette.background.surface,
-      }),
-      [ownerState.anchorOrigin!.vertical]: inset[ownerState.anchorOrigin!.vertical],
-      [ownerState.anchorOrigin!.horizontal]: inset[ownerState.anchorOrigin!.horizontal],
-      transform: `scale(1) ${translateX} ${translateY}`,
-      transformOrigin: `${transformOriginX} ${transformOriginY}`,
-      [`&.${badgeClasses.invisible}`]: {
-        transform: `scale(0) ${translateX} ${translateY}`,
-      },
-      ...(ownerState.invisible && {
-        transition: 'transform 195ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
-      }),
+  return {
+    display: 'inline-flex',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    alignContent: 'center',
+    alignItems: 'center',
+    position: 'absolute',
+    boxSizing: 'border-box',
+    boxShadow: 'var(--Badge-ring)',
+    fontFamily: theme.vars.fontFamily.body,
+    fontWeight: theme.vars.fontWeight.md,
+    lineHeight: 1,
+    padding:
+      'calc(var(--Badge-paddingX) / 2 - var(--variant-borderWidth)) calc(var(--Badge-paddingX) - var(--variant-borderWidth))',
+    minHeight: 'var(--Badge-minHeight)',
+    minWidth: 'var(--Badge-minHeight)',
+    borderRadius: 'var(--Badge-radius, var(--Badge-minHeight))',
+    zIndex: 1,
+    transition: 'transform 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
+    backgroundColor: theme.vars.palette.background.surface,
+    [ownerState.anchorOrigin!.vertical]: inset[ownerState.anchorOrigin!.vertical],
+    [ownerState.anchorOrigin!.horizontal]: inset[ownerState.anchorOrigin!.horizontal],
+    transform: `scale(1) ${translateX} ${translateY}`,
+    transformOrigin: `${transformOriginX} ${transformOriginY}`,
+    [`&.${badgeClasses.invisible}`]: {
+      transform: `scale(0) ${translateX} ${translateY}`,
     },
-    theme.variants[ownerState.variant!]?.[ownerState.color!],
-  ];
+    ...(ownerState.invisible && {
+      transition: 'transform 195ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
+    }),
+    ...theme.variants[ownerState.variant!]?.[ownerState.color!],
+  };
 });
 
 const Badge = React.forwardRef(function Badge(inProps, ref) {

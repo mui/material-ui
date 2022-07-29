@@ -40,6 +40,10 @@ import { GridProps, GridSlot } from '../Grid/GridProps';
 import { MenuProps, MenuSlot } from '../Menu/MenuProps';
 import { MenuListProps, MenuListSlot } from '../MenuList/MenuListProps';
 import { MenuItemProps, MenuItemSlot } from '../MenuItem/MenuItemProps';
+import { TabsProps, TabsOwnerState, TabsSlot } from '../Tabs/TabsProps';
+import { TabListProps, TabListOwnerState, TabListSlot } from '../TabList/TabListProps';
+import { TabProps, TabOwnerState, TabSlot } from '../Tab/TabProps';
+import { TabPanelProps, TabPanelOwnerState, TabPanelSlot } from '../TabPanel/TabPanelProps';
 
 export type OverridesStyleRules<
   ClassKey extends string = string,
@@ -193,6 +197,22 @@ export interface Components<Theme = unknown> {
   JoySlider?: {
     defaultProps?: Partial<SliderProps>;
     styleOverrides?: OverridesStyleRules<SliderSlot, SliderProps, Theme>;
+  };
+  JoyTabs?: {
+    defaultProps?: Partial<TabsProps>;
+    styleOverrides?: OverridesStyleRules<TabsSlot, TabsOwnerState, Theme>;
+  };
+  JoyTabList?: {
+    defaultProps?: Partial<TabListProps>;
+    styleOverrides?: OverridesStyleRules<TabListSlot, TabListOwnerState, Theme>;
+  };
+  JoyTab?: {
+    defaultProps?: Partial<TabProps>;
+    styleOverrides?: OverridesStyleRules<TabSlot, TabOwnerState, Theme>;
+  };
+  JoyTabPanel?: {
+    defaultProps?: Partial<TabPanelProps>;
+    styleOverrides?: OverridesStyleRules<TabPanelSlot, TabPanelOwnerState, Theme>;
   };
   JoyTextField?: {
     defaultProps?: Partial<TextFieldProps>;

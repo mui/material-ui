@@ -47,6 +47,7 @@ const Root = styled('div')(({ theme }) => ({
   // block code
   '& code[class*="language-"]': {
     color: '#fff',
+    padding: 0,
     backgroundColor: blueDark[800],
   },
   '& h1': {

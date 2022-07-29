@@ -34,98 +34,104 @@ const InputRoot = styled('div', {
   name: 'JoyInput',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: InputProps & InputUnstyledOwnerState }>(({ theme, ownerState }) => [
-  {
-    '--Input-radius': theme.vars.radius.sm, // radius is used by the decorator children
-    '--Input-gap': '0.5rem',
-    '--Input-placeholderOpacity': 0.5,
-    '--Input-focusedThickness': 'calc(var(--variant-borderWidth, 1px) + 1px)',
-    '--Input-focusedHighlight':
-      theme.vars.palette[ownerState.color === 'neutral' ? 'primary' : ownerState.color!]?.[500],
-    ...(ownerState.size === 'sm' && {
-      '--Input-minHeight': '2rem',
-      '--Input-paddingInline': '0.5rem',
-      '--Input-decorator-childHeight': 'min(1.5rem, var(--Input-minHeight))',
-      '--Icon-fontSize': '1.25rem',
-    }),
-    ...(ownerState.size === 'md' && {
-      '--Input-minHeight': '2.5rem',
-      '--Input-paddingInline': '0.75rem', // gutter is the padding-x
-      '--Input-decorator-childHeight': 'min(2rem, var(--Input-minHeight))',
-      '--Icon-fontSize': '1.5rem',
-    }),
-    ...(ownerState.size === 'lg' && {
-      '--Input-minHeight': '3rem',
-      '--Input-paddingInline': '1rem',
-      '--Input-gap': '0.75rem',
-      '--Input-decorator-childHeight': 'min(2.375rem, var(--Input-minHeight))',
-      '--Icon-fontSize': '1.75rem',
-    }),
-    // variables for controlling child components
-    '--Input-decorator-childOffset':
-      'min(calc(var(--Input-paddingInline) - (var(--Input-minHeight) - 2 * var(--variant-borderWidth) - var(--Input-decorator-childHeight)) / 2), var(--Input-paddingInline))',
-    '--internal-paddingBlock':
-      'max((var(--Input-minHeight) - 2 * var(--variant-borderWidth) - var(--Input-decorator-childHeight)) / 2, 0px)',
-    '--Input-decorator-childRadius':
-      'max((var(--Input-radius) - var(--variant-borderWidth)) - var(--internal-paddingBlock), min(var(--internal-paddingBlock) / 2, (var(--Input-radius) - var(--variant-borderWidth)) / 2))',
-    '--Button-minHeight': 'var(--Input-decorator-childHeight)',
-    '--IconButton-size': 'var(--Input-decorator-childHeight)',
-    '--Button-radius': 'var(--Input-decorator-childRadius)',
-    '--IconButton-radius': 'var(--Input-decorator-childRadius)',
-    boxSizing: 'border-box',
-    minWidth: 0, // forces the Input to stay inside a container by default
-    minHeight: 'var(--Input-minHeight)',
-    ...(ownerState.fullWidth && {
-      width: '100%',
-    }),
-    cursor: 'text',
-    position: 'relative',
-    display: 'flex',
-    alignItems: 'center',
-    paddingInline: `var(--Input-paddingInline)`,
-    borderRadius: 'var(--Input-radius)',
-    fontFamily: theme.vars.fontFamily.body,
-    fontSize: theme.vars.fontSize.md,
-    ...(ownerState.size === 'sm' && {
-      fontSize: theme.vars.fontSize.sm,
-    }),
-    // TODO: discuss the transition approach in a separate PR. This value is copied from mui-material Button.
-    transition:
-      'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
-    '&:before': {
+})<{ ownerState: InputProps & InputUnstyledOwnerState }>(({ theme, ownerState }) => {
+  const variantStyle = theme.variants[`${ownerState.variant!}`]?.[ownerState.color!];
+  return [
+    {
+      '--Input-radius': theme.vars.radius.sm,
+      '--Input-gap': '0.5rem',
+      '--Input-placeholderOpacity': 0.5,
+      '--Input-focusedThickness': '2px',
+      '--Input-focusedHighlight':
+        theme.vars.palette[ownerState.color === 'neutral' ? 'primary' : ownerState.color!]?.[500],
+      ...(ownerState.size === 'sm' && {
+        '--Input-minHeight': '2rem',
+        '--Input-paddingInline': '0.5rem',
+        '--Input-decorator-childHeight': 'min(1.5rem, var(--Input-minHeight))',
+        '--Icon-fontSize': '1.25rem',
+      }),
+      ...(ownerState.size === 'md' && {
+        '--Input-minHeight': '2.5rem',
+        '--Input-paddingInline': '0.75rem',
+        '--Input-decorator-childHeight': 'min(2rem, var(--Input-minHeight))',
+        '--Icon-fontSize': '1.5rem',
+      }),
+      ...(ownerState.size === 'lg' && {
+        '--Input-minHeight': '3rem',
+        '--Input-paddingInline': '1rem',
+        '--Input-gap': '0.75rem',
+        '--Input-decorator-childHeight': 'min(2.375rem, var(--Input-minHeight))',
+        '--Icon-fontSize': '1.75rem',
+      }),
+      // variables for controlling child components
+      '--Input-decorator-childOffset':
+        'min(calc(var(--Input-paddingInline) - (var(--Input-minHeight) - 2 * var(--variant-borderWidth) - var(--Input-decorator-childHeight)) / 2), var(--Input-paddingInline))',
+      '--internal-paddingBlock':
+        'max((var(--Input-minHeight) - 2 * var(--variant-borderWidth) - var(--Input-decorator-childHeight)) / 2, 0px)',
+      '--Input-decorator-childRadius':
+        'max((var(--Input-radius) - var(--variant-borderWidth)) - var(--internal-paddingBlock), min(var(--internal-paddingBlock) / 2, (var(--Input-radius) - var(--variant-borderWidth)) / 2))',
+      '--Button-minHeight': 'var(--Input-decorator-childHeight)',
+      '--IconButton-size': 'var(--Input-decorator-childHeight)',
+      '--Button-radius': 'var(--Input-decorator-childRadius)',
+      '--IconButton-radius': 'var(--Input-decorator-childRadius)',
       boxSizing: 'border-box',
-      content: '""',
-      display: 'block',
-      position: 'absolute',
-      pointerEvents: 'none',
-      top: 0,
-      left: 0,
-      right: 0,
-      bottom: 0,
-      zIndex: 1,
-      borderRadius: 'inherit',
-      margin: 'calc(var(--variant-borderWidth) * -1)', // for outlined variant
-    },
-  },
-  theme.variants[`${ownerState.variant!}`]?.[ownerState.color!],
-  { '&:hover': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!] },
-  {
-    [`&.${inputClasses.disabled}`]:
-      theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
-  },
-  ownerState.variant !== 'solid' && {
-    [`&.${inputClasses.focused}`]: {
-      backgroundColor: 'initial',
+      minWidth: 0,
+      minHeight: 'var(--Input-minHeight)',
+      ...(ownerState.fullWidth && {
+        width: '100%',
+      }),
+      cursor: 'text',
+      position: 'relative',
+      display: 'flex',
+      alignItems: 'center',
+      paddingInline: `var(--Input-paddingInline)`,
+      borderRadius: 'var(--Input-radius)',
+      ...(!variantStyle.backgroundColor && {
+        backgroundColor: theme.vars.palette.background.surface,
+      }),
+      fontFamily: theme.vars.fontFamily.body,
+      fontSize: theme.vars.fontSize.md,
+      ...(ownerState.size === 'sm' && {
+        fontSize: theme.vars.fontSize.sm,
+      }),
+      // TODO: discuss the transition approach in a separate PR. This value is copied from mui-material Button.
+      transition:
+        'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
       '&:before': {
-        boxShadow: `inset 0 0 0 var(--Input-focusedThickness) var(--Input-focusedHighlight)`,
+        boxSizing: 'border-box',
+        content: '""',
+        display: 'block',
+        position: 'absolute',
+        pointerEvents: 'none',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        zIndex: 1,
+        borderRadius: 'inherit',
+        margin: 'calc(var(--variant-borderWidth) * -1)', // for outlined variant
       },
     },
-  },
-  {
-    // override pointer cursor from variantHover
-    cursor: 'text',
-  },
-]);
+    {
+      // variant styles
+      ...variantStyle,
+      '&:hover': {
+        ...theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
+        cursor: 'text',
+      },
+      [`&.${inputClasses.disabled}`]:
+        theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
+    },
+    ownerState.variant !== 'solid' && {
+      [`&.${inputClasses.focused}`]: {
+        backgroundColor: theme.vars.palette.background.surface,
+        '&:before': {
+          boxShadow: `inset 0 0 0 var(--Input-focusedThickness) var(--Input-focusedHighlight)`,
+        },
+      },
+    },
+  ];
+});
 
 const InputInput = styled('input', {
   name: 'JoyInput',
