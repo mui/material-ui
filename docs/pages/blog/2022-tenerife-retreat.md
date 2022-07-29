@@ -19,7 +19,7 @@ At MUI, we've chosen to prioritize in-person company retreats as a way to grow t
 In late June 2022, sixteen of us gathered at a remote private residence on the island of Tenerife.
 This was MUI's second company retreat, the first being in Portugal in 2021 when the team was just a fraction of the size it is today.
 
-We had a ton of fun getting to know each other better over oceanic activities, poolside conversations, and incredible catered meals—not to mention a steady supply of Spanish wine. 🥂
+We had a ton of fun getting to know each other better over oceanic activities, poolside conversations, and incredible catered meals—not to mention a steady supply of spanish wine. 🥂
 Oh, and I guess we got some work done along the way, too? 😅
 
 ## Destination
