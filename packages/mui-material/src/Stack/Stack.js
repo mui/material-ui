@@ -4,6 +4,7 @@ import {
   createUnarySpacing,
   getValue,
   handleBreakpoints,
+  mergeBreakpointsInOrder,
   unstable_extendSxProp as extendSxProp,
   unstable_resolveBreakpointValues as resolveBreakpointValues,
 } from '@mui/system';
@@ -103,6 +104,8 @@ export const style = ({ ownerState, theme }) => {
     };
     styles = deepmerge(styles, handleBreakpoints({ theme }, spacingValues, styleFromPropValue));
   }
+
+  styles = mergeBreakpointsInOrder(theme.breakpoints, styles);
 
   return styles;
 };

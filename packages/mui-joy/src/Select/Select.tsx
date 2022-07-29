@@ -188,13 +188,13 @@ const SelectListbox = styled(ListRoot, {
     boxShadow: theme.vars.shadow.md,
     zIndex: 1000,
     ...(!variantStyle.backgroundColor && {
-      backgroundColor: theme.vars.palette.background.body,
+      backgroundColor: theme.vars.palette.background.surface,
     }),
     '--List-radius': theme.vars.radius.sm,
     '--List-item-stickyBackground':
       variantStyle?.backgroundColor ||
       variantStyle?.background ||
-      theme.vars.palette.background.body, // for sticky List
+      theme.vars.palette.background.surface, // for sticky List
   };
 });
 

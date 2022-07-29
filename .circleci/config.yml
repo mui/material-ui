@@ -7,8 +7,8 @@ parameters:
     description: Whether to force browserstack usage. We have limited resources on browserstack so the pipeline might decide to skip browserstack if this parameter isn't set to true.
     type: boolean
     default: false
-  react-dist-tag:
-    description: The dist-tag of react to be used
+  react-version:
+    description: The version of react to be used
     type: string
     default: stable
   workflow:
@@ -22,10 +22,10 @@ parameters:
 
 defaults: &defaults
   parameters:
-    react-dist-tag:
-      description: The dist-tag of react to be used
+    react-version:
+      description: The version of react to be used
       type: string
-      default: << pipeline.parameters.react-dist-tag >>
+      default: << pipeline.parameters.react-version >>
     test-gate:
       description: A particular type of tests that should be run
       type: string
@@ -39,7 +39,7 @@ defaults: &defaults
     PLAYWRIGHT_BROWSERS_PATH: /tmp/pw-browsers
     # expose it globally otherwise we have to thread it from each job to the install command
     BROWSERSTACK_FORCE: << pipeline.parameters.browserstack-force >>
-    REACT_DIST_TAG: << parameters.react-dist-tag >>
+    REACT_VERSION: << parameters.react-version >>
     TEST_GATE: << parameters.test-gate >>
     AWS_REGION_ARTIFACTS: eu-central-1
   working_directory: /tmp/material-ui
@@ -72,9 +72,9 @@ commands:
       - run:
           name: Resolve react version
           command: |
-            node scripts/use-react-dist-tag
+            node scripts/use-react-version
             # log a patch for maintainers who want to check out this change
-            git --no-pager diff HEAD
+            git --no-pager diff HEAD 
       - restore_cache:
           name: Restore yarn cache
           keys:
@@ -132,7 +132,7 @@ jobs:
       - when:
           # Install can be "dirty" when running with non-default versions of React
           condition:
-            equal: [<< parameters.react-dist-tag >>, stable]
+            equal: [<< parameters.react-version >>, stable]
           steps:
             - run:
                 name: Should not have any git not staged
@@ -191,7 +191,7 @@ jobs:
           command: |
             curl -Os https://uploader.codecov.io/latest/linux/codecov
             chmod +x codecov
-            ./codecov -t ${CODECOV_TOKEN} -Z -F "$REACT_DIST_TAG-jsdom"
+            ./codecov -t ${CODECOV_TOKEN} -Z -F "$REACT_VERSION-jsdom"
   test_lint:
     <<: *defaults
     steps:
@@ -260,6 +260,7 @@ jobs:
           command: |
             yarn workspace @mui/material typescript:module-augmentation
             yarn workspace @mui/base typescript:module-augmentation
+            yarn workspace @mui/joy typescript:module-augmentation
 
       - restore_cache:
           name: Restore generated declaration files
@@ -363,7 +364,7 @@ jobs:
           command: |
             curl -Os https://uploader.codecov.io/latest/linux/codecov
             chmod +x codecov
-            ./codecov -t ${CODECOV_TOKEN} -Z -F "$REACT_DIST_TAG-browser"
+            ./codecov -t ${CODECOV_TOKEN} -Z -F "$REACT_VERSION-browser"
       - store_artifacts:
           # hardcoded in karma-webpack
           path: /tmp/_karma_webpack_
@@ -822,6 +823,23 @@ workflows:
       equal: [profile, << pipeline.parameters.workflow >>]
     jobs:
       - test_profile
+  react-17:
+    triggers:
+      - schedule:
+          cron: '0 0 * * *'
+          filters:
+            branches:
+              only:
+                - master
+    jobs:
+      - test_unit:
+          react-version: ^17.0.0
+      - test_browser:
+          react-version: ^17.0.0
+      - test_regressions:
+          react-version: ^17.0.0
+      - test_e2e:
+          react-version: ^17.0.0
   react-next:
     triggers:
       - schedule:
@@ -832,13 +850,13 @@ workflows:
                 - master
     jobs:
       - test_unit:
-          react-dist-tag: next
+          react-version: next
       - test_browser:
-          react-dist-tag: next
+          react-version: next
       - test_regressions:
-          react-dist-tag: next
+          react-version: next
       - test_e2e:
-          react-dist-tag: next
+          react-version: next
   typescript-next:
     triggers:
       - schedule:

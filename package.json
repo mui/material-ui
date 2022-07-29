@@ -142,7 +142,6 @@
     "fs-extra": "^10.1.0",
     "globby": "^11.1.0",
     "html-webpack-plugin": "^5.5.0",
-    "istanbul-instrumenter-loader": "^3.0.1",
     "jsdom": "^19.0.0",
     "karma": "^6.4.0",
     "karma-browserstack-launcher": "~1.6.0",
@@ -151,11 +150,12 @@
     "karma-mocha": "^2.0.1",
     "karma-sourcemap-loader": "^0.3.8",
     "karma-webpack": "^5.0.0",
-    "lerna": "^4.0.0",
+    "lerna": "^5.2.0",
     "lodash": "^4.17.21",
     "markdownlint-cli": "^0.32.1",
-    "mocha": "^9.2.2",
+    "mocha": "^10.0.0",
     "node-fetch": "^2.6.7",
+    "nx": "^14.4.3",
     "nyc": "^15.1.0",
     "piscina": "^3.2.0",
     "playwright": "^1.24.0",
@@ -212,8 +212,7 @@
     "**/@types/react": "^18.0.9",
     "**/@types/react-is": "^17.0.3",
     "**/cross-fetch": "^3.1.5",
-    "**/react-is": "^18.2.0",
-    "**/thenify": "^3.3.1"
+    "**/react-is": "^18.2.0"
   },
   "nyc": {
     "include": [
