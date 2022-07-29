@@ -97,6 +97,9 @@ const SkeletonRoot = styled('span', {
       ...(ownerState.variant === 'circular' && {
         borderRadius: '50%',
       }),
+      ...(ownerState.variant === 'rounded' && {
+        borderRadius: (theme.vars || theme).shape.borderRadius,
+      }),
       ...(ownerState.hasChildren && {
         '& > *': {
           visibility: 'hidden',
