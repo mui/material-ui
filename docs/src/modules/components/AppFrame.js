@@ -219,9 +219,10 @@ function AppFrame(props) {
           >
             <SvgHamburgerMenu />
           </NavIconButton>
-          <NextLink href="/" passHref /* onClick={onClose} */>
+          <NextLink href="/" passHref>
             <Box
               component="a"
+              onClick={onClose}
               aria-label={t('goToHome')}
               sx={{ display: { md: 'flex', lg: 'none' }, ml: 2 }}
             >

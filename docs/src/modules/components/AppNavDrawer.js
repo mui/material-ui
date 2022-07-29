@@ -371,9 +371,10 @@ export default function AppNavDrawer(props) {
     return (
       <React.Fragment>
         <ToolbarDiv>
-          <NextLink href="/" passHref onClick={onClose}>
+          <NextLink href="/" passHref>
             <Box
               component="a"
+              onClick={onClose}
               aria-label={t('goToHome')}
               sx={{
                 pr: '12px',
