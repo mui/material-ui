@@ -129,8 +129,8 @@ function getContents(markdown) {
 function getTitle(markdown) {
   const matches = markdown.match(titleRegExp);
 
-  if (!matches || !matches[1]) {
-    throw new Error('Missing title in the page');
+  if (matches === null) {
+    return undefined;
   }
 
   return matches[1].replace(/`/g, '');
@@ -386,8 +386,18 @@ function prepareMarkdown(config) {
     .forEach((translation) => {
       const { filename, markdown, userLanguage } = translation;
       const headers = getHeaders(markdown);
+      const location = headers.filename || `/docs${pageFilename}/${filename}`;
       const title = headers.title || getTitle(markdown);
       const description = headers.description || getDescription(markdown);
+
+      if (title == null || title === '') {
+        throw new Error(`Missing title in the page: ${location}`);
+      }
+
+      if (description == null || description === '') {
+        throw new Error(`Missing description in the page: ${location}`);
+      }
+
       const contents = getContents(markdown);
 
       if (headers.unstyled) {
@@ -416,7 +426,6 @@ ${headers.components
   `);
       }
 
-      const location = headers.filename || `/docs${pageFilename}/${filename}`;
       const toc = [];
       const render = createRender({ headingHashes, toc, userLanguage, location });
 
