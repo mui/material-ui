@@ -1,95 +1,95 @@
-# The `sx` prop
+# The sx prop
 
-<p class="description">The `sx` prop is a shortcut for defining custom style that has access to the theme.</p>
+<p class="description">The sx prop is a shortcut for defining custom styles that has access to the theme.</p>
 
-The property is a superset of CSS that packages [all the style functions](/system/basics/#all-inclusive) that are exposed in `@mui/system`.
-You can specify any valid CSS using this prop.
+The `sx` prop lets you work with a superset of CSS that packages all of the style functions exposed in `@mui/system`.
+You can specify any valid CSS using this prop, as well as many _theme-aware_ properties that are unique to MUI System.
 
-## Example
+## Basic example
+
+The following demo illustrates how to work with the `sx` prop.
+Note that not all of the values are valid CSS properties—that's because the `sx` keys are mapped to specific properties of the theme.
+The rest of this document explores this concept in more detail.
 
 {{"demo": "Example.js", "bg": true, "defaultCodeOpen": true}}
 
-On the example above, you can notice that some of the values are not valid CSS properties.
-This is because the `sx` keys are mapped to specific properties of the theme.
-In the following sections, you will learn how different `sx` properties are mapped to specific parts of the theme.
-
-## Theme aware properties
+## Theme-aware properties
 
 ### Borders
 
-The `border` property can receive only a number as a value.
-It creates a solid black border using the number as the width.
+The `border` property can only receive a number as a value.
+It creates a solid black border using the number to define the width in pixels:
 
 ```jsx
 <Box sx={{ border: 1 }} />
 // equivalent to border: '1px solid black'
 ```
 
-The `borderColor` property can receive a string, which represents the path in the `theme.palette`.
+The `borderColor` property can receive a string, which represents the path in `theme.palette`:
 
 ```jsx
 <Box sx={{ borderColor: 'primary.main' }} />
 // equivalent to borderColor: theme => theme.palette.primary.main
 ```
 
-The `borderRadius` properties multiples the value it receives by the `theme.shape.borderRadius` value (the default for the value is `4px`).
+The `borderRadius` property multiplies the value it receives by the `theme.shape.borderRadius` value (the default for this value is `4px`).
 
 ```jsx
 <Box sx={{ borderRadius: 2 }} />
 // equivalent to borderRadius: theme => 2 * theme.shape.borderRadius
 ```
 
-_Head to the [borders page](/system/borders/) for more details._
+Read more on the [Borders page](/system/borders/).
 
 ### Display
 
-The `displayPrint` property allows you to specify CSS `display` value, that will be applied only for printing.
+The `displayPrint` property allows you to specify a CSS `display` value that will only be applied when printing:
 
 ```jsx
 <Box sx={{ displayPrint: 'none' }} /> // equivalent to '@media print': { display: 'none' }
 ```
 
-_Head to the [display page](/system/display/) for more details._
+Read more on the [Display page](/system/display/).
 
 ### Grid
 
-The grid CSS properties `gap`, `rowGap` and `columnGap` multiply the values they receive by the `theme.spacing` value (the default for the value is `8px`).
+The CSS Grid properties `gap`, `rowGap` and `columnGap` multiply the values they receive by the `theme.spacing` value (the default for the value is `8px`).
 
 ```jsx
 <Box sx={{ gap: 2 }} />
 // equivalent to gap: theme => theme.spacing(2)
 ```
 
-_Head to the [grid page](/system/grid/) for more details._
+Read more on the [Grid page](/system/grid/).
 
 ### Palette
 
-The `color` and `backgroundColor` properties can receive a string, which represents the path in the `theme.palette`.
+The `color` and `backgroundColor` properties can receive a string, which represents the path in `theme.palette`:
 
 ```jsx
 <Box sx={{ color: 'primary.main' }} />
 // equivalent to color: theme => theme.palette.primary.main
 ```
 
-The `backgroundColor` property is also available through its alias `bgcolor`.
+The `backgroundColor` property is also available through its alias `bgcolor`:
 
 ```jsx
 <Box sx={{ bgcolor: 'primary.main' }} />
 // equivalent to backgroundColor: theme => theme.palette.primary.main
 ```
 
-_Head to the [palette page](/system/palette/) for more details._
+Read the [Palette page](/system/palette/).
 
 ### Positions
 
-The `zIndex` property maps its value to the `theme.zIndex` value.
+The `zIndex` property maps its value to the `theme.zIndex` value:
 
 ```jsx
 <Box sx={{ zIndex: 'tooltip' }} />
 // equivalent to zIndex: theme => theme.zIndex.tooltip
 ```
 
-_Head to the [positions page](/system/positions/) for more details._
+Read the [Positions page](/system/positions/) for more details.
 
 ### Shadows
 
