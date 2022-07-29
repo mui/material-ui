@@ -2,7 +2,6 @@
 
 <p class="description">Install MUI System, a collection of CSS utilities for rapidly laying out custom designs.</p>
 
-
 <!-- #default-branch-switch -->
 
 To install and save in your `package.json` dependencies, run the command below using **npm**:
