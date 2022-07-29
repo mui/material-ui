@@ -95,6 +95,16 @@
       "nodeName": "the root element",
       "conditions": "<code>variant=\"outlined\"</code> and <code>color=\"secondary\"</code>"
     },
+    "filledPrimary": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"filled\"</code> and <code>color=\"primary\"</code>"
+    },
+    "filledSecondary": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"filled\"</code> and <code>color=\"secondary\"</code>"
+    },
     "avatar": {
       "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the avatar element"
@@ -190,6 +200,16 @@
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the deleteIcon element",
       "conditions": "<code>color=\"secondary\"</code> and <code>variant=\"outlined\"</code>"
+    },
+    "deleteIconFilledColorPrimary": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the deleteIcon element",
+      "conditions": "<code>color=\"primary\"</code> and <code>variant=\"filled\"</code>"
+    },
+    "deleteIconFilledColorSecondary": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the deleteIcon element",
+      "conditions": "<code>color=\"secondary\"</code> and <code>variant=\"filled\"</code>"
     },
     "focusVisible": {
       "description": "Pseudo-class applied to {{nodeName}} if {{conditions}}.",
