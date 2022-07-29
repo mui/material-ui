@@ -49,9 +49,22 @@ export interface MultiSelectUnstyledOwnProps<TValue extends {}> extends SelectUn
    */
   defaultValue?: TValue[];
   /**
+   * A function to convert the currently selected value to a string.
+   * Used to set a value of a hidden input associated with the select,
+   * so that the selected value can be posted with a form.
+   */
+  formValueProvider?: (option: SelectOption<TValue>[]) => string | string[];
+  /**
    * Callback fired when an option is selected.
    */
   onChange?: (value: TValue[]) => void;
+  /**
+   * A function used to convert the option value to a string.
+   * It is used to navigate through values with keyboard.
+   *
+   * @default defaultOptionStringifier
+   */
+  optionStringifier?: (option: SelectOption<TValue>) => string;
   /**
    * Function that customizes the rendering of the selected values.
    */

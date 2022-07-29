@@ -1,0 +1,16 @@
+<form onSubmit={handleSubmit}>
+  <CustomSelect
+    value={character}
+    onChange={setCharacter}
+    formValueProvider={formValueProvider}
+    name="character"
+  >
+    {characters.map((c) => (
+      <StyledOption key={c.name} value={c}>
+        {c.name}
+      </StyledOption>
+    ))}
+  </CustomSelect>
+
+  <button type="submit">Submit</button>
+</form>

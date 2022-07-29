@@ -19,10 +19,13 @@
     "defaultListboxOpen": { "type": { "name": "bool" } },
     "defaultValue": { "type": { "name": "array" }, "default": "[]" },
     "disabled": { "type": { "name": "bool" } },
+    "formValueProvider": { "type": { "name": "func" } },
     "listboxId": { "type": { "name": "string" } },
     "listboxOpen": { "type": { "name": "bool" }, "default": "undefined" },
+    "name": { "type": { "name": "string" } },
     "onChange": { "type": { "name": "func" } },
     "onListboxOpenChange": { "type": { "name": "func" } },
+    "optionStringifier": { "type": { "name": "func" }, "default": "defaultOptionStringifier" },
     "renderValue": { "type": { "name": "func" } },
     "value": { "type": { "name": "array" } }
   },
