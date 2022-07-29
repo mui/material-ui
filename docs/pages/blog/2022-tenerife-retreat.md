@@ -19,7 +19,7 @@ At MUI, we've chosen to prioritize in-person company retreats as a way to grow t
 In late June 2022, sixteen of us gathered at a remote private residence on the island of Tenerife.
 This was MUI's second company retreat, the first being in Portugal in 2021 when the team was just a fraction of the size it is today.
 
-We had a ton of fun getting to know each other better over oceanic activities, poolside conversations, and incredible catered meals—not to mention a steady supply of spanish wine. 🥂
+We had a ton of fun getting to know each other better over oceanic activities, poolside conversations, and incredible catered meals—not to mention a steady supply of Spanish wine. 🥂
 Oh, and I guess we got some work done along the way, too? 😅
 
 ## Destination
@@ -52,7 +52,7 @@ Almost all of our meals were cooked fresh by the hosts in their fabulous outdoor
 I don't think I've ever eaten that many incredible home-cooked meals in a single week. 😋
 And somehow each one was even better than the last!
 
-![MUI X colleagues José and Andrew bond over a bottle of wine at dinner one night during the retreat.](/static/blog/2022-tenerife-retreat/jose-andrew-wine.jpg)
+![MUI X colleagues José and Andrew bond over a bottle of wine at dinner one night during the retreat.](/static/blog/2022-tenerife-retreat/jose-andrew-wine.jpeg)
 
 <p class="blog-description">MUI X colleagues José and Andrew bond through the tradition of a brüderschaft (German: <em>brotherhood</em>) toast.</p>
 
@@ -107,7 +107,7 @@ We learned a lot about the natural history of the island from our guide, who led
 Photos don't even begin to do it justice.
 I completely understand why Teide is one of Europe's most visited parks.
 
-![The sun setting above the clouds as seen near the top of Teide.](/static/blog/2022-tenerife-retreat/teide-sunset.jpg)
+![The sun setting above the clouds as seen near the top of Teide.](/static/blog/2022-tenerife-retreat/teide-sunset.jpeg)
 
 <p class="blog-description">The Tenerife sunset as seen from Teide, above the clouds.</p>
 
@@ -151,7 +151,7 @@ Others discussed optimizing TypeScript performance, implementing editable demos 
 All throughout our working sessions, we were accompanied by a very friendly young kitty (name unknown) who consistently offered critical support when we needed it the most.
 We can't thank her enough for her contributions to the company roadmap.
 
-![Collage of several photos of the MUI team members cuddling with the neighborhood cat during our work sessions.](/static/blog/2022-tenerife-retreat/cat-collage.jpg)
+![Collage of several photos of the MUI team members cuddling with the neighborhood cat during our work sessions.](/static/blog/2022-tenerife-retreat/cat-collage.jpeg)
 
 <p class="blog-description">The cat was responsible for all of the cutest moments during the retreat.</p>
 
