@@ -106,7 +106,7 @@ export default function WhatToExpect() {
               software need an active license. You will need to renew your subscription if you wish
               to continue active development after your subscription ends.
               <br />
-              {`You don't need to renew your license if you stopped developing with MUI X Pro or Premium. You
+              {`You don't need to renew your license if you have stopped active development with MUI X Pro or Premium. You
               can learn more about this in `}
               <Link
                 target="_blank"
