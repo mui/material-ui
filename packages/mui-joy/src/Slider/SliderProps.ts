@@ -20,7 +20,7 @@ export interface SliderPropsSizeOverrides {}
 
 export interface SliderComponentsPropsOverrides {}
 
-interface SliderOwnProps {
+export interface SliderOwnProps {
   /**
    * The props used for each slot inside the Slider.
    * @default {}

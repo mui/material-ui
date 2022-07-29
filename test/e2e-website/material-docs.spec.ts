@@ -42,7 +42,7 @@ test.describe('Material docs', () => {
     test('should have correct link for API section', async ({ page }) => {
       await page.goto(`/material-ui/react-card/`);
 
-      const anchors = page.locator('div > h2#heading-api ~ ul a');
+      const anchors = page.locator('div > h2#api ~ ul a');
 
       const firstAnchor = anchors.first();
       const textContent = await firstAnchor.textContent();
