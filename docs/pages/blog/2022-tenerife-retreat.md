@@ -54,7 +54,7 @@ And somehow each one was even better than the last!
 
 ![MUI X colleagues José and Andrew bond over a bottle of wine at dinner one night during the retreat.](/static/blog/2022-tenerife-retreat/jose-andrew-wine.jpg)
 
-<p class="blog-description">MUI X colleagues José and Andrew bond over a bottle of wine at dinner one night during the retreat.</p>
+<p class="blog-description">MUI X colleagues José and Andrew bond through the tradition of a brüderschaft (German: <em>brotherhood</em>) toast.</p>
 
 ## Activities
 
