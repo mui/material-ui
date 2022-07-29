@@ -79,87 +79,16 @@ describe('<Select />', () => {
     );
   });
 
-  it('should support conditional rendering with empty string', () => {
-    render(
-      <Select open value={2}>
-        {'' && <MenuItem value={1}>One</MenuItem>}
-        <MenuItem value={2}>Two</MenuItem>
-      </Select>,
-    );
-  });
-
-  it('should support conditional rendering with negative number', () => {
-    render(
-      <Select open value={2}>
-        {-1 && <MenuItem value={1}>One</MenuItem>}
-        <MenuItem value={2}>Two</MenuItem>
-      </Select>,
-    );
-  });
-
-  it('should support conditional rendering with zero', () => {
-    render(
-      <Select open value={2}>
-        {0 && <MenuItem value={1}>One</MenuItem>}
-        <MenuItem value={2}>Two</MenuItem>
-      </Select>,
-    );
-  });
-
-  it('should support conditional rendering with NaN', () => {
-    render(
-      <Select open value={2}>
-        {NaN && <MenuItem value={1}>One</MenuItem>}
-        <MenuItem value={2}>Two</MenuItem>
-      </Select>,
-    );
-  });
-
-  it('should support conditional rendering with boolean', () => {
-    render(
-      <Select open value={2}>
-        {true && <MenuItem value={1}>One</MenuItem>}
-        <MenuItem value={2}>Two</MenuItem>
-      </Select>,
-    );
-  });
-
-  it('should support conditional rendering with undefined', () => {
-    render(
-      <Select open value={2}>
-        {undefined && <MenuItem value={1}>One</MenuItem>}
-        <MenuItem value={2}>Two</MenuItem>
-      </Select>,
-    );
-  });
-
-  it('should support conditional rendering with null', () => {
-    render(
-      <Select open value={2}>
-        {null && <MenuItem value={1}>One</MenuItem>}
-        <MenuItem value={2}>Two</MenuItem>
-      </Select>,
-    );
-  });
-
-  it('should support conditional rendering with false', () => {
-    render(
-      <Select open value={2}>
-        {false && <MenuItem value={1}>One</MenuItem>}
-        <MenuItem value={2}>Two</MenuItem>
-      </Select>,
-    );
-  });
-
-  it('should ignore primitive element', () => {
-    render(
-      <Select open value={2}>
-        {'Zero'}
-        <MenuItem value={1}>One</MenuItem>
-        <MenuItem value={2}>Two</MenuItem>
-      </Select>,
-    );
-  });
+  ['', 0, NaN].forEach((value) =>
+    it(`should support conditional rendering with "${value}"`, () => {
+      render(
+        <Select open value={2}>
+          {value && <MenuItem value={1}>One</MenuItem>}
+          <MenuItem value={2}>Two</MenuItem>
+        </Select>,
+      );
+    }),
+  );
 
   it('should have an input with [aria-hidden] by default', () => {
     const { container } = render(
