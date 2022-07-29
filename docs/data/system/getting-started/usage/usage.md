@@ -4,7 +4,7 @@
 
 ## Why use MUI System?
 
-MUI System's `sx` prop lets you avoid writing unnecessary styled-component code by instead defining styles directly within the component itself.
+MUI System's `sx` prop lets you avoid writing unnecessary styled-component code, and instead define styles directly within the component itself.
 This is especially useful for one-off components with custom designs.
 
 The following code samples illustrate the difference between styled-components and `sx`:
@@ -127,7 +127,7 @@ Resize the window to see the responsive breakpoints:
 
 {{"demo": "Demo.js", "bg": true, "defaultCodeOpen": true}}
 
-### When to use MUI System
+## When to use MUI System
 
 The `sx` prop is best suited for applying one-off styles to custom components.
 
@@ -170,18 +170,47 @@ For instance, when rendering a list with many items, you can use a CSS child sel
 
 ### API tradeoff
 
-Having the System under one prop (`sx`) helps to differentiate props defined for the sole purpose of CSS utilities, vs. those for component business logic.
-It's important for the **separation of concerns**.
-For instance, a `color` prop on a button impacts multiple states (hover, focus, etc.), not to be confused with the color CSS property.
+MUI System's unifying `sx` prop helps to maintain the separation of concerns between CSS utilities and component business logic.
 
-Only the `Box`, `Stack`, `Typography`, and `Grid` components accept the system properties as _props_ for the above reason.
-These components are designed to solve CSS problems, they are CSS component utilities.
+For instance, a `color` prop on a button impacts multiple states (hover, focus, etc.), and is distinct from the CSS `color` property.
 
-## Design tokens in the theme
+Only the `Box`, `Stack`, `Typography`, and `Grid` components accept the system properties as props for this reason.
+These components are designed to solve CSS problems—they are CSS component utilities.
 
-You can explore the [System properties](/system/properties/) page to discover how the different CSS (and custom) properties are mapped to the theme keys.
+## Where to use MUI System
 
-## Shorthands
+The `sx` prop can be used in four different locations:
+
+### Core components
+
+All core MUI components support the `sx` prop.
+
+### Box
+
+[`Box`](/material-ui/react-box/) is a lightweight component that gives access to the `sx` prop, and can be used as a utility component, and as a wrapper for other components.
+It renders a `<div>` element by default.
+
+### Custom components
+
+In addition to MUI components, you can add the `sx` prop to your custom components too, by using the `styled` utility from `@mui/material/styles`.
+
+```jsx
+import { styled } from '@mui/material/styles';
+
+const Div = styled('div')``;
+```
+
+### Any element with the babel plugin
+
+TODO [#23220](https://github.com/mui/material-ui/issues/23220).
+
+## How to use MUI System
+
+### Design tokens in the theme
+
+Visit the [System properties page](/system/properties/) to learn how the different CSS (and custom) properties are mapped to the theme keys.
+
+### Shorthands
 
 There are many shorthands available for various CSS properties.
 These are documented on their respective Style utilities pages.
@@ -201,9 +230,9 @@ Here is an example of a few:
 >
 ```
 
-These shorthands are optional—they are great to save time when writing styles, but it's not necessary to use them.
+These shorthands are optional—they're great for saving time, but not necessary to use
 
-## Superset of CSS
+### Superset of CSS
 
 The `sx` prop supports CSS syntax including child and pseudo-selectors, media queries, raw CSS values, and more.
 Here are a few examples of how you can implement these CSS features:
@@ -247,28 +276,33 @@ Here are a few examples of how you can implement these CSS features:
   >
   ```
 
-## Responsive values
+### Responsive values
 
 The `sx` prop simplifies the process of defining and implementing responsive breakpoints.
-You can define breakpoints in two different ways: as an object, or as an array.
+You can define a set of breakpoints in two different ways: as an object, or as an array.
 
-### Breakpoints as an object
+#### Breakpoints as an object
 
 The first option for breakpoints is to define them as an object, using the breakpoint values as keys.
-Note that each breakpoint property matches the breakpoint and every larger breakpoint.
+Note that each property for a given breakpoint also applies to all larger breakpoints in the set.
 For example, `width: { lg: 100 }` is equivalent to `theme.breakpoints.up('lg')`.
-Here is the previous example again, using the object syntax.
+
+The following demo shows how to define a set of breakpoints using the object syntax:
 
 {{"demo": "BreakpointsAsObject.js"}}
 
-### Breakpoints as an array
+#### Breakpoints as an array
 
 The second option is to define your breakpoints as an array, from smallest to largest.
+Here's what that looks like:
 
 {{"demo": "BreakpointsAsArray.js"}}
 
-> ⚠️ This option is only recommended when the theme has a limited number of breakpoints, e.g. 3.<br />
-> Prefer the object API if you have more breakpoints. For instance, the default theme of MUI has 5.
+:::warning
+This option should only be considered when the theme has a limited number of breakpoints, e.g. 3.
+
+We recommend using the object API instead if you need to define more than a few breakpoints.
+:::
 
 You can skip breakpoints with the `null` value:
 
@@ -276,9 +310,10 @@ You can skip breakpoints with the `null` value:
 <Box sx={{ width: [null, null, 300] }}>This box has a responsive width.</Box>
 ```
 
-### Custom breakpoints
+#### Custom breakpoints
 
-You can also specify your own custom breakpoints, and use them as keys when defining the breakpoints object. Here is an example of how to do that.
+You can also specify your own custom breakpoints, and use them as keys when defining the breakpoints object.
+Here is an example of how to do that:
 
 ```jsx
 import * as React from 'react';
@@ -331,35 +366,9 @@ declare module '@mui/material/styles' {
 }
 ```
 
-### Theme getter
+#### Theme getter
 
-If you wish to use the theme for a CSS property that is not supported natively by the system, you can use a function as the value, in which you can access the theme object.
+If you wish to use the theme for a CSS property that is not supported natively by the system, then you can use a function as the value, in which you can access the theme object.
+The following demo shows how this works:
 
 {{"demo": "ValueAsFunction.js"}}
-
-## Implementations
-
-The `sx` prop can be used in four different locations:
-
-### Core components
-
-All core MUI components will support the `sx` prop.
-
-### Box
-
-[`Box`](/material-ui/react-box/) is a lightweight component that gives access to the `sx` prop, and can be used as a utility component, and as a wrapper for other components.
-It renders a `<div>` element by default.
-
-### Custom components
-
-In addition to MUI components, you can add the `sx` prop to your custom components too, by using the `styled` utility from `@mui/material/styles`.
-
-```jsx
-import { styled } from '@mui/material/styles';
-
-const Div = styled('div')``;
-```
-
-### Any element with the babel plugin
-
-TODO [#23220](https://github.com/mui/material-ui/issues/23220).
