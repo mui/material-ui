@@ -4,23 +4,25 @@
 
 ## Why you should migrate
 
-The Grid v2 has new feature and a lot of improvements:
+Grid v2 has several new feature and many improvements over the original:
 
-- Easier to customize because Grid v2 uses CSS variables which remove CSS specificity from class selector. Now you can use `sx` prop on the Grid to control any style you'd like.
+- Grid v2 uses CSS variables which remove CSS specificity from class selectors. 
+Now you can use `sx` prop on the Grid to control any style you'd like.
 - All grids are considered items without specifying the `item` prop.
-- The Long-awaited [offset feature](/material-ui/react-grid2/#offset) is added.
-- [Nested grid](/material-ui/react-grid2/#nested-grid) has no depth limitation.
-- The `disableEqualOverflow` flag is added to prevent scrollbar in small viewports.
+- The long-awaited [offset feature](/material-ui/react-grid2/#offset) gives you more flexibility for positioning.
+- [Nested grids](/material-ui/react-grid2/#nested-grid) now have no depth limitation.
+- The `disableEqualOverflow` flag disables the horizontal scrollbar in smaller viewports.
 
 :::info
-We ship the Grid v2 as `Unstable_` to let the community try it out and collect feedbacks. We will make it stable and deprecate v1 in the next major release of Material UI.
+Grid v2 is currently considered `Unstable_` as we give the community time to try it out and offer feedback. 
+We will make it stable and deprecate v1 in the next major release of Material UI.
 :::
 
-## Material UI v4
+## With Material UI v4
 
 The Grid v2 is introduced in Material UI v5, so you have to follow the [Material UI migration guide](/material-ui/migration/migration-v4/) first.
 
-## Material UI v5
+## With Material UI v5
 
 The migration is expected to be smooth since most of the APIs remains the same. However, there is one breaking change that we want to clarify:
 
@@ -39,16 +41,16 @@ The default implementation of the negative margin in Grid v2 is spread equally o
 
 ### Remove props
 
-The `item` and `zeroMinWidth` have been removed in Grid v2:
+The `item` and `zeroMinWidth` props have been removed in Grid v2:
 
 ```diff
 - <Grid item zeroMinWidth xs={6}>
 + <Grid xs={6}>
 ```
 
-### Negative margin
+### Negative margins
 
-If you want to apply the negative margin similar to the Grid v1, specify `disableEqualOverflow: true` on the grid container:
+If you want to apply the negative margins similar to the Grid v1, specify `disableEqualOverflow: true` on the grid container:
 
 {{"demo": "GridDisableEqualOverflow.js", "bg": true, "hideToolbar": true}}
 
