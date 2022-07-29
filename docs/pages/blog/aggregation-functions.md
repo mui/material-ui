@@ -28,7 +28,7 @@ The **Sum** function showing a **Total** in summary rows is one of the most comm
 
 To make all that work well together, we knew that the focus had to be on creating the best end-user experience possible. The goal was to enable the majority of use cases right out of the box, without any need for significant customization.
 
-How easy can it be to get the average of transactions per user?
+How easy can it be to get the average transaction value per user?
 Check out the video below to see it in action:
 
 <video style="margin-bottom: 24px;" autoplay muted loop playsinline controls>
