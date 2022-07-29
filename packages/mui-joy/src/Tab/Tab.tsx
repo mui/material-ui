@@ -38,7 +38,6 @@ const TabRoot = styled(ListItemButtonRoot, {
   return {
     justifyContent: 'center',
     flexGrow: 1,
-    position: 'relative', // TODO: check if this can be in the ListItemButtonRoot
     ...(ownerState.selected && {
       boxShadow: theme.vars.shadow.sm,
       fontWeight: 'initial',
