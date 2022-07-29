@@ -237,7 +237,7 @@ Skeleton.propTypes /* remove-proptypes */ = {
    * @default 'text'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['circular', 'rectangular', 'text']),
+    PropTypes.oneOf(['circular', 'rectangular', 'rounded', 'text']),
     PropTypes.string,
   ]),
   /**

@@ -20,7 +20,7 @@
     "variant": {
       "type": {
         "name": "union",
-        "description": "'circular'<br>&#124;&nbsp;'rectangular'<br>&#124;&nbsp;'text'<br>&#124;&nbsp;string"
+        "description": "'circular'<br>&#124;&nbsp;'rectangular'<br>&#124;&nbsp;'rounded'<br>&#124;&nbsp;'text'<br>&#124;&nbsp;string"
       },
       "default": "'text'"
     },
