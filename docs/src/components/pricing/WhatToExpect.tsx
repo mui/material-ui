@@ -111,7 +111,7 @@ export default function WhatToExpect() {
               <Link
                 target="_blank"
                 rel="noopener"
-                href="https://mui.com/store/legal/mui-x-eula/#perpetual-in-production"
+                href="https://mui.com/legal/mui-x-eula/#perpetual-in-production"
               >
                 the EULA
               </Link>
