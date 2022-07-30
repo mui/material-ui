@@ -69,9 +69,9 @@ const faqData = [
         <br />
         <br />
         Our licensing model also requires developers indirectly using MUI X Pro or Premium (e.g.
-        through a wrapper library) to be licensed. This is because the more developers in your
-        organization using the software, the more they need comprehensive documentation, and the
-        more hedge cases they will ask to be supported.
+        through a wrapper library) to be licensed. The more developers in your organization using
+        the software, the more they need documentation, and the more hedge cases they need to be
+        supported.
         <br />
         <br />
         The price point per developer was adjusted to be lower than what it would be if only direct
