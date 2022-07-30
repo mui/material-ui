@@ -68,8 +68,8 @@ const faqData = [
         replicate one of the great properties open-source licenses have: simplicity.
         <br />
         <br />
-        Our licensing model also requires developers indirectly using MUI X Pro or Premium (e.g. through a wrapper library) to be
-        licensed. This is because the more developers in your
+        Our licensing model also requires developers indirectly using MUI X Pro or Premium (e.g.
+        through a wrapper library) to be licensed. This is because the more developers in your
         organization using the software, the more they need comprehensive documentation, and the
         more hedge cases they will ask to be supported.
         <br />
