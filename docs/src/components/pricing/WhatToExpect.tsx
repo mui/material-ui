@@ -104,8 +104,10 @@ export default function WhatToExpect() {
             <Typography variant="body2" color="text.secondary">
               Developers contributing changes to the front-end code of a project that include the
               software need an active license. You will need to renew your subscription if you wish
-              to continue active development after the end of your subscription. You can learn more
-              about it in{' '}
+              to continue active development after your subscription ends.
+              <br />
+              {`You don't need to renew your license if you have stopped active development with MUI X Pro or Premium. You
+              can learn more about this in `}
               <Link
                 target="_blank"
                 rel="noopener"
