@@ -96,6 +96,7 @@ const classes = {
   container: 'TopLayoutBlog-container',
 };
 
+// Replicate the value used by https://medium.com/, a trusted reference.
 const BLOG_MAX_WIDTH = 692;
 
 const styles = ({ theme }) => ({
