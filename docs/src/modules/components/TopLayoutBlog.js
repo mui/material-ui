@@ -96,6 +96,8 @@ const classes = {
   container: 'TopLayoutBlog-container',
 };
 
+const BLOG_MAX_WIDTH = 692;
+
 const styles = ({ theme }) => ({
   flexGrow: 1,
   background:
@@ -112,8 +114,14 @@ const styles = ({ theme }) => ({
   },
   [`& .${classes.container}`]: {
     paddingTop: 60 + 20,
-    marginBottom: theme.spacing(8),
-    maxWidth: `calc(740px + ${theme.spacing(12)})`,
+    marginBottom: theme.spacing(1),
+    maxWidth: `calc(${BLOG_MAX_WIDTH}px + ${theme.spacing(2 * 2)})`,
+    [theme.breakpoints.up('md')]: {
+      maxWidth: `calc(${BLOG_MAX_WIDTH}px + ${theme.spacing(3 * 2)})`,
+    },
+    [theme.breakpoints.up('lg')]: {
+      maxWidth: `calc(${BLOG_MAX_WIDTH}px + ${theme.spacing(8 * 2)})`,
+    },
     '& h1': {
       marginBottom: theme.spacing(3),
     },
@@ -197,6 +205,8 @@ const AuthorsContainer = styled('div')(({ theme }) => ({
   },
 }));
 
+const Root = styled('div')(styles);
+
 function TopLayoutBlog(props) {
   const { className, docs } = props;
   const { description, rendered, title, headers } = docs.en;
@@ -217,7 +227,7 @@ function TopLayoutBlog(props) {
             : 'https://mui.com/static/logo.png'
         }
       />
-      <div className={className}>
+      <Root className={className}>
         <AppContainer component="main" className={classes.container}>
           <Link
             href={ROUTES.blog}
@@ -281,7 +291,7 @@ function TopLayoutBlog(props) {
         <HeroEnd />
         <Divider />
         <AppFooter />
-      </div>
+      </Root>
     </BrandingProvider>
   );
 }
@@ -295,4 +305,4 @@ if (process.env.NODE_ENV !== 'production') {
   TopLayoutBlog.propTypes = exactProp(TopLayoutBlog.propTypes);
 }
 
-export default styled(TopLayoutBlog)(styles);
+export default TopLayoutBlog;
