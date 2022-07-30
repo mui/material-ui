@@ -391,7 +391,6 @@ https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 ## MUI X
 ## Unlike the store that expect to be hosted under a subfolder,
 ## MUI X is configured to be hosted at the root.
-/_next/* https://material-ui-x.netlify.app/_next/:splat 200
 /static/x/* https://material-ui-x.netlify.app/static/x/:splat 200
 /x/_next/* https://material-ui-x.netlify.app/_next/:splat 200
 /x/* https://material-ui-x.netlify.app/x/:splat 200
