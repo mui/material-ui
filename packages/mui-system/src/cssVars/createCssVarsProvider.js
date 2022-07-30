@@ -156,7 +156,11 @@ export default function createCssVarsProvider(options) {
         return defaultColorScheme.light;
       })();
       if (key === resolvedDefaultColorScheme) {
-        defaultColorSchemeStyleSheet[`${colorSchemeSelector}, [${attribute}="${key}"]`] = css;
+        defaultColorSchemeStyleSheet[
+          `${colorSchemeSelector}, ${
+            colorSchemeSelector === ':root' ? '' : colorSchemeSelector
+          }[${attribute}="${key}"]`
+        ] = css;
       } else {
         otherColorSchemesStyleSheet[
           `${colorSchemeSelector === ':root' ? '' : colorSchemeSelector}[${attribute}="${key}"]`
