@@ -63,9 +63,9 @@ const faqData = [
     detail: (
       <React.Fragment>
         Our pricing model requires all developers working on a project using MUI X Pro or Premium to
-        be licensed. This is intended to make it easier for your engineers to use the software
-        without having to constantly verify if they have the right number of seats. It aims to
-        replicate one of the great properties open-source licenses have: simplicity.
+        be licensed. This is intended to make it easier for you and your team to know if right
+        number of developers are licensed to use the software. It tries to emulate the simplicity of
+        the open-source licenses.
         <br />
         <br />
         Our licensing model also requires developers indirectly using MUI X Pro or Premium (e.g.
