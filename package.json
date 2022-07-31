@@ -84,7 +84,7 @@
     "@emotion/styled": "^11.9.3",
     "@mnajdova/enzyme-adapter-react-18": "^0.2.0",
     "@octokit/rest": "^18.12.0",
-    "@playwright/test": "1.24.0",
+    "@playwright/test": "1.24.2",
     "@rollup/plugin-replace": "^4.0.0",
     "@testing-library/dom": "^8.16.0",
     "@testing-library/react": "^13.3.0",
