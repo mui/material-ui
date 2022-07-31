@@ -181,7 +181,7 @@ Read the [Typography page](/system/typography/) for more details.
 
 All properties associated with the `sx` prop also support responsive values for specific breakpoints.
 
-Visit [Usage—Responsive values section](/system/getting-started/usage/#responsive-values) for details.
+Visit [Usage—Responsive values](/system/getting-started/usage/#responsive-values) for details.
 
 ## Callback values
 
