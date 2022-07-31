@@ -93,18 +93,18 @@ Read the [Positions page](/system/positions/) for more details.
 
 ### Shadows
 
-The `boxShadow` property maps its value to the `theme.shadows` value.
+The `boxShadow` property maps its value to the `theme.shadows` value:
 
 ```jsx
 <Box sx={{ boxShadow: 1 }} />
 // equivalent to boxShadow: theme => theme.shadows[1]
 ```
 
-_Head to the [shadows page](/system/shadows/) for more details._
+Read the [Shadows page](/system/shadows/) for more details.
 
 ### Sizing
 
-The sizing properties: `width`, `height`, `minHeight`, `maxHeight`, `minWidth` and `maxWidth` are using the following custom transform function for the value:
+The sizing properties `width`, `height`, `minHeight`, `maxHeight`, `minWidth`, and `maxWidth` use the following custom transform function for the value:
 
 ```js
 function transform(value) {
@@ -112,19 +112,19 @@ function transform(value) {
 }
 ```
 
-If the value is between [0, 1], it's converted to percent.
-Otherwise, it is directly set on the CSS property.
+If the value is between [0, 1], it's converted to a percentage.
+Otherwise, it is directly set on the CSS property:
 
 ```jsx
 <Box sx={{ width: 1/2 }} /> // equivalent to width: '50%'
 <Box sx={{ width: 20 }} /> // equivalent to width: '20px'
 ```
 
-_Head to the [sizing page](/system/sizing/) for more details._
+Read the [Sizing page](/system/sizing/) for more details.
 
 ### Spacing
 
-The spacing properties: `margin`, `padding` and the corresponding longhand properties multiply the values they receive by the `theme.spacing` value (the default for the value is `8px`).
+The spacing properties `margin`, `padding`, and the corresponding longhand properties multiply the values they receive by the `theme.spacing` value (the default for the value is `8px`):
 
 ```jsx
 <Box sx={{ margin: 2 }} />
@@ -150,46 +150,49 @@ The following aliases are available for the spacing properties:
 | `px` | `padding-left`, `padding-right` |
 | `py` | `padding-top`, `padding-bottom` |
 
-_Head to the [spacing page](/system/spacing/) for more details._
+Read the [Spacing page](/system/spacing/) for more details.
 
 ### Typography
 
-The `fontFamily`, `fontSize`, `fontStyle`, `fontWeight` properties map their value to the `theme.typography` value.
+The `fontFamily`, `fontSize`, `fontStyle`, `fontWeight` properties map their value to the `theme.typography` value:
 
 ```jsx
 <Box sx={{ fontWeight: 'fontWeightLight' }} />
 // equivalent to fontWeight: theme.typography.fontWeightLight
 ```
 
-The same can be achieved by omitting the CSS property prefix `fontWeight`.
+The same can be achieved by omitting the CSS property prefix `fontWeight`:
 
 ```jsx
 <Box sx={{ fontWeight: 'light' }} />
 // equivalent to fontWeight: theme.typography.fontWeightLight
 ```
 
-There is an additional `typography` prop available, which sets all values defined in the specific `theme.typography` variant.
+There is an additional `typography` prop available, which sets all values defined in the specific `theme.typography` variant:
 
 ```jsx
 <Box sx={{ typography: 'body1' }} />
 // equivalent to { ...theme.typography.body1 }
 ```
 
-_Head to the [typography page](/system/typography/) for more details._
+Read the [Typography page](/system/typography/) for more details.
 
 ## Responsive values
 
-All properties as part of the `sx` prop also have a support for defining different values for specific breakpoints. For more details on this, take a look at the [Responsive values section](/system/basics/#responsive-values).
+All properties associated with the `sx` prop also support responsive values for specific breakpoints.
+
+Visit [Usage—Responsive values section](/system/getting-started/usage/#responsive-values) for details.
 
 ## Callback values
 
-Each property in the `sx` prop can receive a function callback as a value. This is useful when you want to use the `theme` for calculating some value.
+Each property in the `sx` prop can receive a function callback as a value.
+This is useful when you want to use the `theme` for calculating a value:
 
 ```jsx
 <Box sx={{ height: (theme) => theme.spacing(10) }} />
 ```
 
-`sx` can also receive a callback when you need to get theme values that are object:
+The `sx` prop can also receive a callback when you need to get theme values that are objects:
 
 ```jsx
 <Box
@@ -202,7 +205,7 @@ Each property in the `sx` prop can receive a function callback as a value. This 
 
 ## Array values
 
-Array type is useful when you want to partially override some styles in the former index:
+Array types are useful when you want to partially override some styles in the former index:
 
 ```jsx
 <Box
@@ -225,11 +228,13 @@ Array type is useful when you want to partially override some styles in the form
 
 When you hover on this element, `color: red; backgroundColor: white;` is applied.
 
-If `foo: true`, the `color: red; backgroundColor: grey;` is applied when hover.
+If `foo: true`, then `color: red; backgroundColor: grey;` is applied when hovering.
 
-If `bar: true`, the `color: red; backgroundColor: yellow;` is applied when hover regardless of `foo` value, because the higher index of the array has higher specificity.
+If `bar: true`, then `color: red; backgroundColor: yellow;` is applied when hovering regardless of `foo` value, because the higher index of the array has higher specificity.
 
-> **Note**: Each index can be an `object` or `callback`
+:::info
+Each index can be an object or a callback.
+:::
 
 ```jsx
 <Box
@@ -244,9 +249,9 @@ If `bar: true`, the `color: red; backgroundColor: yellow;` is applied when hover
 />
 ```
 
-## Passing `sx` prop
+## Passing the sx prop
 
-If you want to receive `sx` prop from your component and pass it down to MUI's component, we recommend this approach:
+If you want to receive the `sx` prop from a custom component and pass it down to an MUI component, we recommend this approach:
 
 {{"demo": "PassingSxProp.js", "bg": true, "defaultCodeOpen": true}}
 
@@ -269,7 +274,7 @@ export default function App() {
 ```
 
 The problem is that the type of the `flexDirection` prop is inferred as `string`, which is too wide.
-To fix this, you can cast the object/function passed to the `sx` prop to const:
+To fix this, you can cast the object/function passed to the `sx` prop to `const`:
 
 ```ts
 const style = {
@@ -291,4 +296,4 @@ export default function App() {
 
 ## Performance
 
-If you are interested in the performance tradeoff, you can find more details [here](/system/basics/#performance-tradeoff).
+To learn more about the performance tradeoffs of the `sx` prop, check out [Usage–Performance tradeoffs](/system/getting-started/usage/#performance-tradeoffs).
