@@ -7,7 +7,7 @@ import { useTabPanel } from '@mui/base/TabPanelUnstyled';
 import { useSlotProps } from '@mui/base/utils';
 import { styled, useThemeProps } from '../styles';
 import SizeTabsContext from '../Tabs/SizeTabsContext';
-import { getTabPanelUtilityClass } from './tabPanelClasses';
+import tabPanelClasses, { getTabPanelUtilityClass } from './tabPanelClasses';
 import { TabPanelOwnerState, TabPanelTypeMap } from './TabPanelProps';
 
 const useUtilityClasses = (ownerState: TabPanelOwnerState) => {
@@ -36,6 +36,9 @@ const TabPanelRoot = styled('div', {
     fontSize: theme.vars.fontSize.lg,
   }),
   flexGrow: 1,
+  [`&.${tabPanelClasses.hidden}`]: {
+    display: 'none',
+  },
 }));
 
 const TabPanel = React.forwardRef(function TabPanel(inProps, ref) {
