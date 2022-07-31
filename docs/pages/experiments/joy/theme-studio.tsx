@@ -321,7 +321,10 @@ const studioTheme = extendTheme({
 });
 
 const usePrettier = () => {
-  const [loaded, setLoaded] = React.useState(false);
+  const [loaded, setLoaded] = React.useState<boolean>(
+    // @ts-ignore
+    () => typeof window !== 'undefined' && window.prettier && window.prettierPlugins,
+  );
   React.useEffect(() => {
     const id = setInterval(() => {
       // @ts-ignore
