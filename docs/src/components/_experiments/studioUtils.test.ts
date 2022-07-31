@@ -7,8 +7,8 @@ describe('themeUtils', () => {
       getNewPalettes({ divider: '#e5e5e5' }, { divider: '#e5e5e5', divider2: '$divider-color' }),
     ).to.deep.equal([
       {
-        key: 'divider2',
         parentInterface: 'Palette',
+        value: 'divider2:string;',
       },
     ]);
   });
@@ -18,8 +18,8 @@ describe('themeUtils', () => {
       getNewPalettes({ primary: { 50: '#ff525' } }, { primary: { 50: '#ff5252', 1000: '$1000' } }),
     ).to.deep.equal([
       {
-        key: '1000',
         parentInterface: 'PalettePrimary',
+        value: '1000:string;',
       },
     ]);
   });
@@ -29,8 +29,8 @@ describe('themeUtils', () => {
       getNewPalettes({ neutral: { 50: '#ff525' } }, { neutral: { 50: '#ff5252', 1000: '$1000' } }),
     ).to.deep.equal([
       {
-        key: '1000',
         parentInterface: 'PaletteNeutral',
+        value: '1000:string;',
       },
     ]);
   });
@@ -43,8 +43,8 @@ describe('themeUtils', () => {
       ),
     ).to.deep.equal([
       {
-        key: 'gradient',
         parentInterface: 'PaletteBackground',
+        value: 'gradient:string;',
       },
     ]);
   });
@@ -52,14 +52,8 @@ describe('themeUtils', () => {
   it('new nested object', () => {
     expect(getNewPalettes({}, { secondary: { 50: '', 100: '' } })).to.deep.equal([
       {
-        key: 'secondary',
-        nestedKey: '50',
         parentInterface: 'Palette',
-      },
-      {
-        key: 'secondary',
-        nestedKey: '100',
-        parentInterface: 'Palette',
+        value: 'secondary:{50:string;100:string;};',
       },
     ]);
   });

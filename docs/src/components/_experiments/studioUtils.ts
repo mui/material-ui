@@ -11,9 +11,8 @@ interface Palette {
 }
 
 interface TypingInfo {
-  key: string;
   parentInterface: string;
-  nestedKey?: string;
+  value: string;
 }
 
 export const getNewPalettes = (defaultPalette: any, customPalette: Palette) => {
@@ -22,8 +21,8 @@ export const getNewPalettes = (defaultPalette: any, customPalette: Palette) => {
     if (typeof nestedPalette === 'string') {
       if (defaultPalette[mainKey] === undefined) {
         result.push({
-          key: mainKey,
           parentInterface: 'Palette',
+          value: `${mainKey}:string;`,
         });
       }
     } else if (
@@ -32,8 +31,8 @@ export const getNewPalettes = (defaultPalette: any, customPalette: Palette) => {
       Object.keys(nestedPalette).forEach((nestedKey) => {
         if (defaultPalette[mainKey][nestedKey] === undefined) {
           result.push({
-            key: nestedKey,
             parentInterface: `Palette${capitalize(mainKey)}`,
+            value: `${nestedKey}:string;`,
           });
         }
       });
@@ -42,12 +41,11 @@ export const getNewPalettes = (defaultPalette: any, customPalette: Palette) => {
       nestedPalette &&
       typeof nestedPalette === 'object'
     ) {
-      Object.keys(nestedPalette).forEach((nestedKey) => {
-        result.push({
-          key: mainKey,
-          nestedKey,
-          parentInterface: 'Palette',
-        });
+      result.push({
+        parentInterface: 'Palette',
+        value: `${mainKey}:{${Object.keys(nestedPalette)
+          .map((k) => `${k}:string;`)
+          .join('')}};`,
       });
     }
   });

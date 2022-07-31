@@ -1,16 +1,9 @@
 import * as React from 'react';
 import Script from 'next/script';
-import { GlobalStyles, decomposeColor } from '@mui/system';
+import { GlobalStyles } from '@mui/system';
 import * as mdColors from '@mui/material/colors';
-import {
-  CssVarsProvider,
-  extendTheme,
-  Palette,
-  styled,
-  useColorScheme,
-  useTheme,
-} from '@mui/joy/styles';
-import type { Theme, ColorPaletteProp, VariantProp, PaletteRange } from '@mui/joy/styles';
+import { CssVarsProvider, extendTheme, Palette, useColorScheme } from '@mui/joy/styles';
+import type { Theme, ColorPaletteProp, VariantProp } from '@mui/joy/styles';
 import Avatar from '@mui/joy/Avatar';
 import Badge from '@mui/joy/Badge';
 import Box from '@mui/joy/Box';
@@ -18,7 +11,6 @@ import Button from '@mui/joy/Button';
 import Card from '@mui/joy/Card';
 import Checkbox from '@mui/joy/Checkbox';
 import Chip from '@mui/joy/Chip';
-import Container from '@mui/joy/Container';
 import FormLabel from '@mui/joy/FormLabel';
 import IconButton from '@mui/joy/IconButton';
 import Input, { InputProps } from '@mui/joy/Input';
@@ -29,28 +21,24 @@ import List from '@mui/joy/List';
 import ListDivider from '@mui/joy/ListDivider';
 import ListItem from '@mui/joy/ListItem';
 import ListItemButton from '@mui/joy/ListItemButton';
-import ListItemDecorator from '@mui/joy/ListItemDecorator';
 import Radio from '@mui/joy/Radio';
 import Switch from '@mui/joy/Switch';
-import SvgIcon from '@mui/joy/SvgIcon';
 import Tabs from '@mui/joy/Tabs';
 import TabList from '@mui/joy/TabList';
 import Tab from '@mui/joy/Tab';
 import TabPanel from '@mui/joy/TabPanel';
-import TextField, { TextFieldProps } from '@mui/joy/TextField';
+import TextField from '@mui/joy/TextField';
 import Typography from '@mui/joy/Typography';
 import Select from '@mui/joy/Select';
 import Option from '@mui/joy/Option';
 import Sheet from '@mui/joy/Sheet';
-import RadioGroup from '@mui/joy/RadioGroup';
 import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
-import DarkMode from '@mui/icons-material/DarkMode';
-import LightMode from '@mui/icons-material/LightMode';
-import CheckIcon from '@mui/icons-material/Check';
 import Edit from '@mui/icons-material/Edit';
 import ColorAutocomplete from 'docs/src/components/_experiments/ColorAutocomplete';
-import ColorTextField from 'docs/src/components/_experiments/ColorTextField';
+import { getNewPalettes } from 'docs/src/components/_experiments/studioUtils';
+import BrandingProvider from 'docs/src/BrandingProvider';
+import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 
 const tailwindColors = {
   slate: {
@@ -351,6 +339,7 @@ const usePrettier = () => {
       <React.Fragment>
         <Script src="https://unpkg.com/prettier@2.7.1/standalone.js" />
         <Script src="https://unpkg.com/prettier@2.7.1/parser-babel.js" />
+        <Script src="https://unpkg.com/prettier@2.7.1/parser-typescript.js" />
       </React.Fragment>
     ),
     loaded,
@@ -361,7 +350,19 @@ const usePrettier = () => {
           parser: 'json',
           // @ts-ignore
           plugins: window.prettierPlugins,
-          printWidth: 40,
+          printWidth: 30,
+        });
+      }
+      return code;
+    },
+    tsify: (code: string) => {
+      if (loaded) {
+        // @ts-ignore
+        return window.prettier.format(code, {
+          parser: 'typescript',
+          // @ts-ignore
+          plugins: window.prettierPlugins,
+          printWidth: 30,
         });
       }
       return code;
@@ -397,19 +398,24 @@ const JsonEditor = <T,>({
       }}
       onBlur={() => {
         focused.current = false;
-        try {
-          JSON.parse(internalValue);
-          setErrorMsg(null);
-        } catch (error) {
-          setErrorMsg((error as Error).message);
+        if (errorMsg) {
+          try {
+            const formattedValue = prettify(internalValue);
+            setInternalValue(formattedValue);
+            onChange(JSON.parse(formattedValue));
+            setErrorMsg(null);
+          } catch (error) {
+            setErrorMsg((error as Error).message);
+          }
+        } else {
+          setInternalValue((val) => prettify(val));
         }
-        setInternalValue((val) => prettify(val));
       }}
       onChange={(event) => {
         const { value: inputValue } = event.target;
         setInternalValue(inputValue);
         try {
-          const result = JSON.parse(inputValue);
+          const result = JSON.parse(prettify(inputValue));
           setErrorMsg(null);
           onChange(result);
         } catch (error) {
@@ -427,6 +433,7 @@ const JsonEditor = <T,>({
               top: '0.25rem',
               right: '0.5rem',
               borderRadius: 'xs',
+              maxWidth: '60%',
             }}
           >
             {errorMsg}
@@ -989,6 +996,35 @@ const FocusEditor = ({
   );
 };
 
+const ModuleAugmentation = ({ mode, palette }: { mode: 'light' | 'dark'; palette: Palette }) => {
+  const { tsify } = usePrettier();
+  const newTokens = getNewPalettes(studioTheme.colorSchemes[mode].palette, palette as any);
+  const groupByInterface: Record<string, string[]> = {};
+  newTokens.forEach((token) => {
+    if (groupByInterface[token.parentInterface]) {
+      groupByInterface[token.parentInterface].push(token.value);
+    } else {
+      groupByInterface[token.parentInterface] = [token.value];
+    }
+  });
+  const code = `declare module "@mui/joy/styles" {
+    ${Object.entries(groupByInterface).reduce(
+      (result, curr) => `${result}\ninterface ${curr[0]} {
+  ${curr[1].join('\n')}
+}`,
+      '',
+    )}
+  }`;
+  return (
+    <BrandingProvider>
+      <HighlightedCode
+        language="javascript"
+        code={newTokens.length ? tsify(code) : "You don't have custom tokens."}
+      />
+    </BrandingProvider>
+  );
+};
+
 export default function Playground() {
   const { script, loaded, prettify } = usePrettier();
   const [mode, setMode] = React.useState<'light' | 'dark'>('light');
@@ -1045,7 +1081,8 @@ export default function Playground() {
         <Box sx={{ display: 'flex', height: '100vh' }}>
           <Box
             sx={{
-              flex: 1,
+              flexBasis: '50%',
+              flexShrink: 0,
               borderRight: '1px solid',
               borderColor: 'divider',
               p: 3,
@@ -1126,6 +1163,9 @@ export default function Playground() {
               <Canvas mode={mode} {...(extendedTheme && { theme: extendedTheme })}>
                 <TabPanel value={0}>
                   <ComponentsGrid focusVisible={focusVisible} />
+                </TabPanel>
+                <TabPanel value={1}>
+                  <ModuleAugmentation mode={mode} palette={palette} />
                 </TabPanel>
               </Canvas>
             </Tabs>
