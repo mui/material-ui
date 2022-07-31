@@ -191,7 +191,7 @@
     "util": "^0.12.4",
     "webpack": "^5.73.0",
     "webpack-bundle-analyzer": "^4.5.0",
-    "webpack-cli": "^4.9.2",
+    "webpack-cli": "^4.10.0",
     "yargs": "^17.5.1",
     "yarn-deduplicate": "^3.1.0"
   },
