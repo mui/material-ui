@@ -19,7 +19,7 @@ At MUI, we've chosen to prioritize in-person company retreats as a way to grow t
 In late June 2022, sixteen of us gathered at a remote private residence on the island of Tenerife.
 This was MUI's second company retreat, the first being in Portugal in 2021 when the team was just a fraction of the size it is today.
 
-We had a ton of fun getting to know each other better over oceanic activities, poolside conversations, and incredible catered meals—not to mention a steady supply of Spanish wine. 🥂
+We had a ton of fun getting to know each other better over oceanic activities, poolside conversations, and incredible catered meals—not to mention a steady supply of local wine. 🥂
 Oh, and I guess we got some work done along the way, too? 😅
 
 ## Destination
@@ -30,11 +30,11 @@ Oh, and I guess we got some work done along the way, too? 😅
 
 Tenerife is a volcanic island off the coast of western Africa that's part of the Canary Islands (Spanish: _Canarias_).
 It is the most populous island in the archipelago, and one of the most visited tourist destinations in the world.
-Its central defining feature is Mount Teide, the third largest volcano in the world when measured from its base, which rises 7,500 m (24,600 ft) from the bottom of the ocean floor.
+Its central defining feature is Mount Teide, the third largest volcano in the world when measured from its base, which rises 7,500 m (24,600 ft) from the bottom of the ocean floor, and 3,715m (12,188 ft) above sea level.
 
 With an average temperature ranging from about 18-25 °C (68-77 °F) year-round, it's hard to pick a bad time to visit!
 
-## Accommodations
+## Accommodation
 
 ![Photo of the pool in the evening at Symbiosis Living](/static/blog/2022-tenerife-retreat/pool-evening.jpeg)
 
@@ -79,9 +79,9 @@ Wear sunscreen.
 
 ### Scuba diving lessons
 
-![Members of the MUI team pose in front of the diving school in their scuba gear.](/static/blog/2022-tenerife-retreat/scuba-gear.jpeg)
+![MUI team members and their diving instructors pose in scuba gear before a successful scuba diving lesson.](/static/blog/2022-tenerife-retreat/scuba-gear.jpeg)
 
-<p class="blog-description">MUI team members pose in scuba gear after a successful diving lesson.</p>
+<p class="blog-description">MUI team members and their diving instructors pose in scuba gear before a successful scuba diving lesson.</p>
 
 On day two we split up into smaller groups to get individualized lessons in scuba diving at the beach in Playa San Juan.
 
