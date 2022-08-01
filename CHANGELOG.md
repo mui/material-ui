@@ -1,7 +1,9 @@
 # [Versions](https://mui.com/versions/)
 
 ## 5.9.3
+
 <!-- generated comparing v5.9.2..master -->
+
 _Aug 1, 2022_
 
 A big thanks to the 12 contributors who made this release possible. Here are some highlights ✨:
@@ -18,7 +20,7 @@ A big thanks to the 12 contributors who made this release possible. Here are som
 
 ### `@mui/system@5.9.3`
 
-- [system] Make @emotion/* fully supported in the System (#33205) @garronej
+- [system] Make @emotion/\* fully supported in the System (#33205) @garronej
 
 ### `@mui/joy@5.0.0-alpha.38`
 
