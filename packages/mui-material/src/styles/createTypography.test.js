@@ -76,13 +76,7 @@ describe('createTypography', () => {
 
   it('should apply font CSS properties to inherit variant', () => {
     const typography = createTypography(palette, {});
-    const fontProperties = [
-      'fontFamily',
-      'fontWeight',
-      'fontSize',
-      'lineHeight',
-      'letterSpacing',
-    ];
+    const fontProperties = ['fontFamily', 'fontWeight', 'fontSize', 'lineHeight', 'letterSpacing'];
 
     fontProperties.forEach((prop) => {
       expect(typography.inherit[prop]).to.equal('inherit');

@@ -78,7 +78,7 @@ export default function createTypography(palette, typography) {
       fontSize: 'inherit',
       lineHeight: 'inherit',
       letterSpacing: 'inherit',
-    }
+    },
   };
 
   return deepmerge(
