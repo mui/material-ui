@@ -11,7 +11,7 @@
     "placement": "Popper placement.",
     "popperOptions": "Options provided to the <a href=\"https://popper.js.org/docs/v2/constructors/#options\"><code>Popper.js</code></a> instance.",
     "popperRef": "A ref that points to the used popper instance.",
-    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details.",
+    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/the-sx-prop/\">`sx` page</a> for more details.",
     "transition": "Help supporting a react-transition-group/Transition component.",
     "direction": "Direction of the text."
   },
