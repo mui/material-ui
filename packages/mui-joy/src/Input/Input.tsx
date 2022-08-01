@@ -122,6 +122,7 @@ const InputRoot = styled('div', {
       [`&.${inputClasses.disabled}`]:
         theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
     },
+    // This style has to come after the global variant to set the background to surface
     ownerState.variant !== 'solid' && {
       [`&.${inputClasses.focused}`]: {
         backgroundColor: theme.vars.palette.background.surface,
