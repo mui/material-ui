@@ -26,3 +26,10 @@ export default function MyApp() {
   return <Breadcrumbs />;
 }
 ```
+
+### Basic usage
+
+`Breadcrumbs` is a navigation component that should be used with other components.
+The most common components you'd use with it are `Typography` and `Link`.
+
+{{"demo": "BasicBreadcrumbs.js"}}
