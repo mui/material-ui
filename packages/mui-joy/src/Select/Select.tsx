@@ -188,13 +188,13 @@ const SelectListbox = styled(ListRoot, {
     boxShadow: theme.vars.shadow.md,
     zIndex: 1000,
     ...(!variantStyle.backgroundColor && {
-      backgroundColor: theme.vars.palette.background.body,
+      backgroundColor: theme.vars.palette.background.surface,
     }),
     '--List-radius': theme.vars.radius.sm,
     '--List-item-stickyBackground':
       variantStyle?.backgroundColor ||
       variantStyle?.background ||
-      theme.vars.palette.background.body, // for sticky List
+      theme.vars.palette.background.surface, // for sticky List
   };
 });
 
@@ -498,7 +498,16 @@ const Select = React.forwardRef(function Select<TValue>(
       {anchorEl && (
         <PopperUnstyled {...listboxProps}>
           <SelectUnstyledContext.Provider value={context}>
-            <RowListContext.Provider value={false}>{children}</RowListContext.Provider>
+            <RowListContext.Provider value={false}>
+              {React.Children.map(children, (child, index) =>
+                React.isValidElement(child)
+                  ? React.cloneElement(child, {
+                      // to let Option knows when to apply margin(Inline|Block)Start
+                      ...(index === 0 && { 'data-first-child': '' }),
+                    })
+                  : child,
+              )}
+            </RowListContext.Provider>
           </SelectUnstyledContext.Provider>
         </PopperUnstyled>
       )}
