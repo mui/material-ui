@@ -11,7 +11,7 @@ materialDesign: https://material.io/design/layout/understanding-layout.html
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
-The `Grid` component works well for a layout with a known number of columns. 
+The `Grid` component works well for a layout with a known number of columns.
 The columns can be configured with multiple breakpoints to specify the column span of each child.
 
 ## How it works
@@ -28,7 +28,7 @@ The grid system is implemented with the `Grid` component:
 - It does _not_ automatically place children. It will try to fit the children one by one, and if there is not enough space, the rest of the children will start on the next line, and so on. If you need auto-placement, we recommend using [CSS Grid](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout/Auto-placement_in_CSS_Grid_Layout) instead.
 
 :::warning
-The `Grid` component is a _layout_ grid, not a _data_ grid. 
+The `Grid` component is a _layout_ grid, not a _data_ grid.
 If you need a data grid, check out [the MUI X `DataGrid` component](/x/react-data-grid/).
 :::
 
@@ -41,7 +41,7 @@ We built `Grid` v2 from scratch in order to:
 - Introduce a proper fix for [preventing a scrollbar](#prevent-scrollbar) by switching between negative margin approaches.
 - Set negative margins of equal size on all sides of the grid container by default.
 
-Updating the `Grid` from v1 to v2 is a breaking change. 
+Updating the `Grid` from v1 to v2 is a breaking change.
 Visit the [Grid v2 migration guide](/material-ui/migration/migration-grid-v2/) for more details.
 
 :::info
@@ -54,13 +54,13 @@ Fluid grids use columns that scale and resize content. A fluid grid's layout can
 
 ### Basic grid
 
-In order to create a grid layout, you need a container. 
+In order to create a grid layout, you need a container.
 Use the `container` prop to create a grid container that wraps the grid items (the `Grid` is always an item).
 
-Column widths are integer values between 1 and 12. 
+Column widths are integer values between 1 and 12.
 They can be applied at any breakpoint to indicate how many columns are occupied by the component.
 
-A value given to a breakpoint applies to all the other wider breakpoints unless overridden—see [Multiple breakpoints](#multiple-breakpoints) for details. 
+A value given to a breakpoint applies to all the other wider breakpoints unless overridden—see [Multiple breakpoints](#multiple-breakpoints) for details.
 For example, a component with `xs={12}` occupies the whole viewport width regardless of its size.
 
 {{"demo": "BasicGrid.js", "bg": true}}
@@ -69,7 +69,7 @@ For example, a component with `xs={12}` occupies the whole viewport width regard
 
 Components may have multiple widths defined, causing the layout to change at the defined breakpoint. Width values given to larger breakpoints override those given to smaller breakpoints.
 
-For example, a component with `xs={12} sm={6}` occupies the entire viewport width when the viewport is  [less than 600 pixels wide](/material-ui/customization/breakpoints/#default-breakpoints). 
+For example, a component with `xs={12} sm={6}` occupies the entire viewport width when the viewport is [less than 600 pixels wide](/material-ui/customization/breakpoints/#default-breakpoints).
 When the viewport grows beyond this size, the component occupies half of the total width—six columns rather than 12.
 
 {{"demo": "FullWidthGrid.js", "bg": true}}
@@ -123,7 +123,7 @@ The demo below shows how this works:
 
 ## Nested grid
 
-The grid container that renders inside another grid container is a nested grid that inherits its [`columns`](#columns) and [`spacing`](#spacing) from the top level. 
+The grid container that renders inside another grid container is a nested grid that inherits its [`columns`](#columns) and [`spacing`](#spacing) from the top level.
 It will also inherit the props of the top-level grid if it receives those props.
 
 Check out the demo below to see what this looks like:
@@ -193,7 +193,7 @@ Custom breakpoints affect both size and offset props:
 
 ### TypeScript
 
-You have to set module augmentation on the theme breakpoints interface. 
+You have to set module augmentation on the theme breakpoints interface.
 Properties set to `true` will appear as `{key}`(size prop) and `{key}Offset`(offset prop).
 
 ```ts
@@ -218,7 +218,7 @@ declare module '@mui/system' {
 
 If you use grid as a container in a small viewport, you might see a horizontal scrollbar because the negative margin is applied on all sides of the grid container.
 
-To disable this scrollbar, set the `disableEqualOverflow` prop to `true`. 
+To disable this scrollbar, set the `disableEqualOverflow` prop to `true`.
 This removes the negative margins from the bottom and right sides of the grid to prevent overflow.
 
 The demo below shows how this works:
@@ -233,7 +233,7 @@ You should avoid adding borders and backgrounds to the grid when `disableEqualOv
 
 ### Centered elements
 
-To center a grid item's content, specify `display="flex"` directly on the item. 
+To center a grid item's content, specify `display="flex"` directly on the item.
 Then use `justifyContent` and/or `alignItems` to adjust the position of the content, as shown below:
 
 {{"demo": "CenteredElementGrid.js", "bg": true}}
@@ -257,6 +257,6 @@ It cannot wrap other elements.
 
 The column width (`xs`, ..., `xl`) and offset props are _not_ supported within containers that use `direction="column"` or `direction="column-reverse"`.
 
-Size and offset props define the number of columns the component will use for a given breakpoint. 
+Size and offset props define the number of columns the component will use for a given breakpoint.
 They are intended to control the width using `flex-basis` in `row` containers, but they will impact the height in `column` containers.
 If used, these props may have undesirable effects on the height of the `Grid` item elements.

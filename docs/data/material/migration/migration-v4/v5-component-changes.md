@@ -741,7 +741,7 @@ const theme = createTheme({
 
 ### Change negative margins
 
-The negative margins apply only to the top and left sides of the grid container. 
+The negative margins apply only to the top and left sides of the grid container.
 If you need negative margins on all sides, we recommend using the new Grid v2 instead:
 
 ```diff
