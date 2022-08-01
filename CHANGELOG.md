@@ -216,7 +216,7 @@ A big thanks to the 19 contributors who made this release possible. Here are som
 
 ### `@mui/base@5.0.0-alpha.89`
 
-- Base] Change the order of class names merged in useSlotProps (#33383) @michaldudak
+- [Base] Change the order of class names merged in useSlotProps (#33383) @michaldudak
 - [ModalUnstyled] Accept callbacks in componentsProps (#33181) @michaldudak
 - [SelectUnstyled] Accept callbacks in componentsProps (#33197) @michaldudak
 - [TabsUnstyled] Accept callbacks in componentsProps (#33284) @michaldudak
