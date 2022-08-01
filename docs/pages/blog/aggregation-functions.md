@@ -94,7 +94,7 @@ Please check out the feature’s [full documentation](/x/react-data-grid/aggrega
 
 ## Row pinning
 
-The Aggregation footer row is powered by another new feature called [Row pinning](/x/react-data-grid/rows/#row-pinning).
+The Aggregation footer row is powered by another new feature called [Row pinning](/x/react-data-grid/row-pinning/).
 It enables you to pin rows to the top or bottom of your data grid.
 Pinned rows are visible at all times while the user scrolls the grid vertically.
 
@@ -104,7 +104,7 @@ Pinned rows are visible at all times while the user scrolls the grid vertically.
 
 Row pinning is available in the Pro and Premium Data Grids.
 
-Check out more details in the [Row pinning documentation](/x/react-data-grid/rows/#row-pinning).
+Check out more details in the [Row pinning documentation](/x/react-data-grid/row-pinning/).
 
 ## Share your feedback 🗣
 

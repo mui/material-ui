@@ -390,16 +390,16 @@ const rowHeaders: Record<string, React.ReactNode> = {
     />
   ),
   'data-grid/row-height': (
-    <ColumnHead label="Row height" nested href="/x/react-data-grid/rows/#row-height" />
+    <ColumnHead label="Row height" nested href="/x/react-data-grid/row-height/" />
   ),
   'data-grid/row-spanning': (
-    <ColumnHead label="Row spanning" nested href="/x/react-data-grid/rows/#row-spanning" />
+    <ColumnHead label="Row spanning" nested href="/x/react-data-grid/row-spanning/" />
   ),
   'data-grid/row-reordering': (
-    <ColumnHead label="Row reordering" nested href="/x/react-data-grid/rows/#row-reorder" />
+    <ColumnHead label="Row reordering" nested href="/x/react-data-grid/row-ordering/" />
   ),
   'data-grid/row-pinning': (
-    <ColumnHead label="Row pinning" nested href="/x/react-data-grid/rows/#row-pinning" />
+    <ColumnHead label="Row pinning" nested href="/x/react-data-grid/row-pinning/" />
   ),
   'data-grid/row-selection': (
     <ColumnHead label="Row selection" nested href="/x/react-data-grid/selection/#row-selection" />
