@@ -38,7 +38,8 @@
     "typescript": "tslint -p tsconfig.json \"{src,test}/**/*.{spec,d}.{ts,tsx}\" && tsc -p tsconfig.json"
   },
   "dependencies": {
-    "prop-types": "^15.8.1"
+    "prop-types": "^15.8.1",
+    "@babel/runtime": "^7.18.9"
   },
   "peerDependencies": {
     "@types/styled-components": "^5.1.14",
