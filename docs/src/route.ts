@@ -25,7 +25,7 @@ const ROUTES = {
   languages: '/material-ui/discover-more/languages/',
   vision: '/material-ui/discover-more/vision/',
   support: '/material-ui/getting-started/support/#professional-support-premium',
-  privacyPolicy: 'https://mui.com/store/privacy/',
+  privacyPolicy: 'https://mui.com/legal/privacy/',
   goldSponsor: '/material-ui/discover-more/backers/#gold',
   store: 'https://mui.com/store/',
   advancedComponents: '/x/introduction/',

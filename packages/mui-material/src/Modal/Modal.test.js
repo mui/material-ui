@@ -467,7 +467,7 @@ describe('<Modal />', () => {
       expect(initialFocus).toHaveFocus();
     });
 
-    describe('', () => {
+    describe('focus stealing', () => {
       clock.withFakeTimers();
 
       it('does not steal focus from other frames', function test() {
@@ -532,9 +532,13 @@ describe('<Modal />', () => {
 
         expect(getByTestId('foreign-input')).toHaveFocus();
       });
+    });
+
+    describe('when starting open and closing immediately', () => {
+      clock.withFakeTimers();
 
       // Test case for https://github.com/mui/material-ui/issues/12831
-      it('should unmount the children when starting open and closing immediately', () => {
+      it('should unmount the children ', () => {
         const timeout = 50;
         function TestCase() {
           const [open, setOpen] = React.useState(true);

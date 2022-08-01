@@ -63,6 +63,7 @@ const useUtilityClasses = (ownerState) => {
     fullWidth,
     hiddenLabel,
     multiline,
+    readOnly,
     size,
     startAdornment,
     type,
@@ -81,6 +82,7 @@ const useUtilityClasses = (ownerState) => {
       startAdornment && 'adornedStart',
       endAdornment && 'adornedEnd',
       hiddenLabel && 'hiddenLabel',
+      readOnly && 'readOnly',
     ],
     input: [
       'input',
@@ -91,6 +93,7 @@ const useUtilityClasses = (ownerState) => {
       hiddenLabel && 'inputHiddenLabel',
       startAdornment && 'inputAdornedStart',
       endAdornment && 'inputAdornedEnd',
+      readOnly && 'readOnly',
     ],
   };
 

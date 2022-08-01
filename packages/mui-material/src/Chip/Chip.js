@@ -35,7 +35,7 @@ const useUtilityClasses = (ownerState) => {
       'deleteIcon',
       `deleteIcon${capitalize(size)}`,
       `deleteIconColor${capitalize(color)}`,
-      `deleteIconOutlinedColor${capitalize(color)}`,
+      `deleteIcon${capitalize(variant)}Color${capitalize(color)}`,
     ],
   };
 
@@ -59,7 +59,10 @@ const ChipRoot = styled('div', {
       { [`& .${chipClasses.deleteIcon}`]: styles.deleteIcon },
       { [`& .${chipClasses.deleteIcon}`]: styles[`deleteIcon${capitalize(size)}`] },
       { [`& .${chipClasses.deleteIcon}`]: styles[`deleteIconColor${capitalize(color)}`] },
-      { [`& .${chipClasses.deleteIcon}`]: styles[`deleteIconOutlinedColor${capitalize(color)}`] },
+      {
+        [`& .${chipClasses.deleteIcon}`]:
+          styles[`deleteIcon${capitalize(variant)}Color${capitalize(color)}`],
+      },
       styles.root,
       styles[`size${capitalize(size)}`],
       styles[`color${capitalize(color)}`],
@@ -68,7 +71,7 @@ const ChipRoot = styled('div', {
       onDelete && styles.deletable,
       onDelete && color !== 'default' && styles[`deletableColor${capitalize(color)}`],
       styles[variant],
-      variant === 'outlined' && styles[`outlined${capitalize(color)}`],
+      styles[`${variant}${capitalize(color)}`],
     ];
   },
 })(
@@ -384,7 +387,6 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
   };
 
   const clickable = clickableProp !== false && onClick ? true : clickableProp;
-  const small = size === 'small';
 
   const component = clickable || onDelete ? ButtonBase : ComponentProp || 'div';
 
@@ -412,25 +414,14 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
 
   let deleteIcon = null;
   if (onDelete) {
-    const customClasses = clsx({
-      [classes.deleteIconSmall]: small,
-      [classes[`deleteIconColor${capitalize(color)}`]]:
-        color !== 'default' && variant !== 'outlined',
-      [classes[`deleteIconOutlinedColor${capitalize(color)}`]]:
-        color !== 'default' && variant === 'outlined',
-    });
-
     deleteIcon =
       deleteIconProp && React.isValidElement(deleteIconProp) ? (
         React.cloneElement(deleteIconProp, {
-          className: clsx(deleteIconProp.props.className, classes.deleteIcon, customClasses),
+          className: clsx(deleteIconProp.props.className, classes.deleteIcon),
           onClick: handleDeleteIconClick,
         })
       ) : (
-        <CancelIcon
-          className={clsx(classes.deleteIcon, customClasses)}
-          onClick={handleDeleteIconClick}
-        />
+        <CancelIcon className={clsx(classes.deleteIcon)} onClick={handleDeleteIconClick} />
       );
   }
 
