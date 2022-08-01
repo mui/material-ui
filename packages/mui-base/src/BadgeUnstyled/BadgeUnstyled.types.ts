@@ -81,8 +81,9 @@ export type ExtendBadgeUnstyled<M extends OverridableTypeMap> = OverridableCompo
 
 export type BadgeUnstyledProps<
   D extends React.ElementType = BadgeUnstyledTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<BadgeUnstyledTypeMap<P, D>, D>;
+> = OverrideProps<BadgeUnstyledTypeMap<{}, D>, D> & {
+  component?: D;
+};
 
 export type BadgeUnstyledRootSlotProps = {
   children?: React.ReactNode;

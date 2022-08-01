@@ -15,7 +15,6 @@ import AdManager from 'docs/src/modules/components/AdManager';
 import AdGuest from 'docs/src/modules/components/AdGuest';
 import AppLayoutDocsFooter from 'docs/src/modules/components/AppLayoutDocsFooter';
 import BackToTop from 'docs/src/modules/components/BackToTop';
-import { isNewLocation } from 'docs/src/modules/utils/replaceUrl';
 
 const Main = styled('main', {
   shouldForwardProp: (prop) => prop !== 'disableToc',
@@ -82,7 +81,6 @@ function AppLayoutDocs(props) {
     throw new Error('Missing description in the page');
   }
 
-  const isNewDocs = isNewLocation(router.asPath);
   const asPathWithoutLang = router.asPath.replace(/^\/[a-zA-Z]{2}\//, '/');
   let productName = 'MUI';
   if (asPathWithoutLang.startsWith('/material-ui')) {
@@ -102,8 +100,7 @@ function AppLayoutDocs(props) {
   }
 
   return (
-    // TODO: remove the condition after post-migration (This is to prevent the new urls from being indexed by the old docsearch app)
-    <AppFrame className={isNewDocs ? 'exclude-docsearch-indexing' : ''}>
+    <AppFrame className={'exclude-docsearch-indexing'}>
       <GlobalStyles
         styles={{
           ':root': {

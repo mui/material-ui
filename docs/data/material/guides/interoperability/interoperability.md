@@ -689,6 +689,36 @@ export default function PlainCssPriority() {
 
 **Note:** If you are using styled-components and have `StyleSheetManager` with a custom `target`, make sure that the target is the first element in the HTML `<head>`. If you are curious to see how it can be done, you can take a look at the [`StyledEngineProvider`](https://github.com/mui/material-ui/blob/master/packages/mui-styled-engine-sc/src/StyledEngineProvider/StyledEngineProvider.js) implementation in the `@mui/styled-engine-sc` package.
 
+5. Change the target container for `Portal`-related elements so that they are injected under the main app wrapper that was used in step 3 for setting up the `important` option in the Tailwind config.
+
+```jsx
+const rootElement = document.getElementById("root");
+const root = createRoot(rootElement);
+
+const theme = createTheme({
+  components: {
+    MuiPopover: {
+      defaultProps: {
+        container: rootElement,
+      },
+    },
+    MuiPopper: {
+      defaultProps: {
+        container: rootElement,
+      },
+    },
+  },
+});
+
+root.render(
+  <StyledEngineProvider injectFirst>
+    <ThemeProvider theme={theme}>
+      <App />
+    </ThemeProvider>
+  </StyledEngineProvider>;
+);
+```
+
 ### Usage
 
 Now it's all set up and you can start using Tailwind CSS on the MUI components!
@@ -855,7 +885,6 @@ it's a peer dependency of `@mui/material`.
 :::
 
 :::warning
-⚠️ For [Storybook](https://storybook.js.org): As of writing this lines storybook still uses by default emotion 10.  
-Material UI and TSS runs emotion 11 so there is [some changes](https://github.com/InseeFrLab/onyxia-ui/blob/324de62248074582b227e584c53fb2e123f5325f/.storybook/main.js#L31-L32)
-to be made to your `.storybook/main.js` to make it uses emotion 11.
+For [Storybook](https://storybook.js.org): At the time of this writing, Storybook still uses Emotion 10 by default.  
+Material UI and TSS use Emotion 11, so you must make [some changes](https://github.com/InseeFrLab/onyxia-ui/blob/324de62248074582b227e584c53fb2e123f5325f/.storybook/main.js#L31-L32) to `.storybook/main.js` in order to use Storybook with Material UI.
 :::

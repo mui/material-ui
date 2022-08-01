@@ -1,5 +1,201 @@
 # [Versions](https://mui.com/versions/)
 
+## 5.9.2
+
+<!-- generated comparing v5.9.1..master -->
+
+_Jul 25, 2022_
+
+A big thanks to the 16 contributors who made this release possible. Here are some highlights ✨:
+
+- 🧪 Ensure all Base components are `OverridableComponent` (#33506) @michaldudak
+- 🧪 Various improvements on the Material `Stack` component (#33548, #33588, #33549) @hbjORbj
+- Many other 🐛 bug fixes and 📚 documentation improvements
+
+### `@mui/material@5.9.2`
+
+- &#8203;<!-- 34 -->Revert "[Tooltip] Fix children mouse over detection (#32321)" @oliviertassinari
+- &#8203;<!-- 19 -->[FormHelperText] Fix unable to create new variants (#33589) @DinhBaoTran
+- &#8203;<!-- 18 -->[ImageList] Remove vertical spacing between items in masonry layout (#33593) @michaldudak
+- &#8203;<!-- 13 -->[LoadingButton] Refactor duplicate code (#33570) @ZeeshanTamboli
+- &#8203;<!-- 12 -->[Modal] Explain the meaning of deprecation of the BackdropComponent prop (#33591) @michaldudak
+- &#8203;<!-- 11 -->[Stack] Fix unit test failure (#33588) @hbjORbj
+- &#8203;<!-- 10 -->[Stack] Fix default `flexDirection` value with responsive prop (#33549) @hbjORbj
+- &#8203;<!-- 09 -->[Stack] Ensure that `marginundefined` doesn't occur in styling (#33548) @hbjORbj
+- &#8203;<!-- 08 -->[Tabs] Fix `indicatorColor` prop type (#33569) @ZeeshanTamboli
+- &#8203;<!-- 07 -->[Tabs] Add TypeScript interface to augment tab indicator color in theme (#33333) @AHeiming
+
+### `@mui/base@5.0.0-alpha.91`
+
+- &#8203;<!-- 33 -->[Base] Make PopperUnstyled `component` overridable (#33573) @siriwatknp
+- &#8203;<!-- 32 -->[Base] Ensure all components are OverridableComponent (#33506) @michaldudak
+
+### `@mui/joy@5.0.0-alpha.38`
+
+- &#8203;<!-- 17 -->[Select] Add new component in Joy (#33630) @siriwatknp
+- &#8203;<!-- 15 -->[Joy] Add Text field documentation (#33430, #33631) @danilo-leal
+- &#8203;<!-- 14 -->[Joy] Add menu components (#31789) @siriwatknp
+
+### Docs
+
+- &#8203;<!-- 31 -->[blog] Fix 404 link to Algolia docs search (dd4308d) @oliviertassinari
+- &#8203;<!-- 28 -->[docs] Add accessibility tips (#33633) @siriwatknp
+- &#8203;<!-- 27 -->[docs] Fix production deploy of codesandboxes (#33608) @oliviertassinari
+- &#8203;<!-- 26 -->[docs] Show border on `palette.background.paper` in dark mode docs (#33611) @ZeeshanTamboli
+- &#8203;<!-- 25 -->[docs] Fix typo in Joy UI dark mode page (#33620) @bairamau
+- &#8203;<!-- 24 -->[docs] Final polish on Base docs - formatting and style consistency (#33156) @samuelsycamore
+- &#8203;<!-- 23 -->[docs] Fix `CssBaseline` import in example code (#33614) @dd-ssc
+- &#8203;<!-- 22 -->[docs] Fix Toolpad docs redirection (#33524) @bharatkashyap
+- &#8203;<!-- 21 -->[docs] Fix link to Snackbar customization section in Alert docs (#33586) @ZeeshanTamboli
+- &#8203;<!-- 20 -->[docs] Fix `placement choices` typo in Tooltip docs (#33571) @MonstraG
+- &#8203;<!-- 05 -->[website] Update home page's sponsor grid (#33528) @danilo-leal
+- &#8203;<!-- 04 -->[website] Add Vytautas to the about page (#33567) @bytasv
+- &#8203;<!-- 03 -->[website] Improve newsletter input design (#33585) @danilo-leal
+- &#8203;<!-- 02 -->[website] Add YouTube link to footer (#33580) @gerdadesign
+- &#8203;<!-- 01 -->[website] Clarify scope of technical support (#33435) @joserodolfofreitas
+
+### Core
+
+- &#8203;<!-- 30 -->[core] Swallow ad blocker fetch fail (#33617) @oliviertassinari
+- &#8203;<!-- 29 -->[core] Fix dep security by resolving `thenify` to latest (#33612) @siriwatknp
+- &#8203;<!-- 06 -->[test] Remove `view` option from Event in Snackbar tests (#33555) @ZeeshanTamboli
+
+All contributors of this release in alphabetical order: @AHeiming, @bairamau, @bharatkashyap, @bytasv, @danilo-leal, @dd-ssc, @DinhBaoTran, @gerdadesign, @hbjORbj, @joserodolfofreitas, @michaldudak, @MonstraG, @oliviertassinari, @samuelsycamore, @siriwatknp, @ZeeshanTamboli
+
+## 5.9.1
+
+<!-- generated comparing v5.9.0..master -->
+
+_Jul 18, 2022_
+
+A big thanks to the 17 contributors who made this release possible. This release is mainly about 🐛 bug fixes and 📚 documentation improvements
+
+### `@mui/material@5.9.1`
+
+- &#8203;<!-- 24 -->[Autocomplete] Fix disabling component crashing when focused (#31313) @mzedel
+- &#8203;<!-- 07 -->[Grid] Avoid scrollbar in demo (#33527) @oliviertassinari
+- &#8203;<!-- 05 -->[Slider] Fix transition of tooltips on vertical slider (#33009) @abhinav-22-tech
+- &#8203;<!-- 01 -->[TouchRipple] Fix crash on android where `event.touches` are an empty array (#32974) @lukeggchapman
+
+### `@mui/system@5.9.1`
+
+- &#8203;<!-- 04 -->[system] Add flag to switch negative margin approach in Grid (#33484) @siriwatknp
+- &#8203;<!-- 03 -->[system] Remove needless optional chaining check in `createEmptyBreakpointObject` method (#33482) @ZeeshanTamboli
+
+### `@mui/base@5.0.0-alpha.90`
+
+- &#8203;<!-- 23 -->[base] Export types used by components' props (#33522) @michaldudak
+- &#8203;<!-- 22 -->[base] Add missing type definitions in useControllableReducer (#33496) @michaldudak
+- &#8203;<!-- 06 -->[SelectUnstyled] Do not call onChange unnecessarily (#33408) @michaldudak
+
+### `@mui/lab@5.0.0-alpha.91`
+
+- &#8203;<!-- 02 -->[TimelineDot] Add TimelineDotPropsColorOverrides interface to extend color options (#33466) @lolaignatova
+
+### Docs
+
+- &#8203;<!-- 19 -->[docs] Add note about CssBaseline in the dark mode page (#33108) @GabrielaLokelani
+- &#8203;<!-- 18 -->[docs] Fix typos in the Interoperability page (#33273) @HexM7
+- &#8203;<!-- 17 -->[docs] Improve the `useTheme` documentation (#33508) @rickstaa
+- &#8203;<!-- 16 -->[docs] Fix 301 redirections (#33521) @oliviertassinari
+- &#8203;<!-- 15 -->[docs] Link the same codesandbox as in the docs (#33472) @oliviertassinari
+- &#8203;<!-- 14 -->[docs] Fix copy search false positives (#33438) @oliviertassinari
+- &#8203;<!-- 13 -->[docs] Fix typo (#33520) @aravindpanicker
+- &#8203;<!-- 12 -->[docs] Update Tailwind docs to include step about updating popover containers (#33315) @ajhenry
+- &#8203;<!-- 11 -->[docs] Add yarn command for Roboto font in Material UI's typography.md (#33485) @anthonypz
+- &#8203;<!-- 10 -->[docs] Add new community content to the Material UI Learn page (#32927) @Nikhilthadani
+- &#8203;<!-- 09 -->[examples] Change createEmotionCache to use `insertionPoint` (#32104) @ANTARES-KOR
+- &#8203;<!-- 08 -->[examples] Fix error in Next.js example with @mui/styles (#33456) @paustria
+
+### Core
+
+- &#8203;<!-- 21 -->[core] Cleanup experiments (#33547) @siriwatknp
+- &#8203;<!-- 20 -->[core] Update CHANGELOG to include pickers breaking change (#33486) @siriwatknp
+
+All contributors of this release in alphabetical order: @abhinav-22-tech, @ajhenry, @ANTARES-KOR, @anthonypz, @aravindpanicker, @GabrielaLokelani, @HexM7, @lolaignatova, @lukeggchapman, @michaldudak, @mzedel, @Nikhilthadani, @oliviertassinari, @paustria, @rickstaa, @siriwatknp, @ZeeshanTamboli
+
+## 5.9.0
+
+<!-- generated comparing v5.8.7..master -->
+
+_Jul 12, 2022_
+
+A big thanks to the 19 contributors who made this release possible. Here are some highlights ✨:
+
+- 🧪 Exported Grid v2 as `Unstable_Grid2` (#33479) @siriwatknp
+- 📖 Added a guide for using Joy UI and Material UI together (#33396) @siriwatknp
+- 🐛 Fixed a few bugs in Material UI components. Thanks to @ZeeshanTamboli, @ivan-ngchakming, and @joebingham-wk.
+- ⚠️ **[BREAKING CHANGE]** Date pickers were removed from the lab. Learn how to migrate by visiting the [migration guide](https://mui.com/x/react-date-pickers/migration-lab/). (#33386) @flaviendelangle
+- many other 🐛 bug fixes and 📚 documentation improvements
+- our documentation site is now running with React 18! (#33196) @mnajdova
+
+### `@mui/material@5.9.0`
+
+- [CssBaseline] Fixes in overriding style (#33338) @ZeeshanTamboli
+- [Autocomplete] Remove unnecessary `clsx` wrapper for single className (#33398) @ZeeshanTamboli
+- [Grid] Export new grid as unstable (#33479) @siriwatknp
+- [Tooltip] Fix children mouse over detection (#32321) @ivan-ngchakming
+- [TypeScript] getCssVar autocomplete for Material UI (#33464) @siriwatknp
+- [TypeScript] Fix theme options components types to use `Theme` (#33434) @siriwatknp
+- [TypeScript] Reexports necessary types for module augmentation (#33397) @siriwatknp
+- [ScopedCssBaseline] Add sx typings (#33474) @joebingham-wk
+
+### `@mui/system@5.9.0`
+
+- [System] Add offset feature to Grid (#33415) @siriwatknp
+- [system] Add new `Grid` implementation (#32746) @siriwatknp
+
+### `@mui/lab@5.0.0-alpha.90`
+
+**⚠️ Breaking changes**
+
+- [lab] Remove the pickers (#33386) @flaviendelangle
+
+  The pickers are moved to MUI X, check out the [migration guide](https://mui.com/x/react-date-pickers/migration-lab/).
+
+**Changes**
+
+- [Masonry] Support rem/em values for spacing prop (#33384) @hbjORbj
+
+### `@mui/base@5.0.0-alpha.89`
+
+- Base] Change the order of class names merged in useSlotProps (#33383) @michaldudak
+- [ModalUnstyled] Accept callbacks in componentsProps (#33181) @michaldudak
+- [SelectUnstyled] Accept callbacks in componentsProps (#33197) @michaldudak
+- [TabsUnstyled] Accept callbacks in componentsProps (#33284) @michaldudak
+
+### `@mui/joy@5.0.0-alpha.36`
+
+- [Joy] Add guide about using Joy and Material UI together (#33396) @siriwatknp
+- [Joy] Fix variants color palette regressions (#33394) @danilo-leal
+
+### Docs
+
+- [docs] Correcting small grammatical error (#33393) @robyyo
+- [docs] Link to the correct package on Joy component pages (#33439) @cherniavskii
+- [docs] Fix e2e tests (#33477) @siriwatknp
+- [docs] Fix dead links (#33462) @oliviertassinari
+- [docs] Cleanup the migration (#33463) @siriwatknp
+- [docs] Fix broken Sponsoring services links @samuelsycamore
+- [docs] Improve repo README with light/dark logos, relative links and more (#33356) @samuelsycamore
+- [docs] Update links to MUI X Overview and Introduction pages (#33201) @samuelsycamore
+- [docs] Update to React 18 (#33196) @mnajdova
+- [docs] Simplify "Upload button" demo (#33326) @baharalidurrani
+- [docs] Add "refine" demo to showcase (#33240) @omeraplak
+- [docs] Add webpack alias for legacy utils package (#33376) @jgbae
+- [docs] Improve external link icons synonyms (#33257) @davidgarciab
+- [examples] Update MUI Base with Tailwind CSS to use the latest versions of the dependencies (#33401) @mnajdova
+- [examples] Add MUI base example (#33154) @siriwatknp
+
+### Core
+
+- [core] Fix @mui/monorepo regression for the import of the docs infra (#33390) @Janpot
+- [core] Remove old babel resolve rule (#33432) @oliviertassinari
+- [website] Shorten the plan descriptions on the pricing page (#32984) @joserodolfofreitas
+- [website] Link EULA in the license quantity section (#33292) @oliviertassinari
+
+All contributors of this release in alphabetical order: @baharalidurrani, @cherniavskii, @danilo-leal, @davidgarciab, @flaviendelangle, @hbjORbj, @ivan-ngchakming, @Janpot, @jgbae, @joebingham-wk, @joserodolfofreitas, @michaldudak, @mnajdova, @oliviertassinari, @omeraplak, @robyyo, @samuelsycamore, @siriwatknp, @ZeeshanTamboli
+
 ## 5.8.7
 
 <!-- generated comparing v5.8.6..master -->
@@ -1930,7 +2126,7 @@ A big thanks to the 16 contributors who made this release possible. Here are som
 - &#8203;<!-- 19 -->[docs] Sync translations with Crowdin (#30067) @l10nbot
 - &#8203;<!-- 18 -->[docs] Fix link on "Custom variables" section in the Theming page #30100 @danilo-leal
 - &#8203;<!-- 17 -->[docs] Fix justifyContent option in the Grid interactive demo (#30117) @danilo-leal
-- &#8203;<!-- 16 -->[docs] Add tip to help access the docs of a previous version when finding answers in StackOverflow (#30101) @danilo-leal
+- &#8203;<!-- 16 -->[docs] Add tip to help access the docs of a previous version when finding answers in Stack Overflow (#30101) @danilo-leal
 - &#8203;<!-- 15 -->[docs] Fix import example inside Unstyled Backdrop section (#30098) @TheodosiouTh
 - &#8203;<!-- 01 -->[website] Column pinning and Tree data are out (#30136) @oliviertassinari
 - &#8203;<!-- 07 -->[survey] Remove survey promotion items (#30122) @danilo-leal
@@ -2011,7 +2207,7 @@ A big thanks to the 25 contributors who made this release possible. Here are som
 - &#8203;<!-- 21 -->[docs] Update nextjs-typescript-example (#29974) @huydhoang
 - &#8203;<!-- 20 -->[docs] Add missing global state classes to API docs generator (#29945) @michaldudak
 - &#8203;<!-- 19 -->[docs] Fix benchmarks folder link (#29981) @fourjr
-- &#8203;<!-- 18 -->[docs] Improve wording in StackOverflow section of support page (#29956) @ronwarner
+- &#8203;<!-- 18 -->[docs] Improve wording in Stack Overflow section of support page (#29956) @ronwarner
 - &#8203;<!-- 17 -->[docs] Remove Black Friday sale notification (#29936) @mbrookes
 - &#8203;<!-- 16 -->[examples] Fix typos in the Remix example (#30071) @MichaelDeBoey
 - &#8203;<!-- 15 -->[examples] Add Remix example (#29952) @mnajdova
@@ -2024,7 +2220,7 @@ A big thanks to the 25 contributors who made this release possible. Here are som
 ### Core
 
 - &#8203;<!-- 31 -->[core] Batch small changes (#30042) @oliviertassinari
-- &#8203;<!-- 28 -->[core] Transition to a new StackOverflow tag (#29967) @oliviertassinari
+- &#8203;<!-- 28 -->[core] Transition to a new Stack Overflow tag (#29967) @oliviertassinari
 
 All contributors of this release in alphabetical order: @chao813, @daniel-sachs, @danilo-leal, @Domino987, @eduardomcv, @flaviendelangle, @fourjr, @genzyy, @hbjORbj, @huydhoang, @jayeclark, @jonathanrtuck, @kkorach, @l10nbot, @mbrookes, @MichaelDeBoey, @michaldudak, @mnajdova, @oliviertassinari, @ronwarner, @Semigradsky, @siriwatknp, @tasugi, @ThewBear, @ZeeshanTamboli
 
@@ -5710,7 +5906,7 @@ A big thanks to the 30 contributors who made this release possible. Here are som
 #### Breaking changes
 
 - &#8203;<!-- 91 -->[types] Rename the exported `Omit` type in `@material-ui/types`. (#24795) @petyosi
-  The module is now called `DistributiveOmit`. The change removes the confusion with the built-in `Omit` helper introduced in TypeScript v3.5. The built-in `Omit`, while similar, is non-distributive. This leads to differences when applied to union types. [See this StackOverflow answer for further details](https://stackoverflow.com/a/57103940/1009797).
+  The module is now called `DistributiveOmit`. The change removes the confusion with the built-in `Omit` helper introduced in TypeScript v3.5. The built-in `Omit`, while similar, is non-distributive. This leads to differences when applied to union types. [See this Stack Overflow answer for further details](https://stackoverflow.com/a/57103940/1009797).
 
 ```diff
 -import { Omit } from '@material-ui/types';

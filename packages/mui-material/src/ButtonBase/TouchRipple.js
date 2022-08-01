@@ -218,7 +218,8 @@ const TouchRipple = React.forwardRef(function TouchRipple(inProps, ref) {
         rippleX = Math.round(rect.width / 2);
         rippleY = Math.round(rect.height / 2);
       } else {
-        const { clientX, clientY } = event.touches ? event.touches[0] : event;
+        const { clientX, clientY } =
+          event.touches && event.touches.length > 0 ? event.touches[0] : event;
         rippleX = Math.round(clientX - rect.left);
         rippleY = Math.round(clientY - rect.top);
       }

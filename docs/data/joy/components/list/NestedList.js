@@ -5,7 +5,6 @@ import ListItem from '@mui/joy/ListItem';
 import ListItemButton from '@mui/joy/ListItemButton';
 import Typography from '@mui/joy/Typography';
 import Switch from '@mui/joy/Switch';
-import Sheet from '@mui/joy/Sheet';
 
 export default function NestedList() {
   const [small, setSmall] = React.useState(false);
@@ -20,62 +19,54 @@ export default function NestedList() {
         }
         sx={{ mb: 2 }}
       />
-      <Sheet
+      <List
         variant="outlined"
         sx={{
           width: 200,
           borderRadius: 'sm',
         }}
       >
-        <List>
-          <ListItem nested>
-            <ListItem component="div">
-              <Typography
-                id="nested-list-demo-1"
-                level="body3"
-                textTransform="uppercase"
-                fontWeight="lg"
-              >
-                Category 1
-              </Typography>
-            </ListItem>
-            <List
-              aria-labelledby="nested-list-demo-1"
-              size={small ? 'sm' : undefined}
+        <ListItem nested>
+          <ListItem component="div">
+            <Typography
+              id="nested-list-demo-1"
+              level="body3"
+              textTransform="uppercase"
+              fontWeight="lg"
             >
-              <ListItem>
-                <ListItemButton>Subitem 1</ListItemButton>
-              </ListItem>
-              <ListItem>
-                <ListItemButton>Subitem 2</ListItemButton>
-              </ListItem>
-            </List>
+              Category 1
+            </Typography>
           </ListItem>
-          <ListItem nested>
-            <ListItem component="div">
-              <Typography
-                id="nested-list-demo-2"
-                level="body3"
-                textTransform="uppercase"
-                fontWeight="lg"
-              >
-                Category 2
-              </Typography>
+          <List aria-labelledby="nested-list-demo-1" size={small ? 'sm' : undefined}>
+            <ListItem>
+              <ListItemButton>Subitem 1</ListItemButton>
             </ListItem>
-            <List
-              aria-labelledby="nested-list-demo-2"
-              size={small ? 'sm' : undefined}
+            <ListItem>
+              <ListItemButton>Subitem 2</ListItemButton>
+            </ListItem>
+          </List>
+        </ListItem>
+        <ListItem nested>
+          <ListItem component="div">
+            <Typography
+              id="nested-list-demo-2"
+              level="body3"
+              textTransform="uppercase"
+              fontWeight="lg"
             >
-              <ListItem>
-                <ListItemButton>Subitem 1</ListItemButton>
-              </ListItem>
-              <ListItem>
-                <ListItemButton>Subitem 2</ListItemButton>
-              </ListItem>
-            </List>
+              Category 2
+            </Typography>
           </ListItem>
-        </List>
-      </Sheet>
+          <List aria-labelledby="nested-list-demo-2" size={small ? 'sm' : undefined}>
+            <ListItem>
+              <ListItemButton>Subitem 1</ListItemButton>
+            </ListItem>
+            <ListItem>
+              <ListItemButton>Subitem 2</ListItemButton>
+            </ListItem>
+          </List>
+        </ListItem>
+      </List>
     </Box>
   );
 }

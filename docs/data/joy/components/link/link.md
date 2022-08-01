@@ -16,7 +16,7 @@ It accepts the same props as the [`Typography`](/joy-ui/react-typography/) compo
 
 {{"demo": "LinkUsage.js", "hideToolbar": true}}
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Component
 

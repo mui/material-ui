@@ -21,7 +21,7 @@ When activated, Tooltips display a text label identifying an element, such as a 
 
 ## Positioned tooltips
 
-The `Tooltip` has 12 **placements** choice.
+The `Tooltip` has 12 **placement** choices.
 They don't have directional arrows; instead, they rely on motion emanating from the source to convey direction.
 
 {{"demo": "PositionedTooltips.js"}}

@@ -689,7 +689,9 @@ describe('Material UI <Grid />', () => {
         'Warning: Failed prop type: The prop `spacing` of `Grid` can only be used together with the `container` prop.',
       );
     });
+  });
 
+  describe('prop: rowSpacing, columnSpacing', () => {
     it('should generate correct responsive styles', () => {
       const theme = createTheme();
       expect(
@@ -1046,6 +1048,252 @@ describe('Material UI <Grid />', () => {
           },
           marginLeft: '-24px',
           width: 'calc(100% + 24px)',
+        },
+      });
+    });
+
+    it('should generate correct responsive styles for overriding with zero value styles for higher breakpoints', () => {
+      const theme = createTheme({
+        breakpoints: {
+          values: {
+            mobile: 0,
+            desktop: 1200,
+            tablet: 640,
+          },
+        },
+      });
+      expect(
+        generateRowGap({
+          ownerState: {
+            container: true,
+            rowSpacing: { mobile: 1.5, desktop: 0, tablet: 0 },
+          },
+          theme,
+        }),
+      ).to.deep.equal({
+        '@media (min-width:0px)': {
+          '& > .MuiGrid-item': {
+            paddingTop: '12px',
+          },
+          marginTop: '-12px',
+        },
+        '@media (min-width:640px)': {
+          '& > .MuiGrid-item': {
+            paddingTop: 0,
+          },
+          marginTop: 0,
+        },
+        '@media (min-width:1200px)': {
+          '& > .MuiGrid-item': {
+            paddingTop: 0,
+          },
+          marginTop: 0,
+        },
+      });
+
+      expect(
+        generateColumnGap({
+          ownerState: {
+            container: true,
+            columnSpacing: { mobile: 1.5, desktop: 0, tablet: 0 },
+          },
+          theme,
+        }),
+      ).to.deep.equal({
+        '@media (min-width:0px)': {
+          '& > .MuiGrid-item': {
+            paddingLeft: '12px',
+          },
+          marginLeft: '-12px',
+          width: 'calc(100% + 12px)',
+        },
+        '@media (min-width:640px)': {
+          '& > .MuiGrid-item': {
+            paddingLeft: 0,
+          },
+          marginLeft: 0,
+          width: '100%',
+        },
+        '@media (min-width:1200px)': {
+          '& > .MuiGrid-item': {
+            paddingLeft: 0,
+          },
+          marginLeft: 0,
+          width: '100%',
+        },
+      });
+
+      // Array input
+      expect(
+        generateRowGap({
+          ownerState: {
+            container: true,
+            rowSpacing: [1.5, 0, 0],
+          },
+          theme,
+        }),
+      ).to.deep.equal({
+        '@media (min-width:0px)': {
+          '& > .MuiGrid-item': {
+            paddingTop: '12px',
+          },
+          marginTop: '-12px',
+        },
+        '@media (min-width:640px)': {
+          '& > .MuiGrid-item': {
+            paddingTop: 0,
+          },
+          marginTop: 0,
+        },
+        '@media (min-width:1200px)': {
+          '& > .MuiGrid-item': {
+            paddingTop: 0,
+          },
+          marginTop: 0,
+        },
+      });
+
+      expect(
+        generateColumnGap({
+          ownerState: {
+            container: true,
+            columnSpacing: [1.5, 0, 0],
+          },
+          theme,
+        }),
+      ).to.deep.equal({
+        '@media (min-width:0px)': {
+          '& > .MuiGrid-item': {
+            paddingLeft: '12px',
+          },
+          marginLeft: '-12px',
+          width: 'calc(100% + 12px)',
+        },
+        '@media (min-width:640px)': {
+          '& > .MuiGrid-item': {
+            paddingLeft: 0,
+          },
+          marginLeft: 0,
+          width: '100%',
+        },
+        '@media (min-width:1200px)': {
+          '& > .MuiGrid-item': {
+            paddingLeft: 0,
+          },
+          marginLeft: 0,
+          width: '100%',
+        },
+      });
+    });
+
+    it('should not generate responsive styles for lower breakpoints below a given non-zero breakpoint', () => {
+      const theme = createTheme({
+        breakpoints: {
+          values: {
+            mobile: 0,
+            desktop: 1200,
+            tablet: 640,
+          },
+        },
+      });
+      expect(
+        generateRowGap({
+          ownerState: {
+            container: true,
+            rowSpacing: { mobile: 0, desktop: 0, tablet: 1.5 },
+          },
+          theme,
+        }),
+      ).to.deep.equal({
+        '@media (min-width:0px)': {},
+        '@media (min-width:640px)': {
+          '& > .MuiGrid-item': {
+            paddingTop: '12px',
+          },
+          marginTop: '-12px',
+        },
+        '@media (min-width:1200px)': {
+          '& > .MuiGrid-item': {
+            paddingTop: 0,
+          },
+          marginTop: 0,
+        },
+      });
+
+      expect(
+        generateColumnGap({
+          ownerState: {
+            container: true,
+            columnSpacing: { mobile: 0, desktop: 0, tablet: 1.5 },
+          },
+          theme,
+        }),
+      ).to.deep.equal({
+        '@media (min-width:0px)': {},
+        '@media (min-width:640px)': {
+          '& > .MuiGrid-item': {
+            paddingLeft: '12px',
+          },
+          marginLeft: '-12px',
+          width: 'calc(100% + 12px)',
+        },
+        '@media (min-width:1200px)': {
+          '& > .MuiGrid-item': {
+            paddingLeft: 0,
+          },
+          marginLeft: 0,
+          width: '100%',
+        },
+      });
+
+      // Array input
+      expect(
+        generateRowGap({
+          ownerState: {
+            container: true,
+            rowSpacing: [0, 1.5, 0],
+          },
+          theme,
+        }),
+      ).to.deep.equal({
+        '@media (min-width:0px)': {},
+        '@media (min-width:640px)': {
+          '& > .MuiGrid-item': {
+            paddingTop: '12px',
+          },
+          marginTop: '-12px',
+        },
+        '@media (min-width:1200px)': {
+          '& > .MuiGrid-item': {
+            paddingTop: 0,
+          },
+          marginTop: 0,
+        },
+      });
+
+      expect(
+        generateColumnGap({
+          ownerState: {
+            container: true,
+            columnSpacing: [0, 1.5, 0],
+          },
+          theme,
+        }),
+      ).to.deep.equal({
+        '@media (min-width:0px)': {},
+        '@media (min-width:640px)': {
+          '& > .MuiGrid-item': {
+            paddingLeft: '12px',
+          },
+          marginLeft: '-12px',
+          width: 'calc(100% + 12px)',
+        },
+        '@media (min-width:1200px)': {
+          '& > .MuiGrid-item': {
+            paddingLeft: 0,
+          },
+          marginLeft: 0,
+          width: '100%',
         },
       });
     });
