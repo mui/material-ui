@@ -175,7 +175,8 @@ async function annotateComponentDefinition(api: ReactApi) {
       const jsdocBlock = leadingCommentBlocks != null ? leadingCommentBlocks[0] : null;
       if (leadingCommentBlocks != null && leadingCommentBlocks.length > 1) {
         throw new Error(
-          `Should only have a single leading jsdoc block but got ${leadingCommentBlocks.length
+          `Should only have a single leading jsdoc block but got ${
+            leadingCommentBlocks.length
           }:\n${leadingCommentBlocks
             .map(({ type, value }, index) => `#${index} (${type}): ${value}`)
             .join('\n')}`,
@@ -199,10 +200,11 @@ async function annotateComponentDefinition(api: ReactApi) {
 
   let inheritanceAPILink = null;
   if (api.inheritance !== null) {
-    inheritanceAPILink = `[${api.inheritance.name} API](${api.inheritance.apiPathname.startsWith('http')
+    inheritanceAPILink = `[${api.inheritance.name} API](${
+      api.inheritance.apiPathname.startsWith('http')
         ? api.inheritance.apiPathname
         : `${HOST}${api.inheritance.apiPathname}`
-      })`;
+    })`;
   }
 
   const markdownLines = (await computeApiDescription(api, { host: HOST })).split('\n');
@@ -214,8 +216,9 @@ async function annotateComponentDefinition(api: ReactApi) {
     'Demos:',
     '',
     ...api.demos.map((item) => {
-      return `- [${item.name}](${item.demoPathname.startsWith('http') ? item.demoPathname : `${HOST}${item.demoPathname}`
-        })`;
+      return `- [${item.name}](${
+        item.demoPathname.startsWith('http') ? item.demoPathname : `${HOST}${item.demoPathname}`
+      })`;
     }),
     '',
   );
@@ -223,7 +226,8 @@ async function annotateComponentDefinition(api: ReactApi) {
   markdownLines.push(
     'API:',
     '',
-    `- [${api.name} API](${api.apiPathname.startsWith('http') ? api.apiPathname : `${HOST}${api.apiPathname}`
+    `- [${api.name} API](${
+      api.apiPathname.startsWith('http') ? api.apiPathname : `${HOST}${api.apiPathname}`
     })`,
   );
   if (api.inheritance !== null) {
@@ -347,9 +351,9 @@ const generateApiPage = (outputDirectory: string, reactApi: ReactApi) => {
     filename: toGitHubPath(reactApi.filename),
     inheritance: reactApi.inheritance
       ? {
-        component: reactApi.inheritance.name,
-        pathname: reactApi.inheritance.apiPathname,
-      }
+          component: reactApi.inheritance.name,
+          pathname: reactApi.inheritance.apiPathname,
+        }
       : null,
     demos: `<ul>${reactApi.demos
       .map((item) => `<li><a href="${item.demoPathname}">${item.name}</a></li>`)
@@ -411,7 +415,8 @@ const attachTranslations = (reactApi: ReactApi) => {
       if (propName === 'classes') {
         description += ' See <a href="#css">CSS API</a> below for more details.';
       } else if (propName === 'sx') {
-        description += ' See the <a href="/system/getting-started/the-sx-prop/">`sx` page</a> for more details.';
+        description +=
+          ' See the <a href="/system/getting-started/the-sx-prop/">`sx` page</a> for more details.';
       }
       translations.propDescriptions[propName] = description.replace(/\n@default.*$/, '');
     }
@@ -621,8 +626,8 @@ const generateComponentApi = async (componentInfo: ComponentInfo, program: ttp.t
   if (reactApi.demos.length === 0) {
     throw new Error(
       'Unable to find demos. \n' +
-      `Be sure to include \`components: ${reactApi.name}\` in the markdown pages where the \`${reactApi.name}\` component is relevant. ` +
-      'Every public component should have a demo. ',
+        `Be sure to include \`components: ${reactApi.name}\` in the markdown pages where the \`${reactApi.name}\` component is relevant. ` +
+        'Every public component should have a demo. ',
     );
   }
 
