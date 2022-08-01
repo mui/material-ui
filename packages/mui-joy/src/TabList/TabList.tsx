@@ -8,7 +8,7 @@ import { useSlotProps } from '@mui/base/utils';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
 import { ListRoot } from '../List/List';
-import RowListContext from '../List/RowListContext';
+import ListProvider from '../List/ListProvider';
 import SizeTabsContext from '../Tabs/SizeTabsContext';
 import { getTabListUtilityClass } from './tabListClasses';
 import { TabListProps, TabListOwnerState, TabListTypeMap } from './TabListProps';
@@ -91,19 +91,10 @@ const TabList = React.forwardRef(function TabList(inProps, ref) {
   const processedChildren = processChildren();
 
   return (
-    <RowListContext.Provider value={row}>
-      {/* @ts-ignore conflicted ref types */}
-      <TabListRoot {...tabsListRootProps}>
-        {React.Children.map(processedChildren, (child, index) =>
-          React.isValidElement(child)
-            ? React.cloneElement(child, {
-                // to let List(Item|ItemButton) knows when to apply margin(Inline|Block)Start
-                ...(index === 0 && { 'data-first-child': '' }),
-              })
-            : child,
-        )}
-      </TabListRoot>
-    </RowListContext.Provider>
+    // @ts-ignore conflicted ref types
+    <TabListRoot {...tabsListRootProps}>
+      <ListProvider row={row}>{processedChildren}</ListProvider>
+    </TabListRoot>
   );
 }) as OverridableComponent<TabListTypeMap>;
 

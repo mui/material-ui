@@ -7,7 +7,7 @@ import { useSlotProps } from '@mui/base/utils';
 import { useMenu, MenuUnstyledContext, MenuUnstyledContextType } from '@mui/base/MenuUnstyled';
 import { styled, useThemeProps } from '../styles';
 import { ListRoot } from '../List/List';
-import RowListContext from '../List/RowListContext';
+import ListProvider from '../List/ListProvider';
 import { MenuListProps, MenuListTypeMap } from './MenuListProps';
 import { getMenuListUtilityClass } from './menuListClasses';
 
@@ -46,7 +46,7 @@ const MenuListRoot = styled(ListRoot, {
 });
 
 const MenuList = React.forwardRef(function MenuList(inProps, ref) {
-  const props = useThemeProps({
+  const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
     name: 'MuiMenuList',
   });
@@ -54,6 +54,7 @@ const MenuList = React.forwardRef(function MenuList(inProps, ref) {
   const {
     actions,
     id: idProp,
+    component,
     children,
     size = 'md',
     variant = 'outlined',
@@ -100,6 +101,9 @@ const MenuList = React.forwardRef(function MenuList(inProps, ref) {
     getSlotProps: getListboxProps,
     externalSlotProps: {},
     externalForwardedProps: other,
+    additionalProps: {
+      as: component,
+    },
     ownerState,
     className: classes.root,
   });
@@ -116,16 +120,7 @@ const MenuList = React.forwardRef(function MenuList(inProps, ref) {
   return (
     <MenuListRoot {...listboxProps}>
       <MenuUnstyledContext.Provider value={contextValue}>
-        <RowListContext.Provider value={false}>
-          {React.Children.map(children, (child, index) =>
-            React.isValidElement(child)
-              ? React.cloneElement(child, {
-                  // to let MenuItem knows when to apply margin(Inline|Block)Start
-                  ...(index === 0 && { 'data-first-child': '' }),
-                })
-              : child,
-          )}
-        </RowListContext.Provider>
+        <ListProvider>{children}</ListProvider>
       </MenuUnstyledContext.Provider>
     </MenuListRoot>
   );

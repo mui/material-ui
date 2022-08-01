@@ -17,7 +17,7 @@ import type { SelectChild, SelectOption } from '@mui/base/SelectUnstyled';
 import { useSlotProps } from '@mui/base/utils';
 import composeClasses from '@mui/base/composeClasses';
 import { ListRoot } from '../List/List';
-import RowListContext from '../List/RowListContext';
+import ListProvider from '../List/ListProvider';
 import Unfold from '../internal/svg-icons/Unfold';
 import { styled, useThemeProps } from '../styles';
 import { SelectOwnProps, SelectStaticProps, SelectOwnerState, SelectTypeMap } from './SelectProps';
@@ -503,16 +503,7 @@ const Select = React.forwardRef(function Select<TValue>(
       {anchorEl && (
         <PopperUnstyled {...listboxProps}>
           <SelectUnstyledContext.Provider value={context}>
-            <RowListContext.Provider value={false}>
-              {React.Children.map(children, (child, index) =>
-                React.isValidElement(child)
-                  ? React.cloneElement(child, {
-                      // to let Option knows when to apply margin(Inline|Block)Start
-                      ...(index === 0 && { 'data-first-child': '' }),
-                    })
-                  : child,
-              )}
-            </RowListContext.Provider>
+            <ListProvider>{children}</ListProvider>
           </SelectUnstyledContext.Provider>
         </PopperUnstyled>
       )}

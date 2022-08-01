@@ -7,7 +7,7 @@ import { useSlotProps } from '@mui/base/utils';
 import { useMenu, MenuUnstyledContext, MenuUnstyledContextType } from '@mui/base/MenuUnstyled';
 import PopperUnstyled from '@mui/base/PopperUnstyled';
 import { ListRoot } from '../List/List';
-import RowListContext from '../List/RowListContext';
+import ListProvider from '../List/ListProvider';
 import { styled, useThemeProps } from '../styles';
 import { MenuTypeMap, MenuProps } from './MenuProps';
 import { getMenuUtilityClass } from './menuClasses';
@@ -50,7 +50,7 @@ const MenuRoot = styled(ListRoot, {
 });
 
 const Menu = React.forwardRef(function Menu(inProps, ref) {
-  const props = useThemeProps<typeof inProps>({
+  const props = useThemeProps({
     props: inProps,
     name: 'JoyMenu',
   });
@@ -154,16 +154,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
   return (
     <PopperUnstyled {...rootProps}>
       <MenuUnstyledContext.Provider value={contextValue}>
-        <RowListContext.Provider value={false}>
-          {React.Children.map(children, (child, index) =>
-            React.isValidElement(child)
-              ? React.cloneElement(child, {
-                  // to let MenuItem knows when to apply margin(Inline|Block)Start
-                  ...(index === 0 && { 'data-first-child': '' }),
-                })
-              : child,
-          )}
-        </RowListContext.Provider>
+        <ListProvider>{children}</ListProvider>
       </MenuUnstyledContext.Provider>
     </PopperUnstyled>
   );

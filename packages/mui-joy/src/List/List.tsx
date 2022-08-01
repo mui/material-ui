@@ -10,9 +10,8 @@ import { styled, useThemeProps } from '../styles';
 import { ListProps, ListTypeMap } from './ListProps';
 import { getListUtilityClass } from './listClasses';
 import NestedListContext from './NestedListContext';
-import RowListContext from './RowListContext';
-import WrapListContext from './WrapListContext';
 import ComponentListContext from './ComponentListContext';
+import ListProvider from './ListProvider';
 
 const useUtilityClasses = (ownerState: ListProps & { nesting: boolean }) => {
   const { variant, color, size, nesting, row, scoped } = ownerState;
@@ -186,31 +185,22 @@ const List = React.forwardRef(function List(inProps, ref) {
 
   const role = roleProp ?? (menuContext || selectContext ? 'group' : undefined);
   return (
-    <RowListContext.Provider value={row}>
-      <WrapListContext.Provider value={wrap}>
-        <ComponentListContext.Provider
-          value={`${typeof component === 'string' ? component : ''}:${role || ''}`}
-        >
-          <ListRoot
-            ref={ref}
-            as={component}
-            className={clsx(classes.root, className)}
-            ownerState={ownerState}
-            role={role}
-            {...other}
-          >
-            {React.Children.map(children, (child, index) =>
-              React.isValidElement(child)
-                ? React.cloneElement(child, {
-                    // to let List(Item|ItemButton) knows when to apply margin(Inline|Block)Start
-                    ...(index === 0 && { 'data-first-child': '' }),
-                  })
-                : child,
-            )}
-          </ListRoot>
-        </ComponentListContext.Provider>
-      </WrapListContext.Provider>
-    </RowListContext.Provider>
+    <ListRoot
+      ref={ref}
+      as={component}
+      className={clsx(classes.root, className)}
+      ownerState={ownerState}
+      role={role}
+      {...other}
+    >
+      <ComponentListContext.Provider
+        value={`${typeof component === 'string' ? component : ''}:${role || ''}`}
+      >
+        <ListProvider row={row} wrap={wrap}>
+          {children}
+        </ListProvider>
+      </ComponentListContext.Provider>
+    </ListRoot>
   );
 }) as OverridableComponent<ListTypeMap>;
 
