@@ -6,7 +6,7 @@
 
 _Aug 1, 2022_
 
-A big thanks to the 12 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 14 contributors who made this release possible. Here are some highlights ✨:
 
 - 🖼️ @garronej worked on improving the support of Emotion packages in the System (#33205)
 - Many other 🐛 bug fixes, 📚 documentation, and ⚙️ infrastructure improvements
@@ -22,6 +22,15 @@ A big thanks to the 12 contributors who made this release possible. Here are som
 
 - [system] Make @emotion/\* fully supported in the System (#33205) @garronej
 
+### `@mui/codemod@5.9.3`
+
+- [codemod] Fix theme-spacing performance (#33691) @siriwatknp
+- [codemod] Support @mui import for variant-prop (#33692) @siriwatknp
+
+### `@mui/styled-engine-sc@5.9.3`
+
+- [styled-engine-sc] Add missing @babel/runtime dependency (#33741)
+
 ### `@mui/joy@5.0.0-alpha.38`
 
 - [Joy] Add Tabs components (#33664) @siriwatknp
@@ -34,6 +43,7 @@ A big thanks to the 12 contributors who made this release possible. Here are som
 - [blog] Add blog post to announce the aggregation feature (#33595) @joserodolfofreitas
 - [blog] Fix horizontal scrollbar with code snippets (#33648) @joserodolfofreitas
 - [docs] Fix a typo in the code in `Sorting & selecting` Table demo (#33674) @mracette
+- [docs] Fix en-US format in the Skeleton demo (#33699) @husseinsaad98
 - [docs] Update module reference for `usePagination` (#33675) @fullstackzach
 - [docs] Fix code examples in `styled` API vs `sx` prop docs (#33665) @ZeeshanTamboli
 - [docs][system] Throw an informative error when `theme.vars` is used in `createTheme` and mention this in the theming docs (#33619) @hbjORbj
@@ -55,7 +65,7 @@ A big thanks to the 12 contributors who made this release possible. Here are som
 - [test] Replace istanbul-instrumenter-loader with babel-plugin-istanbul (#33666) @michaldudak
 - [test] Run TypeScript module augmentation tests for Joy UI in CI (#33667) @ZeeshanTamboli
 
-All contributors of this release in alphabetical order: @danilo-leal, @fullstackzach, @garronej, @hbjORbj, @joserodolfofreitas, @michaldudak, @mnajdova, @mracette, @oliviertassinari, @samuelsycamore, @siriwatknp, @ZeeshanTamboli
+All contributors of this release in alphabetical order: @danilo-leal, @fullstackzach, @garronej, @hbjORbj, @husseinsaad98, @joserodolfofreitas, @michaldudak, @mnajdova, @MonstraG, @mracette, @oliviertassinari, @samuelsycamore, @siriwatknp, @ZeeshanTamboli
 
 ## 5.9.2
 

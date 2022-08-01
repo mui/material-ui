@@ -39,7 +39,7 @@
     "@mui/material": "^5.9.3",
     "@mui/material-next": "6.0.0-alpha.47",
     "@mui/styled-engine": "^5.8.7",
-    "@mui/styled-engine-sc": "^5.8.0",
+    "@mui/styled-engine-sc": "^5.9.3",
     "@mui/styles": "^5.9.3",
     "@mui/system": "^5.9.3",
     "@mui/types": "^7.1.5",
