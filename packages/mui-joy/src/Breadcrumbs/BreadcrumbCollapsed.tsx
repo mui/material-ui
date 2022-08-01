@@ -1,4 +1,3 @@
-import { emphasize } from '@mui/system';
 import PropTypes from 'prop-types';
 import * as React from 'react';
 import Button from '../Button';
@@ -23,8 +22,8 @@ const BreadcrumbCollapsedButton = styled(Button)<{
   },
   '&:active': {
     ...(theme.palette.mode === 'light'
-      ? { backgroundColor: emphasize(theme.palette.background.level1, 0.12) }
-      : { backgroundColor: emphasize(theme.palette.background.level3, 0.12) }),
+      ? { backgroundColor: theme.palette.background.level1 }
+      : { backgroundColor: theme.palette.background.level3 }),
   },
 }));
 
