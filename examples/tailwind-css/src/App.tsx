@@ -3,6 +3,7 @@ import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Link from '@mui/material/Link';
 import Slider from '@mui/material/Slider';
+import PopoverMenu from './PopoverMenu';
 import ProTip from './ProTip';
 
 function Copyright() {
@@ -31,6 +32,7 @@ export default function App() {
           classes={{ active: 'shadow-none' }}
           componentsProps={{ thumb: { className: 'hover:shadow-none' } }}
         />
+        <PopoverMenu />
         <ProTip />
         <Copyright />
       </div>

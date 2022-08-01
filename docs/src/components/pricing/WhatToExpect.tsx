@@ -78,11 +78,9 @@ export default function WhatToExpect() {
               </Typography>
             </Box>
             <Typography variant="body2" color="text.secondary">
-              With your purchase you receive support and access to new versions for the duration of
-              your subscription. You can{' '}
-              <Link href="https://mui.com/x/advanced-components/#support">
-                learn more about support
-              </Link>{' '}
+              With your purchase you are entitled to technical support (for MUI X components) and
+              access to new versions for the duration of your subscription. You can{' '}
+              <Link href="https://mui.com/x/introduction/support/">learn more about support</Link>{' '}
               in the docs. Note that, except for critical issues, e.g. security, we release bug
               fixes, and other improvements on top of the latest version, instead of patching older
               versions.
@@ -107,7 +105,15 @@ export default function WhatToExpect() {
               Developers contributing changes to the front-end code of a project that include the
               software need an active license. You will need to renew your subscription if you wish
               to continue active development after the end of your subscription. You can learn more
-              about it in <Link href="https://mui.com/store/legal/mui-x-eula/">the EULA</Link>.
+              about it in{' '}
+              <Link
+                target="_blank"
+                rel="noopener"
+                href="https://mui.com/store/legal/mui-x-eula/#perpetual-in-production"
+              >
+                the EULA
+              </Link>
+              .
             </Typography>
           </Paper>
         </Grid>

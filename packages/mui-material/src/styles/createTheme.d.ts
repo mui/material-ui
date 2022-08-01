@@ -9,7 +9,7 @@ import { Components } from './components';
 
 export interface ThemeOptions extends Omit<SystemThemeOptions, 'zIndex'> {
   mixins?: MixinsOptions;
-  components?: Components<BaseTheme>;
+  components?: Components<Omit<Theme, 'components'>>;
   palette?: PaletteOptions;
   shadows?: Shadows;
   transitions?: TransitionsOptions;
