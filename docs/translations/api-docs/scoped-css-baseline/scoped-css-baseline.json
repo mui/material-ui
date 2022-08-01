@@ -7,9 +7,5 @@
     "enableColorScheme": "Enable <code>color-scheme</code> CSS property to use <code>theme.palette.mode</code>. For more details, check out <a href=\"https://developer.mozilla.org/en-US/docs/Web/CSS/color-scheme\">https://developer.mozilla.org/en-US/docs/Web/CSS/color-scheme</a> For browser support, check out <a href=\"https://caniuse.com/?search=color-scheme\">https://caniuse.com/?search=color-scheme</a>",
     "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details."
   },
-  "classDescriptions": {
-    "root": {
-      "description": "Styles applied to the root element."
-    }
-  }
+  "classDescriptions": { "root": { "description": "Styles applied to the root element." } }
 }

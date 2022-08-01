@@ -13,9 +13,7 @@
     "variant": "Specify the cell type. The prop defaults to the value inherited from the parent TableHead, TableBody, or TableFooter components."
   },
   "classDescriptions": {
-    "root": {
-      "description": "Styles applied to the root element."
-    },
+    "root": { "description": "Styles applied to the root element." },
     "head": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",

@@ -11,9 +11,7 @@
     "variant": "The variant to use. Note: If you are using the <code>TextField</code> component or the <code>FormControl</code> component you do not have to set this manually."
   },
   "classDescriptions": {
-    "root": {
-      "description": "Styles applied to the root element."
-    },
+    "root": { "description": "Styles applied to the root element." },
     "filled": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",

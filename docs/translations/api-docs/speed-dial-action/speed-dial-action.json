@@ -14,10 +14,7 @@
     "tooltipTitle": "Label to display in the tooltip."
   },
   "classDescriptions": {
-    "fab": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the Fab component"
-    },
+    "fab": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the Fab component" },
     "fabClosed": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the Fab component",

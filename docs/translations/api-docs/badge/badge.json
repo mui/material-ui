@@ -17,9 +17,7 @@
     "variant": "The variant to use."
   },
   "classDescriptions": {
-    "root": {
-      "description": "Class name applied to the root element."
-    },
+    "root": { "description": "Class name applied to the root element." },
     "badge": {
       "description": "Class name applied to {{nodeName}}.",
       "nodeName": "the badge `span` element"

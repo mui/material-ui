@@ -33,9 +33,7 @@
     "value": "The value of the <code>input</code> element, required for a controlled component."
   },
   "classDescriptions": {
-    "root": {
-      "description": "Styles applied to the root element."
-    },
+    "root": { "description": "Styles applied to the root element." },
     "colorSecondary": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
@@ -80,10 +78,7 @@
       "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the NotchedOutline element"
     },
-    "input": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the input element"
-    },
+    "input": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the input element" },
     "inputSizeSmall": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the input element",

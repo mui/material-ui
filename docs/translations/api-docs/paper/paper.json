@@ -10,9 +10,7 @@
     "variant": "The variant to use."
   },
   "classDescriptions": {
-    "root": {
-      "description": "Styles applied to the root element."
-    },
+    "root": { "description": "Styles applied to the root element." },
     "rounded": {
       "description": "Styles applied to {{nodeName}} unless {{conditions}}.",
       "nodeName": "the root element",

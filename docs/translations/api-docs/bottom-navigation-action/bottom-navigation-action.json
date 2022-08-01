@@ -10,9 +10,7 @@
     "value": "You can provide your own value. Otherwise, we fallback to the child position index."
   },
   "classDescriptions": {
-    "root": {
-      "description": "Styles applied to the root element."
-    },
+    "root": { "description": "Styles applied to the root element." },
     "selected": {
       "description": "State class applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",

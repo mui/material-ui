@@ -16,9 +16,7 @@
     "variant": "The variant to use."
   },
   "classDescriptions": {
-    "root": {
-      "description": "Styles applied to the root element."
-    },
+    "root": { "description": "Styles applied to the root element." },
     "docked": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
@@ -68,9 +66,6 @@
       "nodeName": "the Paper component",
       "conditions": "<code>anchor=\"bottom\"</code> and <code>variant</code> is not \"temporary\""
     },
-    "modal": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the Modal component"
-    }
+    "modal": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the Modal component" }
   }
 }

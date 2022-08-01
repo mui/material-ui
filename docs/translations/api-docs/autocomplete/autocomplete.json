@@ -64,9 +64,7 @@
     "value": "The value of the autocomplete.<br>The value must have reference equality with the option in order to be selected. You can customize the equality behavior with the <code>isOptionEqualToValue</code> prop."
   },
   "classDescriptions": {
-    "root": {
-      "description": "Styles applied to the root element."
-    },
+    "root": { "description": "Styles applied to the root element." },
     "fullWidth": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
@@ -92,20 +90,13 @@
       "nodeName": "the tag elements",
       "conditions": "e.g. the chips if <code>size=\"medium\"</code>"
     },
-    "hasPopupIcon": {
-      "description": "Styles applied when the popup icon is rendered."
-    },
-    "hasClearIcon": {
-      "description": "Styles applied when the clear icon is rendered."
-    },
+    "hasPopupIcon": { "description": "Styles applied when the popup icon is rendered." },
+    "hasClearIcon": { "description": "Styles applied when the clear icon is rendered." },
     "inputRoot": {
       "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the Input element"
     },
-    "input": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the input element"
-    },
+    "input": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the input element" },
     "inputFocused": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the input element",

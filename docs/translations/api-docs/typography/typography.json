@@ -13,9 +13,7 @@
     "variantMapping": "The component maps the variant prop to a range of different HTML element types. For instance, subtitle1 to <code>&lt;h6&gt;</code>. If you wish to change that mapping, you can provide your own. Alternatively, you can use the <code>component</code> prop."
   },
   "classDescriptions": {
-    "root": {
-      "description": "Styles applied to the root element."
-    },
+    "root": { "description": "Styles applied to the root element." },
     "body2": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",

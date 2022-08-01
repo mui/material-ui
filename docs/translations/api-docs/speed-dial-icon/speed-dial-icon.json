@@ -7,13 +7,8 @@
     "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details."
   },
   "classDescriptions": {
-    "root": {
-      "description": "Styles applied to the root element."
-    },
-    "icon": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the icon component"
-    },
+    "root": { "description": "Styles applied to the root element." },
+    "icon": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the icon component" },
     "iconOpen": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the icon component",

@@ -14,9 +14,7 @@
     "value": "The currently selected value within the group or an array of selected values when <code>exclusive</code> is false.<br>The value must have reference equality with the option in order to be selected."
   },
   "classDescriptions": {
-    "root": {
-      "description": "Styles applied to the root element."
-    },
+    "root": { "description": "Styles applied to the root element." },
     "vertical": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
@@ -27,10 +25,7 @@
       "nodeName": "the root element",
       "conditions": "<code>disabled={true}</code>"
     },
-    "grouped": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the children"
-    },
+    "grouped": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the children" },
     "groupedHorizontal": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the children",

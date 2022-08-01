@@ -14,9 +14,7 @@
     "wrapped": "Tab labels appear in a single row. They can use a second line if needed."
   },
   "classDescriptions": {
-    "root": {
-      "description": "Styles applied to the root element."
-    },
+    "root": { "description": "Styles applied to the root element." },
     "labelIcon": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",

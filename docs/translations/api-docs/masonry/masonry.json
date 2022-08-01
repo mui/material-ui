@@ -11,9 +11,5 @@
     "spacing": "Defines the space between children. It is a factor of the theme&#39;s spacing.",
     "sx": "Allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details."
   },
-  "classDescriptions": {
-    "root": {
-      "description": "Styles applied to the root element."
-    }
-  }
+  "classDescriptions": { "root": { "description": "Styles applied to the root element." } }
 }

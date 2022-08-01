@@ -15,9 +15,7 @@
     "variant": "The variant to use."
   },
   "classDescriptions": {
-    "root": {
-      "description": "Styles applied to the root element."
-    },
+    "root": { "description": "Styles applied to the root element." },
     "page": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
@@ -94,9 +92,6 @@
       "nodeName": "the root element",
       "conditions": "<code>selected={true}</code>"
     },
-    "icon": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the icon to display"
-    }
+    "icon": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the icon to display" }
   }
 }

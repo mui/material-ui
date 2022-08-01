@@ -58,10 +58,7 @@
       "nodeName": "the tooltip (label wrapper) element",
       "conditions": "<code>arrow={true}</code>"
     },
-    "arrow": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the arrow element"
-    },
+    "arrow": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the arrow element" },
     "touch": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the tooltip (label wrapper) element",

@@ -13,9 +13,7 @@
     "titleTypographyProps": "These props will be forwarded to the title (as long as disableTypography is not <code>true</code>)."
   },
   "classDescriptions": {
-    "root": {
-      "description": "Styles applied to the root element."
-    },
+    "root": { "description": "Styles applied to the root element." },
     "avatar": {
       "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the avatar element"

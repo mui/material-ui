@@ -21,9 +21,7 @@
     "value": "The rating value."
   },
   "classDescriptions": {
-    "root": {
-      "description": "Styles applied to the root element."
-    },
+    "root": { "description": "Styles applied to the root element." },
     "sizeSmall": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
@@ -54,13 +52,8 @@
       "nodeName": "the root element",
       "conditions": "keyboard focused"
     },
-    "visuallyHidden": {
-      "description": "Visually hide an element."
-    },
-    "label": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the label elements"
-    },
+    "visuallyHidden": { "description": "Visually hide an element." },
+    "label": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the label elements" },
     "labelEmptyValueActive": {
       "description": "Styles applied to {{nodeName}} when {{conditions}}.",
       "nodeName": "the label of the \"no value\" input",

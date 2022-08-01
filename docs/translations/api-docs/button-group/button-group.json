@@ -16,9 +16,7 @@
     "variant": "The variant to use."
   },
   "classDescriptions": {
-    "root": {
-      "description": "Styles applied to the root element."
-    },
+    "root": { "description": "Styles applied to the root element." },
     "contained": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
@@ -54,10 +52,7 @@
       "nodeName": "the root element",
       "conditions": "<code>orientation=\"vertical\"</code>"
     },
-    "grouped": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the children"
-    },
+    "grouped": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the children" },
     "groupedHorizontal": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the children",

@@ -10,9 +10,7 @@
     "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details."
   },
   "classDescriptions": {
-    "root": {
-      "description": "Styles applied to the root element."
-    },
+    "root": { "description": "Styles applied to the root element." },
     "padding": {
       "description": "Styles applied to {{nodeName}} unless {{conditions}}.",
       "nodeName": "the root element",

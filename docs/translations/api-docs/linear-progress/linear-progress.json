@@ -9,9 +9,7 @@
     "variant": "The variant to use. Use indeterminate or query when there is no progress value."
   },
   "classDescriptions": {
-    "root": {
-      "description": "Styles applied to the root element."
-    },
+    "root": { "description": "Styles applied to the root element." },
     "colorPrimary": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root and bar2 element",

@@ -17,9 +17,7 @@
     "variant": "The variant to use."
   },
   "classDescriptions": {
-    "root": {
-      "description": "Styles applied to the root element."
-    },
+    "root": { "description": "Styles applied to the root element." },
     "sizeSmall": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
@@ -129,10 +127,7 @@
       "nodeName": "the avatar element",
       "conditions": "<code>color=\"secondary\"</code>"
     },
-    "icon": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the icon element"
-    },
+    "icon": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the icon element" },
     "iconSmall": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the icon element",

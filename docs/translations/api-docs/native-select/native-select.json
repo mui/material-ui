@@ -12,9 +12,7 @@
     "variant": "The variant to use."
   },
   "classDescriptions": {
-    "root": {
-      "description": "Styles applied to the root element."
-    },
+    "root": { "description": "Styles applied to the root element." },
     "select": {
       "description": "Styles applied to {{nodeName}}.",
       "nodeName": "the select component `select` class"
@@ -43,10 +41,7 @@
       "description": "State class applied to {{nodeName}}.",
       "nodeName": "the select component `disabled` class"
     },
-    "icon": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the icon component"
-    },
+    "icon": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the icon component" },
     "iconOpen": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the icon component",

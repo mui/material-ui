@@ -33,9 +33,7 @@
     "value": "The value of the <code>input</code> element, required for a controlled component."
   },
   "classDescriptions": {
-    "root": {
-      "description": "Styles applied to the root element."
-    },
+    "root": { "description": "Styles applied to the root element." },
     "formControl": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
@@ -81,10 +79,7 @@
       "nodeName": "the root element",
       "conditions": "<code>fullWidth={true}</code>"
     },
-    "input": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the input element"
-    },
+    "input": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the input element" },
     "inputSizeSmall": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the input element",

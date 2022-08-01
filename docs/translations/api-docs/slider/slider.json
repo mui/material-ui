@@ -32,9 +32,7 @@
     "valueLabelFormat": "The format function the value label&#39;s value.<br>When a function is provided, it should have the following signature:<br>- {number} value The value label&#39;s value to format - {number} index The value label&#39;s index to format"
   },
   "classDescriptions": {
-    "root": {
-      "description": "Class name applied to the root element."
-    },
+    "root": { "description": "Class name applied to the root element." },
     "marked": {
       "description": "Class name applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",

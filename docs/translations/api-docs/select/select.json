@@ -55,10 +55,7 @@
       "description": "State class applied to {{nodeName}}.",
       "nodeName": "the select component `disabled` class"
     },
-    "icon": {
-      "description": "Styles applied to {{nodeName}}.",
-      "nodeName": "the icon component"
-    },
+    "icon": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the icon component" },
     "iconOpen": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the icon component",

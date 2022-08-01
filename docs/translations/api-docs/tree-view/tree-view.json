@@ -20,9 +20,5 @@
     "selected": "Selected node ids. (Controlled) When <code>multiSelect</code> is true this takes an array of strings; when false (default) a string.",
     "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details."
   },
-  "classDescriptions": {
-    "root": {
-      "description": "Styles applied to the root element."
-    }
-  }
+  "classDescriptions": { "root": { "description": "Styles applied to the root element." } }
 }
