@@ -65,7 +65,7 @@ const StepIcon = React.forwardRef(function StepIcon(inProps, ref) {
   const ownerState = { ...props, active, completed, error };
   const classes = useUtilityClasses(ownerState);
 
-  if (typeof icon === 'number' || typeof icon === 'string') {
+  if (typeof icon === 'number' || typeof icon === 'string' || typeof icon === 'object') {
     const className = clsx(classNameProp, classes.root);
 
     if (error) {
