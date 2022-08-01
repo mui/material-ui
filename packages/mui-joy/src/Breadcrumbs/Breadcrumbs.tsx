@@ -56,17 +56,13 @@ const BreadcrumbsOl = styled('ol', {
   name: 'MuiBreadcrumbs',
   slot: 'Ol',
   overridesResolver: (props, styles) => styles.ol,
-})<{ ownerState: BreadcrumbsProps }>(({ theme, ownerState }) => {
-  return [
-    {
-      display: 'flex',
-      flexWrap: 'wrap',
-      alignItems: 'center',
-      padding: 0,
-      margin: 0,
-      listStyle: 'none',
-    },
-  ];
+})<{ ownerState: BreadcrumbsProps }>({
+  display: 'flex',
+  flexWrap: 'wrap',
+  alignItems: 'center',
+  padding: 0,
+  margin: 0,
+  listStyle: 'none',
 });
 
 const BreadcrumbsSeparator = styled('li', {
