@@ -18,7 +18,11 @@
     "onNodeSelect": "Callback fired when tree items are selected/unselected.<br><br><strong>Signature:</strong><br><code>function(event: React.SyntheticEvent, nodeIds: Array&lt;string&gt; | string) =&gt; void</code><br><em>event:</em> The event source of the callback<br><em>nodeIds:</em> Ids of the selected nodes. When <code>multiSelect</code> is true this is an array of strings; when false (default) a string.",
     "onNodeToggle": "Callback fired when tree items are expanded/collapsed.<br><br><strong>Signature:</strong><br><code>function(event: React.SyntheticEvent, nodeIds: array) =&gt; void</code><br><em>event:</em> The event source of the callback.<br><em>nodeIds:</em> The ids of the expanded nodes.",
     "selected": "Selected node ids. (Controlled) When <code>multiSelect</code> is true this takes an array of strings; when false (default) a string.",
-    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/the-sx-prop/\">`sx` page</a> for more details."
+    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details."
   },
-  "classDescriptions": { "root": { "description": "Styles applied to the root element." } }
+  "classDescriptions": {
+    "root": {
+      "description": "Styles applied to the root element."
+    }
+  }
 }

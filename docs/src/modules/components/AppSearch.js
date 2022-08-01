@@ -45,9 +45,8 @@ const SearchButton = styled('button')(({ theme }) => {
       theme.palette.mode === 'dark' ? theme.palette.primaryDark[900] : theme.palette.grey[50],
     color: theme.palette.text.secondary,
     fontSize: theme.typography.pxToRem(14),
-    border: `1px solid ${
-      theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : theme.palette.grey[200]
-    }`,
+    border: `1px solid ${theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : theme.palette.grey[200]
+      }`,
     borderRadius: 10,
     cursor: 'pointer',
     transitionProperty: 'all',
@@ -76,9 +75,8 @@ const Shortcut = styled('div')(({ theme }) => {
     fontWeight: 700,
     lineHeight: '20px',
     marginLeft: theme.spacing(0.5),
-    border: `1px solid ${
-      theme.palette.mode === 'dark' ? theme.palette.primaryDark[500] : theme.palette.grey[200]
-    }`,
+    border: `1px solid ${theme.palette.mode === 'dark' ? theme.palette.primaryDark[500] : theme.palette.grey[200]
+      }`,
     backgroundColor: theme.palette.mode === 'dark' ? theme.palette.primaryDark[800] : '#FFF',
     padding: theme.spacing(0, 0.8),
     borderRadius: 5,
@@ -126,9 +124,9 @@ const NewStartScreen = () => {
         icon: <HandymanRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
       },
       items: [
-        { name: 'Basics', href: '/system/basics/' },
+        { name: 'Overview', href: '/system/getting-started/overview/' },
         { name: 'Properties', href: '/system/properties/' },
-        { name: 'The sx prop', href: '/system/the-sx-prop/' },
+        { name: 'The sx prop', href: '/system/getting-started/the-sx-prop/' },
       ],
     },
   ];
@@ -283,7 +281,7 @@ export default function AppSearch() {
         };
       }
     }
-    return () => {};
+    return () => { };
   }, [isOpen]);
 
   const search = `${t('algoliaSearch')}…`;
@@ -433,11 +431,10 @@ export default function AppSearch() {
             },
             '& .DocSearch-Modal': {
               maxWidth: '700px',
-              boxShadow: `0px 4px 20px ${
-                theme.palette.mode === 'dark'
-                  ? alpha(theme.palette.background.paper, 0.7)
-                  : alpha(theme.palette.grey[700], 0.2)
-              }`,
+              boxShadow: `0px 4px 20px ${theme.palette.mode === 'dark'
+                ? alpha(theme.palette.background.paper, 0.7)
+                : alpha(theme.palette.grey[700], 0.2)
+                }`,
               ...(theme.palette.mode === 'dark' && {
                 border: '1px solid',
                 borderColor: theme.palette.primaryDark[700],
@@ -564,11 +561,10 @@ export default function AppSearch() {
               borderRadius: theme.shape.borderRadius,
             },
             '& .DocSearch-Hit-action, & .DocSearch-Hits mark': {
-              color: `${
-                theme.palette.mode === 'dark'
-                  ? theme.palette.primary[400]
-                  : theme.palette.primary[500]
-              }`,
+              color: `${theme.palette.mode === 'dark'
+                ? theme.palette.primary[400]
+                : theme.palette.primary[500]
+                }`,
             },
             '& .DocSearch-Footer': {
               borderTop: '1px solid',

@@ -10,12 +10,14 @@
     "selected": "If <code>true</code> the pagination item is selected.",
     "shape": "The shape of the pagination item.",
     "size": "The size of the component.",
-    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/the-sx-prop/\">`sx` page</a> for more details.",
+    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details.",
     "type": "The type of pagination item.",
     "variant": "The variant to use."
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
+    "root": {
+      "description": "Styles applied to the root element."
+    },
     "page": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
@@ -92,6 +94,9 @@
       "nodeName": "the root element",
       "conditions": "<code>selected={true}</code>"
     },
-    "icon": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the icon to display" }
+    "icon": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the icon to display"
+    }
   }
 }

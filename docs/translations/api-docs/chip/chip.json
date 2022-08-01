@@ -13,11 +13,13 @@
     "label": "The content of the component.",
     "onDelete": "Callback fired when the delete icon is clicked. If set, the delete icon will be shown.",
     "size": "The size of the component.",
-    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/the-sx-prop/\">`sx` page</a> for more details.",
+    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details.",
     "variant": "The variant to use."
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
+    "root": {
+      "description": "Styles applied to the root element."
+    },
     "sizeSmall": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
@@ -117,7 +119,10 @@
       "nodeName": "the avatar element",
       "conditions": "<code>color=\"secondary\"</code>"
     },
-    "icon": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the icon element" },
+    "icon": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the icon element"
+    },
     "iconSmall": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the icon element",

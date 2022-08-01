@@ -118,7 +118,7 @@ MUI System's core utility is the `sx` prop, which gives you a quick and efficien
 This prop provides a superset of CSS (i.e. it contains all CSS properties and selectors in addition to custom ones) that maps values directly from the theme, depending on the CSS property used.
 It also simplifies the process of defining responsive values by referring to the breakpoints defined in the theme.
 
-Visit [the `sx` prop page](/system/the-sx-prop/) for complete details.
+Visit [the `sx` prop page](/system/getting-started/the-sx-prop/) for complete details.
 
 ### Responsive demo
 

@@ -14,13 +14,15 @@
     "onClose": "Callback fired when the component requests to be closed. Typically <code>onClose</code> is used to set state in the parent component, which is used to control the <code>Snackbar</code> <code>open</code> prop. The <code>reason</code> parameter can optionally be used to control the response to <code>onClose</code>, for example ignoring <code>clickaway</code>.<br><br><strong>Signature:</strong><br><code>function(event: React.SyntheticEvent&lt;any&gt; | Event, reason: string) =&gt; void</code><br><em>event:</em> The event source of the callback.<br><em>reason:</em> Can be: <code>&quot;timeout&quot;</code> (<code>autoHideDuration</code> expired), <code>&quot;clickaway&quot;</code>, or <code>&quot;escapeKeyDown&quot;</code>.",
     "open": "If <code>true</code>, the component is shown.",
     "resumeHideDuration": "The number of milliseconds to wait before dismissing after user interaction. If <code>autoHideDuration</code> prop isn&#39;t specified, it does nothing. If <code>autoHideDuration</code> prop is specified but <code>resumeHideDuration</code> isn&#39;t, we default to <code>autoHideDuration / 2</code> ms.",
-    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/the-sx-prop/\">`sx` page</a> for more details.",
+    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details.",
     "TransitionComponent": "The component used for the transition. <a href=\"/material-ui/transitions/#transitioncomponent-prop\">Follow this guide</a> to learn more about the requirements for this component.",
     "transitionDuration": "The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object.",
     "TransitionProps": "Props applied to the transition element. By default, the element is based on this <a href=\"http://reactcommunity.org/react-transition-group/transition/\"><code>Transition</code></a> component."
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
+    "root": {
+      "description": "Styles applied to the root element."
+    },
     "anchorOriginTopCenter": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",

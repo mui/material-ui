@@ -17,11 +17,13 @@
     "precision": "The minimum increment value change allowed.",
     "readOnly": "Removes all hover effects and pointer events.",
     "size": "The size of the component.",
-    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/the-sx-prop/\">`sx` page</a> for more details.",
+    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details.",
     "value": "The rating value."
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
+    "root": {
+      "description": "Styles applied to the root element."
+    },
     "sizeSmall": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
@@ -52,8 +54,13 @@
       "nodeName": "the root element",
       "conditions": "keyboard focused"
     },
-    "visuallyHidden": { "description": "Visually hide an element." },
-    "label": { "description": "Styles applied to {{nodeName}}.", "nodeName": "the label elements" },
+    "visuallyHidden": {
+      "description": "Visually hide an element."
+    },
+    "label": {
+      "description": "Styles applied to {{nodeName}}.",
+      "nodeName": "the label elements"
+    },
     "labelEmptyValueActive": {
       "description": "Styles applied to {{nodeName}} when {{conditions}}.",
       "nodeName": "the label of the \"no value\" input",

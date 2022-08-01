@@ -6750,7 +6750,7 @@ A big thanks to the 34 contributors who made this release possible. Here are som
 
   While the source code is currently hosted in the [main repository](https://github.com/mui/material-ui), we might move it to the [x repository](https://github.com/mui/mui-x) in the future, depending on what is easier for the commercial date range picker. The date picker will stay open source no matter what.
 
-- 📚 Revamp the documentation for [the system](https://mui.com/system/basics/). The System contains CSS utilities. The documentation now promotes the use of the `sx` prop. It's ideal for adding one-off styles, e.g. padding, but when pushed to its limits, it can be used to implement quickly a complete page.
+- 📚 Revamp the documentation for [the system](https://mui.com/system/getting-started/overview/). The System contains CSS utilities. The documentation now promotes the use of the `sx` prop. It's ideal for adding one-off styles, e.g. padding, but when pushed to its limits, it can be used to implement quickly a complete page.
 - 👩‍🎨 Upgrade emotion to v11 (#23007) @mnajdova.
 - And many more 🐛 bug fixes and 📚 improvements.
 
@@ -7152,7 +7152,7 @@ Here are some highlights ✨:
   If you target IE11, you need to use the new bundle (`legacy`). We are treating IE11 as a second class-citizen, which is a continuation of the direction taken in #22873.
 
 - 🚀 Improve the internal benchmark suite (#22923, #23058) @mnajdova.
-  This was a prerequisite step to improve the [system](https://mui.com/system/basics/). We needed to be able to measure performance. After #22945, we have measured that the `Box` component is x3 faster in v5-alpha compared to v4.
+  This was a prerequisite step to improve the [system](https://mui.com/system/getting-started/overview/). We needed to be able to measure performance. After #22945, we have measured that the `Box` component is x3 faster in v5-alpha compared to v4.
 - ✏️ A new blog post: [Q3 2020 Update](https://mui.com/blog/2020-q3-update/) (#23055) @oliviertassinari.
 - 🐙 Migrate more tests to react-testing-library @deiga, @Morteza-Jenabzadeh, @nicholas-l.
 - And many more 🐛 bug fixes and 📚 improvements.
@@ -7493,7 +7493,7 @@ Here are some highlights ✨:
 
   The new styling solution saves 2kB gzipped in the bundle compared to JSS, and about 14 kB gzipped if you were already using emotion or styled-components.
 
-  Last but not least, the change allows us to take advantage dynamic style props. We will use them for dynamic color props, variant props, and new style props (an improved [system](https://mui.com/system/basics/)).
+  Last but not least, the change allows us to take advantage dynamic style props. We will use them for dynamic color props, variant props, and new style props (an improved [system](https://mui.com/system/getting-started/overview/)).
 
   This change has been in our roadmap for more than a year.
   We announced it in the [v4 release blog post](https://mui.com/blog/material-ui-v4-is-out/) as a direction v5 would take.
@@ -8746,7 +8746,7 @@ A big thanks to the 33 contributors who made this release possible. Here are som
   />
   ```
 
-- [Typography] Replace the `srOnly` prop so as to not duplicate the capabilities of [System](https://mui.com/system/basics/) (#21413) @mnajdova.
+- [Typography] Replace the `srOnly` prop so as to not duplicate the capabilities of [System](https://mui.com/system/getting-started/overview/) (#21413) @mnajdova.
 
   ```diff
   -import Typography from '@material-ui/core/Typography';

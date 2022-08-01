@@ -3,13 +3,15 @@
   "propDescriptions": {
     "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
     "color": "The color of the component. It supports both default and custom theme colors, which can be added as shown in the <a href=\"https://mui.com/material-ui/customization/palette/#adding-new-colors\">palette customization guide</a>.",
-    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/the-sx-prop/\">`sx` page</a> for more details.",
+    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details.",
     "value": "The value of the progress indicator for the determinate and buffer variants. Value between 0 and 100.",
     "valueBuffer": "The value for the buffer variant. Value between 0 and 100.",
     "variant": "The variant to use. Use indeterminate or query when there is no progress value."
   },
   "classDescriptions": {
-    "root": { "description": "Styles applied to the root element." },
+    "root": {
+      "description": "Styles applied to the root element."
+    },
     "colorPrimary": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root and bar2 element",
