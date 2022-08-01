@@ -35,7 +35,8 @@ Each component has its own unique API, but all _non-utility_ components accept t
 The `components` prop is an object that lets you override any interior subcomponents—known as **slots**—of the base component itself.
 
 :::info
-Each component contains a root slot, and other appropriate slots based on the nature of the component. For example, the `BadgeUnstyled` contains two slots:
+Each component contains a root slot, and other appropriate slots based on the nature of the component.
+For example, the `BadgeUnstyled` contains two slots:
 
 - `root`: the container element that wraps the children.
 - `badge`: the element that appears at the given position.
@@ -49,10 +50,6 @@ The code snippet below shows how to override this by assigning a `<div>` to the 
 ```jsx
 <BadgeUnstyled components={{ Root: 'div' }} />
 ```
-
-:::info
-If you are customizing a component like [`ButtonUnstyled`](/base/react-button/) that only has a root slot, you may prefer to use the more succinct `component` prop (described below) instead of `components`.
-:::
 
 ### component
 
@@ -97,8 +94,17 @@ These two examples are equivalent:
 ```
 
 :::warning
-If both `componentsProps.root` and additional props have the same keys but different values, the `componentsProps.root` props will take precedence. This does not apply to classes or the `style` prop —they will be merged instead.
+If both `componentsProps.root` and additional props have the same keys but different values, the `componentsProps.root` props will take precedence.
+This does not apply to classes or the `style` prop—they will be merged instead.
 :::
+
+### Best practices
+
+If you are customizing a component like [`ButtonUnstyled`](/base/react-button/) that only has a root slot, you may prefer to use the more succinct `component` prop instead of `components`.
+
+Overriding with `component` lets you apply the attributes of that element directly to the root.
+For instance, if you replace the `ButtonUnstyled` root with an `<li>` tag, you can add the `<li>` attribute `value` directly to the component.
+If you did the same with `components.Root`, you would need to place this attribute on the `componentsProps.root` object in order to use it.
 
 ## Components vs. hooks
 
