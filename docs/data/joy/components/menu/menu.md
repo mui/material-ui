@@ -82,6 +82,10 @@ The primary responsibility of this component is handling the focus state.
 
 {{"demo": "MenuListComposition.js"}}
 
+Or display the menu without a popup:
+
+{{"demo": "MenuListGroup.js"}}
+
 ## Debugging
 
 To keep the list box open for inspecting elements, enable the `Emulate a focused page` option from the [Chrome DevTool Rendering](https://developer.chrome.com/docs/devtools/rendering/apply-effects/#emulate-a-focused-page) tab.
