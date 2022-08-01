@@ -6,7 +6,7 @@ import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
 export default function IconButtons() {
   return (
     <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap', alignItems: 'center' }}>
-      <IconButton variant="solid">
+      <IconButton variant="solid" sx={{ '--IconButton-size': '24px' }}>
         <FavoriteBorder />
       </IconButton>
       <IconButton variant="soft">
