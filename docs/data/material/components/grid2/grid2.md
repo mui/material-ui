@@ -14,6 +14,29 @@ materialDesign: https://material.io/design/layout/understanding-layout.html
 The `Grid` component works well for a layout with a known number of columns.
 The columns can be configured with multiple breakpoints to specify the column span of each child.
 
+## What's changed
+
+We built the `Grid` component from scratch in order to:
+
+- Fix [known issues](https://github.com/mui/material-ui/pull/32746) introduced in Material UI v5.
+- Simplify the logic with CSS variables, removing the unnecessary `item` prop and reducing CSS specificity.
+- Introduce a proper fix for [preventing a scrollbar](#prevent-scrollbar) by switching between negative margin approaches.
+- Set negative margins of equal size on all sides of the grid container by default.
+
+Since the new implementation is considered a breaking change, we introduced it as `Unstable_Grid2` to gather feedbacks from the community before making it stable in the next major release of Material UI.
+
+We encourage everyone to try the new version of the `Grid` by visiting the [Grid v2 migration guide](/material-ui/migration/migration-grid-v2/).
+
+:::info
+From now on, the `Grid` v1 and `Grid` v2 refer to the import as:
+
+```js
+import Grid from '@mui/material/Grid'; // Grid version 1
+import Grid2 from '@mui/material/Unstable_Grid2'; // Grid version 2
+```
+
+:::
+
 ## How it works
 
 The grid system is implemented with the `Grid` component:
@@ -30,22 +53,6 @@ The grid system is implemented with the `Grid` component:
 :::warning
 The `Grid` component is a _layout_ grid, not a _data_ grid.
 If you need a data grid, check out [the MUI X `DataGrid` component](/x/react-data-grid/).
-:::
-
-## What's changed
-
-We built `Grid` v2 from scratch in order to:
-
-- Fix [known issues](https://github.com/mui/material-ui/pull/32746) introduced in Material UI v5.
-- Simplify the logic with CSS variables, removing the unnecessary `item` prop and reducing CSS specificity.
-- Introduce a proper fix for [preventing a scrollbar](#prevent-scrollbar) by switching between negative margin approaches.
-- Set negative margins of equal size on all sides of the grid container by default.
-
-Updating the `Grid` from v1 to v2 is a breaking change.
-Visit the [Grid v2 migration guide](/material-ui/migration/migration-grid-v2/) for more details.
-
-:::info
-In the next major release of Material UI, Grid v2 will be stable and v1 will be deprecated.
 :::
 
 ## Fluid grids

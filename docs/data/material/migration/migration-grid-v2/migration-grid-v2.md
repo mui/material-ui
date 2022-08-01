@@ -78,3 +78,7 @@ function Demo() {
   );
 }
 ```
+
+## Documentation page
+
+Check out [Grid v2 docs](/material-ui/react-grid2/#fluid-grids) for all the demos and code samples.
