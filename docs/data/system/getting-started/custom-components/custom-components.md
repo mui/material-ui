@@ -2,17 +2,21 @@
 
 <p class="description">Learn how to use MUI System with custom components.</p>
 
-## Adding the `sx` prop to your custom components
+## Using sx with custom components
 
-The `unstable_styleFunctionSx` utility adds the support for the [`sx` prop](/system/basics/#the-sx-prop) to your own components.
-Normally you would use the `Box` component from `@mui/material` at the root of your component tree.
-If you would like to use the system independently from MUI, the `unstable_styleFunctionSx` utility will give you the same capabilities, while having a smaller bundle size.
+Normally you would use the [`Box`](/system/react-box/) component at the root of your component tree in order to work with [the `sx` prop](/system/getting-started/the-sx-prop/).
+If you want to use `sx` with fully custom (non-MUI) components, you can do so with the `unstable_styleFunctionSx` utility.
+This gives you all the same capabilities, and with a smaller bundle size.
+
+The following demo shows how to implement this utility:
 
 {{"demo": "StyleFunctionSxDemo.js"}}
 
 ## Using standalone system utilities
 
-If you only need some elements of the system in your custom components, you can directly use and combine the different style functions available, and access them as component props.
-You might use this approach if you need smaller bundle size and better performance than using Box, for the price of using a subset of what the [`sx` prop](/system/basics/#the-sx-prop) supports, and a different API.
+If you only need specific style functions from the `sx` prop, you can import them individually rather than pulling in the entire package.
+This is useful if you need to optimize for the smallest bundle size possible.
+
+The demo below illustrates how this works:
 
 {{"demo": "CombiningStyleFunctionsDemo.js", "defaultCodeOpen": true}}
