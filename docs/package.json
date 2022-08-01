@@ -109,7 +109,7 @@
     "react-router-dom": "^6.3.0",
     "react-spring": "^8.0.27",
     "react-swipeable-views": "^0.14.0",
-    "react-transition-group": "^4.4.2",
+    "react-transition-group": "^4.4.5",
     "react-virtualized": "^9.22.3",
     "react-window": "^1.8.7",
     "recast": "^0.21.1",
