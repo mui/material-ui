@@ -6,7 +6,7 @@
 
 _Aug 1, 2022_
 
-A big thanks to the 14 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 15 contributors who made this release possible. Here are some highlights ✨:
 
 - 🖼️ @garronej worked on improving the support of Emotion packages in the System (#33205)
 - Many other 🐛 bug fixes, 📚 documentation, and ⚙️ infrastructure improvements
@@ -29,7 +29,7 @@ A big thanks to the 14 contributors who made this release possible. Here are som
 
 ### `@mui/styled-engine-sc@5.9.3`
 
-- [styled-engine-sc] Add missing @babel/runtime dependency (#33741)
+- [styled-engine-sc] Add missing @babel/runtime dependency (#33741) @MonstraG
 
 ### `@mui/joy@5.0.0-alpha.38`
 
@@ -50,6 +50,7 @@ A big thanks to the 14 contributors who made this release possible. Here are som
 - [website] Remove legacy redirect @oliviertassinari
 - [website] Add new legal pages (#33650) @oliviertassinari
 - [website] Clarify when a license in development is required (#33668) @oliviertassinari
+- [website] Update links to rows pages (#33739) @cherniavskii
 - [website] Update pricing table to add aggregation and row pinning (#33659) @joserodolfofreitas
 
 ### Core
@@ -65,7 +66,7 @@ A big thanks to the 14 contributors who made this release possible. Here are som
 - [test] Replace istanbul-instrumenter-loader with babel-plugin-istanbul (#33666) @michaldudak
 - [test] Run TypeScript module augmentation tests for Joy UI in CI (#33667) @ZeeshanTamboli
 
-All contributors of this release in alphabetical order: @danilo-leal, @fullstackzach, @garronej, @hbjORbj, @husseinsaad98, @joserodolfofreitas, @michaldudak, @mnajdova, @MonstraG, @mracette, @oliviertassinari, @samuelsycamore, @siriwatknp, @ZeeshanTamboli
+All contributors of this release in alphabetical order: @cherniavskii, @danilo-leal, @fullstackzach, @garronej, @hbjORbj, @husseinsaad98, @joserodolfofreitas, @michaldudak, @mnajdova, @MonstraG, @mracette, @oliviertassinari, @samuelsycamore, @siriwatknp, @ZeeshanTamboli
 
 ## 5.9.2
 
