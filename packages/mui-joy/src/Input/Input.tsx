@@ -1,10 +1,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
-import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } from '@mui/utils';
+import { unstable_capitalize as capitalize } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
 import composeClasses from '@mui/base/composeClasses';
-import { appendOwnerState } from '@mui/base/utils';
+import { useSlotProps, EventHandlers } from '@mui/base/utils';
 import { useInput, InputUnstyledOwnerState } from '@mui/base/InputUnstyled';
 import { styled, useThemeProps } from '../styles';
 import { InputTypeMap, InputProps } from './InputProps';
@@ -206,7 +205,6 @@ const Input = React.forwardRef(function Input(inProps, ref) {
     className,
     color = 'neutral',
     component,
-    components = {},
     componentsProps = {},
     defaultValue,
     disabled,
@@ -292,45 +290,46 @@ const Input = React.forwardRef(function Input(inProps, ref) {
     type,
   };
 
-  const Root = component ?? InputRoot;
-  const rootProps = appendOwnerState(
-    Root,
-    {
-      ...getRootProps({ ...other, ...componentsProps.root }),
-      className: clsx(classes.root, rootStateClasses, className, componentsProps.root?.className),
+  const rootProps = useSlotProps({
+    elementType: InputRoot,
+    getSlotProps: getRootProps,
+    externalSlotProps: componentsProps.root,
+    externalForwardedProps: other,
+    additionalProps: {
+      ref,
+      as: component,
     },
     ownerState,
-  );
+    className: [classes.root, rootStateClasses, className],
+  });
 
-  rootProps.ref = useForkRef(ref, useForkRef(rootProps.ref, componentsProps.root?.ref));
-
-  const InputComponent = components.Input ?? InputInput;
-  const inputProps = appendOwnerState(
-    InputComponent,
-    {
-      ...getInputProps({ ...componentsProps.input, ...propsToForward }),
-      className: clsx(classes.input, inputStateClasses, componentsProps.input?.className),
+  const inputProps = useSlotProps({
+    elementType: InputInput,
+    getSlotProps: (otherHandlers: EventHandlers) =>
+      getInputProps({ ...otherHandlers, ...propsToForward }),
+    externalSlotProps: componentsProps.input,
+    additionalProps: {
+      as: componentsProps.input?.component,
     },
     ownerState,
-  );
-
-  inputProps.ref = useForkRef(componentsProps.input?.ref, inputProps.ref);
+    className: [classes.input, inputStateClasses],
+  });
 
   return (
-    <Root {...rootProps}>
+    <InputRoot {...rootProps}>
       {startDecorator && (
         <InputStartDecorator className={classes.startDecorator} ownerState={ownerState}>
           {startDecorator}
         </InputStartDecorator>
       )}
 
-      <InputComponent {...inputProps} />
+      <InputInput {...inputProps} />
       {endDecorator && (
         <InputEndDecorator className={classes.endDecorator} ownerState={ownerState}>
           {endDecorator}
         </InputEndDecorator>
       )}
-    </Root>
+    </InputRoot>
   );
 }) as OverridableComponent<InputTypeMap>;
 
