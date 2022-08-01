@@ -6,7 +6,6 @@ import PropTypes from 'prop-types';
 import * as React from 'react';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
-import BreadcrumbCollapsed from './BreadcrumbCollapsed';
 import breadcrumbsClasses, { getBreadcrumbsUtilityClass } from './breadcrumbsClasses';
 import { BreadcrumbsProps, BreadcrumbsTypeMap } from './BreadcrumbsProps';
 
@@ -115,21 +114,14 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(inProps, ref) {
     component = 'nav',
     size = 'md',
     expandText = 'Show path',
-    itemsAfterCollapse = 1,
-    itemsBeforeCollapse = 1,
     separator = '/',
     ...other
   } = props;
 
-  const [expanded, setExpanded] = React.useState(false);
-
   const ownerState = {
     ...props,
     component,
-    expanded,
     expandText,
-    itemsAfterCollapse,
-    itemsBeforeCollapse,
     separator,
     size,
   };
@@ -137,32 +129,6 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(inProps, ref) {
   const classes = useUtilityClasses(ownerState);
 
   const listRef = React.useRef<HTMLOListElement>(null);
-  const renderItemsBeforeAndAfter = (allItems: React.ReactNode[]) => {
-    const handleClickExpand = () => {
-      setExpanded(true);
-
-      // The clicked element received the focus but gets removed from the DOM.
-      // Let's keep the focus in the component after expanding.
-      // Moving it to the <ol> or <nav> does not cause any announcement in NVDA.
-      // By moving it to some link/button at least we have some announcement.
-      const focusable = listRef.current?.querySelector('a[href],button,[tabindex]');
-      if (focusable) {
-        (focusable as HTMLButtonElement).focus();
-      }
-    };
-
-    // This defends against someone passing weird input, to ensure that if all
-    // items would be shown anyway, we just show all items without the EllipsisItem
-    if (itemsBeforeCollapse + itemsAfterCollapse >= allItems.length) {
-      return allItems;
-    }
-
-    return [
-      ...allItems.slice(0, itemsBeforeCollapse),
-      <BreadcrumbCollapsed aria-label={expandText} key="ellipsis" onClick={handleClickExpand} />,
-      ...allItems.slice(allItems.length - itemsAfterCollapse, allItems.length),
-    ];
-  };
 
   const allItems = React.Children.toArray(children)
     .filter((child) => {
@@ -182,12 +148,7 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(inProps, ref) {
       {...other}
     >
       <BreadcrumbsOl className={classes.ol} ref={listRef} ownerState={ownerState}>
-        {insertSeparators(
-          expanded ? allItems : renderItemsBeforeAndAfter(allItems),
-          classes.separator,
-          separator,
-          ownerState,
-        )}
+        {insertSeparators(allItems, classes.separator, separator, ownerState)}
       </BreadcrumbsOl>
     </BreadcrumbsRoot>
   );
@@ -218,16 +179,6 @@ Breadcrumbs.propTypes /* remove-proptypes */ = {
    * @default 'Show path'
    */
   expandText: PropTypes.string,
-  /**
-   * If max items is exceeded, the number of items to show after the ellipsis.
-   * @default 1
-   */
-  itemsAfterCollapse: PropTypes.number,
-  /**
-   * If max items is exceeded, the number of items to show before the ellipsis.
-   * @default 1
-   */
-  itemsBeforeCollapse: PropTypes.number,
   /**
    * Custom separator node.
    * @default '/'

@@ -20,16 +20,6 @@ export interface BreadcrumbsTypeMap<P = {}, D extends React.ElementType = 'nav'>
      */
     expandText?: string;
     /**
-     * If max items is exceeded, the number of items to show after the ellipsis.
-     * @default 1
-     */
-    itemsAfterCollapse?: number;
-    /**
-     * If max items is exceeded, the number of items to show before the ellipsis.
-     * @default 1
-     */
-    itemsBeforeCollapse?: number;
-    /**
      * Custom separator node.
      * @default '/'
      */
