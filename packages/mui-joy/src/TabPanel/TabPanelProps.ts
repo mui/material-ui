@@ -29,4 +29,5 @@ export type TabPanelProps<
 
 export type TabPanelOwnerState = TabPanelProps & {
   hidden: boolean;
+  orientation?: 'horizontal' | 'vertical';
 };

@@ -70,7 +70,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     ...other
   } = props;
 
-  const { tabsContextValue } = useTabs(props);
+  const { tabsContextValue } = useTabs({ ...props, orientation });
 
   const ownerState = {
     ...props,

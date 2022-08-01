@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
+import { useTabContext } from '@mui/base/TabsUnstyled';
 import { useTabPanel } from '@mui/base/TabPanelUnstyled';
 import { useSlotProps } from '@mui/base/utils';
 import { styled, useThemeProps } from '../styles';
@@ -25,8 +26,13 @@ const TabPanelRoot = styled('div', {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: TabPanelOwnerState }>(({ theme, ownerState }) => ({
-  display: ownerState.hidden ? 'hidden' : 'initial',
-  padding: 'var(--Tabs-gap)',
+  display: ownerState.hidden ? 'none' : 'initial',
+  ...(ownerState.orientation === 'horizontal' && {
+    paddingBlockStart: 'var(--Tabs-gap)',
+  }),
+  ...(ownerState.orientation === 'vertical' && {
+    paddingInlineStart: 'var(--Tabs-gap)',
+  }),
   ...(ownerState.size === 'sm' && {
     fontSize: theme.vars.fontSize.sm,
   }),
@@ -45,6 +51,7 @@ const TabPanel = React.forwardRef(function TabPanel(inProps, ref) {
     name: 'JoyTabPanel',
   });
 
+  const { orientation } = useTabContext() || { orientation: 'horizontal' };
   const tabsSize = React.useContext(SizeTabsContext);
 
   const { children, value, component, size: sizeProp, ...other } = props;
@@ -55,6 +62,7 @@ const TabPanel = React.forwardRef(function TabPanel(inProps, ref) {
 
   const ownerState = {
     ...props,
+    orientation,
     hidden,
     size,
   };
