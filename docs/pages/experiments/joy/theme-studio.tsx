@@ -1,9 +1,10 @@
 import * as React from 'react';
 import Script from 'next/script';
+import { unstable_capitalize as capitalize } from '@mui/utils';
 import { GlobalStyles } from '@mui/system';
 import * as mdColors from '@mui/material/colors';
-import { CssVarsProvider, extendTheme, Palette, useColorScheme } from '@mui/joy/styles';
-import type { Theme, ColorPaletteProp, VariantProp } from '@mui/joy/styles';
+import { CssVarsProvider, extendTheme, Palette, useColorScheme, useTheme } from '@mui/joy/styles';
+import type { Theme, ColorPaletteProp, VariantProp, PaletteRange } from '@mui/joy/styles';
 import Avatar from '@mui/joy/Avatar';
 import Badge from '@mui/joy/Badge';
 import Box from '@mui/joy/Box';
@@ -25,7 +26,7 @@ import Radio from '@mui/joy/Radio';
 import Switch from '@mui/joy/Switch';
 import Tabs from '@mui/joy/Tabs';
 import TabList from '@mui/joy/TabList';
-import Tab from '@mui/joy/Tab';
+import Tab, { tabClasses } from '@mui/joy/Tab';
 import TabPanel from '@mui/joy/TabPanel';
 import TextField from '@mui/joy/TextField';
 import Typography from '@mui/joy/Typography';
@@ -522,9 +523,19 @@ const filterPalette = (palette: Palette) => {
   return newPalette;
 };
 
-const ComponentsGrid = ({ focusVisible }: { focusVisible: boolean }) => {
-  const [color, setColor] = React.useState<ColorPaletteProp>('neutral');
-  const [variant, setVariant] = React.useState<VariantProp>('outlined');
+const ComponentsGrid = ({
+  focusVisible,
+  color,
+  setColor,
+  variant,
+  setVariant,
+}: {
+  focusVisible: boolean;
+  color: ColorPaletteProp;
+  setColor: (color: ColorPaletteProp) => void;
+  variant: VariantProp;
+  setVariant: (variant: VariantProp) => void;
+}) => {
   const props = { variant, color, className: focusVisible ? 'Joy-focusVisible' : '' };
   const components = [
     { name: 'Avatar', element: <Avatar {...props}>AB</Avatar> },
@@ -672,21 +683,41 @@ const ComponentsGrid = ({ focusVisible }: { focusVisible: boolean }) => {
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
           <FormLabel sx={{ mb: 0 }}>Variant: </FormLabel>
           <Select size="sm" value={variant} onChange={(val) => setVariant(val!)}>
-            <Option value="plain">plain</Option>
-            <Option value="outlined">outlined</Option>
-            <Option value="soft">soft</Option>
-            <Option value="solid">solid</Option>
+            <Option value="plain" color="neutral">
+              plain
+            </Option>
+            <Option value="outlined" color="neutral">
+              outlined
+            </Option>
+            <Option value="soft" color="neutral">
+              soft
+            </Option>
+            <Option value="solid" color="neutral">
+              solid
+            </Option>
           </Select>
         </Box>
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
           <FormLabel sx={{ mb: 0 }}>Color:</FormLabel>
           <Select size="sm" value={color} onChange={(val) => setColor(val!)}>
-            <Option value="neutral">neutral</Option>
-            <Option value="primary">primary</Option>
-            <Option value="danger">danger</Option>
-            <Option value="info">info</Option>
-            <Option value="success">success</Option>
-            <Option value="warning">warning</Option>
+            <Option value="neutral" {...(color === 'neutral' && { color: 'neutral' })}>
+              neutral
+            </Option>
+            <Option value="primary" {...(color === 'primary' && { color: 'primary' })}>
+              primary
+            </Option>
+            <Option value="danger" {...(color === 'danger' && { color: 'danger' })}>
+              danger
+            </Option>
+            <Option value="info" {...(color === 'info' && { color: 'info' })}>
+              info
+            </Option>
+            <Option value="success" {...(color === 'success' && { color: 'success' })}>
+              success
+            </Option>
+            <Option value="warning" {...(color === 'warning' && { color: 'warning' })}>
+              warning
+            </Option>
           </Select>
         </Box>
       </Box>
@@ -838,7 +869,7 @@ const PaletteInfo = ({
             sx={{
               width: 18,
               height: 18,
-              bgcolor: item[nestedKey],
+              background: item[nestedKey],
               boxShadow: '0 0 0 1px #999',
             }}
           />,
@@ -855,7 +886,7 @@ const PaletteInfo = ({
           sx={{
             width: 18,
             height: 18,
-            bgcolor: item,
+            background: item,
             boxShadow: '0 0 0 1px #999',
           }}
         />,
@@ -1028,10 +1059,119 @@ const ModuleAugmentation = ({ mode, palette }: { mode: 'light' | 'dark'; palette
   );
 };
 
+const VariantStyleForm = ({
+  variant,
+  color,
+  value,
+  onChange,
+}: {
+  variant: VariantProp;
+  color: ColorPaletteProp;
+  value: PaletteRange;
+  onChange: (token: keyof PaletteRange, value: string) => void;
+}) => {
+  const theme = useTheme();
+  const [state, setState] = React.useState('initial');
+  const bgToken = `${variant}${
+    state === 'initial' ? '' : capitalize(state)
+  }Bg` as keyof PaletteRange;
+  const borderToken = `${variant}${
+    state === 'initial' ? '' : capitalize(state)
+  }Border` as keyof PaletteRange;
+  const colorToken = `${variant}${
+    state === 'initial' ? '' : capitalize(state)
+  }Color` as keyof PaletteRange;
+  const tokens = React.useMemo(() => getColorVars(color), [color]);
+  return (
+    <React.Fragment>
+      <Tabs
+        size="sm"
+        defaultValue="initial"
+        aria-label="State"
+        onChange={(event, val) => setState(val as string)}
+        sx={{ '--Tabs-gap': '0px' }}
+      >
+        <TabList
+          variant="plain"
+          sx={{
+            borderBottom: '1px solid',
+            borderColor: 'divider',
+            borderRadius: 0,
+            alignSelf: 'flex-start',
+            [`& .${tabClasses.root}`]: {
+              bgcolor: 'transparent',
+              boxShadow: 'none',
+              '&:hover': {
+                bgcolor: 'transparent',
+              },
+              [`&.${tabClasses.selected}`]: {
+                color: 'primary.plainColor',
+                fontWeight: 'lg',
+                '&:before': {
+                  content: '""',
+                  display: 'block',
+                  position: 'absolute',
+                  zIndex: 1,
+                  bottom: '-1px',
+                  left: 'var(--List-item-paddingLeft)',
+                  right: 'var(--List-item-paddingRight)',
+                  height: '3px',
+                  borderTopLeftRadius: '3px',
+                  borderTopRightRadius: '3px',
+                  bgcolor: 'primary.500',
+                },
+              },
+            },
+          }}
+        >
+          <Tab value="initial">initial</Tab>
+          <Tab value="hover">hover</Tab>
+          <Tab value="active">active</Tab>
+          <Tab value="disabled">disabled</Tab>
+        </TabList>
+      </Tabs>
+      <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1, mt: 1.5 }}>
+        <ColorAutocomplete
+          className="demo-boundary"
+          listClassName="demo-boundary"
+          label="background:"
+          minLabelWidth={80}
+          tokens={tokens}
+          value={value[bgToken] || theme.palette[color][bgToken]}
+          onValidColor={(val) => onChange(bgToken, val)}
+          onEmptyColor={() => onChange(bgToken, '')}
+        />
+        <ColorAutocomplete
+          className="demo-boundary"
+          listClassName="demo-boundary"
+          label="border-color:"
+          minLabelWidth={80}
+          tokens={tokens}
+          value={value[borderToken] || theme.palette[color][borderToken]}
+          onValidColor={(val) => onChange(borderToken, val)}
+          onEmptyColor={() => onChange(borderToken, '')}
+        />
+        <ColorAutocomplete
+          className="demo-boundary"
+          listClassName="demo-boundary"
+          label="color:"
+          minLabelWidth={80}
+          tokens={tokens}
+          value={value[colorToken] || theme.palette[color][colorToken]}
+          onValidColor={(val) => onChange(colorToken, val)}
+          onEmptyColor={() => onChange(colorToken, '')}
+        />
+      </Box>
+    </React.Fragment>
+  );
+};
+
 export default function Playground() {
   const { script, loaded, prettify } = usePrettier();
   const [mode, setMode] = React.useState<'light' | 'dark'>('light');
   const [focusVisible, setFocusVisible] = React.useState(false);
+  const [color, setColor] = React.useState<ColorPaletteProp>('neutral');
+  const [variant, setVariant] = React.useState<VariantProp>('outlined');
   const [lightPalette, setLightPalette] = React.useState(
     filterPalette(initialTheme.colorSchemes.light.palette),
   );
@@ -1109,12 +1249,13 @@ export default function Playground() {
               size="sm"
               defaultValue={0}
               onChange={(event, index) => {
-                setFocusVisible(index === 1); // focus tab
+                setFocusVisible(index === 2); // focus tab
               }}
               sx={{ flexGrow: 1, boxShadow: 'sm', borderRadius: 'xs', p: 2, minHeight: 0 }}
             >
               <TabList>
                 <Tab>Palette</Tab>
+                <Tab>Variant</Tab>
                 <Tab>Focus</Tab>
                 {/* <Tab>Font</Tab>
                 <Tab>Radius</Tab>
@@ -1144,7 +1285,68 @@ export default function Playground() {
                   <JsonEditor value={prettify(JSON.stringify(palette))} onChange={setPalette} />
                 </Box>
               </TabPanel>
-              <TabPanel value={1}>
+              <TabPanel value={1} sx={{ overflow: 'auto' }}>
+                <Typography variant="soft" level="body3" my={1} p={1} borderRadius="xs">
+                  💡 The value must be added for both light and dark modes to work properly.
+                </Typography>
+                <Box sx={{ display: 'flex', gap: 2, my: 2 }}>
+                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
+                    <FormLabel sx={{ mb: 0 }}>Variant: </FormLabel>
+                    <Select size="sm" value={variant} onChange={(val) => setVariant(val!)}>
+                      <Option value="plain" color="neutral">
+                        plain
+                      </Option>
+                      <Option value="outlined" color="neutral">
+                        outlined
+                      </Option>
+                      <Option value="soft" color="neutral">
+                        soft
+                      </Option>
+                      <Option value="solid" color="neutral">
+                        solid
+                      </Option>
+                    </Select>
+                  </Box>
+                  <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
+                    <FormLabel sx={{ mb: 0 }}>Color:</FormLabel>
+                    <Select size="sm" value={color} onChange={(val) => setColor(val!)}>
+                      <Option value="neutral" {...(color === 'neutral' && { color: 'neutral' })}>
+                        neutral
+                      </Option>
+                      <Option value="primary" {...(color === 'primary' && { color: 'primary' })}>
+                        primary
+                      </Option>
+                      <Option value="danger" {...(color === 'danger' && { color: 'danger' })}>
+                        danger
+                      </Option>
+                      <Option value="info" {...(color === 'info' && { color: 'info' })}>
+                        info
+                      </Option>
+                      <Option value="success" {...(color === 'success' && { color: 'success' })}>
+                        success
+                      </Option>
+                      <Option value="warning" {...(color === 'warning' && { color: 'warning' })}>
+                        warning
+                      </Option>
+                    </Select>
+                  </Box>
+                </Box>
+                <VariantStyleForm
+                  color={color}
+                  variant={variant}
+                  value={palette[color]}
+                  onChange={(token, value) =>
+                    setPalette((latestPalette) => ({
+                      ...latestPalette,
+                      [color]: {
+                        ...latestPalette[color],
+                        [token]: value,
+                      },
+                    }))
+                  }
+                />
+              </TabPanel>
+              <TabPanel value={2}>
                 <FocusEditor mode={mode} value={focus} onChange={setFocus} />
               </TabPanel>
             </Tabs>
@@ -1165,7 +1367,13 @@ export default function Playground() {
               </TabList>
               <Canvas mode={mode} {...(extendedTheme && { theme: extendedTheme })}>
                 <TabPanel value={0}>
-                  <ComponentsGrid focusVisible={focusVisible} />
+                  <ComponentsGrid
+                    focusVisible={focusVisible}
+                    color={color}
+                    setColor={setColor}
+                    variant={variant}
+                    setVariant={setVariant}
+                  />
                 </TabPanel>
                 <TabPanel value={1}>
                   <ModuleAugmentation mode={mode} palette={palette} />

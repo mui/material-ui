@@ -18,7 +18,7 @@ interface TypingInfo {
 export const getNewPalettes = (defaultPalette: any, customPalette: Palette) => {
   const result: TypingInfo[] = [];
   Object.entries(customPalette).forEach(([mainKey, nestedPalette]) => {
-    if (typeof nestedPalette === 'string') {
+    if (typeof nestedPalette === 'string' && !!nestedPalette) {
       if (defaultPalette[mainKey] === undefined) {
         result.push({
           parentInterface: 'Palette',
@@ -26,10 +26,11 @@ export const getNewPalettes = (defaultPalette: any, customPalette: Palette) => {
         });
       }
     } else if (
+      typeof nestedPalette !== 'string' &&
       mainKey.match(/(primary|neutral|danger|info|success|warning|common|text|background)/)
     ) {
       Object.keys(nestedPalette).forEach((nestedKey) => {
-        if (defaultPalette[mainKey][nestedKey] === undefined) {
+        if (defaultPalette[mainKey][nestedKey] === undefined && !!nestedPalette[nestedKey]) {
           result.push({
             parentInterface: `Palette${capitalize(mainKey)}`,
             value: `${nestedKey}:string;`,

@@ -57,4 +57,11 @@ describe('themeUtils', () => {
       },
     ]);
   });
+
+  it('should not create new token if value is empty', () => {
+    expect(getNewPalettes({}, { newToken: '' })).to.deep.equal([]);
+    expect(
+      getNewPalettes({ primary: { 50: '#ff525' } }, { primary: { 50: '#ff5252', 1000: '' } }),
+    ).to.deep.equal([]);
+  });
 });
