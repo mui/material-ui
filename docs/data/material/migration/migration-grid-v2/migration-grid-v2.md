@@ -6,15 +6,15 @@
 
 Grid v2 has several new feature and many improvements over the original:
 
-- Grid v2 uses CSS variables which remove CSS specificity from class selectors. 
-Now you can use `sx` prop on the Grid to control any style you'd like.
+- Grid v2 uses CSS variables which remove CSS specificity from class selectors.
+  Now you can use `sx` prop on the Grid to control any style you'd like.
 - All grids are considered items without specifying the `item` prop.
 - The long-awaited [offset feature](/material-ui/react-grid2/#offset) gives you more flexibility for positioning.
 - [Nested grids](/material-ui/react-grid2/#nested-grid) now have no depth limitation.
 - The `disableEqualOverflow` flag disables the horizontal scrollbar in smaller viewports.
 
 :::info
-Grid v2 is currently considered `Unstable_` as we give the community time to try it out and offer feedback. 
+Grid v2 is currently considered `Unstable_` as we give the community time to try it out and offer feedback.
 We will make it stable and deprecate v1 in the next major release of Material UI.
 :::
 
@@ -26,9 +26,7 @@ The Grid v2 is introduced in Material UI v5, so you have to follow the [Material
 
 The migration is expected to be smooth since most of the APIs remains the same. However, there is one breaking change that we want to clarify:
 
-:::warning
 The default implementation of the negative margin in Grid v2 is spread equally on all sides (same as the Grid in Material UI v4).
-:::
 
 {{"demo": "GridsDiff.js", "bg": true, "hideToolbar": true}}
 
