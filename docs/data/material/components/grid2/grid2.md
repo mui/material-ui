@@ -257,5 +257,6 @@ It cannot wrap other elements.
 
 The column width (`xs`, ..., `xl`) and offset props are _not_ supported within containers that use `direction="column"` or `direction="column-reverse"`.
 
-They define the number of grids the component will use for a given breakpoint. They are intended to control **width** using `flex-basis` in `row` containers but they will impact height in `column` containers.
+Size and offset props define the number of columns the component will use for a given breakpoint. 
+They are intended to control the width using `flex-basis` in `row` containers, but they will impact the height in `column` containers.
 If used, these props may have undesirable effects on the height of the `Grid` item elements.
