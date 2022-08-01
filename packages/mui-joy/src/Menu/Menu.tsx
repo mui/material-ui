@@ -35,6 +35,7 @@ const MenuRoot = styled(ListRoot, {
   const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];
   return {
     boxShadow: theme.vars.shadow.md,
+    overflow: 'auto',
     zIndex: 1000,
     ...(!variantStyle.backgroundColor && {
       backgroundColor: theme.vars.palette.background.surface,
@@ -44,6 +45,7 @@ const MenuRoot = styled(ListRoot, {
       variantStyle?.backgroundColor ||
       variantStyle?.background ||
       theme.vars.palette.background.surface, // for sticky List
+    '--List-item-stickyTop': 'calc(var(--List-padding, var(--List-divider-gap)) * -1)', // negative amount of the List's padding block
   };
 });
 

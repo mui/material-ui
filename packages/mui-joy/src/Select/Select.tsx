@@ -199,6 +199,7 @@ const SelectListbox = styled(ListRoot, {
       variantStyle?.backgroundColor ||
       variantStyle?.background ||
       theme.vars.palette.background.surface, // for sticky List
+    '--List-item-stickyTop': 'calc(var(--List-padding, var(--List-divider-gap)) * -1)', // negative amount of the List's padding block
   };
 });
 

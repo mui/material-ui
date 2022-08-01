@@ -98,7 +98,7 @@ const ListItemRoot = styled('li', {
     fontFamily: theme.vars.fontFamily.body,
     ...(ownerState.sticky && {
       position: 'sticky',
-      top: 0,
+      top: 'var(--List-item-stickyTop, 0px)', // integration with Menu and Select.
       zIndex: 1,
       background: 'var(--List-item-stickyBackground)',
     }),
