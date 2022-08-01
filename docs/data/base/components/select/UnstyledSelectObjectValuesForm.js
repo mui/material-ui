@@ -123,6 +123,34 @@ const StyledPopper = styled(PopperUnstyled)`
   z-index: 1;
 `;
 
+const Header = styled('h1')(
+  ({ theme }) => `
+  font-family: IBM Plex Sans, sans-serif;
+  font-size: 1rem;
+  margin: 10px 0;
+  font-weight: 400;
+  color: ${theme.palette.mode === 'dark' ? grey[400] : grey[700]};
+  `,
+);
+
+const Button = styled('button')`
+  font-family: IBM Plex Sans, sans-serif;
+  font-weight: bold;
+  font-size: 0.875rem;
+  background-color: ${blue[500]};
+  padding: 12px 24px;
+  border-radius: 8px;
+  color: white;
+  transition: all 150ms ease;
+  cursor: pointer;
+  border: none;
+  vertical-align: middle;
+
+  &:hover {
+    background-color: ${blue[600]};
+  }
+`;
+
 function CustomSelect(props) {
   const components = {
     Root: StyledButton,
@@ -158,17 +186,36 @@ const characters = [
 export default function UnstyledSelectObjectValues() {
   const [character, setCharacter] = React.useState(characters[0]);
 
-  const formValueProvider = (option) => option?.value?.name ?? '';
+  const formValueProvider = (option) => {
+    if (option?.value == null) {
+      return '';
+    }
+
+    return `${option.value.race}.${option.value.name}`;
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
-    const formProps = Object.fromEntries(formData);
-    console.log(formProps);
+    alert(`character=${formData.get('character')}`);
   };
 
   return (
     <div>
+      <Header>Default behavior</Header>
+      <form onSubmit={handleSubmit}>
+        <CustomSelect value={character} onChange={setCharacter} name="character">
+          {characters.map((c) => (
+            <StyledOption key={c.name} value={c}>
+              {c.name}
+            </StyledOption>
+          ))}
+        </CustomSelect>
+
+        <Button type="submit">Submit</Button>
+      </form>
+
+      <Header>Custom formValueProvider</Header>
       <form onSubmit={handleSubmit}>
         <CustomSelect
           value={character}
@@ -183,7 +230,7 @@ export default function UnstyledSelectObjectValues() {
           ))}
         </CustomSelect>
 
-        <button type="submit">Submit</button>
+        <Button type="submit">Submit</Button>
       </form>
     </div>
   );
