@@ -12,16 +12,13 @@ unstyled: /base/react-menu/
 
 ## Introduction
 
-A menu displays a list of choices on a temporary surface.
-It appears when the user interacts with a button, or other type of control.
-
-{{"demo": "MenuUsage.js", "hideToolbar": true}}
-
 Joy UI provides three menu-related components:
 
 - `Menu`: A listbox popup for wrapping the menu items which reuses the styles from [`List`](/joy-ui/react-list/).
 - `MenuItem`: A menu item which reuses the styles from [`ListItemButton`](/joy-ui/react-list/).
 - `MenuList`: A standalone listbox for composition usage. It also reuses the styles from [`List`](/joy-ui/react-list/).
+
+{{"demo": "MenuUsage.js", "hideToolbar": true}}
 
 ## Component
 
@@ -80,6 +77,11 @@ You can use it to compose any popup-alike component.
 The primary responsibility of this component is handling the focus state.
 
 {{"demo": "MenuListComposition.js"}}
+
+## Debugging
+
+To keep the list box open for inspecting elements, enable the `Emulate a focused page` option from the [Chrome DevTool Rendering](https://developer.chrome.com/docs/devtools/rendering/apply-effects/#emulate-a-focused-page) tab.
+You can also access this option by using [command menu and search for it](https://developer.chrome.com/docs/devtools/command-menu/).
 
 ## Common examples
 

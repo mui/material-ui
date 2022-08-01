@@ -34,9 +34,8 @@ const ImageListItemRoot = styled('li', {
     ];
   },
 })(({ ownerState }) => ({
-  display: 'inline-block',
+  display: 'block',
   position: 'relative',
-  lineHeight: 0, // 🤷🏻‍♂️Fixes masonry item gap
   ...(ownerState.variant === 'standard' && {
     // For titlebar under list item
     display: 'flex',
@@ -53,6 +52,7 @@ const ImageListItemRoot = styled('li', {
     objectFit: 'cover',
     width: '100%',
     height: '100%',
+    display: 'block',
     ...(ownerState.variant === 'standard' && {
       height: 'auto',
       flexGrow: 1,
