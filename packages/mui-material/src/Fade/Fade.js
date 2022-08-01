@@ -53,8 +53,9 @@ const Fade = React.forwardRef(function Fade(props, ref) {
   const normalizedTransitionCallback = (callback) => (maybeIsAppearing) => {
     if (callback) {
       const node = nodeRef.current;
-      if (node === null) {// Prevent error thrown in Safari with low battery level
-        return
+      if (node === null) {
+        // Prevent error thrown in Safari with low battery level
+        return;
       }
 
       // onEnterXxx and onExitXxx callbacks have a different arguments.length value.
