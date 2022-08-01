@@ -70,6 +70,10 @@ For example, this is how you'd go for displaying the menu on the bottom-end of t
 
 {{"demo": "PositionedMenu.js"}}
 
+### Group menus
+
+{{"demo": "GroupMenu.js"}}
+
 ### `MenuList` composition
 
 To get full control of the DOM structure, use the `MenuList` component.
