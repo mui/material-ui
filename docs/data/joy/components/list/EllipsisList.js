@@ -15,7 +15,7 @@ export default function EllipsisList() {
         level="body4"
         textTransform="uppercase"
         fontWeight="xl"
-        mb={2}
+        mb={1}
         sx={{ letterSpacing: '0.15rem' }}
       >
         Inbox

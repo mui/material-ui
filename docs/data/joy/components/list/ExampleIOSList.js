@@ -18,7 +18,13 @@ import Podcasts from '@mui/icons-material/Podcasts';
 export default function ExampleIOSList() {
   return (
     <Sheet variant="soft" sx={{ width: 343, p: 2, borderRadius: 'sm' }}>
-      <Typography level="h3" fontSize="xl2" fontWeight="xl" id="ios-example-demo">
+      <Typography
+        level="h3"
+        fontSize="xl2"
+        fontWeight="xl"
+        id="ios-example-demo"
+        mb={1}
+      >
         Settings
       </Typography>
       <List

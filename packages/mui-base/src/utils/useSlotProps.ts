@@ -66,7 +66,7 @@ export default function useSlotProps<
     ElementType,
     SlotProps,
     object,
-    WithCommonProps<object>,
+    WithCommonProps<Record<string, any>>,
     AdditionalProps,
     OwnerState
   >,

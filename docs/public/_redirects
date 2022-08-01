@@ -363,7 +363,6 @@ https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 /pt/material/* /pt/material-ui/:splat 301
 /zh/blog/* /blog/:splat 301
 /pt/blog/* /blog/:splat 301
-/legal/mui-x-eula/ /store/legal/mui-x-eula/ 301
 /:lang/size-snapshot/ /size-snapshot/ 301
 /joy-ui/customization/themed-tokens/ /joy-ui/customization/themed-components/ 301
 /:lang/joy-ui/customization/one-off-styling/ /:lang/joy-ui/customization/approaches/#one-off-customization 301
@@ -385,20 +384,21 @@ https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 # Proxies
 
 ## MUI Store
-/store/* https://mui-store.netlify.app/:splat 200
-/store-staging/* https://master--mui-store.netlify.app/:splat 200
+/store-asset/* https://mui-store.netlify.app/:splat 200
+/legal/* https://mui-store.netlify.app/legal/:splat 200
+/store/* https://mui-store.netlify.app/store/:splat 200
 
 ## MUI X
 ## Unlike the store that expect to be hosted under a subfolder,
 ## MUI X is configured to be hosted at the root.
-/_next/* https://material-ui-x.netlify.app/_next/:splat 200
 /static/x/* https://material-ui-x.netlify.app/static/x/:splat 200
+/x/_next/* https://material-ui-x.netlify.app/_next/:splat 200
 /x/* https://material-ui-x.netlify.app/x/:splat 200
 /r/x-* https://material-ui-x.netlify.app/r/x-:splat 200
 /:lang/x/* https://material-ui-x.netlify.app/:lang/x/:splat 200
 
 ## MUI Toolpad
-/_next/* https://mui-toolpad-docs.netlify.app/_next/:splat 200
 /static/toolpad/* https://mui-toolpad-docs.netlify.app/static/toolpad/:splat 200
+/toolpad/_next/* https://mui-toolpad-docs.netlify.app/_next/:splat 200
 /toolpad/* https://mui-toolpad-docs.netlify.app/toolpad/:splat 200
 /r/toolpad-* https://mui-toolpad-docs.netlify.app/r/toolpad-:splat 200
