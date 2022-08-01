@@ -4,7 +4,7 @@ import {
   demos,
   docs,
   demoComponents,
-} from 'docs/data/system/getting-started/advanced/advanced.md?@mui/markdown';
+} from 'docs/data/system/getting-started/custom-components/custom-components.md?@mui/markdown';
 
 export default function Page() {
   return <MarkdownDocs demos={demos} docs={docs} demoComponents={demoComponents} />;

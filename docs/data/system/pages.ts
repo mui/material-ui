@@ -9,7 +9,7 @@ const pages = [
       { pathname: '/system/getting-started/installation' },
       { pathname: '/system/getting-started/usage' },
       { pathname: '/system/getting-started/the-sx-prop' },
-      { pathname: '/system/getting-started/advanced' },
+      { pathname: '/system/getting-started/custom-components' },
     ],
   },
   {

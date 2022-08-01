@@ -1,6 +1,6 @@
-# Advanced
+# Custom components
 
-<p class="description">Here you can find examples of how you can use the system in your custom components.</p>
+<p class="description">Learn how to use MUI System with custom components.</p>
 
 ## Adding the `sx` prop to your custom components
 
