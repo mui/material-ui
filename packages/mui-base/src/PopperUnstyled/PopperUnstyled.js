@@ -258,6 +258,7 @@ const PopperUnstyled = React.forwardRef(function PopperUnstyled(props, ref) {
           // Fix Popper.js display issue
           top: 0,
           left: 0,
+          zIndex: 1,
           display: !open && keepMounted && (!transition || exited) ? 'none' : null,
           ...style,
         }}
