@@ -73,6 +73,7 @@ const RadioRoot = styled('span', {
       minWidth: 0,
       fontFamily: theme.vars.fontFamily.body,
       lineHeight: 'var(--Radio-size)', // prevent label from having larger height than the checkbox
+      color: theme.vars.palette.text.primary,
       [`&.${radioClasses.disabled}`]: {
         color: theme.vars.palette[ownerState.color!]?.plainDisabledColor,
       },
