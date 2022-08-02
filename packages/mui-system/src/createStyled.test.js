@@ -324,16 +324,6 @@ describe('createStyled', () => {
       expect(container.firstChild).to.have.attribute('href', '/');
     });
 
-    it('can use `as` prop from styled', () => {
-      const styled = createStyled({});
-      const Button = styled('button')({});
-
-      const { container } = render(<Button as="a" href="/" />);
-
-      expect(container.firstChild).to.have.tagName('a');
-      expect(container.firstChild).to.have.attribute('href', '/');
-    });
-
     it('able to pass props to `as` styled component', () => {
       const styled = createStyled({});
       const ChildRoot = styled('div')({});
