@@ -40,7 +40,15 @@ const theme = createTheme({
 });
 ```
 
-如果您使用的是 TypeScript，您还需要使用 [module augmentation](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation) 来让主题接受上述值。
+**WARNING**: `vars` is a private field used for CSS variables support. It will throw an error if you try to use it:
+
+```jsx
+createTheme({
+  vars: { ... },
+})
+```
+
+If you are using TypeScript, you would also need to use [module augmentation](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation) for the theme to accept the above values.
 
 ```tsx
 declare module '@mui/material/styles' {
@@ -49,7 +57,7 @@ declare module '@mui/material/styles' {
       danger: string;
     };
   }
-  // 允许配置文件使用 `createTheme`
+  // allow configuration using `createTheme`
   interface ThemeOptions {
     status?: {
       danger?: string;
@@ -66,7 +74,7 @@ declare module '@mui/material/styles' {
   <source src="/static/studies.mp4" type="video/mp4" >
 </video>
 
-社区中有一些强大的工具来帮您构建主题：
+The community has built great tools to build a theme:
 
 - [mui-theme-creator](https://bareynol.github.io/mui-theme-creator/)：一个帮助设计和定制 MUI 组件库主题的工具。 这其中包括基本的网站模板，并且展示各种组件以及它们如何受到主题的影响
 - [Material 调色板生成器](https://material.io/inline-tools/color/)：您可以在 Material 调色板生成器中输入的任何颜色，它将帮您生成一系列的颜色组合。
@@ -90,7 +98,7 @@ function DeepChild() {
 
 {{"demo": "ThemeNesting.js"}}
 
-内部主题将 **覆盖** 外部主题。 你可以提供一个函数来扩展外层主题：
+The inner theme will **override** the outer theme. You can extend the outer theme by providing a function:
 
 {{"demo": "ThemeNestingExtend.js"}}
 
@@ -98,7 +106,7 @@ function DeepChild() {
 
 ### `createTheme(options, ...args) => theme`
 
-根据接收的选项生成样式。 Then, pass it as a prop to [`ThemeProvider`](#themeprovider).
+Generate a theme base on the options received. Then, pass it as a prop to [`ThemeProvider`](#themeprovider).
 
 #### 参数
 
@@ -164,6 +172,8 @@ theme = createTheme(theme, {
 ```
 
 Think of creating a theme as a two-step composition process: first, you define the basic design options; then, you'll use these design options to compose other options.
+
+**WARNING**: `theme.vars` is a private field used for CSS variables support. Please use another name for a custom object.
 
 ### `responsiveFontSizes(theme, options) => theme`
 
