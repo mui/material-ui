@@ -19,6 +19,11 @@ export const scopedVariables = {
   '--NestedList-marginRight': '0px',
   '--NestedList-marginLeft': '0px',
   '--NestedList-item-paddingLeft': 'var(--List-item-paddingX)',
+  // reset ListItem, ListItemButton negative margin (caused by NestedListItem)
+  '--List-itemButton-marginBlock': '0px',
+  '--List-itemButton-marginInline': '0px',
+  '--List-item-marginBlock': '0px',
+  '--List-item-marginInline': '0px',
 };
 
 export interface ListProviderProps {
