@@ -73,6 +73,21 @@ describe('createStyled', () => {
 
       expect(spySx.callCount).to.equal(2); // React 18 renders twice in strict mode.
     });
+
+    it('both child and parent still accept `sx` prop', () => {
+      const styled = createStyled();
+      const Child = styled('div')({});
+      const Parent = styled(Child)({});
+
+      const { container } = render(
+        <React.Fragment>
+          <Parent sx={{ color: 'blue' }} />
+          <Child sx={{ color: 'red' }} />
+        </React.Fragment>,
+      );
+      expect(container.firstChild).toHaveComputedStyle({ color: 'blue' });
+      expect(container.lastChild).toHaveComputedStyle({ color: 'red' });
+    });
   });
 
   describe('styles', () => {
