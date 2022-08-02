@@ -14,7 +14,7 @@ import ComponentListContext from './ComponentListContext';
 import ListProvider from './ListProvider';
 
 const useUtilityClasses = (ownerState: ListProps & { nesting: boolean }) => {
-  const { variant, color, size, nesting, row, scoped } = ownerState;
+  const { variant, color, size, nesting, row } = ownerState;
   const slots = {
     root: [
       'root',
@@ -23,7 +23,6 @@ const useUtilityClasses = (ownerState: ListProps & { nesting: boolean }) => {
       size && `size${capitalize(size)}`,
       nesting && 'nesting',
       row && 'row',
-      scoped && 'scoped',
     ],
   };
 
@@ -73,23 +72,22 @@ export const ListRoot = styled('ul', {
       return {};
     }
     return [
-      ownerState.nesting &&
-        !ownerState.scoped && {
-          // instanceSize is the specified size of the rendered element <List size="sm" />
-          // only apply size variables if instanceSize is provided so that the variables can be pass down to children by default.
-          ...applySizeVars(ownerState.instanceSize),
-          '--List-item-paddingRight': 'var(--List-item-paddingX)',
-          '--List-item-paddingLeft': 'var(--NestedList-item-paddingLeft)',
-          // reset ListItem, ListItemButton negative margin (caused by NestedListItem)
-          '--List-itemButton-marginBlock': '0px',
-          '--List-itemButton-marginInline': '0px',
-          '--List-item-marginBlock': '0px',
-          '--List-item-marginInline': '0px',
-          padding: 0,
-          marginInlineStart: 'var(--NestedList-marginLeft)',
-          marginInlineEnd: 'var(--NestedList-marginRight)',
-          marginBlockStart: 'var(--List-gap)',
-        },
+      ownerState.nesting && {
+        // instanceSize is the specified size of the rendered element <List size="sm" />
+        // only apply size variables if instanceSize is provided so that the variables can be pass down to children by default.
+        ...applySizeVars(ownerState.instanceSize),
+        '--List-item-paddingRight': 'var(--List-item-paddingX)',
+        '--List-item-paddingLeft': 'var(--NestedList-item-paddingLeft)',
+        // reset ListItem, ListItemButton negative margin (caused by NestedListItem)
+        '--List-itemButton-marginBlock': '0px',
+        '--List-itemButton-marginInline': '0px',
+        '--List-item-marginBlock': '0px',
+        '--List-item-marginInline': '0px',
+        padding: 0,
+        marginInlineStart: 'var(--NestedList-marginLeft)',
+        marginInlineEnd: 'var(--NestedList-marginRight)',
+        marginBlockStart: 'var(--List-gap)',
+      },
       !ownerState.nesting && {
         ...applySizeVars(ownerState.size),
         '--List-gap': '0px',
@@ -97,12 +95,6 @@ export const ListRoot = styled('ul', {
         '--List-nestedInsetStart': '0px',
         '--List-item-paddingLeft': 'var(--List-item-paddingX)',
         '--List-item-paddingRight': 'var(--List-item-paddingX)',
-        ...(ownerState.scoped && {
-          '--List-itemButton-marginBlock': '0px',
-          '--List-itemButton-marginInline': '0px',
-          '--List-item-marginBlock': '0px',
-          '--List-item-marginInline': '0px',
-        }),
         '--internal-child-radius':
           'max(var(--List-radius, 0px) - var(--List-padding), min(var(--List-padding) / 2, var(--List-radius, 0px) / 2))',
         // If --List-padding is 0, the --List-item-radius will be 0.
@@ -162,7 +154,6 @@ const List = React.forwardRef(function List(inProps, ref) {
     size = 'md',
     row = false,
     wrap = false,
-    scoped = false,
     variant = 'plain',
     color = 'neutral',
     role: roleProp,
@@ -173,7 +164,6 @@ const List = React.forwardRef(function List(inProps, ref) {
     instanceSize: inProps.size,
     size,
     nesting,
-    scoped,
     row,
     wrap,
     variant,
@@ -239,12 +229,6 @@ List.propTypes /* remove-proptypes */ = {
    * @default false
    */
   row: PropTypes.bool,
-  /**
-   * If `true`, this list creates new list CSS variables scope to prevent the children from inheriting variables from the upper parent.
-   * This props is used in the listbox of Menu, Select.
-   * @default false
-   */
-  scoped: PropTypes.bool,
   /**
    * The size of the component (affect other nested list* components).
    * @default 'md'
