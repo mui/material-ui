@@ -168,6 +168,7 @@ export default function createStyled(input = {}) {
       if (!skipSx) {
         expressionsWithDefaultTheme.push((props) => {
           if (skipSx) {
+            // Prevent uncessary styles if the Component is recreated with `styled`.
             return null;
           }
           const theme = isEmpty(props.theme) ? defaultTheme : props.theme;
@@ -198,6 +199,7 @@ export default function createStyled(input = {}) {
       const Component = defaultStyledResolver(transformedStyleArg, ...expressionsWithDefaultTheme);
       Component.__mui_real = Component;
       Component.__skipSx = () => {
+        // When the Component is wrapped with `styled`, it calls this function to ignore the `sx` created by the first styled component.
         skipSx = true;
       };
 
