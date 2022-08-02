@@ -233,8 +233,8 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
     onFocus,
     onFocusVisible,
     required,
-    color: colorProp,
-    variant: variantProp = 'outlined',
+    color,
+    variant = 'outlined',
     size: sizeProp = 'md',
     uncheckedIcon,
     value,
@@ -242,10 +242,8 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
   } = props;
   const id = useId(idOverride);
   const radioGroup = React.useContext(RadioGroupContext);
-  const color = inProps.color || radioGroup.color || colorProp;
   const activeColor = color || 'primary';
   const inactiveColor = color || 'neutral';
-  const variant = inProps.variant || radioGroup.variant || variantProp;
   const size = inProps.size || radioGroup.size || sizeProp;
   const name = inProps.name || radioGroup.name || nameProp;
   const disableIcon = inProps.disableIcon || radioGroup.disableIcon || disableIconProp;
