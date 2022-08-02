@@ -31,7 +31,7 @@ const SnackbarContentRoot = styled(Paper, {
   return {
     ...theme.typography.body2,
     color: theme.vars
-      ? theme.vars.palette.text.primary
+      ? theme.vars.palette.SnackbarContent.color
       : theme.palette.getContrastText(backgroundColor),
     backgroundColor: theme.vars ? theme.vars.palette.SnackbarContent.bg : backgroundColor,
     display: 'flex',

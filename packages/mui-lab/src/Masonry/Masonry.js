@@ -50,7 +50,7 @@ export const getStyle = ({ ownerState, theme }) => {
   // Only applicable for Server-Side Rendering
   if (ownerState.isSSR) {
     const orderStyleSSR = {};
-    const defaultSpacing = Number(theme.spacing(ownerState.defaultSpacing).replace('px', ''));
+    const defaultSpacing = parseToNumber(theme.spacing(ownerState.defaultSpacing));
     for (let i = 1; i <= ownerState.defaultColumns; i += 1) {
       orderStyleSSR[
         `&:nth-of-type(${ownerState.defaultColumns}n+${i % ownerState.defaultColumns})`
@@ -80,15 +80,28 @@ export const getStyle = ({ ownerState, theme }) => {
 
   const transformer = createUnarySpacing(theme);
   const spacingStyleFromPropValue = (propValue) => {
-    const themeSpacingValue = Number(propValue);
-    const spacing = Number(getValue(transformer, themeSpacingValue).replace('px', ''));
+    let spacing;
+    // in case of string/number value
+    if (
+      (typeof propValue === 'string' && !Number.isNaN(Number(propValue))) ||
+      typeof propValue === 'number'
+    ) {
+      const themeSpacingValue = Number(propValue);
+      spacing = getValue(transformer, themeSpacingValue);
+    } else {
+      spacing = propValue;
+    }
+
     return {
-      margin: -(spacing / 2),
+      margin: `calc(0px - (${spacing} / 2))`,
       '& > *': {
-        margin: spacing / 2,
+        margin: `calc(${spacing} / 2)`,
       },
       ...(ownerState.maxColumnHeight && {
-        height: Math.ceil(ownerState.maxColumnHeight + spacing),
+        height:
+          typeof spacing === 'number'
+            ? Math.ceil(ownerState.maxColumnHeight + parseToNumber(spacing))
+            : `calc(${ownerState.maxColumnHeight}px + ${spacing})`,
       }),
     };
   };
@@ -107,7 +120,10 @@ export const getStyle = ({ ownerState, theme }) => {
     const columnValue = Number(propValue);
     const width = `${(100 / columnValue).toFixed(2)}%`;
     const spacing =
-      typeof spacingValues !== 'object' ? getValue(transformer, Number(spacingValues)) : '0px';
+      (typeof spacingValues === 'string' && !Number.isNaN(Number(spacingValues))) ||
+      typeof spacingValues === 'number'
+        ? getValue(transformer, Number(spacingValues))
+        : '0px';
     return {
       '& > *': { width: `calc(${width} - ${spacing})` },
     };

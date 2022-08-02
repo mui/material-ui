@@ -114,11 +114,6 @@ export type InputUnstyledProps<
   D extends React.ElementType = InputUnstyledTypeMap['defaultComponent'],
   P = {},
 > = OverrideProps<InputUnstyledTypeMap<P, D>, D> & {
-  /**
-   * The component used for the Root slot.
-   * Either a string to use a HTML element or a component.
-   * This is equivalent to `components.Root`. If both are provided, the `component` is used.
-   */
   component?: D;
 };
 
@@ -145,7 +140,7 @@ export type InputUnstyledInputSlotProps = Simplify<
     'aria-labelledby': React.AriaAttributes['aria-labelledby'];
     autoComplete: string | undefined;
     autoFocus: boolean | undefined;
-    className: string;
+    className?: string;
     id: string | undefined;
     name: string | undefined;
     onKeyDown: React.KeyboardEventHandler<HTMLInputElement> | undefined;

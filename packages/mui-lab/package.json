@@ -1,6 +1,6 @@
 {
   "name": "@mui/lab",
-  "version": "5.0.0-alpha.87",
+  "version": "5.0.0-alpha.93",
   "private": false,
   "author": "MUI Team",
   "description": "Laboratory for new MUI modules.",
@@ -45,10 +45,6 @@
     "@emotion/styled": "^11.3.0",
     "@mui/material": "^5.0.0",
     "@types/react": "^17.0.0 || ^18.0.0",
-    "date-fns": "^2.25.0",
-    "dayjs": "^1.10.7",
-    "luxon": "^1.28.0 || ^2.0.0",
-    "moment": "^2.29.1",
     "react": "^17.0.0 || ^18.0.0",
     "react-dom": "^17.0.0 || ^18.0.0"
   },
@@ -61,39 +57,19 @@
     },
     "@emotion/styled": {
       "optional": true
-    },
-    "date-fns": {
-      "optional": true
-    },
-    "dayjs": {
-      "optional": true
-    },
-    "luxon": {
-      "optional": true
-    },
-    "moment": {
-      "optional": true
     }
   },
   "dependencies": {
     "@babel/runtime": "^7.17.2",
-    "@mui/base": "5.0.0-alpha.86",
-    "@mui/system": "^5.8.5",
-    "@mui/utils": "^5.8.4",
-    "@mui/x-date-pickers": "5.0.0-alpha.1",
-    "clsx": "^1.1.1",
+    "@mui/base": "5.0.0-alpha.92",
+    "@mui/system": "^5.9.3",
+    "@mui/utils": "^5.9.3",
+    "clsx": "^1.2.1",
     "prop-types": "^15.8.1",
-    "react-is": "^17.0.2",
-    "react-transition-group": "^4.4.2",
-    "rifm": "^0.12.1"
+    "react-is": "^18.2.0"
   },
   "devDependencies": {
-    "@mui/types": "^7.1.4",
-    "@types/luxon": "^2.3.2",
-    "date-fns": "^2.28.0",
-    "dayjs": "^1.11.3",
-    "luxon": "^1.21.3 || ^2.x",
-    "moment": "^2.29.3"
+    "@mui/types": "^7.1.5"
   },
   "sideEffects": false,
   "publishConfig": {

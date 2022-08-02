@@ -2,7 +2,7 @@ import * as React from 'react';
 import { unstable_useForkRef as useForkRef, unstable_useId as useId } from '@mui/utils';
 import {
   UseListboxParameters,
-  UseListboxStrictProps,
+  UseListboxPropsWithDefaults,
   ActionTypes,
   OptionState,
   UseListboxOptionSlotProps,
@@ -43,7 +43,7 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
 
   const optionIdGenerator = props.optionIdGenerator ?? defaultIdGenerator;
 
-  const propsWithDefaults: UseListboxStrictProps<TOption> = {
+  const propsWithDefaults: UseListboxPropsWithDefaults<TOption> = {
     ...props,
     disabledItemsFocusable,
     disableListWrap,
@@ -160,16 +160,15 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
         return;
       }
 
-      const keysToPreventDefault = [
-        ' ',
-        'Enter',
-        'ArrowUp',
-        'ArrowDown',
-        'Home',
-        'End',
-        'PageUp',
-        'PageDown',
-      ];
+      const keysToPreventDefault = ['ArrowUp', 'ArrowDown', 'Home', 'End', 'PageUp', 'PageDown'];
+
+      if (focusManagement === 'activeDescendant') {
+        // When the child element is focused using the activeDescendant attribute,
+        // the listbox handles keyboard events on its behalf.
+        // We have to `preventDefault()` is this case to prevent the browser from
+        // scrolling the view when space is pressed or submitting forms when enter is pressed.
+        keysToPreventDefault.push(' ', 'Enter');
+      }
 
       if (keysToPreventDefault.includes(event.key)) {
         event.preventDefault();
@@ -182,7 +181,7 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
       });
 
       // Handle text navigation
-      if (event.key.length === 1) {
+      if (event.key.length === 1 && event.key !== ' ') {
         const textCriteria = textCriteriaRef.current;
         const lowerKey = event.key.toLowerCase();
         const currentTime = performance.now();

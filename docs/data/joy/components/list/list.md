@@ -12,16 +12,18 @@ githubLabel: 'component: list'
 
 Joy UI provides four list-related components:
 
-- `List`: A wrapper for list items (defaulting as `ul`).
-- `ListItem`: A common list item (default as `li`).
-- `ListItemButton`: Ans action element to be used inside a list item.
-- `ListItemDecorator`: A decorator of a list item, usually used to display an icon.
-- `ListItemContent`: A container inside a list item, used to display text content.
-- `ListDivider`: A separator between list items.
+- [`List`](#basic-usage): A wrapper for list items (defaulting as `ul`).
+- [`ListItem`](#basic-usage): A common list item (default as `li`).
+- [`ListItemButton`](#actionable): Ans action element to be used inside a list item.
+- [`ListItemDecorator`](#decorator): A decorator of a list item, usually used to display an icon.
+- [`ListItemContent`](#ellipsis-content): A container inside a list item, used to display text content.
+- [`ListDivider`](#divider): A separator between list items.
+
+{{"demo": "VariantsColorsList.js", "hideToolbar": true}}
 
 ## Component
 
-After installation, you can start building with this component using the following basic elements:
+After [installation](/joy-ui/getting-started/installation/), you can start building with this component using the following basic elements:
 
 ```jsx
 import List from '@mui/joy/List';
@@ -74,6 +76,10 @@ The `ListDivider` component comes with four `inset` patterns:
 - `inset="startContent"`: from the start of the content to the end of the list.
 
 {{"demo": "DividedList.js"}}
+
+For horizontal list, only `inset="gutter"` works on list divider.
+
+{{"demo": "HorizontalDividedList.js"}}
 
 ### Sticky item
 
@@ -139,19 +145,6 @@ To make a list item interactive, use `ListItemButton` **inside** a `ListItem`.
 
 {{"demo": "ActionableList.js"}}
 
-### Selected
-
-Use the `selected` prop to signal whether a `ListItemButton` is selected or not.
-It applies `color="primary"` and a few extra styles (e.g. font weight) to visually communicate the selected state.
-
-{{"demo": "SelectedList.js"}}
-
-### Variants and colors
-
-`ListItemButton` has `plain` and `neutral` as default values for the variant and color props, respectivelly.
-
-{{"demo": "VariantsColorsList.js", "hideToolbar": true}}
-
 ### Secondary action
 
 To add a secondary action to the `ListItemButton`, wrap it in a `ListItem` component and then add the desired start or end action elements to it.
@@ -166,6 +159,13 @@ The `ListItemButton` and the secondary action render as siblings, that way, the 
     <div role="button"> {/* ListItemButton */}
     <button>            {/* IconButton */}
 ```
+
+### Selected
+
+Use the `selected` prop to signal whether a `ListItemButton` is selected or not.
+It applies `color="primary"` and a few extra styles (e.g. font weight) to visually communicate the selected state.
+
+{{"demo": "SelectedList.js"}}
 
 ## CSS variables
 

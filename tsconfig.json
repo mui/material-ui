@@ -26,6 +26,7 @@
       "@mui/styles": ["./packages/mui-styles/src"],
       "@mui/styles/*": ["./packages/mui-styles/src/*"],
       "@mui/system": ["./packages/mui-system/src"],
+      "@mui/system/*": ["./packages/mui-system/src/*"],
       "@mui/private-theming": ["./packages/mui-private-theming/src"],
       "@mui/private-theming/*": ["./packages/mui-private-theming/src/*"],
       "@mui/types": ["./packages/mui-types"],
@@ -41,7 +42,7 @@
       "typescript-to-proptypes": ["./packages/typescript-to-proptypes/src"]
     },
     // Otherwise we get react-native typings which conflict with dom.lib.
-    "types": ["node", "react"]
+    "types": ["node", "react", "react-is/next"]
   },
   "exclude": ["**/.*/", "**/build", "**/node_modules", "docs/export"]
 }
