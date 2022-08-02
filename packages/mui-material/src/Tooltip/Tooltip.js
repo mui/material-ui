@@ -199,7 +199,7 @@ const TooltipArrow = styled('span', {
   height: '0.71em' /* = width / sqrt(2) = (length of the hypotenuse) */,
   boxSizing: 'border-box',
   color: theme.vars
-    ? `rgba(${theme.vars.palette.grey.darkChannel} / 0.9)`
+    ? theme.vars.palette.Tooltip.bg
     : alpha(theme.palette.grey[700], 0.9),
   '&::before': {
     content: '""',
