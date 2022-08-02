@@ -115,7 +115,7 @@ const styles = ({ theme }) => ({
   },
   [`& .${classes.container}`]: {
     paddingTop: 60 + 20,
-    marginBottom: theme.spacing(1),
+    marginBottom: theme.spacing(12),
     maxWidth: `calc(${BLOG_MAX_WIDTH}px + ${theme.spacing(2 * 2)})`,
     [theme.breakpoints.up('md')]: {
       maxWidth: `calc(${BLOG_MAX_WIDTH}px + ${theme.spacing(3 * 2)})`,
