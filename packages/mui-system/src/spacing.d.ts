@@ -1,3 +1,4 @@
+import { string } from 'prop-types';
 import { SimpleStyleFunction, spacing, PropsFor } from './Box';
 
 export type SpacingProps = PropsFor<typeof spacing>;
@@ -57,5 +58,11 @@ export const padding: SimpleStyleFunction<
   | 'paddingBlockStart'
   | 'paddingBlockEnd'
 >;
+
+type SpacingValue = string | number | null | undefined;
+export function getValue(
+  transformer: (prop: SpacingValue) => SpacingValue,
+  propValue: SpacingValue,
+): SpacingValue;
 
 export type PaddingProps = PropsFor<typeof padding>;
