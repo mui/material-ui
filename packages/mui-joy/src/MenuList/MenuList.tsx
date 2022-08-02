@@ -94,6 +94,7 @@ const MenuList = React.forwardRef(function MenuList(inProps, ref) {
     nesting: false,
     row: false,
   };
+
   const classes = useUtilityClasses(ownerState);
 
   const listboxProps = useSlotProps({
@@ -145,21 +146,43 @@ MenuList.propTypes /* remove-proptypes */ = {
     }),
   ]),
   /**
-   * The content of the component.
+   * @ignore
    */
   children: PropTypes.node,
+  /**
+   * The color of the component. It supports those theme colors that make sense for this component.
+   * @default 'neutral'
+   */
+  color: PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+  /**
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   */
+  component: PropTypes.elementType,
   /**
    * @ignore
    */
   id: PropTypes.string,
   /**
-   * The size of the component (affect other nested list* components).
-   * @default 'md'
+   * The size of the component (affect other nested list* components because the `Menu` inherits `List`).
    */
   size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['sm', 'md', 'lg']),
     PropTypes.string,
   ]),
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
+  /**
+   * The variant to use.
+   * @default 'plain'
+   */
+  variant: PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
 } as any;
 
 export default MenuList;

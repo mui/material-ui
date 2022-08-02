@@ -33,7 +33,7 @@ export interface OptionTypeMap<P = {}, D extends React.ElementType = 'div'> {
      * A text representation of the option's content.
      * Used for keyboard text navigation matching.
      */
-    label?: string;
+    label?: string | React.ReactElement;
     /**
      * The variant to use.
      * @default 'plain'
