@@ -7,6 +7,7 @@ import { useSlotProps } from '@mui/base/utils';
 import { useMenu, MenuUnstyledContext, MenuUnstyledContextType } from '@mui/base/MenuUnstyled';
 import PopperUnstyled from '@mui/base/PopperUnstyled';
 import { ListRoot } from '../List/List';
+import ListProvider, { scopedVariables } from '../List/ListProvider';
 import { styled, useThemeProps } from '../styles';
 import { MenuTypeMap, MenuProps } from './MenuProps';
 import { getMenuUtilityClass } from './menuClasses';
@@ -26,26 +27,31 @@ const useUtilityClasses = (ownerState: MenuProps) => {
   return composeClasses(slots, getMenuUtilityClass, {});
 };
 
-const MenuRoot = styled(PopperUnstyled, {
+const MenuRoot = styled(ListRoot, {
   name: 'JoyMenu',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-  // ownerState should be forwarded to ListRoot
-  shouldForwardProp: (prop) => prop !== 'theme' && prop !== 'sx' && prop !== 'as',
 })<{ ownerState: MenuProps }>(({ theme, ownerState }) => {
   const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];
   return {
+    '--List-radius': theme.vars.radius.sm,
+    '--List-item-stickyBackground':
+      variantStyle?.backgroundColor ||
+      variantStyle?.background ||
+      theme.vars.palette.background.surface, // for sticky List
+    '--List-item-stickyTop': 'calc(var(--List-padding, var(--List-divider-gap)) * -1)', // negative amount of the List's padding block
+    ...scopedVariables,
     boxShadow: theme.vars.shadow.md,
+    overflow: 'auto',
     zIndex: 1000,
     ...(!variantStyle.backgroundColor && {
-      backgroundColor: theme.vars.palette.background.body,
+      backgroundColor: theme.vars.palette.background.surface,
     }),
-    '--List-radius': theme.vars.radius.sm,
   };
 });
 
 const Menu = React.forwardRef(function Menu(inProps, ref) {
-  const props = useThemeProps<typeof inProps>({
+  const props = useThemeProps({
     props: inProps,
     name: 'JoyMenu',
   });
@@ -54,6 +60,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     actions,
     anchorEl,
     children,
+    component,
     color = 'neutral',
     disablePortal = true,
     keepMounted = false,
@@ -109,11 +116,9 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     color,
     variant,
     size,
-    instanceSize: inProps.size, // For ListRoot
     modifiers,
     open,
     nesting: false,
-    scoped: true,
     row: false,
   };
 
@@ -130,7 +135,8 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
       disablePortal,
       keepMounted,
       ref,
-      component: ListRoot,
+      component: MenuRoot,
+      as: component, // use `as` to insert the component inside of the MenuRoot
       modifiers: cachedModifiers,
     },
     className: classes.root,
@@ -146,9 +152,11 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
   };
 
   return (
-    <MenuRoot {...rootProps}>
-      <MenuUnstyledContext.Provider value={contextValue}>{children}</MenuUnstyledContext.Provider>
-    </MenuRoot>
+    <PopperUnstyled {...rootProps}>
+      <MenuUnstyledContext.Provider value={contextValue}>
+        <ListProvider nested>{children}</ListProvider>
+      </MenuUnstyledContext.Provider>
+    </PopperUnstyled>
   );
 }) as OverridableComponent<MenuTypeMap>;
 
@@ -180,6 +188,11 @@ Menu.propTypes /* remove-proptypes */ = {
    * The color of the component. It supports those theme colors that make sense for this component.
    */
   color: PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+  /**
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   */
+  component: PropTypes /* @typescript-to-proptypes-ignore */.elementType,
   /**
    * The `children` will be under the DOM hierarchy of the parent component.
    * @default false
@@ -243,6 +256,14 @@ Menu.propTypes /* remove-proptypes */ = {
   size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['sm', 'md', 'lg']),
     PropTypes.string,
+  ]),
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
+    PropTypes.func,
+    PropTypes.object,
   ]),
   /**
    * The variant to use.

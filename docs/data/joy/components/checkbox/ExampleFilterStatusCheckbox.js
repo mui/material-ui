@@ -39,6 +39,7 @@ export default function ExampleFilterStatusCheckbox() {
               onChange={(event) =>
                 setStatus({ ...status, declinedPayment: event.target.checked })
               }
+              sx={{ color: 'inherit' }}
             />
             <Typography textColor="inherit" sx={{ ml: 'auto' }}>
               8

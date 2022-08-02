@@ -24,7 +24,7 @@ const useUtilityClasses = (ownerState: SheetProps) => {
   return composeClasses(slots, getSheetUtilityClass, {});
 };
 
-const SheetRoot = styled('div', {
+export const SheetRoot = styled('div', {
   name: 'JoySheet',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
@@ -36,7 +36,7 @@ const SheetRoot = styled('div', {
       '--List-item-stickyBackground':
         variantStyle?.backgroundColor ||
         variantStyle?.background ||
-        theme.vars.palette.background.body, // for sticky List
+        theme.vars.palette.background.surface, // for sticky List
       // minus the sheet's border width to have consistent radius between sheet and children
       ...(childRadius !== undefined && {
         '--List-radius': `calc(${childRadius} - var(--variant-borderWidth, 0px))`,
@@ -45,7 +45,7 @@ const SheetRoot = styled('div', {
       // TODO: discuss the theme transition.
       // This value is copied from mui-material Sheet.
       transition: 'box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
-      backgroundColor: theme.vars.palette.background.body,
+      backgroundColor: theme.vars.palette.background.surface,
       position: 'relative',
     },
     variantStyle,

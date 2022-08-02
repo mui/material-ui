@@ -49,10 +49,12 @@ export const ListItemButtonRoot = styled('div', {
       '--List-decorator-color': 'initial',
     }),
     boxSizing: 'border-box',
+    position: 'relative',
     display: 'flex',
     alignItems: 'center',
     textAlign: 'initial',
     textDecoration: 'initial', // reset native anchor tag
+    backgroundColor: 'initial', // reset button background
     // In some cases, ListItemButton is a child of ListItem so the margin needs to be controlled by the ListItem. The value is negative to account for the ListItem's padding
     marginInline: 'var(--List-itemButton-marginInline)',
     marginBlock: 'var(--List-itemButton-marginBlock)',
@@ -60,12 +62,13 @@ export const ListItemButtonRoot = styled('div', {
       marginInlineStart: ownerState.row ? 'var(--List-gap)' : undefined,
       marginBlockStart: ownerState.row ? undefined : 'var(--List-gap)',
     }),
-    // account for the border width
+    // account for the border width, so that all of the ListItemButtons content aligned horizontally
     paddingBlock: 'calc(var(--List-item-paddingY) - var(--variant-borderWidth))',
+    // account for the border width, so that all of the ListItemButtons content aligned vertically
     paddingInlineStart:
-      'calc(var(--List-item-paddingLeft) + var(--List-item-startActionWidth, var(--internal-startActionWidth, 0px)) - var(--variant-borderWidth))', // --internal variable makes it possible to customize the actionWidth from the top List
+      'calc(var(--List-item-paddingLeft) + var(--List-item-startActionWidth, var(--internal-startActionWidth, 0px)))', // --internal variable makes it possible to customize the actionWidth from the top List
     paddingInlineEnd:
-      'calc(var(--List-item-paddingRight) + var(--List-item-endActionWidth, var(--internal-endActionWidth, 0px)) - var(--variant-borderWidth))', // --internal variable makes it possible to customize the actionWidth from the top List
+      'calc(var(--List-item-paddingRight) + var(--List-item-endActionWidth, var(--internal-endActionWidth, 0px)))', // --internal variable makes it possible to customize the actionWidth from the top List
     minBlockSize: 'var(--List-item-minHeight)',
     border: 'none',
     borderRadius: 'var(--List-item-radius)',
@@ -73,7 +76,7 @@ export const ListItemButtonRoot = styled('div', {
     minInlineSize: 0,
     // TODO: discuss the transition approach in a separate PR. This value is copied from mui-material Button.
     transition:
-      'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
+      'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
     fontSize: 'var(--List-item-fontSize)',
     fontFamily: theme.vars.fontFamily.body,
     ...(ownerState.selected && {
@@ -218,10 +221,6 @@ ListItemButton.propTypes /* remove-proptypes */ = {
    * if needed.
    */
   focusVisibleClassName: PropTypes.string,
-  /**
-   * The empty space on the side(s) of the separator.
-   */
-  inset: PropTypes.oneOf(['gutter', 'leftGutter', 'startAdornment']),
   /**
    * @ignore
    */

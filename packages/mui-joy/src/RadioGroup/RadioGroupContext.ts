@@ -2,7 +2,7 @@ import * as React from 'react';
 import { RadioProps } from '../Radio/RadioProps';
 
 const RadioGroupContext = React.createContext<
-  Pick<RadioProps, 'color' | 'size' | 'variant' | 'disableIcon' | 'overlay'> & {
+  Pick<RadioProps, 'size' | 'disableIcon' | 'overlay'> & {
     row?: boolean;
     name?: string;
     value?: unknown;
@@ -10,9 +10,7 @@ const RadioGroupContext = React.createContext<
   }
 >({
   row: undefined,
-  variant: undefined,
   size: undefined,
-  color: undefined,
   name: undefined,
   value: undefined,
   onChange: undefined,
