@@ -235,6 +235,7 @@ function reduceChildRoutes(context) {
         title={title}
         href={firstChild.pathname}
         legacy={page.legacy}
+        newFeature={page.newFeature}
         plan={page.plan}
         icon={page.icon}
         subheader={subheader}
@@ -261,6 +262,7 @@ function reduceChildRoutes(context) {
         title={title}
         href={page.pathname}
         legacy={page.legacy}
+        newFeature={page.newFeature}
         plan={page.plan}
         icon={page.icon}
         subheader={Boolean(page.subheader)}
