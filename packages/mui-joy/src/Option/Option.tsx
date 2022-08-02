@@ -153,7 +153,7 @@ Option.propTypes /* remove-proptypes */ = {
    * A text representation of the option's content.
    * Used for keyboard text navigation matching.
    */
-  label: PropTypes.string,
+  label: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

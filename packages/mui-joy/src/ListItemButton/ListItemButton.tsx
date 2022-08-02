@@ -62,12 +62,13 @@ export const ListItemButtonRoot = styled('div', {
       marginInlineStart: ownerState.row ? 'var(--List-gap)' : undefined,
       marginBlockStart: ownerState.row ? undefined : 'var(--List-gap)',
     }),
-    // account for the border width
+    // account for the border width, so that all of the ListItemButtons content aligned horizontally
     paddingBlock: 'calc(var(--List-item-paddingY) - var(--variant-borderWidth))',
+    // account for the border width, so that all of the ListItemButtons content aligned vertically
     paddingInlineStart:
-      'calc(var(--List-item-paddingLeft) + var(--List-item-startActionWidth, var(--internal-startActionWidth, 0px)) - var(--variant-borderWidth))', // --internal variable makes it possible to customize the actionWidth from the top List
+      'calc(var(--List-item-paddingLeft) + var(--List-item-startActionWidth, var(--internal-startActionWidth, 0px)))', // --internal variable makes it possible to customize the actionWidth from the top List
     paddingInlineEnd:
-      'calc(var(--List-item-paddingRight) + var(--List-item-endActionWidth, var(--internal-endActionWidth, 0px)) - var(--variant-borderWidth))', // --internal variable makes it possible to customize the actionWidth from the top List
+      'calc(var(--List-item-paddingRight) + var(--List-item-endActionWidth, var(--internal-endActionWidth, 0px)))', // --internal variable makes it possible to customize the actionWidth from the top List
     minBlockSize: 'var(--List-item-minHeight)',
     border: 'none',
     borderRadius: 'var(--List-item-radius)',
