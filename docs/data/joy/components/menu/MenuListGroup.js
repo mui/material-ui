@@ -5,10 +5,11 @@ import MenuList from '@mui/joy/MenuList';
 import MenuItem from '@mui/joy/MenuItem';
 import Typography from '@mui/joy/Typography';
 
-export default function MenuListComposition() {
+export default function MenuListGroup() {
   return (
     <MenuList
       variant="outlined"
+      size="sm"
       sx={{
         boxShadow: 'sm',
         flexGrow: 0,

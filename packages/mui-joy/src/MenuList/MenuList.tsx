@@ -120,7 +120,7 @@ const MenuList = React.forwardRef(function MenuList(inProps, ref) {
   return (
     <MenuListRoot {...listboxProps}>
       <MenuUnstyledContext.Provider value={contextValue}>
-        <ListProvider>{children}</ListProvider>
+        <ListProvider size={size}>{children}</ListProvider>
       </MenuUnstyledContext.Provider>
     </MenuListRoot>
   );

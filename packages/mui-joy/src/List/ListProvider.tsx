@@ -1,8 +1,10 @@
 import * as React from 'react';
+import { unstable_isMuiElement as isMuiElement } from '@mui/utils';
 import RowListContext from './RowListContext';
 import WrapListContext from './WrapListContext';
 
 export interface ListProviderProps {
+  size?: string;
   /**
    * If `true`, display the list in horizontal direction.
    * @default false
@@ -20,6 +22,7 @@ export interface ListProviderProps {
 // internal component
 const ListProvider = ({
   children,
+  size,
   row = false,
   wrap = false,
 }: React.PropsWithChildren<ListProviderProps>) => {
@@ -31,6 +34,11 @@ const ListProvider = ({
             ? React.cloneElement(child, {
                 // to let List(Item|ItemButton) knows when to apply margin(Inline|Block)Start
                 ...(index === 0 && { 'data-first-child': '' }),
+                // for creating group menus or options
+                ...(isMuiElement(child, ['List']) &&
+                  !!size && {
+                    size,
+                  }),
               })
             : child,
         )}

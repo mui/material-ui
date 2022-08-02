@@ -278,4 +278,7 @@ List.propTypes /* remove-proptypes */ = {
   wrap: PropTypes.bool,
 } as any;
 
+// @ts-ignore internal logic to inherit `size`.
+List.muiName = 'List';
+
 export default List;

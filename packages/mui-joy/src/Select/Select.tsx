@@ -503,7 +503,7 @@ const Select = React.forwardRef(function Select<TValue>(
       {anchorEl && (
         <PopperUnstyled {...listboxProps}>
           <SelectUnstyledContext.Provider value={context}>
-            <ListProvider>{children}</ListProvider>
+            <ListProvider size={size}>{children}</ListProvider>
           </SelectUnstyledContext.Provider>
         </PopperUnstyled>
       )}

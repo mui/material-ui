@@ -154,7 +154,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
   return (
     <PopperUnstyled {...rootProps}>
       <MenuUnstyledContext.Provider value={contextValue}>
-        <ListProvider>{children}</ListProvider>
+        <ListProvider size={size}>{children}</ListProvider>
       </MenuUnstyledContext.Provider>
     </PopperUnstyled>
   );
