@@ -176,7 +176,7 @@ export default function createStack(
 
   const Stack = React.forwardRef(function Grid(inProps, ref) {
     const themeProps = useThemeProps<typeof inProps & { component?: React.ElementType }>(inProps);
-    const props = extendSxProp(themeProps);
+    const props = extendSxProp(themeProps) as Omit<typeof themeProps, 'color'>; // `color` type conflicts with html color attribute.
     const {
       component = 'div',
       direction = 'column',
@@ -192,7 +192,6 @@ export default function createStack(
     };
 
     return (
-      // @ts-ignore ref type mismatch
       <StackRoot as={component} ownerState={ownerState} ref={ref} {...other}>
         {divider ? joinChildren(children, divider as React.ReactElement) : children}
       </StackRoot>
