@@ -13,14 +13,17 @@ import NestedListContext from './NestedListContext';
 import ComponentListContext from './ComponentListContext';
 import ListProvider from './ListProvider';
 
-const useUtilityClasses = (ownerState: ListProps & { nesting: boolean }) => {
-  const { variant, color, size, nesting, row } = ownerState;
+const useUtilityClasses = (
+  ownerState: ListProps & { nesting: boolean; instanceSize: ListProps['size'] },
+) => {
+  const { variant, color, size, nesting, row, instanceSize } = ownerState;
   const slots = {
     root: [
       'root',
       variant && `variant${capitalize(variant)}`,
       color && `color${capitalize(color)}`,
-      size && `size${capitalize(size)}`,
+      !instanceSize && !nesting && size && `size${capitalize(size)}`,
+      instanceSize && `size${capitalize(instanceSize)}`,
       nesting && 'nesting',
       row && 'row',
     ],
@@ -261,8 +264,5 @@ List.propTypes /* remove-proptypes */ = {
    */
   wrap: PropTypes.bool,
 } as any;
-
-// @ts-ignore internal logic to inherit `size`.
-List.muiName = 'List';
 
 export default List;

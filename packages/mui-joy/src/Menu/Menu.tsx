@@ -7,7 +7,7 @@ import { useSlotProps } from '@mui/base/utils';
 import { useMenu, MenuUnstyledContext, MenuUnstyledContextType } from '@mui/base/MenuUnstyled';
 import PopperUnstyled from '@mui/base/PopperUnstyled';
 import { ListRoot } from '../List/List';
-import ListProvider from '../List/ListProvider';
+import ListProvider, { scopedVariables } from '../List/ListProvider';
 import { styled, useThemeProps } from '../styles';
 import { MenuTypeMap, MenuProps } from './MenuProps';
 import { getMenuUtilityClass } from './menuClasses';
@@ -34,18 +34,19 @@ const MenuRoot = styled(ListRoot, {
 })<{ ownerState: MenuProps }>(({ theme, ownerState }) => {
   const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];
   return {
-    boxShadow: theme.vars.shadow.md,
-    overflow: 'auto',
-    zIndex: 1000,
-    ...(!variantStyle.backgroundColor && {
-      backgroundColor: theme.vars.palette.background.surface,
-    }),
     '--List-radius': theme.vars.radius.sm,
     '--List-item-stickyBackground':
       variantStyle?.backgroundColor ||
       variantStyle?.background ||
       theme.vars.palette.background.surface, // for sticky List
     '--List-item-stickyTop': 'calc(var(--List-padding, var(--List-divider-gap)) * -1)', // negative amount of the List's padding block
+    ...scopedVariables,
+    boxShadow: theme.vars.shadow.md,
+    overflow: 'auto',
+    zIndex: 1000,
+    ...(!variantStyle.backgroundColor && {
+      backgroundColor: theme.vars.palette.background.surface,
+    }),
   };
 });
 
@@ -118,7 +119,6 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     modifiers,
     open,
     nesting: false,
-    scoped: true,
     row: false,
   };
 
@@ -154,7 +154,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
   return (
     <PopperUnstyled {...rootProps}>
       <MenuUnstyledContext.Provider value={contextValue}>
-        <ListProvider size={size}>{children}</ListProvider>
+        <ListProvider nested>{children}</ListProvider>
       </MenuUnstyledContext.Provider>
     </PopperUnstyled>
   );

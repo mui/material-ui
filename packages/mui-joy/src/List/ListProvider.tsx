@@ -1,10 +1,32 @@
 import * as React from 'react';
-import { unstable_isMuiElement as isMuiElement } from '@mui/utils';
 import RowListContext from './RowListContext';
 import WrapListContext from './WrapListContext';
+import NestedListContext from './NestedListContext';
+
+/**
+ * This variables should be used in a List to create a scope
+ * that will not inherit variables from the upper scope.
+ *
+ * Used in `Menu`, `MenuList`, `TabList`, `Select` to communicate with nested List.
+ *
+ * e.g. menu group:
+ * <Menu>
+ *   <List>...</List>
+ *   <List>...</List>
+ * </Menu>
+ */
+export const scopedVariables = {
+  '--NestedList-marginRight': '0px',
+  '--NestedList-marginLeft': '0px',
+  '--NestedList-item-paddingLeft': 'var(--List-item-paddingX)',
+};
 
 export interface ListProviderProps {
-  size?: string;
+  /**
+   * If `undefined`, there is no effect.
+   * If `true` or `false`, affects the nested List styles.
+   */
+  nested?: boolean;
   /**
    * If `true`, display the list in horizontal direction.
    * @default false
@@ -22,11 +44,11 @@ export interface ListProviderProps {
 // internal component
 const ListProvider = ({
   children,
-  size,
+  nested,
   row = false,
   wrap = false,
 }: React.PropsWithChildren<ListProviderProps>) => {
-  return (
+  const baseProviders = (
     <RowListContext.Provider value={row}>
       <WrapListContext.Provider value={wrap}>
         {React.Children.map(children, (child, index) =>
@@ -34,17 +56,16 @@ const ListProvider = ({
             ? React.cloneElement(child, {
                 // to let List(Item|ItemButton) knows when to apply margin(Inline|Block)Start
                 ...(index === 0 && { 'data-first-child': '' }),
-                // for creating group menus or options
-                ...(isMuiElement(child, ['List']) &&
-                  !!size && {
-                    size,
-                  }),
               })
             : child,
         )}
       </WrapListContext.Provider>
     </RowListContext.Provider>
   );
+  if (nested === undefined) {
+    return baseProviders;
+  }
+  return <NestedListContext.Provider value={nested}>{baseProviders}</NestedListContext.Provider>;
 };
 
 export default ListProvider;

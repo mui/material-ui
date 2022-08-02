@@ -7,7 +7,7 @@ import { useSlotProps } from '@mui/base/utils';
 import { useMenu, MenuUnstyledContext, MenuUnstyledContextType } from '@mui/base/MenuUnstyled';
 import { styled, useThemeProps } from '../styles';
 import { ListRoot } from '../List/List';
-import ListProvider from '../List/ListProvider';
+import ListProvider, { scopedVariables } from '../List/ListProvider';
 import { MenuListProps, MenuListTypeMap } from './MenuListProps';
 import { getMenuListUtilityClass } from './menuListClasses';
 
@@ -32,16 +32,17 @@ const MenuListRoot = styled(ListRoot, {
 })<{ ownerState: MenuListProps; component?: React.ElementType }>(({ theme, ownerState }) => {
   const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];
   return {
-    overflow: 'auto',
-    ...(!variantStyle.backgroundColor && {
-      backgroundColor: theme.vars.palette.background.surface,
-    }),
     '--List-radius': theme.vars.radius.sm,
     '--List-item-stickyBackground':
       variantStyle?.backgroundColor ||
       variantStyle?.background ||
       theme.vars.palette.background.surface,
     '--List-item-stickyTop': 'calc(var(--List-padding, var(--List-divider-gap)) * -1)', // negative amount of the List's padding block
+    ...scopedVariables,
+    overflow: 'auto',
+    ...(!variantStyle.backgroundColor && {
+      backgroundColor: theme.vars.palette.background.surface,
+    }),
   };
 });
 
@@ -91,7 +92,6 @@ const MenuList = React.forwardRef(function MenuList(inProps, ref) {
     size,
     instanceSize: size,
     nesting: false,
-    scoped: true,
     row: false,
   };
   const classes = useUtilityClasses(ownerState);
@@ -120,7 +120,7 @@ const MenuList = React.forwardRef(function MenuList(inProps, ref) {
   return (
     <MenuListRoot {...listboxProps}>
       <MenuUnstyledContext.Provider value={contextValue}>
-        <ListProvider size={size}>{children}</ListProvider>
+        <ListProvider nested>{children}</ListProvider>
       </MenuUnstyledContext.Provider>
     </MenuListRoot>
   );

@@ -17,7 +17,7 @@ import type { SelectChild, SelectOption } from '@mui/base/SelectUnstyled';
 import { useSlotProps } from '@mui/base/utils';
 import composeClasses from '@mui/base/composeClasses';
 import { ListRoot } from '../List/List';
-import ListProvider from '../List/ListProvider';
+import ListProvider, { scopedVariables } from '../List/ListProvider';
 import Unfold from '../internal/svg-icons/Unfold';
 import { styled, useThemeProps } from '../styles';
 import { SelectOwnProps, SelectStaticProps, SelectOwnerState, SelectTypeMap } from './SelectProps';
@@ -188,18 +188,19 @@ const SelectListbox = styled(ListRoot, {
 })<{ ownerState: SelectOwnerState<any> }>(({ theme, ownerState }) => {
   const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];
   return {
-    outline: 'none',
-    boxShadow: theme.vars.shadow.md,
-    zIndex: 1000,
-    ...(!variantStyle.backgroundColor && {
-      backgroundColor: theme.vars.palette.background.surface,
-    }),
     '--List-radius': theme.vars.radius.sm,
     '--List-item-stickyBackground':
       variantStyle?.backgroundColor ||
       variantStyle?.background ||
       theme.vars.palette.background.surface, // for sticky List
     '--List-item-stickyTop': 'calc(var(--List-padding, var(--List-divider-gap)) * -1)', // negative amount of the List's padding block
+    ...scopedVariables,
+    outline: 'none',
+    boxShadow: theme.vars.shadow.md,
+    zIndex: 1000,
+    ...(!variantStyle.backgroundColor && {
+      backgroundColor: theme.vars.palette.background.surface,
+    }),
   };
 });
 
@@ -463,7 +464,6 @@ const Select = React.forwardRef(function Select<TValue>(
     ownerState: {
       ...ownerState,
       nesting: false,
-      scoped: true,
       row: false,
     },
     className: classes.listbox,
@@ -503,7 +503,7 @@ const Select = React.forwardRef(function Select<TValue>(
       {anchorEl && (
         <PopperUnstyled {...listboxProps}>
           <SelectUnstyledContext.Provider value={context}>
-            <ListProvider size={size}>{children}</ListProvider>
+            <ListProvider nested>{children}</ListProvider>
           </SelectUnstyledContext.Provider>
         </PopperUnstyled>
       )}
