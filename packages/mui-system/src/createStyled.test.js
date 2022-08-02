@@ -290,6 +290,14 @@ describe('createStyled', () => {
     expect(container.firstChild).not.to.have.attribute('sx');
   });
 
+  it('does not forward `ownerState` prop to DOM', () => {
+    const styled = createStyled({});
+    const Button = styled('button')({});
+
+    const { container } = render(<Button ownerState={{}} color />);
+    expect(container.firstChild).not.to.have.attribute('ownerState');
+  });
+
   describe('default behaviors', () => {
     it('does not forward invalid props to DOM if no `slot` specified', () => {
       // This scenario is usually used by library consumers
@@ -326,14 +334,14 @@ describe('createStyled', () => {
       expect(container.firstChild).to.have.attribute('href', '/');
     });
 
-    // it.skip('able to pass props to `as` styled component', () => {
-    //   const styled = createStyled({});
-    //   const ChildRoot = styled('div')({});
-    //   const Child = ({ component }) => <ChildRoot as={component}>content</ChildRoot>;
-    //   const Button = styled('button')({});
-    //   const { container } = render(<Button as={Child} component="span" />);
+    it('able to pass props to `as` styled component', () => {
+      const styled = createStyled({});
+      const ChildRoot = styled('div')({});
+      const Child = ({ component }) => <ChildRoot as={component}>content</ChildRoot>;
+      const Button = styled('button')({});
+      const { container } = render(<Button as={Child} component="span" />);
 
-    //   expect(container.firstChild).to.have.tagName('span');
-    // });
+      expect(container.firstChild).to.have.tagName('span');
+    });
   });
 });
