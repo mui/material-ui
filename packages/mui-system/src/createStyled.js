@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import styledEngineStyled from '@mui/styled-engine';
 import { getDisplayName } from '@mui/utils';
 import createTheme from './createTheme';
@@ -72,6 +73,9 @@ export default function createStyled(input = {}) {
     styleFunctionSx = defaultStyleFunctionSx,
   } = input;
   return (tag, inputOptions = {}) => {
+    if (tag.__mui_real === tag && tag.__skipSx) {
+      tag.__skipSx();
+    }
     const {
       name: componentName,
       slot: componentSlot,
@@ -87,7 +91,7 @@ export default function createStyled(input = {}) {
         ? inputSkipVariantsResolver
         : (componentSlot && componentSlot !== 'Root') || false;
 
-    const skipSx = inputSkipSx || false;
+    let skipSx = inputSkipSx || false;
 
     let label;
 
@@ -163,6 +167,9 @@ export default function createStyled(input = {}) {
 
       if (!skipSx) {
         expressionsWithDefaultTheme.push((props) => {
+          if (skipSx) {
+            return null;
+          }
           const theme = isEmpty(props.theme) ? defaultTheme : props.theme;
           return styleFunctionSx({ ...props, theme });
         });
@@ -189,6 +196,10 @@ export default function createStyled(input = {}) {
       }
 
       const Component = defaultStyledResolver(transformedStyleArg, ...expressionsWithDefaultTheme);
+      Component.__mui_real = Component;
+      Component.__skipSx = () => {
+        skipSx = true;
+      };
 
       if (process.env.NODE_ENV !== 'production') {
         let displayName;

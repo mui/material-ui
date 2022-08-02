@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
+import { spy } from 'sinon';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { createRenderer } from 'test/utils';
 import createStyled from './createStyled';
@@ -48,6 +49,29 @@ describe('createStyled', () => {
       const SomeMuiComponent = styled(() => null)({});
 
       expect(SomeMuiComponent).to.have.property('displayName', 'Styled(Component)');
+    });
+  });
+
+  describe('composition', () => {
+    it('should call styleFunctionSx once', () => {
+      const styled = createStyled();
+      const spySx = spy();
+      const Child = styled('div')({});
+
+      render(<Child sx={spySx} />);
+
+      expect(spySx.callCount).to.equal(2); // React 18 renders twice in strict mode.
+    });
+
+    it('should still call styleFunctionSx once', () => {
+      const styled = createStyled();
+      const spySx = spy();
+      const Child = styled('div')({});
+      const Parent = styled(Child)({});
+
+      render(<Parent sx={spySx} />);
+
+      expect(spySx.callCount).to.equal(2); // React 18 renders twice in strict mode.
     });
   });
 
