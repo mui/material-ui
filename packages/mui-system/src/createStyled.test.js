@@ -81,12 +81,12 @@ describe('createStyled', () => {
 
       const { container } = render(
         <React.Fragment>
-          <Parent sx={{ color: 'blue' }} />
-          <Child sx={{ color: 'red' }} />
+          <Parent sx={{ color: 'rgb(0, 0, 255)' }} />
+          <Child sx={{ color: 'rgb(255, 0, 0)' }} />
         </React.Fragment>,
       );
-      expect(container.firstChild).toHaveComputedStyle({ color: 'blue' });
-      expect(container.lastChild).toHaveComputedStyle({ color: 'red' });
+      expect(container.firstChild).toHaveComputedStyle({ color: 'rgb(0, 0, 255)' });
+      expect(container.lastChild).toHaveComputedStyle({ color: 'rgb(255, 0, 0)' });
     });
   });
 

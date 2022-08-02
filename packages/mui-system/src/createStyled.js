@@ -142,7 +142,6 @@ export default function createStyled(input = {}) {
             // On the server Emotion doesn't use React.forwardRef for creating components, so the created
             // component stays as a function. This condition makes sure that we do not interpolate functions
             // which are basically components used as a selectors.
-            // eslint-disable-next-line no-underscore-dangle
             return typeof stylesArg === 'function' && stylesArg.__emotion_real !== stylesArg
               ? ({ theme: themeInput, ...other }) => {
                   return stylesArg({
@@ -202,7 +201,6 @@ export default function createStyled(input = {}) {
         // On the server Emotion doesn't use React.forwardRef for creating components, so the created
         // component stays as a function. This condition makes sure that we do not interpolate functions
         // which are basically components used as a selectors.
-        // eslint-disable-next-line no-underscore-dangle
         styleArg.__emotion_real !== styleArg
       ) {
         // If the type is function, we need to define the default theme.
