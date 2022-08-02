@@ -40,10 +40,18 @@ const theme = createTheme({
 });
 ```
 
-Se você estiver usando TypeScript, você também deverá usar a [extensão de módulos](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation) para que o tema aceite os valores acima.
+**WARNING**: `vars` is a private field used for CSS variables support. It will throw an error if you try to use it:
+
+```jsx
+createTheme({
+  vars: { ... },
+})
+```
+
+If you are using TypeScript, you would also need to use [module augmentation](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation) for the theme to accept the above values.
 
 ```tsx
-declare module '@material-ui/core/styles' {
+declare module '@mui/material/styles' {
   interface Theme {
     status: {
       danger: string;
@@ -66,7 +74,7 @@ declare module '@material-ui/core/styles' {
   <source src="/static/studies.mp4" type="video/mp4" >
 </video>
 
-Você [pode acessar](/styles/advanced/#accessing-the-theme-in-a-component) as variáveis do tema dentro de seus componentes React.
+The community has built great tools to build a theme:
 
 - [mui-theme-creator](https://bareynol.github.io/mui-theme-creator/): A tool to help design and customize themes for the MUI component library. Inclui modelos de site básicos para mostrar vários componentes e como eles são afetados pelo tema
 - [create-mui-theme](https://react-theming.github.io/create-mui-theme/): É uma ferramenta online para criar temas de Material-UI por meio da ferramenta de cor do Material Design.
@@ -90,7 +98,7 @@ function DeepChild() {
 
 {{"demo": "ThemeNesting.js"}}
 
-O tema interno **sobrescreverá** o tema externo. Você pode estender o tema externo fornecendo uma função:
+The inner theme will **override** the outer theme. You can extend the outer theme by providing a function:
 
 {{"demo": "ThemeNestingExtend.js"}}
 
@@ -98,7 +106,7 @@ O tema interno **sobrescreverá** o tema externo. Você pode estender o tema ext
 
 ### `createTheme(options, ...args) => theme`
 
-Gere uma base de temas sobre as opções recebidas. Then, pass it as a prop to [`ThemeProvider`](#themeprovider).
+Generate a theme base on the options received. Then, pass it as a prop to [`ThemeProvider`](#themeprovider).
 
 #### Argumentos
 
@@ -164,6 +172,8 @@ theme = createTheme(theme, {
 ```
 
 Think of creating a theme as a two-step composition process: first, you define the basic design options; then, you'll use these design options to compose other options.
+
+**WARNING**: `theme.vars` is a private field used for CSS variables support. Please use another name for a custom object.
 
 ### `responsiveFontSizes(theme, options) => theme`
 
