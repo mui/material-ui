@@ -294,7 +294,7 @@ describe('createStyled', () => {
     const styled = createStyled({});
     const Button = styled('button')({});
 
-    const { container } = render(<Button ownerState={{}} color />);
+    const { container } = render(<Button ownerState={{}} />);
     expect(container.firstChild).not.to.have.attribute('ownerState');
   });
 
