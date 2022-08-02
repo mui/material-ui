@@ -71,8 +71,7 @@ const getSideFromDirection = (direction: StackOwnerState['direction']) => {
     'row-reverse': 'Right',
     column: 'Top',
     'column-reverse': 'Bottom',
-    // @ts-ignore
-  }[direction];
+  }[direction as string];
 };
 
 export const style = ({ ownerState, theme }: StyleFunctionProps) => {
@@ -81,7 +80,6 @@ export const style = ({ ownerState, theme }: StyleFunctionProps) => {
     flexDirection: 'column',
     ...handleBreakpoints(
       { theme },
-      // @ts-ignore TODO: add types for resolveBreakpointValues
       resolveBreakpointValues({
         values: ownerState.direction,
         breakpoints: theme.breakpoints.values,
@@ -95,26 +93,26 @@ export const style = ({ ownerState, theme }: StyleFunctionProps) => {
   if (ownerState.spacing) {
     const transformer = createUnarySpacing(theme);
 
-    const base = Object.keys(theme.breakpoints.values).reduce((acc, breakpoint) => {
-      if (
-        // @ts-ignore
-        (typeof ownerState.spacing === 'object' && ownerState.spacing[breakpoint] != null) ||
-        // @ts-ignore
-        (typeof ownerState.direction === 'object' && ownerState.direction[breakpoint] != null)
-      ) {
-        // @ts-ignore
-        acc[breakpoint] = true;
-      }
-      return acc;
-    }, {});
+    const base = Object.keys(theme.breakpoints.values).reduce<Record<string, boolean>>(
+      (acc, breakpoint) => {
+        if (
+          (typeof ownerState.spacing === 'object' &&
+            (ownerState.spacing as any)[breakpoint] != null) ||
+          (typeof ownerState.direction === 'object' &&
+            (ownerState.direction as any)[breakpoint] != null)
+        ) {
+          acc[breakpoint] = true;
+        }
+        return acc;
+      },
+      {},
+    );
 
-    // @ts-ignore TODO: add types for resolveBreakpointValues
     const directionValues = resolveBreakpointValues({
       values: ownerState.direction,
       base,
     });
 
-    // @ts-ignore TODO: add types for resolveBreakpointValues
     const spacingValues = resolveBreakpointValues({
       values: ownerState.spacing,
       base,
@@ -131,7 +129,7 @@ export const style = ({ ownerState, theme }: StyleFunctionProps) => {
       });
     }
 
-    const styleFromPropValue = (propValue: string | number | null, breakpoint: Breakpoint) => {
+    const styleFromPropValue = (propValue: string | number | null, breakpoint?: Breakpoint) => {
       return {
         '& > :not(style) + :not(style)': {
           margin: 0,
