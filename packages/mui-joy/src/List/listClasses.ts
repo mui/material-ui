@@ -5,8 +5,10 @@ export interface ListClasses {
   root: string;
   /** Classname applied to the root element if wrapped with nested context. */
   nesting: string;
-  /** Classname applied to the root element if `row` is true. */
-  row: string;
+  /** Styles applied to the root element, if `orientation="vertical"`. */
+  vertical: string;
+  /** Styles applied to the root element, if `orientation="horizontal"`. */
+  horizontal: string;
   /** Classname applied to the root element if `scoped` is true. */
   scoped: string;
   /** Classname applied to the root element if `size="sm"`. */
@@ -46,7 +48,8 @@ export function getListUtilityClass(slot: string): string {
 const listClasses: ListClasses = generateUtilityClasses('JoyList', [
   'root',
   'nesting',
-  'row',
+  'vertical',
+  'horizontal',
   'scoped',
   'sizeSm',
   'sizeMd',
