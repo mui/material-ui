@@ -4,7 +4,7 @@ import { UseInputParameters } from '@mui/base/InputUnstyled';
 import { InputClasses } from './inputClasses';
 import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
 
-export type InputSlot = 'root' | 'input' | 'startDecorator' | 'endDecorator';
+export type InputSlot = 'wrapper' | 'root' | 'startDecorator' | 'endDecorator';
 
 export interface InputPropsVariantOverrides {}
 
@@ -46,11 +46,11 @@ export interface InputTypeMap<P = {}, D extends React.ElementType = 'div'> {
        * @default {}
        */
       componentsProps?: {
-        root?: React.ComponentPropsWithRef<'div'>;
-        input?: React.ComponentPropsWithRef<'input'> & {
+        wrapper?: React.ComponentPropsWithRef<'div'> & {
           component?: React.ElementType;
           sx?: SxProps;
         };
+        root?: React.ComponentPropsWithRef<'input'>;
       };
       /**
        * Trailing adornment for this input.

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { describeConformance, createRenderer, screen, act } from 'test/utils';
+import { describeConformance, createRenderer, screen, act, fireEvent } from 'test/utils';
 import Input, { inputClasses as classes } from '@mui/joy/Input';
 import { ThemeProvider } from '@mui/joy/styles';
 
@@ -12,12 +12,25 @@ describe('Joy <Input />', () => {
     render,
     classes,
     ThemeProvider,
-    refInstanceof: window.HTMLDivElement,
+    refInstanceof: window.HTMLInputElement,
     muiName: 'JoyInput',
     testDeepOverrides: { slotName: 'input', slotClassName: classes.input },
     testVariantProps: { variant: 'solid', fullWidth: true },
-    skip: ['propsSpread', 'componentsProp', 'classesRoot'],
+    skip: [
+      'mergeClassName',
+      'classesRoot',
+      'rootClass',
+      'propsSpread',
+      'componentProp',
+      'componentsProp',
+      'themeDefaultProps',
+    ],
   }));
+
+  it('applies the className to the root component', () => {
+    render(<Input className="foo-bar" />);
+    expect(screen.getByRole('textbox')).to.have.class('foo-bar');
+  });
 
   it('should have error classes', () => {
     const { container } = render(<Input error />);
@@ -40,8 +53,15 @@ describe('Joy <Input />', () => {
   });
 
   it('should change to textarea', () => {
-    const { container } = render(<Input componentsProps={{ input: { component: 'textarea' } }} />);
+    const { container } = render(<Input component="textarea" />);
     expect(container.firstChild.firstChild).to.have.tagName('textarea');
+  });
+
+  it('should focus input if wrapper is clicked', () => {
+    const { container } = render(<Input />);
+    fireEvent.click(container.firstChild);
+
+    expect(screen.getByRole('textbox')).toHaveFocus();
   });
 
   describe('prop: disabled', () => {
@@ -64,6 +84,17 @@ describe('Joy <Input />', () => {
       expect(handleBlur.callCount).to.equal(1);
       // check if focus not initiated again
       expect(handleFocus.callCount).to.equal(1);
+    });
+  });
+
+  describe('prop: onClick', () => {
+    it('should handle onClick', () => {
+      const handleClick = spy();
+      render(<Input onClick={handleClick} />);
+
+      fireEvent.click(screen.getByRole('textbox'));
+
+      expect(handleClick.callCount).to.equal(1);
     });
   });
 });

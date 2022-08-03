@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
 import composeClasses from '@mui/base/composeClasses';
-import { useSlotProps, EventHandlers } from '@mui/base/utils';
+import { useSlotProps } from '@mui/base/utils';
 import { useInput, InputUnstyledOwnerState } from '@mui/base/InputUnstyled';
 import { styled, useThemeProps } from '../styles';
 import { InputTypeMap, InputProps } from './InputProps';
@@ -13,15 +13,15 @@ const useUtilityClasses = (ownerState: InputProps) => {
   const { classes, disabled, fullWidth, variant, color, size } = ownerState;
 
   const slots = {
-    root: [
-      'root',
+    wrapper: [
+      'wrapper',
       disabled && 'disabled',
       fullWidth && 'fullWidth',
       variant && `variant${capitalize(variant)}`,
       color && `color${capitalize(color)}`,
       size && `size${capitalize(size)}`,
     ],
-    input: ['input'],
+    root: ['root'],
     startDecorator: ['startDecorator'],
     endDecorator: ['endDecorator'],
   };
@@ -29,10 +29,10 @@ const useUtilityClasses = (ownerState: InputProps) => {
   return composeClasses(slots, getInputUtilityClass, classes);
 };
 
-const InputRoot = styled('div', {
+const InputWrapper = styled('div', {
   name: 'JoyInput',
-  slot: 'Root',
-  overridesResolver: (props, styles) => styles.root,
+  slot: 'Wrapper',
+  overridesResolver: (props, styles) => styles.wrapper,
 })<{ ownerState: InputProps & InputUnstyledOwnerState }>(({ theme, ownerState }) => {
   const variantStyle = theme.variants[`${ownerState.variant!}`]?.[ownerState.color!];
   return [
@@ -133,10 +133,10 @@ const InputRoot = styled('div', {
   ];
 });
 
-const InputInput = styled('input', {
+const InputRoot = styled('input', {
   name: 'JoyInput',
-  slot: 'Input',
-  overridesResolver: (props, styles) => styles.input,
+  slot: 'Root',
+  overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: InputProps & InputUnstyledOwnerState }>(({ theme, ownerState }) => ({
   border: 'none', // remove the native input width
   minWidth: 0, // remove the native input width
@@ -197,11 +197,6 @@ const Input = React.forwardRef(function Input(inProps, ref) {
   });
 
   const {
-    'aria-describedby': ariaDescribedby,
-    'aria-label': ariaLabel,
-    'aria-labelledby': ariaLabelledby,
-    autoComplete,
-    autoFocus,
     className,
     color = 'neutral',
     component,
@@ -211,22 +206,15 @@ const Input = React.forwardRef(function Input(inProps, ref) {
     endDecorator,
     fullWidth = false,
     error,
-    id,
-    name,
-    onClick,
     onChange,
-    onKeyDown,
-    onKeyUp,
     onFocus,
     onBlur,
-    placeholder,
-    readOnly,
     required,
-    type = 'text',
     startDecorator,
     size = 'md',
     value,
     variant = 'outlined',
+    sx,
     ...other
   } = props;
 
@@ -242,7 +230,6 @@ const Input = React.forwardRef(function Input(inProps, ref) {
     defaultValue,
     error,
     onBlur,
-    onClick,
     onChange,
     onFocus,
     required,
@@ -257,42 +244,38 @@ const Input = React.forwardRef(function Input(inProps, ref) {
     error: errorState,
     focused,
     formControlContext: formControlContext!,
-    type,
     size,
     variant,
   };
 
-  const rootStateClasses = {
+  const wrapperStateClasses = {
     [inputClasses.disabled]: disabledState,
     [inputClasses.error]: errorState,
     [inputClasses.focused]: focused,
     [inputClasses.formControl]: Boolean(formControlContext),
   };
 
-  const inputStateClasses = {
+  const rootStateClasses = {
     [inputClasses.disabled]: disabledState,
   };
 
   const classes = useUtilityClasses(ownerState);
 
-  const propsToForward = {
-    'aria-describedby': ariaDescribedby,
-    'aria-label': ariaLabel,
-    'aria-labelledby': ariaLabelledby,
-    autoComplete,
-    autoFocus,
-    id,
-    onKeyDown,
-    onKeyUp,
-    name,
-    placeholder,
-    readOnly,
-    type,
-  };
+  const wrapperProps = useSlotProps({
+    elementType: InputWrapper,
+    getSlotProps: getRootProps,
+    externalSlotProps: componentsProps.root,
+    additionalProps: {
+      as: componentsProps.wrapper?.component,
+      sx,
+    },
+    ownerState,
+    className: [classes.wrapper, wrapperStateClasses],
+  });
 
   const rootProps = useSlotProps({
     elementType: InputRoot,
-    getSlotProps: getRootProps,
+    getSlotProps: getInputProps,
     externalSlotProps: componentsProps.root,
     externalForwardedProps: other,
     additionalProps: {
@@ -303,33 +286,21 @@ const Input = React.forwardRef(function Input(inProps, ref) {
     className: [classes.root, rootStateClasses, className],
   });
 
-  const inputProps = useSlotProps({
-    elementType: InputInput,
-    getSlotProps: (otherHandlers: EventHandlers) =>
-      getInputProps({ ...otherHandlers, ...propsToForward }),
-    externalSlotProps: componentsProps.input,
-    additionalProps: {
-      as: componentsProps.input?.component,
-    },
-    ownerState,
-    className: [classes.input, inputStateClasses],
-  });
-
   return (
-    <InputRoot {...rootProps}>
+    <InputWrapper {...wrapperProps}>
       {startDecorator && (
         <InputStartDecorator className={classes.startDecorator} ownerState={ownerState}>
           {startDecorator}
         </InputStartDecorator>
       )}
 
-      <InputInput {...inputProps} />
+      <InputRoot {...rootProps} />
       {endDecorator && (
         <InputEndDecorator className={classes.endDecorator} ownerState={ownerState}>
           {endDecorator}
         </InputEndDecorator>
       )}
-    </InputRoot>
+    </InputWrapper>
   );
 }) as OverridableComponent<InputTypeMap>;
 
@@ -390,8 +361,8 @@ Input.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   componentsProps: PropTypes.shape({
-    input: PropTypes.object,
     root: PropTypes.object,
+    wrapper: PropTypes.object,
   }),
   /**
    * The default value. Use when the component is not controlled.
@@ -432,10 +403,6 @@ Input.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   onChange: PropTypes.func,
-  /**
-   * @ignore
-   */
-  onClick: PropTypes.func,
   /**
    * @ignore
    */

@@ -48,7 +48,7 @@ describe('Joy <TextField />', () => {
 
     rerender(<TextField variant="soft" />);
     expect(container.firstChild).to.have.class(classes.variantSoft);
-    expect(container.querySelector(`.${inputClasses.root}`)).to.have.class(
+    expect(container.querySelector(`.${inputClasses.wrapper}`)).to.have.class(
       inputClasses.variantSoft,
     );
   });
@@ -59,14 +59,14 @@ describe('Joy <TextField />', () => {
 
     rerender(<TextField size="sm" />);
     expect(container.firstChild).to.have.class(classes.sizeSm);
-    expect(container.querySelector(`.${inputClasses.root}`)).to.have.class(inputClasses.sizeSm);
+    expect(container.querySelector(`.${inputClasses.wrapper}`)).to.have.class(inputClasses.sizeSm);
   });
 
   it('should have configurable color', () => {
     const { container } = render(<TextField color="primary" />);
 
     expect(container.firstChild).to.have.class(classes.colorPrimary);
-    expect(container.querySelector(`.${inputClasses.root}`)).to.have.class(
+    expect(container.querySelector(`.${inputClasses.wrapper}`)).to.have.class(
       inputClasses.colorPrimary,
     );
   });
@@ -87,21 +87,25 @@ describe('Joy <TextField />', () => {
     const { container } = render(<TextField error />);
 
     expect(container.firstChild).to.have.class(classes.error);
-    expect(container.querySelector(`.${inputClasses.root}`)).to.have.class(inputClasses.error);
+    expect(container.querySelector(`.${inputClasses.wrapper}`)).to.have.class(inputClasses.error);
   });
 
   it('should be disabled', () => {
     const { container } = render(<TextField disabled />);
 
     expect(container.firstChild).to.have.class(classes.disabled);
-    expect(container.querySelector(`.${inputClasses.root}`)).to.have.class(inputClasses.disabled);
+    expect(container.querySelector(`.${inputClasses.wrapper}`)).to.have.class(
+      inputClasses.disabled,
+    );
   });
 
   it('should have fullWidth classes', () => {
     const { container } = render(<TextField fullWidth />);
 
     expect(container.firstChild).to.have.class(classes.fullWidth);
-    expect(container.querySelector(`.${inputClasses.root}`)).to.have.class(inputClasses.fullWidth);
+    expect(container.querySelector(`.${inputClasses.wrapper}`)).to.have.class(
+      inputClasses.fullWidth,
+    );
   });
 
   it('should show asterisk if required', () => {

@@ -1,10 +1,10 @@
 import { generateUtilityClass, generateUtilityClasses } from '../className';
 
 export interface InputClasses {
-  /** Styles applied to the root element. */
+  /** Styles applied to the root(html input) element. */
   root: string;
-  /** Styles applied to the input element. */
-  input: string;
+  /** Styles applied to the wrapper element. */
+  wrapper: string;
   /** Styles applied to the root element if the component is a descendant of `FormControl`. */
   formControl: string;
   /** Styles applied to the root element if the component is focused. */
@@ -53,7 +53,7 @@ export function getInputUtilityClass(slot: string): string {
 
 const inputClasses: InputClasses = generateUtilityClasses('JoyInput', [
   'root',
-  'input',
+  'wrapper',
   'formControl',
   'focused',
   'disabled',
