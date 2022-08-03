@@ -24,6 +24,11 @@
       "nodeName": "o elemento raiz",
       "conditions": "<code>variant=\"rectangular\"</code>"
     },
+    "rounded": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"rounded\"</code>"
+    },
     "circular": {
       "description": "Estilos aplicados para {{nodeName}} se {{conditions}}.",
       "nodeName": "o elemento raiz",
