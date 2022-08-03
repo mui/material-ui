@@ -58,10 +58,10 @@ export const padding: SimpleStyleFunction<
   | 'paddingBlockEnd'
 >;
 
-type SpacingValue = string | number | null | undefined;
+export type SpacingValueType = string | number | null | undefined;
 export function getValue(
-  transformer: (prop: SpacingValue) => SpacingValue,
-  propValue: SpacingValue,
-): SpacingValue;
+  transformer: (prop: SpacingValueType) => SpacingValueType,
+  propValue: SpacingValueType,
+): SpacingValueType;
 
 export type PaddingProps = PropsFor<typeof padding>;
