@@ -36,7 +36,9 @@ export default function RadioUsage() {
           codeBlockDisplay: false,
         },
       ]}
-      getCodeBlock={(code, props) => `<RadioGroup${props.row ? ` row` : ''}>
+      getCodeBlock={(code, props) => `<RadioGroup${
+        props.row ? ` orientation="horizontal"` : ''
+      }>
 ${prependLinesSpace(code, 2)}
 </RadioGroup>`}
       renderDemo={({ orientation, ...props }) => (
