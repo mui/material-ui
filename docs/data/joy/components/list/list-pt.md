@@ -76,6 +76,10 @@ The `ListDivider` component comes with four `inset` patterns:
 
 {{"demo": "DividedList.js"}}
 
+For horizontal list, only `inset="gutter"` works on list divider.
+
+{{"demo": "HorizontalDividedList.js"}}
+
 ### Sticky item
 
 To have a sticky list item, use a `List` as a child of the `Sheet` component. Then, on the item you wish to stick, add the `sticky` prop.
