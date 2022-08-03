@@ -36,21 +36,19 @@ interface Value {
 />;
 <Select sx={{ bgcolor: (theme) => theme.vars.palette.background.body }} />;
 <Select
+  aria-labelledby="some-id"
+  aria-describedby="some-id"
+  onClick={() => {}}
   componentsProps={{
-    button: {
-      'aria-labelledby': 'some-id',
-      'aria-describedby': 'some-id',
-      onClick: () => {},
-      sx: {
-        bgcolor: (theme) => theme.vars.palette.background.body,
-      },
-    },
     listbox: {
       component: 'div',
       sx: {
         '--List-padding': '8px',
       },
     },
+  }}
+  sx={{
+    bgcolor: (theme) => theme.vars.palette.background.body,
   }}
 />;
 
