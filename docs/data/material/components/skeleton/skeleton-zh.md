@@ -36,7 +36,10 @@ githubLabel: 'component: skeleton'
 
 ## 变体
 
-组件支持 3 种形状变体。
+The component supports 4 shape variants:
+
+- `text` (default): represents a single line of text (you can adjust the height via font size).
+- `circular`, `rectangular`, and `rounded`: come with different border radius to let you take control of the size.
 
 {{"demo": "Variants.js"}}
 
