@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { describeConformance, createRenderer } from 'test/utils';
-import Stack from '@mui/material/Stack';
+import Stack, { stackClasses as classes } from '@mui/material/Stack';
 
 // The main tests are in mui-system Stack folder
 describe('<Stack />', () => {
@@ -11,7 +11,7 @@ describe('<Stack />', () => {
   };
 
   describeConformance(<Stack {...defaultProps} />, () => ({
-    classes: {},
+    classes,
     inheritComponent: 'div',
     render,
     refInstanceof: window.HTMLElement,
