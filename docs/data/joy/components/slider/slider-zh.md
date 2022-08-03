@@ -47,6 +47,12 @@ To make the thumb label always visible, toggle on the `valueLabelDisplay` prop.
 
 {{"demo": "AlwaysVisibleLabelSlider.js"}}
 
+### Vertical
+
+Set `orientation="vertical"` to display the vertical slider.
+
+{{"demo": "VerticalSlider.js"}}
+
 ### Keep the label at edges
 
 Apply the following styles to ensure that the label doesn't get cut off on mobile when it hits the edge of the slider.
