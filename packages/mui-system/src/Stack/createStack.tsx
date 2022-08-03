@@ -1,5 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import clsx from 'clsx';
 import { OverridableComponent } from '@mui/types';
 import {
   deepmerge,
@@ -161,8 +162,7 @@ export default function createStack(
     componentName = 'MuiStack',
   } = options;
 
-  // TODO: Why the Stack in Material UI didn't have any utility classes?
-  const useUtilityClasses = (ownerState: StackOwnerState, theme: typeof defaultTheme) => {
+  const useUtilityClasses = () => {
     const slots = {
       root: ['root'],
     };
@@ -183,6 +183,7 @@ export default function createStack(
       spacing = 0,
       divider,
       children,
+      className,
       ...other
     } = props;
 
@@ -191,8 +192,16 @@ export default function createStack(
       spacing,
     };
 
+    const classes = useUtilityClasses();
+
     return (
-      <StackRoot as={component} ownerState={ownerState} ref={ref} {...other}>
+      <StackRoot
+        as={component}
+        ownerState={ownerState}
+        ref={ref}
+        className={clsx(classes.root, className)}
+        {...other}
+      >
         {divider ? joinChildren(children, divider as React.ReactElement) : children}
       </StackRoot>
     );
