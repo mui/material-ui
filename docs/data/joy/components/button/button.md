@@ -16,7 +16,7 @@ Buttons communicate actions that users can take.
 
 {{"demo": "ButtonUsage.js", "hideToolbar": true}}
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Component
 
@@ -68,7 +68,7 @@ Use the `IconButton` component if you want width and height to be the same while
 Every prop previously covered are available for this component as well.
 
 ```jsx
-import Button from '@mui/joy/IconButton';
+import IconButton from '@mui/joy/IconButton';
 ```
 
 {{"demo": "IconButtons.js"}}
@@ -93,3 +93,9 @@ Since links are the most appropriate component for navigating through pages, tha
 Doing so will automatically change the rendered HTML tag from `<button>` to `<a>`.
 
 {{"demo": "ButtonLink.js"}}
+
+## CSS Variables
+
+{{"demo": "ButtonVariables.js", "hideToolbar": true}}
+
+{{"demo": "IconButtonVariables.js", "hideToolbar": true}}

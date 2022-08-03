@@ -56,6 +56,7 @@ export default function ListVariables() {
                 fontWeight="md"
                 startDecorator={
                   <Sheet
+                    component="span"
                     sx={{
                       width: 8,
                       height: 8,

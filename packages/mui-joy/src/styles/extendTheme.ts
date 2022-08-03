@@ -13,7 +13,7 @@ import { ColorSystem, ColorPaletteProp, PaletteRange } from './types/colorSystem
 import { Focus } from './types/focus';
 import { TypographySystem, FontSize } from './types/typography';
 import { Variants } from './types/variants';
-import { Theme, ThemeCSSVar, ThemeScales } from './types';
+import { Theme, ThemeCssVar, ThemeScales } from './types';
 import { Components } from './components';
 import { generateUtilityClass } from '../className';
 import { createVariant, createTextOverrides, createContainedOverrides } from './variantUtils';
@@ -61,7 +61,7 @@ export interface CssVarsThemeOptions extends Partial2Level<ThemeScales> {
 }
 
 export const createGetCssVar = (cssVarPrefix = 'joy') =>
-  systemCreateGetCssVar<ThemeCSSVar>(cssVarPrefix);
+  systemCreateGetCssVar<ThemeCssVar>(cssVarPrefix);
 
 export default function extendTheme(themeOptions?: CssVarsThemeOptions): Theme {
   const {

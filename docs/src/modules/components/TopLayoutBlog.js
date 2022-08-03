@@ -83,6 +83,11 @@ export const authors = {
     avatar: 'https://avatars.githubusercontent.com/u/550141',
     github: 'joserodolfofreitas',
   },
+  cherniavskii: {
+    name: 'Andrew Cherniavskyi',
+    avatar: 'https://avatars.githubusercontent.com/u/13808724',
+    github: 'cherniavskii',
+  },
 };
 
 const classes = {

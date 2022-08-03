@@ -8,12 +8,14 @@ export default function Page(props) {
   return <ApiPage descriptions={descriptions} pageContent={pageContent} />;
 }
 
-Page.getInitialProps = () => {
+export function getStaticProps() {
   const req = require.context('docs/translations/api-docs/card', false, /card.*.json$/);
   const descriptions = mapApiPageTranslations(req);
 
   return {
-    descriptions,
-    pageContent: jsonPageContent,
+    props: {
+      descriptions,
+      pageContent: jsonPageContent,
+    },
   };
-};
+}

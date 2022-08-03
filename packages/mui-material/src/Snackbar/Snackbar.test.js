@@ -43,7 +43,7 @@ describe('<Snackbar />', () => {
       const handleClose = spy();
       render(<Snackbar open onClose={handleClose} message="message" />);
 
-      const event = new window.Event('click', { view: window, bubbles: true, cancelable: true });
+      const event = new window.Event('click', { bubbles: true, cancelable: true });
       document.body.dispatchEvent(event);
 
       expect(handleClose.callCount).to.equal(1);
@@ -437,7 +437,6 @@ describe('<Snackbar />', () => {
 
       act(() => {
         const bEvent = new window.Event('blur', {
-          view: window,
           bubbles: false,
           cancelable: false,
         });
@@ -452,7 +451,6 @@ describe('<Snackbar />', () => {
 
       act(() => {
         const fEvent = new window.Event('focus', {
-          view: window,
           bubbles: false,
           cancelable: false,
         });
@@ -481,7 +479,7 @@ describe('<Snackbar />', () => {
       );
 
       act(() => {
-        const event = new window.Event('blur', { view: window, bubbles: false, cancelable: false });
+        const event = new window.Event('blur', { bubbles: false, cancelable: false });
         window.dispatchEvent(event);
       });
 

@@ -17,8 +17,8 @@
     },
     "variant": {
       "type": {
-        "name": "enum",
-        "description": "'filled'<br>&#124;&nbsp;'outlined'<br>&#124;&nbsp;'standard'"
+        "name": "union",
+        "description": "'filled'<br>&#124;&nbsp;'outlined'<br>&#124;&nbsp;'standard'<br>&#124;&nbsp;string"
       }
     }
   },

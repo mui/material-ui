@@ -29,7 +29,7 @@ export default function HeroPricing() {
           Start using <GradientText>MUI</GradientText> for free!
         </Typography>
         <Typography color="text.secondary" textAlign="center" sx={{ maxWidth: 500 }}>
-          Switch to a commercial plan to access advanced features & professional support.
+          Switch to a commercial plan to access advanced features & technical support.
         </Typography>
       </Box>
       <Divider />

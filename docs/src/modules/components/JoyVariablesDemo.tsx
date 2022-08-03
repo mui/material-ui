@@ -16,6 +16,7 @@ import KeyboardArrowDown from '@mui/icons-material/KeyboardArrowDown';
 interface DataItem {
   var: string;
   defaultValue?: string;
+  helperText?: string;
 }
 
 function formatSx(sx: { [k: string]: string }) {
@@ -170,6 +171,7 @@ export default function JoyVariablesDemo(props: {
                     label={item.var}
                     size="sm"
                     variant="outlined"
+                    helperText={item.helperText}
                     value={Number(resolvedValue?.replace('px', '')) || ''}
                     componentsProps={{
                       input: {

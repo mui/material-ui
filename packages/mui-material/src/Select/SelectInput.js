@@ -518,7 +518,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         onFocus={onFocus}
         {...SelectDisplayProps}
         ownerState={ownerState}
-        className={clsx(classes.select, className, SelectDisplayProps.className)}
+        className={clsx(SelectDisplayProps.className, classes.select, className)}
         // The id is required for proper a11y
         id={buttonId}
       >

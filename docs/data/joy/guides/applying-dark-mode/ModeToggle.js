@@ -6,7 +6,7 @@ import Button from '@mui/joy/Button';
 const useEnhancedEffect =
   typeof window !== 'undefined' ? React.useLayoutEffect : React.useEffect;
 
-const ModeToggle = () => {
+function ModeToggle() {
   const { mode, setMode } = useColorScheme();
   const [mounted, setMounted] = React.useState(false);
 
@@ -26,7 +26,7 @@ const ModeToggle = () => {
       {mode === 'dark' ? 'Turn light' : 'Turn dark'}
     </Button>
   );
-};
+}
 
 export default function BootstrapVariantTokens() {
   // the `node` is used for attaching CSS variables to this demo, you might not need it in your application.
