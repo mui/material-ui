@@ -31,7 +31,7 @@ Check out the [Working with Tailwind guide](http:///base/guides/working-with-tai
 In contrast to Material UI, Base's components do not have any default styles.
 They provide functionality and structure, while designers and developers are responsible for the visuals.
 
-Each unstyled component lets developers modify or override its *slots* - smaller subcomponents representing parts that work together.
+Each unstyled component lets developers modify or override its _slots_ - smaller subcomponents representing parts that work together.
 For example, a SwitchUnstyled contains the root, thumb, input, and track slots.
 You can control props passed to each of these slots (including, perhaps most importantly, `className`) based on the component's state or even replace the default slot components with your own.
 
@@ -67,6 +67,6 @@ Please help us create the best possible headless component library out there.
 If you found any bugs, have trouble understanding some concepts, or have ideas for improvements, don't hesitate to open issues on GitHub.
 Make sure to include "[base]" or a component/hook name in the issue title, so we recognize it.
 Also, we're eager to know what you create with MUI Base.
-Please share your creations on Twitter to let us (and others) know what our library can be used for.  
+Please share your creations on Twitter to let us (and others) know what our library can be used for.
 
 **Happy creating!**
