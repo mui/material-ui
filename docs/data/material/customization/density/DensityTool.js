@@ -25,10 +25,22 @@ export default function DensityTool() {
   };
 
   const handleSpacingChange = (event, value) => {
+    let spacing = value || +event.target.value;
+
+    //  If the entered value is greater than maxSpacing, setting up maxSpacing as value
+    if (spacing > maxSpacing) {
+      spacing = maxSpacing;
+    }
+    //  If the entered value is less than minSpacing, setting up minSpacing as value
+    else if (spacing < minSpacing) {
+      spacing = minSpacing;
+    }
+
     dispatch({
       type: 'SET_SPACING',
-      payload: value || +event.target.value,
+      payload: spacing,
     });
+
   };
 
   const increaseSpacing = () => {
@@ -71,7 +83,7 @@ export default function DensityTool() {
           </Typography>
         </Grid>
         <Grid item>
-          <IconButton aria-label={t('increaseSpacing')} onClick={decreaseSpacing}>
+          <IconButton aria-label={t('increaseSpacing')} onClick={decreaseSpacing} disabled={spacingUnit === minSpacing}>
             <DecreaseIcon />
           </IconButton>
           <Input
@@ -86,7 +98,7 @@ export default function DensityTool() {
               'aria-labelledby': 'input-slider',
             }}
           />
-          <IconButton aria-label={t('decreaseSpacing')} onClick={increaseSpacing}>
+          <IconButton aria-label={t('decreaseSpacing')} onClick={increaseSpacing} disabled={spacingUnit === maxSpacing}>
             <IncreaseIcon />
           </IconButton>
         </Grid>
