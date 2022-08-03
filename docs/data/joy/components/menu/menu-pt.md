@@ -67,11 +67,19 @@ The `Menu` is based on the `PopperUnstyled` component, which exposes a few [plac
 
 {{"demo": "PositionedMenu.js"}}
 
+### Group menus
+
+{{"demo": "GroupMenu.js"}}
+
 ### `MenuList` composition
 
 To get full control of the DOM structure, use the `MenuList` component. You can use it to compose any popup-alike component. The primary responsibility of this component is handling the focus state.
 
 {{"demo": "MenuListComposition.js"}}
+
+Or display the menu without a popup:
+
+{{"demo": "MenuListGroup.js"}}
 
 ## Debugging
 
