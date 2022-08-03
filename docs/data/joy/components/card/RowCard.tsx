@@ -8,7 +8,7 @@ import Typography from '@mui/joy/Typography';
 export default function InteractiveCard() {
   return (
     <Card
-      row
+      orientation="horizontal"
       variant="outlined"
       sx={{
         minWidth: '260px',
