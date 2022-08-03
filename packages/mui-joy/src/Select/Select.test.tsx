@@ -16,11 +16,19 @@ describe('Joy <Select />', () => {
     render,
     classes,
     ThemeProvider,
-    refInstanceof: window.HTMLDivElement,
+    refInstanceof: window.HTMLButtonElement,
     muiName: 'JoySelect',
-    testDeepOverrides: { slotName: 'button', slotClassName: classes.button },
+    testDeepOverrides: { slotName: 'wrapper', slotClassName: classes.wrapper },
     testVariantProps: { variant: 'soft' },
-    skip: ['classesRoot', 'propsSpread', 'componentProp', 'componentsProp'],
+    skip: [
+      'mergeClassName',
+      'classesRoot',
+      'rootClass',
+      'propsSpread',
+      'componentProp',
+      'componentsProp',
+      'themeDefaultProps',
+    ],
   }));
 
   it('should be able to mount the component', () => {
@@ -60,15 +68,7 @@ describe('Joy <Select />', () => {
   it('should pass "name" as part of the event.target for onBlur', () => {
     const handleBlur = stub().callsFake((event) => event.target.name);
     const { getByRole } = render(
-      <Select
-        name="blur-testing"
-        componentsProps={{
-          button: {
-            onBlur: handleBlur,
-          },
-        }}
-        value=""
-      >
+      <Select name="blur-testing" onBlur={handleBlur} value="">
         <Option value="">none</Option>
       </Select>,
     );

@@ -1,10 +1,10 @@
 import { generateUtilityClass, generateUtilityClasses } from '../className';
 
 export interface SelectClasses {
-  /** Styles applied to the root slot. */
+  /** Styles applied to the root(html button) slot. */
   root: string;
-  /** Styles applied to the button slot. */
-  button: string;
+  /** Styles applied to the wrapper slot. */
+  wrapper: string;
   /** Styles applied to the indicator slot. */
   indicator: string;
   /** Styles applied to the startDecorator slot. */
@@ -57,7 +57,7 @@ export function getSelectUtilityClass(slot: string): string {
 
 const selectClasses: SelectClasses = generateUtilityClasses('JoySelect', [
   'root',
-  'button',
+  'wrapper',
   'indicator',
   'startDecorator',
   'endDecorator',

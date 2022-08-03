@@ -31,8 +31,8 @@ const useUtilityClasses = (ownerState: SelectOwnerState<any>) => {
   const { color, disabled, focusVisible, size, variant, open } = ownerState;
 
   const slots = {
-    root: [
-      'root',
+    wrapper: [
+      'wrapper',
       disabled && 'disabled',
       focusVisible && 'focusVisible',
       open && 'expanded',
@@ -40,7 +40,7 @@ const useUtilityClasses = (ownerState: SelectOwnerState<any>) => {
       color && `color${capitalize(color)}`,
       size && `size${capitalize(size)}`,
     ],
-    button: ['button'],
+    root: ['root'],
     startDecorator: ['startDecorator'],
     endDecorator: ['endDecorator'],
     indicator: ['indicator', open && 'expanded'],
@@ -57,10 +57,10 @@ const useUtilityClasses = (ownerState: SelectOwnerState<any>) => {
   return composeClasses(slots, getSelectUtilityClass, {});
 };
 
-const SelectRoot = styled('div', {
+const SelectWrapper = styled('div', {
   name: 'JoySelect',
-  slot: 'Root',
-  overridesResolver: (props, styles) => styles.root,
+  slot: 'Wrapper',
+  overridesResolver: (props, styles) => styles.wrapper,
 })<{ ownerState: SelectStaticProps }>(({ theme, ownerState }) => {
   const variantStyle = theme.variants[`${ownerState.variant!}`]?.[ownerState.color!];
   return [
@@ -158,10 +158,10 @@ const SelectRoot = styled('div', {
   ];
 });
 
-const SelectButton = styled('button', {
+const SelectRoot = styled('button', {
   name: 'JoySelect',
-  slot: 'Button',
-  overridesResolver: (props, styles) => styles.button,
+  slot: 'Root',
+  overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: SelectOwnerState<any> }>(({ ownerState }) => ({
   // reset user-agent button style
   border: 0,
@@ -245,13 +245,14 @@ const SelectIndicator = styled('span', {
   alignItems: 'center',
   marginInlineStart: 'var(--Select-gap)',
   marginInlineEnd: 'calc(var(--Select-paddingInline) / -4)',
+  pointerEvents: 'none',
 });
 
 const Select = React.forwardRef(function Select<TValue>(
   inProps: SelectOwnProps<TValue>,
   ref: React.ForwardedRef<any>,
 ) {
-  const props = useThemeProps({
+  const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
     name: 'JoySelect',
   });
@@ -260,6 +261,7 @@ const Select = React.forwardRef(function Select<TValue>(
     action,
     autoFocus,
     children,
+    component,
     componentsProps = {},
     defaultValue,
     defaultListboxOpen = false,
@@ -278,21 +280,9 @@ const Select = React.forwardRef(function Select<TValue>(
     startDecorator,
     endDecorator,
     indicator = <Unfold />,
-    // props to forward to the button (all handlers should go through componentsProps.button)
-    'aria-describedby': ariaDescribedby,
-    'aria-label': ariaLabel,
-    'aria-labelledby': ariaLabelledby,
-    id,
-    name,
+    sx,
     ...other
-  } = props as typeof inProps & {
-    // need to cast types because SelectOwnProps does not have these properties
-    'aria-describedby'?: string;
-    'aria-label'?: string;
-    'aria-labelledby'?: string;
-    id?: string;
-    name?: string;
-  };
+  } = props;
 
   const renderValue = renderValueProp ?? defaultRenderSingleValue;
   const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
@@ -306,11 +296,11 @@ const Select = React.forwardRef(function Select<TValue>(
     state: 'listboxOpen',
   });
 
-  const rootRef = React.useRef<HTMLElement | null>(null);
+  const wrapperRef = React.useRef<HTMLElement | null>(null);
   const buttonRef = React.useRef<HTMLElement | null>(null);
   const listboxRef = React.useRef<HTMLElement | null>(null);
 
-  const handleRef = useForkRef(ref, rootRef);
+  const handleRef = useForkRef(ref, buttonRef);
 
   React.useImperativeHandle(
     action,
@@ -327,7 +317,7 @@ const Select = React.forwardRef(function Select<TValue>(
   }, [children]);
 
   React.useEffect(() => {
-    setAnchorEl(rootRef.current);
+    setAnchorEl(wrapperRef.current);
   }, []);
 
   React.useEffect(() => {
@@ -410,40 +400,38 @@ const Select = React.forwardRef(function Select<TValue>(
     return options.find((o) => value === o.value);
   }, [options, value]);
 
-  const rootProps = useSlotProps({
-    elementType: SelectRoot,
+  const wrapperProps = useSlotProps({
+    elementType: SelectWrapper,
     getSlotProps: (handlers) => ({
-      onMouseDown: (event: React.MouseEvent<HTMLDivElement>) => {
-        if (!listboxOpen && event.target !== buttonRef.current && !event.isPropagationStopped()) {
+      onMouseUp: (event: React.MouseEvent<HTMLDivElement>) => {
+        if (!listboxOpen && event.currentTarget === event.target) {
           // show the popup if user click outside of the button element.
           // the close action is already handled by blur event.
           handleOpenChange(true);
         }
-        handlers.onClick?.(event);
+        handlers.onMouseUp?.(event);
       },
     }),
+    externalSlotProps: componentsProps.wrapper,
+    additionalProps: {
+      ref: wrapperRef,
+      sx,
+    },
+    ownerState,
+    className: classes.wrapper,
+  });
+
+  const rootProps = useSlotProps({
+    elementType: SelectRoot,
+    getSlotProps: getButtonProps,
     externalSlotProps: componentsProps.root,
     externalForwardedProps: other,
     additionalProps: {
+      as: component,
       ref: handleRef,
     },
     ownerState,
     className: classes.root,
-  });
-
-  const buttonProps = useSlotProps({
-    elementType: SelectButton,
-    getSlotProps: getButtonProps,
-    externalSlotProps: componentsProps.button,
-    additionalProps: {
-      'aria-describedby': ariaDescribedby,
-      'aria-label': ariaLabel,
-      'aria-labelledby': ariaLabelledby,
-      id,
-      name,
-    },
-    ownerState,
-    className: classes.button,
   });
 
   const { component: listboxComponent, ...externalListboxProps } = componentsProps.listbox || {};
@@ -478,16 +466,16 @@ const Select = React.forwardRef(function Select<TValue>(
 
   return (
     <React.Fragment>
-      <SelectRoot {...rootProps}>
+      <SelectWrapper {...wrapperProps}>
         {startDecorator && (
           <SelectStartDecorator className={classes.startDecorator} ownerState={ownerState}>
             {startDecorator}
           </SelectStartDecorator>
         )}
 
-        <SelectButton {...buttonProps}>
+        <SelectRoot {...rootProps}>
           {selectedOptions ? renderValue(selectedOptions) : placeholder}
-        </SelectButton>
+        </SelectRoot>
         {endDecorator && (
           <SelectEndDecorator className={classes.endDecorator} ownerState={ownerState}>
             {endDecorator}
@@ -499,7 +487,7 @@ const Select = React.forwardRef(function Select<TValue>(
             {indicator}
           </SelectIndicator>
         )}
-      </SelectRoot>
+      </SelectWrapper>
       {anchorEl && (
         <PopperUnstyled {...listboxProps}>
           <SelectUnstyledContext.Provider value={context}>
@@ -542,6 +530,11 @@ Select.propTypes /* remove-proptypes */ = {
     }),
   ]),
   /**
+   * If `true`, the select element is focused during the first mount
+   * @default false
+   */
+  autoFocus: PropTypes.bool,
+  /**
    * @ignore
    */
   children: PropTypes.node,
@@ -563,10 +556,15 @@ Select.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   componentsProps: PropTypes.shape({
-    button: PropTypes.object,
     listbox: PropTypes.object,
     root: PropTypes.object,
+    wrapper: PropTypes.object,
   }),
+  /**
+   * If `true`, the select will be initially open.
+   * @default false
+   */
+  defaultListboxOpen: PropTypes.bool,
   /**
    * The default selected value. Use when the component is not controlled.
    */
@@ -588,6 +586,16 @@ Select.propTypes /* remove-proptypes */ = {
    */
   indicator: PropTypes.node,
   /**
+   * `id` attribute of the listbox element.
+   * Also used to derive the `id` attributes of options.
+   */
+  listboxId: PropTypes.string,
+  /**
+   * Controls the open state of the select's listbox.
+   * @default undefined
+   */
+  listboxOpen: PropTypes.bool,
+  /**
    * Callback fired when an option is selected.
    */
   onChange: PropTypes.func,
@@ -595,6 +603,11 @@ Select.propTypes /* remove-proptypes */ = {
    * Triggered when focus leaves the menu and the menu should close.
    */
   onClose: PropTypes.func,
+  /**
+   * Callback fired when the component requests to be opened.
+   * Use in controlled mode (see listboxOpen).
+   */
+  onListboxOpenChange: PropTypes.func,
   /**
    * Text to show when there is no selected value.
    */

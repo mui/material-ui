@@ -36,8 +36,8 @@ export interface SelectStaticProps extends SelectUnstyledCommonProps {
    * @default {}
    */
   componentsProps?: {
-    root?: React.ComponentPropsWithRef<'div'>;
-    button?: React.ComponentPropsWithRef<'button'> & { sx?: SxProps };
+    wrapper?: React.ComponentPropsWithRef<'div'> & { sx?: SxProps; component?: React.ElementType };
+    root?: React.ComponentPropsWithRef<'button'> & { sx?: SxProps };
     listbox?: Omit<PopperUnstyledProps, 'open'> &
       Pick<ListProps, 'variant' | 'color'> & { sx?: SxProps };
   };
