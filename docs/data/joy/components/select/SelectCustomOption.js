@@ -17,6 +17,7 @@ export default function SelectCustomOption() {
         },
       }}
       sx={{
+        // For the selected option
         '--List-decorator-width': '44px',
         minWidth: 240,
       }}
