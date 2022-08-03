@@ -32,8 +32,8 @@ export default function MyApp() {
 `Breadcrumbs` is a navigation component that should be used with other components.
 The most common components you'd use with it are `Typography` and `Link`.
 
-{{"demo": "BasicBreadcrumbs.js",  "hideToolbar": false}}
+{{"demo": "BasicBreadcrumbs.js"}}
 
 ### Collapsed Breadcrumbs
 
-{{"demo": "CollapsedBreadcrumbs.js",  "hideToolbar": false}}
+{{"demo": "CollapsedBreadcrumbs.js"}}

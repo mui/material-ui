@@ -1,0 +1,14 @@
+{(
+  [
+    'neutral',
+    'primary',
+    'danger',
+    'info',
+    'success',
+    'warning',
+  ] as ColorPaletteProp[]
+).map((color: ColorPaletteProp) => (
+  <Sheet variant="plain" color={color} key={color}>
+    <CustomBreadcrumbs color={color} />
+  </Sheet>
+))}

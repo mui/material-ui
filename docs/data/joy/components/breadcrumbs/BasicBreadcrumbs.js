@@ -4,11 +4,12 @@ import Breadcrumbs from '@mui/joy/Breadcrumbs';
 import Typography from '@mui/joy/Typography';
 import Link from '@mui/joy/Link';
 import Sheet from '@mui/joy/Sheet';
+import Box from '@mui/joy/Box';
 
 export default function BasicBreadcrumbs() {
   return (
-    <div
-      style={{
+    <Box
+      sx={{
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
@@ -51,6 +52,6 @@ export default function BasicBreadcrumbs() {
 
         <Typography fontSize="inherit">Hitchcock</Typography>
       </Breadcrumbs>
-    </div>
+    </Box>
   );
 }
