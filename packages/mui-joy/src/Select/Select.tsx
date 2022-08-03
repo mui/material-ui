@@ -572,7 +572,7 @@ Select.propTypes /* remove-proptypes */ = {
    */
   defaultValue: PropTypes /* @typescript-to-proptypes-ignore */.any,
   /**
-   * If `true`, the component is disabled.
+   * If `true`, the select is disabled.
    * @default false
    */
   disabled: PropTypes.bool,

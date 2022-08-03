@@ -42,11 +42,6 @@ export interface SelectStaticProps extends SelectUnstyledCommonProps {
       Pick<ListProps, 'variant' | 'color'> & { sx?: SxProps };
   };
   /**
-   * If `true`, the component is disabled.
-   * @default false
-   */
-  disabled?: boolean;
-  /**
    * Trailing adornment for the select.
    */
   endDecorator?: React.ReactNode;
