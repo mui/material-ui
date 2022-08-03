@@ -1311,25 +1311,25 @@
     "@date-io/core" "^2.14.0"
 
 "@definitelytyped/header-parser@latest":
-  version "0.0.115"
-  resolved "https://registry.yarnpkg.com/@definitelytyped/header-parser/-/header-parser-0.0.115.tgz#398b697d51467eafd615e66dded38ff30e9733d4"
-  integrity sha512-74YaIWLSST0IjqkP75VRJMMX0A6yysXrLIcO6JcuOYadxzv0mFXdL7n0jXvI00GMEpvFAKcyzAggznQIjup7pw==
+  version "0.0.121"
+  resolved "https://registry.yarnpkg.com/@definitelytyped/header-parser/-/header-parser-0.0.121.tgz#b0d08c2db0bf2177a2a48cd3eec21803273e1382"
+  integrity sha512-78HY1J+QiwZPXFZQWb9gPQPxAMNg6/1e4gl7gL/8dmd17vVWLi3AGrLJoG8Pn1p8d7MF2rlPw/2AE6+r1IHNHA==
   dependencies:
-    "@definitelytyped/typescript-versions" "^0.0.115"
+    "@definitelytyped/typescript-versions" "^0.0.121"
     "@types/parsimmon" "^1.10.1"
     parsimmon "^1.13.0"
 
-"@definitelytyped/typescript-versions@^0.0.115", "@definitelytyped/typescript-versions@latest":
-  version "0.0.115"
-  resolved "https://registry.yarnpkg.com/@definitelytyped/typescript-versions/-/typescript-versions-0.0.115.tgz#e446a350438e6c83df0c2e72004ba586f052f782"
-  integrity sha512-BgktLglKQEphkf+Zhgrpn9upTuTkWILA2md2B/OQMRFleHgJfkKq+efa+/NK0ZwjWrkpzfFd3OhAvA9rtDyfFw==
+"@definitelytyped/typescript-versions@^0.0.121", "@definitelytyped/typescript-versions@latest":
+  version "0.0.121"
+  resolved "https://registry.yarnpkg.com/@definitelytyped/typescript-versions/-/typescript-versions-0.0.121.tgz#0bb9d884a683be1b45c9ec7e5648b8f369a7a32d"
+  integrity sha512-mTfkR7MrGo08lzOPZx3ZgIER9PoalRZok3hmrsLDxTUhS5lrgdgXBOpAyDMtnJUAO6AxrIx126XGlkN+1rvKcA==
 
 "@definitelytyped/utils@latest":
-  version "0.0.115"
-  resolved "https://registry.yarnpkg.com/@definitelytyped/utils/-/utils-0.0.115.tgz#5cbbdc15e6aceb925f753c67ac4149ec648dac5a"
-  integrity sha512-4rH4HGU4c2Q+7LAxpzQ3jA8+hzjSahuwoVSa/D45CBayBdndrSDpUk95yPhShJkoFRrGZ4QXzMKc0n1LIx96dg==
+  version "0.0.121"
+  resolved "https://registry.yarnpkg.com/@definitelytyped/utils/-/utils-0.0.121.tgz#f01a991b5c06a0d3ef7bfca156183b9a51579822"
+  integrity sha512-H2g09ZJcmCk0BAy86M/UcMP4pq0UGaKBGpjPjPe5btKgZDB6A1Tn1/TKd46cQ6grhFdsxJFE5cb8XWGTKkpA8w==
   dependencies:
-    "@definitelytyped/typescript-versions" "^0.0.115"
+    "@definitelytyped/typescript-versions" "^0.0.121"
     "@qiwi/npm-registry-client" "^8.9.1"
     "@types/node" "^14.14.35"
     charm "^1.0.2"
