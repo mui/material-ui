@@ -37,3 +37,9 @@ The most common components you'd use with it are `Typography` and `Link`.
 ### Collapsed Breadcrumbs
 
 {{"demo": "CollapsedBreadcrumbs.js"}}
+
+### With `Menu`
+
+You can use the Joy `Breadcrumbs` component together with the MUI Base `Menu` component.
+
+{{"demo": "BreadcrumbsWithMenu.js"}}
