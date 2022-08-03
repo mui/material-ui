@@ -433,10 +433,8 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                   <Select
                     size="sm"
                     placeholder="Select a variant..."
+                    aria-labelledby={selectId}
                     componentsProps={{
-                      button: {
-                        'aria-labelledby': selectId,
-                      },
                       listbox: {
                         sx: {
                           '--List-decorator-width': '24px',
