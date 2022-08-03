@@ -109,3 +109,7 @@ Don't forget to use the `label` prop to ensure proper checkbox accessibility.
 You can use checkboxes to create a chip alike design, most often used to filter between different options.
 
 {{"demo": "ExampleChoiceChipCheckbox.js"}}
+
+### Viewport checklist
+
+{{"demo": "ExampleButtonCheckbox.js"}}
