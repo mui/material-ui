@@ -1,6 +1,5 @@
 <Slider
-  aria-label="Temperature"
+  aria-label="Color"
   defaultValue={30}
-  getAriaValueText={valuetext}
   color="secondary"
 />
