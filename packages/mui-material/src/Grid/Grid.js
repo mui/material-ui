@@ -181,7 +181,7 @@ export function generateRowGap({ theme, ownerState }) {
         };
       }
 
-      //  Issue - #33771 - Code crashes from Demo DensityTool screen when we set it 0
+      // Issue - #33771 - Code crashes from Demo DensityTool screen when we set it 0
       if (zeroValueBreakpointKeys && zeroValueBreakpointKeys.includes(breakpoint)) {
         return {};
       }
@@ -228,7 +228,7 @@ export function generateColumnGap({ theme, ownerState }) {
         };
       }
 
-      //  Issue - #33771 - Code crashes from Demo DensityTool screen when we set it 0
+      // Issue - #33771 - Code crashes from Demo DensityTool screen when we set it 0
       if (zeroValueBreakpointKeys && zeroValueBreakpointKeys.includes(breakpoint)) {
         return {};
       }

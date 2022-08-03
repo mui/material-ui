@@ -40,7 +40,6 @@ export default function DensityTool() {
       type: 'SET_SPACING',
       payload: spacing,
     });
-
   };
 
   const increaseSpacing = () => {
@@ -83,7 +82,11 @@ export default function DensityTool() {
           </Typography>
         </Grid>
         <Grid item>
-          <IconButton aria-label={t('increaseSpacing')} onClick={decreaseSpacing} disabled={spacingUnit === minSpacing}>
+          <IconButton
+            aria-label={t('increaseSpacing')}
+            onClick={decreaseSpacing}
+            disabled={spacingUnit === minSpacing}
+          >
             <DecreaseIcon />
           </IconButton>
           <Input
@@ -98,7 +101,11 @@ export default function DensityTool() {
               'aria-labelledby': 'input-slider',
             }}
           />
-          <IconButton aria-label={t('decreaseSpacing')} onClick={increaseSpacing} disabled={spacingUnit === maxSpacing}>
+          <IconButton
+            aria-label={t('decreaseSpacing')}
+            onClick={increaseSpacing}
+            disabled={spacingUnit === maxSpacing}
+          >
             <IncreaseIcon />
           </IconButton>
         </Grid>
