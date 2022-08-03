@@ -18,7 +18,8 @@ describe('Joy <Select />', () => {
     ThemeProvider,
     refInstanceof: window.HTMLButtonElement,
     muiName: 'JoySelect',
-    testDeepOverrides: { slotName: 'wrapper', slotClassName: classes.wrapper },
+    testRootOverrides: { slotName: 'wrapper', slotClassName: classes.wrapper },
+    testDeepOverrides: { slotName: 'indicator', slotClassName: classes.indicator },
     testVariantProps: { variant: 'soft' },
     skip: [
       'mergeClassName',

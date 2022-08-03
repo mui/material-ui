@@ -10,7 +10,7 @@ import { InputTypeMap, InputProps } from './InputProps';
 import inputClasses, { getInputUtilityClass } from './inputClasses';
 
 const useUtilityClasses = (ownerState: InputProps) => {
-  const { classes, disabled, fullWidth, variant, color, size } = ownerState;
+  const { disabled, fullWidth, variant, color, size } = ownerState;
 
   const slots = {
     wrapper: [
@@ -26,7 +26,7 @@ const useUtilityClasses = (ownerState: InputProps) => {
     endDecorator: ['endDecorator'],
   };
 
-  return composeClasses(slots, getInputUtilityClass, classes);
+  return composeClasses(slots, getInputUtilityClass, {});
 };
 
 const InputWrapper = styled('div', {
@@ -264,7 +264,7 @@ const Input = React.forwardRef(function Input(inProps, ref) {
   const wrapperProps = useSlotProps({
     elementType: InputWrapper,
     getSlotProps: getRootProps,
-    externalSlotProps: componentsProps.root,
+    externalSlotProps: componentsProps.wrapper,
     additionalProps: {
       as: componentsProps.wrapper?.component,
       sx,

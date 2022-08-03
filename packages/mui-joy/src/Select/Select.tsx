@@ -239,6 +239,7 @@ const SelectEndDecorator = styled('span', {
 const SelectIndicator = styled('span', {
   name: 'JoySelect',
   slot: 'Indicator',
+  overridesResolver: (props, styles) => styles.indicator,
 })<{ ownerState: SelectOwnerState<any> }>({
   color: 'var(--Select-indicator-color)',
   display: 'inherit',
@@ -415,6 +416,7 @@ const Select = React.forwardRef(function Select<TValue>(
     externalSlotProps: componentsProps.wrapper,
     additionalProps: {
       ref: wrapperRef,
+      as: componentsProps.wrapper?.component,
       sx,
     },
     ownerState,

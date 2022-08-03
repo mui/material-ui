@@ -58,8 +58,6 @@ const inputClasses: InputClasses = generateUtilityClasses('JoyInput', [
   'focused',
   'disabled',
   'error',
-  'adornedStart',
-  'adornedEnd',
   'colorPrimary',
   'colorNeutral',
   'colorDanger',

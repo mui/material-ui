@@ -14,7 +14,8 @@ describe('Joy <Input />', () => {
     ThemeProvider,
     refInstanceof: window.HTMLInputElement,
     muiName: 'JoyInput',
-    testDeepOverrides: { slotName: 'input', slotClassName: classes.input },
+    testRootOverrides: { slotName: 'wrapper', slotClassName: classes.wrapper },
+    testDeepOverrides: { slotName: 'root', slotClassName: classes.root },
     testVariantProps: { variant: 'solid', fullWidth: true },
     skip: [
       'mergeClassName',

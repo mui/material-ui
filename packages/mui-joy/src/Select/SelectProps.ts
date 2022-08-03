@@ -7,7 +7,7 @@ import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
 
 export type SelectSlot =
   | 'root'
-  | 'button'
+  | 'wrapper'
   | 'startDecorator'
   | 'endDecorator'
   | 'indicator'
