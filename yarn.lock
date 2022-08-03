@@ -2920,13 +2920,13 @@
     node-addon-api "^3.2.1"
     node-gyp-build "^4.3.0"
 
-"@playwright/test@1.24.0":
-  version "1.24.0"
-  resolved "https://registry.yarnpkg.com/@playwright/test/-/test-1.24.0.tgz#bef07eddeebba21358ab15e9b0b7a79df0479b76"
-  integrity sha512-sZLH2N6aWN9TtG+vMjNSomSfX0dSVHwWE+GhHQPV+ZeGcuZ/6CgMCGFuGjobgq/hNF9ZkuVOjeyoceZ0owKnHQ==
+"@playwright/test@1.24.2":
+  version "1.24.2"
+  resolved "https://registry.yarnpkg.com/@playwright/test/-/test-1.24.2.tgz#283ea8cc497f9742037458659bf235f4776cf1f0"
+  integrity sha512-Q4X224pRHw4Dtkk5PoNJplZCokLNvVbXD9wDQEMrHcEuvWpJWEQDeJ9gEwkZ3iCWSFSWBshIX177B231XW4wOQ==
   dependencies:
     "@types/node" "*"
-    playwright-core "1.24.0"
+    playwright-core "1.24.2"
 
 "@polka/url@^1.0.0-next.9":
   version "1.0.0-next.11"
@@ -12693,11 +12693,6 @@ platform@^1.3.3:
   version "1.3.6"
   resolved "https://registry.yarnpkg.com/platform/-/platform-1.3.6.tgz#48b4ce983164b209c2d45a107adb31f473a6e7a7"
   integrity sha512-fnWVljUchTro6RiCFvCXBbNhJc2NijN7oIQxbwsyL0buWJPG85v81ehlHI9fXrJsMNgTofEoWIQeClKpgxFLrg==
-
-playwright-core@1.24.0:
-  version "1.24.0"
-  resolved "https://registry.yarnpkg.com/playwright-core/-/playwright-core-1.24.0.tgz#ece821ceaf241bb7206329b1242b0cf6c1c60bdb"
-  integrity sha512-BkDWdVsoEEC8m2glQlfNu1EN2qvjBsLIg5bD0wjrfwv9zVHktIsp80yYFObAcWreLNYhfRP4PlXE04lr5R4DFQ==
 
 playwright-core@1.24.2:
   version "1.24.2"

@@ -26,7 +26,7 @@ const ListDividerRoot = styled('li', {
     border: 'none', // reset the border for `hr` tag
     ...(ownerState.row && {
       borderInlineStart: '1px solid',
-      marginBlock: 0,
+      marginBlock: ownerState.inset === 'gutter' ? 'var(--List-item-paddingY)' : 0,
       marginInline: 'var(--List-divider-gap)',
       ...(ownerState['data-first-child'] === undefined && {
         // combine --List-gap and --List-divider-gap to replicate flexbox gap behavior
@@ -120,8 +120,9 @@ ListDivider.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
-   * The empty space on the side(s) of the divider.
-   * This prop has no effect on the divider if the nearest parent List has `row` prop set to `true`.
+   * The empty space on the side(s) of the divider in a vertical list.
+   *
+   * For horizontal list (the nearest parent List has `row` prop set to `true`), only `inset="gutter"` affects the list divider.
    */
   inset: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['gutter', 'startDecorator', 'startContent']),
