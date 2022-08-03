@@ -65,7 +65,7 @@ Use the `startIcon` and/or `endIcon` props to add supporting icons to the button
 Use the `IconButton` component if you want width and height to be the same while not having a label. Every prop previously covered are available for this component as well.
 
 ```jsx
-import Button from '@mui/joy/IconButton';
+import IconButton from '@mui/joy/IconButton';
 ```
 
 {{"demo": "IconButtons.js"}}
@@ -87,3 +87,9 @@ You can also use the button component as a link by assigning a value of `a` to t
 Doing so will automatically change the rendered HTML tag from `<button>` to `<a>`.
 
 {{"demo": "ButtonLink.js"}}
+
+## CSS Variables
+
+{{"demo": "ButtonVariables.js", "hideToolbar": true}}
+
+{{"demo": "IconButtonVariables.js", "hideToolbar": true}}
