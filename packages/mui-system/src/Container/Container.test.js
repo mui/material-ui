@@ -24,10 +24,19 @@ describe('<Container />', () => {
     it('should support different maxWidth values', () => {
       const { container: firstContainer } = render(<Container {...defaultProps} />);
       expect(firstContainer.firstChild).to.have.class(classes.maxWidthLg);
-      const { container: secondsContainre } = render(
+      const { container: secondContainer } = render(
         <Container {...defaultProps} maxWidth={false} />,
       );
-      expect(secondsContainre.firstChild).not.to.have.class(classes.maxWidthLg);
+      expect(secondContainer.firstChild).not.to.have.class(classes.maxWidthLg);
+    });
+    it('should respect sx maxWidth', () => {
+      const { container: firstContainer } = render(<Container {...defaultProps} />);
+      expect(firstContainer.firstChild).to.have.class(classes.maxWidthLg);
+      const { container: secondContainer } = render(
+        <Container {...defaultProps} sx={{ maxWidth: 'sm' }} />,
+      );
+      expect(secondContainer.firstChild).not.to.have.class(classes.maxWidthLg);
+      expect(secondContainer.firstChild).to.have.class(classes.maxWidthSm);
     });
   });
 });

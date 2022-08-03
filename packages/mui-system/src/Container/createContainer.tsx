@@ -1,6 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { SystemCssProperties } from '@mui/system/styleFunctionSx';
 import { Interpolation, StyledComponent } from '@mui/styled-engine';
 import { OverridableComponent } from '@mui/types';
 import {
@@ -134,10 +135,12 @@ export default function createContainer<Theme extends RequiredThemeStructure = D
       component = 'div',
       disableGutters = false,
       fixed = false,
-      maxWidth = 'lg',
+      maxWidth: maxWidthProp,
       classes: classesProp,
       ...other
     } = props;
+
+    const maxWidth = maxWidthProp ?? (props.sx as SystemCssProperties)?.maxWidth ?? 'lg';
 
     const ownerState = {
       ...props,
