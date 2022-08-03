@@ -1,5 +1,5 @@
 import * as React from 'react';
-import RowListContext from './RowListContext';
+import ListOrientationContext from './ListOrientationContext';
 import WrapListContext from './WrapListContext';
 import NestedListContext from './NestedListContext';
 
@@ -50,11 +50,11 @@ export interface ListProviderProps {
 const ListProvider = ({
   children,
   nested,
-  orientation,
+  orientation = 'vertical',
   wrap = false,
 }: React.PropsWithChildren<ListProviderProps>) => {
   const baseProviders = (
-    <RowListContext.Provider value={orientation === 'horizontal'}>
+    <ListOrientationContext.Provider value={orientation}>
       <WrapListContext.Provider value={wrap}>
         {React.Children.map(children, (child, index) =>
           React.isValidElement(child)
@@ -65,7 +65,7 @@ const ListProvider = ({
             : child,
         )}
       </WrapListContext.Provider>
-    </RowListContext.Provider>
+    </ListOrientationContext.Provider>
   );
   if (nested === undefined) {
     return baseProviders;

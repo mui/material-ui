@@ -38,7 +38,7 @@ describe('Joy <ListDivider />', () => {
 
     it('should have aria-orientation set to vertical', () => {
       render(
-        <List row>
+        <List orientation="horizontal">
           <ListDivider />
         </List>,
       );
@@ -47,7 +47,7 @@ describe('Joy <ListDivider />', () => {
 
     it('should not add aria-orientation if role is custom', () => {
       render(
-        <List row>
+        <List orientation="horizontal">
           <ListDivider role="presentation" />
         </List>,
       );
