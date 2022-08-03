@@ -404,13 +404,13 @@ const Select = React.forwardRef(function Select<TValue>(
   const wrapperProps = useSlotProps({
     elementType: SelectWrapper,
     getSlotProps: (handlers) => ({
-      onMouseUp: (event: React.MouseEvent<HTMLDivElement>) => {
+      onMouseDown: (event: React.MouseEvent<HTMLDivElement>) => {
         if (!listboxOpen && event.currentTarget === event.target) {
           // show the popup if user click outside of the button element.
           // the close action is already handled by blur event.
           handleOpenChange(true);
         }
-        handlers.onMouseUp?.(event);
+        handlers.onMouseDown?.(event);
       },
     }),
     externalSlotProps: componentsProps.wrapper,
