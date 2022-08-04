@@ -32,7 +32,7 @@ export default function DensityTool() {
       spacing = maxSpacing;
     }
     //  If the entered value is less than minSpacing, setting up minSpacing as value
-    else if (spacing < minSpacing) {
+    if (spacing < minSpacing) {
       spacing = minSpacing;
     }
 
@@ -83,7 +83,7 @@ export default function DensityTool() {
         </Grid>
         <Grid item>
           <IconButton
-            aria-label={t('increaseSpacing')}
+            aria-label={t('decreaseSpacing')}
             onClick={decreaseSpacing}
             disabled={spacingUnit === minSpacing}
           >
@@ -102,7 +102,7 @@ export default function DensityTool() {
             }}
           />
           <IconButton
-            aria-label={t('decreaseSpacing')}
+            aria-label={t('increaseSpacing')}
             onClick={increaseSpacing}
             disabled={spacingUnit === maxSpacing}
           >
