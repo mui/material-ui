@@ -451,17 +451,14 @@ describe('<TablePagination />', () => {
   });
 
   describe('prop: components', () => {
-    it('should change the icon for first, last item type', () => {
+    it('should change the icon for first item type', () => {
       const handleChangePage = spy();
-      const { getByTestId } = render(
+      const { getByTestId, getByRole } = render(
         <table>
           <TableFooter>
             <TableRow>
               <TablePagination
-                components={{
-                  first: ArrowBackIosRounded,
-                  last: ArrowForwardIosRounded,
-                }}
+                components={{ first: ArrowBackIosRounded }}
                 showFirstButton
                 showLastButton
                 page={1}
@@ -474,8 +471,34 @@ describe('<TablePagination />', () => {
         </table>,
       );
 
-      expect(getByTestId('ArrowBackIosRoundedIcon')).to.exist;
-      expect(getByTestId('ArrowForwardIosRoundedIcon')).to.exist;
+      expect(getByRole('button', { name: 'Go to first page' }).children[0]).to.be.equal(
+        getByTestId('ArrowBackIosRoundedIcon'),
+      );
+    });
+
+    it('should change the icon for last item type', () => {
+      const handleChangePage = spy();
+      const { getByTestId, getByRole } = render(
+        <table>
+          <TableFooter>
+            <TableRow>
+              <TablePagination
+                components={{ last: ArrowForwardIosRounded }}
+                showFirstButton
+                showLastButton
+                page={1}
+                rowsPerPage={10}
+                count={50}
+                onPageChange={handleChangePage}
+              />
+            </TableRow>
+          </TableFooter>
+        </table>,
+      );
+
+      expect(getByRole('button', { name: 'Go to last page' }).children[0]).to.be.equal(
+        getByTestId('ArrowForwardIosRoundedIcon'),
+      );
     });
   });
 });
