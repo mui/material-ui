@@ -14,3 +14,12 @@ jobs:
           mode: minimum
           count: 1
           labels: ""
+  # Prevent merging if 'PR: needs test' label is present
+  test-prevent-merging:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: mnajdova/github-action-required-labels@v2.0
+        with:
+          mode: exactly
+          count: 0
+          labels: "PR: needs test"
