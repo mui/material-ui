@@ -17,7 +17,7 @@ export default function RadioPositionEnd() {
           '--List-gap': '0.5rem',
           '--List-item-paddingY': '1rem',
           '--List-item-radius': '8px',
-          '--List-decorator-width': '32px',
+          '--List-decorator-size': '32px',
           [`& .${radioClasses.root}`]: {
             flexGrow: 1,
             flexDirection: 'row-reverse',

@@ -34,7 +34,7 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
     name: 'JoyMenuItem',
   });
 
-  const orientation = React.useContext(ListOrientationContext);
+  const parentOrientation = React.useContext(ListOrientationContext);
 
   const {
     children,
@@ -58,7 +58,7 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
     disabled,
     focusVisible,
     selected,
-    orientation,
+    parentOrientation,
     variant,
   };
 

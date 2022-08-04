@@ -46,7 +46,7 @@ export const ListRoot = styled('ul', {
           '--List-item-paddingY': '0.25rem',
           '--List-item-paddingX': '0.5rem',
           '--List-item-fontSize': theme.vars.fontSize.sm,
-          '--List-decorator-width': ownerState.orientation === 'horizontal' ? '1.5rem' : '2rem',
+          '--List-decorator-size': ownerState.orientation === 'horizontal' ? '1.5rem' : '2rem',
           '--Icon-fontSize': '1.125rem',
         };
       }
@@ -57,7 +57,7 @@ export const ListRoot = styled('ul', {
           '--List-item-paddingY': '0.375rem',
           '--List-item-paddingX': '0.75rem',
           '--List-item-fontSize': theme.vars.fontSize.md,
-          '--List-decorator-width': ownerState.orientation === 'horizontal' ? '1.75rem' : '2.5rem',
+          '--List-decorator-size': ownerState.orientation === 'horizontal' ? '1.75rem' : '2.5rem',
           '--Icon-fontSize': '1.25rem',
         };
       }
@@ -68,7 +68,7 @@ export const ListRoot = styled('ul', {
           '--List-item-paddingY': '0.5rem',
           '--List-item-paddingX': '1rem',
           '--List-item-fontSize': theme.vars.fontSize.md,
-          '--List-decorator-width': ownerState.orientation === 'horizontal' ? '2.25rem' : '3rem',
+          '--List-decorator-size': ownerState.orientation === 'horizontal' ? '2.25rem' : '3rem',
           '--Icon-fontSize': '1.5rem',
         };
       }

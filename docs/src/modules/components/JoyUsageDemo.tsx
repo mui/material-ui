@@ -439,7 +439,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                       },
                       listbox: {
                         sx: {
-                          '--List-decorator-width': '24px',
+                          '--List-decorator-size': '24px',
                         },
                       },
                     }}

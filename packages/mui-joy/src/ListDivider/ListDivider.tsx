@@ -23,13 +23,15 @@ const ListDividerRoot = styled('li', {
   overridesResolver: (props, styles) => styles.root,
 })<{
   ownerState: ListDividerProps & {
-    orientation: 'horizontal' | 'vertical';
+    parentOrientation: 'horizontal' | 'vertical';
     'data-first-child'?: boolean;
   };
 }>(({ theme, ownerState }) => ({
   border: 'none', // reset the border for `hr` tag
-  ...(ownerState.orientation === 'horizontal' && {
-    borderInlineStart: '1px solid',
+  listStyle: 'none',
+  backgroundColor: theme.vars.palette.divider, // use logical size + background is better than border because they work with gradient.
+  ...(ownerState.parentOrientation === 'horizontal' && {
+    inlineSize: 'var(--ListDivider-thickness, 1px)',
     marginBlock: ownerState.inset === 'gutter' ? 'var(--List-item-paddingY)' : 0,
     marginInline: 'var(--List-divider-gap)',
     ...(ownerState['data-first-child'] === undefined && {
@@ -37,7 +39,7 @@ const ListDividerRoot = styled('li', {
       marginInlineStart: 'calc(var(--List-gap) + var(--List-divider-gap))',
     }),
   }),
-  ...(ownerState.orientation !== 'horizontal' && {
+  ...(ownerState.parentOrientation !== 'horizontal' && {
     // by default, the divider line is stretched from edge-to-edge of the List
     // spacing between ListItem can be controlled by `--List-divider-gap` on the List
     ...(ownerState['data-first-child'] === undefined && {
@@ -54,12 +56,10 @@ const ListDividerRoot = styled('li', {
       marginInlineStart: 'var(--List-item-paddingLeft)',
     }),
     ...(ownerState.inset === 'startContent' && {
-      marginInlineStart: 'calc(var(--List-item-paddingLeft) + var(--List-decorator-width))',
+      marginInlineStart: 'calc(var(--List-item-paddingLeft) + var(--List-decorator-size))',
     }),
-    borderBlockEnd: '1px solid',
+    blockSize: 'var(--ListDivider-thickness, 1px)',
   }),
-  borderColor: theme.vars.palette.divider,
-  listStyle: 'none',
 }));
 
 const ListDivider = React.forwardRef(function ListDivider(inProps, ref) {
@@ -68,13 +68,13 @@ const ListDivider = React.forwardRef(function ListDivider(inProps, ref) {
     name: 'JoyListDivider',
   });
 
-  const orientation = React.useContext(ListOrientationContext);
+  const parentOrientation = React.useContext(ListOrientationContext);
 
   const { component, className, children, inset, role = 'separator', ...other } = props;
 
   const ownerState = {
     inset,
-    orientation,
+    parentOrientation,
     ...props,
   };
 
@@ -88,7 +88,7 @@ const ListDivider = React.forwardRef(function ListDivider(inProps, ref) {
       ownerState={ownerState}
       role={role}
       {...(role === 'separator' &&
-        orientation === 'horizontal' && {
+        parentOrientation === 'horizontal' && {
           // The implicit aria-orientation of separator is 'horizontal'
           // https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/separator_role
           'aria-orientation': 'vertical',
