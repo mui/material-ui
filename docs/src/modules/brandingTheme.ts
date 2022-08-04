@@ -299,15 +299,21 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
     getStyle(scheme: Parameters<GetStyle>[0]) {
       const style: CSSObject = {};
       Object.entries(scheme).forEach(([cssProp, value]) => {
+        // example value: { default: '', dark: '', light: '' }
         if ((this as Theme).vars) {
-          style[cssProp] = value.default!;
-          const darkSelector = (this as Theme).getColorSchemeSelector('dark');
-          if (!style[darkSelector]) {
-            style[darkSelector] = {};
-          }
-          if (value.dark) {
-            (style[darkSelector] as CSSObject)[cssProp] = value.dark;
-          }
+          Object.entries(value).forEach(([colorScheme, cssValue]) => {
+            if (cssValue) {
+              if (colorScheme === 'default') {
+                style[cssProp] = cssValue;
+              } else {
+                const selector = (this as Theme).getColorSchemeSelector('dark');
+                if (!style[selector]) {
+                  style[selector] = {};
+                }
+                (style[selector] as CSSObject)[cssProp] = cssValue;
+              }
+            }
+          });
         } else {
           style[cssProp] = value.default;
           if (value.dark) {
