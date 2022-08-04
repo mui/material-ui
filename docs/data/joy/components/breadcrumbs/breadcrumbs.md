@@ -42,6 +42,6 @@ The most common components you'd use with it are `Typography` and `Link`.
 
 ### With `Menu`
 
-You can use the Joy `Breadcrumbs` component together with the MUI Base `Menu` component.
+You can use the Joy `Breadcrumbs` component together with the MUI Joy `Menu` component.
 
 {{"demo": "BreadcrumbsWithMenu.js"}}
