@@ -12,8 +12,8 @@ export interface TablePaginationActionsProps extends React.HTMLAttributes<HTMLDi
    * @default {
    *   first: FirstPageIcon,
    *   last: LastPageIcon,
-   *   next: NavigateNextIcon,
-   *   previous: NavigateBeforeIcon,
+   *   next: KeyboardArrowRight,
+   *   previous: KeyboardArrowLeft,
    * }
    */
   components?: {

@@ -13,7 +13,7 @@
         "name": "shape",
         "description": "{ first?: elementType, last?: elementType, next?: elementType, previous?: elementType }"
       },
-      "default": "{\n  first: FirstPageIcon,\n  last: LastPageIcon,\n  next: NavigateNextIcon,\n  previous: NavigateBeforeIcon,\n}"
+      "default": "{\n  first: FirstPageIcon,\n  last: LastPageIcon,\n  next: KeyboardArrowRight,\n  previous: KeyboardArrowLeft,\n}"
     },
     "getItemAriaLabel": {
       "type": { "name": "func" },

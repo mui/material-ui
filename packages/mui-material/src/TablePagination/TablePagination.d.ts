@@ -37,8 +37,8 @@ export interface TablePaginationTypeMap<P, D extends React.ElementType> {
        * @default {
        *   first: FirstPageIcon,
        *   last: LastPageIcon,
-       *   next: NavigateNextIcon,
-       *   previous: NavigateBeforeIcon,
+       *   next: KeyboardArrowRight,
+       *   previous: KeyboardArrowLeft,
        * }
        */
       components?: {

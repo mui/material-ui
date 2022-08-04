@@ -100,8 +100,8 @@ TablePaginationActions.propTypes = {
    * @default {
    *   first: FirstPageIcon,
    *   last: LastPageIcon,
-   *   next: NavigateNextIcon,
-   *   previous: NavigateBeforeIcon,
+   *   next: KeyboardArrowRight,
+   *   previous: KeyboardArrowLeft,
    * }
    */
   components: PropTypes.shape({

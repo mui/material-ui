@@ -15,8 +15,8 @@ import useId from '../utils/useId';
 import tablePaginationClasses, { getTablePaginationUtilityClass } from './tablePaginationClasses';
 import FirstPageIcon from '../internal/svg-icons/FirstPage';
 import LastPageIcon from '../internal/svg-icons/LastPage';
-import NavigateBeforeIcon from '../internal/svg-icons/NavigateBefore';
-import NavigateNextIcon from '../internal/svg-icons/NavigateNext';
+import KeyboardArrowLeft from '../internal/svg-icons/KeyboardArrowLeft';
+import KeyboardArrowRight from '../internal/svg-icons/KeyboardArrowRight';
 import useTheme from '../styles/useTheme';
 
 const TablePaginationRoot = styled(TableCell, {
@@ -151,8 +151,8 @@ const TablePagination = React.forwardRef(function TablePagination(inProps, ref) 
     components = {
       first: FirstPageIcon,
       last: LastPageIcon,
-      next: NavigateNextIcon,
-      previous: NavigateBeforeIcon,
+      next: KeyboardArrowRight,
+      previous: KeyboardArrowLeft,
     },
     count,
     getItemAriaLabel = defaultGetAriaLabel,
@@ -194,14 +194,14 @@ const TablePagination = React.forwardRef(function TablePagination(inProps, ref) 
   const normalizedIcons =
     theme.direction === 'rtl'
       ? {
-          previous: components.next || NavigateNextIcon,
-          next: components.previous || NavigateBeforeIcon,
+          previous: components.next || KeyboardArrowRight,
+          next: components.previous || KeyboardArrowLeft,
           last: components.first || FirstPageIcon,
           first: components.last || LastPageIcon,
         }
       : {
-          previous: components.previous || NavigateBeforeIcon,
-          next: components.next || NavigateNextIcon,
+          previous: components.previous || KeyboardArrowLeft,
+          next: components.next || KeyboardArrowRight,
           first: components.first || FirstPageIcon,
           last: components.last || LastPageIcon,
         };
@@ -319,8 +319,8 @@ TablePagination.propTypes /* remove-proptypes */ = {
    * @default {
    *   first: FirstPageIcon,
    *   last: LastPageIcon,
-   *   next: NavigateNextIcon,
-   *   previous: NavigateBeforeIcon,
+   *   next: KeyboardArrowRight,
+   *   previous: KeyboardArrowLeft,
    * }
    */
   components: PropTypes.shape({
