@@ -58,6 +58,9 @@ export * from './SliderUnstyled';
 export { default as SwitchUnstyled } from './SwitchUnstyled';
 export * from './SwitchUnstyled';
 
+export { default as TablePaginationUnstyled } from './TablePaginationUnstyled';
+export * from './TablePaginationUnstyled';
+
 export { default as TabPanelUnstyled } from './TabPanelUnstyled';
 export * from './TabPanelUnstyled';
 
@@ -69,9 +72,6 @@ export * from './TabsUnstyled';
 
 export { default as TabUnstyled } from './TabUnstyled';
 export * from './TabUnstyled';
-
-export { default as TablePaginationUnstyled } from './TablePaginationUnstyled';
-export * from './TablePaginationUnstyled';
 
 export { default as TextareaAutosize } from './TextareaAutosize';
 
