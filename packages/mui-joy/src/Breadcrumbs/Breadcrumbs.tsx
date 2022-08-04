@@ -32,14 +32,17 @@ const BreadcrumbsRoot = styled('nav', {
   return [
     {
       ...(ownerState.size === 'sm' && {
+        '--Breadcrumbs-gap': '0.25rem',
         fontSize: theme.vars.fontSize.sm,
         padding: '0.5rem',
       }),
       ...(ownerState.size === 'md' && {
+        '--Breadcrumbs-gap': '0.375rem',
         fontSize: theme.vars.fontSize.md,
         padding: '0.75rem',
       }),
       ...(ownerState.size === 'lg' && {
+        '--Breadcrumbs-gap': '0.5rem',
         fontSize: theme.vars.fontSize.lg,
         padding: '1rem',
       }),
@@ -59,6 +62,7 @@ const BreadcrumbsOl = styled('ol', {
   display: 'flex',
   flexWrap: 'wrap',
   alignItems: 'center',
+  // reset user-agent style
   padding: 0,
   margin: 0,
   listStyle: 'none',
@@ -71,36 +75,8 @@ const BreadcrumbsSeparator = styled('li', {
 })<{ ownerState: BreadcrumbsProps }>({
   display: 'flex',
   userSelect: 'none',
-  marginLeft: 8,
-  marginRight: 8,
+  marginInline: 'var(--Breadcrumbs-gap)',
 });
-
-function insertSeparators(
-  items: React.ReactNode[],
-  className: string,
-  separator: React.ReactNode,
-  ownerState: BreadcrumbsProps,
-) {
-  return items.reduce((acc: React.ReactNode[], current: React.ReactNode, index: number) => {
-    if (index < items.length - 1) {
-      acc = acc.concat(
-        current,
-        <BreadcrumbsSeparator
-          aria-hidden
-          key={`separator-${index}`}
-          className={className}
-          ownerState={ownerState}
-        >
-          {separator}
-        </BreadcrumbsSeparator>,
-      );
-    } else {
-      acc.push(current);
-    }
-
-    return acc;
-  }, []);
-}
 
 const Breadcrumbs = React.forwardRef(function Breadcrumbs(inProps, ref) {
   const props = useThemeProps<typeof inProps & BreadcrumbsProps>({
@@ -108,20 +84,11 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(inProps, ref) {
     name: 'MuiBreadcrumbs',
   });
 
-  const {
-    children,
-    className,
-    component = 'nav',
-    size = 'md',
-    expandText = 'Show path',
-    separator = '/',
-    ...other
-  } = props;
+  const { children, className, component = 'nav', size = 'md', separator = '/', ...other } = props;
 
   const ownerState = {
     ...props,
     component,
-    expandText,
     separator,
     size,
   };
@@ -148,7 +115,24 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(inProps, ref) {
       {...other}
     >
       <BreadcrumbsOl className={classes.ol} ref={listRef} ownerState={ownerState}>
-        {insertSeparators(allItems, classes.separator, separator, ownerState)}
+        {allItems.reduce((acc: React.ReactNode[], current: React.ReactNode, index: number) => {
+          if (index < allItems.length - 1) {
+            acc = acc.concat(
+              current,
+              <BreadcrumbsSeparator
+                aria-hidden
+                key={`separator-${index}`}
+                className={classes.separator}
+                ownerState={ownerState}
+              >
+                {separator}
+              </BreadcrumbsSeparator>,
+            );
+          } else {
+            acc.push(current);
+          }
+          return acc;
+        }, [])}
       </BreadcrumbsOl>
     </BreadcrumbsRoot>
   );
@@ -172,13 +156,6 @@ Breadcrumbs.propTypes /* remove-proptypes */ = {
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
-  /**
-   * Override the default label for the expand button.
-   *
-   * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
-   * @default 'Show path'
-   */
-  expandText: PropTypes.string,
   /**
    * Custom separator node.
    * @default '/'

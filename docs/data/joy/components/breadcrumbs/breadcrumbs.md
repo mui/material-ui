@@ -34,6 +34,8 @@ The most common components you'd use with it are `Typography` and `Link`.
 
 {{"demo": "BasicBreadcrumbs.js"}}
 
+## Common examples
+
 ### Collapsed Breadcrumbs
 
 {{"demo": "CollapsedBreadcrumbs.js"}}
