@@ -7,6 +7,8 @@ import TableFooter from '@mui/material/TableFooter';
 import TableCell from '@mui/material/TableCell';
 import TableRow from '@mui/material/TableRow';
 import TablePagination, { tablePaginationClasses as classes } from '@mui/material/TablePagination';
+import ArrowForwardIosRounded from '@mui/icons-material/ArrowForwardIosRounded';
+import ArrowBackIosRounded from '@mui/icons-material/ArrowBackIosRounded';
 
 describe('<TablePagination />', () => {
   const noop = () => {};
@@ -445,6 +447,35 @@ describe('<TablePagination />', () => {
           </TableFooter>
         </table>,
       );
+    });
+  });
+
+  describe('prop: components', () => {
+    it('should change the icon for first, last item type', () => {
+      const handleChangePage = spy();
+      const { getByTestId } = render(
+        <table>
+          <TableFooter>
+            <TableRow>
+              <TablePagination
+                components={{
+                  first: ArrowBackIosRounded,
+                  last: ArrowForwardIosRounded,
+                }}
+                showFirstButton
+                showLastButton
+                page={1}
+                rowsPerPage={10}
+                count={50}
+                onPageChange={handleChangePage}
+              />
+            </TableRow>
+          </TableFooter>
+        </table>,
+      );
+
+      expect(getByTestId('ArrowBackIosRoundedIcon')).to.exist;
+      expect(getByTestId('ArrowForwardIosRoundedIcon')).to.exist;
     });
   });
 });
