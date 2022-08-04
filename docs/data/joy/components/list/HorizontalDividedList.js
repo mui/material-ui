@@ -8,7 +8,7 @@ import ListItemDecorator from '@mui/joy/ListItemDecorator';
 export default function HorizontalDividedList() {
   return (
     <List
-      row
+      orientation="horizontal"
       variant="outlined"
       sx={{
         borderRadius: 'sm',
