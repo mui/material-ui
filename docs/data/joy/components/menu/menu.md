@@ -70,6 +70,10 @@ For example, this is how you'd go for displaying the menu on the bottom-end of t
 
 {{"demo": "PositionedMenu.js"}}
 
+### Group menus
+
+{{"demo": "GroupMenu.js"}}
+
 ### `MenuList` composition
 
 To get full control of the DOM structure, use the `MenuList` component.
@@ -77,6 +81,10 @@ You can use it to compose any popup-alike component.
 The primary responsibility of this component is handling the focus state.
 
 {{"demo": "MenuListComposition.js"}}
+
+Or display the menu without a popup:
+
+{{"demo": "MenuListGroup.js"}}
 
 ## Debugging
 

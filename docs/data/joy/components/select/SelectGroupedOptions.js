@@ -31,7 +31,7 @@ export default function SelectGroupedOptions() {
           sx: {
             maxHeight: 240,
             overflow: 'auto',
-            py: 0,
+            '--List-padding': '0px',
           },
         },
       }}

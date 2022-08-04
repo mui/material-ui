@@ -2,7 +2,11 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { OverridableComponent } from '@mui/types';
-import { unstable_useControlled as useControlled, unstable_useId as useId } from '@mui/utils';
+import {
+  unstable_capitalize as capitalize,
+  unstable_useControlled as useControlled,
+  unstable_useId as useId,
+} from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { styled, useThemeProps } from '../styles';
 import { getRadioGroupUtilityClass } from './radioGroupClasses';
@@ -10,9 +14,15 @@ import { RadioGroupProps, RadioGroupTypeMap } from './RadioGroupProps';
 import RadioGroupContext from './RadioGroupContext';
 
 const useUtilityClasses = (ownerState: RadioGroupProps) => {
-  const { row } = ownerState;
+  const { orientation, size, variant, color } = ownerState;
   const slots = {
-    root: ['root', row && 'row'],
+    root: [
+      'root',
+      orientation,
+      variant && `variant${capitalize(variant)}`,
+      color && `color${capitalize(color)}`,
+      size && `size${capitalize(size)}`,
+    ],
   };
 
   return composeClasses(slots, getRadioGroupUtilityClass, {});
@@ -22,7 +32,7 @@ const RadioGroupRoot = styled('div', {
   name: 'JoyRadioGroup',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: RadioGroupProps }>(({ ownerState }) => ({
+})<{ ownerState: RadioGroupProps }>(({ ownerState, theme }) => ({
   ...(ownerState.size === 'sm' && {
     '--RadioGroup-gap': '0.625rem',
   }),
@@ -33,7 +43,9 @@ const RadioGroupRoot = styled('div', {
     '--RadioGroup-gap': '1.25rem',
   }),
   display: 'flex',
-  flexDirection: ownerState.row ? 'row' : 'column',
+  flexDirection: ownerState.orientation === 'horizontal' ? 'row' : 'column',
+  borderRadius: theme.vars.radius.sm,
+  ...theme.variants[ownerState.variant!]?.[ownerState.color!],
 }));
 
 const RadioGroup = React.forwardRef(function RadioGroup(inProps, ref) {
@@ -52,10 +64,10 @@ const RadioGroup = React.forwardRef(function RadioGroup(inProps, ref) {
     overlay,
     value: valueProp,
     onChange,
-    color,
-    variant,
+    color = 'neutral',
+    variant = 'plain',
     size = 'md',
-    row = false,
+    orientation = 'vertical',
     ...otherProps
   } = props;
 
@@ -66,8 +78,10 @@ const RadioGroup = React.forwardRef(function RadioGroup(inProps, ref) {
   });
 
   const ownerState = {
-    row,
+    orientation,
     size,
+    variant,
+    color,
     ...props,
   };
 
@@ -86,12 +100,10 @@ const RadioGroup = React.forwardRef(function RadioGroup(inProps, ref) {
   return (
     <RadioGroupContext.Provider
       value={{
-        color,
         disableIcon,
         overlay,
-        row,
+        orientation,
         size,
-        variant,
         name,
         value,
         onChange: handleChange,
@@ -110,6 +122,7 @@ const RadioGroup = React.forwardRef(function RadioGroup(inProps, ref) {
             ? React.cloneElement(child, {
                 // to let Radio knows when to apply margin(Inline|Block)Start
                 ...(index === 0 && { 'data-first-child': '' }),
+                ...(index === React.Children.count(children) - 1 && { 'data-last-child': '' }),
                 'data-parent': 'RadioGroup',
               })
             : child,
@@ -165,14 +178,14 @@ RadioGroup.propTypes /* remove-proptypes */ = {
    */
   onChange: PropTypes.func,
   /**
+   * The direction of the radio buttons.
+   * @default 'vertical'
+   */
+  orientation: PropTypes.oneOf(['horizontal', 'vertical']),
+  /**
    * The radio's `overlay` prop. If specified, the value is passed down to every radios under this element.
    */
   overlay: PropTypes.bool,
-  /**
-   * If `true`, flex direction is set to 'row'.
-   * @default false
-   */
-  row: PropTypes.bool,
   /**
    * The size of the component.
    * @default 'md'

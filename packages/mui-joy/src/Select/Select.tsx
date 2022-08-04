@@ -17,7 +17,7 @@ import type { SelectChild, SelectOption } from '@mui/base/SelectUnstyled';
 import { useSlotProps } from '@mui/base/utils';
 import composeClasses from '@mui/base/composeClasses';
 import { ListRoot } from '../List/List';
-import RowListContext from '../List/RowListContext';
+import ListProvider, { scopedVariables } from '../List/ListProvider';
 import Unfold from '../internal/svg-icons/Unfold';
 import { styled, useThemeProps } from '../styles';
 import { SelectOwnProps, SelectStaticProps, SelectOwnerState, SelectTypeMap } from './SelectProps';
@@ -61,98 +61,102 @@ const SelectRoot = styled('div', {
   name: 'JoySelect',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: SelectStaticProps }>(({ theme, ownerState }) => [
-  {
-    '--Select-radius': theme.vars.radius.sm, // radius is used by the decorator children
-    '--Select-gap': '0.5rem',
-    '--Select-placeholderOpacity': 0.5,
-    '--Select-focusedThickness': 'calc(var(--variant-borderWidth, 1px) + 1px)',
-    '--Select-focusedHighlight':
-      theme.vars.palette[ownerState.color === 'neutral' ? 'primary' : ownerState.color!]?.[500],
-    '--Select-indicator-color': theme.vars.palette.text.tertiary,
-    ...(ownerState.size === 'sm' && {
-      '--Select-minHeight': '2rem',
-      '--Select-paddingInline': '0.5rem',
-      '--Select-decorator-childHeight': 'min(1.5rem, var(--Select-minHeight))',
-      '--Icon-fontSize': '1.25rem',
-    }),
-    ...(ownerState.size === 'md' && {
-      '--Select-minHeight': '2.5rem',
-      '--Select-paddingInline': '0.75rem',
-      '--Select-decorator-childHeight': 'min(2rem, var(--Select-minHeight))',
-      '--Icon-fontSize': '1.5rem',
-    }),
-    ...(ownerState.size === 'lg' && {
-      '--Select-minHeight': '3rem',
-      '--Select-paddingInline': '1rem',
-      '--Select-decorator-childHeight': 'min(2.375rem, var(--Select-minHeight))',
-      '--Icon-fontSize': '1.75rem',
-    }),
-    // variables for controlling child components
-    '--Select-decorator-childOffset':
-      'min(calc(var(--Select-paddingInline) - (var(--Select-minHeight) - 2 * var(--variant-borderWidth) - var(--Select-decorator-childHeight)) / 2), var(--Select-paddingInline))',
-    '--internal-paddingBlock':
-      'max((var(--Select-minHeight) - 2 * var(--variant-borderWidth) - var(--Select-decorator-childHeight)) / 2, 0px)',
-    '--Select-decorator-childRadius':
-      'max((var(--Select-radius) - var(--variant-borderWidth)) - var(--internal-paddingBlock), min(var(--internal-paddingBlock) / 2, (var(--Select-radius) - var(--variant-borderWidth)) / 2))',
-    '--Button-minHeight': 'var(--Select-decorator-childHeight)',
-    '--IconButton-size': 'var(--Select-decorator-childHeight)',
-    '--Button-radius': 'var(--Select-decorator-childRadius)',
-    '--IconButton-radius': 'var(--Select-decorator-childRadius)',
-    boxSizing: 'border-box',
-    minWidth: 0, // forces the Select to stay inside a container by default
-    minHeight: 'var(--Select-minHeight)',
-    position: 'relative',
-    display: 'flex',
-    alignItems: 'center',
-    borderRadius: 'var(--Select-radius)',
-    paddingInline: `var(--Select-paddingInline)`,
-    fontFamily: theme.vars.fontFamily.body,
-    fontSize: theme.vars.fontSize.md,
-    ...(ownerState.size === 'sm' && {
-      fontSize: theme.vars.fontSize.sm,
-    }),
-    // TODO: discuss the transition approach in a separate PR. This value is copied from mui-material Button.
-    transition:
-      'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
-    '&:before': {
+})<{ ownerState: SelectStaticProps }>(({ theme, ownerState }) => {
+  const variantStyle = theme.variants[`${ownerState.variant!}`]?.[ownerState.color!];
+  return [
+    {
+      '--Select-radius': theme.vars.radius.sm,
+      '--Select-gap': '0.5rem',
+      '--Select-placeholderOpacity': 0.5,
+      '--Select-focusedThickness': '2px',
+      '--Select-focusedHighlight':
+        theme.vars.palette[ownerState.color === 'neutral' ? 'primary' : ownerState.color!]?.[500],
+      '--Select-indicator-color': theme.vars.palette.text.tertiary,
+      ...(ownerState.size === 'sm' && {
+        '--Select-minHeight': '2rem',
+        '--Select-paddingInline': '0.5rem',
+        '--Select-decorator-childHeight': 'min(1.5rem, var(--Select-minHeight))',
+        '--Icon-fontSize': '1.25rem',
+      }),
+      ...(ownerState.size === 'md' && {
+        '--Select-minHeight': '2.5rem',
+        '--Select-paddingInline': '0.75rem',
+        '--Select-decorator-childHeight': 'min(2rem, var(--Select-minHeight))',
+        '--Icon-fontSize': '1.5rem',
+      }),
+      ...(ownerState.size === 'lg' && {
+        '--Select-minHeight': '3rem',
+        '--Select-paddingInline': '1rem',
+        '--Select-decorator-childHeight': 'min(2.375rem, var(--Select-minHeight))',
+        '--Icon-fontSize': '1.75rem',
+      }),
+      // variables for controlling child components
+      '--Select-decorator-childOffset':
+        'min(calc(var(--Select-paddingInline) - (var(--Select-minHeight) - 2 * var(--variant-borderWidth) - var(--Select-decorator-childHeight)) / 2), var(--Select-paddingInline))',
+      '--internal-paddingBlock':
+        'max((var(--Select-minHeight) - 2 * var(--variant-borderWidth) - var(--Select-decorator-childHeight)) / 2, 0px)',
+      '--Select-decorator-childRadius':
+        'max((var(--Select-radius) - var(--variant-borderWidth)) - var(--internal-paddingBlock), min(var(--internal-paddingBlock) / 2, (var(--Select-radius) - var(--variant-borderWidth)) / 2))',
+      '--Button-minHeight': 'var(--Select-decorator-childHeight)',
+      '--IconButton-size': 'var(--Select-decorator-childHeight)',
+      '--Button-radius': 'var(--Select-decorator-childRadius)',
+      '--IconButton-radius': 'var(--Select-decorator-childRadius)',
       boxSizing: 'border-box',
-      content: '""',
-      display: 'block',
-      position: 'absolute',
-      pointerEvents: 'none',
-      top: 0,
-      left: 0,
-      right: 0,
-      bottom: 0,
-      zIndex: 1,
-      borderRadius: 'inherit',
-      margin: 'calc(var(--variant-borderWidth) * -1)', // for outlined variant
-    },
-    [`&.${selectClasses.focusVisible}`]: {
-      '--Select-indicator-color': 'var(--Select-focusedHighlight)',
-    },
-    [`&.${selectClasses.disabled}`]: {
-      '--Select-indicator-color': 'inherit',
-    },
-  },
-  {
-    // apply global variant styles
-    ...theme.variants[`${ownerState.variant!}`]?.[ownerState.color!],
-    '&:hover': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
-    [`&.${selectClasses.disabled}`]:
-      theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
-  },
-  ownerState.variant !== 'solid' && {
-    // This style has to come after the global variant to set the background to initial
-    [`&.${selectClasses.focusVisible}`]: {
-      backgroundColor: 'initial',
+      minWidth: 0,
+      minHeight: 'var(--Select-minHeight)',
+      position: 'relative',
+      display: 'flex',
+      alignItems: 'center',
+      borderRadius: 'var(--Select-radius)',
+      ...(!variantStyle.backgroundColor && {
+        backgroundColor: theme.vars.palette.background.surface,
+      }),
+      paddingInline: `var(--Select-paddingInline)`,
+      fontFamily: theme.vars.fontFamily.body,
+      fontSize: theme.vars.fontSize.md,
+      ...(ownerState.size === 'sm' && {
+        fontSize: theme.vars.fontSize.sm,
+      }),
+      // TODO: discuss the transition approach in a separate PR.
+      transition:
+        'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
       '&:before': {
-        boxShadow: `inset 0 0 0 var(--Select-focusedThickness) var(--Select-focusedHighlight)`,
+        boxSizing: 'border-box',
+        content: '""',
+        display: 'block',
+        position: 'absolute',
+        pointerEvents: 'none',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        zIndex: 1,
+        borderRadius: 'inherit',
+        margin: 'calc(var(--variant-borderWidth) * -1)', // for outlined variant
       },
+      [`&.${selectClasses.focusVisible}`]: {
+        '--Select-indicator-color': 'var(--Select-focusedHighlight)',
+      },
+      [`&.${selectClasses.disabled}`]: {
+        '--Select-indicator-color': 'inherit',
+      },
+      ...(ownerState.variant !== 'solid' && {
+        [`&.${selectClasses.focusVisible}`]: {
+          '&:before': {
+            boxShadow: `inset 0 0 0 var(--Select-focusedThickness) var(--Select-focusedHighlight)`,
+          },
+        },
+      }),
     },
-  },
-]);
+    {
+      // apply global variant styles
+      ...variantStyle,
+      '&:hover': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
+      [`&.${selectClasses.disabled}`]:
+        theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
+    },
+  ];
+});
 
 const SelectButton = styled('button', {
   name: 'JoySelect',
@@ -184,17 +188,19 @@ const SelectListbox = styled(ListRoot, {
 })<{ ownerState: SelectOwnerState<any> }>(({ theme, ownerState }) => {
   const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];
   return {
+    '--List-radius': theme.vars.radius.sm,
+    '--List-item-stickyBackground':
+      variantStyle?.backgroundColor ||
+      variantStyle?.background ||
+      theme.vars.palette.background.surface, // for sticky List
+    '--List-item-stickyTop': 'calc(var(--List-padding, var(--List-divider-gap)) * -1)', // negative amount of the List's padding block
+    ...scopedVariables,
     outline: 'none',
     boxShadow: theme.vars.shadow.md,
     zIndex: 1000,
     ...(!variantStyle.backgroundColor && {
       backgroundColor: theme.vars.palette.background.surface,
     }),
-    '--List-radius': theme.vars.radius.sm,
-    '--List-item-stickyBackground':
-      variantStyle?.backgroundColor ||
-      variantStyle?.background ||
-      theme.vars.palette.background.surface, // for sticky List
   };
 });
 
@@ -458,8 +464,7 @@ const Select = React.forwardRef(function Select<TValue>(
     ownerState: {
       ...ownerState,
       nesting: false,
-      scoped: true,
-      row: false,
+      orientation: 'vertical',
     },
     className: classes.listbox,
   });
@@ -498,16 +503,7 @@ const Select = React.forwardRef(function Select<TValue>(
       {anchorEl && (
         <PopperUnstyled {...listboxProps}>
           <SelectUnstyledContext.Provider value={context}>
-            <RowListContext.Provider value={false}>
-              {React.Children.map(children, (child, index) =>
-                React.isValidElement(child)
-                  ? React.cloneElement(child, {
-                      // to let Option knows when to apply margin(Inline|Block)Start
-                      ...(index === 0 && { 'data-first-child': '' }),
-                    })
-                  : child,
-              )}
-            </RowListContext.Provider>
+            <ListProvider nested>{children}</ListProvider>
           </SelectUnstyledContext.Provider>
         </PopperUnstyled>
       )}

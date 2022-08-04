@@ -8,7 +8,7 @@ import { useSlotProps } from '@mui/base/utils';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
 import { ListRoot } from '../List/List';
-import RowListContext from '../List/RowListContext';
+import ListProvider, { scopedVariables } from '../List/ListProvider';
 import SizeTabsContext from '../Tabs/SizeTabsContext';
 import { getTabListUtilityClass } from './tabListClasses';
 import { TabListProps, TabListOwnerState, TabListTypeMap } from './TabListProps';
@@ -34,10 +34,11 @@ const TabListRoot = styled(ListRoot, {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: TabListProps }>({
+  flexGrow: 'initial',
   '--List-gap': 'var(--Tabs-gap)',
   '--List-padding': 'var(--Tabs-gap)',
   '--List-divider-gap': '0px',
-  flexGrow: 'initial',
+  ...scopedVariables,
 });
 
 const TabList = React.forwardRef(function TabList(inProps, ref) {
@@ -59,7 +60,6 @@ const TabList = React.forwardRef(function TabList(inProps, ref) {
 
   const { isRtl, orientation, getRootProps, processChildren } = useTabsList({ ...props, ref });
 
-  const row = orientation === 'horizontal';
   const size = sizeProp ?? tabsSize;
 
   const ownerState = {
@@ -69,9 +69,7 @@ const TabList = React.forwardRef(function TabList(inProps, ref) {
     variant,
     color,
     size,
-    row,
     nesting: false,
-    scoped: true,
   };
 
   const classes = useUtilityClasses(ownerState);
@@ -91,19 +89,12 @@ const TabList = React.forwardRef(function TabList(inProps, ref) {
   const processedChildren = processChildren();
 
   return (
-    <RowListContext.Provider value={row}>
-      {/* @ts-ignore conflicted ref types */}
-      <TabListRoot {...tabsListRootProps}>
-        {React.Children.map(processedChildren, (child, index) =>
-          React.isValidElement(child)
-            ? React.cloneElement(child, {
-                // to let List(Item|ItemButton) knows when to apply margin(Inline|Block)Start
-                ...(index === 0 && { 'data-first-child': '' }),
-              })
-            : child,
-        )}
-      </TabListRoot>
-    </RowListContext.Provider>
+    // @ts-ignore conflicted ref types
+    <TabListRoot {...tabsListRootProps}>
+      <ListProvider orientation={orientation} nested>
+        {processedChildren}
+      </ListProvider>
+    </TabListRoot>
   );
 }) as OverridableComponent<TabListTypeMap>;
 

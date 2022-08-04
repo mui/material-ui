@@ -10,7 +10,7 @@ import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
 import { getTabUtilityClass } from './tabClasses';
 import { TabOwnerState, TabTypeMap } from './TabProps';
-import RowListContext from '../List/RowListContext';
+import ListOrientationContext from '../List/ListOrientationContext';
 
 const useUtilityClasses = (ownerState: TabOwnerState) => {
   const { selected, disabled, focusVisible, variant, color } = ownerState;
@@ -57,7 +57,7 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
     name: 'JoyTab',
   });
 
-  const row = React.useContext(RowListContext);
+  const orientation = React.useContext(ListOrientationContext);
 
   const {
     action,
@@ -94,7 +94,7 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
 
   const ownerState = {
     ...props,
-    row,
+    orientation,
     active,
     focusVisible,
     disabled,
