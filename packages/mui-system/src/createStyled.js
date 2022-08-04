@@ -8,6 +8,17 @@ function isEmpty(obj) {
   return Object.keys(obj).length === 0;
 }
 
+// https://github.com/emotion-js/emotion/blob/26ded6109fcd8ca9875cc2ce4564fee678a3f3c5/packages/styled/src/utils.js#L40
+function isStringTag(tag) {
+  return (
+    typeof tag === 'string' &&
+    // 96 is one less than the char code
+    // for "a" so this is checking that
+    // it's a lowercase character
+    tag.charCodeAt(0) > 96
+  );
+}
+
 const getStyleOverrides = (name, theme) => {
   if (theme.components && theme.components[name] && theme.components[name].styleOverrides) {
     return theme.components[name].styleOverrides;
@@ -104,6 +115,9 @@ export default function createStyled(input = {}) {
     } else if (componentSlot) {
       // any other slot specified
       shouldForwardPropOption = slotShouldForwardProp;
+    } else if (isStringTag(tag)) {
+      // for string (html) tag, preserve the behavior in emotion & styled-components.
+      shouldForwardPropOption = undefined;
     }
 
     const defaultStyledResolver = styledEngineStyled(tag, {

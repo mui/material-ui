@@ -56,6 +56,11 @@ export interface ListItemButtonTypeMap<P = {}, D extends React.ElementType = 'di
      */
     focusVisibleClassName?: string;
     /**
+     * The content direction flow.
+     * @default 'horizontal'
+     */
+    orientation?: 'horizontal' | 'vertical';
+    /**
      * Use to apply selected styling.
      * @default false
      */

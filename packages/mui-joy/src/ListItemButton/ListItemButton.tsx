@@ -11,7 +11,8 @@ import {
   ListItemButtonTypeMap,
 } from './ListItemButtonProps';
 import listItemButtonClasses, { getListItemButtonUtilityClass } from './listItemButtonClasses';
-import RowListContext from '../List/RowListContext';
+import ListOrientationContext from '../List/ListOrientationContext';
+import ListItemButtonOrientationContext from './ListItemButtonOrientationContext';
 
 const useUtilityClasses = (ownerState: ListItemButtonProps & { focusVisible: boolean }) => {
   const { color, disabled, focusVisible, focusVisibleClassName, selected, variant } = ownerState;
@@ -42,7 +43,10 @@ export const ListItemButtonRoot = styled('div', {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{
-  ownerState: ListItemButtonProps & { row: boolean; 'data-first-child'?: string };
+  ownerState: ListItemButtonProps & {
+    parentOrientation: 'horizontal' | 'vertical';
+    'data-first-child'?: string;
+  };
 }>(({ theme, ownerState }) => [
   {
     ...(ownerState.selected && {
@@ -51,6 +55,7 @@ export const ListItemButtonRoot = styled('div', {
     boxSizing: 'border-box',
     position: 'relative',
     display: 'flex',
+    flexDirection: ownerState.orientation === 'vertical' ? 'column' : 'row',
     alignItems: 'center',
     textAlign: 'initial',
     textDecoration: 'initial', // reset native anchor tag
@@ -59,8 +64,10 @@ export const ListItemButtonRoot = styled('div', {
     marginInline: 'var(--List-itemButton-marginInline)',
     marginBlock: 'var(--List-itemButton-marginBlock)',
     ...(ownerState['data-first-child'] === undefined && {
-      marginInlineStart: ownerState.row ? 'var(--List-gap)' : undefined,
-      marginBlockStart: ownerState.row ? undefined : 'var(--List-gap)',
+      marginInlineStart:
+        ownerState.parentOrientation === 'horizontal' ? 'var(--List-gap)' : undefined,
+      marginBlockStart:
+        ownerState.parentOrientation === 'horizontal' ? undefined : 'var(--List-gap)',
     }),
     // account for the border width, so that all of the ListItemButtons content aligned horizontally
     paddingBlock: 'calc(var(--List-item-paddingY) - var(--variant-borderWidth))',
@@ -72,7 +79,7 @@ export const ListItemButtonRoot = styled('div', {
     minBlockSize: 'var(--List-item-minHeight)',
     border: 'none',
     borderRadius: 'var(--List-item-radius)',
-    flex: ownerState.row ? 'none' : 1,
+    flex: ownerState.parentOrientation === 'horizontal' ? 'none' : 1,
     minInlineSize: 0,
     // TODO: discuss the transition approach in a separate PR. This value is copied from mui-material Button.
     transition:
@@ -99,13 +106,14 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
     name: 'JoyListItemButton',
   });
 
-  const row = React.useContext(RowListContext);
+  const parentOrientation = React.useContext(ListOrientationContext);
 
   const {
     children,
     className,
     action,
     component = 'div',
+    orientation = 'horizontal',
     role,
     selected = false,
     color = selected ? 'primary' : 'neutral',
@@ -137,7 +145,8 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
     component,
     color,
     focusVisible,
-    row,
+    orientation,
+    parentOrientation,
     selected,
     variant,
   };
@@ -147,16 +156,18 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
   const rootProps = getRootProps();
 
   return (
-    <ListItemButtonRoot
-      as={component}
-      className={clsx(classes.root, className)}
-      ownerState={ownerState}
-      {...other}
-      {...rootProps}
-      role={role ?? rootProps.role}
-    >
-      {children}
-    </ListItemButtonRoot>
+    <ListItemButtonOrientationContext.Provider value={orientation}>
+      <ListItemButtonRoot
+        as={component}
+        className={clsx(classes.root, className)}
+        ownerState={ownerState}
+        {...other}
+        {...rootProps}
+        role={role ?? rootProps.role}
+      >
+        {children}
+      </ListItemButtonRoot>
+    </ListItemButtonOrientationContext.Provider>
   );
 }) as ExtendListItemButton<ListItemButtonTypeMap>;
 
@@ -221,6 +232,11 @@ ListItemButton.propTypes /* remove-proptypes */ = {
    * if needed.
    */
   focusVisibleClassName: PropTypes.string,
+  /**
+   * The content direction flow.
+   * @default 'horizontal'
+   */
+  orientation: PropTypes.oneOf(['horizontal', 'vertical']),
   /**
    * @ignore
    */

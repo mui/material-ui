@@ -16,14 +16,16 @@ describe('<RadioGroup />', () => {
     ThemeProvider,
     muiName: 'JoyRadioGroup',
     refInstanceof: window.HTMLDivElement,
-    testVariantProps: { row: true },
+    testVariantProps: { orientation: 'horizontal' },
     skip: ['componentProp', 'componentsProp', 'classesRoot', 'propsSpread'],
   }));
 
-  it('should have row class if `row` is true', () => {
-    const { getByRole } = render(<RadioGroup value="" row />);
+  it('should have orientation class', () => {
+    const { getByRole, rerender } = render(<RadioGroup value="" />);
+    expect(getByRole('radiogroup')).to.have.class(classes.vertical);
 
-    expect(getByRole('radiogroup')).to.have.class(classes.row);
+    rerender(<RadioGroup value="" orientation="horizontal" />);
+    expect(getByRole('radiogroup')).to.have.class(classes.horizontal);
   });
 
   it('the root component has the radiogroup role', () => {

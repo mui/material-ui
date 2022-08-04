@@ -27,7 +27,7 @@ export default function DividedList() {
             sx={{
               minWidth: 240,
               borderRadius: 'sm',
-              '--List-decorator-width': '48px',
+              '--List-decorator-size': '48px',
               '--List-item-paddingLeft': '1.5rem',
               '--List-item-paddingRight': '1rem',
             }}

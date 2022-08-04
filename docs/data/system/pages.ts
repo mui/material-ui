@@ -49,6 +49,7 @@ const pages = [
       { pathname: '/system/react-box', title: 'Box' },
       { pathname: '/system/react-container', title: 'Container' },
       { pathname: '/system/react-grid', title: 'Grid' },
+      { pathname: '/system/react-stack', title: 'Stack' },
     ],
   },
   {

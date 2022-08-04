@@ -57,7 +57,7 @@ const LinkRoot = styled('a', {
   name: 'JoyLink',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: LinkProps }>(({ theme, ownerState }) => {
+})<{ ownerState: LinkProps & { nested: boolean } }>(({ theme, ownerState }) => {
   return [
     {
       '--Icon-fontSize': '1.25em',
@@ -98,7 +98,9 @@ const LinkRoot = styled('a', {
       ...(ownerState.variant
         ? {
             paddingInline: '0.25em', // better than left, right because it also works with writing mode.
-            marginInline: '-0.25em',
+            ...(!ownerState.nested && {
+              marginInline: '-0.25em',
+            }),
           }
         : {
             color: `rgba(${theme.vars.palette[ownerState.color!]?.mainChannel} / 1)`,

@@ -12,12 +12,12 @@ export default function SelectCustomOption() {
       componentsProps={{
         listbox: {
           sx: {
-            '--List-decorator-width': '44px',
+            '--List-decorator-size': '44px',
           },
         },
       }}
       sx={{
-        '--List-decorator-width': '44px',
+        '--List-decorator-size': '44px',
         minWidth: 240,
       }}
     >
