@@ -1,9 +1,12 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { describeConformance, createRenderer } from 'test/utils';
+import { describeConformance, createRenderer, screen } from 'test/utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import List, { listClasses as classes } from '@mui/joy/List';
 import ListItem from '@mui/joy/ListItem';
+import MenuList from '@mui/joy/MenuList';
+import Menu from '@mui/joy/Menu';
+import Select from '@mui/joy/Select';
 
 describe('Joy <List />', () => {
   const { render } = createRenderer();
@@ -48,8 +51,98 @@ describe('Joy <List />', () => {
     expect(getByRole('list')).to.have.class(classes.nesting);
   });
 
-  it('should have row classes', () => {
-    const { getByRole } = render(<List row />);
-    expect(getByRole('list')).to.have.class(classes.row);
+  it('should have orientation classes', () => {
+    const { getByRole, rerender } = render(<List />);
+    expect(getByRole('list')).to.have.class(classes.vertical);
+
+    rerender(<List orientation="horizontal" />);
+    expect(getByRole('list')).to.have.class(classes.horizontal);
+  });
+
+  describe('MenuList - integration', () => {
+    it('should have role="group" inside MenuList', () => {
+      render(
+        <MenuList>
+          <List />
+        </MenuList>,
+      );
+      expect(screen.getByRole('group')).toBeVisible();
+    });
+
+    it('should inherit size', () => {
+      render(
+        <MenuList size="sm">
+          <List />
+        </MenuList>,
+      );
+      expect(screen.getByRole('group')).to.have.class(classes.nesting);
+    });
+
+    it('should use instance size', () => {
+      render(
+        <MenuList size="sm">
+          <List size="lg" />
+        </MenuList>,
+      );
+      expect(screen.getByRole('group')).to.have.class(classes.sizeLg);
+    });
+  });
+
+  describe('Menu - integration', () => {
+    it('should have role="group" inside Menu', () => {
+      render(
+        <Menu open anchorEl={() => document.createElement('div')}>
+          <List />
+        </Menu>,
+      );
+      expect(screen.getByRole('group')).toBeVisible();
+    });
+
+    it('should inherit size', () => {
+      render(
+        <Menu size="sm" open anchorEl={() => document.createElement('div')}>
+          <List />
+        </Menu>,
+      );
+      expect(screen.getByRole('group')).to.have.class(classes.nesting);
+    });
+
+    it('should use instance size', () => {
+      render(
+        <Menu size="sm" open anchorEl={() => document.createElement('div')}>
+          <List size="lg" />
+        </Menu>,
+      );
+      expect(screen.getByRole('group')).to.have.class(classes.sizeLg);
+    });
+  });
+
+  describe('Select - integration', () => {
+    it('should have role="group" inside Select', () => {
+      render(
+        <Select defaultListboxOpen>
+          <List />
+        </Select>,
+      );
+      expect(screen.getByRole('group')).toBeVisible();
+    });
+
+    it('should inherit size', () => {
+      render(
+        <Select size="sm" defaultListboxOpen>
+          <List />
+        </Select>,
+      );
+      expect(screen.getByRole('group')).to.have.class(classes.nesting);
+    });
+
+    it('should use instance size', () => {
+      render(
+        <Select size="sm" defaultListboxOpen>
+          <List size="lg" />
+        </Select>,
+      );
+      expect(screen.getByRole('group')).to.have.class(classes.sizeLg);
+    });
   });
 });

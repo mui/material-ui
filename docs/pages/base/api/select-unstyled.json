@@ -1,6 +1,7 @@
 {
   "props": {
     "autoFocus": { "type": { "name": "bool" } },
+    "component": { "type": { "name": "elementType" } },
     "components": {
       "type": {
         "name": "shape",

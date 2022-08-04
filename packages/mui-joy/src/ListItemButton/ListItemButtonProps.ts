@@ -56,9 +56,10 @@ export interface ListItemButtonTypeMap<P = {}, D extends React.ElementType = 'di
      */
     focusVisibleClassName?: string;
     /**
-     * The empty space on the side(s) of the separator.
+     * The content direction flow.
+     * @default 'horizontal'
      */
-    inset?: 'gutter' | 'leftGutter' | 'startAdornment';
+    orientation?: 'horizontal' | 'vertical';
     /**
      * Use to apply selected styling.
      * @default false

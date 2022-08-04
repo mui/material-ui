@@ -16,13 +16,12 @@ export default function ExampleChoiceChipCheckbox() {
       </Typography>
       <Box role="group" aria-labelledby="rank">
         <List
-          row
+          orientation="horizontal"
+          wrap
           sx={{
-            '--List-gap': '0px',
+            '--List-gap': '8px',
             '--List-item-radius': '20px',
             '--List-item-minHeight': '32px',
-            gap: 1,
-            flexWrap: 'wrap',
           }}
         >
           {['Elevator', 'Washer/Dryer', 'Fireplace', 'Dogs ok', 'Cats ok'].map(

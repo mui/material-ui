@@ -28,7 +28,14 @@ const useUtilityClasses = (ownerState) => {
       disabled && 'disabled',
       alternativeLabel && 'alternativeLabel',
     ],
-    iconContainer: ['iconContainer', alternativeLabel && 'alternativeLabel'],
+    iconContainer: [
+      'iconContainer',
+      active && 'active',
+      completed && 'completed',
+      error && 'error',
+      disabled && 'disabled',
+      alternativeLabel && 'alternativeLabel',
+    ],
     labelContainer: ['labelContainer'],
   };
 

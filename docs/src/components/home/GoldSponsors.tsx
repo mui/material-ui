@@ -34,13 +34,6 @@ const GOLDs = [
     href: 'https://www.text-em-all.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
   },
   {
-    src: 'https://images.opencollective.com/laststance/daffd6c/logo/40.png',
-    srcSet: 'https://images.opencollective.com/laststance/daffd6c/logo/80.png 2x',
-    name: 'Laststance',
-    description: 'An organization for OSS activity in Tokyo.',
-    href: 'https://www.laststance.io/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
-  },
-  {
     src: 'https://images.opencollective.com/aussiecasinohex/923df37/logo/40.png',
     srcSet: 'https://images.opencollective.com/aussiecasinohex/923df37/logo/80.png 2x',
     name: 'CasinoHEX Australia',
@@ -60,6 +53,21 @@ const GOLDs = [
     name: 'MegaFamous',
     description: 'The best place to buy Instagram followers & likes.',
     href: 'https://megafamous.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
+  },
+  {
+    src: 'https://images.opencollective.com/dialmycalls/f5ae9ab/avatar/40.png',
+    srcSet: 'https://images.opencollective.com/dialmycalls/f5ae9ab/avatar/80.png 2x',
+    name: 'DialMyCalls',
+    description: 'Send text messages, calls & emails to thousands with ease.',
+    href: 'https://www.dialmycalls.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
+  },
+  {
+    src: 'https://goread.io/assets/uploads/usereb4ac3033e8ab3591e0fcefa8c26ce3fd36d5a0f/bd81e54effbcc265ad169015455a0c1e.png',
+    srcSet:
+      'https://goread.io/assets/uploads/usereb4ac3033e8ab3591e0fcefa8c26ce3fd36d5a0f/bd81e54effbcc265ad169015455a0c1e.png 2x',
+    name: 'Goread.io',
+    description: 'Instagram followers, likes, power likes, views, comments, saves in minutes.',
+    href: 'https://goread.io/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
   },
 ];
 

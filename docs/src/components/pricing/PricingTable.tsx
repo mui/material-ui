@@ -390,13 +390,16 @@ const rowHeaders: Record<string, React.ReactNode> = {
     />
   ),
   'data-grid/row-height': (
-    <ColumnHead label="Row height" nested href="/x/react-data-grid/rows/#row-height" />
+    <ColumnHead label="Row height" nested href="/x/react-data-grid/row-height/" />
   ),
   'data-grid/row-spanning': (
-    <ColumnHead label="Row spanning" nested href="/x/react-data-grid/rows/#row-spanning" />
+    <ColumnHead label="Row spanning" nested href="/x/react-data-grid/row-spanning/" />
   ),
   'data-grid/row-reordering': (
-    <ColumnHead label="Row reordering" nested href="/x/react-data-grid/rows/#row-reorder" />
+    <ColumnHead label="Row reordering" nested href="/x/react-data-grid/row-ordering/" />
+  ),
+  'data-grid/row-pinning': (
+    <ColumnHead label="Row pinning" nested href="/x/react-data-grid/row-pinning/" />
   ),
   'data-grid/row-selection': (
     <ColumnHead label="Row selection" nested href="/x/react-data-grid/selection/#row-selection" />
@@ -509,13 +512,21 @@ const rowHeaders: Record<string, React.ReactNode> = {
   'mui-x-development': <ColumnHead label="Development license" tooltip="For active development" />,
   'mui-x-updates': <ColumnHead label="Access to new releases" />,
   // Support
-  community: <ColumnHead {...{ label: 'Community' }} />,
+  community: (
+    <ColumnHead
+      {...{
+        label: 'Community support for MUI Core',
+        tooltip:
+          'Support for MUI Core and other MIT licensed code is provided by the community. MUI maintainers focus on solving root issues rather than offering direct support to the community at large.',
+      }}
+    />
+  ),
   'bugs/features': (
     <ColumnHead
       {...{
-        label: 'Bug reports & feature requests',
+        label: 'Technical support for MUI X',
         tooltip:
-          'You can report an unlimited number of bugs and submit unlimited feature requests. We do our best to handle them.',
+          'You can ask for technical support, report bugs and submit unlimited feature requests to the advanced components. We take your subscription plan as one of the prioritization criteria.',
       }}
     />
   ),
@@ -576,6 +587,7 @@ const communityData: Record<string, React.ReactNode> = {
   'data-grid/row-height': yes,
   'data-grid/row-spanning': pending,
   'data-grid/row-reordering': no,
+  'data-grid/row-pinning': no,
   'data-grid/row-selection': yes,
   'data-grid/row-multiselection': no,
   'data-grid/row-rangeselection': no,
@@ -633,6 +645,7 @@ const proData: Record<string, React.ReactNode> = {
   'data-grid/row-height': yes,
   'data-grid/row-spanning': pending,
   'data-grid/row-reordering': yes,
+  'data-grid/row-pinning': yes,
   'data-grid/row-selection': yes,
   'data-grid/row-multiselection': yes,
   'data-grid/row-rangeselection': no,
@@ -690,6 +703,7 @@ const premiumData: Record<string, React.ReactNode> = {
   'data-grid/row-height': yes,
   'data-grid/row-spanning': pending,
   'data-grid/row-reordering': yes,
+  'data-grid/row-pinning': yes,
   'data-grid/row-selection': yes,
   'data-grid/row-multiselection': yes,
   'data-grid/row-rangeselection': pending,
@@ -712,7 +726,7 @@ const premiumData: Record<string, React.ReactNode> = {
   'data-grid/tree-data': yes,
   'data-grid/master-detail': yes,
   'data-grid/grouping': yes,
-  'data-grid/aggregation': pending,
+  'data-grid/aggregation': yes,
   'data-grid/pivoting': pending,
   'data-grid/accessibility': yes,
   'data-grid/keyboard-nav': yes,
@@ -1049,6 +1063,8 @@ export default function PricingTable({
         {renderRow('data-grid/row-height')}
         {nestedDivider}
         {renderRow('data-grid/row-reordering')}
+        {nestedDivider}
+        {renderRow('data-grid/row-pinning')}
         {nestedDivider}
         {renderRow('data-grid/row-spanning')}
         {nestedDivider}

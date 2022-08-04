@@ -4,23 +4,35 @@ import clsx from 'clsx';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
 import composeClasses from '@mui/base/composeClasses';
+import { MenuUnstyledContext } from '@mui/base/MenuUnstyled';
+import { SelectUnstyledContext } from '@mui/base/SelectUnstyled';
 import { styled, useThemeProps } from '../styles';
 import { ListProps, ListTypeMap } from './ListProps';
 import { getListUtilityClass } from './listClasses';
 import NestedListContext from './NestedListContext';
-import RowListContext from './RowListContext';
 import ComponentListContext from './ComponentListContext';
+import ListProvider from './ListProvider';
 
-const useUtilityClasses = (ownerState: ListProps & { nesting: boolean }) => {
-  const { size, nesting, row } = ownerState;
+const useUtilityClasses = (
+  ownerState: ListProps & { nesting: boolean; instanceSize: ListProps['size'] },
+) => {
+  const { variant, color, size, nesting, orientation, instanceSize } = ownerState;
   const slots = {
-    root: ['root', size && `size${capitalize(size)}`, nesting && 'nesting', row && 'row'],
+    root: [
+      'root',
+      orientation,
+      variant && `variant${capitalize(variant)}`,
+      color && `color${capitalize(color)}`,
+      !instanceSize && !nesting && size && `size${capitalize(size)}`,
+      instanceSize && `size${capitalize(instanceSize)}`,
+      nesting && 'nesting',
+    ],
   };
 
   return composeClasses(slots, getListUtilityClass, {});
 };
 
-const ListRoot = styled('ul', {
+export const ListRoot = styled('ul', {
   name: 'JoyList',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
@@ -32,9 +44,9 @@ const ListRoot = styled('ul', {
           '--List-divider-gap': '0.25rem',
           '--List-item-minHeight': '2rem',
           '--List-item-paddingY': '0.25rem',
-          '--List-item-paddingX': '0.375rem',
+          '--List-item-paddingX': '0.5rem',
           '--List-item-fontSize': theme.vars.fontSize.sm,
-          '--List-decorator-width': ownerState.row ? '1.5rem' : '2rem',
+          '--List-decorator-size': ownerState.orientation === 'horizontal' ? '1.5rem' : '2rem',
           '--Icon-fontSize': '1.125rem',
         };
       }
@@ -45,7 +57,7 @@ const ListRoot = styled('ul', {
           '--List-item-paddingY': '0.375rem',
           '--List-item-paddingX': '0.75rem',
           '--List-item-fontSize': theme.vars.fontSize.md,
-          '--List-decorator-width': ownerState.row ? '1.75rem' : '2.5rem',
+          '--List-decorator-size': ownerState.orientation === 'horizontal' ? '1.75rem' : '2.5rem',
           '--Icon-fontSize': '1.25rem',
         };
       }
@@ -56,7 +68,7 @@ const ListRoot = styled('ul', {
           '--List-item-paddingY': '0.5rem',
           '--List-item-paddingX': '1rem',
           '--List-item-fontSize': theme.vars.fontSize.md,
-          '--List-decorator-width': ownerState.row ? '2.25rem' : '3rem',
+          '--List-decorator-size': ownerState.orientation === 'horizontal' ? '2.25rem' : '3rem',
           '--Icon-fontSize': '1.5rem',
         };
       }
@@ -82,7 +94,6 @@ const ListRoot = styled('ul', {
       !ownerState.nesting && {
         ...applySizeVars(ownerState.size),
         '--List-gap': '0px',
-        '--List-padding': '0px',
         '--List-decorator-color': theme.vars.palette.text.tertiary,
         '--List-nestedInsetStart': '0px',
         '--List-item-paddingLeft': 'var(--List-item-paddingX)',
@@ -95,15 +106,36 @@ const ListRoot = styled('ul', {
         '--List-item-startActionTranslateX': 'calc(0.5 * var(--List-item-paddingLeft))',
         '--List-item-endActionTranslateX': 'calc(-0.5 * var(--List-item-paddingRight))',
         margin: 'initial',
-        padding: 'var(--List-padding, 0px)',
+        // --List-padding is not declared to let list uses --List-divider-gap by default.
+        ...(ownerState.orientation === 'horizontal'
+          ? {
+              ...(ownerState.wrap
+                ? {
+                    padding: 'var(--List-padding)',
+                    marginInlineStart: 'calc(-1 * var(--List-gap))',
+                    marginBlockStart: 'calc(-1 * var(--List-gap))',
+                  }
+                : {
+                    paddingInline: 'var(--List-padding, var(--List-divider-gap))',
+                    paddingBlock: 'var(--List-padding)',
+                  }),
+            }
+          : {
+              paddingBlock: 'var(--List-padding, var(--List-divider-gap))',
+              paddingInline: 'var(--List-padding)',
+            }),
       },
       {
         borderRadius: 'var(--List-radius)',
         listStyle: 'none',
         display: 'flex',
-        flexDirection: ownerState.row ? 'row' : 'column',
+        flexDirection: ownerState.orientation === 'horizontal' ? 'row' : 'column',
+        ...(ownerState.wrap && {
+          flexWrap: 'wrap',
+        }),
         flexGrow: 1,
         position: 'relative', // for sticky ListItem
+        ...theme.variants[ownerState.variant!]?.[ownerState.color!],
       },
     ];
   },
@@ -111,44 +143,57 @@ const ListRoot = styled('ul', {
 
 const List = React.forwardRef(function List(inProps, ref) {
   const nesting = React.useContext(NestedListContext);
+  const menuContext = React.useContext(MenuUnstyledContext);
+  const selectContext = React.useContext(SelectUnstyledContext);
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
     name: 'JoyList',
   });
 
-  const { component, className, children, size = 'md', row = false, ...other } = props;
+  const {
+    component,
+    className,
+    children,
+    size = 'md',
+    orientation = 'vertical',
+    wrap = false,
+    variant = 'plain',
+    color = 'neutral',
+    role: roleProp,
+    ...other
+  } = props;
 
   const ownerState = {
     instanceSize: inProps.size,
     size,
     nesting,
-    row,
+    orientation,
+    wrap,
+    variant,
+    color,
     ...props,
   };
 
   const classes = useUtilityClasses(ownerState);
 
+  const role = roleProp ?? (menuContext || selectContext ? 'group' : undefined);
   return (
-    <RowListContext.Provider value={row}>
-      <ComponentListContext.Provider value={typeof component === 'string' ? component : undefined}>
-        <ListRoot
-          ref={ref}
-          as={component}
-          className={clsx(classes.root, className)}
-          ownerState={ownerState}
-          {...other}
-        >
-          {React.Children.map(children, (child, index) =>
-            React.isValidElement(child)
-              ? React.cloneElement(child, {
-                  // to let List(Item|ItemButton) knows when to apply margin(Inline|Block)Start
-                  ...(index === 0 && { 'data-first-child': '' }),
-                })
-              : child,
-          )}
-        </ListRoot>
+    <ListRoot
+      ref={ref}
+      as={component}
+      className={clsx(classes.root, className)}
+      ownerState={ownerState}
+      role={role}
+      {...other}
+    >
+      <ComponentListContext.Provider
+        value={`${typeof component === 'string' ? component : ''}:${role || ''}`}
+      >
+        <ListProvider orientation={orientation} wrap={wrap}>
+          {children}
+        </ListProvider>
       </ComponentListContext.Provider>
-    </RowListContext.Provider>
+    </ListRoot>
   );
 }) as OverridableComponent<ListTypeMap>;
 
@@ -162,24 +207,34 @@ List.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
-   * Override or extend the styles applied to the component.
-   */
-  classes: PropTypes.object,
-  /**
    * @ignore
    */
   className: PropTypes.string,
+  /**
+   * The color of the component. It supports those theme colors that make sense for this component.
+   * @default 'neutral'
+   */
+  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.string,
+  ]),
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
   /**
-   * If `true`, display the list in horizontal direction.
+   * The flow direction of the content.
+   * @default 'vertical'
    */
-  row: PropTypes.bool,
+  orientation: PropTypes.oneOf(['horizontal', 'vertical']),
+  /**
+   * @ignore
+   */
+  role: PropTypes /* @typescript-to-proptypes-ignore */.string,
   /**
    * The size of the component (affect other nested list* components).
+   * @default 'md'
    */
   size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['sm', 'md', 'lg']),
@@ -193,6 +248,21 @@ List.propTypes /* remove-proptypes */ = {
     PropTypes.func,
     PropTypes.object,
   ]),
+  /**
+   * The variant to use.
+   * @default 'plain'
+   */
+  variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
+    PropTypes.string,
+  ]),
+  /**
+   * Only for horizontal list.
+   * If `true`, the list sets the flex-wrap to "wrap" and adjust margin to have gap-like behavior (will move to `gap` in the future).
+   *
+   * @default false
+   */
+  wrap: PropTypes.bool,
 } as any;
 
 export default List;
