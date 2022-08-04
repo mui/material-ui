@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
+import { spy } from 'sinon';
 import { createRenderer } from 'test/utils';
 import { createBox, ThemeProvider } from '@mui/system';
 
@@ -53,5 +54,29 @@ describe('createBox', () => {
 
     const { container } = render(<Box />);
     expect(container.firstChild).to.have.class('Box');
+  });
+
+  it('should accept sx prop', () => {
+    const Box = createBox();
+    const { container } = render(<Box sx={{ color: 'rgb(255, 0, 0)' }}>Content</Box>);
+    expect(container.firstChild).toHaveComputedStyle({ color: 'rgb(255, 0, 0)' });
+  });
+
+  it('should call styleFunctionSx once', () => {
+    const Box = createBox();
+    const sypSx = spy();
+    render(<Box sx={sypSx}>Content</Box>);
+    expect(sypSx.callCount).to.equal(2); // React 18 renders twice in strict mode.
+  });
+
+  it('should still call styleFunctionSx once', () => {
+    const Box = createBox();
+    const sypSx = spy();
+    render(
+      <Box component={Box} sx={sypSx}>
+        Content
+      </Box>,
+    );
+    expect(sypSx.callCount).to.equal(2); // React 18 renders twice in strict mode.
   });
 });
