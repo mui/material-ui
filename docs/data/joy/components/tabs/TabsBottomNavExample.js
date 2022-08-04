@@ -9,7 +9,7 @@ import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
 import Search from '@mui/icons-material/Search';
 import Person from '@mui/icons-material/Person';
 
-export default function TabsBasic() {
+export default function TabsBottomNavExample() {
   const [index, setIndex] = React.useState(0);
   const colors = ['primary', 'info', 'danger', 'success'];
   return (
@@ -43,34 +43,45 @@ export default function TabsBasic() {
             transition: '0.3s',
             fontWeight: 'lg',
             flex: 1,
-            flexDirection: 'column',
             [`&:not(.${tabClasses.selected}):not(:hover)`]: {
               opacity: 0.72,
             },
           },
         })}
       >
-        <TabList variant="plain" sx={{ '--List-decorator-width': '24px' }}>
-          <Tab {...(index === 0 && { variant: 'soft', color: colors[0] })}>
-            <ListItemDecorator sx={{ mb: 0.5 }}>
+        <TabList variant="plain" sx={{ '--List-decorator-width': '28px' }}>
+          <Tab
+            orientation="vertical"
+            {...(index === 0 && { variant: 'soft', color: colors[0] })}
+          >
+            <ListItemDecorator>
               <HomeOutlined />
             </ListItemDecorator>
             Home
           </Tab>
-          <Tab {...(index === 1 && { variant: 'soft', color: colors[1] })}>
-            <ListItemDecorator sx={{ mb: 0.5 }}>
+          <Tab
+            orientation="vertical"
+            {...(index === 1 && { variant: 'soft', color: colors[1] })}
+          >
+            <ListItemDecorator>
               <FavoriteBorder />
             </ListItemDecorator>
             Likes
           </Tab>
-          <Tab {...(index === 2 && { variant: 'soft', color: colors[2] })}>
-            <ListItemDecorator sx={{ mb: 0.5 }}>
+          <Tab
+            orientation="vertical"
+            {...(index === 2 && { variant: 'soft', color: colors[2] })}
+          >
+            <ListItemDecorator>
               <Search />
             </ListItemDecorator>
             Search
           </Tab>
-          <Tab {...(index === 3 && { variant: 'soft', color: colors[3] })}>
-            <ListItemDecorator sx={{ mb: 0.5 }}>
+          <Tab
+            orientation="vertical"
+            {...(index === 3 && { variant: 'soft', color: colors[3] })}
+          >
+            <ListItemDecorator>
               <Person />
             </ListItemDecorator>
             Profile
