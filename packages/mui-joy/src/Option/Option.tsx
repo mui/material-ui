@@ -49,7 +49,7 @@ const Option = React.forwardRef(function Option(inProps, ref) {
     ...other
   } = props;
 
-  const orientation = React.useContext(ListOrientationContext);
+  const parentOrientation = React.useContext(ListOrientationContext);
   const selectContext = React.useContext(SelectUnstyledContext) as SelectUnstyledContextType & {
     color: ColorPaletteProp;
   };
@@ -81,7 +81,7 @@ const Option = React.forwardRef(function Option(inProps, ref) {
     component,
     variant,
     color,
-    orientation,
+    parentOrientation,
   };
 
   const optionRef = React.useRef<HTMLLIElement>(null);

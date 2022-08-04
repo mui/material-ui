@@ -27,6 +27,11 @@ export interface TabTypeMap<P = {}, D extends React.ElementType = 'button'> {
      */
     disabled?: boolean;
     /**
+     * The content direction flow.
+     * @default 'horizontal'
+     */
+    orientation?: 'horizontal' | 'vertical';
+    /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */
     sx?: SxProps;
