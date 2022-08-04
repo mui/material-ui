@@ -50,7 +50,7 @@ export default function ExamplePaymentChannels() {
       >
         <List
           variant="outlined"
-          row={row}
+          orientation={row ? 'horizontal' : 'vertical'}
           sx={{
             borderRadius: 'sm',
             boxShadow: 'sm',

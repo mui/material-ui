@@ -12,7 +12,7 @@ import { styled, useThemeProps } from '../styles';
 import { ListItemProps, ListItemTypeMap } from './ListItemProps';
 import { getListItemUtilityClass } from './listItemClasses';
 import NestedListContext from '../List/NestedListContext';
-import RowListContext from '../List/RowListContext';
+import ListOrientationContext from '../List/ListOrientationContext';
 import WrapListContext from '../List/WrapListContext';
 import ComponentListContext from '../List/ComponentListContext';
 
@@ -39,7 +39,11 @@ const ListItemRoot = styled('li', {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{
-  ownerState: ListItemProps & { row: boolean; wrap: boolean; 'data-first-child'?: string };
+  ownerState: ListItemProps & {
+    orientation: 'horizontal' | 'vertical';
+    wrap: boolean;
+    'data-first-child'?: string;
+  };
 }>(({ theme, ownerState }) => [
   !ownerState.nested && {
     // add negative margin to ListItemButton equal to this ListItem padding
@@ -80,7 +84,7 @@ const ListItemRoot = styled('li', {
     paddingInlineStart: 'var(--List-item-paddingLeft)',
     paddingInlineEnd: 'var(--List-item-paddingRight)',
     ...(ownerState['data-first-child'] === undefined && {
-      ...(ownerState.row
+      ...(ownerState.orientation === 'horizontal'
         ? {
             marginInlineStart: 'var(--List-gap)',
           }
@@ -88,7 +92,7 @@ const ListItemRoot = styled('li', {
             marginBlockStart: 'var(--List-gap)',
           }),
     }),
-    ...(ownerState.row &&
+    ...(ownerState.orientation === 'horizontal' &&
       ownerState.wrap && {
         marginInlineStart: 'var(--List-gap)',
         marginBlockStart: 'var(--List-gap)',
@@ -98,7 +102,7 @@ const ListItemRoot = styled('li', {
     fontFamily: theme.vars.fontFamily.body,
     ...(ownerState.sticky && {
       position: 'sticky',
-      top: 0,
+      top: 'var(--List-item-stickyTop, 0px)', // integration with Menu and Select.
       zIndex: 1,
       background: 'var(--List-item-stickyBackground)',
     }),
@@ -116,6 +120,7 @@ const ListItemStartAction = styled('div', {
   top: ownerState.nested ? 'calc(var(--List-item-minHeight) / 2)' : '50%',
   left: 0,
   transform: 'translate(var(--List-item-startActionTranslateX), -50%)',
+  zIndex: 1, // to stay on top of ListItemButton (default `position: relative`).
 }));
 
 const ListItemEndAction = styled('div', {
@@ -139,7 +144,7 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
   const menuContext = React.useContext(MenuUnstyledContext);
 
   const listComponent = React.useContext(ComponentListContext);
-  const row = React.useContext(RowListContext);
+  const orientation = React.useContext(ListOrientationContext);
   const wrap = React.useContext(WrapListContext);
   const nesting = React.useContext(NestedListContext);
 
@@ -160,7 +165,7 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
     sticky,
     startAction,
     endAction,
-    row,
+    orientation,
     wrap,
     variant,
     color,

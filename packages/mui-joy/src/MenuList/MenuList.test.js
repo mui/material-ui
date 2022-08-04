@@ -1,17 +1,15 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import { describeConformance, createRenderer } from 'test/utils';
+import { describeConformance, createRenderer, screen } from 'test/utils';
 import { ThemeProvider } from '@mui/joy/styles';
 import MenuList, { menuListClasses as classes } from '@mui/joy/MenuList';
-import ListItem from '@mui/joy/ListItem';
-import List, { listClasses } from '@mui/joy/List';
 
 describe('Joy <MenuList />', () => {
   const { render } = createRenderer();
 
   describeConformance(<MenuList />, () => ({
     classes,
-    inheritComponent: List,
+    inheritComponent: 'ul',
     render,
     ThemeProvider,
     muiName: 'MuiMenuList',
@@ -22,7 +20,7 @@ describe('Joy <MenuList />', () => {
   it('should have root className', () => {
     const { container } = render(<MenuList />);
     expect(container.firstChild).to.have.class(classes.root);
-    expect(container.firstChild).to.have.class(listClasses.sizeMd);
+    expect(container.firstChild).to.have.class(classes.sizeMd);
   });
 
   it('should accept className prop', () => {
@@ -30,22 +28,18 @@ describe('Joy <MenuList />', () => {
     expect(container.firstChild).to.have.class('foo-bar');
   });
 
-  it('should have sm classes', () => {
-    const { container } = render(<MenuList size="sm" />);
-    expect(container.firstChild).to.have.class(listClasses.sizeSm);
+  it('prop: size', () => {
+    render(<MenuList size="sm" />);
+    expect(screen.getByRole('menu')).to.have.class(classes.sizeSm);
   });
 
-  it('should have lg classes', () => {
-    const { container } = render(<MenuList size="lg" />);
-    expect(container.firstChild).to.have.class(listClasses.sizeLg);
+  it('prop: variant', () => {
+    render(<MenuList variant="outlined" />);
+    expect(screen.getByRole('menu')).to.have.class(classes.variantOutlined);
   });
 
-  it('should have nested classes', () => {
-    const { getByRole } = render(
-      <ListItem nested>
-        <MenuList />
-      </ListItem>,
-    );
-    expect(getByRole('menu')).to.have.class(listClasses.nesting);
+  it('prop: color', () => {
+    render(<MenuList color="primary" />);
+    expect(screen.getByRole('menu')).to.have.class(classes.colorPrimary);
   });
 });

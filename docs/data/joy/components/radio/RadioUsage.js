@@ -1,5 +1,7 @@
 import * as React from 'react';
-import JoyUsageDemo from 'docs/src/modules/components/JoyUsageDemo';
+import JoyUsageDemo, {
+  prependLinesSpace,
+} from 'docs/src/modules/components/JoyUsageDemo';
 import FormLabel from '@mui/joy/FormLabel';
 import RadioGroup from '@mui/joy/RadioGroup';
 import Radio from '@mui/joy/Radio';
@@ -7,7 +9,7 @@ import Radio from '@mui/joy/Radio';
 export default function RadioUsage() {
   return (
     <JoyUsageDemo
-      componentName="RadioGroup"
+      componentName="Radio"
       data={[
         {
           propName: 'variant',
@@ -27,12 +29,19 @@ export default function RadioUsage() {
           defaultValue: 'md',
         },
         {
-          propName: 'row',
-          knob: 'switch',
-          defaultValue: false,
+          propName: 'orientation',
+          knob: 'radio',
+          options: ['vertical', 'horizontal'],
+          defaultValue: 'vertical',
+          codeBlockDisplay: false,
         },
       ]}
-      renderDemo={(props) => (
+      getCodeBlock={(code, props) => `<RadioGroup${
+        props.row ? ` orientation="horizontal"` : ''
+      }>
+${prependLinesSpace(code, 2)}
+</RadioGroup>`}
+      renderDemo={({ orientation, ...props }) => (
         <div>
           <FormLabel
             id="radio-button-usage-label"
@@ -48,14 +57,14 @@ export default function RadioUsage() {
             Pizza crust
           </FormLabel>
           <RadioGroup
-            {...props}
+            orientation={orientation}
             defaultValue="1"
             name="radio-button-usage"
             aria-labelledby="radio-button-usage-label"
           >
-            <Radio label="Regular crust" value="1" />
-            <Radio label="Deep dish" value="2" />
-            <Radio label="Thin crust" value="3" disabled />
+            <Radio label="Regular crust" value="1" {...props} />
+            <Radio label="Deep dish" value="2" {...props} />
+            <Radio label="Thin crust" value="3" {...props} disabled />
           </RadioGroup>
         </div>
       )}

@@ -83,6 +83,7 @@ export default function ExampleFilterMemberCheckbox() {
               }
               checked={members[1]}
               onChange={toggleMember(1)}
+              sx={{ color: 'inherit' }}
             />
           </ListItem>
           <ListItem {...(members[2] && { variant: 'soft', color: 'neutral' })}>

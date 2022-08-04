@@ -29,11 +29,16 @@ const shallowEqual = (item1: { [k: string]: any }, item2: { [k: string]: any }) 
   return equal;
 };
 
-function createCode(data: {
-  name: string;
-  props: Record<string, string | number | boolean>;
-  childrenAccepted?: boolean;
-}) {
+const defaultGetCodeBlock = (code: string) => code;
+
+function createCode(
+  data: {
+    name: string;
+    props: Record<string, string | number | boolean>;
+    childrenAccepted?: boolean;
+  },
+  getCodeBlock = defaultGetCodeBlock,
+) {
   const { props: inProps, name, childrenAccepted } = data;
   const closedJsx = childrenAccepted ? '>' : '/>';
   let code = `<${name}`;
@@ -75,8 +80,16 @@ function createCode(data: {
     }
   }
 
-  return code;
+  return getCodeBlock(code);
 }
+
+export const prependLinesSpace = (code: string, size: number = 2) => {
+  const newCode: string[] = [];
+  code.split('\n').forEach((line) => {
+    newCode.push(`${Array(size).fill(' ').join('')}${line}`);
+  });
+  return newCode.join('\n');
+};
 
 interface JoyUsageDemoProps<ComponentProps> {
   /**
@@ -118,10 +131,16 @@ interface JoyUsageDemoProps<ComponentProps> {
      */
     defaultValue?: string | number | boolean;
     /**
-     * If true, the prop with defaultValue will always display in the code block.
+     * If not specify (`undefined`), the prop displays when user change the value
+     * If `true`, the prop with defaultValue will always display in the code block.
+     * If `false`, the prop does not display in the code block.
      */
-    codeBlockDisplay?: true;
+    codeBlockDisplay?: boolean;
   }>;
+  /**
+   * A function to override the code block result.
+   */
+  getCodeBlock?: (code: string, props: ComponentProps) => string;
   renderDemo: (props: ComponentProps) => React.ReactElement;
 }
 
@@ -130,20 +149,28 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
   childrenAccepted = false,
   data,
   renderDemo,
+  getCodeBlock = defaultGetCodeBlock,
 }: JoyUsageDemoProps<T>) {
-  const defaultProps = {} as { [k in keyof T]: any };
   const initialProps = {} as { [k in keyof T]: any };
-  const staticProps = {} as { [k in keyof T]: any };
+  let demoProps = {} as { [k in keyof T]: any };
+  let codeBlockProps = {} as { [k in keyof T]: any };
   data.forEach((p) => {
-    defaultProps[p.propName] = p.defaultValue;
+    demoProps[p.propName] = p.defaultValue;
     if (p.codeBlockDisplay) {
       initialProps[p.propName] = p.defaultValue;
     }
     if (!p.knob) {
-      staticProps[p.propName] = p.defaultValue;
+      codeBlockProps[p.propName] = p.defaultValue;
     }
   });
   const [props, setProps] = React.useState<T>(initialProps as T);
+  demoProps = { ...demoProps, ...props };
+  codeBlockProps = { ...props, ...codeBlockProps };
+  data.forEach((p) => {
+    if (p.codeBlockDisplay === false) {
+      delete codeBlockProps[p.propName];
+    }
+  });
   return (
     <Box
       sx={{
@@ -169,15 +196,18 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
             p: 1,
           }}
         >
-          {renderDemo({ ...defaultProps, ...props })}
+          {renderDemo(demoProps)}
         </Box>
         <BrandingProvider mode="dark">
           <HighlightedCode
-            code={createCode({
-              name: componentName,
-              props: { ...props, ...staticProps },
-              childrenAccepted,
-            })}
+            code={createCode(
+              {
+                name: componentName,
+                props: codeBlockProps,
+                childrenAccepted,
+              },
+              (code) => getCodeBlock(code, demoProps),
+            )}
             language="jsx"
             sx={{ display: { xs: 'none', md: 'block' } }}
           />
@@ -268,7 +298,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                     {propName}
                   </Typography>
                   <RadioGroup
-                    row
+                    orientation="horizontal"
                     name={labelId}
                     aria-labelledby={labelId}
                     value={resolvedValue}
@@ -313,7 +343,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                     Color
                   </Typography>
                   <RadioGroup
-                    row
+                    orientation="horizontal"
                     name={`${componentName}-color`}
                     aria-labelledby={`${componentName}-color`}
                     value={resolvedValue || ''}

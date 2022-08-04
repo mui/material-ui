@@ -7,7 +7,7 @@ import { ListItemButtonRoot } from '../ListItemButton/ListItemButton';
 import { styled, useThemeProps } from '../styles';
 import { getMenuItemUtilityClass } from './menuItemClasses';
 import { MenuItemProps, ExtendMenuItem, MenuItemTypeMap } from './MenuItemProps';
-import RowListContext from '../List/RowListContext';
+import ListOrientationContext from '../List/ListOrientationContext';
 
 const useUtilityClasses = (ownerState: MenuItemProps & { focusVisible: boolean }) => {
   const { focusVisible, disabled, selected } = ownerState;
@@ -34,7 +34,7 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
     name: 'JoyMenuItem',
   });
 
-  const row = React.useContext(RowListContext);
+  const orientation = React.useContext(ListOrientationContext);
 
   const {
     children,
@@ -58,7 +58,7 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
     disabled,
     focusVisible,
     selected,
-    row,
+    orientation,
     variant,
   };
 

@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import KeyboardArrowRightRoundedIcon from '@mui/icons-material/KeyboardArrowRightRounded';
-import { alpha, styled, experimental_sx as sx } from '@mui/material/styles';
+import { alpha, styled } from '@mui/material/styles';
 import Collapse from '@mui/material/Collapse';
 import Chip from '@mui/material/Chip';
 import { openLinkInNewTab } from 'docs/src/modules/components/MarkdownLinks';
@@ -155,38 +155,34 @@ const StyledLi = styled('li', { shouldForwardProp: (prop) => prop !== 'depth' })
   }),
 );
 
-const LegacyChip = styled(function LegacyChip(props) {
-  return <Chip {...props} label="Legacy" />;
-})(
-  sx({
-    ml: 1,
-    fontSize: (theme) => theme.typography.pxToRem(10),
-    fontWeight: 'semiBold',
-    textTransform: 'uppercase',
-    letterSpacing: '.04rem',
-    height: '16px',
-    border: 1,
-    borderColor: (theme) =>
-      theme.palette.mode === 'dark'
-        ? alpha(theme.palette.warning[800], 0.5)
-        : theme.palette.warning[300],
+const sxChip = (color) => ({
+  ml: 1,
+  fontSize: (theme) => theme.typography.pxToRem(10),
+  fontWeight: 'semiBold',
+  textTransform: 'uppercase',
+  letterSpacing: '.04rem',
+  height: '16px',
+  border: 1,
+  borderColor: (theme) =>
+    theme.palette.mode === 'dark'
+      ? alpha(theme.palette[color][800], 0.5)
+      : theme.palette[color][300],
+  bgcolor: (theme) =>
+    theme.palette.mode === 'dark'
+      ? alpha(theme.palette[color][900], 0.5)
+      : alpha(theme.palette[color][100], 0.5),
+  color: (theme) =>
+    theme.palette.mode === 'dark' ? theme.palette[color][300] : theme.palette[color][700],
+  '&:hover': {
     bgcolor: (theme) =>
       theme.palette.mode === 'dark'
-        ? alpha(theme.palette.warning[900], 0.5)
-        : alpha(theme.palette.warning[100], 0.5),
-    color: (theme) =>
-      theme.palette.mode === 'dark' ? theme.palette.warning[300] : theme.palette.warning[700],
-    '&:hover': {
-      bgcolor: (theme) =>
-        theme.palette.mode === 'dark'
-          ? alpha(theme.palette.warning[900], 0.5)
-          : alpha(theme.palette.warning[100], 0.5),
-    },
-    '& .MuiChip-label': {
-      px: 0.6,
-    },
-  }),
-);
+        ? alpha(theme.palette[color][900], 0.5)
+        : alpha(theme.palette[color][100], 0.5),
+  },
+  '& .MuiChip-label': {
+    px: 0.6,
+  },
+});
 
 function DeadLink(props) {
   const { activeClassName, href, noLinkStyle, prefetch, ...other } = props;
@@ -207,6 +203,7 @@ export default function AppNavDrawerItem(props) {
     href,
     icon,
     legacy,
+    newFeature,
     linkProps,
     onClick,
     openImmediately,
@@ -272,7 +269,8 @@ export default function AppNavDrawerItem(props) {
         {title}
         {plan === 'pro' && <span className="plan-pro" title="Pro plan" />}
         {plan === 'premium' && <span className="plan-premium" title="Premium plan" />}
-        {legacy && <LegacyChip />}
+        {legacy && <Chip label="Legacy" sx={sxChip('warning')} />}
+        {newFeature && <Chip label="New" sx={sxChip('success')} />}
         {expandable && !subheader && <ItemButtonIcon className="ItemButtonIcon" open={open} />}
       </Item>
       {expandable ? (
@@ -293,6 +291,7 @@ AppNavDrawerItem.propTypes = {
   icon: PropTypes.string,
   legacy: PropTypes.bool,
   linkProps: PropTypes.object,
+  newFeature: PropTypes.bool,
   onClick: PropTypes.func,
   openImmediately: PropTypes.bool,
   plan: PropTypes.oneOf(['community', 'pro', 'premium']),
