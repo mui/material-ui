@@ -27,9 +27,12 @@ const ListDividerRoot = styled('li', {
     'data-first-child'?: boolean;
   };
 }>(({ theme, ownerState }) => ({
+  '--ListDivider-thickness': '1px',
   border: 'none', // reset the border for `hr` tag
+  listStyle: 'none',
+  backgroundColor: theme.vars.palette.divider, // use logical size + background is better than border because they work with gradient.
   ...(ownerState.orientation === 'horizontal' && {
-    borderInlineStart: '1px solid',
+    inlineSize: 'var(--ListDivider-thickness)',
     marginBlock: ownerState.inset === 'gutter' ? 'var(--List-item-paddingY)' : 0,
     marginInline: 'var(--List-divider-gap)',
     ...(ownerState['data-first-child'] === undefined && {
@@ -56,10 +59,8 @@ const ListDividerRoot = styled('li', {
     ...(ownerState.inset === 'startContent' && {
       marginInlineStart: 'calc(var(--List-item-paddingLeft) + var(--List-decorator-width))',
     }),
-    borderBlockEnd: '1px solid',
+    blockSize: 'var(--ListDivider-thickness)',
   }),
-  borderColor: theme.vars.palette.divider,
-  listStyle: 'none',
 }));
 
 const ListDivider = React.forwardRef(function ListDivider(inProps, ref) {
