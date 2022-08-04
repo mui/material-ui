@@ -75,6 +75,9 @@ export * from './TabsUnstyled';
 export { default as TabUnstyled } from './TabUnstyled';
 export * from './TabUnstyled';
 
+export { default as TablePaginationUnstyled } from './TablePaginationUnstyled';
+export * from './TablePaginationUnstyled';
+
 export { default as TextareaAutosize } from './TextareaAutosize';
 export * from './TextareaAutosize';
 
