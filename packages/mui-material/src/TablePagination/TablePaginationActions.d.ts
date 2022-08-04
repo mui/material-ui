@@ -7,6 +7,21 @@ export interface TablePaginationActionsProps extends React.HTMLAttributes<HTMLDi
    * Override or extend the styles applied to the component.
    */
   classes?: {};
+  /**
+   * The components used for first, last, next & previous item type
+   * @default {
+   *   first: FirstPageIcon,
+   *   last: LastPageIcon,
+   *   next: NavigateNextIcon,
+   *   previous: NavigateBeforeIcon,
+   * }
+   */
+  components?: {
+    first?: React.ElementType;
+    last?: React.ElementType;
+    next?: React.ElementType;
+    previous?: React.ElementType;
+  };
   count: number;
   /**
    * Accepts a function which returns a string value that provides a user-friendly name for the current page.

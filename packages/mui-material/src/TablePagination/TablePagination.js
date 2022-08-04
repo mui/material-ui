@@ -13,6 +13,11 @@ import Toolbar from '../Toolbar';
 import TablePaginationActions from './TablePaginationActions';
 import useId from '../utils/useId';
 import tablePaginationClasses, { getTablePaginationUtilityClass } from './tablePaginationClasses';
+import FirstPageIcon from '../internal/svg-icons/FirstPage';
+import LastPageIcon from '../internal/svg-icons/LastPage';
+import NavigateBeforeIcon from '../internal/svg-icons/NavigateBefore';
+import NavigateNextIcon from '../internal/svg-icons/NavigateNext';
+import useTheme from '../styles/useTheme';
 
 const TablePaginationRoot = styled(TableCell, {
   name: 'MuiTablePagination',
@@ -143,6 +148,12 @@ const TablePagination = React.forwardRef(function TablePagination(inProps, ref) 
     className,
     colSpan: colSpanProp,
     component = TableCell,
+    components = {
+      first: FirstPageIcon,
+      last: LastPageIcon,
+      next: NavigateNextIcon,
+      previous: NavigateBeforeIcon,
+    },
     count,
     getItemAriaLabel = defaultGetAriaLabel,
     labelDisplayedRows = defaultLabelDisplayedRows,
@@ -160,6 +171,7 @@ const TablePagination = React.forwardRef(function TablePagination(inProps, ref) 
   } = props;
 
   const ownerState = props;
+  const theme = useTheme();
   const classes = useUtilityClasses(ownerState);
 
   const MenuItemComponent = SelectProps.native ? 'option' : TablePaginationMenuItem;
@@ -178,6 +190,21 @@ const TablePagination = React.forwardRef(function TablePagination(inProps, ref) 
     }
     return rowsPerPage === -1 ? count : Math.min(count, (page + 1) * rowsPerPage);
   };
+
+  const normalizedIcons =
+    theme.direction === 'rtl'
+      ? {
+          previous: components.next || NavigateNextIcon,
+          next: components.previous || NavigateBeforeIcon,
+          last: components.first || FirstPageIcon,
+          first: components.last || LastPageIcon,
+        }
+      : {
+          previous: components.previous || NavigateBeforeIcon,
+          next: components.next || NavigateNextIcon,
+          first: components.first || FirstPageIcon,
+          last: components.last || LastPageIcon,
+        };
 
   return (
     <TablePaginationRoot
@@ -248,6 +275,7 @@ const TablePagination = React.forwardRef(function TablePagination(inProps, ref) 
           showFirstButton={showFirstButton}
           showLastButton={showLastButton}
           getItemAriaLabel={getItemAriaLabel}
+          components={normalizedIcons}
         />
       </TablePaginationToolbar>
     </TablePaginationRoot>
@@ -286,6 +314,21 @@ TablePagination.propTypes /* remove-proptypes */ = {
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
+  /**
+   * The components used for first, last, next & previous item type
+   * @default {
+   *   first: FirstPageIcon,
+   *   last: LastPageIcon,
+   *   next: NavigateNextIcon,
+   *   previous: NavigateBeforeIcon,
+   * }
+   */
+  components: PropTypes.shape({
+    first: PropTypes.elementType,
+    last: PropTypes.elementType,
+    next: PropTypes.elementType,
+    previous: PropTypes.elementType,
+  }),
   /**
    * The total number of rows.
    *

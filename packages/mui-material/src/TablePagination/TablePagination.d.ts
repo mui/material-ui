@@ -33,6 +33,21 @@ export interface TablePaginationTypeMap<P, D extends React.ElementType> {
        */
       classes?: Partial<TablePaginationClasses>;
       /**
+       * The components used for first, last, next & previous item type
+       * @default {
+       *   first: FirstPageIcon,
+       *   last: LastPageIcon,
+       *   next: NavigateNextIcon,
+       *   previous: NavigateBeforeIcon,
+       * }
+       */
+      components?: {
+        first?: React.ElementType;
+        last?: React.ElementType;
+        next?: React.ElementType;
+        previous?: React.ElementType;
+      };
+      /**
        * The total number of rows.
        *
        * To enable server side pagination for an unknown number of items, provide -1.

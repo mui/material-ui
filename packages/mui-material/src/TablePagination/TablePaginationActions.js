@@ -1,11 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import KeyboardArrowLeft from '../internal/svg-icons/KeyboardArrowLeft';
-import KeyboardArrowRight from '../internal/svg-icons/KeyboardArrowRight';
 import useTheme from '../styles/useTheme';
 import IconButton from '../IconButton';
-import LastPageIcon from '../internal/svg-icons/LastPage';
-import FirstPageIcon from '../internal/svg-icons/FirstPage';
 
 /**
  * @ignore - internal component.
@@ -21,6 +17,7 @@ const TablePaginationActions = React.forwardRef(function TablePaginationActions(
     rowsPerPage,
     showFirstButton,
     showLastButton,
+    components,
     ...other
   } = props;
 
@@ -42,6 +39,11 @@ const TablePaginationActions = React.forwardRef(function TablePaginationActions(
     onPageChange(event, Math.max(0, Math.ceil(count / rowsPerPage) - 1));
   };
 
+  const LastIcon = components.last;
+  const FirstIcon = components.first;
+  const PreviousIcon = components.previous;
+  const NextIcon = components.next;
+
   return (
     <div ref={ref} {...other}>
       {showFirstButton && (
@@ -51,7 +53,7 @@ const TablePaginationActions = React.forwardRef(function TablePaginationActions(
           aria-label={getItemAriaLabel('first', page)}
           title={getItemAriaLabel('first', page)}
         >
-          {theme.direction === 'rtl' ? <LastPageIcon /> : <FirstPageIcon />}
+          {theme.direction === 'rtl' ? <LastIcon /> : <FirstIcon />}
         </IconButton>
       )}
       <IconButton
@@ -62,7 +64,7 @@ const TablePaginationActions = React.forwardRef(function TablePaginationActions(
         title={getItemAriaLabel('previous', page)}
         {...backIconButtonProps}
       >
-        {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
+        {theme.direction === 'rtl' ? <NextIcon /> : <PreviousIcon />}
       </IconButton>
       <IconButton
         onClick={handleNextButtonClick}
@@ -72,7 +74,7 @@ const TablePaginationActions = React.forwardRef(function TablePaginationActions(
         title={getItemAriaLabel('next', page)}
         {...nextIconButtonProps}
       >
-        {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
+        {theme.direction === 'rtl' ? <PreviousIcon /> : <NextIcon />}
       </IconButton>
       {showLastButton && (
         <IconButton
@@ -81,7 +83,7 @@ const TablePaginationActions = React.forwardRef(function TablePaginationActions(
           aria-label={getItemAriaLabel('last', page)}
           title={getItemAriaLabel('last', page)}
         >
-          {theme.direction === 'rtl' ? <FirstPageIcon /> : <LastPageIcon />}
+          {theme.direction === 'rtl' ? <FirstIcon /> : <LastIcon />}
         </IconButton>
       )}
     </div>
@@ -93,6 +95,21 @@ TablePaginationActions.propTypes = {
    * Props applied to the back arrow [`IconButton`](/material-ui/api/icon-button/) element.
    */
   backIconButtonProps: PropTypes.object,
+  /**
+   * The components used for first, last, next & previous item type
+   * @default {
+   *   first: FirstPageIcon,
+   *   last: LastPageIcon,
+   *   next: NavigateNextIcon,
+   *   previous: NavigateBeforeIcon,
+   * }
+   */
+  components: PropTypes.shape({
+    first: PropTypes.elementType,
+    last: PropTypes.elementType,
+    next: PropTypes.elementType,
+    previous: PropTypes.elementType,
+  }),
   /**
    * The total number of rows.
    */

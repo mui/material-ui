@@ -8,6 +8,13 @@
     "backIconButtonProps": { "type": { "name": "object" } },
     "classes": { "type": { "name": "object" } },
     "component": { "type": { "name": "elementType" } },
+    "components": {
+      "type": {
+        "name": "shape",
+        "description": "{ first?: elementType, last?: elementType, next?: elementType, previous?: elementType }"
+      },
+      "default": "{\n  first: FirstPageIcon,\n  last: LastPageIcon,\n  next: NavigateNextIcon,\n  previous: NavigateBeforeIcon,\n}"
+    },
     "getItemAriaLabel": {
       "type": { "name": "func" },
       "default": "function defaultGetAriaLabel(type) {\n  return `Go to ${type} page`;\n}"
