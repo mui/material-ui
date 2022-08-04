@@ -104,7 +104,7 @@ const theme = extendTheme({
 
 export default function BrandingCssVarsProvider({ children }: { children: React.ReactNode }) {
   return (
-    <CssVarsProvider theme={theme}>
+    <CssVarsProvider theme={theme} disableTransitionOnChange>
       <CssBaseline />
       <NextNProgressBar />
       {children}
