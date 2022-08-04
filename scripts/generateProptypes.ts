@@ -74,6 +74,7 @@ const useExternalDocumentation: Record<string, '*' | readonly string[]> = {
   Radio: ['disableRipple', 'id', 'inputProps', 'inputRef', 'required'],
   Checkbox: ['defaultChecked'],
   Container: ['component'],
+  Stack: ['component'],
   Switch: [
     'checked',
     'defaultChecked',
