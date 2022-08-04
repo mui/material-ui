@@ -72,6 +72,7 @@ export * from './Box';
 
 export { default as Container } from './Container';
 export * from './Container';
+
 export { default as Badge } from './Badge';
 export * from './Badge';
 
@@ -92,6 +93,9 @@ export * from './MenuItem';
 
 export { default as MenuList } from './MenuList';
 export * from './MenuList';
+
+export { default as Stack } from './Stack';
+export * from './Stack';
 
 export { default as Tabs } from './Tabs';
 export * from './Tabs';
