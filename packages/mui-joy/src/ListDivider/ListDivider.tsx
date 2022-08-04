@@ -27,12 +27,11 @@ const ListDividerRoot = styled('li', {
     'data-first-child'?: boolean;
   };
 }>(({ theme, ownerState }) => ({
-  '--ListDivider-thickness': '1px',
   border: 'none', // reset the border for `hr` tag
   listStyle: 'none',
   backgroundColor: theme.vars.palette.divider, // use logical size + background is better than border because they work with gradient.
   ...(ownerState.parentOrientation === 'horizontal' && {
-    inlineSize: 'var(--ListDivider-thickness)',
+    inlineSize: 'var(--ListDivider-thickness, 1px)',
     marginBlock: ownerState.inset === 'gutter' ? 'var(--List-item-paddingY)' : 0,
     marginInline: 'var(--List-divider-gap)',
     ...(ownerState['data-first-child'] === undefined && {
@@ -59,7 +58,7 @@ const ListDividerRoot = styled('li', {
     ...(ownerState.inset === 'startContent' && {
       marginInlineStart: 'calc(var(--List-item-paddingLeft) + var(--List-decorator-width))',
     }),
-    blockSize: 'var(--ListDivider-thickness)',
+    blockSize: 'var(--ListDivider-thickness, 1px)',
   }),
 }));
 
