@@ -11,7 +11,7 @@ import {
   ListItemButtonTypeMap,
 } from './ListItemButtonProps';
 import listItemButtonClasses, { getListItemButtonUtilityClass } from './listItemButtonClasses';
-import RowListContext from '../List/RowListContext';
+import ListOrientationContext from '../List/ListOrientationContext';
 
 const useUtilityClasses = (ownerState: ListItemButtonProps & { focusVisible: boolean }) => {
   const { color, disabled, focusVisible, focusVisibleClassName, selected, variant } = ownerState;
@@ -42,7 +42,10 @@ export const ListItemButtonRoot = styled('div', {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{
-  ownerState: ListItemButtonProps & { row: boolean; 'data-first-child'?: string };
+  ownerState: ListItemButtonProps & {
+    orientation: 'horizontal' | 'vertical';
+    'data-first-child'?: string;
+  };
 }>(({ theme, ownerState }) => [
   {
     ...(ownerState.selected && {
@@ -59,8 +62,8 @@ export const ListItemButtonRoot = styled('div', {
     marginInline: 'var(--List-itemButton-marginInline)',
     marginBlock: 'var(--List-itemButton-marginBlock)',
     ...(ownerState['data-first-child'] === undefined && {
-      marginInlineStart: ownerState.row ? 'var(--List-gap)' : undefined,
-      marginBlockStart: ownerState.row ? undefined : 'var(--List-gap)',
+      marginInlineStart: ownerState.orientation === 'horizontal' ? 'var(--List-gap)' : undefined,
+      marginBlockStart: ownerState.orientation === 'horizontal' ? undefined : 'var(--List-gap)',
     }),
     // account for the border width, so that all of the ListItemButtons content aligned horizontally
     paddingBlock: 'calc(var(--List-item-paddingY) - var(--variant-borderWidth))',
@@ -72,7 +75,7 @@ export const ListItemButtonRoot = styled('div', {
     minBlockSize: 'var(--List-item-minHeight)',
     border: 'none',
     borderRadius: 'var(--List-item-radius)',
-    flex: ownerState.row ? 'none' : 1,
+    flex: ownerState.orientation === 'horizontal' ? 'none' : 1,
     minInlineSize: 0,
     // TODO: discuss the transition approach in a separate PR. This value is copied from mui-material Button.
     transition:
@@ -99,7 +102,7 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
     name: 'JoyListItemButton',
   });
 
-  const row = React.useContext(RowListContext);
+  const orientation = React.useContext(ListOrientationContext);
 
   const {
     children,
@@ -137,7 +140,7 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
     component,
     color,
     focusVisible,
-    row,
+    orientation,
     selected,
     variant,
   };

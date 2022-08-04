@@ -173,7 +173,7 @@ export default function EmailContent() {
             />
           </AspectRatio>
         </Card>
-        <Card variant="outlined" row>
+        <Card variant="outlined" orientation="horizontal">
           <CardOverflow>
             <AspectRatio ratio="1" sx={{ minWidth: 80 }}>
               <Box

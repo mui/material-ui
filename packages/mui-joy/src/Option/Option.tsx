@@ -10,7 +10,7 @@ import { styled, useThemeProps } from '../styles';
 import { ColorPaletteProp } from '../styles/types';
 import { OptionProps, ExtendOption, OptionTypeMap } from './OptionProps';
 import optionClasses, { getOptionUtilityClass } from './optionClasses';
-import RowListContext from '../List/RowListContext';
+import ListOrientationContext from '../List/ListOrientationContext';
 
 const useUtilityClasses = (ownerState: OptionProps & OptionState) => {
   const { disabled, highlighted, selected } = ownerState;
@@ -49,7 +49,7 @@ const Option = React.forwardRef(function Option(inProps, ref) {
     ...other
   } = props;
 
-  const row = React.useContext(RowListContext);
+  const orientation = React.useContext(ListOrientationContext);
   const selectContext = React.useContext(SelectUnstyledContext) as SelectUnstyledContextType & {
     color: ColorPaletteProp;
   };
@@ -81,7 +81,7 @@ const Option = React.forwardRef(function Option(inProps, ref) {
     component,
     variant,
     color,
-    row,
+    orientation,
   };
 
   const optionRef = React.useRef<HTMLLIElement>(null);

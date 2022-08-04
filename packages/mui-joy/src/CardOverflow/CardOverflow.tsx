@@ -8,7 +8,7 @@ import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
 import { getCardOverflowUtilityClass } from './cardOverflowClasses';
 import { CardOverflowProps, CardOverflowTypeMap } from './CardOverflowProps';
-import { CardRowContext } from '../Card/CardContext';
+import { CardOrientationContext } from '../Card/CardContext';
 
 const useUtilityClasses = (ownerState: CardOverflowProps) => {
   const { variant, color } = ownerState;
@@ -29,14 +29,14 @@ const CardOverflowRoot = styled('div', {
   overridesResolver: (props, styles) => styles.root,
 })<{
   ownerState: CardOverflowProps & {
-    row: boolean;
+    orientation: 'horizontal' | 'vertical';
     'data-first-child'?: string;
     'data-last-child'?: string;
   };
 }>(({ theme, ownerState }) => {
   const childRadius = 'calc(var(--CardOverflow-radius) - var(--variant-borderWidth))';
   return [
-    ownerState.row
+    ownerState.orientation === 'horizontal'
       ? {
           '--AspectRatio-margin': 'calc(-1 * var(--Card-padding)) 0px',
           marginTop: 'var(--CardOverflow-offset)',
@@ -89,7 +89,7 @@ const CardOverflow = React.forwardRef(function CardOverflow(inProps, ref) {
     name: 'JoyCardOverflow',
   });
 
-  const row = React.useContext(CardRowContext);
+  const orientation = React.useContext(CardOrientationContext);
 
   const {
     className,
@@ -105,7 +105,7 @@ const CardOverflow = React.forwardRef(function CardOverflow(inProps, ref) {
     component,
     color,
     variant,
-    row,
+    orientation,
   };
 
   const classes = useUtilityClasses(ownerState);

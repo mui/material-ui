@@ -19,7 +19,7 @@ We will not be covering these topics in detail here.
 The end result of this guide is an interactive media player interface.
 Here's what it will look like in the end:
 
-<img src="/static/images/base-with-tailwind-css/player-final.png" alt="Screenshot of the media player used as example in the guide, designed by the Tailwind Labs team" style="width: 796px; margin-top: 8px; margin-bottom: 8px;" />
+{{"demo": "PlayerFinal.js", "hideToolbar": true, "bg": true}}
 
 :::info
 💡 All credits go to the Tailwind Labs team for designing this component, found on the [Tailwind CSS website](https://tailwindcss.com/).
@@ -48,9 +48,13 @@ const Player = React.forwardRef(function Player(
   props: { className?: string },
   ref: React.ForwardedRef<HTMLDivElement>,
 ) {
-  const { className, ...other } = props;
+  const { className = '', ...other } = props;
   return (
-    <div className={`max-w-[600px] max-h-[240px] ${className}`} {...other} ref={ref}>
+    <div
+      className={`max-w-[600px] max-h-[240px] m-auto ${className}`}
+      {...other}
+      ref={ref}
+    >
       <div className="bg-white border-slate-100 dark:bg-slate-800 dark:border-slate-500 border-b rounded-t-xl p-4 pb-6 sm:p-10 sm:pb-8 lg:p-6 xl:p-10 xl:pb-8 space-y-6 sm:space-y-8 lg:space-y-6 xl:space-y-8">
         <div className="flex items-center space-x-4">
           <img
@@ -103,9 +107,9 @@ const Player = React.forwardRef(function Player(
                 d="M7 6.931C7 5.865 7.853 5 8.905 5h6.19C16.147 5 17 5.865 17 6.931V19l-5-4-5 4V6.931Z"
                 fill="currentColor"
                 stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
             </svg>
           </button>
@@ -119,16 +123,16 @@ const Player = React.forwardRef(function Player(
                 d="m10 12 8-6v12l-8-6Z"
                 fill="currentColor"
                 stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
               <path
                 d="M6 6v12"
                 stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
             </svg>
           </button>
@@ -137,16 +141,16 @@ const Player = React.forwardRef(function Player(
               <path
                 d="M6.492 16.95c2.861 2.733 7.5 2.733 10.362 0 2.861-2.734 2.861-7.166 0-9.9-2.862-2.733-7.501-2.733-10.362 0A7.096 7.096 0 0 0 5.5 8.226"
                 stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
               <path
                 d="M5 5v3.111c0 .491.398.889.889.889H9"
                 stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
             </svg>
           </button>
@@ -167,16 +171,16 @@ const Player = React.forwardRef(function Player(
               <path
                 d="M17.509 16.95c-2.862 2.733-7.501 2.733-10.363 0-2.861-2.734-2.861-7.166 0-9.9 2.862-2.733 7.501-2.733 10.363 0 .38.365.711.759.991 1.176"
                 stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
               <path
                 d="M19 5v3.111c0 .491-.398.889-.889.889H15"
                 stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
             </svg>
           </button>
@@ -190,16 +194,16 @@ const Player = React.forwardRef(function Player(
                 d="M14 12 6 6v12l8-6Z"
                 fill="currentColor"
                 stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
               <path
                 d="M18 6v12"
                 stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
               />
             </svg>
           </button>
@@ -233,8 +237,7 @@ function App() {
 export default App;
 ```
 
-You should now see the player render as shown on the screenshot above.
-But the component is not yet interactive—that's what we'll cover in the next step.
+You should now see the player rendered on the page, but the component is not yet interactive—that's what we'll cover in the next step.
 
 ## Adding an interactive slider component
 
@@ -258,10 +261,10 @@ const Slider = React.forwardRef(function Slider(
     {...props}
     ref={ref}
     componentsProps={{
-      thumb: { className: "ring-cyan-500 dark:ring-cyan-400 ring-2 w-4 h-4 -mt-1 -ml-2 flex items-center justify-center bg-white rounded-full shadow absolute" }
-      root: { className: "w-full relative inline-block h-2 cursor-pointer" },
-      rail: { className: "bg-slate-100 dark:bg-slate-700 h-2 w-full rounded-full block absolute" },
-      track: { className: "bg-cyan-500 dark:bg-cyan-400 h-2 absolute rounded-full" }
+      thumb: { className: 'ring-cyan-500 dark:ring-cyan-400 ring-2 w-4 h-4 -mt-1 -ml-2 flex items-center justify-center bg-white rounded-full shadow absolute' }
+      root: { className: 'w-full relative inline-block h-2 cursor-pointer' },
+      rail: { className: 'bg-slate-100 dark:bg-slate-700 h-2 w-full rounded-full block absolute' },
+      track: { className: 'bg-cyan-500 dark:bg-cyan-400 h-2 absolute rounded-full' }
     }}
   />);
 });
@@ -286,7 +289,7 @@ Let's add the `Slider` into the `Player` component now:
 +import Slider from './Slider';
 
  const Player = React.forwardRef(function Player(props: { className?: string }, ref: React.ForwardedRef<HTMLDivElement>) {
-   const { className, ...other } = props;
+   const { className = '', ...other } = props;
 @@ -21,12 +22,7 @@ const Player = React.forwardRef(function Player(props: { className?: string }, r
          </div>
          <div className="space-y-2">
@@ -305,7 +308,7 @@ Let's add the `Slider` into the `Player` component now:
 
 You should see this:
 
-<img src="/static/images/base-with-tailwind-css/player-slider.png" alt="Screenshot of the media player used as example in the guide, designed by the Tailwind Labs team" style="width: 796px; margin-top: 8px; margin-bottom: 8px;" />
+<img src="/static/base/with-tailwind-css/player-slider.png" alt="Screenshot of the media player used as example in the guide, designed by the Tailwind Labs team" style="width: 745px; margin-top: 8px; margin-bottom: 8px;" />
 
 ### Customize the slider thumb
 
@@ -327,7 +330,7 @@ To do this, it's not enough to just use classes for the thumb—we need also to 
 +  props: SliderUnstyledThumbSlotProps,
 +  ref: React.ForwardedRef<HTMLSpanElement>,
 +) {
-+  const { ownerState, className, children, ...other } = props;
++  const { ownerState, className = '', children, ...other } = props;
 +  return (<span className={`${className} ring-cyan-500 dark:ring-cyan-400 ring-2 w-4 h-4 -mt-1 -ml-2 flex items-center justify-center bg-white rounded-full shadow absolute`} {...other} ref={ref}>
 +    <span className="w-1.5 h-1.5 bg-cyan-500 dark:bg-cyan-400 rounded-full ring-1 ring-inset ring-slate-900/5"></span>
 +    {children}
@@ -345,10 +348,10 @@ To do this, it's not enough to just use classes for the thumb—we need also to 
 +      Thumb,
 +    }}
      componentsProps={{
-       root: { className: "w-full relative inline-block h-2 cursor-pointer" },
--      thumb: { className: "ring-cyan-500 dark:ring-cyan-400 ring-2 w-4 h-4 -mt-1 -ml-2 flex items-center justify-center bg-white rounded-full shadow absolute" },
-       rail: { className: "bg-slate-100 dark:bg-slate-700 h-2 w-full rounded-full block absolute" },
-       track: { className: "bg-cyan-500 dark:bg-cyan-400 h-2 absolute rounded-full" }
+       root: { className: 'w-full relative inline-block h-2 cursor-pointer' },
+-      thumb: { className: 'ring-cyan-500 dark:ring-cyan-400 ring-2 w-4 h-4 -mt-1 -ml-2 flex items-center justify-center bg-white rounded-full shadow absolute' },
+       rail: { className: 'bg-slate-100 dark:bg-slate-700 h-2 w-full rounded-full block absolute' },
+       track: { className: 'bg-cyan-500 dark:bg-cyan-400 h-2 absolute rounded-full' }
      }}
 ```
 
@@ -376,7 +379,7 @@ We'll create a custom `Button` component that uses the `focusVisible` state from
 
 This is what it'll look like:
 
-<img src="/static/images/base-with-tailwind-css/player-buttons.png" alt="Screenshot of a button used as example in the guide, designed by the Tailwind Labs team" style="width: 796px; margin-top: 8px; margin-bottom: 8px;" />
+<img src="/static/base/with-tailwind-css/player-buttons.png" alt="Screenshot of a button used as example in the guide, designed by the Tailwind Labs team" style="width: 796px; margin-top: 8px; margin-bottom: 8px;" />
 
 Create a `Button.tsx` file and copy the following code:
 
@@ -433,23 +436,23 @@ Now, let's replace all buttons in the initial markup with the new custom `Button
 -          <button type="button" aria-label="Add to favorites">
 +          <Button aria-label="Add to favorites">
              <svg width="24" height="24">
-               <path d="M7 6.931C7 5.865 7.853 5 8.905 5h6.19C16.147 5 17 5.865 17 6.931V19l-5-4-5 4V6.931Z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+               <path d="M7 6.931C7 5.865 7.853 5 8.905 5h6.19C16.147 5 17 5.865 17 6.931V19l-5-4-5 4V6.931Z" fill="currentColor" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
              </svg>
 -          </button>
 -          <button type="button" className="hidden sm:block lg:hidden xl:block" aria-label="Previous">
 +          </Button>
 +          <Button className="hidden sm:block lg:hidden xl:block" aria-label="Previous">
              <svg width="24" height="24" fill="none">
-               <path d="m10 12 8-6v12l-8-6Z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-               <path d="M6 6v12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+               <path d="m10 12 8-6v12l-8-6Z" fill="currentColor" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+               <path d="M6 6v12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
              </svg>
 -          </button>
 -          <button type="button" aria-label="Rewind 10 seconds">
 +          </Button>
 +          <Button aria-label="Rewind 10 seconds">
              <svg width="24" height="24" fill="none">
-               <path d="M6.492 16.95c2.861 2.733 7.5 2.733 10.362 0 2.861-2.734 2.861-7.166 0-9.9-2.862-2.733-7.501-2.733-10.362 0A7.096 7.096 0 0 0 5.5 8.226" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-               <path d="M5 5v3.111c0 .491.398.889.889.889H9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+               <path d="M6.492 16.95c2.861 2.733 7.5 2.733 10.362 0 2.861-2.734 2.861-7.166 0-9.9-2.862-2.733-7.501-2.733-10.362 0A7.096 7.096 0 0 0 5.5 8.226" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+               <path d="M5 5v3.111c0 .491.398.889.889.889H9" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
              </svg>
 -          </button>
 +          </Button>
@@ -466,16 +469,16 @@ Now, let's replace all buttons in the initial markup with the new custom `Button
 -          <button type="button" aria-label="Skip 10 seconds">
 +          <Button aria-label="Skip 10 seconds">
              <svg width="24" height="24" fill="none">
-               <path d="M17.509 16.95c-2.862 2.733-7.501 2.733-10.363 0-2.861-2.734-2.861-7.166 0-9.9 2.862-2.733 7.501-2.733 10.363 0 .38.365.711.759.991 1.176" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-               <path d="M19 5v3.111c0 .491-.398.889-.889.889H15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+               <path d="M17.509 16.95c-2.862 2.733-7.501 2.733-10.363 0-2.861-2.734-2.861-7.166 0-9.9 2.862-2.733 7.501-2.733 10.363 0 .38.365.711.759.991 1.176" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+               <path d="M19 5v3.111c0 .491-.398.889-.889.889H15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
              </svg>
 -          </button>
 -          <button type="button" className="hidden sm:block lg:hidden xl:block" aria-label="Next">
 +          </Button>
 +          <Button className="hidden sm:block lg:hidden xl:block" aria-label="Next">
              <svg width="24" height="24" fill="none">
-               <path d="M14 12 6 6v12l8-6Z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-               <path d="M18 6v12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+               <path d="M14 12 6 6v12l8-6Z" fill="currentColor" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+               <path d="M18 6v12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
              </svg>
 -          </button>
 -          <button type="button" className="rounded-lg text-xs leading-6 font-semibold px-2 ring-2 ring-inset ring-slate-500 text-slate-500 dark:text-slate-100 dark:ring-0 dark:bg-slate-500">

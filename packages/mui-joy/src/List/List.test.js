@@ -51,9 +51,12 @@ describe('Joy <List />', () => {
     expect(getByRole('list')).to.have.class(classes.nesting);
   });
 
-  it('should have row classes', () => {
-    const { getByRole } = render(<List row />);
-    expect(getByRole('list')).to.have.class(classes.row);
+  it('should have orientation classes', () => {
+    const { getByRole, rerender } = render(<List />);
+    expect(getByRole('list')).to.have.class(classes.vertical);
+
+    rerender(<List orientation="horizontal" />);
+    expect(getByRole('list')).to.have.class(classes.horizontal);
   });
 
   describe('MenuList - integration', () => {

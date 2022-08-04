@@ -92,7 +92,7 @@ const MenuList = React.forwardRef(function MenuList(inProps, ref) {
     size,
     instanceSize: size,
     nesting: false,
-    row: false,
+    orientation: 'vertical' as const,
   };
 
   const classes = useUtilityClasses(ownerState);
