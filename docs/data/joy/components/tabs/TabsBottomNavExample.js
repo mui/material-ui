@@ -49,7 +49,7 @@ export default function TabsBottomNavExample() {
           },
         })}
       >
-        <TabList variant="plain" sx={{ '--List-decorator-width': '28px' }}>
+        <TabList variant="plain" sx={{ '--List-decorator-size': '28px' }}>
           <Tab
             orientation="vertical"
             {...(index === 0 && { variant: 'soft', color: colors[0] })}

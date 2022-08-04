@@ -28,10 +28,10 @@ const ListItemDecoratorRoot = styled('span', {
     color: `var(--List-decorator-color)`,
     ...(ownerState.parentOrientation === 'horizontal'
       ? {
-          minInlineSize: 'var(--List-decorator-width)',
+          minInlineSize: 'var(--List-decorator-size)',
         }
       : {
-          minBlockSize: 'var(--List-decorator-width)',
+          minBlockSize: 'var(--List-decorator-size)',
         }),
   }),
 );

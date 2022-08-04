@@ -56,7 +56,7 @@ const ListDividerRoot = styled('li', {
       marginInlineStart: 'var(--List-item-paddingLeft)',
     }),
     ...(ownerState.inset === 'startContent' && {
-      marginInlineStart: 'calc(var(--List-item-paddingLeft) + var(--List-decorator-width))',
+      marginInlineStart: 'calc(var(--List-item-paddingLeft) + var(--List-decorator-size))',
     }),
     blockSize: 'var(--ListDivider-thickness, 1px)',
   }),

@@ -43,7 +43,7 @@ export default function SelectGroupedOptions() {
           <List
             role="group"
             aria-labelledby={`select-group-${name}`}
-            sx={{ '--List-decorator-width': '28px' }}
+            sx={{ '--List-decorator-size': '28px' }}
           >
             <ListItem role="presentation" id={`select-group-${name}`} sticky>
               <Typography level="body3" textTransform="uppercase" letterSpacing="md">
