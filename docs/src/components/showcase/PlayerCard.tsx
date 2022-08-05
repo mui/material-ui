@@ -22,15 +22,19 @@ export default function PlayerCard({ theme: externalTheme }: { theme?: Theme }) 
           p: 1,
           display: 'flex',
           flexDirection: { xs: 'column', sm: 'row' },
-          [theme.getColorSchemeSelector('dark')]: {
-            bgcolor: 'primaryDark.800',
-          },
+          ...theme.getStyle({
+            bgcolor: {
+              dark: 'primaryDark.800',
+            },
+          }),
           [`& .${iconButtonClasses.root}`]: {
             border: '1px solid',
             borderColor: 'grey.200',
-            [theme.getColorSchemeSelector('dark')]: {
-              borderColor: 'primaryDark.500',
-            },
+            ...theme.getStyle({
+              borderColor: {
+                dark: 'primaryDark.500',
+              },
+            }),
           },
         })}
       >

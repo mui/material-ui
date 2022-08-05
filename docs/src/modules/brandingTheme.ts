@@ -341,7 +341,11 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
             }
           });
         } else {
-          style[cssProp] = (this as Theme).palette.mode === 'dark' ? value.dark : value.default;
+          const finalValue = (this as Theme).palette.mode === 'dark' ? value.dark : value.default;
+          if (finalValue != null) {
+            // attach value only if it is not `undefined | null`
+            style[cssProp] = finalValue
+          } 
         }
       });
       return style;
