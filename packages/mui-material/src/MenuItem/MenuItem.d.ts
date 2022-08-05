@@ -18,9 +18,9 @@ export type MenuItemTypeMap<P = {}, D extends React.ElementType = 'li'> = Extend
      */
     classes?: Partial<MenuItemClasses>;
     /**
-      * The component used for the root node.
-      * Either a string to use a HTML element or a component.
-      */
+     * The component used for the root node.
+     * Either a string to use a HTML element or a component.
+     */
     component?: React.ElementType;
     /**
      * If `true`, compact vertical padding designed for keyboard and mouse input is used.
