@@ -296,6 +296,32 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
         scrollMarginTop: 'calc(var(--MuiDocs-header-height) + 32px)',
       },
     },
+    /**
+     * This utility exists to help transitioning to CSS variables page by page (prevent dark mode flicker).
+     * It will use the proper styling method based on the theme because the component might be on the page that does not support CSS variables yet.
+     *
+     * 😓 Without this utility:
+     * {
+     *   ...theme.vars ? {
+     *     color: theme.vars.palette.primary.main,
+     *     [theme.getColorScheme('dark')]: {
+     *       color: '#fff',
+     *     }
+     *   } : {
+     *     color: theme.palette.mode === 'dark' ? '#fff' : theme.palette.primary.main,
+     *   }
+     * }
+     *
+     * 🤩 Using the utility:
+     * {
+     *   ...theme.getStyle({
+     *     color: {
+     *       default: theme.vars.palette.primary.main,
+     *       dark: '#fff',
+     *     }
+     *   }),
+     * }
+     */
     getStyle(scheme: Parameters<GetStyle>[0]) {
       const style: CSSObject = {};
       Object.entries(scheme).forEach(([cssProp, value]) => {
@@ -315,10 +341,7 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
             }
           });
         } else {
-          style[cssProp] = value.default;
-          if (value.dark) {
-            style[cssProp] = value.dark;
-          }
+          style[cssProp] = (this as Theme).palette.mode === 'dark' ? value.dark : value.default;
         }
       });
       return style;
