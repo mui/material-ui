@@ -1,10 +1,9 @@
 import HomeIcon from '@mui/icons-material/Home';
 import * as React from 'react';
-import Breadcrumbs from '@mui/joy/Breadcrumbs';
-import Typography from '@mui/joy/Typography';
-import Link from '@mui/joy/Link';
-import Sheet from '@mui/joy/Sheet';
 import Box from '@mui/joy/Box';
+import Breadcrumbs from '@mui/joy/Breadcrumbs';
+import Link from '@mui/joy/Link';
+import Typography from '@mui/joy/Typography';
 
 export default function BasicBreadcrumbs() {
   return (
@@ -15,35 +14,44 @@ export default function BasicBreadcrumbs() {
         alignItems: 'center',
       }}
     >
-      <Breadcrumbs separator="›">
+      <Breadcrumbs separator="›" aria-label="breadcrumbs">
         {['Fry', 'Leela', 'Bender', 'Linda'].map((item: string) => (
-          <Link underline="hover" color="neutral" fontSize="inherit" href="/">
+          <Link
+            // The `preventDefault` is for demonstration purposes, generally, you don't need it in your application
+            onClick={(event) => event.preventDefault()}
+            key={item}
+            underline="hover"
+            color="neutral"
+            fontSize="inherit"
+            href="/"
+          >
             {item}
           </Link>
         ))}
         <Typography fontSize="inherit">Amy</Typography>
       </Breadcrumbs>
-      <Sheet variant="outlined" color="info">
-        <Breadcrumbs separator="›">
-          <Link underline="hover" color="info" fontSize="inherit" href="/">
-            <HomeIcon sx={{ mr: 0.5 }} fontSize="inherit" />
-            Peter
-          </Link>
-          {['Lois', 'Chris', 'Cleveland'].map((item: string) => (
-            <Link underline="hover" color="neutral" fontSize="inherit" href="/">
-              {item}
-            </Link>
-          ))}
-          <Typography fontSize="inherit">Quagmire</Typography>
-        </Breadcrumbs>
-      </Sheet>
-      <Breadcrumbs separator="›">
-        <Link underline="hover" color="primary" fontSize="inherit" href="/">
+      <Breadcrumbs separator="›" aria-label="breadcrumbs">
+        <Link
+          // The `preventDefault` is for demonstration purposes, generally, you don't need it in your application
+          onClick={(event) => event.preventDefault()}
+          underline="hover"
+          color="primary"
+          fontSize="inherit"
+          href="/"
+        >
           <HomeIcon sx={{ mr: 0.5 }} fontSize="inherit" />
           Jake
         </Link>
         {['Rosa', 'Charles'].map((item: string) => (
-          <Link underline="hover" color="primary" fontSize="inherit" href="/">
+          <Link
+            // The `preventDefault` is for demonstration purposes, generally, you don't need it in your application
+            onClick={(event) => event.preventDefault()}
+            key={item}
+            underline="hover"
+            color="primary"
+            fontSize="inherit"
+            href="/"
+          >
             {item}
           </Link>
         ))}

@@ -22,11 +22,20 @@ export default function BreadcrumbsUsage() {
         },
       ]}
       renderDemo={(props) => (
-        <Breadcrumbs {...props}>
-          <Link underline="hover" color="neutral" href="/" fontSize="inherit">
+        <Breadcrumbs {...props} aria-label="breadcrumbs">
+          <Link
+            // The `preventDefault` is for demonstration purposes, generally, you don't need it in your application
+            onClick={(event) => event.preventDefault()}
+            underline="hover"
+            color="neutral"
+            href="/"
+            fontSize="inherit"
+          >
             MUI
           </Link>
           <Link
+            // The `preventDefault` is for demonstration purposes, generally, you don't need it in your application
+            onClick={(event) => event.preventDefault()}
             underline="hover"
             color="neutral"
             href="/joy-ui/getting-started/installation/"

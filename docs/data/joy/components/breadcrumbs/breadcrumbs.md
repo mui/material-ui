@@ -34,6 +34,25 @@ The most common components you'd use with it are `Typography` and `Link`.
 
 {{"demo": "BasicBreadcrumbs.js"}}
 
+### Separator
+
+You can pass an icon component to the prop `separator`.
+
+{{"demo": "SeparatorBreadcrumbs.js"}}
+
+### Accessibility
+
+(WAI-ARIA: https://www.w3.org/WAI/ARIA/apg/patterns/breadcrumb/)
+
+Be sure to add a `aria-label` description on the `Breadcrumbs` component.
+
+The accessibility of this component relies on:
+
+- The set of links is structured using an ordered list (`<ol>` element).
+- To prevent screen reader announcement of the visual separators between links, they are hidden with `aria-hidden`.
+- A nav element labeled with `aria-label` identifies the structure as a breadcrumb trail and makes it a navigation landmark so that it is easy to locate.
+- The link to the current page has `aria-current` set to page.
+
 ## Common examples
 
 ### Collapsed Breadcrumbs

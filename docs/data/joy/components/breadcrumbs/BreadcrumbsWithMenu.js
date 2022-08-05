@@ -3,7 +3,6 @@ import Button from '@mui/joy/Button';
 import Link from '@mui/joy/Link';
 import Menu from '@mui/joy/Menu';
 import MenuItem from '@mui/joy/MenuItem';
-
 import * as React from 'react';
 
 export default function BreadcrumbsWithMenu() {
@@ -30,17 +29,38 @@ export default function BreadcrumbsWithMenu() {
         <MenuItem onClick={handleClose}>Breadcrumb 3</MenuItem>
         <MenuItem onClick={handleClose}>Breadcrumb 4</MenuItem>
       </Menu>
-      <Breadcrumbs>
-        <Link underline="hover" color="primary" href="/" fontSize="inherit">
+      <Breadcrumbs aria-label="breadcrumbs">
+        <Link
+          // The `preventDefault` is for demonstration purposes, generally, you don't need it in your application
+          onClick={(event) => event.preventDefault()}
+          underline="hover"
+          color="primary"
+          href="/"
+          fontSize="inherit"
+        >
           Breadcrumb 1
         </Link>
         <Button size="sm" onClick={handleClick} variant="plain" color="primary">
           •••
         </Button>
-        <Link underline="hover" color="primary" href="/" fontSize="inherit">
+        <Link
+          // The `preventDefault` is for demonstration purposes, generally, you don't need it in your application
+          onClick={(event) => event.preventDefault()}
+          underline="hover"
+          color="primary"
+          href="/"
+          fontSize="inherit"
+        >
           Breadcrumb 5
         </Link>
-        <Link underline="hover" color="primary" href="/" fontSize="inherit">
+        <Link
+          // The `preventDefault` is for demonstration purposes, generally, you don't need it in your application
+          onClick={(event) => event.preventDefault()}
+          underline="hover"
+          color="primary"
+          href="/"
+          fontSize="inherit"
+        >
           Breadcrumb 6
         </Link>
       </Breadcrumbs>

@@ -17,7 +17,7 @@ const CustomBreadcrumbs = ({ color }: { color: ColorPaletteProp }) => {
   ]);
 
   return (
-    <Breadcrumbs separator="›">
+    <Breadcrumbs separator="›" aria-label="breadcrumbs">
       {collapsed ? (
         <Button
           size="sm"
@@ -32,7 +32,14 @@ const CustomBreadcrumbs = ({ color }: { color: ColorPaletteProp }) => {
         </Button>
       ) : null}
       {navigationItems.map((item: string) => (
-        <Link underline="hover" color={color} href="/" fontSize="inherit">
+        <Link
+          // The `preventDefault` is for demonstration purposes, generally, you don't need it in your application
+          onClick={(event) => event.preventDefault()}
+          underline="hover"
+          color={color}
+          href="/"
+          fontSize="inherit"
+        >
           <FolderIcon sx={{ mr: 0.5 }} fontSize="inherit" color="inherit" />
           {item}
         </Link>
