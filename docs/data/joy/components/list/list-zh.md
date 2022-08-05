@@ -55,7 +55,7 @@ Use the `size` prop to control font-size and general list density.
 
 Use the `ListItemDecorator` component to add supporting icons or elements to the list item.
 
-It comes with a minimum set width that you can adjust via the `--List-decorator-width` CSS variable within the `List` component.
+It comes with a minimum set width that you can adjust via the `--List-decorator-size` CSS variable within the `List` component.
 
 {{"demo": "DecoratedList.js"}}
 
