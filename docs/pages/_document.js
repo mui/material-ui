@@ -144,7 +144,12 @@ export default class MyDocument extends Document {
         </Head>
         <body>
           {getInitColorSchemeScript({ enableSystem: true })}
-          {getMuiInitColorSchemeScript({ enableSystem: true })}
+          {getMuiInitColorSchemeScript({
+            enableSystem: true,
+            attribute: 'data-muidocs-color-scheme',
+            modeStorageKey: 'muidocs-mode',
+            colorSchemeStorageKey: 'muidocs-color-scheme',
+          })}
           <Main />
           <script
             // eslint-disable-next-line react/no-danger

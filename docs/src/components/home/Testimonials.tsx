@@ -15,7 +15,7 @@ const Testimonials = () => {
     rootMargin: '500px',
   });
   return (
-    <Box data-mui-color-scheme="dark" ref={ref} sx={{ bgcolor: 'primaryDark.700' }}>
+    <Box data-muidocs-color-scheme="dark" ref={ref} sx={{ bgcolor: 'primaryDark.700' }}>
       <Container sx={{ py: { xs: 4, md: 8 } }}>
         <Grid container spacing={3} alignItems="center">
           <Grid item xs={12} md={6} sx={{ zIndex: 1, minHeight: { xs: 400, sm: 307, lg: 355 } }}>

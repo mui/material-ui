@@ -104,7 +104,14 @@ const theme = extendTheme({
 
 export default function BrandingCssVarsProvider({ children }: { children: React.ReactNode }) {
   return (
-    <CssVarsProvider theme={theme} disableTransitionOnChange>
+    <CssVarsProvider
+      theme={theme}
+      disableTransitionOnChange
+      // use specific values so that the docs is independent of other websites, these values should be sync with `getInitColorSchemeScript` in _document.js
+      attribute="data-muidocs-color-scheme"
+      modeStorageKey="muidocs-mode"
+      colorSchemeStorageKey="muidocs-color-scheme"
+    >
       <CssBaseline />
       <NextNProgressBar />
       {children}

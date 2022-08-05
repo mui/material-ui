@@ -129,6 +129,8 @@ export default function EmailSubscribe({ sx }: { sx?: SxProps<Theme> }) {
           inputProps={{ required: true }}
           sx={(theme) => ({
             minWidth: 220,
+            borderRadius: 1,
+            border: '1px solid',
             ...theme.getStyle({
               bgcolor: {
                 default: '#fff',
@@ -143,8 +145,6 @@ export default function EmailSubscribe({ sx }: { sx?: SxProps<Theme> }) {
                 dark: 'primaryDark.500',
               },
             }),
-            borderRadius: 1,
-            border: '1px solid',
             px: 1,
             py: 0.5,
             typography: 'body2',
