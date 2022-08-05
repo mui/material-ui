@@ -583,7 +583,7 @@ export default function Careers() {
       />
       <AppHeaderBanner />
       <AppHeader />
-      <main>
+      <main id="main-content">
         <CareersContent />
       </main>
       <Divider />

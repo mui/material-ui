@@ -100,7 +100,7 @@ function AppLayoutDocs(props) {
   }
 
   return (
-    <AppFrame className={'exclude-docsearch-indexing'}>
+    <AppFrame>
       <GlobalStyles
         styles={{
           ':root': {
