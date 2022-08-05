@@ -85,7 +85,7 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(inProps, ref) {
     className,
     component = 'nav',
     components = {
-      collapsed: MoreHorizIcon,
+      Collapsed: MoreHorizIcon,
     },
     expandText = 'Show path',
     itemsAfterCollapse = 1,
@@ -218,13 +218,13 @@ Breadcrumbs.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
-   * The components used for collapsed item type
+   * The components used for Collapsed item type
    * @default {
-   *   collapsed: MoreHorizIcon,
+   *   Collapsed: MoreHorizIcon,
    * }
    */
   components: PropTypes.shape({
-    collapsed: PropTypes.elementType,
+    Collapsed: PropTypes.elementType,
   }),
   /**
    * Override the default label for the expand button.
