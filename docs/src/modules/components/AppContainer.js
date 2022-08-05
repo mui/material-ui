@@ -2,9 +2,9 @@ import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Container from '@mui/material/Container';
 
-const StyledContainer = styled(Container)(({ theme }) => {
+const StyledAppContainer = styled(Container)(({ theme }) => {
   return {
-    paddingTop: 80 + 20,
+    paddingTop: 'calc(var(--MuiDocs-header-height) + 36px)',
     // We're mostly hosting text content so max-width by px does not make sense considering font-size is system-adjustable.
     // 105ch ≈ 930px
     fontFamily: 'Arial',
@@ -17,5 +17,5 @@ const StyledContainer = styled(Container)(({ theme }) => {
 });
 
 export default function AppContainer(props) {
-  return <StyledContainer id="main-content" maxWidth={false} tabIndex={-1} {...props} />;
+  return <StyledAppContainer id="main-content" maxWidth={false} tabIndex={-1} {...props} />;
 }
