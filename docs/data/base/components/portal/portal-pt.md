@@ -1,9 +1,8 @@
 ---
-product: material-ui
+product: base
 title: Componente React Portal
 components: Portal
 githubLabel: 'component: Portal'
-packageName: '@mui/base'
 ---
 
 # Portal

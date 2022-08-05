@@ -2,7 +2,6 @@
 product: base
 title: No SSR React component
 components: NoSsr
-packageName: '@mui/base'
 ---
 
 # No SSR
