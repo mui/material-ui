@@ -1,24 +1,24 @@
-# Troubleshooting
+# 故障排除
 
-<p class="description">This document covers known issues and common problems encountered when migrating from Material UI v4 to v5.</p>
+<p class="description">这份文档涵盖了从Material UI v4迁移到v5时遇到的已知问题和常见问题。</p>
 
-## Material UI v5 migration
+## Material UI v5的迁移
 
-1. [Getting started](/material-ui/migration/migration-v4/)
-2. [Breaking changes part one: style and theme](/material-ui/migration/v5-style-changes/)
-3. [Breaking changes part two: components](/material-ui/migration/v5-component-changes/)
-4. [Migrating from JSS](/material-ui/migration/migrating-from-jss/)
-5. Troubleshooting 👈 _you are here_
+1. [快速入门](/material-ui/migration/migration-v4/)
+2. [突破性变化第一部分：样式和主题](/material-ui/migration/v5-style-changes/)
+3. [突破性变化第二部分：组件](/material-ui/migration/v5-component-changes/)
+4. [从JSS迁移](/material-ui/migration/migrating-from-jss/)
+5. 故障排除 👈 _你在这里_
 
-## Styles broken after migrating to v5
+## 迁移到v5后，样式损坏
 
-There are two reasons why component styles may be broken after you've completed all steps in the migration process.
+在你完成了迁移过程中的所有步骤后，有两个原因导致组件样式可能被破坏。
 
-First, check if you have configured the `StyledEngineProvider` correctly, as shown in the [Style library](/material-ui/migration/v5-style-changes/#style-library) section.
+首先，检查你是否正确配置了`StyledEngineProvider`，如[样式库](/material-ui/migration/v5-style-changes/#style-library)部分所示。
 
-If the `StyledEngineProvider` is already used at the top of your application and the styles are still broken, it may be the case that you still have `@material-ui/core` in your application.
+如果你的应用程序顶部已经使用了`StyledEngineProvider`，而样式仍然被破坏，可能是你的应用程序中仍然有`@material-ui/core`的情况。
 
-This could be caused by other dependencies in the app that still rely on Material UI v4.
+这可能是由应用程序中仍然依赖Material UI v4的其他依赖项造成的。
 
 To check this, run `npm ls @material-ui/core` (or `yarn why @material-ui/core`). If your project contains such dependencies, you will see a list that looks something like this:
 
