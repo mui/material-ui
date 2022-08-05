@@ -57,3 +57,6 @@ export * from './Container';
 
 export { default as Unstable_Grid } from './Unstable_Grid/Grid';
 export * from './Unstable_Grid';
+
+export { default as Stack } from './Stack/Stack';
+export * from './Stack';

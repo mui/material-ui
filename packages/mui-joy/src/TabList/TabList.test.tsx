@@ -5,7 +5,7 @@ import { TabsContext, useTabs, TabsUnstyledProps } from '@mui/base/TabsUnstyled'
 import { ThemeProvider } from '@mui/joy/styles';
 import Tabs from '@mui/joy/Tabs';
 import TabList, { tabListClasses as classes } from '@mui/joy/TabList';
-import RowListContext from '../List/RowListContext';
+import ListOrientationContext from '../List/ListOrientationContext';
 
 const TabsProvider = ({ children, ...props }: TabsUnstyledProps) => {
   const { tabsContextValue } = useTabs(props);
@@ -79,8 +79,8 @@ describe('Joy <TabList />', () => {
 
   it('provides the correct value to RowListContext', () => {
     const TabItem = () => {
-      const row = React.useContext(RowListContext);
-      return <div>{row ? 'horizontal' : 'vertical'}</div>;
+      const orientation = React.useContext(ListOrientationContext);
+      return <div>{orientation}</div>;
     };
     render(
       <Tabs orientation="vertical">

@@ -43,10 +43,7 @@ const TabsRoot = styled(SheetRoot, {
   }),
   '--List-radius': theme.vars.radius.md, // targets TabList which reuses styles from List.
   display: 'flex',
-  flexDirection: 'column',
-  ...(ownerState.orientation === 'vertical' && {
-    flexDirection: 'row',
-  }),
+  flexDirection: ownerState.orientation === 'vertical' ? 'row' : 'column',
 }));
 
 const Tabs = React.forwardRef(function Tabs(inProps, ref) {
