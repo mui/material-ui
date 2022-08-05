@@ -181,6 +181,7 @@
     "/system/react-box": "Box",
     "/system/react-container": "Container",
     "/system/react-grid": "Grid",
+    "/system/react-stack": "Stack",
     "/system/styles": "Styles",
     "/system/styles/basics": "Basics",
     "/system/styles/advanced": "Advanced",
