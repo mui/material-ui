@@ -29,10 +29,13 @@ export default function MyApp() {
 
 ### Basic usage
 
-`Breadcrumbs` is a navigation component that should be used with other components.
-The most common components you'd use with it are `Typography` and `Link`.
+`Breadcrumbs` is a navigation component that is designed to be used with [`Link`](/joy-ui/react-link/) and [`Typography`](/joy-ui/react-typography/).
 
 {{"demo": "BasicBreadcrumbs.js"}}
+
+You can add an icon as a decorator to the `Link` and mix it with the `color` prop.
+
+{{"demo": "BreadcrumbsWithIcon.js"}}
 
 ### Separator
 
