@@ -127,69 +127,75 @@ export default function EmailSubscribe({ sx }: { sx?: SxProps<Theme> }) {
           value={form.email}
           onChange={(event) => setForm({ email: event.target.value, status: 'initial' })}
           inputProps={{ required: true }}
-          sx={{
+          sx={(theme) => ({
             minWidth: 220,
-            bgcolor: (theme) =>
-              theme.palette.mode === 'dark' ? theme.palette.primaryDark[900] : '#fff',
-            boxShadow: (theme) =>
-              theme.palette.mode === 'dark'
-                ? '0 1px 2px 0 rgba(0 0 0 / 1)'
-                : '0 1px 2px 0 rgba(0 0 0 / 0.1)',
+            ...theme.getStyle({
+              bgcolor: {
+                default: '#fff',
+                dark: 'primaryDark.900',
+              },
+              boxShadow: {
+                default: '0 1px 2px 0 rgba(0 0 0 / 0.1)',
+                dark: '0 1px 2px 0 rgba(0 0 0 / 1)',
+              },
+              borderColor: {
+                default: 'grey.300',
+                dark: 'primaryDark.500',
+              },
+            }),
             borderRadius: 1,
             border: '1px solid',
-            borderColor: (theme) =>
-              theme.palette.mode === 'dark'
-                ? theme.palette.primaryDark[500]
-                : theme.palette.grey[300],
             px: 1,
             py: 0.5,
             typography: 'body2',
-
-            '&:hover': {
-              borderColor: (theme) =>
-                theme.palette.mode === 'dark'
-                  ? theme.palette.primaryDark[300]
-                  : theme.palette.grey[400],
-              boxShadow: (theme) =>
-                theme.palette.mode === 'dark'
-                  ? '0 1px 2px 0 rgba(0 0 0 / 1)'
-                  : '0 1px 2px 0 rgba(0 0 0 / 0.2)',
-            },
-
+            '&:hover': theme.getStyle({
+              borderColor: {
+                default: 'grey.400',
+                dark: 'primaryDark.300',
+              },
+              boxShadow: {
+                default: '0 1px 2px 0 rgba(0 0 0 / 0.2)',
+                dark: '0 1px 2px 0 rgba(0 0 0 / 1)',
+              },
+            }),
             [`&.${inputBaseClasses.focused}`]: {
-              borderColor: (theme) =>
-                theme.palette.mode === 'dark'
-                  ? theme.palette.primaryDark[300]
-                  : theme.palette.primary[500],
               outline: '3px solid',
-              outlineColor: (theme) =>
-                theme.palette.mode === 'dark'
-                  ? theme.palette.primaryDark[500]
-                  : theme.palette.primary[200],
+              ...theme.getStyle({
+                borderColor: {
+                  default: 'primary.500',
+                  dark: 'primaryDark.300',
+                },
+                outlineColor: {
+                  default: (theme.vars || theme).palette.primary[200],
+                  dark: (theme.vars || theme).palette.primaryDark[500],
+                },
+              }),
             },
-          }}
+          })}
         />
         <Button
           disabled={form.status === 'loading'}
           type="submit"
-          sx={{
-            bgcolor: (theme) =>
-              theme.palette.mode === 'dark'
-                ? theme.palette.primaryDark[500]
-                : alpha(theme.palette.primary[100], 0.5),
-            color: (theme) =>
-              theme.palette.mode === 'dark'
-                ? theme.palette.primaryDark[100]
-                : theme.palette.primary[600],
+          sx={(theme) => ({
+            ...theme.getStyle({
+              bgcolor: {
+                default: alpha(theme.palette.primary[100], 0.5),
+                dark: 'primaryDark.500',
+              },
+              color: {
+                default: 'primary.600',
+                dark: 'primaryDark.100',
+              },
+            }),
             py: 1,
             px: 1.5,
-            '&:hover': {
-              bgcolor: (theme) =>
-                theme.palette.mode === 'dark'
-                  ? theme.palette.primaryDark[600]
-                  : alpha(theme.palette.primary[100], 1),
-            },
-          }}
+            '&:hover': theme.getStyle({
+              bgcolor: {
+                default: alpha(theme.palette.primary[100], 1),
+                dark: theme.palette.primaryDark[600],
+              },
+            }),
+          })}
         >
           Subscribe
         </Button>
