@@ -28,31 +28,24 @@ const BreadcrumbsRoot = styled('nav', {
   overridesResolver: (props, styles) => {
     return [{ [`& .${breadcrumbsClasses.li}`]: styles.li }, styles.root];
   },
-})<{ ownerState: BreadcrumbsProps }>(({ theme, ownerState }) => {
-  return [
-    {
-      ...(ownerState.size === 'sm' && {
-        '--Breadcrumbs-gap': '0.25rem',
-        fontSize: theme.vars.fontSize.sm,
-        padding: '0.5rem',
-      }),
-      ...(ownerState.size === 'md' && {
-        '--Breadcrumbs-gap': '0.375rem',
-        fontSize: theme.vars.fontSize.md,
-        padding: '0.75rem',
-      }),
-      ...(ownerState.size === 'lg' && {
-        '--Breadcrumbs-gap': '0.5rem',
-        fontSize: theme.vars.fontSize.lg,
-        padding: '1rem',
-      }),
-      lineHeight: 1,
-    },
-    {
-      backgroundColor: theme.palette.background.body,
-    },
-  ];
-});
+})<{ ownerState: BreadcrumbsProps }>(({ theme, ownerState }) => ({
+  ...(ownerState.size === 'sm' && {
+    '--Breadcrumbs-gap': '0.25rem',
+    fontSize: theme.vars.fontSize.sm,
+    padding: '0.5rem',
+  }),
+  ...(ownerState.size === 'md' && {
+    '--Breadcrumbs-gap': '0.375rem',
+    fontSize: theme.vars.fontSize.md,
+    padding: '0.75rem',
+  }),
+  ...(ownerState.size === 'lg' && {
+    '--Breadcrumbs-gap': '0.5rem',
+    fontSize: theme.vars.fontSize.lg,
+    padding: '1rem',
+  }),
+  lineHeight: 1,
+}));
 
 const BreadcrumbsOl = styled('ol', {
   name: 'MuiBreadcrumbs',
