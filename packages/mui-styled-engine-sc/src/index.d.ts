@@ -21,6 +21,11 @@ export { default as StyledEngineProvider } from './StyledEngineProvider';
 export { default as GlobalStyles } from './GlobalStyles';
 export * from './GlobalStyles';
 
+/**
+ * For internal usage in `@mui/system` package
+ */
+export function processStyles(tag: React.ElementType, processor: (styles: any) => any): void;
+
 // These are the same as the ones in @mui/styled-engine
 // CSS.PropertiesFallback are necessary so that we support spreading of the mixins. For example:
 // '@font-face'?: Fontface | Fontface[]

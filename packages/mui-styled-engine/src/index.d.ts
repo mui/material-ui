@@ -11,6 +11,11 @@ export { default as StyledEngineProvider } from './StyledEngineProvider';
 export { default as GlobalStyles } from './GlobalStyles';
 export * from './GlobalStyles';
 
+/**
+ * For internal usage in `@mui/system` package
+ */
+export function processStyles(tag: React.ElementType, processor: (styles: any) => any): void;
+
 export interface SerializedStyles {
   name: string;
   styles: string;
