@@ -56,6 +56,10 @@ The accessibility of this component relies on:
 - A nav element labeled with `aria-label` identifies the structure as a breadcrumb trail and makes it a navigation landmark so that it is easy to locate.
 - The link to the current page has `aria-current` set to page.
 
+## CSS Variables
+
+{{"demo": "BreadcrumbsVariables.js", "hideToolbar": true}}
+
 ## Common examples
 
 ### Collapsed Breadcrumbs
