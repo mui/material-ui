@@ -88,11 +88,6 @@ export interface UseAutocompleteProps<
    */
   componentName?: string;
   /**
-   * The default value. Use when the component is not controlled.
-   * @default props.multiple ? [] : null
-   */
-  defaultValue?: AutocompleteValue<T, Multiple, DisableClearable, FreeSolo>;
-  /**
    * If `true`, the input can't be cleared.
    * @default false
    */
@@ -197,6 +192,11 @@ export interface UseAutocompleteProps<
    * @default false
    */
   multiple?: Multiple;
+  /**
+   * The default value. Use when the component is not controlled.
+   * @default props.multiple ? [] : null
+   */
+  defaultValue?: AutocompleteValue<T, Multiple, DisableClearable, FreeSolo>;
   /**
    * Callback fired when the value changes.
    *
