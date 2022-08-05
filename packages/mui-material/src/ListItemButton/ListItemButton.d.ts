@@ -27,6 +27,11 @@ export interface ListItemButtonBaseProps {
    */
   classes?: Partial<ListItemButtonClasses>;
   /**
+    * The component used for the root node.
+    * Either a string to use a HTML element or a component.
+    */
+  component?: React.ElementType;  
+  /**
    * If `true`, compact vertical padding designed for keyboard and mouse input is used.
    * The prop defaults to the value inherited from the parent List component.
    * @default false
