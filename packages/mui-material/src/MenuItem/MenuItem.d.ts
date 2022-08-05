@@ -3,6 +3,7 @@ import { Theme } from '../styles';
 import { ExtendButtonBase, ExtendButtonBaseTypeMap } from '../ButtonBase';
 import { OverrideProps } from '../OverridableComponent';
 import { MenuItemClasses } from './menuItemClasses';
+import React from 'react';
 
 export type MenuItemTypeMap<P = {}, D extends React.ElementType = 'li'> = ExtendButtonBaseTypeMap<{
   props: P & {
@@ -16,6 +17,11 @@ export type MenuItemTypeMap<P = {}, D extends React.ElementType = 'li'> = Extend
      * Override or extend the styles applied to the component.
      */
     classes?: Partial<MenuItemClasses>;
+    /**
+      * The component used for the root node.
+      * Either a string to use a HTML element or a component.
+      */
+    component?: React.ElementType;
     /**
      * If `true`, compact vertical padding designed for keyboard and mouse input is used.
      * The prop defaults to the value inherited from the parent Menu component.
