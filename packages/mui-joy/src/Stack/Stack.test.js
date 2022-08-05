@@ -17,7 +17,7 @@ describe('Joy <Stack />', () => {
     ThemeProvider,
     refInstanceof: window.HTMLElement,
     muiName: 'JoyStack',
-    skip: ['componentsProp'],
-    testVariantProps: { fixed: true },
+    skip: ['componentsProp', 'rootClass'],
+    testVariantProps: { direction: 'row' },
   }));
 });
