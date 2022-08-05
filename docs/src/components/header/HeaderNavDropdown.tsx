@@ -160,9 +160,11 @@ export default function HeaderNavDropdown() {
             right: 0,
             boxShadow: `0px 4px 20px rgba(170, 180, 190, 0.3)`,
             ...theme.getStyle({
-              boxShadow: {
-                default: '0px 4px 20px rgba(170, 180, 190, 0.3)',
-                dark: '0px 4px 20px rgba(0, 0, 0, 0.5)',
+              default: {
+                boxShadow: '0px 4px 20px rgba(170, 180, 190, 0.3)',
+              },
+              dark: {
+                boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.5)',
               },
             }),
           })}
@@ -180,9 +182,11 @@ export default function HeaderNavDropdown() {
                 '& ul': {
                   borderLeft: '1px solid',
                   ...theme.getStyle({
-                    borderColor: {
-                      default: 'grey.100',
-                      dark: 'primaryDark.700',
+                    default: {
+                      borderColor: 'grey.100',
+                    },
+                    dark: {
+                      borderColor: 'primaryDark.700',
                     },
                   }),
                   pl: 1,

@@ -23,16 +23,16 @@ export default function PlayerCard({ theme: externalTheme }: { theme?: Theme }) 
           display: 'flex',
           flexDirection: { xs: 'column', sm: 'row' },
           ...theme.getStyle({
-            bgcolor: {
-              dark: 'primaryDark.800',
+            dark: {
+              bgcolor: 'primaryDark.800',
             },
           }),
           [`& .${iconButtonClasses.root}`]: {
             border: '1px solid',
             borderColor: 'grey.200',
             ...theme.getStyle({
-              borderColor: {
-                dark: 'primaryDark.500',
+              dark: {
+                borderColor: 'primaryDark.500',
               },
             }),
           },

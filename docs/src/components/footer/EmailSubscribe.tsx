@@ -132,42 +132,40 @@ export default function EmailSubscribe({ sx }: { sx?: SxProps<Theme> }) {
             borderRadius: 1,
             border: '1px solid',
             ...theme.getStyle({
-              bgcolor: {
-                default: '#fff',
-                dark: 'primaryDark.900',
+              default: {
+                bgcolor: '#fff',
+                boxShadow: '0 1px 2px 0 rgba(0 0 0 / 0.1)',
+                borderColor: 'grey.300',
               },
-              boxShadow: {
-                default: '0 1px 2px 0 rgba(0 0 0 / 0.1)',
-                dark: '0 1px 2px 0 rgba(0 0 0 / 1)',
-              },
-              borderColor: {
-                default: 'grey.300',
-                dark: 'primaryDark.500',
+              dark: {
+                bgcolor: 'primaryDark.900',
+                boxShadow: '0 1px 2px 0 rgba(0 0 0 / 1)',
+                borderColor: 'primaryDark.500',
               },
             }),
             px: 1,
             py: 0.5,
             typography: 'body2',
             '&:hover': theme.getStyle({
-              borderColor: {
-                default: 'grey.400',
-                dark: 'primaryDark.300',
+              default: {
+                borderColor: 'grey.400',
+                boxShadow: '0 1px 2px 0 rgba(0 0 0 / 0.2)',
               },
-              boxShadow: {
-                default: '0 1px 2px 0 rgba(0 0 0 / 0.2)',
-                dark: '0 1px 2px 0 rgba(0 0 0 / 1)',
+              dark: {
+                borderColor: 'primaryDark.300',
+                boxShadow: '0 1px 2px 0 rgba(0 0 0 / 1)',
               },
             }),
             [`&.${inputBaseClasses.focused}`]: {
               outline: '3px solid',
               ...theme.getStyle({
-                borderColor: {
-                  default: 'primary.500',
-                  dark: 'primaryDark.300',
+                default: {
+                  borderColor: 'primary.500',
+                  outlineColor: (theme.vars || theme).palette.primary[200],
                 },
-                outlineColor: {
-                  default: (theme.vars || theme).palette.primary[200],
-                  dark: (theme.vars || theme).palette.primaryDark[500],
+                dark: {
+                  borderColor: 'primaryDark.300',
+                  outlineColor: (theme.vars || theme).palette.primaryDark[500],
                 },
               }),
             },
@@ -178,21 +176,23 @@ export default function EmailSubscribe({ sx }: { sx?: SxProps<Theme> }) {
           type="submit"
           sx={(theme) => ({
             ...theme.getStyle({
-              bgcolor: {
-                default: alpha(theme.palette.primary[100], 0.5),
-                dark: 'primaryDark.500',
+              default: {
+                bgcolor: alpha(theme.palette.primary[100], 0.5),
+                color: 'primary.600',
               },
-              color: {
-                default: 'primary.600',
-                dark: 'primaryDark.100',
+              dark: {
+                bgcolor: 'primaryDark.500',
+                color: 'primaryDark.100',
               },
             }),
             py: 1,
             px: 1.5,
             '&:hover': theme.getStyle({
-              bgcolor: {
-                default: alpha(theme.palette.primary[100], 1),
-                dark: theme.palette.primaryDark[600],
+              default: {
+                bgcolor: alpha(theme.palette.primary[100], 1),
+              },
+              dark: {
+                bgcolor: theme.palette.primaryDark[600],
               },
             }),
           })}

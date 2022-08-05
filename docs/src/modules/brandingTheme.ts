@@ -6,7 +6,7 @@ import { createTheme, ThemeOptions, Theme, alpha } from '@mui/material/styles';
 
 interface GetStyle {
   (
-    scheme: Record<string, Partial<Record<'default' | 'light' | 'dark', string | number>>>,
+    scheme: Partial<Record<'default' | 'light' | 'dark', Record<string, string | number>>>,
   ): CSSObject;
 }
 
@@ -315,39 +315,39 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
      * 🤩 Using the utility:
      * {
      *   ...theme.getStyle({
-     *     color: {
-     *       default: theme.vars.palette.primary.main,
-     *       dark: '#fff',
+     *     default: {
+     *       color: (theme.vars || theme).palette.primary.main,
+     *     },
+     *     dark: {
+     *       color: '#fff',
      *     }
      *   }),
      * }
      */
     getStyle(scheme: Parameters<GetStyle>[0]) {
       const style: CSSObject = {};
-      Object.entries(scheme).forEach(([cssProp, value]) => {
-        // example value: { default: '', dark: '', light: '' }
-        if ((this as Theme).vars) {
-          Object.entries(value).forEach(([colorScheme, cssValue]) => {
-            if (cssValue) {
-              if (colorScheme === 'default') {
-                style[cssProp] = cssValue;
-              } else {
-                const selector = (this as Theme).getColorSchemeSelector('dark');
-                if (!style[selector]) {
-                  style[selector] = {};
-                }
-                (style[selector] as CSSObject)[cssProp] = cssValue;
-              }
-            }
-          });
-        } else {
-          const finalValue = (this as Theme).palette.mode === 'dark' ? value.dark : value.default;
-          if (finalValue != null) {
-            // attach value only if it is not `undefined | null`
-            style[cssProp] = finalValue
-          } 
+
+      if ((this as Theme).vars) {
+        Object.entries(scheme).forEach(([colorScheme, css]) => {
+          // CSS variables are available
+          if (colorScheme === 'default') {
+            Object.assign(style, css);
+          } else {
+            const selector = (this as Theme).getColorSchemeSelector(
+              colorScheme as 'light' | 'dark',
+            );
+            Object.assign(style, {
+              [selector]: css,
+            });
+          }
+        });
+      } else {
+        const finalValue = (this as Theme).palette.mode === 'dark' ? scheme.dark : scheme.default;
+        if (finalValue) {
+          Object.assign(style, finalValue);
         }
-      });
+      }
+
       return style;
     },
   } as ThemeOptions);
@@ -389,17 +389,15 @@ export function getThemedComponents(): ThemeOptions {
             style: ({ theme }) => ({
               border: '1px solid',
               ...theme.getStyle({
-                color: {
-                  default: (theme.vars || theme).palette.grey[800],
-                  dark: (theme.vars || theme).palette.grey[400],
+                default: {
+                  color: (theme.vars || theme).palette.grey[800],
+                  borderColor: (theme.vars || theme).palette.grey[300],
+                  backgroundColor: (theme.vars || theme).palette.grey[50],
                 },
-                borderColor: {
-                  default: (theme.vars || theme).palette.grey[300],
-                  dark: (theme.vars || theme).palette.primaryDark[400],
-                },
-                backgroundColor: {
-                  default: (theme.vars || theme).palette.grey[50],
-                  dark: (theme.vars || theme).palette.primaryDark[700],
+                dark: {
+                  color: (theme.vars || theme).palette.grey[400],
+                  borderColor: (theme.vars || theme).palette.primaryDark[400],
+                  backgroundColor: (theme.vars || theme).palette.primaryDark[700],
                 },
               }),
               fontFamily: theme.typography.fontFamilyCode,
@@ -411,15 +409,19 @@ export function getThemedComponents(): ThemeOptions {
               '&:hover, &.Mui-focusVisible': {
                 borderColor: (theme.vars || theme).palette.primary.main,
                 ...theme.getStyle({
-                  backgroundColor: {
-                    default: (theme.vars || theme).palette.grey[50],
-                    dark: (theme.vars || theme).palette.primaryDark[600],
+                  default: {
+                    backgroundColor: (theme.vars || theme).palette.grey[50],
+                  },
+                  dark: {
+                    backgroundColor: (theme.vars || theme).palette.primaryDark[600],
                   },
                 }),
                 '& .MuiButton-endIcon': theme.getStyle({
-                  color: {
-                    default: (theme.vars || theme).palette.primary.main,
-                    dark: (theme.vars || theme).palette.primary[300],
+                  default: {
+                    color: (theme.vars || theme).palette.primary.main,
+                  },
+                  dark: {
+                    color: (theme.vars || theme).palette.primary[300],
                   },
                 }),
               },
@@ -431,19 +433,14 @@ export function getThemedComponents(): ThemeOptions {
                 position: 'absolute',
                 right: 0,
                 marginRight: 10,
-                ...(!theme.vars
-                  ? {
-                      color:
-                        theme.palette.mode === 'dark'
-                          ? theme.palette.grey[400]
-                          : theme.palette.grey[700],
-                    }
-                  : {
-                      color: theme.vars.palette.grey[700],
-                      [theme.getColorSchemeSelector('dark')]: {
-                        color: theme.vars.palette.grey[400],
-                      },
-                    }),
+                ...theme.getStyle({
+                  default: {
+                    color: (theme.vars || theme).palette.grey[700],
+                  },
+                  dark: {
+                    color: (theme.vars || theme).palette.grey[400],
+                  },
+                }),
               },
             }),
           },
@@ -453,16 +450,14 @@ export function getThemedComponents(): ThemeOptions {
             style: ({ theme }) => ({
               fontSize: theme.typography.pxToRem(14),
               fontWeight: 700,
-              ...(!theme.vars
-                ? {
-                    color:
-                      theme.palette.mode === 'dark'
-                        ? theme.palette.primary[300]
-                        : theme.palette.primary[600],
-                  }
-                : {
-                    color: theme.vars.palette.text.action,
-                  }),
+              ...theme.getStyle({
+                default: {
+                  color: (theme.vars || theme).palette.primary[600],
+                },
+                dark: {
+                  color: (theme.vars || theme).palette.primary[300],
+                },
+              }),
               mb: 1,
               '& svg': {
                 ml: -0.5,
@@ -479,38 +474,26 @@ export function getThemedComponents(): ThemeOptions {
               height: 34,
               width: 34,
               border: `1px solid`,
-              ...(!theme.vars
-                ? {
-                    borderColor:
-                      theme.palette.mode === 'dark'
-                        ? theme.palette.primaryDark[700]
-                        : theme.palette.grey[200],
-                    color:
-                      theme.palette.mode === 'dark'
-                        ? theme.palette.primary[300]
-                        : theme.palette.primary[500],
-                    '&:hover': {
-                      borderColor:
-                        theme.palette.mode === 'dark'
-                          ? theme.palette.primaryDark[600]
-                          : theme.palette.grey[300],
-                      background:
-                        theme.palette.mode === 'dark'
-                          ? alpha(theme.palette.primaryDark[700], 0.4)
-                          : theme.palette.grey[50],
-                    },
-                  }
-                : {
-                    borderColor: theme.vars.palette.border.subtle,
-                    color: theme.vars.palette.text.action,
-                    '&:hover': {
-                      borderColor: theme.vars.palette.border.subtleHover,
-                      background: theme.vars.palette.grey[50],
-                      [theme.getColorSchemeSelector('dark')]: {
-                        background: alpha(theme.palette.primaryDark[700], 0.4),
-                      },
-                    },
-                  }),
+              ...theme.getStyle({
+                default: {
+                  borderColor: (theme.vars || theme).palette.grey[200],
+                  color: (theme.vars || theme).palette.primary[500],
+                },
+                dark: {
+                  borderColor: (theme.vars || theme).palette.primaryDark[700],
+                  color: (theme.vars || theme).palette.primary[300],
+                },
+              }),
+              '&:hover': theme.getStyle({
+                default: {
+                  borderColor: (theme.vars || theme).palette.grey[300],
+                  background: (theme.vars || theme).palette.grey[50],
+                },
+                dark: {
+                  borderColor: (theme.vars || theme).palette.primaryDark[600],
+                  background: alpha(theme.palette.primaryDark[700], 0.4),
+                },
+              }),
               borderRadius: theme.shape.borderRadius,
             }),
           },
@@ -544,21 +527,14 @@ export function getThemedComponents(): ThemeOptions {
             '& .MuiMenuItem-root': {
               fontSize: theme.typography.pxToRem(14),
               fontWeight: 500,
-              '&:hover, &:focus': {
-                ...(!theme.vars
-                  ? {
-                      backgroundColor:
-                        theme.palette.mode === 'dark'
-                          ? alpha(theme.palette.primaryDark[700], 0.4)
-                          : theme.palette.grey[50],
-                    }
-                  : {
-                      backgroundColor: theme.vars.palette.grey[50],
-                      [theme.getColorSchemeSelector('dark')]: {
-                        backgroundColor: alpha(theme.palette.primaryDark[700], 0.4),
-                      },
-                    }),
-              },
+              '&:hover, &:focus': theme.getStyle({
+                default: {
+                  backgroundColor: (theme.vars || theme).palette.grey[50],
+                },
+                dark: {
+                  backgroundColor: alpha(theme.palette.primaryDark[700], 0.4),
+                },
+              }),
               '&.Mui-selected': {
                 fontWeight: 500,
                 ...(!theme.vars
@@ -586,22 +562,15 @@ export function getThemedComponents(): ThemeOptions {
       },
       MuiPopover: {
         styleOverrides: {
-          paper: ({ theme }) => ({
-            ...(!theme.vars
-              ? {
-                  boxShadow: `0px 4px 20px ${
-                    theme.palette.mode === 'dark'
-                      ? 'rgba(0, 0, 0, 0.5)'
-                      : 'rgba(170, 180, 190, 0.3)'
-                  }`,
-                }
-              : {
-                  boxShadow: `0px 4px 20px rgba(170, 180, 190, 0.3)`,
-                  [theme.getColorSchemeSelector('dark')]: {
-                    boxShadow: `0px 4px 20px rgba(0, 0, 0, 0.5)`,
-                  },
-                }),
-          }),
+          paper: ({ theme }) =>
+            theme.getStyle({
+              default: {
+                boxShadow: '0px 4px 20px rgba(170, 180, 190, 0.3)',
+              },
+              dark: {
+                boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.5)',
+              },
+            }),
         },
       },
       MuiContainer: {
@@ -616,21 +585,15 @@ export function getThemedComponents(): ThemeOptions {
       },
       MuiDivider: {
         styleOverrides: {
-          root: ({ theme }) => ({
-            ...(!theme.vars
-              ? {
-                  borderColor:
-                    theme.palette.mode === 'dark'
-                      ? alpha(theme.palette.primary[100], 0.08)
-                      : theme.palette.grey[100],
-                }
-              : {
-                  borderColor: theme.vars.palette.grey[100],
-                  [theme.getColorSchemeSelector('dark')]: {
-                    borderColor: alpha(theme.palette.primary[100], 0.08),
-                  },
-                }),
-          }),
+          root: ({ theme }) =>
+            theme.getStyle({
+              default: {
+                borderColor: (theme.vars || theme).palette.grey[100],
+              },
+              dark: {
+                borderColor: alpha(theme.palette.primary[100], 0.08),
+              },
+            }),
         },
       },
       MuiLink: {
@@ -639,25 +602,22 @@ export function getThemedComponents(): ThemeOptions {
         },
         styleOverrides: {
           root: ({ theme }) => ({
-            ...(!theme.vars
-              ? {
-                  color:
-                    theme.palette.mode === 'dark'
-                      ? theme.palette.primary[300]
-                      : theme.palette.primary[600],
-                  '&:hover': {
-                    color:
-                      theme.palette.mode === 'dark'
-                        ? theme.palette.primary[200]
-                        : theme.palette.primary[700],
-                  },
-                }
-              : {
-                  color: theme.vars.palette.text.action,
-                  '&:hover': {
-                    color: theme.vars.palette.text.actionHover,
-                  },
-                }),
+            ...theme.getStyle({
+              default: {
+                color: (theme.vars || theme).palette.primary[600],
+              },
+              dark: {
+                color: (theme.vars || theme).palette.primary[300],
+              },
+            }),
+            '&:hover': theme.getStyle({
+              default: {
+                color: (theme.vars || theme).palette.text.action,
+              },
+              dark: {
+                color: (theme.vars || theme).palette.text.actionHover,
+              },
+            }),
             fontWeight: 700,
             display: 'inline-flex',
             alignItems: 'center',
@@ -676,37 +636,24 @@ export function getThemedComponents(): ThemeOptions {
             fontWeight: 500,
             ...(variant === 'outlined' &&
               color === 'default' && {
-                ...(!theme.vars
-                  ? {
-                      color:
-                        theme.palette.mode === 'dark'
-                          ? theme.palette.grey[300]
-                          : theme.palette.grey[900],
-                      borderColor:
-                        theme.palette.mode === 'dark'
-                          ? alpha(theme.palette.grey[100], 0.1)
-                          : theme.palette.grey[200],
-                      '&:hover': {
-                        color:
-                          theme.palette.mode === 'dark'
-                            ? theme.palette.grey[300]
-                            : theme.palette.grey[900],
-                      },
-                    }
-                  : {
-                      color: theme.vars.palette.grey[900],
-                      borderColor: theme.vars.palette.grey[200],
-                      [theme.getColorSchemeSelector('dark')]: {
-                        color: theme.vars.palette.grey[300],
-                        borderColor: alpha(theme.palette.grey[100], 0.1),
-                      },
-                      '&:hover': {
-                        color: theme.vars.palette.grey[900],
-                        [theme.getColorSchemeSelector('dark')]: {
-                          color: theme.vars.palette.grey[300],
-                        },
-                      },
-                    }),
+                ...theme.getStyle({
+                  default: {
+                    color: (theme.vars || theme).palette.grey[900],
+                    borderColor: (theme.vars || theme).palette.grey[200],
+                  },
+                  dark: {
+                    color: (theme.vars || theme).palette.grey[300],
+                    borderColor: alpha(theme.palette.grey[100], 0.1),
+                  },
+                }),
+                '&:hover': theme.getStyle({
+                  default: {
+                    color: (theme.vars || theme).palette.grey[900],
+                  },
+                  dark: {
+                    color: (theme.vars || theme).palette.grey[300],
+                  },
+                }),
                 backgroundColor: 'transparent',
               }),
             ...(variant === 'outlined' &&
@@ -718,94 +665,61 @@ export function getThemedComponents(): ThemeOptions {
             ...(variant === 'filled' &&
               color === 'default' && {
                 border: '1px solid transparent',
-                ...(!theme.vars
-                  ? {
-                      color: theme.palette.mode === 'dark' ? '#fff' : theme.palette.primary[700],
-                      backgroundColor:
-                        theme.palette.mode === 'dark'
-                          ? alpha(theme.palette.primaryDark[500], 0.8)
-                          : alpha(theme.palette.primary[100], 0.5),
-                      '&:hover': {
-                        backgroundColor:
-                          theme.palette.mode === 'dark'
-                            ? theme.palette.primaryDark[600]
-                            : theme.palette.primary[100],
-                      },
-                    }
-                  : {
-                      color: theme.vars.palette.Chip.defaultFilledColor,
-                      backgroundColor: alpha(theme.palette.primary[100], 0.5),
-                      [theme.getColorSchemeSelector('dark')]: {
-                        backgroundColor: alpha(theme.palette.primaryDark[500], 0.8),
-                      },
-                      '&:hover': {
-                        backgroundColor: theme.vars.palette.primary[100],
-                        [theme.getColorSchemeSelector('dark')]: {
-                          backgroundColor: theme.vars.palette.primaryDark[600],
-                        },
-                      },
-                    }),
+                ...theme.getStyle({
+                  default: {
+                    color: (theme.vars || theme).palette.primary[700],
+                    backgroundColor: alpha(theme.palette.primary[100], 0.5),
+                  },
+                  dark: {
+                    color: '#fff',
+                    backgroundColor: alpha(theme.palette.primaryDark[500], 0.8),
+                  },
+                }),
+                '&:hover': theme.getStyle({
+                  default: {
+                    backgroundColor: (theme.vars || theme).palette.primary[100],
+                  },
+                  dark: {
+                    backgroundColor: (theme.vars || theme).palette.primaryDark[600],
+                  },
+                }),
               }),
             // for labelling product in the search
             // @ts-ignore internal repo module augmentation issue
             ...(variant === 'light' && {
-              ...(color === 'default' && {
-                ...(!theme.vars
-                  ? {
-                      color:
-                        theme.palette.mode === 'dark'
-                          ? theme.palette.primary[200]
-                          : theme.palette.primary[700],
-                      backgroundColor:
-                        theme.palette.mode === 'dark'
-                          ? alpha(theme.palette.primaryDark[700], 0.5)
-                          : alpha(theme.palette.primary[100], 0.3),
-                    }
-                  : {
-                      color: theme.vars.palette.primary[700],
-                      backgroundColor: alpha(theme.palette.primary[100], 0.3),
-                      [theme.getColorSchemeSelector('dark')]: {
-                        color: theme.vars.palette.primary[200],
-                        backgroundColor: alpha(theme.palette.primaryDark[700], 0.5),
-                      },
-                    }),
-              }),
-              ...(color === 'warning' && {
-                ...(!theme.vars
-                  ? {
-                      color: theme.palette.mode === 'dark' ? '#fff' : theme.palette.warning[900],
-                      backgroundColor:
-                        theme.palette.mode === 'dark'
-                          ? theme.palette.warning[900]
-                          : theme.palette.warning[100],
-                    }
-                  : {
-                      color: theme.vars.palette.warning[900],
-                      backgroundColor: theme.vars.palette.warning[100],
-                      [theme.getColorSchemeSelector('dark')]: {
-                        color: '#fff',
-                        backgroundColor: theme.vars.palette.warning[900],
-                      },
-                    }),
-              }),
-              ...(color === 'success' && {
-                ...(!theme.vars
-                  ? {
-                      color: theme.palette.mode === 'dark' ? '#fff' : theme.palette.success[900],
-                      backgroundColor:
-                        theme.palette.mode === 'dark'
-                          ? theme.palette.success[900]
-                          : theme.palette.success[100],
-                    }
-                  : {
-                      color: theme.vars.palette.success[900],
-                      backgroundColor: theme.vars.palette.success[100],
-                      [theme.getColorSchemeSelector('dark')]: {
-                        color: '#fff',
-                        backgroundColor: theme.vars.palette.success[900],
-                      },
-                    }),
-              }),
+              ...(color === 'default' &&
+                theme.getStyle({
+                  default: {
+                    color: (theme.vars || theme).palette.primary[700],
+                    backgroundColor: alpha(theme.palette.primary[100], 0.3),
+                  },
+                  dark: {
+                    color: (theme.vars || theme).palette.primary[200],
+                    backgroundColor: alpha(theme.palette.primaryDark[700], 0.5),
+                  },
+                })),
+              ...(color === 'warning' &&
+                theme.getStyle({
+                  default: {
+                    color: (theme.vars || theme).palette.warning[900],
+                    backgroundColor: (theme.vars || theme).palette.warning[100],
+                  },
+                  dark: {
+                    color: '#fff',
+                    backgroundColor: (theme.vars || theme).palette.warning[900],
+                  },
+                })),
+              ...(color === 'success' &&
+                theme.getStyle({
+                  default: {
+                    color: (theme.vars || theme).palette.success[900],
+                    backgroundColor: (theme.vars || theme).palette.success[100],
+                  },
+                  dark: {
+                    color: '#fff',
+                    backgroundColor: (theme.vars || theme).palette.success[900],
+                  },
+                })),
             }),
           }),
         },
@@ -827,30 +741,37 @@ export function getThemedComponents(): ThemeOptions {
             color:
               theme.palette.mode === 'dark' ? theme.palette.grey[300] : theme.palette.grey[700],
             borderRadius: 0,
-            '&:hover': {
-              backgroundColor:
-                theme.palette.mode === 'dark'
-                  ? alpha(theme.palette.primaryDark[700], 0.4)
-                  : theme.palette.grey[50],
-            },
+            '&:hover': theme.getStyle({
+              default: {
+                backgroundColor: theme.palette.grey[50],
+              },
+              dark: {
+                backgroundColor: alpha(theme.palette.primaryDark[700], 0.4),
+              },
+            }),
             '&.Mui-selected': {
-              color: theme.palette.mode === 'dark' ? '#fff' : theme.palette.primary[500],
               borderRadius: 10,
               border: '1px solid',
-              borderColor:
-                theme.palette.mode === 'dark'
-                  ? `${theme.palette.primary[700]} !important`
-                  : `${theme.palette.primary[500]} !important`,
-              backgroundColor:
-                theme.palette.mode === 'dark'
-                  ? theme.palette.primaryDark[700]
-                  : theme.palette.primary[50],
-              '&:hover': {
-                backgroundColor:
-                  theme.palette.mode === 'dark'
-                    ? theme.palette.primaryDark[600]
-                    : theme.palette.primary[100],
-              },
+              ...theme.getStyle({
+                default: {
+                  color: (theme.vars || theme).palette.primary[500],
+                  borderColor: `${(theme.vars || theme).palette.primary[500]} !important`,
+                  backgroundColor: (theme.vars || theme).palette.primary[50],
+                },
+                dark: {
+                  color: '#fff',
+                  borderColor: `${(theme.vars || theme).palette.primary[700]} !important`,
+                  backgroundColor: (theme.vars || theme).palette.primaryDark[700],
+                },
+              }),
+              '&:hover': theme.getStyle({
+                default: {
+                  backgroundColor: (theme.vars || theme).palette.primary[100],
+                },
+                dark: {
+                  backgroundColor: (theme.vars || theme).palette.primaryDark[600],
+                },
+              }),
             },
           }),
         },
@@ -874,55 +795,37 @@ export function getThemedComponents(): ThemeOptions {
         styleOverrides: {
           root: ({ theme, ownerState }) => ({
             backgroundImage: 'none',
-            ...(!theme.vars
-              ? {
-                  backgroundColor:
-                    theme.palette.mode === 'dark' ? theme.palette.primaryDark[900] : '#fff',
-                }
-              : {
-                  backgroundColor: '#fff',
-                  [theme.getColorSchemeSelector('dark')]: {
-                    backgroundColor: theme.vars.palette.primaryDark[900],
-                  },
-                }),
+            ...theme.getStyle({
+              default: {
+                backgroundColor: '#fff',
+              },
+              dark: {
+                backgroundColor: (theme.vars || theme).palette.primaryDark[900],
+              },
+            }),
             '&[href]': {
               textDecorationLine: 'none',
             },
             ...(ownerState.variant === 'outlined' && {
               display: 'block',
-              ...(!theme.vars
-                ? {
-                    borderColor:
-                      theme.palette.mode === 'dark'
-                        ? theme.palette.primaryDark[500]
-                        : theme.palette.grey[200],
-                    ...(theme.palette.mode === 'dark' && {
-                      backgroundColor: theme.palette.primaryDark[700],
-                    }),
-                  }
-                : {
-                    borderColor: theme.vars.palette.border.soft,
-                    [theme.getColorSchemeSelector('dark')]: {
-                      backgroundColor: theme.vars.palette.primaryDark[700],
-                    },
-                  }),
-              'a&, button&': {
-                '&:hover': {
-                  ...(!theme.vars
-                    ? {
-                        boxShadow: `0px 4px 20px ${
-                          theme.palette.mode === 'dark'
-                            ? 'rgba(0, 0, 0, 0.5)'
-                            : 'rgba(170, 180, 190, 0.3)'
-                        }`,
-                      }
-                    : {
-                        boxShadow: `0px 4px 20px rgba(170, 180, 190, 0.3)`,
-                        [theme.getColorSchemeSelector('dark')]: {
-                          boxShadow: `0px 4px 20px rgba(0, 0, 0, 0.5)`,
-                        },
-                      }),
+              ...theme.getStyle({
+                default: {
+                  borderColor: (theme.vars || theme).palette.grey[200],
                 },
+                dark: {
+                  borderColor: (theme.vars || theme).palette.primaryDark[500],
+                  backgroundColor: (theme.vars || theme).palette.primaryDark[700],
+                },
+              }),
+              'a&, button&': {
+                '&:hover': theme.getStyle({
+                  default: {
+                    boxShadow: `0px 4px 20px rgba(170, 180, 190, 0.3)`,
+                  },
+                  dark: {
+                    boxShadow: `0px 4px 20px rgba(0, 0, 0, 0.5)`,
+                  },
+                }),
               },
             }),
           }),
@@ -945,19 +848,15 @@ export function getThemedComponents(): ThemeOptions {
       },
       MuiToggleButtonGroup: {
         styleOverrides: {
-          root: ({ theme }) => ({
-            ...(!theme.vars
-              ? {
-                  backgroundColor:
-                    theme.palette.mode === 'dark' ? theme.palette.primaryDark[900] : '#fff',
-                }
-              : {
-                  backgroundColor: '#fff',
-                  [theme.getColorSchemeSelector('dark')]: {
-                    backgroundColor: theme.vars.palette.primaryDark[900],
-                  },
-                }),
-          }),
+          root: ({ theme }) =>
+            theme.getStyle({
+              default: {
+                backgroundColor: '#fff',
+              },
+              dark: {
+                backgroundColor: (theme.vars || theme).palette.primaryDark[900],
+              },
+            }),
         },
       },
       MuiToggleButton: {
@@ -984,43 +883,26 @@ export function getThemedComponents(): ThemeOptions {
                   },
                 }),
             '&.Mui-selected': {
-              ...(!theme.vars
-                ? {
-                    color: theme.palette.mode === 'dark' ? '#fff' : theme.palette.primary[500],
-                    borderColor:
-                      theme.palette.mode === 'dark'
-                        ? `${theme.palette.primary[700]} !important`
-                        : `${theme.palette.primary[500]} !important`,
-                    backgroundColor:
-                      theme.palette.mode === 'dark'
-                        ? theme.palette.primaryDark[700]
-                        : theme.palette.primary[50],
-                  }
-                : {
-                    color: theme.vars.palette.primary[500],
-                    borderColor: `${theme.vars.palette.primary[500]} !important`,
-                    backgroundColor: theme.vars.palette.primary[50],
-                    [theme.getColorSchemeSelector('dark')]: {
-                      color: '#fff',
-                      borderColor: `${theme.vars.palette.primary[700]} !important`,
-                      backgroundColor: theme.vars.palette.primaryDark[700],
-                    },
-                  }),
-              '&:hover': {
-                ...(!theme.vars
-                  ? {
-                      backgroundColor:
-                        theme.palette.mode === 'dark'
-                          ? theme.palette.primaryDark[600]
-                          : theme.palette.primary[100],
-                    }
-                  : {
-                      backgroundColor: theme.vars.palette.primary[100],
-                      [theme.getColorSchemeSelector('dark')]: {
-                        backgroundColor: theme.vars.palette.primaryDark[600],
-                      },
-                    }),
-              },
+              ...theme.getStyle({
+                default: {
+                  color: (theme.vars || theme).palette.primary[500],
+                  borderColor: `${(theme.vars || theme).palette.primary[500]} !important`,
+                  backgroundColor: (theme.vars || theme).palette.primary[50],
+                },
+                dark: {
+                  color: '#fff',
+                  borderColor: `${(theme.vars || theme).palette.primary[700]} !important`,
+                  backgroundColor: (theme.vars || theme).palette.primaryDark[700],
+                },
+              }),
+              '&:hover': theme.getStyle({
+                default: {
+                  backgroundColor: (theme.vars || theme).palette.primary[100],
+                },
+                dark: {
+                  backgroundColor: (theme.vars || theme).palette.primaryDark[600],
+                },
+              }),
             },
           }),
         },
@@ -1099,43 +981,26 @@ export function getThemedComponents(): ThemeOptions {
                   },
                 }),
             '&.Mui-selected': {
-              ...(!theme.vars
-                ? {
-                    color: theme.palette.mode === 'dark' ? '#fff' : theme.palette.primary[500],
-                    borderColor:
-                      theme.palette.mode === 'dark'
-                        ? `${theme.palette.primary[700]} !important`
-                        : `${theme.palette.primary[500]} !important`,
-                    backgroundColor:
-                      theme.palette.mode === 'dark'
-                        ? theme.palette.primaryDark[700]
-                        : theme.palette.primary[50],
-                  }
-                : {
-                    color: theme.vars.palette.primary[500],
-                    borderColor: `${theme.vars.palette.primary[500]} !important`,
-                    backgroundColor: theme.vars.palette.primary[50],
-                    [theme.getColorSchemeSelector('dark')]: {
-                      color: '#fff',
-                      borderColor: `${theme.vars.palette.primary[700]} !important`,
-                      backgroundColor: theme.vars.palette.primaryDark[700],
-                    },
-                  }),
-              '&:hover': {
-                ...(!theme.vars
-                  ? {
-                      backgroundColor:
-                        theme.palette.mode === 'dark'
-                          ? theme.palette.primaryDark[600]
-                          : theme.palette.primary[100],
-                    }
-                  : {
-                      backgroundColor: theme.vars.palette.primary[100],
-                      [theme.getColorSchemeSelector('dark')]: {
-                        backgroundColor: theme.vars.palette.primaryDark[600],
-                      },
-                    }),
-              },
+              ...theme.getStyle({
+                default: {
+                  color: (theme.vars || theme).palette.primary[500],
+                  borderColor: `${(theme.vars || theme).palette.primary[500]} !important`,
+                  backgroundColor: (theme.vars || theme).palette.primary[50],
+                },
+                dark: {
+                  color: '#fff',
+                  borderColor: `${(theme.vars || theme).palette.primary[700]} !important`,
+                  backgroundColor: (theme.vars || theme).palette.primaryDark[700],
+                },
+              }),
+              '&:hover': theme.getStyle({
+                default: {
+                  backgroundColor: (theme.vars || theme).palette.primary[100],
+                },
+                dark: {
+                  backgroundColor: (theme.vars || theme).palette.primaryDark[600],
+                },
+              }),
             },
           }),
         },

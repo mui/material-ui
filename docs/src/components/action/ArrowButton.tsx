@@ -20,31 +20,33 @@ export default function ArrowButton({
         (theme) => ({
           border: '1px solid',
           ...theme.getStyle({
-            color: {
-              default: 'primary.main',
-              dark: '#fff',
+            default: {
+              color: 'primary.main',
+              borderColor: 'grey.200',
             },
-            borderColor: {
-              default: 'grey.200',
-              dark: 'primaryDark.300',
+            dark: {
+              color: '#fff',
+              borderColor: 'primaryDark.300',
             },
           }),
           '&:hover': theme.getStyle({
-            borderColor: {
-              default: 'grey.300',
-              dark: 'primaryDark.200',
+            default: {
+              borderColor: 'grey.300',
+            },
+            dark: {
+              borderColor: 'primaryDark.200',
             },
           }),
           '&.Mui-disabled': {
             opacity: 0.5,
             ...theme.getStyle({
-              color: {
-                default: 'grey.700',
-                dark: '#fff',
+              default: {
+                color: 'grey.700',
+                borderColor: 'grey.300',
               },
-              borderColor: {
-                default: 'grey.300',
-                dark: 'primary.700',
+              dark: {
+                color: '#fff',
+                borderColor: 'primary.700',
               },
             }),
           },
