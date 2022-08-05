@@ -18,6 +18,7 @@ export default function BreadcrumbsUsage() {
         {
           propName: 'separator',
           knob: 'input',
+          defaultValue: '/',
         },
       ]}
       renderDemo={(props) => (
