@@ -4,51 +4,51 @@
 
 ## Material UI v5的迁移
 
-1. Getting started 👈 _you are here_
-2. [Breaking changes part one: style and theme](/material-ui/migration/v5-style-changes/)
-3. [Breaking changes part two: components](/material-ui/migration/v5-component-changes/)
-4. [Migrating from JSS](/material-ui/migration/migrating-from-jss/)
-5. [Troubleshooting](/material-ui/migration/troubleshooting/)
+1. 着手进行 👈 _你在这里_
+2. [突破性变化第一部分：样式和主题](/material-ui/migration/v5-style-changes/)
+3. [突破性变化第二部分：组件](/material-ui/migration/v5-component-changes/)
+4. [从JSS迁移](/material-ui/migration/migrating-from-jss/)
+5. [故障排除](/material-ui/migration/troubleshooting/)
 
-## Introduction
+## 简介
 
-This is the first document in a multi-part series to walk you through upgrading your app from Material UI v4 to v5.
+这是一个由多部分组成的系列文件中的第一份文件，指导你将你的应用程序从Material UI v4升级到v5。
 
-We highly recommend running our [codemods](#run-codemods) for efficiency—these will automatically address many of the [breaking changes](#address-breaking-changes) introduced in v5.
+我们强烈建议运行我们的[codemods](#run-codemods)以提高效率--这些将自动解决v5中引入的许多[破坏性变化](#address-breaking-changes)。
 
-One of the biggest changes in v5 is the replacement of JSS for [Emotion](https://emotion.sh/docs/introduction) as a default styling solution.
+V5最大的变化之一是将JSS替换为[Emotion](https://emotion.sh/docs/introduction)作为默认的样式解决方案。
 
-Note that you may continue to use JSS for adding overrides to the components (e.g. `makeStyles`, `withStyles`) even after migrating to v5. Once you've completed the rest of the v5 upgrade, we recommend progressively moving over to the new styling engine.
+请注意，你可以继续使用JSS为组件添加重写（例如`makeStyles`, `withStyles`），即使在迁移到v5之后。 一旦你完成了v5升级的其余部分，我们建议逐步转移到新的样式引擎上。
 
-This process is covered in [Migrating from JSS](/material-ui/migration/migrating-from-jss/).
+这个过程在[从JSS迁移](/material-ui/migration/migrating-from-jss/)中有所涉及。
 
-:::info Need to refer back to an older version of the docs? Check out [the v4 documentation here](https://v4.mui.com/). :::
+:::info 需要参考旧版本的文档吗？ 在这里查看[v4的文档](https://v4.mui.com/) :::
 
-:::info If you are using Next.js and you are not sure how to configure SSR to work with both Emotion & JSS, take a look a this [example project](https://github.com/mui/material-ui/tree/master/examples/nextjs-with-typescript-v4-migration). :::
+如果你正在使用Next.js，并且不确定如何配置SSR以与Emotion 和 JSS一起工作，请看这个[例子项目](https://github.com/mui/material-ui/tree/master/examples/nextjs-with-typescript-v4-migration) :::
 
-## Why you should migrate
+## 为什么你应该迁移
 
-Material UI v5 includes many bug fixes and improvements over v4.
+Material UI v5与v4相比，包括许多错误修复和改进。
 
-Chief among these improvements is the new styling engine, which offers significant advancements in performance when it comes to dynamic styles, as well as a more enjoyable developer experience.
+这些改进中最主要的是新的样式引擎，当涉及到动态样式时，它在性能上有了显著的进步，同时也提供了更愉快的开发者体验。
 
-Additionally, v5 is the only version that fully supports React 18, so you will need to migrate to take advantage of the latest React features.
+此外，v5是唯一完全支持React 18的版本，所以你需要迁移以利用最新的React功能。
 
-To learn more, check out [the blog post about the release of Material UI v5](https://mui.com/blog/mui-core-v5/).
+想了解更多，请查看[关于Material UI v5](https://mui.com/blog/mui-core-v5/)发布的博文。
 
-:::info 💡 Create small commits as you go to ensure a smooth migration.
+:::info 💡 在你进行的过程中创建小的提交，以确保顺利迁移。
 
-If you encounter any issues along the way, check the [Troubleshooting](/material-ui/migration/troubleshooting/) doc.
+如果你在途中遇到任何问题，请查看[故障排除](/material-ui/migration/troubleshooting/)文档。
 
-For problems not addressed there, please [create an issue](https://github.com/mui/material-ui/issues/new?assignees=&labels=status%3A+needs+triage&template=1.bug.yml) with this title format: **[Migration] Summary of your issue**. :::
+对于那里没有解决的问题，请用这种标题格式[创建一个问题](https://github.com/mui/material-ui/issues/new?assignees=&labels=status%3A+needs+triage&template=1.bug.yml)。**[Migration] 你的问题的摘要**。 :::
 
-## Supported browsers and Node versions
+## 支持的浏览器和Node版本
 
-The targets of the default bundle have changed in v5.
+默认捆绑包在v5中已经改变。
 
 The exact versions will be pinned on release from the browserslist query `"> 0.5%, last 2 versions, Firefox ESR, not dead, not IE 11, maintained node versions"`.
 
-The default bundle supports the following minimum versions:
+默认捆绑包支持以下最小版本:
 
 <!-- #stable-snapshot -->
 
@@ -57,39 +57,39 @@ The default bundle supports the following minimum versions:
 - Edge 91 (up from 14)
 - Firefox 78 (up from 52)
 - Safari 14 (macOS) and 12.5 (iOS) (up from 10)
-- and more (see [.browserslistrc (`stable` entry)](https://github.com/mui/material-ui/blob/HEAD/.browserslistrc#L11))
+- 以及更多（见[.browserslistrc（`稳定`条目）](https://github.com/mui/material-ui/blob/HEAD/.browserslistrc#L11)）。
 
-Material UI no longer supports IE 11. If you need to support IE 11, check out our [legacy bundle](/material-ui/guides/minimizing-bundle-size/#legacy-bundle).
+Material UI不再支持IE 11。 如果你需要支持IE 11，请查看我们的[遗留捆绑包](/material-ui/guides/minimizing-bundle-size/#legacy-bundle)。
 
-## Update React & TypeScript version
+## 更新React和TypeScript版本
 
-The minimum supported version of React has been increased from v16.8.0 to v17.0.0.
+React的最低支持版本已经从v16.8.0提高到v17.0.0。
 
-The minimum supported version of TypeScript has been increased from v3.2 to v3.5.
+TypeScript的最小支持版本已经从v3.2提高到v3.5。
 
-:::warning We try to align with types released by [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped) (i.e. packages published on npm under the `@types` namespace).
+:::warning 我们尽量与[DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped)发布的类型保持一致（即在npm上以`@types`命名空间发布的包）。
 
-We will not change the minimum supported version in a major version of Material UI.
+我们不会在Material UI的主要版本中改变最小支持版本。
 
-However, we generally recommend not to use a TypeScript version older than the lowest supported version of DefinitelyTyped. :::
+然而，我们一般建议不要使用比DefinitelyTyped的最低支持版本更早的TypeScript版本。 :::
 
-If your project includes these packages, you'll need to update them to the `latest` version:
+如果你的项目包括这些软件包，你需要将它们更新到`最新`版本。
 
 - `react-scripts`
 - `@types/react`
 - `@types/react-dom`
 
 :::warning
-📝 Make sure that your application is still running without errors, and commit the changes before continuing to the next step.
+📝 确保你的应用程序仍在运行，没有错误，并在继续下一步之前提交修改。
 :::
 
-## Set up `ThemeProvider`
+## 设置`ThemeProvider`
 
-Before upgrading to v5, please make sure that `ThemeProvider` is defined at the root of your application and in tests—even if you are using the default theme—and `useStyles` is _not_ called before `ThemeProvider`.
+在升级到v5之前，请确保`ThemeProvider`被定义在你的应用程序的根部和测试中--即使你使用的是默认主题--并且`useStyles`_没有_在`ThemeProvider`之前被调用。
 
-Eventually you may want to [migrate from JSS to Emotion](/material-ui/migration/migrating-from-jss/), but in the meantime you can continue to use JSS with the `@mui/styles` package. This package requires `ThemeProvider`.
+最终你可能想[从JSS迁移到Emotion](/material-ui/migration/migrating-from-jss/)，但同时你可以继续使用JSS与`@mui/styles`包。 这个软件包需要`ThemeProvider`。
 
-The root of your application should look something like this:
+你的应用程序的根看起来应该是这样的:
 
 ```js
 import { ThemeProvider, createMuiTheme, makeStyles } from '@material-ui/core/styles';
@@ -110,14 +110,14 @@ function App() {
 ```
 
 :::warning
-📝 Make sure that your application is still running without errors, and commit the changes before continuing to the next step.
+📝 确保你的应用程序仍在运行，没有错误，并在继续下一步之前提交修改。
 :::
 
-## Update MUI packages
+## 更新MUI软件包
 
 ### Material UI v5 and `@mui/styles`
 
-Install the Material UI v5 packages.
+安装Material UI v5软件包。
 
 With npm:
 
@@ -131,7 +131,7 @@ With yarn:
 yarn add @mui/material @mui/styles
 ```
 
-If you're using `@material-ui/lab` or `@material-ui/icons`, you will need to install the new packages.
+如果你正在使用`@material-ui/lab`或`@material-ui/icons`，你将需要安装新的软件包。
 
 ### `@material-ui/lab`
 
@@ -161,13 +161,13 @@ With yarn:
 yarn add @mui/icons-material
 ```
 
-### Date and time pickers
+### 日期和时间选择器
 
-The date and time picker components have been moved to MUI X. If you are using `@material-ui/date-pickers` or the pickers in the `@mui/lab` package, you will need to migrate to `@mui/x-date-pickers`. See [Migration from the lab](https://mui.com/x/react-date-pickers/migration-lab/) for details.
+日期和时间选择器组件已被移至MUI X。 如果你正在使用`@material-ui/date-pickers`或`@mui/lab`软件包中的挑选器，你将需要迁移到`@mui/x-date-pickers`。 详见[从实验室](https://mui.com/x/react-date-pickers/migration-lab/)迁移。
 
-### Peer dependencies
+### 对等依赖关系
 
-Next, add the Emotion packages.
+接下来，添加Emotion软件包。
 
 With npm:
 
@@ -181,24 +181,24 @@ With yarn:
 yarn add @emotion/react @emotion/styled
 ```
 
-#### styled-components (optional)
+#### styleled-components (可选)
 
-If you want to use Material UI v5 with styled-components instead of Emotion, check out [the Material UI installation guide](/material-ui/getting-started/installation/).
+如果你想使用Material UI v5的样式化组件而不是Emotion，请查看[Material UI安装指南](/material-ui/getting-started/installation/)。
 
-Note that if your app uses server-side rendering (SSR), there is a [known bug](https://github.com/mui/material-ui/issues/29742) with the Babel plugin for styled-components which prevents `@mui/styled-engine-sc` (the adapter for styled-components) from being used.
+请注意，如果你的应用程序使用服务器端渲染（SSR），那么Babel插件的样式化组件有一个[已知的错误](https://github.com/mui/material-ui/issues/29742)，它使`@mui/styled-engine-sc`（样式化组件的适配器）无法被使用。
 
-We strongly recommend using the default setup with Emotion instead.
+我们强烈建议使用Emotion的默认设置来代替。
 
 :::warning
-📝 Make sure that your application is still running without errors, and commit the changes before continuing to the next step.
+📝 确保你的应用程序仍在运行，没有错误，并在继续下一步之前提交修改。
 :::
 
 ### Replace all imports
 
-With the release of v5, the names of all related packages were changed from `@material-ui/*` to `@mui/*` as part of our updated branding. See [this blog post](/blog/material-ui-is-now-mui/) for details.
+随着v5的发布，所有相关软件包的名称都从`@material-ui/*`改为`@mui/*`，作为我们更新品牌的一部分。 详情见[本博文](/blog/material-ui-is-now-mui/)。
 
 <details>
-<summary>Updated package names</summary>
+<summary>更新的软件包名称</summary>
 
 ```text
 @material-ui/core -> @mui/material
@@ -218,17 +218,17 @@ With the release of v5, the names of all related packages were changed from `@ma
 
 </details>
 
-### Remove old packages
+### 删除旧的软件包
 
-Once you've installed all the necessary packages and ensured that your app still runs, you can safely remove the old `@material-ui/*` packages by running `npm uninstall @material-ui/*` or `yarn remove @material-ui/*`.
+一旦你安装了所有必要的软件包，并确保你的应用程序仍然运行，你可以通过运行`npm uninstall @material-ui/*`或`yarn remove @material-ui/*`来安全地删除旧的`@material-ui/*`软件包。
 
-:::success The [preset-safe codemod](#preset-safe) (explained in more detail below) handles this automatically. :::
+:::success [预设安全的编码模式](#preset-safe)（下文有更详细的解释）会自动处理这个问题。 :::
 
-## Fix CSS specificity (optional)
+## 修复CSS的特殊性（可选）
 
-If you want to apply styles to components by importing a CSS file, you need to bump up the specificity to be able to target the correct components.
+如果你想通过导入一个CSS文件来给组件应用样式，你需要提高特异性以能够针对正确的组件。
 
-Consider the following example:
+请考虑以下例子:
 
 ```js
 import './style.css';
@@ -243,7 +243,7 @@ const ChipWithGreenIcon = () => (
 );
 ```
 
-In this example, in order to correctly apply a particular style to the delete icon of `Chip`, one option is to increase the specificity of your CSS classes, as shown below:
+在这个例子中，为了正确地将特定的风格应用于`Chip`的删除图标，一种选择是增加你的CSS类的特异性，如下所示:
 
 ```css
 .MuiChip-root .green {
@@ -251,7 +251,7 @@ In this example, in order to correctly apply a particular style to the delete ic
 }
 ```
 
-By contrast, the following CSS snippet will not apply the style to the delete icon:
+相比之下，下面的CSS片段不会对删除图标应用该样式:
 
 ```css
 .green {
@@ -259,15 +259,15 @@ By contrast, the following CSS snippet will not apply the style to the delete ic
 }
 ```
 
-## Run codemods
+## 运行codemods
 
-The following codemods will automatically adjust the bulk of your code to account for breaking changes in v5.
+以下代码模型将自动调整你的大部分代码，以考虑到v5中的突破性变化。
 
-Make sure that your application still runs without errors after running each codemod, and commit the changes before continuing to the next step.
+确保你的应用程序在运行每个codemod之后仍然运行无误，并在继续下一步之前提交修改。
 
 ### preset-safe
 
-This codemod contains most of the transformers that are necessary for migration. It should be only applied **once per folder.**
+This codemod contains most of the transformers that are necessary for migration. 它应该只在**每个文件夹**中应用一次。
 
 ```sh
 npx @mui/codemod v5.0.0/preset-safe <path>
@@ -277,9 +277,9 @@ npx @mui/codemod v5.0.0/preset-safe <path>
 
 ### variant-prop
 
-This codemod transforms the `<TextField/>`, `<FormControl/>`, and `<Select/>` components by applying `variant="standard"` if no variant is defined—the default variant has changed from `"standard"` in v4 to `"outlined"` in v5.
+如果没有定义变量，这个codemod通过应用`variant="standard "`来转换`<TextField/>`、`<FormControl/>`、和`<Select/>`组件--默认的变量已经从v4的 `"standard "`变成了v5的` "outline"`。
 
-:::error ❗️ You should _not_ use this codemod if you have already defined `variant: "outlined"` as the default in the theme. :::
+如果你已经在主题中定义了`变量："outlined "`作为默认值，你就_不应该_使用这个codemod。 :::
 
 ```js
 // ❌ if you have a theme setup like this, don't run this codemod.
@@ -295,19 +295,19 @@ createMuiTheme({
 });
 ```
 
-If you want to keep `variant="standard"` in your components, run this codemod or else configure the corresponding default theme props.
+如果你想在你的组件中保留`variant="standard"`，请运行这个codemod或者配置相应的默认主题props。
 
 ```sh
 npx @mui/codemod v5.0.0/variant-prop <path>
 ```
 
-For more details, check out the [variant-prop codemod README](https://github.com/mui/material-ui/blob/master/packages/mui-codemod/README.md#variant-prop).
+更多细节，请查看[variant-prop codemod的README](https://github.com/mui/material-ui/blob/master/packages/mui-codemod/README.md#variant-prop)。
 
 ### link-underline-hover
 
-This codemod transforms the `<Link />` component by applying `underline="hover"` if there is no `underline` prop defined—the default `underline` has changed from `"hover"` in v4 to `"always"` in v5.
+如果没有定义`underline`，这个codemod通过应用`underline="hover"`来转换组件`<Link />`--默认的`underline`已经从v4的` "hover "`变为v5的 `"always"`。
 
-:::error ❗️ You should _not_ use this codemod if you have already defined `underline: "always"` as the default in the theme. :::
+:::error ❗️ 如果你已经在主题中定义了underline，你就_不应该_使用这个代码模式。`"always "`作为主题中的默认值。 :::
 
 ```js
 // if you have theme setup like this, ❌ don't run this codemod.
@@ -323,16 +323,16 @@ createMuiTheme({
 });
 ```
 
-If you want to keep `underline="hover"`, run this codemod or else configure the corresponding default theme props.
+如果你想保留`underline="hover"`，请运行这个codemod，否则就配置相应的默认主题props。
 
 ```sh
 npx @mui/codemod v5.0.0/link-underline-hover <path>
 ```
 
-For more details, check out the [link-underline-hover codemod README](https://github.com/mui/material-ui/blob/master/packages/mui-codemod/README.md#link-underline-hover).
+更多细节，请查看[link-underline-hover codemod README](https://github.com/mui/material-ui/blob/master/packages/mui-codemod/README.md#link-underline-hover)。
 
-## Address breaking changes
+## 关于重大变更
 
-The codemods handle many of the breaking changes, but others must be addressed manually.
+codemods处理了许多破坏性的变化，但其他的必须手动处理。
 
-Whether or not you choose to use the codemods, you are now ready to move on to the first of two [breaking changes](/material-ui/migration/v5-style-changes/) documents.
+无论你是否选择使用codemods，你现在已经准备好进入两个[突破性变化](/material-ui/migration/v5-style-changes/)文档中的第一个。
