@@ -12,8 +12,7 @@ export default function createBox(options = {}) {
     styleFunctionSx = defaultStyleFunctionSx,
   } = options;
   const BoxRoot = styled('div', {
-    shouldForwardProp: (prop) =>
-      prop !== 'ownerState' && prop !== 'theme' && prop !== 'sx' && prop !== 'as',
+    shouldForwardProp: (prop) => prop !== 'theme' && prop !== 'sx' && prop !== 'as',
   })(styleFunctionSx);
 
   const Box = React.forwardRef(function Box(inProps, ref) {

@@ -64,19 +64,34 @@ describe('createBox', () => {
 
   it('should call styleFunctionSx once', () => {
     const Box = createBox();
-    const sypSx = spy();
-    render(<Box sx={sypSx}>Content</Box>);
-    expect(sypSx.callCount).to.equal(2); // React 18 renders twice in strict mode.
+    const spySx = spy();
+    render(<Box sx={spySx}>Content</Box>);
+    expect(spySx.callCount).to.equal(2); // React 18 renders twice in strict mode.
   });
 
   it('should still call styleFunctionSx once', () => {
     const Box = createBox();
-    const sypSx = spy();
+    const spySx = spy();
     render(
-      <Box component={Box} sx={sypSx}>
+      <Box component={Box} sx={spySx}>
         Content
       </Box>,
     );
-    expect(sypSx.callCount).to.equal(2); // React 18 renders twice in strict mode.
+    expect(spySx.callCount).to.equal(2); // React 18 renders twice in strict mode.
+  });
+
+  it('overridable via `component` prop', () => {
+    const Box = createBox();
+
+    const { container } = render(<Box component="span" />);
+    expect(container.firstChild).to.have.tagName('span');
+  });
+
+  it('should not have `as` and `theme` attribute spread to DOM', () => {
+    const Box = createBox();
+
+    const { container } = render(<Box component="span" />);
+    expect(container.firstChild).not.to.have.attribute('as');
+    expect(container.firstChild).not.to.have.attribute('theme');
   });
 });
