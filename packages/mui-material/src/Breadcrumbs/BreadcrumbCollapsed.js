@@ -26,16 +26,19 @@ const BreadcrumbCollapsedButton = styled(ButtonBase)(({ theme }) => ({
   },
 }));
 
-const BreadcrumbCollapsedIcon = styled(MoreHorizIcon)({
-  width: 24,
-  height: 16,
-});
-
 /**
  * @ignore - internal component.
  */
 function BreadcrumbCollapsed(props) {
   const ownerState = props;
+  const CustomBreadcrumbCollapsedIcon = props.components.collapsed;
+
+  const BreadcrumbCollapsedIcon = styled(
+    props.components && props.components.collapsed ? CustomBreadcrumbCollapsedIcon : MoreHorizIcon,
+  )({
+    width: 24,
+    height: 16,
+  });
 
   return (
     <li>
@@ -47,6 +50,15 @@ function BreadcrumbCollapsed(props) {
 }
 
 BreadcrumbCollapsed.propTypes = {
+  /**
+   * The components used for collapsed item type
+   * @default {
+   *   collapsed: MoreHorizIcon,
+   * }
+   */
+  components: PropTypes.shape({
+    collapsed: PropTypes.elementType,
+  }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

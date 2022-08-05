@@ -15,6 +15,15 @@ export interface BreadcrumbsTypeMap<P = {}, D extends React.ElementType = 'nav'>
      */
     classes?: Partial<BreadcrumbsClasses>;
     /**
+     * The components used for collapsed item type
+     * @default {
+     *   collapsed: MoreHorizIcon,
+     * }
+     */
+    components?: {
+      collapsed?: React.ElementType;
+    };
+    /**
      * Override the default label for the expand button.
      *
      * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).

@@ -7,6 +7,7 @@ import { unstable_composeClasses as composeClasses } from '@mui/base';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import Typography from '../Typography';
+import MoreHorizIcon from '../internal/svg-icons/MoreHoriz';
 import BreadcrumbCollapsed from './BreadcrumbCollapsed';
 import breadcrumbsClasses, { getBreadcrumbsUtilityClass } from './breadcrumbsClasses';
 
@@ -83,6 +84,9 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(inProps, ref) {
     children,
     className,
     component = 'nav',
+    components = {
+      collapsed: MoreHorizIcon,
+    },
     expandText = 'Show path',
     itemsAfterCollapse = 1,
     itemsBeforeCollapse = 1,
@@ -137,7 +141,12 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(inProps, ref) {
 
     return [
       ...allItems.slice(0, itemsBeforeCollapse),
-      <BreadcrumbCollapsed aria-label={expandText} key="ellipsis" onClick={handleClickExpand} />,
+      <BreadcrumbCollapsed
+        aria-label={expandText}
+        key="ellipsis"
+        components={components}
+        onClick={handleClickExpand}
+      />,
       ...allItems.slice(allItems.length - itemsAfterCollapse, allItems.length),
     ];
   };
@@ -208,6 +217,15 @@ Breadcrumbs.propTypes /* remove-proptypes */ = {
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
+  /**
+   * The components used for collapsed item type
+   * @default {
+   *   collapsed: MoreHorizIcon,
+   * }
+   */
+  components: PropTypes.shape({
+    collapsed: PropTypes.elementType,
+  }),
   /**
    * Override the default label for the expand button.
    *

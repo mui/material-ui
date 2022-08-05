@@ -3,6 +3,10 @@
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
     "component": { "type": { "name": "elementType" } },
+    "components": {
+      "type": { "name": "shape", "description": "{ collapsed?: elementType }" },
+      "default": "{\n  collapsed: MoreHorizIcon,\n}"
+    },
     "expandText": { "type": { "name": "string" }, "default": "'Show path'" },
     "itemsAfterCollapse": {
       "type": { "name": "custom", "description": "integer" },
