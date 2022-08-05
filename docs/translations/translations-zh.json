@@ -181,6 +181,7 @@
     "/system/react-box": "框",
     "/system/react-container": "容器",
     "/system/react-grid": "网格",
+    "/system/react-stack": "Stack",
     "/system/styles": "样式(styles)",
     "/system/styles/basics": "基础知识",
     "/system/styles/advanced": "进阶知识",
