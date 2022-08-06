@@ -3,7 +3,6 @@ product: base
 title: Unstyled React Badge component and hook
 components: BadgeUnstyled
 githubLabel: 'component: badge'
-packageName: '@mui/base'
 ---
 
 # 无样式的徽章
