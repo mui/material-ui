@@ -33,7 +33,7 @@ function BreadcrumbCollapsed(props) {
   const { components, ...otherProps } = props;
   const ownerState = props;
   const CustomBreadcrumbCollapsedIcon =
-    components && components.Collapsed ? components.Collapsed : <></>;
+    components && components.Collapsed ? components.Collapsed : <React.Fragment></React.Fragment>;
 
   const BreadcrumbCollapsedIcon = styled(
     components && components.Collapsed ? CustomBreadcrumbCollapsedIcon : MoreHorizIcon,
