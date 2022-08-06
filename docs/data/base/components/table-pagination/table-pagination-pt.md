@@ -3,7 +3,6 @@ product: base
 title: Unstyled React Table Pagination component
 components: TablePaginationUnstyled
 githubLabel: 'component: TablePagination'
-packageName: '@mui/base'
 ---
 
 # Unstyled table pagination
