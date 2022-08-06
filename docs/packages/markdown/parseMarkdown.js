@@ -394,6 +394,16 @@ function prepareMarkdown(config) {
         throw new Error(`Missing title in the page: ${location}`);
       }
 
+      if (title.length > 60) {
+        throw new Error(
+          [
+            `The title "${title}" is too long (${title.length} characters).`,
+            'It needs to have fewer than 60 characters, see for more details:',
+            'https://developers.google.com/search/docs/advanced/appearance/title-link',
+          ].join('\n'),
+        );
+      }
+
       if (description == null || description === '') {
         throw new Error(`Missing description in the page: ${location}`);
       }

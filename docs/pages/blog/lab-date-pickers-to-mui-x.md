@@ -1,6 +1,6 @@
 ---
-title: MUI X expands its product line with advanced date and time picker components
-description: Migrate to the new package to start building with our powerful date and time pickers, now part of MUI X.
+title: Date and time pickers are moving to MUI X
+description: Migrate to the new package to start building with our powerful date and time pickers, now part of MUI X. Previously released MIT components stayed MIT.
 date: 2022-04-03T00:00:00.000Z
 authors: ['flaviendelangle']
 tags: ['MUI X', 'News']
@@ -13,7 +13,7 @@ This means we'll be dedicating even more time and effort to these complex compon
 ## TL;DR
 
 - The date pickers are one step closer to a stable release.
-- **No surprise licenses changes**. We are staying true to [our promises](https://mui-org.notion.site/Stewardship-542a2226043d4f4a96dfb429d16cf5bd). What's MIT stays MIT, and what was [announced](https://v5-0-6.mui.com/components/date-range-picker/) over 12 months ago to move to a commercial license move.
+- **No surprise licenses changes**. We are staying true to [our promises](https://mui-org.notion.site/Stewardship-542a2226043d4f4a96dfb429d16cf5bd). What's MIT stays MIT, and what was [announced](https://v5-0-6.mui.com/components/date-range-picker/) over 12 months ago to move to a commercial license for the range feature.
 - Follow the [migration steps](/x/react-date-pickers/migration-lab/)
 
 ## What are date and time pickers?
@@ -32,7 +32,7 @@ The user may need to select an individual date/time, or a range.
 
 [MUI X](/x/) is a collection of advanced components built for complex use cases.
 
-As opposed to the Core library, which leans on the open-source community for support, MUI X components require several full-time developers dedicated to engineering and ongoing maintenance.
+As opposed to the MUI Core library, which leans on the open-source community for support, MUI X components require several full-time developers dedicated to engineering and ongoing maintenance.
 
 MUI X components are available under two licenses:
 
