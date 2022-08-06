@@ -4,7 +4,6 @@ title: Unstyled React Popper component
 components: PopperUnstyled
 githubLabel: 'component: Popper'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/
-packageName: '@mui/base'
 ---
 
 # Unstyled popper
