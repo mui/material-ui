@@ -47,9 +47,9 @@ In order to prevent screen readers from marking non-interactive children as "cli
 ```tsx
 <ClickAwayListener>
   <div role="presentation">
-    <h1>不可交互的标题</h1>
+    <h1>non-interactive heading</h1>
   </div>
-</ClickAwayListern>
+</ClickAwayListener>
 ```
 
 This is also required to fix a quirk in NVDA when using Firefox that prevents announcement of alert messages (see [mui/material-ui#29080](https://github.com/mui/material-ui/issues/29080)).
