@@ -4,7 +4,6 @@ title: Unstyled React Tabs components
 components: TabsUnstyled, TabUnstyled, TabPanelUnstyled, TabsListUnstyled
 githubLabel: 'component: tabs'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/tabpanel/
-packageName: '@mui/base'
 ---
 
 # Unstyled tabs
