@@ -24,6 +24,32 @@ export interface BreadcrumbsTypeMap<P = {}, D extends React.ElementType = 'nav'>
       Collapsed?: React.ElementType;
     };
     /**
+     * The props used for each slot inside.
+     * @default {}
+     */
+    componentsProps?: {
+      /**
+       * Props applied to the li element.
+       * @default {}
+       */
+      li?: React.HTMLProps<HTMLSpanElement>;
+      /**
+       * Props applied to the ol element.
+       * @default {}
+       */
+      ol?: React.HTMLProps<HTMLSpanElement>;
+      /**
+       * Props applied to the root element.
+       * @default {}
+       */
+      root?: React.HTMLProps<HTMLSpanElement>;
+      /**
+       * Props applied to the separator element.
+       * @default {}
+       */
+      separator?: React.HTMLProps<HTMLSpanElement>;
+    };
+    /**
      * Override the default label for the expand button.
      *
      * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).

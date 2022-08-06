@@ -56,7 +56,7 @@ const BreadcrumbsSeparator = styled('li', {
   marginRight: 8,
 });
 
-function insertSeparators(items, className, separator, ownerState) {
+function insertSeparators(items, className, separator, ownerState, otherProps) {
   return items.reduce((acc, current, index) => {
     if (index < items.length - 1) {
       acc = acc.concat(
@@ -66,6 +66,7 @@ function insertSeparators(items, className, separator, ownerState) {
           key={`separator-${index}`}
           className={className}
           ownerState={ownerState}
+          {...otherProps}
         >
           {separator}
         </BreadcrumbsSeparator>,
@@ -87,6 +88,7 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(inProps, ref) {
     components = {
       Collapsed: MoreHorizIcon,
     },
+    componentsProps = {},
     expandText = 'Show path',
     itemsAfterCollapse = 1,
     itemsBeforeCollapse = 1,
@@ -167,7 +169,7 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(inProps, ref) {
       return React.isValidElement(child);
     })
     .map((child, index) => (
-      <li className={classes.li} key={`child-${index}`}>
+      <li className={clsx(classes.li, componentsProps.li?.className)} key={`child-${index}`}>
         {child}
       </li>
     ));
@@ -179,9 +181,14 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(inProps, ref) {
       color="text.secondary"
       className={clsx(classes.root, className)}
       ownerState={ownerState}
-      {...other}
+      {...{ ...other, ...componentsProps.root }}
     >
-      <BreadcrumbsOl className={classes.ol} ref={listRef} ownerState={ownerState}>
+      <BreadcrumbsOl
+        className={classes.ol}
+        ref={listRef}
+        ownerState={ownerState}
+        {...componentsProps.ol}
+      >
         {insertSeparators(
           expanded || (maxItems && allItems.length <= maxItems)
             ? allItems
@@ -189,6 +196,7 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(inProps, ref) {
           classes.separator,
           separator,
           ownerState,
+          componentsProps.separator,
         )}
       </BreadcrumbsOl>
     </BreadcrumbsRoot>
@@ -225,6 +233,16 @@ Breadcrumbs.propTypes /* remove-proptypes */ = {
    */
   components: PropTypes.shape({
     Collapsed: PropTypes.elementType,
+  }),
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  componentsProps: PropTypes.shape({
+    li: PropTypes.object,
+    ol: PropTypes.object,
+    root: PropTypes.object,
+    separator: PropTypes.object,
   }),
   /**
    * Override the default label for the expand button.
