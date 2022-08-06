@@ -8,6 +8,7 @@ import {
   strictModeDoubleLoggingSupressed,
 } from 'test/utils';
 import Breadcrumbs, { breadcrumbsClasses as classes } from '@mui/material/Breadcrumbs';
+import FirstPageIcon from '../internal/svg-icons/FirstPage';
 
 describe('<Breadcrumbs />', () => {
   const { render } = createRenderer();
@@ -97,5 +98,38 @@ describe('<Breadcrumbs />', () => {
     ]);
     expect(screen.getAllByRole('listitem', { hidden: false })).to.have.length(4);
     expect(screen.getByRole('list')).to.have.text('first/second/third/fourth');
+  });
+
+  it('should show custom collapsed icon', () => {
+    const { getByRole } = render(
+      <Breadcrumbs
+        components={{
+          Collapsed: FirstPageIcon,
+        }}
+      >
+        <span>first</span>
+        <span>second</span>
+        <span>third</span>
+        <span>fourth</span>
+        <span>fifth</span>
+        <span>sixth</span>
+        <span>seventh</span>
+        <span>eighth</span>
+        <span>ninth</span>
+      </Breadcrumbs>,
+    );
+
+    expect(getByRole('button')).to.have.descendants('[data-testid="FirstPageIcon"]');
+  });
+
+  it('should apply componentProps to root', () => {
+    const { getByRole } = render(
+      <Breadcrumbs componentsProps={{ root: { className: 'root-test-label' } }}>
+        <span>first</span>
+        <span>second</span>
+      </Breadcrumbs>,
+    );
+
+    expect(getByRole('navigation')).to.have.class('root-test-label');
   });
 });

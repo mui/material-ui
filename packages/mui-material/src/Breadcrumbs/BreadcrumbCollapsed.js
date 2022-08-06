@@ -30,11 +30,13 @@ const BreadcrumbCollapsedButton = styled(ButtonBase)(({ theme }) => ({
  * @ignore - internal component.
  */
 function BreadcrumbCollapsed(props) {
+  const { components, ...otherProps } = props;
   const ownerState = props;
-  const CustomBreadcrumbCollapsedIcon = props.components.Collapsed;
+  const CustomBreadcrumbCollapsedIcon =
+    components && components.Collapsed ? components.Collapsed : <></>;
 
   const BreadcrumbCollapsedIcon = styled(
-    props.components && props.components.Collapsed ? CustomBreadcrumbCollapsedIcon : MoreHorizIcon,
+    components && components.Collapsed ? CustomBreadcrumbCollapsedIcon : MoreHorizIcon,
   )({
     width: 24,
     height: 16,
@@ -42,7 +44,7 @@ function BreadcrumbCollapsed(props) {
 
   return (
     <li>
-      <BreadcrumbCollapsedButton focusRipple {...props} ownerState={ownerState}>
+      <BreadcrumbCollapsedButton focusRipple {...otherProps} ownerState={ownerState}>
         <BreadcrumbCollapsedIcon ownerState={ownerState} />
       </BreadcrumbCollapsedButton>
     </li>
