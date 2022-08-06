@@ -71,6 +71,34 @@ describe('<Chip />', () => {
       const chip = container.querySelector(`.${classes.root}`);
       expect(chip).to.have.class(classes.colorSecondary);
     });
+
+    it('should render with the root and the info class', () => {
+      const { container } = render(<Chip color="info" />);
+
+      const chip = container.querySelector(`.${classes.root}`);
+      expect(chip).to.have.class(classes.colorInfo);
+    });
+
+    it('should render with the root and the error class', () => {
+      const { container } = render(<Chip color="error" />);
+
+      const chip = container.querySelector(`.${classes.root}`);
+      expect(chip).to.have.class(classes.colorError);
+    });
+
+    it('should render with the root and the warning class', () => {
+      const { container } = render(<Chip color="warning" />);
+
+      const chip = container.querySelector(`.${classes.root}`);
+      expect(chip).to.have.class(classes.colorWarning);
+    });
+
+    it('should render with the root and the success class', () => {
+      const { container } = render(<Chip color="success" />);
+
+      const chip = container.querySelector(`.${classes.root}`);
+      expect(chip).to.have.class(classes.colorSuccess);
+    });
   });
 
   describe('clickable chip', () => {
