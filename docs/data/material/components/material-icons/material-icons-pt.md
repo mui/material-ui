@@ -1,9 +1,9 @@
 ---
 product: material-ui
-components: Icon, SvgIcon
+components: Ícone, SvgIcon
 materialDesign: https://material.io/design/iconography/system-icons.html
 packageName: '@mui/icons-material'
-githubLabel: 'package: icons'
+githubLabel: 'pacote: ícones'
 ---
 
 # Ícones Material
