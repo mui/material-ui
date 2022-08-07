@@ -242,7 +242,7 @@ module.exports = {
   reactStrictMode,
   trailingSlash: true,
   // rewrites has no effect when run `next export` for production
-  async rewrites() {
+  rewrites: async () => {
     return [
       { source: `/:lang(${LANGUAGES.join('|')})?/:rest*`, destination: '/:rest*' },
       // Make sure to include the trailing slash if `trailingSlash` option is set
@@ -250,6 +250,14 @@ module.exports = {
       { source: `/static/x/:rest*`, destination: 'http://0.0.0.0:3001/static/x/:rest*' },
     ];
   },
+  // redirects only take effect in the development, not production (because of `next export`).
+  redirects: async () => [
+    {
+      source: '/x/:path(.{1,})',
+      destination: 'http://0.0.0:3001/x/:path',
+      permanent: false,
+    },
+  ],
   // Can be turned on when https://github.com/vercel/next.js/issues/24640 is fixed
   optimizeFonts: false,
 };
