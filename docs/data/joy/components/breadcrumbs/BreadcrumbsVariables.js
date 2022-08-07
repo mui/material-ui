@@ -14,7 +14,7 @@ export default function BreadcrumbsVariables() {
       data={[
         {
           var: '--Breadcrumbs-gap',
-          defaultValue: '0.25rem',
+          defaultValue: '4px',
         },
       ]}
       renderDemo={(sx) => (
