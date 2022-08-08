@@ -1,0 +1,4 @@
+<Alert variant="solid">Solid</Alert>
+<Alert variant="soft">Soft</Alert>
+<Alert variant="outlined">Outlined</Alert>
+<Alert variant="plain">Plain</Alert>
