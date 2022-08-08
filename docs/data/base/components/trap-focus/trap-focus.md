@@ -3,7 +3,6 @@ product: base
 title: React Trap Focus component
 components: TrapFocus
 githubLabel: 'component: TrapFocus'
-packageName: '@mui/base'
 ---
 
 # Trap focus
@@ -66,7 +65,7 @@ By default, clicks outside of the `TrapFocus` component are blocked.
 
 You can disable this behavior with the `disableEnforceFocus` prop.
 
-Compare the following demo with the demo from the [Basic usage section](#basic-usage)—notice how that demo prevents you from clicking outside of it, while this one allows it:
+Compare the following demo with the demo from the [Basics section](#basics)—notice how that demo prevents you from clicking outside of it, while this one allows it:
 
 {{"demo": "DisableEnforceFocus.js"}}
 

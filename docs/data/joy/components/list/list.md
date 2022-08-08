@@ -56,7 +56,7 @@ Use the `size` prop to control font-size and general list density.
 
 Use the `ListItemDecorator` component to add supporting icons or elements to the list item.
 
-It comes with a minimum set width that you can adjust via the `--List-decorator-width` CSS variable within the `List` component.
+It comes with a minimum set width that you can adjust via the `--List-decorator-size` CSS variable within the `List` component.
 
 {{"demo": "DecoratedList.js"}}
 
@@ -76,6 +76,10 @@ The `ListDivider` component comes with four `inset` patterns:
 - `inset="startContent"`: from the start of the content to the end of the list.
 
 {{"demo": "DividedList.js"}}
+
+For horizontal list, only `inset="gutter"` works on list divider.
+
+{{"demo": "HorizontalDividedList.js"}}
 
 ### Sticky item
 

@@ -109,6 +109,8 @@ Nested `Typography` components will render as a `<span>` tag by default, unless 
 </Typography>
 ```
 
+{{"demo": "NestedTypography.js"}}
+
 ## Create a new scale
 
 To create your own typographic scale at the theme level, define the keys and values to `theme.typography` node.

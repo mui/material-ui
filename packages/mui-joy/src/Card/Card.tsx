@@ -67,7 +67,7 @@ const CardRoot = styled('div', {
     padding: 'var(--Card-padding)',
     borderRadius: 'var(--Card-radius)',
     boxShadow: theme.vars.shadow.sm,
-    backgroundColor: theme.vars.palette.background.body,
+    backgroundColor: theme.vars.palette.background.surface,
     fontFamily: theme.vars.fontFamily.body,
     // TODO: discuss the theme transition.
     // This value is copied from mui-material Sheet.

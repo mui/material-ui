@@ -98,7 +98,7 @@ const ListItemRoot = styled('li', {
     fontFamily: theme.vars.fontFamily.body,
     ...(ownerState.sticky && {
       position: 'sticky',
-      top: 0,
+      top: 'var(--List-item-stickyTop, 0px)', // integration with Menu and Select.
       zIndex: 1,
       background: 'var(--List-item-stickyBackground)',
     }),
@@ -116,6 +116,7 @@ const ListItemStartAction = styled('div', {
   top: ownerState.nested ? 'calc(var(--List-item-minHeight) / 2)' : '50%',
   left: 0,
   transform: 'translate(var(--List-item-startActionTranslateX), -50%)',
+  zIndex: 1, // to stay on top of ListItemButton (default `position: relative`).
 }));
 
 const ListItemEndAction = styled('div', {

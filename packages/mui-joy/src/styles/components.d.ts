@@ -5,15 +5,19 @@ import { AvatarProps, AvatarSlot } from '../Avatar/AvatarProps';
 import { AvatarGroupProps, AvatarGroupSlot } from '../AvatarGroup/AvatarGroupProps';
 import { BadgeProps, BadgeSlot } from '../Badge/BadgeProps';
 import { BoxProps, BoxSlot } from '../Box/BoxProps';
+import { BreadcrumbsProps, BreadcrumbsSlot } from '../Breadcrumbs/BreadcrumbsProps';
 import { ButtonProps, ButtonSlot } from '../Button/ButtonProps';
 import { CardProps, CardSlot } from '../Card/CardProps';
 import { CardContentProps, CardContentSlot } from '../CardContent/CardContentProps';
 import { CardCoverProps, CardCoverSlot } from '../CardCover/CardCoverProps';
 import { CardOverflowProps, CardOverflowSlot } from '../CardOverflow/CardOverflowProps';
 import { CheckboxProps, CheckboxSlot } from '../Checkbox/CheckboxProps';
+import { ChipProps, ChipSlot } from '../Chip/ChipProps';
+import { ChipDeleteProps, ChipDeleteSlot } from '../ChipDelete/ChipDeleteProps';
 import { ContainerProps, ContainerSlot } from '../Container/ContainerProps';
 import { FormHelperTextProps, FormHelperTextSlot } from '../FormHelperText/FormHelperTextProps';
 import { FormLabelProps, FormLabelSlot } from '../FormLabel/FormLabelProps';
+import { GridProps, GridSlot } from '../Grid/GridProps';
 import { IconButtonProps, IconButtonSlot } from '../IconButton/IconButtonProps';
 import { InputProps, InputSlot } from '../Input/InputProps';
 import { LinkProps, LinkSlot } from '../Link/LinkProps';
@@ -26,20 +30,21 @@ import {
   ListItemDecoratorProps,
   ListItemDecoratorSlot,
 } from '../ListItemDecorator/ListItemDecoratorProps';
-import { SheetProps, SheetSlot } from '../Sheet/SheetProps';
-import { SvgIconProps, SvgIconSlot } from '../SvgIcon/SvgIconProps';
-import { SwitchProps, SwitchSlot } from '../Switch/SwitchProps';
-import { TextFieldProps, TextFieldSlot } from '../TextField/TextFieldProps';
-import { TypographyProps, TypographySlot } from '../Typography/TypographyProps';
-import { ChipProps, ChipSlot } from '../Chip/ChipProps';
-import { ChipDeleteProps, ChipDeleteSlot } from '../ChipDelete/ChipDeleteProps';
-import { SliderProps, SliderSlot } from '../Slider/SliderProps';
+import { MenuProps, MenuSlot } from '../Menu/MenuProps';
+import { MenuItemProps, MenuItemSlot } from '../MenuItem/MenuItemProps';
+import { MenuListProps, MenuListSlot } from '../MenuList/MenuListProps';
 import { RadioProps, RadioSlot } from '../Radio/RadioProps';
 import { RadioGroupProps, RadioGroupSlot } from '../RadioGroup/RadioGroupProps';
-import { GridProps, GridSlot } from '../Grid/GridProps';
-import { MenuProps, MenuSlot } from '../Menu/MenuProps';
-import { MenuListProps, MenuListSlot } from '../MenuList/MenuListProps';
-import { MenuItemProps, MenuItemSlot } from '../MenuItem/MenuItemProps';
+import { SheetProps, SheetSlot } from '../Sheet/SheetProps';
+import { SliderProps, SliderSlot } from '../Slider/SliderProps';
+import { SvgIconProps, SvgIconSlot } from '../SvgIcon/SvgIconProps';
+import { SwitchProps, SwitchSlot } from '../Switch/SwitchProps';
+import { TabOwnerState, TabProps, TabSlot } from '../Tab/TabProps';
+import { TabListOwnerState, TabListProps, TabListSlot } from '../TabList/TabListProps';
+import { TabPanelOwnerState, TabPanelProps, TabPanelSlot } from '../TabPanel/TabPanelProps';
+import { TabsOwnerState, TabsProps, TabsSlot } from '../Tabs/TabsProps';
+import { TextFieldProps, TextFieldSlot } from '../TextField/TextFieldProps';
+import { TypographyProps, TypographySlot } from '../Typography/TypographyProps';
 
 export type OverridesStyleRules<
   ClassKey extends string = string,
@@ -181,6 +186,26 @@ export interface Components<Theme = unknown> {
     defaultProps?: Partial<SwitchProps>;
     styleOverrides?: OverridesStyleRules<SwitchSlot, SwitchProps, Theme>;
   };
+  MuiLink?: {
+    defaultProps?: Partial<LinkProps>;
+    styleOverrides?: OverridesStyleRules<LinkSlot, LinkProps, Theme>;
+  };
+  MuiBreadcrumbs?: {
+    defaultProps?: Partial<BreadcrumbsProps>;
+    styleOverrides?: OverridesStyleRules<BreadcrumbsSlot, BreadcrumbsProps, Theme>;
+  };
+  MuiCheckbox?: {
+    defaultProps?: Partial<CheckboxProps>;
+    styleOverrides?: OverridesStyleRules<CheckboxSlot, CheckboxProps, Theme>;
+  };
+  MuiChip?: {
+    defaultProps?: Partial<ChipProps>;
+    styleOverrides?: OverridesStyleRules<ChipSlot, ChipProps, Theme>;
+  };
+  MuiChipDelete?: {
+    defaultProps?: Partial<ChipDeleteProps>;
+    styleOverrides?: OverridesStyleRules<ChipDeleteSlot, ChipDeleteProps, Theme>;
+  };
   // Temporary for Material UI icons usage
   MuiSvgIcon?: {
     defaultProps?: Partial<SvgIconProps>;
@@ -193,6 +218,22 @@ export interface Components<Theme = unknown> {
   JoySlider?: {
     defaultProps?: Partial<SliderProps>;
     styleOverrides?: OverridesStyleRules<SliderSlot, SliderProps, Theme>;
+  };
+  JoyTabs?: {
+    defaultProps?: Partial<TabsProps>;
+    styleOverrides?: OverridesStyleRules<TabsSlot, TabsOwnerState, Theme>;
+  };
+  JoyTabList?: {
+    defaultProps?: Partial<TabListProps>;
+    styleOverrides?: OverridesStyleRules<TabListSlot, TabListOwnerState, Theme>;
+  };
+  JoyTab?: {
+    defaultProps?: Partial<TabProps>;
+    styleOverrides?: OverridesStyleRules<TabSlot, TabOwnerState, Theme>;
+  };
+  JoyTabPanel?: {
+    defaultProps?: Partial<TabPanelProps>;
+    styleOverrides?: OverridesStyleRules<TabPanelSlot, TabPanelOwnerState, Theme>;
   };
   JoyTextField?: {
     defaultProps?: Partial<TextFieldProps>;

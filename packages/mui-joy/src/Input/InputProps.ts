@@ -42,20 +42,15 @@ export interface InputTypeMap<P = {}, D extends React.ElementType = 'div'> {
        */
       color?: OverridableStringUnion<ColorPaletteProp, InputPropsColorOverrides>;
       /**
-       * The components used for each slot inside the InputBase.
-       * Either a string to use a HTML element or a component.
-       */
-      components?: {
-        Root?: React.ElementType;
-        Input?: React.ElementType;
-      };
-      /**
        * The props used for each slot inside the Input.
        * @default {}
        */
       componentsProps?: {
         root?: React.ComponentPropsWithRef<'div'>;
-        input?: React.ComponentPropsWithRef<'input'>;
+        input?: React.ComponentPropsWithRef<'input'> & {
+          component?: React.ElementType;
+          sx?: SxProps;
+        };
       };
       /**
        * Trailing adornment for this input.
