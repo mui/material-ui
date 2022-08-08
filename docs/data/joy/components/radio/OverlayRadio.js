@@ -25,7 +25,7 @@ export default function OverlayRadio() {
         name="member"
         aria-labelledby="member"
         defaultValue="person1"
-        orientation="horizontal"
+        row
         sx={{ gap: 2 }}
       >
         {[1, 2, 3].map((num) => (

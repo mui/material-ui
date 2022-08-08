@@ -298,7 +298,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                     {propName}
                   </Typography>
                   <RadioGroup
-                    orientation="horizontal"
+                    row
                     name={labelId}
                     aria-labelledby={labelId}
                     value={resolvedValue}
@@ -343,7 +343,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                     Color
                   </Typography>
                   <RadioGroup
-                    orientation="horizontal"
+                    row
                     name={`${componentName}-color`}
                     aria-labelledby={`${componentName}-color`}
                     value={resolvedValue || ''}

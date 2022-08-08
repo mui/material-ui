@@ -9,18 +9,18 @@ import styled from '../styles/styled';
 import { getCardUtilityClass } from './cardClasses';
 import { CardProps, CardTypeMap } from './CardProps';
 import { resolveSxValue } from '../styles/styleUtils';
-import { CardOrientationContext } from './CardContext';
+import { CardRowContext } from './CardContext';
 
 const useUtilityClasses = (ownerState: CardProps) => {
-  const { size, variant, color, orientation } = ownerState;
+  const { size, variant, color, row } = ownerState;
 
   const slots = {
     root: [
       'root',
-      orientation,
       variant && `variant${capitalize(variant)}`,
       color && `color${capitalize(color)}`,
       size && `size${capitalize(size)}`,
+      row && 'row',
     ],
   };
 
@@ -74,7 +74,7 @@ const CardRoot = styled('div', {
     transition: 'box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
     position: 'relative',
     display: 'flex',
-    flexDirection: ownerState.orientation === 'horizontal' ? 'row' : 'column',
+    flexDirection: ownerState.row ? 'row' : 'column',
   },
   theme.variants[ownerState.variant!]?.[ownerState.color!],
 ]);
@@ -92,7 +92,7 @@ const Card = React.forwardRef(function Card(inProps, ref) {
     size = 'md',
     variant = 'plain',
     children,
-    orientation = 'vertical',
+    row = false,
     ...other
   } = props;
 
@@ -100,7 +100,7 @@ const Card = React.forwardRef(function Card(inProps, ref) {
     ...props,
     color,
     component,
-    orientation,
+    row,
     size,
     variant,
   };
@@ -108,7 +108,7 @@ const Card = React.forwardRef(function Card(inProps, ref) {
   const classes = useUtilityClasses(ownerState);
 
   return (
-    <CardOrientationContext.Provider value={orientation}>
+    <CardRowContext.Provider value={row}>
       <CardRoot
         as={component}
         ownerState={ownerState}
@@ -129,7 +129,7 @@ const Card = React.forwardRef(function Card(inProps, ref) {
           return child;
         })}
       </CardRoot>
-    </CardOrientationContext.Provider>
+    </CardRowContext.Provider>
   );
 }) as OverridableComponent<CardTypeMap>;
 
@@ -161,10 +161,10 @@ Card.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
-   * The flow direction of the content.
-   * @default 'vertical'
+   * If `true`, flex direction is set to 'row'.
+   * @default false
    */
-  orientation: PropTypes.oneOf(['horizontal', 'vertical']),
+  row: PropTypes.bool,
   /**
    * The size of the component.
    * It accepts theme values between 'xs' and 'xl'.

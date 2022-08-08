@@ -119,7 +119,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     modifiers,
     open,
     nesting: false,
-    orientation: 'vertical',
+    row: false,
   };
 
   const classes = useUtilityClasses(ownerState);
