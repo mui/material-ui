@@ -13561,10 +13561,10 @@ recast@^0.20.3, recast@^0.20.4:
     source-map "~0.6.1"
     tslib "^2.0.1"
 
-recast@^0.21.1:
-  version "0.21.1"
-  resolved "https://registry.yarnpkg.com/recast/-/recast-0.21.1.tgz#9b3f4f68c1fe9c1513a1c02ff572fdef02231de2"
-  integrity sha512-PF61BHLaOGF5oIKTpSrDM6Qfy2d7DIx5qblgqG+wjqHuFH97OgAqBYFIJwEuHTrM6pQGT17IJ8D0C/jVu/0tig==
+recast@^0.21.2:
+  version "0.21.2"
+  resolved "https://registry.yarnpkg.com/recast/-/recast-0.21.2.tgz#f1995f76397da403e8ed9beafb01a6ff8c29ed10"
+  integrity sha512-jUR1+NtaBQdKDqBJ+qxwMm5zR8aLSNh268EfgAbY+EP4wcNEWb6hZFhFeYjaYanwgDahx5t47CH8db7X2NfKdQ==
   dependencies:
     ast-types "0.15.2"
     esprima "~4.0.0"
