@@ -176,7 +176,9 @@ I recently tried to wrap a `TextField` component in a `FormControl`, and was fru
 But the reason why is quite simple: the `TextField` component is itself composed of an input wrapped inside of a `FormControl`, and neither TypeScript nor `console.error` messages could warn me that my rendered markup was redundant and broken.
 
 ```jsx
-<TextField>
+<FormControl>
+  <TextField>
+</FormControl>
 
 // Equivalent to
 
