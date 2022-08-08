@@ -18,7 +18,7 @@ Along the way, we’ll explore how these tradeoffs ultimately led to the solutio
 ## Style modification
 
 If you already use a styling library, don’t hesitate to skip this part.
-See you back in the [Logic modification section](#logic-modification)
+See you back in the [Logic modification section](#logic-modification).
 
 ### Good old CSS
 
@@ -30,7 +30,7 @@ Most of the time it is the selector using more classes.
 For example, if we look at a switch component, we have multiple subcomponents that we could expect to modify.
 For each of them, we assign a specific CSS class:
 
-<img src="/static/blog/making-customizable-components/switchHighlighted.png" style="width: 796px; margin-top: 16px; margin-bottom: 16px;" alt="Switch component with highlighted sub components" />
+<img src="/static/blog/making-customizable-components/switchHighlighted.png" style="width: 532px; margin-top: 16px; margin-bottom: 16px;" alt="Switch component with highlighted sub components" />
 
 Notice that each element is styled using only one CSS class— the thumb style, for example, is applied with the `css-jsexje-MuiSwitch-thumb` class.
 So any CSS selector that includes more than one class will override its style.
@@ -42,23 +42,25 @@ You can play with those examples in a [codesandbox](https://codesandbox.io/s/fas
 
 ```jsx
 <Switch className="uglySwitch" />
+```
 
-// two classes are more specific than the default single class selector
+```css
+/* two classes are more specific than the default single class selector */
 .uglySwitch .MuiSwitch-thumb {
- background-color: 'green';
+  background-color: 'green';
 }
 .uglySwitch .MuiTouchRipple-root {
- border: 'solid red 2px';
+  border: 'solid red 2px';
 }
 .uglySwitch .MuiSwitch-track {
- background-color: 'orange';
- opacity: 1;
+  background-color: 'orange';
+  opacity: 1;
 }
 ```
 
 ### Let JS generate the CSS
 
-Maybe you don’t want to spent your time switching between CSS and JS files, or write long and cluttered stylesheets.
+Maybe you don’t want to spend your time switching between CSS and JavaScript files, or writing long and cluttered stylesheets.
 To avoid these problems you can integrate the style in your JS code 🎉
 
 Because the level of customization varies across projects, MUI has added multiple ways to customize components.
@@ -100,7 +102,7 @@ But how should we implement this kind of customization?
 
 Adding a prop called `filterPanelColumnInputSortingStrategy` could work, but please don’t do that.
 It just doesn’t scale.
-There are too many different properties that developers might need to modify.
+There are too many different props that developers might need to modify.
 You will end up with API documentation so long that it will take an eternity to scroll to the end—so nobody will read it.
 
 <img src="/static/blog/making-customizable-components/bruce.gif" style="width: 500px; margin-top: 16px; margin-bottom: 8px;" alt="Your user opening the list of props" />
@@ -115,7 +117,7 @@ Passing all the parameters as props of a single component does not work.
 So just don’t create components.
 
 It’s not a joke—that’s the approach of headless libraries such as react-table.
-Instead of providing working components, they only provide hooks for managing the features, and let developers build their components on top of that.
+Instead of providing working components, they provide hooks for managing the features and let developers build their components on top of it.
 
 If you’re willing to start from scratch, that's a nice approach.
 Use one hook to manage filtering, another one to manage the sorting, and then build your UI using returned values.
@@ -139,18 +141,19 @@ It is a provider that’s responsible for managing all data fetching and passing
 The second important component is `ListGuesser` which defines how the data should be displayed.
 
 ```jsx
-import React from 'react';
+import * as React from 'react';
 import { Admin, Resource, ListGuesser } from 'react-admin';
 import simpleRestProvider from 'ra-data-simple-rest';
 
 const dataProvider = simpleRestProvider('https://domain.tld/api');
 
-const App = () => (
-  <Admin dataProvider={dataProvider}>
-    <Resource name="users" list={ListGuesser} />
-  </Admin>
-);
-export default App;
+export default function App() {
+  return (
+    <Admin dataProvider={dataProvider}>
+      <Resource name="users" list={ListGuesser} />
+    </Admin>
+  );
+}
 ```
 
 If you’re unhappy with the rendering of the `ListGuesser`, then you can define your own components by reusing smaller components.
@@ -173,9 +176,7 @@ I recently tried to wrap a `TextField` component in a `FormControl`, and was fru
 But the reason why is quite simple: the `TextField` component is itself composed of an input wrapped inside of a `FormControl`, and neither TypeScript nor `console.error` messages could warn me that my rendered markup was redundant and broken.
 
 ```jsx
-<FormControl>
-  <TextField>
-</FormControl>
+<TextField>
 
 // Equivalent to
 
