@@ -19,11 +19,13 @@ declare module '@mui/material/TableCell' {
 const theme = createTheme({
   components: {
     MuiTableCell: {
-      root: ({ ownerState }) => ({
-        ...(ownerState.size === 'large' && {
-          paddingBlock: '1rem',
+      styleOverrides: {
+        root: ({ ownerState }) => ({
+          ...(ownerState.size === 'large' && {
+            paddingBlock: '1rem',
+          }),
         }),
-      }),
+      },
     },
   },
 });
