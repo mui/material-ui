@@ -38,7 +38,7 @@ export default function WhatToExpect() {
               You can use the software in a production environment forever. Any version of the
               software released prior to the end of your subscription are available in perpetuity.
               There are no further charges unless you choose to continue development. See the
-              &quot;Development license&quot; section of this page for more details.
+              &quot;Development license&quot; section for more details.
             </Typography>
           </Paper>
         </Grid>
