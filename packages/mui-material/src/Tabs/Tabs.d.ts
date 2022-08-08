@@ -49,6 +49,17 @@ export interface TabsTypeMap<P = {}, D extends React.ElementType = typeof Button
      */
     classes?: Partial<TabsClasses>;
     /**
+     * The components used for ScrollButtonStart, ScrollButtonEnd item type
+     * @default {
+     *   ScrollButtonStart: KeyboardArrowLeft,
+     *   ScrollButtonEnd: KeyboardArrowRight,
+     * }
+     */
+    components?: {
+      ScrollButtonStart?: React.ElementType;
+      ScrollButtonEnd?: React.ElementType;
+    };
+    /**
      * Determines the color of the indicator.
      * @default 'primary'
      */

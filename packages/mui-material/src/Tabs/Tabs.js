@@ -16,6 +16,8 @@ import useEventCallback from '../utils/useEventCallback';
 import tabsClasses, { getTabsUtilityClass } from './tabsClasses';
 import ownerDocument from '../utils/ownerDocument';
 import ownerWindow from '../utils/ownerWindow';
+import KeyboardArrowLeft from '../internal/svg-icons/KeyboardArrowLeft';
+import KeyboardArrowRight from '../internal/svg-icons/KeyboardArrowRight';
 
 const nextItem = (list, item) => {
   if (list === item) {
@@ -241,6 +243,10 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     children: childrenProp,
     className,
     component = 'div',
+    components = {
+      ScrollButtonStart: KeyboardArrowLeft,
+      ScrollButtonEnd: KeyboardArrowRight,
+    },
     allowScrollButtonsMobile = false,
     indicatorColor = 'primary',
     onChange,
@@ -481,6 +487,17 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     });
   }, []);
 
+  const normalizedIcons =
+    isRtl === 'rtl'
+      ? {
+          ScrollButtonStart: components.ScrollButtonEnd || KeyboardArrowRight,
+          ScrollButtonEnd: components.ScrollButtonStart || KeyboardArrowLeft,
+        }
+      : {
+          ScrollButtonStart: components.ScrollButtonStart || KeyboardArrowLeft,
+          ScrollButtonEnd: components.ScrollButtonEnd || KeyboardArrowRight,
+        };
+
   const getConditionalElements = () => {
     const conditionalElements = {};
 
@@ -497,6 +514,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
 
     conditionalElements.scrollButtonStart = showScrollButtons ? (
       <ScrollButtonComponent
+        components={normalizedIcons}
         orientation={orientation}
         direction={isRtl ? 'right' : 'left'}
         onClick={handleStartScrollClick}
@@ -508,6 +526,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
 
     conditionalElements.scrollButtonEnd = showScrollButtons ? (
       <ScrollButtonComponent
+        components={normalizedIcons}
         orientation={orientation}
         direction={isRtl ? 'left' : 'right'}
         onClick={handleEndScrollClick}
@@ -813,6 +832,17 @@ Tabs.propTypes /* remove-proptypes */ = {
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
+  /**
+   * The components used for ScrollButtonStart, ScrollButtonEnd item type
+   * @default {
+   *   ScrollButtonStart: KeyboardArrowLeft,
+   *   ScrollButtonEnd: KeyboardArrowRight,
+   * }
+   */
+  components: PropTypes.shape({
+    ScrollButtonEnd: PropTypes.elementType,
+    ScrollButtonStart: PropTypes.elementType,
+  }),
   /**
    * Determines the color of the indicator.
    * @default 'primary'

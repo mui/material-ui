@@ -10,6 +10,13 @@
     },
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
+    "components": {
+      "type": {
+        "name": "shape",
+        "description": "{ ScrollButtonEnd?: elementType, ScrollButtonStart?: elementType }"
+      },
+      "default": "{\n  ScrollButtonStart: KeyboardArrowLeft,\n  ScrollButtonEnd: KeyboardArrowRight,\n}"
+    },
     "disabled": { "type": { "name": "bool" } },
     "sx": {
       "type": {

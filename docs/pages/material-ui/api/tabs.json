@@ -8,6 +8,13 @@
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
     "component": { "type": { "name": "elementType" } },
+    "components": {
+      "type": {
+        "name": "shape",
+        "description": "{ ScrollButtonEnd?: elementType, ScrollButtonStart?: elementType }"
+      },
+      "default": "{\n  ScrollButtonStart: KeyboardArrowLeft,\n  ScrollButtonEnd: KeyboardArrowRight,\n}"
+    },
     "indicatorColor": {
       "type": {
         "name": "union",
