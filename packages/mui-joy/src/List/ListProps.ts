@@ -22,10 +22,10 @@ export interface ListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
      */
     color?: OverridableStringUnion<ColorPaletteProp, ListPropsColorOverrides>;
     /**
-     * The flow direction of the content.
-     * @default 'vertical'
+     * If `true`, display the list in horizontal direction.
+     * @default false
      */
-    orientation?: 'vertical' | 'horizontal';
+    row?: boolean;
     /**
      * The size of the component (affect other nested list* components).
      * @default 'md'

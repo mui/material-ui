@@ -298,7 +298,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                     {propName}
                   </Typography>
                   <RadioGroup
-                    orientation="horizontal"
+                    row
                     name={labelId}
                     aria-labelledby={labelId}
                     value={resolvedValue}
@@ -343,7 +343,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                     Color
                   </Typography>
                   <RadioGroup
-                    orientation="horizontal"
+                    row
                     name={`${componentName}-color`}
                     aria-labelledby={`${componentName}-color`}
                     value={resolvedValue || ''}
@@ -480,11 +480,13 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                   key={propName}
                   label={propName}
                   size="sm"
-                  value={resolvedValue || ''}
+                  value={
+                    typeof props[propName] === 'string' ? props[propName] || '' : defaultValue || ''
+                  }
                   onChange={(event) =>
                     setProps((latestProps) => ({
                       ...latestProps,
-                      [propName]: event.target.value || undefined,
+                      [propName]: event.target.value,
                     }))
                   }
                   sx={{

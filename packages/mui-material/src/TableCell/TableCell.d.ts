@@ -1,7 +1,10 @@
 import * as React from 'react';
+import { OverridableStringUnion } from '@mui/types';
 import { SxProps } from '@mui/system';
 import { InternalStandardProps as StandardProps, Theme } from '..';
 import { TableCellClasses } from './tableCellClasses';
+
+export interface TableCellPropsSizeOverrides {}
 
 /**
  * `<TableCell>` will be rendered as an `<th>`or `<td>` depending
@@ -46,7 +49,7 @@ export interface TableCellProps extends StandardProps<TableCellBaseProps, 'align
    * Specify the size of the cell.
    * The prop defaults to the value (`'medium'`) inherited from the parent Table component.
    */
-  size?: 'small' | 'medium';
+  size?: OverridableStringUnion<'small' | 'medium', TableCellPropsSizeOverrides>;
   /**
    * Set aria-sort direction.
    */

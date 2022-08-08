@@ -573,16 +573,6 @@ export function getThemedComponents(): ThemeOptions {
             }),
         },
       },
-      MuiContainer: {
-        styleOverrides: {
-          root: ({ theme }) => ({
-            [theme.breakpoints.up('md')]: {
-              paddingLeft: theme.spacing(2),
-              paddingRight: theme.spacing(2),
-            },
-          }),
-        },
-      },
       MuiDivider: {
         styleOverrides: {
           root: ({ theme }) =>

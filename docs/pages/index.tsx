@@ -28,7 +28,7 @@ export default function Home() {
       </NoSsr>
       <AppHeaderBanner />
       <AppHeader />
-      <main>
+      <main id="main-content">
         <Hero />
         <References companies={CORE_CUSTOMERS} />
         <ProductSuite />

@@ -3,6 +3,7 @@ import { ThemeProvider, useTheme, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import { getDesignTokens, getThemedComponents } from 'docs/src/modules/brandingTheme';
 import { NextNProgressBar } from 'docs/src/modules/components/AppFrame';
+import SkipLink from 'docs/src/modules/components/SkipLink';
 
 interface BrandingProviderProps {
   children: React.ReactNode;
@@ -12,7 +13,8 @@ interface BrandingProviderProps {
   mode?: 'light' | 'dark';
 }
 
-export default function BrandingProvider({ children, mode: modeProp }: BrandingProviderProps) {
+export default function BrandingProvider(props: BrandingProviderProps) {
+  const { children, mode: modeProp } = props;
   const upperTheme = useTheme();
   const mode = modeProp || upperTheme.palette.mode;
   const theme = React.useMemo(
@@ -25,8 +27,9 @@ export default function BrandingProvider({ children, mode: modeProp }: BrandingP
   );
   return (
     <ThemeProvider theme={modeProp ? () => theme : theme}>
-      {!modeProp && <NextNProgressBar />}
-      {!modeProp && <CssBaseline />}
+      {modeProp ? null : <NextNProgressBar />}
+      {modeProp ? null : <CssBaseline />}
+      {modeProp ? null : <SkipLink />}
       {children}
     </ThemeProvider>
   );
