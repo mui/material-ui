@@ -74,8 +74,8 @@ const faqData = [
         supported.
         <br />
         <br />
-        The price point per developer is adjusted to be lower than if only direct
-        use needed a license.{' '}
+        The price point per developer is adjusted to be lower than if only direct use needed a
+        license.{' '}
         <Link
           target="_blank"
           rel="noopener"

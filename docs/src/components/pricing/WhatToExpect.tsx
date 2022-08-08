@@ -57,11 +57,10 @@ export default function WhatToExpect() {
               </Typography>
             </Box>
             <Typography variant="body2" color="text.secondary">
-              The licenses are sold on a per front-end developer basis.
-              The Pro plan includes is capped at ten licenses; you do not need to pay for additional licenses for more than ten developers.
-              You can contact{' '}
-              <Link href="mailto:sales@mui.com">sales</Link> for a volume discount when licensing
-              over 50 developers under the Premium plan.
+              The licenses are sold on a per front-end developer basis. The Pro plan includes is
+              capped at ten licenses; you do not need to pay for additional licenses for more than
+              ten developers. You can contact <Link href="mailto:sales@mui.com">sales</Link> for a
+              volume discount when licensing over 50 developers under the Premium plan.
             </Typography>
           </Paper>
         </Grid>
@@ -85,9 +84,9 @@ export default function WhatToExpect() {
               <Link href="https://mui.com/x/introduction/support/#technical-support">
                 learn more about support
               </Link>{' '}
-              in the docs. Note that, except for critical issues, such as security flaws, we release bug
-              fixes and other improvements on top of the latest version, instead of patching older
-              versions.
+              in the docs. Note that, except for critical issues, such as security flaws, we release
+              bug fixes and other improvements on top of the latest version, instead of patching
+              older versions.
             </Typography>
           </Paper>
         </Grid>
