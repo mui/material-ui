@@ -14,7 +14,7 @@ export default function ExampleButtonCheckbox() {
       variant="soft"
       aria-label="Screens"
       role="group"
-      orientation="horizontal"
+      row
       sx={{
         flexGrow: 0,
         '--List-gap': '8px',

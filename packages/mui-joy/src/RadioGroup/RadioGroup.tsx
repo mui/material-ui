@@ -14,11 +14,11 @@ import { RadioGroupProps, RadioGroupTypeMap } from './RadioGroupProps';
 import RadioGroupContext from './RadioGroupContext';
 
 const useUtilityClasses = (ownerState: RadioGroupProps) => {
-  const { orientation, size, variant, color } = ownerState;
+  const { row, size, variant, color } = ownerState;
   const slots = {
     root: [
       'root',
-      orientation,
+      row && 'row',
       variant && `variant${capitalize(variant)}`,
       color && `color${capitalize(color)}`,
       size && `size${capitalize(size)}`,
@@ -43,7 +43,7 @@ const RadioGroupRoot = styled('div', {
     '--RadioGroup-gap': '1.25rem',
   }),
   display: 'flex',
-  flexDirection: ownerState.orientation === 'horizontal' ? 'row' : 'column',
+  flexDirection: ownerState.row ? 'row' : 'column',
   borderRadius: theme.vars.radius.sm,
   ...theme.variants[ownerState.variant!]?.[ownerState.color!],
 }));
@@ -67,7 +67,7 @@ const RadioGroup = React.forwardRef(function RadioGroup(inProps, ref) {
     color = 'neutral',
     variant = 'plain',
     size = 'md',
-    orientation = 'vertical',
+    row = false,
     ...otherProps
   } = props;
 
@@ -78,7 +78,7 @@ const RadioGroup = React.forwardRef(function RadioGroup(inProps, ref) {
   });
 
   const ownerState = {
-    orientation,
+    row,
     size,
     variant,
     color,
@@ -102,7 +102,7 @@ const RadioGroup = React.forwardRef(function RadioGroup(inProps, ref) {
       value={{
         disableIcon,
         overlay,
-        orientation,
+        row,
         size,
         name,
         value,
@@ -178,14 +178,14 @@ RadioGroup.propTypes /* remove-proptypes */ = {
    */
   onChange: PropTypes.func,
   /**
-   * The direction of the radio buttons.
-   * @default 'vertical'
-   */
-  orientation: PropTypes.oneOf(['horizontal', 'vertical']),
-  /**
    * The radio's `overlay` prop. If specified, the value is passed down to every radios under this element.
    */
   overlay: PropTypes.bool,
+  /**
+   * If `true`, flex direction is set to 'row'.
+   * @default false
+   */
+  row: PropTypes.bool,
   /**
    * The size of the component.
    * @default 'md'

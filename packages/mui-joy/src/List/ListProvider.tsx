@@ -1,5 +1,5 @@
 import * as React from 'react';
-import ListOrientationContext from './ListOrientationContext';
+import RowListContext from './RowListContext';
 import WrapListContext from './WrapListContext';
 import NestedListContext from './NestedListContext';
 
@@ -33,10 +33,10 @@ export interface ListProviderProps {
    */
   nested?: boolean;
   /**
-   * The flow direction of the content.
-   * @default 'vertical'
+   * If `true`, display the list in horizontal direction.
+   * @default false
    */
-  orientation?: 'vertical' | 'horizontal';
+  row?: boolean;
   /**
    * Only for horizontal list.
    * If `true`, the list sets the flex-wrap to "wrap" and adjust margin to have gap-like behavior (will move to `gap` in the future).
@@ -50,11 +50,11 @@ export interface ListProviderProps {
 const ListProvider = ({
   children,
   nested,
-  orientation = 'vertical',
+  row = false,
   wrap = false,
 }: React.PropsWithChildren<ListProviderProps>) => {
   const baseProviders = (
-    <ListOrientationContext.Provider value={orientation}>
+    <RowListContext.Provider value={row}>
       <WrapListContext.Provider value={wrap}>
         {React.Children.map(children, (child, index) =>
           React.isValidElement(child)
@@ -65,7 +65,7 @@ const ListProvider = ({
             : child,
         )}
       </WrapListContext.Provider>
-    </ListOrientationContext.Provider>
+    </RowListContext.Provider>
   );
   if (nested === undefined) {
     return baseProviders;

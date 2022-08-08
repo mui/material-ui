@@ -21,10 +21,10 @@ export interface CardTypeMap<P = {}, D extends React.ElementType = 'div'> {
      */
     color?: OverridableStringUnion<ColorPaletteProp, CardPropsColorOverrides>;
     /**
-     * The flow direction of the content.
-     * @default 'vertical'
+     * If `true`, flex direction is set to 'row'.
+     * @default false
      */
-    orientation?: 'vertical' | 'horizontal';
+    row?: boolean;
     /**
      * The size of the component.
      * It accepts theme values between 'xs' and 'xl'.

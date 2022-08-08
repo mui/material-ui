@@ -11,7 +11,7 @@ export default function RadioButtonsGroup() {
   const [alignment, setAlignment] = React.useState('left');
   return (
     <RadioGroup
-      orientation="horizontal"
+      row
       aria-label="Alignment"
       name="alignment"
       variant="outlined"
