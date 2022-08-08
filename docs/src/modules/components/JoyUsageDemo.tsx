@@ -480,11 +480,13 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                   key={propName}
                   label={propName}
                   size="sm"
-                  value={resolvedValue || ''}
+                  value={
+                    typeof props[propName] === 'string' ? props[propName] || '' : defaultValue || ''
+                  }
                   onChange={(event) =>
                     setProps((latestProps) => ({
                       ...latestProps,
-                      [propName]: event.target.value || undefined,
+                      [propName]: event.target.value,
                     }))
                   }
                   sx={{
