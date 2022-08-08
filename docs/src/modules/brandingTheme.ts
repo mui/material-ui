@@ -5,9 +5,7 @@ import ArrowDropDownRounded from '@mui/icons-material/ArrowDropDownRounded';
 import { createTheme, ThemeOptions, Theme, alpha } from '@mui/material/styles';
 
 interface GetStyle {
-  (
-    scheme: Partial<Record<'default' | 'light' | 'dark', Record<string, string | number>>>,
-  ): CSSObject;
+  (scheme: Partial<Record<'default' | 'light' | 'dark', CSSObject>>): CSSObject;
 }
 
 declare module '@mui/material/styles' {
@@ -333,9 +331,9 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
           if (colorScheme === 'default') {
             Object.assign(style, css);
           } else {
-            const selector = (this as Theme).getColorSchemeSelector(
-              colorScheme as 'light' | 'dark',
-            );
+            const selector = (this as Theme)
+              .getColorSchemeSelector(colorScheme as 'light' | 'dark')
+              .replace(/(\[[^\]]+\])/, ':where($1)');
             Object.assign(style, {
               [selector]: css,
             });
