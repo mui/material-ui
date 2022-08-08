@@ -66,8 +66,8 @@ The accessibility of this component relies on:
 
 {{"demo": "CollapsedBreadcrumbs.js"}}
 
-### With `Menu`
+### With [`Menu`](/joy-ui/react-menu/)
 
-You can use the Joy `Breadcrumbs` component together with the MUI Joy `Menu` component.
+You can use the Joy `Breadcrumbs` component together with the MUI Joy [`Menu`](/joy-ui/react-menu/) component.
 
 {{"demo": "BreadcrumbsWithMenu.js"}}
