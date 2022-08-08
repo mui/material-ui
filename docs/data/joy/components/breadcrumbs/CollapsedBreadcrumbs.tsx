@@ -1,14 +1,11 @@
 import FolderIcon from '@mui/icons-material/Folder';
-import Box from '@mui/joy/Box';
 import Breadcrumbs from '@mui/joy/Breadcrumbs';
 import Button from '@mui/joy/Button';
 import Link from '@mui/joy/Link';
-import Sheet from '@mui/joy/Sheet';
-import { ColorPaletteProp } from '@mui/joy/styles';
 import Typography from '@mui/joy/Typography';
 import * as React from 'react';
 
-const CustomBreadcrumbs = ({ color }: { color: ColorPaletteProp }) => {
+export default function CollapsedBreadcrumbs() {
   const [collapsed, setCollapsed] = React.useState<boolean>(true);
   const [navigationItems, setNavigationItems] = React.useState<string[]>([
     'Programs',
@@ -26,7 +23,7 @@ const CustomBreadcrumbs = ({ color }: { color: ColorPaletteProp }) => {
             setCollapsed(false);
           }}
           variant="plain"
-          color={color}
+          color="info"
         >
           •••
         </Button>
@@ -36,7 +33,7 @@ const CustomBreadcrumbs = ({ color }: { color: ColorPaletteProp }) => {
           // The `preventDefault` is for demonstration purposes, generally, you don't need it in your application
           onClick={(event) => event.preventDefault()}
           underline="hover"
-          color={color}
+          color="info"
           href="/"
           fontSize="inherit"
         >
@@ -49,32 +46,5 @@ const CustomBreadcrumbs = ({ color }: { color: ColorPaletteProp }) => {
         bablo.txt
       </Typography>
     </Breadcrumbs>
-  );
-};
-
-export default function CollapsedBreadcrumbs() {
-  return (
-    <Box
-      sx={{
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}
-    >
-      {(
-        [
-          'neutral',
-          'primary',
-          'danger',
-          'info',
-          'success',
-          'warning',
-        ] as ColorPaletteProp[]
-      ).map((color: ColorPaletteProp) => (
-        <Sheet variant="plain" color={color} key={color}>
-          <CustomBreadcrumbs color={color} />
-        </Sheet>
-      ))}
-    </Box>
   );
 }

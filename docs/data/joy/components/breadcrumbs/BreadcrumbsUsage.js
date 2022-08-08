@@ -20,6 +20,10 @@ export default function BreadcrumbsUsage() {
           knob: 'input',
           defaultValue: '/',
         },
+        {
+          propName: 'children',
+          defaultValue: '<Link />\n  ...',
+        },
       ]}
       renderDemo={(props) => (
         <Breadcrumbs {...props} aria-label="breadcrumbs">

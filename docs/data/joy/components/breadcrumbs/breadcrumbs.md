@@ -33,7 +33,7 @@ export default function MyApp() {
 
 {{"demo": "BasicBreadcrumbs.js"}}
 
-You can add an icon as a decorator to the `Link` and mix it with the `color` prop.
+You can add an icon as a decorator to the [`Link`](/joy-ui/react-link/) and mix it with the `color` prop.
 
 {{"demo": "BreadcrumbsWithIcon.js"}}
 
@@ -58,11 +58,15 @@ The accessibility of this component relies on:
 
 ## CSS Variables
 
+Play around with one of the CSS variables available in the breadcrumbs component to see how the design changes.
+
 {{"demo": "BreadcrumbsVariables.js", "hideToolbar": true}}
 
 ## Common examples
 
 ### Collapsed Breadcrumbs
+
+You can change the color of the links. You can learn more about them in [`Link`](/joy-ui/react-link/).
 
 {{"demo": "CollapsedBreadcrumbs.js"}}
 

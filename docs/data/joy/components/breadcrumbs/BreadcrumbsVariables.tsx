@@ -8,9 +8,6 @@ export default function BreadcrumbsVariables() {
   return (
     <JoyVariablesDemo
       componentName="Breadcrumbs"
-      renderCode={(formattedSx) =>
-        `<Breadcrumbs ${formattedSx ? `${formattedSx}>` : '\n>'}`
-      }
       data={[
         {
           var: '--Breadcrumbs-gap',
@@ -19,7 +16,7 @@ export default function BreadcrumbsVariables() {
       ]}
       renderDemo={(sx) => (
         <Breadcrumbs sx={sx}>
-          {['Breadcrumb 1', 'Breadcrumb 2', 'Breadcrumb 3'].map((item: string) => (
+          {['Menu 1', 'Menu 2'].map((item: string) => (
             <Link
               // The `preventDefault` is for demonstration purposes, generally, you don't need it in your application
               onClick={(event) => event.preventDefault()}
@@ -32,7 +29,7 @@ export default function BreadcrumbsVariables() {
               {item}
             </Link>
           ))}
-          <Typography fontSize="inherit">Breadcrumb 4</Typography>
+          <Typography fontSize="inherit">Menu 3</Typography>
         </Breadcrumbs>
       )}
     />

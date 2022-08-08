@@ -1,15 +1,11 @@
 import FolderIcon from '@mui/icons-material/Folder';
-import PropTypes from 'prop-types';
-import Box from '@mui/joy/Box';
 import Breadcrumbs from '@mui/joy/Breadcrumbs';
 import Button from '@mui/joy/Button';
 import Link from '@mui/joy/Link';
-import Sheet from '@mui/joy/Sheet';
-
 import Typography from '@mui/joy/Typography';
 import * as React from 'react';
 
-const CustomBreadcrumbs = ({ color }) => {
+export default function CollapsedBreadcrumbs() {
   const [collapsed, setCollapsed] = React.useState(true);
   const [navigationItems, setNavigationItems] = React.useState([
     'Programs',
@@ -27,7 +23,7 @@ const CustomBreadcrumbs = ({ color }) => {
             setCollapsed(false);
           }}
           variant="plain"
-          color={color}
+          color="info"
         >
           •••
         </Button>
@@ -37,7 +33,7 @@ const CustomBreadcrumbs = ({ color }) => {
           // The `preventDefault` is for demonstration purposes, generally, you don't need it in your application
           onClick={(event) => event.preventDefault()}
           underline="hover"
-          color={color}
+          color="info"
           href="/"
           fontSize="inherit"
         >
@@ -51,36 +47,5 @@ const CustomBreadcrumbs = ({ color }) => {
         bablo.txt
       </Typography>
     </Breadcrumbs>
-  );
-};
-
-CustomBreadcrumbs.propTypes = {
-  color: PropTypes.oneOf([
-    'danger',
-    'info',
-    'neutral',
-    'primary',
-    'success',
-    'warning',
-  ]).isRequired,
-};
-
-export default function CollapsedBreadcrumbs() {
-  return (
-    <Box
-      sx={{
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}
-    >
-      {['neutral', 'primary', 'danger', 'info', 'success', 'warning'].map(
-        (color) => (
-          <Sheet variant="plain" color={color} key={color}>
-            <CustomBreadcrumbs color={color} />
-          </Sheet>
-        ),
-      )}
-    </Box>
   );
 }
