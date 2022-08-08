@@ -1343,19 +1343,19 @@
   resolved "https://registry.yarnpkg.com/@discoveryjs/json-ext/-/json-ext-0.5.2.tgz#8f03a22a04de437254e8ce8cc84ba39689288752"
   integrity sha512-HyYEUDeIj5rRQU2Hk5HTB2uHsbRQpF70nvMhVzi+VJR0X+xNEhjPui4/kBf3VeH/wqD28PT4sVOm8qqLjBrSZg==
 
-"@docsearch/css@3.1.1":
-  version "3.1.1"
-  resolved "https://registry.yarnpkg.com/@docsearch/css/-/css-3.1.1.tgz#e0976bf995e383f8ee8657306311b9cb95016330"
-  integrity sha512-utLgg7E1agqQeqCJn05DWC7XXMk4tMUUnL7MZupcknRu2OzGN13qwey2qA/0NAKkVBGugiWtON0+rlU0QIPojg==
+"@docsearch/css@3.2.0":
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/@docsearch/css/-/css-3.2.0.tgz#9f0f7ccb315cfe2db4565264569e1cb4b26dc26d"
+  integrity sha512-jnNrO2JVYYhj2pP2FomlHIy6220n6mrLn2t9v2/qc+rM7M/fbIcKMgk9ky4RN+L/maUEmteckzg6/PIYoAAXJg==
 
-"@docsearch/react@^3.1.1":
-  version "3.1.1"
-  resolved "https://registry.yarnpkg.com/@docsearch/react/-/react-3.1.1.tgz#3dffb5db8cf9eb95d6e732cf038264bfc10191ed"
-  integrity sha512-cfoql4qvtsVRqBMYxhlGNpvyy/KlCoPqjIsJSZYqYf9AplZncKjLBTcwBu6RXFMVCe30cIFljniI4OjqAU67pQ==
+"@docsearch/react@^3.2.0":
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/@docsearch/react/-/react-3.2.0.tgz#440c91e57cd48b87ff8e7d7fd446620ada9e677a"
+  integrity sha512-ATS3w5JBgQGQF0kHn5iOAPfnCCaoLouZQMmI7oENV//QMFrYbjhUZxBU9lIwAT7Rzybud+Jtb4nG5IEjBk3Ixw==
   dependencies:
     "@algolia/autocomplete-core" "1.7.1"
     "@algolia/autocomplete-preset-algolia" "1.7.1"
-    "@docsearch/css" "3.1.1"
+    "@docsearch/css" "3.2.0"
     algoliasearch "^4.0.0"
 
 "@emotion/babel-plugin@^11.7.1":
