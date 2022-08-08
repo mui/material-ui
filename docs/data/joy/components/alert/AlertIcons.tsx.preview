@@ -1,1 +1,3 @@
-<Alert icon={<CheckCircleOutlineIcon />}>This is a Joy Alert with an icon - check it out!</Alert>
+<Alert icon={<CheckCircleOutlineIcon />}>
+  This is a Joy Alert with an icon - check it out!
+</Alert>
