@@ -43,6 +43,7 @@ const pages = [
         pathname: '/joy-ui/components/data-display',
         subheader: 'data-display',
         children: [
+          { pathname: '/joy-ui/react-alert' },
           { pathname: '/joy-ui/react-aspect-ratio' },
           { pathname: '/joy-ui/react-avatar' },
           { pathname: '/joy-ui/react-badge' },
