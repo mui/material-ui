@@ -13,9 +13,6 @@ declare module '@mui/material/TableCell' {
   interface TableCellPropsSizeOverrides {
     large: true;
   }
-}
-
-declare module '@mui/material/TableCell' {
   interface TableCellPropsVariantOverrides {
     tableBody: true;
   }
