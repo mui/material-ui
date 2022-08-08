@@ -30,7 +30,7 @@ const faqData = [
     detail: (
       <React.Fragment>
         The number of licenses purchased must correspond to the number of concurrent developers
-        contributing changes to the front-end code of the projects that uses MUI X Pro or Premium.
+        contributing changes to the front-end code of projects that use MUI X Pro or Premium.
         <br />
         <br />
         <b>Example 1.</b> Company 'A' is developing an application named 'AppA'. The app needs to
@@ -59,11 +59,11 @@ const faqData = [
     ),
   },
   {
-    summary: 'Why do we must license developers not using the software directly?',
+    summary: 'Why must we license developers not using the software directly?',
     detail: (
       <React.Fragment>
         Our pricing model requires all developers working on a project using MUI X Pro or Premium to
-        be licensed. This is intended to make it easier for you and your team to know if right
+        be licensed. This is intended to make it easier for you and your team to know if the right
         number of developers are licensed. It tries to emulate the simplicity of the open-source
         licenses.
         <br />
@@ -74,14 +74,14 @@ const faqData = [
         supported.
         <br />
         <br />
-        The price point per developer was adjusted to be lower than what it would be if only direct
+        The price point per developer is adjusted to be lower than if only direct
         use needed a license.{' '}
         <Link
           target="_blank"
           rel="noopener"
           href="https://mui.com/store/legal/mui-x-eula/#required-quantity-of-licenses"
         >
-          The clause in the EULA.
+          The relevant EULA clause.
         </Link>
       </React.Fragment>
     ),

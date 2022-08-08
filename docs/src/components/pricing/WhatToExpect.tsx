@@ -35,8 +35,8 @@ export default function WhatToExpect() {
               </Typography>
             </Box>
             <Typography variant="body2" color="text.secondary">
-              You can use the software in a production environment forever. All the versions of the
-              software released until the end of your subscription are available in perpetuity.
+              You can use the software in a production environment forever. Any version of the
+              software released prior to the end of your subscription are available in perpetuity.
               There are no further charges unless you choose to continue development. See the
               &quot;Development license&quot; section of this page for more details.
             </Typography>
@@ -57,9 +57,9 @@ export default function WhatToExpect() {
               </Typography>
             </Box>
             <Typography variant="body2" color="text.secondary">
-              The licenses are sold on a per-developer basis, using the software directly or
-              indirectly. The Pro plan includes a cap at 10 developers, extra developers do not need
-              to pay for their license. You can contact{' '}
+              The licenses are sold on a per front-end developer basis.
+              The Pro plan includes is capped at ten licenses; you do not need to pay for additional licenses for more than ten developers.
+              You can contact{' '}
               <Link href="mailto:sales@mui.com">sales</Link> for a volume discount when licensing
               over 50 developers under the Premium plan.
             </Typography>
@@ -85,8 +85,8 @@ export default function WhatToExpect() {
               <Link href="https://mui.com/x/introduction/support/#technical-support">
                 learn more about support
               </Link>{' '}
-              in the docs. Note that, except for critical issues, e.g. security, we release bug
-              fixes, and other improvements on top of the latest version, instead of patching older
+              in the docs. Note that, except for critical issues, such as security flaws, we release bug
+              fixes and other improvements on top of the latest version, instead of patching older
               versions.
             </Typography>
           </Paper>
