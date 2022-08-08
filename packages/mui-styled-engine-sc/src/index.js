@@ -36,7 +36,8 @@ export default function styled(tag, options) {
   return stylesFactory;
 }
 
-export const processStyles = (tag, processor) => {
+// eslint-disable-next-line @typescript-eslint/naming-convention
+export const internal_processStyles = (tag, processor) => {
   // Styled-components attaches an instance to `componentStyle`.
   // https://github.com/styled-components/styled-components/blob/da8151762dcf72735ffba358173d4c097f6d5888/packages/styled-components/src/models/StyledComponent.ts#L257
   //

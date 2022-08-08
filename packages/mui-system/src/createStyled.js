@@ -1,5 +1,5 @@
 /* eslint-disable no-underscore-dangle */
-import styledEngineStyled, { processStyles } from '@mui/styled-engine';
+import styledEngineStyled, { internal_processStyles as processStyles } from '@mui/styled-engine';
 import { getDisplayName } from '@mui/utils';
 import createTheme from './createTheme';
 import propsToClassKey from './propsToClassKey';

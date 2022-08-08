@@ -14,7 +14,11 @@ export * from './GlobalStyles';
 /**
  * For internal usage in `@mui/system` package
  */
-export function processStyles(tag: React.ElementType, processor: (styles: any) => any): void;
+// eslint-disable-next-line @typescript-eslint/naming-convention
+export function internal_processStyles(
+  tag: React.ElementType,
+  processor: (styles: any) => any,
+): void;
 
 export interface SerializedStyles {
   name: string;
