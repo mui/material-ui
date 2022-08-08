@@ -78,7 +78,7 @@ The `backgroundColor` property is also available through its alias `bgcolor`:
 // equivalent to backgroundColor: theme => theme.palette.primary.main
 ```
 
-Read the [Palette page](/system/palette/).
+Read more on the [Palette page](/system/palette/).
 
 ### Positions
 
@@ -89,7 +89,7 @@ The `zIndex` property maps its value to the `theme.zIndex` value:
 // equivalent to zIndex: theme => theme.zIndex.tooltip
 ```
 
-Read the [Positions page](/system/positions/) for more details.
+Read more on the [Positions page](/system/positions/).
 
 ### Shadows
 
@@ -100,7 +100,7 @@ The `boxShadow` property maps its value to the `theme.shadows` value:
 // equivalent to boxShadow: theme => theme.shadows[1]
 ```
 
-Read the [Shadows page](/system/shadows/) for more details.
+Read more on the [Shadows page](/system/shadows/).
 
 ### Sizing
 
@@ -120,7 +120,7 @@ Otherwise, it is directly set on the CSS property:
 <Box sx={{ width: 20 }} /> // equivalent to width: '20px'
 ```
 
-Read the [Sizing page](/system/sizing/) for more details.
+Read more on the [Sizing page](/system/sizing/).
 
 ### Spacing
 
@@ -150,7 +150,7 @@ The following aliases are available for the spacing properties:
 | `px` | `padding-left`, `padding-right` |
 | `py` | `padding-top`, `padding-bottom` |
 
-Read the [Spacing page](/system/spacing/) for more details.
+Read more on the [Spacing page](/system/spacing/).
 
 ### Typography
 
@@ -175,13 +175,13 @@ There is an additional `typography` prop available, which sets all values define
 // equivalent to { ...theme.typography.body1 }
 ```
 
-Read the [Typography page](/system/typography/) for more details.
+Read more on the [Typography page](/system/typography/).
 
 ## Responsive values
 
 All properties associated with the `sx` prop also support responsive values for specific breakpoints.
 
-Visit [Usage—Responsive values](/system/getting-started/usage/#responsive-values) for details.
+Read more on the [Usage page—Responsive values](/system/getting-started/usage/#responsive-values).
 
 ## Callback values
 
