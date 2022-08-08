@@ -487,16 +487,15 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     });
   }, []);
 
-  const normalizedIcons =
-    isRtl === 'rtl'
-      ? {
-          ScrollButtonStart: components.ScrollButtonEnd || KeyboardArrowRight,
-          ScrollButtonEnd: components.ScrollButtonStart || KeyboardArrowLeft,
-        }
-      : {
-          ScrollButtonStart: components.ScrollButtonStart || KeyboardArrowLeft,
-          ScrollButtonEnd: components.ScrollButtonEnd || KeyboardArrowRight,
-        };
+  const normalizedIcons = isRtl
+    ? {
+        ScrollButtonStart: components.ScrollButtonEnd || KeyboardArrowRight,
+        ScrollButtonEnd: components.ScrollButtonStart || KeyboardArrowLeft,
+      }
+    : {
+        ScrollButtonStart: components.ScrollButtonStart || KeyboardArrowLeft,
+        ScrollButtonEnd: components.ScrollButtonEnd || KeyboardArrowRight,
+      };
 
   const getConditionalElements = () => {
     const conditionalElements = {};

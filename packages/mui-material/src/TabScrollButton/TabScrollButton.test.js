@@ -2,6 +2,8 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer, describeConformance } from 'test/utils';
 import TabScrollButton, { tabScrollButtonClasses as classes } from '@mui/material/TabScrollButton';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 describe('<TabScrollButton />', () => {
   const defaultProps = {
@@ -47,6 +49,34 @@ describe('<TabScrollButton />', () => {
         <TabScrollButton {...defaultProps} {...defaultProps} direction="right" disabled />,
       );
       expect(getAllByTestId('KeyboardArrowRightIcon').length).to.equal(1);
+    });
+
+    it('should render with the ArrowBackIcon icon', () => {
+      const { getAllByTestId } = render(
+        <TabScrollButton
+          {...defaultProps}
+          direction="left"
+          disabled
+          components={{
+            ScrollButtonStart: ArrowBackIcon,
+          }}
+        />,
+      );
+      expect(getAllByTestId('ArrowBackIcon').length).to.equal(1);
+    });
+
+    it('should render with the ArrowForwardIcon icon', () => {
+      const { getAllByTestId } = render(
+        <TabScrollButton
+          {...defaultProps}
+          direction="right"
+          disabled
+          components={{
+            ScrollButtonEnd: ArrowForwardIcon,
+          }}
+        />,
+      );
+      expect(getAllByTestId('ArrowForwardIcon').length).to.equal(1);
     });
   });
 });
