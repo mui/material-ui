@@ -10,7 +10,7 @@ export default function AlertUsage() {
         {
           propName: 'variant',
           knob: 'select',
-          defaultValue: 'solid',
+          defaultValue: 'soft',
           options: ['plain', 'outlined', 'soft', 'solid'],
         },
         {
