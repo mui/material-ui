@@ -9,7 +9,7 @@
     "defaultHeight": "The default height of the component in px. This is provided for server-side rendering.",
     "defaultSpacing": "The default spacing of the component. Like <code>spacing</code>, it is a factor of the theme&#39;s spacing. This is provided for server-side rendering.",
     "spacing": "Defines the space between children. It is a factor of the theme&#39;s spacing.",
-    "sx": "Allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/the-sx-prop/\">`sx` page</a> for more details."
+    "sx": "Allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details."
   },
   "classDescriptions": { "root": { "description": "Styles applied to the root element." } }
 }

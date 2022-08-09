@@ -37,7 +37,7 @@ Here are the most significant improvements since March 2021.
 
 - 👩‍🎤 We have rolled out the new **style engine** to all the components.
   The community provided invaluable assistance in completing this effort.
-  In v5, we have standardized on the `styled()` API as the styling foundation we build on top of, and introduced the [the `sx` prop](https://mui.com/system/the-sx-prop/) for one-off customizations.
+  In v5, we have standardized on the `styled()` API as the styling foundation we build on top of, and introduced the [the `sx` prop](https://mui.com/system/getting-started/the-sx-prop/) for one-off customizations.
   The `styled()` API is loved by the community, and implemented by a number of styling libraries: styled-components, emotion, stitches, goober, etc. It allows us to support them all with [adapters](https://mui.com/material-ui/guides/styled-engine/#how-to-switch-to-styled-components).
 
 - ⚒️ We added a [codemod CLI](https://github.com/mui/material-ui/tree/HEAD/packages/mui-codemod) and 17 transformations (so far) to automatically migrate codebases from v4 to v5.
