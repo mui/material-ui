@@ -18,7 +18,7 @@
     "divider": "如果 <code>true</code>, 一个 1px 灯光边框添加到列表项底部。",
     "secondaryAction": "在列表项末端显示的元素。",
     "selected": "Use to apply selected styling.",
-    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/basics/#the-sx-prop\">`sx` page</a> for more details."
+    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details."
   },
   "classDescriptions": {
     "root": {
