@@ -54,7 +54,11 @@ const pages = [
       {
         pathname: '/joy-ui/components/feedback',
         subheader: 'feedback',
-        children: [{ pathname: '/joy-ui/react-alert' }, { pathname: '/joy-ui/react-modal' }],
+        children: [
+          { pathname: '/joy-ui/react-alert' },
+          { pathname: '/joy-ui/react-circular-progress' },
+          { pathname: '/joy-ui/react-modal' },
+        ],
       },
       {
         pathname: '/joy-ui/components/surfaces',
