@@ -54,10 +54,12 @@ Use the `action` prop to insert actionable buttons or icon buttons on the Alert.
 
 ## Accessibility
 
-(WAI-ARIA: https://www.w3.org/WAI/ARIA/apg/patterns/alert/)
+Here are a few tips to make sure you have an accessible alert component:
 
-When the component is dynamically displayed, the content is automatically announced by most screen readers. At this time, screen readers do not inform users of alerts that are present when the page loads.
+- When the component is dynamically displayed, the content is automatically announced by most screen readers.
+  At this time, screen readers do not inform users of alerts that are present when the page loads.
 
-Using color to add meaning only provides a visual indication, which will not be conveyed to users of assistive technologies such as screen readers. Ensure that information denoted by the color is either obvious from the content itself (for example the visible text), or is included through alternative means, such as additional hidden text.
+- Using color to add meaning only provides a visual indication, which will not be conveyed to users of assistive technologies such as screen readers.
+  Ensure that information denoted by the color is either obvious from the content itself (for example the visible text), or is included through alternative means, such as additional hidden text.
 
-Actions must have a tab index of 0 so that they can be reached by keyboard-only users.
+- Actions must have a tab index of 0 so that they can be reached by keyboard-only users.
