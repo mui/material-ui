@@ -77,8 +77,8 @@ const AlertAction = styled('div', {
 })<{ ownerState: AlertProps }>(() => {
   return {
     display: 'flex',
-    alignItems: 'flex-start',
-    padding: '4px 0 0 16px',
+    alignItems: 'center',
+    justifyContent: 'space-between',
     marginLeft: 'auto',
     marginRight: -8,
   };

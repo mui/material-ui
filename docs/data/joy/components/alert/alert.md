@@ -46,6 +46,12 @@ You can add an icon as a decorator via the `icon` prop.
 
 {{"demo": "AlertIcons.js"}}
 
+### Actions
+
+Use the `action` prop to insert actionable buttons or icon buttons on the Alert.
+
+{{"demo": "AlertAction.js"}}
+
 ## Accessibility
 
 (WAI-ARIA: https://www.w3.org/WAI/ARIA/apg/patterns/alert/)
