@@ -21,44 +21,32 @@ export default function MuiStatistics() {
               p: 0.5,
               pl: 2,
               borderLeft: '2px solid',
-              ...theme.getStyle({
-                default: {
-                  borderColor: 'primary.100',
-                },
-                dark: {
-                  borderColor: 'primaryDark.600',
-                },
-              }),
+              borderColor: 'primary.100',
+              [theme.getColorSchemeSelector('dark')]: {
+                borderColor: 'primaryDark.600',
+              },
             })}
           >
             <Typography
               component="div"
               variant="h4"
               fontWeight="bold"
-              sx={(theme) =>
-                theme.getStyle({
-                  default: {
-                    color: 'primary.main',
-                  },
-                  dark: {
-                    color: 'primary.200',
-                  },
-                })
-              }
+              sx={(theme) => ({
+                color: 'primary.main',
+                [theme.getColorSchemeSelector('dark')]: {
+                  color: 'primary.200',
+                },
+              })}
             >
               {item.title}
             </Typography>
             <Typography
-              sx={(theme) =>
-                theme.getStyle({
-                  default: {
-                    color: 'grey.800',
-                  },
-                  dark: {
-                    color: 'grey.300',
-                  },
-                })
-              }
+              sx={(theme) => ({
+                color: 'grey.800',
+                [theme.getColorSchemeSelector('dark')]: {
+                  color: 'grey.300',
+                },
+              })}
             >
               {item.metadata}
             </Typography>

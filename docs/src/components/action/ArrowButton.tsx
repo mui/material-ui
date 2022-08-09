@@ -19,36 +19,26 @@ export default function ArrowButton({
       sx={[
         (theme) => ({
           border: '1px solid',
-          ...theme.getStyle({
-            default: {
-              color: 'primary.main',
-              borderColor: 'grey.200',
-            },
-            dark: {
-              color: '#fff',
-              borderColor: 'primaryDark.300',
-            },
-          }),
-          '&:hover': theme.getStyle({
-            default: {
-              borderColor: 'grey.300',
-            },
-            dark: {
+          color: 'primary.main',
+          borderColor: 'grey.200',
+          [theme.getColorSchemeSelector('dark')]: {
+            color: '#fff',
+            borderColor: 'primaryDark.300',
+          },
+          '&:hover': {
+            borderColor: 'grey.300',
+            [theme.getColorSchemeSelector('dark')]: {
               borderColor: 'primaryDark.200',
             },
-          }),
+          },
           '&.Mui-disabled': {
             opacity: 0.5,
-            ...theme.getStyle({
-              default: {
-                color: 'grey.700',
-                borderColor: 'grey.300',
-              },
-              dark: {
-                color: '#fff',
-                borderColor: 'primary.700',
-              },
-            }),
+            color: 'grey.700',
+            borderColor: 'grey.300',
+            [theme.getColorSchemeSelector('dark')]: {
+              color: '#fff',
+              borderColor: 'primary.700',
+            },
           },
           '& + .MuiIconButton-root': {
             ml: 2,

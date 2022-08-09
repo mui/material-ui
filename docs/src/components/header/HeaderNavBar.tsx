@@ -25,11 +25,6 @@ const Navigation = styled('nav')(({ theme }) => ({
     '& > a, & > div': {
       display: 'inline-block',
       color: 'inherit',
-      ...theme.getStyle({
-        dark: {
-          color: 'inherit',
-        },
-      }),
       textDecoration: 'none',
       padding: theme.spacing(1),
       borderRadius: (theme.vars || theme).shape.borderRadius,
