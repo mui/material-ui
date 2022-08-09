@@ -4,6 +4,8 @@ import { expect } from 'chai';
 import * as React from 'react';
 import { spy } from 'sinon';
 import { act, createRenderer, describeConformance, fireEvent } from 'test/utils';
+import { ClassNames } from '@emotion/react';
+import PhoneIcon from '@mui/icons-material/Phone';
 
 describe('<Tab />', () => {
   const { render } = createRenderer();
@@ -164,6 +166,29 @@ describe('<Tab />', () => {
       expect(style).to.have.property('width', '80%');
       expect(style).to.have.property('color', 'red');
       expect(style).to.have.property('alignText', 'center');
+    });
+  });
+
+  describe('Emotion compatibility', () => {
+    it('className should not overwrite the the more specific classes that applies to root', () => {
+      // This is pink
+      const colorPink = 'rgb(255, 192, 204)';
+
+      const { getByRole } = render(
+        <ClassNames>
+          {({ css }) => (
+            <Tab
+              icon={<PhoneIcon />}
+              label="Background should be pink"
+              className={css({ backgroundColor: 'red' })}
+              classes={{ labelIcon: css({ backgroundColor: colorPink }) }}
+            />
+          )}
+        </ClassNames>,
+      );
+      const tab = getByRole('tab');
+
+      expect(getComputedStyle(tab).backgroundColor).to.equal(colorPink);
     });
   });
 });

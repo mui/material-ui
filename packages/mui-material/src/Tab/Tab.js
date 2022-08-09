@@ -10,11 +10,13 @@ import unsupportedProp from '../utils/unsupportedProp';
 import tabClasses, { getTabUtilityClass } from './tabClasses';
 
 const useUtilityClasses = (ownerState) => {
-  const { classes, textColor, fullWidth, wrapped, icon, label, selected, disabled } = ownerState;
+  const { classes, className, textColor, fullWidth, wrapped, icon, label, selected, disabled } =
+    ownerState;
 
   const slots = {
     root: [
       'root',
+      'className',
       icon && label && 'labelIcon',
       `textColor${capitalize(textColor)}`,
       fullWidth && 'fullWidth',
@@ -25,7 +27,7 @@ const useUtilityClasses = (ownerState) => {
     iconWrapper: ['iconWrapper'],
   };
 
-  return composeClasses(slots, getTabUtilityClass, classes);
+  return composeClasses(slots, getTabUtilityClass, { ...classes, className });
 };
 
 const TabRoot = styled(ButtonBase, {
@@ -187,7 +189,7 @@ const Tab = React.forwardRef(function Tab(inProps, ref) {
   return (
     <TabRoot
       focusRipple={!disableFocusRipple}
-      className={clsx(classes.root, className)}
+      className={classes.root}
       ref={ref}
       role="tab"
       aria-selected={selected}
