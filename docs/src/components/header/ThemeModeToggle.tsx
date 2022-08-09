@@ -46,7 +46,18 @@ export default function ThemeModeToggle(props: ThemeModeToggleProps) {
   }
   return (
     <Tooltip title={props.checked ? 'Turn on the light' : 'Turn off the light'}>
-      <IconButton color="primary" disableTouchRipple onClick={() => props.onChange(!props.checked)}>
+      <IconButton
+        color="primary"
+        disableTouchRipple
+        onClick={() => {
+          try {
+            localStorage.setItem('muidocs-mode', props.checked ? 'light' : 'dark');
+          } catch (error) {
+            // do nothing
+          }
+          props.onChange(!props.checked);
+        }}
+      >
         {props.checked ? (
           <LightModeOutlined fontSize="small" />
         ) : (
