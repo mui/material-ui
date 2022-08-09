@@ -27,4 +27,4 @@ Learn more on [the `sx` prop page](/system/getting-started/the-sx-prop/).
 [MUI Base](/base/getting-started/overview/) is a library of "unstyled" React components, while MUI System is a set of utilities for quickly applying styles to those components (as well as other MUI component libraries like Material UI and Joy UI).
 
 MUI Base is a standalone component library, whereas the System is _supplemental_ in that it's designed to be paired with Base and other MUI components, as well as third-party components.
-See [Advanced](/system/getting-started/advanced/) for details on how to use MUI System with non-MUI components.
+See the [Custom components page](/system/getting-started/custom-components/) for details on how to use MUI System with non-MUI components.
