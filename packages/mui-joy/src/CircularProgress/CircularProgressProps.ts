@@ -15,12 +15,6 @@ export interface CircularProgressTypeMap<P = {}, D extends React.ElementType = '
      */
     color?: OverridableStringUnion<ColorPaletteProp, CircularProgressPropsColorOverrides>;
     /**
-     * The boolean to select a variant.
-     * Use indeterminate when there is no progress value.
-     * @default false
-     */
-    determinate?: true | false;
-    /**
      * The size of the component.
      * It accepts theme values between 'sm' and 'lg'.
      * @default 'md'
@@ -41,6 +35,12 @@ export interface CircularProgressTypeMap<P = {}, D extends React.ElementType = '
      * @default 0
      */
     value?: number;
+    /**
+     * The variant to use.
+     * Use indeterminate when there is no progress value.
+     * @default 'indeterminate'
+     */
+    variant?: 'determinate' | 'indeterminate';
   };
   defaultComponent: D;
 }
