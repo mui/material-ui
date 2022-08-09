@@ -417,7 +417,8 @@ const attachTranslations = (reactApi: ReactApi) => {
       if (propName === 'classes') {
         description += ' See <a href="#css">CSS API</a> below for more details.';
       } else if (propName === 'sx') {
-        description += ' See the <a href="/system/the-sx-prop/">`sx` page</a> for more details.';
+        description +=
+          ' See the <a href="/system/getting-started/the-sx-prop/">`sx` page</a> for more details.';
       }
       translations.propDescriptions[propName] = description.replace(/\n@default.*$/, '');
     }

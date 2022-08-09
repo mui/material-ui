@@ -3,7 +3,7 @@ title: MUI's company retreat in Tenerife: a recap
 description: Our internationally distributed startup gathered on a remote island to get to know each other better. Here's what happened!
 date: 2022-07-28T00:00:00.000Z
 authors: ['samuelsycamore']
-card: false
+card: true
 tags: ['Company']
 ---
 
