@@ -6,7 +6,7 @@ title: '@mui/core/styles 的 API 参考文档。'
 
 <p class="description">一个返回 <a href="https://cssinjs.org/jss-api/#generate-your-class-names"> 类名称生成器函数 </a> 的函数。</p>
 
-> ⚠️ `@mui/styles`是MUI的_**传统**_样式解决方案。 它依赖于 [JSS ](https://cssinjs.org/)作为样式解决方案，在`@mui/material`中已经不使用了，在v5中被废弃。 如果你不想在你的捆绑包里同时有Emotion和JSS，请参考[`@mui/system`](/system/basics/)文档，这是推荐的替代方案。
+> ⚠️ `@mui/styles`是MUI的_**传统**_样式解决方案。 它依赖于 [JSS ](https://cssinjs.org/)作为样式解决方案，在`@mui/material`中已经不使用了，在v5中被废弃。 If you don't want to have both Emotion & JSS in your bundle, please refer to the [`@mui/system`](/system/getting-started/overview/) documentation which is the recommended alternative.
 
 > ⚠️ `@mui/styles`与 [React.StrictMode](https://reactjs.org/docs/strict-mode.html) 或 React 18 不兼容。
 
