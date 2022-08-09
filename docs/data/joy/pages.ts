@@ -51,6 +51,13 @@ const pages = [
         ],
       },
       {
+        pathname: '/joy-ui/components/feedback',
+        subheader: 'feedback',
+        children: [
+          { pathname: '/joy-ui/react-circular-progress' },
+        ],
+      },
+      {
         pathname: '/joy-ui/components/surfaces',
         subheader: 'surfaces',
         children: [{ pathname: '/joy-ui/react-card' }, { pathname: '/joy-ui/react-sheet' }],
