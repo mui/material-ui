@@ -100,7 +100,7 @@ npx @mui/codemod v5.0.0/jss-to-styled <path>
 
 #### Manual
 
-我们推荐`sx` API而不是`styled`用于创建响应式样式或覆盖次要的CSS。 在这里[阅读更多关于`sx`的信息](/system/the-sx-prop/)。
+我们推荐`sx` API而不是`styled`用于创建响应式样式或覆盖次要的CSS。 [Read more about `sx` here](/system/getting-started/the-sx-prop/).
 
 ```diff
  import Chip from '@mui/material/Chip';
