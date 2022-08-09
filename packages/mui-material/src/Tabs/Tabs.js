@@ -247,6 +247,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
       ScrollButtonStart: KeyboardArrowLeft,
       ScrollButtonEnd: KeyboardArrowRight,
     },
+    componentsProps = {},
     allowScrollButtonsMobile = false,
     indicatorColor = 'primary',
     onChange,
@@ -494,6 +495,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
       <TabsScrollbarSize
         onChange={handleScrollbarSizeChange}
         className={clsx(classes.scrollableX, classes.hideScrollbar)}
+        {...{ ...componentsProps.indicator, ...componentsProps.hideScrollbar }}
       />
     ) : null;
 
@@ -510,6 +512,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
         disabled={!displayScroll.start}
         {...TabScrollButtonProps}
         className={clsx(classes.scrollButtons, TabScrollButtonProps.className)}
+        {...componentsProps.scrollButtons}
       />
     ) : null;
 
@@ -522,6 +525,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
         disabled={!displayScroll.end}
         {...TabScrollButtonProps}
         className={clsx(classes.scrollButtons, TabScrollButtonProps.className)}
+        {...componentsProps.scrollButtons}
       />
     ) : null;
 
@@ -648,6 +652,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
         ...indicatorStyle,
         ...TabIndicatorProps.style,
       }}
+      {...componentsProps.indicator}
     />
   );
 
@@ -734,7 +739,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
       ownerState={ownerState}
       ref={ref}
       as={component}
-      {...other}
+      {...{ ...other, ...componentsProps.root }}
     >
       {conditionalElements.scrollButtonStart}
       {conditionalElements.scrollbarSizeListener}
@@ -749,6 +754,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
         }}
         ref={tabsRef}
         onScroll={handleTabsScroll}
+        {...componentsProps.scroller}
       >
         {/* The tablist isn't interactive but the tabs are */}
         <FlexContainer
@@ -760,6 +766,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
           onKeyDown={handleKeyDown}
           ref={tabListRef}
           role="tablist"
+          {...componentsProps.flexContainer}
         >
           {children}
         </FlexContainer>
@@ -831,6 +838,19 @@ Tabs.propTypes /* remove-proptypes */ = {
   components: PropTypes.shape({
     ScrollButtonEnd: PropTypes.elementType,
     ScrollButtonStart: PropTypes.elementType,
+  }),
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  componentsProps: PropTypes.shape({
+    flexContainer: PropTypes.object,
+    hideScrollbar: PropTypes.object,
+    indicator: PropTypes.object,
+    root: PropTypes.object,
+    scrollableX: PropTypes.object,
+    scrollButtons: PropTypes.object,
+    scroller: PropTypes.object,
   }),
   /**
    * Determines the color of the indicator.

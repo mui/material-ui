@@ -60,6 +60,19 @@ export interface TabsTypeMap<P = {}, D extends React.ElementType = typeof Button
       ScrollButtonEnd?: React.ElementType;
     };
     /**
+     * The props used for each slot inside.
+     * @default {}
+     */
+    componentsProps?: {
+      root?: React.HTMLProps<HTMLDivElement>;
+      flexContainer?: React.HTMLAttributes<HTMLDivElement>;
+      scroller?: React.HTMLAttributes<HTMLDivElement>;
+      indicator?: React.HTMLProps<HTMLSpanElement>;
+      scrollableX?: React.HTMLAttributes<HTMLDivElement>;
+      scrollButtons?: React.HTMLAttributes<HTMLButtonElement>;
+      hideScrollbar?: React.HTMLAttributes<HTMLDivElement>;
+    };
+    /**
      * Determines the color of the indicator.
      * @default 'primary'
      */

@@ -15,6 +15,13 @@
       },
       "default": "{\n  ScrollButtonStart: KeyboardArrowLeft,\n  ScrollButtonEnd: KeyboardArrowRight,\n}"
     },
+    "componentsProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ flexContainer?: object, hideScrollbar?: object, indicator?: object, root?: object, scrollableX?: object, scrollButtons?: object, scroller?: object }"
+      },
+      "default": "{}"
+    },
     "indicatorColor": {
       "type": {
         "name": "union",
