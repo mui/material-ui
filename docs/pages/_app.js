@@ -29,6 +29,7 @@ import createEmotionCache from 'docs/src/createEmotionCache';
 import findActivePage from 'docs/src/modules/utils/findActivePage';
 import useRouterExtra from 'docs/src/modules/utils/useRouterExtra';
 import { LicenseInfo } from '@mui/x-data-grid-pro';
+import GlobalStyles from '@mui/material/GlobalStyles';
 
 // Remove the license warning from demonstration purposes
 LicenseInfo.setLicenseKey(process.env.NEXT_PUBLIC_MUI_LICENSE);
@@ -222,6 +223,23 @@ function AppWrapper(props) {
             <PageContext.Provider value={{ activePage, pages: productPages }}>
               <ThemeProvider>
                 <DocsStyledEngineProvider cacheLtr={emotionCache}>
+                  {asPathWithoutLang !== '/' && (
+                    <GlobalStyles
+                      styles={(theme) => ({
+                        html: {
+                          // to override CssBaseline in BrandingCssVarsProvider when navigating between pages
+                          colorScheme: `${theme.palette.mode} !important`,
+                          // If the user lands on/refreash homepage, the CssBaseline with CSS variables are created inline in the html due to server-side generation
+                          // When user navigates to other pages, the CssBaseline in those pages can't win because the css-global is injected above server-side generation
+                          // So these variables are needed to make the body background and color render correctly.
+                          '--muidocs-palette-background-default': (theme.vars || theme).palette
+                            .background.default,
+                          '--muidocs-palette-text-primary': (theme.vars || theme).palette.text
+                            .primary,
+                        },
+                      })}
+                    />
+                  )}
                   {children}
                   <GoogleAnalytics />
                 </DocsStyledEngineProvider>

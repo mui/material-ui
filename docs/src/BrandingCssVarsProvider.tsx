@@ -43,6 +43,7 @@ const { palette: lightPalette, typography, ...designTokens } = getDesignTokens('
 const { palette: darkPalette } = getDesignTokens('dark');
 
 const theme = extendTheme({
+  cssVarPrefix: 'muidocs',
   colorSchemes: {
     light: {
       palette: deepmerge(lightPalette, {
@@ -112,8 +113,8 @@ export default function BrandingCssVarsProvider({ children }: { children: React.
       modeStorageKey="muidocs-mode"
       colorSchemeStorageKey="muidocs-color-scheme"
     >
-      <CssBaseline />
       <NextNProgressBar />
+      <CssBaseline />
       {children}
     </CssVarsProvider>
   );
