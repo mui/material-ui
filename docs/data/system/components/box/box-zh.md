@@ -9,7 +9,7 @@ githubLabel: 'component: Box'
 
 <p class="description">对于大多数 CSS 实用程序来说，Box 组件能够作为一个包装组件来使用。</p>
 
-在 `@mui/system` 中，您可以找到所述 Box 组件包的 [所有的样式功能](/system/basics/#all-inclusive)。
+The Box component packages [all the style functions](/system/getting-started/the-sx-prop/) that are exposed in `@mui/system`.
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
@@ -19,7 +19,7 @@ githubLabel: 'component: Box'
 
 ## `sx` 属性
 
-所有的样式功能都可以通过 [`sx` 属性 ](/system/basics/#the-sx-prop)更改。 同时，您也可通过`sx` 属性 指定任何您想添加的 CSS 规则。 下面是一个使用例：
+All system properties are available via the [`sx` prop](/system/getting-started/the-sx-prop/). 同时，您也可通过`sx` 属性 指定任何您想添加的 CSS 规则。 下面是一个使用例：
 
 {{"demo": "BoxSx.js", "defaultCodeOpen": true }}
 
@@ -31,7 +31,7 @@ Box 组件能够封装您的组件。 它创建了一个新的 DOM 元素，默�
 
 当所需的更改与新的 DOM 元素分开时比较有效。 例如，您可以使用这个方法来更改边距。
 
-但是，有时您的目标是下层的 DOM 元素。 例如，您想更改按钮的边线， 但是按钮组件已经定义自己的样式， 此时您无法使用CSS继承来解决这个问题。 为了回避这个CSS继承无效的问题， 如该组件的子组件是一个 Material-UI 组件，您可直接在该组件上定义 [`sx`](/system/basics/#the-sx-prop) 属性。
+但是，有时您的目标是下层的 DOM 元素。 例如，您想更改按钮的边线， 但是按钮组件已经定义自己的样式， 此时您无法使用CSS继承来解决这个问题。 To workaround the problem, you can use the [`sx`](/system/getting-started/the-sx-prop/) prop directly on the child if it is a MUI component.
 
 ```diff
 -<Box sx={{ border: '1px dashed grey' }}>
