@@ -9,7 +9,7 @@ githubLabel: 'component: Box'
 
 <p class="description">O componente Box serve como um componente encapsulador (wrapper) para a auxiliar na maioria das necessidades de uso com CSS.</p>
 
-O component Box compõe [todas as funções de estilo](/system/basics/#all-inclusive) que são expostas no `@material-ui/system`.
+The Box component packages [all the style functions](/system/getting-started/the-sx-prop/) that are exposed in `@mui/system`.
 
 [A paleta](/system/palette/) com funções de estilo.
 
@@ -19,7 +19,7 @@ O component Box compõe [todas as funções de estilo](/system/basics/#all-inclu
 
 ## A propriedade `sx`
 
-All system properties are available via the [`sx` prop](/system/basics/#the-sx-prop). In addition, the `sx` prop allows you to specify any other CSS rules you may need. Aqui está um exemplo de como você pode usá-la:
+All system properties are available via the [`sx` prop](/system/getting-started/the-sx-prop/). In addition, the `sx` prop allows you to specify any other CSS rules you may need. Aqui está um exemplo de como você pode usá-la:
 
 {{"demo": "BoxSx.js", "defaultCodeOpen": true }}
 
@@ -31,7 +31,7 @@ O componente Box envolve seu componente. Ele cria um novo elemento DOM, uma `<di
 
 Isso funciona muito bem quando as alterações precisam ser isoladas em um novo elemento DOM. Note no exemplo, a forma que você alterou a margem.
 
-No entanto, às vezes, você precisa modificar o elemento DOM subjacente. As an example, you may want to change the border of the Button. Por exemplo, você quer mudar a borda do botão. A herança por CSS não irá ajudar nesse caso. To workaround the problem, you can use the [`sx`](/system/basics/#the-sx-prop) prop directly on the child if it is a Material-UI component.
+No entanto, às vezes, você precisa modificar o elemento DOM subjacente. As an example, you may want to change the border of the Button. Por exemplo, você quer mudar a borda do botão. A herança por CSS não irá ajudar nesse caso. To workaround the problem, you can use the [`sx`](/system/getting-started/the-sx-prop/) prop directly on the child if it is a MUI component.
 
 ```diff
 -<Box sx={{ border: '1px dashed grey' }}>
