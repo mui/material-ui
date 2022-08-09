@@ -464,7 +464,7 @@ const Select = React.forwardRef(function Select<TValue>(
     ownerState: {
       ...ownerState,
       nesting: false,
-      orientation: 'vertical',
+      row: false,
     },
     className: classes.listbox,
   });

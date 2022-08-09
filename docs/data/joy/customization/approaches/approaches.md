@@ -11,7 +11,7 @@
 The `sx` prop provides a superset of CSS (contains all CSS properties/selectors, in addition to custom ones) that maps values directly from the theme, depending on the CSS property used.
 
 Every Joy UI component supports it and it's a tool that allows you to quickly customize components on the spot.
-Visit [the `sx` prop documentation](/system/the-sx-prop/) to learn more about it.
+Visit [the `sx` prop documentation](/system/getting-started/the-sx-prop/) to learn more about it.
 
 {{"demo": "SxProp.js" }}
 

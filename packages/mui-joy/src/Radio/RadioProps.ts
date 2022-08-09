@@ -33,10 +33,10 @@ export interface RadioTypeMap<P = {}, D extends React.ElementType = 'span'> {
        */
       componentsProps?: {
         root?: React.ComponentPropsWithRef<'span'>;
-        radio?: React.ComponentPropsWithRef<'span'> & { sx?: SxProps };
-        action?: React.ComponentPropsWithRef<'span'> & { sx?: SxProps };
-        input?: React.ComponentPropsWithRef<'input'> & { sx?: SxProps };
-        label?: React.ComponentPropsWithRef<'label'> & { sx?: SxProps };
+        radio?: React.ComponentPropsWithRef<'span'>;
+        action?: React.ComponentPropsWithRef<'span'>;
+        input?: React.ComponentPropsWithRef<'input'>;
+        label?: React.ComponentPropsWithRef<'label'>;
       };
       /**
        * The color of the component. It supports those theme colors that make sense for this component.

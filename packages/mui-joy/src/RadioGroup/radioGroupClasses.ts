@@ -3,10 +3,8 @@ import { generateUtilityClass, generateUtilityClasses } from '../className';
 export interface RadioGroupClasses {
   /** Styles applied to the root element. */
   root: string;
-  /** Styles applied to the root element, if `orientation="vertical"`. */
-  vertical: string;
-  /** Styles applied to the root element, if `orientation="horizontal"`. */
-  horizontal: string;
+  /** Styles applied to the root element, if `row` is true. */
+  row: string;
   /** Styles applied to the root element if `size="sm"`. */
   sizeSm: string;
   /** Styles applied to the root element if `size="md"`. */
@@ -43,8 +41,7 @@ export function getRadioGroupUtilityClass(slot: string): string {
 
 const radioGroupClasses: RadioGroupClasses = generateUtilityClasses('JoyRadioGroup', [
   'root',
-  'vertical',
-  'horizontal',
+  'row',
   'colorPrimary',
   'colorNeutral',
   'colorDanger',
