@@ -22,9 +22,9 @@ export default function MuiStatistics() {
               pl: 2,
               borderLeft: '2px solid',
               borderColor: 'primary.100',
-              [theme.getColorSchemeSelector('dark')]: {
+              ...theme.applyDarkStyles({
                 borderColor: 'primaryDark.600',
-              },
+              }),
             })}
           >
             <Typography
@@ -33,9 +33,9 @@ export default function MuiStatistics() {
               fontWeight="bold"
               sx={(theme) => ({
                 color: 'primary.main',
-                [theme.getColorSchemeSelector('dark')]: {
+                ...theme.applyDarkStyles({
                   color: 'primary.200',
-                },
+                }),
               })}
             >
               {item.title}
@@ -43,9 +43,9 @@ export default function MuiStatistics() {
             <Typography
               sx={(theme) => ({
                 color: 'grey.800',
-                [theme.getColorSchemeSelector('dark')]: {
+                ...theme.applyDarkStyles({
                   color: 'grey.300',
-                },
+                }),
               })}
             >
               {item.metadata}

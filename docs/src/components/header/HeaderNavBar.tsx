@@ -11,54 +11,49 @@ import ROUTES from 'docs/src/route';
 import Link from 'docs/src/modules/components/Link';
 import MuiProductSelector from 'docs/src/modules/components/MuiProductSelector';
 
-const Navigation = styled('nav')(({ theme }) => ({
-  '& ul': {
-    padding: 0,
-    margin: 0,
-    listStyle: 'none',
-    display: 'flex',
+const Navigation = styled('nav')(({ theme }) => [
+  {
+    '& ul': {
+      padding: 0,
+      margin: 0,
+      listStyle: 'none',
+      display: 'flex',
+    },
+    '& li': {
+      color: (theme.vars || theme).palette.text.primary,
+      ...theme.typography.body2,
+      fontWeight: 700,
+      '& > a, & > div': {
+        display: 'inline-block',
+        color: 'inherit',
+        textDecoration: 'none',
+        padding: theme.spacing(1),
+        borderRadius: (theme.vars || theme).shape.borderRadius,
+        '&:hover, &:focus': {
+          backgroundColor: (theme.vars || theme).palette.grey[50],
+          color: (theme.vars || theme).palette.grey[700],
+          // Reset on touch devices, it doesn't add specificity
+          '@media (hover: none)': {
+            backgroundColor: 'initial',
+          },
+        },
+      },
+      '& > div': {
+        cursor: 'default',
+      },
+    },
   },
-  '& li': {
-    color: (theme.vars || theme).palette.text.primary,
-    ...theme.typography.body2,
-    fontWeight: 700,
-    '& > a, & > div': {
-      display: 'inline-block',
-      color: 'inherit',
-      textDecoration: 'none',
-      padding: theme.spacing(1),
-      borderRadius: (theme.vars || theme).shape.borderRadius,
-      '&:hover, &:focus': {
-        ...(!theme.vars
-          ? {
-              backgroundColor:
-                theme.palette.mode === 'dark'
-                  ? theme.palette.primaryDark[700]
-                  : theme.palette.grey[50],
-              color:
-                theme.palette.mode === 'dark'
-                  ? theme.palette.primaryDark[200]
-                  : theme.palette.grey[700],
-            }
-          : {
-              backgroundColor: theme.vars.palette.grey[50],
-              color: theme.vars.palette.grey[700],
-              [theme.getColorSchemeSelector('dark')]: {
-                backgroundColor: theme.vars.palette.primaryDark[700],
-                color: theme.vars.palette.primaryDark[200],
-              },
-            }),
-        // Reset on touch devices, it doesn't add specificity
-        '@media (hover: none)': {
-          backgroundColor: 'initial',
+  theme.applyDarkStyles({
+    '& li': {
+      '& > a, & > div': {
+        '&:hover, &:focus': {
+          backgroundColor: (theme.vars || theme).palette.primaryDark[700],
+          color: (theme.vars || theme).palette.primaryDark[200],
         },
       },
     },
-    '& > div': {
-      cursor: 'default',
-    },
-  },
-}));
+  }),
+]);
 
 const PRODUCT_IDS = ['product-core', 'product-advanced', 'product-templates', 'product-design'];
 
@@ -76,52 +71,44 @@ const ProductSubMenu = React.forwardRef<HTMLAnchorElement, ProductSubMenuProps>(
         component={Link}
         href={href}
         ref={ref}
-        sx={(theme) => ({
-          display: 'flex',
-          alignItems: 'center',
-          py: 2,
-          '&:hover, &:focus': {
-            ...(!theme.vars
-              ? {
-                  backgroundColor:
-                    theme.palette.mode === 'dark'
-                      ? alpha(theme.palette.primaryDark[700], 0.4)
-                      : theme.palette.grey[50],
-                }
-              : {
-                  backgroundColor: theme.vars.palette.grey[50],
-                  [theme.getColorSchemeSelector('dark')]: {
-                    backgroundColor: alpha(theme.palette.primaryDark[700], 0.4),
-                  },
-                }),
-            outline: 'none',
-            '@media (hover: none)': {
-              backgroundColor: 'initial',
-              outline: 'initial',
+        sx={[
+          (theme) => ({
+            display: 'flex',
+            alignItems: 'center',
+            py: 2,
+            '&:hover, &:focus': {
+              backgroundColor: (theme.vars || theme).palette.grey[50],
+              outline: 'none',
+              '@media (hover: none)': {
+                backgroundColor: 'initial',
+                outline: 'initial',
+              },
             },
-          },
-        })}
+          }),
+          (theme) =>
+            theme.applyDarkStyles({
+              '&:hover, &:focus': {
+                backgroundColor: alpha(theme.palette.primaryDark[700], 0.4),
+              },
+            }),
+        ]}
         {...props}
       >
         <Box
-          sx={(theme) => ({
-            px: 2,
-            '& circle': {
-              ...(!theme.vars
-                ? {
-                    fill:
-                      theme.palette.mode === 'dark'
-                        ? theme.palette.primaryDark[700]
-                        : theme.palette.grey[100],
-                  }
-                : {
-                    fill: theme.vars.palette.grey[100],
-                    [theme.getColorSchemeSelector('dark')]: {
-                      fill: theme.vars.palette.primaryDark[700],
-                    },
-                  }),
-            },
-          })}
+          sx={[
+            (theme) => ({
+              px: 2,
+              '& circle': {
+                fill: (theme.vars || theme).palette.grey[100],
+              },
+            }),
+            (theme) =>
+              theme.applyDarkStyles({
+                '& circle': {
+                  fill: (theme.vars || theme).palette.primaryDark[700],
+                },
+              }),
+          ]}
         >
           {icon}
         </Box>
@@ -281,55 +268,36 @@ export default function HeaderNavBar() {
               <Fade {...TransitionProps} timeout={350}>
                 <Paper
                   variant="outlined"
-                  sx={(theme) => ({
-                    minWidth: 498,
-                    overflow: 'hidden',
-                    ...(!theme.vars
-                      ? {
-                          borderColor:
-                            theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.200',
-                          bgcolor:
-                            theme.palette.mode === 'dark' ? 'primaryDark.900' : 'background.paper',
-                          boxShadow: `0px 4px 20px ${
-                            theme.palette.mode === 'dark'
-                              ? alpha(theme.palette.background.paper, 0.72)
-                              : 'rgba(170, 180, 190, 0.3)'
-                          }`,
-                        }
-                      : {
-                          borderColor: 'grey.200',
-                          bgcolor: 'background.paper',
-                          boxShadow: `0px 4px 20px rgba(170, 180, 190, 0.3)`,
-                          [theme.getColorSchemeSelector('dark')]: {
-                            borderColor: 'primaryDark.700',
-                            bgcolor: 'primaryDark.900',
-                            boxShadow: `0px 4px 20px ${alpha(
-                              theme.palette.background.paper,
-                              0.72,
-                            )}`,
-                          },
-                        }),
-                    '& ul': {
-                      margin: 0,
-                      padding: 0,
-                      listStyle: 'none',
-                    },
-                    '& li:not(:last-of-type)': {
-                      borderBottom: '1px solid',
-                      ...(!theme.vars
-                        ? {
-                            borderColor:
-                              theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.100',
-                          }
-                        : {
-                            borderColor: 'grey.100',
-                            [theme.getColorSchemeSelector('dark')]: {
-                              borderColor: 'primaryDark.700',
-                            },
-                          }),
-                    },
-                    '& a': { textDecoration: 'none' },
-                  })}
+                  sx={[
+                    (theme) => ({
+                      minWidth: 498,
+                      overflow: 'hidden',
+                      borderColor: 'grey.200',
+                      bgcolor: 'background.paper',
+                      boxShadow: `0px 4px 20px rgba(170, 180, 190, 0.3)`,
+                      ...theme.applyDarkStyles({
+                        borderColor: 'primaryDark.700',
+                        bgcolor: 'primaryDark.900',
+                        boxShadow: `0px 4px 20px ${alpha(theme.palette.background.paper, 0.72)}`,
+                      }),
+                      '& ul': {
+                        margin: 0,
+                        padding: 0,
+                        listStyle: 'none',
+                      },
+                      '& li:not(:last-of-type)': {
+                        borderBottom: '1px solid',
+                        borderColor: 'grey.100',
+                      },
+                      '& a': { textDecoration: 'none' },
+                    }),
+                    (theme) =>
+                      theme.applyDarkStyles({
+                        '& li:not(:last-of-type)': {
+                          borderColor: 'primaryDark.700',
+                        },
+                      }),
+                  ]}
                 >
                   <ul role="menu">
                     <li role="none">
@@ -413,31 +381,14 @@ export default function HeaderNavBar() {
                   sx={(theme) => ({
                     minWidth: 498,
                     overflow: 'hidden',
-                    ...(!theme.vars
-                      ? {
-                          borderColor:
-                            theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.200',
-                          bgcolor:
-                            theme.palette.mode === 'dark' ? 'primaryDark.900' : 'background.paper',
-                          boxShadow: `0px 4px 20px ${
-                            theme.palette.mode === 'dark'
-                              ? alpha(theme.palette.background.paper, 0.72)
-                              : 'rgba(170, 180, 190, 0.3)'
-                          }`,
-                        }
-                      : {
-                          borderColor: 'grey.200',
-                          bgcolor: 'background.paper',
-                          boxShadow: `0px 4px 20px rgba(170, 180, 190, 0.3)`,
-                          [theme.getColorSchemeSelector('dark')]: {
-                            borderColor: 'primaryDark.700',
-                            bgcolor: 'primaryDark.900',
-                            boxShadow: `0px 4px 20px ${alpha(
-                              theme.palette.background.paper,
-                              0.72,
-                            )}`,
-                          },
-                        }),
+                    borderColor: 'grey.200',
+                    bgcolor: 'background.paper',
+                    boxShadow: `0px 4px 20px rgba(170, 180, 190, 0.3)`,
+                    ...theme.applyDarkStyles({
+                      borderColor: 'primaryDark.700',
+                      bgcolor: 'primaryDark.900',
+                      boxShadow: `0px 4px 20px ${alpha(theme.palette.background.paper, 0.72)}`,
+                    }),
                     '& ul': {
                       margin: 0,
                       padding: 0,

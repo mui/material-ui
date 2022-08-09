@@ -18,21 +18,24 @@ export default function PlayerCard({ theme: externalTheme }: { theme?: Theme }) 
     <Fade in timeout={700}>
       <Card
         variant="outlined"
-        sx={(theme) => ({
-          p: 1,
-          display: 'flex',
-          flexDirection: { xs: 'column', sm: 'row' },
-          [theme.getColorSchemeSelector('dark')]: {
-            bgcolor: 'primaryDark.800',
-          },
-          [`& .${iconButtonClasses.root}`]: {
-            border: '1px solid',
-            borderColor: 'grey.200',
-            [theme.getColorSchemeSelector('dark')]: {
-              borderColor: 'primaryDark.500',
+        sx={[
+          {
+            p: 1,
+            display: 'flex',
+            flexDirection: { xs: 'column', sm: 'row' },
+            [`& .${iconButtonClasses.root}`]: {
+              border: '1px solid',
+              borderColor: 'grey.200',
             },
           },
-        })}
+          (theme) =>
+            theme.applyDarkStyles({
+              bgcolor: 'primaryDark.800',
+              [`& .${iconButtonClasses.root}`]: {
+                borderColor: 'primaryDark.500',
+              },
+            }),
+        ]}
       >
         <CardMedia
           component="img"

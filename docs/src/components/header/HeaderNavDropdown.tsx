@@ -11,49 +11,40 @@ import Link from 'docs/src/modules/components/Link';
 import ROUTES from 'docs/src/route';
 
 const Anchor = styled('a')<{ component?: React.ElementType; noLinkStyle?: boolean }>(
-  ({ theme }) => ({
-    ...theme.typography.body2,
-    fontWeight: 700,
-    textDecoration: 'none',
-    border: 'none',
-    width: '100%',
-    backgroundColor: 'transparent',
-    ...(!theme.vars
-      ? {
-          color: theme.palette.mode === 'dark' ? '#fff' : theme.palette.text.secondary,
-        }
-      : {
-          color: theme.vars.palette.text.secondary,
-          [theme.getColorSchemeSelector('dark')]: {
-            color: '#fff',
-          },
-        }),
-    cursor: 'pointer',
-    display: 'flex',
-    alignItems: 'center',
-    padding: theme.spacing(1),
-    borderRadius: theme.spacing(1),
-    transition: theme.transitions.create('background'),
-    '&:hover, &:focus-visible': {
-      ...(!theme.vars
-        ? {
-            backgroundColor:
-              theme.palette.mode === 'dark'
-                ? theme.palette.primaryDark[700]
-                : theme.palette.grey[100],
-          }
-        : {
-            backgroundColor: theme.vars.palette.grey[100],
-            [theme.getColorSchemeSelector('dark')]: {
-              backgroundColor: theme.vars.palette.primaryDark[700],
-            },
-          }),
-      // Reset on touch devices, it doesn't add specificity
-      '@media (hover: none)': {
-        backgroundColor: 'transparent',
+  ({ theme }) => [
+    {
+      ...theme.typography.body2,
+      fontWeight: 700,
+      textDecoration: 'none',
+      border: 'none',
+      width: '100%',
+      backgroundColor: 'transparent',
+      color: theme.palette.text.secondary,
+      cursor: 'pointer',
+      display: 'flex',
+      alignItems: 'center',
+      padding: theme.spacing(1),
+      borderRadius: theme.spacing(1),
+      transition: theme.transitions.create('background'),
+      '&:hover, &:focus-visible': {
+        backgroundColor: (theme.vars || theme).palette.grey[100],
+        // Reset on touch devices, it doesn't add specificity
+        '@media (hover: none)': {
+          backgroundColor: 'transparent',
+        },
       },
     },
-  }),
+    theme.applyDarkStyles({
+      color: '#fff',
+      '&:hover, &:focus-visible': {
+        backgroundColor: (theme.vars || theme).palette.primaryDark[700],
+        // Reset on touch devices, it doesn't add specificity
+        '@media (hover: none)': {
+          backgroundColor: 'transparent',
+        },
+      },
+    }),
+  ],
 );
 
 const UList = styled('ul')({
@@ -159,9 +150,9 @@ export default function HeaderNavDropdown() {
             left: 0,
             right: 0,
             boxShadow: `0px 4px 20px rgba(170, 180, 190, 0.3)`,
-            [theme.getColorSchemeSelector('dark')]: {
+            ...theme.applyDarkStyles({
               boxShadow: '0px 4px 20px rgba(0, 0, 0, 0.5)',
-            },
+            }),
           })}
         >
           <Box
@@ -177,9 +168,9 @@ export default function HeaderNavDropdown() {
                 '& ul': {
                   borderLeft: '1px solid',
                   borderColor: 'grey.100',
-                  [theme.getColorSchemeSelector('dark')]: {
+                  ...theme.applyDarkStyles({
                     borderColor: 'primaryDark.700',
-                  },
+                  }),
                   pl: 1,
                   pb: 1,
                   ml: 1,
