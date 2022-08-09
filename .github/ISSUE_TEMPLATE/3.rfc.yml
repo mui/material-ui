@@ -1,0 +1,47 @@
+name: RFC 💬
+description: Request for comments for your proposal.
+title: "[RFC] "
+labels: ['RFC']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please provide a searchable summary of the RFC in the title above ⬆️.
+
+        Thanks for contributing by creating an RFC! ❤️
+  - type: textarea
+    attributes:
+      label: What's the problem? 🤔
+      description: A short paragraph or bullet list that quickly explains what you're trying to do, what value do we expect to get or any other relevant information to understand motivation behind this RFC
+
+  - type: textarea
+    attributes:
+      label: What are the requirements? ❓
+      description: Provide a list of requirements that should be met by the accepted proposal
+
+  - type: textarea
+    attributes:
+      label: What are our options? 💡
+      description: |
+        Have you considered all options that we can achieve same/similar thing? It doesn't have to be explored in same detail as the main proposal, but having alternative options that you can present can help strengthen main proposal.
+
+        Consider:
+        - using diagrams to help illustrate your ideas
+        - including code examples if you're proposing an interface or system contract
+        - linking to project briefs or wireframes that are relevant
+
+  - type: textarea
+    attributes:
+      label: Proposed solution 🟢
+      description: |
+        This is the core of RFC, and its purpose is to clearly explain reasoning for the proposed solution, why it's better compared to the other options or why should it be chosen instead.
+        
+        Consider:
+        - using diagrams to help illustrate your ideas
+        - including code examples if you're proposing an interface or system contract
+        - linking to project briefs or wireframes that are relevant
+  
+  - type: textarea
+    attributes:
+      label: Relevant resources/benchmarks 🔗
+      description: Attach any issues, PRs, links, documents, etc… that might be relevant to the RFC
