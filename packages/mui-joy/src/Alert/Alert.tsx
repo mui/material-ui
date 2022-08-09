@@ -204,7 +204,7 @@ Alert.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * The variant to use.
-   * @default 'solid'
+   * @default 'soft'
    */
   variant: PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
 } as any;
