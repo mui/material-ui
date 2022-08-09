@@ -1,7 +1,10 @@
 import * as React from 'react';
 import { createMount, createRenderer, describeConformanceUnstyled, screen } from 'test/utils';
 import { expect } from 'chai';
-import InputUnstyled, { inputUnstyledClasses } from '@mui/base/InputUnstyled';
+import InputUnstyled, {
+  inputUnstyledClasses,
+  InputUnstyledOwnProps,
+} from '@mui/base/InputUnstyled';
 
 describe('<InputUnstyled />', () => {
   const mount = createMount();
@@ -44,11 +47,13 @@ describe('<InputUnstyled />', () => {
     });
 
     it('should pass the minRows or maxRows prop to the underlying textarea slot if a custom component is used', () => {
-      const CustomTextarea = ({ minRows, maxRows, ownerState, ...other }: any) => {
-        expect(minRows).to.equal(5);
-        expect(maxRows).to.equal(10);
-        return <textarea {...other} />;
-      };
+      const CustomTextarea = React.forwardRef(
+        ({ minRows, maxRows, ownerState, ...other }: any, ref) => {
+          expect(minRows).to.equal(5);
+          expect(maxRows).to.equal(10);
+          return <textarea {...other} ref={ref} />;
+        },
+      );
 
       render(
         <InputUnstyled
