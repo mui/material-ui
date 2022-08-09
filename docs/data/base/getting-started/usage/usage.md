@@ -39,7 +39,7 @@ Each component contains a root slot, and other appropriate slots based on the na
 For example, the `BadgeUnstyled` contains two slots:
 
 - `root`: the container element that wraps the children.
-- `badge`: the element that appears at the given position.
+- `badge`: the badge element itself.
   :::
 
 You can use the `components` prop to override default slots with either custom components or HTML elements.
