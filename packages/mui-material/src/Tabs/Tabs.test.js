@@ -163,6 +163,44 @@ describe('<Tabs />', () => {
     });
   });
 
+  describe('prop: componentProps', () => {
+    const tabs = (
+      <Tabs
+        value={0}
+        componentsProps={{
+          root: { 'data-testid': 'test-label-root' },
+          flexContainer: { 'data-testid': 'test-label-flexContainer' },
+          indicator: { 'data-testid': 'test-label-indicator' },
+          scroller: { 'data-testid': 'test-label-scroller' },
+        }}
+      >
+        <Tab style={{ width: 120, minWidth: 'auto' }} />
+        <Tab style={{ width: 120, minWidth: 'auto' }} />
+        <Tab style={{ width: 120, minWidth: 'auto' }} />
+      </Tabs>
+    );
+
+    it('should have custom root classname', () => {
+      const { getAllByTestId } = render(tabs);
+      expect(getAllByTestId('test-label-root')).to.have.lengthOf(1);
+    });
+
+    it('should have custom flexContainer classname', () => {
+      const { getAllByTestId } = render(tabs);
+      expect(getAllByTestId('test-label-flexContainer')).to.have.lengthOf(1);
+    });
+
+    it('should have custom indicator classname', () => {
+      const { getAllByTestId } = render(tabs);
+      expect(getAllByTestId('test-label-indicator')).to.have.lengthOf(1);
+    });
+
+    it('should have custom scroller classname', () => {
+      const { getAllByTestId } = render(tabs);
+      expect(getAllByTestId('test-label-scroller')).to.have.lengthOf(1);
+    });
+  });
+
   describe('prop: value', () => {
     const tabs = (
       <Tabs value={1}>
