@@ -11,7 +11,7 @@
     "onClose": "Callback disparado quando o componente e requisitado a ser fechado. Quando fornecido e a propriedade <code>action</code> nao é definida, um botão de ícone fechar é exibido para acionar o callback quando clicado.<br><br><strong>Assinatura:</strong><br><code>function(event: object) =&gt; void</code><br><em>event:</em> A fonte do evento de callback.",
     "role": "O atributo de regra ARIA do elemento.",
     "severity": "A severidade do alerta. Isso define a cor e o ícone usado.",
-    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/basics/#the-sx-prop\">`sx` page</a> for more details.",
+    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details.",
     "variant": "A variante a usar."
   },
   "classDescriptions": {
