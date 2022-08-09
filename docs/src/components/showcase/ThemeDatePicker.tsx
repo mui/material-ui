@@ -37,6 +37,9 @@ export default function ThemeDatePicker() {
                 bgcolor: 'primaryDark.800',
               },
             },
+            '& .MuiPickerStaticWrapper-content': {
+              bgcolor: 'initial',
+            },
             '& .MuiCalendarPicker-root': {
               width: '100%',
               '& .MuiTypography-caption': {
