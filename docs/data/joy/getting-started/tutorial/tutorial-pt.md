@@ -60,7 +60,7 @@ Every Joy UI component accepts the `sx` prop, which allows a shorthand syntax fo
 </Sheet>
 ```
 
-Don't worry if you're confused about the `sx` prop's syntax at this moment. You'll get the hang of it as you use it more. Check the [MUI System's documentation](/system/the-sx-prop/) to learn more about its foundation.
+Don't worry if you're confused about the `sx` prop's syntax at this moment. You'll get the hang of it as you use it more. Check the [MUI System's documentation](/system/getting-started/the-sx-prop/) to learn more about its foundation.
 
 ### 3. Using `Typography` to create a welcome text
 
