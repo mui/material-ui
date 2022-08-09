@@ -39,6 +39,10 @@ import {
   ChipDeleteOwnerState,
   ChipDeleteSlot,
 } from '../ChipDelete/ChipDeleteProps';
+import {
+  CircularProgressProps,
+  CircularProgressSlot,
+} from '../CircularProgress/CircularProgressProps';
 import { ContainerProps, ContainerSlot } from '../Container/ContainerProps';
 import {
   FormHelperTextProps,
@@ -155,6 +159,10 @@ export interface Components<Theme = unknown> {
   JoyBreadcrumbs?: {
     defaultProps?: Partial<BreadcrumbsProps>;
     styleOverrides?: OverridesStyleRules<BreadcrumbsSlot, BreadcrumbsOwnerState, Theme>;
+  };
+  JoyCircularProgress?: {
+    defaultProps?: Partial<CircularProgressProps>;
+    styleOverrides?: OverridesStyleRules<CircularProgressSlot, CircularProgressProps, Theme>;
   };
   JoyCard?: {
     defaultProps?: Partial<CardProps>;
