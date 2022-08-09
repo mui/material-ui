@@ -2622,5 +2622,27 @@ describe('<Autocomplete />', () => {
       fireEvent.keyDown(textbox, { key: 'Backspace' });
       expect(container.querySelectorAll(`.${chipClasses.root}`)).to.have.length(2);
     });
+
+    it('should not crash if renderTags is null', () => {
+      const handleChange = spy();
+      const options = ['one', 'two'];
+      render(
+        <Autocomplete
+          defaultValue={options}
+          options={options}
+          value={options}
+          renderTags={() => null}
+          onChange={handleChange}
+          renderInput={(params) => <TextField {...params} autoFocus />}
+          multiple
+        />,
+      );
+      const textbox = screen.getByRole('combobox');
+      // const [firstSelectedValue] = screen.getAllByRole('button');
+
+      expect(() => {
+        fireEvent.keyDown(textbox, { key: 'ArrowLeft' });
+      }).not.to.throw();
+    });
   });
 });

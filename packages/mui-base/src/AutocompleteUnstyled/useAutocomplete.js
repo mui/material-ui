@@ -264,7 +264,7 @@ export default function useAutocomplete(props) {
     if (tagToFocus === -1) {
       inputRef.current.focus();
     } else {
-      anchorEl.querySelector(`[data-tag-index="${tagToFocus}"]`).focus();
+      anchorEl.querySelector(`[data-tag-index="${tagToFocus}"]`)?.focus();
     }
   });
 
