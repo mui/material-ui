@@ -38,7 +38,8 @@ const AlertRoot = styled('div', {
       ...theme.typography.body2,
       backgroundColor: 'transparent',
       display: 'flex',
-      padding: '6px 16px',
+      padding: '8px 16px',
+      borderRadius: theme.vars.radius.sm,
     },
     theme.variants[ownerState.variant!]?.[ownerState.color!],
   ];
@@ -49,7 +50,12 @@ const AlertIcon = styled('div', {
   slot: 'Icon',
   overridesResolver: (props, styles) => styles.icon,
 })<{ ownerState: AlertProps }>(() => {
-  return { marginRight: 12, padding: '7px 0', display: 'flex', fontSize: 22, opacity: 0.9 };
+  return {
+    marginRight: 12,
+    display: 'flex',
+    alignItems: 'center',
+    fontSize: 22,
+  };
 });
 
 const AlertMessage = styled('div', {
