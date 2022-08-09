@@ -14,7 +14,7 @@
     "href": "点击按钮时链接到的URL。 如果被定义, <code>a</code> 元素将被用作根节点.",
     "size": "The size of the button. <code>small</code> is equivalent to the dense button styling.",
     "startIcon": "放置在孩子之前的元素。",
-    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/basics/#the-sx-prop\">`sx` page</a> for more details.",
+    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details.",
     "variant": "使用的变体。"
   },
   "classDescriptions": {
