@@ -30,7 +30,7 @@ Você pode conferir a [seção do tema padrão](/material-ui/customization/defau
 
 ### Variáveis customizáveis
 
-Ao usar o tema do MUI com o [MUI System](/system/basics/) ou [qualquer outra solução de estilização](/material-ui/guides/interoperability/#themeprovider), pode ser conveniente acrescentar variáveis adicionais ao tema, para que você possa usá-las em todos os lugares. Por exemplo:
+When using MUI's theme with [MUI System](/system/getting-started/overview/) or [any other styling solution](/material-ui/guides/interoperability/#themeprovider), it can be convenient to add additional variables to the theme so you can use them everywhere. Por exemplo:
 
 ```jsx
 const theme = createTheme({
