@@ -22,14 +22,6 @@ declare module '@mui/material/styles' {
     primaryDark?: PaletteColorOptions;
   }
 
-  interface CssVarsPalette {
-    border: {
-      subtle: string;
-      subtleHover: string;
-      soft: string;
-    };
-  }
-
   interface PaletteSwitch {
     trackBg: string;
   }
@@ -47,11 +39,6 @@ const theme = extendTheme({
   colorSchemes: {
     light: {
       palette: deepmerge(lightPalette, {
-        border: {
-          subtle: 'var(--mui-palette-grey-200)',
-          subtleHover: 'var(--mui-palette-grey-300)',
-          soft: 'var(--mui-palette-grey-200)',
-        },
         text: {
           display1: 'var(--mui-palette-primaryDark-900)',
           display2: 'var(--mui-palette-primaryDark-700)',
@@ -69,11 +56,6 @@ const theme = extendTheme({
     },
     dark: {
       palette: deepmerge(darkPalette, {
-        border: {
-          subtle: 'var(--mui-palette-primaryDark-700)',
-          subtleHover: 'var(--mui-palette-primaryDark-600)',
-          soft: 'var(--mui-palette-primaryDark-500)',
-        },
         text: {
           display1: '#fff',
           display2: 'var(--mui-palette-grey-100)',
