@@ -11,7 +11,7 @@ const ROUTES = {
   baseDocs: '/base/getting-started/overview/',
   materialDocs: '/material-ui/getting-started/overview/',
   joyDocs: '/joy-ui/getting-started/overview/',
-  systemDocs: '/system/basics/',
+  systemDocs: '/system/getting-started/overview/',
   materialIcons: '/material-ui/material-icons/',
   freeTemplates: '/material-ui/getting-started/templates/',
   components: '/material-ui/getting-started/supported-components/',

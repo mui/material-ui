@@ -18,7 +18,7 @@ export default function StyleFunctionSxDemo() {
   return (
     <NoSsr>
       <ThemeProvider theme={theme}>
-        <Div sx={{ m: 1, p: 1, border: 1 }}>Custom component using the system</Div>
+        <Div sx={{ m: 1, p: 1, border: 1 }}>Custom component with the sx prop</Div>
       </ThemeProvider>
     </NoSsr>
   );
