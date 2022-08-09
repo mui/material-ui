@@ -1,5 +1,66 @@
 # [Versions](https://mui.com/versions/)
 
+## 5.10.0
+
+<!-- generated comparing v5.9.3..master -->
+
+_Aug 8, 2022_
+
+A big thanks to the 16 contributors who made this release possible. Here are some highlights ✨:
+
+- ✨ [Stack](https://mui.com/system/react-stack/) component is added to MUI System and Joy UI #33760 #33800 @mnajdova
+- ✨ [Breadcrumbs](https://mui.com/joy-ui/react-breadcrumbs/) component is added to Joy UI (#32697) @hbjORbj
+- Many other 🐛 bug fixes, 📚 documentation, and ⚙️ infrastructure improvements
+
+### `@mui/material@5.10.0`
+
+- [Grid] Prevent crash if spacing is set to zero in theme (#33777) @PunitSoniME
+- [Grid] Export interface `RegularBreakpoints` to fix type error (#33751) @ZeeshanTamboli
+- [Skeleton] Add `rounded` variant (#33687) @siriwatknp
+- [Stepper] Fix classes for icon container (#33734) @pratikkarad
+- [TableCell] Enable size prop overrides via module augmentation (#33816) @brentertz
+- [Tooltip] Fix tooltip arrow css var background (#33753) @TimoWilhelm
+- [useScrollTrigger] Add passive flag to scroll trigger event listener #32437 (#33749) @Dsalazar1685
+
+### `@mui/system@5.10.0`
+
+- Fix unnecessary styles created from `sx` (#33752) @siriwatknp
+- Fix duplicated styles in Box (#33774) @iamxukai
+- Don't spread props to DOM for string tags (#33761) @siriwatknp
+- Add `Stack` component (#33760) @mnajdova
+
+### `@mui/joy@5.0.0-alpha.40`
+
+- [Stack] Add new component (#33800) @mnajdova
+- [Breadcrumbs] Add `Breadcrumbs` component (#32697) @hbjORbj
+- [Card] Fix wrong api description for `size` prop (#33862) @hbjORbj
+- Miscellaneous fixes (#33796, #33750) @siriwatknp
+
+### Docs
+
+- [docs] Create, revise, and expand System "Getting started" docs (#33503) @samuelsycamore
+- [docs] Test new image best practice @oliviertassinari
+- [docs] Fix typo in the ClickAwayListerner name (#33813) @pawelsmigielski
+- [docs] Fix link to `Basics` section in `Trap Focus` docs (#33772) @ZeeshanTamboli
+- [docs] z-index added in popper when used by split button (#33763) @PunitSoniME
+- [docs] Improve the guide for using @mui/base with Tailwind CSS (#33670) @mnajdova
+- [docs] Fix warnings related to Next.js' links (#33693) @mnajdova
+- [docs] Add notification to aggregation blogpost (#33745) @joserodolfofreitas
+- [docs] Add Grid version 2 docs (#33554) @siriwatknp
+- [examples] Fix `NextLinkComposedProps` type error (#33842) @adham618
+
+### Core
+
+- [blog] Add social card to Tenerife retreat post (#33764)
+- [blog] Fix blue outline bug (#33707) @oliviertassinari
+- [blog] Improve the width of the layout (#33706) @oliviertassinari@samuelsycamore
+- [core] Remove unnecessary packageName attribute from pages (#33488) @cherniavskii
+- [core] Remove duplicated CODE_OF_CONDUCT (#33702) @oliviertassinari
+- [core] Update Playwright packages together (#33737) @michaldudak
+- [website] Fix notifications not being marked as read in production (#33756) @cherniavskii
+
+All contributors of this release in alphabetical order: @adham618, @brentertz, @cherniavskii, @Dsalazar1685, @hbjORbj, @iamxukai, @joserodolfofreitas, @michaldudak, @mnajdova, @oliviertassinari, @pawelsmigielski, @pratikkarad, @PunitSoniME, @siriwatknp, @TimoWilhelm, @ZeeshanTamboli
+
 ## 5.9.3
 
 <!-- generated comparing v5.9.2..master -->
