@@ -13,6 +13,9 @@ export * from './Button';
 export { default as Breadcrumbs } from './Breadcrumbs';
 export * from './Breadcrumbs';
 
+export { default as CircularProgress } from './CircularProgress';
+export * from './CircularProgress';
+
 export { default as Typography } from './Typography';
 export * from './Typography';
 

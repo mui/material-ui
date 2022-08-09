@@ -14,6 +14,10 @@ import { CardOverflowProps, CardOverflowSlot } from '../CardOverflow/CardOverflo
 import { CheckboxProps, CheckboxSlot } from '../Checkbox/CheckboxProps';
 import { ChipProps, ChipSlot } from '../Chip/ChipProps';
 import { ChipDeleteProps, ChipDeleteSlot } from '../ChipDelete/ChipDeleteProps';
+import {
+  CircularProgressProps,
+  CircularProgressSlot,
+} from '../CircularProgress/CircularProgressProps';
 import { ContainerProps, ContainerSlot } from '../Container/ContainerProps';
 import { FormHelperTextProps, FormHelperTextSlot } from '../FormHelperText/FormHelperTextProps';
 import { FormLabelProps, FormLabelSlot } from '../FormLabel/FormLabelProps';
@@ -89,6 +93,10 @@ export interface Components<Theme = unknown> {
   JoyButton?: {
     defaultProps?: Partial<ButtonProps>;
     styleOverrides?: OverridesStyleRules<ButtonSlot, ButtonProps, Theme>;
+  };
+  JoyCircularProgress?: {
+    defaultProps?: Partial<CircularProgressProps>;
+    styleOverrides?: OverridesStyleRules<CircularProgressSlot, CircularProgressProps, Theme>;
   };
   JoyCard?: {
     defaultProps?: Partial<CardProps>;
