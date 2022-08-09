@@ -5,10 +5,10 @@ import Alert from '@mui/joy/Alert';
 export default function AlertVariants() {
   return (
     <Box sx={{ display: 'flex', gap: 2, width: '100%', flexDirection: 'column' }}>
-      <Alert variant="solid">Solid</Alert>
-      <Alert variant="soft">Soft</Alert>
-      <Alert variant="outlined">Outlined</Alert>
-      <Alert variant="plain">Plain</Alert>
+      <Alert variant="solid">This is an alert using the solid variant.</Alert>
+      <Alert variant="soft">This is an alert using the soft variant.</Alert>
+      <Alert variant="outlined">This is an alert using the outlined variant.</Alert>
+      <Alert variant="plain">This is an alert using the plain variant.</Alert>
     </Box>
   );
 }
