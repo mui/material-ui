@@ -130,11 +130,26 @@ export default function useCurrentColorScheme<SupportedColorScheme extends strin
 
   const [state, setState] = React.useState(() => {
     const initialMode = resolveValue(modeStorageKey, defaultMode);
+    const systemMode = getSystemMode(initialMode);
+    const lightColorScheme =
+      resolveValue(`${colorSchemeStorageKey}-light`) || defaultLightColorScheme;
+    const darkColorScheme = resolveValue(`${colorSchemeStorageKey}-dark`) || defaultDarkColorScheme;
+    if (typeof window !== 'undefined') {
+      if (initialMode) {
+        localStorage.setItem(modeStorageKey, initialMode);
+      }
+      if (lightColorScheme) {
+        localStorage.setItem(`${colorSchemeStorageKey}-light`, lightColorScheme);
+      }
+      if (darkColorScheme) {
+        localStorage.setItem(`${colorSchemeStorageKey}-dark`, darkColorScheme);
+      }
+    }
     return {
       mode: initialMode,
-      systemMode: getSystemMode(initialMode),
-      lightColorScheme: resolveValue(`${colorSchemeStorageKey}-light`) || defaultLightColorScheme,
-      darkColorScheme: resolveValue(`${colorSchemeStorageKey}-dark`) || defaultDarkColorScheme,
+      systemMode,
+      lightColorScheme,
+      darkColorScheme,
     } as State<SupportedColorScheme>;
   });
 
@@ -242,21 +257,6 @@ export default function useCurrentColorScheme<SupportedColorScheme extends strin
 
     return () => media.removeListener(handler);
   }, []);
-
-  // Save mode, lightColorScheme & darkColorScheme to localStorage
-  React.useEffect(() => {
-    if (state.mode) {
-      localStorage.setItem(modeStorageKey, state.mode);
-    }
-    processState(state, (mode) => {
-      if (mode === 'light') {
-        localStorage.setItem(`${colorSchemeStorageKey}-light`, state.lightColorScheme);
-      }
-      if (mode === 'dark') {
-        localStorage.setItem(`${colorSchemeStorageKey}-dark`, state.darkColorScheme);
-      }
-    });
-  }, [state, colorSchemeStorageKey, modeStorageKey]);
 
   // Handle when localStorage has changed
   React.useEffect(() => {
