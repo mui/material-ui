@@ -99,7 +99,7 @@ const Alert = React.forwardRef(function Alert(inProps, ref) {
     icon,
     onClose,
     role = 'alert',
-    variant = 'solid',
+    variant = 'soft',
     ...other
   } = props;
 

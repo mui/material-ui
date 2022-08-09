@@ -47,7 +47,7 @@ export interface AlertTypeMap<P = {}, D extends React.ElementType = 'div'> {
     sx?: SxProps;
     /**
      * The variant to use.
-     * @default 'solid'
+     * @default 'soft'
      */
     variant?: OverridableStringUnion<VariantProp, AlertPropsVariantOverrides>;
   };
