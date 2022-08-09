@@ -5,6 +5,7 @@ import { InternalStandardProps as StandardProps, Theme } from '..';
 import { TableCellClasses } from './tableCellClasses';
 
 export interface TableCellPropsSizeOverrides {}
+export interface TableCellPropsVariantOverrides {}
 
 /**
  * `<TableCell>` will be rendered as an `<th>`or `<td>` depending
@@ -62,7 +63,7 @@ export interface TableCellProps extends StandardProps<TableCellBaseProps, 'align
    * Specify the cell type.
    * The prop defaults to the value inherited from the parent TableHead, TableBody, or TableFooter components.
    */
-  variant?: 'head' | 'body' | 'footer';
+  variant?: OverridableStringUnion<'head' | 'body' | 'footer', TableCellPropsVariantOverrides>;
 }
 
 export type TableCellBaseProps = React.ThHTMLAttributes<HTMLTableCellElement> &
