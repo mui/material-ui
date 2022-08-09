@@ -20,7 +20,7 @@ To change the styles of _one single instance_ of a component, you can use one of
 
 ### The `sx` prop
 
-The [`sx` prop](/system/basics/#the-sx-prop) is the best option for adding style overrides to a single instance of a component in most cases. It can be used with all Material UI components.
+The [`sx` prop](/system/getting-started/the-sx-prop/) is the best option for adding style overrides to a single instance of a component in most cases. It can be used with all Material UI components.
 
 {{"demo": "SxProp.js" }}
 
