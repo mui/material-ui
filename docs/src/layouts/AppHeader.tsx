@@ -19,31 +19,21 @@ import IconButton from '@mui/material/IconButton';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 
-const Header = styled('header')(({ theme }) => ({
-  position: 'sticky',
-  top: 0,
-  transition: theme.transitions.create('top'),
-  zIndex: theme.zIndex.appBar,
-  backdropFilter: 'blur(20px)',
-  ...(!theme.vars
-    ? {
-        boxShadow: `inset 0px -1px 1px ${
-          theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : theme.palette.grey[100]
-        }`,
-        backgroundColor:
-          theme.palette.mode === 'dark'
-            ? alpha(theme.palette.primaryDark[900], 0.72)
-            : 'rgba(255,255,255,0.72)',
-      }
-    : {
-        boxShadow: `inset 0px -1px 1px ${theme.vars.palette.grey[100]}`,
-        backgroundColor: 'rgba(255,255,255,0.72)',
-        [theme.getColorSchemeSelector('dark')]: {
-          boxShadow: `inset 0px -1px 1px ${theme.vars.palette.primaryDark[700]}`,
-          backgroundColor: alpha(theme.palette.primaryDark[900], 0.72),
-        },
-      }),
-}));
+const Header = styled('header')(({ theme }) => [
+  {
+    position: 'sticky',
+    top: 0,
+    transition: theme.transitions.create('top'),
+    zIndex: theme.zIndex.appBar,
+    backdropFilter: 'blur(20px)',
+    boxShadow: `inset 0px -1px 1px ${(theme.vars || theme).palette.grey[100]}`,
+    backgroundColor: 'rgba(255,255,255,0.72)',
+  },
+  theme.applyDarkStyles({
+    boxShadow: `inset 0px -1px 1px ${(theme.vars || theme).palette.primaryDark[700]}`,
+    backgroundColor: alpha(theme.palette.primaryDark[900], 0.72),
+  }),
+]);
 
 const HEIGHT = 56;
 
