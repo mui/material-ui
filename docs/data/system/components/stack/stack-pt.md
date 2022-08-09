@@ -2,7 +2,6 @@
 product: system
 title: React Stack component
 githubLabel: 'component: Stack'
-packageName: '@mui/system'
 ---
 
 # Stack
