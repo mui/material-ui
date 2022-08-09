@@ -60,7 +60,7 @@
     "renderTags": "Render the selected value.<br><br><strong>Signature:</strong><br><code>function(value: Array&lt;T&gt;, getTagProps: function, ownerState: object) =&gt; ReactNode</code><br><em>value:</em> The <code>value</code> provided to the component.<br><em>getTagProps:</em> A tag props getter.<br><em>ownerState:</em> The state of the Autocomplete component.",
     "selectOnFocus": "If <code>true</code>, the input&#39;s text is selected on focus. It helps the user clear the selected value.",
     "size": "The size of the component.",
-    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/the-sx-prop/\">`sx` page</a> for more details.",
+    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details.",
     "value": "The value of the autocomplete.<br>The value must have reference equality with the option in order to be selected. You can customize the equality behavior with the <code>isOptionEqualToValue</code> prop."
   },
   "classDescriptions": {

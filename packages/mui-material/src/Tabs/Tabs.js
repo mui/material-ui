@@ -562,8 +562,16 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
 
   React.useEffect(() => {
     const handleResize = debounce(() => {
-      updateIndicatorState();
-      updateScrollButtonState();
+      // If the Tabs component is replaced by Suspense with a fallback, the last
+      // ResizeObserver's handler that runs because of the change in the layout is trying to
+      // access a dom node that is no longer there (as the fallback component is being shown instead).
+      // See https://github.com/mui/material-ui/issues/33276
+      // TODO: Add tests that will ensure the component is not failing when
+      // replaced by Suspense with a fallback, once React is updated to version 18
+      if (tabsRef.current) {
+        updateIndicatorState();
+        updateScrollButtonState();
+      }
     });
     const win = ownerWindow(tabsRef.current);
     win.addEventListener('resize', handleResize);
@@ -809,7 +817,10 @@ Tabs.propTypes /* remove-proptypes */ = {
    * Determines the color of the indicator.
    * @default 'primary'
    */
-  indicatorColor: PropTypes.oneOf(['primary', 'secondary']),
+  indicatorColor: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['primary', 'secondary']),
+    PropTypes.string,
+  ]),
   /**
    * Callback fired when the value changes.
    *

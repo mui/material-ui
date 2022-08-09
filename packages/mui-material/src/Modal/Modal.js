@@ -1,8 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { isHostComponent } from '@mui/base';
-import { elementAcceptingRef, HTMLElementType } from '@mui/utils';
 import ModalUnstyled, { modalUnstyledClasses } from '@mui/base/ModalUnstyled';
+import { isHostComponent, resolveComponentProps } from '@mui/base/utils';
+import { elementAcceptingRef, HTMLElementType } from '@mui/utils';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import Backdrop from '../Backdrop';
@@ -112,8 +112,14 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
         ...components,
       }}
       componentsProps={{
-        root: { ...componentsProps.root, ...(!isHostComponent(Root) && { as: component, theme }) },
-        backdrop: { ...BackdropProps, ...componentsProps.backdrop },
+        root: () => ({
+          ...resolveComponentProps(componentsProps.root, ownerState),
+          ...(!isHostComponent(Root) && { as: component, theme }),
+        }),
+        backdrop: () => ({
+          ...BackdropProps,
+          ...resolveComponentProps(componentsProps.backdrop, ownerState),
+        }),
       }}
       onTransitionEnter={() => setExited(false)}
       onTransitionExited={() => setExited(true)}
@@ -134,7 +140,8 @@ Modal.propTypes /* remove-proptypes */ = {
   // ----------------------------------------------------------------------
   /**
    * A backdrop component. This prop enables custom backdrop rendering.
-   * @deprecated Use `components.Backdrop` instead.
+   * @deprecated Use `components.Backdrop` instead. While this prop currently works, it will be removed in the next major version.
+   * Use the `components.Backdrop` prop to make your application ready for the next version of Material UI.
    * @default styled(Backdrop, {
    *   name: 'MuiModal',
    *   slot: 'Backdrop',
@@ -183,8 +190,8 @@ Modal.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   componentsProps: PropTypes.shape({
-    backdrop: PropTypes.object,
-    root: PropTypes.object,
+    backdrop: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
    * An HTML element or function that returns one.

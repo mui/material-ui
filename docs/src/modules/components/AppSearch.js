@@ -126,9 +126,9 @@ const NewStartScreen = () => {
         icon: <HandymanRoundedIcon className="DocSearch-NewStartScreenTitleIcon" />,
       },
       items: [
-        { name: 'Basics', href: '/system/basics/' },
+        { name: 'Overview', href: '/system/getting-started/overview/' },
         { name: 'Properties', href: '/system/properties/' },
-        { name: 'The sx prop', href: '/system/the-sx-prop/' },
+        { name: 'The sx prop', href: '/system/getting-started/the-sx-prop/' },
       ],
     },
   ];

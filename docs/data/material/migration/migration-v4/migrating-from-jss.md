@@ -107,7 +107,7 @@ You should run this codemod on a small chunk of files and then check the changes
 #### Manual
 
 We recommend `sx` API over `styled` for creating responsive styles or overriding minor CSS.
-[Read more about `sx` here](/system/the-sx-prop/).
+[Read more about `sx` here](/system/getting-started/the-sx-prop/).
 
 ```diff
  import Chip from '@mui/material/Chip';

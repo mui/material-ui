@@ -21,17 +21,23 @@ You can use the new Premium features to provide your end users with the most sop
 [Row grouping](https://mui.com/x/react-data-grid/row-grouping/) lets users group data based on repeating values in the grid.
 For example, users can now group orders by buyers, movies by directors, or cities by the governing parties.
 
-These kinds of use cases would usually be dealt with using a new query on the database—which might require a new service end-point, and maybe even a new front-end, along with all the UX challenges this would entail.
-
-Now this functionality is available to your users with a single click.
-Users are encouraged to explore the data and create combinations with multiple grouping criteria,
-and are then able to export these new views to Excel, with the next Premium feature: Excel export.
+These kinds of use cases would usually be dealt with using a new query on the database—which might require a new service end-point, and maybe even a new front-end, along with all the UX challenges this would entail. Now this functionality is available to your users with a single click.
 
 <video style="margin-bottom: 24px;" autoplay muted loop playsinline controls>
   <source src="/static/blog/premium-plan-release/row-grouping-example.mp4" type="video/mp4" />
 </video>
 
 <p class="blog-description">The feature in action, from the docs page.</p>
+
+Users are encouraged to explore the data and create combinations with multiple grouping criteria,
+and are then able to export these new views to Excel, with the next Premium feature: Excel export.
+
+:::info
+With the Premium release, we have made Row grouping available for production use in the `@mui/x-data-grid-premium` package.
+
+This feature was previously available [as a preview](https://mui.com/blog/introducing-the-row-grouping-feature/#how-to-unlock-this-feature) for Pro users intending to migrate to the new plan.
+
+:::
 
 ### Excel export
 
@@ -72,10 +78,10 @@ We’d also like to keep it within reach of individuals and small teams, while s
 Here is a list of everything that has changed:
 
 :::warning
-⚠️ Please note: The following changes apply only to **new customers**. Existing customers are not impacted, and their license agreement remains valid.
+⚠️ Please note: The following **pricing** changes apply only to **new customers**. Existing customers are grandfathered, they can renew their license under the [previous terms](https://mui.com/legal/mui-x-eula-2022-05-08/) once. Their last renewal can have a support duration of up to 5 years.
 :::
 
-- **Price point per developer seat**
+- **Cost per developer seat**
 
   We’re lowering our base price points, particularly for Pro users. Fees are billed annually.
 
@@ -94,9 +100,9 @@ Here is a list of everything that has changed:
 
 - **Price cap for Premium plan**
 
-  The price for Pro is still capped at 10 seats, but we’re removing the concept of price cap for Premium. We kindly ask you to [contact sales](mailto:sales@mui.com) if you wish to purchase a license for more than 50 developers.
+  Pro is still capped at 10 seats, but Premium doesn't have a license cap. We kindly ask you to [contact sales](mailto:sales@mui.com) if you wish to purchase a license for more than 50 developers.
 
-Please, feel free to read the new [license agreement](https://mui.com/store/legal/mui-x-eula/) in detail.
+Please feel free to read the [license agreement](https://mui.com/legal/mui-x-eula/) in detail.
 
 ## What can you expect next?
 

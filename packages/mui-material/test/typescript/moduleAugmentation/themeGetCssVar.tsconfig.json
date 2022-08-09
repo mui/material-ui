@@ -1,0 +1,4 @@
+{
+  "extends": "../../../../../tsconfig",
+  "files": ["themeGetCssVar.spec.tsx"]
+}

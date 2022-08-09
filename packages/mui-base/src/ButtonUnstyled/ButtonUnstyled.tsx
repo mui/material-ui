@@ -1,5 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import { OverridableComponent } from '@mui/types';
 import composeClasses from '../composeClasses';
 import { getButtonUnstyledUtilityClass } from './buttonUnstyledClasses';
 import {
@@ -38,12 +39,11 @@ const useUtilityClasses = (ownerState: ButtonUnstyledOwnerState) => {
  * - [ButtonUnstyled API](https://mui.com/base/api/button-unstyled/)
  */
 const ButtonUnstyled = React.forwardRef(function ButtonUnstyled<
-  D extends React.ElementType = ButtonUnstyledTypeMap['defaultComponent'],
->(props: ButtonUnstyledProps<D>, forwardedRef: React.ForwardedRef<any>) {
+  BaseComponentType extends React.ElementType = ButtonUnstyledTypeMap['defaultComponent'],
+>(props: ButtonUnstyledProps<BaseComponentType>, forwardedRef: React.ForwardedRef<any>) {
   const {
     action,
     children,
-    className,
     component,
     components = {},
     componentsProps = {},
@@ -96,11 +96,11 @@ const ButtonUnstyled = React.forwardRef(function ButtonUnstyled<
       ref: forwardedRef,
     },
     ownerState,
-    className: [classes.root, className],
+    className: classes.root,
   });
 
   return <Root {...rootProps}>{children}</Root>;
-});
+}) as OverridableComponent<ButtonUnstyledTypeMap>;
 
 ButtonUnstyled.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
@@ -123,15 +123,10 @@ ButtonUnstyled.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
-   * @ignore
-   */
-  className: PropTypes.string,
-  /**
-   * The component used for the Root slot.
+   * The component used for the root node.
    * Either a string to use a HTML element or a component.
-   * This is equivalent to `components.Root`. If both are provided, the `component` is used.
    */
-  component: PropTypes /* @typescript-to-proptypes-ignore */.elementType,
+  component: PropTypes.elementType,
   /**
    * The components used for each slot inside the Button.
    * Either a string to use a HTML element or a component.
@@ -160,7 +155,31 @@ ButtonUnstyled.propTypes /* remove-proptypes */ = {
   /**
    * @ignore
    */
+  onBlur: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onClick: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onFocus: PropTypes.func,
+  /**
+   * @ignore
+   */
   onFocusVisible: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onKeyDown: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onKeyUp: PropTypes.func,
+  /**
+   * @ignore
+   */
+  onMouseLeave: PropTypes.func,
 } as any;
 
 export default ButtonUnstyled;
