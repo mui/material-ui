@@ -32,3 +32,16 @@ export default function MyApp() {
   return <CircularProgress />;
 }
 ```
+
+### Colors
+
+Every palette included in the theme is available via the `color` prop.
+Play around combining different colors.
+
+{{"demo": "CircularProgressColors.js"}}
+
+### Sizes
+
+The circular progress component comes with three sizes out of the box: `sm`, `md` (the default), and `lg`.
+
+{{"demo": "CircularProgressSizes.js"}}
