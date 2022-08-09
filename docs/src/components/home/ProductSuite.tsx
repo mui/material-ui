@@ -17,16 +17,10 @@ function createLoading(sx: BoxProps['sx']) {
       sx={[
         (theme) => ({
           borderRadius: 1,
-          ...(!theme.vars
-            ? {
-                bgcolor: theme.palette.mode === 'dark' ? 'primaryDark.800' : 'grey.100',
-              }
-            : {
-                bgcolor: 'grey.100',
-                [theme.getColorSchemeSelector('dark')]: {
-                  bgcolor: 'primaryDark.800',
-                },
-              }),
+          bgcolor: 'grey.100',
+          ...theme.applyDarkStyles({
+            bgcolor: 'primaryDark.800',
+          }),
         }),
         ...(Array.isArray(sx) ? sx : [sx]),
       ]}

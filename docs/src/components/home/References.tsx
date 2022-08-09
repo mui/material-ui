@@ -37,16 +37,10 @@ const References = ({
         textAlign="center"
         variant="body2"
         sx={(theme) => ({
-          ...(!theme.vars
-            ? {
-                color: theme.palette.mode === 'dark' ? 'grey.500' : 'grey.800',
-              }
-            : {
-                color: 'grey.800',
-                [theme.getColorSchemeSelector('dark')]: {
-                  color: 'grey.500',
-                },
-              }),
+          color: 'grey.800',
+          ...theme.applyDarkStyles({
+            color: 'grey.500',
+          }),
           minHeight: 42, // hard-coded to reduce CLS (layout shift)
           mt: 4,
           mx: 'auto',

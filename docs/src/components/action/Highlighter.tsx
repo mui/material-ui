@@ -47,62 +47,40 @@ export default function Highlighter({
           border: '1px solid transparent',
           transitionProperty: 'all',
           transitionDuration: '150ms',
-          ...(!theme.vars
-            ? {
-                color: theme.palette.mode === 'dark' ? 'grey.600' : 'grey.500',
-                ...((!disableBorder || selected) && {
-                  borderColor: theme.palette.mode === 'dark' ? 'primaryDark.500' : 'grey.200',
-                }),
-                ...(selected && {
-                  bgcolor:
-                    theme.palette.mode === 'dark' ? 'primaryDark.700' : lightSelectedBg[selectedBg],
-                  borderColor: theme.palette.mode === 'dark' ? 'primaryDark.300' : 'grey.200',
-                  color: theme.palette.mode === 'dark' ? 'primary.400' : 'primary.500',
-                }),
-                ...(!selected && {
-                  '&:hover, &:focus': {
-                    bgcolor: theme.palette.mode === 'dark' ? 'primaryDark.800' : 'grey.100',
-                    '@media (hover: none)': {
-                      bgcolor: 'transparent',
-                    },
-                  },
-                }),
-              }
-            : {
-                color: 'grey.500',
-                ...((!disableBorder || selected) && {
-                  borderColor: 'grey.200',
-                }),
-                ...(selected && {
-                  bgcolor: lightSelectedBg[selectedBg],
-                  borderColor: 'grey.200',
-                  color: 'primary.500',
-                }),
-                ...(!selected && {
-                  '&:hover, &:focus': {
-                    bgcolor: 'grey.100',
-                    '@media (hover: none)': {
-                      bgcolor: 'transparent',
-                    },
-                  },
-                }),
-                [theme.getColorSchemeSelector('dark')]: {
-                  color: 'grey.600',
-                  ...((!disableBorder || selected) && {
-                    borderColor: 'primaryDark.500',
-                  }),
-                  ...(selected && {
-                    bgcolor: 'primaryDark.700',
-                    borderColor: 'primaryDark.300',
-                    color: 'primary.400',
-                  }),
-                  ...(!selected && {
-                    '&:hover, &:focus': {
-                      bgcolor: 'primaryDark.800',
-                    },
-                  }),
-                },
-              }),
+          color: 'grey.500',
+          ...((!disableBorder || selected) && {
+            borderColor: 'grey.200',
+          }),
+          ...(selected && {
+            bgcolor: lightSelectedBg[selectedBg],
+            borderColor: 'grey.200',
+            color: 'primary.500',
+          }),
+          ...(!selected && {
+            '&:hover, &:focus': {
+              bgcolor: 'grey.100',
+              '@media (hover: none)': {
+                bgcolor: 'transparent',
+              },
+            },
+          }),
+          ...theme.applyDarkStyles({
+            color: 'grey.600',
+            ...((!disableBorder || selected) && {
+              borderColor: 'primaryDark.500',
+            }),
+            ...(selected && {
+              bgcolor: 'primaryDark.700',
+              borderColor: 'primaryDark.300',
+              color: 'primary.400',
+            }),
+            '&:hover, &:focus': {
+              bgcolor: 'primaryDark.800',
+              '@media (hover: none)': {
+                bgcolor: 'transparent',
+              },
+            },
+          }),
           '&.Mui-disabled': {
             opacity: 0.4,
           },

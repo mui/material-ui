@@ -17,19 +17,14 @@ export default function HeroEnd() {
     <Box
       ref={ref}
       sx={(theme) => ({
-        ...(!theme.vars
-          ? {
-              background:
-                theme.palette.mode === 'dark'
-                  ? `linear-gradient(180deg, ${theme.palette.primaryDark[900]} 0%, #001E3C 100%)`
-                  : `linear-gradient(180deg, ${theme.palette.grey[50]} 0%, #FFFFFF 100%)`,
-            }
-          : {
-              background: `linear-gradient(180deg, ${theme.vars.palette.grey[50]} 0%, #FFFFFF 100%)`,
-              [theme.getColorSchemeSelector('dark')]: {
-                background: `linear-gradient(180deg, ${theme.vars.palette.primaryDark[900]} 0%, #001E3C 100%)`,
-              },
-            }),
+        background: `linear-gradient(180deg, ${
+          (theme.vars || theme).palette.grey[50]
+        } 0%, #FFFFFF 100%)`,
+        ...theme.applyDarkStyles({
+          background: `linear-gradient(180deg, ${
+            (theme.vars || theme).palette.primaryDark[900]
+          } 0%, #001E3C 100%)`,
+        }),
       })}
     >
       <Container sx={{ py: { xs: 4, sm: 6, md: 8 } }}>

@@ -85,19 +85,10 @@ export default function GoldSponsors() {
           variant="h5"
           fontWeight="extraBold"
           sx={(theme) => ({
-            ...(!theme.vars
-              ? {
-                  color:
-                    theme.palette.mode === 'dark'
-                      ? theme.palette.warning[500]
-                      : theme.palette.warning[700],
-                }
-              : {
-                  color: theme.vars.palette.warning[700],
-                  [theme.getColorSchemeSelector('dark')]: {
-                    color: theme.vars.palette.warning[500],
-                  },
-                }),
+            color: 'warning.700',
+            ...theme.applyDarkStyles({
+              color: 'warning.500',
+            }),
           })}
         >
           Gold
@@ -118,16 +109,10 @@ export default function GoldSponsors() {
               alignItems: 'center',
               height: '100%',
               borderStyle: 'dashed',
-              ...(!theme.vars
-                ? {
-                    borderColor: theme.palette.mode === 'dark' ? 'primaryDark.400' : 'grey.300',
-                  }
-                : {
-                    borderColor: 'grey.300',
-                    [theme.getColorSchemeSelector('dark')]: {
-                      borderColor: 'primaryDark.400',
-                    },
-                  }),
+              borderColor: 'grey.300',
+              ...theme.applyDarkStyles({
+                borderColor: 'primaryDark.400',
+              }),
             })}
           >
             <IconButton
@@ -140,16 +125,10 @@ export default function GoldSponsors() {
               sx={(theme) => ({
                 mr: 2,
                 border: '1px solid',
-                ...(!theme.vars
-                  ? {
-                      borderColor: theme.palette.mode === 'dark' ? 'primaryDark.400' : 'grey.300',
-                    }
-                  : {
-                      borderColor: 'grey.300',
-                      [theme.getColorSchemeSelector('dark')]: {
-                        borderColor: 'primaryDark.400',
-                      },
-                    }),
+                borderColor: 'grey.300',
+                ...theme.applyDarkStyles({
+                  borderColor: 'primaryDark.400',
+                }),
               })}
             >
               <AddRounded />

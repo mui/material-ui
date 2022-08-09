@@ -49,16 +49,10 @@ export default function DiamondSponsors() {
           variant="h5"
           fontWeight="extraBold"
           sx={(theme) => ({
-            ...(!theme.vars
-              ? {
-                  color: theme.palette.mode === 'dark' ? 'primary.400' : 'primary.500',
-                }
-              : {
-                  color: 'primary.500',
-                  [theme.getColorSchemeSelector('dark')]: {
-                    color: 'primary.400',
-                  },
-                }),
+            color: 'primary.500',
+            ...theme.applyDarkStyles({
+              color: 'primary.400',
+            }),
           })}
         >
           Diamond
@@ -80,16 +74,10 @@ export default function DiamondSponsors() {
                 alignItems: 'center',
                 height: '100%',
                 borderStyle: 'dashed',
-                ...(!theme.vars
-                  ? {
-                      borderColor: theme.palette.mode === 'dark' ? 'primaryDark.400' : 'grey.300',
-                    }
-                  : {
-                      borderColor: 'grey.300',
-                      [theme.getColorSchemeSelector('dark')]: {
-                        borderColor: 'primaryDark.400',
-                      },
-                    }),
+                borderColor: 'grey.300',
+                ...theme.applyDarkStyles({
+                  borderColor: 'primaryDark.400',
+                }),
               })}
             >
               <IconButton
@@ -102,16 +90,9 @@ export default function DiamondSponsors() {
                 sx={(theme) => ({
                   mr: 2,
                   border: '1px solid',
-                  ...(!theme.vars
-                    ? {
-                        borderColor: theme.palette.mode === 'dark' ? 'primaryDark.400' : 'grey.300',
-                      }
-                    : {
-                        borderColor: 'grey.300',
-                        [theme.getColorSchemeSelector('dark')]: {
-                          borderColor: 'primaryDark.400',
-                        },
-                      }),
+                  ...theme.applyDarkStyles({
+                    borderColor: 'primaryDark.400',
+                  }),
                 })}
               >
                 <AddRounded />
