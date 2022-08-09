@@ -215,10 +215,6 @@ export default function createCssVarsProvider(options) {
       };
     }, []);
 
-    if (resolveTheme) {
-      theme = resolveTheme(theme);
-    }
-
     return (
       <ColorSchemeContext.Provider
         value={{
@@ -234,7 +230,7 @@ export default function createCssVarsProvider(options) {
         <GlobalStyles styles={{ [colorSchemeSelector]: rootCss }} />
         <GlobalStyles styles={defaultColorSchemeStyleSheet} />
         <GlobalStyles styles={otherColorSchemesStyleSheet} />
-        <ThemeProvider theme={theme}>{children}</ThemeProvider>
+        <ThemeProvider theme={resolveTheme ? resolveTheme(theme) : theme}>{children}</ThemeProvider>
       </ColorSchemeContext.Provider>
     );
   }
