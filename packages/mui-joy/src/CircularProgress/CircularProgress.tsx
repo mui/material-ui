@@ -99,8 +99,8 @@ const CircularProgressCircle = styled('circle', {
   slot: 'Circle',
   overridesResolver: (props, styles) => styles.circle,
 })<{ ownerState: CircularProgressProps }>(
-  ({ ownerState }) => ({
-    stroke: 'currentColor',
+  ({ theme, ownerState }) => ({
+    stroke: theme.vars.palette[ownerState.color!]['500'],
     // Use butt to follow the specification, by chance, it's already the default CSS value.
     // strokeLinecap: 'butt',
     ...(ownerState.variant === 'determinate' && {
