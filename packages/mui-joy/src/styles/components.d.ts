@@ -119,6 +119,7 @@ import {
   TypographySlot,
 } from '../Typography/TypographyProps';
 import { TextareaProps, TextareaOwnerState, TextareaSlot } from '../Textarea/TextareaProps';
+import { CircularProgressProps, CircularProgressSlot } from '../CircularProgress';
 
 export type OverridesStyleRules<
   ClassKey extends string = string,
@@ -171,6 +172,10 @@ export interface Components<Theme = unknown> {
   JoyBreadcrumbs?: {
     defaultProps?: Partial<BreadcrumbsProps>;
     styleOverrides?: OverridesStyleRules<BreadcrumbsSlot, BreadcrumbsOwnerState, Theme>;
+  };
+  JoyCircularProgress?: {
+    defaultProps?: Partial<CircularProgressProps>;
+    styleOverrides?: OverridesStyleRules<CircularProgressSlot, CircularProgressProps, Theme>;
   };
   JoyCard?: {
     defaultProps?: Partial<CardProps>;
