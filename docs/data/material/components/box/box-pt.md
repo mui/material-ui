@@ -19,7 +19,7 @@ The Box component packages [all the style functions](/system/properties/) that a
 
 ## A propriedade `sx`
 
-Todas as propriedades do sistema estão disponíveis através da [propriedade `sx`](/system/basics/#the-sx-prop). Além disso, a propriedade `sx` permite você especificar quaisquer outras regras CSS que precisar. Aqui está um exemplo de como usá-la:
+All system properties are available via the [`sx` prop](/system/getting-started/the-sx-prop/). Além disso, a propriedade `sx` permite você especificar quaisquer outras regras CSS que precisar. Aqui está um exemplo de como usá-la:
 
 {{"demo": "BoxSx.js", "defaultCodeOpen": true }}
 
@@ -31,7 +31,7 @@ O componente Box envolve seu componente. It creates a new DOM element, a `<div>`
 
 Isso funciona muito bem quando as alterações precisam ser isoladas em um novo elemento DOM. Note no exemplo, a forma que você alterou a margem.
 
-No entanto, às vezes, você precisa modificar o elemento DOM subjacente. Como um exemplo, talvez queira mudar a borda do Botão. Por exemplo, você quer mudar a borda do botão. A herança por CSS não irá ajudar nesse caso. To workaround the problem, you can use the [`sx`](/system/basics/#the-sx-prop) prop directly on the child if it is a Material-UI component.
+No entanto, às vezes, você precisa modificar o elemento DOM subjacente. Como um exemplo, talvez queira mudar a borda do Botão. Por exemplo, você quer mudar a borda do botão. A herança por CSS não irá ajudar nesse caso. To workaround the problem, you can use the [`sx`](/system/getting-started/the-sx-prop/) prop directly on the child if it is a MUI component.
 
 ```diff
 -<Box sx={{ border: '1px dashed grey' }}>
