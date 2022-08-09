@@ -14,7 +14,7 @@
     "href": "The URL to link to when the button is clicked. If defined, an <code>a</code> element will be used as the root node.",
     "size": "The size of the button. <code>small</code> is equivalent to the dense button styling.",
     "startIcon": "Elemento colocado antes dos filhos.",
-    "sx": "A propriedade do sistema que permite definir as suas substituições, assim como estilos CSS adicionais. Veja a <a href=\"/system/the-sx-prop/\">`sx` page</a> para mais detalhes.",
+    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details.",
     "variant": "A variante a usar."
   },
   "classDescriptions": {
