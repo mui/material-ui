@@ -63,4 +63,4 @@ Here is a [more detailed guide](/material-ui/guides/routing/#link).
 ### Screen reader accessibility
 
 - When a link receives focus, screen readers should announce a descriptive link name.
-  If the link opens in a new window or browser tab, add help text in the code to inform screen reader users—for example, _"To learn more, visit the **About** page which opens in a new window."_
+  If the link opens in a new window or browser tab, add help text in the code to inform screen reader users—for example, _"To learn more, visit the About page which opens in a new window."_
