@@ -58,46 +58,14 @@ describe('<Chip />', () => {
       expect(chip).not.to.have.class(classes.deletableColorSecondary);
     });
 
-    it('should render with the root and the primary class', () => {
-      const { container } = render(<Chip color="primary" />);
+    it('should render with the color class name based on the color prop', () => {
+      const capitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1);
 
-      const chip = container.querySelector(`.${classes.root}`);
-      expect(chip).to.have.class(classes.colorPrimary);
-    });
-
-    it('should render with the root and the secondary class', () => {
-      const { container } = render(<Chip color="secondary" />);
-
-      const chip = container.querySelector(`.${classes.root}`);
-      expect(chip).to.have.class(classes.colorSecondary);
-    });
-
-    it('should render with the root and the info class', () => {
-      const { container } = render(<Chip color="info" />);
-
-      const chip = container.querySelector(`.${classes.root}`);
-      expect(chip).to.have.class(classes.colorInfo);
-    });
-
-    it('should render with the root and the error class', () => {
-      const { container } = render(<Chip color="error" />);
-
-      const chip = container.querySelector(`.${classes.root}`);
-      expect(chip).to.have.class(classes.colorError);
-    });
-
-    it('should render with the root and the warning class', () => {
-      const { container } = render(<Chip color="warning" />);
-
-      const chip = container.querySelector(`.${classes.root}`);
-      expect(chip).to.have.class(classes.colorWarning);
-    });
-
-    it('should render with the root and the success class', () => {
-      const { container } = render(<Chip color="success" />);
-
-      const chip = container.querySelector(`.${classes.root}`);
-      expect(chip).to.have.class(classes.colorSuccess);
+      ['primary', 'secondary', 'info', 'error', 'warning', 'success'].map((color) => {
+        const { container } = render(<Chip color={color} />);
+        const chip = container.querySelector(`.${classes.root}`);
+        expect(chip).to.have.class(classes[`color${capitalize(color)}`]);
+      });
     });
   });
 
