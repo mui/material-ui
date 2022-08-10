@@ -51,15 +51,16 @@ Here is a [more detailed guide](/material-ui/guides/routing/#link).
   Instead, use [specific descriptions](https://developers.google.com/web/tools/lighthouse/audits/descriptive-link-text).
 - For the best user experience, links should stand out from the text on the page. For instance, you can keep the default `underline="always"` behavior.
 - If a link doesn't have a meaningful href, [it should be rendered using a `<button>` element](https://github.com/jsx-eslint/eslint-plugin-jsx-a11y/blob/HEAD/docs/rules/anchor-is-valid.md).
-
-Keyboard Accessibility:
-Make sure interactive (active) elements receives keyboard tab focus
-Make sure user can open the link / Activate the link using keyboard Enter key
-
-Screen reader
-Make sure the screen reader announce the descriptive link name when user tab to it
-If the link opens in new window or new browser tab, add the the help text in the code for SR users (Example "To know more about <org name> offers link opnes in new window)
-
-Others:
+  The demo below illustrates how to properly link with a `<button>`:
 
 {{"demo": "ButtonLink.js"}}
+
+### Keyboard accessibility
+
+- Interactive elements should receive focus in a coherent order when the user presses the <kbd class="key">Tab</kbd> key.
+- Users should be able to open a link by pressing <kbd class="key">Enter</kbd>.
+
+### Screen reader accessibility
+
+- When a link receives focus, screen readers should announce a descriptive link name.
+  If the link opens in a new window or browser tab, add help text in the code to inform screen reader users—for example, _"To learn more, visit the **About** page which opens in a new window."_
