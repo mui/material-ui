@@ -388,8 +388,10 @@ https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 
 ## MUI Store
 /store-asset/* https://mui-store.netlify.app/:splat 200
-/legal/* https://mui-store.netlify.app/legal/:splat 200
 /store/* https://mui-store.netlify.app/store/:splat 200
+/r/store-* https://mui-store.netlify.app/r/store-:splat 200
+/legal/* https://mui-store.netlify.app/legal/:splat 200
+/r/legal-* https://mui-store.netlify.app/r/legal-:splat 200
 
 ## MUI X
 ## Unlike the store that expect to be hosted under a subfolder,
