@@ -19,7 +19,7 @@
     "defaultListboxOpen": { "type": { "name": "bool" } },
     "defaultValue": { "type": { "name": "any" } },
     "disabled": { "type": { "name": "bool" } },
-    "formValueProvider": { "type": { "name": "func" } },
+    "getFormValue": { "type": { "name": "func" } },
     "listboxId": { "type": { "name": "string" } },
     "listboxOpen": { "type": { "name": "bool" }, "default": "undefined" },
     "name": { "type": { "name": "string" } },

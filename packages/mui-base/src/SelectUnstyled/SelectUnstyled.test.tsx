@@ -365,7 +365,7 @@ describe('SelectUnstyled', () => {
       expect(isEventHandled).to.equal(true);
     });
 
-    it('transforms the selected value before posting using the formValueProvider prop, if provided', function test() {
+    it('transforms the selected value before posting using the getFormValue prop, if provided', function test() {
       if (/jsdom/.test(window.navigator.userAgent)) {
         // FormData is not available in JSDOM
         this.skip();
@@ -388,7 +388,7 @@ describe('SelectUnstyled', () => {
           <SelectUnstyled
             defaultValue={2}
             name="test-select"
-            formValueProvider={customFormValueProvider}
+            getFormValue={customFormValueProvider}
           >
             <OptionUnstyled value={1}>1</OptionUnstyled>
             <OptionUnstyled value={2}>2</OptionUnstyled>

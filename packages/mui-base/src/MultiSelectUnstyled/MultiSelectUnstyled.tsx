@@ -88,7 +88,7 @@ const MultiSelectUnstyled = React.forwardRef(function MultiSelectUnstyled<TValue
     defaultListboxOpen = false,
     defaultValue = [],
     disabled: disabledProp,
-    formValueProvider = defaultFormValueProvider,
+    getFormValue = defaultFormValueProvider,
     listboxId,
     listboxOpen: listboxOpenProp,
     name,
@@ -241,7 +241,7 @@ const MultiSelectUnstyled = React.forwardRef(function MultiSelectUnstyled<TValue
         </Popper>
       )}
 
-      {name && <input type="hidden" name={name} value={formValueProvider(selectedOptions)} />}
+      {name && <input type="hidden" name={name} value={getFormValue(selectedOptions)} />}
     </React.Fragment>
   );
 }) as MultiSelectUnstyledType;
@@ -304,7 +304,7 @@ MultiSelectUnstyled.propTypes /* remove-proptypes */ = {
    * Used to set a value of a hidden input associated with the select,
    * so that the selected value can be posted with a form.
    */
-  formValueProvider: PropTypes.func,
+  getFormValue: PropTypes.func,
   /**
    * `id` attribute of the listbox element.
    * Also used to derive the `id` attributes of options.

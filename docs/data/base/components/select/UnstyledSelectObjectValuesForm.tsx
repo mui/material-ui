@@ -181,7 +181,7 @@ const characters: Character[] = [
 export default function UnstyledSelectObjectValues() {
   const [character, setCharacter] = React.useState<Character | null>(characters[0]);
 
-  const formValueProvider = (option: SelectOption<Character> | null) => {
+  const getFormValue = (option: SelectOption<Character> | null) => {
     if (option?.value == null) {
       return '';
     }
@@ -210,12 +210,12 @@ export default function UnstyledSelectObjectValues() {
         <Button type="submit">Submit</Button>
       </form>
 
-      <Header>Custom formValueProvider</Header>
+      <Header>Custom getFormValue</Header>
       <form onSubmit={handleSubmit}>
         <CustomSelect
           value={character}
           onChange={setCharacter}
-          formValueProvider={formValueProvider}
+          getFormValue={getFormValue}
           name="character"
         >
           {characters.map((c) => (

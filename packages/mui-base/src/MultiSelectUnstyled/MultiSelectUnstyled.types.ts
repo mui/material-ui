@@ -53,7 +53,7 @@ export interface MultiSelectUnstyledOwnProps<TValue extends {}> extends SelectUn
    * Used to set a value of a hidden input associated with the select,
    * so that the selected value can be posted with a form.
    */
-  formValueProvider?: (option: SelectOption<TValue>[]) => string | string[];
+  getFormValue?: (option: SelectOption<TValue>[]) => string | string[];
   /**
    * Callback fired when an option is selected.
    */
