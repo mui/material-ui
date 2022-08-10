@@ -26,7 +26,12 @@ export interface CSSSelectorObject<Theme extends object = {}> {
 
 type CssVariableType = string | number;
 
-type AllowedKeys = `--${string}` | `&${string}`;
+type AllowedKeys =
+  | `--${string}`
+  | `&${string}`
+  | `${CSS.AtRules}${string}`
+  | `::${string}`
+  | `${number}%`;
 
 /**
  * Map all nested selectors and CSS variables.

@@ -137,12 +137,12 @@ export default function EmailSubscribe({ sx }: { sx?: SxProps<Theme> }) {
             },
 
             [`&.${inputBaseClasses.focused}`]: {
-              borderColor: (theme) =>
+              borderColor: (theme: Theme) =>
                 theme.palette.mode === 'dark'
                   ? theme.palette.primaryDark[300]
                   : theme.palette.primary[500],
               outline: '3px solid',
-              outlineColor: (theme) =>
+              outlineColor: (theme: Theme) =>
                 theme.palette.mode === 'dark'
                   ? theme.palette.primaryDark[500]
                   : theme.palette.primary[200],
