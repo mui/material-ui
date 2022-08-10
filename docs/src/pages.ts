@@ -155,7 +155,6 @@ const pages: readonly MuiPage[] = [
         subheader: '/components/lab',
         children: [
           { pathname: '/components/about-the-lab', title: 'About the lab 🧪' },
-          { pathname: '/components/lab-date-and-time-pickers', title: 'Date & Time Pickers' },
           { pathname: '/components/masonry' },
           { pathname: '/components/timeline' },
           { pathname: '/components/tree-view' },

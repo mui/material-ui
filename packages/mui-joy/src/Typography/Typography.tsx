@@ -90,8 +90,11 @@ const TypographyRoot = styled('span', {
     marginBottom: '0.35em',
   }),
   ...(ownerState.variant && {
+    borderRadius: theme.vars.radius.xs,
     paddingInline: '0.25em', // better than left, right because it also works with writing mode.
-    marginInline: '-0.25em',
+    ...(!ownerState.nested && {
+      marginInline: '-0.25em',
+    }),
     ...theme.variants[ownerState.variant]?.[ownerState.color!],
   }),
 }));
@@ -103,9 +106,13 @@ const defaultVariantMapping: Record<string, string> = {
   h4: 'h4',
   h5: 'h5',
   h6: 'h6',
+  display1: 'h1',
+  display2: 'h2',
   body1: 'p',
   body2: 'p',
-  body3: 'p',
+  body3: 'span',
+  body4: 'span',
+  body5: 'span',
   inherit: 'p',
 };
 
@@ -205,7 +212,7 @@ Typography.propTypes /* remove-proptypes */ = {
    * The color of the component. It supports those theme colors that make sense for this component.
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['context', 'danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
   /**

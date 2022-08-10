@@ -12,7 +12,7 @@ There are many ways to support MUI:
   Follow us on [Twitter](https://twitter.com/MUI_hq), like and retweet the important news. Or just talk about us with your friends.
 - **Give us feedback**. Tell us what we're doing well or where we can improve. Please upvote (👍) the issues that you are the most interested in seeing solved.
 - **Help new users**. You can answer questions on
-  [StackOverflow](https://stackoverflow.com/questions/tagged/mui).
+  [Stack Overflow](https://stackoverflow.com/questions/tagged/mui).
 - **Make changes happen**.
   - Edit the documentation. Every page has an "EDIT THIS PAGE" link in the top right.
   - Report bugs or missing features by [creating an issue](https://github.com/mui/material-ui/issues/new).
@@ -100,10 +100,10 @@ If you choose not to use it, you can still disable transitions and animations by
 }
 ```
 
-## Do I have to use emotion to style my app?
+## Do I have to use Emotion to style my app?
 
 No, it's not required.
-But if you are using the default styled engine (`@mui/styled-engine`) the emotion dependency comes built in, so carries no additional bundle size overhead.
+But if you are using the default styled engine (`@mui/styled-engine`) the Emotion dependency comes built in, so carries no additional bundle size overhead.
 
 Perhaps, however, you're adding some MUI components to an app that already uses another styling solution,
 or are already familiar with a different API, and don't want to learn a new one? In that case, head over to the

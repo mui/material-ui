@@ -20,7 +20,7 @@ const useValueLabelClasses = (props) => {
 /**
  * @ignore - internal component.
  */
-function SliderValueLabelUnstyled(props) {
+export default function SliderValueLabelUnstyled(props) {
   const { children, className, value, theme } = props;
   const classes = useValueLabelClasses(props);
 
@@ -46,5 +46,3 @@ SliderValueLabelUnstyled.propTypes = {
   theme: PropTypes.any,
   value: PropTypes.node,
 };
-
-export default SliderValueLabelUnstyled;

@@ -20,11 +20,11 @@ export default function Pricing() {
     <BrandingProvider>
       <Head
         title="Pricing - MUI"
-        description="The community edition lets you get going right away. Switch to a commercial plan for more components & professional support."
+        description="The community edition lets you get going right away. Switch to a commercial plan for more components & technical support."
       />
       <AppHeaderBanner />
       <AppHeader />
-      <main>
+      <main id="main-content">
         <HeroPricing />
         <PricingList /> {/* Mobile, Tablet */}
         <Container sx={{ display: { xs: 'none', md: 'block' } }}>

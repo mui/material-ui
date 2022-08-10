@@ -271,6 +271,9 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
         letterSpacing: 0,
         fontWeight: 700,
       },
+      allVariants: {
+        scrollMarginTop: 'calc(var(--MuiDocs-header-height) + 32px)',
+      },
     },
   } as ThemeOptions);
 
@@ -402,9 +405,7 @@ export function getThemedComponents(theme: Theme): { components: Theme['componen
       MuiMenu: {
         styleOverrides: {
           paper: {
-            mt: 0.5,
             minWidth: 160,
-            elevation: 0,
             color: theme.palette.text.secondary,
             backgroundImage: 'none',
             backgroundColor:
@@ -452,16 +453,6 @@ export function getThemedComponents(theme: Theme): { components: Theme['componen
             boxShadow: `0px 4px 20px ${
               theme.palette.mode === 'dark' ? 'rgba(0, 0, 0, 0.5)' : 'rgba(170, 180, 190, 0.3)'
             }`,
-          },
-        },
-      },
-      MuiContainer: {
-        styleOverrides: {
-          root: {
-            [theme.breakpoints.up('md')]: {
-              paddingLeft: theme.spacing(2),
-              paddingRight: theme.spacing(2),
-            },
           },
         },
       },
@@ -516,20 +507,32 @@ export function getThemedComponents(theme: Theme): { components: Theme['componen
                   theme.palette.mode === 'dark'
                     ? alpha(theme.palette.grey[100], 0.1)
                     : theme.palette.grey[200],
+                '&:hover': {
+                  color:
+                    theme.palette.mode === 'dark'
+                      ? theme.palette.grey[300]
+                      : theme.palette.grey[900],
+                },
+              }),
+            ...(variant === 'outlined' &&
+              color === 'primary' && {
+                '&:hover': {
+                  color: theme.palette.primary[500],
+                },
               }),
             ...(variant === 'filled' &&
               color === 'default' && {
                 border: '1px solid transparent',
-                color: theme.palette.mode === 'dark' ? '#fff' : theme.palette.primary[800],
+                color: theme.palette.mode === 'dark' ? '#fff' : theme.palette.primary[700],
                 backgroundColor:
                   theme.palette.mode === 'dark'
-                    ? theme.palette.primaryDark[500]
-                    : theme.palette.primary[100],
+                    ? alpha(theme.palette.primaryDark[500], 0.8)
+                    : alpha(theme.palette.primary[100], 0.5),
                 '&:hover': {
                   backgroundColor:
                     theme.palette.mode === 'dark'
                       ? theme.palette.primaryDark[600]
-                      : theme.palette.primary[200],
+                      : theme.palette.primary[100],
                 },
               }),
             // for labelling product in the search

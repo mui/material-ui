@@ -31,7 +31,7 @@ For additional details about the MUI team and culture, you can check our [career
 Both our open-source community and our premium products are growing fast (x2-3 YoY).
 We need talented people to keep that going!
 
-Developer Experience matters, [a lot](https://future.a16z.com/the-case-for-developer-experience/).
+Developer Experience matters, [a lot](https://future.com/the-case-for-developer-experience/).
 We are looking for somebody to build the best developer experience ever created around a component library, earning the love of developers everywhere.
 This is about focusing on the outcome: success, that developers can have a wonderful workflow with our product.
 
@@ -100,4 +100,4 @@ You can find the other perks & benefits on the [careers](/careers/#perks-amp-ben
 
 ## How to apply?
 
-[Apply now for this position 📮](https://airtable.com/shrdqo1Z6srZXGcvh?prefill_Applying+for=Developer%20Experience%20Engineer&prefill_source=mui.com)
+[Apply now for this position 📮](https://jobs.ashbyhq.com/MUI/__ID__/application?utm_source=ZNRrPGBkqO)

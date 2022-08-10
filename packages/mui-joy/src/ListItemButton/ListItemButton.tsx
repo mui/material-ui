@@ -11,7 +11,7 @@ import {
   ListItemButtonTypeMap,
 } from './ListItemButtonProps';
 import listItemButtonClasses, { getListItemButtonUtilityClass } from './listItemButtonClasses';
-import listItemClasses from '../ListItem/listItemClasses';
+import ListItemButtonOrientationContext from './ListItemButtonOrientationContext';
 import RowListContext from '../List/RowListContext';
 
 const useUtilityClasses = (ownerState: ListItemButtonProps & { focusVisible: boolean }) => {
@@ -37,60 +37,60 @@ const useUtilityClasses = (ownerState: ListItemButtonProps & { focusVisible: boo
   return composedClasses;
 };
 
-const ListItemButtonRoot = styled('div', {
+// MenuItem uses ListItemButtonRoot (not the whole ListItemButton) to leverage only styles and CSS variables.
+export const ListItemButtonRoot = styled('div', {
   name: 'JoyListItemButton',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: ListItemButtonProps & { row: boolean } }>(({ theme, ownerState }) => [
+})<{
+  ownerState: ListItemButtonProps & { row: boolean; 'data-first-child'?: string };
+}>(({ theme, ownerState }) => [
   {
     ...(ownerState.selected && {
       '--List-decorator-color': 'initial',
     }),
     boxSizing: 'border-box',
+    position: 'relative',
     display: 'flex',
+    flexDirection: ownerState.orientation === 'vertical' ? 'column' : 'row',
     alignItems: 'center',
     textAlign: 'initial',
     textDecoration: 'initial', // reset native anchor tag
+    backgroundColor: 'initial', // reset button background
     // In some cases, ListItemButton is a child of ListItem so the margin needs to be controlled by the ListItem. The value is negative to account for the ListItem's padding
-    margin: 'var(--List-itemButton-margin)',
-    // account for the border width
-    padding: 'calc(var(--List-item-paddingY) - var(--variant-borderWidth))',
-    paddingLeft:
-      'calc(var(--List-item-paddingLeft) + var(--List-item-startActionWidth, var(--internal-startActionWidth, 0px)) - var(--variant-borderWidth))', // --internal variable makes it possible to customize the actionWidth from the top List
-    paddingRight:
-      'calc(var(--List-item-paddingRight) + var(--List-item-endActionWidth, var(--internal-endActionWidth, 0px)) - var(--variant-borderWidth))', // --internal variable makes it possible to customize the actionWidth from the top List
-    minHeight: 'var(--List-item-minHeight)',
+    marginInline: 'var(--List-itemButton-marginInline)',
+    marginBlock: 'var(--List-itemButton-marginBlock)',
+    ...(ownerState['data-first-child'] === undefined && {
+      marginInlineStart: ownerState.row ? 'var(--List-gap)' : undefined,
+      marginBlockStart: ownerState.row ? undefined : 'var(--List-gap)',
+    }),
+    // account for the border width, so that all of the ListItemButtons content aligned horizontally
+    paddingBlock: 'calc(var(--List-item-paddingY) - var(--variant-borderWidth))',
+    // account for the border width, so that all of the ListItemButtons content aligned vertically
+    paddingInlineStart:
+      'calc(var(--List-item-paddingLeft) + var(--List-item-startActionWidth, var(--internal-startActionWidth, 0px)))', // --internal variable makes it possible to customize the actionWidth from the top List
+    paddingInlineEnd:
+      'calc(var(--List-item-paddingRight) + var(--List-item-endActionWidth, var(--internal-endActionWidth, 0px)))', // --internal variable makes it possible to customize the actionWidth from the top List
+    minBlockSize: 'var(--List-item-minHeight)',
     border: 'none',
     borderRadius: 'var(--List-item-radius)',
     flex: ownerState.row ? 'none' : 1,
-    minWidth: 0,
+    minInlineSize: 0,
     // TODO: discuss the transition approach in a separate PR. This value is copied from mui-material Button.
     transition:
-      'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
+      'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
     fontSize: 'var(--List-item-fontSize)',
     fontFamily: theme.vars.fontFamily.body,
     ...(ownerState.selected && {
       fontWeight: theme.vars.fontWeight.md,
     }),
     [theme.focus.selector]: theme.focus.default,
-    // Can't use :last-child or :first-child selector because ListItemButton can be inside ListItem with start/end action
-    // We want to be specific on what siblings the gap should be added.
-    [`& + .${listItemButtonClasses.root}`]: ownerState.row
-      ? { marginLeft: 'var(--List-gap)' }
-      : {
-          marginTop: 'var(--List-gap)',
-        },
-    [`& + .${listItemClasses.root}`]: ownerState.row
-      ? { marginLeft: 'var(--List-gap)' }
-      : {
-          marginTop: 'var(--List-gap)',
-        },
   },
   theme.variants[ownerState.variant!]?.[ownerState.color!],
   { '&:hover': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!] },
   { '&:active': theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!] },
   {
-    [listItemButtonClasses.disabled]:
+    [`&.${listItemButtonClasses.disabled}`]:
       theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
   },
 ]);
@@ -107,8 +107,9 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
     children,
     className,
     action,
-    role,
     component = 'div',
+    orientation = 'horizontal',
+    role,
     selected = false,
     color = selected ? 'primary' : 'neutral',
     variant = 'plain',
@@ -139,6 +140,7 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
     component,
     color,
     focusVisible,
+    orientation,
     row,
     selected,
     variant,
@@ -149,16 +151,18 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
   const rootProps = getRootProps();
 
   return (
-    <ListItemButtonRoot
-      as={component}
-      className={clsx(classes.root, className)}
-      ownerState={ownerState}
-      {...other}
-      {...rootProps}
-      role={role ?? rootProps.role}
-    >
-      {children}
-    </ListItemButtonRoot>
+    <ListItemButtonOrientationContext.Provider value={orientation}>
+      <ListItemButtonRoot
+        as={component}
+        className={clsx(classes.root, className)}
+        ownerState={ownerState}
+        {...other}
+        {...rootProps}
+        role={role ?? rootProps.role}
+      >
+        {children}
+      </ListItemButtonRoot>
+    </ListItemButtonOrientationContext.Provider>
   );
 }) as ExtendListItemButton<ListItemButtonTypeMap>;
 
@@ -201,7 +205,7 @@ ListItemButton.propTypes /* remove-proptypes */ = {
    * @default 'neutral'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['context', 'danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
   /**
@@ -224,9 +228,10 @@ ListItemButton.propTypes /* remove-proptypes */ = {
    */
   focusVisibleClassName: PropTypes.string,
   /**
-   * The empty space on the side(s) of the separator.
+   * The content direction flow.
+   * @default 'horizontal'
    */
-  inset: PropTypes.oneOf(['gutter', 'leftGutter', 'startAdornment']),
+  orientation: PropTypes.oneOf(['horizontal', 'vertical']),
   /**
    * @ignore
    */

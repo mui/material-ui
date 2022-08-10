@@ -1,6 +1,7 @@
 import * as React from 'react';
 import AspectRatio from '@mui/joy/AspectRatio';
 import Box from '@mui/joy/Box';
+import Sheet from '@mui/joy/Sheet';
 import Card from '@mui/joy/Card';
 import CardCover from '@mui/joy/CardCover';
 import CardContent from '@mui/joy/CardContent';
@@ -71,7 +72,7 @@ export default function GroupedAvatars() {
             <AspectRatio>
               <img
                 alt=""
-                src="https://images.unsplash.com/photo-1523404343994-489a5eefd760?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2148"
+                src="https://images.unsplash.com/photo-1523404343994-489a5eefd760?crop=entropy&auto=format&fit=crop&w=2148"
               />
             </AspectRatio>
           </CardOverflow>
@@ -79,7 +80,7 @@ export default function GroupedAvatars() {
             <AspectRatio ratio="1">
               <img
                 alt=""
-                src="https://images.unsplash.com/photo-1507833423370-a126b89d394b?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3387"
+                src="https://images.unsplash.com/photo-1507833423370-a126b89d394b?crop=entropy&auto=format&fit=crop&w=3387"
               />
             </AspectRatio>
           </Box>
@@ -99,7 +100,7 @@ export default function GroupedAvatars() {
         >
           <CardCover>
             <img
-              src="https://images.unsplash.com/photo-1523404343994-489a5eefd760?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2148"
+              src="https://images.unsplash.com/photo-1523404343994-489a5eefd760?crop=entropy&auto=format&fit=crop&w=2148"
               alt=""
             />
           </CardCover>
@@ -110,29 +111,30 @@ export default function GroupedAvatars() {
             }}
           />
           <CardContent sx={{ mt: 'auto', flexGrow: 0 }}>
-            <Typography fontWeight="lg" color="#fff">
+            <Typography fontWeight="lg" textColor="#fff">
               Card title
             </Typography>
-            <Typography level="body2" color="neutral.400">
+            <Typography level="body2" textColor="neutral.400">
               A very very long description.
             </Typography>
           </CardContent>
         </Card>
       </Box>
-      <Box
+      <Sheet
+        variant="outlined"
         sx={{
           gridRow: 'span 2',
           display: 'flex',
           flexWrap: 'wrap',
           gap: 2,
           p: 2,
-          border: '1px solid',
-          borderColor: 'background.level3',
           borderRadius: 'sm',
         }}
       >
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-          <Typography fontWeight="lg">CSS variables</Typography>
+          <Typography fontWeight="xl" level="body2" textColor="text.primary">
+            CSS variables
+          </Typography>
           {vars.map((data) => (
             <TextField
               key={data.var}
@@ -167,7 +169,7 @@ export default function GroupedAvatars() {
             />
           ))}
         </Box>
-      </Box>
+      </Sheet>
       <BrandingProvider mode="dark">
         <HighlighedCode
           code={`<Card${formatSx(sx)}>`}

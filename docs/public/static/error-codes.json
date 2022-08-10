@@ -16,5 +16,6 @@
   "15": "MUI: withStyles is no longer exported from @mui/material/styles.\nYou have to import it from @mui/styles.\nSee https://mui.com/r/migration-v4/#mui-material-styles for more details.",
   "16": "MUI: withTheme is no longer exported from @mui/material/styles.\nYou have to import it from @mui/styles.\nSee https://mui.com/r/migration-v4/#mui-material-styles for more details.",
   "17": "MUI: Expected valid input target. Did you use a custom `components.Input` and forget to forward refs? See https://mui.com/r/input-component-ref-interface for more info.",
+  "18": "MUI: `vars` is a private field used for CSS variables support.\nPlease use another name.",
   "19": "MUI: `useColorScheme` must be called under <CssVarsProvider />"
 }

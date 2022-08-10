@@ -83,6 +83,11 @@ export const authors = {
     avatar: 'https://avatars.githubusercontent.com/u/550141',
     github: 'joserodolfofreitas',
   },
+  cherniavskii: {
+    name: 'Andrew Cherniavskyi',
+    avatar: 'https://avatars.githubusercontent.com/u/13808724',
+    github: 'cherniavskii',
+  },
 };
 
 const classes = {
@@ -91,13 +96,16 @@ const classes = {
   container: 'TopLayoutBlog-container',
 };
 
+// Replicate the value used by https://medium.com/, a trusted reference.
+const BLOG_MAX_WIDTH = 692;
+
 const styles = ({ theme }) => ({
   flexGrow: 1,
   background:
     theme.palette.mode === 'dark'
       ? `linear-gradient(180deg, ${theme.palette.primaryDark[900]} 0%, #001E3C 100%)`
       : `linear-gradient(180deg, ${theme.palette.grey[50]} 0%, #FFFFFF 100%)`,
-  backgroundSize: 'auto 250px ',
+  backgroundSize: '100% 300px',
   backgroundRepeat: 'no-repeat',
   [`& .${classes.back}`]: {
     display: 'flex',
@@ -107,8 +115,14 @@ const styles = ({ theme }) => ({
   },
   [`& .${classes.container}`]: {
     paddingTop: 60 + 20,
-    marginBottom: theme.spacing(8),
-    maxWidth: `calc(740px + ${theme.spacing(12)})`,
+    marginBottom: theme.spacing(12),
+    maxWidth: `calc(${BLOG_MAX_WIDTH}px + ${theme.spacing(2 * 2)})`,
+    [theme.breakpoints.up('md')]: {
+      maxWidth: `calc(${BLOG_MAX_WIDTH}px + ${theme.spacing(3 * 2)})`,
+    },
+    [theme.breakpoints.up('lg')]: {
+      maxWidth: `calc(${BLOG_MAX_WIDTH}px + ${theme.spacing(8 * 2)})`,
+    },
     '& h1': {
       marginBottom: theme.spacing(3),
     },
@@ -192,6 +206,8 @@ const AuthorsContainer = styled('div')(({ theme }) => ({
   },
 }));
 
+const Root = styled('div')(styles);
+
 function TopLayoutBlog(props) {
   const { className, docs } = props;
   const { description, rendered, title, headers } = docs.en;
@@ -212,14 +228,14 @@ function TopLayoutBlog(props) {
             : 'https://mui.com/static/logo.png'
         }
       />
-      <div className={className}>
+      <Root className={className}>
         <AppContainer component="main" className={classes.container}>
           <Link
             href={ROUTES.blog}
             {...(ROUTES.blog.startsWith('http') && {
               rel: 'nofollow',
             })}
-            color="text.secondary"
+            color="primary"
             variant="body2"
             className={classes.back}
           >
@@ -257,7 +273,7 @@ function TopLayoutBlog(props) {
                         href={`https://github.com/${authors[author].github}`}
                         target="_blank"
                         rel="noreferrer noopener"
-                        color="text.secondary"
+                        color="primary"
                         variant="body2"
                         sx={{ fontWeight: 500 }}
                       >
@@ -276,7 +292,7 @@ function TopLayoutBlog(props) {
         <HeroEnd />
         <Divider />
         <AppFooter />
-      </div>
+      </Root>
     </BrandingProvider>
   );
 }
@@ -290,4 +306,4 @@ if (process.env.NODE_ENV !== 'production') {
   TopLayoutBlog.propTypes = exactProp(TopLayoutBlog.propTypes);
 }
 
-export default styled(TopLayoutBlog)(styles);
+export default TopLayoutBlog;

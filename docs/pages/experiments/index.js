@@ -22,7 +22,10 @@ export default function Experiments({ experiments }) {
       categories[categoryName] = [];
     }
     categories[categoryName].push({
-      name: capitalize(paths[1] || paths[0]),
+      name: name
+        .replace(/^\//, '')
+        .replace(/\/$/, '')
+        .replace(`${categoryName.toLowerCase()}/`, ''),
       pathname: `/experiments/${name}`,
     });
   });
@@ -139,7 +142,7 @@ export default function Experiments({ experiments }) {
   );
 }
 
-Experiments.getInitialProps = () => {
+export function getStaticProps() {
   const experiments = [];
   const req = require.context('./', true, /^\.\/.*(?<!index)\.(js|tsx)$/);
 
@@ -148,6 +151,8 @@ Experiments.getInitialProps = () => {
   });
 
   return {
-    experiments,
+    props: {
+      experiments,
+    },
   };
-};
+}

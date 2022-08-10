@@ -1,7 +1,6 @@
 {
   "props": {
     "checked": { "type": { "name": "bool" } },
-    "className": { "type": { "name": "string" } },
     "component": { "type": { "name": "elementType" } },
     "components": {
       "type": {
@@ -13,7 +12,7 @@
     "componentsProps": {
       "type": {
         "name": "shape",
-        "description": "{ input?: object, root?: object, thumb?: object, track?: object }"
+        "description": "{ input?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object, thumb?: func<br>&#124;&nbsp;object, track?: func<br>&#124;&nbsp;object }"
       },
       "default": "{}"
     },

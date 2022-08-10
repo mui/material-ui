@@ -39,8 +39,9 @@ const CardRoot = styled('div', {
     // AspectRatio integration
     '--AspectRatio-radius': 'var(--Card-childRadius)',
     // Link integration
-    '--Link-overlayMargin': 'calc(-1 * var(--variant-borderWidth))',
-    '--Link-overlayRadius': resolveSxValue(
+    '--internal-action-margin': 'calc(-1 * var(--variant-borderWidth))',
+    // Link, Radio, Checkbox integration
+    '--internal-action-radius': resolveSxValue(
       { theme, ownerState },
       'borderRadius',
       'var(--Card-radius)',
@@ -66,7 +67,7 @@ const CardRoot = styled('div', {
     padding: 'var(--Card-padding)',
     borderRadius: 'var(--Card-radius)',
     boxShadow: theme.vars.shadow.sm,
-    backgroundColor: theme.vars.palette.background.body,
+    backgroundColor: theme.vars.palette.background.surface,
     fontFamily: theme.vars.fontFamily.body,
     // TODO: discuss the theme transition.
     // This value is copied from mui-material Sheet.
@@ -166,7 +167,7 @@ Card.propTypes /* remove-proptypes */ = {
   row: PropTypes.bool,
   /**
    * The size of the component.
-   * It accepts theme values between 'xs' and 'xl'.
+   * It accepts theme values between 'sm' and 'lg'.
    * @default 'md'
    */
   size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([

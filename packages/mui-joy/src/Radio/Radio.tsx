@@ -46,7 +46,9 @@ const RadioRoot = styled('span', {
   name: 'JoyRadio',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: RadioProps }>(({ ownerState, theme }) => {
+})<{
+  ownerState: RadioProps & { 'data-first-child'?: string; 'data-parent'?: string; row?: boolean };
+}>(({ ownerState, theme }) => {
   return [
     {
       '--Icon-fontSize': 'var(--Radio-size)',
@@ -65,26 +67,27 @@ const RadioRoot = styled('span', {
         '--Radio-gap': '0.625rem',
         fontSize: theme.vars.fontSize.lg,
       }),
-      ...(ownerState.label &&
-        !ownerState.disableIcon && {
-          // add some space at the end to not have focus overlapping the label
-          paddingInlineEnd: 'var(--Radio-gap)',
-        }),
       position: ownerState.overlay ? 'initial' : 'relative',
       display: 'inline-flex',
       boxSizing: 'border-box',
       minWidth: 0,
       fontFamily: theme.vars.fontFamily.body,
       lineHeight: 'var(--Radio-size)', // prevent label from having larger height than the checkbox
-      '&.Mui-disabled': {
+      color: theme.vars.palette.text.primary,
+      [`&.${radioClasses.disabled}`]: {
         color: theme.vars.palette[ownerState.color!]?.plainDisabledColor,
       },
       ...(ownerState.disableIcon && {
         color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Color`],
-        '&.Mui-disabled': {
+        [`&.${radioClasses.disabled}`]: {
           color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}DisabledColor`],
         },
       }),
+      ...(ownerState['data-parent'] === 'RadioGroup' &&
+        ownerState['data-first-child'] === undefined && {
+          marginInlineStart: ownerState.row ? 'var(--RadioGroup-gap)' : undefined,
+          marginBlockStart: ownerState.row ? undefined : 'var(--RadioGroup-gap)',
+        }),
     },
   ];
 });
@@ -117,7 +120,7 @@ const RadioRadio = styled('span', {
         { '&:hover': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!] },
         { '&:active': theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!] },
         {
-          [radioClasses.disabled]:
+          [`&.${radioClasses.disabled}`]:
             theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
         },
       ]
@@ -132,7 +135,7 @@ const RadioAction = styled('span', {
   {
     position: 'absolute',
     borderRadius: `var(--Radio-action-radius, ${
-      // Automatic radius adjustment when composing with ListItem
+      // Automatic radius adjustment when composing with ListItem or Sheet
       ownerState.overlay ? 'var(--internal-action-radius, inherit)' : 'inherit'
     })`,
     top: 0,
@@ -151,7 +154,7 @@ const RadioAction = styled('span', {
         { '&:hover': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!] },
         { '&:active': theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!] },
         {
-          [radioClasses.disabled]:
+          [`&.${radioClasses.disabled}`]:
             theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
         },
       ]
@@ -230,8 +233,8 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
     onFocus,
     onFocusVisible,
     required,
-    color: colorProp,
-    variant: variantProp = 'outlined',
+    color,
+    variant = 'outlined',
     size: sizeProp = 'md',
     uncheckedIcon,
     value,
@@ -239,10 +242,8 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
   } = props;
   const id = useId(idOverride);
   const radioGroup = React.useContext(RadioGroupContext);
-  const color = inProps.color || radioGroup.color || colorProp;
   const activeColor = color || 'primary';
   const inactiveColor = color || 'neutral';
-  const variant = inProps.variant || radioGroup.variant || variantProp;
   const size = inProps.size || radioGroup.size || sizeProp;
   const name = inProps.name || radioGroup.name || nameProp;
   const disableIcon = inProps.disableIcon || radioGroup.disableIcon || disableIconProp;
@@ -274,6 +275,7 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
     size,
     disableIcon,
     overlay,
+    row: radioGroup.row,
   };
 
   const classes = useUtilityClasses(ownerState);

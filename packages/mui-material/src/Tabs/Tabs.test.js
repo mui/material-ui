@@ -692,6 +692,56 @@ describe('<Tabs />', () => {
       clock.tick(1000);
       expect(tablistContainer.scrollLeft).equal(100);
     });
+
+    it('should horizontally scroll by width of partially visible item', () => {
+      const { container, getByRole, getAllByRole } = render(
+        <Tabs value={0} variant="scrollable" scrollButtons style={{ width: 200 }}>
+          <Tab style={{ width: 220, minWidth: 'auto' }} />
+          <Tab style={{ width: 200, minWidth: 'auto' }} />
+          <Tab style={{ width: 200, minWidth: 'auto' }} />
+        </Tabs>,
+      );
+      const tablistContainer = getByRole('tablist').parentElement;
+      const tabs = getAllByRole('tab');
+      Object.defineProperty(tablistContainer, 'clientWidth', { value: 200 });
+      Object.defineProperty(tabs[0], 'clientWidth', { value: 220 });
+      Object.defineProperty(tabs[1], 'clientWidth', { value: 200 });
+      Object.defineProperty(tabs[2], 'clientWidth', { value: 200 });
+      Object.defineProperty(tablistContainer, 'scrollWidth', { value: 620 });
+
+      tablistContainer.scrollLeft = 0;
+      fireEvent.click(findScrollButton(container, 'right'));
+      clock.tick(1000);
+      expect(tablistContainer.scrollLeft).equal(200);
+    });
+
+    it('should vertically scroll by width of partially visible item', () => {
+      const { container, getByRole, getAllByRole } = render(
+        <Tabs
+          value={0}
+          variant="scrollable"
+          orientation="vertical"
+          scrollButtons
+          style={{ height: 100 }}
+        >
+          <Tab style={{ height: 48 }} />
+          <Tab style={{ height: 60 }} />
+          <Tab style={{ height: 60 }} />
+        </Tabs>,
+      );
+      const tablistContainer = getByRole('tablist').parentElement;
+      const tabs = getAllByRole('tab');
+      Object.defineProperty(tablistContainer, 'clientHeight', { value: 100 });
+      Object.defineProperty(tabs[0], 'clientHeight', { value: 48 });
+      Object.defineProperty(tabs[1], 'clientHeight', { value: 60 });
+      Object.defineProperty(tabs[2], 'clientHeight', { value: 60 });
+      Object.defineProperty(tablistContainer, 'scrollHeight', { value: 168 });
+
+      tablistContainer.scrollTop = 0;
+      fireEvent.click(findScrollButton(container, 'right'));
+      clock.tick(1000);
+      expect(tablistContainer.scrollTop).equal(48);
+    });
   });
 
   describe('scroll into view behavior', () => {

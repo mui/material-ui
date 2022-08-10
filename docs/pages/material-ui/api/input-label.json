@@ -15,6 +15,10 @@
     "margin": { "type": { "name": "enum", "description": "'dense'" } },
     "required": { "type": { "name": "bool" } },
     "shrink": { "type": { "name": "bool" } },
+    "size": {
+      "type": { "name": "enum", "description": "'normal'<br>&#124;&nbsp;'small'" },
+      "default": "'normal'"
+    },
     "sx": {
       "type": {
         "name": "union",

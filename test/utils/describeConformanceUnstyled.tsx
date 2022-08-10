@@ -272,10 +272,12 @@ function testComponentsPropsCallbacks(
       slotName,
     )} slot's element with a callback function`, () => {
       const testId = randomStringValue();
+      const className = randomStringValue();
 
       const componentsProps = {
         [slotName]: (ownerState: TestOwnerState) => ({
           'data-testid': `${ownerState['data-testid']}-${slotName}`,
+          className,
         }),
       };
 
@@ -284,6 +286,7 @@ function testComponentsPropsCallbacks(
       );
 
       expect(getByTestId(`${testId}-${slotName}`)).to.have.class(slotOptions.expectedClassName);
+      expect(getByTestId(`${testId}-${slotName}`)).to.have.class(className);
     });
   });
 }

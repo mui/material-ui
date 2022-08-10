@@ -11,7 +11,7 @@ import {
 import { unstable_extendSxProp as extendSxProp } from '@mui/system';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
-import { getLinkUtilityClass } from './linkClasses';
+import linkClasses, { getLinkUtilityClass } from './linkClasses';
 import { LinkProps, LinkTypeMap } from './LinkProps';
 import { TypographyContext } from '../Typography/Typography';
 
@@ -57,7 +57,7 @@ const LinkRoot = styled('a', {
   name: 'JoyLink',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: LinkProps }>(({ theme, ownerState }) => {
+})<{ ownerState: LinkProps & { nested: boolean } }>(({ theme, ownerState }) => {
   return [
     {
       '--Icon-fontSize': '1.25em',
@@ -98,14 +98,16 @@ const LinkRoot = styled('a', {
       ...(ownerState.variant
         ? {
             paddingInline: '0.25em', // better than left, right because it also works with writing mode.
-            marginInline: '-0.25em',
+            ...(!ownerState.nested && {
+              marginInline: '-0.25em',
+            }),
           }
         : {
-            color: theme.vars.palette[ownerState.color!]?.plainColor,
+            color: `rgba(${theme.vars.palette[ownerState.color!]?.mainChannel} / 1)`,
             cursor: 'pointer',
-            '&.Mui-disabled': {
+            [`&.${linkClasses.disabled}`]: {
               pointerEvents: 'none',
-              color: theme.vars.palette[ownerState.color!]?.plainDisabledColor,
+              color: `rgba(${theme.vars.palette[ownerState.color!]?.mainChannel} / 0.6)`,
             },
           }),
       userSelect: 'none',
@@ -125,8 +127,8 @@ const LinkRoot = styled('a', {
               left: 0,
               bottom: 0,
               right: 0,
-              borderRadius: `var(--Link-overlayRadius, var(--internal-action-radius, inherit))`,
-              margin: `var(--Link-overlayMargin)`,
+              borderRadius: `var(--internal-action-radius, inherit)`,
+              margin: `var(--internal-action-margin)`,
             },
             [`${theme.focus.selector}`]: {
               '&::after': theme.focus.default,
@@ -137,10 +139,13 @@ const LinkRoot = styled('a', {
             [theme.focus.selector]: theme.focus.default,
           }),
     },
-    ownerState.variant && theme.variants[ownerState.variant]?.[ownerState.color!],
-    ownerState.variant && theme.variants[`${ownerState.variant}Hover`]?.[ownerState.color!],
-    ownerState.variant && theme.variants[`${ownerState.variant}Active`]?.[ownerState.color!],
-    ownerState.variant && theme.variants[`${ownerState.variant}Disabled`]?.[ownerState.color!],
+    ownerState.variant && {
+      ...theme.variants[ownerState.variant]?.[ownerState.color!],
+      '&:hover': theme.variants[`${ownerState.variant}Hover`]?.[ownerState.color!],
+      '&:active': theme.variants[`${ownerState.variant}Active`]?.[ownerState.color!],
+      [`&.${linkClasses.disabled}`]:
+        theme.variants[`${ownerState.variant}Disabled`]?.[ownerState.color!],
+    },
   ];
 });
 
@@ -262,7 +267,7 @@ Link.propTypes /* remove-proptypes */ = {
    * @default 'primary'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['context', 'danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
   ]),
   /**
