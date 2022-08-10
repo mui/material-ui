@@ -23,7 +23,7 @@ const Root = styled('div')`
   color: #000;
 `;
 
-const Toggle = styled('div')(
+const Toggle = styled('button')(
   ({ theme }) => `
   font-family: IBM Plex Sans, sans-serif;
   font-size: 0.875rem;
@@ -90,7 +90,7 @@ const Listbox = styled('ul')(
     padding: 8px;
     border-radius: 0.45em;
 
-    &:hover {
+    &:hover, &.highlighted {
       background: ${theme.palette.mode === 'dark' ? grey[800] : grey[100]};
     }
 
@@ -110,10 +110,13 @@ function CustomSelect({ options, placeholder }: Props) {
   const listboxRef = React.useRef<HTMLUListElement>(null);
   const [listboxVisible, setListboxVisible] = React.useState(false);
 
-  const { getButtonProps, getListboxProps, getOptionProps, value } = useSelect({
-    listboxRef,
-    options,
-  });
+  const { getButtonProps, getListboxProps, getOptionProps, getOptionState, value } =
+    useSelect({
+      listboxRef,
+      onOpenChange: setListboxVisible,
+      open: listboxVisible,
+      options,
+    });
 
   React.useEffect(() => {
     if (listboxVisible) {
@@ -125,18 +128,27 @@ function CustomSelect({ options, placeholder }: Props) {
     <Root
       onMouseOver={() => setListboxVisible(true)}
       onMouseOut={() => setListboxVisible(false)}
-      onFocus={() => setListboxVisible(true)}
-      onBlur={() => setListboxVisible(false)}
     >
       <Toggle {...getButtonProps()} style={{ '--color': value } as any}>
         {value ?? <span className="placeholder">{placeholder ?? ' '}</span>}
       </Toggle>
-      <Listbox {...getListboxProps()} className={listboxVisible ? '' : 'hidden'}>
-        {options.map((option) => (
-          <li key={option.value} {...getOptionProps(option)}>
-            {option.label}
-          </li>
-        ))}
+      <Listbox
+        {...getListboxProps()}
+        aria-hidden={!listboxVisible}
+        className={listboxVisible ? '' : 'hidden'}
+      >
+        {options.map((option) => {
+          const optionState = getOptionState(option);
+          return (
+            <li
+              key={option.value}
+              {...getOptionProps(option)}
+              className={optionState.highlighted ? 'highlighted' : ''}
+            >
+              {option.label}
+            </li>
+          );
+        })}
       </Listbox>
     </Root>
   );
