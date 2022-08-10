@@ -61,6 +61,5 @@ Make sure the screen reader announce the descriptive link name when user tab to 
 If the link opens in new window or new browser tab, add the the help text in the code for SR users (Example "To know more about <org name> offers link opnes in new window)
 
 Others:
- 
 
 {{"demo": "ButtonLink.js"}}
