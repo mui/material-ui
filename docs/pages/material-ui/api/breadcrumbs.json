@@ -8,10 +8,7 @@
       "default": "{\n  Collapsed: MoreHorizIcon,\n}"
     },
     "componentsProps": {
-      "type": {
-        "name": "shape",
-        "description": "{ li?: object, ol?: object, root?: object, separator?: object }"
-      },
+      "type": { "name": "shape", "description": "{ collapsed?: object }" },
       "default": "{}"
     },
     "expandText": { "type": { "name": "string" }, "default": "'Show path'" },

@@ -106,30 +106,29 @@ describe('<Breadcrumbs />', () => {
         components={{
           Collapsed: FirstPageIcon,
         }}
+        maxItems={2}
       >
         <span>first</span>
         <span>second</span>
         <span>third</span>
-        <span>fourth</span>
-        <span>fifth</span>
-        <span>sixth</span>
-        <span>seventh</span>
-        <span>eighth</span>
-        <span>ninth</span>
       </Breadcrumbs>,
     );
 
     expect(getByRole('button')).to.have.descendants('[data-testid="FirstPageIcon"]');
   });
 
-  it('should apply componentProps to root', () => {
-    const { getByRole } = render(
-      <Breadcrumbs componentsProps={{ root: { className: 'root-test-label' } }}>
+  it('should apply componentProps to collapsed icon', () => {
+    const { getAllByTestId } = render(
+      <Breadcrumbs
+        maxItems={2}
+        componentsProps={{ collapsed: { 'data-testid': 'collapsed-test-label' } }}
+      >
         <span>first</span>
         <span>second</span>
+        <span>third</span>
       </Breadcrumbs>,
     );
 
-    expect(getByRole('navigation')).to.have.class('root-test-label');
+    expect(getAllByTestId('collapsed-test-label')).to.have.lengthOf(1);
   });
 });

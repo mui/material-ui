@@ -29,25 +29,10 @@ export interface BreadcrumbsTypeMap<P = {}, D extends React.ElementType = 'nav'>
      */
     componentsProps?: {
       /**
-       * Props applied to the li element.
+       * Props applied to the Collapsed element.
        * @default {}
        */
-      li?: React.HTMLProps<HTMLSpanElement>;
-      /**
-       * Props applied to the ol element.
-       * @default {}
-       */
-      ol?: React.HTMLProps<HTMLSpanElement>;
-      /**
-       * Props applied to the root element.
-       * @default {}
-       */
-      root?: React.HTMLProps<HTMLSpanElement>;
-      /**
-       * Props applied to the separator element.
-       * @default {}
-       */
-      separator?: React.HTMLProps<HTMLSpanElement>;
+      collapsed?: React.HTMLProps<HTMLButtonElement>;
     };
     /**
      * Override the default label for the expand button.

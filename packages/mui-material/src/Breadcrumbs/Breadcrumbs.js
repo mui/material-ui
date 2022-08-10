@@ -56,7 +56,7 @@ const BreadcrumbsSeparator = styled('li', {
   marginRight: 8,
 });
 
-function insertSeparators(items, className, separator, ownerState, otherProps) {
+function insertSeparators(items, className, separator, ownerState) {
   return items.reduce((acc, current, index) => {
     if (index < items.length - 1) {
       acc = acc.concat(
@@ -66,7 +66,6 @@ function insertSeparators(items, className, separator, ownerState, otherProps) {
           key={`separator-${index}`}
           className={className}
           ownerState={ownerState}
-          {...otherProps}
         >
           {separator}
         </BreadcrumbsSeparator>,
@@ -147,6 +146,7 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(inProps, ref) {
         aria-label={expandText}
         key="ellipsis"
         components={components}
+        componentsProps={componentsProps}
         onClick={handleClickExpand}
       />,
       ...allItems.slice(allItems.length - itemsAfterCollapse, allItems.length),
@@ -169,7 +169,7 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(inProps, ref) {
       return React.isValidElement(child);
     })
     .map((child, index) => (
-      <li className={clsx(classes.li, componentsProps.li?.className)} key={`child-${index}`}>
+      <li className={classes.li} key={`child-${index}`}>
         {child}
       </li>
     ));
@@ -181,14 +181,9 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(inProps, ref) {
       color="text.secondary"
       className={clsx(classes.root, className)}
       ownerState={ownerState}
-      {...{ ...other, ...componentsProps.root }}
+      {...other}
     >
-      <BreadcrumbsOl
-        className={classes.ol}
-        ref={listRef}
-        ownerState={ownerState}
-        {...componentsProps.ol}
-      >
+      <BreadcrumbsOl className={classes.ol} ref={listRef} ownerState={ownerState}>
         {insertSeparators(
           expanded || (maxItems && allItems.length <= maxItems)
             ? allItems
@@ -196,7 +191,6 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(inProps, ref) {
           classes.separator,
           separator,
           ownerState,
-          componentsProps.separator,
         )}
       </BreadcrumbsOl>
     </BreadcrumbsRoot>
@@ -239,10 +233,7 @@ Breadcrumbs.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   componentsProps: PropTypes.shape({
-    li: PropTypes.object,
-    ol: PropTypes.object,
-    root: PropTypes.object,
-    separator: PropTypes.object,
+    collapsed: PropTypes.object,
   }),
   /**
    * Override the default label for the expand button.

@@ -26,26 +26,28 @@ const BreadcrumbCollapsedButton = styled(ButtonBase)(({ theme }) => ({
   },
 }));
 
+const BreadcrumbCollapsedIcon = styled(MoreHorizIcon)({
+  width: 24,
+  height: 16,
+});
+
 /**
  * @ignore - internal component.
  */
 function BreadcrumbCollapsed(props) {
-  const { components, ...otherProps } = props;
+  const { components, componentsProps, ...otherProps } = props;
   const ownerState = props;
   const CustomBreadcrumbCollapsedIcon =
     components && components.Collapsed ? components.Collapsed : <React.Fragment />;
 
-  const BreadcrumbCollapsedIcon = styled(
-    components && components.Collapsed ? CustomBreadcrumbCollapsedIcon : MoreHorizIcon,
-  )({
-    width: 24,
-    height: 16,
-  });
-
   return (
     <li>
       <BreadcrumbCollapsedButton focusRipple {...otherProps} ownerState={ownerState}>
-        <BreadcrumbCollapsedIcon ownerState={ownerState} />
+        <BreadcrumbCollapsedIcon
+          as={components?.Collapsed ? CustomBreadcrumbCollapsedIcon : MoreHorizIcon}
+          ownerState={ownerState}
+          {...componentsProps?.collapsed}
+        />
       </BreadcrumbCollapsedButton>
     </li>
   );
@@ -60,6 +62,13 @@ BreadcrumbCollapsed.propTypes = {
    */
   components: PropTypes.shape({
     Collapsed: PropTypes.elementType,
+  }),
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  componentsProps: PropTypes.shape({
+    collapsed: PropTypes.object,
   }),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
