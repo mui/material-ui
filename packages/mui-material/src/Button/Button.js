@@ -322,7 +322,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
     variant,
   };
 
-  const classes = useUtilityClasses(ownerState);
+  const { root: classesRoot, ...classes } = useUtilityClasses(ownerState);
 
   const startIcon = startIconProp && (
     <ButtonStartIcon className={classes.startIcon} ownerState={ownerState}>
@@ -339,7 +339,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
   return (
     <ButtonRoot
       ownerState={ownerState}
-      className={clsx(className, contextProps.className)}
+      className={clsx(contextProps.className, classesRoot, className)}
       component={component}
       disabled={disabled}
       focusRipple={!disableFocusRipple}

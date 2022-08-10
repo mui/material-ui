@@ -8,7 +8,7 @@ const Thumb = React.forwardRef(function Thumb(
   props: SliderUnstyledThumbSlotProps,
   ref: React.ForwardedRef<HTMLSpanElement>,
 ) {
-  const { ownerState, className, children, ...other } = props;
+  const { ownerState, className = '', children, ...other } = props;
   return (
     <span
       className={`${className} ring-cyan-500 dark:ring-cyan-400 ring-2 w-4 h-4 -mt-1 -ml-2 flex items-center justify-center bg-white rounded-full shadow absolute`}

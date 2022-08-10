@@ -3,7 +3,6 @@ product: base
 title: React Trap Focus（容器焦点）组件
 components: TrapFocus
 githubLabel: 'component: TrapFocus'
-packageName: '@mui/base'
 ---
 
 # Trap Focus 容器焦点

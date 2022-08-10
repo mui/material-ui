@@ -4,7 +4,6 @@ title: Unstyled React Select components and hook
 components: SelectUnstyled, MultiSelectUnstyled, OptionUnstyled, OptionGroupUnstyled
 githubLabel: 'component: select'
 waiAria: https://www.w3.org/WAI/ARIA/apg/example-index/combobox/combobox-select-only.html
-packageName: '@mui/base'
 ---
 
 # Unstyled select

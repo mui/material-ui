@@ -1,5 +1,134 @@
 # [Versions](https://mui.com/versions/)
 
+## 5.10.0
+
+<!-- generated comparing v5.9.3..master -->
+
+_Aug 8, 2022_
+
+A big thanks to the 16 contributors who made this release possible. Here are some highlights ✨:
+
+- ✨ [Stack](https://mui.com/system/react-stack/) component is added to MUI System and Joy UI #33760 #33800 @mnajdova
+- ✨ [Breadcrumbs](https://mui.com/joy-ui/react-breadcrumbs/) component is added to Joy UI (#32697) @hbjORbj
+- Many other 🐛 bug fixes, 📚 documentation, and ⚙️ infrastructure improvements
+
+### `@mui/material@5.10.0`
+
+- [Grid] Prevent crash if spacing is set to zero in theme (#33777) @PunitSoniME
+- [Grid] Export interface `RegularBreakpoints` to fix type error (#33751) @ZeeshanTamboli
+- [Skeleton] Add `rounded` variant (#33687) @siriwatknp
+- [Stepper] Fix classes for icon container (#33734) @pratikkarad
+- [TableCell] Enable size prop overrides via module augmentation (#33816) @brentertz
+- [Tooltip] Fix tooltip arrow css var background (#33753) @TimoWilhelm
+- [useScrollTrigger] Add passive flag to scroll trigger event listener #32437 (#33749) @Dsalazar1685
+
+### `@mui/system@5.10.0`
+
+- Fix unnecessary styles created from `sx` (#33752) @siriwatknp
+- Fix duplicated styles in Box (#33774) @iamxukai
+- Don't spread props to DOM for string tags (#33761) @siriwatknp
+- Add `Stack` component (#33760) @mnajdova
+
+### `@mui/joy@5.0.0-alpha.40`
+
+- [Stack] Add new component (#33800) @mnajdova
+- [Breadcrumbs] Add `Breadcrumbs` component (#32697) @hbjORbj
+- [Card] Fix wrong api description for `size` prop (#33862) @hbjORbj
+- Miscellaneous fixes (#33796, #33750) @siriwatknp
+
+### Docs
+
+- [docs] Create, revise, and expand System "Getting started" docs (#33503) @samuelsycamore
+- [docs] Test new image best practice @oliviertassinari
+- [docs] Fix typo in the ClickAwayListerner name (#33813) @pawelsmigielski
+- [docs] Fix link to `Basics` section in `Trap Focus` docs (#33772) @ZeeshanTamboli
+- [docs] z-index added in popper when used by split button (#33763) @PunitSoniME
+- [docs] Improve the guide for using @mui/base with Tailwind CSS (#33670) @mnajdova
+- [docs] Fix warnings related to Next.js' links (#33693) @mnajdova
+- [docs] Add notification to aggregation blogpost (#33745) @joserodolfofreitas
+- [docs] Add Grid version 2 docs (#33554) @siriwatknp
+- [examples] Fix `NextLinkComposedProps` type error (#33842) @adham618
+
+### Core
+
+- [blog] Add social card to Tenerife retreat post (#33764)
+- [blog] Fix blue outline bug (#33707) @oliviertassinari
+- [blog] Improve the width of the layout (#33706) @oliviertassinari@samuelsycamore
+- [core] Remove unnecessary packageName attribute from pages (#33488) @cherniavskii
+- [core] Remove duplicated CODE_OF_CONDUCT (#33702) @oliviertassinari
+- [core] Update Playwright packages together (#33737) @michaldudak
+- [website] Fix notifications not being marked as read in production (#33756) @cherniavskii
+
+All contributors of this release in alphabetical order: @adham618, @brentertz, @cherniavskii, @Dsalazar1685, @hbjORbj, @iamxukai, @joserodolfofreitas, @michaldudak, @mnajdova, @oliviertassinari, @pawelsmigielski, @pratikkarad, @PunitSoniME, @siriwatknp, @TimoWilhelm, @ZeeshanTamboli
+
+## 5.9.3
+
+<!-- generated comparing v5.9.2..master -->
+
+_Aug 1, 2022_
+
+A big thanks to the 15 contributors who made this release possible. Here are some highlights ✨:
+
+- 🖼️ @garronej worked on improving the support of Emotion packages in the System (#33205)
+- Many other 🐛 bug fixes, 📚 documentation, and ⚙️ infrastructure improvements
+
+### `@mui/material@5.9.3`
+
+- [Chip] Assign classnames and associated styles for `filled` variant (#33587) @hbjORbj
+- [Grid] Fix `columnSpacing` and `rowSpacing` props ignore higher breakpoints with 0 (#33480) @ZeeshanTamboli
+- [Input] Add the readOnly state class (#33654) @michaldudak
+- [Stack] Responsive styles based on breakpoints should be in the correct order (#33552) @hbjORbj
+
+### `@mui/system@5.9.3`
+
+- [system] Make @emotion/\* fully supported in the System (#33205) @garronej
+
+### `@mui/codemod@5.9.3`
+
+- [codemod] Fix theme-spacing performance (#33691) @siriwatknp
+- [codemod] Support @mui import for variant-prop (#33692) @siriwatknp
+
+### `@mui/styled-engine-sc@5.9.3`
+
+- [styled-engine-sc] Add missing @babel/runtime dependency (#33741) @MonstraG
+
+### `@mui/joy@5.0.0-alpha.38`
+
+- [Joy] Add Tabs components (#33664) @siriwatknp
+- [Joy] Miscellaneous fixes (#33685) @siriwatknp
+- [Joy] Update read.me content (#33643) @danilo-leal
+
+### Docs
+
+- [blog] Add blog post about company retreat in Tenerife 🏝 (#33566) @samuelsycamore
+- [blog] Add blog post to announce the aggregation feature (#33595) @joserodolfofreitas
+- [blog] Fix horizontal scrollbar with code snippets (#33648) @joserodolfofreitas
+- [docs] Fix a typo in the code in `Sorting & selecting` Table demo (#33674) @mracette
+- [docs] Fix en-US format in the Skeleton demo (#33699) @husseinsaad98
+- [docs] Update module reference for `usePagination` (#33675) @fullstackzach
+- [docs] Fix code examples in `styled` API vs `sx` prop docs (#33665) @ZeeshanTamboli
+- [docs][system] Throw an informative error when `theme.vars` is used in `createTheme` and mention this in the theming docs (#33619) @hbjORbj
+- [website] Remove legacy redirect @oliviertassinari
+- [website] Add new legal pages (#33650) @oliviertassinari
+- [website] Clarify when a license in development is required (#33668) @oliviertassinari
+- [website] Update links to rows pages (#33739) @cherniavskii
+- [website] Update pricing table to add aggregation and row pinning (#33659) @joserodolfofreitas
+
+### Core
+
+- [core] Replace `getInitialProps` with `getStaticProps` (#33684) @mnajdova
+- [core] Remove accidentally added files (#33636) @michaldudak
+- [core] Update packages with security issues (#33679) @michaldudak
+- [core] Add React 17 nightly build (#33594) @mnajdova
+- [core] Update lerna to 5.2.0 (#33635) @michaldudak
+- [core] Prepare isolation of Next.js X app (#33649) @oliviertassinari
+- [core] Remove thenify version override from package.json resolutions (#33638) @michaldudak
+- [core] Update Node.js to 14 on CircleCI, CodeSandbox, and Netlify (#33642) @michaldudak
+- [test] Replace istanbul-instrumenter-loader with babel-plugin-istanbul (#33666) @michaldudak
+- [test] Run TypeScript module augmentation tests for Joy UI in CI (#33667) @ZeeshanTamboli
+
+All contributors of this release in alphabetical order: @cherniavskii, @danilo-leal, @fullstackzach, @garronej, @hbjORbj, @husseinsaad98, @joserodolfofreitas, @michaldudak, @mnajdova, @MonstraG, @mracette, @oliviertassinari, @samuelsycamore, @siriwatknp, @ZeeshanTamboli
+
 ## 5.9.2
 
 <!-- generated comparing v5.9.1..master -->
@@ -159,7 +288,7 @@ A big thanks to the 19 contributors who made this release possible. Here are som
 
 ### `@mui/base@5.0.0-alpha.89`
 
-- Base] Change the order of class names merged in useSlotProps (#33383) @michaldudak
+- [Base] Change the order of class names merged in useSlotProps (#33383) @michaldudak
 - [ModalUnstyled] Accept callbacks in componentsProps (#33181) @michaldudak
 - [SelectUnstyled] Accept callbacks in componentsProps (#33197) @michaldudak
 - [TabsUnstyled] Accept callbacks in componentsProps (#33284) @michaldudak
@@ -6812,7 +6941,7 @@ A big thanks to the 34 contributors who made this release possible. Here are som
 
   While the source code is currently hosted in the [main repository](https://github.com/mui/material-ui), we might move it to the [x repository](https://github.com/mui/mui-x) in the future, depending on what is easier for the commercial date range picker. The date picker will stay open source no matter what.
 
-- 📚 Revamp the documentation for [the system](https://mui.com/system/basics/). The System contains CSS utilities. The documentation now promotes the use of the `sx` prop. It's ideal for adding one-off styles, e.g. padding, but when pushed to its limits, it can be used to implement quickly a complete page.
+- 📚 Revamp the documentation for [the system](https://mui.com/system/getting-started/overview/). The System contains CSS utilities. The documentation now promotes the use of the `sx` prop. It's ideal for adding one-off styles, e.g. padding, but when pushed to its limits, it can be used to implement quickly a complete page.
 - 👩‍🎨 Upgrade emotion to v11 (#23007) @mnajdova.
 - And many more 🐛 bug fixes and 📚 improvements.
 
@@ -7214,7 +7343,7 @@ Here are some highlights ✨:
   If you target IE11, you need to use the new bundle (`legacy`). We are treating IE11 as a second class-citizen, which is a continuation of the direction taken in #22873.
 
 - 🚀 Improve the internal benchmark suite (#22923, #23058) @mnajdova.
-  This was a prerequisite step to improve the [system](https://mui.com/system/basics/). We needed to be able to measure performance. After #22945, we have measured that the `Box` component is x3 faster in v5-alpha compared to v4.
+  This was a prerequisite step to improve the [system](https://mui.com/system/getting-started/overview/). We needed to be able to measure performance. After #22945, we have measured that the `Box` component is x3 faster in v5-alpha compared to v4.
 - ✏️ A new blog post: [Q3 2020 Update](https://mui.com/blog/2020-q3-update/) (#23055) @oliviertassinari.
 - 🐙 Migrate more tests to react-testing-library @deiga, @Morteza-Jenabzadeh, @nicholas-l.
 - And many more 🐛 bug fixes and 📚 improvements.
@@ -7555,7 +7684,7 @@ Here are some highlights ✨:
 
   The new styling solution saves 2kB gzipped in the bundle compared to JSS, and about 14 kB gzipped if you were already using emotion or styled-components.
 
-  Last but not least, the change allows us to take advantage dynamic style props. We will use them for dynamic color props, variant props, and new style props (an improved [system](https://mui.com/system/basics/)).
+  Last but not least, the change allows us to take advantage dynamic style props. We will use them for dynamic color props, variant props, and new style props (an improved [system](https://mui.com/system/getting-started/overview/)).
 
   This change has been in our roadmap for more than a year.
   We announced it in the [v4 release blog post](https://mui.com/blog/material-ui-v4-is-out/) as a direction v5 would take.
@@ -8808,7 +8937,7 @@ A big thanks to the 33 contributors who made this release possible. Here are som
   />
   ```
 
-- [Typography] Replace the `srOnly` prop so as to not duplicate the capabilities of [System](https://mui.com/system/basics/) (#21413) @mnajdova.
+- [Typography] Replace the `srOnly` prop so as to not duplicate the capabilities of [System](https://mui.com/system/getting-started/overview/) (#21413) @mnajdova.
 
   ```diff
   -import Typography from '@material-ui/core/Typography';

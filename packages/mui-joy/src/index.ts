@@ -10,6 +10,9 @@ export * from './AvatarGroup';
 export { default as Button } from './Button';
 export * from './Button';
 
+export { default as Breadcrumbs } from './Breadcrumbs';
+export * from './Breadcrumbs';
+
 export { default as Typography } from './Typography';
 export * from './Typography';
 
@@ -72,6 +75,7 @@ export * from './Box';
 
 export { default as Container } from './Container';
 export * from './Container';
+
 export { default as Badge } from './Badge';
 export * from './Badge';
 
@@ -92,6 +96,9 @@ export * from './MenuItem';
 
 export { default as MenuList } from './MenuList';
 export * from './MenuList';
+
+export { default as Stack } from './Stack';
+export * from './Stack';
 
 export { default as Tabs } from './Tabs';
 export * from './Tabs';

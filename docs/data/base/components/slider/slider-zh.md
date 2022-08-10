@@ -4,7 +4,6 @@ title: Unstyled React Slider component and hook
 components: SliderUnstyled
 githubLabel: 'component: slider'
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#slider'
-packageName: '@mui/base'
 ---
 
 # Unstyled slider

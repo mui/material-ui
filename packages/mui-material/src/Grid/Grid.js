@@ -181,7 +181,7 @@ export function generateRowGap({ theme, ownerState }) {
         };
       }
 
-      if (zeroValueBreakpointKeys.includes(breakpoint)) {
+      if (zeroValueBreakpointKeys?.includes(breakpoint)) {
         return {};
       }
 
@@ -227,7 +227,7 @@ export function generateColumnGap({ theme, ownerState }) {
         };
       }
 
-      if (zeroValueBreakpointKeys.includes(breakpoint)) {
+      if (zeroValueBreakpointKeys?.includes(breakpoint)) {
         return {};
       }
 

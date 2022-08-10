@@ -148,6 +148,7 @@ const SwitchTrack = styled('span', {
   height: 'var(--Switch-track-height)',
   width: 'var(--Switch-track-width)',
   display: 'flex',
+  flexShrink: 0,
   justifyContent: 'space-between',
   alignItems: 'center',
   boxSizing: 'border-box',

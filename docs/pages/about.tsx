@@ -831,7 +831,7 @@ export default function About() {
       />
       <AppHeaderBanner />
       <AppHeader />
-      <main>
+      <main id="main-content">
         <AboutContent />
       </main>
       <AppFooter />
