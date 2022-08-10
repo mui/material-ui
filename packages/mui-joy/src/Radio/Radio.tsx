@@ -46,7 +46,9 @@ const RadioRoot = styled('span', {
   name: 'JoyRadio',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: RadioProps }>(({ ownerState, theme }) => {
+})<{
+  ownerState: RadioProps & { 'data-first-child'?: string; 'data-parent'?: string; row?: boolean };
+}>(({ ownerState, theme }) => {
   return [
     {
       '--Icon-fontSize': 'var(--Radio-size)',
@@ -71,15 +73,21 @@ const RadioRoot = styled('span', {
       minWidth: 0,
       fontFamily: theme.vars.fontFamily.body,
       lineHeight: 'var(--Radio-size)', // prevent label from having larger height than the checkbox
-      '&.Mui-disabled': {
+      color: theme.vars.palette.text.primary,
+      [`&.${radioClasses.disabled}`]: {
         color: theme.vars.palette[ownerState.color!]?.plainDisabledColor,
       },
       ...(ownerState.disableIcon && {
         color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Color`],
-        '&.Mui-disabled': {
+        [`&.${radioClasses.disabled}`]: {
           color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}DisabledColor`],
         },
       }),
+      ...(ownerState['data-parent'] === 'RadioGroup' &&
+        ownerState['data-first-child'] === undefined && {
+          marginInlineStart: ownerState.row ? 'var(--RadioGroup-gap)' : undefined,
+          marginBlockStart: ownerState.row ? undefined : 'var(--RadioGroup-gap)',
+        }),
     },
   ];
 });
@@ -127,7 +135,7 @@ const RadioAction = styled('span', {
   {
     position: 'absolute',
     borderRadius: `var(--Radio-action-radius, ${
-      // Automatic radius adjustment when composing with ListItem
+      // Automatic radius adjustment when composing with ListItem or Sheet
       ownerState.overlay ? 'var(--internal-action-radius, inherit)' : 'inherit'
     })`,
     top: 0,
@@ -225,8 +233,8 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
     onFocus,
     onFocusVisible,
     required,
-    color: colorProp,
-    variant: variantProp = 'outlined',
+    color,
+    variant = 'outlined',
     size: sizeProp = 'md',
     uncheckedIcon,
     value,
@@ -234,10 +242,8 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
   } = props;
   const id = useId(idOverride);
   const radioGroup = React.useContext(RadioGroupContext);
-  const color = inProps.color || radioGroup.color || colorProp;
   const activeColor = color || 'primary';
   const inactiveColor = color || 'neutral';
-  const variant = inProps.variant || radioGroup.variant || variantProp;
   const size = inProps.size || radioGroup.size || sizeProp;
   const name = inProps.name || radioGroup.name || nameProp;
   const disableIcon = inProps.disableIcon || radioGroup.disableIcon || disableIconProp;
@@ -269,6 +275,7 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
     size,
     disableIcon,
     overlay,
+    row: radioGroup.row,
   };
 
   const classes = useUtilityClasses(ownerState);

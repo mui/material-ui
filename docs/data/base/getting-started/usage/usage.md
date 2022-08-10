@@ -8,7 +8,6 @@ The following code snippet demonstrates a simple app that uses the MUI Base [`Bu
 
 ```jsx
 import * as React from 'react';
-import ReactDOM from 'react-dom';
 import ButtonUnstyled from '@mui/base/ButtonUnstyled';
 
 function App() {
@@ -85,6 +84,10 @@ These two examples are equivalent:
 ```jsx
 <BadgeUnstyled componentsProps={{ root: { id: 'badge1' } }}>
 ```
+
+:::warning
+If both `componentsProps.root` and additional props have the same keys but different values, the `componentsProps.root` props will take precedence. This does not apply to classes and the `style` prop (they will be merged instead).
+:::
 
 ## Components vs. hooks
 

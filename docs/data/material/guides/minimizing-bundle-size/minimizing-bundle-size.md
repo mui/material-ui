@@ -77,7 +77,7 @@ import TabIndicator from '@mui/material/Tabs/TabIndicator';
 //                                           ^^^^^^^^^^^^ 3rd level
 ```
 
-If you're using `eslint` you can catch problematic imports with the [`no-restricted-imports` rule](https://eslint.org/docs/rules/no-restricted-imports). The following `.eslintrc` configuration will highlight problematic imports from `@mui` packages:
+If you're using `eslint` you can catch problematic imports with the [`no-restricted-imports` rule](https://eslint.org/docs/latest/rules/no-restricted-imports). The following `.eslintrc` configuration will highlight problematic imports from `@mui` packages:
 
 ```json
 {
@@ -219,6 +219,7 @@ Instead, use these bundles at the bundler level with e.g [Webpack's `resolve.ali
       '@mui/material': '@mui/material/legacy',
       '@mui/styled-engine': '@mui/styled-engine/legacy',
       '@mui/system': '@mui/system/legacy',
+      '@mui/utils': '@mui/utils/legacy',
     }
   }
 }

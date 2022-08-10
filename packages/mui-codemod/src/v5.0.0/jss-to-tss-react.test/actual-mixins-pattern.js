@@ -1,6 +1,7 @@
+// Comment on first node where the first node will be removed and we should preserve this comment.
+import clsx from "clsx";
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import clsx from "clsx";
 
 function mixins() {
   return {

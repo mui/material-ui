@@ -27,7 +27,7 @@ Currently, we have five main projects that are not at all related to MD:
 
 - [MUI Core](/core/):
   - [MUI Base](/base/getting-started/overview/): the unstyled version of the components.
-  - [MUI System](/system/basics/): our most recent take on styling for React components.
+  - [MUI System](/system/getting-started/overview/): our most recent take on styling for React components.
   - [MUI Joy (working title)](https://github.com/mui/material-ui/discussions/29024): a second design system as an alternative to Material Design.
 - [MUI X](/x/): as mentioned, a growing set of advanced components.
   Today, the flagship is the [Data Grid](/x/react-data-grid/), a game-changing component for presenting large amounts of data, which integrates perfectly with MUI Core.
@@ -79,7 +79,7 @@ Other perks are described on [the careers page](/careers/#perks-amp-benefits/).
 
 ## How to apply?
 
-[Apply now for this position 📮](https://airtable.com/shrdqo1Z6srZXGcvh?prefill_Applying+for=Designer&prefill_source=mui.com).
+[Apply now for this position 📮](https://jobs.ashbyhq.com/MUI/__ID__/application?utm_source=ZNRrPGBkqO).
 
 ## What happens next?
 

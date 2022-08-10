@@ -271,6 +271,9 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
         letterSpacing: 0,
         fontWeight: 700,
       },
+      allVariants: {
+        scrollMarginTop: 'calc(var(--MuiDocs-header-height) + 32px)',
+      },
     },
   } as ThemeOptions);
 
@@ -450,16 +453,6 @@ export function getThemedComponents(theme: Theme): { components: Theme['componen
             boxShadow: `0px 4px 20px ${
               theme.palette.mode === 'dark' ? 'rgba(0, 0, 0, 0.5)' : 'rgba(170, 180, 190, 0.3)'
             }`,
-          },
-        },
-      },
-      MuiContainer: {
-        styleOverrides: {
-          root: {
-            [theme.breakpoints.up('md')]: {
-              paddingLeft: theme.spacing(2),
-              paddingRight: theme.spacing(2),
-            },
           },
         },
       },

@@ -73,7 +73,7 @@ Scale: -100 to 0 needs improvements, 0 to 30 is good, 30 to 70 is great, and 70 
 
 ### What is the main benefit you get from using MUI?
 
-<img src="/static/blog/2021-developer-survey-results/3.png" style="width: 796px; margin-top: 16px; margin-bottom: 8px;" alt="This question results in 2019 - Design: 248; Time: 193; DX: 128; Components: 89; Customizability: 53; Documentation: 25; Accessibility: 5; Typescript: 5; Community support: 4; This question results in 2021 - Time: 597; Design: 407; Components: 309; DX: 306; Customizability: 181; Documentation: 57; Community support: 26; Accessibility: 24; Performance: 17" />
+<img src="/static/blog/2021-developer-survey-results/3.png" style="width: 796px; margin-top: 16px; margin-bottom: 8px;" alt="This question results in 2019 - Design: 248; Time: 193; DX: 128; Components: 89; Customizability: 53; Documentation: 25; Accessibility: 5; TypeScript: 5; Community support: 4; This question results in 2021 - Time: 597; Design: 407; Components: 309; DX: 306; Customizability: 181; Documentation: 57; Community support: 26; Accessibility: 24; Performance: 17" />
 
 <p class="blog-description">1422 out of 1589 answered this question in 2021.</p>
 
@@ -151,7 +151,7 @@ And what has decreased:
 
 ### Please rate how much you agree or disagree with the following statements
 
-<img src="/static/blog/2021-developer-survey-results/4.png" style="width: 796px; margin-top: 16px; margin-bottom: 8px;" alt="I can find most of the components I need (Strongly agree: 45.5%, Agree: 45.9%, Neutral: 6.2%, Disagree: 1.5%, Strongly Disagree 0.8%); I can easily customize the components to match the desired design (Strongly agree: 23.4%, Agree: 46.1%, Neutral: 18.6%, Disagree: 9%, Strongly Disagree 2.9%); I can find the answers to most of my questions in the documentation (Strongly agree: 24.1%, Agree: 50.1%, Neutral: 16.3%, Disagree: 7.6%, Strongly Disagree 1.9%); I find the library's performance to be great (Strongly agree: 26.4%, Agree: 44.3%, Neutral: 22.6%, Disagree: 4.7%, Strongly Disagree 2%); Whenever I needed to get help, I received helpful responses, StackOverflow or GitHub (Strongly agree: 20.9%, Agree: 36.7%, Neutral: 36%, Disagree: 4.6%, Strongly Disagree 1.8%)" />
+<img src="/static/blog/2021-developer-survey-results/4.png" style="width: 796px; margin-top: 16px; margin-bottom: 8px;" alt="I can find most of the components I need (Strongly agree: 45.5%, Agree: 45.9%, Neutral: 6.2%, Disagree: 1.5%, Strongly Disagree 0.8%); I can easily customize the components to match the desired design (Strongly agree: 23.4%, Agree: 46.1%, Neutral: 18.6%, Disagree: 9%, Strongly Disagree 2.9%); I can find the answers to most of my questions in the documentation (Strongly agree: 24.1%, Agree: 50.1%, Neutral: 16.3%, Disagree: 7.6%, Strongly Disagree 1.9%); I find the library's performance to be great (Strongly agree: 26.4%, Agree: 44.3%, Neutral: 22.6%, Disagree: 4.7%, Strongly Disagree 2%); Whenever I needed to get help, I received helpful responses, Stack Overflow or GitHub (Strongly agree: 20.9%, Agree: 36.7%, Neutral: 36%, Disagree: 4.6%, Strongly Disagree 1.8%)" />
 
 <p class="blog-description">1534 out of 1589 answered.</p>
 
@@ -658,7 +658,7 @@ This year we saw a considerable bump the use of Next.js (compared with 12.4% in 
 As the MUI Core v5 release is relatively recent, we expect to see many developers still using JSS, and there will probably always be some of you who prefer it.
 
 But the growth of Emotion and styled-components here is noteworthy, because they are what our new styling solution is based on.
-This year we'll be focusing on expanding and refining [MUI System](/system/basics/) to further improve upon this new styling solution.
+This year we'll be focusing on expanding and refining [MUI System](/system/getting-started/the-sx-prop/) to further improve upon this new styling solution.
 
 ### Did you recently migrate to MUI Core v5?
 

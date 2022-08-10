@@ -2,7 +2,6 @@
 product: base
 title: React form control
 components: FormControlUnstyled
-packageName: '@mui/base'
 ---
 
 # Unstyled form control

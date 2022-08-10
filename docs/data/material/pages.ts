@@ -107,6 +107,7 @@ const pages = [
           { pathname: '/material-ui/react-box' },
           { pathname: '/material-ui/react-container' },
           { pathname: '/material-ui/react-grid' },
+          { pathname: '/material-ui/react-grid2', title: 'Grid v2', newFeature: true },
           { pathname: '/material-ui/react-stack' },
           { pathname: '/material-ui/react-image-list' },
           { pathname: '/material-ui/react-hidden' },
@@ -203,6 +204,7 @@ const pages = [
       { pathname: '/material-ui/guides/content-security-policy', title: 'Content Security Policy' },
       { pathname: '/material-ui/guides/right-to-left', title: 'Right-to-left' },
       { pathname: '/material-ui/guides/flow' },
+      { pathname: '/material-ui/guides/shadow-dom', title: 'Shadow DOM' },
     ],
   },
   {
@@ -236,6 +238,10 @@ const pages = [
     title: 'Migration',
     icon: 'BookIcon',
     children: [
+      {
+        pathname: '/material-ui/migration/migration-grid-v2',
+        title: 'Migrating to Grid v2',
+      },
       {
         pathname: '/material-ui/migration',
         subheader: 'Upgrade to v5',

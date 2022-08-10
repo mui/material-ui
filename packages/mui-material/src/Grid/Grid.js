@@ -126,6 +126,31 @@ export function generateDirection({ theme, ownerState }) {
   });
 }
 
+/**
+ * Extracts zero value breakpoint keys before a non-zero value breakpoint key.
+ * @example { xs: 0, sm: 0, md: 2, lg: 0, xl: 0 } or [0, 0, 2, 0, 0]
+ * @returns [xs, sm]
+ */
+function extractZeroValueBreakpointKeys({ breakpoints, values }) {
+  let nonZeroKey = '';
+
+  Object.keys(values).forEach((key) => {
+    if (nonZeroKey !== '') {
+      return;
+    }
+
+    if (values[key] !== 0) {
+      nonZeroKey = key;
+    }
+  });
+
+  const sortedBreakpointKeysByValue = Object.keys(breakpoints).sort((a, b) => {
+    return breakpoints[a] - breakpoints[b];
+  });
+
+  return sortedBreakpointKeysByValue.slice(0, sortedBreakpointKeysByValue.indexOf(nonZeroKey));
+}
+
 export function generateRowGap({ theme, ownerState }) {
   const { container, rowSpacing } = ownerState;
   let styles = {};
@@ -136,7 +161,15 @@ export function generateRowGap({ theme, ownerState }) {
       breakpoints: theme.breakpoints.values,
     });
 
-    styles = handleBreakpoints({ theme }, rowSpacingValues, (propValue) => {
+    let zeroValueBreakpointKeys;
+    if (typeof rowSpacingValues === 'object') {
+      zeroValueBreakpointKeys = extractZeroValueBreakpointKeys({
+        breakpoints: theme.breakpoints.values,
+        values: rowSpacingValues,
+      });
+    }
+
+    styles = handleBreakpoints({ theme }, rowSpacingValues, (propValue, breakpoint) => {
       const themeSpacing = theme.spacing(propValue);
 
       if (themeSpacing !== '0px') {
@@ -148,7 +181,16 @@ export function generateRowGap({ theme, ownerState }) {
         };
       }
 
-      return {};
+      if (zeroValueBreakpointKeys?.includes(breakpoint)) {
+        return {};
+      }
+
+      return {
+        marginTop: 0,
+        [`& > .${gridClasses.item}`]: {
+          paddingTop: 0,
+        },
+      };
     });
   }
 
@@ -165,7 +207,15 @@ export function generateColumnGap({ theme, ownerState }) {
       breakpoints: theme.breakpoints.values,
     });
 
-    styles = handleBreakpoints({ theme }, columnSpacingValues, (propValue) => {
+    let zeroValueBreakpointKeys;
+    if (typeof columnSpacingValues === 'object') {
+      zeroValueBreakpointKeys = extractZeroValueBreakpointKeys({
+        breakpoints: theme.breakpoints.values,
+        values: columnSpacingValues,
+      });
+    }
+
+    styles = handleBreakpoints({ theme }, columnSpacingValues, (propValue, breakpoint) => {
       const themeSpacing = theme.spacing(propValue);
       if (themeSpacing !== '0px') {
         return {
@@ -177,7 +227,17 @@ export function generateColumnGap({ theme, ownerState }) {
         };
       }
 
-      return {};
+      if (zeroValueBreakpointKeys?.includes(breakpoint)) {
+        return {};
+      }
+
+      return {
+        width: '100%',
+        marginLeft: 0,
+        [`& > .${gridClasses.item}`]: {
+          paddingLeft: 0,
+        },
+      };
     });
   }
 
@@ -235,7 +295,7 @@ const GridRoot = styled('div', {
     breakpoints.forEach((breakpoint) => {
       const value = ownerState[breakpoint];
 
-      if (value !== false) {
+      if (value) {
         breakpointsStyles.push(styles[`grid-${breakpoint}-${String(value)}`]);
       }
     });
@@ -319,7 +379,7 @@ const useUtilityClasses = (ownerState) => {
   breakpoints.forEach((breakpoint) => {
     const value = ownerState[breakpoint];
 
-    if (value !== false) {
+    if (value) {
       breakpointsClasses.push(`grid-${breakpoint}-${String(value)}`);
     }
   });
@@ -357,7 +417,7 @@ const Grid = React.forwardRef(function Grid(inProps, ref) {
     spacing = 0,
     wrap = 'wrap',
     zeroMinWidth = false,
-    ...propsRest
+    ...other
   } = props;
 
   const rowSpacing = rowSpacingProp || spacing;
@@ -369,14 +429,12 @@ const Grid = React.forwardRef(function Grid(inProps, ref) {
   const columns = container ? columnsProp || 12 : columnsContext;
 
   const breakpointsValues = {};
-  const propsRestFiltered = { ...propsRest };
+  const otherFiltered = { ...other };
 
-  breakpoints.keys.forEach((key) => {
-    if (key in propsRest) {
-      breakpointsValues[key] = propsRest[key];
-      delete propsRestFiltered[key];
-    } else {
-      breakpointsValues[key] = false;
+  breakpoints.keys.forEach((breakpoint) => {
+    if (other[breakpoint] != null) {
+      breakpointsValues[breakpoint] = other[breakpoint];
+      delete otherFiltered[breakpoint];
     }
   });
 
@@ -404,7 +462,7 @@ const Grid = React.forwardRef(function Grid(inProps, ref) {
         className={clsx(classes.root, className)}
         as={component}
         ref={ref}
-        {...propsRestFiltered}
+        {...otherFiltered}
       />
     </GridContext.Provider>
   );
@@ -473,10 +531,6 @@ Grid.propTypes /* remove-proptypes */ = {
    * @default false
    */
   item: PropTypes.bool,
-  /**
-   * @ignore
-   */
-  key: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
    * If a number, it sets the number of columns the grid item uses.
    * It can't be greater than the total number of columns of the container (12 by default).

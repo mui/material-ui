@@ -40,7 +40,7 @@ describe('mergeSlotProps', () => {
     expect(merged.props.prop4).to.equal('internal');
   });
 
-  it('joins all the class names', () => {
+  it('joins all the class names in order from internal to external', () => {
     const getSlotProps = () => ({
       className: 'internal',
     });
@@ -67,12 +67,52 @@ describe('mergeSlotProps', () => {
       className,
     });
 
-    expect(merged.props.className).to.contain('class1');
-    expect(merged.props.className).to.contain('class2');
-    expect(merged.props.className).to.contain('internal');
-    expect(merged.props.className).to.contain('additional');
-    expect(merged.props.className).to.contain('externalForwarded');
-    expect(merged.props.className).to.contain('externalSlot');
+    expect(merged.props.className).to.equal(
+      'internal additional class1 class2 externalForwarded externalSlot',
+    );
+  });
+
+  it('merges the style props', () => {
+    const getSlotProps = () => ({
+      style: {
+        fontSize: '12px',
+        textAlign: 'center' as const,
+      },
+    });
+
+    const additionalProps = {
+      style: {
+        fontSize: '14px',
+        color: 'red',
+      },
+    };
+
+    const externalForwardedProps = {
+      style: {
+        fontWeight: 500,
+      },
+    };
+
+    const externalSlotProps = {
+      style: {
+        textDecoration: 'underline',
+      },
+    };
+
+    const merged = mergeSlotProps({
+      getSlotProps,
+      additionalProps,
+      externalForwardedProps,
+      externalSlotProps,
+    });
+
+    expect(merged.props.style).to.deep.equal({
+      textAlign: 'center',
+      color: 'red',
+      fontSize: '14px',
+      fontWeight: 500,
+      textDecoration: 'underline',
+    });
   });
 
   it('returns the ref returned from the getSlotProps function', () => {

@@ -189,6 +189,6 @@ To get more updates like this in the future, **subscribe to our newsletter** at 
 ## Read more
 
 - [Component theming](/material-ui/customization/theme-components/)
-- [All supported shorthands in `sx`](/system/the-sx-prop/#theme-aware-properties)
-- [`sx` performance tradeoff](/system/basics/#performance-tradeoff)
+- [All supported shorthands in `sx`](/system/getting-started/the-sx-prop/#theme-aware-properties)
+- [`sx` performance tradeoff](/system/getting-started/the-sx-prop/#performance-tradeoffs)
 - [`sx` with `styled`](/system/styled/#difference-with-the-sx-prop)

@@ -10,7 +10,9 @@ export default function CustomRatio() {
       sx={{ width: 300, borderRadius: 'md', overflow: 'auto' }}
     >
       <AspectRatio ratio="4/3">
-        <Typography level="h2">4 : 3</Typography>
+        <Typography level="h2" component="div">
+          4 : 3
+        </Typography>
       </AspectRatio>
     </Sheet>
   );

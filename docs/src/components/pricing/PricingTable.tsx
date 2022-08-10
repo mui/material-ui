@@ -18,8 +18,7 @@ const planInfo = {
   community: {
     color: 'green',
     title: 'Community',
-    description:
-      'Get started with the industry-standard UI library for building React user interfaces, MIT-licensed.',
+    description: 'Get started with the industry-standard React UI library, MIT-licensed.',
   },
   pro: {
     color: 'blue',
@@ -30,7 +29,7 @@ const planInfo = {
     color: 'gold',
     title: 'Premium',
     description:
-      'The most advanced features for handling data-rich applications, and the highest priority for support.',
+      'The most advanced features for data-rich applications, as well as the highest priority for support.',
   },
 } as const;
 
@@ -339,19 +338,25 @@ const rowHeaders: Record<string, React.ReactNode> = {
   'MUI Base': (
     <ColumnHead
       label="MUI Base"
-      tooltip="Unstyled components and react hooks available in @mui/base."
+      tooltip="A library of headless ('unstyled') React UI components and low-level hooks, available in @mui/base."
     />
   ),
   'MUI System': (
     <ColumnHead
       label="MUI System"
-      tooltip="CSS utilities for rapidly laying out custom designs available in @mui/system."
+      tooltip="CSS utilities for rapidly laying out custom designs, available in @mui/system."
     />
   ),
   'Material UI': (
     <ColumnHead
       label="Material UI"
-      tooltip="Core components following Material Design available in @mui/material."
+      tooltip="A library of React UI components that implements Google's Material Design, available in @mui/material."
+    />
+  ),
+  'Joy UI': (
+    <ColumnHead
+      label="Joy UI"
+      tooltip="A library of beautifully designed React UI components, available in @mui/joy."
     />
   ),
   // Advanced
@@ -385,13 +390,16 @@ const rowHeaders: Record<string, React.ReactNode> = {
     />
   ),
   'data-grid/row-height': (
-    <ColumnHead label="Row height" nested href="/x/react-data-grid/rows/#row-height" />
+    <ColumnHead label="Row height" nested href="/x/react-data-grid/row-height/" />
   ),
   'data-grid/row-spanning': (
-    <ColumnHead label="Row spanning" nested href="/x/react-data-grid/rows/#row-spanning" />
+    <ColumnHead label="Row spanning" nested href="/x/react-data-grid/row-spanning/" />
   ),
   'data-grid/row-reordering': (
-    <ColumnHead label="Row reordering" nested href="/x/react-data-grid/rows/#row-reorder" />
+    <ColumnHead label="Row reordering" nested href="/x/react-data-grid/row-ordering/" />
+  ),
+  'data-grid/row-pinning': (
+    <ColumnHead label="Row pinning" nested href="/x/react-data-grid/row-pinning/" />
   ),
   'data-grid/row-selection': (
     <ColumnHead label="Row selection" nested href="/x/react-data-grid/selection/#row-selection" />
@@ -504,13 +512,21 @@ const rowHeaders: Record<string, React.ReactNode> = {
   'mui-x-development': <ColumnHead label="Development license" tooltip="For active development" />,
   'mui-x-updates': <ColumnHead label="Access to new releases" />,
   // Support
-  community: <ColumnHead {...{ label: 'Community' }} />,
+  community: (
+    <ColumnHead
+      {...{
+        label: 'Community support for MUI Core',
+        tooltip:
+          'Support for MUI Core and other MIT licensed code is provided by the community. MUI maintainers focus on solving root issues rather than offering direct support to the community at large.',
+      }}
+    />
+  ),
   'bugs/features': (
     <ColumnHead
       {...{
-        label: 'Bug reports & feature requests',
+        label: 'Technical support for MUI X',
         tooltip:
-          'You can report an unlimited number of bugs and submit unlimited feature requests. We do our best to handle them.',
+          'You can ask for technical support, report bugs and submit unlimited feature requests to the advanced components. We take your subscription plan as one of the prioritization criteria.',
       }}
     />
   ),
@@ -561,6 +577,7 @@ const communityData: Record<string, React.ReactNode> = {
   'MUI Base': yes,
   'MUI System': yes,
   'Material UI': yes,
+  'Joy UI': yes,
   // MUI X
   'data-grid/column-groups': pending,
   'data-grid/column-spanning': yes,
@@ -570,6 +587,7 @@ const communityData: Record<string, React.ReactNode> = {
   'data-grid/row-height': yes,
   'data-grid/row-spanning': pending,
   'data-grid/row-reordering': no,
+  'data-grid/row-pinning': no,
   'data-grid/row-selection': yes,
   'data-grid/row-multiselection': no,
   'data-grid/row-rangeselection': no,
@@ -617,6 +635,7 @@ const proData: Record<string, React.ReactNode> = {
   'MUI Base': yes,
   'MUI System': yes,
   'Material UI': yes,
+  'Joy UI': yes,
   // MUI X
   'data-grid/column-groups': pending,
   'data-grid/column-spanning': yes,
@@ -626,6 +645,7 @@ const proData: Record<string, React.ReactNode> = {
   'data-grid/row-height': yes,
   'data-grid/row-spanning': pending,
   'data-grid/row-reordering': yes,
+  'data-grid/row-pinning': yes,
   'data-grid/row-selection': yes,
   'data-grid/row-multiselection': yes,
   'data-grid/row-rangeselection': no,
@@ -673,6 +693,7 @@ const premiumData: Record<string, React.ReactNode> = {
   'MUI Base': yes,
   'MUI System': yes,
   'Material UI': yes,
+  'Joy UI': yes,
   // MUI X
   'data-grid/column-groups': pending,
   'data-grid/column-spanning': yes,
@@ -682,6 +703,7 @@ const premiumData: Record<string, React.ReactNode> = {
   'data-grid/row-height': yes,
   'data-grid/row-spanning': pending,
   'data-grid/row-reordering': yes,
+  'data-grid/row-pinning': yes,
   'data-grid/row-selection': yes,
   'data-grid/row-multiselection': yes,
   'data-grid/row-rangeselection': pending,
@@ -704,7 +726,7 @@ const premiumData: Record<string, React.ReactNode> = {
   'data-grid/tree-data': yes,
   'data-grid/master-detail': yes,
   'data-grid/grouping': yes,
-  'data-grid/aggregation': pending,
+  'data-grid/aggregation': yes,
   'data-grid/pivoting': pending,
   'data-grid/accessibility': yes,
   'data-grid/keyboard-nav': yes,
@@ -950,6 +972,8 @@ export default function PricingTable({
       </RowHead>
       {renderRow('Material UI')}
       {divider}
+      {renderRow('Joy UI')}
+      {divider}
       {renderRow('MUI Base')}
       {divider}
       {renderRow('MUI System')}
@@ -1039,6 +1063,8 @@ export default function PricingTable({
         {renderRow('data-grid/row-height')}
         {nestedDivider}
         {renderRow('data-grid/row-reordering')}
+        {nestedDivider}
+        {renderRow('data-grid/row-pinning')}
         {nestedDivider}
         {renderRow('data-grid/row-spanning')}
         {nestedDivider}

@@ -20,7 +20,7 @@ To change the styles of _one single instance_ of a component, you can use one of
 
 ### The `sx` prop
 
-The [`sx` prop](/system/basics/#the-sx-prop) is the best option for adding style overrides to a single instance of a component in most cases.
+The [`sx` prop](/system/getting-started/the-sx-prop/) is the best option for adding style overrides to a single instance of a component in most cases.
 It can be used with all Material UI components.
 
 {{"demo": "SxProp.js" }}
@@ -190,8 +190,12 @@ If you are already using the [CssBaseline](/material-ui/react-css-baseline/) com
 
 {{"demo": "OverrideCssBaseline.js", "iframe": true, "height": 100}}
 
+The `styleOverrides` key in the `MuiCssBaseline` component slot also supports callback from which you can access the theme. Here is how you can achieve the same by using this approach.
+
+{{"demo": "OverrideCallbackCssBaseline.js", "iframe": true, "height": 100}}
+
 :::info
-Note: It is a good practice to hoist the `<GlobalStyles />` to a static constant, to avoid rerendering. This will ensure that the `<style>` tag generated would not recalculate on each render.
+**Note**: It is a good practice to hoist the `<GlobalStyles />` to a static constant, to avoid rerendering. This will ensure that the `<style>` tag generated would not recalculate on each render.
 :::
 
 ```diff
