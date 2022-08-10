@@ -90,6 +90,30 @@ function App() {
 
 If you want to customize `light` and `dark` theme or create new color scheme, check out the [customization guide](/material-ui/experimental-api/css-variables/customization/).
 
+## Using the variables
+
+The new provider will walk through the theme and attach an extra object to `theme.vars`. It is a plain object with similar structure that has values refer to the generated CSS variables.
+
+Here is a comparison between the existing method and the CSS variables method when you create a component:
+
+```js
+// existing method, the result is the raw value
+const Button = styled('button')(({ theme }) => ({
+  backgroundColor: theme.palette.primary.main, // #1976d2
+  color: theme.palette.primary.contrastText, // #fff
+}));
+
+// CSS variables method, the result is a string that refers to CSS variables
+const Button = styled('button')(({ theme }) => ({
+  backgroundColor: theme.vars.palette.primary.main, // var(--mui-palette-primary-main)
+  color: theme.vars.palette.primary.contrastText, // var(--mui-palette-primary-contrastText)
+}));
+```
+
+:::warning
+Make sure that the components accessing `theme.vars` are rendered under the new provider, otherwise you will get TypeError.
+:::
+
 ## Server-side rendering
 
 To prevent the dark-mode SSR flickering during the hydration phase, place `getInitColorSchemeScript()` before the `<Main />` tag.

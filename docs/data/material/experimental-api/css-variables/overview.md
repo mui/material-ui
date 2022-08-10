@@ -11,8 +11,6 @@ If you have no experience about the CSS variables, we recommend you to check out
 CSS variables (sometimes referred to as custom properties or cascading variables) provide significant improvements in developer experience related to theming and customization.
 With these variables, you can inject a theme into your app's stylesheet _at build time_ to apply the user's selected settings before the whole app is rendered.
 
-This solves the problem of [dark-mode SSR flickering](https://github.com/mui/material-ui/issues/27651); lets you provide your users with multiple themes beyond light and dark; and offers a better debugging experience overall, among other benefits.
-
 <!-- Link to the blog post -->
 
 ## Advantages
