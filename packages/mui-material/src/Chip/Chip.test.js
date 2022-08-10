@@ -61,7 +61,7 @@ describe('<Chip />', () => {
     it('should render with the color class name based on the color prop', () => {
       const capitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1);
 
-      ['primary', 'secondary', 'info', 'error', 'warning', 'success'].map((color) => {
+      ['primary', 'secondary', 'info', 'error', 'warning', 'success'].forEach((color) => {
         const { container } = render(<Chip color={color} />);
         const chip = container.querySelector(`.${classes.root}`);
         expect(chip).to.have.class(classes[`color${capitalize(color)}`]);
