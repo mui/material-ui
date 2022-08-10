@@ -21,3 +21,6 @@ const Text = (props: { sx?: SxProps<Theme> }) => null;
 
 // array contains boolean
 <Text sx={[false && { p: 2 }, { m: 2 }]} />;
+
+// @ts-expect-error invalid property 'lm'
+<Text sx={{ mt: 1, lm: 2 }} />;
