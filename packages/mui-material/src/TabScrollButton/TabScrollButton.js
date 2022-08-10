@@ -72,8 +72,8 @@ const TabScrollButton = React.forwardRef(function TabScrollButton(inProps, ref) 
     switch (icon) {
       case KeyboardArrowLeft:
         return { fontSize: 'small', ...componentsProps?.scrollButtonStart };
-      case KeyboardArrowLeft:
-        return { fontSize: 'small', ...componentsProps?.scrollButtonStart };
+      case KeyboardArrowRight:
+        return { fontSize: 'small', ...componentsProps?.scrollButtonEnd };
       case ScrollButtonStart:
         return { ...componentsProps?.scrollButtonStart };
       case ScrollButtonEnd:
