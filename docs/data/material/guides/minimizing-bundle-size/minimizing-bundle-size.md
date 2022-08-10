@@ -28,7 +28,7 @@ Development bundles can contain the full library which can lead to **slower star
 This is especially noticeable if you use named imports from `@mui/icons-material`, which can be up to six times slower than the default import.
 For example, between the following two imports, the first (named) can be significantly slower than the second (default):
 
-```js
+````js
 import { Delete } from '@mui/icons-material'
 
 import Delete from '@mui/icons-material/Delete'
@@ -44,7 +44,7 @@ For instance, use:
 // 🚀 Fast
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
-```
+````
 
 instead of top-level imports (without a Babel plugin):
 
