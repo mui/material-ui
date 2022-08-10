@@ -159,9 +159,9 @@ describe('<ListItemText />', () => {
     const { container } = render(
       <ListItemText
         primary="This is the primary text"
-        primaryTypographyProps={{ 'variant': 'h3' }}
+        primaryTypographyProps={{ variant: 'h3' }}
         secondary="This is the secondary text"
-        secondaryTypographyProps={{ 'variant': 'h4' }}
+        secondaryTypographyProps={{ variant: 'h4' }}
       />,
     );
     expect(container.firstChild.firstChild).to.have.tagName('h3');
@@ -170,10 +170,7 @@ describe('<ListItemText />', () => {
 
   it('should fall back to the default tag name if no variant provided', () => {
     const { container } = render(
-      <ListItemText
-        primary="This is the primary text"
-        secondary="This is the secondary text"
-      />,
+      <ListItemText primary="This is the primary text" secondary="This is the secondary text" />,
     );
     expect(container.firstChild.firstChild).to.have.tagName('span');
     expect(container.firstChild.lastChild).to.have.tagName('p');
