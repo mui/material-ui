@@ -319,8 +319,9 @@ SelectUnstyled.propTypes /* remove-proptypes */ = {
    */
   onListboxOpenChange: PropTypes.func,
   /**
-   * A function used to convert the option value to a string.
-   * It is used to navigate through values with keyboard.
+   * A function used to convert the option label to a string.
+   * It's useful when labels are elements and need to be converted to plain text
+   * to enable navigation using character keys on a keyboard.
    *
    * @default defaultOptionStringifier
    */

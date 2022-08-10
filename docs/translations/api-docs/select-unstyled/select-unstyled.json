@@ -14,7 +14,7 @@
     "name": "Name of the element. For example used by the server to identify the fields in form submits. If the name is provided, the component will render a hidden input element that can be submitted to a server.",
     "onChange": "Callback fired when an option is selected.",
     "onListboxOpenChange": "Callback fired when the component requests to be opened. Use in controlled mode (see listboxOpen).",
-    "optionStringifier": "A function used to convert the option value to a string. It is used to navigate through values with keyboard.",
+    "optionStringifier": "A function used to convert the option label to a string. It&#39;s useful when labels are elements and need to be converted to plain text to enable navigation using character keys on a keyboard.",
     "renderValue": "Function that customizes the rendering of the selected value.",
     "value": "The selected value. Set to <code>null</code> to deselect all options."
   },
