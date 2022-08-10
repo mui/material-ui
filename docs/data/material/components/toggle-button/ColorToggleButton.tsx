@@ -18,7 +18,7 @@ export default function ColorToggleButton() {
       value={alignment}
       exclusive
       onChange={handleChange}
-      aria-label="Color"
+      aria-label="Platform"
     >
       <ToggleButton value="web">Web</ToggleButton>
       <ToggleButton value="android">Android</ToggleButton>
