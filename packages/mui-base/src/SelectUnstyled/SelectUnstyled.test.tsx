@@ -338,10 +338,13 @@ describe('SelectUnstyled', () => {
         this.skip();
       }
 
+      let isEventHandled = false;
+
       const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const formData = new FormData(event.currentTarget);
         expect(formData.get('test-select')).to.equal('2');
+        isEventHandled = true;
       };
 
       const { getByText } = render(
@@ -358,6 +361,8 @@ describe('SelectUnstyled', () => {
       act(() => {
         button.click();
       });
+
+      expect(isEventHandled).to.equal(true);
     });
 
     it('transforms the selected value before posting using the formValueProvider prop, if provided', function test() {
@@ -366,10 +371,13 @@ describe('SelectUnstyled', () => {
         this.skip();
       }
 
+      let isEventHandled = false;
+
       const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const formData = new FormData(event.currentTarget);
         expect(formData.get('test-select')).to.equal('option 2');
+        isEventHandled = true;
       };
 
       const customFormValueProvider = (option: SelectOption<number> | null) =>
@@ -393,6 +401,8 @@ describe('SelectUnstyled', () => {
       act(() => {
         button.click();
       });
+
+      expect(isEventHandled).to.equal(true);
     });
 
     it('formats the object values as JSON before posting', function test() {
@@ -401,10 +411,13 @@ describe('SelectUnstyled', () => {
         this.skip();
       }
 
+      let isEventHandled = false;
+
       const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const formData = new FormData(event.currentTarget);
         expect(formData.get('test-select')).to.equal('{"firstName":"Olivia"}');
+        isEventHandled = true;
       };
 
       const options = [
@@ -429,6 +442,8 @@ describe('SelectUnstyled', () => {
       act(() => {
         button.click();
       });
+
+      expect(isEventHandled).to.equal(true);
     });
   });
 
