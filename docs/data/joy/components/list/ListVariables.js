@@ -25,7 +25,7 @@ export default function ListVariables() {
         { var: '--List-item-minHeight', defaultValue: '40px' },
         { var: '--List-item-paddingY', defaultValue: '6px' },
         { var: '--List-item-paddingX', defaultValue: '12px' },
-        { var: '--List-decorator-width', defaultValue: '40px' },
+        { var: '--List-decorator-size', defaultValue: '40px' },
         { var: '--List-divider-gap', defaultValue: '6px' },
       ]}
       renderDemo={(sx) => (

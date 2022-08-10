@@ -11,6 +11,7 @@ import {
   ListItemButtonTypeMap,
 } from './ListItemButtonProps';
 import listItemButtonClasses, { getListItemButtonUtilityClass } from './listItemButtonClasses';
+import ListItemButtonOrientationContext from './ListItemButtonOrientationContext';
 import RowListContext from '../List/RowListContext';
 
 const useUtilityClasses = (ownerState: ListItemButtonProps & { focusVisible: boolean }) => {
@@ -51,6 +52,7 @@ export const ListItemButtonRoot = styled('div', {
     boxSizing: 'border-box',
     position: 'relative',
     display: 'flex',
+    flexDirection: ownerState.orientation === 'vertical' ? 'column' : 'row',
     alignItems: 'center',
     textAlign: 'initial',
     textDecoration: 'initial', // reset native anchor tag
@@ -106,6 +108,7 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
     className,
     action,
     component = 'div',
+    orientation = 'horizontal',
     role,
     selected = false,
     color = selected ? 'primary' : 'neutral',
@@ -137,6 +140,7 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
     component,
     color,
     focusVisible,
+    orientation,
     row,
     selected,
     variant,
@@ -147,16 +151,18 @@ const ListItemButton = React.forwardRef(function ListItemButton(inProps, ref) {
   const rootProps = getRootProps();
 
   return (
-    <ListItemButtonRoot
-      as={component}
-      className={clsx(classes.root, className)}
-      ownerState={ownerState}
-      {...other}
-      {...rootProps}
-      role={role ?? rootProps.role}
-    >
-      {children}
-    </ListItemButtonRoot>
+    <ListItemButtonOrientationContext.Provider value={orientation}>
+      <ListItemButtonRoot
+        as={component}
+        className={clsx(classes.root, className)}
+        ownerState={ownerState}
+        {...other}
+        {...rootProps}
+        role={role ?? rootProps.role}
+      >
+        {children}
+      </ListItemButtonRoot>
+    </ListItemButtonOrientationContext.Provider>
   );
 }) as ExtendListItemButton<ListItemButtonTypeMap>;
 
@@ -221,6 +227,11 @@ ListItemButton.propTypes /* remove-proptypes */ = {
    * if needed.
    */
   focusVisibleClassName: PropTypes.string,
+  /**
+   * The content direction flow.
+   * @default 'horizontal'
+   */
+  orientation: PropTypes.oneOf(['horizontal', 'vertical']),
   /**
    * @ignore
    */

@@ -689,6 +689,25 @@ describe('Material UI <Grid />', () => {
         'Warning: Failed prop type: The prop `spacing` of `Grid` can only be used together with the `container` prop.',
       );
     });
+
+    it('should not throw error for setting zero spacing in theme', () => {
+      const theme = createTheme({ spacing: 0 });
+
+      const App = () => {
+        return (
+          <ThemeProvider theme={theme}>
+            <Grid container spacing={4}>
+              <Grid item>test</Grid>
+              <Grid item>test</Grid>
+            </Grid>
+          </ThemeProvider>
+        );
+      };
+
+      expect(() => {
+        render(<App />);
+      }).not.to.throw();
+    });
   });
 
   describe('prop: rowSpacing, columnSpacing', () => {

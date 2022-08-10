@@ -4,7 +4,6 @@ title: React Popper（弹出提示）组件
 components: Popper, PopperUnstyled
 githubLabel: 'component: Popper'
 unstyled: /base/react-popper/
-packageName: '@mui/base'
 ---
 
 # Popper 弹出提示

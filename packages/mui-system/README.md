@@ -20,4 +20,4 @@ yarn add @mui/system @emotion/react @emotion/styled
 
 <!-- #default-branch-switch -->
 
-[The documentation](https://mui.com/system/basics/)
+[The documentation](https://mui.com/system/getting-started/overview/)

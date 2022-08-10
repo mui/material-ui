@@ -27,7 +27,7 @@ export interface CardTypeMap<P = {}, D extends React.ElementType = 'div'> {
     row?: boolean;
     /**
      * The size of the component.
-     * It accepts theme values between 'xs' and 'xl'.
+     * It accepts theme values between 'sm' and 'lg'.
      * @default 'md'
      */
     size?: OverridableStringUnion<'sm' | 'md' | 'lg', CardPropsSizeOverrides>;
