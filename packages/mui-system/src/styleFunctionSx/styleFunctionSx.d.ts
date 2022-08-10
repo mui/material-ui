@@ -26,11 +26,13 @@ export interface CSSSelectorObject<Theme extends object = {}> {
 
 type CssVariableType = string | number;
 
+type AllowedKeys = `--${string}` | `&${string}`;
+
 /**
  * Map all nested selectors and CSS variables.
  */
 export interface CSSSelectorObjectOrCssVariables<Theme extends object = {}> {
-  [cssSelectorOrVariable: string]:
+  [cssSelectorOrVariable: AllowedKeys]:
     | ((theme: Theme) => SystemStyleObject<Theme> | string | number)
     | SystemStyleObject<Theme>
     | CssVariableType;
