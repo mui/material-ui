@@ -1,6 +1,5 @@
 import * as React from 'react';
 import Head from 'docs/src/modules/components/Head';
-import CssBaseline from '@mui/material/CssBaseline';
 import BrandingProvider from 'docs/src/BrandingProvider';
 import AppHeader from 'docs/src/layouts/AppHeader';
 import XHero from 'docs/src/components/productX/XHero';
@@ -21,10 +20,9 @@ export default function Home() {
         description="We are kicking it off with the most powerful Data Grid on the market and there's a lot more to come. Build complex applications with our advanced React components."
         card="/static/social-previews/x-preview.jpg"
       />
-      <CssBaseline />
       <AppHeaderBanner />
       <AppHeader />
-      <main>
+      <main id="main-content">
         <XHero />
         <References companies={ADVANCED_CUSTOMERS} />
         <XComponents />

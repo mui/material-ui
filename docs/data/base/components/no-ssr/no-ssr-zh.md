@@ -1,8 +1,7 @@
 ---
-product: material-ui
+product: base
 title: React No SSR（非服务端渲染）的组件
 components: NoSsr
-packageName: '@mui/base'
 ---
 
 # 非服务端渲染（SSR）

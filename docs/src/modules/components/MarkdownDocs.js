@@ -30,6 +30,10 @@ function JoyModeObserver({ mode }) {
   return null;
 }
 
+JoyModeObserver.propTypes = {
+  mode: PropTypes.oneOf(['light', 'dark']),
+};
+
 function MarkdownDocs(props) {
   const theme = useTheme();
   const router = useRouter();

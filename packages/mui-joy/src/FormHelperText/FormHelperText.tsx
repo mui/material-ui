@@ -26,7 +26,7 @@ const FormHelperTextRoot = styled('p', {
   fontSize: `var(--FormHelperText-fontSize, ${theme.vars.fontSize.sm})`,
   lineHeight: theme.vars.lineHeight.sm,
   color: `var(--FormHelperText-color, ${theme.vars.palette.text.secondary})`,
-  margin: 'var(--FormHelperText-margin, initial)',
+  margin: 'var(--FormHelperText-margin, 0.25rem 0 0 0)',
 }));
 
 const FormHelperText = React.forwardRef(function FormHelperText(inProps, ref) {

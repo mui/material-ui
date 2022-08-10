@@ -18,8 +18,9 @@ export interface ListDividerTypeMap<P = {}, D extends React.ElementType = 'li'> 
      */
     classes?: Partial<ListDividerClasses>;
     /**
-     * The empty space on the side(s) of the divider.
-     * This prop has no effect on the divider if the nearest parent List has `row` prop set to `true`.
+     * The empty space on the side(s) of the divider in a vertical list.
+     *
+     * For horizontal list (the nearest parent List has `row` prop set to `true`), only `inset="gutter"` affects the list divider.
      */
     inset?: OverridableStringUnion<
       'gutter' | 'startDecorator' | 'startContent',

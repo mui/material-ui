@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
+import { spy } from 'sinon';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { createRenderer } from 'test/utils';
 import createStyled from './createStyled';
@@ -48,6 +49,44 @@ describe('createStyled', () => {
       const SomeMuiComponent = styled(() => null)({});
 
       expect(SomeMuiComponent).to.have.property('displayName', 'Styled(Component)');
+    });
+  });
+
+  describe('composition', () => {
+    it('should call styleFunctionSx once', () => {
+      const styled = createStyled();
+      const spySx = spy();
+      const Child = styled('div')({});
+
+      render(<Child sx={spySx} />);
+
+      expect(spySx.callCount).to.equal(2); // React 18 renders twice in strict mode.
+    });
+
+    it('should still call styleFunctionSx once', () => {
+      const styled = createStyled();
+      const spySx = spy();
+      const Child = styled('div')({});
+      const Parent = styled(Child)({});
+
+      render(<Parent sx={spySx} />);
+
+      expect(spySx.callCount).to.equal(2); // React 18 renders twice in strict mode.
+    });
+
+    it('both child and parent still accept `sx` prop', () => {
+      const styled = createStyled();
+      const Child = styled('div')({});
+      const Parent = styled(Child)({});
+
+      const { container } = render(
+        <React.Fragment>
+          <Parent sx={{ color: 'rgb(0, 0, 255)' }} />
+          <Child sx={{ color: 'rgb(255, 0, 0)' }} />
+        </React.Fragment>,
+      );
+      expect(container.firstChild).toHaveComputedStyle({ color: 'rgb(0, 0, 255)' });
+      expect(container.lastChild).toHaveComputedStyle({ color: 'rgb(255, 0, 0)' });
     });
   });
 
@@ -279,6 +318,59 @@ describe('createStyled', () => {
       expect(container.firstChild.firstChild).toHaveComputedStyle({
         marginRight: '80px',
       });
+    });
+  });
+
+  it('does not spread `sx` prop to DOM', () => {
+    const styled = createStyled({});
+    const Button = styled('button')({});
+
+    const { container } = render(<Button sx={{ bgcolor: 'red' }}>Link</Button>);
+    expect(container.firstChild).not.to.have.attribute('sx');
+  });
+
+  it('does not forward `ownerState` prop to DOM', () => {
+    const styled = createStyled({});
+    const Button = styled('button')({});
+
+    const { container } = render(<Button ownerState={{}} />);
+    expect(container.firstChild).not.to.have.attribute('ownerState');
+  });
+
+  describe('default behaviors', () => {
+    it('does not forward invalid props to DOM if no `slot` specified', () => {
+      // This scenario is usually used by library consumers
+      const styled = createStyled({});
+      const Button = styled('button')({});
+
+      const { container } = render(
+        <Button color="red" shouldBeRemoved data-foo="bar">
+          Link
+        </Button>,
+      );
+      expect(container.firstChild.getAttribute('data-foo')).to.equal('bar');
+      expect(container.firstChild.getAttribute('color')).to.equal('red'); // color is for Safari mask-icon link
+      expect(container.firstChild.getAttribute('shouldBeRemoved')).not.to.equal('true');
+    });
+
+    it('can use `as` prop', () => {
+      const styled = createStyled({});
+      const Button = styled('button')({});
+
+      const { container } = render(<Button as="a" href="/" />);
+
+      expect(container.firstChild).to.have.tagName('a');
+      expect(container.firstChild).to.have.attribute('href', '/');
+    });
+
+    it('able to pass props to `as` styled component', () => {
+      const styled = createStyled({});
+      const ChildRoot = styled('div')({});
+      const Child = ({ component }) => <ChildRoot as={component}>content</ChildRoot>;
+      const Button = styled('button')({});
+      const { container } = render(<Button as={Child} component="span" />);
+
+      expect(container.firstChild).to.have.tagName('span');
     });
   });
 });

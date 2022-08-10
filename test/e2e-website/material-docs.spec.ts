@@ -142,7 +142,7 @@ test.describe('Material docs', () => {
             link.includes(path),
           )
         ) {
-          expect(link.startsWith(`/material`)).toBeTruthy();
+          expect(link).toMatch(/^\/(material-ui|system)/);
         }
 
         expect(link).not.toMatch(/\/components/); // there should be no `/components` in the url anymore
