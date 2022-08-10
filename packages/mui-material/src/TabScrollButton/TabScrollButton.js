@@ -53,6 +53,7 @@ const TabScrollButton = React.forwardRef(function TabScrollButton(inProps, ref) 
       ScrollButtonStart: KeyboardArrowLeft,
       ScrollButtonEnd: KeyboardArrowRight,
     },
+    componentsProps = {},
     direction,
     orientation,
     disabled,
@@ -67,8 +68,20 @@ const TabScrollButton = React.forwardRef(function TabScrollButton(inProps, ref) 
   const classes = useUtilityClasses(ownerState);
   const ScrollButtonStart = components.ScrollButtonStart;
   const ScrollButtonEnd = components.ScrollButtonEnd;
-  const getDefaultProps = (icon) =>
-    icon === KeyboardArrowLeft || icon === KeyboardArrowRight ? { fontSize: 'small' } : {};
+  const getDefaultProps = (icon) => {
+    switch (icon) {
+      case KeyboardArrowLeft:
+        return { fontSize: 'small', ...componentsProps?.scrollButtonStart };
+      case KeyboardArrowLeft:
+        return { fontSize: 'small', ...componentsProps?.scrollButtonStart };
+      case ScrollButtonStart:
+        return { ...componentsProps?.scrollButtonStart };
+      case ScrollButtonEnd:
+        return { ...componentsProps?.scrollButtonEnd };
+      default:
+        return {};
+    }
+  };
 
   return (
     <TabScrollButtonRoot
@@ -116,6 +129,14 @@ TabScrollButton.propTypes /* remove-proptypes */ = {
   components: PropTypes.shape({
     ScrollButtonEnd: PropTypes.elementType,
     ScrollButtonStart: PropTypes.elementType,
+  }),
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  componentsProps: PropTypes.shape({
+    scrollButtonEnd: PropTypes.object,
+    scrollButtonStart: PropTypes.object,
   }),
   /**
    * The direction the button should indicate.

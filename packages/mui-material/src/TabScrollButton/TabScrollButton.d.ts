@@ -24,6 +24,14 @@ export interface TabScrollButtonProps extends StandardProps<React.HTMLAttributes
     ScrollButtonEnd?: React.ElementType;
   };
   /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  componentsProps?: {
+    scrollButtonStart?: React.HTMLProps<HTMLButtonElement>;
+    scrollButtonEnd?: React.HTMLAttributes<HTMLButtonElement>;
+  };
+  /**
    * The direction the button should indicate.
    */
   direction: 'left' | 'right';

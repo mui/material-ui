@@ -17,6 +17,13 @@
       },
       "default": "{\n  ScrollButtonStart: KeyboardArrowLeft,\n  ScrollButtonEnd: KeyboardArrowRight,\n}"
     },
+    "componentsProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ scrollButtonEnd?: object, scrollButtonStart?: object }"
+      },
+      "default": "{}"
+    },
     "disabled": { "type": { "name": "bool" } },
     "sx": {
       "type": {

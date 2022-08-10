@@ -167,37 +167,26 @@ describe('<Tabs />', () => {
     const tabs = (
       <Tabs
         value={0}
+        variant="scrollable"
+        scrollButtons
         componentsProps={{
-          root: { 'data-testid': 'test-label-root' },
-          flexContainer: { 'data-testid': 'test-label-flexContainer' },
-          indicator: { 'data-testid': 'test-label-indicator' },
-          scroller: { 'data-testid': 'test-label-scroller' },
+          scrollButtonEnd: { 'data-testid': 'test-label-scrollButtonEnd' },
+          scrollButtonStart: { 'data-testid': 'test-label-scrollButtonStart' },
         }}
       >
-        <Tab style={{ width: 120, minWidth: 'auto' }} />
-        <Tab style={{ width: 120, minWidth: 'auto' }} />
-        <Tab style={{ width: 120, minWidth: 'auto' }} />
+        <Tab />
+        <Tab />
       </Tabs>
     );
 
-    it('should have custom root classname', () => {
+    it('should have custom scrollButtonEnd data test id', () => {
       const { getAllByTestId } = render(tabs);
-      expect(getAllByTestId('test-label-root')).to.have.lengthOf(1);
+      expect(getAllByTestId('test-label-scrollButtonEnd')).to.have.lengthOf(1);
     });
 
-    it('should have custom flexContainer classname', () => {
+    it('should have custom scrollButtonStart data test id', () => {
       const { getAllByTestId } = render(tabs);
-      expect(getAllByTestId('test-label-flexContainer')).to.have.lengthOf(1);
-    });
-
-    it('should have custom indicator classname', () => {
-      const { getAllByTestId } = render(tabs);
-      expect(getAllByTestId('test-label-indicator')).to.have.lengthOf(1);
-    });
-
-    it('should have custom scroller classname', () => {
-      const { getAllByTestId } = render(tabs);
-      expect(getAllByTestId('test-label-scroller')).to.have.lengthOf(1);
+      expect(getAllByTestId('test-label-scrollButtonStart')).to.have.lengthOf(1);
     });
   });
 

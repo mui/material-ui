@@ -495,7 +495,6 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
       <TabsScrollbarSize
         onChange={handleScrollbarSizeChange}
         className={clsx(classes.scrollableX, classes.hideScrollbar)}
-        {...{ ...componentsProps.indicator, ...componentsProps.hideScrollbar }}
       />
     ) : null;
 
@@ -506,26 +505,26 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
     conditionalElements.scrollButtonStart = showScrollButtons ? (
       <ScrollButtonComponent
         components={components}
+        componentsProps={componentsProps}
         orientation={orientation}
         direction={isRtl ? 'right' : 'left'}
         onClick={handleStartScrollClick}
         disabled={!displayScroll.start}
         {...TabScrollButtonProps}
         className={clsx(classes.scrollButtons, TabScrollButtonProps.className)}
-        {...componentsProps.scrollButtons}
       />
     ) : null;
 
     conditionalElements.scrollButtonEnd = showScrollButtons ? (
       <ScrollButtonComponent
         components={components}
+        componentsProps={componentsProps}
         orientation={orientation}
         direction={isRtl ? 'left' : 'right'}
         onClick={handleEndScrollClick}
         disabled={!displayScroll.end}
         {...TabScrollButtonProps}
         className={clsx(classes.scrollButtons, TabScrollButtonProps.className)}
-        {...componentsProps.scrollButtons}
       />
     ) : null;
 
@@ -652,7 +651,6 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
         ...indicatorStyle,
         ...TabIndicatorProps.style,
       }}
-      {...componentsProps.indicator}
     />
   );
 
@@ -739,7 +737,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
       ownerState={ownerState}
       ref={ref}
       as={component}
-      {...{ ...other, ...componentsProps.root }}
+      {...other}
     >
       {conditionalElements.scrollButtonStart}
       {conditionalElements.scrollbarSizeListener}
@@ -754,7 +752,6 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
         }}
         ref={tabsRef}
         onScroll={handleTabsScroll}
-        {...componentsProps.scroller}
       >
         {/* The tablist isn't interactive but the tabs are */}
         <FlexContainer
@@ -766,7 +763,6 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
           onKeyDown={handleKeyDown}
           ref={tabListRef}
           role="tablist"
-          {...componentsProps.flexContainer}
         >
           {children}
         </FlexContainer>
@@ -844,13 +840,8 @@ Tabs.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   componentsProps: PropTypes.shape({
-    flexContainer: PropTypes.object,
-    hideScrollbar: PropTypes.object,
-    indicator: PropTypes.object,
-    root: PropTypes.object,
-    scrollableX: PropTypes.object,
-    scrollButtons: PropTypes.object,
-    scroller: PropTypes.object,
+    scrollButtonEnd: PropTypes.object,
+    scrollButtonStart: PropTypes.object,
   }),
   /**
    * Determines the color of the indicator.

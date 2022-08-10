@@ -4,6 +4,7 @@
     "children": "The content of the component.",
     "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
     "components": "The components used for ScrollButtonStart, ScrollButtonEnd item type",
+    "componentsProps": "The props used for each slot inside.",
     "direction": "The direction the button should indicate.",
     "disabled": "If <code>true</code>, the component is disabled.",
     "orientation": "The component orientation (layout flow direction).",
