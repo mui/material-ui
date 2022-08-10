@@ -5,10 +5,10 @@ import Button from '@mui/joy/Button';
 export default function ButtonVariants() {
   return (
     <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap' }}>
-      <Button variant="plain">Plain</Button>
-      <Button variant="outlined">Outlined</Button>
-      <Button variant="soft">Soft</Button>
       <Button variant="solid">Solid</Button>
+      <Button variant="soft">Soft</Button>
+      <Button variant="outlined">Outlined</Button>
+      <Button variant="plain">Plain</Button>
     </Box>
   );
 }

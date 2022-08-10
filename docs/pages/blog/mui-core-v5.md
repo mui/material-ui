@@ -120,21 +120,21 @@ After [exploring](https://github.com/mui/material-ui/issues/22342) many differen
    This API is already known by many.
 2. We have defined a common interface with concrete implementations:
 
-   - `@mui/styled-engine`: implemented with emotion (default).
+   - `@mui/styled-engine`: implemented with Emotion (default).
    - `@mui/styled-engine-sc`: implemented with styled-components
    - If you are using a different styling library, feel free to contribute a wrapper. For instance, there is [one attempt with goober](https://github.com/mui/material-ui/pull/27776), a library obsessing on bundle size (3kB gzipped).
 
-   This allows developers to swap between different style engines. For example, styled-components users no longer need to bundle emotion **and** styled-component, nor do they need to configure the server-side rendering for each.
+   This allows developers to swap between different style engines. For example, styled-components users no longer need to bundle Emotion **and** styled-component, nor do they need to configure the server-side rendering for each.
    How does the [swap work](https://mui.com/material-ui/guides/styled-engine/#how-to-switch-to-styled-components)? The same way it does from React to Preact.
 
-3. For the last couple of months, we have been [sponsoring](https://opencollective.com/emotion) emotion with a $100/month grant. We are now increasing this amount to $1,000/month. It's in our best interest to help ensure the library keeps pushing the envelope, leading the state of the art in a competitive space.
+3. For the last couple of months, we have been [sponsoring](https://opencollective.com/emotion) Emotion with a $100/month grant. We are now increasing this amount to $1,000/month. It's in our best interest to help ensure the library keeps pushing the envelope, leading the state of the art in a competitive space.
 
-The first immediate benefit of the move to emotion was **performance**. The `<Box>` component is [x5-x10 more performant](https://codesandbox.io/s/zlh5w?file=/src/App.js) in v5, compared to v4.
+The first immediate benefit of the move to Emotion was **performance**. The `<Box>` component is [x5-x10 more performant](https://codesandbox.io/s/zlh5w?file=/src/App.js) in v5, compared to v4.
 
 We would like to thank all the community contributors that made the migration of the components and documentation possible in [#24405](https://github.com/mui/material-ui/issues/24405) and [#16947](https://github.com/mui/material-ui/issues/16947): [@natac13](https://github.com/natac13), [@vicasas](https://github.com/vicasas), [@mngu](https://github.com/mngu), [@kodai3](https://github.com/kodai3), [@xs9627](https://github.com/xs9627), [@povilass](https://github.com/povilass), [@duganbrett](https://github.com/duganbrett), [@queengooborg](https://github.com/queengooborg), and more.
 It was a major undertaking!
 
-Going forward, developers can either keep using JSS with the legacy `@mui/styles` package [or migrate from JSS](https://mui.com/material-ui/guides/migration-v4/#migrate-from-jss).
+Going forward, developers can either keep using JSS with the legacy `@mui/styles` package [or migrate from JSS](https://mui.com/material-ui/migration/migrating-from-jss/).
 We recommend the latter to match the core components.
 
 ### The `sx` prop
@@ -165,7 +165,7 @@ For instance, you can add one unit of vertical margin with:
 <p class="blog-description"><a href="https://codesandbox.io/s/nostalgic-williams-zmo5r?file=/src/App.js">Codesandbox</a></p>
 
 Developers already seem to [love it](https://twitter.com/AnsonLowZF/status/1397034690771443715).
-You can find a [side-by-side comparison](https://mui.com/system/basics/#why-use-the-system) of `styled()` vs. `sx` in the documentation to determine when you should use the prop.
+You can find a [side-by-side comparison](https://mui.com/system/getting-started/usage/#why-use-mui-system) of `styled()` vs. `sx` in the documentation to determine when you should use the prop.
 Some developers use `sx` for everything, others only in simple cases.
 
 The four components categorized as CSS utilities: Box, Grid, Typography, and Stack pushes the approach one step further.
@@ -180,7 +180,7 @@ They expose a subset of the `sx` prop as flat props, for instance:
 
 <p class="blog-description"><a href="https://codesandbox.io/s/keen-worker-zo2r3?file=/src/App.tsx">Codesandbox</a></p>
 
-See the [API tradeoff](https://mui.com/system/basics/#api-tradeoff) section of the documentation for why not all the components accept these flat props.
+See the [API tradeoff](https://mui.com/system/getting-started/usage/#api-tradeoff) section of the documentation for why not all the components accept these flat props.
 
 ### Dynamic props
 
@@ -382,7 +382,7 @@ You can use [#27170](https://github.com/mui/material-ui/issues/27170) to follow 
 
 ### Smaller demos in the docs
 
-We have used the migration of the demos from JSS to emotion as an opportunity to rework them.
+We have used the migration of the demos from JSS to Emotion as an opportunity to rework them.
 Many of the demos were originally added taking into account how they would help maintainers work on the components.
 Instead, we have reversed the priority, putting the developers using them [first](https://github.com/mui/material-ui/issues/22484).
 
@@ -503,7 +503,7 @@ The `DataGridPro` on the other hand is available under a paid commercial license
 ### Date Picker
 
 We have transferred the ownership of the `@material-ui/pickers` from [Dmitriy Kovalenko](https://github.com/dmtrKovalenko) to the main organization.
-The [picker components](/material-ui/lab-date-and-time-pickers/) are now part of the `@mui/lab` package.
+The date picker components are now part of the `@mui/lab` package.
 
 We spent a lot of time making sure they are consistent.
 We are now working toward reaching the same level of excellence as the other core components.
@@ -616,16 +616,16 @@ If you are starting your upgrade, these are the three things you should look int
 
 - ⚓ We have introduced actionable deprecations in v4.
   You can upgrade to v4.12.0 and start preparing your codebase to be compatible with v5.
-- ⚒️ We have prepared a [codemod](https://mui.com/material-ui/guides/migration-v4/#preset-safe) that does most of the transformations you will need for the migration.
+- ⚒️ We have prepared a [codemod](https://mui.com/material-ui/migration/migration-v4/#preset-safe) that does most of the transformations you will need for the migration.
   If you are not familiar with what a codemod is, check out [Effective Refactoring with Codemods by Edd Yerburgh](https://www.youtube.com/watch?v=H9qtLutnT_g&ab_channel=Pusher).
-- 📄 Lastly, we have prepared a step-by-step [migration guide](https://mui.com/material-ui/guides/migration-v4/).
+- 📄 Lastly, we have prepared a step-by-step [migration guide](https://mui.com/material-ui/migration/migration-v4/).
   This guide is the one place where you can find all information required for upgrading to v5.
 
 ### Change of the package names
 
 To support our [new brand](https://mui.com/blog/material-ui-is-now-mui/), we changed some of the terminology used in the project.
 The npm packages have been renamed.
-For more details on this, check [the migration guide](https://mui.com/material-ui/guides/migration-v4/#update-mui-version).
+For more details on this, check [the migration guide](https://mui.com/material-ui/migration/migration-v4/).
 
 ### Change of the styling solution
 
@@ -637,7 +637,7 @@ If you are not ready to migrate away from the `makeStyles` API now, you can:
 - add `@mui/styles` as a dependency and change the imports of the `makeStyles`/`withStyles` utilities
 - use [`tss-react`](https://github.com/garronej/tss-react) - its API is similar to JSS `makeStyles` but is powered by emotion, which minimizes the bundle duplication with the core components.
 
-You can find more information for this on the [Migrate from JSS](https://mui.com/material-ui/guides/migration-v4/#migrate-from-jss) section of the migration guide.
+You can find more information for this on the [Migrate from JSS](https://mui.com/material-ui/migration/migrating-from-jss/) section of the migration guide.
 
 ### Changes to the supported platforms
 
@@ -724,7 +724,7 @@ To continue improving the customization experience, we are doubling down on the 
 These components and hooks contain the main functionalities and accessibility, without being opinionated about how styles are applied nor what styles.
 We still have work to do to have a full set of unstyled components.
 
-You can read more about them in [the docs](/material-ui/customization/unstyled-components/) and keep track of our progress in [#27170](https://github.com/mui/material-ui/issues/27170).
+You can read more about them in [the docs](/base/getting-started/overview/) and keep track of our progress in [#27170](https://github.com/mui/material-ui/issues/27170).
 
 Our high-level plan is to use the unstyled components and hooks as the basis of the Material components and second design system.
 We are aiming to complete this work with the next major release (v6).

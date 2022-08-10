@@ -6,7 +6,6 @@ const StyledBadge = styled(BadgeUnstyled)`
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  color: rgba(0, 0, 0, 0.85);
   font-size: 14px;
   font-variant: tabular-nums;
   list-style: none;

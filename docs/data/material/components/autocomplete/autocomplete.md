@@ -3,7 +3,7 @@ product: material-ui
 title: React Autocomplete component
 components: TextField, Popper, Autocomplete
 githubLabel: 'component: autocomplete'
-waiAria: https://www.w3.org/TR/wai-aria-practices/#combobox
+waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/combobox/
 ---
 
 # Autocomplete
@@ -135,7 +135,7 @@ The `useAutocomplete` hook is also reexported from @mui/material for convenience
 import useAutocomplete from '@mui/material/useAutocomplete';
 ```
 
-- 📦 [4.5 kB gzipped](/size-snapshot).
+- 📦 [4.5 kB gzipped](/size-snapshot/).
 
 {{"demo": "UseAutocomplete.js", "defaultCodeOpen": false}}
 
@@ -346,7 +346,7 @@ If you provide a custom `ListboxComponent` prop, you need to make sure that the 
 
 ## Accessibility
 
-(WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#combobox)
+(WAI-ARIA: https://www.w3.org/WAI/ARIA/apg/patterns/combobox/)
 
 We encourage the usage of a label for the textbox.
 The component implements the WAI-ARIA authoring practices.

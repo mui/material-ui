@@ -1,6 +1,6 @@
 import * as React from 'react';
-
 import Box from '@mui/joy/Box';
+import Sheet from '@mui/joy/Sheet';
 import Button from '@mui/joy/Button';
 import RadioGroup from '@mui/joy/RadioGroup';
 import Radio from '@mui/joy/Radio';
@@ -10,51 +10,68 @@ export default function ButtonColors() {
   const [variant, setVariant] = React.useState('solid');
   return (
     <Box
-      sx={{ display: 'flex', gap: 2, justifyContent: 'center', flexWrap: 'wrap' }}
+      sx={{
+        display: 'flex',
+        alignItems: 'center',
+        gap: 3,
+      }}
     >
       <Box
         sx={{
-          mb: 2,
-          width: '100%',
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
+          display: 'grid',
+          gridTemplateColumns: 'repeat(2, minmax(80px, 1fr))',
+          gap: 1,
         }}
       >
-        <Typography fontWeight="lg" mr={2} id="variant-label">
+        <Button size="md" variant={variant} color="primary">
+          Primary
+        </Button>
+        <Button size="md" variant={variant} color="neutral">
+          Neutral
+        </Button>
+        <Button size="md" variant={variant} color="danger">
+          Danger
+        </Button>
+        <Button size="md" variant={variant} color="info">
+          Info
+        </Button>
+        <Button size="md" variant={variant} color="success">
+          Success
+        </Button>
+        <Button size="md" variant={variant} color="warning">
+          Warning
+        </Button>
+      </Box>
+      <Sheet
+        sx={{
+          background: 'transparent',
+          pl: 4,
+          borderLeft: '1px solid',
+          borderColor: 'divider',
+        }}
+      >
+        <Typography
+          level="body2"
+          fontWeight="xl"
+          id="variant-label"
+          textColor="text.primary"
+          mb={1}
+        >
           Variant:
         </Typography>
         <RadioGroup
+          size="sm"
           aria-labelledby="variant-label"
           name="variant"
-          row
           value={variant}
           onChange={(event) => setVariant(event.target.value)}
         >
-          <Radio label="Plain" value="plain" />
-          <Radio label="Outlined" value="outlined" />
-          <Radio label="Soft" value="soft" />
           <Radio label="Solid" value="solid" />
+          <Radio label="Soft" value="soft" />
+          <Radio label="Outlined" value="outlined" />
+          <Radio label="Plain" value="plain" />
         </RadioGroup>
-      </Box>
-      <Button variant={variant} color="primary">
-        Primary
-      </Button>
-      <Button variant={variant} color="neutral">
-        Neutral
-      </Button>
-      <Button variant={variant} color="danger">
-        Danger
-      </Button>
-      <Button variant={variant} color="info">
-        Info
-      </Button>
-      <Button variant={variant} color="success">
-        Success
-      </Button>
-      <Button variant={variant} color="warning">
-        Warning
-      </Button>
+      </Sheet>
     </Box>
   );
 }

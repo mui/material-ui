@@ -1,10 +1,15 @@
 import * as React from 'react';
 
-export const DEFAULT_MODE_STORAGE_KEY = 'mui-mode';
-export const DEFAULT_COLOR_SCHEME_STORAGE_KEY = 'mui-color-scheme';
-export const DEFAULT_ATTRIBUTE = 'data-mui-color-scheme';
+export const DEFAULT_MODE_STORAGE_KEY = 'mode';
+export const DEFAULT_COLOR_SCHEME_STORAGE_KEY = 'color-scheme';
+export const DEFAULT_ATTRIBUTE = 'data-color-scheme';
 
 export interface GetInitColorSchemeScriptOptions {
+  /**
+   * Indicate to the browser which color scheme is used (light or dark) for rendering built-in UI
+   * @default true
+   */
+  enableColorScheme?: boolean;
   /**
    * If `true`, the initial color scheme is set to the user's prefers-color-scheme mode
    * @default false
@@ -25,23 +30,24 @@ export interface GetInitColorSchemeScriptOptions {
   colorSchemeNode?: string;
   /**
    * localStorage key used to store `mode`
-   * @default 'mui-mode'
+   * @default 'mode'
    */
   modeStorageKey?: string;
   /**
    * localStorage key used to store `colorScheme`
-   * @default 'mui-color-scheme'
+   * @default 'color-scheme'
    */
   colorSchemeStorageKey?: string;
   /**
    * DOM attribute for applying color scheme
-   * @default 'data-mui-color-scheme'
+   * @default 'data-color-scheme'
    */
   attribute?: string;
 }
 
 export default function getInitColorSchemeScript(options?: GetInitColorSchemeScriptOptions) {
   const {
+    enableColorScheme = true,
     enableSystem = false,
     defaultLightColorScheme = 'light',
     defaultDarkColorScheme = 'dark',
@@ -56,13 +62,16 @@ export default function getInitColorSchemeScript(options?: GetInitColorSchemeScr
       dangerouslySetInnerHTML={{
         __html: `(function() { try {
         var mode = localStorage.getItem('${modeStorageKey}');
+        var cssColorScheme = mode;
         var colorScheme = '';
         if (mode === 'system' || (!mode && !!${enableSystem})) {
           // handle system mode
           var mql = window.matchMedia('(prefers-color-scheme: dark)');
           if (mql.matches) {
+            cssColorScheme = 'dark';
             colorScheme = localStorage.getItem('${colorSchemeStorageKey}-dark') || '${defaultDarkColorScheme}';
           } else {
+            cssColorScheme = 'light';
             colorScheme = localStorage.getItem('${colorSchemeStorageKey}-light') || '${defaultLightColorScheme}';
           }
         }
@@ -74,6 +83,9 @@ export default function getInitColorSchemeScript(options?: GetInitColorSchemeScr
         }
         if (colorScheme) {
           ${colorSchemeNode}.setAttribute('${attribute}', colorScheme);
+        }
+        if (${enableColorScheme} && !!cssColorScheme) {
+          ${colorSchemeNode}.style.setProperty('color-scheme', cssColorScheme);
         }
       } catch (e) {} })();`,
       }}

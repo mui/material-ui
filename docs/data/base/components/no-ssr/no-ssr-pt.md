@@ -1,8 +1,7 @@
 ---
-product: material-ui
+product: base
 title: Componente React Sem SSR
 components: NoSsr
-packageName: '@mui/base'
 ---
 
 # Sem SSR

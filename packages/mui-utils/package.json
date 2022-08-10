@@ -1,6 +1,6 @@
 {
   "name": "@mui/utils",
-  "version": "5.8.0",
+  "version": "5.9.3",
   "private": false,
   "author": "MUI Team",
   "description": "Utility functions for React components.",
@@ -46,7 +46,7 @@
     "@types/prop-types": "^15.7.5",
     "@types/react-is": "^16.7.1 || ^17.0.0",
     "prop-types": "^15.8.1",
-    "react-is": "^17.0.2"
+    "react-is": "^18.2.0"
   },
   "devDependencies": {
     "@babel/helper-module-imports": "^7.16.7",

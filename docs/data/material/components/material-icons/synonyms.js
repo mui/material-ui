@@ -30,8 +30,6 @@ const synonyms = {
     '+ bill cash coin commerce cost credit currency dollars finance money new online payment plus price shopping symbol',
   Addchart:
     '+ analytics bars data diagram infographic measure metrics new plus statistics symbol tracking',
-  AddChart:
-    '+ analytics bars data diagram infographic measure metrics new plus statistics symbol tracking',
   AddCircle: '+ create new plus',
   AddCircleOutline: '+ create new plus',
   AddComment: '+ bubble chat communicate feedback message new plus speech symbol',
@@ -43,6 +41,8 @@ const synonyms = {
     '+ certified new plus privacy private protection security shield symbol verified',
   AddPhotoAlternate:
     '+ image landscape mountains new photography picture plus symbol',
+  AddReaction:
+    '+ emoji emotions expressions face feelings glad happiness happy insert like mood new person pleased plus smile smiling social survey symbol',
   AddRoad:
     '+ destination direction highway maps new plus stop street symbol traffic',
   AddShoppingCart:
@@ -60,7 +60,6 @@ const synonyms = {
     'alter center circles control dot edit filter fix image mix move setting slider sort switch target tune',
   AdminPanelSettings:
     'account avatar certified face human people person privacy private profile protection security shield user verified',
-  AdsClick: 'browser clicks cursor internet target traffic web',
   AdUnits:
     'Android banner cell device hardware iOS mobile notifications phone tablet top',
   Agriculture:
@@ -138,8 +137,6 @@ const synonyms = {
     'all applications circles collection components dots grid interface squares ui ux',
   Architecture: 'art compass design drawing engineering geometric tool',
   Archive: 'inbox mail store',
-  AreaChart:
-    'analytics data diagram infographic measure metrics statistics tracking',
   ArrowBack:
     'application components direction interface left navigation previous screen ui ux website',
   ArrowBackIos:
@@ -147,6 +144,8 @@ const synonyms = {
   ArrowBackIosNew:
     'application chevron components direction interface left navigation previous screen ui ux website',
   ArrowCircleDown: 'direction navigation',
+  ArrowCircleLeft: 'direction navigation',
+  ArrowCircleRight: 'direction navigation',
   ArrowCircleUp: 'direction navigation',
   ArrowDownward:
     'application components direction interface navigation screen ui ux website',
@@ -220,7 +219,6 @@ const synonyms = {
   AvTimer: 'clock countdown duration minutes seconds stopwatch',
   BabyChangingStation:
     'babies bathroom body children father human infant kids mother newborn people person toddler wc young',
-  BackHand: 'fingers gesture raised',
   Backpack: 'bookbag knapsack storage travel',
   Backspace: 'arrow cancel clear correct delete erase remove',
   Backup: 'arrow cloud data drive files folders point storage submit upload',
@@ -238,6 +236,13 @@ const synonyms = {
   BatchPrediction: 'bulb idea light',
   Bathroom: 'closet home house place plumbing shower sprinkler wash water wc',
   Bathtub: 'bathing bathroom clean home hotel human person shower travel',
+  Battery0Bar: 'cell charge mobile power',
+  Battery1Bar: 'cell charge mobile power',
+  Battery2Bar: 'cell charge mobile power',
+  Battery3Bar: 'cell charge mobile power',
+  Battery4Bar: 'cell charge mobile power',
+  Battery5Bar: 'cell charge mobile power',
+  Battery6Bar: 'cell charge mobile power',
   BatteryAlert:
     '! attention caution cell charge danger error exclamation important mark mobile notification power symbol warning',
   BatteryChargingFull: 'cell charge lightening lightning mobile power thunderbolt',
@@ -321,6 +326,7 @@ const synonyms = {
   BrightnessLow: 'auto control mobile monitor phone',
   BrightnessMedium: 'auto control mobile monitor phone',
   BrokenImage: 'corrupt error landscape mountains photography picture torn',
+  BrowseGallery: 'clock collection library stack watch',
   BrowserNotSupported:
     'disabled enabled internet off on page screen slash website www',
   BrowserUpdated:
@@ -346,6 +352,7 @@ const synonyms = {
   Cached: 'around arrows inprogress loader loading refresh reload renew rotate',
   Cake: 'baked birthday candles celebration dessert food frosting party pastries pastry pie social sweet',
   Calculate: '+ - = calculator count finance math',
+  CalendarMonth: 'date event schedule today',
   CalendarToday: 'date event month remember reminder schedule week',
   CalendarViewDay:
     'date event format grid layout month remember reminder schedule today week',
@@ -379,6 +386,8 @@ const synonyms = {
   CancelScheduleSend: 'email no quit remove share stop x',
   CandlestickChart:
     'analytics data diagram finance infographic measure metrics statistics tracking',
+  CarCrash:
+    'accident automobile cars collision direction maps public transportation vehicle',
   CardGiftcard:
     'account balance bill cart cash certificate coin commerce creditcard currency dollars money online payment present shopping',
   CardMembership:
@@ -395,6 +404,7 @@ const synonyms = {
     'Android airplay chromecast desktop device display hardware iOS mac monitor screencast streaming television tv web window wireless',
   CastForEducation:
     'Android airplay chrome connect desktop device display hardware iOS learning lessons mac monitor screencast streaming teaching television tv web window wireless',
+  Castle: 'fortress mansion palace',
   CatchingPokemon: 'go pokestop travel',
   Category: 'categories circle collection items product sort square triangle',
   Celebration: 'activity birthday event fun party',
@@ -424,10 +434,6 @@ const synonyms = {
     'approve checkmark complete done download finished ok select success tick upload validate verified yes',
   CheckCircleOutline:
     'approve checkmark complete done finished ok select success tick validate verified yes',
-  Checklist:
-    'alignment approve complete doc done editing editor format mark notes ok select spreadsheet text tick type validate verified writing yes',
-  ChecklistRtl:
-    'alignment approve complete doc done editing editor format mark notes ok select spreadsheet text tick type validate verified writing yes',
   Checkroom: 'check closet clothes coat hanger',
   ChevronLeft: 'arrows back direction triangle',
   ChevronRight: 'arrows direction forward triangle',
@@ -435,6 +441,7 @@ const synonyms = {
   ChildFriendly:
     'baby care carriage children infant kid newborn stroller toddler young',
   ChromeReaderMode: 'text',
+  Church: 'christianity religion spiritual worship',
   Circle: 'bullet button dot full geometry moon period radio',
   CircleNotifications: 'active alarm alert bell chime notify reminder ring sound',
   Class:
@@ -490,8 +497,6 @@ const synonyms = {
     'collide directional facing left pointing pressure push right together',
   CompassCalibration:
     'connection internet location maps network refresh service signal wifi wireless',
-  Compost:
-    'bio compostable decomposable decompose green leafs nature organic plant recycle sustainability sustainable',
   Compress: 'arrows collide pressure push together',
   Computer:
     'Android chrome desktop device hardware iOS laptop mac monitor pc web window',
@@ -525,6 +530,7 @@ const synonyms = {
   ControlCamera: 'adjust arrows center direction left move right',
   ControlPoint: '+ add circle plus',
   ControlPointDuplicate: '+ add circle multiple new plus symbol',
+  Cookie: 'biscuit cookies dessert wafer',
   CoPresent: 'arrow co-present presentation screen share slides togather website',
   CopyAll: 'content cut document file multiple page paper past',
   Copyright: 'alphabet character circle emblem font legal letter owner symbol text',
@@ -544,6 +550,8 @@ const synonyms = {
   CreditScore:
     'approve bill card cash check coin commerce complete cost currency dollars done finance loan mark money ok online payment select symbol tick validate verified yes',
   Crib: 'babies baby bassinet bed children cradle infant kid newborn sleeping toddler',
+  CrisisAlert:
+    '! attention bullseye caution danger error exclamation important mark notification symbol target warning',
   Crop: 'adjustments area editing frame images photos rectangle settings size square',
   Crop169:
     'adjustments area by editing frame images photos picture rectangle settings size square',
@@ -566,9 +574,9 @@ const synonyms = {
   CropRotate:
     'adjustments area arrows editing frame images photos settings size turn',
   CropSquare: 'adjustments area editing frame images photos rectangle settings size',
-  CrueltyFree:
-    'animal bunny eco nature rabbit social sustainability sustainable testing',
   Css: 'alphabet brackets character code developer engineering font html letter platform symbol text type',
+  CurrencyBitcoin:
+    'bill blockchain card cash commerce cost credit digital dollars finance franc money online payment price shopping symbol',
   CurrencyExchange:
     '360 around arrows cash coin commerce direction dollars inprogress money pay renew rotate sync turn universal',
   CurrencyFranc:
@@ -587,12 +595,13 @@ const synonyms = {
     'bill card cash coin commerce cost credit dollars finance money online payment price shopping symbol',
   Curtains: 'blinds cover nest open shutter sunshade',
   CurtainsClosed: 'blinds cover nest shutter sunshade',
+  Cyclone: 'crisis disaster natural rain storm weather winds',
   Dangerous: 'broken fix no sign stop update warning wrong',
   DarkMode: 'application device interface moon night silent theme ui ux website',
   Dashboard: 'cards format layout rectangle shapes square website',
   DashboardCustomize: 'cards format layout rectangle shapes square website',
-  DataExploration:
-    'analytics arrow chart diagram infographic measure metrics statistics tracking',
+  DataArray: 'brackets coder parentheses',
+  DataObject: 'brackets coder parentheses',
   DataSaverOff:
     'analytics bars chart diagram donut infographic measure metrics ring statistics tracking',
   DataSaverOn:
@@ -618,6 +627,8 @@ const synonyms = {
     'automobile bus cars clock maps public schedule time transportation travel vehicle',
   Description:
     'article bill data document drive file folders invoice item notes page paper sheet slide text writing',
+  Deselect: 'all disabled enabled off selection slash square tool',
+  DesignServices: 'compose create draft editing input pencil ruler write writing',
   DesktopAccessDisabled:
     'Android apple chrome device display enabled hardware iOS mac monitor offline pc screen slash web window',
   DesktopMac:
@@ -634,6 +645,7 @@ const synonyms = {
     'Android circle computer desktop hardware iOS laptop mobile monitor phone square tablet triangle watch wearable web',
   Devices:
     'Android computer desktop hardware iOS laptop mobile monitor phone tablet watch wearable web',
+  DevicesFold: 'Android cell foldable hardware iOS mobile phone tablet',
   DevicesOther:
     'Android cell chrome desktop gadget hardware iOS ipad mac mobile monitor phone smartwatch tablet vr wearables window',
   DeviceThermostat: 'celsius fahrenheit temperature thermometer',
@@ -669,8 +681,6 @@ const synonyms = {
   DirectionsWalk: 'body human jogging maps people person route run',
   DirtyLens: 'camera photography picture splat',
   DisabledByDefault: 'box cancel close exit no quit remove square stop',
-  DisabledVisible:
-    'cancel close exit eye no on quit remove reveal see show stop view visibility',
   DiscFull:
     '! alert attention caution cd danger error exclamation important mark music notification storage symbol vinyl warning',
   DisplaySettings:
@@ -727,13 +737,10 @@ const synonyms = {
     'application components design interface layout lines menu move screen ui ux website window',
   DragIndicator:
     'application circles components design dots drop interface layout mobile monitor move phone screen shape shift tablet ui ux website window',
-  Draw: 'compose create design draft editing input pencil write writing',
   DriveEta:
     'automobile cars destination direction estimate maps public transportation travel trip vehicle',
   DriveFileMove:
     'arrows data direction document folders right sheet side slide storage',
-  DriveFileMoveRtl:
-    'arrows data direction document folders left sheet side slide storage',
   DriveFileRenameOutline: 'compose create draft editing input pencil write writing',
   DriveFolderUpload: 'arrow data document file sheet slide storage',
   Dry: 'air bathroom dryer fingers gesture hand wc',
@@ -752,11 +759,8 @@ const synonyms = {
   Edit: 'compose create editing input new pencil write writing',
   EditAttributes:
     'approve attribution check complete done mark ok select tick validate verified yes',
-  EditCalendar:
-    'compose create date day draft editing event month pencil schedule write writing',
   EditLocation: 'destination direction gps maps pencil pin place stop write',
   EditLocationAlt: 'pencil pin',
-  EditNote: 'compose create draft editing input lines pencil text write writing',
   EditNotifications:
     'active alarm alert bell chime compose create draft editing input new notify pencil reminder ring sound write writing',
   EditOff:
@@ -793,10 +797,12 @@ const synonyms = {
   ElevenMp:
     'camera digits font image letters megapixels numbers quality resolution symbol text type',
   Email: 'envelope letter message note post receive send write',
-  Emergency: 'asterisk clinic health hospital maps medical symbol',
+  EmergencyRecording:
+    'alert attention camera caution danger filming hardware image important motion notification picture videography warning',
+  EmergencyShare: 'alert attention caution danger important notification warning',
   EMobiledata: 'alphabet font letter text type',
   EmojiEmotions:
-    'emoticon expressions face feelings glad happiness happy like mood person pleased smiley smiling social survey',
+    '+ add emoticon expressions face feelings glad happiness happy insert like mood new person pleased plus smiley smiling social survey symbol',
   EmojiEvents:
     'achievement award chalice champion cup first prize reward sport trophy winner',
   EmojiFoodBeverage: 'coffee cup dring drink mug plate set tea',
@@ -847,16 +853,6 @@ const synonyms = {
     'compass destination direction disabled east enabled location maps needle north slash south travel west',
   Exposure:
     'add brightness contrast editing effect image minus photography picture plus settings subtract',
-  ExposureNeg1:
-    'brightness contrast digit editing effect image negative number photography settings symbol',
-  ExposureNeg2:
-    'brightness contrast digit editing effect image negative number photography settings symbol',
-  ExposurePlus1:
-    'add brightness contrast digit editing effect image number photography settings symbol',
-  ExposurePlus2:
-    'add brightness contrast digit editing effect image number photography settings symbol',
-  ExposureZero:
-    '0 brightness contrast digit editing effect image number photography settings symbol',
   Extension: 'add-ons app extended game item jigsaw piece plugin puzzle shape',
   ExtensionOff: 'disabled enabled extended jigsaw piece puzzle shape slash',
   Face: 'account avatar emoji eyes human login logout people person profile recognition security social thumbnail unlock user',
@@ -984,12 +980,15 @@ const synonyms = {
     'android editing front image mobile orientation rear reverse rotate turn',
   FlipToBack: 'arrangement format front layout move order sort',
   FlipToFront: 'arrangement back format layout move order sort',
+  Flood: 'crisis disaster natural rain storm weather',
   Flourescent: 'bright lamp lightbulb',
   FlutterDash: 'bird mascot',
   FmdBad:
     '! alert attention caution danger destination direction error exclamation important location maps mark notification pin place symbol warning',
   FmdGood: 'destination direction location maps pin place stop',
   Folder: 'data directory document drive file folders sheet slide storage',
+  FolderCopy:
+    'content cut data document drive duplicate file folders multiple paste sheet slide storage',
   FolderDelete:
     'bin can data document drive file folders garbage remove sheet slide storage trash',
   FolderOff:
@@ -1056,6 +1055,7 @@ const synonyms = {
     'alignment doc editing editor paragraph rtl spreadsheet type writing',
   FormatUnderlined:
     'alphabet character doc editing editor font letter spreadsheet style symbol text type writing',
+  Fort: 'castle fortress mansion palace',
   Forum:
     'bubble chat comment communicate community conversation feedback hub messages speech talk',
   Forward: 'arrow mail message playback right sent',
@@ -1081,9 +1081,6 @@ const synonyms = {
   FourteenMp:
     'camera digits font image letters megapixels numbers quality resolution symbol text type',
   FreeBreakfast: 'beverage cafe coffee cup drink mug tea',
-  FreeCancellation:
-    'approve calendar check complete day done event exit mark month no ok remove schedule select stop tick validate verified yes',
-  FrontHand: 'fingers gesture hello palm stop',
   Fullscreen: 'adjust application components interface size ui ux view website',
   FullscreenExit: 'adjust application components interface size ui ux view website',
   Functions:
@@ -1095,7 +1092,6 @@ const synonyms = {
   GasMeter: 'droplet energy measure nest usage water',
   Gavel:
     'agreement contract court document government hammer judge law mallet official police rules terms',
-  GeneratingTokens: 'access api coin shape stars',
   Gesture: 'drawing finger gestures hand line motion',
   GetApp: 'arrows downloads export install play pointing retrieve upload',
   Gif: 'alphabet animated animation bitmap character font format graphics interchange letter symbol text type',
@@ -1137,8 +1133,6 @@ const synonyms = {
     'accounts committee face family friends humans network people persons profiles social team users',
   GroupAdd:
     'accounts committee face family friends humans increase more network people persons plus profiles social team users',
-  GroupOff:
-    'body club collaboration crowd gathering human meeting people person social teams',
   GroupRemove:
     'accounts committee face family friends humans network people persons profiles social team users',
   Groups:
@@ -1146,6 +1140,7 @@ const synonyms = {
   GroupWork: 'alliance circle collaboration film partnership reel teamwork together',
   GTranslate: 'emblem google language logo mark speaking speech translator words',
   Hail: 'body human people person pick public stop taxi transportation',
+  Handshake: 'agreement partnership',
   Handyman: 'build construction fix hammer repair screwdriver tools',
   Hardware: 'break construction hammer nail repair tool',
   Hd: 'alphabet character definition display font high letter movies quality resolution screen symbol text tv type video',
@@ -1208,6 +1203,7 @@ const synonyms = {
   HistoryEdu:
     'document education feather letter paper pen quill school tools write writing',
   HistoryToggleOff: 'clock date schedule time',
+  Hive: 'bee honeycomb',
   Hls: 'alphabet character developer engineering font letter platform symbol text type',
   HlsOff:
     '[offline] alphabet character developer disabled enabled engineering font letter platform slash symbol text type',
@@ -1220,12 +1216,9 @@ const synonyms = {
   HomeRepairService: 'equipment fix kit mechanic repairing toolbox tools workshop',
   HomeWork:
     'architecture building estate house office place real residence residential shelter',
-  HorizontalDistribute: 'alignment format layout lines paragraph rules style text',
   HorizontalRule: 'gmail line novitas',
   HorizontalSplit: 'bars format layout lines stacked',
   Hotel: 'bed body human people person sleep stay travel trip',
-  HotelClass:
-    'achievement bookmark favorite highlight important marked ranking rate rating reward saved shape special star',
   HotTub:
     'bathing bathroom bathtub hotel human jacuzzi person shower spa steam travel water',
   HourglassBottom: 'countdown half loading minutes time waiting',
@@ -1267,7 +1260,6 @@ const synonyms = {
   ImportContacts: 'address book friends information magazine open',
   ImportExport: 'arrows direction down explort up',
   Inbox: 'archive email incoming message',
-  IncompleteCircle: 'chart',
   IndeterminateCheckBox:
     'application button components control design form interface minus screen selected selection square toggle ui undetermined ux website',
   Info: 'about alert announcement announcment assistance bubble circle details help information service support',
@@ -1313,6 +1305,7 @@ const synonyms = {
   JoinRight: 'circle command matching sql values',
   Kayaking:
     'athlete athletic body canoe entertainment exercise hobby human lake paddle paddling people person rafting river row social sports summer travel water',
+  KebabDining: 'dinner food meal meat skewer',
   Key: 'blackout password restricted secret unlock',
   Keyboard: 'computer device hardware input keypad letter office text type',
   KeyboardAlt: 'computer device hardware input keypad letter office text type',
@@ -1347,6 +1340,7 @@ const synonyms = {
     'disabled enabled favorite indent library mail on remember save slash stamp sticker tag wing',
   Lan: 'computer connection data internet network service',
   Landscape: 'image mountains nature photography picture',
+  Landslide: 'crisis disaster natural rain storm weather',
   Language: 'country earth globe i18n internet l10n planet website world www',
   Laptop:
     'Android chrome computer connect desktop device display hardware iOS link mac monitor smart tv web windows',
@@ -1358,7 +1352,7 @@ const synonyms = {
   LastPage:
     'application arrow chevron components end forward interface right screen ui ux website',
   Launch:
-    'application arrow box components core interface internal new open screen ui ux website window',
+    'application arrow box components core interface internal link new open screen ui ux website window',
   Layers: 'arrange disabled enabled interaction maps off overlay pages slash stack',
   LayersClear:
     'arrange delete disabled enabled interaction maps off overlay pages slash',
@@ -1485,6 +1479,8 @@ const synonyms = {
   Man: 'boy gender male social symbol',
   ManageAccounts:
     'change details face gear options people person profile service-human settings user',
+  ManageHistory:
+    'application arrow backwards change clock date details gear options refresh renew reverse rotate schedule settings time turn',
   ManageSearch: 'glass history magnifying text',
   Map: 'destination direction location maps pin place route stop travel',
   MapsHomeWork: 'building house office',
@@ -1499,6 +1495,7 @@ const synonyms = {
     'approve check complete done envelop letter message note ok select send sent tick yes',
   MarkEmailUnread: 'check circle envelop letter message note notification send',
   Markunread: 'email envelope letter message send',
+  MarkUnreadChatAlt: 'bubble circle comment communicate message notification speech',
   MarkunreadMailbox: 'deliver envelop letter postal postbox receive send',
   Masks:
     'air cover covid face hospital medical pollution protection respirator sick social',
@@ -1510,8 +1507,11 @@ const synonyms = {
     'connection connectivity device disabled enabled music note off online paring signal slash symbol wireless',
   Mediation:
     'alternative arrows compromise direction dots negotiation party right structure',
+  MedicalInformation: 'badge card health id services',
   MedicalServices: 'aid bag briefcase emergency first kit medicine',
   Medication: 'doctor drug emergency hospital medicine pharmacy pills prescription',
+  MedicationLiquid:
+    '+ bottle doctor drug health hospital medications medicine pharmacy spoon vessel',
   MeetingRoom:
     'building doorway entrance home house interior logout office open places signout',
   Memory: 'card chip digital micro processor sd storage',
@@ -1533,6 +1533,8 @@ const synonyms = {
     'army award badge honor medal merit order privilege prize rank reward ribbon soldier star status trophy winner',
   Minimize:
     'application components design interface line screen shape ui ux website',
+  MinorCrash:
+    'accident automobile cars collision directions maps public transportation vehicle',
   MissedVideoCall:
     'arrow camera filming hardware image motion picture record videography',
   Mms: 'bubble chat comment communicate feedback image landscape message mountains multimedia photography picture speech',
@@ -1548,6 +1550,7 @@ const synonyms = {
   ModeComment: 'bubble chat comment communicate feedback message mode speech',
   ModeEdit: 'compose create draft draw pencil write',
   ModeEditOutline: 'compose create draft draw pencil write',
+  ModeFanOff: 'air conditioner cool disabled enabled nest slash',
   ModelTraining:
     'arrow bulb idea inprogress light loading refresh renew restore reverse rotate',
   ModeNight: 'dark disturb moon sleep weather',
@@ -1563,6 +1566,7 @@ const synonyms = {
   MoneyOffCsred:
     'bill card cart cash coin commerce credit currency disabled dollars enabled online payment shopping slash symbol',
   Monitor: 'Android chrome device display hardware iOS mac screen web window',
+  MonitorHeart: 'baseline device ecc fitness health medical track',
   MonitorWeight: 'body device diet health scale smart',
   MonochromePhotos: 'black camera image photography picture white',
   Mood: 'emoji emoticon emotions expressions face feelings glad happiness happy like person pleased smiley smiling social survey',
@@ -1576,12 +1580,10 @@ const synonyms = {
   MoreTime: '+ add clock date new plus schedule symbol',
   MoreVert:
     '3 android application components dots etc interface screen three ui ux vertical website',
+  Mosque: 'islamic masjid muslim religion spiritual worship',
   MotionPhotosAuto:
     'A alphabet animation automatic character circle font gif letter live symbol text type video',
   MotionPhotosOff: 'animation circle disabled enabled slash video',
-  MotionPhotosOn: 'animation circle disabled enabled off play slash video',
-  MotionPhotosPause: 'animation circle paused video',
-  MotionPhotosPaused: 'animation circle video',
   Mouse: 'click computer cursor device hardware wireless',
   MoveDown: 'arrow direction jump navigation transfer',
   MoveToInbox:
@@ -1620,9 +1622,9 @@ const synonyms = {
   NetworkCheck: 'connection internet meter signal speed tick wifi wireless',
   NetworkLocked:
     'alert available cellular connection data error internet mobile not privacy private protection restricted safety secure security service signal warning wifi wireless',
+  NetworkPing:
+    'alert available cellular connection data internet ip mobile service signal wifi wireless',
   NetworkWifi: 'cellular data internet mobile phone speed wireless',
-  NewLabel:
-    '+ add archive bookmark favorite library plus reading remember ribbon save symbol tag',
   NewReleases:
     '! alert announcement attention burst caution danger error exclamation important mark notification star symbol warning',
   Newspaper:
@@ -1649,12 +1651,17 @@ const synonyms = {
   NoBackpack: 'accessory bookbag knapsack travel',
   NoCell:
     'Android device disabled enabled hardware iOS mobile off phone slash tablet',
+  NoCrash:
+    'accident automobile cars check collision confirm correct direction done enter maps mark okay select tick transportation vehicle yes',
   NoDrinks: 'alcohol beverage bottle cocktail food liquor wine',
   NoEncryption: 'disabled enabled lock off password safety security slash',
   NoEncryptionGmailerrorred: 'disabled enabled locked off slash',
   NoFlash:
     'camera disabled enabled image lightning off on photography picture slash thunderbolt',
   NoFood: 'disabled drink enabled fastfood hamburger meal off on slash',
+  NoiseAware: 'audio cancellation music note sound',
+  NoiseControlOff:
+    '[offline] audio aware cancellation disabled enabled music note slash sound',
   NoLuggage: 'baggage carry disabled enabled off on slash suitcase travel',
   NoMeals:
     'dining disabled eat enabled food fork knife off restaurant slash spoon utensils',
@@ -1693,6 +1700,7 @@ const synonyms = {
   NoTransfer:
     'automobile bus cars direction disabled enabled maps off public slash transportation vehicle',
   NotStarted: 'circle media pause play video',
+  Numbers: 'digit symbol',
   OfflineBolt: 'circle electric fast flash lightning spark thunderbolt',
   OfflinePin:
     'approve checkmark circle complete done ok select tick validate verified yes',
@@ -1713,7 +1721,7 @@ const synonyms = {
   OpenInBrowser: 'arrow box new up website window',
   OpenInFull: 'action arrows expand grow move',
   OpenInNew:
-    'application arrow box components interface screen ui ux website window',
+    'application arrow box components interface link screen ui ux website window',
   OpenInNewOff: 'arrow box disabled enabled export on slash window',
   OpenWith: 'arrows directional expand move',
   OtherHouses:
@@ -1739,6 +1747,7 @@ const synonyms = {
   PanoramaWideAngle: 'image photography picture',
   PanoramaWideAngleSelect: 'image photography picture',
   PanTool: 'drag fingers gesture hands human move scan stop touch wait',
+  PanToolAlt: 'fingers gesture hands human move scan stop',
   Paragliding:
     'athlete athletic body entertainment exercise fly hobby human parachute people person skydiving social sports travel',
   Park: 'attraction fresh local nature outside plant tree',
@@ -1788,8 +1797,6 @@ const synonyms = {
   PersonAddAlt: '+ account face human people plus profile user',
   PersonAddDisabled:
     '+ account enabled face human new offline people plus profile slash symbol user',
-  PersonalInjury:
-    'accident aid arm bandage body broke cast fracture health human medical patient people sling social',
   PersonalVideo:
     'Android cam chrome desktop device hardware iOS mac monitor television tv web window',
   PersonOff: 'account avatar disabled enabled face human people profile slash user',
@@ -1860,12 +1867,9 @@ const synonyms = {
     'analytics bars data diagram infographic measure metrics statistics tracking',
   PieChartOutline:
     'analytics bars data diagram infographic measure metrics statistics tracking',
-  PieChartOutlined: 'graph',
   Pin: '1 2 3 digit key login logout number password pattern security star symbol unlock',
   Pinch: 'arrows compress direction finger grasp hand navigation nip squeeze tweak',
   PinDrop: 'destination direction gps location maps navigation place stop',
-  PinEnd: 'action arrow dot',
-  PinInvoke: 'action arrow dot',
   Pinterest: 'brand logo social',
   PivotTableChart:
     'analytics arrows bars data diagram direction drive editing grid infographic measure metrics rotate sheet statistics tracking',
@@ -1897,7 +1901,7 @@ const synonyms = {
   Policy:
     'certified find glass legal look magnifying privacy private protection search security see shield verified',
   Poll: 'analytics barchart bars data diagram infographic measure metrics statistics survey tracking vote',
-  Polymer: 'emblem logo mark',
+  Polyline: 'compose create design draw vector',
   Pool: 'athlete athletic beach body entertainment exercise hobby human ocean people person places sea sports swimming water',
   PortableWifiOff:
     'connected connection data device disabled enabled internet network offline service signal slash usage wireless',
@@ -1924,7 +1928,6 @@ const synonyms = {
     '! alert attention caution danger error exclamation important mark notification symbol warning',
   PrivacyTip:
     'alert announcement announcment assistance certified details help information private protection security service shield support verified',
-  PrivateConnectivity: 'locked password privacy protection safety secure security',
   ProductionQuantityLimits:
     '! alert attention bill card cart cash caution coin commerce credit currency danger dollars error exclamation important mark money notification online payment shopping symbol warning',
   Propane: 'gas nest',
@@ -1938,6 +1941,7 @@ const synonyms = {
   Publish: 'arrow cloud file import submit upload',
   PublishedWithChanges:
     'approve arrows check complete done inprogress loading mark ok refresh renew replace rotate select tick validate verified yes',
+  PunchClock: 'date schedule timer timesheet',
   PushPin: 'location marker place remember save',
   QrCode: 'barcode camera media product quick response smartphone urls',
   QrCode2: 'barcode camera media product quick response smartphone urls',
@@ -1973,8 +1977,6 @@ const synonyms = {
   RawOn:
     'alphabet character disabled enabled font image letter off original photography slash symbol text type',
   ReadMore: 'arrow text',
-  RealEstateAgent:
-    'architecture broker hand home house loan mortgage property residence residential sales social',
   Receipt: 'bill credit invoice paper payment sale transaction',
   ReceiptLong: 'bill check document list paperwork record store transaction',
   RecentActors:
@@ -1984,8 +1986,6 @@ const synonyms = {
   RecordVoiceOver:
     'account face human people person profile recording sound speaking speech transcript user',
   Rectangle: 'four parallelograms polygons quadrilaterals recangle shape sides',
-  Recycling:
-    'bio eco green loop recyclable recycle rotate sustainability sustainable trash',
   Reddit: 'brand logo social',
   Redeem:
     'bill cart cash certificate coin commerce credit currency dollars giftcard money online payment present shopping',
@@ -2035,6 +2035,7 @@ const synonyms = {
     '! alert attention caution danger disabled enabled error exclamation important mark notification octagon offline slash symbol warning',
   ReportProblem:
     '! alert announcement attention caution danger error exclamation feedback important mark notification symbol triangle warning',
+  RequestPage: 'data document drive file folders paper sheet slide writing',
   RequestQuote:
     'bill card cash coin commerce cost credit currency dollars finance money online payment price shopping symbol',
   ResetTv: 'arrow device hardware monitor television',
@@ -2058,6 +2059,8 @@ const synonyms = {
   RocketLaunch: 'spaceship takeoff',
   RollerShades: 'blinds cover curtains nest open shutter sunshade',
   RollerShadesClosed: 'blinds cover curtains nest shutter sunshade',
+  RollerSkating:
+    'athlete athletic entertainment exercise hobby shoe skates social sports travel',
   Roofing:
     'architecture building chimney construction estate home house real residence residential service shelter',
   Room: 'destination direction gps location maps marker pin place spot stop',
@@ -2087,6 +2090,8 @@ const synonyms = {
     '! alert attention caution danger duration exclamation important mark notification processing symbol time warning',
   RvHookup:
     'arrow attach automobile automotive back cars connect direction left maps public right trailer transportation travel truck van vehicle',
+  SafetyCheck:
+    'certified clock privacy private protection schedule security shield time verified',
   SafetyDivider: 'apart distance separate social space',
   Sailing:
     'entertainment fishing hobby ocean sailboat sea social sports travel water',
@@ -2115,6 +2120,7 @@ const synonyms = {
     'beaker chemical chemistry experiment flask glass laboratory research tube',
   Score:
     '2k alphabet analytics bars character chart data diagram digit font infographic letter measure metrics number statistics symbol text tracking type',
+  Scoreboard: 'points sports',
   ScreenLockLandscape:
     'Android device hardware iOS mobile phone rotate security tablet',
   ScreenLockPortrait:
@@ -2123,12 +2129,15 @@ const synonyms = {
     'Android arrow device hardware iOS mobile phone rotate tablet turn',
   ScreenRotation:
     'Android arrow device hardware iOS mobile phone rotate tablet turn',
+  ScreenRotationAlt:
+    'Android arrow device hardware iOS mobile phone rotate tablet turn',
   ScreenSearchDesktop: 'Android arrow device hardware iOS lock monitor rotate web',
   ScreenShare:
     'Android arrow cast chrome device display hardware iOS laptop mac mirror monitor steam streaming web window',
   Screenshot: 'Android cell crop device hardware iOS mobile phone tablet',
   ScreenshotMonitor:
     'Android chrome desktop device display hardware iOS mac screengrab web window',
+  ScubaDiving: 'entertainment exercise hobby social swimming',
   Sd: 'alphabet camera card character data device digital drive flash font image letter memory photo secure symbol text type',
   SdCard: 'camera digital memory photos secure storage',
   SdCardAlert:
@@ -2153,6 +2162,8 @@ const synonyms = {
   SendTimeExtension: 'deliver dispatch envelop mail message schedule',
   SendToMobile:
     'Android arrow device export forward hardware iOS phone right share tablet',
+  SensorOccupied:
+    'body connection human network people person scan sensors signal wireless',
   Sensors: 'connection network scan signal wireless',
   SensorsOff: 'connection disabled enabled network scan signal slash wireless',
   SentimentDissatisfied:
@@ -2205,10 +2216,13 @@ const synonyms = {
     'camera digit font image letters megapixels number quality resolution symbol text type',
   SeventeenMp:
     'camera digits font image letters megapixels numbers quality resolution symbol text type',
+  SevereCold: 'crisis diaster snowflake weather',
   Share:
     'android connect contect link multimedia multiple network options send shared sharing social',
   ShareLocation: 'destination direction gps maps pin place stop tracking',
   Shield: 'certified privacy private protection secure security verified',
+  ShieldMoon:
+    'certified disturb do night not privacy private protection security verified',
   Shop: 'arrow bag bill briefcase buy card cart cash coin commerce credit currency dollars google money online payment play purchase shopping store',
   Shop2: 'add arrow buy cart google play purchase shopping',
   ShoppingBag:
@@ -2234,6 +2248,8 @@ const synonyms = {
   SignalCellular4Bar: 'data internet mobile network phone speed wifi wireless',
   SignalCellularAlt:
     'analytics bar chart data diagram infographic internet measure metrics mobile network phone statistics tracking wifi wireless',
+  SignalCellularAlt1Bar: 'data internet mobile network phone speed wifi wireless',
+  SignalCellularAlt2Bar: 'data internet mobile network phone speed wifi wireless',
   SignalCellularConnectedNoInternet0Bar:
     '! alert attention caution danger data error exclamation important mark mobile network notification phone symbol warning wifi wireless',
   SignalCellularConnectedNoInternet1Bar: 'network',
@@ -2269,6 +2285,7 @@ const synonyms = {
     '! alert attention caution cellular danger data error exclamation important mark mobile network notification phone speed symbol warning wireless',
   SignalWifiStatusbarNull:
     'cellular data internet mobile network phone speed wireless',
+  SignLanguage: 'communication deaf fingers gesture hand',
   Signpost: 'arrow direction left maps right signal signs street traffic',
   SimCard: 'camera chip device memory network phone storage',
   SimCardAlert:
@@ -2321,6 +2338,7 @@ const synonyms = {
   Sort: 'filter find lines list organize',
   SortByAlpha:
     'alphabetize az by character font letters list order organize symbol text type',
+  Sos: 'font help letters save text type',
   SoupKitchen: 'breakfast brunch dining food lunch meal',
   Source:
     'code composer content creation data document file folder mode storage view',
@@ -2330,7 +2348,9 @@ const synonyms = {
   SouthWest: 'arrow directional down left maps navigation',
   Spa: 'aromatherapy flower healthcare leaf massage meditation nature petals places relax wellbeing wellness',
   SpaceBar: 'keyboard line',
-  SpaceDashboard: 'cards format grid layout rectangle shapes squares website',
+  SpatialAudio: 'music note sound',
+  SpatialAudioOff: '[offline] disabled enabled music note on slash sound',
+  SpatialTracking: '[offline] audio disabled enabled music note on slash sound',
   Speaker: 'audio box electronic loud music sound stereo system video',
   SpeakerGroup: 'audio box electronic loud multiple music sound stereo system video',
   SpeakerNotes:
@@ -2357,6 +2377,7 @@ const synonyms = {
     'american athlete athletic entertainment exercise game hobby social',
   SportsGolf:
     'athlete athletic ball club entertainment exercise game golfer golfing hobby social',
+  SportsGymnastics: 'athlete athletic entertainment exercise hobby social',
   SportsHandball:
     'athlete athletic body entertainment exercise game hobby human people person social',
   SportsHockey:
@@ -2477,6 +2498,7 @@ const synonyms = {
   SwitchLeft: 'arrows directional navigation toggle',
   SwitchRight: 'arrows directional navigation toggle',
   SwitchVideo: 'arrows camera photography videos',
+  Synagogue: 'jewish religion shul spiritual temple worship',
   Sync: '360 around arrows direction inprogress loading refresh renew rotate turn',
   SyncAlt: 'arrows horizontal internet technology update wifi',
   SyncDisabled:
@@ -2495,8 +2517,10 @@ const synonyms = {
     'Android arrows cell device direction download hardware iOS install mobile phone tablet',
   SystemUpdateAlt: 'arrow download export',
   Tab: 'browser computer documents folder internet tabs website windows',
+  TableBar: 'cafe round',
   TableChart:
     'analytics bars data diagram grid infographic measure metrics statistics tracking',
+  TableRestaurant: 'bar dining',
   TableRows: 'grid layout lines stacked',
   Tablet: 'Android device hardware iOS ipad mobile web',
   TabletAndroid: 'device hardware iOS ipad mobile web',
@@ -2515,6 +2539,8 @@ const synonyms = {
   TaxiAlert:
     '! attention automobile cab cars caution danger direction error exclamation important lyft maps mark notification public symbol transportation uber vehicle warning yellow',
   Telegram: 'brand call chat logo messaging voice',
+  TempleBuddhist: 'buddha buddhism monastery religion spiritual worship',
+  TempleHindu: 'hinduism hindus mandir religion spiritual worship',
   TenMp:
     'camera digits font image letters megapixels numbers quality resolution symbol text type',
   Terminal: 'application code emulator program software',
@@ -2566,14 +2592,15 @@ const synonyms = {
   ThumbDownAlt:
     'bad decline disapprove dislike feedback hand hate negative no reject social veto vote',
   ThumbDownOffAlt:
-    'bad decline disapprove dislike favorite feedback filled fingers gesture hands hate negative no ranking rate rating reject sad social veto vote',
+    '[offline] bad decline disabled disapprove dislike enabled favorite feedback filled fingers gesture hands hate negative no on ranking rate rating reject sad slash social veto vote',
   ThumbsUpDown: 'dislike favorite fingers gesture hands rate rating vote',
   ThumbUp:
     'approve dislike down favorite fingers gesture hands ranking rate rating success upvote',
   ThumbUpAlt:
     'agreed approved confirm correct favorite feedback good hand happy like okay positive satisfaction social success vote yes',
   ThumbUpOffAlt:
-    'agreed approved confirm correct favorite feedback fingers gesture good hands happy like okay positive ranking rate rating satisfaction social vote yes',
+    '[offline] agreed approved confirm correct disabled enabled favorite feedback fingers gesture good hands happy like okay positive ranking rate rating satisfaction slash social vote yes',
+  Thunderstorm: 'cloud lightning rain weather',
   Timelapse: 'duration motion photo timer video',
   Timeline:
     'analytics chart data graph history line movement points tracking trending zigzag zigzap',
@@ -2593,6 +2620,7 @@ const synonyms = {
     'automobile cars destination direction drive estimate eta maps public transportation travel trip vehicle',
   TipsAndUpdates:
     'alert announcement electricity idea information lamp lightbulb stars',
+  TireRepair: 'automobile cars gauge mechanic pressure vehicle',
   Title: 'T alphabet character font header letter subject symbol text type',
   Toc: 'content format lines list reorder stacked table text titles',
   Today:
@@ -2628,6 +2656,7 @@ const synonyms = {
     'analytics arrow change chart data diagram infographic measure metrics movement rate rating statistics tracking',
   TripOrigin: 'circle departure',
   Try: 'bookmark bubble chat comment communicate favorite feedback highlight important marked message saved shape special speech star',
+  Tsunami: 'crisis disaster flood rain storm weather',
   Tty: 'call cell contact deaf device hardware impaired mobile speech talk telephone text',
   Tune: 'adjust editing options settings sliders',
   Tungsten: 'electricity indoor lamp lightbulb setting',
@@ -2688,6 +2717,10 @@ const synonyms = {
   UTurnRight: 'arrows directions maps navigation path route sign traffic u-turn',
   Vaccines:
     'aid covid doctor drug emergency hospital immunity injection medical medication medicine needle pharmacy sick syringe vaccination vial',
+  VapeFree:
+    'disabled e-cigarette enabled never no off places prohibited slash smoke smoking tobacco vaping vapor warning zone',
+  VapingRooms:
+    'allowed e-cigarette never no places prohibited smoke smoking tobacco vape vapor warning zone',
   Verified:
     'approve badge burst check complete done mark ok select star tick validate yes',
   VerifiedUser:
@@ -2698,7 +2731,6 @@ const synonyms = {
     'alignment arrow doc down editing editor spreadsheet text type up writing',
   VerticalAlignTop:
     'alignment arrow doc editing editor spreadsheet text type up writing',
-  VerticalDistribute: 'alignment format layout lines paragraph rules style text',
   VerticalShades: 'blinds cover curtains nest open shutter sunshade',
   VerticalShadesClosed: 'blinds cover curtains nest roller shutter sunshade',
   VerticalSplit: 'design format grid layout paragraph text website writing',
@@ -2757,6 +2789,7 @@ const synonyms = {
   Voicemail: 'call device message missed mobile phone recording',
   VoiceOverOff:
     'account disabled enabled face human people person profile recording slash speaking speech transcript user',
+  Volcano: 'crisis disaster eruption lava magma natural',
   VolumeDown: 'audio av control music quieter shh soft sound speaker tv',
   VolumeMute: 'audio control music sound speaker tv',
   VolumeOff:
@@ -2781,11 +2814,9 @@ const synonyms = {
   Water: 'aqua beach lake ocean river waves weather',
   WaterDamage:
     'architecture building droplet estate house leak plumbing real residence residential shelter',
-  WaterDrop: 'drink droplet eco liquid nature ocean rain social',
   WaterfallChart:
     'analytics bar data diagram infographic measure metrics statistics tracking',
   Waves: 'beach lake ocean pool river sea swim water',
-  WavingHand: 'fingers gesture goodbye greetings hello palm wave',
   WbAuto:
     'A W alphabet automatic balance character editing font image letter photography symbol text type white wp',
   WbCloudy: 'balance editing white wp',
@@ -2793,6 +2824,7 @@ const synonyms = {
   WbIridescent: 'balance bright editing lighting settings white wp',
   WbShade: 'balance house lighting white',
   WbSunny: 'balance bright lighting weather white',
+  WbTwilight: 'balance lighting noon sunset white',
   Wc: 'bathroom closet female gender man person restroom toilet unisex wash water women',
   Web: 'blocks browser internet page screen website www',
   WebAsset:
@@ -2802,7 +2834,6 @@ const synonyms = {
   Webhook: 'api developer development enterprise software',
   Weekend: 'chair couch furniture home living lounge relax room seat',
   West: 'arrow directional left maps navigation',
-  Whatsapp: 'calls chat messaging messenger platform video voice',
   WhatsApp: 'brand call chat logo messaging voice',
   Whatshot: 'arrow circle direction fire frames round trending',
   WheelchairPickup: 'accessibility accessible body handicap help human person',
@@ -2810,6 +2841,10 @@ const synonyms = {
     'approve ballot check complete destination direction done election location maps mark ok pin place poll select stop tick validate verified yes',
   Widgets: 'app blocks box menu setting squares ui',
   Wifi: 'connection data internet network scan service signal wireless',
+  Wifi1Bar:
+    'cellular connection data internet mobile network phone scan service signal wireless',
+  Wifi2Bar:
+    'cellular connection data internet mobile network phone scan service signal wireless',
   WifiCalling:
     'cell connection connectivity contact device hardware mobile signal telephone wireless',
   WifiCalling3: 'cellular data internet mobile network phone speed wireless',
@@ -2826,11 +2861,14 @@ const synonyms = {
   WifiProtectedSetup: 'around arrows rotate',
   WifiTethering:
     'cellular connection data internet mobile network phone scan service signal speed wireless',
+  WifiTetheringError:
+    '! alert attention caution cellular connection danger data exclamation important internet mark mobile network notification phone rounded scan service signal speed symbol warning wireless',
   WifiTetheringOff:
     'cellular connection data disabled enabled internet mobile network offline phone scan service signal slash speed wireless',
   Window: 'close glass grid home house interior layout outside',
   WindPower: 'eco energy nest windy',
   WineBar: 'alcohol cocktail cup drink glass liquor',
+  Woman: 'female gender girl lady social symbol women',
   Work: '-briefcase baggage business job suitcase',
   WorkHistory:
     'arrow backwards baggage briefcase business clock date job refresh renew reverse rotate schedule suitcase time turn',
@@ -2838,7 +2876,7 @@ const synonyms = {
   WorkOutline: 'baggage briefcase business job suitcase',
   WorkspacePremium:
     'certification degree ecommerce guarantee medal permit ribbon verification',
-  Workspaces: 'circles collaboration dot filled group team',
+  Workspaces: 'circles collaboration dot filled group outline team',
   WrapText: 'arrow doc editing editor spreadsheet type write writing',
   WrongLocation:
     'cancel close destination direction exit maps no pin place quit remove stop',

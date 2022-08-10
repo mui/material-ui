@@ -6,7 +6,7 @@ import { unstable_useId as useId, unstable_capitalize as capitalize } from '@mui
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { useSwitch } from '@mui/base/SwitchUnstyled';
 import { styled, useThemeProps } from '../styles';
-import { getCheckboxUtilityClass } from './checkboxClasses';
+import checkboxClasses, { getCheckboxUtilityClass } from './checkboxClasses';
 import { CheckboxProps, CheckboxTypeMap } from './CheckboxProps';
 import CheckIcon from '../internal/svg-icons/Check';
 import IndeterminateIcon from '../internal/svg-icons/HorizontalRule';
@@ -55,21 +55,17 @@ const CheckboxRoot = styled('span', {
     '--Checkbox-gap': '0.625rem',
     fontSize: theme.vars.fontSize.lg,
   }),
-  ...(ownerState.label &&
-    !ownerState.disableIcon && {
-      // add some space at the end to not have focus overlapping the label
-      paddingInlineEnd: 'var(--Checkbox-gap)',
-    }),
   position: ownerState.overlay ? 'initial' : 'relative',
   display: 'inline-flex',
   fontFamily: theme.vars.fontFamily.body,
   lineHeight: 'var(--Checkbox-size)', // prevent label from having larger height than the checkbox
-  '&.Mui-disabled': {
+  color: theme.vars.palette.text.primary,
+  [`&.${checkboxClasses.disabled}`]: {
     color: theme.vars.palette[ownerState.color!]?.plainDisabledColor,
   },
   ...(ownerState.disableIcon && {
     color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Color`],
-    '&.Mui-disabled': {
+    [`&.${checkboxClasses.disabled}`]: {
       color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}DisabledColor`],
     },
   }),
@@ -99,9 +95,12 @@ const CheckboxCheckbox = styled('span', {
   ...(!ownerState.disableIcon
     ? [
         theme.variants[ownerState.variant!]?.[ownerState.color!],
-        theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
-        theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
-        theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
+        { '&:hover': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!] },
+        { '&:active': theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!] },
+        {
+          [`&.${checkboxClasses.disabled}`]:
+            theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
+        },
       ]
     : []),
 ]);
@@ -129,9 +128,12 @@ const CheckboxAction = styled('span', {
   ...(ownerState.disableIcon
     ? [
         theme.variants[ownerState.variant!]?.[ownerState.color!],
-        theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
-        theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
-        theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
+        { '&:hover': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!] },
+        { '&:active': theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!] },
+        {
+          [`&.${checkboxClasses.disabled}`]:
+            theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
+        },
       ]
     : []),
 ]);

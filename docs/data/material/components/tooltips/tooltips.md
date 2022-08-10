@@ -4,7 +4,7 @@ title: React Tooltip component
 components: Tooltip
 githubLabel: 'component: tooltip'
 materialDesign: https://material.io/components/tooltips
-waiAria: https://www.w3.org/TR/wai-aria-practices/#tooltip
+waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/
 ---
 
 # Tooltip
@@ -21,7 +21,7 @@ When activated, Tooltips display a text label identifying an element, such as a 
 
 ## Positioned tooltips
 
-The `Tooltip` has 12 **placements** choice.
+The `Tooltip` has 12 **placement** choices.
 They don't have directional arrows; instead, they rely on motion emanating from the source to convey direction.
 
 {{"demo": "PositionedTooltips.js"}}
@@ -58,6 +58,29 @@ const MyComponent = React.forwardRef(function MyComponent(props, ref) {
 ```
 
 You can find a similar concept in the [wrapping components](/material-ui/guides/composition/#wrapping-components) guide.
+
+If using a class component as a child, you'll also need to ensure that the ref is forwarded to the underlying DOM element. (A ref to the class component itself will not work.)
+
+```jsx
+class MyComponent extends React.Component {
+  render() {
+    const { innerRef, ...props } = this.props;
+    //  Spread the props to the underlying DOM element.
+    return <div {...props} ref={innerRef}>Bin</div>
+  }
+};
+
+// Wrap MyComponent to forward the ref as expected by Tooltip
+const WrappedMyComponent = React.forwardRef(function WrappedMyComponent(props, ref) {
+  return <MyComponent {...props} innerRef={ref} />;
+});
+
+// ...
+
+<Tooltip title="Delete">
+  <WrappedMyComponent>
+</Tooltip>
+```
 
 ## Triggers
 
@@ -141,7 +164,7 @@ On mobile, the tooltip is displayed when the user longpresses the element and hi
 
 ## Accessibility
 
-(WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#tooltip)
+(WAI-ARIA: https://www.w3.org/WAI/ARIA/apg/patterns/tooltip/)
 
 By default, the tooltip only labels its child element.
 This is notably different from `title` which can either label **or** describe its child depending on whether the child already has a label.

@@ -146,8 +146,8 @@ export default function JoyVariant() {
         </Box>
       </CssVarsProvider>
       <CssVarsProvider
-        prefix="strapi"
         theme={extendTheme({
+          cssVarPrefix: 'strapi',
           colorSchemes: {
             light: {
               palette: {
@@ -275,7 +275,7 @@ export default function JoyVariant() {
             JoyButton: {
               styleOverrides: {
                 root: ({ ownerState }) => ({
-                  '--Button-gutter': '1rem',
+                  '--Button-paddingInline': '1rem',
                   borderRadius: '4px',
                   ...(ownerState.size === 'sm' && {
                     minHeight: 32,
@@ -337,8 +337,8 @@ declare module '@mui/joy/styles' {
 }
 
 <CssVarsProvider
-  prefix="strapi"
   theme={extendTheme({
+    cssVarPrefix: 'strapi',
     colorSchemes: {
       light: {
         palette: {
@@ -416,8 +416,8 @@ declare module '@mui/joy/styles' {
 }
 
 <CssVarsProvider
-  prefix="strapi"
   theme={extendTheme({
+    cssVarPrefix: 'strapi',
     colorSchemes: {
       light: {
         palette: {
@@ -481,7 +481,7 @@ declare module '@mui/joy/styles' {
     MuiButton: {
       styleOverrides: {
         root: ({ ownerState }) => ({
-          '--Button-gutter': '1rem',
+          '--Button-paddingInline': '1rem',
           borderRadius: '4px',
           ...(ownerState.size === 'sm' && {
             minHeight: 32,
@@ -604,8 +604,8 @@ declare module '@mui/joy/styles' {
               component={MarkdownElement}
               code={`
 <CssVarsProvider
-  prefix="strapi"
   theme={extendTheme({
+    cssVarPrefix: 'strapi',
     colorSchemes: {
       // ...
     },
@@ -700,8 +700,8 @@ declare module '@mui/joy/styles' {
 }
 
 <CssVarsProvider
-  prefix="strapi"
   theme={extendTheme({
+    cssVarPrefix: 'strapi',
     colorSchemes: {
       light: {
         palette: {

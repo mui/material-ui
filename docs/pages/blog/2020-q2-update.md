@@ -48,7 +48,7 @@ Here are the most significant improvements since March 2020:
   After English, Chinese, and Brazilian, the languages that would benefit the most from translation are **Russian** and **Spanish**.<br />
   Feel free to [get stuck into](https://translate.mui.com/) if you are a native speaker and able to give a hand with either of these two languages.
 
-- 🗂 A new extension of the Tab API [in the lab](/material-ui/react-tabs/#experimental-api) implements accessible tabs following [WAI-ARIA](https://www.w3.org/TR/wai-aria-practices/#tabpanel) authoring practices.
+- 🗂 A new extension of the Tab API [in the lab](/material-ui/react-tabs/#experimental-api) implements accessible tabs following [WAI-ARIA](https://www.w3.org/WAI/ARIA/apg/patterns/tabpanel/) authoring practices.
 
 ```jsx
 <TabContext value={value}>

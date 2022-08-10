@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
-import { UseSwitchProps } from '@mui/base/SwitchUnstyled';
+import { UseSwitchParameters } from '@mui/base/SwitchUnstyled';
 import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
 
 export type CheckboxSlot = 'root' | 'checkbox' | 'action' | 'input' | 'label';
@@ -13,7 +13,7 @@ export interface CheckboxPropsSizeOverrides {}
 
 export interface CheckboxTypeMap<P = {}, D extends React.ElementType = 'span'> {
   props: P &
-    UseSwitchProps & {
+    UseSwitchParameters & {
       /**
        * The icon to display when the component is checked.
        * @default <CheckIcon />
@@ -34,10 +34,10 @@ export interface CheckboxTypeMap<P = {}, D extends React.ElementType = 'span'> {
        */
       componentsProps?: {
         root?: React.ComponentPropsWithRef<'span'>;
-        action?: React.ComponentPropsWithRef<'span'>;
-        checkbox?: React.ComponentPropsWithRef<'span'>;
-        input?: React.ComponentPropsWithRef<'input'>;
-        label?: React.ComponentPropsWithRef<'label'>;
+        action?: React.ComponentPropsWithRef<'span'> & { sx?: SxProps };
+        checkbox?: React.ComponentPropsWithRef<'span'> & { sx?: SxProps };
+        input?: React.ComponentPropsWithRef<'input'> & { sx?: SxProps };
+        label?: React.ComponentPropsWithRef<'label'> & { sx?: SxProps };
       };
       /**
        * The color of the component. It supports those theme colors that make sense for this component.

@@ -18,19 +18,18 @@ const planInfo = {
   community: {
     color: 'green',
     title: 'Community',
-    description: 'Get all the MUI component libraries, MIT-licensed, open source, and open core.',
+    description: 'Get started with the industry-standard React UI library, MIT-licensed.',
   },
   pro: {
     color: 'blue',
     title: 'Pro',
-    description:
-      'Unlock essential features for building data-rich applications with complex use cases.',
+    description: 'Best for professional developers building enterprise or data-rich applications.',
   },
   premium: {
     color: 'gold',
     title: 'Premium',
     description:
-      'Access the most advanced features necessary for data-rich applications, as well as the highest priority for support.',
+      'The most advanced features for data-rich applications, as well as the highest priority for support.',
   },
 } as const;
 
@@ -86,8 +85,8 @@ export function PlanPrice(props: PlanPriceProps) {
           $0
         </Typography>
         <Box sx={{ width: 5 }} />
-        <Typography variant="body2" color="text.secondary">
-          – free forever.
+        <Typography variant="body2" color="text.secondary" sx={{ mt: '4px' }}>
+          – free forever
         </Typography>
       </Box>
     );
@@ -100,12 +99,12 @@ export function PlanPrice(props: PlanPriceProps) {
             $15
           </Typography>
           <Box sx={{ width: 5 }} />
-          <Typography variant="body2" color="text.secondary">
-            / dev / month.
+          <Typography variant="body2" color="text.secondary" sx={{ mt: '3px' }}>
+            / dev / month
           </Typography>
         </Box>
         <Typography variant="body2" color="text.secondary" sx={{ mt: 2 }}>
-          Billed annually at $180.
+          Billed annually at $180/dev.
         </Typography>
         <Typography variant="body2" color="text.secondary" sx={{ mb: 3 }}>
           Price capped at 10 developers.
@@ -124,7 +123,7 @@ export function PlanPrice(props: PlanPriceProps) {
             borderRadius: 0.5,
             bgcolor: (theme) => (theme.palette.mode === 'dark' ? 'error.900' : 'error.100'),
             textDecoration: 'line-through',
-            p: '4px',
+            p: '3px 4px',
           }}
         >
           $49
@@ -143,12 +142,12 @@ export function PlanPrice(props: PlanPriceProps) {
           *
         </Typography>
         <Box sx={{ width: 5 }} />
-        <Typography variant="body2" color="text.secondary">
-          / dev / month.
+        <Typography variant="body2" color="text.secondary" sx={{ mt: '3px' }}>
+          / dev / month
         </Typography>
       </Box>
       <Typography variant="body2" color="text.secondary" sx={{ mt: 2 }}>
-        Billed annually at $444.
+        Billed annually at $444/dev.
       </Typography>
       <Link variant="body2" href="#early-bird" sx={{ mb: 2 }}>
         * Early bird special.
@@ -157,7 +156,8 @@ export function PlanPrice(props: PlanPriceProps) {
   );
 }
 
-const Info = ({ value, metadata }: { value: React.ReactNode; metadata?: string }) => {
+function Info(props: { value: React.ReactNode; metadata?: React.ReactNode }) {
+  const { value, metadata } = props;
   return (
     <React.Fragment>
       {typeof value === 'string' ? <Typography variant="body2">{value}</Typography> : value}
@@ -173,7 +173,8 @@ const Info = ({ value, metadata }: { value: React.ReactNode; metadata?: string }
       )}
     </React.Fragment>
   );
-};
+}
+
 const ColumnHead = ({
   label,
   metadata,
@@ -337,36 +338,46 @@ const rowHeaders: Record<string, React.ReactNode> = {
   'MUI Base': (
     <ColumnHead
       label="MUI Base"
-      tooltip="The unstyled components and react hooks available at @mui/base."
+      tooltip="A library of headless ('unstyled') React UI components and low-level hooks, available in @mui/base."
     />
   ),
   'MUI System': (
     <ColumnHead
       label="MUI System"
-      tooltip="CSS utilities for rapidly laying out custom designs available at @mui/system."
+      tooltip="CSS utilities for rapidly laying out custom designs, available in @mui/system."
     />
   ),
   'Material UI': (
     <ColumnHead
       label="Material UI"
-      tooltip="Core components following Material Design available at @mui/material."
+      tooltip="A library of React UI components that implements Google's Material Design, available in @mui/material."
+    />
+  ),
+  'Joy UI': (
+    <ColumnHead
+      label="Joy UI"
+      tooltip="A library of beautifully designed React UI components, available in @mui/joy."
     />
   ),
   // Advanced
   'data-grid/column-groups': (
-    <ColumnHead label="Column groups" nested href="/x/react-data-grid/columns/#column-groups" />
+    <ColumnHead label="Column groups" nested href="/x/react-data-grid/column-groups/" />
   ),
   'data-grid/column-spanning': (
-    <ColumnHead label="Column spanning" nested href="/x/react-data-grid/columns/#column-spanning" />
+    <ColumnHead label="Column spanning" nested href="/x/react-data-grid/column-spanning/" />
   ),
   'data-grid/column-resizing': (
-    <ColumnHead label="Column resizing" nested href="/x/react-data-grid/columns/#resizing" />
+    <ColumnHead
+      label="Column resizing"
+      nested
+      href="/x/react-data-grid/column-dimensions/#resizing"
+    />
   ),
   'data-grid/column-reorder': (
-    <ColumnHead label="Column reorder" nested href="/x/react-data-grid/columns/#column-reorder" />
+    <ColumnHead label="Column reorder" nested href="/x/react-data-grid/column-ordering/" />
   ),
   'data-grid/column-pinning': (
-    <ColumnHead label="Column pinning" nested href="/x/react-data-grid/columns/#column-pinning" />
+    <ColumnHead label="Column pinning" nested href="/x/react-data-grid/column-pinning/" />
   ),
   'data-grid/column-sorting': (
     <ColumnHead label="Column sorting" nested href="/x/react-data-grid/sorting/" />
@@ -379,13 +390,16 @@ const rowHeaders: Record<string, React.ReactNode> = {
     />
   ),
   'data-grid/row-height': (
-    <ColumnHead label="Row height" nested href="/x/react-data-grid/rows/#row-height" />
+    <ColumnHead label="Row height" nested href="/x/react-data-grid/row-height/" />
   ),
   'data-grid/row-spanning': (
-    <ColumnHead label="Row spanning" nested href="/x/react-data-grid/rows/#row-spanning" />
+    <ColumnHead label="Row spanning" nested href="/x/react-data-grid/row-spanning/" />
   ),
   'data-grid/row-reordering': (
-    <ColumnHead label="Row reordering" nested href="/x/react-data-grid/rows/#row-reorder" />
+    <ColumnHead label="Row reordering" nested href="/x/react-data-grid/row-ordering/" />
+  ),
+  'data-grid/row-pinning': (
+    <ColumnHead label="Row pinning" nested href="/x/react-data-grid/row-pinning/" />
   ),
   'data-grid/row-selection': (
     <ColumnHead label="Row selection" nested href="/x/react-data-grid/selection/#row-selection" />
@@ -494,15 +508,25 @@ const rowHeaders: Record<string, React.ReactNode> = {
   ),
   'date-picker/simple': <ColumnHead label="Date picker" />,
   'date-picker/range': <ColumnHead label="Date range picker" />,
+  'mui-x-production': <ColumnHead label="Perpetual use in production" />,
+  'mui-x-development': <ColumnHead label="Development license" tooltip="For active development" />,
   'mui-x-updates': <ColumnHead label="Access to new releases" />,
   // Support
-  community: <ColumnHead {...{ label: 'Community' }} />,
+  community: (
+    <ColumnHead
+      {...{
+        label: 'Community support for MUI Core',
+        tooltip:
+          'Support for MUI Core and other MIT licensed code is provided by the community. MUI maintainers focus on solving root issues rather than offering direct support to the community at large.',
+      }}
+    />
+  ),
   'bugs/features': (
     <ColumnHead
       {...{
-        label: 'Bug reports & feature requests',
+        label: 'Technical support for MUI X',
         tooltip:
-          'You can report an unlimited number of bugs and submit unlimited feature requests.',
+          'You can ask for technical support, report bugs and submit unlimited feature requests to the advanced components. We take your subscription plan as one of the prioritization criteria.',
       }}
     />
   ),
@@ -517,7 +541,7 @@ const rowHeaders: Record<string, React.ReactNode> = {
   ),
   'support-duration': (
     <ColumnHead
-      {...{ label: 'Support duration', tooltip: 'Included with initial license purchase.' }}
+      {...{ label: 'Support duration', tooltip: 'Covers the duration of your subscription.' }}
     />
   ),
   'response-time': (
@@ -553,6 +577,7 @@ const communityData: Record<string, React.ReactNode> = {
   'MUI Base': yes,
   'MUI System': yes,
   'Material UI': yes,
+  'Joy UI': yes,
   // MUI X
   'data-grid/column-groups': pending,
   'data-grid/column-spanning': yes,
@@ -562,6 +587,7 @@ const communityData: Record<string, React.ReactNode> = {
   'data-grid/row-height': yes,
   'data-grid/row-spanning': pending,
   'data-grid/row-reordering': no,
+  'data-grid/row-pinning': no,
   'data-grid/row-selection': yes,
   'data-grid/row-multiselection': no,
   'data-grid/row-rangeselection': no,
@@ -591,7 +617,9 @@ const communityData: Record<string, React.ReactNode> = {
   'data-grid/localization': yes,
   'date-picker/simple': yes,
   'date-picker/range': no,
+  'mui-x-production': yes,
   'mui-x-updates': yes,
+  'mui-x-development': yes,
   // Support
   community: yes,
   'bugs/features': yes,
@@ -607,6 +635,7 @@ const proData: Record<string, React.ReactNode> = {
   'MUI Base': yes,
   'MUI System': yes,
   'Material UI': yes,
+  'Joy UI': yes,
   // MUI X
   'data-grid/column-groups': pending,
   'data-grid/column-spanning': yes,
@@ -616,6 +645,7 @@ const proData: Record<string, React.ReactNode> = {
   'data-grid/row-height': yes,
   'data-grid/row-spanning': pending,
   'data-grid/row-reordering': yes,
+  'data-grid/row-pinning': yes,
   'data-grid/row-selection': yes,
   'data-grid/row-multiselection': yes,
   'data-grid/row-rangeselection': no,
@@ -645,6 +675,8 @@ const proData: Record<string, React.ReactNode> = {
   'data-grid/localization': yes,
   'date-picker/simple': yes,
   'date-picker/range': pending,
+  'mui-x-production': yes,
+  'mui-x-development': <Info value="1 year" />,
   'mui-x-updates': <Info value="1 year" />,
   // Support
   community: yes,
@@ -661,6 +693,7 @@ const premiumData: Record<string, React.ReactNode> = {
   'MUI Base': yes,
   'MUI System': yes,
   'Material UI': yes,
+  'Joy UI': yes,
   // MUI X
   'data-grid/column-groups': pending,
   'data-grid/column-spanning': yes,
@@ -670,6 +703,7 @@ const premiumData: Record<string, React.ReactNode> = {
   'data-grid/row-height': yes,
   'data-grid/row-spanning': pending,
   'data-grid/row-reordering': yes,
+  'data-grid/row-pinning': yes,
   'data-grid/row-selection': yes,
   'data-grid/row-multiselection': yes,
   'data-grid/row-rangeselection': pending,
@@ -692,22 +726,36 @@ const premiumData: Record<string, React.ReactNode> = {
   'data-grid/tree-data': yes,
   'data-grid/master-detail': yes,
   'data-grid/grouping': yes,
-  'data-grid/aggregation': pending,
+  'data-grid/aggregation': yes,
   'data-grid/pivoting': pending,
   'data-grid/accessibility': yes,
   'data-grid/keyboard-nav': yes,
   'data-grid/localization': yes,
   'date-picker/simple': yes,
   'date-picker/range': pending,
+  'mui-x-production': yes,
+  'mui-x-development': <Info value="1 year" />,
   'mui-x-updates': <Info value="1 year" />,
   // Support
   community: yes,
   'bugs/features': <Info value={yes} metadata="Priority over Pro" />,
   'tech-advisory': pending,
   'support-duration': <Info value="1 year" />,
-  'response-time': <Info value={pending} metadata="Available later on" />,
-  'pre-screening': <Info value="4 hours" metadata="priority only, add-on not available yet" />,
-  'issue-escalation': <Info value={pending} metadata="priority only, add-on not available yet" />,
+  'response-time': (
+    <Info
+      value={pending}
+      metadata={
+        <React.Fragment>
+          Available later on
+          <br />
+          2 business days.
+          <br />1 business day (priority add-on only)
+        </React.Fragment>
+      }
+    />
+  ),
+  'pre-screening': <Info value={pending} metadata="4 hours (priority add-on only)" />,
+  'issue-escalation': <Info value={pending} metadata="priority add-on only" />,
 };
 
 const RowCategory = (props: BoxProps) => (
@@ -922,11 +970,13 @@ export default function PricingTable({
       <RowHead startIcon={<IconImage name="product-core" width="28" height="28" />}>
         MUI Core (open-source)
       </RowHead>
+      {renderRow('Material UI')}
+      {divider}
+      {renderRow('Joy UI')}
+      {divider}
       {renderRow('MUI Base')}
       {divider}
       {renderRow('MUI System')}
-      {divider}
-      {renderRow('Material UI')}
       <RowHead startIcon={<IconImage name="product-advanced" width="28" height="28" />}>
         MUI X (open-core)
       </RowHead>
@@ -1014,6 +1064,8 @@ export default function PricingTable({
         {nestedDivider}
         {renderRow('data-grid/row-reordering')}
         {nestedDivider}
+        {renderRow('data-grid/row-pinning')}
+        {nestedDivider}
         {renderRow('data-grid/row-spanning')}
         {nestedDivider}
         <RowCategory>Selection features</RowCategory>
@@ -1083,6 +1135,10 @@ export default function PricingTable({
       {renderRow('date-picker/simple')}
       {divider}
       {renderRow('date-picker/range')}
+      {divider}
+      {renderRow('mui-x-production')}
+      {divider}
+      {renderRow('mui-x-development')}
       {divider}
       {renderRow('mui-x-updates')}
       <RowHead>Support</RowHead>

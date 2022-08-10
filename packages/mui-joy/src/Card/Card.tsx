@@ -9,9 +9,10 @@ import styled from '../styles/styled';
 import { getCardUtilityClass } from './cardClasses';
 import { CardProps, CardTypeMap } from './CardProps';
 import { resolveSxValue } from '../styles/styleUtils';
+import { CardRowContext } from './CardContext';
 
 const useUtilityClasses = (ownerState: CardProps) => {
-  const { size, variant, color } = ownerState;
+  const { size, variant, color, row } = ownerState;
 
   const slots = {
     root: [
@@ -19,6 +20,7 @@ const useUtilityClasses = (ownerState: CardProps) => {
       variant && `variant${capitalize(variant)}`,
       color && `color${capitalize(color)}`,
       size && `size${capitalize(size)}`,
+      row && 'row',
     ],
   };
 
@@ -33,26 +35,22 @@ const CardRoot = styled('div', {
   {
     // a context variable for any child component
     '--Card-childRadius':
-      ownerState.variant === 'outlined'
-        ? `calc(max(var(--Card-radius) - var(--Card-padding), min(var(--Card-padding) / 2, var(--Card-radius) / 2)) - var(--variant-outlinedBorderWidth))`
-        : 'max(var(--Card-radius) - var(--Card-padding), min(var(--Card-padding) / 2, var(--Card-radius) / 2))',
+      'max((var(--Card-radius) - var(--variant-borderWidth)) - var(--Card-padding), min(var(--Card-padding) / 2, (var(--Card-radius) - var(--variant-borderWidth)) / 2))',
     // AspectRatio integration
     '--AspectRatio-radius': 'var(--Card-childRadius)',
     // Link integration
-    '--Link-overlayMargin':
-      ownerState.variant === 'outlined'
-        ? 'calc(-1 * var(--variant-outlinedBorderWidth))'
-        : undefined,
-    '--Link-overlayRadius': resolveSxValue(
+    '--internal-action-margin': 'calc(-1 * var(--variant-borderWidth))',
+    // Link, Radio, Checkbox integration
+    '--internal-action-radius': resolveSxValue(
       { theme, ownerState },
       'borderRadius',
       'var(--Card-radius)',
     ),
+    // CardCover integration
+    '--CardCover-radius': 'calc(var(--Card-radius) - var(--variant-borderWidth))',
     // CardOverflow integration
-    '--CardOverflow-offset':
-      ownerState.variant === 'outlined'
-        ? `calc(-1 * var(--Card-padding) - var(--variant-outlinedBorderWidth))`
-        : `calc(-1 * var(--Card-padding))`,
+    '--CardOverflow-offset': `calc(-1 * var(--Card-padding))`,
+    '--CardOverflow-radius': 'calc(var(--Card-radius) - var(--variant-borderWidth))',
     ...(ownerState.size === 'sm' && {
       '--Card-radius': theme.vars.radius.sm,
       '--Card-padding': '0.5rem',
@@ -69,14 +67,14 @@ const CardRoot = styled('div', {
     padding: 'var(--Card-padding)',
     borderRadius: 'var(--Card-radius)',
     boxShadow: theme.vars.shadow.sm,
-    backgroundColor: theme.vars.palette.background.body,
+    backgroundColor: theme.vars.palette.background.surface,
     fontFamily: theme.vars.fontFamily.body,
     // TODO: discuss the theme transition.
     // This value is copied from mui-material Sheet.
     transition: 'box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
     position: 'relative',
     display: 'flex',
-    flexDirection: 'column',
+    flexDirection: ownerState.row ? 'row' : 'column',
   },
   theme.variants[ownerState.variant!]?.[ownerState.color!],
 ]);
@@ -94,6 +92,7 @@ const Card = React.forwardRef(function Card(inProps, ref) {
     size = 'md',
     variant = 'plain',
     children,
+    row = false,
     ...other
   } = props;
 
@@ -101,6 +100,7 @@ const Card = React.forwardRef(function Card(inProps, ref) {
     ...props,
     color,
     component,
+    row,
     size,
     variant,
   };
@@ -108,26 +108,28 @@ const Card = React.forwardRef(function Card(inProps, ref) {
   const classes = useUtilityClasses(ownerState);
 
   return (
-    <CardRoot
-      as={component}
-      ownerState={ownerState}
-      className={clsx(classes.root, className)}
-      ref={ref}
-      {...other}
-    >
-      {React.Children.map(children, (child, index) => {
-        if (!React.isValidElement(child)) {
+    <CardRowContext.Provider value={row}>
+      <CardRoot
+        as={component}
+        ownerState={ownerState}
+        className={clsx(classes.root, className)}
+        ref={ref}
+        {...other}
+      >
+        {React.Children.map(children, (child, index) => {
+          if (!React.isValidElement(child)) {
+            return child;
+          }
+          if (index === 0) {
+            return React.cloneElement(child, { 'data-first-child': '' });
+          }
+          if (index === React.Children.count(children) - 1) {
+            return React.cloneElement(child, { 'data-last-child': '' });
+          }
           return child;
-        }
-        if (index === 0) {
-          return React.cloneElement(child, { 'data-first-child': '' });
-        }
-        if (index === React.Children.count(children) - 1) {
-          return React.cloneElement(child, { 'data-last-child': '' });
-        }
-        return child;
-      })}
-    </CardRoot>
+        })}
+      </CardRoot>
+    </CardRowContext.Provider>
   );
 }) as OverridableComponent<CardTypeMap>;
 
@@ -159,8 +161,13 @@ Card.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
+   * If `true`, flex direction is set to 'row'.
+   * @default false
+   */
+  row: PropTypes.bool,
+  /**
    * The size of the component.
-   * It accepts theme values between 'xs' and 'xl'.
+   * It accepts theme values between 'sm' and 'lg'.
    * @default 'md'
    */
   size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([

@@ -51,7 +51,7 @@ For instance, via Google Web Fonts:
 
 ## Font icons
 
-To use the font `Icon` component, you must first add the [Material icons](https://fonts.google.com/icons) font.
+To use the font `Icon` component, you must first add the [Material Icons](https://fonts.google.com/icons?icon.set=Material+Icons) font.
 Here are [some instructions](/material-ui/icons/#font-icons)
 on how to do so.
 For instance, via Google Web Fonts:

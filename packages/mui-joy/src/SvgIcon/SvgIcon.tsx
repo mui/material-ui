@@ -35,6 +35,7 @@ const SvgIconRoot = styled('svg', {
           '--Icon-fontSize': theme.vars.fontSize[ownerState.instanceFontSize],
         }),
       userSelect: 'none',
+      margin: 'var(--Icon-margin)',
       width: '1em',
       height: '1em',
       display: 'inline-block',
@@ -149,7 +150,10 @@ SvgIcon.propTypes /* remove-proptypes */ = {
     'xl4',
     'xl5',
     'xl6',
+    'xl7',
     'xs',
+    'xs2',
+    'xs3',
   ]),
   /**
    * Applies a color attribute to the SVG element.

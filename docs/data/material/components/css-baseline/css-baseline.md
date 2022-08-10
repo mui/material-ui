@@ -78,18 +78,19 @@ The colors of the scrollbars can be customized to improve the contrast (especial
 
 ```jsx
 import darkScrollbar from '@mui/material/darkScrollbar';
+
 const theme = createTheme({
   components: {
     MuiCssBaseline: {
-      styleOverrides: {
-        body: theme.palette.mode === 'dark' ? darkScrollbar() : null,
-      },
+      styleOverrides: (themeParam) => ({
+        body: themeParam.palette.mode === 'dark' ? darkScrollbar() : null,
+      }),
     },
   },
 });
 ```
 
-Be aware, however, that using this utility (and customizing `-webkit-scrollbar`) forces MacOS to always show the scrollbar.
+Be aware, however, that using this utility (and customizing `-webkit-scrollbar`) forces macOS to always show the scrollbar.
 
 ### Color scheme
 

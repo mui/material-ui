@@ -325,13 +325,18 @@ function TrapFocus(props) {
   return (
     <React.Fragment>
       <div
-        tabIndex={0}
+        tabIndex={open ? 0 : -1}
         onFocus={handleFocusSentinel}
         ref={sentinelStart}
-        data-test="sentinelStart"
+        data-testid="sentinelStart"
       />
       {React.cloneElement(children, { ref: handleRef, onFocus })}
-      <div tabIndex={0} onFocus={handleFocusSentinel} ref={sentinelEnd} data-test="sentinelEnd" />
+      <div
+        tabIndex={open ? 0 : -1}
+        onFocus={handleFocusSentinel}
+        ref={sentinelEnd}
+        data-testid="sentinelEnd"
+      />
     </React.Fragment>
   );
 }

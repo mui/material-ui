@@ -7,11 +7,10 @@ import { blue, blueDark } from 'docs/src/modules/brandingTheme';
 const Root = styled('div')(({ theme }) => ({
   ...theme.typography.body1,
   color: theme.palette.text.primary,
-  wordBreak: 'break-word',
-  '& .anchor-link': {
-    marginTop: -96,
-    position: 'absolute',
+  '& strong': {
+    color: theme.palette.mode === 'dark' ? theme.palette.grey[200] : theme.palette.text.primary,
   },
+  wordBreak: 'break-word',
   '& pre': {
     margin: theme.spacing(2, 'auto'),
     padding: theme.spacing(2),
@@ -24,6 +23,7 @@ const Root = styled('div')(({ theme }) => ({
     overflow: 'auto',
     WebkitOverflowScrolling: 'touch',
     maxWidth: 'calc(100vw - 32px)',
+    maxHeight: '400px',
     [theme.breakpoints.up('md')]: {
       maxWidth: 'calc(100vw - 32px - 16px)',
     },
@@ -47,6 +47,7 @@ const Root = styled('div')(({ theme }) => ({
   // block code
   '& code[class*="language-"]': {
     color: '#fff',
+    padding: 0,
     backgroundColor: blueDark[800],
   },
   '& h1': {
@@ -230,8 +231,10 @@ const Root = styled('div')(({ theme }) => ({
     border: '1px solid',
     borderRadius: theme.shape.borderRadius,
     '& > p': {
-      margin: 0,
       color: 'inherit',
+      '&:last-child': {
+        margin: 0,
+      },
     },
     '& ul, li': {
       color: 'inherit',
@@ -255,6 +258,16 @@ const Root = styled('div')(({ theme }) => ({
           theme.palette.mode === 'dark'
             ? theme.palette.error[100] ?? '#fff'
             : theme.palette.error[800] ?? theme.palette.text.primary,
+      },
+      '& a': {
+        color:
+          theme.palette.mode === 'dark'
+            ? theme.palette.error[100] ?? '#fff'
+            : theme.palette.error[800] ?? theme.palette.text.primary,
+        textDecorationColor: alpha(theme.palette.error.main, 0.4),
+        '&:hover': {
+          textDecorationColor: 'inherit',
+        },
       },
     },
     '&.MuiCallout-info': {
@@ -298,6 +311,16 @@ const Root = styled('div')(({ theme }) => ({
             ? theme.palette.success[100] ?? '#fff'
             : theme.palette.success[900] ?? theme.palette.text.primary,
       },
+      '& a': {
+        color:
+          theme.palette.mode === 'dark'
+            ? theme.palette.success[100] ?? '#fff'
+            : theme.palette.success[900] ?? theme.palette.text.primary,
+        textDecorationColor: alpha(theme.palette.success.main, 0.4),
+        '&:hover': {
+          textDecorationColor: 'inherit',
+        },
+      },
     },
     '&.MuiCallout-warning': {
       color:
@@ -318,6 +341,16 @@ const Root = styled('div')(({ theme }) => ({
           theme.palette.mode === 'dark'
             ? theme.palette.warning[100] ?? '#fff'
             : theme.palette.warning[800] ?? theme.palette.text.primary,
+      },
+      '& a': {
+        color:
+          theme.palette.mode === 'dark'
+            ? theme.palette.warning[100] ?? '#fff'
+            : theme.palette.warning[800] ?? theme.palette.text.primary,
+        textDecorationColor: alpha(theme.palette.warning.main, 0.4),
+        '&:hover': {
+          textDecorationColor: 'inherit',
+        },
       },
     },
   },
@@ -380,13 +413,13 @@ const Root = styled('div')(({ theme }) => ({
     position: 'relative',
     '&:hover': {
       '& .MuiCode-copy': {
-        opacity: 1,
+        display: 'block',
       },
     },
   },
   '& .MuiCode-copy': {
     minWidth: 64,
-    opacity: 0,
+    display: 'none',
     backgroundColor: alpha(blueDark[600], 0.5),
     cursor: 'pointer',
     position: 'absolute',

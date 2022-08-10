@@ -1,2 +1,2 @@
-export { DesktopTimePicker as default } from '@mui/x-date-pickers/DesktopTimePicker';
-export type { DesktopTimePickerProps } from '@mui/x-date-pickers/DesktopTimePicker';
+export { default } from './DesktopTimePicker';
+export * from './DesktopTimePicker';

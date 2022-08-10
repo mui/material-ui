@@ -308,8 +308,8 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         ' ',
         'ArrowUp',
         'ArrowDown',
-        // The native select doesn't respond to enter on MacOS, but it's recommended by
-        // https://www.w3.org/TR/wai-aria-practices/examples/listbox/listbox-collapsible.html
+        // The native select doesn't respond to enter on macOS, but it's recommended by
+        // https://www.w3.org/WAI/ARIA/apg/example-index/combobox/combobox-select-only.html
         'Enter',
       ];
 
@@ -518,7 +518,7 @@ const SelectInput = React.forwardRef(function SelectInput(props, ref) {
         onFocus={onFocus}
         {...SelectDisplayProps}
         ownerState={ownerState}
-        className={clsx(classes.select, className, SelectDisplayProps.className)}
+        className={clsx(SelectDisplayProps.className, classes.select, className)}
         // The id is required for proper a11y
         id={buttonId}
       >

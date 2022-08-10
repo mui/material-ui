@@ -84,6 +84,14 @@ ScopedCssBaseline.propTypes /* remove-proptypes */ = {
    * For browser support, check out https://caniuse.com/?search=color-scheme
    */
   enableColorScheme: PropTypes.bool,
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
 };
 
 export default ScopedCssBaseline;

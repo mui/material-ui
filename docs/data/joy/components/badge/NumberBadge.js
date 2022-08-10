@@ -17,22 +17,39 @@ export default function ColorBadge() {
       <Badge badgeContent={count} showZero={showZero}>
         <Typography fontSize="xl">🛍</Typography>
       </Badge>
-      <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-        <IconButton size="sm" onClick={() => setCount((c) => c - 1)}>
+      <Box
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: 2,
+          pt: 4,
+          borderTop: '1px solid',
+          borderColor: 'background.level1',
+        }}
+      >
+        <IconButton
+          size="sm"
+          variant="outlined"
+          onClick={() => setCount((c) => c - 1)}
+        >
           <Remove />
         </IconButton>
-        <Typography fontWeight="md" color="text.secondary">
+        <Typography fontWeight="md" textColor="text.secondary">
           {count}
         </Typography>
-        <IconButton size="sm" onClick={() => setCount((c) => c + 1)}>
+        <IconButton
+          size="sm"
+          variant="outlined"
+          onClick={() => setCount((c) => c + 1)}
+        >
           <Add />
         </IconButton>
+        <Checkbox
+          onChange={(event) => setShowZero(event.target.checked)}
+          checked={showZero}
+          label="show zero"
+        />
       </Box>
-      <Checkbox
-        onChange={(event) => setShowZero(event.target.checked)}
-        checked={showZero}
-        label="show zero"
-      />
     </Box>
   );
 }

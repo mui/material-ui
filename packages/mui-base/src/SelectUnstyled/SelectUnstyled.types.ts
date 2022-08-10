@@ -1,11 +1,12 @@
 import * as React from 'react';
-import { Simplify } from '@mui/types';
+import { DefaultComponentProps, OverrideProps, Simplify } from '@mui/types';
 import {
   SelectOption,
   UseSelectButtonSlotProps,
   UseSelectListboxSlotProps,
 } from './useSelect.types';
 import PopperUnstyled, { PopperUnstyledProps } from '../PopperUnstyled';
+import { SlotComponentProps } from '../utils';
 
 export interface SelectUnstyledComponentsPropsOverrides {}
 
@@ -17,7 +18,6 @@ export interface SelectUnstyledCommonProps {
   autoFocus?: boolean;
   children?: React.ReactNode;
   className?: string;
-  component?: React.ElementType;
   /**
    * If `true`, the select is disabled.
    * @default false
@@ -28,6 +28,11 @@ export interface SelectUnstyledCommonProps {
    * @default false
    */
   defaultListboxOpen?: boolean;
+  /**
+   * `id` attribute of the listbox element.
+   * Also used to derive the `id` attributes of options.
+   */
+  listboxId?: string;
   /**
    * Controls the open state of the select's listbox.
    * @default undefined
@@ -40,7 +45,7 @@ export interface SelectUnstyledCommonProps {
   onListboxOpenChange?: (isOpen: boolean) => void;
 }
 
-export interface SelectUnstyledProps<TValue extends {}> extends SelectUnstyledCommonProps {
+export interface SelectUnstyledOwnProps<TValue extends {}> extends SelectUnstyledCommonProps {
   /**
    * The components used for each slot inside the Select.
    * Either a string to use a HTML element or a component.
@@ -56,11 +61,21 @@ export interface SelectUnstyledProps<TValue extends {}> extends SelectUnstyledCo
    * @default {}
    */
   componentsProps?: {
-    root?: React.ComponentPropsWithRef<'button'> & SelectUnstyledComponentsPropsOverrides;
-    listbox?: React.ComponentPropsWithRef<'ul'> & SelectUnstyledComponentsPropsOverrides;
-    // PopperUnstyled has a required prop: open, but it is not necessary to provide it in componentsProps.
-    popper?: Partial<React.ComponentPropsWithRef<typeof PopperUnstyled>> &
-      SelectUnstyledComponentsPropsOverrides;
+    root?: SlotComponentProps<
+      'button',
+      SelectUnstyledComponentsPropsOverrides,
+      SelectUnstyledOwnerState<TValue>
+    >;
+    listbox?: SlotComponentProps<
+      'button',
+      SelectUnstyledComponentsPropsOverrides,
+      SelectUnstyledOwnerState<TValue>
+    >;
+    popper?: SlotComponentProps<
+      typeof PopperUnstyled,
+      SelectUnstyledComponentsPropsOverrides,
+      SelectUnstyledOwnerState<TValue>
+    >;
   };
   /**
    * The default selected value. Use when the component is not controlled.
@@ -81,7 +96,40 @@ export interface SelectUnstyledProps<TValue extends {}> extends SelectUnstyledCo
   value?: TValue | null;
 }
 
-export interface SelectUnstyledOwnerState<TValue> extends SelectUnstyledProps<TValue> {
+export interface SelectUnstyledTypeMap<
+  TValue extends {},
+  P = {},
+  D extends React.ElementType = 'button',
+> {
+  props: P & SelectUnstyledOwnProps<TValue>;
+  defaultComponent: D;
+}
+
+export type SelectUnstyledProps<
+  TValue extends {},
+  D extends React.ElementType = SelectUnstyledTypeMap<TValue>['defaultComponent'],
+> = OverrideProps<SelectUnstyledTypeMap<TValue, {}, D>, D> & {
+  component?: D;
+};
+
+// OverridableComponent cannot be used below as SelectUnstyled's props are generic.
+export interface SelectUnstyledType {
+  <TValue extends {}, C extends React.ElementType>(
+    props: {
+      /**
+       * The component used for the root node.
+       * Either a string to use a HTML element or a component.
+       */
+      component: C;
+    } & OverrideProps<SelectUnstyledTypeMap<TValue>, C>,
+  ): JSX.Element | null;
+  <TValue extends {}>(
+    props: DefaultComponentProps<SelectUnstyledTypeMap<TValue>>,
+  ): JSX.Element | null;
+  propTypes?: any;
+}
+
+export interface SelectUnstyledOwnerState<TValue> extends SelectUnstyledOwnProps<TValue> {
   active: boolean;
   disabled: boolean;
   focusVisible: boolean;
@@ -90,7 +138,7 @@ export interface SelectUnstyledOwnerState<TValue> extends SelectUnstyledProps<TV
 
 export type SelectUnstyledRootSlotProps<TValue> = Simplify<
   UseSelectButtonSlotProps & {
-    className: string;
+    className?: string;
     children?: React.ReactNode;
     ownerState: SelectUnstyledOwnerState<TValue>;
   }
@@ -98,7 +146,7 @@ export type SelectUnstyledRootSlotProps<TValue> = Simplify<
 
 export type SelectUnstyledListboxSlotProps<TValue> = Simplify<
   UseSelectListboxSlotProps & {
-    className: string;
+    className?: string;
     children?: React.ReactNode;
     ownerState: SelectUnstyledOwnerState<TValue>;
   }
@@ -106,8 +154,8 @@ export type SelectUnstyledListboxSlotProps<TValue> = Simplify<
 
 export type SelectUnstyledPopperSlotProps<TValue> = {
   anchorEl: PopperUnstyledProps['anchorEl'];
-  children?: React.ReactNode;
-  className: string | undefined;
+  children?: PopperUnstyledProps['children'];
+  className?: string;
   disablePortal: PopperUnstyledProps['disablePortal'];
   open: boolean;
   ownerState: SelectUnstyledOwnerState<TValue>;
