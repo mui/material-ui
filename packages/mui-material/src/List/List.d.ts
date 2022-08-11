@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { OverridableStringUnion } from '@mui/types';
 import { SxProps } from '@mui/system';
 import { Theme } from '..';
 import { OverridableComponent, OverridableTypeMap, OverrideProps } from '../OverridableComponent';
@@ -41,7 +40,7 @@ export interface ListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
      * The variant to use.
      * @default 'default'
      */
-    variant?: OverridableStringUnion<'default', ListPropsVariantOverrides>;
+    variant?: ListPropsVariantOverrides;
   };
   defaultComponent: D;
 }

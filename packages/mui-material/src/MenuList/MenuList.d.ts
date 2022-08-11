@@ -1,43 +1,49 @@
 import * as React from 'react';
+import { OverridableStringUnion } from '@mui/types';
 import { ExtendList, ExtendListTypeMap } from '../List';
 import { OverrideProps } from '../OverridableComponent';
 
-export type MenuListTypeMap<P = {}, D extends React.ElementType = 'ul'> = ExtendListTypeMap<{
-  props: P & {
-    /**
-     * If `true`, will focus the `[role="menu"]` container and move into tab order.
-     * @default false
-     */
-    autoFocus?: boolean;
-    /**
-     * If `true`, will focus the first menuitem if `variant="menu"` or selected item
-     * if `variant="selectedMenu"`.
-     * @default false
-     */
-    autoFocusItem?: boolean;
-    /**
-     * MenuList contents, normally `MenuItem`s.
-     */
-    children?: React.ReactNode;
-    /**
-     * If `true`, will allow focus on disabled items.
-     * @default false
-     */
-    disabledItemsFocusable?: boolean;
-    /**
-     * If `true`, the menu items will not wrap focus.
-     * @default false
-     */
-    disableListWrap?: boolean;
-    /**
-     * The variant to use. Use `menu` to prevent selected items from impacting the initial focus
-     * and the vertical alignment relative to the anchor element.
-     * @default 'selectedMenu'
-     */
-    variant?: 'menu' | 'selectedMenu';
-  };
-  defaultComponent: D;
-}>;
+export interface MenuListPropsVariantOverrides {}
+
+export type MenuListTypeMap<P = {}, D extends React.ElementType = 'ul'> = Omit<
+  ExtendListTypeMap<{
+    props: P & {
+      /**
+       * If `true`, will focus the `[role="menu"]` container and move into tab order.
+       * @default false
+       */
+      autoFocus?: boolean;
+      /**
+       * If `true`, will focus the first menuitem if `variant="menu"` or selected item
+       * if `variant="selectedMenu"`.
+       * @default false
+       */
+      autoFocusItem?: boolean;
+      /**
+       * MenuList contents, normally `MenuItem`s.
+       */
+      children?: React.ReactNode;
+      /**
+       * If `true`, will allow focus on disabled items.
+       * @default false
+       */
+      disabledItemsFocusable?: boolean;
+      /**
+       * If `true`, the menu items will not wrap focus.
+       * @default false
+       */
+      disableListWrap?: boolean;
+      /**
+       * The variant to use. Use `menu` to prevent selected items from impacting the initial focus
+       * and the vertical alignment relative to the anchor element.
+       * @default 'selectedMenu'
+       */
+      variant?: OverridableStringUnion<'menu' | 'selectedMenu', MenuListPropsVariantOverrides>;
+    };
+    defaultComponent: D;
+  }>,
+  'variant'
+>;
 
 export type MenuListClassKey = keyof NonNullable<MenuListTypeMap['props']['classes']>;
 

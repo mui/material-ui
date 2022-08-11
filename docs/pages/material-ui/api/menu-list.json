@@ -6,7 +6,10 @@
     "disabledItemsFocusable": { "type": { "name": "bool" } },
     "disableListWrap": { "type": { "name": "bool" } },
     "variant": {
-      "type": { "name": "enum", "description": "'menu'<br>&#124;&nbsp;'selectedMenu'" },
+      "type": {
+        "name": "shape",
+        "description": "{ __@iterator@91: func, anchor: func, at: func, big: func, blink: func, bold: func, charAt: func, charCodeAt: func, codePointAt: func, concat: func, endsWith: func, fixed: func, fontcolor: func, fontsize: func, includes: func, indexOf: func, italics: func, lastIndexOf: func, length: number, link: func, localeCompare: func, match: func, matchAll: func, normalize: func, padEnd: func, padStart: func, repeat: func, replace: func, search: func, slice: func, small: func, split: func, startsWith: func, strike: func, sub: func, substr: func, substring: func, sup: func, toLocaleLowerCase: func, toLocaleUpperCase: func, toLowerCase: func, toString: func, toUpperCase: func, trim: func, trimEnd: func, trimLeft: func, trimRight: func, trimStart: func, valueOf: func }"
+      },
       "default": "'selectedMenu'"
     }
   },
