@@ -17,7 +17,7 @@ Para que um componente esteja pronto para ir para o core, são considerados os s
 
 ## Instalação
 
-To install and save in your `package.json` dependencies, run the command below using **npm**:
+Para instalar e salvar as dependências do seu `pacote.json`, execute o seguinte comando **npm** abaixo:
 
 ```sh
 npm install @mui/lab @mui/material
@@ -29,11 +29,11 @@ Or **yarn**:
 yarn add @mui/lab @mui/material
 ```
 
-Note that the lab has a peer dependency on the Material UI components.
+O lab tem dependências com os componentes do core.
 
 ## TypeScript
 
-In order to benefit from the [CSS overrides](/material-ui/customization/theme-components/#global-style-overrides) and [default prop customization](/material-ui/customization/theme-components/#default-props) with the theme, TypeScript users need to import the following types. Internally, it uses [module augmentation](/material-ui/guides/typescript/#customization-of-theme) to extend the default theme structure with the extension components available in the lab.
+Para se beneficiar de [CSS overrides](/customization/theme-components/#global-style-overrides) e [customização de propriedades padrão](/customization/theme-components/#default-props) com o tema, usuários de TypeScript precisam importar os seguintes tipos. Internamente, ele usa [module augmentation](/guides/typescript/#customization-of-theme) (recurso que nos permite adicionar funcionalidades extras a uma classe sem modificá-la e também estender e adicionar funcionalidades a uma biblioteca de terceiros que usamos em nosso aplicativo.) para estender a estrutura padrão do tema com os componentes de extensão disponíveis no lab.
 
 ```tsx
 // Quando utilizando TypeScript 4.x e acima
