@@ -8,8 +8,7 @@ Sizing 样式函数支持不同的属性输入类型：
 
 ```js
 function transform(value) {
-  return value <= 1 ? `${value * 100}%` : value;
-} `${value * 100}%` : value;
+  return value <= 1 && value !== 0 ? `${value * 100}%` : value;
 }
 ```
 
