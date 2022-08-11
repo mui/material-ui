@@ -2,6 +2,7 @@ import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Collapse from '@mui/material/Collapse';
+import Chip from '@mui/material/Chip';
 import ClickAwayListener from '@mui/base/ClickAwayListener';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
@@ -63,6 +64,12 @@ const PRODUCTS = [
     description: 'Our components available in your favorite design tool.',
     href: ROUTES.productDesignKits,
   },
+  {
+    name: 'MUI Toolpad',
+    description: 'Low-code tool builder, powered by MUI.',
+    href: ROUTES.productToolpad,
+    chip: 'Alpha',
+  },
 ];
 
 const DOCS = [
@@ -90,6 +97,12 @@ const DOCS = [
     name: 'MUI X',
     description: 'Advanced and powerful components for complex use cases.',
     href: ROUTES.advancedComponents,
+  },
+  {
+    name: 'MUI Toolpad',
+    description: 'Low-code tool builder, powered by MUI.',
+    href: ROUTES.toolpadDocs,
+    chip: 'Alpha',
   },
 ];
 
@@ -188,7 +201,16 @@ export default function HeaderNavDropdown() {
                           noLinkStyle
                           sx={{ flexDirection: 'column', alignItems: 'initial' }}
                         >
-                          <div>{item.name}</div>
+                          <Box
+                            sx={{
+                              display: 'flex',
+                              flexDirection: 'row',
+                              justifyContent: 'space-between',
+                            }}
+                          >
+                            <div>{item.name}</div>
+                            {item.chip ? <Chip size="small" label={item.chip} /> : null}
+                          </Box>
                           <Typography variant="body2" color="text.secondary">
                             {item.description}
                           </Typography>
@@ -232,7 +254,16 @@ export default function HeaderNavDropdown() {
                           noLinkStyle
                           sx={{ flexDirection: 'column', alignItems: 'initial' }}
                         >
-                          <div>{item.name}</div>
+                          <Box
+                            sx={{
+                              display: 'flex',
+                              flexDirection: 'row',
+                              justifyContent: 'space-between',
+                            }}
+                          >
+                            <div>{item.name}</div>
+                            {item.chip ? <Chip size="small" label={item.chip} /> : null}
+                          </Box>
                           <Typography variant="body2" color="text.secondary">
                             {item.description}
                           </Typography>

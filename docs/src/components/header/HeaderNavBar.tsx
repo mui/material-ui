@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
+import Chip from '@mui/material/Chip';
 import Popper from '@mui/material/Popper';
 import Paper from '@mui/material/Paper';
 import { unstable_debounce as debounce } from '@mui/utils';
@@ -45,7 +46,13 @@ const Navigation = styled('nav')(({ theme }) => ({
   },
 }));
 
-const PRODUCT_IDS = ['product-core', 'product-advanced', 'product-templates', 'product-design'];
+const PRODUCT_IDS = [
+  'product-core',
+  'product-advanced',
+  'product-templates',
+  'product-design',
+  'product-toolpad',
+];
 
 type ProductSubMenuProps = {
   icon: React.ReactElement;
@@ -312,6 +319,30 @@ export default function HeaderNavBar() {
                         icon={<IconImage name="product-designkits" />}
                         name="Design kits"
                         description="Our components available in your favorite design tool."
+                        onKeyDown={handleKeyDown}
+                      />
+                    </li>
+                    <li role="none">
+                      <ProductSubMenu
+                        id={PRODUCT_IDS[4]}
+                        role="menuitem"
+                        href={ROUTES.productToolpad}
+                        icon={<IconImage name="product-toolpad" />}
+                        name={
+                          <Box
+                            sx={{
+                              display: 'flex',
+                              component: 'span',
+                              flexDirection: 'row',
+                              justifyContent: 'space-between',
+                              width: '150%',
+                            }}
+                          >
+                            <div>MUI&nbsp;Toolpad</div>
+                            <Chip size="small" label={'Alpha'} />
+                          </Box>
+                        }
+                        description="Low-code tool builder, powered by MUI."
                         onKeyDown={handleKeyDown}
                       />
                     </li>
