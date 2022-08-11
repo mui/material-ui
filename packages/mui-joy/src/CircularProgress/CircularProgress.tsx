@@ -40,12 +40,16 @@ const circularDashKeyframe = keyframes`
 `;
 
 const useUtilityClasses = (ownerState: CircularProgressProps) => {
-  const { variant, color } = ownerState;
+  const { determinate, color } = ownerState;
 
   const slots = {
-    root: ['root', variant, color && `color${capitalize(color)}`],
+    root: [
+      'root',
+      determinate ? 'determinate' : 'indeterminate',
+      color && `color${capitalize(color)}`,
+    ],
     svg: ['svg'],
-    circle: ['circle', variant && `circle${capitalize(variant)}`],
+    circle: ['circle', determinate ? `circleDeterminate` : 'circleIndeterminate'],
   };
 
   return composeClasses(slots, getCircularProgressUtilityClass, {});
@@ -60,7 +64,7 @@ const CircularProgressRoot = styled('span', {
     return [
       {
         display: 'inline-block',
-        ...(ownerState.variant === 'determinate' && {
+        ...(ownerState.determinate && {
           transition: 'transform 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
         }),
         color: theme.vars.palette[ownerState.color!].mainChannel,
@@ -80,7 +84,7 @@ const CircularProgressRoot = styled('span', {
     ];
   },
   ({ ownerState }) =>
-    ownerState.variant === 'indeterminate' &&
+    !ownerState.determinate &&
     css`
       animation: ${circularRotateKeyframe} 1.4s linear infinite;
     `,
@@ -103,17 +107,17 @@ const CircularProgressCircle = styled('circle', {
     stroke: theme.vars.palette[ownerState.color!]['500'],
     // Use butt to follow the specification, by chance, it's already the default CSS value.
     // strokeLinecap: 'butt',
-    ...(ownerState.variant === 'determinate' && {
+    ...(ownerState.determinate && {
       transition: 'stroke-dashoffset 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
     }),
-    ...(ownerState.variant === 'indeterminate' && {
+    ...(!ownerState.determinate && {
       // Some default value that looks fine waiting for the animation to kicks in.
       strokeDasharray: '80px, 200px',
       strokeDashoffset: 0, // Add the unit to fix a Edge 16 and below bug.
     }),
   }),
   ({ ownerState }) =>
-    ownerState.variant === 'indeterminate' &&
+    !ownerState.determinate &&
     css`
       animation: ${circularDashKeyframe} 1.4s ease-in-out infinite;
     `,
@@ -135,7 +139,7 @@ const CircularProgress = React.forwardRef(function CircularProgress(inProps, ref
     thickness = 3.6,
     style,
     value = 0,
-    variant = 'indeterminate',
+    determinate = false,
     ...other
   } = props;
 
@@ -145,7 +149,7 @@ const CircularProgress = React.forwardRef(function CircularProgress(inProps, ref
     size,
     thickness,
     value,
-    variant,
+    determinate,
   };
 
   const classes = useUtilityClasses(ownerState);
@@ -154,7 +158,7 @@ const CircularProgress = React.forwardRef(function CircularProgress(inProps, ref
   const rootStyle: { transform?: string } = {};
   const rootProps: { 'aria-valuenow'?: number } = {};
 
-  if (variant === 'determinate') {
+  if (determinate) {
     const circumference = 2 * Math.PI * ((SIZE - thickness) / 2);
     circleStyle.strokeDasharray = circumference.toFixed(3);
     rootProps['aria-valuenow'] = Math.round(value);
@@ -211,6 +215,12 @@ CircularProgress.propTypes /* remove-proptypes */ = {
    */
   color: PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
   /**
+   * The boolean to select a variant.
+   * Use indeterminate when there is no progress value.
+   * @default false
+   */
+  determinate: PropTypes.bool,
+  /**
    * The size of the component.
    * It accepts theme values between 'sm' and 'lg'.
    * @default 'md'
@@ -239,12 +249,6 @@ CircularProgress.propTypes /* remove-proptypes */ = {
    * @default 0
    */
   value: PropTypes.number,
-  /**
-   * The variant to use.
-   * Use indeterminate when there is no progress value.
-   * @default 'indeterminate'
-   */
-  variant: PropTypes.oneOf(['determinate', 'indeterminate']),
 } as any;
 
 export default CircularProgress;
