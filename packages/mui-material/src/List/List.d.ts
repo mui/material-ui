@@ -49,7 +49,7 @@ export interface ListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
  * utility to create component types that inherit props from List.
  */
 export interface ExtendListTypeMap<M extends OverridableTypeMap> {
-  props: M['props'] & ListTypeMap['props'];
+  props: M['props'] & Omit<ListTypeMap['props'], 'variant'>;
   defaultComponent: M['defaultComponent'];
 }
 
