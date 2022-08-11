@@ -4,7 +4,6 @@ title: Unstyled React Slider component and hook
 components: SliderUnstyled
 githubLabel: 'component: slider'
 waiAria: 'https://www.w3.org/TR/wai-aria-practices/#slider'
-packageName: '@mui/base'
 ---
 
 # Unstyled slider
@@ -23,7 +22,7 @@ import SliderUnstyled from '@mui/base/SliderUnstyled';
 
 ## Discrete sliders
 
-O controle deslizante mais básico é _contínuo_, o que significa que não tem valores pré-definidos  para o usuário selecionar. Isso é adequado para situações em que um valor aproximado é bom o suficiente para o usuário, como brilho ou volume.
+O controle deslizante mais básico é _contínuo_, o que significa que não tem valores pré-definidos para o usuário selecionar. Isso é adequado para situações em que um valor aproximado é bom o suficiente para o usuário, como brilho ou volume.
 
 But if your users need more precise options, you can create a discrete slider that snaps the thumb to pre-defined stops along the bar.
 
