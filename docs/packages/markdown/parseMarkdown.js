@@ -398,7 +398,7 @@ function prepareMarkdown(config) {
         throw new Error(
           [
             `The title "${title}" is too long (${title.length} characters).`,
-            'It needs to have fewer than 70 characters, ideally less than 60, see for more details:',
+            'It needs to have fewer than 70 characters—ideally less than 60. For more details, see:',
             'https://developers.google.com/search/docs/advanced/appearance/title-link',
           ].join('\n'),
         );
