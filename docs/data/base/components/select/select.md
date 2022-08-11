@@ -169,7 +169,7 @@ The `SelectUnstyled` component can be used with non-string values:
 {{"demo": "UnstyledSelectObjectValues.js", "defaultCodeOpen": false}}
 
 If you use a SelectUnstyled with object values in a form and post the form contents to a server, the selected value will be converted to JSON.
-You can change this behavior with the help of the `getFormValue` prop.
+You can change this behavior with the help of the `getSerializedValue` prop.
 
 {{"demo": "UnstyledSelectObjectValuesForm.js", "defaultCodeOpen": false}}
 

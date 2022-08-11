@@ -8,7 +8,7 @@
     "defaultListboxOpen": "If <code>true</code>, the select will be initially open.",
     "defaultValue": "The default selected value. Use when the component is not controlled.",
     "disabled": "If <code>true</code>, the select is disabled.",
-    "getFormValue": "A function to convert the currently selected value to a string. Used to set a value of a hidden input associated with the select, so that the selected value can be posted with a form.",
+    "getSerializedValue": "A function to convert the currently selected value to a string. Used to set a value of a hidden input associated with the select, so that the selected value can be posted with a form.",
     "listboxId": "<code>id</code> attribute of the listbox element. Also used to derive the <code>id</code> attributes of options.",
     "listboxOpen": "Controls the open state of the select&#39;s listbox.",
     "name": "Name of the element. For example used by the server to identify the fields in form submits. If the name is provided, the component will render a hidden input element that can be submitted to a server.",

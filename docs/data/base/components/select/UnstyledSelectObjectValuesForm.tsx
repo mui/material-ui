@@ -181,7 +181,7 @@ const characters: Character[] = [
 export default function UnstyledSelectObjectValues() {
   const [character, setCharacter] = React.useState<Character | null>(characters[0]);
 
-  const getFormValue = (option: SelectOption<Character> | null) => {
+  const getSerializedValue = (option: SelectOption<Character> | null) => {
     if (option?.value == null) {
       return '';
     }
@@ -210,12 +210,12 @@ export default function UnstyledSelectObjectValues() {
         <Button type="submit">Submit</Button>
       </form>
 
-      <Header>Custom getFormValue</Header>
+      <Header>Custom getSerializedValue</Header>
       <form onSubmit={handleSubmit}>
         <CustomSelect
           value={character}
           onChange={setCharacter}
-          getFormValue={getFormValue}
+          getSerializedValue={getSerializedValue}
           name="character"
         >
           {characters.map((c) => (

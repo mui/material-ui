@@ -91,7 +91,9 @@ export interface SelectUnstyledOwnProps<TValue extends {}> extends SelectUnstyle
    * Used to set a value of a hidden input associated with the select,
    * so that the selected value can be posted with a form.
    */
-  getFormValue?: (option: SelectOption<TValue> | null) => string | number;
+  getSerializedValue?: (
+    option: SelectOption<TValue> | null,
+  ) => React.InputHTMLAttributes<HTMLInputElement>['value'];
   /**
    * Callback fired when an option is selected.
    */

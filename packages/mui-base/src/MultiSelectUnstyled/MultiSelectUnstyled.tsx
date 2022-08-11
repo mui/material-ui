@@ -88,7 +88,7 @@ const MultiSelectUnstyled = React.forwardRef(function MultiSelectUnstyled<TValue
     defaultListboxOpen = false,
     defaultValue = [],
     disabled: disabledProp,
-    getFormValue = defaultFormValueProvider,
+    getSerializedValue = defaultFormValueProvider,
     listboxId,
     listboxOpen: listboxOpenProp,
     name,
@@ -241,7 +241,7 @@ const MultiSelectUnstyled = React.forwardRef(function MultiSelectUnstyled<TValue
         </Popper>
       )}
 
-      {name && <input type="hidden" name={name} value={getFormValue(selectedOptions)} />}
+      {name && <input type="hidden" name={name} value={getSerializedValue(selectedOptions)} />}
     </React.Fragment>
   );
 }) as MultiSelectUnstyledType;
@@ -300,11 +300,11 @@ MultiSelectUnstyled.propTypes /* remove-proptypes */ = {
    */
   disabled: PropTypes.bool,
   /**
-   * A function to convert the currently selected value to a string.
+   * A function to convert the currently selected values to a type accepted by HTML input.
    * Used to set a value of a hidden input associated with the select,
-   * so that the selected value can be posted with a form.
+   * so that the selected values can be posted with a form.
    */
-  getFormValue: PropTypes.func,
+  getSerializedValue: PropTypes.func,
   /**
    * `id` attribute of the listbox element.
    * Also used to derive the `id` attributes of options.

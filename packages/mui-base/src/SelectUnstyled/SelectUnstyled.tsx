@@ -80,7 +80,7 @@ const SelectUnstyled = React.forwardRef(function SelectUnstyled<TValue>(
     defaultValue,
     defaultListboxOpen = false,
     disabled: disabledProp,
-    getFormValue = defaultFormValueProvider,
+    getSerializedValue = defaultFormValueProvider,
     listboxId,
     listboxOpen: listboxOpenProp,
     name,
@@ -231,7 +231,7 @@ const SelectUnstyled = React.forwardRef(function SelectUnstyled<TValue>(
         </Popper>
       )}
 
-      {name && <input type="hidden" name={name} value={getFormValue(selectedOption)} />}
+      {name && <input type="hidden" name={name} value={getSerializedValue(selectedOption)} />}
     </React.Fragment>
   );
 }) as SelectUnstyledType;
@@ -293,7 +293,7 @@ SelectUnstyled.propTypes /* remove-proptypes */ = {
    * Used to set a value of a hidden input associated with the select,
    * so that the selected value can be posted with a form.
    */
-  getFormValue: PropTypes.func,
+  getSerializedValue: PropTypes.func,
   /**
    * `id` attribute of the listbox element.
    * Also used to derive the `id` attributes of options.

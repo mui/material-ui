@@ -49,11 +49,13 @@ export interface MultiSelectUnstyledOwnProps<TValue extends {}> extends SelectUn
    */
   defaultValue?: TValue[];
   /**
-   * A function to convert the currently selected value to a string.
+   * A function to convert the currently selected values to a type accepted by HTML input.
    * Used to set a value of a hidden input associated with the select,
-   * so that the selected value can be posted with a form.
+   * so that the selected values can be posted with a form.
    */
-  getFormValue?: (option: SelectOption<TValue>[]) => string | string[];
+  getSerializedValue?: (
+    option: SelectOption<TValue>[],
+  ) => React.InputHTMLAttributes<HTMLInputElement>['value'];
   /**
    * Callback fired when an option is selected.
    */

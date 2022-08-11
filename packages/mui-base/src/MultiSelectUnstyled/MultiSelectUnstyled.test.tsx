@@ -159,7 +159,7 @@ describe('MultiSelectUnstyled', () => {
       });
     });
 
-    it('transforms the selected value before posting using the getFormValue prop, if provided', function test() {
+    it('transforms the selected value before posting using the getSerializedValue prop, if provided', function test() {
       if (/jsdom/.test(window.navigator.userAgent)) {
         // FormData is not available in JSDOM
         this.skip();
@@ -179,7 +179,7 @@ describe('MultiSelectUnstyled', () => {
           <MultiSelectUnstyled
             defaultValue={[2, 3]}
             name="test-select"
-            getFormValue={customFormValueProvider}
+            getSerializedValue={customFormValueProvider}
           >
             <OptionUnstyled value={1}>1</OptionUnstyled>
             <OptionUnstyled value={2}>2</OptionUnstyled>
