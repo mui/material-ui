@@ -8,7 +8,7 @@ As funções de estilo de dimensionamento suportam diferentes tipos de entrada d
 
 ```js
 function transform(value) {
-  return value <= 1 ? `${value * 100}%` : value;
+  return value <= 1 && value !== 0 ? `${value * 100}%` : value;
 }
 ```
 
