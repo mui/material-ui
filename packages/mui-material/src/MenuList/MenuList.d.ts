@@ -2,8 +2,6 @@ import * as React from 'react';
 import { ExtendList, ExtendListTypeMap } from '../List';
 import { OverrideProps } from '../OverridableComponent';
 
-export interface MenuListPropsVariantOverrides {}
-
 export type MenuListTypeMap<P = {}, D extends React.ElementType = 'ul'> = ExtendListTypeMap<{
   props: P & {
     /**
