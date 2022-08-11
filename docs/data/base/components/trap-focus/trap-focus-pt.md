@@ -75,3 +75,9 @@ You can disable this behavior and make it lazy with the `disableAutoFocus` prop.
 The following demo uses the [`Portal`](/base/react-portal/) component to render a subset of the `TrapFocus` children into a new "subtree" outside of the current DOM hierarchy, so they are no longer part of the focus loop:
 
 {{"demo": "PortalTrapFocus.js"}}
+
+### Using a toggle inside the trap
+
+The most common use case for the `TrapFocus` component is to maintain focus within a [modal](/base/react-modal/) component that is entirely separate from the element that opens the modal. But you can also create a toggle button for the `open` prop of the `TrapFocus` component that is stored inside of the component itself, as shown in the following demo:
+
+{{"demo": "ContainedToggleTrappedFocus.js"}}
