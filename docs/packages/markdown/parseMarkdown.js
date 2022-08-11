@@ -394,11 +394,11 @@ function prepareMarkdown(config) {
         throw new Error(`Missing title in the page: ${location}`);
       }
 
-      if (title.length > 60) {
+      if (title.length > 70) {
         throw new Error(
           [
             `The title "${title}" is too long (${title.length} characters).`,
-            'It needs to have fewer than 60 characters, see for more details:',
+            'It needs to have fewer than 70 characters, ideally less than 60, see for more details:',
             'https://developers.google.com/search/docs/advanced/appearance/title-link',
           ].join('\n'),
         );
