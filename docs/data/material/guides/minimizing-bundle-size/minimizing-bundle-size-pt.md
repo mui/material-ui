@@ -18,24 +18,34 @@ import { Button, TextField } from '@material-ui/core';
 
 ## Ambiente de desenvolvimento
 
-Os pacotes de desenvolvimento podem conter a biblioteca completa que pode deixar **o tempo de inicialização mais lento**. Isso é especialmente perceptível se você importar de `@material-ui/icons`. Os tempos de inicialização podem ser aproximadamente 6 vezes mais lentos do que sem utilizar importações nomeadas da API de nível superior.
+Os pacotes de desenvolvimento podem conter a biblioteca completa que pode deixar **o tempo de inicialização mais lento**. This is especially noticeable if you use named imports from `@mui/icons-material`, which can be up to six times slower than the default import. For example, between the following two imports, the first (named) can be significantly slower than the second (default):
 
-Se isso é um problema para você, tem várias opções:
+```js
+// 🐌 Named
+import { Delete } from '@mui/icons-material';
+```
 
-### Opção 1
+```js
+// 🚀 Default
+import Delete from '@mui/icons-material/Delete';
+```
+
+If this is an issue for you, you have two options:
+
+### Option one: use path imports
 
 Você pode usar as importações de caminho para evitar puxar módulos não utilizados. Por exemplo, use:
 
 ```js
-// 🚀 Rápida
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
+// 🚀 Fast
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
 ```
 
 em vez de importações de nível superior (sem um plugin do Babel):
 
 ```js
-import { Button, TextField } from '@material-ui/core';
+import { Button, TextField } from '@mui/material';
 ```
 
 Esta é a opção que apresentamos em todas as demonstrações, pois não exige qualquer configuração. É o mais recomendável para autores de biblioteca que estendem os componentes. Vá até [Opção 2](#option-2) para uma abordagem que produz uma melhor DX e UX.
@@ -46,18 +56,18 @@ Esteja ciente de que apenas damos suporte para as importações de primeiro e se
 
 ```js
 // ✅ OK
-import { Add as AddIcon } from '@material-ui/icons';
-import { Tabs } from '@material-ui/core';
-//                                 ^^^^ 1° ou nível superior
+import { Add as AddIcon } from '@mui/icons-material';
+import { Tabs } from '@mui/material';
+//                         ^^^^^^^^ 1st or top-level
 
 // ✅ OK
-import AddIcon from '@material-ui/icons/Add';
-import Tabs from '@material-ui/core/Tabs';
-//                                  ^^^^ 2° nível
+import AddIcon from '@mui/icons-material/Add';
+import Tabs from '@mui/material/Tabs';
+//                              ^^^^ 2nd level
 
-// ❌ NÃO OK
-import TabIndicator from '@material-ui/core/Tabs/TabIndicator';
-//                                               ^^^^^^^^^^^^ 3° nível
+// ❌ NOT OK
+import TabIndicator from '@mui/material/Tabs/TabIndicator';
+//                                           ^^^^^^^^^^^^ 3rd level
 ```
 
 If you're using `eslint` you can catch problematic imports with the [`no-restricted-imports` rule](https://eslint.org/docs/latest/rules/no-restricted-imports). A configuração `.eslintrc` a seguir irá capturar as problemáticas das importações dos pacotes `@material-ui`:
@@ -68,23 +78,23 @@ If you're using `eslint` you can catch problematic imports with the [`no-restric
     "no-restricted-imports": [
       "error",
       {
-        "patterns": ["@material-ui/*/*/*", "!@material-ui/core/test-utils/*"]
+        "patterns": ["@mui/*/*/*", "!@mui/material/test-utils/*"]
       }
     ]
   }
 }
 ```
 
-### Opção 2
+### Option two: use a Babel plugin
 
-Esta opção fornece a melhor Experiência do Usuário e Experiência do Desenvolvedor:
+This option provides the best user experience and developer experience:
 
 - UX: O plugin Babel permite tree-shaking de nível superior, mesmo se o seu bundler não suporte.
 - DX: O plugin Babel torna o tempo de inicialização no modo de desenvolvimento tão rápido quanto a opção 1.
 - DX: Essa sintaxe reduz a duplicação de código, exigindo apenas uma única importação para vários módulos. Em geral, o código é mais fácil de ser lido, e é menos provável que você cometa um erro ao importar um novo módulo.
 
 ```js
-import { Button, TextField } from '@material-ui/core';
+import { Button, TextField } from '@mui/material';
 ```
 
 No entanto, você precisa aplicar as duas etapas seguintes corretamente.
@@ -187,9 +197,9 @@ Desfrute do tempo de inicialização significativamente mais rápido.
 Finalmente, você pode converter sua base de código existente com esse [codemod top-level-imports](https://www.npmjs.com/package/@material-ui/codemod#top-level-imports). Ele executará as seguintes alterações:
 
 ```diff
--import Button from '@material-ui/core/Button';
--import TextField from '@material-ui/core/TextField';
-+import { Button, TextField } from '@material-ui/core';
+-import Button from '@mui/material/Button';
+-import TextField from '@mui/material/TextField';
++import { Button, TextField } from '@mui/material';
 ```
 
 ## Pacotes disponíveis
