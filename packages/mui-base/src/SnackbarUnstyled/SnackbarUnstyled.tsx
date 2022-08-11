@@ -7,11 +7,12 @@ import {
   SnackbarUnstyledProps,
   SnackbarUnstyledRootSlotProps,
   SnackbarUnstyledTypeMap,
+  SnackbarUnstyledClickAwayListenerSlotProps,
 } from './SnackbarUnstyled.types';
 import composeClasses from '../composeClasses';
 import { getSnackbarUnstyledUtilityClass } from './snackbarUnstyledClasses';
 import useSnackbar from './useSnackbar';
-import { resolveComponentProps, useSlotProps, WithOptionalOwnerState } from '../utils';
+import { useSlotProps, WithOptionalOwnerState } from '../utils';
 
 const useUtilityClasses = () => {
   const slots = {
@@ -69,16 +70,7 @@ const SnackbarUnstyled = React.forwardRef(function SnackbarUnstyled(
 
   const rootProps: WithOptionalOwnerState<SnackbarUnstyledRootSlotProps> = useSlotProps({
     elementType: Root,
-    getSlotProps: (eventHandlers) =>
-      getRootProps({
-        ...eventHandlers,
-        onBlur: resolveComponentProps(componentsProps.root, ownerState)?.onBlur || onBlur,
-        onFocus: resolveComponentProps(componentsProps.root, ownerState)?.onFocus || onFocus,
-        onMouseEnter:
-          resolveComponentProps(componentsProps.root, ownerState)?.onMouseEnter || onMouseEnter,
-        onMouseLeave:
-          resolveComponentProps(componentsProps.root, ownerState)?.onMouseLeave || onMouseLeave,
-      }),
+    getSlotProps: getRootProps,
     externalForwardedProps: other,
     externalSlotProps: componentsProps.root,
     additionalProps: {
@@ -88,13 +80,27 @@ const SnackbarUnstyled = React.forwardRef(function SnackbarUnstyled(
     className: classes.root,
   });
 
+  const clickAwayListenerProps: WithOptionalOwnerState<
+    Omit<SnackbarUnstyledClickAwayListenerSlotProps, 'children'>
+  > = useSlotProps({
+    elementType: ClickAwayListener,
+    externalSlotProps: componentsProps.clickAwayListener,
+    additionalProps: {
+      onClickAway,
+    },
+    ownerState,
+  });
+
+  // ClickAwayListener doesn't support ownerState
+  delete clickAwayListenerProps.ownerState;
+
   // So that we only render active snackbars.
   if (!open && exited) {
     return null;
   }
 
   return (
-    <ClickAwayListener onClickAway={onClickAway} {...componentsProps.clickAwayListener}>
+    <ClickAwayListener {...clickAwayListenerProps}>
       <Root {...rootProps}>{children}</Root>
     </ClickAwayListener>
   );

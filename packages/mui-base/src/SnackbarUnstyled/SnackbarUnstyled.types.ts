@@ -1,6 +1,6 @@
 import React from 'react';
 import { OverrideProps } from '@mui/types';
-import { ClickAwayListenerProps } from '../ClickAwayListener';
+import ClickAwayListener, { ClickAwayListenerProps } from '../ClickAwayListener';
 import { UseSnackbarParameters } from './useSnackbar.types';
 import { SlotComponentProps } from '../utils';
 
@@ -21,7 +21,11 @@ export interface SnackbarUnstyledOwnProps extends Omit<UseSnackbarParameters, 'r
    * @default {}
    */
   componentsProps?: {
-    clickAwayListener?: Partial<ClickAwayListenerProps>;
+    clickAwayListener?: SlotComponentProps<
+      typeof ClickAwayListener,
+      SnackbarUnstyledComponentsPropsOverrides,
+      SnackbarUnstyledOwnerState
+    >;
     root?: SlotComponentProps<
       'div',
       SnackbarUnstyledComponentsPropsOverrides,
@@ -55,3 +59,7 @@ export type SnackbarUnstyledRootSlotProps = {
   children?: React.ReactNode;
   ref: React.Ref<any>;
 };
+
+export interface SnackbarUnstyledClickAwayListenerSlotProps extends ClickAwayListenerProps {
+  ownerState: SnackbarUnstyledOwnerState;
+}

@@ -5,6 +5,7 @@ import {
   SnackbarCloseReason,
   UseSnackbarRootSlotProps,
 } from './useSnackbar.types';
+import extractEventHandlers from '../utils/extractEventHandlers';
 
 /**
  * The basic building block for creating custom snackbar.
@@ -157,18 +158,26 @@ export default function useSnackbar(parameters: UseSnackbarParameters) {
   }, [disableWindowBlurListener, handleResume, open]);
 
   const getRootProps = <TOther extends Record<string, React.EventHandler<any> | undefined> = {}>(
-    otherProps: TOther = {} as TOther,
-  ): UseSnackbarRootSlotProps<TOther> => ({
-    ref,
-    // ClickAwayListener adds an `onClick` prop which results in the alert not being announced.
-    // See https://github.com/mui/material-ui/issues/29080
-    role: 'presentation',
-    ...otherProps,
-    onBlur: createHandleBlur(otherProps),
-    onFocus: createHandleFocus(otherProps),
-    onMouseEnter: createMouseEnter(otherProps),
-    onMouseLeave: createMouseLeave(otherProps),
-  });
+    otherHandlers: TOther = {} as TOther,
+  ): UseSnackbarRootSlotProps<TOther> => {
+    const propsEventHandlers = extractEventHandlers(parameters) as Partial<UseSnackbarParameters>;
+    const externalEventHandlers = {
+      ...propsEventHandlers,
+      ...otherHandlers,
+    };
+
+    return {
+      ref,
+      // ClickAwayListener adds an `onClick` prop which results in the alert not being announced.
+      // See https://github.com/mui/material-ui/issues/29080
+      role: 'presentation',
+      ...externalEventHandlers,
+      onBlur: createHandleBlur(externalEventHandlers),
+      onFocus: createHandleFocus(externalEventHandlers),
+      onMouseEnter: createMouseEnter(externalEventHandlers),
+      onMouseLeave: createMouseLeave(externalEventHandlers),
+    };
+  };
 
   return { getRootProps, onClickAway: handleClickAway };
 }
