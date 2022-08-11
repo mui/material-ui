@@ -1,0 +1,25 @@
+{
+  "name": "@mui/internal-usage-tracker",
+  "version": "5.10.0",
+  "private": false,
+  "author": "MUI Team",
+  "description": "Internal package to track number of downloads of our design system libraries",
+  "main": "./index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mui/material-ui.git",
+    "directory": "packages/mui-internal-usage-tracker"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mui/material-ui/issues"
+  },
+  "homepage": "https://mui.com/",
+  "funding": {
+    "type": "opencollective",
+    "url": "https://opencollective.com/mui"
+  },
+  "scripts": {
+    "release": "npm publish ."
+  }
+}
