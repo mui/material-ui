@@ -18,24 +18,34 @@ import { Button, TextField } from '@mui/core';
 
 ## 开发者环境
 
-开发者环境下的模块打包器能够包含完整的库，但这会造成**较慢的启动时间**。 如果您从 `@mui/icons` 这个库进行导入操作时，这一点尤其明显。 加载时间会大约比那些从顶层 API 的命名导入方式慢六倍。
+开发者环境下的模块打包器能够包含完整的库，但这会造成**较慢的启动时间**。 This is especially noticeable if you use named imports from `@mui/icons-material`, which can be up to six times slower than the default import. For example, between the following two imports, the first (named) can be significantly slower than the second (default):
 
-如果您觉得这样不妥，您还有以下几个选择：
+```js
+// 🐌 Named
+import { Delete } from '@mui/icons-material';
+```
 
-### 选项 1
+```js
+// 🚀 Default
+import Delete from '@mui/icons-material/Delete';
+```
+
+If this is an issue for you, you have two options:
+
+### Option one: use path imports
 
 您可以使用路径导入，这样可以避免导入用不到的模块。 例如，使用：
 
 ```js
-// 🚀 快速的
-import Button from '@mui/core/Button';
-import TextField from '@mui/core/TextField';
+// 🚀 Fast
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
 ```
 
 而不是像这样通过顶层的方式进行导入（不使用 Babel 插件）：
 
 ```js
-import { Button, TextField } from '@mui/core';
+import { Button, TextField } from '@mui/material';
 ```
 
 这是我们在所有演示中记录的选项，因为它不需要配置。 我们鼓励库的创建者来扩充已有组件。 请前往带来最佳 DX 和 UX 的方法： [选项 2](#option-2)。
@@ -45,19 +55,19 @@ import { Button, TextField } from '@mui/core';
 请注意，我们只支持第一级和第二级的导入。 再深入的导入就是私有的，它们会造成一些问题，譬如你的打包文件会产生重复的模块。
 
 ```js
-// ✅ 可行
-import { Add as AddIcon } from '@mui/icons';
-import { Tabs } from '@mui/core';
-//                                 ^^^^  第一级或者最上级
+// ✅ OK
+import { Add as AddIcon } from '@mui/icons-material';
+import { Tabs } from '@mui/material';
+//                         ^^^^^^^^ 1st or top-level
 
-// ✅ 可行
-import AddIcon from '@mui/icons/Add';
-import Tabs from '@mui/core/Tabs';
-//                                  ^^^^ 第二级
+// ✅ OK
+import AddIcon from '@mui/icons-material/Add';
+import Tabs from '@mui/material/Tabs';
+//                              ^^^^ 2nd level
 
-// ❌ 不可行
-import TabIndicator from '@mui/core/Tabs/TabIndicator';
-//                                               ^^^^^^^^^^^^ 第三级
+// ❌ NOT OK
+import TabIndicator from '@mui/material/Tabs/TabIndicator';
+//                                           ^^^^^^^^^^^^ 3rd level
 ```
 
 If you're using `eslint` you can catch problematic imports with the [`no-restricted-imports` rule](https://eslint.org/docs/latest/rules/no-restricted-imports). 以下的 `.eslintrc` 配置将突出一些有问题的从 `@mui` 包的导入:
@@ -68,23 +78,23 @@ If you're using `eslint` you can catch problematic imports with the [`no-restric
     "no-restricted-imports": [
       "error",
       {
-        "patterns": ["@mui/*/*/*", "!@mui/core/test-utils/*"]
+        "patterns": ["@mui/*/*/*", "!@mui/material/test-utils/*"]
       }
     ]
   }
 }
 ```
 
-### 选项 2
+### Option two: use a Babel plugin
 
-此选项提供了最佳的用户体验和开发者体验：
+This option provides the best user experience and developer experience:
 
 - UX: 即使您的打包文件不支持，Babel 插件能够开启顶层的 tree-shaking 功能。
 - DX: 在开发模式下，使用 Babel 插件时，启动时间能够和方案 1 一样快。
 - DX: 这种语法减少了代码的重复，只需要一次导入就可以实现多个模块。 总的来说，代码会变得更容易阅读，在导入一个新模块时，您也更不容易出错。
 
 ```js
-import { Button, TextField } from '@mui/core';
+import { Button, TextField } from '@mui/material';
 ```
 
 但是，您需要正确地实施以下两步。
@@ -187,9 +197,9 @@ module.exports = override(useBabelRc());
 最后，你可以使用这个 [top-level-imports codemod](https://www.npmjs.com/package/@mui/codemod#top-level-imports) 将现有的代码库转换为此选项。 它将执行以下的差异：
 
 ```diff
--import Button from '@mui/core/Button';
--import TextField from '@mui/core/TextField';
-+import { Button, TextField } from '@mui/core';
+-import Button from '@mui/material/Button';
+-import TextField from '@mui/material/TextField';
++import { Button, TextField } from '@mui/material';
 ```
 
 ## 可用的捆绑包
