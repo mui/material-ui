@@ -5,7 +5,7 @@ import { CssVarsProvider, extendTheme } from '@mui/joy/styles';
 <CssVarsProvider
   theme={extendTheme({
     fontFamily: {
-      default: '"Rubik", sans-serif',
+      body: '"Rubik", sans-serif',
     },
     // @ts-expect-error 'color' does not exist in JoyTheme
     color: {},
@@ -26,16 +26,16 @@ declare module '@mui/joy/styles' {
   }
 }
 
-// extends ColorSystems
+// extends ColorSystem
 declare module '@mui/joy/styles' {
   interface ColorSystem {
     bgcolor: string;
   }
 }
 
-// extends BorderRadius
+// extends Radius
 declare module '@mui/joy/styles' {
-  interface BorderRadius {
+  interface Radius {
     xxxs: string;
   }
 }
@@ -68,7 +68,7 @@ declare module '@mui/joy/styles' {
   }
 }
 
-// extends TypographySystems
+// extends TypographySystem
 declare module '@mui/joy/styles' {
   interface TypographySystem {
     ads: React.CSSProperties;
@@ -89,7 +89,7 @@ const extendedTheme = extendTheme({
       bgcolor: '',
     },
   },
-  borderRadius: {
+  radius: {
     xxxs: '',
   },
   fontSize: {
@@ -123,7 +123,7 @@ const extendedTheme = extendTheme({
               height: 48,
             });
           }
-          if (variant === 'contained') {
+          if (variant === 'outlined') {
             styles.push(theme.typography.body1);
           }
           return styles;
@@ -135,7 +135,7 @@ const extendedTheme = extendTheme({
         thumb: ({ ownerState, theme }) => [
           ownerState.color === 'primary' && {
             '&:hover': {
-              backgroundColor: theme.vars.palette.primary.containedHoverBg,
+              backgroundColor: theme.vars.palette.primary.outlinedHoverBg,
             },
           },
         ],

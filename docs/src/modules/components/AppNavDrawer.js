@@ -235,6 +235,7 @@ function reduceChildRoutes(context) {
         title={title}
         href={firstChild.pathname}
         legacy={page.legacy}
+        newFeature={page.newFeature}
         plan={page.plan}
         icon={page.icon}
         subheader={subheader}
@@ -261,6 +262,7 @@ function reduceChildRoutes(context) {
         title={title}
         href={page.pathname}
         legacy={page.legacy}
+        newFeature={page.newFeature}
         plan={page.plan}
         icon={page.icon}
         subheader={Boolean(page.subheader)}
@@ -371,9 +373,10 @@ export default function AppNavDrawer(props) {
     return (
       <React.Fragment>
         <ToolbarDiv>
-          <NextLink href="/" passHref onClick={onClose}>
+          <NextLink href="/" passHref>
             <Box
               component="a"
+              onClick={onClose}
               aria-label={t('goToHome')}
               sx={{
                 pr: '12px',

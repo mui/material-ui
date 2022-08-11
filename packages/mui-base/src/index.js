@@ -61,6 +61,9 @@ export * from './SnackbarUnstyled';
 export { default as SwitchUnstyled } from './SwitchUnstyled';
 export * from './SwitchUnstyled';
 
+export { default as TablePaginationUnstyled } from './TablePaginationUnstyled';
+export * from './TablePaginationUnstyled';
+
 export { default as TabPanelUnstyled } from './TabPanelUnstyled';
 export * from './TabPanelUnstyled';
 

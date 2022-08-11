@@ -103,6 +103,10 @@
       "patch": {
         "enabled": false
       }
+    },
+    {
+      "groupName": "Playwright",
+      "matchPackageNames": ["playwright", "@playwright/test", "mcr.microsoft.com/playwright"]
     }
   ],
   "postUpdateOptions": ["yarnDedupeHighest"],

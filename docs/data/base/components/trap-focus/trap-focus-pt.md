@@ -3,7 +3,6 @@ product: base
 title: Componente React para capturar foco
 components: TrapFocus
 githubLabel: 'component: TrapFocus'
-packageName: '@mui/base'
 ---
 
 # Capturar foco

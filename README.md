@@ -13,7 +13,7 @@
 
 - [_MUI Base_](https://mui.com/base/getting-started/overview/) is our library of "unstyled" components and low-level hooks. With Base, you gain complete control over your app's CSS and accessibility features.
 
-- [_MUI System_](https://mui.com/system/basics/) is a collection of CSS utilities to help you rapidly lay out custom designs.
+- [_MUI System_](https://mui.com/system/getting-started/overview/) is a collection of CSS utilities to help you rapidly lay out custom designs.
 
 <div align="center">
 
@@ -119,7 +119,7 @@ Visit our [`styled-engine` guide](https://mui.com/material-ui/guides/styled-engi
 ### Diamond 💎
 
 <p align="center">
-  <a href="https://octopus.com/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="128" width="128" src="https://avatars3.githubusercontent.com/u/1287123?s=256" alt="octopus" title="Repeatable, reliable deployments" loading="lazy" /></a>
+  <a href="https://octopus.com/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="128" width="128" src="https://i.ibb.co/w0HF0Nz/Logo-Blue-140px-rgb.png" alt="octopus" title="Repeatable, reliable deployments" loading="lazy" /></a>
   <a href="https://www.doit-intl.com/flexsave/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="128" width="128" src="https://avatars3.githubusercontent.com/u/8424863?s=256" alt="doit-intl" title="Management Platform for Google Cloud and AWS" loading="lazy" /></a>
   <a href="https://www.zesty.io/integrations/nextjs-cms/?utm_source=mui&utm_medium=referral&utm_campaign=sponsor" rel="noopener sponsored" target="_blank"><img height="90" width="90" src="https://brand.zesty.io/zesty-io-logo.svg" alt="zesty.io" title="The only Next.js CMS you need" loading="lazy" /></a>
 </p>
@@ -134,10 +134,11 @@ via [OpenCollective](https://opencollective.com/mui) or via [Patreon](https://ww
   <a href="https://tidelift.com/subscription/pkg/npm-material-ui?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=homepage" rel="noopener sponsored" target="_blank"><img height="96" width="96" src="https://github.com/tidelift.png?size=192" alt="tidelift.com" title="Enterprise-ready open-source software" loading="lazy" /></a>
   <a href="https://bit.dev/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank" style="margin-rig ht: 16px;"><img height="96" width="96" src="https://github.com/teambit.png?size=192" alt="bit.dev" title="The fastest way to share code" loading="lazy" /></a>
   <a href="https://www.text-em-all.com/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img src="https://images.opencollective.com/callemall/09710fe/logo/192.png" alt="text-em-all.com" title="Mass Text Messaging & Automated Calling" height="96" width="96" loading="lazy"></a>
-  <a href="https://www.laststance.io/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="96" width="96" src="https://images.opencollective.com/laststance/daffd6c/avatar/192.png" alt="laststance.io" title="Indipendent organization for OSS activity based on Tokyo" loading="lazy" /></a>
   <a href="https://online-aussie-casino.com/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="96" width="96" src="https://images.opencollective.com/aussiecasinohex/923df37/logo/192.png" alt="online-aussie-casino.com" title="Aussie Gambling Guide" loading="lazy" /></a>
   <a href="https://sumatosoft.com/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="96" width="96" src="https://images.opencollective.com/sumatosoft_company/0b78570/avatar/192.png" alt="sumatosoft.com" title="We help companies to digitalize their businesses" loading="lazy" /></a>
   <a href="https://megafamous.com/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="96" width="96" src="https://p18.zdusercontent.com/attachment/9422375/Rullx0rw9lUGKuyKOy4VQ9Zxq?size=192" alt="megafamous.com" title="The best place to buy Instagram followers & likes." loading="lazy" /></a>
+  <a href="https://www.dialmycalls.com/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="96" width="96" src="https://images.opencollective.com/dialmycalls/f5ae9ab/avatar/192.png" alt="dialmycalls.com" title="Send text messages, calls & emails to thousands with ease." loading="lazy" /></a>
+  <a href="https://goread.io/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="96" width="96" src="https://goread.io/assets/uploads/usereb4ac3033e8ab3591e0fcefa8c26ce3fd36d5a0f/bd81e54effbcc265ad169015455a0c1e.png" alt="goread.io" title="Instagram followers, likes, power likes, views, comments, saves in minutes." loading="lazy" /></a>
 </p>
 
 Gold Sponsors are those who have pledged \$500/month or more to MUI.
@@ -163,7 +164,7 @@ In the interactive demo below, try changing the code and see how it affects the 
 (Hint: change `variant` to `"outlined"` and `color` to `"secondary"`.
 For more options, see the [`Button` component page](https://mui.com/material-ui/react-button/) in our docs.)
 
-[![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/4j7m47vlm4)
+[![Edit Button](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/material-ui-u9sy1h)
 
 ## Questions
 
@@ -179,7 +180,7 @@ Our documentation features [a collection of example projects using Material UI](
 - [Material UI](https://mui.com/material-ui/getting-started/overview/)
 - [Joy UI](https://mui.com/joy-ui/getting-started/overview/)
 - [MUI Base](https://mui.com/base/getting-started/overview/)
-- [MUI System](https://mui.com/system/basics/)
+- [MUI System](https://mui.com/system/getting-started/overview/)
 
 ## Premium themes
 
@@ -214,7 +215,6 @@ For details of supported versions and contact details for reporting security iss
 These great services sponsor MUI's core infrastructure:
 
 <picture>
-
   <source media="(prefers-color-scheme: dark)" srcset="/docs/public/static/readme/github-darkmode.svg">
   <source media="(prefers-color-scheme: light)" srcset="/docs/public/static/readme/github-lightmode.svg">
   <img alt="GitHub logo" src="/docs/public/static/readme/github-darkmode.svg">
@@ -223,7 +223,6 @@ These great services sponsor MUI's core infrastructure:
 [GitHub](https://github.com/) lets us host the Git repository and coordinate contributions.
 
 <picture>
-
   <source media="(prefers-color-scheme: dark)" srcset="/docs/public/static/readme/netlify-darkmode.svg">
   <source media="(prefers-color-scheme: light)" srcset="/docs/public/static/readme/netlify-lightmode.svg">
   <img alt="Netlify logo" src="/docs/public/static/readme/netlify-darkmode.svg">
@@ -232,7 +231,6 @@ These great services sponsor MUI's core infrastructure:
 [Netlify](https://www.netlify.com/) lets us distribute the documentation.
 
 <picture>
-
   <source media="(prefers-color-scheme: dark)" srcset="/docs/public/static/readme/crowdin-darkmode.svg">
   <source media="(prefers-color-scheme: light)" srcset="/docs/public/static/readme/crowdin-lightmode.svg">
   <img alt="Crowdin logo" src="/docs/public/static/readme/crowdin-darkmode.svg">
@@ -241,7 +239,6 @@ These great services sponsor MUI's core infrastructure:
 [Crowdin](https://crowdin.com/) lets us translate the documentation.
 
 <picture>
-
   <source media="(prefers-color-scheme: dark)" srcset="/docs/public/static/readme/browserstack-darkmode.svg">
   <source media="(prefers-color-scheme: light)" srcset="/docs/public/static/readme/browserstack-lightmode.svg">
   <img alt="GitHub logo" src="/docs/public/static/readme/browserstack-darkmode.svg">
@@ -251,4 +248,4 @@ These great services sponsor MUI's core infrastructure:
 
 <img loading="lazy" alt="CodeCov logo" src="https://github.com/codecov.png?size=70" width="35" height="35">
 
-[CodeCov](https://codecov.io/) lets us monitor test coverage.
+[CodeCov](https://about.codecov.io/) lets us monitor test coverage.

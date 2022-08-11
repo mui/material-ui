@@ -12,10 +12,10 @@ export default function composeClasses<ClassKey extends string>(
       output[slot] = slots[slot]
         .reduce((acc, key) => {
           if (key) {
+            acc.push(getUtilityClass(key));
             if (classes && classes[key]) {
               acc.push(classes[key]);
             }
-            acc.push(getUtilityClass(key));
           }
           return acc;
         }, [] as string[])
