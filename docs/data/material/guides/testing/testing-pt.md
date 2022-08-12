@@ -12,4 +12,4 @@ Ao não depender da árvore de componentes React você torna seu teste mais robu
 
 ## Interno
 
-Material-UI tem **uma vasta gama** de testes para que possamos liberar os componentes com confiança, por exemplo, os testes de regressão visual são feitos através da [Argos-CI](https://www.argos-ci.com/mui/material-ui), provaram ser realmente úteis. Para saber mais sobre os testes internos, você pode dar uma olhada no [LEIA-ME](https://github.com/mui/material-ui/blob/HEAD/test/README.md).
+MUI has **a wide range** of tests so we can iterate with confidence on the components, for instance, the visual regression tests provided by [Argos-CI](https://app.argos-ci.com/mui/material-ui/builds) have proven to be really helpful. Para saber mais sobre os testes internos, você pode dar uma olhada no [LEIA-ME](https://github.com/mui/material-ui/blob/HEAD/test/README.md).
