@@ -8,7 +8,7 @@ This page is best for starting a new project with CSS variables. If you have an 
 
 ## Getting started
 
-`Experimental_CssVarsProvider` is a new experimental provider that attaches all generated CSS variables to the theme and puts them in React's context. Children elements under this provider will also be able to read the CSS variables from the `theme.vars`.
+`Experimental_CssVarsProvider` is a new experimental provider that attaches all generated CSS variables to the theme and puts them in React context.
 
 ```js
 import { Experimental_CssVarsProvider as CssVarsProvider } from '@mui/material/styles';
@@ -31,8 +31,6 @@ Once the `App` renders on the screen, you will see the theme CSS variables attac
 }
 ```
 
-If you use TypeScript, check out the [theme types setup](#typescript).
-
 :::info
 The `CssVarsProvider` is basically a `ThemeProvider` with extra features like CSS variables generation, session synchronization, unlimited color schemes, etc.
 :::
@@ -41,7 +39,7 @@ The `CssVarsProvider` is basically a `ThemeProvider` with extra features like CS
 
 The new provider has light and dark mode by default. It stores the user's selected mode and syncs it with the browser's local storage internally.
 
-You can use the hook, `useColorScheme`, to read and/or update the mode programmatically:
+You can create your own interface and use the hook, `useColorScheme`, to read and/or update the mode programmatically:
 
 ```jsx
 import {
@@ -49,6 +47,7 @@ import {
   useColorScheme,
 } from '@mui/material/styles';
 
+// ModeSwitcher is an example interface that users use to toggle between modes.
 const ModeSwitcher = () => {
   const { mode, setMode } = useColorScheme();
   const [mounted, setMounted] = React.useState(false);
@@ -88,31 +87,42 @@ function App() {
 }
 ```
 
-If you want to customize `light` and `dark` theme or create new color scheme, check out the [customization guide](/material-ui/experimental-api/css-variables/customization/).
+<!-- If you want to customize `light` and `dark` palette, check out the [customization guide](/material-ui/experimental-api/css-variables/customization/#theming). -->
 
 ## Using the variables
 
-The new provider will walk through the theme and attach an extra object to `theme.vars`. It is a plain object with similar structure that has values refer to the generated CSS variables.
+There are mainly 2 ways that you can use the generated CSS variables:
 
-Here is a comparison between the existing method and the CSS variables method when you create a component:
+- **A plain string**: The simplest and very effective way is to use a string with the format `var(--*)` to refer to a CSS variable.
 
-```js
-// existing method, the result is the raw value
-const Button = styled('button')(({ theme }) => ({
-  backgroundColor: theme.palette.primary.main, // #1976d2
-  color: theme.palette.primary.contrastText, // #fff
-}));
+  ```js
+  const Button = style('button')({
+    color: '#fff',
+    // the mui is the default prefix.
+    backgroundColor: 'var(--mui-palette-primary-main)',
+  });
+  ```
 
-// CSS variables method, the result is a string that refers to CSS variables
-const Button = styled('button')(({ theme }) => ({
-  backgroundColor: theme.vars.palette.primary.main, // var(--mui-palette-primary-main)
-  color: theme.vars.palette.primary.contrastText, // var(--mui-palette-primary-contrastText)
-}));
-```
+  :::warning
+  A downside of this approach is that the prefix `mui` is hardcoded. If you want to change the generated prefix in the future, you will have to replace all of them in the project.
+  :::
 
-:::warning
-Make sure that the components accessing `theme.vars` are rendered under the new provider, otherwise you will get TypeError.
-:::
+- `theme.vars`: Another way is to read a CSS variable from the theme object. This way, you don't need to worry about the prefix because the value comes from the configuration.
+
+  The new provider will walk through the theme and attach an extra object to `theme.vars`. It is a plain object with similar structure that has values refer to the generated CSS variables.
+
+  ```js
+  const Button = styled('button')(({ theme }) => ({
+    backgroundColor: theme.vars.palette.primary.main, // var(--mui-palette-primary-main)
+    color: theme.vars.palette.primary.contrastText, // var(--mui-palette-primary-contrastText)
+  }));
+  ```
+
+  For **TypeScript**, the typings do not come by default. Check out the [theme types setup](#typescript) to enable the types.
+
+  :::warning
+  Make sure that the components accessing `theme.vars` are rendered under the new provider, otherwise you will get TypeError.
+  :::
 
 ## Server-side rendering
 
@@ -157,7 +167,7 @@ export function onRenderBody({ setPreBodyComponents }) {
 
 ## TypeScript
 
-By default, the theme does not have `theme.vars` attached. You need to import the theme augmentation to include `theme.vars` and other utilities related to CSS variables to the theme:
+By default, the theme does not have `theme.vars` attached. You need to import the theme augmentation to enable the typings:
 
 ```ts
 // this can be at the root file of you application
