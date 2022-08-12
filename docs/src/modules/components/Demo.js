@@ -137,6 +137,25 @@ const DemoRootMaterial = styled('div', {
     backgroundColor:
       theme.palette.mode === 'dark' ? theme.palette.grey[900] : theme.palette.grey[100],
   }),
+  /* Mostly meant for introduction demos. */
+  ...(bg === 'gradient' && {
+    padding: theme.spacing(20, 8),
+    border: `1px solid ${alpha(theme.palette.action.active, 0.1)}`,
+    overflow: 'hidden',
+    backgroundColor:
+      theme.palette.mode === 'dark' ? theme.palette.primaryDark[800] : theme.palette.primary[50],
+    backgroundClip: 'padding-box',
+    backgroundImage:
+      theme.palette.mode === 'dark'
+        ? `radial-gradient(at 51% 46%, ${theme.palette.primaryDark[700]} 0px, transparent 50%),
+        radial-gradient(at 80% 0%, ${theme.palette.primaryDark[700]} 0px, transparent 50%),
+        radial-gradient(at 0% 95%, ${theme.palette.primaryDark[600]} 0px, transparent 50%),
+        radial-gradient(at 93% 67%, ${theme.palette.primaryDark[500]} 0px, transparent 50%);`
+        : `radial-gradient(at 80% 46%, ${theme.palette.primary[50]} 0px, transparent 50%),
+        radial-gradient(at 80% 0%, ${theme.palette.primary[50]} 0px, transparent 50%),
+        radial-gradient(at 0% 95%, ${theme.palette.primary[100]} 0px, transparent 50%),
+        radial-gradient(at 93% 67%, ${theme.palette.primary[100]} 0px, transparent 50%);`,
+  }),
   ...(hiddenToolbar && {
     paddingTop: theme.spacing(2),
   }),
