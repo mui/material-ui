@@ -11418,7 +11418,7 @@ _Apr 6, 2017_
 
 We are continuing investing in the documentation and the test suite.
 
-Visual regression tests are now sent to [argos-ci](https://www.argos-ci.com/mui/material-ui).
+Visual regression tests are now sent to [argos-ci](https://app.argos-ci.com/mui/material-ui/builds).
 Thanks @agamrafaeli for increasing the test coverage of 1% since the last release (95.23%).
 Thanks @mbrookes for fixing the inconsistency of the API and improving the API.
 
