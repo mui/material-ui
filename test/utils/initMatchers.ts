@@ -79,6 +79,7 @@ declare global {
        * Matcher with useful error messages if the dates don't match.
        */
       toEqualDateTime(expected: Date): void;
+      toHaveAccessibleDescription(description: string): void;
       /**
        * Checks if the accessible name computation (according to `accname` spec)
        * matches the expectation.

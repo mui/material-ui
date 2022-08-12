@@ -3,7 +3,6 @@ product: base
 title: Detect click outside React component
 components: ClickAwayListener
 githubLabel: 'component: ClickAwayListener'
-packageName: '@mui/base'
 ---
 
 # Click-away listener

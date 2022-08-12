@@ -57,6 +57,8 @@
       "filled",
       "outlinedPrimary",
       "outlinedSecondary",
+      "filledPrimary",
+      "filledSecondary",
       "avatar",
       "avatarSmall",
       "avatarMedium",
@@ -77,6 +79,8 @@
       "deleteIconColorSecondary",
       "deleteIconOutlinedColorPrimary",
       "deleteIconOutlinedColorSecondary",
+      "deleteIconFilledColorPrimary",
+      "deleteIconFilledColorSecondary",
       "focusVisible"
     ],
     "globalClasses": { "disabled": "Mui-disabled", "focusVisible": "Mui-focusVisible" },

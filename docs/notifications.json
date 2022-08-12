@@ -1,20 +1,5 @@
 [
   {
-    "id": 35,
-    "title": "Let's translate!",
-    "text": "<a style=\"color: inherit;\" target=\"_blank\" rel=\"noopener\" data-ga-event-category=\"l10n\" data-ga-event-action=\"notification\" data-ga-event-label=\"zh\" href=\"https://translate.mui.com/\">帮助 MUI 将文档翻译成中文</a>. 🇨🇳",
-    "userLanguage": "zh"
-  },
-  {
-    "id": 53,
-    "text": "You can <a style=\"color: inherit;\" target=\"_blank\" rel=\"noopener\" href=\"https://twitter.com/MUI_hq\">follow us on Twitter</a> to receive exclusive tips and updates about MUI and the React ecosystem."
-  },
-  {
-    "id": 63,
-    "title": "📄 <b>Our docs just got a major upgrade!</b>",
-    "text": "Each of MUI's products now has its own dedicated documentation, making it easier than ever to find exactly what you need. <a style=\"color: inherit;\" data-ga-event-category=\"Blog\" data-ga-event-action=\"notification\" data-ga-event-label=\"docs-restructure-2022/\" href=\"/blog/docs-restructure-2022/\">Check out the blog post</a> for more details."
-  },
-  {
     "id": 64,
     "title": "<b>Premium passengers, please proceed to the boarding gate</b> 🚀",
     "text": "<a style=\"color: inherit;\" data-ga-event-category=\"Blog\" data-ga-event-action=\"notification\" data-ga-event-label=\"lab-date-pickers-to-mui-x/\" href=\"/blog/premium-plan-release/\">Check out our blog post</a> introducing the MUI X Premium plan, and the new licensing model."
@@ -23,5 +8,10 @@
     "id": 65,
     "title": "<b>Get a first look at Joy UI</b> 🚀",
     "text": "Joy UI is MUI's new starting point for your design system. <a style=\"color: inherit;\" data-ga-event-category=\"Blog\" data-ga-event-action=\"notification\" data-ga-event-label=\"first-look-at-joy/\" href=\"/blog/first-look-at-joy/\">Check out the blog post</a> to see what's in store for this new library."
+  },
+  {
+    "id": 67,
+    "title": "<b>Aggregate data like in Excel, but easier!</b>",
+    "text": "Aggregation functions and summary rows are now available in the MUI X Premium Data Grid. <a style=\"color: inherit;\" data-ga-event-category=\"Blog\" data-ga-event-action=\"notification\" data-ga-event-label=\"aggregation-functions\" href=\"/blog/aggregation-functions/\">Check out our blog post</a>."
   }
 ]

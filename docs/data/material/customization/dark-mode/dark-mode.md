@@ -35,7 +35,7 @@ Adding `mode: 'dark'` to the `createTheme` helper modifies several palette value
 Adding `<CssBaseline />` inside of the `<ThemeProvider>` component will also enable dark mode for the app's background.
 
 :::info
-Note: setting the dark mode this way only works if you are using [the default palette](/material-ui/customization/default-theme/). If you have a custom palette, you need to make sure that you have the correct values based on the `mode`. The next section explain how to do this.
+**Note:** setting the dark mode this way only works if you are using [the default palette](/material-ui/customization/default-theme/). If you have a custom palette, make sure that you have the correct values based on the `mode`. The next section explains how to do this.
 :::
 
 ## Dark mode with a custom palette

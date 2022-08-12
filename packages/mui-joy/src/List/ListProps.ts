@@ -27,12 +27,6 @@ export interface ListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
      */
     row?: boolean;
     /**
-     * If `true`, this list creates new list CSS variables scope to prevent the children from inheriting variables from the upper parent.
-     * This props is used in the listbox of Menu, Select.
-     * @default false
-     */
-    scoped?: boolean;
-    /**
      * The size of the component (affect other nested list* components).
      * @default 'md'
      */
@@ -46,6 +40,13 @@ export interface ListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
      * @default 'plain'
      */
     variant?: OverridableStringUnion<VariantProp, ListPropsVariantOverrides>;
+    /**
+     * Only for horizontal list.
+     * If `true`, the list sets the flex-wrap to "wrap" and adjust margin to have gap-like behavior (will move to `gap` in the future).
+     *
+     * @default false
+     */
+    wrap?: boolean;
   };
   defaultComponent: D;
 }

@@ -3,7 +3,6 @@ product: base
 title: Unstyled React Form Control component and hook
 components: FormControlUnstyled
 githubLabel: 'component: FormControl'
-packageName: '@mui/base'
 ---
 
 # Unstyled form control
