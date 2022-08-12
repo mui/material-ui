@@ -350,4 +350,53 @@ describe('<Dialog />', () => {
       });
     });
   });
+
+  describe('prop: component', () => {
+    it('should set the specified component prop as the underlying root HTML element', () => {
+      render(
+        <Dialog component="span" open data-testid="dialog-root">
+          foo
+        </Dialog>,
+      );
+
+      expect(screen.getByTestId('dialog-root')).to.have.tagName('span');
+    });
+
+    it('should apply styles to DialogRoot component when "component" prop is specified', () => {
+      const theme = createTheme({});
+
+      render(
+        <Dialog component="span" open data-testid="dialog-root">
+          foo
+        </Dialog>,
+      );
+
+      expect(screen.getByTestId('dialog-root')).toHaveComputedStyle({
+        position: 'fixed',
+        zIndex: `${theme.zIndex.modal}`,
+        right: '0px',
+        bottom: '0px',
+        top: '0px',
+        left: '0px',
+      });
+    });
+  });
+
+  describe('prop: components', () => {
+    it('should set the specified components.Root as the underlying root HTML element', () => {
+      const CustomRoot = React.forwardRef((props, ref) => (
+        <span ref={ref} data-testid="dialog-root">
+          {props.children}
+        </span>
+      ));
+
+      render(
+        <Dialog components={{ Root: CustomRoot }} open>
+          foo
+        </Dialog>,
+      );
+
+      expect(screen.getByTestId('dialog-root')).to.have.tagName('span');
+    });
+  });
 });
