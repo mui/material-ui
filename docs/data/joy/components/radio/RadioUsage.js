@@ -1,5 +1,7 @@
 import * as React from 'react';
-import JoyUsageDemo from 'docs/src/modules/components/JoyUsageDemo';
+import JoyUsageDemo, {
+  prependLinesSpace,
+} from 'docs/src/modules/components/JoyUsageDemo';
 import FormLabel from '@mui/joy/FormLabel';
 import RadioGroup from '@mui/joy/RadioGroup';
 import Radio from '@mui/joy/Radio';
@@ -7,7 +9,7 @@ import Radio from '@mui/joy/Radio';
 export default function RadioUsage() {
   return (
     <JoyUsageDemo
-      componentName="RadioGroup"
+      componentName="Radio"
       data={[
         {
           propName: 'variant',
@@ -30,9 +32,13 @@ export default function RadioUsage() {
           propName: 'row',
           knob: 'switch',
           defaultValue: false,
+          codeBlockDisplay: false,
         },
       ]}
-      renderDemo={(props) => (
+      getCodeBlock={(code, props) => `<RadioGroup${props.row ? ` row` : ''}>
+${prependLinesSpace(code, 2)}
+</RadioGroup>`}
+      renderDemo={({ row, ...props }) => (
         <div>
           <FormLabel
             id="radio-button-usage-label"
@@ -48,14 +54,14 @@ export default function RadioUsage() {
             Pizza crust
           </FormLabel>
           <RadioGroup
-            {...props}
+            row={row}
             defaultValue="1"
             name="radio-button-usage"
             aria-labelledby="radio-button-usage-label"
           >
-            <Radio label="Regular crust" value="1" />
-            <Radio label="Deep dish" value="2" />
-            <Radio label="Thin crust" value="3" disabled />
+            <Radio label="Regular crust" value="1" {...props} />
+            <Radio label="Deep dish" value="2" {...props} />
+            <Radio label="Thin crust" value="3" {...props} disabled />
           </RadioGroup>
         </div>
       )}

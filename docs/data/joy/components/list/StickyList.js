@@ -9,13 +9,12 @@ export default function StickyList() {
   return (
     <Sheet
       sx={{
-        bgcolor: 'transparent',
         width: 320,
         maxHeight: 300,
         overflow: 'auto',
       }}
     >
-      <List sx={{ '--List-padding': '8px' }}>
+      <List>
         {[...Array(5)].map((_, categoryIndex) => (
           <ListItem nested key={categoryIndex}>
             <ListItem component="div" sticky>
