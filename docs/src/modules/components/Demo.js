@@ -151,10 +151,10 @@ const DemoRootMaterial = styled('div', {
         radial-gradient(at 80% 0%, ${theme.palette.primaryDark[700]} 0px, transparent 50%),
         radial-gradient(at 0% 95%, ${theme.palette.primaryDark[600]} 0px, transparent 50%),
         radial-gradient(at 93% 67%, ${theme.palette.primaryDark[500]} 0px, transparent 50%);`
-        : `radial-gradient(at 80% 46%, ${theme.palette.primary[50]} 0px, transparent 50%),
-        radial-gradient(at 80% 0%, ${theme.palette.primary[50]} 0px, transparent 50%),
-        radial-gradient(at 0% 95%, ${theme.palette.primary[100]} 0px, transparent 50%),
-        radial-gradient(at 93% 67%, ${theme.palette.primary[100]} 0px, transparent 50%);`,
+        : `radial-gradient(at 4% 6%, ${theme.palette.primary[50]} 0px, transparent 50%),
+        radial-gradient(at 51% 47%, ${theme.palette.primary[50]} 0px, transparent 50%),
+        radial-gradient(at 2% 100%, ${theme.palette.primary[100]}, transparent 30%),
+        radial-gradient(at 90% 79%, ${theme.palette.primary[50]} 0px, transparent 50%)`,
   }),
   ...(hiddenToolbar && {
     paddingTop: theme.spacing(2),

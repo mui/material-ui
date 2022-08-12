@@ -9,7 +9,13 @@ const blue = {
   700: '#0059B2',
 };
 
-const CustomButton = styled(ButtonUnstyled)`
+const grey = {
+  300: '#CDD2D7',
+  900: '#1A2027',
+};
+
+const CustomButton = styled(ButtonUnstyled)(
+  ({ theme }) => `
   font-family: IBM Plex Sans, sans-serif;
   font-weight: bold;
   font-size: 0.875rem;
@@ -20,6 +26,7 @@ const CustomButton = styled(ButtonUnstyled)`
   transition: all 150ms ease;
   cursor: pointer;
   border: none;
+  box-shadow: 0px 4px 30px ${theme.palette.mode === 'dark' ? grey[900] : grey[300]};
 
   &:hover {
     background-color: ${blue[600]};
@@ -38,7 +45,8 @@ const CustomButton = styled(ButtonUnstyled)`
     opacity: 0.5;
     cursor: not-allowed;
   }
-`;
+  `,
+);
 
 export default function UnstyledButtonsSimple() {
   return (
