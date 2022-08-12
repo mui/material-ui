@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import SelectUnstyled, { selectUnstyledClasses } from '@mui/base/SelectUnstyled';
+import SelectUnstyled, { SelectOption, selectUnstyledClasses } from '@mui/base/SelectUnstyled';
 import OptionUnstyled, { OptionUnstyledProps } from '@mui/base/OptionUnstyled';
 import OptionGroupUnstyled from '@mui/base/OptionGroupUnstyled';
 import {
@@ -328,6 +328,122 @@ describe('SelectUnstyled', () => {
 
       expect(button).to.have.attribute('aria-expanded', 'false');
       expect(button).to.have.text('1');
+    });
+  });
+
+  describe('form submission', () => {
+    it('includes the Select value in the submitted form data when the `name` attribute is provided', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        // FormData is not available in JSDOM
+        this.skip();
+      }
+
+      let isEventHandled = false;
+
+      const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        const formData = new FormData(event.currentTarget);
+        expect(formData.get('test-select')).to.equal('2');
+        isEventHandled = true;
+      };
+
+      const { getByText } = render(
+        <form onSubmit={handleSubmit}>
+          <SelectUnstyled defaultValue={2} name="test-select">
+            <OptionUnstyled value={1}>1</OptionUnstyled>
+            <OptionUnstyled value={2}>2</OptionUnstyled>
+          </SelectUnstyled>
+          <button type="submit">Submit</button>
+        </form>,
+      );
+
+      const button = getByText('Submit');
+      act(() => {
+        button.click();
+      });
+
+      expect(isEventHandled).to.equal(true);
+    });
+
+    it('transforms the selected value before posting using the getSerializedValue prop, if provided', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        // FormData is not available in JSDOM
+        this.skip();
+      }
+
+      let isEventHandled = false;
+
+      const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        const formData = new FormData(event.currentTarget);
+        expect(formData.get('test-select')).to.equal('option 2');
+        isEventHandled = true;
+      };
+
+      const customFormValueProvider = (option: SelectOption<number> | null) =>
+        option != null ? `option ${option.value}` : '';
+
+      const { getByText } = render(
+        <form onSubmit={handleSubmit}>
+          <SelectUnstyled
+            defaultValue={2}
+            name="test-select"
+            getSerializedValue={customFormValueProvider}
+          >
+            <OptionUnstyled value={1}>1</OptionUnstyled>
+            <OptionUnstyled value={2}>2</OptionUnstyled>
+          </SelectUnstyled>
+          <button type="submit">Submit</button>
+        </form>,
+      );
+
+      const button = getByText('Submit');
+      act(() => {
+        button.click();
+      });
+
+      expect(isEventHandled).to.equal(true);
+    });
+
+    it('formats the object values as JSON before posting', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        // FormData is not available in JSDOM
+        this.skip();
+      }
+
+      let isEventHandled = false;
+
+      const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        const formData = new FormData(event.currentTarget);
+        expect(formData.get('test-select')).to.equal('{"firstName":"Olivia"}');
+        isEventHandled = true;
+      };
+
+      const options = [
+        { value: { firstName: 'Alice' }, label: 'Alice' },
+        { value: { firstName: 'Olivia' }, label: 'Olivia' },
+      ];
+
+      const { getByText } = render(
+        <form onSubmit={handleSubmit}>
+          <SelectUnstyled defaultValue={options[1].value} name="test-select">
+            {options.map((o) => (
+              <OptionUnstyled key={o.value.firstName} value={o.value}>
+                {o.label}
+              </OptionUnstyled>
+            ))}
+          </SelectUnstyled>
+          <button type="submit">Submit</button>
+        </form>,
+      );
+
+      const button = getByText('Submit');
+      act(() => {
+        button.click();
+      });
+
+      expect(isEventHandled).to.equal(true);
     });
   });
 
