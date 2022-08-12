@@ -15,7 +15,7 @@ Material UI是在[4年前](https://github.com/mui/material-ui/commit/28b768913b7
 - 使用CSS-in-JS的新样式解决方案（更好的[定制](/material-ui/customization/how-to-customize/)能力，更好的性能）。
 - 新的主题处理 （有嵌套，自主支撑等。）
 - 由于[Next.js](https://github.com/vercel/next.js)的存在，文档编写速度极快
-- 更好的[测试覆盖率](/material-ui/guides/testing/)（99%以上，在所有主要浏览器上运行，[可视化回归测试](https://www.argos-ci.com/mui/material-ui)）。
+- Way better [test coverage](/material-ui/guides/testing/) (99%+, run on all the major browsers, [visual regression tests](https://app.argos-ci.com/mui/material-ui/builds))
 - 全面支持[服务器端渲染](/material-ui/guides/server-rendering/)
 - [支持的浏览器](/material-ui/getting-started/supported-platforms/)范围广泛
 
