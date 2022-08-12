@@ -63,4 +63,4 @@ Here is a [more detailed guide](/material-ui/guides/routing/#link).
 ### Screen reader accessibility
 
 - When a link receives focus, screen readers should announce a descriptive link name.
-  If the link opens in a new window or browser tab, add an [`aria-label`](https://www.w3.org/WAI/WCAG22/Techniques/aria/ARIA8#:~:text=The%20aria%2Dlabel%20attribute%20provides,used%20instead%20of%20aria%2Dlabel%20) to inform screen reader users—for example, _"To learn more, visit the About page which opens in a new window."_
+  If the link opens in a new window or browser tab, add an [`aria-label`](https://www.w3.org/WAI/WCAG22/Techniques/aria/ARIA8) to inform screen reader users—for example, _"To learn more, visit the About page which opens in a new window."_
