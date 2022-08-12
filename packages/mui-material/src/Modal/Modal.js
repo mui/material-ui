@@ -102,19 +102,23 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
 
   const classes = extendUtilityClasses(ownerState);
 
-  const Root = components.Root ?? component ?? ModalRoot;
+  const Root = components.Root ?? component;
 
   return (
     <ModalUnstyled
       components={{
-        Root,
+        Root: ModalRoot,
         Backdrop: BackdropComponent,
         ...components,
       }}
       componentsProps={{
         root: () => ({
           ...resolveComponentProps(componentsProps.root, ownerState),
-          ...(!isHostComponent(Root) && { as: component, theme }),
+          ...(!isHostComponent(Root) && { theme }),
+          /** We pass the 'as' prop always because components.Root is set as ModalRoot wrapped with the
+           * styled API which thus supports the 'as' prop for host or React components.
+           */
+          as: Root,
         }),
         backdrop: () => ({
           ...BackdropProps,
