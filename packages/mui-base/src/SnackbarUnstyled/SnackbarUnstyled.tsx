@@ -141,20 +141,23 @@ SnackbarUnstyled.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   componentsProps: PropTypes.shape({
-    clickAwayListener: PropTypes.shape({
-      children: PropTypes.element.isRequired,
-      disableReactTree: PropTypes.bool,
-      mouseEvent: PropTypes.oneOf([
-        'onClick',
-        'onMouseDown',
-        'onMouseUp',
-        'onPointerDown',
-        'onPointerUp',
-        false,
-      ]),
-      onClickAway: PropTypes.func,
-      touchEvent: PropTypes.oneOf(['onTouchEnd', 'onTouchStart', false]),
-    }),
+    clickAwayListener: PropTypes.oneOfType([
+      PropTypes.func,
+      PropTypes.shape({
+        children: PropTypes.element.isRequired,
+        disableReactTree: PropTypes.bool,
+        mouseEvent: PropTypes.oneOf([
+          'onClick',
+          'onMouseDown',
+          'onMouseUp',
+          'onPointerDown',
+          'onPointerUp',
+          false,
+        ]),
+        onClickAway: PropTypes.func,
+        touchEvent: PropTypes.oneOf(['onTouchEnd', 'onTouchStart', false]),
+      }),
+    ]),
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
