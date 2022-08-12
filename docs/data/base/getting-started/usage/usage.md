@@ -104,7 +104,7 @@ If you are customizing a component like [`ButtonUnstyled`](/base/react-button/) 
 
 Overriding with `component` lets you apply the attributes of that element directly to the root.
 For instance, if you replace the `ButtonUnstyled` root with an `<li>` tag, you can add the `<li>` attribute `value` directly to the component.
-If you did the same with `components.Root`, you would need to place this attribute on the `componentsProps.root` object in order to use it.
+If you did the same with `components.Root`, you would need to place this attribute on the `componentsProps.root` object in order to avoid a TypeScript error.
 
 ## Components vs. hooks
 
