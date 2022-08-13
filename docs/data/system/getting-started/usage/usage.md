@@ -148,7 +148,7 @@ It works with both Emotion and styled-components.
   The initial bundle size cost is fixed—it doesn't get any larger as you add more CSS properties.
   You pay the cost of [@emotion/react](https://bundlephobia.com/package/@emotion/react) and [@mui/system](https://bundlephobia.com/package/@mui/system).
   The total size is ~15 kB gzipped.
-  But if you are already using a Core component library like Material UI, then it comes with no extra overhead.
+  But if you are already using a MUI Core component library like Material UI, then it comes with no extra overhead.
 
 #### Cons
 
