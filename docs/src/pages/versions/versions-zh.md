@@ -37,7 +37,7 @@ We call "breaking changes" those that require updating your codebase when upgrad
 - **Pre-releases versions**. We provide pre-release versions as a way to test new features early, but we need the flexibility to make changes based on what we learn in the pre-release period. If you use these versions, note that APIs may change before the stable release.
 - **Small CSS changes**. Visual design changes that have a very low probability of negatively impacting your UI are not considered breaking.
 
-## Release frequency
+## 发布周期
 
 A regular schedule of releases helps you plan and coordinate your updates with the continuing evolution of MUI.
 
@@ -47,15 +47,15 @@ In general, you can expect the following release cycle:
 - 1-3 **minor** releases for each major release.
 - A **patch** release every week (anytime for an urgent bug fix).
 
-## Release schedule
+## 发布时间表
 
-| 日期             | 版本     | 状态               |
-|:-------------- |:------ |:---------------- |
-| TBA            | v6.0.0 | Work not started |
-| September 2021 | v5.0.0 | 已发布              |
-| 2019 年 5 月     | v4.0.0 | 已发布              |
-| September 2018 | v3.0.0 | Work in progress |
-| May 2018       | v1.0.0 | Released         |
+| 日期         | 版本     | 状态   |
+|:---------- |:------ |:---- |
+| 待定         | v6.0.0 | 暂未开发 |
+| 2021 年 9 月 | v6.0.0 | 已发布  |
+| 2019 年 5 月 | v4.0.0 | 已发布  |
+| 2018 年 9 月 | v3.0.0 | 已发布  |
+| 2018 年 5 月 | v1.0.0 | 已发布  |
 
 You can follow the [milestones](https://github.com/mui/material-ui/milestones) for a more detailed overview.
 
@@ -78,7 +78,7 @@ The current status of each MUI version is as follows:
 
 For teams and organizations that require additional support for older versions, MUI has [options available](/material-ui/getting-started/support/#professional-support-premium).
 
-### Long-term support (LTS)
+### 长期支持 (LTS)
 
 MUI will continue to provide security updates and support for regressions for one version prior to the current major version, for example regressions caused by external factors such as browser updates, or changes to upstream dependencies.
 
