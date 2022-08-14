@@ -154,6 +154,7 @@ const TablePagination = React.forwardRef(function TablePagination(inProps, ref) 
       next: KeyboardArrowRight,
       previous: KeyboardArrowLeft,
     },
+    componentsProps = {},
     count,
     getItemAriaLabel = defaultGetAriaLabel,
     labelDisplayedRows = defaultLabelDisplayedRows,
@@ -276,6 +277,7 @@ const TablePagination = React.forwardRef(function TablePagination(inProps, ref) 
           showLastButton={showLastButton}
           getItemAriaLabel={getItemAriaLabel}
           components={normalizedIcons}
+          componentsProps={componentsProps}
         />
       </TablePaginationToolbar>
     </TablePaginationRoot>
@@ -328,6 +330,16 @@ TablePagination.propTypes /* remove-proptypes */ = {
     last: PropTypes.elementType,
     next: PropTypes.elementType,
     previous: PropTypes.elementType,
+  }),
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  componentsProps: PropTypes.shape({
+    first: PropTypes.object,
+    last: PropTypes.object,
+    next: PropTypes.object,
+    previous: PropTypes.object,
   }),
   /**
    * The total number of rows.

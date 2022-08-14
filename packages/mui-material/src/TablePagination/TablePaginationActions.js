@@ -18,6 +18,7 @@ const TablePaginationActions = React.forwardRef(function TablePaginationActions(
     showFirstButton,
     showLastButton,
     components,
+    componentsProps,
     ...other
   } = props;
 
@@ -53,7 +54,11 @@ const TablePaginationActions = React.forwardRef(function TablePaginationActions(
           aria-label={getItemAriaLabel('first', page)}
           title={getItemAriaLabel('first', page)}
         >
-          {theme.direction === 'rtl' ? <LastIcon /> : <FirstIcon />}
+          {theme.direction === 'rtl' ? (
+            <LastIcon {...componentsProps?.last} />
+          ) : (
+            <FirstIcon {...componentsProps?.first} />
+          )}
         </IconButton>
       )}
       <IconButton
@@ -64,7 +69,11 @@ const TablePaginationActions = React.forwardRef(function TablePaginationActions(
         title={getItemAriaLabel('previous', page)}
         {...backIconButtonProps}
       >
-        {theme.direction === 'rtl' ? <NextIcon /> : <PreviousIcon />}
+        {theme.direction === 'rtl' ? (
+          <NextIcon {...componentsProps?.next} />
+        ) : (
+          <PreviousIcon {...componentsProps?.previous} />
+        )}
       </IconButton>
       <IconButton
         onClick={handleNextButtonClick}
@@ -74,7 +83,11 @@ const TablePaginationActions = React.forwardRef(function TablePaginationActions(
         title={getItemAriaLabel('next', page)}
         {...nextIconButtonProps}
       >
-        {theme.direction === 'rtl' ? <PreviousIcon /> : <NextIcon />}
+        {theme.direction === 'rtl' ? (
+          <PreviousIcon {...componentsProps?.previous} />
+        ) : (
+          <NextIcon {...componentsProps?.next} />
+        )}
       </IconButton>
       {showLastButton && (
         <IconButton
@@ -83,7 +96,11 @@ const TablePaginationActions = React.forwardRef(function TablePaginationActions(
           aria-label={getItemAriaLabel('last', page)}
           title={getItemAriaLabel('last', page)}
         >
-          {theme.direction === 'rtl' ? <FirstIcon /> : <LastIcon />}
+          {theme.direction === 'rtl' ? (
+            <FirstIcon {...componentsProps?.first} />
+          ) : (
+            <LastIcon {...componentsProps?.last} />
+          )}
         </IconButton>
       )}
     </div>
@@ -109,6 +126,16 @@ TablePaginationActions.propTypes = {
     last: PropTypes.elementType,
     next: PropTypes.elementType,
     previous: PropTypes.elementType,
+  }),
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  componentsProps: PropTypes.shape({
+    first: PropTypes.object,
+    last: PropTypes.object,
+    next: PropTypes.object,
+    previous: PropTypes.object,
   }),
   /**
    * The total number of rows.

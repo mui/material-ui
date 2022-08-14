@@ -22,6 +22,16 @@ export interface TablePaginationActionsProps extends React.HTMLAttributes<HTMLDi
     next?: React.ElementType;
     previous?: React.ElementType;
   };
+  /**
+   * The props used for each slot inside.
+   * @default {}
+   */
+  componentsProps?: {
+    first?: React.HTMLProps<HTMLButtonElement>;
+    last?: React.HTMLProps<HTMLButtonElement>;
+    next?: React.HTMLProps<HTMLButtonElement>;
+    previous?: React.HTMLProps<HTMLButtonElement>;
+  };
   count: number;
   /**
    * Accepts a function which returns a string value that provides a user-friendly name for the current page.

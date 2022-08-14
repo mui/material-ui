@@ -48,6 +48,16 @@ export interface TablePaginationTypeMap<P, D extends React.ElementType> {
         previous?: React.ElementType;
       };
       /**
+       * The props used for each slot inside.
+       * @default {}
+       */
+      componentsProps?: {
+        first?: React.HTMLProps<HTMLButtonElement>;
+        last?: React.HTMLProps<HTMLButtonElement>;
+        next?: React.HTMLProps<HTMLButtonElement>;
+        previous?: React.HTMLProps<HTMLButtonElement>;
+      };
+      /**
        * The total number of rows.
        *
        * To enable server side pagination for an unknown number of items, provide -1.

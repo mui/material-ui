@@ -15,6 +15,13 @@
       },
       "default": "{\n  first: FirstPageIcon,\n  last: LastPageIcon,\n  next: KeyboardArrowRight,\n  previous: KeyboardArrowLeft,\n}"
     },
+    "componentsProps": {
+      "type": {
+        "name": "shape",
+        "description": "{ first?: object, last?: object, next?: object, previous?: object }"
+      },
+      "default": "{}"
+    },
     "getItemAriaLabel": {
       "type": { "name": "func" },
       "default": "function defaultGetAriaLabel(type) {\n  return `Go to ${type} page`;\n}"
