@@ -2937,10 +2937,10 @@
   resolved "https://registry.yarnpkg.com/@polka/url/-/url-1.0.0-next.11.tgz#aeb16f50649a91af79dbe36574b66d0f9e4d9f71"
   integrity sha512-3NsZsJIA/22P3QUyrEDNA2D133H4j224twJrdipXN38dpnIOzAbUDtOwkcJ5pXmn75w7LSQDjA4tO9dm1XlqlA==
 
-"@popperjs/core@^2.11.5":
-  version "2.11.5"
-  resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.11.5.tgz#db5a11bf66bdab39569719555b0f76e138d7bd64"
-  integrity sha512-9X2obfABZuDVLCgPK9aX0a/x4jaOEweTTWE2+9sr0Qqqevj2Uv5XorvusThmc9XGYpS9yI+fhh8RTafBtGposw==
+"@popperjs/core@^2.11.6":
+  version "2.11.6"
+  resolved "https://registry.yarnpkg.com/@popperjs/core/-/core-2.11.6.tgz#cee20bd55e68a1720bdab363ecf0c821ded4cd45"
+  integrity sha512-50/17A98tWUfQ176raKiOGXuYpLyyVMkxxG6oylzL3BPOlA6ADGdK7EYunSa4I064xerltq9TGXs8HmOk5E+vw==
 
 "@qiwi/npm-registry-client@^8.9.1":
   version "8.9.1"
