@@ -501,4 +501,52 @@ describe('<TablePagination />', () => {
       );
     });
   });
+
+  describe('prop: componentsProps', () => {
+    it('should render first with custom data test id', () => {
+      const handleChangePage = spy();
+      const { getAllByTestId } = render(
+        <table>
+          <TableFooter>
+            <TableRow>
+              <TablePagination
+                componentsProps={{ first: { 'data-testid': 'custom-first-test-id' } }}
+                showFirstButton
+                showLastButton
+                page={1}
+                rowsPerPage={10}
+                count={50}
+                onPageChange={handleChangePage}
+              />
+            </TableRow>
+          </TableFooter>
+        </table>,
+      );
+
+      expect(getAllByTestId('custom-first-test-id')).to.be.lengthOf(1);
+    });
+
+    it('should render last with custom data test id', () => {
+      const handleChangePage = spy();
+      const { getAllByTestId } = render(
+        <table>
+          <TableFooter>
+            <TableRow>
+              <TablePagination
+                componentsProps={{ last: { 'data-testid': 'custom-last-test-id' } }}
+                showFirstButton
+                showLastButton
+                page={1}
+                rowsPerPage={10}
+                count={50}
+                onPageChange={handleChangePage}
+              />
+            </TableRow>
+          </TableFooter>
+        </table>,
+      );
+
+      expect(getAllByTestId('custom-last-test-id')).to.be.lengthOf(1);
+    });
+  });
 });
