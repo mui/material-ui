@@ -13,8 +13,8 @@ title: React Aspect Ratio component
 Its default implementation combines `height: 0px` with percentage `padding-bottom` to properly accomodate the content.
 
 :::info
-**Note:** A [native CSS `aspect-ratio`property](https://developer.mozilla.org/en-US/docs/Web/CSS/aspect-ratio) already exists but we're not using it yet due to limited browser support.
-Once that increases significantly, we'll switch over to it.
+**Note:** A [native CSS `aspect-ratio` property](https://developer.mozilla.org/en-US/docs/Web/CSS/aspect-ratio) already exists but MUI is not using it yet due to limited browser support.
+Once the support increases significantly, MUI will switch over to it.
 :::
 
 ## Component
