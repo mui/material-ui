@@ -39,6 +39,11 @@ export interface SelectUnstyledCommonProps {
    */
   listboxOpen?: boolean;
   /**
+   * Name of the element. For example used by the server to identify the fields in form submits.
+   * If the name is provided, the component will render a hidden input element that can be submitted to a server.
+   */
+  name?: string;
+  /**
    * Callback fired when the component requests to be opened.
    * Use in controlled mode (see listboxOpen).
    */
@@ -82,9 +87,25 @@ export interface SelectUnstyledOwnProps<TValue extends {}> extends SelectUnstyle
    */
   defaultValue?: TValue | null;
   /**
+   * A function to convert the currently selected value to a string.
+   * Used to set a value of a hidden input associated with the select,
+   * so that the selected value can be posted with a form.
+   */
+  getSerializedValue?: (
+    option: SelectOption<TValue> | null,
+  ) => React.InputHTMLAttributes<HTMLInputElement>['value'];
+  /**
    * Callback fired when an option is selected.
    */
   onChange?: (value: TValue | null) => void;
+  /**
+   * A function used to convert the option label to a string.
+   * It's useful when labels are elements and need to be converted to plain text
+   * to enable navigation using character keys on a keyboard.
+   *
+   * @default defaultOptionStringifier
+   */
+  optionStringifier?: (option: SelectOption<TValue>) => string;
   /**
    * Function that customizes the rendering of the selected value.
    */

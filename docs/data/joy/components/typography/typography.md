@@ -86,7 +86,7 @@ The `Typography` component has access to the typographic level scale defined in 
 Use the `level` prop to control the scale value.
 
 :::info
-**Keep in mind:** each level renders a specific HTML tag (e.g. "h1" renders as an `<h2>` element, "body1" renders as a `<p>`, etc.)
+**Keep in mind:** each level renders a specific HTML tag (e.g. "h1" renders as an `<h1>` element, "body1" renders as a `<p>`, etc.)
 :::
 
 {{"demo": "TypographyScales.js"}}

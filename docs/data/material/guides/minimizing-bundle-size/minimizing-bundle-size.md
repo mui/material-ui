@@ -25,12 +25,22 @@ that doesn't support tree-shaking.
 ## Development environment
 
 Development bundles can contain the full library which can lead to **slower startup times**.
-This is especially noticeable if you import from `@mui/icons-material`.
-Startup times can be approximately 6x slower than without named imports from the top-level API.
+This is especially noticeable if you use named imports from `@mui/icons-material`, which can be up to six times slower than the default import.
+For example, between the following two imports, the first (named) can be significantly slower than the second (default):
 
-If this is an issue for you, you have various options:
+```js
+// 🐌 Named
+import { Delete } from '@mui/icons-material';
+```
 
-### Option 1
+```js
+// 🚀 Default
+import Delete from '@mui/icons-material/Delete';
+```
+
+If this is an issue for you, you have two options:
+
+### Option one: use path imports
 
 You can use path imports to avoid pulling in unused modules.
 For instance, use:
@@ -87,9 +97,9 @@ If you're using `eslint` you can catch problematic imports with the [`no-restric
 }
 ```
 
-### Option 2
+### Option two: use a Babel plugin
 
-This option provides the best User Experience and Developer Experience:
+This option provides the best user experience and developer experience:
 
 - UX: The Babel plugin enables top-level tree-shaking even if your bundler doesn't support it.
 - DX: The Babel plugin makes startup time in dev mode as fast as Option 1.
