@@ -15,7 +15,9 @@ Um acordeão é um contêiner leve que pode estar sozinho ou conectado em uma su
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-:::info **Note:** Accordions are no longer documented in the [Material Design guidelines](https://material.io/), but MUI will continue to support them. It was formerly known as the "expansion panel". :::
+:::info
+**Note:** Accordions are no longer documented in the [Material Design guidelines](https://material.io/), but MUI will continue to support them. It was formerly known as the "expansion panel".
+:::
 
 ## Acordeão básico
 

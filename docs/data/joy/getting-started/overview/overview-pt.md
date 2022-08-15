@@ -8,11 +8,13 @@ title: Overview
 
 It features foundational components such as the ones you'd find in Material UI and it comes with a beautifully designed default theme so you can rapidly start your own design system. You should see Joy UI as a starting point. It comes with a lot of customization features so you match it to your desired look and feel.
 
-:::warning **Note:** as of today, Joy UI is in active development, with an alpha version soon to be released.
+:::warning
+**Note:** as of today, Joy UI is in active development, with an alpha version soon to be released.
 
 We're adding new components and features regularly, and you're welcome to contribute!
 
-Look for the [`package: joy`](https://github.com/mui/material-ui/labels/package%3A%20joy) label on open issues and pull requests in the `mui/material-ui` repository on GitHub to see what other community members are working on, and feel free to submit your own. :::
+Look for the [`package: joy`](https://github.com/mui/material-ui/labels/package%3A%20joy) label on open issues and pull requests in the `mui/material-ui` repository on GitHub to see what other community members are working on, and feel free to submit your own.
+:::
 
 ## Advantages of Joy UI
 

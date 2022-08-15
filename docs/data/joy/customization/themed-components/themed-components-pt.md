@@ -122,7 +122,8 @@ extendTheme({
 
 If you have custom color schemes defined, this approach also works. However, note that it creates additional CSS specificity which might be cumbersome when the parent component wants to override their children styles.
 
-:::error 🚨 **Note:** We don't recommend using the conditional operator to switch between values as it is not performant.
+:::error
+🚨 **Note:** We don't recommend using the conditional operator to switch between values as it is not performant.
 
 ```js
 // 🚫 Don't do this

@@ -80,7 +80,9 @@ The tab components are each composed of a root slot with no interior slots:
 
 ### Slot props
 
-:::info The following props are available on all non-utility Base components. See [Usage](/base/getting-started/usage/) for full details. :::
+:::info
+The following props are available on all non-utility Base components. See [Usage](/base/getting-started/usage/) for full details.
+:::
 
 Use the `component` prop to override the root slot with a custom element:
 
@@ -96,7 +98,9 @@ Use the `components` prop to override any interior slots in addition to the root
 <TabUnstyled components={{ Root: 'span' }} />
 ```
 
-:::warning If the root element is customized with both the `component` and `components` props, then `component` will take precedence. :::
+:::warning
+If the root element is customized with both the `component` and `components` props, then `component` will take precedence.
+:::
 
 Use the `componentsProps` prop to pass custom props to internal slots. The following code snippet applies a CSS class called `my-tab-list` to the root slot:
 
@@ -104,7 +108,9 @@ Use the `componentsProps` prop to pass custom props to internal slots. The follo
 <TabListUnstyled componentsProps={{ root: { className: 'my-tab-list' } }} />
 ```
 
-:::warning Note that `componentsProps` slot names are written in lowercase (`root`) while `components` slot names are capitalized (`Root`). :::
+:::warning
+Note that `componentsProps` slot names are written in lowercase (`root`) while `components` slot names are capitalized (`Root`).
+:::
 
 ## Customization
 

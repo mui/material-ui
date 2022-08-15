@@ -33,7 +33,9 @@ Each component has its own unique API, but all components accept the following s
 
 The `components` prop is an object that lets you override any interior subcomponents ("slots") of the base component itself.
 
-:::info Each component contains a `Root` slot, and many complex components (such as [`BadgeUnstyled`](/base/react-badge/)) are composed of additional subcomponents that can be customized. :::
+:::info
+Each component contains a `Root` slot, and many complex components (such as [`BadgeUnstyled`](/base/react-badge/)) are composed of additional subcomponents that can be customized.
+:::
 
 You can use the `components` prop to replace subcomponents with either custom components or HTML elements.
 
@@ -53,7 +55,9 @@ The code snippet below shows how to override the `Root` element of the [`BadgeUn
 <BadgeUnstyled component="div" />
 ```
 
-:::warning **Note**: if both `components.Root` and `component` are specified, `component` takes precedence. :::
+:::warning
+**Note**: if both `components.Root` and `component` are specified, `component` takes precedence.
+:::
 
 ### componentsProps
 
@@ -77,13 +81,17 @@ These two examples are equivalent:
 <BadgeUnstyled componentsProps={{ root: { id: 'badge1' } }}>
 ```
 
-:::warning If both `componentsProps.root` and additional props have the same keys but different values, the `componentsProps.root` props will take precedence. This does not apply to classes and the `style` prop (they will be merged instead). :::
+:::warning
+If both `componentsProps.root` and additional props have the same keys but different values, the `componentsProps.root` props will take precedence. This does not apply to classes and the `style` prop (they will be merged instead).
+:::
 
 ## Components vs. hooks
 
 MUI Base includes two kinds of building blocks: **components** and **hooks**.
 
-:::info 💡 Hooks encapsulate _logic_; components provide _structure_. :::
+:::info
+💡 Hooks encapsulate _logic_; components provide _structure_.
+:::
 
 Many Base components are implemented with the help of hooks. (Visit the [React documentation on hooks](https://reactjs.org/docs/hooks-intro.html) to get up to speed on this concept.)
 

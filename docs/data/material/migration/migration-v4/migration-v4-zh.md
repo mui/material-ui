@@ -22,9 +22,12 @@ V5最大的变化之一是将JSS替换为[Emotion](https://emotion.sh/docs/intro
 
 这个过程在[从JSS迁移](/material-ui/migration/migrating-from-jss/)中有所涉及。
 
-:::info 需要参考旧版本的文档吗？ 在这里查看[v4的文档](https://v4.mui.com/) :::
+:::info
+需要参考旧版本的文档吗？ 在这里查看[v4的文档](https://v4.mui.com/)
+:::
 
-如果你正在使用Next.js，并且不确定如何配置SSR以与Emotion 和 JSS一起工作，请看这个[例子项目](https://github.com/mui/material-ui/tree/master/examples/nextjs-with-typescript-v4-migration) :::
+如果你正在使用Next.js，并且不确定如何配置SSR以与Emotion 和 JSS一起工作，请看这个[例子项目](https://github.com/mui/material-ui/tree/master/examples/nextjs-with-typescript-v4-migration)
+:::
 
 ## 为什么你应该迁移
 
@@ -36,11 +39,13 @@ Material UI v5与v4相比，包括许多错误修复和改进。
 
 想了解更多，请查看[关于Material UI v5](https://mui.com/blog/mui-core-v5/)发布的博文。
 
-:::info 💡 在你进行的过程中创建小的提交，以确保顺利迁移。
+:::info
+💡 在你进行的过程中创建小的提交，以确保顺利迁移。
 
 如果你在途中遇到任何问题，请查看[故障排除](/material-ui/migration/troubleshooting/)文档。
 
-对于那里没有解决的问题，请用这种标题格式[创建一个问题](https://github.com/mui/material-ui/issues/new?assignees=&labels=status%3A+needs+triage&template=1.bug.yml)。**[Migration] 你的问题的摘要**。 :::
+对于那里没有解决的问题，请用这种标题格式[创建一个问题](https://github.com/mui/material-ui/issues/new?assignees=&labels=status%3A+needs+triage&template=1.bug.yml)。**[Migration] 你的问题的摘要**。
+:::
 
 ## 支持的浏览器和Node版本
 
@@ -67,11 +72,13 @@ React的最低支持版本已经从v16.8.0提高到v17.0.0。
 
 TypeScript的最小支持版本已经从v3.2提高到v3.5。
 
-:::warning 我们尽量与[DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped)发布的类型保持一致（即在npm上以`@types`命名空间发布的包）。
+:::warning
+我们尽量与[DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped)发布的类型保持一致（即在npm上以`@types`命名空间发布的包）。
 
 我们不会在Material UI的主要版本中改变最小支持版本。
 
-然而，我们一般建议不要使用比DefinitelyTyped的最低支持版本更早的TypeScript版本。 :::
+然而，我们一般建议不要使用比DefinitelyTyped的最低支持版本更早的TypeScript版本。
+:::
 
 如果你的项目包括这些软件包，你需要将它们更新到`最新`版本。
 
@@ -222,7 +229,9 @@ yarn add @emotion/react @emotion/styled
 
 一旦你安装了所有必要的软件包，并确保你的应用程序仍然运行，你可以通过运行`npm uninstall @material-ui/*`或`yarn remove @material-ui/*`来安全地删除旧的`@material-ui/*`软件包。
 
-:::success [预设安全的编码模式](#preset-safe)（下文有更详细的解释）会自动处理这个问题。 :::
+:::success
+[预设安全的编码模式](#preset-safe)（下文有更详细的解释）会自动处理这个问题。
+:::
 
 ## 修复CSS的特殊性（可选）
 
@@ -273,13 +282,16 @@ This codemod contains most of the transformers that are necessary for migration.
 npx @mui/codemod v5.0.0/preset-safe <path>
 ```
 
-:::info If you want to run the transformers one by one, check out the [preset-safe codemod](https://github.com/mui/material-ui/blob/master/packages/mui-codemod/README.md#-preset-safe) for more details. :::
+:::info
+If you want to run the transformers one by one, check out the [preset-safe codemod](https://github.com/mui/material-ui/blob/master/packages/mui-codemod/README.md#-preset-safe) for more details.
+:::
 
 ### variant-prop
 
 如果没有定义变量，这个codemod通过应用`variant="standard "`来转换`<TextField/>`、`<FormControl/>`、和`<Select/>`组件--默认的变量已经从v4的 `"standard "`变成了v5的` "outline"`。
 
-如果你已经在主题中定义了`变量："outlined "`作为默认值，你就_不应该_使用这个codemod。 :::
+如果你已经在主题中定义了`变量："outlined "`作为默认值，你就_不应该_使用这个codemod。
+:::
 
 ```js
 // ❌ if you have a theme setup like this, don't run this codemod.
@@ -307,7 +319,9 @@ npx @mui/codemod v5.0.0/variant-prop <path>
 
 如果没有定义`underline`，这个codemod通过应用`underline="hover"`来转换组件`<Link />`--默认的`underline`已经从v4的` "hover "`变为v5的 `"always"`。
 
-:::error ❗️ 如果你已经在主题中定义了underline，你就_不应该_使用这个代码模式。`"always "`作为主题中的默认值。 :::
+:::error
+❗️ 如果你已经在主题中定义了underline，你就_不应该_使用这个代码模式。`"always "`作为主题中的默认值。
+:::
 
 ```js
 // if you have theme setup like this, ❌ don't run this codemod.

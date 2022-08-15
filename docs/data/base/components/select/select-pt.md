@@ -94,7 +94,9 @@ The `SelectUnstyled` and `MultiSelectUnstyled` components are composed of a root
 
 ### Slot props
 
-:::info The following props are available on all non-utility Base components. See [Usage](/base/getting-started/usage/) for full details. :::
+:::info
+The following props are available on all non-utility Base components. See [Usage](/base/getting-started/usage/) for full details.
+:::
 
 Use the `component` prop to override the root slot with a custom element:
 
@@ -108,7 +110,9 @@ Use the `components` prop to override any interior slots in addition to the root
 <SelectUnstyled components={{ Root: 'div', Listbox: 'ol' }} />
 ```
 
-:::warning If the root element is customized with both the `component` and `components` props, then `component` will take precedence. :::
+:::warning
+If the root element is customized with both the `component` and `components` props, then `component` will take precedence.
+:::
 
 Use the `componentsProps` prop to pass custom props to internal slots. The following code snippet applies a CSS class called `my-listbox` to the listbox slot:
 
@@ -116,7 +120,9 @@ Use the `componentsProps` prop to pass custom props to internal slots. The follo
 <SelectUnstyled componentsProps={{ listbox: { className: 'my-listbox' } }} />
 ```
 
-:::warning Note that `componentsProps` slot names are written in lowercase (`root`) while `components` slot names are capitalized (`Root`). :::
+:::warning
+Note that `componentsProps` slot names are written in lowercase (`root`) while `components` slot names are capitalized (`Root`).
+:::
 
 ## Hook
 
@@ -128,9 +134,11 @@ The `useSelect` hook lets you apply the functionality of `SelectUnstyled` to a f
 
 Hooks _do not_ support [slot props](#slot-props), but they do support [customization props](#customization).
 
-:::info Hooks give you the most room for customization, but require more work to implement. With hooks, you can take full control over how your component is rendered, and define all the custom props and CSS classes you need.
+:::info
+Hooks give you the most room for customization, but require more work to implement. With hooks, you can take full control over how your component is rendered, and define all the custom props and CSS classes you need.
 
-You may not need to use hooks unless you find that you're limited by the customization options of their component counterparts—for instance, if your component requires significantly different [structure](#component-slots). :::
+You may not need to use hooks unless you find that you're limited by the customization options of their component counterparts—for instance, if your component requires significantly different [structure](#component-slots).
+:::
 
 The following example shows a select that opens when hovered over or focused. It can be controlled by a mouse/touch or a keyboard.
 

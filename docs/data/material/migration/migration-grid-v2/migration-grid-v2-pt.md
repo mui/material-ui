@@ -12,7 +12,9 @@ Grid v2 has several new feature and many improvements over the original:
 - [Nested grids](/material-ui/react-grid2/#nested-grid) now have no depth limitation.
 - The `disableEqualOverflow` flag disables the horizontal scrollbar in smaller viewports.
 
-:::info Grid v2 is currently considered `Unstable_` as we give the community time to try it out and offer feedback. We will make it stable and deprecate v1 in the next major release of Material UI. :::
+:::info
+Grid v2 is currently considered `Unstable_` as we give the community time to try it out and offer feedback. We will make it stable and deprecate v1 in the next major release of Material UI.
+:::
 
 ## With Material UI v4
 

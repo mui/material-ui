@@ -178,7 +178,9 @@ Function components cannot be given refs. Attempts to access this ref will fail.
 
 Note that you will still get this warning for `lazy` and `memo` components if their wrapped component can't hold a ref. In some instances, an additional warning is issued to help with debugging, similar to:
 
-:::warning Invalid prop `component` supplied to `ComponentName`. Expected an element type that can hold a ref. :::
+:::warning
+Invalid prop `component` supplied to `ComponentName`. Expected an element type that can hold a ref.
+:::
 
 Only the two most common use cases are covered. For more information see [this section in the official React docs](https://reactjs.org/docs/forwarding-refs.html).
 

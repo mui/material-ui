@@ -53,7 +53,9 @@ Uma caixa de seleção só pode ter dois estados em um formulário: marcado ou d
 
 {{"demo": "IndeterminateCheckbox.js"}}
 
-:::warning ⚠️ When indeterminate is set, the value of the `checked` prop only impacts the form submitted values. It has no accessibility or UX implications. :::
+:::warning
+⚠️ When indeterminate is set, the value of the `checked` prop only impacts the form submitted values. It has no accessibility or UX implications.
+:::
 
 ## Posicionamento do rótulo
 

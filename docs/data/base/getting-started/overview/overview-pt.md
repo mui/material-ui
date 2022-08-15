@@ -14,11 +14,13 @@ MUI Base includes prebuilt components with production-ready functionality, along
 
 With MUI Base, you can rapidly build on top of our foundational components using any styling solution you choose—no need to override any default style engine or theme.
 
-:::info **Note:** as of today, MUI Base is in alpha.
+:::info
+**Note:** as of today, MUI Base is in alpha.
 
 We're adding new components and features regularly, and you're welcome to contribute!
 
-Look for the [`package: base`](https://github.com/mui/material-ui/labels/package%3A%20base) label on open issues and pull requests in the `mui/material-ui` repository on GitHub to see what other community members are working on, and feel free to submit your own. :::
+Look for the [`package: base`](https://github.com/mui/material-ui/labels/package%3A%20base) label on open issues and pull requests in the `mui/material-ui` repository on GitHub to see what other community members are working on, and feel free to submit your own.
+:::
 
 ## Advantages of MUI Base
 

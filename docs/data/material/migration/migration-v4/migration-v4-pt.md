@@ -22,9 +22,13 @@ Note that you may continue to use JSS for adding overrides to the components (e.
 
 This process is covered in [Migrating from JSS](/material-ui/migration/migrating-from-jss/).
 
-:::info Need to refer back to an older version of the docs? Check out [the v4 documentation here](https://v4.mui.com/). :::
+:::info
+Need to refer back to an older version of the docs? Check out [the v4 documentation here](https://v4.mui.com/).
+:::
 
-:::info If you are using Next.js and you are not sure how to configure SSR to work with both Emotion & JSS, take a look a this [example project](https://github.com/mui/material-ui/tree/master/examples/nextjs-with-typescript-v4-migration). :::
+:::info
+If you are using Next.js and you are not sure how to configure SSR to work with both Emotion & JSS, take a look a this [example project](https://github.com/mui/material-ui/tree/master/examples/nextjs-with-typescript-v4-migration).
+:::
 
 ## Why you should migrate
 
@@ -36,11 +40,13 @@ Additionally, v5 is the only version that fully supports React 18, so you will n
 
 To learn more, check out [the blog post about the release of Material UI v5](https://mui.com/blog/mui-core-v5/).
 
-:::info 💡 Create small commits as you go to ensure a smooth migration.
+:::info
+💡 Create small commits as you go to ensure a smooth migration.
 
 If you encounter any issues along the way, check the [Troubleshooting](/material-ui/migration/troubleshooting/) doc.
 
-For problems not addressed there, please [create an issue](https://github.com/mui/material-ui/issues/new?assignees=&labels=status%3A+needs+triage&template=1.bug.yml) with this title format: **[Migration] Summary of your issue**. :::
+For problems not addressed there, please [create an issue](https://github.com/mui/material-ui/issues/new?assignees=&labels=status%3A+needs+triage&template=1.bug.yml) with this title format: **[Migration] Summary of your issue**.
+:::
 
 ## Supported browsers and Node versions
 
@@ -67,11 +73,13 @@ The minimum supported version of React has been increased from v16.8.0 to v17.0.
 
 The minimum supported version of TypeScript has been increased from v3.2 to v3.5.
 
-:::warning We try to align with types released by [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped) (i.e. packages published on npm under the `@types` namespace).
+:::warning
+We try to align with types released by [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped) (i.e. packages published on npm under the `@types` namespace).
 
 We will not change the minimum supported version in a major version of Material UI.
 
-However, we generally recommend not to use a TypeScript version older than the lowest supported version of DefinitelyTyped. :::
+However, we generally recommend not to use a TypeScript version older than the lowest supported version of DefinitelyTyped.
+:::
 
 If your project includes these packages, you'll need to update them to the `latest` version:
 
@@ -222,7 +230,9 @@ With the release of v5, the names of all related packages were changed from `@ma
 
 Once you've installed all the necessary packages and ensured that your app still runs, you can safely remove the old `@material-ui/*` packages by running `npm uninstall @material-ui/*` or `yarn remove @material-ui/*`.
 
-:::success The [preset-safe codemod](#preset-safe) (explained in more detail below) handles this automatically. :::
+:::success
+The [preset-safe codemod](#preset-safe) (explained in more detail below) handles this automatically.
+:::
 
 ## Fix CSS specificity (optional)
 
@@ -273,13 +283,17 @@ This codemod contains most of the transformers that are necessary for migration.
 npx @mui/codemod v5.0.0/preset-safe <path>
 ```
 
-:::info If you want to run the transformers one by one, check out the [preset-safe codemod](https://github.com/mui/material-ui/blob/master/packages/mui-codemod/README.md#-preset-safe) for more details. :::
+:::info
+If you want to run the transformers one by one, check out the [preset-safe codemod](https://github.com/mui/material-ui/blob/master/packages/mui-codemod/README.md#-preset-safe) for more details.
+:::
 
 ### variant-prop
 
 This codemod transforms the `<TextField/>`, `<FormControl/>`, and `<Select/>` components by applying `variant="standard"` if no variant is defined—the default variant has changed from `"standard"` in v4 to `"outlined"` in v5.
 
-:::error ❗️ You should _not_ use this codemod if you have already defined `variant: "outlined"` as the default in the theme. :::
+:::error
+❗️ You should _not_ use this codemod if you have already defined `variant: "outlined"` as the default in the theme.
+:::
 
 ```js
 // ❌ if you have a theme setup like this, don't run this codemod.
@@ -307,7 +321,9 @@ For more details, check out the [variant-prop codemod README](https://github.com
 
 This codemod transforms the `<Link />` component by applying `underline="hover"` if there is no `underline` prop defined—the default `underline` has changed from `"hover"` in v4 to `"always"` in v5.
 
-:::error ❗️ You should _not_ use this codemod if you have already defined `underline: "always"` as the default in the theme. :::
+:::error
+❗️ You should _not_ use this codemod if you have already defined `underline: "always"` as the default in the theme.
+:::
 
 ```js
 // if you have theme setup like this, ❌ don't run this codemod.

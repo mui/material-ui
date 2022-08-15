@@ -85,9 +85,11 @@ The prop is designed to cover the primary use case of a **search input** with su
 
 {{"demo": "FreeSolo.js"}}
 
-:::warning ⚠️ Be careful when using the free solo mode with non-string options, as it may cause type mismatch.
+:::warning
+⚠️ Be careful when using the free solo mode with non-string options, as it may cause type mismatch.
 
-The value created by typing into the textbox is always a string, regardless of the type of the options. :::
+The value created by typing into the textbox is always a string, regardless of the type of the options.
+:::
 
 ### Creatable
 

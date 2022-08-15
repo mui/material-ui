@@ -42,7 +42,8 @@ Você também pode renderizar um divisor com conteúdo.
 
 {{"demo": "DividerText.js"}}
 
-:::info **Accessibility tips**: When using the `Divider` component for visual decoration, such as in a heading, explicitly specify `role="presentation"` to the divider to make sure screen readers can announce its content:
+:::info
+**Accessibility tips**: When using the `Divider` component for visual decoration, such as in a heading, explicitly specify `role="presentation"` to the divider to make sure screen readers can announce its content:
 
 ```js
 <Divider component="div" role="presentation">
@@ -59,7 +60,9 @@ You can also render a divider vertically using the `orientation` prop.
 
 {{"demo": "VerticalDividers.js", "bg": true}}
 
-:::info Note the use of the `flexItem` prop to accommodate for the flex container. :::
+:::info
+Note the use of the `flexItem` prop to accommodate for the flex container.
+:::
 
 ### Vertical with variant middle
 

@@ -277,9 +277,11 @@ The second option is to define your breakpoints as an array, from smallest to la
 
 {{"demo": "BreakpointsAsArray.js"}}
 
-:::warning This option should only be considered when the theme has a limited number of breakpoints, e.g. 3.
+:::warning
+This option should only be considered when the theme has a limited number of breakpoints, e.g. 3.
 
-We recommend using the object API instead if you need to define more than a few breakpoints. :::
+We recommend using the object API instead if you need to define more than a few breakpoints.
+:::
 
 You can skip breakpoints with the `null` value:
 

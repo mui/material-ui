@@ -363,7 +363,9 @@ export default function StyledComponentsDeep2() {
 
 我们鼓励你在 Material-UI 和你项目的其他部分之间共享相同的主题对象。
 
-:::warning ⚠️ If you are **already** using a custom theme with styled-components or emotion, it might not be compatible with MUI's theme specification. If it's not compatible, you need to render MUI's ThemeProvider <b>first</b>. This will ensure the theme structures are isolated. This is ideal for the progressive adoption of MUI's components in the codebase. :::
+:::warning
+⚠️ If you are **already** using a custom theme with styled-components or emotion, it might not be compatible with MUI's theme specification. If it's not compatible, you need to render MUI's ThemeProvider <b>first</b>. This will ensure the theme structures are isolated. This is ideal for the progressive adoption of MUI's components in the codebase.
+:::
 
 You are encouraged to share the same theme object between MUI and the rest of your project.
 
@@ -769,7 +771,9 @@ export default function SliderThumbOverrides() {
 
 [TSS](https://docs.tss-react.dev) integrates well with MUI and provide a better TypeScript support than JSS.
 
-:::info If you are updating from `@material-ui/core` (v4) to `@mui/material` (v5), check out the [tss-react section](/material-ui/migration/migrating-from-jss/#2-use-tss-react) of the Migration guide. :::
+:::info
+If you are updating from `@material-ui/core` (v4) to `@mui/material` (v5), check out the [tss-react section](/material-ui/migration/migrating-from-jss/#2-use-tss-react) of the Migration guide.
+:::
 
 ```tsx
 import { render } from 'react-dom';
@@ -842,9 +846,15 @@ const useStyles = makeStyles<{ color: 'red' | 'blue' }>()((theme, { color }) => 
 
 For info on how to setup SSR or anything else, please refer to [the TSS documentation](https://github.com/garronej/tss-react).
 
-:::info There is [an ESLint plugin](https://docs.tss-react.dev/detecting-unused-classes) for detecting unused classes. :::
+:::info
+There is [an ESLint plugin](https://docs.tss-react.dev/detecting-unused-classes) for detecting unused classes.
+:::
 
-:::warning ⚠️ **Keep `@emotion/styled` as a dependency of your project**. Even if you never use it explicitly, it's a peer dependency of `@mui/material`. :::
+:::warning
+⚠️ **Keep `@emotion/styled` as a dependency of your project**. Even if you never use it explicitly, it's a peer dependency of `@mui/material`.
+:::
 
-:::warning For [Storybook](https://storybook.js.org): At the time of this writing, Storybook still uses Emotion 10 by default.  
-Material UI and TSS use Emotion 11, so you must make [some changes](https://github.com/InseeFrLab/onyxia-ui/blob/324de62248074582b227e584c53fb2e123f5325f/.storybook/main.js#L31-L32) to `.storybook/main.js` in order to use Storybook with Material UI. :::
+:::warning
+For [Storybook](https://storybook.js.org): At the time of this writing, Storybook still uses Emotion 10 by default.  
+Material UI and TSS use Emotion 11, so you must make [some changes](https://github.com/InseeFrLab/onyxia-ui/blob/324de62248074582b227e584c53fb2e123f5325f/.storybook/main.js#L31-L32) to `.storybook/main.js` in order to use Storybook with Material UI.
+:::

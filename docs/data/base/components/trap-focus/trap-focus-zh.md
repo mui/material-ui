@@ -46,9 +46,11 @@ The following demo shows a `<button>` that opens a [`Box`](/material-ui/react-bo
 
 {{"demo": "BasicTrapFocus.js"}}
 
-:::error Because the `TrapFocus` component blocks interaction with the rest of the app by default, the demo above also behaves this way. If you leave the `Box` open in the demo, you won't be able to click on other buttons in this document. Click **Close** in the demo to resolve this.
+:::error
+Because the `TrapFocus` component blocks interaction with the rest of the app by default, the demo above also behaves this way. If you leave the `Box` open in the demo, you won't be able to click on other buttons in this document. Click **Close** in the demo to resolve this.
 
-The next section explains how to change this default behavior. :::
+The next section explains how to change this default behavior.
+:::
 
 ## Customization
 

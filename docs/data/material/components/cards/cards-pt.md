@@ -44,7 +44,9 @@ Por padrão, nós usamos a combinação de um elemento `<div>` e uma _imagem de 
 
 {{"demo": "ImgMediaCard.js", "bg": true}}
 
-:::warning ⚠️ When `component="img"`, CardMedia relies on `object-fit` for centering the image. It's not supported by IE11. :::
+:::warning
+⚠️ When `component="img"`, CardMedia relies on `object-fit` for centering the image. It's not supported by IE11.
+:::
 
 ## Ação primária
 

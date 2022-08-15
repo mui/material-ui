@@ -40,7 +40,9 @@ The following demo shows how to create and style a basic popper. Click **Toggle 
 
 {{"demo": "SimplePopper.js", "defaultCodeOpen": true}}
 
-:::warning By default, clicking outside the popper does not hide it. If you need this behavior, you can use the [`ClickAwayListener`](/base/react-click-away-listener/) component. :::
+:::warning
+By default, clicking outside the popper does not hide it. If you need this behavior, you can use the [`ClickAwayListener`](/base/react-click-away-listener/) component.
+:::
 
 ## Customization
 

@@ -24,9 +24,11 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/dialogmodal/
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
-:::info The term "modal" is sometimes used interchangeably with "dialog," but this is incorrect. A dialog may be _modal_ or _nonmodal (modeless)_.
+:::info
+The term "modal" is sometimes used interchangeably with "dialog," but this is incorrect. A dialog may be _modal_ or _nonmodal (modeless)_.
 
-A modal [blocks interaction with the rest of the application](https://en.wikipedia.org/wiki/Modal_window), forcing the user to take action. As such, it should be used sparingly—only when the app _requires_ user input before it can continue. :::
+A modal [blocks interaction with the rest of the application](https://en.wikipedia.org/wiki/Modal_window), forcing the user to take action. As such, it should be used sparingly—only when the app _requires_ user input before it can continue.
+:::
 
 <!-- Uncomment the next line, once an unstyled dialog component is added in @mui/base -->
 <!-- If you are creating a modal dialog, the \[`Dialog`\](/material-ui/dialog/) component is better suited for this specific use case. -->`ModalUnstyled` is a lower-level construct that is used in the following Material UI components:
@@ -60,9 +62,11 @@ The following demo shows how to create and style a basic modal. Click **Open mod
 
 ### Nested modal
 
-:::warning Though it is possible to create nested modals—for example, a select modal within a dialog—stacking more than two at a time is discouraged.
+:::warning
+Though it is possible to create nested modals—for example, a select modal within a dialog—stacking more than two at a time is discouraged.
 
-This is because each successive modal blocks interaction with all elements behind it, making prior states inaccessible and overly complicated for the user to navigate through. :::
+This is because each successive modal blocks interaction with all elements behind it, making prior states inaccessible and overly complicated for the user to navigate through.
+:::
 
 The following demo shows how to nest one modal within another:
 
@@ -75,7 +79,10 @@ You can animate the open and close states of a modal using a transition componen
 - Is a direct child descendent of the modal
 - Has an `in` prop—this corresponds to the open/close state
 - Calls the `onEnter` callback prop when the enter transition starts
-- Calls the `onExited` callback prop when the exit transition is completed :::info The `onEnter` and `onExited` callbacks tell the modal to unmount the child content when closed and fully transitioned. :::
+- Calls the `onExited` callback prop when the exit transition is completed
+:::info
+The `onEnter` and `onExited` callbacks tell the modal to unmount the child content when closed and fully transitioned.
+:::
 
 `ModalUnstyled` has built-in support for [react-transition-group](https://github.com/reactjs/react-transition-group):
 
@@ -97,7 +104,9 @@ The following demo shows how to apply this prop to keep the modal mounted:
 
 {{"demo": "KeepMountedModal.js", "defaultCodeOpen": false}}
 
-:::info You can use the `MuiModal-hidden` class to hide the modal when it is not open. :::
+:::info
+You can use the `MuiModal-hidden` class to hide the modal when it is not open.
+:::
 
 As with any performance optimization, the `keepMounted` prop won't necessarily solve all of your problems. Explore other possible bottlenecks in performance where you could make more considerable improvements before implementing this prop.
 
@@ -132,4 +141,7 @@ See the [WAI-ARIA guide on the Dialog (Modal) pattern](https://www.w3.org/WAI/AR
   </Modal>
   ```
 
-- Follow the [WAI-ARIA authoring practices](https://www.w3.org/WAI/ARIA/apg/example-index/dialog-modal/dialog.html) to help you set the initial focus on the most relevant element based on the content of the modal. :::warning A modal window can sit on top of either the parent application, or another modal window. _All_ windows under the topmost modal are **inert**, meaning the user cannot interact with them. This can lead to [conflicting behaviors](#focus-trap). :::
+- Follow the [WAI-ARIA authoring practices](https://www.w3.org/WAI/ARIA/apg/example-index/dialog-modal/dialog.html) to help you set the initial focus on the most relevant element based on the content of the modal.
+:::warning
+A modal window can sit on top of either the parent application, or another modal window. _All_ windows under the topmost modal are **inert**, meaning the user cannot interact with them. This can lead to [conflicting behaviors](#focus-trap).
+:::

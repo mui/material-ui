@@ -15,7 +15,8 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/accordion/
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-**注意：** 此版本的扩展面板将不再记录在 [Material Design 指南中](https://material.io/)，但 Material-UI 将继续支持它。 它之前被称为“expansion panel”。 :::
+**注意：** 此版本的扩展面板将不再记录在 [Material Design 指南中](https://material.io/)，但 Material-UI 将继续支持它。 它之前被称为“expansion panel”。
+:::
 
 ## 简单的扩展面板
 

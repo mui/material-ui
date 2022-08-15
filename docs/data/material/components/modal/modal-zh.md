@@ -21,9 +21,11 @@ unstyled: /base/react-modal/
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
-:::info **Terminology note**.
+:::info
+**Terminology note**.
 
-The term "modal" is sometimes used to mean "dialog", but this is a misnomer. A modal window describes parts of a UI. An element is considered modal if [it blocks interaction with the rest of the application](https://en.wikipedia.org/wiki/Modal_window). :::
+The term "modal" is sometimes used to mean "dialog", but this is a misnomer. A modal window describes parts of a UI. An element is considered modal if [it blocks interaction with the rest of the application](https://en.wikipedia.org/wiki/Modal_window).
+:::
 
 If you are creating a modal dialog, you probably want to use the [Dialog](/material-ui/react-dialog/) component rather than directly using Modal. Modal is a lower-level construct that is leveraged by the following components:
 

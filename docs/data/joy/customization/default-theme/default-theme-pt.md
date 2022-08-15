@@ -2,7 +2,9 @@
 
 <p class="description">Here's what the theme object looks like with the default values.</p>
 
-:::warning **⚠️ Work in progress:** we're still iterating on the whole Joy UI default theme. :::
+:::warning
+**⚠️ Work in progress:** we're still iterating on the whole Joy UI default theme.
+:::
 
 **Typography-related:**
 

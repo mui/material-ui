@@ -134,7 +134,9 @@ indicating that you can access the DOM element with a ref.
 
 If you are seeing a warning message in the console like the one below, you probably have several instances of `@mui/styles` initialized on the page.
 
-:::warning It looks like there are several instances of `@mui/styles` initialized in this application. This may cause theme propagation issues, broken class names, specificity issues, and make your application bigger without a good reason. :::
+:::warning
+It looks like there are several instances of `@mui/styles` initialized in this application. This may cause theme propagation issues, broken class names, specificity issues, and make your application bigger without a good reason.
+:::
 
 ### Possíveis razões
 
@@ -331,7 +333,9 @@ You could end up accidentally using two class name generators in a variety of sc
 - Você tem uma estrutura "monorepo" para seu projeto (por exemplo, lerna, yarn workspaces) e o módulo `@material-ui/styles` é uma dependência em mais de um pacote (este é mais ou menos o mesmo que o anterior).
 - Você tem várias aplicações que estão usando `@material-ui/styles` executando na mesma página (por exemplo, vários pontos de entrada no webpack são carregados na mesma página).
 
-:::info 💡 If you are using webpack with the [SplitChunksPlugin](https://webpack.js.org/plugins/split-chunks-plugin/), try configuring the [`runtimeChunk` setting under `optimizations`](https://webpack.js.org/configuration/optimization/#optimization-runtimechunk). :::
+:::info
+💡 If you are using webpack with the [SplitChunksPlugin](https://webpack.js.org/plugins/split-chunks-plugin/), try configuring the [`runtimeChunk` setting under `optimizations`](https://webpack.js.org/configuration/optimization/#optimization-runtimechunk).
+:::
 
 Overall, it's simple to recover from this problem by wrapping each MUI application with [`StylesProvider`](/system/styles/api/#stylesprovider) components at the top of their component trees **and using a single class name generator shared among them**.
 
@@ -362,9 +366,11 @@ function handleRender(req, res) {
 
 ### React incompatibilidade de nome de classes na hidratação (React Hydrate)
 
-:::warning **⚠️ Warning**
+:::warning
+**⚠️ Warning**
 
-Prop className did not match. :::
+Prop className did not match.
+:::
 
 There is a class name mismatch between the client and the server. It might work for the first request. Another symptom is that the styling changes between initial page load and the downloading of the client scripts.
 

@@ -26,7 +26,8 @@ Since the new implementation is considered a breaking change, we introduced it a
 
 We encourage everyone to try the new version of the `Grid` by visiting the [Grid v2 migration guide](/material-ui/migration/migration-grid-v2/).
 
-:::info From now on, the `Grid` v1 and `Grid` v2 refer to the import as:
+:::info
+From now on, the `Grid` v1 and `Grid` v2 refer to the import as:
 
 ```js
 import Grid from '@mui/material/Grid'; // Grid version 1
@@ -48,7 +49,9 @@ The grid system is implemented with the `Grid` component:
 - It does _not_ support row spanning. Children elements cannot span multiple rows. We recommend using [CSS Grid](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout) if you need this functionality.
 - It does _not_ automatically place children. It will try to fit the children one by one, and if there is not enough space, the rest of the children will start on the next line, and so on. If you need auto-placement, we recommend using [CSS Grid](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout/Auto-placement_in_CSS_Grid_Layout) instead.
 
-:::warning The `Grid` component is a _layout_ grid, not a _data_ grid. If you need a data grid, check out [the MUI X `DataGrid` component](/x/react-data-grid/). :::
+:::warning
+The `Grid` component is a _layout_ grid, not a _data_ grid. If you need a data grid, check out [the MUI X `DataGrid` component](/x/react-data-grid/).
+:::
 
 ## Fluid grids
 
@@ -171,7 +174,8 @@ function Demo() {
 }
 ```
 
-:::info Custom breakpoints affect both size and offset props:
+:::info
+Custom breakpoints affect both size and offset props:
 
 ```diff
 - <Grid xs={6} xsOffset={2}>
@@ -212,7 +216,9 @@ The demo below shows how this works:
 
 {{"demo": "OverflowGrid.js", "bg": true}}
 
-:::warning You should avoid adding borders and backgrounds to the grid when `disableEqualOverflow` is `true` because the negative margin (applied only at the top and left sides) causes the grid to be visually misaligned. :::
+:::warning
+You should avoid adding borders and backgrounds to the grid when `disableEqualOverflow` is `true` because the negative margin (applied only at the top and left sides) causes the grid to be visually misaligned.
+:::
 
 ## Customization
 
@@ -222,7 +228,9 @@ To center a grid item's content, specify `display="flex"` directly on the item. 
 
 {{"demo": "CenteredElementGrid.js", "bg": true}}
 
-:::warning Using the `container` prop does not work in this situation because the grid container is designed exclusively to wrap grid items. It cannot wrap other elements. :::
+:::warning
+Using the `container` prop does not work in this situation because the grid container is designed exclusively to wrap grid items. It cannot wrap other elements.
+:::
 
 ### Full border
 

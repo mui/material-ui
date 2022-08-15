@@ -94,7 +94,9 @@ The `TablePaginationUnstyled` component is composed of a root `<td>` that houses
 
 ### Slot props
 
-:::info The following props are available on all non-utility Base components. See [Usage](/base/getting-started/usage/) for full details. :::
+:::info
+The following props are available on all non-utility Base components. See [Usage](/base/getting-started/usage/) for full details.
+:::
 
 Use the `component` prop to override the root slot with a custom element:
 
@@ -108,7 +110,9 @@ Use the `components` prop to override any interior slots in addition to the root
 <TablePaginationUnstyled components={{ Root: 'div', Toolbar: 'nav' }} />
 ```
 
-:::warning If the root element is customized with both the `component` and `components` props, then `component` will take precedence. :::
+:::warning
+If the root element is customized with both the `component` and `components` props, then `component` will take precedence.
+:::
 
 Use the `componentsProps` prop to pass custom props to internal slots. The following code snippet applies a CSS class called `my-spacer` to the spacer slot:
 
@@ -116,7 +120,9 @@ Use the `componentsProps` prop to pass custom props to internal slots. The follo
 <TablePaginationUnstyled componentsProps={{ spacer: { className: 'my-spacer' } }} />
 ```
 
-:::warning Note that `componentsProps` slot names are written in lowercase (`root`) while `components` slot names are capitalized (`Root`). :::
+:::warning
+Note that `componentsProps` slot names are written in lowercase (`root`) while `components` slot names are capitalized (`Root`).
+:::
 
 ## Customization
 

@@ -8,7 +8,9 @@ githubLabel: 'component: Hidden'
 
 # Hidden
 
-:::error `Hidden` was deprecated in Material UI v5. To learn more, see [the `Hidden` section](/material-ui/migration/v5-component-changes/#hidden) of the migration docs. :::
+:::error
+`Hidden` was deprecated in Material UI v5. To learn more, see [the `Hidden` section](/material-ui/migration/v5-component-changes/#hidden) of the migration docs.
+:::
 
 <p class="description"></p>
 

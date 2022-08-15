@@ -26,7 +26,9 @@ function ModeToggle() {
 
 {{"demo": "ModeToggle.js"}}
 
-:::warning **Note:** Make sure to use `useColorScheme()` in a component that's inside `<CssVarsProvider>`, otherwise it will throw an error. :::
+:::warning
+**Note:** Make sure to use `useColorScheme()` in a component that's inside `<CssVarsProvider>`, otherwise it will throw an error.
+:::
 
 ## Server-side rendering
 

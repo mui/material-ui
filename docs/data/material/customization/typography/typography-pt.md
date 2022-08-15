@@ -149,7 +149,8 @@ Para ser feito: [#15251](https://github.com/mui/material-ui/issues/15251).
 
 Você pode querer alterar o tamanho da fonte padrão do elemento `<html>`. Por exemplo, quando usando a [simplificação de 10px](https://www.sitepoint.com/understanding-and-using-rem-units-in-css/).
 
-Alterar o tamanho da fonte pode prejudicar a acessibilidade. Most browsers agreed on the default size of 16px, but the user can change it. Por exemplo, alguém com deficiência visual pode ter definido o tamanho da fonte padrão do navegador para algo maior. :::
+Alterar o tamanho da fonte pode prejudicar a acessibilidade. Most browsers agreed on the default size of 16px, but the user can change it. Por exemplo, alguém com deficiência visual pode ter definido o tamanho da fonte padrão do navegador para algo maior.
+:::
 
 The `theme.typography.htmlFontSize` property is provided for this use case, which tells MUI what the font-size on the `<html>` element is. This is used to adjust the `rem` value so the calculated font-size always match the specification.
 

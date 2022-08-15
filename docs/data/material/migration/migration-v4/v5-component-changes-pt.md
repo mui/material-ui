@@ -18,11 +18,13 @@ The following document lists all breaking changes related to components in v5 an
 
 If you haven't already, please be sure to review [Breaking changes in v5 part one: styles and themes](/material-ui/migration/v5-style-changes/) to continue the migration process.
 
-:::warning Breaking changes that are handled by the codemods are denoted by a ✅ emoji in the table of contents on the right side of the screen.
+:::warning
+Breaking changes that are handled by the codemods are denoted by a ✅ emoji in the table of contents on the right side of the screen.
 
 If you have already followed the instructions in the main migration guide and run the codemods, then you should not need to take any further action on these items.
 
-All other changes must be handled manually. :::
+All other changes must be handled manually.
+:::
 
 As the core components use Emotion as their style engine, the props used by Emotion are not intercepted. The prop `as` in the following code snippet will not be propagated to `SomeOtherComponent`.
 
@@ -316,7 +318,9 @@ The button `color` prop is now "primary" by default, and "default" has been remo
 +<Button>
 ```
 
-:::info If you prefer to use the `default` color in v4, take a look at this [CodeSandbox demo](https://codesandbox.io/s/mimic-v4-button-default-color-bklx8?file=/src/Demo.tsx) to see how to make it work in v5. :::
+:::info
+If you prefer to use the `default` color in v4, take a look at this [CodeSandbox demo](https://codesandbox.io/s/mimic-v4-button-default-color-bklx8?file=/src/Demo.tsx) to see how to make it work in v5.
+:::
 
 ### Remove span and label
 
@@ -383,7 +387,9 @@ This was an exception to Material Design, and was removed from the specification
 +<CircularProgress variant="determinate" classes={{ determinate: 'className' }} />
 ```
 
-:::warning If you had previously customized `determinate`, then your customizations are most likely no longer valid. Please remove them. :::
+:::warning
+If you had previously customized `determinate`, then your customizations are most likely no longer valid. Please remove them.
+:::
 
 ## Collapse
 
@@ -499,7 +505,9 @@ Ignore close events from `onClose` when `reason === 'backdropClick'` instead.
 
 Remove the `withMobileDialog` higher-order component.
 
-:::warning This is handled in the [preset-safe codemod](#preset-safe) by applying hard-coded function to prevent application crash, but further fixes are required. :::
+:::warning
+This is handled in the [preset-safe codemod](#preset-safe) by applying hard-coded function to prevent application crash, but further fixes are required.
+:::
 
 The hook API allows a simpler and more flexible solution:
 
@@ -655,7 +663,9 @@ Change the default variant from `standard` to `outlined`.
 
 `standard` has been removed from the Material Design guidelines.
 
-:::warning ✅ This is handled in [variant-prop codemod](#variant-prop)—read the details before running this codemod. :::
+:::warning
+✅ This is handled in [variant-prop codemod](#variant-prop)—read the details before running this codemod.
+:::
 
 ```diff
 -<FormControl value="Standard" />
@@ -777,7 +787,9 @@ Use CSS `object-fit`. For IE11 support either use a polyfill such as [this npm p
 
 This component is deprecated because its functionality can be created with the [`sx`](/system/getting-started/the-sx-prop/) prop or the [`useMediaQuery`](/material-ui/react-use-media-query/) hook.
 
-:::warning This is handled in the [preset-safe codemod](#preset-safe) by applying fake `Hidden` component to prevent application crash, but further fixes are required. :::
+:::warning
+This is handled in the [preset-safe codemod](#preset-safe) by applying fake `Hidden` component to prevent application crash, but further fixes are required.
+:::
 
 Use the `sx` prop to replace `implementation="css"`:
 
@@ -851,7 +863,9 @@ The default `underline` prop is changed from `"hover"` to `"always"`.
 
 To recreate the behavior from v4, apply `defaultProps` in the theme.
 
-:::warning ✅ This is handled in [link-underline-hover codemod](#link-underline-hover)—read the details before running this codemod. :::
+:::warning
+✅ This is handled in [link-underline-hover codemod](#link-underline-hover)—read the details before running this codemod.
+:::
 
 ```js
 createTheme({
@@ -890,7 +904,9 @@ The `on*` transition props were removed. Use `TransitionProps` instead.
  >
 ```
 
-:::info The `selectedMenu` variant will no longer vertically align the selected item with the anchor. :::
+:::info
+The `selectedMenu` variant will no longer vertically align the selected item with the anchor.
+:::
 
 ### Change default anchorOrigin.vertical value
 
@@ -1195,7 +1211,9 @@ You can get a reference to the underlying DOM node of our components via `ref` p
 
 The component relied on [`ReactDOM.findDOMNode`](https://reactjs.org/docs/react-dom.html#finddomnode) which is [deprecated in `React.StrictMode`](https://reactjs.org/docs/strict-mode.html#warning-about-deprecated-finddomnode-usage).
 
-:::warning This is handled in the [preset-safe codemod](#preset-safe) by applying fake `RootRef` component to prevent application crash, but further fixes are required. :::
+:::warning
+This is handled in the [preset-safe codemod](#preset-safe) by applying fake `RootRef` component to prevent application crash, but further fixes are required.
+:::
 
 ```diff
 -<RootRef rootRef={ref}>
@@ -1214,7 +1232,9 @@ Change the default variant from `standard` to `outlined`.
 
 If you are composing the `Select` with a form control component, you only need to update `FormControl`—the select inherits the variant from its context.
 
-:::success ✅ This is handled in [variant-prop codemod](#variant-prop)—read the details before running this codemod. :::
+:::success
+✅ This is handled in [variant-prop codemod](#variant-prop)—read the details before running this codemod.
+:::
 
 ```diff
 -<Select value="Standard" />
@@ -1607,7 +1627,9 @@ Change the default variant from `standard` to `outlined`.
 
 `standard` has been removed from the Material Design guidelines.
 
-:::success ✅ This is handled in [variant-prop codemod](#variant-prop)—read the details before running this codemod. :::
+:::success
+✅ This is handled in [variant-prop codemod](#variant-prop)—read the details before running this codemod.
+:::
 
 ```diff
 -<TextField value="Standard" />

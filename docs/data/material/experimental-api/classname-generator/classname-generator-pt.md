@@ -4,7 +4,9 @@
 
 This API is introduced in `@mui/material` (v5.0.5) as a replacement of deprecated [`createGenerateClassName`](/system/styles/api/#creategenerateclassname-options-class-name-generator).
 
-:::warning ⚠️ **Note**: this API is at an unstable stage which might change in the future. :::
+:::warning
+⚠️ **Note**: this API is at an unstable stage which might change in the future.
+:::
 
 ## Setup
 
@@ -84,7 +86,9 @@ Now, the `Mui` class is gone.
 </div>
 ```
 
-:::warning **Note**: [state classes](/material-ui/customization/how-to-customize/#state-classes) are **NOT** component names and therefore cannot be changed/removed. :::
+:::warning
+**Note**: [state classes](/material-ui/customization/how-to-customize/#state-classes) are **NOT** component names and therefore cannot be changed/removed.
+:::
 
 ## Caveat
 

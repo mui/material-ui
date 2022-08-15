@@ -127,7 +127,8 @@ function App() {
 }
 ```
 
-:::info **Note**: Joy UI will add the prefix (default as `joy`) to all CSS variables. To change it, use `<CssVarsProvider theme={extendTheme({ cssVarPrefix: 'myproduct' })}>`. and the generated CSS variables will then be:
+:::info
+**Note**: Joy UI will add the prefix (default as `joy`) to all CSS variables. To change it, use `<CssVarsProvider theme={extendTheme({ cssVarPrefix: 'myproduct' })}>`. and the generated CSS variables will then be:
 
 ```diff
 - --joy-palette-primary-50: /* color */ ;
@@ -184,9 +185,11 @@ const Text = styled('p')(({ theme }) => ({
 }));
 ```
 
-:::warning **Note:** Adding new tokens is worth it when you know that a large number of components will use them. That's because doing so increases stylesheet bundle size, plus the added maintenance costs.
+:::warning
+**Note:** Adding new tokens is worth it when you know that a large number of components will use them. That's because doing so increases stylesheet bundle size, plus the added maintenance costs.
 
-If you're not sure about it yet, we recommend using [the `sx` prop](/joy-ui/customization/approaches/#sx-prop) for one-off customizations. :::
+If you're not sure about it yet, we recommend using [the `sx` prop](/joy-ui/customization/approaches/#sx-prop) for one-off customizations.
+:::
 
 ## Global variant tokens
 
@@ -266,7 +269,8 @@ As an example, let's customize Joy UI's [`Button`](/joy-ui/react-button/) so the
 
 {{"demo": "BootstrapVariantTokens.js"}}
 
-:::warning **⚠️ Keep in mind:** Make sure that every color schemes have the same set of global variant tokens, otherwise, their styles will be inconsistent, causing problems for server-side rendering.
+:::warning
+**⚠️ Keep in mind:** Make sure that every color schemes have the same set of global variant tokens, otherwise, their styles will be inconsistent, causing problems for server-side rendering.
 
 ```js
 extendTheme({
@@ -346,4 +350,6 @@ const theme = extendTheme({
 
 {{"demo": "CustomVariantStyle.js"}}
 
-:::warning **Keep in mind:** changing styles for the solid variant means that every component solid variant will have them. To customize how a specific component look like, use the [themed components](/joy-ui/customization/themed-components/) approach instead. :::
+:::warning
+**Keep in mind:** changing styles for the solid variant means that every component solid variant will have them. To customize how a specific component look like, use the [themed components](/joy-ui/customization/themed-components/) approach instead.
+:::

@@ -95,7 +95,9 @@ If you prefer to use [styled-components](https://styled-components.com/docs/basi
 
 In either case, you won't interact much with either of these packages beyond installation—they're used internally in `@mui/system`.
 
-:::warning ⚠ **Note:** prior to v5, Material UI used `@mui/styles` as a JSS wrapper. This package is now deprecated and will be removed in the future. Check out [the guide to migrating from v4 to v5](/material-ui/migration/migration-v4/) to learn how to upgrade to a newer solution. :::
+:::warning
+⚠ **Note:** prior to v5, Material UI used `@mui/styles` as a JSS wrapper. This package is now deprecated and will be removed in the future. Check out [the guide to migrating from v4 to v5](/material-ui/migration/migration-v4/) to learn how to upgrade to a newer solution.
+:::
 
 ### MUI System
 
@@ -107,6 +109,8 @@ MUI System is a collection of CSS utilities to help you rapidly lay out custom d
 - You can use `sx` prop normally as the `styled` API supports it by default.
 - You can have themeable components by using `styled` via slots and variants.
 
-:::warning To use MUI System, you must install either Emotion or styled-components, because the respective `styled-engine` package depends on it. :::
+:::warning
+To use MUI System, you must install either Emotion or styled-components, because the respective `styled-engine` package depends on it.
+:::
 
 <img src="/static/images/packages/mui-system.png" style="width: 796px; margin-top: 4px; margin-bottom: 8px;" alt="A diagram showing an arrow going from @mui/system to @mui/styled-engine, with a note that it is the default engine. Then, from @mui/styled-engine a solid arrow points to @emotion/react and @emotion/styled while a dashed arrow points to @mui/styled-engine-sc, which points to styled-components." />

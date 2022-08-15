@@ -18,11 +18,13 @@ The following document lists all breaking changes related to styles and themes i
 
 After you're finished here, please move on to [Breaking changes in v5 part two: components](/material-ui/migration/v5-component-changes/) to continue the migration process.
 
-:::warning Breaking changes that are handled by codemods are denoted by a ✅ emoji in the table of contents on the right side of the screen.
+:::warning
+Breaking changes that are handled by codemods are denoted by a ✅ emoji in the table of contents on the right side of the screen.
 
 If you have already followed the instructions in the main migration guide and run the codemods, then you should not need to take any further action on these items.
 
-All other changes must be handled manually. :::
+All other changes must be handled manually.
+:::
 
 ## Migrate theme styleOverrides to Emotion
 
@@ -68,9 +70,11 @@ const theme = createTheme({
 });
 ```
 
-:::info For each component, we export a `[component]Classes` constant that contains all nested classes for that component.
+:::info
+For each component, we export a `[component]Classes` constant that contains all nested classes for that component.
 
-You can rely on this instead of hardcoding the classes. :::
+You can rely on this instead of hardcoding the classes.
+:::
 
 ```diff
 +import { outlinedInputClasses } from '@mui/material/OutlinedInput';
@@ -198,9 +202,11 @@ To correct the injection order, add the `prepend` option to `createCache`, as sh
  }
 ```
 
-:::info If you are using styled-components and have a `StyleSheetManager` with a custom `target`, make sure that the target is the first element in the HTML `<head>`.
+:::info
+If you are using styled-components and have a `StyleSheetManager` with a custom `target`, make sure that the target is the first element in the HTML `<head>`.
 
-To see how it can be done, take a look at the [`StyledEngineProvider` implementation](https://github.com/mui/material-ui/blob/master/packages/mui-styled-engine-sc/src/StyledEngineProvider/StyledEngineProvider.js) in the `@mui/styled-engine-sc` package. :::
+To see how it can be done, take a look at the [`StyledEngineProvider` implementation](https://github.com/mui/material-ui/blob/master/packages/mui-styled-engine-sc/src/StyledEngineProvider/StyledEngineProvider.js) in the `@mui/styled-engine-sc` package.
+:::
 
 ## Theme structure
 
@@ -219,7 +225,9 @@ The structure of the theme has changed in v5. You need to update its shape. For 
 +}));
 ```
 
-:::warning This adapter only handles the input arguments of `createTheme`. If you modify the shape of the theme after its creation, you need to migrate the structure manually. :::
+:::warning
+This adapter only handles the input arguments of `createTheme`. If you modify the shape of the theme after its creation, you need to migrate the structure manually.
+:::
 
 The following changes are supported by the adapter:
 

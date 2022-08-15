@@ -135,7 +135,9 @@ indicating that you can access the DOM element with a ref.
 
 If you are seeing a warning message in the console like the one below, you probably have several instances of `@mui/styles` initialized on the page.
 
-:::warning It looks like there are several instances of `@mui/styles` initialized in this application. This may cause theme propagation issues, broken class names, specificity issues, and make your application bigger without a good reason. :::
+:::warning
+It looks like there are several instances of `@mui/styles` initialized in this application. This may cause theme propagation issues, broken class names, specificity issues, and make your application bigger without a good reason.
+:::
 
 ### 可能的原因
 
@@ -333,7 +335,9 @@ You could end up accidentally using two class name generators in a variety of sc
 - 您的项目是 monorepo 结构（例如，lerna，yarn workspaces），并且有多个包依赖着 `@mui/styles` 模块（这与前一个包或多或少相同）。
 - 您有几个使用 `@mui/styles` 的应用程序在同一页面上运行（例如，webpack 中的几个入口点被加载在同一页面上）。
 
-:::info 💡 If you are using webpack with the [SplitChunksPlugin](https://webpack.js.org/plugins/split-chunks-plugin/), try configuring the [`runtimeChunk` setting under `optimizations`](https://webpack.js.org/configuration/optimization/#optimization-runtimechunk). :::
+:::info
+💡 If you are using webpack with the [SplitChunksPlugin](https://webpack.js.org/plugins/split-chunks-plugin/), try configuring the [`runtimeChunk` setting under `optimizations`](https://webpack.js.org/configuration/optimization/#optimization-runtimechunk).
+:::
 
 Overall, it's simple to recover from this problem by wrapping each MUI application with [`StylesProvider`](/system/styles/api/#stylesprovider) components at the top of their component trees **and using a single class name generator shared among them**.
 
@@ -367,9 +371,11 @@ function handleRender(req, res) {
 
 ### React 类名渲染不匹配
 
-:::warning **⚠️ Warning**
+:::warning
+**⚠️ Warning**
 
-Prop className did not match. :::
+Prop className did not match.
+:::
 
 There is a class name mismatch between the client and the server. It might work for the first request. Another symptom is that the styling changes between initial page load and the downloading of the client scripts.
 

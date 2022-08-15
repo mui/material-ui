@@ -50,7 +50,9 @@ The `ButtonUnstyled` component is composed of a root `<button>` slot with no int
 
 ### Slot props
 
-:::info The following props are available on all non-utility Base components. See [Usage](/base/getting-started/usage/) for full details. :::
+:::info
+The following props are available on all non-utility Base components. See [Usage](/base/getting-started/usage/) for full details.
+:::
 
 Use the `component` prop to override the root slot with a custom element:
 
@@ -66,7 +68,9 @@ Use the `components` prop to override any interior slots in addition to the root
 <ButtonUnstyled components={{ Root: 'div' }} />
 ```
 
-:::warning If the root element is customized with both the `component` and `components` props, then `component` will take precedence. :::
+:::warning
+If the root element is customized with both the `component` and `components` props, then `component` will take precedence.
+:::
 
 Use the `componentsProps` prop to pass custom props to internal slots. The following code snippet applies a CSS class called `my-button` to the root slot:
 
@@ -74,13 +78,17 @@ Use the `componentsProps` prop to pass custom props to internal slots. The follo
 <ButtonUnstyled componentsProps={{ root: { className: 'my-button' } }} />
 ```
 
-:::warning Note that `componentsProps` slot names are written in lowercase (`root`) while `components` slot names are capitalized (`Root`). :::
+:::warning
+Note that `componentsProps` slot names are written in lowercase (`root`) while `components` slot names are capitalized (`Root`).
+:::
 
 Compare the attributes on the `<span>` in this demo with the `ButtonUnstyled` from the previous demo:
 
 {{"demo": "UnstyledButtonsSpan.js"}}
 
-:::warning If a `ButtonUnstyled` is customized with a non-button element (i.e. `<ButtonUnstyled component="span" />`), it will not submit the form it's in when clicked. Similarly, `<ButtonUnstyled component="span" type="reset">` will not reset its parent form. :::
+:::warning
+If a `ButtonUnstyled` is customized with a non-button element (i.e. `<ButtonUnstyled component="span" />`), it will not submit the form it's in when clicked. Similarly, `<ButtonUnstyled component="span" type="reset">` will not reset its parent form.
+:::
 
 ## Hook
 
@@ -92,9 +100,11 @@ The `useButton` hook lets you apply the functionality of `ButtonUnstyled` to a f
 
 Hooks _do not_ support [slot props](#slot-props), but they do support [customization props](#customization).
 
-:::info Hooks give you the most room for customization, but require more work to implement. With hooks, you can take full control over how your component is rendered, and define all the custom props and CSS classes you need.
+:::info
+Hooks give you the most room for customization, but require more work to implement. With hooks, you can take full control over how your component is rendered, and define all the custom props and CSS classes you need.
 
-You may not need to use hooks unless you find that you're limited by the customization options of their component counterparts—for instance, if your component requires significantly different [structure](#component-slots). :::
+You may not need to use hooks unless you find that you're limited by the customization options of their component counterparts—for instance, if your component requires significantly different [structure](#component-slots).
+:::
 
 The `useButton` hook requires the `ref` of the element it's used on.
 

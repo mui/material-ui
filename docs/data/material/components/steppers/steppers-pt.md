@@ -17,7 +17,9 @@ materialDesign: https://material.io/archive/guidelines/components/steppers.html
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-:::warning **Note:** Steppers are no longer documented in the [Material Design guidelines](https://material.io/), but Material UI will continue to support them. :::
+:::warning
+**Note:** Steppers are no longer documented in the [Material Design guidelines](https://material.io/), but Material UI will continue to support them.
+:::
 
 ## Assistente horizontal
 

@@ -12,7 +12,8 @@ For crowdsourced answers from expert MUI developers in our community. Stack Over
 
 [发布一个问题](https://stackoverflow.com/questions/tagged/mui)
 
-:::info 💡 **Tip**:
+:::info
+💡 **Tip**:
 
 If you're using an older version and use external resources (such as Stack Overflow) for help with it, you may find answers with links that direct you to content that no longer exists in the latest version of the documentation. To easily access any previous version of the docs, simply add `v[number]` at the beginning of the URL, like so: [v4.mui.com](https://v4.mui.com/).
 

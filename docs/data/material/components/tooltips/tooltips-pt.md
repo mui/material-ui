@@ -115,7 +115,9 @@ By default disabled elements like `<button>` do not trigger user interactions so
 
 {{"demo": "DisabledTooltips.js"}}
 
-:::warning If you're not wrapping a MUI component that inherits from `ButtonBase`, for instance, a native `<button>` element, you should also add the CSS property _pointer-events: none;_ to your element when disabled: :::
+:::warning
+If you're not wrapping a MUI component that inherits from `ButtonBase`, for instance, a native `<button>` element, you should also add the CSS property _pointer-events: none;_ to your element when disabled:
+:::
 
 ```jsx
 <Tooltip title="You don't have permission to do this">

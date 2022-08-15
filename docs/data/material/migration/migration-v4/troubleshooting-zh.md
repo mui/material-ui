@@ -104,7 +104,8 @@ Note that this is a workaround that may not be suitable for your situation if yo
 For more details, checkout these GitHub issues:
 
 - https://github.com/storybookjs/storybook/issues/16099
-- https://github.com/mui/material-ui/issues/24282#issuecomment-796755133 :::
+- https://github.com/mui/material-ui/issues/24282#issuecomment-796755133
+:::
 
 ## Cannot read property scrollTop of null
 

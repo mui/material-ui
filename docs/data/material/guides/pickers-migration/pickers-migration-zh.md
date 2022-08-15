@@ -2,7 +2,9 @@
 
 <p class="description">@mui/pickers 现在已经整合进了 @mui/lab。</p>
 
-:::warning **⚠️ The date picker components were rewritten**. In most places, the logic was rewritten from scratch, so it isn't possible to maintain the whole list of changes. Here's an overview of the most important concepts that were changed. If you are going to upgrade, the easiest way might be to go through each picker usage in your codebase, and rewrite them one at a time. Don't forget to run your tests after each! :::
+:::warning
+**⚠️ The date picker components were rewritten**. In most places, the logic was rewritten from scratch, so it isn't possible to maintain the whole list of changes. Here's an overview of the most important concepts that were changed. If you are going to upgrade, the easiest way might be to go through each picker usage in your codebase, and rewrite them one at a time. Don't forget to run your tests after each!
+:::
 
 This guide is an overview of the core concepts that were changed from pickers v3.2.10.
 

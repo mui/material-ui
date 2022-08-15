@@ -97,7 +97,9 @@ The `sx` prop acts as a shortcut for defining custom styles that access the them
 
 You can use the `sx` prop inside the `styleOverrides` key to modify styles within the theme using shorthand CSS notation. This is especially handy if you're already using the `sx` prop with your components, because you can use the same syntax in your theme and quickly transfer styles between the two.
 
-:::info **Note:** The `sx` prop is a stable feature for customizing components in Material UI v5, but it is still considered _experimental_ when used directly inside the theme object. :::
+:::info
+**Note:** The `sx` prop is a stable feature for customizing components in Material UI v5, but it is still considered _experimental_ when used directly inside the theme object.
+:::
 
 {{"demo": "GlobalThemeOverrideSx.js", "defaultCodeOpen": false}}
 

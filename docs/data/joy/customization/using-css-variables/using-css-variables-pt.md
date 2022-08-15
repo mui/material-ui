@@ -54,7 +54,8 @@ const Div = styled('div')(({ theme }) => ({
 }));
 ```
 
-:::warning ⚠️ The format of the channel tokens is using empty space as a separator, e.g. `61 131 246`, which means you have to use `/` to combine the channel token with an opacity value.
+:::warning
+⚠️ The format of the channel tokens is using empty space as a separator, e.g. `61 131 246`, which means you have to use `/` to combine the channel token with an opacity value.
 
 ```js
 `rgba(${theme.vars.palette.primary.mainChannel} / 0.12)`, ✅ correct format
@@ -74,7 +75,8 @@ const Div = styled('div')(({ theme }) => ({
 }));
 ```
 
-:::info You can't use `theme.vars` to create an inset shadow because the value refers to the CSS variable, not the actual shadow.
+:::info
+You can't use `theme.vars` to create an inset shadow because the value refers to the CSS variable, not the actual shadow.
 
 - `theme.vars.shadow.sm` returns `'var(--joy-shadow-sm)'`
 - `theme.shadow.sm` returns `'var(--joy-shadowRing), 0 1px 2px 0 rgba(var(--joy-shadowChannel) / 0.12)'`

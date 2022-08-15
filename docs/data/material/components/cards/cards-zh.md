@@ -44,7 +44,9 @@ materialDesign: https://material.io/components/cards
 
 {{"demo": "ImgMediaCard.js", "bg": true}}
 
-:::warning ⚠️ When `component="img"`, CardMedia relies on `object-fit` for centering the image. It's not supported by IE11. :::
+:::warning
+⚠️ When `component="img"`, CardMedia relies on `object-fit` for centering the image. It's not supported by IE11.
+:::
 
 ## 主要（Primary）操作
 

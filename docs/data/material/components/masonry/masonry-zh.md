@@ -55,6 +55,8 @@ This example demonstrates the use of the `spacing` to configure the spacing betw
 
 This example demonstrates the use of the `defaultHeight`, `defaultColumns` and `defaultSpacing`, which are used to support server-side rendering.
 
-:::info **Note**: `defaultHeight` should be large enough to render all rows. Also, it is worth mentioning that items are not added to the shortest column in case of server-side rendering. :::
+:::info
+**Note**: `defaultHeight` should be large enough to render all rows. Also, it is worth mentioning that items are not added to the shortest column in case of server-side rendering.
+:::
 
 {{"demo": "SSRMasonry.js", "bg": true}}

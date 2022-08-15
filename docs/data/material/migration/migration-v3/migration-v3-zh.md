@@ -4,7 +4,8 @@
 
 您还在找 v3 版本的文档吗？ [您可以在这里找到它们](https://material-ui.com/versions/) 。
 
-::info 本文件是一项正在进行的工作。 你是否升级了你的网站并遇到了这里没有涉及的问题？ [在GitHub上添加你的修改](https://github.com/mui/material-ui/blob/master/docs/data/material/migration/migration-v3/migration-v3.md) :::
+::info 本文件是一项正在进行的工作。 你是否升级了你的网站并遇到了这里没有涉及的问题？ [在GitHub上添加你的修改](https://github.com/mui/material-ui/blob/master/docs/data/material/migration/migration-v3/migration-v3.md)
+:::
 
 ## 简介
 

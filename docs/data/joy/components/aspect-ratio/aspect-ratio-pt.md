@@ -11,7 +11,9 @@ title: React Aspect Ratio component
 
 `AspectRatio` is a wrapper component that allows you to rapidly control its content aspect ratio. Its default implementation combines `height: 0px` with percentage `padding-bottom` to properly accomodate the content.
 
-:::info **Note:** A [native CSS `aspect-radio`property](https://developer.mozilla.org/en-US/docs/Web/CSS/aspect-ratio) already exists but we're not using it yet due to limited browser support. Once that increases significantly, we'll switch over to it. :::
+:::info
+**Note:** A [native CSS `aspect-radio`property](https://developer.mozilla.org/en-US/docs/Web/CSS/aspect-ratio) already exists but we're not using it yet due to limited browser support. Once that increases significantly, we'll switch over to it.
+:::
 
 ## Component
 
@@ -80,7 +82,9 @@ function App() {
 }
 ```
 
-:::info **Tip:** Always use `layout="fill"` on the `Image` component, otherwise you don't need to use aspect ratio because the height is based on the image. :::
+:::info
+**Tip:** Always use `layout="fill"` on the `Image` component, otherwise you don't need to use aspect ratio because the height is based on the image.
+:::
 
 ## Common examples
 

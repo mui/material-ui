@@ -62,7 +62,9 @@ Use a plain image or a video element inside the `CardCover` to display media. It
 
 To create a gradient overlay, frequently seen when a colorful image is used as background, insert an additional `CardCover` component.
 
-:::info 💡 **Tip:** Make sure to darken the gradient overlay up to have enough contrast between the background image and the text content. :::
+:::info
+💡 **Tip:** Make sure to darken the gradient overlay up to have enough contrast between the background image and the text content.
+:::
 
 {{"demo": "GradientCover.js" }}
 
@@ -78,7 +80,9 @@ To show a horizontal card, use the `row` prop. The `CardOverflow` will adapt bas
 
 By default, whenever you have additional action elements such as links and buttons, they stay on top of the whole interactive area. In some cases, you might have to manually control each element's `z-index`.
 
-:::info 💡 **Tip**: use CSS's pseudo-class [`:focus-within`](https://developer.mozilla.org/en-US/docs/Web/CSS/:focus-within) to style the card when any of its children is focused. :::
+:::info
+💡 **Tip**: use CSS's pseudo-class [`:focus-within`](https://developer.mozilla.org/en-US/docs/Web/CSS/:focus-within) to style the card when any of its children is focused.
+:::
 
 {{"demo": "MultipleInteractionCard.js" }}
 
@@ -96,7 +100,9 @@ Play around with all the CSS variables available in the slider component to see 
 
 You can use those to customize the component on both the `sx` prop and the theme.
 
-:::info 💡 **Tip**: If you want to adjust a card's padding or border-radius, it's preferable to do it using the variables below instead of using CSS properties directly. That's because the variables will also be used to calculate a proper radius for the card's children. :::
+:::info
+💡 **Tip**: If you want to adjust a card's padding or border-radius, it's preferable to do it using the variables below instead of using CSS properties directly. That's because the variables will also be used to calculate a proper radius for the card's children.
+:::
 
 {{"demo": "CardVariables.js" , "hideToolbar": true}}
 

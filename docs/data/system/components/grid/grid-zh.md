@@ -25,7 +25,9 @@ The grid system is implemented with the `Grid` component:
 - It **does not** have the concept of rows. Meaning, you can't make the children span to multiple rows. If you need to do that, we recommend to use [CSS Grid](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout) instead.
 - It **does not** offer auto-placement children feature. It will try to fit the children one by one and if there is not enough space, the rest of the children will start on the next line and so on. If you need the auto-placement feature, we recommend to use [CSS Grid](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Grid_Layout/Auto-placement_in_CSS_Grid_Layout) instead.
 
-:::warning ⚠️ The `Grid` component shouldn't be confused with a data grid; it is closer to a layout grid. For a data grid head to [the `DataGrid` component](/x/react-data-grid/). :::
+:::warning
+⚠️ The `Grid` component shouldn't be confused with a data grid; it is closer to a layout grid. For a data grid head to [the `DataGrid` component](/x/react-data-grid/).
+:::
 
 ## Fluid grids
 
@@ -115,7 +117,8 @@ If you specify custom breakpoints to the theme, you can use those names as grid 
 
 {{"demo": "CustomBreakpointsGrid.js", "bg": true}}
 
-:::info The custom breakpoints affect both the size and offset props:
+:::info
+The custom breakpoints affect both the size and offset props:
 
 ```diff
 -<Grid xs={6} xsOffset={2}>
@@ -154,7 +157,9 @@ To prevent the scrollbar, set `disableEqualOverflow` prop to `true`. It will ena
 
 {{"demo": "OverflowGrid.js", "bg": true}}
 
-:::warning You should avoid adding borders or background to the grid when `disableEqualOverflow: true` because the negative margin (applied only at the top and left sides) makes the grid visually misaligned. :::
+:::warning
+You should avoid adding borders or background to the grid when `disableEqualOverflow: true` because the negative margin (applied only at the top and left sides) makes the grid visually misaligned.
+:::
 
 ## Limitations
 

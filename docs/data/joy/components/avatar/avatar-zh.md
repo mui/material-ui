@@ -98,7 +98,9 @@ By default, the first avatar in the group stays behind the second and so on. You
 
 To render the `AvatarGroup` vertically, add the CSS `writing-mode: vertical-rl` property to the it and rotate the extra element, if existent, by -90 degrees.
 
-:::info **Tip:** Give preference to this approach as it preserves the overlapping offset between avatars whereas `flexDirection: column` don't. :::
+:::info
+**Tip:** Give preference to this approach as it preserves the overlapping offset between avatars whereas `flexDirection: column` don't.
+:::
 
 {{"demo": "VerticalAvatarGroup.js"}}
 
