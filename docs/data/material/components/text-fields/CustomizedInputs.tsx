@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { createTheme, ThemeProvider, outlinedInputClasses } from '@mui/material';
 import { alpha, styled } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import Box from '@mui/material/Box';
@@ -106,6 +107,63 @@ const ValidationTextField = styled(TextField)({
   },
 });
 
+// Or via theme style overrides
+export const theme = createTheme({
+  components: {
+    MuiTextField: {
+      styleOverrides: {
+        root: {
+          '& .MuiFormLabel-root': {
+            color: '#E5EDF8',
+          },
+          '& input:invalid + fieldset': {
+            borderColor: '#F1BFBF',
+          },
+        },
+      },
+    },
+    MuiOutlinedInput: {
+      styleOverrides: {
+        notchedOutline: {
+          borderColor: '#004BB9',
+        },
+        input: { color: '#004BB9' },
+        root: {
+          [`&:hover .${outlinedInputClasses.notchedOutline}`]: {
+            borderColor: '#E5EDF8',
+          },
+          // Reset on touch devices
+          '@media (hover: none)': {
+            [`&:hover .${outlinedInputClasses.notchedOutline}`]: {
+              borderColor: '#004BB9',
+            },
+          },
+          [`&.${outlinedInputClasses.focused} .${outlinedInputClasses.notchedOutline}`]:
+            {
+              borderColor: '#001C3C',
+            },
+          [`&.${outlinedInputClasses.error} .${outlinedInputClasses.notchedOutline}`]:
+            {
+              borderColor: '#F1BFBF',
+            },
+          [`&.${outlinedInputClasses.disabled} .${outlinedInputClasses.notchedOutline}`]:
+            {
+              borderColor: '#434A4F',
+            },
+        },
+      },
+    },
+  },
+});
+
+function CustomThemedButton() {
+  return (
+    <ThemeProvider theme={theme}>
+      <TextField label="Custom Themed Button" />
+    </ThemeProvider>
+  );
+}
+
 export default function CustomizedInputs() {
   return (
     <Box
@@ -138,6 +196,7 @@ export default function CustomizedInputs() {
         defaultValue="Success"
         id="validation-outlined-input"
       />
+      <CustomThemedButton />
     </Box>
   );
 }
