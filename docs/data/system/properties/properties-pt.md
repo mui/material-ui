@@ -120,7 +120,7 @@ and detail each column:
   }
   ```
 
-- **System style function**. The column lists the function which generates the properties shown in the other columns, as a reference in case you want to add this functionality to your custom components. The content links to the documentation page where this properties are described; in this example, the [spacing](/system/spacing/) page. As funções podem ser importadas de `@material-ui/system`. Você pode ver um exemplo de como usar as funções de estilo na [página avançada](/system/advanced/#using-standalone-system-utilities).
+- **System style function**. The column lists the function which generates the properties shown in the other columns, as a reference in case you want to add this functionality to your custom components. The content links to the documentation page where this properties are described; in this example, the [spacing](/system/spacing/) page. You can see an example of using the style functions on the [Custom components page](/system/getting-started/custom-components/#using-standalone-system-utilities). Você pode ver um exemplo de como usar as funções de estilo na [página avançada](/system/advanced/#using-standalone-system-utilities).
 
 - **Theme mapping**. Lastly, the column tells you how this property is wired with the theme – with this example, whatever value you provide will be used as input to the `theme.spacing` helper.
 

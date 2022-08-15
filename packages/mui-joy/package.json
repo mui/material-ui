@@ -58,6 +58,7 @@
   "dependencies": {
     "@babel/runtime": "^7.17.2",
     "@mui/base": "5.0.0-alpha.92",
+    "@mui/core-internal-download-tracker": "5.10.0",
     "@mui/system": "^5.10.0",
     "@mui/types": "^7.1.5",
     "@mui/utils": "^5.9.3",

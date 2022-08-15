@@ -8,37 +8,39 @@ materialDesign: https://material.io/design/iconography/system-icons.html
 
 # Ícones
 
-<p class="description">Orientação e sugestões para usar ícones com o Material UI.</p>
+<p class="description">Orientação e sugestões para usar ícones com o Material-UI.</p>
 
-Material UI fornece suporte de ícones de três maneiras:
+Material-UI fornece suporte de ícones de três maneiras:
 
-1. Padronizados como [ícones do Material Design](#material-icons) e exportados como componentes do React (ícones SVG).
+1. Standardized [Material Icons](#material-svg-icons) exported as React components (SVG icons).
 1. Com o componente [SvgIcon](#svgicon), um wrapper React para ícones SVG customizados.
 1. Com o componente [Icon](#icon-font-icons), um wrapper React para ícones de fonte customizados.
 
-## Ícones Material
+## Material SVG icons
 
-Google has created over 2,000 official Material icons, each in five different "themes" (see below). Para cada ícone SVG, exportamos o respectivo componente React do pacote @material-ui/icons. Você pode [pesquisar na lista completa destes ícones](/material-ui/material-icons/).
+Google has created over 2,000 official Material icons, each in five different "themes" (see below). Para cada ícone SVG, exportamos o respectivo componente React do pacote @material-ui/icons. You can [search the full list of these icons](/material-ui/material-icons/).
 
 ### Instalação
 
-Instale o pacote no diretório do seu projeto com:
+To install and save in your `package.json` dependencies, run the command below using **npm**:
 
 ```sh
-// usando npm
 npm install @mui/icons-material
+```
 
-// usando yarn
+Or **yarn**:
+
+```sh
 yarn add @mui/icons-material
 ```
 
-Esses componentes usam o componente `SvgIcon` do Material UI para renderizar o caminho SVG de cada ícone, e por isso tem uma dependência com `@mui/material`.
+These components use the MUI `SvgIcon` component to render the SVG path for each icon, and so have a peer-dependency on `@mui/material`.
 
-Se você ainda não estiver usando Material UI no seu projeto, você pode adicioná-lo com:
+If you aren't already using Material UI in your project, you can add it following the [installation guide](/material-ui/getting-started/installation/).
 
 ### Uso
 
-Importe ícones usando uma destas duas opções:
+Import icons using one of these two options:
 
 - Opção 1:
 
@@ -53,9 +55,9 @@ Importe ícones usando uma destas duas opções:
   import { AccessAlarm, ThreeDRotation } from '@mui/icons-material';
   ```
 
-O mais seguro para o tamanho do pacote é a opção 1, mas alguns desenvolvedores preferem a opção 2. Certifique-se de seguir o guia [minimizando o tamanho do pacote](/material-ui/guides/minimizing-bundle-size/#option-2) antes de usar a segunda abordagem.
+The safest for bundle size is Option 1, but some developers prefer Option 2. Make sure you follow the [minimizing bundle size guide](/material-ui/guides/minimizing-bundle-size/#option-2) before using the second approach.
 
-Cada ícone Material também tem um "tema": Filled (padrão), Outlined, Rounded, Two-tone, e Sharp. Para importar o componente de ícone com um tema diferente do padrão, acrescente o nome do tema ao nome do ícone. Por exemplo, para usar o ícone `@material-ui/icons/Delete`, temos:
+Each Material icon also has a "theme": Filled (default), Outlined, Rounded, Two-tone, and Sharp. To import the icon component with a theme other than the default, append the theme name to the icon name. For example `@mui/icons-material/Delete` icon with:
 
 - Tema Filled (preenchido que é o padrão) é exportado como `@material-ui/icons/Delete`,
 - Tema Outlined (contornado) é exportado como `@material-ui/icons/DeleteOutlined`,
@@ -63,19 +65,21 @@ Cada ícone Material também tem um "tema": Filled (padrão), Outlined, Rounded,
 - Tema Two tone (dois tons) é exportado como `@material-ui/icons/DeleteTwoTone`,
 - Tema Sharp (pontiagudo) é exportado como `@material-ui/icons/DeleteSharp`.
 
-> Note: The Material Design guidelines name the icons using "snake_case" naming (for example `delete_forever`, `add_a_photo`), while `@material-ui/icons` exports the respective icons using "PascalCase" naming (for example `DeleteForever`, `AddAPhoto`). Há três exceções a essa regra de nomenclatura: `3d_rotation` exportado como `ThreeDRotation`, `4k` exportado como `FourK`e `360` exportado como `ThreeSixty`.
+:::info
+Note: The Material Design guidelines name the icons using "snake_case" naming (for example `delete_forever`, `add_a_photo`), while `@mui/icons-material` exports the respective icons using "PascalCase" naming (for example `DeleteForever`, `AddAPhoto`). There are three exceptions to this naming rule: `3d_rotation` exported as `ThreeDRotation`, `4k` exported as `FourK`, and `360` exported as `ThreeSixty`.
+:::
 
 {{"demo": "SvgMaterialIcons.js"}}
 
 ### Testando
 
-Para fins de teste, cada ícone exposto do `@material-ui/icons` tem um atributo `data-testid` com o nome do ícone. Por exemplo:
+For testing purposes, each icon exposed from `@mui/icons-material` has a `data-testid` attribute with the name of the icon. For instance:
 
 ```jsx
 import DeleteIcon from '@mui/icons-material/Delete';
 ```
 
-tem o seguinte atributo assim que montado:
+has the following attribute once mounted:
 
 ```html
 <svg data-testid="DeleteIcon"></svg>
@@ -83,10 +87,10 @@ tem o seguinte atributo assim que montado:
 
 ## SvgIcon
 
-If you need a custom SVG icon (not available in the [Material Icons](/material-ui/material-icons/)) you can use the `SvgIcon` wrapper. Este componente estende o elemento nativo `<svg>`:
+If you need a custom SVG icon (not available in the [Material Icons](/material-ui/material-icons/)) you can use the `SvgIcon` wrapper. This component extends the native `<svg>` element:
 
 - Ele vem internamente com a acessibilidade.
-- Os elementos SVG devem ser dimensionados para uma visualização de 24x24px, de modo que o ícone resultante possa ser usado como está, ou incluído como filho para outros componentes de Material UI que usam ícones. This can be customized with the `viewBox` attribute. To inherit the `viewBox` value from the original image, the `inheritViewBox` prop can be used.
+- Os elementos SVG devem ser dimensionados para uma visualização de 24x24px, de modo que o ícone resultante possa ser usado como está, ou incluído como filho para outros componentes de Material-UI que usam ícones. This can be customized with the `viewBox` attribute. To inherit the `viewBox` value from the original image, the `inheritViewBox` prop can be used.
 - Por padrão, o componente herda a cor atual. Opcionalmente, você pode aplicar uma das cores do tema usando a propriedade `color`.
 
 ```jsx
@@ -109,22 +113,7 @@ function HomeIcon(props) {
 
 ### Propriedade Componente
 
-Você pode usar o `SvgIcon` para encapsular seus ícones, mesmo que estes estejam salvos no formato `.svg`. [svgr](https://github.com/gregberge/svgr) has loaders to import SVG files and use them as React components. Por exemplo, com webpack:
-
-```jsx
-// webpack.config.js
-{
-  test: /\.svg$/,
-  use: ['@svgr/webpack', 'url-loader'],
-}
-
-// ---
-import { ReactComponent as StarIcon } from './star.svg';
-
-<SvgIcon component={StarIcon} viewBox="0 0 600 476.6" />
-```
-
-Também é possível usá-lo com "url-loader" ou "file-loader". Esta é a abordagem usada pelo Create React App.
+You can use the `SvgIcon` wrapper even if your icons are saved in the `.svg` format. [svgr](https://github.com/gregberge/svgr) has loaders to import SVG files and use them as React components. For example, with webpack:
 
 ```jsx
 // webpack.config.js
@@ -136,12 +125,27 @@ Também é possível usá-lo com "url-loader" ou "file-loader". Esta é a aborda
 // ---
 import StarIcon from './star.svg';
 
-<SvgIcon component={StarIcon} viewBox="0 0 600 476.6" />
+<SvgIcon component={StarIcon} inheritViewBox />
+```
+
+It's also possible to use it with "url-loader" or "file-loader". This is the approach used by Create React App.
+
+```jsx
+// webpack.config.js
+{
+  test: /\.svg$/,
+  use: ['@svgr/webpack', 'url-loader'],
+}
+
+// ---
+import { ReactComponent as StarIcon } from './star.svg';
+
+<SvgIcon component={StarIcon} inheritViewBox />
 ```
 
 ### createSvgIcon
 
-Se você precisa de um ícone SVG customizado (não disponível nos [ícones Material](/material-ui/material-icons/)) você pode usar encapsular com `SvgIcon`. Este componente estende o elemento nativo `<svg>`:
+The `createSvgIcon` utility component is used to create the [Material Icons](#material-icons). It can be used to wrap an SVG path with an SvgIcon component.
 
 ```jsx
 const HomeIcon = createSvgIcon(
@@ -154,37 +158,37 @@ const HomeIcon = createSvgIcon(
 
 ### Fonte Awesome
 
-Se você descobrir que há problemas de leiaute ao usar FontAwesomeIcon de `@fortawesome/react-fontawesome`, você pode tentar passar os dados SVG da Font Awesome diretamente para SvgIcon.
+If you find that there are layout issues when using FontAwesomeIcon from `@fortawesome/react-fontawesome`, you can try passing the Font Awesome SVG data directly to SvgIcon.
 
-[Fonte Awesome](https://fontawesome.com/icons) pode ser usada com o componente `Icon` da seguinte forma:
+Below is a comparison of the `FontAwesomeIcon` component and a wrapped `SvgIcon` component.
 
-Nota: [mdi-material-ui](https://github.com/TeamWertarbyte/mdi-material-ui) já agrupou cada um desses ícones SVG com o componente `SvgIcon`, para que você não precise fazer isso.
+{{"demo": "FontAwesomeSvgIconDemo.js"}}
 
-A propriedade `fullWidth` de FontAwesomeIcon também pode ser usada para aproximar as dimensões corretas, mas não é garantida.
+FontAwesomeIcon's `fullWidth` prop can also be used to approximate the correct dimensions, but it isn't perfect.
 
 ### Fonte Material icons
 
 #### MDI
 
-O site [materialdesignicons.com](https://materialdesignicons.com/) fornece mais de 2.000 ícones. Para o ícone desejado, copie o SVG `path` que eles fornecem, e use-o como elemento filho no componente `SvgIcon`, ou com `createSvgIcon()`.
+[materialdesignicons.com](https://materialdesignicons.com/) provides over 2,000 icons. For the wanted icon, copy the SVG `path` they provide, and use it as the child of the `SvgIcon` component, or with `createSvgIcon()`.
 
-Nota: A biblioteca [mdi-material-ui](https://github.com/TeamWertarbyte/mdi-material-ui) já agrupou cada um desses ícones SVG com o componente `SvgIcon`, para que você não precise fazer isso.
+Note: [mdi-material-ui](https://github.com/TeamWertarbyte/mdi-material-ui) has already wrapped each of these SVG icons with the `SvgIcon` component, so you don't have to do it yourself.
 
 ## Ícone (ícones de fonte)
 
-The `Icon` component will display an icon from any icon font that supports ligatures. As a prerequisite, you must include one, such as the [Material icon font](https://google.github.io/material-design-icons/#icon-font-for-the-web) in your project. Para usar um ícone, simplesmente coloque o nome do ícone (font ligature) com o componente `Icon`, por exemplo:
+The `Icon` component will display an icon from any icon font that supports ligatures. As a prerequisite, you must include one, such as the [Material Icons font](https://google.github.io/material-design-icons/#icon-font-for-the-web) in your project. To use an icon simply wrap the icon name (font ligature) with the `Icon` component, for example:
 
 ```jsx
-import Icon from '@material-ui/core/Icon';
+import Icon from '@mui/material/Icon';
 
 <Icon>star</Icon>;
 ```
 
-Por padrão, um ícone herdará a cor do texto atual. Opcionalmente, você pode definir a cor do ícone usando uma das propriedades de cor do tema: `primary`, `secondary`, `action`, `erro` & `disabled`.
+By default, an Icon will inherit the current text color. Optionally, you can set the icon color using one of the theme color properties: `primary`, `secondary`, `action`, `error` & `disabled`.
 
-### Fonte Material icons
+### Font Material Icons
 
-`Icon` irá por padrão definir o nome de classe base correto para a fonte Material Icons (variante filled). Tudo que você precisa fazer é carregar a fonte, por exemplo, através do Google Web Fonts:
+`Icon` will by default set the correct base class name for the Material Icons font (filled variant). All you need to do is load the font, for instance, via Google Web Fonts:
 
 ```html
 <link
@@ -197,15 +201,15 @@ Por padrão, um ícone herdará a cor do texto atual. Opcionalmente, você pode 
 
 ### Fonte customizada
 
-Para outras fontes, você pode customizar o nome de classe base usando a propriedade `baseClassName`. Por exemplo, você pode exibir ícones de dois tons com Material Design:
+For other fonts, you can customize the baseline class name using the `baseClassName` prop. For instance, you can display two-tone icons with Material Design:
 
 ```jsx
-import Icon from '@material-ui/core/Icon';
+import Icon from '@mui/material/Icon';
 
 <link
   rel="stylesheet"
   href="https://fonts.googleapis.com/css?family=Material+Icons+Two+Tone"
-  // Importe a variante MD de dois tons                           ^^^^^^^^
+  // Import the two tones MD variant                           ^^^^^^^^
 />;
 ```
 
@@ -213,7 +217,7 @@ import Icon from '@material-ui/core/Icon';
 
 #### Nome da classe base global
 
-Modificar a propriedade `baseClassName` para cada uso feito do componente é repetitivo. Você pode alterar a propriedade padrão globalmente com o tema
+Modifying the `baseClassName` prop for each component usage is repetitive. You can change the default prop globally with the theme
 
 ```js
 const theme = createTheme({
@@ -228,7 +232,7 @@ const theme = createTheme({
 });
 ```
 
-Então, você pode usar a fonte de dois tons diretamente:
+Then, you can use the two-tone font directly:
 
 ```jsx
 <Icon>add_circle</Icon>
@@ -236,11 +240,11 @@ Então, você pode usar a fonte de dois tons diretamente:
 
 ### Fonte Awesome
 
-A [fonte Awesome](https://fontawesome.com/icons) pode ser usada com o componente `Icon` da seguinte forma:
+[Font Awesome](https://fontawesome.com/icons) can be used with the `Icon` component as follows:
 
 {{"demo": "FontAwesomeIcon.js"}}
 
-Note que os ícones da fonte Awesome não foram projetados como os ícones do Material Design (compare as duas demonstrações anteriores). Os ícones fa são cortados para usar todo o espaço disponível. Você pode ajustar isso com uma sobrescrita global:
+Note that the Font Awesome icons weren't designed like the Material Icons (compare the two previous demos). The fa icons are cropped to use all the space available. You can adjust for this with a global override:
 
 ```js
 const theme = createTheme({
@@ -263,36 +267,36 @@ const theme = createTheme({
 
 ## Fonte vs SVG. Qual abordagem usar?
 
-Ambas as abordagens funcionam bem, no entanto, existem algumas diferenças sutis, especialmente em termos de desempenho e qualidade de renderização. Sempre que possível, utlize o SVG, pois permite a divisão do código, suporta mais ícones e renderiza mais rápido e melhor.
+Both approaches work fine, however there are some subtle differences, especially in terms of performance and rendering quality. Whenever possible SVG is preferred as it allows code splitting, supports more icons, and renders faster and better.
 
-Para maiores detalhes, dê uma olhada no [porque o GitHub migrou ícones de fonte para ícones SVG](https://github.blog/2016-02-22-delivering-octicons-with-svg/).
+For more details, take a look at [why GitHub migrated from font icons to SVG icons](https://github.blog/2016-02-22-delivering-octicons-with-svg/).
 
 ## Acessibilidade
 
-Ícones podem transmitir todos os tipos de informações significativas, então é importante garantir que eles estejam apropriadamente acessíveis. Há dois casos de uso que você deve considerar:
+Icons can convey all sorts of meaningful information, so it's important to ensure they are accessible where appropriate. There are two use cases you'll want to consider:
 
 - **Ícones decorativos** que são usados apenas para reforço visual ou de marca. Se eles forem removidos da página, os usuários ainda entenderiam e poderiam usar sua página.
 - **Semantic icons** are ones that you're using to convey meaning, rather than just pure decoration. Isso inclui ícones sem texto ao lado deles que são usados como controles interativos — botões, elementos de forma, toggles, etc.
 
 ### Ícones decorativos
 
-If your icons are purely decorative, you're already done! O atributo `aria-hidden=true` foi adicionado para que seus ícones estejam adequadamente acessíveis (invisíveis).
+If your icons are purely decorative, you're already done! The `aria-hidden=true` attribute is added so that your icons are properly accessible (invisible).
 
 ### Ícones semânticos
 
 #### Ícones SVG semânticos
 
-Você deve incluir a propriedade `titleAccess` com um valor significativo. O atributo `role="img"` e o elemento `<title>` foram adicionados para que seus ícones sejam corretamente acessíveis.
+You should include the `titleAccess` prop with a meaningful value. The `role="img"` attribute and the `<title>` element are added so that your icons are correctly accessible.
 
-No caso de elementos interativos focalizáveis, por exemplo, quando usado com um botão de ícone, você pode usar a propriedade `aria-label`:
+In the case of focusable interactive elements, for example when used with an icon button, you can use the `aria-label` prop:
 
 ```jsx
-import IconButton from '@material-ui/core/IconButton';
-import SvgIcon from '@material-ui/core/SvgIcon';
+import IconButton from '@mui/material/IconButton';
+import SvgIcon from '@mui/material/SvgIcon';
 
 // ...
 
-<IconButton aria-label="deletar">
+<IconButton aria-label="delete">
   <SvgIcon>
     <path d="M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z" />
   </SvgIcon>
@@ -301,12 +305,12 @@ import SvgIcon from '@material-ui/core/SvgIcon';
 
 #### Ícones de fonte semânticos
 
-Você precisa fornecer um texto alternativo que só seja visível para tecnologia assistiva.
+You need to provide a text alternative that is only visible to assistive technologies.
 
 ```jsx
-import Box from '@material-ui/core/Box';
-import Icon from '@material-ui/core/Icon';
-import { visuallyHidden } from '@material-ui/utils';
+import Box from '@mui/material/Box';
+import Icon from '@mui/material/Icon';
+import { visuallyHidden } from '@mui/utils';
 
 // ...
 
