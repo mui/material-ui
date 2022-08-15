@@ -156,7 +156,7 @@
     "markdownlint-cli": "^0.32.1",
     "mocha": "^10.0.0",
     "node-fetch": "^2.6.7",
-    "nx": "^14.5.4",
+    "nx": "^14.5.6",
     "nyc": "^15.1.0",
     "piscina": "^3.2.0",
     "playwright": "^1.24.2",
