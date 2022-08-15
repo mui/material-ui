@@ -122,13 +122,13 @@ const MultiSelectUnstyled = React.forwardRef(function MultiSelectUnstyled<TValue
   const ListboxRoot = components.Listbox ?? 'ul';
   const Popper = components.Popper ?? PopperUnstyled;
 
-  const handleButtonRefChange = (element: HTMLElement | null) => {
+  const handleButtonRefChange = React.useCallback((element: HTMLElement | null) => {
     buttonRef.current = element;
 
     if (element != null) {
       setButtonDefined(true);
     }
-  };
+  }, []);
 
   const handleButtonRef = useForkRef(ref, handleButtonRefChange);
 

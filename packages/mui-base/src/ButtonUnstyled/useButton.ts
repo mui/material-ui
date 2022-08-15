@@ -1,6 +1,5 @@
 import * as React from 'react';
 import {
-  unstable_setRef as setRef,
   unstable_useForkRef as useForkRef,
   unstable_useIsFocusVisible as useIsFocusVisible,
 } from '@mui/utils';
@@ -9,7 +8,15 @@ import extractEventHandlers from '../utils/extractEventHandlers';
 import { EventHandlers } from '../utils/types';
 
 export default function useButton(parameters: UseButtonParameters) {
-  const { disabled = false, focusableWhenDisabled, href, ref, tabIndex, to, type } = parameters;
+  const {
+    disabled = false,
+    focusableWhenDisabled,
+    href,
+    ref: externalRef,
+    tabIndex,
+    to,
+    type,
+  } = parameters;
   const buttonRef = React.useRef<HTMLButtonElement | HTMLAnchorElement | HTMLElement>();
 
   const [active, setActive] = React.useState<boolean>(false);
@@ -148,15 +155,13 @@ export default function useButton(parameters: UseButtonParameters) {
     }
   };
 
-  const handleOwnRef = useForkRef(focusVisibleRef, buttonRef);
-  const handleRef = useForkRef(ref, handleOwnRef);
+  const updateHostElementName = React.useCallback((instance: HTMLElement | null) => {
+    setHostElementName(instance?.tagName ?? '');
+  }, []);
 
-  const updateRef = React.useCallback(
-    (instance: HTMLElement | null) => {
-      setHostElementName(instance?.tagName ?? '');
-      setRef(handleRef, instance);
-    },
-    [handleRef],
+  const handleRef = useForkRef(
+    updateHostElementName,
+    useForkRef(externalRef, useForkRef(focusVisibleRef, buttonRef)),
   );
 
   interface AdditionalButtonProps {
@@ -212,7 +217,7 @@ export default function useButton(parameters: UseButtonParameters) {
       onMouseDown: createHandleMouseDown(externalEventHandlers),
       onMouseLeave: createHandleMouseLeave(externalEventHandlers),
       onMouseUp: createHandleMouseUp(externalEventHandlers),
-      ref: updateRef as React.Ref<any>,
+      ref: handleRef,
     };
   };
 
