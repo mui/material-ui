@@ -8,7 +8,7 @@
     "componentsProps": "The props used for each slot inside the Backdrop.",
     "invisible": "If <code>true</code>, the backdrop is invisible. It can be used when rendering a popover or a custom select component.",
     "open": "Control the popup` open state.",
-    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/basics/#the-sx-prop\">`sx` page</a> for more details.",
+    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details.",
     "transitionDuration": "The duration for the transition, in milliseconds. You may specify a single timeout for all transitions, or individually with an object."
   },
   "classDescriptions": {

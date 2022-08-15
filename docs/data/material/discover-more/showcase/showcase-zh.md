@@ -1,13 +1,9 @@
 # 项目展示
 
-<p class="description">以下列表展示了使用 Material UI 的一些公共的应用程序。</p>
+<p class="description">Check out these public apps using Material UI to get inspired for your next project.</p>
 
-您正在使用 MUI 吗？ [分享你的产品](https://github.com/mui/material-ui/issues/22426)。
+Are you working with MUI's component libraries? [Show us what you're building](https://github.com/mui/material-ui/issues/22426)! We'd love to see it.
 
-我们所展示的网站至少要在其中一个维度上有良好的排名：
-
-- 遵循 Material Design 设计
-- 高流量
-- 开源
+This is a curated list of some of the best apps we've seen that show off what's possible with MUI's products.
 
 {{"demo": "Showcase.js", "hideToolbar": true, "bg": "inline"}}

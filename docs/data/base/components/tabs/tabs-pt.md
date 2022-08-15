@@ -1,75 +1,151 @@
 ---
 product: base
-title: React Tabs component
+title: Unstyled React Tabs components
 components: TabsUnstyled, TabUnstyled, TabPanelUnstyled, TabsListUnstyled
 githubLabel: 'component: tabs'
-waiAria: 'https://www.w3.org/TR/wai-aria-practices/#tabpanel'
+waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/tabpanel/
 ---
 
-# Tabs
+# Unstyled tabs
 
-<p class="description">Tabs make it easy to explore and switch between different views.</p>
+<p class="description">Tabs are UI elements for organizing and navigating between groups of related content.</p>
 
-Tabs organize and allow navigation between groups of content that are related and at the same level of hierarchy.
+## Introduction
+
+Tabs are implemented using a collection of related components:
+
+- `TabUnstyled` - the tab element itself. Clicking on a tab displays its corresponding panel.
+- `TabsListUnstyled` - the container that houses the tabs. Responsible for handling focus and keyboard navigation between tabs.
+- `TabPanelUnstyled` - the card that hosts the content associated with a tab.
+- `TabsUnstyled` - the top-level component that wraps `TabsListUnstyled` and `TabPanelUnstyled` so that tabs and their panels can communicate with one another.
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
-## Basic tabs
+## Components
 
-Tabs are implemented using a handful of components, each with a specific purpose:
+### Usage
 
-- TabUnstyled - an actual tab. Clicking on it displays the associated content.
-- TabsListUnstyled - container for tabs. Responsible for handling focus and keyboard navigation between tabs.
-- TabPanelUnstyled - hosts the content associated with a tab.
-- TabsUnstyled - top-level component wrapping TabsListUnstyled and TabPanelUnstyled and letting them communicate.
+After [installation](/base/getting-started/installation/), you can start building with this component collection using the following basic elements:
 
-```js
-import TabsUnstyled from '@mui/base/TabsUnstyled';
-import TabsListUnstyled from '@mui/base/TabUnstyled';
+```jsx
 import TabUnstyled from '@mui/base/TabUnstyled';
+import TabsListUnstyled from '@mui/base/TabUnstyled';
 import TabPanelUnstyled from '@mui/base/TabPanelUnstyled';
+import TabsUnstyled from '@mui/base/TabsUnstyled';
+
+export default function MyApp() {
+  return (
+    <TabsUnstyled>
+      <TabsListUnstyled>
+        <TabUnstyled>{/* tab one */}</TabUnstyled>
+        <TabUnstyled>{/* tab two */}</TabUnstyled>
+      </TabsListUnstyled>
+      <TabPanelUnstyled>{/* panel one */}</TabPanelUnstyled>
+      <TabPanelUnstyled>{/* panel two */}</TabPanelUnstyled>
+    </TabsUnstyled>
+  );
+}
 ```
 
-You can associate a tab with tab panel using the `value` prop. If a tab with a given `value` is selected, a tab panel with a matching `value` will be shown.
+### Basics
 
-Note that setting a `value` on a `TabUnstyled` is not mandatory. If you omit this prop, it will default to order of a tab within its parent TabsListUnstyled. This order is 0-based (the first tab has its `value` set to `0`, the next one `1`, etc.).
+By default, tabs and their corresponding panels are **zero-indexed** (i.e. the first tab has a `value` of `0`, then `1`, `2`, etc.). Clicking on a given tab opens the panel with the same `value`, which corresponds to the order in which each component is nested within its container.
+
+Though not required, you can add the `value` prop to `TabUnstyled` and `TabPanelUnstyled` to take control over how these components are associated with one another.
+
+The following demo omits the `value` prop from the `TabUnstyled` components, and also defines `0` as the `defaultValue` for `TabsUnstyled`, which sets the first tab and panel as the defaults:
 
 {{"demo": "UnstyledTabsBasic.js"}}
 
-## Customizing the root element
-
-By default, the `TabUnstyled` renders a native `button` element. You are free to override this by setting the `component` or `components.Root` prop. If a non-interactive element (such as a span) is provided this way, the `TabUnstyled` will take care of adding accessibility attributes.
-
-The `TabPanelUnstyled`, on the other hand, renders a native `div` element by default. You are free to override this as well by setting the `component` or `components.Root` prop on the `TabPanelUnstyled`.
+The next demo shows how to apply custom styles to a set of tabs:
 
 {{"demo": "UnstyledTabsCustomized.js"}}
 
-## Third-party routing library
+### Anatomy
 
-One frequent use case is to perform navigation on the client only, without an HTTP round-trip to the server. The `Tab` component provides the `component` prop to handle this use case. Here is a [more detailed guide](/material-ui/guides/routing/#tabs).
+The tab components are each composed of a root slot with no interior slots:
+
+```html
+<div class="TabsUnstyled-root">
+  <div class="TabsListUnstyled-root">
+    <button class="TabUnstyled-root">First tab</button>
+    <button class="TabUnstyled-root">Second tab</button>
+    <button class="TabUnstyled-root">Third tab</button>
+  </div>
+  <div class="TabPanelUnstyled-root">First panel</div>
+  <div class="TabPanelUnstyled-root">Second panel</div>
+  <div class="TabPanelUnstyled-root">Third panel</div>
+</div>
+```
+
+### Slot props
+
+:::info
+The following props are available on all non-utility Base components. See [Usage](/base/getting-started/usage/) for full details.
+:::
+
+Use the `component` prop to override the root slot with a custom element:
+
+```jsx
+<TabUnstyled component="span" />
+```
+
+If you provide a non-interactive element such as a `<span>`, the `TabUnstyled` component will automatically add the necessary accessibility attributes.
+
+Use the `components` prop to override any interior slots in addition to the root:
+
+```jsx
+<TabUnstyled components={{ Root: 'span' }} />
+```
+
+:::warning
+If the root element is customized with both the `component` and `components` props, then `component` will take precedence.
+:::
+
+Use the `componentsProps` prop to pass custom props to internal slots. The following code snippet applies a CSS class called `my-tab-list` to the root slot:
+
+```jsx
+<TabListUnstyled componentsProps={{ root: { className: 'my-tab-list' } }} />
+```
+
+:::warning
+Note that `componentsProps` slot names are written in lowercase (`root`) while `components` slot names are capitalized (`Root`).
+:::
+
+## Customization
+
+### Third-party routing library
+
+A common use case for tabs is to implement client-side navigation that doesn't require an HTTP round-trip to the server.
+
+The `TabUnstyled` component provides the `component` prop to handle this use case—see [the Material UI documentation on routing](/material-ui/guides/routing/#tabs) for more details.
 
 ## Accessibility
 
-(WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#tabpanel)
+(WAI-ARIA: https://www.w3.org/WAI/ARIA/apg/patterns/tabpanel/)
 
-The following steps are needed in order to provide necessary information for assistive technologies:
+The following steps are necessary to make the tab component suite accessible to assistive technology:
 
-1. Label `TabsUnstyled` via `aria-label` or `aria-labelledby`.
-2. `TabUnstyled`s need to be connected to their corresponding tab panels by setting the correct `id`, `aria-controls` and `aria-labelledby`.
+1. Label `TabsUnstyled` with `aria-label` or `aria-labelledby`.
+2. Connect each `TabUnstyled` component to its corresponding `TabPanelUnstyled` by setting the correct `id`, `aria-controls` and `aria-labelledby`.
 
-An example for the current implementation can be found in the demos on this page.
+The demos below illustrate the proper use of ARIA labels.
 
 ### Keyboard navigation
 
-The components implement keyboard navigation using the "manual activation" behavior. If you want to switch to the "selection automatically follows focus" behavior you have pass `selectionFollowsFocus` to the `Tabs` component. The WAI-ARIA authoring practices have a detailed guide on [how to decide when to make selection automatically follow focus](https://www.w3.org/TR/wai-aria-practices/#kbd_selection_follows_focus).
+By default, when using keyboard navigation, the tab components open via **manual activation**—that is, the next panel is displayed only after the user activates the tab with either <kbd class="key">Space</kbd>, <kbd class="key">Enter</kbd>, or a mouse click.
 
-#### Demo
+This is the preferable behavior for tabs in most cases, acccording to [the WAI-ARIA authoring practices](https://www.w3.org/WAI/ARIA/apg/patterns/tabpanel/).
 
-The following two demos only differ in their keyboard navigation behavior. Focus a tab and navigate with arrow keys to notice the difference, e.g. <kbd class="key">Arrow Right</kbd>.
+Alternatively, you can set the panels to be displayed automatically when their corresponding tabs are in focus—this behavior of the selection following the focus is known as **automatic activation**.
+
+To enable automatic activation, pass the `selectionFollowsFocus` prop to the `TabsUnstyled` component:
 
 ```jsx
 /* Tabs where selection follows focus */
 <TabsUnstyled selectionFollowsFocus />
 ```
+
+The following demo pair illustrates the difference between manual and automatic activation. Move the focus to a tab in either demo and navigate with the arrow keys to observe the difference:
 
 {{"demo": "KeyboardNavigation.js"}}
