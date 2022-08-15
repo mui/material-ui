@@ -1,9 +1,9 @@
 import * as React from 'react';
+import { Transition } from 'react-transition-group';
 import { styled } from '@mui/system';
 import CheckRoundedIcon from '@mui/icons-material/CheckRounded';
 import CloseIcon from '@mui/icons-material/Close';
 import SnackbarUnstyled from '@mui/base/SnackbarUnstyled';
-import Slide from '@mui/material/Slide';
 
 const blue = {
   50: '#F0F7FF',
@@ -78,9 +78,18 @@ const SnackbarContent = styled('div')(
   `,
 );
 
+const positioningStyles = {
+  entering: 'translateX(0)',
+  entered: 'translateX(0)',
+  exiting: 'translateX(500px)',
+  exited: 'translateX(500px)',
+  unmounted: 'translateX(500px)',
+};
+
 export default function TransitionComponentSnackbar() {
   const [open, setOpen] = React.useState(false);
   const [exited, setExited] = React.useState(true);
+  const nodeRef = React.useRef(null);
 
   const handleClose = (_, reason) => {
     if (reason === 'clickaway') {
@@ -113,33 +122,41 @@ export default function TransitionComponentSnackbar() {
         onClose={handleClose}
         exited={exited}
       >
-        <Slide
+        <Transition
+          timeout={{ enter: 400, exit: 400 }}
           in={open}
-          direction="left"
           appear
           unmountOnExit
-          timeout={{ enter: 400, exit: 400 }}
           onEnter={handleOnEnter}
           onExited={handleOnExited}
+          nodeRef={nodeRef}
         >
-          <SnackbarContent>
-            <CheckRoundedIcon
-              sx={{
-                flexShrink: 0,
-                marginRight: '0.75rem',
-                width: '1.25rem',
-                height: '1.5rem',
+          {(status) => (
+            <SnackbarContent
+              style={{
+                transform: positioningStyles[status],
+                transition: 'transform 300ms ease',
               }}
-            />
-            <div className="snackbar-message">
-              <div className="snackbar-title">Notifications sent</div>
-              <div className="snackbar-description">
-                All your notifications were sent to the desired address.
+              ref={nodeRef}
+            >
+              <CheckRoundedIcon
+                sx={{
+                  flexShrink: 0,
+                  marginRight: '0.75rem',
+                  width: '1.25rem',
+                  height: '1.5rem',
+                }}
+              />
+              <div className="snackbar-message">
+                <div className="snackbar-title">Notifications sent</div>
+                <div className="snackbar-description">
+                  All your notifications were sent to the desired address.
+                </div>
               </div>
-            </div>
-            <CloseIcon onClick={handleClose} className="snackbar-close-icon" />
-          </SnackbarContent>
-        </Slide>
+              <CloseIcon onClick={handleClose} className="snackbar-close-icon" />
+            </SnackbarContent>
+          )}
+        </Transition>
       </StyledSnackbar>
     </React.Fragment>
   );
