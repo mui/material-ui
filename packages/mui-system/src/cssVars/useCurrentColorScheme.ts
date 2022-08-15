@@ -96,7 +96,7 @@ function initializeValue(key: string, defaultValue: string) {
   }
   let value;
   try {
-    value = localStorage.getItem(key);
+    value = localStorage.getItem(key) || undefined;
     if (!value) {
       // the first time that user enters the site.
       localStorage.setItem(key, defaultValue);
@@ -134,11 +134,19 @@ export default function useCurrentColorScheme<SupportedColorScheme extends strin
 
   const [state, setState] = React.useState(() => {
     const initialMode = initializeValue(modeStorageKey, defaultMode);
+    const lightColorScheme = initializeValue(
+      `${colorSchemeStorageKey}-light`,
+      defaultLightColorScheme,
+    );
+    const darkColorScheme = initializeValue(
+      `${colorSchemeStorageKey}-dark`,
+      defaultDarkColorScheme,
+    );
     return {
       mode: initialMode,
       systemMode: getSystemMode(initialMode),
-      lightColorScheme: initializeValue(`${colorSchemeStorageKey}-light`, defaultLightColorScheme),
-      darkColorScheme: initializeValue(`${colorSchemeStorageKey}-dark`, defaultDarkColorScheme),
+      lightColorScheme,
+      darkColorScheme,
     } as State<SupportedColorScheme>;
   });
 
