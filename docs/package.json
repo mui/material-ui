@@ -59,7 +59,7 @@
     "@types/react-swipeable-views-utils": "^0.13.3",
     "@types/react-virtualized": "^9.21.21",
     "@types/react-window": "^1.8.5",
-    "@types/styled-components": "5.1.25",
+    "@types/styled-components": "5.1.26",
     "accept-language": "^3.0.18",
     "ast-types": "^0.14.2",
     "autoprefixer": "^10.4.8",
