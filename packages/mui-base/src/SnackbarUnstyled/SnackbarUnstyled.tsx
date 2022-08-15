@@ -56,6 +56,7 @@ const SnackbarUnstyled = React.forwardRef(function SnackbarUnstyled(
   const classes = useUtilityClasses();
 
   const { getRootProps, onClickAway } = useSnackbar({
+    ...props,
     autoHideDuration,
     disableWindowBlurListener,
     onClose,
