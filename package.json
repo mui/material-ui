@@ -7,7 +7,7 @@
     "deduplicate": "node scripts/deduplicate.js",
     "benchmark:browser": "yarn workspace benchmark browser",
     "build:codesandbox": "lerna run --parallel --scope \"@mui/*\" build",
-    "release:version": "lerna version --no-changelog --no-push --no-git-tag-version --force-publish=@mui/internal-usage-tracker",
+    "release:version": "lerna version --no-changelog --no-push --no-git-tag-version --force-publish=@mui/core-internal-download-tracker",
     "release:build": "lerna run --parallel --scope \"@mui/*\" build",
     "release:changelog": "node scripts/releaseChangelog",
     "release:publish": "lerna publish from-package --dist-tag latest --contents build",

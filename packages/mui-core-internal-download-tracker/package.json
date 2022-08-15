@@ -1,5 +1,5 @@
 {
-  "name": "@mui/internal-usage-tracker",
+  "name": "@mui/core-internal-download-tracker",
   "version": "5.10.0",
   "private": false,
   "author": "MUI Team",
@@ -8,7 +8,7 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/mui/material-ui.git",
-    "directory": "packages/mui-internal-usage-tracker"
+    "directory": "packages/mui-core-internal-download-tracker"
   },
   "license": "MIT",
   "bugs": {
