@@ -3144,10 +3144,10 @@
   dependencies:
     defer-to-connect "^1.0.1"
 
-"@testing-library/dom@^8.16.1", "@testing-library/dom@^8.5.0":
-  version "8.16.1"
-  resolved "https://registry.yarnpkg.com/@testing-library/dom/-/dom-8.16.1.tgz#96e528c9752d60061128f043e2b43566c0aba2d9"
-  integrity sha512-XEV2mBxgv6DKjL3+U3WEUzBgT2CjYksoXGlLrrJXYP8OvRfGkBonvelkorazpFlp8tkEecO06r43vN4DIEyegQ==
+"@testing-library/dom@^8.17.1", "@testing-library/dom@^8.5.0":
+  version "8.17.1"
+  resolved "https://registry.yarnpkg.com/@testing-library/dom/-/dom-8.17.1.tgz#2d7af4ff6dad8d837630fecd08835aee08320ad7"
+  integrity sha512-KnH2MnJUzmFNPW6RIKfd+zf2Wue8mEKX0M3cpX6aKl5ZXrJM1/c/Pc8c2xDNYQCnJO48Sm5ITbMXgqTr3h4jxQ==
   dependencies:
     "@babel/code-frame" "^7.10.4"
     "@babel/runtime" "^7.12.5"
