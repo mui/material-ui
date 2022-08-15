@@ -15,6 +15,7 @@ const { CssVarsProvider } = createCssVarsProvider({
   },
   defaultColorScheme: {
     light: 'light',
+    dark: 'dark',
   },
 });
 
