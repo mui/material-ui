@@ -227,8 +227,6 @@ function AppWrapper(props) {
                     <GlobalStyles
                       styles={(theme) => ({
                         html: {
-                          // to override CssBaseline in BrandingCssVarsProvider when navigating between pages
-                          colorScheme: `${theme.palette.mode} !important`,
                           // If the user lands on/refreash homepage, the CssBaseline with CSS variables are created inline in the html due to server-side generation
                           // When user navigates to other pages, the CssBaseline in those pages can't win because the css-global is injected above server-side generation
                           // So these variables are needed to make the body background and color render correctly.
