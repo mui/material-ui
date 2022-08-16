@@ -1,14 +1,14 @@
 {
-  "name": "@mui/core-internal-download-tracker",
+  "name": "@mui/core-downloads-tracker",
   "version": "5.10.1",
   "private": false,
   "author": "MUI Team",
   "description": "Internal package to track number of downloads of our design system libraries",
-  "main": "./index.js",
+  "files": [],
   "repository": {
     "type": "git",
     "url": "https://github.com/mui/material-ui.git",
-    "directory": "packages/mui-core-internal-download-tracker"
+    "directory": "packages/core-downloads-tracker"
   },
   "license": "MIT",
   "bugs": {
@@ -20,10 +20,10 @@
     "url": "https://opencollective.com/mui"
   },
   "scripts": {
-    "build": "mkdir build && cpy index.js build/ && yarn build:copy-files",
+    "build": "mkdir build && yarn build:copy-files",
     "build:copy-files": "node ../../scripts/copy-files.js",
     "prebuild": "rimraf build",
-    "release": "npm publish ."
+    "release": "yarn build && npm publish build"
   },
   "publishConfig": {
     "access": "public"
