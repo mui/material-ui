@@ -12,7 +12,7 @@ export default function TaskCard() {
   return (
     <Fade in timeout={700}>
       <Card
-        data-muidocs-color-scheme="dark"
+        data-mui-color-scheme="dark"
         sx={(theme) => ({
           minWidth: 280,
           maxWidth: 360,

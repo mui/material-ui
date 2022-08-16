@@ -51,7 +51,7 @@ export default function DiamondSponsors() {
           sx={(theme) => ({
             color: 'primary.500',
             ...theme.applyDarkStyles({
-              color: 'primary.400',
+              color: 'primary.300',
             }),
           })}
         >

@@ -13,6 +13,9 @@ declare module '@mui/material/TableCell' {
   interface TableCellPropsSizeOverrides {
     large: true;
   }
+  interface TableCellPropsVariantOverrides {
+    tableBody: true;
+  }
 }
 
 // theme typings should work as expected
@@ -26,10 +29,28 @@ const theme = createTheme({
           }),
         }),
       },
+      variants: [
+        {
+          props: { variant: 'tableBody' },
+          style: {
+            fontSize: '1.2em',
+            color: '#C1D3FF',
+          },
+        },
+      ],
     },
   },
 });
 
 <Table size="large">
   <TableCell size="large" />
+</Table>;
+
+<Table size="large">
+  <TableCell variant="tableBody">Foo</TableCell>;
+</Table>;
+
+<Table size="large">
+  {/* @ts-expect-error unknown variant */}
+  <TableCell variant="tableHeading">Bar</TableCell>;
 </Table>;

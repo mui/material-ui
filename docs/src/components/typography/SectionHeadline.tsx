@@ -18,16 +18,10 @@ export default function SectionHeadline({
         variant="body2"
         sx={(theme) => ({
           mb: 1,
-          ...(!theme.vars
-            ? {
-                color: theme.palette.mode === 'dark' ? 'primary.400' : 'primary.600',
-              }
-            : {
-                color: 'primary.600',
-                [theme.getColorSchemeSelector('dark')]: {
-                  color: 'primary.400',
-                },
-              }),
+          color: 'primary.600',
+          ...theme.applyDarkStyles({
+            color: 'primary.300',
+          }),
         })}
       >
         {overline}
@@ -36,16 +30,10 @@ export default function SectionHeadline({
         <Typography
           variant="h2"
           sx={(theme) => ({
-            ...(!theme.vars
-              ? {
-                  color: theme.palette.mode === 'dark' ? 'grey.100' : 'primaryDark.900',
-                }
-              : {
-                  color: 'primaryDark.900',
-                  [theme.getColorSchemeSelector('dark')]: {
-                    color: 'grey.100',
-                  },
-                }),
+            color: 'primaryDark.900',
+            ...theme.applyDarkStyles({
+              color: 'grey.100',
+            }),
           })}
         >
           {title}
@@ -59,16 +47,10 @@ export default function SectionHeadline({
             mt: 1,
             mb: 2,
             maxWidth: 450,
-            ...(!theme.vars
-              ? {
-                  color: theme.palette.mode === 'dark' ? 'grey.500' : 'grey.800',
-                }
-              : {
-                  color: 'grey.800',
-                  [theme.getColorSchemeSelector('dark')]: {
-                    color: 'grey.500',
-                  },
-                }),
+            color: 'grey.800',
+            ...theme.applyDarkStyles({
+              color: 'grey.500',
+            }),
           })}
         >
           {description}

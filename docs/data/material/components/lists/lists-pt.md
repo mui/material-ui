@@ -26,7 +26,7 @@ O último item da demonstração anterior mostra como você pode renderizar um l
 </ListItemButton>
 ```
 
-Você pode encontrar uma [demonstração com React Router seguindo esta seção](/material-ui/guides/routing/#list) da documentação.
+You can find a [demo with React Router following this section](/material-ui/guides/routing/#list) of the documentation.
 
 ## Lista Aninhada
 
@@ -48,7 +48,7 @@ Abaixo está uma demonstração interativa que permite explorar os resultados vi
 
 ## Alinhar itens da lista
 
-When displaying three lines or more, the avatar is not aligned at the top. When displaying three lines or more, the avatar is not aligned at the top. When displaying three lines or more, the avatar is not aligned at the top. You should set the `alignItems="flex-start"` prop to align the avatar at the top, following the Material Design guidelines:
+When displaying three lines or more, the avatar is not aligned at the top. When displaying three lines or more, the avatar is not aligned at the top. You should set the `alignItems="flex-start"` prop to align the avatar at the top, following the Material Design guidelines:
 
 {{"demo": "AlignItemsList.js", "bg": true}}
 
@@ -100,7 +100,7 @@ O uso da biblioteca [react-window](https://github.com/bvaughn/react-window), qua
 
 ## Customized List
 
-Aqui estão alguns exemplos de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/material-ui/customization/how-to-customize/).
+Aqui estão alguns exemplos de customização do componente. You can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/).
 
 {{"demo": "CustomizedList.js"}}
 

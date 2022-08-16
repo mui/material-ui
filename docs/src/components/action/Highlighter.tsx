@@ -47,7 +47,7 @@ export default function Highlighter({
           border: '1px solid transparent',
           transitionProperty: 'all',
           transitionDuration: '150ms',
-          color: 'grey.500',
+          color: 'primary.300',
           ...((!disableBorder || selected) && {
             borderColor: 'grey.200',
           }),
@@ -65,21 +65,23 @@ export default function Highlighter({
             },
           }),
           ...theme.applyDarkStyles({
-            color: 'grey.600',
+            color: 'primary.800',
             ...((!disableBorder || selected) && {
               borderColor: 'primaryDark.500',
             }),
             ...(selected && {
               bgcolor: 'primaryDark.700',
               borderColor: 'primaryDark.300',
-              color: 'primary.400',
+              color: 'primary.300',
             }),
-            '&:hover, &:focus': {
-              bgcolor: 'primaryDark.800',
-              '@media (hover: none)': {
-                bgcolor: 'transparent',
+            ...(!selected && {
+              '&:hover, &:focus': {
+                bgcolor: 'primaryDark.800',
+                '@media (hover: none)': {
+                  bgcolor: 'transparent',
+                },
               },
-            },
+            }),
           }),
           '&.Mui-disabled': {
             opacity: 0.4,

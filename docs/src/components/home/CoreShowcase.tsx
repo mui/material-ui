@@ -177,7 +177,7 @@ export default function CoreShowcase() {
         </React.Fragment>
       }
       code={
-        <Box data-muidocs-color-scheme="dark">
+        <Box data-mui-color-scheme="dark">
           <Box
             sx={{
               p: { xs: 2, sm: 1 },
