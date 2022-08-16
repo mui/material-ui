@@ -62,7 +62,8 @@ const TablePaginationActions = React.forwardRef(function TablePaginationActions(
         title={getItemAriaLabel('previous', page)}
         {...backIconButtonProps}
       >
-        {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
+        {backIconButtonProps?.children ||
+          (theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />)}
       </IconButton>
       <IconButton
         onClick={handleNextButtonClick}
@@ -72,7 +73,8 @@ const TablePaginationActions = React.forwardRef(function TablePaginationActions(
         title={getItemAriaLabel('next', page)}
         {...nextIconButtonProps}
       >
-        {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
+        {nextIconButtonProps?.children ||
+          (theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />)}
       </IconButton>
       {showLastButton && (
         <IconButton
