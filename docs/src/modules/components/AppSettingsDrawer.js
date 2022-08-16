@@ -73,9 +73,11 @@ function AppSettingsDrawer(props) {
 
     if (paletteMode === 'system') {
       document.cookie = `paletteMode=;path=/;max-age=31536000`;
+      localStorage.setItem('mui-mode', preferredMode); // syncing with homepage, can be removed once all pages are migrated to CSS variables
       changeTheme({ paletteMode: preferredMode });
     } else {
       document.cookie = `paletteMode=${paletteMode};path=/;max-age=31536000`;
+      localStorage.setItem('mui-mode', paletteMode); // syncing with homepage, can be removed once all pages are migrated to CSS variables
       changeTheme({ paletteMode });
     }
   };

@@ -51,7 +51,7 @@ export default function ThemeModeToggle(props: ThemeModeToggleProps) {
         disableTouchRipple
         onClick={() => {
           try {
-            localStorage.setItem('muidocs-mode', props.checked ? 'light' : 'dark');
+            localStorage.setItem('mui-mode', props.checked ? 'light' : 'dark');
           } catch (error) {
             // do nothing
           }
