@@ -592,17 +592,17 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
           },
         })}
       </AutocompleteRoot>
-      {popupOpen && anchorEl ? (
+      {anchorEl ? (
         <AutocompletePopper
           as={PopperComponent}
           disablePortal={disablePortal}
           style={{
-            width: anchorEl ? anchorEl.clientWidth : null,
+            width: anchorEl && popupOpen ? anchorEl.clientWidth : null,
           }}
           ownerState={ownerState}
           role="presentation"
           anchorEl={anchorEl}
-          open
+          open={popupOpen}
           {...componentsProps.popper}
           className={clsx(classes.popper, componentsProps.popper?.className)}
         >
