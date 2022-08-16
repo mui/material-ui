@@ -2526,7 +2526,7 @@ describe('<Autocomplete />', () => {
       expect(popupIndicator).to.have.class('my-class');
     });
 
-    it('should keep AutocompletePopper mounted if keepMounted is true', () => {
+    it('should keep AutocompletePopper mounted if keepMounted is true in popper props', () => {
       // Autocomplete is not opened
       render(
         <Autocomplete
