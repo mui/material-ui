@@ -28,7 +28,7 @@ const lineMapping: Record<string, number | number[]> = {
 };
 
 export default function CoreShowcase() {
-  const globalTheme = useTheme();
+  const { vars, ...globalTheme } = useTheme();
   const mode = globalTheme.palette.mode;
   const [element, setElement] = React.useState<Data>({ id: null, name: null, target: null });
   const [customized, setCustomized] = React.useState(false);
