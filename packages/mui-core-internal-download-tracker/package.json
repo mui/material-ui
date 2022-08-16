@@ -23,7 +23,7 @@
     "build": "mkdir build && cpy index.js build/ && yarn build:copy-files",
     "build:copy-files": "node ../../scripts/copy-files.js",
     "prebuild": "rimraf build",
-    "release": "npm publish ."
+    "release": "yarn build && npm publish build"
   },
   "publishConfig": {
     "access": "public"
