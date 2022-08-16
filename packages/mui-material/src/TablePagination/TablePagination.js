@@ -149,10 +149,10 @@ const TablePagination = React.forwardRef(function TablePagination(inProps, ref) 
     colSpan: colSpanProp,
     component = TableCell,
     components = {
-      first: FirstPageIcon,
-      last: LastPageIcon,
-      next: KeyboardArrowRight,
-      previous: KeyboardArrowLeft,
+      First: FirstPageIcon,
+      Last: LastPageIcon,
+      Next: KeyboardArrowRight,
+      Previous: KeyboardArrowLeft,
     },
     componentsProps = {},
     count,
@@ -195,16 +195,16 @@ const TablePagination = React.forwardRef(function TablePagination(inProps, ref) 
   const normalizedIcons =
     theme.direction === 'rtl'
       ? {
-          previous: components.next || KeyboardArrowRight,
-          next: components.previous || KeyboardArrowLeft,
-          last: components.first || FirstPageIcon,
-          first: components.last || LastPageIcon,
+          Previous: components.Next || KeyboardArrowRight,
+          Next: components.Previous || KeyboardArrowLeft,
+          Last: components.First || FirstPageIcon,
+          First: components.Last || LastPageIcon,
         }
       : {
-          previous: components.previous || KeyboardArrowLeft,
-          next: components.next || KeyboardArrowRight,
-          first: components.first || FirstPageIcon,
-          last: components.last || LastPageIcon,
+          Previous: components.Previous || KeyboardArrowLeft,
+          Next: components.Next || KeyboardArrowRight,
+          First: components.First || FirstPageIcon,
+          Last: components.Last || LastPageIcon,
         };
 
   return (
@@ -317,19 +317,19 @@ TablePagination.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
-   * The components used for first, last, next & previous item type
+   * The components used for First, Last, Next & Previous item type
    * @default {
-   *   first: FirstPageIcon,
-   *   last: LastPageIcon,
-   *   next: KeyboardArrowRight,
-   *   previous: KeyboardArrowLeft,
+   *   First: FirstPageIcon,
+   *   Last: LastPageIcon,
+   *   Next: KeyboardArrowRight,
+   *   Previous: KeyboardArrowLeft,
    * }
    */
   components: PropTypes.shape({
-    first: PropTypes.elementType,
-    last: PropTypes.elementType,
-    next: PropTypes.elementType,
-    previous: PropTypes.elementType,
+    First: PropTypes.elementType,
+    Last: PropTypes.elementType,
+    Next: PropTypes.elementType,
+    Previous: PropTypes.elementType,
   }),
   /**
    * The props used for each slot inside.

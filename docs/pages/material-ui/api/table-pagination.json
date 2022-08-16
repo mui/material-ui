@@ -11,9 +11,9 @@
     "components": {
       "type": {
         "name": "shape",
-        "description": "{ first?: elementType, last?: elementType, next?: elementType, previous?: elementType }"
+        "description": "{ First?: elementType, Last?: elementType, Next?: elementType, Previous?: elementType }"
       },
-      "default": "{\n  first: FirstPageIcon,\n  last: LastPageIcon,\n  next: KeyboardArrowRight,\n  previous: KeyboardArrowLeft,\n}"
+      "default": "{\n  First: FirstPageIcon,\n  Last: LastPageIcon,\n  Next: KeyboardArrowRight,\n  Previous: KeyboardArrowLeft,\n}"
     },
     "componentsProps": {
       "type": {

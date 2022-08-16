@@ -40,10 +40,10 @@ const TablePaginationActions = React.forwardRef(function TablePaginationActions(
     onPageChange(event, Math.max(0, Math.ceil(count / rowsPerPage) - 1));
   };
 
-  const LastIcon = components.last;
-  const FirstIcon = components.first;
-  const PreviousIcon = components.previous;
-  const NextIcon = components.next;
+  const LastIcon = components.Last;
+  const FirstIcon = components.First;
+  const PreviousIcon = components.Previous;
+  const NextIcon = components.Next;
 
   return (
     <div ref={ref} {...other}>
@@ -113,19 +113,19 @@ TablePaginationActions.propTypes = {
    */
   backIconButtonProps: PropTypes.object,
   /**
-   * The components used for first, last, next & previous item type
+   * The components used for First, Last, Next & Previous item type
    * @default {
-   *   first: FirstPageIcon,
-   *   last: LastPageIcon,
-   *   next: KeyboardArrowRight,
-   *   previous: KeyboardArrowLeft,
+   *   First: FirstPageIcon,
+   *   Last: LastPageIcon,
+   *   Next: KeyboardArrowRight,
+   *   Previous: KeyboardArrowLeft,
    * }
    */
   components: PropTypes.shape({
-    first: PropTypes.elementType,
-    last: PropTypes.elementType,
-    next: PropTypes.elementType,
-    previous: PropTypes.elementType,
+    First: PropTypes.elementType,
+    Last: PropTypes.elementType,
+    Next: PropTypes.elementType,
+    Previous: PropTypes.elementType,
   }),
   /**
    * The props used for each slot inside.
