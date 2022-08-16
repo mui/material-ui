@@ -35,6 +35,7 @@ A big thanks to the 18 contributors who made this release possible. This release
 - &#8203;<!-- 19 -->[docs] Improve the HorizontalNonLinearStepper demo styling (#33886) @hayawata3626
 - &#8203;<!-- 18 -->[docs] Remove dead NoSsr in the demos (#33910) @oliviertassinari
 - &#8203;<!-- 17 -->[docs] Fix the reopening menu problem in MenuUnstyled demo (#33890) @michaldudak
+- &#8203;<!-- 24 -->[docs] Fix a few link issues (#33909) @oliviertassinari
 - &#8203;<!-- 16 -->[docs] Explain the icons package dependencies (#33592) @michaldudak
 - &#8203;<!-- 15 -->[docs] Fix reported SEO issues (#33818) @oliviertassinari
 - &#8203;<!-- 14 -->[docs] Add permanent notifications back (#33843) @oliviertassinari
