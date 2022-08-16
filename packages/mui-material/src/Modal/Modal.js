@@ -112,18 +112,18 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
         ...components,
       }}
       componentsProps={{
-        root: () => ({
+        root: {
           ...resolveComponentProps(componentsProps.root, ownerState),
           ...(!isHostComponent(Root) && { theme }),
           /** We pass the 'as' prop always because components.Root is set as ModalRoot wrapped with the
            * styled API which thus supports the 'as' prop for host or React components.
            */
           as: Root,
-        }),
-        backdrop: () => ({
+        },
+        backdrop: {
           ...BackdropProps,
           ...resolveComponentProps(componentsProps.backdrop, ownerState),
-        }),
+        },
       }}
       onTransitionEnter={() => setExited(false)}
       onTransitionExited={() => setExited(true)}
