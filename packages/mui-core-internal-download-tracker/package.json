@@ -24,5 +24,8 @@
     "build:copy-files": "node ../../scripts/copy-files.js",
     "prebuild": "rimraf build",
     "release": "npm publish ."
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
