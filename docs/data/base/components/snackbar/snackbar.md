@@ -40,10 +40,10 @@ export default function MyApp() {
 
 ### Anatomy
 
-The `SnackbarUnstyled` component is composed of
+The `SnackbarUnstyled` component is composed of a single root `<div>` element that is designed to be used as a notification popover:
 
 ```html
-
+<div role="presentation" class="BaseSnackbar-root">Snackbar text</div>
 ```
 
 ### Slot props
@@ -56,13 +56,13 @@ See [Usage](/base/getting-started/usage/) for full details.
 Use the `component` prop to override the root slot with a custom element:
 
 ```jsx
-<SnackbarUnstyled component="div" />
+<SnackbarUnstyled component="span" />
 ```
 
 Use the `components` prop to override any interior slots in addition to the root:
 
 ```jsx
-<SnackbarUnstyled components={{ Root: 'div', OTHER_SLOT: 'something' }}: 'div' }} />
+<SnackbarUnstyled components={{ Root: 'span' }} />
 ```
 
 :::warning
@@ -73,7 +73,7 @@ Use the `componentsProps` prop to pass custom props to internal slots.
 The following code snippet applies a CSS class called `my-badge` to the badge slot:
 
 ```jsx
-<SnackbarUnstyled componentsProps={{ snackbar: { className: 'my-snackbar' } }} />
+<SnackbarUnstyled componentsProps={{ root: { className: 'my-snackbar' } }} />
 ```
 
 :::warning
@@ -88,9 +88,13 @@ import { useSnackbar } from '@mui/base/SnackbarUnstyled';
 
 The `useSnackbar` hook lets you apply the functionality of `SnackbarUnstyled` to a fully custom component.
 
-It returns props to be placed on the root element. If you are using `ClickAwayListener` to close the snackbar by clicking outside of it, make sure to pass `onClickAway` handler returned by this hook to the `ClickAwayListener` component.
+It returns props to be placed on the custom component, along with fields representing the component's internal state.
 
-Make sure to pass the `open` state to the hook and use it to show/hide the snackbar.
+Hooks _do not_ support [slot props](#slot-props), but they do support [customization props](#customization).
+
+If you are using a [`ClickAwayListener`](/react-click-away-listener/) to close the snackbar by clicking outside of it, make sure to pass the `onClickAway` handler returned by this hook to the `ClickAwayListener`.
+
+Pass the `open` state to the hook and use it to show and hide the snackbar.
 
 {{"demo": "UseSnackbar.js", "defaultCodeOpen": false}}
 
