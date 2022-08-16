@@ -1,7 +1,6 @@
 import * as React from 'react';
 import NextHead from 'next/head';
 import { useRouter } from 'next/router';
-import PropTypes from 'prop-types';
 import { LANGUAGES_SSR } from 'docs/src/modules/constants';
 import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
 import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
@@ -9,7 +8,17 @@ import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 // #major-version-switch
 const HOST = 'https://mui.com';
 
-export default function Head(props) {
+interface HeadProps {
+  card?: string;
+  children?: React.ReactNode;
+  description: string;
+  disableAlternateLocale?: boolean;
+  largeCard?: boolean;
+  title: string;
+  type?: string;
+}
+
+export default function Head(props: HeadProps) {
   const t = useTranslate();
   const {
     card = '/static/social-previews/default-preview.jpg',
@@ -18,11 +27,12 @@ export default function Head(props) {
     disableAlternateLocale = false,
     largeCard = true,
     title = t('headTitle'),
+    type = 'website',
   } = props;
   const userLanguage = useUserLanguage();
   const router = useRouter();
-  const preview = card.startsWith('http') ? card : `${HOST}${card}`;
   const { canonicalAs } = pathnameToLanguage(router.asPath);
+  const preview = card.startsWith('http') ? card : `${HOST}${card}`;
 
   return (
     <NextHead>
@@ -37,7 +47,7 @@ export default function Head(props) {
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={preview} />
       {/* Facebook */}
-      <meta property="og:type" content="website" />
+      <meta property="og:type" content={type} />
       <meta property="og:title" content={title} />
       {/* #major-version-switch */}
       <meta property="og:url" content={`${HOST}${router.asPath}`} />
@@ -64,12 +74,3 @@ export default function Head(props) {
     </NextHead>
   );
 }
-
-Head.propTypes = {
-  card: PropTypes.string,
-  children: PropTypes.node,
-  description: PropTypes.string,
-  disableAlternateLocale: PropTypes.bool,
-  largeCard: PropTypes.bool,
-  title: PropTypes.string,
-};

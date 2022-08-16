@@ -1,7 +1,7 @@
 import * as React from 'react';
-import TopLayoutBlog from 'docs/src/modules/components/TopLayoutBlog';
+import MarkdownDocs from 'docs/src/modules/components/MarkdownDocs';
 import { docs } from './callouts.md?@mui/markdown';
 
 export default function Page() {
-  return <TopLayoutBlog docs={docs} />;
+  return <MarkdownDocs docs={docs} />;
 }
