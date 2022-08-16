@@ -451,14 +451,14 @@ describe('<TablePagination />', () => {
   });
 
   describe('prop: components', () => {
-    it('should change the icon for first item type', () => {
+    it('should change the icon for First item type', () => {
       const handleChangePage = spy();
       const { getByTestId, getByRole } = render(
         <table>
           <TableFooter>
             <TableRow>
               <TablePagination
-                components={{ first: ArrowBackIosRounded }}
+                components={{ First: ArrowBackIosRounded }}
                 showFirstButton
                 showLastButton
                 page={1}
@@ -476,14 +476,14 @@ describe('<TablePagination />', () => {
       );
     });
 
-    it('should change the icon for last item type', () => {
+    it('should change the icon for Last item type', () => {
       const handleChangePage = spy();
       const { getByTestId, getByRole } = render(
         <table>
           <TableFooter>
             <TableRow>
               <TablePagination
-                components={{ last: ArrowForwardIosRounded }}
+                components={{ Last: ArrowForwardIosRounded }}
                 showFirstButton
                 showLastButton
                 page={1}
