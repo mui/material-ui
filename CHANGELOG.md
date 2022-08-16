@@ -57,6 +57,7 @@ A big thanks to the 18 contributors who made this release possible. This release
 - &#8203;<!-- 26 -->[core] Clear yarn installation warning (#33776) @michaldudak
 - &#8203;<!-- 25 -->[core] Bump yarn to 1.22.19 (#33656) @michaldudak
 - &#8203;<!-- 24 -->[core] Remove outdated Next.js options (#33845) @oliviertassinari
+- &#8203;<!-- 34 -->[core] Add the download tracker build script (#33941) @michaldudak
 - &#8203;<!-- 01 -->[website] Allow /r/store- redirection pattern @oliviertassinari
 
 All contributors of this release in alphabetical order: @arjunvijayanathakurup, @bugzpodder, @cherewaty, @cherniavskii, @cmdcolin, @danilo-leal, @EthanStandel, @hayawata3626, @IsaacInsoll, @l10nbot, @michaldudak, @mmostafavi, @MonstraG, @oliviertassinari, @PunitSoniME, @samuelsycamore, @TKrishnasamy, @ZeeshanTamboli
