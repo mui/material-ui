@@ -40,17 +40,17 @@ const theme = extendTheme({
     light: {
       palette: deepmerge(lightPalette, {
         text: {
-          display1: 'var(--mui-palette-primaryDark-900)',
-          display2: 'var(--mui-palette-primaryDark-700)',
-          h5: 'var(--mui-palette-primary-main)',
-          action: 'var(--mui-palette-primary-600)',
-          actionHover: 'var(--mui-palette-primary-700)',
+          display1: 'var(--muidocs-palette-primaryDark-900)',
+          display2: 'var(--muidocs-palette-primaryDark-700)',
+          h5: 'var(--muidocs-palette-primary-main)',
+          action: 'var(--muidocs-palette-primary-600)',
+          actionHover: 'var(--muidocs-palette-primary-700)',
         },
         Switch: {
-          trackBg: 'var(--mui-palette-grey-400)',
+          trackBg: 'var(--muidocs-palette-grey-400)',
         },
         Chip: {
-          defaultFilledColor: 'var(--mui-palette-primary-700)',
+          defaultFilledColor: 'var(--muidocs-palette-primary-700)',
         },
       }),
     },
@@ -58,13 +58,13 @@ const theme = extendTheme({
       palette: deepmerge(darkPalette, {
         text: {
           display1: '#fff',
-          display2: 'var(--mui-palette-grey-100)',
-          h5: 'var(--mui-palette-primary-300)',
-          action: 'var(--mui-palette-primary-300)',
-          actionHover: 'var(--mui-palette-primary-200)',
+          display2: 'var(--muidocs-palette-grey-100)',
+          h5: 'var(--muidocs-palette-primary-300)',
+          action: 'var(--muidocs-palette-primary-300)',
+          actionHover: 'var(--muidocs-palette-primary-200)',
         },
         Switch: {
-          trackBg: 'var(--mui-palette-grey-800)',
+          trackBg: 'var(--muidocs-palette-grey-800)',
         },
         Chip: {},
       }),
@@ -73,13 +73,13 @@ const theme = extendTheme({
   ...designTokens,
   typography: deepmerge(typography, {
     h1: {
-      color: 'var(--mui-palette-text-display1)',
+      color: 'var(--muidocs-palette-text-display1)',
     },
     h2: {
-      color: 'var(--mui-palette-text-display2)',
+      color: 'var(--muidocs-palette-text-display2)',
     },
     h5: {
-      color: 'var(--mui-palette-text-h5)',
+      color: 'var(--muidocs-palette-text-h5)',
     },
   }),
   ...getThemedComponents(),
