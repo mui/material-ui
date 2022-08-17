@@ -10,8 +10,8 @@ const blue = {
 };
 
 const grey = {
-  300: '#CDD2D7',
-  900: '#1A2027',
+  300: '#afb8c1',
+  900: '#24292f',
 };
 
 const CustomButton = styled(ButtonUnstyled)(
@@ -26,7 +26,7 @@ const CustomButton = styled(ButtonUnstyled)(
   transition: all 150ms ease;
   cursor: pointer;
   border: none;
-  box-shadow: 0px 4px 30px ${theme.palette.mode === 'dark' ? grey[900] : grey[300]};
+  box-shadow: 0px 4px 30px ${theme.palette.mode === 'dark' ? grey[900] : grey[100]};
 
   &:hover {
     background-color: ${blue[600]};
