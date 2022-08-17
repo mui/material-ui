@@ -157,6 +157,7 @@ export interface PaletteSlider {
 
 export interface PaletteSnackbarContent {
   bg: string;
+  color: string;
 }
 
 export interface PaletteSpeedDialAction {
@@ -222,46 +223,59 @@ export interface ColorSystemOptions {
   overlays?: Overlays;
 }
 
-// The Palette should be sync with `../themeCssVarsAugmentation/index.d.ts`
+export interface CssVarsPalette {
+  colorScheme: SupportedColorScheme;
+  common: PaletteCommonChannel;
+  primary: PaletteColorChannel;
+  secondary: PaletteColorChannel;
+  error: PaletteColorChannel;
+  info: PaletteColorChannel;
+  success: PaletteColorChannel;
+  warning: PaletteColorChannel;
+  text: PaletteTextChannel;
+  dividerChannel: string;
+  action: PaletteActionChannel;
+  Alert: PaletteAlert;
+  AppBar: PaletteAppBar;
+  Avatar: PaletteAvatar;
+  Chip: PaletteChip;
+  FilledInput: PaletteFilledInput;
+  LinearProgress: PaletteLinearProgress;
+  Skeleton: PaletteSkeleton;
+  Slider: PaletteSlider;
+  SnackbarContent: PaletteSnackbarContent;
+  SpeedDialAction: PaletteSpeedDialAction;
+  StepConnector: PaletteStepConnector;
+  StepContent: PaletteStepContent;
+  Switch: PaletteSwitch;
+  TableCell: PaletteTableCell;
+  Tooltip: PaletteTooltip;
+}
+
 export interface ColorSystem {
-  palette: Palette & {
-    colorScheme: SupportedColorScheme;
-    common: PaletteCommonChannel;
-    primary: PaletteColorChannel;
-    secondary: PaletteColorChannel;
-    error: PaletteColorChannel;
-    info: PaletteColorChannel;
-    success: PaletteColorChannel;
-    text: PaletteTextChannel;
-    dividerChannel: string;
-    action: PaletteActionChannel;
-    Alert: PaletteAlert;
-    AppBar: PaletteAppBar;
-    Avatar: PaletteAvatar;
-    Chip: PaletteChip;
-    FilledInput: PaletteFilledInput;
-    LinearProgress: PaletteLinearProgress;
-    Skeleton: PaletteSkeleton;
-    Slider: PaletteSlider;
-    SnackbarContent: PaletteSnackbarContent;
-    SpeedDialAction: PaletteSpeedDialAction;
-    StepConnector: PaletteStepConnector;
-    StepContent: PaletteStepContent;
-    Switch: PaletteSwitch;
-    TableCell: PaletteTableCell;
-    Tooltip: PaletteTooltip;
-  };
+  palette: Palette & CssVarsPalette;
   opacity: Opacity;
   overlays: Overlays;
 }
 
 export interface CssVarsThemeOptions extends Omit<ThemeOptions, 'palette' | 'components'> {
-  components?: Components<Omit<CssVarsTheme, 'components'>>;
+  /**
+   * Prefix of the generated CSS variables
+   * @default 'mui'
+   */
+  cssVarPrefix?: string;
+  /**
+   * Theme components
+   */
+  components?: Components<Omit<Theme, 'components' | 'palette'> & CssVarsTheme>;
+  /**
+   * Color schemes configuration
+   */
   colorSchemes?: Partial<Record<SupportedColorScheme, ColorSystemOptions>>;
 }
 
 // should not include keys defined in `shouldSkipGeneratingVar` and have value typeof function
-interface ThemeVars {
+export interface ThemeVars {
   palette: Omit<
     ColorSystem['palette'],
     | 'colorScheme'
@@ -274,22 +288,100 @@ interface ThemeVars {
   opacity: Opacity;
   overlays: Overlays;
   shadows: Shadows;
-  zIndex: ZIndex;
   shape: Theme['shape'];
+  zIndex: ZIndex;
 }
 
-// shut off automatic exporting for the `ThemeVars` above
+type Split<T, K extends keyof T = keyof T> = K extends string | number
+  ? { [k in K]: Exclude<T[K], undefined> }
+  : never;
+
+type ConcatDeep<T> = T extends Record<string | number, infer V>
+  ? keyof T extends string | number
+    ? V extends string | number
+      ? keyof T
+      : keyof V extends string | number
+      ? `${keyof T}-${ConcatDeep<Split<V>>}`
+      : never
+    : never
+  : never;
+
+/**
+ * Does not work for these cases:
+ * - { borderRadius: string | number } // the value can't be a union
+ * - { shadows: [string, string, ..., string] } // the value can't be an array
+ */
+type NormalizeVars<T> = ConcatDeep<Split<T>>;
+
+// shut off automatic exporting for the Generics above
 export {};
 
-export interface CssVarsTheme extends Omit<Theme, 'palette' | 'components'>, ColorSystem {
-  components?: Components<Omit<CssVarsTheme, 'components'>>;
+export interface ThemeCssVarOverrides {}
+
+export type ThemeCssVar = OverridableStringUnion<
+  | NormalizeVars<Omit<ThemeVars, 'overlays' | 'shadows' | 'shape'>>
+  | 'shape-borderRadius'
+  | 'shadows-0'
+  | 'shadows-1'
+  | 'shadows-2'
+  | 'shadows-3'
+  | 'shadows-4'
+  | 'shadows-5'
+  | 'shadows-6'
+  | 'shadows-7'
+  | 'shadows-8'
+  | 'shadows-9'
+  | 'shadows-10'
+  | 'shadows-11'
+  | 'shadows-12'
+  | 'shadows-13'
+  | 'shadows-14'
+  | 'shadows-15'
+  | 'shadows-16'
+  | 'shadows-17'
+  | 'shadows-18'
+  | 'shadows-19'
+  | 'shadows-20'
+  | 'shadows-21'
+  | 'shadows-22'
+  | 'shadows-23'
+  | 'shadows-24'
+  | 'overlays-0'
+  | 'overlays-1'
+  | 'overlays-2'
+  | 'overlays-3'
+  | 'overlays-4'
+  | 'overlays-5'
+  | 'overlays-6'
+  | 'overlays-7'
+  | 'overlays-8'
+  | 'overlays-9'
+  | 'overlays-10'
+  | 'overlays-11'
+  | 'overlays-12'
+  | 'overlays-13'
+  | 'overlays-14'
+  | 'overlays-15'
+  | 'overlays-16'
+  | 'overlays-17'
+  | 'overlays-18'
+  | 'overlays-19'
+  | 'overlays-20'
+  | 'overlays-21'
+  | 'overlays-22'
+  | 'overlays-23'
+  | 'overlays-24',
+  ThemeCssVarOverrides
+>;
+
+/**
+ * Theme properties generated by extendTheme and CssVarsProvider
+ */
+export interface CssVarsTheme extends ColorSystem {
   colorSchemes: Record<SupportedColorScheme, ColorSystem>;
-  prefix: string;
+  cssVarPrefix: string;
   vars: ThemeVars;
-  getCssVar: <CustomVar extends string = never>(
-    field: string | CustomVar,
-    ...vars: Array<string | CustomVar>
-  ) => string;
+  getCssVar: (field: ThemeCssVar, ...vars: ThemeCssVar[]) => string;
   getColorSchemeSelector: (colorScheme: SupportedColorScheme) => string;
 }
 
@@ -302,4 +394,4 @@ export interface CssVarsTheme extends Omit<Theme, 'palette' | 'components'>, Col
 export default function experimental_extendTheme(
   options?: CssVarsThemeOptions,
   ...args: object[]
-): CssVarsTheme;
+): Omit<Theme, 'palette'> & CssVarsTheme;

@@ -1,0 +1,4 @@
+{
+  "extends": "../../../../../tsconfig",
+  "files": ["themeCustomNode.spec.tsx"]
+}

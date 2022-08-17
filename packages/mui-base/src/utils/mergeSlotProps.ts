@@ -2,7 +2,7 @@ import clsx, { ClassValue } from 'clsx';
 import { Simplify } from '@mui/types';
 import { EventHandlers } from './types';
 import extractEventHandlers from './extractEventHandlers';
-import omitEventHandlers, { OmitEventHandlers } from './omitEventHandlers';
+import omitEventHandlers from './omitEventHandlers';
 
 export type WithCommonProps<T> = T & {
   className?: string;
@@ -49,8 +49,8 @@ export type MergeSlotPropsResult<
 > = {
   props: Simplify<
     SlotProps &
-      OmitEventHandlers<ExternalForwardedProps> &
-      OmitEventHandlers<ExternalSlotProps> &
+      ExternalForwardedProps &
+      ExternalSlotProps &
       AdditionalProps & { className?: string; style?: React.CSSProperties }
   >;
   internalRef: React.Ref<any> | undefined;
@@ -134,12 +134,17 @@ export default function mergeSlotProps<
   const otherPropsWithoutEventHandlers = omitEventHandlers(externalForwardedProps);
 
   const internalSlotProps = getSlotProps(eventHandlers);
+
+  // The order of classes is important here.
+  // Emotion (that we use in libraries consuming MUI Base) depends on this order
+  // to properly override style. It requires the most important classes to be last
+  // (see https://github.com/mui/material-ui/pull/33205) for the related discussion.
   const joinedClasses = clsx(
+    internalSlotProps?.className,
+    additionalProps?.className,
+    className,
     externalForwardedProps?.className,
     externalSlotProps?.className,
-    className,
-    additionalProps?.className,
-    internalSlotProps?.className,
   );
 
   const mergedStyle = {

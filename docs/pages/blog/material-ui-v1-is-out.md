@@ -48,7 +48,7 @@ We know the ease of use is a critical part of user acquisition. The more user we
 
 - **Isolation**. Our components now work in isolation. You should be able to use a single Material UI component in an existing codebase without any side effect. No global CSS override needed, no bundle size bloat.
 
-- **Documentation**. We have made a huge investment in the documentation. We use [Next.js](https://github.com/vercel/next.js) for a blazingly fast navigation experience. It's also allowing us to provide a first server-side support for the components. We had added a search bar powered by [Algolia's DocSearch](https://community.algolia.com/docsearch/). (don't miss the s shortcut to focus the search bar). We have added many new documentation sections: guides, FAQ, etc. We have made the demos more interactive thanks to a direct integration with [CodeSandbox](https://codesandbox.io/s/4j7m47vlm4).
+- **Documentation**. We have made a huge investment in the documentation. We use [Next.js](https://github.com/vercel/next.js) for a blazingly fast navigation experience. It's also allowing us to provide a first server-side support for the components. We had added a search bar powered by [Algolia's DocSearch](https://docsearch.algolia.com/). (don't miss the s shortcut to focus the search bar). We have added many new documentation sections: guides, FAQ, etc. We have made the demos more interactive thanks to a direct integration with CodeSandbox.
 
 - **DOM**. We have focused on providing low-level components, in this v1 rewrite. By low-level, we mean components as close as possible to the underlying DOM structure and as stateless as possible. It should help reduce the mental overhead of using the components, encourage interoperability, and simplify customizability. For instance with the TextField. The component was broken down into 4 components. Our Input exposes the same API than a native input. You can switch one for the other. Leveraging this structural choice, we were able to demonstrate 3 autocomplete integration example with [Downshift](https://github.com/downshift-js/downshift), [react-autosuggest](https://github.com/moroshko/react-autosuggest), and [react-select](https://github.com/JedWatson/react-select).
 
@@ -62,7 +62,7 @@ Many people discover web development through Material UI but it's also used in p
 
 <p class="blog-description">Lighthouse report of the Material UI documentation homepage</p>
 
-- **Continuous integration.** Every single line of code is tested. We have an impressive [💯% test coverage](https://codecov.io/gh/mui/material-ui/branch/master). With more than 700 contributors, it's really important. All these tests allow us to quickly iterate and with confidence. We run the test suite runs on all the supported platforms. We also run more than [180 visual regression tests](https://www.argos-ci.com/mui/material-ui) thanks to [Argos-CI](https://www.argos-ci.com/).
+- **Continuous integration.** Every single line of code is tested. We have an impressive [💯% test coverage](https://codecov.io/gh/mui/material-ui/branch/master). With more than 700 contributors, it's really important. All these tests allow us to quickly iterate and with confidence. We run the test suite runs on all the supported platforms. We also run more than [180 visual regression tests](https://app.argos-ci.com/mui/material-ui/builds) thanks to [Argos-CI](https://www.argos-ci.com/).
 
 ![An example [BrowserStack](https://www.browserstack.com/) build](https://cdn-images-1.medium.com/max/2000/1*bnWGqotk36ivrYTp3dY7fA.png)
 

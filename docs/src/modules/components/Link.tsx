@@ -20,7 +20,7 @@ const Anchor = styled('a')({});
 
 interface NextLinkComposedProps
   extends Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'href'>,
-    Omit<NextLinkProps, 'href' | 'as' | 'passHref'> {
+    Omit<NextLinkProps, 'href' | 'as' | 'passHref' | 'onMouseEnter' | 'onClick' | 'onTouchStart'> {
   to: NextLinkProps['href'];
   linkAs?: NextLinkProps['as'];
 }

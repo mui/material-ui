@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { CssVarsProvider } from '@mui/joy/styles';
+import { CssVarsProvider, extendTheme } from '@mui/joy/styles';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 
@@ -10,10 +10,10 @@ export default function VariantColorJoy() {
       <CssVarsProvider>
         <Button>Button</Button>
       </CssVarsProvider>
-      <CssVarsProvider prefix="foo">
+      <CssVarsProvider theme={extendTheme({ cssVarPrefix: 'foo' })}>
         <Button>Button</Button>
       </CssVarsProvider>
-      <CssVarsProvider prefix="bar">
+      <CssVarsProvider theme={extendTheme({ cssVarPrefix: 'bar' })}>
         <Button>Button</Button>
       </CssVarsProvider>
     </Box>

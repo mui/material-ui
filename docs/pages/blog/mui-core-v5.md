@@ -165,7 +165,7 @@ For instance, you can add one unit of vertical margin with:
 <p class="blog-description"><a href="https://codesandbox.io/s/nostalgic-williams-zmo5r?file=/src/App.js">Codesandbox</a></p>
 
 Developers already seem to [love it](https://twitter.com/AnsonLowZF/status/1397034690771443715).
-You can find a [side-by-side comparison](https://mui.com/system/basics/#why-use-the-system) of `styled()` vs. `sx` in the documentation to determine when you should use the prop.
+You can find a [side-by-side comparison](https://mui.com/system/getting-started/usage/#why-use-mui-system) of `styled()` vs. `sx` in the documentation to determine when you should use the prop.
 Some developers use `sx` for everything, others only in simple cases.
 
 The four components categorized as CSS utilities: Box, Grid, Typography, and Stack pushes the approach one step further.
@@ -180,7 +180,7 @@ They expose a subset of the `sx` prop as flat props, for instance:
 
 <p class="blog-description"><a href="https://codesandbox.io/s/keen-worker-zo2r3?file=/src/App.tsx">Codesandbox</a></p>
 
-See the [API tradeoff](https://mui.com/system/basics/#api-tradeoff) section of the documentation for why not all the components accept these flat props.
+See the [API tradeoff](https://mui.com/system/getting-started/usage/#api-tradeoff) section of the documentation for why not all the components accept these flat props.
 
 ### Dynamic props
 

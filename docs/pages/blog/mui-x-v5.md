@@ -129,7 +129,9 @@ const GridToolbarContainerStyled = styled(GridToolbarContainer)({
 });
 
 function MyCustomToolbar() {
-  return <GridToolbarContainerStyled>My custom toolbar</GridToolbarContainerStyled>;
+  return (
+    <GridToolbarContainerStyled>My custom toolbar</GridToolbarContainerStyled>
+  );
 }
 
 export default function App() {

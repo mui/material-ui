@@ -29,7 +29,7 @@ const FormLabelRoot = styled('label', {
   fontWeight: theme.vars.fontWeight.md,
   lineHeight: theme.vars.lineHeight.md,
   color: `var(--FormLabel-color, ${theme.vars.palette.text.primary})`,
-  margin: 'var(--FormLabel-margin, initial)',
+  margin: 'var(--FormLabel-margin, 0 0 0.25rem 0)',
 }));
 
 const AsteriskComponent = styled('span', {

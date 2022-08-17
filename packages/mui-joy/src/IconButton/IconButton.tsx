@@ -40,19 +40,19 @@ const IconButtonRoot = styled('button', {
     {
       '--Icon-margin': 'initial', // reset the icon's margin.
       ...(ownerState.size === 'sm' && {
-        '--Icon-fontSize': '1.25rem',
+        '--Icon-fontSize': 'calc(var(--IconButton-size, 2rem) / 1.6)', // 1.25rem by default
         minWidth: 'var(--IconButton-size, 2rem)', // use min-width instead of height to make the button resilient to its content
         minHeight: 'var(--IconButton-size, 2rem)', // use min-height instead of height to make the button resilient to its content
         fontSize: theme.vars.fontSize.sm,
       }),
       ...(ownerState.size === 'md' && {
-        '--Icon-fontSize': '1.5rem', // control the SvgIcon font-size
+        '--Icon-fontSize': 'calc(var(--IconButton-size, 2.5rem) / 1.667)', // 1.5rem by default
         minWidth: 'var(--IconButton-size, 2.5rem)',
         minHeight: 'var(--IconButton-size, 2.5rem)',
         fontSize: theme.vars.fontSize.md,
       }),
       ...(ownerState.size === 'lg' && {
-        '--Icon-fontSize': '1.75rem',
+        '--Icon-fontSize': 'calc(var(--IconButton-size, 3rem) / 1.714)', // 1.75rem by default
         minWidth: 'var(--IconButton-size, 3rem)',
         minHeight: 'var(--IconButton-size, 3rem)',
         fontSize: theme.vars.fontSize.lg,

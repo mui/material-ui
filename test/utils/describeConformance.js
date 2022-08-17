@@ -522,7 +522,7 @@ function testThemeVariants(element, getOptions) {
       }
 
       const testStyle = {
-        marginTop: '13px',
+        mixBlendMode: 'darken',
       };
 
       const theme = createTheme({

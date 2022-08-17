@@ -1,9 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import { unstable_useId as useId, chainPropTypes, integerPropType } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
-import { appendOwnerState, WithOptionalOwnerState } from '../utils';
+import { useSlotProps, WithOptionalOwnerState } from '../utils';
 import composeClasses from '../composeClasses';
 import isHostComponent from '../utils/isHostComponent';
 import TablePaginationActionsUnstyled from './TablePaginationActionsUnstyled';
@@ -65,17 +64,18 @@ const TablePaginationUnstyled = React.forwardRef<unknown, TablePaginationUnstyle
       component,
       components = {},
       componentsProps = {},
-      className,
       colSpan: colSpanProp,
       count,
       getItemAriaLabel = defaultGetAriaLabel,
       labelDisplayedRows = defaultLabelDisplayedRows,
+      labelId: labelIdProp,
       labelRowsPerPage = 'Rows per page:',
       onPageChange,
       onRowsPerPageChange,
       page,
       rowsPerPage,
       rowsPerPageOptions = [10, 25, 50, 100],
+      selectId: selectIdProp,
       ...other
     } = props;
 
@@ -94,112 +94,105 @@ const TablePaginationUnstyled = React.forwardRef<unknown, TablePaginationUnstyle
       return rowsPerPage === -1 ? count : Math.min(count, (page + 1) * rowsPerPage);
     };
 
-    const selectId = useId(componentsProps.select?.id);
-    const labelId = useId(componentsProps.select?.['aria-labelledby']);
+    const selectId = useId(selectIdProp);
+    const labelId = useId(labelIdProp);
 
     const Root = component ?? components.Root ?? 'td';
-    const rootProps: WithOptionalOwnerState<TablePaginationUnstyledRootSlotProps> =
-      appendOwnerState(
-        Root,
-        {
-          colSpan,
-          ref,
-          ...other,
-          ...componentsProps.root,
-          className: clsx(classes.root, componentsProps.root?.className, className),
-        },
-        ownerState,
-      );
+    const rootProps: WithOptionalOwnerState<TablePaginationUnstyledRootSlotProps> = useSlotProps({
+      elementType: Root,
+      externalSlotProps: componentsProps.root,
+      externalForwardedProps: other,
+      additionalProps: {
+        colSpan,
+        ref,
+      },
+      ownerState,
+      className: classes.root,
+    });
 
     const Select = components.Select ?? 'select';
     const selectProps: WithOptionalOwnerState<TablePaginationUnstyledSelectSlotProps> =
-      appendOwnerState(
-        Select,
-        {
+      useSlotProps({
+        elementType: Select,
+        externalSlotProps: componentsProps.select,
+        additionalProps: {
           value: rowsPerPage,
           id: selectId,
-          ...componentsProps.select,
           onChange: (e: React.ChangeEvent<HTMLTextAreaElement | HTMLInputElement>) =>
             onRowsPerPageChange && onRowsPerPageChange(e),
           'aria-label': rowsPerPage.toString(),
           'aria-labelledby': [labelId, selectId].filter(Boolean).join(' ') || undefined,
-          className: clsx(classes.select, componentsProps.select?.className),
         },
         ownerState,
-      );
+        className: classes.select,
+      });
 
     const Actions = components.Actions ?? TablePaginationActionsUnstyled;
     const actionsProps: WithOptionalOwnerState<TablePaginationUnstyledActionsSlotProps> =
-      appendOwnerState(
-        Actions,
-        {
+      useSlotProps({
+        elementType: Actions,
+        externalSlotProps: componentsProps.actions,
+        additionalProps: {
           page,
           rowsPerPage,
           count,
           onPageChange,
           getItemAriaLabel,
-          ...componentsProps.actions,
-          className: clsx(classes.actions, componentsProps.actions?.className),
         },
         ownerState,
-      );
+        className: classes.actions,
+      });
 
     const MenuItem = components.MenuItem ?? 'option';
     const menuItemProps: WithOptionalOwnerState<TablePaginationUnstyledMenuItemSlotProps> =
-      appendOwnerState(
-        MenuItem,
-        {
-          ...componentsProps.menuItem,
-          className: clsx(classes.menuItem, componentsProps.menuItem?.className),
+      useSlotProps({
+        elementType: MenuItem,
+        externalSlotProps: componentsProps.menuItem,
+        additionalProps: {
           value: undefined,
         },
         ownerState,
-      );
+        className: classes.menuItem,
+      });
 
     const SelectLabel = components.SelectLabel ?? 'p';
     const selectLabelProps: WithOptionalOwnerState<TablePaginationUnstyledSelectLabelSlotProps> =
-      appendOwnerState(
-        SelectLabel,
-        {
-          ...componentsProps.selectLabel,
-          className: clsx(classes.selectLabel, componentsProps.selectLabel?.className),
+      useSlotProps({
+        elementType: SelectLabel,
+        externalSlotProps: componentsProps.selectLabel,
+        additionalProps: {
           id: labelId,
         },
         ownerState,
-      );
+        className: classes.selectLabel,
+      });
 
     const DisplayedRows = components.DisplayedRows ?? 'p';
     const displayedRowsProps: WithOptionalOwnerState<TablePaginationUnstyledDisplayedRowsSlotProps> =
-      appendOwnerState(
-        DisplayedRows,
-        {
-          ...componentsProps.displayedRows,
-          className: clsx(classes.displayedRows, componentsProps.displayedRows?.className),
-        },
+      useSlotProps({
+        elementType: DisplayedRows,
+        externalSlotProps: componentsProps.displayedRows,
         ownerState,
-      );
+        className: classes.displayedRows,
+      });
 
     const Toolbar = components.Toolbar ?? 'div';
     const toolbarProps: WithOptionalOwnerState<TablePaginationUnstyledToolbarSlotProps> =
-      appendOwnerState(
-        Toolbar,
-        {
-          ...componentsProps.toolbar,
-          className: clsx(classes.toolbar, componentsProps.toolbar?.className),
-        },
+      useSlotProps({
+        elementType: Toolbar,
+        externalSlotProps: componentsProps.toolbar,
         ownerState,
-      );
+        className: classes.toolbar,
+      });
 
     const Spacer = components.Spacer ?? 'div';
     const spacerProps: WithOptionalOwnerState<TablePaginationUnstyledSpacerSlotProps> =
-      appendOwnerState(
-        Spacer,
-        {
-          ...componentsProps.spacer,
-          className: clsx(classes.spacer, componentsProps.spacer?.className),
-        },
+      useSlotProps({
+        elementType: Spacer,
+        externalSlotProps: componentsProps.spacer,
         ownerState,
-      );
+        className: classes.spacer,
+      });
 
     return (
       <Root {...rootProps}>
@@ -262,10 +255,6 @@ TablePaginationUnstyled.propTypes /* remove-proptypes */ = {
   /**
    * @ignore
    */
-  className: PropTypes.string,
-  /**
-   * @ignore
-   */
   colSpan: PropTypes.number,
   /**
    * The component used for the root node.
@@ -292,14 +281,14 @@ TablePaginationUnstyled.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   componentsProps: PropTypes.shape({
-    actions: PropTypes.object,
-    displayedRows: PropTypes.object,
-    menuItem: PropTypes.object,
-    root: PropTypes.object,
-    select: PropTypes.object,
-    selectLabel: PropTypes.object,
-    spacer: PropTypes.object,
-    toolbar: PropTypes.object,
+    actions: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    displayedRows: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    menuItem: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    select: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    selectLabel: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    spacer: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    toolbar: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
    * The total number of rows.
@@ -329,6 +318,10 @@ TablePaginationUnstyled.propTypes /* remove-proptypes */ = {
    * }
    */
   labelDisplayedRows: PropTypes.func,
+  /**
+   * Id of the label element within the pagination.
+   */
+  labelId: PropTypes.string,
   /**
    * Customize the rows per page label.
    *
@@ -389,6 +382,10 @@ TablePaginationUnstyled.propTypes /* remove-proptypes */ = {
       }),
     ]).isRequired,
   ),
+  /**
+   * Id of the select element within the pagination.
+   */
+  selectId: PropTypes.string,
 } as any;
 
 export default TablePaginationUnstyled;

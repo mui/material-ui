@@ -1,9 +1,16 @@
-import clsx from 'clsx';
-import PropTypes from 'prop-types';
 import React from 'react';
+import PropTypes from 'prop-types';
+import { OverridableComponent } from '@mui/types';
 import composeClasses from '../composeClasses';
 import { getOptionGroupUnstyledUtilityClass } from './optionGroupUnstyledClasses';
-import { OptionGroupUnstyledProps } from './OptionGroupUnstyled.types';
+import {
+  OptionGroupUnstyledLabelSlotProps,
+  OptionGroupUnstyledListSlotProps,
+  OptionGroupUnstyledProps,
+  OptionGroupUnstyledRootSlotProps,
+  OptionGroupUnstyledTypeMap,
+} from './OptionGroupUnstyled.types';
+import { useSlotProps, WithOptionalOwnerState } from '../utils';
 
 function useUtilityClasses(disabled: boolean) {
   const slots = {
@@ -26,18 +33,10 @@ function useUtilityClasses(disabled: boolean) {
  *
  * - [OptionGroupUnstyled API](https://mui.com/base/api/option-group-unstyled/)
  */
-const OptionGroupUnstyled = React.forwardRef(function OptionGroupUnstyled(
-  props: OptionGroupUnstyledProps,
-  ref: React.ForwardedRef<HTMLLIElement>,
-) {
-  const {
-    className,
-    component,
-    components = {},
-    disabled = false,
-    componentsProps = {},
-    ...other
-  } = props;
+const OptionGroupUnstyled = React.forwardRef(function OptionGroupUnstyled<
+  BaseComponentType extends React.ElementType = OptionGroupUnstyledTypeMap['defaultComponent'],
+>(props: OptionGroupUnstyledProps<BaseComponentType>, ref: React.ForwardedRef<HTMLLIElement>) {
+  const { component, components = {}, disabled = false, componentsProps = {}, ...other } = props;
 
   const Root = component || components?.Root || 'li';
   const Label = components?.Label || 'span';
@@ -45,22 +44,30 @@ const OptionGroupUnstyled = React.forwardRef(function OptionGroupUnstyled(
 
   const classes = useUtilityClasses(disabled);
 
-  const rootProps = {
-    ...other,
-    ref,
-    ...componentsProps.root,
-    className: clsx(classes.root, className, componentsProps.root?.className),
-  };
+  const rootProps: WithOptionalOwnerState<OptionGroupUnstyledRootSlotProps> = useSlotProps({
+    elementType: Root,
+    externalSlotProps: componentsProps.root,
+    externalForwardedProps: other,
+    additionalProps: {
+      ref,
+    },
+    ownerState: props,
+    className: classes.root,
+  });
 
-  const labelProps = {
-    ...componentsProps.label,
-    className: clsx(classes.label, componentsProps.label?.className),
-  };
+  const labelProps: WithOptionalOwnerState<OptionGroupUnstyledLabelSlotProps> = useSlotProps({
+    elementType: Label,
+    externalSlotProps: componentsProps.label,
+    ownerState: props,
+    className: classes.label,
+  });
 
-  const listProps = {
-    ...componentsProps.list,
-    className: clsx(classes.list, componentsProps.list?.className),
-  };
+  const listProps: WithOptionalOwnerState<OptionGroupUnstyledListSlotProps> = useSlotProps({
+    elementType: List,
+    externalSlotProps: componentsProps.list,
+    ownerState: props,
+    className: classes.list,
+  });
 
   return (
     <Root {...rootProps}>
@@ -68,7 +75,7 @@ const OptionGroupUnstyled = React.forwardRef(function OptionGroupUnstyled(
       <List {...listProps}>{props.children}</List>
     </Root>
   );
-});
+}) as OverridableComponent<OptionGroupUnstyledTypeMap>;
 
 OptionGroupUnstyled.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
@@ -80,14 +87,8 @@ OptionGroupUnstyled.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
-   * @ignore
-   */
-  className: PropTypes.string,
-  /**
-   * The component used for the Root slot.
+   * The component used for the root node.
    * Either a string to use a HTML element or a component.
-   * This is equivalent to components.Root.
-   * If both are provided, the component is used.
    */
   component: PropTypes.elementType,
   /**
@@ -105,9 +106,9 @@ OptionGroupUnstyled.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   componentsProps: PropTypes.shape({
-    label: PropTypes.object,
-    list: PropTypes.object,
-    root: PropTypes.object,
+    label: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    list: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
    * If `true` all the options in the group will be disabled.

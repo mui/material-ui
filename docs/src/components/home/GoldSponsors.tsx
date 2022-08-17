@@ -27,18 +27,11 @@ const GOLDs = [
     href: 'https://bit.dev/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
   },
   {
-    src: 'https://images.opencollective.com/callemall/a6946da/logo/40.png',
-    srcSet: 'https://images.opencollective.com/callemall/a6946da/logo/80.png 2x',
+    src: 'https://avatars.githubusercontent.com/u/1262264?size=40',
+    srcSet: 'https://avatars.githubusercontent.com/u/1262264?s=80 2x',
     name: 'Text-em-all',
     description: 'The easy way to message your group.',
     href: 'https://www.text-em-all.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
-  },
-  {
-    src: 'https://images.opencollective.com/laststance/daffd6c/logo/40.png',
-    srcSet: 'https://images.opencollective.com/laststance/daffd6c/logo/80.png 2x',
-    name: 'Laststance',
-    description: 'An organization for OSS activity in Tokyo.',
-    href: 'https://www.laststance.io/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
   },
   {
     src: 'https://images.opencollective.com/aussiecasinohex/923df37/logo/40.png',
@@ -55,11 +48,24 @@ const GOLDs = [
     href: 'https://sumatosoft.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
   },
   {
-    src: 'https://p18.zdusercontent.com/attachment/9422375/Rullx0rw9lUGKuyKOy4VQ9Zxq?size=40',
-    srcSet: 'https://p18.zdusercontent.com/attachment/9422375/Rullx0rw9lUGKuyKOy4VQ9Zxq?size=80 2x',
+    src: '/static/sponsors//megafamous.png',
     name: 'MegaFamous',
     description: 'The best place to buy Instagram followers & likes.',
     href: 'https://megafamous.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
+  },
+  {
+    src: 'https://images.opencollective.com/dialmycalls/f5ae9ab/avatar/40.png',
+    srcSet: 'https://images.opencollective.com/dialmycalls/f5ae9ab/avatar/80.png 2x',
+    name: 'DialMyCalls',
+    description: 'Send text messages, calls & emails to thousands with ease.',
+    href: 'https://www.dialmycalls.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
+  },
+  {
+    src: 'https://images.opencollective.com/goread_io/eb6337d/logo/40.png',
+    srcSet: 'https://images.opencollective.com/goread_io/eb6337d/logo/80.png 2x',
+    name: 'Goread.io',
+    description: 'Instagram followers, likes, power likes, views, comments, saves in minutes.',
+    href: 'https://goread.io/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
   },
 ];
 
@@ -79,7 +85,7 @@ export default function GoldSponsors() {
           sx={{
             color: (theme) =>
               theme.palette.mode === 'dark'
-                ? theme.palette.warning[500]
+                ? theme.palette.warning[300]
                 : theme.palette.warning[700],
           }}
         >

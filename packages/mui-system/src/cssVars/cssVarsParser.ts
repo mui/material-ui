@@ -100,13 +100,9 @@ const getCssValue = (keys: string[], value: string | number) => {
  * @param {Object} theme
  * @param {{
  *  prefix?: string,
- *  basePrefix?: string,
  *  shouldSkipGeneratingVar?: (objectPathKeys: Array<string>, value: string | number) => boolean
  * }} options.
- *  `basePrefix`: defined by design system.
- *  `prefix`: defined by application
- *
- *   the CSS variable value will be adjusted based on the provided `basePrefix` & `prefix` which can be found in `parsedTheme`.
+ *  `prefix`: The prefix of the generated CSS variables. This function does not change the value.
  *
  * @returns {{ css: Object, vars: Object, parsedTheme: typeof theme }} `css` is the stylesheet, `vars` is an object to get css variable (same structure as theme), and `parsedTheme` is the cloned version of theme.
  *
@@ -117,19 +113,18 @@ const getCssValue = (keys: string[], value: string | number) => {
  *   palette: { primary: { 500: 'var(--color)' } }
  * }, { prefix: 'foo' })
  *
- * console.log(css) // { '--foo-fontSize': '12px', '--foo-lineHeight': 1.2, '--foo-palette-primary-500': 'var(--foo-color)' }
- * console.log(vars) // { fontSize: '--foo-fontSize', lineHeight: '--foo-lineHeight', palette: { primary: { 500: 'var(--foo-palette-primary-500)' } } }
- * console.log(parsedTheme) // { fontSize: 12, lineHeight: 1.2, palette: { primary: { 500: 'var(--foo-color)' } } }
+ * console.log(css) // { '--foo-fontSize': '12px', '--foo-lineHeight': 1.2, '--foo-palette-primary-500': 'var(--color)' }
+ * console.log(vars) // { fontSize: 'var(--foo-fontSize)', lineHeight: 'var(--foo-lineHeight)', palette: { primary: { 500: 'var(--foo-palette-primary-500)' } } }
+ * console.log(parsedTheme) // { fontSize: 12, lineHeight: 1.2, palette: { primary: { 500: 'var(--color)' } } }
  */
 export default function cssVarsParser<T extends Record<string, any>>(
   theme: T,
   options?: {
     prefix?: string;
-    basePrefix?: string;
     shouldSkipGeneratingVar?: (objectPathKeys: Array<string>, value: string | number) => boolean;
   },
 ) {
-  const { prefix, basePrefix = '', shouldSkipGeneratingVar } = options || {};
+  const { prefix, shouldSkipGeneratingVar } = options || {};
   const css = {} as NestedRecord<string>;
   const vars = {} as NestedRecord<string>;
   const parsedTheme = {} as T;
@@ -138,17 +133,6 @@ export default function cssVarsParser<T extends Record<string, any>>(
     theme,
     (keys, value: string | number | object, arrayKeys) => {
       if (typeof value === 'string' || typeof value === 'number') {
-        if (typeof value === 'string' && value.match(/var\(\s*--/)) {
-          // for CSS variable, apply prefix or remove basePrefix from the variable
-          if (!basePrefix && prefix) {
-            value = value.replace(/var\(\s*--/g, `var(--${prefix}-`);
-          } else {
-            value = prefix
-              ? value.replace(new RegExp(`var\\(\\s*--${basePrefix}`, 'g'), `var(--${prefix}`) // removing spaces
-              : value.replace(new RegExp(`var\\(\\s*--${basePrefix}-`, 'g'), 'var(--');
-          }
-        }
-
         if (
           !shouldSkipGeneratingVar ||
           (shouldSkipGeneratingVar && !shouldSkipGeneratingVar(keys, value))
