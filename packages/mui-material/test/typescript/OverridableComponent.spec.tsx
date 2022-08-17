@@ -7,7 +7,7 @@ interface MyOverrideProps {
   myString?: string;
   myCallback?(n: number): void;
 }
-declare const MyOverrideComponent: React.ComponentType<MyOverrideProps>;
+declare const MyOverrideComponent: React.FunctionComponent<MyOverrideProps>;
 class MyOverrideClassComponent extends React.Component<MyOverrideProps> {
   render() {
     return null;
@@ -16,7 +16,7 @@ class MyOverrideClassComponent extends React.Component<MyOverrideProps> {
 const MyOverrideRefForwardingComponent = React.forwardRef<HTMLLegendElement>((props, ref) => (
   <div ref={ref} />
 ));
-declare const MyIncompatibleComponent1: React.ComponentType<{ inconsistentProp?: number }>;
+declare const MyIncompatibleComponent1: React.FunctionComponent<{ inconsistentProp?: number }>;
 
 declare const Foo: OverridableComponent<{
   props: {
@@ -81,15 +81,14 @@ declare const Foo: OverridableComponent<{
   }}
 />;
 
-// TODO: This is the one test case that does not work
 // Can use refs if the override is a class component
-// <Foo<typeof MyOverrideClassComponent>
-//   numberProp={3}
-//   component={MyOverrideClassComponent}
-//   ref={(elem) => {
-//     expectType<MyOverrideClassComponent | null, typeof elem>(elem);
-//   }}
-// />;
+<Foo<typeof MyOverrideClassComponent>
+  numberProp={3}
+  component={MyOverrideClassComponent}
+  ref={(elem) => {
+    expectType<MyOverrideClassComponent | null, typeof elem>(elem);
+  }}
+/>;
 
 // ... or with ref-forwarding components
 <Foo<typeof MyOverrideRefForwardingComponent>

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Merge } from '@mui/types';
 import { StyledComponentProps } from './styles';
 
 /**
@@ -12,13 +13,15 @@ export interface OverridableComponent<M extends OverridableTypeMap> {
   // Also, there are types in MUI Base that have a similar shape to this interface
   // (e.g. SelectUnstyledType, OptionUnstyledType, etc.).
   <C extends React.ElementType>(
-    props: {
-      /**
-       * The component used for the root node.
-       * Either a string to use a HTML element or a component.
-       */
-      component: C;
-    } & OverrideProps<M, C>,
+    props: C extends ''
+      ? { component: keyof JSX.IntrinsicElements }
+      : C extends React.ComponentClass<infer P>
+      ? Merge<P, BaseProps<M> & { component: C, ref?: React.Ref<InstanceType<C>> }>
+      : C extends React.ComponentType<infer P>
+      ? Merge<P, BaseProps<M> & { component: C }>
+      : C extends keyof JSX.IntrinsicElements
+      ? Merge<JSX.IntrinsicElements[C], BaseProps<M> & { component: C }>
+      : never
   ): JSX.Element;
   (props: DefaultComponentProps<M>): JSX.Element;
 }

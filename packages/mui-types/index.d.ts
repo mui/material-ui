@@ -86,6 +86,11 @@ export type IfEquals<T, U, Y = unknown, N = never> = (<G>() => G extends T ? 1 :
  */
 export function expectType<Expected, Actual>(actual: IfEquals<Actual, Expected, Actual>): void;
 
+/* -------------------------------------------------------------------------------------------------
+ * Utility types
+ * -----------------------------------------------------------------------------------------------*/
+export type Merge<P1 = {}, P2 = {}> = Omit<P1, keyof P2> & P2;
+
 /**
  * A component whose root component can be controlled via a `component` prop.
  *
@@ -97,18 +102,21 @@ export interface OverridableComponent<M extends OverridableTypeMap> {
   // Also, there are types in MUI Base that have a similar shape to this interface
   // (e.g. SelectUnstyledType, OptionUnstyledType, etc.).
   <C extends React.ElementType>(
-    props: {
-      /**
-       * The component used for the root node.
-       * Either a string to use a HTML element or a component.
-       */
-      component: C;
-    } & OverrideProps<M, C>,
+    props: C extends ''
+      ? { component: keyof JSX.IntrinsicElements }
+      : C extends React.ComponentClass<infer P>
+      ? Merge<P, BaseProps<M> & { component: C, ref?: React.Ref<InstanceType<C>> }>
+      : C extends React.ComponentType<infer P>
+      ? Merge<P, BaseProps<M> & { component: C }>
+      : C extends keyof JSX.IntrinsicElements
+      ? Merge<JSX.IntrinsicElements[C], BaseProps<M> & { component: C }>
+      : never
   ): JSX.Element;
   (props: DefaultComponentProps<M>): JSX.Element;
   propTypes?: any;
 }
 
+// TODO: Update the OverrideProps type
 /**
  * Props of the component if `component={Component}` is used.
  */
