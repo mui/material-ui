@@ -68,6 +68,8 @@ function MySwitch(props: UseSwitchParameters) {
 ## What's included
 
 We are releasing the initial version of the library with 17 components.
+Their docs are available on [our website](/base/getting-started/overview/).
+
 We are going to work on creating more in the upcoming months.
 You can track our progress (and comment to influence our priorities) on a [dedicated GitHub issue](https://github.com/mui/material-ui/issues/27170).
 
