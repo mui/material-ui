@@ -1,6 +1,6 @@
 {
   "name": "@mui/material",
-  "version": "5.10.0",
+  "version": "5.10.1",
   "private": false,
   "author": "MUI Team",
   "description": "React components that implement Google's Material Design.",
@@ -61,9 +61,9 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.17.2",
-    "@mui/base": "5.0.0-alpha.92",
-    "@mui/core-internal-download-tracker": "5.10.0",
-    "@mui/system": "^5.10.0",
+    "@mui/base": "5.0.0-alpha.93",
+    "@mui/core-downloads-tracker": "^5.10.1",
+    "@mui/system": "^5.10.1",
     "@mui/types": "^7.1.5",
     "@mui/utils": "^5.9.3",
     "@types/react-transition-group": "^4.4.5",
