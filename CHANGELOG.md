@@ -1,5 +1,128 @@
 # [Versions](https://mui.com/versions/)
 
+## 5.10.1
+
+<!-- generated comparing v5.10.0..master -->
+
+_Aug 15, 2022_
+
+A big thanks to the 18 contributors who made this release possible. This release was mostly around 🐛 bug fixes and 📚 documentation improvements.
+
+### `@mui/material@5.10.1`
+
+- &#8203;<!-- 04 -->[TableCell] Enable variant overrides via TypeScript module augmentation (#33856) @arjunvijayanathakurup
+
+### `@mui/system@5.10.1`
+
+- &#8203;<!-- 05 -->[system] Fix `ContainerProps` export (#33923) @bugzpodder
+
+### `@mui/base@5.0.0-alpha.93`
+
+- &#8203;<!-- 31 -->[TrapFocus] Removes invisible tabbable elements from (#33543) @EthanStandel
+- &#8203;<!-- 30 -->[Input][base] Pass the rows prop to the underlying textarea (#33873) @michaldudak
+- &#8203;<!-- 06 -->[SelectUnstyled] Add ability to post the select's value when submitting a form (#33697) @michaldudak
+
+### `@mui/joy@5.0.0-alpha.41`
+
+- &#8203;<!-- 07 -->[IconButton][joy] Fix large IconButton scaling (#33885) @cherewaty
+
+### Docs
+
+- &#8203;<!-- 23 -->[docs] Expand on a11y section for Material UI `Link` component (#32839) @TKrishnasamy
+- &#8203;<!-- 22 -->[docs] Fix typo in Joy UI's `AspectRatio` docs (#33895) @IsaacInsoll
+- &#8203;<!-- 21 -->[docs] Improve the Base Usage page (#33272) @samuelsycamore
+- &#8203;<!-- 20 -->[docs] Avoid refreshing the page when button on demo is clicked (#33852) @PunitSoniME
+- &#8203;<!-- 19 -->[docs] Improve the HorizontalNonLinearStepper demo styling (#33886) @hayawata3626
+- &#8203;<!-- 18 -->[docs] Remove dead NoSsr in the demos (#33910) @oliviertassinari
+- &#8203;<!-- 17 -->[docs] Fix the reopening menu problem in MenuUnstyled demo (#33890) @michaldudak
+- &#8203;<!-- 24 -->[docs] Fix a few link issues (#33909) @oliviertassinari
+- &#8203;<!-- 16 -->[docs] Explain the icons package dependencies (#33592) @michaldudak
+- &#8203;<!-- 15 -->[docs] Fix reported SEO issues (#33818) @oliviertassinari
+- &#8203;<!-- 14 -->[docs] Add permanent notifications back (#33843) @oliviertassinari
+- &#8203;<!-- 13 -->[docs] Enforce description for all pages (#33698) @oliviertassinari
+- &#8203;<!-- 12 -->[docs] Clarify difference in startup times between named and default imports (#33109) @cmdcolin
+- &#8203;<!-- 11 -->[docs] Update transform function in the sx prop sizing docs (#33850) @ZeeshanTamboli
+- &#8203;<!-- 10 -->[docs] Adding missing accessibility labels (#33782) @PunitSoniME
+- &#8203;<!-- 09 -->[docs] Fix `/system/getting-started/advanced/` does not exist (#33867) @MonstraG
+- &#8203;<!-- 32 -->[docs] New Crowdin updates (#32213) @l10nbot
+- &#8203;<!-- 08 -->[examples] Fix broken path to favicon.ico (#33906) @mmostafavi
+- &#8203;<!-- 02 -->[website] Add new FAQ to pricing page (#33553) @oliviertassinari
+- &#8203;<!-- 03 -->[website] Miscellaneous improvements to the marketing pages (#33897) @danilo-leal
+
+### Core
+
+- &#8203;<!-- 29 -->[core] Add the download tracker package (#33899) @michaldudak
+- &#8203;<!-- 28 -->[core] Use proper external build id for Argos uploads (#33929) @cherniavskii
+- &#8203;<!-- 27 -->[core] Enforce 70 as the max width on the title on the docs (#33819) @oliviertassinari
+- &#8203;<!-- 26 -->[core] Clear yarn installation warning (#33776) @michaldudak
+- &#8203;<!-- 25 -->[core] Bump yarn to 1.22.19 (#33656) @michaldudak
+- &#8203;<!-- 24 -->[core] Remove outdated Next.js options (#33845) @oliviertassinari
+- &#8203;<!-- 34 -->[core] Add the download tracker build script (#33941) @michaldudak
+- &#8203;<!-- 01 -->[website] Allow /r/store- redirection pattern @oliviertassinari
+
+All contributors of this release in alphabetical order: @arjunvijayanathakurup, @bugzpodder, @cherewaty, @cherniavskii, @cmdcolin, @danilo-leal, @EthanStandel, @hayawata3626, @IsaacInsoll, @l10nbot, @michaldudak, @mmostafavi, @MonstraG, @oliviertassinari, @PunitSoniME, @samuelsycamore, @TKrishnasamy, @ZeeshanTamboli
+
+## 5.10.0
+
+<!-- generated comparing v5.9.3..master -->
+
+_Aug 8, 2022_
+
+A big thanks to the 16 contributors who made this release possible. Here are some highlights ✨:
+
+- ✨ [Stack](https://mui.com/system/react-stack/) component is added to MUI System and Joy UI #33760 #33800 @mnajdova
+- ✨ [Breadcrumbs](https://mui.com/joy-ui/react-breadcrumbs/) component is added to Joy UI (#32697) @hbjORbj
+- Many other 🐛 bug fixes, 📚 documentation, and ⚙️ infrastructure improvements
+
+### `@mui/material@5.10.0`
+
+- [Grid] Prevent crash if spacing is set to zero in theme (#33777) @PunitSoniME
+- [Grid] Export interface `RegularBreakpoints` to fix type error (#33751) @ZeeshanTamboli
+- [Skeleton] Add `rounded` variant (#33687) @siriwatknp
+- [Stepper] Fix classes for icon container (#33734) @pratikkarad
+- [TableCell] Enable size prop overrides via module augmentation (#33816) @brentertz
+- [Tooltip] Fix tooltip arrow css var background (#33753) @TimoWilhelm
+- [useScrollTrigger] Add passive flag to scroll trigger event listener #32437 (#33749) @Dsalazar1685
+
+### `@mui/system@5.10.0`
+
+- Fix unnecessary styles created from `sx` (#33752) @siriwatknp
+- Fix duplicated styles in Box (#33774) @iamxukai
+- Don't spread props to DOM for string tags (#33761) @siriwatknp
+- Add `Stack` component (#33760) @mnajdova
+
+### `@mui/joy@5.0.0-alpha.40`
+
+- [Stack] Add new component (#33800) @mnajdova
+- [Breadcrumbs] Add `Breadcrumbs` component (#32697) @hbjORbj
+- [Card] Fix wrong api description for `size` prop (#33862) @hbjORbj
+- Miscellaneous fixes (#33796, #33750) @siriwatknp
+
+### Docs
+
+- [docs] Create, revise, and expand System "Getting started" docs (#33503) @samuelsycamore
+- [docs] Test new image best practice @oliviertassinari
+- [docs] Fix typo in the ClickAwayListerner name (#33813) @pawelsmigielski
+- [docs] Fix link to `Basics` section in `Trap Focus` docs (#33772) @ZeeshanTamboli
+- [docs] z-index added in popper when used by split button (#33763) @PunitSoniME
+- [docs] Improve the guide for using @mui/base with Tailwind CSS (#33670) @mnajdova
+- [docs] Fix warnings related to Next.js' links (#33693) @mnajdova
+- [docs] Add notification to aggregation blogpost (#33745) @joserodolfofreitas
+- [docs] Add Grid version 2 docs (#33554) @siriwatknp
+- [examples] Fix `NextLinkComposedProps` type error (#33842) @adham618
+
+### Core
+
+- [blog] Add social card to Tenerife retreat post (#33764)
+- [blog] Fix blue outline bug (#33707) @oliviertassinari
+- [blog] Improve the width of the layout (#33706) @oliviertassinari@samuelsycamore
+- [core] Remove unnecessary packageName attribute from pages (#33488) @cherniavskii
+- [core] Remove duplicated CODE_OF_CONDUCT (#33702) @oliviertassinari
+- [core] Update Playwright packages together (#33737) @michaldudak
+- [website] Fix notifications not being marked as read in production (#33756) @cherniavskii
+
+All contributors of this release in alphabetical order: @adham618, @brentertz, @cherniavskii, @Dsalazar1685, @hbjORbj, @iamxukai, @joserodolfofreitas, @michaldudak, @mnajdova, @oliviertassinari, @pawelsmigielski, @pratikkarad, @PunitSoniME, @siriwatknp, @TimoWilhelm, @ZeeshanTamboli
+
 ## 5.9.3
 
 <!-- generated comparing v5.9.2..master -->
@@ -6880,7 +7003,7 @@ A big thanks to the 34 contributors who made this release possible. Here are som
 
   While the source code is currently hosted in the [main repository](https://github.com/mui/material-ui), we might move it to the [x repository](https://github.com/mui/mui-x) in the future, depending on what is easier for the commercial date range picker. The date picker will stay open source no matter what.
 
-- 📚 Revamp the documentation for [the system](https://mui.com/system/basics/). The System contains CSS utilities. The documentation now promotes the use of the `sx` prop. It's ideal for adding one-off styles, e.g. padding, but when pushed to its limits, it can be used to implement quickly a complete page.
+- 📚 Revamp the documentation for [the system](https://mui.com/system/getting-started/overview/). The System contains CSS utilities. The documentation now promotes the use of the `sx` prop. It's ideal for adding one-off styles, e.g. padding, but when pushed to its limits, it can be used to implement quickly a complete page.
 - 👩‍🎨 Upgrade emotion to v11 (#23007) @mnajdova.
 - And many more 🐛 bug fixes and 📚 improvements.
 
@@ -7282,7 +7405,7 @@ Here are some highlights ✨:
   If you target IE11, you need to use the new bundle (`legacy`). We are treating IE11 as a second class-citizen, which is a continuation of the direction taken in #22873.
 
 - 🚀 Improve the internal benchmark suite (#22923, #23058) @mnajdova.
-  This was a prerequisite step to improve the [system](https://mui.com/system/basics/). We needed to be able to measure performance. After #22945, we have measured that the `Box` component is x3 faster in v5-alpha compared to v4.
+  This was a prerequisite step to improve the [system](https://mui.com/system/getting-started/overview/). We needed to be able to measure performance. After #22945, we have measured that the `Box` component is x3 faster in v5-alpha compared to v4.
 - ✏️ A new blog post: [Q3 2020 Update](https://mui.com/blog/2020-q3-update/) (#23055) @oliviertassinari.
 - 🐙 Migrate more tests to react-testing-library @deiga, @Morteza-Jenabzadeh, @nicholas-l.
 - And many more 🐛 bug fixes and 📚 improvements.
@@ -7623,7 +7746,7 @@ Here are some highlights ✨:
 
   The new styling solution saves 2kB gzipped in the bundle compared to JSS, and about 14 kB gzipped if you were already using emotion or styled-components.
 
-  Last but not least, the change allows us to take advantage dynamic style props. We will use them for dynamic color props, variant props, and new style props (an improved [system](https://mui.com/system/basics/)).
+  Last but not least, the change allows us to take advantage dynamic style props. We will use them for dynamic color props, variant props, and new style props (an improved [system](https://mui.com/system/getting-started/overview/)).
 
   This change has been in our roadmap for more than a year.
   We announced it in the [v4 release blog post](https://mui.com/blog/material-ui-v4-is-out/) as a direction v5 would take.
@@ -8876,7 +8999,7 @@ A big thanks to the 33 contributors who made this release possible. Here are som
   />
   ```
 
-- [Typography] Replace the `srOnly` prop so as to not duplicate the capabilities of [System](https://mui.com/system/basics/) (#21413) @mnajdova.
+- [Typography] Replace the `srOnly` prop so as to not duplicate the capabilities of [System](https://mui.com/system/getting-started/overview/) (#21413) @mnajdova.
 
   ```diff
   -import Typography from '@material-ui/core/Typography';

@@ -47,11 +47,7 @@ const RadioRoot = styled('span', {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{
-  ownerState: RadioProps & {
-    'data-first-child'?: string;
-    'data-parent'?: string;
-    orientation?: 'horizontal' | 'vertical';
-  };
+  ownerState: RadioProps & { 'data-first-child'?: string; 'data-parent'?: string; row?: boolean };
 }>(({ ownerState, theme }) => {
   return [
     {
@@ -89,10 +85,8 @@ const RadioRoot = styled('span', {
       }),
       ...(ownerState['data-parent'] === 'RadioGroup' &&
         ownerState['data-first-child'] === undefined && {
-          marginInlineStart:
-            ownerState.orientation === 'horizontal' ? 'var(--RadioGroup-gap)' : undefined,
-          marginBlockStart:
-            ownerState.orientation === 'horizontal' ? undefined : 'var(--RadioGroup-gap)',
+          marginInlineStart: ownerState.row ? 'var(--RadioGroup-gap)' : undefined,
+          marginBlockStart: ownerState.row ? undefined : 'var(--RadioGroup-gap)',
         }),
     },
   ];
@@ -281,7 +275,7 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
     size,
     disableIcon,
     overlay,
-    orientation: radioGroup.orientation,
+    row: radioGroup.row,
   };
 
   const classes = useUtilityClasses(ownerState);

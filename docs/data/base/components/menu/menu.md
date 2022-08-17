@@ -4,7 +4,6 @@ title: Unstyled React Menu components and hooks
 components: MenuUnstyled, MenuItemUnstyled
 githubLabel: 'component: menu'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/menubutton/
-packageName: '@mui/base'
 ---
 
 # Unstyled menu

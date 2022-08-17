@@ -3,13 +3,13 @@ import { RadioProps } from '../Radio/RadioProps';
 
 const RadioGroupContext = React.createContext<
   Pick<RadioProps, 'size' | 'disableIcon' | 'overlay'> & {
-    orientation?: 'vertical' | 'horizontal';
+    row?: boolean;
     name?: string;
     value?: unknown;
     onChange?: React.ChangeEventHandler<HTMLInputElement>;
   }
 >({
-  orientation: undefined,
+  row: undefined,
   size: undefined,
   name: undefined,
   value: undefined,

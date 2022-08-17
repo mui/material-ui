@@ -1,32 +1,57 @@
 ---
-product: material-ui
-title: Componente React Sem SSR
+product: base
+title: No SSR React component
 components: NoSsr
-packageName: '@mui/base'
 ---
 
-# Sem SSR
+# No SSR
 
-<p class="description">O NoSsr remove intencionalmente componentes do contexto de Server Side Rendering (SSR).</p>
+<p class="description">The NoSsr component defers the rendering of children components from the server to the client.</p>
 
-Esse componente pode ser útil em várias situações:
+## Introduction
 
-- Válvula de escape para dependências quebradas que não suportam SSR.
-- Melhorar o tempo para a primeira pintura no cliente renderizando somente a primeira parte da página (above the fold).
-- Reduzir o tempo de renderização no servidor.
-- Sob carga de servidor muito pesada, você pode ativar a degradação do serviço.
-- Melhorar o tempo de interação apenas renderizando o que é importante (com a propriedade `defer`).
+`NoSsr` is a utility component that prevents its children from being rendered on the server.
 
-[A paleta](/system/palette/) com funções de estilo.
+This component can be useful in a variety of situations:
 
-## Client-side deferring
+- To create an escape hatch for broken dependencies that don't support server-side rendering (SSR)
+- To improve the time to first paint by only rendering above the fold
+- To reduce the rendering time on the server
+- To turn on service degradation when the server load is too heavy
+- To improve the Time to Interactive (TTI) by only rendering what's important (using the `defer` prop)
+
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+
+## Component
+
+### Usage
+
+After [installation](/base/getting-started/installation/), you can start building with this component using the following basic elements:
+
+```jsx
+import NoSsr from '@mui/base/NoSsr';
+
+export default function MyApp() {
+  return <NoSsr>{/* element to be rendered on the client side */}</NoSsr>;
+}
+```
+
+### Basics
+
+At its core, the `NoSsr` component's purpose is to defer rendering from the server to the client, as shown in the following demo:
 
 {{"demo": "SimpleNoSsr.js"}}
 
-## Adiamento de quadros
+## Customization
 
-Em sua essência, o objetivo do componente NoSsr é **adiar a renderização**. Como está ilustrado na demonstração anterior, você pode usá-lo para adiar a renderização do servidor para o cliente.
+### Delay client-side rendering
 
-Mas você também pode usá-lo para adiar a renderização dentro do próprio cliente. Você pode **aguardar um quadro de tela** com a propriedade `defer` para renderizar o children. React faz [2 commits](https://pt-br.reactjs.org/docs/strict-mode.html#detecting-unexpected-side-effects) em vez de 1.
+You can also use `NoSsr` to delay the rendering of specific components on the client side—for example, to let the rest of the application load before an especially complex or data-heavy component.
+
+The following demo shows how to use the `defer` prop to prioritize rendering the rest of the app outside of what is nested within `NoSsr`:
 
 {{"demo": "FrameDeferring.js"}}
+
+:::warning
+When using `NoSsr` in this way, React applies [two commits](https://reactjs.org/docs/strict-mode.html#detecting-unexpected-side-effects) instead of one.
+:::
