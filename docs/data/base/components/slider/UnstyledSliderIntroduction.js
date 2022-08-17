@@ -36,7 +36,6 @@ const StyledSlider = styled(SliderUnstyled)(
   cursor: pointer;
   touch-action: none;
   -webkit-tap-highlight-color: transparent;
-  opacity: 0.75;
 
   &:hover {
     opacity: 1;
@@ -46,6 +45,7 @@ const StyledSlider = styled(SliderUnstyled)(
     pointer-events: none;
     cursor: default;
     color: ${theme.palette.mode === 'light' ? grey[300] : grey[600]};
+    opacity: 0.5;
   }
 
   & .${sliderUnstyledClasses.rail} {
