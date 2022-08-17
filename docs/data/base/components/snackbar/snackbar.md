@@ -8,11 +8,14 @@ packageName: '@mui/base'
 
 # Unstyled snackbar
 
-<p class="description">The SnackbarUnstyled component provides brief notifications.</p>
+<p class="description">The SnackbarUnstyled component informs users that an action has been or will be performed by the app.</p>
 
 ## Introduction
 
-The SnackbarUnstyled component provides brief notifications.
+A snackbar provides users with a brief message about app processes without interrupting their activity or experience.
+
+The `SnackbarUnstyled` component is built to appear temporarily in the corner of the screen to inform users of an action that the app is taking.
+After a set amount of time, it disappears on its own without requiring user interaction to dismiss it.
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
@@ -26,24 +29,23 @@ After [installation](/base/getting-started/installation/), you can start buildin
 import SnackbarUnstyled from '@mui/base/SnackbarUnstyled';
 
 export default function MyApp() {
-  return <SnackbarUnstyled></SnackbarUnstyled>;
+  return <SnackbarUnstyled>{/* snackbar text */}</SnackbarUnstyled>;
 }
 ```
 
 ### Basics
 
-{{"demo": "UnstyledSnackbar.js", "defaultCodeOpen": false}}
+The following demo illustrates the basic usage of the `SnackbarUnstyled` component.
+Click **Open snackbar** to see how it behaves:
 
-```jsx
-<SnackbarUnstyled></SnackbarUnstyled>
-```
+{{"demo": "UnstyledSnackbar.js", "defaultCodeOpen": false}}
 
 ### Anatomy
 
-The `SnackbarUnstyled` component is composed of a single root `<div>` element that is designed to be used as a notification popover:
+The `SnackbarUnstyled` component is composed of a single root `<div>` slot with no interior slots:
 
 ```html
-<div role="presentation" class="BaseSnackbar-root">Snackbar text</div>
+<div role="presentation" class="BaseSnackbar-root">snackbar content</div>
 ```
 
 ### Slot props
@@ -116,14 +118,17 @@ For the sake of simplicity, demos and code snippets primarily feature components
 
 ### Transitions
 
-You can animate the open and close states of the snackbar with a render prop child and a transition component as shown below, as long as the component meets these conditions:
+You can animate the open and close states of the snackbar with a render prop child and a transition component, as long as the component meets these conditions:
 
 - Is a direct child descendent of the snackbar
 - Has an `in` prop—this corresponds to the open state
 - Passes the `exited` prop to `SnackbarUnstyled`
-- Calls the `onEnter` callback prop when the enter transition starts - sets `exited` to false
-- Calls the `onExited` callback prop when the exit transition is completed - sets `exited` to true
+- Calls the `onEnter` callback prop when the enter transition starts—sets `exited` to false
+- Calls the `onExited` callback prop when the exit transition is completed—sets `exited` to true
 
-These two callbacks allow the snackbar to unmount the child content when closed and keep it fully transitioned. This is only applicable if you are using transition components using [react-transition-group](https://github.com/reactjs/react-transition-group) library internally.
+These two callbacks allow the snackbar to unmount the child content when closed and keep it fully transitioned.
+This is only applicable if you are using transition components using [react-transition-group](https://github.com/reactjs/react-transition-group) library internally.
+
+The demo below shows how to create a snackbar with custom transitions:
 
 {{"demo": "TransitionComponentSnackbar.js", "defaultCodeOpen": false}}
