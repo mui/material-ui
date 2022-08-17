@@ -17,6 +17,8 @@ A select is a UI element that gives users a list of options to choose from.
 MUI Base offers two components to replace the native HTML `<select>` tag: `SelectUnstyled` and `MultiSelectUnstyled`.
 It also includes `OptionUnstyled` for creating the options on the list, and `OptionGroupUnstyled` for grouping those options.
 
+{{"demo": "UnstyledSelectIntroduction.js", "defaultCodeOpen": false, "bg": "gradient"}}
+
 ### Features
 
 - 🦍 Can be used as a controlled or uncontrolled component
