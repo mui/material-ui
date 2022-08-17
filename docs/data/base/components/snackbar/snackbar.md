@@ -11,10 +11,9 @@ githubLabel: 'component: snackbar'
 
 ## Introduction
 
-A snackbar provides users with a brief message about app processes without interrupting their activity or experience.
+A snackbar provides users with a brief, temporary message about app processes without interrupting their activity or experience.
 
-The `SnackbarUnstyled` component is built to appear temporarily in the corner of the screen to inform users of an action that the app is taking.
-After a set amount of time, it disappears on its own without requiring user interaction to dismiss it.
+The `SnackbarUnstyled` component is built to appear in the corner or center of the screen to inform users about an action that the app is taking.
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
@@ -34,7 +33,20 @@ export default function MyApp() {
 
 ### Basics
 
-The following demo illustrates the basic usage of the `SnackbarUnstyled` component.
+:::info
+Snackbars are differentiated from other kinds of popups and alerts in that they are _informational, temporary, and contextual_ (Source: [Material Design—Snackbars](https://material.io/components/snackbars)).
+:::
+
+`SnackbarUnstyled` doesn't impose any restrictions on its implementation—it's up to you to design it so that it doesn't interrupt the user experience, and disappears after a set amount of time without the requiring the user to take action.
+
+Use the `autoHideDuration` prop to set the time (in milliseconds) that the snackbar remains on the screen.
+
+:::info
+You may want to implement `SnackbarUnstyled` with [`ClickAwayListener`](/base/react-click-away-listener/), so that the user can choose to dismiss the snackbar before its time runs out.
+But this behavior is optional for a snackbar.
+:::
+
+The following demo illustrates the basic usage of `SnackbarUnstyled`.
 Click **Open snackbar** to see how it behaves:
 
 {{"demo": "UnstyledSnackbar.js", "defaultCodeOpen": false}}
