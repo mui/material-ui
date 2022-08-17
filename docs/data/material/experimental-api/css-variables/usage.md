@@ -8,7 +8,7 @@ This page is best for starting a new project with CSS variables. If you have an 
 
 ## Getting started
 
-`Experimental_CssVarsProvider` is a new experimental provider that attaches all generated CSS variables to the theme and puts them in React context.
+`Experimental_CssVarsProvider` is a new provider that attaches all generated CSS variables to the theme and puts them in React context.
 
 ```js
 import { Experimental_CssVarsProvider as CssVarsProvider } from '@mui/material/styles';
@@ -104,12 +104,12 @@ There are mainly 2 ways that you can use the generated CSS variables:
   ```
 
   :::warning
-  A downside of this approach is that the prefix `mui` is hardcoded. If you want to change the generated prefix in the future, you will have to replace all of them in the project.
+  A downside of this approach is that the prefix `mui` is hardcoded. If you want to change the generated prefix in the future, you will have to replace all of them in your project.
   :::
 
 - `theme.vars`: Another way is to read a CSS variable from the theme object. This way, you don't need to worry about the prefix because the value comes from the configuration.
 
-  The new provider will walk through the theme and attach an extra object to `theme.vars`. It is a plain object with similar structure that has values refer to the generated CSS variables.
+  The new provider will walk through the theme and attach an extra object to `theme.vars`. It is a plain object with similar theme structure that has values refer to the generated CSS variables.
 
   ```js
   const Button = styled('button')(({ theme }) => ({

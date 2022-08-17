@@ -29,7 +29,7 @@ The `extendTheme` is not the same as `createTheme`, do not use theme interchanga
 
 ### Color schemes
 
-The major difference from the conventional approach is the palette customization. With the new `extendTheme` API, you can specify the palette for all color schemes at once (`light` and `dark` are built-in color schemes).
+The major difference from the default approach is the palette customization. With the new `extendTheme` API, you can specify the palette for all color schemes at once (`light` and `dark` are built-in color schemes).
 
 Here is an example of customizing the `primary` palette:
 
@@ -58,7 +58,7 @@ const theme = extendTheme({
 
 ### Components
 
-Customizing components remains the same. We recommend to use the value from `theme.vars` whenever possible:
+Customizing components remains the same. We recommend to use the value from `theme.vars` whenever possible for better debugging experience:
 
 ```js
 const theme = extendTheme({
@@ -88,7 +88,7 @@ There are some cases where you want to manipulate the alpha channel of a color. 
 color: rgba(var(--color-channel) / 0.6);
 ```
 
-With this concept, the `extendTheme()` auto generates some channel colors that are likely to be used frequently from the theme palette. Those colors are suffixed with `*Channel`:
+With this concept, the `extendTheme()` automatically generates some channel colors that are likely to be used frequently from the theme palette. Those colors are suffixed with `Channel`:
 
 - `common.backgroundChannel` 👉 `common.background`
 - `common.onBackgroundChannel` 👉 `common.onBackground`
@@ -132,14 +132,14 @@ Don't use comma(`,`) as a separator because the result is not a valid format in 
 
 ## Adding new theme tokens
 
-You are free to add any key-value pairs to the theme input which will be generated to CSS variables by `CssVarsProvider`.
+You are free to add any key-value pairs to the theme input which will be generated to CSS variables by the new provider.
 
 ```js
 const theme = extendTheme({
   colorSchemes: {
     light: {
       palette: {
-        // Thanks to CSS variables, you can refer to it wherever you like 🤩
+        // The best part is that you can refer to the variables wherever you like 🤩
         gradient:
           'linear-gradient(to left, var(--mui-palete-primary-main), var(--mui-palette-primary-dark))',
         border: {
@@ -164,7 +164,7 @@ function App() {
 }
 ```
 
-You should the new variables in the stylesheet DevTool:
+Then, you should see the new variables in the stylesheet DevTool:
 
 ```css
 :root {
@@ -186,10 +186,10 @@ You should the new variables in the stylesheet DevTool:
 }
 ```
 
-You can access those variables in the theme like usual:
+In the codebase, you can access those variables in the theme like this:
 
 ```js
-// This component works in both `light` and `dark` mode!
+// This component works fine in both `light` and `dark` mode!
 const Divider = styled('hr')(({ theme }) => ({
   height: 1,
   backgroundColor: theme.vars.palette.border.subtile,
@@ -198,7 +198,7 @@ const Divider = styled('hr')(({ theme }) => ({
 
 ## Changing variable prefix
 
-The default prefix is `mui`. You can change the prefix by passing `cssVarPrefix: string` to `extendTheme`.
+You can change the prefix, default as `mui`, by passing `cssVarPrefix: string` to `extendTheme`.
 
 ```js
 const theme = extendTheme({ cssVarPrefix: 'any' });
@@ -218,9 +218,9 @@ const theme = extendTheme({ cssVarPrefix: '' });
 
 ## Custom styles per mode
 
-In some cases, creating new tokens might not be a good approach especially if you want to customize just once without reusing in other places.
+In some cases, creating new tokens might not be a good approach especially if you want to customize the style just once without reusing it in other places.
 
-A better way is to use theme utility to create CSS attribute selector:
+A better way is to use the theme utility to create CSS attribute selector:
 
 ```js
 const Button = styled('button')(({ theme }) => ({
@@ -229,8 +229,7 @@ const Button = styled('button')(({ theme }) => ({
   '&:hover': {
     backgroundColor: theme.vars.palette.primary.dark,
   },
-  // this is the same as writing:
-  // '[data-mui-color-scheme="dark"] &': { ... }
+  // this is the same as writing: '[data-mui-color-scheme="dark"] &'
   [theme.getColorSchemeSelector('dark')]: {
     backgroundColor: theme.vars.palette.primary.dark,
     color: theme.vars.palette.primary.main,
@@ -242,52 +241,7 @@ const Button = styled('button')(({ theme }) => ({
 }));
 ```
 
-:::info
-This approach works well for custom components but not that great for building theme because the `theme.getColorSchemeSelector('dark')` create CSS specificity which makes the customization a little bit harder.
-
-A better way is to use [`(:where)()`](https://developer.mozilla.org/en-US/docs/Web/CSS/:where) selector which does not create CSS specifycity. Check out the next section on how to apply it in your project.
-:::
-
-### Using `:where` selector
-
-This is a workaround to use the selector because there is a known issue with [emotion](https://github.com/emotion-js/emotion/issues/2836) and styled-components.
-
-#### Emotion
-
-Pass a custom stylis plugin to `createCache()`:
-
-```js
-import { CacheProvider } from '@emotion/react';
-import createCache from '@emotion/cache';
-
-const enableWhereSelector = (element) => {
-  switch (element.type) {
-    case 'rule':
-      element.props = element.props.map((value) => {
-        if (value.match(/(:where)\(/)) {
-          value = value.replace(/\.[^:]+(:where)/, '$1');
-        }
-        return value;
-      });
-  }
-};
-
-const cache = createCache({
-  key: 'css',
-  prepend: true,
-  stylisPlugins: [enableWhereSelector],
-});
-
-function App() {
-  return (
-    <CacheProvider value={cache}>
-      <CssVarsProvider>...</CssVarsProvider>
-    </CacheProvider>
-  );
-}
-```
-
-## Force a specific mode
+## Force a specific color scheme
 
 Specify `data-mui-color-scheme="dark"` to any DOM node to force the children components to appear as if they are in dark mode.
 
@@ -301,15 +255,16 @@ Specify `data-mui-color-scheme="dark"` to any DOM node to force the children com
 </div>
 ```
 
-## Support only dark mode
+## Dark color scheme only
 
-You can specify `defaultMode="dark"` to make the application initially appears dark and then delete the `light` color scheme to optimize the bundle size:
+You can set the default mode to `dark` to initially apply the dark color scheme:
 
 ```js
 const theme = extendTheme({
   // ...
 });
 
+// remove the `light` color scheme to optimize the HTML size for server-side application
 delete theme.colorSchemes.light;
 
 function App() {
@@ -321,4 +276,6 @@ function App() {
 }
 ```
 
-## Reusing elevation
+:::info
+In development, if you change the default mode later, make sure to clear the local storage and refresh the page.
+:::
