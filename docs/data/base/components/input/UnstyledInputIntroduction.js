@@ -41,9 +41,9 @@ const StyledInputElement = styled('input')(
     border-color: ${blue[400]};
   }
 
-  &:focus, hover {
+  &:focus {
     border-color: ${blue[400]};
-    outline: 3px solid ${theme.palette.mode === 'dark' ? blue[500] : blue[100]};
+    outline: 3px solid ${theme.palette.mode === 'dark' ? blue[500] : blue[200]};
   }
 `,
 );

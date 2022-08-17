@@ -46,12 +46,13 @@ const StyledButton = styled('button')(
   transition-duration: 120ms;
 
   &:hover {
-    border-color: ${blue[400]};
+    background: ${theme.palette.mode === 'dark' ? grey[800] : grey[50]};
+    border-color: ${theme.palette.mode === 'dark' ? grey[600] : grey[300]};
   }
 
   &.${selectUnstyledClasses.focusVisible} {
     border-color: ${blue[400]};
-    outline: 3px solid ${theme.palette.mode === 'dark' ? blue[500] : blue[100]};
+    outline: 3px solid ${theme.palette.mode === 'dark' ? blue[500] : blue[200]};
   }
 
   &.${selectUnstyledClasses.expanded} {
@@ -72,7 +73,7 @@ const StyledListbox = styled('ul')(
   font-family: IBM Plex Sans, sans-serif;
   font-size: 0.875rem;
   box-sizing: border-box;
-  padding: 5px;
+  padding: 6px;
   margin: 12px 0;
   min-width: 320px;
   border-radius: 12px;
@@ -116,7 +117,7 @@ const StyledOption = styled(OptionUnstyled)(
   }
 
   &:hover:not(.${optionUnstyledClasses.disabled}) {
-    background-color: ${theme.palette.mode === 'dark' ? grey[800] : grey[50]};
+    background-color: ${theme.palette.mode === 'dark' ? grey[800] : grey[100]};
     color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
   }
   `,
