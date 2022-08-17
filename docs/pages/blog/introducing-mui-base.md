@@ -1,6 +1,6 @@
 ---
 title: Introducing MUI Base
-description: Introduction to a new library of unstyled components and hooks - MUI Base
+description: "Introduction to a new library of unstyled components and hooks: MUI Base"
 date: 2022-08-29T00:00:00.000Z
 authors: ['michaldudak']
 tags: ['News', 'MUI Core']
@@ -34,7 +34,7 @@ Check out the [Working with Tailwind CSS guide](/base/guides/working-with-tailwi
 In contrast to Material UI, Base's components do not have any default styles.
 They provide functionality and structure, while designers and developers are responsible for the visuals.
 
-Each unstyled component lets developers modify or override its _slots_ - smaller subcomponents representing parts that work together.
+Each unstyled component lets developers modify or override its _slots_—smaller subcomponents representing parts that work together.
 For example, a SwitchUnstyled contains the root, thumb, input, and track slots.
 You can control props passed to each of these slots (including, perhaps most importantly, `className`) based on the component's state or even replace the default slot components with your own.
 
