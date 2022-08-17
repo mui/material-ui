@@ -97,6 +97,8 @@ If you use a [`ClickAwayListener`](/react-click-away-listener/) to let the user 
 
 Pass the `open` state to the hook and use it to show and hide the snackbar.
 
+The demo below shows how to build a fully custom component with the `useSnackbar` hook that also incorporates the `ClickAwayListener` component:
+
 {{"demo": "UseSnackbar.js", "defaultCodeOpen": false}}
 
 Hooks _do not_ support [slot props](#slot-props), but they do support [customization props](#customization).
