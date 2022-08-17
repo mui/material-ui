@@ -34,7 +34,7 @@ const StyledListbox = styled('ul')(
   font-family: IBM Plex Sans, sans-serif;
   font-size: 0.875rem;
   box-sizing: border-box;
-  padding: 5px;
+  padding: 6px;
   margin: 12px 0;
   min-width: 200px;
   border-radius: 12px;
@@ -43,7 +43,7 @@ const StyledListbox = styled('ul')(
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
-  box-shadow: 0px 4px 30px ${theme.palette.mode === 'dark' ? grey[900] : grey[100]};
+  box-shadow: 0px 4px 30px ${theme.palette.mode === 'dark' ? grey[900] : grey[200]};
   `,
 );
 
@@ -157,7 +157,7 @@ export default function UnstyledMenuSimple() {
         aria-expanded={isOpen || undefined}
         aria-haspopup="menu"
       >
-        Dashboard
+        My account
       </TriggerButton>
 
       <MenuUnstyled
@@ -172,7 +172,7 @@ export default function UnstyledMenuSimple() {
           Profile
         </StyledMenuItem>
         <StyledMenuItem onClick={createHandleMenuClick('My account')}>
-          My account
+          Language settings
         </StyledMenuItem>
         <StyledMenuItem onClick={createHandleMenuClick('Log out')}>
           Log out
