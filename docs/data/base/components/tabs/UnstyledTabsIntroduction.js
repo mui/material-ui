@@ -57,7 +57,7 @@ const Tab = styled(TabUnstyled)`
   }
 
   &.${tabUnstyledClasses.selected} {
-    background-color: ${blue[50]};
+    background-color: #fff;
     color: ${blue[600]};
   }
 
