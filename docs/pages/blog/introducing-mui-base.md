@@ -34,11 +34,11 @@ Check out the [Working with Tailwind CSS guide](/base/guides/working-with-tailwi
 In contrast to Material UI, Base's components do not have any default styles.
 They provide functionality and structure, while designers and developers are responsible for the visuals.
 
-Each unstyled component lets developers modify or override its _slots_—smaller subcomponents representing parts that work together.
+Each unstyled component lets developers modify or override its _slots_, smaller subcomponents representing parts that work together.
 For example, a SwitchUnstyled contains the root, thumb, input, and track slots.
 You can control props passed to each of these slots (including, perhaps most importantly, `className`) based on the component's state or even replace the default slot components with your own.
 
-<!-- example here -->
+<img src="/static/blog/introducing-mui-base/switch-slots.png" style="width: 300px; margin-bottom: 24px;" alt="Depiction of SwitchUnstyled components' slots" />
 
 Hooks take this one step further.
 They provide functionality, and developers are free to implement the structure to the DOM elements, their interactions, and look.
@@ -47,7 +47,23 @@ They offer maximum customizability at the cost of requiring more to implement by
 Upon calling, a hook returns an object describing the component's state (i.e., whether the switch is turned on) and with methods that apply accessibility props and event handlers.
 You should spread these props on components you defined.
 
-<!-- example here -->
+```tsx
+function MySwitch(props: UseSwitchParameters) {
+  const { getInputProps, checked, disabled } = useSwitch(props);
+
+  const stateClasses = {
+    'checked': checked,
+    'disabled': disabled,
+  };
+
+  return (
+    <span className={clsx('root', stateClasses)}>
+      <span className={clsx('thumb', stateClasses)} />
+      <input type="hidden" {...getInputProps()} />
+    </span>
+  );
+}
+```
 
 ## What's included
 
