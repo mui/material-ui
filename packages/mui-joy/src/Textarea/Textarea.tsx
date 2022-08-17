@@ -1,13 +1,14 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
-import { unstable_capitalize as capitalize, unstable_useForkRef } from '@mui/utils';
+import { unstable_capitalize as capitalize } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
+import { useSlotProps, EventHandlers } from '@mui/base/utils';
 import composeClasses from '@mui/base/composeClasses';
 import TextareaAutosize from '@mui/base/TextareaAutosize';
 import { styled, useThemeProps } from '../styles';
 import { TextareaTypeMap, TextareaProps } from './TextareaProps';
 import textareaClasses, { getTextareaUtilityClass } from './textareaClasses';
+import useForwardedInput from '../Input/useForwardedInput';
 
 const useUtilityClasses = (ownerState: TextareaProps) => {
   const { disabled, variant, color, size } = ownerState;
@@ -135,7 +136,7 @@ const TextareaRoot = styled('div', {
   ];
 });
 
-const TextareaTextarea = styled(TextareaAutosize, {
+const TextareaInput = styled(TextareaAutosize, {
   name: 'JoyTextarea',
   slot: 'Textarea',
   overridesResolver: (props, styles) => styles.input,
@@ -145,7 +146,7 @@ const TextareaTextarea = styled(TextareaAutosize, {
   minWidth: 0, // remove the native input width
   outline: 0, // remove the native input outline
   padding: 0, // remove the native input padding
-  flex: 1,
+  flex: 'auto',
   alignSelf: 'stretch',
   color: 'inherit',
   backgroundColor: 'transparent',
@@ -170,58 +171,73 @@ const Textarea = React.forwardRef(function Textarea(inProps, ref) {
     props: inProps,
     name: 'JoyTextarea',
   });
-  const [focused, setFocused] = React.useState(false);
-  const inputRef = React.useRef<HTMLTextAreaElement>(null);
-
-  const handleRef = unstable_useForkRef(inputRef, ref);
 
   const {
-    className,
+    propsToForward,
+    rootStateClasses,
+    inputStateClasses,
+    getRootProps,
+    getInputProps,
     component,
-    color = 'neutral',
+    componentsProps = {},
+    focused,
+    formControlContext,
+    error: errorState,
+    disabled: disabledState,
+    fullWidth = false,
     size = 'md',
+    color = 'neutral',
     variant = 'outlined',
-    onFocus,
-    onBlur,
+    startDecorator,
+    endDecorator,
     ...other
-  } = props;
+  } = useForwardedInput<TextareaProps>(props, textareaClasses);
 
   const ownerState = {
     ...props,
+    fullWidth,
+    color: errorState ? 'danger' : color,
+    disabled: disabledState,
+    error: errorState,
     focused,
-    color,
+    formControlContext: formControlContext!,
     size,
     variant,
   };
 
-  const rootStateClasses = {
-    [textareaClasses.focused]: focused,
-  };
-
   const classes = useUtilityClasses(ownerState);
 
+  const rootProps = useSlotProps({
+    elementType: TextareaRoot,
+    getSlotProps: getRootProps,
+    externalSlotProps: componentsProps.root,
+    externalForwardedProps: other,
+    additionalProps: {
+      ref,
+      as: component,
+    },
+    ownerState,
+    className: [classes.root, rootStateClasses],
+  });
+
+  const { onChange, ...inputProps } = useSlotProps({
+    elementType: TextareaInput,
+    getSlotProps: (otherHandlers: EventHandlers) =>
+      getInputProps({ ...otherHandlers, ...propsToForward }),
+    externalSlotProps: {},
+    additionalProps: {
+      // as: componentsProps.input?.component,
+    },
+    ownerState,
+    className: [classes.input, inputStateClasses],
+  });
+
   return (
-    <TextareaRoot
-      className={clsx(classes.root, rootStateClasses, className)}
-      ownerState={ownerState}
-      onClick={(event) => {
-        if (inputRef.current && event.currentTarget === event.target) {
-          inputRef.current.focus();
-        }
-      }}
-    >
-      <TextareaTextarea
-        ref={handleRef}
-        ownerState={ownerState}
-        onFocus={(event) => {
-          setFocused(true);
-          onFocus?.(event);
-        }}
-        onBlur={(event) => {
-          setFocused(false);
-          onBlur?.(event);
-        }}
-        {...other}
+    <TextareaRoot {...rootProps}>
+      <TextareaInput
+        {...inputProps}
+        // @ts-expect-error MUI Base strictly type `onChange` for HTMLInputElement
+        onChange={onChange}
       />
     </TextareaRoot>
   );
