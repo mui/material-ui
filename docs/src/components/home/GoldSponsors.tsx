@@ -85,7 +85,7 @@ export default function GoldSponsors() {
           sx={{
             color: (theme) =>
               theme.palette.mode === 'dark'
-                ? theme.palette.warning[500]
+                ? theme.palette.warning[300]
                 : theme.palette.warning[700],
           }}
         >
