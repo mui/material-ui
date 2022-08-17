@@ -16,7 +16,10 @@ Developers do not start from a clean slate but have to override styles applied b
 While this approach may speed up the work when designing visuals close to Material Design, it's less intuitive for different design languages.
 
 We were aware of this problem, so, [encouraged by the community](https://github.com/mui/material-ui/issues/6218), we decided to build a library aiming for the ultimate customizability.
-Today, we're ready to announce it: **please welcome MUI Base!**
+Today, we're ready to announce it: **please welcome MUI Base**, the library of unstyled React UI components and hooks!
+
+Its API is similar to what you're already used to in Material UI.
+This makes it easy to either start a new project with MUI Base or to use Material UI for rapid prototyping first and then switch to MUI Base when a custom design is needed.
 
 ## Components and hooks
 
@@ -26,7 +29,7 @@ Components are more straightforward to use of the two.
 Place a component on a page, add your own styles, and it's ready to go!
 It's important to note that you are not limited to the styling options available in Material UI.
 You can, of course, still use our MUI System, but if you prefer Emotion, Tailwind, plain CSS, or any other styling engine, they are available too!
-Check out the [Working with Tailwind guide](http:///base/guides/working-with-tailwind-css/) for an example of using this library.
+Check out the [Working with Tailwind CSS guide](/base/guides/working-with-tailwind-css/) for an example of using this library.
 
 In contrast to Material UI, Base's components do not have any default styles.
 They provide functionality and structure, while designers and developers are responsible for the visuals.
@@ -62,7 +65,7 @@ In the future, MUI Base will also be used as a foundation of Material UI compone
 
 So far, we've been mostly using MUI Base ourselves.
 Now we need to hear what you think of the library, what you like about it, and what are the areas that could look or work differently.
-Please help us create the best possible headless component library out there.
+Please help us create the best possible headless component library out there!
 
 If you found any bugs, have trouble understanding some concepts, or have ideas for improvements, don't hesitate to open issues on GitHub.
 Make sure to include "[base]" or a component/hook name in the issue title, so we recognize it.
