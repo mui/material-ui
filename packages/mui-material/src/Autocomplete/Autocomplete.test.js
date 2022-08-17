@@ -2540,7 +2540,7 @@ describe('<Autocomplete />', () => {
 
       const popperRoot = screen.getByTestId('popperRoot');
       expect(popperRoot.style.display).to.equal('none');
-    })
+    });
   });
 
   describe('prop: readOnly', () => {
