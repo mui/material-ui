@@ -1,6 +1,6 @@
 ---
 title: Introducing MUI Base
-description: "Introduction to a new library of unstyled components and hooks: MUI Base"
+description: 'Introduction to a new library of unstyled components and hooks: MUI Base'
 date: 2022-08-29T00:00:00.000Z
 authors: ['michaldudak']
 tags: ['News', 'MUI Core']
@@ -52,13 +52,13 @@ function MySwitch(props: UseSwitchParameters) {
   const { getInputProps, checked, disabled } = useSwitch(props);
 
   const stateClasses = {
-    'checked': checked,
-    'disabled': disabled,
+    checked,
+    disabled,
   };
 
   return (
     <span className={clsx('root', stateClasses)}>
-      <span className={clsx('thumb', stateClasses)} />
+      <span className="thumb"} />
       <input type="hidden" {...getInputProps()} />
     </span>
   );
