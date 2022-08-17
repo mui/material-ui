@@ -239,6 +239,6 @@ const StyledComponent = styled('button')(({ theme }) => ({
 
 **options**
 
-- `enableSystem?: boolean`: - If `true` and the selected mode is not `light` or `dark`, the system mode is used
+- `defaultMode?: 'light' | 'dark' | 'system'`: - Application's default mode before React renders the tree (`light` by default)
 - `modeStorageKey?: string`: - localStorage key used to store application `mode`
 - `attribute?: string` - DOM attribute for applying color scheme
