@@ -38,7 +38,7 @@ Each unstyled component lets developers modify or override its _slots_, smaller 
 For example, a SwitchUnstyled contains the root, thumb, input, and track slots.
 You can control props passed to each of these slots (including, perhaps most importantly, `className`) based on the component's state or even replace the default slot components with your own.
 
-<img src="/static/blog/introducing-mui-base/switch-slots.png" style="width: 300px; margin-bottom: 24px;" alt="Depiction of SwitchUnstyled components' slots" />
+<img src="/static/blog/introducing-mui-base/switch-slots.png" style="width: 796px; margin-bottom: 24px;" alt="Depiction of SwitchUnstyled components' slots" />
 
 Hooks take this one step further.
 They provide functionality, and developers are free to implement the structure to the DOM elements, their interactions, and look.
