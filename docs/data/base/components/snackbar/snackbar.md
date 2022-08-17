@@ -44,7 +44,7 @@ Click **Open snackbar** to see how it behaves:
 The `SnackbarUnstyled` component is composed of a single root `<div>` slot with no interior slots:
 
 ```html
-<div role="presentation" class="BaseSnackbar-root">snackbar content</div>
+<div role="presentation" className="BaseSnackbar-root">snackbar content</div>
 ```
 
 ### Slot props
