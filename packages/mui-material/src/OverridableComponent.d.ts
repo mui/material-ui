@@ -16,12 +16,12 @@ export interface OverridableComponent<M extends OverridableTypeMap> {
     props: C extends ''
       ? { component: keyof JSX.IntrinsicElements }
       : C extends React.ComponentClass<infer P>
-      ? Merge<P, BaseProps<M> & { component: C, ref?: React.Ref<InstanceType<C>> }>
+      ? Merge<P, BaseProps<M> & { component: C; ref?: React.Ref<InstanceType<C>> }>
       : C extends React.ComponentType<infer P>
       ? Merge<P, BaseProps<M> & { component: C }>
       : C extends keyof JSX.IntrinsicElements
       ? Merge<JSX.IntrinsicElements[C], BaseProps<M> & { component: C }>
-      : never
+      : never,
   ): JSX.Element;
   (props: DefaultComponentProps<M>): JSX.Element;
 }
