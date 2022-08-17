@@ -42,7 +42,7 @@ Snackbars are differentiated from other kinds of popups and alerts in that they 
 Use the `autoHideDuration` prop to set the time (in milliseconds) that the snackbar remains on the screen.
 
 :::info
-You may want to implement `SnackbarUnstyled` with [`ClickAwayListener`](/base/react-click-away-listener/), so that the user can choose to dismiss the snackbar before its time runs out.
+You may want to implement `SnackbarUnstyled` with [`ClickAwayListener`](/base/react-click-away-listener/), so that the user can choose to dismiss the snackbar before its time is up by clicking anywhere outside of it.
 But this behavior is optional for a snackbar.
 :::
 
