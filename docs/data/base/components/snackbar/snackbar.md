@@ -101,8 +101,6 @@ The demo below shows how to build a fully custom component with the `useSnackbar
 
 {{"demo": "UseSnackbar.js", "defaultCodeOpen": false}}
 
-Hooks _do not_ support [slot props](#slot-props), but they do support [customization props](#customization).
-
 :::info
 Hooks give you the most room for customization, but require more work to implement.
 With hooks, you can take full control over how your component is rendered, and define all the custom props and CSS classes you need.
