@@ -37,7 +37,7 @@ export default function MyApp() {
 Snackbars are differentiated from other kinds of popups and alerts in that they are _informational, temporary, and contextual_ (Source: [Material Design—Snackbars](https://material.io/components/snackbars)).
 :::
 
-`SnackbarUnstyled` doesn't impose any restrictions on its implementation—it's up to you to design it so that it doesn't interrupt the user experience, and disappears after a set amount of time without the requiring the user to take action.
+`SnackbarUnstyled` doesn't impose any restrictions on its implementation—it's up to you to design it so that it doesn't interrupt the user experience, and disappears after a set amount of time without requiring the user to take action.
 
 Use the `autoHideDuration` prop to set the time (in milliseconds) that the snackbar remains on the screen.
 
