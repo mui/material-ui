@@ -4,13 +4,13 @@ import { unstable_capitalize as capitalize } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
 import composeClasses from '@mui/base/composeClasses';
 import { useSlotProps, EventHandlers } from '@mui/base/utils';
-import { useInput, InputUnstyledOwnerState } from '@mui/base/InputUnstyled';
 import { styled, useThemeProps } from '../styles';
 import { InputTypeMap, InputProps } from './InputProps';
 import inputClasses, { getInputUtilityClass } from './inputClasses';
+import useForwardedInput from './useForwardedInput';
 
 const useUtilityClasses = (ownerState: InputProps) => {
-  const { classes, disabled, fullWidth, variant, color, size } = ownerState;
+  const { disabled, fullWidth, variant, color, size } = ownerState;
 
   const slots = {
     root: [
@@ -26,14 +26,14 @@ const useUtilityClasses = (ownerState: InputProps) => {
     endDecorator: ['endDecorator'],
   };
 
-  return composeClasses(slots, getInputUtilityClass, classes);
+  return composeClasses(slots, getInputUtilityClass, {});
 };
 
 const InputRoot = styled('div', {
   name: 'JoyInput',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: InputProps & InputUnstyledOwnerState }>(({ theme, ownerState }) => {
+})<{ ownerState: InputProps }>(({ theme, ownerState }) => {
   const variantStyle = theme.variants[`${ownerState.variant!}`]?.[ownerState.color!];
   return [
     {
@@ -139,7 +139,7 @@ const InputInput = styled('input', {
   name: 'JoyInput',
   slot: 'Input',
   overridesResolver: (props, styles) => styles.input,
-})<{ ownerState: InputProps & InputUnstyledOwnerState }>(({ theme, ownerState }) => ({
+})<{ ownerState: InputProps }>(({ theme, ownerState }) => ({
   border: 'none', // remove the native input width
   minWidth: 0, // remove the native input width
   outline: 0, // remove the native input outline
@@ -165,7 +165,7 @@ const InputStartDecorator = styled('span', {
   name: 'JoyInput',
   slot: 'StartDecorator',
   overridesResolver: (props, styles) => styles.startDecorator,
-})<{ ownerState: InputProps & InputUnstyledOwnerState }>(({ theme, ownerState }) => ({
+})<{ ownerState: InputProps & { focused: boolean } }>(({ theme, ownerState }) => ({
   '--Button-margin': '0 0 0 calc(var(--Input-decorator-childOffset) * -1)',
   '--IconButton-margin': '0 0 0 calc(var(--Input-decorator-childOffset) * -1)',
   '--Icon-margin': '0 0 0 calc(var(--Input-paddingInline) / -4)',
@@ -183,7 +183,7 @@ const InputEndDecorator = styled('span', {
   name: 'JoyInput',
   slot: 'EndDecorator',
   overridesResolver: (props, styles) => styles.endDecorator,
-})<{ ownerState: InputProps & InputUnstyledOwnerState }>(({ theme, ownerState }) => ({
+})<{ ownerState: InputProps }>(({ theme, ownerState }) => ({
   '--Button-margin': '0 calc(var(--Input-decorator-childOffset) * -1) 0 0',
   '--IconButton-margin': '0 calc(var(--Input-decorator-childOffset) * -1) 0 0',
   '--Icon-margin': '0 calc(var(--Input-paddingInline) / -4) 0 0',
@@ -200,57 +200,25 @@ const Input = React.forwardRef(function Input(inProps, ref) {
   });
 
   const {
-    'aria-describedby': ariaDescribedby,
-    'aria-label': ariaLabel,
-    'aria-labelledby': ariaLabelledby,
-    autoComplete,
-    autoFocus,
-    className,
-    color = 'neutral',
-    component,
-    componentsProps = {},
-    defaultValue,
-    disabled,
-    endDecorator,
-    fullWidth = false,
-    error,
-    id,
-    name,
-    onClick,
-    onChange,
-    onKeyDown,
-    onKeyUp,
-    onFocus,
-    onBlur,
-    placeholder,
-    readOnly,
-    required,
-    type = 'text',
-    startDecorator,
-    size = 'md',
-    value,
-    variant = 'outlined',
-    ...other
-  } = props;
-
-  const {
+    propsToForward,
+    rootStateClasses,
+    inputStateClasses,
     getRootProps,
     getInputProps,
+    component,
+    componentsProps = {},
     focused,
     formControlContext,
     error: errorState,
     disabled: disabledState,
-  } = useInput({
-    disabled,
-    defaultValue,
-    error,
-    onBlur,
-    onClick,
-    onChange,
-    onFocus,
-    required,
-    value,
-  });
+    fullWidth = false,
+    size = 'md',
+    color = 'neutral',
+    variant = 'outlined',
+    startDecorator,
+    endDecorator,
+    ...other
+  } = useForwardedInput<InputProps>(props, inputClasses);
 
   const ownerState = {
     ...props,
@@ -260,38 +228,11 @@ const Input = React.forwardRef(function Input(inProps, ref) {
     error: errorState,
     focused,
     formControlContext: formControlContext!,
-    type,
     size,
     variant,
   };
 
-  const rootStateClasses = {
-    [inputClasses.disabled]: disabledState,
-    [inputClasses.error]: errorState,
-    [inputClasses.focused]: focused,
-    [inputClasses.formControl]: Boolean(formControlContext),
-  };
-
-  const inputStateClasses = {
-    [inputClasses.disabled]: disabledState,
-  };
-
   const classes = useUtilityClasses(ownerState);
-
-  const propsToForward = {
-    'aria-describedby': ariaDescribedby,
-    'aria-label': ariaLabel,
-    'aria-labelledby': ariaLabelledby,
-    autoComplete,
-    autoFocus,
-    id,
-    onKeyDown,
-    onKeyUp,
-    name,
-    placeholder,
-    readOnly,
-    type,
-  };
 
   const rootProps = useSlotProps({
     elementType: InputRoot,
@@ -303,7 +244,7 @@ const Input = React.forwardRef(function Input(inProps, ref) {
       as: component,
     },
     ownerState,
-    className: [classes.root, rootStateClasses, className],
+    className: [classes.root, rootStateClasses],
   });
 
   const inputProps = useSlotProps({
