@@ -1,9 +1,8 @@
 ---
 product: base
-title: Unstyled React Snackbar component
+title: Unstyled React Snackbar component and hook
 components: SnackbarUnstyled
 githubLabel: 'component: snackbar'
-packageName: '@mui/base'
 ---
 
 # Unstyled snackbar
@@ -94,7 +93,7 @@ It returns props to be placed on the custom component, along with fields represe
 
 Hooks _do not_ support [slot props](#slot-props), but they do support [customization props](#customization).
 
-If you are using a [`ClickAwayListener`](/react-click-away-listener/) to close the snackbar by clicking outside of it, make sure to pass the `onClickAway` handler returned by this hook to the `ClickAwayListener`.
+If you use a [`ClickAwayListener`](/react-click-away-listener/) to let the user close the snackbar by clicking outside of it, make sure to pass the `onClickAway` handler returned by this hook to the `ClickAwayListener`.
 
 Pass the `open` state to the hook and use it to show and hide the snackbar.
 
