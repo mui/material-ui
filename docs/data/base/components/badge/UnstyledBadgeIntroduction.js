@@ -11,7 +11,8 @@ const grey = {
   900: '#24292f',
 };
 
-const StyledBadge = styled(BadgeUnstyled)`
+const StyledBadge = styled(BadgeUnstyled)(
+  ({ theme }) => `
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -39,11 +40,14 @@ const StyledBadge = styled(BadgeUnstyled)`
     text-align: center;
     border-radius: 12px;
     background: ${blue[500]};
-    box-shadow: 0px 4px 16px ${theme.palette.mode === 'dark' ? grey[900] : grey[300]};
+    box-shadow: 0px 4px 16px ${
+      theme.palette.mode === 'dark' ? grey[900] : grey[300]
+    };
     transform: translate(50%, -50%);
     transform-origin: 100% 0;
   }
-`;
+  `,
+);
 
 function BadgeContent() {
   return (

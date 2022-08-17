@@ -67,7 +67,8 @@ const Tab = styled(TabUnstyled)`
   }
 `;
 
-const TabPanel = styled(TabPanelUnstyled)`
+const TabPanel = styled(TabPanelUnstyled)(
+  ({ theme }) => `
   width: 100%;
   font-family: IBM Plex Sans, sans-serif;
   font-size: 0.875rem;
@@ -75,9 +76,11 @@ const TabPanel = styled(TabPanelUnstyled)`
   background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
   border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
   border-radius: 12px;
-`;
+  `,
+);
 
-const TabsList = styled(TabsListUnstyled)`
+const TabsList = styled(TabsListUnstyled)(
+  ({ theme }) => `
   min-width: 400px;
   background-color: ${blue[500]};
   border-radius: 12px;
@@ -87,7 +90,8 @@ const TabsList = styled(TabsListUnstyled)`
   justify-content: center;
   align-content: space-between;
   box-shadow: 0px 4px 30px ${theme.palette.mode === 'dark' ? grey[900] : grey[200]};
-`;
+  `,
+);
 
 export default function UnstyledTabsCustomized() {
   return (

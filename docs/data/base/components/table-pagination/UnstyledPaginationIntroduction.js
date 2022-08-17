@@ -59,7 +59,6 @@ const Root = styled('div')(
 
   td,
   th {
-    // border: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[200]};
     padding: 16px;
 
   }
@@ -98,6 +97,7 @@ const CustomTablePagination = styled(TablePaginationUnstyled)(
     border: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[200]};
     border-radius: 50px;
     background-color: transparent;
+    color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
 
     &:hover {
       background-color: ${theme.palette.mode === 'dark' ? grey[800] : grey[50]};
@@ -128,6 +128,7 @@ const CustomTablePagination = styled(TablePaginationUnstyled)(
     border: transparent;
     border-radius: 2px;
     background-color: transparent;
+    color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
 
     &:hover {
       background-color: ${theme.palette.mode === 'dark' ? grey[800] : grey[50]};
