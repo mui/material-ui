@@ -58,11 +58,12 @@ type ProductSubMenuProps = {
   icon: React.ReactElement;
   name: React.ReactNode;
   description: React.ReactNode;
+  chip?: React.ReactNode;
   href: string;
 } & Omit<JSX.IntrinsicElements['a'], 'ref'>;
 
 const ProductSubMenu = React.forwardRef<HTMLAnchorElement, ProductSubMenuProps>(
-  function ProductSubMenu({ icon, name, description, href, ...props }, ref) {
+  function ProductSubMenu({ icon, name, description, chip, href, ...props }, ref) {
     return (
       <Box
         component={Link}
@@ -100,13 +101,14 @@ const ProductSubMenu = React.forwardRef<HTMLAnchorElement, ProductSubMenuProps>(
           {icon}
         </Box>
         <div>
-          <Typography color="text.primary" variant="body2" fontWeight={700}>
+          <Typography color="text.primary" variant="body2" fontWeight="700">
             {name}
           </Typography>
           <Typography color="text.secondary" variant="body2">
             {description}
           </Typography>
         </div>
+        {chip}
       </Box>
     );
   },
@@ -328,19 +330,13 @@ export default function HeaderNavBar() {
                         role="menuitem"
                         href={ROUTES.productToolpad}
                         icon={<IconImage name="product-toolpad" />}
-                        name={
-                          <Box
-                            sx={{
-                              display: 'flex',
-                              component: 'span',
-                              flexDirection: 'row',
-                              justifyContent: 'space-between',
-                              width: '150%',
-                            }}
-                          >
-                            <div>MUI&nbsp;Toolpad</div>
-                            <Chip size="small" label={'Alpha'} />
-                          </Box>
+                        name={'MUI Toolpad'}
+                        chip={
+                          <Chip
+                            label="Alpha"
+                            size="small"
+                            sx={{ display: 'flex', marginY: '0', marginX: 'auto' }}
+                          />
                         }
                         description="Low-code tool builder, powered by MUI."
                         onKeyDown={handleKeyDown}
