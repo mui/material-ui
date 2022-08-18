@@ -335,6 +335,7 @@ export default function HeaderNavBar() {
                           <Chip
                             label="Alpha"
                             size="small"
+                            color="grey"
                             sx={{ display: 'flex', marginY: '0', marginX: 'auto' }}
                           />
                         }

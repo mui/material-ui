@@ -203,7 +203,9 @@ export default function HeaderNavDropdown() {
                             }}
                           >
                             <span>{item.name}</span>
-                            {item.chip ? <Chip size="small" label={item.chip} /> : null}
+                            {item.chip ? (
+                              <Chip size="small" label={item.chip} color="grey" />
+                            ) : null}
                           </Box>
                           <Typography variant="body2" color="text.secondary">
                             {item.description}
