@@ -98,12 +98,6 @@ const DOCS = [
     description: 'Advanced and powerful components for complex use cases.',
     href: ROUTES.advancedComponents,
   },
-  {
-    name: 'MUI Toolpad',
-    description: 'Low-code tool builder, powered by MUI.',
-    href: ROUTES.toolpadDocs,
-    chip: 'Alpha',
-  },
 ];
 
 export default function HeaderNavDropdown() {
@@ -262,7 +256,6 @@ export default function HeaderNavDropdown() {
                             }}
                           >
                             <div>{item.name}</div>
-                            {item.chip ? <Chip size="small" label={item.chip} /> : null}
                           </Box>
                           <Typography variant="body2" color="text.secondary">
                             {item.description}

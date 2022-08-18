@@ -13,12 +13,14 @@ function ProductSubMenu({
   icon,
   name,
   description,
+  chip,
   sx = [],
   ...props
 }: {
   icon: React.ReactNode;
   name: React.ReactNode;
   description: React.ReactNode;
+  chip?: React.ReactNode;
 } & BoxProps) {
   return (
     <Box
@@ -52,6 +54,7 @@ function ProductSubMenu({
           {description}
         </Typography>
       </div>
+      {chip}
     </Box>
   );
 }
@@ -168,42 +171,6 @@ export default function MuiProductSelector() {
               </Box>
             }
             description="Advanced and powerful components for complex use cases."
-          />
-        </Link>
-      </li>
-      <li role="none">
-        <Link
-          href={ROUTES.toolpadDocs}
-          sx={{
-            p: 2,
-            width: '100%',
-            '&:hover': {
-              backgroundColor: (theme) =>
-                theme.palette.mode === 'dark'
-                  ? alpha(theme.palette.primaryDark[700], 0.4)
-                  : theme.palette.grey[50],
-            },
-          }}
-        >
-          <ProductSubMenu
-            role="menuitem"
-            sx={{ width: '100%' }}
-            icon={<IconImage name="product-toolpad" />}
-            name={
-              <Box
-                sx={{
-                  display: 'flex',
-                  component: 'span',
-                  flexDirection: 'row',
-                  justifyContent: 'space-between',
-                  width: '150%',
-                }}
-              >
-                <div>MUI&nbsp;Toolpad</div>
-                <Chip size="small" label={'Alpha'} />
-              </Box>
-            }
-            description="Low-code tool builder, powered by MUI."
           />
         </Link>
       </li>
