@@ -1,23 +1,24 @@
 ---
-title: 'Making customizable components'
-description: The use case of the data grid
-date: 2022-06-23T00:00:00.000Z
+title: Strategies for building customizable components
+description: Explore the tradeoffs between different customization techniques, and how we landed on our strategy at MUI.
+date: 2022-08-22T00:00:00.000Z
 authors: ['alexfauquette']
-tags: ['MUI X']
+tags: ['MUI X', 'MUI Core']
 ---
 
 MUI's components are used by hundreds of thousands of developers worldwide, encompassing the full range of implementation from minor side projects to massive company websites.
 
-This variety of users presents a dilemma for us maintainers: hobbyists working on side projects want fully built components that work right out of the box, so they can focus on the application logic; many larger companies, by contrast, want to be able to fully customize components to respect their brand design.
+This variety of users presents a dilemma for us as maintainers: hobbyists working on side projects want fully built components that work right out of the box, so they can focus on the application logic; many larger companies, by contrast, want to be able to fully customize components to respect their brand design.
 
 Managing these contradictory needs only becomes more difficult as component complexity increases.
 
 This article reviews several different approaches that a developer might take to customize UI components, as well as the various tradeoffs associated with each method.
-Along the way, we'll explore how these tradeoffs ultimately led to the solution that we've settled on for customizing MUI components.
+Along the way, we'll explore how these tradeoffs ultimately led to the solution that we've settled on for customizing MUI components: the slot strategy.
 
 ## Style modification
 
-(Already sold on using style libraries? Don't hesitate to skip this section and move on to [Logic modification](#logic-modification).)
+(Don't need us to convince you to use a style library?
+Feel free to skip this section and move on to [Logic modification](#logic-modification).)
 
 ### Good old CSS
 
@@ -61,7 +62,7 @@ Maybe you don't want to spend your time switching between CSS and JavaScript fil
 To avoid these problems you can integrate styles directly into your JS code. 🎉
 
 Because the level of customization varies across projects, MUI's components can be customized in several different ways.
-For more information on this topic, check out the [Customization documentation](https://mui.com/material-ui/customization/how-to-customize/).
+For more information on this topic, check out the [Material UI customization documentation](https://mui.com/material-ui/customization/how-to-customize/).
 
 ## Logic modification
 
@@ -84,13 +85,14 @@ Let's play with a slightly more complex component: the [`DataGrid`](https://mui.
 
 This component allows you to manage data by applying sorting, filtering, editing, exporting, and many other _-ings_.
 
-To give you an idea of how complex this component can get, let's look at an example of a feature request for the `DataGrid` and see what problems arise when we try to "just" add a prop:
+To give you an idea of how complex this component can get, let's look at an example of a feature request for the `DataGrid` and think about how we could address it:
 
 :::info
 **[DataGrid] Sorting column options by alphabetical order**
 
-When I open the filterPanel, the input listing the names of the columns is sorted according to column position.
-I would like to sort it by alphabetical order.
+When I open the filter panel, the input listing the names of the columns is sorted according to column position.
+I would like to be able to sort it by alphabetical order.
+
 <img src="/static/blog/making-customizable-components/issueScreenshot.png" style="width: 796px; margin-top: 16px; margin-bottom: 8px;" alt="Screen shot of the filter panel with column selector un sorted" />
 :::
 
@@ -235,7 +237,7 @@ That's all it takes.
 For every icon, there is a corresponding key in `components` that we call a slot.
 If you provide a component to a slot, your component will be used instead of the default one.
 
-You can also plug native HTML elements into component slots, making it simple to customize the DOM structure of any component to suit your needs.
+Beyond swapping out icons, you can also plug native HTML elements into component slots, making it simple to customize the DOM structure of any component to suit your needs.
 
 ### Passing props
 
@@ -246,9 +248,9 @@ We can't provide a slot to override the selector alone, or else we would need to
 
 We could use a slot to override the filter panel.
 We provide this slot just in case you need a fully customized panel.
-But honestly, who wants to rewrite an entire component for a simple sorting options?
+But honestly, who wants to rewrite an entire component just for simple sorting options?
 
-What would be nice is to have a prop called `columnsSort` that lets you sort the column selector in ascending and descending order.
+Instead, what would be nice is to have a prop called `columnsSort` that lets you sort the column selector in ascending and descending order.
 By adding this prop to the default filter panel, we can derive a customized panel like this:
 
 ```jsx
@@ -262,6 +264,7 @@ const CustomFilterPanel = (props) => (
 But this strategy of adding props to customize components is a bit verbose.
 So we added a way to pass props to an existing component using `componentsProps`.
 You can pass props to every slot on `components` using `componentsProps`.
+
 Here's how to pass `columnsSort='asc'` to the filter panel slot:
 
 ```jsx
