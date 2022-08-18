@@ -90,7 +90,7 @@ const Select = React.forwardRef(function Select(inProps, ref) {
     inputProps: {
       children,
       IconComponent,
-      ...(!input && { variant }),
+      variant,
       type: undefined, // We render a select. We can ignore the type provided by the `Input`.
       multiple,
       ...(native
