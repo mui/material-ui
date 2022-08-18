@@ -502,6 +502,6 @@ describe('<TablePagination />', () => {
 
     const [combobox] = getAllByRole('button');
 
-    expect(combobox.parentNode).not.to.have.attribute('variant');
+    expect(combobox.parentElement).not.to.have.attribute('variant');
   });
 });
