@@ -285,33 +285,15 @@ Input.propTypes /* remove-proptypes */ = {
   /**
    * @ignore
    */
-  'aria-describedby': PropTypes.string,
-  /**
-   * @ignore
-   */
-  'aria-label': PropTypes.string,
-  /**
-   * @ignore
-   */
-  'aria-labelledby': PropTypes.string,
-  /**
-   * This prop helps users to fill forms faster, especially on mobile devices.
-   * The name can be confusing, as it's more like an autofill.
-   * You can learn more about it [following the specification](https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#autofill).
-   */
   autoComplete: PropTypes.string,
   /**
-   * If `true`, the `input` element is focused during the first mount.
+   * @ignore
    */
   autoFocus: PropTypes.bool,
   /**
    * @ignore
    */
   children: PropTypes.node,
-  /**
-   * Override or extend the styles applied to the component.
-   */
-  classes: PropTypes.object,
   /**
    * Class name applied to the root element.
    */
@@ -325,11 +307,6 @@ Input.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
-   */
-  component: PropTypes.elementType,
-  /**
    * The props used for each slot inside the Input.
    * @default {}
    */
@@ -338,12 +315,15 @@ Input.propTypes /* remove-proptypes */ = {
     root: PropTypes.object,
   }),
   /**
-   * The default value. Use when the component is not controlled.
+   * @ignore
    */
-  defaultValue: PropTypes.any,
+  defaultValue: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.string),
+    PropTypes.number,
+    PropTypes.string,
+  ]),
   /**
-   * If `true`, the component is disabled.
-   * The prop defaults to the value (`false`) inherited from the parent FormControl component.
+   * @ignore
    */
   disabled: PropTypes.bool,
   /**
@@ -361,17 +341,13 @@ Input.propTypes /* remove-proptypes */ = {
    */
   fullWidth: PropTypes.bool,
   /**
-   * The id of the `input` element.
+   * @ignore
    */
   id: PropTypes.string,
   /**
-   * Name attribute of the `input` element.
-   */
-  name: PropTypes.string,
-  /**
    * @ignore
    */
-  onBlur: PropTypes.func,
+  name: PropTypes.string,
   /**
    * @ignore
    */
@@ -379,31 +355,13 @@ Input.propTypes /* remove-proptypes */ = {
   /**
    * @ignore
    */
-  onClick: PropTypes.func,
-  /**
-   * @ignore
-   */
-  onFocus: PropTypes.func,
-  /**
-   * @ignore
-   */
-  onKeyDown: PropTypes.func,
-  /**
-   * @ignore
-   */
-  onKeyUp: PropTypes.func,
-  /**
-   * The short hint displayed in the `input` before the user enters a value.
-   */
   placeholder: PropTypes.string,
   /**
-   * It prevents the user from changing the value of the field
-   * (not from interacting with the field).
+   * @ignore
    */
   readOnly: PropTypes.bool,
   /**
-   * If `true`, the `input` element is required.
-   * The prop defaults to the value (`false`) inherited from the parent FormControl component.
+   * @ignore
    */
   required: PropTypes.bool,
   /**
@@ -427,14 +385,13 @@ Input.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
-   * Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types).
-   * @default 'plain'
+   * @ignore
    */
-  type: PropTypes.string,
-  /**
-   * The value of the `input` element, required for a controlled component.
-   */
-  value: PropTypes.any,
+  value: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.string),
+    PropTypes.number,
+    PropTypes.string,
+  ]),
   /**
    * The variant to use.
    * @default 'outlined'

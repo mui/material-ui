@@ -45,21 +45,21 @@ const TextareaRoot = styled('div', {
         theme.vars.palette[ownerState.color === 'neutral' ? 'primary' : ownerState.color!]?.[500],
       ...(ownerState.size === 'sm' && {
         '--Textarea-minHeight': '2rem',
-        '--Textarea-paddingBlock': 'calc(0.5rem - var(--variant-borderWidth, 0px))', // to match Input
+        '--Textarea-paddingBlock': 'calc(0.5rem - var(--variant-borderWidth, 0px))', // to match Input because <textarea> does not center the text at the middle like <input>
         '--Textarea-paddingInline': '0.5rem',
         '--Textarea-decorator-childHeight': 'min(1.5rem, var(--Textarea-minHeight))',
         '--Icon-fontSize': '1.25rem',
       }),
       ...(ownerState.size === 'md' && {
         '--Textarea-minHeight': '2.5rem',
-        '--Textarea-paddingBlock': 'calc(0.5rem - var(--variant-borderWidth, 0px))', // to match Input
+        '--Textarea-paddingBlock': 'calc(0.5rem - var(--variant-borderWidth, 0px))',
         '--Textarea-paddingInline': '0.75rem',
         '--Textarea-decorator-childHeight': 'min(2rem, var(--Textarea-minHeight))',
         '--Icon-fontSize': '1.5rem',
       }),
       ...(ownerState.size === 'lg' && {
         '--Textarea-minHeight': '3rem',
-        '--Textarea-paddingBlock': 'calc(0.75rem - var(--variant-borderWidth, 0px))', // to match Input
+        '--Textarea-paddingBlock': 'calc(0.75rem - var(--variant-borderWidth, 0px))',
         '--Textarea-paddingInline': '1rem',
         '--Textarea-gap': '0.75rem',
         '--Textarea-decorator-childHeight': 'min(2.375rem, var(--Textarea-minHeight))',
@@ -265,6 +265,7 @@ const Textarea = React.forwardRef(function Textarea(inProps, ref) {
           {startDecorator}
         </TextareaStartDecorator>
       )}
+
       <TextareaInput
         {...inputProps}
         // @ts-expect-error MUI Base strictly type `onChange` for HTMLInputElement
@@ -287,37 +288,7 @@ Textarea.propTypes /* remove-proptypes */ = {
   /**
    * @ignore
    */
-  'aria-describedby': PropTypes.string,
-  /**
-   * @ignore
-   */
-  'aria-label': PropTypes.string,
-  /**
-   * @ignore
-   */
-  'aria-labelledby': PropTypes.string,
-  /**
-   * This prop helps users to fill forms faster, especially on mobile devices.
-   * The name can be confusing, as it's more like an autofill.
-   * You can learn more about it [following the specification](https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#autofill).
-   */
-  autoComplete: PropTypes.string,
-  /**
-   * If `true`, the `input` element is focused during the first mount.
-   */
-  autoFocus: PropTypes.bool,
-  /**
-   * @ignore
-   */
   children: PropTypes.node,
-  /**
-   * Override or extend the styles applied to the component.
-   */
-  classes: PropTypes.object,
-  /**
-   * Class name applied to the root element.
-   */
-  className: PropTypes.string,
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'neutral'
@@ -327,27 +298,13 @@ Textarea.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
-   */
-  component: PropTypes.elementType,
-  /**
-   * The props used for each slot inside the Textarea.
+   * The props used for each slot inside the Input.
    * @default {}
    */
   componentsProps: PropTypes.shape({
-    input: PropTypes.object,
     root: PropTypes.object,
+    textarea: PropTypes.object,
   }),
-  /**
-   * The default value. Use when the component is not controlled.
-   */
-  defaultValue: PropTypes.any,
-  /**
-   * If `true`, the component is disabled.
-   * The prop defaults to the value (`false`) inherited from the parent FormControl component.
-   */
-  disabled: PropTypes.bool,
   /**
    * Trailing adornment for this input.
    */
@@ -363,51 +320,14 @@ Textarea.propTypes /* remove-proptypes */ = {
    */
   fullWidth: PropTypes.bool,
   /**
-   * The id of the `input` element.
+   * Maximum number of rows to display.
    */
-  id: PropTypes.string,
+  maxRows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
-   * Name attribute of the `input` element.
+   * Minimum number of rows to display.
+   * @default 1
    */
-  name: PropTypes.string,
-  /**
-   * @ignore
-   */
-  onBlur: PropTypes.func,
-  /**
-   * @ignore
-   */
-  onChange: PropTypes.func,
-  /**
-   * @ignore
-   */
-  onClick: PropTypes.func,
-  /**
-   * @ignore
-   */
-  onFocus: PropTypes.func,
-  /**
-   * @ignore
-   */
-  onKeyDown: PropTypes.func,
-  /**
-   * @ignore
-   */
-  onKeyUp: PropTypes.func,
-  /**
-   * The short hint displayed in the `input` before the user enters a value.
-   */
-  placeholder: PropTypes.string,
-  /**
-   * It prevents the user from changing the value of the field
-   * (not from interacting with the field).
-   */
-  readOnly: PropTypes.bool,
-  /**
-   * If `true`, the `input` element is required.
-   * The prop defaults to the value (`false`) inherited from the parent FormControl component.
-   */
-  required: PropTypes.bool,
+  minRows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
    * The size of the component.
    * @default 'md'
@@ -428,15 +348,6 @@ Textarea.propTypes /* remove-proptypes */ = {
     PropTypes.func,
     PropTypes.object,
   ]),
-  /**
-   * Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types).
-   * @default 'plain'
-   */
-  type: PropTypes.string,
-  /**
-   * The value of the `input` element, required for a controlled component.
-   */
-  value: PropTypes.any,
   /**
    * The variant to use.
    * @default 'outlined'
