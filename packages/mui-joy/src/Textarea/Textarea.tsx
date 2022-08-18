@@ -21,7 +21,7 @@ const useUtilityClasses = (ownerState: TextareaProps) => {
       color && `color${capitalize(color)}`,
       size && `size${capitalize(size)}`,
     ],
-    input: ['input'],
+    textarea: ['textarea'],
     startDecorator: ['startDecorator'],
     endDecorator: ['endDecorator'],
   };
@@ -166,6 +166,32 @@ const TextareaInput = styled(TextareaAutosize, {
   '&::-ms-input-placeholder': { opacity: 'var(--Textarea-placeholderOpacity)', color: 'inherit' }, // Edge
 }));
 
+const TextareaStartDecorator = styled('div', {
+  name: 'JoyTextarea',
+  slot: 'StartDecorator',
+  overridesResolver: (props, styles) => styles.startDecorator,
+})<{ ownerState: TextareaProps }>(({ theme }) => ({
+  display: 'flex',
+  marginInline: 'calc(var(--Textarea-decorator-childOffset) * -1)',
+  marginBlockStart:
+    'calc(var(--Textarea-decorator-childOffset) * -1 + var(--Textarea-paddingInline) - var(--Textarea-paddingBlock))',
+  marginBlockEnd: 'var(--Textarea-gap)',
+  color: theme.vars.palette.text.tertiary,
+}));
+
+const TextareaEndDecorator = styled('div', {
+  name: 'JoyTextarea',
+  slot: 'EndDecorator',
+  overridesResolver: (props, styles) => styles.endDecorator,
+})<{ ownerState: TextareaProps }>(({ theme }) => ({
+  display: 'flex',
+  marginInline: 'calc(var(--Textarea-decorator-childOffset) * -1)',
+  marginBlockEnd:
+    'calc(var(--Textarea-decorator-childOffset) * -1 + var(--Textarea-paddingInline) - var(--Textarea-paddingBlock))',
+  marginBlockStart: 'var(--Textarea-gap)',
+  color: theme.vars.palette.text.tertiary,
+}));
+
 const Textarea = React.forwardRef(function Textarea(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
@@ -226,19 +252,29 @@ const Textarea = React.forwardRef(function Textarea(inProps, ref) {
       getInputProps({ ...otherHandlers, ...propsToForward }),
     externalSlotProps: {},
     additionalProps: {
-      // as: componentsProps.input?.component,
+      as: componentsProps.textarea?.component,
     },
     ownerState,
-    className: [classes.input, inputStateClasses],
+    className: [classes.textarea, inputStateClasses],
   });
 
   return (
     <TextareaRoot {...rootProps}>
+      {startDecorator && (
+        <TextareaStartDecorator className={classes.startDecorator} ownerState={ownerState}>
+          {startDecorator}
+        </TextareaStartDecorator>
+      )}
       <TextareaInput
         {...inputProps}
         // @ts-expect-error MUI Base strictly type `onChange` for HTMLInputElement
         onChange={onChange}
       />
+      {endDecorator && (
+        <TextareaEndDecorator className={classes.endDecorator} ownerState={ownerState}>
+          {endDecorator}
+        </TextareaEndDecorator>
+      )}
     </TextareaRoot>
   );
 }) as OverridableComponent<TextareaTypeMap>;

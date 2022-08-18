@@ -3,8 +3,8 @@ import { generateUtilityClass, generateUtilityClasses } from '../className';
 export interface TextareaClasses {
   /** Styles applied to the root element. */
   root: string;
-  /** Styles applied to the input element. */
-  input: string;
+  /** Styles applied to the textarea element. */
+  textarea: string;
   /** Styles applied to the root element if the component is a descendant of `FormControl`. */
   formControl: string;
   /** Styles applied to the root element if `disabled={true}`. */
@@ -47,7 +47,7 @@ export function getTextareaUtilityClass(slot: string): string {
 
 const textareaClasses: TextareaClasses = generateUtilityClasses('JoyTextarea', [
   'root',
-  'input',
+  'textarea',
   'formControl',
   'disabled',
   'error',

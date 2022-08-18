@@ -42,7 +42,7 @@ export interface TextareaTypeMap<P = {}, D extends React.ElementType = 'div'> {
        */
       componentsProps?: {
         root?: React.ComponentPropsWithRef<'div'>;
-        input?: React.ComponentPropsWithRef<'textarea'> & {
+        textarea?: React.ComponentPropsWithRef<'textarea'> & {
           component?: React.ElementType;
           sx?: SxProps;
         };
