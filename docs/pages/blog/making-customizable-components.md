@@ -289,9 +289,21 @@ So as soon as you've specified which slot you want to pass props to, your IDE wi
 If your goal is to customize the style, please don't start from scratch—use libraries to manage your CSS.
 By adhering to solid class management standards, you should be able to provide styles that are easy to override.
 
-You should add props to the component only if they impact the entire component—for example, disabling filtering impacts the whole grid, so a prop would be a viable solution here.
+You should add props to a component only if they impact the entire component—for example, disabling filtering impacts the whole grid, so a prop would be a viable solution here.
 
 You should add slots to override icons, because it's common to need to replace them, so it should be easy to do.
 
 Slots should also be added when your component is somewhat independent from the main one.
 For example, a grid can exist without its filter panel, or without its toolbar.
+
+## Customization is key
+
+In our last two annual [developer surveys](/blog/2021-developer-survey-results/), our users made it clear that customization is always a top priority when choosing a UI library.
+
+Thanks to the slot strategy and the introduction of supplementary tools like [MUI System's `sx` prop](https://mui.com/system/getting-started/the-sx-prop/), it has never been easier to customize MUI's components to suit your specific needs.
+
+[Material UI](https://mui.com/material-ui/getting-started/overview/) and [Joy UI](https://mui.com/joy-ui/getting-started/overview/) are designed to be both beautiful and flexible right out of the box, while [MUI Base](https://mui.com/base/getting-started/overview/) gives you the most freedom to implement your own custom styling solution.
+[MUI X](https://mui.com/x/introduction/) is comprised of fully featured complex components like the `DataGrid` which—as we've seen—can still be customized in many ways with minimal friction.
+
+Get started building with the MUI X Data Grid by [installing the MIT-licensed Community package](https://mui.com/x/react-data-grid/getting-started/#installation) today.
+And be sure to let us know what you think about the customization experience!
