@@ -44,7 +44,7 @@ const IconButtonRoot = styled('button', {
         minWidth: 'var(--IconButton-size, 2rem)', // use min-width instead of height to make the button resilient to its content
         minHeight: 'var(--IconButton-size, 2rem)', // use min-height instead of height to make the button resilient to its content
         fontSize: theme.vars.fontSize.sm,
-        paddingInline: '0.125rem', // add a gap, in case the content is long, e.g. multiple icons
+        paddingInline: '2px', // add a gap, in case the content is long, e.g. multiple icons
       }),
       ...(ownerState.size === 'md' && {
         '--Icon-fontSize': 'calc(var(--IconButton-size, 2.5rem) / 1.667)', // 1.5rem by default
