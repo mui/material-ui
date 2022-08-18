@@ -90,7 +90,7 @@ const Select = React.forwardRef(function Select(inProps, ref) {
     inputProps: {
       children,
       IconComponent,
-      variant,
+      ...(!input && { variant }),
       type: undefined, // We render a select. We can ignore the type provided by the `Input`.
       multiple,
       ...(native
@@ -114,7 +114,7 @@ const Select = React.forwardRef(function Select(inProps, ref) {
     ...(multiple && native && variant === 'outlined' ? { notched: true } : {}),
     ref: inputComponentRef,
     className: clsx(InputComponent.props.className, className),
-    variant,
+    ...(!input && { variant }),
     ...other,
   });
 });
