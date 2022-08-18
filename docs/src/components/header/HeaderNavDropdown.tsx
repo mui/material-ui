@@ -208,7 +208,7 @@ export default function HeaderNavDropdown() {
                               justifyContent: 'space-between',
                             }}
                           >
-                            <div>{item.name}</div>
+                            <span>{item.name}</span>
                             {item.chip ? <Chip size="small" label={item.chip} /> : null}
                           </Box>
                           <Typography variant="body2" color="text.secondary">
