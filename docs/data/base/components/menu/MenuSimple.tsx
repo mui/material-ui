@@ -3,7 +3,6 @@ import MenuUnstyled, { MenuUnstyledActions } from '@mui/base/MenuUnstyled';
 import MenuItemUnstyled, {
   menuItemUnstyledClasses,
 } from '@mui/base/MenuItemUnstyled';
-import { buttonUnstyledClasses } from '@mui/base/ButtonUnstyled';
 import PopperUnstyled from '@mui/base/PopperUnstyled';
 import { styled } from '@mui/system';
 
