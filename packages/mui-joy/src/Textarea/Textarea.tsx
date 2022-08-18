@@ -210,7 +210,6 @@ const Textarea = React.forwardRef(function Textarea(inProps, ref) {
     formControlContext,
     error: errorState,
     disabled: disabledState,
-    fullWidth = false,
     size = 'md',
     color = 'neutral',
     variant = 'outlined',
@@ -221,7 +220,6 @@ const Textarea = React.forwardRef(function Textarea(inProps, ref) {
 
   const ownerState = {
     ...props,
-    fullWidth,
     color: errorState ? 'danger' : color,
     disabled: disabledState,
     error: errorState,
@@ -314,11 +312,6 @@ Textarea.propTypes /* remove-proptypes */ = {
    * The prop defaults to the value (`false`) inherited from the parent FormControl component.
    */
   error: PropTypes.bool,
-  /**
-   * If `true`, the button will take up the full width of its container.
-   * @default false
-   */
-  fullWidth: PropTypes.bool,
   /**
    * Maximum number of rows to display.
    */

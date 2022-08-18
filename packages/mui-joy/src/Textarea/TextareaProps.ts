@@ -57,11 +57,6 @@ export interface TextareaTypeMap<P = {}, D extends React.ElementType = 'div'> {
        */
       error?: boolean;
       /**
-       * If `true`, the button will take up the full width of its container.
-       * @default false
-       */
-      fullWidth?: boolean;
-      /**
        * Maximum number of rows to display.
        */
       maxRows?: string | number;
