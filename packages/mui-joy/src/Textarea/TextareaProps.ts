@@ -2,7 +2,7 @@ import React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
 
-export type TextareaSlot = 'root';
+export type TextareaSlot = 'root' | 'textarea' | 'startDecorator' | 'endDecorator';
 
 export interface TextareaPropsVariantOverrides {}
 
