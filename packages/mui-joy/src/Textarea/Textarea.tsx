@@ -137,13 +137,13 @@ const TextareaRoot = styled('div', {
 const TextareaInput = styled(TextareaAutosize, {
   name: 'JoyTextarea',
   slot: 'Textarea',
-  overridesResolver: (props, styles) => styles.input,
+  overridesResolver: (props, styles) => styles.textarea,
 })<{ ownerState: TextareaProps }>(({ theme, ownerState }) => ({
   resize: 'none',
-  border: 'none', // remove the native input width
-  minWidth: 0, // remove the native input width
-  outline: 0, // remove the native input outline
-  padding: 0, // remove the native input padding
+  border: 'none', // remove the native textarea width
+  minWidth: 0, // remove the native textarea width
+  outline: 0, // remove the native textarea outline
+  padding: 0, // remove the native textarea padding
   paddingInlineEnd: `var(--Textarea-paddingInline)`,
   flex: 'auto',
   alignSelf: 'stretch',
