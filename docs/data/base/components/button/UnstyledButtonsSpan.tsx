@@ -24,6 +24,7 @@ const CustomButton = styled(ButtonUnstyled)`
   transition: all 150ms ease;
   cursor: pointer;
   border: none;
+
   &:hover {
     background-color: ${blue[600]};
   }

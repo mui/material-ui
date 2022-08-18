@@ -57,7 +57,6 @@ const BasicSwitchThumb = styled('span')`
   border-radius: 16px;
   background-color: #fff;
   position: relative;
-
   transition-property: all;
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
   transition-duration: 120ms;
