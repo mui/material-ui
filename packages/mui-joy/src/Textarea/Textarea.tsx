@@ -66,8 +66,6 @@ const TextareaRoot = styled('div', {
         '--Icon-fontSize': '1.75rem',
       }),
       // variables for controlling child components
-      '--Textarea-decorator-childOffset':
-        'min(calc(var(--Textarea-paddingInline) - (var(--Textarea-minHeight) - 2 * var(--variant-borderWidth) - var(--Textarea-decorator-childHeight)) / 2), var(--Textarea-paddingInline))',
       '--internal-paddingBlock':
         'max((var(--Textarea-minHeight) - 2 * var(--variant-borderWidth) - var(--Textarea-decorator-childHeight)) / 2, 0px)',
       '--Textarea-decorator-childRadius':
@@ -172,9 +170,7 @@ const TextareaStartDecorator = styled('div', {
   overridesResolver: (props, styles) => styles.startDecorator,
 })<{ ownerState: TextareaProps }>(({ theme }) => ({
   display: 'flex',
-  marginInline: 'calc(var(--Textarea-decorator-childOffset) * -1)',
-  marginBlockStart:
-    'calc(var(--Textarea-decorator-childOffset) * -1 + var(--Textarea-paddingInline) - var(--Textarea-paddingBlock))',
+  marginInline: 'calc(var(--Textarea-paddingBlock) - var(--Textarea-paddingInline))',
   marginBlockEnd: 'var(--Textarea-gap)',
   color: theme.vars.palette.text.tertiary,
 }));
@@ -185,9 +181,7 @@ const TextareaEndDecorator = styled('div', {
   overridesResolver: (props, styles) => styles.endDecorator,
 })<{ ownerState: TextareaProps }>(({ theme }) => ({
   display: 'flex',
-  marginInline: 'calc(var(--Textarea-decorator-childOffset) * -1)',
-  marginBlockEnd:
-    'calc(var(--Textarea-decorator-childOffset) * -1 + var(--Textarea-paddingInline) - var(--Textarea-paddingBlock))',
+  marginInline: 'calc(var(--Textarea-paddingBlock) - var(--Textarea-paddingInline))',
   marginBlockStart: 'var(--Textarea-gap)',
   color: theme.vars.palette.text.tertiary,
 }));
