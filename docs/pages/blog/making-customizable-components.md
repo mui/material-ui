@@ -6,37 +6,34 @@ authors: ['alexfauquette']
 tags: ['MUI X']
 ---
 
-At MUI, our goal is to empower as many people as possible to build great UIs.
-To do so, we build React components and documentation used by hundreds of thousands of developers on everything from minor side projects to massive company websites.
+MUI's components are used by hundreds of thousands of developers worldwide, encompassing the full range of implementation from minor side projects to massive company websites.
 
-This variety of users presents a dilemma: hobbyists working on side projects want fully built components that work right out of the box, so they can focus on the application logic; many larger companies, by contrast, want to be able to fully customize components to respect their brand design.
-Managing these contradictory needs becomes harder as component complexity increases.
+This variety of users presents a dilemma for us maintainers: hobbyists working on side projects want fully built components that work right out of the box, so they can focus on the application logic; many larger companies, by contrast, want to be able to fully customize components to respect their brand design.
 
-This article reviews several different approaches to customizing components, as well as the various tradeoffs associated with each method.
+Managing these contradictory needs only becomes more difficult as component complexity increases.
+
+This article reviews several different approaches that a developer might take to customize UI components, as well as the various tradeoffs associated with each method.
 Along the way, we’ll explore how these tradeoffs ultimately led to the solution that we’ve settled on for customizing MUI components.
 
 ## Style modification
 
-If you already use a styling library, don’t hesitate to skip this part.
-See you back in the [Logic modification section](#logic-modification).
+(Already sold on using style libraries? Don’t hesitate to skip this section and move on to [Logic modification](#logic-modification).)
 
 ### Good old CSS
 
 Let's start with the easiest part: modifying the style.
-This will necessarily involve CSS.
-Especially the notion of [specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity), which says that if an element is targeted by two CSS selectors, the browser will apply the more specific one.
-Most of the time it is the selector using more classes.
+This will necessarily involve CSS—especially the notion of [specificity](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity), which says that if an element is targeted by two CSS selectors, the browser will apply the more specific one.
+Usually this means that the selector with more classes applied to it is more specific and therefore takes precedence.
 
-For example, if we look at a switch component, we have multiple subcomponents that we could expect to modify.
+For example, if we look at the Material UI `Switch` component, we have multiple subcomponents that we could expect to modify.
 For each of them, we assign a specific CSS class:
 
 <img src="/static/blog/making-customizable-components/switchHighlighted.png" style="width: 532px; margin-top: 16px; margin-bottom: 16px;" alt="Switch component with highlighted sub components" />
 
-Notice that each element is styled using only one CSS class— the thumb style, for example, is applied with the `css-jsexje-MuiSwitch-thumb` class.
-So any CSS selector that includes more than one class will override its style.
+Notice that each element is styled using only one CSS class—the thumb style, for example, is applied with the `css-jsexje-MuiSwitch-thumb` class, so any CSS selector that includes more than one class will override its style.
 
-I’m not a designer, so I made an ugly switch example using only CSS.
-You can play with those examples in a [codesandbox](https://codesandbox.io/s/fast-http-kv85p5?file=/src/App.js)
+I’m not a designer, so I made an ugly switch example using only CSS—
+you can play around with it in [CodeSandbox](https://codesandbox.io/s/fast-http-kv85p5?file=/src/App.js):
 
 <img src="/static/blog/making-customizable-components/uglySwitches.png" style="width: 200px; margin-top: 16px; margin-bottom: 8px;" alt="Switch customized with CSS" />
 
@@ -61,7 +58,7 @@ You can play with those examples in a [codesandbox](https://codesandbox.io/s/fas
 ### Let JS generate the CSS
 
 Maybe you don’t want to spend your time switching between CSS and JavaScript files, or writing long and cluttered stylesheets.
-To avoid these problems you can integrate the style in your JS code 🎉
+To avoid these problems you can integrate the style directly into your JS code. 🎉
 
 Because the level of customization varies across projects, MUI has added multiple ways to customize components.
 If you want more information on this topic, you can have a look at the [documentation](https://mui.com/material-ui/customization/how-to-customize/).
