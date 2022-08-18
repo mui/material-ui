@@ -52,7 +52,7 @@ const IconButtonRoot = styled('button', {
         fontSize: theme.vars.fontSize.md,
       }),
       ...(ownerState.size === 'lg' && {
-        '--Icon-fontSize': 'calc(var(--IconButton-size, 3rem) - 1.714)', // 1.75rem by default
+        '--Icon-fontSize': 'calc(var(--IconButton-size, 3rem) / 1.714)', // 1.75rem by default
         minWidth: 'var(--IconButton-size, 3rem)',
         minHeight: 'var(--IconButton-size, 3rem)',
         fontSize: theme.vars.fontSize.lg,

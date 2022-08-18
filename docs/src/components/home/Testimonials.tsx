@@ -18,7 +18,13 @@ const Testimonials = () => {
   });
   return (
     <ThemeProvider theme={brandingDarkTheme}>
-      <Box ref={ref} sx={{ bgcolor: 'primaryDark.700' }}>
+      <Box
+        ref={ref}
+        sx={{
+          background: (theme) =>
+            `linear-gradient(85deg, ${theme.palette.primaryDark[700]} 0%, ${theme.palette.primaryDark[600]} 100%)`,
+        }}
+      >
         <Container sx={{ py: { xs: 4, md: 8 } }}>
           <Grid container spacing={3} alignItems="center">
             <Grid item xs={12} md={6} sx={{ zIndex: 1, minHeight: { xs: 400, sm: 307, lg: 355 } }}>

@@ -145,12 +145,27 @@ export default function WrappedMenuItems() {
   const isOpen = Boolean(anchorEl);
   const buttonRef = React.useRef<HTMLButtonElement>(null);
   const menuActions = React.useRef<MenuUnstyledActions>(null);
+  const preventReopen = React.useRef(false);
 
   const handleButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    if (preventReopen.current) {
+      event.preventDefault();
+      preventReopen.current = false;
+      return;
+    }
+
     if (isOpen) {
       setAnchorEl(null);
     } else {
       setAnchorEl(event.currentTarget);
+    }
+  };
+
+  const handleButtonMouseDown = () => {
+    if (isOpen) {
+      // Prevents the menu from reopening right after closing
+      // when clicking the button.
+      preventReopen.current = true;
     }
   };
 
@@ -182,6 +197,7 @@ export default function WrappedMenuItems() {
         type="button"
         onClick={handleButtonClick}
         onKeyDown={handleButtonKeyDown}
+        onMouseDown={handleButtonMouseDown}
         ref={buttonRef}
         aria-controls={isOpen ? 'wrapped-menu' : undefined}
         aria-expanded={isOpen || undefined}
