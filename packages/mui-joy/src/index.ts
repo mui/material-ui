@@ -111,3 +111,6 @@ export * from './Tab';
 
 export { default as TabPanel } from './TabPanel';
 export * from './TabPanel';
+
+export { default as Textarea } from './Textarea';
+export * from './Textarea';
