@@ -66,6 +66,7 @@ const IconButtonRoot = styled('button', {
       margin: `var(--IconButton-margin)`, // to be controlled by other components, eg. Input
       borderRadius: `var(--IconButton-radius, ${theme.vars.radius.sm})`, // to be controlled by other components, eg. Input
       border: 'none',
+      boxSizing: 'border-box',
       backgroundColor: 'transparent',
       display: 'inline-flex',
       alignItems: 'center',
