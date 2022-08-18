@@ -77,7 +77,7 @@ function useUtilityClasses(ownerState: MultiSelectUnstyledOwnerState<any>) {
  */
 const MultiSelectUnstyled = React.forwardRef(function MultiSelectUnstyled<TValue>(
   props: MultiSelectUnstyledProps<TValue>,
-  ref: React.ForwardedRef<any>,
+  forwardedRef: React.ForwardedRef<any>,
 ) {
   const {
     autoFocus,
@@ -123,14 +123,10 @@ const MultiSelectUnstyled = React.forwardRef(function MultiSelectUnstyled<TValue
   const Popper = components.Popper ?? PopperUnstyled;
 
   const handleButtonRefChange = React.useCallback((element: HTMLElement | null) => {
-    buttonRef.current = element;
-
-    if (element != null) {
-      setButtonDefined(true);
-    }
+    setButtonDefined(element != null);
   }, []);
 
-  const handleButtonRef = useForkRef(ref, handleButtonRefChange);
+  const handleButtonRef = useForkRef(forwardedRef, useForkRef(buttonRef, handleButtonRefChange));
 
   React.useEffect(() => {
     if (autoFocus) {
