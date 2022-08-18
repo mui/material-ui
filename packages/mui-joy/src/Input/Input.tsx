@@ -150,6 +150,8 @@ const InputInput = styled('input', {
   backgroundColor: 'transparent',
   fontFamily: 'inherit',
   fontSize: 'inherit',
+  fontStyle: 'inherit',
+  fontWeight: 'inherit',
   lineHeight: 'inherit',
   '&:-webkit-autofill': {
     WebkitBackgroundClip: 'text', // remove autofill background

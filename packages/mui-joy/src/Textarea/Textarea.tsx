@@ -81,7 +81,7 @@ const TextareaRoot = styled('div', {
       position: 'relative',
       display: 'flex',
       flexDirection: 'column',
-      paddingInline: `var(--Textarea-paddingInline)`,
+      paddingInlineStart: `var(--Textarea-paddingInline)`, // the paddingInlineEnd is added to the textarea. It looks better when the scrollbar appears.
       paddingBlock: 'var(--Textarea-paddingBlock)',
       borderRadius: 'var(--Textarea-radius)',
       ...(!variantStyle.backgroundColor && {
@@ -144,12 +144,15 @@ const TextareaInput = styled(TextareaAutosize, {
   minWidth: 0, // remove the native input width
   outline: 0, // remove the native input outline
   padding: 0, // remove the native input padding
+  paddingInlineEnd: `var(--Textarea-paddingInline)`,
   flex: 'auto',
   alignSelf: 'stretch',
   color: 'inherit',
   backgroundColor: 'transparent',
   fontFamily: 'inherit',
   fontSize: 'inherit',
+  fontStyle: 'inherit',
+  fontWeight: 'inherit',
   lineHeight: 'inherit',
   '&:-webkit-autofill': {
     WebkitBackgroundClip: 'text', // remove autofill background
@@ -170,7 +173,8 @@ const TextareaStartDecorator = styled('div', {
   overridesResolver: (props, styles) => styles.startDecorator,
 })<{ ownerState: TextareaProps }>(({ theme }) => ({
   display: 'flex',
-  marginInline: 'calc(var(--Textarea-paddingBlock) - var(--Textarea-paddingInline))',
+  marginInlineStart: 'calc(var(--Textarea-paddingBlock) - var(--Textarea-paddingInline))',
+  marginInlineEnd: 'var(--Textarea-paddingBlock)',
   marginBlockEnd: 'var(--Textarea-gap)',
   color: theme.vars.palette.text.tertiary,
 }));
@@ -181,7 +185,8 @@ const TextareaEndDecorator = styled('div', {
   overridesResolver: (props, styles) => styles.endDecorator,
 })<{ ownerState: TextareaProps }>(({ theme }) => ({
   display: 'flex',
-  marginInline: 'calc(var(--Textarea-paddingBlock) - var(--Textarea-paddingInline))',
+  marginInlineStart: 'calc(var(--Textarea-paddingBlock) - var(--Textarea-paddingInline))',
+  marginInlineEnd: 'var(--Textarea-paddingBlock)',
   marginBlockStart: 'var(--Textarea-gap)',
   color: theme.vars.palette.text.tertiary,
 }));
@@ -209,6 +214,8 @@ const Textarea = React.forwardRef(function Textarea(inProps, ref) {
     variant = 'outlined',
     startDecorator,
     endDecorator,
+    minRows,
+    maxRows,
     ...other
   } = useForwardedInput<TextareaProps>(props, textareaClasses);
 
@@ -242,7 +249,10 @@ const Textarea = React.forwardRef(function Textarea(inProps, ref) {
     elementType: TextareaInput,
     getSlotProps: (otherHandlers: EventHandlers) =>
       getInputProps({ ...otherHandlers, ...propsToForward }),
-    externalSlotProps: {},
+    externalSlotProps: {
+      minRows,
+      maxRows,
+    },
     additionalProps: {
       as: componentsProps.textarea?.component,
     },
