@@ -1,6 +1,6 @@
 ---
-title: Hello, Grid version 2
-description: We're excited to introduce the Grid version 2 that comes with new features and improvements!
+title: Build layouts faster with the new Grid component
+description: The new Grid v2 features simplified logic, support for offsetting and nested grids, and more.
 date: 2022-08-20T00:00:00.000Z
 authors: ['siriwatknp']
 tags: ['MUI Core', 'News']
@@ -83,7 +83,7 @@ function getOffset(val) {
 });
 ```
 
-However, in `Grid v2`, the javascript logic can be separated independently because CSS variables shift the communication between container and item to CSS.
+In v2, the communication between the grid container and its items happens via CSS instead of JavaScript, so that the logic behind these components is better separated.
 
 - The grid container takes care of generating variables based on the `spacing` prop:
   ```js
@@ -106,7 +106,7 @@ This is a very good use case for applying CSS variables when it comes to compone
 
 In version 2, `Grid` is always an item—similar to the Flexbox item in CSS—so the `item` prop is no longer needed.
 
-We also update the grid styles to work with ellipsis text by default, so the `zeroMinWidth` prop is removed.
+The new `Grid` automatically handles the sizing of truncated text that's too long for its container, so we've also removed the `zeroMinWidth` prop since it's no longer needed:
 
 ```diff
  <Grid container spacing={2}>
