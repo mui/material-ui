@@ -1,0 +1,160 @@
+*.md @samuelsycamore
+/scripts/ @michaldudak @m4theushw
+
+# Packages
+/packages/mui-base/ @michaldudak @mnajdova
+/packages/mui-docs/ @siriwatknp @flaviendelangle
+/packages/mui-icons-material/ @michaldudak @siriwatknp
+/packages/mui-joy/ @siriwatknp @danilo-leal
+/packages/mui-material/ @mnajdova @danilo-leal
+/packages/mui-system/ @mnajdova @siriwatknp
+
+# Components - Inputs
+/packages/mui-material/src/Autocomplete/ @michaldudak @mnajdova
+/packages/mui-material/src/Button/ @michaldudak @mnajdova
+/packages/mui-material/src/ButtonBase/ @michaldudak @mnajdova
+/packages/mui-material/src/ButtonGroup/ @michaldudak @mnajdova
+/packages/mui-material/src/Checkbox/ @michaldudak @mnajdova
+/packages/mui-material/src/Fab/ @michaldudak @mnajdova
+/packages/mui-material/src/FilledInput/ @michaldudak @mnajdova
+/packages/mui-material/src/FormControl/ @michaldudak @mnajdova
+/packages/mui-material/src/FormControlLabel/ @michaldudak @mnajdova
+/packages/mui-material/src/FormGroup/ @michaldudak @mnajdova
+/packages/mui-material/src/FormHelperText/ @michaldudak @mnajdova
+/packages/mui-material/src/FormLabel/ @michaldudak @mnajdova
+/packages/mui-material/src/IconButton/ @michaldudak @mnajdova
+/packages/mui-material/src/Input/ @michaldudak @mnajdova
+/packages/mui-material/src/InputAdornment/ @michaldudak @mnajdova
+/packages/mui-material/src/InputBase/ @michaldudak @mnajdova
+/packages/mui-material/src/InputLabel/ @michaldudak @mnajdova
+/packages/mui-material/src/NativeSelect/ @michaldudak @mnajdova
+/packages/mui-material/src/OutlinedInput/ @michaldudak @mnajdova
+/packages/mui-material/src/Radio/ @michaldudak @mnajdova
+/packages/mui-material/src/RadioGroup/ @michaldudak @mnajdova
+/packages/mui-material/src/Rating/ @michaldudak @mnajdova
+/packages/mui-material/src/Select/ @michaldudak @mnajdova
+/packages/mui-material/src/Slider/ @michaldudak @mnajdova
+/packages/mui-material/src/Switch/ @michaldudak @mnajdova
+/packages/mui-material/src/TextField/ @michaldudak @mnajdova
+/packages/mui-material/src/ToggleButton/ @michaldudak @mnajdova
+/packages/mui-material/src/ToggleButtonGroup/ @michaldudak @mnajdova
+/packages/mui-material/src/useAutocomplete/ @michaldudak @mnajdova
+/packages/mui-material/src/useTouchRipple/ @michaldudak @mnajdova
+
+# Components - Data display
+/packages/mui-material/src/Avatar/ @hbjORbj @siriwatknp
+/packages/mui-material/src/AvatarGroup/ @hbjORbj @siriwatknp
+/packages/mui-material/src/Badge/ @hbjORbj @siriwatknp
+/packages/mui-material/src/Chip/ @hbjORbj @siriwatknp
+/packages/mui-material/src/Divider/ @hbjORbj @siriwatknp
+/packages/mui-material/src/Icon/ @hbjORbj @siriwatknp
+/packages/mui-material/src/List/ @hbjORbj @siriwatknp
+/packages/mui-material/src/ListItem/ @hbjORbj @siriwatknp
+/packages/mui-material/src/ListItemAvatar/ @hbjORbj @siriwatknp
+/packages/mui-material/src/ListItemButton/ @hbjORbj @siriwatknp
+/packages/mui-material/src/ListItemIcon/ @hbjORbj @siriwatknp
+/packages/mui-material/src/ListItemSecondaryAction/ @hbjORbj @siriwatknp
+/packages/mui-material/src/ListItemText/ @hbjORbj @siriwatknp
+/packages/mui-material/src/ListSubheader/ @hbjORbj @siriwatknp
+/packages/mui-material/src/SvgIcon/ @hbjORbj @siriwatknp
+/packages/mui-material/src/Table/ @hbjORbj @siriwatknp
+/packages/mui-material/src/TableBody/ @hbjORbj @siriwatknp
+/packages/mui-material/src/TableCell/ @hbjORbj @siriwatknp
+/packages/mui-material/src/TableContainer/ @hbjORbj @siriwatknp
+/packages/mui-material/src/TableFooter/ @hbjORbj @siriwatknp
+/packages/mui-material/src/TableHead/ @hbjORbj @siriwatknp
+/packages/mui-material/src/TablePagination/ @hbjORbj @siriwatknp
+/packages/mui-material/src/TableRow/ @hbjORbj @siriwatknp
+/packages/mui-material/src/TableSortLabel/ @hbjORbj @siriwatknp
+/packages/mui-material/src/Tooltip/ @hbjORbj @siriwatknp
+/packages/mui-material/src/Typography/ @hbjORbj @siriwatknp
+
+# Components - Feedback
+/packages/mui-material/src/Alert/ @siriwatknp @hbjORbj
+/packages/mui-material/src/AlertTitle/ @siriwatknp @hbjORbj
+/packages/mui-material/src/Backdrop/ @siriwatknp @hbjORbj
+/packages/mui-material/src/CircularProgress/ @siriwatknp @hbjORbj
+/packages/mui-material/src/Dialog/ @siriwatknp @hbjORbj
+/packages/mui-material/src/DialogActions/ @siriwatknp @hbjORbj
+/packages/mui-material/src/DialogContent/ @siriwatknp @hbjORbj
+/packages/mui-material/src/DialogContentText/ @siriwatknp @hbjORbj
+/packages/mui-material/src/DialogTitle/ @siriwatknp @hbjORbj
+/packages/mui-material/src/LinearProgress/ @siriwatknp @hbjORbj
+/packages/mui-material/src/Snackbar/ @siriwatknp @hbjORbj
+/packages/mui-material/src/SnackbarContent/ @siriwatknp @hbjORbj
+/packages/mui-material/src/Skeleton/ @siriwatknp @hbjORbj
+
+# Components - Surfaces
+/packages/mui-material/src/Accordion/ @siriwatknp @hbjORbj
+/packages/mui-material/src/AccordionActions/ @siriwatknp @hbjORbj
+/packages/mui-material/src/AccordionDetails/ @siriwatknp @hbjORbj
+/packages/mui-material/src/AccordionSummary/ @siriwatknp @hbjORbj
+/packages/mui-material/src/AppBar/ @siriwatknp @hbjORbj
+/packages/mui-material/src/Card/ @siriwatknp @hbjORbj
+/packages/mui-material/src/CardActionArea/ @siriwatknp @hbjORbj
+/packages/mui-material/src/CardActions/ @siriwatknp @hbjORbj
+/packages/mui-material/src/CardContent/ @siriwatknp @hbjORbj
+/packages/mui-material/src/CardHeader/ @siriwatknp @hbjORbj
+/packages/mui-material/src/CardMedia/ @siriwatknp @hbjORbj
+/packages/mui-material/src/Paper/ @siriwatknp @hbjORbj
+/packages/mui-material/src/Toolbar/ @siriwatknp @hbjORbj
+/packages/mui-material/src/useScrollTrigger/ @siriwatknp @hbjORbj
+
+# Components - Navigation
+/packages/mui-material/src/BottomNavigation/ @hbjORbj @mnajdova
+/packages/mui-material/src/BottomNavigationAction/ @hbjORbj @mnajdova
+/packages/mui-material/src/Breadcrumbs/ @hbjORbj @mnajdova
+/packages/mui-material/src/Drawer/ @hbjORbj @mnajdova
+/packages/mui-material/src/Link/ @hbjORbj @mnajdova
+/packages/mui-material/src/Menu/ @hbjORbj @mnajdova
+/packages/mui-material/src/MenuItem/ @hbjORbj @mnajdova
+/packages/mui-material/src/MenuList/ @hbjORbj @mnajdova
+/packages/mui-material/src/MobileStepper/ @hbjORbj @mnajdova
+/packages/mui-material/src/Pagination/ @hbjORbj @mnajdova
+/packages/mui-material/src/PaginationItem/ @hbjORbj @mnajdova
+/packages/mui-material/src/SpeedDial/ @hbjORbj @mnajdova
+/packages/mui-material/src/SpeedDialAction/ @hbjORbj @mnajdova
+/packages/mui-material/src/SpeedDialIcon/ @hbjORbj @mnajdova
+/packages/mui-material/src/Step/ @hbjORbj @mnajdova
+/packages/mui-material/src/StepButton/ @hbjORbj @mnajdova
+/packages/mui-material/src/StepConnector/ @hbjORbj @mnajdova
+/packages/mui-material/src/StepContent/ @hbjORbj @mnajdova
+/packages/mui-material/src/StepIcon/ @hbjORbj @mnajdova
+/packages/mui-material/src/StepLabel/ @hbjORbj @mnajdova
+/packages/mui-material/src/Stepper/ @hbjORbj @mnajdova
+/packages/mui-material/src/SwipeableDrawer/ @hbjORbj @mnajdova
+/packages/mui-material/src/Tab/ @hbjORbj @mnajdova
+/packages/mui-material/src/Tabs/ @hbjORbj @mnajdova
+/packages/mui-material/src/TabScrollButton/ @hbjORbj @mnajdova
+/packages/mui-material/src/usePagination/ @hbjORbj @mnajdova
+
+# Components - Layout
+/packages/mui-material/src/Box/ @siriwatknp @hbjORbj
+/packages/mui-material/src/Container/ @siriwatknp @hbjORbj
+/packages/mui-material/src/Grid/ @siriwatknp @hbjORbj
+/packages/mui-material/src/Hidden/ @siriwatknp @hbjORbj
+/packages/mui-material/src/ImageList/ @siriwatknp @hbjORbj
+/packages/mui-material/src/ImageListItem/ @siriwatknp @hbjORbj
+/packages/mui-material/src/ImageListItemBar/ @siriwatknp @hbjORbj
+/packages/mui-material/src/Stack/ @siriwatknp @hbjORbj
+/packages/mui-material/src/Unstable_Grid2/ @siriwatknp @hbjORbj
+
+# Components - Utils
+/packages/mui-material/src/ClickAwayListener/ @mnajdova @michaldudak
+/packages/mui-material/src/Collapse/ @mnajdova @michaldudak
+/packages/mui-material/src/CssBaseline/ @mnajdova @michaldudak
+/packages/mui-material/src/Fade/ @mnajdova @michaldudak
+/packages/mui-material/src/GlobalStyles/ @mnajdova @michaldudak
+/packages/mui-material/src/Grow/ @mnajdova @michaldudak
+/packages/mui-material/src/Modal/ @mnajdova @michaldudak
+/packages/mui-material/src/NoSsr/ @mnajdova @michaldudak
+/packages/mui-material/src/Popover/ @mnajdova @michaldudak
+/packages/mui-material/src/Popper/ @mnajdova @michaldudak
+/packages/mui-material/src/Portal/ @mnajdova @michaldudak
+/packages/mui-material/src/ScopedCssBaseline/ @mnajdova @michaldudak
+/packages/mui-material/src/Slide/ @mnajdova @michaldudak
+/packages/mui-material/src/TextareaAutosize/ @mnajdova @michaldudak
+/packages/mui-material/src/transitions/ @mnajdova @michaldudak
+/packages/mui-material/src/Unstable_TrapFocus/ @mnajdova @michaldudak
+/packages/mui-material/src/useMediaQuery/ @mnajdova @michaldudak
+/packages/mui-material/src/Zoom/ @mnajdova @michaldudak
