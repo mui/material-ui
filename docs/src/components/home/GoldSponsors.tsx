@@ -67,6 +67,14 @@ const GOLDs = [
     description: 'Instagram followers, likes, power likes, views, comments, saves in minutes.',
     href: 'https://goread.io/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
   },
+  {
+    src: 'https://images.opencollective.com/icons8/7fa1641/logo/40.png',
+    srcSet: 'https://images.opencollective.com/icons8/7fa1641/logo/80.png 2x',
+    name: 'Icons8',
+    description:
+      'We provide the neat icons, photos, illustrations, and music. Developers, use our API to insert all the content we have into your apps.',
+    href: 'https://icons8.com?utm_source=MUI&utm_medium=referral&utm_content=homepage',
+  },
 ];
 
 export default function GoldSponsors() {
