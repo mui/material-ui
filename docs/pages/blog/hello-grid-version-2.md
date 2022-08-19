@@ -11,7 +11,7 @@ You can now use the new and improved `Grid` component, shipped with [Material UI
 
 ```js
 import Grid from '@mui/material/Grid'; // The current grid, a.k.a. Grid v1
-import Grid2 from '@mui/material/Unstable_Grid2'; // The new grid, a.k.a. Grid v2
+import Grid from '@mui/material/Unstable_Grid2'; // The new grid, a.k.a. Grid v2
 ```
 
 ## The motivation
