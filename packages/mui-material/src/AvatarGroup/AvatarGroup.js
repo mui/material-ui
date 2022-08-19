@@ -67,6 +67,7 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
   const {
     children: childrenProp,
     className,
+    component = 'ul',
     componentsProps = {},
     max = 5,
     spacing = 'medium',
@@ -80,6 +81,7 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
     ...props,
     max,
     spacing,
+    component,
     variant,
   };
 
@@ -115,6 +117,7 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
 
   return (
     <AvatarGroupRoot
+      as={component}
       ownerState={ownerState}
       className={clsx(classes.root, className)}
       ref={ref}
