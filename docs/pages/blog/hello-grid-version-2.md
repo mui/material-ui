@@ -9,7 +9,6 @@ card: false
 
 You can now use the new and improved `Grid` component, shipped with [Material UI v5.9.0](https://github.com/mui/material-ui/releases/tag/v5.9.0), for updated features and a better developer experience when building a layout grid.
 
-
 ```js
 import Grid from '@mui/material/Grid'; // The current grid, a.k.a. Grid v1
 import Grid2 from '@mui/material/Unstable_Grid2'; // The new grid, a.k.a. Grid v2
@@ -29,7 +28,7 @@ For v2, the `Grid` component has been rewritten from scratch using CSS variables
 
 ### 💥 Breaking change
 
-The negative margin in the new `Grid` spreads equally on all sides by default. 
+The negative margin in the new `Grid` spreads equally on all sides by default.
 This is the same as the `Grid` in Material UI v4.
 
 :::info
@@ -45,17 +44,17 @@ A new prop called `disableEqualOverflow` solves the problem of an unwanted scrol
 
 #### [Offset](/material-ui/react-grid2/#offset)
 
-We have added the long-awaited offset feature to v2 of the `Grid`. 
+We have added the long-awaited offset feature to v2 of the `Grid`.
 Thanks to CSS variables, we're able to implement this feature with just a few lines of code.
 
 ### ✨ Improvements
 
 #### Simplifying logic
 
-Some parts of the layout calculation are delegated to CSS by using CSS variables and `calc()`. 
+Some parts of the layout calculation are delegated to CSS by using CSS variables and `calc()`.
 Taken together, they significantly reduce the need for JavaScript and make the component scalable.
 
-Version 1 of the `Grid` calculates the width by reading the value from the React context. 
+Version 1 of the `Grid` calculates the width by reading the value from the React context.
 With CSS variables in place, we can remove the React context entirely and hand over the work to CSS instead:
 
 ```js
@@ -65,8 +64,7 @@ With CSS variables in place, we can remove the React context entirely and hand o
 }
 ```
 
-
-In v1 of the `Grid`, grid items have no information about the padding they should have, because the `spacing` prop is defined on the grid container. 
+In v1 of the `Grid`, grid items have no information about the padding they should have, because the `spacing` prop is defined on the grid container.
 So the simplest way to control the padding is to use the CSS child combinator `>` on the container:
 
 ```js
@@ -137,10 +135,10 @@ import Grid from '@mui/material/Unstable_Grid2`;
 
 ## Future plan and migration
 
-Since the `Grid` has been rewritten from scratch for v2, it is currently considered _unstable_ as we give the community time to try it out and offer feedback. 
+Since the `Grid` has been rewritten from scratch for v2, it is currently considered _unstable_ as we give the community time to try it out and offer feedback.
 We will make it stable and deprecate v1 in the next major release of Material UI.
 
-Ready to make the jump? 
+Ready to make the jump?
 Check out the [Grid v2 documentation](/material-ui/react-grid2/) and the [Grid v2 migration guide](/material-ui/migration/migration-grid-v2/).
 
 <hr />
