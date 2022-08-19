@@ -32,7 +32,7 @@ export default function MyApp() {
 
 ### Basics
 
-`ButtonUnstyled` behaves similarly to the native HTML `<button>`, so it wraps around the text that will be displayed on its surface.
+`ButtonUnstyled` behaves similar to the native HTML `<button>`, so it wraps around the text that will be displayed on its surface.
 
 The following demo shows how to create and style two basic buttons.
 Notice that the second button cannot be clicked due to the `disabled` prop:
