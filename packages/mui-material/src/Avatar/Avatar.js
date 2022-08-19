@@ -134,7 +134,7 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
     alt,
     children: childrenProp,
     className,
-    component = 'div',
+    component = 'li',
     imgProps,
     sizes,
     src,
