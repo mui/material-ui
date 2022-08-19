@@ -4,7 +4,7 @@ import {
   demos,
   docs,
   demoComponents,
-} from 'docs/data/material/experimental-api/css-variables/overview.md?@mui/markdown';
+} from 'docs/data/material/experimental-api/theme-css-variables/migration.md?@mui/markdown';
 
 export default function Page() {
   return <MarkdownDocs demos={demos} docs={docs} demoComponents={demoComponents} />;
