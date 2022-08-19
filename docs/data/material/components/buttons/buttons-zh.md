@@ -4,8 +4,8 @@ title: React Button（按钮）组件
 components: Button, IconButton, ButtonBase, LoadingButton
 materialDesign: https://material.io/components/buttons
 githubLabel: 'component: button'
-waiAria: 'https://www.w3.org/TR/wai-aria-practices/#button'
-unstyled: import ButtonUnstyled from '@mui/base/ButtonUnstyled';
+waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/button/
+unstyled: /base/react-button/
 ---
 
 # Button 按钮
@@ -35,7 +35,7 @@ unstyled: import ButtonUnstyled from '@mui/base/ButtonUnstyled';
 
 ### 实心按钮
 
-[Outlined buttons](https://material.io/components/buttons#outlined-button) are medium-emphasis buttons. They contain actions that are important but aren't the primary action in an app. 它们用于触发应用程序中重要、但并非主要的那些操作。 They contain actions that are important but aren't the primary action in an app.
+[实心按钮](https://material.io/design/components/buttons.html#contained-button) 表示高度的强调，你根据它们的立体效果和填充颜色来区分彼此。 它们用于触发应用程序所具有的主要功能。
 
 {{"demo": "ContainedButtons.js"}}
 
@@ -45,7 +45,7 @@ unstyled: import ButtonUnstyled from '@mui/base/ButtonUnstyled';
 
 ### 描边按钮
 
-[实心按钮](https://material.io/design/components/buttons.html#contained-button) 表示高度的强调，你根据它们的立体效果和填充颜色来区分彼此。 它们用于触发应用程序所具有的主要功能。
+[Outlined buttons](https://material.io/components/buttons#outlined-button) are medium-emphasis buttons. They contain actions that are important but aren't the primary action in an app. 它们用于触发应用程序中重要、但并非主要的那些操作。 They contain actions that are important but aren't the primary action in an app.
 
 你也可以将描边按钮作为比实心按钮次要一点的替代方案，或者用来作为比文本按钮重要一点的展示。
 
@@ -65,17 +65,17 @@ unstyled: import ButtonUnstyled from '@mui/base/ButtonUnstyled';
 </Button>
 ```
 
-请注意，文档里组件的 API 部分 [避免](/material-ui/guides/api/#native-properties) 提到原生的属性（还是有很多）。
+Note that the documentation [avoids](/material-ui/guides/api/#native-properties) mentioning native props (there are a lot) in the API section of the components.
 
 ## Color 颜色
 
 {{"demo": "ColorButtons.js"}}
 
-除了使用默认按钮颜色外，您可以添加自定义颜色，或者禁用任何您不需要的颜色。 In addition to using the default button colors, you can add custom ones, or disable any you don't need. In addition to using the default button colors, you can add custom ones, or disable any you don't need. See the [Adding new colors](/material-ui/customization/palette/#adding-new-colors) example for more info. See the [Adding new colors](/material-ui/customization/palette/#adding-new-colors) example for more info.
+除了使用默认按钮颜色外，您可以添加自定义颜色，或者禁用任何您不需要的颜色。 See the [Adding new colors](/material-ui/customization/palette/#adding-new-colors) example for more info.
 
 ## 尺寸
 
-For larger or smaller buttons, use the `size` prop.
+如果需要更大或者更小的按钮，请使用`size`属性。
 
 {{"demo": "ButtonSizes.js"}}
 
@@ -111,15 +111,15 @@ For larger or smaller buttons, use the `size` prop.
 
 ## Customized Buttons（自定义按钮）
 
-你可以参考以下一些例子来自定义组件。 您可以在 [重写文档页面](/material-ui/customization/how-to-customize/) 中了解更多有关此内容的信息。
+你可以参考以下一些例子来自定义组件。 You can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/).
 
 {{"demo": "CustomizedButtons.js", "defaultCodeOpen": false}}
 
-🎨 If you are looking for inspiration, you can check [MUI Treasury's customization examples](https://mui-treasury.com/styles/button/).
+🎨 如果您还在寻找灵感，您可以看看 [MUI Treasury 特别定制的一些例子](https://mui-treasury.com/styles/button/)。
 
 ## 载入按钮（Loading buttons）
 
-The loading buttons can show loading state and disable interactions.
+加载按钮可以显示加载状态并禁用交互。
 
 {{"demo": "LoadingButtons.js"}}
 
@@ -156,7 +156,7 @@ One frequent use case is to perform navigation on the client only, without an HT
 
 然而：
 
-- 如您要 [在 disabled 不可用元素上显示提示文本](/material-ui/react-tooltip/#disabled-elements)，则需添加 `pointer-events: none;`
+- You should add `pointer-events: none;` back when you need to display [tooltips on disabled elements](/material-ui/react-tooltip/#disabled-elements).
 - 若您加载除了一个 button 元素之外的元素， 例如，一个链接 `<a>` 元素，指针是不会改变的。
 
 2. **改变 DOM**。 您可以这样封装按钮：

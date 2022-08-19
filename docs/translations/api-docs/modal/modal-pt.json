@@ -6,6 +6,7 @@
     "children": "A single child content element.<br>⚠️ <a href=\"/material-ui/guides/composition/#caveat-with-refs\">Needs to be able to hold a ref</a>.",
     "classes": "Sobrescreve ou extende os estilos aplicados para o componente. Veja a <a href=\"#css\">API CSS</a> abaixo para maiores detalhes.",
     "closeAfterTransition": "When set to true the Modal waits until a nested Transition is completed before closing.",
+    "component": "The component used for the root node. Either a string to use a HTML element or a component.",
     "components": "The components used for each slot inside the Modal. Either a string to use a HTML element or a component.",
     "componentsProps": "The props used for each slot inside the Modal.",
     "container": "A HTML element or function that returns one. The <code>container</code> will have the portal children appended to it.<br>By default, it uses the body of the top-level document object, so it&#39;s simply <code>document.body</code> most of the time.",
@@ -20,8 +21,7 @@
     "onBackdropClick": "Callback fired when the backdrop is clicked.",
     "onClose": "Callback fired when the component requests to be closed. The <code>reason</code> parameter can optionally be used to control the response to <code>onClose</code>.<br><br><strong>Signature:</strong><br><code>function(event: object, reason: string) =&gt; void</code><br><em>event:</em> The event source of the callback.<br><em>reason:</em> Can be: <code>&quot;escapeKeyDown&quot;</code>, <code>&quot;backdropClick&quot;</code>.",
     "open": "Control the popup` open state.",
-    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/basics/#the-sx-prop\">`sx` page</a> for more details.",
-    "component": "The component used for the root node. Either a string to use a HTML element or a component."
+    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details."
   },
   "classDescriptions": {
     "root": {

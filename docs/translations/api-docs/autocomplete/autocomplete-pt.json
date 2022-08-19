@@ -1,45 +1,45 @@
 {
   "componentDescription": "",
   "propDescriptions": {
-    "autoComplete": "If <code>true</code>, the portion of the selected suggestion that has not been typed by the user, known as the completion string, appears inline after the input cursor in the textbox. The inline completion string is visually highlighted and has a selected state.",
-    "autoHighlight": "If <code>true</code>, the first option is automatically highlighted.",
-    "autoSelect": "If <code>true</code>, the selected option becomes the value of the input when the Autocomplete loses focus unless the user chooses a different option or changes the character string in the input.",
-    "blurOnSelect": "Control if the input should be blurred when an option is selected:<br>- <code>false</code> the input is not blurred. - <code>true</code> the input is always blurred. - <code>touch</code> the input is blurred after a touch event. - <code>mouse</code> the input is blurred after a mouse event.",
+    "autoComplete": "Se <code>true</code>, a porção da sugestão selecionada que não foi digitada pelo usuário, conhecida como a sequência de conclusão, aparece embutida após o cursor da entrada na caixa de texto. A sequência de conclusão é visualmente destacada e tem um estado selecionado.",
+    "autoHighlight": "Se <code>true</code>, a primeira opção é destacada automaticamente.",
+    "autoSelect": "Se <code>true</code>, a opção selecionada se torna o valor de entrada quando o Autocomplete perde o foco, a menos que o usuário escolha uma opção diferente ou mude um caractere da sequência na entrada.",
+    "blurOnSelect": "Controle se a entrada deve ficar borrada quando uma opção é selecionada:<br>- <code>false</code> a entrada não é borrada. - <code>true</code> a entrada sempre é borrada. - <code>touch</code> a entrada é borrada após um evento de toque. - <code>mouse</code> a entrada é borrada após um evento de mouse.",
     "ChipProps": "Props applied to the <a href=\"/material-ui/api/chip/\"><code>Chip</code></a> element.",
     "classes": "Sobrescreve ou extende os estilos aplicados para o componente. Veja a <a href=\"#css\">API CSS</a> abaixo para maiores detalhes.",
-    "clearIcon": "The icon to display in place of the default clear icon.",
+    "clearIcon": "O ícone para exibir no lugar de um ícone de limpar padrão.",
     "clearOnBlur": "If <code>true</code>, the input&#39;s text is cleared on blur if no value is selected.<br>Set to <code>true</code> if you want to help the user enter a new value. Set to <code>false</code> if you want to help the user resume his search.",
-    "clearOnEscape": "If <code>true</code>, clear all values when the user presses escape and the popup is closed.",
+    "clearOnEscape": "Se <code>true</code>, limpa todos os valores quando o usuário pressiona escape e o pop-up é fechado.",
     "clearText": "Override the default text for the <em>clear</em> icon button.<br>For localization purposes, you can use the provided <a href=\"/material-ui/guides/localization/\">translations</a>.",
     "closeText": "Override the default text for the <em>close popup</em> icon button.<br>For localization purposes, you can use the provided <a href=\"/material-ui/guides/localization/\">translations</a>.",
-    "componentsProps": "The props used for each slot inside.",
+    "componentsProps": "As propriedades usadas para cada slot dentro.",
     "defaultValue": "The default input value. Use when the component is not controlled.",
-    "disableClearable": "If <code>true</code>, the input can&#39;t be cleared.",
-    "disableCloseOnSelect": "If <code>true</code>, the popup won&#39;t close when a value is selected.",
+    "disableClearable": "Se <code>true</code>, a entrada não pode ser limpa.",
+    "disableCloseOnSelect": "Se <code>true</code>, o pop-up não fechará quando um valor é selecionado.",
     "disabled": "Se <code>true</code>, o componente está desabilitado.",
-    "disabledItemsFocusable": "If <code>true</code>, will allow focus on disabled items.",
-    "disableListWrap": "If <code>true</code>, the list box in the popup will not wrap focus.",
-    "disablePortal": "If <code>true</code>, the <code>Popper</code> content will be under the DOM hierarchy of the parent component.",
-    "filterOptions": "A filter function that determines the options that are eligible.<br><br><strong>Signature:</strong><br><code>function(options: T[], state: object) =&gt; T[]</code><br><em>options:</em> The options to render.<br><em>state:</em> The state of the component.",
-    "filterSelectedOptions": "If <code>true</code>, hide the selected options from the list box.",
+    "disabledItemsFocusable": "Se <code>true</code>, permitirá foco em itens desabilitados.",
+    "disableListWrap": "Se <code>true</code>, a caixa de lista em um pop-up não irá envolver o foco.",
+    "disablePortal": "Se <code>true</code>, o conteúdo de <code>Popper</code> estará abaixo da hierarquia DOM do componente pai.",
+    "filterOptions": "A function that determines the filtered options to be rendered on search.<br><br><strong>Signature:</strong><br><code>function(options: Array&lt;T&gt;, state: object) =&gt; Array&lt;T&gt;</code><br><em>options:</em> The options to render.<br><em>state:</em> The state of the component.",
+    "filterSelectedOptions": "Se <code>true</code>, oculta as opções selecionadas da caixa de lista.",
     "forcePopupIcon": "Force the visibility display of the popup icon.",
-    "freeSolo": "If <code>true</code>, the Autocomplete is free solo, meaning that the user input is not bound to provided options.",
-    "fullWidth": "If <code>true</code>, the input will take up the full width of its container.",
-    "getLimitTagsText": "The label to display when the tags are truncated (<code>limitTags</code>).<br><br><strong>Signature:</strong><br><code>function(more: number) =&gt; ReactNode</code><br><em>more:</em> The number of truncated tags.",
-    "getOptionDisabled": "Used to determine the disabled state for a given option.<br><br><strong>Signature:</strong><br><code>function(option: T) =&gt; boolean</code><br><em>option:</em> The option to test.",
-    "getOptionLabel": "Used to determine the string value for a given option. It&#39;s used to fill the input (and the list box options if <code>renderOption</code> is not provided).<br><br><strong>Signature:</strong><br><code>function(option: T) =&gt; string</code><br>",
-    "groupBy": "If provided, the options will be grouped under the returned string. The groupBy value is also used as the text for group headings when <code>renderGroup</code> is not provided.<br><br><strong>Signature:</strong><br><code>function(options: T) =&gt; string</code><br><em>options:</em> The options to group.",
-    "handleHomeEndKeys": "If <code>true</code>, the component handles the &quot;Home&quot; and &quot;End&quot; keys when the popup is open. It should move focus to the first option and last option, respectively.",
-    "id": "This prop is used to help implement the accessibility logic. If you don&#39;t provide an id it will fall back to a randomly generated one.",
-    "includeInputInList": "If <code>true</code>, the highlight can move to the input.",
-    "inputValue": "The input value.",
-    "isOptionEqualToValue": "Used to determine if the option represents the given value. Uses strict equality by default. ⚠️ Both arguments need to be handled, an option can only match with one value.<br><br><strong>Signature:</strong><br><code>function(option: T, value: T) =&gt; boolean</code><br><em>option:</em> The option to test.<br><em>value:</em> The value to test against.",
-    "limitTags": "The maximum number of tags that will be visible when not focused. Set <code>-1</code> to disable the limit.",
-    "ListboxComponent": "The component used to render the listbox.",
-    "ListboxProps": "Props applied to the Listbox element.",
+    "freeSolo": "Se <code>true</code>, o Autocomplete é um solo livre, o que significa que a entrada do usuário não está vinculada às opções fornecidas.",
+    "fullWidth": "Se <code>true</code>, o input ocupará toda a largura de seu contêiner.",
+    "getLimitTagsText": "O rótulo a ser exibido quando as tags são truncadas (<code>limitTags</code>).<br><br><strong>Assinatura:</strong><br><code> function (more: number) =&gt; ReactNode</code><br><em>more:</em> O número de tags truncadas.",
+    "getOptionDisabled": "Usado para determinar o estado desabilitado para uma determinada opção.<br><br><strong>Assinatura:</strong><br><code>function (option: T) =&gt; boolean</code><br><em>option:</em> A opção de teste.",
+    "getOptionLabel": "Used to determine the string value for a given option. It&#39;s used to fill the input (and the list box options if <code>renderOption</code> is not provided).<br>If used in free solo mode, it must accept both the type of the options and a string.<br><br><strong>Signature:</strong><br><code>function(option: T) =&gt; string</code><br>",
+    "groupBy": "Se fornecido, as opções serão agrupadas sob a string retornada. O valor groupBy também é usado como o texto para os títulos dos grupos quando <code>renderGroup</code> não é fornecido.<br><br><strong>Assinatura:</strong><br><code>function (options: T) =&gt; string</code><br><em>options:</em> As opções para grupo.",
+    "handleHomeEndKeys": "Se <code>true</code>, o componente lida com  as teclas &quot;Home&quot; e &quot;End&quot; quando o pop-up estiver aberto. Deverá movimentar-se para a primeira opção e para a última opção, respectivamente.",
+    "id": "Esta propriedade é usada para ajudar a implementar a lógica de acessibilidade. Se você não fornecer um ‘id’, ela retornará um ‘id’ gerado aleatoriamente.",
+    "includeInputInList": "Se <code>true</code>, o destaque pode mover para a entrada.",
+    "inputValue": "O valor de entrada.",
+    "isOptionEqualToValue": "Usado para determinar se a opção representa o valor dado. Usa uma igualdade estrita por padrão. ⚠️ Ambos os argumentos precisam ser manipulados, uma opção só pode corresponder com um valor.<br><br><strong>Assinatura:</strong><br><code>function (option: T, value: T) =&gt; boolean</code><br><em>option:</em> A opção de teste.<br><em>value:</em> O valor a ser testado.",
+    "limitTags": "O número máximo de tags que serão visíveis quando não estiver focado. Defina <code>-1</code> para desativar o limite.",
+    "ListboxComponent": "O componente usado para renderizar a caixa de listagem.",
+    "ListboxProps": "Props aplicadas ao elemento Listbox.",
     "loading": "If <code>true</code>, the component is in a loading state.",
     "loadingText": "Text to display when in a loading state.<br>For localization purposes, you can use the provided <a href=\"/material-ui/guides/localization/\">translations</a>.",
-    "multiple": "If <code>true</code>, <code>value</code> must be an array and the menu will support multiple selections.",
+    "multiple": "Se <code>true</code>, o <code>value</code> deve ser um array e o menu suportará múltiplas seleções.",
     "noOptionsText": "Text to display when there are no options.<br>For localization purposes, you can use the provided <a href=\"/material-ui/guides/localization/\">translations</a>.",
     "onChange": "Callback fired when the value changes.<br><br><strong>Signature:</strong><br><code>function(event: object, value: T | T[], reason: string, details?: string) =&gt; void</code><br><em>event:</em> The event source of the callback.<br><em>value:</em> The new value of the component.<br><em>reason:</em> One of &quot;createOption&quot;, &quot;selectOption&quot;, &quot;removeOption&quot;, &quot;blur&quot; or &quot;clear&quot;.",
     "onClose": "Callback fired when the popup requests to be closed. Use in controlled mode (see open).<br><br><strong>Signature:</strong><br><code>function(event: object, reason: string) =&gt; void</code><br><em>event:</em> The event source of the callback.<br><em>reason:</em> Can be: <code>&quot;toggleInput&quot;</code>, <code>&quot;escape&quot;</code>, <code>&quot;selectOption&quot;</code>, <code>&quot;removeOption&quot;</code>, <code>&quot;blur&quot;</code>.",
@@ -47,20 +47,20 @@
     "onInputChange": "Callback fired when the input value changes.<br><br><strong>Signature:</strong><br><code>function(event: object, value: string, reason: string) =&gt; void</code><br><em>event:</em> The event source of the callback.<br><em>value:</em> The new value of the text input.<br><em>reason:</em> Can be: <code>&quot;input&quot;</code> (user input), <code>&quot;reset&quot;</code> (programmatic change), <code>&quot;clear&quot;</code>.",
     "onOpen": "Callback fired when the popup requests to be opened. Use in controlled mode (see open).<br><br><strong>Signature:</strong><br><code>function(event: object) =&gt; void</code><br><em>event:</em> The event source of the callback.",
     "open": "Control the popup` open state.",
-    "openOnFocus": "If <code>true</code>, the popup will open on input focus.",
+    "openOnFocus": "Se <code>true</code>, o pop-up abrirá quando a entrada for focada.",
     "openText": "Override the default text for the <em>open popup</em> icon button.<br>For localization purposes, you can use the provided <a href=\"/material-ui/guides/localization/\">translations</a>.",
-    "options": "Array of options.",
-    "PaperComponent": "The component used to render the body of the popup.",
-    "PopperComponent": "The component used to position the popup.",
+    "options": "Array de opções.",
+    "PaperComponent": "O componente usado para renderizar o corpo do pop-up.",
+    "PopperComponent": "O componente usado para posicionar o pop-up.",
     "popupIcon": "The icon to display in place of the default popup icon.",
     "readOnly": "If <code>true</code>, the component becomes readonly. It is also supported for multiple tags where the tag cannot be deleted.",
     "renderGroup": "Render the group.<br><br><strong>Signature:</strong><br><code>function(option: any) =&gt; ReactNode</code><br><em>option:</em> The group to render.",
     "renderInput": "Render the input.<br><br><strong>Signature:</strong><br><code>function(params: object) =&gt; ReactNode</code><br>",
     "renderOption": "Render the option, use <code>getOptionLabel</code> by default.<br><br><strong>Signature:</strong><br><code>function(props: object, option: T, state: object) =&gt; ReactNode</code><br><em>props:</em> The props to apply on the li element.<br><em>option:</em> The option to render.<br><em>state:</em> The state of the component.",
-    "renderTags": "Render the selected value.<br><br><strong>Signature:</strong><br><code>function(value: T[], getTagProps: function) =&gt; ReactNode</code><br><em>value:</em> The <code>value</code> provided to the component.<br><em>getTagProps:</em> A tag props getter.",
+    "renderTags": "Render the selected value.<br><br><strong>Signature:</strong><br><code>function(value: Array&lt;T&gt;, getTagProps: function, ownerState: object) =&gt; ReactNode</code><br><em>value:</em> The <code>value</code> provided to the component.<br><em>getTagProps:</em> A tag props getter.<br><em>ownerState:</em> The state of the Autocomplete component.",
     "selectOnFocus": "If <code>true</code>, the input&#39;s text is selected on focus. It helps the user clear the selected value.",
     "size": "The size of the autocomplete.",
-    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/basics/#the-sx-prop\">`sx` page</a> for more details.",
+    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details.",
     "value": "The value of the autocomplete.<br>The value must have reference equality with the option in order to be selected. You can customize the equality behavior with the <code>isOptionEqualToValue</code> prop."
   },
   "classDescriptions": {
@@ -79,12 +79,12 @@
     },
     "tag": {
       "description": "Estilos aplicados para {{nodeName}}, {{conditions}}.",
-      "nodeName": "the tag elements",
-      "conditions": "e.g. the chips"
+      "nodeName": "os elementos de tag",
+      "conditions": "ex: os chips"
     },
     "tagSizeSmall": {
       "description": "Estilos aplicados para {{nodeName}}, {{conditions}}.",
-      "nodeName": "the tag elements",
+      "nodeName": "os elementos de tag",
       "conditions": "e.g. the chips if <code>size=\"small\"</code>"
     },
     "tagSizeMedium": {
@@ -100,70 +100,70 @@
     },
     "inputRoot": {
       "description": "Estilos aplicados a {{nodeName}}.",
-      "nodeName": "the Input element"
+      "nodeName": "o  elemento Input"
     },
     "input": {
       "description": "Estilos aplicados a {{nodeName}}.",
-      "nodeName": "the input element"
+      "nodeName": "o elemento input"
     },
     "inputFocused": {
       "description": "Estilos aplicados para {{nodeName}} se {{conditions}}.",
-      "nodeName": "the input element",
-      "conditions": "tag focused"
+      "nodeName": "o elemento input",
+      "conditions": "the input is focused"
     },
     "endAdornment": {
       "description": "Estilos aplicados a {{nodeName}}.",
-      "nodeName": "the endAdornment element"
+      "nodeName": "o elemento endAdornment"
     },
     "clearIndicator": {
       "description": "Estilos aplicados a {{nodeName}}.",
-      "nodeName": "the clear indicator"
+      "nodeName": "o indicador de limpar"
     },
     "popupIndicator": {
       "description": "Estilos aplicados a {{nodeName}}.",
-      "nodeName": "the popup indicator"
+      "nodeName": "o indicador de pop-up"
     },
     "popupIndicatorOpen": {
       "description": "Estilos aplicados para {{nodeName}} se {{conditions}}.",
-      "nodeName": "the popup indicator",
-      "conditions": "the popup is open"
+      "nodeName": "o indicador de pop-up",
+      "conditions": "o pop-up estiver aberto"
     },
     "popper": {
       "description": "Estilos aplicados a {{nodeName}}.",
-      "nodeName": "the popper element"
+      "nodeName": "o elemento popper"
     },
     "popperDisablePortal": {
       "description": "Estilos aplicados para {{nodeName}} se {{conditions}}.",
-      "nodeName": "the popper element",
+      "nodeName": "o elemento popper",
       "conditions": "<code>disablePortal={true}</code>"
     },
     "paper": {
       "description": "Estilos aplicados a {{nodeName}}.",
-      "nodeName": "the Paper component"
+      "nodeName": "o componente Paper"
     },
     "listbox": {
       "description": "Estilos aplicados a {{nodeName}}.",
-      "nodeName": "the listbox component"
+      "nodeName": "o componente listbox"
     },
     "loading": {
       "description": "Estilos aplicados a {{nodeName}}.",
-      "nodeName": "the loading wrapper"
+      "nodeName": "o wrapper de carregamento"
     },
     "noOptions": {
       "description": "Estilos aplicados a {{nodeName}}.",
-      "nodeName": "the no option wrapper"
+      "nodeName": "o wrapper de sem opção"
     },
     "option": {
       "description": "Estilos aplicados a {{nodeName}}.",
-      "nodeName": "the option elements"
+      "nodeName": "os elementos de opção"
     },
     "groupLabel": {
       "description": "Estilos aplicados a {{nodeName}}.",
-      "nodeName": "the group's label elements"
+      "nodeName": "os elementos de label dos groupos"
     },
     "groupUl": {
       "description": "Estilos aplicados a {{nodeName}}.",
-      "nodeName": "the group's ul elements"
+      "nodeName": "os elementos de ul dos groupos"
     }
   }
 }

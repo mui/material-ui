@@ -4,23 +4,25 @@
 
 Procurando pelos documentos da v3? [Encontre-os aqui](https://material-ui.com/versions/).
 
-> Este documento está em constante evolução. Você atualizou seu site e encontrou algo que não é abordado aqui? [Adicione suas alterações no GitHub](https://github.com/mui/material-ui/blob/HEAD/docs/src/pages/guides/migration-v3/migration-v3.md).
+:::info
+This document is a work in progress. Have you upgraded your site and run into something that's not covered here? [Add your changes on GitHub](https://github.com/mui/material-ui/blob/master/docs/data/material/migration/migration-v3/migration-v3.md).
+:::
 
 ## Introdução
 
-Esta é uma referência para atualizar seu site de Material UI v3 para v4. Embora haja muita coisa coberta por aqui, você provavelmente não precisará fazer tudo no seu site. Faremos o nosso melhor para manter as coisas fáceis de seguir e tão sequenciais quanto possível, para que você possa rapidamente agitar na v4!
+This is a reference for upgrading your site from Material UI v3 to v4. While there's a lot covered here, you probably won't need to do everything for your site. We'll do our best to keep things easy to follow, and as sequential as possible so you can quickly get rocking on v4!
 
 ## Por que você deve migrar
 
-Esta página de documentação cobre o **como** migrar da v3 para a v4. O **porque** é abordado na [postagem no blog do Medium](https://medium.com/material-ui/material-ui-v4-is-out-4b7587d1e701).
+This documentation page covers the **how** of migrating from v3 to v4. The **why** is covered in the [release blog post on Medium](https://mui.com/blog/material-ui-v4-is-out/).
 
 ## Atualizando suas dependências
 
-A primeira coisa que você precisa fazer é atualizar suas dependências.
+The very first thing you will need to do is to update your dependencies.
 
-### Atualize a versão do Material UI
+### Update Material UI version
 
-Você precisa atualizar seu `package.json` para usar a versão mais recente do Material UI.
+You need to update your `package.json` to use the latest version of Material UI.
 
 ```json
 "dependencies": {
@@ -28,7 +30,7 @@ Você precisa atualizar seu `package.json` para usar a versão mais recente do M
 }
 ```
 
-Ou execute
+Or run
 
 ```sh
 npm install @material-ui/core
@@ -40,11 +42,11 @@ yarn add @material-ui/core
 
 ### Atualize a versão do React
 
-A versão miníma necessária do React foi incrementada de `react@^16.3.0` para `react@^16.8.0`. Isso nos permite a utilizar [Hooks](https://pt-br.reactjs.org/docs/hooks-intro.html) (não usamos mais a API class).
+The minimum required version of React was increased from `react@^16.3.0` to `react@^16.8.0`. This allows us to rely on [Hooks](https://reactjs.org/docs/hooks-intro.html) (we no longer use the class API).
 
-### Atualize a versão do Material UI Styles
+### Update Material UI Styles version
 
-Se você estava usando anteriormente `@material-ui/styles` com a versão 3, precisa atualizar o `package.json` para usar a última versão de Material UI Styles.
+If you were previously using `@material-ui/styles` with v3 you need to update your `package.json` to use the latest version of Material UI Styles.
 
 ```json
 "dependencies": {
@@ -52,7 +54,7 @@ Se você estava usando anteriormente `@material-ui/styles` com a versão 3, prec
 }
 ```
 
-Ou execute
+Or run
 
 ```sh
 npm install @material-ui/styles
@@ -70,7 +72,7 @@ yarn add @material-ui/styles
 
 ### Estilos
 
-- ⚠️ Material UI depende do JSS v10. JSS v10 não é compatível com a v9. Certifique-se de que o JSS v9 não esteja instalado em seu ambiente. (Remover `react-jss` do seu `package.json` pode ajudar). O componente StylesProvider substitui o componente JssProvider.
+- ⚠️ Material UI depends on JSS v10. JSS v10 não é compatível com a v9. Certifique-se de que o JSS v9 não esteja instalado em seu ambiente. (Remover `react-jss` do seu `package.json` pode ajudar). O componente StylesProvider substitui o componente JssProvider.
 - Remova a primeira opção de argumento do `withTheme()`. (O primeiro argumento é um espaço reservado para uma opção futura potencial que nunca existiu.)
 
   It matches the [emotion API](https://emotion.sh/docs/introduction) and the [styled-components API](https://styled-components.com).
@@ -166,7 +168,7 @@ yarn add @material-ui/styles
 
 #### Tipo `value`
 
-Tipo da propriedade `value` normalizado para os componentes de entrada utilizarem `unknown`. Isso afeta `InputBase`, `NativeSelect`, `OutlinedInput`, `Radio`, `RadioGroup`, `Select`, `SelectInput`, `Switch`, `TextArea`, and `TextField`.
+Normalized `value` prop type for input components to use `unknown`. This affects `InputBase`, `NativeSelect`, `OutlinedInput`, `Radio`, `RadioGroup`, `Select`, `SelectInput`, `Switch`, `TextArea`, and `TextField`.
 
 ```diff
 function MySelect({ children }) {
@@ -179,7 +181,7 @@ function MySelect({ children }) {
 }
 ```
 
-Esta alteração é explicada em mais detalhes no [guia TypeScript](/material-ui/guides/typescript/#handling-value-and-event-handlers)
+This change is explained in more detail in the [TypeScript guide](/material-ui/guides/typescript/#handling-value-and-event-handlers)
 
 ### Button
 
@@ -209,7 +211,7 @@ Esta alteração é explicada em mais detalhes no [guia TypeScript](/material-ui
   +<Fab variant="extended" />
   ```
 
-- [ButtonBase] O componente passado para a propriedade `component` precisa ser capaz de lidar com ref. O [guia de composição](/material-ui/guides/composition/#caveat-with-refs) explica a estratégia de migração.
+- [ButtonBase] O componente passado para a propriedade `component` precisa ser capaz de lidar com ref. The [composition guide](/material-ui/guides/composition/#caveat-with-refs) explains the migration strategy.
 
   Isso também se aplica a `BottomNavigationAction`, `Button`, `CardActionArea`, `Checkbox`, `ExpansionPanelSummary`, `Fab`, `IconButton`, `MenuItem`, `Radio`, `StepButton`, `Tab`, `TableSortLabel` bem como `ListItem` se a propriedade `button` for `true`.
 
@@ -228,7 +230,7 @@ Esta alteração é explicada em mais detalhes no [guia TypeScript](/material-ui
 - [DialogActions] Renomeie a propriedade `disableActionSpacing` para `disableSpacing`.
 - [DialogActions] Renomeie a classe CSS `action` para `spacing`.
 - [DialogContentText] Use a variante de tipografia `body1` em vez de `subtitle1`.
-- [Dialog] O elemento filho precisa ser capaz de lidar com ref. O [guia de composição](/material-ui/guides/composition/#caveat-with-refs) explica a estratégia de migração.
+- [Dialog] O elemento filho precisa ser capaz de lidar com ref. The [composition guide](/material-ui/guides/composition/#caveat-with-refs) explains the migration strategy.
 
 ### Divisor
 
@@ -262,7 +264,7 @@ Esta alteração é explicada em mais detalhes no [guia TypeScript](/material-ui
 
 ### Modal
 
-- [Modal] O elemento filho precisa ser capaz de lidar com ref. O [guia de composição](/material-ui/guides/composition/#caveat-with-refs) explica a estratégia de migração.
+- [Modal] O elemento filho precisa ser capaz de lidar com ref. The [composition guide](/material-ui/guides/composition/#caveat-with-refs) explains the migration strategy.
 
   Isso também se aplica aos componentes `Dialog` e `Popover`.
 
@@ -282,11 +284,11 @@ Esta alteração é explicada em mais detalhes no [guia TypeScript](/material-ui
 
 ### Portal
 
-- [Portal] O elemento filho precisa ser capaz de lidar com ref, quando a propriedade `disablePortal` é usada. O [guia de composição](/material-ui/guides/composition/#caveat-with-refs) explica a estratégia de migração.
+- [Portal] O elemento filho precisa ser capaz de lidar com ref, quando a propriedade `disablePortal` é usada. The [composition guide](/material-ui/guides/composition/#caveat-with-refs) explains the migration strategy.
 
 ### Slide
 
-- [Slide] O elemento filho precisa ser capaz de lidar com ref. O [guia de composição](/material-ui/guides/composition/#caveat-with-refs) explica a estratégia de migração.
+- [Slide] O elemento filho precisa ser capaz de lidar com ref. The [composition guide](/material-ui/guides/composition/#caveat-with-refs) explains the migration strategy.
 
 ### Slider
 
@@ -381,7 +383,7 @@ Esta alteração é explicada em mais detalhes no [guia TypeScript](/material-ui
 
 ### Dica
 
-- [Tooltip] O elemento filho precisa ser capaz de lidar com ref. O [guia de composição](/material-ui/guides/composition/#caveat-with-refs) explica a estratégia de migração.
+- [Tooltip] O elemento filho precisa ser capaz de lidar com ref. The [composition guide](/material-ui/guides/composition/#caveat-with-refs) explains the migration strategy.
 - [Tooltip] Aparece somente após o foco ser "focus-visible" em vez de qualquer foco.
 
 ### Tipografia
@@ -414,7 +416,7 @@ Esta alteração é explicada em mais detalhes no [guia TypeScript](/material-ui
 
 ### UMD
 
-- Essa alteração facilita o uso de Material UI com uma CDN:
+- This change eases the use of Material UI with a CDN:
 
   ```diff
   const {
