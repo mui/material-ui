@@ -23,11 +23,11 @@ Theme CSS variables is a new feature in Material UI added in [`v5.6.0`](https://
 
 For a server-side application, there are some trade-offs that are worth mentioning:
 
-|                                                       | Compare to the default method | Reason                                                                                                       |
-| ----------------------------------------------------- | ----------------------------- | ------------------------------------------------------------------------------------------------------------ |
-| HTML size                                             | bigger                        | CSS variables are generated for both light and dark mode at built time.                                      |
-| [First Contentful Paint (FCP) ](https://web.dev/fcp/) | larger                        | Since the HTML size is generally bigger, the time to download the HTML before showing the content is longer. |
-| [Time to Interactive (TTI)](https://web.dev/tti/)     | Smaller (for dark mode)       | The stylesheet are not regenerated between light and dark mode, so it takes less time for javascript to run. |
+|                                                      | Compare to the default method | Reason                                                                                                       |
+| ---------------------------------------------------- | ----------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| HTML size                                            | bigger                        | CSS variables are generated for both light and dark mode at built time.                                      |
+| [First Contentful Paint (FCP)](https://web.dev/fcp/) | larger                        | Since the HTML size is generally bigger, the time to download the HTML before showing the content is longer. |
+| [Time to Interactive (TTI)](https://web.dev/tti/)    | Smaller (for dark mode)       | The stylesheet are not regenerated between light and dark mode, so it takes less time for javascript to run. |
 
 :::warning
 ⚠️ The comparison described in the table are eligible for small applications that have no or very few customization. However, it might not be true for large and complex applications since there are a lot of factors that can impact the metrics.
