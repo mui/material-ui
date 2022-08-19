@@ -8,7 +8,7 @@ This is a guide for existing Material UI project to migrate to use CSS variables
 
 ### Without a custom theme
 
-Wrap you application with the new provider:
+If you haven't used [`ThemeProvider`](/material-ui/customization/theming/#theme-provider), simply wrap you application with the new provider:
 
 ```js
 import { Experimental_CssVarsProvider as CssVarsProvider } from '@mui/material/styles';
@@ -18,17 +18,17 @@ function App() {
 }
 ```
 
-You should see the generated CSS variables in the stylesheet and Material UI components start to consume the variables.
+You should see the generated CSS variables in the stylesheet. Material UI components that render inside the new provider will automatically use the theme CSS variables.
 
 ### Custom theme
 
-Replace the `createTheme()` with the new `extendTheme()` API. Only the palette node that needs to move to `colorSchemes`. Other properties can be copied and pasted.
+If you have a custom theme, replace the `createTheme()` with the new `extendTheme()` API. Only the palette node that needs to move to `colorSchemes`. Other properties can be copied and pasted.
 
 ```diff
 - import { createTheme } from '@mui/material/styles';
 + import { experimental_extendTheme as extendTheme} from '@mui/material/styles';
 
-- const theme = createTheme({
+- const lightTheme = createTheme({
 -   palette: {
 -    primary: {
 -      main: '#ff5252',
@@ -36,6 +36,16 @@ Replace the `createTheme()` with the new `extendTheme()` API. Only the palette n
 -    ...
 -  },
 -  // ...other properties, e.g. breakpoints, spacing, shape, typography, components
+- });
+
+- const darkTheme = createTheme({
+-   palette: {
+-    mode: 'dark',
+-    primary: {
+-      main: '#000',
+-    },
+-    ...
+-  },
 - });
 
 + const theme = extendTheme({
@@ -48,42 +58,20 @@ Replace the `createTheme()` with the new `extendTheme()` API. Only the palette n
 +         ...
 +       },
 +     },
-+     // dark: { ... }
++     dark: {
++       palette: {
++         primary: {
++           main: '#000',
++         },
++         ...
++       },
++     },
 +   },
 +   // ...other properties
 + });
 ```
 
-:::info
-
-If you have a dark theme, move the palette to the `dark` color scheme:
-
-```diff
-- const theme = createTheme({
--   palette: {
--     mode: 'dark',
--     primary: {
--       main: '#ff5252',
--     },
--   },
-- });
-
-+ const theme = extendTheme({
-+   colorSchemes: {
-+     dark: {
-+       palette: {
-+         primary: {
-+           main: '#ff5252',
-+         },
-+       },
-+     },
-+   },
-+ });
-```
-
-:::
-
-Then, replace the `ThemeProvider` with the new provider:
+Then, replace the `ThemeProvider` with the `CssVarsProvider`:
 
 ```diff
 - import { ThemeProvider } from '@mui/material/styles';
@@ -99,7 +87,7 @@ function App() {
 
 Save the file and start the development server, your application should be able to run without crashing.
 
-If you inspect the page, you will see the generated CSS variables in the stylesheet and Material UI components start to consume the variables.
+If you inspect the page, you will see the generated CSS variables in the stylesheet. Material UI components that render inside the new provider will automatically use the theme CSS variables.
 
 ## 2. Remove the toggle mode logic
 
@@ -145,7 +133,7 @@ function App() {
 }
 ```
 
-**After**: the `mode` is store internally inside `CssVarsProvider` which handles the local storage synchronization for you. The `useColorScheme` hook lets you access to the user selected `mode` and a function `setMode` to update the value.
+**After**:
 
 ```js
 import {
@@ -184,6 +172,10 @@ function App() {
   );
 }
 ```
+
+The `useColorScheme` hook provides the user selected `mode` and a function `setMode` to update the value.
+
+The `mode` is store internally inside `CssVarsProvider` which handles the local storage synchronization for you.
 
 ## 3. Prevent dark mode flickering for server-side application
 
@@ -226,11 +218,12 @@ export function onRenderBody({ setPreBodyComponents }) {
 }
 ```
 
-## 4. Refactor custom styles to attribute selector
+## 4. Refactor custom styles to use attribute selector
 
 Users still encounter dark mode flickering, if you have custom styles like this in your codebase:
 
 ```js
+// theming example
 extendTheme({
   components: {
     MuiChip: {
@@ -246,18 +239,19 @@ extendTheme({
   },
 });
 
-// or a custom component
+// or a custom component example
 const Button = styled('button')(({ theme }) => ({
   backgroundColor:
     theme.palette.mode === 'dark' ? 'rgba(255 255 255 / 0.2)' : 'rgba(0 0 0 / 0.2)',
 }));
 ```
 
-The above examples are considered as runtime calculation which creates dark mode flickering in server-side application.
+This is because the `theme.palette.mode` is always `light` on the server.
 
-To fix this problem, replace the conditional expression with attribute selector instead:
+To fix this problem, replace the conditional expression with the attribute selector instead:
 
 ```js
+// theming example
 extendTheme({
   components: {
     MuiChip: {
@@ -273,7 +267,7 @@ extendTheme({
   },
 });
 
-// or a custom component
+// or a custom component example
 const Button = styled('button')(({ theme }) => ({
   backgroundColor: 'rgba(0 0 0 / 0.2)',
   [theme.getColorSchemeSelector('dark')]: {
@@ -283,7 +277,7 @@ const Button = styled('button')(({ theme }) => ({
 ```
 
 :::info
-`theme.getColorSchemeSelector()` is a function utility that returns an attribute selector `'[data-mui-color-scheme="dark"] &'`.
+The `theme.getColorSchemeSelector()` is a utility function that returns an attribute selector `'[data-mui-color-scheme="dark"] &'`.
 
-⚠️ Note that the attribute selector creates higher CSS specificity which is usually not great for theming. A better approach is to [`:where`](https://developer.mozilla.org/en-US/docs/Web/CSS/:where) selector, check out [how to apply it](/material-ui/experimental-api/css-variables/#using-where-selector) to your project.
+⚠️ Note that the attribute selector creates higher CSS specificity which could be cubersome for theming.
 :::

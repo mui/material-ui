@@ -2,10 +2,6 @@
 
 <p class="description">Learn how to use the experimental API to adopt CSS variables.</p>
 
-<!-- TODO: add link to the migration page -->
-
-This page is best for starting a new project with CSS variables. If you have an existing Material UI project, check out the step-by-step [migration guide](/material-ui/experimental-api/css-variables/migration/) instead.
-
 ## Getting started
 
 `Experimental_CssVarsProvider` is a new provider that attaches all generated CSS variables to the theme and puts them in React context.
@@ -18,7 +14,7 @@ function App() {
 }
 ```
 
-Once the `App` renders on the screen, you will see the theme CSS variables attached to html `:root` stylesheet. The theme object is flatten to variables using `-` separator:
+Once the `App` renders on the screen, you will see the theme CSS variables attached to the html `:root` stylesheet. The theme object is flatten to CSS variables with `--mui` default prefix:
 
 ```css
 /* generated global stylesheet */
@@ -32,7 +28,7 @@ Once the `App` renders on the screen, you will see the theme CSS variables attac
 ```
 
 :::info
-The `CssVarsProvider` is basically a `ThemeProvider` with extra features like CSS variables generation, session synchronization, unlimited color schemes, etc.
+The `CssVarsProvider` is built on top of the [`ThemeProvider`](/material-ui/customization/theming/#themeprovider) with extra features like CSS variables generation, session synchronization, unlimited color schemes, etc.
 :::
 
 ## Toggle between light and dark mode
@@ -87,13 +83,11 @@ function App() {
 }
 ```
 
-<!-- If you want to customize `light` and `dark` palette, check out the [customization guide](/material-ui/experimental-api/css-variables/customization/#theming). -->
-
 ## Using the variables
 
-There are mainly 2 ways that you can use the generated CSS variables:
+There are mainly 2 ways that you can use the theme CSS variables:
 
-- **A plain string**: The simplest and very effective way is to use a string with the format `var(--*)` to refer to a CSS variable.
+- **Native CSS**: The simplest way is to use a plain string with the format of [`var()`](https://developer.mozilla.org/en-US/docs/Web/CSS/var) to refer to a CSS variable.
 
   ```js
   const Button = style('button')({
