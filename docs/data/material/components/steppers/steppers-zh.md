@@ -17,37 +17,39 @@ materialDesign: https://material.io/archive/guidelines/components/steppers.html
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-> **请注意：**步骤条不再出现在 [Material Design 指南](https://material.io/)中, 但 Material UI 会继续支持此组件。
+:::warning
+**Note:** Steppers are no longer documented in the [Material Design guidelines](https://material.io/), but Material UI will continue to support them.
+:::
 
 ## 水平步骤条
 
-当一个步骤的内容依赖于前一个步骤时，使用水平步骤条是非常适合的。
+Horizontal steppers are ideal when the contents of one step depend on an earlier step.
 
-避免在水平步骤条中使用较长的步骤名称。
+Avoid using long step names in horizontal steppers.
 
 ### 线性步骤条
 
-线性步骤条可以让用户依次完成步骤。
+A linear stepper allows the user to complete the steps in sequence.
 
-您可以在 `activeStep` 属性中传入一个初始值为 0 的当前步骤值来控制 `步骤条`。 您也可以借助 `orientation` 属性来设置 `步骤条` 的方向。
+The `Stepper` can be controlled by passing the current step index (zero-based) as the `activeStep` prop. `Stepper` orientation is set using the `orientation` prop.
 
-这个例子把 `optional` 属性放在第二个 `步骤` 的组件上，它展示了如何使用一个可选的步骤条。 请注意，您可以自行选择管理跳过一个可选的步骤。 一旦决定将一个特定步骤设置为可选的，您就必须配置这个属性 `completed={false}` 以表示即使激活的步骤索引超出了可选的步骤，步骤条并没有完成。
+This example also shows the use of an optional step by placing the `optional` prop on the second `Step` component. Note that it's up to you to manage when an optional step is skipped. Once you've determined this for a particular step you must set `completed={false}` to signify that even though the active step index has gone beyond the optional step, it's not actually complete.
 
 {{"demo": "HorizontalLinearStepper.js"}}
 
 ### 非线性的步骤条
 
-非线性步进器允许用户在任何点输入多步流程。
+Non-linear steppers allow the user to enter a multi-step flow at any point.
 
-此示例类似于常规的水平步骤条，但不同之处在于该组件不再基于 `activeStep` 属性自动设置 `disabled = {true}`。
+This example is similar to the regular horizontal stepper, except steps are no longer automatically set to `disabled={true}` based on the `activeStep` prop.
 
-在这里使用 `StepButton` 演示了一个可单击的步骤器标签，并且设置了 `completed` 标志。 但是，由于可以以非线性方式访问每个步骤，因此需要由您自己的实现来确定何时完成所有步骤（甚至是是否需要完成）。
+The use of the `StepButton` here demonstrates clickable step labels, as well as setting the `completed` flag. However because steps can be accessed in a non-linear fashion, it's up to your own implementation to determine when all steps are completed (or even if they need to be completed).
 
 {{"demo": "HorizontalNonLinearStepper.js"}}
 
 ### 替代标签
 
-您可以将标签置于步骤的图标之下，通过设置 `Stepper` 组件的 `alternativeLabel` 属性可以实现。
+Labels can be placed below the step icon by setting the `alternativeLabel` prop on the `Stepper` component.
 
 {{"demo": "HorizontalLinearAlternativeLabelStepper.js"}}
 
@@ -57,19 +59,19 @@ materialDesign: https://material.io/archive/guidelines/components/steppers.html
 
 ### 自定义水平步骤条
 
-以下是自定义组件的一个示例。 您可以在 [重写文档页面](/material-ui/customization/how-to-customize/) 中了解更多有关此内容的信息。
+Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/).
 
 {{"demo": "CustomizedSteppers.js"}}
 
 ## 垂直步骤条
 
-垂直步骤条是为狭窄的屏幕而设计的。 它们是移动设备的理想选择。 同样它们也可以实现水平步骤条的所有功能。
+Vertical steppers are designed for narrow screen sizes. They are ideal for mobile. All the features of the horizontal stepper can be implemented.
 
 {{"demo": "VerticalLinearStepper.js"}}
 
 ### 文本
 
-步骤内容将在关闭时自动卸载。 若您需要提供内容给搜索引擎，亦或是在您的模态框内渲染复杂的组件树，同时还要达到最佳的优化性能，您一般需要以下代码来装载模态框：
+The content of a step is unmounted when closed. If you need to make the content available to search engines or render expensive component trees inside your modal while optimizing for interaction responsiveness it might be a good idea to keep the step mounted with:
 
 ```jsx
 <StepContent TransitionProps={{ unmountOnExit: false }} />
@@ -77,30 +79,30 @@ materialDesign: https://material.io/archive/guidelines/components/steppers.html
 
 ## 移动设备上的步骤条
 
-该组件实现了适用于移动设备上的紧凑型步骤条。 与垂直步骤条相比，它的功能更为有限。 如果你还在寻找灵感，请参阅 [移动设备上的步骤条](https://material.io/archive/guidelines/components/steppers.html#steppers-types-of-steps)。
+This component implements a compact stepper suitable for a mobile device. It has more limited functionality than the vertical stepper. See [mobile steps](https://material.io/archive/guidelines/components/steppers.html#steppers-types-of-steps) for its inspiration.
 
-当前步骤数和总步骤数以文字形式显示。
+The mobile stepper supports three variants to display progress through the available steps: text, dots, and progress.
 
 ### 文本
 
-当前步骤数和总步骤数以文字形式显示。
+The current step and total number of steps are displayed as text.
 
 {{"demo": "TextMobileStepper.js", "bg": true}}
 
 ### 点状
 
-这个演示使用 [react-swipeable-views](https://github.com/oliviertassinari/react-swipeable-views) 来创建一个轮播。
+This demo uses [react-swipeable-views](https://github.com/oliviertassinari/react-swipeable-views) to create a carousel.
 
 {{"demo": "SwipeableTextMobileStepper.js", "bg": true}}
 
 ### 点状
 
-当步数较少时，请使用点状。
+Use dots when the number of steps is small.
 
 {{"demo": "DotsMobileStepper.js", "bg": true}}
 
 ### Progress 进度条组件
 
-当有许多步骤时，或者如果在此过程中需要插入步骤（基于对早期步骤的响应），请使用进度条。
+Use a progress bar when there are many steps, or if there are steps that need to be inserted during the process (based on responses to earlier steps).
 
 {{"demo": "ProgressMobileStepper.js", "bg": true}}

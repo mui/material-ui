@@ -1,4 +1,4 @@
-# Material UI 系统（System）
+# Material-UI 系统（System）
 
 <p class="description">用于快速布置自定义设计的 CSS 工具集。</p>
 
@@ -16,12 +16,16 @@ _（调整窗口大小以查看响应的断点）_
 
 <!-- #default-branch-switch -->
 
-```jsx
-// with npm
-npm install @material-ui/system@next @emotion/react @emotion/styled
+To install and save in your `package.json` dependencies, run the command below using **npm**:
 
-// with yarn
-yarn add @material-ui/system@next @emotion/react @emotion/styled
+```sh
+npm install @mui/system @emotion/react @emotion/styled
+```
+
+Or **yarn**:
+
+```sh
+yarn add @mui/system @emotion/react @emotion/styled
 ```
 
 Or if you want to use `styled-components` as a styling engine:
@@ -29,18 +33,18 @@ Or if you want to use `styled-components` as a styling engine:
 <!-- #default-branch-switch -->
 
 ```sh
-// with npm
-npm install @material-ui/system@next @material-ui/styled-engine-sc@next styled-components
-
-// with yarn
-yarn add @material-ui/system@next @material-ui/styled-engine-sc@next styled-components
+npm install @mui/system @mui/styled-engine-sc styled-components
 ```
 
-请参阅[Styled Engine guide](/material-ui/guides/styled-engine/)，了解更多关于如何配置`styled-components`作为样式引擎的信息。
+```sh
+yarn add @mui/system @mui/styled-engine-sc styled-components
+```
+
+Take a look at the [Styled Engine guide](/material-ui/guides/styled-engine/) for more information about how to configure `styled-components` as the style engine.
 
 ## 为什么要使用系统？
 
-比较同一个统计组件如何使用两种不同的 API 来构建。
+Compare how the same stat component can be built with two different APIs.
 
 {{"demo": "Why.js", "bg": true, "defaultCodeOpen": false}}
 
@@ -99,11 +103,11 @@ const StatPrevious = styled('div')(
 
 return (
   <StatWrapper>
-    <StatHeader>会话</StatHeader>
+    <StatHeader>Sessions</StatHeader>
     <StatValue>98.3 K</StatValue>
     <StyledTrend />
     <StatDiff>18.77%</StatDiff>
-    <StatPrevious>与上周相比</StatPrevious>
+    <StatPrevious>vs last week</StatPrevious>
   </StatWrapper>
 );
 ```
@@ -146,27 +150,27 @@ return (
 
 ### 问题已经解决
 
-这套系统重点是解决如下三个主要问题：
+The system focus on solving 3 main problems:
 
-**1. 1. Switching context wastes time.**
+**1. Switching context wastes time.**
 
-用户没有必要在样式组件的用法和定义的地方不断跳转。 有了这个系统，直接就可以在你需要的组件上面进行样式定制。
+There's no need to constantly jump between the usage of the styled components and where they are defined. With the system, those descriptions are right where you need them.
 
-**3。 UI 中要达成一致是很困难的。**
+**2. Naming things is hard.**
 
-你是否曾发现自己在为一个有样式的组件寻找一个好名字而苦恼？ 该系统可以直接将样式映射到元素。 所以你要做的就是只关心实际的样式属性。
+Have you ever found yourself struggling to find a good name for a styled component? The system maps the styles directly to the element. All you have to do is worry about actual style properties.
 
-**3. 3. Enforcing consistency in UIs is hard.**
+**3. Enforcing consistency in UIs is hard.**
 
-当不止一个人在构建应用程序时尤其如此，因为团队成员之间必须就设计标记的选择和使用方式进行一些协调，主题结构的哪些部分应该使用哪些 CSS 属性等等。
+This is especially true when more than one person is building the application, as there has to be some coordination amongst members of the team regarding the choice of design tokens and how they are used, what parts of the theme structure should be used with what CSS properties, and so on.
 
-系统可直接访问主题中的数值。 这样做可以在设计时更容易受到约束。
+The system provides direct access to the value in the theme. It makes it easier to design with constraints.
 
 ## `sx` 属性
 
-`sx` 属性作为系统的主要部分，为了解决了这些问题，它提供了一种快速 & 简单的方式，也就是将特定 CSS 属性的正确设计标记直接应用到 React 元素中。 [上面的这个演示](#demo) 展示了如何使用它来创建一次性设计。
+The `sx` prop, as the main part of the system, solves these problems by providing a fast & simple way of applying the correct design tokens for specific CSS properties directly to a React element. The [demo above](#demo) shows how it can be used to create a one-off design.
 
-This prop provides a superset of CSS (contains all CSS properties/selectors in addition to custom ones) that maps values directly from the theme, depending on the CSS property used. 同时，它允许一个简单的方式来定义响应式的值，来对应于主题中定义的断点。 同时，它允许一个简单的方式来定义响应式的值，来对应于主题中定义的断点。 有关更多详细信息，请访问 [`sx` prop 的页面](/system/the-sx-prop/)。
+This prop provides a superset of CSS (contains all CSS properties/selectors in addition to custom ones) that maps values directly from the theme, depending on the CSS property used. Also, it allows a simple way of defining responsive values that correspond to the breakpoints defined in the theme. For more details, visit the [`sx` prop page](/system/the-sx-prop/).
 
 ### 何时使用？
 
@@ -175,45 +179,45 @@ This prop provides a superset of CSS (contains all CSS properties/selectors in a
 
 ### 性能开销
 
-该系统依赖 CSS-in-JS。 它可以同时和 emotion 以及 styled-components 一起工作。
+The system relies on CSS-in-JS. It works with both Emotion and styled-components.
 
-优点：
+Pros:
 
 - 📚 它允许 API 具有很大的灵活性。 `sx` 属性支持 CSS 的超集。 所以**不需要重学 CSS**。 只要你学会了标准化的 CSS 语法，就可以了，很安全，十年来都没有变化。 当然如果你想要节省时间的话，也可以**选择**学习速记语法。
-- 📦 自动清除。 只有页面上使用过的 CSS 才会被发送到客户端。 所以初始化该捆绑包的大小成本是**灵活的**。 它的大小不会随着使用 CSS 属性的数量变多而同时增长。 你只需承担 [@emotion/react](https://bundlephobia.com/package/@emotion/react) 以及 [@mui/system](https://bundlephobia.com/package/@mui/system)的空间大小. 在 gzip 的环境下，它们大概占用约 15kb 的空间。 It cost around ~15 kB gzipped. 如果你已经正在使用核心组件，那么将不会带来额外的捆绑包资源占用。 It cost around ~15 kB gzipped. 如果你已经正在使用核心组件，那么将不会带来额外的捆绑包资源占用。
+- 📦 自动清除。 只有页面上使用过的 CSS 才会被发送到客户端。 所以初始化该捆绑包的大小成本是**灵活的**。 它的大小不会随着使用 CSS 属性的数量变多而同时增长。 你只需承担 [@emotion/react](https://bundlephobia.com/package/@emotion/react) 以及 [@mui/system](https://bundlephobia.com/package/@mui/system)的空间大小. 在 gzip 的环境下，它们大概占用约 15kb 的空间。 It cost around ~15 kB gzipped. 如果你已经正在使用核心组件，那么将不会带来额外的捆绑包资源占用。
 
-缺点：
+Cons:
 
 - 运行时会造成性能影响：
 
-  | 基准测试                             | 代码片段                        | 花费时间  |
-  |:-------------------------------- |:--------------------------- | ----- |
-  | a. a. Render 1,000 primitives    | `<div className="…">` | 100ms |
-  | b. b. b. b. b. b. 渲染 1,000 个组件   | `<Div>`               | 120ms |
-  | c. c. c. c. c. c. 渲染 1,000 个样式组件 | `<StyledDiv>`         | 160ms |
-  | d. d. Render 1,000 Box           | `<Box sx={…}>`        | 370ms |
+  | 基准测试                          | 代码片段                        | 花费时间  |
+  |:----------------------------- |:--------------------------- | ----- |
+  | a. Render 1,000 primitives    | `<div className="…">` | 100ms |
+  | b. b. b. b. b. 渲染 1,000 个组件   | `<Div>`               | 120ms |
+  | c. c. c. c. c. 渲染 1,000 个样式组件 | `<StyledDiv>`         | 160ms |
+  | d. Render 1,000 Box           | `<Box sx={…}>`        | 370ms |
 
 <!-- #default-branch-switch -->
 
 _Head to the [benchmark folder](https://github.com/mui/material-ui/tree/master/benchmark/browser) for a reproduction of these metrics._
 
-我们相信，对于大多数用途来说，它已经足够快了\*\*\*\*，但当性能变得至关重要时，也有一些简单的解决方法。 例如，当渲染一个有许多项目的列表时，你可以使用一个 CSS 子选择器来拥有一个单一的“样式注入”点（使用 d. 作为包装器，a. 应用到每个项目）。
+We believe that for most uses it's **fast enough**, but there are simple workarounds when performance becomes critical. For instance, when rendering a list with many items, you can use a CSS child selector to have a single "style injection" point (using d. for the wrapper and a. for each item).
 
 ### API 权衡
 
-将系统设在一个 prop 下(`sx`)有助于区分仅仅为了 CSS 实用工具而定义的 props。 按构成部分开列的业务逻辑开列的次数。 它对 **关注点分离** 很重要。 例如，一个按钮上的 `color` prop 会影响多个状态(hover，focus 等)，不会与颜色的 CSS 属性混淆。
+Having the system under one prop (`sx`) helps to differentiate props defined for the sole purpose of CSS utilities, vs. those for component business logic. It's important for the **separation of concerns**. For instance, a `color` prop on a button impacts multiple states (hover, focus, etc.), not to be confused with the color CSS property.
 
-只有 `Box`, `Stack`, `类型`, 和 `格子` 组件接受系统属性为 _props_ 基于上述理由。 这些组件旨在解决 CSS 问题，它们是 CSS 组件实用工具。
+Only the `Box`, `Stack`, `Typography`, and `Grid` components accept the system properties as _props_ for the above reason. These components are designed to solve CSS problems, they are CSS component utilities.
 
 ## 使用
 
 ### 主题中的设计标记
 
-你可以探索 [系统属性](/system/properties/) 页面来发现不同的 CSS（和自定义）属性是如何映射到主题键的。
+You can explore the [System properties](/system/properties/) page to discover how the different CSS (and custom) properties are mapped to the theme keys.
 
 ### 速记语法
 
-CSS 属性中有大量的速记语法。 这些语法在之后的文档中都有记录，例如 [间距](/system/spacing/)。 如下是一个使用它们的例子：
+There are lots of shorthands available for the CSS properties. These are documented in the next pages, for instance, [the spacing](/system/spacing/). Here is an example leveraging them:
 
 ```jsx
 <Box
@@ -229,11 +233,11 @@ CSS 属性中有大量的速记语法。 这些语法在之后的文档中都有
 >
 ```
 
-这些速记语法是**可选的**，虽然使用这些能够快速编写样式，但是也要考虑到学习自定义 API 的时间成本。 你可能想要跳过这部分并专注于使用标准几十年都没有变化的 CSS 规则，那么请跳转到 [下一节](#superset-of-css)。
+These shorthands are **optional**, they are great to save time when writing styles but it can be overwhelming to learn new custom APIs. You might want to skip this part and bet on CSS, it has been standardized for decades, head to the [next section](#superset-of-css).
 
 ### CSS 超集
 
-作为属性的一部分，你也可以使用任何常规的 CSS：child 或者 pseudo-selectors，媒体查询（media queries）, raw CSS values，等等。 以下是几个例子：
+As part of the prop, you can use any regular CSS too: child or pseudo-selectors, media queries, raw CSS values, etc. Here are a few examples:
 
 - 使用伪类选择器：
 
@@ -276,36 +280,36 @@ CSS 属性中有大量的速记语法。 这些语法在之后的文档中都有
 
 ### 响应式的值
 
-如果你想要你的 CSS 属性是响应式的，那么可以使用断点速记语法。 确定断点有两种方法：
+If you would like to have responsive values for a CSS property, you can use the breakpoints shorthand syntax. There are two ways of defining the breakpoints:
 
-#### 1. 1. 1. 1. 1. 1. 将断点作为对象
+#### 1. 1. 1. 1. 1. 将断点作为对象
 
-定义断点的第一种选择是将断点定义为一个对象，将断点作为其键。 请注意，每个断点属性都与断点和每个大断点相匹配。 Note that each breakpoint property matches the breakpoint and every larger breakpoint. For example, `width: { lg: 100 }` is equivalent to `theme.breakpoints.up('lg')`. 这里又是前面的例子，使用的是对象语法。 这里又是前面的例子，使用的是对象语法。
+The first option for defining breakpoints is to define them as an object, using the breakpoints as keys. Note that each breakpoint property matches the breakpoint and every larger breakpoint. For example, `width: { lg: 100 }` is equivalent to `theme.breakpoints.up('lg')`. Here is the previous example again, using the object syntax.
 
 {{"demo": "BreakpointsAsObject.js"}}
 
-#### 2. 2. Breakpoints as an array
+#### 2. Breakpoints as an array
 
-第二种选择是将你的断点沿着最小到最大来进行定义。
+The second option is to define your breakpoints as an array, from the smallest to the largest breakpoint.
 
 {{"demo": "BreakpointsAsArray.js"}}
 
 > ⚠️ 只有当主题的断点数量有限时，才建议使用这个选项，例如 3.<br />。 如果你需要使用更多的断点，那么首选对象 API。 例如，MUI 默认主题设为 5。
 
-你可以使用 `null` 值来跳过断点：
+You can skip breakpoints with the `null` value:
 
 ```jsx
-<Box sx={{ width: [null, null, 300] }}>该分组的宽度是响应式的。 </Box>
+<Box sx={{ width: [null, null, 300] }}>This box has a responsive width.</Box>
 ```
 
 ### 自定义断点
 
-你也可以指定自定义断点，并在定义断点对象时将其作为键。 下面是一个如何操作的例子。
+You can also specify your own custom breakpoints, and use them as keys when defining the breakpoints object. Here is an example of how to do that.
 
 ```jsx
 import * as React from 'react';
-import Box from '@material-ui/core/Box';
-import { createTheme, ThemeProvider } from '@material-ui/core/styles';
+import Box from '@mui/material/Box';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const theme = createTheme({
   breakpoints: {
@@ -336,17 +340,17 @@ export default function CustomBreakpoints() {
 }
 ```
 
-如果你使用的是 TypeScript，那么将需要使用 [模块扩展（module augmentation）](/material-ui/guides/typescript/#customization-of-theme) 来让主题接收上述值。
+If you are using TypeScript, you will also need to use [module augmentation](/material-ui/guides/typescript/#customization-of-theme) for the theme to accept the above values.
 
 ```ts
-declare module '@material-ui/core/styles/createBreakpoints' {
+declare module '@mui/material/styles' {
   interface BreakpointOverrides {
-    xs: false; // 移除 `xs` 断点
+    xs: false; // removes the `xs` breakpoint
     sm: false;
     md: false;
     lg: false;
     xl: false;
-    tablet: true; // 添加 `tablet` 断点
+    tablet: true; // adds the `tablet` breakpoint
     laptop: true;
     desktop: true;
   }
@@ -355,32 +359,32 @@ declare module '@material-ui/core/styles/createBreakpoints' {
 
 ### 主题获取
 
-如果你想用主题来处理系统不支持的 CSS 属性，那么你可以使用一个函数作为值，在其中你就可以访问主题对象。
+If you wish to use the theme for a CSS property that is not supported natively by the system, you can use a function as the value, in which you can access the theme object.
 
 {{"demo": "ValueAsFunction.js"}}
 
 ## 实现
 
-`sx` 属性可以用于四个不同的位置：
+The `sx` prop can be used in four different locations:
 
 ### 3。 2. 自定义组件
 
-所有核心 MUI 组件将支持 `sx` prop。
+All core MUI components will support the `sx` prop.
 
-### 2. 2. Box 2. Box
+### 2. 2. Box
 
-[`Box`](/material-ui/react-box/) 是一个轻量级组件，它可以以工具集的方式通过包装其他组件来达到访问其 `sx` 属性的目的。 默认情况下将渲染一个 `<div>` 元素。
+[`Box`](/material-ui/react-box/) is a lightweight component that gives access to the `sx` prop, and can be used as a utility component, and as a wrapper for other components. It renders a `<div>` element by default.
 
-### 3. 3. 3. 2. 自定义组件
+### 3. 3. 2. 自定义组件
 
-除了 MUI 组件外，您也可以将 `sx` prop 添加到您的自定义组件。 使用 `风格的` 实用程序来自 `@mui/material/styles`
+In addition to MUI components, you can add the `sx` prop to your custom components too, by using the `styled` utility from `@mui/material/styles`.
 
 ```jsx
-import { styled } from '@material-ui/core/styles';
+import { styled } from '@mui/material/styles';
 
 const Div = styled('div')``;
 ```
 
-### 4. 4. 4. 4、 4、 4、 使用 babel 插件的任何元素
+### 4. 4. 4、 4、 4、 使用 babel 插件的任何元素
 
-等待开发 [#23220](https://github.com/mui/material-ui/issues/23220)。
+TODO [#23220](https://github.com/mui/material-ui/issues/23220).

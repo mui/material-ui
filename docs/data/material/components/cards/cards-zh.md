@@ -44,23 +44,25 @@ materialDesign: https://material.io/components/cards
 
 {{"demo": "ImgMediaCard.js", "bg": true}}
 
-> ⚠️ 当 `component="img"` 时，CardMedia 通过 `object-fit` 来居中图像。 这个用法不兼容 IE11。
+:::warning
+⚠️ When `component="img"`, CardMedia relies on `object-fit` for centering the image. It's not supported by IE11.
+:::
 
 ## 主要（Primary）操作
 
-通常情况下，卡片允许用户与它的整个表面进行交互，以触发它的主要动作，无论是扩展，链接到另一个屏幕或使用其他行为。 卡片的操作区域可以通过将其内容包裹在 `CardActionArea` 组件中来指定。
+Often a card allow users to interact with the entirety of its surface to trigger its main action, be it an expansion, a link to another screen or some other behavior. The action area of the card can be specified by wrapping its contents in a `CardActionArea` component.
 
 {{"demo": "ActionAreaCard.js", "bg": true}}
 
-卡片还可以提供额外的操作功能，这些功能应该脱离主操作区域，以避免事件重叠。
+A card can also offer supplemental actions which should stand detached from the main action area in order to avoid event overlap.
 
 {{"demo": "MultiActionAreaCard.js", "bg": true}}
 
 ## UI 控件
 
-卡片内部的一些补充操作可使用图标、文本和 UI 控件显式调用，我们通常将其放在卡片组件的底部。
+Supplemental actions within the card are explicitly called out using icons, text, and UI controls, typically placed at the bottom of the card.
 
-以下是一个多媒体内容控制的卡片的例子。
+Here's an example of a media control card.
 
 {{"demo": "MediaControlCard.js", "bg": true}}
 
