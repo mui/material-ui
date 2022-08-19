@@ -597,7 +597,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
           as={PopperComponent}
           disablePortal={disablePortal}
           style={{
-            width: anchorEl && popupOpen ? anchorEl.clientWidth : null,
+            width: anchorEl ? anchorEl.clientWidth : null,
           }}
           ownerState={ownerState}
           role="presentation"
