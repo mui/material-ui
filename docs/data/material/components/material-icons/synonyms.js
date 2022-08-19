@@ -49,7 +49,7 @@ const synonyms = {
     'card cash checkout coin commerce credit currency dollars money online payment plus',
   AddTask: '+ approve check circle completed increase mark ok plus select tick yes',
   AddToDrive:
-    '+ app backup cloud data files folders gdrive google plus recovery storage',
+    '+ application backup cloud data files folders gdrive google plus recovery shortcut storage',
   AddToHomeScreen:
     'Android add arrow cell device hardware iOS mobile phone tablet to up',
   AddToPhotos: 'collection image landscape mountains photography picture plus',
@@ -138,11 +138,11 @@ const synonyms = {
   Architecture: 'art compass design drawing engineering geometric tool',
   Archive: 'inbox mail store',
   ArrowBack:
-    'application components direction interface left navigation previous screen ui ux website',
+    'application components direction disable_ios interface left navigation previous screen ui ux website',
   ArrowBackIos:
-    'application chevron components direction interface left navigation previous screen ui ux website',
+    'application chevron components direction disable_ios interface left navigation previous screen ui ux website',
   ArrowBackIosNew:
-    'application chevron components direction interface left navigation previous screen ui ux website',
+    'application chevron components direction disable_ios interface left navigation previous screen ui ux website',
   ArrowCircleDown: 'direction navigation',
   ArrowCircleLeft: 'direction navigation',
   ArrowCircleRight: 'direction navigation',
@@ -161,6 +161,8 @@ const synonyms = {
     'application chevron components direction interface navigation next right screen ui ux website',
   ArrowLeft:
     'application backstack backward components direction interface navigation previous screen ui ux website',
+  ArrowOutward:
+    'application arrows components direction forward interface navigation right screen ui ux website',
   ArrowRight:
     'application components continue direction forward interface navigation screen ui ux website',
   ArrowRightAlt: 'arrows direction east navigation pointing shape',
@@ -185,6 +187,8 @@ const synonyms = {
   AssistantDirection:
     'destination location maps navigate navigation pin place right stop',
   AssistantPhoto: 'flag recommendation smart star suggestion',
+  AssistWalker:
+    'accessibility accessible body disability handicap help human injured injury mobility person',
   AssuredWorkload:
     'compliance confidential federal government regulatory secure sensitive',
   Atm: 'alphabet automated bill card cart cash character coin commerce credit currency dollars font letter machine money online payment shopping symbol teller text type',
@@ -267,6 +271,9 @@ const synonyms = {
   BikeScooter: 'automobile cars maps transportation vehicle vespa',
   Biotech: 'chemistry laboratory microscope research science technology test',
   Blender: 'appliance cooking electric juicer kitchen machine vitamix',
+  Blind:
+    'accessibility accessible assist body cane disability handicap help human mobility person walker',
+  Blinds: 'cover curtains nest open shutter sunshade',
   BlindsClosed: 'cover curtains nest shutter sunshade',
   Block:
     'allowed avoid banned cancel close disable entry exit not prohibited quit remove stop',
@@ -336,7 +343,7 @@ const synonyms = {
   BubbleChart:
     'analytics bars data diagram infographic measure metrics statistics tracking',
   BugReport: 'animal file fix insect issue problem testing ticket virus warning',
-  Build: 'adjust fix repair spanner tool wrench',
+  Build: 'adjust fix home nest repair spanner tools wrench',
   BuildCircle: 'adjust fix repair tool wrench',
   Bungalow:
     'architecture cottage estate home house maps place real residence residential stay traveling',
@@ -350,7 +357,7 @@ const synonyms = {
     'architecture camping cottage estate home house log maps place real residence residential stay traveling wood',
   Cable: 'connection device electronics usb wire',
   Cached: 'around arrows inprogress loader loading refresh reload renew rotate',
-  Cake: 'baked birthday candles celebration dessert food frosting party pastries pastry pie social sweet',
+  Cake: 'add baked birthday candles celebration dessert food frosting new party pastries pastry pie plus social sweet symbol',
   Calculate: '+ - = calculator count finance math',
   CalendarMonth: 'date event schedule today',
   CalendarToday: 'date event month remember reminder schedule week',
@@ -425,7 +432,7 @@ const synonyms = {
   ChatBubble: 'comment communicate feedback message speech talk text',
   ChatBubbleOutline: 'comment communicate feedback message speech talk text',
   Check:
-    'checkmark complete confirm correct done enter okay purchased select success tick yes',
+    'checkmark complete confirm correct disable_ios done enter okay purchased select success tick yes',
   CheckBox:
     'approved button checkmark component control form ok selected selection square success tick toggle ui yes',
   CheckBoxOutlineBlank:
@@ -435,7 +442,7 @@ const synonyms = {
   CheckCircleOutline:
     'approve checkmark complete done finished ok select success tick validate verified yes',
   Checkroom: 'check closet clothes coat hanger',
-  ChevronLeft: 'arrows back direction triangle',
+  ChevronLeft: 'arrows back direction disable_ios triangle',
   ChevronRight: 'arrows direction forward triangle',
   ChildCare: 'babies baby children face infant kids newborn toddler young',
   ChildFriendly:
@@ -472,7 +479,7 @@ const synonyms = {
     'application around backup connection drive files folders inprogress internet loading network refresh renew rotate sky storage turn upload',
   CloudUpload:
     'application arrow backup connection download drive files folders internet network sky storage',
-  Co2: 'carbon dioxide gas',
+  Co2: 'carbon chemical dioxide gas',
   Code: 'brackets css developer engineering html parenthesis platform',
   CodeOff:
     'brackets css developer disabled enabled engineering html on platform slash',
@@ -507,6 +514,8 @@ const synonyms = {
   ConnectWithoutContact: 'communicating distance people signal socialize',
   Construction:
     'build carpenter equipment fix hammer improvement industrial industry repair tools wrench',
+  ContactEmergency:
+    'account avatar call cell contacts face human information mobile people person phone profile user',
   Contactless:
     'applepay bluetooth cash connection connectivity credit device finance payment signal tap transaction wifi wireless',
   ContactMail:
@@ -685,6 +694,12 @@ const synonyms = {
     '! alert attention caution cd danger error exclamation important mark music notification storage symbol vinyl warning',
   DisplaySettings:
     'Android application change chrome desktop details device gear hardware iOS information mac monitor options personal screen service web window',
+  Diversity1:
+    'committee diverse family friends groups heart humans network people persons social team',
+  Diversity2:
+    'committee diverse family friends groups heart humans network people persons social team',
+  Diversity3:
+    'committee diverse family friends groups humans network people persons social team',
   Dns: 'address bars domain information ip list lookup name network server system',
   Dock: 'Android cell charger charging connector device hardware iOS mobile phone power station tablet',
   DocumentScanner:
@@ -703,7 +718,7 @@ const synonyms = {
     'apartment architecture building business company enabled estate home internet maps office offline on place real residence residential slash website',
   DomainVerification:
     'application approve check complete design desktop done interface internet layout mark ok screen select tick ui ux validate verified website window www yes',
-  Done: 'approve checkmark complete finished ok select success tick validate verified yes',
+  Done: 'approve checkmark complete disable_ios finished ok select success tick validate verified yes',
   DoneAll:
     'approve checkmark complete finished layers multiple ok select stack success tick validate verified yes',
   DoneOutline:
@@ -747,7 +762,7 @@ const synonyms = {
   DryCleaning: 'hanger hotel laundry places service towel',
   Duo: 'call chat conference device video',
   Dvr: 'Android audio chrome computer desktop device display electronic hardware iOS laptop list mac monitor recorder screen tv video web window',
-  DynamicFeed: 'layer live multiple post refresh update',
+  DynamicFeed: 'layer live mail_outline multiple post refresh update',
   DynamicForm: 'code electric fast lightning lists questionnaire thunderbolt',
   Earbuds: 'accessory audio earphone headphone listen music sound',
   EarbudsBattery: 'accessory audio charging earphone headphone listen music sound',
@@ -856,6 +871,16 @@ const synonyms = {
   Extension: 'add-ons app extended game item jigsaw piece plugin puzzle shape',
   ExtensionOff: 'disabled enabled extended jigsaw piece puzzle shape slash',
   Face: 'account avatar emoji eyes human login logout people person profile recognition security social thumbnail unlock user',
+  Face2:
+    'account emoji eyes human login logout people person profile recognition security social thumbnail unlock user',
+  Face3:
+    'account emoji eyes human login logout people person profile recognition security social thumbnail unlock user',
+  Face4:
+    'account emoji eyes human login logout people person profile recognition security social thumbnail unlock user',
+  Face5:
+    'account emoji eyes human login logout people person profile recognition security social thumbnail unlock user',
+  Face6:
+    'account emoji eyes human login logout people person profile recognition security social thumbnail unlock user',
   Facebook: 'brand logo social',
   FaceRetouchingNatural:
     'editing effect emoji emotion faces image photography settings star tag',
@@ -977,11 +1002,11 @@ const synonyms = {
   FlipCameraAndroid:
     'center editing front image mobile orientation rear reverse rotate turn',
   FlipCameraIos:
-    'android editing front image mobile orientation rear reverse rotate turn',
+    'android disable_ios editing front image mobile orientation rear reverse rotate turn',
   FlipToBack: 'arrangement format front layout move order sort',
   FlipToFront: 'arrangement back format layout move order sort',
   Flood: 'crisis disaster natural rain storm weather',
-  Flourescent: 'bright lamp lightbulb',
+  Fluorescent: 'bright lamp lightbulb',
   FlutterDash: 'bird mascot',
   FmdBad:
     '! alert attention caution danger destination direction error exclamation important location maps mark notification pin place symbol warning',
@@ -1084,7 +1109,7 @@ const synonyms = {
   Fullscreen: 'adjust application components interface size ui ux view website',
   FullscreenExit: 'adjust application components interface size ui ux view website',
   Functions:
-    'average calculate count doc editing editor math sigma spreadsheet style sum text type writing',
+    'average calculate count custom doc editing editor math sigma spreadsheet style sum text type writing',
   Gamepad: 'buttons console controller device gaming playstation video',
   Games:
     'adjust arrows controller direction dpad gaming left move nintendo playstation right xbox',
@@ -1115,10 +1140,10 @@ const synonyms = {
   GpsOff:
     'destination direction disabled enabled fixed location maps not offline place pointer slash tracking',
   Grade:
-    'achievement important likes marked rated rating reward saved shape special star',
+    '. achievement favorite_news important likes marked rated rating reward saved shape special star_border_purple500 star_outline',
   Gradient: 'color editing effect filter images photography pictures',
   Grading:
-    'approve check complete document done feedback grade mark ok reviewed select tick validate verified writing yes',
+    'approve check complete document done feedback grade mark ok reviewed select star_boarder star_border_purple500 star_outline star_purple500 star_rate tick validate verified writing yes',
   Grain: 'dots editing effect filter images photography pictures',
   GraphicEq: 'audio equalizer music recording sound voice',
   Grass: 'backyard fodder ground home lawn plant turf',
@@ -1137,6 +1162,10 @@ const synonyms = {
     'accounts committee face family friends humans network people persons profiles social team users',
   Groups:
     'body club collaboration crowd gathering human meeting people person social teams',
+  Groups2:
+    'body club collaboration crowd gathering hair human meeting people person social teams',
+  Groups3:
+    'abstract body club collaboration crowd gathering human meeting people person social teams',
   GroupWork: 'alliance circle collaboration film partnership reel teamwork together',
   GTranslate: 'emblem google language logo mark speaking speech translator words',
   Hail: 'body human people person pick public stop taxi transportation',
@@ -1173,7 +1202,7 @@ const synonyms = {
     'accessory audio chat device disabled earphone enabled headphones listen mic music slash sound talk',
   Healing: 'bandage bandaid editing emergency fix health hospital image medicine',
   HealthAndSafety:
-    '+ add certified plus privacy private protection security shield symbol verified',
+    '+ add certified cross home nest plus privacy private protection security shield symbol verified',
   Hearing: 'accessibility accessible aid handicap help impaired listen sound volume',
   HearingDisabled:
     'accessibility accessible aid enabled handicap help impaired listen off on slash sound volume',
@@ -1299,10 +1328,10 @@ const synonyms = {
   Iso: 'add editing effect image minus photography picture plus sensor shutter speed subtract',
   Javascript:
     'alphabet brackets character code css developer engineering font html letter platform symbol text type',
-  JoinFull: 'circle combine command left outter right sql',
-  JoinInner: 'circle command matching sql values',
-  JoinLeft: 'circle command matching sql values',
-  JoinRight: 'circle command matching sql values',
+  JoinFull: 'circle combine command left outer outter overlap right sql',
+  JoinInner: 'circle command matching overlap sql values',
+  JoinLeft: 'circle command matching overlap sql values',
+  JoinRight: 'circle command matching overlap sql values',
   Kayaking:
     'athlete athletic body canoe entertainment exercise hobby human lake paddle paddling people person rafting river row social sports summer travel water',
   KebabDining: 'dinner food meal meat skewer',
@@ -1405,7 +1434,7 @@ const synonyms = {
     '-- 24 bill building business card cash coin commerce company credit currency dollars maps market money new online payment plus shopping storefront symbol',
   LocalDining: 'cutlery eat food fork knife meal restaurant spoon',
   LocalDrink: 'cup droplet glass liquid park water',
-  LocalFireDepartment: '911 firefighter flame hot',
+  LocalFireDepartment: '911 climate firefighter flame heat home hot nest thermostat',
   LocalFlorist: 'flower shop',
   LocalGasStation: 'auto car filling fuel gasoline oil station vehicle',
   LocalGroceryStore: 'market shop',
@@ -1471,12 +1500,16 @@ const synonyms = {
   LunchDining: 'breakfast dinner drink fastfood hamburger meal',
   Lyrics:
     'audio bubble chat comment communicate feedback key message music note song sound speech track',
+  MacroOff: '[offline] camera disabled enabled flower garden image on slash',
   Mail: 'email envelope inbox letter message send',
   MailLock:
     'email envelop letter locked message password privacy private protection safety secure security send',
   MailOutline: 'email envelope letter message note post receive send write',
   Male: 'boy gender man social symbol',
   Man: 'boy gender male social symbol',
+  Man2: 'boy gender male social symbol',
+  Man3: 'abstract boy gender male social symbol',
+  Man4: 'abstract boy gender male social symbol',
   ManageAccounts:
     'change details face gear options people person profile service-human settings user',
   ManageHistory:
@@ -1576,10 +1609,10 @@ const synonyms = {
     'automobile bike cars direction maps motorized public scooter transportation vehicle vespa',
   More: '3 archive badge bookmark dots etc favorite indent label remember save stamp sticker tab tag three',
   MoreHoriz:
-    '3 application components dots etc horizontal interface ios pending screen status three ui ux website',
+    '3 application components disable_ios dots etc horizontal interface pending screen status three ui ux website',
   MoreTime: '+ add clock date new plus schedule symbol',
   MoreVert:
-    '3 android application components dots etc interface screen three ui ux vertical website',
+    '3 android application components disable_ios dots etc interface screen three ui ux vertical website',
   Mosque: 'islamic masjid muslim religion spiritual worship',
   MotionPhotosAuto:
     'A alphabet animation automatic character circle font gif letter live symbol text type video',
@@ -1792,6 +1825,9 @@ const synonyms = {
   PermScanWifi:
     'alert announcement connection information internet network service signal wireless',
   Person: 'account avatar face human people profile user',
+  Person2: 'account face human people profile user',
+  Person3: 'account face human people profile user',
+  Person4: 'account face human people profile user',
   PersonAdd:
     '+ account avatar face friend human new people plus profile symbol user',
   PersonAddAlt: '+ account face human people plus profile user',
@@ -1934,6 +1970,8 @@ const synonyms = {
   PropaneTank: 'bbq gas grill nest',
   Psychology:
     'behavior body brain cognitive function gear head human intellectual mental mind people person preferences psychiatric science settings social therapy thinking thoughts',
+  PsychologyAlt:
+    '? assistance behavior body brain cognitive function gear head help human information intellectual mark mental mind people person preferences psychiatric punctuation question science settings social support symbol therapy thinking thoughts',
   Public:
     'country earth global globe language map network planet social space web world',
   PublicOff:
@@ -2012,6 +2050,7 @@ const synonyms = {
   RemoveShoppingCart:
     'card cash checkout coin commerce credit currency disabled dollars enabled off online payment slash tick',
   Reorder: 'format lines list stacked',
+  Repartition: 'arrows data refresh renew restore table',
   Repeat: 'arrows controls media music video',
   RepeatOn: 'arrows controls media music video',
   RepeatOne: '1 arrows controls digit media music number symbol video',
@@ -2217,8 +2256,9 @@ const synonyms = {
   SeventeenMp:
     'camera digits font image letters megapixels numbers quality resolution symbol text type',
   SevereCold: 'crisis diaster snowflake weather',
+  ShapeLine: 'circle draw editing square',
   Share:
-    'android connect contect link multimedia multiple network options send shared sharing social',
+    'android connect contect disable_ios link multimedia multiple network options send shared sharing social',
   ShareLocation: 'destination direction gps maps pin place stop tracking',
   Shield: 'certified privacy private protection secure security verified',
   ShieldMoon:
@@ -2655,10 +2695,12 @@ const synonyms = {
   TrendingUp:
     'analytics arrow change chart data diagram infographic measure metrics movement rate rating statistics tracking',
   TripOrigin: 'circle departure',
+  Troubleshoot:
+    'analytics chart data diagram find glass infographic line look magnifying measure metrics search see statistics tracking',
   Try: 'bookmark bubble chat comment communicate favorite feedback highlight important marked message saved shape special speech star',
   Tsunami: 'crisis disaster flood rain storm weather',
   Tty: 'call cell contact deaf device hardware impaired mobile speech talk telephone text',
-  Tune: 'adjust editing options settings sliders',
+  Tune: 'adjust audio controls customize editing filters instant mix music options settings sliders switches',
   Tungsten: 'electricity indoor lamp lightbulb setting',
   TurnedIn:
     'archive bookmark favorite item label library reading remember ribbon save submit tag',
@@ -2697,7 +2739,11 @@ const synonyms = {
   Undo: 'arrow backward mail previous redo repeat rotate',
   UnfoldLess:
     'arrows chevron collapse direction expandable inward list navigation up',
+  UnfoldLessDouble:
+    'arrows chevron collapse direction expandable inward list navigation up',
   UnfoldMore: 'arrows chevron collapse direction down expandable list navigation',
+  UnfoldMoreDouble:
+    'arrows chevron collapse direction down expandable list navigation',
   Unpublished:
     'approve check circle complete disabled done enabled mark off ok select slash tick validate verified yes',
   Unsubscribe:
@@ -2745,6 +2791,8 @@ const synonyms = {
     'account face human image people person photography picture profile user',
   VideocamOff:
     'camera chat conference disabled enabled filming hardware image motion offline picture screen slash videography',
+  VideoChat:
+    'bubble camera comment communicate facetime feedback message speech voice',
   VideoFile: 'camera document filming hardware image motion picture videography',
   VideogameAsset:
     'console controller device gamepad gaming nintendo playstation xbox',
@@ -2832,6 +2880,7 @@ const synonyms = {
   WebAssetOff:
     'browser disabled enabled internet on screen slash webpage website windows www',
   Webhook: 'api developer development enterprise software',
+  WebStories: 'google images logo',
   Weekend: 'chair couch furniture home living lounge relax room seat',
   West: 'arrow directional left maps navigation',
   WhatsApp: 'brand call chat logo messaging voice',
@@ -2869,6 +2918,7 @@ const synonyms = {
   WindPower: 'eco energy nest windy',
   WineBar: 'alcohol cocktail cup drink glass liquor',
   Woman: 'female gender girl lady social symbol women',
+  Woman2: 'female gender girl lady social symbol women',
   Work: '-briefcase baggage business job suitcase',
   WorkHistory:
     'arrow backwards baggage briefcase business clock date job refresh renew reverse rotate schedule suitcase time turn',
