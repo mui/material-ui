@@ -81,15 +81,14 @@ declare const Foo: OverridableComponent<{
   }}
 />;
 
-// TODO: This is the one test case that does not work
 // Can use refs if the override is a class component
-// <Foo<typeof MyOverrideClassComponent>
-//   numberProp={3}
-//   component={MyOverrideClassComponent}
-//   ref={(elem) => {
-//     expectType<MyOverrideClassComponent | null, typeof elem>(elem);
-//   }}
-// />;
+<Foo<typeof MyOverrideClassComponent>
+  numberProp={3}
+  component={MyOverrideClassComponent}
+  ref={(elem) => {
+    expectType<MyOverrideClassComponent | null, typeof elem>(elem);
+  }}
+/>;
 
 // ... or with ref-forwarding components
 <Foo<typeof MyOverrideRefForwardingComponent>

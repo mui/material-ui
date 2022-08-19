@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { DistributiveOmit } from '@mui/types';
 import { StyledComponentProps } from './styles';
 
 /**
@@ -32,17 +33,20 @@ export type OverrideProps<
   C extends React.ElementType
 > = (
   & BaseProps<M>
-  & Omit<React.ComponentProps<C>, keyof BaseProps<M>>
+  & ('ref' extends keyof BaseProps<M>
+    ? DistributiveOmit<React.ComponentPropsWithoutRef<C>, keyof BaseProps<M>>
+    : DistributiveOmit<React.ComponentPropsWithRef<C>, keyof BaseProps<M>>)
 );
 
 /**
  * Props if `component={Component}` is NOT used.
  */
 // prettier-ignore
-export type DefaultComponentProps<M extends OverridableTypeMap> = (
+export type DefaultComponentProps<M extends OverridableTypeMap> =
   & BaseProps<M>
-  & Omit<React.ComponentProps<M['defaultComponent']>, keyof BaseProps<M>>
-);
+  & ('ref' extends keyof BaseProps<M>
+    ? DistributiveOmit<React.ComponentPropsWithoutRef<M['defaultComponent']>, keyof BaseProps<M>>
+    : DistributiveOmit<React.ComponentPropsWithRef<M['defaultComponent']>, keyof BaseProps<M>>);
 
 /**
  * Props defined on the component (+ common material-ui props).
