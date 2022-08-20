@@ -124,7 +124,6 @@ export default function EmailSubscribe({ sx }: { sx?: SxProps<Theme> }) {
             px: 1,
             py: 0.5,
             typography: 'body2',
-
             '&:hover': {
               borderColor: (theme) =>
                 theme.palette.mode === 'dark'
@@ -135,7 +134,6 @@ export default function EmailSubscribe({ sx }: { sx?: SxProps<Theme> }) {
                   ? '0 1px 2px 0 rgba(0 0 0 / 1)'
                   : '0 1px 2px 0 rgba(0 0 0 / 0.2)',
             },
-
             [`&.${inputBaseClasses.focused}`]: {
               borderColor: (theme) =>
                 theme.palette.mode === 'dark'
