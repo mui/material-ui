@@ -5,6 +5,6 @@ import { ComponentsPropsList } from './props';
 export type ComponentsVariants = {
   [Name in keyof ComponentsPropsList]?: Array<{
     props: Partial<ComponentsPropsList[Name]>;
-    style: Interpolation<{ theme: Theme }>;
+    style: Interpolation<{ theme: Theme; ownerState: Partial<ComponentsPropsList[Name]> }>;
   }>;
 };
