@@ -14,7 +14,7 @@ function App() {
 }
 ```
 
-Once the `App` renders on the screen, you will see the theme CSS variables attached to the html `:root` stylesheet. The theme object is flatten to CSS variables with `--mui` default prefix:
+Once the `App` renders on the screen, you will see the CSS theme variables attached to the html `:root` stylesheet. The theme object is flatten to CSS variables with `--mui` default prefix:
 
 ```css
 /* generated global stylesheet */
@@ -85,7 +85,7 @@ function App() {
 
 ## Using the variables
 
-There are mainly 2 ways that you can use the theme CSS variables:
+There are mainly 2 ways that you can use the CSS theme variables:
 
 - **Native CSS**: The simplest way is to use a plain string with the format of [`var()`](https://developer.mozilla.org/en-US/docs/Web/CSS/var) to refer to a CSS variable.
 

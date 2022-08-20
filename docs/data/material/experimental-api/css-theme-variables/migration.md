@@ -18,7 +18,7 @@ function App() {
 }
 ```
 
-You should see the generated CSS variables in the stylesheet. Material UI components that render inside the new provider will automatically use the theme CSS variables.
+You should see the generated CSS variables in the stylesheet. Material UI components that render inside the new provider will automatically use the CSS theme variables.
 
 ### Custom theme
 
@@ -87,7 +87,7 @@ function App() {
 
 Save the file and start the development server, your application should be able to run without crashing.
 
-If you inspect the page, you will see the generated CSS variables in the stylesheet. Material UI components that render inside the new provider will automatically use the theme CSS variables.
+If you inspect the page, you will see the generated CSS variables in the stylesheet. Material UI components that render inside the new provider will automatically use the CSS theme variables.
 
 ## 2. Remove the toggle mode logic
 

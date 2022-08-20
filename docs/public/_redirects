@@ -383,8 +383,8 @@ https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 /system/the-sx-prop/ /system/getting-started/the-sx-prop/ 301
 /system/advanced/ /system/getting-started/custom-components/ 301
 
-## Material UI CSS variables
-/material-ui/experimental-api/css-variables/ /material-ui/experimental-api/theme-css-variables/overview/ 301
+## Material UI CSS theme variables
+/material-ui/experimental-api/css-variables/ /material-ui/experimental-api/css-theme-variables/overview/ 301
 
 # 2023
 

@@ -217,15 +217,15 @@ const pages = [
         title: 'ClassName generator',
       },
       {
-        pathname: '/material-ui/experimental-api/theme-css-variables',
-        subheader: 'Theme CSS variables',
+        pathname: '/material-ui/experimental-api/css-theme-variables',
+        subheader: 'CSS theme variables',
         children: [
-          { pathname: '/material-ui/experimental-api/theme-css-variables/overview' },
-          { pathname: '/material-ui/experimental-api/theme-css-variables/usage' },
-          { pathname: '/material-ui/experimental-api/theme-css-variables/customization' },
+          { pathname: '/material-ui/experimental-api/css-theme-variables/overview' },
+          { pathname: '/material-ui/experimental-api/css-theme-variables/usage' },
+          { pathname: '/material-ui/experimental-api/css-theme-variables/customization' },
           {
-            pathname: '/material-ui/experimental-api/theme-css-variables/migration',
-            title: 'Migrating to theme CSS variables',
+            pathname: '/material-ui/experimental-api/css-theme-variables/migration',
+            title: 'Migrating to CSS theme variables',
           },
         ],
       },

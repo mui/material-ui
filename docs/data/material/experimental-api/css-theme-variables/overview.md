@@ -1,6 +1,6 @@
-# Theme CSS variables
+# CSS theme variables
 
-<p class="description">An overview of supporting theme CSS variables in Material UI.</p>
+<p class="description">An overview of supporting CSS theme variables in Material UI.</p>
 
 [CSS variables](https://www.w3.org/TR/css-variables-1/) is a modern cross-browser feature that lets author declare variables in CSS and reuse them in other properties. It opens many doors for MUI to fix issues and improve developer experience.
 
@@ -8,7 +8,7 @@ If you come across CSS variables the first time, you should check out [the basic
 
 ## Introduction
 
-Theme CSS variables is a new feature in Material UI added in [`v5.6.0`](https://github.com/mui/material-ui/releases/tag/v5.6.0). It generates the CSS variables from the theme and put them into a global stylesheet. All of the Material UI components automatically consume those variables when the feature is adopted. This is a significant improvement for theming and customization experience.
+CSS theme variables is a new feature in Material UI added in [`v5.6.0`](https://github.com/mui/material-ui/releases/tag/v5.6.0). It generates the CSS variables from the theme and put them into a global stylesheet. All of the Material UI components automatically consume those variables when the feature is adopted. This is a significant improvement for theming and customization experience.
 
 ## Advantages
 
@@ -16,7 +16,7 @@ Theme CSS variables is a new feature in Material UI added in [`v5.6.0`](https://
 - You can create unlimited color schemes beyond `light` and `dark`.
 - It offers a better debugging experience not only for developers but also designers in your team as well.
 - The color scheme of your website is automatically synced between browser tabs.
-- Integrating with third parties are a lot easier because the theme variables are available globally in CSS. For example, you can access to Material UI theme CSS variables to style non-React library by using any styling alternatives.
+- Integrating with third parties are a lot easier because the theme variables are available globally in CSS. For example, you can access to Material UI CSS theme variables to style non-React library by using any styling alternatives.
 - Reduce the need of a nested theme when you want to apply dark styles to a specific part of your application.
 
 ## Trade-offs
@@ -51,7 +51,7 @@ const darkTheme = createTheme({
 });
 ```
 
-**Theme CSS variables**: Light and dark colors are consolidated into a theme.
+**CSS theme variables**: Light and dark colors are consolidated into a theme.
 
 ```js
 // the new API
@@ -86,7 +86,7 @@ createTheme({
 });
 ```
 
-**Theme CSS variables**: the styling leans toward cascading and specificity by using the appropriate selector which lets you prevent the [dark-mode SSR flickering](https://github.com/mui/material-ui/issues/27651).:
+**CSS theme variables**: the styling leans toward cascading and specificity by using the appropriate selector which lets you prevent the [dark-mode SSR flickering](https://github.com/mui/material-ui/issues/27651).:
 
 ```js
 extendTheme({
