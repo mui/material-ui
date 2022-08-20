@@ -189,9 +189,7 @@ export default function MuiProductSelector() {
               icon={<IconImage name="product-toolpad" />}
               name="MUI Toolpad"
               description="Low-code tool builder, powered by MUI."
-              chip={
-                <Chip size="small" label="Alpha" color="grey" />
-              }
+              chip={<Chip size="small" label="Alpha" color="grey" />}
             />
           </Link>
         </li>
