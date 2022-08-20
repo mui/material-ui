@@ -1,10 +1,10 @@
 # Customization
 
-<p class="description">CSS variables customization guide.</p>
+<p class="description">A guide for customize CSS theme variables in Material UI.</p>
 
 ## Theming
 
-`experimental_extendTheme` is the new API to extend the default theme. It returns a theme that can only be used by `CssVarsProvider`.
+The `experimental_extendTheme` is the new API to extend the default theme. It returns a theme that can only be used by the `CssVarsProvider`.
 
 ```js
 import {
@@ -123,7 +123,7 @@ Don't use comma(`,`) as a separator because the result is not a valid format in 
 
 ## Adding new theme tokens
 
-You are free to add any key-value pairs to the theme input which will be generated to CSS variables by the new provider.
+You can add other key-value pairs to the theme input which will be generated as a part of the CSS theme variables:
 
 ```js
 const theme = extendTheme({
@@ -155,41 +155,41 @@ function App() {
 }
 ```
 
-Then, you should see the new variables in the stylesheet DevTool:
-
-```css
-:root {
-  --mui-palette-gradient: linear-gradient(
-    to left,
-    var(--mui-palete-primary-main),
-    var(--mui-palette-primary-dark)
-  );
-  --mui-palette-border-subtle: var(--mui-palette-neutral-200);
-}
-
-[data-mui-color-scheme='dark'] {
-  --mui-palette-gradient: linear-gradient(
-    to left,
-    var(--mui-palete-primary-light),
-    var(--mui-palette-primary-main)
-  );
-  --mui-palette-border-subtle: var(--mui-palette-neutral-600);
-}
-```
-
-In the codebase, you can access those variables in the theme like this:
+You can access those variables from the `theme.vars`:
 
 ```js
-// This component works fine in both `light` and `dark` mode!
 const Divider = styled('hr')(({ theme }) => ({
   height: 1,
-  backgroundColor: theme.vars.palette.border.subtile,
+  border: '1px solid',
+  borderColor: theme.vars.palette.border.subtile,
+  backgroundColor: theme.vars.palette.gradient,
 }));
+```
+
+### TypeScript
+
+You need to augment the theme palette to avoid the type error:
+
+```ts
+declare module '@mui/material/styles' {
+  interface PaletteOptions {
+    gradient: string;
+    border: {
+      subtle: string;
+    };
+  }
+  interface Palette {
+    gradient: string;
+    border: {
+      subtle: string;
+    };
+  }
+}
 ```
 
 ## Changing variable prefix
 
-You can change the prefix, default as `mui`, by passing `cssVarPrefix: string` to `extendTheme`.
+The CSS theme variables have `--mui` as a default prefix, you can change it by passing `cssVarPrefix: string` to the `extendTheme`.
 
 ```js
 const theme = extendTheme({ cssVarPrefix: 'any' });
@@ -198,7 +198,7 @@ const theme = extendTheme({ cssVarPrefix: 'any' });
 // --any-palette-primary-main: ...;
 ```
 
-You can also provide an empty string (`''`) to remove the default prefix from all variables.
+To remove the prefix, use empty string as a value.
 
 ```js
 const theme = extendTheme({ cssVarPrefix: '' });
@@ -209,18 +209,18 @@ const theme = extendTheme({ cssVarPrefix: '' });
 
 ## Custom styles per mode
 
-In some cases, creating new tokens might not be a good approach especially if you want to customize the style just once without reusing it in other places.
-
-A better way is to use the theme utility to create CSS attribute selector:
+To customize the style without creating new tokens, you can use the `theme.getColorSchemeSelector` utility:
 
 ```js
 const Button = styled('button')(({ theme }) => ({
+  // in default mode.
   backgroundColor: theme.vars.palette.primary.main,
   color: '#fff',
   '&:hover': {
     backgroundColor: theme.vars.palette.primary.dark,
   },
-  // this is the same as writing: '[data-mui-color-scheme="dark"] &'
+
+  // in dark mode.
   [theme.getColorSchemeSelector('dark')]: {
     backgroundColor: theme.vars.palette.primary.dark,
     color: theme.vars.palette.primary.main,
@@ -232,9 +232,13 @@ const Button = styled('button')(({ theme }) => ({
 }));
 ```
 
+:::info
+💡 The utility returns a plain string, `'[data-mui-color-scheme="dark"] &'`, that lets you create a style for a specific color scheme.
+:::
+
 ## Force a specific color scheme
 
-Specify `data-mui-color-scheme="dark"` to any DOM node to force the children components to appear as if they are in dark mode.
+Specify `data-mui-color-scheme="dark"` to any DOM node to force the children components to appear as if they are in the dark mode.
 
 ```js
 <div data-mui-color-scheme="dark">
@@ -248,7 +252,7 @@ Specify `data-mui-color-scheme="dark"` to any DOM node to force the children com
 
 ## Dark color scheme application
 
-If you want to use only the dark color scheme for the entire application, set the default mode to `dark`:
+For an application with just dark mode, set the default mode to `dark`:
 
 ```js
 const theme = extendTheme({
@@ -267,7 +271,7 @@ function App() {
 }
 ```
 
-For a server-side application, use the same value in [`getInitColorSchemeScript()`](/material-ui/experimental-api/theme-css-variables/usage/#server-side-rendering):
+For a server-side application, provide the same value in [`getInitColorSchemeScript()`](/material-ui/experimental-api/theme-css-variables/usage/#server-side-rendering):
 
 ```js
 getInitColorSchemeScript({

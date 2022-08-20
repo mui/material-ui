@@ -1,10 +1,10 @@
 # Usage
 
-<p class="description">Learn how to use the experimental API to adopt CSS variables.</p>
+<p class="description">Learn how to use the experimental API to adopt CSS theme variables.</p>
 
 ## Getting started
 
-`Experimental_CssVarsProvider` is a new provider that attaches all generated CSS variables to the theme and puts them in React context.
+`Experimental_CssVarsProvider` is a new provider that generates CSS theme variables and attach a reference to the theme (a React context).
 
 ```js
 import { Experimental_CssVarsProvider as CssVarsProvider } from '@mui/material/styles';
@@ -14,7 +14,7 @@ function App() {
 }
 ```
 
-Once the `App` renders on the screen, you will see the CSS theme variables attached to the html `:root` stylesheet. The theme object is flatten to CSS variables with `--mui` default prefix:
+Once the `App` renders on the screen, you will see the CSS theme variables in the html `:root` stylesheet. The variables are flatten and prefixed with `--mui` by default:
 
 ```css
 /* generated global stylesheet */
@@ -28,14 +28,12 @@ Once the `App` renders on the screen, you will see the CSS theme variables attac
 ```
 
 :::info
-The `CssVarsProvider` is built on top of the [`ThemeProvider`](/material-ui/customization/theming/#themeprovider) with extra features like CSS variables generation, session synchronization, unlimited color schemes, etc.
+💡 The `CssVarsProvider` is built on top of the [`ThemeProvider`](/material-ui/customization/theming/#themeprovider) with extra features like CSS variables generation, storage synchronization, unlimited color schemes, etc.
 :::
 
 ## Toggle between light and dark mode
 
-The new provider has light and dark mode by default. It stores the user's selected mode and syncs it with the browser's local storage internally.
-
-You can create your own interface and use the hook, `useColorScheme`, to read and/or update the mode programmatically:
+Use the hook, `useColorScheme`, to read and update the user selected mode:
 
 ```jsx
 import {
@@ -83,27 +81,9 @@ function App() {
 }
 ```
 
-## Using the variables
+## Using the theme variables
 
-There are mainly 2 ways that you can use the CSS theme variables:
-
-- **Native CSS**: The simplest way is to use a plain string with the format of [`var()`](https://developer.mozilla.org/en-US/docs/Web/CSS/var) to refer to a CSS variable.
-
-  ```js
-  const Button = style('button')({
-    color: '#fff',
-    // the mui is the default prefix.
-    backgroundColor: 'var(--mui-palette-primary-main)',
-  });
-  ```
-
-  :::warning
-  A downside of this approach is that the prefix `mui` is hardcoded. If you want to change the generated prefix in the future, you will have to replace all of them in your project.
-  :::
-
-- `theme.vars`: Another way is to read a CSS variable from the theme object. This way, you don't need to worry about the prefix because the value comes from the configuration.
-
-  The new provider will walk through the theme and attach an extra object to `theme.vars`. It is a plain object with similar theme structure that has values refer to the generated CSS variables.
+- `theme.vars` (recommended): is an object that refers to the CSS theme variables:
 
   ```js
   const Button = styled('button')(({ theme }) => ({
@@ -118,9 +98,21 @@ There are mainly 2 ways that you can use the CSS theme variables:
   Make sure that the components accessing `theme.vars` are rendered under the new provider, otherwise you will get TypeError.
   :::
 
+- **Native CSS**: if the can't access the theme, e.g. in a pure CSS file, you can use [`var()`](https://developer.mozilla.org/en-US/docs/Web/CSS/var) directly:
+
+  ```css
+  <!-- external.css -- > .external-section {
+    background-color: var(--mui-palette-grey-50);
+  }
+  ```
+
+  :::info
+  💡 If you have a custom prefix, make sure to replace the `--mui` with it.
+  :::
+
 ## Server-side rendering
 
-To prevent the dark-mode SSR flickering during the hydration phase, place `getInitColorSchemeScript()` before the `<Main />` tag.
+Place the `getInitColorSchemeScript()` before the `<Main />` tag to prevent the dark-mode SSR flickering during the hydration phase.
 
 ### Next.js
 
@@ -161,20 +153,15 @@ export function onRenderBody({ setPreBodyComponents }) {
 
 ## TypeScript
 
-By default, the theme does not have `theme.vars` attached. You need to import the theme augmentation to enable the typings:
+The theme does not have `theme.vars` attached by default. You need to import the theme augmentation to enable the typings:
 
 ```ts
 // this can be at the root file of you application
 import type {} from '@mui/material/themeCssVarsAugmentation';
-```
-
-Then, you will be able to access `theme.vars` in any of the styling APIs, for example the `styled`:
-
-```ts
 import { styled } from '@mui/material/styles';
 
 const StyledComponent = styled('button')(({ theme }) => ({
-  // typed-safe
+  // ✅ typed-safe
   color: theme.vars.palette.primary.main,
 }));
 ```
