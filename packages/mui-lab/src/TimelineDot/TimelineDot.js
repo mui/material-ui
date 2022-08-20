@@ -37,19 +37,19 @@ const TimelineDotRoot = styled('span', {
   borderWidth: 2,
   padding: 4,
   borderRadius: '50%',
-  boxShadow: theme.shadows[1],
+  boxShadow: (theme.vars || theme).shadows[1],
   margin: '11.5px 0',
   ...(ownerState.variant === 'filled' && {
     borderColor: 'transparent',
     ...(ownerState.color !== 'inherit' && {
       ...(ownerState.color === 'grey'
         ? {
-            color: theme.palette.grey[50],
-            backgroundColor: theme.palette.grey[400],
+            color: (theme.vars || theme).palette.grey[50],
+            backgroundColor: (theme.vars || theme).palette.grey[400],
           }
         : {
-            color: theme.palette[ownerState.color].contrastText,
-            backgroundColor: theme.palette[ownerState.color].main,
+            color: (theme.vars || theme).palette[ownerState.color].contrastText,
+            backgroundColor: (theme.vars || theme).palette[ownerState.color].main,
           }),
     }),
   }),
@@ -59,10 +59,10 @@ const TimelineDotRoot = styled('span', {
     ...(ownerState.color !== 'inherit' && {
       ...(ownerState.color === 'grey'
         ? {
-            borderColor: theme.palette.grey[400],
+            borderColor: (theme.vars || theme).palette.grey[400],
           }
         : {
-            borderColor: theme.palette[ownerState.color].main,
+            borderColor: (theme.vars || theme).palette[ownerState.color].main,
           }),
     }),
   }),
