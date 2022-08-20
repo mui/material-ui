@@ -286,8 +286,8 @@ function CareersContent() {
               minHeight: 48, // a hack to reduce CLS (layout shift)
             }}
           >
-            Our mission is to empower anyone to build UIs, faster. We&apos;re reducing the entry
-            barrier, making design skills accessible.
+            Our mission is to enable developers at every level of ability to build great UIs,
+            faster.
           </Typography>
         </Box>
       </Container>
