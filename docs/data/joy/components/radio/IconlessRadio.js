@@ -1,7 +1,7 @@
 import * as React from 'react';
 import Box from '@mui/joy/Box';
 import FormLabel from '@mui/joy/FormLabel';
-import Radio, { radioClasses } from '@mui/joy/Radio';
+import Radio from '@mui/joy/Radio';
 import RadioGroup from '@mui/joy/RadioGroup';
 import Sheet from '@mui/joy/Sheet';
 
@@ -33,23 +33,26 @@ export default function IconlessRadio() {
               overlay
               disableIcon
               value={value}
-              sx={(theme) => ({
-                '& label': {
-                  fontWeight: 'lg',
-                  fontSize: 'md',
-                  color: 'text.secondary',
-                },
-                [`&.${radioClasses.checked}`]: {
-                  '& label': { color: 'text.primary' },
-                  '--joy-palette-primary-outlinedBorder':
-                    theme.vars.palette.primary[500],
-                  '--joy-palette-primary-outlinedHoverBorder':
-                    theme.vars.palette.primary[500],
-                  [`& .${radioClasses.action}`]: {
-                    '--variant-borderWidth': '2px',
+              componentsProps={{
+                label: ({ checked }) => ({
+                  sx: {
+                    fontWeight: 'lg',
+                    fontSize: 'md',
+                    color: checked ? 'text.primary' : 'text.secondary',
                   },
-                },
-              })}
+                }),
+                action: ({ checked }) => ({
+                  sx: (theme) => ({
+                    ...(checked && {
+                      '--variant-borderWidth': '2px',
+                      '&&': {
+                        // && to increase the specificity to win the base :hover styles
+                        borderColor: theme.vars.palette.primary[500],
+                      },
+                    }),
+                  }),
+                }),
+              }}
             />
           </Sheet>
         ))}
