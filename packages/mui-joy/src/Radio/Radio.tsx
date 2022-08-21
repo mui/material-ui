@@ -401,11 +401,12 @@ Radio.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   componentsProps: PropTypes.shape({
-    action: PropTypes.object,
-    input: PropTypes.object,
-    label: PropTypes.object,
-    radio: PropTypes.object,
-    root: PropTypes.object,
+    action: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    icon: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    input: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    label: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    radio: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
    * The default checked state. Use when the component is not controlled.
