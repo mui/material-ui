@@ -25,7 +25,12 @@ const useUtilityClasses = (ownerState: RadioProps & { focusVisible: boolean }) =
       size && `size${capitalize(size)}`,
     ],
     radio: ['radio', disabled && 'disabled'], // disabled class is necessary for displaying global variant
-    action: ['action', disableIcon && disabled && 'disabled', focusVisible && 'focusVisible'], // add disabled class to action element for displaying global variant
+    action: [
+      'action',
+      checked && 'checked',
+      disableIcon && disabled && 'disabled', // add disabled class to action element for displaying global variant
+      focusVisible && 'focusVisible',
+    ],
     input: ['input'],
     label: ['label'],
   };
