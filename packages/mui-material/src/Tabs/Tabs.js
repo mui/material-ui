@@ -357,7 +357,7 @@ const Tabs = React.forwardRef(function Tabs(inProps, ref) {
           if (
             process.env.NODE_ENV !== 'test' &&
             !warnedOnceTabPresent &&
-            tab && 
+            tab &&
             tab.style.display === 'none'
           ) {
             tabsMeta = null;
