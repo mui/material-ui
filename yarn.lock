@@ -10976,10 +10976,10 @@ markdown-to-jsx@*, markdown-to-jsx@^7.1.7:
   resolved "https://registry.yarnpkg.com/markdown-to-jsx/-/markdown-to-jsx-7.1.7.tgz#a5f22102fb12241c8cea1ca6a4050bb76b23a25d"
   integrity sha512-VI3TyyHlGkO8uFle0IOibzpO1c1iJDcXcS/zBrQrXQQvJ2tpdwVzVZ7XdKsyRz1NdRmre4dqQkMZzUHaKIG/1w==
 
-markdownlint-cli@^0.32.1:
-  version "0.32.1"
-  resolved "https://registry.yarnpkg.com/markdownlint-cli/-/markdownlint-cli-0.32.1.tgz#09925582833b73a578eab71bc7c5a467ae84aaa3"
-  integrity sha512-hVLQ+72b5esQd7I+IqzBEB4x/4C+wJaxS2M6nqaGoDwrtNY6gydGf5CIUJtQcXtqsM615++a8TZPsvEtH6H4gw==
+markdownlint-cli@^0.32.2:
+  version "0.32.2"
+  resolved "https://registry.yarnpkg.com/markdownlint-cli/-/markdownlint-cli-0.32.2.tgz#b7b5c5808039aef4022aef603efaa607caf8e0de"
+  integrity sha512-xmJT1rGueUgT4yGNwk6D0oqQr90UJ7nMyakXtqjgswAkEhYYqjHew9RY8wDbOmh2R270IWjuKSeZzHDEGPAUkQ==
   dependencies:
     commander "~9.4.0"
     get-stdin "~9.0.0"
@@ -10987,20 +10987,20 @@ markdownlint-cli@^0.32.1:
     ignore "~5.2.0"
     js-yaml "^4.1.0"
     jsonc-parser "~3.1.0"
-    markdownlint "~0.26.1"
-    markdownlint-rule-helpers "~0.17.1"
+    markdownlint "~0.26.2"
+    markdownlint-rule-helpers "~0.17.2"
     minimatch "~5.1.0"
     run-con "~1.2.11"
 
-markdownlint-rule-helpers@~0.17.1:
-  version "0.17.1"
-  resolved "https://registry.yarnpkg.com/markdownlint-rule-helpers/-/markdownlint-rule-helpers-0.17.1.tgz#c7305a5f3b01b2f9e3a4d98e911f1d067abbda53"
-  integrity sha512-Djc5IjJt7VA5sZRisISsJC/rQXR7hr8JS9u6Q9/ce3mjPZdzw535cFGG0U6Mag+ldRTRmRwCcTfivOh57KUP4w==
+markdownlint-rule-helpers@~0.17.2:
+  version "0.17.2"
+  resolved "https://registry.yarnpkg.com/markdownlint-rule-helpers/-/markdownlint-rule-helpers-0.17.2.tgz#64d6e8c66e497e631b0e40cf1cef7ca622a0b654"
+  integrity sha512-XaeoW2NYSlWxMCZM2B3H7YTG6nlaLfkEZWMBhr4hSPlq9MuY2sy83+Xr89jXOqZMZYjvi5nBCGoFh7hHoPKZmA==
 
-markdownlint@~0.26.1:
-  version "0.26.1"
-  resolved "https://registry.yarnpkg.com/markdownlint/-/markdownlint-0.26.1.tgz#0f6ea2d0fc08c4f41c6e001b467736405327a392"
-  integrity sha512-8sLz1ktz5s4E0IDum2H9aiWLQU7RA5Eket9HUW5IRwfFnW2RD2ZyqYePW+z71tMc7lrFZc1+yPmlN9lirbJnlg==
+markdownlint@~0.26.2:
+  version "0.26.2"
+  resolved "https://registry.yarnpkg.com/markdownlint/-/markdownlint-0.26.2.tgz#11d3d03e7f0dd3c2e239753ee8fd064a861d9237"
+  integrity sha512-2Am42YX2Ex5SQhRq35HxYWDfz1NLEOZWWN25nqd2h3AHRKsGRE+Qg1gt1++exW792eXTrR4jCNHfShfWk9Nz8w==
   dependencies:
     markdown-it "13.0.1"
 
