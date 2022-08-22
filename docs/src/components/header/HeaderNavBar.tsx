@@ -22,7 +22,7 @@ const Navigation = styled('nav')(({ theme }) => ({
   '& li': {
     color: theme.palette.text.primary,
     ...theme.typography.body2,
-    fontWeight: 700,
+    fontWeight: theme.typography.fontWeightBold,
     '& > a, & > div': {
       display: 'inline-block',
       color: 'inherit',
@@ -51,7 +51,8 @@ const PRODUCT_IDS = [
   'product-advanced',
   'product-templates',
   'product-design',
-  'product-toolpad',
+  // @ts-ignore
+  ...(process.env.STAGING === true ? ['product-toolpad'] : []),
 ];
 
 type ProductSubMenuProps = {
@@ -73,6 +74,7 @@ const ProductSubMenu = React.forwardRef<HTMLAnchorElement, ProductSubMenuProps>(
           display: 'flex',
           alignItems: 'center',
           py: 2,
+          pr: 3,
           '&:hover, &:focus': {
             backgroundColor: (theme) =>
               theme.palette.mode === 'dark'
@@ -100,14 +102,14 @@ const ProductSubMenu = React.forwardRef<HTMLAnchorElement, ProductSubMenuProps>(
         >
           {icon}
         </Box>
-        <div>
-          <Typography color="text.primary" variant="body2" fontWeight="700">
+        <Box sx={{ flexGrow: 1 }}>
+          <Typography color="text.primary" variant="body2" fontWeight="bold">
             {name}
           </Typography>
           <Typography color="text.secondary" variant="body2">
             {description}
           </Typography>
-        </div>
+        </Box>
         {chip}
       </Box>
     );
@@ -324,25 +326,21 @@ export default function HeaderNavBar() {
                         onKeyDown={handleKeyDown}
                       />
                     </li>
-                    <li role="none">
-                      <ProductSubMenu
-                        id={PRODUCT_IDS[4]}
-                        role="menuitem"
-                        href={ROUTES.productToolpad}
-                        icon={<IconImage name="product-toolpad" />}
-                        name={'MUI Toolpad'}
-                        chip={
-                          <Chip
-                            label="Alpha"
-                            size="small"
-                            color="grey"
-                            sx={{ display: 'flex', marginY: '0', marginX: 'auto' }}
-                          />
-                        }
-                        description="Low-code tool builder, powered by MUI."
-                        onKeyDown={handleKeyDown}
-                      />
-                    </li>
+                    {/* @ts-ignore */}
+                    {process.env.STAGING === true ? (
+                      <li role="none">
+                        <ProductSubMenu
+                          id={PRODUCT_IDS[4]}
+                          role="menuitem"
+                          href={ROUTES.productToolpad}
+                          icon={<IconImage name="product-toolpad" />}
+                          name="MUI Toolpad"
+                          chip={<Chip label="Alpha" size="small" color="grey" />}
+                          description="Low-code tool builder, powered by MUI."
+                          onKeyDown={handleKeyDown}
+                        />
+                      </li>
+                    ) : null}
                   </ul>
                 </Paper>
               </Fade>
