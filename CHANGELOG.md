@@ -8,7 +8,7 @@ _Aug 22, 2022_
 
 A big thanks to the 11 contributors who made this release possible. Here are some highlights ✨:
 
-- ✨ [icons] Sync the Material Icons (#33988) @michaldudak 
+- ✨ [icons] Sync the Material Icons (#33988) @michaldudak
 - Changes in icons' appearances can be seen [here](https://app.argos-ci.com/mui/material-ui/builds/4428)
 - Many other 🐛 bug fixes and 📚 documentation improvements
 
