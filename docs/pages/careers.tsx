@@ -160,12 +160,6 @@ const openRolesData = [
         url: '/careers/react-engineer-core/',
       },
       {
-        title: 'React Engineer - X',
-        description:
-          'You will strengthen the advanced components team, build new ambitious complex features, work on strategic problems, and help grow the adoption.',
-        url: '/careers/react-engineer-x/',
-      },
-      {
         title: 'Product Engineer - Store',
         description: 'You will lead the technical and operational development of MUI Store.',
         url: '/careers/product-engineer/',
@@ -194,6 +188,12 @@ const nextRolesData = [
         description:
           'You will join the MUI Toolpad team, to explore the role of MUI in the low code space and help bring the early prototype to a usable product.',
         url: '/careers/fullstack-engineer/',
+      },
+      {
+        title: 'React Engineer - X',
+        description:
+          'You will strengthen the advanced components team, build new ambitious complex features, work on strategic problems, and help grow the adoption.',
+        url: '/careers/react-engineer-x/',
       },
     ],
   },
