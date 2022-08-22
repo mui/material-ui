@@ -1311,25 +1311,25 @@
     "@date-io/core" "^2.14.0"
 
 "@definitelytyped/header-parser@latest":
-  version "0.0.122"
-  resolved "https://registry.yarnpkg.com/@definitelytyped/header-parser/-/header-parser-0.0.122.tgz#b24b189e1ff8da3006ca876e1aad90ba1afaf51a"
-  integrity sha512-kvqZO15vBEnDWklreVHMbm1eo0hhpaNY6jQJwRLR5sXFPSMR0HHR5KfJwwLCWRh4ajbflLswwYX/gTm5kym/Zw==
+  version "0.0.124"
+  resolved "https://registry.yarnpkg.com/@definitelytyped/header-parser/-/header-parser-0.0.124.tgz#1de5f4207f00aa25189b85d9105063a6cd3e64db"
+  integrity sha512-0MfRuxWJV8TXLgI/4PVsiXG4SS9WOrQ3abjZcAcQY0KC+M4Ny+GSZ1Ypbh76kTcFjYWqxL0Xw7ANQFk0OjuDaA==
   dependencies:
-    "@definitelytyped/typescript-versions" "^0.0.122"
+    "@definitelytyped/typescript-versions" "^0.0.124"
     "@types/parsimmon" "^1.10.1"
     parsimmon "^1.13.0"
 
-"@definitelytyped/typescript-versions@^0.0.122", "@definitelytyped/typescript-versions@^0.0.124", "@definitelytyped/typescript-versions@latest":
+"@definitelytyped/typescript-versions@^0.0.124", "@definitelytyped/typescript-versions@latest":
   version "0.0.124"
   resolved "https://registry.yarnpkg.com/@definitelytyped/typescript-versions/-/typescript-versions-0.0.124.tgz#22749b858b5d1f18b5896bf4a9f2cb15d5981a96"
   integrity sha512-95OsAortdPqZJrjopgrFKa/Fo2jrCsJNFMR05KRw3H6Q/Z0bWNJK5kJvB63eRVQhtz5M7OiG4xSwN/KDxf3eyw==
 
 "@definitelytyped/utils@latest":
-  version "0.0.122"
-  resolved "https://registry.yarnpkg.com/@definitelytyped/utils/-/utils-0.0.122.tgz#b245d8049181e9730faad00ec83372f9e81b91c5"
-  integrity sha512-nwgYoacFI6JU9sXbW8Q7elBXBv02dT6FgMKuoMWtywvgBjNxKTxI82aD3SuUdAuP5hG4JtsOomG1a6QHQtf3Ng==
+  version "0.0.124"
+  resolved "https://registry.yarnpkg.com/@definitelytyped/utils/-/utils-0.0.124.tgz#9c399ea0598d6ef78c53a27e7f14f710df6c336f"
+  integrity sha512-CnnbUBpxIrMAAxsLT9+rRp7nF/MHpMqf/+mfbY30LaTELrJHmH5FQqnxQSkHZkoUkHESvpxtl9xg4yYezCQ5qw==
   dependencies:
-    "@definitelytyped/typescript-versions" "^0.0.122"
+    "@definitelytyped/typescript-versions" "^0.0.124"
     "@qiwi/npm-registry-client" "^8.9.1"
     "@types/node" "^14.14.35"
     charm "^1.0.2"
