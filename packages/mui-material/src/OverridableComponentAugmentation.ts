@@ -7,7 +7,7 @@ declare module '@mui/material/OverridableComponent' {
    *
    * Adjusts valid props based on the type of `component`.
    */
-  export interface OverridableComponent<M extends OverridableTypeMap> {
+  interface OverridableComponent<M extends OverridableTypeMap> {
     <C extends React.ElementType>(
       props: {
         /**
@@ -24,7 +24,7 @@ declare module '@mui/material/OverridableComponent' {
    * Props of the component if `component={Component}` is used.
    */
   // prettier-ignore
-  export type OverridePropsVer2<
+  type OverridePropsVer2<
     M extends OverridableTypeMap,
     C extends React.ElementType,
   > = (
@@ -37,7 +37,7 @@ declare module '@mui/material/OverridableComponent' {
    * Props if `component={Component}` is NOT used.
    */
   // prettier-ignore
-  export type DefaultComponentPropsVer2<M extends OverridableTypeMap> = 
+  type DefaultComponentPropsVer2<M extends OverridableTypeMap> = 
     & BaseProps<M>
     & DistributiveOmit<React.ComponentPropsWithoutRef<M['defaultComponent']>, keyof BaseProps<M>>
     & { ref?: React.Ref<any> };
