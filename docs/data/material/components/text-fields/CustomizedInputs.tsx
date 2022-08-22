@@ -114,7 +114,7 @@ export const theme = createTheme({
       styleOverrides: {
         root: {
           '& .MuiFormLabel-root': {
-            color: '#E5EDF8',
+            color: '#FF996E',
           },
           '& input:invalid + fieldset': {
             borderColor: '#F1BFBF',
