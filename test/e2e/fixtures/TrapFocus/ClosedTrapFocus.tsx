@@ -1,7 +1,7 @@
 import * as React from 'react';
 import TrapFocus from '@mui/base/TrapFocus';
 
-export default function BaseTrapFocus() {
+export default function ClosedTrapFocus() {
   return (
     <React.Fragment>
       <button type="button" autoFocus>

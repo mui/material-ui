@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Stack from '@mui/material/Stack';
+import Stack from '@mui/system/Stack';
 import TrapFocus from '@mui/base/TrapFocus';
 
 export default function ContainedToggleTrappedFocus() {
