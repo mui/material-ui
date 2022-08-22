@@ -83,7 +83,7 @@ export type DefaultComponentProps<M extends OverridableTypeMap> =
  * Props if `component={Component}` is NOT used.
  */
 // prettier-ignore
-export type DefaultComponentPropsVer2<M extends OverridableTypeMap> = 
+export type DefaultComponentPropsVer2<M extends OverridableTypeMap> =
   & BaseProps<M>
   & DistributiveOmit<React.ComponentPropsWithoutRef<M['defaultComponent']>, keyof BaseProps<M>>
   & { ref?: React.Ref<any> };
