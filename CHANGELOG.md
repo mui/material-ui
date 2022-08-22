@@ -10,12 +10,12 @@ A big thanks to the 11 contributors who made this release possible. This release
 
 ### `@mui/material@5.10.2`
 
+- &#8203;<!-- 16 -->[Autocomplete] Fix `keepMounted` Popper prop not working (#33957) @ZeeshanTamboli
 - &#8203;<!-- 10 -->[IconButton] Fix hover effect when CSS Variables are enabled (#33971) @TheUnlocked
 - &#8203;<!-- 07 -->[LoadingButton] Add support for CSS variables (#34001) @ZeeshanTamboli
 - &#8203;<!-- 05 -->[TimelineConnector] Add support for CSS variables (#34002) @ZeeshanTamboli
 - &#8203;<!-- 04 -->[TimelineDot] Add support for CSS variables (#34003) @ZeeshanTamboli
 - &#8203;<!-- 03 -->[TreeItem] Add support for CSS variables (#34004) @ZeeshanTamboli
-- &#8203;<!-- 16 -->[Autocomplete] Fix `keepMounted` Popper prop not working (#33957) @ZeeshanTamboli
 
 ### `@mui/system@5.10.2`
 
