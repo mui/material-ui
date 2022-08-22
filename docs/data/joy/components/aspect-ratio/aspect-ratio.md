@@ -10,7 +10,7 @@ title: React Aspect Ratio component
 ## Introduction
 
 `AspectRatio` is a wrapper component that allows you to rapidly control its content aspect ratio.
-Its default implementation combines `height: 0px` with percentage `padding-bottom` to properly accomodate the content.
+Its default implementation combines `height: 0px` with percentage `padding-bottom` to properly accommodate the content.
 
 :::info
 **Note:** A [native CSS `aspect-ratio` property](https://developer.mozilla.org/en-US/docs/Web/CSS/aspect-ratio) already exists but MUI is not using it yet due to limited browser support.
