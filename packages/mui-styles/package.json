@@ -48,7 +48,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.17.2",
-    "@emotion/hash": "^0.8.0",
+    "@emotion/hash": "^0.9.0",
     "@mui/private-theming": "^5.9.3",
     "@mui/types": "^7.1.5",
     "@mui/utils": "^5.9.3",
