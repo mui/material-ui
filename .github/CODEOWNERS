@@ -1,9 +1,7 @@
-*.md @samuelsycamore
 /scripts/ @michaldudak @m4theushw
 
 # Packages
 /packages/mui-base/ @michaldudak @mnajdova
-/packages/mui-docs/ @siriwatknp @flaviendelangle
 /packages/mui-icons-material/ @michaldudak @siriwatknp
 /packages/mui-joy/ @siriwatknp @danilo-leal
 /packages/mui-material/ @mnajdova @danilo-leal
