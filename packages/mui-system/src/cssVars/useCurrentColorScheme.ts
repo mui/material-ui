@@ -147,8 +147,10 @@ export default function useCurrentColorScheme<SupportedColorScheme extends strin
         if (mode === currentState.mode) {
           return currentState;
         }
-        if (typeof localStorage !== 'undefined') {
+        try {
           localStorage.setItem(modeStorageKey, newMode);
+        } catch (e) {
+          // Unsupported
         }
         return {
           ...currentState,
@@ -175,7 +177,11 @@ export default function useCurrentColorScheme<SupportedColorScheme extends strin
               return newState;
             }
             processState(currentState, (mode) => {
-              localStorage.setItem(`${colorSchemeStorageKey}-${mode}`, value);
+              try {
+                localStorage.setItem(`${colorSchemeStorageKey}-${mode}`, value);
+              } catch (e) {
+                // Unsupported
+              }
               if (mode === 'light') {
                 newState.lightColorScheme = value;
               }
@@ -203,11 +209,15 @@ export default function useCurrentColorScheme<SupportedColorScheme extends strin
           }
           return newState;
         });
-        if (value.light) {
-          localStorage.setItem(`${colorSchemeStorageKey}-light`, value.light);
-        }
-        if (value.dark) {
-          localStorage.setItem(`${colorSchemeStorageKey}-dark`, value.dark);
+        try {
+          if (value.light) {
+            localStorage.setItem(`${colorSchemeStorageKey}-light`, value.light);
+          }
+          if (value.dark) {
+            localStorage.setItem(`${colorSchemeStorageKey}-dark`, value.dark);
+          }
+        } catch (e) {
+          // Unsupported
         }
       }
     },
@@ -245,17 +255,21 @@ export default function useCurrentColorScheme<SupportedColorScheme extends strin
 
   // Save mode, lightColorScheme & darkColorScheme to localStorage
   React.useEffect(() => {
-    if (state.mode) {
-      localStorage.setItem(modeStorageKey, state.mode);
+    try {
+      if (state.mode) {
+        localStorage.setItem(modeStorageKey, state.mode);
+      }
+      processState(state, (mode) => {
+        if (mode === 'light') {
+          localStorage.setItem(`${colorSchemeStorageKey}-light`, state.lightColorScheme);
+        }
+        if (mode === 'dark') {
+          localStorage.setItem(`${colorSchemeStorageKey}-dark`, state.darkColorScheme);
+        }
+      });
+    } catch (e) {
+      // Unsupported
     }
-    processState(state, (mode) => {
-      if (mode === 'light') {
-        localStorage.setItem(`${colorSchemeStorageKey}-light`, state.lightColorScheme);
-      }
-      if (mode === 'dark') {
-        localStorage.setItem(`${colorSchemeStorageKey}-dark`, state.darkColorScheme);
-      }
-    });
   }, [state, colorSchemeStorageKey, modeStorageKey]);
 
   // Handle when localStorage has changed
