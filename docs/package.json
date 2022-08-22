@@ -74,7 +74,7 @@
     "core-js": "^2.6.11",
     "cross-env": "^7.0.3",
     "css-mediaquery": "^0.1.2",
-    "date-fns": "^2.29.1",
+    "date-fns": "^2.29.2",
     "date-fns-jalali": "^2.21.3-1",
     "docsearch.js": "^2.6.3",
     "doctrine": "^3.0.0",
@@ -125,7 +125,7 @@
   "devDependencies": {
     "@babel/plugin-transform-react-constant-elements": "^7.17.6",
     "@babel/preset-typescript": "^7.16.7",
-    "@types/marked": "^4.0.3",
+    "@types/marked": "^4.0.6",
     "@types/recharts": "^2.0.0",
     "cross-fetch": "^3.1.5",
     "gm": "^1.23.1"
