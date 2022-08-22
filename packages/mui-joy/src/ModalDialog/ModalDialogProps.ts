@@ -6,6 +6,8 @@ export type ModalDialogSlot = 'root';
 
 export interface ModalDialogPropsColorOverrides {}
 export interface ModalDialogPropsVariantOverrides {}
+export interface ModalDialogPropsSizeOverrides {}
+export interface ModalDialogPropsLayoutOverrides {}
 
 export interface ModalDialogTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P & {
@@ -18,6 +20,16 @@ export interface ModalDialogTypeMap<P = {}, D extends React.ElementType = 'div'>
      * @default 'neutral'
      */
     color?: OverridableStringUnion<ColorPaletteProp, ModalDialogPropsColorOverrides>;
+    /**
+     * The layout of the dialog
+     * @default null
+     */
+    layout?: null | 'center' | 'fullScreen';
+    /**
+     * The size of the component.
+     * @default 'md'
+     */
+    size?: OverridableStringUnion<'sm' | 'md' | 'lg', ModalDialogPropsSizeOverrides>;
     /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */

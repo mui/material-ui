@@ -16,6 +16,7 @@ import { ariaHidden, ModalManager } from '@mui/base/ModalUnstyled';
 import { styled, useThemeProps } from '../styles';
 import { getModalUtilityClass } from './modalClasses';
 import { ModalOwnerState, ModalTypeMap } from './ModalProps';
+import CloseModalContext from './CloseModalContext';
 
 const useUtilityClasses = (ownerState: ModalOwnerState) => {
   const { open } = ownerState;
@@ -40,9 +41,6 @@ const ModalRoot = styled('div', {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: ModalOwnerState }>(({ ownerState }) => ({
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
   position: 'fixed',
   zIndex: 999,
   right: 0,
@@ -255,27 +253,29 @@ const ModalUnstyled = React.forwardRef(function ModalUnstyled(inProps, ref) {
   }
 
   return (
-    // @ts-expect-error TODO: include ref to MUI Base Portal props
-    <Portal ref={handlePortalRef} container={container} disablePortal={disablePortal}>
-      {/*
-       * Marking an element with the role presentation indicates to assistive technology
-       * that this element should be ignored; it exists to support the web application and
-       * is not meant for humans to interact with directly.
-       * https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/no-static-element-interactions.md
-       */}
-      <ModalRoot {...rootProps}>
-        {!hideBackdrop ? <ModalBackdrop {...backdropProps} /> : null}
-        <TrapFocus
-          disableEnforceFocus={disableEnforceFocus}
-          disableAutoFocus={disableAutoFocus}
-          disableRestoreFocus={disableRestoreFocus}
-          isEnabled={isTopModal}
-          open={open}
-        >
-          {React.cloneElement(children, childProps)}
-        </TrapFocus>
-      </ModalRoot>
-    </Portal>
+    <CloseModalContext.Provider value={onClose}>
+      {/* @ts-expect-error TODO: include ref to MUI Base Portal props */}
+      <Portal ref={handlePortalRef} container={container} disablePortal={disablePortal}>
+        {/*
+         * Marking an element with the role presentation indicates to assistive technology
+         * that this element should be ignored; it exists to support the web application and
+         * is not meant for humans to interact with directly.
+         * https://github.com/evcohen/eslint-plugin-jsx-a11y/blob/master/docs/rules/no-static-element-interactions.md
+         */}
+        <ModalRoot {...rootProps}>
+          {!hideBackdrop ? <ModalBackdrop {...backdropProps} /> : null}
+          <TrapFocus
+            disableEnforceFocus={disableEnforceFocus}
+            disableAutoFocus={disableAutoFocus}
+            disableRestoreFocus={disableRestoreFocus}
+            isEnabled={isTopModal}
+            open={open}
+          >
+            {React.cloneElement(children, childProps)}
+          </TrapFocus>
+        </ModalRoot>
+      </Portal>
+    </CloseModalContext.Provider>
   );
 }) as OverridableComponent<ModalTypeMap>;
 

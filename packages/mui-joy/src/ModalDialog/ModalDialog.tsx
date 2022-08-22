@@ -3,33 +3,81 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
-import { unstable_capitalize as capitalize } from '@mui/utils';
+import { unstable_capitalize as capitalize, unstable_useId as useId } from '@mui/utils';
 import { styled, useThemeProps } from '../styles';
 import { SheetRoot } from '../Sheet/Sheet';
 import { getModalDialogUtilityClass } from './modalDialogClasses';
 import { ModalDialogProps, ModalDialogTypeMap } from './ModalDialogProps';
+import ModalDialogSizeContext from './ModalDialogSizeContext';
+import ModalDialogTitleContext from './ModalDialogTitleContext';
+import ModalDialogVariantColorContext from './ModalDialogVariantColorContext';
 
 const useUtilityClasses = (ownerState: ModalDialogProps) => {
-  const { variant, color } = ownerState;
+  const { variant, color, size, layout } = ownerState;
 
   const slots = {
     root: [
       'root',
       variant && `variant${capitalize(variant)}`,
       color && `color${capitalize(color)}`,
+      size && `size${capitalize(size)}`,
+      layout && `layout${capitalize(layout)}`,
     ],
   };
 
   return composeClasses(slots, getModalDialogUtilityClass, {});
 };
 
-export const ModalDialogRoot = styled(SheetRoot, {
+const ModalDialogRoot = styled(SheetRoot, {
   name: 'JoyModalDialog',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: ModalDialogProps }>(({ theme }) => ({
-  borderRadius: theme.vars.radius.sm,
-  boxShadow: theme.vars.shadow.sm,
+})<{ ownerState: ModalDialogProps }>(({ theme, ownerState }) => ({
+  '--internal-paddingBlock': 'calc(var(--ModalDialog-padding) / 2)', // to control ModalClose position
+  '--ModalClose-radius':
+    'max((var(--ModalDialog-radius) - var(--variant-borderWidth)) - var(--internal-paddingBlock), min(var(--internal-paddingBlock) / 2, (var(--ModalDialog-radius) - var(--variant-borderWidth)) / 2))',
+  ...(ownerState.size === 'sm' && {
+    '--ModalDialog-padding': theme.spacing(1),
+    '--ModalDialog-radius': theme.vars.radius.sm,
+    fontSize: theme.vars.fontSize.sm,
+  }),
+  ...(ownerState.size === 'md' && {
+    '--ModalDialog-padding': theme.spacing(2),
+    '--ModalDialog-radius': theme.vars.radius.md,
+    fontSize: theme.vars.fontSize.md,
+  }),
+  ...(ownerState.size === 'lg' && {
+    '--ModalDialog-padding': theme.spacing(3),
+    '--ModalDialog-radius': theme.vars.radius.md,
+    fontSize: theme.vars.fontSize.md,
+  }),
+  boxSizing: 'border-box',
+  boxShadow: theme.vars.shadow.md,
+  borderRadius: 'var(--ModalDialog-radius)',
+  fontFamily: theme.vars.fontFamily.body,
+  lineHeight: theme.vars.lineHeight.md,
+  padding: 'var(--ModalDialog-padding)',
+  minWidth: 'min(calc(100vw - 2 * var(--ModalDialog-padding)), var(--ModalDialog-minWidth, 300px))',
+  outline: 'none',
+  position: 'absolute',
+  ...(!ownerState.layout && {
+    top: '12vh', // golden number, no other reason.
+    left: '50%',
+    transform: 'translateX(-50%)',
+  }),
+  ...(ownerState.layout === 'fullScreen' && {
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    border: 0,
+    borderRadius: 0,
+  }),
+  ...(ownerState.layout === 'center' && {
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+  }),
 }));
 
 const ModalDialog = React.forwardRef(function ModalDialog(inProps, ref) {
@@ -38,27 +86,46 @@ const ModalDialog = React.forwardRef(function ModalDialog(inProps, ref) {
     name: 'JoyModalDialog',
   });
 
-  const { className, color = 'neutral', component = 'div', variant = 'outlined', ...other } = props;
+  const titleId = useId();
+
+  const {
+    className,
+    color = 'neutral',
+    component = 'div',
+    variant = 'outlined',
+    size = 'md',
+    layout = null,
+    ...other
+  } = props;
 
   const ownerState = {
     ...props,
     color,
     component,
+    layout,
+    size,
     variant,
   };
 
   const classes = useUtilityClasses(ownerState);
 
   return (
-    <ModalDialogRoot
-      as={component}
-      ownerState={ownerState}
-      className={clsx(classes.root, className)}
-      ref={ref}
-      role="dialog"
-      aria-modal="true"
-      {...other}
-    />
+    <ModalDialogSizeContext.Provider value={size}>
+      <ModalDialogTitleContext.Provider value={titleId}>
+        <ModalDialogVariantColorContext.Provider value={{ variant, color }}>
+          <ModalDialogRoot
+            as={component}
+            ownerState={ownerState}
+            className={clsx(classes.root, className)}
+            ref={ref}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby={titleId}
+            {...other}
+          />
+        </ModalDialogVariantColorContext.Provider>
+      </ModalDialogTitleContext.Provider>
+    </ModalDialogSizeContext.Provider>
   );
 }) as OverridableComponent<ModalDialogTypeMap>;
 
@@ -88,6 +155,16 @@ ModalDialog.propTypes /* remove-proptypes */ = {
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
+  /**
+   * The layout of the dialog
+   * @default null
+   */
+  layout: PropTypes.oneOf(['center', 'fullScreen']),
+  /**
+   * The size of the component.
+   * @default 'md'
+   */
+  size: PropTypes.oneOf(['sm', 'md', 'lg']),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

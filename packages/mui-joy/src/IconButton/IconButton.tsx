@@ -31,7 +31,7 @@ const useUtilityClasses = (ownerState: IconButtonProps & { focusVisible: boolean
   return composedClasses;
 };
 
-const IconButtonRoot = styled('button', {
+export const IconButtonRoot = styled('button', {
   name: 'JoyIconButton',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,

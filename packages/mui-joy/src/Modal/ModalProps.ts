@@ -25,7 +25,6 @@ export interface ModalTypeMap<P = {}, D extends React.ElementType = 'div'> {
       | 'disableScrollLock'
       | 'hideBackdrop'
       | 'keepMounted'
-      | 'onClose'
       | 'open'
     > & {
       /**
@@ -33,6 +32,16 @@ export interface ModalTypeMap<P = {}, D extends React.ElementType = 'div'> {
        * @default {}
        */
       componentsProps?: ComponentsProps;
+      /**
+       * Callback fired when the component requests to be closed.
+       * The `reason` parameter can optionally be used to control the response to `onClose`.
+       *
+       * @param {object} event The event source of the callback.
+       * @param {string} reason Can be: `"escapeKeyDown"`, `"backdropClick"`, `"closeClick"`.
+       */
+      onClose?: {
+        bivarianceHack(event: {}, reason: 'backdropClick' | 'escapeKeyDown' | 'closeClick'): void;
+      }['bivarianceHack'];
       /**
        * The system prop that allows defining system overrides as well as additional CSS styles.
        */
