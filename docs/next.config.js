@@ -35,6 +35,9 @@ module.exports = {
     // Motivated by https://github.com/vercel/next.js/issues/7687
     ignoreBuildErrors: true,
   },
+  experimental: {
+    scrollRestoration: true,
+  },
   webpack: (config, options) => {
     const plugins = config.plugins.slice();
 
