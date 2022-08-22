@@ -12,11 +12,19 @@ import { useSlotProps } from '@mui/base/utils';
 import composeClasses from '@mui/base/composeClasses';
 import Portal from '@mui/base/Portal';
 import TrapFocus from '@mui/base/TrapFocus';
-import { ariaHidden, ModalManager } from '@mui/base/ModalUnstyled';
+import { ModalManager } from '@mui/base/ModalUnstyled';
 import { styled, useThemeProps } from '../styles';
 import { getModalUtilityClass } from './modalClasses';
 import { ModalOwnerState, ModalTypeMap } from './ModalProps';
 import CloseModalContext from './CloseModalContext';
+
+function ariaHidden(element: Element, show: boolean): void {
+  if (show) {
+    element.setAttribute('aria-hidden', 'true');
+  } else {
+    element.removeAttribute('aria-hidden');
+  }
+}
 
 const useUtilityClasses = (ownerState: ModalOwnerState) => {
   const { open } = ownerState;

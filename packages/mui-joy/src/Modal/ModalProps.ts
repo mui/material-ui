@@ -55,7 +55,7 @@ export type ModalProps<
   P = { component?: React.ElementType },
 > = OverrideProps<ModalTypeMap<P, D>, D>;
 
-export type ModalOwnerState = ModalProps & {
+export interface ModalOwnerState extends ModalProps {
   disableAutoFocus: boolean;
   disableEnforceFocus: boolean;
   disableEscapeKeyDown: boolean;
@@ -64,4 +64,4 @@ export type ModalOwnerState = ModalProps & {
   disableScrollLock: boolean;
   hideBackdrop: boolean;
   keepMounted: boolean;
-};
+}

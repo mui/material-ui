@@ -45,6 +45,7 @@ import { TabPanelOwnerState, TabPanelProps, TabPanelSlot } from '../TabPanel/Tab
 import { TabsOwnerState, TabsProps, TabsSlot } from '../Tabs/TabsProps';
 import { TextFieldProps, TextFieldSlot } from '../TextField/TextFieldProps';
 import { TypographyProps, TypographySlot } from '../Typography/TypographyProps';
+import { ModalProps, ModalOwnerState, ModalSlot } from '../Modal/ModalProps';
 
 export type OverridesStyleRules<
   ClassKey extends string = string,
@@ -254,5 +255,9 @@ export interface Components<Theme = unknown> {
   JoyMenuItem?: {
     defaultProps?: Partial<MenuItemProps>;
     styleOverrides?: OverridesStyleRules<MenuItemSlot, MenuItemProps, Theme>;
+  };
+  JoyModal?: {
+    defaultProps?: Partial<ModalProps>;
+    styleOverrides?: OverridesStyleRules<ModalSlot, ModalOwnerState, Theme>;
   };
 }
