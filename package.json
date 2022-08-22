@@ -83,7 +83,7 @@
     "@emotion/react": "^11.9.3",
     "@emotion/styled": "^11.9.3",
     "@mnajdova/enzyme-adapter-react-18": "^0.2.0",
-    "@octokit/rest": "^19.0.3",
+    "@octokit/rest": "^19.0.4",
     "@playwright/test": "1.25.0",
     "@rollup/plugin-replace": "^4.0.0",
     "@testing-library/dom": "^8.17.1",
