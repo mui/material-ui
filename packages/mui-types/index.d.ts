@@ -118,9 +118,8 @@ export type OverrideProps<
   C extends React.ElementType
 > = (
   & BaseProps<M>
-  & ('ref' extends keyof BaseProps<M>
-    ? DistributiveOmit<React.ComponentPropsWithoutRef<C>, keyof BaseProps<M>>
-    : DistributiveOmit<React.ComponentPropsWithRef<C>, keyof BaseProps<M>>)
+  & DistributiveOmit<React.ComponentPropsWithoutRef<C>, keyof BaseProps<M>>
+  & { ref?: React.Ref<any> }
 );
 
 /**
@@ -129,9 +128,8 @@ export type OverrideProps<
 // prettier-ignore
 export type DefaultComponentProps<M extends OverridableTypeMap> =
   & BaseProps<M>
-  & ('ref' extends keyof BaseProps<M>
-    ? DistributiveOmit<React.ComponentPropsWithoutRef<M['defaultComponent']>, keyof BaseProps<M>>
-    : DistributiveOmit<React.ComponentPropsWithRef<M['defaultComponent']>, keyof BaseProps<M>>);
+  & DistributiveOmit<React.ComponentPropsWithoutRef<M['defaultComponent']>, keyof BaseProps<M>>
+  & { ref?: React.Ref<any> };
 
 /**
  * Props defined on the component.
