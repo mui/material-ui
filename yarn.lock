@@ -1559,14 +1559,14 @@
   resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-common-types/-/fontawesome-common-types-6.1.2.tgz#c1095b1bbabf19f37f9ff0719db38d92a410bcfe"
   integrity sha512-wBaAPGz1Awxg05e0PBRkDRuTsy4B3dpBm+zreTTyd9TH4uUM27cAL4xWyWR0rLJCrRwzVsQ4hF3FvM6rqydKPA==
 
-"@fortawesome/fontawesome-svg-core@^6.1.1":
+"@fortawesome/fontawesome-svg-core@^6.1.2":
   version "6.1.2"
   resolved "https://registry.yarnpkg.com/@fortawesome/fontawesome-svg-core/-/fontawesome-svg-core-6.1.2.tgz#11e2e8583a7dea75d734e4d0e53d91c63fae7511"
   integrity sha512-853G/Htp0BOdXnPoeCPTjFrVwyrJHpe8MhjB/DYE9XjwhnNDfuBCd3aKc2YUYbEfHEcBws4UAA0kA9dymZKGjA==
   dependencies:
     "@fortawesome/fontawesome-common-types" "6.1.2"
 
-"@fortawesome/free-solid-svg-icons@^6.1.1":
+"@fortawesome/free-solid-svg-icons@^6.1.2":
   version "6.1.2"
   resolved "https://registry.yarnpkg.com/@fortawesome/free-solid-svg-icons/-/free-solid-svg-icons-6.1.2.tgz#491d668b8a6603698d0ce1ac620f66fd22b74c84"
   integrity sha512-lTgZz+cMpzjkHmCwOG3E1ilUZrnINYdqMmrkv30EC3XbRsGlbIOL8H9LaNp5SV4g0pNJDfQ4EdTWWaMvdwyLiQ==
