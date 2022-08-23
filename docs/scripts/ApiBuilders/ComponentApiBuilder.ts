@@ -378,7 +378,7 @@ export default function Page(props) {
   return <ApiPage descriptions={descriptions} pageContent={pageContent} />;
 }
 
-export function getStaticProps() {
+Page.getInitialProps = () => {
   const req = require.context(
     'docs/translations/api-docs/${kebabCase(reactApi.name)}',
     false,
@@ -387,10 +387,8 @@ export function getStaticProps() {
   const descriptions = mapApiPageTranslations(req);
 
   return {
-    props: {
-      descriptions,
-      pageContent: jsonPageContent,
-    },
+    descriptions,
+    pageContent: jsonPageContent,
   };
 };
 `.replace(/\r?\n/g, reactApi.EOL),
