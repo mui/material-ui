@@ -8,7 +8,8 @@ _Aug 22, 2022_
 
 A big thanks to the 11 contributors who made this release possible. Here are some highlights ✨:
 
-- ✨ [icons] Sync the Material Icons which changes some [icons' appearance](https://app.argos-ci.com/mui/material-ui/builds/4428) (#33988) @michaldudak
+- ✨ @michaldudak synced the Material Icons set with the latest from Google (#33988).  
+  A couple of icons changed their appearance. See the difference [on this Argos build](https://app.argos-ci.com/mui/material-ui/builds/4428]).
 
 ### `@mui/material@5.10.2`
 
@@ -33,6 +34,8 @@ A big thanks to the 11 contributors who made this release possible. Here are som
 
 ### Docs
 
+- &#8203;<!-- 21 -->[docs] Fix typo in using-joy-ui-and-material-ui.md (#33997) @djohalo2 @danilo-leal
+- &#8203;<!-- 20 -->[docs] Fix typo in the Transition docs (#34040) @alirezahekmati
 - &#8203;<!-- 19 -->[docs] Typo fix in Joy UI Aspect Ratio doc (#33984) @AjeetSingh2016
 - &#8203;<!-- 15 -->[docs] Fix broken Joy UI codesandbox export (#34007) @oliviertassinari
 - &#8203;<!-- 14 -->[docs] Fix typos in `test` folder's README (#33976) @ropereraLK
@@ -47,7 +50,7 @@ A big thanks to the 11 contributors who made this release possible. Here are som
 - &#8203;<!-- 02 -->[website] Move the React Engineer - X to next roles (#34030) @mnajdova
 - &#8203;<!-- 01 -->[website] Add Icons8 gold sponsor (#33978) @michaldudak
 
-All contributors of this release in alphabetical order: @AjeetSingh2016, @Cerebro92, @jsakas, @michaldudak, @mnajdova, @oliviertassinari, @ropereraLK, @samuelsycamore, @TheUnlocked, @tomasz-sodzawiczny, @ZeeshanTamboli
+All contributors of this release in alphabetical order: @AjeetSingh2016, @alirezahekmati, @Cerebro92, @danilo-leal, @djohalo2, @jsakas, @michaldudak, @mnajdova, @oliviertassinari, @ropereraLK, @samuelsycamore, @TheUnlocked, @tomasz-sodzawiczny, @ZeeshanTamboli
 
 ## 5.10.1
 
