@@ -29,14 +29,14 @@ Usually this means that the selector with more classes applied to it is more spe
 For example, if we look at the Material UI `Switch` component, we have multiple subcomponents that we could expect to modify.
 For each of them, we assign a specific CSS class:
 
-<img src="/static/blog/making-customizable-components/switchHighlighted.png" style="width: 532px; margin-top: 16px; margin-bottom: 16px;" alt="Switch component with highlighted sub components" />
+<img src="/static/blog/making-customizable-components/switchHighlighted.png" style="width: 692px; margin-top: 16px; margin-bottom: 16px;" alt="Switch component with highlighted sub components" />
 
 Notice that each element is styled using only one CSS class—the thumb style, for example, is applied with the `css-jsexje-MuiSwitch-thumb` class, so any CSS selector that includes more than one class will override its style.
 
 I'm not a designer, so I made an ugly switch example using only CSS—
 you can play around with it in [CodeSandbox](https://codesandbox.io/s/fast-http-kv85p5?file=/src/App.js):
 
-<img src="/static/blog/making-customizable-components/uglySwitches.png" style="width: 200px; margin-top: 16px; margin-bottom: 8px;" alt="Switch customized with CSS" />
+<img src="/static/blog/making-customizable-components/uglySwitches.png" style="width: 692px; margin-top: 16px; margin-bottom: 8px;" alt="Switch customized with CSS" />
 
 ```jsx
 <Switch className="uglySwitch" />
