@@ -4,6 +4,7 @@ description: Explore the tradeoffs between different customization techniques, a
 date: 2022-08-22T00:00:00.000Z
 authors: ['alexfauquette']
 tags: ['MUI X', 'MUI Core']
+card: true
 ---
 
 MUI's components are used by hundreds of thousands of developers worldwide, encompassing the full range of implementation from minor side projects to massive company websites.
