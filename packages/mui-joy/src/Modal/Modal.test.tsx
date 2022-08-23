@@ -1,4 +1,5 @@
 import * as React from 'react';
+import * as ReactDOM from 'react-dom';
 import { spy } from 'sinon';
 import { expect } from 'chai';
 import { createRenderer, describeConformance, act, fireEvent, within } from 'test/utils';
