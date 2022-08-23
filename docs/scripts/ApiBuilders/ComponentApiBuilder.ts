@@ -106,7 +106,7 @@ async function computeApiDescription(api: ReactApi, options: { host: string }): 
     })
     .process(api.description);
 
-  return file.contents.toString('utf-8').trim();
+  return file.contents.toString().trim();
 }
 
 /**
@@ -162,7 +162,7 @@ async function annotateComponentDefinition(api: ReactApi) {
             // /**
             //  */
             // const Component = () => {}
-            node = binding.path.parentPath.node;
+            node = binding.path.parentPath!.node;
           }
         }
       }
