@@ -132,13 +132,9 @@ ModalClose.propTypes /* remove-proptypes */ = {
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
   // ----------------------------------------------------------------------
   /**
-   * The content of the component.
-   */
-  children: PropTypes.node,
-  /**
    * @ignore
    */
-  className: PropTypes.string,
+  children: PropTypes.node,
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'neutral'
