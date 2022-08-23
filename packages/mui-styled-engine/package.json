@@ -39,7 +39,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.17.2",
-    "@emotion/cache": "^11.9.3",
+    "@emotion/cache": "^11.10.1",
     "csstype": "^3.1.0",
     "prop-types": "^15.8.1"
   },

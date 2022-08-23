@@ -52,7 +52,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.17.2",
-    "@emotion/is-prop-valid": "^1.1.3",
+    "@emotion/is-prop-valid": "^1.2.0",
     "@mui/types": "^7.1.5",
     "@mui/utils": "^5.9.3",
     "@popperjs/core": "^2.11.6",

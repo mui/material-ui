@@ -1,6 +1,6 @@
 ---
 title: Material UI v4 is out 🎉
-description: Material UI v4 is out 🎉
+description: Material UI v4 has finally arrived. We are so excited about this release, as it defines better foundations for the UI components.
 date: 2019-05-23T00:00:00.000Z
 authors: ['oliviertassinari', 'mbrookes', 'eps1lon']
 tags: ['Company']
