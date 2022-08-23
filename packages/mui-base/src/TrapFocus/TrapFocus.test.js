@@ -4,7 +4,6 @@ import { expect } from 'chai';
 import { act, createRenderer, screen } from 'test/utils';
 import TrapFocus from '@mui/base/TrapFocus';
 import Portal from '@mui/base/Portal';
-import userEvent from '@testing-library/user-event';
 
 describe('<TrapFocus />', () => {
   const { clock, render } = createRenderer();
@@ -282,36 +281,6 @@ describe('<TrapFocus />', () => {
 
     // undesired: should be expect(initialFocus).toHaveFocus();
     expect(screen.getByTestId('root')).toHaveFocus();
-  });
-
-  it('does not create any tabbable elements when open={false}', () => {
-    function Test(props) {
-      return (
-        <div>
-          <button autoFocus data-testid="initial-focus">
-            Test
-          </button>
-          <TrapFocus open={false} {...props}>
-            <div tabIndex={-1}>
-              <button data-testid="inside-focus">Test</button>
-            </div>
-          </TrapFocus>
-          <button data-testid="end-focus">Test</button>
-        </div>
-      );
-    }
-
-    render(<Test />);
-
-    expect(screen.getByTestId('initial-focus')).toHaveFocus();
-    act(() => {
-      userEvent.tab();
-    });
-    expect(screen.getByTestId('inside-focus')).toHaveFocus();
-    act(() => {
-      userEvent.tab();
-    });
-    expect(screen.getByTestId('end-focus')).toHaveFocus();
   });
 
   describe('interval', () => {

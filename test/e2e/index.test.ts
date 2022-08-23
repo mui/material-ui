@@ -162,6 +162,16 @@ describe('e2e', () => {
       await page.keyboard.press('Tab');
       await expect(screen.getByText('ok')).toHaveFocus();
     });
+
+    it('should be able to be tabbed straight through when rendered closed', async () => {
+      await renderFixture('TrapFocus/ClosedTrapFocus');
+
+      await expect(screen.getByText('initial focus')).toHaveFocus();
+      await page.keyboard.press('Tab');
+      await expect(screen.getByText('inside focusable')).toHaveFocus();
+      await page.keyboard.press('Tab');
+      await expect(screen.getByText('final tab target')).toHaveFocus();
+    });
   });
 
   describe('<Rating />', () => {
