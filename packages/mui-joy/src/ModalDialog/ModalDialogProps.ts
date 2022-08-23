@@ -47,3 +47,5 @@ export type ModalDialogProps<
   D extends React.ElementType = ModalDialogTypeMap['defaultComponent'],
   P = { component?: React.ElementType },
 > = OverrideProps<ModalDialogTypeMap<P, D>, D>;
+
+export interface ModalDialogOwnerState extends ModalDialogProps {}

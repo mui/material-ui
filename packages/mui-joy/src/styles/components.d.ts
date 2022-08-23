@@ -46,6 +46,26 @@ import { TabsOwnerState, TabsProps, TabsSlot } from '../Tabs/TabsProps';
 import { TextFieldProps, TextFieldSlot } from '../TextField/TextFieldProps';
 import { TypographyProps, TypographySlot } from '../Typography/TypographyProps';
 import { ModalProps, ModalOwnerState, ModalSlot } from '../Modal/ModalProps';
+import {
+  ModalCloseProps,
+  ModalCloseOwnerState,
+  ModalCloseSlot,
+} from '../ModalClose/ModalCloseProps';
+import {
+  ModalDialogProps,
+  ModalDialogOwnerState,
+  ModalDialogSlot,
+} from '../ModalDialog/ModalDialogProps';
+import {
+  ModalDialogTitleProps,
+  ModalDialogTitleOwnerState,
+  ModalDialogTitleSlot,
+} from '../ModalDialogTitle/ModalDialogTitleProps';
+import {
+  ModalDialogDescriptionProps,
+  ModalDialogDescriptionOwnerState,
+  ModalDialogDescriptionSlot,
+} from '../ModalDialogDescription/ModalDialogDescriptionProps';
 
 export type OverridesStyleRules<
   ClassKey extends string = string,
@@ -259,5 +279,25 @@ export interface Components<Theme = unknown> {
   JoyModal?: {
     defaultProps?: Partial<ModalProps>;
     styleOverrides?: OverridesStyleRules<ModalSlot, ModalOwnerState, Theme>;
+  };
+  JoyModalClose?: {
+    defaultProps?: Partial<ModalCloseProps>;
+    styleOverrides?: OverridesStyleRules<ModalCloseSlot, ModalCloseOwnerState, Theme>;
+  };
+  JoyModalDialog?: {
+    defaultProps?: Partial<ModalDialogProps>;
+    styleOverrides?: OverridesStyleRules<ModalDialogSlot, ModalDialogOwnerState, Theme>;
+  };
+  JoyModalDialogTitle?: {
+    defaultProps?: Partial<ModalDialogTitleProps>;
+    styleOverrides?: OverridesStyleRules<ModalDialogTitleSlot, ModalDialogTitleOwnerState, Theme>;
+  };
+  JoyModalDialogDescription?: {
+    defaultProps?: Partial<ModalDialogDescriptionProps>;
+    styleOverrides?: OverridesStyleRules<
+      ModalDialogDescriptionSlot,
+      ModalDialogDescriptionOwnerState,
+      Theme
+    >;
   };
 }

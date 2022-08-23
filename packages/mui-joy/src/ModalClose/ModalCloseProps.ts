@@ -37,3 +37,5 @@ export type ModalCloseProps<
   D extends React.ElementType = ModalCloseTypeMap['defaultComponent'],
   P = { component?: React.ElementType },
 > = OverrideProps<ModalCloseTypeMap<P, D>, D>;
+
+export interface ModalCloseOwnerState extends ModalCloseProps {}
