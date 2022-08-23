@@ -33,6 +33,7 @@ A big thanks to the 11 contributors who made this release possible. Here are som
 
 ### Docs
 
+- &#8203;<!-- 19 -->[docs] Typo fix in Joy UI Aspect Ratio doc (#33984) @AjeetSingh2016
 - &#8203;<!-- 15 -->[docs] Fix broken Joy UI codesandbox export (#34007) @oliviertassinari
 - &#8203;<!-- 14 -->[docs] Fix typos in `test` folder's README (#33976) @ropereraLK
 - &#8203;<!-- 13 -->[docs] Fix interior section links in Base docs that feature hooks (#33948) @samuelsycamore
@@ -41,6 +42,7 @@ A big thanks to the 11 contributors who made this release possible. Here are som
 
 ### Core
 
+- &#8203;<!-- 18 -->[website] Optimize meta description length (#34006) @oliviertassinari
 - &#8203;<!-- 17 -->Revert "[core] Replace `getInitialProps` with `getStaticProps`" (#33991) @mnajdova
 - &#8203;<!-- 02 -->[website] Move the React Engineer - X to next roles (#34030) @mnajdova
 - &#8203;<!-- 01 -->[website] Add Icons8 gold sponsor (#33978) @michaldudak
