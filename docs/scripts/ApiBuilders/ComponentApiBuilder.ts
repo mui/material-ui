@@ -182,10 +182,10 @@ async function annotateComponentDefinition(api: ReactApi) {
             .join('\n')}`,
         );
       }
-      if (jsdocBlock != null) {
+      if (jsdocBlock?.start != null && jsdocBlock?.end != null) {
         start = jsdocBlock.start;
         end = jsdocBlock.end;
-      } else if (node.start !== null) {
+      } else if (node.start != null) {
         start = node.start - 1;
         end = start;
       }
