@@ -50,7 +50,7 @@ const ModalRoot = styled('div', {
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: ModalOwnerState }>(({ ownerState }) => ({
   position: 'fixed',
-  zIndex: 999,
+  zIndex: 9999,
   right: 0,
   bottom: 0,
   top: 0,
@@ -64,7 +64,7 @@ const ModalBackdrop = styled('div', {
   name: 'JoyModal',
   slot: 'Backdrop',
   overridesResolver: (props, styles) => styles.backdrop,
-})<{ ownerState: ModalOwnerState }>(({ theme }) => ({
+})<{ ownerState: ModalOwnerState }>(({ theme, ownerState }) => ({
   zIndex: -1,
   position: 'fixed',
   right: 0,
@@ -72,8 +72,10 @@ const ModalBackdrop = styled('div', {
   top: 0,
   left: 0,
   backgroundColor: theme.vars.palette.background.backdrop,
-  backdropFilter: 'blur(8px)',
   WebkitTapHighlightColor: 'transparent',
+  ...(ownerState.open && {
+    backdropFilter: 'blur(8px)',
+  }),
 }));
 
 const ModalUnstyled = React.forwardRef(function ModalUnstyled(inProps, ref) {

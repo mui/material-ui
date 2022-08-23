@@ -46,12 +46,12 @@ export const ModalCloseRoot = styled(IconButtonRoot, {
     '--IconButton-size': '40px',
   }),
   position: 'absolute',
-  top: 'var(--internal-paddingBlock)',
-  right: 'var(--internal-paddingBlock)',
-  borderRadius: 'var(--ModalClose-radius)',
+  top: `var(--ModalClose-inset, ${theme.spacing(1)})`,
+  right: `var(--ModalClose-inset, ${theme.spacing(1)})`,
+  borderRadius: `var(--ModalClose-radius, ${theme.vars.radius.sm})`,
   // for variant without a background, use `tertiary` text color to reduce the importancy of the close icon.
   ...(!theme.variants[ownerState.variant!]?.[ownerState.color!]?.backgroundColor && {
-    color: theme.vars.palette.text.tertiary,
+    color: theme.vars.palette.text.secondary,
   }),
 }));
 

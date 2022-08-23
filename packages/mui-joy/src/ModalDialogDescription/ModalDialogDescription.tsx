@@ -4,8 +4,11 @@ import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
 import { useThemeProps, styled } from '../styles';
-import { getModalDialogTitleUtilityClass } from './modalDialogTitleClasses';
-import { ModalDialogTitleProps, ModalDialogTitleTypeMap } from './ModalDialogTitleProps';
+import { getModalDialogDescriptionUtilityClass } from './modalDialogDescriptionClasses';
+import {
+  ModalDialogDescriptionProps,
+  ModalDialogDescriptionTypeMap,
+} from './ModalDialogDescriptionProps';
 import ModalDialogSizeContext from '../ModalDialog/ModalDialogSizeContext';
 import ModalDialogAriaContext from '../ModalDialog/ModalDialogAriaContext';
 
@@ -14,42 +17,24 @@ const useUtilityClasses = () => {
     root: ['root'],
   };
 
-  return composeClasses(slots, getModalDialogTitleUtilityClass, {});
+  return composeClasses(slots, getModalDialogDescriptionUtilityClass, {});
 };
 
-export const ModalDialogTitleRoot = styled('h2', {
-  name: 'JoyModalDialogTitle',
+export const ModalDialogDescriptionRoot = styled('div', {
+  name: 'JoyModalDialogDescription',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: ModalDialogTitleProps & { dialogSize?: string } }>(({ theme, ownerState }) => ({
+})<{ ownerState: ModalDialogDescriptionProps & { dialogSize?: string } }>({
   margin: 0,
-  fontFamily: theme.vars.fontFamily.body,
-  fontWeight: theme.vars.fontWeight.lg,
-  ...(ownerState.dialogSize === 'sm' && {
-    fontSize: theme.vars.fontSize.md,
-    marginBlockEnd: theme.spacing(1), // a gap between title-content or title-divider
-    lineHeight: theme.vars.lineHeight.md,
-  }),
-  ...(ownerState.dialogSize === 'md' && {
-    fontSize: theme.vars.fontSize.lg,
-    marginBlockEnd: theme.spacing(1.5),
-    lineHeight: theme.vars.lineHeight.sm,
-  }),
-  ...(ownerState.dialogSize === 'lg' && {
-    fontSize: theme.vars.fontSize.xl,
-    marginBlockStart: theme.spacing(-0.5),
-    marginBlockEnd: theme.spacing(2),
-    lineHeight: theme.vars.lineHeight.sm,
-  }),
-}));
+});
 
-const ModalDialogTitle = React.forwardRef(function ModalDialogTitle(inProps, ref) {
-  const props = useThemeProps<typeof inProps & ModalDialogTitleProps>({
+const ModalDialogDescription = React.forwardRef(function ModalDialogDescription(inProps, ref) {
+  const props = useThemeProps<typeof inProps & ModalDialogDescriptionProps>({
     props: inProps,
-    name: 'JoyModalDialogTitle',
+    name: 'JoyModalDialogDescription',
   });
 
-  const { className, component = 'h2', ...other } = props;
+  const { className, component = 'div', ...other } = props;
 
   const dialogSize = React.useContext(ModalDialogSizeContext);
   const modalDialog = React.useContext(ModalDialogAriaContext);
@@ -63,18 +48,18 @@ const ModalDialogTitle = React.forwardRef(function ModalDialogTitle(inProps, ref
   const classes = useUtilityClasses();
 
   return (
-    <ModalDialogTitleRoot
+    <ModalDialogDescriptionRoot
       ref={ref}
       as={component}
       ownerState={ownerState}
       className={clsx(classes.root, className)}
-      id={modalDialog?.labelId}
+      id={modalDialog?.descriptionId}
       {...other}
     />
   );
-}) as OverridableComponent<ModalDialogTitleTypeMap>;
+}) as OverridableComponent<ModalDialogDescriptionTypeMap>;
 
-ModalDialogTitle.propTypes /* remove-proptypes */ = {
+ModalDialogDescription.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
@@ -102,4 +87,4 @@ ModalDialogTitle.propTypes /* remove-proptypes */ = {
   ]),
 } as any;
 
-export default ModalDialogTitle;
+export default ModalDialogDescription;

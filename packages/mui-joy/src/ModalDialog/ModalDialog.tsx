@@ -9,7 +9,7 @@ import { SheetRoot } from '../Sheet/Sheet';
 import { getModalDialogUtilityClass } from './modalDialogClasses';
 import { ModalDialogProps, ModalDialogTypeMap } from './ModalDialogProps';
 import ModalDialogSizeContext from './ModalDialogSizeContext';
-import ModalDialogTitleContext from './ModalDialogTitleContext';
+import ModalDialogAriaContext from './ModalDialogAriaContext';
 import ModalDialogVariantColorContext from './ModalDialogVariantColorContext';
 
 const useUtilityClasses = (ownerState: ModalDialogProps) => {
@@ -33,22 +33,24 @@ const ModalDialogRoot = styled(SheetRoot, {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: ModalDialogProps }>(({ theme, ownerState }) => ({
-  '--internal-paddingBlock': 'calc(var(--ModalDialog-padding) / 2)', // to control ModalClose position
   '--ModalClose-radius':
-    'max((var(--ModalDialog-radius) - var(--variant-borderWidth)) - var(--internal-paddingBlock), min(var(--internal-paddingBlock) / 2, (var(--ModalDialog-radius) - var(--variant-borderWidth)) / 2))',
+    'max((var(--ModalDialog-radius) - var(--variant-borderWidth)) - var(--ModalClose-inset), min(var(--ModalClose-inset) / 2, (var(--ModalDialog-radius) - var(--variant-borderWidth)) / 2))',
   ...(ownerState.size === 'sm' && {
     '--ModalDialog-padding': theme.spacing(1),
     '--ModalDialog-radius': theme.vars.radius.sm,
+    '--ModalClose-inset': theme.spacing(0.75),
     fontSize: theme.vars.fontSize.sm,
   }),
   ...(ownerState.size === 'md' && {
     '--ModalDialog-padding': theme.spacing(2),
     '--ModalDialog-radius': theme.vars.radius.md,
+    '--ModalClose-inset': theme.spacing(1),
     fontSize: theme.vars.fontSize.md,
   }),
   ...(ownerState.size === 'lg' && {
     '--ModalDialog-padding': theme.spacing(3),
     '--ModalDialog-radius': theme.vars.radius.md,
+    '--ModalClose-inset': theme.spacing(1.5),
     fontSize: theme.vars.fontSize.md,
   }),
   boxSizing: 'border-box',
@@ -86,7 +88,8 @@ const ModalDialog = React.forwardRef(function ModalDialog(inProps, ref) {
     name: 'JoyModalDialog',
   });
 
-  const titleId = useId();
+  const labelId = useId();
+  const descriptionId = useId();
 
   const {
     className,
@@ -111,7 +114,7 @@ const ModalDialog = React.forwardRef(function ModalDialog(inProps, ref) {
 
   return (
     <ModalDialogSizeContext.Provider value={size}>
-      <ModalDialogTitleContext.Provider value={titleId}>
+      <ModalDialogAriaContext.Provider value={{ labelId, descriptionId }}>
         <ModalDialogVariantColorContext.Provider value={{ variant, color }}>
           <ModalDialogRoot
             as={component}
@@ -120,11 +123,12 @@ const ModalDialog = React.forwardRef(function ModalDialog(inProps, ref) {
             ref={ref}
             role="dialog"
             aria-modal="true"
-            aria-labelledby={titleId}
+            aria-labelledby={labelId}
+            aria-describedby={descriptionId}
             {...other}
           />
         </ModalDialogVariantColorContext.Provider>
-      </ModalDialogTitleContext.Provider>
+      </ModalDialogAriaContext.Provider>
     </ModalDialogSizeContext.Provider>
   );
 }) as OverridableComponent<ModalDialogTypeMap>;
