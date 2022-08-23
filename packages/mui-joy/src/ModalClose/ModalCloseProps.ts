@@ -11,10 +11,6 @@ export interface ModalClosePropsSizeOverrides {}
 export interface ModalCloseTypeMap<P = {}, D extends React.ElementType = 'button'> {
   props: P & {
     /**
-     * The content of the component.
-     */
-    children?: React.ReactNode;
-    /**
      * The color of the component. It supports those theme colors that make sense for this component.
      * @default 'neutral'
      */

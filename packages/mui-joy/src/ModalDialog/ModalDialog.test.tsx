@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer, describeConformance } from 'test/utils';
 import { ThemeProvider } from '@mui/joy/styles';

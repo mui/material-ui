@@ -1,9 +1,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
+import { useSlotProps } from '@mui/base/utils';
 import { useButton } from '@mui/base/ButtonUnstyled';
 import { useThemeProps, styled } from '../styles';
 import { IconButtonRoot } from '../IconButton/IconButton';
@@ -69,7 +69,6 @@ const ModalClose = React.forwardRef(function ModalClose(inProps, ref) {
   });
 
   const {
-    className,
     component = 'button',
     color: colorProp = 'neutral',
     variant: variantProp = 'plain',
@@ -98,25 +97,30 @@ const ModalClose = React.forwardRef(function ModalClose(inProps, ref) {
     component,
     variant,
     size,
-    instanceSize: inProps.size,
     focusVisible,
   };
 
   const classes = useUtilityClasses(ownerState);
 
+  const rootProps = useSlotProps({
+    elementType: ModalCloseRoot,
+    getSlotProps: getRootProps,
+    externalSlotProps: {
+      onClick: (event: React.MouseEvent<HTMLButtonElement>) => {
+        closeModalContext?.(event, 'closeClick');
+        onClick?.(event);
+      },
+      ...other,
+    },
+    additionalProps: {
+      as: component,
+    },
+    className: classes.root,
+    ownerState,
+  });
+
   return (
-    <ModalCloseRoot
-      as={component}
-      ownerState={ownerState}
-      className={clsx(classes.root, className)}
-      {...other}
-      {...getRootProps({
-        onClick: (event: React.MouseEvent<HTMLButtonElement>) => {
-          closeModalContext?.(event, 'closeClick');
-          onClick?.(event);
-        },
-      })}
-    >
+    <ModalCloseRoot {...rootProps}>
       <CloseIcon />
     </ModalCloseRoot>
   );

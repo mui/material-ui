@@ -23,6 +23,12 @@ export interface ModalCloseClasses {
   variantSoft: string;
   /** Styles applied to the root element if `variant="solid"`. */
   variantSolid: string;
+  /** Styles applied to the root element if `size="sm"`. */
+  sizeSm: string;
+  /** Styles applied to the root element if `size="md"`. */
+  sizeMd: string;
+  /** Styles applied to the root element if `size="lg"`. */
+  sizeLg: string;
 }
 
 export type ModalCloseClassKey = keyof ModalCloseClasses;
@@ -31,7 +37,7 @@ export function getModalCloseUtilityClass(slot: string): string {
   return generateUtilityClass('JoyModalClose', slot);
 }
 
-const sheetClasses: ModalCloseClasses = generateUtilityClasses('JoyModalClose', [
+const modalCloseClasses: ModalCloseClasses = generateUtilityClasses('JoyModalClose', [
   'root',
   'colorPrimary',
   'colorNeutral',
@@ -43,6 +49,9 @@ const sheetClasses: ModalCloseClasses = generateUtilityClasses('JoyModalClose', 
   'variantOutlined',
   'variantSoft',
   'variantSolid',
+  'sizeSm',
+  'sizeMd',
+  'sizeLg',
 ]);
 
-export default sheetClasses;
+export default modalCloseClasses;
