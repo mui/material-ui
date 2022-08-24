@@ -147,7 +147,7 @@ const AutocompleteRoot = styled('div', {
     // Don't specify paddingRight, as it overrides the default value set when there is only
     // one of the popup or clear icon as the specificity is equal so the latter one wins
     paddingTop: 6,
-    paddingBottom: 6, 
+    paddingBottom: 6,
     paddingLeft: 6,
     [`& .${autocompleteClasses.input}`]: {
       padding: '2.5px 4px 2.5px 6px',
