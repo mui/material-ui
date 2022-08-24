@@ -11,7 +11,7 @@ unstyled: /base/react-textarea-autosize/
 
 ## Introduction
 
-Textarea allow users to enter text in multiple lines. It is built on top of the MUI Base [`TextareaAutoSize`](/base/react-textarea-autosize/)
+Joy UI's textarea component is built on top of the MUI Base [`TextareaAutoSize`](/base/react-textarea-autosize/) component.
 
 {{"demo": "TextareaUsage.js"}}
 
@@ -59,14 +59,11 @@ To toggle the error state, use the `error` prop.
 
 {{"demo": "TextareaValidation.js"}}
 
-:::info
-This is the same as forcing `danger` color like this:
+Note that using the `color` prop with danger as value gets the same result:
 
 ```js
 <Textarea color="danger" />
 ```
-
-:::
 
 ### Rows
 
@@ -76,7 +73,8 @@ Use the `minRows` to set the minimum number of lines to show and `maxRows` to li
 
 ### Decorators
 
-Use the `startDecorator` and/or `endDecorator` props to add supporting icons or elements to the textarea. It is more common for the textarea to have decorators at the top and the bottom.
+Use the `startDecorator` and/or `endDecorator` props to add supporting icons or elements to the textarea.
+It's usually more common to see textarea components using decorators at the top and bottom.
 
 {{"demo": "TextareaDecorators.js"}}
 
