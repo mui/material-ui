@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { OverrideProps } from '@mui/types';
 import { SxProps } from '../styles/types';
+import { ModalDialogProps } from '../ModalDialog/ModalDialogProps';
 
 export type ModalDialogDescriptionSlot = 'root';
 
@@ -23,4 +24,6 @@ export type ModalDialogDescriptionProps<
   P = { component?: React.ElementType },
 > = OverrideProps<ModalDialogDescriptionTypeMap<P, D>, D>;
 
-export interface ModalDialogDescriptionOwnerState extends ModalDialogDescriptionProps {}
+export interface ModalDialogDescriptionOwnerState extends ModalDialogDescriptionProps {
+  size: ModalDialogProps['size'];
+}

@@ -7,6 +7,7 @@ import { useThemeProps, styled } from '../styles';
 import { getModalDialogDescriptionUtilityClass } from './modalDialogDescriptionClasses';
 import {
   ModalDialogDescriptionProps,
+  ModalDialogDescriptionOwnerState,
   ModalDialogDescriptionTypeMap,
 } from './ModalDialogDescriptionProps';
 import ModalDialogSizeContext from '../ModalDialog/ModalDialogSizeContext';
@@ -24,7 +25,7 @@ export const ModalDialogDescriptionRoot = styled('div', {
   name: 'JoyModalDialogDescription',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: ModalDialogDescriptionProps & { dialogSize?: string } }>({
+})<{ ownerState: ModalDialogDescriptionOwnerState }>({
   margin: 0,
 });
 
@@ -36,13 +37,13 @@ const ModalDialogDescription = React.forwardRef(function ModalDialogDescription(
 
   const { className, component = 'div', ...other } = props;
 
-  const dialogSize = React.useContext(ModalDialogSizeContext);
+  const size = React.useContext(ModalDialogSizeContext);
   const modalDialog = React.useContext(ModalDialogAriaContext);
 
   const ownerState = {
     ...props,
     component,
-    dialogSize,
+    size,
   };
 
   const classes = useUtilityClasses();

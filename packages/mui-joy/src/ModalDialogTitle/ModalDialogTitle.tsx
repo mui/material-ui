@@ -5,7 +5,11 @@ import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
 import { useThemeProps, styled } from '../styles';
 import { getModalDialogTitleUtilityClass } from './modalDialogTitleClasses';
-import { ModalDialogTitleProps, ModalDialogTitleTypeMap } from './ModalDialogTitleProps';
+import {
+  ModalDialogTitleProps,
+  ModalDialogTitleOwnerState,
+  ModalDialogTitleTypeMap,
+} from './ModalDialogTitleProps';
 import ModalDialogSizeContext from '../ModalDialog/ModalDialogSizeContext';
 import ModalDialogAriaContext from '../ModalDialog/ModalDialogAriaContext';
 
@@ -21,25 +25,26 @@ export const ModalDialogTitleRoot = styled('h2', {
   name: 'JoyModalDialogTitle',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: ModalDialogTitleProps & { dialogSize?: string } }>(({ theme, ownerState }) => ({
+})<{ ownerState: ModalDialogTitleOwnerState }>(({ theme, ownerState }) => ({
   margin: 0,
   fontFamily: theme.vars.fontFamily.body,
   fontWeight: theme.vars.fontWeight.lg,
-  ...(ownerState.dialogSize === 'sm' && {
+  ...(ownerState.size === 'sm' && {
     fontSize: theme.vars.fontSize.md,
     marginBlockEnd: theme.spacing(1), // a gap between title-content or title-divider
+    lineHeight: theme.vars.lineHeight.sm,
+  }),
+  ...(ownerState.size === 'md' && {
+    fontSize: theme.vars.fontSize.lg,
+    marginBlockStart: theme.spacing(-0.375),
+    marginBlockEnd: theme.spacing(1.5),
     lineHeight: theme.vars.lineHeight.md,
   }),
-  ...(ownerState.dialogSize === 'md' && {
-    fontSize: theme.vars.fontSize.lg,
-    marginBlockEnd: theme.spacing(1.5),
-    lineHeight: theme.vars.lineHeight.sm,
-  }),
-  ...(ownerState.dialogSize === 'lg' && {
+  ...(ownerState.size === 'lg' && {
     fontSize: theme.vars.fontSize.xl,
-    marginBlockStart: theme.spacing(-0.5),
-    marginBlockEnd: theme.spacing(2),
-    lineHeight: theme.vars.lineHeight.sm,
+    marginBlockStart: theme.spacing(-1.25),
+    marginBlockEnd: theme.spacing(1.5),
+    lineHeight: theme.vars.lineHeight.lg,
   }),
 }));
 
@@ -51,13 +56,13 @@ const ModalDialogTitle = React.forwardRef(function ModalDialogTitle(inProps, ref
 
   const { className, component = 'h2', ...other } = props;
 
-  const dialogSize = React.useContext(ModalDialogSizeContext);
+  const size = React.useContext(ModalDialogSizeContext);
   const modalDialog = React.useContext(ModalDialogAriaContext);
 
   const ownerState = {
     ...props,
     component,
-    dialogSize,
+    size,
   };
 
   const classes = useUtilityClasses();

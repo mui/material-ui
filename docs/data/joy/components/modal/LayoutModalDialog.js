@@ -2,6 +2,7 @@ import * as React from 'react';
 import Button from '@mui/joy/Button';
 import Stack from '@mui/joy/Stack';
 import Modal from '@mui/joy/Modal';
+import ModalClose from '@mui/joy/ModalClose';
 import ModalDialog from '@mui/joy/ModalDialog';
 import ModalDialogTitle from '@mui/joy/ModalDialogTitle';
 import ModalDialogDescription from '@mui/joy/ModalDialogDescription';
@@ -23,7 +24,8 @@ export default function LayoutModalDialog() {
         </Button>
       </Stack>
       <Modal open={!!open} onClose={() => setOpen('')}>
-        <ModalDialog layout={open}>
+        <ModalDialog size="lg" layout={open}>
+          <ModalClose />
           <ModalDialogTitle>Modal Dialog</ModalDialogTitle>
           <ModalDialogDescription>
             This is a `{open}` modal dialog.

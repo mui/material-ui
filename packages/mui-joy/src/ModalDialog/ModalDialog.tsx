@@ -36,7 +36,7 @@ const ModalDialogRoot = styled(SheetRoot, {
   '--ModalClose-radius':
     'max((var(--ModalDialog-radius) - var(--variant-borderWidth)) - var(--ModalClose-inset), min(var(--ModalClose-inset) / 2, (var(--ModalDialog-radius) - var(--variant-borderWidth)) / 2))',
   ...(ownerState.size === 'sm' && {
-    '--ModalDialog-padding': theme.spacing(1),
+    '--ModalDialog-padding': theme.spacing(1.25),
     '--ModalDialog-radius': theme.vars.radius.sm,
     '--ModalClose-inset': theme.spacing(0.75),
     fontSize: theme.vars.fontSize.sm,

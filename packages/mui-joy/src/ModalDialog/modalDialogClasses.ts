@@ -23,6 +23,12 @@ export interface ModalDialogClasses {
   variantSoft: string;
   /** Styles applied to the root element if `variant="solid"`. */
   variantSolid: string;
+  /** Styles applied to the root element if `size="sm"`. */
+  sizeSm: string;
+  /** Styles applied to the root element if `size="md"`. */
+  sizeMd: string;
+  /** Styles applied to the root element if `size="lg"`. */
+  sizeLg: string;
 }
 
 export type ModalDialogClassKey = keyof ModalDialogClasses;
@@ -43,6 +49,9 @@ const modalDialogClasses: ModalDialogClasses = generateUtilityClasses('JoyModalD
   'variantOutlined',
   'variantSoft',
   'variantSolid',
+  'sizeSm',
+  'sizeMd',
+  'sizeLg',
 ]);
 
 export default modalDialogClasses;

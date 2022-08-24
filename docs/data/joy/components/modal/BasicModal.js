@@ -5,7 +5,7 @@ import ModalClose from '@mui/joy/ModalClose';
 import Typography from '@mui/joy/Typography';
 import Sheet from '@mui/joy/Sheet';
 
-export default function BasicModalDialog() {
+export default function BasicModal() {
   const [open, setOpen] = React.useState(false);
   return (
     <React.Fragment>
@@ -13,13 +13,13 @@ export default function BasicModalDialog() {
         Open modal
       </Button>
       <Modal
+        aria-labelledby="modal-title"
+        aria-describedby="modal-desc"
         open={open}
         onClose={() => setOpen(false)}
         sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}
       >
         <Sheet
-          aria-labelledby="modal-title"
-          aria-describedby="modal-desc"
           variant="solid"
           sx={{
             maxWidth: 400,
