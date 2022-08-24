@@ -43,25 +43,29 @@ export const IconButtonRoot = styled('button', {
       minWidth: 'var(--IconButton-size, 2rem)', // use min-width instead of height to make the button resilient to its content
       minHeight: 'var(--IconButton-size, 2rem)', // use min-height instead of height to make the button resilient to its content
       fontSize: theme.vars.fontSize.sm,
+      paddingInline: '2px', // add a gap, in case the content is long, e.g. multiple icons
     }),
     ...(ownerState.size === 'md' && {
       '--Icon-fontSize': 'calc(var(--IconButton-size, 2.5rem) / 1.667)', // 1.5rem by default
       minWidth: 'var(--IconButton-size, 2.5rem)',
       minHeight: 'var(--IconButton-size, 2.5rem)',
       fontSize: theme.vars.fontSize.md,
+      paddingInline: '0.25rem',
     }),
     ...(ownerState.size === 'lg' && {
       '--Icon-fontSize': 'calc(var(--IconButton-size, 3rem) / 1.714)', // 1.75rem by default
       minWidth: 'var(--IconButton-size, 3rem)',
       minHeight: 'var(--IconButton-size, 3rem)',
       fontSize: theme.vars.fontSize.lg,
+      paddingInline: '0.375rem',
     }),
-    padding: 0,
+    paddingBlock: 0,
     fontFamily: theme.vars.fontFamily.body,
     fontWeight: theme.vars.fontWeight.md,
     margin: `var(--IconButton-margin)`, // to be controlled by other components, eg. Input
     borderRadius: `var(--IconButton-radius, ${theme.vars.radius.sm})`, // to be controlled by other components, eg. Input
     border: 'none',
+    boxSizing: 'border-box',
     backgroundColor: 'transparent',
     display: 'inline-flex',
     alignItems: 'center',

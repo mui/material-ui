@@ -106,7 +106,7 @@ async function computeApiDescription(api: ReactApi, options: { host: string }): 
     })
     .process(api.description);
 
-  return file.contents.toString('utf-8').trim();
+  return file.contents.toString().trim();
 }
 
 /**
@@ -162,7 +162,7 @@ async function annotateComponentDefinition(api: ReactApi) {
             // /**
             //  */
             // const Component = () => {}
-            node = binding.path.parentPath.node;
+            node = binding.path.parentPath!.node;
           }
         }
       }
@@ -182,10 +182,10 @@ async function annotateComponentDefinition(api: ReactApi) {
             .join('\n')}`,
         );
       }
-      if (jsdocBlock != null) {
+      if (jsdocBlock?.start != null && jsdocBlock?.end != null) {
         start = jsdocBlock.start;
         end = jsdocBlock.end;
-      } else if (node.start !== null) {
+      } else if (node.start != null) {
         start = node.start - 1;
         end = start;
       }

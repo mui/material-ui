@@ -1,12 +1,11 @@
 import * as React from 'react';
 import JoyUsageDemo from 'docs/src/modules/components/JoyUsageDemo';
-import Box from '@mui/joy/Box';
-import TextField from '@mui/joy/TextField';
+import Textarea from '@mui/joy/Textarea';
 
-export default function TextFieldUsage() {
+export default function TextareaUsage() {
   return (
     <JoyUsageDemo
-      componentName="TextField"
+      componentName="Textarea"
       data={[
         {
           propName: 'variant',
@@ -21,26 +20,22 @@ export default function TextFieldUsage() {
           defaultValue: 'md',
         },
         {
-          propName: 'label',
-          knob: 'input',
-          defaultValue: 'Label',
-        },
-        {
           propName: 'placeholder',
           knob: 'input',
-          defaultValue: 'placeholder',
+          defaultValue: 'Type something…',
         },
         {
           propName: 'disabled',
           knob: 'switch',
           defaultValue: false,
         },
+        {
+          propName: 'minRows',
+          defaultValue: 2,
+          codeBlockDisplay: true,
+        },
       ]}
-      renderDemo={(props) => (
-        <Box>
-          <TextField {...props} />
-        </Box>
-      )}
+      renderDemo={(props) => <Textarea {...props} />}
     />
   );
 }

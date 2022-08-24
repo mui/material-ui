@@ -45,6 +45,7 @@ import { TabPanelOwnerState, TabPanelProps, TabPanelSlot } from '../TabPanel/Tab
 import { TabsOwnerState, TabsProps, TabsSlot } from '../Tabs/TabsProps';
 import { TextFieldProps, TextFieldSlot } from '../TextField/TextFieldProps';
 import { TypographyProps, TypographySlot } from '../Typography/TypographyProps';
+import { TextareaProps, TextareaSlot } from '../Textarea/TextareaProps';
 import { ModalProps, ModalOwnerState, ModalSlot } from '../Modal/ModalProps';
 import {
   ModalCloseProps,
@@ -255,6 +256,10 @@ export interface Components<Theme = unknown> {
   JoyTabPanel?: {
     defaultProps?: Partial<TabPanelProps>;
     styleOverrides?: OverridesStyleRules<TabPanelSlot, TabPanelOwnerState, Theme>;
+  };
+  JoyTextarea?: {
+    defaultProps?: Partial<TextareaProps>;
+    styleOverrides?: OverridesStyleRules<TextareaSlot, TextareaProps, Theme>;
   };
   JoyTextField?: {
     defaultProps?: Partial<TextFieldProps>;

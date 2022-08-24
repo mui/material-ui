@@ -148,5 +148,8 @@ export * from './Tabs';
 export { default as TextField } from './TextField';
 export * from './TextField';
 
+export { default as Textarea } from './Textarea';
+export * from './Textarea';
+
 export { default as Typography } from './Typography';
 export * from './Typography';
