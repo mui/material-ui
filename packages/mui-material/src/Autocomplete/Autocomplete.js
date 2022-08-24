@@ -128,6 +128,12 @@ const AutocompleteRoot = styled('div', {
       padding: '2px 4px 3px 0',
     },
   },
+  [`& .${outlinedInputClasses.root}.${inputBaseClasses.sizeSmall}`]: {
+    padding: 6,
+    [`& .${autocompleteClasses.input}`]: {
+      padding: '2.5px 4px 2.5px 6px',
+    },
+  },
   [`& .${outlinedInputClasses.root}`]: {
     padding: 9,
     [`.${autocompleteClasses.hasPopupIcon}&, .${autocompleteClasses.hasClearIcon}&`]: {
@@ -141,18 +147,6 @@ const AutocompleteRoot = styled('div', {
     },
     [`& .${autocompleteClasses.endAdornment}`]: {
       right: 9,
-    },
-  },
-  [`& .${outlinedInputClasses.root}.${inputBaseClasses.sizeSmall}`]: {
-    padding: 6,
-    [`& .${autocompleteClasses.input}`]: {
-      padding: '2.5px 4px 2.5px 6px',
-    },
-  },
-  [`& .${filledInputClasses.root}.${inputBaseClasses.sizeSmall}`]: {
-    paddingBottom: 1,
-    [`& .${filledInputClasses.input}`]: {
-      padding: '2.5px 4px',
     },
   },
   [`& .${filledInputClasses.root}`]: {
@@ -169,6 +163,12 @@ const AutocompleteRoot = styled('div', {
     },
     [`& .${autocompleteClasses.endAdornment}`]: {
       right: 9,
+    },
+  },
+  [`& .${filledInputClasses.root}.${inputBaseClasses.sizeSmall}`]: {
+    paddingBottom: 1,
+    [`& .${filledInputClasses.input}`]: {
+      padding: '2.5px 4px',
     },
   },
   [`& .${inputBaseClasses.hiddenLabel}`]: {
