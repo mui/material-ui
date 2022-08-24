@@ -90,10 +90,8 @@ const InputRoot = styled('div', {
       }),
       fontFamily: theme.vars.fontFamily.body,
       fontSize: theme.vars.fontSize.md,
-      lineHeight: theme.vars.lineHeight.md,
       ...(ownerState.size === 'sm' && {
         fontSize: theme.vars.fontSize.sm,
-        lineHeight: theme.vars.lineHeight.sm,
       }),
       // TODO: discuss the transition approach in a separate PR. This value is copied from mui-material Button.
       transition:
