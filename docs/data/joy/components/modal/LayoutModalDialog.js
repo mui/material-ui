@@ -24,7 +24,7 @@ export default function LayoutModalDialog() {
         </Button>
       </Stack>
       <Modal open={!!open} onClose={() => setOpen('')}>
-        <ModalDialog size="lg" layout={open}>
+        <ModalDialog layout={open || undefined}>
           <ModalClose />
           <ModalDialogTitle>Modal Dialog</ModalDialogTitle>
           <ModalDialogDescription>

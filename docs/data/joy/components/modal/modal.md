@@ -102,6 +102,14 @@ Though it is possible to create nested modals—for example, a select modal with
 This is because each successive modal blocks interaction with all elements behind it, making prior states inaccessible and overly complicated for the user to navigate through.
 :::
 
+### Transition
+
+The modal components do not come with transition properties.
+
+Here is one example using [`react-transition-group`](https://reactcommunity.org/react-transition-group/transition) to create a fade animation:
+
+{{"demo": "FadeModalDialog.js"}}
+
 ### Performance
 
 The modal's content is unmounted when it is not open.

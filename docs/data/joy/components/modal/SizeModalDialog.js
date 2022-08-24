@@ -38,7 +38,7 @@ export default function SizeModalDialog() {
         </Button>
       </Stack>
       <Modal open={!!open} onClose={() => setOpen('')}>
-        <ModalDialog size={open}>
+        <ModalDialog size={open || undefined}>
           <ModalClose />
           <ModalDialogTitle>Modal Dialog</ModalDialogTitle>
           <ModalDialogDescription>

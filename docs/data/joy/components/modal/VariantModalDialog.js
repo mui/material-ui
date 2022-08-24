@@ -30,7 +30,7 @@ export default function VariantModalDialog() {
         </Button>
       </Stack>
       <Modal open={!!open} onClose={() => setOpen('')}>
-        <ModalDialog variant={open}>
+        <ModalDialog variant={open || undefined}>
           <ModalClose />
           <ModalDialogTitle>Modal Dialog</ModalDialogTitle>
           <ModalDialogDescription>
