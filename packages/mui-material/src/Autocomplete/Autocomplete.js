@@ -149,6 +149,12 @@ const AutocompleteRoot = styled('div', {
       padding: '2.5px 4px 2.5px 6px',
     },
   },
+  [`& .${filledInputClasses.root}.${inputBaseClasses.sizeSmall}`]: {
+    paddingBottom: 1,
+    [`& .${filledInputClasses.input}`]: {
+      padding: '2.5px 4px',
+    },
+  },
   [`& .${filledInputClasses.root}`]: {
     paddingTop: 19,
     paddingLeft: 8,
@@ -163,12 +169,6 @@ const AutocompleteRoot = styled('div', {
     },
     [`& .${autocompleteClasses.endAdornment}`]: {
       right: 9,
-    },
-  },
-  [`& .${filledInputClasses.root}.${inputBaseClasses.sizeSmall}`]: {
-    paddingBottom: 1,
-    [`& .${filledInputClasses.input}`]: {
-      padding: '2.5px 4px',
     },
   },
   [`& .${inputBaseClasses.hiddenLabel}`]: {
