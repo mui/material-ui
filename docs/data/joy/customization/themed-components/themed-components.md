@@ -112,7 +112,7 @@ extendTheme({
 });
 ```
 
-### Extend component sizes
+### Extend sizes
 
 Apply the styles when `ownerState.size` matches the new size. It is recommended to follow the existing T-shirt scale for consistency.
 
@@ -172,7 +172,7 @@ declare module '@mui/joy/Button' {
 
 :::
 
-### Extend component variants
+### Extend variants
 
 When you add new variant to a component, you are opting-out of the global variant feature which lets you take full control of the CSS properties related to color (`color`, `background` and `border`).
 
