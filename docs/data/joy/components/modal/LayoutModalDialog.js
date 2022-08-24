@@ -24,9 +24,10 @@ export default function LayoutModalDialog() {
       </Stack>
       <Modal open={!!open} onClose={() => setOpen('')}>
         <ModalDialog layout={open}>
-          <ModalDialogTitle>Modal Dialog</ModalDialogTitle>
+          <ModalDialogTitle>Modal dialog</ModalDialogTitle>
           <ModalDialogDescription>
-            This is a `{open}` modal dialog.
+            This is a <code>{open}</code> modal dialog. Press <code>esc</code> to
+            close it.
           </ModalDialogDescription>
         </ModalDialog>
       </Modal>

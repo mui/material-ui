@@ -7,6 +7,7 @@ import ModalDialogTitle from '@mui/joy/ModalDialogTitle';
 import ModalDialogDescription from '@mui/joy/ModalDialogDescription';
 import Stack from '@mui/joy/Stack';
 import Add from '@mui/icons-material/Add';
+import Typography from '@mui/joy/Typography';
 
 export default function BasicModalDialog() {
   const [open, setOpen] = React.useState(false);
@@ -21,10 +22,19 @@ export default function BasicModalDialog() {
         New project
       </Button>
       <Modal open={open} onClose={() => setOpen(false)}>
-        <ModalDialog>
+        <ModalDialog
+          sx={{
+            maxWidth: 500,
+            borderRadius: 'md',
+            p: 3,
+            boxShadow: 'lg',
+          }}
+        >
           <ModalDialogTitle>Create new project</ModalDialogTitle>
-          <ModalDialogDescription sx={{ mb: 1 }}>
-            Fill in the information of the project.
+          <ModalDialogDescription sx={{ mb: 2 }}>
+            <Typography id="modal-desc" textColor="text.tertiary">
+              Fill in the information of the project.
+            </Typography>
           </ModalDialogDescription>
           <form
             onSubmit={(event) => {
@@ -32,7 +42,7 @@ export default function BasicModalDialog() {
               setOpen(false);
             }}
           >
-            <Stack spacing={1.5}>
+            <Stack spacing={2}>
               <TextField label="Name" required />
               <TextField label="Description" required />
               <Button type="submit">Submit</Button>
