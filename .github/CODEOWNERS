@@ -1,6 +1,7 @@
 /scripts/ @michaldudak @m4theushw
 
 # Packages
+
 /packages/mui-base/ @michaldudak @mnajdova
 /packages/mui-icons-material/ @michaldudak @siriwatknp
 /packages/mui-joy/ @siriwatknp @danilo-leal
@@ -8,6 +9,18 @@
 /packages/mui-system/ @mnajdova @siriwatknp
 
 # Components - Inputs
+
+/packages/mui-base/src/AutocompleteUnstyled/ @michaldudak @mnajdova
+/packages/mui-base/src/ButtonUnstyled/ @michaldudak @mnajdova
+/packages/mui-base/src/FormControlUnstyled/ @michaldudak @mnajdova
+/packages/mui-base/src/InputUnstyled/ @michaldudak @mnajdova
+/packages/mui-base/src/MultiSelectUnstyled/ @michaldudak @mnajdova
+/packages/mui-base/src/OptionGroupUnstyled/ @michaldudak @mnajdova
+/packages/mui-base/src/OptionUnstyled/ @michaldudak @mnajdova
+/packages/mui-base/src/SelectUnstyled/ @michaldudak @mnajdova
+/packages/mui-base/src/SliderUnstyled/ @michaldudak @mnajdova
+/packages/mui-base/src/SwitchUnstyled/ @michaldudak @mnajdova
+
 /packages/mui-material/src/Autocomplete/ @michaldudak @mnajdova
 /packages/mui-material/src/Button/ @michaldudak @mnajdova
 /packages/mui-material/src/ButtonBase/ @michaldudak @mnajdova
@@ -40,6 +53,9 @@
 /packages/mui-material/src/useTouchRipple/ @michaldudak @mnajdova
 
 # Components - Data display
+
+/packages/mui-base/src/BadgeUnstyled/ @hbjORbj @siriwatknp @michaldudak
+
 /packages/mui-material/src/Avatar/ @hbjORbj @siriwatknp
 /packages/mui-material/src/AvatarGroup/ @hbjORbj @siriwatknp
 /packages/mui-material/src/Badge/ @hbjORbj @siriwatknp
@@ -68,6 +84,7 @@
 /packages/mui-material/src/Typography/ @hbjORbj @siriwatknp
 
 # Components - Feedback
+
 /packages/mui-material/src/Alert/ @siriwatknp @hbjORbj
 /packages/mui-material/src/AlertTitle/ @siriwatknp @hbjORbj
 /packages/mui-material/src/Backdrop/ @siriwatknp @hbjORbj
@@ -83,6 +100,7 @@
 /packages/mui-material/src/Skeleton/ @siriwatknp @hbjORbj
 
 # Components - Surfaces
+
 /packages/mui-material/src/Accordion/ @siriwatknp @hbjORbj
 /packages/mui-material/src/AccordionActions/ @siriwatknp @hbjORbj
 /packages/mui-material/src/AccordionDetails/ @siriwatknp @hbjORbj
@@ -99,6 +117,15 @@
 /packages/mui-material/src/useScrollTrigger/ @siriwatknp @hbjORbj
 
 # Components - Navigation
+
+/packages/mui-base/src/MenuItemUnstyled/ @hbjORbj @mnajdova @michaldudak
+/packages/mui-base/src/MenuUnstyled/ @hbjORbj @mnajdova @michaldudak
+/packages/mui-base/src/TabPanelUnstyled/ @hbjORbj @mnajdova @michaldudak
+/packages/mui-base/src/TabsListUnstyled/ @hbjORbj @mnajdova @michaldudak
+/packages/mui-base/src/TabsUnstyled/ @hbjORbj @mnajdova @michaldudak
+/packages/mui-base/src/TabUnstyled/ @hbjORbj @mnajdova @michaldudak
+/packages/mui-base/src/TablePaginationUnstyled/ @hbjORbj @mnajdova @michaldudak
+
 /packages/mui-material/src/BottomNavigation/ @hbjORbj @mnajdova
 /packages/mui-material/src/BottomNavigationAction/ @hbjORbj @mnajdova
 /packages/mui-material/src/Breadcrumbs/ @hbjORbj @mnajdova
@@ -127,6 +154,7 @@
 /packages/mui-material/src/usePagination/ @hbjORbj @mnajdova
 
 # Components - Layout
+
 /packages/mui-material/src/Box/ @siriwatknp @hbjORbj
 /packages/mui-material/src/Container/ @siriwatknp @hbjORbj
 /packages/mui-material/src/Grid/ @siriwatknp @hbjORbj
@@ -138,6 +166,15 @@
 /packages/mui-material/src/Unstable_Grid2/ @siriwatknp @hbjORbj
 
 # Components - Utils
+
+/packages/mui-base/src/ClickAwayListener/ @mnajdova @michaldudak
+/packages/mui-base/src/ModalUnstyled/ @mnajdova @michaldudak
+/packages/mui-base/src/NoSsr/ @mnajdova @michaldudak
+/packages/mui-base/src/PopperUnstyled/ @mnajdova @michaldudak
+/packages/mui-base/src/Portal/ @mnajdova @michaldudak
+/packages/mui-base/src/TextareaAutosize/ @mnajdova @michaldudak
+/packages/mui-base/src/TrapFocus/ @mnajdova @michaldudak
+
 /packages/mui-material/src/ClickAwayListener/ @mnajdova @michaldudak
 /packages/mui-material/src/Collapse/ @mnajdova @michaldudak
 /packages/mui-material/src/CssBaseline/ @mnajdova @michaldudak
