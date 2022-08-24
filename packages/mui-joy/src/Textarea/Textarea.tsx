@@ -2,96 +2,97 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
-import composeClasses from '@mui/base/composeClasses';
 import { useSlotProps, EventHandlers } from '@mui/base/utils';
+import composeClasses from '@mui/base/composeClasses';
+import TextareaAutosize from '@mui/base/TextareaAutosize';
 import { styled, useThemeProps } from '../styles';
-import { InputTypeMap, InputProps } from './InputProps';
-import inputClasses, { getInputUtilityClass } from './inputClasses';
-import useForwardedInput from './useForwardedInput';
+import { TextareaTypeMap, TextareaProps } from './TextareaProps';
+import textareaClasses, { getTextareaUtilityClass } from './textareaClasses';
+import useForwardedInput from '../Input/useForwardedInput';
 
-const useUtilityClasses = (ownerState: InputProps) => {
-  const { disabled, fullWidth, variant, color, size } = ownerState;
+const useUtilityClasses = (ownerState: TextareaProps) => {
+  const { disabled, variant, color, size } = ownerState;
 
   const slots = {
     root: [
       'root',
       disabled && 'disabled',
-      fullWidth && 'fullWidth',
       variant && `variant${capitalize(variant)}`,
       color && `color${capitalize(color)}`,
       size && `size${capitalize(size)}`,
     ],
-    input: ['input'],
+    textarea: ['textarea'],
     startDecorator: ['startDecorator'],
     endDecorator: ['endDecorator'],
   };
 
-  return composeClasses(slots, getInputUtilityClass, {});
+  return composeClasses(slots, getTextareaUtilityClass, {});
 };
 
-const InputRoot = styled('div', {
-  name: 'JoyInput',
+const TextareaRoot = styled('div', {
+  name: 'JoyTextarea',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: InputProps }>(({ theme, ownerState }) => {
+})<{ ownerState: TextareaProps }>(({ theme, ownerState }) => {
   const variantStyle = theme.variants[`${ownerState.variant!}`]?.[ownerState.color!];
   return [
     {
-      '--Input-radius': theme.vars.radius.sm,
-      '--Input-gap': '0.5rem',
-      '--Input-placeholderOpacity': 0.5,
-      '--Input-focusedThickness': '2px',
-      '--Input-focusedHighlight':
+      '--Textarea-radius': theme.vars.radius.sm,
+      '--Textarea-gap': '0.5rem',
+      '--Textarea-placeholderOpacity': 0.5,
+      '--Textarea-focusedThickness': '2px',
+      '--Textarea-focusedHighlight':
         theme.vars.palette[ownerState.color === 'neutral' ? 'primary' : ownerState.color!]?.[500],
       ...(ownerState.size === 'sm' && {
-        '--Input-minHeight': '2rem',
-        '--Input-paddingInline': '0.5rem',
-        '--Input-decorator-childHeight': 'min(1.5rem, var(--Input-minHeight))',
+        '--Textarea-minHeight': '2rem',
+        '--Textarea-paddingBlock': 'calc(0.5rem - var(--variant-borderWidth, 0px))', // to match Input because <textarea> does not center the text at the middle like <input>
+        '--Textarea-paddingInline': '0.5rem',
+        '--Textarea-decorator-childHeight': 'min(1.5rem, var(--Textarea-minHeight))',
         '--Icon-fontSize': '1.25rem',
       }),
       ...(ownerState.size === 'md' && {
-        '--Input-minHeight': '2.5rem',
-        '--Input-paddingInline': '0.75rem',
-        '--Input-decorator-childHeight': 'min(2rem, var(--Input-minHeight))',
+        '--Textarea-minHeight': '2.5rem',
+        '--Textarea-paddingBlock': 'calc(0.5rem - var(--variant-borderWidth, 0px))',
+        '--Textarea-paddingInline': '0.75rem',
+        '--Textarea-decorator-childHeight': 'min(2rem, var(--Textarea-minHeight))',
         '--Icon-fontSize': '1.5rem',
       }),
       ...(ownerState.size === 'lg' && {
-        '--Input-minHeight': '3rem',
-        '--Input-paddingInline': '1rem',
-        '--Input-gap': '0.75rem',
-        '--Input-decorator-childHeight': 'min(2.375rem, var(--Input-minHeight))',
+        '--Textarea-minHeight': '3rem',
+        '--Textarea-paddingBlock': 'calc(0.75rem - var(--variant-borderWidth, 0px))',
+        '--Textarea-paddingInline': '1rem',
+        '--Textarea-gap': '0.75rem',
+        '--Textarea-decorator-childHeight': 'min(2.375rem, var(--Textarea-minHeight))',
         '--Icon-fontSize': '1.75rem',
       }),
       // variables for controlling child components
-      '--Input-decorator-childOffset':
-        'min(calc(var(--Input-paddingInline) - (var(--Input-minHeight) - 2 * var(--variant-borderWidth) - var(--Input-decorator-childHeight)) / 2), var(--Input-paddingInline))',
       '--internal-paddingBlock':
-        'max((var(--Input-minHeight) - 2 * var(--variant-borderWidth) - var(--Input-decorator-childHeight)) / 2, 0px)',
-      '--Input-decorator-childRadius':
-        'max((var(--Input-radius) - var(--variant-borderWidth)) - var(--internal-paddingBlock), min(var(--internal-paddingBlock) / 2, (var(--Input-radius) - var(--variant-borderWidth)) / 2))',
-      '--Button-minHeight': 'var(--Input-decorator-childHeight)',
-      '--IconButton-size': 'var(--Input-decorator-childHeight)',
-      '--Button-radius': 'var(--Input-decorator-childRadius)',
-      '--IconButton-radius': 'var(--Input-decorator-childRadius)',
+        'max((var(--Textarea-minHeight) - 2 * var(--variant-borderWidth) - var(--Textarea-decorator-childHeight)) / 2, 0px)',
+      '--Textarea-decorator-childRadius':
+        'max((var(--Textarea-radius) - var(--variant-borderWidth)) - var(--internal-paddingBlock), min(var(--internal-paddingBlock) / 2, (var(--Textarea-radius) - var(--variant-borderWidth)) / 2))',
+      '--Button-minHeight': 'var(--Textarea-decorator-childHeight)',
+      '--IconButton-size': 'var(--Textarea-decorator-childHeight)',
+      '--Button-radius': 'var(--Textarea-decorator-childRadius)',
+      '--IconButton-radius': 'var(--Textarea-decorator-childRadius)',
       boxSizing: 'border-box',
       minWidth: 0,
-      minHeight: 'var(--Input-minHeight)',
-      ...(ownerState.fullWidth && {
-        width: '100%',
-      }),
+      minHeight: 'var(--Textarea-minHeight)',
       cursor: 'text',
       position: 'relative',
       display: 'flex',
-      alignItems: 'center',
-      paddingInline: `var(--Input-paddingInline)`,
-      borderRadius: 'var(--Input-radius)',
+      flexDirection: 'column',
+      paddingInlineStart: `var(--Textarea-paddingInline)`, // the paddingInlineEnd is added to the textarea. It looks better when the scrollbar appears.
+      paddingBlock: 'var(--Textarea-paddingBlock)',
+      borderRadius: 'var(--Textarea-radius)',
       ...(!variantStyle.backgroundColor && {
         backgroundColor: theme.vars.palette.background.surface,
       }),
       fontFamily: theme.vars.fontFamily.body,
       fontSize: theme.vars.fontSize.md,
+      lineHeight: theme.vars.lineHeight.md,
       ...(ownerState.size === 'sm' && {
         fontSize: theme.vars.fontSize.sm,
+        lineHeight: theme.vars.lineHeight.sm,
       }),
       // TODO: discuss the transition approach in a separate PR. This value is copied from mui-material Button.
       transition:
@@ -118,31 +119,33 @@ const InputRoot = styled('div', {
         ...theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
         cursor: 'text',
       },
-      [`&.${inputClasses.disabled}`]:
+      [`&.${textareaClasses.disabled}`]:
         theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
     },
     // This style has to come after the global variant to set the background to surface
     ownerState.variant !== 'solid' && {
-      [`&.${inputClasses.focused}`]: {
+      [`&.${textareaClasses.focused}`]: {
         backgroundColor: theme.vars.palette.background.surface,
         '&:before': {
-          boxShadow: `inset 0 0 0 var(--Input-focusedThickness) var(--Input-focusedHighlight)`,
+          boxShadow: `inset 0 0 0 var(--Textarea-focusedThickness) var(--Textarea-focusedHighlight)`,
         },
       },
     },
   ];
 });
 
-const InputInput = styled('input', {
-  name: 'JoyInput',
-  slot: 'Input',
-  overridesResolver: (props, styles) => styles.input,
-})<{ ownerState: InputProps }>(({ theme, ownerState }) => ({
-  border: 'none', // remove the native input width
-  minWidth: 0, // remove the native input width
-  outline: 0, // remove the native input outline
-  padding: 0, // remove the native input padding
-  flex: 1,
+const TextareaInput = styled(TextareaAutosize, {
+  name: 'JoyTextarea',
+  slot: 'Textarea',
+  overridesResolver: (props, styles) => styles.textarea,
+})<{ ownerState: TextareaProps }>(({ theme, ownerState }) => ({
+  resize: 'none',
+  border: 'none', // remove the native textarea width
+  minWidth: 0, // remove the native textarea width
+  outline: 0, // remove the native textarea outline
+  padding: 0, // remove the native textarea padding
+  paddingInlineEnd: `var(--Textarea-paddingInline)`,
+  flex: 'auto',
   alignSelf: 'stretch',
   color: 'inherit',
   backgroundColor: 'transparent',
@@ -155,48 +158,43 @@ const InputInput = styled('input', {
     WebkitBackgroundClip: 'text', // remove autofill background
     WebkitTextFillColor: theme.vars.palette[ownerState.color!]?.overrideTextPrimary,
   },
-  '&::-webkit-input-placeholder': { opacity: 'var(--Input-placeholderOpacity)', color: 'inherit' },
-  '&::-moz-placeholder': { opacity: 'var(--Input-placeholderOpacity)', color: 'inherit' }, // Firefox 19+
-  '&:-ms-input-placeholder': { opacity: 'var(--Input-placeholderOpacity)', color: 'inherit' }, // IE11
-  '&::-ms-input-placeholder': { opacity: 'var(--Input-placeholderOpacity)', color: 'inherit' }, // Edge
+  '&::-webkit-input-placeholder': {
+    opacity: 'var(--Textarea-placeholderOpacity)',
+    color: 'inherit',
+  },
+  '&::-moz-placeholder': { opacity: 'var(--Textarea-placeholderOpacity)', color: 'inherit' }, // Firefox 19+
+  '&:-ms-input-placeholder': { opacity: 'var(--Textarea-placeholderOpacity)', color: 'inherit' }, // IE11
+  '&::-ms-input-placeholder': { opacity: 'var(--Textarea-placeholderOpacity)', color: 'inherit' }, // Edge
 }));
 
-const InputStartDecorator = styled('span', {
-  name: 'JoyInput',
+const TextareaStartDecorator = styled('div', {
+  name: 'JoyTextarea',
   slot: 'StartDecorator',
   overridesResolver: (props, styles) => styles.startDecorator,
-})<{ ownerState: InputProps & { focused: boolean } }>(({ theme, ownerState }) => ({
-  '--Button-margin': '0 0 0 calc(var(--Input-decorator-childOffset) * -1)',
-  '--IconButton-margin': '0 0 0 calc(var(--Input-decorator-childOffset) * -1)',
-  '--Icon-margin': '0 0 0 calc(var(--Input-paddingInline) / -4)',
-  pointerEvents: 'none', // to make the input focused when click on the element because start element usually is an icon
-  display: 'inherit',
-  alignItems: 'center',
-  marginInlineEnd: 'var(--Input-gap)',
+})<{ ownerState: TextareaProps }>(({ theme }) => ({
+  display: 'flex',
+  marginInlineStart: 'calc(var(--Textarea-paddingBlock) - var(--Textarea-paddingInline))',
+  marginInlineEnd: 'var(--Textarea-paddingBlock)',
+  marginBlockEnd: 'var(--Textarea-gap)',
   color: theme.vars.palette.text.tertiary,
-  ...(ownerState.focused && {
-    color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Color`],
-  }),
 }));
 
-const InputEndDecorator = styled('span', {
-  name: 'JoyInput',
+const TextareaEndDecorator = styled('div', {
+  name: 'JoyTextarea',
   slot: 'EndDecorator',
   overridesResolver: (props, styles) => styles.endDecorator,
-})<{ ownerState: InputProps }>(({ theme, ownerState }) => ({
-  '--Button-margin': '0 calc(var(--Input-decorator-childOffset) * -1) 0 0',
-  '--IconButton-margin': '0 calc(var(--Input-decorator-childOffset) * -1) 0 0',
-  '--Icon-margin': '0 calc(var(--Input-paddingInline) / -4) 0 0',
-  display: 'inherit',
-  alignItems: 'center',
-  marginInlineStart: 'var(--Input-gap)',
-  color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Color`],
+})<{ ownerState: TextareaProps }>(({ theme }) => ({
+  display: 'flex',
+  marginInlineStart: 'calc(var(--Textarea-paddingBlock) - var(--Textarea-paddingInline))',
+  marginInlineEnd: 'var(--Textarea-paddingBlock)',
+  marginBlockStart: 'var(--Textarea-gap)',
+  color: theme.vars.palette.text.tertiary,
 }));
 
-const Input = React.forwardRef(function Input(inProps, ref) {
+const Textarea = React.forwardRef(function Textarea(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
-    name: 'JoyInput',
+    name: 'JoyTextarea',
   });
 
   const {
@@ -211,18 +209,18 @@ const Input = React.forwardRef(function Input(inProps, ref) {
     formControlContext,
     error: errorState,
     disabled: disabledState,
-    fullWidth = false,
     size = 'md',
     color = 'neutral',
     variant = 'outlined',
     startDecorator,
     endDecorator,
+    minRows,
+    maxRows,
     ...other
-  } = useForwardedInput<InputProps>(props, inputClasses);
+  } = useForwardedInput<TextareaProps>(props, textareaClasses);
 
   const ownerState = {
     ...props,
-    fullWidth,
     color: errorState ? 'danger' : color,
     disabled: disabledState,
     error: errorState,
@@ -235,7 +233,7 @@ const Input = React.forwardRef(function Input(inProps, ref) {
   const classes = useUtilityClasses(ownerState);
 
   const rootProps = useSlotProps({
-    elementType: InputRoot,
+    elementType: TextareaRoot,
     getSlotProps: getRootProps,
     externalSlotProps: componentsProps.root,
     externalForwardedProps: other,
@@ -247,37 +245,44 @@ const Input = React.forwardRef(function Input(inProps, ref) {
     className: [classes.root, rootStateClasses],
   });
 
-  const inputProps = useSlotProps({
-    elementType: InputInput,
+  const { onChange, ...inputProps } = useSlotProps({
+    elementType: TextareaInput,
     getSlotProps: (otherHandlers: EventHandlers) =>
       getInputProps({ ...otherHandlers, ...propsToForward }),
-    externalSlotProps: componentsProps.input,
+    externalSlotProps: {
+      minRows,
+      maxRows,
+    },
     additionalProps: {
-      as: componentsProps.input?.component,
+      as: componentsProps.textarea?.component,
     },
     ownerState,
-    className: [classes.input, inputStateClasses],
+    className: [classes.textarea, inputStateClasses],
   });
 
   return (
-    <InputRoot {...rootProps}>
+    <TextareaRoot {...rootProps}>
       {startDecorator && (
-        <InputStartDecorator className={classes.startDecorator} ownerState={ownerState}>
+        <TextareaStartDecorator className={classes.startDecorator} ownerState={ownerState}>
           {startDecorator}
-        </InputStartDecorator>
+        </TextareaStartDecorator>
       )}
 
-      <InputInput {...inputProps} />
+      <TextareaInput
+        {...inputProps}
+        // @ts-expect-error MUI Base strictly type `onChange` for HTMLInputElement
+        onChange={onChange}
+      />
       {endDecorator && (
-        <InputEndDecorator className={classes.endDecorator} ownerState={ownerState}>
+        <TextareaEndDecorator className={classes.endDecorator} ownerState={ownerState}>
           {endDecorator}
-        </InputEndDecorator>
+        </TextareaEndDecorator>
       )}
-    </InputRoot>
+    </TextareaRoot>
   );
-}) as OverridableComponent<InputTypeMap>;
+}) as OverridableComponent<TextareaTypeMap>;
 
-Input.propTypes /* remove-proptypes */ = {
+Textarea.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
@@ -285,19 +290,7 @@ Input.propTypes /* remove-proptypes */ = {
   /**
    * @ignore
    */
-  autoComplete: PropTypes.string,
-  /**
-   * @ignore
-   */
-  autoFocus: PropTypes.bool,
-  /**
-   * @ignore
-   */
   children: PropTypes.node,
-  /**
-   * Class name applied to the root element.
-   */
-  className: PropTypes.string,
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'neutral'
@@ -311,21 +304,9 @@ Input.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   componentsProps: PropTypes.shape({
-    input: PropTypes.object,
     root: PropTypes.object,
+    textarea: PropTypes.object,
   }),
-  /**
-   * @ignore
-   */
-  defaultValue: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.string),
-    PropTypes.number,
-    PropTypes.string,
-  ]),
-  /**
-   * @ignore
-   */
-  disabled: PropTypes.bool,
   /**
    * Trailing adornment for this input.
    */
@@ -336,34 +317,14 @@ Input.propTypes /* remove-proptypes */ = {
    */
   error: PropTypes.bool,
   /**
-   * If `true`, the button will take up the full width of its container.
-   * @default false
+   * Maximum number of rows to display.
    */
-  fullWidth: PropTypes.bool,
+  maxRows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
-   * @ignore
+   * Minimum number of rows to display.
+   * @default 1
    */
-  id: PropTypes.string,
-  /**
-   * @ignore
-   */
-  name: PropTypes.string,
-  /**
-   * @ignore
-   */
-  onChange: PropTypes.func,
-  /**
-   * @ignore
-   */
-  placeholder: PropTypes.string,
-  /**
-   * @ignore
-   */
-  readOnly: PropTypes.bool,
-  /**
-   * @ignore
-   */
-  required: PropTypes.bool,
+  minRows: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   /**
    * The size of the component.
    * @default 'md'
@@ -385,14 +346,6 @@ Input.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
-   * @ignore
-   */
-  value: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.string),
-    PropTypes.number,
-    PropTypes.string,
-  ]),
-  /**
    * The variant to use.
    * @default 'outlined'
    */
@@ -402,4 +355,4 @@ Input.propTypes /* remove-proptypes */ = {
   ]),
 } as any;
 
-export default Input;
+export default Textarea;

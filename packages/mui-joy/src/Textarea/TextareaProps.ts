@@ -2,18 +2,18 @@ import React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
 
-export type InputSlot = 'root' | 'input' | 'startDecorator' | 'endDecorator';
+export type TextareaSlot = 'root' | 'textarea' | 'startDecorator' | 'endDecorator';
 
-export interface InputPropsVariantOverrides {}
+export interface TextareaPropsVariantOverrides {}
 
-export interface InputPropsColorOverrides {}
+export interface TextareaPropsColorOverrides {}
 
-export interface InputPropsSizeOverrides {}
+export interface TextareaPropsSizeOverrides {}
 
-export interface InputTypeMap<P = {}, D extends React.ElementType = 'div'> {
+export interface TextareaTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P &
     Pick<
-      React.InputHTMLAttributes<HTMLInputElement>,
+      React.TextareaHTMLAttributes<HTMLTextAreaElement>,
       | 'autoComplete'
       | 'autoFocus'
       | 'onClick'
@@ -24,7 +24,6 @@ export interface InputTypeMap<P = {}, D extends React.ElementType = 'div'> {
       | 'onBlur'
       | 'defaultValue'
       | 'value'
-      | 'type'
       | 'placeholder'
       | 'readOnly'
       | 'required'
@@ -33,21 +32,17 @@ export interface InputTypeMap<P = {}, D extends React.ElementType = 'div'> {
       | 'disabled'
     > & {
       /**
-       * Class name applied to the root element.
-       */
-      className?: string;
-      /**
        * The color of the component. It supports those theme colors that make sense for this component.
        * @default 'neutral'
        */
-      color?: OverridableStringUnion<ColorPaletteProp, InputPropsColorOverrides>;
+      color?: OverridableStringUnion<ColorPaletteProp, TextareaPropsColorOverrides>;
       /**
        * The props used for each slot inside the Input.
        * @default {}
        */
       componentsProps?: {
         root?: React.ComponentPropsWithRef<'div'>;
-        input?: React.ComponentPropsWithRef<'input'> & {
+        textarea?: React.ComponentPropsWithRef<'textarea'> & {
           component?: React.ElementType;
           sx?: SxProps;
         };
@@ -62,10 +57,14 @@ export interface InputTypeMap<P = {}, D extends React.ElementType = 'div'> {
        */
       error?: boolean;
       /**
-       * If `true`, the button will take up the full width of its container.
-       * @default false
+       * Maximum number of rows to display.
        */
-      fullWidth?: boolean;
+      maxRows?: string | number;
+      /**
+       * Minimum number of rows to display.
+       * @default 1
+       */
+      minRows?: string | number;
       /**
        * Leading adornment for this input.
        */
@@ -74,7 +73,7 @@ export interface InputTypeMap<P = {}, D extends React.ElementType = 'div'> {
        * The size of the component.
        * @default 'md'
        */
-      size?: OverridableStringUnion<'sm' | 'md' | 'lg', InputPropsSizeOverrides>;
+      size?: OverridableStringUnion<'sm' | 'md' | 'lg', TextareaPropsSizeOverrides>;
       /**
        * The system prop that allows defining system overrides as well as additional CSS styles.
        */
@@ -83,16 +82,16 @@ export interface InputTypeMap<P = {}, D extends React.ElementType = 'div'> {
        * The variant to use.
        * @default 'outlined'
        */
-      variant?: OverridableStringUnion<VariantProp, InputPropsVariantOverrides>;
+      variant?: OverridableStringUnion<VariantProp, TextareaPropsVariantOverrides>;
     };
   defaultComponent: D;
 }
 
-export type InputProps<
-  D extends React.ElementType = InputTypeMap['defaultComponent'],
+export type TextareaProps<
+  D extends React.ElementType = TextareaTypeMap['defaultComponent'],
   P = {
     component?: React.ElementType;
   },
-> = OverrideProps<InputTypeMap<P, D>, D>;
+> = OverrideProps<TextareaTypeMap<P, D>, D>;
 
-export default InputProps;
+export default TextareaProps;
