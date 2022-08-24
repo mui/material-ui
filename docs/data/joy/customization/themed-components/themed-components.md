@@ -11,11 +11,11 @@
 If you've used [Material UI](/material-ui/customization/theme-components/) before, you are probably familiar with this technique.
 To customize a specific component in the theme, specify the component identifier (`Joy{ComponentImportName}`) inside the `components` node.
 
-- Use `defaultProps` to change the default styles the component.
+- Use `defaultProps` to change the default React props of the component.
 - Use `styleOverrides` to apply styles to each component slots.
   - Every Joy UI component contains the `root` slot.
 
-Visit the [`components.d.ts`](https://github.com/mui/material-ui/blob/master/packages/mui-joy/src/styles/components.d.ts#L58) file to see every component identifier.
+Visit the [`components.d.ts`](https://github.com/mui/material-ui/blob/master/packages/mui-joy/src/styles/components.d.ts) file to see all component identifiers.
 
 ```js
 import { CssVarsProvider, extendTheme } from '@mui/joy/styles';
@@ -40,9 +40,32 @@ function App() {
 }
 ```
 
-## Using theme tokens per props
+## Default props
 
-To change the styles of a given prop using theme tokens, use a callback as value to the style overrides.
+The values specified in the theme `defaultProps` affect to all instances of the component:
+
+```js
+extendTheme({
+  components: {
+    JoyIconButton: {
+      defaultProps: {
+        variant: 'outlined',
+        color: 'neutral',
+      },
+    },
+  },
+});
+
+// This is the same as:
+// <IconButton variant="outlined" color="neutral">
+<IconButton>...</IconButton>;
+```
+
+## Style overrides
+
+### Change styles based on props
+
+To change the styles of a given prop, use a callback as value to the style overrides.
 The argument contains `theme` and `ownerState` (props).
 
 ```js
@@ -50,15 +73,10 @@ extendTheme({
   components: {
     JoyChip: {
       styleOverrides: {
+        // `ownerState` contains the component props and internal state
         root: ({ ownerState, theme }) => ({
           ...(ownerState.size === 'sm' && {
             borderRadius: theme.vars.radius.xs,
-          }),
-          ...(ownerState.size === 'md' && {
-            borderRadius: theme.vars.radius.sm,
-            background: `linear(to top, ${
-              theme.vars.palette[ownerState.color][700]
-            }, ${theme.vars.palette[ownerState.color][500]})`,
           }),
         }),
       },
@@ -69,7 +87,7 @@ extendTheme({
 
 We recommend to use CSS variables from `theme.vars.*` because it has a better debugging experience and also is more performant in some cases.
 
-However, the new styles can also contain any CSS selectors (support nested selectors), as such:
+The styles can also contain any CSS selectors (support nested selectors), as such:
 
 ```js
 extendTheme({
@@ -94,7 +112,113 @@ extendTheme({
 });
 ```
 
-## Different styles per mode
+### Extend component sizes
+
+Apply the styles when `ownerState.size` matches the new size. It is recommended to follow the existing T-shirt scale for consistency.
+
+For example, adding `xs` and `xl` sizes to the button would be:
+
+```js
+extendTheme({
+  components: {
+    JoyButton: {
+      styleOverrides: {
+        root: ({ ownerState, theme }) => ({
+          ...(ownerState.size === 'xs' && {
+            // smallest size
+            '--Icon-fontSize': '1rem',
+            '--Button-gap': '0.25rem',
+            minHeight: 'var(--Button-minHeight, 1.75rem)',
+            fontSize: theme.vars.fontSize.sm,
+            paddingBlock: '2px',
+            paddingInline: '0.5rem',
+          }),
+          ...(ownerState.size === 'xl' && {
+            // largest size
+            '--Icon-fontSize': '2rem',
+            '--Button-gap': '1rem',
+            minHeight: 'var(--Button-minHeight, 4rem)',
+            fontSize: theme.vars.fontSize.lg,
+            paddingBlock: '0.5rem',
+            paddingInline: '2rem',
+          }),
+        }),
+      },
+    },
+  },
+});
+```
+
+:::info
+**TypeScript**
+
+You need module augmentation to include the values to the `size` prop of the component.
+
+The interface is in `{ComponentName}PropsSizeOverrides` format which exists in all Joy UI components:
+
+```tsx
+// This part could be declare in your theme file
+declare module '@mui/joy/Button' {
+  interface ButtonPropsSizeOverrides {
+    xs: true;
+    xl: true;
+  }
+}
+
+// typed-safe
+<Button size="xs" />
+<Button size="xl" />
+```
+
+:::
+
+### Extend component variants
+
+When you add new variant to a component, you are opting-out of the global variant feature which lets you take full control of the CSS properties related to color (`color`, `background` and `border`).
+
+```js
+extendTheme({
+  components: {
+    JoySheet: {
+      styleOverrides: {
+        root: ({ ownerState, theme }) => ({
+          ...(ownerState.variant === 'glass' && {
+            color: theme.vars.palette.text.primary,
+            background: 'rgba(255, 255, 255, 0.14)',
+            backdropFilter: 'blur(5px)',
+            border: '1px solid rgba(255, 255, 255, 0.3)',
+            boxShadow: '0 4px 30px rgba(0, 0, 0, 0.1)',
+          }),
+        }),
+      },
+    },
+  },
+});
+```
+
+:::info
+
+**TypeScript**
+
+You need module augmentation to include the values to the `variant` prop of the component.
+
+The interface is in `{ComponentName}PropsVariantOverrides` format which exists in all Joy UI components:
+
+```tsx
+// This part could be declare in your theme file
+declare module '@mui/joy/Button' {
+  interface SheetPropsVariantOverrides {
+    glass: true;
+  }
+}
+
+// typed-safe
+<Sheet variant="glass" />;
+```
+
+:::
+
+### Different styles per mode
 
 To specify different values than the ones defined in the default theme for each mode (light and dark), use the CSS attribute selector.
 
