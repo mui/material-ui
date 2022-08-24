@@ -75,7 +75,7 @@ function useUtilityClasses(ownerState: MultiSelectUnstyledOwnerState<any>) {
  *
  * - [MultiSelectUnstyled API](https://mui.com/base/api/multi-select-unstyled/)
  */
-const MultiSelectUnstyled = React.forwardRef(function MultiSelectUnstyled<TValue>(
+const MultiSelectUnstyled = React.forwardRef(function MultiSelectUnstyled<TValue extends {}>(
   props: MultiSelectUnstyledProps<TValue>,
   forwardedRef: React.ForwardedRef<any>,
 ) {
