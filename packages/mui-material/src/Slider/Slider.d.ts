@@ -64,7 +64,6 @@ type SliderMarkLabelProps = NonNullable<SliderTypeMap['props']['componentsProps'
 type SliderRailProps = NonNullable<SliderTypeMap['props']['componentsProps']>['rail'];
 type SliderTrackProps = NonNullable<SliderTypeMap['props']['componentsProps']>['track'];
 type SliderThumbProps = NonNullable<SliderTypeMap['props']['componentsProps']>['thumb'];
-type SliderInputProps = NonNullable<SliderTypeMap['props']['componentsProps']>['input'];
 
 export declare const SliderRoot: React.FC<SliderRootProps>;
 export declare const SliderMark: React.FC<SliderMarkProps>;
@@ -73,7 +72,6 @@ export declare const SliderRail: React.FC<SliderRailProps>;
 export declare const SliderTrack: React.FC<SliderTrackProps>;
 export declare const SliderThumb: React.FC<SliderThumbProps>;
 export declare const SliderValueLabel: React.FC<SliderValueLabelProps>;
-export declare const SliderInput: React.FC<SliderInputProps>;
 
 /**
  *
