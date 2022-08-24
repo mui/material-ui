@@ -28,7 +28,8 @@ export default function LayoutModalDialog() {
           <ModalClose />
           <ModalDialogTitle>Modal Dialog</ModalDialogTitle>
           <ModalDialogDescription>
-            This is a `{open}` modal dialog.
+            This is a <code>{open}</code> modal dialog. Press <code>esc</code> to
+            close it.
           </ModalDialogDescription>
         </ModalDialog>
       </Modal>
