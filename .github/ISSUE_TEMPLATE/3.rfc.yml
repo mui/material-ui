@@ -28,7 +28,7 @@ body:
         Consider:
         - using diagrams to help illustrate your ideas
         - including code examples if you're proposing an interface or system contract
-        - linking to project briefs or wireframes that are relevant
+        - linking to relevant project briefs or wireframes
 
   - type: textarea
     attributes:
