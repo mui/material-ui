@@ -1,3 +1,0 @@
-<Alert icon={<PlaylistAddCheckCircleRoundedIcon />}>
-  This is a Joy UI Alert with an icon - check it out!
-</Alert>
