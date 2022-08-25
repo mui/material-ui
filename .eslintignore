@@ -28,3 +28,6 @@
 .next
 build
 node_modules
+.nyc_output
+docs/**/*-pt.md
+docs/**/*-zh.md

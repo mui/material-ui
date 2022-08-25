@@ -37,8 +37,8 @@
     "lint:ci": "eslint . --report-unused-disable-directives --ext .js,.ts,.tsx --max-warnings 0",
     "stylelint": "stylelint --reportInvalidScopeDisables --reportNeedlessDisables docs/**/*.{js,ts,tsx}",
     "markdownlint": "markdownlint \"**/*.md\" --config .markdownlint.jsonc",
-    "prettier": "node ./scripts/prettier.js",
-    "prettier:all": "node ./scripts/prettier.js write",
+    "prettier": "pretty-quick --ignore-path .eslintignore",
+    "prettier:all": "prettier --write . --ignore-path .eslintignore",
     "size:snapshot": "node --max-old-space-size=4096 ./scripts/sizeSnapshot/create",
     "size:why": "yarn size:snapshot --analyze",
     "start": "yarn && yarn docs:dev",
@@ -232,5 +232,8 @@
     "docs",
     "docs/packages/*",
     "test"
-  ]
+  ],
+  "dependencies": {
+    "pretty-quick": "^3.1.3"
+  }
 }
