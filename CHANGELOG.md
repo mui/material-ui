@@ -1,5 +1,119 @@
 # [Versions](https://mui.com/versions/)
 
+## 5.10.2
+
+<!-- generated comparing v5.10.1..master -->
+
+_Aug 22, 2022_
+
+A big thanks to the 11 contributors who made this release possible. Here are some highlights ✨:
+
+- ✨ @michaldudak synced the Material Icons set with the latest from Google (#33988).  
+  A couple of icons changed their appearance. See the difference [on this Argos build](https://app.argos-ci.com/mui/material-ui/builds/4428]).
+
+### `@mui/material@5.10.2`
+
+- &#8203;<!-- 16 -->[Autocomplete] Fix `keepMounted` Popper prop not working (#33957) @ZeeshanTamboli
+- &#8203;<!-- 10 -->[IconButton] Fix hover effect when CSS Variables are enabled (#33971) @TheUnlocked
+- &#8203;<!-- 07 -->[LoadingButton] Add support for CSS variables (#34001) @ZeeshanTamboli
+- &#8203;<!-- 05 -->[TimelineConnector] Add support for CSS variables (#34002) @ZeeshanTamboli
+- &#8203;<!-- 04 -->[TimelineDot] Add support for CSS variables (#34003) @ZeeshanTamboli
+- &#8203;<!-- 03 -->[TreeItem] Add support for CSS variables (#34004) @ZeeshanTamboli
+
+### `@mui/system@5.10.2`
+
+- &#8203;<!-- 06 -->[system] catch localStorage errors (#34027) @jsakas
+
+### `@mui/joy@5.0.0-alpha.42`
+
+- &#8203;<!-- 08 -->[Joy] Add missing global exports (#33982) @tomasz-sodzawiczny
+
+### `@mui/icons-material@5.8.5`
+
+- &#8203;<!-- 09 -->[icons] Sync the Material Icons (#33988) @michaldudak
+
+### Docs
+
+- &#8203;<!-- 21 -->[docs] Fix typo in using-joy-ui-and-material-ui.md (#33997) @djohalo2 @danilo-leal
+- &#8203;<!-- 20 -->[docs] Fix typo in the Transition docs (#34040) @alirezahekmati
+- &#8203;<!-- 19 -->[docs] Typo fix in Joy UI Aspect Ratio doc (#33984) @AjeetSingh2016
+- &#8203;<!-- 15 -->[docs] Fix broken Joy UI codesandbox export (#34007) @oliviertassinari
+- &#8203;<!-- 14 -->[docs] Fix typos in `test` folder's README (#33976) @ropereraLK
+- &#8203;<!-- 13 -->[docs] Fix interior section links in Base docs that feature hooks (#33948) @samuelsycamore
+- &#8203;<!-- 12 -->[docs] Fix typo in Joy UI's List Component docs (#33956) @Cerebro92
+- &#8203;<!-- 11 -->[docs] Fix typo in Joy UI's docs (#33938) @AjeetSingh2016
+
+### Core
+
+- &#8203;<!-- 18 -->[website] Optimize meta description length (#34006) @oliviertassinari
+- &#8203;<!-- 17 -->Revert "[core] Replace `getInitialProps` with `getStaticProps`" (#33991) @mnajdova
+- &#8203;<!-- 02 -->[website] Move the React Engineer - X to next roles (#34030) @mnajdova
+- &#8203;<!-- 01 -->[website] Add Icons8 gold sponsor (#33978) @michaldudak
+
+All contributors of this release in alphabetical order: @AjeetSingh2016, @alirezahekmati, @Cerebro92, @danilo-leal, @djohalo2, @jsakas, @michaldudak, @mnajdova, @oliviertassinari, @ropereraLK, @samuelsycamore, @TheUnlocked, @tomasz-sodzawiczny, @ZeeshanTamboli
+
+## 5.10.1
+
+<!-- generated comparing v5.10.0..master -->
+
+_Aug 15, 2022_
+
+A big thanks to the 18 contributors who made this release possible. This release was mostly around 🐛 bug fixes and 📚 documentation improvements.
+
+### `@mui/material@5.10.1`
+
+- &#8203;<!-- 04 -->[TableCell] Enable variant overrides via TypeScript module augmentation (#33856) @arjunvijayanathakurup
+
+### `@mui/system@5.10.1`
+
+- &#8203;<!-- 05 -->[system] Fix `ContainerProps` export (#33923) @bugzpodder
+
+### `@mui/base@5.0.0-alpha.93`
+
+- &#8203;<!-- 31 -->[TrapFocus] Removes invisible tabbable elements from (#33543) @EthanStandel
+- &#8203;<!-- 30 -->[Input][base] Pass the rows prop to the underlying textarea (#33873) @michaldudak
+- &#8203;<!-- 06 -->[SelectUnstyled] Add ability to post the select's value when submitting a form (#33697) @michaldudak
+
+### `@mui/joy@5.0.0-alpha.41`
+
+- &#8203;<!-- 07 -->[IconButton][joy] Fix large IconButton scaling (#33885) @cherewaty
+
+### Docs
+
+- &#8203;<!-- 23 -->[docs] Expand on a11y section for Material UI `Link` component (#32839) @TKrishnasamy
+- &#8203;<!-- 22 -->[docs] Fix typo in Joy UI's `AspectRatio` docs (#33895) @IsaacInsoll
+- &#8203;<!-- 21 -->[docs] Improve the Base Usage page (#33272) @samuelsycamore
+- &#8203;<!-- 20 -->[docs] Avoid refreshing the page when button on demo is clicked (#33852) @PunitSoniME
+- &#8203;<!-- 19 -->[docs] Improve the HorizontalNonLinearStepper demo styling (#33886) @hayawata3626
+- &#8203;<!-- 18 -->[docs] Remove dead NoSsr in the demos (#33910) @oliviertassinari
+- &#8203;<!-- 17 -->[docs] Fix the reopening menu problem in MenuUnstyled demo (#33890) @michaldudak
+- &#8203;<!-- 24 -->[docs] Fix a few link issues (#33909) @oliviertassinari
+- &#8203;<!-- 16 -->[docs] Explain the icons package dependencies (#33592) @michaldudak
+- &#8203;<!-- 15 -->[docs] Fix reported SEO issues (#33818) @oliviertassinari
+- &#8203;<!-- 14 -->[docs] Add permanent notifications back (#33843) @oliviertassinari
+- &#8203;<!-- 13 -->[docs] Enforce description for all pages (#33698) @oliviertassinari
+- &#8203;<!-- 12 -->[docs] Clarify difference in startup times between named and default imports (#33109) @cmdcolin
+- &#8203;<!-- 11 -->[docs] Update transform function in the sx prop sizing docs (#33850) @ZeeshanTamboli
+- &#8203;<!-- 10 -->[docs] Adding missing accessibility labels (#33782) @PunitSoniME
+- &#8203;<!-- 09 -->[docs] Fix `/system/getting-started/advanced/` does not exist (#33867) @MonstraG
+- &#8203;<!-- 32 -->[docs] New Crowdin updates (#32213) @l10nbot
+- &#8203;<!-- 08 -->[examples] Fix broken path to favicon.ico (#33906) @mmostafavi
+- &#8203;<!-- 02 -->[website] Add new FAQ to pricing page (#33553) @oliviertassinari
+- &#8203;<!-- 03 -->[website] Miscellaneous improvements to the marketing pages (#33897) @danilo-leal
+
+### Core
+
+- &#8203;<!-- 29 -->[core] Add the download tracker package (#33899) @michaldudak
+- &#8203;<!-- 28 -->[core] Use proper external build id for Argos uploads (#33929) @cherniavskii
+- &#8203;<!-- 27 -->[core] Enforce 70 as the max width on the title on the docs (#33819) @oliviertassinari
+- &#8203;<!-- 26 -->[core] Clear yarn installation warning (#33776) @michaldudak
+- &#8203;<!-- 25 -->[core] Bump yarn to 1.22.19 (#33656) @michaldudak
+- &#8203;<!-- 24 -->[core] Remove outdated Next.js options (#33845) @oliviertassinari
+- &#8203;<!-- 34 -->[core] Add the download tracker build script (#33941) @michaldudak
+- &#8203;<!-- 01 -->[website] Allow /r/store- redirection pattern @oliviertassinari
+
+All contributors of this release in alphabetical order: @arjunvijayanathakurup, @bugzpodder, @cherewaty, @cherniavskii, @cmdcolin, @danilo-leal, @EthanStandel, @hayawata3626, @IsaacInsoll, @l10nbot, @michaldudak, @mmostafavi, @MonstraG, @oliviertassinari, @PunitSoniME, @samuelsycamore, @TKrishnasamy, @ZeeshanTamboli
+
 ## 5.10.0
 
 <!-- generated comparing v5.9.3..master -->
