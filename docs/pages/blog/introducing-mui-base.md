@@ -2,7 +2,7 @@
 title: Introducing MUI Base
 description: 'Introduction to a new library of unstyled components and hooks: MUI Base'
 date: 2022-08-29T00:00:00.000Z
-authors: ['michaldudak']
+authors: ['michaldudak', 'samuelsycamore']
 tags: ['News', 'MUI Core']
 card: true
 ---
@@ -13,10 +13,10 @@ While Material UI is excellent for building sleek user interfaces that adhere cl
 We get it.
 We've all been there.
 
-That's why we've built an entirely new library of headless React UI components and hooks called MUI Base—to give you complete control over the look and feel of your user interface, with no defaults to override.
+That's why we've built an entirely new library of headless React UI components and hooks called **MUI Base**—to give you complete control over the look and feel of your user interface, with no defaults to override.
 
 MUI Base is easy to pick up if you're already familiar with Material UI, as the APIs are very similar—indeed, they were designed to be complementary to one another.
-Start from scratch with MUI Base, or use Material UI for rapid prototyping and then switch to MUI Base when you need more customization options.
+Start from scratch with MUI Base, or use Material UI for rapid prototyping, and then switch to MUI Base when you need more customization options.
 
 ## Components and hooks
 
@@ -38,10 +38,10 @@ You can control props passed to each of these slots (including `className`) base
 <img src="/static/blog/introducing-mui-base/switch-slots.png" style="width: 796px; margin-bottom: 24px;" alt="Depiction of SwitchUnstyled components' slots" />
 
 Hooks take this one step further by extracting the logic from the structure entirely, so you can build from scratch using any DOM elements you need.
-This requires more work to implement, but gives you the most freedom to customize.
+This requires more work to implement but gives you the most freedom to customize.
 
 Upon calling, a hook returns an object describing the component's state (i.e., whether the switch is turned on), along with methods that apply accessibility props and event handlers.
-You should spread these props on components you defined.
+You should spread these props on the components you've defined, as shown below:
 
 ```tsx
 function MySwitch(props: UseSwitchParameters) {
@@ -72,17 +72,25 @@ The @mui/base package is released as an alpha.
 This means the component APIs are subject to change—especially as we receive feedback from the community about room for improvement.
 However, we believe the library is solid enough at this point to start building design systems with it.
 In fact, we're using MUI Base to create [Joy UI](/blog/first-look-at-joy/)—the next product we'll be launching in our line of Core component libraries that also includes Material UI.
-In the future, MUI Base will also be used as the foundation for Material UI components, to provide a consistent developer experience across our entire suite of products.
+In the future, MUI Base will also be used as the foundation for Material UI components to provide a consistent developer experience across our entire suite of products.
 
 ## Feedback needed
 
-So far, we've been mostly using MUI Base ourselves.
-Now we need to hear what you think of the library, what you like about it, and what are the areas that could look or work differently.
-Please help us create the best possible headless component library out there!
+Give MUI Base a try today by installing the package via npm:
 
-If you found any bugs, have trouble understanding some concepts, or have ideas for improvements, don't hesitate to open issues on GitHub.
-Make sure to include "[base]" or a component/hook name in the issue title, so we recognize it.
-Also, we're eager to know what you create with MUI Base.
-Please share your creations on Twitter to let us (and others) know what our library can be used for.
+```sh
+npm install @mui/base
+```
+
+or yarn:
+
+```sh
+yarn add @mui/base
+```
+
+And be sure to let us know what you think!
+
+If you find any bugs or want to share ideas for improvements, please don't hesitate to open an issue in the [MUI Core repository on GitHub](https://github.com/mui/material-ui/issues/new/choose).
+Be sure to include "[base]" in the issue title to help us keep things organized.
 
 **Happy creating!**
