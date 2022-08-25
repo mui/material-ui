@@ -4,6 +4,13 @@ import Chip from '@mui/material/Chip';
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
 
+const movies = [
+  {
+    title: 'The Lord of the Rings: The Two Towers',
+    year: 2002,
+  },
+];
+
 export default function Sizes() {
   return (
     <Stack spacing={2} sx={{ width: 300 }}>
@@ -112,10 +119,3 @@ export default function Sizes() {
     </Stack>
   );
 }
-
-const movies = [
-  {
-    title: 'The Lord of the Rings: The Two Towers',
-    year: 2002,
-  },
-];
