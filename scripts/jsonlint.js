@@ -13,7 +13,7 @@ async function run() {
   const eslintignoreContent = await fse.readFile(path.join(workspaceRoot, '.eslintignore'), {
     encoding: 'utf8',
   });
-  const eslintignore = eslintignoreContent.split(/\r?\n/).slice(0, -1);
+  const eslintignore = eslintignoreContent.split(/\r?\n/).slice(0, -1).filter(Boolean);
 
   const filenames = await glob('**/*.json', {
     cwd: workspaceRoot,
