@@ -1,20 +1,21 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { styled, alpha } from '@mui/material/styles';
+import { useRouter } from 'next/router';
+import { exactProp } from '@mui/utils';
+import ChevronLeftRoundedIcon from '@mui/icons-material/ChevronLeftRounded';
+import Divider from '@mui/material/Divider';
+import Typography from '@mui/material/Typography';
+import Avatar from '@mui/material/Avatar';
 import Head from 'docs/src/modules/components/Head';
 import BrandingProvider from 'docs/src/BrandingProvider';
 import AppHeader from 'docs/src/layouts/AppHeader';
 import AppContainer from 'docs/src/modules/components/AppContainer';
 import AppFooter from 'docs/src/layouts/AppFooter';
 import HeroEnd from 'docs/src/components/home/HeroEnd';
-import { useRouter } from 'next/router';
-import { exactProp } from '@mui/utils';
-import Divider from '@mui/material/Divider';
-import Typography from '@mui/material/Typography';
-import Avatar from '@mui/material/Avatar';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
+import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import ROUTES from 'docs/src/route';
-import ChevronLeftRoundedIcon from '@mui/icons-material/ChevronLeftRounded';
 import Link from 'docs/src/modules/components/Link';
 
 export const authors = {
@@ -96,6 +97,9 @@ const classes = {
   container: 'TopLayoutBlog-container',
 };
 
+// Replicate the value used by https://medium.com/, a trusted reference.
+const BLOG_MAX_WIDTH = 692;
+
 const styles = ({ theme }) => ({
   flexGrow: 1,
   background:
@@ -112,8 +116,14 @@ const styles = ({ theme }) => ({
   },
   [`& .${classes.container}`]: {
     paddingTop: 60 + 20,
-    marginBottom: theme.spacing(8),
-    maxWidth: `calc(740px + ${theme.spacing(12)})`,
+    marginBottom: theme.spacing(12),
+    maxWidth: `calc(${BLOG_MAX_WIDTH}px + ${theme.spacing(2 * 2)})`,
+    [theme.breakpoints.up('md')]: {
+      maxWidth: `calc(${BLOG_MAX_WIDTH}px + ${theme.spacing(3 * 2)})`,
+    },
+    [theme.breakpoints.up('lg')]: {
+      maxWidth: `calc(${BLOG_MAX_WIDTH}px + ${theme.spacing(8 * 2)})`,
+    },
     '& h1': {
       marginBottom: theme.spacing(3),
     },
@@ -197,11 +207,18 @@ const AuthorsContainer = styled('div')(({ theme }) => ({
   },
 }));
 
+const Root = styled('div')(styles);
+
 function TopLayoutBlog(props) {
   const { className, docs } = props;
   const { description, rendered, title, headers } = docs.en;
   const finalTitle = title || headers.title;
   const router = useRouter();
+  const { canonicalAs } = pathnameToLanguage(router.asPath);
+  const card =
+    headers.card === 'true'
+      ? `https://mui.com/static${router.pathname}/card.png`
+      : 'https://mui.com/static/logo.png';
 
   return (
     <BrandingProvider>
@@ -211,13 +228,10 @@ function TopLayoutBlog(props) {
         description={description}
         largeCard={headers.card === 'true'}
         disableAlternateLocale
-        card={
-          headers.card === 'true'
-            ? `https://mui.com/static${router.pathname}/card.png`
-            : 'https://mui.com/static/logo.png'
-        }
+        card={card}
+        type="article"
       />
-      <div className={className}>
+      <Root className={className}>
         <AppContainer component="main" className={classes.container}>
           <Link
             href={ROUTES.blog}
@@ -281,7 +295,57 @@ function TopLayoutBlog(props) {
         <HeroEnd />
         <Divider />
         <AppFooter />
-      </div>
+      </Root>
+      <script
+        type="application/ld+json"
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={{
+          __html: `
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "publisher": {
+    "@type": "Organization",
+    "name": "MUI blog",
+    "url": "https://mui.com/blog/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://mui.com/static/icons/512x512.png"
+    }
+  },
+  "author": {
+    "@type": "Person",
+    "name": "${authors[headers.authors[0]].name}",
+    "image": {
+      "@type": "ImageObject",
+      "url": "${authors[headers.authors[0]].avatar}?s=${250}",
+      "width": 250,
+      "height": 250
+    },
+    "sameAs": [
+      "https://github.com/${authors[headers.authors[0]].github}"
+    ]
+  },
+  "headline": "${finalTitle}",
+  "url": "https://mui.com${canonicalAs}",
+  "datePublished": "${headers.date}",
+  "dateModified": "${headers.date}",
+  "image": {
+    "@type": "ImageObject",
+    "url": "${card}",
+    "width": 1280,
+    "height": 640
+  },
+  "keywords": "${headers.tags.join(', ')}",
+  "description": "${description}",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://mui.com/blog/"
+  }
+}
+            `,
+        }}
+      />
     </BrandingProvider>
   );
 }
@@ -295,4 +359,4 @@ if (process.env.NODE_ENV !== 'production') {
   TopLayoutBlog.propTypes = exactProp(TopLayoutBlog.propTypes);
 }
 
-export default styled(TopLayoutBlog)(styles);
+export default TopLayoutBlog;

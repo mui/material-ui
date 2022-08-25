@@ -658,7 +658,7 @@ This year we saw a considerable bump the use of Next.js (compared with 12.4% in 
 As the MUI Core v5 release is relatively recent, we expect to see many developers still using JSS, and there will probably always be some of you who prefer it.
 
 But the growth of Emotion and styled-components here is noteworthy, because they are what our new styling solution is based on.
-This year we'll be focusing on expanding and refining [MUI System](/system/basics/) to further improve upon this new styling solution.
+This year we'll be focusing on expanding and refining [MUI System](/system/getting-started/the-sx-prop/) to further improve upon this new styling solution.
 
 ### Did you recently migrate to MUI Core v5?
 

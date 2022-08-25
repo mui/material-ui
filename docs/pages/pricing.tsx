@@ -24,7 +24,7 @@ export default function Pricing() {
       />
       <AppHeaderBanner />
       <AppHeader />
-      <main>
+      <main id="main-content">
         <HeroPricing />
         <PricingList /> {/* Mobile, Tablet */}
         <Container sx={{ display: { xs: 'none', md: 'block' } }}>

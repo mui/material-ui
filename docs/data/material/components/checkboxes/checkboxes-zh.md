@@ -4,7 +4,7 @@ title: React Checkbox（选择框）组件
 components: Checkbox, FormControl, FormGroup, FormLabel, FormControlLabel
 materialDesign: 'https://material.io/components/selection-controls#checkboxes'
 githubLabel: 'component: checkbox'
-waiAria: 'https://www.w3.org/TR/wai-aria-practices/#checkbox'
+waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/checkbox/
 ---
 
 # Checkbox 选择框
@@ -53,23 +53,25 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#checkbox'
 
 {{"demo": "IndeterminateCheckbox.js"}}
 
-> ⚠️ When indeterminate is set, the value of the `checked` prop only impacts the form submitted values. It has no accessibility or UX implications. It has no accessibility or UX implications. It has no accessibility or UX implications. It has no accessibility or UX implications.
+:::warning
+⚠️ When indeterminate is set, the value of the `checked` prop only impacts the form submitted values. It has no accessibility or UX implications.
+:::
 
 ## 表单组
 
-`FormGroup` is a helpful wrapper used to group selection control components.
+`FormGroup` 是一个用于对选择控件进行分组的有益的容器
 
 {{"demo": "CheckboxesGroup.js"}}
 
 ## 标签放置
 
-你可以更改标签的位置:
+You can change the placement of the label:
 
 {{"demo": "FormControlLabelPosition.js"}}
 
 ## 自定义的多选框
 
-以下是自定义组件的一个示例。 您可以在 [重写文档页面](/material-ui/customization/how-to-customize/) 中了解更多有关此内容的信息。
+Here is an example of customizing the component. You can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/).
 
 {{"demo": "CustomizedCheckbox.js"}}
 
@@ -82,9 +84,9 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#checkbox'
 
 ## 无障碍设计
 
-(WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#checkbox)
+(WAI-ARIA: https://www.w3.org/WAI/ARIA/apg/patterns/checkbox/)
 
-- 所有表单控件都应该带有标签，而这包括了单选按钮，复选框和开关。 在大多数情况下，这是通过使用一个 `<label>` 元素（[FormControlLabel](/material-ui/api/form-control-label/)）实现的。
+- 所有表单控件都应该带有标签，而这包括了单选按钮，复选框和开关。 In most cases, this is done by using the `<label>` element ([FormControlLabel](/material-ui/api/form-control-label/)).
 - 如果无法使用标签，您则必须在输入组件中直接添加属性。 在这种情况下，您可以通过 `inputProps` 属性来应用附加的属性（例如 `aria-label`, `aria-labelledby`, `title`）。
 
 ```jsx

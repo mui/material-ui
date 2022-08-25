@@ -14,7 +14,7 @@ export default function HorizontalDividedList() {
         borderRadius: 'sm',
         flexGrow: 0,
         mx: 'auto',
-        '--List-decorator-width': '48px',
+        '--List-decorator-size': '48px',
         '--List-item-paddingY': '1rem',
       }}
     >

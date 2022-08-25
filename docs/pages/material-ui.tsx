@@ -55,10 +55,10 @@ export default function Components() {
     <BrandingProvider>
       <Head
         title="React Components - Material UI"
-        description="MUI provides a simple, customizable, and accessible library of React components. Follow your own design system, or start with Material Design. You will develop React applications faster."
+        description="MUI provides a simple, customizable, and accessible library of React components. Follow your own design system, or start with Material Design."
       />
       <AppHeader />
-      <main>
+      <main id="main-content">
         <Section bg="gradient" sx={{ py: { xs: 2, sm: 4 } }}>
           <Typography component="h1" variant="h2" sx={{ mb: 4, pl: 1 }}>
             All Components

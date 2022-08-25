@@ -59,7 +59,7 @@ export interface BackdropTypeMap<P = {}, D extends React.ElementType = 'div'> {
 
 type BackdropRootProps = NonNullable<BackdropTypeMap['props']['componentsProps']>['root'];
 
-export const BackdropRoot: React.FC<BackdropRootProps>;
+export declare const BackdropRoot: React.FC<BackdropRootProps>;
 
 /**
  *

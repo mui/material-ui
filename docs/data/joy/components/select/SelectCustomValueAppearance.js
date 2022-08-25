@@ -24,7 +24,7 @@ export default function SelectCustomValueAppearance() {
       componentsProps={{
         listbox: {
           sx: {
-            '--List-decorator-width': '48px',
+            '--List-decorator-size': '48px',
           },
         },
       }}

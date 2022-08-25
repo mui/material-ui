@@ -42,7 +42,7 @@ const theme = createTheme({
 
 ### Área de exemplos
 
-Para testar um esquema de cores do [material.io/design/color](https://material.io/design/color/) com a documentação do Material UI, simplesmente selecione as cores usando a paleta e os controles deslizantes abaixo. Como alternativa, você pode inserir valores hexadecimais nos campos de texto Primary e Secondary.
+Para testar um esquema de cores do [material.io/design/color](https://material.io/design/color/) com a documentação do Material-UI, simplesmente selecione as cores usando a paleta e os controles deslizantes abaixo. Como alternativa, você pode inserir valores hexadecimais nos campos de texto Primary e Secondary.
 
 {{"demo": "ColorTool.js", "hideToolbar": true, "bg": true}}
 
@@ -70,7 +70,7 @@ If you are using the default primary and / or secondary shades then by providing
 
 ### Ferramentas da comunidade
 
-- [material-ui-tema-editor](https://in-your-saas.github.io/material-ui-theme-editor/): Uma ferramenta para gerar temas para seus aplicativos de Material UI, basta selecionar as cores e ter uma visualização ao vivo. Inclui modelos de site básicos para mostrar vários componentes e como eles são afetados pelo tema
+- [material-ui-tema-editor](https://in-your-saas.github.io/material-ui-theme-editor/): Uma ferramenta para gerar temas para seus aplicativos de Material-UI, basta selecionar as cores e ter uma visualização ao vivo. Inclui modelos de site básicos para mostrar vários componentes e como eles são afetados pelo tema
 - [Material palette generator](https://material.io/inline-tools/color/): O gerador de paleta do Material pode ser usado para gerar uma paleta para qualquer cor que você inserir.
 
 ## Paletas de cores Material Design 2014
@@ -79,7 +79,7 @@ Estas paletas de cores, originalmente criadas por Material Design em 2014, são 
 
 ### Termos importantes
 
-- **Paleta**: uma paleta é uma coleção de cores, ou seja, tons e seus sombreados. Material UI fornece todas as cores das diretrizes do Material Design. [Esta paleta de cores](#color-palette) foi projetada com cores que funcionam harmoniosamente entre si.
+- **Paleta**: uma paleta é uma coleção de cores, ou seja, tons e seus sombreados. Material-UI fornece todas as cores das diretrizes do Material Design. [Esta paleta de cores](#color-palette) foi projetada com cores que funcionam harmoniosamente entre si.
 - **Hue" & "Shade**: A single color within the palette is made up of a hue such as "red", and shade, such as "500". "red 50" é o tom mais claro de vermelho (_rosa!_), enquanto "red 900" é o mais escuro. Além disso, a maioria das matizes vem com tons de "destaque" (acentuação), prefixados com um `A`.
 
 ### Paleta de cores

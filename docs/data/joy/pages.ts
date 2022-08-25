@@ -31,6 +31,7 @@ const pages = [
         children: [
           { pathname: '/joy-ui/react-button' },
           { pathname: '/joy-ui/react-text-field' },
+          { pathname: '/joy-ui/react-textarea' },
           { pathname: '/joy-ui/react-checkbox' },
           { pathname: '/joy-ui/react-radio-button' },
           { pathname: '/joy-ui/react-select' },
@@ -59,6 +60,7 @@ const pages = [
         pathname: '/joy-ui/components/navigation',
         subheader: 'navigation',
         children: [
+          { pathname: '/joy-ui/react-breadcrumbs' },
           { pathname: '/joy-ui/react-link' },
           { pathname: '/joy-ui/react-menu' },
           { pathname: '/joy-ui/react-tabs' },
