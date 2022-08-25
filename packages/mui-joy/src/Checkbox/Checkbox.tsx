@@ -1,18 +1,18 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import { OverridableComponent } from '@mui/types';
 import { unstable_useId as useId, unstable_capitalize as capitalize } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { useSlotProps } from '@mui/base/utils';
 import { useSwitch } from '@mui/base/SwitchUnstyled';
 import { styled, useThemeProps } from '../styles';
 import checkboxClasses, { getCheckboxUtilityClass } from './checkboxClasses';
-import { CheckboxProps, CheckboxTypeMap } from './CheckboxProps';
+import { CheckboxOwnerState, CheckboxTypeMap } from './CheckboxProps';
 import CheckIcon from '../internal/svg-icons/Check';
 import IndeterminateIcon from '../internal/svg-icons/HorizontalRule';
 import { TypographyContext } from '../Typography/Typography';
 
-const useUtilityClasses = (ownerState: CheckboxProps & { focusVisible: boolean }) => {
+const useUtilityClasses = (ownerState: CheckboxOwnerState) => {
   const { checked, disabled, disableIcon, focusVisible, color, variant, size } = ownerState;
 
   const slots = {
@@ -38,7 +38,7 @@ const CheckboxRoot = styled('span', {
   name: 'JoyCheckbox',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: CheckboxProps }>(({ ownerState, theme }) => ({
+})<{ ownerState: CheckboxOwnerState }>(({ ownerState, theme }) => ({
   '--Icon-fontSize': 'var(--Checkbox-size)',
   ...(ownerState.size === 'sm' && {
     '--Checkbox-size': '1rem',
@@ -75,7 +75,7 @@ const CheckboxCheckbox = styled('span', {
   name: 'JoyCheckbox',
   slot: 'Checkbox',
   overridesResolver: (props, styles) => styles.checkbox,
-})<{ ownerState: CheckboxProps }>(({ theme, ownerState }) => [
+})<{ ownerState: CheckboxOwnerState }>(({ theme, ownerState }) => [
   {
     boxSizing: 'border-box',
     borderRadius: theme.vars.radius.xs,
@@ -109,7 +109,7 @@ const CheckboxAction = styled('span', {
   name: 'JoyCheckbox',
   slot: 'Action',
   overridesResolver: (props, styles) => styles.action,
-})<{ ownerState: CheckboxProps }>(({ theme, ownerState }) => [
+})<{ ownerState: CheckboxOwnerState }>(({ theme, ownerState }) => [
   {
     borderRadius: `var(--Checkbox-action-radius, ${
       ownerState.overlay ? 'var(--internal-action-radius, inherit)' : 'inherit'
@@ -142,7 +142,7 @@ const CheckboxInput = styled('input', {
   name: 'JoyCheckbox',
   slot: 'Input',
   overridesResolver: (props, styles) => styles.input,
-})<{ ownerState: CheckboxProps }>(() => ({
+})<{ ownerState: CheckboxOwnerState }>(() => ({
   margin: 0,
   opacity: 0,
   position: 'absolute',
@@ -155,7 +155,7 @@ const CheckboxLabel = styled('label', {
   name: 'JoyCheckbox',
   slot: 'Label',
   overridesResolver: (props, styles) => styles.label,
-})<{ ownerState: CheckboxProps }>(({ ownerState }) => ({
+})<{ ownerState: CheckboxOwnerState }>(({ ownerState }) => ({
   flex: 1,
   minWidth: 0,
   ...(ownerState.disableIcon
@@ -182,7 +182,6 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
     uncheckedIcon,
     checkedIcon = defaultCheckedIcon,
     label,
-    className,
     component,
     componentsProps = {},
     defaultChecked,
@@ -201,7 +200,7 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
     color,
     variant,
     size = 'md',
-    ...otherProps
+    ...other
   } = props;
   const id = useId(idOverride);
 
@@ -237,32 +236,59 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
+  const rootProps = useSlotProps({
+    elementType: CheckboxRoot,
+    externalSlotProps: componentsProps.root,
+    externalForwardedProps: other,
+    ownerState,
+    additionalProps: {
+      ref,
+      as: component,
+    },
+    className: classes.root,
+  });
+
+  const checkboxProps = useSlotProps({
+    elementType: CheckboxCheckbox,
+    externalSlotProps: componentsProps.checkbox,
+    ownerState,
+    className: classes.checkbox,
+  });
+
+  const actionProps = useSlotProps({
+    elementType: CheckboxAction,
+    externalSlotProps: componentsProps.action,
+    ownerState,
+    className: classes.action,
+  });
+
+  const inputProps = useSlotProps({
+    elementType: CheckboxInput,
+    getSlotProps: getInputProps,
+    externalSlotProps: componentsProps.input,
+    ownerState,
+    additionalProps: {
+      id,
+      name,
+    },
+    className: classes.input,
+  });
+
+  const labelProps = useSlotProps({
+    elementType: CheckboxLabel,
+    externalSlotProps: componentsProps.label,
+    ownerState,
+    additionalProps: {
+      htmlFor: id,
+    },
+    className: classes.label,
+  });
+
   return (
-    <CheckboxRoot
-      ref={ref}
-      {...otherProps}
-      as={component}
-      ownerState={ownerState}
-      className={clsx(classes.root, className)}
-    >
-      <CheckboxCheckbox
-        {...componentsProps?.checkbox}
-        ownerState={ownerState}
-        className={clsx(classes.checkbox, componentsProps.checkbox?.className)}
-      >
-        <CheckboxAction
-          {...componentsProps?.action}
-          ownerState={ownerState}
-          className={clsx(classes.action, componentsProps.action?.className)}
-        >
-          <CheckboxInput
-            {...componentsProps?.input}
-            ownerState={ownerState}
-            {...getInputProps(componentsProps.input)}
-            id={id}
-            name={name}
-            className={clsx(classes.input, componentsProps.input?.className)}
-          />
+    <CheckboxRoot {...rootProps}>
+      <CheckboxCheckbox {...checkboxProps}>
+        <CheckboxAction {...actionProps}>
+          <CheckboxInput {...inputProps} />
         </CheckboxAction>
         {indeterminate && !checked && !disableIcon && indeterminateIcon}
         {checked && !disableIcon && checkedIcon}
@@ -270,14 +296,7 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
       </CheckboxCheckbox>
       {label && (
         <TypographyContext.Provider value>
-          <CheckboxLabel
-            {...componentsProps?.label}
-            htmlFor={id}
-            ownerState={ownerState}
-            className={clsx(classes.label, componentsProps.label?.className)}
-          >
-            {label}
-          </CheckboxLabel>
+          <CheckboxLabel {...labelProps}>{label}</CheckboxLabel>
         </TypographyContext.Provider>
       )}
     </CheckboxRoot>
