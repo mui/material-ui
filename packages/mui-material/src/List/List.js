@@ -138,7 +138,7 @@ List.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
-   * The variant to use.
+   * The variant to use. There is no variants available by default.
    * @default 'default'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([

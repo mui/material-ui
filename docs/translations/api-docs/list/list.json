@@ -8,7 +8,7 @@
     "disablePadding": "If <code>true</code>, vertical padding is removed from the list.",
     "subheader": "The content of the subheader, normally <code>ListSubheader</code>.",
     "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details.",
-    "variant": "The variant to use."
+    "variant": "The variant to use. There is no variants available by default."
   },
   "classDescriptions": {
     "root": { "description": "Styles applied to the root element." },
