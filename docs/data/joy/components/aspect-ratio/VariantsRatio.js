@@ -3,7 +3,7 @@ import AspectRatio from '@mui/joy/AspectRatio';
 import Grid from '@mui/joy/Grid';
 import Typography from '@mui/joy/Typography';
 
-export default function BasicRatio() {
+export default function VariantsRatio() {
   return (
     <Grid container spacing={2} sx={{ width: '100%' }}>
       <Grid xs={6} md>
