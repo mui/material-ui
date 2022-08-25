@@ -52,15 +52,15 @@ To target the initially selected tab, specify the `value` prop to the `TabPanel`
 
 {{"demo": "TabsBasic.js"}}
 
-### Variant
+### Variants
 
 Both `TabList` and `Tab` accept [global variant](/joy-ui/main-features/global-variants/) values, so you can mix and match to get the desired result.
 
-:::info
-ℹ️ **Note:** the `TabPanel` component is the only one that doesn't support both global variant and color props.
-:::
-
 {{"demo": "TabsVariants.js"}}
+
+:::info
+💡**Learn:** To add more variants to the component, visit the [extended variants](/joy-ui/customization/themed-components/#extend-variants) section.
+:::
 
 ### Disabled tab
 

@@ -17,6 +17,10 @@ For more in-depth about when to use each, visit [the NNg's documentation](https:
 
 {{"demo": "RadioUsage.js", "hideToolbar": true}}
 
+:::info
+💡**Learn:** To add more variants or sizes to the component, visit the [component customization](/joy-ui/customization/themed-components/#extend-sizes) page.
+:::
+
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Component

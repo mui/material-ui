@@ -47,13 +47,17 @@ Choosing an option should immediately, and ideally, commit the option and close 
 
 {{"demo": "BasicMenu.js"}}
 
-### Size
+### Sizes
 
 The menu component comes with three sizes out of the box: `sm`, `md` (the default), and `lg`.
 
 When specifying a size for the `Menu` component, menu items inside of it will inherit the value.
 
 {{"demo": "SizeMenu.js"}}
+
+:::info
+💡**Learn:** To add more sizes to the component, visit the [extended sizes](/joy-ui/customization/themed-components/#extend-sizes) section.
+:::
 
 ### Selected
 
