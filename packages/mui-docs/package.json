@@ -44,7 +44,7 @@
     }
   },
   "dependencies": {
-    "@babel/runtime": "^7.17.2",
+    "@babel/runtime": "^7.18.9",
     "@mui/utils": "^5.9.3",
     "nprogress": "^0.2.0"
   },

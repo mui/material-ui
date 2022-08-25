@@ -215,7 +215,7 @@ designers to give it a bespoke look and feel for their organization.
 
 <img src="/static/blog/2019-survey/9.png" style="display: block; margin: 0 auto;" alt="Bar chart: 26 x I'm just getting started!, 43 x 6 months +, 150 x 1 year +, 179 x 3 years +, 155 x 5 years, 82 x 10 years +, 47 x 15 years +" />
 
-A nice bell curve, with the majority of developers having 1 to 5 years experience with Javascript.
+A nice bell curve, with the majority of developers having 1 to 5 years experience with JavaScript.
 
 ### 10. How long have you been developing with React?
 
