@@ -1,3 +1,9 @@
-<Alert size="sm" startDecorator={<AddShoppingCartIcon/>}>This is an alert in the small size.</Alert>
-<Alert size="md" startDecorator={<AddShoppingCartIcon/>}>This is an alert in the medium size.</Alert>
-<Alert size="lg" startDecorator={<AddShoppingCartIcon/>}>This is an alert in the large size.</Alert>
+<Alert size="sm" startDecorator={<AddShoppingCartIcon />}>
+  This is an alert in the small size.
+</Alert>
+<Alert size="md" startDecorator={<AddShoppingCartIcon />}>
+  This is an alert in the medium size.
+</Alert>
+<Alert size="lg" startDecorator={<AddShoppingCartIcon />}>
+  This is an alert in the large size.
+</Alert>

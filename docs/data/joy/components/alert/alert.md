@@ -52,6 +52,16 @@ Use the `startDecorator` and/or `endDecorator` props to insert actionable button
 
 {{"demo": "AlertWithDecorators.js"}}
 
+## Common examples
+
+### Various states
+
+{{"demo": "AlertVariousStates.js"}}
+
+### Danger alerts
+
+{{"demo": "AlertWithDangerState.js"}}
+
 ## Accessibility
 
 Here are a few tips to make sure you have an accessible alert component:
