@@ -6,7 +6,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        Please provide a searchable summary of the RFC in the title above ⬆️.
+        Please provide a searchable summary of the RFC in the title above. ⬆️
 
         Thanks for contributing by creating an RFC! ❤️
   - type: textarea
