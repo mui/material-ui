@@ -26,7 +26,12 @@ const useUtilityClasses = (ownerState: CheckboxOwnerState) => {
       size && `size${capitalize(size)}`,
     ],
     checkbox: ['checkbox', disabled && 'disabled'], // disabled class is necessary for displaying global variant
-    action: ['action', disableIcon && disabled && 'disabled', focusVisible && 'focusVisible'], // add disabled class to action element for displaying global variant
+    action: [
+      'action',
+      checked && 'checked',
+      disableIcon && disabled && 'disabled', // add disabled class to action element for displaying global variant
+      focusVisible && 'focusVisible',
+    ],
     input: ['input'],
     label: ['label'],
   };

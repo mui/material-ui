@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Checkbox, { checkboxClasses } from '@mui/joy/Checkbox';
+import Checkbox from '@mui/joy/Checkbox';
 import Done from '@mui/icons-material/Done';
 
 export default function HoverCheckbox() {
@@ -7,11 +7,17 @@ export default function HoverCheckbox() {
     <Checkbox
       uncheckedIcon={<Done />}
       label="Label"
-      sx={{
-        [`&:not(.${checkboxClasses.checked})`]: {
-          '& svg': { opacity: 0 },
-          [`&:hover svg, &.${checkboxClasses.focusVisible} svg`]: { opacity: 1 },
-        },
+      componentsProps={{
+        root: ({ checked, focusVisible }) => ({
+          sx: !checked
+            ? {
+                '& svg': { opacity: focusVisible ? 0.32 : 0 },
+                '&:hover svg': {
+                  opacity: 0.32,
+                },
+              }
+            : {},
+        }),
       }}
     />
   );
