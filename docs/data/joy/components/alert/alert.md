@@ -40,17 +40,17 @@ Play around combining different colors with different variants.
 
 {{"demo": "AlertColors.js"}}
 
-### With icons
+### Sizes
 
-You can add an icon as a decorator via the `icon` prop.
+The alert components comes with three sizes out of the box: `sm`, `md` (the default), and `lg`.
 
-{{"demo": "AlertIcons.js"}}
+{{"demo": "AlertSizes.js"}}
 
-### Actions
+### Decorators
 
-Use the `action` prop to insert actionable buttons or icon buttons on the Alert.
+Use the `startDecorator` and/or `endDecorator` props to insert actionable buttons or icon buttons on the Alert.
 
-{{"demo": "AlertAction.js"}}
+{{"demo": "AlertWithDecorators.js"}}
 
 ## Accessibility
 

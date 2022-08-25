@@ -97,6 +97,7 @@ const AlertEndDecorator = styled('span', {
   display: 'inherit',
   alignItems: 'center',
   marginInlineStart: 'var(--Alert-gap)',
+  marginLeft: 'auto',
   color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Color`],
 }));
 
