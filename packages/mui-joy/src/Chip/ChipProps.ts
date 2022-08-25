@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
+import { SlotComponentProps } from '@mui/base/utils';
 import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
 
 export type ChipSlot = 'root' | 'label' | 'action' | 'startDecorator' | 'endDecorator';
@@ -8,23 +9,25 @@ export interface ChipPropsColorOverrides {}
 export interface ChipPropsSizeOverrides {}
 export interface ChipPropsVariantOverrides {}
 
+interface ComponentsProps {
+  root?: SlotComponentProps<'div', { sx?: SxProps }, ChipOwnerState>;
+  label?: SlotComponentProps<'span', { sx?: SxProps }, ChipOwnerState>;
+  action?: SlotComponentProps<
+    'button',
+    { sx?: SxProps; component?: React.ElementType; href?: string; to?: string },
+    ChipOwnerState
+  >;
+  startDecorator?: SlotComponentProps<'span', { sx?: SxProps }, ChipOwnerState>;
+  endDecorator?: SlotComponentProps<'span', { sx?: SxProps }, ChipOwnerState>;
+}
+
 export interface ChipTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P & {
     /**
      * The props used for each slot inside the Input.
      * @default {}
      */
-    componentsProps?: {
-      root?: JSX.IntrinsicElements['div'];
-      label?: JSX.IntrinsicElements['span'];
-      action?: React.HTMLAttributes<HTMLElement> & {
-        href?: string;
-        component?: React.ElementType;
-        ref?: React.Ref<HTMLElement>;
-      };
-      startDecorator?: JSX.IntrinsicElements['span'];
-      endDecorator?: JSX.IntrinsicElements['span'];
-    };
+    componentsProps?: ComponentsProps;
     /**
      * The content of the component.
      */
@@ -70,3 +73,14 @@ export type ChipProps<
   D extends React.ElementType = ChipTypeMap['defaultComponent'],
   P = { component?: React.ElementType },
 > = OverrideProps<ChipTypeMap<P, D>, D>;
+
+export interface ChipOwnerState extends ChipProps {
+  /**
+   * If `true`, the chip is clickable.
+   */
+  clickable: boolean;
+  /**
+   * If `true`, the action slot's focus is visible.
+   */
+  focusVisible: boolean;
+}

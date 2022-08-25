@@ -18,7 +18,7 @@ describe('<Chip />', () => {
     testDeepOverrides: { slotName: 'label', slotClassName: classes.label },
     testComponentPropWith: 'span',
     testVariantProps: { variant: 'soft' },
-    skip: ['classesRoot', 'componentsProp', 'themeVariants'],
+    skip: ['classesRoot', 'componentsProp'],
   }));
 
   it('renders children', () => {
