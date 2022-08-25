@@ -47,14 +47,18 @@ If the child is a custom React element, you need to make sure that it spreads it
 ```jsx
 const MyComponent = React.forwardRef(function MyComponent(props, ref) {
   //  Spread the props to the underlying DOM element.
-  return <div {...props} ref={ref}>Bin</div>
+  return (
+    <div {...props} ref={ref}>
+      Bin
+    </div>
+  );
 });
 
 // ...
 
 <Tooltip title="Delete">
   <MyComponent />
-</Tooltip>
+</Tooltip>;
 ```
 
 You can find a similar concept in the [wrapping components](/material-ui/guides/composition/#wrapping-components) guide.
@@ -66,9 +70,13 @@ class MyComponent extends React.Component {
   render() {
     const { innerRef, ...props } = this.props;
     //  Spread the props to the underlying DOM element.
-    return <div {...props} ref={innerRef}>Bin</div>
+    return (
+      <div {...props} ref={innerRef}>
+        Bin
+      </div>
+    );
   }
-};
+}
 
 // Wrap MyComponent to forward the ref as expected by Tooltip
 const WrappedMyComponent = React.forwardRef(function WrappedMyComponent(props, ref) {
@@ -79,7 +87,7 @@ const WrappedMyComponent = React.forwardRef(function WrappedMyComponent(props, r
 
 <Tooltip title="Delete">
   <WrappedMyComponent />
-</Tooltip>
+</Tooltip>;
 ```
 
 ## Triggers
