@@ -29,5 +29,10 @@
 build
 node_modules
 .nyc_output
+
+# These come from crowdin.
+# If we would commit changes crowdin would immediately try to revert.
+# If we want to format these files we'd need to do it in crowdin
+docs/**/*-en.md
 docs/**/*-pt.md
 docs/**/*-zh.md
