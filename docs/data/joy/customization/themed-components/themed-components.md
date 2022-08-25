@@ -117,7 +117,6 @@ extendTheme({
 Here's how you'd go for extending a component's available sizes.
 We recommend following the in-use t-shirt sizing convention to maintain consistency with all the other props.
 
-
 ```js
 extendTheme({
   components: {
@@ -149,8 +148,7 @@ extendTheme({
 });
 ```
 
-:::info
-**TypeScript**
+#### TypeScript
 
 You need module augmentation to include the values to the `size` prop of the component.
 
@@ -169,8 +167,6 @@ declare module '@mui/joy/Button' {
 <Button size="xs" />
 <Button size="xl" />
 ```
-
-:::
 
 ### Extend variants
 
@@ -196,9 +192,7 @@ extendTheme({
 });
 ```
 
-:::info
-
-**TypeScript**
+#### TypeScript
 
 You need module augmentation to include the values to the `variant` prop of the component.
 
@@ -215,8 +209,6 @@ declare module '@mui/joy/Button' {
 // typed-safe
 <Sheet variant="glass" />;
 ```
-
-:::
 
 ### Different styles per mode
 
