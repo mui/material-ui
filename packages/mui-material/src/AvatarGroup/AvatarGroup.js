@@ -67,7 +67,7 @@ const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
   const {
     children: childrenProp,
     className,
-    component = 'ul',
+    component = 'div',
     componentsProps = {},
     max = 5,
     spacing = 'medium',
