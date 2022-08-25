@@ -12,7 +12,7 @@ body:
   - type: textarea
     attributes:
       label: What's the problem? 🤔
-      description: A short paragraph or bullet list that quickly explains what you're trying to do, what value do we expect to get or any other relevant information to understand motivation behind this RFC
+      description: Write a short paragraph or bulleted list to briefly explain what you're trying to do, what outcomes you're aiming for, and any other relevant details to help us understand the motivation behind this RFC.
 
   - type: textarea
     attributes:
