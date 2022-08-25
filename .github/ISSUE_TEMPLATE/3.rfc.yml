@@ -34,7 +34,7 @@ body:
     attributes:
       label: Proposed solution 🟢
       description: |
-        This is the core of RFC, and its purpose is to clearly explain reasoning for the proposed solution, why it's better compared to the other options or why should it be chosen instead.
+        This is the core of the RFC. Please clearly explain the reasoning behind your proposed solution, including why it would be preferred over possible alternatives.
         
         Consider:
         - using diagrams to help illustrate your ideas
