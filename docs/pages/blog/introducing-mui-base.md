@@ -9,17 +9,14 @@ card: true
 
 <!-- hero image goes here -->
 
-Throughout the years, Material UI has been used to build various types of applications.
-Its speed of use helped create admin user interfaces, while its customizability made it a foundation of custom design systems.
-Creating design systems that substantially diverge from Google's Material Design may, however, not be an easy task.
-Developers do not start from a clean slate but have to override styles applied by the library's components.
-While this approach may speed up the work when designing visuals close to Material Design, it's less intuitive for different design languages.
+While Material UI is excellent for building sleek user interfaces that adhere closely to Material Design, it can become unwieldy when your design system diverges significantly from the defaults.
+We get it.
+We've all been there.
 
-We were aware of this problem, so, [encouraged by the community](https://github.com/mui/material-ui/issues/6218), we decided to build a library aiming for the ultimate customizability.
-Today, we're ready to announce it: **please welcome MUI Base**, the library of unstyled React UI components and hooks!
+That's why we've built an entirely new library of headless React UI components and hooks called MUI Base—to give you complete control over the look and feel of your user interface, with no defaults to override.
 
-Its API is similar to what you're already used to in Material UI.
-This makes it easy to either start a new project with MUI Base or to use Material UI for rapid prototyping first and then switch to MUI Base when a custom design is needed.
+MUI Base is easy to pick up if you're already familiar with Material UI, as the APIs are very similar—indeed, they were designed to be complementary to one another.
+Start from scratch with MUI Base, or use Material UI for rapid prototyping and then switch to MUI Base when you need more customization options.
 
 ## Components and hooks
 
