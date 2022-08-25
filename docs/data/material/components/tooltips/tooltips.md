@@ -53,7 +53,7 @@ const MyComponent = React.forwardRef(function MyComponent(props, ref) {
 // ...
 
 <Tooltip title="Delete">
-  <MyComponent>
+  <MyComponent />
 </Tooltip>
 ```
 
@@ -78,7 +78,7 @@ const WrappedMyComponent = React.forwardRef(function WrappedMyComponent(props, r
 // ...
 
 <Tooltip title="Delete">
-  <WrappedMyComponent>
+  <WrappedMyComponent />
 </Tooltip>
 ```
 
