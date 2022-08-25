@@ -18,7 +18,7 @@ export type SimpleStyleFunction<PropKey extends keyof any> = StyleFunction<
 > & { filterProps: string[] };
 
 // borders.js
-export const borders: SimpleStyleFunction<
+export declare const borders: SimpleStyleFunction<
   | 'border'
   | 'borderTop'
   | 'borderRight'
@@ -28,11 +28,11 @@ export const borders: SimpleStyleFunction<
   | 'borderRadius'
 >;
 
-export const display: SimpleStyleFunction<
+export declare const display: SimpleStyleFunction<
   'display' | 'displayPrint' | 'overflow' | 'textOverflow' | 'visibility' | 'whiteSpace'
 >;
 
-export const flexbox: SimpleStyleFunction<
+export declare const flexbox: SimpleStyleFunction<
   | 'flexBasis'
   | 'flexDirection'
   | 'flexWrap'
@@ -48,7 +48,7 @@ export const flexbox: SimpleStyleFunction<
   | 'justifySelf'
 >;
 
-export const grid: SimpleStyleFunction<
+export declare const grid: SimpleStyleFunction<
   | 'gap'
   | 'columnGap'
   | 'rowGap'
@@ -63,15 +63,15 @@ export const grid: SimpleStyleFunction<
   | 'gridArea'
 >;
 
-export const palette: SimpleStyleFunction<'bgcolor' | 'color'>;
+export declare const palette: SimpleStyleFunction<'bgcolor' | 'color'>;
 
-export const positions: SimpleStyleFunction<
+export declare const positions: SimpleStyleFunction<
   'zIndex' | 'position' | 'top' | 'right' | 'bottom' | 'left'
 >;
 
-export const shadows: SimpleStyleFunction<'boxShadow'>;
+export declare const shadows: SimpleStyleFunction<'boxShadow'>;
 
-export const sizing: SimpleStyleFunction<
+export declare const sizing: SimpleStyleFunction<
   | 'width'
   | 'maxWidth'
   | 'minWidth'
@@ -83,7 +83,7 @@ export const sizing: SimpleStyleFunction<
   | 'boxSizing'
 >;
 
-export const spacing: SimpleStyleFunction<
+export declare const spacing: SimpleStyleFunction<
   | 'm'
   | 'mt'
   | 'mr'
@@ -114,7 +114,7 @@ export const spacing: SimpleStyleFunction<
   | 'paddingY'
 >;
 
-export const typography: SimpleStyleFunction<
+export declare const typography: SimpleStyleFunction<
   | 'typography'
   | 'fontFamily'
   | 'fontSize'

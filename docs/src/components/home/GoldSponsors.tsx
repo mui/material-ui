@@ -50,22 +50,29 @@ const GOLDs = [
   {
     src: '/static/sponsors//megafamous.png',
     name: 'MegaFamous',
-    description: 'The best place to buy Instagram followers & likes.',
+    description: 'Buy Instagram followers & likes.',
     href: 'https://megafamous.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
   },
   {
     src: 'https://images.opencollective.com/dialmycalls/f5ae9ab/avatar/40.png',
     srcSet: 'https://images.opencollective.com/dialmycalls/f5ae9ab/avatar/80.png 2x',
     name: 'DialMyCalls',
-    description: 'Send text messages, calls & emails to thousands with ease.',
+    description: 'Send text messages, calls to thousands.',
     href: 'https://www.dialmycalls.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
   },
   {
     src: 'https://images.opencollective.com/goread_io/eb6337d/logo/40.png',
     srcSet: 'https://images.opencollective.com/goread_io/eb6337d/logo/80.png 2x',
     name: 'Goread.io',
-    description: 'Instagram followers, likes, power likes, views, comments, saves in minutes.',
+    description: 'Instagram followers, likes, views, comments.',
     href: 'https://goread.io/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
+  },
+  {
+    src: 'https://images.opencollective.com/icons8/7fa1641/logo/40.png',
+    srcSet: 'https://images.opencollective.com/icons8/7fa1641/logo/80.png 2x',
+    name: 'Icons8',
+    description: 'Icons, illustrations, design tools, and more.',
+    href: 'https://icons8.com?utm_source=MUI&utm_medium=referral&utm_content=homepage',
   },
 ];
 
