@@ -89,7 +89,6 @@ const AspectRatio = React.forwardRef(function AspectRatio(inProps, ref) {
   });
 
   const {
-    className,
     component = 'div',
     children,
     componentsProps = {},
@@ -176,7 +175,8 @@ AspectRatio.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   componentsProps: PropTypes.shape({
-    content: PropTypes.object.isRequired,
+    content: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
    * The maximum calculated height of the element (not the CSS height).

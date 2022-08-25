@@ -89,8 +89,8 @@ AvatarGroup.propTypes /* remove-proptypes */ = {
    */
   className: PropTypes.string,
   /**
-   * The color context for the avatar children.
-   * It has no effect on the AvatarGroup.
+   * The color of the component. It supports those theme colors that make sense for this component.
+   * @default 'neutral'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
@@ -102,7 +102,8 @@ AvatarGroup.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
-   * The size of the component and the avatar children.
+   * The size of the component.
+   * It accepts theme values between 'sm' and 'lg'.
    * @default 'md'
    */
   size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
@@ -118,8 +119,8 @@ AvatarGroup.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
-   * The variant context for the avatar children.
-   * It has no effect on the AvatarGroup.
+   * The variant to use.
+   * @default 'soft'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),

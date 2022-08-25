@@ -146,7 +146,6 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
 
   const {
     alt,
-    className,
     color: colorProp = 'neutral',
     component = 'div',
     componentsProps = {},
@@ -180,6 +179,7 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
     src,
     srcSet,
   });
+
   const hasImg = src || srcSet;
   const hasImgNotFailing = hasImg && loaded !== 'error';
 
@@ -196,6 +196,7 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
     },
     className: classes.img,
   });
+
   const fallbackProps = useSlotProps({
     elementType: AvatarFallback,
     externalSlotProps: componentsProps.fallback,
@@ -222,6 +223,7 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
       ref,
       as: component,
     },
+    className: classes.root,
   });
 
   return <AvatarRoot {...rootProps}>{children}</AvatarRoot>;
@@ -259,6 +261,20 @@ Avatar.propTypes /* remove-proptypes */ = {
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
+  /**
+   * The props used for each slot inside the Input.
+   * @default {}
+   */
+  componentsProps: PropTypes.shape({
+    fallback: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    img: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attributes) applied to the `img` element if the component is used to display an image.
+   * It can be used to listen for the loading error event.
+   */
+  imgProps: PropTypes.object,
   /**
    * The size of the component.
    * It accepts theme values between 'sm' and 'lg'.
