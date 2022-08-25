@@ -4,25 +4,23 @@ import { unstable_capitalize as capitalize } from '@mui/utils';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import * as React from 'react';
-import IconButton from '../IconButton';
-import CloseIcon from '../internal/svg-icons/Close';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import { getAlertUtilityClass } from './alertClasses';
 import { AlertProps, AlertTypeMap } from './AlertProps';
 
 const useUtilityClasses = (ownerState: AlertProps) => {
-  const { variant, color } = ownerState;
+  const { variant, color, size } = ownerState;
 
   const slots = {
     root: [
       'root',
+      size && `size${capitalize(size)}`,
       color && `color${capitalize(color)}`,
       variant && `variant${capitalize(variant)}`,
     ],
-    icon: ['icon'],
-    message: ['message'],
-    action: ['action'],
+    startDecorator: ['startDecorator'],
+    endDecorator: ['endDecorator'],
   };
 
   return composeClasses(slots, getAlertUtilityClass, {});
@@ -35,54 +33,72 @@ const AlertRoot = styled('div', {
 })<{ ownerState: AlertProps }>(({ theme, ownerState }) => {
   return [
     {
+      '--Alert-radius': theme.vars.radius.sm,
+      '--Alert-gap': '0.5rem',
+      ...(ownerState.size === 'sm' && {
+        fontSize: theme.vars.fontSize.sm,
+        '--Alert-minHeight': '2rem',
+        '--Alert-paddingInline': '0.5rem',
+        '--Alert-decorator-childHeight': 'min(1.5rem, var(--Alert-minHeight))',
+        '--Icon-fontSize': '1.25rem',
+      }),
+      ...(ownerState.size === 'md' && {
+        fontSize: theme.vars.fontSize.md,
+        '--Alert-minHeight': '2.5rem',
+        '--Alert-paddingInline': '0.75rem',
+        '--Alert-decorator-childHeight': 'min(2rem, var(--Alert-minHeight))',
+        '--Icon-fontSize': '1.5rem',
+      }),
+      ...(ownerState.size === 'lg' && {
+        fontSize: theme.vars.fontSize.lg,
+        '--Alert-minHeight': '3rem',
+        '--Alert-paddingInline': '1rem',
+        '--Alert-gap': '0.75rem',
+        '--Alert-decorator-childHeight': 'min(2.375rem, var(--Alert-minHeight))',
+        '--Icon-fontSize': '1.75rem',
+      }),
+      '--Alert-decorator-childOffset':
+        'min(calc(var(--Alert-paddingInline) - (var(--Alert-minHeight) - 2 * var(--variant-borderWidth) - var(--Alert-decorator-childHeight)) / 2), var(--Alert-paddingInline))',
+      minHeight: 'var(--Alert-minHeight)',
       ...theme.typography.body2,
       backgroundColor: 'transparent',
       display: 'flex',
-      padding: '8px 16px',
-      borderRadius: theme.vars.radius.sm,
+      alignItems: 'center',
+      paddingInline: `var(--Alert-paddingInline)`,
+      borderRadius: 'var(--Alert-radius)',
     },
     theme.variants[ownerState.variant!]?.[ownerState.color!],
   ];
 });
 
-const AlertIcon = styled('div', {
+const AlertStartDecorator = styled('span', {
   name: 'JoyAlert',
-  slot: 'Icon',
-  overridesResolver: (props, styles) => styles.icon,
-})<{ ownerState: AlertProps }>(() => {
-  return {
-    marginRight: 12,
-    display: 'flex',
-    alignItems: 'center',
-    fontSize: 22,
-  };
-});
+  slot: 'StartDecorator',
+  overridesResolver: (props, styles) => styles.startDecorator,
+})<{ ownerState: AlertProps }>(({ theme, ownerState }) => ({
+  '--Alert-margin': '0 0 0 calc(var(--Alert-decorator-childOffset) * -1)',
+  '--IconButton-margin': '0 0 0 calc(var(--Alert-decorator-childOffset) * -1)',
+  '--Icon-margin': '0 0 0 calc(var(--Alert-paddingInline) / -4)',
+  pointerEvents: 'none', // to make the input focused when click on the element because start element usually is an icon
+  display: 'inherit',
+  alignItems: 'center',
+  marginInlineEnd: 'var(--Alert-gap)',
+  color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Color`],
+}));
 
-const AlertMessage = styled('div', {
+const AlertEndDecorator = styled('span', {
   name: 'JoyAlert',
-  slot: 'Message',
-  overridesResolver: (props, styles) => styles.message,
-})<{ ownerState: AlertProps }>(() => {
-  return {
-    padding: '8px 0',
-    minWidth: 0,
-    overflow: 'auto',
-  };
-});
-
-const AlertAction = styled('div', {
-  name: 'JoyAlert',
-  slot: 'Action',
-  overridesResolver: (props, styles) => styles.action,
-})<{ ownerState: AlertProps }>(() => {
-  return {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    marginLeft: 'auto',
-    marginRight: -8,
-  };
-});
+  slot: 'EndDecorator',
+  overridesResolver: (props, styles) => styles.endDecorator,
+})<{ ownerState: AlertProps }>(({ theme, ownerState }) => ({
+  '--Alert-margin': '0 calc(var(--Alert-decorator-childOffset) * -1) 0 0',
+  '--IconButton-margin': '0 calc(var(--Alert-decorator-childOffset) * -1) 0 0',
+  '--Icon-margin': '0 calc(var(--Alert-paddingInline) / -4) 0 0',
+  display: 'inherit',
+  alignItems: 'center',
+  marginInlineStart: 'var(--Alert-gap)',
+  color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Color`],
+}));
 
 const Alert = React.forwardRef(function Alert(inProps, ref) {
   const props = useThemeProps<typeof inProps & AlertProps>({
@@ -91,15 +107,14 @@ const Alert = React.forwardRef(function Alert(inProps, ref) {
   });
 
   const {
-    action,
     children,
     className,
-    closeText = 'Close',
     color = 'primary',
-    icon,
-    onClose,
     role = 'alert',
     variant = 'soft',
+    size = 'md',
+    startDecorator,
+    endDecorator,
     ...other
   } = props;
 
@@ -107,6 +122,7 @@ const Alert = React.forwardRef(function Alert(inProps, ref) {
     ...props,
     color,
     variant,
+    size,
   };
 
   const classes = useUtilityClasses(ownerState);
@@ -119,32 +135,18 @@ const Alert = React.forwardRef(function Alert(inProps, ref) {
       ref={ref}
       {...other}
     >
-      {icon ? (
-        <AlertIcon ownerState={ownerState} className={classes.icon}>
-          {icon}
-        </AlertIcon>
-      ) : null}
-      <AlertMessage ownerState={ownerState} className={classes.message}>
-        {children}
-      </AlertMessage>
-      {action !== null ? (
-        <AlertAction ownerState={ownerState} className={classes.action}>
-          {action}
-        </AlertAction>
-      ) : null}
-      {action === null && onClose ? (
-        <AlertAction ownerState={ownerState} className={classes.action}>
-          <IconButton
-            size="sm"
-            aria-label={closeText}
-            title={closeText}
-            color={color}
-            onClick={onClose}
-          >
-            <CloseIcon fontSize="inherit" />
-          </IconButton>
-        </AlertAction>
-      ) : null}
+      {startDecorator && (
+        <AlertStartDecorator className={classes.startDecorator} ownerState={ownerState}>
+          {startDecorator}
+        </AlertStartDecorator>
+      )}
+
+      {children}
+      {endDecorator && (
+        <AlertEndDecorator className={classes.endDecorator} ownerState={ownerState}>
+          {endDecorator}
+        </AlertEndDecorator>
+      )}
     </AlertRoot>
   );
 }) as OverridableComponent<AlertTypeMap>;
@@ -155,10 +157,6 @@ Alert.propTypes /* remove-proptypes */ = {
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
   // ----------------------------------------------------------------------
   /**
-   * The action to display. It renders after the message, at the end of the alert.
-   */
-  action: PropTypes.node,
-  /**
    * @ignore
    */
   children: PropTypes.node,
@@ -167,33 +165,28 @@ Alert.propTypes /* remove-proptypes */ = {
    */
   className: PropTypes.string,
   /**
-   * Override the default label for the *close popup* icon button.
-   *
-   * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
-   * @default 'Close'
-   */
-  closeText: PropTypes.string,
-  /**
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'primary'
    */
   color: PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
   /**
-   * Override the icon displayed before the children.
-   * Set to `false` to remove the `icon`.
+   * Element placed after the children.
    */
-  icon: PropTypes.node,
-  /**
-   * Callback fired when the component requests to be closed.
-   * When provided and no `action` prop is set, a close icon button is displayed that triggers the callback when clicked.
-   * @param {React.SyntheticEvent} event The event source of the callback.
-   */
-  onClose: PropTypes.func,
+  endDecorator: PropTypes.node,
   /**
    * The ARIA role attribute of the element.
    * @default 'alert'
    */
   role: PropTypes.string,
+  /**
+   * The size of the component.
+   * @default 'md'
+   */
+  size: PropTypes.oneOf(['sm', 'md', 'lg']),
+  /**
+   * Element placed before the children.
+   */
+  startDecorator: PropTypes.node,
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
