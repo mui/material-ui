@@ -55,9 +55,8 @@ The button components comes with three sizes out of the box: `sm`, `md` (the def
 {{"demo": "ButtonSizes.js"}}
 
 :::info
-To add more sizes to the component, check out the [customization](/joy-ui/customization/themed-components/#extend-sizes) section.
+💡**Learn:** To add more variants to the component, visit  the [extended variants](/joy-ui/customization/themed-components/#extend-variants) section on the Customization page.
 :::
-
 ### Disabled
 
 Use the `disabled` prop to disable interaction and focus.

@@ -42,7 +42,7 @@ function App() {
 
 ## Default props
 
-The values specified in the theme `defaultProps` affect to all instances of the component:
+The values specified in the theme as `defaultProps` affect all instances of the component:
 
 ```js
 extendTheme({
@@ -114,9 +114,9 @@ extendTheme({
 
 ### Extend sizes
 
-Apply the styles when `ownerState.size` matches the new size. It is recommended to follow the existing T-shirt scale for consistency.
+Here's how you'd go for extending a component's available sizes.
+We recommend following the in-use t-shirt sizing convention to maintain consistency with all the other props.
 
-For example, adding `xs` and `xl` sizes to the button would be:
 
 ```js
 extendTheme({
@@ -174,7 +174,7 @@ declare module '@mui/joy/Button' {
 
 ### Extend variants
 
-When you add new variant to a component, you are opting-out of the global variant feature which lets you take full control of the CSS properties related to color (`color`, `background` and `border`).
+By creating new component variants, you're automatically opting out of the [global variant feature](/joy-ui/main-features/global-variants/), which allows you to have fine-grain control of the color-related CSS properties (`color`, `background` and `border`).
 
 ```js
 extendTheme({
