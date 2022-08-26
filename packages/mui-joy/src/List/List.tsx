@@ -1,21 +1,19 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import clsx from 'clsx';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
 import composeClasses from '@mui/base/composeClasses';
-import { useSlotProps } from '@mui/base/utils';
 import { MenuUnstyledContext } from '@mui/base/MenuUnstyled';
 import { SelectUnstyledContext } from '@mui/base/SelectUnstyled';
 import { styled, useThemeProps } from '../styles';
-import { ListProps, ListTypeMap } from './ListProps';
+import { ListProps, ListOwnerState, ListTypeMap } from './ListProps';
 import { getListUtilityClass } from './listClasses';
 import NestedListContext from './NestedListContext';
 import ComponentListContext from './ComponentListContext';
 import ListProvider from './ListProvider';
 
-const useUtilityClasses = (
-  ownerState: ListProps & { nesting: boolean; instanceSize: ListProps['size'] },
-) => {
+const useUtilityClasses = (ownerState: ListOwnerState) => {
   const { variant, color, size, nesting, row, instanceSize } = ownerState;
   const slots = {
     root: [
@@ -36,110 +34,108 @@ export const ListRoot = styled('ul', {
   name: 'JoyList',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: ListProps & { nesting: boolean; instanceSize: ListProps['size'] } }>(
-  ({ theme, ownerState }) => {
-    function applySizeVars(size: ListProps['size']) {
-      if (size === 'sm') {
-        return {
-          '--List-divider-gap': '0.25rem',
-          '--List-item-minHeight': '2rem',
-          '--List-item-paddingY': '0.25rem',
-          '--List-item-paddingX': '0.5rem',
-          '--List-item-fontSize': theme.vars.fontSize.sm,
-          '--List-decorator-size': ownerState.row ? '1.5rem' : '2rem',
-          '--Icon-fontSize': '1.125rem',
-        };
-      }
-      if (size === 'md') {
-        return {
-          '--List-divider-gap': '0.375rem',
-          '--List-item-minHeight': '2.5rem',
-          '--List-item-paddingY': '0.375rem',
-          '--List-item-paddingX': '0.75rem',
-          '--List-item-fontSize': theme.vars.fontSize.md,
-          '--List-decorator-size': ownerState.row ? '1.75rem' : '2.5rem',
-          '--Icon-fontSize': '1.25rem',
-        };
-      }
-      if (size === 'lg') {
-        return {
-          '--List-divider-gap': '0.5rem',
-          '--List-item-minHeight': '3rem',
-          '--List-item-paddingY': '0.5rem',
-          '--List-item-paddingX': '1rem',
-          '--List-item-fontSize': theme.vars.fontSize.md,
-          '--List-decorator-size': ownerState.row ? '2.25rem' : '3rem',
-          '--Icon-fontSize': '1.5rem',
-        };
-      }
-      return {};
+})<{ ownerState: ListOwnerState }>(({ theme, ownerState }) => {
+  function applySizeVars(size: ListProps['size']) {
+    if (size === 'sm') {
+      return {
+        '--List-divider-gap': '0.25rem',
+        '--List-item-minHeight': '2rem',
+        '--List-item-paddingY': '0.25rem',
+        '--List-item-paddingX': '0.5rem',
+        '--List-item-fontSize': theme.vars.fontSize.sm,
+        '--List-decorator-size': ownerState.row ? '1.5rem' : '2rem',
+        '--Icon-fontSize': '1.125rem',
+      };
     }
-    return [
-      ownerState.nesting && {
-        // instanceSize is the specified size of the rendered element <List size="sm" />
-        // only apply size variables if instanceSize is provided so that the variables can be pass down to children by default.
-        ...applySizeVars(ownerState.instanceSize),
-        '--List-item-paddingRight': 'var(--List-item-paddingX)',
-        '--List-item-paddingLeft': 'var(--NestedList-item-paddingLeft)',
-        // reset ListItem, ListItemButton negative margin (caused by NestedListItem)
-        '--List-itemButton-marginBlock': '0px',
-        '--List-itemButton-marginInline': '0px',
-        '--List-item-marginBlock': '0px',
-        '--List-item-marginInline': '0px',
-        padding: 0,
-        marginInlineStart: 'var(--NestedList-marginLeft)',
-        marginInlineEnd: 'var(--NestedList-marginRight)',
-        marginBlockStart: 'var(--List-gap)',
-      },
-      !ownerState.nesting && {
-        ...applySizeVars(ownerState.size),
-        '--List-gap': '0px',
-        '--List-decorator-color': theme.vars.palette.text.tertiary,
-        '--List-nestedInsetStart': '0px',
-        '--List-item-paddingLeft': 'var(--List-item-paddingX)',
-        '--List-item-paddingRight': 'var(--List-item-paddingX)',
-        '--internal-child-radius':
-          'max(var(--List-radius, 0px) - var(--List-padding), min(var(--List-padding) / 2, var(--List-radius, 0px) / 2))',
-        // If --List-padding is 0, the --List-item-radius will be 0.
-        '--List-item-radius': 'min(calc(var(--List-padding) * 999), var(--internal-child-radius))',
-        // by default, The ListItem & ListItemButton use automatic radius adjustment based on the parent List.
-        '--List-item-startActionTranslateX': 'calc(0.5 * var(--List-item-paddingLeft))',
-        '--List-item-endActionTranslateX': 'calc(-0.5 * var(--List-item-paddingRight))',
-        margin: 'initial',
-        // --List-padding is not declared to let list uses --List-divider-gap by default.
-        ...(ownerState.row
-          ? {
-              ...(ownerState.wrap
-                ? {
-                    padding: 'var(--List-padding)',
-                    marginInlineStart: 'calc(-1 * var(--List-gap))',
-                    marginBlockStart: 'calc(-1 * var(--List-gap))',
-                  }
-                : {
-                    paddingInline: 'var(--List-padding, var(--List-divider-gap))',
-                    paddingBlock: 'var(--List-padding)',
-                  }),
-            }
-          : {
-              paddingBlock: 'var(--List-padding, var(--List-divider-gap))',
-              paddingInline: 'var(--List-padding)',
-            }),
-      },
-      {
-        borderRadius: 'var(--List-radius)',
-        listStyle: 'none',
-        display: 'flex',
-        flexDirection: ownerState.row ? 'row' : 'column',
-        ...(ownerState.wrap && {
-          flexWrap: 'wrap',
-        }),
-        flexGrow: 1,
-        position: 'relative', // for sticky ListItem
-        ...theme.variants[ownerState.variant!]?.[ownerState.color!],
-      },
-    ];
-  },
-);
+    if (size === 'md') {
+      return {
+        '--List-divider-gap': '0.375rem',
+        '--List-item-minHeight': '2.5rem',
+        '--List-item-paddingY': '0.375rem',
+        '--List-item-paddingX': '0.75rem',
+        '--List-item-fontSize': theme.vars.fontSize.md,
+        '--List-decorator-size': ownerState.row ? '1.75rem' : '2.5rem',
+        '--Icon-fontSize': '1.25rem',
+      };
+    }
+    if (size === 'lg') {
+      return {
+        '--List-divider-gap': '0.5rem',
+        '--List-item-minHeight': '3rem',
+        '--List-item-paddingY': '0.5rem',
+        '--List-item-paddingX': '1rem',
+        '--List-item-fontSize': theme.vars.fontSize.md,
+        '--List-decorator-size': ownerState.row ? '2.25rem' : '3rem',
+        '--Icon-fontSize': '1.5rem',
+      };
+    }
+    return {};
+  }
+  return [
+    ownerState.nesting && {
+      // instanceSize is the specified size of the rendered element <List size="sm" />
+      // only apply size variables if instanceSize is provided so that the variables can be pass down to children by default.
+      ...applySizeVars(ownerState.instanceSize),
+      '--List-item-paddingRight': 'var(--List-item-paddingX)',
+      '--List-item-paddingLeft': 'var(--NestedList-item-paddingLeft)',
+      // reset ListItem, ListItemButton negative margin (caused by NestedListItem)
+      '--List-itemButton-marginBlock': '0px',
+      '--List-itemButton-marginInline': '0px',
+      '--List-item-marginBlock': '0px',
+      '--List-item-marginInline': '0px',
+      padding: 0,
+      marginInlineStart: 'var(--NestedList-marginLeft)',
+      marginInlineEnd: 'var(--NestedList-marginRight)',
+      marginBlockStart: 'var(--List-gap)',
+    },
+    !ownerState.nesting && {
+      ...applySizeVars(ownerState.size),
+      '--List-gap': '0px',
+      '--List-decorator-color': theme.vars.palette.text.tertiary,
+      '--List-nestedInsetStart': '0px',
+      '--List-item-paddingLeft': 'var(--List-item-paddingX)',
+      '--List-item-paddingRight': 'var(--List-item-paddingX)',
+      '--internal-child-radius':
+        'max(var(--List-radius, 0px) - var(--List-padding), min(var(--List-padding) / 2, var(--List-radius, 0px) / 2))',
+      // If --List-padding is 0, the --List-item-radius will be 0.
+      '--List-item-radius': 'min(calc(var(--List-padding) * 999), var(--internal-child-radius))',
+      // by default, The ListItem & ListItemButton use automatic radius adjustment based on the parent List.
+      '--List-item-startActionTranslateX': 'calc(0.5 * var(--List-item-paddingLeft))',
+      '--List-item-endActionTranslateX': 'calc(-0.5 * var(--List-item-paddingRight))',
+      margin: 'initial',
+      // --List-padding is not declared to let list uses --List-divider-gap by default.
+      ...(ownerState.row
+        ? {
+            ...(ownerState.wrap
+              ? {
+                  padding: 'var(--List-padding)',
+                  marginInlineStart: 'calc(-1 * var(--List-gap))',
+                  marginBlockStart: 'calc(-1 * var(--List-gap))',
+                }
+              : {
+                  paddingInline: 'var(--List-padding, var(--List-divider-gap))',
+                  paddingBlock: 'var(--List-padding)',
+                }),
+          }
+        : {
+            paddingBlock: 'var(--List-padding, var(--List-divider-gap))',
+            paddingInline: 'var(--List-padding)',
+          }),
+    },
+    {
+      borderRadius: 'var(--List-radius)',
+      listStyle: 'none',
+      display: 'flex',
+      flexDirection: ownerState.row ? 'row' : 'column',
+      ...(ownerState.wrap && {
+        flexWrap: 'wrap',
+      }),
+      flexGrow: 1,
+      position: 'relative', // for sticky ListItem
+      ...theme.variants[ownerState.variant!]?.[ownerState.color!],
+    },
+  ];
+});
 
 const List = React.forwardRef(function List(inProps, ref) {
   const nesting = React.useContext(NestedListContext);
@@ -179,21 +175,15 @@ const List = React.forwardRef(function List(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  const rootProps = useSlotProps({
-    elementType: ListRoot,
-    externalSlotProps: {},
-    externalForwardedProps: other,
-    ownerState,
-    additionalProps: {
-      ref,
-      as: component,
-      role,
-    },
-    className: classes.root,
-  });
-
   return (
-    <ListRoot {...rootProps}>
+    <ListRoot
+      ref={ref}
+      as={component}
+      className={clsx(classes.root, className)}
+      ownerState={ownerState}
+      role={role}
+      {...other}
+    >
       <ComponentListContext.Provider
         value={`${typeof component === 'string' ? component : ''}:${role || ''}`}
       >
