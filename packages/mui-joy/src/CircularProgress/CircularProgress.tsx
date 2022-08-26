@@ -63,6 +63,9 @@ const CircularProgressRoot = styled('div', {
       height: 'var(--CircularProgress-size)',
       boxSizing: 'border-box',
       position: 'relative',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
     },
   ];
 });
@@ -74,9 +77,6 @@ const CircularProgressProgress = styled('div', {
 })<{ ownerState: CircularProgressProps }>(({ theme, ownerState }) => {
   return [
     {
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
       position: 'absolute',
       top: 'calc(-1 * var(--CircularProgress-thickness))',
       left: 'calc(-1 * var(--CircularProgress-thickness))',
@@ -142,9 +142,8 @@ const CircularProgress = React.forwardRef(function CircularProgress(inProps, ref
       {...rootProps}
       {...other}
     >
-      <CircularProgressProgress className={classes.progress} ownerState={ownerState}>
-        {children}
-      </CircularProgressProgress>
+      <CircularProgressProgress className={classes.progress} ownerState={ownerState} />
+      {children}
     </CircularProgressRoot>
   );
 }) as OverridableComponent<CircularProgressTypeMap>;
