@@ -1,10 +1,9 @@
 import * as React from 'react';
 import Alert from '@mui/joy/Alert';
-import PlaylistAddCheckCircleRoundedIcon from '@mui/icons-material/PlaylistAddCheckCircleRounded';
 import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
-import Typography from '@mui/joy/Typography';
 import IconButton from '@mui/joy/IconButton';
+import PlaylistAddCheckCircleRoundedIcon from '@mui/icons-material/PlaylistAddCheckCircleRounded';
 import AccountCircleRoundedIcon from '@mui/icons-material/AccountCircleRounded';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 
@@ -31,23 +30,19 @@ export default function AlertWithDecorators() {
           </Button>
         }
       >
-        <Typography fontWeight="md" fontSize="sm">
-          Your message was sent successfully.
-        </Typography>
+        Your message was sent successfully.
       </Alert>
       <Alert
         variant="outlined"
         color="neutral"
         startDecorator={<AccountCircleRoundedIcon />}
         endDecorator={
-          <IconButton variant="outlined" size="sm" color="neutral">
+          <IconButton variant="plain" size="sm" color="neutral">
             <CloseRoundedIcon />
           </IconButton>
         }
       >
-        <Typography fontWeight="md" fontSize="sm">
-          Your account was updated.
-        </Typography>
+        Your account was updated.
       </Alert>
     </Box>
   );

@@ -11,22 +11,18 @@ export default function AlertWithDangerState() {
   return (
     <Box sx={{ display: 'flex', gap: 2, width: '100%', flexDirection: 'column' }}>
       <Alert
+        startDecorator={<WarningIcon sx={{ mx: 0.5 }} />}
         variant="soft"
         color="danger"
-        startDecorator={
-          <IconButton variant="soft" size="sm" color="danger">
-            <WarningIcon />
-          </IconButton>
-        }
         endDecorator={
-          <Box sx={{ display: 'flex', alignItems: 'center' }}>
-            <Button variant="soft" color="danger" sx={{ mr: 1, fontWeight: 'md' }}>
+          <React.Fragment>
+            <Button variant="soft" color="danger" sx={{ mr: 1 }}>
               Undo
             </Button>
             <IconButton variant="soft" size="sm" color="danger">
               <CloseIcon />
             </IconButton>
-          </Box>
+          </React.Fragment>
         }
       >
         <Typography color="danger" fontWeight="md">
@@ -34,22 +30,18 @@ export default function AlertWithDangerState() {
         </Typography>
       </Alert>
       <Alert
+        startDecorator={<WarningIcon sx={{ mx: 0.5 }} />}
         variant="solid"
         color="danger"
-        startDecorator={
-          <IconButton variant="solid" size="sm" color="danger">
-            <WarningIcon />
-          </IconButton>
-        }
         endDecorator={
-          <Box sx={{ display: 'flex', alignItems: 'center' }}>
-            <Button variant="solid" color="danger" sx={{ mr: 1, fontWeight: 'md' }}>
+          <React.Fragment>
+            <Button variant="solid" color="danger" sx={{ mr: 1 }}>
               Undo
             </Button>
             <IconButton variant="solid" size="sm" color="danger">
               <CloseIcon />
             </IconButton>
-          </Box>
+          </React.Fragment>
         }
       >
         <Typography sx={{ color: 'white' }} fontWeight="md">
@@ -58,22 +50,18 @@ export default function AlertWithDangerState() {
       </Alert>
 
       <Alert
+        startDecorator={<WarningIcon sx={{ mx: 0.5 }} />}
         variant="outlined"
         color="danger"
-        startDecorator={
-          <IconButton variant="plain" size="sm" color="danger">
-            <WarningIcon />
-          </IconButton>
-        }
         endDecorator={
-          <Box sx={{ display: 'flex', alignItems: 'center' }}>
-            <Button variant="plain" color="danger" sx={{ mr: 1, fontWeight: 'md' }}>
+          <React.Fragment>
+            <Button variant="plain" color="danger" sx={{ mr: 1 }}>
               Undo
             </Button>
-            <IconButton variant="solid" size="sm" color="danger">
+            <IconButton variant="soft" size="sm" color="danger">
               <CloseIcon />
             </IconButton>
-          </Box>
+          </React.Fragment>
         }
       >
         <Typography color="danger" fontWeight="md">
