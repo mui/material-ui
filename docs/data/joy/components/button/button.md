@@ -37,7 +37,7 @@ Choose one of them depending on the button's [action importance](/joy-ui/main-fe
 
 {{"demo": "ButtonVariants.js"}}
 
-:::info
+:::success
 💡**Learn:** To add more variants to the component, visit the [extended variants](/joy-ui/customization/themed-components/#extend-variants) section.
 :::
 
@@ -54,7 +54,7 @@ The button components comes with three sizes out of the box: `sm`, `md` (the def
 
 {{"demo": "ButtonSizes.js"}}
 
-:::info
+:::success
 💡**Learn:** To add more sizes to the component, visit the [extended sizes](/joy-ui/customization/themed-components/#extend-sizes) section.
 :::
 

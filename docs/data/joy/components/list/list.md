@@ -52,7 +52,7 @@ Use the `size` prop to control font-size and general list density.
 
 {{"demo": "SizesList.js"}}
 
-:::info
+:::success
 💡**Learn:** To add more sizes to the component, visit the [extended sizes](/joy-ui/customization/themed-components/#extend-sizes) section.
 :::
 

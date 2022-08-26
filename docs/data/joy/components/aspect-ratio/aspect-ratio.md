@@ -42,7 +42,7 @@ The aspect ratio component supports the four global variants: `soft` (default), 
 
 {{"demo": "VariantsRatio.js"}}
 
-:::info
+:::success
 💡**Learn:** To add more variants to the component, visit the [extended variants](/joy-ui/customization/themed-components/#extend-variants) section.
 :::
 

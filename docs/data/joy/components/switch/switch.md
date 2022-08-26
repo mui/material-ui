@@ -17,7 +17,7 @@ should be made clear from the corresponding inline label.
 
 {{"demo": "SwitchUsage.js", "hideToolbar": true}}
 
-:::info
+:::success
 💡**Learn:** To add more sizes to the component, visit the [extended sizes](/joy-ui/customization/themed-components/#extend-sizes) section.
 :::
 

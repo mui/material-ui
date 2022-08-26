@@ -34,7 +34,7 @@ The avatar components comes with three sizes out of the box: `sm`, `md` (the def
 
 {{"demo": "AvatarSizes.js"}}
 
-:::info
+:::success
 💡**Learn:** To add more sizes to the component, visit the [extended sizes](/joy-ui/customization/themed-components/#extend-sizes) section.
 :::
 
@@ -44,7 +44,7 @@ The avatar component supports the four global variants: `soft` (default), `solid
 
 {{"demo": "AvatarVariants.js"}}
 
-:::info
+:::success
 💡**Learn:** To add more variants to the component, visit the [extended variants](/joy-ui/customization/themed-components/#extend-variants) section.
 :::
 

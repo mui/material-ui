@@ -17,7 +17,7 @@ For more in-depth about when to use each, visit [the NNg's documentation](https:
 
 {{"demo": "RadioUsage.js", "hideToolbar": true}}
 
-:::info
+:::success
 💡**Learn:** To add more variants or sizes to the component, visit the [component customization](/joy-ui/customization/themed-components/#extend-sizes) page.
 :::
 

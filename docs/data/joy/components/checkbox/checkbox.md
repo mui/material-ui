@@ -16,7 +16,7 @@ For toggling between on and off or single option selection, consider using a swi
 
 {{"demo": "CheckboxUsage.js", "hideToolbar": true}}
 
-:::info
+:::success
 💡**Learn:** To add more variants or sizes to the component, visit the [component customization](/joy-ui/customization/themed-components/#extend-sizes) page.
 :::
 
