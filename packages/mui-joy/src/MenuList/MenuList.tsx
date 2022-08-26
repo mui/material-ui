@@ -8,7 +8,7 @@ import { useMenu, MenuUnstyledContext, MenuUnstyledContextType } from '@mui/base
 import { styled, useThemeProps } from '../styles';
 import { ListRoot } from '../List/List';
 import ListProvider, { scopedVariables } from '../List/ListProvider';
-import { MenuListProps, MenuListTypeMap } from './MenuListProps';
+import { MenuListProps, MenuListOwnerState, MenuListTypeMap } from './MenuListProps';
 import { getMenuListUtilityClass } from './menuListClasses';
 
 const useUtilityClasses = (ownerState: MenuListProps) => {
@@ -29,7 +29,7 @@ const MenuListRoot = styled(ListRoot, {
   name: 'MuiMenuList',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: MenuListProps; component?: React.ElementType }>(({ theme, ownerState }) => {
+})<{ ownerState: MenuListOwnerState }>(({ theme, ownerState }) => {
   const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];
   return {
     '--List-radius': theme.vars.radius.sm,
