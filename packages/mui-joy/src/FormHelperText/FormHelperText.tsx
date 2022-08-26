@@ -1,8 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import { OverridableComponent } from '@mui/types';
 import composeClasses from '@mui/base/composeClasses';
+import { useSlotProps } from '@mui/base/utils';
 import { styled, useThemeProps } from '../styles';
 import { FormHelperTextProps, FormHelperTextTypeMap } from './FormHelperTextProps';
 import { getFormHelperTextUtilityClass } from './formHelperTextClasses';
@@ -43,17 +43,19 @@ const FormHelperText = React.forwardRef(function FormHelperText(inProps, ref) {
 
   const classes = useUtilityClasses();
 
-  return (
-    <FormHelperTextRoot
-      ref={ref}
-      as={component}
-      className={clsx(classes.root, className)}
-      ownerState={ownerState}
-      {...other}
-    >
-      {children}
-    </FormHelperTextRoot>
-  );
+  const rootProps = useSlotProps({
+    elementType: FormHelperTextRoot,
+    externalSlotProps: {},
+    externalForwardedProps: other,
+    ownerState,
+    additionalProps: {
+      ref,
+      as: component,
+    },
+    className: classes.root,
+  });
+
+  return <FormHelperTextRoot {...rootProps}>{children}</FormHelperTextRoot>;
 }) as OverridableComponent<FormHelperTextTypeMap>;
 
 FormHelperText.propTypes /* remove-proptypes */ = {

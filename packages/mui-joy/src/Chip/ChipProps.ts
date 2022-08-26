@@ -24,14 +24,14 @@ interface ComponentsProps {
 export interface ChipTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P & {
     /**
+     * The content of the component.
+     */
+    children?: React.ReactNode;
+    /**
      * The props used for each slot inside the Input.
      * @default {}
      */
     componentsProps?: ComponentsProps;
-    /**
-     * The content of the component.
-     */
-    children?: React.ReactNode;
     /**
      * The color of the component. It supports those theme colors that make sense for this component.
      * @default 'primary'
