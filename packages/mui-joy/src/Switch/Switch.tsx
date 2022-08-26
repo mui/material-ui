@@ -217,7 +217,7 @@ const SwitchEndDecorator = styled('span', {
 const Switch = React.forwardRef(function Switch(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
-    name: 'JoySlider',
+    name: 'JoySwitch',
   });
   const {
     checked: checkedProp,
