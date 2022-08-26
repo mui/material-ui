@@ -11,16 +11,16 @@ export default function AlertWithDangerState() {
   return (
     <Box sx={{ display: 'flex', gap: 2, width: '100%', flexDirection: 'column' }}>
       <Alert
+        variant="soft"
+        color="danger"
         startDecorator={
           <IconButton variant="soft" size="sm" color="danger">
             <WarningIcon />
           </IconButton>
         }
-        variant="soft"
-        color="danger"
         endDecorator={
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
-            <Button variant="soft" color="danger" sx={{ mr: 1 }} fontWeight="md">
+            <Button variant="soft" color="danger" sx={{ mr: 1, fontWeight: 'md' }}>
               Undo
             </Button>
             <IconButton variant="soft" size="sm" color="danger">
@@ -34,16 +34,16 @@ export default function AlertWithDangerState() {
         </Typography>
       </Alert>
       <Alert
+        variant="solid"
+        color="danger"
         startDecorator={
           <IconButton variant="solid" size="sm" color="danger">
             <WarningIcon />
           </IconButton>
         }
-        variant="solid"
-        color="danger"
         endDecorator={
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
-            <Button variant="solid" color="danger" sx={{ mr: 1 }} fontWeight="md">
+            <Button variant="solid" color="danger" sx={{ mr: 1, fontWeight: 'md' }}>
               Undo
             </Button>
             <IconButton variant="solid" size="sm" color="danger">
@@ -58,16 +58,16 @@ export default function AlertWithDangerState() {
       </Alert>
 
       <Alert
+        variant="outlined"
+        color="danger"
         startDecorator={
           <IconButton variant="plain" size="sm" color="danger">
             <WarningIcon />
           </IconButton>
         }
-        variant="outlined"
-        color="danger"
         endDecorator={
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
-            <Button variant="plain" color="danger" sx={{ mr: 1 }} fontWeight="md">
+            <Button variant="plain" color="danger" sx={{ mr: 1, fontWeight: 'md' }}>
               Undo
             </Button>
             <IconButton variant="solid" size="sm" color="danger">

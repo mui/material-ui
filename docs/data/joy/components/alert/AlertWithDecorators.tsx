@@ -11,9 +11,9 @@ export default function AlertWithDecorators() {
   return (
     <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, width: '100%' }}>
       <Alert
-        startDecorator={<PlaylistAddCheckCircleRoundedIcon />}
         variant="soft"
         color="success"
+        startDecorator={<PlaylistAddCheckCircleRoundedIcon />}
         endDecorator={
           <Button
             size="sm"
@@ -23,6 +23,7 @@ export default function AlertWithDecorators() {
               textTransform: 'uppercase',
               fontSize: 'xs',
               fontWeight: 'xl',
+              mr: -1,
             }}
           >
             Close
@@ -32,9 +33,9 @@ export default function AlertWithDecorators() {
         Your message was sent successfully.
       </Alert>
       <Alert
-        startDecorator={<AccountCircleRoundedIcon />}
         variant="outlined"
         color="neutral"
+        startDecorator={<AccountCircleRoundedIcon />}
         endDecorator={
           <IconButton variant="plain" size="sm" color="neutral">
             <CloseRoundedIcon />

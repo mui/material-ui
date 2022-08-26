@@ -23,13 +23,13 @@ export default function AlertVariousStates() {
         <Alert
           key={title}
           sx={{ alignItems: 'flex-start', pt: 0.5 }}
+          variant="soft"
+          color={color}
           startDecorator={
             <IconButton variant="soft" size="sm" color={color}>
               {icon}
             </IconButton>
           }
-          variant="soft"
-          color={color}
           endDecorator={
             <IconButton variant="soft" size="sm" color={color}>
               <CloseRoundedIcon />
