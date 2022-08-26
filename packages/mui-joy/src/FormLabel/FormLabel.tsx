@@ -1,8 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import { OverridableComponent } from '@mui/types';
 import composeClasses from '@mui/base/composeClasses';
+import { useSlotProps } from '@mui/base/utils';
 import { styled, useThemeProps } from '../styles';
 import { FormLabelProps, FormLabelTypeMap } from './FormLabelProps';
 import { getFormLabelUtilityClass } from './formLabelClasses';
@@ -46,28 +46,48 @@ const FormLabel = React.forwardRef(function FormLabel(inProps, ref) {
     name: 'JoyFormLabel',
   });
 
-  const { children, className, component, required = false, ...other } = props;
+  const {
+    children,
+    className,
+    component = 'label',
+    componentsProps = {},
+    required = false,
+    ...other
+  } = props;
 
   const ownerState = {
     ...props,
+    required,
   };
 
   const classes = useUtilityClasses();
 
+  const rootProps = useSlotProps({
+    elementType: FormLabelRoot,
+    externalSlotProps: componentsProps.root,
+    externalForwardedProps: other,
+    ownerState,
+    additionalProps: {
+      ref,
+      as: component,
+    },
+    className: classes.root,
+  });
+
+  const asteriskProps = useSlotProps({
+    elementType: AsteriskComponent,
+    externalSlotProps: componentsProps.asterisk,
+    ownerState,
+    additionalProps: {
+      'aria-hidden': true,
+    },
+    className: classes.asterisk,
+  });
+
   return (
-    <FormLabelRoot
-      ref={ref}
-      as={component}
-      className={clsx(classes.root, className)}
-      ownerState={ownerState}
-      {...other}
-    >
+    <FormLabelRoot {...rootProps}>
       {children}
-      {required && (
-        <AsteriskComponent ownerState={ownerState} aria-hidden className={classes.asterisk}>
-          &thinsp;{'*'}
-        </AsteriskComponent>
-      )}
+      {required && <AsteriskComponent {...asteriskProps}>&thinsp;{'*'}</AsteriskComponent>}
     </FormLabelRoot>
   );
 }) as OverridableComponent<FormLabelTypeMap>;
