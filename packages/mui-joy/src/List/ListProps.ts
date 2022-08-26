@@ -60,11 +60,13 @@ export type ListProps<
 
 export interface ListOwnerState extends ListProps {
   /**
+   * @internal
    * The explicit size specified on the element instance.
    */
   instanceSize: ListProps['size'];
   /**
-   * If `true`, the element is wrapped by a <ListItem nested> element.
+   * @internal
+   * If `true`, the element is rendered in a nested list item.
    */
   nesting: boolean;
 }

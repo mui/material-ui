@@ -98,7 +98,7 @@ export interface LinkOwnerState extends LinkProps {
    */
   focusVisible: boolean;
   /**
-   * If `true`, the element is wrapped by a Typography component.
+   * If `true`, the element is rendered by a Typography component.
    */
   nested: boolean;
 }

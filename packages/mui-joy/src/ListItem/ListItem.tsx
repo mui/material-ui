@@ -9,14 +9,14 @@ import { OverridableComponent } from '@mui/types';
 import composeClasses from '@mui/base/composeClasses';
 import { MenuUnstyledContext } from '@mui/base/MenuUnstyled';
 import { styled, useThemeProps } from '../styles';
-import { ListItemProps, ListItemTypeMap } from './ListItemProps';
+import { ListItemProps, ListItemOwnerState, ListItemTypeMap } from './ListItemProps';
 import { getListItemUtilityClass } from './listItemClasses';
 import NestedListContext from '../List/NestedListContext';
 import RowListContext from '../List/RowListContext';
 import WrapListContext from '../List/WrapListContext';
 import ComponentListContext from '../List/ComponentListContext';
 
-const useUtilityClasses = (ownerState: ListItemProps & { nesting: boolean }) => {
+const useUtilityClasses = (ownerState: ListItemOwnerState) => {
   const { sticky, nested, nesting, variant, color } = ownerState;
   const slots = {
     root: [
@@ -38,9 +38,7 @@ const ListItemRoot = styled('li', {
   name: 'JoyListItem',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{
-  ownerState: ListItemProps & { row: boolean; wrap: boolean; 'data-first-child'?: string };
-}>(({ theme, ownerState }) => [
+})<{ ownerState: ListItemOwnerState }>(({ theme, ownerState }) => [
   !ownerState.nested && {
     // add negative margin to ListItemButton equal to this ListItem padding
     '--List-itemButton-marginInline': `calc(-1 * var(--List-item-paddingLeft)) calc(-1 * var(--List-item-paddingRight))`,
@@ -145,7 +143,7 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
   const nesting = React.useContext(NestedListContext);
 
   const {
-    component,
+    component: componentProp,
     className,
     children,
     nested = false,
@@ -154,8 +152,20 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
     color = 'neutral',
     startAction,
     endAction,
+    role: roleProp,
     ...other
   } = props;
+
+  const [listElement, listRole] = listComponent?.split(':') || ['', ''];
+  const component =
+    componentProp || (listElement && !listElement.match(/^(ul|ol|menu)$/) ? 'div' : undefined);
+  const role =
+    roleProp ??
+    (menuContext
+      ? // ListItem can be used inside Menu to create nested menus, so it should have role="none"
+        // https://www.w3.org/WAI/ARIA/apg/example-index/menubar/menubar-navigation.html
+        'none'
+      : { menu: 'none', menubar: 'none', group: 'presentation' }[listRole]);
 
   const ownerState = {
     sticky,
@@ -167,25 +177,20 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
     color,
     nesting,
     nested,
+    component,
+    role,
     ...props,
   };
 
   const classes = useUtilityClasses(ownerState);
-
-  const [listElement, listRole] = listComponent?.split(':') || ['', ''];
   return (
     <NestedListContext.Provider value={nested}>
       <ListItemRoot
         ref={ref}
-        as={component || (listElement && !listElement.match(/^(ul|ol|menu)$/) ? 'div' : undefined)}
+        as={component}
         className={clsx(classes.root, className)}
         ownerState={ownerState}
-        role={{ menu: 'none', menubar: 'none', group: 'presentation' }[listRole]}
-        {...(menuContext && {
-          // ListItem can be used inside Menu to create nested menus, so it should have role="none"
-          // https://www.w3.org/WAI/ARIA/apg/example-index/menubar/menubar-navigation.html
-          role: 'none',
-        })}
+        role={role}
         {...other}
       >
         {startAction && (
