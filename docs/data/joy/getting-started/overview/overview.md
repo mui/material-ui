@@ -35,7 +35,7 @@ Look for the [`package: joy`](https://github.com/mui/material-ui/labels/package%
 Joy UI is intended to serve as an alternative to Material UI for designs that don't adhere to Material Design specifications.
 These two sister libraries feature many of the same components, and similarly designed component APIs, so you can quickly start building with one if you've used the other before.
 
-Try Joy UI if you appreciate the comprehensiveness and reliability of Material UI, but don't need all of the additional design baggage that comes along with Material Design.
+Try Joy UI if you appreciate the comprehensiveness and reliability of Material UI, but don't need all of the additional baggage that comes along with Material Design.
 
 ## Principles
 
