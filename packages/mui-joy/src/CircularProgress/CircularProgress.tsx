@@ -105,6 +105,7 @@ const CircularProgress = React.forwardRef(function CircularProgress(inProps, ref
     props: inProps,
     name: 'JoyCircularProgress',
   });
+
   const {
     children,
     className,
@@ -192,7 +193,6 @@ CircularProgress.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * The thickness of the circle.
-   * @default 3.6
    */
   thickness: PropTypes.number,
   /**
@@ -201,6 +201,11 @@ CircularProgress.propTypes /* remove-proptypes */ = {
    * @default 0
    */
   value: PropTypes.number,
+  /**
+   * The variant to use.
+   * @default 'solid'
+   */
+  variant: PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
 } as any;
 
 export default CircularProgress;
