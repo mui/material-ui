@@ -4,13 +4,13 @@ import { unstable_capitalize as capitalize } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
 import composeClasses from '@mui/base/composeClasses';
 import { useSlotProps, EventHandlers } from '@mui/base/utils';
-import { useInput, InputUnstyledOwnerState } from '@mui/base/InputUnstyled';
 import { styled, useThemeProps } from '../styles';
 import { InputTypeMap, InputProps } from './InputProps';
 import inputClasses, { getInputUtilityClass } from './inputClasses';
+import useForwardedInput from './useForwardedInput';
 
 const useUtilityClasses = (ownerState: InputProps) => {
-  const { classes, disabled, fullWidth, variant, color, size } = ownerState;
+  const { disabled, fullWidth, variant, color, size } = ownerState;
 
   const slots = {
     root: [
@@ -26,14 +26,14 @@ const useUtilityClasses = (ownerState: InputProps) => {
     endDecorator: ['endDecorator'],
   };
 
-  return composeClasses(slots, getInputUtilityClass, classes);
+  return composeClasses(slots, getInputUtilityClass, {});
 };
 
 const InputRoot = styled('div', {
   name: 'JoyInput',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: InputProps & InputUnstyledOwnerState }>(({ theme, ownerState }) => {
+})<{ ownerState: InputProps }>(({ theme, ownerState }) => {
   const variantStyle = theme.variants[`${ownerState.variant!}`]?.[ownerState.color!];
   return [
     {
@@ -137,7 +137,7 @@ const InputInput = styled('input', {
   name: 'JoyInput',
   slot: 'Input',
   overridesResolver: (props, styles) => styles.input,
-})<{ ownerState: InputProps & InputUnstyledOwnerState }>(({ theme, ownerState }) => ({
+})<{ ownerState: InputProps }>(({ theme, ownerState }) => ({
   border: 'none', // remove the native input width
   minWidth: 0, // remove the native input width
   outline: 0, // remove the native input outline
@@ -148,6 +148,9 @@ const InputInput = styled('input', {
   backgroundColor: 'transparent',
   fontFamily: 'inherit',
   fontSize: 'inherit',
+  fontStyle: 'inherit',
+  fontWeight: 'inherit',
+  lineHeight: 'inherit',
   '&:-webkit-autofill': {
     WebkitBackgroundClip: 'text', // remove autofill background
     WebkitTextFillColor: theme.vars.palette[ownerState.color!]?.overrideTextPrimary,
@@ -162,7 +165,7 @@ const InputStartDecorator = styled('span', {
   name: 'JoyInput',
   slot: 'StartDecorator',
   overridesResolver: (props, styles) => styles.startDecorator,
-})<{ ownerState: InputProps & InputUnstyledOwnerState }>(({ theme, ownerState }) => ({
+})<{ ownerState: InputProps & { focused: boolean } }>(({ theme, ownerState }) => ({
   '--Button-margin': '0 0 0 calc(var(--Input-decorator-childOffset) * -1)',
   '--IconButton-margin': '0 0 0 calc(var(--Input-decorator-childOffset) * -1)',
   '--Icon-margin': '0 0 0 calc(var(--Input-paddingInline) / -4)',
@@ -180,7 +183,7 @@ const InputEndDecorator = styled('span', {
   name: 'JoyInput',
   slot: 'EndDecorator',
   overridesResolver: (props, styles) => styles.endDecorator,
-})<{ ownerState: InputProps & InputUnstyledOwnerState }>(({ theme, ownerState }) => ({
+})<{ ownerState: InputProps }>(({ theme, ownerState }) => ({
   '--Button-margin': '0 calc(var(--Input-decorator-childOffset) * -1) 0 0',
   '--IconButton-margin': '0 calc(var(--Input-decorator-childOffset) * -1) 0 0',
   '--Icon-margin': '0 calc(var(--Input-paddingInline) / -4) 0 0',
@@ -197,57 +200,25 @@ const Input = React.forwardRef(function Input(inProps, ref) {
   });
 
   const {
-    'aria-describedby': ariaDescribedby,
-    'aria-label': ariaLabel,
-    'aria-labelledby': ariaLabelledby,
-    autoComplete,
-    autoFocus,
-    className,
-    color = 'neutral',
-    component,
-    componentsProps = {},
-    defaultValue,
-    disabled,
-    endDecorator,
-    fullWidth = false,
-    error,
-    id,
-    name,
-    onClick,
-    onChange,
-    onKeyDown,
-    onKeyUp,
-    onFocus,
-    onBlur,
-    placeholder,
-    readOnly,
-    required,
-    type = 'text',
-    startDecorator,
-    size = 'md',
-    value,
-    variant = 'outlined',
-    ...other
-  } = props;
-
-  const {
+    propsToForward,
+    rootStateClasses,
+    inputStateClasses,
     getRootProps,
     getInputProps,
+    component,
+    componentsProps = {},
     focused,
     formControlContext,
     error: errorState,
     disabled: disabledState,
-  } = useInput({
-    disabled,
-    defaultValue,
-    error,
-    onBlur,
-    onClick,
-    onChange,
-    onFocus,
-    required,
-    value,
-  });
+    fullWidth = false,
+    size = 'md',
+    color = 'neutral',
+    variant = 'outlined',
+    startDecorator,
+    endDecorator,
+    ...other
+  } = useForwardedInput<InputProps>(props, inputClasses);
 
   const ownerState = {
     ...props,
@@ -257,38 +228,11 @@ const Input = React.forwardRef(function Input(inProps, ref) {
     error: errorState,
     focused,
     formControlContext: formControlContext!,
-    type,
     size,
     variant,
   };
 
-  const rootStateClasses = {
-    [inputClasses.disabled]: disabledState,
-    [inputClasses.error]: errorState,
-    [inputClasses.focused]: focused,
-    [inputClasses.formControl]: Boolean(formControlContext),
-  };
-
-  const inputStateClasses = {
-    [inputClasses.disabled]: disabledState,
-  };
-
   const classes = useUtilityClasses(ownerState);
-
-  const propsToForward = {
-    'aria-describedby': ariaDescribedby,
-    'aria-label': ariaLabel,
-    'aria-labelledby': ariaLabelledby,
-    autoComplete,
-    autoFocus,
-    id,
-    onKeyDown,
-    onKeyUp,
-    name,
-    placeholder,
-    readOnly,
-    type,
-  };
 
   const rootProps = useSlotProps({
     elementType: InputRoot,
@@ -300,7 +244,7 @@ const Input = React.forwardRef(function Input(inProps, ref) {
       as: component,
     },
     ownerState,
-    className: [classes.root, rootStateClasses, className],
+    className: [classes.root, rootStateClasses],
   });
 
   const inputProps = useSlotProps({
@@ -341,33 +285,15 @@ Input.propTypes /* remove-proptypes */ = {
   /**
    * @ignore
    */
-  'aria-describedby': PropTypes.string,
-  /**
-   * @ignore
-   */
-  'aria-label': PropTypes.string,
-  /**
-   * @ignore
-   */
-  'aria-labelledby': PropTypes.string,
-  /**
-   * This prop helps users to fill forms faster, especially on mobile devices.
-   * The name can be confusing, as it's more like an autofill.
-   * You can learn more about it [following the specification](https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#autofill).
-   */
   autoComplete: PropTypes.string,
   /**
-   * If `true`, the `input` element is focused during the first mount.
+   * @ignore
    */
   autoFocus: PropTypes.bool,
   /**
    * @ignore
    */
   children: PropTypes.node,
-  /**
-   * Override or extend the styles applied to the component.
-   */
-  classes: PropTypes.object,
   /**
    * Class name applied to the root element.
    */
@@ -381,11 +307,6 @@ Input.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
-   * The component used for the root node.
-   * Either a string to use a HTML element or a component.
-   */
-  component: PropTypes.elementType,
-  /**
    * The props used for each slot inside the Input.
    * @default {}
    */
@@ -394,12 +315,15 @@ Input.propTypes /* remove-proptypes */ = {
     root: PropTypes.object,
   }),
   /**
-   * The default value. Use when the component is not controlled.
+   * @ignore
    */
-  defaultValue: PropTypes.any,
+  defaultValue: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.string),
+    PropTypes.number,
+    PropTypes.string,
+  ]),
   /**
-   * If `true`, the component is disabled.
-   * The prop defaults to the value (`false`) inherited from the parent FormControl component.
+   * @ignore
    */
   disabled: PropTypes.bool,
   /**
@@ -417,17 +341,13 @@ Input.propTypes /* remove-proptypes */ = {
    */
   fullWidth: PropTypes.bool,
   /**
-   * The id of the `input` element.
+   * @ignore
    */
   id: PropTypes.string,
   /**
-   * Name attribute of the `input` element.
-   */
-  name: PropTypes.string,
-  /**
    * @ignore
    */
-  onBlur: PropTypes.func,
+  name: PropTypes.string,
   /**
    * @ignore
    */
@@ -435,31 +355,13 @@ Input.propTypes /* remove-proptypes */ = {
   /**
    * @ignore
    */
-  onClick: PropTypes.func,
-  /**
-   * @ignore
-   */
-  onFocus: PropTypes.func,
-  /**
-   * @ignore
-   */
-  onKeyDown: PropTypes.func,
-  /**
-   * @ignore
-   */
-  onKeyUp: PropTypes.func,
-  /**
-   * The short hint displayed in the `input` before the user enters a value.
-   */
   placeholder: PropTypes.string,
   /**
-   * It prevents the user from changing the value of the field
-   * (not from interacting with the field).
+   * @ignore
    */
   readOnly: PropTypes.bool,
   /**
-   * If `true`, the `input` element is required.
-   * The prop defaults to the value (`false`) inherited from the parent FormControl component.
+   * @ignore
    */
   required: PropTypes.bool,
   /**
@@ -483,14 +385,13 @@ Input.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
-   * Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types).
-   * @default 'plain'
+   * @ignore
    */
-  type: PropTypes.string,
-  /**
-   * The value of the `input` element, required for a controlled component.
-   */
-  value: PropTypes.any,
+  value: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.string),
+    PropTypes.number,
+    PropTypes.string,
+  ]),
   /**
    * The variant to use.
    * @default 'outlined'
