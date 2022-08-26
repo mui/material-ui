@@ -58,8 +58,24 @@ export type TabProps<
 > = OverrideProps<TabTypeMap<P, D>, D>;
 
 export type TabOwnerState = TabProps & {
+  /**
+   * If `true`, the tab is activated by mouse or keyboard.
+   */
   active: boolean;
+  /**
+   * If `true`, the tab's focus is visible.
+   */
   focusVisible: boolean;
+  /**
+   * If `true`, the tab is disabled.
+   */
   disabled: boolean;
+  /**
+   * If `true`, the tab is disabled.
+   */
   selected: boolean;
+  /**
+   * @internal
+   */
+  row: boolean;
 };
