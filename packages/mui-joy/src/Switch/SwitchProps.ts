@@ -13,7 +13,7 @@ export interface SwitchPropsColorOverrides {}
 export interface SwitchPropsSizeOverrides {}
 
 interface ComponentsProps {
-  root?: SlotComponentProps<'span', { sx?: SxProps }, SwitchOwnerState>;
+  root?: SlotComponentProps<'div', { sx?: SxProps }, SwitchOwnerState>;
   thumb?: SlotComponentProps<'span', { sx?: SxProps }, SwitchOwnerState>;
   action?: SlotComponentProps<'div', { sx?: SxProps }, SwitchOwnerState>;
   input?: SlotComponentProps<'button', { sx?: SxProps }, SwitchOwnerState>;
@@ -22,7 +22,7 @@ interface ComponentsProps {
   endDecorator?: SlotComponentProps<'span', { sx?: SxProps }, SwitchOwnerState>;
 }
 
-export interface SwitchTypeMap<P = {}, D extends React.ElementType = 'span'> {
+export interface SwitchTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P &
     UseSwitchParameters & {
       /**

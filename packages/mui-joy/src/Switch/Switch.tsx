@@ -51,7 +51,7 @@ const switchColorVariables =
     };
   };
 
-const SwitchRoot = styled('span', {
+const SwitchRoot = styled('div', {
   name: 'JoySwitch',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
@@ -221,7 +221,7 @@ const Switch = React.forwardRef(function Switch(inProps, ref) {
   });
   const {
     checked: checkedProp,
-    component,
+    component = 'div',
     componentsProps = {},
     defaultChecked,
     disabled: disabledProp,
