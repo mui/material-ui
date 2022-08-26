@@ -11,7 +11,7 @@ Go to your `App.js` file and replace it with the code snippet below. You should 
 ```jsx
 import { CssVarsProvider } from '@mui/joy/styles';
 
-function MyApp() {
+function App() {
   return <CssVarsProvider>Hello from Joy</CssVarsProvider>;
 }
 
@@ -26,7 +26,7 @@ To render any Joy UI component, make sure you place them inside the `CssVarProvi
 import { CssVarsProvider } from '@mui/joy/styles';
 + import Button from '@mui/joy/Button';
 
-function MyApp() {
+function App() {
   return (
     <CssVarsProvider>
 +     <Button>Joy UI</Button>
