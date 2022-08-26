@@ -33,6 +33,12 @@ export default function MyApp() {
 }
 ```
 
+### Variants
+
+The circular progress component supports the four global variants: `solid` (default), `soft`, `outlined` and `plain`.
+
+{{"demo": "CircularProgressVariants.js"}}
+
 ### Colors
 
 Every palette included in the theme is available via the `color` prop.
