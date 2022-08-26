@@ -102,6 +102,7 @@ const Alert = React.forwardRef(function Alert(inProps, ref) {
   const {
     children,
     className,
+    component = 'div',
     color = 'primary',
     role = 'alert',
     variant = 'soft',
@@ -122,6 +123,7 @@ const Alert = React.forwardRef(function Alert(inProps, ref) {
 
   return (
     <AlertRoot
+      as={component}
       role={role}
       ownerState={ownerState}
       className={clsx(classes.root, className)}
@@ -162,6 +164,11 @@ Alert.propTypes /* remove-proptypes */ = {
    * @default 'primary'
    */
   color: PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+  /**
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   */
+  component: PropTypes.elementType,
   /**
    * Element placed after the children.
    */
