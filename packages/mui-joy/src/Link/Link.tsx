@@ -164,7 +164,6 @@ const Link = React.forwardRef(function Link(inProps, ref) {
   const props = extendSxProp({ ...themeProps, color: textColor }) as LinkProps;
 
   const {
-    className,
     component = 'a',
     componentsProps = {},
     children,
