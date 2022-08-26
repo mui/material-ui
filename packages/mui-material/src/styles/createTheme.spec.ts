@@ -182,3 +182,12 @@ const theme = createTheme();
     },
   });
 }
+
+{
+  createTheme({
+    shape: {
+      // @ts-expect-error invalid borderRadius string value in theme
+      borderRadius: '5px',
+    },
+  });
+}
