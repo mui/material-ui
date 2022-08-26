@@ -1,5 +1,5 @@
 ---
-title: Introducing MUI Base
+title: 'Introducing MUI Base: the headless alternative to Material UI'
 description: 'Introduction to a new library of unstyled components and hooks: MUI Base'
 date: 2022-08-29T00:00:00.000Z
 authors: ['michaldudak', 'samuelsycamore']
