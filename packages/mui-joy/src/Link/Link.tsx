@@ -1,6 +1,5 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
 import {
@@ -8,14 +7,15 @@ import {
   unstable_useForkRef as useForkRef,
   unstable_useIsFocusVisible as useIsFocusVisible,
 } from '@mui/utils';
+import { useSlotProps } from '@mui/base/utils';
 import { unstable_extendSxProp as extendSxProp } from '@mui/system';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import linkClasses, { getLinkUtilityClass } from './linkClasses';
-import { LinkProps, LinkTypeMap } from './LinkProps';
+import { LinkProps, LinkOwnerState, LinkTypeMap } from './LinkProps';
 import { TypographyContext } from '../Typography/Typography';
 
-const useUtilityClasses = (ownerState: LinkProps) => {
+const useUtilityClasses = (ownerState: LinkOwnerState) => {
   const { level, color, variant, underline, focusVisible, disabled } = ownerState;
 
   const slots = {
@@ -39,7 +39,7 @@ const StartDecorator = styled('span', {
   name: 'JoyLink',
   slot: 'StartDecorator',
   overridesResolver: (props, styles) => styles.startDecorator,
-})<{ ownerState: LinkProps }>({
+})<{ ownerState: LinkOwnerState }>({
   display: 'inline-flex',
   marginInlineEnd: 'min(var(--Link-gap, 0.25em), 0.5rem)',
 });
@@ -48,7 +48,7 @@ const EndDecorator = styled('span', {
   name: 'JoyLink',
   slot: 'endDecorator',
   overridesResolver: (props, styles) => styles.endDecorator,
-})<{ ownerState: LinkProps }>({
+})<{ ownerState: LinkOwnerState }>({
   display: 'inline-flex',
   marginInlineStart: 'min(var(--Link-gap, 0.25em), 0.5rem)',
 });
@@ -57,7 +57,7 @@ const LinkRoot = styled('a', {
   name: 'JoyLink',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: LinkProps & { nested: boolean } }>(({ theme, ownerState }) => {
+})<{ ownerState: LinkOwnerState }>(({ theme, ownerState }) => {
   return [
     {
       '--Icon-fontSize': '1.25em',
@@ -166,6 +166,7 @@ const Link = React.forwardRef(function Link(inProps, ref) {
   const {
     className,
     component = 'a',
+    componentsProps = {},
     children,
     disabled = false,
     onBlur,
@@ -223,28 +224,40 @@ const Link = React.forwardRef(function Link(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
+  const rootProps = useSlotProps({
+    elementType: LinkRoot,
+    externalSlotProps: componentsProps.root,
+    externalForwardedProps: other,
+    additionalProps: {
+      ref: handleRef,
+      as: component,
+      onBlur: handleBlur,
+      onFocus: handleFocus,
+    },
+    ownerState,
+    className: classes.root,
+  });
+
+  const startDecoratorProps = useSlotProps({
+    elementType: StartDecorator,
+    externalSlotProps: componentsProps.startDecorator,
+    ownerState,
+    className: classes.startDecorator,
+  });
+
+  const endDecoratorProps = useSlotProps({
+    elementType: EndDecorator,
+    externalSlotProps: componentsProps.endDecorator,
+    ownerState,
+    className: classes.endDecorator,
+  });
+
   return (
-    <LinkRoot
-      className={clsx(classes.root, className)}
-      as={component}
-      onBlur={handleBlur}
-      onFocus={handleFocus}
-      ref={handleRef}
-      ownerState={ownerState}
-      {...other}
-    >
-      {startDecorator && (
-        <StartDecorator ownerState={ownerState} className={classes.startDecorator}>
-          {startDecorator}
-        </StartDecorator>
-      )}
+    <LinkRoot {...rootProps}>
+      {startDecorator && <StartDecorator {...startDecoratorProps}>{startDecorator}</StartDecorator>}
 
       {children}
-      {endDecorator && (
-        <EndDecorator ownerState={ownerState} className={classes.endDecorator}>
-          {endDecorator}
-        </EndDecorator>
-      )}
+      {endDecorator && <EndDecorator {...endDecoratorProps}>{endDecorator}</EndDecorator>}
     </LinkRoot>
   );
 }) as OverridableComponent<LinkTypeMap>;
