@@ -1,14 +1,15 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
+import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
-import { unstable_composeClasses as composeClasses } from '@mui/base';
+import composeClasses from '@mui/base/composeClasses';
+import { useSlotProps } from '@mui/base/utils';
 import { useSwitch } from '@mui/base/SwitchUnstyled';
-import { styled, Theme } from '../styles';
+import { styled, useThemeProps, Theme } from '../styles';
 import switchClasses, { getSwitchUtilityClass } from './switchClasses';
-import { SwitchProps } from './SwitchProps';
+import { SwitchTypeMap, SwitchOwnerState } from './SwitchProps';
 
-const useUtilityClasses = (ownerState: SwitchProps & { focusVisible: boolean }) => {
+const useUtilityClasses = (ownerState: SwitchOwnerState) => {
   const { checked, disabled, focusVisible, readOnly, color, variant } = ownerState;
 
   const slots = {
@@ -25,13 +26,15 @@ const useUtilityClasses = (ownerState: SwitchProps & { focusVisible: boolean }) 
     track: ['track', checked && 'checked'],
     action: ['action', focusVisible && 'focusVisible'],
     input: ['input'],
+    startDecorator: ['startDecorator'],
+    endDecorator: ['endDecorator'],
   };
 
   return composeClasses(slots, getSwitchUtilityClass, {});
 };
 
 const switchColorVariables =
-  ({ theme, ownerState }: { theme: Theme; ownerState: SwitchProps }) =>
+  ({ theme, ownerState }: { theme: Theme; ownerState: SwitchOwnerState }) =>
   (data: { state?: 'Hover' | 'Disabled' } = {}) => {
     const variant = ownerState.variant;
     const color = ownerState.color;
@@ -52,7 +55,7 @@ const SwitchRoot = styled('span', {
   name: 'JoySwitch',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: SwitchProps }>(({ theme, ownerState }) => {
+})<{ ownerState: SwitchOwnerState }>(({ theme, ownerState }) => {
   const getColorVariables = switchColorVariables({ theme, ownerState });
   return {
     '--variant-borderWidth':
@@ -115,7 +118,7 @@ const SwitchAction = styled('div', {
   name: 'JoySwitch',
   slot: 'Action',
   overridesResolver: (props, styles) => styles.action,
-})<{ ownerState: SwitchProps }>(({ theme }) => ({
+})<{ ownerState: SwitchOwnerState }>(({ theme }) => ({
   borderRadius: 'var(--Switch-track-radius)',
   position: 'absolute',
   top: 0,
@@ -129,7 +132,7 @@ const SwitchInput = styled('input', {
   name: 'JoySwitch',
   slot: 'Input',
   overridesResolver: (props, styles) => styles.input,
-})<{ ownerState: SwitchProps }>({
+})<{ ownerState: SwitchOwnerState }>({
   margin: 0,
   height: '100%',
   width: '100%',
@@ -142,7 +145,7 @@ const SwitchTrack = styled('span', {
   name: 'JoySwitch',
   slot: 'Track',
   overridesResolver: (props, styles) => styles.track,
-})<{ ownerState: SwitchProps & { focusVisible: boolean } }>(({ theme, ownerState }) => ({
+})<{ ownerState: SwitchOwnerState }>(({ theme, ownerState }) => ({
   position: 'relative',
   color: 'var(--Switch-track-color)',
   height: 'var(--Switch-track-height)',
@@ -172,7 +175,7 @@ const SwitchThumb = styled('span', {
   name: 'JoySwitch',
   slot: 'Thumb',
   overridesResolver: (props, styles) => styles.thumb,
-})<{ ownerState: SwitchProps }>({
+})<{ ownerState: SwitchOwnerState }>({
   '--Icon-fontSize': 'calc(var(--Switch-thumb-size) * 0.75)',
   transition: 'left 0.2s',
   display: 'inline-flex',
@@ -197,7 +200,7 @@ const SwitchStartDecorator = styled('span', {
   name: 'JoySwitch',
   slot: 'StartDecorator',
   overridesResolver: (props, styles) => styles.startDecorator,
-})<{ ownerState: SwitchProps }>({
+})<{ ownerState: SwitchOwnerState }>({
   display: 'inline-flex',
   marginInlineEnd: 'var(--Switch-gap)',
 });
@@ -206,16 +209,18 @@ const SwitchEndDecorator = styled('span', {
   name: 'JoySwitch',
   slot: 'EndDecorator',
   overridesResolver: (props, styles) => styles.endDecorator,
-})<{ ownerState: SwitchProps }>({
+})<{ ownerState: SwitchOwnerState }>({
   display: 'inline-flex',
   marginInlineStart: 'var(--Switch-gap)',
 });
 
-const Switch = React.forwardRef<HTMLSpanElement, SwitchProps>(function Switch(inProps, ref) {
-  const props = inProps;
+const Switch = React.forwardRef(function Switch(inProps, ref) {
+  const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
+    props: inProps,
+    name: 'JoySlider',
+  });
   const {
     checked: checkedProp,
-    className,
     component,
     componentsProps = {},
     defaultChecked,
@@ -232,7 +237,7 @@ const Switch = React.forwardRef<HTMLSpanElement, SwitchProps>(function Switch(in
     size = 'md',
     startDecorator,
     endDecorator,
-    ...otherProps
+    ...other
   } = props;
 
   const useSwitchProps = {
@@ -262,63 +267,94 @@ const Switch = React.forwardRef<HTMLSpanElement, SwitchProps>(function Switch(in
 
   const classes = useUtilityClasses(ownerState);
 
+  const rootProps = useSlotProps({
+    elementType: SwitchRoot,
+    externalSlotProps: componentsProps.root,
+    ownerState,
+    externalForwardedProps: other,
+    additionalProps: {
+      ref,
+      as: component,
+    },
+    className: classes.root,
+  });
+
+  const startDecoratorProps = useSlotProps({
+    elementType: SwitchStartDecorator,
+    externalSlotProps: componentsProps.startDecorator,
+    ownerState,
+    additionalProps: {
+      'aria-hidden': true,
+    },
+    className: classes.startDecorator,
+  });
+
+  const endDecoratorProps = useSlotProps({
+    elementType: SwitchEndDecorator,
+    externalSlotProps: componentsProps.endDecorator,
+    ownerState,
+    additionalProps: {
+      'aria-hidden': false,
+    },
+    className: classes.endDecorator,
+  });
+
+  const trackProps = useSlotProps({
+    elementType: SwitchTrack,
+    externalSlotProps: componentsProps.track,
+    ownerState,
+    className: classes.track,
+  });
+
+  const thumbProps = useSlotProps({
+    elementType: SwitchThumb,
+    externalSlotProps: componentsProps.thumb,
+    ownerState,
+    className: classes.thumb,
+  });
+
+  const actionProps = useSlotProps({
+    elementType: SwitchAction,
+    externalSlotProps: componentsProps.action,
+    ownerState,
+    className: classes.action,
+  });
+
+  const inputProps = useSlotProps({
+    elementType: SwitchInput,
+    getSlotProps: getInputProps,
+    externalSlotProps: componentsProps.input,
+    ownerState,
+    additionalProps: {
+      id,
+    },
+    className: classes.input,
+  });
+
   return (
-    <SwitchRoot
-      ref={ref}
-      {...otherProps}
-      as={component}
-      ownerState={ownerState}
-      className={clsx(classes.root, className)}
-    >
+    <SwitchRoot {...rootProps}>
       {startDecorator && (
-        <SwitchStartDecorator
-          aria-hidden="true"
-          {...componentsProps.startDecorator}
-          ownerState={ownerState}
-          className={clsx(classes.input, componentsProps.startDecorator?.className)}
-        >
+        <SwitchStartDecorator {...startDecoratorProps}>
           {typeof startDecorator === 'function' ? startDecorator(ownerState) : startDecorator}
         </SwitchStartDecorator>
       )}
 
-      <SwitchTrack
-        {...componentsProps.track}
-        ownerState={ownerState}
-        className={clsx(classes.track, componentsProps.track?.className)}
-      >
-        {componentsProps.track?.children}
-        <SwitchThumb
-          {...componentsProps.thumb}
-          ownerState={ownerState}
-          className={clsx(classes.thumb, componentsProps.thumb?.className)}
-        />
+      <SwitchTrack {...trackProps}>
+        {/* @ts-ignore */}
+        {trackProps?.children}
+        <SwitchThumb {...thumbProps} />
       </SwitchTrack>
-      <SwitchAction
-        {...componentsProps.action}
-        ownerState={ownerState}
-        className={clsx(classes.action, componentsProps.action?.className)}
-      >
-        <SwitchInput
-          id={id}
-          {...componentsProps.input}
-          ownerState={ownerState}
-          {...getInputProps()}
-          className={clsx(classes.input, componentsProps.input?.className)}
-        />
+      <SwitchAction {...actionProps}>
+        <SwitchInput {...inputProps} />
       </SwitchAction>
       {endDecorator && (
-        <SwitchEndDecorator
-          aria-hidden="false"
-          {...componentsProps.endDecorator}
-          ownerState={ownerState}
-          className={clsx(classes.input, componentsProps.endDecorator?.className)}
-        >
+        <SwitchEndDecorator {...endDecoratorProps}>
           {typeof endDecorator === 'function' ? endDecorator(ownerState) : endDecorator}
         </SwitchEndDecorator>
       )}
     </SwitchRoot>
   );
-});
+}) as OverridableComponent<SwitchTypeMap>;
 
 Switch.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
