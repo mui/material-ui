@@ -30,58 +30,53 @@ const AlertRoot = styled('div', {
   name: 'JoyAlert',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: AlertProps }>(({ theme, ownerState }) => {
-  return [
-    {
-      '--Alert-radius': theme.vars.radius.sm,
-      '--Alert-gap': '0.5rem',
-      ...(ownerState.size === 'sm' && {
-        fontSize: theme.vars.fontSize.sm,
-        '--Alert-minHeight': '2rem',
-        '--Alert-paddingInline': '0.5rem',
-        '--Alert-decorator-childHeight': 'min(1.5rem, var(--Alert-minHeight))',
-        '--Icon-fontSize': '1.25rem',
-      }),
-      ...(ownerState.size === 'md' && {
-        fontSize: theme.vars.fontSize.md,
-        '--Alert-minHeight': '2.5rem',
-        '--Alert-paddingInline': '0.75rem',
-        '--Alert-decorator-childHeight': 'min(2rem, var(--Alert-minHeight))',
-        '--Icon-fontSize': '1.5rem',
-      }),
-      ...(ownerState.size === 'lg' && {
-        fontSize: theme.vars.fontSize.lg,
-        '--Alert-minHeight': '3rem',
-        '--Alert-paddingInline': '1rem',
-        '--Alert-gap': '0.75rem',
-        '--Alert-decorator-childHeight': 'min(2.375rem, var(--Alert-minHeight))',
-        '--Icon-fontSize': '1.75rem',
-      }),
-      '--Alert-decorator-childOffset':
-        'min(calc(var(--Alert-paddingInline) - (var(--Alert-minHeight) - 2 * var(--variant-borderWidth) - var(--Alert-decorator-childHeight)) / 2), var(--Alert-paddingInline))',
-      minHeight: 'var(--Alert-minHeight)',
-      ...theme.typography.body2,
-      backgroundColor: 'transparent',
-      display: 'flex',
-      alignItems: 'center',
-      paddingInline: `var(--Alert-paddingInline)`,
-      borderRadius: 'var(--Alert-radius)',
-    },
-    theme.variants[ownerState.variant!]?.[ownerState.color!],
-  ];
-});
+})<{ ownerState: AlertProps }>(({ theme, ownerState }) => ({
+  '--Alert-radius': theme.vars.radius.sm,
+  '--Alert-decorator-childRadius':
+    'max((var(--Alert-radius) - var(--variant-borderWidth)) - var(--Alert-padding), min(var(--Alert-padding) / 2, (var(--Alert-radius) - var(--variant-borderWidth)) / 2))',
+  '--Button-minHeight': 'var(--Alert-decorator-childHeight)',
+  '--IconButton-size': 'var(--Alert-decorator-childHeight)',
+  '--Button-radius': 'var(--Alert-decorator-childRadius)',
+  '--IconButton-radius': 'var(--Alert-decorator-childRadius)',
+  ...(ownerState.size === 'sm' && {
+    '--Alert-padding': '0.5rem',
+    '--Alert-gap': '0.375rem',
+    '--Alert-decorator-childHeight': '1.5rem',
+    '--Icon-fontSize': '1.125rem',
+    fontSize: theme.vars.fontSize.sm,
+  }),
+  ...(ownerState.size === 'md' && {
+    '--Alert-padding': '0.75rem',
+    '--Alert-gap': '0.5rem',
+    '--Alert-decorator-childHeight': '2rem',
+    '--Icon-fontSize': '1.25rem',
+    fontSize: theme.vars.fontSize.sm,
+  }),
+  ...(ownerState.size === 'lg' && {
+    '--Alert-padding': '1rem',
+    '--Alert-gap': '0.75rem',
+    '--Alert-decorator-childHeight': '2.375rem',
+    '--Icon-fontSize': '1.5rem',
+    fontSize: theme.vars.fontSize.md,
+  }),
+  fontFamily: theme.vars.fontFamily.body,
+  fontWeight: theme.vars.fontWeight.md,
+  lineHeight: theme.vars.lineHeight.md,
+  backgroundColor: 'transparent',
+  display: 'flex',
+  alignItems: 'center',
+  padding: `var(--Alert-padding)`,
+  borderRadius: 'var(--Alert-radius)',
+  ...theme.variants[ownerState.variant!]?.[ownerState.color!],
+}));
 
 const AlertStartDecorator = styled('span', {
   name: 'JoyAlert',
   slot: 'StartDecorator',
   overridesResolver: (props, styles) => styles.startDecorator,
 })<{ ownerState: AlertProps }>(({ theme, ownerState }) => ({
-  '--Alert-margin': '0 0 0 calc(var(--Alert-decorator-childOffset) * -1)',
-  '--IconButton-margin': '0 0 0 calc(var(--Alert-decorator-childOffset) * -1)',
-  '--Icon-margin': '0 0 0 calc(var(--Alert-paddingInline) / -4)',
-  pointerEvents: 'none', // to make the input focused when click on the element because start element usually is an icon
   display: 'inherit',
-  alignItems: 'center',
+  flex: 'none',
   marginInlineEnd: 'var(--Alert-gap)',
   color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Color`],
 }));
@@ -91,11 +86,8 @@ const AlertEndDecorator = styled('span', {
   slot: 'EndDecorator',
   overridesResolver: (props, styles) => styles.endDecorator,
 })<{ ownerState: AlertProps }>(({ theme, ownerState }) => ({
-  '--Alert-margin': '0 calc(var(--Alert-decorator-childOffset) * -1) 0 0',
-  '--IconButton-margin': '0 calc(var(--Alert-decorator-childOffset) * -1) 0 0',
-  '--Icon-margin': '0 calc(var(--Alert-paddingInline) / -4) 0 0',
   display: 'inherit',
-  alignItems: 'center',
+  flex: 'none',
   marginInlineStart: 'var(--Alert-gap)',
   marginLeft: 'auto',
   color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Color`],
