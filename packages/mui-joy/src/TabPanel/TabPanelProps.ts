@@ -28,6 +28,12 @@ export type TabPanelProps<
 > = OverrideProps<TabPanelTypeMap<P, D>, D>;
 
 export type TabPanelOwnerState = TabPanelProps & {
+  /**
+   * If `true`, the element is not visible on the screen.
+   */
   hidden: boolean;
+  /**
+   * The orientation of the Tabs.
+   */
   orientation?: 'horizontal' | 'vertical';
 };
