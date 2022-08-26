@@ -1,17 +1,17 @@
 import * as React from 'react';
-import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } from '@mui/utils';
 import { unstable_composeClasses as composeClasses, useButton } from '@mui/base';
+import { useSlotProps } from '@mui/base/utils';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
 import Close from '../internal/svg-icons/Close';
 import chipDeleteClasses, { getChipDeleteUtilityClass } from './chipDeleteClasses';
-import { ChipDeleteProps, ChipDeleteTypeMap } from './ChipDeleteProps';
+import { ChipDeleteProps, ChipDeleteOwnerState, ChipDeleteTypeMap } from './ChipDeleteProps';
 import ChipContext from '../Chip/ChipContext';
 
-const useUtilityClasses = (ownerState: ChipDeleteProps & { focusVisible: boolean }) => {
+const useUtilityClasses = (ownerState: ChipDeleteOwnerState) => {
   const { focusVisible, variant, color, disabled } = ownerState;
   const slots = {
     root: [
@@ -30,7 +30,7 @@ const ChipDeleteRoot = styled('button', {
   name: 'JoyChipDelete',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: ChipDeleteProps }>(({ theme, ownerState }) => [
+})<{ ownerState: ChipDeleteOwnerState }>(({ theme, ownerState }) => [
   {
     '--Icon-margin': 'initial', // prevent overrides from parent
     pointerEvents: 'visible', // force the ChipDelete to be hoverable because the decorator can have pointerEvents 'none'
@@ -102,17 +102,19 @@ const ChipDelete = React.forwardRef(function ChipDelete(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  return (
-    <ChipDeleteRoot
-      as={component}
-      className={clsx(classes.root, className)}
-      ownerState={ownerState}
-      {...other}
-      {...getRootProps()}
-    >
-      {children ?? <Close />}
-    </ChipDeleteRoot>
-  );
+  const rootProps = useSlotProps({
+    elementType: ChipDeleteRoot,
+    getSlotProps: getRootProps,
+    externalSlotProps: {},
+    externalForwardedProps: other,
+    ownerState,
+    additionalProps: {
+      as: component,
+    },
+    className: classes.root,
+  });
+
+  return <ChipDeleteRoot {...rootProps}>{children ?? <Close />}</ChipDeleteRoot>;
 }) as OverridableComponent<ChipDeleteTypeMap>;
 
 ChipDelete.propTypes /* remove-proptypes */ = {
