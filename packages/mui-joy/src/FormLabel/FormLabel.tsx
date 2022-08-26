@@ -46,14 +46,7 @@ const FormLabel = React.forwardRef(function FormLabel(inProps, ref) {
     name: 'JoyFormLabel',
   });
 
-  const {
-    children,
-    className,
-    component = 'label',
-    componentsProps = {},
-    required = false,
-    ...other
-  } = props;
+  const { children, component = 'label', componentsProps = {}, required = false, ...other } = props;
 
   const ownerState = {
     ...props,

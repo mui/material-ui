@@ -39,11 +39,6 @@ describe('Joy <Input />', () => {
     expect(screen.getByTestId('end')).toBeVisible();
   });
 
-  it('should change to textarea', () => {
-    const { container } = render(<Input componentsProps={{ input: { component: 'textarea' } }} />);
-    expect(container.firstChild.firstChild).to.have.tagName('textarea');
-  });
-
   describe('prop: disabled', () => {
     it('should have disabled classes', () => {
       const { container } = render(<Input disabled />);

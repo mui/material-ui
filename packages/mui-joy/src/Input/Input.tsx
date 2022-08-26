@@ -252,27 +252,32 @@ const Input = React.forwardRef(function Input(inProps, ref) {
     getSlotProps: (otherHandlers: EventHandlers) =>
       getInputProps({ ...otherHandlers, ...propsToForward }),
     externalSlotProps: componentsProps.input,
-    additionalProps: {
-      as: componentsProps.input?.component,
-    },
     ownerState,
     className: [classes.input, inputStateClasses],
+  });
+
+  const startDecoratorProps = useSlotProps({
+    elementType: InputStartDecorator,
+    externalSlotProps: componentsProps.startDecorator,
+    ownerState,
+    className: classes.startDecorator,
+  });
+
+  const endDecoratorProps = useSlotProps({
+    elementType: InputEndDecorator,
+    externalSlotProps: componentsProps.endDecorator,
+    ownerState,
+    className: classes.endDecorator,
   });
 
   return (
     <InputRoot {...rootProps}>
       {startDecorator && (
-        <InputStartDecorator className={classes.startDecorator} ownerState={ownerState}>
-          {startDecorator}
-        </InputStartDecorator>
+        <InputStartDecorator {...startDecoratorProps}>{startDecorator}</InputStartDecorator>
       )}
 
       <InputInput {...inputProps} />
-      {endDecorator && (
-        <InputEndDecorator className={classes.endDecorator} ownerState={ownerState}>
-          {endDecorator}
-        </InputEndDecorator>
-      )}
+      {endDecorator && <InputEndDecorator {...endDecoratorProps}>{endDecorator}</InputEndDecorator>}
     </InputRoot>
   );
 }) as OverridableComponent<InputTypeMap>;

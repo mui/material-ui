@@ -93,7 +93,6 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
 
   const {
     children,
-    className,
     action,
     component = 'button',
     color = 'primary',

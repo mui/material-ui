@@ -35,7 +35,7 @@ const FormHelperText = React.forwardRef(function FormHelperText(inProps, ref) {
     name: 'JoyFormHelperText',
   });
 
-  const { children, className, component, ...other } = props;
+  const { children, component, ...other } = props;
 
   const ownerState = {
     ...props,

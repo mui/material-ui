@@ -70,7 +70,6 @@ const ChipDelete = React.forwardRef(function ChipDelete(inProps, ref) {
   });
 
   const {
-    className,
     component,
     children,
     variant: variantProp,
