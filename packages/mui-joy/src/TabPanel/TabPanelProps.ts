@@ -27,7 +27,7 @@ export type TabPanelProps<
   P = { component?: React.ElementType },
 > = OverrideProps<TabPanelTypeMap<P, D>, D>;
 
-export type TabPanelOwnerState = TabPanelProps & {
+export interface TabPanelOwnerState extends TabPanelProps {
   /**
    * If `true`, the element is not visible on the screen.
    */
@@ -36,4 +36,4 @@ export type TabPanelOwnerState = TabPanelProps & {
    * The orientation of the Tabs.
    */
   orientation?: 'horizontal' | 'vertical';
-};
+}
