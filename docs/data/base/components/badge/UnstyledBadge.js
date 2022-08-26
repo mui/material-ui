@@ -8,6 +8,7 @@ const blue = {
 
 const grey = {
   300: '#afb8c1',
+  400: '#bdbdbd',
   900: '#24292f',
 };
 
@@ -56,9 +57,7 @@ function BadgeContent() {
         height: 40,
         borderRadius: '12px',
         background: (theme) =>
-          theme.palette.mode === 'dark'
-            ? theme.palette.grey[400]
-            : theme.palette.grey[300],
+          theme.palette.mode === 'dark' ? grey[400] : grey[300],
         display: 'inline-block',
         verticalAlign: 'middle',
       }}
