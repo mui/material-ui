@@ -1,5 +1,5 @@
 import * as React from 'react';
-import MenuUnstyled from '@mui/base/MenuUnstyled';
+import MenuUnstyled, { MenuUnstyledActions } from '@mui/base/MenuUnstyled';
 import MenuItemUnstyled, {
   menuItemUnstyledClasses,
 } from '@mui/base/MenuItemUnstyled';
@@ -108,13 +108,13 @@ const Popper = styled(PopperUnstyled)`
   z-index: 1;
 `;
 
-export default function UnstyledMenuSimple() {
-  const [anchorEl, setAnchorEl] = React.useState(null);
+export default function UnstyledMenuIntroduction() {
+  const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(null);
   const isOpen = Boolean(anchorEl);
-  const buttonRef = React.useRef(null);
-  const menuActions = React.useRef(null);
+  const buttonRef = React.useRef<HTMLButtonElement>(null);
+  const menuActions = React.useRef<MenuUnstyledActions>(null);
 
-  const handleButtonClick = (event) => {
+  const handleButtonClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     if (isOpen) {
       setAnchorEl(null);
     } else {
@@ -122,7 +122,7 @@ export default function UnstyledMenuSimple() {
     }
   };
 
-  const handleButtonKeyDown = (event) => {
+  const handleButtonKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
     if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
       event.preventDefault();
       setAnchorEl(event.currentTarget);
@@ -134,10 +134,10 @@ export default function UnstyledMenuSimple() {
 
   const close = () => {
     setAnchorEl(null);
-    buttonRef.current.focus();
+    buttonRef.current!.focus();
   };
 
-  const createHandleMenuClick = (menuItem) => {
+  const createHandleMenuClick = (menuItem: string) => {
     return () => {
       console.log(`Clicked on ${menuItem}`);
       close();

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import SelectUnstyled, { selectUnstyledClasses } from '@mui/base/SelectUnstyled';
 import OptionUnstyled, { optionUnstyledClasses } from '@mui/base/OptionUnstyled';
 import PopperUnstyled from '@mui/base/PopperUnstyled';
@@ -36,6 +37,37 @@ const Button = React.forwardRef(function Button(props, ref) {
     </button>
   );
 });
+
+Button.propTypes = {
+  children: PropTypes.node,
+  ownerState: PropTypes.shape({
+    active: PropTypes.bool.isRequired,
+    autoFocus: PropTypes.bool,
+    children: PropTypes.node,
+    className: PropTypes.string,
+    components: PropTypes.shape({
+      Listbox: PropTypes.elementType,
+      Popper: PropTypes.func,
+      Root: PropTypes.elementType,
+    }),
+    componentsProps: PropTypes.shape({
+      listbox: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+      popper: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+      root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    }),
+    defaultListboxOpen: PropTypes.bool,
+    defaultValue: PropTypes.object,
+    disabled: PropTypes.bool.isRequired,
+    focusVisible: PropTypes.bool.isRequired,
+    listboxId: PropTypes.string,
+    listboxOpen: PropTypes.bool,
+    onChange: PropTypes.func,
+    onListboxOpenChange: PropTypes.func,
+    open: PropTypes.bool.isRequired,
+    renderValue: PropTypes.func,
+    value: PropTypes.object,
+  }).isRequired,
+};
 
 const StyledButton = styled(Button, { shouldForwardProp: () => true })(
   ({ theme }) => `
@@ -146,13 +178,26 @@ const CustomSelect = React.forwardRef(function CustomSelect(props, ref) {
 
   return (
     <SelectUnstyled
-      defaultListboxOpen="open"
+      defaultListboxOpen
       {...props}
       ref={ref}
       components={components}
     />
   );
 });
+
+CustomSelect.propTypes = {
+  /**
+   * The components used for each slot inside the Select.
+   * Either a string to use a HTML element or a component.
+   * @default {}
+   */
+  components: PropTypes.shape({
+    Listbox: PropTypes.elementType,
+    Popper: PropTypes.func,
+    Root: PropTypes.elementType,
+  }),
+};
 
 export default function UnstyledSelectIntroduction() {
   return (

@@ -4,7 +4,7 @@ import TablePaginationUnstyled, {
   tablePaginationUnstyledClasses as classes,
 } from '@mui/base/TablePaginationUnstyled';
 
-function createData(name, calories, fat) {
+function createData(name: string, calories: number, fat: number) {
   return { name, calories, fat };
 }
 
@@ -141,15 +141,20 @@ const CustomTablePagination = styled(TablePaginationUnstyled)(
   `,
 );
 
-export default function UnstyledTable() {
+export default function UnstyledPaginationIntroduction() {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
-  const handleChangePage = (event, newPage) => {
+  const handleChangePage = (
+    event: React.MouseEvent<HTMLButtonElement> | null,
+    newPage: number,
+  ) => {
     setPage(newPage);
   };
 
-  const handleChangeRowsPerPage = (event) => {
+  const handleChangeRowsPerPage = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
@@ -172,7 +177,7 @@ export default function UnstyledTable() {
                 actions: {
                   showFirstButton: true,
                   showLastButton: true,
-                },
+                } as any,
               }}
               onPageChange={handleChangePage}
               onRowsPerPageChange={handleChangeRowsPerPage}

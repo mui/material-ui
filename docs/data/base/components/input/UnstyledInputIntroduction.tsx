@@ -48,12 +48,15 @@ const StyledInputElement = styled('input')(
 `,
 );
 
-const CustomInput = React.forwardRef(function CustomInput(props, ref) {
+const CustomInput = React.forwardRef(function CustomInput(
+  props: React.InputHTMLAttributes<HTMLInputElement>,
+  ref: React.ForwardedRef<HTMLDivElement>,
+) {
   return (
     <InputUnstyled components={{ Input: StyledInputElement }} {...props} ref={ref} />
   );
 });
 
-export default function UnstyledInputBasic() {
+export default function UnstyledInputIntroduction() {
   return <CustomInput aria-label="Demo input" placeholder="Type something…" />;
 }

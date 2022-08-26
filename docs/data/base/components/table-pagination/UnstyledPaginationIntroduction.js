@@ -141,7 +141,7 @@ const CustomTablePagination = styled(TablePaginationUnstyled)(
   `,
 );
 
-export default function UnstyledTable() {
+export default function UnstyledPaginationIntroduction() {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
 

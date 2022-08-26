@@ -1,5 +1,9 @@
 import * as React from 'react';
-import SelectUnstyled, { selectUnstyledClasses } from '@mui/base/SelectUnstyled';
+import SelectUnstyled, {
+  selectUnstyledClasses,
+  SelectUnstyledProps,
+  SelectUnstyledRootSlotProps,
+} from '@mui/base/SelectUnstyled';
 import OptionUnstyled, { optionUnstyledClasses } from '@mui/base/OptionUnstyled';
 import PopperUnstyled from '@mui/base/PopperUnstyled';
 import { styled } from '@mui/system';
@@ -27,7 +31,10 @@ const grey = {
   900: '#24292f',
 };
 
-const Button = React.forwardRef(function Button(props, ref) {
+const Button = React.forwardRef(function Button<TValue>(
+  props: SelectUnstyledRootSlotProps<TValue>,
+  ref: React.ForwardedRef<HTMLButtonElement>,
+) {
   const { ownerState, ...other } = props;
   return (
     <button type="button" {...other} ref={ref}>
@@ -136,7 +143,10 @@ const StyledPopper = styled(PopperUnstyled)`
   z-index: 1;
 `;
 
-const CustomSelect = React.forwardRef(function CustomSelect(props, ref) {
+const CustomSelect = React.forwardRef(function CustomSelect<TValue>(
+  props: SelectUnstyledProps<TValue>,
+  ref: React.ForwardedRef<HTMLButtonElement>,
+) {
   const components = {
     Root: StyledButton,
     Listbox: StyledListbox,
@@ -146,7 +156,7 @@ const CustomSelect = React.forwardRef(function CustomSelect(props, ref) {
 
   return (
     <SelectUnstyled
-      defaultListboxOpen="open"
+      defaultListboxOpen
       {...props}
       ref={ref}
       components={components}

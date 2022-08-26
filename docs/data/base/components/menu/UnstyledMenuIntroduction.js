@@ -108,7 +108,7 @@ const Popper = styled(PopperUnstyled)`
   z-index: 1;
 `;
 
-export default function UnstyledMenuSimple() {
+export default function UnstyledMenuIntroduction() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const isOpen = Boolean(anchorEl);
   const buttonRef = React.useRef(null);
