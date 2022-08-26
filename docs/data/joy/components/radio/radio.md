@@ -117,9 +117,13 @@ Visit the [WAI-ARIA documentation](https://www.w3.org/WAI/ARIA/apg/patterns/radi
 
 ## Common examples
 
+### Segmented controls
+
+{{"demo": "ExampleSegmentedControls.js"}}
+
 ### Alignment buttons
 
-Simply provide an icon as a label to the `Radio` to make the radio buttons concise. You need to provide `aria-label` to the input slot for users who rely on screen readers.
+Provide an icon as a label to the `Radio` to make the radio buttons concise. You need to provide `aria-label` to the input slot for users who rely on screen readers.
 
 {{"demo": "ExampleAlignmentButtons.js"}}
 
