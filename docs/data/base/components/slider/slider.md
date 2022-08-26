@@ -17,7 +17,7 @@ The `SliderUnstyled` component lets users make selections from a range of values
 
 Sliders are ideal for interface controls that benefit from a visual representation of adjustable content, such as volume or brightness settings, or for applying image filters such as gradients or saturation.
 
-{{"demo": "UnstyledSliderIntroduction.js", "defaultCodeOpen": false, "bg": "gradient"}}
+{{"demo": "UnstyledSliderIntroduction.tsx", "defaultCodeOpen": false, "bg": "gradient"}}
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 

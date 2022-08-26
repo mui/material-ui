@@ -16,7 +16,7 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/button/
 
 `ButtonUnstyled` replaces the native HTML `<button>` element.
 
-{{"demo": "UnstyledButtonIntroduction.js", "defaultCodeOpen": false, "bg": "gradient"}}
+{{"demo": "UnstyledButtonIntroduction.tsx", "defaultCodeOpen": false, "bg": "gradient"}}
 
 ## Component
 

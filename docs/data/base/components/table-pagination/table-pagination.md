@@ -21,7 +21,7 @@ It controls two properties of its parent table:
 You can use the `component` or `components.Root` prop to render a different root element—for example, if you need to place the pagination controls outside of the table.
 See the [Slot props section](#slot-props) for details.
 
-{{"demo": "UnstyledPaginationIntroduction.js", "defaultCodeOpen": false, "bg": "gradient"}}
+{{"demo": "UnstyledPaginationIntroduction.tsx", "defaultCodeOpen": false, "bg": "gradient"}}
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
