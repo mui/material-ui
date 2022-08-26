@@ -26,12 +26,8 @@ export default function AlertVariousStates() {
       {items.map(({ title, color, icon }) => (
         <Alert
           key={title}
-          sx={{ alignItems: 'flex-start', pt: 0.5 }}
-          startDecorator={
-            <IconButton variant="soft" size="sm" color={color}>
-              {icon}
-            </IconButton>
-          }
+          sx={{ alignItems: 'flex-start' }}
+          startDecorator={React.cloneElement(icon, { sx: { mt: '2px', mx: '4px' } })}
           variant="soft"
           color={color}
           endDecorator={
@@ -40,10 +36,12 @@ export default function AlertVariousStates() {
             </IconButton>
           }
         >
-          <Box sx={{ display: 'flex', flexDirection: 'column', pt: 0.5, pb: 1 }}>
+          <div>
             <Typography fontWeight="lg">{title}</Typography>
-            <Typography fontSize="sm">{`${title} message.`}</Typography>
-          </Box>
+            <Typography fontSize="sm" sx={{ opacity: 0.8 }}>
+              This is a {title} message.
+            </Typography>
+          </div>
         </Alert>
       ))}
     </Box>

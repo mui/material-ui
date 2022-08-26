@@ -18,6 +18,12 @@ export default function AlertUsage() {
           knob: 'color',
           defaultValue: 'primary',
         },
+        {
+          propName: 'size',
+          knob: 'radio',
+          options: ['sm', 'md', 'lg'],
+          defaultValue: 'md',
+        },
       ]}
       renderDemo={(props) => (
         <Alert {...props}>This is a Joy UI alert — check it out!</Alert>
