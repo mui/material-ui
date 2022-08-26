@@ -7,7 +7,7 @@ tags: ['News', 'MUI Core']
 card: true
 ---
 
-<!-- hero image goes here -->
+<img src="/static/blog/introducing-mui-base/hero-image.png" style="width: 796px; margin-bottom: 24px;" alt="Demo components built with MUI Base, a newly introduced library of unstyled components and hooks" />
 
 While Material UI is excellent for building sleek user interfaces that adhere closely to Material Design, it can become unwieldy when your design system diverges significantly from the defaults.
 We get it.
