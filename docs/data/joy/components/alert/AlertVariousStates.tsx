@@ -27,7 +27,10 @@ export default function AlertVariousStates() {
         <Alert
           key={title}
           sx={{ alignItems: 'flex-start' }}
-          startDecorator={React.cloneElement(icon, { sx: { mt: '2px', mx: '4px' } })}
+          startDecorator={React.cloneElement(icon, {
+            sx: { mt: '2px', mx: '4px' },
+            fontSize: 'xl2',
+          })}
           variant="soft"
           color={color}
           endDecorator={
@@ -37,7 +40,9 @@ export default function AlertVariousStates() {
           }
         >
           <div>
-            <Typography fontWeight="lg">{title}</Typography>
+            <Typography fontWeight="lg" mt={0.25}>
+              {title}
+            </Typography>
             <Typography fontSize="sm" sx={{ opacity: 0.8 }}>
               This is a {title} message.
             </Typography>
