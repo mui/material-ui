@@ -1,5 +1,7 @@
 <CircularProgress size="lg">
-  <Typography fontSize="xs" fontWeight="md">82.5</Typography>
+  <Typography fontSize="xs" fontWeight="md">
+    82.5
+  </Typography>
 </CircularProgress>
 <CircularProgress size="lg" color="warning">
   <IconButton variant="plain" size="sm" color="warning">
