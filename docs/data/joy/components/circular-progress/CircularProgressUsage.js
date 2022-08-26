@@ -8,6 +8,12 @@ export default function CircularProgressUsage() {
       componentName="CircularProgress"
       data={[
         {
+          propName: 'variant',
+          knob: 'select',
+          defaultValue: 'solid',
+          options: ['plain', 'outlined', 'soft', 'solid'],
+        },
+        {
           propName: 'color',
           knob: 'color',
           defaultValue: 'primary',

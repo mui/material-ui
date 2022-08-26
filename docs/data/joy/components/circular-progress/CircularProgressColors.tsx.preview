@@ -1,6 +1,0 @@
-<CircularProgress color="primary" />
-<CircularProgress color="neutral" />
-<CircularProgress color="danger" />
-<CircularProgress color="info" />
-<CircularProgress color="success" />
-<CircularProgress color="warning" />
