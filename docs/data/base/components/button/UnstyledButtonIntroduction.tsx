@@ -10,6 +10,7 @@ const blue = {
 };
 
 const grey = {
+  100: '#eaeef2',
   300: '#afb8c1',
   900: '#24292f',
 };
