@@ -1,5 +1,5 @@
 import { unstable_composeClasses as composeClasses } from '@mui/base';
-import { css, keyframes } from '@mui/system';
+import { keyframes } from '@mui/system';
 import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import clsx from 'clsx';
@@ -10,34 +10,14 @@ import useThemeProps from '../styles/useThemeProps';
 import { getCircularProgressUtilityClass } from './circularProgressClasses';
 import { CircularProgressProps, CircularProgressTypeMap } from './CircularProgressProps';
 
-const SIZE = 44;
-
-const circularRotateKeyframe = keyframes`
-  0% {
-    transform: rotate(0deg);
-  }
-
-  100% {
-    transform: rotate(360deg);
-  }
-`;
-
-const circularDashKeyframe = keyframes`
-  0% {
-    stroke-dasharray: 1px, 200px;
-    stroke-dashoffset: 0;
-  }
-
-  50% {
-    stroke-dasharray: 100px, 200px;
-    stroke-dashoffset: -15px;
-  }
-
-  100% {
-    stroke-dasharray: 100px, 200px;
-    stroke-dashoffset: -125px;
-  }
-`;
+const circulate = keyframes({
+  '0%': {
+    transform: 'rotate(0deg)',
+  },
+  '100%': {
+    transform: 'rotate(360deg)',
+  },
+});
 
 const useUtilityClasses = (ownerState: CircularProgressProps) => {
   const { determinate, color } = ownerState;
@@ -48,80 +28,69 @@ const useUtilityClasses = (ownerState: CircularProgressProps) => {
       determinate ? 'determinate' : 'indeterminate',
       color && `color${capitalize(color)}`,
     ],
-    svg: ['svg'],
-    circle: ['circle', determinate ? `circleDeterminate` : 'circleIndeterminate'],
+    progress: ['progress'],
   };
 
   return composeClasses(slots, getCircularProgressUtilityClass, {});
 };
 
-const CircularProgressRoot = styled('span', {
+const CircularProgressRoot = styled('div', {
   name: 'JoyCircularProgress',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: CircularProgressProps }>(
-  ({ theme, ownerState }) => {
-    return [
-      {
-        display: 'inline-block',
-        ...(ownerState.determinate && {
-          transition: 'transform 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
-        }),
-        color: theme.vars.palette[ownerState.color!].mainChannel,
-        ...(ownerState.size === 'sm' && {
-          width: 35,
-          height: 35,
-        }),
-        ...(ownerState.size === 'md' && {
-          width: 45,
-          height: 45,
-        }),
-        ...(ownerState.size === 'lg' && {
-          width: 55,
-          height: 55,
-        }),
-      },
-    ];
-  },
-  ({ ownerState }) =>
-    !ownerState.determinate &&
-    css`
-      animation: ${circularRotateKeyframe} 1.4s linear infinite;
-    `,
-);
-
-const CircularProgressSVG = styled('svg', {
-  name: 'JoyCircularProgress',
-  slot: 'Svg',
-  overridesResolver: (props, styles) => styles.svg,
-})<{ ownerState: CircularProgressProps }>({
-  display: 'block', // Keeps the progress centered
+})<{ ownerState: CircularProgressProps }>(({ theme, ownerState }) => {
+  return [
+    {
+      ...(ownerState.size === 'sm' && {
+        '--Icon-fontSize': '2rem',
+        '--CircularProgress-thickness': `${ownerState.thickness || 4}px`,
+      }),
+      ...(ownerState.size === 'md' && {
+        '--Icon-fontSize': '2.5rem',
+        '--CircularProgress-thickness': `${ownerState.thickness || 5}px`,
+      }),
+      ...(ownerState.size === 'lg' && {
+        '--Icon-fontSize': '3rem',
+        '--CircularProgress-thickness': `${ownerState.thickness || 6}px`,
+      }),
+      borderRadius: '50%',
+      border: `var(--CircularProgress-thickness) ${
+        ownerState.variant === 'outlined' ? 'dashed' : 'solid'
+      }`,
+      borderColor: theme.vars.palette[ownerState.color!][`${ownerState.variant!}Bg`],
+      width: 'var(--Icon-fontSize)',
+      height: 'var(--Icon-fontSize)',
+      boxSizing: 'border-box',
+      position: 'relative',
+    },
+  ];
 });
 
-const CircularProgressCircle = styled('circle', {
+const CircularProgressProgress = styled('div', {
   name: 'JoyCircularProgress',
-  slot: 'Circle',
-  overridesResolver: (props, styles) => styles.circle,
-})<{ ownerState: CircularProgressProps }>(
-  ({ theme, ownerState }) => ({
-    stroke: theme.vars.palette[ownerState.color!]['500'],
-    // Use butt to follow the specification, by chance, it's already the default CSS value.
-    // strokeLinecap: 'butt',
-    ...(ownerState.determinate && {
-      transition: 'stroke-dashoffset 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
-    }),
-    ...(!ownerState.determinate && {
-      // Some default value that looks fine waiting for the animation to kicks in.
-      strokeDasharray: '80px, 200px',
-      strokeDashoffset: 0, // Add the unit to fix a Edge 16 and below bug.
-    }),
-  }),
-  ({ ownerState }) =>
-    !ownerState.determinate &&
-    css`
-      animation: ${circularDashKeyframe} 1.4s ease-in-out infinite;
-    `,
-);
+  slot: 'Progress',
+  overridesResolver: (props, styles) => styles.root,
+})<{ ownerState: CircularProgressProps }>(({ theme, ownerState }) => {
+  return [
+    {
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      position: 'absolute',
+      top: 'calc(-1 * var(--CircularProgress-thickness))',
+      left: 'calc(-1 * var(--CircularProgress-thickness))',
+      width: 'inherit',
+      height: 'inherit',
+      borderRadius: 'inherit',
+      border: 'inherit',
+      boxSizing: 'inherit',
+      borderColor: `${
+        theme.vars.palette[ownerState.color!][`${ownerState.variant!}Color`]
+      } transparent transparent`,
+      animation: `${circulate} 1s ease infinite`,
+    },
+  ];
+});
 
 /**
  * ## ARIA
@@ -131,12 +100,17 @@ const CircularProgressCircle = styled('circle', {
  * attribute to `true` on that region until it has finished loading.
  */
 const CircularProgress = React.forwardRef(function CircularProgress(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'JoyCircularProgress' });
+  const props = useThemeProps<typeof inProps & CircularProgressProps>({
+    props: inProps,
+    name: 'JoyCircularProgress',
+  });
   const {
+    children,
     className,
     color = 'primary',
     size = 'md',
-    thickness = 3.6,
+    variant = 'solid',
+    thickness,
     style,
     value = 0,
     determinate = false,
@@ -147,24 +121,15 @@ const CircularProgress = React.forwardRef(function CircularProgress(inProps, ref
     ...props,
     color,
     size,
+    variant,
     thickness,
     value,
     determinate,
   };
 
   const classes = useUtilityClasses(ownerState);
-
-  const circleStyle: { strokeDasharray?: string; strokeDashoffset?: string } = {};
   const rootStyle: { transform?: string } = {};
   const rootProps: { 'aria-valuenow'?: number } = {};
-
-  if (determinate) {
-    const circumference = 2 * Math.PI * ((SIZE - thickness) / 2);
-    circleStyle.strokeDasharray = circumference.toFixed(3);
-    rootProps['aria-valuenow'] = Math.round(value);
-    circleStyle.strokeDashoffset = `${(((100 - value) / 100) * circumference).toFixed(3)}px`;
-    rootStyle.transform = 'rotate(-90deg)';
-  }
 
   return (
     <CircularProgressRoot
@@ -176,22 +141,9 @@ const CircularProgress = React.forwardRef(function CircularProgress(inProps, ref
       {...rootProps}
       {...other}
     >
-      <CircularProgressSVG
-        className={classes.svg}
-        ownerState={ownerState}
-        viewBox={`${SIZE / 2} ${SIZE / 2} ${SIZE} ${SIZE}`}
-      >
-        <CircularProgressCircle
-          className={classes.circle}
-          style={circleStyle}
-          ownerState={ownerState}
-          cx={SIZE}
-          cy={SIZE}
-          r={(SIZE - thickness) / 2}
-          fill="none"
-          strokeWidth={thickness}
-        />
-      </CircularProgressSVG>
+      <CircularProgressProgress className={classes.progress} ownerState={ownerState}>
+        {children}
+      </CircularProgressProgress>
     </CircularProgressRoot>
   );
 }) as OverridableComponent<CircularProgressTypeMap>;

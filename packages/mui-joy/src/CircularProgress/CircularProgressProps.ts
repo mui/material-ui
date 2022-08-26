@@ -1,13 +1,14 @@
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import * as React from 'react';
-import { ColorPaletteProp, SxProps } from '../styles/types';
+import { ColorPaletteProp, SxProps, VariantProp } from '../styles/types';
 
-export type CircularProgressSlot = 'root' | 'svg' | 'circle';
+export type CircularProgressSlot = 'root' | 'progress';
 
 export interface CircularProgressPropsColorOverrides {}
 export interface CircularProgressPropsSizeOverrides {}
+export interface CircularProgressPropsVariantOverrides {}
 
-export interface CircularProgressTypeMap<P = {}, D extends React.ElementType = 'span'> {
+export interface CircularProgressTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P & {
     /**
      * The color of the component. It supports those theme colors that make sense for this component.
@@ -32,7 +33,6 @@ export interface CircularProgressTypeMap<P = {}, D extends React.ElementType = '
     sx?: SxProps;
     /**
      * The thickness of the circle.
-     * @default 3.6
      */
     thickness?: number;
     /**
@@ -41,6 +41,11 @@ export interface CircularProgressTypeMap<P = {}, D extends React.ElementType = '
      * @default 0
      */
     value?: number;
+    /**
+     * The variant to use.
+     * @default 'solid'
+     */
+    variant?: OverridableStringUnion<VariantProp, CircularProgressPropsVariantOverrides>;
   };
   defaultComponent: D;
 }
