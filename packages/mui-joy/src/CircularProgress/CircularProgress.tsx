@@ -41,16 +41,17 @@ const CircularProgressRoot = styled('div', {
 })<{ ownerState: CircularProgressProps }>(({ theme, ownerState }) => {
   return [
     {
+      '--CircularProgress-speed': '1s',
       ...(ownerState.size === 'sm' && {
-        '--Icon-fontSize': '2rem',
+        '--CircularProgress-size': '2rem',
         '--CircularProgress-thickness': `${ownerState.thickness || 4}px`,
       }),
       ...(ownerState.size === 'md' && {
-        '--Icon-fontSize': '2.5rem',
+        '--CircularProgress-size': '2.5rem',
         '--CircularProgress-thickness': `${ownerState.thickness || 5}px`,
       }),
       ...(ownerState.size === 'lg' && {
-        '--Icon-fontSize': '3rem',
+        '--CircularProgress-size': '3rem',
         '--CircularProgress-thickness': `${ownerState.thickness || 6}px`,
       }),
       borderRadius: '50%',
@@ -58,8 +59,8 @@ const CircularProgressRoot = styled('div', {
         ownerState.variant === 'outlined' ? 'dashed' : 'solid'
       }`,
       borderColor: theme.vars.palette[ownerState.color!][`${ownerState.variant!}Bg`],
-      width: 'var(--Icon-fontSize)',
-      height: 'var(--Icon-fontSize)',
+      width: 'var(--CircularProgress-size)',
+      height: 'var(--CircularProgress-size)',
       boxSizing: 'border-box',
       position: 'relative',
     },
@@ -87,7 +88,7 @@ const CircularProgressProgress = styled('div', {
       borderColor: `${
         theme.vars.palette[ownerState.color!][`${ownerState.variant!}Color`]
       } transparent transparent`,
-      animation: `${circulate} 1s ease infinite`,
+      animation: `${circulate} var(--CircularProgress-speed) ease infinite`,
     },
   ];
 });
