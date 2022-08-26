@@ -57,3 +57,14 @@ export type ListProps<
     component?: React.ElementType;
   },
 > = OverrideProps<ListTypeMap<P, D>, D>;
+
+export interface ListOwnerState extends ListProps {
+  /**
+   * The explicit size specified on the element instance.
+   */
+  instanceSize: ListProps['size'];
+  /**
+   * If `true`, the element is wrapped by a <ListItem nested> element.
+   */
+  nesting: boolean;
+}

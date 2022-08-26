@@ -1,9 +1,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
 import composeClasses from '@mui/base/composeClasses';
+import { useSlotProps } from '@mui/base/utils';
 import { MenuUnstyledContext } from '@mui/base/MenuUnstyled';
 import { SelectUnstyledContext } from '@mui/base/SelectUnstyled';
 import { styled, useThemeProps } from '../styles';
@@ -163,6 +163,8 @@ const List = React.forwardRef(function List(inProps, ref) {
     ...other
   } = props;
 
+  const role = roleProp ?? (menuContext || selectContext ? 'group' : undefined);
+
   const ownerState = {
     instanceSize: inProps.size,
     size,
@@ -171,21 +173,27 @@ const List = React.forwardRef(function List(inProps, ref) {
     wrap,
     variant,
     color,
+    role,
     ...props,
   };
 
   const classes = useUtilityClasses(ownerState);
 
-  const role = roleProp ?? (menuContext || selectContext ? 'group' : undefined);
+  const rootProps = useSlotProps({
+    elementType: ListRoot,
+    externalSlotProps: {},
+    externalForwardedProps: other,
+    ownerState,
+    additionalProps: {
+      ref,
+      as: component,
+      role,
+    },
+    className: classes.root,
+  });
+
   return (
-    <ListRoot
-      ref={ref}
-      as={component}
-      className={clsx(classes.root, className)}
-      ownerState={ownerState}
-      role={role}
-      {...other}
-    >
+    <ListRoot {...rootProps}>
       <ComponentListContext.Provider
         value={`${typeof component === 'string' ? component : ''}:${role || ''}`}
       >
