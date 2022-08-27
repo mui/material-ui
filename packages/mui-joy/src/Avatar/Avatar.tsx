@@ -151,6 +151,7 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
     componentsProps = {},
     size: sizeProp = 'md',
     variant: variantProp = 'soft',
+    imgProps,
     src,
     srcSet,
     children: childrenProp,
@@ -173,6 +174,7 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
 
   // Use a hook instead of onError on the img element to support server-side rendering.
   const loaded = useLoaded({
+    ...imgProps,
     ...(typeof componentsProps.img === 'function'
       ? componentsProps.img(ownerState)
       : componentsProps.img),
@@ -185,7 +187,7 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  const imgProps = useSlotProps({
+  const imageProps = useSlotProps({
     elementType: AvatarImg,
     externalSlotProps: componentsProps.img,
     ownerState,
@@ -193,6 +195,7 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
       alt,
       src,
       srcSet,
+      ...imgProps,
     },
     className: classes.img,
   });
@@ -205,7 +208,7 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
   });
 
   if (hasImgNotFailing) {
-    children = <AvatarImg {...imgProps} />;
+    children = <AvatarImg {...imageProps} />;
   } else if (childrenProp != null) {
     children = childrenProp;
   } else if (hasImg && alt) {

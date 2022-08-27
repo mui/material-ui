@@ -49,7 +49,7 @@ const AspectRatioRoot = styled('div', {
 const AspectRatioContent = styled('div', {
   name: 'JoyAspectRatio',
   slot: 'Content',
-  overridesResolver: (props, styles) => styles.root,
+  overridesResolver: (props, styles) => styles.content,
 })<{ ownerState: AspectRatioOwnerState }>(({ theme, ownerState }) => [
   {
     flex: 1,
