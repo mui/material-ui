@@ -148,10 +148,11 @@ const Typography = React.forwardRef(function Typography(inProps, ref) {
 
   const level = nesting ? inProps.level || 'inherit' : levelProp;
 
-  const component = (componentProp ||
-    (nesting
+  const component =
+    componentProp ||
+    ((nesting
       ? 'span'
-      : levelMapping[level] || defaultVariantMapping[level] || 'span')) as React.ElementType;
+      : levelMapping[level] || defaultVariantMapping[level] || 'span') as React.ElementType);
 
   const ownerState = {
     ...props,
@@ -216,14 +217,6 @@ Typography.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
-   * Override or extend the styles applied to the component.
-   */
-  classes: PropTypes.object,
-  /**
-   * @ignore
-   */
-  className: PropTypes.string,
-  /**
    * The color of the component. It supports those theme colors that make sense for this component.
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
@@ -235,6 +228,15 @@ Typography.propTypes /* remove-proptypes */ = {
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
+  /**
+   * The props used for each slot inside the Input.
+   * @default {}
+   */
+  componentsProps: PropTypes.shape({
+    endDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    startDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
   /**
    * Element placed after the children.
    */

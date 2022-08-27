@@ -225,10 +225,6 @@ Button.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
-   * @ignore
-   */
-  className: PropTypes.string,
-  /**
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'primary'
    */
@@ -241,6 +237,15 @@ Button.propTypes /* remove-proptypes */ = {
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
+  /**
+   * The props used for each slot inside the AspectRatio.
+   * @default {}
+   */
+  componentsProps: PropTypes.shape({
+    endIcon: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    startIcon: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
   /**
    * If `true`, the component is disabled.
    * @default false

@@ -22,7 +22,7 @@ export interface ChipDeleteTypeMap<P = {}, D extends React.ElementType = 'button
      * If `true`, the component is disabled.
      * If `undefined`, the value inherits from the parent chip via a React context.
      */
-    disabled: boolean;
+    disabled?: boolean;
     /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */

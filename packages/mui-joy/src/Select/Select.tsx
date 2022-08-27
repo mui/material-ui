@@ -449,6 +449,7 @@ const Select = React.forwardRef(function Select<TValue>(
     ],
     [resolveListboxProps?.modifiers],
   );
+
   const listboxProps = useSlotProps({
     elementType: SelectListbox,
     getSlotProps: getListboxProps,
@@ -578,9 +579,12 @@ Select.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   componentsProps: PropTypes.shape({
-    button: PropTypes.object,
-    listbox: PropTypes.object,
-    root: PropTypes.object,
+    button: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    endDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    indicator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    listbox: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    startDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
    * The default selected value. Use when the component is not controlled.

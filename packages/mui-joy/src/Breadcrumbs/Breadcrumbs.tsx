@@ -186,6 +186,16 @@ Breadcrumbs.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
+   * The props used for each slot inside the AspectRatio.
+   * @default {}
+   */
+  componentsProps: PropTypes.shape({
+    li: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    ol: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    separator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
    * Custom separator node.
    * @default '/'
    */

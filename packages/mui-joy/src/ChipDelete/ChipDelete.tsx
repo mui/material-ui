@@ -126,10 +126,6 @@ ChipDelete.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
-   * @ignore
-   */
-  className: PropTypes.string,
-  /**
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'primary'
    */
@@ -140,9 +136,10 @@ ChipDelete.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
-   * @ignore
+   * If `true`, the component is disabled.
+   * If `undefined`, the value inherits from the parent chip via a React context.
    */
-  disabled: PropTypes.bool,
+  disabled: PropTypes.bool.isRequired,
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

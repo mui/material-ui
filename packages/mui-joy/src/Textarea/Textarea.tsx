@@ -298,8 +298,10 @@ Textarea.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   componentsProps: PropTypes.shape({
-    root: PropTypes.object,
-    textarea: PropTypes.object,
+    endDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    startDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    textarea: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
    * Trailing adornment for this input.

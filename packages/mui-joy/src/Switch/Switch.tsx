@@ -219,6 +219,7 @@ const Switch = React.forwardRef(function Switch(inProps, ref) {
     props: inProps,
     name: 'JoySwitch',
   });
+
   const {
     checked: checkedProp,
     component = 'div',
@@ -370,10 +371,6 @@ Switch.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
-   * Class name applied to the root element.
-   */
-  className: PropTypes.string,
-  /**
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'neutral'
    */
@@ -382,7 +379,7 @@ Switch.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
-   * The component used for the Root slot.
+   * The component used for the root node.
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
@@ -391,12 +388,13 @@ Switch.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   componentsProps: PropTypes.shape({
-    action: PropTypes.object,
-    endDecorator: PropTypes.object,
-    input: PropTypes.object,
-    startDecorator: PropTypes.object,
-    thumb: PropTypes.object,
-    track: PropTypes.object,
+    action: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    endDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    input: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    startDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    thumb: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    track: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
    * The default checked state. Use when the component is not controlled.
