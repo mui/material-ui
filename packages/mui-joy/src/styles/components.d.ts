@@ -85,7 +85,10 @@ import {
   RadioGroupSlot,
 } from '../RadioGroup/RadioGroupProps';
 import { SheetProps, SheetOwnerState, SheetSlot } from '../Sheet/SheetProps';
+import { SelectProps, SelectOwnerState, SelectSlot } from '../Select/SelectProps';
+import { OptionProps, OptionOwnerState, OptionSlot } from '../Option/OptionProps';
 import { SliderProps, SliderOwnerState, SliderSlot } from '../Slider/SliderProps';
+import { StackProps, StackSlot } from '../Stack/StackProps';
 import { SvgIconProps, SvgIconOwnerState, SvgIconSlot } from '../SvgIcon/SvgIconProps';
 import { SwitchProps, SwitchOwnerState, SwitchSlot } from '../Switch/SwitchProps';
 import { TabProps, TabOwnerState, TabSlot } from '../Tab/TabProps';
@@ -205,27 +208,27 @@ export interface Components<Theme = unknown> {
     styleOverrides?: OverridesStyleRules<LinkSlot, LinkOwnerState, Theme>;
   };
   JoyList?: {
-    defaultProps: Partial<ListProps>;
+    defaultProps?: Partial<ListProps>;
     styleOverrides?: OverridesStyleRules<ListSlot, ListOwnerState, Theme>;
   };
   JoyListDivider?: {
-    defaultProps: Partial<ListDividerProps>;
+    defaultProps?: Partial<ListDividerProps>;
     styleOverrides?: OverridesStyleRules<ListDividerSlot, ListDividerOwnerState, Theme>;
   };
   JoyListItem?: {
-    defaultProps: Partial<ListItemProps>;
+    defaultProps?: Partial<ListItemProps>;
     styleOverrides?: OverridesStyleRules<ListItemSlot, ListItemOwnerState, Theme>;
   };
   JoyListItemButton?: {
-    defaultProps: Partial<ListItemButtonProps>;
+    defaultProps?: Partial<ListItemButtonProps>;
     styleOverrides?: OverridesStyleRules<ListItemButtonSlot, ListItemButtonOwnerState, Theme>;
   };
   JoyListItemContent?: {
-    defaultProps: Partial<ListItemContentProps>;
+    defaultProps?: Partial<ListItemContentProps>;
     styleOverrides?: OverridesStyleRules<ListItemContentSlot, ListItemContentOwnerState, Theme>;
   };
   JoyListItemDecorator?: {
-    defaultProps: Partial<ListItemDecoratorProps>;
+    defaultProps?: Partial<ListItemDecoratorProps>;
     styleOverrides?: OverridesStyleRules<ListItemDecoratorSlot, ListItemDecoratorOwnerState, Theme>;
   };
   JoyRadio?: {
@@ -236,9 +239,21 @@ export interface Components<Theme = unknown> {
     defaultProps?: Partial<RadioGroupProps>;
     styleOverrides?: OverridesStyleRules<RadioGroupSlot, RadioGroupOwnerState, Theme>;
   };
+  JoySelect?: {
+    defaultProps?: Partial<SelectProps<any>>;
+    styleOverrides?: OverridesStyleRules<SelectSlot, SelectOwnerState<any>, Theme>;
+  };
+  JoyOption?: {
+    defaultProps?: Partial<OptionProps>;
+    styleOverrides?: OverridesStyleRules<OptionSlot, OptionOwnerState, Theme>;
+  };
   JoySheet?: {
     defaultProps?: Partial<SheetProps>;
     styleOverrides?: OverridesStyleRules<SheetSlot, SheetOwnerState, Theme>;
+  };
+  JoyStack?: {
+    defaultProps?: Partial<StackProps>;
+    styleOverrides?: OverridesStyleRules<StackSlot, StackProps, Theme>;
   };
   JoySwitch?: {
     defaultProps?: Partial<SwitchProps>;
