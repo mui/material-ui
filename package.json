@@ -190,7 +190,7 @@
     "unist-util-visit": "^2.0.3",
     "util": "^0.12.4",
     "webpack": "^5.74.0",
-    "webpack-bundle-analyzer": "^4.5.0",
+    "webpack-bundle-analyzer": "^4.6.1",
     "webpack-cli": "^4.10.0",
     "yargs": "^17.5.1",
     "yarn-deduplicate": "^3.1.0"
