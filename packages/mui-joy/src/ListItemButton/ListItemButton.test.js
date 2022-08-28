@@ -15,6 +15,7 @@ describe('Joy <ListItemButton />', () => {
     muiName: 'JoyListItemButton',
     refInstanceof: window.HTMLDivElement,
     testVariantProps: { color: 'primary' },
+    testCustomVariant: true,
     skip: ['componentsProp', 'classesRoot'],
   }));
 

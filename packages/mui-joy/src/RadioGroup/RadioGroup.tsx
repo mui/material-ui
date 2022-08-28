@@ -10,10 +10,10 @@ import {
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { styled, useThemeProps } from '../styles';
 import { getRadioGroupUtilityClass } from './radioGroupClasses';
-import { RadioGroupProps, RadioGroupTypeMap } from './RadioGroupProps';
+import { RadioGroupOwnerState, RadioGroupTypeMap } from './RadioGroupProps';
 import RadioGroupContext from './RadioGroupContext';
 
-const useUtilityClasses = (ownerState: RadioGroupProps) => {
+const useUtilityClasses = (ownerState: RadioGroupOwnerState) => {
   const { row, size, variant, color } = ownerState;
   const slots = {
     root: [
@@ -32,7 +32,7 @@ const RadioGroupRoot = styled('div', {
   name: 'JoyRadioGroup',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: RadioGroupProps }>(({ ownerState, theme }) => ({
+})<{ ownerState: RadioGroupOwnerState }>(({ ownerState, theme }) => ({
   ...(ownerState.size === 'sm' && {
     '--RadioGroup-gap': '0.625rem',
   }),
@@ -68,7 +68,8 @@ const RadioGroup = React.forwardRef(function RadioGroup(inProps, ref) {
     variant = 'plain',
     size = 'md',
     row = false,
-    ...otherProps
+    role = 'radiogroup',
+    ...other
   } = props;
 
   const [value, setValueState] = useControlled({
@@ -82,6 +83,7 @@ const RadioGroup = React.forwardRef(function RadioGroup(inProps, ref) {
     size,
     variant,
     color,
+    role,
     ...props,
   };
 
@@ -111,11 +113,11 @@ const RadioGroup = React.forwardRef(function RadioGroup(inProps, ref) {
     >
       <RadioGroupRoot
         ref={ref}
-        role="radiogroup"
-        {...otherProps}
+        role={role}
         as={component}
         ownerState={ownerState}
         className={clsx(classes.root, className)}
+        {...other}
       >
         {React.Children.map(children, (child, index) =>
           React.isValidElement(child)
@@ -181,6 +183,133 @@ RadioGroup.propTypes /* remove-proptypes */ = {
    * The radio's `overlay` prop. If specified, the value is passed down to every radios under this element.
    */
   overlay: PropTypes.bool,
+  /**
+   * @ignore
+   */
+  role: PropTypes.oneOfType([
+    PropTypes.oneOf([
+      'alert',
+      'alertdialog',
+      'application',
+      'article',
+      'banner',
+      'button',
+      'cell',
+      'checkbox',
+      'columnheader',
+      'combobox',
+      'complementary',
+      'contentinfo',
+      'definition',
+      'dialog',
+      'directory',
+      'document',
+      'feed',
+      'figure',
+      'form',
+      'grid',
+      'gridcell',
+      'group',
+      'heading',
+      'img',
+      'link',
+      'list',
+      'listbox',
+      'listitem',
+      'log',
+      'main',
+      'marquee',
+      'math',
+      'menu',
+      'menubar',
+      'menuitem',
+      'menuitemcheckbox',
+      'menuitemradio',
+      'navigation',
+      'none',
+      'note',
+      'option',
+      'presentation',
+      'progressbar',
+      'radio',
+      'radiogroup',
+      'region',
+      'row',
+      'rowgroup',
+      'rowheader',
+      'scrollbar',
+      'search',
+      'searchbox',
+      'separator',
+      'slider',
+      'spinbutton',
+      'status',
+      'switch',
+      'tab',
+      'table',
+      'tablist',
+      'tabpanel',
+      'term',
+      'textbox',
+      'timer',
+      'toolbar',
+      'tooltip',
+      'tree',
+      'treegrid',
+      'treeitem',
+    ]),
+    PropTypes.shape({
+      '__@iterator@91': PropTypes.func.isRequired,
+      anchor: PropTypes.func.isRequired,
+      at: PropTypes.func.isRequired,
+      big: PropTypes.func.isRequired,
+      blink: PropTypes.func.isRequired,
+      bold: PropTypes.func.isRequired,
+      charAt: PropTypes.func.isRequired,
+      charCodeAt: PropTypes.func.isRequired,
+      codePointAt: PropTypes.func.isRequired,
+      concat: PropTypes.func.isRequired,
+      endsWith: PropTypes.func.isRequired,
+      fixed: PropTypes.func.isRequired,
+      fontcolor: PropTypes.func.isRequired,
+      fontsize: PropTypes.func.isRequired,
+      includes: PropTypes.func.isRequired,
+      indexOf: PropTypes.func.isRequired,
+      italics: PropTypes.func.isRequired,
+      lastIndexOf: PropTypes.func.isRequired,
+      length: PropTypes.number.isRequired,
+      link: PropTypes.func.isRequired,
+      localeCompare: PropTypes.func.isRequired,
+      match: PropTypes.func.isRequired,
+      matchAll: PropTypes.func.isRequired,
+      normalize: PropTypes.func.isRequired,
+      padEnd: PropTypes.func.isRequired,
+      padStart: PropTypes.func.isRequired,
+      repeat: PropTypes.func.isRequired,
+      replace: PropTypes.func.isRequired,
+      search: PropTypes.func.isRequired,
+      slice: PropTypes.func.isRequired,
+      small: PropTypes.func.isRequired,
+      split: PropTypes.func.isRequired,
+      startsWith: PropTypes.func.isRequired,
+      strike: PropTypes.func.isRequired,
+      sub: PropTypes.func.isRequired,
+      substr: PropTypes.func.isRequired,
+      substring: PropTypes.func.isRequired,
+      sup: PropTypes.func.isRequired,
+      toLocaleLowerCase: PropTypes.func.isRequired,
+      toLocaleUpperCase: PropTypes.func.isRequired,
+      toLowerCase: PropTypes.func.isRequired,
+      toString: PropTypes.func.isRequired,
+      toUpperCase: PropTypes.func.isRequired,
+      trim: PropTypes.func.isRequired,
+      trimEnd: PropTypes.func.isRequired,
+      trimLeft: PropTypes.func.isRequired,
+      trimRight: PropTypes.func.isRequired,
+      trimStart: PropTypes.func.isRequired,
+      valueOf: PropTypes.func.isRequired,
+    }),
+  ]),
   /**
    * If `true`, flex direction is set to 'row'.
    * @default false

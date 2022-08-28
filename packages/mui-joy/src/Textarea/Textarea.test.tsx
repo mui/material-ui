@@ -15,6 +15,7 @@ describe('Joy <Textarea />', () => {
     refInstanceof: window.HTMLDivElement,
     muiName: 'JoyTextarea',
     testDeepOverrides: { slotName: 'textarea', slotClassName: classes.textarea },
+    testCustomVariant: true,
     testVariantProps: { variant: 'solid' },
     skip: ['propsSpread', 'componentsProp', 'classesRoot'],
   }));

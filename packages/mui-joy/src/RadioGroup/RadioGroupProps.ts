@@ -76,3 +76,5 @@ export type RadioGroupProps<
     component?: React.ElementType;
   },
 > = OverrideProps<RadioGroupTypeMap<P, D>, D>;
+
+export interface RadioGroupOwnerState extends RadioGroupProps {}

@@ -6,7 +6,7 @@ import composeClasses from '@mui/base/composeClasses';
 import { useButton } from '@mui/base/ButtonUnstyled';
 import { styled, useThemeProps } from '../styles';
 import {
-  ListItemButtonProps,
+  ListItemButtonOwnerState,
   ExtendListItemButton,
   ListItemButtonTypeMap,
 } from './ListItemButtonProps';
@@ -14,7 +14,7 @@ import listItemButtonClasses, { getListItemButtonUtilityClass } from './listItem
 import ListItemButtonOrientationContext from './ListItemButtonOrientationContext';
 import RowListContext from '../List/RowListContext';
 
-const useUtilityClasses = (ownerState: ListItemButtonProps & { focusVisible: boolean }) => {
+const useUtilityClasses = (ownerState: ListItemButtonOwnerState) => {
   const { color, disabled, focusVisible, focusVisibleClassName, selected, variant } = ownerState;
 
   const slots = {
@@ -42,9 +42,7 @@ export const ListItemButtonRoot = styled('div', {
   name: 'JoyListItemButton',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{
-  ownerState: ListItemButtonProps & { row: boolean; 'data-first-child'?: string };
-}>(({ theme, ownerState }) => [
+})<{ ownerState: ListItemButtonOwnerState }>(({ theme, ownerState }) => [
   {
     ...(ownerState.selected && {
       '--List-decorator-color': 'initial',

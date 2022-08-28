@@ -9,14 +9,14 @@ import { OverridableComponent } from '@mui/types';
 import composeClasses from '@mui/base/composeClasses';
 import { MenuUnstyledContext } from '@mui/base/MenuUnstyled';
 import { styled, useThemeProps } from '../styles';
-import { ListItemProps, ListItemTypeMap } from './ListItemProps';
+import { ListItemProps, ListItemOwnerState, ListItemTypeMap } from './ListItemProps';
 import { getListItemUtilityClass } from './listItemClasses';
 import NestedListContext from '../List/NestedListContext';
 import RowListContext from '../List/RowListContext';
 import WrapListContext from '../List/WrapListContext';
 import ComponentListContext from '../List/ComponentListContext';
 
-const useUtilityClasses = (ownerState: ListItemProps & { nesting: boolean }) => {
+const useUtilityClasses = (ownerState: ListItemOwnerState) => {
   const { sticky, nested, nesting, variant, color } = ownerState;
   const slots = {
     root: [
@@ -38,9 +38,7 @@ const ListItemRoot = styled('li', {
   name: 'JoyListItem',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{
-  ownerState: ListItemProps & { row: boolean; wrap: boolean; 'data-first-child'?: string };
-}>(({ theme, ownerState }) => [
+})<{ ownerState: ListItemOwnerState }>(({ theme, ownerState }) => [
   !ownerState.nested && {
     // add negative margin to ListItemButton equal to this ListItem padding
     '--List-itemButton-marginInline': `calc(-1 * var(--List-item-paddingLeft)) calc(-1 * var(--List-item-paddingRight))`,
@@ -145,7 +143,7 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
   const nesting = React.useContext(NestedListContext);
 
   const {
-    component,
+    component: componentProp,
     className,
     children,
     nested = false,
@@ -154,8 +152,20 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
     color = 'neutral',
     startAction,
     endAction,
+    role: roleProp,
     ...other
   } = props;
+
+  const [listElement, listRole] = listComponent?.split(':') || ['', ''];
+  const component =
+    componentProp || (listElement && !listElement.match(/^(ul|ol|menu)$/) ? 'div' : undefined);
+  const role =
+    roleProp ??
+    (menuContext
+      ? // ListItem can be used inside Menu to create nested menus, so it should have role="none"
+        // https://www.w3.org/WAI/ARIA/apg/example-index/menubar/menubar-navigation.html
+        'none'
+      : { menu: 'none', menubar: 'none', group: 'presentation' }[listRole]);
 
   const ownerState = {
     sticky,
@@ -167,25 +177,20 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
     color,
     nesting,
     nested,
+    component,
+    role,
     ...props,
   };
 
   const classes = useUtilityClasses(ownerState);
-
-  const [listElement, listRole] = listComponent?.split(':') || ['', ''];
   return (
     <NestedListContext.Provider value={nested}>
       <ListItemRoot
         ref={ref}
-        as={component || (listElement && !listElement.match(/^(ul|ol|menu)$/) ? 'div' : undefined)}
+        as={component}
         className={clsx(classes.root, className)}
         ownerState={ownerState}
-        role={{ menu: 'none', menubar: 'none', group: 'presentation' }[listRole]}
-        {...(menuContext && {
-          // ListItem can be used inside Menu to create nested menus, so it should have role="none"
-          // https://www.w3.org/WAI/ARIA/apg/example-index/menubar/menubar-navigation.html
-          role: 'none',
-        })}
+        role={role}
         {...other}
       >
         {startAction && (
@@ -253,6 +258,133 @@ ListItem.propTypes /* remove-proptypes */ = {
    * @default false
    */
   nested: PropTypes.bool,
+  /**
+   * @ignore
+   */
+  role: PropTypes.oneOfType([
+    PropTypes.oneOf([
+      'alert',
+      'alertdialog',
+      'application',
+      'article',
+      'banner',
+      'button',
+      'cell',
+      'checkbox',
+      'columnheader',
+      'combobox',
+      'complementary',
+      'contentinfo',
+      'definition',
+      'dialog',
+      'directory',
+      'document',
+      'feed',
+      'figure',
+      'form',
+      'grid',
+      'gridcell',
+      'group',
+      'heading',
+      'img',
+      'link',
+      'list',
+      'listbox',
+      'listitem',
+      'log',
+      'main',
+      'marquee',
+      'math',
+      'menu',
+      'menubar',
+      'menuitem',
+      'menuitemcheckbox',
+      'menuitemradio',
+      'navigation',
+      'none',
+      'note',
+      'option',
+      'presentation',
+      'progressbar',
+      'radio',
+      'radiogroup',
+      'region',
+      'row',
+      'rowgroup',
+      'rowheader',
+      'scrollbar',
+      'search',
+      'searchbox',
+      'separator',
+      'slider',
+      'spinbutton',
+      'status',
+      'switch',
+      'tab',
+      'table',
+      'tablist',
+      'tabpanel',
+      'term',
+      'textbox',
+      'timer',
+      'toolbar',
+      'tooltip',
+      'tree',
+      'treegrid',
+      'treeitem',
+    ]),
+    PropTypes.shape({
+      '__@iterator@91': PropTypes.func.isRequired,
+      anchor: PropTypes.func.isRequired,
+      at: PropTypes.func.isRequired,
+      big: PropTypes.func.isRequired,
+      blink: PropTypes.func.isRequired,
+      bold: PropTypes.func.isRequired,
+      charAt: PropTypes.func.isRequired,
+      charCodeAt: PropTypes.func.isRequired,
+      codePointAt: PropTypes.func.isRequired,
+      concat: PropTypes.func.isRequired,
+      endsWith: PropTypes.func.isRequired,
+      fixed: PropTypes.func.isRequired,
+      fontcolor: PropTypes.func.isRequired,
+      fontsize: PropTypes.func.isRequired,
+      includes: PropTypes.func.isRequired,
+      indexOf: PropTypes.func.isRequired,
+      italics: PropTypes.func.isRequired,
+      lastIndexOf: PropTypes.func.isRequired,
+      length: PropTypes.number.isRequired,
+      link: PropTypes.func.isRequired,
+      localeCompare: PropTypes.func.isRequired,
+      match: PropTypes.func.isRequired,
+      matchAll: PropTypes.func.isRequired,
+      normalize: PropTypes.func.isRequired,
+      padEnd: PropTypes.func.isRequired,
+      padStart: PropTypes.func.isRequired,
+      repeat: PropTypes.func.isRequired,
+      replace: PropTypes.func.isRequired,
+      search: PropTypes.func.isRequired,
+      slice: PropTypes.func.isRequired,
+      small: PropTypes.func.isRequired,
+      split: PropTypes.func.isRequired,
+      startsWith: PropTypes.func.isRequired,
+      strike: PropTypes.func.isRequired,
+      sub: PropTypes.func.isRequired,
+      substr: PropTypes.func.isRequired,
+      substring: PropTypes.func.isRequired,
+      sup: PropTypes.func.isRequired,
+      toLocaleLowerCase: PropTypes.func.isRequired,
+      toLocaleUpperCase: PropTypes.func.isRequired,
+      toLowerCase: PropTypes.func.isRequired,
+      toString: PropTypes.func.isRequired,
+      toUpperCase: PropTypes.func.isRequired,
+      trim: PropTypes.func.isRequired,
+      trimEnd: PropTypes.func.isRequired,
+      trimLeft: PropTypes.func.isRequired,
+      trimRight: PropTypes.func.isRequired,
+      trimStart: PropTypes.func.isRequired,
+      valueOf: PropTypes.func.isRequired,
+    }),
+  ]),
   /**
    * The element to display at the start of ListItem.
    */
