@@ -44,7 +44,7 @@ const MenuRoot = styled(ListRoot, {
     boxShadow: theme.vars.shadow.md,
     overflow: 'auto',
     zIndex: 1000,
-    ...(!variantStyle.backgroundColor && {
+    ...(!variantStyle?.backgroundColor && {
       backgroundColor: theme.vars.palette.background.surface,
     }),
   };

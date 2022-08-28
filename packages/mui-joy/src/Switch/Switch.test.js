@@ -19,6 +19,7 @@ describe('<Switch />', () => {
       { slotName: 'thumb', slotClassName: classes.thumb },
     ],
     testVariantProps: { variant: 'soft' },
+    testCustomVariant: true,
     refInstanceof: window.HTMLDivElement,
     skip: ['componentProp', 'componentsProp', 'classesRoot'],
   }));

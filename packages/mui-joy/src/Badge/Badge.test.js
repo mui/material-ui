@@ -33,6 +33,7 @@ describe('<Badge />', () => {
       refInstanceof: window.HTMLSpanElement,
       muiName: 'JoyBadge',
       testVariantProps: { color: 'neutral', variant: 'soft' },
+      testCustomVariant: true,
       skip: ['classesRoot', 'componentsProp'],
     }),
   );

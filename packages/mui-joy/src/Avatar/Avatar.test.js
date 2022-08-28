@@ -20,6 +20,7 @@ describe('<Avatar />', () => {
     testComponentPropWith: 'span',
     testDeepOverrides: { slotName: 'fallback', slotClassName: classes.fallback },
     testVariantProps: { variant: 'solid' },
+    testCustomVariant: true,
     skip: ['classesRoot', 'componentsProp'],
   }));
 
