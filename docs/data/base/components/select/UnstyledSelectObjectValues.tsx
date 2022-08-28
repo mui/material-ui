@@ -191,7 +191,6 @@ export default function UnstyledSelectObjectValues() {
           </StyledOption>
         ))}
       </CustomSelect>
-
       <Paragraph>Selected character:</Paragraph>
       <Pre>{JSON.stringify(character, null, 2)}</Pre>
     </div>
