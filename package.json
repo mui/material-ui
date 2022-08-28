@@ -135,7 +135,7 @@
     "eslint-plugin-import": "^2.25.4",
     "eslint-plugin-jsx-a11y": "^6.6.1",
     "eslint-plugin-mocha": "^10.1.0",
-    "eslint-plugin-react": "^7.30.1",
+    "eslint-plugin-react": "^7.31.1",
     "eslint-plugin-react-hooks": "^4.6.0",
     "fast-glob": "^3.2.11",
     "format-util": "^1.0.5",
