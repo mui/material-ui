@@ -58,7 +58,7 @@ export interface AvatarGroupProps extends StandardProps<React.HTMLAttributes<HTM
  *
  * Demos:
  *
- * - [Avatars](https://mui.com/material-ui/react-avatar/)
+ * - [Avatar](https://mui.com/material-ui/react-avatar/)
  *
  * API:
  *

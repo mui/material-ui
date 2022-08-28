@@ -27,7 +27,7 @@ export interface DialogContentProps extends StandardProps<React.HTMLAttributes<H
  *
  * Demos:
  *
- * - [Dialogs](https://mui.com/material-ui/react-dialog/)
+ * - [Dialog](https://mui.com/material-ui/react-dialog/)
  *
  * API:
  *

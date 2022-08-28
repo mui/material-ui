@@ -60,6 +60,6 @@
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/Drawer/Drawer.js",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/material-ui/react-drawer/\">Drawers</a></li></ul>",
+  "demos": "<ul><li><a href=\"/material-ui/react-drawer/\">Drawer</a></li></ul>",
   "cssComponent": false
 }

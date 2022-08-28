@@ -35,6 +35,6 @@
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/AvatarGroup/AvatarGroup.js",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/material-ui/react-avatar/\">Avatars</a></li></ul>",
+  "demos": "<ul><li><a href=\"/material-ui/react-avatar/\">Avatar</a></li></ul>",
   "cssComponent": false
 }

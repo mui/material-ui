@@ -77,7 +77,7 @@ export interface DrawerProps extends StandardProps<ModalProps, 'open' | 'childre
  *
  * Demos:
  *
- * - [Drawers](https://mui.com/material-ui/react-drawer/)
+ * - [Drawer](https://mui.com/material-ui/react-drawer/)
  *
  * API:
  *
