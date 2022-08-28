@@ -1217,54 +1217,48 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@chakra-ui/color-mode@2.1.6":
-  version "2.1.6"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/color-mode/-/color-mode-2.1.6.tgz#9ea02ecbfbcb9f6a1a3d4c657d491f093615b951"
-  integrity sha512-YtVoyYAe6kxoNDwB5Sv03Tz0dCIlo1JM57VfhKZTPxXmp3/FFvFe38+N5piNimuAl/xIDp6doFArnco3Bb7qFw==
+"@chakra-ui/color-mode@2.1.7":
+  version "2.1.7"
+  resolved "https://registry.yarnpkg.com/@chakra-ui/color-mode/-/color-mode-2.1.7.tgz#91c02e82e551c5448081e4934efeddb10bb732c5"
+  integrity sha512-GAoKJzVRQeuEfCa2i0BZdMwxuOoaGknU3+5wgvLuaSpwlov4OyqpjKMRdSdpjr4IFiqqHK47dsr3H4LQsbO+9w==
   dependencies:
-    "@chakra-ui/hooks" "2.0.8"
-    "@chakra-ui/utils" "2.0.8"
+    "@chakra-ui/react-use-safe-layout-effect" "2.0.1"
 
-"@chakra-ui/hooks@2.0.8":
-  version "2.0.8"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/hooks/-/hooks-2.0.8.tgz#8863041b7077104e7cb10cf66ac55f9c84955455"
-  integrity sha512-GXubX+BRP1UsbPZovgPH/TFBLAOvtHeIGAqdz9SwI2rmQ9UfF2lV9mSN3N2XXj9kKj9akN+pyHwW29UeATojnw==
-  dependencies:
-    "@chakra-ui/react-utils" "2.0.5"
-    "@chakra-ui/utils" "2.0.8"
-    compute-scroll-into-view "1.0.14"
-    copy-to-clipboard "3.3.1"
+"@chakra-ui/react-use-safe-layout-effect@2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@chakra-ui/react-use-safe-layout-effect/-/react-use-safe-layout-effect-2.0.1.tgz#76f8882abaf17078c3b6eb93e1bb26f8c319f3f7"
+  integrity sha512-H+ZOjkPqv3KBPEoP68JKpQBNdLOI0mwzEiTT397UdvBVCCJ+1/ijWVUT+Ub/pYic60O6xUghy5ORaWqJHhnKDA==
 
-"@chakra-ui/react-utils@2.0.5":
-  version "2.0.5"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/react-utils/-/react-utils-2.0.5.tgz#b094cca3919e7ca408e11a89160b826f4fcd6f47"
-  integrity sha512-YTkDtyqZcI+l6O41og8P0Gd2z4MUKUQWu10VrcSF26izJg3lphU04VlPf+fB4wFJ97OGJBgtNxKuToe4Aqzg6A==
+"@chakra-ui/react-utils@2.0.6":
+  version "2.0.6"
+  resolved "https://registry.yarnpkg.com/@chakra-ui/react-utils/-/react-utils-2.0.6.tgz#bb471ce2bff724b99563685962145a2cc56bf61d"
+  integrity sha512-ZL0FPaolovXOxMzYRSLHgBYtvxIkA/c5GTSYpXL8DcC+TBLZnAmQ8BPTS2b6xys6xvwdQjkZRUeQ0cBNFaryJg==
   dependencies:
-    "@chakra-ui/utils" "2.0.8"
+    "@chakra-ui/utils" "2.0.9"
 
-"@chakra-ui/styled-system@2.2.7":
-  version "2.2.7"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/styled-system/-/styled-system-2.2.7.tgz#ad9bb2c6810b9b33c6a6360e035dd49fd8d790df"
-  integrity sha512-8kG4ItrQ26IB9B6+yfrslPUvOGxquaOCBg15mofsEIlwFHhBtcJ26hu2ByDGG3LRGHLStbcJcSPeg+sebkGiPw==
+"@chakra-ui/styled-system@2.2.8":
+  version "2.2.8"
+  resolved "https://registry.yarnpkg.com/@chakra-ui/styled-system/-/styled-system-2.2.8.tgz#d849be1fabc7563d1fedfcfa2fb56a4a7f9804ce"
+  integrity sha512-HvXtCVUt3kY/RTd0sY7k6dX8ZHCOUbtq5TSS+/E9zESZegwxsG84XKdLhRbLaguYyRB81cOgmFmT5WJmcWxMWA==
   dependencies:
-    "@chakra-ui/utils" "2.0.8"
     csstype "^3.0.11"
+    lodash.mergewith "4.6.2"
 
-"@chakra-ui/system@^2.2.6":
-  version "2.2.6"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/system/-/system-2.2.6.tgz#09824efd43d7568a5a34e40908bf2ad0e0f8d27f"
-  integrity sha512-I5q38ObqCrGXmLsxkc56F+1RONbpIIFJvOgq1upXMPOJWHqkzmdqaoJtpANhoE2LvB0GH/gRniiWN17WBCsOIQ==
+"@chakra-ui/system@^2.2.7":
+  version "2.2.7"
+  resolved "https://registry.yarnpkg.com/@chakra-ui/system/-/system-2.2.7.tgz#ead90c3122f96dea9aa586cd50d70234a59aa21e"
+  integrity sha512-E6eVz6Ghzv5Gy9D3e/J5XWjYheHTCEuenQB4amuiXYAm7bgsjJJl0EHk8kHNW+Gjh4qj9f7F/9C7d/ZpaKpzZQ==
   dependencies:
-    "@chakra-ui/color-mode" "2.1.6"
-    "@chakra-ui/react-utils" "2.0.5"
-    "@chakra-ui/styled-system" "2.2.7"
-    "@chakra-ui/utils" "2.0.8"
+    "@chakra-ui/color-mode" "2.1.7"
+    "@chakra-ui/react-utils" "2.0.6"
+    "@chakra-ui/styled-system" "2.2.8"
+    "@chakra-ui/utils" "2.0.9"
     react-fast-compare "3.2.0"
 
-"@chakra-ui/utils@2.0.8":
-  version "2.0.8"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/utils/-/utils-2.0.8.tgz#b75e1cd22479eaa64410bd42849e638138971b20"
-  integrity sha512-5xSzOYSYbJEh+myY1mC6rOX+mzM/F2fiDqAw0zybHhfUab4zPHCO5RlgYVJ0L1DlGZUogVgRP6szH1xoBCcWQg==
+"@chakra-ui/utils@2.0.9":
+  version "2.0.9"
+  resolved "https://registry.yarnpkg.com/@chakra-ui/utils/-/utils-2.0.9.tgz#1af3882b31fb46e0a411998d8e3607656f8d5043"
+  integrity sha512-7ct5562Jw6pZdtj63XfUkEUXXsCCVqdqIXyLtQ9VgOKtRQWwDxzc8uPI5Zjdw9AleEITZFUH8TNKWn75nm54kQ==
   dependencies:
     "@types/lodash.mergewith" "4.6.6"
     css-box-model "1.2.1"
@@ -5882,11 +5876,6 @@ compression@1.7.3:
     safe-buffer "5.1.2"
     vary "~1.1.2"
 
-compute-scroll-into-view@1.0.14:
-  version "1.0.14"
-  resolved "https://registry.yarnpkg.com/compute-scroll-into-view/-/compute-scroll-into-view-1.0.14.tgz#80e3ebb25d6aa89f42e533956cb4b16a04cfe759"
-  integrity sha512-mKDjINe3tc6hGelUMNDzuhorIUZ7kS7BwyY0r2wQd2HOH2tRuJykiC06iSEX8y1TuhNzvz4GcJnK16mM2J1NMQ==
-
 concat-map@0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/concat-map/-/concat-map-0.0.1.tgz#d8a96bd77fd68df7793a73036a3ba0d5405d477b"
@@ -6095,13 +6084,6 @@ copy-descriptor@^0.1.0:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/copy-descriptor/-/copy-descriptor-0.1.1.tgz#676f6eb3c39997c2ee1ac3a924fd6124748f578d"
   integrity sha512-XgZ0pFcakEUlbwQEVNg3+QAis1FyTL3Qel9FYy8pSkQqoG3PNoT0bOCQtOXcOkur21r2Eq2kI+IE+gsmAEVlYw==
-
-copy-to-clipboard@3.3.1:
-  version "3.3.1"
-  resolved "https://registry.yarnpkg.com/copy-to-clipboard/-/copy-to-clipboard-3.3.1.tgz#115aa1a9998ffab6196f93076ad6da3b913662ae"
-  integrity sha512-i13qo6kIHTTpCm8/Wup+0b1mVWETvu2kIMzKoK8FpkLkFxlt0znUAHcMzox+T8sPlqtZXq3CulEjQHsYiGFJUw==
-  dependencies:
-    toggle-selection "^1.0.6"
 
 core-js-compat@^3.21.0, core-js-compat@^3.22.1:
   version "3.24.1"
@@ -15488,11 +15470,6 @@ to-regex@^3.0.1, to-regex@^3.0.2:
     extend-shallow "^3.0.2"
     regex-not "^1.0.2"
     safe-regex "^1.1.0"
-
-toggle-selection@^1.0.6:
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/toggle-selection/-/toggle-selection-1.0.6.tgz#6e45b1263f2017fa0acc7d89d78b15b8bf77da32"
-  integrity sha512-BiZS+C1OS8g/q2RRbJmy59xpyghNBqrr6k5L/uKBGRsTfxmu3ffiRnd8mlGPUVayg8pvfi5urfnu8TU7DVOkLQ==
 
 toidentifier@1.0.1:
   version "1.0.1"
