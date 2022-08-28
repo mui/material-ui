@@ -54,7 +54,7 @@ function MySwitch(props: UseSwitchParameters) {
 
   return (
     <span className={clsx('root', stateClasses)}>
-      <span className="thumb"} />
+      <span className="thumb" />
       <input type="hidden" {...getInputProps()} />
     </span>
   );
