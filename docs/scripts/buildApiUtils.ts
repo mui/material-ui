@@ -2,28 +2,13 @@ import fs from 'fs';
 import path from 'path';
 import kebabCase from 'lodash/kebabCase';
 import { getHeaders, getTitle } from '@mui/markdown';
-import { findPagesMarkdown, findPagesMarkdownNew } from 'docs/src/modules/utils/find';
+import { findPagesMarkdownNew } from 'docs/src/modules/utils/find';
 import { getLineFeed } from 'docs/scripts/helpers';
-import { pageToTitle } from 'docs/src/modules/utils/helpers';
 import { replaceComponentLinks } from 'docs/src/modules/utils/replaceUrl';
 
 const systemComponents = fs
   .readdirSync(path.resolve('packages', 'mui-system', 'src'))
   .filter((pathname) => pathname.match(/^[A-Z][a-zA-Z]+$/));
-
-function findComponentDemos(
-  componentName: string,
-  pagesMarkdown: ReadonlyArray<{ pathname: string; components: readonly string[] }>,
-) {
-  const filteredMarkdowns = pagesMarkdown
-    .filter((page) => page.components.includes(componentName))
-    .map((page) => page.pathname);
-  return Array.from(new Set(filteredMarkdowns)) // get unique filenames
-    .map((pathname) => ({
-      name: pageToTitle({ pathname }) || '',
-      demoPathname: `${pathname}/`,
-    }));
-}
 
 function getMuiName(name: string) {
   return `Mui${name.replace('Unstyled', '').replace('Styled', '')}`;
