@@ -139,7 +139,7 @@ ChipDelete.propTypes /* remove-proptypes */ = {
    * If `true`, the component is disabled.
    * If `undefined`, the value inherits from the parent chip via a React context.
    */
-  disabled: PropTypes.bool.isRequired,
+  disabled: PropTypes.bool,
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
