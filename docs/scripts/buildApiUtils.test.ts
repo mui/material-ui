@@ -111,11 +111,11 @@ describe('buildApiUtils', () => {
       if (existed) {
         expect(info.getDemos()).to.deep.equal([
           {
-            name: 'Button group',
+            name: 'Button Group',
             demoPathname: '/material-ui/react-button-group/',
           },
           {
-            name: 'Buttons',
+            name: 'Button',
             demoPathname: '/material-ui/react-button/',
           },
         ]);
@@ -150,7 +150,7 @@ describe('buildApiUtils', () => {
       if (existed) {
         expect(info.getDemos()).to.deep.equal([
           {
-            name: 'Button',
+            name: 'Unstyled button',
             demoPathname: '/base/react-button/',
           },
         ]);
