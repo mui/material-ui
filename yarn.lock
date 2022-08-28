@@ -6526,7 +6526,7 @@ damerau-levenshtein@^1.0.8:
   resolved "https://registry.yarnpkg.com/damerau-levenshtein/-/damerau-levenshtein-1.0.8.tgz#b43d286ccbd36bc5b2f7ed41caf2d0aba1f8a6e7"
   integrity sha512-sdQSFB7+llfUcQHUQO3+B8ERRj0Oa4w9POWMI/puGtuf7gFywGmkaLCElnudfTiKZV+NvHqL0ifzdrI8Ro7ESA==
 
-danger@^11.1.1:
+danger@^11.1.2:
   version "11.1.2"
   resolved "https://registry.yarnpkg.com/danger/-/danger-11.1.2.tgz#6fa7807c8721e9f8a040252ae8a22db222b8c4e0"
   integrity sha512-tlAyADE7BRHbnoAA7BB7RzcO/ZLvXMpnWms7dBT/Tm4ntxdbrTT6wCPO1qFcd5Jc9LfM0Iez3hKUSINtnPLH+g==
