@@ -69,7 +69,7 @@ function useUtilityClasses(ownerState: SelectUnstyledOwnerState<any>) {
  */
 const SelectUnstyled = React.forwardRef(function SelectUnstyled<TValue>(
   props: SelectUnstyledProps<TValue>,
-  ref: React.ForwardedRef<any>,
+  forwardedRef: React.ForwardedRef<any>,
 ) {
   const {
     autoFocus,
@@ -115,15 +115,11 @@ const SelectUnstyled = React.forwardRef(function SelectUnstyled<TValue>(
   const ListboxRoot = components.Listbox ?? 'ul';
   const Popper = components.Popper ?? PopperUnstyled;
 
-  const handleButtonRefChange = (element: HTMLElement | null) => {
-    buttonRef.current = element;
+  const handleButtonRefChange = React.useCallback((element: HTMLElement | null) => {
+    setButtonDefined(element != null);
+  }, []);
 
-    if (element != null) {
-      setButtonDefined(true);
-    }
-  };
-
-  const handleButtonRef = useForkRef(ref, handleButtonRefChange);
+  const handleButtonRef = useForkRef(forwardedRef, useForkRef(buttonRef, handleButtonRefChange));
 
   React.useEffect(() => {
     if (autoFocus) {
