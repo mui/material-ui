@@ -105,6 +105,7 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(inProps, ref) {
       ref={ref}
       className={clsx(classes.root, className)}
       ownerState={ownerState}
+      as={component}
       {...other}
     >
       <BreadcrumbsOl className={classes.ol} ref={listRef} ownerState={ownerState}>
