@@ -339,7 +339,6 @@ module.exports = {
 
         'react/default-props-match-prop-types': 'off',
         'react/no-access-state-in-setstate': 'off',
-        'react/no-unused-prop-types': 'off',
         'react/prefer-stateless-function': 'off',
         'react/prop-types': 'off',
         'react/require-default-props': 'off',
