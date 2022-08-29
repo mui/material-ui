@@ -19,6 +19,8 @@ Tabs are implemented using a collection of related components:
 - `TabPanelUnstyled` - the card that hosts the content associated with a tab.
 - `TabsUnstyled` - the top-level component that wraps `TabsListUnstyled` and `TabPanelUnstyled` so that tabs and their panels can communicate with one another.
 
+{{"demo": "UnstyledTabsIntroduction.tsx", "defaultCodeOpen": false, "bg": "gradient"}}
+
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Components
