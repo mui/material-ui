@@ -4,6 +4,7 @@ import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { useSlotProps } from '@mui/base/utils';
+import clsx from 'clsx';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
 import { getBreadcrumbsUtilityClass } from './breadcrumbsClasses';
@@ -109,7 +110,7 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(inProps, ref) {
       ref,
       as: component,
     },
-    className: classes.root,
+    className: clsx(classes.root, className),
   });
 
   const olProps = useSlotProps({
