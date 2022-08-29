@@ -66,6 +66,7 @@ export default function AppFooter() {
             <Link href={ROUTES.productAdvanced}>MUI X</Link>
             <Link href={ROUTES.productTemplates}>Templates</Link>
             <Link href={ROUTES.productDesignKits}>Design kits</Link>
+            <Link href={ROUTES.productToolpad}>MUI Toolpad</Link>
           </Box>
           <Box sx={{ display: 'flex', flexDirection: 'column' }}>
             <Typography fontWeight="bold" variant="body2">
