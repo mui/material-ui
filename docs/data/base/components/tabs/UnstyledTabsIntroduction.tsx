@@ -34,7 +34,7 @@ const grey = {
 
 const Tab = styled(TabUnstyled)`
   font-family: IBM Plex Sans, sans-serif;
-  color: white;
+  color: #fff;
   cursor: pointer;
   font-size: 0.875rem;
   font-weight: 600;
@@ -94,7 +94,7 @@ const TabsList = styled(TabsListUnstyled)(
   `,
 );
 
-export default function UnstyledTabsCustomized() {
+export default function UnstyledTabsIntroduction() {
   return (
     <TabsUnstyled defaultValue={0}>
       <TabsList>

@@ -157,7 +157,6 @@ export default function UnstyledMenuIntroduction() {
       >
         My account
       </TriggerButton>
-
       <MenuUnstyled
         actions={menuActions}
         open={isOpen}

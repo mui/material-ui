@@ -49,7 +49,7 @@ const CustomButton = styled(ButtonUnstyled)(
   `,
 );
 
-export default function UnstyledButtonsSimple() {
+export default function UnstyledButtonIntroduction() {
   return (
     <Stack spacing={2} direction="row">
       <CustomButton>Button</CustomButton>

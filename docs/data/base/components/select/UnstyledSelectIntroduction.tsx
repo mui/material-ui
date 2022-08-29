@@ -156,7 +156,6 @@ const CustomSelect = React.forwardRef(function CustomSelect<TValue>(
 
   return (
     <SelectUnstyled
-      defaultListboxOpen
       {...props}
       ref={ref}
       components={components}
