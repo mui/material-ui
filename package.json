@@ -123,7 +123,7 @@
     "core-js": "^2.6.11",
     "cpy-cli": "^4.2.0",
     "cross-env": "^7.0.3",
-    "danger": "^11.1.1",
+    "danger": "^11.1.2",
     "dom-accessibility-api": "^0.5.14",
     "dtslint": "^4.2.1",
     "enzyme": "^3.11.0",
