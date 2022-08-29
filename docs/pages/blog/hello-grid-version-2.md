@@ -7,7 +7,7 @@ tags: ['MUI Core', 'News']
 card: true
 ---
 
-You can now use the new and improved `Grid` component, shipped with [Material UI v5.9.0](https://github.com/mui/material-ui/releases/tag/v5.9.0), for updated features and a better developer experience when building a layout grid.
+You can now use the new `Grid` component, shipped with [Material UI v5.9.0](https://github.com/mui/material-ui/releases/tag/v5.9.0), for updated features and a better developer experience when building layouts.
 
 ```js
 import Grid from '@mui/material/Grid'; // The current grid, a.k.a. Grid v1
@@ -18,7 +18,7 @@ import Grid from '@mui/material/Unstable_Grid2'; // The new grid, a.k.a. Grid v2
 
 - To fix the migration pain points ([#26266](https://github.com/mui/material-ui/issues/29266) and [#31244](https://github.com/mui/material-ui/issues/31244)) for the grid component which is caused by the [implementation changes](https://github.com/mui/material-ui/pull/24332) introduced in v5.
 - To add the long-awaited [offset feature](https://github.com/mui/material-ui/issues/11251) to the layout grid component.
-- To remove the child combinator (`>`) from the grid item styles, which [complicates customization](https://github.com/mui/material-ui/issues/28855) of the old grid.
+- To remove the child combinator (`>`) from the grid item styles, which [complicates the customization](https://github.com/mui/material-ui/issues/28855) of the old grid.
 - To fix [the limitation on nested grids](https://mui.com/material-ui/react-grid/#nested-grid).
 - To eliminate the unnecessary `item` prop.
 
@@ -54,7 +54,7 @@ Thanks to CSS variables, we're able to implement this feature with just a few li
 Some parts of the layout calculation are delegated to CSS by using CSS variables and `calc()`.
 Taken together, they significantly reduce the need for JavaScript and make the component scalable.
 
-Version 1 of the `Grid` calculates the width by reading the value from the React context.
+The `Grid` v1 calculates the width by reading the value from the React context.
 With CSS variables in place, we can remove the React context entirely and hand over the work to CSS instead:
 
 ```js
@@ -102,7 +102,7 @@ This is a very good use case for applying CSS variables when it comes to compone
 
 #### Remove unnecessary props
 
-In version 2, `Grid` is always an item—similar to the Flexbox item in CSS—so the `item` prop is no longer needed.
+In v2, `Grid` is always an item—similar to the Flexbox item in CSS—so the `item` prop is no longer needed.
 
 The new `Grid` automatically handles the sizing of truncated text that's too long for its container, so we've also removed the `zeroMinWidth` prop since it's no longer needed:
 
