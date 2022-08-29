@@ -263,7 +263,7 @@ module.exports = {
       },
     },
     {
-      files: ['*.tsx'],
+      files: ['*.ts', '*.tsx'],
       excludedFiles: '*.spec.tsx',
       rules: {
         // WARNING: If updated, make sure these rules are merged with `no-restricted-imports` (#ts-source-files)
@@ -278,7 +278,8 @@ module.exports = {
             ],
           },
         ],
-        'react/prop-types': 'off',
+        'react/prop-types': 'error',
+        'react/no-unused-prop-types': 'error',
       },
     },
     // Files used for generating TypeScript declaration files (#ts-source-files)
@@ -339,6 +340,7 @@ module.exports = {
 
         'react/default-props-match-prop-types': 'off',
         'react/no-access-state-in-setstate': 'off',
+        'react/no-unused-prop-types': 'off',
         'react/prefer-stateless-function': 'off',
         'react/prop-types': 'off',
         'react/require-default-props': 'off',
