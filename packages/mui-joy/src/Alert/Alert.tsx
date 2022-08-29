@@ -51,6 +51,7 @@ const AlertRoot = styled('div', {
     '--Alert-decorator-childHeight': '2rem',
     '--Icon-fontSize': '1.25rem',
     fontSize: theme.vars.fontSize.sm,
+    fontWeight: theme.vars.fontWeight.md,
   }),
   ...(ownerState.size === 'lg' && {
     '--Alert-padding': '1rem',
@@ -58,9 +59,9 @@ const AlertRoot = styled('div', {
     '--Alert-decorator-childHeight': '2.375rem',
     '--Icon-fontSize': '1.5rem',
     fontSize: theme.vars.fontSize.md,
+    fontWeight: theme.vars.fontWeight.md,
   }),
   fontFamily: theme.vars.fontFamily.body,
-  fontWeight: theme.vars.fontWeight.md,
   lineHeight: theme.vars.lineHeight.md,
   backgroundColor: 'transparent',
   display: 'flex',
