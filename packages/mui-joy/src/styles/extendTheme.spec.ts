@@ -48,7 +48,7 @@ import { expectType } from '@mui/types';
 
 extendTheme({
   components: {
-    Joy: {
+    JoyAlert: {
       defaultProps: {
         variant: 'soft',
         color: 'primary',
