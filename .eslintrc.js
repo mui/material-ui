@@ -263,7 +263,7 @@ module.exports = {
       },
     },
     {
-      files: ['*.ts', '*.tsx'],
+      files: ['*.tsx'],
       excludedFiles: '*.spec.tsx',
       rules: {
         // WARNING: If updated, make sure these rules are merged with `no-restricted-imports` (#ts-source-files)
