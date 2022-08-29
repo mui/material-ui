@@ -17,7 +17,7 @@ export default function Home() {
     <BrandingProvider>
       <Head
         title="MUI X: Performant advanced components"
-        description="We are kicking it off with the most powerful Data Grid on the market and there's a lot more to come. Build complex applications with our advanced React components."
+        description="Build data-rich applications using a growing list of advanced React components. We're kicking it off with the most powerful Data Grid on the market."
         card="/static/social-previews/x-preview.jpg"
       />
       <AppHeaderBanner />

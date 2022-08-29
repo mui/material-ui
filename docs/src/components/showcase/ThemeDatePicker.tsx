@@ -142,6 +142,7 @@ export default function ThemeDatePicker() {
                 border: '1px solid',
                 borderColor: mode === 'dark' ? primaryDark[500] : grey[200],
                 borderRadius: 1,
+                overflow: 'hidden',
               },
               '& > div > div > div': {
                 width: '100%',

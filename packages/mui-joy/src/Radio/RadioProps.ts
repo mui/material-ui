@@ -99,4 +99,24 @@ export type RadioProps<
   },
 > = OverrideProps<RadioTypeMap<P, D>, D>;
 
-export type RadioOwnerState = RadioProps;
+export interface RadioOwnerState extends RadioProps {
+  /**
+   * If `true`, the element's focus is visible.
+   */
+  focusVisible: boolean;
+  /**
+   * @internal
+   * The value from the RadioGroup component.
+   */
+  row?: boolean;
+  /**
+   * @internal
+   * The internal prop for controlling CSS margin of the element.
+   */
+  'data-first-child'?: string;
+  /**
+   * @internal
+   * The internal prop for controlling CSS margin of the element.
+   */
+  'data-parent'?: string;
+}

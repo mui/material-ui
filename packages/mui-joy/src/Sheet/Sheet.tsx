@@ -8,7 +8,7 @@ import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
 import { resolveSxValue } from '../styles/styleUtils';
 import { getSheetUtilityClass } from './sheetClasses';
-import { SheetProps, SheetTypeMap } from './SheetProps';
+import { SheetProps, SheetOwnerState, SheetTypeMap } from './SheetProps';
 
 const useUtilityClasses = (ownerState: SheetProps) => {
   const { variant, color } = ownerState;
@@ -28,7 +28,7 @@ export const SheetRoot = styled('div', {
   name: 'JoySheet',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: SheetProps }>(({ theme, ownerState }) => {
+})<{ ownerState: SheetOwnerState }>(({ theme, ownerState }) => {
   const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];
   const childRadius = resolveSxValue({ theme, ownerState }, 'borderRadius');
   return [

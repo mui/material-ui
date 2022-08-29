@@ -85,7 +85,7 @@ const InputRoot = styled('div', {
       alignItems: 'center',
       paddingInline: `var(--Input-paddingInline)`,
       borderRadius: 'var(--Input-radius)',
-      ...(!variantStyle.backgroundColor && {
+      ...(!variantStyle?.backgroundColor && {
         backgroundColor: theme.vars.palette.background.surface,
       }),
       fontFamily: theme.vars.fontFamily.body,
@@ -252,27 +252,32 @@ const Input = React.forwardRef(function Input(inProps, ref) {
     getSlotProps: (otherHandlers: EventHandlers) =>
       getInputProps({ ...otherHandlers, ...propsToForward }),
     externalSlotProps: componentsProps.input,
-    additionalProps: {
-      as: componentsProps.input?.component,
-    },
     ownerState,
     className: [classes.input, inputStateClasses],
+  });
+
+  const startDecoratorProps = useSlotProps({
+    elementType: InputStartDecorator,
+    externalSlotProps: componentsProps.startDecorator,
+    ownerState,
+    className: classes.startDecorator,
+  });
+
+  const endDecoratorProps = useSlotProps({
+    elementType: InputEndDecorator,
+    externalSlotProps: componentsProps.endDecorator,
+    ownerState,
+    className: classes.endDecorator,
   });
 
   return (
     <InputRoot {...rootProps}>
       {startDecorator && (
-        <InputStartDecorator className={classes.startDecorator} ownerState={ownerState}>
-          {startDecorator}
-        </InputStartDecorator>
+        <InputStartDecorator {...startDecoratorProps}>{startDecorator}</InputStartDecorator>
       )}
 
       <InputInput {...inputProps} />
-      {endDecorator && (
-        <InputEndDecorator className={classes.endDecorator} ownerState={ownerState}>
-          {endDecorator}
-        </InputEndDecorator>
-      )}
+      {endDecorator && <InputEndDecorator {...endDecoratorProps}>{endDecorator}</InputEndDecorator>}
     </InputRoot>
   );
 }) as OverridableComponent<InputTypeMap>;
@@ -311,8 +316,10 @@ Input.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   componentsProps: PropTypes.shape({
-    input: PropTypes.object,
-    root: PropTypes.object,
+    endDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    input: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    startDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
    * @ignore

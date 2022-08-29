@@ -134,7 +134,7 @@ That way, you'll have a consistent height and will be able to leverage nested CS
 
 Use the `IconButton` component as a decorator to the `Select` to add a clear action.
 
-The `Selct` will set the focus-visible state back to the select button after the select value is cleared, ensuring a great keyboard-navigation experience.
+The `Select` will set the focus-visible state back to the select button after the select value is cleared, ensuring a great keyboard-navigation experience.
 
 {{"demo": "SelectClearable.js"}}
 

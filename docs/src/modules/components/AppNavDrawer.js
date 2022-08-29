@@ -466,6 +466,9 @@ export default function AppNavDrawer(props) {
               ])}
             />
           )}
+          {asPathWithoutLang.startsWith('/toolpad') && (
+            <ProductIdentifier name="Toolpad" metadata="MUI Toolpad" />
+          )}
         </ToolbarDiv>
         <Divider
           sx={{

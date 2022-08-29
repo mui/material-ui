@@ -1,7 +1,7 @@
-import { SlotComponentProps } from '@mui/base';
-import { ExtendSliderUnstyledTypeMap, SliderValueLabelUnstyled } from '@mui/base/SliderUnstyled';
-import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import * as React from 'react';
+import { SlotComponentProps } from '@mui/base';
+import { ExtendSliderUnstyledTypeMap } from '@mui/base/SliderUnstyled';
+import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import { ColorPaletteProp, SxProps } from '../styles/types';
 
 export type SliderSlot =
@@ -18,27 +18,20 @@ export interface SliderPropsColorOverrides {}
 
 export interface SliderPropsSizeOverrides {}
 
-export interface SliderComponentsPropsOverrides {}
-
 export interface SliderOwnProps {
   /**
    * The props used for each slot inside the Slider.
    * @default {}
    */
   componentsProps?: {
-    root?: SlotComponentProps<'span', SliderComponentsPropsOverrides, SliderOwnerState>;
-    track?: SlotComponentProps<'span', SliderComponentsPropsOverrides, SliderOwnerState>;
-    rail?: SlotComponentProps<'span', SliderComponentsPropsOverrides, SliderOwnerState>;
-    thumb?: SlotComponentProps<'span', SliderComponentsPropsOverrides, SliderOwnerState>;
-    mark?: SlotComponentProps<'span', SliderComponentsPropsOverrides, SliderOwnerState>;
-    markLabel?: SlotComponentProps<'span', SliderComponentsPropsOverrides, SliderOwnerState>;
-    valueLabel?: SlotComponentProps<
-      typeof SliderValueLabelUnstyled,
-      SliderComponentsPropsOverrides,
-      SliderOwnerState
-    >;
-
-    input?: SlotComponentProps<'input', SliderComponentsPropsOverrides, SliderOwnerState>;
+    root?: SlotComponentProps<'span', { sx?: SxProps }, SliderOwnerState>;
+    track?: SlotComponentProps<'span', { sx?: SxProps }, SliderOwnerState>;
+    rail?: SlotComponentProps<'span', { sx?: SxProps }, SliderOwnerState>;
+    thumb?: SlotComponentProps<'span', { sx?: SxProps }, SliderOwnerState>;
+    mark?: SlotComponentProps<'span', { sx?: SxProps }, SliderOwnerState>;
+    markLabel?: SlotComponentProps<'span', { sx?: SxProps }, SliderOwnerState>;
+    valueLabel?: SlotComponentProps<'span', { sx?: SxProps }, SliderOwnerState>;
+    input?: SlotComponentProps<'input', { sx?: SxProps }, SliderOwnerState>;
   };
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
@@ -70,7 +63,13 @@ export type SliderProps<
   P = { component?: React.ElementType },
 > = OverrideProps<SliderTypeMap<D, P>, D>;
 
-export type SliderOwnerState = SliderProps & {
+export interface SliderOwnerState extends SliderProps {
+  /**
+   * If `true`, the thumb is in dragging state.
+   */
   dragging: boolean;
+  /**
+   * If `true`, some of the marks has `label` property.
+   */
   marked: boolean;
-};
+}

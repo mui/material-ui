@@ -23,6 +23,7 @@ describe('Joy <TabPanel />', () => {
     muiName: 'JoyTabPanel',
     refInstanceof: window.HTMLDivElement,
     testVariantProps: { size: 'sm' },
+    testCustomVariant: true,
     skip: ['componentsProp', 'classesRoot', 'reactTestRenderer'],
   }));
 
