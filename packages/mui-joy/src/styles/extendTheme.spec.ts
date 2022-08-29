@@ -1,6 +1,4 @@
-import * as React from 'react';
-import { expectType } from '@mui/types';
-import { extendTheme } from '@mui/joy/styles';
+import { AlertOwnerState } from '@mui/joy/Alert';
 import { AspectRatioOwnerState } from '@mui/joy/AspectRatio';
 import { AvatarOwnerState } from '@mui/joy/Avatar';
 import { AvatarGroupOwnerState } from '@mui/joy/AvatarGroup';
@@ -37,6 +35,7 @@ import { SelectOwnerState } from '@mui/joy/Select';
 import { SheetOwnerState } from '@mui/joy/Sheet';
 import { SliderOwnerState } from '@mui/joy/Slider';
 import { StackProps } from '@mui/joy/Stack';
+import { extendTheme } from '@mui/joy/styles';
 import { SvgIconOwnerState } from '@mui/joy/SvgIcon';
 import { SwitchOwnerState } from '@mui/joy/Switch';
 import { TabOwnerState } from '@mui/joy/Tab';
@@ -45,9 +44,30 @@ import { TabPanelOwnerState } from '@mui/joy/TabPanel';
 import { TabsOwnerState } from '@mui/joy/Tabs';
 import { TextareaOwnerState } from '@mui/joy/Textarea';
 import { TypographyOwnerState } from '@mui/joy/Typography';
+import { expectType } from '@mui/types';
 
 extendTheme({
   components: {
+    Joy: {
+      defaultProps: {
+        variant: 'soft',
+        color: 'primary',
+      },
+      styleOverrides: {
+        root: ({ ownerState }) => {
+          expectType<AlertOwnerState & Record<string, unknown>, typeof ownerState>(ownerState);
+          return {};
+        },
+        startDecorator: ({ ownerState }) => {
+          expectType<AlertOwnerState & Record<string, unknown>, typeof ownerState>(ownerState);
+          return {};
+        },
+        endDecorator: ({ ownerState }) => {
+          expectType<AlertOwnerState & Record<string, unknown>, typeof ownerState>(ownerState);
+          return {};
+        },
+      },
+    },
     JoyAspectRatio: {
       defaultProps: {
         variant: 'outlined',

@@ -50,3 +50,5 @@ export type AlertProps<
   D extends React.ElementType = AlertTypeMap['defaultComponent'],
   P = { component?: React.ElementType },
 > = OverrideProps<AlertTypeMap<P, D>, D>;
+
+export interface AlertOwnerState extends AlertProps {}
