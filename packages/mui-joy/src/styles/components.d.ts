@@ -41,6 +41,7 @@ import {
 } from '../ChipDelete/ChipDeleteProps';
 import {
   CircularProgressProps,
+  CircularProgressOwnerState,
   CircularProgressSlot,
 } from '../CircularProgress/CircularProgressProps';
 import { ContainerProps, ContainerSlot } from '../Container/ContainerProps';
@@ -162,7 +163,7 @@ export interface Components<Theme = unknown> {
   };
   JoyCircularProgress?: {
     defaultProps?: Partial<CircularProgressProps>;
-    styleOverrides?: OverridesStyleRules<CircularProgressSlot, CircularProgressProps, Theme>;
+    styleOverrides?: OverridesStyleRules<CircularProgressSlot, CircularProgressOwnerState, Theme>;
   };
   JoyCard?: {
     defaultProps?: Partial<CardProps>;

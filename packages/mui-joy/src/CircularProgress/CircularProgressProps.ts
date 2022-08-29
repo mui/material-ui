@@ -54,3 +54,5 @@ export type CircularProgressProps<
   D extends React.ElementType = CircularProgressTypeMap['defaultComponent'],
   P = { component?: React.ElementType },
 > = OverrideProps<CircularProgressTypeMap<P, D>, D>;
+
+export interface CircularProgressOwnerState extends CircularProgressProps {}
