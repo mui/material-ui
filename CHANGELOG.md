@@ -6,7 +6,7 @@
 
 _Aug 29, 2022_
 
-A big thanks to the 15 contributors who made this release possible. Here are some highlights ✨:
+A big thanks to the 16 contributors who made this release possible. Here are some highlights ✨:
 
 - ⚡ @mnajdova implemented an alternative to OverridableComponent to achieve better dev-time performance (#32735)
 - Many other 🐛 bug fixes, 📚 documentation, and ⚙️ infrastructure improvements
@@ -38,8 +38,10 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 
 ### Docs
 
+- [blog] Add Grid v2 announcement (#33926) @siriwatknp
 - [blog] Making customizable components (#33183) @alexfauquette
 - [blog] Improve SEO metadata (#33954) @oliviertassinari
+- [docs] Add introduction Base component demos & general uplift (#33896) @danilo-leal
 - [docs] Fix Gatsby sample config in CSS variables (#34024) @bicstone
 - [docs] Fix 404 link from Joy to React Router (#34115) @oliviertassinari
 - [docs] Fix typo in `Select` component (#34091) @HexM7
@@ -58,7 +60,7 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 - [core] Specify code owners (#33995) @michaldudak
 - [core] Fix scroll restoration (#34037) @oliviertassinari
 
-All contributors of this release in alphabetical order: @alexfauquette, @bharatkashyap, @bicstone, @EthanStandel, @HexM7, @hoangph271, @JonathanAsbury-SPS, @michaldudak, @mnajdova, @NaveenPantra, @oliviertassinari, @pieetrus, @renovate[bot], @siriwatknp, @ZeeshanTamboli
+All contributors of this release in alphabetical order: @alexfauquette, @bharatkashyap, @bicstone, @danilo-leal, @EthanStandel, @HexM7, @hoangph271, @JonathanAsbury-SPS, @michaldudak, @mnajdova, @NaveenPantra, @oliviertassinari, @pieetrus, @renovate[bot], @siriwatknp, @ZeeshanTamboli
 
 ## 5.10.2
 
