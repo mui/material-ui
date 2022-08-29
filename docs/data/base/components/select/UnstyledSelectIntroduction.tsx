@@ -154,13 +154,7 @@ const CustomSelect = React.forwardRef(function CustomSelect<TValue>(
     ...props.components,
   };
 
-  return (
-    <SelectUnstyled
-      {...props}
-      ref={ref}
-      components={components}
-    />
-  );
+  return <SelectUnstyled {...props} ref={ref} components={components} />;
 });
 
 export default function UnstyledSelectIntroduction() {
