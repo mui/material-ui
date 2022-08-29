@@ -28,15 +28,15 @@ describe('<Breadcrumbs />', () => {
 
   describe('prop: size', () => {
     it('md by default', () => {
-      const { getByTestId } = render(<Breadcrumbs data-testid="root" />);
+      const { getByRole } = render(<Breadcrumbs />);
 
-      expect(getByTestId('root')).to.have.class(classes.sizeMd);
+      expect(getByRole('navigation')).to.have.class(classes.sizeMd);
     });
     ['sm', 'md', 'lg'].forEach((size) => {
       it(`should render ${size}`, () => {
-        const { getByTestId } = render(<Breadcrumbs data-testid="root" size={size} />);
+        const { getByRole } = render(<Breadcrumbs size={size} />);
 
-        expect(getByTestId('root')).to.have.class(classes[`size${capitalize(size)}`]);
+        expect(getByRole('navigation')).to.have.class(classes[`size${capitalize(size)}`]);
       });
     });
   });
