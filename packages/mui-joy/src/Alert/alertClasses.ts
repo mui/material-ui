@@ -21,6 +21,12 @@ export interface AlertClasses {
   colorSuccess: string;
   /** Styles applied to the root element if `color="warning"`. */
   colorWarning: string;
+  /** Styles applied to the root element if `size="sm"`. */
+  sizeSm: string;
+  /** Styles applied to the root element if `size="md"`. */
+  sizeMd: string;
+  /** Styles applied to the root element if `size="lg"`. */
+  sizeLg: string;
   /** Styles applied to the root element if `variant="outlined"`. */
   variantOutlined: string;
   /** Styles applied to the root element if `variant="soft"`. */
@@ -46,6 +52,9 @@ const alertClasses: AlertClasses = generateUtilityClasses('JoyAlert', [
   'colorNeutral',
   'colorSuccess',
   'colorWarning',
+  'sizeSm',
+  'sizeMd',
+  'sizeLg',
   'variantOutlined',
   'variantSoft',
   'variantSolid',
