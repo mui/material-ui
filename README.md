@@ -13,7 +13,7 @@
 
 - [_MUI Base_](https://mui.com/base/getting-started/overview/) is our library of "unstyled" components and low-level hooks. With Base, you gain complete control over your app's CSS and accessibility features.
 
-- [_MUI System_](https://mui.com/system/getting-started/overview/) is a collection of CSS utilities to help you rapidly lay out custom designs.
+- [_MUI System_](https://mui.com/system/getting-started/overview/) is a collection of CSS utilities to help you rapidly layout custom designs.
 
 <div align="center">
 
