@@ -23,6 +23,7 @@ export default function AlertWithDecorators() {
               textTransform: 'uppercase',
               fontSize: 'xs',
               fontWeight: 'xl',
+              mr: -1,
             }}
           >
             Close
