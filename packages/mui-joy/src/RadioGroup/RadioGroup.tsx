@@ -10,10 +10,10 @@ import {
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { styled, useThemeProps } from '../styles';
 import { getRadioGroupUtilityClass } from './radioGroupClasses';
-import { RadioGroupProps, RadioGroupTypeMap } from './RadioGroupProps';
+import { RadioGroupOwnerState, RadioGroupTypeMap } from './RadioGroupProps';
 import RadioGroupContext from './RadioGroupContext';
 
-const useUtilityClasses = (ownerState: RadioGroupProps) => {
+const useUtilityClasses = (ownerState: RadioGroupOwnerState) => {
   const { row, size, variant, color } = ownerState;
   const slots = {
     root: [
@@ -32,7 +32,7 @@ const RadioGroupRoot = styled('div', {
   name: 'JoyRadioGroup',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: RadioGroupProps }>(({ ownerState, theme }) => ({
+})<{ ownerState: RadioGroupOwnerState }>(({ ownerState, theme }) => ({
   ...(ownerState.size === 'sm' && {
     '--RadioGroup-gap': '0.625rem',
   }),
@@ -68,7 +68,8 @@ const RadioGroup = React.forwardRef(function RadioGroup(inProps, ref) {
     variant = 'plain',
     size = 'md',
     row = false,
-    ...otherProps
+    role = 'radiogroup',
+    ...other
   } = props;
 
   const [value, setValueState] = useControlled({
@@ -82,6 +83,7 @@ const RadioGroup = React.forwardRef(function RadioGroup(inProps, ref) {
     size,
     variant,
     color,
+    role,
     ...props,
   };
 
@@ -111,11 +113,11 @@ const RadioGroup = React.forwardRef(function RadioGroup(inProps, ref) {
     >
       <RadioGroupRoot
         ref={ref}
-        role="radiogroup"
-        {...otherProps}
+        role={role}
         as={component}
         ownerState={ownerState}
         className={clsx(classes.root, className)}
+        {...other}
       >
         {React.Children.map(children, (child, index) =>
           React.isValidElement(child)
@@ -181,6 +183,10 @@ RadioGroup.propTypes /* remove-proptypes */ = {
    * The radio's `overlay` prop. If specified, the value is passed down to every radios under this element.
    */
   overlay: PropTypes.bool,
+  /**
+   * @ignore
+   */
+  role: PropTypes /* @typescript-to-proptypes-ignore */.string,
   /**
    * If `true`, flex direction is set to 'row'.
    * @default false
