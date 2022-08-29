@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Box } from '@mui/system';
+import Box from '@mui/system/Box';
 import Portal from '@mui/base/Portal';
 import TrapFocus from '@mui/base/TrapFocus';
 
@@ -8,13 +8,7 @@ export default function PortalTrapFocus() {
   const [container, setContainer] = React.useState<HTMLElement | null>(null);
 
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        alignItems: 'center',
-        flexDirection: 'column',
-      }}
-    >
+    <Box sx={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
       <button type="button" onClick={() => setOpen(true)}>
         Open
       </button>

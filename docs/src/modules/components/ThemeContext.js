@@ -1,10 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import {
-  ThemeProvider as MuiThemeProvider,
-  createTheme as createLegacyModeTheme,
-  unstable_createMuiStrictModeTheme as createStrictModeTheme,
-} from '@mui/material/styles';
+import { ThemeProvider as MuiThemeProvider, createTheme } from '@mui/material/styles';
 import { deepmerge } from '@mui/utils';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import { enUS, zhCN, faIR, ruRU, ptBR, esES, frFR, deDE, jaJP } from '@mui/material/locale';
@@ -114,13 +110,6 @@ export const DispatchContext = React.createContext(() => {
 
 if (process.env.NODE_ENV !== 'production') {
   DispatchContext.displayName = 'ThemeDispatchContext';
-}
-
-let createTheme;
-if (process.env.REACT_STRICT_MODE) {
-  createTheme = createStrictModeTheme;
-} else {
-  createTheme = createLegacyModeTheme;
 }
 
 export function ThemeProvider(props) {

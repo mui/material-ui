@@ -1,22 +1,22 @@
 ---
 product: material-ui
-title: React App Bar（应用栏）组件
+title: 应用栏（App bar）React组件
 components: AppBar, Toolbar, Menu
 githubLabel: 'component: app bar'
 materialDesign: https://material.io/components/app-bars-top
 ---
 
-# App Bar 应用栏
+# 应用栏（App bar）
 
-<p class="description">应用栏组件展示了与当前屏幕息息相关的信息和操作。</p>
+<p class="description">应用栏展示了与当前屏幕内容相关的信息和操作。</p>
 
-而顶部应用栏（App Bar）则提供与当前屏幕相关的内容和操作。 该组件常用于展示品牌、展示标题、提供导航和一些可操作的内容。
+顶部应用栏提供与当前屏幕有关的内容和操作。 该组件常用于展示品牌、屏幕标题、导航和操作。
 
 它既可以用作于转换为上下文相关的操作栏，又可以直接充当导航栏。
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## 简单的应用栏
+## 基础的应用栏
 
 {{"demo": "ButtonAppBar.js", "bg": true}}
 
@@ -30,23 +30,27 @@ materialDesign: https://material.io/components/app-bars-top
 
 ## 带有搜索输入框的应用栏
 
-侧边搜索栏。
+一个侧边搜索栏。
 
 {{"demo": "SearchAppBar.js", "bg": true}}
 
-## 带有主要搜索输入框的应用栏
+## 带有抽屉的响应式应用栏
 
-主要搜索栏。
+{{"demo": "DrawerAppBar.js", "bg": true,"iframe": true}}
+
+## 带有主搜索输入框的应用栏
+
+一个主搜索栏。
 
 {{"demo": "PrimarySearchAppBar.js", "bg": true}}
 
-## 紧凑模式（仅限桌面模式）
+## 紧凑模式（仅限桌面）
 
 {{"demo": "DenseAppBar.js", "bg": true}}
 
-## Prominent
+## 突出
 
-A prominent app bar.
+一个突出显示的应用栏。
 
 {{"demo": "ProminentAppBar.js", "bg": true}}
 
@@ -56,7 +60,7 @@ A prominent app bar.
 
 ## 固定位置
 
-当渲染一个固定位置的应用栏时，元素的尺寸不会影响页面的其余内容。 这可能导致部分内容会被挡在应用栏后面使其无法可见。 下面有 3 种解决方案：
+当您在固定位置渲染应用栏，元素的尺寸不会影响页面的其余内容。 这可能导致您的部分内容被应用栏遮挡而不可见。 以下是3种可能的解决方案：
 
 1. 使用 `position =“ sticky”` 代替 fixed。 ⚠️ sticky 不支持 IE11。
 2. 可以渲染第二个 `<Toolbar />` 组件：
@@ -93,23 +97,23 @@ function App() {
 
 ## 滚动
 
-您可以使用 `useScrollTrigger()` 这个 hook 来响应用户触发的滚动操作。
+您可以使用 `useScrollTrigger()` 钩子来响应用户触发的滚动操作。
 
 ### 隐藏应用栏
 
-向下滚动会隐藏应用栏，这样一来会留有更多的空间进行阅读。
+向下滚动隐藏应用栏，从而为阅读提供更多空间。
 
 {{"demo": "HideAppBar.js", "iframe": true}}
 
-### 变高的应用栏
+### 提升应用栏
 
-应用栏阴影会在滚动时加深，以表明用户还未到页面的顶部。
+应用栏会在滚动时提升，以表明用户还未到页面的顶部。
 
 {{"demo": "ElevateAppBar.js", "iframe": true}}
 
 ### 回到顶部
 
-在滚动的时候，会出现一个浮动操作按钮，这样以便于返回页面的顶部。
+滚动时出现一个浮动操作按钮，以便返回页面的顶部。
 
 {{"demo": "BackToTop.js", "iframe": true}}
 
@@ -125,9 +129,9 @@ function App() {
 
 #### 返回结果
 
-`trigger` ：滚动位置是否与目标值匹配？
+`trigger`: 此滚动的位置符合要求吗？
 
-#### 例子
+#### 示例
 
 ```jsx
 import useScrollTrigger from '@mui/material/useScrollTrigger';
@@ -142,8 +146,8 @@ function HideOnScroll(props) {
 }
 ```
 
-## 在深色模式上启用颜色
+## 启用深色模式颜色
 
-根据 [Material Design 规范](https://material.io/design/color/dark-theme.html)，`color` 属性在深色模式下对应用栏的外观没有影响。 您可以通过设置 `enableColorOnDark` 属性为 `true` 来覆盖此行为。
+按照[Material Design设计准则](https://material.io/design/color/dark-theme.html)，`color`属性对深色模式下的应用栏外观没有影响。 你可以通过将`enableColorOnDark`属性设置为`true`覆盖这一行为。
 
 {{"demo": "EnableColorOnDarkAppBar.js", "bg": true}}

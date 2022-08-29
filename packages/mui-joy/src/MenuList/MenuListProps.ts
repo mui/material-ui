@@ -46,3 +46,5 @@ export type MenuListProps<
     component?: React.ElementType;
   },
 > = OverrideProps<MenuListTypeMap<P, D>, D>;
+
+export interface MenuListOwnerState extends MenuListProps {}

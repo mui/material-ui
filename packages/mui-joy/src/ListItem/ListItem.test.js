@@ -16,6 +16,8 @@ describe('Joy <ListItem />', () => {
     ThemeProvider,
     muiName: 'JoyListItem',
     refInstanceof: window.HTMLLIElement,
+    testVariantProps: { variant: 'solid' },
+    testCustomVariant: true,
     skip: ['componentsProp', 'classesRoot', 'themeVariants'],
   }));
 

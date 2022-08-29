@@ -51,7 +51,7 @@ export default function DiamondSponsors() {
           sx={{
             color: (theme) =>
               theme.palette.mode === 'dark'
-                ? theme.palette.primary[400]
+                ? theme.palette.primary[300]
                 : theme.palette.primary[500],
           }}
         >
