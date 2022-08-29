@@ -7,9 +7,9 @@ const blue = {
 };
 
 const grey = {
-  400: '#BFC7CF',
-  500: '#AAB4BE',
-  600: '#6F7E8C',
+  400: '#8c959f',
+  500: '#6e7781',
+  600: '#57606a',
 };
 
 const Root = styled('span')(
@@ -18,7 +18,7 @@ const Root = styled('span')(
   position: relative;
   display: inline-block;
   width: 40px;
-  height: 20px;
+  height: 24px;
   margin: 10px;
   cursor: pointer;
 
@@ -29,7 +29,7 @@ const Root = styled('span')(
 
   & .${switchUnstyledClasses.track} {
     background: ${theme.palette.mode === 'dark' ? grey[600] : grey[400]};
-    border-radius: 10px;
+    border-radius: 16px;
     display: block;
     height: 100%;
     width: 100%;
@@ -38,14 +38,17 @@ const Root = styled('span')(
 
   & .${switchUnstyledClasses.thumb} {
     display: block;
-    width: 14px;
-    height: 14px;
-    top: 3px;
-    left: 3px;
+    width: 16px;
+    height: 16px;
+    top: 4px;
+    left: 4px;
     border-radius: 16px;
     background-color: #fff;
     position: relative;
-    transition: all 200ms ease;
+    
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 120ms;
   }
 
   &.${switchUnstyledClasses.focusVisible} .${switchUnstyledClasses.thumb} {
@@ -55,8 +58,8 @@ const Root = styled('span')(
 
   &.${switchUnstyledClasses.checked} {
     .${switchUnstyledClasses.thumb} {
-      left: 22px;
-      top: 3px;
+      left: 20px;
+      top: 4px;
       background-color: #fff;
     }
 
