@@ -1382,10 +1382,10 @@
     source-map "^0.5.7"
     stylis "4.0.13"
 
-"@emotion/cache@^11.10.0", "@emotion/cache@^11.10.1":
-  version "11.10.2"
-  resolved "https://registry.yarnpkg.com/@emotion/cache/-/cache-11.10.2.tgz#8e795493b46d2a55162e110396829a7240fa0f71"
-  integrity sha512-GPR4PovENRvYDbCEnDRecPZYJzWdNMsM+Jn+13MC5uImVNbMyKwzv95DUHy5PDcgfPtKoDtfLU6emF1grrbQDg==
+"@emotion/cache@^11.10.0", "@emotion/cache@^11.10.3":
+  version "11.10.3"
+  resolved "https://registry.yarnpkg.com/@emotion/cache/-/cache-11.10.3.tgz#c4f67904fad10c945fea5165c3a5a0583c164b87"
+  integrity sha512-Psmp/7ovAa8appWh3g51goxu/z3iVms7JXOreq136D8Bbn6dYraPnmL6mdM8GThEx9vwSn92Fz+mGSjBzN8UPQ==
   dependencies:
     "@emotion/memoize" "^0.8.0"
     "@emotion/sheet" "^1.2.0"
