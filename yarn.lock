@@ -10571,7 +10571,7 @@ lazystream@^1.0.0:
   dependencies:
     readable-stream "^2.0.5"
 
-lerna@^5.3.0:
+lerna@^5.4.3:
   version "5.4.3"
   resolved "https://registry.yarnpkg.com/lerna/-/lerna-5.4.3.tgz#a0a7f24de87b7e4dc4eed5547c07c5dc0865d785"
   integrity sha512-PypijMk4Jii8DoWGRLiHhBUaqpjXAmrwbs6uUZgyb07JrqCrXW3nhAyzdZE5S0rk1/sRzjd10fYmntOgNFfKBw==
