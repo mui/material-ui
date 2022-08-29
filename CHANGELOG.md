@@ -32,9 +32,9 @@ A big thanks to the 15 contributors who made this release possible. Here are som
 
 - [Joy] Fix `role` proptypes (#34119) @siriwatknp
 - [Joy] Refine `componentsProps` for all components (#34077) @siriwatknp
-- [Radio][Joy] support `componentsProps` as a function (#34022) @siriwatknp
+- [Radio][joy] support `componentsProps` as a function (#34022) @siriwatknp
 - [Select][joy] Improve the a11y on the select field demo (#34073) @mnajdova
-- [Textarea][Joy] Add `Textarea` component (#33975) @siriwatknp
+- [Textarea][joy] Add `Textarea` component (#33975) @siriwatknp
 
 ### Docs
 
