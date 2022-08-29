@@ -117,6 +117,8 @@ extendTheme({
 Here's how you'd go for extending a component's available sizes.
 We recommend following the in-use t-shirt sizing convention to maintain consistency with all the other props.
 
+Here is an example of extending the button sizes to include `xs` and `xl` values:
+
 ```js
 extendTheme({
   components: {
@@ -124,20 +126,18 @@ extendTheme({
       styleOverrides: {
         root: ({ ownerState, theme }) => ({
           ...(ownerState.size === 'xs' && {
-            // smallest size
             '--Icon-fontSize': '1rem',
             '--Button-gap': '0.25rem',
             minHeight: 'var(--Button-minHeight, 1.75rem)',
-            fontSize: theme.vars.fontSize.sm,
+            fontSize: theme.vars.fontSize.xs,
             paddingBlock: '2px',
             paddingInline: '0.5rem',
           }),
           ...(ownerState.size === 'xl' && {
-            // largest size
             '--Icon-fontSize': '2rem',
             '--Button-gap': '1rem',
             minHeight: 'var(--Button-minHeight, 4rem)',
-            fontSize: theme.vars.fontSize.lg,
+            fontSize: theme.vars.fontSize.xl,
             paddingBlock: '0.5rem',
             paddingInline: '2rem',
           }),
@@ -147,6 +147,17 @@ extendTheme({
   },
 });
 ```
+
+Then, you will be able to use those values on the button instances:
+
+```jsx
+<Button size="xs">Extra small</Button>
+<Button size="xl">Extra large</Button>
+```
+
+:::info
+**Tip**: the properties for extending sizes should relate to density or dimension of the component. If you want to control the color-related properties, you should [extend the variants](#extend-variants) instead.
+:::
 
 #### TypeScript
 
@@ -172,6 +183,8 @@ declare module '@mui/joy/Button' {
 
 By creating new component variants, you're automatically opting out of the [global variant feature](/joy-ui/main-features/global-variants/), which allows you to have fine-grain control of the color-related CSS properties (`color`, `background` and `border`).
 
+Here is an example of extending the sheet variant to include `glass` value:
+
 ```js
 extendTheme({
   components: {
@@ -192,6 +205,12 @@ extendTheme({
 });
 ```
 
+Then, you will be able to use the value on the sheet instances:
+
+```jsx
+<Sheet variant="glass">Glassmorphism</Sheet>
+```
+
 #### TypeScript
 
 You need module augmentation to include the values to the `variant` prop of the component.
@@ -200,7 +219,7 @@ The interface is in `{ComponentName}PropsVariantOverrides` format which exists i
 
 ```tsx
 // This part could be declare in your theme file
-declare module '@mui/joy/Button' {
+declare module '@mui/joy/Sheet' {
   interface SheetPropsVariantOverrides {
     glass: true;
   }
