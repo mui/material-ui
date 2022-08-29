@@ -7,7 +7,7 @@
     "loading": "If <code>true</code>, the loading indicator is shown.",
     "loadingIndicator": "Element placed before the children if the button is in loading state. The node should contain an element with <code>role=&quot;progressbar&quot;</code> with an accessible name. By default we render a <code>CircularProgress</code> that is labelled by the button itself.",
     "loadingPosition": "The loading indicator can be positioned on the start, end, or the center of the button.",
-    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/basics/#the-sx-prop\">`sx` page</a> for more details.",
+    "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details.",
     "variant": "The variant to use."
   },
   "classDescriptions": {
@@ -34,6 +34,26 @@
       "nodeName": "the root element",
       "conditions": "<code>variant=\"text\"</code> and <code>color=\"secondary\"</code>"
     },
+    "textSuccess": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"text\"</code> and <code>color=\"success\"</code>"
+    },
+    "textError": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"text\"</code> and <code>color=\"error\"</code>"
+    },
+    "textInfo": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"text\"</code> and <code>color=\"info\"</code>"
+    },
+    "textWarning": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"text\"</code> and <code>color=\"warning\"</code>"
+    },
     "outlined": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
@@ -54,6 +74,26 @@
       "nodeName": "the root element",
       "conditions": "<code>variant=\"outlined\"</code> and <code>color=\"secondary\"</code>"
     },
+    "outlinedSuccess": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"outlined\"</code> and <code>color=\"success\"</code>"
+    },
+    "outlinedError": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"outlined\"</code> and <code>color=\"error\"</code>"
+    },
+    "outlinedInfo": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"outlined\"</code> and <code>color=\"info\"</code>"
+    },
+    "outlinedWarning": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"outlined\"</code> and <code>color=\"warning\"</code>"
+    },
     "contained": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
@@ -73,6 +113,26 @@
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",
       "nodeName": "the root element",
       "conditions": "<code>variant=\"contained\"</code> and <code>color=\"secondary\"</code>"
+    },
+    "containedSuccess": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"contained\"</code> and <code>color=\"success\"</code>"
+    },
+    "containedInfo": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"contained\"</code> and <code>color=\"info\"</code>"
+    },
+    "containedError": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"contained\"</code> and <code>color=\"error\"</code>"
+    },
+    "containedWarning": {
+      "description": "Styles applied to {{nodeName}} if {{conditions}}.",
+      "nodeName": "the root element",
+      "conditions": "<code>variant=\"contained\"</code> and <code>color=\"warning\"</code>"
     },
     "disableElevation": {
       "description": "Styles applied to {{nodeName}} if {{conditions}}.",

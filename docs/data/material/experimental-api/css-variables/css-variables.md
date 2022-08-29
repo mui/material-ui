@@ -194,7 +194,11 @@ import React from 'react';
 import { getInitColorSchemeScript } from '@mui/material/styles';
 
 export function onRenderBody({ setPreBodyComponents }) {
-  setPreBodyComponents([getInitColorSchemeScript()]);
+  setPreBodyComponents([
+    <React.Fragment key="mui-init-color-scheme-script">
+      {getInitColorSchemeScript()}
+    </React.Fragment>,
+  ]);
 }
 ```
 

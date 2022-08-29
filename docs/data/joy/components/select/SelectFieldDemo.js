@@ -9,15 +9,16 @@ export default function SelectFieldDemo() {
   const [value, setValue] = React.useState('dog');
   return (
     <Box sx={{ width: 240 }}>
-      <FormLabel>Favorite pet</FormLabel>
+      <FormLabel htmlFor="select-field-pet">Favorite pet</FormLabel>
       <Select
+        id="select-field-pet"
         defaultValue="dog"
         componentsProps={{
           button: {
             // screen readers will announce "Favorite pet, dog selected" when the select is focused.
             'aria-label': `Favorite pet, ${value} selected.`,
             // and this in the next sentence.
-            'aria-describedby': 'select-field-demo-helper',
+            'aria-describedby': 'select-field-pet-helper',
           },
         }}
         value={value}
@@ -29,7 +30,7 @@ export default function SelectFieldDemo() {
         <Option value="fish">Fish</Option>
         <Option value="bird">Bird</Option>
       </Select>
-      <FormHelperText id="select-field-demo-helper">
+      <FormHelperText id="select-field-pet-helper">
         This is a helper text.
       </FormHelperText>
     </Box>

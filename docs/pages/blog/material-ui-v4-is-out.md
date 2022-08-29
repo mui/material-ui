@@ -1,6 +1,6 @@
 ---
 title: Material UI v4 is out 🎉
-description: Material UI v4 is out 🎉
+description: Material UI v4 has finally arrived. We are so excited about this release, as it defines better foundations for the UI components.
 date: 2019-05-23T00:00:00.000Z
 authors: ['oliviertassinari', 'mbrookes', 'eps1lon']
 tags: ['Company']
@@ -276,7 +276,7 @@ export default function Hook() {
 ⚠️ Be aware of the difference between _@mui/styles_ and _@mui/material/styles_. The latter contains the [default theme](/material-ui/customization/default-theme/#material-ui-core-styles-vs-material-ui-styles).
 
 - A well supported [Gatsby plugin](https://github.com/hupe1980/gatsby-plugin-material-ui) for _@mui/styles_.
-- A [Cookbook](https://www.amazon.com/gp/product/1789615224/ref=as_li_tl?ie=UTF8&camp=1789&creative=9325&creativeASIN=1789615224&linkCode=as2&tag=oliviertassin-20&linkId=79aec1cb9db829135838614ac1953380) published by Packt and written by Adam Boduch.
+- A [Cookbook](https://www.packtpub.com/product/react-material-ui-cookbook/9781789615227) published by Packt and written by Adam Boduch.
 
 ![cookbook](/static/blog/material-ui-v4-is-out/cookbook.png)
 

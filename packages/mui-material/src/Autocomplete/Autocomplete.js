@@ -144,7 +144,11 @@ const AutocompleteRoot = styled('div', {
     },
   },
   [`& .${outlinedInputClasses.root}.${inputBaseClasses.sizeSmall}`]: {
-    padding: 6,
+    // Don't specify paddingRight, as it overrides the default value set when there is only
+    // one of the popup or clear icon as the specificity is equal so the latter one wins
+    paddingTop: 6,
+    paddingBottom: 6,
+    paddingLeft: 6,
     [`& .${autocompleteClasses.input}`]: {
       padding: '2.5px 4px 2.5px 6px',
     },
@@ -592,7 +596,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
           },
         })}
       </AutocompleteRoot>
-      {popupOpen && anchorEl ? (
+      {anchorEl ? (
         <AutocompletePopper
           as={PopperComponent}
           disablePortal={disablePortal}
@@ -602,7 +606,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
           ownerState={ownerState}
           role="presentation"
           anchorEl={anchorEl}
-          open
+          open={popupOpen}
           {...componentsProps.popper}
           className={clsx(classes.popper, componentsProps.popper?.className)}
         >

@@ -34,8 +34,8 @@
     },
     "variant": {
       "type": {
-        "name": "enum",
-        "description": "'body'<br>&#124;&nbsp;'footer'<br>&#124;&nbsp;'head'"
+        "name": "union",
+        "description": "'body'<br>&#124;&nbsp;'footer'<br>&#124;&nbsp;'head'<br>&#124;&nbsp;string"
       }
     }
   },

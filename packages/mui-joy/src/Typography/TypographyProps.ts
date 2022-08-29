@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { OverrideProps, OverridableStringUnion } from '@mui/types';
-import { TypographyClasses } from './typographyClasses';
+import { SlotComponentProps } from '@mui/base/utils';
 import {
   ColorPaletteProp,
   TypographySystem,
@@ -15,6 +15,12 @@ export interface TypographyPropsColorOverrides {}
 
 export interface TypographyPropsVariantOverrides {}
 
+interface ComponentsProps {
+  root?: SlotComponentProps<'a', { sx?: SxProps }, TypographyOwnerState>;
+  startDecorator?: SlotComponentProps<'span', { sx?: SxProps }, TypographyOwnerState>;
+  endDecorator?: SlotComponentProps<'span', { sx?: SxProps }, TypographyOwnerState>;
+}
+
 export interface TypographyTypeMap<P = {}, D extends React.ElementType = 'span'> {
   props: P &
     Omit<SystemProps, 'color'> & {
@@ -23,13 +29,14 @@ export interface TypographyTypeMap<P = {}, D extends React.ElementType = 'span'>
        */
       children?: React.ReactNode;
       /**
-       * Override or extend the styles applied to the component.
-       */
-      classes?: Partial<TypographyClasses>;
-      /**
        * The color of the component. It supports those theme colors that make sense for this component.
        */
       color?: OverridableStringUnion<ColorPaletteProp, TypographyPropsColorOverrides>;
+      /**
+       * The props used for each slot inside the Input.
+       * @default {}
+       */
+      componentsProps?: ComponentsProps;
       /**
        * Element placed after the children.
        */
@@ -97,3 +104,10 @@ export type TypographyProps<
     component?: React.ElementType;
   },
 > = OverrideProps<TypographyTypeMap<P, D>, D>;
+
+export interface TypographyOwnerState extends TypographyProps {
+  /**
+   * If `true`, the element is rendered in a Typography.
+   */
+  nesting: boolean;
+}

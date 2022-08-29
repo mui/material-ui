@@ -481,7 +481,9 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                   label={propName}
                   size="sm"
                   value={
-                    typeof props[propName] === 'string' ? props[propName] || '' : defaultValue || ''
+                    typeof props[propName] === 'string'
+                      ? props[propName] || ''
+                      : String(defaultValue) || ''
                   }
                   onChange={(event) =>
                     setProps((latestProps) => ({

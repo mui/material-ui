@@ -1,13 +1,13 @@
 ---
 product: material-ui
-title: Componente React Acesso Rápido
+title: React Speed dial component
 components: SpeedDial, SpeedDialAction, SpeedDialIcon
 githubLabel: 'component: speed dial'
 materialDesign: 'https://material.io/components/buttons-floating-action-button#types-of-transitions'
-waiAria: 'https://www.w3.org/TR/wai-aria-practices/#menubutton'
+waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/menubutton/
 ---
 
-# Acesso Rápido
+# Speed dial
 
 <p class="description">Quando pressionado, um botão de ação flutuante pode exibir de três a seis ações relacionadas na forma de um acesso rápido.</p>
 

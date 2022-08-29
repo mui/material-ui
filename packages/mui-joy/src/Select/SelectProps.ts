@@ -1,7 +1,8 @@
 import React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import { SelectUnstyledCommonProps, SelectOption } from '@mui/base/SelectUnstyled';
-import { PopperUnstyledProps } from '@mui/base/PopperUnstyled';
+import { PopperUnstyledOwnProps } from '@mui/base/PopperUnstyled';
+import { SlotComponentProps } from '@mui/base/utils';
 import { ListProps } from '../List/ListProps';
 import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
 
@@ -19,6 +20,19 @@ export interface SelectPropsColorOverrides {}
 
 export interface SelectPropsSizeOverrides {}
 
+interface ComponentsProps {
+  root?: SlotComponentProps<'div', { sx?: SxProps }, SelectOwnerState<any>>;
+  button?: SlotComponentProps<'button', { sx?: SxProps }, SelectOwnerState<any>>;
+  startDecorator?: SlotComponentProps<'span', { sx?: SxProps }, SelectOwnerState<any>>;
+  endDecorator?: SlotComponentProps<'span', { sx?: SxProps }, SelectOwnerState<any>>;
+  indicator?: SlotComponentProps<'span', { sx?: SxProps }, SelectOwnerState<any>>;
+  listbox?: SlotComponentProps<
+    'ul',
+    Omit<PopperUnstyledOwnProps, 'components' | 'componentsProps' | 'open'> & ListProps,
+    SelectOwnerState<any>
+  >;
+}
+
 export interface SelectStaticProps extends SelectUnstyledCommonProps {
   /**
    * A ref for imperative actions. It currently only supports `focusVisible()` action.
@@ -35,12 +49,7 @@ export interface SelectStaticProps extends SelectUnstyledCommonProps {
    * The props used for each slot inside the Input.
    * @default {}
    */
-  componentsProps?: {
-    root?: React.ComponentPropsWithRef<'div'>;
-    button?: React.ComponentPropsWithRef<'button'> & { sx?: SxProps };
-    listbox?: Omit<PopperUnstyledProps, 'open'> &
-      Pick<ListProps, 'variant' | 'color'> & { sx?: SxProps };
-  };
+  componentsProps?: ComponentsProps;
   /**
    * If `true`, the component is disabled.
    * @default false
@@ -106,9 +115,21 @@ export interface SelectOwnProps<TValue extends {}> extends SelectStaticProps {
 }
 
 export interface SelectOwnerState<TValue> extends SelectOwnProps<TValue> {
+  /**
+   * If `true`, the select button is active.
+   */
   active: boolean;
+  /**
+   * If `true`, the select button is disabled.
+   */
   disabled: boolean;
+  /**
+   * If `true`, the select button's focus is visible.
+   */
   focusVisible: boolean;
+  /**
+   * If `true`, the select dropdown is open.
+   */
   open: boolean;
 }
 
