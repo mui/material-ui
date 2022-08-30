@@ -182,7 +182,8 @@ declare module '@mui/joy/Button' {
 
 ### Extend variants
 
-By creating new component variants, you're automatically opting out of the [global variant feature](/joy-ui/main-features/global-variants/), which allows you to have fine-grain control of the color-related CSS properties (`color`, `background` and `border`).
+The following code snippet shows how to extend component variants for color properties.
+Note that by creating new variants, you're automatically opting out of the [global variant feature](/joy-ui/main-features/global-variants/), which gives you fine-grained control over CSS properties like `color`, `background`, and `border`.
 
 This example extends the Sheet variant to include a custom value named `glass`:
 
