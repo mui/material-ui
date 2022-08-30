@@ -20,75 +20,118 @@ const circulate = keyframes({
 });
 
 const useUtilityClasses = (ownerState: CircularProgressProps) => {
-  const { determinate, color } = ownerState;
+  const { determinate, color, variant, size } = ownerState;
 
   const slots = {
     root: [
       'root',
       determinate ? 'determinate' : 'indeterminate',
       color && `color${capitalize(color)}`,
+      variant && `variant${capitalize(variant)}`,
+      size && `size${capitalize(size)}`,
     ],
-    progress: ['progress'],
+    svg: ['svg'],
+    circle1: ['circle1'],
+    circle2: ['circle2'],
   };
 
   return composeClasses(slots, getCircularProgressUtilityClass, {});
 };
 
-const CircularProgressRoot = styled('div', {
+const CircularProgressRoot = styled('span', {
   name: 'JoyCircularProgress',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: CircularProgressProps }>(({ theme, ownerState }) => {
+})<{ ownerState: CircularProgressProps }>(({ ownerState }) => {
   return [
     {
+      '--CircularProgress-percent': '0.1', // 0 - 100
       '--CircularProgress-speed': '1s',
       ...(ownerState.size === 'sm' && {
-        '--CircularProgress-size': '2rem',
-        '--CircularProgress-thickness': `${ownerState.thickness || 4}px`,
+        '--CircularProgress-size': '60px',
+        '--CircularProgress-track-thickness': `${ownerState.thickness || 7}px`,
+        '--CircularProgress-progress-thickness': `${ownerState.thickness || 7}px`,
       }),
       ...(ownerState.size === 'md' && {
-        '--CircularProgress-size': '2.5rem',
-        '--CircularProgress-thickness': `${ownerState.thickness || 5}px`,
+        '--CircularProgress-size': '85px',
+        '--CircularProgress-track-thickness': `${ownerState.thickness || 10}px`,
+        '--CircularProgress-progress-thickness': `${ownerState.thickness || 10}px`,
       }),
       ...(ownerState.size === 'lg' && {
-        '--CircularProgress-size': '3rem',
-        '--CircularProgress-thickness': `${ownerState.thickness || 6}px`,
+        '--CircularProgress-size': '110px',
+        '--CircularProgress-track-thickness': `${ownerState.thickness || 13}px`,
+        '--CircularProgress-progress-thickness': `${ownerState.thickness || 13}px`,
       }),
-      borderRadius: '50%',
-      border: `var(--CircularProgress-thickness) ${
-        ownerState.variant === 'outlined' ? 'dashed' : 'solid'
-      }`,
-      borderColor: theme.vars.palette[ownerState.color!][`${ownerState.variant!}Bg`],
       width: 'var(--CircularProgress-size)',
       height: 'var(--CircularProgress-size)',
+      display: 'inline-block',
       boxSizing: 'border-box',
-      position: 'relative',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
     },
   ];
 });
 
-const CircularProgressProgress = styled('div', {
+const CircularProgressSvg = styled('svg', {
   name: 'JoyCircularProgress',
-  slot: 'Progress',
-  overridesResolver: (props, styles) => styles.root,
+  slot: 'Svg',
+  overridesResolver: (props, styles) => styles.svg,
+})<{ ownerState: CircularProgressProps }>({
+  width: 'inherit',
+  height: 'inherit',
+  display: 'inherit',
+  boxSizing: 'inherit',
+});
+
+const CircularProgressCircle1 = styled('circle', {
+  name: 'JoyCircularProgress',
+  slot: 'Circle1',
+  overridesResolver: (props, styles) => styles.circle1,
 })<{ ownerState: CircularProgressProps }>(({ theme, ownerState }) => {
   return [
     {
-      position: 'absolute',
-      top: 'calc(-1 * var(--CircularProgress-thickness))',
-      left: 'calc(-1 * var(--CircularProgress-thickness))',
-      width: 'inherit',
-      height: 'inherit',
-      borderRadius: 'inherit',
-      border: 'inherit',
-      boxSizing: 'inherit',
-      borderColor: `${
-        theme.vars.palette[ownerState.color!][`${ownerState.variant!}Color`]
-      } transparent transparent`,
-      animation: `${circulate} var(--CircularProgress-speed) ease infinite`,
+      cx: 'calc(var(--CircularProgress-size) / 2)',
+      cy: 'calc(var(--CircularProgress-size) / 2)',
+      r: 'calc(var(--CircularProgress-size) / 2 - var(--CircularProgress-track-thickness) / 2)',
+      fill: 'transparent',
+      strokeWidth: 'var(--CircularProgress-track-thickness)',
+      stroke: theme.vars.palette[ownerState.color!][`${ownerState.variant!}Bg`],
+      ...(['outlined', 'plain'].includes(ownerState.variant!) && {
+        stroke: theme.vars.palette[ownerState.color!][`${ownerState.variant!}Color`],
+      }),
+      ...(ownerState.variant! === 'outlined' && {
+        strokeDasharray: '3,3',
+      }),
+    },
+  ];
+});
+
+const CircularProgressCircle2 = styled('circle', {
+  name: 'JoyCircularProgress',
+  slot: 'Circle2',
+  overridesResolver: (props, styles) => styles.circle2,
+})<{ ownerState: CircularProgressProps }>(({ theme, ownerState }) => {
+  return [
+    {
+      '--_thickness-diff':
+        'calc(var(--CircularProgress-track-thickness) - var(--CircularProgress-progress-thickness))',
+      '--_progress-radius':
+        'calc(var(--CircularProgress-size) / 2 - var(--CircularProgress-progress-thickness) / 2 - var(--_thickness-diff) / 2)',
+      '--_progress-length': 'calc(2 * 3.1415926535 * var(--_progress-radius))',
+      cx: 'calc(var(--CircularProgress-size) / 2)',
+      cy: 'calc(var(--CircularProgress-size) / 2)',
+      r: 'var(--_progress-radius)',
+      fill: 'transparent',
+      strokeWidth: 'var(--CircularProgress-progress-thickness)',
+      stroke: theme.vars.palette[ownerState.color!][`${ownerState.variant!}Color`],
+      ...(['outlined', 'plain'].includes(ownerState.variant!) && {
+        stroke: '#fff',
+      }),
+      strokeLinecap: 'round',
+      strokeDasharray: 'var(--_progress-length)',
+      strokeDashoffset:
+        'calc(var(--_progress-length) - var(--CircularProgress-percent) * var(--_progress-length) / 100)',
+      transformOrigin: 'center',
+      transform: 'rotate(-90deg)',
+      animation: `1.4s ease-in-out 0s infinite normal none running ${circulate}`,
     },
   ];
 });
@@ -143,8 +186,10 @@ const CircularProgress = React.forwardRef(function CircularProgress(inProps, ref
       {...rootProps}
       {...other}
     >
-      <CircularProgressProgress className={classes.progress} ownerState={ownerState} />
-      {children}
+      <CircularProgressSvg className={classes.svg} ownerState={ownerState}>
+        <CircularProgressCircle1 className={classes.circle1} ownerState={ownerState} />
+        <CircularProgressCircle2 className={classes.circle2} ownerState={ownerState} />
+      </CircularProgressSvg>
     </CircularProgressRoot>
   );
 }) as OverridableComponent<CircularProgressTypeMap>;
