@@ -4,6 +4,9 @@ export * from './styles';
 export { default as AspectRatio } from './AspectRatio';
 export * from './AspectRatio';
 
+export { default as Alert } from './Alert';
+export * from './Alert';
+
 export { default as Avatar } from './Avatar';
 export * from './Avatar';
 
