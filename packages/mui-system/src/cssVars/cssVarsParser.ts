@@ -125,7 +125,7 @@ export default function cssVarsParser<T extends Record<string, any>>(
   },
 ) {
   const { prefix, shouldSkipGeneratingVar } = options || {};
-  const css = {} as NestedRecord<string>;
+  const css = {} as Record<string, string | number>;
   const vars = {} as NestedRecord<string>;
   const parsedTheme = {} as T;
 
