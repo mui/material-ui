@@ -16,6 +16,7 @@ describe('<Breadcrumbs />', () => {
     muiName: 'JoyBreadcrumbs',
     refInstanceof: window.HTMLElement,
     testVariantProps: { variant: 'solid' },
+    testCustomVariant: true,
     skip: ['classesRoot', 'componentsProp'],
   }));
 
