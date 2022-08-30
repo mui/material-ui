@@ -155,7 +155,7 @@ declare module '@mui/system' {
 }
 
 declare module '@mui/system/Unstable_Grid' {
-  interface Grid2PropsOffsetOverrides {
+  interface GridPropsOffsetOverrides {
     mobileOffset: true;
     tabletOffset: true;
     laptopOffset: true;

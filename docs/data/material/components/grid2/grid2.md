@@ -221,7 +221,7 @@ declare module '@mui/material/styles' {
 }
 
 declare module '@mui/material/Unstable_Grid2' {
-  interface Grid2PropsOffsetOverrides {
+  interface GridPropsOffsetOverrides {
     mobileOffset: true;
     tabletOffset: true;
     laptopOffset: true;
