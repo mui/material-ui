@@ -1,4 +1,5 @@
 import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { useSlotProps } from '@mui/base/utils';
 import { keyframes } from '@mui/system';
 import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
@@ -150,13 +151,14 @@ const CircularProgress = React.forwardRef(function CircularProgress(inProps, ref
   });
 
   const {
+    componentsProps = {},
+    component = 'span',
     children,
     className,
     color = 'primary',
     size = 'md',
     variant = 'solid',
     thickness,
-    style,
     value = 0,
     determinate = false,
     ...other
@@ -173,22 +175,46 @@ const CircularProgress = React.forwardRef(function CircularProgress(inProps, ref
   };
 
   const classes = useUtilityClasses(ownerState);
-  const rootStyle: { transform?: string } = {};
-  const rootProps: { 'aria-valuenow'?: number } = {};
+
+  const rootProps = useSlotProps({
+    elementType: CircularProgressRoot,
+    externalSlotProps: componentsProps.root,
+    externalForwardedProps: other,
+    ownerState,
+    additionalProps: {
+      ref,
+      as: component,
+      role: 'progressbar',
+    },
+    className: clsx(classes.root, className),
+  });
+
+  const svgProps = useSlotProps({
+    elementType: CircularProgressSvg,
+    externalSlotProps: componentsProps.svg,
+    ownerState,
+    className: classes.svg,
+  });
+
+  const circle1Props = useSlotProps({
+    elementType: CircularProgressCircle1,
+    externalSlotProps: componentsProps.circle1,
+    ownerState,
+    className: classes.circle1,
+  });
+
+  const circle2Props = useSlotProps({
+    elementType: CircularProgressCircle2,
+    externalSlotProps: componentsProps.circle2,
+    ownerState,
+    className: classes.circle2,
+  });
 
   return (
-    <CircularProgressRoot
-      className={clsx(classes.root, className)}
-      style={{ ...rootStyle, ...style }}
-      ownerState={ownerState}
-      ref={ref}
-      role="progressbar"
-      {...rootProps}
-      {...other}
-    >
-      <CircularProgressSvg className={classes.svg} ownerState={ownerState}>
-        <CircularProgressCircle1 className={classes.circle1} ownerState={ownerState} />
-        <CircularProgressCircle2 className={classes.circle2} ownerState={ownerState} />
+    <CircularProgressRoot {...rootProps}>
+      <CircularProgressSvg {...svgProps}>
+        <CircularProgressCircle1 {...circle1Props} />
+        <CircularProgressCircle2 {...circle2Props} />
       </CircularProgressSvg>
     </CircularProgressRoot>
   );
