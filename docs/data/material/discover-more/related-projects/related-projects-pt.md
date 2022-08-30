@@ -25,13 +25,8 @@ Developers from the MUI community have built some excellent supplemental tools f
 - [mui-image](https://mui-image.surge.sh): The only Material UI image component to satisfy the Material Design guidelines for loading images.
 - [material-ui-image](https://mui.wertarbyte.com/#material-ui-image): Adds a "materializing" effect to images so they fade in like [Material's image loading pattern](https://material.io/archive/guidelines/patterns/loading-images.html#loading-images-usage) suggests.
 
-### Phone Number
-
-- [mui-tel-input](https://viclafouch.github.io/mui-tel-input): A phone number input designed for the React library MUI built with libphonenumber-js.
-
 ### Color picker
 
-- [mui-color-input](https://viclafouch.github.io/mui-color-input): A color input designed for the React library MUI built with TinyColor.
 - [material-ui-color](https://github.com/mikbry/material-ui-color): Collections of color components for Material UI. No dependencies, small, highly customizable, and supports theming.
 
 ### Sparkline
