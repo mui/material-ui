@@ -135,7 +135,7 @@ The custom breakpoints affect both the size and offset props:
 
 ### TypeScript
 
-You have to set module augmentation on the theme breakpoints interface. The properties with `true` value will appear as `{key}`(size prop) and `{key}Offset`(offset prop).
+You have to set module augmentation on the theme breakpoints interface. The properties with `true` value will appear as the component props.
 
 ```ts
 declare module '@mui/system' {
@@ -151,6 +151,15 @@ declare module '@mui/system' {
     md: false;
     lg: false;
     xl: false;
+  }
+}
+
+declare module '@mui/system/Unstable_Grid' {
+  interface Grid2PropsOffsetOverrides {
+    mobileOffset: true;
+    tabletOffset: true;
+    laptopOffset: true;
+    desktopOffset: true;
   }
 }
 ```
