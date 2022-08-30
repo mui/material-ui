@@ -303,7 +303,7 @@ extendTheme({
     JoyCircularProgress: {
       defaultProps: {
         variant: 'solid',
-        color: 'success',
+        color: 'primary',
       },
       styleOverrides: {
         root: ({ ownerState }) => {
@@ -312,7 +312,19 @@ extendTheme({
           );
           return {};
         },
-        progress: ({ ownerState }) => {
+        svg: ({ ownerState }) => {
+          expectType<CircularProgressOwnerState & Record<string, unknown>, typeof ownerState>(
+            ownerState,
+          );
+          return {};
+        },
+        circle1: ({ ownerState }) => {
+          expectType<CircularProgressOwnerState & Record<string, unknown>, typeof ownerState>(
+            ownerState,
+          );
+          return {};
+        },
+        circle2: ({ ownerState }) => {
           expectType<CircularProgressOwnerState & Record<string, unknown>, typeof ownerState>(
             ownerState,
           );
