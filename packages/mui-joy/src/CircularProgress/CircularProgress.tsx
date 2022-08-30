@@ -239,6 +239,21 @@ CircularProgress.propTypes /* remove-proptypes */ = {
    */
   color: PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
   /**
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   */
+  component: PropTypes.elementType,
+  /**
+   * The props used for each slot inside the CircularProgress.
+   * @default {}
+   */
+  componentsProps: PropTypes.shape({
+    circle1: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    circle2: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    svg: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
    * The boolean to select a variant.
    * Use indeterminate when there is no progress value.
    * @default false
@@ -250,10 +265,6 @@ CircularProgress.propTypes /* remove-proptypes */ = {
    * @default 'md'
    */
   size: PropTypes.oneOf(['sm', 'md', 'lg']),
-  /**
-   * @ignore
-   */
-  style: PropTypes.object,
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
