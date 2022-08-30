@@ -45,7 +45,7 @@ export interface BadgeTypeMap<D extends React.ElementType = 'span', P = {}> {
      */
     children?: React.ReactNode;
     /**
-     * The props used for each slot inside the AspectRatio.
+     * The props used for each slot inside the Badge.
      * @default {}
      */
     componentsProps?: ComponentsProps;
