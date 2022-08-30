@@ -97,9 +97,9 @@ export interface GridDefaultBreakpoints {
   xsOffset?: GridSize;
 }
 
-type CustomBreakpoints = Partial<
-  Record<Breakpoint, boolean | GridSize> & Record<`${Breakpoint}Offset`, GridSize>
->;
+// v6 TODO: use string literal of automatically create offset props.
+// Partial<Record<Breakpoint, boolean | GridSize> & Record<`${Breakpoint}Offset`, GridSize>>
+type CustomBreakpoints = Partial<Record<Breakpoint, boolean | GridSize>>;
 
 interface BreakpointOverridesEmpty {}
 
