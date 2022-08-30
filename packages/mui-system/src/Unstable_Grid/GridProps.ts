@@ -110,13 +110,13 @@ type Breakpoints = IfEquals<
   CustomBreakpoints
 >;
 
-// v6 TODO: Remove this interface, the offset props are extended from the system grid
 export interface GridPropsOffsetOverrides {}
 
 type ExtraOffset = {
   [k in keyof GridPropsOffsetOverrides]: true extends GridPropsOffsetOverrides[k] ? k : never;
 }[keyof GridPropsOffsetOverrides];
 
+// v6 TODO: Remove this type, the offset props should be extended from the above `CustomBreakpoints`.
 type ExtraOffsetProps = { [k in ExtraOffset]?: GridSize };
 
 export interface GridBaseProps extends Breakpoints, ExtraOffsetProps {
