@@ -307,11 +307,15 @@ extendTheme({
       },
       styleOverrides: {
         root: ({ ownerState }) => {
-          expectType<CircularProgressOwnerState & Record<string, unknown>, typeof ownerState>(ownerState);
+          expectType<CircularProgressOwnerState & Record<string, unknown>, typeof ownerState>(
+            ownerState,
+          );
           return {};
         },
         progress: ({ ownerState }) => {
-          expectType<CircularProgressOwnerState & Record<string, unknown>, typeof ownerState>(ownerState);
+          expectType<CircularProgressOwnerState & Record<string, unknown>, typeof ownerState>(
+            ownerState,
+          );
           return {};
         },
       },
