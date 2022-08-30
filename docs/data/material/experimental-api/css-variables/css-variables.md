@@ -204,6 +204,10 @@ export function onRenderBody({ setPreBodyComponents }) {
 
 ### TypeScript
 
+:::warning
+The CSS theme variables feature requires a minimum version of [TypeScript 4.1.5](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-1.html#template-literal-types).
+:::
+
 You need to import the theme augmentation to include `theme.vars` and other utilities related to CSS variables to the theme:
 
 ```ts
