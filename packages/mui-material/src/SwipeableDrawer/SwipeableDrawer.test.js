@@ -427,7 +427,6 @@ describe('<SwipeableDrawer />', () => {
       expect(document.querySelector('[class*=PrivateSwipeArea-root]')).not.to.equal(null);
     });
 
-
     const openTouchesForSwipingChildren = [
       { pageX: 0, clientY: windowHeight - 20 },
       { pageX: 0, clientY: windowHeight - 60 },
@@ -437,29 +436,37 @@ describe('<SwipeableDrawer />', () => {
     describe('prop: allowSwipeInChildren', () => {
       it('should allow swiping on children to open', () => {
         const handleOpen = spy();
-         render(
+        render(
           <SwipeableDrawer
             anchor={'bottom'}
             allowSwipeInChildren
             onOpen={handleOpen}
+            onClose={() => {}}
             open={false}
             swipeAreaWidth={20}
             SwipeAreaProps={{
               style: {
                 // ensure clicks will not be grabbed by swipe area to ensure testing just this functionality
-                pointerEvents: "none",
-              }
+                pointerEvents: 'none',
+              },
             }}
             PaperProps={{ component: FakePaper }}
             ModalProps={{
               keepMounted: true,
-              sx:{
-                transform: `translateY(${handleHeight}px) !important`
-              }
+              sx: {
+                transform: `translateY(${handleHeight}px) !important`,
+              },
             }}
           >
-            <div data-testid="drawer" style={{position: 'relative', pointerEvents: 'all'}}>
-              <div data-testid="handle" style={{position: 'absolute', height: `${handleHeight}px`, marginTop: `-${handleHeight}px`}}>
+            <div data-testid="drawer" style={{ position: 'relative', pointerEvents: 'all' }}>
+              <div
+                data-testid="handle"
+                style={{
+                  position: 'absolute',
+                  height: `${handleHeight}px`,
+                  marginTop: `-${handleHeight}px`,
+                }}
+              >
                 SwipeableDrawer
               </div>
             </div>
@@ -469,13 +476,19 @@ describe('<SwipeableDrawer />', () => {
         const handle = screen.getAllByTestId('handle').slice(-1)[0];
 
         fireEvent.touchStart(handle, {
-          touches: [new Touch({ identifier: 0, target: handle, ...openTouchesForSwipingChildren[0] })],
+          touches: [
+            new Touch({ identifier: 0, target: handle, ...openTouchesForSwipingChildren[0] }),
+          ],
         });
         fireEvent.touchMove(handle, {
-          touches: [new Touch({ identifier: 0, target: handle, ...openTouchesForSwipingChildren[1] })],
+          touches: [
+            new Touch({ identifier: 0, target: handle, ...openTouchesForSwipingChildren[1] }),
+          ],
         });
         fireEvent.touchMove(handle, {
-          touches: [new Touch({ identifier: 0, target: handle, ...openTouchesForSwipingChildren[2] })],
+          touches: [
+            new Touch({ identifier: 0, target: handle, ...openTouchesForSwipingChildren[2] }),
+          ],
         });
         fireEvent.touchEnd(handle, {
           changedTouches: [
@@ -487,35 +500,46 @@ describe('<SwipeableDrawer />', () => {
 
       it('should not allow swiping on children to open that are excluded via a function', () => {
         const handleOpen = spy();
-         render(
+        render(
           <SwipeableDrawer
             anchor={'bottom'}
             allowSwipeInChildren={(e) => {
               const elem = e.target;
               // ignore touch events from .ignore &^ from swipe area
-              return !elem.classList.contains('ignore') && !elem.classList.contains('PrivateSwipeArea-root')
+              return (
+                !elem.classList.contains('ignore') &&
+                !elem.classList.contains('PrivateSwipeArea-root')
+              );
             }}
             onOpen={handleOpen}
+            onClose={() => {}}
             open={false}
             swipeAreaWidth={20}
             SwipeAreaProps={{
               style: {
                 // ensure clicks will not be grabbed by swipe area to ensure testing just this functionality
-                pointerEvents: "none",
-              }
+                pointerEvents: 'none',
+              },
             }}
             PaperProps={{ component: FakePaper }}
             ModalProps={{
               keepMounted: true,
               sx: {
                 '& > *': {
-                  pointerEvents: 'auto'
-                }
-              }
+                  pointerEvents: 'auto',
+                },
+              },
             }}
           >
-            <div className='ignore' data-testid="drawer" style={{position: 'relative', height: '40px', pointerEvents: 'all'}}>
-              <div data-testid="handle" style={{position: 'absolute', height: '40px', marginTop: '-40px'}}>
+            <div
+              className="ignore"
+              data-testid="drawer"
+              style={{ position: 'relative', height: '40px', pointerEvents: 'all' }}
+            >
+              <div
+                data-testid="handle"
+                style={{ position: 'absolute', height: '40px', marginTop: '-40px' }}
+              >
                 SwipeableDrawer
               </div>
             </div>
@@ -526,13 +550,19 @@ describe('<SwipeableDrawer />', () => {
         const drawer = screen.getAllByTestId('drawer').slice(-1)[0];
 
         fireEvent.touchStart(drawer, {
-          touches: [new Touch({ identifier: 0, target: drawer, ...openTouchesForSwipingChildren[0] })],
+          touches: [
+            new Touch({ identifier: 0, target: drawer, ...openTouchesForSwipingChildren[0] }),
+          ],
         });
         fireEvent.touchMove(drawer, {
-          touches: [new Touch({ identifier: 0, target: drawer, ...openTouchesForSwipingChildren[1] })],
+          touches: [
+            new Touch({ identifier: 0, target: drawer, ...openTouchesForSwipingChildren[1] }),
+          ],
         });
         fireEvent.touchMove(drawer, {
-          touches: [new Touch({ identifier: 0, target: drawer, ...openTouchesForSwipingChildren[2] })],
+          touches: [
+            new Touch({ identifier: 0, target: drawer, ...openTouchesForSwipingChildren[2] }),
+          ],
         });
         fireEvent.touchEnd(drawer, {
           changedTouches: [
@@ -545,13 +575,19 @@ describe('<SwipeableDrawer />', () => {
         const handle = screen.getAllByTestId('handle').slice(-1)[0];
 
         fireEvent.touchStart(handle, {
-          touches: [new Touch({ identifier: 0, target: handle, ...openTouchesForSwipingChildren[0] })],
+          touches: [
+            new Touch({ identifier: 0, target: handle, ...openTouchesForSwipingChildren[0] }),
+          ],
         });
         fireEvent.touchMove(handle, {
-          touches: [new Touch({ identifier: 0, target: handle, ...openTouchesForSwipingChildren[1] })],
+          touches: [
+            new Touch({ identifier: 0, target: handle, ...openTouchesForSwipingChildren[1] }),
+          ],
         });
         fireEvent.touchMove(handle, {
-          touches: [new Touch({ identifier: 0, target: handle, ...openTouchesForSwipingChildren[2] })],
+          touches: [
+            new Touch({ identifier: 0, target: handle, ...openTouchesForSwipingChildren[2] }),
+          ],
         });
         fireEvent.touchEnd(handle, {
           changedTouches: [
