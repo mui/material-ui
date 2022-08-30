@@ -27,16 +27,25 @@ if (staging) {
   console.log(`Staging deploy of ${process.env.REPOSITORY_URL || 'local repository'}`);
 }
 
-module.exports = {
+const baseline = {
+  experimental: {
+    scrollRestoration: true,
+  },
   eslint: {
     ignoreDuringBuilds: true,
   },
   typescript: {
     // Motivated by https://github.com/vercel/next.js/issues/7687
-    ignoreDevErrors: true,
     ignoreBuildErrors: true,
   },
-  webpack5: true,
+  trailingSlash: true,
+  // Can be turned on when https://github.com/vercel/next.js/issues/24640 is fixed
+  optimizeFonts: false,
+};
+
+module.exports = {
+  ...baseline,
+  baseline, // Exported so the other projects can use this configuration directly.
   webpack: (config, options) => {
     const plugins = config.plugins.slice();
 
@@ -65,12 +74,6 @@ module.exports = {
     ) {
       const [nextExternals, ...externals] = config.externals;
 
-      if (externals.length > 0) {
-        // currently not the case but other next plugins might introduce additional
-        // rules for externals. We would need to handle those in the callback
-        throw new Error('There are other externals in the webpack config.');
-      }
-
       config.externals = [
         (ctx, callback) => {
           const { request } = ctx;
@@ -89,6 +92,7 @@ module.exports = {
           }
           return nextExternals(ctx, callback);
         },
+        ...externals,
       ];
     }
 
@@ -186,7 +190,6 @@ module.exports = {
     NETLIFY_DEPLOY_URL: process.env.DEPLOY_URL || 'http://localhost:3000',
     NETLIFY_SITE_NAME: process.env.SITE_NAME || 'material-ui',
     PULL_REQUEST: process.env.PULL_REQUEST === 'true',
-    REACT_STRICT_MODE: reactStrictMode,
     FEEDBACK_URL: process.env.FEEDBACK_URL,
     // #default-branch-switch
     SOURCE_CODE_ROOT_URL: 'https://github.com/mui/material-ui/blob/master',
@@ -245,9 +248,8 @@ module.exports = {
     return map;
   },
   reactStrictMode,
-  trailingSlash: true,
   // rewrites has no effect when run `next export` for production
-  async rewrites() {
+  rewrites: async () => {
     return [
       { source: `/:lang(${LANGUAGES.join('|')})?/:rest*`, destination: '/:rest*' },
       // Make sure to include the trailing slash if `trailingSlash` option is set
@@ -255,6 +257,4 @@ module.exports = {
       { source: `/static/x/:rest*`, destination: 'http://0.0.0.0:3001/static/x/:rest*' },
     ];
   },
-  // Can be turned on when https://github.com/vercel/next.js/issues/24640 is fixed
-  optimizeFonts: false,
 };

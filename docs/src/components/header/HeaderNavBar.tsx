@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
+import Chip from '@mui/material/Chip';
 import Popper from '@mui/material/Popper';
 import Paper from '@mui/material/Paper';
 import { unstable_debounce as debounce } from '@mui/utils';
@@ -8,7 +9,6 @@ import Fade from '@mui/material/Fade';
 import Typography from '@mui/material/Typography';
 import IconImage from 'docs/src/components/icon/IconImage';
 import ROUTES from 'docs/src/route';
-import FEATURE_TOGGLE from 'docs/src/featureToggle';
 import Link from 'docs/src/modules/components/Link';
 import MuiProductSelector from 'docs/src/modules/components/MuiProductSelector';
 
@@ -22,7 +22,7 @@ const Navigation = styled('nav')(({ theme }) => ({
   '& li': {
     color: theme.palette.text.primary,
     ...theme.typography.body2,
-    fontWeight: 700,
+    fontWeight: theme.typography.fontWeightBold,
     '& > a, & > div': {
       display: 'inline-block',
       color: 'inherit',
@@ -46,17 +46,25 @@ const Navigation = styled('nav')(({ theme }) => ({
   },
 }));
 
-const PRODUCT_IDS = ['product-core', 'product-advanced', 'product-templates', 'product-design'];
+const PRODUCT_IDS = [
+  'product-core',
+  'product-advanced',
+  'product-templates',
+  'product-design',
+  // @ts-ignore
+  ...(process.env.STAGING === true ? ['product-toolpad'] : []),
+];
 
 type ProductSubMenuProps = {
   icon: React.ReactElement;
   name: React.ReactNode;
   description: React.ReactNode;
+  chip?: React.ReactNode;
   href: string;
 } & Omit<JSX.IntrinsicElements['a'], 'ref'>;
 
 const ProductSubMenu = React.forwardRef<HTMLAnchorElement, ProductSubMenuProps>(
-  function ProductSubMenu({ icon, name, description, href, ...props }, ref) {
+  function ProductSubMenu({ icon, name, description, chip, href, ...props }, ref) {
     return (
       <Box
         component={Link}
@@ -66,6 +74,7 @@ const ProductSubMenu = React.forwardRef<HTMLAnchorElement, ProductSubMenuProps>(
           display: 'flex',
           alignItems: 'center',
           py: 2,
+          pr: 3,
           '&:hover, &:focus': {
             backgroundColor: (theme) =>
               theme.palette.mode === 'dark'
@@ -93,14 +102,15 @@ const ProductSubMenu = React.forwardRef<HTMLAnchorElement, ProductSubMenuProps>(
         >
           {icon}
         </Box>
-        <div>
-          <Typography color="text.primary" variant="body2" fontWeight={700}>
+        <Box sx={{ flexGrow: 1 }}>
+          <Typography color="text.primary" variant="body2" fontWeight="bold">
             {name}
           </Typography>
           <Typography color="text.secondary" variant="body2">
             {description}
           </Typography>
-        </div>
+        </Box>
+        {chip}
       </Box>
     );
   },
@@ -217,114 +227,126 @@ export default function HeaderNavBar() {
   return (
     <Navigation>
       <ul ref={navRef} role="menubar" onKeyDown={handleLeftRightArrow}>
-        {FEATURE_TOGGLE.nav_products && (
-          <li
-            role="none"
-            onMouseEnter={() => setSubMenuOpenUndebounce('products')}
-            onFocus={() => setSubMenuOpenUndebounce('products')}
-            onMouseLeave={() => setSubMenuOpenDebounced(null)}
-            onBlur={() => setSubMenuOpenUndebounce(null)}
+        <li
+          role="none"
+          onMouseEnter={() => setSubMenuOpenUndebounce('products')}
+          onFocus={() => setSubMenuOpenUndebounce('products')}
+          onMouseLeave={() => setSubMenuOpenDebounced(null)}
+          onBlur={() => setSubMenuOpenUndebounce(null)}
+        >
+          <div
+            role="menuitem"
+            tabIndex={0}
+            id="products-menu"
+            ref={productsMenuRef}
+            aria-haspopup
+            aria-expanded={subMenuOpen === 'products' ? 'true' : 'false'}
+            onKeyDown={handleKeyDown}
           >
-            <div
-              role="menuitem"
-              tabIndex={0}
-              id="products-menu"
-              ref={productsMenuRef}
-              aria-haspopup
-              aria-expanded={subMenuOpen === 'products' ? 'true' : 'false'}
-              onKeyDown={handleKeyDown}
-            >
-              Products
-            </div>
-            <Popper
-              open={subMenuOpen === 'products'}
-              anchorEl={productsMenuRef.current}
-              transition
-              placement="bottom-start"
-              style={{
-                zIndex: 1200,
-                pointerEvents: subMenuOpen === 'products' ? undefined : 'none',
-              }}
-            >
-              {({ TransitionProps }) => (
-                <Fade {...TransitionProps} timeout={350}>
-                  <Paper
-                    variant="outlined"
-                    sx={(theme) => ({
-                      minWidth: 498,
-                      overflow: 'hidden',
-                      borderColor: theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.200',
-                      bgcolor:
-                        theme.palette.mode === 'dark' ? 'primaryDark.900' : 'background.paper',
-                      boxShadow: `0px 4px 20px ${
-                        theme.palette.mode === 'dark'
-                          ? alpha(theme.palette.background.paper, 0.72)
-                          : 'rgba(170, 180, 190, 0.3)'
-                      }`,
-                      '& ul': {
-                        margin: 0,
-                        padding: 0,
-                        listStyle: 'none',
-                      },
-                      '& li:not(:last-of-type)': {
-                        borderBottom: '1px solid',
-                        borderColor: theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.100',
-                      },
-                      '& a': { textDecoration: 'none' },
-                    })}
-                  >
-                    <ul role="menu">
+            Products
+          </div>
+          <Popper
+            open={subMenuOpen === 'products'}
+            anchorEl={productsMenuRef.current}
+            transition
+            placement="bottom-start"
+            style={{
+              zIndex: 1200,
+              pointerEvents: subMenuOpen === 'products' ? undefined : 'none',
+            }}
+          >
+            {({ TransitionProps }) => (
+              <Fade {...TransitionProps} timeout={350}>
+                <Paper
+                  variant="outlined"
+                  sx={(theme) => ({
+                    minWidth: 498,
+                    overflow: 'hidden',
+                    borderColor: theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.200',
+                    bgcolor: theme.palette.mode === 'dark' ? 'primaryDark.900' : 'background.paper',
+                    boxShadow: `0px 4px 20px ${
+                      theme.palette.mode === 'dark'
+                        ? alpha(theme.palette.background.paper, 0.72)
+                        : 'rgba(170, 180, 190, 0.3)'
+                    }`,
+                    '& ul': {
+                      margin: 0,
+                      padding: 0,
+                      listStyle: 'none',
+                    },
+                    '& li:not(:last-of-type)': {
+                      borderBottom: '1px solid',
+                      borderColor: theme.palette.mode === 'dark' ? 'primaryDark.700' : 'grey.100',
+                    },
+                    '& a': { textDecoration: 'none' },
+                  })}
+                >
+                  <ul role="menu">
+                    <li role="none">
+                      <ProductSubMenu
+                        id={PRODUCT_IDS[0]}
+                        role="menuitem"
+                        href={ROUTES.productCore}
+                        icon={<IconImage name="product-core" />}
+                        name="MUI Core"
+                        description="Ready-to-use foundational components, free forever."
+                        onKeyDown={handleKeyDown}
+                      />
+                    </li>
+                    <li role="none">
+                      <ProductSubMenu
+                        id={PRODUCT_IDS[1]}
+                        role="menuitem"
+                        href={ROUTES.productAdvanced}
+                        icon={<IconImage name="product-advanced" />}
+                        name="MUI X"
+                        description="Advanced and powerful components for complex use cases."
+                        onKeyDown={handleKeyDown}
+                      />
+                    </li>
+                    <li role="none">
+                      <ProductSubMenu
+                        id={PRODUCT_IDS[2]}
+                        role="menuitem"
+                        href={ROUTES.productTemplates}
+                        icon={<IconImage name="product-templates" />}
+                        name="Templates"
+                        description="Fully built, out-of-the-box, templates for your application."
+                        onKeyDown={handleKeyDown}
+                      />
+                    </li>
+                    <li role="none">
+                      <ProductSubMenu
+                        id={PRODUCT_IDS[3]}
+                        role="menuitem"
+                        href={ROUTES.productDesignKits}
+                        icon={<IconImage name="product-designkits" />}
+                        name="Design kits"
+                        description="Our components available in your favorite design tool."
+                        onKeyDown={handleKeyDown}
+                      />
+                    </li>
+                    {/* @ts-ignore */}
+                    {process.env.STAGING === true ? (
                       <li role="none">
                         <ProductSubMenu
-                          id={PRODUCT_IDS[0]}
+                          id={PRODUCT_IDS[4]}
                           role="menuitem"
-                          href={ROUTES.productCore}
-                          icon={<IconImage name="product-core" />}
-                          name="MUI Core"
-                          description="Ready-to-use foundational components, free forever."
+                          href={ROUTES.productToolpad}
+                          icon={<IconImage name="product-toolpad" />}
+                          name="MUI Toolpad"
+                          chip={<Chip label="Alpha" size="small" color="grey" />}
+                          description="Low-code tool builder, powered by MUI."
                           onKeyDown={handleKeyDown}
                         />
                       </li>
-                      <li role="none">
-                        <ProductSubMenu
-                          id={PRODUCT_IDS[1]}
-                          role="menuitem"
-                          href={ROUTES.productAdvanced}
-                          icon={<IconImage name="product-advanced" />}
-                          name="MUI X"
-                          description="Advanced and powerful components for complex use cases."
-                          onKeyDown={handleKeyDown}
-                        />
-                      </li>
-                      <li role="none">
-                        <ProductSubMenu
-                          id={PRODUCT_IDS[2]}
-                          role="menuitem"
-                          href={ROUTES.productTemplates}
-                          icon={<IconImage name="product-templates" />}
-                          name="Templates"
-                          description="Fully built, out-of-the-box, templates for your application."
-                          onKeyDown={handleKeyDown}
-                        />
-                      </li>
-                      <li role="none">
-                        <ProductSubMenu
-                          id={PRODUCT_IDS[3]}
-                          role="menuitem"
-                          href={ROUTES.productDesignKits}
-                          icon={<IconImage name="product-designkits" />}
-                          name="Design kits"
-                          description="Our components available in your favorite design tool."
-                          onKeyDown={handleKeyDown}
-                        />
-                      </li>
-                    </ul>
-                  </Paper>
-                </Fade>
-              )}
-            </Popper>
-          </li>
-        )}
+                    ) : null}
+                  </ul>
+                </Paper>
+              </Fade>
+            )}
+          </Popper>
+        </li>
         <li
           role="none"
           onMouseEnter={() => setSubMenuOpenUndebounce('docs')}

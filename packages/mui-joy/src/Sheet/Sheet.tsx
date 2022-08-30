@@ -8,7 +8,7 @@ import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
 import { resolveSxValue } from '../styles/styleUtils';
 import { getSheetUtilityClass } from './sheetClasses';
-import { SheetProps, SheetTypeMap } from './SheetProps';
+import { SheetProps, SheetOwnerState, SheetTypeMap } from './SheetProps';
 
 const useUtilityClasses = (ownerState: SheetProps) => {
   const { variant, color } = ownerState;
@@ -24,11 +24,11 @@ const useUtilityClasses = (ownerState: SheetProps) => {
   return composeClasses(slots, getSheetUtilityClass, {});
 };
 
-const SheetRoot = styled('div', {
+export const SheetRoot = styled('div', {
   name: 'JoySheet',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: SheetProps }>(({ theme, ownerState }) => {
+})<{ ownerState: SheetOwnerState }>(({ theme, ownerState }) => {
   const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];
   const childRadius = resolveSxValue({ theme, ownerState }, 'borderRadius');
   return [
@@ -36,13 +36,16 @@ const SheetRoot = styled('div', {
       '--List-item-stickyBackground':
         variantStyle?.backgroundColor ||
         variantStyle?.background ||
-        theme.vars.palette.background.body, // for sticky List
-      '--List-radius': `calc(${childRadius} - var(--variant-borderWidth, 0px))`,
-      '--internal-action-radius': childRadius,
+        theme.vars.palette.background.surface, // for sticky List
+      // minus the sheet's border width to have consistent radius between sheet and children
+      ...(childRadius !== undefined && {
+        '--List-radius': `calc(${childRadius} - var(--variant-borderWidth, 0px))`,
+        '--internal-action-radius': `calc(${childRadius} - var(--variant-borderWidth, 0px))`,
+      }),
       // TODO: discuss the theme transition.
       // This value is copied from mui-material Sheet.
       transition: 'box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
-      backgroundColor: theme.vars.palette.background.body,
+      backgroundColor: theme.vars.palette.background.surface,
       position: 'relative',
     },
     variantStyle,

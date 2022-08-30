@@ -443,7 +443,7 @@ export default function TeamExample() {
                   </Box>
                 </Box>
                 <ListDivider component="div" sx={{ my: 2 }} />
-                <List sx={{ '--List-decorator-width': '48px' }}>
+                <List sx={{ '--List-decorator-size': '48px' }}>
                   <ListItem sx={{ alignItems: 'flex-start' }}>
                     <ListItemDecorator
                       sx={{

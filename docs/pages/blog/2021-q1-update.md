@@ -126,7 +126,7 @@ The date picker is at the border between the advanced components and the design 
 
 #### Data Grid
 
-- 🔄 We have started to bring support for [lazy-loading](/x/react-data-grid/rows/#infinite-loading).
+- 🔄 We have started to bring support for [lazy-loading](/x/react-data-grid/row-updates/#infinite-loading).
 - ⬇️ We have introduced support for [CSV export](/x/react-data-grid/export/#csv-export).
 
   <img src="/static/blog/2021-q1-update/csv-export.png" alt="" style="width: 523px; margin-bottom: 16px;" />
@@ -176,7 +176,7 @@ This Handbook is the single **source of truth**. It's meant to be updated by any
 - 📦 From 6.4M to 8.6M downloads per month on npm.<br />
   It seems that React keeps taking market share in the frontend ecosystem;
   it's growing faster than Vue or Angular.
-  Most indicators point to it: [StackOverflow questions](https://insights.stackoverflow.com/trends?tags=vue.js%2Creactjs%2Cangular), [stars](https://bestofjs.org/projects?sort=monthly), [downloads](https://npm-stat.com/charts.html?package=react-dom,@angular/core,vue), [Traffic on the documentation](https://www.similarweb.com/website/reactjs.org/?competitors=vuejs.org).
+  Most indicators point to it: [Stack Overflow questions](https://insights.stackoverflow.com/trends?tags=vue.js%2Creactjs%2Cangular), [stars](https://bestofjs.org/projects?sort=monthly), [downloads](https://npm-stat.com/charts.html?package=react-dom,@angular/core,vue), [Traffic on the documentation](https://www.similarweb.com/website/reactjs.org/?competitors=vuejs.org).
   Our strategy to focus on React only seems to be paying off.
 
 - ⭐️ From 63.8k to 67.2k stars, leave us yours [🌟](https://github.com/mui/material-ui).

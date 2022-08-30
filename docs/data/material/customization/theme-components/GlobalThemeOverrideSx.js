@@ -12,7 +12,7 @@ const finalTheme = createTheme({
     MuiChip: {
       styleOverrides: {
         root: sx({
-          // https://mui.com/system/the-sx-prop/#spacing
+          // https://mui.com/system/getting-started/the-sx-prop/#spacing
           px: 1,
           py: 0.25,
           // https://mui.com/system/borders/#border-radius

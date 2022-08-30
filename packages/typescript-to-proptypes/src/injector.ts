@@ -132,8 +132,6 @@ function flattenTsAsExpression(node: object | null | undefined) {
   return node;
 }
 
-const systemComponents = ['Container', 'Box'];
-
 function plugin(
   propTypes: t.Program,
   options: InjectOptions = {},
@@ -209,7 +207,7 @@ function plugin(
       // export { Component }
       path.insertAfter(babel.template.ast(`export { ${nodeName} };`));
       path.insertAfter(babel.template.ast(placeholder));
-      path.parentPath.replaceWith(path.node);
+      path.parentPath!.replaceWith(path.node);
     } else if (!emptyPropTypes && babelTypes.isExportDefaultDeclaration(path.parent)) {
       // in:
       // export default function Component() {}
@@ -219,7 +217,7 @@ function plugin(
       // export default Component
       path.insertAfter(babel.template.ast(`export default ${nodeName};`));
       path.insertAfter(babel.template.ast(placeholder));
-      path.parentPath.replaceWith(path.node);
+      path.parentPath!.replaceWith(path.node);
     } else {
       path.insertAfter(babel.template.ast(placeholder));
     }
@@ -388,7 +386,8 @@ function plugin(
           const arg = nodeInit.arguments[0];
           if (babelTypes.isArrowFunctionExpression(arg) || babelTypes.isFunctionExpression(arg)) {
             getFromProp(arg.params[0]);
-          } else if (systemComponents.includes(nodeName)) {
+          } else if ((nodeInit.callee as babel.types.Identifier)?.name?.match(/create[A-Z].*/)) {
+            // Any components that are created by a factory function, eg. System Box | Container | Grid.
             getFromProp(node);
           }
         }
