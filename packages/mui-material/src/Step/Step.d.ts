@@ -21,6 +21,11 @@ export interface StepProps extends StandardProps<React.HTMLAttributes<HTMLDivEle
    */
   completed?: boolean;
   /**
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   */
+  component?: React.ElementType;
+  /**
    * If `true`, the step is disabled, will also disable the button if
    * `StepButton` is a child of `Step`. Is passed to child components.
    */
