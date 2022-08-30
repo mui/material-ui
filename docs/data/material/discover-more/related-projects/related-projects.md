@@ -30,11 +30,11 @@ Feel free to submit a pull request!
 
 ### Phone Number
 
-- [mui-tel-input](https://viclafouch.github.io/mui-tel-input): A phone number input designed for the React library MUI built with libphonenumber-js.
+- [mui-tel-input](https://viclafouch.github.io/mui-tel-input): A phone number input designed for the React library MUI built with [libphonenumber-js](https://www.npmjs.com/package/libphonenumber-js).
 
 ### Color picker
 
-- [mui-color-input](https://viclafouch.github.io/mui-color-input): A color input designed for the React library MUI built with TinyColor.
+- [mui-color-input](https://viclafouch.github.io/mui-color-input): A color input designed for the React library MUI built with [TinyColor](https://bgrins.github.io/TinyColor/).
 - [material-ui-color](https://github.com/mikbry/material-ui-color): Collections of color components for Material UI. No dependencies, small, highly customizable, and supports theming.
 
 ### Sparkline
