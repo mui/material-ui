@@ -4,14 +4,14 @@ title: Componente Diálogo para React
 components: Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Slide
 githubLabel: 'component: dialog'
 materialDesign: https://material.io/components/dialogs
-waiAria: 'https://www.w3.org/TR/wai-aria-practices/#dialog_modal'
+waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/dialogmodal/
 ---
 
 # Diálogo
 
 <p class="description">Diálogos informam aos usuários sobre uma tarefa e podem conter informações críticas, exigir decisões ou envolver várias tarefas.</p>
 
-Um Diálogo é um tipo de janela [modal](/material-ui/react-modal/) que aparece na frente do conteúdo do aplicativo para fornecer informações críticas ou solicitar uma decisão. As caixas de diálogo desativam toda a funcionalidade do aplicativo quando elas são exibidas e permanecem na tela até que sejam confirmadas, rejeitadas ou que uma ação necessária tenha sido executada.
+A Dialog is a type of [modal](/material-ui/react-modal/) window that appears in front of app content to provide critical information or ask for a decision. As caixas de diálogo desativam toda a funcionalidade do aplicativo quando elas são exibidas e permanecem na tela até que sejam confirmadas, rejeitadas ou que uma ação necessária tenha sido executada.
 
 Os diálogos são intencionalmente interruptivos, então eles devem ser usados com moderação.
 
@@ -60,7 +60,7 @@ Os formulários de diálogo permitem que usuários preencham campos dentro de um
 
 ## Diálogos customizados
 
-Aqui está um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/material-ui/customization/how-to-customize/).
+Aqui está um exemplo de customização do componente. You can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/).
 
 O diálogo tem um botão de fechar para facilitar a utilização.
 
@@ -78,7 +78,7 @@ Você pode definir uma largura máxima usando um enumerador na propriedade `maxW
 
 ## Tela cheia responsiva
 
-Você pode fazer um diálogo totalmente responsivo usando [`useMediaQuery`](/material-ui/react-use-media-query/#usemediaquery).
+You may make a dialog responsively full screen using [`useMediaQuery`](/material-ui/react-use-media-query/#usemediaquery).
 
 ```jsx
 import useMediaQuery from '@material-ui/core/useMediaQuery';
@@ -120,12 +120,20 @@ Experimente a demonstração abaixo para ver o que queremos dizer:
 
 ## Performance
 
-Veja a seção [Performance Modal](/material-ui/react-modal/#performance).
+Follow the [Modal performance section](/material-ui/react-modal/#performance).
 
 ## Limitações
 
-Siga a [seção de limitações do Modal](/material-ui/react-modal/#limitations).
+Follow the [Modal limitations section](/material-ui/react-modal/#limitations).
 
-## Acessibilidade
+## Complementary projects
 
-Siga a [seção de acessibilidade do Modal](/material-ui/react-modal/#accessibility).
+### Material UI Confirm
+
+![stars](https://img.shields.io/github/stars/jonatanklosko/material-ui-confirm) ![npm downloads](https://img.shields.io/npm/dm/material-ui-confirm.svg)
+
+This package provides dialogs for confirming user actions without writing boilerplate code.
+
+## Accessibility
+
+Follow the [Modal accessibility section](/material-ui/react-modal/#accessibility).

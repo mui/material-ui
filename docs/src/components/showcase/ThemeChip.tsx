@@ -89,7 +89,7 @@ export default function ThemeChip() {
     <ThemeProvider theme={theme}>
       <Stack direction="row" spacing={2}>
         <Chip label="React" color="primary" onDelete={() => {}} />
-        <Chip label="Javascript" onDelete={() => {}} />
+        <Chip label="JavaScript" onDelete={() => {}} />
       </Stack>
     </ThemeProvider>
   );

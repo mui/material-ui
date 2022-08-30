@@ -1,6 +1,11 @@
 import * as React from 'react';
-import { SelectUnstyled, PopperUnstyled, SelectUnstyledRootSlotProps } from '@mui/base';
-import { SelectUnstyledPopperSlotProps } from '.';
+import { expectType } from '@mui/types';
+import {
+  SelectUnstyled,
+  SelectUnstyledRootSlotProps,
+  SelectUnstyledPopperSlotProps,
+  PopperUnstyled,
+} from '@mui/base';
 
 const SelectUnstyledComponentsPropsOverridesTest = (
   <SelectUnstyled
@@ -71,3 +76,36 @@ const SelectUnstyledComponentsOverridesUsingHostComponentTest = (
     }}
   />
 );
+
+const PolymorphicComponentTest = () => {
+  const CustomComponent: React.FC<{ stringProp: string; numberProp: number }> = () => <div />;
+
+  return (
+    <div>
+      {/* @ts-expect-error */}
+      <SelectUnstyled invalidProp={0} />
+
+      <SelectUnstyled component="a" href="#" />
+
+      <SelectUnstyled component={CustomComponent} stringProp="test" numberProp={0} />
+      {/* @ts-expect-error */}
+      <SelectUnstyled component={CustomComponent} />
+
+      <SelectUnstyled
+        component="button"
+        onClick={(e: React.MouseEvent<HTMLButtonElement>) => e.currentTarget.checkValidity()}
+      />
+
+      <SelectUnstyled<string, 'button'>
+        component="button"
+        ref={(elem) => {
+          expectType<HTMLButtonElement | null, typeof elem>(elem);
+        }}
+        onMouseDown={(e) => {
+          expectType<React.MouseEvent<HTMLButtonElement, MouseEvent>, typeof e>(e);
+          e.currentTarget.checkValidity();
+        }}
+      />
+    </div>
+  );
+};

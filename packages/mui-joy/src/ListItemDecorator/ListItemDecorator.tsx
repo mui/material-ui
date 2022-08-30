@@ -4,8 +4,9 @@ import clsx from 'clsx';
 import { OverridableComponent } from '@mui/types';
 import composeClasses from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
-import { ListItemDecoratorProps, ListItemDecoratorTypeMap } from './ListItemDecoratorProps';
+import { ListItemDecoratorOwnerState, ListItemDecoratorTypeMap } from './ListItemDecoratorProps';
 import { getListItemDecoratorUtilityClass } from './listItemDecoratorClasses';
+import ListItemButtonOrientationContext from '../ListItemButton/ListItemButtonOrientationContext';
 
 const useUtilityClasses = () => {
   const slots = {
@@ -19,13 +20,19 @@ const ListItemDecoratorRoot = styled('span', {
   name: 'JoyListItemDecorator',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: ListItemDecoratorProps }>({
+})<{ ownerState: ListItemDecoratorOwnerState }>(({ ownerState }) => ({
   boxSizing: 'border-box',
   display: 'inline-flex',
   alignItems: 'center',
   color: `var(--List-decorator-color)`,
-  minWidth: 'var(--List-decorator-width)',
-});
+  ...(ownerState.parentOrientation === 'horizontal'
+    ? {
+        minInlineSize: 'var(--List-decorator-size)',
+      }
+    : {
+        minBlockSize: 'var(--List-decorator-size)',
+      }),
+}));
 
 const ListItemDecorator = React.forwardRef(function ListItemDecorator(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
@@ -34,8 +41,10 @@ const ListItemDecorator = React.forwardRef(function ListItemDecorator(inProps, r
   });
 
   const { component, className, children, ...other } = props;
+  const parentOrientation = React.useContext(ListItemButtonOrientationContext);
 
   const ownerState = {
+    parentOrientation,
     ...props,
   };
 

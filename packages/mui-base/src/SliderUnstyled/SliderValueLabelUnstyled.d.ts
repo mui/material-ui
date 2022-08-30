@@ -1,6 +1,7 @@
 import * as React from 'react';
 
-export interface ValueLabelUnstyledProps {
+export interface SliderValueLabelUnstyledProps {
+  children?: React.ReactElement;
   className?: string;
   style?: React.CSSProperties;
   /**
@@ -12,10 +13,14 @@ export interface ValueLabelUnstyledProps {
     Root?: React.ElementType;
   };
   /**
+   * If `true`, the value label is visible.
+   */
+  open: boolean;
+  /**
    * The value of the slider.
    * For ranged sliders, provide an array with two values.
    */
-  value?: number | number[];
+  value: number;
   /**
    * Controls when the value label is displayed:
    *
@@ -27,4 +32,4 @@ export interface ValueLabelUnstyledProps {
   valueLabelDisplay?: 'on' | 'auto' | 'off';
 }
 
-export default function SliderValueLabelUnstyled(props: ValueLabelUnstyledProps): JSX.Element;
+export default function SliderValueLabelUnstyled(props: SliderValueLabelUnstyledProps): JSX.Element;

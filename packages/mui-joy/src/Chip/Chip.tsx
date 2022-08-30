@@ -2,21 +2,16 @@ import * as React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { unstable_composeClasses as composeClasses, useButton } from '@mui/base';
+import { useSlotProps } from '@mui/base/utils';
 import { OverridableComponent } from '@mui/types';
-import {
-  unstable_capitalize as capitalize,
-  unstable_useId as useId,
-  unstable_useForkRef as useForkRef,
-} from '@mui/utils';
+import { unstable_capitalize as capitalize, unstable_useId as useId } from '@mui/utils';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
-import { getChipUtilityClass } from './chipClasses';
-import { ChipProps, ChipTypeMap } from './ChipProps';
+import chipClasses, { getChipUtilityClass } from './chipClasses';
+import { ChipProps, ChipOwnerState, ChipTypeMap } from './ChipProps';
 import ChipContext from './ChipContext';
 
-const useUtilityClasses = (
-  ownerState: ChipProps & { focusVisible: boolean; clickable: boolean },
-) => {
+const useUtilityClasses = (ownerState: ChipOwnerState) => {
   const { disabled, size, color, clickable, variant, focusVisible } = ownerState;
 
   const slots = {
@@ -41,18 +36,17 @@ const ChipRoot = styled('div', {
   name: 'JoyChip',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: ChipProps & { clickable: boolean } }>(({ theme, ownerState }) => {
+})<{ ownerState: ChipOwnerState }>(({ theme, ownerState }) => {
   return [
     {
       '--Chip-radius': '1.5rem',
-      '--Chip-decorator-offset': 'calc(var(--Chip-paddingInline) / 4)', // negative margin of the start/end adornment
       // for controlling chip delete margin offset
       '--Chip-decorator-childOffset':
-        'min(calc(var(--Chip-paddingInline) - var(--Chip-decorator-offset) - (var(--Chip-minHeight) - 2 * var(--variant-outlinedBorderWidth, 0px) - var(--Chip-decorator-childHeight)) / 2), var(--Chip-paddingInline) - var(--Chip-decorator-offset))',
+        'min(calc(var(--Chip-paddingInline) - (var(--Chip-minHeight) - 2 * var(--variant-borderWidth) - var(--Chip-decorator-childHeight)) / 2), var(--Chip-paddingInline))',
       '--internal-paddingBlock':
-        'max((var(--Chip-minHeight) - 2 * var(--variant-outlinedBorderWidth, 0px) - var(--Chip-decorator-childHeight)) / 2, 0px)',
+        'max((var(--Chip-minHeight) - 2 * var(--variant-borderWidth) - var(--Chip-decorator-childHeight)) / 2, 0px)',
       '--Chip-decorator-childRadius':
-        'max((var(--Chip-radius) - var(--variant-outlinedBorderWidth, 0px)) - var(--internal-paddingBlock), min(var(--internal-paddingBlock) / 2, (var(--Chip-radius) - var(--variant-outlinedBorderWidth, 0px)) / 2))',
+        'max((var(--Chip-radius) - var(--variant-borderWidth)) - var(--internal-paddingBlock), min(var(--internal-paddingBlock) / 2, (var(--Chip-radius) - var(--variant-borderWidth)) / 2))',
       '--Chip-delete-radius': 'var(--Chip-decorator-childRadius)',
       '--Chip-delete-size': 'var(--Chip-decorator-childHeight)',
       '--Avatar-radius': 'var(--Chip-decorator-childRadius)',
@@ -63,7 +57,7 @@ const ChipRoot = styled('div', {
         '--Chip-gap': '0.25rem',
         '--Chip-paddingInline': '0.5rem',
         '--Chip-decorator-childHeight':
-          'calc(min(1.5rem, var(--Chip-minHeight)) - 2 * var(--variant-outlinedBorderWidth, 0px))',
+          'calc(min(1.5rem, var(--Chip-minHeight)) - 2 * var(--variant-borderWidth))',
         '--Icon-fontSize': '0.875rem',
         '--Chip-minHeight': '1.5rem',
         fontSize: theme.vars.fontSize.xs,
@@ -99,14 +93,21 @@ const ChipRoot = styled('div', {
       textDecoration: 'none',
       verticalAlign: 'middle',
       boxSizing: 'border-box',
+      [`&.${chipClasses.disabled}`]: {
+        color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}DisabledColor`],
+      },
     },
     ...(!ownerState.clickable
       ? [
           theme.variants[ownerState.variant!]?.[ownerState.color!],
-          theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
+          {
+            [`&.${chipClasses.disabled}`]:
+              theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
+          },
         ]
       : [
           {
+            '--variant-borderWidth': '0px',
             color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Color`],
           },
         ]),
@@ -117,10 +118,11 @@ const ChipLabel = styled('span', {
   name: 'JoyChip',
   slot: 'Label',
   overridesResolver: (props, styles) => styles.label,
-})<{ ownerState: ChipProps & { clickable: boolean } }>(({ ownerState }) => ({
+})<{ ownerState: ChipOwnerState }>(({ ownerState }) => ({
   display: 'inherit',
   alignItems: 'center',
   order: 1,
+  flexGrow: 1,
   ...(ownerState.clickable && {
     zIndex: 1,
     pointerEvents: 'none',
@@ -131,7 +133,7 @@ const ChipAction = styled('button', {
   name: 'JoyChip',
   slot: 'Action',
   overridesResolver: (props, styles) => styles.action,
-})<{ ownerState: ChipProps }>(({ theme, ownerState }) => [
+})<{ ownerState: ChipOwnerState }>(({ theme, ownerState }) => [
   {
     position: 'absolute',
     zIndex: 0,
@@ -150,21 +152,24 @@ const ChipAction = styled('button', {
     [theme.focus.selector]: theme.focus.default,
   },
   theme.variants[ownerState.variant!]?.[ownerState.color!],
-  theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
-  theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
-  theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
+  { '&:hover': theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!] },
+  { '&:active': theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!] },
+  {
+    [`&.${chipClasses.disabled}`]:
+      theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
+  },
 ]);
 
 const ChipStartDecorator = styled('span', {
   name: 'JoyChip',
   slot: 'StartDecorator',
   overridesResolver: (props, styles) => styles.startDecorator,
-})<{ ownerState: ChipProps & { clickable: boolean } }>({
+})<{ ownerState: ChipOwnerState }>({
   '--Avatar-marginInlineStart': 'calc(var(--Chip-decorator-childOffset) * -1)',
   '--Chip-delete-margin': '0 0 0 calc(var(--Chip-decorator-childOffset) * -1)',
+  '--Icon-margin': '0 0 0 calc(var(--Chip-paddingInline) / -4)',
   display: 'inherit',
   marginInlineEnd: 'var(--Chip-gap)',
-  marginInlineStart: `calc(var(--Chip-decorator-offset) * -1)`,
   // set zIndex to 1 with order to stay on top of other controls, eg. Checkbox, Radio
   order: 0,
   zIndex: 1,
@@ -175,11 +180,11 @@ const ChipEndDecorator = styled('span', {
   name: 'JoyChip',
   slot: 'EndDecorator',
   overridesResolver: (props, styles) => styles.endDecorator,
-})<{ ownerState: ChipProps & { clickable: boolean } }>({
+})<{ ownerState: ChipOwnerState }>({
   '--Chip-delete-margin': '0 calc(var(--Chip-decorator-childOffset) * -1) 0 0',
+  '--Icon-margin': '0 calc(var(--Chip-paddingInline) / -4) 0 0',
   display: 'inherit',
   marginInlineStart: 'var(--Chip-gap)',
-  marginInlineEnd: `calc(var(--Chip-decorator-offset) * -1)`,
   // set zIndex to 1 with order to stay on top of other controls, eg. Checkbox, Radio
   order: 2,
   zIndex: 1,
@@ -205,31 +210,70 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
     endDecorator,
     ...other
   } = props;
-  const { component: actionComponent, ...actionProps } = componentsProps.action || {};
 
   const clickable = !!onClick || !!componentsProps.action;
-  const id = useId(componentsProps.action?.id);
-  const actionRef = React.useRef<HTMLElement | null>(null);
-  const handleActionRef = useForkRef(actionRef, actionProps.ref);
-  const { focusVisible, getRootProps } = useButton({
-    disabled,
-    ...actionProps,
-    ref: handleActionRef,
-  });
-
-  const ownerState = {
+  const ownerState: ChipOwnerState = {
     ...props,
     component,
     onClick,
     disabled,
-    focusVisible,
     size,
     color,
-    clickable,
     variant,
+    clickable,
+    focusVisible: false,
   };
 
+  const resolvedActionProps =
+    typeof componentsProps.action === 'function'
+      ? componentsProps.action(ownerState)
+      : componentsProps.action;
+  const actionRef = React.useRef<HTMLElement | null>(null);
+  const { focusVisible, getRootProps } = useButton({
+    ...resolvedActionProps,
+    disabled,
+    ref: actionRef,
+  });
+
+  ownerState.focusVisible = focusVisible;
+
   const classes = useUtilityClasses(ownerState);
+
+  const labelProps = useSlotProps({
+    elementType: ChipLabel,
+    externalSlotProps: componentsProps.label,
+    ownerState,
+    className: classes.label,
+  });
+
+  // @ts-ignore internal logic.
+  const id = useId(labelProps.id);
+
+  const actionProps = useSlotProps({
+    elementType: ChipAction,
+    getSlotProps: getRootProps,
+    externalSlotProps: componentsProps.action,
+    additionalProps: {
+      'aria-labelledby': id,
+      as: resolvedActionProps?.component,
+    },
+    ownerState,
+    className: classes.action,
+  });
+
+  const startDecoratorProps = useSlotProps({
+    elementType: ChipStartDecorator,
+    externalSlotProps: componentsProps.startDecorator,
+    ownerState,
+    className: classes.startDecorator,
+  });
+
+  const endDecoratorProps = useSlotProps({
+    elementType: ChipEndDecorator,
+    externalSlotProps: componentsProps.endDecorator,
+    ownerState,
+    className: classes.endDecorator,
+  });
 
   return (
     <ChipContext.Provider value={{ disabled, variant, color }}>
@@ -240,46 +284,17 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
         ownerState={ownerState}
         {...other}
       >
-        {clickable && (
-          <ChipAction
-            aria-labelledby={id}
-            {...actionProps}
-            // @ts-expect-error getRootProps typings should be fixed.
-            {...getRootProps({ onClick, ...actionProps })}
-            as={actionComponent}
-            className={clsx(classes.action, actionProps.className)}
-            ownerState={ownerState}
-          />
-        )}
+        {clickable && <ChipAction {...actionProps} />}
 
         {/* label is always the first element for integrating with other controls, eg. Checkbox, Radio. Use CSS order to rearrange position */}
-        <ChipLabel
-          id={id}
-          {...componentsProps.label}
-          className={clsx(classes.label, componentsProps.label?.className)}
-          ownerState={ownerState}
-        >
+        <ChipLabel {...labelProps} id={id}>
           {children}
         </ChipLabel>
         {startDecorator && (
-          <ChipStartDecorator
-            {...componentsProps.startDecorator}
-            className={clsx(classes.startDecorator, componentsProps.startDecorator?.className)}
-            ownerState={ownerState}
-          >
-            {startDecorator}
-          </ChipStartDecorator>
+          <ChipStartDecorator {...startDecoratorProps}>{startDecorator}</ChipStartDecorator>
         )}
 
-        {endDecorator && (
-          <ChipEndDecorator
-            {...componentsProps.endDecorator}
-            className={clsx(classes.endDecorator, componentsProps.endDecorator?.className)}
-            ownerState={ownerState}
-          >
-            {endDecorator}
-          </ChipEndDecorator>
-        )}
+        {endDecorator && <ChipEndDecorator {...endDecoratorProps}>{endDecorator}</ChipEndDecorator>}
       </ChipRoot>
     </ChipContext.Provider>
   );
@@ -316,11 +331,11 @@ Chip.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   componentsProps: PropTypes.shape({
-    action: PropTypes.object,
-    endDecorator: PropTypes.object,
-    label: PropTypes.object,
-    root: PropTypes.object,
-    startDecorator: PropTypes.object,
+    action: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    endDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    label: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    startDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
    * If `true`, the component is disabled.

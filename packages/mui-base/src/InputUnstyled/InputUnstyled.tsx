@@ -1,11 +1,7 @@
 import * as React from 'react';
-import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { OverridableComponent } from '@mui/types';
-import { unstable_useForkRef as useForkRef } from '@mui/utils';
-import appendOwnerState from '../utils/appendOwnerState';
 import isHostComponent from '../utils/isHostComponent';
-import resolveComponentProps from '../utils/resolveComponentProps';
 import classes from './inputUnstyledClasses';
 import {
   InputUnstyledInputSlotProps,
@@ -15,7 +11,7 @@ import {
   InputUnstyledTypeMap,
 } from './InputUnstyled.types';
 import useInput from './useInput';
-import { WithOptionalOwnerState } from '../utils';
+import { EventHandlers, useSlotProps, WithOptionalOwnerState } from '../utils';
 
 /**
  *
@@ -46,8 +42,6 @@ const InputUnstyled = React.forwardRef(function InputUnstyled(
     endAdornment,
     error,
     id,
-    maxRows,
-    minRows,
     multiline = false,
     name,
     onClick,
@@ -59,10 +53,12 @@ const InputUnstyled = React.forwardRef(function InputUnstyled(
     placeholder,
     readOnly,
     required,
-    rows,
-    type = 'text',
     startAdornment,
     value,
+    type: typeProp,
+    rows,
+    minRows,
+    maxRows,
     ...other
   } = props;
 
@@ -84,6 +80,8 @@ const InputUnstyled = React.forwardRef(function InputUnstyled(
     required,
     value,
   });
+
+  const type = !multiline ? typeProp ?? 'text' : undefined;
 
   const ownerState: InputUnstyledOwnerState = {
     ...props,
@@ -126,39 +124,39 @@ const InputUnstyled = React.forwardRef(function InputUnstyled(
   };
 
   const Root = component ?? components.Root ?? 'div';
-  const rootComponentsProps = resolveComponentProps(componentsProps.root, ownerState);
-  const rootProps: WithOptionalOwnerState<InputUnstyledRootSlotProps> = appendOwnerState(
-    Root,
-    {
-      ...getRootProps({ ...other, ...rootComponentsProps }),
-      className: clsx(classes.root, rootStateClasses, className, rootComponentsProps?.className),
+  const rootProps: WithOptionalOwnerState<InputUnstyledRootSlotProps> = useSlotProps({
+    elementType: Root,
+    getSlotProps: getRootProps,
+    externalSlotProps: componentsProps.root,
+    externalForwardedProps: other,
+    additionalProps: {
+      ref: forwardedRef,
     },
     ownerState,
-  );
+    className: [classes.root, rootStateClasses, className],
+  });
 
-  rootProps.ref = useForkRef(rootProps.ref, useForkRef(rootComponentsProps?.ref, forwardedRef));
-
-  let Input = components.Input ?? 'input';
-  const inputComponentsProps = resolveComponentProps(componentsProps.input, ownerState);
-
-  let inputProps: WithOptionalOwnerState<InputUnstyledInputSlotProps> = appendOwnerState(
-    Input,
-    {
-      ...getInputProps({ ...inputComponentsProps, ...propsToForward }),
-      className: clsx(classes.input, inputStateClasses, inputComponentsProps?.className),
+  const Input = multiline ? components.Textarea ?? 'textarea' : components.Input ?? 'input';
+  const inputProps: WithOptionalOwnerState<InputUnstyledInputSlotProps> = useSlotProps({
+    elementType: Input,
+    getSlotProps: (otherHandlers: EventHandlers) =>
+      getInputProps({ ...otherHandlers, ...propsToForward }),
+    externalSlotProps: componentsProps.input,
+    additionalProps: {
+      rows: multiline ? rows : undefined,
+      ...(multiline &&
+        !isHostComponent(Input) && {
+          minRows: rows || minRows,
+          maxRows: rows || maxRows,
+        }),
     },
     ownerState,
-  );
+    className: [classes.input, inputStateClasses],
+  });
 
-  inputProps.ref = useForkRef(inputProps.ref, inputComponentsProps?.ref);
-
-  if (multiline) {
-    const hasHostTextarea = isHostComponent(components.Textarea ?? 'textarea');
-
-    const { ownerState: ownerStateInputProps, ...inputPropsWithoutOwnerState } = inputProps;
-
-    if (rows) {
-      if (process.env.NODE_ENV !== 'production') {
+  if (process.env.NODE_ENV !== 'production') {
+    if (multiline) {
+      if (rows) {
         if (minRows || maxRows) {
           console.warn(
             'MUI: You can not use the `minRows` or `maxRows` props when the input `rows` prop is set.',
@@ -166,14 +164,6 @@ const InputUnstyled = React.forwardRef(function InputUnstyled(
         }
       }
     }
-
-    inputProps = {
-      ...(!hasHostTextarea && { minRows: rows || minRows, maxRows: rows || maxRows }),
-      ...(hasHostTextarea ? inputPropsWithoutOwnerState : inputProps),
-      type: undefined,
-    };
-
-    Input = components.Textarea ?? 'textarea';
   }
 
   return (

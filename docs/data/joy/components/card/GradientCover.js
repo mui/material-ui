@@ -10,7 +10,7 @@ export default function GradientCover() {
     <Card sx={{ minHeight: '280px', minWidth: 320 }}>
       <CardCover>
         <img
-          src="https://images.unsplash.com/photo-1542773998-9325f0a098d7?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3271"
+          src="https://images.unsplash.com/photo-1542773998-9325f0a098d7?crop=entropy&auto=format&fit=crop&w=3271"
           alt=""
         />
       </CardCover>
@@ -21,10 +21,13 @@ export default function GradientCover() {
         }}
       />
       <CardContent sx={{ justifyContent: 'flex-end' }}>
-        <Typography level="h2" fontSize="lg" color="#fff" mb={1}>
+        <Typography level="h2" fontSize="lg" textColor="#fff" mb={1}>
           Yosemite National Park
         </Typography>
-        <Typography startDecorator={<LocationOnRoundedIcon />} color="neutral.300">
+        <Typography
+          startDecorator={<LocationOnRoundedIcon />}
+          textColor="neutral.300"
+        >
           California, USA
         </Typography>
       </CardContent>

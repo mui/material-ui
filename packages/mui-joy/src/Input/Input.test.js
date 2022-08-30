@@ -16,6 +16,7 @@ describe('Joy <Input />', () => {
     muiName: 'JoyInput',
     testDeepOverrides: { slotName: 'input', slotClassName: classes.input },
     testVariantProps: { variant: 'solid', fullWidth: true },
+    testCustomVariant: true,
     skip: ['propsSpread', 'componentsProp', 'classesRoot'],
   }));
 

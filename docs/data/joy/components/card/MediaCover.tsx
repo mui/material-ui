@@ -14,7 +14,8 @@ export default function BasicCard() {
       <Card component="li" sx={{ minWidth: 300, flexGrow: 1 }}>
         <CardCover>
           <img
-            src="https://images.unsplash.com/photo-1502657877623-f66bf489d236?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2369"
+            src="https://images.unsplash.com/photo-1502657877623-f66bf489d236?auto=format&fit=crop&w=800"
+            srcSet="https://images.unsplash.com/photo-1502657877623-f66bf489d236?auto=format&fit=crop&w=800&dpr=2 2x"
             alt=""
           />
         </CardCover>
@@ -22,7 +23,7 @@ export default function BasicCard() {
           <Typography
             level="h6"
             fontWeight="lg"
-            color="#fff"
+            textColor="#fff"
             mt={{ xs: 12, sm: 18 }}
           >
             Image
@@ -47,7 +48,7 @@ export default function BasicCard() {
           <Typography
             level="h6"
             fontWeight="lg"
-            color="#fff"
+            textColor="#fff"
             mt={{ xs: 12, sm: 18 }}
           >
             Video

@@ -160,25 +160,9 @@ const openRolesData = [
         url: '/careers/react-engineer-core/',
       },
       {
-        title: 'React Engineer - X',
-        description:
-          'You will strengthen the advanced components team, build new ambitious complex features, work on strategic problems, and help grow the adoption.',
-        url: '/careers/react-engineer-x/',
-      },
-      {
         title: 'Product Engineer - Store',
         description: 'You will lead the technical and operational development of MUI Store.',
         url: '/careers/product-engineer/',
-      },
-      {
-        title: 'Developer Experience Engineer - Core',
-        description: 'You will lead the technical and operational development of MUI Store.',
-        url: '/careers/developer-experience-engineer/',
-      },
-      {
-        title: 'Engineering Manager - Toolpad',
-        description: 'You will grow the small engineering team currently working on MUI Toolpad.',
-        url: '/careers/engineering-manager/',
       },
     ],
   },
@@ -193,17 +177,6 @@ const openRolesData = [
       },
     ],
   },
-  {
-    title: 'Support',
-    roles: [
-      {
-        title: 'Support Agent - Store',
-        description:
-          "You will provide support for the customers of MUI Store. You will directly impact customers' satisfaction and success.",
-        url: '/careers/support-agent/',
-      },
-    ],
-  },
 ];
 
 const nextRolesData = [
@@ -215,6 +188,12 @@ const nextRolesData = [
         description:
           'You will join the MUI Toolpad team, to explore the role of MUI in the low code space and help bring the early prototype to a usable product.',
         url: '/careers/fullstack-engineer/',
+      },
+      {
+        title: 'React Engineer - X',
+        description:
+          'You will strengthen the advanced components team, build new ambitious complex features, work on strategic problems, and help grow the adoption.',
+        url: '/careers/react-engineer-x/',
       },
     ],
   },
@@ -234,6 +213,17 @@ const nextRolesData = [
       {
         title: 'Technical Recruiter',
         description: 'You will hire the next engineers joining the team.',
+      },
+    ],
+  },
+  {
+    title: 'Support',
+    roles: [
+      {
+        title: 'Support Agent - Store',
+        description:
+          "You will provide support for the customers of MUI Store. You will directly impact customers' satisfaction and success.",
+        url: '/careers/support-agent/',
       },
     ],
   },
@@ -296,8 +286,8 @@ function CareersContent() {
               minHeight: 48, // a hack to reduce CLS (layout shift)
             }}
           >
-            Our mission is to empower anyone to build UIs, faster. We&apos;re reducing the entry
-            barrier, making design skills accessible.
+            Our mission is to enable developers at every level of ability to build great UIs,
+            faster.
           </Typography>
         </Box>
       </Container>
@@ -504,7 +494,7 @@ function CareersContent() {
                     We hire in batches, we collect applications a few months before we actively aim
                     to fill the roles. If none of these roles fit with what you are looking for, you
                     can apply to the{' '}
-                    <Link href="https://airtable.com/shrdqo1Z6srZXGcvh?prefill_Applying+for=Dream%20job&prefill_source=mui.com">
+                    <Link href="https://jobs.ashbyhq.com/MUI/4715d81f-d00f-42d4-a0d0-221f40f73e19/application?utm_source=ZNRrPGBkqO">
                       Dream job
                     </Link>{' '}
                     role.
@@ -593,7 +583,7 @@ export default function Careers() {
       />
       <AppHeaderBanner />
       <AppHeader />
-      <main>
+      <main id="main-content">
         <CareersContent />
       </main>
       <Divider />

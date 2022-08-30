@@ -4,7 +4,7 @@ title: React Menu（菜单）组件
 components: Menu, MenuItem, MenuList, ClickAwayListener, Popover, Popper
 githubLabel: 'component: menu'
 materialDesign: https://material.io/components/menus
-waiAria: 'https://www.w3.org/TR/wai-aria-practices/#menubutton'
+waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/menubutton/
 unstyled: /base/react-menu/
 ---
 
@@ -40,13 +40,13 @@ For the menu that has long list and long text, you can use the `dense` prop to r
 
 ## MenuList 组合
 
-If used for item selection, when opened, simple menus places the initial focus on the selected menu item. If used for item selection, when opened, simple menus places the initial focus on the selected menu item. If used for item selection, when opened, simple menus places the initial focus on the selected menu item. 通过 `selected` 属性（在[ListItem](/material-ui/api/list-item/)中），您能够设置当前被选中的选项。 The currently selected menu item is set using the `selected` prop (from [ListItem](/material-ui/api/list-item/)). To use a selected menu item without impacting the initial focus, set the `variant` prop to "menu".
+If used for item selection, when opened, simple menus places the initial focus on the selected menu item. The currently selected menu item is set using the `selected` prop (from [ListItem](/material-ui/api/list-item/)). To use a selected menu item without impacting the initial focus, set the `variant` prop to "menu".
 
 {{"demo": "SimpleListMenu.js"}}
 
 ## 自定义菜单
 
-因为 `Menu` 组件是基于 `Popover` 组件来进行定位的，所以你也可以使用与之相同的 [定位属性](/material-ui/react-popover/#anchor-playground) 来对它的位置进行改变。 例如，你可以在描点的下方显示菜单：
+Because the `Menu` component uses the `Popover` component to position itself, you can use the same [positioning props](/material-ui/react-popover/#anchor-playground) to position it. 例如，你可以在描点的下方显示菜单：
 
 {{"demo": "PositionedMenu.js"}}
 
@@ -66,7 +66,7 @@ If used for item selection, when opened, simple menus places the initial focus o
 
 ## 更改过渡动画
 
-以下是自定义组件的一个示例。 您可以在 [重写文档页面](/material-ui/customization/how-to-customize/) 中了解更多有关此内容的信息。
+以下是自定义组件的一个示例。 You can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/).
 
 {{"demo": "CustomizedMenus.js"}}
 
@@ -100,10 +100,10 @@ If used for item selection, when opened, simple menus places the initial focus o
 
 ## Complementary projects
 
-对于更高级的用例，您可以利用：
+For more advanced use cases you might be able to take advantage of:
 
 ### PopupState helper
 
-这里有一个第三方包 [`material-ui-popup-state`](https://github.com/jcoreio/material-ui-popup-state) 在大部分情况下，它都能帮你处理好菜单组件的状态。
+There is a 3rd party package [`material-ui-popup-state`](https://github.com/jcoreio/material-ui-popup-state) that takes care of menu state for you in most cases.
 
 {{"demo": "MenuPopupState.js"}}

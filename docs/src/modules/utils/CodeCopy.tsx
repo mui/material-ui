@@ -42,7 +42,7 @@ const InitCodeCopy = () => {
   const rootNode = React.useContext(CodeBlockContext);
   const router = useRouter();
   React.useEffect(() => {
-    let key = 'Ctrl';
+    let key = 'Ctrl + ';
     if (typeof window !== 'undefined') {
       const macOS = window.navigator.platform.toUpperCase().indexOf('MAC') >= 0;
       if (macOS) {
@@ -54,26 +54,60 @@ const InitCodeCopy = () => {
     ) as HTMLCollectionOf<HTMLDivElement>;
 
     if (codeRoots !== null) {
+      const listeners: Array<() => void> = [];
       Array.from(codeRoots).forEach((elm) => {
-        elm.addEventListener('mouseenter', () => {
+        const handleMouseEnter = () => {
           rootNode.current = elm;
-        });
-        elm.addEventListener('mouseleave', () => {
+        };
+
+        elm.addEventListener('mouseenter', handleMouseEnter);
+        listeners.push(() => elm.removeEventListener('mouseenter', handleMouseEnter));
+
+        const handleMouseLeave = () => {
           if (rootNode.current === elm) {
             (rootNode.current.querySelector('.MuiCode-copy') as null | HTMLButtonElement)?.blur();
             rootNode.current = null;
           }
-        });
-        elm.addEventListener('focusin', () => {
+        };
+        elm.addEventListener('mouseleave', handleMouseLeave);
+        listeners.push(() => elm.removeEventListener('mouseleave', handleMouseLeave));
+
+        const handleFocusin = () => {
           // use `focusin` because it bubbles from the copy button
           rootNode.current = elm;
-        });
-        elm.addEventListener('focusout', () => {
+        };
+        elm.addEventListener('focusin', handleFocusin);
+        listeners.push(() => elm.removeEventListener('focusin', handleFocusin));
+
+        const handleFocusout = () => {
           // use `focusout` because it bubbles from the copy button
           if (rootNode.current === elm) {
             rootNode.current = null;
           }
-        });
+        };
+        elm.addEventListener('focusout', handleFocusout);
+        listeners.push(() => elm.removeEventListener('focusout', handleFocusout));
+
+        async function handleClick(event: MouseEvent) {
+          const trigger = event.currentTarget as HTMLButtonElement;
+          const pre = (event.currentTarget as Element)?.previousElementSibling as Element;
+          const textNode = trigger.childNodes[0];
+          textNode.nodeValue = textNode.textContent?.replace('Copy', 'Copied') || null;
+          trigger.dataset.copied = 'true';
+          setTimeout(() => {
+            if (trigger) {
+              textNode.nodeValue = textNode.textContent?.replace('Copied', 'Copy') || null;
+              delete trigger.dataset.copied;
+            }
+          }, 2000);
+          try {
+            if (pre.textContent) {
+              await copy(pre.textContent);
+            }
+            // eslint-disable-next-line no-empty
+          } catch (error) {}
+        }
+
         const btn = elm.querySelector('.MuiCode-copy') as HTMLButtonElement | null;
         if (btn) {
           const keyNode = btn.childNodes[1]?.childNodes[1];
@@ -82,28 +116,19 @@ const InitCodeCopy = () => {
             return;
           }
           keyNode.textContent = keyNode?.textContent?.replace('$key', key) || null;
-          btn.addEventListener('click', async function handleClick(event) {
-            const trigger = event.currentTarget as HTMLButtonElement;
-            const pre = (event.currentTarget as Element)?.previousElementSibling as Element;
-            const textNode = trigger.childNodes[0];
-            textNode.nodeValue = textNode.textContent?.replace('Copy', 'Copied') || null;
-            trigger.dataset.copied = 'true';
-            setTimeout(() => {
-              if (trigger) {
-                textNode.nodeValue = textNode.textContent?.replace('Copied', 'Copy') || null;
-                delete trigger.dataset.copied;
-              }
-            }, 2000);
-            try {
-              if (pre.textContent) {
-                await copy(pre.textContent);
-              }
-              // eslint-disable-next-line no-empty
-            } catch (error) {}
-          });
+          btn.addEventListener('click', handleClick);
+          listeners.push(() => btn.removeEventListener('click', handleClick));
         }
       });
+
+      return () => {
+        listeners.forEach((removeEventListener) => {
+          removeEventListener();
+        });
+      };
     }
+
+    return undefined;
   }, [rootNode, router.pathname]);
   return null;
 };

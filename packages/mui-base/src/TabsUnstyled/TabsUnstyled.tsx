@@ -1,11 +1,14 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import { OverridableComponent } from '@mui/types';
-import { appendOwnerState } from '../utils';
+import { useSlotProps, WithOptionalOwnerState } from '../utils';
 import composeClasses from '../composeClasses';
 import { getTabsUnstyledUtilityClass } from './tabsUnstyledClasses';
-import TabsUnstyledProps, { TabsUnstyledTypeMap } from './TabsUnstyledProps';
+import {
+  TabsUnstyledProps,
+  TabsUnstyledRootSlotProps,
+  TabsUnstyledTypeMap,
+} from './TabsUnstyled.types';
 import useTabs from './useTabs';
 import Context from './TabsContext';
 
@@ -32,7 +35,6 @@ const useUtilityClasses = (ownerState: { orientation: 'horizontal' | 'vertical' 
 const TabsUnstyled = React.forwardRef<unknown, TabsUnstyledProps>((props, ref) => {
   const {
     children,
-    className,
     value: valueProp,
     defaultValue,
     orientation = 'horizontal',
@@ -45,7 +47,7 @@ const TabsUnstyled = React.forwardRef<unknown, TabsUnstyledProps>((props, ref) =
     ...other
   } = props;
 
-  const { tabsContextValue, getRootProps } = useTabs(props);
+  const { tabsContextValue } = useTabs(props);
 
   const ownerState = {
     ...props,
@@ -56,19 +58,19 @@ const TabsUnstyled = React.forwardRef<unknown, TabsUnstyledProps>((props, ref) =
   const classes = useUtilityClasses(ownerState);
 
   const TabsRoot: React.ElementType = component ?? components.Root ?? 'div';
-  const tabsRootProps = appendOwnerState(
-    TabsRoot,
-    { ...other, ...componentsProps.root },
+  const tabsRootProps: WithOptionalOwnerState<TabsUnstyledRootSlotProps> = useSlotProps({
+    elementType: TabsRoot,
+    externalSlotProps: componentsProps.root,
+    externalForwardedProps: other,
+    additionalProps: {
+      ref,
+    },
     ownerState,
-  );
+    className: classes.root,
+  });
 
   return (
-    <TabsRoot
-      {...getRootProps()}
-      {...tabsRootProps}
-      ref={ref}
-      className={clsx(classes.root, componentsProps.root?.className, className)}
-    >
+    <TabsRoot {...tabsRootProps}>
       <Context.Provider value={tabsContextValue}>{children}</Context.Provider>
     </TabsRoot>
   );
@@ -83,10 +85,6 @@ TabsUnstyled.propTypes /* remove-proptypes */ = {
    * The content of the component.
    */
   children: PropTypes.node,
-  /**
-   * @ignore
-   */
-  className: PropTypes.string,
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
@@ -105,7 +103,7 @@ TabsUnstyled.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   componentsProps: PropTypes.shape({
-    root: PropTypes.object,
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
    * The default value. Use when the component is not controlled.

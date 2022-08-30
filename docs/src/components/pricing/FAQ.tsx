@@ -14,39 +14,23 @@ import KeyboardArrowDownRounded from '@mui/icons-material/KeyboardArrowDownRound
 
 const faqData = [
   {
-    summary: 'How do I know if I need to buy license?',
+    summary: 'How do I know if I need to buy a license?',
     detail: (
       <React.Fragment>
-        If you are in doubt, check the license file of the npm package you're installing.
-        <br />
-        <br />
-        For instance <Link href="https://unpkg.com/@mui/x-data-grid/LICENSE">
-          @mui/x-data-grid
-        </Link>{' '}
-        is MIT while{' '}
-        <Link href="https://unpkg.com/@mui/x-data-grid-pro/LICENSE">@mui/x-data-grid-pro</Link> is
-        commercial.
+        If you are in doubt, check the license file of the npm package you're installing. For
+        instance <Link href="https://unpkg.com/@mui/x-data-grid/LICENSE">@mui/x-data-grid</Link> is
+        an MIT License (free) while{' '}
+        <Link href="https://unpkg.com/@mui/x-data-grid-pro/LICENSE">@mui/x-data-grid-pro</Link> is a
+        Commercial License.
       </React.Fragment>
     ),
   },
   {
-    summary: 'Why are you calling it "early access"?',
+    summary: 'How many developer licenses do I need?',
     detail: (
       <React.Fragment>
-        We think you'll love the features we've built so far, but we're planning to release more. We
-        opened it up as soon as we had something useful so that you can start getting value from it
-        right away, and we'll be adding new features and components based on our own ideas, and on
-        suggestions from early access customers.
-      </React.Fragment>
-    ),
-  },
-  {
-    summary: 'How many developer seats do I need?',
-    detail: (
-      <React.Fragment>
-        The number of seats purchased on your license must correspond to the number of concurrent
-        developers contributing changes to the front-end code of a project that uses MUI X Pro or
-        Premium.
+        The number of licenses purchased must correspond to the number of concurrent developers
+        contributing changes to the front-end code of projects that use MUI X Pro or Premium.
         <br />
         <br />
         <b>Example 1.</b> Company 'A' is developing an application named 'AppA'. The app needs to
@@ -62,17 +46,40 @@ const faqData = [
         the new library and so does the team working on 'AppB'. 'AppA' has 5 front-end developers
         and 'AppB' has 3. There are 2 front-end developers on the UI development team. Company 'B'
         purchases 10 licenses.
+        <br />
+        <br />
+        <Link
+          target="_blank"
+          rel="noopener"
+          href="https://mui.com/legal/mui-x-eula/#required-quantity-of-licenses"
+        >
+          The clause in the EULA.
+        </Link>
       </React.Fragment>
     ),
   },
   {
-    summary: 'How to remove the "Unlicensed product" watermark?',
+    summary: 'Why must we license developers not using the software directly?',
     detail: (
       <React.Fragment>
-        After you purchase a license, you'll receive a license key by email Once you have the
-        license key, you need to follow the{' '}
-        <Link href="/x/advanced-components/#license-key-installation">instructions</Link> necessary
-        to set it up.
+        Our pricing model requires all developers working on a project using MUI X Pro or Premium to
+        be licensed. This is intended to make it easier for you and your team to know if the right
+        number of developers are licensed.
+        <br />
+        <br />
+        Our licensing model also requires developers indirectly using MUI X Pro or Premium (e.g.
+        through a wrapper library) to be licensed.
+        <br />
+        <br />
+        The price point per developer is adjusted to be lower than if only direct use needed a
+        license.{' '}
+        <Link
+          target="_blank"
+          rel="noopener"
+          href="https://mui.com/store/legal/mui-x-eula/#required-quantity-of-licenses"
+        >
+          The relevant EULA clause.
+        </Link>
       </React.Fragment>
     ),
   },
@@ -80,9 +87,31 @@ const faqData = [
     summary: 'Do developers have to be named?',
     detail: (
       <React.Fragment>
-        No. We trust that you will not go over the number of licensed developers. Developers moving
-        on and off projects is expected occasionally, and the license can be transferred between
-        developers at that time.
+        <strong>No.</strong> We trust that you will not go over the number of licensed developers.
+        Developers moving on and off projects is expected occasionally, and the license can be
+        transferred between developers at that time.
+      </React.Fragment>
+    ),
+  },
+  {
+    summary: 'Why are you calling it "early access"?',
+    detail: (
+      <React.Fragment>
+        We think you'll love the features we've built so far, but we're planning to release more. We
+        opened it up as soon as we had something useful so that you can start getting value from it
+        right away, and we'll be adding new features and components based on our own ideas, and on
+        suggestions from early access customers.
+      </React.Fragment>
+    ),
+  },
+  {
+    summary: 'How to remove the "unlicensed" watermark?',
+    detail: (
+      <React.Fragment>
+        After you purchase a license, you'll receive a license key by email. Once you have the
+        license key, you need to follow the{' '}
+        <Link href="/x/introduction/licensing/#license-key-installation">instructions</Link>{' '}
+        necessary to set it up.
       </React.Fragment>
     ),
   },
@@ -237,14 +266,15 @@ export default function FAQ() {
           {renderItem(0)}
           {renderItem(1)}
           {renderItem(2)}
+          {renderItem(3)}
         </Grid>
         <Grid item xs={12} md={4}>
-          {renderItem(3)}
           {renderItem(4)}
           {renderItem(5)}
+          {renderItem(6)}
         </Grid>
         <Grid item xs={12} md={4}>
-          {renderItem(6)}
+          {renderItem(7)}
           <Paper
             variant="outlined"
             sx={{
@@ -258,7 +288,7 @@ export default function FAQ() {
           >
             <Box sx={{ textAlign: 'left' }}>
               <Typography variant="body2" color="text.primary" fontWeight="bold" component="h3">
-                Got any questions unanswered or need more help?
+                Got any questions unanswered or need help?
               </Typography>
             </Box>
             <Typography variant="body2" color="text.secondary" sx={{ my: 1, textAlign: 'left' }}>
@@ -268,8 +298,8 @@ export default function FAQ() {
             <Typography variant="body2" color="text.secondary" sx={{ my: 1, textAlign: 'left' }}>
               For product-related problems, please open
               <Link href="https://github.com/mui/mui-x/issues/new/choose">a new GitHub issue</Link>.
-              If you need to share private information, you can{' '}
-              <Link href="mailto:x@mui.com">email us</Link>.
+              (If you need to share private information, you can{' '}
+              <Link href="mailto:x@mui.com">email</Link> us.)
             </Typography>
           </Paper>
         </Grid>

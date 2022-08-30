@@ -106,7 +106,7 @@ async function computeApiDescription(api: ReactApi, options: { host: string }): 
     })
     .process(api.description);
 
-  return file.contents.toString('utf-8').trim();
+  return file.contents.toString().trim();
 }
 
 /**
@@ -162,7 +162,7 @@ async function annotateComponentDefinition(api: ReactApi) {
             // /**
             //  */
             // const Component = () => {}
-            node = binding.path.parentPath.node;
+            node = binding.path.parentPath!.node;
           }
         }
       }
@@ -182,10 +182,10 @@ async function annotateComponentDefinition(api: ReactApi) {
             .join('\n')}`,
         );
       }
-      if (jsdocBlock != null) {
+      if (jsdocBlock?.start != null && jsdocBlock?.end != null) {
         start = jsdocBlock.start;
         end = jsdocBlock.end;
-      } else if (node.start !== null) {
+      } else if (node.start != null) {
         start = node.start - 1;
         end = start;
       }
@@ -276,10 +276,10 @@ function extractClassConditions(descriptions: any) {
 
 /**
  * @param filepath - absolute path
- * @example toGithubPath('/home/user/material-ui/packages/Accordion') === '/packages/Accordion'
- * @example toGithubPath('C:\\Development\material-ui\packages\Accordion') === '/packages/Accordion'
+ * @example toGitHubPath('/home/user/material-ui/packages/Accordion') === '/packages/Accordion'
+ * @example toGitHubPath('C:\\Development\material-ui\packages\Accordion') === '/packages/Accordion'
  */
-function toGithubPath(filepath: string): string {
+function toGitHubPath(filepath: string): string {
   return `/${path.relative(process.cwd(), filepath).replace(/\\/g, '/')}`;
 }
 
@@ -348,7 +348,7 @@ const generateApiPage = (outputDirectory: string, reactApi: ReactApi) => {
     },
     spread: reactApi.spread,
     forwardsRefTo: reactApi.forwardsRefTo,
-    filename: toGithubPath(reactApi.filename),
+    filename: toGitHubPath(reactApi.filename),
     inheritance: reactApi.inheritance
       ? {
           component: reactApi.inheritance.name,
@@ -415,7 +415,8 @@ const attachTranslations = (reactApi: ReactApi) => {
       if (propName === 'classes') {
         description += ' See <a href="#css">CSS API</a> below for more details.';
       } else if (propName === 'sx') {
-        description += ' See the <a href="/system/the-sx-prop/">`sx` page</a> for more details.';
+        description +=
+          ' See the <a href="/system/getting-started/the-sx-prop/">`sx` page</a> for more details.';
       }
       translations.propDescriptions[propName] = description.replace(/\n@default.*$/, '');
     }
@@ -498,8 +499,6 @@ const attachPropsTable = (reactApi: ReactApi) => {
   reactApi.propsTable = componentProps;
 };
 
-const systemComponents = ['Container', 'Box'];
-
 /**
  * - Build react component (specified filename) api by lookup at its definition (.d.ts or ts)
  *   and then generate the API page + json data
@@ -518,6 +517,7 @@ const generateComponentApi = async (componentInfo: ComponentInfo, program: ttp.t
     getDemos,
     readFile,
     skipApiGeneration,
+    isSystemComponent,
   } = componentInfo;
 
   const { shouldSkip, spread, EOL, src } = readFile();
@@ -528,36 +528,49 @@ const generateComponentApi = async (componentInfo: ComponentInfo, program: ttp.t
 
   let reactApi: ReactApi;
 
-  if (systemComponents.includes(name)) {
-    reactApi = docgenParse(
-      src,
-      (ast) => {
-        let node;
-        astTypes.visit(ast, {
-          visitVariableDeclaration: (variablePath) => {
-            const definitions: any[] = [];
-            if (variablePath.node.declarations) {
-              variablePath
-                .get('declarations')
-                .each((declarator: any) => definitions.push(declarator.get('init')));
-            }
-
-            definitions.forEach((definition) => {
-              const definitionName = definition.value.callee.name;
-
-              if (definitionName === `create${name}`) {
-                node = definition;
+  if (isSystemComponent) {
+    try {
+      reactApi = docgenParse(
+        src,
+        (ast) => {
+          let node;
+          astTypes.visit(ast, {
+            visitVariableDeclaration: (variablePath) => {
+              const definitions: any[] = [];
+              if (variablePath.node.declarations) {
+                variablePath
+                  .get('declarations')
+                  .each((declarator: any) => definitions.push(declarator.get('init')));
               }
-            });
-            return false;
-          },
-        });
 
-        return node;
-      },
-      defaultHandlers,
-      { filename },
-    );
+              definitions.forEach((definition) => {
+                if (definition.value?.callee) {
+                  const definitionName = definition.value.callee.name;
+
+                  if (definitionName === `create${name}`) {
+                    node = definition;
+                  }
+                }
+              });
+              return false;
+            },
+          });
+
+          return node;
+        },
+        defaultHandlers,
+        { filename },
+      );
+    } catch (error) {
+      // fallback to default logic if there is no `create*` definition.
+      if ((error as Error).message === 'No suitable component definition found.') {
+        reactApi = docgenParse(src, null, defaultHandlers.concat(muiDefaultPropsHandler), {
+          filename,
+        });
+      } else {
+        throw error;
+      }
+    }
   } else {
     reactApi = docgenParse(src, null, defaultHandlers.concat(muiDefaultPropsHandler), { filename });
   }

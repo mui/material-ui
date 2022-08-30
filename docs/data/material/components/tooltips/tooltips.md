@@ -21,7 +21,7 @@ When activated, Tooltips display a text label identifying an element, such as a 
 
 ## Positioned tooltips
 
-The `Tooltip` has 12 **placements** choice.
+The `Tooltip` has 12 **placement** choices.
 They don't have directional arrows; instead, they rely on motion emanating from the source to convey direction.
 
 {{"demo": "PositionedTooltips.js"}}
@@ -47,17 +47,48 @@ If the child is a custom React element, you need to make sure that it spreads it
 ```jsx
 const MyComponent = React.forwardRef(function MyComponent(props, ref) {
   //  Spread the props to the underlying DOM element.
-  return <div {...props} ref={ref}>Bin</div>
+  return (
+    <div {...props} ref={ref}>
+      Bin
+    </div>
+  );
 });
 
 // ...
 
 <Tooltip title="Delete">
-  <MyComponent>
-</Tooltip>
+  <MyComponent />
+</Tooltip>;
 ```
 
 You can find a similar concept in the [wrapping components](/material-ui/guides/composition/#wrapping-components) guide.
+
+If using a class component as a child, you'll also need to ensure that the ref is forwarded to the underlying DOM element. (A ref to the class component itself will not work.)
+
+```jsx
+class MyComponent extends React.Component {
+  render() {
+    const { innerRef, ...props } = this.props;
+    //  Spread the props to the underlying DOM element.
+    return (
+      <div {...props} ref={innerRef}>
+        Bin
+      </div>
+    );
+  }
+}
+
+// Wrap MyComponent to forward the ref as expected by Tooltip
+const WrappedMyComponent = React.forwardRef(function WrappedMyComponent(props, ref) {
+  return <MyComponent {...props} innerRef={ref} />;
+});
+
+// ...
+
+<Tooltip title="Delete">
+  <WrappedMyComponent />
+</Tooltip>;
+```
 
 ## Triggers
 

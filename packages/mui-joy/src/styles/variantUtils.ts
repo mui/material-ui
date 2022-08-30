@@ -1,4 +1,4 @@
-import { CSSObject, unstable_createGetCssVar as createGetCssVar } from '@mui/system';
+import { CSSObject } from '@mui/system';
 import { DefaultColorPalette, PaletteVariant, PaletteRange } from './types/colorSystem';
 import { VariantKey } from './types/variants';
 
@@ -40,25 +40,21 @@ const createPrefixVar = (prefix: string | undefined | null) => {
  * result will be the stylesheet based on the palette tokens
  * @example {
  *   color: '--token',
- *   backgroundColor: '--token'
+ *   backgroundColor: '--token',
+ *   '--variant-borderWidth': '0px',
  * }
  * @example {
  *   cursor: 'pointer',
- *   '&:hover': {
- *      color: '--token',
- *   }
- * }
- * @example {
- *   '&:active': {
- *      color: '--token',
- *   }
+ *   color: '--token',
+ *   backgroundColor: '--token',
+ *   '--variant-borderWidth': '1px',
  * }
  * @example {
  *   pointerEvents: 'none',
  *   cursor: 'default',
- *   '&.Mui-disabled': {
- *      color: '--token',
- *   }
+ *   color: '--token',
+ *   backgroundColor: '--token',
+ *   '--variant-borderWidth': '0px',
  * }
  */
 export const createVariantStyle = (
@@ -72,28 +68,22 @@ export const createVariantStyle = (
       if (variantVar.match(new RegExp(`${name}(color|bg|border)`, 'i')) && !!value) {
         const cssVar = getCssVar ? getCssVar(variantVar) : value;
         if (variantVar.includes('Hover')) {
-          if (!result['&:hover']) {
-            result.cursor = 'pointer';
-            result['&:hover'] = {};
-          }
-          assignCss(result['&:hover'] as any, variantVar, cssVar);
-        } else if (variantVar.includes('Active')) {
-          if (!result['&:active']) {
-            result['&:active'] = {};
-          }
-          assignCss(result['&:active'] as any, variantVar, cssVar);
-        } else if (variantVar.includes('Disabled')) {
-          if (!result['&.Mui-disabled']) {
-            result['&.Mui-disabled'] = {
-              pointerEvents: 'none',
-              cursor: 'default',
-            };
-          }
-          assignCss(result['&.Mui-disabled'] as any, variantVar, cssVar);
+          result.cursor = 'pointer';
+        }
+        if (variantVar.includes('Disabled')) {
+          result.pointerEvents = 'none';
+          result.cursor = 'default';
+        }
+        if (variantVar.match(/(Hover|Active|Disabled)/)) {
+          assignCss(result as any, variantVar, cssVar);
         } else {
+          // initial state
+          if (!result['--variant-borderWidth']) {
+            result['--variant-borderWidth'] = '0px';
+          }
           if (variantVar.includes('Border')) {
-            result['--variant-outlinedBorderWidth'] = '1px';
-            result.border = 'var(--variant-outlinedBorderWidth) solid';
+            result['--variant-borderWidth'] = '1px';
+            result.border = 'var(--variant-borderWidth) solid';
           }
           // border color should come later
           assignCss(result as any, variantVar, cssVar);
@@ -104,15 +94,15 @@ export const createVariantStyle = (
   return result;
 };
 
-interface Theme {
+interface ThemeFragment {
   prefix?: string;
-  palette: Record<DefaultColorPalette, PaletteRange>;
-  vars: { palette: Record<DefaultColorPalette, PaletteRange> };
+  getCssVar: (...args: string[]) => string;
+  palette: Record<string, any>;
 }
 
-export const createTextOverrides = (theme: Theme) => {
-  const getCssVar = createGetCssVar(theme.prefix);
-  const prefixVar = createPrefixVar(theme.prefix);
+export const createTextOverrides = (theme: ThemeFragment) => {
+  const { prefix, getCssVar } = theme;
+  const prefixVar = createPrefixVar(prefix);
   let result = {} as Record<DefaultColorPalette, CSSObject>;
   Object.entries(theme.palette).forEach((entry) => {
     const [color, colorPalette] = entry as [
@@ -137,9 +127,9 @@ export const createTextOverrides = (theme: Theme) => {
   return result;
 };
 
-export const createContainedOverrides = (theme: Theme) => {
-  const getCssVar = createGetCssVar(theme.prefix);
-  const prefixVar = createPrefixVar(theme.prefix);
+export const createContainedOverrides = (theme: ThemeFragment) => {
+  const { prefix, getCssVar } = theme;
+  const prefixVar = createPrefixVar(prefix);
   let result = {} as Record<DefaultColorPalette, CSSObject>;
   Object.entries(theme.palette).forEach((entry) => {
     const [color, colorPalette] = entry as [
@@ -189,25 +179,20 @@ export const createContainedOverrides = (theme: Theme) => {
   return result;
 };
 
-export const createVariant = (variant: VariantKey, theme?: Theme) => {
+export const createVariant = (variant: VariantKey, theme?: ThemeFragment) => {
   let result = {} as Record<DefaultColorPalette | 'context', CSSObject>;
-
   if (theme) {
-    Object.entries(theme.palette).forEach((entry) => {
+    const { getCssVar, palette } = theme;
+    Object.entries(palette).forEach((entry) => {
       const [color, colorPalette] = entry as [
         Exclude<DefaultColorPalette, 'context'>,
         string | number | Record<string, any>,
       ];
-      if (isVariantPalette(colorPalette)) {
+      if (isVariantPalette(colorPalette) && typeof colorPalette === 'object') {
         result = {
           ...result,
-          [color]: createVariantStyle(
-            variant,
-            // cannot use theme.vars because it is created from all color schemes.
-            // @example developer provides `primary.outlinedActiveBorder` to only dark mode.
-            //          theme.vars.palette.primary.outlinedActiveBorder always exists regardless of the current color scheme.
-            theme.palette[color],
-            (variantVar) => theme.vars.palette[color][variantVar],
+          [color]: createVariantStyle(variant, colorPalette, (variantVar) =>
+            getCssVar(`palette-${color}-${variantVar}`),
           ),
         };
       }

@@ -10,11 +10,20 @@ import MailIcon from '@mui/icons-material/Mail';
 import Switch from '@mui/material/Switch';
 import FormControlLabel from '@mui/material/FormControlLabel';
 
-const StyledBadge = styled(BadgeUnstyled)`
+const blue = {
+  500: '#007FFF',
+};
+
+const grey = {
+  300: '#afb8c1',
+  900: '#24292f',
+};
+
+const StyledBadge = styled(BadgeUnstyled)(
+  ({ theme }) => `
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  color: rgba(0, 0, 0, 0.85);
   font-size: 14px;
   list-style: none;
   font-family: IBM Plex Sans, sans-serif;
@@ -24,32 +33,31 @@ const StyledBadge = styled(BadgeUnstyled)`
 
   & .${badgeUnstyledClasses.badge} {
     z-index: auto;
-    min-width: 20px;
-    height: 20px;
-    padding: 0 6px;
-    color: #fff;
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 20px;
-    white-space: nowrap;
-    text-align: center;
-    background: #07f;
-    border-radius: 10px;
-    box-shadow: 0 0 0 1px #fff;
     position: absolute;
     top: 0;
     right: 0;
+    min-width: 22px;
+    height: 22px;
+    padding: 0 6px;
+    color: #fff;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 22px;
+    white-space: nowrap;
+    text-align: center;
+    border-radius: 12px;
+    background: ${blue[500]};
+    box-shadow: 0px 4px 6x ${theme.palette.mode === 'dark' ? grey[900] : grey[300]};
     transform: translate(50%, -50%);
-    transform-origin: 100% 0;
-    opacity: 1;
-    transition: opacity 0.2s ease-in-out;
+    transform-origin: 100% 0; 
   }
 
   & .${badgeUnstyledClasses.invisible} {
     opacity: 0;
     pointer-events: none;
   }
-`;
+  `,
+);
 
 export default function BadgeVisibility() {
   const [count, setCount] = React.useState(1);

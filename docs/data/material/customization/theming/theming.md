@@ -33,7 +33,7 @@ You can check out the [default theme section](/material-ui/customization/default
 
 ### Custom variables
 
-When using MUI's theme with [MUI System](/system/basics/) or [any other styling solution](/material-ui/guides/interoperability/#themeprovider), it can be convenient to add additional variables to the theme so you can use them everywhere.
+When using MUI's theme with [MUI System](/system/getting-started/overview/) or [any other styling solution](/material-ui/guides/interoperability/#themeprovider), it can be convenient to add additional variables to the theme so you can use them everywhere.
 For instance:
 
 ```jsx
@@ -42,6 +42,14 @@ const theme = createTheme({
     danger: orange[500],
   },
 });
+```
+
+**WARNING**: `vars` is a private field used for CSS variables support. It will throw an error if you try to use it:
+
+```jsx
+createTheme({
+  vars: { ... },
+})
 ```
 
 If you are using TypeScript, you would also need to use [module augmentation](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation) for the theme to accept the above values.
@@ -77,7 +85,16 @@ The community has built great tools to build a theme:
 
 ## Accessing the theme in a component
 
-You [can access](/system/styles/advanced/#accessing-the-theme-in-a-component) the theme variables inside your React components.
+You can access the theme variables inside your functional React components using the `useTheme` hook:
+
+```jsx
+import { useTheme } from '@mui/material/styles';
+
+function DeepChild() {
+  const theme = useTheme();
+  return <span>{`spacing ${theme.spacing}`}</span>;
+}
+```
 
 ## Nesting the theme
 
@@ -164,6 +181,8 @@ theme = createTheme(theme, {
 
 Think of creating a theme as a two-step composition process: first, you define the basic design options; then, you'll use these design options to compose other options.
 
+**WARNING**: `theme.vars` is a private field used for CSS variables support. Please use another name for a custom object.
+
 ### `responsiveFontSizes(theme, options) => theme`
 
 Generate responsive typography settings based on the options received.
@@ -247,7 +266,6 @@ It should preferably be used at **the root of your component tree**.
 
 ```jsx
 import * as React from 'react';
-import ReactDOM from 'react-dom';
 import { red } from '@mui/material/colors';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 

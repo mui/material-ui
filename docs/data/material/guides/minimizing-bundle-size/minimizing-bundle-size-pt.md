@@ -4,11 +4,11 @@
 
 ## Tamanho do pacote importa
 
-O tamanho do pacote do Material UI é levado muito a sério. Fotos contendo o tamanho do pacote são feitas em cada commit e partes críticas dos pacotes([veja a última foto](/size-snapshot)). Combinado com [dangerJS](https://danger.systems/js/) podemos inspecionar [alterações detalhadas no tamanho do pacote](https://github.com/mui/material-ui/pull/14638#issuecomment-466658459) em cada solicitação de Pull Request.
+O tamanho do pacote do Material-UI é levado muito a sério. Size snapshots are taken on every commit for every package and critical parts of those packages ([view the latest snapshot](/size-snapshot/)). Combinado com [dangerJS](https://danger.systems/js/) podemos inspecionar [alterações detalhadas no tamanho do pacote](https://github.com/mui/material-ui/pull/14638#issuecomment-466658459) em cada solicitação de Pull Request.
 
 ## Quando e como usar tree-shaking?
 
-Tree-shaking no Material UI funciona de uma forma moderna. MUI exposes its full API on the top-level `@mui` imports. If you're using ES6 modules and a bundler that supports tree-shaking ([`webpack` >= 2.x](https://webpack.js.org/guides/tree-shaking/), [`parcel` with a flag](https://en.parceljs.org/cli.html#enable-experimental-scope-hoisting/tree-shaking-support)) you can safely use named imports and still get an optimized bundle size automatically:
+Tree-shaking no Material-UI funciona de uma forma moderna. MUI exposes its full API on the top-level `@mui` imports. If you're using ES6 modules and a bundler that supports tree-shaking ([`webpack` >= 2.x](https://webpack.js.org/guides/tree-shaking/), [`parcel` with a flag](https://en.parceljs.org/cli.html#enable-experimental-scope-hoisting/tree-shaking-support)) you can safely use named imports and still get an optimized bundle size automatically:
 
 ```js
 import { Button, TextField } from '@material-ui/core';
@@ -18,24 +18,34 @@ import { Button, TextField } from '@material-ui/core';
 
 ## Ambiente de desenvolvimento
 
-Os pacotes de desenvolvimento podem conter a biblioteca completa que pode deixar **o tempo de inicialização mais lento**. Isso é especialmente perceptível se você importar de `@material-ui/icons`. Os tempos de inicialização podem ser aproximadamente 6 vezes mais lentos do que sem utilizar importações nomeadas da API de nível superior.
+Os pacotes de desenvolvimento podem conter a biblioteca completa que pode deixar **o tempo de inicialização mais lento**. This is especially noticeable if you use named imports from `@mui/icons-material`, which can be up to six times slower than the default import. For example, between the following two imports, the first (named) can be significantly slower than the second (default):
 
-Se isso é um problema para você, tem várias opções:
+```js
+// 🐌 Named
+import { Delete } from '@mui/icons-material';
+```
 
-### Opção 1
+```js
+// 🚀 Default
+import Delete from '@mui/icons-material/Delete';
+```
+
+If this is an issue for you, you have two options:
+
+### Option one: use path imports
 
 Você pode usar as importações de caminho para evitar puxar módulos não utilizados. Por exemplo, use:
 
 ```js
-// 🚀 Rápida
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
+// 🚀 Fast
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
 ```
 
 em vez de importações de nível superior (sem um plugin do Babel):
 
 ```js
-import { Button, TextField } from '@material-ui/core';
+import { Button, TextField } from '@mui/material';
 ```
 
 Esta é a opção que apresentamos em todas as demonstrações, pois não exige qualquer configuração. É o mais recomendável para autores de biblioteca que estendem os componentes. Vá até [Opção 2](#option-2) para uma abordagem que produz uma melhor DX e UX.
@@ -46,21 +56,21 @@ Esteja ciente de que apenas damos suporte para as importações de primeiro e se
 
 ```js
 // ✅ OK
-import { Add as AddIcon } from '@material-ui/icons';
-import { Tabs } from '@material-ui/core';
-//                                 ^^^^ 1° ou nível superior
+import { Add as AddIcon } from '@mui/icons-material';
+import { Tabs } from '@mui/material';
+//                         ^^^^^^^^ 1st or top-level
 
 // ✅ OK
-import AddIcon from '@material-ui/icons/Add';
-import Tabs from '@material-ui/core/Tabs';
-//                                  ^^^^ 2° nível
+import AddIcon from '@mui/icons-material/Add';
+import Tabs from '@mui/material/Tabs';
+//                              ^^^^ 2nd level
 
-// ❌ NÃO OK
-import TabIndicator from '@material-ui/core/Tabs/TabIndicator';
-//                                               ^^^^^^^^^^^^ 3° nível
+// ❌ NOT OK
+import TabIndicator from '@mui/material/Tabs/TabIndicator';
+//                                           ^^^^^^^^^^^^ 3rd level
 ```
 
-Se você estiver usando `eslint` você pode capturar está problemática de importações com a regra [`no-restricted-imports`](https://eslint.org/docs/rules/no-restricted-imports). A configuração `.eslintrc` a seguir irá capturar as problemáticas das importações dos pacotes `@material-ui`:
+If you're using `eslint` you can catch problematic imports with the [`no-restricted-imports` rule](https://eslint.org/docs/latest/rules/no-restricted-imports). A configuração `.eslintrc` a seguir irá capturar as problemáticas das importações dos pacotes `@material-ui`:
 
 ```json
 {
@@ -68,23 +78,23 @@ Se você estiver usando `eslint` você pode capturar está problemática de impo
     "no-restricted-imports": [
       "error",
       {
-        "patterns": ["@material-ui/*/*/*", "!@material-ui/core/test-utils/*"]
+        "patterns": ["@mui/*/*/*", "!@mui/material/test-utils/*"]
       }
     ]
   }
 }
 ```
 
-### Opção 2
+### Option two: use a Babel plugin
 
-Esta opção fornece a melhor Experiência do Usuário e Experiência do Desenvolvedor:
+This option provides the best user experience and developer experience:
 
 - UX: O plugin Babel permite tree-shaking de nível superior, mesmo se o seu bundler não suporte.
 - DX: O plugin Babel torna o tempo de inicialização no modo de desenvolvimento tão rápido quanto a opção 1.
 - DX: Essa sintaxe reduz a duplicação de código, exigindo apenas uma única importação para vários módulos. Em geral, o código é mais fácil de ser lido, e é menos provável que você cometa um erro ao importar um novo módulo.
 
 ```js
-import { Button, TextField } from '@material-ui/core';
+import { Button, TextField } from '@mui/material';
 ```
 
 No entanto, você precisa aplicar as duas etapas seguintes corretamente.
@@ -187,14 +197,14 @@ Desfrute do tempo de inicialização significativamente mais rápido.
 Finalmente, você pode converter sua base de código existente com esse [codemod top-level-imports](https://www.npmjs.com/package/@material-ui/codemod#top-level-imports). Ele executará as seguintes alterações:
 
 ```diff
--import Button from '@material-ui/core/Button';
--import TextField from '@material-ui/core/TextField';
-+import { Button, TextField } from '@material-ui/core';
+-import Button from '@mui/material/Button';
+-import TextField from '@mui/material/TextField';
++import { Button, TextField } from '@mui/material';
 ```
 
 ## Pacotes disponíveis
 
-O pacote publicado no npm é **transpilado** com [Babel](https://github.com/babel/babel), para levar em consideração as [plataformas suportadas](/material-ui/getting-started/supported-platforms/).
+The package published on npm is **transpiled**, with [Babel](https://github.com/babel/babel), to take into account the [supported platforms](/material-ui/getting-started/supported-platforms/).
 
 ⚠️ Para minimizar a duplicação de código nos pacotes de usuários, autores de biblioteca são **fortemente desencorajados** a importar de qualquer um dos outros pacotes. Otherwise it's not guaranteed that dependencies used also use legacy or modern bundles. Instead, use these bundles at the bundler level with e.g [Webpack's `resolve.alias`](https://webpack.js.org/configuration/resolve/#resolvealias):
 
@@ -207,6 +217,7 @@ O pacote publicado no npm é **transpilado** com [Babel](https://github.com/babe
       '@mui/material': '@mui/material/legacy',
       '@mui/styled-engine': '@mui/styled-engine/legacy',
       '@mui/system': '@mui/system/legacy',
+      '@mui/utils': '@mui/utils/legacy',
     }
   }
 }
