@@ -2,13 +2,13 @@ import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import * as React from 'react';
 import { ColorPaletteProp, SxProps, VariantProp } from '../styles/types';
 
-export type CircularProgressSlot = 'root' | 'progress';
+export type CircularProgressSlot = 'root' | 'svg' | 'circle1' | 'circle2';
 
 export interface CircularProgressPropsColorOverrides {}
 export interface CircularProgressPropsSizeOverrides {}
 export interface CircularProgressPropsVariantOverrides {}
 
-export interface CircularProgressTypeMap<P = {}, D extends React.ElementType = 'div'> {
+export interface CircularProgressTypeMap<P = {}, D extends React.ElementType = 'span'> {
   props: P & {
     /**
      * The color of the component. It supports those theme colors that make sense for this component.
