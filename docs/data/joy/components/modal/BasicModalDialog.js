@@ -54,7 +54,7 @@ export default function BasicModalDialog() {
             }}
           >
             <Stack spacing={2}>
-              <TextField label="Name" required />
+              <TextField label="Name" autoFocus required />
               <TextField label="Description" required />
               <Button type="submit">Submit</Button>
             </Stack>

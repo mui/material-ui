@@ -5,7 +5,7 @@ import ModalClose from '@mui/joy/ModalClose';
 import Typography from '@mui/joy/Typography';
 import Sheet from '@mui/joy/Sheet';
 
-export default function BackdropModal() {
+export default function CloseModal() {
   const [open, setOpen] = React.useState(false);
   return (
     <React.Fragment>
