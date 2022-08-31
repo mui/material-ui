@@ -54,3 +54,21 @@ Here is an example of customizing the component.
 You can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/).
 
 {{"demo": "CustomizedTimeline.js"}}
+
+## Alignment
+
+There are different ways in which a Timeline can be placed within the container. You can do it by overriding the styles.
+
+A Timeline centers itself in the container by default. The demos below show how to adjust the relative width of the left and right sides of Timeline.
+
+### Left-aligned Timeline
+
+{{"demo": "LeftAlignedTimeline.js"}}
+
+### Right-aligned Timeline
+
+{{"demo": "RightAlignedTimeline.js"}}
+
+### Left-aligned Timeline with no opposite content
+
+{{"demo": "NoOppositeContent.js"}}
