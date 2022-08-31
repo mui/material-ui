@@ -3,13 +3,12 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
-import { unstable_capitalize as capitalize, unstable_useId as useId } from '@mui/utils';
+import { unstable_capitalize as capitalize } from '@mui/utils';
 import { styled, useThemeProps } from '../styles';
 import { SheetRoot } from '../Sheet/Sheet';
 import { getModalDialogUtilityClass } from './modalDialogClasses';
 import { ModalDialogProps, ModalDialogTypeMap } from './ModalDialogProps';
 import ModalDialogSizeContext from './ModalDialogSizeContext';
-import ModalDialogAriaContext from './ModalDialogAriaContext';
 import ModalDialogVariantColorContext from './ModalDialogVariantColorContext';
 
 const useUtilityClasses = (ownerState: ModalDialogProps) => {
@@ -88,9 +87,6 @@ const ModalDialog = React.forwardRef(function ModalDialog(inProps, ref) {
     name: 'JoyModalDialog',
   });
 
-  const labelId = useId();
-  const descriptionId = useId();
-
   const {
     className,
     color = 'neutral',
@@ -114,21 +110,17 @@ const ModalDialog = React.forwardRef(function ModalDialog(inProps, ref) {
 
   return (
     <ModalDialogSizeContext.Provider value={size}>
-      <ModalDialogAriaContext.Provider value={{ labelId, descriptionId }}>
-        <ModalDialogVariantColorContext.Provider value={{ variant, color }}>
-          <ModalDialogRoot
-            as={component}
-            ownerState={ownerState}
-            className={clsx(classes.root, className)}
-            ref={ref}
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby={labelId}
-            aria-describedby={descriptionId}
-            {...other}
-          />
-        </ModalDialogVariantColorContext.Provider>
-      </ModalDialogAriaContext.Provider>
+      <ModalDialogVariantColorContext.Provider value={{ variant, color }}>
+        <ModalDialogRoot
+          as={component}
+          ownerState={ownerState}
+          className={clsx(classes.root, className)}
+          ref={ref}
+          role="dialog"
+          aria-modal="true"
+          {...other}
+        />
+      </ModalDialogVariantColorContext.Provider>
     </ModalDialogSizeContext.Provider>
   );
 }) as OverridableComponent<ModalDialogTypeMap>;
