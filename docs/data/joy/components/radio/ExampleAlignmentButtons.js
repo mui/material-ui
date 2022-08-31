@@ -11,7 +11,7 @@ export default function RadioButtonsGroup() {
   const [alignment, setAlignment] = React.useState('left');
   return (
     <RadioGroup
-      orientation="horizontal"
+      row
       aria-label="Alignment"
       name="alignment"
       variant="outlined"
@@ -56,10 +56,10 @@ export default function RadioButtonsGroup() {
             variant={alignment === item ? 'solid' : 'plain'}
             componentsProps={{
               input: { 'aria-label': item },
-            }}
-            sx={{
-              [`& .${radioClasses.action}`]: { borderRadius: 0, transition: 'none' },
-              [`& .${radioClasses.label}`]: { lineHeight: 0 },
+              action: {
+                sx: { borderRadius: 0, transition: 'none' },
+              },
+              label: { sx: { lineHeight: 0 } },
             }}
           />
         </Box>

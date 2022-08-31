@@ -29,19 +29,16 @@ export default function RadioUsage() {
           defaultValue: 'md',
         },
         {
-          propName: 'orientation',
-          knob: 'radio',
-          options: ['vertical', 'horizontal'],
-          defaultValue: 'vertical',
+          propName: 'row',
+          knob: 'switch',
+          defaultValue: false,
           codeBlockDisplay: false,
         },
       ]}
-      getCodeBlock={(code, props) => `<RadioGroup${
-        props.row ? ` orientation="horizontal"` : ''
-      }>
+      getCodeBlock={(code, props) => `<RadioGroup${props.row ? ` row` : ''}>
 ${prependLinesSpace(code, 2)}
 </RadioGroup>`}
-      renderDemo={({ orientation, ...props }) => (
+      renderDemo={({ row, ...props }) => (
         <div>
           <FormLabel
             id="radio-button-usage-label"
@@ -57,7 +54,7 @@ ${prependLinesSpace(code, 2)}
             Pizza crust
           </FormLabel>
           <RadioGroup
-            orientation={orientation}
+            row={row}
             defaultValue="1"
             name="radio-button-usage"
             aria-labelledby="radio-button-usage-label"

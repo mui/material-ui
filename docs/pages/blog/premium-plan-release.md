@@ -90,7 +90,7 @@ Here is a list of everything that has changed:
 
 - **Removing volume and renewal discounts**
 
-  We aim to give a more transparent price based on the number of developer seats while providing more predictable revenue for MUI X in the long term.
+  We aim to give a more transparent price based on the number of developer licenses while providing more predictable revenue for MUI X in the long term.
   We believe that’s best for both our long-standing customers and us as a company.
 
 - **Perpetual in production**

@@ -8,7 +8,7 @@ import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
 import { getCardOverflowUtilityClass } from './cardOverflowClasses';
 import { CardOverflowProps, CardOverflowTypeMap } from './CardOverflowProps';
-import { CardOrientationContext } from '../Card/CardContext';
+import { CardRowContext } from '../Card/CardContext';
 
 const useUtilityClasses = (ownerState: CardOverflowProps) => {
   const { variant, color } = ownerState;
@@ -29,14 +29,14 @@ const CardOverflowRoot = styled('div', {
   overridesResolver: (props, styles) => styles.root,
 })<{
   ownerState: CardOverflowProps & {
-    orientation: 'horizontal' | 'vertical';
+    row: boolean;
     'data-first-child'?: string;
     'data-last-child'?: string;
   };
 }>(({ theme, ownerState }) => {
   const childRadius = 'calc(var(--CardOverflow-radius) - var(--variant-borderWidth))';
   return [
-    ownerState.orientation === 'horizontal'
+    ownerState.row
       ? {
           '--AspectRatio-margin': 'calc(-1 * var(--Card-padding)) 0px',
           marginTop: 'var(--CardOverflow-offset)',
@@ -89,7 +89,7 @@ const CardOverflow = React.forwardRef(function CardOverflow(inProps, ref) {
     name: 'JoyCardOverflow',
   });
 
-  const orientation = React.useContext(CardOrientationContext);
+  const row = React.useContext(CardRowContext);
 
   const {
     className,
@@ -105,7 +105,7 @@ const CardOverflow = React.forwardRef(function CardOverflow(inProps, ref) {
     component,
     color,
     variant,
-    orientation,
+    row,
   };
 
   const classes = useUtilityClasses(ownerState);
@@ -141,7 +141,10 @@ CardOverflow.propTypes /* remove-proptypes */ = {
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'neutral'
    */
-  color: PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.string,
+  ]),
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
@@ -159,7 +162,10 @@ CardOverflow.propTypes /* remove-proptypes */ = {
    * The variant to use.
    * @default 'plain'
    */
-  variant: PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
+  variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
+    PropTypes.string,
+  ]),
 } as any;
 
 export default CardOverflow;

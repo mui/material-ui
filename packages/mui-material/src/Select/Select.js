@@ -114,7 +114,8 @@ const Select = React.forwardRef(function Select(inProps, ref) {
     ...(multiple && native && variant === 'outlined' ? { notched: true } : {}),
     ref: inputComponentRef,
     className: clsx(InputComponent.props.className, className),
-    variant,
+    // If a custom input is provided via 'input' prop, do not allow 'variant' to be propagated to it's root element. See https://github.com/mui/material-ui/issues/33894.
+    ...(!input && { variant }),
     ...other,
   });
 });

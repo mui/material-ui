@@ -1,53 +1,85 @@
 ---
 product: base
-title: React Trap Focus（容器焦点）组件
+title: React Trap Focus component
 components: TrapFocus
 githubLabel: 'component: TrapFocus'
-packageName: '@mui/base'
 ---
 
-# Trap Focus 容器焦点
+# Trap focus
 
-<p class="description">在 DOM 节点内捕获焦点。</p>
+<p class="description">The TrapFocus component prevents the user's focus from escaping its children components.</p>
 
-容器焦点是一个为其子节点管理焦点的组件。 这在实现遮罩层时很有用，比如模态对话框，它不应该允许在该组件打开时转移焦点。
+## Introduction
 
-When `open={true}` the trap is enabled, and pressing <kbd class="key">Tab</kbd> or <kbd><kbd class="key">Shift</kbd>+<kbd class="key">Tab</kbd></kbd> will rotate focus within the inner focusable elements of the component.
+`TrapFocus` is a utility component that is useful when implementing an overlay such as a [modal dialog](/base/react-modal/), which should block all interactions outside of it while open.
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
-## 示例
+## Component
+
+### Usage
+
+After [installation](/base/getting-started/installation/), you can start building with this component using the following basic elements:
+
+```jsx
+import TrapFocus from '@mui/base/TrapFocus';
+
+export default function MyApp() {
+  return <TrapFocus>{/* children where the focus will be trapped */}</TrapFocus>;
+}
+```
+
+### Basics
+
+`TrapFocus` wraps around the UI elements that should hold the user's focus. For instance, if the focus needs to stay inside of a [`MenuUnstyled`](/base/react-menu/), then the component will be structured like this:
+
+```jsx
+<TrapFocus>
+  <MenuUnstyled>
+    <MenuItemUnstyled>{/* item one */}</MenuItemUnstyled>
+    <MenuItemUnstyled>{/* item two */}</MenuItemUnstyled>
+  </MenuUnstyled>
+</TrapFocus>
+```
+
+The following demo shows a `<button>` that opens a [`Box`](/material-ui/react-box/) component nested inside of a `TrapFocus`. As long as the `Box` is open, the user's keyboard cannot interact with the rest of the app. Press the **Open** button and then use the <kbd class="key">Tab</kbd> key to move the focus—notice that it will not leave the `Box`:
 
 {{"demo": "BasicTrapFocus.js"}}
 
-## Unstyled
+:::error
+Because the `TrapFocus` component blocks interaction with the rest of the app by default, the demo above also behaves this way. If you leave the `Box` open in the demo, you won't be able to click on other buttons in this document. Click **Close** in the demo to resolve this.
 
-- 📦 [2.0 kB gzipped](https://bundlephobia.com/package/@mui/base@latest)
+The next section explains how to change this default behavior.
+:::
 
-As the component does not have any styles, it also comes with the Base package.
+## Customization
 
-```js
-import TrapFocus from '@mui/base/Unstable_TrapFocus';
-```
+### Disable enforced focus
 
-## 禁用强制对焦
+By default, clicks outside of the `TrapFocus` component are blocked.
 
-Clicks within the focus trap behave normally, but clicks outside the focus trap are blocked.
+You can disable this behavior with the `disableEnforceFocus` prop.
 
-你可以使用 `disableEnforceFocus` 属性来禁用此行为。
+Compare the following demo with the demo from the [Basics section](#basics)—notice how that demo prevents you from clicking outside of it, while this one allows it:
 
 {{"demo": "DisableEnforceFocus.js"}}
 
-## 延迟激活
+### Lazy activation
 
-默认情况下，组件在打开后就会立刻将其焦点移到其子节点：`open={true}`。
+By default, the `TrapFocus` component automatically moves the focus to the first of its children when the `open` prop is present.
 
-你可以使用 `disableAutoFocus` 属性来禁止这种行为，并使其变成惰性加载。 当禁用自动聚焦时，就像下面的演示一样，组件只有在聚焦后才会捕捉焦点。
+You can disable this behavior and make it lazy with the `disableAutoFocus` prop. When auto focus is disabled—as in the demo below—the component only traps the focus once the user moves it there:
 
 {{"demo": "LazyTrapFocus.js"}}
 
-## Portal
+### Escape the focus loop
 
-The following demo uses the [`Portal`](/material-ui/react-portal/) component to render a subset of the trap focus children into a new "subtree" outside of the current DOM hierarchy; so that they no longer form part of the focus loop.
+The following demo uses the [`Portal`](/base/react-portal/) component to render a subset of the `TrapFocus` children into a new "subtree" outside of the current DOM hierarchy, so they are no longer part of the focus loop:
 
 {{"demo": "PortalTrapFocus.js"}}
+
+### Using a toggle inside the trap
+
+The most common use case for the `TrapFocus` component is to maintain focus within a [modal](/base/react-modal/) component that is entirely separate from the element that opens the modal. But you can also create a toggle button for the `open` prop of the `TrapFocus` component that is stored inside of the component itself, as shown in the following demo:
+
+{{"demo": "ContainedToggleTrappedFocus.js"}}

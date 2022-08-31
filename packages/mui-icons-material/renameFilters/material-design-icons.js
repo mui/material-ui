@@ -76,5 +76,10 @@ export default function myDestRewriter(svgPathObj) {
     return `FiveG${fileName.slice(2)}`;
   }
 
+  // All other names starting with a number between 10 and 19
+  if (/^1\d/.test(fileName)) {
+    return `${twoDigitNumbers1[fileName[1]]}${fileName.slice(2)}`;
+  }
+
   return fileName;
 }

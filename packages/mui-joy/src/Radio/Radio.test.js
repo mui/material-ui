@@ -14,6 +14,7 @@ describe('<Radio />', () => {
     muiName: 'JoyRadio',
     testDeepOverrides: [{ slotName: 'input', slotClassName: classes.input }],
     testVariantProps: { variant: 'soft' },
+    testCustomVariant: true,
     refInstanceof: window.HTMLSpanElement,
     skip: ['componentProp', 'componentsProp', 'classesRoot', 'propsSpread'],
   }));

@@ -6,8 +6,13 @@ import { useMenuItem } from '@mui/base/MenuItemUnstyled';
 import { ListItemButtonRoot } from '../ListItemButton/ListItemButton';
 import { styled, useThemeProps } from '../styles';
 import { getMenuItemUtilityClass } from './menuItemClasses';
-import { MenuItemProps, ExtendMenuItem, MenuItemTypeMap } from './MenuItemProps';
-import ListOrientationContext from '../List/ListOrientationContext';
+import {
+  MenuItemProps,
+  MenuItemOwnerState,
+  ExtendMenuItem,
+  MenuItemTypeMap,
+} from './MenuItemProps';
+import RowListContext from '../List/RowListContext';
 
 const useUtilityClasses = (ownerState: MenuItemProps & { focusVisible: boolean }) => {
   const { focusVisible, disabled, selected } = ownerState;
@@ -26,7 +31,7 @@ const MenuItemRoot = styled(ListItemButtonRoot, {
   name: 'JoyMenuItem',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: MenuItemProps }>({});
+})<{ ownerState: MenuItemOwnerState }>({});
 
 const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
   const props = useThemeProps({
@@ -34,7 +39,7 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
     name: 'JoyMenuItem',
   });
 
-  const orientation = React.useContext(ListOrientationContext);
+  const row = React.useContext(RowListContext);
 
   const {
     children,
@@ -58,7 +63,7 @@ const MenuItem = React.forwardRef(function MenuItem(inProps, ref) {
     disabled,
     focusVisible,
     selected,
-    orientation,
+    row,
     variant,
   };
 

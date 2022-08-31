@@ -1,5 +1,6 @@
 import React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
+import { SlotComponentProps } from '@mui/base/utils';
 import {
   ColorPaletteProp,
   TypographySystem,
@@ -14,6 +15,12 @@ export interface LinkPropsVariantOverrides {}
 
 export interface LinkPropsColorOverrides {}
 
+interface ComponentsProps {
+  root?: SlotComponentProps<'a', { sx?: SxProps }, LinkOwnerState>;
+  startDecorator?: SlotComponentProps<'span', { sx?: SxProps }, LinkOwnerState>;
+  endDecorator?: SlotComponentProps<'span', { sx?: SxProps }, LinkOwnerState>;
+}
+
 export interface LinkTypeMap<P = {}, D extends React.ElementType = 'a'> {
   props: P &
     Omit<SystemProps, 'color'> & {
@@ -26,6 +33,11 @@ export interface LinkTypeMap<P = {}, D extends React.ElementType = 'a'> {
        * @default 'primary'
        */
       color?: OverridableStringUnion<ColorPaletteProp, LinkPropsColorOverrides>;
+      /**
+       * The props used for each slot inside the Input.
+       * @default {}
+       */
+      componentsProps?: ComponentsProps;
       /**
        * If `true`, the component is disabled.
        * @default false
@@ -79,3 +91,14 @@ export type LinkProps<
     focusVisible?: boolean;
   },
 > = OverrideProps<LinkTypeMap<P, D>, D>;
+
+export interface LinkOwnerState extends LinkProps {
+  /**
+   * If `true`, the element's focus is visible.
+   */
+  focusVisible: boolean;
+  /**
+   * If `true`, the element is rendered by a Typography component.
+   */
+  nested: boolean;
+}

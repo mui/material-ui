@@ -4,7 +4,6 @@ title: Unstyled React Tabs components
 components: TabsUnstyled, TabUnstyled, TabPanelUnstyled, TabsListUnstyled
 githubLabel: 'component: tabs'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/tabpanel/
-packageName: '@mui/base'
 ---
 
 # Unstyled tabs
@@ -19,6 +18,8 @@ Tabs are implemented using a collection of related components:
 - `TabsListUnstyled` - the container that houses the tabs. Responsible for handling focus and keyboard navigation between tabs.
 - `TabPanelUnstyled` - the card that hosts the content associated with a tab.
 - `TabsUnstyled` - the top-level component that wraps `TabsListUnstyled` and `TabPanelUnstyled` so that tabs and their panels can communicate with one another.
+
+{{"demo": "UnstyledTabsIntroduction.tsx", "defaultCodeOpen": false, "bg": "gradient"}}
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 

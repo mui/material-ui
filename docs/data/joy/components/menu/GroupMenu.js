@@ -41,7 +41,7 @@ export default function BasicMenu() {
         open={open}
         onClose={handleClose}
         aria-labelledby="group-demo-button"
-        sx={{ minWidth: 160, '--List-decorator-width': '24px' }}
+        sx={{ minWidth: 160, '--List-decorator-size': '24px' }}
       >
         <MenuItem
           onClick={() => {

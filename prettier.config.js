@@ -15,7 +15,7 @@ module.exports = {
       files: ['docs/pages/blog/**/*.md'],
       options: {
         // otherwise code blocks overflow on the blog website
-        // The container is 676px
+        // The container is 692px
         printWidth: 82,
       },
     },

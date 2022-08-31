@@ -106,7 +106,7 @@ async function computeApiDescription(api: ReactApi, options: { host: string }): 
     })
     .process(api.description);
 
-  return file.contents.toString('utf-8').trim();
+  return file.contents.toString().trim();
 }
 
 /**
@@ -162,7 +162,7 @@ async function annotateComponentDefinition(api: ReactApi) {
             // /**
             //  */
             // const Component = () => {}
-            node = binding.path.parentPath.node;
+            node = binding.path.parentPath!.node;
           }
         }
       }
@@ -182,10 +182,10 @@ async function annotateComponentDefinition(api: ReactApi) {
             .join('\n')}`,
         );
       }
-      if (jsdocBlock != null) {
+      if (jsdocBlock?.start != null && jsdocBlock?.end != null) {
         start = jsdocBlock.start;
         end = jsdocBlock.end;
-      } else if (node.start !== null) {
+      } else if (node.start != null) {
         start = node.start - 1;
         end = start;
       }
@@ -378,7 +378,7 @@ export default function Page(props) {
   return <ApiPage descriptions={descriptions} pageContent={pageContent} />;
 }
 
-export function getStaticProps() {
+Page.getInitialProps = () => {
   const req = require.context(
     'docs/translations/api-docs/${kebabCase(reactApi.name)}',
     false,
@@ -387,10 +387,8 @@ export function getStaticProps() {
   const descriptions = mapApiPageTranslations(req);
 
   return {
-    props: {
-      descriptions,
-      pageContent: jsonPageContent,
-    },
+    descriptions,
+    pageContent: jsonPageContent,
   };
 };
 `.replace(/\r?\n/g, reactApi.EOL),
@@ -417,7 +415,8 @@ const attachTranslations = (reactApi: ReactApi) => {
       if (propName === 'classes') {
         description += ' See <a href="#css">CSS API</a> below for more details.';
       } else if (propName === 'sx') {
-        description += ' See the <a href="/system/the-sx-prop/">`sx` page</a> for more details.';
+        description +=
+          ' See the <a href="/system/getting-started/the-sx-prop/">`sx` page</a> for more details.';
       }
       translations.propDescriptions[propName] = description.replace(/\n@default.*$/, '');
     }

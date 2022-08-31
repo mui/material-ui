@@ -1,6 +1,6 @@
 {
   "name": "@mui/system",
-  "version": "5.9.3",
+  "version": "5.10.3",
   "private": false,
   "author": "MUI Team",
   "description": "CSS utilities for rapidly laying out custom designs.",
@@ -20,7 +20,7 @@
   "bugs": {
     "url": "https://github.com/mui/material-ui/issues"
   },
-  "homepage": "https://mui.com/system/basics/",
+  "homepage": "https://mui.com/system/getting-started/overview/",
   "funding": {
     "type": "opencollective",
     "url": "https://opencollective.com/mui"
@@ -57,11 +57,11 @@
     }
   },
   "dependencies": {
-    "@babel/runtime": "^7.17.2",
-    "@mui/private-theming": "^5.9.3",
-    "@mui/styled-engine": "^5.8.7",
-    "@mui/types": "^7.1.5",
-    "@mui/utils": "^5.9.3",
+    "@babel/runtime": "^7.18.9",
+    "@mui/private-theming": "^5.10.3",
+    "@mui/styled-engine": "^5.10.3",
+    "@mui/types": "^7.2.0",
+    "@mui/utils": "^5.10.3",
     "clsx": "^1.2.1",
     "csstype": "^3.1.0",
     "prop-types": "^15.8.1"

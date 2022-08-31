@@ -9,7 +9,7 @@ import PopperUnstyled from '@mui/base/PopperUnstyled';
 import { ListRoot } from '../List/List';
 import ListProvider, { scopedVariables } from '../List/ListProvider';
 import { styled, useThemeProps } from '../styles';
-import { MenuTypeMap, MenuProps } from './MenuProps';
+import { MenuTypeMap, MenuProps, MenuOwnerState } from './MenuProps';
 import { getMenuUtilityClass } from './menuClasses';
 
 const useUtilityClasses = (ownerState: MenuProps) => {
@@ -31,7 +31,7 @@ const MenuRoot = styled(ListRoot, {
   name: 'JoyMenu',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: MenuProps }>(({ theme, ownerState }) => {
+})<{ ownerState: MenuOwnerState }>(({ theme, ownerState }) => {
   const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];
   return {
     '--List-radius': theme.vars.radius.sm,
@@ -44,7 +44,7 @@ const MenuRoot = styled(ListRoot, {
     boxShadow: theme.vars.shadow.md,
     overflow: 'auto',
     zIndex: 1000,
-    ...(!variantStyle.backgroundColor && {
+    ...(!variantStyle?.backgroundColor && {
       backgroundColor: theme.vars.palette.background.surface,
     }),
   };
@@ -119,7 +119,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     modifiers,
     open,
     nesting: false,
-    orientation: 'vertical',
+    row: false,
   };
 
   const classes = useUtilityClasses(ownerState);

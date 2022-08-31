@@ -4,15 +4,14 @@ import { unstable_useForkRef as useForkRef } from '@mui/utils';
 import composeClasses from '@mui/base/composeClasses';
 import { useSlotProps } from '@mui/base/utils';
 import { SelectUnstyledContext, SelectUnstyledContextType } from '@mui/base/SelectUnstyled';
-import { OptionState } from '@mui/base/ListboxUnstyled';
 import { ListItemButtonRoot } from '../ListItemButton/ListItemButton';
 import { styled, useThemeProps } from '../styles';
 import { ColorPaletteProp } from '../styles/types';
-import { OptionProps, ExtendOption, OptionTypeMap } from './OptionProps';
+import { OptionOwnerState, ExtendOption, OptionTypeMap } from './OptionProps';
 import optionClasses, { getOptionUtilityClass } from './optionClasses';
-import ListOrientationContext from '../List/ListOrientationContext';
+import RowListContext from '../List/RowListContext';
 
-const useUtilityClasses = (ownerState: OptionProps & OptionState) => {
+const useUtilityClasses = (ownerState: OptionOwnerState) => {
   const { disabled, highlighted, selected } = ownerState;
 
   const slots = {
@@ -26,7 +25,7 @@ const OptionRoot = styled(ListItemButtonRoot as unknown as 'button', {
   name: 'JoyOption',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: OptionProps & OptionState }>(({ theme, ownerState }) => ({
+})<{ ownerState: OptionOwnerState }>(({ theme, ownerState }) => ({
   [`&.${optionClasses.highlighted}`]: {
     backgroundColor: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}HoverBg`],
   },
@@ -49,7 +48,7 @@ const Option = React.forwardRef(function Option(inProps, ref) {
     ...other
   } = props;
 
-  const orientation = React.useContext(ListOrientationContext);
+  const row = React.useContext(RowListContext);
   const selectContext = React.useContext(SelectUnstyledContext) as SelectUnstyledContextType & {
     color: ColorPaletteProp;
   };
@@ -81,7 +80,7 @@ const Option = React.forwardRef(function Option(inProps, ref) {
     component,
     variant,
     color,
-    orientation,
+    row,
   };
 
   const optionRef = React.useRef<HTMLLIElement>(null);
