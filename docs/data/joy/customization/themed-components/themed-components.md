@@ -156,7 +156,7 @@ Once these values are defined as above, you can make use of them directly on ins
 ```
 
 :::info
-The properties used for extending sizes should only relate to the density or the dimensions of the component. 
+The properties used for extending sizes should only relate to the density or the dimensions of the component.
 To learn how to extend color properties, check out the [Extend variants](#extend-variants) section in this document.
 :::
 
