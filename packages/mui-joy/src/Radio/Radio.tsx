@@ -7,11 +7,11 @@ import { useSlotProps } from '@mui/base/utils';
 import { useSwitch } from '@mui/base/SwitchUnstyled';
 import { styled, useThemeProps } from '../styles';
 import radioClasses, { getRadioUtilityClass } from './radioClasses';
-import { RadioProps, RadioTypeMap } from './RadioProps';
+import { RadioOwnerState, RadioTypeMap } from './RadioProps';
 import RadioGroupContext from '../RadioGroup/RadioGroupContext';
 import { TypographyContext } from '../Typography/Typography';
 
-const useUtilityClasses = (ownerState: RadioProps & { focusVisible: boolean }) => {
+const useUtilityClasses = (ownerState: RadioOwnerState) => {
   const { checked, disabled, disableIcon, focusVisible, color, variant, size } = ownerState;
 
   const slots = {
@@ -52,9 +52,7 @@ const RadioRoot = styled('span', {
   name: 'JoyRadio',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{
-  ownerState: RadioProps & { 'data-first-child'?: string; 'data-parent'?: string; row?: boolean };
-}>(({ ownerState, theme }) => {
+})<{ ownerState: RadioOwnerState }>(({ ownerState, theme }) => {
   return [
     {
       '--Icon-fontSize': 'var(--Radio-size)',
@@ -102,7 +100,7 @@ const RadioRadio = styled('span', {
   name: 'JoyRadio',
   slot: 'Radio',
   overridesResolver: (props, styles) => styles.radio,
-})<{ ownerState: RadioProps }>(({ ownerState, theme }) => [
+})<{ ownerState: RadioOwnerState }>(({ ownerState, theme }) => [
   {
     margin: 0,
     boxSizing: 'border-box',
@@ -137,7 +135,7 @@ const RadioAction = styled('span', {
   name: 'JoyRadio',
   slot: 'Action',
   overridesResolver: (props, styles) => styles.action,
-})<{ ownerState: RadioProps }>(({ theme, ownerState }) => [
+})<{ ownerState: RadioOwnerState }>(({ theme, ownerState }) => [
   {
     position: 'absolute',
     borderRadius: `var(--Radio-action-radius, ${
@@ -171,7 +169,7 @@ const RadioInput = styled('input', {
   name: 'JoyRadio',
   slot: 'Input',
   overridesResolver: (props, styles) => styles.input,
-})<{ ownerState: RadioProps }>(() => ({
+})<{ ownerState: RadioOwnerState }>(() => ({
   margin: 0,
   opacity: 0,
   position: 'absolute',
@@ -184,7 +182,7 @@ const RadioLabel = styled('label', {
   name: 'JoyRadio',
   slot: 'Label',
   overridesResolver: (props, styles) => styles.label,
-})<{ ownerState: RadioProps }>(({ ownerState }) => ({
+})<{ ownerState: RadioOwnerState }>(({ ownerState }) => ({
   flex: 1,
   minWidth: 0,
   ...(ownerState.disableIcon
@@ -204,7 +202,7 @@ const RadioIcon = styled('span', {
   name: 'JoyRadio',
   slot: 'Icon',
   overridesResolver: (props, styles) => styles.icon,
-})<{ ownerState: RadioProps }>(({ ownerState }) => ({
+})<{ ownerState: RadioOwnerState }>(({ ownerState }) => ({
   width: '50%',
   height: '50%',
   borderRadius: 'inherit',

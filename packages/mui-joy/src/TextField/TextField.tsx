@@ -8,10 +8,10 @@ import FormLabel from '../FormLabel';
 import FormHelperText from '../FormHelperText';
 import JoyInput from '../Input';
 import { styled, useThemeProps } from '../styles';
-import { TextFieldProps, TextFieldTypeMap } from './TextFieldProps';
+import { TextFieldOwnerState, TextFieldTypeMap } from './TextFieldProps';
 import textFieldClasses, { getTextFieldUtilityClass } from './textFieldClasses';
 
-const useUtilityClasses = (ownerState: TextFieldProps) => {
+const useUtilityClasses = (ownerState: TextFieldOwnerState) => {
   const { error, disabled, variant, size, color, fullWidth } = ownerState;
   const slots = {
     root: [
@@ -32,7 +32,7 @@ const TextFieldRoot = styled('div', {
   name: 'JoyTextField',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: TextFieldProps }>(({ theme, ownerState }) => ({
+})<{ ownerState: TextFieldOwnerState }>(({ theme, ownerState }) => ({
   '--FormLabel-margin': '0 0 0.25rem 0',
   '--FormHelperText-margin': '0.25rem 0 0 0',
   '--FormLabel-asterisk-color': theme.vars.palette.danger[500],

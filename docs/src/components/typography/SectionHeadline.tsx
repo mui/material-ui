@@ -16,6 +16,7 @@ export default function SectionHeadline({
   const overlineColor = mode === 'dark' ? 'primary.300' : 'primary.600';
   const titleColor = mode === 'dark' ? 'grey.100' : 'primaryDark.900';
   const descriptionColor = mode === 'dark' ? 'grey.500' : 'grey.800';
+
   return (
     <React.Fragment>
       <Typography

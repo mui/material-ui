@@ -17,6 +17,7 @@ describe('<RadioGroup />', () => {
     muiName: 'JoyRadioGroup',
     refInstanceof: window.HTMLDivElement,
     testVariantProps: { row: true },
+    testCustomVariant: true,
     skip: ['componentProp', 'componentsProp', 'classesRoot', 'propsSpread'],
   }));
 

@@ -6,11 +6,11 @@ import { useSlotProps, EventHandlers } from '@mui/base/utils';
 import composeClasses from '@mui/base/composeClasses';
 import TextareaAutosize from '@mui/base/TextareaAutosize';
 import { styled, useThemeProps } from '../styles';
-import { TextareaTypeMap, TextareaProps } from './TextareaProps';
+import { TextareaTypeMap, TextareaProps, TextareaOwnerState } from './TextareaProps';
 import textareaClasses, { getTextareaUtilityClass } from './textareaClasses';
 import useForwardedInput from '../Input/useForwardedInput';
 
-const useUtilityClasses = (ownerState: TextareaProps) => {
+const useUtilityClasses = (ownerState: TextareaOwnerState) => {
   const { disabled, variant, color, size } = ownerState;
 
   const slots = {
@@ -33,7 +33,7 @@ const TextareaRoot = styled('div', {
   name: 'JoyTextarea',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: TextareaProps }>(({ theme, ownerState }) => {
+})<{ ownerState: TextareaOwnerState }>(({ theme, ownerState }) => {
   const variantStyle = theme.variants[`${ownerState.variant!}`]?.[ownerState.color!];
   return [
     {
@@ -84,7 +84,7 @@ const TextareaRoot = styled('div', {
       paddingInlineStart: `var(--Textarea-paddingInline)`, // the paddingInlineEnd is added to the textarea. It looks better when the scrollbar appears.
       paddingBlock: 'var(--Textarea-paddingBlock)',
       borderRadius: 'var(--Textarea-radius)',
-      ...(!variantStyle.backgroundColor && {
+      ...(!variantStyle?.backgroundColor && {
         backgroundColor: theme.vars.palette.background.surface,
       }),
       fontFamily: theme.vars.fontFamily.body,
@@ -138,7 +138,7 @@ const TextareaInput = styled(TextareaAutosize, {
   name: 'JoyTextarea',
   slot: 'Textarea',
   overridesResolver: (props, styles) => styles.textarea,
-})<{ ownerState: TextareaProps }>(({ theme, ownerState }) => ({
+})<{ ownerState: TextareaOwnerState }>(({ theme, ownerState }) => ({
   resize: 'none',
   border: 'none', // remove the native textarea width
   minWidth: 0, // remove the native textarea width
@@ -171,7 +171,7 @@ const TextareaStartDecorator = styled('div', {
   name: 'JoyTextarea',
   slot: 'StartDecorator',
   overridesResolver: (props, styles) => styles.startDecorator,
-})<{ ownerState: TextareaProps }>(({ theme }) => ({
+})<{ ownerState: TextareaOwnerState }>(({ theme }) => ({
   display: 'flex',
   marginInlineStart: 'calc(var(--Textarea-paddingBlock) - var(--Textarea-paddingInline))',
   marginInlineEnd: 'var(--Textarea-paddingBlock)',
@@ -183,7 +183,7 @@ const TextareaEndDecorator = styled('div', {
   name: 'JoyTextarea',
   slot: 'EndDecorator',
   overridesResolver: (props, styles) => styles.endDecorator,
-})<{ ownerState: TextareaProps }>(({ theme }) => ({
+})<{ ownerState: TextareaOwnerState }>(({ theme }) => ({
   display: 'flex',
   marginInlineStart: 'calc(var(--Textarea-paddingBlock) - var(--Textarea-paddingInline))',
   marginInlineEnd: 'var(--Textarea-paddingBlock)',
@@ -245,16 +245,13 @@ const Textarea = React.forwardRef(function Textarea(inProps, ref) {
     className: [classes.root, rootStateClasses],
   });
 
-  const { onChange, ...inputProps } = useSlotProps({
+  const textareaProps = useSlotProps({
     elementType: TextareaInput,
     getSlotProps: (otherHandlers: EventHandlers) =>
       getInputProps({ ...otherHandlers, ...propsToForward }),
     externalSlotProps: {
       minRows,
       maxRows,
-    },
-    additionalProps: {
-      as: componentsProps.textarea?.component,
     },
     ownerState,
     className: [classes.textarea, inputStateClasses],
@@ -268,11 +265,8 @@ const Textarea = React.forwardRef(function Textarea(inProps, ref) {
         </TextareaStartDecorator>
       )}
 
-      <TextareaInput
-        {...inputProps}
-        // @ts-expect-error MUI Base strictly type `onChange` for HTMLInputElement
-        onChange={onChange}
-      />
+      {/* @ts-ignore onChange conflicts with html input */}
+      <TextareaInput {...textareaProps} />
       {endDecorator && (
         <TextareaEndDecorator className={classes.endDecorator} ownerState={ownerState}>
           {endDecorator}
@@ -304,8 +298,10 @@ Textarea.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   componentsProps: PropTypes.shape({
-    root: PropTypes.object,
-    textarea: PropTypes.object,
+    endDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    startDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    textarea: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
    * Trailing adornment for this input.

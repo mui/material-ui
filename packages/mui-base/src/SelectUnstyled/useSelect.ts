@@ -153,7 +153,7 @@ function useSelect<TValue>(props: UseSelectParameters<TValue>) {
 
   const createHandleListboxBlur =
     (otherHandlers?: Record<string, React.EventHandler<any>>) => (event: React.FocusEvent) => {
-      otherHandlers?.blur?.(event);
+      otherHandlers?.onBlur?.(event);
       if (!event.defaultPrevented) {
         onOpenChange?.(false);
       }

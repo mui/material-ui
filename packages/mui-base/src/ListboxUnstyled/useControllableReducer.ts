@@ -45,11 +45,15 @@ function useStateChangeDetection<TOption>(
   nextState: ListboxState<TOption>,
   internalPreviousState: ListboxState<TOption>,
   propsRef: React.RefObject<UseListboxPropsWithDefaults<TOption>>,
+  hasDispatchedActionRef: React.MutableRefObject<boolean>,
 ) {
   React.useEffect(() => {
-    if (!propsRef.current) {
+    if (!propsRef.current || !hasDispatchedActionRef.current) {
+      // Detect changes only if an action has been dispatched.
       return;
     }
+
+    hasDispatchedActionRef.current = false;
 
     const previousState = getControlledState(internalPreviousState, propsRef.current);
     const { multiple, optionComparer } = propsRef.current;
@@ -71,7 +75,7 @@ function useStateChangeDetection<TOption>(
         onChange?.(nextSelectedValue);
       }
     }
-  }, [nextState.selectedValue, internalPreviousState, propsRef]);
+  }, [nextState.selectedValue, internalPreviousState, propsRef, hasDispatchedActionRef]);
 
   React.useEffect(() => {
     if (!propsRef.current) {
@@ -101,6 +105,8 @@ export default function useControllableReducer<TOption>(
   const propsRef = React.useRef(props);
   propsRef.current = props;
 
+  const hasDispatchedActionRef = React.useRef(false);
+
   const initialSelectedValue =
     (value === undefined ? defaultValue : value) ?? (props.multiple ? [] : null);
 
@@ -111,6 +117,8 @@ export default function useControllableReducer<TOption>(
 
   const combinedReducer = React.useCallback(
     (state: ListboxState<TOption>, action: ListboxAction<TOption>) => {
+      hasDispatchedActionRef.current = true;
+
       if (externalReducer) {
         return externalReducer(getControlledState(state, propsRef.current), action);
       }
@@ -127,6 +135,11 @@ export default function useControllableReducer<TOption>(
     previousState.current = nextState;
   }, [previousState, nextState]);
 
-  useStateChangeDetection<TOption>(nextState, previousState.current, propsRef);
+  useStateChangeDetection<TOption>(
+    nextState,
+    previousState.current,
+    propsRef,
+    hasDispatchedActionRef,
+  );
   return [getControlledState(nextState, propsRef.current), dispatch];
 }

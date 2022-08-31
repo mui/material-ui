@@ -27,12 +27,12 @@ const MultiSelectUnstyledComponentsPropsOverridesTest = (
   />
 );
 
-function CustomRoot<TValue>(props: MultiSelectUnstyledRootSlotProps<TValue>) {
+function CustomRoot<TValue extends {}>(props: MultiSelectUnstyledRootSlotProps<TValue>) {
   const { ownerState, ...other } = props;
   return <div {...other} />;
 }
 
-function CustomPopper<TValue>(props: MultiSelectUnstyledPopperSlotProps<TValue>) {
+function CustomPopper<TValue extends {}>(props: MultiSelectUnstyledPopperSlotProps<TValue>) {
   const { ownerState, ...other } = props;
   return <PopperUnstyled {...other} />;
 }
