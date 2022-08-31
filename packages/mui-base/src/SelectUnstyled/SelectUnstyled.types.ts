@@ -150,14 +150,15 @@ export interface SelectUnstyledType {
   propTypes?: any;
 }
 
-export interface SelectUnstyledOwnerState<TValue> extends SelectUnstyledOwnProps<TValue> {
+export interface SelectUnstyledOwnerState<TValue extends {}>
+  extends SelectUnstyledOwnProps<TValue> {
   active: boolean;
   disabled: boolean;
   focusVisible: boolean;
   open: boolean;
 }
 
-export type SelectUnstyledRootSlotProps<TValue> = Simplify<
+export type SelectUnstyledRootSlotProps<TValue extends {}> = Simplify<
   UseSelectButtonSlotProps & {
     className?: string;
     children?: React.ReactNode;
@@ -165,7 +166,7 @@ export type SelectUnstyledRootSlotProps<TValue> = Simplify<
   }
 >;
 
-export type SelectUnstyledListboxSlotProps<TValue> = Simplify<
+export type SelectUnstyledListboxSlotProps<TValue extends {}> = Simplify<
   UseSelectListboxSlotProps & {
     className?: string;
     children?: React.ReactNode;
@@ -173,7 +174,7 @@ export type SelectUnstyledListboxSlotProps<TValue> = Simplify<
   }
 >;
 
-export type SelectUnstyledPopperSlotProps<TValue> = {
+export type SelectUnstyledPopperSlotProps<TValue extends {}> = {
   anchorEl: PopperUnstyledProps['anchorEl'];
   children?: PopperUnstyledProps['children'];
   className?: string;

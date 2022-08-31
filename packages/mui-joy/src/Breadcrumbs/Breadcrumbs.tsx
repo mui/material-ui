@@ -4,6 +4,7 @@ import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { useSlotProps } from '@mui/base/utils';
+import clsx from 'clsx';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
 import { getBreadcrumbsUtilityClass } from './breadcrumbsClasses';
@@ -23,7 +24,7 @@ const useUtilityClasses = (ownerState: BreadcrumbsOwnerState) => {
 };
 
 const BreadcrumbsRoot = styled('nav', {
-  name: 'MuiBreadcrumbs',
+  name: 'JoyBreadcrumbs',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: BreadcrumbsOwnerState }>(({ theme, ownerState }) => ({
@@ -46,7 +47,7 @@ const BreadcrumbsRoot = styled('nav', {
 }));
 
 const BreadcrumbsOl = styled('ol', {
-  name: 'MuiBreadcrumbs',
+  name: 'JoyBreadcrumbs',
   slot: 'Ol',
   overridesResolver: (props, styles) => styles.ol,
 })<{ ownerState: BreadcrumbsOwnerState }>({
@@ -60,13 +61,13 @@ const BreadcrumbsOl = styled('ol', {
 });
 
 const BreadcrumbsLi = styled('li', {
-  name: 'MuiBreadcrumbs',
+  name: 'JoyBreadcrumbs',
   slot: 'Ol',
   overridesResolver: (props, styles) => styles.ol,
 })<{ ownerState: BreadcrumbsOwnerState }>({});
 
 const BreadcrumbsSeparator = styled('li', {
-  name: 'MuiBreadcrumbs',
+  name: 'JoyBreadcrumbs',
   slot: 'Separator',
   overridesResolver: (props, styles) => styles.separator,
 })<{ ownerState: BreadcrumbsOwnerState }>({
@@ -78,7 +79,7 @@ const BreadcrumbsSeparator = styled('li', {
 const Breadcrumbs = React.forwardRef(function Breadcrumbs(inProps, ref) {
   const props = useThemeProps<typeof inProps & BreadcrumbsProps>({
     props: inProps,
-    name: 'MuiBreadcrumbs',
+    name: 'JoyBreadcrumbs',
   });
 
   const {
@@ -109,7 +110,7 @@ const Breadcrumbs = React.forwardRef(function Breadcrumbs(inProps, ref) {
       ref,
       as: component,
     },
-    className: classes.root,
+    className: clsx(classes.root, className),
   });
 
   const olProps = useSlotProps({
