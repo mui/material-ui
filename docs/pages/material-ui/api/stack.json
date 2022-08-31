@@ -25,7 +25,7 @@
   "name": "Stack",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": true,
-  "forwardsRefTo": "HTMLElement",
+  "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/Stack/Stack.js",
   "inheritance": null,
   "demos": "<ul><li><a href=\"/material-ui/react-stack/\">Stack</a></li></ul>",

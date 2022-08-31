@@ -14,7 +14,7 @@ describe('<Stack />', () => {
     classes,
     inheritComponent: 'div',
     render,
-    refInstanceof: window.HTMLElement,
+    refInstanceof: window.HTMLDivElement,
     muiName: 'MuiStack',
     testVariantProps: { direction: 'row' },
     skip: ['componentsProp', 'classesRoot'],
