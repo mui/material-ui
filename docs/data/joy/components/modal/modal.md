@@ -16,8 +16,6 @@ Joy UI provides five modal-related components:
 - [`Modal`](#basic-usage): A container that renders its `children` node in front of a backdrop component.
 - [`ModalClose`](#dialog): A button for closing the modal.
 - [`ModalDialog`](#dialog): A component for rendering a modal dialog.
-- [`ModalDialogTitle`](#dialog): A title for the modal dialog.
-- [`ModalDialogDescription`](#dialog): A description for the modal dialog.
 
 ### Features
 
@@ -77,9 +75,7 @@ The possible values are:
 
 ### Dialog
 
-To create a modal dialog, add the `ModalDialog` component inside the `Modal`.
-
-The `ModalDialogTitle` and `ModalDialogDescription` give the modal dialog accessible name and description.
+To create a modal dialog, renders the `ModalDialog` component inside the `Modal`.
 
 {{"demo": "BasicModalDialog.js"}}
 
