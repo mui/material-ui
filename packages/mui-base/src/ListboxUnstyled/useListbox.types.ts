@@ -65,22 +65,26 @@ interface KeyDownAction<TOption> {
 
 interface SetValueAction<TOption> {
   type: ActionTypes.setValue;
+  event: null;
   value: TOption | TOption[] | null;
 }
 
 interface SetHighlightAction<TOption> {
   type: ActionTypes.setHighlight;
+  event: null;
   highlight: TOption | null;
 }
 
 interface TextNavigationAction<TOption> {
   type: ActionTypes.textNavigation;
+  event: React.KeyboardEvent;
   searchString: string;
   props: UseListboxPropsWithDefaults<TOption>;
 }
 
 interface OptionsChangeAction<TOption> {
   type: ActionTypes.optionsChange;
+  event: null;
   options: TOption[];
   previousOptions: TOption[];
   props: UseListboxPropsWithDefaults<TOption>;
@@ -178,7 +182,10 @@ interface UseSingleSelectListboxParameters<TOption> extends UseListboxCommonProp
   /**
    * Callback fired when the value changes.
    */
-  onChange?: (value: TOption) => void;
+  onChange?: (
+    e: React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null,
+    value: TOption,
+  ) => void;
 }
 
 interface UseMultiSelectListboxParameters<TOption> extends UseListboxCommonProps<TOption> {
@@ -198,7 +205,10 @@ interface UseMultiSelectListboxParameters<TOption> extends UseListboxCommonProps
   /**
    * Callback fired when the value changes.
    */
-  onChange?: (value: TOption[]) => void;
+  onChange?: (
+    e: React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null,
+    value: TOption[],
+  ) => void;
 }
 
 export type UseListboxParameters<TOption> =

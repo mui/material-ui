@@ -45,15 +45,13 @@ function useStateChangeDetection<TOption>(
   nextState: ListboxState<TOption>,
   internalPreviousState: ListboxState<TOption>,
   propsRef: React.RefObject<UseListboxPropsWithDefaults<TOption>>,
-  hasDispatchedActionRef: React.MutableRefObject<boolean>,
+  lastActionRef: React.MutableRefObject<ListboxAction<TOption> | null>,
 ) {
   React.useEffect(() => {
-    if (!propsRef.current || !hasDispatchedActionRef.current) {
+    if (!propsRef.current || lastActionRef.current === null) {
       // Detect changes only if an action has been dispatched.
       return;
     }
-
-    hasDispatchedActionRef.current = false;
 
     const previousState = getControlledState(internalPreviousState, propsRef.current);
     const { multiple, optionComparer } = propsRef.current;
@@ -61,21 +59,33 @@ function useStateChangeDetection<TOption>(
     if (multiple) {
       const previousSelectedValues = (previousState?.selectedValue ?? []) as TOption[];
       const nextSelectedValues = nextState.selectedValue as TOption[];
-      const onChange = propsRef.current.onChange as ((value: TOption[]) => void) | undefined;
+      const onChange = propsRef.current.onChange as
+        | ((
+            e: React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null,
+            value: TOption[],
+          ) => void)
+        | undefined;
 
       if (!areArraysEqual(nextSelectedValues, previousSelectedValues, optionComparer)) {
-        onChange?.(nextSelectedValues);
+        onChange?.(lastActionRef.current.event, nextSelectedValues);
       }
     } else {
       const previousSelectedValue = previousState?.selectedValue as TOption | null;
       const nextSelectedValue = nextState.selectedValue as TOption | null;
-      const onChange = propsRef.current.onChange as ((value: TOption | null) => void) | undefined;
+      const onChange = propsRef.current.onChange as
+        | ((
+            e: React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null,
+            value: TOption | null,
+          ) => void)
+        | undefined;
 
       if (!areOptionsEqual(nextSelectedValue, previousSelectedValue, optionComparer)) {
-        onChange?.(nextSelectedValue);
+        onChange?.(lastActionRef.current.event, nextSelectedValue);
       }
     }
-  }, [nextState.selectedValue, internalPreviousState, propsRef, hasDispatchedActionRef]);
+
+    lastActionRef.current = null;
+  }, [nextState.selectedValue, internalPreviousState, propsRef, lastActionRef]);
 
   React.useEffect(() => {
     if (!propsRef.current) {
@@ -105,7 +115,7 @@ export default function useControllableReducer<TOption>(
   const propsRef = React.useRef(props);
   propsRef.current = props;
 
-  const hasDispatchedActionRef = React.useRef(false);
+  const actionRef = React.useRef<ListboxAction<TOption> | null>(null);
 
   const initialSelectedValue =
     (value === undefined ? defaultValue : value) ?? (props.multiple ? [] : null);
@@ -117,7 +127,7 @@ export default function useControllableReducer<TOption>(
 
   const combinedReducer = React.useCallback(
     (state: ListboxState<TOption>, action: ListboxAction<TOption>) => {
-      hasDispatchedActionRef.current = true;
+      actionRef.current = action;
 
       if (externalReducer) {
         return externalReducer(getControlledState(state, propsRef.current), action);
@@ -135,11 +145,6 @@ export default function useControllableReducer<TOption>(
     previousState.current = nextState;
   }, [previousState, nextState]);
 
-  useStateChangeDetection<TOption>(
-    nextState,
-    previousState.current,
-    propsRef,
-    hasDispatchedActionRef,
-  );
+  useStateChangeDetection<TOption>(nextState, previousState.current, propsRef, actionRef);
   return [getControlledState(nextState, propsRef.current), dispatch];
 }
