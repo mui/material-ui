@@ -15,8 +15,7 @@ It includes foundational pre-built components that look beautiful by default, an
 Use Joy UI to spark joy in the creative process of building your next app.
 
 :::warning
-Joy UI is currently in active development.
-The alpha version will be released soon.
+Joy UI is currently in active development, and breaking changes are to be expected.
 
 We're adding new components and features regularly, and you're welcome to contribute!
 
