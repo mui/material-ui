@@ -144,7 +144,11 @@ const AutocompleteRoot = styled('div', {
     },
   },
   [`& .${outlinedInputClasses.root}.${inputBaseClasses.sizeSmall}`]: {
-    padding: 6,
+    // Don't specify paddingRight, as it overrides the default value set when there is only
+    // one of the popup or clear icon as the specificity is equal so the latter one wins
+    paddingTop: 6,
+    paddingBottom: 6,
+    paddingLeft: 6,
     [`& .${autocompleteClasses.input}`]: {
       padding: '2.5px 4px 2.5px 6px',
     },
@@ -468,7 +472,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
 
   if (multiple && value.length > 0) {
     const getCustomizedTagProps = (params) => ({
-      className: clsx(classes.tag),
+      className: classes.tag,
       disabled,
       ...getTagProps(params),
     });
@@ -570,8 +574,12 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
                       disabled={disabled}
                       aria-label={popupOpen ? closeText : openText}
                       title={popupOpen ? closeText : openText}
-                      className={clsx(classes.popupIndicator)}
                       ownerState={ownerState}
+                      {...componentsProps.popupIndicator}
+                      className={clsx(
+                        classes.popupIndicator,
+                        componentsProps.popupIndicator?.className,
+                      )}
                     >
                       {popupIcon}
                     </AutocompletePopupIndicator>
@@ -581,17 +589,16 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
             }),
           },
           inputProps: {
-            className: clsx(classes.input),
+            className: classes.input,
             disabled,
             readOnly,
             ...getInputProps(),
           },
         })}
       </AutocompleteRoot>
-      {popupOpen && anchorEl ? (
+      {anchorEl ? (
         <AutocompletePopper
           as={PopperComponent}
-          className={clsx(classes.popper)}
           disablePortal={disablePortal}
           style={{
             width: anchorEl ? anchorEl.clientWidth : null,
@@ -599,7 +606,9 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
           ownerState={ownerState}
           role="presentation"
           anchorEl={anchorEl}
-          open
+          open={popupOpen}
+          {...componentsProps.popper}
+          className={clsx(classes.popper, componentsProps.popper?.className)}
         >
           <AutocompletePaper
             ownerState={ownerState}
@@ -739,6 +748,8 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   componentsProps: PropTypes.shape({
     clearIndicator: PropTypes.object,
     paper: PropTypes.object,
+    popper: PropTypes.object,
+    popupIndicator: PropTypes.object,
   }),
   /**
    * The default value. Use when the component is not controlled.

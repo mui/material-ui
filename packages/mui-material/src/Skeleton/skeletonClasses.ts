@@ -7,6 +7,8 @@ export interface SkeletonClasses {
   text: string;
   /** Styles applied to the root element if `variant="rectangular"`. */
   rectangular: string;
+  /** Styles applied to the root element if `variant="rounded"`. */
+  rounded: string;
   /** Styles applied to the root element if `variant="circular"`. */
   circular: string;
   /** Styles applied to the root element if `animation="pulse"`. */
@@ -31,6 +33,7 @@ const skeletonClasses: SkeletonClasses = generateUtilityClasses('MuiSkeleton', [
   'root',
   'text',
   'rectangular',
+  'rounded',
   'circular',
   'pulse',
   'wave',

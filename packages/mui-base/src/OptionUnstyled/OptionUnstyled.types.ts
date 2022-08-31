@@ -1,11 +1,12 @@
 import React from 'react';
-import { Simplify } from '@mui/types';
+import { DefaultComponentProps, OverrideProps, Simplify } from '@mui/types';
 import { OptionState } from '../ListboxUnstyled';
 import { UseSelectOptionSlotProps } from '../SelectUnstyled/useSelect.types';
+import { SlotComponentProps } from '../utils';
 
 export interface OptionUnstyledComponentsPropsOverrides {}
 
-export interface OptionUnstyledProps<TValue> {
+export interface OptionUnstyledOwnProps<TValue> {
   /**
    * The value of the option.
    */
@@ -18,13 +19,6 @@ export interface OptionUnstyledProps<TValue> {
   disabled?: boolean;
   className?: string;
   /**
-   * The component used for the Root slot.
-   * Either a string to use a HTML element or a component.
-   * This is equivalent to components.Root.
-   * If both are provided, the component is used.
-   */
-  component?: React.ElementType;
-  /**
    * The components used for each slot inside the OptionUnstyled.
    * Either a string to use a HTML element or a component.
    * @default {}
@@ -33,11 +27,15 @@ export interface OptionUnstyledProps<TValue> {
     Root?: React.ElementType;
   };
   /**
-   * The props used for each slot inside the Input.
+   * The props used for each slot inside the OptionUnstyled.
    * @default {}
    */
   componentsProps?: {
-    root?: React.ComponentPropsWithRef<'li'> & OptionUnstyledComponentsPropsOverrides;
+    root?: SlotComponentProps<
+      'li',
+      OptionUnstyledComponentsPropsOverrides,
+      OptionUnstyledOwnerState<TValue>
+    >;
   };
   /**
    * A text representation of the option's content.
@@ -46,7 +44,35 @@ export interface OptionUnstyledProps<TValue> {
   label?: string;
 }
 
-export type OptionUnstyledOwnerState<TValue> = Simplify<OptionUnstyledProps<TValue> & OptionState>;
+export interface OptionUnstyledTypeMap<TValue, P = {}, D extends React.ElementType = 'li'> {
+  props: P & OptionUnstyledOwnProps<TValue>;
+  defaultComponent: D;
+}
+
+export type OptionUnstyledProps<
+  TValue,
+  D extends React.ElementType = OptionUnstyledTypeMap<TValue>['defaultComponent'],
+> = OverrideProps<OptionUnstyledTypeMap<TValue, {}, D>, D> & {
+  component?: D;
+};
+
+export interface OptionUnstyledType {
+  <TValue, C extends React.ElementType>(
+    props: {
+      /**
+       * The component used for the root node.
+       * Either a string to use a HTML element or a component.
+       */
+      component: C;
+    } & OverrideProps<OptionUnstyledTypeMap<TValue>, C>,
+  ): JSX.Element | null;
+  <TValue>(props: DefaultComponentProps<OptionUnstyledTypeMap<TValue>>): JSX.Element | null;
+  propTypes?: any;
+}
+
+export type OptionUnstyledOwnerState<TValue> = Simplify<
+  OptionUnstyledOwnProps<TValue> & OptionState
+>;
 
 export type OptionUnstyledRootSlotProps<TValue> = Simplify<
   UseSelectOptionSlotProps & {

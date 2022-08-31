@@ -1,7 +1,7 @@
 import React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
-import { UseInputParameters } from '@mui/base/InputUnstyled';
-import { InputClasses } from './inputClasses';
+import { SlotComponentProps } from '@mui/base/utils';
+import { FormControlUnstyledState } from '@mui/base/FormControlUnstyled';
 import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
 
 export type InputSlot = 'root' | 'input' | 'startDecorator' | 'endDecorator';
@@ -12,79 +12,63 @@ export interface InputPropsColorOverrides {}
 
 export interface InputPropsSizeOverrides {}
 
+interface ComponentsProps {
+  root?: SlotComponentProps<'div', { sx?: SxProps }, InputOwnerState>;
+  input?: SlotComponentProps<'input', { sx?: SxProps }, InputOwnerState>;
+  startDecorator?: SlotComponentProps<'span', { sx?: SxProps }, InputOwnerState>;
+  endDecorator?: SlotComponentProps<'span', { sx?: SxProps }, InputOwnerState>;
+}
+
 export interface InputTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P &
-    Omit<UseInputParameters, 'inputRef'> & {
-      'aria-describedby'?: string;
-      'aria-label'?: string;
-      'aria-labelledby'?: string;
-      /**
-       * This prop helps users to fill forms faster, especially on mobile devices.
-       * The name can be confusing, as it's more like an autofill.
-       * You can learn more about it [following the specification](https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#autofill).
-       */
-      autoComplete?: string;
-      /**
-       * If `true`, the `input` element is focused during the first mount.
-       */
-      autoFocus?: boolean;
+    Pick<
+      React.InputHTMLAttributes<HTMLInputElement>,
+      | 'autoComplete'
+      | 'autoFocus'
+      | 'onClick'
+      | 'onChange'
+      | 'onKeyDown'
+      | 'onKeyUp'
+      | 'onFocus'
+      | 'onBlur'
+      | 'defaultValue'
+      | 'value'
+      | 'type'
+      | 'placeholder'
+      | 'readOnly'
+      | 'required'
+      | 'name'
+      | 'id'
+      | 'disabled'
+    > & {
       /**
        * Class name applied to the root element.
        */
       className?: string;
-      /**
-       * Override or extend the styles applied to the component.
-       */
-      classes?: Partial<InputClasses>;
       /**
        * The color of the component. It supports those theme colors that make sense for this component.
        * @default 'neutral'
        */
       color?: OverridableStringUnion<ColorPaletteProp, InputPropsColorOverrides>;
       /**
-       * The components used for each slot inside the InputBase.
-       * Either a string to use a HTML element or a component.
-       */
-      components?: {
-        Root?: React.ElementType;
-        Input?: React.ElementType;
-      };
-      /**
        * The props used for each slot inside the Input.
        * @default {}
        */
-      componentsProps?: {
-        root?: React.ComponentPropsWithRef<'div'>;
-        input?: React.ComponentPropsWithRef<'input'>;
-      };
+      componentsProps?: ComponentsProps;
       /**
        * Trailing adornment for this input.
        */
       endDecorator?: React.ReactNode;
       /**
+       * If `true`, the `input` will indicate an error.
+       * The prop defaults to the value (`false`) inherited from the parent FormControl component.
+       */
+      error?: boolean;
+      /**
        * If `true`, the button will take up the full width of its container.
        * @default false
        */
       fullWidth?: boolean;
-      /**
-       * The id of the `input` element.
-       */
-      id?: string;
-      /**
-       * Name attribute of the `input` element.
-       */
-      name?: string;
-      onKeyDown?: React.KeyboardEventHandler<HTMLInputElement>;
-      onKeyUp?: React.KeyboardEventHandler<HTMLInputElement>;
-      /**
-       * The short hint displayed in the `input` before the user enters a value.
-       */
-      placeholder?: string;
-      /**
-       * It prevents the user from changing the value of the field
-       * (not from interacting with the field).
-       */
-      readOnly?: boolean;
       /**
        * Leading adornment for this input.
        */
@@ -98,15 +82,6 @@ export interface InputTypeMap<P = {}, D extends React.ElementType = 'div'> {
        * The system prop that allows defining system overrides as well as additional CSS styles.
        */
       sx?: SxProps;
-      /**
-       * Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types).
-       * @default 'plain'
-       */
-      type?: string;
-      /**
-       * The value of the `input` element, required for a controlled component.
-       */
-      value?: unknown;
       /**
        * The variant to use.
        * @default 'outlined'
@@ -124,3 +99,14 @@ export type InputProps<
 > = OverrideProps<InputTypeMap<P, D>, D>;
 
 export default InputProps;
+
+export interface InputOwnerState extends InputProps {
+  /**
+   * If `true`, the input is focused.
+   */
+  focused: boolean;
+  /**
+   * The data from the parent form control.
+   */
+  formControlContext: FormControlUnstyledState | undefined;
+}

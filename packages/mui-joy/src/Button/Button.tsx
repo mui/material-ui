@@ -1,14 +1,14 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } from '@mui/utils';
 import { useButton } from '@mui/base/ButtonUnstyled';
+import { useSlotProps } from '@mui/base/utils';
 import composeClasses from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
-import { ExtendButton, ButtonTypeMap, ButtonProps } from './ButtonProps';
+import { ExtendButton, ButtonTypeMap, ButtonOwnerState } from './ButtonProps';
 import buttonClasses, { getButtonUtilityClass } from './buttonClasses';
 
-const useUtilityClasses = (ownerState: ButtonProps & { focusVisible: boolean }) => {
+const useUtilityClasses = (ownerState: ButtonOwnerState) => {
   const { color, disabled, focusVisible, focusVisibleClassName, fullWidth, size, variant } =
     ownerState;
 
@@ -39,7 +39,7 @@ const ButtonStartIcon = styled('span', {
   name: 'JoyButton',
   slot: 'StartIcon',
   overridesResolver: (props, styles) => styles.startIcon,
-})<{ ownerState: ButtonProps }>({
+})<{ ownerState: ButtonOwnerState }>({
   '--Icon-margin': '0 0 0 calc(var(--Button-gap) / -2)',
   display: 'inherit',
   marginRight: 'var(--Button-gap)',
@@ -49,17 +49,17 @@ const ButtonEndIcon = styled('span', {
   name: 'JoyButton',
   slot: 'EndIcon',
   overridesResolver: (props, styles) => styles.endIcon,
-})<{ ownerState: ButtonProps }>({
+})<{ ownerState: ButtonOwnerState }>({
   '--Icon-margin': '0 calc(var(--Button-gap) / -2) 0 0',
   display: 'inherit',
   marginLeft: 'var(--Button-gap)',
 });
 
-const ButtonRoot = styled('button', {
+export const ButtonRoot = styled('button', {
   name: 'JoyButton',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: ButtonProps }>(({ theme, ownerState }) => {
+})<{ ownerState: ButtonOwnerState }>(({ theme, ownerState }) => {
   return [
     {
       '--Icon-margin': 'initial', // reset the icon's margin.
@@ -126,22 +126,20 @@ const Button = React.forwardRef(function Button(inProps, ref) {
 
   const {
     children,
-    className,
     action,
     component = 'button',
+    componentsProps = {},
     color = 'primary',
     variant = 'solid',
     size = 'md',
     fullWidth = false,
-    startIcon: startIconProp,
-    endIcon: endIconProp,
+    startIcon,
+    endIcon,
     ...other
   } = props;
 
   const buttonRef = React.useRef<HTMLElement | null>(null);
   const handleRef = useForkRef(buttonRef, ref);
-
-  const ComponentProp = component;
 
   const { focusVisible, setFocusVisible, getRootProps } = useButton({
     ...props,
@@ -171,29 +169,37 @@ const Button = React.forwardRef(function Button(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  const startIcon = startIconProp && (
-    <ButtonStartIcon className={classes.startIcon} ownerState={ownerState}>
-      {startIconProp}
-    </ButtonStartIcon>
-  );
+  const rootProps = useSlotProps({
+    elementType: ButtonRoot,
+    externalSlotProps: componentsProps.root,
+    ownerState,
+    getSlotProps: getRootProps,
+    externalForwardedProps: other,
+    additionalProps: {
+      as: component,
+    },
+    className: classes.root,
+  });
 
-  const endIcon = endIconProp && (
-    <ButtonEndIcon className={classes.endIcon} ownerState={ownerState}>
-      {endIconProp}
-    </ButtonEndIcon>
-  );
+  const startIconProps = useSlotProps({
+    elementType: ButtonStartIcon,
+    externalSlotProps: componentsProps.startIcon,
+    ownerState,
+    className: classes.startIcon,
+  });
+
+  const endIconProps = useSlotProps({
+    elementType: ButtonEndIcon,
+    externalSlotProps: componentsProps.endIcon,
+    ownerState,
+    className: classes.endIcon,
+  });
 
   return (
-    <ButtonRoot
-      as={ComponentProp}
-      className={clsx(classes.root, className)}
-      ownerState={ownerState}
-      {...other}
-      {...getRootProps()}
-    >
-      {startIcon}
+    <ButtonRoot {...rootProps}>
+      {startIcon && <ButtonStartIcon {...startIconProps}>{startIcon}</ButtonStartIcon>}
       {children}
-      {endIcon}
+      {endIcon && <ButtonEndIcon {...endIconProps}>{endIcon}</ButtonEndIcon>}
     </ButtonRoot>
   );
 }) as ExtendButton<ButtonTypeMap>;
@@ -219,10 +225,6 @@ Button.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
-   * @ignore
-   */
-  className: PropTypes.string,
-  /**
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'primary'
    */
@@ -235,6 +237,15 @@ Button.propTypes /* remove-proptypes */ = {
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
+  /**
+   * The props used for each slot inside the AspectRatio.
+   * @default {}
+   */
+  componentsProps: PropTypes.shape({
+    endIcon: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    startIcon: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
   /**
    * If `true`, the component is disabled.
    * @default false

@@ -34,7 +34,7 @@ export interface SliderValueLabelProps extends React.HTMLAttributes<HTMLSpanElem
 
 export interface SliderUnstyledComponentsPropsOverrides {}
 
-interface SliderUnstyledOwnProps {
+export interface SliderUnstyledOwnProps {
   /**
    * The label of the slider.
    */
@@ -264,8 +264,9 @@ export type ExtendSliderUnstyled<M extends OverridableTypeMap> = OverridableComp
 
 export type SliderUnstyledProps<
   D extends React.ElementType = SliderUnstyledTypeMap['defaultComponent'],
-  P = {},
-> = OverrideProps<SliderUnstyledTypeMap<P, D>, D>;
+> = OverrideProps<SliderUnstyledTypeMap<{}, D>, D> & {
+  component?: D;
+};
 
 export type SliderUnstyledRootSlotProps = UseSliderRootSlotProps & {
   children: React.ReactNode;

@@ -269,8 +269,8 @@ export default function EnhancedTable() {
 
   const handleSelectAllClick = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.checked) {
-      const newSelecteds = rows.map((n) => n.name);
-      setSelected(newSelecteds);
+      const newSelected = rows.map((n) => n.name);
+      setSelected(newSelected);
       return;
     }
     setSelected([]);

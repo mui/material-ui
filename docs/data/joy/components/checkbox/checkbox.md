@@ -16,7 +16,7 @@ For toggling between on and off or single option selection, consider using a swi
 
 {{"demo": "CheckboxUsage.js", "hideToolbar": true}}
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Component
 
@@ -61,10 +61,10 @@ To rely only on variants to communicate the checkbox state change, use the `disa
 
 {{"demo": "IconlessCheckbox.js"}}
 
-### Focus
+### Focus outline
 
 The focus outline, by default, wraps both the checkbox itself and its label.
-To change that, target the `checkboxClasses.checkbox` class and add `position; 'relative'`.
+To change that, target the `checkboxClasses.checkbox` class and add `position: 'relative'`.
 
 {{"demo": "FocusCheckbox.js"}}
 
@@ -119,3 +119,7 @@ Don't forget to use the `label` prop to ensure proper checkbox accessibility.
 You can use checkboxes to create a chip alike design, most often used to filter between different options.
 
 {{"demo": "ExampleChoiceChipCheckbox.js"}}
+
+### Viewport checklist
+
+{{"demo": "ExampleButtonCheckbox.js"}}

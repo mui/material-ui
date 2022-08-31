@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { OverrideProps } from '@mui/types';
+import { SlotComponentProps } from '../utils';
 
 export interface TablePaginationActionsUnstyledComponentsPropsOverrides {}
 
-interface TablePaginationActionsUnstyledOwnProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface TablePaginationActionsUnstyledOwnProps {
   /**
    * Override or extend the styles applied to the component.
    */
@@ -30,16 +31,31 @@ interface TablePaginationActionsUnstyledOwnProps extends React.HTMLAttributes<HT
    * @default {}
    */
   componentsProps?: {
-    root?: React.ComponentPropsWithRef<'div'> &
-      TablePaginationActionsUnstyledComponentsPropsOverrides;
-    firstButton?: React.ComponentPropsWithRef<'button'> &
-      TablePaginationActionsUnstyledComponentsPropsOverrides;
-    lastButton?: React.ComponentPropsWithRef<'button'> &
-      TablePaginationActionsUnstyledComponentsPropsOverrides;
-    nextButton?: React.ComponentPropsWithRef<'button'> &
-      TablePaginationActionsUnstyledComponentsPropsOverrides;
-    backButton?: React.ComponentPropsWithRef<'button'> &
-      TablePaginationActionsUnstyledComponentsPropsOverrides;
+    root?: SlotComponentProps<
+      'div',
+      TablePaginationActionsUnstyledComponentsPropsOverrides,
+      TablePaginationActionsUnstyledOwnerState
+    >;
+    firstButton?: SlotComponentProps<
+      'button',
+      TablePaginationActionsUnstyledComponentsPropsOverrides,
+      TablePaginationActionsUnstyledOwnerState
+    >;
+    lastButton?: SlotComponentProps<
+      'button',
+      TablePaginationActionsUnstyledComponentsPropsOverrides,
+      TablePaginationActionsUnstyledOwnerState
+    >;
+    nextButton?: SlotComponentProps<
+      'button',
+      TablePaginationActionsUnstyledComponentsPropsOverrides,
+      TablePaginationActionsUnstyledOwnerState
+    >;
+    backButton?: SlotComponentProps<
+      'button',
+      TablePaginationActionsUnstyledComponentsPropsOverrides,
+      TablePaginationActionsUnstyledOwnerState
+    >;
   };
   /**
    * Direction of the text.
@@ -66,11 +82,6 @@ export type TablePaginationActionsUnstyledProps<
   D extends React.ElementType = TablePaginationActionsUnstyledTypeMap['defaultComponent'],
   P = {},
 > = OverrideProps<TablePaginationActionsUnstyledTypeMap<P, D>, D> & {
-  /**
-   * The component used for the Root slot.
-   * Either a string to use a HTML element or a component.
-   * This is equivalent to `components.Root`. If both are provided, the `component` is used.
-   */
   component?: D;
 };
 
