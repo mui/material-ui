@@ -84,14 +84,6 @@ function useStateChangeDetection<TOption>(
       }
     }
 
-    lastActionRef.current = null;
-  }, [nextState.selectedValue, internalPreviousState, propsRef, lastActionRef]);
-
-  React.useEffect(() => {
-    if (!propsRef.current) {
-      return;
-    }
-
     // Fires the highlightChange event when reducer returns changed `highlightedValue`.
     if (
       !areOptionsEqual(
@@ -100,9 +92,20 @@ function useStateChangeDetection<TOption>(
         propsRef.current.optionComparer,
       )
     ) {
-      propsRef.current?.onHighlightChange?.(nextState.highlightedValue);
+      propsRef.current?.onHighlightChange?.(
+        lastActionRef.current.event,
+        nextState.highlightedValue,
+      );
     }
-  }, [nextState.highlightedValue, internalPreviousState.highlightedValue, propsRef]);
+
+    lastActionRef.current = null;
+  }, [
+    nextState.selectedValue,
+    nextState.highlightedValue,
+    internalPreviousState,
+    propsRef,
+    lastActionRef,
+  ]);
 }
 
 export default function useControllableReducer<TOption>(

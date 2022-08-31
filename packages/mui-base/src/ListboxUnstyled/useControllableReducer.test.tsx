@@ -144,7 +144,7 @@ describe('useControllableReducer', () => {
       };
 
       render(<TestComponent />);
-      expect(handleHighlightChange.getCalls()[0].args[0]).to.equal('b');
+      expect(handleHighlightChange.getCalls()[0].args[1]).to.equal('b');
       expect(handleChange.notCalled).to.equal(true);
     });
   });

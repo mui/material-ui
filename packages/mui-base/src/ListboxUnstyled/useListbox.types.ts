@@ -139,7 +139,10 @@ interface UseListboxCommonProps<TOption> {
   /**
    * Callback fired when the highlighted option changes.
    */
-  onHighlightChange?: (option: TOption | null) => void;
+  onHighlightChange?: (
+    e: React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null,
+    option: TOption | null,
+  ) => void;
   /**
    * A function that tests equality between two options.
    * @default (a, b) => a === b
