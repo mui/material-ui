@@ -40,7 +40,7 @@ The avatar components comes with three sizes out of the box: `sm`, `md` (the def
 
 ### Variants
 
-The avatar component supports the four global variants: `soft` (default), `solid`, `outlined` and `plain`.
+The avatar component supports the four global variants: `soft` (default), `solid`, `outlined`, and `plain`.
 
 {{"demo": "AvatarVariants.js"}}
 

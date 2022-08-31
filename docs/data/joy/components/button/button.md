@@ -32,7 +32,7 @@ export default function MyApp() {
 
 ### Variants
 
-The button component supports the four global variants: `solid` (default), `soft`, `outlined` and `plain`.
+The button component supports the four global variants: `solid` (default), `soft`, `outlined`, and `plain`.
 Choose one of them depending on the button's [action importance](/joy-ui/main-features/global-variants/#hierarchy-of-importance).
 
 {{"demo": "ButtonVariants.js"}}

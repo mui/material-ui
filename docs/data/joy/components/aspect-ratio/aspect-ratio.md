@@ -38,7 +38,7 @@ Make sure that the content you want to fit the aspect ratio is its first direct 
 
 ### Variants
 
-The aspect ratio component supports the four global variants: `soft` (default), `solid`, `outlined` and `plain`.
+The aspect ratio component supports the four global variants: `soft` (default), `solid`, `outlined`, and `plain`.
 
 {{"demo": "VariantsRatio.js"}}
 

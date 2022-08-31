@@ -32,7 +32,7 @@ export default function MyApp() {
 
 ### Variants
 
-The text field component supports the four global variants: solid (default), soft, outlined, and plain.
+The text field component supports the four global variants: `solid` (default), `soft`, `outlined`, and `plain`.
 
 {{"demo": "TextFieldVariants.js"}}
 
