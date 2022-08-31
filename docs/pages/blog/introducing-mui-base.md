@@ -1,13 +1,13 @@
 ---
 title: 'Introducing MUI Base: the headless alternative to Material UI'
-description: 'Introduction to a new library of unstyled components and hooks: MUI Base'
+description: The MUI Base component library gives you complete control over the look and feel of your app.
 date: 2022-08-29T00:00:00.000Z
 authors: ['michaldudak', 'samuelsycamore']
 tags: ['News', 'MUI Core']
 card: true
 ---
 
-<img src="/static/blog/introducing-mui-base/hero-image.png" style="width: 796px; margin-bottom: 24px;" alt="Demo components built with MUI Base, a newly introduced library of unstyled components and hooks" />
+<img src="/static/blog/introducing-mui-base/hero-image.png" style="width: 692px; aspect-ratio: 132/61; margin-bottom: 24px;" alt="Demo components built with MUI Base, a newly introduced library of unstyled components and hooks" />
 
 While Material UI is excellent for building sleek user interfaces that adhere closely to Material Design, it can become unwieldy when your design system diverges significantly from the defaults.
 We get it.
@@ -25,17 +25,17 @@ MUI Base offers two kinds of building blocks: unstyled components and hooks.
 Components are more straightforward to use of the two.
 Place a component on a page, add your own styles, and it's ready to go!
 It's important to note that you are not limited to the styling options available in Material UI.
-You can, of course, still use [MUI System](https://mui.com/system/](https://mui.com/system/getting-started/overview/), but if you prefer Emotion, Tailwind, plain CSS, or any other styling engine, they are available too!
+You can, of course, still use [MUI System](https://mui.com/system/](https://mui.com/system/getting-started/overview/), but if you prefer Emotion, Tailwind CSS, plain CSS, or any other styling engine, they are available too!
 Check out the [Working with Tailwind CSS guide](/base/guides/working-with-tailwind-css/) for an example of using this library.
 
-In contrast to Material UI, Base's components do not have any default styles.
+In contrast to Material UI, MUI Base's components do not have any default styles.
 They provide functionality and structure, while designers and developers are responsible for the visuals.
 
 Each unstyled component lets you modify or override its _slots_—smaller subcomponents representing the interior elements that comprise the component's DOM structure.
 For example, a `SwitchUnstyled` contains the root, thumb, input, and track slots.
 You can control props passed to each of these slots (including `className`) based on the component's state, and even replace the default slot components with your own.
 
-<img src="/static/blog/introducing-mui-base/switch-slots.png" style="width: 796px; margin-bottom: 24px;" alt="Depiction of SwitchUnstyled components' slots" />
+<img src="/static/blog/introducing-mui-base/switch-slots.png" style="width: 692px; aspect-ratio: 173/80; margin-bottom: 24px;" loading="lazy" alt="Depiction of SwitchUnstyled components' slots" />
 
 Hooks take this one step further by extracting the logic from the structure entirely, so you can build from scratch using any DOM elements you need.
 This requires more work to implement but gives you the most freedom to customize.
@@ -47,15 +47,10 @@ You should spread these props on the components you've defined, as shown below:
 function MySwitch(props: UseSwitchParameters) {
   const { getInputProps, checked, disabled } = useSwitch(props);
 
-  const stateClasses = {
-    checked,
-    disabled,
-  };
-
   return (
-    <span className={clsx('root', stateClasses)}>
+    <span className={clsx('root', { checked, disabled })}>
       <span className="thumb" />
-      <input type="hidden" {...getInputProps()} />
+      <input {...getInputProps()} />
     </span>
   );
 }
