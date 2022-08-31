@@ -13,6 +13,7 @@ export default function OppositeContentTimeline() {
         sx={{
           '& .MuiTimelineItem-root:before': {
             flex: 0,
+            padding: 0,
           },
         }}
       >
