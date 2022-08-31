@@ -56,7 +56,7 @@ When specifying a size for the `Menu` component, menu items inside of it will in
 {{"demo": "SizeMenu.js"}}
 
 :::success
-💡**Learn:** To add more sizes to the component, visit the [extended sizes](/joy-ui/customization/themed-components/#extend-sizes) section.
+To learn how to add more sizes to the component, check out [Themed components—Extend sizes](/joy-ui/customization/themed-components/#extend-sizes).
 :::
 
 ### Selected

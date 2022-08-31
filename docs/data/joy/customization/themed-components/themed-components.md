@@ -114,10 +114,10 @@ extendTheme({
 
 ### Extend sizes
 
-Here's how you'd go for extending a component's available sizes.
-We recommend following the in-use t-shirt sizing convention to maintain consistency with all the other props.
+The following code snippet illustrates how to provide additional sizes to a component beyond `sm`, `md`, and `lg`.
+We recommend following the established "t-shirt size" naming convention (e.g. `xs`, `xl`, `xxl`, etc.) to maintain consistency with all the other props.
 
-Here is an example of extending the button sizes to include `xs` and `xl` values:
+The example below extends the Button sizes to include `xs` and `xl` values:
 
 ```js
 extendTheme({
@@ -148,7 +148,7 @@ extendTheme({
 });
 ```
 
-Then, you will be able to use those values on the button instances:
+Once these values are defined as above, you can make use of them directly on instances of the Button component:
 
 ```jsx
 <Button size="xs">Extra small</Button>
@@ -156,17 +156,18 @@ Then, you will be able to use those values on the button instances:
 ```
 
 :::info
-**Tip**: the properties for extending sizes should relate to density or dimension of the component. If you want to control the color-related properties, you should [extend the variants](#extend-variants) instead.
+The properties used for extending sizes should only relate to the density or the dimensions of the component. 
+To learn how to extend color properties, check out the [Extend variants](#extend-variants) section in this document.
 :::
 
 #### TypeScript
 
-You need module augmentation to include the values to the `size` prop of the component.
+Module augmentation is required to pass the values to the `size` prop of the component.
 
-The interface is in `{ComponentName}PropsSizeOverrides` format which exists in all Joy UI components:
+The interface format is `{ComponentName}PropsSizeOverrides`, which is the same for all Joy UI components:
 
 ```tsx
-// This part could be declare in your theme file
+// This part could be declared in your theme file
 declare module '@mui/joy/Button' {
   interface ButtonPropsSizeOverrides {
     xs: true;
@@ -181,9 +182,10 @@ declare module '@mui/joy/Button' {
 
 ### Extend variants
 
-By creating new component variants, you're automatically opting out of the [global variant feature](/joy-ui/main-features/global-variants/), which allows you to have fine-grain control of the color-related CSS properties (`color`, `background` and `border`).
+The following code snippet shows how to extend component variants for color properties.
+Note that by creating new variants, you're automatically opting out of the [global variant feature](/joy-ui/main-features/global-variants/), which gives you fine-grained control over CSS properties like `color`, `background`, and `border`.
 
-Here is an example of extending the sheet variant to include `glass` value:
+This example extends the Sheet variant to include a custom value named `glass`:
 
 ```js
 extendTheme({
@@ -205,7 +207,7 @@ extendTheme({
 });
 ```
 
-Then, you will be able to use the value on the sheet instances:
+Once the value is defined as above, you can make use of it directly on instances of the Sheet component:
 
 ```jsx
 <Sheet variant="glass">Glassmorphism</Sheet>
@@ -213,12 +215,12 @@ Then, you will be able to use the value on the sheet instances:
 
 #### TypeScript
 
-You need module augmentation to include the values to the `variant` prop of the component.
+Module augmentation is required to pass the values to the `variant` prop of the component.
 
-The interface is in `{ComponentName}PropsVariantOverrides` format which exists in all Joy UI components:
+The interface format is `{ComponentName}PropsSizeOverrides`, which is the same for all Joy UI components:
 
 ```tsx
-// This part could be declare in your theme file
+// This part could be declared in your theme file
 declare module '@mui/joy/Sheet' {
   interface SheetPropsVariantOverrides {
     glass: true;

@@ -33,12 +33,12 @@ export default function MyApp() {
 ### Variants
 
 The button component supports the four global variants: `solid` (default), `soft`, `outlined`, and `plain`.
-Choose one of them depending on the button's [action importance](/joy-ui/main-features/global-variants/#hierarchy-of-importance).
+Which variant you should choose depends on the relative importance of the button's action—see [Global variants—Hierarchy of importance](/joy-ui/main-features/global-variants/#hierarchy-of-importance) for details.
 
 {{"demo": "ButtonVariants.js"}}
 
 :::success
-💡**Learn:** To add more variants to the component, visit the [extended variants](/joy-ui/customization/themed-components/#extend-variants) section.
+To learn how to add more variants to the component, check out [Themed components—Extend variants](/joy-ui/customization/themed-components/#extend-variants).
 :::
 
 ### Colors
@@ -55,7 +55,7 @@ The button components comes with three sizes out of the box: `sm`, `md` (the def
 {{"demo": "ButtonSizes.js"}}
 
 :::success
-💡**Learn:** To add more sizes to the component, visit the [extended sizes](/joy-ui/customization/themed-components/#extend-sizes) section.
+To learn how to add more sizes to the component, check out [Themed components—Extend sizes](/joy-ui/customization/themed-components/#extend-sizes).
 :::
 
 ### Disabled
