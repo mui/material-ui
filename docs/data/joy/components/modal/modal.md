@@ -63,6 +63,18 @@ Use the `ModalClose` component to render a close button that inherits the modal'
 💡 **Quick tip:** The `ModalClose` accepts the variant prop because it uses the same styles as the [`IconButton`](/joy-ui/react-button/#icon-button).
 :::
 
+### Close reason
+
+The second argument of the `onClose` gives you the information about how the event is triggered.
+
+The possible values are:
+
+- `backdropClick`: the user clicks on the modal's backdrop.
+- `escapeKeyDown`: the user presses `Escape` on the keyboard.
+- `closeClick`: the user clicks on the `ModalClose` element.
+
+{{"demo": "CloseModal.js"}}
+
 ### Dialog
 
 To create a modal dialog, add the `ModalDialog` component inside the `Modal`.
