@@ -13,7 +13,7 @@ About four months ago, we moved the date and time pickers from `@mui/lab` and re
 
 - The beta phase is over. You can now download `v5.0.0`.
 - Dozens of bugs have been fixed since the first alpha.
-- A few improvements to DX and overall API consistency.
+- DX and overall API consistency has been improved.
 - Improved customizability.
 - Follow the [installation instructions](https://mui.com/x/react-date-pickers/getting-started/) and the [migration guide](https://mui.com/x/react-date-pickers/migration-lab/).
 
@@ -39,14 +39,14 @@ For example, the `MonthPicker`’s prop `onMonthChange` and the `YearPicker`’s
 
 We also added new customizable slots:
 
-- The `ActionBar` allows you to customize the actions below the picker. It replaces the props `clearable`, `showTodayButton`, `cancelText`, `okText`
-- The `PaperContent` allows you to add custom elements in the Desktop view
+- The `ActionBar` enables customizing the actions below the picker. It replaces the props `clearable`, `showTodayButton`, `cancelText`, `okText`
+- The `PaperContent` enables adding custom elements in the Desktop view
 
 ### Integrated localization
 
-It’s not obvious at first glance, but pickers contain some textual information. The action buttons, of course, but also all the aria-labels needed to support accessibility (a11y).
+It’s not obvious at first glance, but pickers contain some textual information. The action buttons as well as the aria-labels for accessibility (a11y) support.
 
-We integrated a [new localization](https://mui.com/x/react-date-pickers/localization/#translation-keys) pipeline similar to the one used by the data grid. It allows you to import translations directly into the main theme in a few lines. And thanks to the amazing contributors, translations for 11 languages are already available. 🎉
+We integrated a [new localization](https://mui.com/x/react-date-pickers/localization/#translation-keys) pipeline similar to the one used by the data grid. It enables importing translations directly into the main theme in a few lines. And thanks to the amazing contributors, translations for 11 languages are already available. 
 
 ```jsx
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -79,7 +79,7 @@ And the adoption speed accros versions is very encouraging.
 You are already 40% to use a beta version. 🚀
 
 <img src="/static/blog/date-pickers-stable-v5/date-picker-versions.png" style="width: 796px; margin-top: 16px; margin-bottom: 2px;" alt="Evolution of downloaded version of @mui/x-data-pickers" />
-<p class="blog-description" style="text-align: center;">Relative distribution of `@mui/x-date-pickers` versions  between jun and august.</p>
+<p class="blog-description" style="text-align: center;">Relative distribution of `@mui/x-date-pickers` versions  between june and august.</p>
 
 ## Installation and migration from `@mui/lab`
 
