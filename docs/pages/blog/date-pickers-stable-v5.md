@@ -6,6 +6,7 @@ authors: ['josefreitas', 'alexfauquette']
 tags: ['MUI X', 'News']
 card: true
 ---
+
 About four months ago, we moved the date and time pickers from `@mui/lab` and released the first alpha version of the date pickers package. We have focused on improving stability and developer experience since then, and now, we’re happy to announce the first official `@mui/x-date-pickers` [v5 release](https://github.com/mui/mui-x/releases/tag/v5.17.0).
 
 ## TL;DR
@@ -38,7 +39,7 @@ For example, the `MonthPicker`’s prop `onMonthChange` and the `YearPicker`’s
 
 We also added new customizable slots:
 
-- The `ActionBar` allows you to customize the actions below the picker. It replaces the props  `clearable`, `showTodayButton`, `cancelText`, `okText`
+- The `ActionBar` allows you to customize the actions below the picker. It replaces the props `clearable`, `showTodayButton`, `cancelText`, `okText`
 - The `PaperContent` allows you to add custom elements in the Desktop view
 
 ### Integrated localization
