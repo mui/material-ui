@@ -37,6 +37,12 @@ declare module '@mui/material/styles/createTypography' {
   }
 }
 
+declare module '@mui/material/Chip' {
+  interface ChipPropsColorOverrides {
+    grey: true;
+  }
+}
+
 // TODO: enable this once types conflict is fixed
 // declare module '@mui/material/Button' {
 //   interface ButtonPropsVariantOverrides {
@@ -128,19 +134,26 @@ export const getDesignTokens = (mode: 'light' | 'dark') =>
       common: {
         black: '#1D1D1D',
       },
-      ...(mode === 'light' && {
-        text: {
+      text: {
+        ...(mode === 'light' && {
           primary: grey[900],
           secondary: grey[700],
-        },
-      }),
-      ...(mode === 'dark' && {
-        text: {
+        }),
+        ...(mode === 'dark' && {
           primary: '#fff',
           secondary: grey[400],
-        },
-      }),
-      grey,
+        }),
+      },
+      grey: {
+        ...(mode === 'light' && {
+          main: grey[100],
+          contrastText: grey[600],
+        }),
+        ...(mode === 'dark' && {
+          main: blueDark[700],
+          contrastText: grey[600],
+        }),
+      },
       error: {
         50: '#FFF0F1',
         100: '#FFDBDE',

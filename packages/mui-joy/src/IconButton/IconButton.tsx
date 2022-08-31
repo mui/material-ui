@@ -1,14 +1,14 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import clsx from 'clsx';
 import { unstable_capitalize as capitalize, unstable_useForkRef as useForkRef } from '@mui/utils';
 import { useButton } from '@mui/base/ButtonUnstyled';
+import { useSlotProps } from '@mui/base/utils';
 import composeClasses from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
 import iconButtonClasses, { getIconButtonUtilityClass } from './iconButtonClasses';
-import { IconButtonProps, IconButtonTypeMap, ExtendIconButton } from './IconButtonProps';
+import { IconButtonOwnerState, IconButtonTypeMap, ExtendIconButton } from './IconButtonProps';
 
-const useUtilityClasses = (ownerState: IconButtonProps & { focusVisible: boolean }) => {
+const useUtilityClasses = (ownerState: IconButtonOwnerState) => {
   const { color, disabled, focusVisible, focusVisibleClassName, size, variant } = ownerState;
 
   const slots = {
@@ -35,7 +35,7 @@ export const IconButtonRoot = styled('button', {
   name: 'JoyIconButton',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: IconButtonProps }>(({ theme, ownerState }) => [
+})<{ ownerState: IconButtonOwnerState }>(({ theme, ownerState }) => [
   {
     '--Icon-margin': 'initial', // reset the icon's margin.
     ...(ownerState.size === 'sm' && {
@@ -93,7 +93,6 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
 
   const {
     children,
-    className,
     action,
     component = 'button',
     color = 'primary',
@@ -104,8 +103,6 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
 
   const buttonRef = React.useRef<HTMLElement | null>(null);
   const handleRef = useForkRef(buttonRef, ref);
-
-  const ComponentProp = component;
 
   const { focusVisible, setFocusVisible, getRootProps } = useButton({
     ...props,
@@ -134,17 +131,19 @@ const IconButton = React.forwardRef(function IconButton(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
-  return (
-    <IconButtonRoot
-      as={ComponentProp}
-      className={clsx(classes.root, className)}
-      ownerState={ownerState}
-      {...other}
-      {...getRootProps()}
-    >
-      {children}
-    </IconButtonRoot>
-  );
+  const rootProps = useSlotProps({
+    elementType: IconButtonRoot,
+    getSlotProps: getRootProps,
+    externalSlotProps: {},
+    externalForwardedProps: other,
+    ownerState,
+    additionalProps: {
+      as: component,
+    },
+    className: classes.root,
+  });
+
+  return <IconButtonRoot {...rootProps}>{children}</IconButtonRoot>;
 }) as ExtendIconButton<IconButtonTypeMap>;
 
 IconButton.propTypes /* remove-proptypes */ = {
@@ -167,10 +166,6 @@ IconButton.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   children: PropTypes.node,
-  /**
-   * @ignore
-   */
-  className: PropTypes.string,
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'primary'

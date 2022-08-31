@@ -8,7 +8,7 @@ import { useMenu, MenuUnstyledContext, MenuUnstyledContextType } from '@mui/base
 import { styled, useThemeProps } from '../styles';
 import { ListRoot } from '../List/List';
 import ListProvider, { scopedVariables } from '../List/ListProvider';
-import { MenuListProps, MenuListTypeMap } from './MenuListProps';
+import { MenuListProps, MenuListOwnerState, MenuListTypeMap } from './MenuListProps';
 import { getMenuListUtilityClass } from './menuListClasses';
 
 const useUtilityClasses = (ownerState: MenuListProps) => {
@@ -29,7 +29,7 @@ const MenuListRoot = styled(ListRoot, {
   name: 'MuiMenuList',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: MenuListProps; component?: React.ElementType }>(({ theme, ownerState }) => {
+})<{ ownerState: MenuListOwnerState }>(({ theme, ownerState }) => {
   const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];
   return {
     '--List-radius': theme.vars.radius.sm,
@@ -40,7 +40,7 @@ const MenuListRoot = styled(ListRoot, {
     '--List-item-stickyTop': 'calc(var(--List-padding, var(--List-divider-gap)) * -1)', // negative amount of the List's padding block
     ...scopedVariables,
     overflow: 'auto',
-    ...(!variantStyle.backgroundColor && {
+    ...(!variantStyle?.backgroundColor && {
       backgroundColor: theme.vars.palette.background.surface,
     }),
   };
@@ -153,7 +153,10 @@ MenuList.propTypes /* remove-proptypes */ = {
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'neutral'
    */
-  color: PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.string,
+  ]),
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
@@ -182,7 +185,10 @@ MenuList.propTypes /* remove-proptypes */ = {
    * The variant to use.
    * @default 'plain'
    */
-  variant: PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
+  variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
+    PropTypes.string,
+  ]),
 } as any;
 
 export default MenuList;

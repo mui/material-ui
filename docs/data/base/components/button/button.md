@@ -10,11 +10,13 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/button/
 
 <p class="description">Buttons let users take actions and make choices with a single tap.</p>
 
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+
 ## Introduction
 
 `ButtonUnstyled` replaces the native HTML `<button>` element.
 
-{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
+{{"demo": "UnstyledButtonIntroduction.tsx", "defaultCodeOpen": false, "bg": "gradient"}}
 
 ## Component
 

@@ -249,7 +249,7 @@ function FixtureRenderer({ component: FixtureComponent }) {
 }
 
 FixtureRenderer.propTypes = {
-  component: PropTypes.element,
+  component: PropTypes.elementType,
 };
 
 function App(props) {
