@@ -2,8 +2,7 @@ import * as React from 'react';
 import Box from '@mui/joy/Box';
 import Modal from '@mui/joy/Modal';
 import ModalDialog from '@mui/joy/ModalDialog';
-import ModalDialogTitle from '@mui/joy/ModalDialogTitle';
-import ModalDialogDescription from '@mui/joy/ModalDialogDescription';
+import Typography from '@mui/joy/Typography';
 
 export default function ServerModal() {
   const rootRef = React.useRef(null);
@@ -30,11 +29,23 @@ export default function ServerModal() {
         open
         container={() => rootRef.current}
       >
-        <ModalDialog layout="center">
-          <ModalDialogTitle>Server-side modal</ModalDialogTitle>
-          <ModalDialogDescription>
+        <ModalDialog
+          aria-labelledby="server-modal-title"
+          aria-describedby="server-modal-description"
+          layout="center"
+        >
+          <Typography
+            id="server-modal-title"
+            component="h2"
+            level="inherit"
+            fontSize="1.25em"
+            mb="0.25em"
+          >
+            Server-side modal
+          </Typography>
+          <Typography id="server-modal-description" textColor="text.tertiary">
             If you disable JavaScript, you will still see me.
-          </ModalDialogDescription>
+          </Typography>
         </ModalDialog>
       </Modal>
     </Box>

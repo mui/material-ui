@@ -3,13 +3,11 @@ import Box from '@mui/joy/Box';
 import Button from '@mui/joy/Button';
 import Modal from '@mui/joy/Modal';
 import ModalDialog from '@mui/joy/ModalDialog';
-import ModalDialogTitle from '@mui/joy/ModalDialogTitle';
-import ModalDialogDescription from '@mui/joy/ModalDialogDescription';
 import DeleteForever from '@mui/icons-material/DeleteForever';
 import WarningRoundedIcon from '@mui/icons-material/WarningRounded';
 import Typography from '@mui/joy/Typography';
 
-export default function BasicModalDialog() {
+export default function AlertDialogModal() {
   const [open, setOpen] = React.useState(false);
   return (
     <React.Fragment>
@@ -21,25 +19,30 @@ export default function BasicModalDialog() {
       >
         Discard
       </Button>
-      <Modal open={open} onClose={() => setOpen(false)}>
+      <Modal
+        aria-labelledby="alert-dialog-modal-title"
+        aria-describedby="alert-dialog-modal-description"
+        open={open}
+        onClose={() => setOpen(false)}
+      >
         <ModalDialog variant="outlined" role="alertdialog">
-          <ModalDialogTitle sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-            <WarningRoundedIcon />
-            <Typography
-              component="h2"
-              id="modal-title"
-              level="h5"
-              textColor="inherit"
-              fontWeight="lg"
-            >
-              Confirmation
-            </Typography>
-          </ModalDialogTitle>
-          <ModalDialogDescription sx={{ mb: 3 }}>
-            <Typography id="modal-desc" textColor="text.tertiary">
-              Are you sure you want to discard all of your notes?
-            </Typography>
-          </ModalDialogDescription>
+          <Typography
+            id="alert-dialog-modal-title"
+            component="h2"
+            level="inherit"
+            fontSize="1.25em"
+            mb="0.25em"
+            startDecorator={<WarningRoundedIcon />}
+          >
+            Confirmation
+          </Typography>
+          <Typography
+            id="alert-dialog-modal-description"
+            textColor="text.tertiary"
+            mb={3}
+          >
+            Are you sure you want to discard all of your notes?
+          </Typography>
           <Box sx={{ display: 'flex', gap: 1, justifyContent: 'flex-end' }}>
             <Button variant="plain" color="neutral" onClick={() => setOpen(false)}>
               Cancel

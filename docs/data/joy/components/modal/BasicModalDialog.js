@@ -3,8 +3,6 @@ import Button from '@mui/joy/Button';
 import TextField from '@mui/joy/TextField';
 import Modal from '@mui/joy/Modal';
 import ModalDialog from '@mui/joy/ModalDialog';
-import ModalDialogTitle from '@mui/joy/ModalDialogTitle';
-import ModalDialogDescription from '@mui/joy/ModalDialogDescription';
 import Stack from '@mui/joy/Stack';
 import Add from '@mui/icons-material/Add';
 import Typography from '@mui/joy/Typography';
@@ -23,6 +21,8 @@ export default function BasicModalDialog() {
       </Button>
       <Modal open={open} onClose={() => setOpen(false)}>
         <ModalDialog
+          aria-labelledby="basic-modal-dialog-title"
+          aria-describedby="basic-modal-dialog-description"
           sx={{
             maxWidth: 500,
             borderRadius: 'md',
@@ -30,12 +30,23 @@ export default function BasicModalDialog() {
             boxShadow: 'lg',
           }}
         >
-          <ModalDialogTitle>Create new project</ModalDialogTitle>
-          <ModalDialogDescription sx={{ mb: 2 }}>
-            <Typography id="modal-desc" textColor="text.tertiary">
-              Fill in the information of the project.
-            </Typography>
-          </ModalDialogDescription>
+          <Typography
+            id="basic-modal-dialog-title"
+            component="h2"
+            level="inherit"
+            fontSize="1.25em"
+            mb="0.25em"
+          >
+            Create new project
+          </Typography>
+          <Typography
+            id="basic-modal-dialog-description"
+            mt={0.5}
+            mb={2}
+            textColor="text.tertiary"
+          >
+            Fill in the information of the project.
+          </Typography>
           <form
             onSubmit={(event) => {
               event.preventDefault();

@@ -4,8 +4,7 @@ import Stack from '@mui/joy/Stack';
 import Modal from '@mui/joy/Modal';
 import ModalClose from '@mui/joy/ModalClose';
 import ModalDialog from '@mui/joy/ModalDialog';
-import ModalDialogTitle from '@mui/joy/ModalDialogTitle';
-import ModalDialogDescription from '@mui/joy/ModalDialogDescription';
+import Typography from '@mui/joy/Typography';
 
 export default function LayoutModalDialog() {
   const [open, setOpen] = React.useState('');
@@ -24,13 +23,25 @@ export default function LayoutModalDialog() {
         </Button>
       </Stack>
       <Modal open={!!open} onClose={() => setOpen('')}>
-        <ModalDialog layout={open || undefined}>
+        <ModalDialog
+          aria-labelledby="layout-modal-title"
+          aria-describedby="layout-modal-description"
+          layout={open || undefined}
+        >
           <ModalClose />
-          <ModalDialogTitle>Modal Dialog</ModalDialogTitle>
-          <ModalDialogDescription>
+          <Typography
+            id="layout-modal-title"
+            component="h2"
+            level="inherit"
+            fontSize="1.25em"
+            mb="0.25em"
+          >
+            Modal Dialog
+          </Typography>
+          <Typography id="layout-modal-description" textColor="text.tertiary">
             This is a <code>{open}</code> modal dialog. Press <code>esc</code> to
             close it.
-          </ModalDialogDescription>
+          </Typography>
         </ModalDialog>
       </Modal>
     </React.Fragment>
