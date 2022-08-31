@@ -199,7 +199,11 @@ export default function UnstyledSelectObjectValues() {
     <div>
       <Header>Default behavior</Header>
       <form onSubmit={handleSubmit}>
-        <CustomSelect value={character} onChange={setCharacter} name="character">
+        <CustomSelect
+          value={character}
+          onChange={(e, newValue) => setCharacter(newValue)}
+          name="character"
+        >
           {characters.map((c) => (
             <StyledOption key={c.name} value={c}>
               {c.name}
@@ -214,7 +218,7 @@ export default function UnstyledSelectObjectValues() {
       <form onSubmit={handleSubmit}>
         <CustomSelect
           value={character}
-          onChange={setCharacter}
+          onChange={(e, newValue) => setCharacter(newValue)}
           getSerializedValue={getSerializedValue}
           name="character"
         >
