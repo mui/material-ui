@@ -32,7 +32,6 @@ export type AutocompleteOwnerState<
   hasPopupIcon: boolean;
   inputFocused: boolean;
   popupOpen: boolean;
-  size: OverridableStringUnion<'small' | 'medium', AutocompletePropsSizeOverrides>;
 };
 
 export type AutocompleteRenderGetTagProps = ({ index }: { index: number }) => {

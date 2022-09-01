@@ -14,25 +14,35 @@ import { useThemeProps } from '../styles';
 import ClearIcon from '../internal/svg-icons/Close';
 import ArrowDropDownIcon from '../internal/svg-icons/ArrowDropDown';
 import styled from '../styles/styled';
-import Chip from '../Chip';
+import Chip, { chipClasses } from '../Chip';
 import ChipDelete from '../ChipDelete';
 import { IconButtonRoot } from '../IconButton/IconButton';
 import ListProvider, { scopedVariables } from '../List/ListProvider';
 import ListItem from '../ListItem';
 import List, { ListRoot } from '../List/List';
+import { ListItemButtonOwnerState } from '../ListItemButton';
 import { ListItemButtonRoot } from '../ListItemButton/ListItemButton';
+import { inputClasses } from '../Input';
 import autocompleteClasses, { getAutocompleteUtilityClass } from './autocompleteClasses';
 import {
   AutocompleteProps,
   AutocompleteRenderGroupParams,
   AutocompleteRenderGetTagProps,
+  AutocompleteOwnerState,
 } from './AutocompleteProps';
+
+type OwnerState = AutocompleteOwnerState<
+  unknown,
+  boolean | undefined,
+  boolean | undefined,
+  boolean | undefined
+>;
 
 const defaultGetOptionLabel = <T extends unknown>(option: T) =>
   (option as { label: string }).label ?? option;
 const defaultLimitTagsText = (more: string | number) => `+${more}`;
 
-const useUtilityClasses = (ownerState) => {
+const useUtilityClasses = (ownerState: OwnerState) => {
   const {
     disablePortal,
     focused,
@@ -54,7 +64,7 @@ const useUtilityClasses = (ownerState) => {
     ],
     inputRoot: ['inputRoot'],
     input: ['input', inputFocused && 'inputFocused'],
-    tag: ['tag', `tagSize${capitalize(size)}`],
+    tag: ['tag', size && `tagSize${capitalize(size)}`],
     endAdornment: ['endAdornment'],
     clearIndicator: ['clearIndicator'],
     popupIndicator: ['popupIndicator', popupOpen && 'popupIndicatorOpen'],
@@ -75,29 +85,66 @@ const AutocompleteRoot = styled('div', {
   name: 'JoyAutocomplete',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})(({ ownerState }) => ({
-  ...(ownerState.fullWidth && {
-    width: '100%',
-  }),
-  /* Avoid double tap issue on iOS */
-  '@media (pointer: fine)': {
-    [`&:hover .${autocompleteClasses.clearIndicator}`]: {
-      visibility: 'visible',
+})<{ ownerState: OwnerState }>(({ ownerState }) => {
+  let endDecoratorCount = 0;
+  if (ownerState.hasClearIcon) {
+    endDecoratorCount += 1;
+  }
+  if (ownerState.hasPopupIcon) {
+    endDecoratorCount += 1;
+  }
+  return [
+    {
+      ...(ownerState.fullWidth && {
+        width: '100%',
+      }),
+      /* Avoid double tap issue on iOS */
+      '@media (pointer: fine)': {
+        [`&:hover .${autocompleteClasses.clearIndicator}`]: {
+          visibility: 'visible',
+        },
+      },
+      [`& .${autocompleteClasses.input}`]: {
+        minWidth: 30,
+        minHeight: 'calc(var(--Input-minHeight) - 2 * var(--variant-borderWidth, 0px))',
+      },
+      [`& .${inputClasses.root}`]: {
+        paddingInlineEnd: `calc(${endDecoratorCount} * var(--Input-decorator-childHeight) + 2 * var(--_Input-paddingBlock))`,
+      },
+      [`& .${inputClasses.endDecorator}`]: {
+        position: 'absolute',
+        top: '50%',
+        transform: 'translateY(-50%)',
+        right: 'var(--Input-paddingInline)',
+      },
     },
-  },
-  [`& .${autocompleteClasses.input}`]: {
-    minWidth: 30,
-  },
-  [`& .${autocompleteClasses}`]: {
-    minWidth: 30,
-  },
-}));
+    ownerState.multiple && {
+      [`& .${inputClasses.root}`]: {
+        flexWrap: 'wrap',
+        paddingInlineStart: 0,
+        paddingBlockEnd: 'var(--_Input-paddingBlock)',
+      },
+      [`& .${inputClasses.startDecorator}`]: {
+        display: 'contents',
+      },
+      [`& .${autocompleteClasses.input}`]: {
+        marginInlineStart: 'var(--Input-paddingInline)',
+        marginBlockEnd: 'calc(-1 * var(--_Input-paddingBlock))',
+      },
+      [`& .${chipClasses.root}`]: {
+        // TODO: move to flexbox `gap` later.
+        marginInlineStart: 'var(--_Input-paddingBlock)',
+        marginBlockStart: 'var(--_Input-paddingBlock)',
+      },
+    },
+  ];
+});
 
 const AutocompleteClearIndicator = styled(IconButtonRoot, {
   name: 'JoyAutocomplete',
   slot: 'ClearIndicator',
   overridesResolver: (props, styles) => styles.clearIndicator,
-})(({ ownerState }) => ({
+})<{ ownerState: OwnerState }>(({ ownerState }) => ({
   marginInlineEnd: 0, // prevent the automatic adjustment between Input and IconButtonRoot
   visibility: ownerState.focused ? 'visible' : 'hidden',
 }));
@@ -106,7 +153,7 @@ const AutocompletePopupIndicator = styled(IconButtonRoot, {
   name: 'JoyAutocomplete',
   slot: 'PopupIndicator',
   overridesResolver: (props, styles) => styles.popupIndicator,
-})(({ ownerState }) => ({
+})<{ ownerState: OwnerState }>(({ ownerState }) => ({
   ...(ownerState.popupOpen && {
     transform: 'rotate(180deg)',
   }),
@@ -116,7 +163,7 @@ const AutocompleteListbox = styled(ListRoot, {
   name: 'JoyAutocomplete',
   slot: 'Listbox',
   overridesResolver: (props, styles) => styles.listbox,
-})(({ theme, ownerState }) => {
+})<{ ownerState: OwnerState }>(({ theme, ownerState }) => {
   const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];
   return {
     '--_outline-inside': '1', // to prevent the focus outline from being cut by overflow
@@ -141,7 +188,7 @@ const AutocompleteLoading = styled('div', {
   name: 'JoyAutocomplete',
   slot: 'Loading',
   overridesResolver: (props, styles) => styles.loading,
-})(({ theme }) => ({
+})<{ ownerState: OwnerState }>(({ theme }) => ({
   color: (theme.vars || theme).palette.text.secondary,
   padding: '14px 16px',
 }));
@@ -150,7 +197,7 @@ const AutocompleteNoOptions = styled('div', {
   name: 'JoyAutocomplete',
   slot: 'NoOptions',
   overridesResolver: (props, styles) => styles.noOptions,
-})(({ theme }) => ({
+})<{ ownerState: OwnerState }>(({ theme }) => ({
   color: (theme.vars || theme).palette.text.secondary,
   padding: '14px 16px',
 }));
@@ -159,82 +206,13 @@ const AutocompleteOption = styled(ListItemButtonRoot, {
   name: 'JoyAutocomplete',
   slot: 'Option',
   overridesResolver: (props, styles) => styles.option,
-})(({ theme, ownerState }) => ({
+})<{ ownerState: ListItemButtonOwnerState }>(({ theme, ownerState }) => ({
   '&[aria-disabled="true"]': theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
   '&[aria-selected="true"]': {
     ...theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
     fontWeight: theme.vars.fontWeight.md,
   },
 }));
-
-// const AutocompleteListbox = styled('div', {
-//   name: 'JoyAutocomplete',
-//   slot: 'Listbox',
-//   overridesResolver: (props, styles) => styles.listbox,
-// })(({ theme }) => ({
-//   listStyle: 'none',
-//   margin: 0,
-//   padding: '8px 0',
-//   maxHeight: '40vh',
-//   overflow: 'auto',
-//   [`& .${autocompleteClasses.option}`]: {
-//     minHeight: 48,
-//     display: 'flex',
-//     overflow: 'hidden',
-//     justifyContent: 'flex-start',
-//     alignItems: 'center',
-//     cursor: 'pointer',
-//     paddingTop: 6,
-//     boxSizing: 'border-box',
-//     outline: '0',
-//     WebkitTapHighlightColor: 'transparent',
-//     paddingBottom: 6,
-//     paddingLeft: 16,
-//     paddingRight: 16,
-//     [theme.breakpoints.up('sm')]: {
-//       minHeight: 'auto',
-//     },
-//     [`&.${autocompleteClasses.focused}`]: {
-//       // backgroundColor: (theme.vars || theme).palette.action.hover,
-//       // Reset on touch devices, it doesn't add specificity
-//       '@media (hover: none)': {
-//         backgroundColor: 'transparent',
-//       },
-//     },
-//     '&[aria-disabled="true"]': {
-//       // opacity: (theme.vars || theme).palette.action.disabledOpacity,
-//       pointerEvents: 'none',
-//     },
-//     [`&.${autocompleteClasses.focusVisible}`]: {
-//       // backgroundColor: (theme.vars || theme).palette.action.focus,
-//     },
-//     // '&[aria-selected="true"]': {
-//     //   backgroundColor: theme.vars
-//     //     ? `rgba(${theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.selectedOpacity})`
-//     //     : alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
-//     //   [`&.${autocompleteClasses.focused}`]: {
-//     //     backgroundColor: theme.vars
-//     //       ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))`
-//     //       : alpha(
-//     //           theme.palette.primary.main,
-//     //           theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
-//     //         ),
-//     //     // Reset on touch devices, it doesn't add specificity
-//     //     '@media (hover: none)': {
-//     //       backgroundColor: (theme.vars || theme).palette.action.selected,
-//     //     },
-//     //   },
-//     //   [`&.${autocompleteClasses.focusVisible}`]: {
-//     //     backgroundColor: theme.vars
-//     //       ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.focusOpacity}))`
-//     //       : alpha(
-//     //           theme.palette.primary.main,
-//     //           theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
-//     //         ),
-//     //   },
-//     // },
-//   },
-// }));
 
 const AutocompleteGroupLabel = styled(ListItem, {
   name: 'JoyAutocomplete',
@@ -245,17 +223,6 @@ const AutocompleteGroupLabel = styled(ListItem, {
   fontSize: theme.vars.fontSize.sm,
   letterSpacing: theme.vars.letterSpacing.md,
 }));
-
-const AutocompleteGroupUl = styled('ul', {
-  name: 'JoyAutocomplete',
-  slot: 'GroupUl',
-  overridesResolver: (props, styles) => styles.groupUl,
-})({
-  padding: 0,
-  [`& .${autocompleteClasses.option}`]: {
-    paddingLeft: 24,
-  },
-});
 
 const Autocomplete = React.forwardRef(function Autocomplete(
   inProps,
@@ -380,7 +347,13 @@ const Autocomplete = React.forwardRef(function Autocomplete(
       startDecorator = (value as Array<unknown>).map((option, index) => {
         const { onDelete, ...tagProps } = getCustomizedTagProps({ index });
         return (
-          <Chip size={size} {...tagProps} endDecorator={<ChipDelete onClick={onDelete} />}>
+          <Chip
+            size={size}
+            variant="soft"
+            color="neutral"
+            {...tagProps}
+            endDecorator={<ChipDelete onClick={onDelete} />}
+          >
             {getOptionLabel(option)}
           </Chip>
         );
