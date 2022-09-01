@@ -78,6 +78,7 @@ export interface AutocompleteProps<
   DisableClearable extends boolean | undefined,
   FreeSolo extends boolean | undefined,
 > extends UseAutocompleteProps<T, Multiple, DisableClearable, FreeSolo> {
+  className: string;
   /**
    * The icon to display in place of the default clear icon.
    * @default <ClearIcon fontSize="small" />
@@ -220,9 +221,9 @@ export interface AutocompleteProps<
   ) => React.ReactNode;
   /**
    * The size of the component.
-   * @default 'medium'
+   * @default 'md'
    */
-  size?: OverridableStringUnion<'small' | 'medium', AutocompletePropsSizeOverrides>;
+  size?: OverridableStringUnion<'sm' | 'md' | 'lg', AutocompletePropsSizeOverrides>;
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

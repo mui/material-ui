@@ -4,7 +4,11 @@ import PropTypes from 'prop-types';
 import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import composeClasses from '@mui/base/composeClasses';
-import { useAutocomplete, createFilterOptions } from '@mui/base/AutocompleteUnstyled';
+import {
+  useAutocomplete,
+  createFilterOptions,
+  AutocompleteGroupedOption,
+} from '@mui/base/AutocompleteUnstyled';
 import PopperUnstyled from '@mui/base/PopperUnstyled';
 import { useThemeProps } from '../styles';
 import ClearIcon from '../internal/svg-icons/Close';
@@ -18,6 +22,15 @@ import ListItem from '../ListItem';
 import List, { ListRoot } from '../List/List';
 import { ListItemButtonRoot } from '../ListItemButton/ListItemButton';
 import autocompleteClasses, { getAutocompleteUtilityClass } from './autocompleteClasses';
+import {
+  AutocompleteProps,
+  AutocompleteRenderGroupParams,
+  AutocompleteRenderGetTagProps,
+} from './AutocompleteProps';
+
+const defaultGetOptionLabel = <T extends unknown>(option: T) =>
+  (option as { label: string }).label ?? option;
+const defaultLimitTagsText = (more: string | number) => `+${more}`;
 
 const useUtilityClasses = (ownerState) => {
   const {
@@ -244,12 +257,16 @@ const AutocompleteGroupUl = styled('ul', {
   },
 });
 
-const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
+const Autocomplete = React.forwardRef(function Autocomplete(
+  inProps,
+  ref: React.ForwardedRef<HTMLDivElement>,
+) {
   const props = useThemeProps({
     props: inProps,
     name: 'JoyAutocomplete',
   });
 
+  /* eslint-disable @typescript-eslint/no-unused-vars */
   const {
     autoComplete = false,
     autoHighlight = false,
@@ -274,9 +291,9 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     forcePopupIcon = 'auto',
     freeSolo = false,
     fullWidth = false,
-    getLimitTagsText = (more) => `+${more}`,
+    getLimitTagsText = defaultLimitTagsText,
     getOptionDisabled,
-    getOptionLabel = (option) => option.label ?? option,
+    getOptionLabel = defaultGetOptionLabel,
     isOptionEqualToValue,
     groupBy,
     handleHomeEndKeys = !props.freeSolo,
@@ -350,17 +367,17 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
 
   let startDecorator;
 
-  if (multiple && value.length > 0) {
-    const getCustomizedTagProps = (params) => ({
+  if (multiple && (value as Array<unknown>).length > 0) {
+    const getCustomizedTagProps: AutocompleteRenderGetTagProps = (params) => ({
       className: classes.tag,
       disabled,
       ...getTagProps(params),
     });
 
     if (renderTags) {
-      startDecorator = renderTags(value, getCustomizedTagProps, ownerState);
+      startDecorator = renderTags(value as Array<unknown>, getCustomizedTagProps, ownerState);
     } else {
-      startDecorator = value.map((option, index) => {
+      startDecorator = (value as Array<unknown>).map((option, index) => {
         const { onDelete, ...tagProps } = getCustomizedTagProps({ index });
         return (
           <Chip size={size} {...tagProps} endDecorator={<ChipDelete onClick={onDelete} />}>
@@ -383,7 +400,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     }
   }
 
-  const defaultRenderGroup = (params) => (
+  const defaultRenderGroup = (params: AutocompleteRenderGroupParams) => (
     <ListItem key={params.key} nested>
       <AutocompleteGroupLabel sticky>{params.group}</AutocompleteGroupLabel>
       <List>{params.children}</List>
@@ -391,7 +408,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
   );
 
   const renderGroup = renderGroupProp || defaultRenderGroup;
-  const defaultRenderOption = (props2, option) => (
+  const defaultRenderOption = (props2: React.HTMLAttributes<HTMLLIElement>, option: unknown) => (
     <AutocompleteOption
       as="li"
       ownerState={{ ...ownerState, variant: 'plain', color: 'neutral' }}
@@ -402,11 +419,12 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
   );
   const renderOption = renderOptionProp || defaultRenderOption;
 
-  const renderListOption = (option, index) => {
+  const renderListOption = (option: unknown, index: number) => {
     const optionProps = getOptionProps({ option, index });
 
     return renderOption({ ...optionProps, className: classes.option }, option, {
-      selected: optionProps['aria-selected'],
+      // `aria-selected` prop will always by boolean, see useAutocomplete hook.
+      selected: !!optionProps['aria-selected'],
       inputValue,
     });
   };
@@ -511,11 +529,12 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
             ) : null}
             {groupedOptions.map((option, index) => {
               if (groupBy) {
+                const typedOption = option as AutocompleteGroupedOption;
                 return renderGroup({
-                  key: option.key,
-                  group: option.group,
-                  children: option.options.map((option2, index2) =>
-                    renderListOption(option2, option.index + index2),
+                  key: String(typedOption.key),
+                  group: typedOption.group,
+                  children: typedOption.options.map((option2, index2) =>
+                    renderListOption(option2, typedOption.index + index2),
                   ),
                 });
               }
@@ -526,7 +545,19 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
       ) : null}
     </React.Fragment>
   );
-});
+}) as AutocompleteComponent;
+
+interface AutocompleteComponent {
+  <
+    T,
+    Multiple extends boolean | undefined = undefined,
+    DisableClearable extends boolean | undefined = undefined,
+    FreeSolo extends boolean | undefined = undefined,
+  >(
+    props: AutocompleteProps<T, Multiple, DisableClearable, FreeSolo>,
+  ): JSX.Element;
+  propTypes?: any;
+}
 
 Autocomplete.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
