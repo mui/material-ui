@@ -75,6 +75,7 @@ export default function useAutocomplete(props) {
     clearOnBlur = !props.freeSolo,
     clearOnEscape = false,
     componentName = 'useAutocomplete',
+    classNamePrefix = 'Mui',
     defaultValue = props.multiple ? [] : null,
     disableClearable = false,
     disableCloseOnSelect = false,
@@ -326,10 +327,10 @@ export default function useAutocomplete(props) {
       return;
     }
 
-    const prev = listboxRef.current.querySelector('[role="option"].Mui-focused');
+    const prev = listboxRef.current.querySelector(`[role="option"].${classNamePrefix}-focused`);
     if (prev) {
-      prev.classList.remove('Mui-focused');
-      prev.classList.remove('Mui-focusVisible');
+      prev.classList.remove(`${classNamePrefix}-focused`);
+      prev.classList.remove(`${classNamePrefix}-focusVisible`);
     }
 
     const listboxNode = listboxRef.current.parentElement.querySelector('[role="listbox"]');
@@ -350,9 +351,9 @@ export default function useAutocomplete(props) {
       return;
     }
 
-    option.classList.add('Mui-focused');
+    option.classList.add(`${classNamePrefix}-focused`);
     if (reason === 'keyboard') {
-      option.classList.add('Mui-focusVisible');
+      option.classList.add(`${classNamePrefix}-focusVisible`);
     }
 
     // Scroll active descendant into view.

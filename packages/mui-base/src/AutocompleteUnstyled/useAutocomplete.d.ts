@@ -88,6 +88,11 @@ export interface UseAutocompleteProps<
    */
   componentName?: string;
   /**
+   * The prefix of the state class name
+   * @default 'Mui'
+   */
+  classNamePrefix?: string;
+  /**
    * The default value. Use when the component is not controlled.
    * @default props.multiple ? [] : null
    */

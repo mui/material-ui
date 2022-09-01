@@ -11,9 +11,11 @@ import ClearIcon from '../internal/svg-icons/Close';
 import ArrowDropDownIcon from '../internal/svg-icons/ArrowDropDown';
 import styled from '../styles/styled';
 import Chip from '../Chip';
+import ChipDelete from '../ChipDelete';
 import { IconButtonRoot } from '../IconButton/IconButton';
 import ListProvider, { scopedVariables } from '../List/ListProvider';
-import { ListRoot } from '../List/List';
+import ListItem from '../ListItem';
+import List, { ListRoot } from '../List/List';
 import { ListItemButtonRoot } from '../ListItemButton/ListItemButton';
 import autocompleteClasses, { getAutocompleteUtilityClass } from './autocompleteClasses';
 
@@ -61,157 +63,66 @@ const AutocompleteRoot = styled('div', {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })(({ ownerState }) => ({
-  [`&.${autocompleteClasses.focused} .${autocompleteClasses.clearIndicator}`]: {
-    visibility: 'visible',
-  },
+  ...(ownerState.fullWidth && {
+    width: '100%',
+  }),
   /* Avoid double tap issue on iOS */
   '@media (pointer: fine)': {
     [`&:hover .${autocompleteClasses.clearIndicator}`]: {
       visibility: 'visible',
     },
   },
-  ...(ownerState.fullWidth && {
-    width: '100%',
-  }),
-  [`& .${autocompleteClasses.tag}`]: {
-    margin: 3,
-    maxWidth: 'calc(100% - 6px)',
-    ...(ownerState.size === 'small' && {
-      margin: 2,
-      maxWidth: 'calc(100% - 4px)',
-    }),
-  },
-  [`& .${autocompleteClasses.inputRoot}`]: {
-    flexWrap: 'wrap',
-    [`.${autocompleteClasses.hasPopupIcon}&, .${autocompleteClasses.hasClearIcon}&`]: {
-      paddingRight: 26 + 4,
-    },
-    [`.${autocompleteClasses.hasPopupIcon}.${autocompleteClasses.hasClearIcon}&`]: {
-      paddingRight: 52 + 4,
-    },
-    [`& .${autocompleteClasses.input}`]: {
-      width: 0,
-      minWidth: 30,
-    },
-  },
-  // [`& .${inputClasses.root}`]: {
-  //   paddingBottom: 1,
-  //   '& .MuiInput-input': {
-  //     padding: '4px 4px 4px 0px',
-  //   },
-  // },
-  // [`& .${inputClasses.root}.${inputBaseClasses.sizeSmall}`]: {
-  //   [`& .${inputClasses.input}`]: {
-  //     padding: '2px 4px 3px 0',
-  //   },
-  // },
-  // [`& .${outlinedInputClasses.root}`]: {
-  //   padding: 9,
-  //   [`.${autocompleteClasses.hasPopupIcon}&, .${autocompleteClasses.hasClearIcon}&`]: {
-  //     paddingRight: 26 + 4 + 9,
-  //   },
-  //   [`.${autocompleteClasses.hasPopupIcon}.${autocompleteClasses.hasClearIcon}&`]: {
-  //     paddingRight: 52 + 4 + 9,
-  //   },
-  //   [`& .${autocompleteClasses.input}`]: {
-  //     padding: '7.5px 4px 7.5px 6px',
-  //   },
-  //   [`& .${autocompleteClasses.endAdornment}`]: {
-  //     right: 9,
-  //   },
-  // },
-  // [`& .${outlinedInputClasses.root}.${inputBaseClasses.sizeSmall}`]: {
-  //   // Don't specify paddingRight, as it overrides the default value set when there is only
-  //   // one of the popup or clear icon as the specificity is equal so the latter one wins
-  //   paddingTop: 6,
-  //   paddingBottom: 6,
-  //   paddingLeft: 6,
-  //   [`& .${autocompleteClasses.input}`]: {
-  //     padding: '2.5px 4px 2.5px 6px',
-  //   },
-  // },
-  // [`& .${filledInputClasses.root}`]: {
-  //   paddingTop: 19,
-  //   paddingLeft: 8,
-  //   [`.${autocompleteClasses.hasPopupIcon}&, .${autocompleteClasses.hasClearIcon}&`]: {
-  //     paddingRight: 26 + 4 + 9,
-  //   },
-  //   [`.${autocompleteClasses.hasPopupIcon}.${autocompleteClasses.hasClearIcon}&`]: {
-  //     paddingRight: 52 + 4 + 9,
-  //   },
-  //   [`& .${filledInputClasses.input}`]: {
-  //     padding: '7px 4px',
-  //   },
-  //   [`& .${autocompleteClasses.endAdornment}`]: {
-  //     right: 9,
-  //   },
-  // },
-  // [`& .${filledInputClasses.root}.${inputBaseClasses.sizeSmall}`]: {
-  //   paddingBottom: 1,
-  //   [`& .${filledInputClasses.input}`]: {
-  //     padding: '2.5px 4px',
-  //   },
-  // },
-  // [`& .${inputBaseClasses.hiddenLabel}`]: {
-  //   paddingTop: 8,
-  // },
   [`& .${autocompleteClasses.input}`]: {
-    flexGrow: 1,
-    textOverflow: 'ellipsis',
-    opacity: 0,
-    ...(ownerState.inputFocused && {
-      opacity: 1,
-    }),
+    minWidth: 30,
+  },
+  [`& .${autocompleteClasses}`]: {
+    minWidth: 30,
   },
 }));
-
-const AutocompleteEndAdornment = styled('div', {
-  name: 'JoyAutocomplete',
-  slot: 'EndAdornment',
-  overridesResolver: (props, styles) => styles.endAdornment,
-})({
-  // We use a position absolute to support wrapping tags.
-  position: 'absolute',
-  right: 0,
-  top: 'calc(50% - 14px)', // Center vertically
-});
 
 const AutocompleteClearIndicator = styled(IconButtonRoot, {
   name: 'JoyAutocomplete',
   slot: 'ClearIndicator',
   overridesResolver: (props, styles) => styles.clearIndicator,
-})({
-  marginRight: -2,
-  padding: 4,
-  visibility: 'hidden',
-});
+})(({ ownerState }) => ({
+  marginInlineEnd: 0, // prevent the automatic adjustment between Input and IconButtonRoot
+  visibility: ownerState.focused ? 'visible' : 'hidden',
+}));
 
 const AutocompletePopupIndicator = styled(IconButtonRoot, {
   name: 'JoyAutocomplete',
   slot: 'PopupIndicator',
   overridesResolver: (props, styles) => styles.popupIndicator,
 })(({ ownerState }) => ({
-  padding: 2,
-  marginRight: -2,
   ...(ownerState.popupOpen && {
     transform: 'rotate(180deg)',
   }),
 }));
 
-const AutocompletePopper = styled(ListRoot, {
+const AutocompleteListbox = styled(ListRoot, {
   name: 'JoyAutocomplete',
-  slot: 'Popper',
-  overridesResolver: (props, styles) => styles.popper,
-})(({ theme, ownerState }) => ({
-  '--List-radius': theme.vars.radius.sm,
-  '--List-item-stickyBackground': theme.vars.palette.background.surface, // for sticky List
-  '--List-item-stickyTop': 'calc(var(--List-padding, var(--List-divider-gap)) * -1)', // negative amount of the List's padding block
-  zIndex: 1200,
-  ...scopedVariables,
-  boxShadow: theme.vars.shadow.md,
-  overflow: 'auto',
-  maxHeight: '40vh',
-}));
+  slot: 'Listbox',
+  overridesResolver: (props, styles) => styles.listbox,
+})(({ theme, ownerState }) => {
+  const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];
+  return {
+    '--_outline-inside': '1', // to prevent the focus outline from being cut by overflow
+    '--List-radius': theme.vars.radius.sm,
+    '--List-item-stickyBackground':
+      variantStyle?.backgroundColor ||
+      variantStyle?.background ||
+      theme.vars.palette.background.surface,
+    '--List-item-stickyTop': 'calc(var(--List-padding, var(--List-divider-gap)) * -1)',
+    ...scopedVariables,
+    boxShadow: theme.vars.shadow.md,
+    ...(!variantStyle?.backgroundColor && {
+      backgroundColor: theme.vars.palette.background.surface,
+    }),
+    zIndex: 1200,
+    overflow: 'auto',
+    maxHeight: '40vh',
+  };
+});
 
 const AutocompleteLoading = styled('div', {
   name: 'JoyAutocomplete',
@@ -231,82 +142,95 @@ const AutocompleteNoOptions = styled('div', {
   padding: '14px 16px',
 }));
 
-const AutocompleteListbox = styled('div', {
+const AutocompleteOption = styled(ListItemButtonRoot, {
   name: 'JoyAutocomplete',
-  slot: 'Listbox',
-  overridesResolver: (props, styles) => styles.listbox,
-})(({ theme }) => ({
-  listStyle: 'none',
-  margin: 0,
-  padding: '8px 0',
-  maxHeight: '40vh',
-  overflow: 'auto',
-  // [`& .${autocompleteClasses.option}`]: {
-  //   minHeight: 48,
-  //   display: 'flex',
-  //   overflow: 'hidden',
-  //   justifyContent: 'flex-start',
-  //   alignItems: 'center',
-  //   cursor: 'pointer',
-  //   paddingTop: 6,
-  //   boxSizing: 'border-box',
-  //   outline: '0',
-  //   WebkitTapHighlightColor: 'transparent',
-  //   paddingBottom: 6,
-  //   paddingLeft: 16,
-  //   paddingRight: 16,
-  //   [theme.breakpoints.up('sm')]: {
-  //     minHeight: 'auto',
-  //   },
-  //   [`&.${autocompleteClasses.focused}`]: {
-  //     // backgroundColor: (theme.vars || theme).palette.action.hover,
-  //     // Reset on touch devices, it doesn't add specificity
-  //     '@media (hover: none)': {
-  //       backgroundColor: 'transparent',
-  //     },
-  //   },
-  //   '&[aria-disabled="true"]': {
-  //     // opacity: (theme.vars || theme).palette.action.disabledOpacity,
-  //     pointerEvents: 'none',
-  //   },
-  //   [`&.${autocompleteClasses.focusVisible}`]: {
-  //     // backgroundColor: (theme.vars || theme).palette.action.focus,
-  //   },
-  //   // '&[aria-selected="true"]': {
-  //   //   backgroundColor: theme.vars
-  //   //     ? `rgba(${theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.selectedOpacity})`
-  //   //     : alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
-  //   //   [`&.${autocompleteClasses.focused}`]: {
-  //   //     backgroundColor: theme.vars
-  //   //       ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))`
-  //   //       : alpha(
-  //   //           theme.palette.primary.main,
-  //   //           theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
-  //   //         ),
-  //   //     // Reset on touch devices, it doesn't add specificity
-  //   //     '@media (hover: none)': {
-  //   //       backgroundColor: (theme.vars || theme).palette.action.selected,
-  //   //     },
-  //   //   },
-  //   //   [`&.${autocompleteClasses.focusVisible}`]: {
-  //   //     backgroundColor: theme.vars
-  //   //       ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.focusOpacity}))`
-  //   //       : alpha(
-  //   //           theme.palette.primary.main,
-  //   //           theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
-  //   //         ),
-  //   //   },
-  //   // },
-  // },
+  slot: 'Option',
+  overridesResolver: (props, styles) => styles.option,
+})(({ theme, ownerState }) => ({
+  '&[aria-disabled="true"]': theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
+  '&[aria-selected="true"]': {
+    ...theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
+    fontWeight: theme.vars.fontWeight.md,
+  },
 }));
 
-const AutocompleteGroupLabel = styled('li', {
+// const AutocompleteListbox = styled('div', {
+//   name: 'JoyAutocomplete',
+//   slot: 'Listbox',
+//   overridesResolver: (props, styles) => styles.listbox,
+// })(({ theme }) => ({
+//   listStyle: 'none',
+//   margin: 0,
+//   padding: '8px 0',
+//   maxHeight: '40vh',
+//   overflow: 'auto',
+//   [`& .${autocompleteClasses.option}`]: {
+//     minHeight: 48,
+//     display: 'flex',
+//     overflow: 'hidden',
+//     justifyContent: 'flex-start',
+//     alignItems: 'center',
+//     cursor: 'pointer',
+//     paddingTop: 6,
+//     boxSizing: 'border-box',
+//     outline: '0',
+//     WebkitTapHighlightColor: 'transparent',
+//     paddingBottom: 6,
+//     paddingLeft: 16,
+//     paddingRight: 16,
+//     [theme.breakpoints.up('sm')]: {
+//       minHeight: 'auto',
+//     },
+//     [`&.${autocompleteClasses.focused}`]: {
+//       // backgroundColor: (theme.vars || theme).palette.action.hover,
+//       // Reset on touch devices, it doesn't add specificity
+//       '@media (hover: none)': {
+//         backgroundColor: 'transparent',
+//       },
+//     },
+//     '&[aria-disabled="true"]': {
+//       // opacity: (theme.vars || theme).palette.action.disabledOpacity,
+//       pointerEvents: 'none',
+//     },
+//     [`&.${autocompleteClasses.focusVisible}`]: {
+//       // backgroundColor: (theme.vars || theme).palette.action.focus,
+//     },
+//     // '&[aria-selected="true"]': {
+//     //   backgroundColor: theme.vars
+//     //     ? `rgba(${theme.vars.palette.primary.mainChannel} / ${theme.vars.palette.action.selectedOpacity})`
+//     //     : alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+//     //   [`&.${autocompleteClasses.focused}`]: {
+//     //     backgroundColor: theme.vars
+//     //       ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.hoverOpacity}))`
+//     //       : alpha(
+//     //           theme.palette.primary.main,
+//     //           theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
+//     //         ),
+//     //     // Reset on touch devices, it doesn't add specificity
+//     //     '@media (hover: none)': {
+//     //       backgroundColor: (theme.vars || theme).palette.action.selected,
+//     //     },
+//     //   },
+//     //   [`&.${autocompleteClasses.focusVisible}`]: {
+//     //     backgroundColor: theme.vars
+//     //       ? `rgba(${theme.vars.palette.primary.mainChannel} / calc(${theme.vars.palette.action.selectedOpacity} + ${theme.vars.palette.action.focusOpacity}))`
+//     //       : alpha(
+//     //           theme.palette.primary.main,
+//     //           theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
+//     //         ),
+//     //   },
+//     // },
+//   },
+// }));
+
+const AutocompleteGroupLabel = styled(ListItem, {
   name: 'JoyAutocomplete',
   slot: 'GroupLabel',
   overridesResolver: (props, styles) => styles.groupLabel,
 })(({ theme }) => ({
-  backgroundColor: theme.vars.palette.background.surface,
-  top: -8,
+  color: theme.vars.palette.text.secondary,
+  fontSize: theme.vars.fontSize.sm,
+  letterSpacing: theme.vars.letterSpacing.md,
 }));
 
 const AutocompleteGroupUl = styled('ul', {
@@ -331,7 +255,6 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     autoHighlight = false,
     autoSelect = false,
     blurOnSelect = false,
-    ChipProps,
     className,
     clearIcon = <ClearIcon fontSize="md" />,
     clearOnBlur = !props.freeSolo,
@@ -361,8 +284,6 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     includeInputInList = false,
     inputValue: inputValueProp,
     limitTags = -1,
-    ListboxComponent = 'ul',
-    ListboxProps,
     loading = false,
     loadingText = 'Loading…',
     multiple = false,
@@ -407,7 +328,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     setAnchorEl,
     inputValue,
     groupedOptions,
-  } = useAutocomplete({ ...props, componentName: 'Autocomplete' });
+  } = useAutocomplete({ ...props, componentName: 'Autocomplete', classNamePrefix: 'Joy' });
 
   const hasClearIcon = !disableClearable && !disabled && dirty && !readOnly;
   const hasPopupIcon = (!freeSolo || forcePopupIcon === true) && forcePopupIcon !== false;
@@ -439,11 +360,14 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     if (renderTags) {
       startDecorator = renderTags(value, getCustomizedTagProps, ownerState);
     } else {
-      startDecorator = value.map((option, index) => (
-        <Chip size={size} {...getCustomizedTagProps({ index })} {...ChipProps}>
-          {getOptionLabel(option)}
-        </Chip>
-      ));
+      startDecorator = value.map((option, index) => {
+        const { onDelete, ...tagProps } = getCustomizedTagProps({ index });
+        return (
+          <Chip size={size} {...tagProps} endDecorator={<ChipDelete onClick={onDelete} />}>
+            {getOptionLabel(option)}
+          </Chip>
+        );
+      });
     }
   }
 
@@ -460,33 +384,21 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
   }
 
   const defaultRenderGroup = (params) => (
-    <ListItemButtonRoot
-      as="li"
-      ownerState={{ ...ownerState, variant: 'plain', color: 'neutral' }}
-      key={params.key}
-    >
-      <AutocompleteGroupLabel
-        className={classes.groupLabel}
-        ownerState={ownerState}
-        component="div"
-      >
-        {params.group}
-      </AutocompleteGroupLabel>
-      <AutocompleteGroupUl className={classes.groupUl} ownerState={ownerState}>
-        {params.children}
-      </AutocompleteGroupUl>
-    </ListItemButtonRoot>
+    <ListItem key={params.key} nested>
+      <AutocompleteGroupLabel sticky>{params.group}</AutocompleteGroupLabel>
+      <List>{params.children}</List>
+    </ListItem>
   );
 
   const renderGroup = renderGroupProp || defaultRenderGroup;
   const defaultRenderOption = (props2, option) => (
-    <ListItemButtonRoot
+    <AutocompleteOption
       as="li"
       ownerState={{ ...ownerState, variant: 'plain', color: 'neutral' }}
       {...props2}
     >
       {getOptionLabel(option)}
-    </ListItemButtonRoot>
+    </AutocompleteOption>
   );
   const renderOption = renderOptionProp || defaultRenderOption;
 
@@ -511,7 +423,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
           id,
           disabled,
           fullWidth: true,
-          size: size === 'sm' ? 'sm' : undefined,
+          size,
           InputLabelProps: getInputLabelProps(),
           InputProps: {
             ref: setAnchorEl,
@@ -519,13 +431,13 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
             startDecorator,
             ...((hasClearIcon || hasPopupIcon) && {
               endDecorator: (
-                <AutocompleteEndAdornment className={classes.endAdornment} ownerState={ownerState}>
+                <React.Fragment>
                   {hasClearIcon ? (
                     <AutocompleteClearIndicator
                       {...getClearProps()}
                       aria-label={clearText}
                       title={clearText}
-                      ownerState={ownerState}
+                      ownerState={{ ...ownerState, variant: 'plain', color: 'neutral' }}
                       {...componentsProps.clearIndicator}
                       className={clsx(
                         classes.clearIndicator,
@@ -542,7 +454,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
                       disabled={disabled}
                       aria-label={popupOpen ? closeText : openText}
                       title={popupOpen ? closeText : openText}
-                      ownerState={ownerState}
+                      ownerState={{ ...ownerState, variant: 'plain', color: 'neutral' }}
                       {...componentsProps.popupIndicator}
                       className={clsx(
                         classes.popupIndicator,
@@ -552,7 +464,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
                       {popupIcon}
                     </AutocompletePopupIndicator>
                   ) : null}
-                </AutocompleteEndAdornment>
+                </React.Fragment>
               ),
             }),
           },
@@ -566,12 +478,12 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
       </AutocompleteRoot>
       {anchorEl ? (
         <PopperUnstyled
-          component={AutocompletePopper}
+          component={AutocompleteListbox}
           disablePortal={disablePortal}
           style={{
             width: anchorEl ? anchorEl.clientWidth : null,
           }}
-          ownerState={ownerState}
+          ownerState={{ ...ownerState, variant: 'outlined', color: 'neutral' }}
           anchorEl={anchorEl}
           open={popupOpen}
           {...componentsProps.popper}
@@ -609,28 +521,6 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
               }
               return renderListOption(option, index);
             })}
-            {/* {groupedOptions.length > 0 ? (
-              <AutocompleteListbox
-                as={ListboxComponent}
-                className={classes.listbox}
-                ownerState={ownerState}
-                {...getListboxProps()}
-                {...ListboxProps}
-              >
-                {groupedOptions.map((option, index) => {
-                  if (groupBy) {
-                    return renderGroup({
-                      key: option.key,
-                      group: option.group,
-                      children: option.options.map((option2, index2) =>
-                        renderListOption(option2, option.index + index2),
-                      ),
-                    });
-                  }
-                  return renderListOption(option, index);
-                })}
-              </AutocompleteListbox>
-            ) : null} */}
           </ListProvider>
         </PopperUnstyled>
       ) : null}

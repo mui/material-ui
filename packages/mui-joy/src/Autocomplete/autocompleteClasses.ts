@@ -25,8 +25,6 @@ export interface AutocompleteClasses {
   input: string;
   /** Styles applied to the input element if the input is focused. */
   inputFocused: string;
-  /** Styles applied to the endAdornment element. */
-  endAdornment: string;
   /** Styles applied to the clear indicator. */
   clearIndicator: string;
   /** Styles applied to the popup indicator. */
@@ -72,7 +70,6 @@ const autocompleteClasses: AutocompleteClasses = generateUtilityClasses('JoyAuto
   'inputRoot',
   'input',
   'inputFocused',
-  'endAdornment',
   'clearIndicator',
   'popupIndicator',
   'popupIndicatorOpen',

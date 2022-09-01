@@ -169,9 +169,11 @@ const InputStartDecorator = styled('span', {
   '--Button-margin': '0 0 0 calc(var(--Input-decorator-childOffset) * -1)',
   '--IconButton-margin': '0 0 0 calc(var(--Input-decorator-childOffset) * -1)',
   '--Icon-margin': '0 0 0 calc(var(--Input-paddingInline) / -4)',
-  pointerEvents: 'none', // to make the input focused when click on the element because start element usually is an icon
+  cursor: 'initial',
   display: 'inherit',
   alignItems: 'center',
+  paddingBlock: 'var(--internal-paddingBlock)', // for wrapping Autocomplete's tags
+  flexWrap: 'wrap', // for wrapping Autocomplete's tags
   marginInlineEnd: 'var(--Input-gap)',
   color: theme.vars.palette.text.tertiary,
   ...(ownerState.focused && {
@@ -187,6 +189,7 @@ const InputEndDecorator = styled('span', {
   '--Button-margin': '0 calc(var(--Input-decorator-childOffset) * -1) 0 0',
   '--IconButton-margin': '0 calc(var(--Input-decorator-childOffset) * -1) 0 0',
   '--Icon-margin': '0 calc(var(--Input-paddingInline) / -4) 0 0',
+  cursor: 'initial',
   display: 'inherit',
   alignItems: 'center',
   marginInlineStart: 'var(--Input-gap)',
