@@ -8,7 +8,7 @@
 [react](https://www.npmjs.com/package/react) >= 17.0.0 is a peer dependency.
 :::
 
-## Basic installation
+## Default installation
 
 Run one of the following commands to add MUI System to your project:
 

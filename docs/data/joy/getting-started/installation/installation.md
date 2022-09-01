@@ -8,7 +8,7 @@
 [react](https://www.npmjs.com/package/react) >= 17.0.0 and [react-dom](https://www.npmjs.com/package/react-dom) >= 17.0.0 are peer dependencies.
 :::
 
-## Basic installation
+## Default installation
 
 Run one of the following commands to add Joy UI to your project:
 
