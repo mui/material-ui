@@ -1,4 +1,3 @@
-/* eslint-disable material-ui/mui-name-matches-component-name */
 import PropTypes from 'prop-types';
 import { createStack } from '@mui/system';
 import styled from '../styles/styled';
