@@ -39,14 +39,16 @@ For example, the `MonthPicker`’s prop `onMonthChange` and the `YearPicker`’s
 
 We also added new customizable slots:
 
-- The `ActionBar` enables customizing the actions below the picker. It replaces the props `clearable`, `showTodayButton`, `cancelText`, `okText`
-- The `PaperContent` enables adding custom elements in the Desktop view
+- `ActionBar` lets you customize the actions below the picker. It replaces the props `clearable`, `showTodayButton`, `cancelText`, `okText`
+- `PaperContent` lets you add custom elements in the desktop view
 
 ### Integrated localization
 
 It’s not obvious at first glance, but pickers contain some textual information. The action buttons as well as the aria-labels for accessibility (a11y) support.
 
-We integrated a [new localization](https://mui.com/x/react-date-pickers/localization/#translation-keys) pipeline similar to the one used by the data grid. It enables importing translations directly into the main theme in a few lines. And thanks to the amazing contributors, translations for 11 languages are already available. 
+We integrated a [new localization](https://mui.com/x/react-date-pickers/localization/#translation-keys) pipeline similar to the one used by the Data Grid. 
+It lets you import translations directly into the main theme in a few lines. 
+And thanks to the amazing contributors, translations for 11 languages are already available. 
 
 ```jsx
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -76,10 +78,10 @@ From npm download statistics, less than 40% of the community is still using a ve
 So a big part of you already did the migration from `@mui/lab`.
 
 And the adoption speed accros versions is very encouraging.
-You are already 40% to use a beta version. 🚀
+Over 40% of users are already using the beta version. 
 
 <img src="/static/blog/date-pickers-stable-v5/date-picker-versions.png" style="width: 796px; margin-top: 16px; margin-bottom: 2px;" alt="Evolution of downloaded version of @mui/x-data-pickers" />
-<p class="blog-description" style="text-align: center;">Relative distribution of `@mui/x-date-pickers` versions  between june and august.</p>
+<p class="blog-description" style="text-align: center;">Relative distribution of `@mui/x-date-pickers` versions between June and August.</p>
 
 ## Installation and migration from `@mui/lab`
 
