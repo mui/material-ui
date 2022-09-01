@@ -2,7 +2,6 @@
 
 <p class="description">Check out these prebuilt UI kits to help you design with Material UI using your favorite tools.</p>
 
-
 <a href="https://mui.com/store/items/figma-react/?utm_source=docs&utm_medium=referral&utm_campaign=installation-figma" style="margin-left: 8px; margin-top: 8px; display: inline-block;"><img src="/static/images/download-figma.svg" alt="figma" /></a>
 <a href="https://mui.com/store/items/adobe-xd-react/?utm_source=docs&utm_medium=referral&utm_campaign=installation-adobe-xd" style="margin-left: 32px; margin-top: 8px; display: inline-block;"><img src="/static/images/download-adobe-xd.svg" alt="adobe-xd" /></a>
 <a href="https://mui.com/store/items/sketch-react/?utm_source=docs&utm_medium=referral&utm_campaign=installation-sketch" style="margin-left: 32px; margin-top: 8px; display: inline-block;"><img src="/static/images/download-sketch.svg" alt="sketch" /></a>
@@ -25,5 +24,5 @@
 
 ### UXPin
 
-[Material UI for UXPin](https://www.uxpin.com/merge/mui-library): A large UI kit of Material UI components. 
+[Material UI for UXPin](https://www.uxpin.com/merge/mui-library): A large UI kit of Material UI components.
 The design tool renders the components in a web runtime. It uses the same React implementation as your production environment.

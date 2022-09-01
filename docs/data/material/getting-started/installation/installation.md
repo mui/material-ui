@@ -49,7 +49,7 @@ Visit the [Styled engine guide](/material-ui/guides/styled-engine/) for more inf
 
 Material UI is designed to use the [Roboto](https://fonts.google.com/specimen/Roboto)
 font by default.
-You may add it to your project with npm or yarn via [Fontsource](https://fontsource.org/), or with the Google Fonts CDN. 
+You may add it to your project with npm or yarn via [Fontsource](https://fontsource.org/), or with the Google Fonts CDN.
 
 ### npm
 
@@ -90,7 +90,7 @@ To install the Roboto font in your project using the Google Web Fonts CDN, add t
 ## Icons
 
 To use the [font Icon component](/material-ui/icons/#icon-font-icons) or the prebuilt SVG Material Icons (such as those found in the [icon demos](/material-ui/icons/)), you must first install the [Material Icons](https://fonts.google.com/icons?icon.set=Material+Icons) font.
-You can do so with npm or yarn, or with the Google Web Fonts CDN. 
+You can do so with npm or yarn, or with the Google Web Fonts CDN.
 
 ### npm
 
@@ -121,7 +121,7 @@ You can start using Material UI right away with minimal front-end infrastructure
 Follow [this CDN example](https://github.com/mui/material-ui/tree/master/examples/cdn) to get started.
 
 :::error
-We do _not_ recommend using this approach in production. 
+We do _not_ recommend using this approach in production.
 It requires the client to download the entire library—regardless of which components are actually used—which negatively impacts performance and bandwidth utilization.
 :::
 

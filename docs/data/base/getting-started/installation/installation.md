@@ -17,6 +17,7 @@ npm install @mui/base
 ```sh
 yarn add @mui/base
 ```
+
 ## Peer dependencies
 
 <!-- #react-peer-version -->
