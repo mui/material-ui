@@ -36,9 +36,9 @@ const GOLDs = [
   {
     src: 'https://images.opencollective.com/netticasinohex-com/71d7417/logo/40.png',
     srcSet: 'https://images.opencollective.com/netticasinohex-com/71d7417/logo/80.png 2x',
-    name: 'NettiCasinoHEX.com',
+    name: 'NettiCasinoHEX',
     description: 'A real giant among casino guides.',
-    href: 'https://netticasinohex.com//?utm_source=MUI&utm_medium=referral&utm_content=homepage',
+    href: 'https://netticasinohex.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
   },
   {
     src: '/static/sponsors//megafamous.png',
