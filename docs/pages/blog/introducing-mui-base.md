@@ -20,15 +20,16 @@ Start from scratch with MUI Base, or use Material UI for rapid prototyping, and 
 
 ## Why MUI Base?
 
-The new library use cases are somewhat different than those of Material UI.
-Material UI shines at providing you means to quickly create user interfaces that look close to the Material Design specification.
+MUI Base was created to serve a different set of needs than those addressed by Material UI.
+Material UI shines at providing you with the means to quickly create user interfaces that look close to the Material Design specification.
 MUI Base, on the other hand, prioritizes customizability over the speed of development.
-It's better suited for public-facing projects where pixel-perfection is crucial.
+This makes it better suited for public-facing projects where pixel-perfect implementation is crucial.
 
 So, why not use any of the headless libraries already present on the market instead?
-There are other alternatives like Headless UI, Radix UI, or React Aria, to name a few.
+There are other alternatives like Headless UI, Radix UI, and React Aria, to name a few.
 MUI Base's significant advantage is that it takes the best parts from Material UI, which is a complete, mature library.
-It gives you a familiar API to program against, which makes it easy to migrate a project (or just a part of it) from Material UI if needed.
+While they were created for different use cases, these two libraries share many common features and design patterns, and are intended to be complementary to one another within the MUI ecosystem.
+MUI Base's API will be familiar to you if you've used Material UI before, making it easy to migrate a project—or just a part of it—from one library to the other if needed.
 We aim to create [unstyled versions of all Material UI components](https://github.com/mui/material-ui/issues/27170) (that make sense to do so).
 
 ## Components and hooks
