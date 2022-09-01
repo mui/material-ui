@@ -45,11 +45,42 @@ Visit the [Styled engine guide](/material-ui/guides/styled-engine/) for more inf
 
 [`react`](https://www.npmjs.com/package/react) >= 17.0.0 and [`react-dom`](https://www.npmjs.com/package/react-dom) >= 17.0.0 are peer dependencies.
 
-## Roboto font
+## Fonts and icons
 
-Material UI was designed with the [Roboto](https://fonts.google.com/specimen/Roboto)
-font in mind. So be sure to follow [these instructions](/material-ui/react-typography/#general).
-For instance, via Google Web Fonts:
+### Roboto font
+
+Material UI is designed to use the [Roboto](https://fonts.google.com/specimen/Roboto)
+font by default.
+You may add it to your project with npm or yarn via [Fontsource](https://fontsource.org/), or with the Google Fonts CDN. 
+
+#### npm
+
+```sh
+npm install @fontsource/roboto
+```
+
+#### yarn
+
+```sh
+yarn add @fontsource/roboto
+```
+
+Then you can import it in your entry point like this:
+
+```tsx
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
+```
+
+:::info
+Fontsource can be configured to load specific subsets, weights and styles. Material UI's default typography configuration only relies on 300, 400, 500, and 700 font weights.
+:::
+
+#### Google Web Fonts
+
+To add the Roboto font to your project using the Google Web Fonts CDN, add the following code snippet inside your project's `<head />` tag:
 
 ```html
 <link
@@ -58,7 +89,7 @@ For instance, via Google Web Fonts:
 />
 ```
 
-## Font icons
+### Font icons
 
 To use the font `Icon` component, you must first add the [Material Icons](https://fonts.google.com/icons?icon.set=Material+Icons) font.
 Here are [some instructions](/material-ui/icons/#font-icons)
@@ -72,20 +103,22 @@ For instance, via Google Web Fonts:
 />
 ```
 
-## SVG icons
+### SVG icons
 
 In order to use prebuilt SVG Material icons, such as those found in the [icons demos](/material-ui/icons/)
-you must first install the [@mui/icons-material](https://www.npmjs.com/package/@mui/icons-material) package:
+you must first install the [@mui/icons-material](https://www.npmjs.com/package/@mui/icons-material) package.
 
 <!-- #default-branch-switch -->
 
-With **npm**:
+Run one of the following commands to add Material Icons to your project:
+
+#### npm
 
 ```sh
 npm install @mui/icons-material
 ```
 
-With **yarn**:
+#### yarn
 
 ```sh
 yarn add @mui/icons-material
