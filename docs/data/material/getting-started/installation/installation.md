@@ -2,38 +2,47 @@
 
 <p class="description">Install Material UI, the world's most popular React UI framework.</p>
 
-Material UI is available as an [npm package](https://www.npmjs.com/package/@mui/material).
+<!-- #react-peer-version -->
 
-## npm
+:::warning
+[react](https://www.npmjs.com/package/react) >= 17.0.0 and [react-dom](https://www.npmjs.com/package/react-dom) >= 17.0.0 are peer dependencies.
+:::
 
-To install and save in your `package.json` dependencies, run the command below using **npm**:
+## Basic installation
+
+Run one of the following commands to add Material UI to your project:
+
+### npm
 
 ```sh
 npm install @mui/material @emotion/react @emotion/styled
 ```
 
-Or **yarn**:
+### yarn
 
 ```sh
 yarn add @mui/material @emotion/react @emotion/styled
 ```
 
-<!-- #react-peer-version -->
+## With styled-components
 
-Please note that [react](https://www.npmjs.com/package/react) >= 17.0.0 and [react-dom](https://www.npmjs.com/package/react-dom) >= 17.0.0 are peer dependencies.
+Material UI uses [Emotion](https://emotion.sh/) as its default styling engine.
+If you want to use [styled-components](https://styled-components.com/) instead, run one of the following commands:
 
-Material UI is using [emotion](https://emotion.sh/docs/introduction) as a styling engine by default. If you want to use [`styled-components`](https://styled-components.com/) instead, run:
+### npm
 
 ```sh
 npm install @mui/material @mui/styled-engine-sc styled-components
 ```
 
+### yarn
+
 ```sh
 yarn add @mui/material @mui/styled-engine-sc styled-components
 ```
 
-:::info
-💡 Take a look at the [Styled Engine guide](/material-ui/guides/styled-engine/) for more information about how to configure `styled-components` as the style engine.
+:::warning
+Visit the [Styled engine guide](/material-ui/guides/styled-engine/) for more information about how to configure styled-components.
 :::
 
 ## Roboto font
