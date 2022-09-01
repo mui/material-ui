@@ -5,7 +5,7 @@
 <!-- #react-peer-version -->
 
 :::warning
-[react](https://www.npmjs.com/package/react) >= 17.0.0 and [react-dom](https://www.npmjs.com/package/react-dom) >= 17.0.0 are peer dependencies.
+[react](https://www.npmjs.com/package/react) >= 17.0.0 is a peer dependency.
 :::
 
 ## Basic installation
