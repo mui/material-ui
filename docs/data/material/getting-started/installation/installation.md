@@ -2,12 +2,6 @@
 
 <p class="description">Install Material UI, the world's most popular React UI framework.</p>
 
-<!-- #react-peer-version -->
-
-:::warning
-[react](https://www.npmjs.com/package/react) >= 17.0.0 and [react-dom](https://www.npmjs.com/package/react-dom) >= 17.0.0 are peer dependencies.
-:::
-
 ## Default installation
 
 Run one of the following commands to add Material UI to your project:
@@ -44,6 +38,12 @@ yarn add @mui/material @mui/styled-engine-sc styled-components
 :::warning
 Visit the [Styled engine guide](/material-ui/guides/styled-engine/) for more information about how to configure styled-components.
 :::
+
+## Peer dependencies
+
+<!-- #react-peer-version -->
+
+[`react`](https://www.npmjs.com/package/react) >= 17.0.0 and [`react-dom`](https://www.npmjs.com/package/react-dom) >= 17.0.0 are peer dependencies.
 
 ## Roboto font
 
