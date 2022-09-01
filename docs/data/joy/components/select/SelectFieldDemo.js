@@ -22,7 +22,7 @@ export default function SelectFieldDemo() {
           },
         }}
         value={value}
-        onChange={setValue}
+        onChange={(e, newValue) => setValue(newValue)}
         sx={{ mt: 0.25 }}
       >
         <Option value="dog">Dog</Option>
