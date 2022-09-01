@@ -102,7 +102,7 @@ const styles = `
     border-radius: 12px;
     padding: 12px 16px;
     line-height: 1.5;
-    background: '#fff';
+    background: #fff;
     border: 1px solid ${grey[200]};
     color: ${grey[900]};
     cursor: pointer;
