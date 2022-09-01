@@ -25,9 +25,9 @@ We revamped the [getting started](https://mui.com/x/react-date-pickers/getting-s
 
 ### Bug fixes and other issues
 
-More than 150 issues were solved during the pre-releases (alpha/beta), including the epic [refactoring of the date/time selection behavior](https://github.com/mui/mui-x/pull/4408), which has clarified edge cases about how a date is selected, accepted, dismissed, and which callbacks are triggered.
+More than 150 issues were solved during the pre-releases (alpha/beta), including the epic [refactoring of the date/time selection behavior](https://github.com/mui/mui-x/pull/4408), which has clarified edge cases about how a date is selected, accepted, dismissed, and which callbacks are triggered when.
 
-A big thanks to all the contributors who took the time to clarify the edge cases they faced. It has been a huge help to refine the components’ behaviors.
+A big thanks to all the contributors who took the time to clarify the edge cases they faced. It has been a huge help in refining the components behavior.
 
 <img src="/static/blog/date-pickers-stable-v5/monkeyuser-237-fov.png" style="width: 796px; margin-top: 16px; margin-bottom: 8px;" alt="Bug illustration from monkeyuser.com" />
 
@@ -41,10 +41,11 @@ We also added new customizable slots:
 
 - `ActionBar` lets you customize the actions below the picker. It replaces the props `clearable`, `showTodayButton`, `cancelText`, `okText`
 - `PaperContent` lets you add custom elements in the desktop view
+- `Tabs` lets you customize the tab used to switch between date and time view
 
 ### Integrated localization
 
-It’s not obvious at first glance, but pickers contain some textual information. The action buttons as well as the aria-labels for accessibility (a11y) support.
+It’s not obvious at first glance, but the pickers do contain some textual information, including action buttons as well as aria-labels for accessibility support.
 
 We integrated a [new localization](https://mui.com/x/react-date-pickers/localization/#translation-keys) pipeline similar to the one used by the Data Grid. 
 It lets you import translations directly into the main theme in a few lines. 
@@ -90,7 +91,7 @@ If you are migrating from the `@mui/lab` package, we’ve prepared a migration g
 
 ## What to expect next?
 
-After working on stability and developer experience, we’re now pushing to improve the components’ usability.
+After working on stability and developer experience, we’re now pushing to improve the components usability.
 
 We’ve been exploring different approaches and implementations for the date fields, and we’ll soon release a v6 alpha version to start iterating on the new and improved components.
 
