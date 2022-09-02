@@ -20,11 +20,13 @@ export default function MaterialUIDefaultDark() {
         }}
       >
         <AppBar position="static" color="secondary" elevation={12}>
-          <Toolbar>The color should be secondary.</Toolbar>
+          <Toolbar>The color should be `palette.AppBar.darkBg`</Toolbar>
         </AppBar>
-        <Paper elevation={24} sx={{ bgcolor: 'red' }}>
-          I should be red without overlay.
-        </Paper>
+        <Box sx={{ height: 100, bgcolor: 'red' }}>
+          <Paper elevation={24} sx={{ bgcolor: 'red', p: 2 }}>
+            I should be red with overlay.
+          </Paper>
+        </Box>
       </Box>
     </CssVarsProvider>
   );
