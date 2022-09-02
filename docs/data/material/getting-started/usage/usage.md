@@ -1,6 +1,6 @@
 # Usage
 
-<p class="description">Get started with React and MUI in no time.</p>
+<p class="description">Learn the basics of working with Material UI components.</p>
 
 MUI components work in isolation.
 **They are self-supporting**, and will only inject the styles they need to display.
