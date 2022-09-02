@@ -1,4 +1,5 @@
 import * as React from 'react';
+import Box from '@mui/joy/Box';
 import Select from '@mui/joy/Select';
 import Option, { optionClasses } from '@mui/joy/Option';
 import Chip from '@mui/joy/Chip';
@@ -21,61 +22,63 @@ export default function SelectGroupedOptions() {
     Air: 'success',
   };
   return (
-    <Select
-      placeholder="Choose your animal"
-      defaultListboxOpen
-      componentsProps={{
-        listbox: {
-          component: 'div',
-          sx: {
-            maxHeight: 240,
-            overflow: 'auto',
-            '--List-padding': '0px',
+    <Box sx={{ minHeight: 300 }}>
+      <Select
+        placeholder="Choose your animal"
+        defaultListboxOpen
+        componentsProps={{
+          listbox: {
+            component: 'div',
+            sx: {
+              maxHeight: 240,
+              overflow: 'auto',
+              '--List-padding': '0px',
+            },
           },
-        },
-      }}
-      sx={{ width: 240 }}
-    >
-      {Object.entries(group).map(([name, animals], index) => (
-        <React.Fragment key={name}>
-          {index !== 0 && <ListDivider role="none" />}
-          <List aria-labelledby={`select-group-${name}`} sx={{ '--List-decorator-size': '28px' }}>
-            <ListItem id={`select-group-${name}`} sticky>
-              <Typography level="body3" textTransform="uppercase" letterSpacing="md">
-                {name} ({animals.length})
-              </Typography>
-            </ListItem>
-            {animals.map((anim) => (
-              <Option
-                key={anim}
-                value={anim}
-                label={
-                  <React.Fragment>
-                    <Chip
-                      size="sm"
-                      color={colors[name]}
-                      sx={{ borderRadius: 'xs', mr: 1, ml: -0.5 }}
-                    >
-                      {name}
-                    </Chip>{' '}
-                    {anim}
-                  </React.Fragment>
-                }
-                sx={{
-                  [`&.${optionClasses.selected} .${listItemDecoratorClasses.root}`]: {
-                    opacity: 1,
-                  },
-                }}
-              >
-                <ListItemDecorator sx={{ opacity: 0 }}>
-                  <Check />
-                </ListItemDecorator>
-                {anim}
-              </Option>
-            ))}
-          </List>
-        </React.Fragment>
-      ))}
-    </Select>
+        }}
+        sx={{ width: 240 }}
+      >
+        {Object.entries(group).map(([name, animals], index) => (
+          <React.Fragment key={name}>
+            {index !== 0 && <ListDivider role="none" />}
+            <List aria-labelledby={`select-group-${name}`} sx={{ '--List-decorator-size': '28px' }}>
+              <ListItem id={`select-group-${name}`} sticky>
+                <Typography level="body3" textTransform="uppercase" letterSpacing="md">
+                  {name} ({animals.length})
+                </Typography>
+              </ListItem>
+              {animals.map((anim) => (
+                <Option
+                  key={anim}
+                  value={anim}
+                  label={
+                    <React.Fragment>
+                      <Chip
+                        size="sm"
+                        color={colors[name]}
+                        sx={{ borderRadius: 'xs', mr: 1, ml: -0.5 }}
+                      >
+                        {name}
+                      </Chip>{' '}
+                      {anim}
+                    </React.Fragment>
+                  }
+                  sx={{
+                    [`&.${optionClasses.selected} .${listItemDecoratorClasses.root}`]: {
+                      opacity: 1,
+                    },
+                  }}
+                >
+                  <ListItemDecorator sx={{ opacity: 0 }}>
+                    <Check />
+                  </ListItemDecorator>
+                  {anim}
+                </Option>
+              ))}
+            </List>
+          </React.Fragment>
+        ))}
+      </Select>
+    </Box>
   );
 }
