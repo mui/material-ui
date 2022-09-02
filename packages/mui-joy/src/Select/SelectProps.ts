@@ -46,7 +46,7 @@ export interface SelectStaticProps extends SelectUnstyledCommonProps {
    */
   color?: OverridableStringUnion<ColorPaletteProp, SelectPropsColorOverrides>;
   /**
-   * The props used for each slot inside the Input.
+   * The props used for each slot inside the component.
    * @default {}
    */
   componentsProps?: ComponentsProps;
