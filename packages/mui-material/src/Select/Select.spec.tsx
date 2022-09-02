@@ -45,3 +45,32 @@ function genericValueTest() {
   // disabledUnderline prop should be available (inherited from InputProps) and NOT throw typescript error
   <Select disableUnderline />;
 }
+
+function App() {
+  enum MyEnum {
+    FIRST = 'first',
+    SECOND = 'second',
+  }
+
+  const [selectedValue, setSelectedValue] = React.useState<MyEnum | ''>('');
+
+  return (
+    <Select
+      renderValue={(value) => {
+        if (value === '') {
+          return 'None selected';
+        }
+        return value;
+      }}
+      displayEmpty
+      value={selectedValue}
+      onChange={(e) => setSelectedValue(e.target.value as MyEnum)}
+    >
+      <MenuItem value="">
+        <em>Blank</em>
+      </MenuItem>
+      <MenuItem value="first">first</MenuItem>
+      <MenuItem value="second">second</MenuItem>
+    </Select>
+  );
+}
