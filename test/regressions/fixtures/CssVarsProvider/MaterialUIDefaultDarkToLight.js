@@ -1,13 +1,25 @@
 import * as React from 'react';
-import { Experimental_CssVarsProvider as CssVarsProvider } from '@mui/material/styles';
+import {
+  Experimental_CssVarsProvider as CssVarsProvider,
+  useColorScheme,
+} from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import Toolbar from '@mui/material/Toolbar';
 
+const LightMode = () => {
+  const { setMode } = useColorScheme();
+  React.useEffect(() => {
+    setMode('light');
+  }, [setMode]);
+  return null;
+};
+
 export default function MaterialUIDefaultDark() {
   return (
     <CssVarsProvider defaultMode="dark">
+      <LightMode />
       <Box
         sx={{
           display: 'grid',
