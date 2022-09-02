@@ -12,6 +12,7 @@ import {
   AvatarGroupSlot,
 } from '../AvatarGroup/AvatarGroupProps';
 import { BadgeProps, BadgeOwnerState, BadgeSlot } from '../Badge/BadgeProps';
+import { AlertProps, AlertOwnerState, AlertSlot } from '../Alert/AlertProps';
 import { BoxProps, BoxSlot } from '../Box/BoxProps';
 import {
   BreadcrumbsProps,
@@ -123,6 +124,10 @@ export type OverridesStyleRules<
 >;
 export interface Components<Theme = unknown> {
   // alphabetical order
+  JoyAlert?: {
+    defaultProps?: Partial<AlertProps>;
+    styleOverrides?: OverridesStyleRules<AlertSlot, AlertOwnerState, Theme>;
+  };
   JoyAspectRatio?: {
     defaultProps?: Partial<AspectRatioProps>;
     styleOverrides?: OverridesStyleRules<AspectRatioSlot, AspectRatioOwnerState, Theme>;
