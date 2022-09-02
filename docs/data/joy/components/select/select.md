@@ -103,7 +103,7 @@ We're also using the `ListDivider` as a visual separator.
 Take a look at [selected value appearance](#selected-value-appearance) to see how to customize its appearance.
 :::
 
-#### Group options
+### Grouped options
 
 To create a [listbox with grouped options](https://www.w3.org/WAI/ARIA/apg/example-index/listbox/listbox-grouped.html), wrap the `Option` with `List` component and provide an associated label using `ListItem`.
 That way, you'll have a consistent height and will be able to leverage nested CSS variables.
