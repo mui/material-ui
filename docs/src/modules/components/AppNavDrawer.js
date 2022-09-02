@@ -466,7 +466,7 @@ export default function AppNavDrawer(props) {
               ])}
             />
           )}
-          {canonicalAs.startsWith('/toolpad') && (
+          {canonicalAs.startsWith('/toolpad/') && (
             <ProductIdentifier name="Toolpad" metadata="MUI Toolpad" />
           )}
         </ToolbarDiv>
