@@ -39,11 +39,12 @@ async function run() {
     // eslint-disable-next-line no-await-in-loop
     const argosResults = await execFile('argos', [
       'upload',
-      `${screenshotsTmp}/${i}`,
+      '--parallel',
       '--parallel-total',
       chunks.length,
       '--parallel-nonce',
       process.env.CIRCLE_BUILD_NUM,
+      `${screenshotsTmp}/${i}`,
     ]);
     // eslint-disable-next-line no-console -- pipe stdout
     console.log(argosResults.stdout);
