@@ -4,7 +4,7 @@
 
 ## Getting started
 
-The following code snippet demonstrates a simple app that uses the Joy UI [Button](/joy/react-button/) component:
+The following code snippet demonstrates a simple app that uses the Joy UI [Button](/joy-ui/react-button/) component:
 
 ```jsx
 import * as React from 'react';
@@ -16,13 +16,15 @@ export default function App() {
     <CssVarsProvider>
       <Button>Hello World</Button>
     </CssVarsProvider>
-  )
+  );
 }
 ```
 
-### The CssVarsProvider component
+### CssVarsProvider
 
-In the example above, you can see that the components in the `App` must be wrapped in the `<CssVarsProvider />` component.
+In the example above, you can see that the Button component is nested within `<CssVarsProvider />`.
+This is not required, but it unlocks a whole host of customization options powered by CSS variables.
+See [Using CSS variables](/joy-ui/customization/using-css-variables/) for more details.
 
 ## Shared props
 
@@ -44,7 +46,7 @@ For example, the Badge component contains two slots:
 
 You can use the `components` prop to override default slots with either custom components or HTML elements.
 
-For example, the [Badge](/joy/react-badge/) component renders a `<span>` by default.
+For example, the [Badge](/joy-ui/react-badge/) component renders a `<span>` by default.
 The code snippet below shows how to override this by assigning a `<div>` to the root slot:
 
 ```jsx
@@ -56,7 +58,7 @@ The code snippet below shows how to override this by assigning a `<div>` to the 
 The (singular) `component` prop provides a shortcut to `components.Root`.
 This is useful if you are only overriding the root element of the component.
 
-The code snippet below shows how to override the root element of the [Badge](/joy/react-badge/) component using the `component` prop:
+The code snippet below shows how to override the root element of the [Badge](/joy-ui/react-badge/) component using the `component` prop:
 
 ```jsx
 <Badge component="div" />
@@ -100,7 +102,7 @@ This does not apply to classes or the `style` prop—they will be merged instead
 
 ### Best practices
 
-If you are customizing a component like the [Button](/joy/react-button/) that only has a root slot, you may prefer to use the more succinct `component` prop instead of `components`.
+If you are customizing a component like the [Button](/joy-ui/react-button/) that only has a root slot, you may prefer to use the more succinct `component` prop instead of `components`.
 
 Overriding with `component` lets you apply the attributes of that element directly to the root.
 For instance, if you replace the Button root with an `<li>` tag, you can add the `<li>` attribute `value` directly to the component.

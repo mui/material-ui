@@ -2,27 +2,25 @@
 
 <p class="description">Learn the basics of working with Material UI components.</p>
 
-MUI components work in isolation.
-**They are self-supporting**, and will only inject the styles they need to display.
-They don't rely on any global style-sheets such as [normalize.css](https://github.com/necolas/normalize.css/).
+## Getting started
 
-You can use any of the components as demonstrated in the documentation.
-Please refer to each component's [demo page](/material-ui/react-button/) to see how they should be imported.
-
-## Quick start
-
-Here's a quick example to get you started, **it's literally all you need**:
+The following code snippet demonstrates a simple app that uses the Material UI [Button](/material-ui/react-button/) component:
 
 ```jsx
 import * as React from 'react';
 import Button from '@mui/material/Button';
 
-function App() {
-  return <Button variant="contained">Hello World</Button>;
+export default function MyApp() {
+  return (
+    <div>
+      <Button variant="contained">Hello World</Button>
+    </div>
+  );
 }
 ```
 
-Yes, this really is all you need to get started, as you can see in this live and interactive demo:
+You can play around with this code in the interactive Code Sandbox demo below.
+Try changing the `variant` on the Button to `"outlined"` to see how the style changes:
 
 {{"demo": "Usage.js", "hideToolbar": true, "bg": true}}
 
@@ -40,6 +38,10 @@ To ensure proper rendering and touch zooming for all devices, add the responsive
 ```
 
 ### CssBaseline
+
+Material UI components work in isolation.
+**They are self-supporting**, and will only inject the styles they need to display.
+They don't rely on any global style-sheets such as [normalize.css](https://github.com/necolas/normalize.css/).
 
 MUI provides an optional [CssBaseline](/material-ui/react-css-baseline/) component.
 It fixes some inconsistencies across browsers and devices while providing slightly more opinionated resets to common HTML elements.
