@@ -23,7 +23,7 @@ export default function SelectGroupedOptions() {
   return (
     <Select
       placeholder="Choose your animal"
-      listboxOpen
+      defaultListboxOpen
       componentsProps={{
         listbox: {
           component: 'div',

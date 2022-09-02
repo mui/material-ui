@@ -27,7 +27,7 @@ interface ComponentsProps {
   indicator?: SlotComponentProps<'span', { sx?: SxProps }, SelectOwnerState<any>>;
   listbox?: SlotComponentProps<
     'ul',
-    Omit<PopperUnstyledOwnProps, 'components' | 'componentsProps' | 'open'>,
+    Omit<PopperUnstyledOwnProps, 'components' | 'componentsProps' | 'open'> & { sx?: SxProps },
     SelectOwnerState<any>
   >;
 }
