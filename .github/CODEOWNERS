@@ -1,12 +1,16 @@
+# This file is auto-generated, do not modify it manually.
+# run `yarn generate-codeowners` to update it.
+
+
 /scripts/ @michaldudak @m4theushw
 
 # Packages
 
-/packages/mui-base/ @michaldudak @mnajdova
-/packages/mui-icons-material/ @michaldudak @siriwatknp
-/packages/mui-joy/ @siriwatknp @danilo-leal
-/packages/mui-material/ @mnajdova @danilo-leal
-/packages/mui-system/ @mnajdova @siriwatknp
+/packages/base/ @michaldudak @mnajdova
+/packages/icons-material/ @michaldudak @siriwatknp
+/packages/joy/ @siriwatknp @danilo-leal
+/packages/material/ @mnajdova @danilo-leal
+/packages/system/ @mnajdova @siriwatknp
 
 # Components - Material UI
 
@@ -146,6 +150,67 @@
 /packages/mui-material/src/useScrollTrigger/ @siriwatknp @hbjORbj
 /packages/mui-material/src/useTouchRipple/ @michaldudak @mnajdova
 /packages/mui-material/src/Zoom/ @mnajdova @michaldudak
+/docs/data/material/components/accordion/ @siriwatknp @hbjORbj
+/docs/data/material/components/alert/ @siriwatknp @hbjORbj
+/docs/data/material/components/app-bar/ @siriwatknp @hbjORbj
+/docs/data/material/components/autocomplete/ @michaldudak @mnajdova
+/docs/data/material/components/avatars/ @siriwatknp @michaldudak
+/docs/data/material/components/backdrop/ @siriwatknp @hbjORbj
+/docs/data/material/components/badges/ @siriwatknp @michaldudak
+/docs/data/material/components/bottom-navigation/ @mnajdova @michaldudak
+/docs/data/material/components/box/ @siriwatknp @hbjORbj
+/docs/data/material/components/breadcrumbs/ @mnajdova @michaldudak
+/docs/data/material/components/button-group/ @michaldudak @mnajdova
+/docs/data/material/components/buttons/ @michaldudak @mnajdova
+/docs/data/material/components/cards/ @siriwatknp @hbjORbj
+/docs/data/material/components/checkboxes/ @michaldudak @mnajdova
+/docs/data/material/components/chips/ @siriwatknp @michaldudak
+/docs/data/material/components/click-away-listener/ @mnajdova @michaldudak
+/docs/data/material/components/container/ @siriwatknp @hbjORbj
+/docs/data/material/components/css-baseline/ @mnajdova @michaldudak
+/docs/data/material/components/dialogs/ @siriwatknp @hbjORbj
+/docs/data/material/components/dividers/ @siriwatknp @michaldudak
+/docs/data/material/components/drawers/ @mnajdova @michaldudak
+/docs/data/material/components/floating-action-button/ @michaldudak @mnajdova
+/docs/data/material/components/grid/ @siriwatknp @hbjORbj
+/docs/data/material/components/grid2/ @siriwatknp @hbjORbj
+/docs/data/material/components/hidden/ @siriwatknp @hbjORbj
+/docs/data/material/components/icons/ @siriwatknp @michaldudak
+/docs/data/material/components/image-list/ @siriwatknp @hbjORbj
+/docs/data/material/components/links/ @mnajdova @michaldudak
+/docs/data/material/components/lists/ @siriwatknp @michaldudak
+/docs/data/material/components/masonry/ @siriwatknp @hbjORbj
+/docs/data/material/components/menus/ @mnajdova @michaldudak
+/docs/data/material/components/modal/ @mnajdova @michaldudak
+/docs/data/material/components/no-ssr/ @mnajdova @michaldudak
+/docs/data/material/components/pagination/ @mnajdova @michaldudak
+/docs/data/material/components/paper/ @siriwatknp @hbjORbj
+/docs/data/material/components/popover/ @mnajdova @michaldudak
+/docs/data/material/components/popper/ @mnajdova @michaldudak
+/docs/data/material/components/portal/ @mnajdova @michaldudak
+/docs/data/material/components/progress/ @siriwatknp @hbjORbj
+/docs/data/material/components/radio-buttons/ @michaldudak @mnajdova
+/docs/data/material/components/rating/ @michaldudak @mnajdova
+/docs/data/material/components/selects/ @michaldudak @mnajdova
+/docs/data/material/components/skeleton/ @siriwatknp @hbjORbj
+/docs/data/material/components/slider/ @michaldudak @mnajdova
+/docs/data/material/components/snackbars/ @siriwatknp @hbjORbj
+/docs/data/material/components/speed-dial/ @mnajdova @michaldudak
+/docs/data/material/components/stack/ @siriwatknp @hbjORbj
+/docs/data/material/components/steppers/ @mnajdova @michaldudak
+/docs/data/material/components/switches/ @michaldudak @mnajdova
+/docs/data/material/components/tables/ @siriwatknp @michaldudak
+/docs/data/material/components/tabs/ @mnajdova @michaldudak
+/docs/data/material/components/text-fields/ @michaldudak @mnajdova
+/docs/data/material/components/textarea-autosize/ @mnajdova @michaldudak
+/docs/data/material/components/timeline/ @siriwatknp @michaldudak
+/docs/data/material/components/toggle-button/ @michaldudak @mnajdova
+/docs/data/material/components/tooltips/ @siriwatknp @michaldudak
+/docs/data/material/components/transfer-list/ @michaldudak @mnajdova
+/docs/data/material/components/transitions/ @mnajdova @michaldudak
+/docs/data/material/components/tree-view/ @siriwatknp @michaldudak
+/docs/data/material/components/typography/ @siriwatknp @michaldudak
+/docs/data/material/components/use-media-query/ @mnajdova @michaldudak
 
 # Components - MUI Base
 
@@ -175,6 +240,23 @@
 /packages/mui-base/src/TabUnstyled/ @mnajdova @michaldudak
 /packages/mui-base/src/TextareaAutosize/ @mnajdova @michaldudak
 /packages/mui-base/src/TrapFocus/ @mnajdova @michaldudak
+/docs/data/base/components/badge/ @siriwatknp @michaldudak
+/docs/data/base/components/button/ @michaldudak @mnajdova
+/docs/data/base/components/click-away-listener/ @mnajdova @michaldudak
+/docs/data/base/components/form-control/ @michaldudak @mnajdova
+/docs/data/base/components/input/ @michaldudak @mnajdova
+/docs/data/base/components/menu/ @mnajdova @michaldudak
+/docs/data/base/components/modal/ @mnajdova @michaldudak
+/docs/data/base/components/no-ssr/ @mnajdova @michaldudak
+/docs/data/base/components/popper/ @mnajdova @michaldudak
+/docs/data/base/components/portal/ @mnajdova @michaldudak
+/docs/data/base/components/select/ @michaldudak @mnajdova
+/docs/data/base/components/slider/ @michaldudak @mnajdova
+/docs/data/base/components/switch/ @michaldudak @mnajdova
+/docs/data/base/components/table-pagination/ @siriwatknp @michaldudak
+/docs/data/base/components/tabs/ @mnajdova @michaldudak
+/docs/data/base/components/textarea-autosize/ @mnajdova @michaldudak
+/docs/data/base/components/trap-focus/ @mnajdova @michaldudak
 
 # Components - Joy UI
 
@@ -224,3 +306,23 @@
 /packages/mui-joy/src/Textarea/ @michaldudak @mnajdova @siriwatknp
 /packages/mui-joy/src/TextField/ @michaldudak @mnajdova @siriwatknp
 /packages/mui-joy/src/Typography/ @siriwatknp @michaldudak
+/docs/data/joy/components/aspect-ratio/ @siriwatknp @michaldudak
+/docs/data/joy/components/avatar/ @siriwatknp @michaldudak
+/docs/data/joy/components/badge/ @siriwatknp @michaldudak
+/docs/data/joy/components/breadcrumbs/ @mnajdova @michaldudak @siriwatknp
+/docs/data/joy/components/button/ @michaldudak @mnajdova @siriwatknp
+/docs/data/joy/components/card/ @siriwatknp @hbjORbj
+/docs/data/joy/components/checkbox/ @michaldudak @mnajdova @siriwatknp
+/docs/data/joy/components/chip/ @siriwatknp @michaldudak
+/docs/data/joy/components/link/ @mnajdova @michaldudak @siriwatknp
+/docs/data/joy/components/list/ @siriwatknp @michaldudak
+/docs/data/joy/components/menu/ @mnajdova @michaldudak @siriwatknp
+/docs/data/joy/components/radio/ @michaldudak @mnajdova @siriwatknp
+/docs/data/joy/components/select/ @michaldudak @mnajdova @siriwatknp
+/docs/data/joy/components/sheet/ @siriwatknp @hbjORbj
+/docs/data/joy/components/slider/ @michaldudak @mnajdova @siriwatknp
+/docs/data/joy/components/switch/ @michaldudak @mnajdova @siriwatknp
+/docs/data/joy/components/tabs/ @mnajdova @michaldudak @siriwatknp
+/docs/data/joy/components/text-field/ @michaldudak @mnajdova @siriwatknp
+/docs/data/joy/components/textarea/ @michaldudak @mnajdova @siriwatknp
+/docs/data/joy/components/typography/ @siriwatknp @michaldudak
