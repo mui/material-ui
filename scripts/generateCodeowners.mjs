@@ -318,7 +318,7 @@ function processDocs(packageName) {
 
 function processPackages() {
   return Object.entries(packageMaintainers)
-    .map(([packageName, maintainers]) => `/packages/${packageName}/ @${maintainers.join(' @')}`)
+    .map(([packageName, maintainers]) => `/packages/mui-${packageName}/ @${maintainers.join(' @')}`)
     .join('\n');
 }
 

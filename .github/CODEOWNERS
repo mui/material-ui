@@ -6,11 +6,11 @@
 
 # Packages
 
-/packages/base/ @michaldudak @mnajdova
-/packages/icons-material/ @michaldudak @siriwatknp
-/packages/joy/ @siriwatknp @danilo-leal
-/packages/material/ @mnajdova @danilo-leal
-/packages/system/ @mnajdova @siriwatknp
+/packages/mui-base/ @michaldudak @mnajdova
+/packages/mui-icons-material/ @michaldudak @siriwatknp
+/packages/mui-joy/ @siriwatknp @danilo-leal
+/packages/mui-material/ @mnajdova @danilo-leal
+/packages/mui-system/ @mnajdova @siriwatknp
 
 # Components - Material UI
 
