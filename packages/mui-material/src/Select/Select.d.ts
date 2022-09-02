@@ -128,7 +128,7 @@ export interface SelectProps<T = unknown>
    * @param {any} value The `value` provided to the component.
    * @returns {ReactNode}
    */
-  renderValue?: (value: T) => React.ReactNode;
+  renderValue?: (value: T | '') => React.ReactNode;
   /**
    * Props applied to the clickable div element.
    */
