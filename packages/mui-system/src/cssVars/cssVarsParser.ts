@@ -25,19 +25,19 @@ export const assignNestedKeys = <Object = NestedRecord, Value = any>(
   value: Value,
   arrayKeys: Array<string> = [],
 ) => {
-  let temp: Record<string, any> = obj;
+  let temp = obj;
   keys.forEach((k, index) => {
     if (index === keys.length - 1) {
       if (Array.isArray(temp)) {
         temp[Number(k)] = value;
       } else if (temp && typeof temp === 'object') {
-        temp[k] = value;
+        (temp as Record<string, any>)[k] = value;
       }
     } else if (temp && typeof temp === 'object') {
-      if (!temp[k]) {
-        temp[k] = arrayKeys.includes(k) ? [] : {};
+      if (!(temp as Record<string, any>)[k]) {
+        (temp as Record<string, any>)[k] = arrayKeys.includes(k) ? [] : {};
       }
-      temp = temp[k];
+      temp = (temp as Record<string, any>)[k];
     }
   });
 };

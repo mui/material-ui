@@ -247,7 +247,7 @@ const SelectIndicator = styled('span', {
   marginInlineEnd: 'calc(var(--Select-paddingInline) / -4)',
 });
 
-const Select = React.forwardRef(function Select<TValue>(
+const Select = React.forwardRef(function Select<TValue extends {}>(
   inProps: SelectOwnProps<TValue>,
   ref: React.ForwardedRef<any>,
 ) {
