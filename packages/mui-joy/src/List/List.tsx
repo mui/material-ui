@@ -87,6 +87,7 @@ export const ListRoot = styled('ul', {
       marginInlineStart: 'var(--NestedList-marginLeft)',
       marginInlineEnd: 'var(--NestedList-marginRight)',
       marginBlockStart: 'var(--List-gap)',
+      marginBlockEnd: 'initial', // reset user agent stylesheet.
     },
     !ownerState.nesting && {
       ...applySizeVars(ownerState.size),
