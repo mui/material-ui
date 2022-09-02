@@ -276,8 +276,8 @@ The `theme.palette.type` key was renamed to `theme.palette.mode`, to better foll
 
 ```diff
  import { createTheme } from '@mui/material/styles';
--const theme = createTheme({palette: { type: 'dark' }}),
-+const theme = createTheme({palette: { mode: 'dark' }}),
+-const theme = createTheme({ palette: { type: 'dark' } }),
++const theme = createTheme({ palette: { mode: 'dark' } }),
 ```
 
 ### Change default theme.palette.info colors
