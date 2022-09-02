@@ -119,9 +119,11 @@ const ChipLabel = styled('span', {
   slot: 'Label',
   overridesResolver: (props, styles) => styles.label,
 })<{ ownerState: ChipOwnerState }>(({ ownerState }) => ({
-  display: 'inherit',
-  alignItems: 'center',
+  display: 'inline-block',
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
   order: 1,
+  minInlineSize: 0,
   flexGrow: 1,
   ...(ownerState.clickable && {
     zIndex: 1,
