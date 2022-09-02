@@ -1,6 +1,6 @@
 # Installation
 
-<p class="description">Install MUI Base, a robust library of headless ("unstyled") React UI components and low-level hooks.</p>
+<p class="description">Install MUI Base, a library of headless ("unstyled") React UI components and low-level hooks.</p>
 
 ## Default installation
 
