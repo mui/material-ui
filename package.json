@@ -69,6 +69,7 @@
     "validate-declarations": "babel-node --extensions \".ts\" scripts/validateTypescriptDeclarations.ts"
   },
   "devDependencies": {
+    "@argos-ci/cli": "^0.1.2",
     "@babel/cli": "^7.18.10",
     "@babel/core": "^7.18.13",
     "@babel/node": "^7.18.10",
@@ -105,7 +106,6 @@
     "@types/yargs": "^17.0.11",
     "@typescript-eslint/eslint-plugin": "^5.32.0",
     "@typescript-eslint/parser": "^5.32.0",
-    "argos-cli": "^0.4.0",
     "babel-loader": "^8.2.5",
     "babel-plugin-istanbul": "^6.1.1",
     "babel-plugin-macros": "^3.1.0",

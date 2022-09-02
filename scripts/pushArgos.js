@@ -40,11 +40,9 @@ async function run() {
     const argosResults = await execFile('argos', [
       'upload',
       `${screenshotsTmp}/${i}`,
-      '--token',
-      process.env.ARGOS_TOKEN,
-      '--batchCount',
+      '--parallel-total',
       chunks.length,
-      '--external-build-id',
+      '--parallel-nonce',
       process.env.CIRCLE_BUILD_NUM,
     ]);
     // eslint-disable-next-line no-console -- pipe stdout
