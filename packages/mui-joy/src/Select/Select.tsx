@@ -297,6 +297,19 @@ const Select = React.forwardRef(function Select<TValue>(
   };
 
   const formControl = React.useContext(FormControlContext);
+
+  if (process.env.NODE_ENV !== 'production') {
+    const registerEffect = formControl?.registerEffect;
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    React.useEffect(() => {
+      if (registerEffect) {
+        return registerEffect();
+      }
+
+      return undefined;
+    }, [registerEffect]);
+  }
+
   const disabledProp = inProps.disabled ?? formControl?.disabled ?? disabledExternalProp;
   const size = inProps.size ?? formControl?.size ?? sizeProp;
   const color = formControl?.error ? 'danger' : inProps.color ?? formControl?.color ?? colorProp;

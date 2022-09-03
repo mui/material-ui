@@ -93,22 +93,44 @@ const FormControl = React.forwardRef(function FormControl(inProps, ref) {
     variant,
   };
 
-  const childContext = {
-    disabled,
-    required,
-    error,
-    variant,
-    color,
-    size,
-    htmlFor: id,
-    'aria-describedby': helperText ? helperTextId : undefined,
-    setHelperText,
-  };
+  let registerEffect: undefined | (() => () => void);
+  if (process.env.NODE_ENV !== 'production') {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const registeredInput = React.useRef(false);
+    registerEffect = () => {
+      if (registeredInput.current) {
+        console.error(
+          [
+            'Joy: A FormControl can contain only one Input, Textarea, or Select component',
+            'You should not mix those components inside a sinble FormControl instance',
+          ].join('\n'),
+        );
+      }
+
+      registeredInput.current = true;
+      return () => {
+        registeredInput.current = false;
+      };
+    };
+  }
 
   const classes = useUtilityClasses(ownerState);
 
   return (
-    <FormControlContext.Provider value={childContext}>
+    <FormControlContext.Provider
+      value={{
+        disabled,
+        required,
+        error,
+        variant,
+        color,
+        size,
+        htmlFor: id,
+        'aria-describedby': helperText ? helperTextId : undefined,
+        setHelperText,
+        registerEffect: registerEffect!,
+      }}
+    >
       <FormControlRoot
         as={component}
         ownerState={ownerState}
