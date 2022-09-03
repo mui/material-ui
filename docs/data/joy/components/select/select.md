@@ -43,8 +43,7 @@ The `Select` component is similar to the native HTML's `<select>` and `<option>`
 
 ### Field
 
-Use the `FormLabel` component to add a label to the select component.
-Make sure to provide an appropriate `aria-label` and an id to the button's `aria-describedby`.
+Use the `FormControl` and `FormLabel` components to add a label to the select instance. The `FormHelperText` is optional if you want to add a description to the select instance.
 
 {{"demo": "SelectFieldDemo.js"}}
 
