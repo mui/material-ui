@@ -8,6 +8,7 @@ import { styled, useThemeProps } from '../styles';
 import { InputTypeMap, InputProps } from './InputProps';
 import inputClasses, { getInputUtilityClass } from './inputClasses';
 import useForwardedInput from './useForwardedInput';
+import FormControlContext from '../FormControl/FormControlContext';
 
 const useUtilityClasses = (ownerState: InputProps) => {
   const { disabled, fullWidth, variant, color, size } = ownerState;
@@ -219,6 +220,7 @@ const Input = React.forwardRef(function Input(inProps, ref) {
     endDecorator,
     ...other
   } = useForwardedInput<InputProps>(props, inputClasses);
+  const formControl = React.useContext(FormControlContext);
 
   const ownerState = {
     ...props,
@@ -253,6 +255,10 @@ const Input = React.forwardRef(function Input(inProps, ref) {
       getInputProps({ ...otherHandlers, ...propsToForward }),
     externalSlotProps: componentsProps.input,
     ownerState,
+    additionalProps: {
+      id: formControl?.htmlFor,
+      'aria-describedby': formControl?.['aria-describedby'],
+    },
     className: [classes.input, inputStateClasses],
   });
 

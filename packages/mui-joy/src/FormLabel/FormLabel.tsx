@@ -6,6 +6,7 @@ import { useSlotProps } from '@mui/base/utils';
 import { styled, useThemeProps } from '../styles';
 import { FormLabelProps, FormLabelTypeMap } from './FormLabelProps';
 import { getFormLabelUtilityClass } from './formLabelClasses';
+import FormControlContext from '../FormControl/FormControlContext';
 
 const useUtilityClasses = () => {
   const slots = {
@@ -29,7 +30,7 @@ const FormLabelRoot = styled('label', {
   fontWeight: theme.vars.fontWeight.md,
   lineHeight: theme.vars.lineHeight.md,
   color: `var(--FormLabel-color, ${theme.vars.palette.text.primary})`,
-  margin: 'var(--FormLabel-margin, 0 0 0.25rem 0)',
+  margin: 'var(--FormLabel-margin, 0px)',
 }));
 
 const AsteriskComponent = styled('span', {
@@ -46,7 +47,9 @@ const FormLabel = React.forwardRef(function FormLabel(inProps, ref) {
     name: 'JoyFormLabel',
   });
 
-  const { children, component = 'label', componentsProps = {}, required = false, ...other } = props;
+  const { children, component = 'label', componentsProps = {}, ...other } = props;
+  const formControl = React.useContext(FormControlContext);
+  const required = inProps.required ?? formControl?.required ?? false;
 
   const ownerState = {
     ...props,
@@ -78,7 +81,7 @@ const FormLabel = React.forwardRef(function FormLabel(inProps, ref) {
   });
 
   return (
-    <FormLabelRoot {...rootProps}>
+    <FormLabelRoot htmlFor={formControl?.htmlFor} {...rootProps}>
       {children}
       {required && <AsteriskComponent {...asteriskProps}>&thinsp;{'*'}</AsteriskComponent>}
     </FormLabelRoot>
