@@ -7,7 +7,7 @@ githubLabel: 'component: ButtonGroup'
 
 # Button Group
 
-<p class="description">The button group component can be used to group related buttons.</p>
+<p class="description">The ButtonGroup component can be used to group related buttons.</p>
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
