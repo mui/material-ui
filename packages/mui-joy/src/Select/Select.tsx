@@ -22,6 +22,7 @@ import Unfold from '../internal/svg-icons/Unfold';
 import { styled, useThemeProps } from '../styles';
 import { SelectOwnProps, SelectStaticProps, SelectOwnerState, SelectTypeMap } from './SelectProps';
 import selectClasses, { getSelectUtilityClass } from './selectClasses';
+import { ListOwnerState } from '../List';
 
 function defaultRenderSingleValue<TValue>(selectedOption: SelectOption<TValue> | null) {
   return selectedOption?.label ?? '';
@@ -450,7 +451,7 @@ const Select = React.forwardRef(function Select<TValue>(
     [resolveListboxProps?.modifiers],
   );
 
-  const listboxProps = useSlotProps({
+  const { component: listboxComponent, ...listboxProps } = useSlotProps({
     elementType: SelectListbox,
     getSlotProps: getListboxProps,
     externalSlotProps: componentsProps.listbox,
@@ -460,15 +461,14 @@ const Select = React.forwardRef(function Select<TValue>(
       disablePortal: true,
       open: listboxOpen,
       placement: 'bottom' as const,
-      component: SelectListbox,
       modifiers: cachedModifiers,
     },
     ownerState: {
       ...ownerState,
-      // @ts-ignore internal logic
       nesting: false,
       row: false,
-    },
+      wrap: false,
+    } as SelectOwnerState<any> & ListOwnerState,
     className: classes.listbox,
   });
 
@@ -517,8 +517,10 @@ const Select = React.forwardRef(function Select<TValue>(
         {indicator && <SelectIndicator {...indicatorProps}>{indicator}</SelectIndicator>}
       </SelectRoot>
       {anchorEl && (
-        <PopperUnstyled {...listboxProps}>
+        // @ts-ignore internal logic: `listboxComponent` should not replace `SelectListbox`.
+        <PopperUnstyled {...listboxProps} as={listboxComponent} component={SelectListbox}>
           <SelectUnstyledContext.Provider value={context}>
+            {/* for building grouped options */}
             <ListProvider nested>{children}</ListProvider>
           </SelectUnstyledContext.Provider>
         </PopperUnstyled>

@@ -3,7 +3,6 @@ import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import { SelectUnstyledCommonProps, SelectOption } from '@mui/base/SelectUnstyled';
 import { PopperUnstyledOwnProps } from '@mui/base/PopperUnstyled';
 import { SlotComponentProps } from '@mui/base/utils';
-import { ListProps } from '../List/ListProps';
 import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
 
 export type SelectSlot =
@@ -28,7 +27,10 @@ interface ComponentsProps {
   indicator?: SlotComponentProps<'span', { sx?: SxProps }, SelectOwnerState<any>>;
   listbox?: SlotComponentProps<
     'ul',
-    Omit<PopperUnstyledOwnProps, 'components' | 'componentsProps' | 'open'> & ListProps,
+    Omit<PopperUnstyledOwnProps, 'components' | 'componentsProps' | 'open'> & {
+      component?: React.ElementType;
+      sx?: SxProps;
+    },
     SelectOwnerState<any>
   >;
 }

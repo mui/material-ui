@@ -25,6 +25,7 @@ const ListDividerRoot = styled('li', {
   border: 'none', // reset the border for `hr` tag
   listStyle: 'none',
   backgroundColor: theme.vars.palette.divider, // use logical size + background is better than border because they work with gradient.
+  flexShrink: 0,
   ...(ownerState.row && {
     inlineSize: 'var(--ListDivider-thickness, 1px)',
     marginBlock: ownerState.inset === 'gutter' ? 'var(--List-item-paddingY)' : 0,
