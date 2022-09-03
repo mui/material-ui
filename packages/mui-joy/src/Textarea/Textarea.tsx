@@ -223,12 +223,12 @@ const Textarea = React.forwardRef(function Textarea(inProps, ref) {
   const disabled = inProps.disabled ?? formControl?.disabled ?? disabledProp;
   const error = inProps.error ?? formControl?.error ?? errorProp;
   const size = inProps.size ?? formControl?.size ?? sizeProp;
-  const color = inProps.color ?? formControl?.color ?? colorProp;
+  const color = error ? 'danger' : inProps.color ?? formControl?.color ?? colorProp;
   const variant = inProps.variant ?? formControl?.variant ?? variantProp;
 
   const ownerState = {
     ...props,
-    color: error ? 'danger' : color,
+    color,
     disabled,
     error,
     focused,

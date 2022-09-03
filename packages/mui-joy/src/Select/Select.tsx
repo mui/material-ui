@@ -23,6 +23,7 @@ import { styled, useThemeProps } from '../styles';
 import { SelectOwnProps, SelectStaticProps, SelectOwnerState, SelectTypeMap } from './SelectProps';
 import selectClasses, { getSelectUtilityClass } from './selectClasses';
 import { ListOwnerState } from '../List';
+import FormControlContext from '../FormControl/FormControlContext';
 
 function defaultRenderSingleValue<TValue>(selectedOption: SelectOption<TValue> | null) {
   return selectedOption?.label ?? '';
@@ -264,7 +265,7 @@ const Select = React.forwardRef(function Select<TValue>(
     componentsProps = {},
     defaultValue,
     defaultListboxOpen = false,
-    disabled: disabledProp,
+    disabled: disabledExternalProp,
     placeholder,
     listboxId,
     listboxOpen: listboxOpenProp,
@@ -273,9 +274,9 @@ const Select = React.forwardRef(function Select<TValue>(
     onClose,
     renderValue: renderValueProp,
     value: valueProp,
-    size = 'md',
-    variant = 'outlined',
-    color = 'neutral',
+    size: sizeProp = 'md',
+    variant: variantProp = 'outlined',
+    color: colorProp = 'neutral',
     startDecorator,
     endDecorator,
     indicator = <Unfold />,
@@ -294,6 +295,12 @@ const Select = React.forwardRef(function Select<TValue>(
     id?: string;
     name?: string;
   };
+
+  const formControl = React.useContext(FormControlContext);
+  const disabledProp = inProps.disabled ?? formControl?.disabled ?? disabledExternalProp;
+  const size = inProps.size ?? formControl?.size ?? sizeProp;
+  const color = formControl?.error ? 'danger' : inProps.color ?? formControl?.color ?? colorProp;
+  const variant = inProps.variant ?? formControl?.variant ?? variantProp;
 
   const renderValue = renderValueProp ?? defaultRenderSingleValue;
   const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
@@ -413,10 +420,10 @@ const Select = React.forwardRef(function Select<TValue>(
     getSlotProps: getButtonProps,
     externalSlotProps: componentsProps.button,
     additionalProps: {
-      'aria-describedby': ariaDescribedby,
+      'aria-describedby': ariaDescribedby ?? formControl?.['aria-describedby'],
       'aria-label': ariaLabel,
       'aria-labelledby': ariaLabelledby,
-      id,
+      id: id ?? formControl?.htmlFor,
       name,
     },
     ownerState,
