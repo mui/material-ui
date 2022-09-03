@@ -213,8 +213,8 @@ const Input = React.forwardRef(function Input(inProps, ref) {
     disabled: disableProp = false,
     fullWidth = false,
     size: sizeProp = 'md',
-    color = 'neutral',
-    variant = 'outlined',
+    color: colorProp = 'neutral',
+    variant: variantProp = 'outlined',
     startDecorator,
     endDecorator,
     ...other
@@ -223,6 +223,8 @@ const Input = React.forwardRef(function Input(inProps, ref) {
   const disabled = inProps.disabled ?? formControl?.disabled ?? disableProp;
   const error = inProps.error ?? formControl?.error ?? errorProp;
   const size = inProps.size ?? formControl?.size ?? sizeProp;
+  const color = inProps.color ?? formControl?.color ?? colorProp;
+  const variant = inProps.variant ?? formControl?.variant ?? variantProp;
 
   const ownerState = {
     ...props,
