@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { OverridableComponent } from '@mui/types';
-import { unstable_useId as useId } from '@mui/utils';
+import { unstable_useId as useId, unstable_capitalize as capitalize } from '@mui/utils';
 import composeClasses from '@mui/base/composeClasses';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
@@ -10,9 +10,17 @@ import FormControlContext from './FormControlContext';
 import formControlClasses, { getFormControlUtilityClass } from './formControlClasses';
 import { FormControlProps, FormControlOwnerState, FormControlTypeMap } from './FormControlProps';
 
-const useUtilityClasses = () => {
+const useUtilityClasses = (ownerState: FormControlOwnerState) => {
+  const { disabled, error, size, color, variant } = ownerState;
   const slots = {
-    root: ['root'],
+    root: [
+      'root',
+      disabled && 'disabled',
+      error && 'error',
+      variant && `variant${capitalize(variant)}`,
+      color && `color${capitalize(color)}`,
+      size && `size${capitalize(size)}`,
+    ],
   };
 
   return composeClasses(slots, getFormControlUtilityClass, {});
@@ -78,6 +86,9 @@ const FormControl = React.forwardRef(function FormControl(inProps, ref) {
     id,
     component,
     color,
+    disabled,
+    error,
+    required,
     size,
     variant,
   };
@@ -94,7 +105,7 @@ const FormControl = React.forwardRef(function FormControl(inProps, ref) {
     setHelperText,
   };
 
-  const classes = useUtilityClasses();
+  const classes = useUtilityClasses(ownerState);
 
   return (
     <FormControlContext.Provider value={childContext}>
