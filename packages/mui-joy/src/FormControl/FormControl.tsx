@@ -165,20 +165,37 @@ FormControl.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
+   * If `true`, the children are in disabled state.
+   * @default false
+   */
+  disabled: PropTypes.bool,
+  /**
+   * If `true`, the children will indicate an error.
+   * @default false
+   */
+  error: PropTypes.bool,
+  /**
+   * @ignore
+   */
+  id: PropTypes.string,
+  /**
+   * If `true`, the user must specify a value for the input before the owning form can be submitted.
+   * If `true`, the asterisk appears on the FormLabel.
+   * @default false
+   */
+  required: PropTypes.bool,
+  /**
+   * The size of the component.
+   * @default 'md'
+   */
+  size: PropTypes.oneOf(['sm', 'md', 'lg']),
+  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
     PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
     PropTypes.func,
     PropTypes.object,
-  ]),
-  /**
-   * The variant to use.
-   * @default 'plain'
-   */
-  variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
-    PropTypes.string,
   ]),
 } as any;
 

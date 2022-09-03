@@ -324,6 +324,10 @@ Textarea.propTypes /* remove-proptypes */ = {
     textarea: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
+   * @ignore
+   */
+  disabled: PropTypes.bool,
+  /**
    * Trailing adornment for this input.
    */
   endDecorator: PropTypes.node,
