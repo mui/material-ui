@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Breakpoint } from '@mui/system';
 
 export interface HiddenJsProps {
-  initialWidth?: Breakpoint;
+  width?: Breakpoint;
   lgDown?: boolean;
   lgUp?: boolean;
   mdDown?: boolean;
