@@ -1,11 +1,10 @@
 import * as React from 'react';
 import { OverrideProps, OverridableStringUnion } from '@mui/types';
-import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
+import { ColorPaletteProp, SxProps } from '../styles/types';
 
 export type FormControlSlot = 'root';
 
 export interface FormControlPropsColorOverrides {}
-export interface FormControlPropsVariantOverrides {}
 export interface FormControlPropsSizeOverrides {}
 
 export interface FormControlTypeMap<P = {}, D extends React.ElementType = 'div'> {
@@ -19,12 +18,21 @@ export interface FormControlTypeMap<P = {}, D extends React.ElementType = 'div'>
      * @default 'neutral'
      */
     color?: OverridableStringUnion<ColorPaletteProp, FormControlPropsColorOverrides>;
+    /**
+     * If `true`, the children are in disabled state.
+     * @default false
+     */
     disabled?: boolean;
     /**
      * If `true`, the children will indicate an error.
      * @default false
      */
     error?: boolean;
+    /**
+     * If `true`, the user must specify a value for the input before the owning form can be submitted.
+     * If `true`, the asterisk appears on the FormLabel.
+     * @default false
+     */
     required?: boolean;
     /**
      * The size of the component.
@@ -35,11 +43,6 @@ export interface FormControlTypeMap<P = {}, D extends React.ElementType = 'div'>
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */
     sx?: SxProps;
-    /**
-     * The variant to use.
-     * @default 'outlined'
-     */
-    variant?: OverridableStringUnion<VariantProp, FormControlPropsVariantOverrides>;
   };
   defaultComponent: D;
 }

@@ -13,6 +13,7 @@ import { CheckboxOwnerState } from '@mui/joy/Checkbox';
 import { ChipOwnerState } from '@mui/joy/Chip';
 import { ChipDeleteOwnerState } from '@mui/joy/ChipDelete';
 import { ContainerProps } from '@mui/joy/Container';
+import { FormControlOwnerState } from '@mui/joy/FormControl';
 import { FormHelperTextOwnerState } from '@mui/joy/FormHelperText';
 import { FormLabelOwnerState } from '@mui/joy/FormLabel';
 import { GridProps } from '@mui/joy/Grid';
@@ -302,6 +303,16 @@ extendTheme({
       styleOverrides: {
         root: ({ ownerState }) => {
           expectType<ContainerProps & Record<string, unknown>, typeof ownerState>(ownerState);
+          return {};
+        },
+      },
+    },
+    JoyFormControl: {
+      styleOverrides: {
+        root: ({ ownerState }) => {
+          expectType<FormControlOwnerState & Record<string, unknown>, typeof ownerState>(
+            ownerState,
+          );
           return {};
         },
       },

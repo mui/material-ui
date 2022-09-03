@@ -8,7 +8,6 @@ import { styled, useThemeProps } from '../styles';
 import { InputTypeMap, InputProps } from './InputProps';
 import inputClasses, { getInputUtilityClass } from './inputClasses';
 import useForwardedInput from './useForwardedInput';
-import FormControlContext from '../FormControl/FormControlContext';
 
 const useUtilityClasses = (ownerState: InputProps) => {
   const { disabled, fullWidth, variant, color, size } = ownerState;
@@ -208,18 +207,18 @@ const Input = React.forwardRef(function Input(inProps, ref) {
     getInputProps,
     component,
     componentsProps = {},
+    formControl,
     focused,
     error: errorProp = false,
-    disabled: disableProp = false,
+    disabled,
     fullWidth = false,
     size: sizeProp = 'md',
     color: colorProp = 'neutral',
-    variant: variantProp = 'outlined',
+    variant = 'outlined',
     startDecorator,
     endDecorator,
     ...other
   } = useForwardedInput<InputProps>(props, inputClasses);
-  const formControl = React.useContext(FormControlContext);
 
   if (process.env.NODE_ENV !== 'production') {
     const registerEffect = formControl?.registerEffect;
@@ -233,11 +232,9 @@ const Input = React.forwardRef(function Input(inProps, ref) {
     }, [registerEffect]);
   }
 
-  const disabled = inProps.disabled ?? formControl?.disabled ?? disableProp;
   const error = inProps.error ?? formControl?.error ?? errorProp;
   const size = inProps.size ?? formControl?.size ?? sizeProp;
   const color = error ? 'danger' : inProps.color ?? formControl?.color ?? colorProp;
-  const variant = inProps.variant ?? formControl?.variant ?? variantProp;
 
   const ownerState = {
     ...props,

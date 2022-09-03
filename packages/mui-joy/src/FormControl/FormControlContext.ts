@@ -6,7 +6,7 @@ import { FormControlProps } from './FormControlProps';
  */
 export type FormControlContextValue =
   | undefined
-  | (Pick<FormControlProps, 'error' | 'disabled' | 'required' | 'variant' | 'color' | 'size'> & {
+  | (Pick<FormControlProps, 'error' | 'disabled' | 'required' | 'color' | 'size'> & {
       htmlFor: string | undefined;
       'aria-describedby': string | undefined;
       setHelperText: (node: null | HTMLElement) => void;

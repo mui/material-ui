@@ -275,7 +275,7 @@ const Select = React.forwardRef(function Select<TValue>(
     renderValue: renderValueProp,
     value: valueProp,
     size: sizeProp = 'md',
-    variant: variantProp = 'outlined',
+    variant = 'outlined',
     color: colorProp = 'neutral',
     startDecorator,
     endDecorator,
@@ -313,7 +313,6 @@ const Select = React.forwardRef(function Select<TValue>(
   const disabledProp = inProps.disabled ?? formControl?.disabled ?? disabledExternalProp;
   const size = inProps.size ?? formControl?.size ?? sizeProp;
   const color = formControl?.error ? 'danger' : inProps.color ?? formControl?.color ?? colorProp;
-  const variant = inProps.variant ?? formControl?.variant ?? variantProp;
 
   const renderValue = renderValueProp ?? defaultRenderSingleValue;
   const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);

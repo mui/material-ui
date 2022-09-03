@@ -25,14 +25,6 @@ export interface FormControlClasses {
   sizeMd: string;
   /** Styles applied to the root element if `size="lg"`. */
   sizeLg: string;
-  /** Styles applied to the root element if `variant="plain"`. */
-  variantPlain: string;
-  /** Styles applied to the root element if `variant="outlined"`. */
-  variantOutlined: string;
-  /** Styles applied to the root element if `variant="soft"`. */
-  variantSoft: string;
-  /** Styles applied to the root element if `variant="solid"`. */
-  variantSolid: string;
 }
 
 export type FormControlClassKey = keyof FormControlClasses;
@@ -54,10 +46,6 @@ const formControlClasses: FormControlClasses = generateUtilityClasses('JoyFormCo
   'sizeSm',
   'sizeMd',
   'sizeLg',
-  'variantPlain',
-  'variantOutlined',
-  'variantSoft',
-  'variantSolid',
 ]);
 
 export default formControlClasses;

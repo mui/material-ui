@@ -11,13 +11,12 @@ import formControlClasses, { getFormControlUtilityClass } from './formControlCla
 import { FormControlProps, FormControlOwnerState, FormControlTypeMap } from './FormControlProps';
 
 const useUtilityClasses = (ownerState: FormControlOwnerState) => {
-  const { disabled, error, size, color, variant } = ownerState;
+  const { disabled, error, size, color } = ownerState;
   const slots = {
     root: [
       'root',
       disabled && 'disabled',
       error && 'error',
-      variant && `variant${capitalize(variant)}`,
       color && `color${capitalize(color)}`,
       size && `size${capitalize(size)}`,
     ],
@@ -71,7 +70,6 @@ const FormControl = React.forwardRef(function FormControl(inProps, ref) {
     disabled = false,
     required = false,
     error = false,
-    variant = 'outlined',
     color = 'neutral',
     size = 'md',
     ...other
@@ -90,7 +88,6 @@ const FormControl = React.forwardRef(function FormControl(inProps, ref) {
     error,
     required,
     size,
-    variant,
   };
 
   let registerEffect: undefined | (() => () => void);
@@ -122,7 +119,6 @@ const FormControl = React.forwardRef(function FormControl(inProps, ref) {
         disabled,
         required,
         error,
-        variant,
         color,
         size,
         htmlFor: id,
