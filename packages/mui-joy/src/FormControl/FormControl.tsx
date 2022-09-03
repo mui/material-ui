@@ -28,8 +28,16 @@ export const FormControlRoot = styled('div', {
   '--FormLabel-asterisk-color': theme.vars.palette.danger[500],
   '--FormHelperText-color': theme.vars.palette[ownerState.color!]?.[500],
   ...(ownerState.size === 'sm' && {
-    '--FormHelperText-fontSize': theme.vars.fontSize.xs,
     '--FormLabel-fontSize': theme.vars.fontSize.xs,
+    '--FormHelperText-fontSize': theme.vars.fontSize.xs,
+  }),
+  ...(ownerState.size === 'md' && {
+    '--FormLabel-fontSize': theme.vars.fontSize.sm,
+    '--FormHelperText-fontSize': theme.vars.fontSize.sm,
+  }),
+  ...(ownerState.size === 'lg' && {
+    '--FormLabel-fontSize': theme.vars.fontSize.md,
+    '--FormHelperText-fontSize': theme.vars.fontSize.md,
   }),
   [`&.${formControlClasses.error}`]: {
     '--FormHelperText-color': theme.vars.palette.danger[500],
@@ -55,7 +63,7 @@ const FormControl = React.forwardRef(function FormControl(inProps, ref) {
     disabled = false,
     required = false,
     error = false,
-    variant,
+    variant = 'outlined',
     color = 'neutral',
     size = 'md',
     ...other

@@ -209,11 +209,10 @@ const Input = React.forwardRef(function Input(inProps, ref) {
     component,
     componentsProps = {},
     focused,
-    formControlContext,
-    error: errorState,
-    disabled: disabledState,
+    error: errorProp = false,
+    disabled: disableProp = false,
     fullWidth = false,
-    size = 'md',
+    size: sizeProp = 'md',
     color = 'neutral',
     variant = 'outlined',
     startDecorator,
@@ -221,15 +220,17 @@ const Input = React.forwardRef(function Input(inProps, ref) {
     ...other
   } = useForwardedInput<InputProps>(props, inputClasses);
   const formControl = React.useContext(FormControlContext);
+  const disabled = inProps.disabled ?? formControl?.disabled ?? disableProp;
+  const error = inProps.error ?? formControl?.error ?? errorProp;
+  const size = inProps.size ?? formControl?.size ?? sizeProp;
 
   const ownerState = {
     ...props,
     fullWidth,
-    color: errorState ? 'danger' : color,
-    disabled: disabledState,
-    error: errorState,
+    color: error ? 'danger' : color,
+    disabled,
+    error,
     focused,
-    formControlContext: formControlContext!,
     size,
     variant,
   };
