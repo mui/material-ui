@@ -268,10 +268,12 @@ const Input = React.forwardRef(function Input(inProps, ref) {
       getInputProps({ ...otherHandlers, ...propsToForward }),
     externalSlotProps: componentsProps.input,
     ownerState,
-    additionalProps: {
-      id: formControl?.htmlFor,
-      'aria-describedby': formControl?.['aria-describedby'],
-    },
+    additionalProps: formControl
+      ? {
+          id: formControl.htmlFor,
+          'aria-describedby': formControl['aria-describedby'],
+        }
+      : {},
     className: [classes.input, inputStateClasses],
   });
 
