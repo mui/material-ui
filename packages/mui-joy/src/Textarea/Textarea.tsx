@@ -9,6 +9,7 @@ import { styled, useThemeProps } from '../styles';
 import { TextareaTypeMap, TextareaProps, TextareaOwnerState } from './TextareaProps';
 import textareaClasses, { getTextareaUtilityClass } from './textareaClasses';
 import useForwardedInput from '../Input/useForwardedInput';
+import FormControlContext from '../FormControl/FormControlContext';
 
 const useUtilityClasses = (ownerState: TextareaOwnerState) => {
   const { disabled, variant, color, size } = ownerState;
@@ -207,25 +208,30 @@ const Textarea = React.forwardRef(function Textarea(inProps, ref) {
     componentsProps = {},
     focused,
     formControlContext,
-    error: errorState,
-    disabled: disabledState,
-    size = 'md',
-    color = 'neutral',
-    variant = 'outlined',
+    error: errorProp = false,
+    disabled: disabledProp = false,
+    size: sizeProp = 'md',
+    color: colorProp = 'neutral',
+    variant: variantProp = 'outlined',
     startDecorator,
     endDecorator,
     minRows,
     maxRows,
     ...other
   } = useForwardedInput<TextareaProps>(props, textareaClasses);
+  const formControl = React.useContext(FormControlContext);
+  const disabled = inProps.disabled ?? formControl?.disabled ?? disabledProp;
+  const error = inProps.error ?? formControl?.error ?? errorProp;
+  const size = inProps.size ?? formControl?.size ?? sizeProp;
+  const color = inProps.color ?? formControl?.color ?? colorProp;
+  const variant = inProps.variant ?? formControl?.variant ?? variantProp;
 
   const ownerState = {
     ...props,
-    color: errorState ? 'danger' : color,
-    disabled: disabledState,
-    error: errorState,
+    color: error ? 'danger' : color,
+    disabled,
+    error,
     focused,
-    formControlContext: formControlContext!,
     size,
     variant,
   };
@@ -252,6 +258,10 @@ const Textarea = React.forwardRef(function Textarea(inProps, ref) {
     externalSlotProps: {
       minRows,
       maxRows,
+    },
+    additionalProps: {
+      id: formControl?.htmlFor,
+      'aria-describedby': formControl?.['aria-describedby'],
     },
     ownerState,
     className: [classes.textarea, inputStateClasses],
