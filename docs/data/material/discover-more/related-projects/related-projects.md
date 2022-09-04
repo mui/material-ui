@@ -30,7 +30,7 @@ Feel free to submit a pull request!
 
 ### Chips
 
-- [mui-chips-input](https://viclafouch.github.io/mui-chips-input): A phone number input designed for the React library MUI.
+- [mui-chips-input](https://viclafouch.github.io/mui-chips-input): A chips input designed for the React library MUI.
 
 ### Phone Number
 
