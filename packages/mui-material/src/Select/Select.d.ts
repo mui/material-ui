@@ -163,7 +163,7 @@ export type SelectProps<T = unknown> = CommonProps<T> & ConditionalRenderValueTy
  *
  * Demos:
  *
- * - [Selects](https://mui.com/material-ui/react-select/)
+ * - [Select](https://mui.com/material-ui/react-select/)
  *
  * API:
  *

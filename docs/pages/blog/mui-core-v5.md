@@ -583,7 +583,7 @@ We have moved six components from the lab to the main component package, after o
 - [Rating](/material-ui/react-rating/)
 - [Skeleton](/material-ui/react-skeleton/)
 - [Speed Dial](/material-ui/react-speed-dial/)
-- [Toggle button](/material-ui/react-toggle-button/)
+- [Toggle Button](/material-ui/react-toggle-button/)
 
 ### New in the lab
 

@@ -1,11 +1,11 @@
 ---
 product: joy-ui
-title: React Text field component
+title: React Text Field component
 githubLabel: 'component: text field'
 unstyled: /base/react-input/
 ---
 
-# Text field
+# Text Field
 
 <p class="description">Text fields let users enter and edit text.</p>
 

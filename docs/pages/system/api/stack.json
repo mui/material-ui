@@ -27,6 +27,6 @@
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-system/src/Stack/Stack.tsx",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/material-ui/react-stack/\">Stack (Material UI)</a></li></ul>",
+  "demos": "<ul><li><a href=\"/material-ui/react-stack/\">Stack (Material UI)</a></li>\n<li><a href=\"/system/react-stack/\">Stack (MUI System)</a></li></ul>",
   "cssComponent": true
 }
