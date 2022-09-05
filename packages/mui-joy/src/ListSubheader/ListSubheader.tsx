@@ -2,16 +2,22 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { OverridableComponent } from '@mui/types';
-import { unstable_useId as useId } from '@mui/utils';
+import { unstable_useId as useId, unstable_capitalize as capitalize } from '@mui/utils';
 import composeClasses from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
 import { ListSubheaderOwnerState, ListSubheaderTypeMap } from './ListSubheaderProps';
 import { getListSubheaderUtilityClass } from './listSubheaderClasses';
 import ListSubheaderDispatch from './ListSubheaderContext';
 
-const useUtilityClasses = () => {
+const useUtilityClasses = (ownerState: ListSubheaderOwnerState) => {
+  const { variant, color, sticky } = ownerState;
   const slots = {
-    root: ['root'],
+    root: [
+      'root',
+      sticky && 'sticky',
+      color && `color${capitalize(color)}`,
+      variant && `variant${capitalize(variant)}`,
+    ],
   };
 
   return composeClasses(slots, getListSubheaderUtilityClass, {});
@@ -78,7 +84,7 @@ const ListSubheader = React.forwardRef(function ListSubheader(inProps, ref) {
     color,
   };
 
-  const classes = useUtilityClasses();
+  const classes = useUtilityClasses(ownerState);
 
   return (
     <ListSubheaderRoot
