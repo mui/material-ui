@@ -18,7 +18,7 @@ describe('Joy <ListItem />', () => {
     refInstanceof: window.HTMLLIElement,
     testVariantProps: { variant: 'solid' },
     testCustomVariant: true,
-    skip: ['componentsProp', 'classesRoot', 'themeVariants'],
+    skip: ['componentsProp', 'classesRoot'],
   }));
 
   it('should have root className', () => {
