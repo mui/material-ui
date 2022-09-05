@@ -79,6 +79,18 @@ describe('Joy <ListItem />', () => {
 
       expect(screen.getByText('Foo')).to.have.attribute('role', 'none');
     });
+
+    it('should have role presentation for grouped options', () => {
+      render(
+        <MenuList>
+          <List>
+            <ListItem>Foo</ListItem>
+          </List>
+        </MenuList>,
+      );
+
+      expect(screen.getByRole('group').firstChild).to.have.attribute('role', 'presentation');
+    });
   });
 
   describe('Semantics - List', () => {
