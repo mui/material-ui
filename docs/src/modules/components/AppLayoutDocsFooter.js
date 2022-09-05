@@ -108,6 +108,67 @@ async function postFeedback(data) {
   }
 }
 
+async function postFeedbackOnSlack(data) {
+  const { rating, comment, version, language } = data;
+
+  if (!comment || comment.length < 10) {
+    return;
+  }
+
+  const env = window.location.host.indexOf('mui.com') !== -1 ? 'prod' : 'dev';
+
+  if (env === 'dev') {
+    // return;
+  }
+
+  const slackMessage = {
+    blocks: [
+      {
+        type: 'header',
+        text: {
+          type: 'plain_text',
+          text: `New comment ${rating > 0 ? '👍' : '👎'}`,
+          emoji: true,
+        },
+      },
+      {
+        type: 'section',
+        text: {
+          type: 'plain_text',
+          text: comment,
+          emoji: true,
+        },
+      },
+      {
+        type: 'section',
+        text: {
+          type: 'mrkdwn',
+          text: `v: ${version}, lang: ${language}`,
+        },
+        accessory: {
+          type: 'button',
+          text: {
+            type: 'plain_text',
+            text: 'Go to the page',
+            emoji: true,
+          },
+          url: window.location.host,
+        },
+      },
+    ],
+  };
+  try {
+    await fetch(`https://hooks.slack.com/services/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`, {
+      method: 'POST',
+      referrerPolicy: 'origin',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(slackMessage),
+    });
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 async function getUserFeedback(id) {
   const env = location.hostname === 'mui.com' ? 'prod' : 'dev';
   const URL = `${process.env.FEEDBACK_URL}/${env}/feedback/${id}`;
@@ -135,6 +196,7 @@ async function submitFeedback(page, rating, comment, language) {
     language,
   };
 
+  await postFeedbackOnSlack(data);
   const result = await postFeedback(data);
   if (result) {
     document.cookie = `feedbackId=${result.id};path=/;max-age=31536000`;
