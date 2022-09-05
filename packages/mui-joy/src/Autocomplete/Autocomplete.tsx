@@ -1,14 +1,9 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import composeClasses from '@mui/base/composeClasses';
-import {
-  useAutocomplete,
-  createFilterOptions,
-  AutocompleteGroupedOption,
-} from '@mui/base/AutocompleteUnstyled';
+import { useAutocomplete, AutocompleteGroupedOption } from '@mui/base/AutocompleteUnstyled';
 import PopperUnstyled from '@mui/base/PopperUnstyled';
 import { useThemeProps } from '../styles';
 import ClearIcon from '../internal/svg-icons/Close';
@@ -296,7 +291,6 @@ const Autocomplete = React.forwardRef(function Autocomplete(
   const {
     getRootProps,
     getInputProps,
-    getInputLabelProps,
     getPopupIndicatorProps,
     getClearProps,
     getTagProps,
@@ -338,6 +332,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     const getCustomizedTagProps: AutocompleteRenderGetTagProps = (params) => ({
       className: classes.tag,
       disabled,
+      size,
       ...getTagProps(params),
     });
 
@@ -415,55 +410,54 @@ const Autocomplete = React.forwardRef(function Autocomplete(
           disabled,
           fullWidth: true,
           size,
-          InputLabelProps: getInputLabelProps(),
-          InputProps: {
-            ref: setAnchorEl,
-            className: classes.inputRoot,
-            startDecorator,
-            ...((hasClearIcon || hasPopupIcon) && {
-              endDecorator: (
-                <React.Fragment>
-                  {hasClearIcon ? (
-                    <AutocompleteClearIndicator
-                      {...getClearProps()}
-                      aria-label={clearText}
-                      title={clearText}
-                      ownerState={{ ...ownerState, variant: 'plain', color: 'neutral' }}
-                      {...componentsProps.clearIndicator}
-                      className={clsx(
-                        classes.clearIndicator,
-                        componentsProps.clearIndicator?.className,
-                      )}
-                    >
-                      {clearIcon}
-                    </AutocompleteClearIndicator>
-                  ) : null}
+          ref: setAnchorEl,
+          className: classes.inputRoot,
+          startDecorator,
+          ...((hasClearIcon || hasPopupIcon) && {
+            endDecorator: (
+              <React.Fragment>
+                {hasClearIcon ? (
+                  <AutocompleteClearIndicator
+                    {...getClearProps()}
+                    aria-label={clearText}
+                    title={clearText}
+                    ownerState={{ ...ownerState, size, variant: 'plain', color: 'neutral' }}
+                    {...componentsProps.clearIndicator}
+                    className={clsx(
+                      classes.clearIndicator,
+                      componentsProps.clearIndicator?.className,
+                    )}
+                  >
+                    {clearIcon}
+                  </AutocompleteClearIndicator>
+                ) : null}
 
-                  {hasPopupIcon ? (
-                    <AutocompletePopupIndicator
-                      {...getPopupIndicatorProps()}
-                      disabled={disabled}
-                      aria-label={popupOpen ? closeText : openText}
-                      title={popupOpen ? closeText : openText}
-                      ownerState={{ ...ownerState, variant: 'plain', color: 'neutral' }}
-                      {...componentsProps.popupIndicator}
-                      className={clsx(
-                        classes.popupIndicator,
-                        componentsProps.popupIndicator?.className,
-                      )}
-                    >
-                      {popupIcon}
-                    </AutocompletePopupIndicator>
-                  ) : null}
-                </React.Fragment>
-              ),
-            }),
-          },
-          inputProps: {
-            className: classes.input,
-            disabled,
-            readOnly,
-            ...getInputProps(),
+                {hasPopupIcon ? (
+                  <AutocompletePopupIndicator
+                    {...getPopupIndicatorProps()}
+                    disabled={disabled}
+                    aria-label={popupOpen ? closeText : openText}
+                    title={popupOpen ? closeText : openText}
+                    ownerState={{ ...ownerState, size, variant: 'plain', color: 'neutral' }}
+                    {...componentsProps.popupIndicator}
+                    className={clsx(
+                      classes.popupIndicator,
+                      componentsProps.popupIndicator?.className,
+                    )}
+                  >
+                    {popupIcon}
+                  </AutocompletePopupIndicator>
+                ) : null}
+              </React.Fragment>
+            ),
+          }),
+          componentsProps: {
+            input: {
+              className: classes.input,
+              disabled,
+              readOnly,
+              ...getInputProps(),
+            },
           },
         })}
       </AutocompleteRoot>

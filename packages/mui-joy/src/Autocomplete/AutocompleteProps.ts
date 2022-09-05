@@ -58,15 +58,14 @@ export interface AutocompleteRenderInputParams {
   id: string;
   disabled: boolean;
   fullWidth: boolean;
-  size: 'small' | undefined;
-  InputLabelProps: ReturnType<ReturnType<typeof useAutocomplete>['getInputLabelProps']>;
-  InputProps: {
-    ref: React.Ref<any>;
-    className: string;
-    startAdornment: React.ReactNode;
-    endAdornment: React.ReactNode;
+  size: OverridableStringUnion<'sm' | 'md' | 'lg', AutocompletePropsSizeOverrides>;
+  ref: React.Ref<any>;
+  className: string;
+  startDecorator: React.ReactNode;
+  endDecorator?: React.ReactNode;
+  componentsProps: {
+    input: ReturnType<ReturnType<typeof useAutocomplete>['getInputProps']>;
   };
-  inputProps: ReturnType<ReturnType<typeof useAutocomplete>['getInputProps']>;
 }
 
 export interface AutocompletePropsSizeOverrides {}
