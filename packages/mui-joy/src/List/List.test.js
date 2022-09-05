@@ -44,6 +44,11 @@ describe('Joy <List />', () => {
     expect(container.firstChild).to.have.class(classes.sizeLg);
   });
 
+  it('should have default size="md" classes', () => {
+    const { container } = render(<List size={undefined} />);
+    expect(container.firstChild).to.have.class(classes.sizeMd);
+  });
+
   it('should have nesting classes', () => {
     const { getByRole } = render(
       <ListItem nested>

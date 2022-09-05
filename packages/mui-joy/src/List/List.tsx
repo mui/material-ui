@@ -151,7 +151,7 @@ const List = React.forwardRef(function List(inProps, ref) {
     component,
     className,
     children,
-    size = 'md',
+    size = inProps.size ?? 'md',
     row = false,
     wrap = false,
     variant = 'plain',
@@ -163,6 +163,7 @@ const List = React.forwardRef(function List(inProps, ref) {
   const role = roleProp ?? (menuContext || selectContext ? 'group' : undefined);
 
   const ownerState = {
+    ...props,
     instanceSize: inProps.size,
     size,
     nesting,
@@ -171,7 +172,6 @@ const List = React.forwardRef(function List(inProps, ref) {
     variant,
     color,
     role,
-    ...props,
   };
 
   const classes = useUtilityClasses(ownerState);
