@@ -36,7 +36,7 @@ export interface ButtonTypeMap<P = {}, D extends React.ElementType = 'button'> {
      */
     color?: OverridableStringUnion<ColorPaletteProp, ButtonPropsColorOverrides>;
     /**
-     * The props used for each slot inside the AspectRatio.
+     * The props used for each slot inside the component.
      * @default {}
      */
     componentsProps?: ComponentsProps;

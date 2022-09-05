@@ -38,7 +38,7 @@ export interface RadioTypeMap<P = {}, D extends React.ElementType = 'span'> {
        */
       component?: React.ElementType;
       /**
-       * The props used for each slot inside the Input.
+       * The props used for each slot inside the component.
        * @default {}
        */
       componentsProps?: ComponentsProps;

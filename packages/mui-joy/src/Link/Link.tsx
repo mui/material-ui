@@ -284,7 +284,7 @@ Link.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
-   * The props used for each slot inside the Input.
+   * The props used for each slot inside the component.
    * @default {}
    */
   componentsProps: PropTypes.shape({

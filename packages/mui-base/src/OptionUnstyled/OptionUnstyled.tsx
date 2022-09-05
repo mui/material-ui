@@ -149,7 +149,7 @@ OptionUnstyled.propTypes /* remove-proptypes */ = {
  *
  * Demos:
  *
- * - [Select](https://mui.com/base/react-select/)
+ * - [Unstyled select](https://mui.com/base/react-select/)
  *
  * API:
  *
