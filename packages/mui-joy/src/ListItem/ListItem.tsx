@@ -72,6 +72,7 @@ const ListItemRoot = styled('li', {
     boxSizing: 'border-box',
     borderRadius: 'var(--List-item-radius)',
     display: 'flex',
+    flex: 'none',
     position: 'relative',
     paddingBlockStart: ownerState.nested ? 0 : 'var(--List-item-paddingY)',
     paddingBlockEnd: ownerState.nested ? 0 : 'var(--List-item-paddingY)',
