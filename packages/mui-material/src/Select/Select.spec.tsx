@@ -55,22 +55,44 @@ function App() {
   const [selectedValue, setSelectedValue] = React.useState<MyEnum | ''>('');
 
   return (
-    <Select
-      renderValue={(value) => {
-        if (value === '') {
-          return 'None selected';
-        }
-        return value;
-      }}
-      displayEmpty
-      value={selectedValue}
-      onChange={(e) => setSelectedValue(e.target.value as MyEnum)}
-    >
-      <MenuItem value="">
-        <em>Blank</em>
-      </MenuItem>
-      <MenuItem value="first">first</MenuItem>
-      <MenuItem value="second">second</MenuItem>
-    </Select>
+    <React.Fragment>
+      {/* displayEmpty is true */}
+      <Select
+        renderValue={(value) => {
+          if (value === '') {
+            return 'None selected';
+          }
+          return value;
+        }}
+        displayEmpty
+        value={selectedValue}
+        onChange={(e) => setSelectedValue(e.target.value as MyEnum)}
+      >
+        <MenuItem value="">
+          <em>Blank</em>
+        </MenuItem>
+        <MenuItem value="first">first</MenuItem>
+        <MenuItem value="second">second</MenuItem>
+      </Select>
+
+      {/* displayEmpty is false */}
+      <Select
+        renderValue={(value) => {
+          // @ts-expect-error value cannot be empty string since displayEmpty is false
+          if (value === '') {
+            return 'None selected';
+          }
+          return value;
+        }}
+        value={selectedValue}
+        onChange={(e) => setSelectedValue(e.target.value as MyEnum)}
+      >
+        <MenuItem value="">
+          <em>Blank</em>
+        </MenuItem>
+        <MenuItem value="first">first</MenuItem>
+        <MenuItem value="second">second</MenuItem>
+      </Select>
+    </React.Fragment>
   );
 }
