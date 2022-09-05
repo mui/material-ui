@@ -85,7 +85,7 @@ export default function ExampleCollapsibleList() {
             </IconButton>
           }
         >
-          <ListItemButton>
+          <ListItem>
             <Typography
               level="inherit"
               sx={{
@@ -98,7 +98,7 @@ export default function ExampleCollapsibleList() {
             <Typography component="span" level="body3" sx={{ ml: 1 }}>
               9
             </Typography>
-          </ListItemButton>
+          </ListItem>
           {open && (
             <List sx={{ '--List-item-paddingY': '8px' }}>
               <ListItem>
@@ -136,7 +136,7 @@ export default function ExampleCollapsibleList() {
             </IconButton>
           }
         >
-          <ListItemButton>
+          <ListItem>
             <Typography
               level="inherit"
               sx={{
@@ -149,7 +149,7 @@ export default function ExampleCollapsibleList() {
             <Typography component="span" level="body3" sx={{ ml: 1 }}>
               39
             </Typography>
-          </ListItemButton>
+          </ListItem>
           {open2 && (
             <List sx={{ '--List-item-paddingY': '8px' }}>
               <ListItem>

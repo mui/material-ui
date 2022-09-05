@@ -109,7 +109,7 @@ export const ListRoot = styled('ul', {
         ? {
             ...(ownerState.wrap
               ? {
-                  padding: 'var(--List-padding)',
+                  padding: 'var(--List-padding)', // Fallback is not needed for row-wrap List
                   marginInlineStart: 'calc(-1 * var(--List-gap))',
                   marginBlockStart: 'calc(-1 * var(--List-gap))',
                 }
