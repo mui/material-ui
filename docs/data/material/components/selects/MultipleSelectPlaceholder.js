@@ -62,6 +62,10 @@ export default function MultipleSelectPlaceholder() {
           onChange={handleChange}
           input={<OutlinedInput />}
           renderValue={(selected) => {
+            if (!Array.isArray(selected)) {
+              return null;
+            }
+
             if (selected.length === 0) {
               return <em>Placeholder</em>;
             }
