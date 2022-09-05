@@ -9,7 +9,7 @@ import { OutlinedInputProps } from '../OutlinedInput';
 
 export { SelectChangeEvent };
 
-export interface SelectProps<T = unknown>
+interface CommonProps<T>
   extends StandardProps<InputProps, 'value' | 'onChange'>,
     Omit<OutlinedInputProps, 'value' | 'onChange'>,
     Pick<SelectInputProps<T>, 'onChange'> {
@@ -41,17 +41,6 @@ export interface SelectProps<T = unknown>
    * The default value. Use when the component is not controlled.
    */
   defaultValue?: T;
-  /**
-   * If `true`, a value is displayed even if no items are selected.
-   *
-   * In order to display a meaningful value, a function can be passed to the `renderValue` prop which
-   * returns the value to be displayed when no items are selected.
-   *
-   * ⚠️ When using this prop, make sure the label doesn't overlap with the empty displayed value.
-   * The label should either be hidden or forced to a shrunk state.
-   * @default false
-   */
-  displayEmpty?: boolean;
   /**
    * The icon that displays the arrow.
    * @default ArrowDropDownIcon
@@ -122,14 +111,6 @@ export interface SelectProps<T = unknown>
    */
   open?: boolean;
   /**
-   * Render the selected value.
-   * You can only use it when the `native` prop is `false` (default).
-   *
-   * @param {any} value The `value` provided to the component.
-   * @returns {ReactNode}
-   */
-  renderValue?: (value: T | '') => React.ReactNode;
-  /**
    * Props applied to the clickable div element.
    */
   SelectDisplayProps?: React.HTMLAttributes<HTMLDivElement>;
@@ -151,6 +132,32 @@ export interface SelectProps<T = unknown>
    */
   variant?: 'standard' | 'outlined' | 'filled';
 }
+
+type ConditionalRenderValueType<T> =
+  | {
+      /**
+       * If `true`, a value is displayed even if no items are selected.
+       *
+       * In order to display a meaningful value, a function can be passed to the `renderValue` prop which
+       * returns the value to be displayed when no items are selected.
+       *
+       * ⚠️ When using this prop, make sure the label doesn't overlap with the empty displayed value.
+       * The label should either be hidden or forced to a shrunk state.
+       * @default false
+       */
+      displayEmpty?: false;
+      /**
+       * Render the selected value.
+       * You can only use it when the `native` prop is `false` (default).
+       *
+       * @param {any} value The `value` provided to the component.
+       * @returns {ReactNode}
+       */
+      renderValue?: (value: T) => React.ReactNode;
+    }
+  | { displayEmpty: true; renderValue?: (value: T | '') => React.ReactNode };
+
+export type SelectProps<T = unknown> = CommonProps<T> & ConditionalRenderValueType<T>;
 
 /**
  *
