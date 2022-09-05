@@ -13,7 +13,7 @@ While Material UI is excellent for building sleek user interfaces that adhere cl
 We get it.
 We've all been there.
 
-That's why we've built an entirely new library of headless React UI components and hooks called **MUI Base**—to give you complete control over the look and feel of your user interface, with no defaults to override.
+That's why we're building an entirely new library of headless React UI components and hooks called **MUI Base**—to give you complete control over the look and feel of your user interface, with no defaults to override.
 
 MUI Base is easy to pick up if you're already familiar with Material UI, as the APIs are very similar—indeed, they were designed to be complementary to one another.
 Start from scratch with MUI Base, or use Material UI for rapid prototyping, and then switch to MUI Base when you need more customization options.
