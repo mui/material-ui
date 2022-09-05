@@ -159,13 +159,17 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
   const [listElement, listRole] = listComponent?.split(':') || ['', ''];
   const component =
     componentProp || (listElement && !listElement.match(/^(ul|ol|menu)$/) ? 'div' : undefined);
-  const role =
-    roleProp ??
-    (menuContext
-      ? // ListItem can be used inside Menu to create nested menus, so it should have role="none"
-        // https://www.w3.org/WAI/ARIA/apg/example-index/menubar/menubar-navigation.html
-        'none'
-      : { menu: 'none', menubar: 'none', group: 'presentation' }[listRole]);
+
+  let role = menuContext ? 'none' : undefined;
+
+  if (listComponent) {
+    // ListItem can be used inside Menu to create nested menus, so it should have role="none"
+    // https://www.w3.org/WAI/ARIA/apg/example-index/menubar/menubar-navigation.html
+    role = { menu: 'none', menubar: 'none', group: 'presentation' }[listRole];
+  }
+  if (roleProp) {
+    role = roleProp;
+  }
 
   const ownerState = {
     sticky,
