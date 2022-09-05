@@ -28,6 +28,8 @@ This makes it better suited for public-facing projects where pixel-perfect imple
 So, why not use any of the headless libraries already present on the market instead?
 There are other alternatives like Headless UI, Radix UI, and React Aria, to name a few.
 MUI Base's significant advantage is that it takes the best parts from Material UI, which is a complete, mature library.
+It is free from many of the issues that have been reported and fixed in Material UI.
+Also, many of the improvements to Material UI proposed by the community over the years are included in MUI Base.
 
 While they were created for different use cases, these two libraries share many common features and design patterns, and are intended to be complementary to one another within the MUI ecosystem.
 MUI Base's API will be familiar to you if you've used Material UI before, making it easy to migrate a project—or just a part of it—from one library to the other if needed.
@@ -51,6 +53,14 @@ For example, a `SwitchUnstyled` contains the root, thumb, input, and track slots
 You can control props passed to each of these slots (including `className`) based on the component's state, and even replace the default slot components with your own.
 
 <img src="/static/blog/introducing-mui-base/switch-slots.png" style="width: 692px; aspect-ratio: 173/80; margin-bottom: 24px;" loading="lazy" alt="Depiction of SwitchUnstyled components' slots" />
+
+See how it works on the live demo:
+
+<iframe src="https://codesandbox.io/embed/mui-base-switch-overview-frsm5f?fontsize=12&hidenavigation=1&module=%2Fsrc%2FMySwitch.tsx&theme=dark"
+  style="width:100%; height:500px; border:0; border-radius: 10px; overflow:hidden; margin-bottom: 24px"
+  title="MUI Base Switch overview"
+  sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
+></iframe>
 
 Hooks take this one step further by extracting the logic from the structure entirely, so you can build from scratch using any DOM elements you need.
 This requires more work to implement but gives you the most freedom to customize.
