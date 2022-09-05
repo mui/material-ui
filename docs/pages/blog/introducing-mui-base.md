@@ -1,7 +1,7 @@
 ---
 title: 'Introducing MUI Base: the headless alternative to Material UI'
 description: The MUI Base component library gives you complete control over the look and feel of your app.
-date: 2022-08-29T00:00:00.000Z
+date: 2022-09-05T00:00:00.000Z
 authors: ['michaldudak', 'samuelsycamore']
 tags: ['News', 'MUI Core']
 card: true
@@ -28,6 +28,7 @@ This makes it better suited for public-facing projects where pixel-perfect imple
 So, why not use any of the headless libraries already present on the market instead?
 There are other alternatives like Headless UI, Radix UI, and React Aria, to name a few.
 MUI Base's significant advantage is that it takes the best parts from Material UI, which is a complete, mature library.
+
 While they were created for different use cases, these two libraries share many common features and design patterns, and are intended to be complementary to one another within the MUI ecosystem.
 MUI Base's API will be familiar to you if you've used Material UI before, making it easy to migrate a project—or just a part of it—from one library to the other if needed.
 We aim to create [unstyled versions of all Material UI components](https://github.com/mui/material-ui/issues/27170) (that make sense to do so).
