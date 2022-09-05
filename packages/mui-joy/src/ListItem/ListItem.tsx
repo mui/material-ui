@@ -15,6 +15,7 @@ import NestedListContext from '../List/NestedListContext';
 import RowListContext from '../List/RowListContext';
 import WrapListContext from '../List/WrapListContext';
 import ComponentListContext from '../List/ComponentListContext';
+import ListSubheaderDispatch from '../ListSubheader/ListSubheaderContext';
 
 const useUtilityClasses = (ownerState: ListItemOwnerState) => {
   const { sticky, nested, nesting, variant, color } = ownerState;
@@ -157,16 +158,22 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
     ...other
   } = props;
 
+  const [subheaderId, setSubheaderId] = React.useState('');
+
   const [listElement, listRole] = listComponent?.split(':') || ['', ''];
   const component =
     componentProp || (listElement && !listElement.match(/^(ul|ol|menu)$/) ? 'div' : undefined);
-  const role =
-    roleProp ??
-    (menuContext
-      ? // ListItem can be used inside Menu to create nested menus, so it should have role="none"
-        // https://www.w3.org/WAI/ARIA/apg/example-index/menubar/menubar-navigation.html
-        'none'
-      : { menu: 'none', menubar: 'none', group: 'presentation' }[listRole]);
+
+  let role = menuContext ? 'none' : undefined;
+
+  if (listComponent) {
+    // ListItem can be used inside Menu to create nested menus, so it should have role="none"
+    // https://www.w3.org/WAI/ARIA/apg/example-index/menubar/menubar-navigation.html
+    role = { menu: 'none', menubar: 'none', group: 'presentation' }[listRole];
+  }
+  if (roleProp) {
+    role = roleProp;
+  }
 
   const ownerState = {
     sticky,
@@ -185,41 +192,43 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
   return (
-    <NestedListContext.Provider value={nested}>
-      <ListItemRoot
-        ref={ref}
-        as={component}
-        className={clsx(classes.root, className)}
-        ownerState={ownerState}
-        role={role}
-        {...other}
-      >
-        {startAction && (
-          <ListItemStartAction className={classes.startAction} ownerState={ownerState}>
-            {startAction}
-          </ListItemStartAction>
-        )}
+    <ListSubheaderDispatch.Provider value={setSubheaderId}>
+      <NestedListContext.Provider value={nested ? subheaderId || true : false}>
+        <ListItemRoot
+          ref={ref}
+          as={component}
+          className={clsx(classes.root, className)}
+          ownerState={ownerState}
+          role={role}
+          {...other}
+        >
+          {startAction && (
+            <ListItemStartAction className={classes.startAction} ownerState={ownerState}>
+              {startAction}
+            </ListItemStartAction>
+          )}
 
-        {React.Children.map(children, (child, index) =>
-          React.isValidElement(child)
-            ? React.cloneElement(child, {
-                // to let ListItem knows when to apply margin(Inline|Block)Start
-                ...(index === 0 && { 'data-first-child': '' }),
-                ...(isMuiElement(child, ['ListItem']) && {
-                  // The ListItem of ListItem should not be 'li'
-                  component: child.props.component || 'div',
-                }),
-              })
-            : child,
-        )}
+          {React.Children.map(children, (child, index) =>
+            React.isValidElement(child)
+              ? React.cloneElement(child, {
+                  // to let ListItem knows when to apply margin(Inline|Block)Start
+                  ...(index === 0 && { 'data-first-child': '' }),
+                  ...(isMuiElement(child, ['ListItem']) && {
+                    // The ListItem of ListItem should not be 'li'
+                    component: child.props.component || 'div',
+                  }),
+                })
+              : child,
+          )}
 
-        {endAction && (
-          <ListItemEndAction className={classes.endAction} ownerState={ownerState}>
-            {endAction}
-          </ListItemEndAction>
-        )}
-      </ListItemRoot>
-    </NestedListContext.Provider>
+          {endAction && (
+            <ListItemEndAction className={classes.endAction} ownerState={ownerState}>
+              {endAction}
+            </ListItemEndAction>
+          )}
+        </ListItemRoot>
+      </NestedListContext.Provider>
+    </ListSubheaderDispatch.Provider>
   );
 }) as OverridableComponent<ListItemTypeMap>;
 
@@ -233,10 +242,6 @@ ListItem.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
-   * Override or extend the styles applied to the component.
-   */
-  classes: PropTypes.object,
-  /**
    * @ignore
    */
   className: PropTypes.string,
@@ -244,7 +249,10 @@ ListItem.propTypes /* remove-proptypes */ = {
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'neutral'
    */
-  color: PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.string,
+  ]),
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
@@ -284,7 +292,10 @@ ListItem.propTypes /* remove-proptypes */ = {
    * The variant to use.
    * @default 'plain'
    */
-  variant: PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
+  variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
+    PropTypes.string,
+  ]),
 } as any;
 
 // @ts-ignore internal logic to prevent <li> in <li>

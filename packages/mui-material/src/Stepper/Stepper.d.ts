@@ -55,7 +55,7 @@ export type StepperClasskey = keyof NonNullable<StepperProps['classes']>;
  *
  * Demos:
  *
- * - [Steppers](https://mui.com/material-ui/react-stepper/)
+ * - [Stepper](https://mui.com/material-ui/react-stepper/)
  *
  * API:
  *

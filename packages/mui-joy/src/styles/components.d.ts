@@ -60,6 +60,11 @@ import {
   ListDividerOwnerState,
   ListDividerSlot,
 } from '../ListDivider/ListDividerProps';
+import {
+  ListSubheaderProps,
+  ListSubheaderOwnerState,
+  ListSubheaderSlot,
+} from '../ListSubheader/ListSubheaderProps';
 import { ListItemProps, ListItemOwnerState, ListItemSlot } from '../ListItem/ListItemProps';
 import {
   ListItemButtonProps,
@@ -219,6 +224,10 @@ export interface Components<Theme = unknown> {
   JoyListDivider?: {
     defaultProps?: Partial<ListDividerProps>;
     styleOverrides?: OverridesStyleRules<ListDividerSlot, ListDividerOwnerState, Theme>;
+  };
+  JoyListSubheader?: {
+    defaultProps?: Partial<ListSubheaderProps>;
+    styleOverrides?: OverridesStyleRules<ListSubheaderSlot, ListSubheaderOwnerState, Theme>;
   };
   JoyListItem?: {
     defaultProps?: Partial<ListItemProps>;
