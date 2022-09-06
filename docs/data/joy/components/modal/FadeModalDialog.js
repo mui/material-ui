@@ -13,60 +13,58 @@ export default function FadeModalDialog() {
         Open modal
       </Button>
       <Transition in={open} timeout={400}>
-        {(state) => {
-          return (
-            <Modal
-              keepMounted
-              open={open}
-              onClose={() => setOpen(false)}
-              componentsProps={{
-                backdrop: {
-                  sx: {
-                    opacity: 0,
-                    backdropFilter: 'none',
-                    transition: `opacity 400ms, backdrop-filter 400ms`,
-                    ...{
-                      entering: { opacity: 1, backdropFilter: 'blur(8px)' },
-                      entered: { opacity: 1, backdropFilter: 'blur(8px)' },
-                    }[state],
-                  },
+        {(state) => (
+          <Modal
+            keepMounted
+            open={!['exited', 'exiting'].includes(state)}
+            onClose={() => setOpen(false)}
+            componentsProps={{
+              backdrop: {
+                sx: {
+                  opacity: 0,
+                  backdropFilter: 'none',
+                  transition: `opacity 400ms, backdrop-filter 400ms`,
+                  ...{
+                    entering: { opacity: 1, backdropFilter: 'blur(8px)' },
+                    entered: { opacity: 1, backdropFilter: 'blur(8px)' },
+                  }[state],
                 },
-              }}
+              },
+            }}
+            sx={{
+              visibility: state === 'exited' ? 'hidden' : 'visible',
+            }}
+          >
+            <ModalDialog
+              aria-labelledby="fade-modal-dialog-title"
+              aria-describedby="fade-modal-dialog-description"
               sx={{
-                visibility: state === 'exited' ? 'hidden' : 'visible',
+                opacity: 0,
+                transition: `opacity 300ms`,
+                ...{
+                  entering: { opacity: 1 },
+                  entered: { opacity: 1 },
+                }[state],
               }}
             >
-              <ModalDialog
-                aria-labelledby="fade-modal-dialog-title"
-                aria-describedby="fade-modal-dialog-description"
-                sx={{
-                  opacity: 0,
-                  transition: `opacity 300ms`,
-                  ...{
-                    entering: { opacity: 1 },
-                    entered: { opacity: 1 },
-                  }[state],
-                }}
+              <Typography
+                id="fade-modal-dialog-title"
+                component="h2"
+                level="inherit"
+                fontSize="1.25em"
+                mb="0.25em"
               >
-                <Typography
-                  id="fade-modal-dialog-title"
-                  component="h2"
-                  level="inherit"
-                  fontSize="1.25em"
-                  mb="0.25em"
-                >
-                  Transition modal
-                </Typography>
-                <Typography
-                  id="fade-modal-dialog-description"
-                  textColor="text.tertiary"
-                >
-                  Using `react-transition-group` to create a fade animation.
-                </Typography>
-              </ModalDialog>
-            </Modal>
-          );
-        }}
+                Transition modal
+              </Typography>
+              <Typography
+                id="fade-modal-dialog-description"
+                textColor="text.tertiary"
+              >
+                Using `react-transition-group` to create a fade animation.
+              </Typography>
+            </ModalDialog>
+          </Modal>
+        )}
       </Transition>
     </React.Fragment>
   );
