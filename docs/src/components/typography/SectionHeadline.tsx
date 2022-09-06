@@ -4,7 +4,7 @@ import Typography from '@mui/material/Typography';
 
 interface SectionHeadlineProps {
   description?: React.ReactNode;
-  id: string;
+  id?: string;
   overline: React.ReactNode;
   title: React.ReactNode;
 }
