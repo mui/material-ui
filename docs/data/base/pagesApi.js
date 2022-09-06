@@ -17,10 +17,10 @@ module.exports = [
   { pathname: '/base/api/select-unstyled' },
   { pathname: '/base/api/slider-unstyled' },
   { pathname: '/base/api/switch-unstyled' },
-  { pathname: '/base/api/tab-panel-unstyled' },
-  { pathname: '/base/api/tab-unstyled' },
   { pathname: '/base/api/table-pagination-unstyled' },
+  { pathname: '/base/api/tab-panel-unstyled' },
   { pathname: '/base/api/tabs-list-unstyled' },
   { pathname: '/base/api/tabs-unstyled' },
+  { pathname: '/base/api/tab-unstyled' },
   { pathname: '/base/api/textarea-autosize' },
 ];
