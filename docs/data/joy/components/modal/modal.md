@@ -11,7 +11,7 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/dialogmodal/
 
 ## Introduction
 
-Joy UI provides five modal-related components:
+Joy UI provides three modal-related components:
 
 - [`Modal`](#basic-usage): A container that renders its `children` node in front of a backdrop component.
 - [`ModalClose`](#dialog): A button for closing the modal.
