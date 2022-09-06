@@ -56,10 +56,10 @@ export interface FocusTrapProps {
  *
  * Demos:
  *
- * - [Focus trap](https://mui.com/base/react-trap-focus/)
+ * - [Focus trap](https://mui.com/base/react-focus-trap/)
  *
  * API:
  *
- * - [FocusTrap API](https://mui.com/base/api/trap-focus/)
+ * - [FocusTrap API](https://mui.com/base/api/focus-trap/)
  */
 export default function FocusTrap(props: FocusTrapProps): JSX.Element;
