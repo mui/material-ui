@@ -14,7 +14,7 @@ export default function LayoutModalDialog() {
         <Button
           variant="outlined"
           color="neutral"
-          onClick={() => setOpen('fullScreen')}
+          onClick={() => setOpen('fullscreen')}
         >
           Full screen
         </Button>

@@ -227,12 +227,6 @@ const ModalUnstyled = React.forwardRef(function ModalUnstyled(inProps, ref) {
     }
   };
 
-  const childProps = {};
-  if (children.props.tabIndex === undefined) {
-    // @ts-ignore internal logic
-    childProps.tabIndex = '-1';
-  }
-
   const rootProps = useSlotProps({
     elementType: ModalRoot,
     externalSlotProps: componentsProps.root,
@@ -281,7 +275,12 @@ const ModalUnstyled = React.forwardRef(function ModalUnstyled(inProps, ref) {
             isEnabled={isTopModal}
             open={open}
           >
-            {React.Children.only(children) && React.cloneElement(children, childProps)}
+            {React.Children.only(children) &&
+              React.cloneElement(children, {
+                ...(children.props.tabIndex === undefined && {
+                  tabIndex: -1,
+                }),
+              })}
           </TrapFocus>
         </ModalRoot>
       </Portal>
