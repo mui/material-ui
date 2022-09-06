@@ -153,14 +153,20 @@ ModalDialog.propTypes /* remove-proptypes */ = {
   component: PropTypes.elementType,
   /**
    * The layout of the dialog
-   * @default null
+   * @default 'top'
    */
-  layout: PropTypes.oneOf(['center', 'fullScreen']),
+  layout: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['center', 'fullscreen', 'top']),
+    PropTypes.string,
+  ]),
   /**
    * The size of the component.
    * @default 'md'
    */
-  size: PropTypes.oneOf(['sm', 'md', 'lg']),
+  size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['sm', 'md', 'lg']),
+    PropTypes.string,
+  ]),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
