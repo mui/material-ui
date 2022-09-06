@@ -36,6 +36,10 @@ Feel free to submit a pull request!
 
 - [mui-tel-input](https://viclafouch.github.io/mui-tel-input): A phone number input designed for the React library MUI built with [libphonenumber-js](https://www.npmjs.com/package/libphonenumber-js).
 
+### One-Time Password
+
+- [mui-otp-input](https://viclafouch.github.io/mui-otp-input): A One-Time Password input designed for the React library MUI.
+
 ### Color picker
 
 - [mui-color-input](https://viclafouch.github.io/mui-color-input): A color input designed for the React library MUI built with [TinyColor](https://tinycolor.vercel.app/).
