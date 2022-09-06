@@ -4,7 +4,7 @@ import {
   demos,
   docs,
   demoComponents,
-} from 'docs/data/base/components/trap-focus/trap-focus.md?@mui/markdown';
+} from 'docs/data/base/components/focus-trap/focus-trap.md?@mui/markdown';
 
 export default function Page() {
   return <MarkdownDocs demos={demos} docs={docs} demoComponents={demoComponents} />;

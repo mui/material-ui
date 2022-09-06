@@ -11,11 +11,11 @@
       "default": "function defaultIsEnabled() {\n  return true;\n}"
     }
   },
-  "name": "TrapFocus",
+  "name": "FocusTrap",
   "styles": { "classes": [], "globalClasses": {}, "name": null },
   "spread": false,
-  "filename": "/packages/mui-base/src/TrapFocus/TrapFocus.js",
+  "filename": "/packages/mui-base/src/FocusTrap/FocusTrap.js",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/base/react-trap-focus/\">Trap focus</a></li></ul>",
+  "demos": "<ul><li><a href=\"/base/react-focus-trap/\">Focus trap</a></li></ul>",
   "cssComponent": false
 }

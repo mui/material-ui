@@ -1,7 +1,7 @@
 import * as React from 'react';
 import ApiPage from 'docs/src/modules/components/ApiPage';
 import mapApiPageTranslations from 'docs/src/modules/utils/mapApiPageTranslations';
-import jsonPageContent from './trap-focus.json';
+import jsonPageContent from './focus-trap.json';
 
 export default function Page(props) {
   const { descriptions, pageContent } = props;
