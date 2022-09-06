@@ -2,7 +2,7 @@
   Open
 </button>
 {open && (
-  <TrapFocus disableEnforceFocus open>
+  <FocusTrap open disableAutoFocus>
     <Box tabIndex={-1} sx={{ mt: 1, p: 1 }}>
       <label>
         First name: <input type="text" />
@@ -12,5 +12,5 @@
         Close
       </button>
     </Box>
-  </TrapFocus>
+  </FocusTrap>
 )}

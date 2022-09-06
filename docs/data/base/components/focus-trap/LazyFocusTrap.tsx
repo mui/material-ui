@@ -1,8 +1,8 @@
 import * as React from 'react';
 import Box from '@mui/system/Box';
-import TrapFocus from '@mui/base/TrapFocus';
+import FocusTrap from '@mui/base/FocusTrap';
 
-export default function DisableEnforceFocus() {
+export default function LazyFocusTrap() {
   const [open, setOpen] = React.useState(false);
 
   return (
@@ -11,7 +11,7 @@ export default function DisableEnforceFocus() {
         Open
       </button>
       {open && (
-        <TrapFocus disableEnforceFocus open>
+        <FocusTrap open disableAutoFocus>
           <Box tabIndex={-1} sx={{ mt: 1, p: 1 }}>
             <label>
               First name: <input type="text" />
@@ -21,7 +21,7 @@ export default function DisableEnforceFocus() {
               Close
             </button>
           </Box>
-        </TrapFocus>
+        </FocusTrap>
       )}
     </Box>
   );
