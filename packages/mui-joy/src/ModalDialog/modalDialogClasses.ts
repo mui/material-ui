@@ -29,6 +29,10 @@ export interface ModalDialogClasses {
   sizeMd: string;
   /** Styles applied to the root element if `size="lg"`. */
   sizeLg: string;
+  /** Styles applied to the root element if `layout="center"`. */
+  layoutCenter: string;
+  /** Styles applied to the root element if `layout="fullscreen"`. */
+  layoutFullscreen: string;
 }
 
 export type ModalDialogClassKey = keyof ModalDialogClasses;
@@ -52,6 +56,8 @@ const modalDialogClasses: ModalDialogClasses = generateUtilityClasses('JoyModalD
   'sizeSm',
   'sizeMd',
   'sizeLg',
+  'layoutCenter',
+  'layoutFullscreen',
 ]);
 
 export default modalDialogClasses;

@@ -61,12 +61,12 @@ const ModalDialogRoot = styled(SheetRoot, {
   minWidth: 'min(calc(100vw - 2 * var(--ModalDialog-padding)), var(--ModalDialog-minWidth, 300px))',
   outline: 'none',
   position: 'absolute',
-  ...(!ownerState.layout && {
+  ...(ownerState.layout === 'top' && {
     top: '12vh', // golden number, no other reason.
     left: '50%',
     transform: 'translateX(-50%)',
   }),
-  ...(ownerState.layout === 'fullScreen' && {
+  ...(ownerState.layout === 'fullscreen' && {
     top: 0,
     left: 0,
     right: 0,
@@ -93,7 +93,7 @@ const ModalDialog = React.forwardRef(function ModalDialog(inProps, ref) {
     component = 'div',
     variant = 'outlined',
     size = 'md',
-    layout = null,
+    layout = 'top',
     ...other
   } = props;
 

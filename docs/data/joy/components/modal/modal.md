@@ -17,6 +17,8 @@ Joy UI provides three modal-related components:
 - [`ModalClose`](#dialog): A button for closing the modal.
 - [`ModalDialog`](#dialog): A component for rendering a modal dialog.
 
+{{"demo": "ModalUsage.js", "hideToolbar": true}}
+
 ### Features
 
 - 🥞 Manages modal stacking when more than one is needed.

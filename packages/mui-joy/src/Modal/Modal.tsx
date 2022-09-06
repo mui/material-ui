@@ -281,7 +281,7 @@ const ModalUnstyled = React.forwardRef(function ModalUnstyled(inProps, ref) {
             isEnabled={isTopModal}
             open={open}
           >
-            {React.cloneElement(children, childProps)}
+            {React.Children.only(children) && React.cloneElement(children, childProps)}
           </TrapFocus>
         </ModalRoot>
       </Portal>
