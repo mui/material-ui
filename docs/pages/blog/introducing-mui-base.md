@@ -1,7 +1,7 @@
 ---
 title: 'Introducing MUI Base: the headless alternative to Material UI'
 description: The MUI Base component library gives you complete control over the look and feel of your app.
-date: 2022-09-05T00:00:00.000Z
+date: 2022-09-06T00:00:00.000Z
 authors: ['michaldudak', 'samuelsycamore']
 tags: ['News', 'MUI Core']
 card: true
@@ -108,7 +108,7 @@ or yarn:
 yarn add @mui/base
 ```
 
-And be sure to let us know what you think!
+Chek out [the docs](/base/getting-started/overview/), play with the components, and be sure to let us know what you think!
 
 If you find any bugs or want to share ideas for improvements, please don't hesitate to open an issue in the [MUI Core repository on GitHub](https://github.com/mui/material-ui/issues/new/choose).
 Be sure to include "[base]" in the issue title to help us keep things organized.
