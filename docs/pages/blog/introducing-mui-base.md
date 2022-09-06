@@ -57,7 +57,7 @@ You can control props passed to each of these slots (including `className`) base
 See how it works on the live demo:
 
 <iframe src="https://codesandbox.io/embed/mui-base-switch-overview-frsm5f?fontsize=12&hidenavigation=1&module=%2Fsrc%2FMySwitch.tsx&theme=dark"
-  style="width:100%; height:500px; border:0; border-radius: 10px; overflow:hidden; margin-bottom: 24px"
+  style="width:100%; height:350px; border:0; border-radius: 10px; overflow:hidden; margin-bottom: 24px"
   title="MUI Base Switch overview"
   sandbox="allow-forms allow-modals allow-popups allow-presentation allow-same-origin allow-scripts"
 ></iframe>
