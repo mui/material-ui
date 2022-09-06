@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-export interface TrapFocusProps {
+export interface FocusTrapProps {
   /**
    * If `true`, focus is locked.
    */
@@ -56,10 +56,10 @@ export interface TrapFocusProps {
  *
  * Demos:
  *
- * - [Trap focus](https://mui.com/base/react-trap-focus/)
+ * - [Focus trap](https://mui.com/base/react-trap-focus/)
  *
  * API:
  *
- * - [TrapFocus API](https://mui.com/base/api/trap-focus/)
+ * - [FocusTrap API](https://mui.com/base/api/trap-focus/)
  */
-export default function TrapFocus(props: TrapFocusProps): JSX.Element;
+export default function FocusTrap(props: FocusTrapProps): JSX.Element;

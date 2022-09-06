@@ -115,7 +115,7 @@ function defaultIsEnabled() {
 /**
  * Utility component that locks focus inside the component.
  */
-function TrapFocus(props) {
+function FocusTrap(props) {
   const {
     children,
     disableAutoFocus = false,
@@ -190,7 +190,7 @@ function TrapFocus(props) {
       }
     };
     // Missing `disableRestoreFocus` which is fine.
-    // We don't support changing that prop on an open TrapFocus
+    // We don't support changing that prop on an open FocusTrap
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open]);
 
@@ -341,7 +341,7 @@ function TrapFocus(props) {
   );
 }
 
-TrapFocus.propTypes /* remove-proptypes */ = {
+FocusTrap.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
   // | These PropTypes are generated from the TypeScript type definitions |
   // |     To update them edit the d.ts file and run "yarn proptypes"     |
@@ -398,7 +398,7 @@ TrapFocus.propTypes /* remove-proptypes */ = {
 
 if (process.env.NODE_ENV !== 'production') {
   // eslint-disable-next-line
-  TrapFocus['propTypes' + ''] = exactProp(TrapFocus.propTypes);
+  FocusTrap['propTypes' + ''] = exactProp(FocusTrap.propTypes);
 }
 
-export default TrapFocus;
+export default FocusTrap;

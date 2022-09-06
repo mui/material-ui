@@ -2,10 +2,10 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { expect } from 'chai';
 import { act, createRenderer, screen } from 'test/utils';
-import TrapFocus from '@mui/base/TrapFocus';
+import FocusTrap from '@mui/base/FocusTrap';
 import Portal from '@mui/base/Portal';
 
-describe('<TrapFocus />', () => {
+describe('<FocusTrap />', () => {
   const { clock, render } = createRenderer();
 
   let initialFocus = null;
@@ -25,11 +25,11 @@ describe('<TrapFocus />', () => {
 
   it('should return focus to the root', () => {
     const { getByTestId } = render(
-      <TrapFocus open>
+      <FocusTrap open>
         <div tabIndex={-1} data-testid="root">
           <input autoFocus data-testid="auto-focus" />
         </div>
-      </TrapFocus>,
+      </FocusTrap>,
       // TODO: https://github.com/reactwg/react-18/discussions/18#discussioncomment-893076
       { strictEffects: false },
     );
@@ -44,11 +44,11 @@ describe('<TrapFocus />', () => {
 
   it('should not return focus to the children when disableEnforceFocus is true', () => {
     const { getByTestId } = render(
-      <TrapFocus open disableEnforceFocus>
+      <FocusTrap open disableEnforceFocus>
         <div tabIndex={-1}>
           <input autoFocus data-testid="auto-focus" />
         </div>
-      </TrapFocus>,
+      </FocusTrap>,
       // TODO: https://github.com/reactwg/react-18/discussions/18#discussioncomment-893076s
       { strictEffects: false },
     );
@@ -64,13 +64,13 @@ describe('<TrapFocus />', () => {
 
   it('should focus first focusable child in portal', () => {
     const { getByTestId } = render(
-      <TrapFocus open>
+      <FocusTrap open>
         <div tabIndex={-1}>
           <Portal>
             <input autoFocus data-testid="auto-focus" />
           </Portal>
         </div>
-      </TrapFocus>,
+      </FocusTrap>,
     );
 
     expect(getByTestId('auto-focus')).toHaveFocus();
@@ -81,9 +81,9 @@ describe('<TrapFocus />', () => {
 
     expect(() => {
       render(
-        <TrapFocus open>
+        <FocusTrap open>
           <UnfocusableDialog />
-        </TrapFocus>,
+        </FocusTrap>,
       );
     }).toErrorDev('MUI: The modal content node does not accept focus');
   });
@@ -92,19 +92,19 @@ describe('<TrapFocus />', () => {
     const EmptyDialog = React.forwardRef(() => null);
 
     render(
-      <TrapFocus open>
+      <FocusTrap open>
         <EmptyDialog />
-      </TrapFocus>,
+      </FocusTrap>,
     );
   });
 
   it('should focus rootRef if no tabbable children are rendered', () => {
     render(
-      <TrapFocus open>
+      <FocusTrap open>
         <div tabIndex={-1} data-testid="root">
           <div>Title</div>
         </div>
-      </TrapFocus>,
+      </FocusTrap>,
     );
     expect(screen.getByTestId('root')).toHaveFocus();
   });
@@ -112,11 +112,11 @@ describe('<TrapFocus />', () => {
   it('does not steal focus from a portaled element if any prop but open changes', () => {
     function Test(props) {
       return (
-        <TrapFocus disableAutoFocus open {...props}>
+        <FocusTrap disableAutoFocus open {...props}>
           <div data-testid="focus-root" tabIndex={-1}>
             {ReactDOM.createPortal(<input data-testid="portal-input" />, document.body)}
           </div>
-        </TrapFocus>
+        </FocusTrap>
       );
     }
     const { setProps } = render(<Test />);
@@ -159,9 +159,9 @@ describe('<TrapFocus />', () => {
       return null;
     });
     render(
-      <TrapFocus open>
+      <FocusTrap open>
         <DeferredComponent data-testid="deferred-component" />
-      </TrapFocus>,
+      </FocusTrap>,
     );
 
     expect(initialFocus).toHaveFocus();
@@ -181,11 +181,11 @@ describe('<TrapFocus />', () => {
     function Test(props) {
       return (
         <div onBlur={() => eventLog.push('blur')}>
-          <TrapFocus open {...props}>
+          <FocusTrap open {...props}>
             <div data-testid="root" tabIndex={-1}>
               <input data-testid="focus-input" />
             </div>
-          </TrapFocus>
+          </FocusTrap>
         </div>
       );
     }
@@ -207,9 +207,9 @@ describe('<TrapFocus />', () => {
       return (
         <div>
           <input />
-          <TrapFocus open {...props}>
+          <FocusTrap open {...props}>
             <div tabIndex={-1} data-testid="root" />
-          </TrapFocus>
+          </FocusTrap>
         </div>
       );
     }
@@ -232,11 +232,11 @@ describe('<TrapFocus />', () => {
   it('restores focus when closed', () => {
     function Test(props) {
       return (
-        <TrapFocus open {...props}>
+        <FocusTrap open {...props}>
           <div data-testid="focus-root" tabIndex={-1}>
             <input />
           </div>
-        </TrapFocus>
+        </FocusTrap>
       );
     }
     const { setProps } = render(<Test />);
@@ -249,11 +249,11 @@ describe('<TrapFocus />', () => {
   it('undesired: enabling restore-focus logic when closing has no effect', () => {
     function Test(props) {
       return (
-        <TrapFocus open disableRestoreFocus {...props}>
+        <FocusTrap open disableRestoreFocus {...props}>
           <div data-testid="root" tabIndex={-1}>
             <input data-testid="focus-input" />
           </div>
-        </TrapFocus>
+        </FocusTrap>
       );
     }
     const { setProps } = render(<Test />);
@@ -267,11 +267,11 @@ describe('<TrapFocus />', () => {
   it('undesired: setting `disableRestoreFocus` to false before closing has no effect', () => {
     function Test(props) {
       return (
-        <TrapFocus open disableRestoreFocus {...props}>
+        <FocusTrap open disableRestoreFocus {...props}>
           <div data-testid="root" tabIndex={-1}>
             <input data-testid="focus-input" />
           </div>
-        </TrapFocus>
+        </FocusTrap>
       );
     }
     const { setProps } = render(<Test />);
@@ -289,7 +289,7 @@ describe('<TrapFocus />', () => {
     it('contains the focus if the active element is removed', () => {
       function WithRemovableElement({ hideButton = false }) {
         return (
-          <TrapFocus open>
+          <FocusTrap open>
             <div tabIndex={-1} data-testid="root">
               {!hideButton && (
                 <button type="button" data-testid="hide-button">
@@ -297,7 +297,7 @@ describe('<TrapFocus />', () => {
                 </button>
               )}
             </div>
-          </TrapFocus>
+          </FocusTrap>
         );
       }
 
@@ -320,9 +320,9 @@ describe('<TrapFocus />', () => {
         const { getByRole } = render(
           <div>
             <input />
-            <TrapFocus open disableAutoFocus>
+            <FocusTrap open disableAutoFocus>
               <div tabIndex={-1} data-testid="root" />
-            </TrapFocus>
+            </FocusTrap>
           </div>,
         );
 
@@ -339,11 +339,11 @@ describe('<TrapFocus />', () => {
         render(
           <div>
             <input data-testid="outside-input" />
-            <TrapFocus open disableAutoFocus>
+            <FocusTrap open disableAutoFocus>
               <div tabIndex={-1} data-testid="root">
                 <button type="buton" data-testid="focus-input" />
               </div>
-            </TrapFocus>
+            </FocusTrap>
           </div>,
         );
 
@@ -371,11 +371,11 @@ describe('<TrapFocus />', () => {
         const Test = (props) => (
           <div>
             <input data-testid="outside-input" />
-            <TrapFocus open disableAutoFocus {...props}>
+            <FocusTrap open disableAutoFocus {...props}>
               <div tabIndex={-1} data-testid="root">
                 <input data-testid="focus-input" />
               </div>
-            </TrapFocus>
+            </FocusTrap>
           </div>
         );
 
