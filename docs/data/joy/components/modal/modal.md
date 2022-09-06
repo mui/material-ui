@@ -126,7 +126,7 @@ This is because each successive modal blocks interaction with all elements behin
 
 ### Transition
 
-The modal components do not come with transition properties.
+The modal components **do not** come with built-in transitions.
 
 Here is one example using [`react-transition-group`](https://reactcommunity.org/react-transition-group/transition) to create a fade animation:
 
