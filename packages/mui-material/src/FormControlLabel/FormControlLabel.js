@@ -14,15 +14,17 @@ import formControlLabelClasses, {
 import formControlState from '../FormControl/formControlState';
 
 const useUtilityClasses = (ownerState) => {
-  const { classes, disabled, labelPlacement, error } = ownerState;
+  const { classes, disabled, labelPlacement, error, required } = ownerState;
   const slots = {
     root: [
       'root',
       disabled && 'disabled',
       `labelPlacement${capitalize(labelPlacement)}`,
       error && 'error',
+      required && 'required',
     ],
     label: ['label', disabled && 'disabled'],
+    asterisk: ['asterisk', error && 'error'],
   };
 
   return composeClasses(slots, getFormControlLabelUtilityClasses, classes);
@@ -72,6 +74,16 @@ export const FormControlLabelRoot = styled('label', {
   },
 }));
 
+const AsteriskComponent = styled('span', {
+  name: 'MuiFormControlLabel',
+  slot: 'Asterisk',
+  overridesResolver: (props, styles) => styles.asterisk,
+})(({ theme }) => ({
+  [`&.${formControlLabelClasses.error}`]: {
+    color: (theme.vars || theme).palette.error.main,
+  },
+}));
+
 /**
  * Drop-in replacement of the `Radio`, `Switch` and `Checkbox` component.
  * Use this component if you want to display an extra label.
@@ -90,6 +102,7 @@ const FormControlLabel = React.forwardRef(function FormControlLabel(inProps, ref
     labelPlacement = 'end',
     name,
     onChange,
+    required,
     value,
     ...other
   } = props;
@@ -117,13 +130,14 @@ const FormControlLabel = React.forwardRef(function FormControlLabel(inProps, ref
   const fcs = formControlState({
     props,
     muiFormControl,
-    states: ['error'],
+    states: ['required', 'error'],
   });
 
   const ownerState = {
     ...props,
     disabled,
     labelPlacement,
+    required: fcs.required,
     error: fcs.error,
   };
 
@@ -147,6 +161,11 @@ const FormControlLabel = React.forwardRef(function FormControlLabel(inProps, ref
     >
       {React.cloneElement(control, controlProps)}
       {label}
+      {fcs.required && (
+        <AsteriskComponent ownerState={ownerState} aria-hidden className={classes.asterisk}>
+          &thinsp;{'*'}
+        </AsteriskComponent>
+      )}
     </FormControlLabelRoot>
   );
 });
@@ -211,6 +230,10 @@ FormControlLabel.propTypes /* remove-proptypes */ = {
    * You can pull out the new checked state by accessing `event.target.checked` (boolean).
    */
   onChange: PropTypes.func,
+  /**
+   * If `true`, the label will indicate that the `input` is required.
+   */
+  required: PropTypes.bool,
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */

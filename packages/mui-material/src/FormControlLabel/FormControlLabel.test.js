@@ -170,6 +170,23 @@ describe('<FormControlLabel />', () => {
     });
   });
 
+  describe('prop: required', () => {
+    it('should visually show an asterisk but not include it in the a11y tree', () => {
+      const { container } = render(<FormControlLabel required label="Pizza" control={<div />} />);
+
+      expect(container.querySelector('label')).to.have.text('Pizza\u2009*');
+      expect(container.querySelectorAll(`.${classes.asterisk}`)).to.have.lengthOf(1);
+      expect(container.querySelectorAll(`.${classes.asterisk}`)[0]).toBeAriaHidden();
+    });
+
+    it('should not show an asterisk by default', () => {
+      const { container } = render(<FormControlLabel label="Pizza" control={<div />} />);
+
+      expect(container.querySelector('label')).to.have.text('Pizza');
+      expect(container.querySelectorAll(`.${classes.asterisk}`)).to.have.lengthOf(0);
+    });
+  });
+
   describe('componentsProps: typography', () => {
     it('should spread its contents to the typography element', () => {
       const { getByTestId } = render(

@@ -64,6 +64,10 @@ export interface FormControlLabelProps
    */
   sx?: SxProps<Theme>;
   /**
+   * If `true`, the label will indicate that the `input` is required.
+   */
+  required?: boolean;
+  /**
    * The value of the component.
    */
   value?: unknown;
