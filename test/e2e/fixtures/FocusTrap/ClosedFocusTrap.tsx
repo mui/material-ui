@@ -1,17 +1,17 @@
 import * as React from 'react';
-import TrapFocus from '@mui/base/TrapFocus';
+import FocusTrap from '@mui/base/FocusTrap';
 
-export default function ClosedTrapFocus() {
+export default function ClosedFocusTrap() {
   return (
     <React.Fragment>
       <button type="button" autoFocus>
         initial focus
       </button>
-      <TrapFocus open={false}>
+      <FocusTrap open={false}>
         <div data-testid="root">
           <button type="button">inside focusable</button>
         </div>
-      </TrapFocus>
+      </FocusTrap>
       <button type="button">final tab target</button>
     </React.Fragment>
   );
