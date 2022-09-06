@@ -53,7 +53,7 @@ export interface SlideProps extends TransitionProps {
  *
  * Demos:
  *
- * - [Dialogs](https://mui.com/material-ui/react-dialog/)
+ * - [Dialog](https://mui.com/material-ui/react-dialog/)
  * - [Transitions](https://mui.com/material-ui/transitions/)
  *
  * API:
