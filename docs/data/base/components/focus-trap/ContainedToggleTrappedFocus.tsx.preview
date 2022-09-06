@@ -1,5 +1,5 @@
 <React.Fragment>
-  <TrapFocus open={open} disableRestoreFocus disableAutoFocus>
+  <FocusTrap open={open} disableRestoreFocus disableAutoFocus>
     <Stack alignItems="center" spacing={2}>
       <button type="button" onClick={() => setOpen(!open)}>
         {open ? 'Close' : 'Open'}
@@ -10,5 +10,5 @@
         </label>
       )}
     </Stack>
-  </TrapFocus>
+  </FocusTrap>
 </React.Fragment>

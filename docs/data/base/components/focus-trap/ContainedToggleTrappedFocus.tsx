@@ -1,13 +1,13 @@
 import * as React from 'react';
 import Stack from '@mui/system/Stack';
-import TrapFocus from '@mui/base/TrapFocus';
+import FocusTrap from '@mui/base/FocusTrap';
 
 export default function ContainedToggleTrappedFocus() {
   const [open, setOpen] = React.useState(false);
 
   return (
     <React.Fragment>
-      <TrapFocus open={open} disableRestoreFocus disableAutoFocus>
+      <FocusTrap open={open} disableRestoreFocus disableAutoFocus>
         <Stack alignItems="center" spacing={2}>
           <button type="button" onClick={() => setOpen(!open)}>
             {open ? 'Close' : 'Open'}
@@ -18,7 +18,7 @@ export default function ContainedToggleTrappedFocus() {
             </label>
           )}
         </Stack>
-      </TrapFocus>
+      </FocusTrap>
     </React.Fragment>
   );
 }
