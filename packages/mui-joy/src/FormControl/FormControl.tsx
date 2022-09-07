@@ -70,7 +70,7 @@ const FormControl = React.forwardRef(function FormControl(inProps, ref) {
     disabled = false,
     required = false,
     error = false,
-    color = 'neutral',
+    color,
     size = 'md',
     ...other
   } = props;
