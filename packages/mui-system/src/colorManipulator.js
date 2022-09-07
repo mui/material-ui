@@ -25,10 +25,10 @@ function clamp(value, min = 0, max = 1) {
  * @returns {string} A CSS HSL color string i.e. hsl(0,0%,0%)
  */
  function rgbToHsl(color) {
-  let rgb = color.replace(/[^\d,]/g, '').split(',')
-  let r= parseInt(rgb[0]) / 255
-  let g= parseInt(rgb[1]) /255
-  let b= parseInt(rgb[2]) / 255
+  const rgb = color.replace(/[^\d,]/g, '').split(',')
+  const r= parseInt(rgb[0]) / 255
+  const g= parseInt(rgb[1]) /255
+  const b= parseInt(rgb[2]) / 255
   const l = Math.max(r, g, b);
   const s = l - Math.min(r, g, b);
   const h = s
@@ -39,9 +39,9 @@ function clamp(value, min = 0, max = 1) {
       : 4 + (r - g) / s
     : 0;
   
-    let hFinal = Math.round(60 * h < 0 ? 60 * h + 360 : 60 * h);
-    let sFinal = Math.round(100 * (s ? (l <= 0.5 ? s / (2 * l - s) : s / (2 - (2 * l - s))) : 0))
-    let lFinal = Math.round((100 * (2 * l - s)) / 2)
+    const hFinal = Math.round(60 * h < 0 ? 60 * h + 360 : 60 * h);
+    const sFinal = Math.round(100 * (s ? (l <= 0.5 ? s / (2 * l - s) : s / (2 - (2 * l - s))) : 0))
+    const lFinal = Math.round((100 * (2 * l - s)) / 2)
 
   return `hsl(${hFinal}, ${sFinal}%, ${lFinal}%)` ;
 }
