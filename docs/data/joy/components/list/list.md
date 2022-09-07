@@ -32,7 +32,7 @@ import ListItem from '@mui/joy/ListItem';
 
 export default function MyApp() {
   return (
-    <List aria-labelledby="basic-list-demo">
+    <List aria-label="basic-list">
       <ListItem>Hello, world!</ListItem>
       <ListItem>Bye bye, world!</ListItem>
     </List>
