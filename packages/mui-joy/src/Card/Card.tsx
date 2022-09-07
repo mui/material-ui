@@ -121,10 +121,10 @@ const Card = React.forwardRef(function Card(inProps, ref) {
             return child;
           }
           if (index === 0) {
-            return React.cloneElement(child, { 'data-first-child': '' });
+            return React.cloneElement(child, { 'data-first-child': '' } as Record<string, string>);
           }
           if (index === React.Children.count(children) - 1) {
-            return React.cloneElement(child, { 'data-last-child': '' });
+            return React.cloneElement(child, { 'data-last-child': '' } as Record<string, string>);
           }
           return child;
         })}

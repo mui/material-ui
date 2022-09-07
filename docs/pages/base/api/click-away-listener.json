@@ -23,6 +23,6 @@
   "spread": false,
   "filename": "/packages/mui-base/src/ClickAwayListener/ClickAwayListener.tsx",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/base/react-click-away-listener/\">Click away listener</a></li></ul>",
+  "demos": "<ul><li><a href=\"/base/react-click-away-listener/\">Click-away listener</a></li></ul>",
   "cssComponent": false
 }
