@@ -261,28 +261,30 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
             }
             if (knob === 'switch') {
               return (
-                <Switch
-                  key={propName}
-                  checked={Boolean(resolvedValue)}
-                  onChange={(event) =>
-                    setProps((latestProps) => ({
-                      ...latestProps,
-                      [propName]: event.target.checked,
-                    }))
-                  }
-                  endDecorator={propName}
-                  size="sm"
-                  sx={{
-                    textTransform: 'capitalize',
-                    alignSelf: 'flex-start',
-                    '--Switch-track-background': (theme) =>
-                      `rgba(${theme.vars.palette.neutral.mainChannel} / 0.3)`,
-                    '&:hover': {
+                <Box component="label">
+                  <Switch
+                    key={propName}
+                    checked={Boolean(resolvedValue)}
+                    onChange={(event) =>
+                      setProps((latestProps) => ({
+                        ...latestProps,
+                        [propName]: event.target.checked,
+                      }))
+                    }
+                    endDecorator={propName}
+                    size="sm"
+                    sx={{
+                      textTransform: 'capitalize',
+                      alignSelf: 'flex-start',
                       '--Switch-track-background': (theme) =>
-                        `rgba(${theme.vars.palette.neutral.mainChannel} / 0.5)`,
-                    },
-                  }}
-                />
+                        `rgba(${theme.vars.palette.neutral.mainChannel} / 0.3)`,
+                      '&:hover': {
+                        '--Switch-track-background': (theme) =>
+                          `rgba(${theme.vars.palette.neutral.mainChannel} / 0.5)`,
+                      },
+                    }}
+                  />
+                </Box>
               );
             }
             if (knob === 'radio') {
