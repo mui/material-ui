@@ -10,6 +10,7 @@ import Checkbox, { checkboxClasses } from '@mui/joy/Checkbox';
 import Input, { inputClasses } from '@mui/joy/Input';
 import Select, { selectClasses } from '@mui/joy/Select';
 import Textarea, { textareaClasses } from '@mui/joy/Textarea';
+import RadioGroup from '@mui/joy/RadioGroup';
 
 describe('<FormControl />', () => {
   const { render } = createRenderer();
@@ -224,6 +225,24 @@ describe('<FormControl />', () => {
 
       expect(getByTestId('checkbox')).to.have.class(checkboxClasses.disabled);
       expect(getByLabelText('label')).to.have.attribute('disabled');
+    });
+  });
+
+  describe('RadioGroup', () => {
+    it('should linked the label and helper text', () => {
+      const { getByRole, getByText } = render(
+        <FormControl>
+          <FormLabel>label</FormLabel>
+          <RadioGroup />
+          <FormHelperText>helper text</FormHelperText>
+        </FormControl>,
+      );
+
+      const label = getByText('label');
+      const helperText = getByText('helper text');
+
+      expect(getByRole('radiogroup')).to.have.attribute('aria-labelledby', label.id);
+      expect(getByRole('radiogroup')).to.have.attribute('aria-describedby', helperText.id);
     });
   });
 });

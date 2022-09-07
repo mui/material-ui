@@ -76,6 +76,7 @@ const FormControl = React.forwardRef(function FormControl(inProps, ref) {
   } = props;
 
   const id = useId(idOverride);
+  const labelId = `${id}-label`;
   const helperTextId = `${id}-helper-text`;
   const [helperText, setHelperText] = React.useState<HTMLElement | null>(null);
 
@@ -122,6 +123,7 @@ const FormControl = React.forwardRef(function FormControl(inProps, ref) {
         color,
         size,
         htmlFor: id,
+        labelId,
         'aria-describedby': helperText ? helperTextId : undefined,
         setHelperText,
         registerEffect: registerEffect!,

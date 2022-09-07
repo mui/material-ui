@@ -66,6 +66,8 @@ const FormLabel = React.forwardRef(function FormLabel(inProps, ref) {
     additionalProps: {
       ref,
       as: component,
+      htmlFor: formControl?.htmlFor,
+      id: formControl?.labelId,
     },
     className: classes.root,
   });
@@ -81,7 +83,7 @@ const FormLabel = React.forwardRef(function FormLabel(inProps, ref) {
   });
 
   return (
-    <FormLabelRoot htmlFor={formControl?.htmlFor} {...rootProps}>
+    <FormLabelRoot {...rootProps}>
       {children}
       {required && <AsteriskComponent {...asteriskProps}>&thinsp;{'*'}</AsteriskComponent>}
     </FormLabelRoot>
