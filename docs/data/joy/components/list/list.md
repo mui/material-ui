@@ -52,6 +52,10 @@ Use the `size` prop to control font-size and general list density.
 
 {{"demo": "SizesList.js"}}
 
+:::success
+To learn how to add more sizes to the component, check out [Themed components—Extend sizes](/joy-ui/customization/themed-components/#extend-sizes).
+:::
+
 ### Decorator
 
 Use the `ListItemDecorator` component to add supporting icons or elements to the list item.

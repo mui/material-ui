@@ -116,7 +116,7 @@ export interface SelectOwnProps<TValue extends {}> extends SelectStaticProps {
   value?: TValue | null;
 }
 
-export interface SelectOwnerState<TValue> extends SelectOwnProps<TValue> {
+export interface SelectOwnerState<TValue extends {}> extends SelectOwnProps<TValue> {
   /**
    * If `true`, the select button is active.
    */

@@ -24,7 +24,7 @@ const useUtilityClasses = (ownerState: RadioOwnerState) => {
       color && `color${capitalize(color)}`,
       size && `size${capitalize(size)}`,
     ],
-    radio: ['radio', disabled && 'disabled'], // disabled class is necessary for displaying global variant
+    radio: ['radio', checked && 'checked', disabled && 'disabled'], // disabled class is necessary for displaying global variant
     icon: ['icon'],
     action: [
       'action',
