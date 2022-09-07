@@ -158,7 +158,7 @@ async function postFeedbackOnSlack(data) {
     ],
   };
   try {
-    await fetch(`https://hooks.slack.com/services/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`, {
+    await fetch(`https://hooks.slack.com/services/${process.env.SLACK_FEEDBACKS_TOKEN}`, {
       method: 'POST',
       referrerPolicy: 'origin',
       headers: { 'Content-Type': 'application/json' },
