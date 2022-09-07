@@ -29,20 +29,19 @@ export default function ExamplePaymentChannels() {
         >
           Pay with
         </Typography>
-        <Box component="label" sx={{ lineHeight: 0 }}>
-          <Switch
-            size="sm"
-            endDecorator="Row view"
-            checked={row}
-            onChange={(event) => setRow(event.target.checked)}
-            sx={{
-              [`&&:not(.${switchClasses.checked})`]: {
-                '--Switch-track-background': (theme) =>
-                  theme.vars.palette.background.level3,
-              },
-            }}
-          />
-        </Box>
+        <Switch
+          component="label"
+          size="sm"
+          endDecorator="Row view"
+          checked={row}
+          onChange={(event) => setRow(event.target.checked)}
+          sx={{
+            [`&&:not(.${switchClasses.checked})`]: {
+              '--Switch-track-background': (theme) =>
+                theme.vars.palette.background.level3,
+            },
+          }}
+        />
       </Box>
       <RadioGroup
         aria-labelledby="example-payment-channel-label"
