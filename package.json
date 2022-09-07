@@ -69,7 +69,7 @@
     "validate-declarations": "babel-node --extensions \".ts\" scripts/validateTypescriptDeclarations.ts"
   },
   "devDependencies": {
-    "@argos-ci/core": "^0.2.0",
+    "@argos-ci/core": "^0.3.0",
     "@babel/cli": "^7.18.10",
     "@babel/core": "^7.18.13",
     "@babel/node": "^7.18.10",
