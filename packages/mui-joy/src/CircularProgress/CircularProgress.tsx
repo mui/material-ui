@@ -100,10 +100,8 @@ const CircularProgressCircle1 = styled('circle', {
       fill: 'transparent',
       strokeWidth: 'var(--ㅡmax-thickness)',
       stroke: theme.vars.palette[ownerState.color!][`${ownerState.variant!}Bg`],
-      ...(['outlined', 'plain'].includes(ownerState.variant!) && {
-        stroke: theme.vars.palette[ownerState.color!][`${ownerState.variant!}Color`],
-      }),
       ...(ownerState.variant! === 'outlined' && {
+        stroke: theme.vars.palette[ownerState.color!][`${ownerState.variant!}Color`],
         strokeDasharray: '3,3',
       }),
     },
@@ -115,8 +113,10 @@ const CircularProgressCircle2 = styled('circle', {
   slot: 'Circle2',
   overridesResolver: (props, styles) => styles.circle2,
 })<{ ownerState: CircularProgressProps }>(({ theme, ownerState }) => {
+  const determinateProgress = (100 - ownerState.value!) / 100;
   return [
     {
+      '--_determinate-progress': determinateProgress,
       '--_thickness-diff': 'calc(var(--ㅡmax-thickness) - var(--ㅡmin-thickness))',
       '--_progress-radius':
         'calc(var(--CircularProgress-size) / 2 - var(--ㅡmin-thickness) / 2 - var(--_thickness-diff) / 2)',
@@ -127,16 +127,18 @@ const CircularProgressCircle2 = styled('circle', {
       fill: 'transparent',
       strokeWidth: 'var(--ㅡmin-thickness)',
       stroke: theme.vars.palette[ownerState.color!][`${ownerState.variant!}Color`],
-      ...(['outlined', 'plain'].includes(ownerState.variant!) && {
-        stroke: '#fff',
-      }),
       strokeLinecap: 'round',
       strokeDasharray: 'var(--_progress-length)',
       strokeDashoffset:
         'calc(var(--_progress-length) - var(--CircularProgress-percent) * var(--_progress-length) / 100)',
+      ...(ownerState.determinate && {
+        strokeDashoffset: 'calc(var(--_determinate-progress) * var(--_progress-length))',
+      }),
       transformOrigin: 'center',
       transform: 'rotate(-90deg)',
-      animation: `var(--CircularProgress-indeterminateDuration) ease-in-out 0s infinite normal none running ${circulate}`,
+      ...(!ownerState.determinate && {
+        animation: `var(--CircularProgress-indeterminateDuration) ease-in-out 0s infinite normal none running ${circulate}`,
+      }),
     },
   ];
 });
@@ -191,6 +193,10 @@ const CircularProgress = React.forwardRef(function CircularProgress(inProps, ref
       role: 'progressbar',
     },
     className: clsx(classes.root, className),
+    ...(value &&
+      determinate && {
+        'aria-valuenow': typeof value === 'number' ? Math.round(value) : Math.round(Number(value)),
+      }),
   });
 
   const svgProps = useSlotProps({
