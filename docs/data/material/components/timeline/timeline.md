@@ -57,18 +57,22 @@ You can learn more about this in the [overrides documentation page](/material-ui
 
 ## Alignment
 
-There are different ways in which a Timeline can be placed within the container. You can do it by overriding the styles.
+There are different ways in which a Timeline can be placed within the container.
 
-A Timeline centers itself in the container by default. The demos below show how to adjust the relative width of the left and right sides of a Timeline:
+You can do it by overriding the styles.
 
-### Left-aligned Timeline
+A Timeline centers itself in the container by default.
+
+The demos below show how to adjust the relative width of the left and right sides of a Timeline:
+
+### Left-aligned
 
 {{"demo": "LeftAlignedTimeline.js"}}
 
-### Right-aligned Timeline
+### Right-aligned
 
 {{"demo": "RightAlignedTimeline.js"}}
 
-### Left-aligned Timeline with no opposite content
+### Left-aligned with no opposite content
 
 {{"demo": "NoOppositeContent.js"}}
