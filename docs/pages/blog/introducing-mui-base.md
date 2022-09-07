@@ -1,7 +1,7 @@
 ---
 title: 'Introducing MUI Base: the headless alternative to Material UI'
 description: The MUI Base component library gives you complete control over the look and feel of your app.
-date: 2022-09-06T00:00:00.000Z
+date: 2022-09-07T00:00:00.000Z
 authors: ['michaldudak', 'samuelsycamore']
 tags: ['News', 'MUI Core']
 card: true
