@@ -30,7 +30,7 @@ const pages = [
         subheader: 'inputs',
         children: [
           { pathname: '/joy-ui/react-button' },
-          { pathname: '/joy-ui/react-text-field' },
+          { pathname: '/joy-ui/react-text-field', title: 'Text Field' },
           { pathname: '/joy-ui/react-textarea' },
           { pathname: '/joy-ui/react-checkbox' },
           { pathname: '/joy-ui/react-radio-button' },

@@ -34,6 +34,6 @@
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/Menu/Menu.js",
   "inheritance": { "component": "Popover", "pathname": "/material-ui/api/popover/" },
-  "demos": "<ul><li><a href=\"/material-ui/react-app-bar/\">App bar</a></li>\n<li><a href=\"/material-ui/react-menu/\">Menus</a></li></ul>",
+  "demos": "<ul><li><a href=\"/material-ui/react-app-bar/\">App bar</a></li>\n<li><a href=\"/material-ui/react-menu/\">Menu</a></li></ul>",
   "cssComponent": false
 }

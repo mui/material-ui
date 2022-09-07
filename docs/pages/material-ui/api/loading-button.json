@@ -94,6 +94,6 @@
   "forwardsRefTo": "HTMLButtonElement",
   "filename": "/packages/mui-lab/src/LoadingButton/LoadingButton.js",
   "inheritance": { "component": "Button", "pathname": "/material-ui/api/button/" },
-  "demos": "<ul><li><a href=\"/material-ui/react-button/\">Buttons</a></li></ul>",
+  "demos": "<ul><li><a href=\"/material-ui/react-button/\">Button</a></li></ul>",
   "cssComponent": false
 }

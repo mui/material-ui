@@ -126,7 +126,7 @@ const RadioGroup = React.forwardRef(function RadioGroup(inProps, ref) {
                 ...(index === 0 && { 'data-first-child': '' }),
                 ...(index === React.Children.count(children) - 1 && { 'data-last-child': '' }),
                 'data-parent': 'RadioGroup',
-              })
+              } as Record<string, string>)
             : child,
         )}
       </RadioGroupRoot>

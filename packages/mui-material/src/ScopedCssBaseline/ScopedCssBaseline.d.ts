@@ -31,7 +31,7 @@ export interface ScopedCssBaselineTypeMap<P = {}, D extends React.ElementType = 
  *
  * Demos:
  *
- * - [Css baseline](https://mui.com/material-ui/react-css-baseline/)
+ * - [CSS Baseline](https://mui.com/material-ui/react-css-baseline/)
  *
  * API:
  *
