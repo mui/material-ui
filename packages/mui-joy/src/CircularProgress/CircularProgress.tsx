@@ -47,7 +47,7 @@ const CircularProgressRoot = styled('span', {
   return [
     {
       '--CircularProgress-percent': '0.1', // 0 - 100
-      '--CircularProgress-indeterminateDuration': '1s',
+      '--CircularProgress-indeterminateDuration': '1.4s',
       ...(ownerState.size === 'sm' && {
         '--CircularProgress-size': '60px',
         '--CircularProgress-track-thickness': `${ownerState.thickness || 7}px`,
@@ -63,6 +63,10 @@ const CircularProgressRoot = styled('span', {
         '--CircularProgress-track-thickness': `${ownerState.thickness || 13}px`,
         '--CircularProgress-progress-thickness': `${ownerState.thickness || 13}px`,
       }),
+      '--ㅡmin-thickness':
+        'min(var(--CircularProgress-track-thickness), var(--CircularProgress-progress-thickness))',
+      '--ㅡmax-thickness':
+        'max(var(--CircularProgress-track-thickness), var(--CircularProgress-progress-thickness))',
       width: 'var(--CircularProgress-size)',
       height: 'var(--CircularProgress-size)',
       display: 'flex',
@@ -92,9 +96,9 @@ const CircularProgressCircle1 = styled('circle', {
     {
       cx: 'calc(var(--CircularProgress-size) / 2)',
       cy: 'calc(var(--CircularProgress-size) / 2)',
-      r: 'calc(var(--CircularProgress-size) / 2 - var(--CircularProgress-track-thickness) / 2)',
+      r: 'calc(var(--CircularProgress-size) / 2 - var(--ㅡmax-thickness) / 2)',
       fill: 'transparent',
-      strokeWidth: 'var(--CircularProgress-track-thickness)',
+      strokeWidth: 'var(--ㅡmax-thickness)',
       stroke: theme.vars.palette[ownerState.color!][`${ownerState.variant!}Bg`],
       ...(['outlined', 'plain'].includes(ownerState.variant!) && {
         stroke: theme.vars.palette[ownerState.color!][`${ownerState.variant!}Color`],
@@ -113,16 +117,15 @@ const CircularProgressCircle2 = styled('circle', {
 })<{ ownerState: CircularProgressProps }>(({ theme, ownerState }) => {
   return [
     {
-      '--_thickness-diff':
-        'calc(var(--CircularProgress-track-thickness) - var(--CircularProgress-progress-thickness))',
+      '--_thickness-diff': 'calc(var(--ㅡmax-thickness) - var(--ㅡmin-thickness))',
       '--_progress-radius':
-        'calc(var(--CircularProgress-size) / 2 - var(--CircularProgress-progress-thickness) / 2 - var(--_thickness-diff) / 2)',
+        'calc(var(--CircularProgress-size) / 2 - var(--ㅡmin-thickness) / 2 - var(--_thickness-diff) / 2)',
       '--_progress-length': 'calc(2 * 3.1415926535 * var(--_progress-radius))',
       cx: 'calc(var(--CircularProgress-size) / 2)',
       cy: 'calc(var(--CircularProgress-size) / 2)',
       r: 'var(--_progress-radius)',
       fill: 'transparent',
-      strokeWidth: 'var(--CircularProgress-progress-thickness)',
+      strokeWidth: 'var(--ㅡmin-thickness)',
       stroke: theme.vars.palette[ownerState.color!][`${ownerState.variant!}Color`],
       ...(['outlined', 'plain'].includes(ownerState.variant!) && {
         stroke: '#fff',
@@ -133,7 +136,7 @@ const CircularProgressCircle2 = styled('circle', {
         'calc(var(--_progress-length) - var(--CircularProgress-percent) * var(--_progress-length) / 100)',
       transformOrigin: 'center',
       transform: 'rotate(-90deg)',
-      animation: `1.4s ease-in-out 0s infinite normal none running ${circulate}`,
+      animation: `var(--CircularProgress-indeterminateDuration) ease-in-out 0s infinite normal none running ${circulate}`,
     },
   ];
 });
