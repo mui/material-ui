@@ -9,12 +9,12 @@ import IconButton from '@mui/joy/IconButton';
 export default function CircularProgressChildren() {
   return (
     <Box sx={{ display: 'flex', gap: 2, alignItems: 'center', flexWrap: 'wrap' }}>
-      <CircularProgress size="lg">
+      <CircularProgress size="sm">
         <Typography fontSize="xs" fontWeight="md">
           82.5
         </Typography>
       </CircularProgress>
-      <CircularProgress size="lg" color="warning">
+      <CircularProgress size="md" color="warning">
         <IconButton variant="plain" size="sm" color="warning">
           <WarningIcon />
         </IconButton>
