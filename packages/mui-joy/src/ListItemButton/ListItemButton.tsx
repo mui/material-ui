@@ -47,6 +47,10 @@ export const ListItemButtonRoot = styled('div', {
     ...(ownerState.selected && {
       '--List-decorator-color': 'initial',
     }),
+    ...(ownerState.disabled && {
+      '--List-decorator-color':
+        theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}DisabledColor`],
+    }),
     boxSizing: 'border-box',
     position: 'relative',
     display: 'flex',
