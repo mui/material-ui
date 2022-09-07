@@ -48,7 +48,7 @@ const ListSubheaderRoot = styled('div', {
     background: 'var(--List-item-stickyBackground)',
   }),
   ...theme.variants[ownerState.variant!]?.[ownerState.color!],
-  color: theme.vars.palette[ownerState.color!]?.[400], // make the subheader less contrast
+  color: theme.vars.palette[ownerState.color!]?.[500], // make the subheader less contrast
 }));
 
 const ListSubheader = React.forwardRef(function ListSubheader(inProps, ref) {
