@@ -99,7 +99,7 @@ const FormControl = React.forwardRef(function FormControl(inProps, ref) {
         console.error(
           [
             'Joy: A FormControl can contain only one Input, Textarea, or Select component',
-            'You should not mix those components inside a sinble FormControl instance',
+            'You should not mix those components inside a single FormControl instance',
           ].join('\n'),
         );
       }
