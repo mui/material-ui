@@ -102,7 +102,7 @@ const FormControlLabel = React.forwardRef(function FormControlLabel(inProps, ref
     labelPlacement = 'end',
     name,
     onChange,
-    required,
+    required: requiredProp,
     value,
     ...other
   } = props;
@@ -117,8 +117,17 @@ const FormControlLabel = React.forwardRef(function FormControlLabel(inProps, ref
     disabled = muiFormControl.disabled;
   }
 
+  let required = requiredProp;
+  if (typeof required === 'undefined' && typeof control.props.required !== 'undefined') {
+    required = control.props.required;
+  }
+  if (typeof required === 'undefined' && muiFormControl) {
+    required = muiFormControl.required;
+  }
+
   const controlProps = {
     disabled,
+    required,
   };
 
   ['checked', 'name', 'onChange', 'value', 'inputRef'].forEach((key) => {
@@ -130,14 +139,14 @@ const FormControlLabel = React.forwardRef(function FormControlLabel(inProps, ref
   const fcs = formControlState({
     props,
     muiFormControl,
-    states: ['required', 'error'],
+    states: ['error'],
   });
 
   const ownerState = {
     ...props,
     disabled,
     labelPlacement,
-    required: fcs.required,
+    required,
     error: fcs.error,
   };
 
@@ -161,7 +170,7 @@ const FormControlLabel = React.forwardRef(function FormControlLabel(inProps, ref
     >
       {React.cloneElement(control, controlProps)}
       {label}
-      {fcs.required && (
+      {required && (
         <AsteriskComponent ownerState={ownerState} aria-hidden className={classes.asterisk}>
           &thinsp;{'*'}
         </AsteriskComponent>
