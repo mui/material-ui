@@ -8,7 +8,7 @@ import useThemeProps from '../styles/useThemeProps';
 import Input from '../Input';
 import FilledInput from '../FilledInput';
 import OutlinedInput from '../OutlinedInput';
-import InputLabel from '../InputLabel';
+import InputLabel, { inputLabelClasses } from '../InputLabel';
 import FormControl from '../FormControl';
 import FormHelperText from '../FormHelperText';
 import Select from '../Select';
@@ -189,7 +189,20 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
       {...other}
     >
       {label != null && label !== '' && (
-        <InputLabel htmlFor={id} id={inputLabelId} {...InputLabelProps}>
+        <InputLabel
+          htmlFor={id}
+          id={inputLabelId}
+          sx={{
+            ...(select && {
+              // avoid when input is focused or filled
+              [`&:not(.${inputLabelClasses.shrink})`]: {
+                // issue with label padding, see: https://github.com/mui/material-ui/issues/31145
+                maxWidth: variant !== 'standard' ? 'calc(100% - 48px)' : 'calc(100% - 24px)',
+              },
+            }),
+          }}
+          {...InputLabelProps}
+        >
           {label}
         </InputLabel>
       )}
