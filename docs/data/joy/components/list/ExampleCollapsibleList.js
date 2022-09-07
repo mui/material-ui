@@ -85,7 +85,7 @@ export default function ExampleCollapsibleList() {
             </IconButton>
           }
         >
-          <ListItemButton>
+          <ListItemButton onClick={() => setOpen(!open)}>
             <Typography
               level="inherit"
               sx={{
@@ -136,7 +136,7 @@ export default function ExampleCollapsibleList() {
             </IconButton>
           }
         >
-          <ListItemButton>
+          <ListItemButton onClick={() => setOpen2((bool) => !bool)}>
             <Typography
               level="inherit"
               sx={{
