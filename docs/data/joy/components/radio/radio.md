@@ -17,6 +17,10 @@ For more in-depth about when to use each, visit [the NNg's documentation](https:
 
 {{"demo": "RadioUsage.js", "hideToolbar": true}}
 
+:::success
+To learn how to add more variants or sizes to the component, check out the [Themed components](/joy-ui/customization/themed-components/) page.
+:::
+
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Component
@@ -117,9 +121,13 @@ Visit the [WAI-ARIA documentation](https://www.w3.org/WAI/ARIA/apg/patterns/radi
 
 ## Common examples
 
+### Segmented controls
+
+{{"demo": "ExampleSegmentedControls.js"}}
+
 ### Alignment buttons
 
-Simply provide an icon as a label to the `Radio` to make the radio buttons concise. You need to provide `aria-label` to the input slot for users who rely on screen readers.
+Provide an icon as a label to the `Radio` to make the radio buttons concise. You need to provide `aria-label` to the input slot for users who rely on screen readers.
 
 {{"demo": "ExampleAlignmentButtons.js"}}
 

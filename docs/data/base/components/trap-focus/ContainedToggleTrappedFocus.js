@@ -1,26 +1,17 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
-import Stack from '@mui/material/Stack';
+import Stack from '@mui/system/Stack';
 import TrapFocus from '@mui/base/TrapFocus';
 
-export default function BasicTrapFocus() {
+export default function ContainedToggleTrappedFocus() {
   const [open, setOpen] = React.useState(false);
 
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        alignItems: 'center',
-        flexDirection: 'column',
-      }}
-    >
+    <React.Fragment>
       <TrapFocus open={open} disableRestoreFocus disableAutoFocus>
-        <Stack>
-          <Stack alignItems="center">
-            <button type="button" onClick={() => setOpen(!open)}>
-              {open ? 'Close' : 'Open'}
-            </button>
-          </Stack>
+        <Stack alignItems="center" spacing={2}>
+          <button type="button" onClick={() => setOpen(!open)}>
+            {open ? 'Close' : 'Open'}
+          </button>
           {open && (
             <label>
               First name: <input type="text" />
@@ -28,6 +19,6 @@ export default function BasicTrapFocus() {
           )}
         </Stack>
       </TrapFocus>
-    </Box>
+    </React.Fragment>
   );
 }

@@ -3,6 +3,7 @@
   "propDescriptions": {
     "children": "The avatars to stack.",
     "classes": "Override or extend the styles applied to the component. See <a href=\"#css\">CSS API</a> below for more details.",
+    "component": "The component used for the root node. Either a string to use a HTML element or a component.",
     "componentsProps": "The props used for each slot inside the AvatarGroup.",
     "max": "Max avatars to show before +x.",
     "spacing": "Spacing between avatars.",

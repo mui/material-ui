@@ -23,7 +23,7 @@ const PopperRoot = styled(PopperUnstyled, {
  * Demos:
  *
  * - [Autocomplete](https://mui.com/material-ui/react-autocomplete/)
- * - [Menus](https://mui.com/material-ui/react-menu/)
+ * - [Menu](https://mui.com/material-ui/react-menu/)
  * - [Popper](https://mui.com/material-ui/react-popper/)
  *
  * API:

@@ -1,13 +1,13 @@
 ---
 product: material-ui
-title: React Speed Dial（快速拨号）组件
+title: React Speed dial component
 components: SpeedDial, SpeedDialAction, SpeedDialIcon
 githubLabel: 'component: speed dial'
 materialDesign: 'https://material.io/components/buttons-floating-action-button#types-of-transitions'
-waiAria: 'https://www.w3.org/TR/wai-aria-practices/#menubutton'
+waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/menubutton/
 ---
 
-# Speed Dial 快速拨号
+# Speed dial
 
 <p class="description">当按下一个浮动操作按钮（floating action button）时，它可以弹出 3 到 6 个以快速拨号形式出现的相关操作。</p>
 

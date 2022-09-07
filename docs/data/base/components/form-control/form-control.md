@@ -7,7 +7,7 @@ githubLabel: 'component: FormControl'
 
 # Unstyled form control
 
-<p class="description">The FormControlUnstyled component is a utility that lets you associate a form input with auxillary components, such as labels, error indicators, or helper text.</p>
+<p class="description">The FormControlUnstyled component is a utility that lets you associate a form input with auxiliary components, such as labels, error indicators, or helper text.</p>
 
 ## Introduction
 
@@ -68,7 +68,7 @@ Hooks _do not_ support [slot props](#slot-props), but they do support [customiza
 Hooks give you the most room for customization, but require more work to implement.
 With hooks, you can take full control over how your component is rendered, and define all the custom props and CSS classes you need.
 
-You may not need to use hooks unless you find that you're limited by the customization options of their component counterparts—for instance, if your component requires significantly different [structure](#component-slots).
+You may not need to use hooks unless you find that you're limited by the customization options of their component counterparts—for instance, if your component requires significantly different [structure](#anatomy).
 :::
 
 The demo below shows how to integrate this hook with its component counterpart:

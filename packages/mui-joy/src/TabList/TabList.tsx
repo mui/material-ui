@@ -33,7 +33,7 @@ const TabListRoot = styled(ListRoot, {
   name: 'JoyTabList',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: TabListProps }>({
+})<{ ownerState: TabListOwnerState }>({
   flexGrow: 'initial',
   '--List-gap': 'var(--Tabs-gap)',
   '--List-padding': 'var(--Tabs-gap)',
