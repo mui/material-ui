@@ -47,7 +47,7 @@ const CircularProgressRoot = styled('span', {
   return [
     {
       '--CircularProgress-percent': '0.1', // 0 - 100
-      '--CircularProgress-speed': '1s',
+      '--CircularProgress-indeterminateDuration': '1s',
       ...(ownerState.size === 'sm' && {
         '--CircularProgress-size': '60px',
         '--CircularProgress-track-thickness': `${ownerState.thickness || 7}px`,
@@ -65,7 +65,8 @@ const CircularProgressRoot = styled('span', {
       }),
       width: 'var(--CircularProgress-size)',
       height: 'var(--CircularProgress-size)',
-      display: 'inline-block',
+      display: 'flex',
+      alignItems: 'center',
       boxSizing: 'border-box',
     },
   ];
@@ -210,12 +211,25 @@ const CircularProgress = React.forwardRef(function CircularProgress(inProps, ref
     className: classes.circle2,
   });
 
+  let leftMarginOfChildren: number = 0;
+  if (size === 'sm') {
+    leftMarginOfChildren = -42;
+  } else if (size === 'md') {
+    leftMarginOfChildren = -58;
+  } else if (size === 'lg') {
+    leftMarginOfChildren = -71;
+  }
+
   return (
     <CircularProgressRoot {...rootProps}>
       <CircularProgressSvg {...svgProps}>
         <CircularProgressCircle1 {...circle1Props} />
         <CircularProgressCircle2 {...circle2Props} />
       </CircularProgressSvg>
+      {children &&
+        React.cloneElement(children as React.ReactElement, {
+          sx: { ml: `${leftMarginOfChildren}px` },
+        })}
     </CircularProgressRoot>
   );
 }) as OverridableComponent<CircularProgressTypeMap>;
