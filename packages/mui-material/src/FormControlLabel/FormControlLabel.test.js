@@ -218,6 +218,7 @@ describe('<FormControlLabel />', () => {
         expect(getByTestId('FormControlLabel')).to.have.class(classes.error);
       });
     });
+
     describe('enabled', () => {
       it('should not have the disabled class', () => {
         const { getByTestId } = render(
@@ -269,6 +270,43 @@ describe('<FormControlLabel />', () => {
         );
 
         expect(getByTestId('FormControlLabel')).not.to.have.class(classes.disabled);
+      });
+    });
+
+    describe('required', () => {
+      it('should have the required class', () => {
+        const { getByTestId } = render(
+          <FormControl required>
+            <FormControlLabel data-testid="FormControlLabel" control={<div />} label="Pizza" />
+          </FormControl>,
+        );
+
+        expect(getByTestId('FormControlLabel')).to.have.class(classes.required);
+      });
+
+      it('should be overridden by props', () => {
+        const { getByTestId } = render(
+          <FormControl required>
+            <FormControlLabel
+              data-testid="FormControlLabel"
+              control={<div />}
+              required={false}
+              label="Pizza"
+            />
+          </FormControl>,
+        );
+
+        expect(getByTestId('FormControlLabel')).not.to.have.class(classes.required);
+      });
+
+      it('should have the aria-required prop with value true', () => {
+        const { container } = render(
+          <FormControl required>
+            <FormControlLabel data-testid="FormControlLabel" control={<input />} label="Pizza" />
+          </FormControl>,
+        );
+        const input = container.querySelector('input');
+        expect(input).to.have.property('required', true);
       });
     });
   });
