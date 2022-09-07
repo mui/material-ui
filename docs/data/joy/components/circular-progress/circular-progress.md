@@ -51,3 +51,9 @@ Play around combining different colors.
 The circular progress component comes with three sizes out of the box: `sm`, `md` (the default), and `lg`.
 
 {{"demo": "CircularProgressSizes.js"}}
+
+### Children
+
+The circular progress component places the provided children in the center by default.
+
+{{"demo": "CircularProgressChildren.js"}}
