@@ -52,8 +52,22 @@ The circular progress component comes with three sizes out of the box: `sm`, `md
 
 {{"demo": "CircularProgressSizes.js"}}
 
+### Determinate
+
+You can use the `determinate` prop if you want to indicate a specified wait time.
+
+{{"demo": "CircularProgressDeterminate.js"}}
+
 ### Children
 
 The circular progress component places the provided children in the center by default.
 
-{{"demo": "CircularProgressChildren.js"}}
+{{"demo": "CircularProgressChildren.js"}
+
+## CSS variables
+
+Play around with all the CSS variables available in the slider component to see how the design changes.
+
+You can use those to customize the component on both the `sx` prop and the theme.
+
+{{"demo": "CircularProgressVariables.js", "hideToolbar": true}}
