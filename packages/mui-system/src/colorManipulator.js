@@ -17,6 +17,36 @@ function clamp(value, min = 0, max = 1) {
   return Math.min(Math.max(min, value), max);
 }
 
+
+/**
+ * Converts a color from CSS RGB format to CSS HSL format.
+ * Calculations from https://www.30secondsofcode.org/js/s/rgb-to-hsl
+ * @param {string} color - A CSS RGB color string i.e. rgb(0,0,0)
+ * @returns {string} A CSS HSL color string i.e. hsl(0,0%,0%)
+ */
+ function rgbToHsl(color) {
+  let rgb = color.replace(/[^\d,]/g, '').split(',')
+  let r= parseInt(rgb[0]) / 255
+  let g= parseInt(rgb[1]) /255
+  let b= parseInt(rgb[2]) / 255
+  const l = Math.max(r, g, b);
+  const s = l - Math.min(r, g, b);
+  const h = s
+    ? l === r
+      ? (g - b) / s
+      : l === g
+      ? 2 + (b - r) / s
+      : 4 + (r - g) / s
+    : 0;
+  
+    let hFinal = Math.round(60 * h < 0 ? 60 * h + 360 : 60 * h);
+    let sFinal = Math.round(100 * (s ? (l <= 0.5 ? s / (2 * l - s) : s / (2 - (2 * l - s))) : 0))
+    let lFinal = Math.round((100 * (2 * l - s)) / 2)
+
+  return `hsl(${hFinal}, ${sFinal}%, ${lFinal}%)` ;
+}
+
+
 /**
  * Converts a color from CSS hex format to CSS rgb format.
  * @param {string} color - Hex color, i.e. #nnn or #nnnnnn
@@ -61,6 +91,10 @@ export function decomposeColor(color) {
 
   if (color.charAt(0) === '#') {
     return decomposeColor(hexToRgb(color));
+  }
+  
+   if (color.charAt(0) === 'r') {
+    return decomposeColor(rgbToHsl(color));
   }
 
   const marker = color.indexOf('(');
