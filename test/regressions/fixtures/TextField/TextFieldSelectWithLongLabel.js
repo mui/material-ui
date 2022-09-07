@@ -38,7 +38,12 @@ export default function TextFieldSelectWithLongLabel() {
       noValidate
       autoComplete="off"
     >
-      <TextField id="outlined-select-currency" select label="Super long label that should ellipse" value="">
+      <TextField
+        id="outlined-select-currency"
+        select
+        label="Super long label that should ellipse"
+        value=""
+      >
         {options}
       </TextField>
       <TextField
