@@ -131,7 +131,11 @@ export interface CreateStyledComponent<
   ): StyledComponent<ComponentProps & AdditionalProps, SpecificComponentProps, JSXProps>;
 }
 
-export interface CreateMUIStyled<MUIStyledCommonProps, MuiStyledOptions, Theme extends object> {
+export interface CreateMUIStyled<
+  MUIStyledCommonProps extends {},
+  MuiStyledOptions,
+  Theme extends object,
+> {
   <
     C extends React.ComponentClass<React.ComponentProps<C>>,
     ForwardedProps extends keyof React.ComponentProps<C> = keyof React.ComponentProps<C>,
