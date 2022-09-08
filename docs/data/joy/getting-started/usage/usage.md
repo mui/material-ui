@@ -6,7 +6,9 @@
 
 ### Set up the `CssVarsProvider` component
 
-Go to your `App.js` file and replace it with the code snippet below. You should see the text `Hello with joy` being rendered on your browser.
+Go to your `App.js` file and replace it with the code snippet below.
+
+You should see the text `Hello from Joy` being rendered on your browser.
 
 ```jsx
 import { CssVarsProvider } from '@mui/joy/styles';
