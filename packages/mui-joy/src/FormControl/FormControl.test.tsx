@@ -230,7 +230,7 @@ describe('<FormControl />', () => {
 
   describe('RadioGroup', () => {
     it('should linked the label and helper text', () => {
-      const { getByRole, getByText } = render(
+      const { getByLabelText, getByRole, getByText } = render(
         <FormControl>
           <FormLabel>label</FormLabel>
           <RadioGroup />
@@ -241,6 +241,7 @@ describe('<FormControl />', () => {
       const label = getByText('label');
       const helperText = getByText('helper text');
 
+      expect(getByLabelText('label')).to.have.attribute('role', 'radiogroup');
       expect(getByRole('radiogroup')).to.have.attribute('aria-labelledby', label.id);
       expect(getByRole('radiogroup')).to.have.attribute('aria-describedby', helperText.id);
     });

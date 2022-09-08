@@ -132,6 +132,10 @@ const RadioGroup = React.forwardRef(function RadioGroup(inProps, ref) {
         as={component}
         ownerState={ownerState}
         className={clsx(classes.root, className)}
+        // The `id` is just for the completeness, it does not have any effect because RadioGroup (div) is non-labellable element
+        // MDN: "If it is not a labelable element, then the for attribute has no effect"
+        // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label#attr-for
+        id={formControl?.htmlFor}
         aria-labelledby={formControl?.labelId}
         aria-describedby={formControl?.['aria-describedby']}
         {...other}
