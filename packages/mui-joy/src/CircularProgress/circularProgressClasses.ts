@@ -7,8 +7,10 @@ export interface CircularProgressClasses {
   determinate: string;
   /** Styles applied to the svg element. */
   svg: string;
-  /** Styles applied to the `circle` svg path. */
-  circle: string;
+  /** Styles applied to the `track` element. */
+  track: string;
+  /** Styles applied to the `progress` element. */
+  progress: string;
   /** Styles applied to the root element if `color="primary"`. */
   colorPrimary: string;
   /** Styles applied to the root element if `color="neutral"`. */
@@ -49,7 +51,8 @@ const circularProgressClasses: CircularProgressClasses = generateUtilityClasses(
     'root',
     'determinate',
     'svg',
-    'circle',
+    'track',
+    'progress',
     'colorPrimary',
     'colorNeutral',
     'colorDanger',

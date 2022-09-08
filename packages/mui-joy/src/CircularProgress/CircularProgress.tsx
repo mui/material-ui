@@ -33,8 +33,8 @@ const useUtilityClasses = (ownerState: CircularProgressProps) => {
       size && `size${capitalize(size)}`,
     ],
     svg: ['svg'],
-    circle1: ['circle1'],
-    circle2: ['circle2'],
+    track: ['track'],
+    progress: ['progress'],
   };
 
   return composeClasses(slots, getCircularProgressUtilityClass, {});
@@ -88,10 +88,10 @@ const CircularProgressSvg = styled('svg', {
   boxSizing: 'inherit',
 });
 
-const CircularProgressCircle1 = styled('circle', {
+const CircularProgressTrack = styled('circle', {
   name: 'JoyCircularProgress',
   slot: 'Circle1',
-  overridesResolver: (props, styles) => styles.circle1,
+  overridesResolver: (props, styles) => styles.track,
 })<{ ownerState: CircularProgressProps }>(({ theme, ownerState }) => {
   return [
     {
@@ -109,10 +109,10 @@ const CircularProgressCircle1 = styled('circle', {
   ];
 });
 
-const CircularProgressCircle2 = styled('circle', {
+const CircularProgressProgress = styled('circle', {
   name: 'JoyCircularProgress',
   slot: 'Circle2',
-  overridesResolver: (props, styles) => styles.circle2,
+  overridesResolver: (props, styles) => styles.progress,
 })<{ ownerState: CircularProgressProps }>(({ theme, ownerState }) => {
   const determinateProgress = (100 - ownerState.value!) / 100;
   return [
@@ -207,18 +207,18 @@ const CircularProgress = React.forwardRef(function CircularProgress(inProps, ref
     className: classes.svg,
   });
 
-  const circle1Props = useSlotProps({
-    elementType: CircularProgressCircle1,
-    externalSlotProps: componentsProps.circle1,
+  const trackProps = useSlotProps({
+    elementType: CircularProgressTrack,
+    externalSlotProps: componentsProps.track,
     ownerState,
-    className: classes.circle1,
+    className: classes.track,
   });
 
-  const circle2Props = useSlotProps({
-    elementType: CircularProgressCircle2,
-    externalSlotProps: componentsProps.circle2,
+  const progressProps = useSlotProps({
+    elementType: CircularProgressProgress,
+    externalSlotProps: componentsProps.progress,
     ownerState,
-    className: classes.circle2,
+    className: classes.progress,
   });
 
   let leftMarginOfChildren: number = 0;
@@ -233,8 +233,8 @@ const CircularProgress = React.forwardRef(function CircularProgress(inProps, ref
   return (
     <CircularProgressRoot {...rootProps}>
       <CircularProgressSvg {...svgProps}>
-        <CircularProgressCircle1 {...circle1Props} />
-        <CircularProgressCircle2 {...circle2Props} />
+        <CircularProgressTrack {...trackProps} />
+        <CircularProgressProgress {...progressProps} />
       </CircularProgressSvg>
       {children &&
         React.cloneElement(children as React.ReactElement, {
@@ -272,8 +272,8 @@ CircularProgress.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   componentsProps: PropTypes.shape({
-    circle1: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
-    circle2: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    track: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    progress: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     svg: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),

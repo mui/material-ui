@@ -3,7 +3,7 @@ import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import * as React from 'react';
 import { ColorPaletteProp, SxProps, VariantProp } from '../styles/types';
 
-export type CircularProgressSlot = 'root' | 'svg' | 'circle1' | 'circle2';
+export type CircularProgressSlot = 'root' | 'svg' | 'track' | 'progress';
 
 export interface CircularProgressPropsColorOverrides {}
 export interface CircularProgressPropsSizeOverrides {}
@@ -12,8 +12,8 @@ export interface CircularProgressPropsVariantOverrides {}
 interface ComponentsProps {
   root?: SlotComponentProps<'span', { sx?: SxProps }, CircularProgressOwnerState>;
   svg?: SlotComponentProps<'svg', { sx?: SxProps }, CircularProgressOwnerState>;
-  circle1?: SlotComponentProps<'circle', { sx?: SxProps }, CircularProgressOwnerState>;
-  circle2?: SlotComponentProps<'circle', { sx?: SxProps }, CircularProgressOwnerState>;
+  track?: SlotComponentProps<'circle', { sx?: SxProps }, CircularProgressOwnerState>;
+  progress?: SlotComponentProps<'circle', { sx?: SxProps }, CircularProgressOwnerState>;
 }
 
 export interface CircularProgressTypeMap<P = {}, D extends React.ElementType = 'span'> {
