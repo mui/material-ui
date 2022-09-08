@@ -83,6 +83,7 @@ const CircularProgressRoot = styled('span', {
     position: 'relative',
     color,
     fontFamily: theme.vars.fontFamily.body,
+    fontWeight: theme.vars.fontWeight.md,
     fontSize: 'calc(0.2 * var(--CircularProgress-size))',
     ...rest,
   };
