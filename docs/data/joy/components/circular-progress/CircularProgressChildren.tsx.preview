@@ -1,11 +1,9 @@
-<CircularProgress size="sm">
-  <Typography fontSize="xs" fontWeight="md">
-    82.5
-  </Typography>
-</CircularProgress>
-<CircularProgress color="warning" size="sm">
+<CircularProgress color="warning">
   <WarningIcon color="warning" />
 </CircularProgress>
-<CircularProgress color="danger" size="sm">
+<CircularProgress size="lg" determinate value={66.67}>
+  2 / 3
+</CircularProgress>
+<CircularProgress color="danger" sx={{ '--CircularProgress-size': '80px' }}>
   <ReportIcon color="danger" />
 </CircularProgress>

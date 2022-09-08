@@ -305,6 +305,7 @@ CircularProgress.propTypes /* remove-proptypes */ = {
   determinate: PropTypes.bool,
   /**
    * The size of the component.
+   * It accepts theme values between 'sm' and 'lg'.
    * @default 'md'
    */
   size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
