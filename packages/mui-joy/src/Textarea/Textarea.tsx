@@ -247,6 +247,7 @@ const Textarea = React.forwardRef(function Textarea(inProps, ref) {
 
   const textareaProps = useSlotProps({
     elementType: TextareaInput,
+    externalSlotProps: componentsProps.textarea,
     getSlotProps: (otherHandlers: EventHandlers) =>
       getInputProps({ ...otherHandlers, ...propsToForward }),
     externalSlotProps: {
