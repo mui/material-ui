@@ -3,18 +3,12 @@ import { generateUtilityClass, generateUtilityClasses } from '../className';
 export interface CircularProgressClasses {
   /** Styles applied to the root element. */
   root: string;
-  /** Styles applied to the root element if `variant="determinate"`. */
+  /** Styles applied to the root element if `determinate` is true. */
   determinate: string;
-  /** Styles applied to the root element if `variant="indeterminate"`. */
-  indeterminate: string;
   /** Styles applied to the svg element. */
   svg: string;
   /** Styles applied to the `circle` svg path. */
   circle: string;
-  /** Styles applied to the `circle` svg path if `variant="determinate"`. */
-  circleDeterminate: string;
-  /** Styles applied to the `circle` svg path if `variant="indeterminate"`. */
-  circleIndeterminate: string;
   /** Styles applied to the root element if `color="primary"`. */
   colorPrimary: string;
   /** Styles applied to the root element if `color="neutral"`. */
@@ -54,11 +48,8 @@ const circularProgressClasses: CircularProgressClasses = generateUtilityClasses(
   [
     'root',
     'determinate',
-    'indeterminate',
     'svg',
     'circle',
-    'circleDeterminate',
-    'circleIndeterminate',
     'colorPrimary',
     'colorNeutral',
     'colorDanger',
