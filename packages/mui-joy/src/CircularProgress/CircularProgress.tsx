@@ -62,7 +62,7 @@ const CircularProgressRoot = styled('span', {
     ...(ownerState.size === 'sm' && {
       '--CircularProgress-track-thickness': '4px',
       '--CircularProgress-progress-thickness': '4px',
-      '--_root-size': 'var(--CircularProgress-size, 24px)',
+      '--_root-size': 'var(--CircularProgress-size, 24px)', // use --_root-size to let other components overrides via --CircularProgress-size
     }),
     ...(ownerState.instanceSize === 'sm' && {
       '--CircularProgress-size': '24px',
