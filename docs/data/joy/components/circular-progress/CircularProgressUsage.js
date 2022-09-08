@@ -32,7 +32,7 @@ export default function CircularProgressUsage() {
         {
           propName: 'value',
           knob: 'input',
-          defaultValue: "",
+          defaultValue: '',
         },
       ]}
       renderDemo={(props) => <CircularProgress {...props} />}
