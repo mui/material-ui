@@ -252,7 +252,10 @@ CircularProgress.propTypes /* remove-proptypes */ = {
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'primary'
    */
-  color: PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.string,
+  ]),
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
@@ -263,10 +266,10 @@ CircularProgress.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   componentsProps: PropTypes.shape({
-    track: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     progress: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     svg: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    track: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
    * The boolean to select a variant.
@@ -276,10 +279,12 @@ CircularProgress.propTypes /* remove-proptypes */ = {
   determinate: PropTypes.bool,
   /**
    * The size of the component.
-   * It accepts theme values between 'sm' and 'lg'.
    * @default 'md'
    */
-  size: PropTypes.oneOf(['sm', 'md', 'lg']),
+  size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['sm', 'md', 'lg']),
+    PropTypes.string,
+  ]),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
@@ -295,14 +300,18 @@ CircularProgress.propTypes /* remove-proptypes */ = {
   /**
    * The value of the progress indicator for the determinate variant.
    * Value between 0 and 100.
-   * @default 0
+   *
+   * For indeterminate, @default 25
    */
   value: PropTypes.number,
   /**
    * The variant to use.
-   * @default 'solid'
+   * @default 'soft'
    */
-  variant: PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
+  variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
+    PropTypes.string,
+  ]),
 } as any;
 
 export default CircularProgress;
