@@ -13,15 +13,15 @@ export default function CircularProgressVariables() {
       data={[
         {
           var: '--CircularProgress-size',
-          defaultValue: '85px',
+          defaultValue: '40px',
         },
         {
           var: '--CircularProgress-track-thickness',
-          defaultValue: '10px',
+          defaultValue: '6px',
         },
         {
           var: '--CircularProgress-progress-thickness',
-          defaultValue: '10px',
+          defaultValue: '6px',
         },
       ]}
       renderDemo={(sx) => (

@@ -48,9 +48,13 @@ const CircularProgressRoot = styled('span', {
   const { color, backgroundColor, ...rest } =
     theme.variants[ownerState.variant!]?.[ownerState.color!] || {};
   return {
+    // integration with icon
+    '--Icon-fontSize': 'calc(0.4 * var(--CircularProgress-size))',
+    // internal variables
     '--_thickness-diff':
       'calc(var(--CircularProgress-track-thickness) - var(--CircularProgress-progress-thickness))',
     '--_inner-size': 'calc(var(--CircularProgress-size) - 2 * var(--variant-borderWidth))',
+    // public variables
     '--CircularProgress-track-color': backgroundColor,
     '--CircularProgress-progress-color': color,
     '--CircularProgress-percent': ownerState.value, // 0 - 100
@@ -61,21 +65,25 @@ const CircularProgressRoot = styled('span', {
     }),
     ...(ownerState.size === 'md' && {
       '--CircularProgress-size': '40px',
-      '--CircularProgress-track-thickness': '8px',
-      '--CircularProgress-progress-thickness': '8px',
+      '--CircularProgress-track-thickness': '6px',
+      '--CircularProgress-progress-thickness': '6px',
     }),
     ...(ownerState.size === 'lg' && {
       '--CircularProgress-size': '64px',
-      '--CircularProgress-track-thickness': '12px',
-      '--CircularProgress-progress-thickness': '12px',
+      '--CircularProgress-track-thickness': '8px',
+      '--CircularProgress-progress-thickness': '8px',
     }),
     width: 'var(--CircularProgress-size)',
     height: 'var(--CircularProgress-size)',
     borderRadius: 'var(--CircularProgress-size)',
     boxSizing: 'border-box',
-    display: 'inline-block',
+    display: 'inline-flex',
+    justifyContent: 'center',
+    alignItems: 'center',
     position: 'relative',
     color,
+    fontFamily: theme.vars.fontFamily.body,
+    fontSize: 'calc(0.2 * var(--CircularProgress-size))',
     ...rest,
   };
 });
@@ -216,25 +224,13 @@ const CircularProgress = React.forwardRef(function CircularProgress(inProps, ref
     className: classes.progress,
   });
 
-  let leftMarginOfChildren: number = 0;
-  if (size === 'sm') {
-    leftMarginOfChildren = -42;
-  } else if (size === 'md') {
-    leftMarginOfChildren = -58;
-  } else if (size === 'lg') {
-    leftMarginOfChildren = -71;
-  }
-
   return (
     <CircularProgressRoot {...rootProps}>
       <CircularProgressSvg {...svgProps}>
         <CircularProgressTrack {...trackProps} />
         <CircularProgressProgress {...progressProps} />
       </CircularProgressSvg>
-      {children &&
-        React.cloneElement(children as React.ReactElement, {
-          sx: { ml: `${leftMarginOfChildren}px` },
-        })}
+      {children}
     </CircularProgressRoot>
   );
 }) as OverridableComponent<CircularProgressTypeMap>;

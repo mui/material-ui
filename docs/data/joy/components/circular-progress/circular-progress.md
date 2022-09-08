@@ -64,6 +64,10 @@ The circular progress component places the provided children in the center by de
 
 {{"demo": "CircularProgressChildren.js"}}
 
+:::info
+For plain texts and icons, the dimension is relative to the circular progress's CSS variable (`--CircularProgress-size`).
+:::
+
 ## CSS variables
 
 Play around with all the CSS variables available in the slider component to see how the design changes.

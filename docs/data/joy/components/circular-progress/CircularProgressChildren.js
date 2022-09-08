@@ -8,15 +8,15 @@ import WarningIcon from '@mui/icons-material/Warning';
 export default function CircularProgressChildren() {
   return (
     <Box sx={{ display: 'flex', gap: 2, alignItems: 'center', flexWrap: 'wrap' }}>
-      <CircularProgress size="sm">
+      <CircularProgress>
         <Typography fontSize="xs" fontWeight="md">
           82.5
         </Typography>
       </CircularProgress>
-      <CircularProgress color="warning" size="sm">
+      <CircularProgress color="warning">
         <WarningIcon color="warning" />
       </CircularProgress>
-      <CircularProgress color="danger" size="sm">
+      <CircularProgress color="danger">
         <ReportIcon color="danger" />
       </CircularProgress>
     </Box>
