@@ -85,10 +85,45 @@ To create a modal dialog, renders the `ModalDialog` component inside the `Modal`
 
 The `ModalDialog`'s layout can be:
 
+- `center` (default): the modal dialog appears at the center of the viewport.
 - `fullScreen`: the modal dialog covers the whole viewport.
-- `center`: the modal dialog appears at the center of the viewport.
 
 {{"demo": "LayoutModalDialog.js"}}
+
+To add more layout, apply a style to the theme like this:
+
+```js
+// Add a new `top` layout to the ModalDialog
+extendTheme({
+  components: {
+    JoyModalDialog: {
+      defaultProps: {
+        layout: 'top',
+      },
+      styleOverrides: {
+        root: ({ ownerState }) => ({
+          ...(ownerState.layout === 'top' && {
+            top: '12vh',
+            left: '50%',
+            transform: 'translateX(-50%)',
+          }),
+        }),
+      },
+    },
+  },
+});
+```
+
+For **TypeScript**, you need module augmentation to include the new values to the `layout` prop:
+
+```ts
+// at the root or theme file
+declare module '@mui/joy/ModalDialog' {
+  interface ModalDialogPropsLayoutOverrides {
+    top: true;
+  }
+}
+```
 
 #### Variant
 

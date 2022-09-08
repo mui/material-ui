@@ -22,9 +22,9 @@ export interface ModalDialogTypeMap<P = {}, D extends React.ElementType = 'div'>
     color?: OverridableStringUnion<ColorPaletteProp, ModalDialogPropsColorOverrides>;
     /**
      * The layout of the dialog
-     * @default 'top'
+     * @default 'center'
      */
-    layout?: 'top' | 'center' | 'fullscreen';
+    layout?: 'center' | 'fullscreen';
     /**
      * The size of the component.
      * @default 'md'

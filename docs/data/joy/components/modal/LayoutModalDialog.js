@@ -11,15 +11,15 @@ export default function LayoutModalDialog() {
   return (
     <React.Fragment>
       <Stack direction="row" spacing={1}>
+        <Button variant="outlined" color="neutral" onClick={() => setOpen('center')}>
+          Center
+        </Button>
         <Button
           variant="outlined"
           color="neutral"
           onClick={() => setOpen('fullscreen')}
         >
           Full screen
-        </Button>
-        <Button variant="outlined" color="neutral" onClick={() => setOpen('center')}>
-          Center
         </Button>
       </Stack>
       <Modal open={!!open} onClose={() => setOpen('')}>
