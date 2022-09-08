@@ -19,7 +19,7 @@ Joy UI provides four list-related components:
 - [`ListItemContent`](#ellipsis-content): A container inside a list item, used to display text content.
 - [`ListDivider`](#divider): A separator between list items.
 
-{{"demo": "VariantsColorsList.js", "hideToolbar": true}}
+{{"demo": "ListUsage.js", "hideToolbar": true}}
 
 ## Component
 

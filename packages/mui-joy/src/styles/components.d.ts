@@ -79,6 +79,17 @@ import {
 import { MenuProps, MenuOwnerState, MenuSlot } from '../Menu/MenuProps';
 import { MenuItemProps, MenuItemOwnerState, MenuItemSlot } from '../MenuItem/MenuItemProps';
 import { MenuListProps, MenuListOwnerState, MenuListSlot } from '../MenuList/MenuListProps';
+import { ModalProps, ModalOwnerState, ModalSlot } from '../Modal/ModalProps';
+import {
+  ModalCloseProps,
+  ModalCloseOwnerState,
+  ModalCloseSlot,
+} from '../ModalClose/ModalCloseProps';
+import {
+  ModalDialogProps,
+  ModalDialogOwnerState,
+  ModalDialogSlot,
+} from '../ModalDialog/ModalDialogProps';
 import { RadioProps, RadioOwnerState, RadioSlot } from '../Radio/RadioProps';
 import {
   RadioGroupProps,
@@ -293,6 +304,10 @@ export interface Components<Theme = unknown> {
     defaultProps?: Partial<TabPanelProps>;
     styleOverrides?: OverridesStyleRules<TabPanelSlot, TabPanelOwnerState, Theme>;
   };
+  JoyTextarea?: {
+    defaultProps?: Partial<TextareaProps>;
+    styleOverrides?: OverridesStyleRules<TextareaSlot, TextareaOwnerState, Theme>;
+  };
   JoyTextField?: {
     defaultProps?: Partial<TextFieldProps>;
     styleOverrides?: OverridesStyleRules<TextFieldSlot, TextFieldOwnerState, Theme>;
@@ -313,8 +328,16 @@ export interface Components<Theme = unknown> {
     defaultProps?: Partial<MenuItemProps>;
     styleOverrides?: OverridesStyleRules<MenuItemSlot, MenuItemOwnerState, Theme>;
   };
-  JoyTextarea?: {
-    defaultProps?: Partial<TextareaProps>;
-    styleOverrides?: OverridesStyleRules<TextareaSlot, TextareaOwnerState, Theme>;
+  JoyModal?: {
+    defaultProps?: Partial<ModalProps>;
+    styleOverrides?: OverridesStyleRules<ModalSlot, ModalOwnerState, Theme>;
+  };
+  JoyModalClose?: {
+    defaultProps?: Partial<ModalCloseProps>;
+    styleOverrides?: OverridesStyleRules<ModalCloseSlot, ModalCloseOwnerState, Theme>;
+  };
+  JoyModalDialog?: {
+    defaultProps?: Partial<ModalDialogProps>;
+    styleOverrides?: OverridesStyleRules<ModalDialogSlot, ModalDialogOwnerState, Theme>;
   };
 }
