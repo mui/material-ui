@@ -50,18 +50,18 @@ const CircularProgressRoot = styled('span', {
       '--CircularProgress-indeterminateDuration': '1.4s',
       ...(ownerState.size === 'sm' && {
         '--CircularProgress-size': '60px',
-        '--CircularProgress-track-thickness': `${ownerState.thickness || 7}px`,
-        '--CircularProgress-progress-thickness': `${ownerState.thickness || 7}px`,
-      }),
-      ...(ownerState.size === 'md' && {
-        '--CircularProgress-size': '85px',
         '--CircularProgress-track-thickness': `${ownerState.thickness || 10}px`,
         '--CircularProgress-progress-thickness': `${ownerState.thickness || 10}px`,
       }),
+      ...(ownerState.size === 'md' && {
+        '--CircularProgress-size': '85px',
+        '--CircularProgress-track-thickness': `${ownerState.thickness || 14}px`,
+        '--CircularProgress-progress-thickness': `${ownerState.thickness || 12}px`,
+      }),
       ...(ownerState.size === 'lg' && {
         '--CircularProgress-size': '110px',
-        '--CircularProgress-track-thickness': `${ownerState.thickness || 13}px`,
-        '--CircularProgress-progress-thickness': `${ownerState.thickness || 13}px`,
+        '--CircularProgress-track-thickness': `${ownerState.thickness || 18}px`,
+        '--CircularProgress-progress-thickness': `${ownerState.thickness || 14}px`,
       }),
       '--ㅡmin-thickness':
         'min(var(--CircularProgress-track-thickness), var(--CircularProgress-progress-thickness))',
