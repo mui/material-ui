@@ -69,4 +69,9 @@ export type CircularProgressProps<
   P = { component?: React.ElementType },
 > = OverrideProps<CircularProgressTypeMap<P, D>, D>;
 
-export interface CircularProgressOwnerState extends CircularProgressProps {}
+export interface CircularProgressOwnerState extends CircularProgressProps {
+  /**
+   * @internal the explicit size on the instance: <CircularProgress size="..." />
+   */
+  instanceSize: CircularProgressProps['size'];
+}

@@ -9,7 +9,11 @@ import { unstable_capitalize as capitalize } from '@mui/utils';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import { getCircularProgressUtilityClass } from './circularProgressClasses';
-import { CircularProgressProps, CircularProgressTypeMap } from './CircularProgressProps';
+import {
+  CircularProgressProps,
+  CircularProgressTypeMap,
+  CircularProgressOwnerState,
+} from './CircularProgressProps';
 
 const circulate = keyframes({
   '0%': {
@@ -21,7 +25,7 @@ const circulate = keyframes({
   },
 });
 
-const useUtilityClasses = (ownerState: CircularProgressProps) => {
+const useUtilityClasses = (ownerState: CircularProgressOwnerState) => {
   const { determinate, color, variant, size } = ownerState;
 
   const slots = {
@@ -44,39 +48,49 @@ const CircularProgressRoot = styled('span', {
   name: 'JoyCircularProgress',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: CircularProgressProps }>(({ ownerState, theme }) => {
+})<{ ownerState: CircularProgressOwnerState }>(({ ownerState, theme }) => {
   const { color, backgroundColor, ...rest } =
     theme.variants[ownerState.variant!]?.[ownerState.color!] || {};
   return {
     // integration with icon
-    '--Icon-fontSize': 'calc(0.4 * var(--CircularProgress-size))',
-    // internal variables
-    '--_thickness-diff':
-      'calc(var(--CircularProgress-track-thickness) - var(--CircularProgress-progress-thickness))',
-    '--_inner-size': 'calc(var(--CircularProgress-size) - 2 * var(--variant-borderWidth))',
+    '--Icon-fontSize': 'calc(0.4 * var(--_root-size))',
     // public variables
     '--CircularProgress-track-color': backgroundColor,
     '--CircularProgress-progress-color': color,
     '--CircularProgress-percent': ownerState.value, // 0 - 100
     '--CircularProgress-animation': '0.5s linear 0s infinite normal none running',
     ...(ownerState.size === 'sm' && {
-      '--CircularProgress-size': '24px',
       '--CircularProgress-track-thickness': '4px',
       '--CircularProgress-progress-thickness': '4px',
+      '--_root-size': 'var(--CircularProgress-size, 24px)',
+    }),
+    ...(ownerState.instanceSize === 'sm' && {
+      '--CircularProgress-size': '24px',
     }),
     ...(ownerState.size === 'md' && {
-      '--CircularProgress-size': '40px',
       '--CircularProgress-track-thickness': '6px',
       '--CircularProgress-progress-thickness': '6px',
+      '--_root-size': 'var(--CircularProgress-size, 40px)',
+    }),
+    ...(ownerState.instanceSize === 'md' && {
+      '--CircularProgress-size': '40px',
     }),
     ...(ownerState.size === 'lg' && {
-      '--CircularProgress-size': '64px',
       '--CircularProgress-track-thickness': '8px',
       '--CircularProgress-progress-thickness': '8px',
+      '--_root-size': 'var(--CircularProgress-size, 64px)',
     }),
-    width: 'var(--CircularProgress-size)',
-    height: 'var(--CircularProgress-size)',
-    borderRadius: 'var(--CircularProgress-size)',
+    ...(ownerState.instanceSize === 'lg' && {
+      '--CircularProgress-size': '64px',
+    }),
+    // internal variables
+    '--_thickness-diff':
+      'calc(var(--CircularProgress-track-thickness) - var(--CircularProgress-progress-thickness))',
+    '--_inner-size': 'calc(var(--_root-size) - 2 * var(--variant-borderWidth))',
+    width: 'var(--_root-size)',
+    height: 'var(--_root-size)',
+    borderRadius: 'var(--_root-size)',
+    margin: 'var(--CircularProgress-margin)',
     boxSizing: 'border-box',
     display: 'inline-flex',
     justifyContent: 'center',
@@ -85,7 +99,7 @@ const CircularProgressRoot = styled('span', {
     color,
     fontFamily: theme.vars.fontFamily.body,
     fontWeight: theme.vars.fontWeight.md,
-    fontSize: 'calc(0.2 * var(--CircularProgress-size))',
+    fontSize: 'calc(0.2 * var(--_root-size))',
     ...rest,
   };
 });
@@ -94,21 +108,21 @@ const CircularProgressSvg = styled('svg', {
   name: 'JoyCircularProgress',
   slot: 'Svg',
   overridesResolver: (props, styles) => styles.svg,
-})<{ ownerState: CircularProgressProps }>({
+})<{ ownerState: CircularProgressOwnerState }>({
   width: 'inherit',
   height: 'inherit',
   display: 'inherit',
   boxSizing: 'inherit',
   position: 'absolute',
-  top: 'calc(-1 * var(--variant-borderWidth))',
-  left: 'calc(-1 * var(--variant-borderWidth))',
+  top: 'calc(-1 * var(--variant-borderWidth))', // centered align
+  left: 'calc(-1 * var(--variant-borderWidth))', // centered align
 });
 
 const CircularProgressTrack = styled('circle', {
   name: 'JoyCircularProgress',
   slot: 'track',
   overridesResolver: (props, styles) => styles.track,
-})<{ ownerState: CircularProgressProps }>({
+})<{ ownerState: CircularProgressOwnerState }>({
   cx: '50%',
   cy: '50%',
   r: 'calc(var(--_inner-size) / 2 - var(--CircularProgress-track-thickness) / 2 + min(0px, var(--_thickness-diff) / 2))',
@@ -121,7 +135,7 @@ const CircularProgressProgress = styled('circle', {
   name: 'JoyCircularProgress',
   slot: 'progress',
   overridesResolver: (props, styles) => styles.progress,
-})<{ ownerState: CircularProgressProps }>(
+})<{ ownerState: CircularProgressOwnerState }>(
   {
     '--_progress-radius':
       'calc(var(--_inner-size) / 2 - var(--CircularProgress-progress-thickness) / 2 - max(0px, var(--_thickness-diff) / 2))',
@@ -184,6 +198,7 @@ const CircularProgress = React.forwardRef(function CircularProgress(inProps, ref
     thickness,
     value,
     determinate,
+    instanceSize: inProps.size,
   };
 
   const classes = useUtilityClasses(ownerState);
