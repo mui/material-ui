@@ -3,13 +3,9 @@
     82.5
   </Typography>
 </CircularProgress>
-<CircularProgress size="md" color="warning">
-  <IconButton variant="plain" size="sm" color="warning">
-    <WarningIcon />
-  </IconButton>
+<CircularProgress color="warning" size="sm">
+  <WarningIcon color="warning" />
 </CircularProgress>
-<CircularProgress size="lg" color="danger">
-  <IconButton variant="plain" size="sm" color="danger">
-    <ReportIcon />
-  </IconButton>
+<CircularProgress color="danger" size="sm">
+  <ReportIcon color="danger" />
 </CircularProgress>
