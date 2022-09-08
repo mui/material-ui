@@ -183,6 +183,7 @@ const List = React.forwardRef(function List(inProps, ref) {
       className={clsx(classes.root, className)}
       ownerState={ownerState}
       role={role}
+      aria-labelledby={typeof nesting === 'string' ? nesting : undefined}
       {...other}
     >
       <ComponentListContext.Provider

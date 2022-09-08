@@ -21,6 +21,7 @@ import { InputOwnerState } from '@mui/joy/Input';
 import { LinkOwnerState } from '@mui/joy/Link';
 import { ListOwnerState } from '@mui/joy/List';
 import { ListDividerOwnerState } from '@mui/joy/ListDivider';
+import { ListSubheaderOwnerState } from '@mui/joy/ListSubheader';
 import { ListItemOwnerState } from '@mui/joy/ListItem';
 import { ListItemButtonOwnerState } from '@mui/joy/ListItemButton';
 import { ListItemContentOwnerState } from '@mui/joy/ListItemContent';
@@ -415,6 +416,19 @@ extendTheme({
       styleOverrides: {
         root: ({ ownerState }) => {
           expectType<ListDividerOwnerState & Record<string, unknown>, typeof ownerState>(
+            ownerState,
+          );
+          return {};
+        },
+      },
+    },
+    JoyListSubheader: {
+      defaultProps: {
+        sticky: true,
+      },
+      styleOverrides: {
+        root: ({ ownerState }) => {
+          expectType<ListSubheaderOwnerState & Record<string, unknown>, typeof ownerState>(
             ownerState,
           );
           return {};

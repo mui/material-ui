@@ -18,6 +18,7 @@ Joy UI provides four list-related components:
 - [`ListItemDecorator`](#decorator): A decorator of a list item, usually used to display an icon.
 - [`ListItemContent`](#ellipsis-content): A container inside a list item, used to display text content.
 - [`ListDivider`](#divider): A separator between list items.
+- [`ListSubheader`](#nested-list): A label for a nested list.
 
 {{"demo": "ListUsage.js", "hideToolbar": true}}
 
@@ -31,7 +32,7 @@ import ListItem from '@mui/joy/ListItem';
 
 export default function MyApp() {
   return (
-    <List aria-labelledby="basic-list-demo">
+    <List aria-label="basic-list">
       <ListItem>Hello, world!</ListItem>
       <ListItem>Bye bye, world!</ListItem>
     </List>

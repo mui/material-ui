@@ -71,7 +71,7 @@ export interface ListItemOwnerState extends ListItemProps {
   /**
    * If `true`, the element is rendered in a nested list item.
    */
-  nesting: boolean;
+  nesting: boolean | string;
   /**
    * @internal
    * The internal prop for controlling CSS margin of the element.

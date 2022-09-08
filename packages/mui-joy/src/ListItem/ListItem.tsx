@@ -15,6 +15,7 @@ import NestedListContext from '../List/NestedListContext';
 import RowListContext from '../List/RowListContext';
 import WrapListContext from '../List/WrapListContext';
 import ComponentListContext from '../List/ComponentListContext';
+import ListSubheaderDispatch from '../ListSubheader/ListSubheaderContext';
 
 const useUtilityClasses = (ownerState: ListItemOwnerState) => {
   const { sticky, nested, nesting, variant, color } = ownerState;
@@ -96,6 +97,7 @@ const ListItemRoot = styled('li', {
     fontSize: 'var(--List-item-fontSize)',
     fontFamily: theme.vars.fontFamily.body,
     ...(ownerState.sticky && {
+      // sticky in list item can be found in grouped options
       position: 'sticky',
       top: 'var(--List-item-stickyTop, 0px)', // integration with Menu and Select.
       zIndex: 1,
@@ -157,6 +159,8 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
     ...other
   } = props;
 
+  const [subheaderId, setSubheaderId] = React.useState('');
+
   const [listElement, listRole] = listComponent?.split(':') || ['', ''];
   const component =
     componentProp || (listElement && !listElement.match(/^(ul|ol|menu)$/) ? 'div' : undefined);
@@ -189,41 +193,43 @@ const ListItem = React.forwardRef(function ListItem(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
   return (
-    <NestedListContext.Provider value={nested}>
-      <ListItemRoot
-        ref={ref}
-        as={component}
-        className={clsx(classes.root, className)}
-        ownerState={ownerState}
-        role={role}
-        {...other}
-      >
-        {startAction && (
-          <ListItemStartAction className={classes.startAction} ownerState={ownerState}>
-            {startAction}
-          </ListItemStartAction>
-        )}
+    <ListSubheaderDispatch.Provider value={setSubheaderId}>
+      <NestedListContext.Provider value={nested ? subheaderId || true : false}>
+        <ListItemRoot
+          ref={ref}
+          as={component}
+          className={clsx(classes.root, className)}
+          ownerState={ownerState}
+          role={role}
+          {...other}
+        >
+          {startAction && (
+            <ListItemStartAction className={classes.startAction} ownerState={ownerState}>
+              {startAction}
+            </ListItemStartAction>
+          )}
 
-        {React.Children.map(children, (child, index) =>
-          React.isValidElement(child)
-            ? React.cloneElement(child, {
-                // to let ListItem knows when to apply margin(Inline|Block)Start
-                ...(index === 0 && { 'data-first-child': '' }),
-                ...(isMuiElement(child, ['ListItem']) && {
-                  // The ListItem of ListItem should not be 'li'
-                  component: child.props.component || 'div',
-                }),
-              })
-            : child,
-        )}
+          {React.Children.map(children, (child, index) =>
+            React.isValidElement(child)
+              ? React.cloneElement(child, {
+                  // to let ListItem knows when to apply margin(Inline|Block)Start
+                  ...(index === 0 && { 'data-first-child': '' }),
+                  ...(isMuiElement(child, ['ListItem']) && {
+                    // The ListItem of ListItem should not be 'li'
+                    component: child.props.component || 'div',
+                  }),
+                })
+              : child,
+          )}
 
-        {endAction && (
-          <ListItemEndAction className={classes.endAction} ownerState={ownerState}>
-            {endAction}
-          </ListItemEndAction>
-        )}
-      </ListItemRoot>
-    </NestedListContext.Provider>
+          {endAction && (
+            <ListItemEndAction className={classes.endAction} ownerState={ownerState}>
+              {endAction}
+            </ListItemEndAction>
+          )}
+        </ListItemRoot>
+      </NestedListContext.Provider>
+    </ListSubheaderDispatch.Provider>
   );
 }) as OverridableComponent<ListItemTypeMap>;
 
