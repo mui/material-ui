@@ -13,10 +13,11 @@ import { CircularProgressProps, CircularProgressTypeMap } from './CircularProgre
 
 const circulate = keyframes({
   '0%': {
-    transform: 'rotate(0deg)',
+    // let the progress start at the top of the ring
+    transform: 'rotate(-90deg)',
   },
   '100%': {
-    transform: 'rotate(360deg)',
+    transform: 'rotate(270deg)',
   },
 });
 
