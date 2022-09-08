@@ -35,7 +35,7 @@ export default function MyApp() {
 
 ### Variants
 
-The circular progress component supports the four global variants: `solid` (default), `soft`, `outlined` and `plain`.
+The circular progress component supports the four global variants: `solid` (default), `soft`, `outlined`, and `plain`.
 
 {{"demo": "CircularProgressVariants.js"}}
 
