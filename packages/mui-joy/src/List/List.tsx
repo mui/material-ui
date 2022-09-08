@@ -109,7 +109,7 @@ export const ListRoot = styled('ul', {
         ? {
             ...(ownerState.wrap
               ? {
-                  padding: 'var(--List-padding)',
+                  padding: 'var(--List-padding)', // Fallback is not needed for row-wrap List
                   marginInlineStart: 'calc(-1 * var(--List-gap))',
                   marginBlockStart: 'calc(-1 * var(--List-gap))',
                 }
@@ -151,7 +151,7 @@ const List = React.forwardRef(function List(inProps, ref) {
     component,
     className,
     children,
-    size = 'md',
+    size = inProps.size ?? 'md',
     row = false,
     wrap = false,
     variant = 'plain',
@@ -163,6 +163,7 @@ const List = React.forwardRef(function List(inProps, ref) {
   const role = roleProp ?? (menuContext || selectContext ? 'group' : undefined);
 
   const ownerState = {
+    ...props,
     instanceSize: inProps.size,
     size,
     nesting,
@@ -171,7 +172,6 @@ const List = React.forwardRef(function List(inProps, ref) {
     variant,
     color,
     role,
-    ...props,
   };
 
   const classes = useUtilityClasses(ownerState);
