@@ -102,9 +102,13 @@ const CircularProgressRoot = styled('span', {
     alignItems: 'center',
     position: 'relative',
     color,
-    fontFamily: theme.vars.fontFamily.body,
-    fontWeight: theme.vars.fontWeight.md,
-    fontSize: 'calc(0.2 * var(--_root-size))',
+    ...(ownerState.children && {
+      // only add font related properties when there is a child.
+      // so that when there is no child, the size can be controlled by the parent font-size e.g. Link
+      fontFamily: theme.vars.fontFamily.body,
+      fontWeight: theme.vars.fontWeight.md,
+      fontSize: 'calc(0.2 * var(--_root-size))',
+    }),
     ...rest,
   };
 });
