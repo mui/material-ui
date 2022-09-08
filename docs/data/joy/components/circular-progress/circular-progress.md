@@ -62,7 +62,7 @@ You can use the `determinate` prop if you want to indicate a specified wait time
 
 The circular progress component places the provided children in the center by default.
 
-{{"demo": "CircularProgressChildren.js"}
+{{"demo": "CircularProgressChildren.js"}}
 
 ## CSS variables
 

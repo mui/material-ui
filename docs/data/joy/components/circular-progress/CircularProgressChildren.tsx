@@ -1,10 +1,9 @@
-import ReportIcon from '@mui/icons-material/Report';
-import WarningIcon from '@mui/icons-material/Warning';
 import * as React from 'react';
 import Box from '@mui/joy/Box';
 import CircularProgress from '@mui/joy/CircularProgress';
 import Typography from '@mui/joy/Typography';
-import IconButton from '@mui/joy/IconButton';
+import ReportIcon from '@mui/icons-material/Report';
+import WarningIcon from '@mui/icons-material/Warning';
 
 export default function CircularProgressChildren() {
   return (
@@ -14,15 +13,11 @@ export default function CircularProgressChildren() {
           82.5
         </Typography>
       </CircularProgress>
-      <CircularProgress size="md" color="warning">
-        <IconButton variant="plain" size="sm" color="warning">
-          <WarningIcon />
-        </IconButton>
+      <CircularProgress color="warning" size="sm">
+        <WarningIcon color="warning" />
       </CircularProgress>
-      <CircularProgress size="lg" color="danger">
-        <IconButton variant="plain" size="sm" color="danger">
-          <ReportIcon />
-        </IconButton>
+      <CircularProgress color="danger" size="sm">
+        <ReportIcon color="danger" />
       </CircularProgress>
     </Box>
   );
