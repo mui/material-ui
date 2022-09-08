@@ -59,9 +59,10 @@ const CircularProgressRoot = styled('span', {
     '--CircularProgress-progress-color': color,
     '--CircularProgress-percent': ownerState.value, // 0 - 100
     '--CircularProgress-animation': '0.5s linear 0s infinite normal none running',
+    '--CircularProgress-linecap': 'round',
     ...(ownerState.size === 'sm' && {
-      '--CircularProgress-track-thickness': '4px',
-      '--CircularProgress-progress-thickness': '4px',
+      '--CircularProgress-track-thickness': '3px',
+      '--CircularProgress-progress-thickness': '3px',
       '--_root-size': 'var(--CircularProgress-size, 24px)', // use --_root-size to let other components overrides via --CircularProgress-size
     }),
     ...(ownerState.instanceSize === 'sm' && {
@@ -82,6 +83,10 @@ const CircularProgressRoot = styled('span', {
     }),
     ...(ownerState.instanceSize === 'lg' && {
       '--CircularProgress-size': '64px',
+    }),
+    ...(ownerState.thickness && {
+      '--CircularProgress-track-thickness': `${ownerState.thickness}px`,
+      '--CircularProgress-progress-thickness': `${ownerState.thickness}px`,
     }),
     // internal variables
     '--_thickness-diff':
@@ -146,7 +151,7 @@ const CircularProgressProgress = styled('circle', {
     fill: 'transparent',
     strokeWidth: 'var(--CircularProgress-progress-thickness)',
     stroke: 'var(--CircularProgress-progress-color)',
-    strokeLinecap: 'round',
+    strokeLinecap: 'var(--CircularProgress-linecap, round)' as 'round', // can't use CSS variable directly, need to cast type.
     strokeDasharray: 'var(--_progress-length)',
     strokeDashoffset:
       'calc(var(--_progress-length) - var(--CircularProgress-percent) * var(--_progress-length) / 100)',

@@ -7,17 +7,13 @@ import WarningIcon from '@mui/icons-material/Warning';
 export default function CircularProgressChildren() {
   return (
     <Box sx={{ display: 'flex', gap: 2, alignItems: 'center', flexWrap: 'wrap' }}>
-      <CircularProgress determinate value={82.5}>
-        82.5%
-      </CircularProgress>
-      <CircularProgress size="lg" color="warning">
+      <CircularProgress color="warning">
         <WarningIcon color="warning" />
       </CircularProgress>
-      <CircularProgress
-        size="lg"
-        color="danger"
-        sx={{ '--CircularProgress-size': '80px' }}
-      >
+      <CircularProgress size="lg" determinate value={66.67}>
+        2 / 3
+      </CircularProgress>
+      <CircularProgress color="danger" sx={{ '--CircularProgress-size': '80px' }}>
         <ReportIcon color="danger" />
       </CircularProgress>
     </Box>

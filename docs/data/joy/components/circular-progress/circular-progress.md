@@ -58,6 +58,12 @@ You can use the `determinate` prop if you want to indicate a specified wait time
 
 {{"demo": "CircularProgressDeterminate.js"}}
 
+### Thickness
+
+Provides a number to `thickness` prop to control the circle's stroke width.
+
+{{"demo": "CircularProgressThickness.js"}}
+
 ### Children
 
 The circular progress component places the provided children in the center by default.
