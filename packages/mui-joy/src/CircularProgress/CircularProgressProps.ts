@@ -1,11 +1,20 @@
+import { SlotComponentProps } from '@mui/base/utils';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import * as React from 'react';
-import { ColorPaletteProp, SxProps } from '../styles/types';
+import { ColorPaletteProp, SxProps, VariantProp } from '../styles/types';
 
-export type CircularProgressSlot = 'root' | 'svg' | 'circle';
+export type CircularProgressSlot = 'root' | 'svg' | 'circle1' | 'circle2';
 
 export interface CircularProgressPropsColorOverrides {}
 export interface CircularProgressPropsSizeOverrides {}
+export interface CircularProgressPropsVariantOverrides {}
+
+interface ComponentsProps {
+  root?: SlotComponentProps<'span', { sx?: SxProps }, CircularProgressOwnerState>;
+  svg?: SlotComponentProps<'svg', { sx?: SxProps }, CircularProgressOwnerState>;
+  circle1?: SlotComponentProps<'circle', { sx?: SxProps }, CircularProgressOwnerState>;
+  circle2?: SlotComponentProps<'circle', { sx?: SxProps }, CircularProgressOwnerState>;
+}
 
 export interface CircularProgressTypeMap<P = {}, D extends React.ElementType = 'span'> {
   props: P & {
@@ -14,6 +23,11 @@ export interface CircularProgressTypeMap<P = {}, D extends React.ElementType = '
      * @default 'primary'
      */
     color?: OverridableStringUnion<ColorPaletteProp, CircularProgressPropsColorOverrides>;
+    /**
+     * The props used for each slot inside the CircularProgress.
+     * @default {}
+     */
+    componentsProps?: ComponentsProps;
     /**
      * The boolean to select a variant.
      * Use indeterminate when there is no progress value.
@@ -32,7 +46,6 @@ export interface CircularProgressTypeMap<P = {}, D extends React.ElementType = '
     sx?: SxProps;
     /**
      * The thickness of the circle.
-     * @default 3.6
      */
     thickness?: number;
     /**
@@ -41,6 +54,11 @@ export interface CircularProgressTypeMap<P = {}, D extends React.ElementType = '
      * @default 0
      */
     value?: number;
+    /**
+     * The variant to use.
+     * @default 'solid'
+     */
+    variant?: OverridableStringUnion<VariantProp, CircularProgressPropsVariantOverrides>;
   };
   defaultComponent: D;
 }
@@ -49,3 +67,5 @@ export type CircularProgressProps<
   D extends React.ElementType = CircularProgressTypeMap['defaultComponent'],
   P = { component?: React.ElementType },
 > = OverrideProps<CircularProgressTypeMap<P, D>, D>;
+
+export interface CircularProgressOwnerState extends CircularProgressProps {}

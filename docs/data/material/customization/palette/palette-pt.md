@@ -13,11 +13,11 @@ O tema expõe as seguintes cores da paleta (acessível sob `theme.palette`.):
 - _info_ - used to present information to the user that is neutral and not necessarily important.
 - _success_ - used to indicate the successful completion of an action that user triggered.
 
-Se você quiser aprender mais sobre cor, você pode conferir [a seção de cores](/material-ui/customization/color/).
+If you want to learn more about color, you can check out [the color section](/material-ui/customization/color/).
 
 ## Valores padrão
 
-Você pode explorar os valores padrão da paleta usando [o explorador de tema](/material-ui/customization/default-theme/?expand-path=$.palette) ou abrindo o console das ferramentas de desenvolvimento nesta página (`window.theme.palette`).
+You can explore the default values of the palette using [the theme explorer](/material-ui/customization/default-theme/?expand-path=$.palette) or by opening the dev tools console on this page (`window.theme.palette`).
 
 {{"demo": "Intentions.js", "bg": "inline", "hideToolbar": true}}
 
@@ -36,7 +36,7 @@ Você pode sobrescrever os valores padrão da paleta incluindo um objeto de pale
 
 objetos de cores da paleta são fornecidos, eles substituirão os padrões.
 
-O valor da paleta de cor pode ser um objeto [cor](/material-ui/customization/color/#2014-material-design-color-palettes), ou um objeto com uma ou mais das chaves especificadas pela seguinte interface TypeScript:
+The palette color value can either be a [color](/material-ui/customization/color/#2014-material-design-color-palettes) object, or an object with one or more of the keys specified by the following TypeScript interface:
 
 ```ts
 interface PaletteColor {
@@ -67,7 +67,7 @@ const theme = createTheme({
 Se você deseja fornecer cores mais customizadas, você pode criar seu próprio objeto de cor, ou fornecer cores diretamente para algumas ou todas as chaves da intenção:
 
 ```js
-import { createTheme } from '@material-ui/core/styles';
+import { createTheme } from '@mui/material/styles';
 
 const theme = createTheme({
   palette: {
@@ -83,12 +83,22 @@ const theme = createTheme({
       // dark: will be calculated from palette.secondary.main,
       contrastText: '#ffcc00',
     },
+     // Provide every color token (light, main, dark, and contrastText) when using
+     // custom colors for props in Material UI's components.
+     // Then you will be able to use it like this: `<Button color="custom">`
+     // (For TypeScript, you need to add module augmentation for the `custom` value)
+    custom: {
+      light: '#ffa726'
+      main: '#f57c00',
+      dark: '#ef6c00',
+      contrastText: 'rgba(0, 0, 0, 0.87)',
+    }
     // Used by `getContrastText()` to maximize the contrast between
     // the background and the text.
     contrastThreshold: 3,
-    // Usado pelas funções abaixo para mudança de uma cor de luminância por aproximadamente
-    // dois índices dentro de sua paleta tonal.
-    // Por exemplo, mude de Red 500 para Red 300 ou Red 700.
+    // Used by the functions below to shift a color's luminance by approximately
+    // two indexes within its tonal palette.
+    // E.g., shift from Red 500 to Red 300 or Red 700.
     tonalOffset: 0.2,
   },
 });
@@ -142,7 +152,7 @@ const theme = createTheme({
 });
 ```
 
-Se você estiver usando TypeScript, você também deverá usar a [extensão de módulos](/material-ui/guides/typescript/#customization-of-theme) para que o tema aceite os valores acima.
+If you are using TypeScript, you would also need to use [module augmentation](/material-ui/guides/typescript/#customization-of-theme) for the theme to accept the above values.
 
 <!-- tested with packages/mui-material/test/typescript/augmentation/paletteColors.spec.ts -->
 
@@ -174,8 +184,8 @@ declare module '@material-ui/core/styles/createPalette' {
 
 ## Escolhendo cores
 
-Precisa de inspiração? A equipe do Material Design construiu uma [ferramenta de configuração de paleta](/material-ui/customization/color/#picking-colors) para te ajudar.
+Precisa de inspiração? The Material Design team has built an [palette configuration tool](/material-ui/customization/color/#picking-colors) to help you.
 
 ## Modo escuro
 
-Você pode deixar o tema escuro definindo `mode: 'dark'`.
+For details of how you can set up a dark mode for your theme, head to the [dark mode guide](/material-ui/customization/dark-mode/).

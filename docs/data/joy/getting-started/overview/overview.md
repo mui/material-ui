@@ -1,4 +1,8 @@
-# Joy UI－Overview
+---
+title: Overview
+---
+
+# Joy UI - Overview
 
 <p class="description">Joy UI is a library of beautifully designed React UI components.</p>
 

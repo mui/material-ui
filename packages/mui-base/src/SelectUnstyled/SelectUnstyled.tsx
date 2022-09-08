@@ -20,9 +20,22 @@ import PopperUnstyled from '../PopperUnstyled';
 import { SelectUnstyledContext, SelectUnstyledContextType } from './SelectUnstyledContext';
 import composeClasses from '../composeClasses';
 import { getSelectUnstyledUtilityClass } from './selectUnstyledClasses';
+import defaultOptionStringifier from './defaultOptionStringifier';
 
 function defaultRenderSingleValue<TValue>(selectedOption: SelectOption<TValue> | null) {
   return selectedOption?.label ?? '';
+}
+
+function defaultFormValueProvider<TValue>(selectedOption: SelectOption<TValue> | null) {
+  if (selectedOption?.value == null) {
+    return '';
+  }
+
+  if (typeof selectedOption.value === 'string' || typeof selectedOption.value === 'number') {
+    return selectedOption.value;
+  }
+
+  return JSON.stringify(selectedOption.value);
 }
 
 function useUtilityClasses(ownerState: SelectUnstyledOwnerState<any>) {
@@ -56,7 +69,7 @@ function useUtilityClasses(ownerState: SelectUnstyledOwnerState<any>) {
  */
 const SelectUnstyled = React.forwardRef(function SelectUnstyled<TValue>(
   props: SelectUnstyledProps<TValue>,
-  ref: React.ForwardedRef<any>,
+  forwardedRef: React.ForwardedRef<any>,
 ) {
   const {
     autoFocus,
@@ -67,10 +80,13 @@ const SelectUnstyled = React.forwardRef(function SelectUnstyled<TValue>(
     defaultValue,
     defaultListboxOpen = false,
     disabled: disabledProp,
+    getSerializedValue = defaultFormValueProvider,
     listboxId,
     listboxOpen: listboxOpenProp,
+    name,
     onChange,
     onListboxOpenChange,
+    optionStringifier = defaultOptionStringifier,
     renderValue: renderValueProp,
     value: valueProp,
     ...other
@@ -99,15 +115,11 @@ const SelectUnstyled = React.forwardRef(function SelectUnstyled<TValue>(
   const ListboxRoot = components.Listbox ?? 'ul';
   const Popper = components.Popper ?? PopperUnstyled;
 
-  const handleButtonRefChange = (element: HTMLElement | null) => {
-    buttonRef.current = element;
+  const handleButtonRefChange = React.useCallback((element: HTMLElement | null) => {
+    setButtonDefined(element != null);
+  }, []);
 
-    if (element != null) {
-      setButtonDefined(true);
-    }
-  };
-
-  const handleButtonRef = useForkRef(ref, handleButtonRefChange);
+  const handleButtonRef = useForkRef(forwardedRef, useForkRef(buttonRef, handleButtonRefChange));
 
   React.useEffect(() => {
     if (autoFocus) {
@@ -139,6 +151,7 @@ const SelectUnstyled = React.forwardRef(function SelectUnstyled<TValue>(
     onOpenChange: handleOpenChange,
     open: listboxOpen,
     options,
+    optionStringifier,
     value: valueProp,
   });
 
@@ -155,8 +168,8 @@ const SelectUnstyled = React.forwardRef(function SelectUnstyled<TValue>(
 
   const classes = useUtilityClasses(ownerState);
 
-  const selectedOptions = React.useMemo(() => {
-    return options.find((o) => value === o.value);
+  const selectedOption = React.useMemo(() => {
+    return options.find((o) => value === o.value) ?? null;
   }, [options, value]);
 
   const buttonProps: WithOptionalOwnerState<SelectUnstyledRootSlotProps<TValue>> = useSlotProps({
@@ -203,7 +216,7 @@ const SelectUnstyled = React.forwardRef(function SelectUnstyled<TValue>(
 
   return (
     <React.Fragment>
-      <Button {...buttonProps}>{renderValue(selectedOptions as any)}</Button>
+      <Button {...buttonProps}>{renderValue(selectedOption as any)}</Button>
       {buttonDefined && (
         <Popper {...popperProps}>
           <ListboxRoot {...listboxProps}>
@@ -213,6 +226,8 @@ const SelectUnstyled = React.forwardRef(function SelectUnstyled<TValue>(
           </ListboxRoot>
         </Popper>
       )}
+
+      {name && <input type="hidden" name={name} value={getSerializedValue(selectedOption)} />}
     </React.Fragment>
   );
 }) as SelectUnstyledType;
@@ -270,6 +285,12 @@ SelectUnstyled.propTypes /* remove-proptypes */ = {
    */
   disabled: PropTypes.bool,
   /**
+   * A function to convert the currently selected value to a string.
+   * Used to set a value of a hidden input associated with the select,
+   * so that the selected value can be posted with a form.
+   */
+  getSerializedValue: PropTypes.func,
+  /**
    * `id` attribute of the listbox element.
    * Also used to derive the `id` attributes of options.
    */
@@ -280,6 +301,11 @@ SelectUnstyled.propTypes /* remove-proptypes */ = {
    */
   listboxOpen: PropTypes.bool,
   /**
+   * Name of the element. For example used by the server to identify the fields in form submits.
+   * If the name is provided, the component will render a hidden input element that can be submitted to a server.
+   */
+  name: PropTypes.string,
+  /**
    * Callback fired when an option is selected.
    */
   onChange: PropTypes.func,
@@ -288,6 +314,14 @@ SelectUnstyled.propTypes /* remove-proptypes */ = {
    * Use in controlled mode (see listboxOpen).
    */
   onListboxOpenChange: PropTypes.func,
+  /**
+   * A function used to convert the option label to a string.
+   * It's useful when labels are elements and need to be converted to plain text
+   * to enable navigation using character keys on a keyboard.
+   *
+   * @default defaultOptionStringifier
+   */
+  optionStringifier: PropTypes.func,
   /**
    * Function that customizes the rendering of the selected value.
    */

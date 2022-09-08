@@ -8,6 +8,12 @@ export default function CircularProgressUsage() {
       componentName="CircularProgress"
       data={[
         {
+          propName: 'variant',
+          knob: 'select',
+          defaultValue: 'solid',
+          options: ['plain', 'outlined', 'soft', 'solid'],
+        },
+        {
           propName: 'color',
           knob: 'color',
           defaultValue: 'primary',
@@ -17,6 +23,16 @@ export default function CircularProgressUsage() {
           knob: 'radio',
           options: ['sm', 'md', 'lg'],
           defaultValue: 'md',
+        },
+        {
+          propName: 'determinate',
+          knob: 'switch',
+          defaultValue: false,
+        },
+        {
+          propName: 'value',
+          knob: 'input',
+          defaultValue: 0,
         },
       ]}
       renderDemo={(props) => <CircularProgress {...props} />}

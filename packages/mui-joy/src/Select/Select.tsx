@@ -344,30 +344,6 @@ const Select = React.forwardRef(function Select<TValue>(
     }
   };
 
-  // cache the modifiers to prevent Popper from being recreated when React rerenders menu.
-  const cachedModifiers = React.useMemo<PopperUnstyledProps['modifiers']>(
-    () => [
-      {
-        name: 'offset',
-        options: {
-          offset: [0, 4],
-        },
-      },
-      {
-        // popper will have the same width as root element when open
-        name: 'equalWidth',
-        enabled: true,
-        phase: 'beforeWrite',
-        requires: ['computeStyles'],
-        fn: ({ state }) => {
-          state.styles.popper.width = `${state.rects.reference.width}px`;
-        },
-      },
-      ...(componentsProps.listbox?.modifiers || []),
-    ],
-    [componentsProps.listbox?.modifiers],
-  );
-
   const {
     buttonActive,
     buttonFocusVisible,
@@ -446,11 +422,38 @@ const Select = React.forwardRef(function Select<TValue>(
     className: classes.button,
   });
 
-  const { component: listboxComponent, ...externalListboxProps } = componentsProps.listbox || {};
+  const resolveListboxProps =
+    typeof componentsProps.listbox === 'function'
+      ? componentsProps.listbox(ownerState)
+      : componentsProps.listbox;
+  // cache the modifiers to prevent Popper from being recreated when React rerenders menu.
+  const cachedModifiers = React.useMemo<PopperUnstyledProps['modifiers']>(
+    () => [
+      {
+        name: 'offset',
+        options: {
+          offset: [0, 4],
+        },
+      },
+      {
+        // popper will have the same width as root element when open
+        name: 'equalWidth',
+        enabled: true,
+        phase: 'beforeWrite',
+        requires: ['computeStyles'],
+        fn: ({ state }) => {
+          state.styles.popper.width = `${state.rects.reference.width}px`;
+        },
+      },
+      ...(resolveListboxProps?.modifiers || []),
+    ],
+    [resolveListboxProps?.modifiers],
+  );
+
   const listboxProps = useSlotProps({
     elementType: SelectListbox,
     getSlotProps: getListboxProps,
-    externalSlotProps: externalListboxProps,
+    externalSlotProps: componentsProps.listbox,
     additionalProps: {
       ref: listboxRef,
       anchorEl,
@@ -458,15 +461,36 @@ const Select = React.forwardRef(function Select<TValue>(
       open: listboxOpen,
       placement: 'bottom' as const,
       component: SelectListbox,
-      as: listboxComponent,
       modifiers: cachedModifiers,
     },
     ownerState: {
       ...ownerState,
+      // @ts-ignore internal logic
       nesting: false,
       row: false,
     },
     className: classes.listbox,
+  });
+
+  const startDecoratorProps = useSlotProps({
+    elementType: SelectStartDecorator,
+    externalSlotProps: componentsProps.startDecorator,
+    ownerState,
+    className: classes.startDecorator,
+  });
+
+  const endDecoratorProps = useSlotProps({
+    elementType: SelectEndDecorator,
+    externalSlotProps: componentsProps.endDecorator,
+    ownerState,
+    className: classes.endDecorator,
+  });
+
+  const indicatorProps = useSlotProps({
+    elementType: SelectIndicator,
+    externalSlotProps: componentsProps.indicator,
+    ownerState,
+    className: classes.indicator,
   });
 
   const context = {
@@ -480,25 +504,17 @@ const Select = React.forwardRef(function Select<TValue>(
     <React.Fragment>
       <SelectRoot {...rootProps}>
         {startDecorator && (
-          <SelectStartDecorator className={classes.startDecorator} ownerState={ownerState}>
-            {startDecorator}
-          </SelectStartDecorator>
+          <SelectStartDecorator {...startDecoratorProps}>{startDecorator}</SelectStartDecorator>
         )}
 
         <SelectButton {...buttonProps}>
           {selectedOptions ? renderValue(selectedOptions) : placeholder}
         </SelectButton>
         {endDecorator && (
-          <SelectEndDecorator className={classes.endDecorator} ownerState={ownerState}>
-            {endDecorator}
-          </SelectEndDecorator>
+          <SelectEndDecorator {...endDecoratorProps}>{endDecorator}</SelectEndDecorator>
         )}
 
-        {indicator && (
-          <SelectIndicator className={classes.indicator} ownerState={ownerState}>
-            {indicator}
-          </SelectIndicator>
-        )}
+        {indicator && <SelectIndicator {...indicatorProps}>{indicator}</SelectIndicator>}
       </SelectRoot>
       {anchorEl && (
         <PopperUnstyled {...listboxProps}>
@@ -563,9 +579,12 @@ Select.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   componentsProps: PropTypes.shape({
-    button: PropTypes.object,
-    listbox: PropTypes.object,
-    root: PropTypes.object,
+    button: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    endDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    indicator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    listbox: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    startDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
    * The default selected value. Use when the component is not controlled.

@@ -7,7 +7,7 @@ Thanks for writing tests! Here's a quick run-down on our current setup.
 1. Add a unit test to `packages/*/src/TheUnitInQuestion/TheUnitInQuestion.test.js` or an integration test `packages/*/test/`.
 2. Run `yarn t TheUnitInQuestion`.
 3. Implement the tested behavior
-4. Open a PR once the test passes or you want somebody to review your work
+4. Open a PR once the test passes or if you want somebody to review your work
 
 ## Tools we use
 
@@ -162,7 +162,7 @@ Our tests run on different browsers to increase the coverage:
 
 ##### BrowserStack
 
-We only use BrowserStack for non-PR commits to save ressources.
+We only use BrowserStack for non-PR commits to save resources.
 BrowserStack rarely reports actual issues so we only use it as a stop-gap for releases not merges.
 
 To force a run of BrowserStack on a PR you have to run the pipeline with `browserstack-force` set to `true`.

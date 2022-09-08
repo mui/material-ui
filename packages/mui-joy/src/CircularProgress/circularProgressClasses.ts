@@ -33,6 +33,14 @@ export interface CircularProgressClasses {
   sizeMd: string;
   /** Styles applied to the root element if `size="lg"`. */
   sizeLg: string;
+  /** Styles applied to the root element if `variant="plain"`. */
+  variantPlain: string;
+  /** Styles applied to the root element if `variant="outlined"`. */
+  variantOutlined: string;
+  /** Styles applied to the root element if `variant="soft"`. */
+  variantSoft: string;
+  /** Styles applied to the root element if `variant="solid"`. */
+  variantSolid: string;
 }
 
 export type CircularProgressClassKey = keyof CircularProgressClasses;
@@ -60,6 +68,10 @@ const circularProgressClasses: CircularProgressClasses = generateUtilityClasses(
     'sizeSm',
     'sizeMd',
     'sizeLg',
+    'variantPlain',
+    'variantOutlined',
+    'variantSoft',
+    'variantSolid',
   ],
 );
 

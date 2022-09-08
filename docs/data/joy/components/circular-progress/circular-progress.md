@@ -33,6 +33,12 @@ export default function MyApp() {
 }
 ```
 
+### Variants
+
+The circular progress component supports the four global variants: `solid` (default), `soft`, `outlined` and `plain`.
+
+{{"demo": "CircularProgressVariants.js"}}
+
 ### Colors
 
 Every palette included in the theme is available via the `color` prop.
@@ -45,3 +51,23 @@ Play around combining different colors.
 The circular progress component comes with three sizes out of the box: `sm`, `md` (the default), and `lg`.
 
 {{"demo": "CircularProgressSizes.js"}}
+
+### Determinate
+
+You can use the `determinate` prop if you want to indicate a specified wait time.
+
+{{"demo": "CircularProgressDeterminate.js"}}
+
+### Children
+
+The circular progress component places the provided children in the center by default.
+
+{{"demo": "CircularProgressChildren.js"}
+
+## CSS variables
+
+Play around with all the CSS variables available in the slider component to see how the design changes.
+
+You can use those to customize the component on both the `sx` prop and the theme.
+
+{{"demo": "CircularProgressVariables.js", "hideToolbar": true}}

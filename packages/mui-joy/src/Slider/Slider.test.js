@@ -13,14 +13,8 @@ describe('<Slider />', () => {
     ThemeProvider,
     muiName: 'JoySlider',
     refInstanceof: window.HTMLSpanElement,
-    skip: [
-      'componentProp',
-      'componentsProp',
-      'classesRoot',
-      'propsSpread',
-      'themeDefaultProps',
-      'themeVariants',
-    ],
+    testVariantProps: { color: 'success' },
+    skip: ['componentProp', 'componentsProp', 'classesRoot', 'propsSpread', 'themeDefaultProps'],
   }));
 
   it('should render the rail as the first child of the Slider', () => {
