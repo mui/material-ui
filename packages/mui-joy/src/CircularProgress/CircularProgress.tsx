@@ -225,7 +225,8 @@ const CircularProgress = React.forwardRef(function CircularProgress(inProps, ref
     className: clsx(classes.root, className),
     ...(value &&
       determinate && {
-        'aria-valuenow': typeof value === 'number' ? Math.round(value) : Math.round(Number(value)),
+        'aria-valuenow':
+          typeof value === 'number' ? Math.round(value) : Math.round(Number(value || 0)),
       }),
   });
 
