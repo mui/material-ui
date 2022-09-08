@@ -10,7 +10,7 @@ export default function CircularProgressUsage() {
         {
           propName: 'variant',
           knob: 'select',
-          defaultValue: 'solid',
+          defaultValue: 'soft',
           options: ['plain', 'outlined', 'soft', 'solid'],
         },
         {
@@ -31,8 +31,8 @@ export default function CircularProgressUsage() {
         },
         {
           propName: 'value',
-          knob: 'input',
-          defaultValue: 0,
+          knob: 'number',
+          defaultValue: 25,
         },
       ]}
       renderDemo={(props) => <CircularProgress {...props} />}
