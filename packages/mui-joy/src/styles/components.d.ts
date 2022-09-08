@@ -124,7 +124,6 @@ import {
   TypographySlot,
 } from '../Typography/TypographyProps';
 import { TextareaProps, TextareaOwnerState, TextareaSlot } from '../Textarea/TextareaProps';
-import { CircularProgressProps, CircularProgressSlot } from '../CircularProgress';
 
 export type OverridesStyleRules<
   ClassKey extends string = string,
