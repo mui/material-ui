@@ -28,6 +28,11 @@ export interface FormControlTypeMap<P = {}, D extends React.ElementType = 'div'>
      */
     error?: boolean;
     /**
+     * The content direction flow.
+     * @default 'vertical'
+     */
+    orientation?: 'vertical' | 'horizontal';
+    /**
      * If `true`, the user must specify a value for the input before the owning form can be submitted.
      * If `true`, the asterisk appears on the FormLabel.
      * @default false

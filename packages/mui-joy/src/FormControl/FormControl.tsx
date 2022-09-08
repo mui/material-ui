@@ -30,7 +30,8 @@ export const FormControlRoot = styled('div', {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: FormControlOwnerState }>(({ theme, ownerState }) => ({
-  '--FormLabel-margin': '0 0 0.25rem 0',
+  '--FormLabel-margin':
+    ownerState.orientation === 'horizontal' ? '0 0.375rem 0 0' : '0 0 0.375rem 0',
   '--FormHelperText-margin': '0.375rem 0 0 0',
   '--FormLabel-asterisk-color': theme.vars.palette.danger[500],
   '--FormHelperText-color': theme.vars.palette[ownerState.color!]?.[500],
@@ -54,7 +55,8 @@ export const FormControlRoot = styled('div', {
     '--FormHelperText-color': theme.vars.palette[ownerState.color || 'neutral']?.plainDisabledColor,
   },
   display: 'flex',
-  flexDirection: 'column',
+  position: 'relative', // for keeping the control action area, e.g. Switch
+  flexDirection: ownerState.orientation === 'horizontal' ? 'row' : 'column',
 }));
 
 const FormControl = React.forwardRef(function FormControl(inProps, ref) {

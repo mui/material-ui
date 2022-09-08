@@ -11,6 +11,7 @@ import Input, { inputClasses } from '@mui/joy/Input';
 import Select, { selectClasses } from '@mui/joy/Select';
 import Textarea, { textareaClasses } from '@mui/joy/Textarea';
 import RadioGroup from '@mui/joy/RadioGroup';
+import Switch, { switchClasses } from '@mui/joy/Switch';
 
 describe('<FormControl />', () => {
   const { render } = createRenderer();
@@ -244,6 +245,54 @@ describe('<FormControl />', () => {
       expect(getByLabelText('label')).to.have.attribute('role', 'radiogroup');
       expect(getByRole('radiogroup')).to.have.attribute('aria-labelledby', label.id);
       expect(getByRole('radiogroup')).to.have.attribute('aria-describedby', helperText.id);
+    });
+  });
+
+  describe('Switch', () => {
+    it('should linked the helper text', () => {
+      const { getByLabelText, getByText } = render(
+        <FormControl>
+          <FormLabel>label</FormLabel>
+          <Switch />
+          <FormHelperText>helper text</FormHelperText>
+        </FormControl>,
+      );
+
+      const helperText = getByText('helper text');
+
+      expect(getByLabelText('label')).to.have.attribute('aria-describedby', helperText.id);
+    });
+
+    it('should inherit color prop from FormControl', () => {
+      const { getByTestId } = render(
+        <FormControl color="success">
+          <Switch data-testid="switch" />
+        </FormControl>,
+      );
+
+      expect(getByTestId('switch')).to.have.class(switchClasses.colorSuccess);
+    });
+
+    it('should inherit error prop from FormControl', () => {
+      const { getByTestId } = render(
+        <FormControl error>
+          <Switch data-testid="switch" />
+        </FormControl>,
+      );
+
+      expect(getByTestId('switch')).to.have.class(switchClasses.colorDanger);
+    });
+
+    it('should inherit disabled from FormControl', () => {
+      const { getByLabelText, getByTestId } = render(
+        <FormControl disabled>
+          <FormLabel>label</FormLabel>
+          <Switch data-testid="switch" />
+        </FormControl>,
+      );
+
+      expect(getByTestId('switch')).to.have.class(switchClasses.disabled);
+      expect(getByLabelText('label')).to.have.attribute('disabled');
     });
   });
 });

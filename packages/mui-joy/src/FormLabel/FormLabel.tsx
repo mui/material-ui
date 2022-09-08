@@ -25,6 +25,7 @@ const FormLabelRoot = styled('label', {
   display: 'flex',
   alignItems: 'center',
   flexWrap: 'wrap',
+  userSelect: 'none',
   fontFamily: theme.vars.fontFamily.body,
   fontSize: `var(--FormLabel-fontSize, ${theme.vars.fontSize.sm})`,
   fontWeight: theme.vars.fontWeight.md,
