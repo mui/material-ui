@@ -30,6 +30,13 @@ export default function MyApp() {
 }
 ```
 
+### Composition
+
+`TextField` is composed of smallar components－`FormControl`, `FormLabel`, `FormerHelperText`, and `Input`.
+You can either use each one of them separately or plainly use the `TextField` itself.
+
+{{"demo": "TextFieldComposition.js"}}
+
 ### Variants
 
 The text field component supports the four global variants: `solid` (default), `soft`, `outlined`, and `plain`.
@@ -72,9 +79,3 @@ Use the `startDecorator` and/or `endDecorator` props to add supporting icons or 
 To make the text field take up the full width of its container, use the `fullWidth` prop.
 
 {{"demo": "TextFieldFullwidth.js"}}
-
-### Composition
-
-`TextField` is composed of smaller components (`FormControl`, `FormLabel`, `Input`, and `FormHelperText`) that you can leverage directly to customize your form inputs.
-
-{{"demo": "TextFieldComposition.js"}}
