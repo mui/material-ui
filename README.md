@@ -208,7 +208,7 @@ This project is licensed under the terms of the
 
 ## Security
 
-For details of supported versions and contact details for reporting security issues, please refer to the [security policy](https://github.com/mui/material-ui/blob/master/SECURITY.md).
+For details of supported versions and contact details for reporting security issues, please refer to the [security policy](https://github.com/mui/material-ui/security/policy).
 
 ## Sponsoring services
 
