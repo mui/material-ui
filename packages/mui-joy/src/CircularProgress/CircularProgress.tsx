@@ -70,6 +70,7 @@ const CircularProgressRoot = styled('span', {
       width: 'var(--CircularProgress-size)',
       height: 'var(--CircularProgress-size)',
       display: 'flex',
+      flexDirection: 'column',
       alignItems: 'center',
       boxSizing: 'border-box',
     },
@@ -220,13 +221,13 @@ const CircularProgress = React.forwardRef(function CircularProgress(inProps, ref
     className: classes.circle2,
   });
 
-  let leftMarginOfChildren: number = 0;
+  let topMarginOfChildren: string = '0%';
   if (size === 'sm') {
-    leftMarginOfChildren = -42;
+    topMarginOfChildren = '-65%';
   } else if (size === 'md') {
-    leftMarginOfChildren = -58;
+    topMarginOfChildren = '-62%';
   } else if (size === 'lg') {
-    leftMarginOfChildren = -71;
+    topMarginOfChildren = '-59%';
   }
 
   return (
@@ -237,7 +238,7 @@ const CircularProgress = React.forwardRef(function CircularProgress(inProps, ref
       </CircularProgressSvg>
       {children &&
         React.cloneElement(children as React.ReactElement, {
-          sx: { ml: `${leftMarginOfChildren}px` },
+          sx: { mt: topMarginOfChildren },
         })}
     </CircularProgressRoot>
   );
@@ -260,7 +261,10 @@ CircularProgress.propTypes /* remove-proptypes */ = {
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'primary'
    */
-  color: PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.string,
+  ]),
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
@@ -287,7 +291,10 @@ CircularProgress.propTypes /* remove-proptypes */ = {
    * It accepts theme values between 'sm' and 'lg'.
    * @default 'md'
    */
-  size: PropTypes.oneOf(['sm', 'md', 'lg']),
+  size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['sm', 'md', 'lg']),
+    PropTypes.string,
+  ]),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
@@ -310,7 +317,10 @@ CircularProgress.propTypes /* remove-proptypes */ = {
    * The variant to use.
    * @default 'solid'
    */
-  variant: PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
+  variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
+    PropTypes.string,
+  ]),
 } as any;
 
 export default CircularProgress;
