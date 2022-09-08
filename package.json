@@ -1,6 +1,6 @@
 {
   "name": "@mui/monorepo",
-  "version": "5.10.3",
+  "version": "5.10.4",
   "private": true,
   "scripts": {
     "proptypes": "cross-env BABEL_ENV=development babel-node --extensions \".tsx,.ts,.js\" ./scripts/generateProptypes.ts",
@@ -28,7 +28,7 @@
     "docs:typescript": "yarn docs:typescript:formatted --watch",
     "docs:typescript:check": "yarn workspace docs typescript",
     "docs:typescript:formatted": "cross-env BABEL_ENV=development babel-node --extensions \".tsx,.ts,.js\" ./docs/scripts/formattedTSDemos",
-    "docs:mdicons:synonyms": "cross-env BABEL_ENV=development babel-node --extensions \".tsx,.ts,.js\" ./docs/scripts/updateIconSynonyms",
+    "docs:mdicons:synonyms": "cross-env BABEL_ENV=development babel-node --extensions \".tsx,.ts,.js\" ./docs/scripts/updateIconSynonyms && yarn prettier",
     "extract-error-codes": "cross-env MUI_EXTRACT_ERROR_CODES=true lerna run --parallel build:modern",
     "template:screenshot": "cross-env BABEL_ENV=development babel-node --extensions \".tsx,.ts,.js\" ./docs/scripts/generateTemplateScreenshots",
     "install:codesandbox": "PLAYWRIGHT_SKIP_BROWSER_DOWNLOAD=1 yarn install --ignore-engines",
@@ -69,6 +69,7 @@
     "validate-declarations": "babel-node --extensions \".ts\" scripts/validateTypescriptDeclarations.ts"
   },
   "devDependencies": {
+    "@argos-ci/core": "^0.4.0",
     "@babel/cli": "^7.18.10",
     "@babel/core": "^7.18.13",
     "@babel/node": "^7.18.10",
@@ -105,7 +106,6 @@
     "@types/yargs": "^17.0.11",
     "@typescript-eslint/eslint-plugin": "^5.32.0",
     "@typescript-eslint/parser": "^5.32.0",
-    "argos-cli": "^0.4.0",
     "babel-loader": "^8.2.5",
     "babel-plugin-istanbul": "^6.1.1",
     "babel-plugin-macros": "^3.1.0",
@@ -186,7 +186,7 @@
     "terser-webpack-plugin": "^5.3.5",
     "thenify": "3.3.1",
     "tslint": "5.14.0",
-    "typescript": "^4.6.4",
+    "typescript": "^4.8.2",
     "unist-util-visit": "^2.0.3",
     "util": "^0.12.4",
     "webpack": "^5.74.0",

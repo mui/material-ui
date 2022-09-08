@@ -7,18 +7,21 @@ export default function CircularProgressVariables() {
   return (
     <JoyVariablesDemo
       componentName="CircularProgress"
+      renderCode={(formattedSx) =>
+        `<CircularProgress ${formattedSx ? `${formattedSx}` : '\n>'}`
+      }
       data={[
         {
           var: '--CircularProgress-size',
-          defaultValue: '40px',
+          defaultValue: '85px',
         },
         {
           var: '--CircularProgress-track-thickness',
-          defaultValue: '6px',
+          defaultValue: '10px',
         },
         {
           var: '--CircularProgress-progress-thickness',
-          defaultValue: '6px',
+          defaultValue: '10px',
         },
       ]}
       renderDemo={(sx) => (

@@ -61,13 +61,13 @@ function useUtilityClasses(ownerState: SelectUnstyledOwnerState<any>) {
  *
  * Demos:
  *
- * - [Select](https://mui.com/base/react-select/)
+ * - [Unstyled select](https://mui.com/base/react-select/)
  *
  * API:
  *
  * - [SelectUnstyled API](https://mui.com/base/api/select-unstyled/)
  */
-const SelectUnstyled = React.forwardRef(function SelectUnstyled<TValue>(
+const SelectUnstyled = React.forwardRef(function SelectUnstyled<TValue extends {}>(
   props: SelectUnstyledProps<TValue>,
   forwardedRef: React.ForwardedRef<any>,
 ) {

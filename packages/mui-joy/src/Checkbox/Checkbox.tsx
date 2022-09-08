@@ -25,7 +25,7 @@ const useUtilityClasses = (ownerState: CheckboxOwnerState) => {
       color && `color${capitalize(color)}`,
       size && `size${capitalize(size)}`,
     ],
-    checkbox: ['checkbox', disabled && 'disabled'], // disabled class is necessary for displaying global variant
+    checkbox: ['checkbox', checked && 'checked', disabled && 'disabled'], // disabled class is necessary for displaying global variant
     action: [
       'action',
       checked && 'checked',
@@ -344,7 +344,7 @@ Checkbox.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
-   * The props used for each slot inside the Input.
+   * The props used for each slot inside the component.
    * @default {}
    */
   componentsProps: PropTypes.shape({

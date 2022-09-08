@@ -24,7 +24,7 @@ const useUtilityClasses = (ownerState: RadioOwnerState) => {
       color && `color${capitalize(color)}`,
       size && `size${capitalize(size)}`,
     ],
-    radio: ['radio', disabled && 'disabled'], // disabled class is necessary for displaying global variant
+    radio: ['radio', checked && 'checked', disabled && 'disabled'], // disabled class is necessary for displaying global variant
     icon: ['icon'],
     action: [
       'action',
@@ -395,7 +395,7 @@ Radio.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
-   * The props used for each slot inside the Input.
+   * The props used for each slot inside the component.
    * @default {}
    */
   componentsProps: PropTypes.shape({

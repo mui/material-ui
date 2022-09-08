@@ -21,8 +21,23 @@ async function run() {
     const data = JSON.parse(text.replace(")]}'", ''));
 
     const materialIcons = data.icons.reduce((acc, icon) => {
-      // remove the icon name strings from the tags
-      icon.tags = not(icon.tags, icon.name.replace('_'));
+      icon.tags = not(icon.tags, icon.name.replace('_')) // remove the icon name strings from the tags
+        .filter((t) => {
+          // remove invalid tags
+          if (
+            t.includes('Remove') ||
+            t.includes('Duplicate') ||
+            t.includes('Same as') ||
+            t.includes('remove others')
+          ) {
+            console.log(`Skipping invalid tag (${t}) in ${icon.name}`);
+            return false;
+          }
+
+          return true;
+        })
+        .map((t) => t.replace(/'/g, ''));
+
       // Fix names that can't be exported as ES modules.
       icon.name = myDestRewriter({ base: icon.name });
 

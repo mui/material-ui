@@ -151,6 +151,7 @@ const InputInput = styled('input', {
   fontStyle: 'inherit',
   fontWeight: 'inherit',
   lineHeight: 'inherit',
+  textOverflow: 'ellipsis',
   '&:-webkit-autofill': {
     WebkitBackgroundClip: 'text', // remove autofill background
     WebkitTextFillColor: theme.vars.palette[ownerState.color!]?.overrideTextPrimary,
@@ -169,7 +170,6 @@ const InputStartDecorator = styled('span', {
   '--Button-margin': '0 0 0 calc(var(--Input-decorator-childOffset) * -1)',
   '--IconButton-margin': '0 0 0 calc(var(--Input-decorator-childOffset) * -1)',
   '--Icon-margin': '0 0 0 calc(var(--Input-paddingInline) / -4)',
-  pointerEvents: 'none', // to make the input focused when click on the element because start element usually is an icon
   display: 'inherit',
   alignItems: 'center',
   marginInlineEnd: 'var(--Input-gap)',
@@ -312,7 +312,7 @@ Input.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
-   * The props used for each slot inside the Input.
+   * The props used for each slot inside the component.
    * @default {}
    */
   componentsProps: PropTypes.shape({
