@@ -34,8 +34,8 @@ export default function ModalUsage() {
         {
           propName: 'layout',
           knob: 'radio',
-          options: ['top', 'center', 'fullscreen'],
-          defaultValue: 'top',
+          options: ['center', 'fullscreen'],
+          defaultValue: 'center',
         },
         {
           propName: 'children',
