@@ -851,27 +851,29 @@ describe('<Select />', () => {
   });
 
   describe('prop: autoWidth', () => {
-    it('should take the trigger width into account by default', () => {
-      const { getByRole, getByTestId } = render(
+    it('should take the trigger parent element width into account by default', () => {
+      const { container, getByRole, getByTestId } = render(
         <Select MenuProps={{ PaperProps: { 'data-testid': 'paper' } }} value="">
           <MenuItem>Only</MenuItem>
         </Select>,
       );
+      const parentEl = container.querySelector('.MuiInputBase-root');
       const button = getByRole('button');
-      stub(button, 'clientWidth').get(() => 14);
+      stub(parentEl, 'clientWidth').get(() => 14);
 
       fireEvent.mouseDown(button);
       expect(getByTestId('paper').style).to.have.property('minWidth', '14px');
     });
 
-    it('should not take the triger width into account when autoWidth is true', () => {
-      const { getByRole, getByTestId } = render(
+    it('should not take the trigger parent element width into account when autoWidth is true', () => {
+      const { container, getByRole, getByTestId } = render(
         <Select autoWidth MenuProps={{ PaperProps: { 'data-testid': 'paper' } }} value="">
           <MenuItem>Only</MenuItem>
         </Select>,
       );
+      const parentEl = container.querySelector('.MuiInputBase-root');
       const button = getByRole('button');
-      stub(button, 'clientWidth').get(() => 14);
+      stub(parentEl, 'clientWidth').get(() => 14);
 
       fireEvent.mouseDown(button);
       expect(getByTestId('paper').style).to.have.property('minWidth', '');
