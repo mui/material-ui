@@ -46,7 +46,7 @@ const CircularProgressRoot = styled('span', {
 })<{ ownerState: CircularProgressProps }>(({ ownerState }) => {
   return [
     {
-      '--CircularProgress-percent': '0.1', // 0 - 100
+      '--CircularProgress-percent': '14', // 0 - 100
       '--CircularProgress-indeterminateDuration': '1.4s',
       ...(ownerState.size === 'sm' && {
         '--CircularProgress-size': '60px',
