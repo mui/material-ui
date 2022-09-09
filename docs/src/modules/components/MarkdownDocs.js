@@ -5,16 +5,10 @@ import { useTheme } from '@mui/system';
 import Demo from 'docs/src/modules/components/Demo';
 import MarkdownElement from 'docs/src/modules/components/MarkdownElement';
 import { exactProp } from '@mui/utils';
-import ComponentLinkHeader from 'docs/src/modules/components/ComponentLinkHeader';
 import AppLayoutDocs from 'docs/src/modules/components/AppLayoutDocs';
 import { useTranslate, useUserLanguage } from 'docs/src/modules/utils/i18n';
 import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
 import BrandingProvider from 'docs/src/BrandingProvider';
-
-// TODO: Only import on demand via @mui/markdown/loader
-const markdownComponents = {
-  'modules/components/ComponentLinkHeader.js': ComponentLinkHeader,
-};
 
 function noComponent(moduleID) {
   return function NoComponent() {
@@ -38,7 +32,14 @@ function MarkdownDocs(props) {
   const theme = useTheme();
   const router = useRouter();
   const asPathWithoutLang = router.asPath.replace(/^\/[a-zA-Z]{2}\//, '/');
-  const { disableAd = false, disableToc = false, demos = {}, docs, demoComponents } = props;
+  const {
+    disableAd = false,
+    disableToc = false,
+    demos = {},
+    docs,
+    demoComponents,
+    componentComponents,
+  } = props;
 
   const userLanguage = useUserLanguage();
   const t = useTranslate();
@@ -70,7 +71,13 @@ function MarkdownDocs(props) {
           }
 
           if (renderedMarkdownOrDemo.component) {
-            const Component = markdownComponents[renderedMarkdownOrDemo.component];
+            const name = renderedMarkdownOrDemo.component;
+            const Component = componentComponents?.[name];
+
+            if (Component === undefined) {
+              throw new Error('Missing component');
+            }
+
             return (
               <Wrapper key={index} {...(isJoy && { mode: theme.palette.mode })}>
                 <Component headers={headers} options={renderedMarkdownOrDemo} />
