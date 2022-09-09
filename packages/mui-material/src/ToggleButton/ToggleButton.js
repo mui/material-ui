@@ -258,7 +258,7 @@ ToggleButton.propTypes /* remove-proptypes */ = {
   /**
    * The variant to use.
    */
-   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+  variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['standard']),
     PropTypes.string,
   ]),
