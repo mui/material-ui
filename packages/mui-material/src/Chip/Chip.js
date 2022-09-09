@@ -140,9 +140,10 @@ const ChipRoot = styled('div', {
         ...(ownerState.color !== 'default' && {
           color: 'inherit',
         }),
-        ...(ownerState.iconColor && ownerState.iconColor !== ownerState.color && {
-          color: undefined, // Don't override color defined by icon
-        }),
+        ...(ownerState.iconColor &&
+          ownerState.iconColor !== ownerState.color && {
+            color: undefined, // Don't override color defined by icon
+          }),
       },
       [`& .${chipClasses.deleteIcon}`]: {
         WebkitTapHighlightColor: 'transparent',

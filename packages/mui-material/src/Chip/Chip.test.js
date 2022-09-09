@@ -12,8 +12,9 @@ import {
 } from 'test/utils';
 import Avatar from '@mui/material/Avatar';
 import Chip, { chipClasses as classes } from '@mui/material/Chip';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { ThemeProvider, createTheme, hexToRgb } from '@mui/material/styles';
 import CheckBox from '../internal/svg-icons/CheckBox';
+import defaultTheme from '../styles/defaultTheme';
 
 describe('<Chip />', () => {
   const { render } = createRenderer();
@@ -597,6 +598,24 @@ describe('<Chip />', () => {
       const { getByTestId } = render(<Chip icon={<span data-testid="test-icon" />} />);
 
       expect(getByTestId('test-icon')).to.have.class(classes.icon);
+    });
+
+    it("should not override the icon's custom color", () => {
+      const { getByTestId } = render(
+        <React.Fragment>
+          <Chip icon={<CheckBox data-testid="test-icon" color="success" />} />,
+          <Chip icon={<CheckBox data-testid="test-icon2" color="success" />} color="error" />,
+        </React.Fragment>,
+      );
+
+      expect(getByTestId('test-icon')).to.have.class('MuiChip-iconColorSuccess');
+      expect(getByTestId('test-icon2')).to.have.class('MuiChip-iconColorSuccess');
+      expect(getByTestId('test-icon')).toHaveComputedStyle({
+        color: hexToRgb(defaultTheme.palette.success.main),
+      });
+      expect(getByTestId('test-icon2')).toHaveComputedStyle({
+        color: hexToRgb(defaultTheme.palette.success.main),
+      });
     });
   });
 
