@@ -207,27 +207,42 @@ const Input = React.forwardRef(function Input(inProps, ref) {
     getInputProps,
     component,
     componentsProps = {},
+    formControl,
     focused,
-    formControlContext,
-    error: errorState,
-    disabled: disabledState,
+    error: errorProp = false,
+    disabled,
     fullWidth = false,
-    size = 'md',
-    color = 'neutral',
+    size: sizeProp = 'md',
+    color: colorProp = 'neutral',
     variant = 'outlined',
     startDecorator,
     endDecorator,
     ...other
   } = useForwardedInput<InputProps>(props, inputClasses);
 
+  if (process.env.NODE_ENV !== 'production') {
+    const registerEffect = formControl?.registerEffect;
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    React.useEffect(() => {
+      if (registerEffect) {
+        return registerEffect();
+      }
+
+      return undefined;
+    }, [registerEffect]);
+  }
+
+  const error = inProps.error ?? formControl?.error ?? errorProp;
+  const size = inProps.size ?? formControl?.size ?? sizeProp;
+  const color = error ? 'danger' : inProps.color ?? formControl?.color ?? colorProp;
+
   const ownerState = {
     ...props,
     fullWidth,
-    color: errorState ? 'danger' : color,
-    disabled: disabledState,
-    error: errorState,
+    color,
+    disabled,
+    error,
     focused,
-    formControlContext: formControlContext!,
     size,
     variant,
   };
@@ -253,6 +268,12 @@ const Input = React.forwardRef(function Input(inProps, ref) {
       getInputProps({ ...otherHandlers, ...propsToForward }),
     externalSlotProps: componentsProps.input,
     ownerState,
+    additionalProps: formControl
+      ? {
+          id: formControl.htmlFor,
+          'aria-describedby': formControl['aria-describedby'],
+        }
+      : {},
     className: [classes.input, inputStateClasses],
   });
 
