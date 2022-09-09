@@ -252,6 +252,7 @@ const Textarea = React.forwardRef(function Textarea(inProps, ref) {
     externalSlotProps: {
       minRows,
       maxRows,
+      ...componentsProps.textarea,
     },
     ownerState,
     className: [classes.textarea, inputStateClasses],
