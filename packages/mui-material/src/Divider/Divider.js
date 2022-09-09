@@ -199,6 +199,7 @@ const Divider = React.forwardRef(function Divider(inProps, ref) {
     <DividerRoot
       as={component}
       className={clsx(classes.root, className)}
+      aria-hidden
       role={role}
       ref={ref}
       ownerState={ownerState}
