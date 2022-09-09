@@ -10,6 +10,8 @@ export interface ToggleButtonPropsSizeOverrides {}
 
 export interface ToggleButtonPropsColorOverrides {}
 
+export interface ToggleButtonPropsVariantOverrides {}
+
 export type ToggleButtonTypeMap<
   P = {},
   D extends React.ElementType = 'button',
@@ -76,6 +78,10 @@ export type ToggleButtonTypeMap<
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */
     sx?: SxProps<Theme>;
+    /**
+     * The variant to use.
+     */
+    variant?: OverridableStringUnion<'standard', ToggleButtonPropsVariantOverrides>;
     /**
      * The value to associate with the button when selected in a
      * ToggleButtonGroup.

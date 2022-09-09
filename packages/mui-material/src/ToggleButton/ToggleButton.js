@@ -255,6 +255,13 @@ ToggleButton.propTypes /* remove-proptypes */ = {
    * ToggleButtonGroup.
    */
   value: PropTypes /* @typescript-to-proptypes-ignore */.any.isRequired,
+  /**
+   * The variant to use.
+   */
+   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['standard']),
+    PropTypes.string,
+  ]),
 };
 
 export default ToggleButton;
