@@ -182,6 +182,11 @@ FormControl.propTypes /* remove-proptypes */ = {
    */
   id: PropTypes.string,
   /**
+   * The content direction flow.
+   * @default 'vertical'
+   */
+  orientation: PropTypes.oneOf(['horizontal', 'vertical']),
+  /**
    * If `true`, the user must specify a value for the input before the owning form can be submitted.
    * If `true`, the asterisk appears on the FormLabel.
    * @default false
