@@ -281,8 +281,14 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                         [propName]: event.target.checked,
                       }))
                     }
-                    startDecorator="false"
-                    endDecorator="true"
+                    endDecorator={resolvedValue ? 'True' : 'False'}
+                    componentsProps={{
+                      endDecorator: {
+                        sx: {
+                          minWidth: 30,
+                        },
+                      },
+                    }}
                     sx={{
                       fontSize: 'xs',
                       color: 'text.secondary',
