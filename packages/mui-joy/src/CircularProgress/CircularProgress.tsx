@@ -148,7 +148,7 @@ const CircularProgressProgress = styled('circle', {
   {
     '--_progress-radius':
       'calc(var(--_inner-size) / 2 - var(--CircularProgress-progress-thickness) / 2 - max(0px, var(--_thickness-diff) / 2))',
-    '--_progress-length': 'calc(2 * 3.1415926535 * var(--_progress-radius))',
+    '--_progress-length': 'calc(2 * 3.1415926535 * var(--_progress-radius))', // the circumference around the progress
     cx: '50%',
     cy: '50%',
     r: 'var(--_progress-radius)',

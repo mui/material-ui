@@ -318,13 +318,13 @@ extendTheme({
           );
           return {};
         },
-        circle1: ({ ownerState }) => {
+        track: ({ ownerState }) => {
           expectType<CircularProgressOwnerState & Record<string, unknown>, typeof ownerState>(
             ownerState,
           );
           return {};
         },
-        circle2: ({ ownerState }) => {
+        progress: ({ ownerState }) => {
           expectType<CircularProgressOwnerState & Record<string, unknown>, typeof ownerState>(
             ownerState,
           );
