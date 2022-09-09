@@ -30,7 +30,7 @@ const useUtilityClasses = (ownerState) => {
     ],
     label: ['label', `label${capitalize(size)}`],
     avatar: ['avatar', `avatar${capitalize(size)}`, `avatarColor${capitalize(color)}`],
-    icon: ['icon', `icon${capitalize(size)}`, `iconColor${capitalize(iconColor || color)}`],
+    icon: ['icon', `icon${capitalize(size)}`, `iconColor${capitalize(iconColor)}`],
     deleteIcon: [
       'deleteIcon',
       `deleteIcon${capitalize(size)}`,
@@ -47,7 +47,7 @@ const ChipRoot = styled('div', {
   slot: 'Root',
   overridesResolver: (props, styles) => {
     const { ownerState } = props;
-    const { color, clickable, onDelete, size, variant } = ownerState;
+    const { color, iconColor, clickable, onDelete, size, variant } = ownerState;
 
     return [
       { [`& .${chipClasses.avatar}`]: styles.avatar },
@@ -55,7 +55,7 @@ const ChipRoot = styled('div', {
       { [`& .${chipClasses.avatar}`]: styles[`avatarColor${capitalize(color)}`] },
       { [`& .${chipClasses.icon}`]: styles.icon },
       { [`& .${chipClasses.icon}`]: styles[`icon${capitalize(size)}`] },
-      { [`& .${chipClasses.icon}`]: styles[`iconColor${capitalize(color)}`] },
+      { [`& .${chipClasses.icon}`]: styles[`iconColor${capitalize(iconColor)}`] },
       { [`& .${chipClasses.deleteIcon}`]: styles.deleteIcon },
       { [`& .${chipClasses.deleteIcon}`]: styles[`deleteIcon${capitalize(size)}`] },
       { [`& .${chipClasses.deleteIcon}`]: styles[`deleteIconColor${capitalize(color)}`] },
@@ -140,7 +140,7 @@ const ChipRoot = styled('div', {
         ...(ownerState.color !== 'default' && {
           color: 'inherit',
         }),
-        ...(ownerState.iconColor && {
+        ...(ownerState.iconColor && ownerState.iconColor !== ownerState.color && {
           color: undefined, // Don't override color defined by icon
         }),
       },
@@ -399,7 +399,7 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
     disabled,
     size,
     color,
-    iconColor: iconProp?.props?.color,
+    iconColor: iconProp?.props?.color || color,
     onDelete: !!onDelete,
     clickable,
     variant,
