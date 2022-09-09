@@ -141,6 +141,7 @@ function MarkdownDocs(props) {
 }
 
 MarkdownDocs.propTypes = {
+  componentComponents: PropTypes.object,
   demoComponents: PropTypes.object,
   demos: PropTypes.object,
   disableAd: PropTypes.bool,
