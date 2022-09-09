@@ -3,7 +3,7 @@
 <p class="description">We have learned a great deal regarding how MUI is used, and the v1 rewrite allowed us to completely rethink the component API.</p>
 
 :::info
-API design is hard because you can make it seem simple but it's actually deceptively complex, or make it actually simple but seem complex.
+API design is hard because you can make it seem simple but it's deceptively complex, or make it simple but seem complex.
 :::
 
 [@sebmarkbage](https://twitter.com/sebmarkbage/status/728433349337841665)
@@ -13,7 +13,7 @@ We are providing low-level components to maximize composition capabilities.
 
 ## Composition
 
-You may have noticed some inconsistency in the API regarding composing components.
+You may have noticed some inconsistencies in the API regarding composing components.
 To provide some transparency, we have been using the following rules when designing the API:
 
 1. Using the `children` prop is the idiomatic way to do composition with React.
@@ -57,7 +57,7 @@ to make the classes structure as simple as possible, while sufficient to impleme
 - The variants applied by an enum prop **are** prefixed, e.g. the `colorPrimary` class
   applied by the `color="primary"` prop.
 - A variant has **one level of specificity**.
-  The `color` and `variant` props are considered a variant.
+  The `color` and `variant` props are considered variants.
   The lower the style specificity is, the simpler it is to override.
 - We increase the specificity for a variant modifier.
   We already **have to do it** for the pseudo-classes (`:hover`, `:focus`, etc.).
@@ -80,11 +80,11 @@ const styles = {
 
 Nested components inside a component have:
 
-- their own flattened props when these are key to the top level component abstraction,
+- their own flattened props when these are key to the top-level component abstraction,
   for instance an `id` prop for the `Input` component.
 - their own `xxxProps` prop when users might need to tweak the internal render method's sub-components,
   for instance, exposing the `inputProps` and `InputProps` props on components that use `Input` internally.
-- their own `xxxComponent` prop for performing component injection.
+- their own `xxxComponent` prop for performing the component injection.
 - their own `xxxRef` prop when you might need to perform imperative actions,
   for instance, exposing an `inputRef` prop to access the native `input` on the `Input` component.
   This helps answer the question ["How can I access the DOM element?"](/material-ui/getting-started/faq/#how-can-i-access-the-dom-element)
@@ -104,9 +104,9 @@ The name of a boolean prop should be chosen based on the **default value**. This
 
 ### Controlled components
 
-Most of the controlled component are controlled via the `value` and the `onChange` props,
-however, the `open` / `onClose` / `onOpen` combination is used for display related state.
-In the cases where there are more events, we put the noun first, and then the verb, for example: `onPageChange`, `onRowsChange`.
+Most of the controlled components are controlled via the `value` and the `onChange` props,
+however, the `open` / `onClose` / `onOpen` combination is used for display related states.
+In the cases where there are more events, we put the noun first, and then the verb, for example `onPageChange`, `onRowsChange`.
 
 ### boolean vs. enum
 
@@ -150,7 +150,7 @@ Going back to the previous button example; since it requires 3 possible values, 
 ### Ref
 
 The `ref` is forwarded to the root element. This means that, without changing the rendered root element
-via the `component` prop, it is forwarded to the outermost DOM element which the component
+via the `component` prop, it is forwarded to the outermost DOM element that the component
 renders. If you pass a different component via the `component` prop, the ref will be attached
 to that component instead.
 
