@@ -13,7 +13,7 @@ import styled from '../styles/styled';
 import chipClasses, { getChipUtilityClass } from './chipClasses';
 
 const useUtilityClasses = (ownerState) => {
-  const { classes, disabled, size, color, onDelete, clickable, variant } = ownerState;
+  const { classes, disabled, size, color, iconColor, onDelete, clickable, variant } = ownerState;
 
   const slots = {
     root: [
@@ -30,7 +30,7 @@ const useUtilityClasses = (ownerState) => {
     ],
     label: ['label', `label${capitalize(size)}`],
     avatar: ['avatar', `avatar${capitalize(size)}`, `avatarColor${capitalize(color)}`],
-    icon: ['icon', `icon${capitalize(size)}`, `iconColor${capitalize(color)}`],
+    icon: ['icon', `icon${capitalize(size)}`, `iconColor${capitalize(iconColor || color)}`],
     deleteIcon: [
       'deleteIcon',
       `deleteIcon${capitalize(size)}`,
@@ -139,6 +139,9 @@ const ChipRoot = styled('div', {
         }),
         ...(ownerState.color !== 'default' && {
           color: 'inherit',
+        }),
+        ...(ownerState.iconColor && {
+          color: undefined, // Don't override color defined by icon
         }),
       },
       [`& .${chipClasses.deleteIcon}`]: {
@@ -396,6 +399,7 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
     disabled,
     size,
     color,
+    iconColor: iconProp?.props?.color,
     onDelete: !!onDelete,
     clickable,
     variant,
