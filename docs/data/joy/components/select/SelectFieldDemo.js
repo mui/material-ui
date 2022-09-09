@@ -15,7 +15,7 @@ export default function SelectFieldDemo() {
       >
         Favorite pet
       </FormLabel>
-      <Select defaultValue="dog" value={value} onChange={setValue} sx={{ mt: 0.25 }}>
+      <Select defaultValue="dog" value={value} onChange={setValue}>
         <Option value="dog">Dog</Option>
         <Option value="cat">Cat</Option>
         <Option value="fish">Fish</Option>
