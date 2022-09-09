@@ -110,7 +110,7 @@ const FormControlLabel = React.forwardRef(function FormControlLabel(inProps, ref
   const muiFormControl = useFormControl();
 
   const disabled = disabledProp ?? control.props.disabled ?? muiFormControl?.disabled;
-  const required = requiredProp ?? control.props.required ?? muiFormControl?.required;
+  const required = requiredProp ?? control.props.required;
 
   const controlProps = {
     disabled,

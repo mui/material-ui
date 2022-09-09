@@ -274,14 +274,14 @@ describe('<FormControlLabel />', () => {
     });
 
     describe('required', () => {
-      it('should have the required class', () => {
+      it('should not have the required class', () => {
         const { getByTestId } = render(
           <FormControl required>
             <FormControlLabel data-testid="FormControlLabel" control={<div />} label="Pizza" />
           </FormControl>,
         );
 
-        expect(getByTestId('FormControlLabel')).to.have.class(classes.required);
+        expect(getByTestId('FormControlLabel')).not.to.have.class(classes.required);
       });
 
       it('should be overridden by props', () => {
@@ -290,23 +290,23 @@ describe('<FormControlLabel />', () => {
             <FormControlLabel
               data-testid="FormControlLabel"
               control={<div />}
-              required={false}
+              required
               label="Pizza"
             />
           </FormControl>,
         );
 
-        expect(getByTestId('FormControlLabel')).not.to.have.class(classes.required);
+        expect(getByTestId('FormControlLabel')).to.have.class(classes.required);
       });
 
-      it('should have the aria-required prop with value true', () => {
+      it('should not have the required attribute', () => {
         const { container } = render(
           <FormControl required>
             <FormControlLabel data-testid="FormControlLabel" control={<input />} label="Pizza" />
           </FormControl>,
         );
         const input = container.querySelector('input');
-        expect(input).to.have.property('required', true);
+        expect(input).to.have.property('required', false);
       });
     });
   });
