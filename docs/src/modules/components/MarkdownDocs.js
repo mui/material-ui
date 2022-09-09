@@ -41,6 +41,8 @@ function MarkdownDocs(props) {
     componentComponents,
   } = props;
 
+  console.log(componentComponents)
+
   const userLanguage = useUserLanguage();
   const t = useTranslate();
 

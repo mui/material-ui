@@ -138,8 +138,6 @@ module.exports = async function demoLoader() {
     ),
   );
 
-  console.log('CONTEXT', this.context, this.rootContext);
-
   await Promise.all(
     demoNames.map(async (demoName) => {
       // TODO: const moduleID = demoName;
