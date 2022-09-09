@@ -58,7 +58,6 @@ const CircularProgressRoot = styled('span', {
     '--CircularProgress-track-color': backgroundColor,
     '--CircularProgress-progress-color': color,
     '--CircularProgress-percent': ownerState.value, // 0 - 100
-    '--CircularProgress-animation': '0.5s linear 0s infinite normal none running',
     '--CircularProgress-linecap': 'round',
     ...(ownerState.size === 'sm' && {
       '--CircularProgress-track-thickness': '3px',
@@ -168,7 +167,11 @@ const CircularProgressProgress = styled('circle', {
           transition: 'stroke-dashoffset 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms', // copy from Material UI CircularProgress
         }
       : css`
-          animation: var(--CircularProgress-animation) ${circulate};
+          animation: var(
+              --CircularProgress-circulation,
+              0.5s linear 0s infinite normal none running
+            )
+            ${circulate};
         `,
 );
 
