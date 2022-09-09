@@ -9,11 +9,12 @@ import fabClasses, { getFabUtilityClass } from './fabClasses';
 import styled from '../styles/styled';
 
 const useUtilityClasses = (ownerState) => {
-  const { color, variant, classes, size } = ownerState;
+  const { color, variant, classes, size, disabled } = ownerState;
 
   const slots = {
     root: [
       'root',
+      disabled && 'disabled',
       variant,
       `size${capitalize(size)}`,
       color === 'inherit' ? 'colorInherit' : color,
@@ -159,7 +160,6 @@ const Fab = React.forwardRef(function Fab(inProps, ref) {
     <FabRoot
       className={clsx(classes.root, className)}
       component={component}
-      disabled={disabled}
       focusRipple={!disableFocusRipple}
       focusVisibleClassName={clsx(classes.focusVisible, focusVisibleClassName)}
       ownerState={ownerState}
