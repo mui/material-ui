@@ -211,9 +211,6 @@ module.exports = async function demoLoader() {
     componentModuleIDs.add(moduleID);
   });
 
-  console.log('componentNames', componentNames)
-  console.log('components', components)
-
   const transformed = `
     ${Array.from(demoModuleIDs)
       .map((moduleID) => {
