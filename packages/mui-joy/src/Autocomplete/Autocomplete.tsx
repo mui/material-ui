@@ -33,6 +33,8 @@ type OwnerState = AutocompleteOwnerState<
   boolean | undefined
 >;
 
+const defaultIsActiveElementInListbox = (listboxRef: React.RefObject<HTMLElement>) =>
+  listboxRef.current !== null && listboxRef.current.contains(document.activeElement);
 const defaultGetOptionLabel = <T extends unknown>(option: T) =>
   (option as { label: string }).label ?? option;
 const defaultLimitTagsText = (more: string | number) => `+${more}`;
@@ -127,7 +129,7 @@ const AutocompleteRoot = styled('div', {
         marginBlockEnd: 'calc(-1 * var(--_Input-paddingBlock))',
       },
       [`& .${chipClasses.root}`]: {
-        // TODO: move to flexbox `gap` later.
+        // TODO: use flexbox `gap` on the root slot later.
         marginInlineStart: 'var(--_Input-paddingBlock)',
         marginBlockStart: 'var(--_Input-paddingBlock)',
       },
@@ -306,7 +308,12 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     setAnchorEl,
     inputValue,
     groupedOptions,
-  } = useAutocomplete({ ...props, componentName: 'Autocomplete', classNamePrefix: 'Joy' });
+  } = useAutocomplete({
+    ...props,
+    componentName: 'Autocomplete',
+    classNamePrefix: 'Joy',
+    _isActiveElementInListbox: defaultIsActiveElementInListbox,
+  });
 
   const hasClearIcon = !disableClearable && !disabled && dirty && !readOnly;
   const hasPopupIcon = (!freeSolo || forcePopupIcon === true) && forcePopupIcon !== false;

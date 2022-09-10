@@ -66,8 +66,13 @@ const defaultFilterOptions = createFilterOptions();
 // Number of options to jump in list box when pageup and pagedown keys are used.
 const pageSize = 5;
 
+const defaultIsActiveElementInListbox = (listboxRef) =>
+  listboxRef.current !== null && listboxRef.current.parentElement.contains(document.activeElement);
+
 export default function useAutocomplete(props) {
   const {
+    // eslint-disable-next-line @typescript-eslint/naming-convention
+    _isActiveElementInListbox = defaultIsActiveElementInListbox,
     autoComplete = false,
     autoHighlight = false,
     autoSelect = false,
@@ -862,10 +867,7 @@ export default function useAutocomplete(props) {
 
   const handleBlur = (event) => {
     // Ignore the event when using the scrollbar with IE11
-    if (
-      listboxRef.current !== null &&
-      listboxRef.current.parentElement.contains(document.activeElement)
-    ) {
+    if (_isActiveElementInListbox(listboxRef)) {
       inputRef.current.focus();
       return;
     }
