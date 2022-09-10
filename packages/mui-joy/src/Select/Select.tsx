@@ -178,7 +178,7 @@ const SelectButton = styled('button', {
   alignItems: 'center',
   flex: 1,
   cursor: 'pointer',
-  ...(ownerState.value ?? {
+  ...((ownerState.value === null || ownerState.value === undefined) && {
     opacity: 'var(--Select-placeholderOpacity)',
   }),
 }));
