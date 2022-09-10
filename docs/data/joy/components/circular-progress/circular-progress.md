@@ -12,8 +12,7 @@ githubLabel: 'component: CircularProgress'
 
 Progress indicators inform users about the status of ongoing processes, such as loading an app, submitting a form, or saving updates.
 
-- **Determinate** indicators display how long an operation will take.
-- **Indeterminate** indicators visualize an unspecified wait time.
+By default, the `CircularProgress` is indeterminate which indicates an unspecified wait time. You can switch to [determinate](#determinate) mode to display how long an operation will take.
 
 The animations of the components rely on CSS as much as possible to work even before the JavaScript is loaded.
 
@@ -35,7 +34,7 @@ export default function MyApp() {
 
 ### Variants
 
-The circular progress component supports the four global variants: `solid` (default), `soft`, `outlined`, and `plain`.
+The circular progress component supports the four global variants: `solid`, `soft` (default), `outlined`, and `plain`.
 
 {{"demo": "CircularProgressVariants.js"}}
 
@@ -48,9 +47,13 @@ Play around combining different colors.
 
 ### Sizes
 
-The circular progress component comes with three sizes out of the box: `sm`, `md` (the default), and `lg`.
+The circular progress component comes with three sizes out of the box: `sm`, `md` (default), and `lg`.
 
 {{"demo": "CircularProgressSizes.js"}}
+
+:::success
+To learn how to add more sizes to the component, check out [Themed components—Extend sizes](/joy-ui/customization/themed-components/#extend-sizes).
+:::
 
 ### Determinate
 
@@ -84,7 +87,7 @@ The size of the circular progress is controlled by a button, an icon button, or 
 
 ## CSS variables
 
-Play around with all the CSS variables available in the slider component to see how the design changes.
+Play around with all the CSS variables available on the component to see how the design changes.
 
 You can use those to customize the component on both the `sx` prop and the theme.
 
