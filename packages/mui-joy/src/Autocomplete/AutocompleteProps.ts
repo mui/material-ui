@@ -55,7 +55,6 @@ export interface AutocompleteRenderGroupParams {
 }
 
 export interface AutocompleteRenderInputParams {
-  id: string;
   disabled: boolean;
   fullWidth: boolean;
   size: OverridableStringUnion<'sm' | 'md' | 'lg', AutocompletePropsSizeOverrides>;

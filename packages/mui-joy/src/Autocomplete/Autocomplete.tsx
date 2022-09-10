@@ -12,7 +12,9 @@ import styled from '../styles/styled';
 import Chip, { chipClasses } from '../Chip';
 import ChipDelete from '../ChipDelete';
 import { IconButtonRoot } from '../IconButton/IconButton';
+import Input from '../Input/Input';
 import ListProvider, { scopedVariables } from '../List/ListProvider';
+import ListSubheader from '../ListSubheader/ListSubheader';
 import ListItem from '../ListItem';
 import List, { ListRoot } from '../List/List';
 import { ListItemButtonOwnerState } from '../ListItemButton';
@@ -25,6 +27,7 @@ import {
   AutocompleteRenderGetTagProps,
   AutocompleteOwnerState,
 } from './AutocompleteProps';
+import FormControlContext from '../FormControl/FormControlContext';
 
 type OwnerState = AutocompleteOwnerState<
   unknown,
@@ -38,6 +41,13 @@ const defaultIsActiveElementInListbox = (listboxRef: React.RefObject<HTMLElement
 const defaultGetOptionLabel = <T extends unknown>(option: T) =>
   (option as { label: string }).label ?? option;
 const defaultLimitTagsText = (more: string | number) => `+${more}`;
+const defaultRenderInput = (params: any) => <Input {...params} />;
+const defaultRenderGroup = (params: AutocompleteRenderGroupParams) => (
+  <ListItem key={params.key} nested>
+    <ListSubheader sticky>{params.group}</ListSubheader>
+    <List>{params.children}</List>
+  </ListItem>
+);
 
 const useUtilityClasses = (ownerState: OwnerState) => {
   const {
@@ -211,16 +221,6 @@ const AutocompleteOption = styled(ListItemButtonRoot, {
   },
 }));
 
-const AutocompleteGroupLabel = styled(ListItem, {
-  name: 'JoyAutocomplete',
-  slot: 'GroupLabel',
-  overridesResolver: (props, styles) => styles.groupLabel,
-})(({ theme }) => ({
-  color: theme.vars.palette.text.secondary,
-  fontSize: theme.vars.fontSize.sm,
-  letterSpacing: theme.vars.letterSpacing.md,
-}));
-
 const Autocomplete = React.forwardRef(function Autocomplete(
   inProps,
   ref: React.ForwardedRef<HTMLDivElement>,
@@ -261,7 +261,6 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     isOptionEqualToValue,
     groupBy,
     handleHomeEndKeys = !props.freeSolo,
-    id: idProp,
     includeInputInList = false,
     inputValue: inputValueProp,
     limitTags = -1,
@@ -280,8 +279,8 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     options,
     popupIcon = <ArrowDropDownIcon />,
     readOnly = false,
-    renderGroup: renderGroupProp,
-    renderInput,
+    renderGroup = defaultRenderGroup,
+    renderInput = defaultRenderInput,
     renderOption: renderOptionProp,
     renderTags,
     selectOnFocus = !props.freeSolo,
@@ -290,7 +289,10 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     ...other
   } = props;
 
+  const formControl = React.useContext(FormControlContext);
+
   const {
+    id,
     getRootProps,
     getInputProps,
     getPopupIndicatorProps,
@@ -300,7 +302,6 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     getOptionProps,
     value,
     dirty,
-    id,
     popupOpen,
     focused,
     focusedTag,
@@ -310,6 +311,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     groupedOptions,
   } = useAutocomplete({
     ...props,
+    id: formControl?.htmlFor,
     componentName: 'Autocomplete',
     classNamePrefix: 'Joy',
     _isActiveElementInListbox: defaultIsActiveElementInListbox,
@@ -375,19 +377,14 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     }
   }
 
-  const defaultRenderGroup = (params: AutocompleteRenderGroupParams) => (
-    <ListItem key={params.key} nested>
-      <AutocompleteGroupLabel sticky>{params.group}</AutocompleteGroupLabel>
-      <List>{params.children}</List>
-    </ListItem>
-  );
-
-  const renderGroup = renderGroupProp || defaultRenderGroup;
-  const defaultRenderOption = (props2: React.HTMLAttributes<HTMLLIElement>, option: unknown) => (
+  const defaultRenderOption = (
+    optionProps: React.HTMLAttributes<HTMLLIElement>,
+    option: unknown,
+  ) => (
     <AutocompleteOption
       as="li"
       ownerState={{ ...ownerState, variant: 'plain', color: 'neutral' }}
-      {...props2}
+      {...optionProps}
     >
       {getOptionLabel(option)}
     </AutocompleteOption>
@@ -436,7 +433,6 @@ const Autocomplete = React.forwardRef(function Autocomplete(
         {...getRootProps(other)}
       >
         {renderInput({
-          id,
           disabled,
           fullWidth: true,
           size,
