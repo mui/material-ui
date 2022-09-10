@@ -37,7 +37,7 @@ const StartDecorator = styled('span', {
   overridesResolver: (props, styles) => styles.startDecorator,
 })<{ ownerState: TypographyOwnerState }>(({ ownerState }) => ({
   display: 'inline-flex',
-  marginInlineEnd: 'min(var(--Typography-gap, 0.25em), 0.5rem)',
+  marginInlineEnd: 'min(var(--Typography-gap, 0.5em), 0.75rem)',
   ...((ownerState.sx as any)?.alignItems === 'flex-start' && {
     marginTop: '2px', // this makes the alignment perfect in most cases
   }),

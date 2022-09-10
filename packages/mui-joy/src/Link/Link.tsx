@@ -41,7 +41,7 @@ const StartDecorator = styled('span', {
   overridesResolver: (props, styles) => styles.startDecorator,
 })<{ ownerState: LinkOwnerState }>({
   display: 'inline-flex',
-  marginInlineEnd: 'min(var(--Link-gap, 0.25em), 0.5rem)',
+  marginInlineEnd: 'min(var(--Link-gap, 0.5em), 0.75rem)',
 });
 
 const EndDecorator = styled('span', {
