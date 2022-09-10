@@ -41,7 +41,7 @@ const StartDecorator = styled('span', {
   overridesResolver: (props, styles) => styles.startDecorator,
 })<{ ownerState: LinkOwnerState }>({
   display: 'inline-flex',
-  marginInlineEnd: 'min(var(--Link-gap, 0.5em), 0.75rem)',
+  marginInlineEnd: 'clamp(4px, var(--Link-gap, 0.25em), 0.5rem)',
 });
 
 const EndDecorator = styled('span', {
@@ -50,7 +50,7 @@ const EndDecorator = styled('span', {
   overridesResolver: (props, styles) => styles.endDecorator,
 })<{ ownerState: LinkOwnerState }>({
   display: 'inline-flex',
-  marginInlineStart: 'min(var(--Link-gap, 0.25em), 0.5rem)',
+  marginInlineStart: 'clamp(4px, var(--Link-gap, 0.25em), 0.5rem)',
 });
 
 const LinkRoot = styled('a', {
