@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import composeClasses from '@mui/base/composeClasses';
 import { useAutocomplete, AutocompleteGroupedOption } from '@mui/base/AutocompleteUnstyled';
-import PopperUnstyled from '@mui/base/PopperUnstyled';
+import PopperUnstyled, { PopperUnstyledProps } from '@mui/base/PopperUnstyled';
 import { useThemeProps } from '../styles';
 import ClearIcon from '../internal/svg-icons/Close';
 import ArrowDropDownIcon from '../internal/svg-icons/ArrowDropDown';
@@ -404,6 +404,29 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     });
   };
 
+  // cache the modifiers to prevent Popper from being recreated when React rerenders menu.
+  const cachedModifiers = React.useMemo<PopperUnstyledProps['modifiers']>(
+    () => [
+      {
+        name: 'offset',
+        options: {
+          offset: [0, 4],
+        },
+      },
+      {
+        // popper will have the same width as root element when open
+        name: 'equalWidth',
+        enabled: true,
+        phase: 'beforeWrite',
+        requires: ['computeStyles'],
+        fn: ({ state }) => {
+          state.styles.popper.width = `${state.rects.reference.width}px`;
+        },
+      },
+    ],
+    [],
+  );
+
   return (
     <React.Fragment>
       <AutocompleteRoot
@@ -471,10 +494,8 @@ const Autocomplete = React.forwardRef(function Autocomplete(
       {anchorEl ? (
         <PopperUnstyled
           component={AutocompleteListbox}
+          modifiers={cachedModifiers}
           disablePortal={disablePortal}
-          style={{
-            width: anchorEl ? anchorEl.clientWidth : null,
-          }}
           ownerState={{ ...ownerState, variant: 'outlined', color: 'neutral' }}
           anchorEl={anchorEl}
           open={popupOpen}
