@@ -596,6 +596,53 @@ describe('<ButtonBase />', () => {
       expect(rippleStyle).not.to.have.property('height', '101px');
       expect(rippleStyle).not.to.have.property('width', '101px');
     });
+    it('renders the ripple with the right width and height', () => {
+      const { container, getByRole } = render(
+        <ButtonBase
+          centerRipple
+          TouchRippleProps={{ classes: { root: 'touch-ripple', ripple: 'touch-ripple-ripple' } }}
+        />,
+      );
+      // @ts-ignore
+      stub(container.querySelector('.touch-ripple'), 'getBoundingClientRect').callsFake(() => ({
+        width: 40,
+        height: 50,
+        bottom: 10,
+        left: 20,
+        top: 20,
+      }));
+      fireEvent.mouseDown(getByRole('button'), { clientX: 10, clientY: 10 });
+      const rippleRipple = container.querySelector('.touch-ripple-ripple');
+      expect(rippleRipple).not.to.equal(null);
+      // @ts-ignore
+      const rippleStyle = window.getComputedStyle(rippleRipple);
+      expect(rippleStyle).to.have.property('height', '51px');
+      expect(rippleStyle).to.have.property('width', '51px');
+    });
+
+    it('renders the ripple with the right width and height 2', () => {
+      const { container, getByRole } = render(
+        <ButtonBase
+          centerRipple
+          TouchRippleProps={{ classes: { root: 'touch-ripple', ripple: 'touch-ripple-ripple' } }}
+        />,
+      );
+      // @ts-ignore
+      stub(container.querySelector('.touch-ripple'), 'getBoundingClientRect').callsFake(() => ({
+        width: 100,
+        height: 50,
+        bottom: 10,
+        left: 20,
+        top: 20,
+      }));
+      fireEvent.mouseDown(getByRole('button'), { clientX: 10, clientY: 10 });
+      const rippleRipple = container.querySelector('.touch-ripple-ripple');
+      expect(rippleRipple).not.to.equal(null);
+      // @ts-ignore
+      const rippleStyle = window.getComputedStyle(rippleRipple);
+      expect(rippleStyle).to.have.property('height', '101px');
+      expect(rippleStyle).to.have.property('width', '101px');
+    });
   });
 
   describe('focusRipple', () => {
