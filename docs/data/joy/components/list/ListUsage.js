@@ -6,7 +6,9 @@ import ListItemDecorator from '@mui/joy/ListItemDecorator';
 import ListItemButton from '@mui/joy/ListItemButton';
 import Home from '@mui/icons-material/Home';
 import KeyboardArrowRight from '@mui/icons-material/KeyboardArrowRight';
-import JoyUsageDemo from 'docs/src/modules/components/JoyUsageDemo';
+import JoyUsageDemo, {
+  prependLinesSpace,
+} from 'docs/src/modules/components/JoyUsageDemo';
 
 export default function ListUsage() {
   return (
@@ -27,10 +29,25 @@ export default function ListUsage() {
         {
           propName: 'selected',
           knob: 'switch',
-          defaultValue: true,
-          codeBlockDisplay: true,
+          defaultValue: false,
+        },
+        {
+          propName: 'disabled',
+          knob: 'switch',
+          defaultValue: false,
+        },
+        {
+          propName: 'children',
+          defaultValue: `<ListItemDecorator><Home /></ListItemDecorator>
+  Home
+  <KeyboardArrowRight />`,
         },
       ]}
+      getCodeBlock={(code) => `<List>
+  <ListItem>
+${prependLinesSpace(code, 3)}
+  </ListItem>
+</List>`}
       renderDemo={(props) => (
         <List sx={{ width: 240, my: 5 }}>
           <ListItem>

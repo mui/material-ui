@@ -17,6 +17,10 @@ For more in-depth about when to use each, visit [the NNg's documentation](https:
 
 {{"demo": "RadioUsage.js", "hideToolbar": true}}
 
+:::success
+To learn how to add more variants or sizes to the component, check out the [Themed components](/joy-ui/customization/themed-components/) page.
+:::
+
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Component
@@ -98,7 +102,7 @@ Here are a few tips to make sure you have an accessible radio button component:
 
 - Every form control should have proper labels.
   This includes radio buttons, checkboxes, and switches.
-  In most cases, this is done by using the `<label>` element (see Material UI's [`FormControlLabel`](/material-ui/api/form-control-label/) as reference).
+  In most cases, this is done by using the `FormControl` and `FormLabel` element.
 - When a label can't be used, make sure to add an attribute, such as `aria-label`, `aria-labelledby`, and/or `title`, directly on the input component.
   You can also use the `inputProps` prop to add them.
 

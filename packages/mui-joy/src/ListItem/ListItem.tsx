@@ -97,6 +97,7 @@ const ListItemRoot = styled('li', {
     fontSize: 'var(--List-item-fontSize)',
     fontFamily: theme.vars.fontFamily.body,
     ...(ownerState.sticky && {
+      // sticky in list item can be found in grouped options
       position: 'sticky',
       top: 'var(--List-item-stickyTop, 0px)', // integration with Menu and Select.
       zIndex: 1,

@@ -5,9 +5,13 @@ import { ThemeProvider } from '@mui/joy/styles';
 import FormControl, { formControlClasses as classes } from '@mui/joy/FormControl';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import FormLabel from '@mui/joy/FormLabel';
+import FormHelperText from '@mui/joy/FormHelperText';
+import Checkbox, { checkboxClasses } from '@mui/joy/Checkbox';
 import Input, { inputClasses } from '@mui/joy/Input';
 import Select, { selectClasses } from '@mui/joy/Select';
 import Textarea, { textareaClasses } from '@mui/joy/Textarea';
+import RadioGroup from '@mui/joy/RadioGroup';
+import Switch, { switchClasses } from '@mui/joy/Switch';
 
 describe('<FormControl />', () => {
   const { render } = createRenderer();
@@ -25,10 +29,15 @@ describe('<FormControl />', () => {
   }));
 
   describe('prop: color', () => {
-    it('adds a neutral class by default', () => {
+    it('does not have color by default', () => {
       const { getByTestId } = render(<FormControl data-testid="root">Hello World</FormControl>);
 
-      expect(getByTestId('root')).to.have.class(classes.colorNeutral);
+      expect(getByTestId('root')).not.to.have.class(classes.colorNeutral);
+      expect(getByTestId('root')).not.to.have.class(classes.colorPrimary);
+      expect(getByTestId('root')).not.to.have.class(classes.colorDanger);
+      expect(getByTestId('root')).not.to.have.class(classes.colorInfo);
+      expect(getByTestId('root')).not.to.have.class(classes.colorSuccess);
+      expect(getByTestId('root')).not.to.have.class(classes.colorWarning);
     });
 
     (['primary', 'success', 'info', 'danger', 'neutral', 'warning'] as const).forEach((color) => {
@@ -170,6 +179,119 @@ describe('<FormControl />', () => {
         </FormControl>,
       );
 
+      expect(getByLabelText('label')).to.have.attribute('disabled');
+    });
+  });
+
+  describe('Checkbox', () => {
+    it('should linked the helper text', () => {
+      const { getByLabelText, getByText } = render(
+        <FormControl>
+          <Checkbox label="label" />
+          <FormHelperText>helper text</FormHelperText>
+        </FormControl>,
+      );
+
+      const helperText = getByText('helper text');
+
+      expect(getByLabelText('label')).to.have.attribute('aria-describedby', helperText.id);
+    });
+
+    it('should inherit color prop from FormControl', () => {
+      const { getByTestId } = render(
+        <FormControl color="success">
+          <Checkbox data-testid="checkbox" />
+        </FormControl>,
+      );
+
+      expect(getByTestId('checkbox')).to.have.class(checkboxClasses.colorSuccess);
+    });
+
+    it('should inherit error prop from FormControl', () => {
+      const { getByTestId } = render(
+        <FormControl error>
+          <Checkbox data-testid="checkbox" />
+        </FormControl>,
+      );
+
+      expect(getByTestId('checkbox')).to.have.class(checkboxClasses.colorDanger);
+    });
+
+    it('should inherit disabled from FormControl', () => {
+      const { getByLabelText, getByTestId } = render(
+        <FormControl disabled>
+          <Checkbox label="label" data-testid="checkbox" />
+        </FormControl>,
+      );
+
+      expect(getByTestId('checkbox')).to.have.class(checkboxClasses.disabled);
+      expect(getByLabelText('label')).to.have.attribute('disabled');
+    });
+  });
+
+  describe('RadioGroup', () => {
+    it('should linked the label and helper text', () => {
+      const { getByLabelText, getByRole, getByText } = render(
+        <FormControl>
+          <FormLabel>label</FormLabel>
+          <RadioGroup />
+          <FormHelperText>helper text</FormHelperText>
+        </FormControl>,
+      );
+
+      const label = getByText('label');
+      const helperText = getByText('helper text');
+
+      expect(getByLabelText('label')).to.have.attribute('role', 'radiogroup');
+      expect(getByRole('radiogroup')).to.have.attribute('aria-labelledby', label.id);
+      expect(getByRole('radiogroup')).to.have.attribute('aria-describedby', helperText.id);
+    });
+  });
+
+  describe('Switch', () => {
+    it('should linked the helper text', () => {
+      const { getByLabelText, getByText } = render(
+        <FormControl>
+          <FormLabel>label</FormLabel>
+          <Switch />
+          <FormHelperText>helper text</FormHelperText>
+        </FormControl>,
+      );
+
+      const helperText = getByText('helper text');
+
+      expect(getByLabelText('label')).to.have.attribute('aria-describedby', helperText.id);
+    });
+
+    it('should inherit color prop from FormControl', () => {
+      const { getByTestId } = render(
+        <FormControl color="success">
+          <Switch data-testid="switch" />
+        </FormControl>,
+      );
+
+      expect(getByTestId('switch')).to.have.class(switchClasses.colorSuccess);
+    });
+
+    it('should inherit error prop from FormControl', () => {
+      const { getByTestId } = render(
+        <FormControl error>
+          <Switch data-testid="switch" />
+        </FormControl>,
+      );
+
+      expect(getByTestId('switch')).to.have.class(switchClasses.colorDanger);
+    });
+
+    it('should inherit disabled from FormControl', () => {
+      const { getByLabelText, getByTestId } = render(
+        <FormControl disabled>
+          <FormLabel>label</FormLabel>
+          <Switch data-testid="switch" />
+        </FormControl>,
+      );
+
+      expect(getByTestId('switch')).to.have.class(switchClasses.disabled);
       expect(getByLabelText('label')).to.have.attribute('disabled');
     });
   });

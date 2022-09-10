@@ -30,8 +30,9 @@ export const FormControlRoot = styled('div', {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: FormControlOwnerState }>(({ theme, ownerState }) => ({
-  '--FormLabel-margin': '0 0 0.25rem 0',
-  '--FormHelperText-margin': '0.25rem 0 0 0',
+  '--FormLabel-margin':
+    ownerState.orientation === 'horizontal' ? '0 0.375rem 0 0' : '0 0 0.375rem 0',
+  '--FormHelperText-margin': '0.375rem 0 0 0',
   '--FormLabel-asterisk-color': theme.vars.palette.danger[500],
   '--FormHelperText-color': theme.vars.palette[ownerState.color!]?.[500],
   ...(ownerState.size === 'sm' && {
@@ -54,7 +55,8 @@ export const FormControlRoot = styled('div', {
     '--FormHelperText-color': theme.vars.palette[ownerState.color || 'neutral']?.plainDisabledColor,
   },
   display: 'flex',
-  flexDirection: 'column',
+  position: 'relative', // for keeping the control action area, e.g. Switch
+  flexDirection: ownerState.orientation === 'horizontal' ? 'row' : 'column',
 }));
 
 const FormControl = React.forwardRef(function FormControl(inProps, ref) {
@@ -70,12 +72,13 @@ const FormControl = React.forwardRef(function FormControl(inProps, ref) {
     disabled = false,
     required = false,
     error = false,
-    color = 'neutral',
+    color,
     size = 'md',
     ...other
   } = props;
 
   const id = useId(idOverride);
+  const labelId = `${id}-label`;
   const helperTextId = `${id}-helper-text`;
   const [helperText, setHelperText] = React.useState<HTMLElement | null>(null);
 
@@ -99,7 +102,7 @@ const FormControl = React.forwardRef(function FormControl(inProps, ref) {
         console.error(
           [
             'Joy: A FormControl can contain only one Input, Textarea, or Select component',
-            'You should not mix those components inside a sinble FormControl instance',
+            'You should not mix those components inside a single FormControl instance',
           ].join('\n'),
         );
       }
@@ -122,6 +125,7 @@ const FormControl = React.forwardRef(function FormControl(inProps, ref) {
         color,
         size,
         htmlFor: id,
+        labelId,
         'aria-describedby': helperText ? helperTextId : undefined,
         setHelperText,
         registerEffect: registerEffect!,
@@ -153,7 +157,6 @@ FormControl.propTypes /* remove-proptypes */ = {
   className: PropTypes.string,
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
-   * @default 'neutral'
    */
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
@@ -178,6 +181,11 @@ FormControl.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   id: PropTypes.string,
+  /**
+   * The content direction flow.
+   * @default 'vertical'
+   */
+  orientation: PropTypes.oneOf(['horizontal', 'vertical']),
   /**
    * If `true`, the user must specify a value for the input before the owning form can be submitted.
    * If `true`, the asterisk appears on the FormLabel.

@@ -48,7 +48,7 @@ const ListSubheaderRoot = styled('div', {
     background: 'var(--List-item-stickyBackground)',
   }),
   ...theme.variants[ownerState.variant!]?.[ownerState.color!],
-  color: theme.vars.palette[ownerState.color!]?.[400], // make the subheader less contrast
+  color: theme.vars.palette[ownerState.color!]?.[500], // make the subheader less contrast
 }));
 
 const ListSubheader = React.forwardRef(function ListSubheader(inProps, ref) {
@@ -117,7 +117,10 @@ ListSubheader.propTypes /* remove-proptypes */ = {
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'neutral'
    */
-  color: PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+  color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['danger', 'info', 'neutral', 'primary', 'success', 'warning']),
+    PropTypes.string,
+  ]),
   /**
    * The component used for the root node.
    * Either a string to use a HTML element or a component.
@@ -144,7 +147,10 @@ ListSubheader.propTypes /* remove-proptypes */ = {
    * The variant to use.
    * @default 'plain'
    */
-  variant: PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
+  variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
+    PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
+    PropTypes.string,
+  ]),
 } as any;
 
 export default ListSubheader;

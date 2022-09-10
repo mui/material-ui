@@ -268,6 +268,11 @@ const Textarea = React.forwardRef(function Textarea(inProps, ref) {
     externalSlotProps: {
       minRows,
       maxRows,
+      ...componentsProps.textarea,
+    },
+    additionalProps: {
+      id: formControl?.htmlFor,
+      'aria-describedby': formControl?.['aria-describedby'],
     },
     additionalProps: {
       id: formControl?.htmlFor,

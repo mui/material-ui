@@ -24,7 +24,7 @@ const useUtilityClasses = (ownerState: RadioOwnerState) => {
       color && `color${capitalize(color)}`,
       size && `size${capitalize(size)}`,
     ],
-    radio: ['radio', disabled && 'disabled'], // disabled class is necessary for displaying global variant
+    radio: ['radio', checked && 'checked', disabled && 'disabled'], // disabled class is necessary for displaying global variant
     icon: ['icon'],
     action: [
       'action',
@@ -247,14 +247,14 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
   const radioGroup = React.useContext(RadioGroupContext);
   const activeColor = color || 'primary';
   const inactiveColor = color || 'neutral';
-  const size = inProps.size || radioGroup.size || sizeProp;
-  const name = inProps.name || radioGroup.name || nameProp;
-  const disableIcon = inProps.disableIcon || radioGroup.disableIcon || disableIconProp;
-  const overlay = inProps.overlay || radioGroup.overlay || overlayProp;
+  const size = inProps.size || radioGroup?.size || sizeProp;
+  const name = inProps.name || radioGroup?.name || nameProp;
+  const disableIcon = inProps.disableIcon || radioGroup?.disableIcon || disableIconProp;
+  const overlay = inProps.overlay || radioGroup?.overlay || overlayProp;
 
   const radioChecked =
     typeof checkedProp === 'undefined' && !!value
-      ? areEqualValues(radioGroup.value, value)
+      ? areEqualValues(radioGroup?.value, value)
       : checkedProp;
   const useRadioProps = {
     checked: radioChecked,
@@ -278,7 +278,7 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
     size,
     disableIcon,
     overlay,
-    row: radioGroup.row,
+    row: radioGroup?.row,
   };
 
   const classes = useUtilityClasses(ownerState);
@@ -318,7 +318,7 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
 
   const radioInputProps = useSlotProps({
     elementType: RadioInput,
-    getSlotProps: () => getInputProps({ onChange: radioGroup.onChange }),
+    getSlotProps: () => getInputProps({ onChange: radioGroup?.onChange }),
     externalSlotProps: componentsProps.input,
     className: classes.input,
     additionalProps: {

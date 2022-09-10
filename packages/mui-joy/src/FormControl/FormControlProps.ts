@@ -15,7 +15,6 @@ export interface FormControlTypeMap<P = {}, D extends React.ElementType = 'div'>
     children?: React.ReactNode;
     /**
      * The color of the component. It supports those theme colors that make sense for this component.
-     * @default 'neutral'
      */
     color?: OverridableStringUnion<ColorPaletteProp, FormControlPropsColorOverrides>;
     /**
@@ -28,6 +27,11 @@ export interface FormControlTypeMap<P = {}, D extends React.ElementType = 'div'>
      * @default false
      */
     error?: boolean;
+    /**
+     * The content direction flow.
+     * @default 'vertical'
+     */
+    orientation?: 'vertical' | 'horizontal';
     /**
      * If `true`, the user must specify a value for the input before the owning form can be submitted.
      * If `true`, the asterisk appears on the FormLabel.
