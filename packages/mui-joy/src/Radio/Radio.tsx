@@ -10,6 +10,7 @@ import radioClasses, { getRadioUtilityClass } from './radioClasses';
 import { RadioOwnerState, RadioTypeMap } from './RadioProps';
 import RadioGroupContext from '../RadioGroup/RadioGroupContext';
 import { TypographyContext } from '../Typography/Typography';
+import FormControlContext from '../FormControl/FormControlContext';
 
 const useUtilityClasses = (ownerState: RadioOwnerState) => {
   const { checked, disabled, disableIcon, focusVisible, color, variant, size } = ownerState;
@@ -243,11 +244,26 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
     value,
     ...other
   } = props;
-  const id = useId(idOverride);
+
+  const formControl = React.useContext(FormControlContext);
+
+  if (process.env.NODE_ENV !== 'production') {
+    const registerEffect = formControl?.registerEffect;
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    React.useEffect(() => {
+      if (registerEffect) {
+        return registerEffect();
+      }
+
+      return undefined;
+    }, [registerEffect]);
+  }
+
+  const id = useId(idOverride ?? formControl?.htmlFor);
   const radioGroup = React.useContext(RadioGroupContext);
-  const activeColor = color || 'primary';
-  const inactiveColor = color || 'neutral';
-  const size = inProps.size || radioGroup?.size || sizeProp;
+  const activeColor = formControl?.color || color || 'primary';
+  const inactiveColor = formControl?.color || color || 'neutral';
+  const size = inProps.size || formControl?.size || radioGroup?.size || sizeProp;
   const name = inProps.name || radioGroup?.name || nameProp;
   const disableIcon = inProps.disableIcon || radioGroup?.disableIcon || disableIconProp;
   const overlay = inProps.overlay || radioGroup?.overlay || overlayProp;
@@ -259,7 +275,7 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
   const useRadioProps = {
     checked: radioChecked,
     defaultChecked,
-    disabled: disabledProp,
+    disabled: disabledProp ?? formControl?.disabled,
     onBlur,
     onChange,
     onFocus,
