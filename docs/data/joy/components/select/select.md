@@ -45,13 +45,6 @@ The `Select` component is similar to the native HTML's `<select>` and `<option>`
 
 {{"demo": "SelectBasic.js"}}
 
-### Field
-
-Use the `FormLabel` component to add a label to the select component.
-Make sure to provide an appropriate `aria-label` and an id to the button's `aria-describedby`.
-
-{{"demo": "SelectFieldDemo.js"}}
-
 ### Decorators
 
 Use the `startDecorator` and/or `endDecorator` props to add supporting icons or elements to the select.
@@ -131,6 +124,30 @@ That way, you'll have a consistent height and will be able to leverage nested CS
 ```
 
 :::
+
+## Accessibility
+
+In order for the select to be accessible, **it should be linked to a label**.
+
+The `FormControl` automatically generates a unique id that links the select with the `FormLabel` component:
+
+{{"demo": "SelectFieldDemo.js"}}
+
+Alternatively, you can do it manually by targeting the button slot:
+
+```jsx
+<label htmlFor="unique-id">Label</label>
+<Select
+  componentsProps={{
+    button: {
+      id: 'unique-id',
+    }
+  }}
+>
+  <Option value="option1">Option I</Option>
+  <Option value="option2">Option II</Option>
+</Select>
+```
 
 ## Common examples
 

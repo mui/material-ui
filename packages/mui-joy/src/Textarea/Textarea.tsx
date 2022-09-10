@@ -205,12 +205,12 @@ const Textarea = React.forwardRef(function Textarea(inProps, ref) {
     getInputProps,
     component,
     componentsProps = {},
+    formControl,
     focused,
-    formControlContext,
-    error: errorState,
-    disabled: disabledState,
-    size = 'md',
-    color = 'neutral',
+    error: errorProp = false,
+    disabled: disabledProp = false,
+    size: sizeProp = 'md',
+    color: colorProp = 'neutral',
     variant = 'outlined',
     startDecorator,
     endDecorator,
@@ -219,13 +219,29 @@ const Textarea = React.forwardRef(function Textarea(inProps, ref) {
     ...other
   } = useForwardedInput<TextareaProps>(props, textareaClasses);
 
+  if (process.env.NODE_ENV !== 'production') {
+    const registerEffect = formControl?.registerEffect;
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    React.useEffect(() => {
+      if (registerEffect) {
+        return registerEffect();
+      }
+
+      return undefined;
+    }, [registerEffect]);
+  }
+
+  const disabled = inProps.disabled ?? formControl?.disabled ?? disabledProp;
+  const error = inProps.error ?? formControl?.error ?? errorProp;
+  const size = inProps.size ?? formControl?.size ?? sizeProp;
+  const color = error ? 'danger' : inProps.color ?? formControl?.color ?? colorProp;
+
   const ownerState = {
     ...props,
-    color: errorState ? 'danger' : color,
-    disabled: disabledState,
-    error: errorState,
+    color,
+    disabled,
+    error,
     focused,
-    formControlContext: formControlContext!,
     size,
     variant,
   };
@@ -252,6 +268,11 @@ const Textarea = React.forwardRef(function Textarea(inProps, ref) {
     externalSlotProps: {
       minRows,
       maxRows,
+      ...componentsProps.textarea,
+    },
+    additionalProps: {
+      id: formControl?.htmlFor,
+      'aria-describedby': formControl?.['aria-describedby'],
     },
     ownerState,
     className: [classes.textarea, inputStateClasses],
@@ -303,6 +324,10 @@ Textarea.propTypes /* remove-proptypes */ = {
     startDecorator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     textarea: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
+  /**
+   * @ignore
+   */
+  disabled: PropTypes.bool,
   /**
    * Trailing adornment for this input.
    */

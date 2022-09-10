@@ -13,6 +13,7 @@ import { CheckboxOwnerState } from '@mui/joy/Checkbox';
 import { ChipOwnerState } from '@mui/joy/Chip';
 import { ChipDeleteOwnerState } from '@mui/joy/ChipDelete';
 import { ContainerProps } from '@mui/joy/Container';
+import { FormControlOwnerState } from '@mui/joy/FormControl';
 import { FormHelperTextOwnerState } from '@mui/joy/FormHelperText';
 import { FormLabelOwnerState } from '@mui/joy/FormLabel';
 import { GridProps } from '@mui/joy/Grid';
@@ -21,6 +22,7 @@ import { InputOwnerState } from '@mui/joy/Input';
 import { LinkOwnerState } from '@mui/joy/Link';
 import { ListOwnerState } from '@mui/joy/List';
 import { ListDividerOwnerState } from '@mui/joy/ListDivider';
+import { ListSubheaderOwnerState } from '@mui/joy/ListSubheader';
 import { ListItemOwnerState } from '@mui/joy/ListItem';
 import { ListItemButtonOwnerState } from '@mui/joy/ListItemButton';
 import { ListItemContentOwnerState } from '@mui/joy/ListItemContent';
@@ -28,6 +30,9 @@ import { ListItemDecoratorOwnerState } from '@mui/joy/ListItemDecorator';
 import { MenuOwnerState } from '@mui/joy/Menu';
 import { MenuItemOwnerState } from '@mui/joy/MenuItem';
 import { MenuListOwnerState } from '@mui/joy/MenuList';
+import { ModalOwnerState } from '@mui/joy/Modal';
+import { ModalCloseOwnerState } from '@mui/joy/ModalClose';
+import { ModalDialogOwnerState } from '@mui/joy/ModalDialog';
 import { OptionOwnerState } from '@mui/joy/Option';
 import { RadioOwnerState } from '@mui/joy/Radio';
 import { RadioGroupOwnerState } from '@mui/joy/RadioGroup';
@@ -306,6 +311,16 @@ extendTheme({
         },
       },
     },
+    JoyFormControl: {
+      styleOverrides: {
+        root: ({ ownerState }) => {
+          expectType<FormControlOwnerState & Record<string, unknown>, typeof ownerState>(
+            ownerState,
+          );
+          return {};
+        },
+      },
+    },
     JoyFormHelperText: {
       styleOverrides: {
         root: ({ ownerState }) => {
@@ -418,6 +433,19 @@ extendTheme({
         },
       },
     },
+    JoyListSubheader: {
+      defaultProps: {
+        sticky: true,
+      },
+      styleOverrides: {
+        root: ({ ownerState }) => {
+          expectType<ListSubheaderOwnerState & Record<string, unknown>, typeof ownerState>(
+            ownerState,
+          );
+          return {};
+        },
+      },
+    },
     JoyListItem: {
       defaultProps: {
         variant: 'outlined',
@@ -498,6 +526,49 @@ extendTheme({
       styleOverrides: {
         root: ({ ownerState }) => {
           expectType<MenuListOwnerState & Record<string, unknown>, typeof ownerState>(ownerState);
+          return {};
+        },
+      },
+    },
+    JoyModal: {
+      defaultProps: {
+        disableAutoFocus: true,
+      },
+      styleOverrides: {
+        root: ({ ownerState }) => {
+          expectType<ModalOwnerState & Record<string, unknown>, typeof ownerState>(ownerState);
+          return {};
+        },
+        backdrop: ({ ownerState }) => {
+          expectType<ModalOwnerState & Record<string, unknown>, typeof ownerState>(ownerState);
+          return {};
+        },
+      },
+    },
+    JoyModalClose: {
+      defaultProps: {
+        size: 'sm',
+        variant: 'outlined',
+        color: 'neutral',
+      },
+      styleOverrides: {
+        root: ({ ownerState }) => {
+          expectType<ModalCloseOwnerState & Record<string, unknown>, typeof ownerState>(ownerState);
+          return {};
+        },
+      },
+    },
+    JoyModalDialog: {
+      defaultProps: {
+        variant: 'outlined',
+        color: 'neutral',
+        layout: 'center',
+      },
+      styleOverrides: {
+        root: ({ ownerState }) => {
+          expectType<ModalDialogOwnerState & Record<string, unknown>, typeof ownerState>(
+            ownerState,
+          );
           return {};
         },
       },
