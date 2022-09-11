@@ -15,8 +15,9 @@ import { IconButtonRoot } from '../IconButton/IconButton';
 import Input from '../Input/Input';
 import ListProvider, { scopedVariables } from '../List/ListProvider';
 import ListSubheader from '../ListSubheader/ListSubheader';
-import ListItem from '../ListItem';
+import ListItem, { listItemClasses } from '../ListItem';
 import List, { ListRoot } from '../List/List';
+import listClasses from '../List/listClasses';
 import { ListItemButtonOwnerState } from '../ListItemButton';
 import { ListItemButtonRoot } from '../ListItemButton/ListItemButton';
 import { inputClasses } from '../Input';
@@ -188,6 +189,15 @@ const AutocompleteListbox = styled(ListRoot, {
     zIndex: 1200,
     overflow: 'auto',
     maxHeight: '40vh',
+    position: 'relative', // to make sure that the listbox is positioned for grouped options to work.
+    [`& .${listItemClasses.nested}, & .${listItemClasses.nested} .${listClasses.root}`]: {
+      // For grouped options autocomplete:
+      // Force the position to make the scroll into view logic works because the `element.offsetTop` should reference to the listbox, not the grouped list.
+      // See the implementation of the `useAutocomplete` line:370
+      //
+      // Resource: https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetTop
+      position: 'initial',
+    },
   };
 });
 
@@ -216,7 +226,7 @@ const AutocompleteOption = styled(ListItemButtonRoot, {
 })<{ ownerState: ListItemButtonOwnerState }>(({ theme, ownerState }) => ({
   '&[aria-disabled="true"]': theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
   '&[aria-selected="true"]': {
-    ...theme.variants[`${ownerState.variant!}Active`]?.[ownerState.color!],
+    ...theme.variants.soft.primary,
     fontWeight: theme.vars.fontWeight.md,
   },
 }));
