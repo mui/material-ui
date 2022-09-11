@@ -8,6 +8,7 @@ import { styled, useThemeProps } from '../styles';
 import { FormHelperTextProps, FormHelperTextTypeMap } from './FormHelperTextProps';
 import { getFormHelperTextUtilityClass } from './formHelperTextClasses';
 import FormControlContext from '../FormControl/FormControlContext';
+import formLabelClasses from '../FormLabel/formLabelClasses';
 
 const useUtilityClasses = () => {
   const slots = {
@@ -29,6 +30,9 @@ const FormHelperTextRoot = styled('p', {
   lineHeight: theme.vars.lineHeight.sm,
   color: `var(--FormHelperText-color, ${theme.vars.palette.text.secondary})`,
   margin: 'var(--FormHelperText-margin, 0px)',
+  [`.${formLabelClasses.root} + &`]: {
+    '--FormHelperText-margin': '0px', // remove the margin if the helper text is next to the form label.
+  },
 }));
 
 const FormHelperText = React.forwardRef(function FormHelperText(inProps, ref) {
