@@ -20,7 +20,7 @@
     "@mui/system": "^5.10.4",
     "@styled-system/css": "^5.1.5",
     "benchmark": "^2.1.4",
-    "playwright": "^1.25.1",
+    "playwright": "^1.25.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-is": "^18.2.0",
