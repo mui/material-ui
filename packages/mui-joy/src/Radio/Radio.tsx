@@ -342,6 +342,7 @@ const Radio = React.forwardRef(function Radio(inProps, ref) {
       id,
       name,
       value: String(value),
+      'aria-describedby': formControl?.['aria-describedby'],
     },
     ownerState,
   });
