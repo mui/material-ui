@@ -26,6 +26,10 @@ function nextConfigBaseline(nextConfig) {
     reactStrictMode: true,
     ...nextConfig,
     env: {
+      BUILD_ONLY_ENGLISH_LOCALE: true, // disable translations by default
+      // production | staging | pull-request | development
+      DEPLOY_ENV,
+      ...nextConfig.env,
       // https://docs.netlify.com/configure-builds/environment-variables/#git-metadata
       // reference ID (also known as “SHA” or “hash”) of the commit we’re building.
       COMMIT_REF: process.env.COMMIT_REF,
@@ -38,10 +42,6 @@ function nextConfigBaseline(nextConfig) {
       NETLIFY_DEPLOY_URL: process.env.DEPLOY_URL,
       // Name of the site, its Netlify subdomain; for example, material-ui-docs
       NETLIFY_SITE_NAME: process.env.SITE_NAME,
-      // production | staging | pull-request | development
-      DEPLOY_ENV,
-      BUILD_ONLY_ENGLISH_LOCALE: true, // disable translations by default
-      ...nextConfig.env,
     },
     experimental: {
       scrollRestoration: true,
