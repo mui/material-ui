@@ -226,7 +226,7 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
     }, [registerEffect]);
   }
 
-  const id = useId(idOverride);
+  const id = useId(idOverride ?? formControl?.htmlFor);
 
   const useCheckboxProps = {
     checked: checkedProp,
