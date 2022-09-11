@@ -116,7 +116,6 @@ const TextareaRoot = styled('div', {
       // variant styles
       ...variantStyle,
       '&:hover': {
-        ...theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
         cursor: 'text',
       },
       [`&.${textareaClasses.disabled}`]:
