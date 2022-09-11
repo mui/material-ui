@@ -18,7 +18,7 @@ if (
 
 process.env.DEPLOY_ENV = DEPLOY_ENV;
 
-function withBaseline(nextConfig) {
+function nextConfigBaseline(nextConfig) {
   return {
     trailingSlash: true,
     // Can be turned on when https://github.com/vercel/next.js/issues/24640 is fixed
@@ -59,4 +59,4 @@ function withBaseline(nextConfig) {
   };
 }
 
-module.exports = withBaseline;
+module.exports = nextConfigBaseline;

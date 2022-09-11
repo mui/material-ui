@@ -404,7 +404,7 @@ export default function DemoToolbar(props) {
           data-ga-event-label={demoOptions.demo}
           data-ga-event-action="link-deploy-preview"
           component="a"
-          href={`https://deploy-preview-${PULL_REQUEST_ID}--${process.env.NETLIFY_SITE_NAME}.netlify.app${router.route}/#${demoName}`}
+          href={`https://deploy-preview-${process.env.PULL_REQUEST_ID}--${process.env.NETLIFY_SITE_NAME}.netlify.app${router.route}/#${demoName}`}
           target="_blank"
           rel="noopener nofollow"
           onClick={handleMoreClose}
