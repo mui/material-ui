@@ -214,7 +214,7 @@
 
 # Components - MUI Base
 
-/packages/mui-base/src/AutocompleteUnstyled/ @michaldudak @mnajdova
+/packages/mui-base/src/useAutocomplete/ @michaldudak @mnajdova
 /packages/mui-base/src/BadgeUnstyled/ @siriwatknp @michaldudak
 /packages/mui-base/src/ButtonUnstyled/ @michaldudak @mnajdova
 /packages/mui-base/src/ClickAwayListener/ @mnajdova @michaldudak
