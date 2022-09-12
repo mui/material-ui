@@ -267,13 +267,13 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
             if (knob === 'switch') {
               return (
                 <FormControl
+                  key={propName}
                   size="sm"
                   orientation="horizontal"
                   sx={{ justifyContent: 'space-between' }}
                 >
                   <FormLabel sx={{ textTransform: 'capitalize' }}>{propName}</FormLabel>
                   <Switch
-                    key={propName}
                     checked={Boolean(resolvedValue)}
                     onChange={(event) =>
                       setProps((latestProps) => ({

@@ -31,7 +31,7 @@ export const FormControlRoot = styled('div', {
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: FormControlOwnerState }>(({ theme, ownerState }) => ({
   '--FormLabel-margin':
-    ownerState.orientation === 'horizontal' ? '0 0.375rem 0 0' : '0 0 0.375rem 0',
+    ownerState.orientation === 'horizontal' ? '0 0.375rem 0 0' : '0 0 0.25rem 0',
   '--FormHelperText-margin': '0.375rem 0 0 0',
   '--FormLabel-asterisk-color': theme.vars.palette.danger[500],
   '--FormHelperText-color': theme.vars.palette[ownerState.color!]?.[500],
