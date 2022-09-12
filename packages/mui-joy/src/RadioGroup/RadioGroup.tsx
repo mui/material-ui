@@ -140,16 +140,18 @@ const RadioGroup = React.forwardRef(function RadioGroup(inProps, ref) {
         aria-describedby={formControl?.['aria-describedby']}
         {...other}
       >
-        {React.Children.map(children, (child, index) =>
-          React.isValidElement(child)
-            ? React.cloneElement(child, {
-                // to let Radio knows when to apply margin(Inline|Block)Start
-                ...(index === 0 && { 'data-first-child': '' }),
-                ...(index === React.Children.count(children) - 1 && { 'data-last-child': '' }),
-                'data-parent': 'RadioGroup',
-              } as Record<string, string>)
-            : child,
-        )}
+        <FormControlContext.Provider value={undefined}>
+          {React.Children.map(children, (child, index) =>
+            React.isValidElement(child)
+              ? React.cloneElement(child, {
+                  // to let Radio knows when to apply margin(Inline|Block)Start
+                  ...(index === 0 && { 'data-first-child': '' }),
+                  ...(index === React.Children.count(children) - 1 && { 'data-last-child': '' }),
+                  'data-parent': 'RadioGroup',
+                } as Record<string, string>)
+              : child,
+          )}
+        </FormControlContext.Provider>
       </RadioGroupRoot>
     </RadioGroupContext.Provider>
   );

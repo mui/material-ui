@@ -226,7 +226,8 @@ const AutocompleteOption = styled(ListItemButtonRoot, {
 })<{ ownerState: ListItemButtonOwnerState }>(({ theme, ownerState }) => ({
   '&[aria-disabled="true"]': theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
   '&[aria-selected="true"]': {
-    ...theme.variants.soft.primary,
+    color: theme.vars.palette.primary.softColor,
+    backgroundColor: theme.vars.palette.primary.softBg,
     fontWeight: theme.vars.fontWeight.md,
   },
 }));
@@ -361,13 +362,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
       startDecorator = (value as Array<unknown>).map((option, index) => {
         const { onDelete, ...tagProps } = getCustomizedTagProps({ index });
         return (
-          <Chip
-            size={size}
-            variant="soft"
-            color="neutral"
-            {...tagProps}
-            endDecorator={<ChipDelete onClick={onDelete} />}
-          >
+          <Chip size={size} variant="soft" color="neutral" {...tagProps}>
             {getOptionLabel(option)}
           </Chip>
         );

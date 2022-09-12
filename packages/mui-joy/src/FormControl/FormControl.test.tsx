@@ -11,6 +11,7 @@ import Input, { inputClasses } from '@mui/joy/Input';
 import Select, { selectClasses } from '@mui/joy/Select';
 import Textarea, { textareaClasses } from '@mui/joy/Textarea';
 import RadioGroup from '@mui/joy/RadioGroup';
+import Radio, { radioClasses } from '@mui/joy/Radio';
 import Switch, { switchClasses } from '@mui/joy/Switch';
 
 describe('<FormControl />', () => {
@@ -184,10 +185,11 @@ describe('<FormControl />', () => {
   });
 
   describe('Checkbox', () => {
-    it('should linked the helper text', () => {
+    it('should linked the label and helper text', () => {
       const { getByLabelText, getByText } = render(
         <FormControl>
-          <Checkbox label="label" />
+          <FormLabel>label</FormLabel>
+          <Checkbox />
           <FormHelperText>helper text</FormHelperText>
         </FormControl>,
       );
@@ -245,6 +247,73 @@ describe('<FormControl />', () => {
       expect(getByLabelText('label')).to.have.attribute('role', 'radiogroup');
       expect(getByRole('radiogroup')).to.have.attribute('aria-labelledby', label.id);
       expect(getByRole('radiogroup')).to.have.attribute('aria-describedby', helperText.id);
+    });
+
+    it('works with radio buttons', () => {
+      const { getByLabelText, getByRole, getByText } = render(
+        <FormControl>
+          <FormLabel>label</FormLabel>
+          <RadioGroup>
+            <Radio />
+          </RadioGroup>
+          <FormHelperText>helper text</FormHelperText>
+        </FormControl>,
+      );
+
+      const label = getByText('label');
+      const helperText = getByText('helper text');
+
+      expect(getByRole('radio')).toBeVisible();
+      expect(getByLabelText('label')).to.have.attribute('role', 'radiogroup');
+      expect(getByRole('radiogroup')).to.have.attribute('aria-labelledby', label.id);
+      expect(getByRole('radiogroup')).to.have.attribute('aria-describedby', helperText.id);
+    });
+  });
+
+  describe('Radio', () => {
+    it('should linked the label and helper text', () => {
+      const { getByLabelText, getByText } = render(
+        <FormControl>
+          <FormLabel>label</FormLabel>
+          <Radio />
+          <FormHelperText>helper text</FormHelperText>
+        </FormControl>,
+      );
+
+      const helperText = getByText('helper text');
+
+      expect(getByLabelText('label')).to.have.attribute('aria-describedby', helperText.id);
+    });
+
+    it('should inherit color prop from FormControl', () => {
+      const { getByTestId } = render(
+        <FormControl color="success">
+          <Radio data-testid="radio" />
+        </FormControl>,
+      );
+
+      expect(getByTestId('radio')).to.have.class(radioClasses.colorSuccess);
+    });
+
+    it('should inherit error prop from FormControl', () => {
+      const { getByTestId } = render(
+        <FormControl error>
+          <Radio data-testid="radio" />
+        </FormControl>,
+      );
+
+      expect(getByTestId('radio')).to.have.class(radioClasses.colorDanger);
+    });
+
+    it('should inherit disabled from FormControl', () => {
+      const { getByLabelText, getByTestId } = render(
+        <FormControl disabled>
+          <Radio label="label" data-testid="radio" />
+        </FormControl>,
+      );
+
+      expect(getByTestId('radio')).to.have.class(radioClasses.disabled);
+      expect(getByLabelText('label')).to.have.attribute('disabled');
     });
   });
 
