@@ -1,6 +1,6 @@
 export * from './utils';
 
-export * from './AutocompleteUnstyled';
+export * from './useAutocomplete';
 
 export { default as BadgeUnstyled } from './BadgeUnstyled';
 export * from './BadgeUnstyled';

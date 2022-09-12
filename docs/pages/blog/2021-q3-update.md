@@ -55,7 +55,7 @@ Here are the most significant improvements since early July 2021.
   - [Autocomplete](/material-ui/react-autocomplete/#useautocomplete)
 
   ```jsx
-  import { useAutocomplete } from '@mui/base/AutocompleteUnstyled';
+  import { useAutocomplete } from '@mui/base/useAutocomplete';
   ```
 
   - [Button](/material-ui/react-button/#unstyled)
