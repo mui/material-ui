@@ -396,14 +396,16 @@ https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 ## MUI X
 ## Unlike the store that expect to be hosted under a subfolder,
 ## MUI X is configured to be hosted at the root.
-/static/x/* https://material-ui-x.netlify.app/static/x/:splat 200
-/x/_next/* https://material-ui-x.netlify.app/_next/:splat 200
-/x/* https://material-ui-x.netlify.app/x/:splat 200
-/r/x-* https://material-ui-x.netlify.app/r/x-:splat 200
-/:lang/x/* https://material-ui-x.netlify.app/:lang/x/:splat 200
+/static/x/* https://docs-next--material-ui-x.netlify.app/static/x/:splat 200
+/x/_next/* https://docs-next--material-ui-x.netlify.app/_next/:splat 200
+/x/* https://docs-next--material-ui-x.netlify.app/x/:splat 200
+/r/x-* https://docs-next--material-ui-x.netlify.app/r/x-:splat 200
+/:lang/x/* https://docs-next--material-ui-x.netlify.app/:lang/x/:splat 200
 
 ## MUI Toolpad
 /static/toolpad/* https://mui-toolpad-docs.netlify.app/static/toolpad/:splat 200
 /toolpad/_next/* https://mui-toolpad-docs.netlify.app/_next/:splat 200
 /toolpad/* https://mui-toolpad-docs.netlify.app/toolpad/:splat 200
 /r/toolpad-* https://mui-toolpad-docs.netlify.app/r/toolpad-:splat 200
+
+/* https://mui.com/:splat 300
