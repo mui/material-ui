@@ -1,5 +1,51 @@
 # [Versions](https://mui.com/versions/)
 
+## 5.10.5
+
+<!-- generated comparing v5.10.4..master -->
+
+_Sep 12, 2022_
+
+A big thanks to the 12 contributors who made this release possible. Here are some highlights ✨:
+
+- 🚀 [Blog post](https://mui.com/blog/introducing-mui-base/) for announcing the release of the MUI Base package is out thanks to @michaldudak.
+- 🚀 Added [`Alert`](https://mui.com/joy-ui/react-alert/), [`Modal`](https://mui.com/joy-ui/react-modal/), [`ListSubheader`](https://mui.com/joy-ui/react-list-subheader/), [`FormControl`](https://mui.com/joy-ui/react-form-control/), [`CircularProgress`](https://mui.com/joy-ui/react-circular-progress/)components to Joy UI (#33859) @hbjORbj @siriwatknp
+- And more 🐛 bug fixes and 📚 documentation improvements.
+
+### `@mui/material@5.10.5`
+
+- &#8203;<!-- 07 -->[Radio][joy] Integrate with form control (#34277) @siriwatknp
+- &#8203;<!-- 05 -->[ListItemText] Fix variant mapping in `primaryTypography` (#33880) @iamxukai
+- &#8203;<!-- 03 -->[Timeline] Add left and right aligned timeline demos in docs (#34156) @ZeeshanTamboli
+
+### `@mui/joy@5.0.0-alpha.45`
+
+- &#8203;<!-- 20 -->[Joy UI] Add `CircularProgress` component (#33869) @hbjORbj
+- &#8203;<!-- 19 -->[Joy UI] Add `FormControl` component (#34187) @siriwatknp
+- &#8203;<!-- 18 -->[Joy UI] Add `ListSubheader` component (#34191) @siriwatknp
+- &#8203;<!-- 17 -->[Joy UI] Add `Modal` component (#34043) @siriwatknp
+- &#8203;<!-- 10 -->[Joy] Fix list value of false or 0 (zero) text is incorrectly grey (#34255) @kushagra010
+- &#8203;<!-- 09 -->[Joy] Adjust typography decorator margin (#34257) @siriwatknp
+- &#8203;<!-- 08 -->[Joy] Miscellaneous fixes (#34193) @siriwatknp
+- &#8203;<!-- 06 -->[Joy][textarea] Pass `textarea` props from `componentsProps` (#34223) @HexM7
+
+### Docs
+
+- &#8203;<!-- 16 -->[blog] Introducing MUI Base (#33778) @michaldudak
+- &#8203;<!-- 13 -->[docs] Fix spelling error (#34209) @ChrystianDeMatos
+- &#8203;<!-- 12 -->[docs] Improve link to the security policy (#34219) @oliviertassinari
+- &#8203;<!-- 11 -->[docs] Fix typo in Joy UI's `Usage` docs (#34200) @zillion504
+- &#8203;<!-- 02 -->[website] Add Lukas to the about page (#34284) @LukasTy
+- &#8203;<!-- 01 -->[website] Update diamond sponsor URL (#34256) @oliviertassinari
+
+### Core
+
+- &#8203;<!-- 04 -->[test] Replace argos-cli with @argos-ci/core (#34178) @michaldudak
+- &#8203;<!-- 15 -->[core] Create a script to generate codeowners (#34175) @michaldudak
+- &#8203;<!-- 14 -->[core] Add RFC GH issue template (#33871) @bytasv
+
+All contributors of this release in alphabetical order: @bytasv, @ChrystianDeMatos, @hbjORbj, @HexM7, @iamxukai, @kushagra010, @LukasTy, @michaldudak, @oliviertassinari, @siriwatknp, @ZeeshanTamboli, @zillion504
+
 ## 5.10.4
 
 <!-- generated comparing v5.10.3..master -->
