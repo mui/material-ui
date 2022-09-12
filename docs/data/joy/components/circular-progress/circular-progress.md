@@ -12,7 +12,7 @@ githubLabel: 'component: CircularProgress'
 
 Progress indicators inform users about the status of ongoing processes, such as loading an app, submitting a form, or saving updates.
 
-The `CircularProgress` is indeterminate by default, indicating an unspecified wait time. 
+The `CircularProgress` is indeterminate by default, indicating an unspecified wait time.
 To actually have it represent how long an operation will take, use the [determinate](#determinate) mode.
 
 The animations of the components rely on CSS as much as possible to work even before the JavaScript is loaded.
