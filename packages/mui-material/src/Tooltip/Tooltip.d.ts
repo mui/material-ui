@@ -160,7 +160,7 @@ export interface TooltipProps extends StandardProps<React.HTMLAttributes<HTMLDiv
    */
   sx?: SxProps<Theme>;
   /**
-   * Tooltip title. Zero-length titles string are never displayed.
+   * Tooltip title. Zero-length titles string, undefined, null and false are never displayed.
    */
   title: NonNullable<React.ReactNode>;
   /**
