@@ -119,7 +119,7 @@ interface JoyUsageDemoProps<ComponentProps> {
      * - `input`: render <input />
      * - `radio`: render group of radios
      */
-    knob?: 'switch' | 'color' | 'select' | 'input' | 'radio';
+    knob?: 'switch' | 'color' | 'select' | 'input' | 'radio' | 'number';
     /**
      * The options for these knobs: `select` and `radio`
      */
@@ -483,6 +483,35 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                     setProps((latestProps) => ({
                       ...latestProps,
                       [propName]: event.target.value,
+                    }))
+                  }
+                  sx={{
+                    textTransform: 'capitalize',
+                    [`& .${inputClasses.root}`]: {
+                      bgcolor: 'background.body',
+                    },
+                  }}
+                />
+              );
+            }
+            if (knob === 'number') {
+              return (
+                <TextField
+                  key={propName}
+                  label={propName}
+                  size="sm"
+                  type="number"
+                  value={
+                    typeof props[propName] === 'number'
+                      ? (props[propName] as number)
+                      : (defaultValue as string)
+                  }
+                  onChange={(event) =>
+                    setProps((latestProps) => ({
+                      ...latestProps,
+                      [propName]: Number.isNaN(event.target.valueAsNumber)
+                        ? undefined
+                        : event.target.valueAsNumber,
                     }))
                   }
                   sx={{
