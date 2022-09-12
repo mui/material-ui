@@ -114,13 +114,12 @@ const InputRoot = styled('div', {
       backgroundColor: variantStyle?.backgroundColor ?? theme.vars.palette.background.surface,
       [`&:hover:not(.${inputClasses.focused})`]: {
         ...theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
-        backgroundColor: variantStyle?.backgroundColor,
+        backgroundColor: null, // it is not common to change background on hover for Input
         cursor: 'text',
       },
       [`&.${inputClasses.disabled}`]:
         theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
       [`&.${inputClasses.focused}`]: {
-        backgroundColor: variantStyle?.backgroundColor,
         '&:before': {
           boxShadow: `inset 0 0 0 var(--Input-focusedThickness) var(--Input-focusedHighlight)`,
         },
