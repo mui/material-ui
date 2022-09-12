@@ -126,7 +126,7 @@ related to the rendering of JSX.
 The Autocomplete component is built on this hook.
 
 ```tsx
-import { useAutocomplete } from '@mui/base/AutocompleteUnstyled';
+import { useAutocomplete } from '@mui/base/useAutocomplete';
 ```
 
 The `useAutocomplete` hook is also reexported from @mui/material for convenience and backward compatibility.
