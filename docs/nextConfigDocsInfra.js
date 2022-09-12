@@ -18,7 +18,7 @@ if (
 
 process.env.DEPLOY_ENV = DEPLOY_ENV;
 
-function nextConfigBaseline(nextConfig) {
+function withDocsInfra(nextConfig) {
   return {
     trailingSlash: true,
     // Can be turned on when https://github.com/vercel/next.js/issues/24640 is fixed
@@ -59,4 +59,4 @@ function nextConfigBaseline(nextConfig) {
   };
 }
 
-module.exports = nextConfigBaseline;
+module.exports = withDocsInfra;

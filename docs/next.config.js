@@ -1,7 +1,7 @@
 const path = require('path');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const pkg = require('../package.json');
-const nextConfigBaseline = require('./nextConfigBaseline');
+const withDocsInfra = require('./nextConfigDocsInfra');
 const { findPages } = require('./src/modules/utils/find');
 const { LANGUAGES, LANGUAGES_SSR, LANGUAGES_IGNORE_PAGES } = require('./src/modules/constants');
 
@@ -13,7 +13,7 @@ const isDeployPreview = Boolean(process.env.PULL_REQUEST_ID);
 // For crowdin PRs we want to build all locales for testing.
 const buildOnlyEnglishLocale = isDeployPreview && !l10nPRInNetlify && !vercelDeploy;
 
-module.exports = nextConfigBaseline({
+module.exports = withDocsInfra({
   webpack: (config, options) => {
     const plugins = config.plugins.slice();
 
