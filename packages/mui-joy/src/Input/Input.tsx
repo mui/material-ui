@@ -92,7 +92,7 @@ const InputRoot = styled('div', {
       }),
       // TODO: discuss the transition approach in a separate PR. This value is copied from mui-material Button.
       transition:
-        'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
+        'border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
       '&:before': {
         boxSizing: 'border-box',
         content: '""',
@@ -114,13 +114,13 @@ const InputRoot = styled('div', {
       backgroundColor: variantStyle?.backgroundColor ?? theme.vars.palette.background.surface,
       [`&:hover:not(.${inputClasses.focused})`]: {
         ...theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
-        backgroundColor: variantStyle?.backgroundColor ?? theme.vars.palette.background.surface,
+        backgroundColor: variantStyle?.backgroundColor,
         cursor: 'text',
       },
       [`&.${inputClasses.disabled}`]:
         theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
       [`&.${inputClasses.focused}`]: {
-        backgroundColor: variantStyle?.backgroundColor ?? theme.vars.palette.background.surface,
+        backgroundColor: variantStyle?.backgroundColor,
         '&:before': {
           boxShadow: `inset 0 0 0 var(--Input-focusedThickness) var(--Input-focusedHighlight)`,
         },
