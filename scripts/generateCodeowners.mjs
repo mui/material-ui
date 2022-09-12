@@ -155,7 +155,7 @@ const componentAreas = {
   touchripple: 'inputs',
   transferlist: 'inputs',
   transitions: 'utils',
-  trapfocus: 'utils',
+  focustrap: 'utils',
   treeview: 'dataDisplay',
   typography: 'dataDisplay',
   zoom: 'utils',
@@ -226,8 +226,8 @@ function normalizeDocsComponentName(componentName) {
     case 'floating-action-button':
       return 'fab';
 
-    case 'trap-focus':
-      return 'trapfocus';
+    case 'focus-trap':
+      return 'focustrap';
 
     case 'radio-buttons':
       return 'radio';
