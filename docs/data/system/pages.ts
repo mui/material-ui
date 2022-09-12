@@ -1,11 +1,37 @@
+import pagesApi from './pagesApi';
+
 const pages = [
   {
-    pathname: '/system',
+    pathname: '/system/getting-started',
+    icon: 'DescriptionIcon',
+    children: [
+      { pathname: '/system/getting-started/overview' },
+      { pathname: '/system/getting-started/installation' },
+      { pathname: '/system/getting-started/usage' },
+      { pathname: '/system/getting-started/the-sx-prop' },
+      { pathname: '/system/getting-started/custom-components' },
+    ],
+  },
+  {
+    pathname: '/style-utilities',
+    scopePathnames: [
+      '/system/properties',
+      '/system/borders',
+      '/system/display',
+      '/system/flexbox',
+      '/system/grid',
+      '/system/palette',
+      '/system/positions',
+      '/system/shadows',
+      '/system/sizing',
+      '/system/spacing',
+      '/system/screen-readers',
+      '/system/typography',
+      '/system/styled',
+    ],
     icon: 'BuildIcon',
     children: [
-      { pathname: '/system/basics' },
       { pathname: '/system/properties' },
-      { pathname: '/system/the-sx-prop', title: 'The sx prop' },
       { pathname: '/system/borders' },
       { pathname: '/system/display' },
       { pathname: '/system/flexbox' },
@@ -17,10 +43,25 @@ const pages = [
       { pathname: '/system/spacing' },
       { pathname: '/system/screen-readers' },
       { pathname: '/system/typography' },
-      { pathname: '/system/advanced' },
-      { pathname: '/system/box' },
       { pathname: '/system/styled', title: 'styled' },
     ],
+  },
+  {
+    pathname: '/system/react-',
+    title: 'Components',
+    icon: 'ToggleOnIcon',
+    children: [
+      { pathname: '/system/react-box', title: 'Box' },
+      { pathname: '/system/react-container', title: 'Container' },
+      { pathname: '/system/react-grid', title: 'Grid' },
+      { pathname: '/system/react-stack', title: 'Stack' },
+    ],
+  },
+  {
+    title: 'Component API',
+    pathname: '/system/api',
+    icon: 'CodeIcon',
+    children: pagesApi,
   },
   {
     pathname: '/system/styles',

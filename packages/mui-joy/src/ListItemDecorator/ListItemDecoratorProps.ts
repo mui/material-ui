@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { OverrideProps } from '@mui/types';
-import { SxProps } from '../styles/defaultTheme';
+import { SxProps } from '../styles/types';
 import { ListItemDecoratorClasses } from './listItemDecoratorClasses';
 
 export type ListItemDecoratorSlot = 'root';
@@ -29,3 +29,11 @@ export type ListItemDecoratorProps<
     component?: React.ElementType;
   },
 > = OverrideProps<ListItemDecoratorTypeMap<P, D>, D>;
+
+export interface ListItemDecoratorOwnerState extends ListItemDecoratorProps {
+  /**
+   * @internal
+   * The orientation of the parent ListItemButton.
+   */
+  parentOrientation: 'horizontal' | 'vertical';
+}

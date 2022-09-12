@@ -1,8 +1,8 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { isHostComponent } from '@mui/base';
-import { elementAcceptingRef, HTMLElementType } from '@mui/utils';
 import ModalUnstyled, { modalUnstyledClasses } from '@mui/base/ModalUnstyled';
+import { isHostComponent, resolveComponentProps } from '@mui/base/utils';
+import { elementAcceptingRef, HTMLElementType } from '@mui/utils';
 import styled from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
 import Backdrop from '../Backdrop';
@@ -23,7 +23,7 @@ const ModalRoot = styled('div', {
   },
 })(({ theme, ownerState }) => ({
   position: 'fixed',
-  zIndex: theme.zIndex.modal,
+  zIndex: (theme.vars || theme).zIndex.modal,
   right: 0,
   bottom: 0,
   top: 0,
@@ -61,8 +61,10 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
   const props = useThemeProps({ name: 'MuiModal', props: inProps });
   const {
     BackdropComponent = ModalBackdrop,
+    BackdropProps,
     closeAfterTransition = false,
     children,
+    component,
     components = {},
     componentsProps = {},
     disableAutoFocus = false,
@@ -73,6 +75,8 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
     disableScrollLock = false,
     hideBackdrop = false,
     keepMounted = false,
+    // eslint-disable-next-line react/prop-types
+    theme,
     ...other
   } = props;
 
@@ -98,21 +102,25 @@ const Modal = React.forwardRef(function Modal(inProps, ref) {
 
   const classes = extendUtilityClasses(ownerState);
 
+  const Root = components.Root ?? component ?? ModalRoot;
+
   return (
     <ModalUnstyled
       components={{
-        Root: ModalRoot,
+        Root,
+        Backdrop: BackdropComponent,
         ...components,
       }}
       componentsProps={{
-        root: {
-          ...componentsProps.root,
-          ...((!components.Root || !isHostComponent(components.Root)) && {
-            ownerState: { ...componentsProps.root?.ownerState },
-          }),
-        },
+        root: () => ({
+          ...resolveComponentProps(componentsProps.root, ownerState),
+          ...(!isHostComponent(Root) && { as: component, theme }),
+        }),
+        backdrop: () => ({
+          ...BackdropProps,
+          ...resolveComponentProps(componentsProps.backdrop, ownerState),
+        }),
       }}
-      BackdropComponent={BackdropComponent}
       onTransitionEnter={() => setExited(false)}
       onTransitionExited={() => setExited(true)}
       ref={ref}
@@ -132,6 +140,8 @@ Modal.propTypes /* remove-proptypes */ = {
   // ----------------------------------------------------------------------
   /**
    * A backdrop component. This prop enables custom backdrop rendering.
+   * @deprecated Use `components.Backdrop` instead. While this prop currently works, it will be removed in the next major version.
+   * Use the `components.Backdrop` prop to make your application ready for the next version of Material UI.
    * @default styled(Backdrop, {
    *   name: 'MuiModal',
    *   slot: 'Backdrop',
@@ -145,6 +155,7 @@ Modal.propTypes /* remove-proptypes */ = {
   BackdropComponent: PropTypes.elementType,
   /**
    * Props applied to the [`Backdrop`](/material-ui/api/backdrop/) element.
+   * @deprecated Use `componentsProps.backdrop` instead.
    */
   BackdropProps: PropTypes.object,
   /**
@@ -161,11 +172,17 @@ Modal.propTypes /* remove-proptypes */ = {
    */
   closeAfterTransition: PropTypes.bool,
   /**
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   */
+  component: PropTypes.elementType,
+  /**
    * The components used for each slot inside the Modal.
    * Either a string to use a HTML element or a component.
    * @default {}
    */
   components: PropTypes.shape({
+    Backdrop: PropTypes.elementType,
     Root: PropTypes.elementType,
   }),
   /**
@@ -173,7 +190,8 @@ Modal.propTypes /* remove-proptypes */ = {
    * @default {}
    */
   componentsProps: PropTypes.shape({
-    root: PropTypes.object,
+    backdrop: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
    * An HTML element or function that returns one.

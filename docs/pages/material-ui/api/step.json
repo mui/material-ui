@@ -4,6 +4,7 @@
     "children": { "type": { "name": "node" } },
     "classes": { "type": { "name": "object" } },
     "completed": { "type": { "name": "bool" } },
+    "component": { "type": { "name": "elementType" } },
     "disabled": { "type": { "name": "bool" } },
     "expanded": { "type": { "name": "bool" } },
     "index": { "type": { "name": "custom", "description": "integer" } },
@@ -25,6 +26,6 @@
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/Step/Step.js",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/material-ui/react-stepper/\">Steppers</a></li></ul>",
+  "demos": "<ul><li><a href=\"/material-ui/react-stepper/\">Stepper</a></li></ul>",
   "cssComponent": false
 }

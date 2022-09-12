@@ -11,6 +11,15 @@ export { default as StyledEngineProvider } from './StyledEngineProvider';
 export { default as GlobalStyles } from './GlobalStyles';
 export * from './GlobalStyles';
 
+/**
+ * For internal usage in `@mui/system` package
+ */
+// eslint-disable-next-line @typescript-eslint/naming-convention
+export function internal_processStyles(
+  tag: React.ElementType,
+  processor: (styles: any) => any,
+): void;
+
 export interface SerializedStyles {
   name: string;
   styles: string;
@@ -122,7 +131,11 @@ export interface CreateStyledComponent<
   ): StyledComponent<ComponentProps & AdditionalProps, SpecificComponentProps, JSXProps>;
 }
 
-export interface CreateMUIStyled<MUIStyledCommonProps, MuiStyledOptions, Theme extends object> {
+export interface CreateMUIStyled<
+  MUIStyledCommonProps extends {},
+  MuiStyledOptions,
+  Theme extends object,
+> {
   <
     C extends React.ComponentClass<React.ComponentProps<C>>,
     ForwardedProps extends keyof React.ComponentProps<C> = keyof React.ComponentProps<C>,

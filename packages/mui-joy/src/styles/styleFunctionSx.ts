@@ -22,7 +22,7 @@ import {
   palette,
   typographyVariant,
 } from '@mui/system';
-import { JoyTheme, SxProps } from './defaultTheme';
+import { Theme, SxProps } from './types';
 
 // The default system themeKey is shape
 const borderRadius = style({
@@ -106,8 +106,8 @@ const styleFunctionSx = unstable_createStyleFunctionSx(styleFunctionMapping);
 styleFunctionSx.filterProps = ['sx'];
 
 export const sx = (styles: SxProps) => {
-  return ({ theme }: { theme: JoyTheme }) =>
-    styleFunctionSx({ sx: styles, theme }) as Interpolation<{ theme: JoyTheme }>;
+  return ({ theme }: { theme: Theme }) =>
+    styleFunctionSx({ sx: styles, theme }) as Interpolation<{ theme: Theme }>;
 };
 
 export default styleFunctionSx;

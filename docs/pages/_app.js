@@ -1,9 +1,3 @@
-/* eslint-disable import/first */
-import { LicenseInfo } from '@mui/x-data-grid-pro';
-
-// Remove the license warning from demonstration purposes
-LicenseInfo.setLicenseKey(process.env.NEXT_PUBLIC_MUI_LICENSE);
-
 import 'docs/src/modules/components/bootstrap';
 // --- Post bootstrap -----
 import * as React from 'react';
@@ -16,12 +10,14 @@ import { unstable_useEnhancedEffect as useEnhancedEffect } from '@mui/utils';
 import pages from 'docs/src/pages';
 import basePages from 'docs/data/base/pages';
 import materialPages from 'docs/data/material/pages';
+import joyPages from 'docs/data/joy/pages';
 import systemPages from 'docs/data/system/pages';
 import PageContext from 'docs/src/modules/components/PageContext';
 import GoogleAnalytics from 'docs/src/modules/components/GoogleAnalytics';
+import { CodeCopyProvider } from 'docs/src/modules/utils/CodeCopy';
 import { ThemeProvider } from 'docs/src/modules/components/ThemeContext';
 import { pathnameToLanguage, getCookie } from 'docs/src/modules/utils/helpers';
-import { LANGUAGES } from 'docs/src/modules/constants';
+import { LANGUAGES, LANGUAGES_IGNORE_PAGES } from 'docs/src/modules/constants';
 import { CodeVariantProvider } from 'docs/src/modules/utils/codeVariant';
 import {
   UserLanguageProvider,
@@ -31,7 +27,11 @@ import {
 import DocsStyledEngineProvider from 'docs/src/modules/utils/StyledEngineProvider';
 import createEmotionCache from 'docs/src/createEmotionCache';
 import findActivePage from 'docs/src/modules/utils/findActivePage';
-import FEATURE_TOGGLE from 'docs/src/featureToggle';
+import useRouterExtra from 'docs/src/modules/utils/useRouterExtra';
+import { LicenseInfo } from '@mui/x-data-grid-pro';
+
+// Remove the license warning from demonstration purposes
+LicenseInfo.setLicenseKey(process.env.NEXT_PUBLIC_MUI_LICENSE);
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
@@ -54,7 +54,11 @@ function LanguageNegotiation() {
         acceptLanguage.get(navigator.language) ||
         userLanguage;
 
-      if (userLanguage !== preferedLanguage) {
+      if (
+        userLanguage !== preferedLanguage &&
+        !process.env.BUILD_ONLY_ENGLISH_LOCALE &&
+        !LANGUAGES_IGNORE_PAGES(router.pathname)
+      ) {
         window.location =
           preferedLanguage === 'en' ? canonicalAs : `/${preferedLanguage}${canonicalAs}`;
       }
@@ -63,7 +67,7 @@ function LanguageNegotiation() {
     if (userLanguage !== userLanguageUrl) {
       setUserLanguage(userLanguageUrl);
     }
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [router.pathname, router.asPath, setUserLanguage, userLanguage]);
 
   return null;
 }
@@ -170,7 +174,7 @@ Tip: you can access the documentation \`theme\` object directly in the console.
 function AppWrapper(props) {
   const { children, emotionCache, pageProps } = props;
 
-  const router = useRouter();
+  const { asPathWithoutLang, product, ...router } = useRouterExtra();
 
   React.useEffect(() => {
     loadDependencies();
@@ -183,15 +187,14 @@ function AppWrapper(props) {
     }
   }, []);
 
-  const asPathWithoutLang = router.asPath.replace(/^\/[a-zA-Z]{2}\//, '/');
   let productPages = pages;
-  if (asPathWithoutLang.startsWith('/base')) {
+  if (product === 'base') {
     productPages = basePages;
-  }
-  if (asPathWithoutLang.startsWith('/material-ui')) {
+  } else if (product === 'material-ui') {
     productPages = materialPages;
-  }
-  if (asPathWithoutLang.startsWith('/system') && FEATURE_TOGGLE.enable_system_scope) {
+  } else if (product === 'joy-ui') {
+    productPages = joyPages;
+  } else if (product === 'system') {
     productPages = systemPages;
   }
 
@@ -214,16 +217,18 @@ function AppWrapper(props) {
       </NextHead>
       <UserLanguageProvider defaultUserLanguage={pageProps.userLanguage}>
         <LanguageNegotiation />
-        <CodeVariantProvider>
-          <PageContext.Provider value={{ activePage, pages: productPages }}>
-            <ThemeProvider>
-              <DocsStyledEngineProvider cacheLtr={emotionCache}>
-                {children}
-                <GoogleAnalytics />
-              </DocsStyledEngineProvider>
-            </ThemeProvider>
-          </PageContext.Provider>
-        </CodeVariantProvider>
+        <CodeCopyProvider>
+          <CodeVariantProvider>
+            <PageContext.Provider value={{ activePage, pages: productPages }}>
+              <ThemeProvider>
+                <DocsStyledEngineProvider cacheLtr={emotionCache}>
+                  {children}
+                  <GoogleAnalytics />
+                </DocsStyledEngineProvider>
+              </ThemeProvider>
+            </PageContext.Provider>
+          </CodeVariantProvider>
+        </CodeCopyProvider>
       </UserLanguageProvider>
     </React.Fragment>
   );
@@ -244,7 +249,6 @@ export default function MyApp(props) {
     </AppWrapper>
   );
 }
-
 MyApp.propTypes = {
   Component: PropTypes.elementType.isRequired,
   emotionCache: PropTypes.object,

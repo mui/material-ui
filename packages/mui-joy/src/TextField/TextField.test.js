@@ -15,7 +15,7 @@ describe('Joy <TextField />', () => {
     inheritComponent: 'div',
     render,
     ThemeProvider,
-    muiName: 'MuiTextField',
+    muiName: 'JoyTextField',
     refInstanceof: window.HTMLDivElement,
     skip: ['componentsProp', 'classesRoot', 'themeVariants'],
   }));
@@ -46,10 +46,10 @@ describe('Joy <TextField />', () => {
     const { container, rerender } = render(<TextField />);
     expect(container.firstChild).to.have.class(classes.variantOutlined); // default variant
 
-    rerender(<TextField variant="light" />);
-    expect(container.firstChild).to.have.class(classes.variantLight);
+    rerender(<TextField variant="soft" />);
+    expect(container.firstChild).to.have.class(classes.variantSoft);
     expect(container.querySelector(`.${inputClasses.root}`)).to.have.class(
-      inputClasses.variantLight,
+      inputClasses.variantSoft,
     );
   });
 

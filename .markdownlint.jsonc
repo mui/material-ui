@@ -24,5 +24,11 @@
   // MD004/ul-style. Buggy
   "MD004": false,
   // MD028/no-blanks-blockquote prevent double blockquote
-  "MD028": false
+  "MD028": false,
+  // MD031/blanks-around-fences Some code blocks inside li
+  "MD031": false,
+  // MD051/link-fragments. Many false positives in the changelog.
+  "MD051": false,
+  // MD052/reference-links-images. Many false positives in the changelog.
+  "MD052": false
 }

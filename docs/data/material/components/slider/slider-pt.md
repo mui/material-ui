@@ -4,7 +4,7 @@ title: Componente React Slider
 components: Slider
 githubLabel: 'component: slider'
 materialDesign: https://material.io/components/sliders
-waiAria: 'https://www.w3.org/TR/wai-aria-practices/#slider'
+waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/slidertwothumb/
 unstyled: /base/react-slider/
 ---
 
@@ -82,7 +82,7 @@ In this example, an input allows a discrete value to be set.
 
 ## Sliders customizados
 
-Aqui estão alguns exemplos de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/material-ui/customization/how-to-customize/).
+Aqui estão alguns exemplos de customização do componente. You can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/).
 
 {{"demo": "CustomizedSlider.js"}}
 
@@ -124,21 +124,23 @@ Na seguinte demonstração, o valor _x_ representa o valor _2^x_. Acrescentar em
 
 {{"demo": "NonLinearSlider.js"}}
 
-## Unstyled
+## Accessibility
 
-(WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#slider)
+(WAI-ARIA: https://www.w3.org/WAI/ARIA/apg/patterns/slidertwothumb/)
 
-O componente lida com a maior parte do trabalho necessário para torná-lo acessível. No entanto, você precisa se certificar de que:
+The component handles most of the work necessary to make it accessible. However, you need to make sure that:
 
-- 📦 [5.6 kB gzipped](https://bundlephobia.com/package/@mui/base@latest)
-- Cada marcador tenha um texto amigável para o seu valor atual. Isso não é necessário se o valor corresponder ao rótulo exibido no slider. Você pode alterar o nome com as propriedades `getAriaValueText` ou `aria-valuetext`.
+- Each thumb has a user-friendly label (`aria-label`, `aria-labelledby` or `getAriaLabel` prop).
+- Each thumb has a user-friendly text for its current value. This is not required if the value matches the semantics of the label. You can change the name with the `getAriaValueText` or `aria-valuetext` prop.
 
-## Acessibilidade
+## Limitations
 
 ### IE 11
 
 The slider's value label is not centered in IE 11. The alignement is not handled to make customizations easier with the lastest browsers. You can solve the issue with:
 
 ```css
-import SliderUnstyled from '@mui/base/SliderUnstyled';
+.MuiSlider-valueLabel {
+  left: calc(-50% - 4px);
+}
 ```

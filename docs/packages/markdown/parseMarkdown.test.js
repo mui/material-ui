@@ -153,6 +153,9 @@ authors:
     it('returns the table of contents with html and emojis stripped', () => {
       const markdown = `
 # Support
+
+<p class="description">Foo</p>
+
 ## Community help (free)
 ### GitHub <img src="/static/images/logos/github.svg" width="24" height="24" alt="GitHub logo" loading="lazy" />
 ### Unofficial 👍
@@ -164,7 +167,7 @@ authors:
           en: { toc },
         },
       } = prepareMarkdown({
-        pageFilename: 'test',
+        pageFilename: '/test',
         translations: [{ filename: 'index.md', markdown, userLanguage: 'en' }],
       });
 
@@ -185,6 +188,9 @@ authors:
     it('enables word-break for function signatures', () => {
       const markdown = `
 # Theming
+
+<p class="description">Foo</p>
+
 ## API
 ### responsiveFontSizes(theme, options) => theme
 ### createTheme(options, ...args) => theme
@@ -195,7 +201,7 @@ authors:
           en: { toc },
         },
       } = prepareMarkdown({
-        pageFilename: 'test',
+        pageFilename: '/test',
         translations: [{ filename: 'index.md', markdown, userLanguage: 'en' }],
       });
 
@@ -223,6 +229,9 @@ authors:
     it('use english hash for different locales', () => {
       const markdownEn = `
 # Localization
+
+<p class="description">Foo</p>
+
 ## Locales
 ### Example
 ### Use same hash
@@ -230,6 +239,9 @@ authors:
 
       const markdownPt = `
 # Localização
+
+<p class="description">Foo</p>
+
 ## Idiomas
 ### Exemplo
 ### Usar o mesmo hash
@@ -237,6 +249,9 @@ authors:
 
       const markdownZh = `
 # 所在位置
+
+<p class="description">Foo</p>
+
 ## 语言环境
 ### 例
 ### 使用相同的哈希
@@ -248,7 +263,7 @@ authors:
           zh: { toc: tocZh },
         },
       } = prepareMarkdown({
-        pageFilename: 'same-hash-test',
+        pageFilename: '/same-hash-test',
         translations: [
           { filename: 'localization.md', markdown: markdownEn, userLanguage: 'en' },
           { filename: 'localization-pt.md', markdown: markdownPt, userLanguage: 'pt' },
@@ -320,6 +335,9 @@ authors:
     it('use translated hash for translations are not synced', () => {
       const markdownEn = `
 # Localization
+
+<p class="description">Foo</p>
+
 ## Locales
 ### Example
 ### Use same hash
@@ -327,6 +345,9 @@ authors:
 
       const markdownPt = `
 # Localização
+
+<p class="description">Foo</p>
+
 ## Idiomas
 ### Exemplo
 ### Usar o mesmo hash
@@ -339,7 +360,7 @@ authors:
           pt: { toc: tocPt },
         },
       } = prepareMarkdown({
-        pageFilename: 'same-hash-test',
+        pageFilename: '/same-hash-test',
         translations: [
           { filename: 'localization.md', markdown: markdownEn, userLanguage: 'en' },
           { filename: 'localization-pt.md', markdown: markdownPt, userLanguage: 'pt' },
@@ -390,6 +411,24 @@ authors:
           text: 'Locales',
         },
       ]);
+    });
+
+    it('should report missing trailing splashes', () => {
+      const markdown = `
+# Localization
+
+<p class="description">Foo</p>
+
+[bar](/bar/)
+[foo](/foo)
+`;
+
+      expect(() => {
+        prepareMarkdown({
+          pageFilename: '/test',
+          translations: [{ filename: 'index.md', markdown, userLanguage: 'en' }],
+        });
+      }).to.throw(/\[foo]\(\/foo\) in \/docs\/test\/index\.md is missing a trailing slash/);
     });
   });
 });

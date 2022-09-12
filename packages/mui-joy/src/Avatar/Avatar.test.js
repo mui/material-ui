@@ -15,22 +15,23 @@ describe('<Avatar />', () => {
     inheritComponent: 'div',
     render,
     ThemeProvider,
-    muiName: 'MuiAvatar',
+    muiName: 'JoyAvatar',
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'span',
     testDeepOverrides: { slotName: 'fallback', slotClassName: classes.fallback },
-    testVariantProps: { variant: 'contained' },
+    testVariantProps: { variant: 'solid' },
+    testCustomVariant: true,
     skip: ['classesRoot', 'componentsProp'],
   }));
 
   describe('prop: variant', () => {
-    it('light by default', () => {
+    it('soft by default', () => {
       const { getByTestId } = render(<Avatar data-testid="root" />);
 
-      expect(getByTestId('root')).to.have.class(classes.variantLight);
+      expect(getByTestId('root')).to.have.class(classes.variantSoft);
     });
 
-    ['outlined', 'light', 'contained'].forEach((variant) => {
+    ['outlined', 'soft', 'solid'].forEach((variant) => {
       it(`should render ${variant}`, () => {
         const { getByTestId } = render(<Avatar data-testid="root" variant={variant} />);
 
@@ -95,7 +96,9 @@ describe('<Avatar />', () => {
 
     it('should be able to add more props to the image', () => {
       const onError = spy();
-      const { container } = render(<Avatar src="/fake.png" imgProps={{ onError }} />);
+      const { container } = render(
+        <Avatar src="/fake.png" componentsProps={{ img: { onError } }} />,
+      );
       const img = container.querySelector('img');
       fireEvent.error(img);
       expect(onError.callCount).to.equal(1);
@@ -113,7 +116,9 @@ describe('<Avatar />', () => {
 
     it('should be able to add more props to the image', () => {
       const onError = spy();
-      const { container } = render(<Avatar src="/fake.png" imgProps={{ onError }} />);
+      const { container } = render(
+        <Avatar src="/fake.png" componentsProps={{ img: { onError } }} />,
+      );
       const img = container.querySelector('img');
       fireEvent.error(img);
       expect(onError.callCount).to.equal(1);

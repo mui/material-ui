@@ -2,7 +2,6 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer, describeConformance } from 'test/utils';
 import { unstable_capitalize as capitalize } from '@mui/utils';
-import { BadgeUnstyled } from '@mui/base';
 import { ThemeProvider } from '@mui/joy/styles';
 import Badge, { badgeClasses as classes } from '@mui/joy/Badge';
 
@@ -28,12 +27,13 @@ describe('<Badge />', () => {
     </Badge>,
     () => ({
       classes,
-      inheritComponent: BadgeUnstyled,
+      inheritComponent: 'span',
       render,
       ThemeProvider,
       refInstanceof: window.HTMLSpanElement,
-      muiName: 'MuiBadge',
-      testVariantProps: { color: 'neutral', variant: 'light' },
+      muiName: 'JoyBadge',
+      testVariantProps: { color: 'neutral', variant: 'soft' },
+      testCustomVariant: true,
       skip: ['classesRoot', 'componentsProp'],
     }),
   );
@@ -137,10 +137,10 @@ describe('<Badge />', () => {
   describe('prop: variant', () => {
     it('addas a light class by default', () => {
       const { container } = render(<Badge {...defaultProps} />);
-      expect(findBadge(container)).to.have.class(classes.variantContained);
+      expect(findBadge(container)).to.have.class(classes.variantSolid);
     });
 
-    ['outlined', 'light', 'contained'].forEach((variant) => {
+    ['outlined', 'soft', 'solid'].forEach((variant) => {
       it(`should render ${variant}`, () => {
         const { container } = render(<Badge variant={variant} {...defaultProps} />);
 

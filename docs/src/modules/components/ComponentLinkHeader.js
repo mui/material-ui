@@ -27,13 +27,22 @@ const Root = styled('ul')(({ theme }) => ({
   },
 }));
 
+const defaultPackageNames = {
+  'material-ui': '@mui/material',
+  'joy-ui': '@mui/joy',
+  base: '@mui/base',
+  system: '@mui/system',
+};
+
 export default function ComponentLinkHeader(props) {
-  const {
-    headers,
-    headers: { packageName = '@mui/material' },
-    options,
-  } = props;
+  const { headers, options } = props;
   const t = useTranslate();
+
+  let packageName = props.headers.packageName;
+  if (!packageName) {
+    const { product } = props.headers;
+    packageName = defaultPackageNames[product] || '@mui/material';
+  }
 
   return (
     <Root>

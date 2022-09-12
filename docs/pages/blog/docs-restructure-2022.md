@@ -33,9 +33,9 @@ We added an identifier and menu to the upper-left corner of the docs for improve
 As for the URLs, this is how they look now:
 
 - MUI Core:
-  - Material UI: [https://mui.com/material-ui/](https://mui.com/material-ui/getting-started/installation/)
-  - MUI Base: [https://mui.com/base/](https://mui.com/base/getting-started/installation/)
-  - MUI System: [https://mui.com/system/](https://mui.com/system/basics/)
+  - Material UI: [https://mui.com/material-ui/](https://mui.com/material-ui/getting-started/overview/)
+  - MUI Base: [https://mui.com/base/](https://mui.com/base/getting-started/overview/)
+  - MUI System: [https://mui.com/system/](https://mui.com/system/getting-started/overview/)
 - MUI X:
   - Data grid: [https://mui.com/x/react-data-grid/](https://mui.com/x/react-data-grid/)
   - Date and Time pickers: [https://mui.com/x/react-date-pickers/](https://mui.com/x/react-date-pickers/getting-started/)
@@ -45,7 +45,7 @@ As for the URLs, this is how they look now:
 ### Improved search experience
 
 The documentation restructuring ranks search results based on the product that you are currently looking at.
-For example, if you are looking at Material UI documentation, when you press <kbd><kbd class="key">⌘</kbd>+<kbd class="key">K</kbd></kbd> (or <kbd><kbd class="key">CTRL</kbd>+<kbd class="key">K</kbd></kbd> on Windows) and type a keyword, you will find that most of the results are related to Material UI.
+For example, if you are looking at Material UI documentation, when you press <kbd><kbd class="key">⌘</kbd>+<kbd class="key">K</kbd></kbd> (or <kbd><kbd class="key">Ctrl</kbd>+<kbd class="key">K</kbd></kbd> on Windows) and type a keyword, you will find that most of the results are related to Material UI.
 
 We have also added product labels for Material UI and MUI Base in case it's unclear which library the search results refer to.
 

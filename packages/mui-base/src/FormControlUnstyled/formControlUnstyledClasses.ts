@@ -6,17 +6,25 @@ export interface FormControlUnstyledClasses {
   root: string;
   /** Class applied to the root element if `disabled={true}`. */
   disabled: string;
+  /** Class applied to the root element if `error={true}`. */
+  error: string;
+  /** Class applied to the root element if the inner input has value. */
+  filled: string;
+  /** Class applied to the root element if the inner input is focused. */
+  focused: string;
+  /** Class applied to the root element if `required={true}`. */
+  required: string;
 }
 
 export type FormControlUnstyledClassKey = keyof FormControlUnstyledClasses;
 
-export function getFormControlUnstyledUtilityClasses(slot: string): string {
-  return generateUtilityClass('MuiFormControl', slot);
+export function getFormControlUnstyledUtilityClass(slot: string): string {
+  return generateUtilityClass('BaseFormControl', slot);
 }
 
 const formControlUnstyledClasses: FormControlUnstyledClasses = generateUtilityClasses(
-  'MuiFormControl',
-  ['root', 'disabled'],
+  'BaseFormControl',
+  ['root', 'disabled', 'error', 'filled', 'focused', 'required'],
 );
 
 export default formControlUnstyledClasses;

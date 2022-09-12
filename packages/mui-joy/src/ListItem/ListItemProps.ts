@@ -1,20 +1,24 @@
 import * as React from 'react';
-import { OverrideProps } from '@mui/types';
-import { SxProps } from '../styles/defaultTheme';
-import { ListItemClasses } from './listItemClasses';
+import { OverridableStringUnion, OverrideProps } from '@mui/types';
+import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
 
 export type ListItemSlot = 'root' | 'startAction' | 'endAction';
+
+export interface ListItemPropsVariantOverrides {}
+
+export interface ListItemPropsColorOverrides {}
 
 export interface ListItemTypeMap<P = {}, D extends React.ElementType = 'li'> {
   props: P & {
     /**
+     * The color of the component. It supports those theme colors that make sense for this component.
+     * @default 'neutral'
+     */
+    color?: OverridableStringUnion<ColorPaletteProp, ListItemPropsColorOverrides>;
+    /**
      * The content of the component.
      */
     children?: React.ReactNode;
-    /**
-     * Override or extend the styles applied to the component.
-     */
-    classes?: Partial<ListItemClasses>;
     /**
      * The element to display at the start of ListItem.
      */
@@ -34,6 +38,11 @@ export interface ListItemTypeMap<P = {}, D extends React.ElementType = 'li'> {
      */
     sticky?: boolean;
     /**
+     * The variant to use.
+     * @default 'plain'
+     */
+    variant?: OverridableStringUnion<VariantProp, ListItemPropsVariantOverrides>;
+    /**
      * The system prop that allows defining system overrides as well as additional CSS styles.
      */
     sx?: SxProps;
@@ -47,3 +56,25 @@ export type ListItemProps<
     component?: React.ElementType;
   },
 > = OverrideProps<ListItemTypeMap<P, D>, D>;
+
+export interface ListItemOwnerState extends ListItemProps {
+  /**
+   * If `true`, the element is rendered in a horizontal list.
+   * @internal
+   */
+  row: boolean;
+  /**
+   * If `true`, the element is rendered in a wrapped list.
+   * @internal
+   */
+  wrap: boolean;
+  /**
+   * If `true`, the element is rendered in a nested list item.
+   */
+  nesting: boolean | string;
+  /**
+   * @internal
+   * The internal prop for controlling CSS margin of the element.
+   */
+  'data-first-child'?: boolean;
+}

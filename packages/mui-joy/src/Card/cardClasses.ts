@@ -1,4 +1,4 @@
-import { generateUtilityClass, generateUtilityClasses } from '@mui/base';
+import { generateUtilityClass, generateUtilityClasses } from '../className';
 
 export interface CardClasses {
   /** Styles applied to the root element. */
@@ -15,29 +15,31 @@ export interface CardClasses {
   colorSuccess: string;
   /** Styles applied to the root element if `color="warning"`. */
   colorWarning: string;
-  /** Styles applied to the root element if `variant="text"`. */
-  variantText: string;
+  /** Styles applied to the root element if `variant="plain"`. */
+  variantPlain: string;
   /** Styles applied to the root element if `variant="outlined"`. */
   variantOutlined: string;
-  /** Styles applied to the root element if `variant="light"`. */
-  variantLight: string;
-  /** Styles applied to the root element if `variant="contained"`. */
-  variantContained: string;
+  /** Styles applied to the root element if `variant="soft"`. */
+  variantSoft: string;
+  /** Styles applied to the root element if `variant="solid"`. */
+  variantSolid: string;
   /** Styles applied to the root element if `size="sm"`. */
   sizeSm: string;
   /** Styles applied to the root element if `size="md"`. */
   sizeMd: string;
   /** Styles applied to the root element if `size="lg"`. */
   sizeLg: string;
+  /** Styles applied to the root element if `row={true}`. */
+  row: string;
 }
 
 export type CardClassKey = keyof CardClasses;
 
 export function getCardUtilityClass(slot: string): string {
-  return generateUtilityClass('MuiCard', slot);
+  return generateUtilityClass('JoyCard', slot);
 }
 
-const cardClasses: CardClasses = generateUtilityClasses('MuiCard', [
+const cardClasses: CardClasses = generateUtilityClasses('JoyCard', [
   'root',
   'colorPrimary',
   'colorNeutral',
@@ -45,13 +47,14 @@ const cardClasses: CardClasses = generateUtilityClasses('MuiCard', [
   'colorInfo',
   'colorSuccess',
   'colorWarning',
-  'variantText',
+  'variantPlain',
   'variantOutlined',
-  'variantLight',
-  'variantContained',
+  'variantSoft',
+  'variantSolid',
   'sizeSm',
   'sizeMd',
   'sizeLg',
+  'row',
 ]);
 
 export default cardClasses;

@@ -43,7 +43,10 @@ const InputRoot = styled(InputBaseRoot, {
   },
 })(({ theme, ownerState }) => {
   const light = theme.palette.mode === 'light';
-  const bottomLineColor = light ? 'rgba(0, 0, 0, 0.42)' : 'rgba(255, 255, 255, 0.7)';
+  let bottomLineColor = light ? 'rgba(0, 0, 0, 0.42)' : 'rgba(255, 255, 255, 0.7)';
+  if (theme.vars) {
+    bottomLineColor = `rgba(${theme.vars.palette.common.onBackgroundChannel} / ${theme.vars.opacity.inputUnderline})`;
+  }
   return {
     position: 'relative',
     ...(ownerState.formControl && {
@@ -53,7 +56,7 @@ const InputRoot = styled(InputBaseRoot, {
     }),
     ...(!ownerState.disableUnderline && {
       '&:after': {
-        borderBottom: `2px solid ${theme.palette[ownerState.color].main}`,
+        borderBottom: `2px solid ${(theme.vars || theme).palette[ownerState.color].main}`,
         left: 0,
         bottom: 0,
         // Doing the other way around crash on IE11 "''" https://github.com/cssinjs/jss/issues/242
@@ -73,7 +76,7 @@ const InputRoot = styled(InputBaseRoot, {
         transform: 'scaleX(1) translateX(0)',
       },
       [`&.${inputClasses.error}:after`]: {
-        borderBottomColor: theme.palette.error.main,
+        borderBottomColor: (theme.vars || theme).palette.error.main,
         transform: 'scaleX(1)', // error is always underlined in red
       },
       '&:before': {
@@ -90,7 +93,7 @@ const InputRoot = styled(InputBaseRoot, {
         pointerEvents: 'none', // Transparent to the hover style.
       },
       [`&:hover:not(.${inputClasses.disabled}):before`]: {
-        borderBottom: `2px solid ${theme.palette.text.primary}`,
+        borderBottom: `2px solid ${(theme.vars || theme).palette.text.primary}`,
         // Reset on touch devices, it doesn't add specificity
         '@media (hover: none)': {
           borderBottom: `1px solid ${bottomLineColor}`,

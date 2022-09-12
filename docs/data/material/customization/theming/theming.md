@@ -33,7 +33,7 @@ You can check out the [default theme section](/material-ui/customization/default
 
 ### Custom variables
 
-When using MUI's theme with [MUI System](/system/basics/) or [any other styling solution](/material-ui/guides/interoperability/#themeprovider), it can be convenient to add additional variables to the theme so you can use them everywhere.
+When using MUI's theme with [MUI System](/system/getting-started/overview/) or [any other styling solution](/material-ui/guides/interoperability/#themeprovider), it can be convenient to add additional variables to the theme so you can use them everywhere.
 For instance:
 
 ```jsx
@@ -42,6 +42,14 @@ const theme = createTheme({
     danger: orange[500],
   },
 });
+```
+
+**WARNING**: `vars` is a private field used for CSS variables support. It will throw an error if you try to use it:
+
+```jsx
+createTheme({
+  vars: { ... },
+})
 ```
 
 If you are using TypeScript, you would also need to use [module augmentation](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation) for the theme to accept the above values.
@@ -77,7 +85,16 @@ The community has built great tools to build a theme:
 
 ## Accessing the theme in a component
 
-You [can access](/system/styles/advanced/#accessing-the-theme-in-a-component) the theme variables inside your React components.
+You can access the theme variables inside your functional React components using the `useTheme` hook:
+
+```jsx
+import { useTheme } from '@mui/material/styles';
+
+function DeepChild() {
+  const theme = useTheme();
+  return <span>{`spacing ${theme.spacing}`}</span>;
+}
+```
 
 ## Nesting the theme
 
@@ -101,8 +118,10 @@ Generate a theme base on the options received. Then, pass it as a prop to [`Them
 1. `options` (_object_): Takes an incomplete theme object and adds the missing parts.
 2. `...args` (_object[]_): Deep merge the arguments with the about to be returned theme.
 
-> Note: Only the first argument (`options`) is being processed by the `createTheme` function.
-> If you want to actually merge two themes' options and create a new one based on them, you may want to deep merge the two options and provide them as a first argument to the `createTheme` function.
+:::warning
+Note: Only the first argument (`options`) is being processed by the `createTheme` function.
+If you want to actually merge two themes' options and create a new one based on them, you may want to deep merge the two options and provide them as a first argument to the `createTheme` function.
+:::
 
 ```js
 import { deepmerge } from '@mui/utils';
@@ -161,6 +180,8 @@ theme = createTheme(theme, {
 ```
 
 Think of creating a theme as a two-step composition process: first, you define the basic design options; then, you'll use these design options to compose other options.
+
+**WARNING**: `theme.vars` is a private field used for CSS variables support. Please use another name for a custom object.
 
 ### `responsiveFontSizes(theme, options) => theme`
 
@@ -245,7 +266,6 @@ It should preferably be used at **the root of your component tree**.
 
 ```jsx
 import * as React from 'react';
-import ReactDOM from 'react-dom';
 import { red } from '@mui/material/colors';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 
@@ -260,6 +280,4 @@ const theme = createTheme({
 function App() {
   return <ThemeProvider theme={theme}>...</ThemeProvider>;
 }
-
-ReactDOM.render(<App />, document.querySelector('#app'));
 ```

@@ -12,7 +12,7 @@ export interface BadgeUnstyledClasses {
 
 export type BadgeUnstyledClassKey = keyof BadgeUnstyledClasses;
 
-export function getBadgeUtilityClass(slot: string): string {
+export function getBadgeUnstyledUtilityClass(slot: string): string {
   return generateUtilityClass('BaseBadge', slot);
 }
 

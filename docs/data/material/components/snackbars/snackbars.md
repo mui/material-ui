@@ -73,7 +73,7 @@ You can change the direction of the [Slide](/material-ui/transitions/#slide) tra
 Example of making the slide transition to the left:
 
 ```jsx
-import Slide from '@material-ui/core/Slide';
+import Slide from '@mui/material/Slide';
 
 function TransitionLeft(props) {
   return <Slide {...props} direction="left" />;

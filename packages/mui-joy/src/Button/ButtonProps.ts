@@ -5,8 +5,8 @@ import {
   OverridableTypeMap,
   OverrideProps,
 } from '@mui/types';
-import { SxProps } from '../styles/defaultTheme';
-import { ColorPaletteProp, VariantProp } from '../styles/types';
+import { SlotComponentProps } from '@mui/base/utils';
+import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
 
 export type ButtonSlot = 'root' | 'startIcon' | 'endIcon';
 
@@ -15,6 +15,12 @@ export interface ButtonPropsVariantOverrides {}
 export interface ButtonPropsColorOverrides {}
 
 export interface ButtonPropsSizeOverrides {}
+
+interface ComponentsProps {
+  root?: SlotComponentProps<'button', { sx?: SxProps }, ButtonOwnerState>;
+  startIcon?: SlotComponentProps<'span', { sx?: SxProps }, ButtonOwnerState>;
+  endIcon?: SlotComponentProps<'span', { sx?: SxProps }, ButtonOwnerState>;
+}
 
 export interface ButtonTypeMap<P = {}, D extends React.ElementType = 'button'> {
   props: P & {
@@ -29,6 +35,11 @@ export interface ButtonTypeMap<P = {}, D extends React.ElementType = 'button'> {
      * @default 'primary'
      */
     color?: OverridableStringUnion<ColorPaletteProp, ButtonPropsColorOverrides>;
+    /**
+     * The props used for each slot inside the component.
+     * @default {}
+     */
+    componentsProps?: ComponentsProps;
     /**
      * If `true`, the component is disabled.
      * @default false
@@ -70,7 +81,7 @@ export interface ButtonTypeMap<P = {}, D extends React.ElementType = 'button'> {
     tabIndex?: NonNullable<React.HTMLAttributes<any>['tabIndex']>;
     /**
      * The variant to use.
-     * @default 'contained'
+     * @default 'solid'
      */
     variant?: OverridableStringUnion<VariantProp, ButtonPropsVariantOverrides>;
   };
@@ -88,6 +99,13 @@ export type ButtonProps<
     component?: React.ElementType;
   },
 > = OverrideProps<ButtonTypeMap<P, D>, D>;
+
+export interface ButtonOwnerState extends ButtonProps {
+  /**
+   * If `true`, the button's focus is visible.
+   */
+  focusVisible: boolean;
+}
 
 export type ExtendButton<M extends OverridableTypeMap> = ((
   props: OverrideProps<ExtendButtonTypeMap<M>, 'a'>,

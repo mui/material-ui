@@ -1,6 +1,6 @@
 ---
-title: MUI X expands its product line with advanced date and time picker components
-description: Migrate to the new package to start building with our powerful date and time pickers, now part of MUI X.
+title: Date and time pickers are moving to MUI X
+description: Migrate to the new package to start building with our powerful date and time pickers, now part of MUI X. Previously released MIT components will stay MIT.
 date: 2022-04-03T00:00:00.000Z
 authors: ['flaviendelangle']
 tags: ['MUI X', 'News']
@@ -8,12 +8,12 @@ card: true
 ---
 
 After more than 18 months in the lab, the date and time picker components have found a new home as part of MUI X.
-
 This means we'll be dedicating even more time and effort to these complex components, to better meet the needs of both you and your users.
 
 ## TL;DR
 
-- **No licenses change**, the MIT and paid date pickers remains the same.
+- The date pickers are one step closer to a stable release.
+- **No surprise licenses changes**. We are staying true to [our promises](https://mui-org.notion.site/Stewardship-542a2226043d4f4a96dfb429d16cf5bd). What's MIT stays MIT, and we're going forward with our [plan announced over a year ago](https://v5-0-6.mui.com/components/date-range-picker/) to move the date range picker to the commercial license.
 - Follow the [migration steps](/x/react-date-pickers/migration-lab/)
 
 ## What are date and time pickers?
@@ -32,7 +32,7 @@ The user may need to select an individual date/time, or a range.
 
 [MUI X](/x/) is a collection of advanced components built for complex use cases.
 
-As opposed to the Core library, which leans on the open-source community for support, MUI X components require several full-time developers dedicated to engineering and ongoing maintenance.
+As opposed to the MUI Core library, which leans on the open-source community for support, MUI X components require several full-time developers dedicated to engineering and ongoing maintenance.
 
 MUI X components are available under two licenses:
 
@@ -51,8 +51,8 @@ And by offering an even more advanced component package through our commercial l
 
 The date and time picker components are now available in two packages:
 
-- `@mui/x-date-pickers` which contains all the MIT licensed components
-- `@mui/x-date-pickers-pro` which contains all the MIT and commercially licensed components
+- `@mui/x-date-pickers` has a [MIT license](https://unpkg.com/browse/@mui/x-date-pickers/LICENSE), it contains all the open-source components
+- `@mui/x-date-pickers-pro` has a [commercial license](https://unpkg.com/browse/@mui/x-date-pickers-pro/LICENSE), it contains all the MIT and commercially licensed components
 
 ## Which components are only available in the Pro package?
 
@@ -62,7 +62,7 @@ All other date and time picker components are available in `mui/x-date-pickers` 
 
 ## How do I purchase a commercial license?
 
-Visit [the MUI Store](/store/items/material-ui-pro/) to purchase a commercial license.
+Visit [the MUI Store](https://mui.com/store/items/material-ui-pro/) to purchase a commercial license.
 
 ## How do I migrate?
 

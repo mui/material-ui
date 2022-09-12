@@ -4,7 +4,7 @@ title: React Tabs component
 components: Tabs, Tab, TabScrollButton, TabContext, TabList, TabPanel, TabsUnstyled, TabUnstyled, TabPanelUnstyled, TabsListUnstyled
 githubLabel: 'component: tabs'
 materialDesign: https://material.io/components/tabs
-waiAria: https://www.w3.org/TR/wai-aria-practices/#tabpanel
+waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/tabpanel/
 unstyled: /base/react-tabs/
 ---
 
@@ -25,7 +25,7 @@ A basic example with tab panels.
 ## Experimental API
 
 `@mui/lab` offers utility components that inject props to implement accessible tabs
-following [WAI-ARIA authoring practices](https://www.w3.org/TR/wai-aria-practices/#tabpanel).
+following [WAI-ARIA authoring practices](https://www.w3.org/WAI/ARIA/apg/patterns/tabpanel/).
 
 {{"demo": "LabTabs.js"}}
 
@@ -139,7 +139,7 @@ Here is a [more detailed guide](/material-ui/guides/routing/#tabs).
 
 ## Accessibility
 
-(WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#tabpanel)
+(WAI-ARIA: https://www.w3.org/WAI/ARIA/apg/patterns/tabpanel/)
 
 The following steps are needed in order to provide necessary information for assistive technologies:
 
@@ -153,7 +153,7 @@ extra work.
 ### Keyboard navigation
 
 The components implement keyboard navigation using the "manual activation" behavior. If you want to switch to the
-"selection automatically follows focus" behavior you have pass `selectionFollowsFocus` to the `Tabs` component. The WAI-ARIA authoring practices have a detailed guide on [how to decide when to make selection automatically follow focus](https://www.w3.org/TR/wai-aria-practices/#kbd_selection_follows_focus).
+"selection automatically follows focus" behavior you have pass `selectionFollowsFocus` to the `Tabs` component. The WAI-ARIA authoring practices have a detailed guide on [how to decide when to make selection automatically follow focus](https://www.w3.org/WAI/ARIA/apg/practices/keyboard-interface/#x6-4-deciding-when-to-make-selection-automatically-follow-focus).
 
 #### Demo
 

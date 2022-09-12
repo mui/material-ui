@@ -1,4 +1,4 @@
-import { generateUtilityClass, generateUtilityClasses } from '@mui/base';
+import { generateUtilityClass, generateUtilityClasses } from '../className';
 
 export interface CardContentClasses {
   /** Styles applied to the root element. */
@@ -8,9 +8,9 @@ export interface CardContentClasses {
 export type CardContentClassKey = keyof CardContentClasses;
 
 export function getCardContentUtilityClass(slot: string): string {
-  return generateUtilityClass('MuiCardContent', slot);
+  return generateUtilityClass('JoyCardContent', slot);
 }
 
-const cardClasses: CardContentClasses = generateUtilityClasses('MuiCardContent', ['root']);
+const cardClasses: CardContentClasses = generateUtilityClasses('JoyCardContent', ['root']);
 
 export default cardClasses;

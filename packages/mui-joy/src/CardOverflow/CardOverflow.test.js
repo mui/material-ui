@@ -13,21 +13,22 @@ describe('<CardOverflow />', () => {
     inheritComponent: 'div',
     render,
     ThemeProvider,
-    muiName: 'MuiCardOverflow',
+    muiName: 'JoyCardOverflow',
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'span',
-    testVariantProps: { variant: 'contained' },
+    testVariantProps: { variant: 'solid' },
+    testCustomVariant: true,
     skip: ['classesRoot', 'componentsProp'],
   }));
 
   describe('prop: variant', () => {
-    it('text by default', () => {
+    it('plain by default', () => {
       const { getByTestId } = render(<CardOverflow data-testid="root">Hello World</CardOverflow>);
 
-      expect(getByTestId('root')).to.have.class(classes.variantText);
+      expect(getByTestId('root')).to.have.class(classes.variantPlain);
     });
 
-    ['text', 'outlined', 'light', 'contained'].forEach((variant) => {
+    ['plain', 'outlined', 'soft', 'solid'].forEach((variant) => {
       it(`should render ${variant}`, () => {
         const { getByTestId } = render(
           <CardOverflow data-testid="root" variant={variant}>

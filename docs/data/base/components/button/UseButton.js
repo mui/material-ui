@@ -1,9 +1,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import Stack from '@mui/material/Stack';
 import { useButton } from '@mui/base/ButtonUnstyled';
 import { styled } from '@mui/system';
+import Stack from '@mui/material/Stack';
 
 const blue = {
   500: '#007FFF',
@@ -17,7 +17,7 @@ const CustomButtonRoot = styled('button')`
   font-size: 0.875rem;
   background-color: ${blue[500]};
   padding: 12px 24px;
-  border-radius: 8px;
+  border-radius: 12px;
   color: white;
   transition: all 150ms ease;
   cursor: pointer;
@@ -47,7 +47,6 @@ const CustomButton = React.forwardRef(function CustomButton(props, ref) {
   const { active, disabled, focusVisible, getRootProps } = useButton({
     ...props,
     ref,
-    component: CustomButtonRoot,
   });
 
   const classes = {

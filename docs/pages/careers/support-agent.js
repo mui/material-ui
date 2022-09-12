@@ -1,7 +1,7 @@
 import * as React from 'react';
-import TopLayoutCompany from 'docs/src/modules/components/TopLayoutCompany';
+import TopLayoutCareers from 'docs/src/modules/components/TopLayoutCareers';
 import { demos, docs, demoComponents } from 'docs/src/pages/careers/support-agent.md?@mui/markdown';
 
 export default function Page() {
-  return <TopLayoutCompany demos={demos} docs={docs} demoComponents={demoComponents} />;
+  return <TopLayoutCareers demos={demos} docs={docs} demoComponents={demoComponents} />;
 }

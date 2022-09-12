@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { OverrideProps } from '@mui/types';
-import { SxProps } from '../styles/defaultTheme';
+import { SxProps } from '../styles/types';
 
 export type CardContentSlot = 'root';
 
@@ -23,3 +23,5 @@ export type CardContentProps<
   D extends React.ElementType = CardContentTypeMap['defaultComponent'],
   P = { component?: React.ElementType },
 > = OverrideProps<CardContentTypeMap<P, D>, D>;
+
+export interface CardContentOwnerState extends CardContentProps {}

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { OverrideProps } from '@mui/types';
-import { SxProps } from '../styles/defaultTheme';
+import { SxProps } from '../styles/types';
 import { FormHelperTextClasses } from './formHelperTextClasses';
 
 export type FormHelperTextSlot = 'root';
@@ -29,3 +29,5 @@ export type FormHelperTextProps<
     component?: React.ElementType;
   },
 > = OverrideProps<FormHelperTextTypeMap<P, D>, D>;
+
+export interface FormHelperTextOwnerState extends FormHelperTextProps {}

@@ -129,7 +129,9 @@ const GridToolbarContainerStyled = styled(GridToolbarContainer)({
 });
 
 function MyCustomToolbar() {
-  return <GridToolbarContainerStyled>My custom toolbar</GridToolbarContainerStyled>;
+  return (
+    <GridToolbarContainerStyled>My custom toolbar</GridToolbarContainerStyled>
+  );
 }
 
 export default function App() {
@@ -201,7 +203,7 @@ Please check [the v4 migration guide](/x/react-data-grid/migration-v4/) to accel
 ## What's next?
 
 More exciting things are coming! We have big plans for the rest of this quarter in terms of features we expect to release in both the `DataGrid` and `DataGridPro` components.
-Features such as **[tree data](/x/react-data-grid/group-pivot/#tree-data)**, **[column pinning](/x/react-data-grid/columns/#column-pinning)**, and **[variable row height](https://github.com/mui/mui-x/issues/438)** are part of our roadmap.
+Features such as **[tree data](/x/react-data-grid/tree-data/)**, **[column pinning](/x/react-data-grid/columns/#column-pinning)**, and **[variable row height](https://github.com/mui/mui-x/issues/438)** are part of our roadmap.
 
 ### Public roadmap
 

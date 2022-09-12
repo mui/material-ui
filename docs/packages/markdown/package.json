@@ -2,7 +2,6 @@
   "name": "@mui/markdown",
   "version": "5.0.0",
   "private": true,
-  "type": "commonjs",
   "main": "./index.js",
   "exports": {
     ".": "./index.js",
@@ -11,7 +10,7 @@
   },
   "dependencies": {
     "lodash": "^4.17.21",
-    "marked": "^4.0.14",
-    "prismjs": "^1.27.0"
+    "marked": "^4.0.19",
+    "prismjs": "^1.29.0"
   }
 }

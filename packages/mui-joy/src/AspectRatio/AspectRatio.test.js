@@ -13,21 +13,22 @@ describe('<AspectRatio />', () => {
     inheritComponent: 'div',
     render,
     ThemeProvider,
-    muiName: 'MuiAspectRatio',
+    muiName: 'JoyAspectRatio',
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'span',
-    testVariantProps: { variant: 'contained' },
+    testVariantProps: { variant: 'solid' },
+    testCustomVariant: true,
     skip: ['classesRoot', 'componentsProp'],
   }));
 
   describe('prop: variant', () => {
-    it('text by default', () => {
+    it('plain by default', () => {
       const { getByTestId } = render(<AspectRatio data-testid="root">Hello World</AspectRatio>);
 
-      expect(getByTestId('root')).to.have.class(classes.variantLight);
+      expect(getByTestId('root').firstChild).to.have.class(classes.variantSoft);
     });
 
-    ['text', 'outlined', 'light', 'contained'].forEach((variant) => {
+    ['plain', 'outlined', 'soft', 'solid'].forEach((variant) => {
       it(`should render ${variant}`, () => {
         const { getByTestId } = render(
           <AspectRatio data-testid="root" variant={variant}>
@@ -35,7 +36,9 @@ describe('<AspectRatio />', () => {
           </AspectRatio>,
         );
 
-        expect(getByTestId('root')).to.have.class(classes[`variant${capitalize(variant)}`]);
+        expect(getByTestId('root').firstChild).to.have.class(
+          classes[`variant${capitalize(variant)}`],
+        );
       });
     });
   });
@@ -44,7 +47,7 @@ describe('<AspectRatio />', () => {
     it('adds a neutral class by default', () => {
       const { getByTestId } = render(<AspectRatio data-testid="root">Hello World</AspectRatio>);
 
-      expect(getByTestId('root')).to.have.class(classes.colorNeutral);
+      expect(getByTestId('root').firstChild).to.have.class(classes.colorNeutral);
     });
 
     ['primary', 'success', 'info', 'danger', 'neutral', 'warning'].forEach((color) => {
@@ -55,7 +58,7 @@ describe('<AspectRatio />', () => {
           </AspectRatio>,
         );
 
-        expect(getByTestId('root')).to.have.class(classes[`color${capitalize(color)}`]);
+        expect(getByTestId('root').firstChild).to.have.class(classes[`color${capitalize(color)}`]);
       });
     });
   });
@@ -69,5 +72,12 @@ describe('<AspectRatio />', () => {
       </AspectRatio>,
     );
     expect(container.querySelector('[data-first-child]')).to.have.text('First');
+  });
+
+  it('able to pass the props to content slot', () => {
+    const { getByTestId } = render(
+      <AspectRatio componentsProps={{ content: { 'data-testid': 'content' } }} />,
+    );
+    expect(getByTestId('content')).toBeVisible();
   });
 });

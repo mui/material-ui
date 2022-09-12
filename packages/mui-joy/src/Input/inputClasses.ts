@@ -1,4 +1,4 @@
-import { generateUtilityClass, generateUtilityClasses } from '@mui/base';
+import { generateUtilityClass, generateUtilityClasses } from '../className';
 
 export interface InputClasses {
   /** Styles applied to the root element. */
@@ -31,12 +31,14 @@ export interface InputClasses {
   sizeMd: string;
   /** Styles applied to the root element if `size="lg"`. */
   sizeLg: string;
-  /** Styles applied to the root element if `variant="text"`. */
-  variantText: string;
+  /** Styles applied to the root element if `variant="plain"`. */
+  variantPlain: string;
   /** Styles applied to the root element if `variant="outlined"`. */
   variantOutlined: string;
-  /** Styles applied to the root element if `variant="light"`. */
-  variantLight: string;
+  /** Styles applied to the root element if `variant="soft"`. */
+  variantSoft: string;
+  /** Styles applied to the root element if `variant="solid"`. */
+  variantSolid: string;
   /** Styles applied to the root element if `fullWidth={true}`. */
   fullWidth: string;
   /** Styles applied to the startDecorator element */
@@ -69,9 +71,10 @@ const inputClasses: InputClasses = generateUtilityClasses('JoyInput', [
   'sizeSm',
   'sizeMd',
   'sizeLg',
-  'variantText',
+  'variantPlain',
   'variantOutlined',
-  'variantLight',
+  'variantSoft',
+  'variantSolid',
   'fullWidth',
   'startDecorator',
   'endDecorator',

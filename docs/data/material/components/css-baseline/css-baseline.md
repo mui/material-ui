@@ -70,24 +70,27 @@ The `<html>` and `<body>` elements are updated to provide better page-wide defau
 
 ### Scrollbars
 
-> This API is deprecated, consider using [color-scheme](#color-scheme) instead.
+:::error
+This API is deprecated, consider using [color-scheme](#color-scheme) instead.
+:::
 
 The colors of the scrollbars can be customized to improve the contrast (especially on Windows). Add this code to your theme (for dark mode).
 
 ```jsx
 import darkScrollbar from '@mui/material/darkScrollbar';
+
 const theme = createTheme({
   components: {
     MuiCssBaseline: {
-      styleOverrides: {
-        body: theme.palette.mode === 'dark' ? darkScrollbar() : null,
-      },
+      styleOverrides: (themeParam) => ({
+        body: themeParam.palette.mode === 'dark' ? darkScrollbar() : null,
+      }),
     },
   },
 });
 ```
 
-Be aware, however, that using this utility (and customizing `-webkit-scrollbar`) forces MacOS to always show the scrollbar.
+Be aware, however, that using this utility (and customizing `-webkit-scrollbar`) forces macOS to always show the scrollbar.
 
 ### Color scheme
 

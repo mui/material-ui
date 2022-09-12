@@ -72,13 +72,13 @@ export default function useAutocomplete(props) {
     autoHighlight = false,
     autoSelect = false,
     blurOnSelect = false,
-    disabled: disabledProp,
     clearOnBlur = !props.freeSolo,
     clearOnEscape = false,
     componentName = 'useAutocomplete',
     defaultValue = props.multiple ? [] : null,
     disableClearable = false,
     disableCloseOnSelect = false,
+    disabled: disabledProp,
     disabledItemsFocusable = false,
     disableListWrap = false,
     filterOptions = defaultFilterOptions,
@@ -86,12 +86,12 @@ export default function useAutocomplete(props) {
     freeSolo = false,
     getOptionDisabled,
     getOptionLabel: getOptionLabelProp = (option) => option.label ?? option,
-    isOptionEqualToValue = (option, value) => option === value,
     groupBy,
     handleHomeEndKeys = !props.freeSolo,
     id: idProp,
     includeInputInList = false,
     inputValue: inputValueProp,
+    isOptionEqualToValue = (option, value) => option === value,
     multiple = false,
     onChange,
     onClose,
@@ -356,7 +356,7 @@ export default function useAutocomplete(props) {
     }
 
     // Scroll active descendant into view.
-    // Logic copied from https://www.w3.org/TR/wai-aria-practices/examples/listbox/js/listbox.js
+    // Logic copied from https://www.w3.org/WAI/ARIA/apg/example-index/combobox/js/select-only.js
     //
     // Consider this API instead once it has a better browser support:
     // .scrollIntoView({ scrollMode: 'if-needed', block: 'nearest' });
@@ -582,7 +582,7 @@ export default function useAutocomplete(props) {
   };
 
   const handleValue = (event, newValue, reason, details) => {
-    if (Array.isArray(value)) {
+    if (multiple) {
       if (value.length === newValue.length && value.every((val, i) => val === newValue[i])) {
         return;
       }
@@ -632,7 +632,7 @@ export default function useAutocomplete(props) {
     resetInputValue(event, newValue);
 
     handleValue(event, newValue, reason, { option });
-    if (!disableCloseOnSelect && !event.ctrlKey && !event.metaKey) {
+    if (!disableCloseOnSelect && (!event || (!event.ctrlKey && !event.metaKey))) {
       handleClose(event, reason);
     }
 
@@ -682,7 +682,9 @@ export default function useAutocomplete(props) {
       return;
     }
 
-    handleClose(event, 'toggleInput');
+    if (inputValue === '') {
+      handleClose(event, 'toggleInput');
+    }
 
     let nextTag = focusedTag;
 

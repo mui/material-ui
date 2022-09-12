@@ -4,7 +4,7 @@ import clsx from 'clsx';
 import { OverridableComponent } from '@mui/types';
 import composeClasses from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
-import { ListItemContentProps, ListItemContentTypeMap } from './ListItemContentProps';
+import { ListItemContentOwnerState, ListItemContentTypeMap } from './ListItemContentProps';
 import { getListItemContentUtilityClass } from './listItemContentClasses';
 
 const useUtilityClasses = () => {
@@ -16,10 +16,10 @@ const useUtilityClasses = () => {
 };
 
 const ListItemContentRoot = styled('div', {
-  name: 'MuiListItemContent',
+  name: 'JoyListItemContent',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: ListItemContentProps }>({
+})<{ ownerState: ListItemContentOwnerState }>({
   flex: '1 1 auto',
   minWidth: 0,
 });
@@ -27,7 +27,7 @@ const ListItemContentRoot = styled('div', {
 const ListItemContent = React.forwardRef(function ListItemContent(inProps, ref) {
   const props = useThemeProps<typeof inProps & { component?: React.ElementType }>({
     props: inProps,
-    name: 'MuiListItemContent',
+    name: 'JoyListItemContent',
   });
 
   const { component, className, children, ...other } = props;
@@ -61,6 +61,10 @@ ListItemContent.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
+   * Override or extend the styles applied to the component.
+   */
+  classes: PropTypes.object,
+  /**
    * @ignore
    */
   className: PropTypes.string,
@@ -69,6 +73,14 @@ ListItemContent.propTypes /* remove-proptypes */ = {
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
 } as any;
 
 export default ListItemContent;

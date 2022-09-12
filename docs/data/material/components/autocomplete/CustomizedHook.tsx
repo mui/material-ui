@@ -6,6 +6,7 @@ import {
 import CheckIcon from '@mui/icons-material/Check';
 import CloseIcon from '@mui/icons-material/Close';
 import { styled } from '@mui/material/styles';
+import { autocompleteClasses } from '@mui/material/Autocomplete';
 
 const Root = styled('div')(
   ({ theme }) => `
@@ -145,7 +146,7 @@ const Listbox = styled('ul')(
     }
   }
 
-  & li[data-focus='true'] {
+  & li.${autocompleteClasses.focused} {
     background-color: ${theme.palette.mode === 'dark' ? '#003b57' : '#e6f7ff'};
     cursor: pointer;
 

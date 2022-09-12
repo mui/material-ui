@@ -1,4 +1,4 @@
-import { generateUtilityClass, generateUtilityClasses } from '@mui/base';
+import { generateUtilityClass, generateUtilityClasses } from '../className';
 
 export interface CardOverflowClasses {
   /** Styles applied to the root element. */
@@ -15,23 +15,23 @@ export interface CardOverflowClasses {
   colorSuccess: string;
   /** Styles applied to the root element if `color="warning"`. */
   colorWarning: string;
-  /** Styles applied to the root element if `variant="text"`. */
-  variantText: string;
+  /** Styles applied to the root element if `variant="plain"`. */
+  variantPlain: string;
   /** Styles applied to the root element if `variant="outlined"`. */
   variantOutlined: string;
-  /** Styles applied to the root element if `variant="light"`. */
-  variantLight: string;
-  /** Styles applied to the root element if `variant="contained"`. */
-  variantContained: string;
+  /** Styles applied to the root element if `variant="soft"`. */
+  variantSoft: string;
+  /** Styles applied to the root element if `variant="solid"`. */
+  variantSolid: string;
 }
 
 export type CardOverflowClassKey = keyof CardOverflowClasses;
 
 export function getCardOverflowUtilityClass(slot: string): string {
-  return generateUtilityClass('MuiCardOverflow', slot);
+  return generateUtilityClass('JoyCardOverflow', slot);
 }
 
-const aspectRatioClasses: CardOverflowClasses = generateUtilityClasses('MuiCardOverflow', [
+const aspectRatioClasses: CardOverflowClasses = generateUtilityClasses('JoyCardOverflow', [
   'root',
   'colorPrimary',
   'colorNeutral',
@@ -39,10 +39,10 @@ const aspectRatioClasses: CardOverflowClasses = generateUtilityClasses('MuiCardO
   'colorInfo',
   'colorSuccess',
   'colorWarning',
-  'variantText',
+  'variantPlain',
   'variantOutlined',
-  'variantLight',
-  'variantContained',
+  'variantSoft',
+  'variantSolid',
 ]);
 
 export default aspectRatioClasses;

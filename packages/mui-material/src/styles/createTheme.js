@@ -1,6 +1,7 @@
 import { deepmerge } from '@mui/utils';
 import { generateUtilityClass } from '@mui/base';
 import { createTheme as systemCreateTheme } from '@mui/system';
+import MuiError from '@mui/utils/macros/MuiError.macro';
 import createMixins from './createMixins';
 import createPalette from './createPalette';
 import createTypography from './createTypography';
@@ -20,11 +21,18 @@ function createTheme(options = {}, ...args) {
     ...other
   } = options;
 
+  if (options.vars) {
+    throw new MuiError(
+      'MUI: `vars` is a private field used for CSS variables support.\n' +
+        'Please use another name.',
+    );
+  }
+
   const palette = createPalette(paletteInput);
   const systemTheme = systemCreateTheme(options);
 
   let muiTheme = deepmerge(systemTheme, {
-    mixins: createMixins(systemTheme.breakpoints, systemTheme.spacing, mixinsInput),
+    mixins: createMixins(systemTheme.breakpoints, mixinsInput),
     palette,
     // Don't use [...shadows] until you've verified its transpiled code is not invoking the iterator protocol.
     shadows: shadows.slice(),

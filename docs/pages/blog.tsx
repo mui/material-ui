@@ -89,8 +89,8 @@ const PostPreview = (props: BlogPost) => {
             mb: 1,
             alignSelf: 'flex-start',
             '& .MuiAvatar-circular': {
-              width: '28px',
-              height: '28px',
+              width: 28,
+              height: 28,
               border: 3,
               borderColor: (theme) =>
                 theme.palette.mode === 'dark'
@@ -110,7 +110,12 @@ const PostPreview = (props: BlogPost) => {
           }}
         >
           {(props.authors as Array<keyof typeof AUTHORS>).map((author) => (
-            <Avatar key={author} alt={AUTHORS[author]?.name} src={AUTHORS[author]?.avatar} />
+            <Avatar
+              key={author}
+              alt=""
+              src={`${AUTHORS[author].avatar}?s=${28}`}
+              srcSet={`${AUTHORS[author].avatar}?s=${28 * 2} 2x`}
+            />
           ))}
         </AvatarGroup>
       )}
@@ -244,11 +249,8 @@ export default function Blog(props: InferGetStaticPropsType<typeof getStaticProp
         disableAlternateLocale
       />
       <AppHeader />
-      <main>
-        <Section
-          bg="gradient"
-          sx={{ backgroundSize: 'auto 300px ', backgroundRepeat: 'no-repeat' }}
-        >
+      <main id="main-content">
+        <Section bg="gradient" sx={{ backgroundSize: '100% 300px', backgroundRepeat: 'no-repeat' }}>
           <Typography variant="body2" color="primary.600" fontWeight="bold" textAlign="center">
             Blog
           </Typography>

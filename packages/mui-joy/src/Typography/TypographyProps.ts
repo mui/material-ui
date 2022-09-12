@@ -1,22 +1,42 @@
 import * as React from 'react';
-import { OverrideProps } from '@mui/types';
-import { TypographyClasses } from './typographyClasses';
-import { SxProps, SystemProps } from '../styles/defaultTheme';
-import { TypographySystem } from '../styles/types';
+import { OverrideProps, OverridableStringUnion } from '@mui/types';
+import { SlotComponentProps } from '@mui/base/utils';
+import {
+  ColorPaletteProp,
+  TypographySystem,
+  SxProps,
+  SystemProps,
+  VariantProp,
+} from '../styles/types';
 
 export type TypographySlot = 'root' | 'startDecorator' | 'endDecorator';
 
+export interface TypographyPropsColorOverrides {}
+
+export interface TypographyPropsVariantOverrides {}
+
+interface ComponentsProps {
+  root?: SlotComponentProps<'a', { sx?: SxProps }, TypographyOwnerState>;
+  startDecorator?: SlotComponentProps<'span', { sx?: SxProps }, TypographyOwnerState>;
+  endDecorator?: SlotComponentProps<'span', { sx?: SxProps }, TypographyOwnerState>;
+}
+
 export interface TypographyTypeMap<P = {}, D extends React.ElementType = 'span'> {
   props: P &
-    SystemProps & {
+    Omit<SystemProps, 'color'> & {
       /**
        * The content of the component.
        */
       children?: React.ReactNode;
       /**
-       * Override or extend the styles applied to the component.
+       * The color of the component. It supports those theme colors that make sense for this component.
        */
-      classes?: Partial<TypographyClasses>;
+      color?: OverridableStringUnion<ColorPaletteProp, TypographyPropsColorOverrides>;
+      /**
+       * The props used for each slot inside the component.
+       * @default {}
+       */
+      componentsProps?: ComponentsProps;
       /**
        * Element placed after the children.
        */
@@ -63,9 +83,17 @@ export interface TypographyTypeMap<P = {}, D extends React.ElementType = 'span'>
        */
       startDecorator?: React.ReactNode;
       /**
+       * The system color.
+       */
+      textColor?: SystemProps['color'];
+      /**
        * The system prop that allows defining system overrides as well as additional CSS styles.
        */
       sx?: SxProps;
+      /**
+       * The variant to use.
+       */
+      variant?: OverridableStringUnion<VariantProp, TypographyPropsVariantOverrides>;
     };
   defaultComponent: D;
 }
@@ -76,3 +104,10 @@ export type TypographyProps<
     component?: React.ElementType;
   },
 > = OverrideProps<TypographyTypeMap<P, D>, D>;
+
+export interface TypographyOwnerState extends TypographyProps {
+  /**
+   * If `true`, the element is rendered in a Typography.
+   */
+  nesting: boolean;
+}

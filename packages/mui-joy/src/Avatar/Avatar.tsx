@@ -1,17 +1,17 @@
 import * as React from 'react';
-import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { useSlotProps } from '@mui/base/utils';
 import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
 import Person from '../internal/svg-icons/Person';
 import { getAvatarUtilityClass } from './avatarClasses';
-import { AvatarProps, AvatarTypeMap } from './AvatarProps';
+import { AvatarProps, AvatarOwnerState, AvatarTypeMap } from './AvatarProps';
 import { AvatarGroupContext } from '../AvatarGroup/AvatarGroup';
 
-const useUtilityClasses = (ownerState: AvatarProps) => {
+const useUtilityClasses = (ownerState: AvatarOwnerState) => {
   const { size, variant, color, src, srcSet } = ownerState;
 
   const slots = {
@@ -29,22 +29,25 @@ const useUtilityClasses = (ownerState: AvatarProps) => {
 };
 
 const AvatarRoot = styled('div', {
-  name: 'MuiAvatar',
+  name: 'JoyAvatar',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: AvatarProps }>(({ theme, ownerState }) => {
+})<{ ownerState: AvatarOwnerState }>(({ theme, ownerState }) => {
   return [
     {
       ...(ownerState.size === 'sm' && {
-        '--Avatar-size': '2rem',
+        width: `var(--Avatar-size, 2rem)`,
+        height: `var(--Avatar-size, 2rem)`,
         fontSize: theme.vars.fontSize.sm,
       }),
       ...(ownerState.size === 'md' && {
-        '--Avatar-size': '2.5rem',
+        width: `var(--Avatar-size, 2.5rem)`,
+        height: `var(--Avatar-size, 2.5rem)`,
         fontSize: theme.vars.fontSize.md,
       }),
       ...(ownerState.size === 'lg' && {
-        '--Avatar-size': '3rem',
+        width: `var(--Avatar-size, 3rem)`,
+        height: `var(--Avatar-size, 3rem)`,
         fontSize: theme.vars.fontSize.lg,
       }),
       marginInlineStart: 'var(--Avatar-marginInlineStart)',
@@ -56,10 +59,9 @@ const AvatarRoot = styled('div', {
       alignItems: 'center',
       justifyContent: 'center',
       flexShrink: 0,
-      width: 'var(--Avatar-size)',
-      height: 'var(--Avatar-size)',
       lineHeight: 1,
-      borderRadius: '50%',
+      overflow: 'hidden',
+      borderRadius: 'var(--Avatar-radius, 50%)',
       userSelect: 'none',
     },
     theme.variants[ownerState.variant!]?.[ownerState.color!],
@@ -67,10 +69,10 @@ const AvatarRoot = styled('div', {
 });
 
 const AvatarImg = styled('img', {
-  name: 'MuiAvatar',
+  name: 'JoyAvatar',
   slot: 'Img',
   overridesResolver: (props, styles) => styles.img,
-})<{ ownerState: AvatarProps }>({
+})<{ ownerState: AvatarOwnerState }>({
   width: '100%',
   height: '100%',
   textAlign: 'center',
@@ -80,14 +82,13 @@ const AvatarImg = styled('img', {
   color: 'transparent',
   // Hide the image broken icon, only works on Chrome.
   textIndent: 10000,
-  borderRadius: '50%',
 });
 
 const AvatarFallback = styled(Person, {
-  name: 'MuiAvatar',
+  name: 'JoyAvatar',
   slot: 'Fallback',
   overridesResolver: (props, styles) => styles.fallback,
-})<{ ownerState: AvatarProps }>({
+})<{ ownerState: AvatarOwnerState }>({
   width: '64%',
   height: '64%',
 });
@@ -138,18 +139,18 @@ function useLoaded({ crossOrigin, referrerPolicy, src, srcSet }: UseLoadedProps)
 const Avatar = React.forwardRef(function Avatar(inProps, ref) {
   const props = useThemeProps<typeof inProps & AvatarProps>({
     props: inProps,
-    name: 'MuiAvatar',
+    name: 'JoyAvatar',
   });
 
   const groupContext = React.useContext(AvatarGroupContext);
 
   const {
     alt,
-    className,
     color: colorProp = 'neutral',
     component = 'div',
+    componentsProps = {},
     size: sizeProp = 'md',
-    variant: variantProp = 'light',
+    variant: variantProp = 'soft',
     imgProps,
     src,
     srcSet,
@@ -162,51 +163,73 @@ const Avatar = React.forwardRef(function Avatar(inProps, ref) {
 
   let children = null;
 
-  // Use a hook instead of onError on the img element to support server-side rendering.
-  const loaded = useLoaded({ ...imgProps, src, srcSet });
-  const hasImg = src || srcSet;
-  const hasImgNotFailing = hasImg && loaded !== 'error';
-
   const ownerState = {
     ...props,
     color,
     component,
     size,
     variant,
+    grouped: !!groupContext,
   };
+
+  // Use a hook instead of onError on the img element to support server-side rendering.
+  const loaded = useLoaded({
+    ...imgProps,
+    ...(typeof componentsProps.img === 'function'
+      ? componentsProps.img(ownerState)
+      : componentsProps.img),
+    src,
+    srcSet,
+  });
+
+  const hasImg = src || srcSet;
+  const hasImgNotFailing = hasImg && loaded !== 'error';
 
   const classes = useUtilityClasses(ownerState);
 
+  const imageProps = useSlotProps({
+    elementType: AvatarImg,
+    externalSlotProps: componentsProps.img,
+    ownerState,
+    additionalProps: {
+      alt,
+      src,
+      srcSet,
+      ...imgProps,
+    },
+    className: classes.img,
+  });
+
+  const fallbackProps = useSlotProps({
+    elementType: AvatarFallback,
+    externalSlotProps: componentsProps.fallback,
+    ownerState,
+    className: classes.fallback,
+  });
+
   if (hasImgNotFailing) {
-    children = (
-      <AvatarImg
-        alt={alt}
-        src={src}
-        srcSet={srcSet}
-        className={classes.img}
-        ownerState={ownerState}
-        {...imgProps}
-      />
-    );
+    children = <AvatarImg {...imageProps} />;
   } else if (childrenProp != null) {
     children = childrenProp;
   } else if (hasImg && alt) {
     children = alt[0];
   } else {
-    children = <AvatarFallback className={classes.fallback} ownerState={ownerState} />;
+    children = <AvatarFallback {...fallbackProps} />;
   }
 
-  return (
-    <AvatarRoot
-      as={component}
-      ownerState={ownerState}
-      className={clsx(classes.root, className)}
-      ref={ref}
-      {...other}
-    >
-      {children}
-    </AvatarRoot>
-  );
+  const rootProps = useSlotProps({
+    elementType: AvatarRoot,
+    externalSlotProps: componentsProps.root,
+    ownerState,
+    externalForwardedProps: other,
+    additionalProps: {
+      ref,
+      as: component,
+    },
+    className: classes.root,
+  });
+
+  return <AvatarRoot {...rootProps}>{children}</AvatarRoot>;
 }) as OverridableComponent<AvatarTypeMap>;
 
 Avatar.propTypes /* remove-proptypes */ = {
@@ -225,10 +248,6 @@ Avatar.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
-   * @ignore
-   */
-  className: PropTypes.string,
-  /**
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'neutral'
    */
@@ -242,13 +261,22 @@ Avatar.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
+   * The props used for each slot inside the component.
+   * @default {}
+   */
+  componentsProps: PropTypes.shape({
+    fallback: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    img: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
    * [Attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attributes) applied to the `img` element if the component is used to display an image.
    * It can be used to listen for the loading error event.
    */
   imgProps: PropTypes.object,
   /**
    * The size of the component.
-   * It accepts theme values between 'xs' and 'xl'.
+   * It accepts theme values between 'sm' and 'lg'.
    * @default 'md'
    */
   size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
@@ -265,11 +293,19 @@ Avatar.propTypes /* remove-proptypes */ = {
    */
   srcSet: PropTypes.string,
   /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
+  /**
    * The variant to use.
-   * @default 'light'
+   * @default 'soft'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['contained', 'light', 'outlined', 'text']),
+    PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
     PropTypes.string,
   ]),
 } as any;

@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import KeyboardArrowRightRoundedIcon from '@mui/icons-material/KeyboardArrowRightRounded';
-import { alpha, styled, experimental_sx as sx } from '@mui/material/styles';
+import { alpha, styled } from '@mui/material/styles';
 import Collapse from '@mui/material/Collapse';
 import Chip from '@mui/material/Chip';
 import { openLinkInNewTab } from 'docs/src/modules/components/MarkdownLinks';
@@ -44,92 +44,107 @@ const Item = styled(
   {
     shouldForwardProp: (prop) => prop !== 'depth' && prop !== 'hasIcon' && prop !== 'subheader',
   },
-)(({ theme, hasIcon, depth, subheader }) => ({
-  ...theme.typography.body2,
-  display: 'flex',
-  alignItems: 'center',
-  borderRadius: 5,
-  outline: 0,
-  width: '100%',
-  paddingTop: 5,
-  paddingBottom: 5,
-  justifyContent: 'flex-start',
-  fontWeight: theme.typography.fontWeightMedium,
-  transition: theme.transitions.create(['color', 'background-color'], {
-    duration: theme.transitions.duration.shortest,
-  }),
-  fontSize: theme.typography.pxToRem(14),
-  textDecoration: 'none',
-  paddingLeft: 31 + (depth > 2 ? (depth - 2) * 10 : 0),
-  color: theme.palette.text.secondary,
-  ...(depth === 0 && {
-    color: theme.palette.text.primary,
-  }),
-  ...(subheader && {
-    marginTop: theme.spacing(1),
-    textTransform: 'uppercase',
-    letterSpacing: '.08rem',
-    fontWeight: theme.typography.fontWeightBold,
-    fontSize: theme.typography.pxToRem(11),
-    color: theme.palette.grey[600],
-  }),
-  ...(hasIcon && {
-    paddingLeft: 2,
-  }),
-  '&.app-drawer-active': {
-    color: theme.palette.mode === 'dark' ? theme.palette.primary[300] : theme.palette.primary[600],
-    backgroundColor:
-      theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : theme.palette.primary[50],
-    '&:hover': {
-      backgroundColor: alpha(
-        theme.palette.primary.main,
-        theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
-      ),
-      // Reset on touch devices, it doesn't add specificity
-      '@media (hover: none)': {
-        backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+)(({ theme, hasIcon, depth, subheader }) => {
+  const color = {
+    color: theme.palette.text.secondary,
+    ...(depth === 0 && {
+      color: theme.palette.text.primary,
+    }),
+    ...(subheader && {
+      color: theme.palette.grey[600],
+    }),
+  };
+
+  return {
+    ...theme.typography.body2,
+    display: 'flex',
+    alignItems: 'center',
+    borderRadius: 5,
+    outline: 0,
+    width: '100%',
+    paddingTop: 5,
+    paddingBottom: 5,
+    justifyContent: 'flex-start',
+    fontWeight: theme.typography.fontWeightMedium,
+    transition: theme.transitions.create(['color', 'background-color'], {
+      duration: theme.transitions.duration.shortest,
+    }),
+    fontSize: theme.typography.pxToRem(14),
+    textDecoration: 'none',
+    paddingLeft: 31 + (depth > 1 ? (depth - 1) * 10 : 0),
+    ...color,
+    ...(subheader && {
+      marginTop: theme.spacing(1),
+      textTransform: 'uppercase',
+      letterSpacing: '.08rem',
+      fontWeight: theme.typography.fontWeightBold,
+      fontSize: theme.typography.pxToRem(11),
+    }),
+    ...(hasIcon && {
+      paddingLeft: 2,
+    }),
+    '&.app-drawer-active': {
+      color:
+        theme.palette.mode === 'dark' ? theme.palette.primary[300] : theme.palette.primary[600],
+      backgroundColor:
+        theme.palette.mode === 'dark' ? theme.palette.primaryDark[700] : theme.palette.primary[50],
+      '&:hover': {
+        backgroundColor: alpha(
+          theme.palette.primary.main,
+          theme.palette.action.selectedOpacity + theme.palette.action.hoverOpacity,
+        ),
+        '@media (hover: none)': {
+          backgroundColor: alpha(theme.palette.primary.main, theme.palette.action.selectedOpacity),
+        },
+      },
+      '&.Mui-focusVisible': {
+        backgroundColor: alpha(
+          theme.palette.primary.main,
+          theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
+        ),
       },
     },
+    '& .MuiChip-root': {
+      marginTop: '2px',
+    },
+    ...(!subheader && {
+      '&:hover': {
+        color: theme.palette.mode === 'dark' ? '#fff' : theme.palette.common.black,
+        backgroundColor:
+          theme.palette.mode === 'dark'
+            ? alpha(theme.palette.primaryDark[700], 0.4)
+            : theme.palette.grey[50],
+        '@media (hover: none)': {
+          color: color.color,
+          backgroundColor: 'transparent',
+        },
+      },
+    }),
     '&.Mui-focusVisible': {
-      backgroundColor: alpha(
-        theme.palette.primary.main,
-        theme.palette.action.selectedOpacity + theme.palette.action.focusOpacity,
-      ),
+      backgroundColor: theme.palette.action.focus,
     },
-  },
-  '& .MuiChip-root': {
-    marginTop: '2px',
-  },
-  ...(!subheader && {
-    '&:hover': {
-      color: theme.palette.mode === 'dark' ? '#fff' : theme.palette.common.black,
-      backgroundColor:
-        theme.palette.mode === 'dark'
-          ? alpha(theme.palette.primaryDark[700], 0.4)
-          : theme.palette.grey[50],
+    [theme.breakpoints.up('md')]: {
+      paddingTop: 3,
+      paddingBottom: 3,
     },
-  }),
-  '&.Mui-focusVisible': {
-    backgroundColor: theme.palette.action.focus,
-  },
-  [theme.breakpoints.up('md')]: {
-    paddingTop: 3,
-    paddingBottom: 3,
-  },
-  '& .ItemButtonIcon': {
-    marginLeft: 'auto !important',
-    marginRight: '5px',
-  },
-  '&:hover .ItemButtonIcon': {
-    color: theme.palette.text.primary,
-  },
-}));
+    '& .ItemButtonIcon': {
+      marginLeft: 'auto !important',
+      marginRight: '5px',
+      color: theme.palette.primary.main,
+    },
+    '&:hover .ItemButtonIcon': {
+      color: theme.palette.text.primary,
+      '@media (hover: none)': {
+        color: theme.palette.primary.main,
+      },
+    },
+  };
+});
 
 const ItemButtonIcon = styled(KeyboardArrowRightRoundedIcon, {
   shouldForwardProp: (prop) => prop !== 'open',
-})(({ open, theme }) => ({
+})(({ open }) => ({
   fontSize: '1rem',
-  color: theme.palette.primary.main,
   transform: open && 'rotate(90deg)',
 }));
 
@@ -140,38 +155,34 @@ const StyledLi = styled('li', { shouldForwardProp: (prop) => prop !== 'depth' })
   }),
 );
 
-const LegacyChip = styled(function LegacyChip(props) {
-  return <Chip {...props} label="Legacy" />;
-})(
-  sx({
-    ml: 1,
-    fontSize: (theme) => theme.typography.pxToRem(10),
-    fontWeight: 'semiBold',
-    textTransform: 'uppercase',
-    letterSpacing: '.04rem',
-    height: '16px',
-    border: 1,
-    borderColor: (theme) =>
-      theme.palette.mode === 'dark'
-        ? alpha(theme.palette.warning[800], 0.5)
-        : theme.palette.warning[300],
+const sxChip = (color) => ({
+  ml: 1,
+  fontSize: (theme) => theme.typography.pxToRem(10),
+  fontWeight: 'semiBold',
+  textTransform: 'uppercase',
+  letterSpacing: '.04rem',
+  height: '16px',
+  border: 1,
+  borderColor: (theme) =>
+    theme.palette.mode === 'dark'
+      ? alpha(theme.palette[color][800], 0.5)
+      : theme.palette[color][300],
+  bgcolor: (theme) =>
+    theme.palette.mode === 'dark'
+      ? alpha(theme.palette[color][900], 0.5)
+      : alpha(theme.palette[color][100], 0.5),
+  color: (theme) =>
+    theme.palette.mode === 'dark' ? theme.palette[color][300] : theme.palette[color][700],
+  '&:hover': {
     bgcolor: (theme) =>
       theme.palette.mode === 'dark'
-        ? alpha(theme.palette.warning[900], 0.5)
-        : alpha(theme.palette.warning[100], 0.5),
-    color: (theme) =>
-      theme.palette.mode === 'dark' ? theme.palette.warning[300] : theme.palette.warning[700],
-    '&:hover': {
-      bgcolor: (theme) =>
-        theme.palette.mode === 'dark'
-          ? alpha(theme.palette.warning[900], 0.5)
-          : alpha(theme.palette.warning[100], 0.5),
-    },
-    '& .MuiChip-label': {
-      px: 0.6,
-    },
-  }),
-);
+        ? alpha(theme.palette[color][900], 0.5)
+        : alpha(theme.palette[color][100], 0.5),
+  },
+  '& .MuiChip-label': {
+    px: 0.6,
+  },
+});
 
 function DeadLink(props) {
   const { activeClassName, href, noLinkStyle, prefetch, ...other } = props;
@@ -192,9 +203,11 @@ export default function AppNavDrawerItem(props) {
     href,
     icon,
     legacy,
+    newFeature,
     linkProps,
     onClick,
     openImmediately,
+    plan = 'community',
     subheader,
     title,
     topLevel = false,
@@ -254,7 +267,10 @@ export default function AppNavDrawerItem(props) {
       >
         {iconElement}
         {title}
-        {legacy && <LegacyChip />}
+        {plan === 'pro' && <span className="plan-pro" title="Pro plan" />}
+        {plan === 'premium' && <span className="plan-premium" title="Premium plan" />}
+        {legacy && <Chip label="Legacy" sx={sxChip('warning')} />}
+        {newFeature && <Chip label="New" sx={sxChip('success')} />}
         {expandable && !subheader && <ItemButtonIcon className="ItemButtonIcon" open={open} />}
       </Item>
       {expandable ? (
@@ -275,8 +291,10 @@ AppNavDrawerItem.propTypes = {
   icon: PropTypes.string,
   legacy: PropTypes.bool,
   linkProps: PropTypes.object,
+  newFeature: PropTypes.bool,
   onClick: PropTypes.func,
   openImmediately: PropTypes.bool,
+  plan: PropTypes.oneOf(['community', 'pro', 'premium']),
   subheader: PropTypes.bool.isRequired,
   title: PropTypes.string.isRequired,
   topLevel: PropTypes.bool,

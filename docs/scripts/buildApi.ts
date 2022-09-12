@@ -9,9 +9,10 @@ import {
   ComponentInfo,
   getMaterialComponentInfo,
   getBaseComponentInfo,
+  getSystemComponentInfo,
   extractApiPage,
 } from 'docs/scripts/buildApiUtils';
-import buildComponentApi, {
+import generateComponentApi, {
   writePrettifiedFile,
   ReactApi,
 } from 'docs/scripts/ApiBuilders/ComponentApiBuilder';
@@ -138,6 +139,16 @@ const SETTINGS: Settings[] = [
     getApiPages: () => findApiPages('docs/pages/base/api'),
     getComponentInfo: getBaseComponentInfo,
   },
+  {
+    input: {
+      libDirectory: [path.join(process.cwd(), 'packages/mui-system/src')],
+    },
+    output: {
+      apiManifestPath: path.join(process.cwd(), 'docs/data/system/pagesApi.js'),
+    },
+    getApiPages: () => findApiPages('docs/pages/system/api'),
+    getComponentInfo: getSystemComponentInfo,
+  },
 ];
 
 type CommandOptions = { grep?: string };
@@ -205,7 +216,7 @@ async function run(argv: CommandOptions) {
 
         mkdirSync(componentInfo.apiPagesDirectory, { mode: 0o777, recursive: true });
 
-        return buildComponentApi(componentInfo, program);
+        return generateComponentApi(componentInfo, program);
       } catch (error: any) {
         error.message = `${path.relative(process.cwd(), component.filename)}: ${error.message}`;
         throw error;

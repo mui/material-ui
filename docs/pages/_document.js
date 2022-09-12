@@ -7,7 +7,7 @@ import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import createEmotionCache from 'docs/src/createEmotionCache';
 import { getMetaThemeColor } from 'docs/src/modules/brandingTheme';
 import GlobalStyles from '@mui/material/GlobalStyles';
-import FEATURE_TOGGLE from 'docs/src/featureToggle';
+import { getInitColorSchemeScript } from '@mui/joy/styles';
 
 // You can find a benchmark of the available CSS minifiers under
 // https://github.com/GoalSmashers/css-minification-benchmark
@@ -64,7 +64,6 @@ export default class MyDocument extends Document {
             rel="canonical"
             href={`https://mui.com${userLanguage === 'en' ? '' : `/${userLanguage}`}${canonicalAs}`}
           />
-          <meta name="robots" content="noindex" />
           <link rel="alternate" href={`https://mui.com${canonicalAs}`} hrefLang="x-default" />
           {/*
             Preconnect allows the browser to setup early connections before an HTTP request
@@ -123,10 +122,27 @@ export default class MyDocument extends Document {
               '.mode-dark .only-dark-mode': {
                 display: 'block',
               },
+              '.plan-pro, .plan-premium': {
+                display: 'inline-block',
+                height: '1em',
+                width: '1em',
+                verticalAlign: 'middle',
+                marginLeft: '0.3em',
+                marginBottom: '0.08em',
+                backgroundSize: 'contain',
+                backgroundRepeat: 'no-repeat',
+              },
+              '.plan-pro': {
+                backgroundImage: 'url(/static/x/pro.svg)',
+              },
+              '.plan-premium': {
+                backgroundImage: 'url(/static/x/premium.svg)',
+              },
             }}
           />
         </Head>
         <body>
+          {getInitColorSchemeScript({ enableSystem: true })}
           <Main />
           <script
             // eslint-disable-next-line react/no-danger

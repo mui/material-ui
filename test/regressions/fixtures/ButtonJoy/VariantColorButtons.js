@@ -7,7 +7,7 @@ export default function VariantColorJoy() {
   return (
     <CssVarsProvider>
       <Box sx={{ display: 'grid', gap: '1rem', gridTemplateColumns: 'repeat(4, min-content)' }}>
-        {['text', 'outlined', 'light', 'contained'].map((variant) => {
+        {['plain', 'outlined', 'soft', 'solid'].map((variant) => {
           return ['primary', 'neutral', 'danger', 'info', 'success', 'warning'].map((color) => (
             <Button key={`${variant}-${color}`} variant={variant} color={color}>
               {color}

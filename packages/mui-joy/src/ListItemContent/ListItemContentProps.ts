@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { OverrideProps } from '@mui/types';
-import { SxProps } from '../styles/defaultTheme';
+import { SxProps } from '../styles/types';
 import { ListItemContentClasses } from './listItemContentClasses';
 
 export type ListItemContentSlot = 'root';
@@ -29,3 +29,5 @@ export type ListItemContentProps<
     component?: React.ElementType;
   },
 > = OverrideProps<ListItemContentTypeMap<P, D>, D>;
+
+export interface ListItemContentOwnerState extends ListItemContentProps {}

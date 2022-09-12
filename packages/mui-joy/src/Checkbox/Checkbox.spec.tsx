@@ -27,8 +27,8 @@ import Checkbox from '@mui/joy/Checkbox';
 <Checkbox color="neutral" />;
 
 <Checkbox variant="outlined" />;
-<Checkbox variant="light" />;
-<Checkbox variant="contained" />;
+<Checkbox variant="soft" />;
+<Checkbox variant="solid" />;
 
 <Checkbox size="sm" />;
 <Checkbox size="md" />;

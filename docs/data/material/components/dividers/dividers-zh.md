@@ -42,13 +42,27 @@ materialDesign: https://material.io/components/dividers
 
 {{"demo": "DividerText.js"}}
 
+:::info
+**Accessibility tips**: When using the `Divider` component for visual decoration, such as in a heading, explicitly specify `role="presentation"` to the divider to make sure screen readers can announce its content:
+
+```js
+<Divider component="div" role="presentation">
+  {/* any elements nested inside the role="presentation" preserve their semantics. */}
+  <Typography variant="h2">My Heading</Typography>
+</Divider>
+```
+
+:::
+
 ## 垂直分隔线
 
-您也可以使用 `orientation` 属性将分割线渲染成垂直形状。
+You can also render a divider vertically using the `orientation` prop.
 
 {{"demo": "VerticalDividers.js", "bg": true}}
 
-> 请注意这其中使用了 `flexItem` 属性来适应 flex 容器。
+:::info
+Note the use of the `flexItem` prop to accommodate for the flex container.
+:::
 
 ### Vertical with variant middle
 
@@ -58,6 +72,6 @@ You can also render a vertical divider with `variant="middle"`.
 
 ### 垂直的文本分隔线
 
-你也可以使用文本内容来渲染垂直的分隔线。
+You can also render a vertical divider with content.
 
 {{"demo": "VerticalDividerText.js"}}

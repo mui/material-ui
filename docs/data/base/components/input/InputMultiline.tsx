@@ -6,6 +6,7 @@ const blue = {
   100: '#DAECFF',
   200: '#80BFFF',
   400: '#3399FF',
+  500: '#007FFF',
   600: '#0072E5',
 };
 
@@ -25,47 +26,52 @@ const grey = {
 const StyledInputElement = styled('input')(
   ({ theme }) => `
   width: 320px;
-  font-size: 0.875rem;
   font-family: IBM Plex Sans, sans-serif;
+  font-size: 0.875rem;
   font-weight: 400;
   line-height: 1.5;
+  padding: 12px;
+  border-radius: 12px;
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
-  background: ${theme.palette.mode === 'dark' ? grey[900] : grey[50]};
-  border: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[300]};
-  border-radius: 8px;
-  padding: 12px 12px;
+  background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
+  border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
+  box-shadow: 0px 2px 2px ${theme.palette.mode === 'dark' ? grey[900] : grey[50]};
 
   &:hover {
-    background: ${theme.palette.mode === 'dark' ? '' : grey[100]};
-    border-color: ${theme.palette.mode === 'dark' ? grey[700] : grey[400]};
+    border-color: ${blue[400]};
   }
 
   &:focus {
-    outline: 3px solid ${theme.palette.mode === 'dark' ? blue[600] : blue[100]};
+    border-color: ${blue[400]};
+    outline: 3px solid ${theme.palette.mode === 'dark' ? blue[500] : blue[200]};
   }
 `,
 );
 
-const StyledTextareaElement = styled('textarea')(
+const StyledTextareaElement = styled('textarea', {
+  shouldForwardProp: (prop) =>
+    !['ownerState', 'minRows', 'maxRows'].includes(prop.toString()),
+})(
   ({ theme }) => `
   width: 320px;
-  font-size: 0.875rem;
   font-family: IBM Plex Sans, sans-serif;
+  font-size: 0.875rem;
   font-weight: 400;
   line-height: 1.5;
+  padding: 12px;
+  border-radius: 12px;
   color: ${theme.palette.mode === 'dark' ? grey[300] : grey[900]};
-  background: ${theme.palette.mode === 'dark' ? grey[900] : grey[50]};
-  border: 1px solid ${theme.palette.mode === 'dark' ? grey[800] : grey[300]};
-  border-radius: 8px;
-  padding: 12px 12px;
+  background: ${theme.palette.mode === 'dark' ? grey[900] : '#fff'};
+  border: 1px solid ${theme.palette.mode === 'dark' ? grey[700] : grey[200]};
+  box-shadow: 0px 2px 2px ${theme.palette.mode === 'dark' ? grey[900] : grey[50]};
 
   &:hover {
-    background: ${theme.palette.mode === 'dark' ? '' : grey[100]};
-    border-color: ${theme.palette.mode === 'dark' ? grey[700] : grey[400]};
+    border-color: ${blue[400]};
   }
 
   &:focus {
-    outline: 3px solid ${theme.palette.mode === 'dark' ? blue[600] : blue[100]};
+    border-color: ${blue[400]};
+    outline: 3px solid ${theme.palette.mode === 'dark' ? blue[500] : blue[200]};
   }
 `,
 );
@@ -85,6 +91,6 @@ const CustomInput = React.forwardRef(function CustomInput(
 
 export default function UnstyledInputBasic() {
   return (
-    <CustomInput aria-label="Demo input" multiline placeholder="Type something..." />
+    <CustomInput aria-label="Demo input" multiline placeholder="Type something…" />
   );
 }

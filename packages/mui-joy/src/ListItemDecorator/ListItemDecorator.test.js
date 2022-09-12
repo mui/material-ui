@@ -12,7 +12,7 @@ describe('Joy <ListItemDecorator />', () => {
     inheritComponent: 'span',
     render,
     ThemeProvider,
-    muiName: 'MuiListItemDecorator',
+    muiName: 'JoyListItemDecorator',
     refInstanceof: window.HTMLSpanElement,
     skip: ['componentsProp', 'classesRoot', 'themeVariants'],
   }));

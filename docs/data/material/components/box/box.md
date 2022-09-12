@@ -1,6 +1,7 @@
 ---
 product: material-ui
-title: React Box component
+title: React Box
+components: Box
 githubLabel: 'component: Box'
 ---
 
@@ -8,7 +9,7 @@ githubLabel: 'component: Box'
 
 <p class="description">The Box component serves as a wrapper component for most of the CSS utility needs.</p>
 
-The Box component packages [all the style functions](/system/basics/#all-inclusive) that are exposed in `@mui/system`.
+The Box component packages [all the style functions](/system/properties/) that are exposed in `@mui/system`.
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
@@ -18,7 +19,7 @@ The Box component packages [all the style functions](/system/basics/#all-inclusi
 
 ## The `sx` prop
 
-All system properties are available via the [`sx` prop](/system/basics/#the-sx-prop).
+All system properties are available via the [`sx` prop](/system/getting-started/the-sx-prop/).
 In addition, the `sx` prop allows you to specify any other CSS rules you may need. Here's an example of how you can use it:
 
 {{"demo": "BoxSx.js", "defaultCodeOpen": true }}
@@ -37,7 +38,7 @@ For instance, you can change the margin this way.
 However, sometimes you have to target the underlying DOM element.
 As an example, you may want to change the border of the Button.
 The Button component defines its own styles. CSS inheritance doesn't help.
-To workaround the problem, you can use the [`sx`](/system/basics/#the-sx-prop) prop directly on the child if it is a MUI component.
+To workaround the problem, you can use the [`sx`](/system/getting-started/the-sx-prop/) prop directly on the child if it is a MUI component.
 
 ```diff
 -<Box sx={{ border: '1px dashed grey' }}>
@@ -54,18 +55,6 @@ For non-MUI components, use the `component` prop.
 -</Box>
 +<Box component="button" sx={{ border: '1px dashed grey' }}>Save</Box>
 ```
-
-## API
-
-```jsx
-import Box from '@mui/material/Box';
-```
-
-| Name                                     | Type                                                                                                        | Default                                 | Description                                                                                |
-| :--------------------------------------- | :---------------------------------------------------------------------------------------------------------- | :-------------------------------------- | :----------------------------------------------------------------------------------------- |
-| <span class="prop-name">children</span>  | <span class="prop-type">node<br></span>                                                                     |                                         | Box render function or node.                                                               |
-| <span class="prop-name">component</span> | <span class="prop-type">union:&nbsp;string&nbsp;&#124;<br>&nbsp;func&nbsp;&#124;<br>&nbsp;object<br></span> | <span class="prop-default">'div'</span> | The component used for the root node. Either a string to use a DOM element or a component. |
-| <span class="prop-name">sx</span>        | <span class="prop-type">object</span>                                                                       | <span class="prop-default">{}</span>    | Accepts all system properties, as well as any valid CSS properties.                        |
 
 ## System props
 

@@ -13,21 +13,22 @@ describe('<Card />', () => {
     inheritComponent: 'div',
     render,
     ThemeProvider,
-    muiName: 'MuiCard',
+    muiName: 'JoyCard',
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'li',
-    testVariantProps: { variant: 'contained' },
+    testVariantProps: { variant: 'solid' },
+    testCustomVariant: true,
     skip: ['classesRoot', 'componentsProp'],
   }));
 
   describe('prop: variant', () => {
-    it('text by default', () => {
+    it('plain by default', () => {
       const { getByTestId } = render(<Card data-testid="root">Hello World</Card>);
 
-      expect(getByTestId('root')).to.have.class(classes.variantText);
+      expect(getByTestId('root')).to.have.class(classes.variantPlain);
     });
 
-    ['text', 'outlined', 'light', 'contained'].forEach((variant) => {
+    ['plain', 'outlined', 'soft', 'solid'].forEach((variant) => {
       it(`should render ${variant}`, () => {
         const { getByTestId } = render(
           <Card data-testid="root" variant={variant}>

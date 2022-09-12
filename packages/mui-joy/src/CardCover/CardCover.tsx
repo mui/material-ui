@@ -17,7 +17,7 @@ const useUtilityClasses = () => {
 };
 
 const CardCoverRoot = styled('div', {
-  name: 'MuiCardCover',
+  name: 'JoyCardCover',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: CardCoverProps }>({
@@ -27,21 +27,33 @@ const CardCoverRoot = styled('div', {
   left: 0,
   width: '100%',
   height: '100%',
-  borderRadius: 'var(--Card-radius)',
+  borderRadius: 'var(--CardCover-radius)',
   // use data-attribute instead of :first-child to support zero config SSR (emotion)
-  '& > [data-first-child]': {
+  // use nested selector for integrating with nextjs image `fill` layout (spans are inserted on top of the img)
+  '& [data-first-child]': {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
     width: '100%',
     height: '100%',
     objectFit: 'cover',
     boxSizing: 'border-box',
-    borderRadius: 'var(--Card-radius)',
+    borderRadius: 'var(--CardCover-radius)',
+    margin: 0,
+    padding: 0,
+    '& > img': {
+      // support art-direction that uses <picture><img /></picture>
+      width: '100%',
+      height: '100%',
+      objectFit: 'cover',
+    },
   },
 });
 
 const CardCover = React.forwardRef(function CardCover(inProps, ref) {
   const props = useThemeProps<typeof inProps & CardCoverProps>({
     props: inProps,
-    name: 'MuiCardCover',
+    name: 'JoyCardCover',
   });
 
   const { className, component = 'div', children, ...other } = props;
@@ -63,7 +75,7 @@ const CardCover = React.forwardRef(function CardCover(inProps, ref) {
     >
       {React.Children.map(children, (child, index) =>
         index === 0 && React.isValidElement(child)
-          ? React.cloneElement(child, { 'data-first-child': '' })
+          ? React.cloneElement(child, { 'data-first-child': '' } as Record<string, string>)
           : child,
       )}
     </CardCoverRoot>
@@ -89,6 +101,14 @@ CardCover.propTypes /* remove-proptypes */ = {
    * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
 } as any;
 
 export default CardCover;

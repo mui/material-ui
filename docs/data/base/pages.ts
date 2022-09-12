@@ -4,7 +4,12 @@ const pages = [
   {
     pathname: '/base/getting-started',
     icon: 'DescriptionIcon',
-    children: [{ pathname: '/base/getting-started/installation' }],
+    children: [
+      { pathname: '/base/getting-started/overview', title: 'Overview' },
+      { pathname: '/base/getting-started/installation', title: 'Installation' },
+      { pathname: '/base/getting-started/usage', title: 'Usage' },
+      { pathname: '/base/getting-started/customization', title: 'Customization' },
+    ],
   },
   {
     pathname: '/base/react-',
@@ -20,6 +25,16 @@ const pages = [
           { pathname: '/base/react-select', title: 'Select' },
           { pathname: '/base/react-slider', title: 'Slider' },
           { pathname: '/base/react-switch', title: 'Switch' },
+        ],
+      },
+      {
+        pathname: '/base/components/data-display',
+        subheader: 'data-display',
+        children: [
+          {
+            pathname: '/base/react-badge',
+            title: 'Badge',
+          },
         ],
       },
       {
@@ -52,6 +67,17 @@ const pages = [
     pathname: '/base/api',
     icon: 'CodeIcon',
     children: pagesApi,
+  },
+  {
+    pathname: '/base/guides',
+    title: 'How To Guides',
+    icon: 'VisibilityIcon',
+    children: [
+      {
+        pathname: '/base/guides/working-with-tailwind-css',
+        title: 'Working with Tailwind CSS',
+      },
+    ],
   },
 ];
 

@@ -24,6 +24,23 @@ export {
   createFilterOptions,
 };
 
+export type AutocompleteOwnerState<
+  T,
+  Multiple extends boolean | undefined,
+  DisableClearable extends boolean | undefined,
+  FreeSolo extends boolean | undefined,
+  ChipComponent extends React.ElementType = ChipTypeMap['defaultComponent'],
+> = AutocompleteProps<T, Multiple, DisableClearable, FreeSolo, ChipComponent> & {
+  disablePortal: boolean;
+  focused: boolean;
+  fullWidth: boolean;
+  hasClearIcon: boolean;
+  hasPopupIcon: boolean;
+  inputFocused: boolean;
+  popupOpen: boolean;
+  size: OverridableStringUnion<'small' | 'medium', AutocompletePropsSizeOverrides>;
+};
+
 export type AutocompleteRenderGetTagProps = ({ index }: { index: number }) => {
   key: number;
   className: string;
@@ -103,6 +120,8 @@ export interface AutocompleteProps<
   componentsProps?: {
     clearIndicator?: Partial<IconButtonProps>;
     paper?: PaperProps;
+    popper?: Partial<PopperProps>;
+    popupIndicator?: Partial<IconButtonProps>;
   };
   /**
    * If `true`, the component is disabled.
@@ -226,9 +245,14 @@ export interface AutocompleteProps<
    *
    * @param {T[]} value The `value` provided to the component.
    * @param {function} getTagProps A tag props getter.
+   * @param {object} ownerState The state of the Autocomplete component.
    * @returns {ReactNode}
    */
-  renderTags?: (value: T[], getTagProps: AutocompleteRenderGetTagProps) => React.ReactNode;
+  renderTags?: (
+    value: T[],
+    getTagProps: AutocompleteRenderGetTagProps,
+    ownerState: AutocompleteOwnerState<T, Multiple, DisableClearable, FreeSolo, ChipComponent>,
+  ) => React.ReactNode;
   /**
    * The size of the component.
    * @default 'medium'

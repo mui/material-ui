@@ -28,7 +28,6 @@ export function isOptionGroup<TValue>(
 }
 
 interface UseSelectCommonProps<TValue> {
-  buttonComponent?: React.ElementType;
   buttonRef?: React.Ref<Element>;
   disabled?: boolean;
   listboxId?: string;

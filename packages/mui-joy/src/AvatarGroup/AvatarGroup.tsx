@@ -6,9 +6,9 @@ import { OverridableComponent } from '@mui/types';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
 import { getAvatarGroupUtilityClass } from './avatarGroupClasses';
-import { AvatarGroupProps, AvatarGroupTypeMap } from './AvatarGroupProps';
+import { AvatarGroupProps, AvatarGroupOwnerState, AvatarGroupTypeMap } from './AvatarGroupProps';
 
-export const AvatarGroupContext = React.createContext<undefined | AvatarGroupProps>(undefined);
+export const AvatarGroupContext = React.createContext<undefined | AvatarGroupOwnerState>(undefined);
 
 const useUtilityClasses = () => {
   const slots = {
@@ -19,10 +19,10 @@ const useUtilityClasses = () => {
 };
 
 const AvatarGroupGroupRoot = styled('div', {
-  name: 'MuiAvatarGroup',
+  name: 'JoyAvatarGroup',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: AvatarGroupProps }>(({ ownerState, theme }) => ({
+})<{ ownerState: AvatarGroupOwnerState }>(({ ownerState, theme }) => ({
   ...(ownerState.size === 'sm' && {
     '--AvatarGroup-gap': '-0.375rem',
     '--Avatar-ringSize': '2px',
@@ -35,7 +35,7 @@ const AvatarGroupGroupRoot = styled('div', {
     '--AvatarGroup-gap': '-0.625rem',
     '--Avatar-ringSize': '4px',
   }),
-  '--Avatar-ring': `0 0 0 var(--Avatar-ringSize) var(--Avatar-ringColor, ${theme.vars.palette.background.body})`,
+  '--Avatar-ring': `0 0 0 var(--Avatar-ringSize) var(--Avatar-ringColor, ${theme.vars.palette.background.surface})`,
   '--Avatar-marginInlineStart': 'var(--AvatarGroup-gap)',
   display: 'flex',
   marginInlineStart: 'calc(-1 * var(--AvatarGroup-gap))',
@@ -44,18 +44,10 @@ const AvatarGroupGroupRoot = styled('div', {
 const AvatarGroup = React.forwardRef(function AvatarGroup(inProps, ref) {
   const props = useThemeProps<typeof inProps & AvatarGroupProps>({
     props: inProps,
-    name: 'MuiAvatarGroup',
+    name: 'JoyAvatarGroup',
   });
 
-  const {
-    className,
-    color = 'neutral',
-    component = 'div',
-    size = 'md',
-    variant = 'light',
-    children,
-    ...other
-  } = props;
+  const { className, color, component = 'div', size = 'md', variant, children, ...other } = props;
 
   const ownerState = {
     ...props,
@@ -111,7 +103,7 @@ AvatarGroup.propTypes /* remove-proptypes */ = {
   component: PropTypes.elementType,
   /**
    * The size of the component.
-   * It accepts theme values between 'xs' and 'xl'.
+   * It accepts theme values between 'sm' and 'lg'.
    * @default 'md'
    */
   size: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
@@ -119,11 +111,19 @@ AvatarGroup.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
+    PropTypes.func,
+    PropTypes.object,
+  ]),
+  /**
    * The variant to use.
-   * @default 'light'
+   * @default 'soft'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['contained', 'light', 'outlined', 'text']),
+    PropTypes.oneOf(['outlined', 'plain', 'soft', 'solid']),
     PropTypes.string,
   ]),
 } as any;

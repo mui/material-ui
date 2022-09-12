@@ -54,7 +54,7 @@ async function findLatestTaggedVersion() {
 }
 
 async function main(argv) {
-  const { githubToken, lastRelease: lastReleaseInput, release } = argv;
+  const { githubToken, lastRelease: lastReleaseInput, release, repo } = argv;
 
   if (!githubToken) {
     throw new TypeError(
@@ -69,7 +69,7 @@ async function main(argv) {
   const lastRelease = lastReleaseInput !== undefined ? lastReleaseInput : latestTaggedVersion;
   if (lastRelease !== latestTaggedVersion) {
     console.warn(
-      `Creating changelog for ${latestTaggedVersion}..${release} when latest tagged version is '${latestTaggedVersion}'.`,
+      `Creating changelog for ${lastRelease}..${release} when latest tagged version is '${latestTaggedVersion}'.`,
     );
   }
 
@@ -79,7 +79,7 @@ async function main(argv) {
   const timeline = octokit.paginate.iterator(
     octokit.repos.compareCommits.endpoint.merge({
       owner: 'mui',
-      repo: 'material-ui',
+      repo,
       base: lastRelease,
       head: release,
     }),
@@ -177,6 +177,11 @@ yargs
           // #default-branch-switch
           default: 'master',
           describe: 'Ref which we want to release',
+          type: 'string',
+        })
+        .option('repo', {
+          default: 'material-ui',
+          describe: 'Repository to generate a changelog for',
           type: 'string',
         });
     },

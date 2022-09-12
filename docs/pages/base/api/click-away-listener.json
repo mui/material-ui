@@ -6,7 +6,7 @@
     "mouseEvent": {
       "type": {
         "name": "enum",
-        "description": "'onClick'<br>&#124;&nbsp;'onMouseDown'<br>&#124;&nbsp;'onMouseUp'<br>&#124;&nbsp;false"
+        "description": "'onClick'<br>&#124;&nbsp;'onMouseDown'<br>&#124;&nbsp;'onMouseUp'<br>&#124;&nbsp;'onPointerDown'<br>&#124;&nbsp;'onPointerUp'<br>&#124;&nbsp;false"
       },
       "default": "'onClick'"
     },
@@ -23,6 +23,6 @@
   "spread": false,
   "filename": "/packages/mui-base/src/ClickAwayListener/ClickAwayListener.tsx",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/base/react-click-away-listener/\">Click away listener</a></li></ul>",
+  "demos": "<ul><li><a href=\"/base/react-click-away-listener/\">Click-away listener</a></li></ul>",
   "cssComponent": false
 }

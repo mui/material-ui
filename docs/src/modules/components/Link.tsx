@@ -5,12 +5,13 @@ import NextLink, { LinkProps as NextLinkProps } from 'next/link';
 import MuiLink, { LinkProps as MuiLinkProps } from '@mui/material/Link';
 import { styled } from '@mui/material/styles';
 import { useUserLanguage } from 'docs/src/modules/utils/i18n';
+import { LANGUAGES_IGNORE_PAGES } from 'docs/src/modules/constants';
 
 /**
  * File to keep in sync with:
  *
  * - /docs/src/modules/components/Link.tsx
- * - /examples/nextjs/src/Link.tsx
+ * - /examples/nextjs/src/Link.js
  * - /examples/nextjs-with-typescript/src/Link.tsx
  */
 
@@ -19,7 +20,7 @@ const Anchor = styled('a')({});
 
 interface NextLinkComposedProps
   extends Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'href'>,
-    Omit<NextLinkProps, 'href' | 'as' | 'passHref'> {
+    Omit<NextLinkProps, 'href' | 'as' | 'passHref' | 'onMouseEnter' | 'onClick' | 'onTouchStart'> {
   to: NextLinkProps['href'];
   linkAs?: NextLinkProps['as'];
 }
@@ -96,7 +97,7 @@ const Link = React.forwardRef<HTMLAnchorElement, LinkProps>(function Link(props,
     userLanguage !== 'en' &&
     pathname &&
     pathname.indexOf('/') === 0 &&
-    pathname.indexOf('/blog') !== 0 &&
+    !LANGUAGES_IGNORE_PAGES(pathname) &&
     !pathname.startsWith(`/${userLanguage}/`)
   ) {
     linkAs = `/${userLanguage}${linkAs}`;

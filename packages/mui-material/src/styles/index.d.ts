@@ -6,7 +6,10 @@ export {
   Theme,
 } from './createTheme';
 export { default as adaptV4Theme, DeprecatedThemeOptions } from './adaptV4Theme';
+export { Shadows } from './shadows';
+export { ZIndex } from './zIndex';
 export {
+  CommonColors,
   Palette,
   PaletteColor,
   PaletteColorOptions,
@@ -32,6 +35,7 @@ export {
   duration,
   easing,
 } from './createTransitions';
+export { Mixins } from './createMixins';
 export {
   Direction,
   Breakpoint,
@@ -93,4 +97,35 @@ export { default as withTheme } from './withTheme';
 export * from './CssVarsProvider';
 
 export { default as experimental_extendTheme } from './experimental_extendTheme';
-export * from './experimental_extendTheme';
+export type {
+  ColorSchemeOverrides,
+  SupportedColorScheme,
+  ColorSystem,
+  CssVarsPalette,
+  Opacity,
+  Overlays,
+  PaletteAlert,
+  PaletteActionChannel,
+  PaletteAppBar,
+  PaletteAvatar,
+  PaletteChip,
+  PaletteColorChannel,
+  PaletteCommonChannel,
+  PaletteFilledInput,
+  PaletteLinearProgress,
+  PaletteSkeleton,
+  PaletteSlider,
+  PaletteSnackbarContent,
+  PaletteSpeedDialAction,
+  PaletteStepConnector,
+  PaletteStepContent,
+  PaletteSwitch,
+  PaletteTableCell,
+  PaletteTextChannel,
+  PaletteTooltip,
+  CssVarsThemeOptions,
+  CssVarsTheme,
+  ThemeVars,
+  ThemeCssVar,
+  ThemeCssVarOverrides,
+} from './experimental_extendTheme';

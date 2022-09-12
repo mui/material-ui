@@ -11,41 +11,37 @@ describe('<Switch />', () => {
     classes,
     render,
     ThemeProvider,
-    muiName: 'MuiSwitch',
+    muiName: 'JoySwitch',
+    inheritComponent: 'div',
     testDeepOverrides: [
       { slotName: 'track', slotClassName: classes.track },
       { slotName: 'input', slotClassName: classes.input },
       { slotName: 'thumb', slotClassName: classes.thumb },
     ],
-    refInstanceof: window.HTMLSpanElement,
-    skip: [
-      'componentProp',
-      'componentsProp',
-      'classesRoot',
-      'propsSpread',
-      'themeDefaultProps',
-      'themeVariants',
-    ],
+    testVariantProps: { variant: 'soft' },
+    testCustomVariant: true,
+    refInstanceof: window.HTMLDivElement,
+    skip: ['componentProp', 'componentsProp', 'classesRoot'],
   }));
 
-  it('should pass componentProps down to slots', () => {
-    const {
-      container: { firstChild: root },
-    } = render(
+  it('should pass `componentsProps` down to slots', () => {
+    const { container } = render(
       <Switch
         data-testid="root-switch"
         componentsProps={{
           thumb: { className: 'custom-thumb' },
           track: { className: 'custom-track' },
+          action: { className: 'custom-action' },
           input: { className: 'custom-input' },
         }}
       />,
     );
 
     expect(screen.getByTestId('root-switch')).toBeVisible();
-    expect(root.childNodes[0]).to.have.class(/custom-(thumb|track|input)/);
-    expect(root.childNodes[1]).to.have.class(/custom-(thumb|track|input)/);
-    expect(root.childNodes[2]).to.have.class(/custom-(thumb|track|input)/);
+    expect(container.querySelector('.custom-thumb')).to.have.class(classes.thumb);
+    expect(container.querySelector('.custom-track')).to.have.class(classes.track);
+    expect(container.querySelector('.custom-action')).to.have.class(classes.action);
+    expect(container.querySelector('.custom-input')).to.have.class(classes.input);
   });
 
   it('should have the classes required for Switch', () => {
@@ -95,5 +91,51 @@ describe('<Switch />', () => {
     });
 
     expect(getByRole('checkbox')).to.have.property('checked', false);
+  });
+
+  describe('decorator', () => {
+    it('can receive startDecorator as string', () => {
+      const { getByText } = render(<Switch startDecorator="foo" />);
+
+      expect(getByText('foo')).toBeVisible();
+    });
+
+    it('can receive endDecorator as string', () => {
+      const { getByText } = render(<Switch endDecorator="bar" />);
+
+      expect(getByText('bar')).toBeVisible();
+    });
+
+    it('can receive startDecorator as function', () => {
+      const { getByText, getByRole } = render(
+        <Switch startDecorator={({ checked }) => (checked ? 'On' : 'Off')} />,
+      );
+
+      expect(getByText('Off')).toBeVisible();
+
+      // how a user would trigger it
+      act(() => {
+        getByRole('checkbox').click();
+        fireEvent.change(getByRole('checkbox'), { target: { checked: '' } });
+      });
+
+      expect(getByText('On')).toBeVisible();
+    });
+
+    it('can receive endDecorator as function', () => {
+      const { getByText, getByRole } = render(
+        <Switch endDecorator={({ checked }) => (checked ? 'On' : 'Off')} />,
+      );
+
+      expect(getByText('Off')).toBeVisible();
+
+      // how a user would trigger it
+      act(() => {
+        getByRole('checkbox').click();
+        fireEvent.change(getByRole('checkbox'), { target: { checked: '' } });
+      });
+
+      expect(getByText('On')).toBeVisible();
+    });
   });
 });

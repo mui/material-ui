@@ -1,7 +1,7 @@
 import * as React from 'react';
-import Stack from '@mui/material/Stack';
 import ButtonUnstyled, { buttonUnstyledClasses } from '@mui/base/ButtonUnstyled';
 import { styled } from '@mui/system';
+import Stack from '@mui/material/Stack';
 
 const blue = {
   500: '#007FFF',
@@ -15,7 +15,7 @@ const CustomButton = styled(ButtonUnstyled)`
   font-size: 0.875rem;
   background-color: ${blue[500]};
   padding: 12px 24px;
-  border-radius: 8px;
+  border-radius: 12px;
   color: white;
   transition: all 150ms ease;
   cursor: pointer;
@@ -42,7 +42,7 @@ const CustomButton = styled(ButtonUnstyled)`
 
 export default function UnstyledButtonsDisabledFocus() {
   return (
-    <Stack spacing={2} direction="row">
+    <Stack spacing={2}>
       <CustomButton disabled>focusableWhenDisabled = false</CustomButton>
       <CustomButton disabled focusableWhenDisabled>
         focusableWhenDisabled = true
