@@ -85,9 +85,6 @@ const InputRoot = styled('div', {
       alignItems: 'center',
       paddingInline: `var(--Input-paddingInline)`,
       borderRadius: 'var(--Input-radius)',
-      ...(!variantStyle?.backgroundColor && {
-        backgroundColor: theme.vars.palette.background.surface,
-      }),
       fontFamily: theme.vars.fontFamily.body,
       fontSize: theme.vars.fontSize.md,
       ...(ownerState.size === 'sm' && {
@@ -114,16 +111,16 @@ const InputRoot = styled('div', {
     {
       // variant styles
       ...variantStyle,
-      '&:hover': {
+      backgroundColor: variantStyle?.backgroundColor ?? theme.vars.palette.background.surface,
+      [`&:hover:not(.${inputClasses.focused})`]: {
+        ...theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
+        backgroundColor: variantStyle?.backgroundColor ?? theme.vars.palette.background.surface,
         cursor: 'text',
       },
       [`&.${inputClasses.disabled}`]:
         theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
-    },
-    // This style has to come after the global variant to set the background to surface
-    ownerState.variant !== 'solid' && {
       [`&.${inputClasses.focused}`]: {
-        backgroundColor: theme.vars.palette.background.surface,
+        backgroundColor: variantStyle?.backgroundColor ?? theme.vars.palette.background.surface,
         '&:before': {
           boxShadow: `inset 0 0 0 var(--Input-focusedThickness) var(--Input-focusedHighlight)`,
         },
@@ -173,6 +170,7 @@ const InputStartDecorator = styled('span', {
   alignItems: 'center',
   marginInlineEnd: 'var(--Input-gap)',
   color: theme.vars.palette.text.tertiary,
+  cursor: 'initial',
   ...(ownerState.focused && {
     color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Color`],
   }),
@@ -190,6 +188,7 @@ const InputEndDecorator = styled('span', {
   alignItems: 'center',
   marginInlineStart: 'var(--Input-gap)',
   color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Color`],
+  cursor: 'initial',
 }));
 
 const Input = React.forwardRef(function Input(inProps, ref) {

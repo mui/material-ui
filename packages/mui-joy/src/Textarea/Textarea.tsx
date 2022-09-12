@@ -84,9 +84,6 @@ const TextareaRoot = styled('div', {
       paddingInlineStart: `var(--Textarea-paddingInline)`, // the paddingInlineEnd is added to the textarea. It looks better when the scrollbar appears.
       paddingBlock: 'var(--Textarea-paddingBlock)',
       borderRadius: 'var(--Textarea-radius)',
-      ...(!variantStyle?.backgroundColor && {
-        backgroundColor: theme.vars.palette.background.surface,
-      }),
       fontFamily: theme.vars.fontFamily.body,
       fontSize: theme.vars.fontSize.md,
       lineHeight: theme.vars.lineHeight.md,
@@ -115,16 +112,16 @@ const TextareaRoot = styled('div', {
     {
       // variant styles
       ...variantStyle,
-      '&:hover': {
+      backgroundColor: variantStyle?.backgroundColor ?? theme.vars.palette.background.surface,
+      [`&:hover:not(.${textareaClasses.focused})`]: {
+        ...theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
+        backgroundColor: variantStyle?.backgroundColor ?? theme.vars.palette.background.surface,
         cursor: 'text',
       },
       [`&.${textareaClasses.disabled}`]:
         theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
-    },
-    // This style has to come after the global variant to set the background to surface
-    ownerState.variant !== 'solid' && {
       [`&.${textareaClasses.focused}`]: {
-        backgroundColor: theme.vars.palette.background.surface,
+        backgroundColor: variantStyle?.backgroundColor ?? theme.vars.palette.background.surface,
         '&:before': {
           boxShadow: `inset 0 0 0 var(--Textarea-focusedThickness) var(--Textarea-focusedHighlight)`,
         },
@@ -176,6 +173,7 @@ const TextareaStartDecorator = styled('div', {
   marginInlineEnd: 'var(--Textarea-paddingBlock)',
   marginBlockEnd: 'var(--Textarea-gap)',
   color: theme.vars.palette.text.tertiary,
+  cursor: 'initial',
 }));
 
 const TextareaEndDecorator = styled('div', {
@@ -188,6 +186,7 @@ const TextareaEndDecorator = styled('div', {
   marginInlineEnd: 'var(--Textarea-paddingBlock)',
   marginBlockStart: 'var(--Textarea-gap)',
   color: theme.vars.palette.text.tertiary,
+  cursor: 'initial',
 }));
 
 const Textarea = React.forwardRef(function Textarea(inProps, ref) {
