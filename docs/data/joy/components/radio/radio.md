@@ -46,6 +46,16 @@ The `Radio` component supports every Joy UI global variant and it comes with `ou
 
 {{"demo": "RadioButtons.js"}}
 
+### Label
+
+Use `label` prop to label the radio buttons.
+
+{{"demo": "RadioButtonLabel.js"}}
+
+For complex layout, compose a radio button with `FormControl`, `FormLabel`, and `FormHelperText` (optional).
+
+{{"demo": "RadioButtonControl.js"}}
+
 ### Position
 
 To swap the label and radio position, use the CSS property `flex-direction: row-reverse`.
@@ -102,7 +112,7 @@ Here are a few tips to make sure you have an accessible radio button component:
 
 - Every form control should have proper labels.
   This includes radio buttons, checkboxes, and switches.
-  In most cases, this is done by using the `<label>` element (see Material UI's [`FormControlLabel`](/material-ui/api/form-control-label/) as reference).
+  In most cases, this is done by using the `FormControl` and `FormLabel` element.
 - When a label can't be used, make sure to add an attribute, such as `aria-label`, `aria-labelledby`, and/or `title`, directly on the input component.
   You can also use the `inputProps` prop to add them.
 
@@ -124,6 +134,12 @@ Visit the [WAI-ARIA documentation](https://www.w3.org/WAI/ARIA/apg/patterns/radi
 ### Segmented controls
 
 {{"demo": "ExampleSegmentedControls.js"}}
+
+### Tiers
+
+A clone of an [inspiration](https://dribbble.com/shots/11239824-Radio-button-groups) that demonstrate the composition of the components.
+
+{{"demo": "ExampleTiers.js", "bg": true}}
 
 ### Alignment buttons
 
