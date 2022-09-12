@@ -142,7 +142,7 @@ const ChipRoot = styled('div', {
         }),
         ...(ownerState.iconColor &&
           ownerState.iconColor !== ownerState.color && {
-            color: undefined, // Don't override color defined by icon
+            color: undefined,
           }),
       },
       [`& .${chipClasses.deleteIcon}`]: {
