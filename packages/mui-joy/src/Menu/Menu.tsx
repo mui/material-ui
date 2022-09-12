@@ -62,7 +62,7 @@ const Menu = React.forwardRef(function Menu(inProps, ref) {
     children,
     component,
     color = 'neutral',
-    disablePortal = true,
+    disablePortal = false,
     keepMounted = false,
     id,
     onClose,
