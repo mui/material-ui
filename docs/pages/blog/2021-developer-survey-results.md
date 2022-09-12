@@ -462,7 +462,8 @@ It's crucial for our docs—and even the code itself—to be easily understood b
 
 <p class="blog-description">1051 out of 1589 answered.</p>
 
-It might be a possible interpration that MUI could be one of the enablers of this high-speed development, which is very encouraging. Shipping 28 apps in a year is already a huge accomplishment but 122 to 494 is just wild!
+Roughly half—47%—of those who responded to this question shipped one app or simply maintained an existing app.
+Impressively, 5% of respondents delivered 6 or more apps, and more than half of those surpassed 10!
 
 ### Which MUI products do you use in your application?
 
