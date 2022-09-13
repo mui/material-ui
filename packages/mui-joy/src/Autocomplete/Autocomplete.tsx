@@ -885,7 +885,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * @param {object} params
    * @returns {ReactNode}
    */
-  renderInput: PropTypes.func.isRequired,
+  renderInput: PropTypes.func,
   /**
    * Render the option, use `getOptionLabel` by default.
    *
