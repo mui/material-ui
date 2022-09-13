@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { OptionState } from '../ListboxUnstyled';
+import { OptionState } from '@mui/base/useListbox';
 import { SelectOption, UseSelectOptionSlotProps } from './useSelect.types';
 
 export interface SelectUnstyledContextType {

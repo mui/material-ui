@@ -34,7 +34,7 @@ export * from './FormControlUnstyled';
 export { default as InputUnstyled } from './InputUnstyled';
 export * from './InputUnstyled';
 
-export * from './ListboxUnstyled';
+export * from './useListbox';
 
 export { default as MenuUnstyled } from './MenuUnstyled';
 export * from './MenuUnstyled';
