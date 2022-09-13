@@ -1,6 +1,6 @@
 import * as React from 'react';
 import FormControlUnstyled from '@mui/base/FormControlUnstyled';
-import { useFormControlUnstyledContext } from '@mui/base/useFormControlUnstyledContext';
+import useFormControlUnstyledContext from '@mui/base/useFormControlUnstyledContext';
 import InputUnstyled, { inputUnstyledClasses } from '@mui/base/InputUnstyled';
 import { styled } from '@mui/system';
 import clsx from 'clsx';

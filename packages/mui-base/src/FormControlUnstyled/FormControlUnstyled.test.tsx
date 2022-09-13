@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import { spy } from 'sinon';
 import { createMount, createRenderer, describeConformanceUnstyled, fireEvent } from 'test/utils';
 import FormControlUnstyled, { formControlUnstyledClasses } from '@mui/base/FormControlUnstyled';
-import { useFormControlUnstyledContext } from '@mui/base/useFormControlUnstyledContext';
+import useFormControlUnstyledContext from '@mui/base/useFormControlUnstyledContext';
 
 describe('<FormControlUnstyled />', () => {
   const mount = createMount();
