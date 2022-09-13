@@ -77,7 +77,7 @@ describe('<Masonry />', () => {
 
       const { getByTestId } = render(
         <Masonry columns={2} spacing={spacingProp} data-testid="container">
-          <div sx={{ height: 10 }} />
+          <div style={{ height: 10 }} />
         </Masonry>,
       );
       const masonry = getByTestId('container');
