@@ -29,6 +29,7 @@ const pages = [
         pathname: '/joy-ui/components/inputs',
         subheader: 'inputs',
         children: [
+          { pathname: '/joy-ui/react-autocomplete' },
           { pathname: '/joy-ui/react-button' },
           { pathname: '/joy-ui/react-text-field', title: 'Text Field' },
           { pathname: '/joy-ui/react-textarea' },
