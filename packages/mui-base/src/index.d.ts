@@ -10,6 +10,8 @@ export * from './useInput';
 
 export * from './useMenuItem';
 
+export * from './useMenu';
+
 export { default as BadgeUnstyled } from './BadgeUnstyled';
 
 export { default as ButtonUnstyled } from './ButtonUnstyled';

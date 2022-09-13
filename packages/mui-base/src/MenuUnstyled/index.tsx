@@ -7,7 +7,3 @@ export { default as menuUnstyledClasses } from './menuUnstyledClasses';
 export * from './menuUnstyledClasses';
 
 export * from './MenuUnstyled.types';
-
-export { default as useMenu } from './useMenu';
-
-export * from './useMenu.types';

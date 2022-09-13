@@ -12,7 +12,7 @@ import {
   MenuItemState,
   UseMenuListboxSlotProps,
   UseMenuParameters,
-} from './useMenu.types';
+} from '@mui/base/useMenu';
 import { EventHandlers } from '../utils';
 
 function stateReducer(

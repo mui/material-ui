@@ -10,7 +10,7 @@ import {
   MenuUnstyledTypeMap,
 } from './MenuUnstyled.types';
 import { getMenuUnstyledUtilityClass } from './menuUnstyledClasses';
-import useMenu from './useMenu';
+import useMenu from '@mui/base/useMenu';
 import composeClasses from '../composeClasses';
 import PopperUnstyled from '../PopperUnstyled';
 import useSlotProps from '../utils/useSlotProps';
