@@ -6,6 +6,8 @@ export * from './useBadge';
 
 export * from './useFormControlUnstyledContext';
 
+export * from './useInput';
+
 export { default as BadgeUnstyled } from './BadgeUnstyled';
 
 export { default as ButtonUnstyled } from './ButtonUnstyled';

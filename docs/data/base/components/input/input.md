@@ -93,7 +93,7 @@ Note that `componentsProps` slot names are written in lowercase (`root`) while `
 ## Hook
 
 ```js
-import { useInput } from '@mui/base/InputUnstyled';
+import { useInput } from '@mui/base/useInput';
 ```
 
 The `useInput` hook lets you apply the functionality of `InputUnstyled` to a fully custom component.
