@@ -21,7 +21,7 @@ import {
   defaultListboxReducer,
   ActionTypes,
   UseListboxParameters,
-} from '../ListboxUnstyled';
+} from '@mui/base/useListbox';
 import { EventHandlers } from '../utils/types';
 import defaultOptionStringifier from './defaultOptionStringifier';
 
