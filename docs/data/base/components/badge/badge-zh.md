@@ -89,7 +89,7 @@ Note that `componentsProps` slot names are written in lowercase (`root`) while `
 ## Hook
 
 ```jsx
-import { useBadge } from '@mui/base/useBadge';
+import useBadge from '@mui/base/useBadge';
 ```
 
 The `useBadge` hook lets you apply the functionality of `BadgeUnstyled` to a fully custom component. It returns props to be placed on the custom component, along with fields representing the component's internal state.
