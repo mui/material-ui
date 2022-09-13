@@ -55,7 +55,7 @@ Note that it also uses the `useFormControlUnstyledContext` hook in order to pass
 ## Hook
 
 ```jsx
-import { useFormControlUnstyledContext } from '@mui/base/FormControlUnstyled';
+import { useFormControlUnstyledContext } from '@mui/base/useFormControlUnstyledContext';
 ```
 
 The `useFormControlUnstyledContext` hook reads the context provided by `FormControlUnstyled`.
