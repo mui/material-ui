@@ -16,7 +16,7 @@ import { ListItemButtonRoot } from '../ListItemButton/ListItemButton';
 import Chip, { chipClasses } from '../Chip';
 import { IconButtonOwnerState } from '../IconButton';
 import Input, { inputClasses } from '../Input';
-import List, { listClasses, ListOwnerState } from '../List';
+import List, { listClasses } from '../List';
 import ListProvider, { scopedVariables } from '../List/ListProvider';
 import ListSubheader from '../ListSubheader';
 import ListItem, { listItemClasses } from '../ListItem';
@@ -45,16 +45,7 @@ const defaultRenderGroup = (params: AutocompleteRenderGroupParams) => (
 );
 
 const useUtilityClasses = (ownerState: OwnerState) => {
-  const {
-    disablePortal,
-    focused,
-    fullWidth,
-    hasClearIcon,
-    hasPopupIcon,
-    inputFocused,
-    popupOpen,
-    size,
-  } = ownerState;
+  const { focused, fullWidth, hasClearIcon, hasPopupIcon, popupOpen } = ownerState;
 
   const slots = {
     root: [
@@ -99,12 +90,12 @@ const AutocompleteRoot = styled('div', {
           visibility: 'visible',
         },
       },
-      [`& .${autocompleteClasses.input}`]: {
-        minWidth: 30,
-        minHeight: 'calc(var(--Input-minHeight) - 2 * var(--variant-borderWidth, 0px))',
-      },
       [`& .${inputClasses.root}`]: {
         paddingInlineEnd: `calc(${endDecoratorCount} * var(--Input-decorator-childHeight) + 2 * var(--_Input-paddingBlock))`,
+      },
+      [`& .${inputClasses.input}`]: {
+        minWidth: 30,
+        minHeight: 'calc(var(--Input-minHeight) - 2 * var(--variant-borderWidth, 0px))',
       },
       [`& .${inputClasses.endDecorator}`]: {
         position: 'absolute',
@@ -122,7 +113,7 @@ const AutocompleteRoot = styled('div', {
       [`& .${inputClasses.startDecorator}`]: {
         display: 'contents',
       },
-      [`& .${autocompleteClasses.input}`]: {
+      [`& .${inputClasses.input}`]: {
         marginInlineStart: 'var(--Input-paddingInline)',
         marginBlockEnd: 'calc(-1 * var(--_Input-paddingBlock))',
       },
