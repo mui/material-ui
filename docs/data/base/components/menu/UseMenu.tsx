@@ -4,7 +4,7 @@ import {
   MenuUnstyledContext,
   MenuUnstyledContextType,
 } from '@mui/base/MenuUnstyled';
-import { useMenuItem } from '@mui/base/MenuItemUnstyled';
+import useMenuItem from '@mui/base/useMenuItem';
 import { GlobalStyles } from '@mui/system';
 import clsx from 'clsx';
 

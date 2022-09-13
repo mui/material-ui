@@ -10,6 +10,8 @@ export * from './useInput';
 
 export * from './useControllableReducer';
 
+export * from './useMenuItem';
+
 export { default as BadgeUnstyled } from './BadgeUnstyled';
 export * from './BadgeUnstyled';
 
