@@ -23,7 +23,7 @@ import {
   UseListboxParameters,
 } from '@mui/base/useListbox';
 import { EventHandlers } from '../utils/types';
-import defaultOptionStringifier from './defaultOptionStringifier';
+import defaultOptionStringifier from '../SelectUnstyled/defaultOptionStringifier';
 
 function useSelect<TValue>(props: UseSelectSingleParameters<TValue>): UseSelectSingleResult<TValue>;
 function useSelect<TValue>(props: UseSelectMultiParameters<TValue>): UseSelectMultiResult<TValue>;
