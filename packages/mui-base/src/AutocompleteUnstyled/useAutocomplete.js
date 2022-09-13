@@ -73,6 +73,8 @@ export default function useAutocomplete(props) {
   const {
     // eslint-disable-next-line @typescript-eslint/naming-convention
     _isActiveElementInListbox = defaultIsActiveElementInListbox,
+    // eslint-disable-next-line @typescript-eslint/naming-convention
+    _classNamePrefix = 'Mui',
     autoComplete = false,
     autoHighlight = false,
     autoSelect = false,
@@ -80,7 +82,6 @@ export default function useAutocomplete(props) {
     clearOnBlur = !props.freeSolo,
     clearOnEscape = false,
     componentName = 'useAutocomplete',
-    classNamePrefix = 'Mui',
     defaultValue = props.multiple ? [] : null,
     disableClearable = false,
     disableCloseOnSelect = false,
@@ -332,10 +333,10 @@ export default function useAutocomplete(props) {
       return;
     }
 
-    const prev = listboxRef.current.querySelector(`[role="option"].${classNamePrefix}-focused`);
+    const prev = listboxRef.current.querySelector(`[role="option"].${_classNamePrefix}-focused`);
     if (prev) {
-      prev.classList.remove(`${classNamePrefix}-focused`);
-      prev.classList.remove(`${classNamePrefix}-focusVisible`);
+      prev.classList.remove(`${_classNamePrefix}-focused`);
+      prev.classList.remove(`${_classNamePrefix}-focusVisible`);
     }
 
     const listboxNode = listboxRef.current.parentElement.querySelector('[role="listbox"]');
@@ -356,9 +357,9 @@ export default function useAutocomplete(props) {
       return;
     }
 
-    option.classList.add(`${classNamePrefix}-focused`);
+    option.classList.add(`${_classNamePrefix}-focused`);
     if (reason === 'keyboard') {
-      option.classList.add(`${classNamePrefix}-focusVisible`);
+      option.classList.add(`${_classNamePrefix}-focusVisible`);
     }
 
     // Scroll active descendant into view.

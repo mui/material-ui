@@ -42,6 +42,11 @@ export interface UseAutocompleteProps<
   FreeSolo extends boolean | undefined,
 > {
   /**
+   * @internal The prefix of the state class name, temporary for Joy UI
+   * @default 'Mui'
+   */
+  _classNamePrefix?: string;
+  /**
    * @internal
    * Temporary for Joy UI because the parent listbox is the document object
    * TODO v6: Normalize the logic and remove this param.
@@ -93,11 +98,6 @@ export interface UseAutocompleteProps<
    * The component name that is using this hook. Used for warnings.
    */
   componentName?: string;
-  /**
-   * The prefix of the state class name
-   * @default 'Mui'
-   */
-  classNamePrefix?: string;
   /**
    * The default value. Use when the component is not controlled.
    * @default props.multiple ? [] : null
