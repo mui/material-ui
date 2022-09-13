@@ -4,7 +4,7 @@ import {
   SelectOption,
   UseSelectButtonSlotProps,
   UseSelectListboxSlotProps,
-} from './useSelect.types';
+} from '@mui/base/useSelect';
 import PopperUnstyled, { PopperUnstyledProps } from '../PopperUnstyled';
 import { SlotComponentProps } from '../utils';
 

@@ -14,6 +14,8 @@ export * from './useMenuItem';
 
 export * from './useMenu';
 
+export * from './useSelect';
+
 export { default as BadgeUnstyled } from './BadgeUnstyled';
 export * from './BadgeUnstyled';
 

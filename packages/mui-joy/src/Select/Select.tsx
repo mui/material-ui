@@ -8,12 +8,12 @@ import {
 } from '@mui/utils';
 import PopperUnstyled, { PopperUnstyledProps } from '@mui/base/PopperUnstyled';
 import {
-  useSelect,
   SelectUnstyledContext,
   flattenOptionGroups,
   getOptionsFromChildren,
 } from '@mui/base/SelectUnstyled';
-import type { SelectChild, SelectOption } from '@mui/base/SelectUnstyled';
+import useSelect from '@mui/base/useSelect';
+import type { SelectChild, SelectOption } from '@mui/base/useSelect';
 import { useSlotProps } from '@mui/base/utils';
 import composeClasses from '@mui/base/composeClasses';
 import { ListRoot } from '../List/List';
