@@ -398,11 +398,9 @@ https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 ## MUI X is configured to be hosted at the root.
 /static/x/* https://docs-next--material-ui-x.netlify.app/static/x/:splat 200
 /x/_next/* https://docs-next--material-ui-x.netlify.app/_next/:splat 200
-/x/react-data-grid/* https://docs-next--material-ui-x.netlify.app/x/:splat 200
-/x/api/data-grid/* https://docs-next--material-ui-x.netlify.app/x/:splat 200
+/x/* https://docs-next--material-ui-x.netlify.app/x/:splat 200
 /r/x-* https://docs-next--material-ui-x.netlify.app/r/x-:splat 200
-/:lang/x/react-data-grid/* https://docs-next--material-ui-x.netlify.app/:lang/x/:splat 200
-/:lang/x/api/data-grid/* https://docs-next--material-ui-x.netlify.app/:lang/x/:splat 200
+/:lang/x/* https://docs-next--material-ui-x.netlify.app/:lang/x/:splat 200
 
 ## MUI Toolpad
 /static/toolpad/* https://mui-toolpad-docs.netlify.app/static/toolpad/:splat 200
@@ -410,4 +408,4 @@ https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 /toolpad/* https://mui-toolpad-docs.netlify.app/toolpad/:splat 200
 /r/toolpad-* https://mui-toolpad-docs.netlify.app/r/toolpad-:splat 200
 
-/* https://mui.com/:splat 301
+/* https://mui.com/:splat 301!
