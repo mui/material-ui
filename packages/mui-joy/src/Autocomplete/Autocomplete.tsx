@@ -265,6 +265,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
   Object.entries(otherProps).forEach((item) => {
     if (
       !item[0].match(
+        // Do not spread these props to the root DOM
         /^(autoComplete|autoHighlight|autoSelect|blurOnSelect|clearOnBlur|clearOnEscape|defaultValue|disableCloseOnSelect|disabledItemsFocusable|disableListWrap|filterSelectedOptions|handleHomeEndKeys|includeInputInList|openOnFocus|selectOnFocus)$/,
       )
     ) {
