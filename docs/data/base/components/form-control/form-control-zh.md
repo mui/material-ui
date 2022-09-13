@@ -53,7 +53,7 @@ The following demo shows how to create and style a form that uses `FormControlUn
 ## Hook
 
 ```jsx
-import { useFormControlUnstyledContext } from '@mui/base/FormControlUnstyled';
+import { useFormControlUnstyledContext } from '@mui/base/useFormControlUnstyledContext';
 ```
 
 The `useFormControlUnstyledContext` hook reads the context provided by `FormControlUnstyled`. This hook lets you work with custom input components inside of the form control. You can also use it to read the form control's state and react to its changes in a custom component.

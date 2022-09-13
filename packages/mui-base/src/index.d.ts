@@ -4,6 +4,8 @@ export * from './useAutocomplete';
 
 export * from './useBadge';
 
+export * from './useFormControlUnstyledContext';
+
 export { default as BadgeUnstyled } from './BadgeUnstyled';
 export * from './BadgeUnstyled';
 
