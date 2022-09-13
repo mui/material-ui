@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { MenuItemMetadata, MenuItemState } from './useMenu.types';
+import { MenuItemMetadata, MenuItemState } from '@mui/base/useMenu';
 
 export interface MenuUnstyledContextType {
   registerItem: (id: string, metadata: MenuItemMetadata) => void;

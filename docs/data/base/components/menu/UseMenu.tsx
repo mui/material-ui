@@ -1,9 +1,10 @@
 import * as React from 'react';
 import {
-  useMenu,
   MenuUnstyledContext,
   MenuUnstyledContextType,
 } from '@mui/base/MenuUnstyled';
+import useMenu from '@mui/base/useMenu';
+
 import useMenuItem from '@mui/base/useMenuItem';
 import { GlobalStyles } from '@mui/system';
 import clsx from 'clsx';
