@@ -203,6 +203,7 @@ const Button = React.forwardRef(function Button(inProps, ref) {
       {startDecorator && (
         <ButtonStartDecorator {...startDecoratorProps}>{startDecorator}</ButtonStartDecorator>
       )}
+
       {children}
       {endDecorator && (
         <ButtonEndDecorator {...endDecoratorProps}>{endDecorator}</ButtonEndDecorator>
