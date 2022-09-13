@@ -121,7 +121,7 @@ You can group the options with the `groupBy` prop. If you do so, make sure that 
 For advanced customization use cases, a headless `useAutocomplete()` hook is exposed. It accepts almost the same options as the Autocomplete component minus all the props related to the rendering of JSX. The Autocomplete component is built on this hook.
 
 ```tsx
-import { useAutocomplete } from '@mui/base/useAutocomplete';
+import useAutocomplete from '@mui/base/useAutocomplete';
 ```
 
 The `useAutocomplete` hook is also reexported from @mui/material for convenience and backward compatibility.
