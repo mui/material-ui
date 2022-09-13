@@ -8,7 +8,7 @@ import {
   ListboxAction,
   ListboxState,
   UseListboxPropsWithDefaults,
-} from '../ListboxUnstyled/useListbox.types';
+} from '@mui/base/useListbox';
 
 describe('useControllableReducer', () => {
   const { render } = createRenderer();

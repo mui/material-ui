@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { SinonSpy, spy } from 'sinon';
-import { useListbox } from '@mui/base/ListboxUnstyled';
+import useListbox from '@mui/base/useListbox';
 import { createRenderer, createEvent, fireEvent } from 'test/utils';
 
 describe('useListbox', () => {
