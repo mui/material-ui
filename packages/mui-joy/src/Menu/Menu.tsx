@@ -43,7 +43,7 @@ const MenuRoot = styled(ListRoot, {
     ...scopedVariables,
     boxShadow: theme.vars.shadow.md,
     overflow: 'auto',
-    zIndex: 1000,
+    zIndex: 1300, // the same value as Material UI Menu. TODO: revisit the appropriate value later.
     ...(!variantStyle?.backgroundColor && {
       backgroundColor: theme.vars.palette.background.surface,
     }),
