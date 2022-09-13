@@ -12,6 +12,8 @@ export * from './useControllableReducer';
 
 export * from './useMenuItem';
 
+export * from './useMenu';
+
 export { default as BadgeUnstyled } from './BadgeUnstyled';
 export * from './BadgeUnstyled';
 

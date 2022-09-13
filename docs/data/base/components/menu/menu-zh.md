@@ -104,7 +104,7 @@ Note that `componentsProps` slot names are written in lowercase (`root`) while `
 ## Hooks
 
 ```jsx
-import { useMenu } from '@mui/base/MenuUnstyled';
+import useMenu from '@mui/base/useMenu';
 import useMenuItem from '@mui/base/useMenuItem';
 ```
 
