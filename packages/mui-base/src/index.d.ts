@@ -8,6 +8,8 @@ export * from './useFormControlUnstyledContext';
 
 export * from './useInput';
 
+export * from './useMenuItem';
+
 export { default as BadgeUnstyled } from './BadgeUnstyled';
 
 export { default as ButtonUnstyled } from './ButtonUnstyled';
@@ -29,7 +31,6 @@ export { default as FormControlUnstyled } from './FormControlUnstyled';
 export * from './FormControlUnstyled';
 
 export { default as InputUnstyled } from './InputUnstyled';
-export * from './InputUnstyled';
 
 export * from './useListbox';
 
@@ -37,7 +38,6 @@ export { default as MenuUnstyled } from './MenuUnstyled';
 export * from './MenuUnstyled';
 
 export { default as MenuItemUnstyled } from './MenuItemUnstyled';
-export * from './MenuItemUnstyled';
 
 export { default as ModalUnstyled } from './ModalUnstyled';
 export * from './ModalUnstyled';
