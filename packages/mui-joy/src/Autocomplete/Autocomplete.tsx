@@ -219,28 +219,16 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     name: 'JoyAutocomplete',
   });
 
-  /* eslint-disable @typescript-eslint/no-unused-vars */
   const {
-    autoComplete = false,
-    autoHighlight = false,
-    autoSelect = false,
-    blurOnSelect = false,
     className,
     clearIcon = <ClearIcon fontSize="md" />,
-    clearOnBlur = !props.freeSolo,
-    clearOnEscape = false,
     clearText = 'Clear',
     closeText = 'Close',
     componentsProps = {},
-    defaultValue = props.multiple ? [] : null,
     disableClearable = false,
-    disableCloseOnSelect = false,
     disabled = false,
-    disabledItemsFocusable = false,
-    disableListWrap = false,
     disablePortal = false,
     filterOptions,
-    filterSelectedOptions = false,
     forcePopupIcon = 'auto',
     freeSolo = false,
     fullWidth = false,
@@ -249,8 +237,6 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     getOptionLabel = defaultGetOptionLabel,
     isOptionEqualToValue,
     groupBy,
-    handleHomeEndKeys = !props.freeSolo,
-    includeInputInList = false,
     inputValue: inputValueProp,
     limitTags = -1,
     loading = false,
@@ -263,7 +249,6 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     onInputChange,
     onOpen,
     open,
-    openOnFocus = false,
     openText = 'Open',
     options,
     popupIcon = <ArrowDropDownIcon />,
@@ -272,16 +257,24 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     renderInput = defaultRenderInput,
     renderOption: renderOptionProp,
     renderTags,
-    selectOnFocus = !props.freeSolo,
     size = 'md',
     value: valueProp,
-    ...other
+    ...otherProps
   } = props;
+  const other = {} as Record<string, any>;
+  Object.entries(otherProps).forEach((item) => {
+    if (
+      !item[0].match(
+        /^(autoComplete|autoHighlight|autoSelect|blurOnSelect|clearOnBlur|clearOnEscape|defaultValue|disableCloseOnSelect|disabledItemsFocusable|disableListWrap|filterSelectedOptions|handleHomeEndKeys|includeInputInList|openOnFocus|selectOnFocus)$/,
+      )
+    ) {
+      other[item[0]] = item[1];
+    }
+  });
 
   const formControl = React.useContext(FormControlContext);
 
   const {
-    id,
     getRootProps,
     getInputProps,
     getPopupIndicatorProps,

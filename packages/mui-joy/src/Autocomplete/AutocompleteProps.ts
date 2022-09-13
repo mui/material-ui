@@ -200,7 +200,7 @@ interface AutocompleteOwnProps<
    * @param {object} params
    * @returns {ReactNode}
    */
-  renderInput: (params: AutocompleteRenderInputParams) => React.ReactNode;
+  renderInput?: (params: AutocompleteRenderInputParams) => React.ReactNode;
   /**
    * Render the option, use `getOptionLabel` by default.
    *
