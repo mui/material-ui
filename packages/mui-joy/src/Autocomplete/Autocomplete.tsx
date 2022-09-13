@@ -1,26 +1,25 @@
 import * as React from 'react';
-import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import { unstable_capitalize as capitalize } from '@mui/utils';
 import composeClasses from '@mui/base/composeClasses';
 import { useAutocomplete, AutocompleteGroupedOption } from '@mui/base/AutocompleteUnstyled';
 import PopperUnstyled, { PopperUnstyledProps } from '@mui/base/PopperUnstyled';
+import { useSlotProps } from '@mui/base/utils';
 import { useThemeProps } from '../styles';
 import ClearIcon from '../internal/svg-icons/Close';
 import ArrowDropDownIcon from '../internal/svg-icons/ArrowDropDown';
 import styled from '../styles/styled';
-import Chip, { chipClasses } from '../Chip';
-import ChipDelete from '../ChipDelete';
+// slot components
 import { IconButtonRoot } from '../IconButton/IconButton';
-import Input from '../Input/Input';
-import ListProvider, { scopedVariables } from '../List/ListProvider';
-import ListSubheader from '../ListSubheader/ListSubheader';
-import ListItem, { listItemClasses } from '../ListItem';
-import List, { ListRoot } from '../List/List';
-import listClasses from '../List/listClasses';
-import { ListItemButtonOwnerState } from '../ListItemButton';
+import { ListRoot } from '../List/List';
 import { ListItemButtonRoot } from '../ListItemButton/ListItemButton';
-import { inputClasses } from '../Input';
+// default render components
+import Chip, { chipClasses } from '../Chip';
+import { IconButtonOwnerState } from '../IconButton';
+import Input, { inputClasses } from '../Input';
+import List, { listClasses, ListOwnerState } from '../List';
+import ListProvider, { scopedVariables } from '../List/ListProvider';
+import ListSubheader from '../ListSubheader';
+import ListItem, { listItemClasses } from '../ListItem';
 import autocompleteClasses, { getAutocompleteUtilityClass } from './autocompleteClasses';
 import {
   AutocompleteProps,
@@ -30,12 +29,7 @@ import {
 } from './AutocompleteProps';
 import FormControlContext from '../FormControl/FormControlContext';
 
-type OwnerState = AutocompleteOwnerState<
-  unknown,
-  boolean | undefined,
-  boolean | undefined,
-  boolean | undefined
->;
+type OwnerState = Omit<AutocompleteOwnerState<any, any, any, any>, 'onChange'>;
 
 const defaultIsActiveElementInListbox = (listboxRef: React.RefObject<HTMLElement>) =>
   listboxRef.current !== null && listboxRef.current.contains(document.activeElement);
@@ -70,20 +64,13 @@ const useUtilityClasses = (ownerState: OwnerState) => {
       hasClearIcon && 'hasClearIcon',
       hasPopupIcon && 'hasPopupIcon',
     ],
-    inputRoot: ['inputRoot'],
-    input: ['input', inputFocused && 'inputFocused'],
-    tag: ['tag', size && `tagSize${capitalize(size)}`],
-    endAdornment: ['endAdornment'],
     clearIndicator: ['clearIndicator'],
     popupIndicator: ['popupIndicator', popupOpen && 'popupIndicatorOpen'],
-    popper: ['popper', disablePortal && 'popperDisablePortal'],
-    paper: ['paper'],
     listbox: ['listbox'],
     loading: ['loading'],
     noOptions: ['noOptions'],
     option: ['option'],
-    groupLabel: ['groupLabel'],
-    groupUl: ['groupUl'],
+    tag: ['tag'],
   };
 
   return composeClasses(slots, getAutocompleteUtilityClass, {});
@@ -152,7 +139,7 @@ const AutocompleteClearIndicator = styled(IconButtonRoot, {
   name: 'JoyAutocomplete',
   slot: 'ClearIndicator',
   overridesResolver: (props, styles) => styles.clearIndicator,
-})<{ ownerState: OwnerState }>(({ ownerState }) => ({
+})<{ ownerState: OwnerState & IconButtonOwnerState }>(({ ownerState }) => ({
   marginInlineEnd: 0, // prevent the automatic adjustment between Input and IconButtonRoot
   visibility: ownerState.focused ? 'visible' : 'hidden',
 }));
@@ -161,7 +148,7 @@ const AutocompletePopupIndicator = styled(IconButtonRoot, {
   name: 'JoyAutocomplete',
   slot: 'PopupIndicator',
   overridesResolver: (props, styles) => styles.popupIndicator,
-})<{ ownerState: OwnerState }>(({ ownerState }) => ({
+})<{ ownerState: OwnerState & IconButtonOwnerState }>(({ ownerState }) => ({
   ...(ownerState.popupOpen && {
     transform: 'rotate(180deg)',
   }),
@@ -223,7 +210,7 @@ const AutocompleteOption = styled(ListItemButtonRoot, {
   name: 'JoyAutocomplete',
   slot: 'Option',
   overridesResolver: (props, styles) => styles.option,
-})<{ ownerState: ListItemButtonOwnerState }>(({ theme, ownerState }) => ({
+})<{ ownerState: OwnerState }>(({ theme, ownerState }) => ({
   '&[aria-disabled="true"]': theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
   '&[aria-selected="true"]': {
     color: theme.vars.palette.primary.softColor,
@@ -342,7 +329,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     inputFocused: focusedTag === -1,
     popupOpen,
     size,
-  };
+  } as OwnerState;
 
   const classes = useUtilityClasses(ownerState);
 
@@ -383,12 +370,17 @@ const Autocomplete = React.forwardRef(function Autocomplete(
   }
 
   const defaultRenderOption = (
-    optionProps: React.HTMLAttributes<HTMLLIElement>,
+    optionProps: React.HTMLAttributes<HTMLLIElement | HTMLDivElement>,
     option: unknown,
   ) => (
+    // Can't use `useSlotProps`
     <AutocompleteOption
       as="li"
-      ownerState={{ ...ownerState, variant: 'plain', color: 'neutral' }}
+      ownerState={{
+        ...ownerState,
+        variant: 'plain',
+        color: 'neutral',
+      }}
       {...optionProps}
     >
       {getOptionLabel(option)}
@@ -429,53 +421,98 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     [],
   );
 
+  const rootProps = useSlotProps({
+    elementType: AutocompleteRoot,
+    getSlotProps: getRootProps,
+    externalForwardedProps: other,
+    externalSlotProps: componentsProps.root,
+    ownerState,
+    additionalProps: {
+      ref,
+    },
+    className: classes.root,
+  });
+
+  const clearIndicatorProps = useSlotProps({
+    elementType: AutocompleteClearIndicator,
+    getSlotProps: getClearProps as unknown as () => React.HTMLAttributes<HTMLButtonElement>,
+    externalSlotProps: componentsProps.clearIndicator,
+    className: classes.clearIndicator,
+    ownerState: {
+      ...ownerState,
+      size,
+      variant: 'plain',
+      color: 'neutral',
+    },
+    additionalProps: {
+      'aria-label': clearText,
+      title: clearText,
+    },
+  });
+
+  const popupIndicatorProps = useSlotProps({
+    elementType: AutocompletePopupIndicator,
+    getSlotProps:
+      getPopupIndicatorProps as unknown as () => React.HTMLAttributes<HTMLButtonElement>,
+    externalSlotProps: componentsProps.popupIndicator,
+    className: classes.popupIndicator,
+    ownerState: {
+      ...ownerState,
+      size,
+      variant: 'plain',
+      color: 'neutral',
+    },
+    additionalProps: {
+      disabled,
+      'aria-label': popupOpen ? closeText : openText,
+      title: popupOpen ? closeText : openText,
+    },
+  });
+
+  const { component: listboxComponent, ...listboxProps } = useSlotProps({
+    elementType: AutocompleteListbox,
+    // TODO: fix useSlotProps typings, the `component` should be infered from `externalSlotProps`
+    getSlotProps: getListboxProps as () => React.HTMLAttributes<HTMLUListElement> & {
+      component?: React.ElementType;
+    },
+    externalSlotProps: componentsProps.listbox,
+    additionalProps: {
+      anchorEl,
+      disablePortal,
+      open: popupOpen,
+      modifiers: cachedModifiers,
+    },
+    ownerState: {
+      ...ownerState,
+      variant: 'outlined',
+      color: 'neutral',
+      nesting: false,
+      row: false,
+      wrap: false,
+    },
+    className: classes.listbox,
+  });
+
   return (
     <React.Fragment>
-      <AutocompleteRoot
-        ref={ref}
-        className={clsx(classes.root, className)}
-        ownerState={ownerState}
-        {...getRootProps(other)}
-      >
+      <AutocompleteRoot {...rootProps}>
         {renderInput({
           disabled,
           fullWidth: true,
           size,
           ref: setAnchorEl,
-          className: classes.inputRoot,
           startDecorator,
           ...((hasClearIcon || hasPopupIcon) && {
             endDecorator: (
               <React.Fragment>
                 {hasClearIcon ? (
-                  <AutocompleteClearIndicator
-                    {...getClearProps()}
-                    aria-label={clearText}
-                    title={clearText}
-                    ownerState={{ ...ownerState, size, variant: 'plain', color: 'neutral' }}
-                    {...componentsProps.clearIndicator}
-                    className={clsx(
-                      classes.clearIndicator,
-                      componentsProps.clearIndicator?.className,
-                    )}
-                  >
+                  <AutocompleteClearIndicator {...clearIndicatorProps}>
                     {clearIcon}
                   </AutocompleteClearIndicator>
                 ) : null}
 
                 {hasPopupIcon ? (
-                  <AutocompletePopupIndicator
-                    {...getPopupIndicatorProps()}
-                    disabled={disabled}
-                    aria-label={popupOpen ? closeText : openText}
-                    title={popupOpen ? closeText : openText}
-                    ownerState={{ ...ownerState, size, variant: 'plain', color: 'neutral' }}
-                    {...componentsProps.popupIndicator}
-                    className={clsx(
-                      classes.popupIndicator,
-                      componentsProps.popupIndicator?.className,
-                    )}
-                  >
+                  <AutocompletePopupIndicator {...popupIndicatorProps}>
                     {popupIcon}
                   </AutocompletePopupIndicator>
                 ) : null}
@@ -484,7 +521,6 @@ const Autocomplete = React.forwardRef(function Autocomplete(
           }),
           componentsProps: {
             input: {
-              className: classes.input,
               disabled,
               readOnly,
               ...getInputProps(),
@@ -493,17 +529,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
         })}
       </AutocompleteRoot>
       {anchorEl ? (
-        <PopperUnstyled
-          component={AutocompleteListbox}
-          modifiers={cachedModifiers}
-          disablePortal={disablePortal}
-          ownerState={{ ...ownerState, variant: 'outlined', color: 'neutral' }}
-          anchorEl={anchorEl}
-          open={popupOpen}
-          {...componentsProps.popper}
-          {...getListboxProps()}
-          className={clsx(classes.popper, componentsProps.popper?.className)}
-        >
+        <PopperUnstyled {...listboxProps} as={listboxComponent} component={AutocompleteListbox}>
           <ListProvider nested>
             {loading && groupedOptions.length === 0 ? (
               <AutocompleteLoading className={classes.loading} ownerState={ownerState}>

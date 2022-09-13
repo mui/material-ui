@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { OverridableStringUnion } from '@mui/types';
+import { SlotComponentProps } from '@mui/base/utils';
 import {
   useAutocomplete,
   AutocompleteChangeDetails,
@@ -8,8 +9,11 @@ import {
   AutocompleteInputChangeReason,
   createFilterOptions,
   UseAutocompleteProps,
-} from '@mui/base';
+} from '@mui/base/AutocompleteUnstyled';
+import { PopperUnstyledOwnProps } from '@mui/base/PopperUnstyled';
 import { SxProps } from '../styles/types';
+import { IconButtonOwnerState } from '../IconButton';
+import { ListOwnerState } from '../List';
 
 export {
   AutocompleteChangeDetails,
@@ -17,21 +21,6 @@ export {
   AutocompleteCloseReason,
   AutocompleteInputChangeReason,
   createFilterOptions,
-};
-
-export type AutocompleteOwnerState<
-  T,
-  Multiple extends boolean | undefined,
-  DisableClearable extends boolean | undefined,
-  FreeSolo extends boolean | undefined,
-> = AutocompleteProps<T, Multiple, DisableClearable, FreeSolo> & {
-  disablePortal: boolean;
-  focused: boolean;
-  fullWidth: boolean;
-  hasClearIcon: boolean;
-  hasPopupIcon: boolean;
-  inputFocused: boolean;
-  popupOpen: boolean;
 };
 
 export type AutocompleteRenderGetTagProps = ({ index }: { index: number }) => {
@@ -59,7 +48,6 @@ export interface AutocompleteRenderInputParams {
   fullWidth: boolean;
   size: OverridableStringUnion<'sm' | 'md' | 'lg', AutocompletePropsSizeOverrides>;
   ref: React.Ref<any>;
-  className: string;
   startDecorator: React.ReactNode;
   endDecorator?: React.ReactNode;
   componentsProps: {
@@ -69,13 +57,41 @@ export interface AutocompleteRenderInputParams {
 
 export interface AutocompletePropsSizeOverrides {}
 
-export interface AutocompleteProps<
+interface ComponentsProps {
+  root?: SlotComponentProps<'div', { sx?: SxProps }, AutocompleteOwnerState<any, any, any, any>>;
+  clearIndicator?: SlotComponentProps<
+    'button',
+    { sx?: SxProps },
+    AutocompleteOwnerState<any, any, any, any> & IconButtonOwnerState
+  >;
+  popupIndicator?: SlotComponentProps<
+    'button',
+    { sx?: SxProps },
+    AutocompleteOwnerState<any, any, any, any> & IconButtonOwnerState
+  >;
+  listbox?: SlotComponentProps<
+    'ul',
+    Omit<PopperUnstyledOwnProps, 'components' | 'componentsProps' | 'open'> & {
+      component?: React.ElementType;
+      sx?: SxProps;
+    },
+    AutocompleteOwnerState<any, any, any, any> & ListOwnerState
+  >;
+  option?: SlotComponentProps<'li', { sx?: SxProps }, AutocompleteOwnerState<any, any, any, any>>;
+  loading?: SlotComponentProps<'div', { sx?: SxProps }, AutocompleteOwnerState<any, any, any, any>>;
+  noOptions?: SlotComponentProps<
+    'div',
+    { sx?: SxProps },
+    AutocompleteOwnerState<any, any, any, any>
+  >;
+}
+
+interface AutocompleteOwnProps<
   T,
   Multiple extends boolean | undefined,
   DisableClearable extends boolean | undefined,
   FreeSolo extends boolean | undefined,
 > extends UseAutocompleteProps<T, Multiple, DisableClearable, FreeSolo> {
-  className: string;
   /**
    * The icon to display in place of the default clear icon.
    * @default <ClearIcon fontSize="small" />
@@ -99,12 +115,7 @@ export interface AutocompleteProps<
    * The props used for each slot inside.
    * @default {}
    */
-  componentsProps?: {
-    // clearIndicator?: Partial<IconButtonProps>;
-    // paper?: PaperProps;
-    // popper?: Partial<PopperProps>;
-    // popupIndicator?: Partial<IconButtonProps>;
-  };
+  componentsProps?: ComponentsProps;
   /**
    * If `true`, the component is disabled.
    * @default false
@@ -225,4 +236,27 @@ export interface AutocompleteProps<
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx?: SxProps;
+}
+
+export interface AutocompleteProps<
+  T,
+  Multiple extends boolean | undefined,
+  DisableClearable extends boolean | undefined,
+  FreeSolo extends boolean | undefined,
+> extends AutocompleteOwnProps<T, Multiple, DisableClearable, FreeSolo>,
+    Omit<React.HTMLAttributes<HTMLDivElement>, 'defaultValue' | 'onChange' | 'children'> {}
+
+export interface AutocompleteOwnerState<
+  T,
+  Multiple extends boolean | undefined,
+  DisableClearable extends boolean | undefined,
+  FreeSolo extends boolean | undefined,
+> extends AutocompleteOwnProps<T, Multiple, DisableClearable, FreeSolo> {
+  disablePortal: boolean;
+  focused: boolean;
+  fullWidth: boolean;
+  hasClearIcon: boolean;
+  hasPopupIcon: boolean;
+  inputFocused: boolean;
+  popupOpen: boolean;
 }
