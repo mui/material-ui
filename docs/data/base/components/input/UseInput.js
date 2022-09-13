@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useInput } from '@mui/base/useInput';
+import useInput from '@mui/base/useInput';
 import { styled } from '@mui/system';
 import { unstable_useForkRef as useForkRef } from '@mui/utils';
 

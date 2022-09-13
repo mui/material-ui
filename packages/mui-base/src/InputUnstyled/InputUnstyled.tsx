@@ -10,7 +10,7 @@ import {
   InputUnstyledRootSlotProps,
   InputUnstyledTypeMap,
 } from './InputUnstyled.types';
-import { useInput } from '@mui/base/useInput';
+import useInput from '@mui/base/useInput';
 import { EventHandlers, useSlotProps, WithOptionalOwnerState } from '../utils';
 
 /**
