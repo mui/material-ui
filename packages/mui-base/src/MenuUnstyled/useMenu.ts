@@ -6,7 +6,7 @@ import {
   ListboxState,
   useListbox,
   ActionTypes,
-} from '../ListboxUnstyled';
+} from '@mui/base/useListbox';
 import {
   MenuItemMetadata,
   MenuItemState,

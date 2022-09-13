@@ -4,7 +4,7 @@ import {
   OptionState,
   UseListboxOptionSlotProps,
   UseListboxRootSlotProps,
-} from '../ListboxUnstyled';
+} from '@mui/base/useListbox';
 import { EventHandlers } from '../utils/types';
 
 export interface SelectOption<TValue> {

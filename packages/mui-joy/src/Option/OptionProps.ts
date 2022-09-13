@@ -5,7 +5,7 @@ import {
   OverridableTypeMap,
   OverrideProps,
 } from '@mui/types';
-import { OptionState } from '@mui/base/ListboxUnstyled';
+import { OptionState } from '@mui/base/useListbox';
 import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
 
 export type OptionSlot = 'root';
