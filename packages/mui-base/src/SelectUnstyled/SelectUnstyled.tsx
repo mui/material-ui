@@ -13,8 +13,8 @@ import {
   SelectUnstyledType,
 } from './SelectUnstyled.types';
 import { flattenOptionGroups, getOptionsFromChildren } from './utils';
-import useSelect from './useSelect';
-import { SelectChild, SelectOption } from './useSelect.types';
+import useSelect from '@mui/base/useSelect';
+import { SelectChild, SelectOption } from '@mui/base/useSelect';
 import { useSlotProps, WithOptionalOwnerState } from '../utils';
 import PopperUnstyled from '../PopperUnstyled';
 import { SelectUnstyledContext, SelectUnstyledContextType } from './SelectUnstyledContext';

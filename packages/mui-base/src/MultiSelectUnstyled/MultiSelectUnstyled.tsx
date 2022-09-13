@@ -13,8 +13,8 @@ import {
   MultiSelectUnstyledType,
 } from './MultiSelectUnstyled.types';
 import { flattenOptionGroups, getOptionsFromChildren } from '../SelectUnstyled/utils';
-import useSelect from '../SelectUnstyled/useSelect';
-import { SelectChild, SelectOption } from '../SelectUnstyled/useSelect.types';
+import useSelect from '@mui/base/useSelect';
+import { SelectChild, SelectOption } from '@mui/base/useSelect';
 import { useSlotProps, WithOptionalOwnerState } from '../utils';
 import PopperUnstyled from '../PopperUnstyled';
 import {
