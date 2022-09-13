@@ -127,7 +127,7 @@ Note that `componentsProps` slot names are written in lowercase (`root`) while `
 ## Hook
 
 ```js
-import { useSelect } from '@mui/base/SelectUnstyled';
+import useSelect from '@mui/base/useSelect';
 ```
 
 The `useSelect` hook lets you apply the functionality of `SelectUnstyled` to a fully custom component. It returns props to be placed on the custom component, along with fields representing the component's internal state.
