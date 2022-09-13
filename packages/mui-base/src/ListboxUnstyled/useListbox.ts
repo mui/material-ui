@@ -9,7 +9,7 @@ import {
   UseListboxRootSlotProps,
 } from './useListbox.types';
 import defaultReducer from './defaultListboxReducer';
-import useControllableReducer from './useControllableReducer';
+import useControllableReducer from '@mui/base/useControllableReducer';
 import areArraysEqual from '../utils/areArraysEqual';
 import { EventHandlers } from '../utils/types';
 

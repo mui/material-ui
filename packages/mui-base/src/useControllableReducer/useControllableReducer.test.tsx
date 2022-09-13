@@ -8,7 +8,7 @@ import {
   ListboxAction,
   ListboxState,
   UseListboxPropsWithDefaults,
-} from './useListbox.types';
+} from '../ListboxUnstyled/useListbox.types';
 
 describe('useControllableReducer', () => {
   const { render } = createRenderer();
