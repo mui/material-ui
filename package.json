@@ -1,6 +1,6 @@
 {
   "name": "@mui/monorepo",
-  "version": "5.10.4",
+  "version": "5.10.5",
   "private": true,
   "scripts": {
     "proptypes": "cross-env BABEL_ENV=development babel-node --extensions \".tsx,.ts,.js\" ./scripts/generateProptypes.ts",
@@ -66,7 +66,8 @@
     "test:argos": "node ./scripts/pushArgos.js",
     "typescript": "lerna run --no-bail --parallel typescript",
     "typescript:ci": "lerna run --concurrency 7 --no-bail --no-sort typescript",
-    "validate-declarations": "babel-node --extensions \".ts\" scripts/validateTypescriptDeclarations.ts"
+    "validate-declarations": "babel-node --extensions \".ts\" scripts/validateTypescriptDeclarations.ts",
+    "generate-codeowners": "node scripts/generateCodeowners.mjs"
   },
   "devDependencies": {
     "@argos-ci/core": "^0.4.0",

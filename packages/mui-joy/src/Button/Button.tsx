@@ -41,6 +41,7 @@ const ButtonStartIcon = styled('span', {
   overridesResolver: (props, styles) => styles.startIcon,
 })<{ ownerState: ButtonOwnerState }>({
   '--Icon-margin': '0 0 0 calc(var(--Button-gap) / -2)',
+  '--CircularProgress-margin': '0 0 0 calc(var(--Button-gap) / -2)',
   display: 'inherit',
   marginRight: 'var(--Button-gap)',
 });
@@ -51,6 +52,7 @@ const ButtonEndIcon = styled('span', {
   overridesResolver: (props, styles) => styles.endIcon,
 })<{ ownerState: ButtonOwnerState }>({
   '--Icon-margin': '0 calc(var(--Button-gap) / -2) 0 0',
+  '--CircularProgress-margin': '0 calc(var(--Button-gap) / -2) 0 0',
   display: 'inherit',
   marginLeft: 'var(--Button-gap)',
 });
@@ -63,6 +65,7 @@ export const ButtonRoot = styled('button', {
   return [
     {
       '--Icon-margin': 'initial', // reset the icon's margin.
+      '--CircularProgress-size': 'var(--Icon-fontSize)',
       ...(ownerState.size === 'sm' && {
         '--Icon-fontSize': '1.25rem',
         '--Button-gap': '0.375rem',
