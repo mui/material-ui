@@ -1,6 +1,7 @@
 import React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
-import { SelectUnstyledCommonProps, SelectOption } from '@mui/base/SelectUnstyled';
+import { SelectUnstyledCommonProps } from '@mui/base/SelectUnstyled';
+import { SelectOption } from '@mui/base/useSelect';
 import { PopperUnstyledOwnProps } from '@mui/base/PopperUnstyled';
 import { SlotComponentProps } from '@mui/base/utils';
 import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
