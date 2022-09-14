@@ -90,7 +90,6 @@ const MenuList = React.forwardRef(function MenuList(inProps, ref) {
     variant,
     color,
     size,
-    instanceSize: size,
     nesting: false,
     row: false,
   };
