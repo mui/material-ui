@@ -42,6 +42,7 @@ export interface AutocompleteRenderGroupParams {
 }
 
 export interface AutocompleteRenderInputParams {
+  placeholder?: string;
   disabled: boolean;
   fullWidth: boolean;
   size: OverridableStringUnion<'sm' | 'md' | 'lg', AutocompletePropsSizeOverrides>;
@@ -175,6 +176,10 @@ interface AutocompleteOwnProps<
    * @default 'Open'
    */
   openText?: string;
+  /**
+   * The input placeholder
+   */
+  placeholder?: string;
   /**
    * The icon to display in place of the default popup icon.
    * @default <ArrowDropDownIcon />

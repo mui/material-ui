@@ -200,7 +200,7 @@ You can use the `limitTags` prop to limit the number of displayed options when n
 
 Fancy smaller inputs? Use the `size` prop.
 
-<!-- {{"demo": "Sizes.js"}} -->
+{{"demo": "Sizes.js"}}
 
 ## Customization
 

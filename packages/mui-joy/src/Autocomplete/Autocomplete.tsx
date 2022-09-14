@@ -251,6 +251,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     open,
     openText = 'Open',
     options,
+    placeholder,
     popupIcon = <ArrowDropDownIcon />,
     readOnly = false,
     renderGroup = defaultRenderGroup,
@@ -480,6 +481,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
           fullWidth: true,
           size,
           ref: setAnchorEl,
+          placeholder,
           startDecorator,
           ...((hasClearIcon || hasPopupIcon) && {
             endDecorator: (
