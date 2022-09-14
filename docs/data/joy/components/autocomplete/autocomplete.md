@@ -134,34 +134,7 @@ otherwise, you will notice duplicate headers.
 
 ## Disabled options
 
-<!-- {{"demo": "DisabledOptions.js"}} -->
-
-## `useAutocomplete`
-
-For advanced customization use cases, a headless `useAutocomplete()` hook is exposed.
-It accepts almost the same options as the Autocomplete component minus all the props
-related to the rendering of JSX.
-The Autocomplete component is built on this hook.
-
-```tsx
-import { useAutocomplete } from '@mui/base/AutocompleteUnstyled';
-```
-
-The `useAutocomplete` hook is also reexported from @mui/material for convenience and backward compatibility.
-
-```tsx
-import useAutocomplete from '@mui/material/useAutocomplete';
-```
-
-- 📦 [4.5 kB gzipped](/size-snapshot/).
-
-<!-- {{"demo": "UseAutocomplete.js", "defaultCodeOpen": false}} -->
-
-### Customized hook
-
-<!-- {{"demo": "CustomizedHook.js"}} -->
-
-Head to the [customization](#customization) section for an example with the `Autocomplete` component instead of the hook.
+{{"demo": "DisabledOptions.js"}}
 
 ## Asynchronous requests
 
