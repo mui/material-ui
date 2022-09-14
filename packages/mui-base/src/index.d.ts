@@ -5,7 +5,6 @@ export * from './useAutocomplete';
 export * from './useBadge';
 
 export { default as BadgeUnstyled } from './BadgeUnstyled';
-export * from './BadgeUnstyled';
 
 export { default as ButtonUnstyled } from './ButtonUnstyled';
 export * from './ButtonUnstyled';

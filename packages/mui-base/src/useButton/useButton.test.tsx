@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useButton } from '@mui/base/ButtonUnstyled';
+import useButton from '@mui/base/useButton';
 import { createRenderer, fireEvent } from 'test/utils';
 import { expect } from 'chai';
 import { spy } from 'sinon';

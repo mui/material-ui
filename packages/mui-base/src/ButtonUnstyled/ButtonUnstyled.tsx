@@ -9,7 +9,7 @@ import {
   ButtonUnstyledTypeMap,
   ButtonUnstyledRootSlotProps,
 } from './ButtonUnstyled.types';
-import useButton from './useButton';
+import useButton from '@mui/base/useButton';
 import { WithOptionalOwnerState } from '../utils/types';
 import { useSlotProps } from '../utils';
 
