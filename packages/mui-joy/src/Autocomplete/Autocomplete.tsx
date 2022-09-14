@@ -113,6 +113,7 @@ const AutocompleteRoot = styled('div', {
       },
       [`& .${inputClasses.startDecorator}`]: {
         display: 'contents',
+        color: 'inherit',
       },
       [`& .${inputClasses.input}`]: {
         marginInlineStart: 'var(--Input-paddingInline)',
