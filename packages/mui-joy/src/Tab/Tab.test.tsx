@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import { describeConformance, createRenderer, screen } from 'test/utils';
-import { TabsContext, useTabs, TabsUnstyledProps } from '@mui/base/TabsUnstyled';
+import useTabs from '@mui/base/useTabs';
+import { TabsContext, TabsUnstyledProps } from '@mui/base/TabsUnstyled';
 import { ThemeProvider } from '@mui/joy/styles';
 import Tab, { tabClasses as classes } from '@mui/joy/Tab';
 
