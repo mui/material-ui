@@ -4,7 +4,7 @@ import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { useSlotProps } from '@mui/base/utils';
-import { useButton } from '@mui/base/ButtonUnstyled';
+import useButton from '@mui/base/useButton';
 import { useThemeProps, styled } from '../styles';
 import { IconButtonRoot } from '../IconButton/IconButton';
 import { getModalCloseUtilityClass } from './modalCloseClasses';
