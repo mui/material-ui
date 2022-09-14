@@ -32,6 +32,7 @@ export default function Playground() {
         }}
       >
         <Autocomplete
+          placeholder="Playground"
           options={top100Films}
           {...flags.reduce((prev, current) => ({ ...prev, [current]: true }), {})}
           sx={{ width: 300, mx: 'auto' }}

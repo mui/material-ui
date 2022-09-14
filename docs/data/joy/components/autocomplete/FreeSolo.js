@@ -10,11 +10,16 @@ export default function FreeSolo() {
     <Stack spacing={2} sx={{ width: 300 }}>
       <FormControl id="free-solo-demo">
         <FormLabel>freeSolo</FormLabel>
-        <Autocomplete freeSolo options={top100Films.map((option) => option.title)} />
+        <Autocomplete
+          placeholder="Type anything"
+          freeSolo
+          options={top100Films.map((option) => option.title)}
+        />
       </FormControl>
       <FormControl id="free-solo-2-demo">
         <FormLabel>Search input</FormLabel>
         <Autocomplete
+          placeholder="Search anything"
           freeSolo
           disableClearable
           options={top100Films.map((option) => option.title)}

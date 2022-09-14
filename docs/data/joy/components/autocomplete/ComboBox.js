@@ -2,7 +2,13 @@ import * as React from 'react';
 import Autocomplete from '@mui/joy/Autocomplete';
 
 export default function ComboBox() {
-  return <Autocomplete options={top100Films} sx={{ width: 300 }} />;
+  return (
+    <Autocomplete
+      placeholder="Combo box"
+      options={top100Films}
+      sx={{ width: 300 }}
+    />
+  );
 }
 
 // Top 100 films as rated by IMDb users. http://www.imdb.com/chart/top

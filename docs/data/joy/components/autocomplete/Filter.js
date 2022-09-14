@@ -13,6 +13,7 @@ export default function Filter() {
     <FormControl id="filter-demo">
       <FormLabel>Custom filter</FormLabel>
       <Autocomplete
+        placeholder="Type something"
         options={top100Films}
         getOptionLabel={(option) => option.title}
         filterOptions={filterOptions}

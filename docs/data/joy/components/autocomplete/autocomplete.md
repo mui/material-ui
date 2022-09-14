@@ -18,12 +18,6 @@ It's meant to be an improved version of the "react-select" and "downshift" packa
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
-## Label and helper text
-
-Put an `Autocomplete`, `FormLabel` and `FormHelperText` (optional) under a `FormControl` component.
-
-{{"demo": "LabelAndHelperText.js"}}
-
 ## Combo box
 
 The value must be chosen from a predefined set of allowed values.
@@ -75,7 +69,13 @@ The component has two states that can be controlled:
 ⚠️ These two states are isolated, they should be controlled independently.
 :::
 
-<!-- {{"demo": "ControllableStates.js"}} -->
+{{"demo": "ControllableStates.js"}}
+
+## Label
+
+Put an `Autocomplete`, a `FormLabel` and a `FormHelperText` (optional) under a `FormControl` component.
+
+{{"demo": "LabelAndHelperText.js"}}
 
 ## Features
 

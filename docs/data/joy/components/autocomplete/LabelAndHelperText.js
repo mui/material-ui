@@ -8,7 +8,11 @@ export default function LabelAndHelperText() {
   return (
     <FormControl>
       <FormLabel>Label</FormLabel>
-      <Autocomplete options={top100Films} sx={{ width: 300 }} />
+      <Autocomplete
+        placeholder="Placeholder"
+        options={top100Films}
+        sx={{ width: 300 }}
+      />
       <FormHelperText>A description for the combo box.</FormHelperText>
     </FormControl>
   );
