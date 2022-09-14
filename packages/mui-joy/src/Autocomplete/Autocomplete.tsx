@@ -258,7 +258,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     renderInput = defaultRenderInput,
     renderOption: renderOptionProp,
     renderTags,
-    size = 'md',
+    size: sizeProp = 'md',
     value: valueProp,
     ...otherProps
   } = props;
@@ -275,6 +275,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
   });
 
   const formControl = React.useContext(FormControlContext);
+  const size = inProps.size ?? formControl?.size ?? sizeProp;
 
   const {
     getRootProps,

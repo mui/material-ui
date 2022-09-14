@@ -198,9 +198,17 @@ You can use the `limitTags` prop to limit the number of displayed options when n
 
 ## Sizes
 
-Fancy smaller inputs? Use the `size` prop.
+The autocomplete component comes with three sizes out of the box: `sm`, `md` (the default), and `lg`. The size is propagated to internal components, including `Input`, `Chip`, and `List`.
 
 {{"demo": "Sizes.js"}}
+
+:::success
+To learn how to add more sizes to the component, check out [Themed components—Extend sizes](/joy-ui/customization/themed-components/#extend-sizes).
+:::
+
+The `size` can be controlled at the `FormControl`.
+
+{{"demo": "SizeWithLabel.js"}}
 
 ## Customization
 
