@@ -47,6 +47,11 @@ export interface ChipTypeMap<P = {}, D extends React.ElementType = 'div'> {
      */
     endDecorator?: React.ReactNode;
     /**
+     * Callback fired when the delete icon is clicked.
+     * If set, the delete icon will be shown.
+     */
+    onDelete?: React.EventHandler<any>;
+    /**
      * The size of the component.
      * It accepts theme values between 'sm' and 'lg'.
      * @default 'md'

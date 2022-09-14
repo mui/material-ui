@@ -10,6 +10,7 @@ import styled from '../styles/styled';
 import chipClasses, { getChipUtilityClass } from './chipClasses';
 import { ChipProps, ChipOwnerState, ChipTypeMap } from './ChipProps';
 import ChipContext from './ChipContext';
+import ChipDelete from '../ChipDelete';
 
 const useUtilityClasses = (ownerState: ChipOwnerState) => {
   const { disabled, size, color, clickable, variant, focusVisible } = ownerState;
@@ -65,7 +66,7 @@ const ChipRoot = styled('div', {
       ...(ownerState.size === 'md' && {
         '--Chip-gap': '0.375rem',
         '--Chip-paddingInline': '0.75rem',
-        '--Chip-decorator-childHeight': 'min(1.5rem, var(--Chip-minHeight))',
+        '--Chip-decorator-childHeight': 'min(1.375rem, var(--Chip-minHeight))',
         '--Icon-fontSize': 'calc(var(--Chip-minHeight, 2rem) / 1.778)', // 1.125rem by default
         '--Chip-minHeight': '2rem',
         fontSize: theme.vars.fontSize.sm,
@@ -205,6 +206,7 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
     color = 'primary',
     component,
     onClick,
+    onDelete,
     disabled = false,
     size = 'md',
     variant = 'solid',
@@ -217,7 +219,6 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
   const ownerState: ChipOwnerState = {
     ...props,
     component,
-    onClick,
     disabled,
     size,
     color,
@@ -296,7 +297,12 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
           <ChipStartDecorator {...startDecoratorProps}>{startDecorator}</ChipStartDecorator>
         )}
 
-        {endDecorator && <ChipEndDecorator {...endDecoratorProps}>{endDecorator}</ChipEndDecorator>}
+        {(endDecorator || onDelete) && (
+          <ChipEndDecorator {...endDecoratorProps}>
+            {endDecorator}
+            {onDelete ? <ChipDelete onClick={onDelete} /> : null}
+          </ChipEndDecorator>
+        )}
       </ChipRoot>
     </ChipContext.Provider>
   );
@@ -352,6 +358,11 @@ Chip.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   onClick: PropTypes.func,
+  /**
+   * Callback fired when the delete icon is clicked.
+   * If set, the delete icon will be shown.
+   */
+  onDelete: PropTypes.func,
   /**
    * The size of the component.
    * It accepts theme values between 'sm' and 'lg'.
