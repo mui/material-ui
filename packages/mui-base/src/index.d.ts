@@ -4,6 +4,8 @@ export * from './useAutocomplete';
 
 export * from './useBadge';
 
+export * from './useButton';
+
 export * from './useFormControlUnstyledContext';
 
 export * from './useInput';

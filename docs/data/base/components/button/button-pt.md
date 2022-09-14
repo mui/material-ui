@@ -93,7 +93,7 @@ If a `ButtonUnstyled` is customized with a non-button element (i.e. `<ButtonUnst
 ## Hook
 
 ```js
-import { useButton } from '@mui/base/ButtonUnstyled';
+import useButton from '@mui/base/useButton';
 ```
 
 The `useButton` hook lets you apply the functionality of `ButtonUnstyled` to a fully custom component. It returns props to be placed on the custom component, along with fields representing the component's internal state.
