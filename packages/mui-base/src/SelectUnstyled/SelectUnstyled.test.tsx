@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { expect } from 'chai';
-import SelectUnstyled, { SelectOption, selectUnstyledClasses } from '@mui/base/SelectUnstyled';
+import SelectUnstyled, { selectUnstyledClasses } from '@mui/base/SelectUnstyled';
+import { SelectOption } from '@mui/base/useSelect';
 import OptionUnstyled, { OptionUnstyledProps } from '@mui/base/OptionUnstyled';
 import OptionGroupUnstyled from '@mui/base/OptionGroupUnstyled';
 import {

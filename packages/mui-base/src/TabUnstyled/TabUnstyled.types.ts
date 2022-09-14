@@ -2,7 +2,7 @@ import { OverrideProps, Simplify } from '@mui/types';
 import React from 'react';
 import { ButtonUnstyledOwnProps } from '../ButtonUnstyled';
 import { SlotComponentProps } from '../utils';
-import { UseTabRootSlotProps } from './useTab.types';
+import { UseTabRootSlotProps } from '@mui/base/useTab';
 
 interface TabUnstyledComponentsPropsOverrides {}
 

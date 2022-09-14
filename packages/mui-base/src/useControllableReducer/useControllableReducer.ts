@@ -4,7 +4,7 @@ import {
   ListboxReducer,
   ListboxState,
   UseListboxPropsWithDefaults,
-} from './useListbox.types';
+} from '@mui/base/useListbox';
 import areArraysEqual from '../utils/areArraysEqual';
 
 /**
