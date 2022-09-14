@@ -16,6 +16,7 @@
     "docs:api": "rimraf ./docs/pages/**/api-docs ./docs/pages/**/api && yarn docs:api:build",
     "docs:api:build": "cross-env BABEL_ENV=development __NEXT_EXPORT_TRAILING_SLASH=true babel-node --extensions \".tsx,.ts,.js\" ./docs/scripts/buildApi.ts",
     "docs:build": "yarn workspace docs build",
+    "docs:build-bundle": "yarn workspace docs build:bundle",
     "docs:build-sw": "yarn workspace docs build-sw",
     "docs:build-color-preview": "babel-node scripts/buildColorTypes",
     "docs:deploy": "yarn workspace docs deploy",

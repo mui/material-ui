@@ -7,6 +7,7 @@
   "scripts": {
     "build": "cross-env NODE_ENV=production NODE_OPTIONS=--max_old_space_size=4096 next build --profile",
     "build:clean": "rimraf .next && yarn build",
+    "build:bundle": "webpack",
     "build-sw": "node ./scripts/buildServiceWorker.js",
     "dev": "next dev",
     "deploy": "git push material-ui-docs master:latest",
