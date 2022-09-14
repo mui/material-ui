@@ -18,6 +18,8 @@ export * from './useSlider';
 
 export * from './useSwitch';
 
+export * from './useTabPanel';
+
 export { default as BadgeUnstyled } from './BadgeUnstyled';
 
 export { default as ButtonUnstyled } from './ButtonUnstyled';

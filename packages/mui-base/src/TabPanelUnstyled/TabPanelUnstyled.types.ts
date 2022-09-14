@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { OverrideProps } from '@mui/types';
-import { UseTabPanelRootSlotProps } from './useTabPanel.types';
+import { UseTabPanelRootSlotProps } from '@mui/base/useTabPanel';
 import { SlotComponentProps } from '../utils';
 
 interface TabPanelUnstyledComponentsPropsOverrides {}
