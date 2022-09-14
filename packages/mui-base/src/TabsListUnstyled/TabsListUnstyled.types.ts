@@ -1,6 +1,6 @@
 import React from 'react';
 import { OverrideProps } from '@mui/types';
-import { UseTabsListRootSlotProps } from './useTabsList.types';
+import { UseTabsListRootSlotProps } from '@mui/base/useTabsList';
 import { SlotComponentProps } from '../utils';
 
 interface TabsListUnstyledComponentsPropsOverrides {}
