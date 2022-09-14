@@ -23,7 +23,6 @@ export {
 
 export type AutocompleteRenderGetTagProps = ({ index }: { index: number }) => {
   key: number;
-  className: string;
   disabled: boolean;
   'data-tag-index': number;
   tabIndex: -1;

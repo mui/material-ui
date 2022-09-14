@@ -7,8 +7,8 @@ export interface AutocompleteClasses {
   fullWidth: string;
   /** State class applied to the root element if focused. */
   focused: string;
-  /** Styles applied to the tag elements, e.g. the chips. */
-  tag: string;
+  /** Styles applied to the limitTag element. */
+  limitTag: string;
   /** Styles applied when the popup icon is rendered. */
   hasPopupIcon: string;
   /** Styles applied when the clear icon is rendered. */
@@ -37,7 +37,7 @@ const autocompleteClasses: AutocompleteClasses = generateUtilityClasses('JoyAuto
   'root',
   'fullWidth',
   'focused',
-  'tag',
+  'limitTag',
   'hasPopupIcon',
   'hasClearIcon',
   'clearIndicator',

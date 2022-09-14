@@ -13,6 +13,7 @@ import { IconButtonRoot } from '../IconButton/IconButton';
 import { ListRoot } from '../List/List';
 // default render components
 import Chip, { chipClasses } from '../Chip';
+import ChipDelete from '../ChipDelete';
 import { IconButtonOwnerState } from '../IconButton';
 import Input, { inputClasses } from '../Input';
 import List, { listClasses } from '../List';
@@ -60,7 +61,7 @@ const useUtilityClasses = (ownerState: OwnerState) => {
     listbox: ['listbox'],
     loading: ['loading'],
     noOptions: ['noOptions'],
-    tag: ['tag'],
+    limitTag: ['limitTag'],
   };
 
   return composeClasses(slots, getAutocompleteUtilityClass, {});
@@ -199,6 +200,15 @@ const AutocompleteNoOptions = styled('div', {
   padding: '14px 16px',
 }));
 
+const AutocompleteLimitTag = styled('span', {
+  name: 'JoyAutocomplete',
+  slot: 'NoOptions',
+  overridesResolver: (props, styles) => styles.noOptions,
+})<{ ownerState: OwnerState }>({
+  marginInlineStart: 'calc(var(--Input-paddingInline) / 2)',
+  marginBlockStart: 'var(--_Input-paddingBlock)',
+});
+
 const Autocomplete = React.forwardRef(function Autocomplete(
   inProps,
   ref: React.ForwardedRef<HTMLDivElement>,
@@ -311,7 +321,6 @@ const Autocomplete = React.forwardRef(function Autocomplete(
 
   if (multiple && (value as Array<unknown>).length > 0) {
     const getCustomizedTagProps: AutocompleteRenderGetTagProps = (params) => ({
-      className: classes.tag,
       disabled,
       size,
       ...getTagProps(params),
@@ -323,7 +332,13 @@ const Autocomplete = React.forwardRef(function Autocomplete(
       startDecorator = (value as Array<unknown>).map((option, index) => {
         const { onDelete, ...tagProps } = getCustomizedTagProps({ index });
         return (
-          <Chip size={size} variant="soft" color="neutral" {...tagProps}>
+          <Chip
+            size={size}
+            variant="soft"
+            color="neutral"
+            endDecorator={<ChipDelete onClick={onDelete} />}
+            {...tagProps}
+          >
             {getOptionLabel(option)}
           </Chip>
         );
@@ -336,9 +351,9 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     if (!focused && more > 0) {
       startDecorator = startDecorator.splice(0, limitTags);
       startDecorator.push(
-        <span className={classes.tag} key={startDecorator.length}>
+        <AutocompleteLimitTag key={startDecorator.length} ownerState={ownerState}>
           {getLimitTagsText(more)}
-        </span>,
+        </AutocompleteLimitTag>,
       );
     }
   }
