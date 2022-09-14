@@ -16,6 +16,8 @@ export * from './useMenu';
 
 export * from './useSelect';
 
+export * from './useSlider';
+
 export { default as BadgeUnstyled } from './BadgeUnstyled';
 export * from './BadgeUnstyled';
 

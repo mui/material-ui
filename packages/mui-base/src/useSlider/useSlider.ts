@@ -14,7 +14,7 @@ import {
   UseSliderParameters,
   UseSliderRootSlotProps,
   UseSliderThumbSlotProps,
-} from '@mui/base/useSlider';
+} from './useSlider.types';
 import { EventHandlers } from '../utils';
 
 const INTENTIONAL_DRAG_COUNT_THRESHOLD = 2;
