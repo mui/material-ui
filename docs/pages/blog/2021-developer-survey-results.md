@@ -462,7 +462,7 @@ It's crucial for our docs—and even the code itself—to be easily understood b
 
 <p class="blog-description">1051 out of 1589 answered.</p>
 
-Roughly half—47%—of those who responded to this question shipped one app or simply maintained an existing app.
+Roughly half (47%) of those who responded to this question shipped one app or simply maintained an existing app.
 Impressively, 5% of respondents delivered six or more apps, and more than half of those surpassed 10!
 
 ### Which MUI products do you use in your application?
