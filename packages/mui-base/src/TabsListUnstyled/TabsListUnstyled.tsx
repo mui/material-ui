@@ -9,7 +9,7 @@ import {
   TabsListUnstyledRootSlotProps,
   TabsListUnstyledTypeMap,
 } from './TabsListUnstyled.types';
-import useTabsList from './useTabsList';
+import useTabsList from '@mui/base/useTabsList';
 
 const useUtilityClasses = (ownerState: { orientation: 'horizontal' | 'vertical' }) => {
   const { orientation } = ownerState;
