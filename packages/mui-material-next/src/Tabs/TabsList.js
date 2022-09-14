@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { styled } from '@mui/material/styles';
-import { useTabsList } from '@mui/base/TabsListUnstyled';
+import useTabsList from '@mui/base/useTabsList';
 
 const FlexContainer = styled('div', {
   name: 'MuiTabs',
