@@ -24,6 +24,8 @@ export * from './useTabPanel';
 
 export * from './useTabsList';
 
+export * from './useTabs';
+
 export { default as BadgeUnstyled } from './BadgeUnstyled';
 export * from './BadgeUnstyled';
 
