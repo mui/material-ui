@@ -115,48 +115,59 @@ async function postFeedbackOnSlack(data) {
     return;
   }
 
-  const slackMessage = {
-    blocks: [
-      {
-        type: 'header',
-        text: {
-          type: 'plain_text',
-          text: `New comment ${rating > 0 ? '👍' : '👎'}`,
-          emoji: true,
-        },
-      },
-      {
-        type: 'section',
-        text: {
-          type: 'plain_text',
-          text: comment,
-          emoji: true,
-        },
-      },
-      {
-        type: 'section',
-        text: {
-          type: 'mrkdwn',
-          text: `v: ${version}, lang: ${language}`,
-        },
-        accessory: {
-          type: 'button',
-          text: {
-            type: 'plain_text',
-            text: 'Go to the page',
-            emoji: true,
-          },
-          url: window.location.host,
-        },
-      },
-    ],
-  };
+  /**
+   Not used because I ignore how to encode that with:
+      'content-type': 'application/x-www-form-urlencoded'
+   
+   const complexSlackMessage = {
+     blocks: [
+       {
+         type: 'header',
+         text: {
+           type: 'plain_text',
+           text: `New comment ${rating > 0 ? '👍' : '👎'}`,
+           emoji: true,
+         },
+       },
+       {
+         type: 'section',
+         text: {
+           type: 'plain_text',
+           text: comment,
+           emoji: true,
+         },
+       },
+       {
+         type: 'section',
+         text: {
+           type: 'mrkdwn',
+           text: `v: ${version}, lang: ${language}`,
+         },
+         accessory: {
+           type: 'button',
+           text: {
+             type: 'plain_text',
+             text: 'Go to the page',
+             emoji: true,
+           },
+           url: window.location.host,
+         },
+       },
+     ],
+   };
+  */
+
+  const simpleSlackMessage = [
+    `New comment ${rating > 0 ? '👍' : '👎'}`,
+    `>${comment.split('\n').join('\n>')}`,
+    `sent from ${window.location.href}`,
+  ].join('\n\n');
+
   try {
     await fetch(`https://hooks.slack.com/services/${process.env.SLACK_FEEDBACKS_TOKEN}`, {
       method: 'POST',
-      referrerPolicy: 'origin',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(slackMessage),
+      headers: { 'content-type': 'application/x-www-form-urlencoded' },
+      body: JSON.stringify({ text: simpleSlackMessage }),
     });
   } catch (error) {
     console.error(error);
