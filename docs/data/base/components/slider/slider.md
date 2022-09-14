@@ -132,7 +132,7 @@ Note that `componentsProps` slot names are written in lowercase (`root`) while `
 ## Hook
 
 ```js
-import { useSlider } from '@mui/base/SliderUnstyled';
+import useSlider from '@mui/base/useSlider';
 ```
 
 The `useSlider` hook lets you apply the functionality of `SliderUnstyled` to a fully custom component.
