@@ -63,10 +63,20 @@ export default function Asynchronous() {
             {...params}
             endDecorator={
               <React.Fragment>
-                {loading ? <CircularProgress size="sm" /> : null}
-                {params.endAdornment}
+                {loading ? (
+                  <CircularProgress
+                    size="sm"
+                    sx={{ bgcolor: 'background.surface' }}
+                  />
+                ) : null}
+                {params.endDecorator}
               </React.Fragment>
             }
+            sx={{
+              ...(loading && {
+                '--Autocomplete-endDecorator-count': 3,
+              }),
+            }}
           />
         )}
       />

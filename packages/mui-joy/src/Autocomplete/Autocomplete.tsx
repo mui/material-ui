@@ -80,6 +80,7 @@ const AutocompleteRoot = styled('div', {
   }
   return [
     {
+      '--Autocomplete-endDecorator-count': endDecoratorCount,
       ...(ownerState.fullWidth && {
         width: '100%',
       }),
@@ -90,7 +91,7 @@ const AutocompleteRoot = styled('div', {
         },
       },
       [`& .${inputClasses.root}`]: {
-        paddingInlineEnd: `calc(${endDecoratorCount} * var(--Input-decorator-childHeight) + 2 * var(--_Input-paddingBlock))`,
+        paddingInlineEnd: `calc(var(--Autocomplete-endDecorator-count, 0) * var(--Input-decorator-childHeight) + 2 * var(--_Input-paddingBlock))`,
       },
       [`& .${inputClasses.input}`]: {
         minWidth: 30,
