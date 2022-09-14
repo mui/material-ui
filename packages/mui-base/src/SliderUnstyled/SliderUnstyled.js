@@ -6,7 +6,7 @@ import isHostComponent from '../utils/isHostComponent';
 import composeClasses from '../composeClasses';
 import { getSliderUtilityClass } from './sliderUnstyledClasses';
 import SliderValueLabelUnstyled from './SliderValueLabelUnstyled';
-import useSlider, { valueToPercent } from './useSlider';
+import useSlider, { valueToPercent } from '@mui/base/useSlider';
 import useSlotProps from '../utils/useSlotProps';
 
 const Identity = (x) => x;

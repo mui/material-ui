@@ -6,7 +6,7 @@ import {
   unstable_capitalize as capitalize,
 } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
-import { useSlider } from '@mui/base/SliderUnstyled';
+import useSlider from '@mui/base/useSlider';
 import { useSlotProps } from '@mui/base/utils';
 import { useThemeProps, styled, Theme } from '../styles';
 import sliderClasses, { getSliderUtilityClass } from './sliderClasses';

@@ -8,7 +8,7 @@ import {
   UseSliderRootSlotProps,
   UseSliderThumbSlotProps,
   Mark,
-} from './useSlider.types';
+} from '@mui/base/useSlider';
 
 export type SliderUnstyledOwnerState = SliderUnstyledProps & {
   disabled: boolean;
