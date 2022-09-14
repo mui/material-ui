@@ -130,7 +130,7 @@ You can group the options with the `groupBy` prop.
 If you do so, make sure that the options are also sorted with the same dimension that they are grouped by,
 otherwise, you will notice duplicate headers.
 
-<!-- {{"demo": "Grouped.js"}} -->
+{{"demo": "Grouped.js"}}
 
 ## Disabled options
 
