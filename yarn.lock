@@ -1284,12 +1284,12 @@
   resolved "https://registry.yarnpkg.com/@colors/colors/-/colors-1.5.0.tgz#bb504579c1cae923e6576a4f5da43d25f97bdbd9"
   integrity sha512-ooWCrlZP11i8GImSjTHYHLkvFDP48nS4+204nGb1RiX/WXYHmJA2III9/e2DWVabCESdW7hBAEzHRqUn9OUVvQ==
 
-"@date-io/core@^2.13.1", "@date-io/core@^2.15.0":
+"@date-io/core@^2.15.0":
   version "2.15.0"
   resolved "https://registry.yarnpkg.com/@date-io/core/-/core-2.15.0.tgz#8133860c8ce163b8d0cca3c1caed8d5d1fbfb14e"
   integrity sha512-3CRvQUEK7aF87NUOwcTtmJ2Rc1kN0D4jFQUfRoanuAnE4o5HzHx4E2YenjaKjSPWeZYiWG6ZhDomx5hp1AaCJA==
 
-"@date-io/date-fns-jalali@^2.13.1":
+"@date-io/date-fns-jalali@^2.15.0":
   version "2.15.0"
   resolved "https://registry.yarnpkg.com/@date-io/date-fns-jalali/-/date-fns-jalali-2.15.0.tgz#786e63bb7818524e1b2dc55f45466013cb0b5159"
   integrity sha512-dXaIu1HWU5MyG6Zzjdr0gC3fM1fHzgz/cZ3L4SlXwHx0bqZMPhTx9qNFmC6e7MOs8W7GQfnS42tEHlmfSdBSnw==
