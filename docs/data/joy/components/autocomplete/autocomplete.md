@@ -218,12 +218,6 @@ The following demo relies on [autosuggest-highlight](https://github.com/moroshko
 
 {{"demo": "Highlights.js"}}
 
-### Virtualization
-
-Search within 10,000 randomly generated options. The list is virtualized thanks to [react-window](https://github.com/bvaughn/react-window).
-
-<!-- {{"demo": "Virtualize.js"}} -->
-
 ## Custom filter
 
 The component exposes a factory to create a filter method that can be provided to the `filterOptions` prop.
@@ -261,7 +255,7 @@ const filterOptions = createFilterOptions({
 <Autocomplete filterOptions={filterOptions} />;
 ```
 
-<!-- {{"demo": "Filter.js", "defaultCodeOpen": false}} -->
+{{"demo": "Filter.js", "defaultCodeOpen": false}}
 
 ### Advanced
 

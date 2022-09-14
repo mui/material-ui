@@ -183,22 +183,20 @@ const AutocompleteListbox = styled(ListRoot, {
   };
 });
 
-const AutocompleteLoading = styled('div', {
+const AutocompleteLoading = styled(ListItem, {
   name: 'JoyAutocomplete',
   slot: 'Loading',
   overridesResolver: (props, styles) => styles.loading,
 })<{ ownerState: OwnerState }>(({ theme }) => ({
   color: (theme.vars || theme).palette.text.secondary,
-  padding: '14px 16px',
 }));
 
-const AutocompleteNoOptions = styled('div', {
+const AutocompleteNoOptions = styled(ListItem, {
   name: 'JoyAutocomplete',
   slot: 'NoOptions',
   overridesResolver: (props, styles) => styles.noOptions,
 })<{ ownerState: OwnerState }>(({ theme }) => ({
   color: (theme.vars || theme).palette.text.secondary,
-  padding: '14px 16px',
 }));
 
 const AutocompleteLimitTag = styled('span', {
