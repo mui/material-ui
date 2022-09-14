@@ -112,7 +112,7 @@ If you intend to use this mode for a [combo box](#combo-box) like experience (an
 
 You could also display a dialog when the user wants to add a new value.
 
-<!-- {{"demo": "FreeSoloCreateOptionDialog.js"}} -->
+{{"demo": "FreeSoloCreateOptionDialog.js"}}
 
 ## Option appearance
 
