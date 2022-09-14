@@ -210,29 +210,19 @@ The `size` can be controlled at the `FormControl`.
 
 {{"demo": "SizeWithLabel.js"}}
 
-## Customization
+## Common examples
 
-### Custom input
-
-The `renderInput` prop allows you to customize the rendered input.
-The first argument of this render prop contains props that you need to forward.
-Pay specific attention to the `ref` and `inputProps` keys.
-
-<!-- {{"demo": "CustomInputAutocomplete.js"}} -->
-
-### GitHub's picker
-
-This demo reproduces GitHub's label picker:
-
-<!-- {{"demo": "GitHubLabel.js"}} -->
-
-Head to the [Customized hook](#customized-hook) section for a customization example with the `useAutocomplete` hook instead of the component.
-
-## Highlights
+### Highlights
 
 The following demo relies on [autosuggest-highlight](https://github.com/moroshko/autosuggest-highlight), a small (1 kB) utility for highlighting text in autosuggest and autocomplete components.
 
-<!-- {{"demo": "Highlights.js"}} -->
+{{"demo": "Highlights.js"}}
+
+### Virtualization
+
+Search within 10,000 randomly generated options. The list is virtualized thanks to [react-window](https://github.com/bvaughn/react-window).
+
+<!-- {{"demo": "Virtualize.js"}} -->
 
 ## Custom filter
 
@@ -284,12 +274,6 @@ const filterOptions = (options, { inputValue }) => matchSorter(options, inputVal
 
 <Autocomplete filterOptions={filterOptions} />;
 ```
-
-## Virtualization
-
-Search within 10,000 randomly generated options. The list is virtualized thanks to [react-window](https://github.com/bvaughn/react-window).
-
-<!-- {{"demo": "Virtualize.js"}} -->
 
 ## Events
 
