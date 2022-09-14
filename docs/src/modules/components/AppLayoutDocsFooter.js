@@ -115,12 +115,6 @@ async function postFeedbackOnSlack(data) {
     return;
   }
 
-  const env = window.location.host.indexOf('mui.com') !== -1 ? 'prod' : 'dev';
-
-  if (env === 'dev') {
-    // return;
-  }
-
   const slackMessage = {
     blocks: [
       {
