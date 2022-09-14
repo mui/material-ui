@@ -18,6 +18,12 @@ It's meant to be an improved version of the "react-select" and "downshift" packa
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
+## Label and helper text
+
+Put an `Autocomplete`, `FormLabel` and `FormHelperText` (optional) under a `FormControl` component.
+
+{{"demo": "LabelAndHelperText.js"}}
+
 ## Combo box
 
 The value must be chosen from a predefined set of allowed values.
@@ -47,19 +53,16 @@ const options = [
 const options = ['The Godfather', 'Pulp Fiction'];
 ```
 
-However, you can use different structures by providing a `getOptionLabel` prop.
+However, you can use different structures by providing a `getOptionLabel` prop:
 
-### Playground
+```js
+const options = [
+  { title: 'Pulp Fiction', id: 2 },
+  // ...
+];
 
-Each of the following examples demonstrates one feature of the Autocomplete component.
-
-{{"demo": "Playground.js"}}
-
-### Country select
-
-Choose one of the 248 countries.
-
-<!-- {{"demo": "CountrySelect.js"}} -->
+<Autocomplete getOptionLabel={option => option.title}>
+```
 
 ### Controlled states
 
@@ -74,6 +77,12 @@ The component has two states that can be controlled:
 
 <!-- {{"demo": "ControllableStates.js"}} -->
 
+## Features
+
+Each of the following examples demonstrates one feature of the Autocomplete component.
+
+{{"demo": "Playground.js"}}
+
 ## Free solo
 
 Set `freeSolo` to true so the textbox can contain any arbitrary value.
@@ -82,7 +91,7 @@ Set `freeSolo` to true so the textbox can contain any arbitrary value.
 
 The prop is designed to cover the primary use case of a **search input** with suggestions, e.g. Google search or react-autowhatever.
 
-<!-- {{"demo": "FreeSolo.js"}} -->
+{{"demo": "FreeSolo.js"}}
 
 :::warning
 ⚠️ Be careful when using the free solo mode with non-string options, as it may cause type mismatch.
@@ -99,11 +108,21 @@ If you intend to use this mode for a [combo box](#combo-box) like experience (an
 - `handleHomeEndKeys` to move focus inside the popup with the <kbd class="key">Home</kbd> and <kbd class="key">End</kbd> keys.
 - A last option, for instance: `Add "YOUR SEARCH"`.
 
-<!-- {{"demo": "FreeSoloCreateOption.js"}} -->
+{{"demo": "FreeSoloCreateOption.js"}}
 
 You could also display a dialog when the user wants to add a new value.
 
 <!-- {{"demo": "FreeSoloCreateOptionDialog.js"}} -->
+
+## Option appearance
+
+To customize the appearance of the options, use `renderOption` prop in combination with the `AutocompleteOption` component as an option container.
+
+{{"demo": "CountrySelect.js"}}
+
+:::info
+The `AutocompleteOption` uses the same styles and variables as [`ListItemButton`](/joy-ui/react-list/#actionable), so that you get the same customization experience.
+:::
 
 ## Grouped
 

@@ -25,8 +25,6 @@ export interface AutocompleteClasses {
   loading: string;
   /** Styles applied to the no option wrapper. */
   noOptions: string;
-  /** Styles applied to the option elements. */
-  option: string;
 }
 
 export type AutocompleteClassKey = keyof AutocompleteClasses;
@@ -48,7 +46,6 @@ const autocompleteClasses: AutocompleteClasses = generateUtilityClasses('JoyAuto
   'listbox',
   'loading',
   'noOptions',
-  'option',
 ]);
 
 export default autocompleteClasses;

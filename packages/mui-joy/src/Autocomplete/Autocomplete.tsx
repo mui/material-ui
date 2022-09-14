@@ -11,7 +11,6 @@ import styled from '../styles/styled';
 // slot components
 import { IconButtonRoot } from '../IconButton/IconButton';
 import { ListRoot } from '../List/List';
-import { ListItemButtonRoot } from '../ListItemButton/ListItemButton';
 // default render components
 import Chip, { chipClasses } from '../Chip';
 import { IconButtonOwnerState } from '../IconButton';
@@ -28,6 +27,7 @@ import {
   AutocompleteOwnerState,
 } from './AutocompleteProps';
 import FormControlContext from '../FormControl/FormControlContext';
+import AutocompleteOption from '../AutocompleteOption';
 
 type OwnerState = Omit<AutocompleteOwnerState<any, any, any, any>, 'onChange'>;
 
@@ -60,7 +60,6 @@ const useUtilityClasses = (ownerState: OwnerState) => {
     listbox: ['listbox'],
     loading: ['loading'],
     noOptions: ['noOptions'],
-    option: ['option'],
     tag: ['tag'],
   };
 
@@ -131,7 +130,9 @@ const AutocompleteClearIndicator = styled(IconButtonRoot, {
   slot: 'ClearIndicator',
   overridesResolver: (props, styles) => styles.clearIndicator,
 })<{ ownerState: OwnerState & IconButtonOwnerState }>(({ ownerState }) => ({
-  marginInlineEnd: 0, // prevent the automatic adjustment between Input and IconButtonRoot
+  ...(!ownerState.freeSolo && {
+    marginInlineEnd: 0, // prevent the automatic adjustment between Input and IconButtonRoot
+  }),
   visibility: ownerState.focused ? 'visible' : 'hidden',
 }));
 
@@ -195,19 +196,6 @@ const AutocompleteNoOptions = styled('div', {
 })<{ ownerState: OwnerState }>(({ theme }) => ({
   color: (theme.vars || theme).palette.text.secondary,
   padding: '14px 16px',
-}));
-
-const AutocompleteOption = styled(ListItemButtonRoot, {
-  name: 'JoyAutocomplete',
-  slot: 'Option',
-  overridesResolver: (props, styles) => styles.option,
-})<{ ownerState: OwnerState }>(({ theme, ownerState }) => ({
-  '&[aria-disabled="true"]': theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
-  '&[aria-selected="true"]': {
-    color: theme.vars.palette.primary.softColor,
-    backgroundColor: theme.vars.palette.primary.softBg,
-    fontWeight: theme.vars.fontWeight.md,
-  },
 }));
 
 const Autocomplete = React.forwardRef(function Autocomplete(
@@ -354,22 +342,9 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     }
   }
 
-  const defaultRenderOption = (
-    optionProps: React.HTMLAttributes<HTMLLIElement | HTMLDivElement>,
-    option: unknown,
-  ) => (
+  const defaultRenderOption = (optionProps: any, option: unknown) => (
     // Can't use `useSlotProps`
-    <AutocompleteOption
-      as="li"
-      ownerState={{
-        ...ownerState,
-        variant: 'plain',
-        color: 'neutral',
-      }}
-      {...optionProps}
-    >
-      {getOptionLabel(option)}
-    </AutocompleteOption>
+    <AutocompleteOption {...optionProps}>{getOptionLabel(option)}</AutocompleteOption>
   );
 
   const renderOption = renderOptionProp || defaultRenderOption;
@@ -377,10 +352,11 @@ const Autocomplete = React.forwardRef(function Autocomplete(
   const renderListOption = (option: unknown, index: number) => {
     const optionProps = getOptionProps({ option, index });
 
-    return renderOption({ ...optionProps, className: classes.option }, option, {
+    return renderOption(optionProps, option, {
       // `aria-selected` prop will always by boolean, see useAutocomplete hook.
       selected: !!optionProps['aria-selected'],
       inputValue,
+      ownerState,
     });
   };
 

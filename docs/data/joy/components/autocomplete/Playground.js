@@ -38,7 +38,7 @@ export default function Playground() {
         />
       </Box>
       <Box sx={{ minWidth: 0, flexBasis: 300, flexGrow: 1, mt: 2 }}>
-        <Box sx={{ display: 'flex', alignItems: 'baseline' }}>
+        <Box sx={{ display: 'flex', alignItems: 'baseline', pb: 1 }}>
           <Typography
             id="flags-playground"
             level="body3"
@@ -48,7 +48,7 @@ export default function Playground() {
               letterSpacing: 'md',
             }}
           >
-            Flags
+            Flags {flags.length ? `(${flags.length})` : ''}
           </Typography>
           {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
           <Link

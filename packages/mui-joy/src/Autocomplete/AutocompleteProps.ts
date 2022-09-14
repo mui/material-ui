@@ -7,7 +7,6 @@ import {
   AutocompleteChangeReason,
   AutocompleteCloseReason,
   AutocompleteInputChangeReason,
-  createFilterOptions,
   UseAutocompleteProps,
 } from '@mui/base/AutocompleteUnstyled';
 import { PopperUnstyledOwnProps } from '@mui/base/PopperUnstyled';
@@ -20,7 +19,6 @@ export {
   AutocompleteChangeReason,
   AutocompleteCloseReason,
   AutocompleteInputChangeReason,
-  createFilterOptions,
 };
 
 export type AutocompleteRenderGetTagProps = ({ index }: { index: number }) => {
@@ -35,6 +33,7 @@ export type AutocompleteRenderGetTagProps = ({ index }: { index: number }) => {
 export interface AutocompleteRenderOptionState {
   inputValue: string;
   selected: boolean;
+  ownerState: AutocompleteOwnerState<any, any, any, any>;
 }
 
 export interface AutocompleteRenderGroupParams {
