@@ -9,7 +9,7 @@ import {
   TabUnstyledTypeMap,
   TabUnstyledRootSlotProps,
 } from './TabUnstyled.types';
-import useTab from './useTab';
+import useTab from '@mui/base/useTab';
 import { useSlotProps, WithOptionalOwnerState } from '../utils';
 
 const useUtilityClasses = (ownerState: { selected: boolean; disabled: boolean }) => {
