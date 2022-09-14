@@ -147,7 +147,7 @@ The component supports two different asynchronous use-cases:
 
 It displays a progress state as long as the network request is pending.
 
-<!-- {{"demo": "Asynchronous.js"}} -->
+{{"demo": "Asynchronous.js"}}
 
 ### Search as you type
 
