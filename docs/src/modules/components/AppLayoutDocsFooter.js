@@ -109,7 +109,7 @@ async function postFeedback(data) {
 }
 
 async function postFeedbackOnSlack(data) {
-  const { rating, comment, version, language } = data;
+  const { rating, comment } = data;
 
   if (!comment || comment.length < 10) {
     return;
