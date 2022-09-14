@@ -161,38 +161,40 @@ overriding the `filterOptions` prop:
 <Autocomplete filterOptions={(x) => x} />
 ```
 
-### Google Maps place
+<!-- ### Google Maps place
 
 A customized UI for Google Maps Places Autocomplete.
-For this demo, we need to load the [Google Maps JavaScript](https://developers.google.com/maps/documentation/javascript/overview) and [Google Places](https://developers.google.com/maps/documentation/places/web-service/overview) API.
+For this demo, we need to load the [Google Maps JavaScript](https://developers.google.com/maps/documentation/javascript/overview) and [Google Places](https://developers.google.com/maps/documentation/places/web-service/overview) API. -->
 
 <!-- {{"demo": "GoogleMaps.js"}} -->
 
-:::warning
+<!-- :::warning
 ⚠️ Before you can start using the Google Maps JavaScript API and Places API, you must sign up and create a billing account.
-:::
+::: -->
 
 ## Multiple values
 
-Also known as tags, the user is allowed to enter more than one value.
+Also known as tags, the user is allowed to enter more than one value. By default, the autocomplete uses [`Chip`](/joy-ui/react-chip/) component to render tags.
 
-<!-- {{"demo": "Tags.js"}} -->
+{{"demo": "Tags.js"}}
+
+### Tag appearance
+
+Use the `renderTag` prop to customize the tag appearance.
+
+{{"demo": "CustomTags.js"}}
 
 ### Fixed options
 
 In the event that you need to lock certain tags so that they can't be removed, you can set the chips disabled.
 
-<!-- {{"demo": "FixedTags.js"}} -->
-
-### Checkboxes
-
-<!-- {{"demo": "CheckboxesTags.js"}} -->
+{{"demo": "FixedTags.js"}}
 
 ### Limit tags
 
 You can use the `limitTags` prop to limit the number of displayed options when not focused.
 
-<!-- {{"demo": "LimitTags.js"}} -->
+{{"demo": "LimitTags.js"}}
 
 ## Sizes
 
