@@ -1325,25 +1325,25 @@
     "@date-io/core" "^2.15.0"
 
 "@definitelytyped/header-parser@latest":
-  version "0.0.125"
-  resolved "https://registry.yarnpkg.com/@definitelytyped/header-parser/-/header-parser-0.0.125.tgz#ed015257760b2ddff58d476f34b155206c17e3be"
-  integrity sha512-tZArX/8jGkFUIxAz/H0YAicEtY7dF6ZmFL0/PDhK6JKpiUaoDgDRy/0G0e18fLZ4LcxhbK4HYX8VeYgyg3SfGw==
+  version "0.0.129"
+  resolved "https://registry.yarnpkg.com/@definitelytyped/header-parser/-/header-parser-0.0.129.tgz#210e9bc7dcd1670e8839efeea8f9a5915789b636"
+  integrity sha512-4LcBmghSDBU+NukAd0nLosWyrurWyjF8WeMJXk3wUUBBUbTvjU3F7i4r6eS5TCdoEWPCoKOBBymbj5HW8NFGpA==
   dependencies:
-    "@definitelytyped/typescript-versions" "^0.0.125"
+    "@definitelytyped/typescript-versions" "^0.0.129"
     "@types/parsimmon" "^1.10.1"
     parsimmon "^1.13.0"
 
-"@definitelytyped/typescript-versions@^0.0.125", "@definitelytyped/typescript-versions@^0.0.126", "@definitelytyped/typescript-versions@latest":
-  version "0.0.126"
-  resolved "https://registry.yarnpkg.com/@definitelytyped/typescript-versions/-/typescript-versions-0.0.126.tgz#588148229f5ac926e02f6bc49ac986b936a39ce5"
-  integrity sha512-9lH5Gc/dO4JkvdMbtXh6824qy5D3P108ZAcaQiLpcZiH5KgE4fWeUF6bk5WpXp4iRWe5d5Ncyyge1vcM+R90dw==
+"@definitelytyped/typescript-versions@^0.0.129", "@definitelytyped/typescript-versions@latest":
+  version "0.0.129"
+  resolved "https://registry.yarnpkg.com/@definitelytyped/typescript-versions/-/typescript-versions-0.0.129.tgz#e95ea4e71440192e84294ecff3849c8269dbfc5e"
+  integrity sha512-tJvjfd1FT3ow/ggYfXUWVD+N0WP7dcDGoN9/pTlC8Xxc890Yja4B42bYCnZCuE5H2LDXlPCnugNydl1OsD3suw==
 
 "@definitelytyped/utils@latest":
-  version "0.0.125"
-  resolved "https://registry.yarnpkg.com/@definitelytyped/utils/-/utils-0.0.125.tgz#87758dc2d108de6b7896d2666c751050c6294f55"
-  integrity sha512-C2mFFlmsqi0nQvup8+PsCGk+N1+KFWMHok/KXzijZvuTfEHqeWiIrAMScImu2IQ+JflnvXglSYtmoL/OdvCwvw==
+  version "0.0.129"
+  resolved "https://registry.yarnpkg.com/@definitelytyped/utils/-/utils-0.0.129.tgz#209e0b1d411e32cb0ada666aaf6fb12a3ace47a9"
+  integrity sha512-qmLW4fYzl24XS5a3CPCnzFmQ0l+07NIZR111RYXvAgqQuGpPjr7ce+gZwywpACprRAHPVHtxW1B5UxII8Zh3rQ==
   dependencies:
-    "@definitelytyped/typescript-versions" "^0.0.125"
+    "@definitelytyped/typescript-versions" "^0.0.129"
     "@qiwi/npm-registry-client" "^8.9.1"
     "@types/node" "^14.14.35"
     charm "^1.0.2"
