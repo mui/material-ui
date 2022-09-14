@@ -83,7 +83,7 @@ Note that `componentsProps` slot names are written in lowercase (`root`) while `
 ## Hook
 
 ```js
-import { useSwitch } from '@mui/base/SwitchUnstyled';
+import useSwitch from '@mui/base/useSwitch';
 ```
 
 The `useSwitch` hook lets you apply the functionality of `SwitchUnstyled` to a fully custom component. It returns props to be placed on the custom component, along with fields representing the component's internal state.

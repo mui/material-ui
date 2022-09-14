@@ -16,6 +16,8 @@ export * from './useSelect';
 
 export * from './useSlider';
 
+export * from './useSwitch';
+
 export { default as BadgeUnstyled } from './BadgeUnstyled';
 
 export { default as ButtonUnstyled } from './ButtonUnstyled';

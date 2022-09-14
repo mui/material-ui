@@ -1,7 +1,7 @@
 import * as React from 'react';
 import clsx from 'clsx';
 import { styled } from '@mui/system';
-import { useSwitch, UseSwitchParameters } from '@mui/base/SwitchUnstyled';
+import useSwitch, { UseSwitchParameters } from '@mui/base/useSwitch';
 
 const blue = {
   700: '#0059B2',
