@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import { SlotComponentProps } from '@mui/base/utils';
-import { UseSwitchParameters } from '@mui/base/SwitchUnstyled';
+import { UseSwitchParameters } from '@mui/base/useSwitch';
 import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
 
 export type SwitchSlot = 'root' | 'action' | 'input' | 'track' | 'thumb';
