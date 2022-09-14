@@ -61,6 +61,7 @@ const LinkRoot = styled('a', {
   return [
     {
       '--Icon-fontSize': '1.25em',
+      '--CircularProgress-size': '1em',
       ...(ownerState.level && ownerState.level !== 'inherit' && theme.typography[ownerState.level]),
       ...(ownerState.level === 'inherit' && {
         fontSize: 'inherit',

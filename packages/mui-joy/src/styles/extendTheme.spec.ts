@@ -12,6 +12,7 @@ import { CardOverflowOwnerState } from '@mui/joy/CardOverflow';
 import { CheckboxOwnerState } from '@mui/joy/Checkbox';
 import { ChipOwnerState } from '@mui/joy/Chip';
 import { ChipDeleteOwnerState } from '@mui/joy/ChipDelete';
+import { CircularProgressOwnerState } from '@mui/joy/CircularProgress';
 import { ContainerProps } from '@mui/joy/Container';
 import { FormControlOwnerState } from '@mui/joy/FormControl';
 import { FormHelperTextOwnerState } from '@mui/joy/FormHelperText';
@@ -296,6 +297,38 @@ extendTheme({
       styleOverrides: {
         root: ({ ownerState }) => {
           expectType<ChipDeleteOwnerState & Record<string, unknown>, typeof ownerState>(ownerState);
+          return {};
+        },
+      },
+    },
+    JoyCircularProgress: {
+      defaultProps: {
+        variant: 'solid',
+        color: 'primary',
+      },
+      styleOverrides: {
+        root: ({ ownerState }) => {
+          expectType<CircularProgressOwnerState & Record<string, unknown>, typeof ownerState>(
+            ownerState,
+          );
+          return {};
+        },
+        svg: ({ ownerState }) => {
+          expectType<CircularProgressOwnerState & Record<string, unknown>, typeof ownerState>(
+            ownerState,
+          );
+          return {};
+        },
+        track: ({ ownerState }) => {
+          expectType<CircularProgressOwnerState & Record<string, unknown>, typeof ownerState>(
+            ownerState,
+          );
+          return {};
+        },
+        progress: ({ ownerState }) => {
+          expectType<CircularProgressOwnerState & Record<string, unknown>, typeof ownerState>(
+            ownerState,
+          );
           return {};
         },
       },
