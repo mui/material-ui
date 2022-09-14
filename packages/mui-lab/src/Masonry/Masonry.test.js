@@ -72,12 +72,13 @@ describe('<Masonry />', () => {
         this.skip();
       }
       const spacingProp = 1;
+      const firstChildHeight = 10;
       const secondChildInitialHeight = 20;
       const secondChildNewHeight = 10;
 
       const { getByTestId } = render(
         <Masonry columns={2} spacing={spacingProp} data-testid="container">
-          <div style={{ height: 10 }} />
+          <div style={{ height: `${firstChildHeight}px` }} />
         </Masonry>,
       );
       const masonry = getByTestId('container');
@@ -87,13 +88,13 @@ describe('<Masonry />', () => {
 
       const topAndBottomMargin = parseToNumber(defaultTheme.spacing(spacingProp)) * 2;
       expect(window.getComputedStyle(masonry).height).to.equal(
-        `${secondChildInitialHeight + topAndBottomMargin}px`,
+        `${firstChildHeight + secondChildInitialHeight + topAndBottomMargin}px`,
       );
 
       secondItem.style.height = `${secondChildNewHeight}px`;
 
       expect(window.getComputedStyle(masonry).height).to.equal(
-        `${secondChildNewHeight + topAndBottomMargin}px`,
+        `${firstChildHeight + secondChildNewHeight + topAndBottomMargin}px`,
       );
     });
 
