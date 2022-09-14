@@ -124,6 +124,12 @@ To customize the appearance of the options, use `renderOption` prop in combinati
 The `AutocompleteOption` uses the same styles and variables as [`ListItemButton`](/joy-ui/react-list/#actionable), so that you get the same customization experience.
 :::
 
+## Input appearance
+
+To customize the appearance of the input, use `renderInput` prop that returns an `Input` component.
+
+{{"demo": "InputAppearance.js"}}
+
 ## Grouped
 
 You can group the options with the `groupBy` prop.
