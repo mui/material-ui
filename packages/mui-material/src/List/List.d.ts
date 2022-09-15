@@ -38,7 +38,11 @@ export interface ListTypeMap<P = {}, D extends React.ElementType = 'ul'> {
      */
     sx?: SxProps<Theme>;
     /**
-     * The variant to use. There is no variants available by default.
+     * The custom variant to use for styling. There is no variants available by default.
+     *
+     * Customization guide:
+     * - https://mui.com/material-ui/customization/theme-components/#global-style-overrides
+     * - https://mui.com/material-ui/customization/theme-components/#creating-new-component-variants
      */
     variant?: OverridableStringUnion<never, ListPropsVariantOverrides>;
   };

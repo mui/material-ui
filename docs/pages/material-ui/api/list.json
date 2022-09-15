@@ -12,10 +12,7 @@
         "description": "Array&lt;func<br>&#124;&nbsp;object<br>&#124;&nbsp;bool&gt;<br>&#124;&nbsp;func<br>&#124;&nbsp;object"
       }
     },
-    "variant": {
-      "type": { "name": "union", "description": "'default'<br>&#124;&nbsp;string" },
-      "default": "'default'"
-    }
+    "variant": { "type": { "name": "union", "description": "string" } }
   },
   "name": "List",
   "styles": {
