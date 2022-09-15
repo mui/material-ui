@@ -91,6 +91,7 @@ export default function JoyVariablesDemo(props: {
     <Box
       sx={{
         m: 0,
+        mt: 2,
         flexGrow: 1,
         maxWidth: 'calc(100% + 24px)',
         display: 'flex',

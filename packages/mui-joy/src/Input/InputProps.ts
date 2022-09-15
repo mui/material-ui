@@ -1,7 +1,6 @@
 import React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import { SlotComponentProps } from '@mui/base/utils';
-import { FormControlUnstyledState } from '@mui/base/FormControlUnstyled';
 import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
 
 export type InputSlot = 'root' | 'input' | 'startDecorator' | 'endDecorator';
@@ -51,7 +50,7 @@ export interface InputTypeMap<P = {}, D extends React.ElementType = 'div'> {
        */
       color?: OverridableStringUnion<ColorPaletteProp, InputPropsColorOverrides>;
       /**
-       * The props used for each slot inside the Input.
+       * The props used for each slot inside the component.
        * @default {}
        */
       componentsProps?: ComponentsProps;
@@ -105,8 +104,4 @@ export interface InputOwnerState extends InputProps {
    * If `true`, the input is focused.
    */
   focused: boolean;
-  /**
-   * The data from the parent form control.
-   */
-  formControlContext: FormControlUnstyledState | undefined;
 }

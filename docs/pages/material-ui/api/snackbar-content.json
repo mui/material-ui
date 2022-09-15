@@ -21,6 +21,6 @@
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-material/src/SnackbarContent/SnackbarContent.js",
   "inheritance": { "component": "Paper", "pathname": "/material-ui/api/paper/" },
-  "demos": "<ul><li><a href=\"/material-ui/react-snackbar/\">Snackbars</a></li></ul>",
+  "demos": "<ul><li><a href=\"/material-ui/react-snackbar/\">Snackbar</a></li></ul>",
   "cssComponent": false
 }

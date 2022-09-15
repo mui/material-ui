@@ -21,7 +21,7 @@ const useValueLabelClasses = (props) => {
  * @ignore - internal component.
  */
 export default function SliderValueLabelUnstyled(props) {
-  const { children, className, value, theme } = props;
+  const { children, className, value } = props;
   const classes = useValueLabelClasses(props);
 
   return React.cloneElement(
@@ -31,7 +31,7 @@ export default function SliderValueLabelUnstyled(props) {
     },
     <React.Fragment>
       {children.props.children}
-      <span className={clsx(classes.offset, className)} theme={theme} aria-hidden>
+      <span className={clsx(classes.offset, className)} aria-hidden>
         <span className={classes.circle}>
           <span className={classes.label}>{value}</span>
         </span>

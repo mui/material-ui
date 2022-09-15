@@ -21,7 +21,7 @@ export interface BreadcrumbsTypeMap<P = {}, D extends React.ElementType = 'nav'>
      */
     children?: React.ReactNode;
     /**
-     * The props used for each slot inside the AspectRatio.
+     * The props used for each slot inside the component.
      * @default {}
      */
     componentsProps?: ComponentsProps;

@@ -37,7 +37,7 @@ const defaultCreateStyledComponent = (systemStyled as CreateMUIStyled<any>)('div
   overridesResolver: (props, styles) => styles.root,
 });
 
-function useThemePropsDefault<T>(props: T) {
+function useThemePropsDefault<T extends {}>(props: T) {
   return useThemePropsSystem({
     props,
     name: 'MuiStack',

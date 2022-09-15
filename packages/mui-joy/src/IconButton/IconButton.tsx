@@ -31,13 +31,14 @@ const useUtilityClasses = (ownerState: IconButtonOwnerState) => {
   return composedClasses;
 };
 
-const IconButtonRoot = styled('button', {
+export const IconButtonRoot = styled('button', {
   name: 'JoyIconButton',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: IconButtonOwnerState }>(({ theme, ownerState }) => [
   {
     '--Icon-margin': 'initial', // reset the icon's margin.
+    '--CircularProgress-size': 'var(--Icon-fontSize)',
     ...(ownerState.size === 'sm' && {
       '--Icon-fontSize': 'calc(var(--IconButton-size, 2rem) / 1.6)', // 1.25rem by default
       minWidth: 'var(--IconButton-size, 2rem)', // use min-width instead of height to make the button resilient to its content
