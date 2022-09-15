@@ -23,18 +23,7 @@ import {
   UseListboxParameters,
 } from '../ListboxUnstyled';
 import { EventHandlers } from '../utils/types';
-
-const defaultOptionStringifier = <TValue>(option: SelectOption<TValue>) => {
-  const { label, value } = option;
-  if (typeof label === 'string') {
-    return label;
-  }
-  if (typeof value === 'string') {
-    return value;
-  }
-  // Fall back string representation
-  return String(option);
-};
+import defaultOptionStringifier from './defaultOptionStringifier';
 
 function useSelect<TValue>(props: UseSelectSingleParameters<TValue>): UseSelectSingleResult<TValue>;
 function useSelect<TValue>(props: UseSelectMultiParameters<TValue>): UseSelectMultiResult<TValue>;
@@ -164,7 +153,7 @@ function useSelect<TValue>(props: UseSelectParameters<TValue>) {
 
   const createHandleListboxBlur =
     (otherHandlers?: Record<string, React.EventHandler<any>>) => (event: React.FocusEvent) => {
-      otherHandlers?.blur?.(event);
+      otherHandlers?.onBlur?.(event);
       if (!event.defaultPrevented) {
         onOpenChange?.(false);
       }

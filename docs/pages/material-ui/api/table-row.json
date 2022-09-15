@@ -22,6 +22,6 @@
   "forwardsRefTo": "HTMLTableRowElement",
   "filename": "/packages/mui-material/src/TableRow/TableRow.js",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/material-ui/react-table/\">Tables</a></li></ul>",
+  "demos": "<ul><li><a href=\"/material-ui/react-table/\">Table</a></li></ul>",
   "cssComponent": false
 }

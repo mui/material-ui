@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Checkbox, { checkboxClasses } from '@mui/joy/Checkbox';
+import Checkbox from '@mui/joy/Checkbox';
 import List from '@mui/joy/List';
 import ListItem from '@mui/joy/ListItem';
 import ListItemDecorator from '@mui/joy/ListItemDecorator';
@@ -53,16 +53,16 @@ export default function ExampleButtonCheckbox() {
                 setValue((val) => val.filter((text) => text !== item));
               }
             }}
-            sx={{
-              [`& .${checkboxClasses.action}`]: {
-                bgcolor: value.includes(item) ? 'background.surface' : 'transparent',
-                boxShadow: value.includes(item) ? 'sm' : 'none',
-                '&:hover': {
-                  bgcolor: value.includes(item)
-                    ? 'background.surface'
-                    : 'transparent',
+            componentsProps={{
+              action: ({ checked }) => ({
+                sx: {
+                  bgcolor: checked ? 'background.surface' : 'transparent',
+                  boxShadow: checked ? 'sm' : 'none',
+                  '&:hover': {
+                    bgcolor: checked ? 'background.surface' : 'transparent',
+                  },
                 },
-              },
+              }),
             }}
           />
         </ListItem>

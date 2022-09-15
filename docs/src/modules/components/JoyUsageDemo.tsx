@@ -4,6 +4,8 @@ import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import { ColorPaletteProp } from '@mui/joy/styles';
 import Box from '@mui/joy/Box';
 import Chip from '@mui/joy/Chip';
+import FormControl from '@mui/joy/FormControl';
+import FormLabel, { formLabelClasses } from '@mui/joy/FormLabel';
 import Typography from '@mui/joy/Typography';
 import IconButton from '@mui/joy/IconButton';
 import RadioGroup from '@mui/joy/RadioGroup';
@@ -117,7 +119,7 @@ interface JoyUsageDemoProps<ComponentProps> {
      * - `input`: render <input />
      * - `radio`: render group of radios
      */
-    knob?: 'switch' | 'color' | 'select' | 'input' | 'radio';
+    knob?: 'switch' | 'color' | 'select' | 'input' | 'radio' | 'number';
     /**
      * The options for these knobs: `select` and `radio`
      */
@@ -252,6 +254,9 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
             display: 'flex',
             flexDirection: 'column',
             gap: 2.5,
+            [`& .${formLabelClasses.root}`]: {
+              fontWeight: 'lg',
+            },
           }}
         >
           {data.map(({ propName, knob, options = [], defaultValue }) => {
@@ -261,46 +266,52 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
             }
             if (knob === 'switch') {
               return (
-                <Switch
+                <FormControl
                   key={propName}
-                  checked={Boolean(resolvedValue)}
-                  onChange={(event) =>
-                    setProps((latestProps) => ({
-                      ...latestProps,
-                      [propName]: event.target.checked,
-                    }))
-                  }
-                  endDecorator={propName}
                   size="sm"
-                  sx={{
-                    textTransform: 'capitalize',
-                    alignSelf: 'flex-start',
-                    '--Switch-track-background': (theme) =>
-                      `rgba(${theme.vars.palette.neutral.mainChannel} / 0.3)`,
-                    '&:hover': {
+                  orientation="horizontal"
+                  sx={{ justifyContent: 'space-between' }}
+                >
+                  <FormLabel sx={{ textTransform: 'capitalize' }}>{propName}</FormLabel>
+                  <Switch
+                    checked={Boolean(resolvedValue)}
+                    onChange={(event) =>
+                      setProps((latestProps) => ({
+                        ...latestProps,
+                        [propName]: event.target.checked,
+                      }))
+                    }
+                    endDecorator={resolvedValue ? 'True' : 'False'}
+                    componentsProps={{
+                      endDecorator: {
+                        sx: {
+                          minWidth: 30,
+                        },
+                      },
+                    }}
+                    sx={{
+                      fontSize: 'xs',
+                      color: 'text.secondary',
+                      textTransform: 'capitalize',
                       '--Switch-track-background': (theme) =>
-                        `rgba(${theme.vars.palette.neutral.mainChannel} / 0.5)`,
-                    },
-                  }}
-                />
+                        `rgba(${theme.vars.palette.neutral.mainChannel} / 0.3)`,
+                      '&:hover': {
+                        '--Switch-track-background': (theme) =>
+                          `rgba(${theme.vars.palette.neutral.mainChannel} / 0.5)`,
+                      },
+                    }}
+                  />
+                </FormControl>
               );
             }
             if (knob === 'radio') {
               const labelId = `${componentName}-${propName}`;
               return (
-                <Box key={propName}>
-                  <Typography
-                    id={labelId}
-                    fontSize="xs"
-                    fontWeight="md"
-                    sx={{ mb: 1, textTransform: 'capitalize' }}
-                  >
-                    {propName}
-                  </Typography>
+                <FormControl key={propName} size="sm">
+                  <FormLabel sx={{ textTransform: 'capitalize' }}>{propName}</FormLabel>
                   <RadioGroup
                     row
                     name={labelId}
-                    aria-labelledby={labelId}
                     value={resolvedValue}
                     onChange={(event) =>
                       setProps((latestProps) => ({
@@ -333,19 +344,16 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                       );
                     })}
                   </RadioGroup>
-                </Box>
+                </FormControl>
               );
             }
             if (knob === 'color') {
               return (
-                <Box key={propName} sx={{ mb: 1 }}>
-                  <Typography id={`${componentName}-color`} fontSize="xs" fontWeight="lg" mb={1}>
-                    Color
-                  </Typography>
+                <FormControl key={propName} sx={{ mb: 1 }} size="sm">
+                  <FormLabel>Color</FormLabel>
                   <RadioGroup
                     row
                     name={`${componentName}-color`}
-                    aria-labelledby={`${componentName}-color`}
                     value={resolvedValue || ''}
                     onChange={(event) =>
                       setProps((latestProps) => ({
@@ -413,30 +421,16 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                       );
                     })}
                   </RadioGroup>
-                </Box>
+                </FormControl>
               );
             }
             if (knob === 'select') {
-              const selectId = `${componentName}-${propName}`;
               return (
-                <Box key={propName}>
-                  <Typography
-                    component="label"
-                    fontSize="xs"
-                    fontWeight="lg"
-                    mb={1}
-                    id={selectId}
-                    sx={{ textTransform: 'capitalize' }}
-                  >
-                    {propName}
-                  </Typography>
+                <FormControl key={propName} size="sm">
+                  <FormLabel sx={{ textTransform: 'capitalize' }}>{propName}</FormLabel>
                   <Select
-                    size="sm"
                     placeholder="Select a variant..."
                     componentsProps={{
-                      button: {
-                        'aria-labelledby': selectId,
-                      },
                       listbox: {
                         sx: {
                           '--List-decorator-size': '24px',
@@ -471,7 +465,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                       </Option>
                     ))}
                   </Select>
-                </Box>
+                </FormControl>
               );
             }
             if (knob === 'input') {
@@ -481,12 +475,43 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
                   label={propName}
                   size="sm"
                   value={
-                    typeof props[propName] === 'string' ? props[propName] || '' : defaultValue || ''
+                    typeof props[propName] === 'string'
+                      ? props[propName] || ''
+                      : String(defaultValue) || ''
                   }
                   onChange={(event) =>
                     setProps((latestProps) => ({
                       ...latestProps,
                       [propName]: event.target.value,
+                    }))
+                  }
+                  sx={{
+                    textTransform: 'capitalize',
+                    [`& .${inputClasses.root}`]: {
+                      bgcolor: 'background.body',
+                    },
+                  }}
+                />
+              );
+            }
+            if (knob === 'number') {
+              return (
+                <TextField
+                  key={propName}
+                  label={propName}
+                  size="sm"
+                  type="number"
+                  value={
+                    typeof props[propName] === 'number'
+                      ? (props[propName] as number)
+                      : (defaultValue as string)
+                  }
+                  onChange={(event) =>
+                    setProps((latestProps) => ({
+                      ...latestProps,
+                      [propName]: Number.isNaN(event.target.valueAsNumber)
+                        ? undefined
+                        : event.target.valueAsNumber,
                     }))
                   }
                   sx={{

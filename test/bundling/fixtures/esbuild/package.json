@@ -25,7 +25,7 @@
   },
   "devDependencies": {
     "concurrently": "6.5.1",
-    "playwright": "1.17.1",
+    "playwright": "1.25.2",
     "serve": "11.3.2"
   }
 }

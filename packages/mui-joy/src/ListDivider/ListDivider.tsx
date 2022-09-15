@@ -5,11 +5,11 @@ import { unstable_capitalize as capitalize } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
 import composeClasses from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
-import { ListDividerProps, ListDividerTypeMap } from './ListDividerProps';
+import { ListDividerOwnerState, ListDividerTypeMap } from './ListDividerProps';
 import { getListDividerUtilityClass } from './listDividerClasses';
 import RowListContext from '../List/RowListContext';
 
-const useUtilityClasses = (ownerState: ListDividerProps) => {
+const useUtilityClasses = (ownerState: ListDividerOwnerState) => {
   const slots = {
     root: ['root', ownerState.inset && `inset${capitalize(ownerState.inset)}`],
   };
@@ -21,15 +21,11 @@ const ListDividerRoot = styled('li', {
   name: 'JoyListDivider',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{
-  ownerState: ListDividerProps & {
-    row: boolean;
-    'data-first-child'?: boolean;
-  };
-}>(({ theme, ownerState }) => ({
+})<{ ownerState: ListDividerOwnerState }>(({ theme, ownerState }) => ({
   border: 'none', // reset the border for `hr` tag
   listStyle: 'none',
   backgroundColor: theme.vars.palette.divider, // use logical size + background is better than border because they work with gradient.
+  flexShrink: 0,
   ...(ownerState.row && {
     inlineSize: 'var(--ListDivider-thickness, 1px)',
     marginBlock: ownerState.inset === 'gutter' ? 'var(--List-item-paddingY)' : 0,

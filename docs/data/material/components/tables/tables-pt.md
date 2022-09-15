@@ -1,9 +1,9 @@
 ---
 product: material-ui
 title: Componente React Tabela
-components: Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TablePagination, TableRow, TableSortLabel, TablePaginationUnstyled
+components: Table, TableBody, TableCell, TableContainer, TableFooter, TableHead, TablePagination, TableRow, TableSortLabel
 githubLabel: 'component: table'
-waiAria: 'https://www.w3.org/TR/wai-aria-practices/#table'
+waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/table/
 materialDesign: https://material.io/components/data-tables
 ---
 
@@ -29,7 +29,7 @@ Uma tabela de dados contém uma linha de cabeçalho no topo que lista os nomes d
 
 O componente `Table` tem um mapeamento próximo dos elementos nativos de `<table>`. Este requisito torna a construção de tabelas de dados ricas e desafiadora.
 
-O [componente `DataGrid`](/x/react-data-grid/) é projetado para casos de uso que se concentram em lidar com grandes quantidades de dados tabulares. Enquanto vem com uma estrutura mais rígida, em troca, você ganha recursos poderosos.
+The [`DataGrid` component](/x/react-data-grid/) is designed for use-cases that are focused on handling large amounts of tabular data. Enquanto vem com uma estrutura mais rígida, em troca, você ganha recursos poderosos.
 
 {{"demo": "DataTable.js", "bg": "inline"}}
 
@@ -49,7 +49,7 @@ A tabela recebeu uma largura fixa para demonstrar a rolagem horizontal. Para imp
 
 ## Tabelas Customizadas
 
-Aqui está um exemplo de customização do componente. Você pode aprender mais sobre isso na [página de documentação de sobrescritas](/material-ui/customization/how-to-customize/).
+Aqui está um exemplo de customização do componente. You can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/).
 
 {{"demo": "CustomizedTables.js", "bg": true}}
 
@@ -96,7 +96,7 @@ Você pode agrupar cabeçalhos de coluna renderizando várias linhas de tabela d
 
 ## Tabela minimizável
 
-Um exemplo de uma tabela com linhas expansíveis, revelando mais informações. Ela utiliza o componente [`Collapse`](/material-ui/api/collapse/).
+Um exemplo de uma tabela com linhas expansíveis, revelando mais informações. It utilizes the [`Collapse`](/material-ui/api/collapse/) component.
 
 {{"demo": "CollapsibleTable.js", "bg": true}}
 
@@ -124,4 +124,4 @@ A caption functions like a heading for a table. Most screen readers announce the
 
 ## Unstyled
 
-If you would like to use an unstyled Table, you can use the primitive elements and enhance the table with the unstyled pagination as shown in the demo below. See the demos in the [unstyled table pagination docs](/base/react-table-pagination/)
+If you would like to use an unstyled Table, you can use the primitive HTML elements and enhance the table with the TablePaginationUnstyled component. See the demos in the [unstyled table pagination docs](/base/react-table-pagination/)

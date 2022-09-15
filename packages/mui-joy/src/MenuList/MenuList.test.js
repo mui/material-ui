@@ -14,7 +14,9 @@ describe('Joy <MenuList />', () => {
     ThemeProvider,
     muiName: 'MuiMenuList',
     refInstanceof: window.HTMLUListElement,
-    skip: ['componentsProp', 'classesRoot', 'themeVariants'],
+    testVariantProps: { variant: 'solid' },
+    testCustomVariant: true,
+    skip: ['componentsProp', 'classesRoot'],
   }));
 
   it('should have root className', () => {

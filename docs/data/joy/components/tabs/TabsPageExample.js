@@ -9,7 +9,7 @@ import Typography from '@mui/joy/Typography';
 import Input from '@mui/joy/Input';
 import SearchRounded from '@mui/icons-material/SearchRounded';
 
-export default function TabsBasic() {
+export default function TabsPageExample() {
   const [index, setIndex] = React.useState(0);
   return (
     <Box
@@ -102,20 +102,32 @@ export default function TabsBasic() {
           })}
         >
           <TabPanel value={0}>
-            <Typography level="h1" fontSize="xl2" mb={2} textColor="text.secondary">
+            <Typography
+              level="h1"
+              component="div"
+              fontSize="xl2"
+              mb={2}
+              textColor="text.secondary"
+            >
               Deals
             </Typography>
           </TabPanel>
           <TabPanel value={1}>
-            <Typography level="h1" fontSize="xl2" mb={2} textColor="text.secondary">
+            <Typography
+              level="h1"
+              component="div"
+              fontSize="xl2"
+              mb={2}
+              textColor="text.secondary"
+            >
               Library
             </Typography>
           </TabPanel>
           <TabPanel value={2}>
             <Input
+              autoFocus
               placeholder="type a library..."
               startDecorator={<SearchRounded />}
-              sx={{ bgcolor: 'background.body', mb: 0.75 }}
             />
           </TabPanel>
         </Box>

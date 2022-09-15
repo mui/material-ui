@@ -1,6 +1,6 @@
 # 封装
 
-<p class="description">Material UI 试着让封装尽可能的简单。</p>
+<p class="description">Material-UI 试着让封装尽可能的简单。</p>
 
 ## 封装组件
 
@@ -21,7 +21,7 @@ WrappedIcon.muiName = Icon.muiName;
 
 ## 组件属性
 
-在 Material UI 中，通过一个叫 `component` 的属性，您可以更改将被渲染的根元素。
+在 Material-UI 中，通过一个叫 `component` 的属性，您可以更改将被渲染的根元素。
 
 ### 它是如何工作的呢？
 
@@ -115,9 +115,9 @@ import { Link } from 'react-router-dom';
 
 ### 使用 TypeScript
 
-Many MUI components allow you to replace their root node via a `component` prop, this is detailed in the component's API documentation. Many MUI components allow you to replace their root node via a `component` prop, this is detailed in the component's API documentation. 例如，一个按钮（Button）的根节点可以被替换成一个 React Router 的链接（Link），并且，任何传入按钮（Button）的额外的属性，例如 `to` ，都会被传递到链接（Link）组件中。 Many MUI components allow you to replace their root node via a `component` prop, this is detailed in the component's API documentation. 例如，一个按钮（Button）的根节点可以被替换成一个 React Router 的链接（Link），并且，任何传入按钮（Button）的额外的属性，例如 `to` ，都会被传递到链接（Link）组件中。 关于按钮和 react-router-dom 的代码示例查看[这些示例](/material-ui/guides/routing/#component-prop)。
+Many MUI components allow you to replace their root node via a `component` prop, this is detailed in the component's API documentation. Many MUI components allow you to replace their root node via a `component` prop, this is detailed in the component's API documentation. 例如，一个按钮（Button）的根节点可以被替换成一个 React Router 的链接（Link），并且，任何传入按钮（Button）的额外的属性，例如 `to` ，都会被传递到链接（Link）组件中。 For a code example concerning Button and react-router-dom checkout [these demos](/material-ui/guides/routing/#component-prop).
 
-To be able to use props of such a MUI component on their own, props should be used with type arguments. Otherwise, the `component` prop will not be present in the props of the MUI component. Otherwise, the `component` prop will not be present in the props of the MUI component. Otherwise, the `component` prop will not be present in the props of the MUI component.
+To be able to use props of such a MUI component on their own, props should be used with type arguments. Otherwise, the `component` prop will not be present in the props of the MUI component. Otherwise, the `component` prop will not be present in the props of the MUI component.
 
 下面的示例使用了 `TypographyProps`，这也同样适用于那些带有 `OverrideProps` 定义的属性的组件。
 
@@ -167,7 +167,7 @@ If the `GenericCustomComponent` will be used with a `component` prop provided, i
 
 某些组件需要访问 DOM 节点。 之前提到，通过使用`ReactDOM.findDOMNode` 就能实现。 该方法已被废弃，代替的是使用`ref`和 ref 转递。 然而，只有下列组件类型才可获得 `ref`：
 
-- 任何 Material UI 组件
+- 任何 Material-UI 组件
 - 类组件，如 `React.Component` 或 `React.PureComponent` 等
 - DOM（或 host）组件，例如 `div` 或 `button`
 - [React.forwardRef 组件](https://reactjs.org/docs/react-api.html#reactforwardref)
@@ -176,13 +176,17 @@ If the `GenericCustomComponent` will be used with a `component` prop provided, i
 
 If you don't use one of the above types when using your components in conjunction with MUI, you might see a warning from React in your console similar to:
 
-> Function components cannot be given refs. Attempts to access this ref will fail. Function components cannot be given refs. Attempts to access this ref will fail. Function components cannot be given refs. Attempts to access this ref will fail. Did you mean to use React.forwardRef()?
+:::info
+Function components cannot be given refs. Attempts to access this ref will fail. Did you mean to use React.forwardRef()?
+:::
 
-请注意，如果 `lazy` 和 `memo` 组件的包装组件包装组件不能容纳 ref，那么仍然会收到此警告。 在某些情况下，我们发出了一个额外警告来帮助调试，类似于：
+Note that you will still get this warning for `lazy` and `memo` components if their wrapped component can't hold a ref. In some instances, an additional warning is issued to help with debugging, similar to:
 
-> Invalid prop `component` supplied to `ComponentName`. Expected an element type that can hold a ref. Expected an element type that can hold a ref. Expected an element type that can hold a ref.
+:::warning
+Invalid prop `component` supplied to `ComponentName`. Expected an element type that can hold a ref.
+:::
 
-这只包含了两个最常见的用例。 更多信息见[React 官方文档中的本章节](https://reactjs.org/docs/forwarding-refs.html)。
+Only the two most common use cases are covered. For more information see [this section in the official React docs](https://reactjs.org/docs/forwarding-refs.html).
 
 ```diff
 Function components cannot be given refs. Attempts to access this ref will fail. Did you mean to use React.forwardRef()?
@@ -196,11 +200,11 @@ Function components cannot be given refs. Attempts to access this ref will fail.
  <Tooltip title="Hello again."><SomeContent /></Tooltip>;
 ```
 
-要确定您使用的 Material UI 组件是否具有此需求，请查阅该组件的 props API 文档。 如果您需要转递 refs，描述将链接到此部分。
+To find out if the MUI component you're using has this requirement, check out the props API documentation for that component. If you need to forward refs the description will link to this section.
 
 ### 使用 StrictMode 的注意事项
 
-如果对上述情况，您使用类组件，那么您会看到 `React.StrictMode` 中的一些警告。 在内部使用 `ReactDOMfindDOMNode` 来达到向后的兼容性。 您可以使用 `React.forwardRef` 和类组件中的一个指定的属性来把 `ref` 传递到一个 DOM 组件中。 这样做不再会触发与 `ReactDOM.findDOMNode` 相关的弃用警告 。
+If you use class components for the cases described above you will still see warnings in `React.StrictMode`. `ReactDOM.findDOMNode` is used internally for backwards compatibility. You can use `React.forwardRef` and a designated prop in your class component to forward the `ref` to a DOM component. Doing so should not trigger any more warnings related to the deprecation of `ReactDOM.findDOMNode`.
 
 ```diff
  class Component extends React.Component {

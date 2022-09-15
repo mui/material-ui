@@ -15,6 +15,10 @@ The `Select` component is used to trigger a popup that displays a list of `Optio
 
 {{"demo": "SelectUsage.js", "hideToolbar": true}}
 
+:::success
+To learn how to add more variants or sizes to the component, check out the [Themed components](/joy-ui/customization/themed-components/) page.
+:::
+
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Component
@@ -40,13 +44,6 @@ export default function SelectBasic() {
 The `Select` component is similar to the native HTML's `<select>` and `<option>` tags.
 
 {{"demo": "SelectBasic.js"}}
-
-### Field
-
-Use the `FormLabel` component to add a label to the select component.
-Make sure to provide an appropriate `aria-label` and an id to the button's `aria-describedby`.
-
-{{"demo": "SelectFieldDemo.js"}}
 
 ### Decorators
 
@@ -103,7 +100,7 @@ We're also using the `ListDivider` as a visual separator.
 Take a look at [selected value appearance](#selected-value-appearance) to see how to customize its appearance.
 :::
 
-#### Group options
+### Grouped options
 
 To create a [listbox with grouped options](https://www.w3.org/WAI/ARIA/apg/example-index/listbox/listbox-grouped.html), wrap the `Option` with `List` component and provide an associated label using `ListItem`.
 That way, you'll have a consistent height and will be able to leverage nested CSS variables.
@@ -128,13 +125,37 @@ That way, you'll have a consistent height and will be able to leverage nested CS
 
 :::
 
+## Accessibility
+
+In order for the select to be accessible, **it should be linked to a label**.
+
+The `FormControl` automatically generates a unique id that links the select with the `FormLabel` component:
+
+{{"demo": "SelectFieldDemo.js"}}
+
+Alternatively, you can do it manually by targeting the button slot:
+
+```jsx
+<label htmlFor="unique-id">Label</label>
+<Select
+  componentsProps={{
+    button: {
+      id: 'unique-id',
+    }
+  }}
+>
+  <Option value="option1">Option I</Option>
+  <Option value="option2">Option II</Option>
+</Select>
+```
+
 ## Common examples
 
 ### Clear action
 
 Use the `IconButton` component as a decorator to the `Select` to add a clear action.
 
-The `Selct` will set the focus-visible state back to the select button after the select value is cleared, ensuring a great keyboard-navigation experience.
+The `Select` will set the focus-visible state back to the select button after the select value is cleared, ensuring a great keyboard-navigation experience.
 
 {{"demo": "SelectClearable.js"}}
 

@@ -397,6 +397,15 @@ const teamMembers: Array<Profile> = [
     about: '🛠️ DYI projects, 🏄🏻‍♂️ Wakeboarding & 🏎️ F1',
     github: 'bytasv',
   },
+  {
+    src: '/static/branding/about/lukas.png',
+    name: 'Lukas Tyla',
+    title: 'MUI X Engineer',
+    location: 'Vilnius, Lithuania',
+    locationCountry: 'lt',
+    about: 'Learning and experimenting 📚',
+    github: 'LukasTy',
+  },
 ];
 
 const contributors = [
@@ -827,7 +836,7 @@ export default function About() {
     <BrandingProvider>
       <Head
         title="About us - MUI"
-        description="MUI (formerly Material UI) started back in 2014 to unify React and Material Design. Today, MUI has grown to become one of the world's most popular React libraries – used by a vibrant community of more than 2M developers in over 180 countries."
+        description="Our mission is to empower anyone to build UIs, faster. We're reducing the entry barrier, making design skills accessible."
       />
       <AppHeaderBanner />
       <AppHeader />
