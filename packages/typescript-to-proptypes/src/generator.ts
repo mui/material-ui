@@ -269,6 +269,10 @@ export function generate(component: t.Component, options: GenerateOptions = {}):
         .reduce((prev, curr) => `${prev},${curr}`)}])${isOptional ? '' : '.isRequired'}`;
     }
 
+    if (propType.type === 'UndefinedNode' && context.propTypeDefinition.name === 'variant') {
+      return `${importedName}.any`;
+    }
+
     throw new Error(
       `Nothing to handle node of type "${propType.type}" in "${context.propTypeDefinition.name}"`,
     );
