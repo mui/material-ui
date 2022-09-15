@@ -18,13 +18,13 @@
     "@mui/system": "5.0.0-alpha.34",
     "@mui/utils": "5.0.0-alpha.33",
     "snowpack": "3.8.8",
-    "react": "17.0.2",
-    "react-dom": "17.0.2",
-    "react-is": "17.0.2"
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-is": "18.2.0"
   },
   "devDependencies": {
-    "concurrently": "6.5.1",
+    "concurrently": "7.4.0",
     "playwright": "1.25.2",
-    "serve": "11.3.2"
+    "serve": "14.0.1"
   }
 }

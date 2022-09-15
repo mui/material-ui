@@ -17,6 +17,6 @@
     "@mui/styles": "5.0.0-alpha.33",
     "@mui/system": "5.0.0-alpha.34",
     "@mui/utils": "5.0.0-alpha.33",
-    "react-is": "16.13.1"
+    "react-is": "18.2.0"
   }
 }
