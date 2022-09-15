@@ -85,9 +85,6 @@ const InputRoot = styled('div', {
       alignItems: 'center',
       paddingInline: `var(--Input-paddingInline)`,
       borderRadius: 'var(--Input-radius)',
-      ...(!variantStyle?.backgroundColor && {
-        backgroundColor: theme.vars.palette.background.surface,
-      }),
       fontFamily: theme.vars.fontFamily.body,
       fontSize: theme.vars.fontSize.md,
       ...(ownerState.size === 'sm' && {
@@ -95,7 +92,7 @@ const InputRoot = styled('div', {
       }),
       // TODO: discuss the transition approach in a separate PR. This value is copied from mui-material Button.
       transition:
-        'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
+        'border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
       '&:before': {
         boxSizing: 'border-box',
         content: '""',
@@ -114,17 +111,15 @@ const InputRoot = styled('div', {
     {
       // variant styles
       ...variantStyle,
-      '&:hover': {
+      backgroundColor: variantStyle?.backgroundColor ?? theme.vars.palette.background.surface,
+      [`&:hover:not(.${inputClasses.focused})`]: {
         ...theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
+        backgroundColor: null, // it is not common to change background on hover for Input
         cursor: 'text',
       },
       [`&.${inputClasses.disabled}`]:
         theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
-    },
-    // This style has to come after the global variant to set the background to surface
-    ownerState.variant !== 'solid' && {
       [`&.${inputClasses.focused}`]: {
-        backgroundColor: theme.vars.palette.background.surface,
         '&:before': {
           boxShadow: `inset 0 0 0 var(--Input-focusedThickness) var(--Input-focusedHighlight)`,
         },
@@ -177,6 +172,7 @@ const InputStartDecorator = styled('span', {
   flexWrap: 'wrap', // for wrapping Autocomplete's tags
   marginInlineEnd: 'var(--Input-gap)',
   color: theme.vars.palette.text.tertiary,
+  cursor: 'initial',
   ...(ownerState.focused && {
     color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Color`],
   }),
@@ -195,6 +191,7 @@ const InputEndDecorator = styled('span', {
   alignItems: 'center',
   marginInlineStart: 'var(--Input-gap)',
   color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Color`],
+  cursor: 'initial',
 }));
 
 const Input = React.forwardRef(function Input(inProps, ref) {
