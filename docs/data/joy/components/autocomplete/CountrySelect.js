@@ -37,7 +37,7 @@ export default function CountrySelect() {
         <Input
           {...params}
           placeholder="Choose a country"
-          componentProps={{
+          componentsProps={{
             input: {
               ...params.componentsProps.input,
               autoComplete: 'new-password', // disable autocomplete and autofill
