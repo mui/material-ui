@@ -14,7 +14,7 @@ import { SxProps } from '../styles/types';
 import { IconButtonOwnerState } from '../IconButton';
 import { ListOwnerState } from '../List';
 
-export {
+export type {
   AutocompleteChangeDetails,
   AutocompleteChangeReason,
   AutocompleteCloseReason,
