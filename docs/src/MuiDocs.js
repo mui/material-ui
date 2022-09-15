@@ -1,5 +1,7 @@
+import React from 'react';
+import { ThemeProvider } from '@mui/material/styles';
 import PageContext from './modules/components/PageContext';
-import { ThemeProvider } from './modules/components/ThemeContext';
+
 
 export { default as Alert } from '../pages/material-ui/react-alert';
 export { default as Accordion } from '../pages/material-ui/react-accordion';
