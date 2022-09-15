@@ -1,6 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { OverridableComponent } from '@mui/types';
+import useTabsList from '@mui/base/useTabsList';
 import composeClasses from '../composeClasses';
 import { useSlotProps, WithOptionalOwnerState } from '../utils';
 import { getTabsListUnstyledUtilityClass } from './tabsListUnstyledClasses';
@@ -9,7 +10,6 @@ import {
   TabsListUnstyledRootSlotProps,
   TabsListUnstyledTypeMap,
 } from './TabsListUnstyled.types';
-import useTabsList from '@mui/base/useTabsList';
 
 const useUtilityClasses = (ownerState: { orientation: 'horizontal' | 'vertical' }) => {
   const { orientation } = ownerState;

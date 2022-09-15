@@ -2,13 +2,13 @@ import { expect } from 'chai';
 import * as React from 'react';
 import { spy } from 'sinon';
 import { createRenderer } from 'test/utils';
-import useControllableReducer from './useControllableReducer';
 import {
   ActionTypes,
   ListboxAction,
   ListboxState,
   UseListboxPropsWithDefaults,
 } from '@mui/base/useListbox';
+import useControllableReducer from './useControllableReducer';
 
 describe('useControllableReducer', () => {
   const { render } = createRenderer();

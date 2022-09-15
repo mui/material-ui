@@ -4,6 +4,7 @@ import {
   unstable_useForkRef as useForkRef,
   unstable_useControlled as useControlled,
 } from '@mui/utils';
+import useSelect, { SelectChild, SelectOption } from '@mui/base/useSelect';
 import {
   MultiSelectUnstyledProps,
   MultiSelectUnstyledListboxSlotProps,
@@ -13,8 +14,6 @@ import {
   MultiSelectUnstyledType,
 } from './MultiSelectUnstyled.types';
 import { flattenOptionGroups, getOptionsFromChildren } from '../SelectUnstyled/utils';
-import useSelect from '@mui/base/useSelect';
-import { SelectChild, SelectOption } from '@mui/base/useSelect';
 import { useSlotProps, WithOptionalOwnerState } from '../utils';
 import PopperUnstyled from '../PopperUnstyled';
 import {

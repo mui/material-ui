@@ -2,11 +2,11 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { chainPropTypes } from '@mui/utils';
+import useSlider, { valueToPercent } from '@mui/base/useSlider';
 import isHostComponent from '../utils/isHostComponent';
 import composeClasses from '../composeClasses';
 import { getSliderUtilityClass } from './sliderUnstyledClasses';
 import SliderValueLabelUnstyled from './SliderValueLabelUnstyled';
-import useSlider, { valueToPercent } from '@mui/base/useSlider';
 import useSlotProps from '../utils/useSlotProps';
 
 const Identity = (x) => x;
