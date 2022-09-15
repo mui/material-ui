@@ -86,11 +86,12 @@ const ButtonUnstyled = React.forwardRef(function ButtonUnstyled<
 
   const classes = useUtilityClasses(ownerState);
 
-  const Root: React.ElementType = component ?? components.Root ?? 'button';
+  const defaultElement = other.href || other.to ? 'a' : 'button';
+  const Root: React.ElementType = component ?? components.Root ?? defaultElement;
   const rootProps: WithOptionalOwnerState<ButtonUnstyledRootSlotProps> = useSlotProps({
     elementType: Root,
     getSlotProps: getRootProps,
-    externalForwardedProps: other,
+    externalForwardedProps: { ...other, href: other.href ?? other.to },
     externalSlotProps: componentsProps.root,
     additionalProps: {
       ref: forwardedRef,
