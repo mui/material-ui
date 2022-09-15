@@ -1,14 +1,14 @@
 import { OverridableComponent, OverridableTypeMap, OverrideProps } from '@mui/types';
 import React from 'react';
-import { SlotComponentProps } from '../utils';
-import { SliderUnstyledClasses } from './sliderUnstyledClasses';
-import SliderValueLabelUnstyled from './SliderValueLabelUnstyled';
 import {
   UseSliderHiddenInputProps,
   UseSliderRootSlotProps,
   UseSliderThumbSlotProps,
   Mark,
 } from '@mui/base/useSlider';
+import { SlotComponentProps } from '../utils';
+import { SliderUnstyledClasses } from './sliderUnstyledClasses';
+import SliderValueLabelUnstyled from './SliderValueLabelUnstyled';
 
 export type SliderUnstyledOwnerState = SliderUnstyledProps & {
   disabled: boolean;

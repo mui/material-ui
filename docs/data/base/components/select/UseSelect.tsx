@@ -1,6 +1,5 @@
 import * as React from 'react';
-import useSelect from '@mui/base/useSelect';
-import { SelectOption } from '@mui/base/useSelect';
+import useSelect, { SelectOption } from '@mui/base/useSelect';
 import { styled } from '@mui/system';
 
 const grey = {

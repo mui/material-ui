@@ -1,13 +1,13 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { OverridableComponent } from '@mui/types';
+import useMenuItem from '@mui/base/useMenuItem';
 import {
   MenuItemUnstyledOwnerState,
   MenuItemUnstyledProps,
   MenuItemUnstyledTypeMap,
 } from './MenuItemUnstyled.types';
 import { getMenuItemUnstyledUtilityClass } from './menuItemUnstyledClasses';
-import useMenuItem from '@mui/base/useMenuItem';
 import composeClasses from '../composeClasses';
 import useSlotProps from '../utils/useSlotProps';
 

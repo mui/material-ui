@@ -5,6 +5,13 @@ import {
 } from '@mui/utils';
 import useButton from '@mui/base/useButton';
 import {
+  ListboxReducer,
+  useListbox,
+  defaultListboxReducer,
+  ActionTypes,
+  UseListboxParameters,
+} from '@mui/base/useListbox';
+import {
   SelectOption,
   UseSelectButtonSlotProps,
   UseSelectListboxSlotProps,
@@ -15,13 +22,6 @@ import {
   UseSelectSingleParameters,
   UseSelectSingleResult,
 } from './useSelect.types';
-import {
-  ListboxReducer,
-  useListbox,
-  defaultListboxReducer,
-  ActionTypes,
-  UseListboxParameters,
-} from '@mui/base/useListbox';
 import { EventHandlers } from '../utils/types';
 import defaultOptionStringifier from '../SelectUnstyled/defaultOptionStringifier';
 

@@ -1,8 +1,8 @@
 import { OverrideProps } from '@mui/types';
 import React from 'react';
+import { UseMenuListboxSlotProps } from '@mui/base/useMenu';
 import PopperUnstyled, { PopperUnstyledProps } from '../PopperUnstyled';
 import { SlotComponentProps } from '../utils';
-import { UseMenuListboxSlotProps } from '@mui/base/useMenu';
 
 export interface MenuUnstyledComponentsPropsOverrides {}
 
