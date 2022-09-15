@@ -182,7 +182,7 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
         gap: 2,
         '& .markdown-body pre': {
           margin: 0,
-          borderRadius: 'sm',
+          borderRadius: 'md',
         },
       }}
     >
@@ -214,12 +214,14 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
         </BrandingProvider>
       </Box>
       <Sheet
-        variant="outlined"
+        variant="plain"
         sx={{
           flexShrink: 0,
           gap: 2,
-          p: 2,
-          borderRadius: 'sm',
+          p: 3,
+          borderRadius: 'md',
+          background: (theme) => `rgba(${theme.vars.palette.neutral.darkChannel} / 0.9)`,
+          backdropFilter: 'blur(20px)',
         }}
       >
         <Box
