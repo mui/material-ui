@@ -1,6 +1,7 @@
 import * as React from 'react';
 import FormControl from '@mui/joy/FormControl';
 import FormLabel from '@mui/joy/FormLabel';
+import FormHelperText from '@mui/joy/FormHelperText';
 import Autocomplete from '@mui/joy/Autocomplete';
 
 export default function SizeWithLabel() {
@@ -14,6 +15,7 @@ export default function SizeWithLabel() {
         getOptionLabel={(option) => option.title}
         defaultValue={[top100Films[13]]}
       />
+      <FormHelperText>This is a small description.</FormHelperText>
     </FormControl>
   );
 }
