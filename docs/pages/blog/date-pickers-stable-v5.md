@@ -2,7 +2,7 @@
 title: 'The Date pickers gets a stable v5 release'
 description: Date pickers are now stable. Here is the summary of what changed.
 date: 2022-09-05T00:00:00.000Z
-authors: ['josefreitas', 'alexfauquette']
+authors: ['alexfauquette', 'josefreitas']
 tags: ['MUI X', 'News']
 card: true
 ---
@@ -13,7 +13,7 @@ About four months ago, we moved the date and time pickers from `@mui/lab` and re
 
 - The beta phase is over. You can now download `v5.0.0`.
 - Dozens of bugs have been fixed since the first alpha.
-- DX and overall API consistency has been improved.
+- DX and overall API consistency have been improved.
 - Improved customizability.
 - Follow the [installation instructions](https://mui.com/x/react-date-pickers/getting-started/) and the [migration guide](https://mui.com/x/react-date-pickers/migration-lab/).
 
@@ -73,13 +73,13 @@ const theme = createTheme(
 
 ## Evolution of the community
 
-With all those changes, we wondered if the community has been interested by the new versions.
+With all those changes, we wondered if the community has been interested in the new versions.
 
-From npm download statistics, less than 40% of the community is still using a version shared with `@mui/lab` (versions alpha.0 and alpha.1).
-So a big part of you already did the migration from `@mui/lab`.
+According to npm download data, less than 40% of the community still uses the versions in `@mui/lab` (alpha.0 and alpha.1).
+So a significant share has already migrated.
 
-And the adoption speed accros versions is very encouraging.
-Over 40% of users are already using the beta version. 
+And the adoption speed across versions is very encouraging.
+Over 40% of users are already using the beta versions. 
 
 <img src="/static/blog/date-pickers-stable-v5/date-picker-versions.png" style="width: 796px; margin-top: 16px; margin-bottom: 2px;" alt="Evolution of downloaded version of @mui/x-data-pickers" />
 <p class="blog-description" style="text-align: center;">Relative distribution of `@mui/x-date-pickers` versions between June and August.</p>
