@@ -58,8 +58,7 @@ const List = React.forwardRef(function List(inProps, ref) {
     component = 'ul',
     dense = false,
     disablePadding = false,
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    variant = 'default',
+    variant,
     subheader,
     ...other
   } = props;
@@ -71,6 +70,7 @@ const List = React.forwardRef(function List(inProps, ref) {
     component,
     dense,
     disablePadding,
+    variant,
   };
 
   const classes = useUtilityClasses(ownerState);
@@ -139,12 +139,8 @@ List.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * The variant to use. There is no variants available by default.
-   * @default 'default'
    */
-  variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['default']),
-    PropTypes.string,
-  ]),
+  variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([PropTypes.string]),
 };
 
 export default List;
