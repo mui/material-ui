@@ -130,7 +130,11 @@ To customize the appearance of the input, use `renderInput` prop that returns an
 
 {{"demo": "InputAppearance.js"}}
 
-## Error
+## Validation
+
+To display invalid state, set the `error` prop on the `FormControl`.
+
+{{"demo": "AutocompleteError.js"}}
 
 ## Grouped
 
