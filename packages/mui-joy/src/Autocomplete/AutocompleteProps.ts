@@ -260,6 +260,7 @@ export interface AutocompleteOwnerState<
   fullWidth: boolean;
   hasClearIcon: boolean;
   hasPopupIcon: boolean;
+  hasOptions: boolean;
   inputFocused: boolean;
   popupOpen: boolean;
 }

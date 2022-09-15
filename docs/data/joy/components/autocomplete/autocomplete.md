@@ -130,6 +130,8 @@ To customize the appearance of the input, use `renderInput` prop that returns an
 
 {{"demo": "InputAppearance.js"}}
 
+## Error
+
 ## Grouped
 
 You can group the options with the `groupBy` prop.

@@ -164,6 +164,10 @@ const AutocompleteListbox = styled(ListRoot, {
       theme.vars.palette.background.surface,
     '--List-item-stickyTop': 'calc(var(--List-padding, var(--List-divider-gap)) * -1)',
     ...scopedVariables,
+    ...(!ownerState.hasOptions &&
+      ownerState.freeSolo && {
+        visibility: 'hidden',
+      }),
     boxShadow: theme.vars.shadow.md,
     ...(!variantStyle?.backgroundColor && {
       backgroundColor: theme.vars.palette.background.surface,
@@ -309,6 +313,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     disablePortal,
     focused,
     fullWidth,
+    hasOptions: !!groupedOptions.length,
     hasClearIcon,
     hasPopupIcon,
     inputFocused: focusedTag === -1,
