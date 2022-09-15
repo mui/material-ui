@@ -20,7 +20,7 @@ It's meant to be an improved version of the "react-select" and "downshift" packa
 
 ## Combo box
 
-The value must be chosen from a predefined set of allowed values.
+The `Autocomplete` renders an input and a popup, after triggered by a pointer or keyboard, that displays a list of items from the `options` prop. The value must be chosen from a predefined set of allowed values.
 
 {{"demo": "ComboBox.js"}}
 
