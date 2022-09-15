@@ -79,9 +79,3 @@ Use the `startDecorator` and/or `endDecorator` props to add supporting icons or 
 To make the text field take up the full width of its container, use the `fullWidth` prop.
 
 {{"demo": "TextFieldFullwidth.js"}}
-
-### Composition
-
-`TextField` is composed of smaller components (`FormControl`, `FormLabel`, `Input`, and `FormHelperText`) that you can leverage directly to customize your form inputs.
-
-{{"demo": "TextFieldComposition.js"}}
