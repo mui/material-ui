@@ -473,13 +473,7 @@ const Select = React.forwardRef(function Select<TValue extends {}>(
   const { component: listboxComponent, ...listboxProps } = useSlotProps({
     elementType: SelectListbox,
     getSlotProps: getListboxProps,
-    externalSlotProps: {
-      ...componentsProps.listbox,
-      // TODO: find a better way
-      // @ts-expect-error
-      as: componentsProps.listbox?.component,
-      component: SelectListbox,
-    },
+    externalSlotProps: componentsProps.listbox,
     additionalProps: {
       ref: listboxRef,
       anchorEl,
