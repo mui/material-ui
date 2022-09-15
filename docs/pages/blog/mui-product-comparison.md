@@ -9,35 +9,43 @@ tags: ['Product']
 
 introduction - MUI began as Material UI - evolution to commercially licensed products - expanding ecosystem of component libraries beyond MD - now venturing into internal tool builders
 
-## Material UI
+## MUI Core
 
-### Key features
+### Material UI
 
-### Ideal use cases
+#### Key features
 
-## Joy UI
+#### Ideal use cases
 
-### Key features
+### Joy UI
 
-### Ideal use cases
+#### Key features
 
-## MUI Base
+#### Ideal use cases
 
-### Key features
+### MUI Base
 
-### Ideal use cases
+#### Key features
+
+#### Ideal use cases
+
+### MUI System
+
+#### Key features
+
+#### Ideal use cases
 
 ## MUI X
 
-### Key features
+#### Key features
 
-### Ideal use cases
+#### Ideal use cases
 
 ## MUI Toolpad
 
-### Key features
+#### Key features
 
-### Ideal use cases
+#### Ideal use cases
 
 ## CTA
 
