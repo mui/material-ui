@@ -1,4 +1,4 @@
-<Button startIcon={<CircularProgress variant="solid" thickness={2} />}>
+<Button startDecorator={<CircularProgress variant="solid" thickness={2} />}>
   Loading…
 </Button>
 <IconButton>
