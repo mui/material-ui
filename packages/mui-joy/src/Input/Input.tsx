@@ -165,7 +165,6 @@ const InputStartDecorator = styled('span', {
   '--Button-margin': '0 0 0 calc(var(--Input-decorator-childOffset) * -1)',
   '--IconButton-margin': '0 0 0 calc(var(--Input-decorator-childOffset) * -1)',
   '--Icon-margin': '0 0 0 calc(var(--Input-paddingInline) / -4)',
-  cursor: 'initial',
   display: 'inherit',
   alignItems: 'center',
   paddingBlock: 'var(--_Input-paddingBlock)', // for wrapping Autocomplete's tags
@@ -186,7 +185,6 @@ const InputEndDecorator = styled('span', {
   '--Button-margin': '0 calc(var(--Input-decorator-childOffset) * -1) 0 0',
   '--IconButton-margin': '0 calc(var(--Input-decorator-childOffset) * -1) 0 0',
   '--Icon-margin': '0 calc(var(--Input-paddingInline) / -4) 0 0',
-  cursor: 'initial',
   display: 'inherit',
   alignItems: 'center',
   marginInlineStart: 'var(--Input-gap)',
