@@ -34,18 +34,11 @@ const GOLDs = [
     href: 'https://www.text-em-all.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
   },
   {
-    src: 'https://images.opencollective.com/aussiecasinohex/923df37/logo/40.png',
-    srcSet: 'https://images.opencollective.com/aussiecasinohex/923df37/logo/80.png 2x',
-    name: 'CasinoHEX Australia',
-    description: 'A guide to online gambling in Australia.',
-    href: 'https://online-aussie-casino.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
-  },
-  {
-    src: 'https://images.opencollective.com/sumatosoft_company/0b78570/avatar/40.png',
-    srcSet: 'https://images.opencollective.com/sumatosoft_company/0b78570/avatar/80.png 2x',
-    name: 'SunmatoSoft',
-    description: 'Custom software development company.',
-    href: 'https://sumatosoft.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
+    src: 'https://images.opencollective.com/netticasinohex-com/71d7417/logo/40.png',
+    srcSet: 'https://images.opencollective.com/netticasinohex-com/71d7417/logo/80.png 2x',
+    name: 'NettiCasinoHEX',
+    description: 'A real giant among casino guides.',
+    href: 'https://netticasinohex.com/?utm_source=MUI&utm_medium=referral&utm_content=homepage',
   },
   {
     src: '/static/sponsors//megafamous.png',

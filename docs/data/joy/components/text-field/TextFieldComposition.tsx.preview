@@ -1,0 +1,5 @@
+<FormControl>
+  <FormLabel>Label</FormLabel>
+  <Input placeholder="Placeholder" />
+  <FormHelperText>This is a helper text.</FormHelperText>
+</FormControl>

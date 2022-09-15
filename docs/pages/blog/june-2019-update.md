@@ -25,9 +25,9 @@ But this summary is just scratching the surface. We have accepted 198 commits fr
 
 _(We'll do our best, no guarantee!)_
 
-- We will keep working on a new Tree view component.
+- We will keep working on a new Tree View component.
   You can already [preview it](https://deploy-preview-14827--material-ui.netlify.app/components/tree-view/).
-  ![Tree view](/static/blog/may-2019-update/tree-view.png)
+  ![Tree View](/static/blog/may-2019-update/tree-view.png)
 
 - We will work on a new Rating component.
   You can already [preview it](https://deploy-preview-16455--material-ui.netlify.app/components/rating/).

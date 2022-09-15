@@ -22,7 +22,7 @@ describe('<Stepper />', () => {
       refInstanceof: window.HTMLDivElement,
       testVariantProps: { variant: 'foo' },
       testStateOverrides: { prop: 'alternativeLabel', value: true, styleKey: 'alternativeLabel' },
-      skip: ['componentProp', 'componentsProp'],
+      skip: ['componentsProp'],
     }),
   );
 

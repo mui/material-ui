@@ -47,6 +47,6 @@
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-base/src/InputUnstyled/InputUnstyled.tsx",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/base/react-input/\">Input</a></li></ul>",
+  "demos": "<ul><li><a href=\"/base/react-input/\">Unstyled input</a></li></ul>",
   "cssComponent": false
 }

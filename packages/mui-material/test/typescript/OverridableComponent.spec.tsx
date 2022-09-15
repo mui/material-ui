@@ -118,8 +118,9 @@ declare const Foo: OverridableComponent<{
 
 <Foo
   component={MyOverrideComponent}
-  // @ts-expect-error
-  myCallback={(n) => console.log(n)} // n has type any
+  myCallback={(n) => {
+    expectType<number, typeof n>(n);
+  }}
   numberProp={3}
 />;
 

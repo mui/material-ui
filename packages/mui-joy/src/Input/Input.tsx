@@ -85,9 +85,6 @@ const InputRoot = styled('div', {
       alignItems: 'center',
       paddingInline: `var(--Input-paddingInline)`,
       borderRadius: 'var(--Input-radius)',
-      ...(!variantStyle?.backgroundColor && {
-        backgroundColor: theme.vars.palette.background.surface,
-      }),
       fontFamily: theme.vars.fontFamily.body,
       fontSize: theme.vars.fontSize.md,
       ...(ownerState.size === 'sm' && {
@@ -95,7 +92,7 @@ const InputRoot = styled('div', {
       }),
       // TODO: discuss the transition approach in a separate PR. This value is copied from mui-material Button.
       transition:
-        'background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
+        'border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms',
       '&:before': {
         boxSizing: 'border-box',
         content: '""',
@@ -114,17 +111,15 @@ const InputRoot = styled('div', {
     {
       // variant styles
       ...variantStyle,
-      '&:hover': {
+      backgroundColor: variantStyle?.backgroundColor ?? theme.vars.palette.background.surface,
+      [`&:hover:not(.${inputClasses.focused})`]: {
         ...theme.variants[`${ownerState.variant!}Hover`]?.[ownerState.color!],
+        backgroundColor: null, // it is not common to change background on hover for Input
         cursor: 'text',
       },
       [`&.${inputClasses.disabled}`]:
         theme.variants[`${ownerState.variant!}Disabled`]?.[ownerState.color!],
-    },
-    // This style has to come after the global variant to set the background to surface
-    ownerState.variant !== 'solid' && {
       [`&.${inputClasses.focused}`]: {
-        backgroundColor: theme.vars.palette.background.surface,
         '&:before': {
           boxShadow: `inset 0 0 0 var(--Input-focusedThickness) var(--Input-focusedHighlight)`,
         },
@@ -151,6 +146,7 @@ const InputInput = styled('input', {
   fontStyle: 'inherit',
   fontWeight: 'inherit',
   lineHeight: 'inherit',
+  textOverflow: 'ellipsis',
   '&:-webkit-autofill': {
     WebkitBackgroundClip: 'text', // remove autofill background
     WebkitTextFillColor: theme.vars.palette[ownerState.color!]?.overrideTextPrimary,
@@ -169,11 +165,11 @@ const InputStartDecorator = styled('span', {
   '--Button-margin': '0 0 0 calc(var(--Input-decorator-childOffset) * -1)',
   '--IconButton-margin': '0 0 0 calc(var(--Input-decorator-childOffset) * -1)',
   '--Icon-margin': '0 0 0 calc(var(--Input-paddingInline) / -4)',
-  pointerEvents: 'none', // to make the input focused when click on the element because start element usually is an icon
   display: 'inherit',
   alignItems: 'center',
   marginInlineEnd: 'var(--Input-gap)',
   color: theme.vars.palette.text.tertiary,
+  cursor: 'initial',
   ...(ownerState.focused && {
     color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Color`],
   }),
@@ -191,6 +187,7 @@ const InputEndDecorator = styled('span', {
   alignItems: 'center',
   marginInlineStart: 'var(--Input-gap)',
   color: theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}Color`],
+  cursor: 'initial',
 }));
 
 const Input = React.forwardRef(function Input(inProps, ref) {
@@ -207,27 +204,42 @@ const Input = React.forwardRef(function Input(inProps, ref) {
     getInputProps,
     component,
     componentsProps = {},
+    formControl,
     focused,
-    formControlContext,
-    error: errorState,
-    disabled: disabledState,
+    error: errorProp = false,
+    disabled,
     fullWidth = false,
-    size = 'md',
-    color = 'neutral',
+    size: sizeProp = 'md',
+    color: colorProp = 'neutral',
     variant = 'outlined',
     startDecorator,
     endDecorator,
     ...other
   } = useForwardedInput<InputProps>(props, inputClasses);
 
+  if (process.env.NODE_ENV !== 'production') {
+    const registerEffect = formControl?.registerEffect;
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    React.useEffect(() => {
+      if (registerEffect) {
+        return registerEffect();
+      }
+
+      return undefined;
+    }, [registerEffect]);
+  }
+
+  const error = inProps.error ?? formControl?.error ?? errorProp;
+  const size = inProps.size ?? formControl?.size ?? sizeProp;
+  const color = error ? 'danger' : inProps.color ?? formControl?.color ?? colorProp;
+
   const ownerState = {
     ...props,
     fullWidth,
-    color: errorState ? 'danger' : color,
-    disabled: disabledState,
-    error: errorState,
+    color,
+    disabled,
+    error,
     focused,
-    formControlContext: formControlContext!,
     size,
     variant,
   };
@@ -253,6 +265,12 @@ const Input = React.forwardRef(function Input(inProps, ref) {
       getInputProps({ ...otherHandlers, ...propsToForward }),
     externalSlotProps: componentsProps.input,
     ownerState,
+    additionalProps: formControl
+      ? {
+          id: formControl.htmlFor,
+          'aria-describedby': formControl['aria-describedby'],
+        }
+      : {},
     className: [classes.input, inputStateClasses],
   });
 
@@ -312,7 +330,7 @@ Input.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
-   * The props used for each slot inside the Input.
+   * The props used for each slot inside the component.
    * @default {}
    */
   componentsProps: PropTypes.shape({

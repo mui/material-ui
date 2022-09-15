@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unknown-property */
 import * as React from 'react';
 import { expect } from 'chai';
 import PropTypes from 'prop-types';

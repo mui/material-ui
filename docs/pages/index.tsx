@@ -21,7 +21,7 @@ export default function Home() {
     <BrandingProvider>
       <Head
         title="MUI: The React component library you always wanted"
-        description="MUI provides a simple, customizable, and accessible library of React components. Follow your own design system, or start with Material Design. You will develop React applications faster."
+        description="MUI provides a simple, customizable, and accessible library of React components. Follow your own design system, or start with Material Design."
       />
       <NoSsr>
         <NewsletterToast />
