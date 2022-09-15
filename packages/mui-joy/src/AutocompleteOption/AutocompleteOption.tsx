@@ -54,9 +54,13 @@ AutocompleteOption.propTypes /* remove-proptypes */ = {
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
   // ----------------------------------------------------------------------
   /**
-   * The content of the component.
+   * @ignore
    */
   children: PropTypes.node,
+  /**
+   * @ignore
+   */
+  className: PropTypes.string,
   /**
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'neutral'
@@ -64,6 +68,19 @@ AutocompleteOption.propTypes /* remove-proptypes */ = {
   color: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['context', 'danger', 'info', 'neutral', 'primary', 'success', 'warning']),
     PropTypes.string,
+  ]),
+  /**
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
+   */
+  component: PropTypes.elementType,
+  /**
+   * The system prop that allows defining system overrides as well as additional CSS styles.
+   */
+  sx: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.func, PropTypes.object, PropTypes.bool])),
+    PropTypes.func,
+    PropTypes.object,
   ]),
   /**
    * The variant to use.

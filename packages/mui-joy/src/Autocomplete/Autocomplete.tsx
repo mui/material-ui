@@ -572,35 +572,6 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
   // ----------------------------------------------------------------------
   /**
-   * If `true`, the portion of the selected suggestion that has not been typed by the user,
-   * known as the completion string, appears inline after the input cursor in the textbox.
-   * The inline completion string is visually highlighted and has a selected state.
-   * @default false
-   */
-  autoComplete: PropTypes.bool,
-  /**
-   * If `true`, the first option is automatically highlighted.
-   * @default false
-   */
-  autoHighlight: PropTypes.bool,
-  /**
-   * If `true`, the selected option becomes the value of the input
-   * when the Autocomplete loses focus unless the user chooses
-   * a different option or changes the character string in the input.
-   * @default false
-   */
-  autoSelect: PropTypes.bool,
-  /**
-   * Control if the input should be blurred when an option is selected:
-   *
-   * - `false` the input is not blurred.
-   * - `true` the input is always blurred.
-   * - `touch` the input is blurred after a touch event.
-   * - `mouse` the input is blurred after a mouse event.
-   * @default false
-   */
-  blurOnSelect: PropTypes.oneOfType([PropTypes.oneOf(['mouse', 'touch']), PropTypes.bool]),
-  /**
    * @ignore
    */
   className: PropTypes.string,
@@ -609,19 +580,6 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * @default <ClearIcon fontSize="small" />
    */
   clearIcon: PropTypes.node,
-  /**
-   * If `true`, the input's text is cleared on blur if no value is selected.
-   *
-   * Set to `true` if you want to help the user enter a new value.
-   * Set to `false` if you want to help the user resume their search.
-   * @default !props.freeSolo
-   */
-  clearOnBlur: PropTypes.bool,
-  /**
-   * If `true`, clear all values when the user presses escape and the popup is closed.
-   * @default false
-   */
-  clearOnEscape: PropTypes.bool,
   /**
    * Override the default text for the *clear* icon button.
    *
@@ -650,35 +608,15 @@ Autocomplete.propTypes /* remove-proptypes */ = {
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
-   * The default value. Use when the component is not controlled.
-   * @default props.multiple ? [] : null
-   */
-  defaultValue: PropTypes.any,
-  /**
    * If `true`, the input can't be cleared.
    * @default false
    */
   disableClearable: PropTypes.bool,
   /**
-   * If `true`, the popup won't close when a value is selected.
-   * @default false
-   */
-  disableCloseOnSelect: PropTypes.bool,
-  /**
    * If `true`, the component is disabled.
    * @default false
    */
   disabled: PropTypes.bool,
-  /**
-   * If `true`, will allow focus on disabled items.
-   * @default false
-   */
-  disabledItemsFocusable: PropTypes.bool,
-  /**
-   * If `true`, the list box in the popup will not wrap focus.
-   * @default false
-   */
-  disableListWrap: PropTypes.bool,
   /**
    * If `true`, the `Popper` content will be under the DOM hierarchy of the parent component.
    * @default false
@@ -692,11 +630,6 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * @returns {T[]}
    */
   filterOptions: PropTypes.func,
-  /**
-   * If `true`, hide the selected options from the list box.
-   * @default false
-   */
-  filterSelectedOptions: PropTypes.bool,
   /**
    * Force the visibility display of the popup icon.
    * @default 'auto'
@@ -746,17 +679,6 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * @returns {string}
    */
   groupBy: PropTypes.func,
-  /**
-   * If `true`, the component handles the "Home" and "End" keys when the popup is open.
-   * It should move focus to the first option and last option, respectively.
-   * @default !props.freeSolo
-   */
-  handleHomeEndKeys: PropTypes.bool,
-  /**
-   * If `true`, the highlight can move to the input.
-   * @default false
-   */
-  includeInputInList: PropTypes.bool,
   /**
    * The input value.
    */
@@ -847,11 +769,6 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    */
   open: PropTypes.bool,
   /**
-   * If `true`, the popup will open on input focus.
-   * @default false
-   */
-  openOnFocus: PropTypes.bool,
-  /**
    * Override the default text for the *open popup* icon button.
    *
    * For localization purposes, you can use the provided [translations](/material-ui/guides/localization/).
@@ -862,6 +779,10 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * Array of options.
    */
   options: PropTypes.array.isRequired,
+  /**
+   * The input placeholder
+   */
+  placeholder: PropTypes.string,
   /**
    * The icon to display in place of the default popup icon.
    * @default <ArrowDropDownIcon />
@@ -904,12 +825,6 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * @returns {ReactNode}
    */
   renderTags: PropTypes.func,
-  /**
-   * If `true`, the input's text is selected on focus.
-   * It helps the user clear the selected value.
-   * @default !props.freeSolo
-   */
-  selectOnFocus: PropTypes.bool,
   /**
    * The size of the component.
    * @default 'md'
