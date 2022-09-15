@@ -53,11 +53,22 @@ Try Joy UI if you appreciate the comprehensiveness and reliability of Material U
 
 ### MUI Base
 
+MUI Base is a library of headless ("unstyled") React UI components.
+These components were extracted from Material UI, and are now available as a standalone package. They feature the same robust engineering but without any default styling solution or theme.
+
+MUI Base includes prebuilt components with production-ready functionality, along with low-level hooks for transferring that functionality to other components.
+
 #### Key features
 
 #### Ideal use cases
 
 ### MUI System
+
+MUI System is a set of CSS utilities to help you build custom designs more efficiently when working with MUI component libraries like Material UI, Joy UI, and MUI Base.
+
+The System gives you a set of flexible, generic wrapper components like Box and Container that can be quickly customized using the sx prop.
+This prop lets you define styles directly within the components themselves, rather than creating bulky and redundant const definitions with styled-components.
+It also gives you direct access to your theme's custom design tokens to ensure consistency in one-off styles. Learn more on the sx prop page.
 
 #### Key features
 
@@ -65,11 +76,20 @@ Try Joy UI if you appreciate the comprehensiveness and reliability of Material U
 
 ## MUI X
 
+MUI X is a collection of advanced UI components, including the Data Grid and the Date and Time Pickers.
+
+These components are significantly more complex than the ones found in the MUI Core libraries.
+They feature advanced functionality for data-rich applications and a wide range of other use cases.
+
 #### Key features
 
 #### Ideal use cases
 
 ## MUI Toolpad
+
+Toolpad is a self-hosted low-code internal tools builder designed to extend MUI's suite of React components.
+It's designed for developers of all trades who want to save time building internal applications.
+Drag and drop pre-built UI components, connect your data sources, and your app is ready for deployment.
 
 #### Key features
 
