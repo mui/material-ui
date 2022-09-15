@@ -16,7 +16,7 @@
     "@mui/styles": "5.10.3",
     "@mui/system": "5.10.5",
     "@mui/utils": "5.10.3",
-    "next": "11.1.4",
+    "next": "12.1.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-is": "^17.0.2"
