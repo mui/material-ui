@@ -382,6 +382,10 @@ https://v4.material-ui.com/* https://v4.mui.com/:splat 301!
 /system/basics/ /system/getting-started/overview/ 301
 /system/the-sx-prop/ /system/getting-started/the-sx-prop/ 301
 /system/advanced/ /system/getting-started/custom-components/ 301
+/:lang/base/react-trap-focus/ /:lang/base/react-focus-trap/ 301
+/:lang/base/api/trap-focus/ /:lang/base/api/focus-trap/ 301
+/base/react-trap-focus/ /base/react-focus-trap/ 301
+/base/api/trap-focus/ /base/api/focus-trap/ 301
 # 2023
 
 # Proxies
