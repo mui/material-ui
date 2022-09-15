@@ -47,9 +47,9 @@ We also added new customizable slots:
 
 It’s not obvious at first glance, but the pickers do contain some textual information, including action buttons as well as aria-labels for accessibility support.
 
-We integrated a [new localization](https://mui.com/x/react-date-pickers/localization/#translation-keys) pipeline similar to the one used by the Data Grid. 
-It lets you import translations directly into the main theme in a few lines. 
-And thanks to the amazing contributors, translations for 11 languages are already available. 
+We integrated a [new localization](https://mui.com/x/react-date-pickers/localization/#translation-keys) pipeline similar to the one used by the Data Grid.
+It lets you import translations directly into the main theme in a few lines.
+And thanks to the amazing contributors, translations for 11 languages are already available.
 
 ```jsx
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -79,7 +79,7 @@ According to npm download data, less than 40% of the community still uses the ve
 So a significant share has already migrated.
 
 And the adoption speed across versions is very encouraging.
-Over 40% of users are already using the beta versions. 
+Over 40% of users are already using the beta versions.
 
 <img src="/static/blog/date-pickers-stable-v5/date-picker-versions.png" style="width: 796px; margin-top: 16px; margin-bottom: 2px;" alt="Evolution of downloaded version of @mui/x-data-pickers" />
 <p class="blog-description" style="text-align: center;">Relative distribution of `@mui/x-date-pickers` versions between June and August.</p>
