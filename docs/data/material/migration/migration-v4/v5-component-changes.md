@@ -251,7 +251,7 @@ Use a string to provide an explicit px value.
 
 The Box system props have an optional alternative API in v5, using the `sx` prop.
 
-Check out the System docs to learn more about [the tradeoffs of this API](/system/getting-started/overview/#api-tradeoff).
+Check out the System docs to learn more about [the tradeoffs of this API](/system/getting-started/usage/#api-tradeoff).
 
 ```jsx
 <Box border="1px dashed grey" p={[2, 3, 4]} m={2}>
