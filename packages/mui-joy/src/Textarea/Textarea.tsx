@@ -274,10 +274,6 @@ const Textarea = React.forwardRef(function Textarea(inProps, ref) {
       id: formControl?.htmlFor,
       'aria-describedby': formControl?.['aria-describedby'],
     },
-    additionalProps: {
-      id: formControl?.htmlFor,
-      'aria-describedby': formControl?.['aria-describedby'],
-    },
     ownerState,
     className: [classes.textarea, inputStateClasses],
   });
