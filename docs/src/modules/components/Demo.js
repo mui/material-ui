@@ -221,7 +221,8 @@ const DemoRootJoy = joyStyled('div', {
   }),
   /* Mostly meant for introduction demos. */
   ...(bg === 'gradient' && {
-    padding: theme.spacing(3),
+    padding: theme.spacing(0),
+    overflow: 'auto',
     backgroundColor:
       theme.palette.mode === 'dark'
         ? theme.vars.palette.primary[900]

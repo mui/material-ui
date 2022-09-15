@@ -174,26 +174,23 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
   return (
     <Box
       sx={{
-        mt: 2,
         flexGrow: 1,
         maxWidth: '100%',
         display: 'flex',
         flexDirection: { xs: 'column', md: 'row' },
-        gap: 2,
         '& .markdown-body pre': {
           margin: 0,
           borderRadius: 'md',
         },
       }}
     >
-      <Box sx={{ display: 'flex', flexDirection: 'column', flexGrow: 999, minWidth: 0 }}>
+      <Box sx={{ display: 'flex', flexDirection: 'column', flexGrow: 999, minWidth: 0, p: 3 }}>
         <Box
           sx={{
             flexGrow: 1,
             m: 'auto',
             display: 'flex',
             alignItems: 'center',
-            p: 1,
           }}
         >
           {renderDemo(demoProps)}
@@ -214,19 +211,17 @@ export default function JoyUsageDemo<T extends { [k: string]: any } = {}>({
         </BrandingProvider>
       </Box>
       <Sheet
-        variant="plain"
         sx={{
           flexShrink: 0,
           gap: 2,
           p: 3,
-          borderRadius: 'md',
-          background: (theme) => `rgba(${theme.vars.palette.neutral.darkChannel} / 0.9)`,
-          backdropFilter: 'blur(20px)',
+          background: (theme) => `rgba(${theme.vars.palette.neutral.mainChannel} / 0.1)`,
+          backdropFilter: 'blur(8px)',
         }}
       >
         <Box
           sx={{
-            mb: 1,
+            mb: 2,
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'center',

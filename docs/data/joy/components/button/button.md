@@ -14,7 +14,7 @@ unstyled: /base/react-button/
 
 Buttons communicate actions that users can take.
 
-{{"demo": "ButtonUsage.js", "hideToolbar": true, "bg": "gradient"}}
+{{"demo": "ButtonUsage.js", "bg": "gradient"}}
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
