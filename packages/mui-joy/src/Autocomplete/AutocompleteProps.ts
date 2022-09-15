@@ -76,10 +76,14 @@ interface ComponentsProps {
     },
     AutocompleteOwnerState<any, any, any, any> & ListOwnerState
   >;
-  option?: SlotComponentProps<'li', { sx?: SxProps }, AutocompleteOwnerState<any, any, any, any>>;
   loading?: SlotComponentProps<'div', { sx?: SxProps }, AutocompleteOwnerState<any, any, any, any>>;
   noOptions?: SlotComponentProps<
-    'div',
+    'li',
+    { sx?: SxProps },
+    AutocompleteOwnerState<any, any, any, any>
+  >;
+  limitTag?: SlotComponentProps<
+    'span',
     { sx?: SxProps },
     AutocompleteOwnerState<any, any, any, any>
   >;

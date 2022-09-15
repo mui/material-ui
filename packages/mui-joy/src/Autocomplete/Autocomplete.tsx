@@ -352,18 +352,6 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     }
   }
 
-  if (limitTags > -1 && Array.isArray(startDecorator)) {
-    const more = startDecorator.length - limitTags;
-    if (!focused && more > 0) {
-      startDecorator = startDecorator.splice(0, limitTags);
-      startDecorator.push(
-        <AutocompleteLimitTag key={startDecorator.length} ownerState={ownerState}>
-          {getLimitTagsText(more)}
-        </AutocompleteLimitTag>,
-      );
-    }
-  }
-
   const defaultRenderOption = (optionProps: any, option: unknown) => (
     // Can't use `useSlotProps`
     <AutocompleteOption {...optionProps}>{getOptionLabel(option)}</AutocompleteOption>
@@ -477,6 +465,46 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     className: classes.listbox,
   });
 
+  const loadingProps = useSlotProps({
+    elementType: AutocompleteLoading,
+    externalSlotProps: componentsProps.loading,
+    ownerState,
+    className: classes.loading,
+  });
+
+  const noOptionsProps = useSlotProps({
+    elementType: AutocompleteNoOptions,
+    externalSlotProps: componentsProps.noOptions,
+    ownerState,
+    additionalProps: {
+      role: 'presentation',
+      onMouseDown: (event: React.MouseEvent<HTMLLIElement>) => {
+        // Prevent input blur when interacting with the "no options" content
+        event.preventDefault();
+      },
+    },
+    className: classes.noOptions,
+  });
+
+  const limitTagProps = useSlotProps({
+    elementType: AutocompleteLimitTag,
+    externalSlotProps: componentsProps.limitTag,
+    ownerState,
+    className: classes.limitTag,
+  });
+
+  if (limitTags > -1 && Array.isArray(startDecorator)) {
+    const more = startDecorator.length - limitTags;
+    if (!focused && more > 0) {
+      startDecorator = startDecorator.splice(0, limitTags);
+      startDecorator.push(
+        <AutocompleteLimitTag key={startDecorator.length} {...limitTagProps}>
+          {getLimitTagsText(more)}
+        </AutocompleteLimitTag>,
+      );
+    }
+  }
+
   return (
     <React.Fragment>
       <AutocompleteRoot {...rootProps}>
@@ -517,22 +545,10 @@ const Autocomplete = React.forwardRef(function Autocomplete(
         <PopperUnstyled {...listboxProps} as={listboxComponent} component={AutocompleteListbox}>
           <ListProvider nested>
             {loading && groupedOptions.length === 0 ? (
-              <AutocompleteLoading className={classes.loading} ownerState={ownerState}>
-                {loadingText}
-              </AutocompleteLoading>
+              <AutocompleteLoading {...loadingProps}>{loadingText}</AutocompleteLoading>
             ) : null}
             {groupedOptions.length === 0 && !freeSolo && !loading ? (
-              <AutocompleteNoOptions
-                className={classes.noOptions}
-                ownerState={ownerState}
-                role="presentation"
-                onMouseDown={(event) => {
-                  // Prevent input blur when interacting with the "no options" content
-                  event.preventDefault();
-                }}
-              >
-                {noOptionsText}
-              </AutocompleteNoOptions>
+              <AutocompleteNoOptions {...noOptionsProps}>{noOptionsText}</AutocompleteNoOptions>
             ) : null}
             {groupedOptions.map((option, index) => {
               if (groupBy) {
