@@ -498,7 +498,7 @@ const Tooltip = React.forwardRef(function Tooltip(inProps, ref) {
   const handleRef = useForkRef(children.ref, handleFocusRef);
 
   // There is no point in displaying an empty tooltip.
-  if (!title) {
+  if (typeof title !== 'number' && !title) {
     open = false;
   }
 
