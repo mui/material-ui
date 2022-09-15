@@ -13,7 +13,7 @@ unstyled: /base/react-textarea-autosize/
 
 Joy UI's textarea component is built on top of the MUI Base [`TextareaAutoSize`](/base/react-textarea-autosize/) component.
 
-{{"demo": "TextareaUsage.js", "hideToolbar": true}}
+{{"demo": "TextareaUsage.js", "bg": "gradient"}}
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
