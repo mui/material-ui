@@ -43,7 +43,7 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            configFile: path.resolve(__dirname, "..", "babel.config.jsj"),
+            configFile: path.resolve(__dirname, "..", "babel.config.js"),
             sourceType: 'unambiguous',
             plugins: [
               [
