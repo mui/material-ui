@@ -9,9 +9,6 @@ tags: ['Product']
 
 introduction - MUI began as Material UI - evolution to commercially licensed products - expanding ecosystem of component libraries beyond MD - now venturing into internal tool builders
 
-MUI's flagship product is Material UI: an open-source React UI library that implements Google's Material Design.
-Its
-
 ## MUI Core
 
 The Core is MUI's foundational product line.
