@@ -72,17 +72,12 @@ export * from './TabUnstyled';
 export { default as TextareaAutosize } from './TextareaAutosize';
 
 export { default as TrapFocus } from './TrapFocus';
-export * from './TrapFocus';
 
 export * from './useAutocomplete';
 
 export * from './useBadge';
 
 export * from './useButton';
-
-export * from './useControllableReducer';
-
-export * from './useFormControlUnstyledContext';
 
 export * from './useInput';
 
