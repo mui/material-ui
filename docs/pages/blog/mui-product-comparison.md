@@ -7,7 +7,21 @@ card: false
 tags: ['Product']
 ---
 
-introduction - MUI began as Material UI - evolution to commercially licensed products - expanding ecosystem of component libraries beyond MD - now venturing into internal tool builders
+MUI is so much more than Material UI!
+
+You'll be forgiven if you thought MUI was merely shorthand for Material UI.
+What began as an open-source React UI library has evolved over time into a full-fledged startup with a whole suite of related products.
+
+Material UI is the flagship; but it's also the gateway to MUI's ever-expanding ecosystem of UI tools.
+
+Though our roots are in [Material Design](https://material.io/), we're branching out well beyond those constraints these days to deliver more versatile tools for developers to ship new features faster.
+
+Our primary offerings fall into two product lines: Core and X.
+MUI Core contains our foundational component libraries (like Material UI), while MUI X offers components that are significantly more complex (like the Data Grid).
+
+We're also in the early stages of developing a low-code internal tool builder called [MUI Toolpad](https://mui.com/toolpad/), in which you can build with every Core and X component in a drag-and-drop interface.
+
+Read on for more details on each of our products.
 
 ## MUI Core
 
