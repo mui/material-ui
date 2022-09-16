@@ -29,7 +29,7 @@ The Core is MUI's foundational product line.
 It grew out of Material UI, and that library's legacy lives on in the name of the repo on GitHub: [`mui/material-ui`](https://github.com/mui/material-ui).
 
 But this repo contains much more than just Material UI these days.
-Read on to learn more about the full suite of MUI Core tools.
+More recent additions include Joy UI and MUI Base, as well as our in-house styling solution, MUI System.
 
 ### Material UI
 
