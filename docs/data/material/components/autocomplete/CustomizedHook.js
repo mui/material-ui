@@ -70,7 +70,6 @@ function Tag(props) {
 
 Tag.propTypes = {
   label: PropTypes.string.isRequired,
-  onDelete: PropTypes.func.isRequired,
 };
 
 const StyledTag = styled(Tag)(
