@@ -1,8 +1,10 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { chainPropTypes } from '@mui/utils';
-import { unstable_generateUtilityClasses as generateUtilityClasses } from '@mui/utils';
+import {
+  chainPropTypes,
+  unstable_generateUtilityClasses as generateUtilityClasses,
+} from '@mui/utils';
 import SliderUnstyled, {
   SliderValueLabelUnstyled,
   sliderUnstyledClasses,
