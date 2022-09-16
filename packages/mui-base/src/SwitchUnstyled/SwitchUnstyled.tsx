@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { OverridableComponent } from '@mui/types';
 import composeClasses from '../composeClasses';
 import useSwitch from './useSwitch';
-import { getSwitchUnstyledUtilityClass } from './switchUnstyledClasses';
 import {
   SwitchUnstyledProps,
   SwitchUnstyledOwnerState,
@@ -14,9 +13,11 @@ import {
   SwitchUnstyledTypeMap,
 } from './SwitchUnstyled.types';
 import { useSlotProps, WithOptionalOwnerState } from '../utils';
+import { useClassNameGenerator } from '../ClassNameConfigurator';
 
 const useUtilityClasses = (ownerState: SwitchUnstyledOwnerState) => {
   const { checked, disabled, focusVisible, readOnly } = ownerState;
+  const generateClassName = useClassNameGenerator();
 
   const slots = {
     root: [
@@ -31,7 +32,7 @@ const useUtilityClasses = (ownerState: SwitchUnstyledOwnerState) => {
     track: ['track'],
   };
 
-  return composeClasses(slots, getSwitchUnstyledUtilityClass, {});
+  return composeClasses(slots, (slot: string) => generateClassName('Switch', slot, 'MUI Base'));
 };
 
 /**
