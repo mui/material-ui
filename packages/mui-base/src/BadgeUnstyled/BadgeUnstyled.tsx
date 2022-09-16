@@ -27,16 +27,13 @@ const useUtilityClasses = (ownerState: BadgeUnstyledOwnerState) => {
  *
  * Demos:
  *
- * - [Badge](https://mui.com/base/react-badge/)
+ * - [Unstyled badge](https://mui.com/base/react-badge/)
  *
  * API:
  *
  * - [BadgeUnstyled API](https://mui.com/base/api/badge-unstyled/)
  */
-const BadgeUnstyled = React.forwardRef(function BadgeUnstyled(
-  props: BadgeUnstyledProps & { component?: React.ElementType },
-  ref,
-) {
+const BadgeUnstyled = React.forwardRef(function BadgeUnstyled(props: BadgeUnstyledProps, ref) {
   const {
     badgeContent: badgeContentProp,
     component,

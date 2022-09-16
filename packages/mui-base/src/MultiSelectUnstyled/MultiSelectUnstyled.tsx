@@ -10,6 +10,7 @@ import {
   MultiSelectUnstyledOwnerState,
   MultiSelectUnstyledPopperSlotProps,
   MultiSelectUnstyledRootSlotProps,
+  MultiSelectUnstyledType,
 } from './MultiSelectUnstyled.types';
 import { flattenOptionGroups, getOptionsFromChildren } from '../SelectUnstyled/utils';
 import useSelect from '../SelectUnstyled/useSelect';
@@ -22,9 +23,27 @@ import {
 } from '../SelectUnstyled/SelectUnstyledContext';
 import composeClasses from '../composeClasses';
 import { getSelectUnstyledUtilityClass } from '../SelectUnstyled/selectUnstyledClasses';
+import defaultOptionStringifier from '../SelectUnstyled/defaultOptionStringifier';
 
 function defaultRenderMultipleValues<TValue>(selectedOptions: SelectOption<TValue>[]) {
   return <React.Fragment>{selectedOptions.map((o) => o.label).join(', ')}</React.Fragment>;
+}
+
+function defaultFormValueProvider<TValue>(selectedOptions: SelectOption<TValue>[]) {
+  if (selectedOptions.length === 0) {
+    return '';
+  }
+
+  if (
+    selectedOptions.every(
+      (o) =>
+        typeof o.value === 'string' || typeof o.value === 'number' || typeof o.value === 'boolean',
+    )
+  ) {
+    return selectedOptions.map((o) => String(o.value));
+  }
+
+  return JSON.stringify(selectedOptions.map((o) => o.value));
 }
 
 function useUtilityClasses(ownerState: MultiSelectUnstyledOwnerState<any>) {
@@ -47,10 +66,18 @@ function useUtilityClasses(ownerState: MultiSelectUnstyledOwnerState<any>) {
 
 /**
  * The foundation for building custom-styled multi-selection select components.
+ *
+ * Demos:
+ *
+ * - [Unstyled select](https://mui.com/base/react-select/)
+ *
+ * API:
+ *
+ * - [MultiSelectUnstyled API](https://mui.com/base/api/multi-select-unstyled/)
  */
-const MultiSelectUnstyled = React.forwardRef(function MultiSelectUnstyled<TValue>(
+const MultiSelectUnstyled = React.forwardRef(function MultiSelectUnstyled<TValue extends {}>(
   props: MultiSelectUnstyledProps<TValue>,
-  ref: React.ForwardedRef<any>,
+  forwardedRef: React.ForwardedRef<any>,
 ) {
   const {
     autoFocus,
@@ -61,10 +88,13 @@ const MultiSelectUnstyled = React.forwardRef(function MultiSelectUnstyled<TValue
     defaultListboxOpen = false,
     defaultValue = [],
     disabled: disabledProp,
+    getSerializedValue = defaultFormValueProvider,
     listboxId,
     listboxOpen: listboxOpenProp,
+    name,
     onChange,
     onListboxOpenChange,
+    optionStringifier = defaultOptionStringifier,
     value: valueProp,
     ...other
   } = props;
@@ -92,15 +122,11 @@ const MultiSelectUnstyled = React.forwardRef(function MultiSelectUnstyled<TValue
   const ListboxRoot = components.Listbox ?? 'ul';
   const Popper = components.Popper ?? PopperUnstyled;
 
-  const handleButtonRefChange = (element: HTMLElement | null) => {
-    buttonRef.current = element;
+  const handleButtonRefChange = React.useCallback((element: HTMLElement | null) => {
+    setButtonDefined(element != null);
+  }, []);
 
-    if (element != null) {
-      setButtonDefined(true);
-    }
-  };
-
-  const handleButtonRef = useForkRef(ref, handleButtonRefChange);
+  const handleButtonRef = useForkRef(forwardedRef, useForkRef(buttonRef, handleButtonRefChange));
 
   React.useEffect(() => {
     if (autoFocus) {
@@ -132,6 +158,7 @@ const MultiSelectUnstyled = React.forwardRef(function MultiSelectUnstyled<TValue
     onOpenChange: handleOpenChange,
     open: listboxOpen,
     options,
+    optionStringifier,
     value: valueProp,
   });
 
@@ -199,7 +226,7 @@ const MultiSelectUnstyled = React.forwardRef(function MultiSelectUnstyled<TValue
 
   return (
     <React.Fragment>
-      <Button {...buttonProps}>{renderValue(selectedOptions as any)}</Button>
+      <Button {...buttonProps}>{renderValue(selectedOptions)}</Button>
       {buttonDefined && (
         <Popper {...popperProps}>
           <ListboxRoot {...listboxProps}>
@@ -209,9 +236,11 @@ const MultiSelectUnstyled = React.forwardRef(function MultiSelectUnstyled<TValue
           </ListboxRoot>
         </Popper>
       )}
+
+      {name && <input type="hidden" name={name} value={getSerializedValue(selectedOptions)} />}
     </React.Fragment>
   );
-});
+}) as MultiSelectUnstyledType;
 
 MultiSelectUnstyled.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
@@ -228,7 +257,8 @@ MultiSelectUnstyled.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
-   * @ignore
+   * The component used for the root node.
+   * Either a string to use a HTML element or a component.
    */
   component: PropTypes.elementType,
   /**
@@ -266,6 +296,12 @@ MultiSelectUnstyled.propTypes /* remove-proptypes */ = {
    */
   disabled: PropTypes.bool,
   /**
+   * A function to convert the currently selected values to a type accepted by HTML input.
+   * Used to set a value of a hidden input associated with the select,
+   * so that the selected values can be posted with a form.
+   */
+  getSerializedValue: PropTypes.func,
+  /**
    * `id` attribute of the listbox element.
    * Also used to derive the `id` attributes of options.
    */
@@ -276,6 +312,11 @@ MultiSelectUnstyled.propTypes /* remove-proptypes */ = {
    */
   listboxOpen: PropTypes.bool,
   /**
+   * Name of the element. For example used by the server to identify the fields in form submits.
+   * If the name is provided, the component will render a hidden input element that can be submitted to a server.
+   */
+  name: PropTypes.string,
+  /**
    * Callback fired when an option is selected.
    */
   onChange: PropTypes.func,
@@ -284,6 +325,14 @@ MultiSelectUnstyled.propTypes /* remove-proptypes */ = {
    * Use in controlled mode (see listboxOpen).
    */
   onListboxOpenChange: PropTypes.func,
+  /**
+   * A function used to convert the option label to a string.
+   * It's useful when labels are elements and need to be converted to plain text
+   * to enable navigation using character keys on a keyboard.
+   *
+   * @default defaultOptionStringifier
+   */
+  optionStringifier: PropTypes.func,
   /**
    * Function that customizes the rendering of the selected values.
    */
@@ -295,17 +344,4 @@ MultiSelectUnstyled.propTypes /* remove-proptypes */ = {
   value: PropTypes.array,
 } as any;
 
-/**
- * The foundation for building custom-styled multi-selection select components.
- *
- * Demos:
- *
- * - [Select](https://mui.com/base/react-select/)
- *
- * API:
- *
- * - [MultiSelectUnstyled API](https://mui.com/base/api/multi-select-unstyled/)
- */
-export default MultiSelectUnstyled as <TValue extends {}>(
-  props: MultiSelectUnstyledProps<TValue> & React.RefAttributes<HTMLElement>,
-) => JSX.Element | null;
+export default MultiSelectUnstyled;

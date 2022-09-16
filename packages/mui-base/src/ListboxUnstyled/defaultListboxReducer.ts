@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   ListboxState,
-  UseListboxStrictProps,
+  UseListboxPropsWithDefaults,
   ListboxAction,
   ActionTypes,
 } from './useListbox.types';
@@ -108,12 +108,12 @@ function getNewHighlightedOption<TOption>(
 function handleOptionSelection<TOption>(
   option: TOption,
   state: ListboxState<TOption>,
-  props: UseListboxStrictProps<TOption>,
+  props: UseListboxPropsWithDefaults<TOption>,
 ): ListboxState<TOption> {
   const { multiple, optionComparer = (o, v) => o === v, isOptionDisabled = () => false } = props;
   const { selectedValue } = state;
 
-  const optionIndex = props.options.indexOf(option);
+  const optionIndex = props.options.findIndex((o) => props.optionComparer(option, o));
 
   if (isOptionDisabled(option, optionIndex)) {
     return state;
@@ -145,7 +145,7 @@ function handleOptionSelection<TOption>(
 function handleKeyDown<TOption>(
   event: React.KeyboardEvent,
   state: Readonly<ListboxState<TOption>>,
-  props: UseListboxStrictProps<TOption>,
+  props: UseListboxPropsWithDefaults<TOption>,
 ): ListboxState<TOption> {
   const { options, isOptionDisabled, disableListWrap, disabledItemsFocusable, optionComparer } =
     props;
@@ -246,7 +246,7 @@ const textCriteriaMatches = <TOption>(
 function handleTextNavigation<TOption>(
   state: ListboxState<TOption>,
   searchString: string,
-  props: UseListboxStrictProps<TOption>,
+  props: UseListboxPropsWithDefaults<TOption>,
 ): ListboxState<TOption> {
   const {
     options,
@@ -305,7 +305,7 @@ function handleOptionsChange<TOption>(
   options: TOption[],
   previousOptions: TOption[],
   state: ListboxState<TOption>,
-  props: UseListboxStrictProps<TOption>,
+  props: UseListboxPropsWithDefaults<TOption>,
 ): ListboxState<TOption> {
   const { multiple, optionComparer } = props;
 

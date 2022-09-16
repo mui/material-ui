@@ -1318,6 +1318,24 @@ describe('<Autocomplete />', () => {
       setProps({ disabled: true });
       expect(screen.queryByRole('listbox')).to.equal(null);
     });
+
+    it('should not crash when autoSelect & freeSolo are set, text is focused & disabled gets truthy', () => {
+      const { setProps } = render(
+        <Autocomplete
+          autoSelect
+          freeSolo
+          options={['one', 'two', 'three']}
+          renderInput={(params) => <TextField {...params} />}
+          value="one"
+        />,
+      );
+      const textbox = screen.getByRole('combobox');
+      act(() => {
+        textbox.focus();
+      });
+      setProps({ disabled: true });
+      expect(textbox).toBeVisible();
+    });
   });
 
   describe('prop: disableClearable', () => {
@@ -2506,6 +2524,22 @@ describe('<Autocomplete />', () => {
       const popupIndicator = screen.getByTestId('popupIndicator');
       expect(popupIndicator).to.have.class(iconButtonClasses.sizeLarge);
       expect(popupIndicator).to.have.class('my-class');
+    });
+
+    it('should keep AutocompletePopper mounted if keepMounted is true in popper props', () => {
+      // Autocomplete is not opened
+      render(
+        <Autocomplete
+          options={['one', 'two']}
+          renderInput={(params) => <TextField {...params} />}
+          componentsProps={{
+            popper: { 'data-testid': 'popperRoot', keepMounted: true },
+          }}
+        />,
+      );
+
+      const popperRoot = screen.getByTestId('popperRoot');
+      expect(popperRoot.style.display).to.equal('none');
     });
   });
 

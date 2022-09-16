@@ -33,6 +33,10 @@ export interface ChipClasses {
   outlinedPrimary: string;
   /** Styles applied to the root element if `variant="outlined"` and `color="secondary"`. */
   outlinedSecondary: string;
+  /** Styles applied to the root element if `variant="filled"` and `color="primary"`. */
+  filledPrimary: string;
+  /** Styles applied to the root element if `variant="filled"` and `color="secondary"`. */
+  filledSecondary: string;
   /** Styles applied to the avatar element. */
   avatar: string;
   /** Styles applied to the avatar element if `size="small"`. */
@@ -73,6 +77,10 @@ export interface ChipClasses {
   deleteIconOutlinedColorPrimary: string;
   /** Styles applied to the deleteIcon element if `color="secondary"` and `variant="outlined"`. */
   deleteIconOutlinedColorSecondary: string;
+  /** Styles applied to the deleteIcon element if `color="primary"` and `variant="filled"`. */
+  deleteIconFilledColorPrimary: string;
+  /** Styles applied to the deleteIcon element if `color="secondary"` and `variant="filled"`. */
+  deleteIconFilledColorSecondary: string;
   /** State class applied to the root element if keyboard focused. */
   focusVisible: string;
 }
@@ -100,6 +108,8 @@ const chipClasses: ChipClasses = generateUtilityClasses('MuiChip', [
   'filled',
   'outlinedPrimary',
   'outlinedSecondary',
+  'filledPrimary',
+  'filledSecondary',
   'avatar',
   'avatarSmall',
   'avatarMedium',
@@ -120,6 +130,8 @@ const chipClasses: ChipClasses = generateUtilityClasses('MuiChip', [
   'deleteIconColorSecondary',
   'deleteIconOutlinedColorPrimary',
   'deleteIconOutlinedColorSecondary',
+  'deleteIconFilledColorPrimary',
+  'deleteIconFilledColorSecondary',
   'focusVisible',
 ]);
 

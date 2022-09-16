@@ -16,7 +16,7 @@ The badge component is most frequently used to signal status (online, offline, b
 
 {{"demo": "ChipUsage.js", "hideToolbar": true}}
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Component
 

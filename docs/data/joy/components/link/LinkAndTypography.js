@@ -5,7 +5,7 @@ import Typography from '@mui/joy/Typography';
 import CallMade from '@mui/icons-material/CallMade';
 import LinkIcon from '@mui/icons-material/Link';
 
-export default function Links() {
+export default function LinkAndTypography() {
   return (
     <Box sx={{ maxWidth: 360 }}>
       <Typography
@@ -18,7 +18,6 @@ export default function Links() {
             aria-labelledby="heading-demo"
             href="#heading-demo"
             fontSize="md"
-            ml={0.5}
             borderRadius="sm"
           >
             <LinkIcon />

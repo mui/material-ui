@@ -15,6 +15,7 @@ describe('Joy <Button />', () => {
     muiName: 'JoyButton',
     testDeepOverrides: { slotName: 'startIcon', slotClassName: classes.startIcon },
     testVariantProps: { variant: 'solid', fullWidth: true },
+    testCustomVariant: true,
     skip: ['propsSpread', 'componentsProp', 'classesRoot'],
   }));
 

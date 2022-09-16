@@ -27,7 +27,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-1.1/#alert'
 
 ## 自定义的消息条
 
-你可以参考以下一些例子来自定义组件。 您可以在 [重写文档页面](/material-ui/customization/how-to-customize/) 中了解更多有关此内容的信息。
+你可以参考以下一些例子来自定义组件。 You can learn more about this in the [overrides documentation page](/material-ui/customization/how-to-customize/).
 
 {{"demo": "CustomizedSnackbars.js"}}
 
@@ -59,18 +59,18 @@ waiAria: 'https://www.w3.org/TR/wai-aria-1.1/#alert'
 
 ### 更改过渡动画
 
-[Grow](/material-ui/transitions/#grow) 是默认的过渡动画，但你可以使用不同的过渡动画。
+[Grow](/material-ui/transitions/#grow) is the default transition but you can use a different one.
 
 {{"demo": "TransitionsSnackbar.js"}}
 
 ### 控制滑动的方向
 
-你可以修改 [Slide](/material-ui/transitions/#slide) 过渡的方向 。
+You can change the direction of the [Slide](/material-ui/transitions/#slide) transition.
 
 Example of making the slide transition to the left:
 
 ```jsx
-import Slide from '@material-ui/core/Slide';
+import Slide from '@mui/material/Slide';
 
 function TransitionLeft(props) {
   return <Slide {...props} direction="left" />;
@@ -103,7 +103,7 @@ For more advanced use cases you might be able to take advantage of:
 
 默认情况下，消息条不会自动隐藏。 但是，如果您决定使用 `autoHideDuration` 属性，我们建议给用户提供 [足够的时间](https://www.w3.org/TR/UNDERSTANDING-WCAG20/time-limits.html) 来响应。
 
-当消息条打开时，如果<kbd class="key">Escape 键</kbd>被按下，**每个**`Snackbar`将会消失。 Unless you don't handle `onClose` with the `"escapeKeyDown"` reason. Unless you don't handle `onClose` with the `"escapeKeyDown"` reason. Unless you don't handle `onClose` with the `"escapeKeyDown"` reason. If you want to limit this behavior to only dismiss the oldest currently open Snackbar call `event.preventDefault` in `onClose`.
+当消息条打开时，如果<kbd class="key">Escape 键</kbd>被按下，**每个**`Snackbar`将会消失。 Unless you don't handle `onClose` with the `"escapeKeyDown"` reason. Unless you don't handle `onClose` with the `"escapeKeyDown"` reason. If you want to limit this behavior to only dismiss the oldest currently open Snackbar call `event.preventDefault` in `onClose`.
 
 ```jsx
 export default function MyComponent() {
@@ -117,12 +117,6 @@ export default function MyComponent() {
           // `reason === 'escapeKeyDown'` if `Escape` was pressed
           setOpen(false);
           // call `event.preventDefault` to only close one Snackbar at a time.
-        }}
-      />
-      <Snackbar open={open} onClose={() => setOpen(false)} />
-    </React.Fragment>
-  );
-}
         }}
       />
       <Snackbar open={open} onClose={() => setOpen(false)} />

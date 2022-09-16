@@ -6,7 +6,7 @@
       "type": { "name": "elementType" },
       "default": "styled(Backdrop, {\n  name: 'MuiModal',\n  slot: 'Backdrop',\n  overridesResolver: (props, styles) => {\n    return styles.backdrop;\n  },\n})({\n  zIndex: -1,\n})",
       "deprecated": true,
-      "deprecationInfo": "Use <code>components.Backdrop</code> instead."
+      "deprecationInfo": "Use <code>components.Backdrop</code> instead. While this prop currently works, it will be removed in the next major version."
     },
     "BackdropProps": {
       "type": { "name": "object" },
@@ -21,7 +21,10 @@
       "default": "{}"
     },
     "componentsProps": {
-      "type": { "name": "shape", "description": "{ backdrop?: object, root?: object }" },
+      "type": {
+        "name": "shape",
+        "description": "{ backdrop?: func<br>&#124;&nbsp;object, root?: func<br>&#124;&nbsp;object }"
+      },
       "default": "{}"
     },
     "container": { "type": { "name": "union", "description": "HTML element<br>&#124;&nbsp;func" } },

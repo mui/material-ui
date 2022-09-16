@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Simplify } from '@mui/types';
+import { DefaultComponentProps, OverrideProps, Simplify } from '@mui/types';
 import PopperUnstyled, { PopperUnstyledProps } from '../PopperUnstyled';
 import {
   SelectOption,
@@ -11,7 +11,7 @@ import { SlotComponentProps } from '../utils';
 
 export interface MultiSelectUnstyledComponentsPropsOverrides {}
 
-export interface MultiSelectUnstyledProps<TValue extends {}> extends SelectUnstyledCommonProps {
+export interface MultiSelectUnstyledOwnProps<TValue extends {}> extends SelectUnstyledCommonProps {
   /**
    * The components used for each slot inside the Select.
    * Either a string to use a HTML element or a component.
@@ -49,9 +49,25 @@ export interface MultiSelectUnstyledProps<TValue extends {}> extends SelectUnsty
    */
   defaultValue?: TValue[];
   /**
+   * A function to convert the currently selected values to a type accepted by HTML input.
+   * Used to set a value of a hidden input associated with the select,
+   * so that the selected values can be posted with a form.
+   */
+  getSerializedValue?: (
+    option: SelectOption<TValue>[],
+  ) => React.InputHTMLAttributes<HTMLInputElement>['value'];
+  /**
    * Callback fired when an option is selected.
    */
   onChange?: (value: TValue[]) => void;
+  /**
+   * A function used to convert the option label to a string.
+   * It's useful when labels are elements and need to be converted to plain text
+   * to enable navigation using character keys on a keyboard.
+   *
+   * @default defaultOptionStringifier
+   */
+  optionStringifier?: (option: SelectOption<TValue>) => string;
   /**
    * Function that customizes the rendering of the selected values.
    */
@@ -63,14 +79,48 @@ export interface MultiSelectUnstyledProps<TValue extends {}> extends SelectUnsty
   value?: TValue[];
 }
 
-export interface MultiSelectUnstyledOwnerState<TValue> extends MultiSelectUnstyledProps<TValue> {
+export interface MultiSelectUnstyledTypeMap<
+  TValue extends {},
+  P = {},
+  D extends React.ElementType = 'button',
+> {
+  props: P & MultiSelectUnstyledOwnProps<TValue>;
+  defaultComponent: D;
+}
+
+export type MultiSelectUnstyledProps<
+  TValue extends {},
+  D extends React.ElementType = MultiSelectUnstyledTypeMap<TValue>['defaultComponent'],
+> = OverrideProps<MultiSelectUnstyledTypeMap<TValue, {}, D>, D> & {
+  component?: D;
+};
+
+// OverridableComponent cannot be used below as MultiSelectUnstyled's props are generic.
+export interface MultiSelectUnstyledType {
+  <TValue extends {}, C extends React.ElementType>(
+    props: {
+      /**
+       * The component used for the root node.
+       * Either a string to use a HTML element or a component.
+       */
+      component: C;
+    } & OverrideProps<MultiSelectUnstyledTypeMap<TValue>, C>,
+  ): JSX.Element | null;
+  <TValue extends {}>(
+    props: DefaultComponentProps<MultiSelectUnstyledTypeMap<TValue>>,
+  ): JSX.Element | null;
+  propTypes?: any;
+}
+
+export interface MultiSelectUnstyledOwnerState<TValue extends {}>
+  extends MultiSelectUnstyledProps<TValue> {
   active: boolean;
   disabled: boolean;
   open: boolean;
   focusVisible: boolean;
 }
 
-export type MultiSelectUnstyledRootSlotProps<TValue> = Simplify<
+export type MultiSelectUnstyledRootSlotProps<TValue extends {}> = Simplify<
   UseSelectButtonSlotProps & {
     className?: string;
     children?: React.ReactNode;
@@ -78,7 +128,7 @@ export type MultiSelectUnstyledRootSlotProps<TValue> = Simplify<
   }
 >;
 
-export type MultiSelectUnstyledListboxSlotProps<TValue> = Simplify<
+export type MultiSelectUnstyledListboxSlotProps<TValue extends {}> = Simplify<
   UseSelectListboxSlotProps & {
     className?: string;
     children?: React.ReactNode;
@@ -86,7 +136,7 @@ export type MultiSelectUnstyledListboxSlotProps<TValue> = Simplify<
   }
 >;
 
-export type MultiSelectUnstyledPopperSlotProps<TValue> = {
+export type MultiSelectUnstyledPopperSlotProps<TValue extends {}> = {
   anchorEl: PopperUnstyledProps['anchorEl'];
   children?: PopperUnstyledProps['children'];
   className?: string;

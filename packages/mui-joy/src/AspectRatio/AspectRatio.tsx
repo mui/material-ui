@@ -1,15 +1,15 @@
 import * as React from 'react';
-import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
+import { useSlotProps } from '@mui/base/utils';
 import { OverridableComponent } from '@mui/types';
 import { unstable_capitalize as capitalize } from '@mui/utils';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
 import { getAspectRatioUtilityClass } from './aspectRatioClasses';
-import { AspectRatioProps, AspectRatioTypeMap } from './AspectRatioProps';
+import { AspectRatioProps, AspectRatioOwnerState, AspectRatioTypeMap } from './AspectRatioProps';
 
-const useUtilityClasses = (ownerState: AspectRatioProps) => {
+const useUtilityClasses = (ownerState: AspectRatioOwnerState) => {
   const { variant, color } = ownerState;
   const slots = {
     root: ['root'],
@@ -28,7 +28,7 @@ const AspectRatioRoot = styled('div', {
   name: 'JoyAspectRatio',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: AspectRatioProps }>(({ ownerState }) => {
+})<{ ownerState: AspectRatioOwnerState }>(({ ownerState }) => {
   const minHeight =
     typeof ownerState.minHeight === 'number' ? `${ownerState.minHeight}px` : ownerState.minHeight;
   const maxHeight =
@@ -49,8 +49,8 @@ const AspectRatioRoot = styled('div', {
 const AspectRatioContent = styled('div', {
   name: 'JoyAspectRatio',
   slot: 'Content',
-  overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: AspectRatioProps }>(({ theme, ownerState }) => [
+  overridesResolver: (props, styles) => styles.content,
+})<{ ownerState: AspectRatioOwnerState }>(({ theme, ownerState }) => [
   {
     flex: 1,
     position: 'relative',
@@ -89,10 +89,9 @@ const AspectRatio = React.forwardRef(function AspectRatio(inProps, ref) {
   });
 
   const {
-    className,
     component = 'div',
     children,
-    componentsProps,
+    componentsProps = {},
     ratio = '16 / 9',
     minHeight,
     maxHeight,
@@ -115,19 +114,28 @@ const AspectRatio = React.forwardRef(function AspectRatio(inProps, ref) {
 
   const classes = useUtilityClasses(ownerState);
 
+  const rootProps = useSlotProps({
+    elementType: AspectRatioRoot,
+    ownerState,
+    externalSlotProps: componentsProps.root,
+    externalForwardedProps: other,
+    additionalProps: {
+      ref,
+      as: component,
+    },
+    className: classes.root,
+  });
+
+  const contentProps = useSlotProps({
+    elementType: AspectRatioContent,
+    ownerState,
+    externalSlotProps: componentsProps.content,
+    className: classes.content,
+  });
+
   return (
-    <AspectRatioRoot
-      as={component}
-      ownerState={ownerState}
-      className={clsx(classes.root, className)}
-      ref={ref}
-      {...other}
-    >
-      <AspectRatioContent
-        ownerState={ownerState}
-        {...componentsProps?.content}
-        className={clsx(classes.content, componentsProps?.content?.className, className)}
-      >
+    <AspectRatioRoot {...rootProps}>
+      <AspectRatioContent {...contentProps}>
         {React.Children.map(children, (child, index) =>
           index === 0 && React.isValidElement(child)
             ? React.cloneElement(child, { 'data-first-child': '' })
@@ -149,10 +157,6 @@ AspectRatio.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
-   * @ignore
-   */
-  className: PropTypes.string,
-  /**
    * The color of the component. It supports those theme colors that make sense for this component.
    * @default 'neutral'
    */
@@ -163,11 +167,12 @@ AspectRatio.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
-   * The props used for each slot inside the AspectRatio.
+   * The props used for each slot inside the component.
    * @default {}
    */
   componentsProps: PropTypes.shape({
-    content: PropTypes.object.isRequired,
+    content: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+    root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
   }),
   /**
    * The maximum calculated height of the element (not the CSS height).

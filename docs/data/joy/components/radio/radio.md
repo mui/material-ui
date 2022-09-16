@@ -17,7 +17,7 @@ For more in-depth about when to use each, visit [the NNg's documentation](https:
 
 {{"demo": "RadioUsage.js", "hideToolbar": true}}
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Component
 
@@ -113,13 +113,23 @@ Here are a few tips to make sure you have an accessible radio button component:
 />
 ```
 
-Visit the [WAI-ARIA documentation](https://www.w3.org/TR/wai-aria-practices/#radiobutton) for more details.
+Visit the [WAI-ARIA documentation](https://www.w3.org/WAI/ARIA/apg/patterns/radiobutton/) for more details.
 
 ## Common examples
 
+### Segmented controls
+
+{{"demo": "ExampleSegmentedControls.js"}}
+
+### Alignment buttons
+
+Provide an icon as a label to the `Radio` to make the radio buttons concise. You need to provide `aria-label` to the input slot for users who rely on screen readers.
+
+{{"demo": "ExampleAlignmentButtons.js"}}
+
 ### Payment methods
 
-Mix raddio buttons with the [`List`](/joy-ui/react-list/)-related components to create a commonly seen vertical or horizontal payment method list.
+Mix radio buttons with the [`List`](/joy-ui/react-list/)-related components to create a commonly seen vertical or horizontal payment method list.
 
 {{"demo": "ExamplePaymentChannels.js"}}
 

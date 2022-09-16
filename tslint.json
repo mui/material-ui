@@ -19,6 +19,8 @@
     "no-redundant-jsdoc": false,
     "semicolon": [true, "always", "ignore-bound-class-methods"],
     // rules conflicting with eslint
-    "prefer-template": false
+    "prefer-template": false,
+    // rules conflicting with babel
+    "strict-export-declare-modifiers": false
   }
 }

@@ -1,16 +1,16 @@
 ---
 product: material-ui
-title: Componente Barra de Aplicativos para React
+title: App bar React component
 components: AppBar, Toolbar, Menu
 githubLabel: 'component: app bar'
 materialDesign: https://material.io/components/app-bars-top
 ---
 
-# Barra de Aplicativos
+# App bar
 
-<p class="description">A barra de aplicativos exibe informações e ações relacionadas à tela atual.</p>
+<p class="description">The App bar displays information and actions relating to the current screen.</p>
 
-A barra de aplicativos superior fornece conteúdo e ações relacionadas à tela atual. Ela é utilizada para a identidade visual, títulos de tela, navegação e ações.
+The top App bar provides content and actions related to the current screen. Ela é utilizada para a identidade visual, títulos de tela, navegação e ações.
 
 Ela pode se transformar em uma barra de ações contextual ou ser utilizada como uma barra de navegação.
 
@@ -20,37 +20,41 @@ Ela pode se transformar em uma barra de ações contextual ou ser utilizada como
 
 {{"demo": "ButtonAppBar.js", "bg": true}}
 
-## Barra do site com menu
+## Barra de aplicativos com menu
 
 {{"demo": "MenuAppBar.js", "bg": true}}
 
-## Barra do site com menu responsivo
+## App bar with responsive menu
 
 {{"demo": "ResponsiveAppBar.js", "bg": true}}
 
-## Barra de Aplicativos com campo de busca
+## App bar with search field
 
 Uma barra de pesquisa lateral
 
 {{"demo": "SearchAppBar.js", "bg": true}}
 
-## Barra do site com um campo de busca principal
+## Responsive App bar with Drawer
 
-Uma barra de pesquisa primária
+{{"demo": "DrawerAppBar.js", "bg": true,"iframe": true}}
+
+## App bar with a primary search field
+
+A primary searchbar.
 
 {{"demo": "PrimarySearchAppBar.js", "bg": true}}
 
-## Densa (apenas para desktop)
+## Dense (desktop only)
 
 {{"demo": "DenseAppBar.js", "bg": true}}
 
-## Proeminente
+## Prominent
 
 A prominent app bar.
 
 {{"demo": "ProminentAppBar.js", "bg": true}}
 
-## Bottom App Bar
+## Bottom App bar
 
 {{"demo": "BottomAppBar.js", "iframe": true, "maxWidth": 400}}
 
@@ -95,13 +99,13 @@ function App() {
 
 You can use the `useScrollTrigger()` hook to respond to user scroll actions.
 
-### Barra de aplicativos oculta
+### Hide App bar
 
 The app bar hides on scroll down to leave more space for reading.
 
 {{"demo": "HideAppBar.js", "iframe": true}}
 
-### Barra de aplicativos elevada
+### Elevate App bar
 
 The app bar elevates on scroll to communicate that the user is not at the top of the page.
 

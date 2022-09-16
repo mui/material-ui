@@ -3,7 +3,7 @@ product: material-ui
 title: React Alert （警告提示）组件
 components: Alert, AlertTitle
 githubLabel: 'component: alert'
-waiAria: 'https://www.w3.org/TR/wai-aria-practices/#alert'
+waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/alert/
 ---
 
 # Alert 警告提示
@@ -36,7 +36,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#alert'
 
 ### 过渡效果
 
-您也可以使用 [过渡组件](/material-ui/transitions/) ，如使用 `Collapse（展开）` 来实现提醒出现时的过渡效果。
+您可以使用诸如`Collapse`的[过渡组件](/components/transitions/)来实现警告提示出现时的过渡效果。
 
 {{"demo": "TransitionAlerts.js"}}
 
@@ -44,7 +44,7 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#alert'
 
 使用 `icon` 属性，您可以在警告提示组件开头添加一个图标。 以此来改变不同程度的默认图标。
 
-通过使用 `iconMapping` 属性，您可以改变不同程度的默认图标映射。 使用 [自定义主题](/material-ui/customization/theme-components/#default-props)，您可以进行全局的设置。
+通过使用 `iconMapping` 属性，您可以改变不同程度的默认图标映射。 您可以使用 [自定义主题](/customization/theme-components/#default-props)进行全局设置。
 
 把图标属性设置为 `false` 将会移除所有图标。
 
@@ -58,26 +58,28 @@ waiAria: 'https://www.w3.org/TR/wai-aria-practices/#alert'
 
 {{"demo": "OutlinedAlerts.js"}}
 
+当使用 [`消息条（Snackbar）`组件](/material-ui/react-snackbar/#customization)时，背景内容将默认可见并出血。 您可以为对`Alert`的[sx</code> 属性](/material-ui/customization/how-to-customize/#the-sx-prop) 添加`bgcolor: 'background.paper'`，以阻止这一行为。
+
 ### 填充
 
 {{"demo": "FilledAlerts.js"}}
 
 ## Toast（提示）
 
-你可以使用消息条（Snackbar）来显示一个带警告提示组件的 [toast](/material-ui/react-snackbar/#customized-snackbars) 。
+You can use the Snackbar to [display a toast](/material-ui/react-snackbar/#customization) with the Alert.
 
 ## Color 颜色
 
-使用 `color` 属性可以覆盖不同程度提醒的默认颜色。
+使用 `color`属性可以覆盖不同程度提醒的默认颜色。
 
 {{"demo": "ColorAlerts.js"}}
 
 ## 无障碍设计
 
-(WAI-ARIA: https://www.w3.org/TR/wai-aria-practices/#alert)
+(WAI-ARIA: https://www.w3.org/WAI/ARIA/apg/patterns/alert/)
 
-当动态地显示组件时，大部分屏幕都会自动朗读其内容。 此时，屏幕阅读不会将页面加载时出现的提醒通知给用户。
+当动态地显示组件时，大部分屏幕阅读器都会自动朗读其内容。 此时，屏幕阅读不会将页面加载时出现的警告提示通知给用户。
 
-使用颜色来增加意义只提供了一个视觉指示，而不会传达给一个辅助用户的技术，如屏幕阅读器。 请确保用颜色表示的信息，或者对于内容本身（例如一些可见的文本）是明显的，或者通过其他方法包含信息，例如一个附加的隐藏文本。
+使用颜色来增加意义只提供了一个视觉指示，而不会向诸如屏幕阅读器的辅助技术传达。 请确保用颜色表示的信息，要么内容本身（例如一些可见的文本）是明显的，要么通过其他方法包含信息，例如一个附加的隐藏文本。
 
-动作的选项卡索引（tab index）必须为 0，这样只使用键盘的用户才能访问它们。
+动作的选项卡索引（tab index）必须为0，这样只使用键盘的用户才能访问它们。

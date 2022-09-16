@@ -102,8 +102,12 @@ async function createPackageFile() {
             : './index.js',
         }
       : {}),
-    types: './index.d.ts',
   };
+
+  const typeDefinitionsFilePath = path.resolve(buildPath, './index.d.ts');
+  if (await fse.pathExists(typeDefinitionsFilePath)) {
+    newPackageData.types = './index.d.ts';
+  }
 
   const targetPath = path.resolve(buildPath, './package.json');
 
@@ -149,6 +153,9 @@ async function addLicense(packageData) {
 
 async function run() {
   try {
+    // TypeScript
+    await typescriptCopy({ from: srcPath, to: buildPath });
+
     const packageData = await createPackageFile();
 
     await Promise.all(
@@ -161,9 +168,6 @@ async function run() {
     );
 
     await addLicense(packageData);
-
-    // TypeScript
-    await typescriptCopy({ from: srcPath, to: buildPath });
 
     await createModulePackages({ from: srcPath, to: buildPath });
   } catch (err) {

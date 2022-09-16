@@ -8,10 +8,10 @@ import FormLabel from '../FormLabel';
 import FormHelperText from '../FormHelperText';
 import JoyInput from '../Input';
 import { styled, useThemeProps } from '../styles';
-import { TextFieldProps, TextFieldTypeMap } from './TextFieldProps';
+import { TextFieldOwnerState, TextFieldTypeMap } from './TextFieldProps';
 import textFieldClasses, { getTextFieldUtilityClass } from './textFieldClasses';
 
-const useUtilityClasses = (ownerState: TextFieldProps) => {
+const useUtilityClasses = (ownerState: TextFieldOwnerState) => {
   const { error, disabled, variant, size, color, fullWidth } = ownerState;
   const slots = {
     root: [
@@ -32,7 +32,7 @@ const TextFieldRoot = styled('div', {
   name: 'JoyTextField',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: TextFieldProps }>(({ theme, ownerState }) => ({
+})<{ ownerState: TextFieldOwnerState }>(({ theme, ownerState }) => ({
   '--FormLabel-margin': '0 0 0.25rem 0',
   '--FormHelperText-margin': '0.25rem 0 0 0',
   '--FormLabel-asterisk-color': theme.vars.palette.danger[500],
@@ -182,13 +182,11 @@ TextField.propTypes /* remove-proptypes */ = {
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
   // ----------------------------------------------------------------------
   /**
-   * This prop helps users to fill forms faster, especially on mobile devices.
-   * The name can be confusing, as it's more like an autofill.
-   * You can learn more about it [following the specification](https://html.spec.whatwg.org/multipage/form-control-infrastructure.html#autofill).
+   * @ignore
    */
   autoComplete: PropTypes.string,
   /**
-   * If `true`, the `input` element is focused during the first mount.
+   * @ignore
    */
   autoFocus: PropTypes.bool,
   /**
@@ -231,12 +229,15 @@ TextField.propTypes /* remove-proptypes */ = {
     root: PropTypes.object,
   }),
   /**
-   * The default value. Use when the component is not controlled.
+   * @ignore
    */
-  defaultValue: PropTypes.any,
+  defaultValue: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.string),
+    PropTypes.number,
+    PropTypes.string,
+  ]),
   /**
-   * If `true`, the component is disabled.
-   * The prop defaults to the value (`false`) inherited from the parent FormControl component.
+   * @ignore
    */
   disabled: PropTypes.bool,
   /**
@@ -287,8 +288,7 @@ TextField.propTypes /* remove-proptypes */ = {
    */
   placeholder: PropTypes.string,
   /**
-   * If `true`, the `input` element is required.
-   * The prop defaults to the value (`false`) inherited from the parent FormControl component.
+   * @ignore
    */
   required: PropTypes.bool,
   /**
@@ -304,14 +304,93 @@ TextField.propTypes /* remove-proptypes */ = {
    */
   startDecorator: PropTypes.node,
   /**
-   * Type of the `input` element. It should be [a valid HTML5 input type](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#Form_%3Cinput%3E_types).
-   * @default 'plain'
+   * @ignore
    */
-  type: PropTypes.string,
+  type: PropTypes.oneOfType([
+    PropTypes.oneOf([
+      'button',
+      'checkbox',
+      'color',
+      'date',
+      'datetime-local',
+      'email',
+      'file',
+      'hidden',
+      'image',
+      'month',
+      'number',
+      'password',
+      'radio',
+      'range',
+      'reset',
+      'search',
+      'submit',
+      'tel',
+      'text',
+      'time',
+      'url',
+      'week',
+    ]),
+    PropTypes.shape({
+      '__@iterator@91': PropTypes.func.isRequired,
+      anchor: PropTypes.func.isRequired,
+      at: PropTypes.func.isRequired,
+      big: PropTypes.func.isRequired,
+      blink: PropTypes.func.isRequired,
+      bold: PropTypes.func.isRequired,
+      charAt: PropTypes.func.isRequired,
+      charCodeAt: PropTypes.func.isRequired,
+      codePointAt: PropTypes.func.isRequired,
+      concat: PropTypes.func.isRequired,
+      endsWith: PropTypes.func.isRequired,
+      fixed: PropTypes.func.isRequired,
+      fontcolor: PropTypes.func.isRequired,
+      fontsize: PropTypes.func.isRequired,
+      includes: PropTypes.func.isRequired,
+      indexOf: PropTypes.func.isRequired,
+      italics: PropTypes.func.isRequired,
+      lastIndexOf: PropTypes.func.isRequired,
+      length: PropTypes.number.isRequired,
+      link: PropTypes.func.isRequired,
+      localeCompare: PropTypes.func.isRequired,
+      match: PropTypes.func.isRequired,
+      matchAll: PropTypes.func.isRequired,
+      normalize: PropTypes.func.isRequired,
+      padEnd: PropTypes.func.isRequired,
+      padStart: PropTypes.func.isRequired,
+      repeat: PropTypes.func.isRequired,
+      replace: PropTypes.func.isRequired,
+      search: PropTypes.func.isRequired,
+      slice: PropTypes.func.isRequired,
+      small: PropTypes.func.isRequired,
+      split: PropTypes.func.isRequired,
+      startsWith: PropTypes.func.isRequired,
+      strike: PropTypes.func.isRequired,
+      sub: PropTypes.func.isRequired,
+      substr: PropTypes.func.isRequired,
+      substring: PropTypes.func.isRequired,
+      sup: PropTypes.func.isRequired,
+      toLocaleLowerCase: PropTypes.func.isRequired,
+      toLocaleUpperCase: PropTypes.func.isRequired,
+      toLowerCase: PropTypes.func.isRequired,
+      toString: PropTypes.func.isRequired,
+      toUpperCase: PropTypes.func.isRequired,
+      trim: PropTypes.func.isRequired,
+      trimEnd: PropTypes.func.isRequired,
+      trimLeft: PropTypes.func.isRequired,
+      trimRight: PropTypes.func.isRequired,
+      trimStart: PropTypes.func.isRequired,
+      valueOf: PropTypes.func.isRequired,
+    }),
+  ]),
   /**
-   * The value of the `input` element, required for a controlled component.
+   * @ignore
    */
-  value: PropTypes.any,
+  value: PropTypes.oneOfType([
+    PropTypes.arrayOf(PropTypes.string),
+    PropTypes.number,
+    PropTypes.string,
+  ]),
   /**
    * The variant to use.
    * @default 'outlined'

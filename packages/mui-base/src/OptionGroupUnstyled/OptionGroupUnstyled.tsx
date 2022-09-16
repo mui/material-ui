@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { OverridableComponent } from '@mui/types';
 import composeClasses from '../composeClasses';
 import { getOptionGroupUnstyledUtilityClass } from './optionGroupUnstyledClasses';
 import {
@@ -7,6 +8,7 @@ import {
   OptionGroupUnstyledListSlotProps,
   OptionGroupUnstyledProps,
   OptionGroupUnstyledRootSlotProps,
+  OptionGroupUnstyledTypeMap,
 } from './OptionGroupUnstyled.types';
 import { useSlotProps, WithOptionalOwnerState } from '../utils';
 
@@ -25,16 +27,15 @@ function useUtilityClasses(disabled: boolean) {
  *
  * Demos:
  *
- * - [Select](https://mui.com/base/react-select/)
+ * - [Unstyled select](https://mui.com/base/react-select/)
  *
  * API:
  *
  * - [OptionGroupUnstyled API](https://mui.com/base/api/option-group-unstyled/)
  */
-const OptionGroupUnstyled = React.forwardRef(function OptionGroupUnstyled(
-  props: OptionGroupUnstyledProps,
-  ref: React.ForwardedRef<HTMLLIElement>,
-) {
+const OptionGroupUnstyled = React.forwardRef(function OptionGroupUnstyled<
+  BaseComponentType extends React.ElementType = OptionGroupUnstyledTypeMap['defaultComponent'],
+>(props: OptionGroupUnstyledProps<BaseComponentType>, ref: React.ForwardedRef<HTMLLIElement>) {
   const { component, components = {}, disabled = false, componentsProps = {}, ...other } = props;
 
   const Root = component || components?.Root || 'li';
@@ -74,7 +75,7 @@ const OptionGroupUnstyled = React.forwardRef(function OptionGroupUnstyled(
       <List {...listProps}>{props.children}</List>
     </Root>
   );
-});
+}) as OverridableComponent<OptionGroupUnstyledTypeMap>;
 
 OptionGroupUnstyled.propTypes /* remove-proptypes */ = {
   // ----------------------------- Warning --------------------------------
@@ -86,10 +87,8 @@ OptionGroupUnstyled.propTypes /* remove-proptypes */ = {
    */
   children: PropTypes.node,
   /**
-   * The component used for the Root slot.
+   * The component used for the root node.
    * Either a string to use a HTML element or a component.
-   * This is equivalent to components.Root.
-   * If both are provided, the component is used.
    */
   component: PropTypes.elementType,
   /**

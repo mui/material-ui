@@ -1,18 +1,12 @@
 import * as React from 'react';
-import Box from '@mui/material/Box';
+import Box from '@mui/system/Box';
 import TrapFocus from '@mui/base/TrapFocus';
 
 export default function LazyTrapFocus() {
   const [open, setOpen] = React.useState(false);
 
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        alignItems: 'center',
-        flexDirection: 'column',
-      }}
-    >
+    <Box sx={{ display: 'flex', alignItems: 'center', flexDirection: 'column' }}>
       <button type="button" onClick={() => setOpen(true)}>
         Open
       </button>

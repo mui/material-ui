@@ -15,7 +15,7 @@ Sliders are ideal for interface controls that benefit from a visual representati
 
 {{"demo": "SliderUsage.js", "hideToolbar": true}}
 
-{{"component": "modules/components/ComponentLinkHeader.js"}}
+{{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
 ## Component
 
@@ -46,6 +46,12 @@ You can create custom marks by providing a rich array to the `marks` prop:
 To make the thumb label always visible, toggle on the `valueLabelDisplay` prop.
 
 {{"demo": "AlwaysVisibleLabelSlider.js"}}
+
+### Vertical
+
+Set `orientation="vertical"` to display the vertical slider.
+
+{{"demo": "VerticalSlider.js"}}
 
 ### Keep the label at edges
 

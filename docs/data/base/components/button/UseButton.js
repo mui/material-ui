@@ -17,7 +17,7 @@ const CustomButtonRoot = styled('button')`
   font-size: 0.875rem;
   background-color: ${blue[500]};
   padding: 12px 24px;
-  border-radius: 8px;
+  border-radius: 12px;
   color: white;
   transition: all 150ms ease;
   cursor: pointer;

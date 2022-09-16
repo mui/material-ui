@@ -5,6 +5,7 @@ import { styled } from '@mui/material/styles';
 import { exactProp } from '@mui/utils';
 import GlobalStyles from '@mui/material/GlobalStyles';
 import NoSsr from '@mui/material/NoSsr';
+import { pathnameToLanguage } from 'docs/src/modules/utils/helpers';
 import Head from 'docs/src/modules/components/Head';
 import AppFrame from 'docs/src/modules/components/AppFrame';
 import EditPage from 'docs/src/modules/components/EditPage';
@@ -15,7 +16,6 @@ import AdManager from 'docs/src/modules/components/AdManager';
 import AdGuest from 'docs/src/modules/components/AdGuest';
 import AppLayoutDocsFooter from 'docs/src/modules/components/AppLayoutDocsFooter';
 import BackToTop from 'docs/src/modules/components/BackToTop';
-import { isNewLocation } from 'docs/src/modules/utils/replaceUrl';
 
 const Main = styled('main', {
   shouldForwardProp: (prop) => prop !== 'disableToc',
@@ -82,28 +82,24 @@ function AppLayoutDocs(props) {
     throw new Error('Missing description in the page');
   }
 
-  const isNewDocs = isNewLocation(router.asPath);
-  const asPathWithoutLang = router.asPath.replace(/^\/[a-zA-Z]{2}\//, '/');
+  const { canonicalAs } = pathnameToLanguage(router.asPath);
   let productName = 'MUI';
-  if (asPathWithoutLang.startsWith('/material-ui')) {
+  if (canonicalAs.startsWith('/material-ui/')) {
     productName = 'Material UI';
-  }
-  if (asPathWithoutLang.startsWith('/base')) {
+  } else if (canonicalAs.startsWith('/base/')) {
     productName = 'MUI Base';
-  }
-  if (asPathWithoutLang.startsWith('/x')) {
+  } else if (canonicalAs.startsWith('/x/')) {
     productName = 'MUI X';
-  }
-  if (asPathWithoutLang.startsWith('/system')) {
+  } else if (canonicalAs.startsWith('/system/')) {
     productName = 'MUI System';
-  }
-  if (asPathWithoutLang.startsWith('/toolpad')) {
+  } else if (canonicalAs.startsWith('/toolpad/')) {
     productName = 'MUI Toolpad';
+  } else if (canonicalAs.startsWith('/joy-ui/')) {
+    productName = 'Joy UI';
   }
 
   return (
-    // TODO: remove the condition after post-migration (This is to prevent the new urls from being indexed by the old docsearch app)
-    <AppFrame className={isNewDocs ? 'exclude-docsearch-indexing' : ''}>
+    <AppFrame>
       <GlobalStyles
         styles={{
           ':root': {

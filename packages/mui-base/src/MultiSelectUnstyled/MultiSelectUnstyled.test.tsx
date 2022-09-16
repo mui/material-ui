@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { expect } from 'chai';
+import sinon from 'sinon';
 import MultiSelectUnstyled from '@mui/base/MultiSelectUnstyled';
-import { selectUnstyledClasses } from '@mui/base/SelectUnstyled';
+import { SelectOption, selectUnstyledClasses } from '@mui/base/SelectUnstyled';
 import OptionUnstyled from '@mui/base/OptionUnstyled';
 import OptionGroupUnstyled from '@mui/base/OptionGroupUnstyled';
 import {
@@ -126,6 +127,174 @@ describe('MultiSelectUnstyled', () => {
       expect(button).to.have.text('1');
       expect(queryByRole('listbox')).to.equal(null);
     });
+  });
+
+  describe('form submission', () => {
+    it('includes the Select value in the submitted form data when the `name` attribute is provided', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        // FormData is not available in JSDOM
+        this.skip();
+      }
+
+      const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        const formData = new FormData(event.currentTarget);
+        expect(formData.get('test-select')).to.equal('2,3');
+      };
+
+      const { getByText } = render(
+        <form onSubmit={handleSubmit}>
+          <MultiSelectUnstyled defaultValue={[2, 3]} name="test-select">
+            <OptionUnstyled value={1}>1</OptionUnstyled>
+            <OptionUnstyled value={2}>2</OptionUnstyled>
+            <OptionUnstyled value={3}>3</OptionUnstyled>
+          </MultiSelectUnstyled>
+          <button type="submit">Submit</button>
+        </form>,
+      );
+
+      const button = getByText('Submit');
+      act(() => {
+        button.click();
+      });
+    });
+
+    it('transforms the selected value before posting using the getSerializedValue prop, if provided', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        // FormData is not available in JSDOM
+        this.skip();
+      }
+
+      const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        const formData = new FormData(event.currentTarget);
+        expect(formData.get('test-select')).to.equal('2; 3');
+      };
+
+      const customFormValueProvider = (options: SelectOption<number>[]) =>
+        options.map((o) => o.value).join('; ');
+
+      const { getByText } = render(
+        <form onSubmit={handleSubmit}>
+          <MultiSelectUnstyled
+            defaultValue={[2, 3]}
+            name="test-select"
+            getSerializedValue={customFormValueProvider}
+          >
+            <OptionUnstyled value={1}>1</OptionUnstyled>
+            <OptionUnstyled value={2}>2</OptionUnstyled>
+            <OptionUnstyled value={3}>3</OptionUnstyled>
+          </MultiSelectUnstyled>
+          <button type="submit">Submit</button>
+        </form>,
+      );
+
+      const button = getByText('Submit');
+      act(() => {
+        button.click();
+      });
+    });
+
+    it('formats the object values as JSON before posting', function test() {
+      if (/jsdom/.test(window.navigator.userAgent)) {
+        // FormData is not available in JSDOM
+        this.skip();
+      }
+
+      const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        const formData = new FormData(event.currentTarget);
+        expect(formData.get('test-select')).to.equal('[{"firstName":"Olivia"}]');
+      };
+
+      const options = [
+        { value: { firstName: 'Alice' }, label: 'Alice' },
+        { value: { firstName: 'Olivia' }, label: 'Olivia' },
+      ];
+
+      const { getByText } = render(
+        <form onSubmit={handleSubmit}>
+          <MultiSelectUnstyled defaultValue={[options[1].value]} name="test-select">
+            {options.map((o) => (
+              <OptionUnstyled key={o.value.firstName} value={o.value}>
+                {o.label}
+              </OptionUnstyled>
+            ))}
+          </MultiSelectUnstyled>
+          <button type="submit">Submit</button>
+        </form>,
+      );
+
+      const button = getByText('Submit');
+      act(() => {
+        button.click();
+      });
+    });
+  });
+
+  it('does not call onChange if `value` is modified externally', () => {
+    function TestComponent({ onChange }: { onChange: (value: number[]) => void }) {
+      const [value, setValue] = React.useState([1]);
+      const handleChange = (newValue: number[]) => {
+        setValue(newValue);
+        onChange(newValue);
+      };
+
+      return (
+        <div>
+          <button onClick={() => setValue([1, 2])}>Update value</button>
+          <MultiSelectUnstyled value={value} onChange={handleChange}>
+            <OptionUnstyled value={1}>1</OptionUnstyled>
+            <OptionUnstyled value={2}>2</OptionUnstyled>
+          </MultiSelectUnstyled>
+        </div>
+      );
+    }
+
+    const onChange = sinon.spy();
+    const { getByText } = render(<TestComponent onChange={onChange} />);
+
+    const button = getByText('Update value');
+    act(() => button.click());
+    expect(onChange.notCalled).to.equal(true);
+  });
+
+  it('sets a value correctly when interacted by a user and external code', () => {
+    function TestComponent() {
+      const [value, setValue] = React.useState<number[]>([]);
+
+      return (
+        <div>
+          <button data-testid="update-externally" onClick={() => setValue([1])}>
+            Update value
+          </button>
+          <MultiSelectUnstyled
+            value={value}
+            onChange={setValue}
+            componentsProps={{
+              root: {
+                'data-testid': 'select',
+              } as any,
+            }}
+          >
+            <OptionUnstyled value={1}>1</OptionUnstyled>
+            <OptionUnstyled value={2}>2</OptionUnstyled>
+          </MultiSelectUnstyled>
+        </div>
+      );
+    }
+
+    const { getByTestId, getByText } = render(<TestComponent />);
+    const updateButton = getByTestId('update-externally');
+    const selectButton = getByTestId('select');
+
+    act(() => updateButton.click());
+    act(() => selectButton.click());
+
+    const option2 = getByText('2');
+    act(() => option2.click());
+
+    expect(selectButton).to.have.text('1, 2');
   });
 
   it('closes the listbox without selecting an option when focus is lost', () => {

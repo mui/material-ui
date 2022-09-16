@@ -1,6 +1,7 @@
 {
   "props": {
     "autoFocus": { "type": { "name": "bool" } },
+    "component": { "type": { "name": "elementType" } },
     "components": {
       "type": {
         "name": "shape",
@@ -18,10 +19,13 @@
     "defaultListboxOpen": { "type": { "name": "bool" } },
     "defaultValue": { "type": { "name": "array" }, "default": "[]" },
     "disabled": { "type": { "name": "bool" } },
+    "getSerializedValue": { "type": { "name": "func" } },
     "listboxId": { "type": { "name": "string" } },
     "listboxOpen": { "type": { "name": "bool" }, "default": "undefined" },
+    "name": { "type": { "name": "string" } },
     "onChange": { "type": { "name": "func" } },
     "onListboxOpenChange": { "type": { "name": "func" } },
+    "optionStringifier": { "type": { "name": "func" }, "default": "defaultOptionStringifier" },
     "renderValue": { "type": { "name": "func" } },
     "value": { "type": { "name": "array" } }
   },
@@ -31,6 +35,6 @@
   "forwardsRefTo": "HTMLButtonElement",
   "filename": "/packages/mui-base/src/MultiSelectUnstyled/MultiSelectUnstyled.tsx",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/base/react-select/\">Select</a></li></ul>",
+  "demos": "<ul><li><a href=\"/base/react-select/\">Unstyled select</a></li></ul>",
   "cssComponent": false
 }
