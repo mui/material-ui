@@ -1,4 +1,5 @@
-import { generateUtilityClass, generateUtilityClasses } from '@mui/base';
+import { generateUtilityClasses } from '@mui/base';
+import generateUtilityClass from '../generateUtilityClass';
 
 export interface AvatarGroupClasses {
   /** Styles applied to the root element. */

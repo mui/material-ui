@@ -1,4 +1,5 @@
-import { generateUtilityClass, generateUtilityClasses } from '@mui/base';
+import { generateUtilityClasses } from '@mui/base';
+import generateUtilityClass from '../generateUtilityClass';
 import { GridClasses } from '@mui/system/Unstable_Grid';
 
 export type Grid2ClassKey = keyof GridClasses;

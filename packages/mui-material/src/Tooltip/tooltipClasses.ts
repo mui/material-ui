@@ -1,4 +1,5 @@
-import { generateUtilityClass, generateUtilityClasses } from '@mui/base';
+import { generateUtilityClasses } from '@mui/base';
+import generateUtilityClass from '../generateUtilityClass';
 
 export interface TooltipClasses {
   /** Styles applied to the Popper component. */
