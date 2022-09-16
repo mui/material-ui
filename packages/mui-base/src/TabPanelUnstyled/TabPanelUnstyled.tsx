@@ -24,7 +24,7 @@ const useUtilityClasses = (ownerState: { hidden: boolean }) => {
  *
  * Demos:
  *
- * - [Unstyled tabs](https://mui.com/base/react-tabs/)
+ * - [Unstyled Tabs](https://mui.com/base/react-tabs/)
  *
  * API:
  *

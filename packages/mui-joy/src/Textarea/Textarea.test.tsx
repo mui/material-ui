@@ -35,6 +35,21 @@ describe('Joy <Textarea />', () => {
     expect(screen.getByTestId('end')).toBeVisible();
   });
 
+  it('should pass props to Textarea', () => {
+    const { container } = render(
+      <Textarea
+        componentsProps={{
+          textarea: {
+            maxLength: 5,
+          },
+        }}
+      />,
+    );
+
+    const textarea = container.querySelector('textarea')!;
+    expect(textarea).to.have.attr('maxlength', '5');
+  });
+
   describe('prop: disabled', () => {
     it('should have disabled classes', () => {
       const { container } = render(<Textarea disabled />);

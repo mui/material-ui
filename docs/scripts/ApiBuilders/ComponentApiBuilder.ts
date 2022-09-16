@@ -8,6 +8,7 @@ import kebabCase from 'lodash/kebabCase';
 import * as prettier from 'prettier';
 import remark from 'remark';
 import remarkVisit from 'unist-util-visit';
+import { Link } from 'mdast';
 import { defaultHandlers, parse as docgenParse, ReactDocgenApi } from 'react-docgen';
 import { unstable_generateUtilityClass as generateUtilityClass } from '@mui/utils';
 import muiDefaultPropsHandler from 'docs/src/modules/utils/defaultPropsHandler';
@@ -97,7 +98,7 @@ async function computeApiDescription(api: ReactApi, options: { host: string }): 
   const file = await remark()
     .use(function docsLinksAttacher() {
       return function transformer(tree) {
-        remarkVisit(tree, 'link', (linkNode) => {
+        remarkVisit(tree, 'link', (linkNode: Link) => {
           if ((linkNode.url as string).startsWith('/')) {
             linkNode.url = `${host}${linkNode.url}`;
           }

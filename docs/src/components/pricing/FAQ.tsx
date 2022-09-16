@@ -76,7 +76,7 @@ const faqData = [
         <Link
           target="_blank"
           rel="noopener"
-          href="https://mui.com/store/legal/mui-x-eula/#required-quantity-of-licenses"
+          href="https://mui.com/legal/mui-x-eula/#required-quantity-of-licenses"
         >
           The relevant EULA clause.
         </Link>

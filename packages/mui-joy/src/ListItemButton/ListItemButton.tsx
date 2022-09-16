@@ -47,6 +47,10 @@ export const ListItemButtonRoot = styled('div', {
     ...(ownerState.selected && {
       '--List-decorator-color': 'initial',
     }),
+    ...(ownerState.disabled && {
+      '--List-decorator-color':
+        theme.vars.palette[ownerState.color!]?.[`${ownerState.variant!}DisabledColor`],
+    }),
     boxSizing: 'border-box',
     position: 'relative',
     display: 'flex',
@@ -72,7 +76,9 @@ export const ListItemButtonRoot = styled('div', {
     minBlockSize: 'var(--List-item-minHeight)',
     border: 'none',
     borderRadius: 'var(--List-item-radius)',
-    flex: ownerState.row ? 'none' : 1,
+    flexGrow: ownerState.row ? 0 : 1,
+    flexBasis: ownerState.row ? 'auto' : '0%', // for long text (in vertical), displays in multiple lines.
+    flexShrink: 0,
     minInlineSize: 0,
     // TODO: discuss the transition approach in a separate PR. This value is copied from mui-material Button.
     transition:
