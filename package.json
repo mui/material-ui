@@ -133,7 +133,7 @@
     "eslint-config-prettier": "^8.5.0",
     "eslint-import-resolver-webpack": "^0.13.2",
     "eslint-plugin-babel": "^5.3.1",
-    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-jsx-a11y": "^6.6.1",
     "eslint-plugin-mocha": "^10.1.0",
     "eslint-plugin-react": "^7.31.8",
