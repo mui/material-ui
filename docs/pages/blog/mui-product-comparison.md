@@ -38,6 +38,8 @@ It includes a comprehensive collection of prebuilt components that are ready for
 
 Material UI is beautiful by design and features a suite of customization options that make it easy to implement your own custom design system on top of our components.
 
+Get started in the [Material UI docs](/material-ui/getting-started/overview/).
+
 #### Key features
 
 - Material Design: Your app will look and feel excellent by default, thanks to our meticulous implementation of Material Design.
@@ -47,7 +49,7 @@ Material UI is beautiful by design and features a suite of customization options
 
 #### Ideal use cases
 
-- User interfaces that adhere to Material Design
+- User interfaces that adhere closely to Material Design
 - Internal/admin tools
 - Dev teams that need to ship features in hours rather than weeks
 
@@ -58,9 +60,16 @@ It's intended to serve as an alternative to Material UI for designs that don't a
 
 Try Joy UI if you appreciate the comprehensiveness and reliability of Material UI, but don't need all of the additional baggage that comes along with Material Design.
 
+Get started in the [Joy UI docs](/joy-ui/getting-started/overview/).
+
 #### Key features
 
+- Modern design: Joy UI's default styles align better with modern sensibilities than Material Design's more conservative take.
+- Flexibility: Customize with ease, and leverage the power of CSS variables to ensure consistency when making pixel-perfect adjustments.
+
 #### Ideal use cases
+
+- Projects that don't require Material Design
 
 ### MUI Base
 
@@ -69,9 +78,13 @@ These components were extracted from Material UI, and are now available as a sta
 
 MUI Base includes prebuilt components with production-ready functionality, along with low-level hooks for transferring that functionality to other components.
 
+Get started in the [MUI Base docs](/base/getting-started/overview/).
+
 #### Key features
 
 #### Ideal use cases
+
+- Implementing fully custom designs
 
 ### MUI System
 
@@ -80,6 +93,8 @@ MUI System is a set of CSS utilities to help you build custom designs more effic
 The System gives you a set of flexible, generic wrapper components like Box and Container that can be quickly customized using the sx prop.
 This prop lets you define styles directly within the components themselves, rather than creating bulky and redundant const definitions with styled-components.
 It also gives you direct access to your theme's custom design tokens to ensure consistency in one-off styles. Learn more on the sx prop page.
+
+Get started in the [MUI System docs](/system/getting-started/overview/).
 
 #### Key features
 
@@ -92,9 +107,15 @@ MUI X is a collection of advanced UI components, including the Data Grid and the
 These components are significantly more complex than the ones found in the MUI Core libraries.
 They feature advanced functionality for data-rich applications and a wide range of other use cases.
 
-#### Key features
+Get started in the [MUI X docs](/x/introduction/).
 
-#### Ideal use cases
+### Key features
+
+### Ideal use cases
+
+- data-rich applications
+- data analytics tools
+- admin tools
 
 ## MUI Toolpad
 
@@ -102,9 +123,9 @@ Toolpad is a self-hosted low-code internal tools builder designed to extend MUI'
 It's designed for developers of all trades who want to save time building internal applications.
 Drag and drop pre-built UI components, connect your data sources, and your app is ready for deployment.
 
-#### Key features
+### Key features
 
-#### Ideal use cases
+### Ideal use cases
 
 ## CTA
 
