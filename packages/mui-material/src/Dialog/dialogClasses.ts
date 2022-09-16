@@ -1,4 +1,4 @@
-import { generateUtilityClasses } from '@mui/base';
+import { unstable_generateUtilityClasses as generateUtilityClasses } from '@mui/utils';
 import generateUtilityClass from '../generateUtilityClass';
 
 export interface DialogClasses {

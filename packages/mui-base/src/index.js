@@ -12,11 +12,6 @@ export { default as ClickAwayListener } from './ClickAwayListener';
 
 export { default as unstable_composeClasses } from './composeClasses';
 
-export { default as generateUtilityClass } from './generateUtilityClass';
-export * from './generateUtilityClass';
-
-export { default as generateUtilityClasses } from './generateUtilityClasses';
-
 export { default as FormControlUnstyled } from './FormControlUnstyled';
 export * from './FormControlUnstyled';
 
