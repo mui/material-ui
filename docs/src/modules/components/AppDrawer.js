@@ -105,7 +105,7 @@ function AppDrawer(props, context) {
             </Typography>
           </Link>
           {process.env.LIB_VERSION ? (
-            <Link className={classes.anchor} href="/versions">
+            <Link className={classes.anchor} href="https://mui.com/versions/">
               <Typography variant="caption">{`v${process.env.LIB_VERSION}`}</Typography>
             </Link>
           ) : null}
