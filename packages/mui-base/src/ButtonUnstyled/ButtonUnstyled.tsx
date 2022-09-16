@@ -156,6 +156,10 @@ ButtonUnstyled.propTypes /* remove-proptypes */ = {
   /**
    * @ignore
    */
+  href: PropTypes.string,
+  /**
+   * @ignore
+   */
   onBlur: PropTypes.func,
   /**
    * @ignore
@@ -181,6 +185,10 @@ ButtonUnstyled.propTypes /* remove-proptypes */ = {
    * @ignore
    */
   onMouseLeave: PropTypes.func,
+  /**
+   * @ignore
+   */
+  to: PropTypes.string,
 } as any;
 
 export default ButtonUnstyled;
