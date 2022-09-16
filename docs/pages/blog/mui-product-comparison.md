@@ -9,7 +9,7 @@ tags: ['Product']
 
 MUI is so much more than Material UI!
 
-You'll be forgiven if you thought MUI was merely shorthand for Material UI.
+You'll be forgiven if you thought MUI was merely shorthand for our most popular product.
 What began as an open-source React UI library has evolved over time into a full-fledged startup with a whole suite of related products.
 
 Material UI is the flagship; but it's also the gateway to MUI's ever-expanding ecosystem of UI tools.
