@@ -669,17 +669,6 @@ const appList = [
     index: 35,
   },
   {
-    title: 'Componofy: Spotify Playlist Combination',
-    description:
-      'An open source web app that allows a Spotify user to combine private and public playlists ' +
-      'and either create a new one or merge with existing playlist. ' +
-      'You can also reorder your playlist tracks and upload new playlist cover images.',
-    link: 'https://componofy.herokuapp.com/',
-    source: 'https://github.com/DalerAsrorov/componofy',
-    stars: 5,
-    index: 8,
-  },
-  {
     title: 'Insights',
     description:
       '"Insights" by Just Ask Users helps user experience research teams ' +
