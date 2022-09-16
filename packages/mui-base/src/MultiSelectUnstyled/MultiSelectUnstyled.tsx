@@ -22,7 +22,7 @@ import {
 } from '../SelectUnstyled/SelectUnstyledContext';
 import composeClasses from '../composeClasses';
 import { getSelectUnstyledUtilityClass } from '../SelectUnstyled/selectUnstyledClasses';
-import defaultOptionStringifier from '../SelectUnstyled/defaultOptionStringifier';
+import defaultOptionStringifier from '../useSelect/defaultOptionStringifier';
 
 function defaultRenderMultipleValues<TValue>(selectedOptions: SelectOption<TValue>[]) {
   return <React.Fragment>{selectedOptions.map((o) => o.label).join(', ')}</React.Fragment>;

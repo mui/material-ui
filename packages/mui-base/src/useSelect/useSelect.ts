@@ -23,7 +23,7 @@ import {
   UseSelectSingleResult,
 } from './useSelect.types';
 import { EventHandlers } from '../utils/types';
-import defaultOptionStringifier from '../SelectUnstyled/defaultOptionStringifier';
+import defaultOptionStringifier from './defaultOptionStringifier';
 
 function useSelect<TValue>(props: UseSelectSingleParameters<TValue>): UseSelectSingleResult<TValue>;
 function useSelect<TValue>(props: UseSelectMultiParameters<TValue>): UseSelectMultiResult<TValue>;

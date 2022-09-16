@@ -1,4 +1,4 @@
-import { SelectOption } from '@mui/base/useSelect';
+import { SelectOption } from './useSelect.types';
 
 const defaultOptionStringifier = <TValue>(option: SelectOption<TValue>) => {
   const { label, value } = option;
