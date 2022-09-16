@@ -4,4 +4,4 @@
   # Default build command.
   # docs/ does not declare all of its dependencies and needs some from the parent dir
   # That's why we can't declare `docs/` as the `base`
-  command = "cd docs && npm install && npm run browser:build"
+  command = "cd docs && npm install && npm run browser:build && npm run docs:export"

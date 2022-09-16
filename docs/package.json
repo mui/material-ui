@@ -14,6 +14,7 @@
     "start": "npm run browser:development",
     "browser:development": "webpack-dev-server --config webpack-dev-server.config.js --progress --colors --inline",
     "browser:build": "NODE_ENV=docs-production webpack --config webpack-production.config.js --progress --colors --profile",
+    "docs:export": "cp _headers build",
     "browser:prd": "NODE_ENV=docs-production webpack-dev-server --config webpack-production.config.js --progress --colors",
     "gh-pages:build": "node ./gh-pages-build.js",
     "native:development": "node_modules/react-native/packager/packager.sh --reset-cache",
