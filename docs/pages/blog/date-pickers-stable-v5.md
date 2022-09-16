@@ -1,6 +1,6 @@
 ---
-title: 'The Date pickers gets a stable v5 release'
-description: Date pickers are now stable. Here is the summary of what changed.
+title: 'The MUI X Date and Time Pickers get a stable v5 release
+description: Migrate to the latest version for improved DX, customizability, and API consistency.
 date: 2022-09-05T00:00:00.000Z
 authors: ['alexfauquette', 'josefreitas']
 tags: ['MUI X', 'News']
@@ -17,7 +17,7 @@ About four months ago, we moved the date and time pickers from `@mui/lab` and re
 - Improved customizability.
 - Follow the [installation instructions](https://mui.com/x/react-date-pickers/getting-started/) and the [migration guide](https://mui.com/x/react-date-pickers/migration-lab/).
 
-## What changed?
+## What's changed?
 
 ### Documentation
 
@@ -71,7 +71,7 @@ const theme = createTheme(
 );
 ```
 
-## Evolution of the community
+## Community migration
 
 With all those changes, we wondered if the community has been interested in the new versions.
 
@@ -87,11 +87,11 @@ Over 40% of users are already using the beta versions.
 ## Installation and migration from `@mui/lab`
 
 You can find the installation instructions in our [getting started](https://mui.com/x/react-date-pickers/getting-started/) page.
-If you are migrating from the `@mui/lab` package, we’ve prepared a migration guide to support you, including a codemod to replace the date pickers declarations.
+If you are migrating from the `@mui/lab` package, we’ve prepared a [migration guide](https://mui.com/x/react-date-pickers/migration-lab/) to support you, including a codemod to replace the date pickers declarations.
 
 ## What to expect next?
 
-After working on stability and developer experience, we’re now pushing to improve the components usability.
+After working on stability and developer experience, we’re now pushing to improve the usability of the components.
 
 We’ve been exploring different approaches and implementations for the date fields, and we’ll soon release a v6 alpha version to start iterating on the new and improved components.
 
