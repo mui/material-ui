@@ -29,10 +29,10 @@ export interface InputUnstyledClasses {
 export type InputUnstyledClassKey = keyof InputUnstyledClasses;
 
 export function getInputUnstyledUtilityClass(slot: string): string {
-  return generateUtilityClass('BaseInput', slot);
+  return generateUtilityClass('MuiInput', slot);
 }
 
-const inputUnstyledClasses: InputUnstyledClasses = generateUtilityClasses('BaseInput', [
+const inputUnstyledClasses: InputUnstyledClasses = generateUtilityClasses('MuiInput', [
   'root',
   'formControl',
   'focused',

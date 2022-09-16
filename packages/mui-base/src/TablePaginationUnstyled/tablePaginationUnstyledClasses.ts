@@ -29,11 +29,11 @@ export interface TablePaginationUnstyledClasses {
 export type TablePaginationUnstyledClassKey = keyof TablePaginationUnstyledClasses;
 
 export function getTablePaginationUnstyledUtilityClass(slot: string): string {
-  return generateUtilityClass('BaseTablePagination', slot);
+  return generateUtilityClass('MuiTablePagination', slot);
 }
 
 const tablePaginationUnstyledClasses: TablePaginationUnstyledClasses = generateUtilityClasses(
-  'BaseTablePagination',
+  'MuiTablePagination',
   [
     'root',
     'toolbar',

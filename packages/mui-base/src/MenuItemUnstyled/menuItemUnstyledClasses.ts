@@ -10,10 +10,10 @@ export interface MenuItemUnstyledClasses {
 export type MenuItemUnstyledClassKey = keyof MenuItemUnstyledClasses;
 
 export function getMenuItemUnstyledUtilityClass(slot: string): string {
-  return generateUtilityClass('BaseMenuItem', slot);
+  return generateUtilityClass('MuiMenuItem', slot);
 }
 
-const menuItemUnstyledClasses: MenuItemUnstyledClasses = generateUtilityClasses('BaseMenuItem', [
+const menuItemUnstyledClasses: MenuItemUnstyledClasses = generateUtilityClasses('MuiMenuItem', [
   'root',
   'disabled',
   'focusVisible',

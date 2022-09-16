@@ -15,10 +15,10 @@ export interface SelectUnstyledClasses {
 export type SelectUnstyledClassKey = keyof SelectUnstyledClasses;
 
 export function getSelectUnstyledUtilityClass(slot: string): string {
-  return generateUtilityClass('BaseSelect', slot);
+  return generateUtilityClass('MuiSelect', slot);
 }
 
-const selectUnstyledClasses: SelectUnstyledClasses = generateUtilityClasses('BaseSelect', [
+const selectUnstyledClasses: SelectUnstyledClasses = generateUtilityClasses('MuiSelect', [
   'root',
   'button',
   'listbox',

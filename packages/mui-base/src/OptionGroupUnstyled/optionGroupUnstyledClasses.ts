@@ -10,11 +10,11 @@ export interface OptionGroupUnstyledClasses {
 export type OptionGroupUnstyledClassKey = keyof OptionGroupUnstyledClasses;
 
 export function getOptionGroupUnstyledUtilityClass(slot: string): string {
-  return generateUtilityClass('BaseOptionGroup', slot);
+  return generateUtilityClass('MuiOptionGroup', slot);
 }
 
 const optionGroupUnstyledClasses: OptionGroupUnstyledClasses = generateUtilityClasses(
-  'BaseOptionGroup',
+  'MuiOptionGroup',
   ['root', 'label', 'list'],
 );
 

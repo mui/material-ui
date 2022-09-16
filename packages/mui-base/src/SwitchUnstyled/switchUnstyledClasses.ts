@@ -23,10 +23,10 @@ export interface SwitchUnstyledClasses {
 export type SwitchUnstyledClassKey = keyof SwitchUnstyledClasses;
 
 export function getSwitchUnstyledUtilityClass(slot: string): string {
-  return generateUtilityClass('BaseSwitch', slot);
+  return generateUtilityClass('MuiSwitch', slot);
 }
 
-const switchUnstyledClasses: SwitchUnstyledClasses = generateUtilityClasses('BaseSwitch', [
+const switchUnstyledClasses: SwitchUnstyledClasses = generateUtilityClasses('MuiSwitch', [
   'root',
   'input',
   'track',

@@ -11,10 +11,10 @@ export interface OptionUnstyledClasses {
 export type OptionUnstyledClassKey = keyof OptionUnstyledClasses;
 
 export function getOptionUnstyledUtilityClass(slot: string): string {
-  return generateUtilityClass('BaseOption', slot);
+  return generateUtilityClass('MuiOption', slot);
 }
 
-const optionUnstyledClasses: OptionUnstyledClasses = generateUtilityClasses('BaseOption', [
+const optionUnstyledClasses: OptionUnstyledClasses = generateUtilityClasses('MuiOption', [
   'root',
   'disabled',
   'selected',
