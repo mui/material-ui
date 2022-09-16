@@ -175,16 +175,6 @@ const appList = [
     source: 'https://github.com/richardscarrott/snippets',
   },
   {
-    title: 'Componofy: Spotify Playlist Combination',
-    description:
-      'A web app that allows a Spotify user to combine private and public playlists ' +
-      'and either create a new one or merge with existing playlist. ' +
-      'You can also reorder your playlist tracks and upload new playlist cover images.',
-    image: '/static/images/showcase/componofy.jpg',
-    link: 'https://componofy.herokuapp.com',
-    source: 'https://github.com/DalerAsrorov/componofy',
-  },
-  {
     title: 'Planalyze',
     description:
       'Planalyze is a real-time daily planning & task tracking tool that keeps teams connected ' +

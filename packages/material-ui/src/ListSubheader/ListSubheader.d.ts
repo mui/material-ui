@@ -10,7 +10,13 @@ export interface ListSubheaderProps
   inset?: boolean;
 }
 
-export type ListSubheaderClassKey = 'root' | 'colorPrimary' | 'colorInherit' | 'inset' | 'sticky' | 'gutters';
+export type ListSubheaderClassKey =
+  | 'root'
+  | 'colorPrimary'
+  | 'colorInherit'
+  | 'inset'
+  | 'sticky'
+  | 'gutters';
 
 declare const ListSubheader: React.ComponentType<ListSubheaderProps>;
 
