@@ -115,7 +115,7 @@ function AppDrawer(props) {
                 <Link
                   color="textSecondary"
                   variant="caption"
-                  href={_rewriteUrlForNextExport('/versions')}
+                  href="https://mui.com/versions/"
                 >
                   {`v${process.env.LIB_VERSION}`}
                 </Link>

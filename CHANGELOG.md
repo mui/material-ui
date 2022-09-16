@@ -1,4 +1,4 @@
-### [Versions](https://material-ui.com/versions/)
+### [Versions](https://mui.com/versions/)
 
 ## 3.9.4
 ###### *Nov 28, 2019*

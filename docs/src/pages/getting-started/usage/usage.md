@@ -54,10 +54,10 @@ To ensure proper rendering and touch zooming for all devices, add the responsive
 Material-UI provides an optional [CssBaseline](/style/css-baseline/) component.
 It fixes some inconsistencies across browsers and devices while providing slightly more opinionated resets to common HTML elements.
 
-## Versioned Documentation
+## Versioned documentation
 
-This documentation always reflects the latest stable version of Material-UI.
-You can find older versions of the documentation on a [separate page](/versions/).
+This documentation always reflects the latest stable version of Material UI.
+You can find older versions of the documentation on a [separate page](https://mui.com/versions/).
 
 ## Next steps
 
