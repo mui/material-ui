@@ -202,24 +202,15 @@ class Master extends Component {
 
     return (
       <div>
-        <Title render="Material-UI" />
+        <Title render="Material UI" />
         <div style={prepareStyles(styles.v1)}>
           Aww yeah, &nbsp;
-          <a style={prepareStyles(styles.v1Link)} href="https://material-ui-next.com/">
+          <a style={prepareStyles(styles.v1Link)} href="https://mui.com/material-ui/">
             <span>
-              Material-UI v1
+              Material UI v1
             </span>
           </a>
-          &nbsp; is here! We &nbsp;
-          <a
-            style={prepareStyles(styles.v1Link)}
-            href="https://github.com/mui-org/material-ui#should-i-start-with-v1-beta"
-          >
-            <span>
-              recommend it
-            </span>
-          </a>
-          &nbsp; for new projects.
+          &nbsp; is here! We recommend it for new projects.
         </div>
         <AppBar
           onLeftIconButtonClick={this.handleClickLeftIconButton}
@@ -262,7 +253,7 @@ class Master extends Component {
             {' and our awesome '}
             <a
               style={prepareStyles(styles.a)}
-              href="https://github.com/callemall/material-ui/graphs/contributors"
+              href="https://github.com/mui/material-ui/graphs/contributors"
             >
               contributors
             </a>.
@@ -270,7 +261,7 @@ class Master extends Component {
           <IconButton
             iconStyle={styles.iconButton}
             iconClassName="muidocs-icon-custom-github"
-            href="https://github.com/callemall/material-ui"
+            href="https://github.com/mui/material-ui"
           />
           <p style={prepareStyles(styles.browserstack)}>
             {'Thank you to '}
