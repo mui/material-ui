@@ -12,6 +12,7 @@ import {
 import useButton from './useButton';
 import { WithOptionalOwnerState } from '../utils/types';
 import { useSlotProps } from '../utils';
+import { useClassNameGenerator } from '../utils/ClassNameConfigurator';
 
 export interface ButtonUnstyledOwnerState extends ButtonUnstyledOwnProps {
   focusVisible: boolean;
@@ -19,13 +20,14 @@ export interface ButtonUnstyledOwnerState extends ButtonUnstyledOwnProps {
 }
 
 const useUtilityClasses = (ownerState: ButtonUnstyledOwnerState) => {
-  const { active, disabled, focusVisible } = ownerState;
+  const { active, disabled, focusVisible, disableDefaultClasses } = ownerState;
+  const overrideClassNames = useClassNameGenerator(disableDefaultClasses);
 
   const slots = {
     root: ['root', disabled && 'disabled', focusVisible && 'focusVisible', active && 'active'],
   };
 
-  return composeClasses(slots, getButtonUnstyledUtilityClass, {});
+  return composeClasses(slots, overrideClassNames(getButtonUnstyledUtilityClass), {});
 };
 /**
  * The foundation for building custom-styled buttons.
