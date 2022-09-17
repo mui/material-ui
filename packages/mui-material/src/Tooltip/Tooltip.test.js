@@ -111,7 +111,7 @@ describe('<Tooltip />', () => {
       expect(queryByRole('tooltip')).to.equal(null);
     });
 
-    it('should not display if the title is a undefined', () => {
+    it('should not display if the title is an undefined', () => {
       const { queryByRole } = render(
         <Tooltip title={undefined} open>
           <button id="testChild" type="submit">
