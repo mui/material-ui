@@ -15,6 +15,8 @@ function stripDiacritics(string) {
     : string;
 }
 
+const useDeferredVal = (muiValue) => React?.useDeferredValue ? React.useDeferredValue(muiValue): muiValue;
+
 export function createFilterOptions(config = {}) {
   const {
     ignoreAccents = true,
@@ -90,7 +92,7 @@ export default function useAutocomplete(props) {
     handleHomeEndKeys = !props.freeSolo,
     id: idProp,
     includeInputInList = false,
-    inputValue: inputValueProp,
+    inputValue: inputValueDeferredValue,
     isOptionEqualToValue = (option, value) => option === value,
     multiple = false,
     onChange,
@@ -107,6 +109,7 @@ export default function useAutocomplete(props) {
   } = props;
 
   const id = useId(idProp);
+  const inputValueProp = useDeferredVal(inputValueDeferredValue);
 
   let getOptionLabel = getOptionLabelProp;
 
