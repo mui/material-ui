@@ -103,13 +103,7 @@ describe('<Fab />', () => {
 
   it('should have a focusRipple by default', async () => {
     const { getByRole } = render(
-      <Fab
-        TouchRippleProps={{
-          classes: { ripplePulsate: 'pulsate-focus-visible' },
-        }}
-      >
-        Fab
-      </Fab>,
+      <Fab TouchRippleProps={{ classes: { rippleVisible: 'ripple-visible' } }}>Fab</Fab>,
     );
     const button = getByRole('button');
 
@@ -118,17 +112,12 @@ describe('<Fab />', () => {
       button.focus();
     });
 
-    expect(button.querySelector('.pulsate-focus-visible')).not.to.equal(null);
+    expect(button.querySelector('.ripple-visible')).not.to.equal(null);
   });
 
   it('should pass disableFocusRipple to ButtonBase', async () => {
     const { getByRole } = render(
-      <Fab
-        TouchRippleProps={{
-          classes: { ripplePulsate: 'pulsate-focus-visible' },
-        }}
-        disableFocusRipple
-      >
+      <Fab TouchRippleProps={{ classes: { rippleVisible: 'ripple-visible' } }} disableFocusRipple>
         Fab
       </Fab>,
     );
@@ -139,7 +128,7 @@ describe('<Fab />', () => {
       button.focus();
     });
 
-    expect(button.querySelector('.pulsate-focus-visible')).to.equal(null);
+    expect(button.querySelector('.ripple-visible')).to.equal(null);
   });
 
   it('should render Icon children with right classes', () => {

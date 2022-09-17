@@ -309,7 +309,7 @@ describe('<Button />', () => {
 
   it('should have a focusRipple by default', () => {
     const { getByRole } = render(
-      <Button TouchRippleProps={{ classes: { ripplePulsate: 'pulsate-focus-visible' } }}>
+      <Button TouchRippleProps={{ classes: { rippleVisible: 'ripple-visible' } }}>
         Hello World
       </Button>,
     );
@@ -319,15 +319,14 @@ describe('<Button />', () => {
     act(() => {
       button.focus();
     });
-
-    expect(button.querySelector('.pulsate-focus-visible')).not.to.equal(null);
+    expect(button.querySelector('.ripple-visible')).not.to.equal(null);
   });
 
   it('can disable the focusRipple', () => {
     const { getByRole } = render(
       <Button
         disableFocusRipple
-        TouchRippleProps={{ classes: { ripplePulsate: 'pulsate-focus-visible' } }}
+        TouchRippleProps={{ classes: { rippleVisible: 'ripple-visible' } }}
       >
         Hello World
       </Button>,
@@ -339,7 +338,7 @@ describe('<Button />', () => {
       button.focus();
     });
 
-    expect(button.querySelector('.pulsate-focus-visible')).to.equal(null);
+    expect(button.querySelector('.ripple-visible')).to.equal(null);
   });
 
   describe('server-side', () => {

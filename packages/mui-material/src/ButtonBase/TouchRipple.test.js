@@ -132,7 +132,6 @@ describe('<TouchRipple />', () => {
         instance.start(
           {},
           {
-            pulsate: true,
             fakeElement: true,
           },
           cb,

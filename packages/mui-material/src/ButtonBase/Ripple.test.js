@@ -17,7 +17,7 @@ describe('<Ripple />', () => {
     expect(ripple).not.to.have.class(classes.fast);
   });
 
-  describe('starting and stopping', () => {
+  describe('starting and stopping ripple', () => {
     it('should start the ripple', () => {
       const { container, setProps } = render(
         <Ripple classes={classes} timeout={0} rippleX={0} rippleY={0} rippleSize={11} />,
@@ -41,45 +41,7 @@ describe('<Ripple />', () => {
     });
   });
 
-  describe('pulsating and stopping 1', () => {
-    it('should render the ripple inside a pulsating Ripple', () => {
-      const { container } = render(
-        <Ripple classes={classes} timeout={0} rippleX={0} rippleY={0} rippleSize={11} pulsate />,
-      );
-
-      const ripple = container.querySelector('span');
-      expect(ripple).to.have.class(classes.ripple);
-      expect(ripple).to.have.class(classes.ripplePulsate);
-      const child = container.querySelector('span > span');
-      expect(child).to.have.class(classes.childPulsate);
-    });
-
-    it('should start the ripple', () => {
-      const { container, setProps } = render(
-        <Ripple classes={classes} timeout={0} rippleX={0} rippleY={0} rippleSize={11} pulsate />,
-      );
-
-      setProps({ in: true });
-
-      const ripple = container.querySelector('span');
-      expect(ripple).to.have.class(classes.rippleVisible);
-      const child = container.querySelector('span > span');
-      expect(child).to.have.class(classes.childPulsate);
-    });
-
-    it('should stop the ripple', () => {
-      const { container, setProps } = render(
-        <Ripple classes={classes} timeout={0} rippleX={0} rippleY={0} rippleSize={11} pulsate />,
-      );
-
-      setProps({ in: true });
-      setProps({ in: false });
-      const child = container.querySelector('span > span');
-      expect(child).to.have.class(classes.childLeaving);
-    });
-  });
-
-  describe('pulsating and stopping 2', () => {
+  describe('starting and stopping ripple 2', () => {
     clock.withFakeTimers();
 
     it('handleExit should trigger a timer', () => {
@@ -93,7 +55,6 @@ describe('<Ripple />', () => {
           rippleX={0}
           rippleY={0}
           rippleSize={11}
-          pulsate
         />,
       );
 
@@ -115,7 +76,6 @@ describe('<Ripple />', () => {
           rippleX={0}
           rippleY={0}
           rippleSize={11}
-          pulsate
         />,
       );
 

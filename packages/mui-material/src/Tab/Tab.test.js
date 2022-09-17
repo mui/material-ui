@@ -34,7 +34,7 @@ describe('<Tab />', () => {
 
   it('should have a focusRipple by default', () => {
     const { container, getByRole } = render(
-      <Tab TouchRippleProps={{ classes: { ripplePulsate: 'focus-ripple' } }} />,
+      <Tab TouchRippleProps={{ classes: { rippleVisible: 'focus-ripple' } }} />,
     );
     // simulate pointer device
     fireEvent.pointerDown(document.body);
@@ -50,7 +50,7 @@ describe('<Tab />', () => {
 
   it('can disable the focusRipple', () => {
     const { container, getByRole } = render(
-      <Tab disableFocusRipple TouchRippleProps={{ classes: { ripplePulsate: 'focus-ripple' } }} />,
+      <Tab disableFocusRipple TouchRippleProps={{ classes: { rippleVisible: 'focus-ripple' } }} />,
     );
     // simulate pointer device
     fireEvent.pointerDown(document.body);
