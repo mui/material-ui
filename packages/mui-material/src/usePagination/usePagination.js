@@ -1,4 +1,7 @@
 import { unstable_useControlled as useControlled } from '@mui/utils';
+import * as React from "react";
+
+const transitionThrottle = (muiCb) => React?.startTransition ? React.startTransition(() => muiCb()) : () => muiCb();
 
 export default function usePagination(props = {}) {
   // keep default values in sync with @default tags in Pagination.propTypes
@@ -27,7 +30,9 @@ export default function usePagination(props = {}) {
 
   const handleClick = (event, value) => {
     if (!pageProp) {
-      setPageState(value);
+      transitionThrottle(() => {
+        setPageState(value);
+      });
     }
     if (handleChange) {
       handleChange(event, value);
@@ -113,7 +118,7 @@ export default function usePagination(props = {}) {
   };
 
   // Convert the basic item list to PaginationItem props objects
-  const items = itemList.map((item) => {
+  const items = React.useMemo(() => itemList.map((item) => {
     return typeof item === 'number'
       ? {
           onClick: (event) => {
@@ -137,7 +142,7 @@ export default function usePagination(props = {}) {
             (item.indexOf('ellipsis') === -1 &&
               (item === 'next' || item === 'last' ? page >= count : page <= 1)),
         };
-  });
+  }), [itemList, handleClick, page, buttonPage, disabled]);
 
   return {
     items,
