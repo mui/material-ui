@@ -15,7 +15,8 @@ function stripDiacritics(string) {
     : string;
 }
 
-const useDeferredVal = (muiValue) => React?.useDeferredValue ? React.useDeferredValue(muiValue): muiValue;
+const useDeferredVal = (muiValue) =>
+  React.useDeferredValue ? React.useDeferredValue(muiValue) : muiValue;
 
 export function createFilterOptions(config = {}) {
   const {
@@ -92,7 +93,7 @@ export default function useAutocomplete(props) {
     handleHomeEndKeys = !props.freeSolo,
     id: idProp,
     includeInputInList = false,
-    inputValue: inputValueDeferredValue,
+    inputValue: inputDeferredValue,
     isOptionEqualToValue = (option, value) => option === value,
     multiple = false,
     onChange,
@@ -109,7 +110,7 @@ export default function useAutocomplete(props) {
   } = props;
 
   const id = useId(idProp);
-  const inputValueProp = useDeferredVal(inputValueDeferredValue);
+  const inputValueProp = useDeferredVal(inputDeferredValue);
 
   let getOptionLabel = getOptionLabelProp;
 
