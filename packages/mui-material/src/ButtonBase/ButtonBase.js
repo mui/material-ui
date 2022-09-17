@@ -142,7 +142,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
 
   React.useEffect(() => {
     if (focusVisible && focusRipple && !disableRipple && mountedState) {
-      rippleRef.current.pulsate();
+      rippleRef.current.start();
     }
   }, [disableRipple, focusRipple, focusVisible, mountedState]);
 
@@ -269,7 +269,7 @@ const ButtonBase = React.forwardRef(function ButtonBase(inProps, ref) {
     ) {
       keydownRef.current = false;
       rippleRef.current.stop(event, () => {
-        rippleRef.current.pulsate(event);
+        rippleRef.current.start(event);
       });
     }
     if (onKeyUp) {
@@ -525,7 +525,6 @@ ButtonBase.propTypes /* remove-proptypes */ = {
     PropTypes.func,
     PropTypes.shape({
       current: PropTypes.shape({
-        pulsate: PropTypes.func.isRequired,
         start: PropTypes.func.isRequired,
         stop: PropTypes.func.isRequired,
       }),

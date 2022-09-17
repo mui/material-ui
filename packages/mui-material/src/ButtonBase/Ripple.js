@@ -6,22 +6,10 @@ import clsx from 'clsx';
  * @ignore - internal component.
  */
 function Ripple(props) {
-  const {
-    className,
-    classes,
-    pulsate = false,
-    rippleX,
-    rippleY,
-    rippleSize,
-    in: inProp,
-    onExited,
-    timeout,
-  } = props;
+  const { className, classes, rippleX, rippleY, rippleSize, in: inProp, onExited, timeout } = props;
   const [leaving, setLeaving] = React.useState(false);
 
-  const rippleClassName = clsx(className, classes.ripple, classes.rippleVisible, {
-    [classes.ripplePulsate]: pulsate,
-  });
+  const rippleClassName = clsx(className, classes.ripple, classes.rippleVisible);
 
   const rippleStyles = {
     width: rippleSize,
@@ -32,7 +20,6 @@ function Ripple(props) {
 
   const childClassName = clsx(classes.child, {
     [classes.childLeaving]: leaving,
-    [classes.childPulsate]: pulsate,
   });
 
   if (!inProp && !leaving) {
@@ -71,10 +58,6 @@ Ripple.propTypes = {
    * @ignore - injected from TransitionGroup
    */
   onExited: PropTypes.func,
-  /**
-   * If `true`, the ripple pulsates, typically indicating the keyboard focus state of an element.
-   */
-  pulsate: PropTypes.bool,
   /**
    * Diameter of the ripple.
    */

@@ -5,7 +5,6 @@ import { TouchRippleClasses, TouchRippleClassKey } from './touchRippleClasses';
 export { TouchRippleClassKey };
 
 export interface StartActionOptions {
-  pulsate?: boolean;
   center?: boolean;
 }
 
@@ -15,7 +14,6 @@ export interface TouchRippleActions {
     options?: StartActionOptions,
     callback?: () => void,
   ) => void;
-  pulsate: (event?: React.SyntheticEvent) => void;
   stop: (event?: React.SyntheticEvent, callback?: () => void) => void;
 }
 

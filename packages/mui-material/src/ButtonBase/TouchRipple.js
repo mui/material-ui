@@ -33,20 +33,6 @@ const exitKeyframe = keyframes`
   }
 `;
 
-const pulsateKeyframe = keyframes`
-  0% {
-    transform: scale(1);
-  }
-
-  50% {
-    transform: scale(0.92);
-  }
-
-  100% {
-    transform: scale(1);
-  }
-`;
-
 export const TouchRippleRoot = styled('span', {
   name: 'MuiTouchRipple',
   slot: 'Root',
@@ -79,10 +65,6 @@ export const TouchRippleRipple = styled(Ripple, {
     animation-timing-function: ${({ theme }) => theme.transitions.easing.easeInOut};
   }
 
-  &.${touchRippleClasses.ripplePulsate} {
-    animation-duration: ${({ theme }) => theme.transitions.duration.shorter}ms;
-  }
-
   & .${touchRippleClasses.child} {
     opacity: 1;
     display: block;
@@ -97,18 +79,6 @@ export const TouchRippleRipple = styled(Ripple, {
     animation-name: ${exitKeyframe};
     animation-duration: ${DURATION}ms;
     animation-timing-function: ${({ theme }) => theme.transitions.easing.easeInOut};
-  }
-
-  & .${touchRippleClasses.childPulsate} {
-    position: absolute;
-    /* @noflip */
-    left: 0px;
-    top: 0;
-    animation-name: ${pulsateKeyframe};
-    animation-duration: 2500ms;
-    animation-timing-function: ${({ theme }) => theme.transitions.easing.easeInOut};
-    animation-iteration-count: infinite;
-    animation-delay: 200ms;
   }
 `;
 
@@ -150,7 +120,7 @@ const TouchRipple = React.forwardRef(function TouchRipple(inProps, ref) {
 
   const startCommit = React.useCallback(
     (params) => {
-      const { pulsate, rippleX, rippleY, rippleSize, cb } = params;
+      const { rippleX, rippleY, rippleSize, cb } = params;
 
       setRipples((oldRipples) => [
         ...oldRipples,
@@ -159,13 +129,10 @@ const TouchRipple = React.forwardRef(function TouchRipple(inProps, ref) {
           classes={{
             ripple: clsx(classes.ripple, touchRippleClasses.ripple),
             rippleVisible: clsx(classes.rippleVisible, touchRippleClasses.rippleVisible),
-            ripplePulsate: clsx(classes.ripplePulsate, touchRippleClasses.ripplePulsate),
             child: clsx(classes.child, touchRippleClasses.child),
             childLeaving: clsx(classes.childLeaving, touchRippleClasses.childLeaving),
-            childPulsate: clsx(classes.childPulsate, touchRippleClasses.childPulsate),
           }}
           timeout={DURATION}
-          pulsate={pulsate}
           rippleX={rippleX}
           rippleY={rippleY}
           rippleSize={rippleSize}
@@ -180,8 +147,7 @@ const TouchRipple = React.forwardRef(function TouchRipple(inProps, ref) {
   const start = React.useCallback(
     (event = {}, options = {}, cb) => {
       const {
-        pulsate = false,
-        center = centerProp || options.pulsate,
+        center = centerProp,
         fakeElement = false, // For test purposes
       } = options;
 
@@ -247,7 +213,7 @@ const TouchRipple = React.forwardRef(function TouchRipple(inProps, ref) {
         if (startTimerCommit.current === null) {
           // Prepare the ripple effect.
           startTimerCommit.current = () => {
-            startCommit({ pulsate, rippleX, rippleY, rippleSize, cb });
+            startCommit({ rippleX, rippleY, rippleSize, cb });
           };
           // Delay the execution of the ripple effect.
           startTimer.current = setTimeout(() => {
@@ -258,15 +224,11 @@ const TouchRipple = React.forwardRef(function TouchRipple(inProps, ref) {
           }, DELAY_RIPPLE); // We have to make a tradeoff with this value.
         }
       } else {
-        startCommit({ pulsate, rippleX, rippleY, rippleSize, cb });
+        startCommit({ rippleX, rippleY, rippleSize, cb });
       }
     },
     [centerProp, startCommit],
   );
-
-  const pulsate = React.useCallback(() => {
-    start({}, { pulsate: true });
-  }, [start]);
 
   const stop = React.useCallback((event, cb) => {
     clearTimeout(startTimer.current);
@@ -296,11 +258,10 @@ const TouchRipple = React.forwardRef(function TouchRipple(inProps, ref) {
   React.useImperativeHandle(
     ref,
     () => ({
-      pulsate,
       start,
       stop,
     }),
-    [pulsate, start, stop],
+    [start, stop],
   );
 
   return (
