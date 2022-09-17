@@ -22,7 +22,7 @@
     "touchRippleRef": {
       "type": {
         "name": "union",
-        "description": "func<br>&#124;&nbsp;{ current?: { pulsate: func, start: func, stop: func } }"
+        "description": "func<br>&#124;&nbsp;{ current?: { start: func, stop: func } }"
       }
     }
   },
