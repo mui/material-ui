@@ -37,7 +37,7 @@ const useTouchRipple = (props: UseTouchRippleProps) => {
 
   React.useEffect(() => {
     if (focusVisible && !disableFocusRipple && !disableRipple) {
-      rippleRef.current?.pulsate();
+      rippleRef.current?.start();
     }
   }, [rippleRef, focusVisible, disableFocusRipple, disableRipple]);
 
@@ -82,7 +82,7 @@ const useTouchRipple = (props: UseTouchRippleProps) => {
     ) {
       keydownRef.current = false;
       rippleRef.current.stop(event, () => {
-        rippleRef?.current?.pulsate(event);
+        rippleRef?.current?.start(event);
       });
     }
   });
