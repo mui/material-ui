@@ -110,7 +110,7 @@ export default function SandboxDependencies(
 
     // TODO: consider if this configuration could be injected in a "cleaner" way.
     if ((window as any).muiDocConfig) {
-      const muiCommitRef = process.env.PULL_REQUEST ? process.env.COMMIT_REF : undefined;
+      const muiCommitRef = process.env.PULL_REQUEST_ID ? process.env.COMMIT_REF : undefined;
       versions = (window as any).muiDocConfig.csbGetVersions(versions, { muiCommitRef });
     }
 
