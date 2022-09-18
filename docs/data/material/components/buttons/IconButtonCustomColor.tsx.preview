@@ -1,0 +1,6 @@
+<IconButton aria-label="delete" style={{ color: "red"}}>
+  <DeleteIcon />
+</IconButton>
+<IconButton aria-label="alarm" style={{ color: "#1A086C"}}>
+  <AlarmIcon />
+</IconButton>
