@@ -53,7 +53,7 @@
     "@mui/types": "^7.2.0",
     "@mui/utils": "^5.10.3",
     "clsx": "^1.2.1",
-    "csstype": "^3.1.0",
+    "csstype": "^3.1.1",
     "hoist-non-react-statics": "^3.3.2",
     "jss": "^10.9.2",
     "jss-plugin-camel-case": "^10.9.2",

@@ -40,7 +40,7 @@
   "dependencies": {
     "@babel/runtime": "^7.19.0",
     "@emotion/cache": "^11.10.3",
-    "csstype": "^3.1.0",
+    "csstype": "^3.1.1",
     "prop-types": "^15.8.1"
   },
   "peerDependencies": {
