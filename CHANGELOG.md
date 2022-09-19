@@ -17,9 +17,9 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 
 #### Breaking changes
 
-- [button][Joy] Replace `start/endIcon` prop with `start/endDecorator` (#34288) @hbjORbj
-  
-  **BREAKING CHANGE**: replace `start/endIcon` with `start/endDecorator`. 
+- [button][joy] Replace `start/endIcon` prop with `start/endDecorator` (#34288) @hbjORbj
+
+  **BREAKING CHANGE**: replace `start/endIcon` with `start/endDecorator`.
 
   ```jsx
   // before
@@ -32,14 +32,14 @@ This release was mostly about 🐛 bug fixes and 📚 documentation improvements
 #### Changes
 
 - [Joy] Adjust the `Input` and `Textarea` styles (#34281) @siriwatknp
-- [menu][Joy] Set disablePortal default to false (#34283) @tomasz-sodzawiczny
+- [menu][joy] Set disablePortal default to false (#34283) @tomasz-sodzawiczny
 
 ### `@mui/base@5.0.0-alpha.98`
 
 #### Breaking changes
 
 - [Select][base] Add event parameter to the onChange callback (#34158) @michaldudak
-  
+
   The SelectUnstyled and MultiSelectUnstyled `onChange` callbacks did not have event as the first parameter, leading to inconsistency with other components and native HTML elements.
   This PR adds the event parameter as the first one and moves the newly selected value to the second position. Because of this, it's a breaking change.
   This also affects Select from Joy UI.
