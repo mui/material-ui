@@ -1,5 +1,51 @@
 # [Versions](https://mui.com/versions/)
 
+## 5.10.6
+
+<!-- generated comparing v5.10.5..master -->
+
+_Sep 19, 2022_
+
+A big thanks to the 11 contributors who made this release possible.
+This release was mostly around 🐛 bug fixes and 📚 documentation improvements.
+
+### `@mui/material@5.10.6`
+
+- [TextField] Fix conflict with `Bootstrap` even when label is not defined (#34343) @ZeeshanTamboli
+
+### `@mui/joy@`
+
+- [Joy][button] Replace `start/endIcon` prop with `start/endDecorator` (#34288) @hbjORbj
+- [Joy] Adjust the `Input` and `Textarea` styles (#34281) @siriwatknp
+- [Joy][menu] Set disablePortal default to false (#34283) @tomasz-sodzawiczny
+
+### `@mui/base@`
+
+- [Select][base] Add event parameter to the onChange callback (#34158) @michaldudak
+
+### Docs
+
+- [blog] The Date Pickers gets a stable v5 release (#34152) @alexfauquette
+- [blog] Improve image handling (#34222) @oliviertassinari
+- [blog] Correct 2021 survey data interpretation (#34291) @samuelsycamore
+- [docs] Remove expired AospExtended showcase @oliviertassinari
+- [docs] Link the OpenSSF Best Practices card (#34331) @oliviertassinari
+- [docs] Fix 301 link to external projects @oliviertassinari
+- [docs] Move 12 component names to Title Case (#34188) @oliviertassinari
+- [docs] Fix broken links (#34320) @alexfauquette
+- [docs] Add notification for MUI Base announcement post (#34295) @samuelsycamore
+- [website] Fix MUI X subscribe email border style (#34330) @oliviertassinari
+- [website] Improve security header @oliviertassinari
+
+### Core
+
+- [core] Lock file maintenance (#34161) @renovate[bot]
+- [core] Issue template: move reproduction steps to the top (#34279) @Janpot
+- [core] Create shared Next.js baseline config (#34259) @oliviertassinari
+- [core] In `typescript-to-proptypes`, respect the value pass to the generic (#34311) @flaviendelangle
+
+All contributors of this release in alphabetical order: @alexfauquette, @flaviendelangle, @hbjORbj, @Janpot, @michaldudak, @oliviertassinari, @renovate[bot], @samuelsycamore, @siriwatknp, @tomasz-sodzawiczny, @ZeeshanTamboli
+
 ## 5.10.5
 
 <!-- generated comparing v5.10.4..master -->
