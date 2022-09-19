@@ -53,6 +53,7 @@ module.exports = {
     'no-alert': 'error',
     // Stylistic opinion
     'arrow-body-style': 'off',
+    'import/no-named-as-default': 'off',
     // Allow warn and error for dev environments
     'no-console': ['error', { allow: ['warn', 'error'] }],
     'no-param-reassign': 'off', // It's fine.
