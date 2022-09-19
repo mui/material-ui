@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { OverrideProps } from '@mui/types';
+import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import { SxProps } from '../styles/types';
 import { DividerClasses } from './dividerClasses';
 
@@ -17,6 +17,11 @@ export interface DividerTypeMap<P = {}, D extends React.ElementType = 'hr'> {
      * Override or extend the styles applied to the component.
      */
     classes?: Partial<DividerClasses>;
+    /**
+     * The styles applied to the divider to shrink or stretch the line based on the orientation.
+     * @default 'context'
+     */
+    inset?: OverridableStringUnion<'context' | 'fullscreen', DividerInsetOverrides>;
     /**
      * The component orientation.
      * @default 'horizontal'

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
+import { unstable_capitalize as capitalize } from '@mui/utils';
 import { OverridableComponent } from '@mui/types';
 import composeClasses from '@mui/base/composeClasses';
 import { styled, useThemeProps } from '../styles';
@@ -9,7 +10,11 @@ import { getDividerUtilityClass } from './dividerClasses';
 
 const useUtilityClasses = (ownerState: DividerOwnerState) => {
   const slots = {
-    root: ['root', ownerState.orientation === 'vertical' && 'vertical'],
+    root: [
+      'root',
+      ownerState.orientation === 'vertical' && 'vertical',
+      ownerState.inset && `inset${capitalize(ownerState.inset)}`,
+    ],
   };
 
   return composeClasses(slots, getDividerUtilityClass, {});
@@ -21,6 +26,11 @@ const DividerRoot = styled('hr', {
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: DividerOwnerState }>(({ theme, ownerState }) => ({
   '--Divider-thickness': '1px',
+  '--Divider-lineColor': theme.vars.palette.divider,
+  '--_Divider-inset': ownerState.inset === 'context' ? 'var(--Divider-inset, 0px)' : '0px',
+  margin: 'initial', // reset margin for `hr` tag
+  marginInline: ownerState.orientation === 'vertical' ? 'initial' : 'var(--_Divider-inset)',
+  marginBlock: ownerState.orientation === 'vertical' ? 'var(--_Divider-inset)' : 'initial',
   position: 'relative',
   alignSelf: 'stretch',
   ...(ownerState.children
@@ -39,7 +49,7 @@ const DividerRoot = styled('hr', {
           position: 'relative',
           width: ownerState.orientation === 'vertical' ? 'var(--Divider-thickness)' : 'initial',
           height: ownerState.orientation === 'vertical' ? 'initial' : 'var(--Divider-thickness)',
-          backgroundColor: theme.vars.palette.divider, // use logical size + background is better than border because they work with gradient.
+          backgroundColor: 'var(--Divider-lineColor)', // use logical size + background is better than border because they work with gradient.
           content: '""',
         },
         '&::before': {
@@ -67,12 +77,15 @@ const DividerRoot = styled('hr', {
       }
     : {
         border: 'none', // reset the border for `hr` tag
-        margin: 'initial', // reset margin for `hr` tag
         listStyle: 'none',
-        backgroundColor: theme.vars.palette.divider, // use logical size + background is better than border because they work with gradient.
+        backgroundColor: 'var(--Divider-lineColor)', // use logical size + background is better than border because they work with gradient.
         flexShrink: 0,
         width: ownerState.orientation === 'vertical' ? 'var(--Divider-thickness)' : 'initial',
         height: ownerState.orientation === 'vertical' ? 'initial' : 'var(--Divider-thickness)',
+        ...(ownerState.inset === 'fullscreen' && {
+          boxShadow: '0 0 0 100vmax var(--Divider-lineColor)',
+          clipPath: 'inset(0px -100vmax)',
+        }),
       }),
 }));
 
@@ -87,12 +100,14 @@ const Divider = React.forwardRef(function Divider(inProps, ref) {
     children,
     component = children !== undefined && children !== null ? 'div' : 'hr',
     orientation = 'horizontal',
+    inset,
     role = component !== 'hr' ? 'separator' : undefined,
     ...other
   } = props;
 
   const ownerState = {
     ...props,
+    inset,
     role,
     orientation,
     component,

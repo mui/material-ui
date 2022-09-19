@@ -5,6 +5,10 @@ export interface DividerClasses {
   root: string;
   /** Styles applied to the root element if `orientation="vertical"`. */
   vertical: string;
+  /** Styles applied to the root element if `inset="context"`. */
+  insetContext: string;
+  /** Styles applied to the root element if `inset="fullscreen"`. */
+  insetFullscreen: string;
 }
 
 export type DividerClassKey = keyof DividerClasses;
@@ -13,6 +17,11 @@ export function getDividerUtilityClass(slot: string): string {
   return generateUtilityClass('JoyDivider', slot);
 }
 
-const dividerClasses: DividerClasses = generateUtilityClasses('JoyDivider', ['root', 'vertical']);
+const dividerClasses: DividerClasses = generateUtilityClasses('JoyDivider', [
+  'root',
+  'vertical',
+  'insetContext',
+  'insetFullscreen',
+]);
 
 export default dividerClasses;
