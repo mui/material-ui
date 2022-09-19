@@ -19,9 +19,8 @@ export interface DividerTypeMap<P = {}, D extends React.ElementType = 'hr'> {
     classes?: Partial<DividerClasses>;
     /**
      * The styles applied to the divider to shrink or stretch the line based on the orientation.
-     * @default 'context'
      */
-    inset?: OverridableStringUnion<'context' | 'fullscreen', DividerInsetOverrides>;
+    inset?: OverridableStringUnion<'context', DividerInsetOverrides>;
     /**
      * The component orientation.
      * @default 'horizontal'
@@ -42,10 +41,4 @@ export type DividerProps<
   },
 > = OverrideProps<DividerTypeMap<P, D>, D>;
 
-export interface DividerOwnerState extends DividerProps {
-  /**
-   * @internal
-   * The internal prop for controlling CSS margin of the element.
-   */
-  'data-first-child'?: boolean;
-}
+export interface DividerOwnerState extends DividerProps {}

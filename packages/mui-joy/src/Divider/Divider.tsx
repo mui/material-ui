@@ -95,8 +95,8 @@ const Divider = React.forwardRef(function Divider(inProps, ref) {
     className,
     children,
     component = children !== undefined && children !== null ? 'div' : 'hr',
-    orientation = 'horizontal',
     inset,
+    orientation = 'horizontal',
     role = component !== 'hr' ? 'separator' : undefined,
     ...other
   } = props;
