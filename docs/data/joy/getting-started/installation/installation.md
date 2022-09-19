@@ -2,17 +2,15 @@
 
 <p class="description">Install Joy UI, a library of beautifully designed React UI components.</p>
 
-## Default installation
-
 Run one of the following commands to add Joy UI to your project:
 
-### npm
+## npm
 
 ```sh
 npm install @mui/joy @emotion/react @emotion/styled
 ```
 
-### yarn
+## yarn
 
 ```sh
 yarn add @mui/joy @emotion/react @emotion/styled
