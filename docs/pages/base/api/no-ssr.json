@@ -9,6 +9,6 @@
   "spread": false,
   "filename": "/packages/mui-base/src/NoSsr/NoSsr.js",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/base/react-no-ssr/\">No ssr</a></li></ul>",
+  "demos": "<ul><li><a href=\"/base/react-no-ssr/\">No SSR</a></li></ul>",
   "cssComponent": false
 }

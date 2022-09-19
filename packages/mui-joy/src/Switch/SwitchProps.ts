@@ -31,7 +31,7 @@ export interface SwitchTypeMap<P = {}, D extends React.ElementType = 'div'> {
        */
       color?: OverridableStringUnion<ColorPaletteProp, SwitchPropsColorOverrides>;
       /**
-       * The props used for each slot inside the Switch.
+       * The props used for each slot inside the component.
        * @default {}
        */
       componentsProps?: ComponentsProps;

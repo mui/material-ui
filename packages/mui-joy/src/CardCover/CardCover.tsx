@@ -75,7 +75,7 @@ const CardCover = React.forwardRef(function CardCover(inProps, ref) {
     >
       {React.Children.map(children, (child, index) =>
         index === 0 && React.isValidElement(child)
-          ? React.cloneElement(child, { 'data-first-child': '' })
+          ? React.cloneElement(child, { 'data-first-child': '' } as Record<string, string>)
           : child,
       )}
     </CardCoverRoot>

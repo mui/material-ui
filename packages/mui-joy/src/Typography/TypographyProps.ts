@@ -33,7 +33,7 @@ export interface TypographyTypeMap<P = {}, D extends React.ElementType = 'span'>
        */
       color?: OverridableStringUnion<ColorPaletteProp, TypographyPropsColorOverrides>;
       /**
-       * The props used for each slot inside the Input.
+       * The props used for each slot inside the component.
        * @default {}
        */
       componentsProps?: ComponentsProps;

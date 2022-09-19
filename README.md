@@ -121,7 +121,7 @@ Visit our [`styled-engine` guide](https://mui.com/material-ui/guides/styled-engi
 <p align="center">
   <a href="https://octopus.com/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="128" width="128" src="https://i.ibb.co/w0HF0Nz/Logo-Blue-140px-rgb.png" alt="octopus" title="Repeatable, reliable deployments" loading="lazy" /></a>
   <a href="https://www.doit-intl.com/flexsave/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="128" width="128" src="https://avatars.githubusercontent.com/u/8424863?s=256" alt="doit-intl" title="Management Platform for Google Cloud and AWS" loading="lazy" /></a>
-  <a href="https://www.zesty.io/integrations/nextjs-cms/?utm_source=mui&utm_medium=referral&utm_campaign=sponsor" rel="noopener sponsored" target="_blank"><img height="90" width="90" src="https://brand.zesty.io/zesty-io-logo.svg" alt="zesty.io" title="The only Next.js CMS you need" loading="lazy" /></a>
+  <a href="https://www.zesty.io/integrations/mui-nextjs/?utm_source=mui&utm_medium=referral&utm_campaign=sponsor" rel="noopener sponsored" target="_blank"><img height="90" width="90" src="https://brand.zesty.io/zesty-io-logo.svg" alt="zesty.io" title="The only Next.js CMS you need" loading="lazy" /></a>
 </p>
 
 Diamond Sponsors are those who have pledged \$1,500/month or more to MUI.
@@ -134,8 +134,7 @@ via [OpenCollective](https://opencollective.com/mui) or via [Patreon](https://ww
   <a href="https://tidelift.com/subscription/pkg/npm-material-ui?utm_source=npm-material-ui&utm_medium=referral&utm_campaign=homepage" rel="noopener sponsored" target="_blank"><img height="96" width="96" src="https://avatars.githubusercontent.com/u/30204434?s=192" alt="tidelift.com" title="Enterprise-ready open-source software" loading="lazy" /></a>
   <a href="https://bit.dev/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank" style="margin-rig ht: 16px;"><img height="96" width="96" src="https://avatars.githubusercontent.com/u/24789812?s=192" alt="bit.dev" title="The fastest way to share code" loading="lazy" /></a>
   <a href="https://www.text-em-all.com/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img src="https://avatars.githubusercontent.com/u/1262264?s=192" alt="text-em-all.com" title="Mass Text Messaging & Automated Calling" height="96" width="96" loading="lazy"></a>
-  <a href="https://online-aussie-casino.com/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="96" width="96" src="https://images.opencollective.com/aussiecasinohex/923df37/logo/192.png" alt="online-aussie-casino.com" title="Aussie Gambling Guide" loading="lazy" /></a>
-  <a href="https://sumatosoft.com/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="96" width="96" src="https://images.opencollective.com/sumatosoft_company/0b78570/avatar/192.png" alt="sumatosoft.com" title="We help companies to digitalize their businesses" loading="lazy" /></a>
+  <a href="https://netticasinohex.com/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="96" width="96" src="https://images.opencollective.com/netticasinohex-com/71d7417/logo/192.png" alt="netticasinohex.com" title="A real giant among casino guides" loading="lazy" /></a>
   <a href="https://megafamous.com/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="96" width="96" src="https://mui.com/static/sponsors/megafamous.png" alt="megafamous.com" title="The best place to buy Instagram followers & likes." loading="lazy" /></a>
   <a href="https://www.dialmycalls.com/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="96" width="96" src="https://images.opencollective.com/dialmycalls/f5ae9ab/avatar/192.png" alt="dialmycalls.com" title="Send text messages, calls & emails to thousands with ease." loading="lazy" /></a>
   <a href="https://goread.io/?utm_source=MUI&utm_medium=referral&utm_content=readme" rel="noopener sponsored" target="_blank"><img height="96" width="96" src="https://images.opencollective.com/goread_io/eb6337d/logo/192.png" alt="goread.io" title="Instagram followers, likes, power likes, views, comments, saves in minutes." loading="lazy" /></a>
@@ -209,7 +208,7 @@ This project is licensed under the terms of the
 
 ## Security
 
-For details of supported versions and contact details for reporting security issues, please refer to the [security policy](https://github.com/mui/material-ui/blob/master/SECURITY.md).
+For details of supported versions and contact details for reporting security issues, please refer to the [security policy](https://github.com/mui/material-ui/security/policy).
 
 ## Sponsoring services
 

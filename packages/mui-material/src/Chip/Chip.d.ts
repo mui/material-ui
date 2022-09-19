@@ -90,7 +90,7 @@ export interface ChipTypeMap<P = {}, D extends React.ElementType = 'div'> {
  *
  * Demos:
  *
- * - [Chips](https://mui.com/material-ui/react-chip/)
+ * - [Chip](https://mui.com/material-ui/react-chip/)
  *
  * API:
  *
