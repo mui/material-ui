@@ -231,6 +231,8 @@ function TopLayoutBlog(props) {
         disableAlternateLocale
         card={card}
         type="article"
+        authors={headers.authors ? headers.authors.map((key) => authors[key].name) : undefined}
+        publicationDate={headers.date ? headers.date.slice(0, 'xxxx-xx-xx'.length) : undefined}
       />
       <Root className={className}>
         <AppContainer component="main" className={classes.container}>

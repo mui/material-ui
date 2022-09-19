@@ -16,6 +16,8 @@ interface HeadProps {
   largeCard?: boolean;
   title: string;
   type?: string;
+  authors?: string[];
+  publicationDate?: string;
 }
 
 export default function Head(props: HeadProps) {
@@ -28,6 +30,8 @@ export default function Head(props: HeadProps) {
     largeCard = true,
     title = t('headTitle'),
     type = 'website',
+    authors = [],
+    publicationDate,
   } = props;
   const userLanguage = useUserLanguage();
   const router = useRouter();
@@ -54,6 +58,15 @@ export default function Head(props: HeadProps) {
       <meta property="og:description" content={description} />
       <meta property="og:image" content={preview} />
       <meta property="og:ttl" content="604800" />
+      {/* Advanced open graph description (https://ogp.me/#type_article) */}
+      {type === 'article' && (
+        <React.Fragment>
+          {authors.map((author) => (
+            <meta property="article:author" content={author} />
+          ))}
+          {publicationDate && <meta property="article:published_time" content={publicationDate} />}
+        </React.Fragment>
+      )}
       {/* Algolia */}
       <meta name="docsearch:language" content={userLanguage} />
       {/* #major-version-switch */}
