@@ -8,10 +8,10 @@ import FormLabel from '../FormLabel';
 import FormHelperText from '../FormHelperText';
 import JoyInput from '../Input';
 import { styled, useThemeProps } from '../styles';
-import { TextFieldProps, TextFieldTypeMap } from './TextFieldProps';
+import { TextFieldOwnerState, TextFieldTypeMap } from './TextFieldProps';
 import textFieldClasses, { getTextFieldUtilityClass } from './textFieldClasses';
 
-const useUtilityClasses = (ownerState: TextFieldProps) => {
+const useUtilityClasses = (ownerState: TextFieldOwnerState) => {
   const { error, disabled, variant, size, color, fullWidth } = ownerState;
   const slots = {
     root: [
@@ -32,7 +32,7 @@ const TextFieldRoot = styled('div', {
   name: 'JoyTextField',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})<{ ownerState: TextFieldProps }>(({ theme, ownerState }) => ({
+})<{ ownerState: TextFieldOwnerState }>(({ theme, ownerState }) => ({
   '--FormLabel-margin': '0 0 0.25rem 0',
   '--FormHelperText-margin': '0.25rem 0 0 0',
   '--FormLabel-asterisk-color': theme.vars.palette.danger[500],
@@ -306,82 +306,29 @@ TextField.propTypes /* remove-proptypes */ = {
   /**
    * @ignore
    */
-  type: PropTypes.oneOfType([
-    PropTypes.oneOf([
-      'button',
-      'checkbox',
-      'color',
-      'date',
-      'datetime-local',
-      'email',
-      'file',
-      'hidden',
-      'image',
-      'month',
-      'number',
-      'password',
-      'radio',
-      'range',
-      'reset',
-      'search',
-      'submit',
-      'tel',
-      'text',
-      'time',
-      'url',
-      'week',
-    ]),
-    PropTypes.shape({
-      '__@iterator@91': PropTypes.func.isRequired,
-      anchor: PropTypes.func.isRequired,
-      at: PropTypes.func.isRequired,
-      big: PropTypes.func.isRequired,
-      blink: PropTypes.func.isRequired,
-      bold: PropTypes.func.isRequired,
-      charAt: PropTypes.func.isRequired,
-      charCodeAt: PropTypes.func.isRequired,
-      codePointAt: PropTypes.func.isRequired,
-      concat: PropTypes.func.isRequired,
-      endsWith: PropTypes.func.isRequired,
-      fixed: PropTypes.func.isRequired,
-      fontcolor: PropTypes.func.isRequired,
-      fontsize: PropTypes.func.isRequired,
-      includes: PropTypes.func.isRequired,
-      indexOf: PropTypes.func.isRequired,
-      italics: PropTypes.func.isRequired,
-      lastIndexOf: PropTypes.func.isRequired,
-      length: PropTypes.number.isRequired,
-      link: PropTypes.func.isRequired,
-      localeCompare: PropTypes.func.isRequired,
-      match: PropTypes.func.isRequired,
-      matchAll: PropTypes.func.isRequired,
-      normalize: PropTypes.func.isRequired,
-      padEnd: PropTypes.func.isRequired,
-      padStart: PropTypes.func.isRequired,
-      repeat: PropTypes.func.isRequired,
-      replace: PropTypes.func.isRequired,
-      search: PropTypes.func.isRequired,
-      slice: PropTypes.func.isRequired,
-      small: PropTypes.func.isRequired,
-      split: PropTypes.func.isRequired,
-      startsWith: PropTypes.func.isRequired,
-      strike: PropTypes.func.isRequired,
-      sub: PropTypes.func.isRequired,
-      substr: PropTypes.func.isRequired,
-      substring: PropTypes.func.isRequired,
-      sup: PropTypes.func.isRequired,
-      toLocaleLowerCase: PropTypes.func.isRequired,
-      toLocaleUpperCase: PropTypes.func.isRequired,
-      toLowerCase: PropTypes.func.isRequired,
-      toString: PropTypes.func.isRequired,
-      toUpperCase: PropTypes.func.isRequired,
-      trim: PropTypes.func.isRequired,
-      trimEnd: PropTypes.func.isRequired,
-      trimLeft: PropTypes.func.isRequired,
-      trimRight: PropTypes.func.isRequired,
-      trimStart: PropTypes.func.isRequired,
-      valueOf: PropTypes.func.isRequired,
-    }),
+  type: PropTypes /* @typescript-to-proptypes-ignore */.oneOf([
+    'button',
+    'checkbox',
+    'color',
+    'date',
+    'datetime-local',
+    'email',
+    'file',
+    'hidden',
+    'image',
+    'month',
+    'number',
+    'password',
+    'radio',
+    'range',
+    'reset',
+    'search',
+    'submit',
+    'tel',
+    'text',
+    'time',
+    'url',
+    'week',
   ]),
   /**
    * @ignore

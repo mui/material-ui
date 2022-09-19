@@ -15,6 +15,7 @@ describe('Joy <Textarea />', () => {
     refInstanceof: window.HTMLDivElement,
     muiName: 'JoyTextarea',
     testDeepOverrides: { slotName: 'textarea', slotClassName: classes.textarea },
+    testCustomVariant: true,
     testVariantProps: { variant: 'solid' },
     skip: ['propsSpread', 'componentsProp', 'classesRoot'],
   }));
@@ -32,6 +33,21 @@ describe('Joy <Textarea />', () => {
   it('should have endDecorator', () => {
     render(<Textarea endDecorator={<span data-testid="end">end</span>} />);
     expect(screen.getByTestId('end')).toBeVisible();
+  });
+
+  it('should pass props to Textarea', () => {
+    const { container } = render(
+      <Textarea
+        componentsProps={{
+          textarea: {
+            maxLength: 5,
+          },
+        }}
+      />,
+    );
+
+    const textarea = container.querySelector('textarea')!;
+    expect(textarea).to.have.attr('maxlength', '5');
   });
 
   describe('prop: disabled', () => {

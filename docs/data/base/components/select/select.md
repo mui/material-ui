@@ -6,7 +6,7 @@ githubLabel: 'component: select'
 waiAria: https://www.w3.org/WAI/ARIA/apg/example-index/combobox/combobox-select-only.html
 ---
 
-# Unstyled select
+# Unstyled Select
 
 <p class="description">The select components let you create lists of options for users to choose from.</p>
 
@@ -16,6 +16,8 @@ A select is a UI element that gives users a list of options to choose from.
 
 MUI Base offers two components to replace the native HTML `<select>` tag: `SelectUnstyled` and `MultiSelectUnstyled`.
 It also includes `OptionUnstyled` for creating the options on the list, and `OptionGroupUnstyled` for grouping those options.
+
+{{"demo": "UnstyledSelectIntroduction.tsx", "defaultCodeOpen": false, "bg": "gradient"}}
 
 ### Features
 

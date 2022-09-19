@@ -40,3 +40,16 @@ export type ListDividerProps<
     component?: React.ElementType;
   },
 > = OverrideProps<ListDividerTypeMap<P, D>, D>;
+
+export interface ListDividerOwnerState extends ListDividerProps {
+  /**
+   * @internal
+   * The internal prop for controlling CSS margin of the element.
+   */
+  'data-first-child'?: boolean;
+  /**
+   * @internal
+   * The divider is wrapped by a horizontal list.
+   */
+  row: boolean;
+}

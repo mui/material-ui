@@ -13,6 +13,26 @@ export interface ListItemClasses {
   nesting: string;
   /** Styles applied to the root element, if sticky={true}. */
   sticky: string;
+  /** Styles applied to the root element if `color="primary"`. */
+  colorPrimary: string;
+  /** Styles applied to the root element if `color="neutral"`. */
+  colorNeutral: string;
+  /** Styles applied to the root element if `color="danger"`. */
+  colorDanger: string;
+  /** Styles applied to the root element if `color="info"`. */
+  colorInfo: string;
+  /** Styles applied to the root element if `color="success"`. */
+  colorSuccess: string;
+  /** Styles applied to the root element if `color="warning"`. */
+  colorWarning: string;
+  /** State class applied to the root element if `variant="plain"`. */
+  variantPlain: string;
+  /** State class applied to the root element if `variant="soft"`. */
+  variantSoft: string;
+  /** State class applied to the root element if `variant="outlined"`. */
+  variantOutlined: string;
+  /** State class applied to the root element if `variant="solid"`. */
+  variantSolid: string;
 }
 
 export type ListItemClassKey = keyof ListItemClasses;
@@ -28,6 +48,16 @@ const listItemClasses: ListItemClasses = generateUtilityClasses('JoyListItem', [
   'nested',
   'nesting',
   'sticky',
+  'colorPrimary',
+  'colorNeutral',
+  'colorDanger',
+  'colorInfo',
+  'colorSuccess',
+  'colorWarning',
+  'variantPlain',
+  'variantSoft',
+  'variantOutlined',
+  'variantSolid',
 ]);
 
 export default listItemClasses;

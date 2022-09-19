@@ -35,3 +35,5 @@ export type SheetProps<
   D extends React.ElementType = SheetTypeMap['defaultComponent'],
   P = { component?: React.ElementType },
 > = OverrideProps<SheetTypeMap<P, D>, D>;
+
+export interface SheetOwnerState extends SheetProps {}

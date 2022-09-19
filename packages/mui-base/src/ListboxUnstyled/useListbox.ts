@@ -86,6 +86,7 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
 
     dispatch({
       type: ActionTypes.optionsChange,
+      event: null,
       options,
       previousOptions: previousOptions.current,
       props: propsWithDefaults,
@@ -101,6 +102,7 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
     (option: TOption | TOption[] | null) => {
       dispatch({
         type: ActionTypes.setValue,
+        event: null,
         value: option,
       });
     },
@@ -111,6 +113,7 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
     (option: TOption | null) => {
       dispatch({
         type: ActionTypes.setHighlight,
+        event: null,
         highlight: option,
       });
     },
@@ -203,6 +206,7 @@ export default function useListbox<TOption>(props: UseListboxParameters<TOption>
 
         dispatch({
           type: ActionTypes.textNavigation,
+          event,
           searchString: textCriteria.searchString,
           props: propsWithDefaults,
         });
