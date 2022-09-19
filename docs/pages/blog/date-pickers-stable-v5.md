@@ -28,7 +28,7 @@ We revamped the [getting started](https://mui.com/x/react-date-pickers/getting-s
 
 More than 150 issues were solved during the pre-releases (alpha/beta), including the epic [refactoring of the date/time selection behavior](https://github.com/mui/mui-x/pull/4408), which has clarified edge cases about how a date is selected, accepted, dismissed, and which callbacks are triggered when.
 
-A big thanks to all the contributors who took the time to clarify the edge cases they faced. It has been a huge help in refining the components behavior.
+A big thanks to all the contributors who took the time to clarify the edge cases they faced. It's been a huge help in refining the components behavior.
 
 <img src="/static/blog/date-pickers-stable-v5/monkeyuser-237-fov.png" style="width: 796px; margin-top: 16px; margin-bottom: 8px; aspect-ratio: 112/59;" loading="lazy" alt="Bug illustration from monkeyuser.com" />
 
