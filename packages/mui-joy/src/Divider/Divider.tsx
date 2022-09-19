@@ -20,6 +20,7 @@ const DividerRoot = styled('hr', {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: DividerOwnerState }>(({ theme, ownerState }) => ({
+  '--Divider-thickness': '1px',
   position: 'relative',
   alignSelf: 'stretch',
   ...(ownerState.children
@@ -36,8 +37,8 @@ const DividerRoot = styled('hr', {
         fontSize: theme.vars.fontSize.sm,
         '&::before, &::after': {
           position: 'relative',
-          width: ownerState.orientation === 'vertical' ? '1px' : 'initial',
-          height: ownerState.orientation === 'vertical' ? 'initial' : '1px',
+          width: ownerState.orientation === 'vertical' ? 'var(--Divider-thickness)' : 'initial',
+          height: ownerState.orientation === 'vertical' ? 'initial' : 'var(--Divider-thickness)',
           backgroundColor: theme.vars.palette.divider, // use logical size + background is better than border because they work with gradient.
           content: '""',
         },
@@ -70,8 +71,8 @@ const DividerRoot = styled('hr', {
         listStyle: 'none',
         backgroundColor: theme.vars.palette.divider, // use logical size + background is better than border because they work with gradient.
         flexShrink: 0,
-        width: ownerState.orientation === 'vertical' ? '1px' : 'initial',
-        height: ownerState.orientation === 'vertical' ? 'initial' : '1px',
+        width: ownerState.orientation === 'vertical' ? 'var(--Divider-thickness)' : 'initial',
+        height: ownerState.orientation === 'vertical' ? 'initial' : 'var(--Divider-thickness)',
       }),
 }));
 
