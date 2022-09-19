@@ -116,6 +116,7 @@ otherwise, you will notice duplicate headers.
 
 To control how the groups are rendered, provide a custom `renderGroup` prop.
 This is a function that accepts an object with two fields:
+
 - `group`—a string representing a group name
 - `children`—a collection of list items that belong to the group
 

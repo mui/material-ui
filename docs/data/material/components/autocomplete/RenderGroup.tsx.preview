@@ -8,7 +8,7 @@
   renderGroup={(params) => (
     <li>
       <GroupHeader>{params.group}</GroupHeader>
-      <ul>{params.children}</ul>
+      <GroupItems>{params.children}</GroupItems>
     </li>
   )}
 />

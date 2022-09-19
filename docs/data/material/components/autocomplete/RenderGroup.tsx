@@ -1,13 +1,25 @@
 import * as React from 'react';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
-import { styled } from '@mui/system';
+import { styled, lighten, darken } from '@mui/system';
 
-const GroupHeader = styled('div')({
-  position: 'sticky',
-  top: 0,
-  padding: '4px 10px',
+const GroupHeader = styled('div')(({ theme }) => {
+  console.log(theme);
+  return {
+    position: 'sticky',
+    top: '-8px',
+    padding: '4px 10px',
+    color: theme.palette.primary.main,
+    backgroundColor:
+      theme.palette.mode === 'light'
+        ? lighten(theme.palette.primary.light, 0.85)
+        : darken(theme.palette.primary.main, 0.8),
+  };
 });
+
+const GroupItems = styled('ul')(`
+  padding: 0;
+`);
 
 export default function RenderGroup() {
   const options = top100Films.map((option) => {
@@ -29,7 +41,7 @@ export default function RenderGroup() {
       renderGroup={(params) => (
         <li>
           <GroupHeader>{params.group}</GroupHeader>
-          <ul>{params.children}</ul>
+          <GroupItems>{params.children}</GroupItems>
         </li>
       )}
     />
