@@ -1,5 +1,5 @@
 ---
-title: 'The MUI X Date and Time Pickers get a stable v5 release
+title: The MUI X Date and Time Pickers get a stable v5 release
 description: Migrate to the latest version for improved DX, customizability, and API consistency.
 date: 2022-09-05T00:00:00.000Z
 authors: ['alexfauquette', 'josefreitas']
@@ -7,7 +7,8 @@ tags: ['MUI X', 'News']
 card: true
 ---
 
-About four months ago, we moved the date and time pickers from `@mui/lab` and released the first alpha version of the date pickers package. We have focused on improving stability and developer experience since then, and now, we’re happy to announce the first official `@mui/x-date-pickers` [v5 release](https://github.com/mui/mui-x/releases/tag/v5.17.0).
+About four months ago, we moved the date and time pickers from `@mui/lab` and released the first alpha version of the date pickers package.
+We have focused on improving stability and developer experience since then, and now, we’re happy to announce the first official `@mui/x-date-pickers` [v5 release](https://github.com/mui/mui-x/releases/tag/v5.17.0).
 
 ## TL;DR
 
@@ -29,7 +30,7 @@ More than 150 issues were solved during the pre-releases (alpha/beta), including
 
 A big thanks to all the contributors who took the time to clarify the edge cases they faced. It has been a huge help in refining the components behavior.
 
-<img src="/static/blog/date-pickers-stable-v5/monkeyuser-237-fov.png" style="width: 796px; margin-top: 16px; margin-bottom: 8px;" alt="Bug illustration from monkeyuser.com" />
+<img src="/static/blog/date-pickers-stable-v5/monkeyuser-237-fov.png" style="width: 796px; margin-top: 16px; margin-bottom: 8px; aspect-ratio: 112/59;" loading="lazy" alt="Bug illustration from monkeyuser.com" />
 
 ### Better APIs and improved customization
 
@@ -81,7 +82,7 @@ So a significant share has already migrated.
 And the adoption speed across versions is very encouraging.
 Over 40% of users are already using the beta versions.
 
-<img src="/static/blog/date-pickers-stable-v5/date-picker-versions.png" style="width: 796px; margin-top: 16px; margin-bottom: 2px;" alt="Evolution of downloaded version of @mui/x-data-pickers" />
+<img src="/static/blog/date-pickers-stable-v5/date-picker-versions.png" style="width: 796px; margin-top: 16px; aspect-ratio: 168/89;" loading="lazy" alt="Evolution of downloaded version of @mui/x-data-pickers" />
 <p class="blog-description" style="text-align: center;">Relative distribution of `@mui/x-date-pickers` versions between June and August.</p>
 
 ## Installation and migration from `@mui/lab`
