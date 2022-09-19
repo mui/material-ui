@@ -7,19 +7,19 @@
 _Sep 19, 2022_
 
 A big thanks to the 11 contributors who made this release possible.
-This release was mostly around 🐛 bug fixes and 📚 documentation improvements.
+This release was mostly about 🐛 bug fixes and 📚 documentation improvements.
 
 ### `@mui/material@5.10.6`
 
 - [TextField] Fix conflict with `Bootstrap` even when label is not defined (#34343) @ZeeshanTamboli
 
-### `@mui/joy@`
+### `@mui/joy@5.0.0-alpha.46`
 
 - [Joy][button] Replace `start/endIcon` prop with `start/endDecorator` (#34288) @hbjORbj
 - [Joy] Adjust the `Input` and `Textarea` styles (#34281) @siriwatknp
 - [Joy][menu] Set disablePortal default to false (#34283) @tomasz-sodzawiczny
 
-### `@mui/base@`
+### `@mui/base@5.0.0-alpha.98`
 
 - [Select][base] Add event parameter to the onChange callback (#34158) @michaldudak
 
