@@ -32,6 +32,8 @@ const ModalDialogRoot = styled(SheetRoot, {
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
 })<{ ownerState: ModalDialogProps }>(({ theme, ownerState }) => ({
+  // Divider integration
+  '--Divider-inset': 'calc(-1 * var(--ModalDialog-padding))',
   '--ModalClose-radius':
     'max((var(--ModalDialog-radius) - var(--variant-borderWidth)) - var(--ModalClose-inset), min(var(--ModalClose-inset) / 2, (var(--ModalDialog-radius) - var(--variant-borderWidth)) / 2))',
   ...(ownerState.size === 'sm' && {
