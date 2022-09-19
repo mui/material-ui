@@ -1,7 +1,7 @@
 import { unstable_generateUtilityClass as generateUtilityClass } from '@mui/utils';
 
 export type { GlobalStateSlot } from '@mui/utils';
-export const ProductClass = 'Mui-MaterialUI';
+export const ProductClass = 'Mui-material';
 
 export default function generateBaseUtilityClass(
   componentName: string,
