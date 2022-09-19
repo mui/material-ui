@@ -7,7 +7,7 @@ tags: ['News', 'MUI Core']
 card: true
 ---
 
-<img src="/static/blog/introducing-mui-base/hero-image.png" style="width: 692px; aspect-ratio: 132/61; margin-bottom: 24px;" alt="Demo components built with MUI Base, a newly introduced library of unstyled components and hooks" />
+<a href="/base/getting-started/overview/"><img src="/static/blog/introducing-mui-base/hero-image.png" style="width: 692px; aspect-ratio: 132/61; margin-bottom: 24px;" alt="Demo components built with MUI Base, a newly introduced library of unstyled components and hooks" /></a>
 
 While Material UI is excellent for building sleek user interfaces that adhere closely to Material Design, it can become unwieldy when your design system diverges significantly from the defaults.
 We get it.
