@@ -486,7 +486,7 @@ export { default as unstable_composeClasses } from '@mui/base/composeClasses';
 export { default as generateUtilityClass } from './generateUtilityClass';
 export * from './generateUtilityClass';
 
-export { unstable_generateUtilityClasses as generateUtilityClasses } from '@mui/utils';
+export { default as generateUtilityClasses } from './generateUtilityClasses';
 
 export { default as Unstable_TrapFocus } from './Unstable_TrapFocus';
 export * from './Unstable_TrapFocus';
