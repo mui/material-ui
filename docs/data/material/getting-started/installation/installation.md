@@ -89,7 +89,6 @@ To install the Roboto font in your project using the Google Web Fonts CDN, add t
 
 ## Icons
 
-<<<<<<< HEAD
 To use the [font Icon component](/material-ui/icons/#icon-font-icons) or the prebuilt SVG Material Icons (such as those found in the [icon demos](/material-ui/icons/)), you must first install the [Material Icons](https://fonts.google.com/icons?icon.set=Material+Icons) font.
 You can do so with npm or yarn, or with the Google Web Fonts CDN.
 
@@ -108,12 +107,11 @@ yarn add @mui/icons-material
 ### Google Web Fonts
 
 To install the Material Icons font in your project using the Google Web Fonts CDN, add the following code snippet inside your project's `<head />` tag:
-=======
+
 To use the font `Icon` component, you must first add the [Material Icons](https://fonts.google.com/icons?icon.set=Material+Icons) font.
 Here are [some instructions](/material-ui/icons/#icon-font-icons)
 on how to do so.
 For instance, via Google Web Fonts:
->>>>>>> master
 
 ```html
 <link
