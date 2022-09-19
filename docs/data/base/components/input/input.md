@@ -5,7 +5,7 @@ components: InputUnstyled
 githubLabel: 'component: input'
 ---
 
-# Unstyled input
+# Unstyled Input
 
 <p class="description">The InputUnstyled component provides users with a field to enter and edit text.</p>
 

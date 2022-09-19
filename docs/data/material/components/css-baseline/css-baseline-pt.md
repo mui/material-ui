@@ -103,11 +103,11 @@ This API is introduced in @mui/material (v5.1.0) for switching between `"light"`
 
 ### Typography
 
-- Nenhum tamanho de fonte base é declarado no `<html>`, mas 16px é assumido (o padrão do navegador). You can learn more about the implications of changing the `<html>` default font size in [the theme documentation](/material-ui/customization/typography/#typography-html-font-size) page.
+- Nenhum tamanho de fonte base é declarado no `<html>`, mas 16px é assumido (o padrão do navegador). You can learn more about the implications of changing the `<html>` default font size in [the theme documentation](/material-ui/customization/typography/#html-font-size) page.
 - Define o estilo `theme.typography.body1` no elemento `<body>`.
 - Define o font-weight para `theme.typography.fontWeightBold` em elementos `<b>` e `<strong>`.
 - Uma customização da suavização da fonte (font-smoothing) é ativada para melhor exibição da fonte Roboto.
 
 ## Customização
 
-Head to the [global customization](/material-ui/customization/how-to-customize/#5-global-css-override) section of the documentation to change the output of these components.
+Head to the [global customization](/material-ui/customization/how-to-customize/#4-global-css-override) section of the documentation to change the output of these components.
