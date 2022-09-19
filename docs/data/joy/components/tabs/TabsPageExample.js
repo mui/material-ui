@@ -1,7 +1,6 @@
 import * as React from 'react';
 import Box from '@mui/joy/Box';
 import Chip from '@mui/joy/Chip';
-import Divider from '@mui/joy/Divider';
 import Tabs from '@mui/joy/Tabs';
 import TabList from '@mui/joy/TabList';
 import Tab, { tabClasses } from '@mui/joy/Tab';
@@ -83,7 +82,15 @@ export default function TabsPageExample() {
           </Tab>
           <Tab>Search library</Tab>
         </TabList>
-        <Divider inset="fullscreen" />
+        <Box
+          sx={(theme) => ({
+            '--bg': theme.vars.palette.background.level3,
+            height: '1px',
+            background: 'var(--bg)',
+            boxShadow: '0 0 0 100vmax var(--bg)',
+            clipPath: 'inset(0 -100vmax)',
+          })}
+        />
         <Box
           sx={(theme) => ({
             '--bg': theme.vars.palette.background.level1,

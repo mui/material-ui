@@ -7,8 +7,6 @@ export interface DividerClasses {
   vertical: string;
   /** Styles applied to the root element if `inset="context"`. */
   insetContext: string;
-  /** Styles applied to the root element if `inset="fullscreen"`. */
-  insetFullscreen: string;
 }
 
 export type DividerClassKey = keyof DividerClasses;
@@ -21,7 +19,6 @@ const dividerClasses: DividerClasses = generateUtilityClasses('JoyDivider', [
   'root',
   'vertical',
   'insetContext',
-  'insetFullscreen',
 ]);
 
 export default dividerClasses;

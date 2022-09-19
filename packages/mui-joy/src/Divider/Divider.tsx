@@ -82,10 +82,6 @@ const DividerRoot = styled('hr', {
         flexShrink: 0,
         width: ownerState.orientation === 'vertical' ? 'var(--Divider-thickness)' : 'initial',
         height: ownerState.orientation === 'vertical' ? 'initial' : 'var(--Divider-thickness)',
-        ...(ownerState.inset === 'fullscreen' && {
-          boxShadow: '0 0 0 100vmax var(--Divider-lineColor)',
-          clipPath: 'inset(0px -100vmax)',
-        }),
       }),
 }));
 
