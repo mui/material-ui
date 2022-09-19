@@ -38,9 +38,7 @@ export default function useQueryParameterState(
         if (window.location.search !== newSearch) {
           router.replace(
             {
-              pathname: router.pathname,
-              // TODO: this resets the scroll position, even though we have scroll: false
-              // hash: window.location.hash,
+              pathname: window.location.pathname,
               search: newSearch,
             },
             undefined,
