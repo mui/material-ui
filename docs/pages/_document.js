@@ -39,7 +39,7 @@ export default class MyDocument extends Document {
     const { canonicalAsServer, userLanguage } = this.props;
 
     return (
-      <Html lang={userLanguage}>
+      <Html lang={userLanguage} prefix="og: http://ogp.me/ns#">
         <Head>
           {/*
             manifest.json provides metadata used when your web app is added to the
