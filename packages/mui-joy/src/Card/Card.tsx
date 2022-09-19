@@ -51,6 +51,8 @@ const CardRoot = styled('div', {
     // CardOverflow integration
     '--CardOverflow-offset': `calc(-1 * var(--Card-padding))`,
     '--CardOverflow-radius': 'calc(var(--Card-radius) - var(--variant-borderWidth))',
+    // Divider integration
+    '--Divider-offset': 'var(--Card-padding)',
     ...(ownerState.size === 'sm' && {
       '--Card-radius': theme.vars.radius.sm,
       '--Card-padding': '0.5rem',
