@@ -157,19 +157,15 @@ export default function createCssVarsProvider(options) {
         return defaultColorScheme.light;
       })();
       if (key === resolvedDefaultColorScheme) {
-        const excludedVariables = {};
         if (excludeVariablesFromRoot) {
-          Object.keys(css).forEach((cssVar) => {
-            if (excludeVariablesFromRoot(cssVar)) {
-              excludedVariables[cssVar] = css[cssVar];
-              delete css[cssVar];
-            }
+          const excludedVariables = {};
+          excludeVariablesFromRoot(cssVarPrefix).forEach((cssVar) => {
+            excludedVariables[cssVar] = css[cssVar];
+            delete css[cssVar];
           });
-        }
-        defaultColorSchemeStyleSheet[`${colorSchemeSelector}, [${attribute}="${key}"]`] = css;
-        if (excludeVariablesFromRoot) {
           defaultColorSchemeStyleSheet[`[${attribute}="${key}"]`] = excludedVariables;
         }
+        defaultColorSchemeStyleSheet[`${colorSchemeSelector}, [${attribute}="${key}"]`] = css;
       } else {
         otherColorSchemesStyleSheet[
           `${colorSchemeSelector === ':root' ? '' : colorSchemeSelector}[${attribute}="${key}"]`
