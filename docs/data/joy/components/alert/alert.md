@@ -11,7 +11,7 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/alert/
 
 ## Introduction
 
-{{"demo": "AlertUsage.js", "hideToolbar": true}}
+{{"demo": "AlertUsage.js", "bg": "gradient"}}
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 

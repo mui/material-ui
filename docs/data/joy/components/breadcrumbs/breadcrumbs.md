@@ -11,7 +11,7 @@ title: React Breadcrumbs component
 
 The `Breadcrumbs` shows where in the site hierarchy the user is.
 
-{{"demo": "BreadcrumbsUsage.js", "hideToolbar": true}}
+{{"demo": "BreadcrumbsUsage.js", "bg": "gradient"}}
 
 :::success
 To learn how to add more sizes to the component, check out [Themed components—Extend sizes](/joy-ui/customization/themed-components/#extend-sizes).

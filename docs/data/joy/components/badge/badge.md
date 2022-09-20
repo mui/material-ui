@@ -13,7 +13,7 @@ unstyled: /base/react-badge/
 
 The badge component is most frequently used to signal status (online, offline, busy, etc) and whether there's notifications or not.
 
-{{"demo": "BadgeUsage.js", "hideToolbar": true}}
+{{"demo": "BadgeUsage.js", "bg": "gradient"}}
 
 :::success
 To learn how to add more sizes to the component, check out [Themed components—Extend sizes](/joy-ui/customization/themed-components/#extend-sizes).

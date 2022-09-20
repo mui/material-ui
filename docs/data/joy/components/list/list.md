@@ -20,7 +20,7 @@ Joy UI provides four list-related components:
 - [`ListDivider`](#divider): A separator between list items.
 - [`ListSubheader`](#nested-list): A label for a nested list.
 
-{{"demo": "ListUsage.js", "hideToolbar": true}}
+{{"demo": "ListUsage.js", "bg": "gradient"}}
 
 ## Component
 

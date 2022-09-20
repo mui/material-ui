@@ -14,7 +14,7 @@ waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/checkbox/
 The `Checkbox` component is the one to be used when you want to allow users to select multiple options.
 For toggling between on and off or single option selection, consider using a switch or radio button, respectively.
 
-{{"demo": "CheckboxUsage.js", "hideToolbar": true}}
+{{"demo": "CheckboxUsage.js", "bg": "gradient"}}
 
 :::success
 To learn how to add more variants or sizes to the component, check out the [Themed components](/joy-ui/customization/themed-components/) page.

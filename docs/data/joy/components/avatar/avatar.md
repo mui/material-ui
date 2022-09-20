@@ -12,7 +12,7 @@ githubLabel: 'component: avatar'
 
 The avatar component is usually seen for displaying user information in places such as menus, tables, and chats.
 
-{{"demo": "AvatarUsage.js", "hideToolbar": true}}
+{{"demo": "AvatarUsage.js", "bg": "gradient"}}
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 
