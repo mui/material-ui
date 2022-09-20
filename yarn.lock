@@ -3531,7 +3531,7 @@
   dependencies:
     markdown-to-jsx "*"
 
-"@types/marked@^4.0.6":
+"@types/marked@^4.0.7":
   version "4.0.7"
   resolved "https://registry.yarnpkg.com/@types/marked/-/marked-4.0.7.tgz#400a76809fd08c2bbd9e25f3be06ea38c8e0a1d3"
   integrity sha512-eEAhnz21CwvKVW+YvRvcTuFKNU9CV1qH+opcgVK3pIMI6YZzDm6gc8o2vHjldFk6MGKt5pueSB7IOpvpx5Qekw==
@@ -10938,7 +10938,7 @@ markdownlint@~0.26.2:
   dependencies:
     markdown-it "13.0.1"
 
-marked@^4.0.19:
+marked@^4.1.0:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/marked/-/marked-4.1.0.tgz#3fc6e7485f21c1ca5d6ec4a39de820e146954796"
   integrity sha512-+Z6KDjSPa6/723PQYyc1axYZpYYpDnECDaU6hkaf5gqBieBkMKYReL5hteF2QizhlMbgbo8umXl/clZ67+GlsA==
