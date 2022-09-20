@@ -88,7 +88,7 @@
     "@octokit/rest": "^19.0.4",
     "@playwright/test": "1.25.2",
     "@rollup/plugin-replace": "^4.0.0",
-    "@testing-library/dom": "^8.17.1",
+    "@testing-library/dom": "^8.18.1",
     "@testing-library/react": "^13.4.0",
     "@types/chai": "^4.3.3",
     "@types/chai-dom": "^0.0.13",
