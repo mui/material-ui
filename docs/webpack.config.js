@@ -24,6 +24,10 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.css$/i,
+        use: ["style-loader", "css-loader"],
+      },
+      {
         test: /\.md$/,
         oneOf: [
           {
@@ -111,6 +115,7 @@ module.exports = {
       "process.env.__NEXT_CROSS_ORIGIN": "false",
       "process.env.__NEXT_OPTIMIZE_FONTS": "false",
       "process.env.__NEXT_HAS_REWRITES": "false",
+      "BUILD_ONLY_ENGLISH_LOCALE": "true",
     }),
     new (class {
       apply(compiler) {

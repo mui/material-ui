@@ -1,7 +1,8 @@
 import React from 'react';
 import { ThemeProvider } from '@mui/material/styles';
 import PageContext from './modules/components/PageContext';
-
+import '../public/static/styles/prism-okaidia.css';
+import { UserLanguageProvider } from './modules/utils/i18n';
 
 export { default as Accordion } from '../pages/material-ui/react-accordion';
 export { default as Alert } from '../pages/material-ui/react-alert';
@@ -65,7 +66,9 @@ export { default as UseMediaQuery } from '../pages/material-ui/react-use-media-q
 export const Providers = ({ children, theme }) => (
   <ThemeProvider theme={theme}>
     <PageContext.Provider value={{ activePage: null, pages: [] }}>
+      <UserLanguageProvider defaultUserLanguage={'en'}>
       {children}
+      </UserLanguageProvider>
     </PageContext.Provider>
   </ThemeProvider>
 )
