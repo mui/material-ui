@@ -73,14 +73,14 @@ function Icon() {
 <Button
   variant="solid"
   color="success"
-  endIcon={<Icon />}
+  endDecorator={<Icon />}
   sx={{ width: 'var(--Button-minHeight)' }}
 >
   <Icon />
 </Button>;
-<Button variant="solid" startIcon={<Icon />} size="sm">
+<Button variant="solid" startDecorator={<Icon />} size="sm">
   Add to cart
 </Button>;
-<Button variant="outlined" endIcon={<Icon />} color="success">
+<Button variant="outlined" endDecorator={<Icon />} color="success">
   Checkout
 </Button>;

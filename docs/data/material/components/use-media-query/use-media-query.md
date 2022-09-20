@@ -20,7 +20,7 @@ Some of the key features:
 ## Basic media query
 
 You should provide a media query to the first argument of the hook.
-The media query string can be any valid CSS media query, e.g. [`'(prefers-color-scheme: dark)'`](/material-ui/customization/palette/#user-preference).
+The media query string can be any valid CSS media query, e.g. [`'(prefers-color-scheme: dark)'`](/material-ui/customization/dark-mode/#system-preference).
 
 {{"demo": "SimpleMediaQuery.js", "defaultCodeOpen": true}}
 

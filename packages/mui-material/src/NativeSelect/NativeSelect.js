@@ -48,23 +48,27 @@ const NativeSelect = React.forwardRef(function NativeSelect(inProps, ref) {
   const classes = useUtilityClasses(ownerState);
   const { root, ...otherClasses } = classesProp;
 
-  return React.cloneElement(input, {
-    // Most of the logic is implemented in `NativeSelectInput`.
-    // The `Select` component is a simple API wrapper to expose something better to play with.
-    inputComponent: NativeSelectInput,
-    inputProps: {
-      children,
-      classes: otherClasses,
-      IconComponent,
-      variant: fcs.variant,
-      type: undefined, // We render a select. We can ignore the type provided by the `Input`.
-      ...inputProps,
-      ...(input ? input.props.inputProps : {}),
-    },
-    ref,
-    ...other,
-    className: clsx(classes.root, input.props.className, className),
-  });
+  return (
+    <React.Fragment>
+      {React.cloneElement(input, {
+        // Most of the logic is implemented in `NativeSelectInput`.
+        // The `Select` component is a simple API wrapper to expose something better to play with.
+        inputComponent: NativeSelectInput,
+        inputProps: {
+          children,
+          classes: otherClasses,
+          IconComponent,
+          variant: fcs.variant,
+          type: undefined, // We render a select. We can ignore the type provided by the `Input`.
+          ...inputProps,
+          ...(input ? input.props.inputProps : {}),
+        },
+        ref,
+        ...other,
+        className: clsx(classes.root, input.props.className, className),
+      })}
+    </React.Fragment>
+  );
 });
 
 NativeSelect.propTypes /* remove-proptypes */ = {

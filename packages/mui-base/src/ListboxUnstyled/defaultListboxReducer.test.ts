@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { expect } from 'chai';
 import { ActionTypes, ListboxAction, ListboxState } from './useListbox.types';
 import defaultReducer from './defaultListboxReducer';
@@ -13,6 +14,7 @@ describe('useListbox defaultReducer', () => {
       const action: ListboxAction<string> = {
         type: ActionTypes.setValue,
         value: 'foo',
+        event: null,
       };
       const result = defaultReducer(state, action);
       expect(result.selectedValue).to.equal('foo');
@@ -327,6 +329,7 @@ describe('useListbox defaultReducer', () => {
       const action: ListboxAction<string> = {
         type: ActionTypes.textNavigation,
         searchString: 'th',
+        event: {} as React.KeyboardEvent,
         props: {
           options: ['one', 'two', 'three', 'four', 'five'],
           disableListWrap: false,
@@ -351,6 +354,7 @@ describe('useListbox defaultReducer', () => {
       const action: ListboxAction<string> = {
         type: ActionTypes.textNavigation,
         searchString: 'z',
+        event: {} as React.KeyboardEvent,
         props: {
           options: ['one', 'two', 'three', 'four', 'five'],
           disableListWrap: false,
@@ -375,6 +379,7 @@ describe('useListbox defaultReducer', () => {
       const action: ListboxAction<string> = {
         type: ActionTypes.textNavigation,
         searchString: 't',
+        event: {} as React.KeyboardEvent,
         props: {
           options: ['one', 'two', 'three', 'four', 'five'],
           disableListWrap: false,
@@ -399,6 +404,7 @@ describe('useListbox defaultReducer', () => {
       const action: ListboxAction<string> = {
         type: ActionTypes.textNavigation,
         searchString: 't',
+        event: {} as React.KeyboardEvent,
         props: {
           options: ['one', 'two', 'three', 'four', 'five'],
           disableListWrap: false,
@@ -423,6 +429,7 @@ describe('useListbox defaultReducer', () => {
       const action: ListboxAction<string> = {
         type: ActionTypes.textNavigation,
         searchString: 'one',
+        event: {} as React.KeyboardEvent,
         props: {
           options: ['one', 'two', 'three', 'four', 'five'],
           disableListWrap: true,

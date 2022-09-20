@@ -69,7 +69,7 @@ function useUtilityClasses(ownerState: MultiSelectUnstyledOwnerState<any>) {
  *
  * Demos:
  *
- * - [Select](https://mui.com/base/react-select/)
+ * - [Unstyled Select](https://mui.com/base/react-select/)
  *
  * API:
  *
