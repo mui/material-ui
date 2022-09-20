@@ -131,7 +131,7 @@ export default function createCssVarsProvider<ColorScheme extends string>(
      * Some variables are intended to be used in a specific color scheme only. They should be excluded when the default mode is set to the color scheme.
      * This is introduced to fix https://github.com/mui/material-ui/issues/34084
      */
-    excludeVariablesFromRoot?: (cssVarPrefix: string) => Array<string>;
+    excludeVariablesFromRoot?: (cssVarPrefix: string) => string[];
   },
 ): CreateCssVarsProviderResult<ColorScheme>;
 
