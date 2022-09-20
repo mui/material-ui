@@ -874,7 +874,7 @@ Tooltip.propTypes /* remove-proptypes */ = {
   /**
    * Tooltip title. Zero-length titles string, undefined, null and false are never displayed.
    */
-  title: PropTypes /* @typescript-to-proptypes-ignore */.node.isRequired,
+  title: PropTypes /* @typescript-to-proptypes-ignore */.node,
   /**
    * The component used for the transition.
    * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
