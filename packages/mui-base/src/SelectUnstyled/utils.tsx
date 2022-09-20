@@ -1,7 +1,7 @@
 import React from 'react';
+import { isOptionGroup, SelectChild, SelectOption, SelectOptionGroup } from '@mui/base/useSelect';
 import { OptionUnstyledProps } from '../OptionUnstyled';
 import { OptionGroupUnstyledProps } from '../OptionGroupUnstyled';
-import { isOptionGroup, SelectChild, SelectOption, SelectOptionGroup } from '@mui/base/useSelect';
 
 export function areOptionsEqual<TValue>(
   option1: SelectOption<TValue>,

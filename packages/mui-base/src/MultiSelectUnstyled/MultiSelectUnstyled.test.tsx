@@ -2,8 +2,9 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
 import MultiSelectUnstyled from '@mui/base/MultiSelectUnstyled';
-import { SelectOption, selectUnstyledClasses } from '@mui/base/SelectUnstyled';
+import { selectUnstyledClasses } from '@mui/base/SelectUnstyled';
 import OptionUnstyled from '@mui/base/OptionUnstyled';
+import { SelectOption } from '@mui/base/useSelect';
 import OptionGroupUnstyled from '@mui/base/OptionGroupUnstyled';
 import {
   createMount,

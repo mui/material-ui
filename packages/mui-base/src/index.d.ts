@@ -1,59 +1,31 @@
 export * from './utils';
 
-export * from './useAutocomplete';
-
-export * from './useBadge';
-
-export * from './useFormControlUnstyledContext';
-
-export * from './useInput';
-
-export * from './useMenuItem';
-
-export * from './useMenu';
-
-export * from './useSelect';
-
-export * from './useSlider';
-
-export * from './useSwitch';
-
-export * from './useTabPanel';
-
-export * from './useTabsList';
-
-export * from './useTabs';
-
-export * from './useTab';
-
 export { default as BadgeUnstyled } from './BadgeUnstyled';
+export * from './BadgeUnstyled';
 
 export { default as ButtonUnstyled } from './ButtonUnstyled';
 export * from './ButtonUnstyled';
 
 export { default as ClickAwayListener } from './ClickAwayListener';
-export * from './ClickAwayListener';
 
 export { default as unstable_composeClasses } from './composeClasses';
-export * from './composeClasses';
+
+export { default as FormControlUnstyled } from './FormControlUnstyled';
+export * from './FormControlUnstyled';
 
 export { default as generateUtilityClass } from './generateUtilityClass';
 export * from './generateUtilityClass';
 
 export { default as generateUtilityClasses } from './generateUtilityClasses';
-export * from './generateUtilityClasses';
-
-export { default as FormControlUnstyled } from './FormControlUnstyled';
-export * from './FormControlUnstyled';
 
 export { default as InputUnstyled } from './InputUnstyled';
+export * from './InputUnstyled';
 
-export * from './useListbox';
+export { default as MenuItemUnstyled } from './MenuItemUnstyled';
+export * from './MenuItemUnstyled';
 
 export { default as MenuUnstyled } from './MenuUnstyled';
 export * from './MenuUnstyled';
-
-export { default as MenuItemUnstyled } from './MenuItemUnstyled';
 
 export { default as ModalUnstyled } from './ModalUnstyled';
 export * from './ModalUnstyled';
@@ -70,10 +42,8 @@ export { default as OptionUnstyled } from './OptionUnstyled';
 export * from './OptionUnstyled';
 
 export { default as PopperUnstyled } from './PopperUnstyled';
-export * from './PopperUnstyled';
 
 export { default as Portal } from './Portal';
-export * from './Portal';
 
 export { default as SelectUnstyled } from './SelectUnstyled';
 export * from './SelectUnstyled';
@@ -100,7 +70,37 @@ export { default as TabUnstyled } from './TabUnstyled';
 export * from './TabUnstyled';
 
 export { default as TextareaAutosize } from './TextareaAutosize';
-export * from './TextareaAutosize';
 
 export { default as TrapFocus } from './TrapFocus';
-export * from './TrapFocus';
+
+export * from './useAutocomplete';
+
+export * from './useBadge';
+
+export * from './useButton';
+
+export * from './useControllableReducer';
+
+export * from './useFormControlUnstyledContext';
+
+export * from './useInput';
+
+export * from './useListbox';
+
+export * from './useMenu';
+
+export * from './useMenuItem';
+
+export * from './useSelect';
+
+export * from './useSlider';
+
+export * from './useSwitch';
+
+export * from './useTab';
+
+export * from './useTabPanel';
+
+export * from './useTabs';
+
+export * from './useTabsList';
