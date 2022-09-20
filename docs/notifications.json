@@ -12,6 +12,6 @@
   {
     "id": 69,
     "title": "<b>Date Pickers get a stable v5 release.</b>",
-    "text": "We've focused a great deal on improving the pickers and now it's finally live! Check out the <a style=\"color: inherit;\" data-ga-event-category=\"Blog\" data-ga-event-action=\"notification\" data-ga-event-label=\"introducing-mui-base\" href=\"/blog/date-pickers-stable-v5/\">blog post</a> for more details."
+    "text": "We've focused a great deal on improving the pickers, and it's finally live! Check out the <a style=\"color: inherit;\" data-ga-event-category=\"Blog\" data-ga-event-action=\"notification\" data-ga-event-label=\"date-pickers-stable-v5\" href=\"/blog/date-pickers-stable-v5/\">blog post</a> for more details."
   }
 ]
