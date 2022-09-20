@@ -154,14 +154,17 @@ Divider.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
-   * The empty space on the side(s) of the divider in a vertical list.
-   *
-   * For horizontal list (the nearest parent List has `row` prop set to `true`), only `inset="gutter"` affects the list divider.
+   * The styles applied to the divider to shrink or stretch the line based on the orientation.
    */
   inset: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['gutter', 'startDecorator', 'startContent']),
     PropTypes.string,
   ]),
+  /**
+   * The component orientation.
+   * @default 'horizontal'
+   */
+  orientation: PropTypes.oneOf(['horizontal', 'vertical']),
   /**
    * @ignore
    */
