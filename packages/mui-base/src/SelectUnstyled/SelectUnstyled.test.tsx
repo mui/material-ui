@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { expect } from 'chai';
+import { spy } from 'sinon';
 import SelectUnstyled, { SelectOption, selectUnstyledClasses } from '@mui/base/SelectUnstyled';
 import OptionUnstyled, {
   OptionUnstyledProps,
@@ -447,6 +448,34 @@ describe('SelectUnstyled', () => {
       });
 
       expect(isEventHandled).to.equal(true);
+    });
+  });
+
+  describe('prop: onChange', () => {
+    it('is called when the Select value changes', () => {
+      const handleChange = spy();
+
+      const { getByRole, getByText } = render(
+        <SelectUnstyled defaultValue={1} onChange={handleChange}>
+          <OptionUnstyled value={1}>One</OptionUnstyled>
+          <OptionUnstyled value={2}>Two</OptionUnstyled>
+        </SelectUnstyled>,
+      );
+
+      const button = getByRole('button');
+      act(() => {
+        button.click();
+      });
+
+      const optionTwo = getByText('Two');
+      act(() => {
+        optionTwo.click();
+      });
+
+      expect(handleChange.callCount).to.equal(1);
+      expect(handleChange.args[0][0]).to.haveOwnProperty('type', 'click');
+      expect(handleChange.args[0][0]).to.haveOwnProperty('target', optionTwo);
+      expect(handleChange.args[0][1]).to.equal(2);
     });
   });
 
