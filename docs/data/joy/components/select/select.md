@@ -13,7 +13,7 @@ unstyled: /base/react-select/
 
 The `Select` component is used to trigger a popup that displays a list of `Option` components.
 
-{{"demo": "SelectUsage.js", "bg": "gradient"}}
+{{"demo": "SelectUsage.js", "hideToolbar": true, "bg": "gradient"}}
 
 :::success
 To learn how to add more variants or sizes to the component, check out the [Themed components](/joy-ui/customization/themed-components/) page.

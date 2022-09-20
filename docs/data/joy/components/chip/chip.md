@@ -14,7 +14,7 @@ Chips are most frequently used in two main use cases: as pills of informative co
 
 The badge component is most frequently used to signal status (online, offline, busy, etc) and whether there's notifications or not.
 
-{{"demo": "ChipUsage.js", "bg": "gradient"}}
+{{"demo": "ChipUsage.js", "hideToolbar": true, "bg": "gradient"}}
 
 :::success
 To learn how to add more variants or sizes to the component, check out the [Themed components](/joy-ui/customization/themed-components/) page.

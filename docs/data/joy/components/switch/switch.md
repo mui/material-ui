@@ -15,7 +15,7 @@ Switches are very commonly used for adjusting settings on mobile.
 The option that the switch controls, as well as the state it's in,
 should be made clear from the corresponding inline label.
 
-{{"demo": "SwitchUsage.js", "bg": "gradient"}}
+{{"demo": "SwitchUsage.js", "hideToolbar": true, "bg": "gradient"}}
 
 :::success
 To learn how to add more sizes to the component, check out [Themed components—Extend sizes](/joy-ui/customization/themed-components/#extend-sizes).
