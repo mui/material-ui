@@ -8,5 +8,10 @@
     "id": 68,
     "title": "<b>Check out MUI Base today</b> 💥",
     "text": "Love Material UI, but don't need Material Design? Try MUI Base, the new \"unstyled\" alternative. <a style=\"color: inherit;\" data-ga-event-category=\"Blog\" data-ga-event-action=\"notification\" data-ga-event-label=\"introducing-mui-base\" href=\"/blog/introducing-mui-base/\">Read more in this announcement</a>."
+  },
+  {
+    "id": 69,
+    "title": "<b>Date Pickers get a stable v5 release.</b>",
+    "text": "We've focused a great deal on improving the pickers and now it's finally live! Check out the <a style=\"color: inherit;\" data-ga-event-category=\"Blog\" data-ga-event-action=\"notification\" data-ga-event-label=\"introducing-mui-base\" href=\"/blog/date-pickers-stable-v5/\">blog post</a> for more details."
   }
 ]
