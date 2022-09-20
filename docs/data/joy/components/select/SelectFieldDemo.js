@@ -15,7 +15,11 @@ export default function SelectFieldDemo() {
       >
         Favorite pet
       </FormLabel>
-      <Select defaultValue="dog" value={value} onChange={setValue}>
+      <Select
+        defaultValue="dog"
+        value={value}
+        onChange={(e, newValue) => setValue(newValue)}
+      >
         <Option value="dog">Dog</Option>
         <Option value="cat">Cat</Option>
         <Option value="fish">Fish</Option>

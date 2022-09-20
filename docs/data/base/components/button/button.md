@@ -6,7 +6,7 @@ githubLabel: 'component: button'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/button/
 ---
 
-# Unstyled button
+# Unstyled Button
 
 <p class="description">Buttons let users take actions and make choices with a single tap.</p>
 

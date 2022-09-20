@@ -4,6 +4,8 @@
 
 ## Getting started
 
+<p class="description">Get started with React and Material UI in no time.</p>
+
 The following code snippet demonstrates a simple app that uses the Material UI [Button](/material-ui/react-button/) component:
 
 ```jsx
