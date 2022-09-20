@@ -4,7 +4,15 @@
 
 ## Getting started
 
+<<<<<<< HEAD
 The following code snippet demonstrates a simple app that uses the Joy UI [Button](/joy-ui/react-button/) component:
+=======
+### Set up the `CssVarsProvider` component
+
+Go to your `App.js` file and replace it with the code snippet below.
+
+You should see the text `Hello from Joy` being rendered on your browser.
+>>>>>>> master
 
 ```jsx
 import * as React from 'react';

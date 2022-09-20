@@ -110,11 +110,11 @@ To enable it, you can set `enableColorScheme=true` as follows:
 ### Typography
 
 - No base font-size is declared on the `<html>`, but 16px is assumed (the browser default).
-  You can learn more about the implications of changing the `<html>` default font size in [the theme documentation](/material-ui/customization/typography/#typography-html-font-size) page.
+  You can learn more about the implications of changing the `<html>` default font size in [the theme documentation](/material-ui/customization/typography/#html-font-size) page.
 - Set the `theme.typography.body1` style on the `<body>` element.
 - Set the font-weight to `theme.typography.fontWeightBold` for the `<b>` and `<strong>` elements.
 - Custom font-smoothing is enabled for better display of the Roboto font.
 
 ## Customization
 
-Head to the [global customization](/material-ui/customization/how-to-customize/#5-global-css-override) section of the documentation to change the output of these components.
+Head to the [global customization](/material-ui/customization/how-to-customize/#4-global-css-override) section of the documentation to change the output of these components.

@@ -1,7 +1,6 @@
 import React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import { SlotComponentProps } from '@mui/base/utils';
-import { FormControlUnstyledState } from '@mui/base/FormControlUnstyled';
 import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
 
 export type TextareaSlot = 'root' | 'textarea' | 'startDecorator' | 'endDecorator';
@@ -102,8 +101,4 @@ export interface TextareaOwnerState extends TextareaProps {
    * If `true`, the input is focused.
    */
   focused: boolean;
-  /**
-   * The data from the parent form control.
-   */
-  formControlContext: FormControlUnstyledState | undefined;
 }

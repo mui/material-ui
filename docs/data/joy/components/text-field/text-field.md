@@ -1,11 +1,11 @@
 ---
 product: joy-ui
-title: React Text field component
+title: React Text Field component
 githubLabel: 'component: text field'
 unstyled: /base/react-input/
 ---
 
-# Text field
+# Text Field
 
 <p class="description">Text fields let users enter and edit text.</p>
 
@@ -30,9 +30,16 @@ export default function MyApp() {
 }
 ```
 
+### Composition
+
+`TextField` is composed of smallar components－`FormControl`, `FormLabel`, `FormerHelperText`, and `Input`.
+You can either use each one of them separately or plainly use the `TextField` itself.
+
+{{"demo": "TextFieldComposition.js"}}
+
 ### Variants
 
-The text field component supports the four global variants: solid (default), soft, outlined, and plain.
+The text field component supports the four global variants: `solid` (default), `soft`, `outlined`, and `plain`.
 
 {{"demo": "TextFieldVariants.js"}}
 

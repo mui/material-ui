@@ -38,7 +38,7 @@ export interface CardMediaTypeMap<P, D extends React.ElementType> {
  *
  * Demos:
  *
- * - [Cards](https://mui.com/material-ui/react-card/)
+ * - [Card](https://mui.com/material-ui/react-card/)
  *
  * API:
  *

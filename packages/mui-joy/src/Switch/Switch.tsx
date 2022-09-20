@@ -8,6 +8,7 @@ import { useSwitch } from '@mui/base/SwitchUnstyled';
 import { styled, useThemeProps, Theme } from '../styles';
 import switchClasses, { getSwitchUtilityClass } from './switchClasses';
 import { SwitchTypeMap, SwitchOwnerState } from './SwitchProps';
+import FormControlContext from '../FormControl/FormControlContext';
 
 const useUtilityClasses = (ownerState: SwitchOwnerState) => {
   const { checked, disabled, focusVisible, readOnly, color, variant } = ownerState;
@@ -225,7 +226,7 @@ const Switch = React.forwardRef(function Switch(inProps, ref) {
     component = 'div',
     componentsProps = {},
     defaultChecked,
-    disabled: disabledProp,
+    disabled: disabledExternalProp,
     onBlur,
     onChange,
     onFocus,
@@ -233,13 +234,31 @@ const Switch = React.forwardRef(function Switch(inProps, ref) {
     readOnly: readOnlyProp,
     required,
     id,
-    color,
+    color: colorProp,
     variant = 'solid',
-    size = 'md',
+    size: sizeProp = 'md',
     startDecorator,
     endDecorator,
     ...other
   } = props;
+
+  const formControl = React.useContext(FormControlContext);
+
+  if (process.env.NODE_ENV !== 'production') {
+    const registerEffect = formControl?.registerEffect;
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    React.useEffect(() => {
+      if (registerEffect) {
+        return registerEffect();
+      }
+
+      return undefined;
+    }, [registerEffect]);
+  }
+
+  const disabledProp = inProps.disabled ?? formControl?.disabled ?? disabledExternalProp;
+  const size = inProps.size ?? formControl?.size ?? sizeProp;
+  const color = formControl?.error ? 'danger' : inProps.color ?? formControl?.color ?? colorProp;
 
   const useSwitchProps = {
     checked: checkedProp,
@@ -285,7 +304,7 @@ const Switch = React.forwardRef(function Switch(inProps, ref) {
     externalSlotProps: componentsProps.startDecorator,
     ownerState,
     additionalProps: {
-      'aria-hidden': true,
+      'aria-hidden': true, // hide the decorator from assistive technology
     },
     className: classes.startDecorator,
   });
@@ -295,7 +314,7 @@ const Switch = React.forwardRef(function Switch(inProps, ref) {
     externalSlotProps: componentsProps.endDecorator,
     ownerState,
     additionalProps: {
-      'aria-hidden': false,
+      'aria-hidden': true, // hide the decorator from assistive technology
     },
     className: classes.endDecorator,
   });
@@ -327,7 +346,8 @@ const Switch = React.forwardRef(function Switch(inProps, ref) {
     externalSlotProps: componentsProps.input,
     ownerState,
     additionalProps: {
-      id,
+      id: id ?? formControl?.htmlFor,
+      'aria-describedby': formControl?.['aria-describedby'],
     },
     className: classes.input,
   });
