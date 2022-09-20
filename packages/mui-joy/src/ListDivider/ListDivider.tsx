@@ -14,6 +14,7 @@ const useUtilityClasses = (ownerState: ListDividerOwnerState) => {
   const slots = {
     root: [
       'root',
+      // `insetContext` class is already produced by Divider
       ownerState.inset && ownerState.inset !== 'context' && `inset${capitalize(ownerState.inset)}`,
     ],
   };
