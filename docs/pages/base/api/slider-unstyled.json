@@ -117,6 +117,6 @@
   "forwardsRefTo": "HTMLSpanElement",
   "filename": "/packages/mui-base/src/SliderUnstyled/SliderUnstyled.js",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/base/react-slider/\">Slider</a></li></ul>",
+  "demos": "<ul><li><a href=\"/base/react-slider/\">Unstyled Slider</a></li></ul>",
   "cssComponent": false
 }

@@ -74,8 +74,8 @@ export declare const BadgeMark: React.FC<BadgeBadgeProps>;
  *
  * Demos:
  *
- * - [Avatars](https://mui.com/material-ui/react-avatar/)
- * - [Badges](https://mui.com/material-ui/react-badge/)
+ * - [Avatar](https://mui.com/material-ui/react-avatar/)
+ * - [Badge](https://mui.com/material-ui/react-badge/)
  *
  * API:
  *

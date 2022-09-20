@@ -104,7 +104,7 @@ export interface CheckboxProps
  *
  * Demos:
  *
- * - [Checkboxes](https://mui.com/material-ui/react-checkbox/)
+ * - [Checkbox](https://mui.com/material-ui/react-checkbox/)
  * - [Transfer list](https://mui.com/material-ui/react-transfer-list/)
  *
  * API:

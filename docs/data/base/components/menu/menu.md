@@ -6,7 +6,7 @@ githubLabel: 'component: menu'
 waiAria: https://www.w3.org/WAI/ARIA/apg/patterns/menubutton/
 ---
 
-# Unstyled menu
+# Unstyled Menu
 
 <p class="description">The menu components provide your users with a list of options on temporary surfaces.</p>
 
@@ -17,6 +17,8 @@ It renders an unordered list (`<ul>`) by default.
 
 Use `MenuItemUnstyled` to add items to the menu.
 These are rendered as `<li>` elements.
+
+{{"demo": "UnstyledMenuIntroduction.tsx", "defaultCodeOpen": false, "bg": "gradient"}}
 
 {{"component": "modules/components/ComponentLinkHeader.js", "design": false}}
 

@@ -1,5 +1,5 @@
 {
-  "name": "node-esm",
+  "name": "next-webpack4",
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
@@ -7,22 +7,22 @@
   },
   "dependencies": {
     "@emotion/core": "11.0.0",
-    "@emotion/react": "11.7.1",
-    "@emotion/styled": "11.6.0",
-    "@mui/material": "5.0.0-alpha.34",
-    "@mui/icons-material": "5.0.0-alpha.34",
-    "@mui/lab": "5.0.0-alpha.34",
-    "@mui/styled-engine": "5.0.0-alpha.34",
-    "@mui/styles": "5.0.0-alpha.33",
-    "@mui/system": "5.0.0-alpha.34",
-    "@mui/utils": "5.0.0-alpha.33",
-    "next": "12.1.0",
-    "react": "17.0.2",
-    "react-dom": "17.0.2",
-    "react-is": "17.0.2"
+    "@emotion/react": "11.10.4",
+    "@emotion/styled": "11.10.4",
+    "@mui/material": "5.10.5",
+    "@mui/icons-material": "5.10.3",
+    "@mui/lab": "5.0.0-alpha.99",
+    "@mui/styled-engine": "5.10.5",
+    "@mui/styles": "5.10.3",
+    "@mui/system": "5.10.5",
+    "@mui/utils": "5.10.3",
+    "next": "11.1.4",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-is": "^17.0.2"
   },
   "devDependencies": {
-    "concurrently": "6.5.1",
-    "playwright": "1.25.0"
+    "concurrently": "7.4.0",
+    "playwright": "1.25.2"
   }
 }

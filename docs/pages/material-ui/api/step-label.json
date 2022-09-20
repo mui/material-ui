@@ -45,6 +45,6 @@
   "forwardsRefTo": "HTMLSpanElement",
   "filename": "/packages/mui-material/src/StepLabel/StepLabel.js",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/material-ui/react-stepper/\">Steppers</a></li></ul>",
+  "demos": "<ul><li><a href=\"/material-ui/react-stepper/\">Stepper</a></li></ul>",
   "cssComponent": false
 }

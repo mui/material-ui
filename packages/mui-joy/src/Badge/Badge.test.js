@@ -2,7 +2,6 @@ import * as React from 'react';
 import { expect } from 'chai';
 import { createRenderer, describeConformance } from 'test/utils';
 import { unstable_capitalize as capitalize } from '@mui/utils';
-import { BadgeUnstyled } from '@mui/base';
 import { ThemeProvider } from '@mui/joy/styles';
 import Badge, { badgeClasses as classes } from '@mui/joy/Badge';
 
@@ -28,12 +27,13 @@ describe('<Badge />', () => {
     </Badge>,
     () => ({
       classes,
-      inheritComponent: BadgeUnstyled,
+      inheritComponent: 'span',
       render,
       ThemeProvider,
       refInstanceof: window.HTMLSpanElement,
       muiName: 'JoyBadge',
       testVariantProps: { color: 'neutral', variant: 'soft' },
+      testCustomVariant: true,
       skip: ['classesRoot', 'componentsProp'],
     }),
   );

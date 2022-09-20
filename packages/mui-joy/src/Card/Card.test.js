@@ -17,6 +17,7 @@ describe('<Card />', () => {
     refInstanceof: window.HTMLDivElement,
     testComponentPropWith: 'li',
     testVariantProps: { variant: 'solid' },
+    testCustomVariant: true,
     skip: ['classesRoot', 'componentsProp'],
   }));
 

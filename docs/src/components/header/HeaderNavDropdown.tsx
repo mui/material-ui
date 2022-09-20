@@ -2,6 +2,7 @@ import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Collapse from '@mui/material/Collapse';
+import Chip from '@mui/material/Chip';
 import ClickAwayListener from '@mui/base/ClickAwayListener';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
@@ -13,7 +14,7 @@ import ROUTES from 'docs/src/route';
 const Anchor = styled('a')<{ component?: React.ElementType; noLinkStyle?: boolean }>(
   ({ theme }) => ({
     ...theme.typography.body2,
-    fontWeight: 700,
+    fontWeight: theme.typography.fontWeightBold,
     textDecoration: 'none',
     border: 'none',
     width: '100%',
@@ -45,7 +46,7 @@ const UList = styled('ul')({
 const PRODUCTS = [
   {
     name: 'MUI Core',
-    description: 'Ready-to-use foundational components, free forever.',
+    description: 'Ready-to-use foundational React components, free forever.',
     href: ROUTES.productCore,
   },
   {
@@ -62,6 +63,12 @@ const PRODUCTS = [
     name: 'Design kits',
     description: 'Our components available in your favorite design tool.',
     href: ROUTES.productDesignKits,
+  },
+  {
+    name: 'MUI Toolpad',
+    description: 'Low-code admin builder.',
+    href: ROUTES.productToolpad,
+    chip: 'Alpha',
   },
 ];
 
@@ -91,6 +98,16 @@ const DOCS = [
     description: 'Advanced and powerful components for complex use cases.',
     href: ROUTES.advancedComponents,
   },
+  // @ts-ignore
+  ...(process.env.DEPLOY_ENV === 'production'
+    ? []
+    : [
+        {
+          name: 'MUI Toolpad',
+          description: 'Low-code admin builder.',
+          href: ROUTES.toolpadDocs,
+        },
+      ]),
 ];
 
 export default function HeaderNavDropdown() {
@@ -188,7 +205,18 @@ export default function HeaderNavDropdown() {
                           noLinkStyle
                           sx={{ flexDirection: 'column', alignItems: 'initial' }}
                         >
-                          <div>{item.name}</div>
+                          <Box
+                            sx={{
+                              display: 'flex',
+                              flexDirection: 'row',
+                              justifyContent: 'space-between',
+                            }}
+                          >
+                            {item.name}
+                            {item.chip ? (
+                              <Chip size="small" label={item.chip} color="grey" />
+                            ) : null}
+                          </Box>
                           <Typography variant="body2" color="text.secondary">
                             {item.description}
                           </Typography>
@@ -232,7 +260,7 @@ export default function HeaderNavDropdown() {
                           noLinkStyle
                           sx={{ flexDirection: 'column', alignItems: 'initial' }}
                         >
-                          <div>{item.name}</div>
+                          {item.name}
                           <Typography variant="body2" color="text.secondary">
                             {item.description}
                           </Typography>
