@@ -125,4 +125,4 @@ To ensure proper rendering and touch zooming for all devices, add the responsive
 ### CssBaseline
 
 Material UI provides an optional [CssBaseline](/material-ui/react-css-baseline/) component.
-It fixes some inconsistencies across browsers and devices while providing slightly more opinionated resets to common HTML elements than other popular global style sheets like [normalize.css](https://github.com/necolas/normalize.css/).
+It fixes some inconsistencies across browsers and devices while providing resets that are better tailored to fit Material UI than alternative global style sheets like [normalize.css](https://github.com/necolas/normalize.css/).
