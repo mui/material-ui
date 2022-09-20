@@ -36,7 +36,7 @@ The `components` prop is an object that lets you override any interior subcompon
 
 :::info
 Each component contains a root slot, and other appropriate slots based on the nature of the component.
-For example, the Unstyled Badge contains two slots:
+For example, the [Unstyled Badge](/base/react-badge/) contains two slots:
 
 - `root`: the container element that wraps the children.
 - `badge`: the badge element itself.
@@ -44,7 +44,7 @@ For example, the Unstyled Badge contains two slots:
 
 You can use the `components` prop to override default slots with either custom components or HTML elements.
 
-For example, the [Unstyled Badge](/base/react-badge/) component renders a `<span>` by default.
+For example, Unstyled Badge component renders a `<span>` by default.
 The code snippet below shows how to override this by assigning a `<div>` to the root slot:
 
 ```jsx

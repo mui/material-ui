@@ -38,7 +38,7 @@ The `components` prop is an object that lets you override any interior subcompon
 
 :::info
 Each component contains a root slot, and other appropriate slots based on the nature of the component.
-For example, the Badge component contains two slots:
+For example, the [Badge](/joy-ui/react-badge/) component contains two slots:
 
 - `root`: the container element that wraps the children.
 - `badge`: the badge element itself.
@@ -46,7 +46,7 @@ For example, the Badge component contains two slots:
 
 You can use the `components` prop to override default slots with either custom components or HTML elements.
 
-For example, the [Badge](/joy-ui/react-badge/) component renders a `<span>` by default.
+For example, the Badge renders a `<span>` by default.
 The code snippet below shows how to override this by assigning a `<div>` to the root slot:
 
 ```jsx
