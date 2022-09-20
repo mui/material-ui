@@ -34,8 +34,8 @@ export default function MaterialUIDefaultDark() {
         <AppBar position="static" color="secondary" elevation={12}>
           <Toolbar>The color should be secondary.</Toolbar>
         </AppBar>
-        <Box sx={{ height: 100, bgcolor: 'red' }}>
-          <Paper elevation={24} sx={{ bgcolor: 'red', p: 2 }}>
+        <Box sx={{ bgcolor: '#121212', p: 4 }}>
+          <Paper elevation={24} sx={{ bgcolor: '#121212', p: 2, color: '#fff' }}>
             I should be red without overlay.
           </Paper>
         </Box>
