@@ -33,6 +33,7 @@ const DividerRoot = styled('hr', {
   marginBlock: ownerState.orientation === 'vertical' ? 'var(--_Divider-inset)' : 'initial',
   position: 'relative',
   alignSelf: 'stretch',
+  flexShrink: 0,
   ...(ownerState.children
     ? {
         '--Divider-gap': theme.spacing(1),
@@ -47,8 +48,9 @@ const DividerRoot = styled('hr', {
         fontSize: theme.vars.fontSize.sm,
         '&::before, &::after': {
           position: 'relative',
-          width: ownerState.orientation === 'vertical' ? 'var(--Divider-thickness)' : 'initial',
-          height: ownerState.orientation === 'vertical' ? 'initial' : 'var(--Divider-thickness)',
+          inlineSize:
+            ownerState.orientation === 'vertical' ? 'var(--Divider-thickness)' : 'initial',
+          blockSize: ownerState.orientation === 'vertical' ? 'initial' : 'var(--Divider-thickness)',
           backgroundColor: 'var(--Divider-lineColor)', // use logical size + background is better than border because they work with gradient.
           content: '""',
         },
@@ -79,9 +81,8 @@ const DividerRoot = styled('hr', {
         border: 'none', // reset the border for `hr` tag
         listStyle: 'none',
         backgroundColor: 'var(--Divider-lineColor)', // use logical size + background is better than border because they work with gradient.
-        flexShrink: 0,
-        width: ownerState.orientation === 'vertical' ? 'var(--Divider-thickness)' : 'initial',
-        height: ownerState.orientation === 'vertical' ? 'initial' : 'var(--Divider-thickness)',
+        inlineSize: ownerState.orientation === 'vertical' ? 'var(--Divider-thickness)' : 'initial',
+        blockSize: ownerState.orientation === 'vertical' ? 'initial' : 'var(--Divider-thickness)',
       }),
 }));
 
