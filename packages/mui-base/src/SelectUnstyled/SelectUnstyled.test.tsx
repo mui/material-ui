@@ -1,7 +1,10 @@
 import * as React from 'react';
 import { expect } from 'chai';
 import SelectUnstyled, { SelectOption, selectUnstyledClasses } from '@mui/base/SelectUnstyled';
-import OptionUnstyled, { OptionUnstyledProps } from '@mui/base/OptionUnstyled';
+import OptionUnstyled, {
+  OptionUnstyledProps,
+  optionUnstyledClasses,
+} from '@mui/base/OptionUnstyled';
 import OptionGroupUnstyled from '@mui/base/OptionGroupUnstyled';
 import {
   createMount,
@@ -144,11 +147,11 @@ describe('SelectUnstyled', () => {
         const listbox = getByRole('listbox');
 
         userEvent.keyPress(listbox, { key: 'd' });
-        expect(getByText('Dragon Fruit')).to.have.class('MuiOption-highlighted');
+        expect(getByText('Dragon Fruit')).to.have.class(optionUnstyledClasses.highlighted);
         userEvent.keyPress(listbox, { key: 'r' });
-        expect(getByText('Dragon Fruit')).to.have.class('MuiOption-highlighted');
+        expect(getByText('Dragon Fruit')).to.have.class(optionUnstyledClasses.highlighted);
         userEvent.keyPress(listbox, { key: 'z' });
-        expect(getByText('Dragon Fruit')).to.have.class('MuiOption-highlighted');
+        expect(getByText('Dragon Fruit')).to.have.class(optionUnstyledClasses.highlighted);
       });
 
       it('navigate to next element with same starting character on repeated keys', () => {
@@ -171,11 +174,11 @@ describe('SelectUnstyled', () => {
         const listbox = getByRole('listbox');
 
         userEvent.keyPress(listbox, { key: 'c' });
-        expect(getByText('Cherry')).to.have.class('MuiOption-highlighted');
+        expect(getByText('Cherry')).to.have.class(optionUnstyledClasses.highlighted);
         userEvent.keyPress(listbox, { key: 'c' });
-        expect(getByText('Calamondin')).to.have.class('MuiOption-highlighted');
+        expect(getByText('Calamondin')).to.have.class(optionUnstyledClasses.highlighted);
         userEvent.keyPress(listbox, { key: 'c' });
-        expect(getByText('Cherry')).to.have.class('MuiOption-highlighted');
+        expect(getByText('Cherry')).to.have.class(optionUnstyledClasses.highlighted);
       });
 
       it('navigate using the label prop', () => {
@@ -210,11 +213,11 @@ describe('SelectUnstyled', () => {
         const listbox = getByRole('listbox');
 
         userEvent.keyPress(listbox, { key: 'd' });
-        expect(getByTestId('5')).to.have.class('MuiOption-highlighted');
+        expect(getByTestId('5')).to.have.class(optionUnstyledClasses.highlighted);
         userEvent.keyPress(listbox, { key: 'r' });
-        expect(getByTestId('5')).to.have.class('MuiOption-highlighted');
+        expect(getByTestId('5')).to.have.class(optionUnstyledClasses.highlighted);
         userEvent.keyPress(listbox, { key: 'z' });
-        expect(getByTestId('5')).to.have.class('MuiOption-highlighted');
+        expect(getByTestId('5')).to.have.class(optionUnstyledClasses.highlighted);
       });
 
       it('skips the non-stringifiable options', () => {
@@ -240,11 +243,11 @@ describe('SelectUnstyled', () => {
         const listbox = getByRole('listbox');
 
         userEvent.keyPress(listbox, { key: 'c' });
-        expect(getByText('Cherry')).to.have.class('MuiOption-highlighted');
+        expect(getByText('Cherry')).to.have.class(optionUnstyledClasses.highlighted);
         userEvent.keyPress(listbox, { key: 'c' });
-        expect(getByText('Calamondin')).to.have.class('MuiOption-highlighted');
+        expect(getByText('Calamondin')).to.have.class(optionUnstyledClasses.highlighted);
         userEvent.keyPress(listbox, { key: 'c' });
-        expect(getByText('Cherry')).to.have.class('MuiOption-highlighted');
+        expect(getByText('Cherry')).to.have.class(optionUnstyledClasses.highlighted);
       });
 
       it('navigate to options with diacritic characters', () => {
@@ -266,12 +269,12 @@ describe('SelectUnstyled', () => {
         const listbox = getByRole('listbox');
 
         userEvent.keyPress(listbox, { key: 'b' });
-        expect(getByText('Ba')).to.have.class('MuiOption-highlighted');
+        expect(getByText('Ba')).to.have.class(optionUnstyledClasses.highlighted);
 
         userEvent.keyPress(listbox, { key: 'Control' });
         userEvent.keyPress(listbox, { key: 'Alt' });
         userEvent.keyPress(listbox, { key: 'ą' });
-        expect(getByText('Bą')).to.have.class('MuiOption-highlighted');
+        expect(getByText('Bą')).to.have.class(optionUnstyledClasses.highlighted);
       });
 
       it('navigate to next options with beginning diacritic characters', () => {
@@ -294,17 +297,17 @@ describe('SelectUnstyled', () => {
         userEvent.keyPress(listbox, { key: 'Control' });
         userEvent.keyPress(listbox, { key: 'Alt' });
         userEvent.keyPress(listbox, { key: 'ą' });
-        expect(getByText('ąa')).to.have.class('MuiOption-highlighted');
+        expect(getByText('ąa')).to.have.class(optionUnstyledClasses.highlighted);
 
         userEvent.keyPress(listbox, { key: 'Alt' });
         userEvent.keyPress(listbox, { key: 'Control' });
         userEvent.keyPress(listbox, { key: 'ą' });
-        expect(getByText('ąb')).to.have.class('MuiOption-highlighted');
+        expect(getByText('ąb')).to.have.class(optionUnstyledClasses.highlighted);
 
         userEvent.keyPress(listbox, { key: 'Control' });
         userEvent.keyPress(listbox, { key: 'AltGraph' });
         userEvent.keyPress(listbox, { key: 'ą' });
-        expect(getByText('ąc')).to.have.class('MuiOption-highlighted');
+        expect(getByText('ąc')).to.have.class(optionUnstyledClasses.highlighted);
       });
     });
 
