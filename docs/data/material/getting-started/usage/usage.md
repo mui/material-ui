@@ -126,16 +126,3 @@ To ensure proper rendering and touch zooming for all devices, add the responsive
 
 Material UI provides an optional [CssBaseline](/material-ui/react-css-baseline/) component.
 It fixes some inconsistencies across browsers and devices while providing slightly more opinionated resets to common HTML elements than other popular global style sheets like [normalize.css](https://github.com/necolas/normalize.css/).
-
-## Versioned documentation
-
-This documentation always reflects the latest stable version of Material UI.
-You can find older versions of the documentation on a [separate page](https://mui.com/versions/).
-
-## Next steps
-
-Now that you have an idea of the basic setup, it's time to learn more about:
-
-- How to provide [the Material Design font and typography](/material-ui/react-typography/).
-- How to take advantage of the [theming solution](/material-ui/customization/theming/).
-- How to [override](/material-ui/customization/how-to-customize/) the look and feel of the components.
