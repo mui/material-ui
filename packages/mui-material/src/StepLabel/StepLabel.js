@@ -111,7 +111,6 @@ const StepLabelLabelContainer = styled('span', {
 })(({ theme }) => ({
   width: '100%',
   color: (theme.vars || theme).palette.text.secondary,
-  fontFamily: theme.typography.fontFamily,
   [`&.${stepLabelClasses.alternativeLabel}`]: {
     textAlign: 'center',
   },
