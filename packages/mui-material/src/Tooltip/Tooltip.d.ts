@@ -162,7 +162,7 @@ export interface TooltipProps extends StandardProps<React.HTMLAttributes<HTMLDiv
   /**
    * Tooltip title. Zero-length titles string, undefined, null and false are never displayed.
    */
-  title: NonNullable<React.ReactNode>;
+  title: React.ReactNode;
   /**
    * The component used for the transition.
    * [Follow this guide](/material-ui/transitions/#transitioncomponent-prop) to learn more about the requirements for this component.
