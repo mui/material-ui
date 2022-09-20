@@ -133,7 +133,7 @@
     "@jridgewell/gen-mapping" "^0.1.0"
     "@jridgewell/trace-mapping" "^0.3.9"
 
-"@argos-ci/core@^0.4.0":
+"@argos-ci/core@^0.4.1":
   version "0.4.1"
   resolved "https://registry.yarnpkg.com/@argos-ci/core/-/core-0.4.1.tgz#4f522f154e9330629ad040b213a4e458c9ec54b7"
   integrity sha512-M6hG61NUj3SC5dQjvjYOyftnc+X1bSdITMHBVNXwhYMZ7V4MdzS203sikTGIFroVh6M5SoDyREpx3yBwjBRzAw==
