@@ -9,7 +9,6 @@ import NoSsr from '@mui/material/NoSsr';
 import Link from 'docs/src/modules/components/Link';
 import { useTranslate } from 'docs/src/modules/utils/i18n';
 import { openLinkInNewTab } from 'docs/src/modules/components/MarkdownLinks';
-import TableOfContentsBanner from 'docs/src/components/banner/TableOfContentsBanner';
 
 const Nav = styled('nav')(({ theme }) => ({
   top: 0,
@@ -215,7 +214,6 @@ export default function AppTableOfContents(props) {
   return (
     <Nav aria-label={t('pageTOC')}>
       <NoSsr>
-        <TableOfContentsBanner />
         {showAddJob && (
           <Link
             href="https://jobs.ashbyhq.com/MUI?utm_source=2vOWXNv1PE"
@@ -228,12 +226,12 @@ export default function AppTableOfContents(props) {
               backgroundColor:
                 theme.palette.mode === 'dark'
                   ? alpha(theme.palette.primary[900], 0.2)
-                  : alpha(theme.palette.grey[50], 0.4),
+                  : alpha(theme.palette.grey[100], 0.7),
               border: '1px solid',
               borderColor:
                 theme.palette.mode === 'dark'
                   ? theme.palette.primaryDark[700]
-                  : theme.palette.grey[200],
+                  : theme.palette.grey[300],
               borderRadius: 1,
               transitionProperty: 'all',
               transitionTiming: 'cubic-bezier(0.4, 0, 0.2, 1)',

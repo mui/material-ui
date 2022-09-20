@@ -22,6 +22,12 @@ const Main = styled('main', {
 })(({ disableToc, theme }) => ({
   display: 'flex',
   width: '100%',
+  background:
+    theme.palette.mode === 'dark'
+      ? `linear-gradient(1deg, ${theme.palette.primaryDark[900]} 0%, ${theme.palette.primaryDark[800]} 100%)`
+      : `linear-gradient(180deg, ${theme.palette.grey[50]} 40%, #FFFFFF 100%)`,
+  backgroundSize: '100% 300px',
+  backgroundRepeat: 'no-repeat',
   ...(disableToc && {
     [theme.breakpoints.up('lg')]: {
       marginRight: '5%',
