@@ -3,7 +3,10 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import { OverridableComponent } from '@mui/types';
-import { unstable_capitalize as capitalize } from '@mui/utils';
+import {
+  unstable_capitalize as capitalize,
+  unstable_isMuiElement as isMuiElement,
+} from '@mui/utils';
 import { styled, useThemeProps } from '../styles';
 import { SheetRoot } from '../Sheet/Sheet';
 import { getModalDialogUtilityClass } from './modalDialogClasses';
@@ -86,6 +89,7 @@ const ModalDialog = React.forwardRef(function ModalDialog(inProps, ref) {
 
   const {
     className,
+    children,
     color = 'neutral',
     component = 'div',
     variant = 'outlined',
@@ -116,7 +120,19 @@ const ModalDialog = React.forwardRef(function ModalDialog(inProps, ref) {
           role="dialog"
           aria-modal="true"
           {...other}
-        />
+        >
+          {React.Children.map(children, (child) => {
+            if (!React.isValidElement(child)) {
+              return child;
+            }
+            if (isMuiElement(child, ['Divider'])) {
+              const extraProps: Record<string, any> = {};
+              extraProps.inset = 'inset' in child.props ? child.props.inset : 'context';
+              return React.cloneElement(child, extraProps);
+            }
+            return child;
+          })}
+        </ModalDialogRoot>
       </ModalDialogVariantColorContext.Provider>
     </ModalDialogSizeContext.Provider>
   );
