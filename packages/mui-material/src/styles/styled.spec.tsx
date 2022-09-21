@@ -11,13 +11,6 @@ const Box = styled('div')(({ theme }) => ({
   color: theme.palette.primary.main,
 }));
 
-const TestPseudos = styled('div')(({ theme }) => ({
-  color: theme.palette.primary.main,
-  [theme.breakpoints.down('md')]: {
-    
-  }
-}));
-
 const SimpleBox = styled('div')``;
 
 function SxTestSimpleBox() {
