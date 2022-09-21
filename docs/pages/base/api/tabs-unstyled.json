@@ -39,6 +39,6 @@
   "forwardsRefTo": "HTMLDivElement",
   "filename": "/packages/mui-base/src/TabsUnstyled/TabsUnstyled.tsx",
   "inheritance": null,
-  "demos": "<ul><li><a href=\"/base/react-tabs/\">Unstyled tabs</a></li></ul>",
+  "demos": "<ul><li><a href=\"/base/react-tabs/\">Unstyled Tabs</a></li></ul>",
   "cssComponent": false
 }
