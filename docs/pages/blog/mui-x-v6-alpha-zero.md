@@ -25,7 +25,7 @@ Next, comes the beta phase, where the APIs are more stable, and we focus on bug 
 :::info
 Disclaimer: We're working with 2 and 1 months for the alpha and beta phase respectively, but that's just a **reference**.
 
-Ultimately, the goal is to ship software of the highest quality, so we may need to take more iterations and change the referenced time windows.
+We operate in a dynamic environment that's subject to change. We may need to do more iterations or change the referenced time windows to deliver the great product we want.
 :::
 
 Finally, we’ll release the first `v6.0.0` stable, and we’ll continue improving the components and adding features, but without making any new breaking changes until the next major version.
