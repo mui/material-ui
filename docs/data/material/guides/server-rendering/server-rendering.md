@@ -218,6 +218,7 @@ We host different reference implementations which you can find in the [GitHub re
 - [The reference implementation of this tutorial](https://github.com/mui/material-ui/tree/HEAD/examples/ssr)
 - [Gatsby](https://github.com/mui/material-ui/tree/HEAD/examples/gatsby)
 - [Next.js](https://github.com/mui/material-ui/tree/HEAD/examples/nextjs) ([TypeScript version](https://github.com/mui/material-ui/tree/HEAD/examples/nextjs-with-typescript))
+- [Remix.run](https://github.com/mui/material-ui/tree/HEAD/examples/remix-with-typescript)
 
 ## Troubleshooting
 
