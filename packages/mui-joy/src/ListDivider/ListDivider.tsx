@@ -135,9 +135,10 @@ ListDivider.propTypes /* remove-proptypes */ = {
     PropTypes.string,
   ]),
   /**
-   * @ignore
+   * The component orientation.
+   * @default 'horizontal'
    */
-  role: PropTypes /* @typescript-to-proptypes-ignore */.string,
+  orientation: PropTypes.oneOf(['horizontal', 'vertical']),
   /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
