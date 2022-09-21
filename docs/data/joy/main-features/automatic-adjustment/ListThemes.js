@@ -115,7 +115,7 @@ export default function ButtonThemes() {
               },
             }}
             value={preset}
-            onChange={setPreset}
+            onChange={(event, newValue) => setPreset(newValue)}
             sx={{ minWidth: 160 }}
           >
             <Option value="">Default</Option>
