@@ -138,9 +138,9 @@ List.propTypes /* remove-proptypes */ = {
     PropTypes.object,
   ]),
   /**
-   * The custom variant to use for styling. There is no variants available by default.
+   * The custom variant to use for styling. There are no variants available by default.
    *
-   * Customization guide:
+   * Check out these guides to learn how to add new variants:
    * - https://mui.com/material-ui/customization/theme-components/#global-style-overrides
    * - https://mui.com/material-ui/customization/theme-components/#creating-new-component-variants
    */
