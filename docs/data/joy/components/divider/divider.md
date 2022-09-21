@@ -57,3 +57,35 @@ To control the position of the content, override the CSS variable `--Divider-chi
 ```
 
 {{"demo": "DividerChildPosition.js"}}
+
+## Automatic adjustment
+
+When the `Divider` is a direct child of these components, it automatically adapts to the spacing and orientation of the components.
+
+### [Card](/joy-ui/react-card/)
+
+The `Divider` stretches from edge to edge of the `Card` by default. It also adapts to the orientation of the `Card` as well.
+
+{{"demo": "DividerInCard.js"}}
+
+### [ModalDialog](/joy-ui/react-modal/#dialog)
+
+The `Divider` stretches from edge to edge of the `ModalDialog` by default. Use `inset="none"` on the divider to opt-out from the automatic adjustment.
+
+{{"demo": "DividerInModalDialog.js"}}
+
+## Common examples
+
+### Fullscreen overflow
+
+Here is a CSS trick that lets you stretch the divider outside of its parent's boundary.
+
+Use `box-shadow` with `100vmax` unit to fill the outer space and then remove the vertical overflow by using `clip-path: inset(0px -100vmax)`.
+
+{{"demo": "FullscreenOverflowDivider.js"}}
+
+:::info
+The `var(--Divider-lineColor)` is defined by the Divider component so you can refer to it without hard-coding the value or accessing to the theme.
+:::
+
+###

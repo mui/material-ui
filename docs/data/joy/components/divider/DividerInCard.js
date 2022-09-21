@@ -22,7 +22,9 @@ export default function DividerInCard() {
         variant="outlined"
         sx={{ width: 400, maxWidth: '100%', gap: 1.5 }}
       >
-        <Typography level="h4">Headline</Typography>
+        <Typography fontSize="lg" fontWeight="md">
+          Headline
+        </Typography>
         <Divider />
         <Box sx={{ display: row ? 'block' : 'contents' }}>
           <Typography level="body2">
