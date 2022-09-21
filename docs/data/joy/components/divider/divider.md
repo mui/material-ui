@@ -87,5 +87,3 @@ Use `box-shadow` with `100vmax` unit to fill the outer space and then remove the
 :::info
 The `var(--Divider-lineColor)` is defined by the Divider component so you can refer to it without hard-coding the value or accessing to the theme.
 :::
-
-###
