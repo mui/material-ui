@@ -6,7 +6,6 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider } from '@mui/material/styles';
 import { CacheProvider } from '@emotion/react';
 import createEmotionServer from '@emotion/server/create-instance';
-
 import createEmotionCache from './src/createEmotionCache';
 import theme from './src/theme';
 

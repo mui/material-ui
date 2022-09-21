@@ -213,12 +213,14 @@ ReactDOM.hydrate(<Main />, document.querySelector('#root'));
 
 ## Reference implementations
 
-We host different reference implementations which you can find in the [GitHub repository](https://github.com/mui/material-ui) under the [`/examples`](https://github.com/mui/material-ui/tree/HEAD/examples) folder:
+We host different reference implementations which you can find in the [GitHub repository](https://github.com/mui/material-ui) under the [`/examples`](https://github.com/mui/material-ui/tree/master/examples) folder:
 
-- [The reference implementation of this tutorial](https://github.com/mui/material-ui/tree/HEAD/examples/ssr)
-- [Gatsby](https://github.com/mui/material-ui/tree/HEAD/examples/gatsby)
-- [Next.js](https://github.com/mui/material-ui/tree/HEAD/examples/nextjs) ([TypeScript version](https://github.com/mui/material-ui/tree/HEAD/examples/nextjs-with-typescript))
-- [Remix.run](https://github.com/mui/material-ui/tree/HEAD/examples/remix-with-typescript)
+<!-- #default-branch-switch -->
+
+- [The reference implementation of this tutorial](https://github.com/mui/material-ui/tree/master/examples/ssr)
+- [Gatsby](https://github.com/mui/material-ui/tree/master/examples/gatsby)
+- [Next.js](https://github.com/mui/material-ui/tree/master/examples/nextjs) ([TypeScript version](https://github.com/mui/material-ui/tree/master/examples/nextjs-with-typescript))
+- [Remix.run](https://github.com/mui/material-ui/tree/master/examples/remix-with-typescript)
 
 ## Troubleshooting
 
