@@ -36,7 +36,7 @@ export default function MaterialUIDefaultDark() {
         </AppBar>
         <Box sx={{ bgcolor: '#121212', p: 4 }}>
           <Paper elevation={24} sx={{ bgcolor: '#121212', p: 2, color: '#fff' }}>
-            I should be red without overlay.
+            You <em>should not</em> see overlay.
           </Paper>
         </Box>
       </Box>
