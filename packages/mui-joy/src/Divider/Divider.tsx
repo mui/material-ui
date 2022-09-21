@@ -27,7 +27,12 @@ const DividerRoot = styled('hr', {
 })<{ ownerState: DividerOwnerState }>(({ theme, ownerState }) => ({
   '--Divider-thickness': '1px',
   '--Divider-lineColor': theme.vars.palette.divider,
-  '--_Divider-inset': ownerState.inset === 'context' ? 'var(--Divider-inset, 0px)' : '0px',
+  ...(ownerState.inset === 'none' && {
+    '--_Divider-inset': '0px',
+  }),
+  ...(ownerState.inset === 'context' && {
+    '--_Divider-inset': 'var(--Divider-inset, 0px)',
+  }),
   margin: 'initial', // reset margin for `hr` tag
   marginInline: ownerState.orientation === 'vertical' ? 'initial' : 'var(--_Divider-inset)',
   marginBlock: ownerState.orientation === 'vertical' ? 'var(--_Divider-inset)' : 'initial',
@@ -158,7 +163,7 @@ Divider.propTypes /* remove-proptypes */ = {
    * The styles applied to the divider to shrink or stretch the line based on the orientation.
    */
   inset: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
-    PropTypes.oneOf(['gutter', 'startDecorator', 'startContent']),
+    PropTypes.oneOf(['none', 'context']),
     PropTypes.string,
   ]),
   /**

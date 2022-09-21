@@ -20,7 +20,7 @@ export interface DividerTypeMap<P = {}, D extends React.ElementType = 'hr'> {
     /**
      * The styles applied to the divider to shrink or stretch the line based on the orientation.
      */
-    inset?: OverridableStringUnion<'context', DividerInsetOverrides>;
+    inset?: OverridableStringUnion<'none' | 'context', DividerInsetOverrides>;
     /**
      * The component orientation.
      * @default 'horizontal'
