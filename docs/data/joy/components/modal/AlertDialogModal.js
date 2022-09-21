@@ -37,7 +37,7 @@ export default function AlertDialogModal() {
           >
             Confirmation
           </Typography>
-          <Divider inset="context" sx={{ my: 2 }} />
+          <Divider sx={{ my: 2 }} />
           <Typography
             id="alert-dialog-modal-description"
             textColor="text.tertiary"

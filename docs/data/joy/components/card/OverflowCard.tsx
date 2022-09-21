@@ -22,7 +22,7 @@ export default function OverflowCard() {
       <Typography level="body2" sx={{ mt: 0.5, mb: 2 }}>
         California
       </Typography>
-      <Divider inset="context" />
+      <Divider />
       <CardOverflow
         variant="soft"
         sx={{
