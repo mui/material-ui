@@ -34,7 +34,7 @@ JoyModeObserver.propTypes = {
   mode: PropTypes.oneOf(['light', 'dark']),
 };
 
-function MarkdownDocs(props) {
+export default function MarkdownDocs(props) {
   const theme = useTheme();
   const router = useRouter();
   const asPathWithoutLang = router.asPath.replace(/^\/[a-zA-Z]{2}\//, '/');
@@ -144,5 +144,3 @@ MarkdownDocs.propTypes = {
 if (process.env.NODE_ENV !== 'production') {
   MarkdownDocs.propTypes = exactProp(MarkdownDocs.propTypes);
 }
-
-export default MarkdownDocs;

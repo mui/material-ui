@@ -154,7 +154,7 @@ export default function UnstyledSelectsMultiple() {
   const [value, setValue] = React.useState<number | null>(10);
   return (
     <div>
-      <CustomSelect value={value} onChange={setValue}>
+      <CustomSelect value={value} onChange={(e, newValue) => setValue(newValue)}>
         <StyledOption value={10}>Ten</StyledOption>
         <StyledOption value={20}>Twenty</StyledOption>
         <StyledOption value={30}>Thirty</StyledOption>

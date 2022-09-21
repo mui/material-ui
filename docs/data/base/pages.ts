@@ -50,8 +50,8 @@ const pages = [
         pathname: '/base/components/utils',
         subheader: 'utils',
         children: [
-          { pathname: '/base/react-click-away-listener', title: 'Click-away listener' },
-          { pathname: '/base/react-form-control', title: 'Form control' },
+          { pathname: '/base/react-click-away-listener', title: 'Click-Away Listener' },
+          { pathname: '/base/react-form-control', title: 'Form Control' },
           { pathname: '/base/react-modal', title: 'Modal' },
           { pathname: '/base/react-no-ssr', title: 'No SSR' },
           { pathname: '/base/react-popper', title: 'Popper' },

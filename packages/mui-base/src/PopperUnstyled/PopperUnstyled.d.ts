@@ -132,7 +132,7 @@ export interface PopperUnstyledRootSlotProps {
  *
  * Demos:
  *
- * - [Unstyled popper](https://mui.com/base/react-popper/)
+ * - [Unstyled Popper](https://mui.com/base/react-popper/)
  *
  * API:
  *

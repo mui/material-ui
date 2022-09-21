@@ -14,7 +14,7 @@ export default function AlertDialogModal() {
       <Button
         variant="outlined"
         color="danger"
-        endIcon={<DeleteForever />}
+        endDecorator={<DeleteForever />}
         onClick={() => setOpen(true)}
       >
         Discard
