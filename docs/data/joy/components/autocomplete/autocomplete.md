@@ -230,6 +230,12 @@ The following demo relies on [autosuggest-highlight](https://github.com/moroshko
 
 {{"demo": "Highlights.js"}}
 
+### GitHub's picker
+
+To reproduce GitHub's label picker, the `Autocomplete` is rendered inside a [`PopperUnstyled`](/base/react-popper/). To remove the popup behavior from the autocomplete, replace the listbox slot with the `List` component.
+
+{{"demo": "GitHubLabel.js"}}
+
 ## Custom filter
 
 The component exposes a factory to create a filter method that can be provided to the `filterOptions` prop.

@@ -26,7 +26,14 @@ const AutocompleteOption = React.forwardRef(function AutocompleteOption(inProps,
     name: 'JoyAutocompleteOption',
   });
 
-  const { children, component, color = 'neutral', variant = 'plain', className, ...other } = props;
+  const {
+    children,
+    component = 'li',
+    color = 'neutral',
+    variant = 'plain',
+    className,
+    ...other
+  } = props;
 
   const ownerState = {
     ...props,
