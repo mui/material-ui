@@ -1,6 +1,8 @@
 const defaultPropsToKey = {
   cancelText: ['cancelButtonLabel'],
   okText: ['okButtonLabel'],
+  todayText: ['todayButtonLabel'],
+  clearText: ['clearButtonLabel'],
   endText: ['end'],
   getClockLabelText: ['clockLabelText'],
   getHoursClockNumberText: ['hoursClockNumberText'],
