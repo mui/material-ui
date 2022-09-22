@@ -16,17 +16,12 @@ module.exports = {
       type: 'commonjs',
     },
   },
-  devtool: 'source-map',
   externals: {
     react: 'react',
     'react-dom': 'react-dom',
   },
   module: {
     rules: [
-      {
-        test: /\.css$/i,
-        use: ["style-loader", "css-loader"],
-      },
       {
         test: /\.md$/,
         oneOf: [
