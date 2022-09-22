@@ -1,10 +1,10 @@
 # Customization
 
-<p class="description">A guide for customize CSS theme variables in Material UI.</p>
+<p class="description">A guide for customizing the CSS theme variables in Material UI.</p>
 
 ## Theming
 
-The `experimental_extendTheme` is the new API to extend the default theme. It returns a theme that can only be used by the `CssVarsProvider`.
+The `experimental_extendTheme` is the new API to extend the default theme. It returns a theme that can only be used by the `Experimental_CssVarsProvider`.
 
 ```js
 import {
@@ -29,7 +29,7 @@ The `extendTheme` is not the same as [`createTheme`](/material-ui/customization/
 
 ### Color schemes
 
-The major difference from the default approach is the palette customization. With the new `extendTheme` API, you can specify the palette for all color schemes at once (`light` and `dark` are built-in color schemes).
+The major difference from the default approach is the palette customization. With the new `extendTheme` API, you can specify the palette for all color schemes at once (`light` and `dark` are built-in color schemes) under the `colorSchemes` node.
 
 Here is an example of customizing the `primary` palette:
 
@@ -58,7 +58,7 @@ const theme = extendTheme({
 
 ### Components
 
-Customizing components remains the same. We recommend to use the value from `theme.vars` whenever possible for better debugging experience:
+[Component customization](/material-ui/customization/theme-components/) remains the same. We recommend to use the value from `theme.vars.*` whenever possible for better debugging experience:
 
 ```js
 const theme = extendTheme({
@@ -81,15 +81,16 @@ const theme = extendTheme({
 
 ### Channel tokens
 
-A channel token is a variable that consists of color space channels (without the alpha component) separated by a space, e.g. `12 223 31`. It can be combined with the color functions to create a translucent color.
+A channel token is a variable that consists of [color space channels](https://www.w3.org/TR/css-color-4/#color-syntax) but without the alpha component. The value of a channel token is separated by a space, e.g. `12 223 31`, which can be combined with the [color functions](https://www.w3.org/TR/css-color-4/#color-functions) to create a translucent color.
 
 The `extendTheme()` automatically generates channel tokens that are likely to be used frequently from the theme palette. Those colors are suffixed with `Channel`, for example:
 
 ```js
-theme = extendTheme();
+const theme = extendTheme();
+const light = theme.colorSchemes.light;
 
-console.log(theme.palette.primary.mainChannel); // '25 118 210'
-// This token is generated from `theme.palette.primary.main`.
+console.log(light.palette.primary.mainChannel); // '25 118 210'
+// This token is generated from `theme.colorSchemes.light.palette.primary.main`.
 ```
 
 You can use the channel tokens to create a translucent color like this:
@@ -112,7 +113,7 @@ const theme = extendTheme({
 ```
 
 :::warning
-Don't use comma(`,`) as a separator because the result is not a valid format in CSS:
+Don't use comma(`,`) as a separator because the result is not a valid CSS color:
 
 ```js
 `rgba(${theme.vars.palette.primary.mainChannel}, 0.12)`, // 🚫 this does not work
@@ -155,7 +156,7 @@ function App() {
 }
 ```
 
-You can access those variables from the `theme.vars`:
+Then, you can access those variables from the `theme.vars` object:
 
 ```js
 const Divider = styled('hr')(({ theme }) => ({
@@ -165,6 +166,19 @@ const Divider = styled('hr')(({ theme }) => ({
   backgroundColor: theme.vars.palette.gradient,
 }));
 ```
+
+Or use `var()` to refer to the CSS variable directly:
+
+```css
+/* global.css */
+.external-section {
+  background-color: var(--mui-palette-gradient);
+}
+```
+
+:::info
+💡 If you have set up a [custom prefix](/material-ui/experimental-api/css-theme-variables/customization/#changing-variable-prefix), make sure to replace the `--mui` with it.
+:::
 
 ### TypeScript
 
@@ -189,7 +203,7 @@ declare module '@mui/material/styles' {
 
 ## Changing variable prefix
 
-The CSS theme variables have `--mui` as a default prefix, you can change it by passing `cssVarPrefix: string` to the `extendTheme`.
+To change the default variable prefix (`--mui`), provide a string to `cssVarPrefix` property.
 
 ```js
 const theme = extendTheme({ cssVarPrefix: 'any' });
@@ -233,7 +247,7 @@ const Button = styled('button')(({ theme }) => ({
 ```
 
 :::info
-💡 The utility returns a plain string, `'[data-mui-color-scheme="dark"] &'`, that lets you create a style for a specific color scheme.
+💡 Using the utility equals to writing a plain string `'[data-mui-color-scheme="dark"] &'`, if you don't have a custom configuration.
 :::
 
 ## Force a specific color scheme
@@ -271,7 +285,7 @@ function App() {
 }
 ```
 
-For a server-side application, provide the same value in [`getInitColorSchemeScript()`](/material-ui/experimental-api/css-theme-variables/usage/#server-side-rendering):
+For a server-side application, provide the same value to [`getInitColorSchemeScript()`](/material-ui/experimental-api/css-theme-variables/usage/#server-side-rendering):
 
 ```js
 getInitColorSchemeScript({

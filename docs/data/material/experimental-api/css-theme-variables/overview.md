@@ -1,6 +1,6 @@
 # CSS theme variables
 
-<p class="description">An overview of supporting CSS theme variables in Material UI.</p>
+<p class="description">An overview of adopting CSS theme variables in Material UI.</p>
 
 [CSS variables](https://www.w3.org/TR/css-variables-1/) is a modern cross-browser feature that lets author declare variables in CSS and reuse them in other properties. It enables Material UI to improve theming and customization experience.
 
@@ -8,7 +8,7 @@ If you come across CSS variables the first time, you should check out [the basic
 
 ## Introduction
 
-CSS theme variables is a new feature in Material UI added in [`v5.6.0`](https://github.com/mui/material-ui/releases/tag/v5.6.0). It enables Material UI components to use the generated CSS theme variables instead of the raw values.
+CSS theme variables is a new feature in Material UI added in [`v5.6.0`](https://github.com/mui/material-ui/releases/tag/v5.6.0) (**not** enabled by default). It tells Material UI components to use the generated CSS theme variables instead of the raw values.
 
 ## Advantages
 
@@ -21,7 +21,7 @@ CSS theme variables is a new feature in Material UI added in [`v5.6.0`](https://
 
 ## Trade-offs
 
-For server-side application, there are some trade-offs that are worth mentioning:
+For server-side application, there are some trade-offs that are worth noticing:
 
 |                                                      | Compare to the default method | Reason                                                                                                       |
 | ---------------------------------------------------- | ----------------------------- | ------------------------------------------------------------------------------------------------------------ |
@@ -35,7 +35,7 @@ For server-side application, there are some trade-offs that are worth mentioning
 
 ## Mental model
 
-Adopting CSS variables require some mental model shift when it comes to theming and customization between user selected modes.
+Adopting CSS variables requires some mental model shift when it comes to theming and customization between user selected modes.
 
 ### Colors
 
@@ -54,7 +54,7 @@ const darkTheme = createTheme({
 **CSS theme variables**: Light and dark colors are consolidated into a theme.
 
 ```js
-// the new API
+// `extendTheme` is a new API
 const theme = extendTheme({
   colorSchemes: {
     light: { // palette for light mode
@@ -69,7 +69,7 @@ const theme = extendTheme({
 
 ### Styling
 
-**Default approach**: usually rely on javascript to switch the value between modes:
+**Default approach**: usually relies on javascript to switch the value between modes:
 
 ```js
 createTheme({
@@ -108,6 +108,6 @@ extendTheme({
 
 ## What's next
 
-- To start a new project with CSS variables, check out the [basic usage](/material-ui/experimental-api/css-variables/usage/).
-- For an existing Material UI project, check out the [migration to CSS variables guide](/material-ui/experimental-api/css-variables/migration/)
-- For theming and common use cases, check out the [customization guide](/material-ui/experimental-api/css-variables/customization/).
+- To start a new project with CSS theme variables, check out the [basic usage](/material-ui/experimental-api/css-theme-variables/usage/).
+- For an existing Material UI project, check out the [migration guide](/material-ui/experimental-api/css-theme-variables/migration/)
+- For theming and customization, check out the [how-to guide](/material-ui/experimental-api/css-theme-variables/customization/).

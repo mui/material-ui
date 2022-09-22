@@ -1,8 +1,8 @@
 # Migrating to CSS variables
 
-<p class="description">A step-by-step migration guide to adopt CSS variables in your existing Material UI project.</p>
+<p class="description">A step-by-step migration guide to start using CSS theme variables in your project.</p>
 
-This is a guide for existing Material UI project to migrate to use CSS variables that aims to fix the dark mode flickering.
+This is a guide for an existing Material UI project to migrate to CSS theme variables. The migration aims to fix the dark mode flickering issue.
 
 ## 1. Use the new provider
 
@@ -18,11 +18,13 @@ function App() {
 }
 ```
 
-You should see the generated CSS variables in the stylesheet. Material UI components that render inside the new provider will automatically use the CSS theme variables.
+You should see the generated CSS theme variables in the stylesheet. Material UI components that render inside the new provider will automatically consume the variables.
 
 ### Custom theme
 
-If you have a custom theme, replace the `createTheme()` with the new `extendTheme()` API. Only the palette node that needs to move to `colorSchemes`. Other properties can be copied and pasted.
+If you have a custom theme, replace the `createTheme()` with the new `extendTheme()` API.
+
+Moves the palette customization inside the `colorSchemes` node. Other properties can be copied and pasted.
 
 ```diff
 - import { createTheme } from '@mui/material/styles';
@@ -87,11 +89,15 @@ function App() {
 
 Save the file and start the development server, your application should be able to run without crashing.
 
+:::info
+If you experience any error, [open an issue](https://github.com/mui/material-ui/issues/new?assignees=&labels=status%3A+needs+triage&template=1.bug.yml) with the error you got. We'd love to help.
+:::
+
 If you inspect the page, you will see the generated CSS variables in the stylesheet. Material UI components that render inside the new provider will automatically use the CSS theme variables.
 
 ## 2. Remove the toggle mode logic
 
-You can remove your existing logic that handle the user selected mode and switch to `useColorScheme` hook instead.
+You can remove your existing logic that handle the user selected mode and switch to `useColorScheme` hook.
 
 **Before**:
 
@@ -281,3 +287,9 @@ The `theme.getColorSchemeSelector()` is a utility function that returns an attri
 
 ⚠️ Note that the attribute selector creates higher CSS specificity which could be cubersome for theming.
 :::
+
+## 5. Test dark mode flickering
+
+1. Toggle dark mode in your application
+2. Open DevTools and set the [CPU throttling](https://developer.chrome.com/docs/devtools/evaluate-performance/#simulate_a_mobile_cpu) to the lowest value (don't close the DevTools).
+3. Refresh the page, you should see the all of the components in dark theme at first glance.
