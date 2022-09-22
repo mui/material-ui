@@ -1,6 +1,8 @@
 <div>
   {/* DateRange */}
   <DateRangePicker
+    cancelText="custom_cancelText"
+    okText="custom_okText"
     endText="custom_endText"
     startText="custom_startText"
     getClockLabelText="custom_getClockLabelText"
@@ -12,6 +14,8 @@
     rightArrowButtonText="custom_rightArrowButtonText"
   />
   <StaticDateRangePicker
+    cancelText="custom_cancelText"
+    okText="custom_okText"
     endText="custom_endText"
     startText="custom_startText"
     getClockLabelText="custom_getClockLabelText"
@@ -23,6 +27,8 @@
     rightArrowButtonText="custom_rightArrowButtonText"
   />
   <MobileDateRangePicker
+    cancelText="custom_cancelText"
+    okText="custom_okText"
     endText="custom_endText"
     startText="custom_startText"
     getClockLabelText="custom_getClockLabelText"
@@ -34,6 +40,8 @@
     rightArrowButtonText="custom_rightArrowButtonText"
   />
   <DesktopDateRangePicker
+    cancelText="custom_cancelText"
+    okText="custom_okText"
     endText="custom_endText"
     startText="custom_startText"
     getClockLabelText="custom_getClockLabelText"
@@ -47,6 +55,8 @@
 
   {/* Date */}
   <DatePicker
+    cancelText="custom_cancelText"
+    okText="custom_okText"
     endText="custom_endText"
     startText="custom_startText"
     getClockLabelText="custom_getClockLabelText"
@@ -58,6 +68,8 @@
     rightArrowButtonText="custom_rightArrowButtonText"
   />
   <StaticDatePicker
+    cancelText="custom_cancelText"
+    okText="custom_okText"
     endText="custom_endText"
     startText="custom_startText"
     getClockLabelText="custom_getClockLabelText"
@@ -69,6 +81,8 @@
     rightArrowButtonText="custom_rightArrowButtonText"
   />
   <DesktopDatePicker
+    cancelText="custom_cancelText"
+    okText="custom_okText"
     endText="custom_endText"
     startText="custom_startText"
     getClockLabelText="custom_getClockLabelText"
@@ -80,6 +94,8 @@
     rightArrowButtonText="custom_rightArrowButtonText"
   />
   <MobileDatePicker
+    cancelText="custom_cancelText"
+    okText="custom_okText"
     endText="custom_endText"
     startText="custom_startText"
     getClockLabelText="custom_getClockLabelText"
@@ -93,6 +109,8 @@
 
   {/* Time */}
   <TimePicker
+    cancelText="custom_cancelText"
+    okText="custom_okText"
     endText="custom_endText"
     startText="custom_startText"
     getClockLabelText="custom_getClockLabelText"
@@ -104,6 +122,8 @@
     rightArrowButtonText="custom_rightArrowButtonText"
   />
   <StaticTimePicker
+    cancelText="custom_cancelText"
+    okText="custom_okText"
     endText="custom_endText"
     startText="custom_startText"
     getClockLabelText="custom_getClockLabelText"
@@ -115,6 +135,8 @@
     rightArrowButtonText="custom_rightArrowButtonText"
   />
   <DesktopTimePicker
+    cancelText="custom_cancelText"
+    okText="custom_okText"
     endText="custom_endText"
     startText="custom_startText"
     getClockLabelText="custom_getClockLabelText"
@@ -126,6 +148,8 @@
     rightArrowButtonText="custom_rightArrowButtonText"
   />
   <MobileTimePicker
+    cancelText="custom_cancelText"
+    okText="custom_okText"
     endText="custom_endText"
     startText="custom_startText"
     getClockLabelText="custom_getClockLabelText"
@@ -139,6 +163,8 @@
 
   {/* DateTime */}
   <DateTimePicker
+    cancelText="custom_cancelText"
+    okText="custom_okText"
     endText="custom_endText"
     startText="custom_startText"
     getClockLabelText="custom_getClockLabelText"
@@ -150,6 +176,8 @@
     rightArrowButtonText="custom_rightArrowButtonText"
   />
   <StaticDateTimePicker
+    cancelText="custom_cancelText"
+    okText="custom_okText"
     endText="custom_endText"
     startText="custom_startText"
     getClockLabelText="custom_getClockLabelText"
@@ -161,6 +189,8 @@
     rightArrowButtonText="custom_rightArrowButtonText"
   />
   <DesktopDateTimePicker
+    cancelText="custom_cancelText"
+    okText="custom_okText"
     endText="custom_endText"
     startText="custom_startText"
     getClockLabelText="custom_getClockLabelText"
@@ -172,6 +202,8 @@
     rightArrowButtonText="custom_rightArrowButtonText"
   />
   <MobileDateTimePicker
+    cancelText="custom_cancelText"
+    okText="custom_okText"
     endText="custom_endText"
     startText="custom_startText"
     getClockLabelText="custom_getClockLabelText"
@@ -185,6 +217,8 @@
 
   {/* Stand alone */}
   <CalendarPicker
+    cancelText="custom_cancelText"
+    okText="custom_okText"
     endText="custom_endText"
     startText="custom_startText"
     getClockLabelText="custom_getClockLabelText"
@@ -196,6 +230,8 @@
     rightArrowButtonText="custom_rightArrowButtonText"
   />
   <ClockPicker
+    cancelText="custom_cancelText"
+    okText="custom_okText"
     endText="custom_endText"
     startText="custom_startText"
     getClockLabelText="custom_getClockLabelText"

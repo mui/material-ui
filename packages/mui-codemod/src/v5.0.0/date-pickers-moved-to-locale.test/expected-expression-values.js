@@ -2,6 +2,8 @@
   {/* DateRange */}
   <DateRangePicker
     localeText={{
+      cancelButtonLabel: custom_cancelText,
+      okButtonLabel: custom_okText,
       end: custom_endText,
       start: custom_startText,
       clockLabelText: custom_getClockLabelText,
@@ -14,6 +16,8 @@
     }} />
   <StaticDateRangePicker
     localeText={{
+      cancelButtonLabel: custom_cancelText,
+      okButtonLabel: custom_okText,
       end: custom_endText,
       start: custom_startText,
       clockLabelText: custom_getClockLabelText,
@@ -26,6 +30,8 @@
     }} />
   <MobileDateRangePicker
     localeText={{
+      cancelButtonLabel: custom_cancelText,
+      okButtonLabel: custom_okText,
       end: custom_endText,
       start: custom_startText,
       clockLabelText: custom_getClockLabelText,
@@ -38,6 +44,8 @@
     }} />
   <DesktopDateRangePicker
     localeText={{
+      cancelButtonLabel: custom_cancelText,
+      okButtonLabel: custom_okText,
       end: custom_endText,
       start: custom_startText,
       clockLabelText: custom_getClockLabelText,
@@ -52,6 +60,8 @@
   {/* Date */}
   <DatePicker
     localeText={{
+      cancelButtonLabel: custom_cancelText,
+      okButtonLabel: custom_okText,
       end: custom_endText,
       start: custom_startText,
       clockLabelText: custom_getClockLabelText,
@@ -64,6 +74,8 @@
     }} />
   <StaticDatePicker
     localeText={{
+      cancelButtonLabel: custom_cancelText,
+      okButtonLabel: custom_okText,
       end: custom_endText,
       start: custom_startText,
       clockLabelText: custom_getClockLabelText,
@@ -76,6 +88,8 @@
     }} />
   <DesktopDatePicker
     localeText={{
+      cancelButtonLabel: custom_cancelText,
+      okButtonLabel: custom_okText,
       end: custom_endText,
       start: custom_startText,
       clockLabelText: custom_getClockLabelText,
@@ -88,6 +102,8 @@
     }} />
   <MobileDatePicker
     localeText={{
+      cancelButtonLabel: custom_cancelText,
+      okButtonLabel: custom_okText,
       end: custom_endText,
       start: custom_startText,
       clockLabelText: custom_getClockLabelText,
@@ -102,6 +118,8 @@
   {/* Time */}
   <TimePicker
     localeText={{
+      cancelButtonLabel: custom_cancelText,
+      okButtonLabel: custom_okText,
       end: custom_endText,
       start: custom_startText,
       clockLabelText: custom_getClockLabelText,
@@ -114,6 +132,8 @@
     }} />
   <StaticTimePicker
     localeText={{
+      cancelButtonLabel: custom_cancelText,
+      okButtonLabel: custom_okText,
       end: custom_endText,
       start: custom_startText,
       clockLabelText: custom_getClockLabelText,
@@ -126,6 +146,8 @@
     }} />
   <DesktopTimePicker
     localeText={{
+      cancelButtonLabel: custom_cancelText,
+      okButtonLabel: custom_okText,
       end: custom_endText,
       start: custom_startText,
       clockLabelText: custom_getClockLabelText,
@@ -138,6 +160,8 @@
     }} />
   <MobileTimePicker
     localeText={{
+      cancelButtonLabel: custom_cancelText,
+      okButtonLabel: custom_okText,
       end: custom_endText,
       start: custom_startText,
       clockLabelText: custom_getClockLabelText,
@@ -152,6 +176,8 @@
   {/* DateTime */}
   <DateTimePicker
     localeText={{
+      cancelButtonLabel: custom_cancelText,
+      okButtonLabel: custom_okText,
       end: custom_endText,
       start: custom_startText,
       clockLabelText: custom_getClockLabelText,
@@ -166,6 +192,8 @@
     }} />
   <StaticDateTimePicker
     localeText={{
+      cancelButtonLabel: custom_cancelText,
+      okButtonLabel: custom_okText,
       end: custom_endText,
       start: custom_startText,
       clockLabelText: custom_getClockLabelText,
@@ -180,6 +208,8 @@
     }} />
   <DesktopDateTimePicker
     localeText={{
+      cancelButtonLabel: custom_cancelText,
+      okButtonLabel: custom_okText,
       end: custom_endText,
       start: custom_startText,
       clockLabelText: custom_getClockLabelText,
@@ -194,6 +224,8 @@
     }} />
   <MobileDateTimePicker
     localeText={{
+      cancelButtonLabel: custom_cancelText,
+      okButtonLabel: custom_okText,
       end: custom_endText,
       start: custom_startText,
       clockLabelText: custom_getClockLabelText,
@@ -210,6 +242,8 @@
   {/* Stand alone */}
   <CalendarPicker
     localeText={{
+      cancelButtonLabel: custom_cancelText,
+      okButtonLabel: custom_okText,
       end: custom_endText,
       start: custom_startText,
       clockLabelText: custom_getClockLabelText,
@@ -222,6 +256,8 @@
     }} />
   <ClockPicker
     localeText={{
+      cancelButtonLabel: custom_cancelText,
+      okButtonLabel: custom_okText,
       end: custom_endText,
       start: custom_startText,
       clockLabelText: custom_getClockLabelText,
