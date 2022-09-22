@@ -1,7 +1,6 @@
 import React from 'react';
 import { ThemeProvider } from '@mui/material/styles';
 import PageContext from './modules/components/PageContext';
-import '../public/static/styles/prism-okaidia.css';
 import { UserLanguageProvider } from './modules/utils/i18n';
 
 export { default as Accordion } from '../pages/material-ui/react-accordion';
