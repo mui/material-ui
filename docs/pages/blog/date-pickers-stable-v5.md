@@ -1,7 +1,7 @@
 ---
 title: The MUI X Date and Time Pickers get a stable v5 release
 description: Migrate to the latest version for improved DX, customizability, and API consistency.
-date: 2022-09-05T00:00:00.000Z
+date: 2022-09-19T00:00:00.000Z
 authors: ['alexfauquette', 'josefreitas']
 tags: ['MUI X', 'News']
 card: true
