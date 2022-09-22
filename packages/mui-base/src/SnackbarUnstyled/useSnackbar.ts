@@ -39,9 +39,7 @@ export default function useSnackbar(parameters: UseSnackbarParameters) {
         // IE11, Edge (prior to using Blink?) use 'Esc'
         if (nativeEvent.key === 'Escape' || nativeEvent.key === 'Esc') {
           // not calling `preventDefault` since we don't know if people may ignore this event e.g. a permanently open snackbar
-          if (onClose) {
-            onClose(nativeEvent, 'escapeKeyDown');
-          }
+          onClose?.(nativeEvent, 'escapeKeyDown');
         }
       }
     }
@@ -55,9 +53,7 @@ export default function useSnackbar(parameters: UseSnackbarParameters) {
 
   const handleClose = useEventCallback(
     (event: Event | React.SyntheticEvent<any, Event> | null, reason: SnackbarCloseReason) => {
-      if (onClose) {
-        onClose(event, reason);
-      }
+      onClose?.(event, reason);
     },
   );
 
@@ -83,9 +79,7 @@ export default function useSnackbar(parameters: UseSnackbarParameters) {
   }, [open, autoHideDuration, setAutoHideTimer]);
 
   const handleClickAway = (event: React.SyntheticEvent<any> | Event) => {
-    if (onClose) {
-      onClose(event, 'clickaway');
-    }
+    onClose?.(event, 'clickaway');
   };
 
   // Pause the timer when the user is interacting with the Snackbar
@@ -106,9 +100,7 @@ export default function useSnackbar(parameters: UseSnackbarParameters) {
     (otherHandlers: Record<string, React.EventHandler<any> | undefined>) =>
     (event: React.FocusEvent<HTMLDivElement, Element>) => {
       const onBlurCallback = otherHandlers.onBlur;
-      if (onBlurCallback) {
-        onBlurCallback(event);
-      }
+      onBlurCallback?.(event);
       handleResume();
     };
 
@@ -116,9 +108,7 @@ export default function useSnackbar(parameters: UseSnackbarParameters) {
     (otherHandlers: Record<string, React.EventHandler<any> | undefined>) =>
     (event: React.FocusEvent<HTMLDivElement, Element>) => {
       const onFocusCallback = otherHandlers.onFocus;
-      if (onFocusCallback) {
-        onFocusCallback(event);
-      }
+      onFocusCallback?.(event);
       handlePause();
     };
 
@@ -126,9 +116,7 @@ export default function useSnackbar(parameters: UseSnackbarParameters) {
     (otherHandlers: Record<string, React.EventHandler<any> | undefined>) =>
     (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
       const onMouseEnterCallback = otherHandlers.onMouseEnter;
-      if (onMouseEnterCallback) {
-        onMouseEnterCallback(event);
-      }
+      onMouseEnterCallback?.(event);
       handlePause();
     };
 
@@ -136,9 +124,7 @@ export default function useSnackbar(parameters: UseSnackbarParameters) {
     (otherHandlers: Record<string, React.EventHandler<any> | undefined>) =>
     (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
       const onMouseLeaveCallback = otherHandlers.onMouseLeave;
-      if (onMouseLeaveCallback) {
-        onMouseLeaveCallback(event);
-      }
+      onMouseLeaveCallback?.(event);
       handleResume();
     };
 
