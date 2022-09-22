@@ -95,4 +95,4 @@ We'll keep communications open on eventual announcements, and you can follow eve
 But please consider joining our alpha testers group and [giving us](https://forms.gle/vsBv6CLPz9h57xg8A) an user interview.  
 You'll get an insider's view of the development and can help us iterate early in the new features.
 
-As usual, we'll be listening to all the feedback in our GitHub repository, feel free to request features and report any bugs.
+As usual, you can always request [features and report any bugs](https://github.com/mui/mui-x/issues/new/choose). We're glad to listen all the feedback.
