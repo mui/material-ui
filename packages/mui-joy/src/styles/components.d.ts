@@ -39,7 +39,17 @@ import {
   ChipDeleteOwnerState,
   ChipDeleteSlot,
 } from '../ChipDelete/ChipDeleteProps';
+import {
+  CircularProgressProps,
+  CircularProgressOwnerState,
+  CircularProgressSlot,
+} from '../CircularProgress/CircularProgressProps';
 import { ContainerProps, ContainerSlot } from '../Container/ContainerProps';
+import {
+  FormControlProps,
+  FormControlOwnerState,
+  FormControlSlot,
+} from '../FormControl/FormControlProps';
 import {
   FormHelperTextProps,
   FormHelperTextOwnerState,
@@ -172,6 +182,10 @@ export interface Components<Theme = unknown> {
     defaultProps?: Partial<BreadcrumbsProps>;
     styleOverrides?: OverridesStyleRules<BreadcrumbsSlot, BreadcrumbsOwnerState, Theme>;
   };
+  JoyCircularProgress?: {
+    defaultProps?: Partial<CircularProgressProps>;
+    styleOverrides?: OverridesStyleRules<CircularProgressSlot, CircularProgressOwnerState, Theme>;
+  };
   JoyCard?: {
     defaultProps?: Partial<CardProps>;
     styleOverrides?: OverridesStyleRules<CardSlot, CardOwnerState, Theme>;
@@ -203,6 +217,10 @@ export interface Components<Theme = unknown> {
   JoyContainer?: {
     defaultProps?: Partial<ContainerProps>;
     styleOverrides?: OverridesStyleRules<ContainerSlot, ContainerProps, Theme>;
+  };
+  JoyFormControl?: {
+    defaultProps?: Partial<FormControlProps>;
+    styleOverrides?: OverridesStyleRules<FormControlSlot, FormControlOwnerState, Theme>;
   };
   JoyFormHelperText?: {
     defaultProps?: Partial<FormHelperTextProps>;

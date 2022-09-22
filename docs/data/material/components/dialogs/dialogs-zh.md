@@ -78,7 +78,7 @@ A Dialog is a type of [modal](/material-ui/react-modal/) window that appears in 
 
 ## 响应式全屏
 
-You may make a dialog responsively full screen using [`useMediaQuery`](/material-ui/react-use-media-query/#usemediaquery).
+You may make a dialog responsively full screen using [`useMediaQuery`](/material-ui/react-use-media-query/).
 
 ```jsx
 import useMediaQuery from '@mui/material/useMediaQuery';

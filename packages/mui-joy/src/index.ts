@@ -25,6 +25,9 @@ export * from './Breadcrumbs';
 export { default as Button } from './Button';
 export * from './Button';
 
+export { default as CircularProgress } from './CircularProgress';
+export * from './CircularProgress';
+
 export { default as Card } from './Card';
 export * from './Card';
 
