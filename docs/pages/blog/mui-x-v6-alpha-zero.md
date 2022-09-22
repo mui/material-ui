@@ -93,4 +93,4 @@ We highly encourage you to try the new version. It is, after all, an improvement
 Please consider joining our alpha testers group channel and [giving us](https://forms.gle/vsBv6CLPz9h57xg8A) an user interview.  
 You'll get an insider's perspective of the development and can help us iterate early in the new features.
 
-As usual, we're glad to listen all the feedback, and you can also participate in the discussion by commenting on the features or reporting bugs in our [GitHub repository](https://github.com/mui/mui-x/issues/new/choose). Finally, you can follow every step of the development through our [changelog](https://github.com/mui/mui-x/releases).  
+As usual, we're glad to listen all the feedback, and you can also participate in the discussion by commenting on the features or reporting bugs in our [GitHub repository](https://github.com/mui/mui-x/issues/new/choose). Finally, you can follow every step of the development through our [changelog](https://github.com/mui/mui-x/releases).
