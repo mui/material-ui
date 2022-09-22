@@ -397,6 +397,15 @@ const teamMembers: Array<Profile> = [
     about: '🛠️ DYI projects, 🏄🏻‍♂️ Wakeboarding & 🏎️ F1',
     github: 'bytasv',
   },
+  {
+    src: '/static/branding/about/lukas.png',
+    name: 'Lukas Tyla',
+    title: 'MUI X Engineer',
+    location: 'Vilnius, Lithuania',
+    locationCountry: 'lt',
+    about: 'Learning and experimenting 📚',
+    github: 'LukasTy',
+  },
 ];
 
 const contributors = [

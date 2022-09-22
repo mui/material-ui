@@ -1,6 +1,7 @@
 import { unstable_createCssVarsProvider as createCssVarsProvider } from '@mui/system';
 import experimental_extendTheme, { SupportedColorScheme } from './experimental_extendTheme';
 import createTypography from './createTypography';
+import excludeVariablesFromRoot from './excludeVariablesFromRoot';
 
 const shouldSkipGeneratingVar = (keys: string[]) =>
   !!keys[0].match(/(typography|mixins|breakpoints|direction|transitions)/) ||
@@ -27,6 +28,7 @@ const { CssVarsProvider, useColorScheme, getInitColorSchemeScript } =
       return newTheme;
     },
     shouldSkipGeneratingVar,
+    excludeVariablesFromRoot,
   });
 
 export {

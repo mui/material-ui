@@ -1,5 +1,6 @@
 import React from 'react';
 import { OverridableStringUnion, OverrideProps } from '@mui/types';
+import { SlotComponentProps } from '@mui/base/utils';
 import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
 
 export type InputSlot = 'root' | 'input' | 'startDecorator' | 'endDecorator';
@@ -9,6 +10,13 @@ export interface InputPropsVariantOverrides {}
 export interface InputPropsColorOverrides {}
 
 export interface InputPropsSizeOverrides {}
+
+interface ComponentsProps {
+  root?: SlotComponentProps<'div', { sx?: SxProps }, InputOwnerState>;
+  input?: SlotComponentProps<'input', { sx?: SxProps }, InputOwnerState>;
+  startDecorator?: SlotComponentProps<'span', { sx?: SxProps }, InputOwnerState>;
+  endDecorator?: SlotComponentProps<'span', { sx?: SxProps }, InputOwnerState>;
+}
 
 export interface InputTypeMap<P = {}, D extends React.ElementType = 'div'> {
   props: P &
@@ -42,16 +50,10 @@ export interface InputTypeMap<P = {}, D extends React.ElementType = 'div'> {
        */
       color?: OverridableStringUnion<ColorPaletteProp, InputPropsColorOverrides>;
       /**
-       * The props used for each slot inside the Input.
+       * The props used for each slot inside the component.
        * @default {}
        */
-      componentsProps?: {
-        root?: React.ComponentPropsWithRef<'div'>;
-        input?: React.ComponentPropsWithRef<'input'> & {
-          component?: React.ElementType;
-          sx?: SxProps;
-        };
-      };
+      componentsProps?: ComponentsProps;
       /**
        * Trailing adornment for this input.
        */
@@ -96,3 +98,10 @@ export type InputProps<
 > = OverrideProps<InputTypeMap<P, D>, D>;
 
 export default InputProps;
+
+export interface InputOwnerState extends InputProps {
+  /**
+   * If `true`, the input is focused.
+   */
+  focused: boolean;
+}

@@ -43,7 +43,6 @@ Some criteria for applying to this role:
 - Location: fully remote (preference for UTC-6 to UTC +3).
 - Type of work: full-time (as a contractor or employee, [depending primarily on location](https://mui-org.notion.site/Hiring-FAQ-64763b756ae44c37b47b081f98915501)).
 - Level: [3 or above](https://docs.google.com/spreadsheets/d/18VvbVCNBRWu-QYPncBl5IWTXTOpD68UQsLsymBvfm88/edit#gid=0).
-- Start date: immediately.
 
 We need someone experienced enough to help two different teams with hard problems.
 You'll be responsible for ensuring that the MUI Toolpad and MUI X teams have spot-on design and product work.

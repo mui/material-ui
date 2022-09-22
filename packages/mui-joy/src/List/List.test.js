@@ -7,6 +7,7 @@ import ListItem from '@mui/joy/ListItem';
 import MenuList from '@mui/joy/MenuList';
 import Menu from '@mui/joy/Menu';
 import Select from '@mui/joy/Select';
+import RadioGroup from '@mui/joy/RadioGroup';
 
 describe('Joy <List />', () => {
   const { render } = createRenderer();
@@ -18,7 +19,9 @@ describe('Joy <List />', () => {
     ThemeProvider,
     muiName: 'JoyList',
     refInstanceof: window.HTMLUListElement,
-    skip: ['componentsProp', 'classesRoot', 'themeVariants'],
+    testVariantProps: { variant: 'solid' },
+    testCustomVariant: true,
+    skip: ['componentsProp', 'classesRoot'],
   }));
 
   it('should have root className', () => {
@@ -40,6 +43,11 @@ describe('Joy <List />', () => {
   it('should have lg classes', () => {
     const { container } = render(<List size="lg" />);
     expect(container.firstChild).to.have.class(classes.sizeLg);
+  });
+
+  it('should have default size="md" classes', () => {
+    const { container } = render(<List size={undefined} />);
+    expect(container.firstChild).to.have.class(classes.sizeMd);
   });
 
   it('should have nesting classes', () => {
@@ -140,6 +148,28 @@ describe('Joy <List />', () => {
         </Select>,
       );
       expect(screen.getByRole('group')).to.have.class(classes.sizeLg);
+    });
+  });
+
+  describe('RadioGroup - integration', () => {
+    it('should have div tag', () => {
+      render(
+        <RadioGroup>
+          <List />
+        </RadioGroup>,
+      );
+
+      expect(screen.getByRole('radiogroup').firstChild).to.have.attribute('role', 'presentation');
+    });
+
+    it('can override by prop', () => {
+      render(
+        <RadioGroup>
+          <List role="none" />
+        </RadioGroup>,
+      );
+
+      expect(screen.getByRole('radiogroup').firstChild).to.have.attribute('role', 'none');
     });
   });
 });
