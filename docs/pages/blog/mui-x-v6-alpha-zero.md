@@ -69,7 +69,7 @@ The following is a list of enhancements planned for the next few months.
 - **Rockstar feature**
   - [Copy and paste from/to multiple cells](https://github.com/mui/mui-x/issues/199).
 
-## Date pickers
+### Date pickers
 
 - **Improved UX**  
    On the previous version we focused a lot on developer experience and overall stability of the components. Now we’re pushing the lines to improve usability.
@@ -90,7 +90,9 @@ We highly encourage you to try the new version. It is, after all, an improvement
 
 ## How to follow development?
 
-We'll keep communicating on eventual announcements, and you can follow every step of the development through our [changelog](https://github.com/mui/mui-x/releases).
+We'll keep communications open on eventual announcements, and you can follow every step of the development through our [changelog](https://github.com/mui/mui-x/releases).
 
 But please consider joining our alpha testers group and [giving us](https://forms.gle/vsBv6CLPz9h57xg8A) an user interview.  
 You'll get an insider's view of the development and can help us iterate early in the new features.
+
+As usual, we'll be listening to all the feedback in our GitHub repository, feel free to request features and report any bugs.
