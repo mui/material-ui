@@ -90,7 +90,8 @@ module.exports = async function demoLoader() {
 
         const matchNotEnglishMarkdown = filename.match(notEnglishMarkdownRegExp);
 
-        if (filename.startsWith(englishFilename) &&
+        if (
+          filename.startsWith(englishFilename) &&
           matchNotEnglishMarkdown !== null &&
           LANGUAGES_IN_PROGRESS.indexOf(matchNotEnglishMarkdown[1]) !== -1
         ) {
