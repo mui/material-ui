@@ -20,6 +20,7 @@ import filledInputClasses from '../FilledInput/filledInputClasses';
 import ClearIcon from '../internal/svg-icons/Close';
 import ArrowDropDownIcon from '../internal/svg-icons/ArrowDropDown';
 import useThemeProps from '../styles/useThemeProps';
+import useFormControl from "../FormControl/useFormControl";
 import styled from '../styles/styled';
 import autocompleteClasses, { getAutocompleteUtilityClass } from './autocompleteClasses';
 import capitalize from '../utils/capitalize';
@@ -380,7 +381,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     defaultValue = props.multiple ? [] : null,
     disableClearable = false,
     disableCloseOnSelect = false,
-    disabled = false,
+    disabled: disabledProp,
     disabledItemsFocusable = false,
     disableListWrap = false,
     disablePortal = false,
@@ -449,6 +450,19 @@ const Autocomplete = React.forwardRef(function Autocomplete(inProps, ref) {
     inputValue,
     groupedOptions,
   } = useAutocomplete({ ...props, componentName: 'Autocomplete' });
+
+  const muiFormControl = useFormControl();
+
+  let disabled = disabledProp;
+
+  if (typeof disabled === 'undefined') {
+    if (muiFormControl) {
+        disabled = muiFormControl.disabled;
+    } else {
+      // Default state
+      disabled = false;
+    }
+  }
 
   const hasClearIcon = !disableClearable && !disabled && dirty && !readOnly;
   const hasPopupIcon = (!freeSolo || forcePopupIcon === true) && forcePopupIcon !== false;
