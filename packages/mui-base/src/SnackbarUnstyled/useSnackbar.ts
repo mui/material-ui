@@ -51,11 +51,9 @@ export default function useSnackbar(parameters: UseSnackbarParameters) {
     };
   }, [open, onClose]);
 
-  const handleClose = useEventCallback(
-    (event: Event | React.SyntheticEvent<any, Event> | null, reason: SnackbarCloseReason) => {
-      onClose?.(event, reason);
-    },
-  );
+  const handleClose = useEventCallback((event: null, reason: SnackbarCloseReason) => {
+    onClose?.(event, reason);
+  });
 
   const setAutoHideTimer = useEventCallback((autoHideDurationParam: number | null) => {
     if (!onClose || autoHideDurationParam == null) {
