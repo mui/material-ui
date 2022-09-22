@@ -28,8 +28,8 @@ Disclaimer: We're working with 2 and 1 months for the alpha and beta phase respe
 We operate in a dynamic environment that's subject to change. We may need to do more iterations or change the referenced time windows to deliver the great product we want.
 :::
 
-Finally, we’ll release the first `v6.0.0` stable, and we’ll continue improving the components and adding features, but without making any new breaking changes until the next major version.
-We’re establishing a one-year cycle for major versions, meaning the next major comes next year.
+At last, we’ll release the first `v6.0.0` stable, and we’ll continue improving the components and adding features, but without making any new breaking changes until the next major version.
+We’re establishing a one-year cycle for major versions, meaning the next major comes about one year after this release.
 
 ## What happens to v5?
 
@@ -48,7 +48,7 @@ The next version's documentation is in the `next` subdomain.
 
 ## What’s coming next?
 
-The following is a list of enhancements planned for the next few months.
+The following is a list of enhancements on the pipeline for the next few months. It contains the highlights that will make into the first versions.
 
 ### Data Grid
 
@@ -73,13 +73,13 @@ The following is a list of enhancements planned for the next few months.
 
 - **Improved UX**  
    On the previous version we focused a lot on developer experience and overall stability of the components. Now we’re pushing the lines to improve usability.
-  - [A new text input for date and time values, retiring the mask solution](https://next.mui.com/x/react-date-pickers/date-field/).
   - [Remove the clock view on time pickers (for desktop)](https://github.com/mui/mui-x/issues/4483).
   - [Visually edit a range by dragging date markers](https://github.com/mui/mui-x/issues/5311).
   - [Range shortcuts](https://github.com/mui/mui-x/issues/4563).
+  - [A new text input for date and time values, retiring the mask solution (early preview)](https://next.mui.com/x/react-date-pickers/date-field/).
 
 :::info
-Please check our [roadmap](https://github.com/mui/mui-x/projects/1) for the full live list.
+You can check our [roadmap](https://github.com/mui/mui-x/projects/1) for the full live list.
 :::
 
 ## How to migrate?
@@ -88,11 +88,9 @@ We’ve prepared a [migration guide](https://mui.com/x/react-data-grid/migration
 
 We highly encourage you to try the new version. It is, after all, an improvement over the solid foundation we established with v5.
 
-## How to follow development?
+## How to get involved?
 
-We'll keep communications open on eventual announcements, and you can follow every step of the development through our [changelog](https://github.com/mui/mui-x/releases).
+Please consider joining our alpha testers group channel and [giving us](https://forms.gle/vsBv6CLPz9h57xg8A) an user interview.  
+You'll get an insider's perspective of the development and can help us iterate early in the new features.
 
-But please consider joining our alpha testers group and [giving us](https://forms.gle/vsBv6CLPz9h57xg8A) an user interview.  
-You'll get an insider's view of the development and can help us iterate early in the new features.
-
-As usual, you can always request [features and report any bugs](https://github.com/mui/mui-x/issues/new/choose). We're glad to listen all the feedback.
+As usual, we're glad to listen all the feedback, and you can also participate in the discussion by commenting on the features or reporting bugs in our [GitHub repository](https://github.com/mui/mui-x/issues/new/choose). Finally, you can follow every step of the development through our [changelog](https://github.com/mui/mui-x/releases).  
