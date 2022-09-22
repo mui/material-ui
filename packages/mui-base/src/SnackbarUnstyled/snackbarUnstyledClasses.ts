@@ -7,10 +7,10 @@ export interface SnackbarUnstyledClasses {
 }
 
 export function getSnackbarUnstyledUtilityClass(slot: string): string {
-  return generateUtilityClass('BaseSnackbar', slot);
+  return generateUtilityClass('MuiSnackbar', slot);
 }
 
-const snackbarUnstyledClasses: SnackbarUnstyledClasses = generateUtilityClasses('BaseSnackbar', [
+const snackbarUnstyledClasses: SnackbarUnstyledClasses = generateUtilityClasses('MuiSnackbar', [
   'root',
 ]);
 
