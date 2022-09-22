@@ -115,6 +115,18 @@ interface AutocompleteOwnProps<
    */
   closeText?: string;
   /**
+   * Replace the default slots.
+   */
+  components?: {
+    root?: React.ElementType;
+    clearIndicator?: React.ElementType;
+    popupIndicator?: React.ElementType;
+    listbox?: React.ElementType;
+    loading?: React.ElementType;
+    noOptions?: React.ElementType;
+    limitTag?: React.ElementType;
+  };
+  /**
    * The props used for each slot inside.
    * @default {}
    */

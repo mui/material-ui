@@ -149,7 +149,7 @@ const AutocompletePopupIndicator = styled(IconButtonRoot, {
   }),
 }));
 
-const AutocompleteListbox = styled(ListRoot, {
+const InternalAutocompleteListbox = styled(ListRoot, {
   name: 'JoyAutocomplete',
   slot: 'Listbox',
   overridesResolver: (props, styles) => styles.listbox,
@@ -186,6 +186,12 @@ const AutocompleteListbox = styled(ListRoot, {
     },
   };
 });
+const AutocompleteListbox = React.forwardRef<any, { ownerState: OwnerState } & PopperUnstyledProps>(
+  ({ component, ...props }, ref) => (
+    // @ts-ignore internal logic
+    <PopperUnstyled ref={ref} {...props} component={InternalAutocompleteListbox} as={component} />
+  ),
+);
 
 const AutocompleteLoading = styled(ListItem, {
   name: 'JoyAutocomplete',
@@ -226,6 +232,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     clearIcon = <ClearIcon fontSize="md" />,
     clearText = 'Clear',
     closeText = 'Close',
+    components = {},
     componentsProps = {},
     disableClearable = false,
     disabled = false,
@@ -441,8 +448,9 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     },
   });
 
-  const { component: listboxComponent, ...listboxProps } = useSlotProps({
-    elementType: AutocompleteListbox,
+  const SlotListbox = components.listbox || AutocompleteListbox;
+  const listboxProps = useSlotProps({
+    elementType: SlotListbox,
     // TODO: fix useSlotProps typings, the `component` should be infered from `externalSlotProps`
     getSlotProps: getListboxProps as () => React.HTMLAttributes<HTMLUListElement> & {
       component?: React.ElementType;
@@ -542,7 +550,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
         })}
       </AutocompleteRoot>
       {anchorEl ? (
-        <PopperUnstyled {...listboxProps} as={listboxComponent} component={AutocompleteListbox}>
+        <SlotListbox {...listboxProps}>
           <ListProvider nested>
             {loading && groupedOptions.length === 0 ? (
               <AutocompleteLoading {...loadingProps}>{loadingText}</AutocompleteLoading>
@@ -564,7 +572,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
               return renderListOption(option, index);
             })}
           </ListProvider>
-        </PopperUnstyled>
+        </SlotListbox>
       ) : null}
     </React.Fragment>
   );
