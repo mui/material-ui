@@ -130,6 +130,7 @@ export default function JoyVariablesDemo(props: {
       <Sheet
         variant="outlined"
         sx={{
+          mt: 3,
           minWidth: 0,
           flexBasis: 240,
           flexGrow: 1,
