@@ -139,10 +139,13 @@ const styles = `
 `;
 
 const Menu = React.forwardRef(function Menu(
-  props: React.ComponentPropsWithoutRef<'ul'> & { onClose: () => void },
+  props: React.ComponentPropsWithoutRef<'ul'> & {
+    onClose: () => void;
+    open: boolean;
+  },
   ref: React.Ref<HTMLUListElement>,
 ) {
-  const { children, onClose, ...other } = props;
+  const { children, onClose, open, ...other } = props;
 
   const {
     registerItem,
@@ -153,6 +156,7 @@ const Menu = React.forwardRef(function Menu(
   } = useMenu({
     listboxRef: ref,
     onClose,
+    open,
   });
 
   const contextValue: MenuUnstyledContextType = {
@@ -233,7 +237,7 @@ export default function UseMenu() {
         Commands
       </button>
       <PopperUnstyled open={open} anchorEl={anchorEl}>
-        <Menu onClose={handleOnClose}>
+        <Menu onClose={handleOnClose} open={open}>
           <MenuItem>Cut</MenuItem>
           <MenuItem>Copy</MenuItem>
           <MenuItem>Paste</MenuItem>
