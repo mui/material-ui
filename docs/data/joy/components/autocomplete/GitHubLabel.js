@@ -2,6 +2,7 @@ import * as React from 'react';
 import PopperUnstyled from '@mui/base/PopperUnstyled';
 import ClickAwayListener from '@mui/base/ClickAwayListener';
 import Autocomplete from '@mui/joy/Autocomplete';
+import AutocompleteListbox from '@mui/joy/AutocompleteListbox';
 import AutocompleteOption from '@mui/joy/AutocompleteOption';
 import Box from '@mui/joy/Box';
 import Input, { inputClasses } from '@mui/joy/Input';
@@ -14,26 +15,19 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import CloseIcon from '@mui/icons-material/Close';
 import DoneIcon from '@mui/icons-material/Done';
 
-const Listbox = React.forwardRef(
-  ({ children, anchorEl, open, modifiers, ownerState, ...props }, ref) => (
-    <List
-      ref={ref}
-      {...props}
-      variant="plain"
-      size="sm"
-      sx={{
-        maxHeight: '40vh',
-        overflow: 'auto',
-        '--_outline-inside': 1,
-        '--List-divider-gap': '0px',
-        '--List-item-paddingX': '8px',
-        '--List-item-paddingY': '8px',
-      }}
-    >
-      {children}
-    </List>
-  ),
-);
+const Listbox = React.forwardRef((props, ref) => (
+  <AutocompleteListbox
+    ref={ref}
+    {...props}
+    variant="plain"
+    size="sm"
+    sx={{
+      '--List-radius': '0px',
+      '--List-item-paddingX': '8px',
+      '--List-item-paddingY': '8px',
+    }}
+  />
+));
 
 export default function GitHubLabel() {
   const [anchorEl, setAnchorEl] = React.useState(null);
