@@ -3,7 +3,6 @@ import { OverridableStringUnion, OverrideProps } from '@mui/types';
 import { SelectUnstyledCommonProps, SelectOption } from '@mui/base/SelectUnstyled';
 import { PopperUnstyledOwnProps } from '@mui/base/PopperUnstyled';
 import { SlotComponentProps } from '@mui/base/utils';
-import { ListProps } from '../List/ListProps';
 import { ColorPaletteProp, VariantProp, SxProps } from '../styles/types';
 
 export type SelectSlot =
@@ -28,7 +27,10 @@ interface ComponentsProps {
   indicator?: SlotComponentProps<'span', { sx?: SxProps }, SelectOwnerState<any>>;
   listbox?: SlotComponentProps<
     'ul',
-    Omit<PopperUnstyledOwnProps, 'components' | 'componentsProps' | 'open'> & ListProps,
+    Omit<PopperUnstyledOwnProps, 'components' | 'componentsProps' | 'open'> & {
+      component?: React.ElementType;
+      sx?: SxProps;
+    },
     SelectOwnerState<any>
   >;
 }
@@ -102,7 +104,10 @@ export interface SelectOwnProps<TValue extends {}> extends SelectStaticProps {
   /**
    * Callback fired when an option is selected.
    */
-  onChange?: (value: TValue | null) => void;
+  onChange?: (
+    e: React.MouseEvent | React.KeyboardEvent | React.FocusEvent | null,
+    value: TValue | null,
+  ) => void;
   /**
    * Function that customizes the rendering of the selected value.
    */
@@ -114,7 +119,7 @@ export interface SelectOwnProps<TValue extends {}> extends SelectStaticProps {
   value?: TValue | null;
 }
 
-export interface SelectOwnerState<TValue> extends SelectOwnProps<TValue> {
+export interface SelectOwnerState<TValue extends {}> extends SelectOwnProps<TValue> {
   /**
    * If `true`, the select button is active.
    */

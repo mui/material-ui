@@ -138,7 +138,7 @@ const AspectRatio = React.forwardRef(function AspectRatio(inProps, ref) {
       <AspectRatioContent {...contentProps}>
         {React.Children.map(children, (child, index) =>
           index === 0 && React.isValidElement(child)
-            ? React.cloneElement(child, { 'data-first-child': '' })
+            ? React.cloneElement(child, { 'data-first-child': '' } as Record<string, string>)
             : child,
         )}
       </AspectRatioContent>

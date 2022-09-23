@@ -462,7 +462,8 @@ It's crucial for our docs—and even the code itself—to be easily understood b
 
 <p class="blog-description">1051 out of 1589 answered.</p>
 
-It might be a possible interpration that MUI could be one of the enablers of this high-speed development, which is very encouraging. Shipping 28 apps in a year is already a huge accomplishment but 122 to 494 is just wild!
+Roughly half (47%) of those who responded to this question shipped one app or simply maintained an existing app.
+Impressively, 5% of respondents delivered six or more apps, and more than half of those surpassed 10!
 
 ### Which MUI products do you use in your application?
 
@@ -554,7 +555,7 @@ The majority of respondents don't use any paid libraries, but those who do are m
 
 <p class="blog-description">75 out of 1589 answered.</p>
 
-- **More features:** [Grouping](/x/react-data-grid/row-grouping/) was the most requested feature for the Data Grid Pro, followed by [master detail](/x/react-data-grid/master-detail/), aggregation, search, [tree data](/x/react-data-grid/tree-data/), and [column pinning](/x/react-data-grid/columns/#column-pinning).
+- **More features:** [Grouping](/x/react-data-grid/row-grouping/) was the most requested feature for the Data Grid Pro, followed by [master detail](/x/react-data-grid/master-detail/), aggregation, search, [tree data](/x/react-data-grid/tree-data/), and [column pinning](/x/react-data-grid/column-pinning/).
   We've already released some of these in the time it took us to analyze the survey results.
   Check the links to see their docs and demos.
   Alternatively, you can follow [the public roadmap](https://github.com/mui/mui-x/projects/1) to see when the others will land.
