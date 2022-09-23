@@ -13,7 +13,7 @@ import { IconButtonRoot } from '../IconButton/IconButton';
 import Chip, { chipClasses } from '../Chip';
 import ChipDelete from '../ChipDelete';
 import { IconButtonOwnerState } from '../IconButton';
-import Input, { inputClasses } from '../Input';
+import { inputClasses } from '../Input';
 import List from '../List';
 import ListProvider from '../List/ListProvider';
 import ListSubheader from '../ListSubheader';
@@ -38,7 +38,6 @@ const defaultIsActiveElementInListbox = (listboxRef: React.RefObject<HTMLElement
 const defaultGetOptionLabel = <T extends unknown>(option: T) =>
   (option as { label: string }).label ?? option;
 const defaultLimitTagsText = (more: string | number) => `+${more}`;
-const defaultRenderInput = (params: any) => <Input {...params} />;
 const defaultRenderGroup = (params: AutocompleteRenderGroupParams) => (
   <ListItem key={params.key} nested>
     <ListSubheader sticky>{params.group}</ListSubheader>
@@ -227,11 +226,10 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     open,
     openText = 'Open',
     options,
-    placeholder,
     popupIcon = <ArrowDropDownIcon />,
     readOnly = false,
+    renderInput,
     renderGroup = defaultRenderGroup,
-    renderInput = defaultRenderInput,
     renderOption: renderOptionProp,
     renderTags,
     size: sizeProp = 'md',
@@ -481,7 +479,6 @@ const Autocomplete = React.forwardRef(function Autocomplete(
           fullWidth: true,
           size,
           ref: setAnchorEl,
-          placeholder,
           startDecorator,
           ...((hasClearIcon || hasPopupIcon) && {
             endDecorator: (
@@ -771,10 +768,6 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * Array of options.
    */
   options: PropTypes.array.isRequired,
-  /**
-   * The input placeholder
-   */
-  placeholder: PropTypes.string,
   /**
    * The icon to display in place of the default popup icon.
    * @default <ArrowDropDownIcon />
