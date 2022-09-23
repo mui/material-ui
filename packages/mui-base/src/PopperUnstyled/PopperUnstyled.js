@@ -186,7 +186,7 @@ const PopperTooltip = React.forwardRef(function PopperTooltip(props, ref) {
     },
     ownerState: {
       // shallow merge ownerState from external component, e.g. Joy Menu.
-      ...props,
+      ...other,
       ...ownerState,
     },
     className: classes.root,
