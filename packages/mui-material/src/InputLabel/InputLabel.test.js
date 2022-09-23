@@ -6,6 +6,7 @@ import FormControl from '@mui/material/FormControl';
 import Input from '@mui/material/Input';
 import FormLabel from '@mui/material/FormLabel';
 import InputLabel, { inputLabelClasses as classes } from '@mui/material/InputLabel';
+import { ClassNames } from '@emotion/react';
 
 describe('<InputLabel />', () => {
   const { render } = createRenderer();
@@ -117,6 +118,48 @@ describe('<InputLabel />', () => {
         setProps({ shrink: true });
         expect(getByTestId('root')).to.have.class(classes.shrink);
       });
+    });
+  });
+
+  describe('Emotion compatibility', () => {
+    it('classes.root should overwrite builtin styles.', () => {
+      const text = 'The label';
+
+      const { getByText } = render(
+        <ClassNames>
+          {({ css }) => (
+            <FormControl>
+              <InputLabel classes={{ root: css({ position: 'static' }) }}>{text}</InputLabel>
+            </FormControl>
+          )}
+        </ClassNames>,
+      );
+      const label = getByText(text);
+
+      expect(getComputedStyle(label).position).to.equal('static');
+    });
+
+    it('className should overwrite classes.root and builtin styles.', () => {
+      const text = 'The label';
+
+      const { getByText } = render(
+        <ClassNames>
+          {({ css }) => (
+            <FormControl>
+              <InputLabel
+                color="primary"
+                className={css({ position: 'static' })}
+                classes={{ root: css({ position: 'sticky' }) }}
+              >
+                {text}
+              </InputLabel>
+            </FormControl>
+          )}
+        </ClassNames>,
+      );
+      const label = getByText(text);
+
+      expect(getComputedStyle(label).position).to.equal('static');
     });
   });
 });
