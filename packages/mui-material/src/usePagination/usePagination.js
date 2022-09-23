@@ -28,7 +28,7 @@ export default function usePagination(props = {}) {
     state: 'page',
   });
 
-  const handleClick = (event, value) => {
+  const handleClick = React.useCallback((event, value) => {
     if (!pageProp) {
       transitionThrottle(() => {
         setPageState(value);
@@ -37,7 +37,7 @@ export default function usePagination(props = {}) {
     if (handleChange) {
       handleChange(event, value);
     }
-  };
+  }, [pageProp, handleChange]);
 
   // https://dev.to/namirsab/comment/2050
   const range = (start, end) => {
