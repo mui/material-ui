@@ -128,6 +128,11 @@ AutocompleteListbox.propTypes /* remove-proptypes */ = {
    */
   component: PropTypes.elementType,
   /**
+   * The size of the component (affect other nested list* components).
+   * @default 'md'
+   */
+  size: PropTypes.oneOf(['sm', 'md', 'lg']),
+  /**
    * The system prop that allows defining system overrides as well as additional CSS styles.
    */
   sx: PropTypes.oneOfType([
@@ -137,7 +142,7 @@ AutocompleteListbox.propTypes /* remove-proptypes */ = {
   ]),
   /**
    * The variant to use.
-   * @default 'plain'
+   * @default 'outlined'
    */
   variant: PropTypes /* @typescript-to-proptypes-ignore */.oneOfType([
     PropTypes.oneOf(['contained', 'light', 'outlined', 'text']),

@@ -595,6 +595,18 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    */
   closeText: PropTypes.string,
   /**
+   * Replace the default slots.
+   */
+  components: PropTypes.shape({
+    clearIndicator: PropTypes.elementType,
+    limitTag: PropTypes.elementType,
+    listbox: PropTypes.elementType,
+    loading: PropTypes.elementType,
+    noOptions: PropTypes.elementType,
+    popupIndicator: PropTypes.elementType,
+    root: PropTypes.elementType,
+  }),
+  /**
    * The props used for each slot inside.
    * @default {}
    */
