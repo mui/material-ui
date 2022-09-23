@@ -136,7 +136,7 @@ const styles = `
 `;
 
 const Menu = React.forwardRef(function Menu(props, ref) {
-  const { children, onClose, ...other } = props;
+  const { children, onClose, open, ...other } = props;
 
   const {
     registerItem,
@@ -147,6 +147,7 @@ const Menu = React.forwardRef(function Menu(props, ref) {
   } = useMenu({
     listboxRef: ref,
     onClose,
+    open,
   });
 
   const contextValue = {
@@ -169,6 +170,7 @@ const Menu = React.forwardRef(function Menu(props, ref) {
 Menu.propTypes = {
   children: PropTypes.node,
   onClose: PropTypes.func.isRequired,
+  open: PropTypes.bool.isRequired,
 };
 
 const MenuItem = React.forwardRef(function MenuItem(props, ref) {
@@ -233,7 +235,7 @@ export default function UseMenu() {
         Commands
       </button>
       <PopperUnstyled open={open} anchorEl={anchorEl}>
-        <Menu onClose={handleOnClose}>
+        <Menu onClose={handleOnClose} open={open}>
           <MenuItem>Cut</MenuItem>
           <MenuItem>Copy</MenuItem>
           <MenuItem>Paste</MenuItem>
