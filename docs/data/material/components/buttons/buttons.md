@@ -117,6 +117,7 @@ Use `color` prop to apply theme color palette to component.
 {{"demo": "IconButtonColors.js"}}
 
 To extend the color customization capacity, use the `style` prop with the `color` attribute.
+
 {{"demo": "IconButtonCustomColor.js"}}
 
 ## Customization
