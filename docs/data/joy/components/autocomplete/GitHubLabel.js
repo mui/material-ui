@@ -22,6 +22,7 @@ const Listbox = React.forwardRef((props, ref) => (
     variant="plain"
     size="sm"
     sx={{
+      '--List-padding': '0px',
       '--List-radius': '0px',
       '--List-item-paddingX': '8px',
       '--List-item-paddingY': '8px',
@@ -111,7 +112,12 @@ export default function GitHubLabel() {
         <ClickAwayListener onClickAway={handleClose}>
           <Sheet
             variant="outlined"
-            sx={{ width: 300, boxShadow: 'md', borderRadius: '6px' }}
+            sx={{
+              width: 300,
+              boxShadow: 'md',
+              borderRadius: '6px',
+              overflow: 'hidden',
+            }}
           >
             <Typography
               fontSize="sm"
