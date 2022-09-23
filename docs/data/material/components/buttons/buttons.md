@@ -116,9 +116,7 @@ Use `color` prop to apply theme color palette to component.
 
 {{"demo": "IconButtonColors.js"}}
 
-:::info
-Note: You can only use 8 colors with color attribute `inherit | default | primary | secondary | error | info | success | warning`, which gives limited usability of colors. To bring more customization to color we can use `style` attribute.
-:::
+To extend the color customization capacity, use the `style` prop with the `color` attribute.
 
 {{"demo": "IconButtonCustomColor.js"}}
 
