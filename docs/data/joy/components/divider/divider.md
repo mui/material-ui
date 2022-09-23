@@ -18,14 +18,22 @@ Dividers separate content into clear groups.
 
 ## Component
 
-### Dividers with text
+After [installation](/joy-ui/getting-started/installation/), you can start building with this component using the following basic elements:
 
-You can also render a divider with content.
+```jsx
+import Avatar from '@mui/joy/Divider';
 
-{{"demo": "DividerText.js"}}
+export default function MyApp() {
+  return <Divider />;
+}
+```
+
+### Rendered with content
+
+Use the `Divider` to wrap elements that will be added to it.
 
 :::info
-**Accessibility tips**: When using the `Divider` component for visual decoration, such as in a heading, explicitly specify `role="presentation"` to the divider to make sure screen readers can announce its content:
+♿️ **a11y tip**: When using the `Divider` component for visual decoration, such as in a heading, explicitly specify `role="presentation"` on it to make sure screen readers can announce its content:
 
 ```js
 <Divider component="div" role="presentation">
@@ -36,13 +44,15 @@ You can also render a divider with content.
 
 :::
 
+{{"demo": "DividerText.js"}}
+
 ### Vertical divider
 
-You can also render a divider vertically using the `orientation` prop.
+Use the `orientation` prop to render a vertical divider.
 
 {{"demo": "VerticalDividers.js", "bg": true}}
 
-### Vertical with text
+#### Vertical with text
 
 You can also render a vertical divider with content.
 
@@ -60,17 +70,19 @@ To control the position of the content, override the CSS variable `--Divider-chi
 
 ## Automatic adjustment
 
-When the `Divider` is a direct child of these components, it automatically adapts to the spacing and orientation of the components.
+When the `Divider` is a direct child of either a [Card](/joy-ui/react-card/) or [ModalDialog](/joy-ui/react-modal/#dialog), it will automatically adapt to their spacing and orientation.
 
-### [Card](/joy-ui/react-card/)
+### Card
 
-The `Divider` stretches from edge to edge of the `Card` by default. It also adapts to the orientation of the `Card` as well.
+Note how the `Divider`stretches by default from edge to edge of the `Card`.
+It will also adapt to the `Card` orientation.
 
 {{"demo": "DividerInCard.js"}}
 
-### [ModalDialog](/joy-ui/react-modal/#dialog)
+### ModalDialog
 
-The `Divider` stretches from edge to edge of the `ModalDialog` by default. Use `inset="none"` on the divider to opt-out from the automatic adjustment.
+The same edge to edge stretching happens with the `ModalDialog` as well.
+To opt-out from the automatic adjustment, use `inset="none"` on the divider.
 
 {{"demo": "DividerInModalDialog.js"}}
 
