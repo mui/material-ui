@@ -1,7 +1,7 @@
 import * as React from 'react';
-import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import { OverridableComponent } from '@mui/types';
+import { useSlotProps } from '@mui/base/utils';
 import { ListRoot } from '../List/List';
 import { styled, useThemeProps } from '../styles';
 import autocompleteOptionClasses from './autocompleteListboxClasses';
@@ -74,17 +74,31 @@ const AutocompleteListbox = React.forwardRef(function AutocompleteListbox(inProp
     wrap: false,
   };
 
-  return (
-    <AutocompleteListboxRoot
-      ref={ref}
-      as={component}
-      ownerState={ownerState}
-      className={clsx(autocompleteOptionClasses.root, className)}
-      {...other}
-    >
-      {children}
-    </AutocompleteListboxRoot>
-  );
+  const filteredOther: typeof other = {};
+  // ignore props that might be injected by PopperUnstyled
+  (Object.keys(other) as Array<keyof typeof other>).forEach((k) => {
+    if (
+      !k.match(
+        /^(anchorEl|direction|disablePortal|modifiers|open|placement|popperOptions|popperRef|TransitionProps)$/,
+      )
+    ) {
+      filteredOther[k] = other[k];
+    }
+  });
+
+  const rootProps = useSlotProps({
+    elementType: AutocompleteListbox,
+    externalSlotProps: {},
+    externalForwardedProps: filteredOther,
+    ownerState,
+    additionalProps: {
+      ref,
+      as: component,
+    },
+    className: autocompleteOptionClasses.root,
+  });
+
+  return <AutocompleteListboxRoot {...rootProps}>{children}</AutocompleteListboxRoot>;
 }) as OverridableComponent<AutocompleteListboxTypeMap>;
 
 AutocompleteListbox.propTypes /* remove-proptypes */ = {
