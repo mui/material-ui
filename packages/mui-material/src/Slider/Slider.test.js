@@ -293,6 +293,7 @@ describe('<Slider />', () => {
       expect(handleChange.callCount).to.equal(3);
       expect(handleChange.args[0][1]).to.deep.equal([21, 30]);
       expect(handleChange.args[1][1]).to.deep.equal([22, 30]);
+      // TODO, consider not firing this change event since the values are the same to improve the DX.
       expect(handleChange.args[2][1]).to.deep.equal([22, 30]);
     });
 
