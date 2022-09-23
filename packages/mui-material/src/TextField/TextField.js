@@ -34,7 +34,14 @@ const TextFieldRoot = styled(FormControl, {
   name: 'MuiTextField',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,
-})({});
+})(({ ownerState }) => ({
+  ...(ownerState.select && {
+    [`& .${inputLabelClasses.root}:not(.${inputLabelClasses.shrink})`]: {
+      // issue with label padding, see: https://github.com/mui/material-ui/issues/31145
+      maxWidth: ownerState.variant !== 'standard' ? 'calc(100% - 48px)' : 'calc(100% - 24px)',
+    },
+  }),
+}));
 
 /**
  * The `TextField` is a convenience wrapper for the most common cases (80%).
@@ -189,20 +196,7 @@ const TextField = React.forwardRef(function TextField(inProps, ref) {
       {...other}
     >
       {label != null && label !== '' && (
-        <InputLabel
-          htmlFor={id}
-          id={inputLabelId}
-          sx={{
-            ...(select && {
-              // avoid when input is focused or filled
-              [`&:not(.${inputLabelClasses.shrink})`]: {
-                // issue with label padding, see: https://github.com/mui/material-ui/issues/31145
-                maxWidth: variant !== 'standard' ? 'calc(100% - 48px)' : 'calc(100% - 24px)',
-              },
-            }),
-          }}
-          {...InputLabelProps}
-        >
+        <InputLabel htmlFor={id} id={inputLabelId} {...InputLabelProps}>
           {label}
         </InputLabel>
       )}
