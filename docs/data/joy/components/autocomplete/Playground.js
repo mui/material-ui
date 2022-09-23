@@ -6,6 +6,7 @@ import Link from '@mui/joy/Link';
 import FormControl, { formControlClasses } from '@mui/joy/FormControl';
 import FormLabel from '@mui/joy/FormLabel';
 import FormHelperText from '@mui/joy/FormHelperText';
+import Input from '@mui/joy/Input';
 import List from '@mui/joy/List';
 import ListItem from '@mui/joy/ListItem';
 import Typography from '@mui/joy/Typography';
@@ -32,8 +33,8 @@ export default function Playground() {
         }}
       >
         <Autocomplete
-          placeholder="Playground"
           options={top100Films}
+          renderInput={(params) => <Input {...params} placeholder="Playground" />}
           {...flags.reduce((prev, current) => ({ ...prev, [current]: true }), {})}
           sx={{ width: 300, mx: 'auto' }}
         />

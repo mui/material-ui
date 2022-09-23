@@ -3,14 +3,15 @@ import Autocomplete from '@mui/joy/Autocomplete';
 import FormControl from '@mui/joy/FormControl';
 import FormLabel from '@mui/joy/FormLabel';
 import FormHelperText from '@mui/joy/FormHelperText';
+import Input from '@mui/joy/Input';
 
 export default function LabelAndHelperText() {
   return (
     <FormControl>
       <FormLabel>Label</FormLabel>
       <Autocomplete
-        placeholder="Placeholder"
         options={top100Films}
+        renderInput={(params) => <Input {...params} placeholder="Placeholder" />}
         sx={{ width: 300 }}
       />
       <FormHelperText>A description for the combo box.</FormHelperText>

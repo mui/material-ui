@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Stack from '@mui/joy/Stack';
 import Autocomplete from '@mui/joy/Autocomplete';
+import Input from '@mui/joy/Input';
 
 export default function Sizes() {
   return (
@@ -8,26 +9,28 @@ export default function Sizes() {
       <Autocomplete
         multiple
         size="sm"
-        placeholder='size="sm"'
         options={top100Films}
         getOptionLabel={(option) => option.title}
         defaultValue={[top100Films[13]]}
+        renderInput={(params) => <Input {...params} placeholder='size="sm"' />}
       />
       <Autocomplete
         multiple
         size="md"
-        placeholder='size="md" (default)'
         options={top100Films}
         getOptionLabel={(option) => option.title}
         defaultValue={[top100Films[13]]}
+        renderInput={(params) => (
+          <Input {...params} placeholder='size="md" (default)' />
+        )}
       />
       <Autocomplete
         multiple
         size="lg"
-        placeholder='size="lg"'
         options={top100Films}
         getOptionLabel={(option) => option.title}
         defaultValue={[top100Films[13]]}
+        renderInput={(params) => <Input {...params} placeholder='size="lg"' />}
       />
     </Stack>
   );

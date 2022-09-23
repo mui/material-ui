@@ -61,6 +61,7 @@ export default function Asynchronous() {
         renderInput={(params) => (
           <Input
             {...params}
+            placeholder="Asynchronous"
             endDecorator={
               <React.Fragment>
                 {loading ? (

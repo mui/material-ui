@@ -2,17 +2,20 @@ import * as React from 'react';
 import FormControl from '@mui/joy/FormControl';
 import FormLabel from '@mui/joy/FormLabel';
 import Autocomplete from '@mui/joy/Autocomplete';
+import Input from '@mui/joy/Input';
 
 export default function DisabledOptions() {
   return (
-    <FormControl>
+    <FormControl id="disabled-options-demo">
       <FormLabel>Disabled options</FormLabel>
       <Autocomplete
-        id="disabled-options-demo"
         options={timeSlots}
         getOptionDisabled={(option) =>
           option === timeSlots[0] || option === timeSlots[2]
         }
+        renderInput={(params) => (
+          <Input {...params} placeholder="Disabled options" />
+        )}
         sx={{ width: 300 }}
       />
     </FormControl>

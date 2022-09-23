@@ -2,6 +2,7 @@ import * as React from 'react';
 import FormControl from '@mui/joy/FormControl';
 import FormLabel from '@mui/joy/FormLabel';
 import Autocomplete, { createFilterOptions } from '@mui/joy/Autocomplete';
+import Input from '@mui/joy/Input';
 
 const filterOptions = createFilterOptions({
   matchFrom: 'start',
@@ -13,10 +14,10 @@ export default function Filter() {
     <FormControl id="filter-demo">
       <FormLabel>Custom filter</FormLabel>
       <Autocomplete
-        placeholder="Type something"
         options={top100Films}
         getOptionLabel={(option) => option.title}
         filterOptions={filterOptions}
+        renderInput={(params) => <Input {...params} placeholder="Type something" />}
         sx={{ width: 300 }}
       />
     </FormControl>

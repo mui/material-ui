@@ -1,11 +1,13 @@
 import * as React from 'react';
 import Autocomplete from '@mui/joy/Autocomplete';
+import Input from '@mui/joy/Input';
 
 export default function OptionStructure() {
   return (
     <Autocomplete
       options={top100Films}
       getOptionLabel={(option) => option.title}
+      renderInput={(params) => <Input {...params} />}
       sx={{ width: 300 }}
     />
   );

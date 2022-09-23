@@ -11,19 +11,20 @@ export default function FreeSolo() {
       <FormControl id="free-solo-demo">
         <FormLabel>freeSolo</FormLabel>
         <Autocomplete
-          placeholder="Type anything"
           freeSolo
           options={top100Films.map((option) => option.title)}
+          renderInput={(params) => <Input {...params} placeholder="Type anything" />}
         />
       </FormControl>
       <FormControl id="free-solo-2-demo">
         <FormLabel>Search input</FormLabel>
         <Autocomplete
-          placeholder="Search anything"
           freeSolo
           disableClearable
           options={top100Films.map((option) => option.title)}
-          renderInput={(params) => <Input {...params} type="search" />}
+          renderInput={(params) => (
+            <Input {...params} placeholder="Search anything" type="search" />
+          )}
         />
       </FormControl>
     </Stack>

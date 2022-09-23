@@ -6,17 +6,13 @@ import Chip from '@mui/joy/Chip';
 export default function CustomTags() {
   return (
     <Autocomplete
+      id="tags-default"
       multiple
       options={top100Films}
       getOptionLabel={(option) => option.title}
       defaultValue={[top100Films[13]]}
       renderInput={(params) => (
-        <Input
-          id="tags-default"
-          {...params}
-          placeholder="Favorites"
-          variant="soft"
-        />
+        <Input {...params} placeholder="Favorites" variant="soft" />
       )}
       renderTags={(tags, getTagProps) =>
         tags.map((item, index) => (

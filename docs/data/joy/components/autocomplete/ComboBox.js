@@ -1,11 +1,12 @@
 import * as React from 'react';
 import Autocomplete from '@mui/joy/Autocomplete';
+import Input from '@mui/joy/Input';
 
 export default function ComboBox() {
   return (
     <Autocomplete
-      placeholder="Combo box"
       options={top100Films}
+      renderInput={(params) => <Input {...params} placeholder="Combo box" />}
       sx={{ width: 300 }}
     />
   );

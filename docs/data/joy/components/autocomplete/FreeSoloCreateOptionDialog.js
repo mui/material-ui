@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Autocomplete, { createFilterOptions } from '@mui/joy/Autocomplete';
 import AutocompleteOption from '@mui/joy/AutocompleteOption';
+import Input from '@mui/joy/Input';
 import FormControl from '@mui/joy/FormControl';
 import FormLabel from '@mui/joy/FormLabel';
 import Modal from '@mui/joy/Modal';
@@ -96,6 +97,7 @@ export default function FreeSoloCreateOptionDialog() {
           renderOption={(props, option) => (
             <AutocompleteOption {...props}>{option.title}</AutocompleteOption>
           )}
+          renderInput={(params) => <Input {...params} />}
           sx={{ width: 300 }}
         />
       </FormControl>

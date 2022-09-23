@@ -7,15 +7,17 @@ export default function InputAppearance() {
   return (
     <Stack spacing={2}>
       <Autocomplete
-        placeholder="Plain input"
         options={top100Films}
-        renderInput={(params) => <Input variant="plain" {...params} />}
+        renderInput={(params) => (
+          <Input variant="plain" placeholder="Plain input" {...params} />
+        )}
         sx={{ width: 300 }}
       />
       <Autocomplete
-        placeholder="Soft input"
         options={top100Films}
-        renderInput={(params) => <Input variant="soft" color="info" {...params} />}
+        renderInput={(params) => (
+          <Input variant="soft" color="info" placeholder="Soft input" {...params} />
+        )}
         sx={{ width: 300 }}
       />
     </Stack>

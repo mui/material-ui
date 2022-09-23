@@ -2,6 +2,7 @@ import * as React from 'react';
 import FormControl from '@mui/joy/FormControl';
 import FormLabel from '@mui/joy/FormLabel';
 import Autocomplete from '@mui/joy/Autocomplete';
+import Input from '@mui/joy/Input';
 
 export default function Grouped() {
   const options = top100Films.map((option) => {
@@ -19,6 +20,7 @@ export default function Grouped() {
         options={options.sort((a, b) => -b.firstLetter.localeCompare(a.firstLetter))}
         groupBy={(option) => option.firstLetter}
         getOptionLabel={(option) => option.title}
+        renderInput={(params) => <Input {...params} />}
         sx={{ width: 300 }}
       />
     </FormControl>

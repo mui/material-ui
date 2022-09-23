@@ -3,6 +3,7 @@ import FormControl from '@mui/joy/FormControl';
 import FormLabel from '@mui/joy/FormLabel';
 import FormHelperText from '@mui/joy/FormHelperText';
 import Autocomplete from '@mui/joy/Autocomplete';
+import Input from '@mui/joy/Input';
 
 export default function SizeWithLabel() {
   return (
@@ -10,10 +11,10 @@ export default function SizeWithLabel() {
       <FormLabel>Small field</FormLabel>
       <Autocomplete
         multiple
-        placeholder="Favorite movies"
         options={top100Films}
         getOptionLabel={(option) => option.title}
         defaultValue={[top100Films[13]]}
+        renderInput={(params) => <Input {...params} placeholder="Favorite movies" />}
       />
       <FormHelperText>This is a small description.</FormHelperText>
     </FormControl>

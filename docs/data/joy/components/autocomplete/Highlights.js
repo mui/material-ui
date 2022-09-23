@@ -3,6 +3,7 @@ import FormControl from '@mui/joy/FormControl';
 import FormLabel from '@mui/joy/FormLabel';
 import Autocomplete from '@mui/joy/Autocomplete';
 import AutocompleteOption from '@mui/joy/AutocompleteOption';
+import Input from '@mui/joy/Input';
 import Typography from '@mui/joy/Typography';
 import parse from 'autosuggest-highlight/parse';
 import match from 'autosuggest-highlight/match';
@@ -13,7 +14,6 @@ export default function Highlights() {
       <FormLabel>Highlights</FormLabel>
       <Autocomplete
         sx={{ width: 300 }}
-        placeholder="Type a movie name"
         options={top100Films}
         getOptionLabel={(option) => option.title}
         renderOption={(props, option, { inputValue }) => {
@@ -42,6 +42,9 @@ export default function Highlights() {
             </AutocompleteOption>
           );
         }}
+        renderInput={(params) => (
+          <Input {...params} placeholder="Type a movie name" />
+        )}
       />
     </FormControl>
   );

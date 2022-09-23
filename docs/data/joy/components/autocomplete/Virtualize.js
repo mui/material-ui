@@ -5,6 +5,7 @@ import PopperUnstyled from '@mui/base/PopperUnstyled';
 import Autocomplete from '@mui/joy/Autocomplete';
 import AutocompleteListbox from '@mui/joy/AutocompleteListbox';
 import AutocompleteOption from '@mui/joy/AutocompleteOption';
+import Input from '@mui/joy/Input';
 import FormControl from '@mui/joy/FormControl';
 import FormLabel from '@mui/joy/FormLabel';
 import ListSubheader from '@mui/joy/ListSubheader';
@@ -124,6 +125,7 @@ export default function Virtualize() {
         renderOption={(props, option) => [props, option]}
         // TODO: Post React 18 update - validate this conversion, look like a hidden bug
         renderGroup={(params) => params}
+        renderInput={(params) => <Input {...params} placeholder="Type to search" />}
       />
     </FormControl>
   );
