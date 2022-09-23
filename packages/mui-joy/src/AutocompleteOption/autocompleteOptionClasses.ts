@@ -17,11 +17,9 @@ export function getAutocompleteOptionUtilityClass(slot: string): string {
   return generateUtilityClass('JoyAutocompleteOption', slot);
 }
 
-const menuItemClasses: AutocompleteOptionClasses = generateUtilityClasses('JoyAutocompleteOption', [
-  'root',
-  'focusVisible',
-  'disabled',
-  'selected',
-]);
+const autocompleteOptionClasses: AutocompleteOptionClasses = generateUtilityClasses(
+  'JoyAutocompleteOption',
+  ['root', 'focusVisible', 'disabled', 'selected'],
+);
 
-export default menuItemClasses;
+export default autocompleteOptionClasses;
