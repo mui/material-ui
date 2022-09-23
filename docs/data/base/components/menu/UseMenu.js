@@ -198,6 +198,7 @@ MenuItem.propTypes = {
 export default function UseMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const preventReopen = React.useRef(false);
+  const buttonRef = React.useRef(null);
 
   const handleOnClick = (event) => {
     if (preventReopen.current) {
@@ -211,6 +212,7 @@ export default function UseMenu() {
 
   const handleOnClose = () => {
     setAnchorEl(null);
+    buttonRef.current.focus();
   };
 
   const open = Boolean(anchorEl);
@@ -231,6 +233,7 @@ export default function UseMenu() {
         className="button"
         onClick={handleOnClick}
         onMouseDown={handleButtonMouseDown}
+        ref={buttonRef}
       >
         Commands
       </button>

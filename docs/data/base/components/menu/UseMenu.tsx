@@ -200,6 +200,7 @@ const MenuItem = React.forwardRef(function MenuItem(
 export default function UseMenu() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const preventReopen = React.useRef(false);
+  const buttonRef = React.useRef<HTMLButtonElement>(null);
 
   const handleOnClick = (event: React.MouseEvent<HTMLElement>) => {
     if (preventReopen.current) {
@@ -213,6 +214,7 @@ export default function UseMenu() {
 
   const handleOnClose = () => {
     setAnchorEl(null);
+    buttonRef.current!.focus();
   };
 
   const open = Boolean(anchorEl);
@@ -233,6 +235,7 @@ export default function UseMenu() {
         className="button"
         onClick={handleOnClick}
         onMouseDown={handleButtonMouseDown}
+        ref={buttonRef}
       >
         Commands
       </button>
