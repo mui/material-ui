@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import { getPath } from '@mui/system';
+import { unstable_extendSxProp as extendSxProp, getPath } from '@mui/system';
 import { unstable_composeClasses as composeClasses } from '@mui/base';
 import styled, { rootShouldForwardProp } from '../styles/styled';
 import useThemeProps from '../styles/useThemeProps';
@@ -92,7 +92,8 @@ const transformDeprecatedColors = (color) => {
 };
 
 const Typography = React.forwardRef(function Typography(inProps, ref) {
-  const props = useThemeProps({ props: inProps, name: 'MuiTypography' });
+  const themeProps = useThemeProps({ props: inProps, name: 'MuiTypography' });
+  const props = { ...extendSxProp(themeProps), color: themeProps.color };
 
   const {
     align = 'inherit',
