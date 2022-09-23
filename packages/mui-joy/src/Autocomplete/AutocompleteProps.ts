@@ -12,7 +12,7 @@ import {
 import { PopperUnstyledOwnProps } from '@mui/base/PopperUnstyled';
 import { SxProps } from '../styles/types';
 import { IconButtonOwnerState } from '../IconButton';
-import { ListOwnerState } from '../List';
+import { AutocompleteListboxProps } from '../AutocompleteListbox/AutocompleteListboxProps';
 
 export type {
   AutocompleteChangeDetails,
@@ -57,34 +57,49 @@ export interface AutocompleteRenderInputParams {
 export interface AutocompletePropsSizeOverrides {}
 
 interface ComponentsProps {
-  root?: SlotComponentProps<'div', { sx?: SxProps }, AutocompleteOwnerState<any, any, any, any>>;
+  root?: SlotComponentProps<
+    'div',
+    { component?: React.ElementType; sx?: SxProps },
+    AutocompleteOwnerState<any, any, any, any>
+  >;
   clearIndicator?: SlotComponentProps<
     'button',
-    { sx?: SxProps },
+    { component?: React.ElementType; sx?: SxProps } & Pick<
+      IconButtonOwnerState,
+      'color' | 'variant' | 'size'
+    >,
     AutocompleteOwnerState<any, any, any, any> & IconButtonOwnerState
   >;
   popupIndicator?: SlotComponentProps<
     'button',
-    { sx?: SxProps },
+    { component?: React.ElementType; sx?: SxProps } & Pick<
+      IconButtonOwnerState,
+      'color' | 'variant' | 'size'
+    >,
     AutocompleteOwnerState<any, any, any, any> & IconButtonOwnerState
   >;
   listbox?: SlotComponentProps<
     'ul',
-    Omit<PopperUnstyledOwnProps, 'components' | 'componentsProps' | 'open'> & {
+    {
       component?: React.ElementType;
       sx?: SxProps;
-    },
-    AutocompleteOwnerState<any, any, any, any> & ListOwnerState
+    } & Omit<PopperUnstyledOwnProps, 'components' | 'componentsProps' | 'open'> &
+      Pick<AutocompleteListboxProps, 'color' | 'variant' | 'size'>,
+    AutocompleteOwnerState<any, any, any, any>
   >;
-  loading?: SlotComponentProps<'div', { sx?: SxProps }, AutocompleteOwnerState<any, any, any, any>>;
+  loading?: SlotComponentProps<
+    'div',
+    { component?: React.ElementType; sx?: SxProps },
+    AutocompleteOwnerState<any, any, any, any>
+  >;
   noOptions?: SlotComponentProps<
     'li',
-    { sx?: SxProps },
+    { component?: React.ElementType; sx?: SxProps },
     AutocompleteOwnerState<any, any, any, any>
   >;
   limitTag?: SlotComponentProps<
     'span',
-    { sx?: SxProps },
+    { component?: React.ElementType; sx?: SxProps },
     AutocompleteOwnerState<any, any, any, any>
   >;
 }

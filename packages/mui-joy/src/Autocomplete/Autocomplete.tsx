@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import composeClasses from '@mui/base/composeClasses';
 import { useAutocomplete, AutocompleteGroupedOption } from '@mui/base/AutocompleteUnstyled';
 import PopperUnstyled, { PopperUnstyledProps } from '@mui/base/PopperUnstyled';
-import { useSlotProps } from '@mui/base/utils';
 import { useThemeProps } from '../styles';
 import ClearIcon from '../internal/svg-icons/Close';
 import ArrowDropDownIcon from '../internal/svg-icons/ArrowDropDown';
@@ -30,8 +29,9 @@ import FormControlContext from '../FormControl/FormControlContext';
 import AutocompleteOption from '../AutocompleteOption/AutocompleteOption';
 import { AutocompleteListboxRoot } from '../AutocompleteListbox/AutocompleteListbox';
 import autocompleteListboxClasses from '../AutocompleteListbox/autocompleteListboxClasses';
+import useSlot from '../utils/useSlot';
 
-type OwnerState = Omit<AutocompleteOwnerState<any, any, any, any>, 'onChange'>;
+type OwnerState = Omit<AutocompleteOwnerState<any, any, any, any>, 'onChange' | 'defaultValue'>;
 
 const defaultIsActiveElementInListbox = (listboxRef: React.RefObject<HTMLElement>) =>
   listboxRef.current !== null && listboxRef.current.contains(document.activeElement);
@@ -201,8 +201,6 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     clearIcon = <ClearIcon fontSize="md" />,
     clearText = 'Clear',
     closeText = 'Close',
-    components = {},
-    componentsProps = {},
     disableClearable = false,
     disabled = false,
     disablePortal = false,
@@ -240,15 +238,15 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     value: valueProp,
     ...otherProps
   } = props;
-  const other = {} as Record<string, any>;
-  Object.entries(otherProps).forEach((item) => {
+  const other = {} as typeof otherProps;
+  (Object.keys(otherProps) as Array<keyof typeof otherProps>).forEach((k) => {
     if (
-      !item[0].match(
+      !k.match(
         // Do not spread these props to the root DOM
         /^(autoComplete|autoHighlight|autoSelect|blurOnSelect|clearOnBlur|clearOnEscape|defaultValue|disableCloseOnSelect|disabledItemsFocusable|disableListWrap|filterSelectedOptions|handleHomeEndKeys|includeInputInList|openOnFocus|selectOnFocus)$/,
       )
     ) {
-      other[item[0]] = item[1];
+      other[k] = otherProps[k];
     }
   });
 
@@ -346,6 +344,51 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     });
   };
 
+  const [SlotRoot, rootProps] = useSlot('root', {
+    ref,
+    className: classes.root,
+    elementType: AutocompleteRoot,
+    externalForwardedProps: other,
+    ownerState,
+    getSlotProps: getRootProps,
+  });
+
+  const [SlotClearIndicator, clearIndicatorProps] = useSlot('clearIndicator', {
+    className: classes.clearIndicator,
+    elementType: AutocompleteClearIndicator,
+    getSlotProps: getClearProps as unknown as () => React.HTMLAttributes<HTMLButtonElement>,
+    externalForwardedProps: other,
+    ownerState,
+    externalOwnerState: (mergedProps) => ({
+      size: mergedProps.size || size,
+      variant: mergedProps.variant || 'plain',
+      color: mergedProps.variant || 'neutral',
+    }),
+    additionalProps: {
+      'aria-label': clearText,
+      title: clearText,
+    },
+  });
+
+  const [SlotPopupIndicator, popupIndicatorProps] = useSlot('popupIndicator', {
+    className: classes.popupIndicator,
+    elementType: AutocompletePopupIndicator,
+    getSlotProps:
+      getPopupIndicatorProps as unknown as () => React.HTMLAttributes<HTMLButtonElement>,
+    externalForwardedProps: other,
+    ownerState,
+    externalOwnerState: (mergedProps) => ({
+      size: mergedProps.size || size,
+      variant: mergedProps.variant || 'plain',
+      color: mergedProps.variant || 'neutral',
+    }),
+    additionalProps: {
+      disabled,
+      'aria-label': popupOpen ? closeText : openText,
+      title: popupOpen ? closeText : openText,
+    },
+  });
+
   // cache the modifiers to prevent Popper from being recreated when React rerenders menu.
   const cachedModifiers = React.useMemo<PopperUnstyledProps['modifiers']>(
     () => [
@@ -368,90 +411,39 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     ],
     [],
   );
-
-  const rootProps = useSlotProps({
-    elementType: AutocompleteRoot,
-    getSlotProps: getRootProps,
+  const [SlotListbox, listboxProps] = useSlot('listbox', {
+    className: classes.listbox,
+    elementType: PopperUnstyled,
+    getSlotProps: getListboxProps,
     externalForwardedProps: other,
-    externalSlotProps: componentsProps.root,
     ownerState,
-    additionalProps: {
-      ref,
-    },
-    className: classes.root,
-  });
-
-  const clearIndicatorProps = useSlotProps({
-    elementType: AutocompleteClearIndicator,
-    getSlotProps: getClearProps as unknown as () => React.HTMLAttributes<HTMLButtonElement>,
-    externalSlotProps: componentsProps.clearIndicator,
-    className: classes.clearIndicator,
-    ownerState: {
-      ...ownerState,
-      size,
-      variant: 'plain',
-      color: 'neutral',
-    },
-    additionalProps: {
-      'aria-label': clearText,
-      title: clearText,
-    },
-  });
-
-  const popupIndicatorProps = useSlotProps({
-    elementType: AutocompletePopupIndicator,
-    getSlotProps:
-      getPopupIndicatorProps as unknown as () => React.HTMLAttributes<HTMLButtonElement>,
-    externalSlotProps: componentsProps.popupIndicator,
-    className: classes.popupIndicator,
-    ownerState: {
-      ...ownerState,
-      size,
-      variant: 'plain',
-      color: 'neutral',
-    },
-    additionalProps: {
-      disabled,
-      'aria-label': popupOpen ? closeText : openText,
-      title: popupOpen ? closeText : openText,
-    },
-  });
-
-  const SlotListbox = components.listbox || PopperUnstyled;
-  const listboxProps = useSlotProps({
-    elementType: SlotListbox,
-    // TODO: fix useSlotProps typings, the `component` should be infered from `externalSlotProps`
-    getSlotProps: getListboxProps as () => React.HTMLAttributes<HTMLUListElement> & {
-      component?: React.ElementType;
-    },
-    externalSlotProps: componentsProps.listbox,
+    externalOwnerState: (mergedProps) => ({
+      size: mergedProps.size || size,
+      variant: mergedProps.variant || 'outlined',
+      color: mergedProps.variant || 'neutral',
+    }),
     additionalProps: {
       anchorEl,
       disablePortal,
       open: popupOpen,
       modifiers: cachedModifiers,
     },
-    ownerState: {
-      ...ownerState,
-      variant: 'outlined',
-      color: 'neutral',
-      nesting: false,
-      row: false,
-      wrap: false,
+    internalForwardedProps: {
+      component: AutocompleteListbox,
     },
-    className: classes.listbox,
   });
 
-  const loadingProps = useSlotProps({
-    elementType: AutocompleteLoading,
-    externalSlotProps: componentsProps.loading,
-    ownerState,
+  const [SlotLoading, loadingProps] = useSlot('loading', {
     className: classes.loading,
+    elementType: AutocompleteLoading,
+    externalForwardedProps: other,
+    ownerState,
   });
 
-  const noOptionsProps = useSlotProps({
+  const [SlotNoOptions, noOptionsProps] = useSlot('noOptions', {
+    className: classes.noOptions,
     elementType: AutocompleteNoOptions,
-    externalSlotProps: componentsProps.noOptions,
+    externalForwardedProps: other,
     ownerState,
     additionalProps: {
       role: 'presentation',
@@ -460,14 +452,13 @@ const Autocomplete = React.forwardRef(function Autocomplete(
         event.preventDefault();
       },
     },
-    className: classes.noOptions,
   });
 
-  const limitTagProps = useSlotProps({
-    elementType: AutocompleteLimitTag,
-    externalSlotProps: componentsProps.limitTag,
-    ownerState,
+  const [SlotLimitTag, limitTagProps] = useSlot('limitTag', {
     className: classes.limitTag,
+    elementType: AutocompleteLimitTag,
+    externalForwardedProps: other,
+    ownerState,
   });
 
   if (limitTags > -1 && Array.isArray(startDecorator)) {
@@ -475,16 +466,16 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     if (!focused && more > 0) {
       startDecorator = startDecorator.splice(0, limitTags);
       startDecorator.push(
-        <AutocompleteLimitTag key={startDecorator.length} {...limitTagProps}>
+        <SlotLimitTag key={startDecorator.length} {...limitTagProps}>
           {getLimitTagsText(more)}
-        </AutocompleteLimitTag>,
+        </SlotLimitTag>,
       );
     }
   }
 
   return (
     <React.Fragment>
-      <AutocompleteRoot {...rootProps}>
+      <SlotRoot {...rootProps}>
         {renderInput({
           disabled,
           fullWidth: true,
@@ -496,15 +487,10 @@ const Autocomplete = React.forwardRef(function Autocomplete(
             endDecorator: (
               <React.Fragment>
                 {hasClearIcon ? (
-                  <AutocompleteClearIndicator {...clearIndicatorProps}>
-                    {clearIcon}
-                  </AutocompleteClearIndicator>
+                  <SlotClearIndicator {...clearIndicatorProps}>{clearIcon}</SlotClearIndicator>
                 ) : null}
-
                 {hasPopupIcon ? (
-                  <AutocompletePopupIndicator {...popupIndicatorProps}>
-                    {popupIcon}
-                  </AutocompletePopupIndicator>
+                  <SlotPopupIndicator {...popupIndicatorProps}>{popupIcon}</SlotPopupIndicator>
                 ) : null}
               </React.Fragment>
             ),
@@ -517,17 +503,11 @@ const Autocomplete = React.forwardRef(function Autocomplete(
             },
           },
         })}
-      </AutocompleteRoot>
+      </SlotRoot>
       {anchorEl ? (
         // `nested` is for grouped options use case.
         <ListProvider nested>
-          <SlotListbox
-            {...listboxProps}
-            {...(!components.listbox && {
-              component: AutocompleteListbox,
-              as: listboxProps.component,
-            })}
-          >
+          <SlotListbox {...listboxProps}>
             {groupedOptions.map((option, index) => {
               if (groupBy) {
                 const typedOption = option as AutocompleteGroupedOption;
@@ -542,10 +522,10 @@ const Autocomplete = React.forwardRef(function Autocomplete(
               return renderListOption(option, index);
             })}
             {loading && groupedOptions.length === 0 ? (
-              <AutocompleteLoading {...loadingProps}>{loadingText}</AutocompleteLoading>
+              <SlotLoading {...loadingProps}>{loadingText}</SlotLoading>
             ) : null}
             {groupedOptions.length === 0 && !freeSolo && !loading ? (
-              <AutocompleteNoOptions {...noOptionsProps}>{noOptionsText}</AutocompleteNoOptions>
+              <SlotNoOptions {...noOptionsProps}>{noOptionsText}</SlotNoOptions>
             ) : null}
           </SlotListbox>
         </ListProvider>
