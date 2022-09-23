@@ -14,7 +14,7 @@ unstyled: /base/react-input/
 Text fields allow users to enter text into a UI.
 They typically appear in forms and dialogs.
 
-{{"demo": "TextFieldUsage.js", "bg": "gradient"}}
+{{"demo": "TextFieldUsage.js", "hideToolbar": true, "bg": "gradient"}}
 
 {{"component": "modules/components/ComponentLinkHeader.js"}}
 
