@@ -10,16 +10,15 @@ import ArrowDropDownIcon from '../internal/svg-icons/ArrowDropDown';
 import styled from '../styles/styled';
 // slot components
 import { IconButtonRoot } from '../IconButton/IconButton';
-import { ListRoot } from '../List/List';
 // default render components
 import Chip, { chipClasses } from '../Chip';
 import ChipDelete from '../ChipDelete';
 import { IconButtonOwnerState } from '../IconButton';
 import Input, { inputClasses } from '../Input';
-import List, { listClasses } from '../List';
-import ListProvider, { scopedVariables } from '../List/ListProvider';
+import List from '../List';
+import ListProvider from '../List/ListProvider';
 import ListSubheader from '../ListSubheader';
-import ListItem, { listItemClasses } from '../ListItem';
+import ListItem from '../ListItem';
 import autocompleteClasses, { getAutocompleteUtilityClass } from './autocompleteClasses';
 import {
   AutocompleteProps,
@@ -28,7 +27,9 @@ import {
   AutocompleteOwnerState,
 } from './AutocompleteProps';
 import FormControlContext from '../FormControl/FormControlContext';
-import AutocompleteOption from '../AutocompleteOption';
+import AutocompleteOption from '../AutocompleteOption/AutocompleteOption';
+import { AutocompleteListboxRoot } from '../AutocompleteListbox/AutocompleteListbox';
+import autocompleteListboxClasses from '../AutocompleteListbox/autocompleteListboxClasses';
 
 type OwnerState = Omit<AutocompleteOwnerState<any, any, any, any>, 'onChange'>;
 
@@ -104,6 +105,12 @@ const AutocompleteRoot = styled('div', {
         transform: 'translateY(-50%)',
         right: 'var(--Input-paddingInline)',
       },
+      ...(!ownerState.hasOptions &&
+        ownerState.freeSolo && {
+          [`& .${autocompleteListboxClasses.root}`]: {
+            visibility: 'hidden',
+          },
+        }),
     },
     ownerState.multiple && {
       [`& .${inputClasses.root}`]: {
@@ -149,49 +156,11 @@ const AutocompletePopupIndicator = styled(IconButtonRoot, {
   }),
 }));
 
-const InternalAutocompleteListbox = styled(ListRoot, {
+const AutocompleteListbox = styled(AutocompleteListboxRoot, {
   name: 'JoyAutocomplete',
   slot: 'Listbox',
   overridesResolver: (props, styles) => styles.listbox,
-})<{ ownerState: OwnerState }>(({ theme, ownerState }) => {
-  const variantStyle = theme.variants[ownerState.variant!]?.[ownerState.color!];
-  return {
-    '--_outline-inside': '1', // to prevent the focus outline from being cut by overflow
-    '--List-radius': theme.vars.radius.sm,
-    '--List-item-stickyBackground':
-      variantStyle?.backgroundColor ||
-      variantStyle?.background ||
-      theme.vars.palette.background.surface,
-    '--List-item-stickyTop': 'calc(var(--List-padding, var(--List-divider-gap)) * -1)',
-    ...scopedVariables,
-    ...(!ownerState.hasOptions &&
-      ownerState.freeSolo && {
-        visibility: 'hidden',
-      }),
-    boxShadow: theme.vars.shadow.md,
-    ...(!variantStyle?.backgroundColor && {
-      backgroundColor: theme.vars.palette.background.surface,
-    }),
-    zIndex: 1200,
-    overflow: 'auto',
-    maxHeight: '40vh',
-    position: 'relative', // to make sure that the listbox is positioned for grouped options to work.
-    [`& .${listItemClasses.nested}, & .${listItemClasses.nested} .${listClasses.root}`]: {
-      // For grouped options autocomplete:
-      // Force the position to make the scroll into view logic works because the `element.offsetTop` should reference to the listbox, not the grouped list.
-      // See the implementation of the `useAutocomplete` line:370
-      //
-      // Resource: https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetTop
-      position: 'initial',
-    },
-  };
-});
-const AutocompleteListbox = React.forwardRef<any, { ownerState: OwnerState } & PopperUnstyledProps>(
-  ({ component, ...props }, ref) => (
-    // @ts-ignore internal logic
-    <PopperUnstyled ref={ref} {...props} component={InternalAutocompleteListbox} as={component} />
-  ),
-);
+})<{ ownerState: OwnerState }>({});
 
 const AutocompleteLoading = styled(ListItem, {
   name: 'JoyAutocomplete',
@@ -448,7 +417,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     },
   });
 
-  const SlotListbox = components.listbox || AutocompleteListbox;
+  const SlotListbox = components.listbox || PopperUnstyled;
   const listboxProps = useSlotProps({
     elementType: SlotListbox,
     // TODO: fix useSlotProps typings, the `component` should be infered from `externalSlotProps`
@@ -550,14 +519,15 @@ const Autocomplete = React.forwardRef(function Autocomplete(
         })}
       </AutocompleteRoot>
       {anchorEl ? (
-        <SlotListbox {...listboxProps}>
-          <ListProvider nested>
-            {loading && groupedOptions.length === 0 ? (
-              <AutocompleteLoading {...loadingProps}>{loadingText}</AutocompleteLoading>
-            ) : null}
-            {groupedOptions.length === 0 && !freeSolo && !loading ? (
-              <AutocompleteNoOptions {...noOptionsProps}>{noOptionsText}</AutocompleteNoOptions>
-            ) : null}
+        // `nested` is for grouped options use case.
+        <ListProvider nested>
+          <SlotListbox
+            {...listboxProps}
+            {...(!components.listbox && {
+              component: AutocompleteListbox,
+              as: listboxProps.component,
+            })}
+          >
             {groupedOptions.map((option, index) => {
               if (groupBy) {
                 const typedOption = option as AutocompleteGroupedOption;
@@ -571,8 +541,14 @@ const Autocomplete = React.forwardRef(function Autocomplete(
               }
               return renderListOption(option, index);
             })}
-          </ListProvider>
-        </SlotListbox>
+            {loading && groupedOptions.length === 0 ? (
+              <AutocompleteLoading {...loadingProps}>{loadingText}</AutocompleteLoading>
+            ) : null}
+            {groupedOptions.length === 0 && !freeSolo && !loading ? (
+              <AutocompleteNoOptions {...noOptionsProps}>{noOptionsText}</AutocompleteNoOptions>
+            ) : null}
+          </SlotListbox>
+        </ListProvider>
       ) : null}
     </React.Fragment>
   );
