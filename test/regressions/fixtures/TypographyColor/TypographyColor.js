@@ -32,6 +32,8 @@ export default function TypographyColor() {
         <Typography color="primary">primary</Typography>
         <Typography color="secondary">error (styleOverride)</Typography>
         <Typography color="textPrimary">warning (variant)</Typography>
+        <Typography color="success">success</Typography>
+        <Typography color="success.light">success.light</Typography>
       </ThemeProvider>
       <ThemeProvider
         theme={createTheme({

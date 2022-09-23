@@ -43,7 +43,10 @@ export const TypographyRoot = styled('span', {
   },
 })(({ theme, ownerState }) => ({
   margin: 0,
-  color: getPath(theme, `palette.${ownerState.color}`, false) || ownerState.color,
+  color:
+    getPath(theme, `palette.${ownerState.color}.main`, false) ||
+    getPath(theme, `palette.${ownerState.color}`, false) ||
+    ownerState.color,
   ...(ownerState.variant && theme.typography[ownerState.variant]),
   ...(ownerState.align !== 'inherit' && {
     textAlign: ownerState.align,
