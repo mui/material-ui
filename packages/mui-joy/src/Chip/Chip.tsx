@@ -348,6 +348,7 @@ Chip.propTypes /* remove-proptypes */ = {
   endDecorator: PropTypes.node,
   /**
    * @ignore
+   * Element action click handler.
    */
   onClick: PropTypes.func,
   /**
