@@ -165,7 +165,7 @@ const jss = create({
 function DemoSandboxed(props) {
   const router = useRouter();
   const asPathWithoutLang = router.asPath.replace(/^\/[a-zA-Z]{2}\//, '/');
-  const { component: Component, iframe, name, onResetDemoClick, ...other } = props;
+  const { children, iframe, name, onResetDemoClick, ...other } = props;
   const Sandbox = iframe ? DemoFrame : React.Fragment;
   const sandboxProps = iframe ? { name, ...other } : {};
 
@@ -175,15 +175,15 @@ function DemoSandboxed(props) {
     <DemoErrorBoundary name={name} onResetDemoClick={onResetDemoClick} t={t}>
       {asPathWithoutLang.startsWith('/joy-ui') ? (
         <Sandbox {...sandboxProps}>
-          {/* WARNING: `<Component />` needs to be a child of `Sandbox` since certain implementations rely on `cloneElement` */}
-          <Component />
+          {/* WARNING: `children` needs to be a child of `Sandbox` since certain implementations rely on `cloneElement` */}
+          {children}
         </Sandbox>
       ) : (
         <StylesProvider jss={jss}>
           <ThemeProvider theme={(outerTheme) => getTheme(outerTheme)}>
             <Sandbox {...sandboxProps}>
-              {/* WARNING: `<Component />` needs to be a child of `Sandbox` since certain implementations rely on `cloneElement` */}
-              <Component />
+              {/* WARNING: `children` needs to be a child of `Sandbox` since certain implementations rely on `cloneElement` */}
+              {children}
             </Sandbox>
           </ThemeProvider>
         </StylesProvider>
@@ -193,7 +193,7 @@ function DemoSandboxed(props) {
 }
 
 DemoSandboxed.propTypes = {
-  component: PropTypes.elementType.isRequired,
+  children: PropTypes.node,
   iframe: PropTypes.bool,
   name: PropTypes.string.isRequired,
   onResetDemoClick: PropTypes.func.isRequired,

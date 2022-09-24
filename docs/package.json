@@ -107,6 +107,8 @@
     "react-is": "^18.2.0",
     "react-number-format": "^4.9.4",
     "react-router-dom": "^6.4.0",
+    "react-runner": "^1.0.3",
+    "react-simple-code-editor": "^0.11.0",
     "react-spring": "^8.0.27",
     "react-swipeable-views": "^0.14.0",
     "react-transition-group": "^4.4.5",
