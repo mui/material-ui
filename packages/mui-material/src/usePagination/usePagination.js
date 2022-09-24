@@ -118,7 +118,7 @@ export default function usePagination(props = {}) {
   };
 
   // Convert the basic item list to PaginationItem props objects
-  const items = () => itemList.map((item) => {
+  const items = itemList.map((item) => {
     return typeof item === 'number'
       ? {
           onClick: (event) => {
