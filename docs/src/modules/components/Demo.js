@@ -1,5 +1,4 @@
 import * as React from 'react';
-import dynamic from 'next/dynamic';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 import { debounce } from '@mui/material/utils';
@@ -243,7 +242,6 @@ export default function Demo(props) {
     setDemoHovered(event.type === 'mouseenter');
   };
 
-  const DemoComponent = demoData.Component;
   const demoName = getDemoName(demoData.githubLocation);
   const demoSandboxedStyle = React.useMemo(
     () => ({
