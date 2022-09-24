@@ -15,6 +15,7 @@ function stripDiacritics(string) {
     : string;
 }
 
+/* eslint-disable */
 const useDeferredVal = (muiValue) =>
   React.useDeferredValue ? React.useDeferredValue(muiValue) : muiValue;
 
