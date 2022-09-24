@@ -393,14 +393,13 @@ export default function Demo(props) {
                   position: 'absolute',
                   top: 0,
                   left: '50%',
-                  transform: 'translateX(-50%)',
-                  borderTopLeftRadius: 0,
-                  borderTopRightRadius: 0,
+                  transform: 'translateX(-50%) translateY(-50%)',
                   py: '2px',
                   px: '6px',
                   '& .MuiAlert-icon': {
                     fontSize: 14,
                     mr: 0.5,
+                    mt: 0.25,
                     py: 0,
                   },
                   '& .MuiAlert-message': {
