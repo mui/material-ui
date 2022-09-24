@@ -129,7 +129,6 @@ export default function MarkdownDocs(props) {
 }
 
 MarkdownDocs.propTypes = {
-  // TODO: Remove this prop from page source
   demoComponents: PropTypes.object,
   demos: PropTypes.object,
   disableAd: PropTypes.bool,
