@@ -1,7 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
-import { useRunner } from 'react-runner';
 import { debounce } from '@mui/material/utils';
 import { alpha, styled } from '@mui/material/styles';
 import { styled as joyStyled } from '@mui/joy/styles';
@@ -17,6 +16,7 @@ import { CODE_VARIANTS } from 'docs/src/modules/constants';
 import { useUserLanguage, useTranslate } from 'docs/src/modules/utils/i18n';
 import BrandingProvider from 'docs/src/BrandingProvider';
 
+const DeferredDemo = React.lazy(() => import('./DeferredDemo'));
 const DemoToolbar = React.lazy(() => import('./DemoToolbar'));
 // Sync with styles from DemoToolbar
 // Importing the styles results in no bundle size reduction
@@ -37,15 +37,6 @@ export function DemoToolbarFallback() {
 
 function getDemoName(location) {
   return location.replace(/(.+?)(\w+)\.\w+$$/, '$2');
-}
-
-/**
- * Removes leading spaces (indentation) present in the `.tsx` previews
- * to be able to replace the existing code with the incoming dynamic code
- * @param {string} input
- */
-function trimLeadingSpaces(input = '') {
-  return input.replace(/^\s+/gm, '');
 }
 
 function useDemoData(codeVariant, demo, githubLocation) {
@@ -316,25 +307,8 @@ export default function Demo(props) {
     resetDemo();
   }, [resetDemo]);
 
-  const { element: interactiveElement, error } = useRunner({
-    code: usePreview
-      ? trimLeadingSpaces(demoData.raw).replace(trimLeadingSpaces(demo.jsxPreview), code)
-      : code,
-    scope: demo.scope,
-  });
-  const [mounted, setMounted] = React.useState(false);
-  React.useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  function DeferredDemo() {
-    return <React.Fragment>{mounted ? interactiveElement : <demoData.Component />}</React.Fragment>;
-  }
-  const [debouncedError, setError] = React.useState(error);
+  const [debouncedError, setError] = React.useState(null);
   const debouncedSetError = React.useMemo(() => debounce(setError, 300), []);
-  React.useEffect(() => {
-    debouncedSetError(error);
-  }, [error, debouncedSetError]);
 
   const isJoy = asPathWithoutLang.startsWith('/joy-ui');
   const DemoRoot = asPathWithoutLang.startsWith('/joy-ui') ? DemoRootJoy : DemoRootMaterial;
@@ -366,7 +340,18 @@ export default function Demo(props) {
           name={demoName}
           onResetDemoClick={resetDemo}
         >
-          <DeferredDemo />
+          <NoSsr fallback={<demoData.Component />}>
+            <React.Suspense fallback={<demoData.Component />}>
+              <DeferredDemo
+                code={code}
+                jsxPreview={demo.jsxPreview}
+                raw={demoData.raw}
+                usePreview={usePreview}
+                scope={demo.scope}
+                onError={debouncedSetError}
+              />
+            </React.Suspense>
+          </NoSsr>
         </DemoSandboxed>
       </DemoRoot>
       <AnchorLink id={`${demoName}.js`} />
@@ -410,7 +395,7 @@ export default function Demo(props) {
               'data-ga-event-action': 'copy-click',
             }}
           >
-            {debouncedError && error && (
+            {debouncedError && (
               <Alert
                 aria-live="polite"
                 variant="filled"
