@@ -1,13 +1,16 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
+import { useRunner } from 'react-runner';
+import { debounce } from '@mui/material/utils';
 import { alpha, styled } from '@mui/material/styles';
 import { styled as joyStyled } from '@mui/joy/styles';
+import Alert from '@mui/material/Alert';
 import IconButton from '@mui/material/IconButton';
 import Collapse from '@mui/material/Collapse';
 import NoSsr from '@mui/material/NoSsr';
-import HighlightedCode from 'docs/src/modules/components/HighlightedCode';
 import DemoSandboxed from 'docs/src/modules/components/DemoSandboxed';
+import CodeEditor from 'docs/src/modules/components/CodeEditor';
 import { AdCarbonInline } from 'docs/src/modules/components/AdCarbon';
 import { useCodeVariant } from 'docs/src/modules/utils/codeVariant';
 import { CODE_VARIANTS } from 'docs/src/modules/constants';
@@ -36,6 +39,15 @@ function getDemoName(location) {
   return location.replace(/(.+?)(\w+)\.\w+$$/, '$2');
 }
 
+/**
+ * Removes leading spaces (indentation) present in the `.tsx` previews
+ * to be able to replace the existing code with the incoming dynamic code
+ * @param {string} input
+ */
+function trimLeadingSpaces(input = '') {
+  return input.replace(/^\s+/gm, '');
+}
+
 function useDemoData(codeVariant, demo, githubLocation) {
   const userLanguage = useUserLanguage();
   const router = useRouter();
@@ -61,7 +73,6 @@ function useDemoData(codeVariant, demo, githubLocation) {
       githubLocation: githubLocation.replace(/\.js$/, '.tsx'),
       language: userLanguage,
       raw: demo.rawTS,
-      Component: demo.tsx,
       sourceLanguage: 'tsx',
       Component: demo.tsx,
       title,
@@ -74,7 +85,6 @@ function useDemoData(codeVariant, demo, githubLocation) {
     githubLocation,
     language: userLanguage,
     raw: demo.raw,
-    Component: demo.js,
     sourceLanguage: 'jsx',
     Component: demo.js,
     title,
@@ -226,19 +236,6 @@ const DemoRootJoy = joyStyled('div', {
   }),
 }));
 
-const Code = styled(HighlightedCode)(({ theme }) => ({
-  padding: 0,
-  marginBottom: theme.spacing(1),
-  marginTop: theme.spacing(2),
-  [theme.breakpoints.up('sm')]: {
-    marginTop: theme.spacing(0),
-  },
-  '& pre': {
-    margin: '0 auto',
-    maxHeight: 'min(68vh, 1000px)',
-  },
-}));
-
 const AnchorLink = styled('div')({
   marginTop: -64, // height of toolbar
   position: 'absolute',
@@ -265,7 +262,6 @@ export default function Demo(props) {
     setDemoHovered(event.type === 'mouseenter');
   };
 
-  const DemoComponent = demoData.Component;
   const demoName = getDemoName(demoData.githubLocation);
   const demoSandboxedStyle = React.useMemo(
     () => ({
@@ -344,6 +340,8 @@ export default function Demo(props) {
   const DemoRoot = asPathWithoutLang.startsWith('/joy-ui') ? DemoRootJoy : DemoRootMaterial;
   const Wrapper = asPathWithoutLang.startsWith('/joy-ui') ? BrandingProvider : React.Fragment;
 
+  const isAdVisible = showAd && !disableAd && !demoOptions.disableAd;
+
   return (
     <Root>
       <AnchorLink id={`${demoName}`} />
@@ -364,7 +362,6 @@ export default function Demo(props) {
         <DemoSandboxed
           key={demoKey}
           style={demoSandboxedStyle}
-          component={DemoComponent}
           iframe={demoOptions.iframe}
           name={demoName}
           onResetDemoClick={resetDemo}
@@ -401,18 +398,49 @@ export default function Demo(props) {
           </NoSsr>
         )}
         <Collapse in={openDemoSource} unmountOnExit>
-          <Code
+          <CodeEditor
+            key={demoKey}
             id={demoSourceId}
-            code={showPreview && !codeOpen ? demo.jsxPreview : demoData.raw}
+            value={code}
+            onChange={setCode}
             language={demoData.sourceLanguage}
             copyButtonProps={{
               'data-ga-event-category': codeOpen ? 'demo-expand' : 'demo',
               'data-ga-event-label': demoOptions.demo,
               'data-ga-event-action': 'copy-click',
             }}
-          />
+          >
+            {debouncedError && error && (
+              <Alert
+                aria-live="polite"
+                variant="filled"
+                severity="error"
+                sx={{
+                  position: 'absolute',
+                  top: 0,
+                  left: '50%',
+                  transform: 'translateX(-50%)',
+                  borderTopLeftRadius: 0,
+                  borderTopRightRadius: 0,
+                  py: '2px',
+                  px: '6px',
+                  '& .MuiAlert-icon': {
+                    fontSize: 14,
+                    mr: 0.5,
+                    py: 0,
+                  },
+                  '& .MuiAlert-message': {
+                    fontSize: 12,
+                    py: 0,
+                  },
+                }}
+              >
+                {debouncedError}
+              </Alert>
+            )}
+          </CodeEditor>
         </Collapse>
-        {showAd && !disableAd && !demoOptions.disableAd ? <AdCarbonInline /> : null}
+        {isAdVisible ? <AdCarbonInline /> : null}
       </Wrapper>
     </Root>
   );

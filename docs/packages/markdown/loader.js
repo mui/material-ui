@@ -1,6 +1,7 @@
 const { promises: fs, readdirSync } = require('fs');
 const path = require('path');
 const { prepareMarkdown } = require('./parseMarkdown');
+const { extractImports } = require('./extractImports');
 
 const notEnglishMarkdownRegExp = /-([a-z]{2})\.md$/;
 // TODO: pass as argument
@@ -179,7 +180,6 @@ module.exports = async function demoLoader() {
         // But this leads to building both demo version i.e. more build time.
         demos[demoName].moduleTS = this.mode === 'production' ? moduleID : moduleTS;
         demos[demoName].rawTS = rawTS;
-        demoModuleIDs.add(demos[demoName].moduleTS);
       } catch (error) {
         // TS version of the demo doesn't exist. This is fine.
       }
