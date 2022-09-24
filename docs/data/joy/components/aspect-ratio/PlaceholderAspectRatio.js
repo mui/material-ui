@@ -9,7 +9,7 @@ export default function BasicRatio() {
     <Card variant="outlined" sx={{ width: 300 }}>
       <AspectRatio>
         <div>
-          <ImageIcon fontSize="xl5" sx={{ color: 'text.tertiary' }} />
+          <ImageIcon fontSize="medium" sx={{ color: 'text.tertiary' }} />
         </div>
       </AspectRatio>
       <Typography mt={2}>Title</Typography>
