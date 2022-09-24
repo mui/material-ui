@@ -32,7 +32,7 @@ export default function MarkdownDocs(props) {
   const theme = useTheme();
   const router = useRouter();
   const asPathWithoutLang = router.asPath.replace(/^\/[a-zA-Z]{2}\//, '/');
-  const { disableAd = false, disableToc = false, demos = {}, docs } = props;
+  const { disableAd = false, disableToc = false, demos = {}, docs, demoComponents } = props;
 
   const userLanguage = useUserLanguage();
   const t = useTranslate();
