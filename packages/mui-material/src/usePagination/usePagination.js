@@ -37,7 +37,7 @@ export default function usePagination(props = {}) {
     if (handleChange) {
       handleChange(event, value);
     }
-  }, [pageProp, handleChange]);
+  }, [pageProp, handleChange, setPageState]);
 
   // https://dev.to/namirsab/comment/2050
   const range = (start, end) => {
@@ -118,7 +118,7 @@ export default function usePagination(props = {}) {
   };
 
   // Convert the basic item list to PaginationItem props objects
-  const items = React.useMemo(() => itemList.map((item) => {
+  const items = () => itemList.map((item) => {
     return typeof item === 'number'
       ? {
           onClick: (event) => {
@@ -142,7 +142,7 @@ export default function usePagination(props = {}) {
             (item.indexOf('ellipsis') === -1 &&
               (item === 'next' || item === 'last' ? page >= count : page <= 1)),
         };
-  }), [itemList, handleClick, page, buttonPage, disabled, count]);
+  });
 
   return {
     items,
