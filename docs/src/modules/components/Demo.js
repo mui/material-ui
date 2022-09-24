@@ -1,4 +1,5 @@
 import * as React from 'react';
+import dynamic from 'next/dynamic';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 import { debounce } from '@mui/material/utils';
@@ -195,18 +196,7 @@ const DemoRootJoy = joyStyled('div', {
   display: 'flex',
   justifyContent: 'center',
   [theme.breakpoints.up('sm')]: {
-    borderRadius: 10,
-    ...(bg === 'outlined' && {
-      borderLeftWidth: 1,
-      borderRightWidth: 1,
-    }),
-    /* Make no difference between the demo and the markdown. */
-    ...(bg === 'inline' && {
-      padding: theme.spacing(0),
-    }),
-    ...(hiddenToolbar && {
-      paddingTop: theme.spacing(1),
-    }),
+    marginTop: theme.spacing(0),
   },
   /* Isolate the demo with an outline. */
   ...(bg === 'outlined' && {
@@ -253,6 +243,7 @@ export default function Demo(props) {
     setDemoHovered(event.type === 'mouseenter');
   };
 
+  const DemoComponent = demoData.Component;
   const demoName = getDemoName(demoData.githubLocation);
   const demoSandboxedStyle = React.useMemo(
     () => ({

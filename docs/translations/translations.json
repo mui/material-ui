@@ -60,6 +60,10 @@
   "dashboardTitle": "Dashboard",
   "decreaseSpacing": "decrease spacing",
   "demoToolbarLabel": "demo source",
+  "demo": {
+    "pressEnter": "Press enter or type to enable tab-to-indent.",
+    "pressEscape": "Press escape to disable tab-to-indent."
+  },
   "diamondSponsors": "Diamond Sponsors",
   "editorHint": "Press <kbd>Enter</kbd> to start editing",
   "editPage": "Edit this page",

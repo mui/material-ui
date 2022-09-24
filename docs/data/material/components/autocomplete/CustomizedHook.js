@@ -156,54 +156,8 @@ const Listbox = styled('ul')(
 `,
 );
 
-export default function CustomizedHook() {
-  const {
-    getRootProps,
-    getInputLabelProps,
-    getInputProps,
-    getTagProps,
-    getListboxProps,
-    getOptionProps,
-    groupedOptions,
-    value,
-    focused,
-    setAnchorEl,
-  } = useAutocomplete({
-    id: 'customized-hook-demo',
-    defaultValue: [top100Films[1]],
-    multiple: true,
-    options: top100Films,
-    getOptionLabel: (option) => option.title,
-  });
-
-  return (
-    <Root>
-      <div {...getRootProps()}>
-        <Label {...getInputLabelProps()}>Customized hook</Label>
-        <InputWrapper ref={setAnchorEl} className={focused ? 'focused' : ''}>
-          {value.map((option, index) => (
-            <StyledTag label={option.title} {...getTagProps({ index })} />
-          ))}
-
-          <input {...getInputProps()} />
-        </InputWrapper>
-      </div>
-      {groupedOptions.length > 0 ? (
-        <Listbox {...getListboxProps()}>
-          {groupedOptions.map((option, index) => (
-            <li {...getOptionProps({ option, index })}>
-              <span>{option.title}</span>
-              <CheckIcon fontSize="small" />
-            </li>
-          ))}
-        </Listbox>
-      ) : null}
-    </Root>
-  );
-}
-
 // Top 100 films as rated by IMDb users. http://www.imdb.com/chart/top
-const top100Films = [
+const top100Films = () => [
   { title: 'The Shawshank Redemption', year: 1994 },
   { title: 'The Godfather', year: 1972 },
   { title: 'The Godfather: Part II', year: 1974 },
@@ -329,3 +283,49 @@ const top100Films = [
   { title: '3 Idiots', year: 2009 },
   { title: 'Monty Python and the Holy Grail', year: 1975 },
 ];
+
+export default function CustomizedHook() {
+  const {
+    getRootProps,
+    getInputLabelProps,
+    getInputProps,
+    getTagProps,
+    getListboxProps,
+    getOptionProps,
+    groupedOptions,
+    value,
+    focused,
+    setAnchorEl,
+  } = useAutocomplete({
+    id: 'customized-hook-demo',
+    defaultValue: [top100Films()[1]],
+    multiple: true,
+    options: top100Films(),
+    getOptionLabel: (option) => option.title,
+  });
+
+  return (
+    <Root>
+      <div {...getRootProps()}>
+        <Label {...getInputLabelProps()}>Customized hook</Label>
+        <InputWrapper ref={setAnchorEl} className={focused ? 'focused' : ''}>
+          {value.map((option, index) => (
+            <StyledTag label={option.title} {...getTagProps({ index })} />
+          ))}
+
+          <input {...getInputProps()} />
+        </InputWrapper>
+      </div>
+      {groupedOptions.length > 0 ? (
+        <Listbox {...getListboxProps()}>
+          {groupedOptions.map((option, index) => (
+            <li {...getOptionProps({ option, index })}>
+              <span>{option.title}</span>
+              <CheckIcon fontSize="small" />
+            </li>
+          ))}
+        </Listbox>
+      ) : null}
+    </Root>
+  );
+}
