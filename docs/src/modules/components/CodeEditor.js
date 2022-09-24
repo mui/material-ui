@@ -21,15 +21,15 @@ const Wrapper = styled(MarkdownElement)(({ theme }) => ({
   borderRadius: theme.shape.borderRadius,
   '&:hover > .MuiCode-root > pre': {
     borderColor:
-      theme.palette.mode === 'dark' ? theme.palette.primaryDark[500] : theme.palette.primary.light,
+      theme.palette.mode === 'dark' ? theme.palette.primaryDark[400] : theme.palette.primary.light,
     boxShadow: `inset 0 0 0 1px ${
-      theme.palette.mode === 'dark' ? theme.palette.primaryDark[500] : theme.palette.primary.light
+      theme.palette.mode === 'dark' ? theme.palette.primaryDark[400] : theme.palette.primary.light
     }`,
   },
   '&:focus-within > .MuiCode-root > pre': {
     borderColor:
       theme.palette.mode === 'dark' ? theme.palette.primaryDark.main : theme.palette.primary.main,
-    boxShadow: `inset 0 0 0 2px ${
+    boxShadow: `inset 0 0 0 1px ${
       theme.palette.mode === 'dark' ? theme.palette.primaryDark.main : theme.palette.primary.main
     }`,
   },
