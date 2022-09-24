@@ -215,7 +215,6 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
   const ownerState: ChipOwnerState = {
     ...props,
     component,
-    onClick,
     disabled,
     size,
     color,
@@ -256,6 +255,7 @@ const Chip = React.forwardRef(function Chip(inProps, ref) {
     additionalProps: {
       'aria-labelledby': id,
       as: resolvedActionProps?.component,
+      onClick,
     },
     ownerState,
     className: classes.action,
