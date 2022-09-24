@@ -16,6 +16,12 @@ const markdownComponents = {
   'modules/components/ComponentLinkHeader.js': ComponentLinkHeader,
 };
 
+function noComponent(moduleID) {
+  return function NoComponent() {
+    throw new Error(`No demo component provided for '${moduleID}'`);
+  };
+}
+
 function JoyModeObserver({ mode }) {
   const { setMode } = useColorScheme();
   React.useEffect(() => {
