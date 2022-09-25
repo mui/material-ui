@@ -77,6 +77,9 @@ export * from './PickersDay';
 export { default as Rating } from './Rating';
 export * from './Rating';
 
+export { default as RichTextField } from './RichTextField';
+export * from './RichTextField';
+
 export { default as Skeleton } from './Skeleton';
 export * from './Skeleton';
 

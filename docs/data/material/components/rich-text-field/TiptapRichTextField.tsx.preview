@@ -1,0 +1,10 @@
+<RichTextField
+  label="Type here"
+  editor={editor}
+  onChange={setValue}
+  variant="filled"
+  value={value}
+>
+  <RichTextFieldStandardToolBar />
+</RichTextField>
+<div>{value}</div>
