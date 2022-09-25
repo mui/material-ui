@@ -56,7 +56,7 @@
     "@types/markdown-to-jsx": "^7.0.1",
     "@types/react-dom": "^18.0.6",
     "@types/react-swipeable-views": "^0.13.1",
-    "@types/react-swipeable-views-utils": "^0.13.3",
+    "@types/react-swipeable-views-utils": "^0.13.4",
     "@types/react-virtualized": "^9.21.21",
     "@types/react-window": "^1.8.5",
     "@types/styled-components": "5.1.26",
