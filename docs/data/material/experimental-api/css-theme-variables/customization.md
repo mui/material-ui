@@ -1,6 +1,6 @@
 # Customization
 
-<p class="description">A guide for customizing the CSS theme variables in Material UI.</p>
+<p class="description">A guide for customizing CSS theme variables in Material UI.</p>
 
 ## Theming
 
@@ -21,7 +21,7 @@ function App() {
 ```
 
 :::warning
-`extendTheme` is not the same as [`createTheme`](/material-ui/customization/theming/#createtheme-options-args-theme). 
+`extendTheme` is not the same as [`createTheme`](/material-ui/customization/theming/#createtheme-options-args-theme).
 Do not use them interchangeably.
 
 - `createTheme()` returns a theme for `ThemeProvider`.
@@ -30,7 +30,7 @@ Do not use them interchangeably.
 
 ### Color schemes
 
-The major difference from the default approach is in palette customization. 
+The major difference from the default approach is in palette customization.
 With the `extendTheme` API, you can specify the palette for all color schemes at once (`light` and `dark` are built in) under the `colorSchemes` node.
 
 Here's an example of how to customize the `primary` palette:
@@ -60,7 +60,7 @@ const theme = extendTheme({
 
 ### Components
 
-[Component customization](/material-ui/customization/theme-components/) remains the same as the default approach. 
+[Component customization](/material-ui/customization/theme-components/) remains the same as the default approach.
 We recommend using the value from `theme.vars.*` whenever possible for a better debugging experience:
 
 ```js
