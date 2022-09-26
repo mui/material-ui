@@ -31,17 +31,17 @@ A big thanks to the 16 contributors who made this release possible. Here are som
 
 - [TrapFocus] Rename TrapFocus to FocusTrap (#34216) @kabernardes
 
-  ````diff
+  ```diff
   - import TrapFocus from ‘@mui/base/TrapFocus’;
-  + import FocusTrap from ‘@mui/base/FocusTrap’;    ```
-  ````
+  + import FocusTrap from ‘@mui/base/FocusTrap’;
+  ```
 
 ### `@mui/joy@5.0.0-alpha.47`
 
-- [Checkbox][joy ui] spread `value`, `required`, and `readOnly` to input (#34477) @siriwatknp
-- [Joy][chip] Fix unbinded `onClick` prop (#34455) @HexM7
-- [Joy] Add `Divider` component (#34403) @siriwatknp
-- [Radio][joy ui] spread `readOnly` and `required` to input (#34478) @siriwatknp
+- [Checkbox] spread `value`, `required`, and `readOnly` to input (#34477) @siriwatknp
+- [Chip] Fix unbinded `onClick` prop (#34455) @HexM7
+- [Divider] Add `Divider` component (#34403) @siriwatknp
+- [Radio] spread `readOnly` and `required` to input (#34478) @siriwatknp
 
 ### Docs
 
