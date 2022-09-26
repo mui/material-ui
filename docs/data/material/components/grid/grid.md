@@ -133,7 +133,7 @@ https://www.w3.org/TR/css-flexbox-1/#box-model
 
 {{"demo": "NestedGrid.js", "bg": true}}
 
-⚠️ Defining an explicit width to a Grid element that is flex container, flex item, and has spacing at the same time lead to unexpected behavior, avoid doing it:
+⚠️ Defining an explicit width to a Grid element that is flex container, flex item, and has spacing at the same time leads to unexpected behavior, avoid doing it:
 
 ```jsx
 <Grid spacing={1} container item xs={12}>
