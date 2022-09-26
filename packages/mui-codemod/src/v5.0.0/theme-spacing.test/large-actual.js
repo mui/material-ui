@@ -468,6 +468,7 @@ export default function AppSearch() {
             '& .DocSearch-Cancel': {
               display: 'block',
               alignSelf: 'center',
+              cursor: 'pointer',
               height: '1.5rem',
               marginRight: `${theme.spacing(1)}px`,
               padding: `${theme.spacing(0.3, 0.8, 0.6, 0.8)}px`,
