@@ -122,7 +122,7 @@ describe('<InputLabel />', () => {
   });
 
   describe('Emotion compatibility', () => {
-    it('classes.root should overwrite builtin styles.', () => {
+    it('classes.root should overwrite built-in styles.', () => {
       const text = 'The label';
 
       const { getByText } = render(
@@ -139,7 +139,7 @@ describe('<InputLabel />', () => {
       expect(getComputedStyle(label).position).to.equal('static');
     });
 
-    it('className should overwrite classes.root and builtin styles.', () => {
+    it('className should overwrite classes.root and built-in styles.', () => {
       const text = 'The label';
 
       const { getByText } = render(
