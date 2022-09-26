@@ -2,7 +2,7 @@
 
 <p class="description">An overview of adopting CSS theme variables in Material UI.</p>
 
-[CSS variables](https://www.w3.org/TR/css-variables-1/) are a modern cross-browser feature that let you declare variables in CSS and reuse them in other properties. 
+[CSS variables](https://www.w3.org/TR/css-variables-1/) are a modern cross-browser feature that let you declare variables in CSS and reuse them in other properties.
 You can implement them to improve Material UI's theming and customization experience.
 
 :::info
@@ -30,7 +30,7 @@ For server-side applications, there are some trade-offs to consider:
 | ---------------------------------------------------- | ----------------------------- | ------------------------------------------------------------------------------------------------------------ |
 | HTML size                                            | bigger                        | CSS variables are generated for both light and dark mode at build time.                                      |
 | [First Contentful Paint (FCP)](https://web.dev/fcp/) | larger                        | Since the HTML size is generally bigger, the time to download the HTML before showing the content is longer. |
-| [Time to Interactive (TTI)](https://web.dev/tti/)    | Smaller (for dark mode)       | Stylesheets are not regenerated between light and dark mode, so it takes less time for JavaScript to run. |
+| [Time to Interactive (TTI)](https://web.dev/tti/)    | Smaller (for dark mode)       | Stylesheets are not regenerated between light and dark mode, so it takes less time for JavaScript to run.    |
 
 :::warning
 The comparison described in the table above may not be applicable to large and complex applications since there are so many factors that can impact performance metrics.

@@ -2,7 +2,7 @@
 
 <p class="description">A step-by-step migration guide to start using CSS theme variables in your project.</p>
 
-This is a guide that shows how to migrate an existing Material UI project to CSS theme variables. 
+This is a guide that shows how to migrate an existing Material UI project to CSS theme variables.
 This migration offers a solution to a longstanding issue in which a user who prefers dark mode will see a flash of light mode when the page first loads.
 
 ## 1. Add the new provider
@@ -25,7 +25,7 @@ You should see the generated CSS theme variables in the stylesheet. Material UI 
 
 If you have a custom theme, you must replace `createTheme()` with the `extendTheme()` API.
 
-This moves palette customization to within the `colorSchemes` node. 
+This moves palette customization to within the `colorSchemes` node.
 Other properties can be copied and pasted.
 
 ```diff
@@ -89,7 +89,7 @@ function App() {
 }
 ```
 
-Save the file and start the development server. 
+Save the file and start the development server.
 Your application should be able to run without crashing.
 
 :::info

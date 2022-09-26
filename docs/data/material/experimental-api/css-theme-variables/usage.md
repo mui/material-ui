@@ -14,7 +14,7 @@ function App() {
 }
 ```
 
-Once the `App` renders on the screen, you will see the CSS theme variables in the html `:root` stylesheet. 
+Once the `App` renders on the screen, you will see the CSS theme variables in the html `:root` stylesheet.
 The variables are flattened and prefixed with `--mui` by default:
 
 ```css
@@ -94,7 +94,7 @@ function App() {
   }));
   ```
 
-  For **TypeScript**, the typings are not enabled by default. 
+  For **TypeScript**, the typings are not enabled by default.
   Follow the [TypeScript setup](#typescript) to enable the typings.
 
   :::warning
