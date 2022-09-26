@@ -23,7 +23,7 @@ export default function App() {
 ### CssVarsProvider
 
 In the example above, you can see that the Button component is nested within `<CssVarsProvider />`.
-This is not required, but it unlocks a whole host of customization options powered by CSS variables.
+This provider unlocks a whole host of customization options powered by CSS variables.
 See [Using CSS variables](/joy-ui/customization/using-css-variables/) for more details.
 
 ## Shared props
