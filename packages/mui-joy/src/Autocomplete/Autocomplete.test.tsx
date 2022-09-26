@@ -395,4 +395,41 @@ describe('Joy <Autocomplete />', () => {
       expect(handleChange.args[0][1]).to.deep.equal(['a']);
     });
   });
+
+  describe('prop: multiple', () => {
+    it('should not crash', () => {
+      const { getByRole } = render(
+        <Autocomplete
+          openOnFocus
+          options={[]}
+          renderInput={(params) => <Input {...params} />}
+          multiple
+        />,
+      );
+      const input = getByRole('combobox');
+
+      act(() => {
+        input.focus();
+        (document.activeElement as HTMLElement).blur();
+        input.focus();
+      });
+    });
+
+    it('should remove the last option', () => {
+      const handleChange = spy();
+      const options = ['one', 'two'];
+      const { getAllByTestId } = render(
+        <Autocomplete
+          options={[]}
+          defaultValue={['one', 'two']}
+          onChange={handleChange}
+          renderInput={(params) => <Input {...params} />}
+          multiple
+        />,
+      );
+      fireEvent.click(getAllByTestId('CancelIcon')[1]);
+      expect(handleChange.callCount).to.equal(1);
+      expect(handleChange.args[0][1]).to.deep.equal([options[0]]);
+    });
+  });
 });

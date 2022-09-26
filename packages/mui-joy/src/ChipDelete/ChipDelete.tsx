@@ -6,7 +6,7 @@ import { unstable_composeClasses as composeClasses, useButton } from '@mui/base'
 import { useSlotProps } from '@mui/base/utils';
 import { useThemeProps } from '../styles';
 import styled from '../styles/styled';
-import Close from '../internal/svg-icons/Close';
+import Cancel from '../internal/svg-icons/Cancel';
 import chipDeleteClasses, { getChipDeleteUtilityClass } from './chipDeleteClasses';
 import { ChipDeleteProps, ChipDeleteOwnerState, ChipDeleteTypeMap } from './ChipDeleteProps';
 import ChipContext from '../Chip/ChipContext';
@@ -113,7 +113,7 @@ const ChipDelete = React.forwardRef(function ChipDelete(inProps, ref) {
     className: classes.root,
   });
 
-  return <ChipDeleteRoot {...rootProps}>{children ?? <Close />}</ChipDeleteRoot>;
+  return <ChipDeleteRoot {...rootProps}>{children ?? <Cancel />}</ChipDeleteRoot>;
 }) as OverridableComponent<ChipDeleteTypeMap>;
 
 ChipDelete.propTypes /* remove-proptypes */ = {
