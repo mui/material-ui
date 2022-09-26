@@ -1,7 +1,15 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { describeConformance, createRenderer, screen, act, fireEvent } from 'test/utils';
+import {
+  describeConformance,
+  createRenderer,
+  screen,
+  act,
+  fireEvent,
+  strictModeDoubleLoggingSupressed,
+} from 'test/utils';
 import Autocomplete, { autocompleteClasses as classes } from '@mui/joy/Autocomplete';
 import Input from '@mui/joy/Input';
 import Chip from '@mui/joy/Chip';
@@ -1341,6 +1349,153 @@ describe('Joy <Autocomplete />', () => {
       expect(queryByTitle('Clear')).to.equal(null);
       expect(container.querySelector(`.${classes.root}`)).to.have.class(classes.hasPopupIcon);
       expect(container.querySelector(`.${classes.root}`)).not.to.have.class(classes.hasClearIcon);
+    });
+  });
+
+  describe('warnings', () => {
+    beforeEach(() => {
+      PropTypes.resetWarningCache();
+    });
+
+    it('warn if getOptionLabel do not return a string', () => {
+      const handleChange = spy();
+      render(
+        <Autocomplete
+          freeSolo
+          onChange={handleChange}
+          options={[{ name: 'one' }, {}]}
+          getOptionLabel={(option) => (option as { name: string }).name}
+          renderInput={(params) => <Input {...params} autoFocus />}
+        />,
+      );
+      const textbox = screen.getByRole('combobox');
+
+      expect(() => {
+        fireEvent.change(textbox, { target: { value: 'a' } });
+        fireEvent.keyDown(textbox, { key: 'Enter' });
+      }).toErrorDev([
+        'MUI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
+        !strictModeDoubleLoggingSupressed &&
+          'MUI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
+        !strictModeDoubleLoggingSupressed &&
+          'MUI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
+        'MUI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
+        'MUI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
+        'MUI: The `getOptionLabel` method of Autocomplete returned undefined instead of a string',
+      ]);
+      expect(handleChange.callCount).to.equal(1);
+      expect(handleChange.args[0][1]).to.equal('a');
+    });
+
+    it('warn if isOptionEqualToValue match multiple values for a given option', () => {
+      const value = [
+        { id: '10', text: 'One' },
+        { id: '20', text: 'Two' },
+      ];
+      const options = [
+        { id: '10', text: 'One' },
+        { id: '20', text: 'Two' },
+        { id: '30', text: 'Three' },
+      ];
+
+      render(
+        <Autocomplete
+          multiple
+          options={options}
+          value={value}
+          getOptionLabel={(option) => option.text}
+          isOptionEqualToValue={(option) => !!value.find((v) => v.id === option.id)}
+          renderInput={(params) => <Input {...params} autoFocus />}
+        />,
+      );
+      const textbox = screen.getByRole('combobox');
+
+      expect(() => {
+        fireEvent.keyDown(textbox, { key: 'ArrowDown' });
+        fireEvent.keyDown(textbox, { key: 'Enter' });
+      }).toErrorDev(
+        'The component expects a single value to match a given option but found 2 matches.',
+      );
+    });
+
+    it('warn if value does not exist in options list', () => {
+      const value = 'not a good value';
+      const options = ['first option', 'second option'];
+
+      expect(() => {
+        render(
+          <Autocomplete
+            value={value}
+            options={options}
+            renderInput={(params) => <Input {...params} />}
+          />,
+        );
+      }).toWarnDev([
+        'None of the options match with `"not a good value"`',
+        !strictModeDoubleLoggingSupressed && 'None of the options match with `"not a good value"`',
+        'None of the options match with `"not a good value"`',
+        !strictModeDoubleLoggingSupressed && 'None of the options match with `"not a good value"`',
+        // React 18 Strict Effects run mount effects twice which lead to a cascading update
+        React.version.startsWith('18') && 'None of the options match with `"not a good value"`',
+        React.version.startsWith('18') &&
+          !strictModeDoubleLoggingSupressed &&
+          'None of the options match with `"not a good value"`',
+      ]);
+    });
+
+    it('warn if groups options are not sorted', () => {
+      const data = [
+        { group: 1, value: 'A' },
+        { group: 2, value: 'D' },
+        { group: 2, value: 'E' },
+        { group: 1, value: 'B' },
+        { group: 3, value: 'G' },
+        { group: 2, value: 'F' },
+        { group: 1, value: 'C' },
+      ];
+      expect(() => {
+        render(
+          <Autocomplete
+            openOnFocus
+            options={data}
+            getOptionLabel={(option) => option.value}
+            renderInput={(params) => <Input {...params} autoFocus />}
+            groupBy={(option) => String(option.group)}
+          />,
+        );
+      }).toWarnDev([
+        'returns duplicated headers',
+        !strictModeDoubleLoggingSupressed && 'returns duplicated headers',
+      ]);
+      const options = screen.getAllByRole('option').map((el) => el.textContent);
+      expect(options).to.have.length(7);
+      expect(options).to.deep.equal(['A', 'D', 'E', 'B', 'G', 'F', 'C']);
+    });
+
+    it('warn if the type of the value is wrong', () => {
+      expect(() => {
+        PropTypes.checkPropTypes(
+          Autocomplete.propTypes,
+          { multiple: true, value: null, options: [], renderInput: () => null },
+          'prop',
+          'Autocomplete',
+        );
+      }).toErrorDev(
+        'The Autocomplete expects the `value` prop to be an array when `multiple={true}` or undefined.',
+      );
+    });
+
+    it('warn if the type of the defaultValue is wrong', () => {
+      expect(() => {
+        PropTypes.checkPropTypes(
+          Autocomplete.propTypes,
+          { multiple: true, defaultValue: 'wrong-string', options: [], renderInput: () => null },
+          'prop',
+          'Autocomplete',
+        );
+      }).toErrorDev(
+        'The Autocomplete expects the `defaultValue` prop to be an array when `multiple={true}` or undefined.',
+      );
     });
   });
 });

@@ -1,5 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import { chainPropTypes, integerPropType } from '@mui/utils';
 import composeClasses from '@mui/base/composeClasses';
 import { useAutocomplete, AutocompleteGroupedOption } from '@mui/base/AutocompleteUnstyled';
 import PopperUnstyled, { PopperUnstyledProps } from '@mui/base/PopperUnstyled';
@@ -411,6 +412,7 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     ],
     [],
   );
+
   const [SlotListbox, listboxProps] = useSlot('listbox', {
     className: classes.listbox,
     elementType: PopperUnstyled,
@@ -551,10 +553,6 @@ Autocomplete.propTypes /* remove-proptypes */ = {
   // |     To update them edit TypeScript types and run "yarn proptypes"  |
   // ----------------------------------------------------------------------
   /**
-   * @ignore
-   */
-  className: PropTypes.string,
-  /**
    * The icon to display in place of the default clear icon.
    * @default <ClearIcon fontSize="small" />
    */
@@ -597,6 +595,21 @@ Autocomplete.propTypes /* remove-proptypes */ = {
     noOptions: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     popupIndicator: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
     root: PropTypes.oneOfType([PropTypes.func, PropTypes.object]),
+  }),
+  /**
+   * The default value. Use when the component is not controlled.
+   * @default props.multiple ? [] : null
+   */
+  defaultValue: chainPropTypes(PropTypes.any, (props) => {
+    if (props.multiple && props.defaultValue !== undefined && !Array.isArray(props.defaultValue)) {
+      return new Error(
+        [
+          'MUI: The Autocomplete expects the `defaultValue` prop to be an array when `multiple={true}` or undefined.',
+          `However, ${props.defaultValue} was provided.`,
+        ].join('\n'),
+      );
+    }
+    return null;
   }),
   /**
    * If `true`, the input can't be cleared.
@@ -689,7 +702,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * Set `-1` to disable the limit.
    * @default -1
    */
-  limitTags: PropTypes.number,
+  limitTags: integerPropType,
   /**
    * If `true`, the component is in a loading state.
    * This shows the `loadingText` in place of suggestions (only if there are no suggestions to show, e.g. `options` are empty).
@@ -771,6 +784,10 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    */
   options: PropTypes.array.isRequired,
   /**
+   * The input placeholder
+   */
+  placeholder: PropTypes.string,
+  /**
    * The icon to display in place of the default popup icon.
    * @default <ArrowDropDownIcon />
    */
@@ -793,7 +810,7 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * @param {object} params
    * @returns {ReactNode}
    */
-  renderInput: PropTypes.func,
+  renderInput: PropTypes.func.isRequired,
   /**
    * Render the option, use `getOptionLabel` by default.
    *
@@ -834,7 +851,17 @@ Autocomplete.propTypes /* remove-proptypes */ = {
    * The value must have reference equality with the option in order to be selected.
    * You can customize the equality behavior with the `isOptionEqualToValue` prop.
    */
-  value: PropTypes.any,
+  value: chainPropTypes(PropTypes.any, (props) => {
+    if (props.multiple && props.value !== undefined && !Array.isArray(props.value)) {
+      return new Error(
+        [
+          'MUI: The Autocomplete expects the `value` prop to be an array when `multiple={true}` or undefined.',
+          `However, ${props.value} was provided.`,
+        ].join('\n'),
+      );
+    }
+    return null;
+  }),
 } as any;
 
 export default Autocomplete;
