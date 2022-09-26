@@ -4,7 +4,7 @@
 
 ## Theming
 
-The `experimental_extendTheme` is the new API to extend the default theme. It returns a theme that can only be used by the `Experimental_CssVarsProvider`.
+`experimental_extendTheme` is an API that extends the default theme. It returns a theme that can only be used by the `Experimental_CssVarsProvider`.
 
 ```js
 import {
@@ -21,7 +21,8 @@ function App() {
 ```
 
 :::warning
-The `extendTheme` is not the same as [`createTheme`](/material-ui/customization/theming/#createtheme-options-args-theme), do not use theme interchangably.
+`extendTheme` is not the same as [`createTheme`](/material-ui/customization/theming/#createtheme-options-args-theme). 
+Do not use them interchangeably.
 
 - `createTheme()` returns a theme for `ThemeProvider`.
 - `extendTheme()` returns a theme for `CssVarsProvider`.
@@ -29,9 +30,10 @@ The `extendTheme` is not the same as [`createTheme`](/material-ui/customization/
 
 ### Color schemes
 
-The major difference from the default approach is the palette customization. With the new `extendTheme` API, you can specify the palette for all color schemes at once (`light` and `dark` are built-in color schemes) under the `colorSchemes` node.
+The major difference from the default approach is in palette customization. 
+With the `extendTheme` API, you can specify the palette for all color schemes at once (`light` and `dark` are built in) under the `colorSchemes` node.
 
-Here is an example of customizing the `primary` palette:
+Here's an example of how to customize the `primary` palette:
 
 ```js
 import { pink } from '@mui/material/colors';
@@ -58,7 +60,8 @@ const theme = extendTheme({
 
 ### Components
 
-[Component customization](/material-ui/customization/theme-components/) remains the same. We recommend to use the value from `theme.vars.*` whenever possible for better debugging experience:
+[Component customization](/material-ui/customization/theme-components/) remains the same as the default approach. 
+We recommend using the value from `theme.vars.*` whenever possible for a better debugging experience:
 
 ```js
 const theme = extendTheme({
@@ -177,12 +180,12 @@ Or use `var()` to refer to the CSS variable directly:
 ```
 
 :::info
-💡 If you have set up a [custom prefix](/material-ui/experimental-api/css-theme-variables/customization/#changing-variable-prefix), make sure to replace the `--mui` with it.
+💡 If you're using a [custom prefix](/material-ui/experimental-api/css-theme-variables/customization/#changing-variable-prefix), make sure to replace the default `--mui`.
 :::
 
 ### TypeScript
 
-You need to augment the theme palette to avoid the type error:
+You must augment the theme palette to avoid type errors:
 
 ```ts
 declare module '@mui/material/styles' {
@@ -201,9 +204,9 @@ declare module '@mui/material/styles' {
 }
 ```
 
-## Changing variable prefix
+## Changing variable prefixes
 
-To change the default variable prefix (`--mui`), provide a string to `cssVarPrefix` property.
+To change the default variable prefix (`--mui`), provide a string to `cssVarPrefix` property, as shown below:
 
 ```js
 const theme = extendTheme({ cssVarPrefix: 'any' });
@@ -212,7 +215,7 @@ const theme = extendTheme({ cssVarPrefix: 'any' });
 // --any-palette-primary-main: ...;
 ```
 
-To remove the prefix, use empty string as a value.
+To remove the prefix, use an empty string as a value:
 
 ```js
 const theme = extendTheme({ cssVarPrefix: '' });
@@ -247,12 +250,12 @@ const Button = styled('button')(({ theme }) => ({
 ```
 
 :::info
-💡 Using the utility equals to writing a plain string `'[data-mui-color-scheme="dark"] &'`, if you don't have a custom configuration.
+💡 Using this utility is equivalent to writing a plain string `'[data-mui-color-scheme="dark"] &'` if you don't have a custom configuration.
 :::
 
 ## Force a specific color scheme
 
-Specify `data-mui-color-scheme="dark"` to any DOM node to force the children components to appear as if they are in the dark mode.
+Specify `data-mui-color-scheme="dark"` to any DOM node to force the children components to appear as if they are in dark mode.
 
 ```js
 <div data-mui-color-scheme="dark">
@@ -266,7 +269,7 @@ Specify `data-mui-color-scheme="dark"` to any DOM node to force the children com
 
 ## Dark color scheme application
 
-For an application with just dark mode, set the default mode to `dark`:
+For an application that only has a dark mode, set the default mode to `dark`:
 
 ```js
 const theme = extendTheme({
@@ -294,5 +297,5 @@ getInitColorSchemeScript({
 ```
 
 :::info
-💡 In development, make sure to clear the local storage and refresh the page after you configure the `defaultMode`.
+💡 In development, make sure to clear local storage and refresh the page after you configure the `defaultMode`.
 :::

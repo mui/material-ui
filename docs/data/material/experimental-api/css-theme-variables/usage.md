@@ -1,10 +1,10 @@
 # Usage
 
-<p class="description">Learn how to use the new experimental APIs to adopt CSS theme variables.</p>
+<p class="description">Learn how to use the experimental APIs to adopt CSS theme variables.</p>
 
 ## Getting started
 
-`Experimental_CssVarsProvider` is a new provider that generates CSS theme variables and attach a reference to the theme object (a React context).
+`Experimental_CssVarsProvider` is a provider that generates CSS theme variables and attaches a reference to the theme object (a React context).
 
 ```js
 import { Experimental_CssVarsProvider as CssVarsProvider } from '@mui/material/styles';
@@ -14,7 +14,8 @@ function App() {
 }
 ```
 
-Once the `App` renders on the screen, you will see the CSS theme variables in the html `:root` stylesheet. The variables are flatten and prefixed with `--mui` by default:
+Once the `App` renders on the screen, you will see the CSS theme variables in the html `:root` stylesheet. 
+The variables are flattened and prefixed with `--mui` by default:
 
 ```css
 /* generated global stylesheet */
@@ -28,12 +29,12 @@ Once the `App` renders on the screen, you will see the CSS theme variables in th
 ```
 
 :::info
-💡 The `CssVarsProvider` is built on top of the [`ThemeProvider`](/material-ui/customization/theming/#themeprovider) with extra features like CSS variables generation, storage synchronization, unlimited color schemes, etc.
+💡 The `CssVarsProvider` is built on top of the [`ThemeProvider`](/material-ui/customization/theming/#themeprovider) with extra features like CSS variable generation, storage synchronization, unlimited color schemes, and more.
 :::
 
 ## Toggle between light and dark mode
 
-The `useColorScheme` hook lets you read and update the user selected mode:
+The `useColorScheme` hook lets you read and update the user-selected mode:
 
 ```jsx
 import {
@@ -41,8 +42,8 @@ import {
   useColorScheme,
 } from '@mui/material/styles';
 
-// ModeSwitcher is an example interface that users use to toggle between modes.
-// Material UI does not provide the toggle interface, you have to build it yourself.
+// ModeSwitcher is an example interface for toggling between modes.
+// Material UI does not provide the toggle interface—you have to build it yourself.
 const ModeSwitcher = () => {
   const { mode, setMode } = useColorScheme();
   const [mounted, setMounted] = React.useState(false);
@@ -82,7 +83,7 @@ function App() {
 }
 ```
 
-## Using the theme variables
+## Using theme variables
 
 - `theme.vars` (recommended): an object that refers to the CSS theme variables.
 
@@ -93,10 +94,11 @@ function App() {
   }));
   ```
 
-  For **TypeScript**, the typings are not enabled by default. You can follow the [typescript setup](#typescript) to enable the typings.
+  For **TypeScript**, the typings are not enabled by default. 
+  Follow the [TypeScript setup](#typescript) to enable the typings.
 
   :::warning
-  Make sure that the components accessing `theme.vars.*` are rendered under the new provider, otherwise you will get `TypeError`.
+  Make sure that the components accessing `theme.vars.*` are rendered under the new provider, otherwise you will get a `TypeError`.
   :::
 
 - **Native CSS**: if you can't access the theme object, e.g. in a pure CSS file, you can use [`var()`](https://developer.mozilla.org/en-US/docs/Web/CSS/var) directly:
@@ -109,12 +111,12 @@ function App() {
   ```
 
   :::info
-  💡 If you have set up a [custom prefix](/material-ui/experimental-api/css-theme-variables/customization/#changing-variable-prefix), make sure to replace the `--mui` with it.
+  💡 If you have set up a [custom prefix](/material-ui/experimental-api/css-theme-variables/customization/#changing-variable-prefix), make sure to replace the default `--mui`.
   :::
 
 ## Server-side rendering
 
-Place the `getInitColorSchemeScript()` before the `<Main />` tag to prevent the dark-mode SSR flickering during the hydration phase.
+Place `getInitColorSchemeScript()` before the `<Main />` tag to prevent the dark-mode SSR flickering during the hydration phase.
 
 ### Next.js
 

@@ -2,9 +2,10 @@
 
 <p class="description">A step-by-step migration guide to start using CSS theme variables in your project.</p>
 
-This is a guide for an existing Material UI project to migrate to CSS theme variables. The migration aims to fix the dark mode flickering issue.
+This is a guide that shows how to migrate an existing Material UI project to CSS theme variables. 
+This migration offers a solution to a longstanding issue in which a user who prefers dark mode will see a flash of light mode when the page first loads.
 
-## 1. Use the new provider
+## 1. Add the new provider
 
 ### Without a custom theme
 
@@ -22,9 +23,10 @@ You should see the generated CSS theme variables in the stylesheet. Material UI 
 
 ### Custom theme
 
-If you have a custom theme, replace the `createTheme()` with the new `extendTheme()` API.
+If you have a custom theme, you must replace `createTheme()` with the `extendTheme()` API.
 
-Moves the palette customization inside the `colorSchemes` node. Other properties can be copied and pasted.
+This moves palette customization to within the `colorSchemes` node. 
+Other properties can be copied and pasted.
 
 ```diff
 - import { createTheme } from '@mui/material/styles';
@@ -87,17 +89,18 @@ function App() {
 }
 ```
 
-Save the file and start the development server, your application should be able to run without crashing.
+Save the file and start the development server. 
+Your application should be able to run without crashing.
 
 :::info
-If you experience any error, [open an issue](https://github.com/mui/material-ui/issues/new?assignees=&labels=status%3A+needs+triage&template=1.bug.yml) with the error you got. We'd love to help.
+If you encounter any errors, please [open an issue](https://github.com/mui/material-ui/issues/new?assignees=&labels=status%3A+needs+triage&template=1.bug.yml) to share it with us. We'd love to help.
 :::
 
 If you inspect the page, you will see the generated CSS variables in the stylesheet. Material UI components that render inside the new provider will automatically use the CSS theme variables.
 
 ## 2. Remove the toggle mode logic
 
-You can remove your existing logic that handle the user selected mode and switch to `useColorScheme` hook.
+You can remove your existing logic that handles the user-selected mode and replace it with the `useColorScheme` hook.
 
 **Before**:
 
@@ -111,7 +114,7 @@ function App() {
     return 'light';
   });
 
-  // new theme is created every time the mode changes
+  // a new theme is created every time the mode changes
   const theme = createTheme({
     palette: {
       mode,
@@ -179,17 +182,17 @@ function App() {
 }
 ```
 
-The `useColorScheme` hook provides the user selected `mode` and a function `setMode` to update the value.
+The `useColorScheme` hook provides the user-selected `mode` and a function `setMode` to update the value.
 
-The `mode` is store internally inside `CssVarsProvider` which handles the local storage synchronization for you.
+The `mode` is stored inside `CssVarsProvider` which handles local storage synchronization for you.
 
-## 3. Prevent dark mode flickering for server-side application
+## 3. Prevent dark-mode flickering in server-side applications
 
-To prevent the flickering, we expose a new API called `getInitColorSchemeScript()` which returns a script that must be run before React.
+The `getInitColorSchemeScript()` API prevents dark-mode flickering by returning a script that must be run before React.
 
 ### Next.js
 
-Places the script before `<Main />` in your [`pages/_document.js`](https://nextjs.org/docs/advanced-features/custom-document).
+Place the script before `<Main />` in your [`pages/_document.js`](https://nextjs.org/docs/advanced-features/custom-document):
 
 ```jsx
 import Document, { Html, Head, Main, NextScript } from 'next/document';
@@ -213,7 +216,7 @@ export default class MyDocument extends Document {
 
 ### Gatsby
 
-Places the script in [`gatsby-ssr.js`](https://www.gatsbyjs.com/docs/reference/config-files/gatsby-ssr/) file:
+Place the script in your [`gatsby-ssr.js`](https://www.gatsbyjs.com/docs/reference/config-files/gatsby-ssr/) file:
 
 ```jsx
 import React from 'react';
@@ -224,9 +227,9 @@ export function onRenderBody({ setPreBodyComponents }) {
 }
 ```
 
-## 4. Refactor custom styles to use attribute selector
+## 4. Refactor custom styles to use the attribute selector
 
-Users still encounter dark mode flickering, if you have custom styles like this in your codebase:
+Users will continue to encounter dark-mode flickering if your custom styles include conditional expressions, as shown below:
 
 ```js
 // theming example
@@ -254,7 +257,7 @@ const Button = styled('button')(({ theme }) => ({
 
 This is because the `theme.palette.mode` is always `light` on the server.
 
-To fix this problem, replace the conditional expression with the attribute selector instead:
+To fix this problem, replace conditional expressions with the attribute selector instead:
 
 ```js
 // theming example
@@ -285,11 +288,11 @@ const Button = styled('button')(({ theme }) => ({
 :::info
 The `theme.getColorSchemeSelector()` is a utility function that returns an attribute selector `'[data-mui-color-scheme="dark"] &'`.
 
-⚠️ Note that the attribute selector creates higher CSS specificity which could be cubersome for theming.
+⚠️ Note that the attribute selector creates higher CSS specificity which could be cumbersome for theming.
 :::
 
-## 5. Test dark mode flickering
+## 5. Test dark-mode flickering
 
 1. Toggle dark mode in your application
 2. Open DevTools and set the [CPU throttling](https://developer.chrome.com/docs/devtools/evaluate-performance/#simulate_a_mobile_cpu) to the lowest value (don't close the DevTools).
-3. Refresh the page, you should see the all of the components in dark theme at first glance.
+3. Refresh the page. You should see the all components in dark mode at first glance.

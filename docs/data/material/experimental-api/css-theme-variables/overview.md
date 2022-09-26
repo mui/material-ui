@@ -2,40 +2,43 @@
 
 <p class="description">An overview of adopting CSS theme variables in Material UI.</p>
 
-[CSS variables](https://www.w3.org/TR/css-variables-1/) is a modern cross-browser feature that lets author declare variables in CSS and reuse them in other properties. It enables Material UI to improve theming and customization experience.
+[CSS variables](https://www.w3.org/TR/css-variables-1/) are a modern cross-browser feature that let you declare variables in CSS and reuse them in other properties. 
+You can implement them to improve Material UI's theming and customization experience.
 
-If you come across CSS variables the first time, you should check out [the basic](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties) before reading our documentation.
+:::info
+If this is your first time encountering CSS variables, you should check out [the MDN Web Docs on CSS custom properties](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties) before continuing here.
+:::
 
 ## Introduction
 
-CSS theme variables is a new feature in Material UI added in [`v5.6.0`](https://github.com/mui/material-ui/releases/tag/v5.6.0) (**not** enabled by default). It tells Material UI components to use the generated CSS theme variables instead of the raw values.
+CSS theme variable support is a new feature in Material UI added in [`v5.6.0`](https://github.com/mui/material-ui/releases/tag/v5.6.0) (but not enabled by default). It tells Material UI components to use the generated CSS theme variables instead of raw values.
 
 ## Advantages
 
-- It lets you prevent the [dark-mode SSR flickering](https://github.com/mui/material-ui/issues/27651).
+- It lets you prevent [dark-mode SSR flickering](https://github.com/mui/material-ui/issues/27651).
 - You can create unlimited color schemes beyond `light` and `dark`.
-- It offers a better debugging experience not only for developers but also designers in your team as well.
+- It offers a better debugging experience not only for developers but also designers on your team.
 - The color scheme of your website is automatically synced between browser tabs.
-- It simplifies the integration with third parties because the CSS theme variables are available globally.
-- It reduces the need of a nested theme when you want to apply dark styles to a specific part of your application.
+- It simplifies integration with third-party tools because CSS theme variables are available globally.
+- It reduces the need for a nested theme when you want to apply dark styles to a specific part of your application.
 
 ## Trade-offs
 
-For server-side application, there are some trade-offs that are worth noticing:
+For server-side applications, there are some trade-offs to consider:
 
 |                                                      | Compare to the default method | Reason                                                                                                       |
 | ---------------------------------------------------- | ----------------------------- | ------------------------------------------------------------------------------------------------------------ |
-| HTML size                                            | bigger                        | CSS variables are generated for both light and dark mode at built time.                                      |
+| HTML size                                            | bigger                        | CSS variables are generated for both light and dark mode at build time.                                      |
 | [First Contentful Paint (FCP)](https://web.dev/fcp/) | larger                        | Since the HTML size is generally bigger, the time to download the HTML before showing the content is longer. |
-| [Time to Interactive (TTI)](https://web.dev/tti/)    | Smaller (for dark mode)       | The stylesheet are not regenerated between light and dark mode, so it takes less time for javascript to run. |
+| [Time to Interactive (TTI)](https://web.dev/tti/)    | Smaller (for dark mode)       | Stylesheets are not regenerated between light and dark mode, so it takes less time for JavaScript to run. |
 
 :::warning
-⚠️ The comparison described in the table might not be eligible for large and complex applications since there are a lot of factors that can impact the metrics.
+The comparison described in the table above may not be applicable to large and complex applications since there are so many factors that can impact performance metrics.
 :::
 
 ## Mental model
 
-Adopting CSS variables requires some mental model shift when it comes to theming and customization between user selected modes.
+Adopting CSS variables requires some shifts in your mental model of theming and customizing user-selected modes.
 
 ### Colors
 
@@ -69,7 +72,7 @@ const theme = extendTheme({
 
 ### Styling
 
-**Default approach**: usually relies on javascript to switch the value between modes:
+**Default approach**: Usually relies on JavaScript to switch the value between modes:
 
 ```js
 createTheme({
@@ -86,7 +89,7 @@ createTheme({
 });
 ```
 
-**CSS theme variables**: the styling leans toward cascading and specificity by using the appropriate selector which lets you prevent the [dark-mode SSR flickering](https://github.com/mui/material-ui/issues/27651).:
+**CSS theme variables**: Styling leans toward cascading and specificity by using the appropriate selector which lets you prevent [dark-mode SSR flickering](https://github.com/mui/material-ui/issues/27651):
 
 ```js
 extendTheme({
@@ -95,7 +98,7 @@ extendTheme({
       styleOverrides: {
         root: ({ theme }) => ({
           color: theme.vars.palette.primary.main,
-          // When mode becomes dark, the attribute selector is attached to the <html> by default.
+          // When the mode switches to dark, the attribute selector is attached to the <html> tag by default.
           '[data-mui-color-scheme="dark"] &': {
             color: '#fff',
           },
@@ -108,6 +111,6 @@ extendTheme({
 
 ## What's next
 
-- To start a new project with CSS theme variables, check out the [basic usage](/material-ui/experimental-api/css-theme-variables/usage/).
-- For an existing Material UI project, check out the [migration guide](/material-ui/experimental-api/css-theme-variables/migration/)
+- To start a new project with CSS theme variables, check out the [basic usage guide](/material-ui/experimental-api/css-theme-variables/usage/).
+- For an existing Material UI project, check out the [migration guide](/material-ui/experimental-api/css-theme-variables/migration/).
 - For theming and customization, check out the [how-to guide](/material-ui/experimental-api/css-theme-variables/customization/).
