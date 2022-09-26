@@ -92,6 +92,11 @@ export interface CheckboxTypeMap<P = {}, D extends React.ElementType = 'span'> {
        * The icon when `checked` is false.
        */
       uncheckedIcon?: React.ReactNode;
+      /**
+       * The value of the component. The DOM API casts this to a string.
+       * The browser uses "on" as the default value.
+       */
+      value?: React.AllHTMLAttributes<HTMLInputElement>['value'];
     };
   defaultComponent: D;
 }
