@@ -99,9 +99,8 @@ export default function useSlot<
       ...(mergedProps as T extends 'root'
         ? SlotProps & ExternalSlotProps & AdditionalProps & ExternalForwardedProps
         : SlotProps & ExternalSlotProps & AdditionalProps),
-      as: (name === 'root' ? rootComponent || slotComponent : slotComponent) as
-        | React.ElementType
-        | undefined,
+      as: ((name === 'root' ? rootComponent || slotComponent : slotComponent) ||
+        internalForwardedProps?.as) as React.ElementType | undefined,
       ref,
     },
     finalOwnerState,

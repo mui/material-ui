@@ -89,6 +89,14 @@ interface ComponentsProps {
       Pick<AutocompleteListboxProps, 'color' | 'variant' | 'size'>,
     AutocompleteOwnerState<any, any, any, any>
   >;
+  option?: SlotComponentProps<
+    'li',
+    {
+      component?: React.ElementType;
+      sx?: SxProps;
+    } & Pick<AutocompleteListboxProps, 'color' | 'variant'>,
+    AutocompleteOwnerState<any, any, any, any>
+  >;
   loading?: SlotComponentProps<
     'div',
     { component?: React.ElementType; sx?: SxProps },
@@ -139,6 +147,7 @@ interface AutocompleteOwnProps<
     clearIndicator?: React.ElementType;
     popupIndicator?: React.ElementType;
     listbox?: React.ElementType;
+    option?: React.ElementType;
     loading?: React.ElementType;
     noOptions?: React.ElementType;
     limitTag?: React.ElementType;

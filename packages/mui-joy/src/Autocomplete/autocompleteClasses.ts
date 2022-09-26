@@ -21,6 +21,8 @@ export interface AutocompleteClasses {
   popupIndicatorOpen: string;
   /** Styles applied to the listbox component. */
   listbox: string;
+  /** Styles applied to the option component. */
+  option: string;
   /** Styles applied to the loading wrapper. */
   loading: string;
   /** Styles applied to the no option wrapper. */
@@ -44,6 +46,7 @@ const autocompleteClasses: AutocompleteClasses = generateUtilityClasses('JoyAuto
   'popupIndicator',
   'popupIndicatorOpen',
   'listbox',
+  'option',
   'loading',
   'noOptions',
 ]);

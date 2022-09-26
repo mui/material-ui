@@ -7,7 +7,7 @@ import { styled, useThemeProps } from '../styles';
 import autocompleteOptionClasses from './autocompleteOptionClasses';
 import { AutocompleteOptionOwnerState, AutocompleteOptionTypeMap } from './AutocompleteOptionProps';
 
-const AutocompleteOptionRoot = styled(ListItemButtonRoot as unknown as 'li', {
+export const AutocompleteOptionRoot = styled(ListItemButtonRoot as unknown as 'li', {
   name: 'JoyAutocompleteOption',
   slot: 'Root',
   overridesResolver: (props, styles) => styles.root,

@@ -27,7 +27,7 @@ import {
   AutocompleteOwnerState,
 } from './AutocompleteProps';
 import FormControlContext from '../FormControl/FormControlContext';
-import AutocompleteOption from '../AutocompleteOption/AutocompleteOption';
+import { AutocompleteOptionRoot } from '../AutocompleteOption/AutocompleteOption';
 import { AutocompleteListboxRoot } from '../AutocompleteListbox/AutocompleteListbox';
 import autocompleteListboxClasses from '../AutocompleteListbox/autocompleteListboxClasses';
 import useSlot from '../utils/useSlot';
@@ -60,6 +60,7 @@ const useUtilityClasses = (ownerState: OwnerState) => {
     clearIndicator: ['clearIndicator'],
     popupIndicator: ['popupIndicator', popupOpen && 'popupIndicatorOpen'],
     listbox: ['listbox'],
+    option: ['option'],
     loading: ['loading'],
     noOptions: ['noOptions'],
     limitTag: ['limitTag'],
@@ -160,6 +161,12 @@ const AutocompleteListbox = styled(AutocompleteListboxRoot, {
   name: 'JoyAutocomplete',
   slot: 'Listbox',
   overridesResolver: (props, styles) => styles.listbox,
+})<{ ownerState: OwnerState }>({});
+
+const AutocompleteOption = styled(AutocompleteOptionRoot, {
+  name: 'JoyAutocomplete',
+  slot: 'Option',
+  overridesResolver: (props, styles) => styles.option,
 })<{ ownerState: OwnerState }>({});
 
 const AutocompleteLoading = styled(ListItem, {
@@ -327,24 +334,6 @@ const Autocomplete = React.forwardRef(function Autocomplete(
     }
   }
 
-  const defaultRenderOption = (optionProps: any, option: unknown) => (
-    // Can't use `useSlotProps`
-    <AutocompleteOption {...optionProps}>{getOptionLabel(option)}</AutocompleteOption>
-  );
-
-  const renderOption = renderOptionProp || defaultRenderOption;
-
-  const renderListOption = (option: unknown, index: number) => {
-    const optionProps = getOptionProps({ option, index });
-
-    return renderOption(optionProps, option, {
-      // `aria-selected` prop will always by boolean, see useAutocomplete hook.
-      selected: !!optionProps['aria-selected'],
-      inputValue,
-      ownerState,
-    });
-  };
-
   const [SlotRoot, rootProps] = useSlot('root', {
     ref,
     className: classes.root,
@@ -474,6 +463,37 @@ const Autocomplete = React.forwardRef(function Autocomplete(
       );
     }
   }
+
+  const [SlotOption, baseOptionProps] = useSlot('option', {
+    className: classes.option,
+    elementType: AutocompleteOption,
+    externalForwardedProps: other,
+    ownerState,
+    externalOwnerState: (mergedProps) => ({
+      variant: mergedProps.variant || 'plain',
+      color: mergedProps.color || 'neutral',
+    }),
+    internalForwardedProps: {
+      as: 'li',
+    },
+  });
+
+  const defaultRenderOption = (optionProps: any, option: unknown) => (
+    <SlotOption {...optionProps}>{getOptionLabel(option)}</SlotOption>
+  );
+
+  const renderOption = renderOptionProp || defaultRenderOption;
+
+  const renderListOption = (option: unknown, index: number) => {
+    const optionProps = getOptionProps({ option, index });
+
+    return renderOption({ ...baseOptionProps, ...optionProps }, option, {
+      // `aria-selected` prop will always by boolean, see useAutocomplete hook.
+      selected: !!optionProps['aria-selected'],
+      inputValue,
+      ownerState,
+    });
+  };
 
   return (
     <React.Fragment>
