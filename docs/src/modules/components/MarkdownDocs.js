@@ -1,5 +1,6 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
+import path from 'path';
 import { useRouter } from 'next/router';
 import { useTheme } from '@mui/system';
 import Demo from 'docs/src/modules/components/Demo';
@@ -38,13 +39,14 @@ function MarkdownDocs(props) {
     demos = {},
     docs,
     demoComponents,
-    componentComponents,
+    srcComponents,
   } = props;
 
   const userLanguage = useUserLanguage();
   const t = useTranslate();
 
-  const { description, location, rendered, title, toc, headers } = docs[userLanguage] || docs.en;
+  const localizedDoc = docs[userLanguage] || docs.en;
+  const { description, location, rendered, title, toc, headers } = localizedDoc;
 
   const isJoy = asPathWithoutLang.startsWith('/joy-ui');
   const Provider = isJoy ? CssVarsProvider : React.Fragment;
@@ -72,15 +74,15 @@ function MarkdownDocs(props) {
 
           if (renderedMarkdownOrDemo.component) {
             const name = renderedMarkdownOrDemo.component;
-            const Component = componentComponents?.[name];
+            const Component = srcComponents?.[name];
 
             if (Component === undefined) {
-              throw new Error('Missing component');
+              throw new Error(`No component found at the path ${path.join('docs/src', name)}`);
             }
 
             return (
               <Wrapper key={index} {...(isJoy && { mode: theme.palette.mode })}>
-                <Component headers={headers} options={renderedMarkdownOrDemo} />
+                <Component {...renderedMarkdownOrDemo} markdown={localizedDoc} />
               </Wrapper>
             );
           }
@@ -141,12 +143,12 @@ function MarkdownDocs(props) {
 }
 
 MarkdownDocs.propTypes = {
-  componentComponents: PropTypes.object,
   demoComponents: PropTypes.object,
   demos: PropTypes.object,
   disableAd: PropTypes.bool,
   disableToc: PropTypes.bool,
   docs: PropTypes.object.isRequired,
+  srcComponents: PropTypes.object,
 };
 
 if (process.env.NODE_ENV !== 'production') {

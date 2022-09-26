@@ -230,7 +230,7 @@ module.exports = async function demoLoader() {
         return `${JSON.stringify(moduleID)}: ${moduleIDToJSIdentifier(moduleID)},`;
       })
       .join('\n')}};
-        export const componentComponents = {${Array.from(componentModuleIDs)
+        export const srcComponents = {${Array.from(componentModuleIDs)
           .map((moduleID) => {
             return `${JSON.stringify(components[moduleID])}: ${moduleIDToJSIdentifier(moduleID)},`;
           })
