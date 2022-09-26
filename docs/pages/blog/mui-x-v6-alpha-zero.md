@@ -3,7 +3,7 @@ title: MUI X v6.0.0-alpha.0
 description: We’re kicking off the development of the next version.
 date: 2022-09-30T00:00:00.000Z
 authors: ['josefreitas']
-tags: ['News']
+tags: ['MUI X', 'News']
 ---
 
 We’re kicking off the development of MUI X v6. Both the Data Grid and Date Pickers are getting a new major version. We want to share our plans and invite you to join us on this next step.
@@ -16,7 +16,7 @@ You can rest assured that all MUI X v6 components will be fully compatible with 
 
 ## How is it going to work?
 
-Before officially releasing v6, we'll go through a few months with pre-releases. We’ll follow the current weekly release process and [semver versioning](https://semver.org/); The difference now is that instead of v5, we’ll ship v6 pre-release packages.
+Before officially releasing v6, we'll go through a few months with pre-releases. We'll follow the current weekly release process and [semver versioning](https://semver.org/); The difference now is that instead of v5, we'll ship v6 pre-release packages.
 
 First, in the alpha phase, we’ll introduce all the breaking changes planned for this major. We’ll be exploring a bit, so it’s expected that some APIs will be unstable, not in terms of functionality, but we may need to rename or adjust parameters. This phase is planned to take about two months.
 
@@ -59,7 +59,7 @@ The following is a list of enhancements on the pipeline for the next few months.
   - [Filtering on header](https://github.com/mui/mui-x/issues/6247).
   - [Use the Data Grid internal components outside the grid](https://github.com/mui/mui-x/issues/2522).
 
-- **Improved Design**  
+- **Improved look & feel**  
    We’re polishing edges in terms of design and usability.
 
   - [New column menu](https://github.com/mui/mui-x/issues/4929).
@@ -69,7 +69,7 @@ The following is a list of enhancements on the pipeline for the next few months.
 - **Rockstar feature**
   - [Copy and paste from/to multiple cells](https://github.com/mui/mui-x/issues/199).
 
-### Date pickers
+### Date Pickers
 
 - **Improved UX**  
    On the previous version we focused a lot on developer experience and overall stability of the components. Now we’re pushing the lines to improve usability.
