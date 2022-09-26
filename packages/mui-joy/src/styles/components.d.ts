@@ -5,6 +5,21 @@ import {
   AspectRatioOwnerState,
   AspectRatioSlot,
 } from '../AspectRatio/AspectRatioProps';
+import {
+  AutocompleteProps,
+  AutocompleteOwnerState,
+  AutocompleteSlot,
+} from '../Autocomplete/AutocompleteProps';
+import {
+  AutocompleteListboxProps,
+  AutocompleteListboxOwnerState,
+  AutocompleteListboxSlot,
+} from '../AutocompleteListbox/AutocompleteListboxProps';
+import {
+  AutocompleteOptionProps,
+  AutocompleteOptionOwnerState,
+  AutocompleteOptionSlot,
+} from '../AutocompleteOption/AutocompleteOptionProps';
 import { AvatarProps, AvatarOwnerState, AvatarSlot } from '../Avatar/AvatarProps';
 import {
   AvatarGroupProps,
@@ -157,6 +172,30 @@ export interface Components<Theme = unknown> {
   JoyAspectRatio?: {
     defaultProps?: Partial<AspectRatioProps>;
     styleOverrides?: OverridesStyleRules<AspectRatioSlot, AspectRatioOwnerState, Theme>;
+  };
+  JoyAutocomplete?: {
+    defaultProps?: Partial<AutocompleteProps<any, any, any, any>>;
+    styleOverrides?: OverridesStyleRules<
+      AutocompleteSlot,
+      AutocompleteOwnerState<any, any, any, any>,
+      Theme
+    >;
+  };
+  JoyAutocompleteListbox?: {
+    defaultProps?: Partial<AutocompleteListboxProps>;
+    styleOverrides?: OverridesStyleRules<
+      AutocompleteListboxSlot,
+      AutocompleteListboxOwnerState,
+      Theme
+    >;
+  };
+  JoyAutocompleteOption?: {
+    defaultProps?: Partial<AutocompleteOptionProps>;
+    styleOverrides?: OverridesStyleRules<
+      AutocompleteOptionSlot,
+      AutocompleteOptionOwnerState,
+      Theme
+    >;
   };
   JoyAvatar?: {
     defaultProps?: Partial<AvatarProps>;
