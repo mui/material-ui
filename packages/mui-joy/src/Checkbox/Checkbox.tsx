@@ -202,7 +202,9 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
     onChange,
     onFocus,
     onFocusVisible,
+    readOnly,
     required,
+    value,
     color: colorProp,
     variant,
     size: sizeProp = 'md',
@@ -294,7 +296,14 @@ const Checkbox = React.forwardRef(function Checkbox(inProps, ref) {
     additionalProps: {
       id,
       name,
+      value,
+      readOnly,
+      required,
       'aria-describedby': formControl?.['aria-describedby'],
+      ...(indeterminate && {
+        // https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-checked#values
+        'aria-checked': 'mixed' as const,
+      }),
     },
     className: classes.input,
   });
