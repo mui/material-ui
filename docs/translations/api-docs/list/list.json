@@ -8,7 +8,7 @@
     "disablePadding": "If <code>true</code>, vertical padding is removed from the list.",
     "subheader": "The content of the subheader, normally <code>ListSubheader</code>.",
     "sx": "The system prop that allows defining system overrides as well as additional CSS styles. See the <a href=\"/system/getting-started/the-sx-prop/\">`sx` page</a> for more details.",
-    "variant": "The custom variant to use for styling. There is no variants available by default.<br>Customization guide: - <a href=\"https://mui.com/material-ui/customization/theme-components/#global-style-overrides\">https://mui.com/material-ui/customization/theme-components/#global-style-overrides</a> - <a href=\"https://mui.com/material-ui/customization/theme-components/#creating-new-component-variants\">https://mui.com/material-ui/customization/theme-components/#creating-new-component-variants</a>"
+    "variant": "The custom variant to use for styling. There are no variants available by default.<br>Check out these guides to learn how to add new variants: - <a href=\"https://mui.com/material-ui/customization/theme-components/#global-style-overrides\">https://mui.com/material-ui/customization/theme-components/#global-style-overrides</a> - <a href=\"https://mui.com/material-ui/customization/theme-components/#creating-new-component-variants\">https://mui.com/material-ui/customization/theme-components/#creating-new-component-variants</a>"
   },
   "classDescriptions": {
     "root": { "description": "Styles applied to the root element." },
